@@ -4061,8 +4061,8 @@ void MainFrame::AddCustomTestToMenus(const wxString& testName)
         {
         BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
         BaseProjectView* view = dynamic_cast<BaseProjectView*>(doc->GetFirstView());
-        FillMenuWithCustomTests(&view->m_customTestsMenu, doc, true);
-        FillMenuWithCustomTests(view->m_customTestsRegularMenu, doc, true);
+        FillMenuWithCustomTests(&view->GetDocFrame()->m_customTestsMenu, doc, true);
+        FillMenuWithCustomTests(view->GetDocFrame()->m_customTestsRegularMenu, doc, true);
         }
     FillMenuWithCustomTests(&m_customTestsMenu, nullptr, false);
     FillMenuWithCustomTests(m_customTestsRegularMenu, nullptr, false);
@@ -4087,8 +4087,8 @@ void MainFrame::AddTestBundleToMenus(const wxString& bundleName)
         {
         BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
         BaseProjectView* view = dynamic_cast<BaseProjectView*>(doc->GetFirstView());
-        FillMenuWithTestBundles(&view->m_testsBundleMenu, doc, true);
-        FillMenuWithTestBundles(view->m_testsBundleRegularMenu, doc, true);
+        FillMenuWithTestBundles(&view->GetDocFrame()->m_testsBundleMenu, doc, true);
+        FillMenuWithTestBundles(view->GetDocFrame()->m_testsBundleRegularMenu, doc, true);
         }
     FillMenuWithTestBundles(&m_testsBundleMenu, nullptr, false);
     FillMenuWithTestBundles(m_testsBundleRegularMenu, nullptr, false);
@@ -4115,8 +4115,8 @@ void MainFrame::RemoveTestBundleFromMenus(const wxString& bundleName)
         {
         BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
         BaseProjectView* view = dynamic_cast<BaseProjectView*>(doc->GetFirstView());
-        FillMenuWithTestBundles(&view->m_testsBundleMenu, doc, true);
-        FillMenuWithTestBundles(view->m_testsBundleRegularMenu, doc, true);
+        FillMenuWithTestBundles(&view->GetDocFrame()->m_testsBundleMenu, doc, true);
+        FillMenuWithTestBundles(view->GetDocFrame()->m_testsBundleRegularMenu, doc, true);
         }
     FillMenuWithTestBundles(&m_testsBundleMenu, nullptr, false);
     FillMenuWithTestBundles(m_testsBundleRegularMenu, nullptr, false);
@@ -4143,8 +4143,8 @@ void MainFrame::RemoveCustomTestFromMenus(const wxString& testName)
         {
         BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
         BaseProjectView* view = dynamic_cast<BaseProjectView*>(doc->GetFirstView());
-        FillMenuWithCustomTests(&view->m_customTestsMenu, doc, true);
-        FillMenuWithCustomTests(view->m_customTestsRegularMenu, doc, true);
+        FillMenuWithCustomTests(&view->GetDocFrame()->m_customTestsMenu, doc, true);
+        FillMenuWithCustomTests(view->GetDocFrame()->m_customTestsRegularMenu, doc, true);
         }
     FillMenuWithCustomTests(&m_customTestsMenu, nullptr, false);
     FillMenuWithCustomTests(m_customTestsRegularMenu, nullptr, false);

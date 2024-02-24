@@ -47,32 +47,6 @@ wxBEGIN_EVENT_TABLE(BaseProjectView, wxView)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_USE_ENGLISH_LABELS"), BaseProjectView::OnEnglishLabels)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_FLESCH_DISPLAY_LINES"), BaseProjectView::OnFleschConnectLinesButton)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EDIT_BAR_LABELS"), BaseProjectView::OnBarLabelsButton)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(wxID_ZOOM_IN, BaseProjectView::OnZoomButtonDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(
-        XRCID("ID_EDIT_GRAPH_BACKGROUND"), BaseProjectView::OnEditGraphBackgroundDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_HISTOGRAM_BAR_STYLE"), BaseProjectView::OnHistoBarStyleDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_BAR_ORIENTATION"), BaseProjectView::OnBarOrientationDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_BAR_STYLE"), BaseProjectView::OnBarStyleDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_BOX_STYLE"), BaseProjectView::OnBoxStyleDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_GRAPH_FONTS"), BaseProjectView::OnEditGraphFontsDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_WORD_LISTS"), BaseProjectView::OnWordListDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_BLANK_GRAPHS"), BaseProjectView::OnBlankGraphDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(wxID_COPY, BaseProjectView::OnCopyDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_DICTIONARY"), BaseProjectView::OnDictionaryDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_GRAPH_SORT"), BaseProjectView::OnGraphSortDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(wxID_PRINT, BaseProjectView::OnPrintDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(
-        XRCID("ID_PRIMARY_AGE_TESTS_BUTTON"), BaseProjectView::OnPrimaryAgeTestsDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(
-        XRCID("ID_SECONDARY_AGE_TESTS_BUTTON"), BaseProjectView::OnSecondaryAgeTestsDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(
-        XRCID("ID_ADULT_TESTS_BUTTON"), BaseProjectView::OnAdultTestsDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(
-        XRCID("ID_SECOND_LANGUAGE_TESTS_BUTTON"), BaseProjectView::OnSecondLanguageTestsDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_CUSTOM_TESTS"), BaseProjectView::OnCustomTestsDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_TEST_BUNDLES"), BaseProjectView::OnTestBundlesDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_GRADE_SCALES"), BaseProjectView::OnGradeScaleDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_TEXT_EXCLUSION"), BaseProjectView::OnTextExclusionDropdown)
 wxEND_EVENT_TABLE()
 
 //---------------------------------------------------
@@ -103,6 +77,53 @@ ProjectDocChildFrame::ProjectDocChildFrame(wxDocument *doc,
         wxID_OPEN);
     Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnSaveDropdown, this,
         XRCID("ID_SAVE_OPTIONS"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnZoomButtonDropdown, this,
+        wxID_ZOOM_IN);
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnEditGraphBackgroundDropdown, this,
+        XRCID("ID_EDIT_GRAPH_BACKGROUND"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnHistoBarStyleDropdown, this,
+        XRCID("ID_EDIT_HISTOGRAM_BAR_STYLE"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnBarOrientationDropdown, this,
+        XRCID("ID_EDIT_BAR_ORIENTATION"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnBarStyleDropdown, this,
+        XRCID("ID_EDIT_BAR_STYLE"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnBoxStyleDropdown, this,
+        XRCID("ID_EDIT_BOX_STYLE"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnEditGraphFontsDropdown, this,
+        XRCID("ID_EDIT_GRAPH_FONTS"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnWordListDropdown, this,
+        XRCID("ID_WORD_LISTS"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnBlankGraphDropdown, this,
+        XRCID("ID_BLANK_GRAPHS"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnCopyDropdown, this,
+        wxID_COPY);
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnGradeScaleDropdown, this,
+        XRCID("ID_GRADE_SCALES"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnGraphSortDropdown, this,
+        XRCID("ID_GRAPH_SORT"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnPrintDropdown, this,
+        wxID_PRINT);
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnCustomTestsDropdown, this,
+        XRCID("ID_CUSTOM_TESTS"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnTestBundlesDropdown, this,
+        XRCID("ID_TEST_BUNDLES"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnExampleDropdown, this,
+        XRCID("ID_EXAMPLES"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnDictionaryDropdown, this,
+        XRCID("ID_EDIT_DICTIONARY"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnPrimaryAgeTestsDropdown, this,
+        XRCID("ID_PRIMARY_AGE_TESTS_BUTTON"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnSecondaryAgeTestsDropdown, this,
+        XRCID("ID_SECONDARY_AGE_TESTS_BUTTON"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnAdultTestsDropdown, this,
+        XRCID("ID_ADULT_TESTS_BUTTON"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnSecondLanguageTestsDropdown, this,
+        XRCID("ID_SECOND_LANGUAGE_TESTS_BUTTON"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnTextExclusionDropdown, this,
+        XRCID("ID_TEXT_EXCLUSION"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED,
+        &ProjectDocChildFrame::OnEditGraphRaygorStyleDrowdown, this,
+        XRCID("ID_EDIT_GRAPH_RAYGOR_STYLE"));
     // ribbon buttons
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnDocumentRefresh, this,
         XRCID("ID_DOCUMENT_REFRESH"));
@@ -111,6 +132,15 @@ ProjectDocChildFrame::ProjectDocChildFrame(wxDocument *doc,
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnInvalidRegionColor, this,
         XRCID("ID_INVALID_REGION_COLOR"));
     // menus
+    Bind(wxEVT_MENU,
+        &ProjectDocChildFrame::OnRaygorStyleSelected, this,
+        XRCID("ID_EDIT_GRAPH_RAYGOR_ORIGINAL"));
+    Bind(wxEVT_MENU,
+        &ProjectDocChildFrame::OnRaygorStyleSelected, this,
+        XRCID("ID_EDIT_GRAPH_RAYGOR_BALDWIN_KAUFMAN"));
+    Bind(wxEVT_MENU,
+        &ProjectDocChildFrame::OnRaygorStyleSelected, this,
+        XRCID("ID_EDIT_GRAPH_RAYGOR_MODERN"));
     Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditGraphColor, this,
         XRCID("ID_EDIT_BAR_COLOR"));
     Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditGraphColor, this,
@@ -809,20 +839,6 @@ BaseProjectView::BaseProjectView()
             doc->RefreshGraphs();
             },
         XRCID("ID_EDIT_PLOT_BKIMAGE_REMOVE"));
-
-    // Raygor style
-    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED,
-        &BaseProjectView::OnEditGraphRaygorStyleButton, this,
-        XRCID("ID_EDIT_GRAPH_RAYGOR_STYLE"));
-    Bind(wxEVT_MENU,
-        &BaseProjectView::OnRaygorStyleSelected, this,
-        XRCID("ID_EDIT_GRAPH_RAYGOR_ORIGINAL"));
-    Bind(wxEVT_MENU,
-        &BaseProjectView::OnRaygorStyleSelected, this,
-        XRCID("ID_EDIT_GRAPH_RAYGOR_BALDWIN_KAUFMAN"));
-    Bind(wxEVT_MENU,
-        &BaseProjectView::OnRaygorStyleSelected, this,
-        XRCID("ID_EDIT_GRAPH_RAYGOR_MODERN"));
     }
 
 //---------------------------------------------------
@@ -1361,7 +1377,7 @@ void BaseProjectView::OnShowcaseComplexWords([[maybe_unused]] wxRibbonButtonBarE
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnRaygorStyleSelected([[maybe_unused]] wxCommandEvent& event)
+void ProjectDocChildFrame::OnRaygorStyleSelected([[maybe_unused]] wxCommandEvent& event)
     {
     if (event.GetId() == XRCID("ID_EDIT_GRAPH_RAYGOR_ORIGINAL"))
         {
@@ -1396,7 +1412,7 @@ void BaseProjectView::OnGraphColorFade([[maybe_unused]] wxCommandEvent& event)
     {
     dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphBackGroundLinearGradient(
         !dynamic_cast<BaseProjectDoc*>(GetDocument())->GetGraphBackGroundLinearGradient());
-    wxMenuItem* fadeOption = m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKCOLOR_FADE"));
+    wxMenuItem* fadeOption = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKCOLOR_FADE"));
     if (fadeOption)
         { fadeOption->Check(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetGraphBackGroundLinearGradient()); }
     dynamic_cast<BaseProjectDoc*>(GetDocument())->RefreshRequired(ProjectRefresh::Minimal);
@@ -1408,22 +1424,22 @@ void BaseProjectView::OnEditPlotBackgroundImageFit(wxCommandEvent& event)
     {
     auto doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     // uncheck all the options
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"));
+    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(false); }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"));
+    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(false); }
     wxMenuItem* menuItem{ nullptr };
     if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"))
         {
         doc->SetPlotBackGroundImageFit(ImageFit::CropAndCenter);
-        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"));
+        menuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"));
         }
     else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"))
         {
         doc->SetPlotBackGroundImageFit(ImageFit::Shrink);
-        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"));
+        menuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"));
         }
 
     if (menuItem)
@@ -1437,62 +1453,62 @@ void BaseProjectView::OnEditPlotBackgroundImageEffect(wxCommandEvent& event)
     {
     auto doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     // uncheck all the options
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_NO_EFFECT"));
+    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_NO_EFFECT"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(false); }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_GRAYSCALE"));
+    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_GRAYSCALE"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(false); }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"));
+    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(false); }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_VERTICALLY"));
+    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_VERTICALLY"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(false); }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_SEPIA"));
+    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_SEPIA"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(false); }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_FROSTED_GLASS"));
+    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_FROSTED_GLASS"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(false); }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_OIL_PAINTING"));
+    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_OIL_PAINTING"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(false); }
     wxMenuItem* menuItem{ nullptr };
     if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_NO_EFFECT"))
         {
         doc->SetPlotBackGroundImageEffect(ImageEffect::NoEffect);
-        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_NO_EFFECT"));
+        menuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_NO_EFFECT"));
         }
     else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_GRAYSCALE"))
         {
         doc->SetPlotBackGroundImageEffect(ImageEffect::Grayscale);
-        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_GRAYSCALE"));
+        menuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_GRAYSCALE"));
         }
     else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"))
         {
         doc->SetPlotBackGroundImageEffect(ImageEffect::BlurHorizontal);
-        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"));
+        menuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"));
         }
     else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_VERTICALLY"))
         {
         doc->SetPlotBackGroundImageEffect(ImageEffect::BlurVertical);
-        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_VERTICALLY"));
+        menuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_VERTICALLY"));
         }
     else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_SEPIA"))
         {
         doc->SetPlotBackGroundImageEffect(ImageEffect::Sepia);
-        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_SEPIA"));
+        menuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_SEPIA"));
         }
     else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_FROSTED_GLASS"))
         {
         doc->SetPlotBackGroundImageEffect(ImageEffect::FrostedGlass);
-        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_FROSTED_GLASS"));
+        menuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_FROSTED_GLASS"));
         }
     else if (event.GetId() == XRCID("ID_PLOT_BKIMAGE_EFFECT_OIL_PAINTING"))
         {
         doc->SetPlotBackGroundImageEffect(ImageEffect::OilPainting);
-        menuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_OIL_PAINTING"));
+        menuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_OIL_PAINTING"));
         }
 
     if (menuItem)
@@ -1521,10 +1537,6 @@ void ProjectDocChildFrame::OnEditPlotBackgroundImage([[maybe_unused]] wxCommandE
     doc->RefreshRequired(ProjectRefresh::Minimal);
     doc->RefreshGraphs();
     }
-
-//---------------------------------------------------
-void BaseProjectView::OnEditGraphFontsDropdown(wxRibbonButtonBarEvent& event)
-    { event.PopupMenu(&m_graphFontsMenu); }
 
 //---------------------------------------------------
 void ProjectDocChildFrame::OnEditGraphOpacity(wxCommandEvent& event)
@@ -1613,18 +1625,6 @@ void ProjectDocChildFrame::OnEditGraphOpacity(wxCommandEvent& event)
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnEditGraphRaygorStyleButton(wxRibbonButtonBarEvent& event)
-    { event.PopupMenu(&m_raygorStyleMenu); }
-
-//---------------------------------------------------
-void BaseProjectView::OnEditGraphBackgroundDropdown(wxRibbonButtonBarEvent& event)
-    { event.PopupMenu(&m_graphBackgroundMenu); }
-
-//---------------------------------------------------
-void BaseProjectView::OnBoxStyleDropdown(wxRibbonButtonBarEvent& event)
-    { event.PopupMenu(&m_boxStyleMenu); }
-
-//---------------------------------------------------
 void ProjectDocChildFrame::OnHistoBarLabelSelected(wxCommandEvent& event)
     {
     for (size_t i = 0; i < m_histobarLabelsMenu.GetMenuItemCount(); ++i)
@@ -1661,22 +1661,6 @@ void ProjectDocChildFrame::OnHistoBarLabelSelected(wxCommandEvent& event)
     dynamic_cast<BaseProjectDoc*>(GetDocument())->RefreshRequired(ProjectRefresh::Minimal);
     dynamic_cast<BaseProjectDoc*>(GetDocument())->RefreshGraphs();
     }
-
-//---------------------------------------------------
-void BaseProjectView::OnHistoBarStyleDropdown(wxRibbonButtonBarEvent& event)
-    { event.PopupMenu(&m_histoBarStyleMenu); }
-
-//---------------------------------------------------
-void BaseProjectView::OnBarStyleDropdown(wxRibbonButtonBarEvent& event)
-    { event.PopupMenu(&m_barStyleMenu); }
-
-//---------------------------------------------------
-void BaseProjectView::OnBarOrientationDropdown(wxRibbonButtonBarEvent& event)
-    { event.PopupMenu(&m_barOrientationMenu); }
-
-//---------------------------------------------------
-void BaseProjectView::OnZoomButtonDropdown(wxRibbonButtonBarEvent& event)
-    { event.PopupMenu(&m_zoomMenu); }
 
 //---------------------------------------------------
 void BaseProjectView::OnDClickRibbonBar([[maybe_unused]] wxRibbonBarEvent& event)
@@ -1831,10 +1815,6 @@ void ProjectDocChildFrame::OnExclusionTagsOptions(wxCommandEvent& event)
     doc->RefreshRequired(ProjectRefresh::FullReindexing);
     doc->RefreshProject();
     }
-
-//---------------------------------------------------
-void BaseProjectView::OnTextExclusionDropdown(wxRibbonButtonBarEvent& event)
-    { event.PopupMenu(&GetDocFrame()->m_textExclusionMenu); }
 
 //---------------------------------------------------
 void ProjectDocChildFrame::OnLineEndOptions(wxCommandEvent& event)
@@ -2035,19 +2015,7 @@ void BaseProjectView::OnCustomTestBundle(wxCommandEvent& event)
     }
 
 //-------------------------------------------------------
-void BaseProjectView::OnCopyDropdown(wxRibbonButtonBarEvent& evt)
-    { evt.PopupMenu(&m_copyMenu); }
-
-//-------------------------------------------------------
-void BaseProjectView::OnWordListDropdown(wxRibbonButtonBarEvent& evt)
-    { evt.PopupMenu(&m_wordListMenu); }
-
-//-------------------------------------------------------
-void BaseProjectView::OnBlankGraphDropdown(wxRibbonButtonBarEvent& evt)
-    { evt.PopupMenu(&m_blankGraphMenu); }
-
-//-------------------------------------------------------
-void BaseProjectView::OnDictionaryDropdown(wxRibbonButtonBarEvent& evt)
+void ProjectDocChildFrame::OnDictionaryDropdown(wxRibbonButtonBarEvent& evt)
     {
     wxMenu menu;
     menu.Append(XRCID("ID_EDIT_ENGLISH_DICTIONARY"), _(L"Edit Custom Dictionary..."));
@@ -2058,7 +2026,7 @@ void BaseProjectView::OnDictionaryDropdown(wxRibbonButtonBarEvent& evt)
     }
 
 //-------------------------------------------------------
-void BaseProjectView::OnPrimaryAgeTestsDropdown(wxRibbonButtonBarEvent& evt)
+void ProjectDocChildFrame::OnPrimaryAgeTestsDropdown(wxRibbonButtonBarEvent& evt)
     {
     if (m_primaryAgeTestsMenu.GetMenuItemCount() == 0)
         {
@@ -2070,7 +2038,7 @@ void BaseProjectView::OnPrimaryAgeTestsDropdown(wxRibbonButtonBarEvent& evt)
     }
 
 //-------------------------------------------------------
-void BaseProjectView::OnSecondaryAgeTestsDropdown(wxRibbonButtonBarEvent& evt)
+void ProjectDocChildFrame::OnSecondaryAgeTestsDropdown(wxRibbonButtonBarEvent& evt)
     {
     if (m_secondaryAgeTestsMenu.GetMenuItemCount() == 0)
         {
@@ -2082,7 +2050,7 @@ void BaseProjectView::OnSecondaryAgeTestsDropdown(wxRibbonButtonBarEvent& evt)
     }
 
 //-------------------------------------------------------
-void BaseProjectView::OnAdultTestsDropdown(wxRibbonButtonBarEvent& evt)
+void ProjectDocChildFrame::OnAdultTestsDropdown(wxRibbonButtonBarEvent& evt)
     {
     if (m_adultTestsMenu.GetMenuItemCount() == 0)
         {
@@ -2094,7 +2062,7 @@ void BaseProjectView::OnAdultTestsDropdown(wxRibbonButtonBarEvent& evt)
     }
 
 //-------------------------------------------------------
-void BaseProjectView::OnSecondLanguageTestsDropdown(wxRibbonButtonBarEvent& evt)
+void ProjectDocChildFrame::OnSecondLanguageTestsDropdown(wxRibbonButtonBarEvent& evt)
     {
     if (m_secondLanguageTestsMenu.GetMenuItemCount() == 0)
         {
@@ -2104,30 +2072,6 @@ void BaseProjectView::OnSecondLanguageTestsDropdown(wxRibbonButtonBarEvent& evt)
     else
         { evt.PopupMenu(&m_secondLanguageTestsMenu); }
     }
-
-//-------------------------------------------------------
-void BaseProjectView::OnCustomTestsDropdown(wxRibbonButtonBarEvent& evt)
-    { evt.PopupMenu(&m_customTestsMenu); }
-
-//-------------------------------------------------------
-void BaseProjectView::OnTestBundlesDropdown(wxRibbonButtonBarEvent& evt)
-    { evt.PopupMenu(&m_testsBundleMenu); }
-
-//-------------------------------------------------------
-void BaseProjectView::OnPrintDropdown(wxRibbonButtonBarEvent& evt)
-    { evt.PopupMenu(&m_printMenu); }
-
-//-------------------------------------------------------
-void BaseProjectView::OnExampleDropdown(wxRibbonButtonBarEvent& evt)
-    { evt.PopupMenu(&m_exampleMenu); }
-
-//-------------------------------------------------------
-void BaseProjectView::OnGraphSortDropdown(wxRibbonButtonBarEvent& evt)
-    { evt.PopupMenu(&m_graphSortMenu); }
-
-//-------------------------------------------------------
-void BaseProjectView::OnGradeScaleDropdown(wxRibbonButtonBarEvent& evt)
-    { evt.PopupMenu(&m_gradeScaleMenu); }
 
 //-------------------------------------------------------
 void ProjectDocChildFrame::OnRemoveCustomTest(wxCommandEvent& event)
@@ -2232,24 +2176,24 @@ ProjectDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView*
         wxID_PROPERTIES);
 
     // list control-specific menu for copying
-    m_copyMenu.Append(wxID_COPY, _(L"Copy") + L"\tCtrl+C");
-    m_copyMenu.Append(
+    subframe->m_copyMenu.Append(wxID_COPY, _(L"Copy") + L"\tCtrl+C");
+    subframe->m_copyMenu.Append(
         XRCID("ID_COPY_WITH_COLUMN_HEADERS"), _(L"Copy with Column Headers"));
-    m_copyMenu.Append(
+    subframe->m_copyMenu.Append(
         XRCID("ID_COPY_FIRST_COLUMN"), _(L"Copy (First Column Only)") + L"\tShift+Ctrl+C");
-    m_copyMenu.Append(
+    subframe->m_copyMenu.Append(
         XRCID("ID_COPY_ALL"), _(L"Copy All"));
 
     // bar chart sorting menu
-    wxMenuItem* item = new wxMenuItem(&m_graphSortMenu,
+    wxMenuItem* item = new wxMenuItem(&subframe->m_graphSortMenu,
         XRCID("ID_SORT_ASCENDING"), _(L"Sort Ascending"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-sort-ascending.svg"));
-    m_graphSortMenu.Append(item);
+    subframe->m_graphSortMenu.Append(item);
 
-    item = new wxMenuItem(&m_graphSortMenu,
+    item = new wxMenuItem(&subframe->m_graphSortMenu,
         XRCID("ID_SORT_DESCENDING"), _(L"Sort Descending"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-sort-descending.svg"));
-    m_graphSortMenu.Append(item);
+    subframe->m_graphSortMenu.Append(item);
 
     // graph background menu
     // color submenu
@@ -2263,9 +2207,10 @@ ProjectDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView*
         new wxMenuItem(graphBackgroundColorSubMenu,
         XRCID("ID_GRAPH_BKCOLOR_FADE"), _(L"Fade"), wxString{}, wxITEM_CHECK));
 
-    m_graphBackgroundMenu.AppendSubMenu(graphBackgroundColorSubMenu, _(L"Background Color"));
+    subframe->m_graphBackgroundMenu.AppendSubMenu(
+        graphBackgroundColorSubMenu, _(L"Background Color"));
 
-    m_graphBackgroundMenu.AppendSeparator();
+    subframe->m_graphBackgroundMenu.AppendSeparator();
 
     // plot color submenu
     auto plotColorSubMenu = new wxMenu{};
@@ -2279,7 +2224,7 @@ ProjectDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView*
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/opacity.svg"));
     plotColorSubMenu->Append(item);
 
-    m_graphBackgroundMenu.AppendSubMenu(plotColorSubMenu, _(L"Plot Color"));
+    subframe->m_graphBackgroundMenu.AppendSubMenu(plotColorSubMenu, _(L"Plot Color"));
 
     // image submenu
     auto graphBackgroundImageSubMenu = new wxMenu{};
@@ -2335,15 +2280,15 @@ ProjectDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView*
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/delete.svg"));
     graphBackgroundImageSubMenu->Append(item);
 
-    m_graphBackgroundMenu.AppendSubMenu(graphBackgroundImageSubMenu, _(L"Plot Image"));
+    subframe->m_graphBackgroundMenu.AppendSubMenu(graphBackgroundImageSubMenu, _(L"Plot Image"));
 
     // Raygor styles
-    m_raygorStyleMenu.Append(new wxMenuItem(&m_raygorStyleMenu,
+    subframe->m_raygorStyleMenu.Append(new wxMenuItem(&subframe->m_raygorStyleMenu,
         XRCID("ID_EDIT_GRAPH_RAYGOR_ORIGINAL"), _(L"Original"), wxString{}, wxITEM_CHECK));
-    m_raygorStyleMenu.Append(new wxMenuItem(&m_raygorStyleMenu,
+    subframe->m_raygorStyleMenu.Append(new wxMenuItem(&subframe->m_raygorStyleMenu,
         XRCID("ID_EDIT_GRAPH_RAYGOR_BALDWIN_KAUFMAN"),
         _DT(L"Baldwin-Kaufman"), wxString{}, wxITEM_CHECK));
-    m_raygorStyleMenu.Append(new wxMenuItem(&m_raygorStyleMenu,
+    subframe->m_raygorStyleMenu.Append(new wxMenuItem(&subframe->m_raygorStyleMenu,
         XRCID("ID_EDIT_GRAPH_RAYGOR_MODERN"), _(L"Modern"), wxString{}, wxITEM_CHECK));
 
     // histogram bar labels
@@ -2358,254 +2303,281 @@ ProjectDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView*
         XRCID("ID_HISTOBAR_NO_LABELS"), _(L"No labels"), wxString{}, wxITEM_CHECK));
 
     // zoom
-    item = new wxMenuItem(&m_zoomMenu, wxID_ZOOM_IN, _(L"Zoom In"));
+    item = new wxMenuItem(&subframe->m_zoomMenu, wxID_ZOOM_IN, _(L"Zoom In"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/zoom-in.svg"));
-    m_zoomMenu.Append(item);
+    subframe->m_zoomMenu.Append(item);
 
-    item = new wxMenuItem(&m_zoomMenu, wxID_ZOOM_OUT, _(L"Zoom Out"));
+    item = new wxMenuItem(&subframe->m_zoomMenu, wxID_ZOOM_OUT, _(L"Zoom Out"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/zoom-out.svg"));
-    m_zoomMenu.Append(item);
+    subframe->m_zoomMenu.Append(item);
 
-    item = new wxMenuItem(&m_zoomMenu, wxID_ZOOM_FIT, _(L"Reset Zoom"));
+    item = new wxMenuItem(&subframe->m_zoomMenu, wxID_ZOOM_FIT, _(L"Reset Zoom"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/zoom-to-fit.svg"));
-    m_zoomMenu.Append(item);
+    subframe->m_zoomMenu.Append(item);
 
     // bar orientation
-    item = new wxMenuItem(&m_barOrientationMenu, XRCID("ID_BAR_HORIZONTAL"), _(L"Horizontal"));
+    item = new wxMenuItem(&subframe->m_barOrientationMenu,
+        XRCID("ID_BAR_HORIZONTAL"), _(L"Horizontal"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-chart.svg"));
-    m_barOrientationMenu.Append(item);
+    subframe->m_barOrientationMenu.Append(item);
 
-    item = new wxMenuItem(&m_barOrientationMenu, XRCID("ID_BAR_VERTICAL"), _(L"Vertical"));
+    item = new wxMenuItem(&subframe->m_barOrientationMenu,
+        XRCID("ID_BAR_VERTICAL"), _(L"Vertical"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/histogram.svg"));
-    m_barOrientationMenu.Append(item);
+    subframe->m_barOrientationMenu.Append(item);
 
     // bar style menu
-    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_EDIT_BAR_COLOR"), _(L"Color..."));
+    item = new wxMenuItem(&subframe->m_barStyleMenu,
+        XRCID("ID_EDIT_BAR_COLOR"), _(L"Color..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/color-wheel.svg"));
-    m_barStyleMenu.Append(item);
+    subframe->m_barStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_EDIT_BAR_OPACITY"), _(L"Opacity..."));
+    item = new wxMenuItem(&subframe->m_barStyleMenu,
+        XRCID("ID_EDIT_BAR_OPACITY"), _(L"Opacity..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
-    m_barStyleMenu.Append(item);
+    subframe->m_barStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_barStyleMenu,
+    item = new wxMenuItem(&subframe->m_barStyleMenu,
         XRCID("ID_BAR_SELECT_STIPPLE_IMAGE"), _(L"Select Stipple Image..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
-    m_barStyleMenu.Append(item);
+    subframe->m_barStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_barStyleMenu,
+    item = new wxMenuItem(&subframe->m_barStyleMenu,
         XRCID("ID_BAR_SELECT_STIPPLE_SHAPE"), _(L"Select Stipple Shape..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
-    m_barStyleMenu.Append(item);
+    subframe->m_barStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_barStyleMenu,
+    item = new wxMenuItem(&subframe->m_barStyleMenu,
         XRCID("ID_BAR_SELECT_COMMON_IMAGE"), _(L"Select Common Image..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
-    m_barStyleMenu.Append(item);
+    subframe->m_barStyleMenu.Append(item);
 
-    m_barStyleMenu.AppendSeparator();
+    subframe->m_barStyleMenu.AppendSeparator();
 
-    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_STYLE_SOLID"), _(L"Solid"));
+    item = new wxMenuItem(&subframe->m_barStyleMenu,
+        XRCID("ID_BAR_STYLE_SOLID"), _(L"Solid"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-solid.svg"));
-    m_barStyleMenu.Append(item);
+    subframe->m_barStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_STYLE_GLASS"), _(L"Glass Effect"));
+    item = new wxMenuItem(&subframe->m_barStyleMenu,
+        XRCID("ID_BAR_STYLE_GLASS"), _(L"Glass Effect"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-glass.svg"));
-    m_barStyleMenu.Append(item);
+    subframe->m_barStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_STYLE_BTOT"), _(L"Color fade, Bottom-to-top"));
+    item = new wxMenuItem(&subframe->m_barStyleMenu, XRCID("ID_BAR_STYLE_BTOT"), _(L"Color fade, Bottom-to-top"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-bottom-to-top.svg"));
-    m_barStyleMenu.Append(item);
+    subframe->m_barStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_STYLE_TTOB"), _(L"Color Fade, Top-to-bottom"));
+    item = new wxMenuItem(&subframe->m_barStyleMenu, XRCID("ID_BAR_STYLE_TTOB"), _(L"Color Fade, Top-to-bottom"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
-    m_barStyleMenu.Append(item);
+    subframe->m_barStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_STYLE_STIPPLE_IMAGE"), _(L"Stipple Image"));
+    item = new wxMenuItem(&subframe->m_barStyleMenu, XRCID("ID_BAR_STYLE_STIPPLE_IMAGE"), _(L"Stipple Image"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
-    m_barStyleMenu.Append(item);
+    subframe->m_barStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_STYLE_STIPPLE_SHAPE"), _(L"Stipple Shape"));
+    item = new wxMenuItem(&subframe->m_barStyleMenu, XRCID("ID_BAR_STYLE_STIPPLE_SHAPE"), _(L"Stipple Shape"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
-    m_barStyleMenu.Append(item);
+    subframe->m_barStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_STYLE_WATERCOLOR"), _(L"Watercolor"));
+    item = new wxMenuItem(&subframe->m_barStyleMenu, XRCID("ID_BAR_STYLE_WATERCOLOR"), _(L"Watercolor"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
-    m_barStyleMenu.Append(item);
+    subframe->m_barStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_STYLE_THICK_WATERCOLOR"), _(L"Thick Watercolor"));
+    item = new wxMenuItem(&subframe->m_barStyleMenu, XRCID("ID_BAR_STYLE_THICK_WATERCOLOR"), _(L"Thick Watercolor"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
-    m_barStyleMenu.Append(item);
+    subframe->m_barStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_barStyleMenu, XRCID("ID_BAR_STYLE_COMMON_IMAGE"), _(L"Common Image"));
+    item = new wxMenuItem(&subframe->m_barStyleMenu, XRCID("ID_BAR_STYLE_COMMON_IMAGE"), _(L"Common Image"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
-    m_barStyleMenu.Append(item);
+    subframe->m_barStyleMenu.Append(item);
 
     // histogram bar style menu
-    item = new wxMenuItem(&m_histoBarStyleMenu,
+    item = new wxMenuItem(&subframe->m_histoBarStyleMenu,
         XRCID("ID_EDIT_HISTOGRAM_BAR_COLOR"), _(L"Color..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/color-wheel.svg"));
-    m_histoBarStyleMenu.Append(item);
+    subframe->m_histoBarStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_histoBarStyleMenu,
+    item = new wxMenuItem(&subframe->m_histoBarStyleMenu,
         XRCID("ID_EDIT_HISTOBAR_OPACITY"), _(L"Opacity..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
-    m_histoBarStyleMenu.Append(item);
+    subframe->m_histoBarStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SELECT_BRUSH"),
+    item = new wxMenuItem(&subframe->m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SELECT_BRUSH"),
         _(L"Select Stipple Image..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
-    m_histoBarStyleMenu.Append(item);
+    subframe->m_histoBarStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_histoBarStyleMenu,
+    item = new wxMenuItem(&subframe->m_histoBarStyleMenu,
         XRCID("ID_HISTOGRAM_BAR_SELECT_STIPPLE_SHAPE"), _(L"Select Stipple Shape..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
-    m_histoBarStyleMenu.Append(item);
+    subframe->m_histoBarStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SELECT_COMMON_IMAGE"),
+    item = new wxMenuItem(&subframe->m_histoBarStyleMenu, XRCID("ID_HISTOGRAM_BAR_SELECT_COMMON_IMAGE"),
         _(L"Select Common Image..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
-    m_histoBarStyleMenu.Append(item);
+    subframe->m_histoBarStyleMenu.Append(item);
 
-    m_histoBarStyleMenu.AppendSeparator();
+    subframe->m_histoBarStyleMenu.AppendSeparator();
 
-    item = new wxMenuItem(&m_histoBarStyleMenu,
+    item = new wxMenuItem(&subframe->m_histoBarStyleMenu,
         XRCID("ID_HISTOGRAM_BAR_STYLE_SOLID"), _(L"Solid"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-solid.svg"));
-    m_histoBarStyleMenu.Append(item);
+    subframe->m_histoBarStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_histoBarStyleMenu,
+    item = new wxMenuItem(&subframe->m_histoBarStyleMenu,
         XRCID("ID_HISTOGRAM_BAR_STYLE_GLASS"), _(L"Glass Effect"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-glass.svg"));
-    m_histoBarStyleMenu.Append(item);
+    subframe->m_histoBarStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_histoBarStyleMenu,
+    item = new wxMenuItem(&subframe->m_histoBarStyleMenu,
         XRCID("ID_HISTOGRAM_BAR_STYLE_BTOT"), _(L"Color Fade, Bottom-to-top"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-bottom-to-top.svg"));
-    m_histoBarStyleMenu.Append(item);
+    subframe->m_histoBarStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_histoBarStyleMenu,
+    item = new wxMenuItem(&subframe->m_histoBarStyleMenu,
         XRCID("ID_HISTOGRAM_BAR_STYLE_TTOB"), _(L"Color Fade, Top-to-bottom"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
-    m_histoBarStyleMenu.Append(item);
+    subframe->m_histoBarStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_histoBarStyleMenu,
+    item = new wxMenuItem(&subframe->m_histoBarStyleMenu,
         XRCID("ID_HISTOGRAM_BAR_STYLE_STIPPLE_IMAGE"), _(L"Stipple Image"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
-    m_histoBarStyleMenu.Append(item);
+    subframe->m_histoBarStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_histoBarStyleMenu,
+    item = new wxMenuItem(&subframe->m_histoBarStyleMenu,
         XRCID("ID_HISTOGRAM_BAR_STYLE_STIPPLE_SHAPE"), _(L"Stipple Shape"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
-    m_histoBarStyleMenu.Append(item);
+    subframe->m_histoBarStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_histoBarStyleMenu,
+    item = new wxMenuItem(&subframe->m_histoBarStyleMenu,
         XRCID("ID_HISTOGRAM_BAR_STYLE_WATERCOLOR"), _(L"Watercolor"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
-    m_histoBarStyleMenu.Append(item);
+    subframe->m_histoBarStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_histoBarStyleMenu,
+    item = new wxMenuItem(&subframe->m_histoBarStyleMenu,
         XRCID("ID_HISTOGRAM_BAR_STYLE_THICK_WATERCOLOR"), _(L"Thick Watercolor"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
-    m_histoBarStyleMenu.Append(item);
+    subframe->m_histoBarStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_histoBarStyleMenu,
+    item = new wxMenuItem(&subframe->m_histoBarStyleMenu,
         XRCID("ID_HISTOGRAM_BAR_STYLE_COMMON_IMAGE"), _(L"Common Image"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
-    m_histoBarStyleMenu.Append(item);
+    subframe->m_histoBarStyleMenu.Append(item);
 
     // box style menu
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_EDIT_BOX_COLOR"), _(L"Color..."));
+    item = new wxMenuItem(&subframe->m_boxStyleMenu,
+        XRCID("ID_EDIT_BOX_COLOR"), _(L"Color..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/color-wheel.svg"));
-    m_boxStyleMenu.Append(item);
+    subframe->m_boxStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_EDIT_BOX_OPACITY"), _(L"Opacity..."));
+    item = new wxMenuItem(&subframe->m_boxStyleMenu,
+        XRCID("ID_EDIT_BOX_OPACITY"), _(L"Opacity..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
-    m_boxStyleMenu.Append(item);
+    subframe->m_boxStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SELECT_STIPPLE_IMAGE"), _(L"Select Stipple Image..."));
+    item = new wxMenuItem(&subframe->m_boxStyleMenu,
+        XRCID("ID_BOX_SELECT_STIPPLE_IMAGE"), _(L"Select Stipple Image..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
-    m_boxStyleMenu.Append(item);
+    subframe->m_boxStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_boxStyleMenu,
+    item = new wxMenuItem(&subframe->m_boxStyleMenu,
         XRCID("ID_BOX_BAR_SELECT_STIPPLE_SHAPE"), _(L"Select Stipple Shape..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
-    m_boxStyleMenu.Append(item);
+    subframe->m_boxStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_SELECT_COMMON_IMAGE"), _(L"Select Common Image..."));
+    item = new wxMenuItem(&subframe->m_boxStyleMenu,
+        XRCID("ID_BOX_SELECT_COMMON_IMAGE"), _(L"Select Common Image..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
-    m_boxStyleMenu.Append(item);
+    subframe->m_boxStyleMenu.Append(item);
 
-    m_boxStyleMenu.AppendSeparator();
+    subframe->m_boxStyleMenu.AppendSeparator();
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_STYLE_SOLID"), _(L"Solid"));
+    item = new wxMenuItem(&subframe->m_boxStyleMenu,
+        XRCID("ID_BOX_STYLE_SOLID"), _(L"Solid"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-solid.svg"));
-    m_boxStyleMenu.Append(item);
+    subframe->m_boxStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_STYLE_GLASS"), _(L"Glass Effect"));
+    item = new wxMenuItem(&subframe->m_boxStyleMenu,
+        XRCID("ID_BOX_STYLE_GLASS"), _(L"Glass Effect"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-glass.svg"));
-    m_boxStyleMenu.Append(item);
+    subframe->m_boxStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_STYLE_LTOR"), _(L"Color Fade, Left-to-right"));
+    item = new wxMenuItem(&subframe->m_boxStyleMenu,
+        XRCID("ID_BOX_STYLE_LTOR"), _(L"Color Fade, Left-to-right"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-left-to-right.svg"));
-    m_boxStyleMenu.Append(item);
+    subframe->m_boxStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_STYLE_RTOL"), _(L"Color Fade, Right-to-left"));
+    item = new wxMenuItem(&subframe->m_boxStyleMenu,
+        XRCID("ID_BOX_STYLE_RTOL"), _(L"Color Fade, Right-to-left"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-right-to-left.svg"));
-    m_boxStyleMenu.Append(item);
+    subframe->m_boxStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_STYLE_STIPPLE_IMAGE"), _(L"Stipple Image"));
+    item = new wxMenuItem(&subframe->m_boxStyleMenu,
+        XRCID("ID_BOX_STYLE_STIPPLE_IMAGE"), _(L"Stipple Image"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
-    m_boxStyleMenu.Append(item);
+    subframe->m_boxStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_STYLE_STIPPLE_SHAPE"), _(L"Stipple Shape"));
+    item = new wxMenuItem(&subframe->m_boxStyleMenu,
+        XRCID("ID_BOX_STYLE_STIPPLE_SHAPE"), _(L"Stipple Shape"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
-    m_boxStyleMenu.Append(item);
+    subframe->m_boxStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_STYLE_WATERCOLOR"), _(L"Watercolor"));
+    item = new wxMenuItem(&subframe->m_boxStyleMenu,
+        XRCID("ID_BOX_STYLE_WATERCOLOR"), _(L"Watercolor"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
-    m_boxStyleMenu.Append(item);
+    subframe->m_boxStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_STYLE_THICK_WATERCOLOR"), _(L"Thick Watercolor"));
+    item = new wxMenuItem(&subframe->m_boxStyleMenu,
+        XRCID("ID_BOX_STYLE_THICK_WATERCOLOR"), _(L"Thick Watercolor"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
-    m_boxStyleMenu.Append(item);
+    subframe->m_boxStyleMenu.Append(item);
 
-    item = new wxMenuItem(&m_boxStyleMenu, XRCID("ID_BOX_STYLE_COMMON_IMAGE"), _(L"Common Image"));
+    item = new wxMenuItem(&subframe->m_boxStyleMenu,
+        XRCID("ID_BOX_STYLE_COMMON_IMAGE"), _(L"Common Image"));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
-    m_boxStyleMenu.Append(item);
+    subframe->m_boxStyleMenu.Append(item);
 
     // graph fonts
-    item = new wxMenuItem(&m_graphFontsMenu, XRCID("ID_EDIT_X_AXIS_FONT"), _(L"X Axis..."));
+    item = new wxMenuItem(&subframe->m_graphFontsMenu,
+        XRCID("ID_EDIT_X_AXIS_FONT"), _(L"X Axis..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/x-axis.svg"));
-    m_graphFontsMenu.Append(item);
+    subframe->m_graphFontsMenu.Append(item);
 
-    item = new wxMenuItem(&m_graphFontsMenu, XRCID("ID_EDIT_Y_AXIS_FONT"), _(L"Y Axis..."));
+    item = new wxMenuItem(&subframe->m_graphFontsMenu,
+        XRCID("ID_EDIT_Y_AXIS_FONT"), _(L"Y Axis..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/y-axis.svg"));
-    m_graphFontsMenu.Append(item);
+    subframe->m_graphFontsMenu.Append(item);
 
-    m_graphFontsMenu.AppendSeparator();
+    subframe->m_graphFontsMenu.AppendSeparator();
 
-    item = new wxMenuItem(&m_graphFontsMenu, XRCID("ID_EDIT_TOP_TITLES_FONT"), _(L"Top Titles..."));
+    item = new wxMenuItem(&subframe->m_graphFontsMenu,
+        XRCID("ID_EDIT_TOP_TITLES_FONT"), _(L"Top Titles..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/top-titles.svg"));
-    m_graphFontsMenu.Append(item);
+    subframe->m_graphFontsMenu.Append(item);
 
-    item = new wxMenuItem(&m_graphFontsMenu, XRCID("ID_EDIT_BOTTOM_TITLES_FONT"), _(L"Bottom Titles..."));
+    item = new wxMenuItem(&subframe->m_graphFontsMenu,
+        XRCID("ID_EDIT_BOTTOM_TITLES_FONT"), _(L"Bottom Titles..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/bottom-titles.svg"));
-    m_graphFontsMenu.Append(item);
+    subframe->m_graphFontsMenu.Append(item);
 
-    item = new wxMenuItem(&m_graphFontsMenu, XRCID("ID_EDIT_LEFT_TITLES_FONT"), _(L"Left Titles..."));
+    item = new wxMenuItem(&subframe->m_graphFontsMenu,
+        XRCID("ID_EDIT_LEFT_TITLES_FONT"), _(L"Left Titles..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/left-titles.svg"));
-    m_graphFontsMenu.Append(item);
+    subframe->m_graphFontsMenu.Append(item);
 
-    item = new wxMenuItem(&m_graphFontsMenu, XRCID("ID_EDIT_RIGHT_TITLES_FONT"), _(L"Right Titles..."));
+    item = new wxMenuItem(&subframe->m_graphFontsMenu,
+        XRCID("ID_EDIT_RIGHT_TITLES_FONT"), _(L"Right Titles..."));
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/right-titles.svg"));
-    m_graphFontsMenu.Append(item);
+    subframe->m_graphFontsMenu.Append(item);
 
     // document indexing menus
-    subframe->m_lineEndsMenu.Append(new wxMenuItem(&subframe->m_lineEndsMenu, XRCID("ID_LE_ONLY_AFTER_VALID_SENTENCE"),
+    subframe->m_lineEndsMenu.Append(
+        new wxMenuItem(&subframe->m_lineEndsMenu, XRCID("ID_LE_ONLY_AFTER_VALID_SENTENCE"),
                           _(L"Only begin a new paragraph if following a valid sentence"),
                           wxString{}, wxITEM_CHECK));
-    subframe->m_lineEndsMenu.Append(new wxMenuItem(&subframe->m_lineEndsMenu, XRCID("ID_LE_ALWAYS_NEW_PARAGRAPH"),
+    subframe->m_lineEndsMenu.Append(
+        new wxMenuItem(&subframe->m_lineEndsMenu, XRCID("ID_LE_ALWAYS_NEW_PARAGRAPH"),
                           _(L"Always begin a new paragraph"), wxString{}, wxITEM_CHECK));
 
     subframe->m_longSentencesMenu.Append(
@@ -2721,8 +2693,8 @@ void BaseProjectView::Present()
             wxMenu* secondaryMenu = new wxMenu;
             wxMenu* adultMenu = new wxMenu;
             wxMenu* secondLanguageMenu = new wxMenu;
-            m_customTestsRegularMenu = new wxMenu;
-            m_testsBundleRegularMenu = new wxMenu;
+            GetDocFrame()->m_customTestsRegularMenu = new wxMenu;
+            GetDocFrame()->m_testsBundleRegularMenu = new wxMenu;
             readMenu->AppendSubMenu(primaryMenu, _(L"Primary-age Reading (5-12 years old)"));
             readMenu->AppendSubMenu(secondaryMenu, _(L"Secondary-age Reading (13 years old and above)"));
             readMenu->AppendSubMenu(adultMenu, _(L"Adult Reading (technical forms and documents)"));
@@ -2730,12 +2702,12 @@ void BaseProjectView::Present()
             MainFrame::FillReadabilityMenu(primaryMenu, secondaryMenu, adultMenu, secondLanguageMenu, doc);
             // add the custom test menu to the bottom
             readMenu->AppendSeparator();
-            readMenu->AppendSubMenu(m_customTestsRegularMenu, _(L"Custom Tests"));
-            MainFrame::FillMenuWithCustomTests(m_customTestsRegularMenu, doc, true);
+            readMenu->AppendSubMenu(GetDocFrame()->m_customTestsRegularMenu, _(L"Custom Tests"));
+            MainFrame::FillMenuWithCustomTests(GetDocFrame()->m_customTestsRegularMenu, doc, true);
             // add test bundles
             readMenu->AppendSeparator();
-            readMenu->AppendSubMenu(m_testsBundleRegularMenu, _(L"Bundles"));
-            MainFrame::FillMenuWithTestBundles(m_testsBundleRegularMenu, doc, true);
+            readMenu->AppendSubMenu(GetDocFrame()->m_testsBundleRegularMenu, _(L"Bundles"));
+            MainFrame::FillMenuWithTestBundles(GetDocFrame()->m_testsBundleRegularMenu, doc, true);
 
             // remove any submenus that don't have anything in them
             menuItems = readMenu->GetMenuItems();
@@ -2748,43 +2720,73 @@ void BaseProjectView::Present()
             }
         }
     // fill the meuns
-    MainFrame::FillReadabilityMenu(&m_primaryAgeTestsMenu, &m_secondaryAgeTestsMenu, &m_adultTestsMenu,
-                                   &m_secondLanguageTestsMenu, doc);
-    MainFrame::FillMenuWithCustomTests(&m_customTestsMenu, doc, true);
-    MainFrame::FillMenuWithTestBundles(&m_testsBundleMenu, doc, true);
-    wxGetApp().FillWordListsMenu(m_wordListMenu);
-    wxGetApp().FillGradeScalesMenu(m_gradeScaleMenu);
+    MainFrame::FillReadabilityMenu(&GetDocFrame()->m_primaryAgeTestsMenu,
+                                   &GetDocFrame()->m_secondaryAgeTestsMenu,
+                                   &GetDocFrame()->m_adultTestsMenu,
+                                   &GetDocFrame()->m_secondLanguageTestsMenu, doc);
+    MainFrame::FillMenuWithCustomTests(&GetDocFrame()->m_customTestsMenu, doc, true);
+    MainFrame::FillMenuWithTestBundles(&GetDocFrame()->m_testsBundleMenu, doc, true);
+    wxGetApp().FillWordListsMenu(GetDocFrame()->m_wordListMenu);
+    wxGetApp().FillGradeScalesMenu(GetDocFrame()->m_gradeScaleMenu);
     const readability::grade_scale gs = doc->GetReadabilityMessageCatalog().GetGradeScale();
     if (gs == readability::grade_scale::k12_plus_united_states)
-        { m_gradeScaleMenu.Check(XRCID("ID_K12_US"), true); }
+        {
+        GetDocFrame()->m_gradeScaleMenu.Check(XRCID("ID_K12_US"), true);
+        }
     else if (gs == readability::grade_scale::k12_plus_newfoundland_and_labrador)
-        { m_gradeScaleMenu.Check(XRCID("ID_K12_NEWFOUNDLAND"), true); }
+        {
+        GetDocFrame()->m_gradeScaleMenu.Check(XRCID("ID_K12_NEWFOUNDLAND"), true);
+        }
     else if (gs == readability::grade_scale::k12_plus_british_columbia)
-        { m_gradeScaleMenu.Check(XRCID("ID_K12_BC"), true); }
+        {
+        GetDocFrame()->m_gradeScaleMenu.Check(XRCID("ID_K12_BC"), true);
+        }
     else if (gs == readability::grade_scale::k12_plus_newbrunswick)
-        { m_gradeScaleMenu.Check(XRCID("ID_K12_NEW_BRUNSWICK"), true); }
+        {
+        GetDocFrame()->m_gradeScaleMenu.Check(XRCID("ID_K12_NEW_BRUNSWICK"), true);
+        }
     else if (gs == readability::grade_scale::k12_plus_nova_scotia)
-        { m_gradeScaleMenu.Check(XRCID("ID_K12_NOVA_SCOTIA"), true); }
+        {
+        GetDocFrame()->m_gradeScaleMenu.Check(XRCID("ID_K12_NOVA_SCOTIA"), true);
+        }
     else if (gs == readability::grade_scale::k12_plus_ontario)
-        { m_gradeScaleMenu.Check(XRCID("ID_K12_ONTARIO"), true); }
+        {
+        GetDocFrame()->m_gradeScaleMenu.Check(XRCID("ID_K12_ONTARIO"), true);
+        }
     else if (gs == readability::grade_scale::k12_plus_saskatchewan)
-        { m_gradeScaleMenu.Check(XRCID("ID_K12_SASKATCHEWAN"), true); }
+        {
+        GetDocFrame()->m_gradeScaleMenu.Check(XRCID("ID_K12_SASKATCHEWAN"), true);
+        }
     else if (gs == readability::grade_scale::k12_plus_prince_edward_island)
-        { m_gradeScaleMenu.Check(XRCID("ID_K12_PE"), true); }
+        {
+        GetDocFrame()->m_gradeScaleMenu.Check(XRCID("ID_K12_PE"), true);
+        }
     else if (gs == readability::grade_scale::k12_plus_manitoba)
-        { m_gradeScaleMenu.Check(XRCID("ID_K12_MANITOBA"), true); }
+        {
+        GetDocFrame()->m_gradeScaleMenu.Check(XRCID("ID_K12_MANITOBA"), true);
+        }
     else if (gs == readability::grade_scale::k12_plus_northwest_territories)
-        { m_gradeScaleMenu.Check(XRCID("ID_K12_NT"), true); }
+        {
+        GetDocFrame()->m_gradeScaleMenu.Check(XRCID("ID_K12_NT"), true);
+        }
     else if (gs == readability::grade_scale::k12_plus_alberta)
-        { m_gradeScaleMenu.Check(XRCID("ID_K12_ALBERTA"), true); }
+        {
+        GetDocFrame()->m_gradeScaleMenu.Check(XRCID("ID_K12_ALBERTA"), true);
+        }
     else if (gs == readability::grade_scale::k12_plus_nunavut)
-        { m_gradeScaleMenu.Check(XRCID("ID_K12_NUNAVUT"), true); }
+        {
+        GetDocFrame()->m_gradeScaleMenu.Check(XRCID("ID_K12_NUNAVUT"), true);
+        }
     else if (gs == readability::grade_scale::quebec)
-        { m_gradeScaleMenu.Check(XRCID("ID_QUEBEC"), true); }
+        {
+        GetDocFrame()->m_gradeScaleMenu.Check(XRCID("ID_QUEBEC"), true);
+        }
     else if (gs == readability::grade_scale::key_stages_england_wales)
-        { m_gradeScaleMenu.Check(XRCID("ID_ENGLAND"), true); }
+        {
+        GetDocFrame()->m_gradeScaleMenu.Check(XRCID("ID_ENGLAND"), true);
+        }
 
-    wxGetApp().FillBlankGraphsMenu(m_blankGraphMenu);
+    wxGetApp().FillBlankGraphsMenu(GetDocFrame()->m_blankGraphMenu);
     if (GetMenuBar())
         {
         const wxMenuItem* exampleMenuItem = GetMenuBar()->FindItem(XRCID("ID_EXAMPLES"));
@@ -2792,46 +2794,52 @@ void BaseProjectView::Present()
             exampleMenuItem->GetSubMenu() != nullptr)
             { wxGetApp().GetMainFrameEx()->AddExamplesToMenu(exampleMenuItem->GetSubMenu()); }
         }
-    wxGetApp().GetMainFrameEx()->AddExamplesToMenu(&m_exampleMenu);
+    wxGetApp().GetMainFrameEx()->AddExamplesToMenu(&GetDocFrame()->m_exampleMenu);
 
     if (doc->GetRaygorStyle() == Wisteria::Graphs::RaygorStyle::Original)
-        { m_raygorStyleMenu.Check(XRCID("ID_EDIT_GRAPH_RAYGOR_ORIGINAL"), true); }
+        {
+        GetDocFrame()->m_raygorStyleMenu.Check(XRCID("ID_EDIT_GRAPH_RAYGOR_ORIGINAL"), true);
+        }
     else if (doc->GetRaygorStyle() == Wisteria::Graphs::RaygorStyle::BaldwinKaufman)
-        { m_raygorStyleMenu.Check(XRCID("ID_EDIT_GRAPH_RAYGOR_BALDWIN_KAUFMAN"), true); }
+        {
+        GetDocFrame()->m_raygorStyleMenu.Check(XRCID("ID_EDIT_GRAPH_RAYGOR_BALDWIN_KAUFMAN"), true);
+        }
     else if (doc->GetRaygorStyle() == Wisteria::Graphs::RaygorStyle::Modern)
-        { m_raygorStyleMenu.Check(XRCID("ID_EDIT_GRAPH_RAYGOR_MODERN"), true); }
+        {
+        GetDocFrame()->m_raygorStyleMenu.Check(XRCID("ID_EDIT_GRAPH_RAYGOR_MODERN"), true);
+        }
 
     // other menu items with checks that need to be checked here
-    wxMenuItem* fadeOption = m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKCOLOR_FADE"));
+    wxMenuItem* fadeOption = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKCOLOR_FADE"));
     if (fadeOption)
         { fadeOption->Check(doc->GetGraphBackGroundLinearGradient()); }
 
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_NO_EFFECT"));
+    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_NO_EFFECT"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() == ImageEffect::NoEffect); }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_GRAYSCALE"));
+    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_GRAYSCALE"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() == ImageEffect::Grayscale); }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"));
+    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_HORIZONTALLY"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() == ImageEffect::BlurHorizontal); }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_VERTICALLY"));
+    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_BLUR_VERTICALLY"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() == ImageEffect::BlurVertical); }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_SEPIA"));
+    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_SEPIA"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() == ImageEffect::Sepia); }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_FROSTED_GLASS"));
+    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_FROSTED_GLASS"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() == ImageEffect::FrostedGlass); }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_OIL_PAINTING"));
+    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_EFFECT_OIL_PAINTING"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(doc->GetPlotBackGroundImageEffect() == ImageEffect::OilPainting); }
 
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"));
+    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(doc->GetPlotBackGroundImageFit() == ImageFit::CropAndCenter); }
-    if (auto tempMenuItem = m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"));
+    if (auto tempMenuItem = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"));
         tempMenuItem != nullptr)
         { tempMenuItem->Check(doc->GetPlotBackGroundImageFit() == ImageFit::Shrink); }
 
@@ -3145,7 +3153,7 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
     mainSizer->Add(GetInfoBar(),0,wxEXPAND);
 
     // initialize ribbon menus (print menu is the same for both types of projects)
-    wxGetApp().FillPrintMenu(m_printMenu, ReadabilityApp::RibbonType::StandardProjectRibbon);
+    wxGetApp().FillPrintMenu(m_frame->m_printMenu, ReadabilityApp::RibbonType::StandardProjectRibbon);
     wxGetApp().FillSaveMenu(m_frame->m_exportMenu,
         IsKindOf(CLASSINFO(ProjectView)) ?
         ReadabilityApp::RibbonType::StandardProjectRibbon :

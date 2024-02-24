@@ -2676,8 +2676,10 @@ void BatchProjectView::OnFind(wxFindDialogEvent &event)
 //---------------------------------------------------
 void BatchProjectView::OnGradeScale(wxCommandEvent& event)
     {
-    for (size_t i = 0; i < m_gradeScaleMenu.GetMenuItemCount(); ++i)
-        { m_gradeScaleMenu.FindItemByPosition(i)->Check(false); }
+    for (size_t i = 0; i < GetDocFrame()->m_gradeScaleMenu.GetMenuItemCount(); ++i)
+        {
+        GetDocFrame()->m_gradeScaleMenu.FindItemByPosition(i)->Check(false);
+        }
 
     BatchProjectDoc* doc = dynamic_cast<BatchProjectDoc*>(GetDocument());
 
@@ -2710,7 +2712,7 @@ void BatchProjectView::OnGradeScale(wxCommandEvent& event)
         { gs = readability::grade_scale::quebec; }
     else if (event.GetId() == XRCID("ID_ENGLAND"))
         { gs = readability::grade_scale::key_stages_england_wales; }
-    m_gradeScaleMenu.Check(event.GetId(), true);
+    GetDocFrame()->m_gradeScaleMenu.Check(event.GetId(), true);
     doc->GetReadabilityMessageCatalog().SetGradeScale(gs);
     doc->RefreshRequired(ProjectRefresh::Minimal);
     doc->RefreshGraphs();

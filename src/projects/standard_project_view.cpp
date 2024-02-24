@@ -1049,8 +1049,10 @@ void ProjectView::OnGradeScale(wxCommandEvent& event)
     wxWindowUpdateLocker noUpdates(doc->GetDocumentWindow());
     BaseProjectProcessingLock processingLock(doc);
 
-    for (size_t i = 0; i < m_gradeScaleMenu.GetMenuItemCount(); ++i)
-        { m_gradeScaleMenu.FindItemByPosition(i)->Check(false); }
+    for (size_t i = 0; i < GetDocFrame()->m_gradeScaleMenu.GetMenuItemCount(); ++i)
+        {
+        GetDocFrame()->m_gradeScaleMenu.FindItemByPosition(i)->Check(false);
+        }
 
     readability::grade_scale gs = doc->GetReadabilityMessageCatalog().GetGradeScale();
     if (event.GetId() == XRCID("ID_K12_US"))
@@ -1081,7 +1083,7 @@ void ProjectView::OnGradeScale(wxCommandEvent& event)
         { gs = readability::grade_scale::quebec; }
     else if (event.GetId() == XRCID("ID_ENGLAND"))
         { gs = readability::grade_scale::key_stages_england_wales; }
-    m_gradeScaleMenu.Check(event.GetId(), true);
+    GetDocFrame()->m_gradeScaleMenu.Check(event.GetId(), true);
     doc->GetReadabilityMessageCatalog().SetGradeScale(gs);
     const long SelectedTest = GetReadabilityScoresList()->GetResultsListCtrl()->GetFirstSelected();
     doc->DisplayReadabilityScores(false);
