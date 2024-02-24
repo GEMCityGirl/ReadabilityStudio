@@ -23,30 +23,10 @@ using namespace Wisteria::GraphItems;
 using namespace Wisteria::UI;
 
 wxBEGIN_EVENT_TABLE(BaseProjectView, wxView)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_DOCUMENT_REFRESH"), BaseProjectView::OnDocumentRefresh)
-    EVT_MENU(XRCID("ID_DOCUMENT_REFRESH"), BaseProjectView::OnDocumentRefreshMenu)
+    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EDIT_DICTIONARY"), BaseProjectView::OnEditDictionaryButton)
     EVT_RIBBONBUTTONBAR_CLICKED(wxID_PROPERTIES, BaseProjectView::OnProjectSettings)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EDIT_STATS_REPORT"), BaseProjectView::OnEditStatsReportButton)
-    EVT_MENU(XRCID("ID_LS_LONGER_THAN"), BaseProjectView::OnLongSentencesOptions)
-    EVT_MENU(XRCID("ID_LS_OUTLIER_RANGE"), BaseProjectView::OnLongSentencesOptions)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_SENTENCE_LENGTHS"), BaseProjectView::OnLongSentences)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_NUMERAL_SYLLABICATION"), BaseProjectView::OnNumeralSyllabication)
-    EVT_MENU(XRCID("ID_NUMSYL_ONE"), BaseProjectView::OnNumeralSyllabicationOptions)
-    EVT_MENU(XRCID("ID_NUMSYL_EACH_DIGIT"), BaseProjectView::OnNumeralSyllabicationOptions)
-    EVT_MENU(XRCID("ID_TE_ALL_INCOMPLETE"), BaseProjectView::OnTextExclusionOptions)
-    EVT_MENU(XRCID("ID_TE_NO_EXCLUDE"), BaseProjectView::OnTextExclusionOptions)
-    EVT_MENU(XRCID("ID_TE_ALL_INCOMPLETE_EXCEPT_HEADERS"), BaseProjectView::OnTextExclusionOptions)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_TEXT_EXCLUSION"), BaseProjectView::OnTextExclusion)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EXCLUSION_TAGS"), BaseProjectView::OnExclusionTags)
-    EVT_MENU(XRCID("ID_EXCLUSION_TAGS_NOT_ENABLED"), BaseProjectView::OnExclusionTagsOptions)
-    EVT_MENU(XRCID("ID_EXCLUSION_TAGS_CAROTS"), BaseProjectView::OnExclusionTagsOptions)
-    EVT_MENU(XRCID("ID_EXCLUSION_TAGS_ANGLES"), BaseProjectView::OnExclusionTagsOptions)
-    EVT_MENU(XRCID("ID_EXCLUSION_TAGS_BRACES"), BaseProjectView::OnExclusionTagsOptions)
-    EVT_MENU(XRCID("ID_EXCLUSION_TAGS_CURLIES"), BaseProjectView::OnExclusionTagsOptions)
-    EVT_MENU(XRCID("ID_EXCLUSION_TAGS_PARANS"), BaseProjectView::OnExclusionTagsOptions)
-    EVT_MENU(XRCID("ID_LE_ONLY_AFTER_VALID_SENTENCE"), BaseProjectView::OnLineEndOptions)
-    EVT_MENU(XRCID("ID_LE_ALWAYS_NEW_PARAGRAPH"), BaseProjectView::OnLineEndOptions)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_LINE_ENDS"), BaseProjectView::OnLineEnds)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_IGNORE_BLANK_LINES"), BaseProjectView::OnIgnoreBlankLines)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_IGNORE_INDENTING"), BaseProjectView::OnIgnoreIdenting)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_SENTENCES_CAPITALIZED"), BaseProjectView::OnStrictCapitalization)
@@ -58,78 +38,24 @@ wxBEGIN_EVENT_TABLE(BaseProjectView, wxView)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EXCLUDE_PROPER_NOUNS"), BaseProjectView::OnIgnoreProperNouns)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EXCLUDE_WORD_LIST"), BaseProjectView::OnExcludeWordsList)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_INCOMPLETE_THRESHOLD"), BaseProjectView::OnIncompleteThreshold)
-    EVT_MENU(XRCID("ID_EDIT_DICTIONARY"), BaseProjectView::OnEditDictionary)
-    EVT_MENU(XRCID("ID_EDIT_ENGLISH_DICTIONARY"), BaseProjectView::OnEditEnglishDictionary)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_DROP_SHADOW"), BaseProjectView::OnDropShadow)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(wxID_ZOOM_IN, BaseProjectView::OnZoomButton)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EDIT_WATERMARK"), BaseProjectView::OnGraphWatermark)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EDIT_LOGO"), BaseProjectView::OnGraphLogo)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_USE_ENGLISH_LABELS"), BaseProjectView::OnEnglishLabels)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_INVALID_REGION_COLOR"), BaseProjectView::OnInvalidRegionColor)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_FLESCH_DISPLAY_LINES"), BaseProjectView::OnFleschConnectLinesButton)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_BAR_ORIENTATION"), BaseProjectView::OnBarOrientationButton)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_BAR_STYLE"), BaseProjectView::OnBarStyleButton)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EDIT_BAR_LABELS"), BaseProjectView::OnBarLabelsButton)
-    EVT_MENU(XRCID("ID_EDIT_BAR_COLOR"), BaseProjectView::OnEditGraphColor)
-    EVT_MENU(XRCID("ID_EDIT_BAR_OPACITY"), BaseProjectView::OnEditGraphOpacity)
-    EVT_MENU(XRCID("ID_BAR_HORIZONTAL"), BaseProjectView::OnBarOrientationSelected)
-    EVT_MENU(XRCID("ID_BAR_VERTICAL"), BaseProjectView::OnBarOrientationSelected)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_HISTOBAR_LABELS"), BaseProjectView::OnHistoBarsLabelsButton)
-    EVT_MENU(XRCID("ID_HISTOBAR_LABELS_PERCENTAGE"), BaseProjectView::OnHistoBarLabelSelected)
-    EVT_MENU(XRCID("ID_HISTOBAR_LABELS_COUNT"), BaseProjectView::OnHistoBarLabelSelected)
-    EVT_MENU(XRCID("ID_HISTOBAR_LABELS_COUNT_AND_PERCENT"), BaseProjectView::OnHistoBarLabelSelected)
-    EVT_MENU(XRCID("ID_HISTOBAR_NO_LABELS"), BaseProjectView::OnHistoBarLabelSelected)
+    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(
+        XRCID("ID_EDIT_GRAPH_BACKGROUND"), BaseProjectView::OnEditGraphBackgroundButton)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_HISTOGRAM_BAR_STYLE"), BaseProjectView::OnHistoBarStyleButton)
-    EVT_MENU(XRCID("ID_EDIT_HISTOGRAM_BAR_COLOR"), BaseProjectView::OnEditGraphColor)
-    EVT_MENU(XRCID("ID_EDIT_HISTOBAR_OPACITY"), BaseProjectView::OnEditGraphOpacity)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_BOX_PLOT_DISPLAY_ALL_POINTS"), BaseProjectView::OnBoxPlotShowAllPointsButton)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_BOX_PLOT_DISPLAY_LABELS"), BaseProjectView::OnBoxPlotShowLabelsButton)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_BOX_STYLE"), BaseProjectView::OnBoxStyleButton)
-    EVT_MENU(XRCID("ID_EDIT_BOX_COLOR"), BaseProjectView::OnEditGraphColor)
-    EVT_MENU(XRCID("ID_EDIT_BOX_OPACITY"), BaseProjectView::OnEditGraphOpacity)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(
-        XRCID("ID_EDIT_GRAPH_BACKGROUND"), BaseProjectView::OnEditGraphBackgroundButton)
-    EVT_MENU(XRCID("ID_EDIT_PLOT_BKIMAGE_OPACITY"), BaseProjectView::OnEditGraphOpacity)
-    EVT_MENU(XRCID("ID_EDIT_PLOT_BKCOLOR"), BaseProjectView::OnEditGraphColor)
-    EVT_MENU(XRCID("ID_EDIT_PLOT_BKCOLOR_OPACITY"), BaseProjectView::OnEditGraphOpacity)
-    EVT_MENU(XRCID("ID_EDIT_GRAPH_BKCOLOR"), BaseProjectView::OnEditGraphColor)
-    EVT_MENU(XRCID("ID_EDIT_PLOT_BKIMAGE"), BaseProjectView::OnEditPlotBackgroundImage)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_GRAPH_FONTS"), BaseProjectView::OnEditGraphFontsButton)
-    EVT_MENU(XRCID("ID_EDIT_Y_AXIS_FONT"), BaseProjectView::OnEditGraphFont)
-    EVT_MENU(XRCID("ID_EDIT_X_AXIS_FONT"), BaseProjectView::OnEditGraphFont)
-    EVT_MENU(XRCID("ID_EDIT_TOP_TITLES_FONT"), BaseProjectView::OnEditGraphFont)
-    EVT_MENU(XRCID("ID_EDIT_BOTTOM_TITLES_FONT"), BaseProjectView::OnEditGraphFont)
-    EVT_MENU(XRCID("ID_EDIT_LEFT_TITLES_FONT"), BaseProjectView::OnEditGraphFont)
-    EVT_MENU(XRCID("ID_EDIT_RIGHT_TITLES_FONT"), BaseProjectView::OnEditGraphFont)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EDIT_DICTIONARY"), BaseProjectView::OnEditDictionaryButton)
-    EVT_MENU(XRCID("ID_EDIT_DICTIONARY_PROJECT_SETTINGS"), BaseProjectView::OnEditDictionaryProjectSettings)
-    EVT_MENU(XRCID("ID_ADD_CUSTOM_TEST_BUNDLE"), BaseProjectView::OnAddCustomTestBundle)
-    EVT_MENU(XRCID("ID_EDIT_CUSTOM_TEST_BUNDLE"), BaseProjectView::OnEditCustomTestBundle)
-    EVT_MENU(XRCID("ID_REMOVE_CUSTOM_TEST_BUNDLE"), BaseProjectView::OnRemoveCustomTestBundle)
-    EVT_MENU(XRCID("ID_ADD_CHILDRENS_PUBLISHING_TEST_BUNDLE"), BaseProjectView::OnTestBundle)
-    EVT_MENU(XRCID("ID_ADD_ADULT_PUBLISHING_TEST_BUNDLE"), BaseProjectView::OnTestBundle)
-    EVT_MENU(XRCID("ID_ADD_CHILDRENS_HEALTHCARE_TEST_BUNDLE"), BaseProjectView::OnTestBundle)
-    EVT_MENU(XRCID("ID_ADD_ADULT_HEALTHCARE_TEST_BUNDLE"), BaseProjectView::OnTestBundle)
-    EVT_MENU(XRCID("ID_ADD_MILITARY_COVERNMENT_TEST_BUNDLE"), BaseProjectView::OnTestBundle)
-    EVT_MENU(XRCID("ID_ADD_SECOND_LANGUAGE_TEST_BUNDLE"), BaseProjectView::OnTestBundle)
-    EVT_MENU(XRCID("ID_ADD_BROADCASTING_TEST_BUNDLE"), BaseProjectView::OnTestBundle)
-    EVT_MENU(XRCID("ID_GENERAL_DOCUMENT_TEST_BUNDLE"), BaseProjectView::OnTestBundle)
-    EVT_MENU(XRCID("ID_TECHNICAL_DOCUMENT_TEST_BUNDLE"), BaseProjectView::OnTestBundle)
-    EVT_MENU(XRCID("ID_NONNARRATIVE_DOCUMENT_TEST_BUNDLE"), BaseProjectView::OnTestBundle)
-    EVT_MENU(XRCID("ID_ADULT_LITERATURE_DOCUMENT_TEST_BUNDLE"), BaseProjectView::OnTestBundle)
-    EVT_MENU(XRCID("ID_CHILDRENS_LITERATURE_DOCUMENT_TEST_BUNDLE"), BaseProjectView::OnTestBundle)
-    EVT_MENU(XRCID("ID_ADD_CUSTOM_TEST"), BaseProjectView::OnAddCustomTest)
-    EVT_MENU(XRCID("ID_ADD_CUSTOM_NEW_DALE_CHALL_TEST"), BaseProjectView::OnAddCustomTest)
-    EVT_MENU(XRCID("ID_ADD_CUSTOM_SPACHE_TEST"), BaseProjectView::OnAddCustomTest)
-    EVT_MENU(XRCID("ID_ADD_CUSTOM_HARRIS_JACOBSON_TEST"), BaseProjectView::OnAddCustomTest)
-    EVT_MENU(XRCID("ID_EDIT_CUSTOM_TEST"), BaseProjectView::OnEditCustomTest)
-    EVT_MENU(XRCID("ID_REMOVE_CUSTOM_TEST"), BaseProjectView::OnRemoveCustomTest)
-    EVT_MENU(wxID_FIND, BaseProjectView::OnFindMenu)
-    EVT_MENU(XRCID("ID_FIND_NEXT"), BaseProjectView::OnFindNext)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_WORD_LISTS"), BaseProjectView::OnWordListDropdown)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_BLANK_GRAPHS"), BaseProjectView::OnBlankGraphDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(wxID_OPEN, BaseProjectView::OnOpenDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_SAVE_OPTIONS"), BaseProjectView::OnSaveDropdown)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(wxID_COPY, BaseProjectView::OnCopyDropdown)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_DICTIONARY"), BaseProjectView::OnDictionaryDropdown)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_GRAPH_SORT"), BaseProjectView::OnGraphSortDropdown)
@@ -148,6 +74,591 @@ wxBEGIN_EVENT_TABLE(BaseProjectView, wxView)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_GRADE_SCALES"), BaseProjectView::OnGradeScaleDropdown)
     EVT_RIBBONBAR_PAGE_CHANGED(wxID_ANY, BaseProjectView::OnClickRibbonBar)
 wxEND_EVENT_TABLE()
+
+//---------------------------------------------------
+ProjectDocChildFrame::ProjectDocChildFrame(wxDocument *doc,
+    wxView *view,
+    wxFrame *parent,
+    wxWindowID id,
+    const wxString& title,
+    const wxPoint& pos /*= wxDefaultPosition*/,
+    const wxSize& size /*= wxDefaultSize*/,
+    long style /*= wxDEFAULT_FRAME_STYLE*/,
+    const wxString& name /*= wxASCII_STR(wxFrameNameStr)*/) :
+        wxDocChildFrame(doc, view,
+                        parent, id, title, pos, size, style, name)
+    {
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnHistoBarsLabelsButton, this,
+        XRCID("ID_EDIT_HISTOBAR_LABELS"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnExclusionTags, this,
+        XRCID("ID_EXCLUSION_TAGS"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnNumeralSyllabication, this,
+        XRCID("ID_NUMERAL_SYLLABICATION"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnLineEnds, this,
+        XRCID("ID_LINE_ENDS"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnLongSentences, this,
+        XRCID("ID_SENTENCE_LENGTHS"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnOpenDropdown, this,
+        wxID_OPEN);
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnSaveDropdown, this,
+        XRCID("ID_SAVE_OPTIONS"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnDocumentRefresh, this,
+        XRCID("ID_DOCUMENT_REFRESH"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnEditGraphColorScheme, this,
+        XRCID("ID_EDIT_GRAPH_COLOR_SCHEME"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnInvalidRegionColor, this,
+        XRCID("ID_INVALID_REGION_COLOR"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditGraphColor, this,
+        XRCID("ID_EDIT_BAR_COLOR"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditGraphColor, this,
+        XRCID("ID_EDIT_HISTOGRAM_BAR_COLOR"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditGraphColor, this,
+        XRCID("ID_EDIT_BOX_COLOR"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditGraphColor, this,
+        XRCID("ID_EDIT_PLOT_BKCOLOR"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditGraphColor, this,
+        XRCID("ID_EDIT_GRAPH_BKCOLOR"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnDocumentRefreshMenu, this,
+        XRCID("ID_DOCUMENT_REFRESH"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnLongSentencesOptions, this,
+        XRCID("ID_LS_LONGER_THAN"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnLongSentencesOptions, this,
+        XRCID("ID_LS_OUTLIER_RANGE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnNumeralSyllabicationOptions, this,
+        XRCID("ID_NUMSYL_ONE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnNumeralSyllabicationOptions, this,
+        XRCID("ID_NUMSYL_EACH_DIGIT"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnTextExclusionOptions, this,
+        XRCID("ID_TE_ALL_INCOMPLETE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnTextExclusionOptions, this,
+        XRCID("ID_TE_NO_EXCLUDE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnTextExclusionOptions, this,
+        XRCID("ID_TE_ALL_INCOMPLETE_EXCEPT_HEADERS"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnExclusionTagsOptions, this,
+        XRCID("ID_EXCLUSION_TAGS_NOT_ENABLED"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnExclusionTagsOptions, this,
+        XRCID("ID_EXCLUSION_TAGS_CAROTS"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnExclusionTagsOptions, this,
+        XRCID("ID_EXCLUSION_TAGS_ANGLES"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnExclusionTagsOptions, this,
+        XRCID("ID_EXCLUSION_TAGS_BRACES"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnExclusionTagsOptions, this,
+        XRCID("ID_EXCLUSION_TAGS_CURLIES"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnExclusionTagsOptions, this,
+        XRCID("ID_EXCLUSION_TAGS_PARANS"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnLineEndOptions, this,
+        XRCID("ID_LE_ONLY_AFTER_VALID_SENTENCE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnLineEndOptions, this,
+        XRCID("ID_LE_ALWAYS_NEW_PARAGRAPH"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditDictionary, this,
+        XRCID("ID_EDIT_DICTIONARY"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditEnglishDictionary, this,
+        XRCID("ID_EDIT_ENGLISH_DICTIONARY"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditGraphOpacity, this,
+        XRCID("ID_EDIT_BAR_OPACITY"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBarOrientationSelected, this,
+        XRCID("ID_BAR_HORIZONTAL"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBarOrientationSelected, this,
+        XRCID("ID_BAR_VERTICAL"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnHistoBarLabelSelected, this,
+        XRCID("ID_HISTOBAR_LABELS_PERCENTAGE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnHistoBarLabelSelected, this,
+        XRCID("ID_HISTOBAR_LABELS_COUNT"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnHistoBarLabelSelected, this,
+        XRCID("ID_HISTOBAR_LABELS_COUNT_AND_PERCENT"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnHistoBarLabelSelected, this,
+        XRCID("ID_HISTOBAR_NO_LABELS"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditGraphOpacity, this,
+        XRCID("ID_EDIT_HISTOBAR_OPACITY"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditGraphOpacity, this,
+        XRCID("ID_EDIT_BOX_OPACITY"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditGraphOpacity, this,
+        XRCID("ID_EDIT_PLOT_BKIMAGE_OPACITY"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditGraphOpacity, this,
+        XRCID("ID_EDIT_PLOT_BKCOLOR_OPACITY"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditPlotBackgroundImage, this,
+        XRCID("ID_EDIT_PLOT_BKIMAGE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditGraphFont, this,
+        XRCID("ID_EDIT_Y_AXIS_FONT"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditGraphFont, this,
+        XRCID("ID_EDIT_X_AXIS_FONT"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditGraphFont, this,
+        XRCID("ID_EDIT_TOP_TITLES_FONT"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditGraphFont, this,
+        XRCID("ID_EDIT_BOTTOM_TITLES_FONT"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditGraphFont, this,
+        XRCID("ID_EDIT_LEFT_TITLES_FONT"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditGraphFont, this,
+        XRCID("ID_EDIT_RIGHT_TITLES_FONT"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditDictionaryProjectSettings, this,
+        XRCID("ID_EDIT_DICTIONARY_PROJECT_SETTINGS"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnAddCustomTestBundle, this,
+        XRCID("ID_ADD_CUSTOM_TEST_BUNDLE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditCustomTestBundle, this,
+        XRCID("ID_EDIT_CUSTOM_TEST_BUNDLE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnRemoveCustomTestBundle, this,
+        XRCID("ID_REMOVE_CUSTOM_TEST_BUNDLE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnTestBundle, this,
+        XRCID("ID_ADD_CHILDRENS_PUBLISHING_TEST_BUNDLE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnTestBundle, this,
+        XRCID("ID_ADD_ADULT_PUBLISHING_TEST_BUNDLE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnTestBundle, this,
+        XRCID("ID_ADD_CHILDRENS_HEALTHCARE_TEST_BUNDLE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnTestBundle, this,
+        XRCID("ID_ADD_ADULT_HEALTHCARE_TEST_BUNDLE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnTestBundle, this,
+        XRCID("ID_ADD_MILITARY_COVERNMENT_TEST_BUNDLE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnTestBundle, this,
+        XRCID("ID_ADD_SECOND_LANGUAGE_TEST_BUNDLE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnTestBundle, this,
+        XRCID("ID_ADD_BROADCASTING_TEST_BUNDLE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnTestBundle, this,
+        XRCID("ID_GENERAL_DOCUMENT_TEST_BUNDLE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnTestBundle, this,
+        XRCID("ID_TECHNICAL_DOCUMENT_TEST_BUNDLE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnTestBundle, this,
+        XRCID("ID_NONNARRATIVE_DOCUMENT_TEST_BUNDLE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnTestBundle, this,
+        XRCID("ID_ADULT_LITERATURE_DOCUMENT_TEST_BUNDLE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnTestBundle, this,
+        XRCID("ID_CHILDRENS_LITERATURE_DOCUMENT_TEST_BUNDLE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnAddCustomTest, this,
+        XRCID("ID_ADD_CUSTOM_TEST"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnAddCustomTest, this,
+        XRCID("ID_ADD_CUSTOM_NEW_DALE_CHALL_TEST"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnAddCustomTest, this,
+        XRCID("ID_ADD_CUSTOM_SPACHE_TEST"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnAddCustomTest, this,
+        XRCID("ID_ADD_CUSTOM_HARRIS_JACOBSON_TEST"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditCustomTest, this,
+        XRCID("ID_EDIT_CUSTOM_TEST"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnRemoveCustomTest, this,
+        XRCID("ID_REMOVE_CUSTOM_TEST"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnFindMenu, this,
+        wxID_FIND);
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnFindNext, this,
+        XRCID("ID_FIND_NEXT"));
+    }
+
+//---------------------------------------------------
+void ProjectDocChildFrame::OnInvalidRegionColor(wxRibbonButtonBarEvent& event)
+    {
+    wxCommandEvent cmd(wxEVT_NULL, event.GetId());
+    OnEditGraphColor(cmd);
+    }
+
+//-------------------------------------------------------
+void ProjectDocChildFrame::OnDocumentRefresh([[maybe_unused]] wxRibbonButtonBarEvent& event)
+    {
+    BaseProjectDoc* activeProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    if (!activeProject || !activeProject->IsSafeToUpdate())
+        { return; }
+    // if a standard project with manually entered text then there is no file to link to
+    if (activeProject->IsKindOf(CLASSINFO(ProjectDoc)) &&
+        activeProject->GetTextSource() == TextSource::EnteredText)
+        {
+        wxMessageBox(
+            _(L"Only projects that originated from a file can be reloaded. "
+               "This project had its text manually typed in and cannot be linked to a file."),
+            wxGetApp().GetAppName(), wxOK|wxICON_INFORMATION);
+        return;
+        }
+    // only refresh if we are linking to an external document.
+    // if the documents were embedded, then ask if they want to change this to link to the files.
+    else if (activeProject->GetDocumentStorageMethod() == TextStorage::EmbedText)
+        {
+        if (wxMessageBox(
+            _(L"Only projects linked to its source document can be reloaded. "
+               "This project currently has the original document's text embedded in it. "
+               "Do you wish to directly link to the source document?"),
+            wxGetApp().GetAppName(), wxYES_NO|wxICON_QUESTION) == wxNO)
+            { return; }
+        if (activeProject->IsKindOf(CLASSINFO(ProjectDoc)))
+            {
+            FilePathResolver resolvePath(activeProject->GetOriginalDocumentFilePath(), true);
+            if (resolvePath.IsInvalidFile() ||
+                (resolvePath.IsLocalOrNetworkFile() &&
+                    !wxFile::Exists(activeProject->GetOriginalDocumentFilePath())) )
+                {
+                wxMessageBox(wxString::Format(
+                    _(L"%s: file not found."), activeProject->GetOriginalDocumentFilePath() ),
+                    wxGetApp().GetAppName(), wxOK|wxICON_INFORMATION);
+                return;
+                }
+            }
+        activeProject->SetDocumentStorageMethod(TextStorage::NoEmbedText);
+        }
+    // project will need to do a full re-indexing
+    activeProject->RefreshRequired(ProjectRefresh::FullReindexing);
+    activeProject->RefreshProject();
+    }
+
+//---------------------------------------------------
+void ProjectDocChildFrame::OnEditGraphFont(wxCommandEvent& event)
+    {
+    wxFontData data;
+    if (event.GetId() == XRCID("ID_EDIT_X_AXIS_FONT"))
+        {
+        data.SetInitialFont(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetXAxisFont());
+        data.SetColour(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetXAxisFontColor());
+        }
+    else if (event.GetId() == XRCID("ID_EDIT_Y_AXIS_FONT"))
+        {
+        data.SetInitialFont(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetYAxisFont());
+        data.SetColour(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetYAxisFontColor());
+        }
+    else if (event.GetId() == XRCID("ID_EDIT_TOP_TITLES_FONT"))
+        {
+        data.SetInitialFont(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetGraphTopTitleFont());
+        data.SetColour(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetGraphTopTitleFontColor());
+        }
+    else if (event.GetId() == XRCID("ID_EDIT_BOTTOM_TITLES_FONT"))
+        {
+        data.SetInitialFont(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetBottomTitleGraphFont());
+        data.SetColour(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetBottomTitleGraphFontColor());
+        }
+    else if (event.GetId() == XRCID("ID_EDIT_LEFT_TITLES_FONT"))
+        {
+        data.SetInitialFont(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetLeftTitleGraphFont());
+        data.SetColour(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetLeftTitleGraphFontColor());
+        }
+    else if (event.GetId() == XRCID("ID_EDIT_RIGHT_TITLES_FONT"))
+        {
+        data.SetInitialFont(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetRightTitleGraphFont());
+        data.SetColour(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetRightTitleGraphFontColor());
+        }
+
+    wxFontDialog dialog(this, data);
+    if (dialog.ShowModal() == wxID_OK)
+        {
+        if (event.GetId() == XRCID("ID_EDIT_X_AXIS_FONT"))
+            {
+            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetXAxisFont(
+                dialog.GetFontData().GetChosenFont());
+            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetXAxisFontColor(
+                dialog.GetFontData().GetColour());
+            }
+        else if (event.GetId() == XRCID("ID_EDIT_Y_AXIS_FONT"))
+            {
+            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetYAxisFont(
+                dialog.GetFontData().GetChosenFont());
+            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetYAxisFontColor(
+                dialog.GetFontData().GetColour());
+            }
+        else if (event.GetId() == XRCID("ID_EDIT_TOP_TITLES_FONT"))
+            {
+            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphTopTitleFont(
+                dialog.GetFontData().GetChosenFont());
+            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphTopTitleFontColor(
+                dialog.GetFontData().GetColour());
+            }
+        else if (event.GetId() == XRCID("ID_EDIT_BOTTOM_TITLES_FONT"))
+            {
+            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetBottomTitleGraphFont(
+                dialog.GetFontData().GetChosenFont());
+            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetBottomTitleGraphFontColor(
+                dialog.GetFontData().GetColour());
+            }
+        else if (event.GetId() == XRCID("ID_EDIT_LEFT_TITLES_FONT"))
+            {
+            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetLeftTitleGraphFont(
+                dialog.GetFontData().GetChosenFont());
+            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetLeftTitleGraphFontColor(
+                dialog.GetFontData().GetColour());
+            }
+        else if (event.GetId() == XRCID("ID_EDIT_RIGHT_TITLES_FONT"))
+            {
+            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetRightTitleGraphFont(
+                dialog.GetFontData().GetChosenFont());
+            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetRightTitleGraphFontColor(
+                dialog.GetFontData().GetColour());
+            }
+        dynamic_cast<BaseProjectDoc*>(GetDocument())->RefreshRequired(ProjectRefresh::Minimal);
+        dynamic_cast<BaseProjectDoc*>(GetDocument())->RefreshGraphs();
+        }
+    }
+
+//-------------------------------------------------------
+void ProjectDocChildFrame::OnTestBundle(wxCommandEvent& event)
+    {
+    // see what sort of bundle this is
+    bool basedOnIndustry = true;
+    readability::industry_classification selectedIndustry =
+        readability::industry_classification::adult_publishing_industry;
+    readability::document_classification selectedDocument =
+        readability::document_classification::adult_literature_document;
+    if (event.GetId() == XRCID("ID_ADD_CHILDRENS_PUBLISHING_TEST_BUNDLE"))
+        {
+        selectedIndustry = readability::industry_classification::childrens_publishing_industry;
+        basedOnIndustry = true;
+        }
+    else if (event.GetId() == XRCID("ID_ADD_ADULT_PUBLISHING_TEST_BUNDLE"))
+        {
+        selectedIndustry = readability::industry_classification::adult_publishing_industry;
+        basedOnIndustry = true;
+        }
+    else if (event.GetId() == XRCID("ID_ADD_CHILDRENS_HEALTHCARE_TEST_BUNDLE"))
+        {
+        selectedIndustry = readability::industry_classification::childrens_healthcare_industry;
+        basedOnIndustry = true;
+        }
+    else if (event.GetId() == XRCID("ID_ADD_ADULT_HEALTHCARE_TEST_BUNDLE"))
+        {
+        selectedIndustry = readability::industry_classification::adult_healthcare_industry;
+        basedOnIndustry = true;
+        }
+    else if (event.GetId() == XRCID("ID_ADD_MILITARY_COVERNMENT_TEST_BUNDLE"))
+        {
+        selectedIndustry = readability::industry_classification::military_government_industry;
+        basedOnIndustry = true;
+        }
+    else if (event.GetId() == XRCID("ID_ADD_SECOND_LANGUAGE_TEST_BUNDLE"))
+        {
+        selectedIndustry = readability::industry_classification::sedondary_language_industry;
+        basedOnIndustry = true;
+        }
+    else if (event.GetId() == XRCID("ID_ADD_BROADCASTING_TEST_BUNDLE"))
+        {
+        selectedIndustry = readability::industry_classification::broadcasting_industry;
+        basedOnIndustry = true;
+        }
+    else if (event.GetId() == XRCID("ID_GENERAL_DOCUMENT_TEST_BUNDLE"))
+        {
+        selectedDocument = readability::document_classification::general_document;
+        basedOnIndustry = false;
+        }
+    else if (event.GetId() == XRCID("ID_TECHNICAL_DOCUMENT_TEST_BUNDLE"))
+        {
+        selectedDocument = readability::document_classification::technical_document;
+        basedOnIndustry = false;
+        }
+    else if (event.GetId() == XRCID("ID_NONNARRATIVE_DOCUMENT_TEST_BUNDLE"))
+        {
+        selectedDocument = readability::document_classification::nonnarrative_document;
+        basedOnIndustry = false;
+        }
+    else if (event.GetId() == XRCID("ID_ADULT_LITERATURE_DOCUMENT_TEST_BUNDLE"))
+        {
+        selectedDocument = readability::document_classification::adult_literature_document;
+        basedOnIndustry = false;
+        }
+    else if (event.GetId() == XRCID("ID_CHILDRENS_LITERATURE_DOCUMENT_TEST_BUNDLE"))
+        {
+        selectedDocument = readability::document_classification::childrens_literature_document;
+        basedOnIndustry = false;
+        }
+
+    // Standard project
+    if (GetDocument() && GetDocument()->IsKindOf(CLASSINFO(ProjectDoc)) )
+        {
+        ProjectDoc* doc = dynamic_cast<ProjectDoc*>(GetDocument());
+        if (doc && doc->IsSafeToUpdate())
+            {
+            const bool hadDolchSightWords = doc->IsIncludingDolchSightWords();
+            doc->ExcludeAllTests();
+            // standard tests
+            for (auto rTest = doc->GetReadabilityTests().get_tests().begin();
+                rTest != doc->GetReadabilityTests().get_tests().end();
+                ++rTest)
+                {
+                const bool matchesClassification = basedOnIndustry ?
+                    rTest->get_test().has_industry_classification(selectedIndustry) :
+                    rTest->get_test().has_document_classification(selectedDocument);
+                rTest->include(matchesClassification &&
+                               rTest->get_test().has_language(doc->GetProjectLanguage()) );
+                }
+            // custom tests
+            for (CustomReadabilityTestCollection::const_iterator pos = doc->m_custom_word_tests.begin();
+                pos != doc->m_custom_word_tests.end();
+                ++pos)
+                {
+                if ((basedOnIndustry && pos->has_industry_classification(selectedIndustry)) ||
+                    pos->has_document_classification(selectedDocument))
+                    {
+                    doc->RefreshRequired(ProjectRefresh::FullReindexing);
+                    doc->AddCustomReadabilityTest(wxString(pos->get_name().c_str()));
+                    }
+                }
+            // see if Dolch section should be added
+            if (((basedOnIndustry &&
+                selectedIndustry == readability::industry_classification::childrens_publishing_industry) ||
+                (basedOnIndustry &&
+                 selectedIndustry == readability::industry_classification::sedondary_language_industry) ||
+                (!basedOnIndustry &&
+                 selectedDocument == readability::document_classification::childrens_literature_document)) &&
+                (doc->GetProjectLanguage() == readability::test_language::english_test))
+                { doc->IncludeDolchSightWords(); }
+            // if Dolch was added or removed then refresh
+            if ((!hadDolchSightWords && doc->IsIncludingDolchSightWords()) ||
+                (hadDolchSightWords && !doc->IsIncludingDolchSightWords()) )
+                { doc->RefreshRequired(ProjectRefresh::FullReindexing); }
+            doc->RefreshRequired(ProjectRefresh::Minimal);
+            doc->RefreshProject();
+            }
+        }
+    // Batch project
+    if (GetDocument() && GetDocument()->IsKindOf(CLASSINFO(BatchProjectDoc)) )
+        {
+        BatchProjectDoc* doc = dynamic_cast<BatchProjectDoc*>(GetDocument());
+        if (doc && doc->IsSafeToUpdate())
+            {
+            doc->ExcludeAllTests();
+            // standard tests
+            for (auto rTest = doc->GetReadabilityTests().get_tests().begin();
+                rTest != doc->GetReadabilityTests().get_tests().end();
+                ++rTest)
+                {
+                const bool matchesClassification = basedOnIndustry ?
+                    rTest->get_test().has_industry_classification(selectedIndustry) :
+                    rTest->get_test().has_document_classification(selectedDocument);
+                rTest->include(matchesClassification && rTest->get_test().has_language(doc->GetProjectLanguage()) );
+                }
+            // custom tests
+            for (CustomReadabilityTestCollection::const_iterator pos = doc->m_custom_word_tests.begin();
+                pos != doc->m_custom_word_tests.end();
+                ++pos)
+                {
+                if ((basedOnIndustry && pos->has_industry_classification(selectedIndustry)) ||
+                    pos->has_document_classification(selectedDocument))
+                    {
+                    doc->RefreshRequired(ProjectRefresh::FullReindexing);
+                    doc->AddCustomReadabilityTest(wxString(pos->get_name().c_str()));
+                    }
+                }
+            // see if Dolch section should be added...
+            if (((basedOnIndustry &&
+                  selectedIndustry == readability::industry_classification::childrens_publishing_industry) ||
+                (basedOnIndustry &&
+                 selectedIndustry == readability::industry_classification::sedondary_language_industry) ||
+                (!basedOnIndustry &&
+                 selectedDocument == readability::document_classification::childrens_literature_document)) &&
+                (doc->GetProjectLanguage() == readability::test_language::english_test))
+                { doc->IncludeDolchSightWords(); }
+            // ...or removed
+            else if (doc->IsIncludingDolchSightWords())
+                { doc->IncludeDolchSightWords(false); }
+            // need to do a full refresh (except document re-indexing) for a batch project
+            // because some many sections in it involve test scores.
+            doc->RefreshRequired(ProjectRefresh::Minimal);
+            doc->RefreshProject();
+            }
+        }
+    }
+
+//---------------------------------------------------
+void ProjectDocChildFrame::OnLongSentencesOptions(wxCommandEvent& event)
+    {
+    BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    if (event.GetId() == XRCID("ID_LS_LONGER_THAN"))
+        {
+        const long len = wxGetNumberFromUser(
+            _(L"Consider sentences overly long if longer than:"), wxString{}, _(L"Long Sentences"),
+            doc->GetDifficultSentenceLength(), 0, std::numeric_limits<int>::max());
+        if (len == -1)
+            { return; }
+        doc->SetDifficultSentenceLength(len);
+        }
+    doc->SetLongSentenceMethod((event.GetId() == XRCID("ID_LS_LONGER_THAN")) ?
+        LongSentence::LongerThanSpecifiedLength : LongSentence::OutlierLength);
+
+    for (size_t i = 0; i < m_longSentencesMenu.GetMenuItemCount(); ++i)
+        { m_longSentencesMenu.FindItemByPosition(i)->Check(false); }
+    wxMenuItem* item = m_longSentencesMenu.FindItem(
+        (doc->GetLongSentenceMethod() == LongSentence::LongerThanSpecifiedLength) ?
+        XRCID("ID_LS_LONGER_THAN") :
+        XRCID("ID_LS_OUTLIER_RANGE"));
+    if (item)
+        { item->Check(true); }
+
+    doc->RefreshRequired(ProjectRefresh::FullReindexing);
+    doc->RefreshProject();
+    }
+
+//---------------------------------------------------
+void ProjectDocChildFrame::OnEditGraphColor(wxCommandEvent& event)
+    {
+    wxColourData data;
+    wxGetApp().GetAppOptions().CopyCustomColoursToColourData(data);
+    data.SetChooseFull(true);
+    auto doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    assert(doc && L"Invalid document when editing graph colors!");
+    if (event.GetId() == XRCID("ID_EDIT_GRAPH_BKCOLOR"))
+        { data.SetColour(doc->GetBackGroundColor()); }
+    else if (event.GetId() == XRCID("ID_EDIT_BOX_COLOR"))
+        { data.SetColour(doc->GetGraphBoxColor()); }
+    else if (event.GetId() == XRCID("ID_EDIT_HISTOGRAM_BAR_COLOR"))
+        { data.SetColour(doc->GetHistogramBarColor()); }
+    else if (event.GetId() == XRCID("ID_EDIT_BAR_COLOR"))
+        { data.SetColour(doc->GetBarChartBarColor()); }
+    else if (event.GetId() == XRCID("ID_INVALID_REGION_COLOR"))
+        { data.SetColour(doc->GetInvalidAreaColor()); }
+    else if (event.GetId() == XRCID("ID_EDIT_PLOT_BKCOLOR"))
+        { data.SetColour(doc->GetPlotBackGroundColor()); }
+
+    wxColourDialog dialog(this, &data);
+    if (dialog.ShowModal() == wxID_OK)
+        {
+        wxGetApp().GetAppOptions().CopyColourDataToCustomColours(dialog.GetColourData());
+        const auto color = dialog.GetColourData().GetColour();
+        if (event.GetId() == XRCID("ID_EDIT_GRAPH_BKCOLOR"))
+            { doc->SetBackGroundColor(color); }
+        else if (event.GetId() == XRCID("ID_EDIT_BOX_COLOR"))
+            { doc->SetGraphBoxColor(color); }
+        else if (event.GetId() == XRCID("ID_EDIT_HISTOGRAM_BAR_COLOR"))
+            { doc->SetHistogramBarColor(color); }
+        else if (event.GetId() == XRCID("ID_EDIT_BAR_COLOR"))
+            { doc->SetBarChartBarColor(color); }
+        else if (event.GetId() == XRCID("ID_INVALID_REGION_COLOR"))
+            { doc->SetInvalidAreaColor(color); }
+        else if (event.GetId() == XRCID("ID_EDIT_PLOT_BKCOLOR"))
+            { doc->SetPlotBackGroundColor(color); }
+
+        doc->RefreshRequired(ProjectRefresh::Minimal);
+        doc->RefreshGraphs();
+        }
+    }
+
+//---------------------------------------------------
+void ProjectDocChildFrame::OnEditGraphColorScheme([[maybe_unused]] wxRibbonButtonBarEvent& event)
+    {
+    auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    assert(baseDoc && L"Failed to get document!");
+    if (!baseDoc)
+        { return; }
+
+    // load the list of color schemes and select the one currently in use
+    const wxString selectedStr{ baseDoc->GetGraphColorScheme() };
+    int selectedItem{ 0 };
+    wxArrayString choices;
+    for (auto colorSchemeIter = wxGetApp().GetGraphColorSchemeMap().cbegin();
+        colorSchemeIter != wxGetApp().GetGraphColorSchemeMap().cend();
+        ++colorSchemeIter)
+        {
+        choices.push_back(colorSchemeIter->first);
+        if (colorSchemeIter->second == selectedStr)
+            {
+            selectedItem =
+                static_cast<int>(std::distance(wxGetApp().GetGraphColorSchemeMap().cbegin(),
+                                               colorSchemeIter));
+            }
+        }
+
+    wxSingleChoiceDialog colorSchemeDlg(this,
+        _("Select a color scheme:"), _("Select Color Scheme"), choices);
+    colorSchemeDlg.SetSelection(selectedItem);
+    colorSchemeDlg.SetSize(FromDIP(wxSize{ 200, 400 }));
+    colorSchemeDlg.Center();
+    if (colorSchemeDlg.ShowModal() != wxID_OK)
+        { return; }
+
+    const auto foundColorScheme =
+        wxGetApp().GetGraphColorSchemeMap().find(colorSchemeDlg.GetStringSelection());
+    if (foundColorScheme != wxGetApp().GetGraphColorSchemeMap().cend())
+        { baseDoc->SetGraphColorScheme(foundColorScheme->second); }
+
+    baseDoc->RefreshRequired(ProjectRefresh::Minimal);
+    baseDoc->RefreshGraphs();
+    }
 
 //---------------------------------------------------
 BaseProjectView::BaseProjectView()
@@ -178,9 +689,6 @@ BaseProjectView::BaseProjectView()
         XRCID("ID_TOGGLE_RIBBON"));
 
     // menu & ribbon button events
-    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &BaseProjectView::OnEditGraphColorScheme, this,
-        XRCID("ID_EDIT_GRAPH_COLOR_SCHEME"));
-
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &BaseProjectView::OnShowcaseComplexWords, this,
         XRCID("ID_EDIT_GRAPH_SHOWCASE_COMPLEX_WORDS"));
 
@@ -325,7 +833,7 @@ void BaseProjectView::OnEditStatsReportButton([[maybe_unused]] wxRibbonButtonBar
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnBarOrientationSelected(wxCommandEvent& event)
+void ProjectDocChildFrame::OnBarOrientationSelected(wxCommandEvent& event)
     {
     if (event.GetId() == XRCID("ID_BAR_HORIZONTAL"))
         { dynamic_cast<BaseProjectDoc*>(GetDocument())->SetBarChartOrientation(Wisteria::Orientation::Horizontal); }
@@ -850,13 +1358,6 @@ void BaseProjectView::OnShowcaseComplexWords([[maybe_unused]] wxRibbonButtonBarE
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnInvalidRegionColor(wxRibbonButtonBarEvent& event)
-    {
-    wxCommandEvent cmd(wxEVT_NULL, event.GetId());
-    OnEditGraphColor(cmd);
-    }
-
-//---------------------------------------------------
 void BaseProjectView::OnRaygorStyleSelected([[maybe_unused]] wxCommandEvent& event)
     {
     if (event.GetId() == XRCID("ID_EDIT_GRAPH_RAYGOR_ORIGINAL"))
@@ -998,14 +1499,14 @@ void BaseProjectView::OnEditPlotBackgroundImageEffect(wxCommandEvent& event)
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnEditPlotBackgroundImage([[maybe_unused]] wxCommandEvent& event)
+void ProjectDocChildFrame::OnEditPlotBackgroundImage([[maybe_unused]] wxCommandEvent& event)
     {
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(doc && L"Failed to get document!");
     if (!doc)
         { return; }
 
-    wxFileDialog fd(GetDocFrame(), _(L"Select Plot Background Image"),
+    wxFileDialog fd(this, _(L"Select Plot Background Image"),
             doc->GetPlotBackGroundImagePath().length() ? wxString{} : wxGetApp().GetAppOptions().GetImagePath(),
             doc->GetPlotBackGroundImagePath(),
             wxGetApp().GetAppOptions().GetImageFileFilter(),
@@ -1023,92 +1524,7 @@ void BaseProjectView::OnEditGraphFontsButton(wxRibbonButtonBarEvent& event)
     { event.PopupMenu(&m_graphFontsMenu); }
 
 //---------------------------------------------------
-void BaseProjectView::OnEditGraphFont(wxCommandEvent& event)
-    {
-    wxFontData data;
-    if (event.GetId() == XRCID("ID_EDIT_X_AXIS_FONT"))
-        {
-        data.SetInitialFont(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetXAxisFont());
-        data.SetColour(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetXAxisFontColor());
-        }
-    else if (event.GetId() == XRCID("ID_EDIT_Y_AXIS_FONT"))
-        {
-        data.SetInitialFont(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetYAxisFont());
-        data.SetColour(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetYAxisFontColor());
-        }
-    else if (event.GetId() == XRCID("ID_EDIT_TOP_TITLES_FONT"))
-        {
-        data.SetInitialFont(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetGraphTopTitleFont());
-        data.SetColour(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetGraphTopTitleFontColor());
-        }
-    else if (event.GetId() == XRCID("ID_EDIT_BOTTOM_TITLES_FONT"))
-        {
-        data.SetInitialFont(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetBottomTitleGraphFont());
-        data.SetColour(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetBottomTitleGraphFontColor());
-        }
-    else if (event.GetId() == XRCID("ID_EDIT_LEFT_TITLES_FONT"))
-        {
-        data.SetInitialFont(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetLeftTitleGraphFont());
-        data.SetColour(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetLeftTitleGraphFontColor());
-        }
-    else if (event.GetId() == XRCID("ID_EDIT_RIGHT_TITLES_FONT"))
-        {
-        data.SetInitialFont(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetRightTitleGraphFont());
-        data.SetColour(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetRightTitleGraphFontColor());
-        }
-
-    wxFontDialog dialog(GetDocFrame(), data);
-    if (dialog.ShowModal() == wxID_OK)
-        {
-        if (event.GetId() == XRCID("ID_EDIT_X_AXIS_FONT"))
-            {
-            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetXAxisFont(
-                dialog.GetFontData().GetChosenFont());
-            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetXAxisFontColor(
-                dialog.GetFontData().GetColour());
-            }
-        else if (event.GetId() == XRCID("ID_EDIT_Y_AXIS_FONT"))
-            {
-            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetYAxisFont(
-                dialog.GetFontData().GetChosenFont());
-            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetYAxisFontColor(
-                dialog.GetFontData().GetColour());
-            }
-        else if (event.GetId() == XRCID("ID_EDIT_TOP_TITLES_FONT"))
-            {
-            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphTopTitleFont(
-                dialog.GetFontData().GetChosenFont());
-            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphTopTitleFontColor(
-                dialog.GetFontData().GetColour());
-            }
-        else if (event.GetId() == XRCID("ID_EDIT_BOTTOM_TITLES_FONT"))
-            {
-            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetBottomTitleGraphFont(
-                dialog.GetFontData().GetChosenFont());
-            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetBottomTitleGraphFontColor(
-                dialog.GetFontData().GetColour());
-            }
-        else if (event.GetId() == XRCID("ID_EDIT_LEFT_TITLES_FONT"))
-            {
-            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetLeftTitleGraphFont(
-                dialog.GetFontData().GetChosenFont());
-            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetLeftTitleGraphFontColor(
-                dialog.GetFontData().GetColour());
-            }
-        else if (event.GetId() == XRCID("ID_EDIT_RIGHT_TITLES_FONT"))
-            {
-            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetRightTitleGraphFont(
-                dialog.GetFontData().GetChosenFont());
-            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetRightTitleGraphFontColor(
-                dialog.GetFontData().GetColour());
-            }
-        dynamic_cast<BaseProjectDoc*>(GetDocument())->RefreshRequired(ProjectRefresh::Minimal);
-        dynamic_cast<BaseProjectDoc*>(GetDocument())->RefreshGraphs();
-        }
-    }
-
-//---------------------------------------------------
-void BaseProjectView::OnEditGraphOpacity(wxCommandEvent& event)
+void ProjectDocChildFrame::OnEditGraphOpacity(wxCommandEvent& event)
     {
     wxBitmap bmp(wxGetApp().GetMainFrame()->FromDIP(wxSize(300, 300)));
     uint8_t opacity = wxALPHA_OPAQUE;
@@ -1133,7 +1549,7 @@ void BaseProjectView::OnEditGraphOpacity(wxCommandEvent& event)
         auto img = Wisteria::GraphItems::Image::LoadFile(doc->GetPlotBackGroundImagePath());
         if (!img.IsOk())
             {
-            wxFileDialog fd(GetDocFrame(), _(L"Select Plot Background Image"),
+            wxFileDialog fd(this, _(L"Select Plot Background Image"),
                     doc->GetPlotBackGroundImagePath().length() ?
                         wxString{} :
                         wxGetApp().GetAppOptions().GetImagePath(),
@@ -1175,7 +1591,7 @@ void BaseProjectView::OnEditGraphOpacity(wxCommandEvent& event)
         opacity = doc->GetPlotBackGroundColorOpacity();
         }
 
-    Wisteria::UI::OpacityDlg dlg(GetDocFrame(), opacity, bmp);
+    Wisteria::UI::OpacityDlg dlg(this, opacity, bmp);
     if (dlg.ShowModal())
         {
         if (event.GetId() == XRCID("ID_EDIT_PLOT_BKIMAGE_OPACITY"))
@@ -1194,92 +1610,6 @@ void BaseProjectView::OnEditGraphOpacity(wxCommandEvent& event)
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnEditGraphColorScheme([[maybe_unused]] wxRibbonButtonBarEvent& event)
-    {
-    auto baseDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    assert(baseDoc && L"Failed to get document!");
-    if (!baseDoc)
-        { return; }
-
-    // load the list of color schemes and select the one currently in use
-    const wxString selectedStr{ baseDoc->GetGraphColorScheme() };
-    int selectedItem{ 0 };
-    wxArrayString choices;
-    for (auto colorSchemeIter = wxGetApp().GetGraphColorSchemeMap().cbegin();
-        colorSchemeIter != wxGetApp().GetGraphColorSchemeMap().cend();
-        ++colorSchemeIter)
-        {
-        choices.push_back(colorSchemeIter->first);
-        if (colorSchemeIter->second == selectedStr)
-            {
-            selectedItem =
-                static_cast<int>(std::distance(wxGetApp().GetGraphColorSchemeMap().cbegin(),
-                                               colorSchemeIter));
-            }
-        }
-
-    wxSingleChoiceDialog colorSchemeDlg(GetDocFrame(),
-        _("Select a color scheme:"), _("Select Color Scheme"), choices);
-    colorSchemeDlg.SetSelection(selectedItem);
-    colorSchemeDlg.SetSize({ GetDocFrame()->FromDIP(200), GetDocFrame()->FromDIP(400) });
-    colorSchemeDlg.Center();
-    if (colorSchemeDlg.ShowModal() != wxID_OK)
-        { return; }
-
-    const auto foundColorScheme =
-        wxGetApp().GetGraphColorSchemeMap().find(colorSchemeDlg.GetStringSelection());
-    if (foundColorScheme != wxGetApp().GetGraphColorSchemeMap().cend())
-        { baseDoc->SetGraphColorScheme(foundColorScheme->second); }
-
-    baseDoc->RefreshRequired(ProjectRefresh::Minimal);
-    baseDoc->RefreshGraphs();
-    }
-
-//---------------------------------------------------
-void BaseProjectView::OnEditGraphColor(wxCommandEvent& event)
-    {
-    wxColourData data;
-    wxGetApp().GetAppOptions().CopyCustomColoursToColourData(data);
-    data.SetChooseFull(true);
-    auto doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    assert(doc && L"Invalid document when editing graph colors!");
-    if (event.GetId() == XRCID("ID_EDIT_GRAPH_BKCOLOR"))
-        { data.SetColour(doc->GetBackGroundColor()); }
-    else if (event.GetId() == XRCID("ID_EDIT_BOX_COLOR"))
-        { data.SetColour(doc->GetGraphBoxColor()); }
-    else if (event.GetId() == XRCID("ID_EDIT_HISTOGRAM_BAR_COLOR"))
-        { data.SetColour(doc->GetHistogramBarColor()); }
-    else if (event.GetId() == XRCID("ID_EDIT_BAR_COLOR"))
-        { data.SetColour(doc->GetBarChartBarColor()); }
-    else if (event.GetId() == XRCID("ID_INVALID_REGION_COLOR"))
-        { data.SetColour(doc->GetInvalidAreaColor()); }
-    else if (event.GetId() == XRCID("ID_EDIT_PLOT_BKCOLOR"))
-        { data.SetColour(doc->GetPlotBackGroundColor()); }
-
-    wxColourDialog dialog(GetDocFrame(), &data);
-    if (dialog.ShowModal() == wxID_OK)
-        {
-        wxGetApp().GetAppOptions().CopyColourDataToCustomColours(dialog.GetColourData());
-        const auto color = dialog.GetColourData().GetColour();
-        if (event.GetId() == XRCID("ID_EDIT_GRAPH_BKCOLOR"))
-            { doc->SetBackGroundColor(color); }
-        else if (event.GetId() == XRCID("ID_EDIT_BOX_COLOR"))
-            { doc->SetGraphBoxColor(color); }
-        else if (event.GetId() == XRCID("ID_EDIT_HISTOGRAM_BAR_COLOR"))
-            { doc->SetHistogramBarColor(color); }
-        else if (event.GetId() == XRCID("ID_EDIT_BAR_COLOR"))
-            { doc->SetBarChartBarColor(color); }
-        else if (event.GetId() == XRCID("ID_INVALID_REGION_COLOR"))
-            { doc->SetInvalidAreaColor(color); }
-        else if (event.GetId() == XRCID("ID_EDIT_PLOT_BKCOLOR"))
-            { doc->SetPlotBackGroundColor(color); }
-
-        doc->RefreshRequired(ProjectRefresh::Minimal);
-        doc->RefreshGraphs();
-        }
-    }
-
-//---------------------------------------------------
 void BaseProjectView::OnEditGraphRaygorStyleButton(wxRibbonButtonBarEvent& event)
     { event.PopupMenu(&m_raygorStyleMenu); }
 
@@ -1292,7 +1622,7 @@ void BaseProjectView::OnBoxStyleButton(wxRibbonButtonBarEvent& event)
     { event.PopupMenu(&m_boxStyleMenu); }
 
 //---------------------------------------------------
-void BaseProjectView::OnHistoBarLabelSelected(wxCommandEvent& event)
+void ProjectDocChildFrame::OnHistoBarLabelSelected(wxCommandEvent& event)
     {
     for (size_t i = 0; i < m_histobarLabelsMenu.GetMenuItemCount(); ++i)
         { m_histobarLabelsMenu.FindItemByPosition(i)->Check(false); }
@@ -1346,10 +1676,6 @@ void BaseProjectView::OnZoomButton(wxRibbonButtonBarEvent& event)
     { event.PopupMenu(&m_zoomMenu); }
 
 //---------------------------------------------------
-void BaseProjectView::OnHistoBarsLabelsButton(wxRibbonButtonBarEvent& event)
-    { event.PopupMenu(&m_histobarLabelsMenu); }
-
-//---------------------------------------------------
 void BaseProjectView::OnDClickRibbonBar([[maybe_unused]] wxRibbonBarEvent& event)
     { GetRibbon()->ShowPanels(!GetRibbon()->ArePanelsShown()); }
 
@@ -1391,11 +1717,7 @@ void BaseProjectView::OnIncompleteThreshold([[maybe_unused]] wxRibbonButtonBarEv
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnNumeralSyllabication(wxRibbonButtonBarEvent& event)
-    { event.PopupMenu(&m_numeralSyllabicationMenu); }
-
-//---------------------------------------------------
-void BaseProjectView::OnNumeralSyllabicationOptions(wxCommandEvent& event)
+void ProjectDocChildFrame::OnNumeralSyllabicationOptions(wxCommandEvent& event)
     {
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
 
@@ -1416,40 +1738,7 @@ void BaseProjectView::OnNumeralSyllabicationOptions(wxCommandEvent& event)
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnLongSentences(wxRibbonButtonBarEvent& event)
-    { event.PopupMenu(&m_longSentencesMenu); }
-
-//---------------------------------------------------
-void BaseProjectView::OnLongSentencesOptions(wxCommandEvent& event)
-    {
-    BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    if (event.GetId() == XRCID("ID_LS_LONGER_THAN"))
-        {
-        const long len = wxGetNumberFromUser(
-            _(L"Consider sentences overly long if longer than:"), wxString{}, _(L"Long Sentences"),
-            doc->GetDifficultSentenceLength(), 0, std::numeric_limits<int>::max());
-        if (len == -1)
-            { return; }
-        doc->SetDifficultSentenceLength(len);
-        }
-    doc->SetLongSentenceMethod((event.GetId() == XRCID("ID_LS_LONGER_THAN")) ?
-        LongSentence::LongerThanSpecifiedLength : LongSentence::OutlierLength);
-
-    for (size_t i = 0; i < m_longSentencesMenu.GetMenuItemCount(); ++i)
-        { m_longSentencesMenu.FindItemByPosition(i)->Check(false); }
-    wxMenuItem* item = m_longSentencesMenu.FindItem(
-        (doc->GetLongSentenceMethod() == LongSentence::LongerThanSpecifiedLength) ?
-        XRCID("ID_LS_LONGER_THAN") :
-        XRCID("ID_LS_OUTLIER_RANGE"));
-    if (item)
-        { item->Check(true); }
-
-    doc->RefreshRequired(ProjectRefresh::FullReindexing);
-    doc->RefreshProject();
-    }
-
-//---------------------------------------------------
-void BaseProjectView::OnTextExclusionOptions(wxCommandEvent& event)
+void ProjectDocChildFrame::OnTextExclusionOptions(wxCommandEvent& event)
     {
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     doc->SetInvalidSentenceMethod((event.GetId() == XRCID("ID_TE_ALL_INCOMPLETE")) ?
@@ -1465,10 +1754,10 @@ void BaseProjectView::OnTextExclusionOptions(wxCommandEvent& event)
         XRCID("ID_TE_ALL_INCOMPLETE_EXCEPT_HEADERS"));
     if (item)
         { item->Check(true); }
-
-    if (GetRibbon())
+    auto* view = dynamic_cast<BaseProjectView*>(GetView());
+    if (view != nullptr && view->GetRibbon() != nullptr)
         {
-        wxWindow* exclusionButtonBar = GetRibbon()->FindWindow(MainFrame::ID_TEXT_EXCLUSION_RIBBON_BUTTON_BAR);
+        wxWindow* exclusionButtonBar = view->GetRibbon()->FindWindow(MainFrame::ID_TEXT_EXCLUSION_RIBBON_BUTTON_BAR);
         if (exclusionButtonBar && exclusionButtonBar->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
             {
             dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->EnableButton(
@@ -1493,7 +1782,7 @@ void BaseProjectView::OnTextExclusionOptions(wxCommandEvent& event)
                 XRCID("ID_EXCLUDE_WORD_LIST"),
                 (doc->GetInvalidSentenceMethod() != InvalidSentence::IncludeAsFullSentences));
             }
-        wxWindow* numeralButtonBar = GetRibbon()->FindWindow(MainFrame::ID_NUMERALS_RIBBON_BUTTON_BAR);
+        wxWindow* numeralButtonBar = view->GetRibbon()->FindWindow(MainFrame::ID_NUMERALS_RIBBON_BUTTON_BAR);
         if (numeralButtonBar && numeralButtonBar->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
             {
             dynamic_cast<wxRibbonButtonBar*>(numeralButtonBar)->EnableButton(
@@ -1507,11 +1796,7 @@ void BaseProjectView::OnTextExclusionOptions(wxCommandEvent& event)
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnExclusionTags(wxRibbonButtonBarEvent& event)
-    { event.PopupMenu(&m_exclusionTagsMenu); }
-
-//---------------------------------------------------
-void BaseProjectView::OnExclusionTagsOptions(wxCommandEvent& event)
+void ProjectDocChildFrame::OnExclusionTagsOptions(wxCommandEvent& event)
     {
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
 
@@ -1546,31 +1831,30 @@ void BaseProjectView::OnExclusionTagsOptions(wxCommandEvent& event)
 
 //---------------------------------------------------
 void BaseProjectView::OnTextExclusion(wxRibbonButtonBarEvent& event)
-    { event.PopupMenu(&m_textExclusionMenu); }
+    { event.PopupMenu(&GetDocFrame()->m_textExclusionMenu); }
 
 //---------------------------------------------------
-void BaseProjectView::OnLineEnds(wxRibbonButtonBarEvent& event)
-    { event.PopupMenu(&m_lineEndsMenu); }
-
-//---------------------------------------------------
-void BaseProjectView::OnLineEndOptions(wxCommandEvent& event)
+void ProjectDocChildFrame::OnLineEndOptions(wxCommandEvent& event)
     {
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     doc->SetParagraphsParsingMethod((event.GetId() == XRCID("ID_LE_ONLY_AFTER_VALID_SENTENCE")) ?
         ParagraphParse::OnlySentenceTerminatedNewLinesAreParagraphs : ParagraphParse::EachNewLineIsAParagraph);
 
     for (size_t i = 0; i < m_lineEndsMenu.GetMenuItemCount(); ++i)
-        { m_lineEndsMenu.FindItemByPosition(i)->Check(false); }
+        {
+        m_lineEndsMenu.FindItemByPosition(i)->Check(false);
+        }
     wxMenuItem* item = m_lineEndsMenu.FindItem(
         (doc->GetParagraphsParsingMethod() == ParagraphParse::OnlySentenceTerminatedNewLinesAreParagraphs) ?
         XRCID("ID_LE_ONLY_AFTER_VALID_SENTENCE") : XRCID("ID_LE_ALWAYS_NEW_PARAGRAPH"));
     if (item)
         { item->Check(true); }
 
-    if (GetRibbon())
+    auto* view = dynamic_cast<BaseProjectView*>(GetView());
+    if (view != nullptr && view->GetRibbon() != nullptr)
         {
         wxWindow* deductionButtonBar =
-            GetRibbon()->FindWindow(MainFrame::ID_PARAGRAPH_DEDUCTION_RIBBON_BUTTON_BAR);
+            view->GetRibbon()->FindWindow(MainFrame::ID_PARAGRAPH_DEDUCTION_RIBBON_BUTTON_BAR);
         if (deductionButtonBar && deductionButtonBar->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
             {
             dynamic_cast<wxRibbonButtonBar*>(deductionButtonBar)->EnableButton(
@@ -1682,33 +1966,29 @@ void BaseProjectView::OnEditDictionaryButton([[maybe_unused]] wxRibbonButtonBarE
     { wxGetApp().EditDictionary(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetProjectLanguage()); }
 
 //---------------------------------------------------
-void BaseProjectView::OnEditEnglishDictionary([[maybe_unused]] wxCommandEvent& event)
+void ProjectDocChildFrame::OnEditEnglishDictionary([[maybe_unused]] wxCommandEvent& event)
     { wxGetApp().EditDictionary(readability::test_language::english_test); }
 
 //---------------------------------------------------
-void BaseProjectView::OnEditDictionaryProjectSettings([[maybe_unused]] wxCommandEvent& event)
+void ProjectDocChildFrame::OnEditDictionaryProjectSettings([[maybe_unused]] wxCommandEvent& event)
     {
     BaseProjectDoc* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    ToolsOptionsDlg optionsDlg(GetDocFrame(), theProject, ToolsOptionsDlg::Grammar);
+    ToolsOptionsDlg optionsDlg(this, theProject, ToolsOptionsDlg::Grammar);
     optionsDlg.SelectPage(ToolsOptionsDlg::GRAMMAR_PAGE);
     if (optionsDlg.ShowModal() == wxID_OK)
         { theProject->RefreshProject(); }
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnEditDictionary([[maybe_unused]] wxCommandEvent& event)
+void ProjectDocChildFrame::OnEditDictionary([[maybe_unused]] wxCommandEvent& event)
     { wxGetApp().EditDictionary(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetProjectLanguage()); }
 
 //-------------------------------------------------------
-void BaseProjectView::OnAddCustomTestBundle(wxCommandEvent& event)
-    { wxGetApp().GetMainFrameEx()->OnAddCustomTestBundle(event); }
-
-//-------------------------------------------------------
-void BaseProjectView::OnEditCustomTestBundle(wxCommandEvent& event)
+void ProjectDocChildFrame::OnEditCustomTestBundle(wxCommandEvent& event)
     { wxGetApp().GetMainFrameEx()->OnEditCustomTestBundle(event); }
 
 //-------------------------------------------------------
-void BaseProjectView::OnRemoveCustomTestBundle(wxCommandEvent& event)
+void ProjectDocChildFrame::OnRemoveCustomTestBundle(wxCommandEvent& event)
     { wxGetApp().GetMainFrameEx()->OnRemoveCustomTestBundle(event); }
 
 //-------------------------------------------------------
@@ -1747,173 +2027,6 @@ void BaseProjectView::OnCustomTestBundle(wxCommandEvent& event)
                 doc->RefreshProject();
                 }
             doc->Modify(true);
-            }
-        }
-    }
-
-//-------------------------------------------------------
-void BaseProjectView::OnTestBundle(wxCommandEvent& event)
-    {
-    // see what sort of bundle this is
-    bool basedOnIndustry = true;
-    readability::industry_classification selectedIndustry =
-        readability::industry_classification::adult_publishing_industry;
-    readability::document_classification selectedDocument =
-        readability::document_classification::adult_literature_document;
-    if (event.GetId() == XRCID("ID_ADD_CHILDRENS_PUBLISHING_TEST_BUNDLE"))
-        {
-        selectedIndustry = readability::industry_classification::childrens_publishing_industry;
-        basedOnIndustry = true;
-        }
-    else if (event.GetId() == XRCID("ID_ADD_ADULT_PUBLISHING_TEST_BUNDLE"))
-        {
-        selectedIndustry = readability::industry_classification::adult_publishing_industry;
-        basedOnIndustry = true;
-        }
-    else if (event.GetId() == XRCID("ID_ADD_CHILDRENS_HEALTHCARE_TEST_BUNDLE"))
-        {
-        selectedIndustry = readability::industry_classification::childrens_healthcare_industry;
-        basedOnIndustry = true;
-        }
-    else if (event.GetId() == XRCID("ID_ADD_ADULT_HEALTHCARE_TEST_BUNDLE"))
-        {
-        selectedIndustry = readability::industry_classification::adult_healthcare_industry;
-        basedOnIndustry = true;
-        }
-    else if (event.GetId() == XRCID("ID_ADD_MILITARY_COVERNMENT_TEST_BUNDLE"))
-        {
-        selectedIndustry = readability::industry_classification::military_government_industry;
-        basedOnIndustry = true;
-        }
-    else if (event.GetId() == XRCID("ID_ADD_SECOND_LANGUAGE_TEST_BUNDLE"))
-        {
-        selectedIndustry = readability::industry_classification::sedondary_language_industry;
-        basedOnIndustry = true;
-        }
-    else if (event.GetId() == XRCID("ID_ADD_BROADCASTING_TEST_BUNDLE"))
-        {
-        selectedIndustry = readability::industry_classification::broadcasting_industry;
-        basedOnIndustry = true;
-        }
-    else if (event.GetId() == XRCID("ID_GENERAL_DOCUMENT_TEST_BUNDLE"))
-        {
-        selectedDocument = readability::document_classification::general_document;
-        basedOnIndustry = false;
-        }
-    else if (event.GetId() == XRCID("ID_TECHNICAL_DOCUMENT_TEST_BUNDLE"))
-        {
-        selectedDocument = readability::document_classification::technical_document;
-        basedOnIndustry = false;
-        }
-    else if (event.GetId() == XRCID("ID_NONNARRATIVE_DOCUMENT_TEST_BUNDLE"))
-        {
-        selectedDocument = readability::document_classification::nonnarrative_document;
-        basedOnIndustry = false;
-        }
-    else if (event.GetId() == XRCID("ID_ADULT_LITERATURE_DOCUMENT_TEST_BUNDLE"))
-        {
-        selectedDocument = readability::document_classification::adult_literature_document;
-        basedOnIndustry = false;
-        }
-    else if (event.GetId() == XRCID("ID_CHILDRENS_LITERATURE_DOCUMENT_TEST_BUNDLE"))
-        {
-        selectedDocument = readability::document_classification::childrens_literature_document;
-        basedOnIndustry = false;
-        }
-
-    // Standard project
-    if (GetDocument() && GetDocument()->IsKindOf(CLASSINFO(ProjectDoc)) )
-        {
-        ProjectDoc* doc = dynamic_cast<ProjectDoc*>(GetDocument());
-        if (doc && doc->IsSafeToUpdate())
-            {
-            const bool hadDolchSightWords = doc->IsIncludingDolchSightWords();
-            doc->ExcludeAllTests();
-            // standard tests
-            for (auto rTest = doc->GetReadabilityTests().get_tests().begin();
-                rTest != doc->GetReadabilityTests().get_tests().end();
-                ++rTest)
-                {
-                const bool matchesClassification = basedOnIndustry ?
-                    rTest->get_test().has_industry_classification(selectedIndustry) :
-                    rTest->get_test().has_document_classification(selectedDocument);
-                rTest->include(matchesClassification &&
-                               rTest->get_test().has_language(doc->GetProjectLanguage()) );
-                }
-            // custom tests
-            for (CustomReadabilityTestCollection::const_iterator pos = doc->m_custom_word_tests.begin();
-                pos != doc->m_custom_word_tests.end();
-                ++pos)
-                {
-                if ((basedOnIndustry && pos->has_industry_classification(selectedIndustry)) ||
-                    pos->has_document_classification(selectedDocument))
-                    {
-                    doc->RefreshRequired(ProjectRefresh::FullReindexing);
-                    doc->AddCustomReadabilityTest(wxString(pos->get_name().c_str()));
-                    }
-                }
-            // see if Dolch section should be added
-            if (((basedOnIndustry &&
-                selectedIndustry == readability::industry_classification::childrens_publishing_industry) ||
-                (basedOnIndustry &&
-                 selectedIndustry == readability::industry_classification::sedondary_language_industry) ||
-                (!basedOnIndustry &&
-                 selectedDocument == readability::document_classification::childrens_literature_document)) &&
-                (doc->GetProjectLanguage() == readability::test_language::english_test))
-                { doc->IncludeDolchSightWords(); }
-            // if Dolch was added or removed then refresh
-            if ((!hadDolchSightWords && doc->IsIncludingDolchSightWords()) ||
-                (hadDolchSightWords && !doc->IsIncludingDolchSightWords()) )
-                { doc->RefreshRequired(ProjectRefresh::FullReindexing); }
-            doc->RefreshRequired(ProjectRefresh::Minimal);
-            doc->RefreshProject();
-            }
-        }
-    // Batch project
-    if (GetDocument() && GetDocument()->IsKindOf(CLASSINFO(BatchProjectDoc)) )
-        {
-        BatchProjectDoc* doc = dynamic_cast<BatchProjectDoc*>(GetDocument());
-        if (doc && doc->IsSafeToUpdate())
-            {
-            doc->ExcludeAllTests();
-            // standard tests
-            for (auto rTest = doc->GetReadabilityTests().get_tests().begin();
-                rTest != doc->GetReadabilityTests().get_tests().end();
-                ++rTest)
-                {
-                const bool matchesClassification = basedOnIndustry ?
-                    rTest->get_test().has_industry_classification(selectedIndustry) :
-                    rTest->get_test().has_document_classification(selectedDocument);
-                rTest->include(matchesClassification && rTest->get_test().has_language(doc->GetProjectLanguage()) );
-                }
-            // custom tests
-            for (CustomReadabilityTestCollection::const_iterator pos = doc->m_custom_word_tests.begin();
-                pos != doc->m_custom_word_tests.end();
-                ++pos)
-                {
-                if ((basedOnIndustry && pos->has_industry_classification(selectedIndustry)) ||
-                    pos->has_document_classification(selectedDocument))
-                    {
-                    doc->RefreshRequired(ProjectRefresh::FullReindexing);
-                    doc->AddCustomReadabilityTest(wxString(pos->get_name().c_str()));
-                    }
-                }
-            // see if Dolch section should be added...
-            if (((basedOnIndustry &&
-                  selectedIndustry == readability::industry_classification::childrens_publishing_industry) ||
-                (basedOnIndustry &&
-                 selectedIndustry == readability::industry_classification::sedondary_language_industry) ||
-                (!basedOnIndustry &&
-                 selectedDocument == readability::document_classification::childrens_literature_document)) &&
-                (doc->GetProjectLanguage() == readability::test_language::english_test))
-                { doc->IncludeDolchSightWords(); }
-            // ...or removed
-            else if (doc->IsIncludingDolchSightWords())
-                { doc->IncludeDolchSightWords(false); }
-            // need to do a full refresh (except document re-indexing) for a batch project
-            // because some many sections in it involve test scores.
-            doc->RefreshRequired(ProjectRefresh::Minimal);
-            doc->RefreshProject();
             }
         }
     }
@@ -1994,16 +2107,8 @@ void BaseProjectView::OnCustomTestsDropdown(wxRibbonButtonBarEvent& evt)
     { evt.PopupMenu(&m_customTestsMenu); }
 
 //-------------------------------------------------------
-void BaseProjectView::OnOpenDropdown(wxRibbonButtonBarEvent& evt)
-    { evt.PopupMenu(&m_fileOpenMenu); }
-
-//-------------------------------------------------------
 void BaseProjectView::OnTestBundlesDropdown(wxRibbonButtonBarEvent& evt)
     { evt.PopupMenu(&m_testsBundleMenu); }
-
-//-------------------------------------------------------
-void BaseProjectView::OnSaveDropdown(wxRibbonButtonBarEvent& evt)
-    { evt.PopupMenu(&m_exportMenu); }
 
 //-------------------------------------------------------
 void BaseProjectView::OnPrintDropdown(wxRibbonButtonBarEvent& evt)
@@ -2022,15 +2127,15 @@ void BaseProjectView::OnGradeScaleDropdown(wxRibbonButtonBarEvent& evt)
     { evt.PopupMenu(&m_gradeScaleMenu); }
 
 //-------------------------------------------------------
-void BaseProjectView::OnRemoveCustomTest(wxCommandEvent& event)
+void ProjectDocChildFrame::OnRemoveCustomTest(wxCommandEvent& event)
     { wxGetApp().GetMainFrameEx()->OnRemoveCustomTest(event); }
 
 //-------------------------------------------------------
-void BaseProjectView::OnAddCustomTest(wxCommandEvent& event)
+void ProjectDocChildFrame::OnAddCustomTest(wxCommandEvent& event)
     { wxGetApp().GetMainFrameEx()->OnAddCustomTest(event); }
 
 //-------------------------------------------------------
-void BaseProjectView::OnEditCustomTest(wxCommandEvent& event)
+void ProjectDocChildFrame::OnEditCustomTest(wxCommandEvent& event)
     { wxGetApp().GetMainFrameEx()->OnEditCustomTest(event); }
 
 //-------------------------------------------------------
@@ -2055,28 +2160,45 @@ void BaseProjectView::OnCustomTest(wxCommandEvent& event)
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnFindMenu([[maybe_unused]] wxCommandEvent& event)
-    { GetSearchPanel()->Activate(); }
+void ProjectDocChildFrame::OnFindMenu([[maybe_unused]] wxCommandEvent& event)
+    {
+    auto* view = dynamic_cast<BaseProjectView*>(GetView());
+    if (view != nullptr && view->GetSearchPanel() != nullptr)
+        {
+        view->GetSearchPanel()->Activate();
+        }
+    }
 
 //---------------------------------------------------
-void BaseProjectView::OnFindNext([[maybe_unused]] wxCommandEvent& event)
+void ProjectDocChildFrame::OnFindNext([[maybe_unused]] wxCommandEvent& event)
     {
-    wxCommandEvent cmd(wxEVT_NULL);
-    GetSearchPanel()->OnSearch(cmd);
+    auto* view = dynamic_cast<BaseProjectView*>(GetView());
+    if (view != nullptr && view->GetSearchPanel() != nullptr)
+        {
+        wxCommandEvent cmd(wxEVT_NULL);
+        view->GetSearchPanel()->OnSearch(cmd);
+        }
+    }
+
+//---------------------------------------------------
+void ProjectDocChildFrame::OnAddCustomTestBundle(wxCommandEvent& event)
+    {
+    wxGetApp().GetMainFrameEx()->OnAddCustomTestBundle(event);
     }
 
 //-------------------------------------------------------
-wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view)
+ProjectDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view)
     {
     const wxSize windowSize(std::max(wxGetApp().GetMainFrame()->GetClientSize().GetWidth(), 800),
                             std::max(wxGetApp().GetMainFrame()->GetClientSize().GetHeight(), 600) );
 
     wxFileName fn(doc->GetFilename());
     wxString title = fn.GetName().length() ? fn.GetName() : wxFileName::StripExtension(doc->GetTitle());
-    wxDocChildFrame* subframe = new wxDocChildFrame(doc, view, wxGetApp().GetMainFrame(), wxID_ANY,
-                                      title, wxDefaultPosition,
-                                      windowSize,
-                                      wxDEFAULT_FRAME_STYLE);
+    ProjectDocChildFrame* subframe =
+        new ProjectDocChildFrame(doc, view, wxGetApp().GetMainFrame(), wxID_ANY,
+                                 title, wxDefaultPosition,
+                                 windowSize,
+                                 wxDEFAULT_FRAME_STYLE);
     subframe->Show(false);
     if (wxGetApp().GetMainFrame()->IsMaximized())
         {
@@ -2222,14 +2344,14 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
         XRCID("ID_EDIT_GRAPH_RAYGOR_MODERN"), _(L"Modern"), wxString{}, wxITEM_CHECK));
 
     // histogram bar labels
-    m_histobarLabelsMenu.Append(new wxMenuItem(&m_histobarLabelsMenu,
+    subframe->m_histobarLabelsMenu.Append(new wxMenuItem(&subframe->m_histobarLabelsMenu,
         XRCID("ID_HISTOBAR_LABELS_COUNT"), _(L"Counts"), wxString{}, wxITEM_CHECK));
-    m_histobarLabelsMenu.Append(new wxMenuItem(&m_histobarLabelsMenu,
+    subframe->m_histobarLabelsMenu.Append(new wxMenuItem(&subframe->m_histobarLabelsMenu,
         XRCID("ID_HISTOBAR_LABELS_PERCENTAGE"), _(L"Percentages"), wxString{}, wxITEM_CHECK));
-    m_histobarLabelsMenu.Append(new wxMenuItem(&m_histobarLabelsMenu,
+    subframe->m_histobarLabelsMenu.Append(new wxMenuItem(&subframe->m_histobarLabelsMenu,
         XRCID("ID_HISTOBAR_LABELS_COUNT_AND_PERCENT"),
         _(L"Counts && Percentages"), wxString{}, wxITEM_CHECK));
-    m_histobarLabelsMenu.Append(new wxMenuItem(&m_histobarLabelsMenu,
+    subframe->m_histobarLabelsMenu.Append(new wxMenuItem(&subframe->m_histobarLabelsMenu,
         XRCID("ID_HISTOBAR_NO_LABELS"), _(L"No labels"), wxString{}, wxITEM_CHECK));
 
     // zoom
@@ -2477,41 +2599,43 @@ wxDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view
     m_graphFontsMenu.Append(item);
 
     // document indexing menus
-    m_lineEndsMenu.Append(new wxMenuItem(&m_lineEndsMenu, XRCID("ID_LE_ONLY_AFTER_VALID_SENTENCE"),
+    subframe->m_lineEndsMenu.Append(new wxMenuItem(&subframe->m_lineEndsMenu, XRCID("ID_LE_ONLY_AFTER_VALID_SENTENCE"),
                           _(L"Only begin a new paragraph if following a valid sentence"),
                           wxString{}, wxITEM_CHECK));
-    m_lineEndsMenu.Append(new wxMenuItem(&m_lineEndsMenu, XRCID("ID_LE_ALWAYS_NEW_PARAGRAPH"),
+    subframe->m_lineEndsMenu.Append(new wxMenuItem(&subframe->m_lineEndsMenu, XRCID("ID_LE_ALWAYS_NEW_PARAGRAPH"),
                           _(L"Always begin a new paragraph"), wxString{}, wxITEM_CHECK));
 
-    m_longSentencesMenu.Append(new wxMenuItem(&m_longSentencesMenu, XRCID("ID_LS_LONGER_THAN"),
-                               _(L"If longer than..."), wxString{}, wxITEM_CHECK));
-    m_longSentencesMenu.Append(new wxMenuItem(&m_longSentencesMenu,
-        XRCID("ID_LS_OUTLIER_RANGE"), _(L"Outside outlier range"), wxString{}, wxITEM_CHECK));
+    subframe->m_longSentencesMenu.Append(
+        new wxMenuItem(&subframe->m_longSentencesMenu, XRCID("ID_LS_LONGER_THAN"),
+            _(L"If longer than..."), wxString{}, wxITEM_CHECK));
+    subframe->m_longSentencesMenu.Append(
+        new wxMenuItem(&subframe->m_longSentencesMenu,
+            XRCID("ID_LS_OUTLIER_RANGE"), _(L"Outside outlier range"), wxString{}, wxITEM_CHECK));
 
-    m_textExclusionMenu.Append(new wxMenuItem(&m_textExclusionMenu,
+    subframe->m_textExclusionMenu.Append(new wxMenuItem(&subframe->m_textExclusionMenu,
         XRCID("ID_TE_ALL_INCOMPLETE"), _(L"Exclude all incomplete sentences"), wxString{}, wxITEM_CHECK));
-    m_textExclusionMenu.Append(new wxMenuItem(&m_textExclusionMenu,
+    subframe->m_textExclusionMenu.Append(new wxMenuItem(&subframe->m_textExclusionMenu,
         XRCID("ID_TE_NO_EXCLUDE"), _(L"Do not exclude any text"), wxString{}, wxITEM_CHECK));
-    m_textExclusionMenu.Append(new wxMenuItem(&m_textExclusionMenu,
+    subframe->m_textExclusionMenu.Append(new wxMenuItem(&subframe->m_textExclusionMenu,
         XRCID("ID_TE_ALL_INCOMPLETE_EXCEPT_HEADERS"),
         _(L"Exclude all incomplete sentences, except headings"), wxString{}, wxITEM_CHECK));
 
-    m_exclusionTagsMenu.Append(new wxMenuItem(&m_exclusionTagsMenu,
+    subframe->m_exclusionTagsMenu.Append(new wxMenuItem(&subframe->m_exclusionTagsMenu,
         XRCID("ID_EXCLUSION_TAGS_NOT_ENABLED"), _(L"Not enabled"), wxString{}, wxITEM_CHECK));
-    m_exclusionTagsMenu.Append(new wxMenuItem(&m_exclusionTagsMenu,
+    subframe->m_exclusionTagsMenu.Append(new wxMenuItem(&subframe->m_exclusionTagsMenu,
         XRCID("ID_EXCLUSION_TAGS_CAROTS"), _(L"^ and ^"), wxString{}, wxITEM_CHECK));
-    m_exclusionTagsMenu.Append(new wxMenuItem(&m_exclusionTagsMenu,
+    subframe->m_exclusionTagsMenu.Append(new wxMenuItem(&subframe->m_exclusionTagsMenu,
         XRCID("ID_EXCLUSION_TAGS_ANGLES"), _(L"< and >"), wxString{}, wxITEM_CHECK));
-    m_exclusionTagsMenu.Append(new wxMenuItem(&m_exclusionTagsMenu,
+    subframe->m_exclusionTagsMenu.Append(new wxMenuItem(&subframe->m_exclusionTagsMenu,
         XRCID("ID_EXCLUSION_TAGS_BRACES"), _(L"[ and ]"), wxString{}, wxITEM_CHECK));
-    m_exclusionTagsMenu.Append(new wxMenuItem(&m_exclusionTagsMenu,
+    subframe->m_exclusionTagsMenu.Append(new wxMenuItem(&subframe->m_exclusionTagsMenu,
         XRCID("ID_EXCLUSION_TAGS_CURLIES"), _(L"{ and }"), wxString{}, wxITEM_CHECK));
-    m_exclusionTagsMenu.Append(new wxMenuItem(&m_exclusionTagsMenu,
+    subframe->m_exclusionTagsMenu.Append(new wxMenuItem(&subframe->m_exclusionTagsMenu,
         XRCID("ID_EXCLUSION_TAGS_PARANS"), _(L"( and )"), wxString{}, wxITEM_CHECK));
 
-    m_numeralSyllabicationMenu.Append(new wxMenuItem(&m_numeralSyllabicationMenu,
+    subframe->m_numeralSyllabicationMenu.Append(new wxMenuItem(&subframe->m_numeralSyllabicationMenu,
         XRCID("ID_NUMSYL_ONE"), _(L"Numerals are one syllable"), wxString{}, wxITEM_CHECK));
-    m_numeralSyllabicationMenu.Append(new wxMenuItem(&m_numeralSyllabicationMenu,
+    subframe->m_numeralSyllabicationMenu.Append(new wxMenuItem(&subframe->m_numeralSyllabicationMenu,
         XRCID("ID_NUMSYL_EACH_DIGIT"), _(L"Sound out each digit"), wxString{}, wxITEM_CHECK));
 
     return subframe;
@@ -2710,9 +2834,11 @@ void BaseProjectView::Present()
 
     // histogram bin labels
         {
-        for (size_t i = 0; i < m_histobarLabelsMenu.GetMenuItemCount(); ++i)
-            { m_histobarLabelsMenu.FindItemByPosition(i)->Check(false); }
-        wxMenuItem* item = m_histobarLabelsMenu.FindItem(
+        for (size_t i = 0; i < GetDocFrame()->m_histobarLabelsMenu.GetMenuItemCount(); ++i)
+            {
+            GetDocFrame()->m_histobarLabelsMenu.FindItemByPosition(i)->Check(false);
+            }
+        wxMenuItem* item = GetDocFrame()->m_histobarLabelsMenu.FindItem(
             (doc->GetHistrogramBinLabelDisplay() == BinLabelDisplay::BinPercentage) ?
                 XRCID("ID_HISTOBAR_LABELS_PERCENTAGE") :
             (doc->GetHistrogramBinLabelDisplay() == BinLabelDisplay::BinValue) ?
@@ -2725,9 +2851,11 @@ void BaseProjectView::Present()
         }
     // long sentences
         {
-        for (size_t i = 0; i < m_longSentencesMenu.GetMenuItemCount(); ++i)
-            { m_longSentencesMenu.FindItemByPosition(i)->Check(false); }
-        wxMenuItem* item = m_longSentencesMenu.FindItem(
+        for (size_t i = 0; i < GetDocFrame()->m_longSentencesMenu.GetMenuItemCount(); ++i)
+            {
+            GetDocFrame()->m_longSentencesMenu.FindItemByPosition(i)->Check(false);
+            }
+        wxMenuItem* item = GetDocFrame()->m_longSentencesMenu.FindItem(
             (doc->GetLongSentenceMethod() == LongSentence::LongerThanSpecifiedLength) ?
             XRCID("ID_LS_LONGER_THAN") :
             XRCID("ID_LS_OUTLIER_RANGE"));
@@ -2736,9 +2864,11 @@ void BaseProjectView::Present()
         }
     // paragraph parsing
         {
-        for (size_t i = 0; i < m_lineEndsMenu.GetMenuItemCount(); ++i)
-            { m_lineEndsMenu.FindItemByPosition(i)->Check(false); }
-        wxMenuItem* item = m_lineEndsMenu.FindItem(
+        for (size_t i = 0; i < GetDocFrame()->m_lineEndsMenu.GetMenuItemCount(); ++i)
+            {
+            GetDocFrame()->m_lineEndsMenu.FindItemByPosition(i)->Check(false);
+            }
+        wxMenuItem* item = GetDocFrame()->m_lineEndsMenu.FindItem(
             (doc->GetParagraphsParsingMethod() == ParagraphParse::OnlySentenceTerminatedNewLinesAreParagraphs) ?
             XRCID("ID_LE_ONLY_AFTER_VALID_SENTENCE") : XRCID("ID_LE_ALWAYS_NEW_PARAGRAPH"));
         if (item)
@@ -2746,9 +2876,11 @@ void BaseProjectView::Present()
         }
     // text exclusion
         {
-        for (size_t i = 0; i < m_textExclusionMenu.GetMenuItemCount(); ++i)
-            { m_textExclusionMenu.FindItemByPosition(i)->Check(false); }
-        wxMenuItem* item = m_textExclusionMenu.FindItem(
+        for (size_t i = 0; i < GetDocFrame()->m_textExclusionMenu.GetMenuItemCount(); ++i)
+            {
+            GetDocFrame()->m_textExclusionMenu.FindItemByPosition(i)->Check(false);
+            }
+        wxMenuItem* item = GetDocFrame()->m_textExclusionMenu.FindItem(
             (doc->GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis) ?
             XRCID("ID_TE_ALL_INCOMPLETE") :
             (doc->GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences) ?
@@ -2759,9 +2891,11 @@ void BaseProjectView::Present()
         }
     // tag exclusion
         {
-        for (size_t i = 0; i < m_exclusionTagsMenu.GetMenuItemCount(); ++i)
-            { m_exclusionTagsMenu.FindItemByPosition(i)->Check(false); }
-        wxMenuItem* item = m_exclusionTagsMenu.FindItem(
+        for (size_t i = 0; i < GetDocFrame()->m_exclusionTagsMenu.GetMenuItemCount(); ++i)
+            {
+            GetDocFrame()->m_exclusionTagsMenu.FindItemByPosition(i)->Check(false);
+            }
+        wxMenuItem* item = GetDocFrame()->m_exclusionTagsMenu.FindItem(
             (doc->GetExclusionBlockTags().size() == 0) ?
                 XRCID("ID_EXCLUSION_TAGS_NOT_ENABLED") :
             (doc->GetExclusionBlockTags().at(0) == std::make_pair(L'^', L'^')) ?
@@ -2780,9 +2914,11 @@ void BaseProjectView::Present()
         }
     // numerals
         {
-        for (size_t i = 0; i < m_numeralSyllabicationMenu.GetMenuItemCount(); ++i)
-            { m_numeralSyllabicationMenu.FindItemByPosition(i)->Check(false); }
-        wxMenuItem* item = m_numeralSyllabicationMenu.FindItem(
+        for (size_t i = 0; i < GetDocFrame()->m_numeralSyllabicationMenu.GetMenuItemCount(); ++i)
+            {
+            GetDocFrame()->m_numeralSyllabicationMenu.FindItemByPosition(i)->Check(false);
+            }
+        wxMenuItem* item = GetDocFrame()->m_numeralSyllabicationMenu.FindItem(
             (doc->GetNumeralSyllabicationMethod() == NumeralSyllabize::WholeWordIsOneSyllable) ?
             XRCID("ID_NUMSYL_ONE") :
             XRCID("ID_NUMSYL_EACH_DIGIT"));
@@ -3007,14 +3143,14 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
 
     // initialize ribbon menus (print menu is the same for both types of projects)
     wxGetApp().FillPrintMenu(m_printMenu, ReadabilityApp::RibbonType::StandardProjectRibbon);
-    wxGetApp().FillSaveMenu(m_exportMenu,
+    wxGetApp().FillSaveMenu(m_frame->m_exportMenu,
         IsKindOf(CLASSINFO(ProjectView)) ?
         ReadabilityApp::RibbonType::StandardProjectRibbon :
         ReadabilityApp::RibbonType::BatchProjectRibbon);
-    m_fileOpenMenu.Append(wxID_OPEN, _(L"Open Project...") + L"\tCtrl+O");
-    wxGetApp().GetDocManager()->FileHistoryUseMenu(&m_fileOpenMenu);
-    if (m_fileOpenMenu.FindItem(wxID_FILE1) == nullptr)
-        { wxGetApp().GetDocManager()->FileHistoryAddFilesToMenu(&m_fileOpenMenu); }
+    m_frame->m_fileOpenMenu.Append(wxID_OPEN, _(L"Open Project...") + L"\tCtrl+O");
+    wxGetApp().GetDocManager()->FileHistoryUseMenu(&m_frame->m_fileOpenMenu);
+    if (m_frame->m_fileOpenMenu.FindItem(wxID_FILE1) == nullptr)
+        { wxGetApp().GetDocManager()->FileHistoryAddFilesToMenu(&m_frame->m_fileOpenMenu); }
     m_workSpaceSizer = new wxBoxSizer(wxHORIZONTAL);
     m_workSpaceSizer->Add(m_splitter,1,wxEXPAND);
 
@@ -3050,7 +3186,7 @@ BaseProjectView::~BaseProjectView()
     {
     if (GetMenuBar())
         { wxGetApp().GetDocManager()->FileHistoryRemoveMenu(GetMenuBar()->GetMenu(0)); }
-    wxGetApp().GetDocManager()->FileHistoryRemoveMenu(&m_fileOpenMenu);
+    wxGetApp().GetDocManager()->FileHistoryRemoveMenu(&m_frame->m_fileOpenMenu);
     /* In case the document failed to load and we didn't set these to the parent,
        then clean them up ourselves*/
     if (!m_presentedSuccessfully)
@@ -3100,57 +3236,4 @@ void BaseProjectView::OnProjectSettings([[maybe_unused]] wxRibbonButtonBarEvent&
         doc->RefreshProject();
         UpdateRibbonState();
         }
-    }
-
-//-------------------------------------------------------
-void BaseProjectView::OnDocumentRefreshMenu([[maybe_unused]] wxCommandEvent& event)
-    {
-    wxRibbonButtonBarEvent cmd;
-    OnDocumentRefresh(cmd);
-    }
-
-//-------------------------------------------------------
-void BaseProjectView::OnDocumentRefresh([[maybe_unused]] wxRibbonButtonBarEvent& event)
-    {
-    BaseProjectDoc* activeProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    if (!activeProject || !activeProject->IsSafeToUpdate())
-        { return; }
-    // if a standard project with manually entered text then there is no file to link to
-    if (activeProject->IsKindOf(CLASSINFO(ProjectDoc)) &&
-        activeProject->GetTextSource() == TextSource::EnteredText)
-        {
-        wxMessageBox(
-            _(L"Only projects that originated from a file can be reloaded. "
-               "This project had its text manually typed in and cannot be linked to a file."),
-            wxGetApp().GetAppName(), wxOK|wxICON_INFORMATION);
-        return;
-        }
-    // only refresh if we are linking to an external document.
-    // if the documents were embedded, then ask if they want to change this to link to the files.
-    else if (activeProject->GetDocumentStorageMethod() == TextStorage::EmbedText)
-        {
-        if (wxMessageBox(
-            _(L"Only projects linked to its source document can be reloaded. "
-               "This project currently has the original document's text embedded in it. "
-               "Do you wish to directly link to the source document?"),
-            wxGetApp().GetAppName(), wxYES_NO|wxICON_QUESTION) == wxNO)
-            { return; }
-        if (activeProject->IsKindOf(CLASSINFO(ProjectDoc)))
-            {
-            FilePathResolver resolvePath(activeProject->GetOriginalDocumentFilePath(), true);
-            if (resolvePath.IsInvalidFile() ||
-                (resolvePath.IsLocalOrNetworkFile() &&
-                    !wxFile::Exists(activeProject->GetOriginalDocumentFilePath())) )
-                {
-                wxMessageBox(wxString::Format(
-                    _(L"%s: file not found."), activeProject->GetOriginalDocumentFilePath() ),
-                    wxGetApp().GetAppName(), wxOK|wxICON_INFORMATION);
-                return;
-                }
-            }
-        activeProject->SetDocumentStorageMethod(TextStorage::NoEmbedText);
-        }
-    // project will need to do a full re-indexing
-    activeProject->RefreshRequired(ProjectRefresh::FullReindexing);
-    activeProject->RefreshProject();
     }

@@ -31,6 +31,113 @@
 #include <wx/toolbar.h>
 #include <wx/wx.h>
 
+class BaseProjectView;
+class ProjectView;
+class BatchProjectView;
+
+/// @brief SDI frame for project documents.
+class ProjectDocChildFrame : public wxDocChildFrame
+    {
+    friend BaseProjectView;
+    friend ProjectView;
+    friend BatchProjectView;
+  public:
+    ProjectDocChildFrame() = delete;
+    ProjectDocChildFrame(const ProjectDocChildFrame&) = delete;
+    ProjectDocChildFrame& operator=(const ProjectDocChildFrame&) = delete;
+
+    ProjectDocChildFrame(wxDocument *doc,
+        wxView *view,
+        wxFrame *parent,
+        wxWindowID id,
+        const wxString& title,
+        const wxPoint& pos = wxDefaultPosition,
+        const wxSize& size = wxDefaultSize,
+        long style = wxDEFAULT_FRAME_STYLE,
+        const wxString& name = wxASCII_STR(wxFrameNameStr));
+  private:
+    void OnEditGraphColorScheme([[maybe_unused]] wxRibbonButtonBarEvent& event);
+
+    void OnEditGraphColor(wxCommandEvent& event);
+
+    void OnInvalidRegionColor(wxRibbonButtonBarEvent& event);
+
+    void OnOpenDropdown(wxRibbonButtonBarEvent& evt)
+        {
+        evt.PopupMenu(&m_fileOpenMenu);
+        }
+
+    void OnSaveDropdown(wxRibbonButtonBarEvent& evt)
+        {
+        evt.PopupMenu(&m_exportMenu);
+        }
+
+    void OnLongSentences(wxRibbonButtonBarEvent& event)
+        {
+        event.PopupMenu(&m_longSentencesMenu);
+        }
+
+    void OnDocumentRefreshMenu([[maybe_unused]] wxCommandEvent& event)
+        {
+        wxRibbonButtonBarEvent cmd;
+        OnDocumentRefresh(cmd);
+        }
+
+    void OnLineEnds(wxRibbonButtonBarEvent& event)
+        {
+        event.PopupMenu(&m_lineEndsMenu);
+        }
+
+    void OnNumeralSyllabication(wxRibbonButtonBarEvent& event)
+        {
+        event.PopupMenu(&m_numeralSyllabicationMenu);
+        }
+
+    void OnExclusionTags(wxRibbonButtonBarEvent& event) 
+        {
+        event.PopupMenu(&m_exclusionTagsMenu);
+        }
+
+    void OnHistoBarsLabelsButton(wxRibbonButtonBarEvent& event)
+        {
+        event.PopupMenu(&m_histobarLabelsMenu);
+        }
+
+    void OnAddCustomTestBundle(wxCommandEvent& event);
+
+    void OnFindMenu([[maybe_unused]] wxCommandEvent& event);
+    void OnFindNext([[maybe_unused]] wxCommandEvent& event);
+    void OnLineEndOptions(wxCommandEvent& event);
+    void OnBarOrientationSelected(wxCommandEvent& event);
+    void OnAddCustomTest(wxCommandEvent& event);
+    void OnRemoveCustomTestBundle(wxCommandEvent& event);
+    void OnEditEnglishDictionary([[maybe_unused]] wxCommandEvent& event);
+    void OnHistoBarLabelSelected(wxCommandEvent& event);
+    void OnEditDictionaryProjectSettings([[maybe_unused]] wxCommandEvent& event);
+    void OnEditCustomTest(wxCommandEvent& event);
+    void OnRemoveCustomTest(wxCommandEvent& event);
+    void OnEditGraphOpacity(wxCommandEvent& event);
+    void OnEditPlotBackgroundImage([[maybe_unused]] wxCommandEvent& event);
+
+    void OnLongSentencesOptions([[maybe_unused]] wxCommandEvent& event);
+    void OnEditDictionary([[maybe_unused]] wxCommandEvent& event);
+    void OnDocumentRefresh([[maybe_unused]] wxRibbonButtonBarEvent& event);
+    void OnEditGraphFont(wxCommandEvent& event);
+    void OnTestBundle(wxCommandEvent& event);
+    void OnNumeralSyllabicationOptions([[maybe_unused]] wxCommandEvent& event);
+    void OnEditCustomTestBundle(wxCommandEvent& event);
+    void OnTextExclusionOptions([[maybe_unused]] wxCommandEvent& event);
+    void OnExclusionTagsOptions([[maybe_unused]] wxCommandEvent& event);
+    wxMenu m_fileOpenMenu;
+    wxMenu m_exportMenu;
+    wxMenu m_longSentencesMenu;
+    wxMenu m_histobarLabelsMenu;
+    wxMenu m_numeralSyllabicationMenu;
+    wxMenu m_textExclusionMenu;
+    wxMenu m_exclusionTagsMenu;
+    wxMenu m_lineEndsMenu;
+    };
+
 class BaseProjectView : public wxView
     {
   public:
@@ -116,7 +223,6 @@ class BaseProjectView : public wxView
     bool OnCreate(wxDocument* doc, [[maybe_unused]] long flags) override;
     void OnCustomTest(wxCommandEvent& event);
 
-    wxMenu m_exportMenu;
     wxMenu m_copyMenu;
     wxMenu m_gradeScaleMenu;
     wxMenu m_customTestsMenu;
@@ -125,10 +231,10 @@ class BaseProjectView : public wxView
     wxMenu* m_customTestsRegularMenu{ nullptr };
 
     [[nodiscard]]
-    wxDocChildFrame* CreateChildFrame(wxDocument* doc, wxView* view);
+    ProjectDocChildFrame* CreateChildFrame(wxDocument* doc, wxView* view);
 
     [[nodiscard]]
-    wxDocChildFrame* GetDocFrame() noexcept
+    ProjectDocChildFrame* GetDocFrame() noexcept
         {
         return m_frame;
         }
@@ -709,21 +815,19 @@ class BaseProjectView : public wxView
 
     void OnProjectSettings([[maybe_unused]] wxRibbonButtonBarEvent& event);
 
-    void OnDocumentRefresh([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnDocumentRefreshMenu([[maybe_unused]] wxCommandEvent& event);
 
     void OnEditStatsReportButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnDropShadow([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnShowcaseComplexWords([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnGraphWatermark([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnGraphLogo([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnInvalidRegionColor(wxRibbonButtonBarEvent& event);
+    
     void OnEnglishLabels(wxRibbonButtonBarEvent& event);
     void OnFleschConnectLinesButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnBarLabelsButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnZoomButton(wxRibbonButtonBarEvent& event);
     void OnBarOrientationButton(wxRibbonButtonBarEvent& event);
-    void OnBarOrientationSelected(wxCommandEvent& event);
+    
     void OnBarStyleSelected(wxCommandEvent& event);
     void OnBarSelectStippleBrush([[maybe_unused]] wxCommandEvent& event);
     void OnBarSelectCommonImage([[maybe_unused]] wxCommandEvent& event);
@@ -735,7 +839,7 @@ class BaseProjectView : public wxView
     void OnBoxSelectStippleShape([[maybe_unused]] wxCommandEvent& event);
     void OnHistoBarSelectCommonImage([[maybe_unused]] wxCommandEvent& event);
     void OnHistoBarsLabelsButton(wxRibbonButtonBarEvent& event);
-    void OnHistoBarLabelSelected(wxCommandEvent& event);
+    
     void OnHistoBarStyleButton(wxRibbonButtonBarEvent& event);
     void OnBoxStyleSelected(wxCommandEvent& event);
     void OnBoxSelectStippleBrush([[maybe_unused]] wxCommandEvent& event);
@@ -744,34 +848,29 @@ class BaseProjectView : public wxView
     void OnBoxPlotShowAllPointsButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnBoxPlotShowLabelsButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnEditGraphBackgroundButton(wxRibbonButtonBarEvent& event);
-    void OnEditPlotBackgroundImage([[maybe_unused]] wxCommandEvent& event);
+    
     void OnEditPlotBackgroundImageEffect(wxCommandEvent& event);
     void OnEditPlotBackgroundImageFit(wxCommandEvent& event);
     void OnGraphColorFade([[maybe_unused]] wxCommandEvent& event);
     void OnEditGraphRaygorStyleButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnRaygorStyleSelected([[maybe_unused]] wxCommandEvent& event);
-    void OnEditGraphColorScheme([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnEditGraphColor(wxCommandEvent& event);
-    void OnEditGraphOpacity(wxCommandEvent& event);
+    
+    
+    
     void OnEditGraphFontsButton(wxRibbonButtonBarEvent& event);
-    void OnEditGraphFont(wxCommandEvent& event);
+    
     void OnEditDictionaryButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnEditEnglishDictionary([[maybe_unused]] wxCommandEvent& event);
-    void OnEditDictionaryProjectSettings([[maybe_unused]] wxCommandEvent& event);
-    void OnEditDictionary([[maybe_unused]] wxCommandEvent& event);
+    
+    
+    
     // document indexing options
-    void OnNumeralSyllabication([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnNumeralSyllabicationOptions([[maybe_unused]] wxCommandEvent& event);
+   
     void OnLongSentences([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnLongSentencesOptions([[maybe_unused]] wxCommandEvent& event);
+    
     void OnIncompleteThreshold([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnExcludeWordsList([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnTextExclusion([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnExclusionTags(wxRibbonButtonBarEvent& event);
-    void OnExclusionTagsOptions([[maybe_unused]] wxCommandEvent& event);
-    void OnTextExclusionOptions([[maybe_unused]] wxCommandEvent& event);
-    void OnLineEnds([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnLineEndOptions(wxCommandEvent& event);
+    
     void OnIgnoreBlankLines([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnIgnoreIdenting([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnStrictCapitalization([[maybe_unused]] wxRibbonButtonBarEvent& event);
@@ -783,18 +882,16 @@ class BaseProjectView : public wxView
     void OnIgnoreProperNouns([[maybe_unused]] wxRibbonButtonBarEvent& event);
 
     bool OnClose(bool deleteWindow = true) override;
-    void OnFindMenu([[maybe_unused]] wxCommandEvent& event);
-    void OnFindNext([[maybe_unused]] wxCommandEvent& event);
+    
     void OnDraw(wxDC*) override{};
     // custom test functions
-    void OnAddCustomTest(wxCommandEvent& event);
-    void OnEditCustomTest(wxCommandEvent& event);
-    void OnRemoveCustomTest(wxCommandEvent& event);
-    void OnTestBundle(wxCommandEvent& event);
+    
+    
+    
     void OnCustomTestBundle(wxCommandEvent& event);
     void OnAddCustomTestBundle(wxCommandEvent& event);
-    void OnEditCustomTestBundle(wxCommandEvent& event);
-    void OnRemoveCustomTestBundle(wxCommandEvent& event);
+    
+    
 
     void OnWordListDropdown(wxRibbonButtonBarEvent& evt);
     void OnBlankGraphDropdown(wxRibbonButtonBarEvent& evt);
@@ -816,12 +913,12 @@ class BaseProjectView : public wxView
     void OnClickRibbonBar([[maybe_unused]] wxRibbonBarEvent& event);
     void OnCloseInfoBar(wxCommandEvent& event);
 
-    wxMenu m_numeralSyllabicationMenu;
-    wxMenu m_longSentencesMenu;
-    wxMenu m_textExclusionMenu;
-    wxMenu m_exclusionTagsMenu;
-    wxMenu m_lineEndsMenu;
-    wxMenu m_histobarLabelsMenu;
+    
+    
+    
+    
+    
+    
     wxMenu m_zoomMenu;
     wxMenu m_barOrientationMenu;
     wxMenu m_barStyleMenu;
@@ -834,7 +931,6 @@ class BaseProjectView : public wxView
     wxMenu m_graphSortMenu;
     wxMenu m_wordListMenu;
     wxMenu m_blankGraphMenu;
-    wxMenu m_fileOpenMenu;
 
     wxMenu m_printMenu;
     wxMenu m_exampleMenu;
@@ -843,7 +939,7 @@ class BaseProjectView : public wxView
     wxMenu m_adultTestsMenu;
     wxMenu m_secondLanguageTestsMenu;
 
-    wxDocChildFrame* m_frame{ nullptr };
+    ProjectDocChildFrame* m_frame{ nullptr };
     wxRibbonBar* m_ribbon{ nullptr };
     Wisteria::UI::SideBar* m_sideBar{ nullptr };
     wxAuiToolBar* m_quickToolbar{ nullptr };
