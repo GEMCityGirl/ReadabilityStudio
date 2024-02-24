@@ -25,28 +25,6 @@ using namespace Wisteria::UI;
 wxBEGIN_EVENT_TABLE(BaseProjectView, wxView)
     EVT_RIBBONBAR_PAGE_CHANGED(wxID_ANY, BaseProjectView::OnClickRibbonBar)
     EVT_RIBBONBAR_TAB_LEFT_DCLICK(wxID_ANY, BaseProjectView::OnDClickRibbonBar)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EDIT_DICTIONARY"), BaseProjectView::OnEditDictionaryButton)
-    EVT_RIBBONBUTTONBAR_CLICKED(wxID_PROPERTIES, BaseProjectView::OnProjectSettings)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EDIT_STATS_REPORT"), BaseProjectView::OnEditStatsReportButton)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_BOX_PLOT_DISPLAY_ALL_POINTS"), BaseProjectView::OnBoxPlotShowAllPointsButton)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_BOX_PLOT_DISPLAY_LABELS"), BaseProjectView::OnBoxPlotShowLabelsButton)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_IGNORE_BLANK_LINES"), BaseProjectView::OnIgnoreBlankLines)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_IGNORE_INDENTING"), BaseProjectView::OnIgnoreIdenting)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_SENTENCES_CAPITALIZED"), BaseProjectView::OnStrictCapitalization)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EXCLUDE_AGGRESSIVELY"), BaseProjectView::OnAggressivelyExclude)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EXCLUDE_COPYRIGHT_NOTICES"), BaseProjectView::OnIgnoreCopyrights)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EXCLUDE_TRAILING_CITATIONS"), BaseProjectView::OnIgnoreCitations)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EXCLUDE_FILE_ADDRESSES"), BaseProjectView::OnIgnoreFileAddresses)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EXCLUDE_NUMERALS"), BaseProjectView::OnIgnoreNumerals)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EXCLUDE_PROPER_NOUNS"), BaseProjectView::OnIgnoreProperNouns)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EXCLUDE_WORD_LIST"), BaseProjectView::OnExcludeWordsList)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_INCOMPLETE_THRESHOLD"), BaseProjectView::OnIncompleteThreshold)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_DROP_SHADOW"), BaseProjectView::OnDropShadow)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EDIT_WATERMARK"), BaseProjectView::OnGraphWatermark)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EDIT_LOGO"), BaseProjectView::OnGraphLogo)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_USE_ENGLISH_LABELS"), BaseProjectView::OnEnglishLabels)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_FLESCH_DISPLAY_LINES"), BaseProjectView::OnFleschConnectLinesButton)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EDIT_BAR_LABELS"), BaseProjectView::OnBarLabelsButton)
 wxEND_EVENT_TABLE()
 
 //---------------------------------------------------
@@ -125,6 +103,50 @@ ProjectDocChildFrame::ProjectDocChildFrame(wxDocument *doc,
         &ProjectDocChildFrame::OnEditGraphRaygorStyleDrowdown, this,
         XRCID("ID_EDIT_GRAPH_RAYGOR_STYLE"));
     // ribbon buttons
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnEditDictionaryButton, this,
+        XRCID("ID_EDIT_DICTIONARY"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnProjectSettings, this,
+        wxID_PROPERTIES);
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnEditStatsReportButton, this,
+        XRCID("ID_EDIT_STATS_REPORT"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnBoxPlotShowAllPointsButton, this,
+        XRCID("ID_BOX_PLOT_DISPLAY_ALL_POINTS"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnBoxPlotShowLabelsButton, this,
+        XRCID("ID_BOX_PLOT_DISPLAY_LABELS"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnIgnoreBlankLines, this,
+        XRCID("ID_IGNORE_BLANK_LINES"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnIgnoreIdenting, this,
+        XRCID("ID_IGNORE_INDENTING"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnStrictCapitalization, this,
+        XRCID("ID_SENTENCES_CAPITALIZED"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnIgnoreCitations, this,
+        XRCID("ID_EXCLUDE_TRAILING_CITATIONS"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnIgnoreFileAddresses, this,
+        XRCID("ID_EXCLUDE_FILE_ADDRESSES"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnIgnoreNumerals, this,
+        XRCID("ID_EXCLUDE_NUMERALS"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnAggressivelyExclude, this,
+        XRCID("ID_EXCLUDE_AGGRESSIVELY"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnIgnoreCopyrights, this,
+        XRCID("ID_EXCLUDE_COPYRIGHT_NOTICES"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnIgnoreProperNouns, this,
+        XRCID("ID_EXCLUDE_PROPER_NOUNS"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnExcludeWordsList, this,
+        XRCID("ID_EXCLUDE_WORD_LIST"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnIncompleteThreshold, this,
+        XRCID("ID_INCOMPLETE_THRESHOLD"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnDropShadow, this,
+        XRCID("ID_DROP_SHADOW"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnGraphWatermark, this,
+        XRCID("ID_EDIT_WATERMARK"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnGraphLogo, this,
+        XRCID("ID_EDIT_LOGO"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnEnglishLabels, this,
+        XRCID("ID_USE_ENGLISH_LABELS"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnFleschConnectLinesButton, this,
+        XRCID("ID_FLESCH_DISPLAY_LINES"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnBarLabelsButton, this,
+        XRCID("ID_EDIT_BAR_LABELS"));
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnDocumentRefresh, this,
         XRCID("ID_DOCUMENT_REFRESH"));
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnEditGraphColorScheme, this,
@@ -373,6 +395,66 @@ ProjectDocChildFrame::ProjectDocChildFrame(wxDocument *doc,
         XRCID("ID_PLOT_BKIMAGE_FIT_CROP_AND_CENTER"));
     Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditPlotBackgroundImageFit, this,
         XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"));
+
+    Bind(wxEVT_MENU,
+        [this]([[maybe_unused]] wxCommandEvent&)
+            {
+            wxRibbonButtonBarEvent event;
+            OnProjectSettings(event);
+            },
+        wxID_PROPERTIES);
+
+    Bind(wxEVT_MENU,
+        [this]([[maybe_unused]] wxCommandEvent&)
+            {
+            BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+            assert(doc && L"Failed to get document!");
+            if (!doc)
+                { return; }
+
+            doc->SetPlotBackGroundImagePath(wxString{});
+            doc->RefreshRequired(ProjectRefresh::Minimal);
+            doc->RefreshGraphs();
+            },
+        XRCID("ID_EDIT_PLOT_BKIMAGE_REMOVE"));
+
+    Bind(wxEVT_MENU,
+        [this]([[maybe_unused]] wxCommandEvent&)
+            {
+            auto* view = dynamic_cast<BaseProjectView*>(GetView());
+            assert(view);
+            if (view != nullptr)
+                {
+                view->ShowSideBar(!view->IsSideBarShown());
+                }
+            },
+        XRCID("ID_SHOW_SIDEBAR"));
+
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED,
+        [this]([[maybe_unused]] wxCommandEvent&)
+            {
+            auto* view = dynamic_cast<BaseProjectView*>(GetView());
+            assert(view);
+            if (view != nullptr)
+                {
+                view->ShowSideBar(!view->IsSideBarShown());
+                }
+            },
+        XRCID("ID_SHOW_SIDEBAR"));
+
+    Bind(wxEVT_MENU,
+        [this]([[maybe_unused]] wxCommandEvent&)
+            {
+            auto* view = dynamic_cast<BaseProjectView*>(GetView());
+            assert(view);
+            if (view != nullptr && view->GetRibbon() != nullptr)
+                {
+                view->GetRibbon()->ShowPanels(
+                    view->GetRibbon()->GetDisplayMode() == wxRIBBON_BAR_MINIMIZED ?
+                    wxRIBBON_BAR_EXPANDED : wxRIBBON_BAR_MINIMIZED);
+                }
+            },
+        XRCID("ID_TOGGLE_RIBBON"));
     }
 
 //---------------------------------------------------
@@ -796,54 +878,10 @@ void ProjectDocChildFrame::OnEditGraphColorScheme([[maybe_unused]] wxRibbonButto
     }
 
 //---------------------------------------------------
-BaseProjectView::BaseProjectView()
-    {
-    Bind(wxEVT_MENU,
-        [this]([[maybe_unused]] wxCommandEvent&)
-            {
-            m_sidebarShown = !m_sidebarShown;
-            ShowSideBar(m_sidebarShown);
-            },
-        XRCID("ID_SHOW_SIDEBAR"));
-
-    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED,
-        [this]([[maybe_unused]] wxCommandEvent&)
-            {
-            m_sidebarShown = !m_sidebarShown;
-            ShowSideBar(m_sidebarShown);
-            },
-        XRCID("ID_SHOW_SIDEBAR"));
-
-    Bind(wxEVT_MENU,
-        [this]([[maybe_unused]] wxCommandEvent&)
-            {
-            GetRibbon()->ShowPanels(
-                GetRibbon()->GetDisplayMode() == wxRIBBON_BAR_MINIMIZED ?
-                wxRIBBON_BAR_EXPANDED : wxRIBBON_BAR_MINIMIZED);
-            },
-        XRCID("ID_TOGGLE_RIBBON"));
-
-    // menu & ribbon button events
-    Bind(wxEVT_MENU,
-        [this]([[maybe_unused]] wxCommandEvent&)
-            {
-            BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-            assert(doc && L"Failed to get document!");
-            if (!doc)
-                { return; }
-
-            doc->SetPlotBackGroundImagePath(wxString{});
-            doc->RefreshRequired(ProjectRefresh::Minimal);
-            doc->RefreshGraphs();
-            },
-        XRCID("ID_EDIT_PLOT_BKIMAGE_REMOVE"));
-    }
-
-//---------------------------------------------------
-void BaseProjectView::OnEditStatsReportButton([[maybe_unused]] wxRibbonButtonBarEvent& event)
+void ProjectDocChildFrame::OnEditStatsReportButton([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     BaseProjectDoc* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    ToolsOptionsDlg optionsDlg(GetDocFrame(), theProject, ToolsOptionsDlg::Statistics);
+    ToolsOptionsDlg optionsDlg(this, theProject, ToolsOptionsDlg::Statistics);
     optionsDlg.SelectPage(ToolsOptionsDlg::ANALYSIS_STATISTICS_PAGE);
     if (optionsDlg.ShowModal() == wxID_OK)
         { theProject->RefreshStatisticsReports(); }
@@ -1250,7 +1288,7 @@ void ProjectDocChildFrame::OnBoxStyleSelected(wxCommandEvent& event)
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnBoxPlotShowAllPointsButton([[maybe_unused]] wxRibbonButtonBarEvent& event)
+void ProjectDocChildFrame::OnBoxPlotShowAllPointsButton([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     dynamic_cast<BaseProjectDoc*>(GetDocument())->ShowAllBoxPlotPoints(
         !dynamic_cast<BaseProjectDoc*>(GetDocument())->IsShowingAllBoxPlotPoints());
@@ -1259,7 +1297,7 @@ void BaseProjectView::OnBoxPlotShowAllPointsButton([[maybe_unused]] wxRibbonButt
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnBoxPlotShowLabelsButton([[maybe_unused]] wxRibbonButtonBarEvent& event)
+void ProjectDocChildFrame::OnBoxPlotShowLabelsButton([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     dynamic_cast<BaseProjectDoc*>(GetDocument())->DisplayBoxPlotLabels(
         !dynamic_cast<BaseProjectDoc*>(GetDocument())->IsDisplayingBoxPlotLabels());
@@ -1268,7 +1306,7 @@ void BaseProjectView::OnBoxPlotShowLabelsButton([[maybe_unused]] wxRibbonButtonB
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnBarLabelsButton([[maybe_unused]] wxRibbonButtonBarEvent& event)
+void ProjectDocChildFrame::OnBarLabelsButton([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     auto doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(doc && L"Failed to get document!");
@@ -1281,7 +1319,7 @@ void BaseProjectView::OnBarLabelsButton([[maybe_unused]] wxRibbonButtonBarEvent&
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnFleschConnectLinesButton([[maybe_unused]] wxRibbonButtonBarEvent& event)
+void ProjectDocChildFrame::OnFleschConnectLinesButton([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     dynamic_cast<BaseProjectDoc*>(GetDocument())->ConnectFleschPoints(
         !dynamic_cast<BaseProjectDoc*>(GetDocument())->IsConnectingFleschPoints());
@@ -1290,7 +1328,7 @@ void BaseProjectView::OnFleschConnectLinesButton([[maybe_unused]] wxRibbonButton
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnEnglishLabels([[maybe_unused]] wxRibbonButtonBarEvent& event)
+void ProjectDocChildFrame::OnEnglishLabels([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     auto doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(doc && L"Failed to get document!");
@@ -1303,14 +1341,14 @@ void BaseProjectView::OnEnglishLabels([[maybe_unused]] wxRibbonButtonBarEvent& e
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnGraphLogo([[maybe_unused]] wxRibbonButtonBarEvent& event)
+void ProjectDocChildFrame::OnGraphLogo([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(doc && L"Failed to get document!");
     if (!doc)
         { return; }
 
-    wxFileDialog fd(GetDocFrame(), _(L"Select Logo Image"),
+    wxFileDialog fd(this, _(L"Select Logo Image"),
         doc->GetWatermarkLogoPath().length() ? wxString{} : wxGetApp().GetAppOptions().GetImagePath(),
         doc->GetWatermarkLogoPath(),
         wxGetApp().GetAppOptions().GetImageFileFilter(),
@@ -1325,9 +1363,9 @@ void BaseProjectView::OnGraphLogo([[maybe_unused]] wxRibbonButtonBarEvent& event
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnGraphWatermark([[maybe_unused]] wxRibbonButtonBarEvent& event)
+void ProjectDocChildFrame::OnGraphWatermark([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    wxTextEntryDialog textDlg(GetDocFrame(),
+    wxTextEntryDialog textDlg(this,
         _(L"Enter watermark:\n\n(Note that the tags @DATETIME@, @DATE@, and @TIME@ can be used\n"
            "to dynamically expand into the current date and time.)"),
         _(L"Watermark"),
@@ -1341,7 +1379,7 @@ void BaseProjectView::OnGraphWatermark([[maybe_unused]] wxRibbonButtonBarEvent& 
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnDropShadow([[maybe_unused]] wxRibbonButtonBarEvent& event)
+void ProjectDocChildFrame::OnDropShadow([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     dynamic_cast<BaseProjectDoc*>(GetDocument())->DisplayDropShadows(
         !dynamic_cast<BaseProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
@@ -1657,11 +1695,11 @@ void BaseProjectView::OnClickRibbonBar([[maybe_unused]] wxRibbonBarEvent& event)
     { GetRibbon()->ShowPanels(); }
 
 //---------------------------------------------------
-void BaseProjectView::OnExcludeWordsList([[maybe_unused]] wxRibbonButtonBarEvent& event)
+void ProjectDocChildFrame::OnExcludeWordsList([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
 
-    EditWordListDlg editDlg(GetDocFrame(),
+    EditWordListDlg editDlg(this,
         wxID_ANY, _(L"Edit Words/Phrases To Exclude"));
     editDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"document-analysis.html");
     editDlg.SetPhraseFileMode(true);
@@ -1675,7 +1713,7 @@ void BaseProjectView::OnExcludeWordsList([[maybe_unused]] wxRibbonButtonBarEvent
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnIncompleteThreshold([[maybe_unused]] wxRibbonButtonBarEvent& event)
+void ProjectDocChildFrame::OnIncompleteThreshold([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     const long len = wxGetNumberFromUser(
@@ -1841,7 +1879,7 @@ void ProjectDocChildFrame::OnLineEndOptions(wxCommandEvent& event)
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnIgnoreBlankLines([[maybe_unused]] wxRibbonButtonBarEvent& event)
+void ProjectDocChildFrame::OnIgnoreBlankLines([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     BaseProjectDoc* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
     theProject->SetIgnoreBlankLinesForParagraphsParser(!theProject->GetIgnoreBlankLinesForParagraphsParser());
@@ -1850,7 +1888,7 @@ void BaseProjectView::OnIgnoreBlankLines([[maybe_unused]] wxRibbonButtonBarEvent
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnIgnoreIdenting([[maybe_unused]] wxRibbonButtonBarEvent& event)
+void ProjectDocChildFrame::OnIgnoreIdenting([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     BaseProjectDoc* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
     theProject->SetIgnoreIndentingForParagraphsParser(!theProject->GetIgnoreIndentingForParagraphsParser());
@@ -1859,7 +1897,7 @@ void BaseProjectView::OnIgnoreIdenting([[maybe_unused]] wxRibbonButtonBarEvent& 
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnStrictCapitalization([[maybe_unused]] wxRibbonButtonBarEvent& event)
+void ProjectDocChildFrame::OnStrictCapitalization([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     BaseProjectDoc* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
     theProject->SetSentenceStartMustBeUppercased(!theProject->GetSentenceStartMustBeUppercased());
@@ -1868,7 +1906,7 @@ void BaseProjectView::OnStrictCapitalization([[maybe_unused]] wxRibbonButtonBarE
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnAggressivelyExclude([[maybe_unused]] wxRibbonButtonBarEvent& event)
+void ProjectDocChildFrame::OnAggressivelyExclude([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     BaseProjectDoc* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
     theProject->AggressiveExclusion(!theProject->IsExcludingAggressively());
@@ -1877,7 +1915,7 @@ void BaseProjectView::OnAggressivelyExclude([[maybe_unused]] wxRibbonButtonBarEv
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnIgnoreCopyrights([[maybe_unused]] wxRibbonButtonBarEvent& event)
+void ProjectDocChildFrame::OnIgnoreCopyrights([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     BaseProjectDoc* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
     theProject->IgnoreTrailingCopyrightNoticeParagraphs(!theProject->IsIgnoringTrailingCopyrightNoticeParagraphs());
@@ -1886,7 +1924,7 @@ void BaseProjectView::OnIgnoreCopyrights([[maybe_unused]] wxRibbonButtonBarEvent
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnIgnoreCitations([[maybe_unused]] wxRibbonButtonBarEvent& event)
+void ProjectDocChildFrame::OnIgnoreCitations([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     BaseProjectDoc* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
     theProject->IgnoreTrailingCitations(!theProject->IsIgnoringTrailingCitations());
@@ -1895,7 +1933,7 @@ void BaseProjectView::OnIgnoreCitations([[maybe_unused]] wxRibbonButtonBarEvent&
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnIgnoreFileAddresses([[maybe_unused]] wxRibbonButtonBarEvent& event)
+void ProjectDocChildFrame::OnIgnoreFileAddresses([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     BaseProjectDoc* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
     theProject->IgnoreFileAddresses(!theProject->IsIgnoringFileAddresses());
@@ -1904,13 +1942,16 @@ void BaseProjectView::OnIgnoreFileAddresses([[maybe_unused]] wxRibbonButtonBarEv
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnIgnoreNumerals([[maybe_unused]] wxRibbonButtonBarEvent& event)
+void ProjectDocChildFrame::OnIgnoreNumerals([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     BaseProjectDoc* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
     theProject->IgnoreNumerals(!theProject->IsIgnoringNumerals());
-    if (GetRibbon())
+    auto* view = dynamic_cast<BaseProjectView*>(GetView());
+    assert(view);
+    if (view != nullptr && view->GetRibbon() != nullptr)
         {
-        wxWindow* numeralButtonBar = GetRibbon()->FindWindow(MainFrame::ID_NUMERALS_RIBBON_BUTTON_BAR);
+        wxWindow* numeralButtonBar =
+            view->GetRibbon()->FindWindow(MainFrame::ID_NUMERALS_RIBBON_BUTTON_BAR);
         if (numeralButtonBar && numeralButtonBar->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
             {
             dynamic_cast<wxRibbonButtonBar*>(numeralButtonBar)->EnableButton(
@@ -1922,7 +1963,7 @@ void BaseProjectView::OnIgnoreNumerals([[maybe_unused]] wxRibbonButtonBarEvent& 
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnIgnoreProperNouns([[maybe_unused]] wxRibbonButtonBarEvent& event)
+void ProjectDocChildFrame::OnIgnoreProperNouns([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     BaseProjectDoc* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
     theProject->IgnoreProperNouns(!theProject->IsIgnoringProperNouns());
@@ -1931,7 +1972,7 @@ void BaseProjectView::OnIgnoreProperNouns([[maybe_unused]] wxRibbonButtonBarEven
     }
 
 //---------------------------------------------------
-void BaseProjectView::OnEditDictionaryButton([[maybe_unused]] wxRibbonButtonBarEvent& event)
+void ProjectDocChildFrame::OnEditDictionaryButton([[maybe_unused]] wxRibbonButtonBarEvent& event)
     { wxGetApp().EditDictionary(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetProjectLanguage()); }
 
 //---------------------------------------------------
@@ -2152,14 +2193,6 @@ ProjectDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView*
     Bind(wxEVT_MENU, &BaseProjectView::OnCustomTestBundle, this,
         wxGetApp().GetMainFrameEx()->TEST_BUNDLE_RANGE.GetFirstId(),
         wxGetApp().GetMainFrameEx()->TEST_BUNDLE_RANGE.GetLastId());
-
-    Bind(wxEVT_MENU,
-        [this]([[maybe_unused]] wxCommandEvent&)
-            {
-            wxRibbonButtonBarEvent event;
-            OnProjectSettings(event);
-            },
-        wxID_PROPERTIES);
 
     // list control-specific menu for copying
     subframe->m_copyMenu.Append(wxID_COPY, _(L"Copy") + L"\tCtrl+C");
@@ -3061,6 +3094,7 @@ void BaseProjectView::OnCloseInfoBar([[maybe_unused]] wxCommandEvent& event)
 void BaseProjectView::ShowSideBar(const bool show /*= true*/)
     {
     wxWindowUpdateLocker noUpdates(GetDocFrame());
+    m_sidebarShown = show;
     if (show)
         {
         GetSideBar()->AdjustWidthToFitItems();
@@ -3221,16 +3255,21 @@ void BaseProjectView::OnActivateView(bool activate, wxView*, wxView*)
     }
 
 //-------------------------------------------------------
-void BaseProjectView::OnProjectSettings([[maybe_unused]] wxRibbonButtonBarEvent& event)
+void ProjectDocChildFrame::OnProjectSettings([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(doc);
     if (!doc || !doc->IsSafeToUpdate())
         { return; }
-    ToolsOptionsDlg optionsDlg(GetDocFrame(), doc);
+    ToolsOptionsDlg optionsDlg(this, doc);
     if (optionsDlg.ShowModal() == wxID_OK)
         {
         doc->RefreshProject();
-        UpdateRibbonState();
+        auto* view = dynamic_cast<BaseProjectView*>(GetView());
+        assert(view);
+        if (view != nullptr)
+            {
+            view->UpdateRibbonState();
+            }
         }
     }

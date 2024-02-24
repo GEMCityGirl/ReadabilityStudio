@@ -237,6 +237,50 @@ class ProjectDocChildFrame : public wxDocChildFrame
         evt.PopupMenu(&m_gradeScaleMenu);
         }
 
+    void OnBarLabelsButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
+
+    void OnDropShadow([[maybe_unused]] wxRibbonButtonBarEvent& event);
+
+    void OnGraphLogo([[maybe_unused]] wxRibbonButtonBarEvent& event);
+
+    void OnEnglishLabels(wxRibbonButtonBarEvent& event);
+
+    void OnProjectSettings([[maybe_unused]] wxRibbonButtonBarEvent& event);
+
+    void OnEditDictionaryButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
+
+    void OnGraphWatermark([[maybe_unused]] wxRibbonButtonBarEvent& event);
+
+    void OnIgnoreCopyrights([[maybe_unused]] wxRibbonButtonBarEvent& event);
+
+    void OnIgnoreBlankLines([[maybe_unused]] wxRibbonButtonBarEvent& event);
+
+    void OnIgnoreIdenting([[maybe_unused]] wxRibbonButtonBarEvent& event);
+
+    void OnStrictCapitalization([[maybe_unused]] wxRibbonButtonBarEvent& event);
+
+    void OnExcludeWordsList([[maybe_unused]] wxRibbonButtonBarEvent& event);
+
+    void OnIgnoreProperNouns([[maybe_unused]] wxRibbonButtonBarEvent& event);
+
+    void OnIgnoreCitations([[maybe_unused]] wxRibbonButtonBarEvent& event);
+
+    void OnFleschConnectLinesButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
+
+    void OnIncompleteThreshold([[maybe_unused]] wxRibbonButtonBarEvent& event);
+
+    void OnIgnoreFileAddresses([[maybe_unused]] wxRibbonButtonBarEvent& event);
+
+    void OnIgnoreNumerals([[maybe_unused]] wxRibbonButtonBarEvent& event);
+
+    void OnAggressivelyExclude([[maybe_unused]] wxRibbonButtonBarEvent& event);
+
+    void OnEditStatsReportButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
+
+    void OnBoxPlotShowAllPointsButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
+
+    void OnBoxPlotShowLabelsButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
+
     void OnAddCustomTestBundle(wxCommandEvent& event);
     void OnRaygorStyleSelected([[maybe_unused]] wxCommandEvent& event);
     void OnFindMenu([[maybe_unused]] wxCommandEvent& event);
@@ -298,7 +342,7 @@ class ProjectDocChildFrame : public wxDocChildFrame
 class BaseProjectView : public wxView
     {
   public:
-    BaseProjectView();
+    BaseProjectView() = default;
     BaseProjectView(const BaseProjectView&) = delete;
     BaseProjectView& operator=(const BaseProjectView&) = delete;
 
@@ -962,53 +1006,6 @@ class BaseProjectView : public wxView
 
   private:
     void OnActivateView(bool activate, wxView*, wxView*) override;
-
-    void OnProjectSettings([[maybe_unused]] wxRibbonButtonBarEvent& event);
-
-
-    void OnEditStatsReportButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnDropShadow([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    
-    void OnGraphWatermark([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnGraphLogo([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    
-    void OnEnglishLabels(wxRibbonButtonBarEvent& event);
-    void OnFleschConnectLinesButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnBarLabelsButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    void OnBoxPlotShowAllPointsButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnBoxPlotShowLabelsButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    
-    
-    
-    
-    void OnEditDictionaryButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
-
-    // document indexing options
-    
-    void OnIncompleteThreshold([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnExcludeWordsList([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnIgnoreBlankLines([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnIgnoreIdenting([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnStrictCapitalization([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnAggressivelyExclude([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnIgnoreCopyrights([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnIgnoreCitations([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnIgnoreFileAddresses([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnIgnoreNumerals([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnIgnoreProperNouns([[maybe_unused]] wxRibbonButtonBarEvent& event);
 
     bool OnClose(bool deleteWindow = true) override;
     
