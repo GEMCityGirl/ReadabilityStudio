@@ -384,6 +384,35 @@ ProjectDocChildFrame::ProjectDocChildFrame(wxDocument *doc,
     Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditPlotBackgroundImageFit, this,
         XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"));
 
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_K12_US"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_K12_NEWFOUNDLAND"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_K12_BC"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_K12_NEW_BRUNSWICK"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_K12_NOVA_SCOTIA"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_K12_ONTARIO"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_K12_SASKATCHEWAN"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_K12_PE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_K12_MANITOBA"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_K12_NT"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_K12_ALBERTA"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_K12_NUNAVUT"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_QUEBEC"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_ENGLAND"));
+
     Bind(wxEVT_MENU,
         [this]([[maybe_unused]] wxCommandEvent&)
             {
@@ -450,6 +479,26 @@ ProjectDocChildFrame::ProjectDocChildFrame(wxDocument *doc,
     Bind(wxEVT_MENU, &ProjectDocChildFrame::OnCustomTestBundle, this,
         wxGetApp().GetMainFrameEx()->TEST_BUNDLE_RANGE.GetFirstId(),
         wxGetApp().GetMainFrameEx()->TEST_BUNDLE_RANGE.GetLastId());
+    }
+
+//---------------------------------------------------
+void ProjectDocChildFrame::OnMenuCapture(wxCommandEvent& event)
+    {
+    BaseProjectView* activeView = dynamic_cast<BaseProjectView*>(GetView());
+    assert(activeView);
+    if (activeView == nullptr)
+        { return; }
+
+    if (activeView->IsKindOf(CLASSINFO(ProjectView)))
+        {
+        assert(dynamic_cast<ProjectView*>(activeView));
+        dynamic_cast<ProjectView*>(activeView)->ProcessEvent(event);
+        }
+    else if (activeView->IsKindOf(CLASSINFO(BatchProjectView)))
+        {
+        assert(dynamic_cast<BatchProjectView*>(activeView));
+        dynamic_cast<BatchProjectView*>(activeView)->ProcessEvent(event);
+        }
     }
 
 //---------------------------------------------------

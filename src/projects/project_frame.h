@@ -62,6 +62,12 @@ class ProjectDocChildFrame : public wxDocChildFrame
     void OnCustomTest(wxCommandEvent& event);
 
   private:
+    // Captures menu events meant for standard or batch project views
+    // and dispatches the events to their handlers. This is necessary
+    // under GTK+, where it appears that wxViews cannot trap menu events
+    // (not the case under MSW or macOS).
+    void OnMenuCapture(wxCommandEvent& event);
+
     void OnEditGraphColorScheme([[maybe_unused]] wxRibbonButtonBarEvent& event);
 
     void OnEditGraphColor(wxCommandEvent& event);
