@@ -424,25 +424,25 @@ ProjectDocChildFrame::ProjectDocChildFrame(wxDocument *doc,
     Bind(wxEVT_MENU,
         [this]([[maybe_unused]] wxCommandEvent&)
             {
-            BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-            assert(doc && L"Failed to get document!");
-            if (!doc)
+            BaseProjectDoc* projDoc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+            assert(projDoc && L"Failed to get document!");
+            if (!projDoc)
                 { return; }
 
-            doc->SetPlotBackGroundImagePath(wxString{});
-            doc->RefreshRequired(ProjectRefresh::Minimal);
-            doc->RefreshGraphs();
+            projDoc->SetPlotBackGroundImagePath(wxString{});
+            projDoc->RefreshRequired(ProjectRefresh::Minimal);
+            projDoc->RefreshGraphs();
             },
         XRCID("ID_EDIT_PLOT_BKIMAGE_REMOVE"));
 
     Bind(wxEVT_MENU,
         [this]([[maybe_unused]] wxCommandEvent&)
             {
-            auto* view = dynamic_cast<BaseProjectView*>(GetView());
-            assert(view);
-            if (view != nullptr)
+            auto* projView = dynamic_cast<BaseProjectView*>(GetView());
+            assert(projView);
+            if (projView != nullptr)
                 {
-                view->ShowSideBar(!view->IsSideBarShown());
+                projView->ShowSideBar(!projView->IsSideBarShown());
                 }
             },
         XRCID("ID_SHOW_SIDEBAR"));
@@ -450,11 +450,11 @@ ProjectDocChildFrame::ProjectDocChildFrame(wxDocument *doc,
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED,
         [this]([[maybe_unused]] wxCommandEvent&)
             {
-            auto* view = dynamic_cast<BaseProjectView*>(GetView());
-            assert(view);
-            if (view != nullptr)
+            auto* projView = dynamic_cast<BaseProjectView*>(GetView());
+            assert(projView);
+            if (projView != nullptr)
                 {
-                view->ShowSideBar(!view->IsSideBarShown());
+                projView->ShowSideBar(!projView->IsSideBarShown());
                 }
             },
         XRCID("ID_SHOW_SIDEBAR"));
@@ -462,12 +462,12 @@ ProjectDocChildFrame::ProjectDocChildFrame(wxDocument *doc,
     Bind(wxEVT_MENU,
         [this]([[maybe_unused]] wxCommandEvent&)
             {
-            auto* view = dynamic_cast<BaseProjectView*>(GetView());
-            assert(view);
-            if (view != nullptr && view->GetRibbon() != nullptr)
+            auto* projView = dynamic_cast<BaseProjectView*>(GetView());
+            assert(projView);
+            if (projView != nullptr && projView->GetRibbon() != nullptr)
                 {
-                view->GetRibbon()->ShowPanels(
-                    view->GetRibbon()->GetDisplayMode() == wxRIBBON_BAR_MINIMIZED ?
+                projView->GetRibbon()->ShowPanels(
+                    projView->GetRibbon()->GetDisplayMode() == wxRIBBON_BAR_MINIMIZED ?
                     wxRIBBON_BAR_EXPANDED : wxRIBBON_BAR_MINIMIZED);
                 }
             },
