@@ -412,6 +412,80 @@ ProjectDocChildFrame::ProjectDocChildFrame(wxDocument *doc,
         XRCID("ID_QUEBEC"));
     Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
         XRCID("ID_ENGLAND"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_REMOVE_TEST"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        wxID_SELECTALL);
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        wxID_COPY);
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        wxID_PREVIEW);
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        wxID_PRINT);
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        wxID_ZOOM_IN);
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        wxID_ZOOM_OUT);
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        wxID_ZOOM_FIT);
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_SORT_ASCENDING"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_SORT_DESCENDING"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_EXCLUDE_SELECTED"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_MULTI_COLUMN_SORT_ASCENDING"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_MULTI_COLUMN_SORT_DESCENDING"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_SAVE_ITEM"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_COPY_ALL"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_COPY_WITH_COLUMN_HEADERS"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_COPY_FIRST_COLUMN"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_VIEW_ITEM"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_LIST_SORT"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_EXPORT_ALL"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_EXPORT_SCORES_AND_STATISTICS"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_EXPORT_STATISTICS"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_SEND_TO_STANDARD_PROJECT"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_LAUNCH_SOURCE_FILE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_EXPORT_FILTERED_DOCUMENT"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_DOLCH"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_ADD_ITEM_TO_DICTIONARY"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
+        XRCID("ID_ADD_ITEM_TO_DICTIONARY"));
+
+    // connect the test events
+    if (doc->IsKindOf(CLASSINFO(BatchProjectDoc)))
+        {
+        for (const auto& rTest : dynamic_cast<const BatchProjectDoc*>(doc)->GetReadabilityTests().get_tests())
+            {
+            Bind(wxEVT_MENU, &BatchProjectView::OnAddTest, dynamic_cast<BatchProjectView*>(view), rTest.get_test().get_interface_id());
+            }
+        }
+    else if (doc->IsKindOf(CLASSINFO(ProjectDoc)))
+        {
+        for (const auto& rTest : dynamic_cast<const ProjectDoc*>(doc)->GetReadabilityTests().get_tests())
+            {
+            Bind(wxEVT_MENU, &ProjectView::OnAddTest, dynamic_cast<ProjectView*>(view), rTest.get_test().get_interface_id());
+            }
+        }
 
     Bind(wxEVT_MENU,
         [this]([[maybe_unused]] wxCommandEvent&)
