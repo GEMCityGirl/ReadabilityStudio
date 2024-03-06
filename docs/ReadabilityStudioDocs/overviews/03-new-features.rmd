@@ -104,6 +104,8 @@
 - File search and random sampling of documents on the batch project wizard is exponentially faster now.
 - Fixed warning list in batch project not repainting when reloading project.
 - Fixed misspelled-word list in batch projects not refreshing after adding words to the dictionary.
+- Grade scale options that were changed from a batch project's ribbon are now propagated
+  to subprojects.
 
 ### Readability Studio 2020/2021 {-}
 ***

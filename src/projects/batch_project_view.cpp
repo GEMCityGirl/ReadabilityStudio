@@ -132,8 +132,15 @@ void BatchProjectView::OnLongFormat([[maybe_unused]] wxRibbonButtonBarEvent& eve
     {
     BatchProjectDoc* doc = dynamic_cast<BatchProjectDoc*>(GetDocument());
 
-    doc->GetReadabilityMessageCatalog().SetLongGradeScaleFormat(
-        !doc->GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat());
+    const bool useLongFormat =
+        !doc->GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat();
+    doc->GetReadabilityMessageCatalog().SetLongGradeScaleFormat(useLongFormat);
+    // update this setting in the subprojects also
+    for (auto* subDoc : doc->GetDocuments())
+        {
+        subDoc->GetReadabilityMessageCatalog().SetLongGradeScaleFormat(useLongFormat);
+        }
+
     if (GetSplitter()->GetWindow2()->IsKindOf(CLASSINFO(ListCtrlEx)) )
         { dynamic_cast<ListCtrlEx*>(GetSplitter()->GetWindow2())->Refresh(); }
     doc->SetModifiedFlag();
@@ -2719,5 +2726,12 @@ void BatchProjectView::OnGradeScale(wxCommandEvent& event)
     if (GetSplitter()->GetWindow2()->IsKindOf(CLASSINFO(wxWindow)) )
         { GetSplitter()->GetWindow2()->Refresh(); }
     UpdateStatAndTestPanes(GetCurrentlySelectedFileName());
+
+    // update this setting in the subprojects
+    for (auto* subDoc : doc->GetDocuments())
+        {
+        subDoc->GetReadabilityMessageCatalog().SetGradeScale(gs);
+        }
+
     doc->SetModifiedFlag();
     }
