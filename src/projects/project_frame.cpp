@@ -471,19 +471,25 @@ ProjectDocChildFrame::ProjectDocChildFrame(wxDocument *doc,
     Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
         XRCID("ID_ADD_ITEM_TO_DICTIONARY"));
 
-    // connect the test events
-    if (doc->IsKindOf(CLASSINFO(BatchProjectDoc)))
+    // bind the test menu items to their handlers
+    if (doc->IsKindOf(CLASSINFO(BatchProjectDoc)) &&
+        view->IsKindOf(CLASSINFO(BatchProjectView)))
         {
-        for (const auto& rTest : dynamic_cast<const BatchProjectDoc*>(doc)->GetReadabilityTests().get_tests())
+        for (const auto& rTest :
+             dynamic_cast<const BatchProjectDoc*>(doc)->GetReadabilityTests().get_tests())
             {
-            Bind(wxEVT_MENU, &BatchProjectView::OnAddTest, dynamic_cast<BatchProjectView*>(view), rTest.get_test().get_interface_id());
+            Bind(wxEVT_MENU, &BatchProjectView::OnAddTest,
+                dynamic_cast<BatchProjectView*>(view), rTest.get_test().get_interface_id());
             }
         }
-    else if (doc->IsKindOf(CLASSINFO(ProjectDoc)))
+    else if (doc->IsKindOf(CLASSINFO(ProjectDoc)) &&
+             view->IsKindOf(CLASSINFO(ProjectView)))
         {
-        for (const auto& rTest : dynamic_cast<const ProjectDoc*>(doc)->GetReadabilityTests().get_tests())
+        for (const auto& rTest :
+             dynamic_cast<const ProjectDoc*>(doc)->GetReadabilityTests().get_tests())
             {
-            Bind(wxEVT_MENU, &ProjectView::OnAddTest, dynamic_cast<ProjectView*>(view), rTest.get_test().get_interface_id());
+            Bind(wxEVT_MENU, &ProjectView::OnAddTest,
+                dynamic_cast<ProjectView*>(view), rTest.get_test().get_interface_id());
             }
         }
 
