@@ -71,7 +71,8 @@ RSArtProvider::RSArtProvider()
             { L"ID_WEB_EXPORT", L"ribbon/web-export.svg" },
             { L"ID_EDIT", L"ribbon/edit.svg" },
             { L"ID_FONT", L"ribbon/font.svg" },
-            { L"ID_SELECT_ALL", L"ribbon/select-all.svg" }
+            { L"ID_SELECT_ALL", L"ribbon/select-all.svg" },
+            { L"ID_REFRESH", L"ribbon/reload.svg" }
         };
     }
 
@@ -1415,6 +1416,7 @@ void ReadabilityApp::LoadInterface()
     InitProjectSidebar();
     InitStartPage();
     InitScriptEditor();
+    InitLogWindow();
 
     // show the interface
     GetMainFrame()->Centre();
@@ -3254,68 +3256,16 @@ void MainFrame::OnViewProfileReport([[maybe_unused]] wxRibbonButtonBarEvent& eve
 //-------------------------------------------------------
 void MainFrame::OnViewLogReport([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    ListDlg logReportDialog(this,
-            wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
-            wxGetApp().GetAppOptions().GetRibbonHoverColor(),
-            wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
-            LD_SAVE_BUTTON|LD_COPY_BUTTON|LD_PRINT_BUTTON|LD_SELECT_ALL_BUTTON|LD_FIND_BUTTON|
-            LD_COLUMN_HEADERS|LD_SORT_BUTTON, wxID_ANY,
-            wxString::Format(_(L"Log Report: %s Log Level"),
-                wxLog::GetVerbose() ? _(L"Verbose") :
-                    _(L"Standard")),
-            wxEmptyString, wxDefaultPosition, FromDIP(wxSize(800, 400)));
-
-    wxGetApp().UpdateRibbonTheme(logReportDialog.GetRibbon());
-    logReportDialog.GetListCtrl()->ClearAll();
-    logReportDialog.GetListCtrl()->InsertColumn(0, _(L"Message"));
-    logReportDialog.GetListCtrl()->InsertColumn(1, _(L"Timestamp"));
-    logReportDialog.GetListCtrl()->InsertColumn(2, _(L"Function"));
-    logReportDialog.GetListCtrl()->InsertColumn(3, _(L"Source"));
-    logReportDialog.GetListCtrl()->EnableAlternateRowColours(false);
-    logReportDialog.SetSortHelpTopic(GetHelpDirectory(), _DT(L"column-sorting.html"));
-
-    const lily_of_the_valley::text_column_delimited_character_parser
-                                              parser(L'\t');
-    lily_of_the_valley::text_column<lily_of_the_valley::text_column_delimited_character_parser>
-                                    myColumn(parser, std::nullopt);
-    lily_of_the_valley::text_row<ListCtrlExDataProvider::ListCellString> myRow(std::nullopt);
-    myRow.treat_consecutive_delimitors_as_one(false);
-    myRow.add_column(myColumn);
-
-    lily_of_the_valley::text_matrix<ListCtrlExDataProvider::ListCellString>
-        importer(&logReportDialog.GetData()->GetMatrix());
-    importer.add_row_definition(myRow);
-
-    // see how many lines are in the file
-    lily_of_the_valley::text_preview preview;
-    size_t rowCount = preview(wxGetApp().GetLogReport(), L'\t', true, false);
-    // now read it
-    rowCount = importer.read(wxGetApp().GetLogReport(), rowCount, 4, true);
-
-    logReportDialog.GetListCtrl()->EnableAlternateRowColours(false);
-    logReportDialog.GetListCtrl()->SetVirtualDataSize(rowCount, 4);
-    logReportDialog.GetListCtrl()->SetItemCount(static_cast<long>((rowCount)));
-    BaseProjectDoc::UpdateListOptions(logReportDialog.GetListCtrl());
-
-    for (long i = 0; i < logReportDialog.GetListCtrl()->GetItemCount(); ++i)
+    if (GetLogWindow() != nullptr)
         {
-        const auto currentRow = logReportDialog.GetListCtrl()->GetItemText(i,0);
-        const wxColour rowColor =
-            (currentRow.find(_DT(L"Error: ", DTExplanation::LogMessage)) != wxString::npos) ? wxColour(242, 94, 101) :
-            (currentRow.find(_DT(L"Warning: ")) != wxString::npos) ? *wxYELLOW :
-            (currentRow.find(_DT(L"Debug: ")) != wxString::npos) ? wxColour(143, 214, 159) :
-            wxNullColour;
-        if (rowColor.IsOk())
-            {
-            logReportDialog.GetListCtrl()->SetRowAttributes(i,
-                wxListItemAttr(*wxBLACK, rowColor, logReportDialog.GetListCtrl()->GetFont()));
-            }
+        GetLogWindow()->SetActiveLog(wxGetApp().GetLogFile());
+        GetLogWindow()->Readlog();
+
+        BaseProjectDoc::UpdateListOptions(GetLogWindow()->GetListCtrl());
+
+        GetLogWindow()->Show();
+        GetLogWindow()->SetFocus();
         }
-
-    // fit the columns
-    logReportDialog.GetListCtrl()->DistributeColumns();
-
-    logReportDialog.ShowModal();
     }
 
 //-------------------------------------------------------
@@ -3714,6 +3664,34 @@ void ReadabilityApp::InitScriptEditor()
         GetMainFrameEx()->m_luaEditor = new LuaEditorDlg(GetMainFrameEx());
         }
     UpdateScriptEditorTheme();
+    }
+
+//---------------------------------------------------
+void ReadabilityApp::UpdateLogWindowTheme()
+    {
+    wxGetApp().UpdateRibbonTheme(GetMainFrameEx()->m_logWindow->GetRibbon());
+    }
+
+//---------------------------------------------------
+void ReadabilityApp::InitLogWindow()
+    {
+    if (!GetMainFrameEx()->m_logWindow)
+        {
+        GetMainFrameEx()->m_logWindow =
+            new ListDlg(GetMainFrameEx(),
+                wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
+                wxGetApp().GetAppOptions().GetRibbonHoverColor(),
+                wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
+                LD_SAVE_BUTTON|LD_COPY_BUTTON|LD_PRINT_BUTTON|LD_SELECT_ALL_BUTTON|LD_FIND_BUTTON|
+                LD_COLUMN_HEADERS|LD_SORT_BUTTON|LD_CLEAR_BUTTON|LD_REFRESH_BUTTON, wxID_ANY,
+                wxString::Format(_(L"Log Report: %s Log Level"),
+                    wxLog::GetVerbose() ? _(L"Verbose") :
+                        _(L"Standard")),
+                wxString{}, wxDefaultPosition, GetMainFrameEx()->FromDIP(wxSize(800, 400)));
+        GetMainFrameEx()->m_logWindow->SetSortHelpTopic(
+            GetMainFrameEx()->GetHelpDirectory(), _DT(L"column-sorting.html"));
+        }
+    UpdateLogWindowTheme();
     }
 
 //---------------------------------------------------

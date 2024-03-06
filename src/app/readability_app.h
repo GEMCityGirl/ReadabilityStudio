@@ -6,6 +6,7 @@
 #include "../Wisteria-Dataviz/src/math/mathematics.h"
 #include "../Wisteria-Dataviz/src/ui/app.h"
 #include "../Wisteria-Dataviz/src/ui/controls/codeeditor.h"
+#include "../Wisteria-Dataviz/src/ui/dialogs/listdlg.h"
 #include "../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/functionbrowserdlg.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/printerheaderfooterdlg.h"
@@ -231,8 +232,11 @@ class MainFrame final : public Wisteria::UI::BaseMainFrame
     wxMenu m_testsBundleMenu;
     wxMenu* m_testsBundleRegularMenu{ nullptr };
 
-    /// @returns The lua editor dialog (may be null if not opened yet).
+    /// @returns The lua editor dialog.
     LuaEditorDlg* GetLuaEditor() noexcept { return m_luaEditor; }
+
+    /// @returns The log report dialog.
+    ListDlg* GetLogWindow() noexcept { return m_logWindow; }
 
   private:
     static std::map<int, wxString> m_testBundleMenuIds;
@@ -243,6 +247,7 @@ class MainFrame final : public Wisteria::UI::BaseMainFrame
 
     wxStartPage* m_startPage{ nullptr };
     LuaEditorDlg* m_luaEditor{ nullptr };
+    ListDlg* m_logWindow{ nullptr };
 
     wxBitmap m_aboutBmp;
 
@@ -356,6 +361,7 @@ public:
     void InitStartPage();
     void InitProjectSidebar();
     void InitScriptEditor();
+    void InitLogWindow();
 
     // ribbon creation
     Wisteria::UI::SideBar* CreateSideBar(wxWindow* frame, const wxWindowID id);
@@ -374,6 +380,7 @@ public:
     void UpdateDocumentThemes();
     void UpdateStartPageTheme();
     void UpdateScriptEditorTheme();
+    void UpdateLogWindowTheme();
     void UpdateSideBarTheme(Wisteria::UI::SideBar* sidebar);
     void UpdateRibbonTheme(wxRibbonBar* ribbon);
 

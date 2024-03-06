@@ -2920,6 +2920,7 @@ void ToolsOptionsDlg::CreateControls()
                         }
                     wxGetApp().UpdateStartPageTheme();
                     wxGetApp().UpdateScriptEditorTheme();
+                    wxGetApp().UpdateLogWindowTheme();
                     wxGetApp().UpdateRibbonTheme();
                     wxGetApp().UpdateDocumentThemes();
                     wxGetApp().GetMainFrame()->Refresh();
