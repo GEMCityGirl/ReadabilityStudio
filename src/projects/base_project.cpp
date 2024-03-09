@@ -3407,7 +3407,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
     PROFILE();
     if (sourceFileText == nullptr || streamSize == 0)
         { return std::make_pair(false, wxString{}); }
-    wxLogMessage(wxString::Format(L"%s parser being called.", fileExtension.Upper()));
+    wxLogVerbose(wxString::Format(L"%s parser being called.", fileExtension.Upper()));
 
     const WebPageExtension isHtmlExtension;
 
