@@ -323,11 +323,11 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
                 wxGetApp().GetAppName(), wxOK|wxICON_INFORMATION);
         }
 
-    // load the embedded text
-    const wxString contentFile = cat.ReadTextFile(ProjectContentFileLabel());
     // if the document's content is just embedded and shouldn't be reloaded
     if (GetDocumentStorageMethod() == TextStorage::EmbedText)
         {
+        // load the embedded text
+        const wxString contentFile = cat.ReadTextFile(ProjectContentFileLabel());
         if (!contentFile.empty())
             {
             SetDocumentText(contentFile);
