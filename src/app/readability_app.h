@@ -71,7 +71,19 @@ class MainFrame final : public Wisteria::UI::BaseMainFrame
     MainFrame(const MainFrame&) = delete;
     MainFrame& operator=(const MainFrame&) = delete;
 
-    ~MainFrame() { wxLogDebug(__WXFUNCTION__); }
+    ~MainFrame()
+        {
+        wxLogDebug(__WXFUNCTION__);
+        // modeless dialogs that do not have parents
+        if (m_logWindow != nullptr)
+            {
+            m_logWindow->Destroy();
+            }
+        if (m_luaEditor != nullptr)
+            {
+            m_luaEditor->Destroy();
+            }
+        }
 
     void OnAbout([[maybe_unused]] wxCommandEvent& event);
     void OnStartPageClick(wxCommandEvent& event);
@@ -360,8 +372,6 @@ public:
     // UI initializers
     void InitStartPage();
     void InitProjectSidebar();
-    void InitScriptEditor();
-    void InitLogWindow();
 
     // ribbon creation
     Wisteria::UI::SideBar* CreateSideBar(wxWindow* frame, const wxWindowID id);

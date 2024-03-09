@@ -358,8 +358,9 @@ class FlatTabArt : public wxAuiGenericTabArt
 LuaEditorDlg::LuaEditorDlg(
     wxWindow* parent, wxWindowID id /*= wxID_ANY*/, const wxString& caption /*= _(L"Lua Script")*/,
     const wxPoint& pos /*= wxDefaultPosition*/, const wxSize& size /*= wxDefaultSize*/,
-    long style /*= wxCAPTION|wxCLOSE_BOX|wxMINIMIZE_BOX|wxMAXIMIZE_BOX|wxRESIZE_BORDER*/)
-    : wxFrame(parent, id, caption, pos, size, style), m_debugMessageWindow(nullptr)
+    long style /*= wxCAPTION | wxCLOSE_BOX | wxMINIMIZE_BOX | wxMAXIMIZE_BOX | wxRESIZE_BORDER*/)
+    : wxFrame(parent, id, caption, pos, size,
+              ((parent == nullptr) ? style | wxDIALOG_NO_PARENT : style)), m_debugMessageWindow(nullptr)
     {
     m_mgr.SetManagedWindow(this);
 

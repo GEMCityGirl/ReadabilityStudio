@@ -47,6 +47,7 @@ class LuaEditorDlg final : public wxFrame
     LuaEditorDlg(const LuaEditorDlg&) = delete;
     /// @private
     LuaEditorDlg& operator=(const LuaEditorDlg&) = delete;
+
     /// @brief Sets the background color for the interface.
     ///     (Foreground colors will be adjusted to this color.)
     /// @param color The background color to use.

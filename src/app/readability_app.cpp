@@ -72,7 +72,8 @@ RSArtProvider::RSArtProvider()
             { L"ID_EDIT", L"ribbon/edit.svg" },
             { L"ID_FONT", L"ribbon/font.svg" },
             { L"ID_SELECT_ALL", L"ribbon/select-all.svg" },
-            { L"ID_REFRESH", L"ribbon/reload.svg" }
+            { L"ID_REFRESH", L"ribbon/reload.svg" },
+            { L"ID_REALTIME_UPDATE", L"ribbon/realtime.svg" },
         };
     }
 
@@ -1415,8 +1416,6 @@ void ReadabilityApp::LoadInterface()
 
     InitProjectSidebar();
     InitStartPage();
-    InitScriptEditor();
-    InitLogWindow();
 
     // show the interface
     GetMainFrame()->Centre();
@@ -3256,16 +3255,32 @@ void MainFrame::OnViewProfileReport([[maybe_unused]] wxRibbonButtonBarEvent& eve
 //-------------------------------------------------------
 void MainFrame::OnViewLogReport([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    if (GetLogWindow() != nullptr)
+    if (m_logWindow == nullptr)
         {
-        GetLogWindow()->SetActiveLog(wxGetApp().GetLogFile());
-        GetLogWindow()->Readlog();
-
-        BaseProjectDoc::UpdateListOptions(GetLogWindow()->GetListCtrl());
-
-        GetLogWindow()->Show();
-        GetLogWindow()->SetFocus();
+        m_logWindow =
+            new ListDlg(nullptr,
+                wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
+                wxGetApp().GetAppOptions().GetRibbonHoverColor(),
+                wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
+                LD_SAVE_BUTTON|LD_COPY_BUTTON|LD_PRINT_BUTTON|LD_SELECT_ALL_BUTTON|LD_FIND_BUTTON|
+                LD_COLUMN_HEADERS|LD_SORT_BUTTON|LD_CLEAR_BUTTON|LD_REFRESH_BUTTON, wxID_ANY,
+                wxString::Format(_(L"Log Report: %s Log Level"),
+                    wxLog::GetVerbose() ? _(L"Verbose") :
+                        _(L"Standard")),
+                wxString{}, wxDefaultPosition,
+                FromDIP(wxSize(800, 400)),
+                wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER | wxDIALOG_NO_PARENT);
+        m_logWindow->SetSortHelpTopic(
+            GetHelpDirectory(), _DT(L"column-sorting.html"));
         }
+    wxGetApp().UpdateRibbonTheme(m_logWindow->GetRibbon());
+    m_logWindow->SetActiveLog(wxGetApp().GetLogFile());
+    m_logWindow->Readlog();
+
+    BaseProjectDoc::UpdateListOptions(m_logWindow->GetListCtrl());
+
+    m_logWindow->Show();
+    m_logWindow->SetFocus();
     }
 
 //-------------------------------------------------------
@@ -3657,41 +3672,9 @@ void ReadabilityApp::UpdateScriptEditorTheme()
     }
 
 //---------------------------------------------------
-void ReadabilityApp::InitScriptEditor()
-    {
-    if (!GetMainFrameEx()->m_luaEditor)
-        {
-        GetMainFrameEx()->m_luaEditor = new LuaEditorDlg(GetMainFrameEx());
-        }
-    UpdateScriptEditorTheme();
-    }
-
-//---------------------------------------------------
 void ReadabilityApp::UpdateLogWindowTheme()
     {
-    wxGetApp().UpdateRibbonTheme(GetMainFrameEx()->m_logWindow->GetRibbon());
-    }
-
-//---------------------------------------------------
-void ReadabilityApp::InitLogWindow()
-    {
-    if (!GetMainFrameEx()->m_logWindow)
-        {
-        GetMainFrameEx()->m_logWindow =
-            new ListDlg(GetMainFrameEx(),
-                wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
-                wxGetApp().GetAppOptions().GetRibbonHoverColor(),
-                wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
-                LD_SAVE_BUTTON|LD_COPY_BUTTON|LD_PRINT_BUTTON|LD_SELECT_ALL_BUTTON|LD_FIND_BUTTON|
-                LD_COLUMN_HEADERS|LD_SORT_BUTTON|LD_CLEAR_BUTTON|LD_REFRESH_BUTTON, wxID_ANY,
-                wxString::Format(_(L"Log Report: %s Log Level"),
-                    wxLog::GetVerbose() ? _(L"Verbose") :
-                        _(L"Standard")),
-                wxString{}, wxDefaultPosition, GetMainFrameEx()->FromDIP(wxSize(800, 400)));
-        GetMainFrameEx()->m_logWindow->SetSortHelpTopic(
-            GetMainFrameEx()->GetHelpDirectory(), _DT(L"column-sorting.html"));
-        }
-    UpdateLogWindowTheme();
+    UpdateRibbonTheme(GetMainFrameEx()->m_logWindow->GetRibbon());
     }
 
 //---------------------------------------------------
@@ -4008,11 +3991,13 @@ void MainFrame::OnScriptEditor([[maybe_unused]] wxCommandEvent& event)
             _(L"Feature Not Licensed"), wxOK|wxICON_INFORMATION);
         return;
         }
-    if (m_luaEditor)
+    if (m_luaEditor == nullptr)
         {
-        m_luaEditor->Show();
-        m_luaEditor->SetFocus();
+        m_luaEditor = new LuaEditorDlg(nullptr);
         }
+    m_luaEditor->SetThemeColor(wxGetApp().GetAppOptions().GetControlBackgroundColor());
+    m_luaEditor->Show();
+    m_luaEditor->SetFocus();
     }
 
 //-------------------------------------------------------
