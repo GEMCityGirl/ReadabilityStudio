@@ -733,7 +733,17 @@ void ProjectView::OnListDblClick(wxListEvent& event)
             {
             FormattedTextCtrl* textWindow = dynamic_cast<FormattedTextCtrl*>(theWindow);
             textWindow->SetSelection(0, 0);
-            textWindow->FindText(searchText, true, true, false);
+            // If looking for an entire sentence, then don't use whole-word search.
+            // Whole-word search behaves differently between platforms and won't work for
+            // sentences under GTK+ as expceted (because of the terminal period).
+            if (event.GetId() == LONG_SENTENCES_LIST_PAGE_ID)
+                {
+                textWindow->FindText(searchText, true, false, false);
+                }
+            else
+                {
+                textWindow->FindText(searchText, true, true, false);
+                }
             // Search by label for custom word-list tests (the list and report have the same ID);
             // otherwise, search by ID.
             GetSideBar()->SelectSubItem(
