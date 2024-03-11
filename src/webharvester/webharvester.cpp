@@ -307,7 +307,7 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
             }
         }
 
-    wxLogVerbose(wxString::Format(L"Preparing to download %s", Url));
+    wxLogVerbose(L"Preparing to download '%s'", Url);
     m_downloader.RequestResponse(Url);
     auto responseCode = m_downloader.GetLastStatus();
 
@@ -373,6 +373,7 @@ wxString WebHarvester::GetContentType(wxString& Url, int& responseCode)
     Url.Trim(true).Trim(false);
     Url.Replace(L" ", L"%20");
 
+    wxLogVerbose(L"Preparing to get content type from '%s'", Url);
     m_downloader.RequestResponse(Url);
 
     responseCode = m_downloader.GetLastStatus();
@@ -433,7 +434,7 @@ bool WebHarvester::ReadWebPage(wxString& Url, wxString& webPageContent, wxString
     // encode any spaces
     Url.Replace(L" ", L"%20");
 
-    wxLogVerbose(wxString::Format(L"Preparing to read %s", Url));
+    wxLogVerbose(L"Preparing to read %s", Url);
     if (!m_downloader.Read(Url))
         {
         responseCode = m_downloader.GetLastStatus();
@@ -581,6 +582,8 @@ bool WebHarvester::CrawlLinks()
         }
     m_progressDlg->Destroy();
     m_progressDlg = nullptr;
+
+    wxLogVerbose(L"Crawling '%s' complete.", m_url);
 
     return !m_isCancelled;
     }
