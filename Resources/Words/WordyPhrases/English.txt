@@ -1,4 +1,3 @@
-forstated	aforestated	3
 10nd	10th	3		
 10st	10th	3		
 11th hour	almost late, last minute, right before the anticipated deadline	2		
@@ -677,6 +676,9 @@ alchohol	alcohol	3
 alchoholic	alcoholic	3		
 alchol	alcohol	3		
 alcholic	alcoholic	3		
+alchymest	alchemist	3		
+alchymest's	alchemist's	3		
+alchymests	alchemists	3		
 alcohal	alcohol	3		
 alcoholical	alcoholic	3		
 aleady	already	3		
@@ -1590,6 +1592,8 @@ assemblies	meetings	0
 assembling	gathering	0		
 assembling together	assembling	1		
 assembly	meeting	0		
+assemby	assembly	3		
+assemby's	assembly's	3		
 assemple	assemble	3		
 assent	agree	0		
 assented	agreed	0		
@@ -1622,6 +1626,7 @@ assinment	assignment	3
 assisnate	assassinate	3		
 assist	aid, help	0		
 assistance	help	0		
+assistanship	assistantship	3		
 assistant	helper	0		
 assistant's	helper's	0		
 assistants	helpers	0		
@@ -2454,6 +2459,9 @@ business mangers	business managers	3
 business orifice	business office	3		
 business orifice's	business office's	3		
 business orifices	business offices	3		
+businesss	business	3		
+businesss's	business's	3		
+businessses	businesses	3		
 busness	business	3		
 bussiness	business	3		
 busy as a beaver	very active, working hard	2		
@@ -3941,6 +3949,9 @@ countermands	cancels, recalls	0
 counterpoart	counterpart	3		
 countires	countries	3		
 course of action	course, direction, plan	0		
+couse	course	3		
+couse's	course's	3		
+couses	courses	3		
 coutner	counter	3		
 coutners	counters	3		
 coverd	covered	3		
@@ -4489,6 +4500,9 @@ devide	divide	3
 devided	divided	3		
 devistating	devastating	3		
 devolopement	development	3		
+dgit	digit	3		
+dgit's	digit's	3		
+dgits	digits	3		
 diable	disable	3		
 diabled	disabled	3		
 diables	disables	3		
@@ -4654,6 +4668,9 @@ discribing	describing	3
 disctinction	distinction	3		
 disctinctive	distinctive	3		
 discusion	discussion	3		
+diseemination	dissemination	3		
+diseemination's	dissemination's	3		
+diseeminations	disseminations	3		
 disembark	leave the ship, go ashore	0		
 disembarked	left the ship, went ashore	0		
 disembarking	leaving the ship, going ashore	0		
@@ -5316,6 +5333,8 @@ engieneer	engineer	3
 engieneers	engineers	3		
 enging	engine	3		
 enging's	engine's	3		
+engingeering	engineering	3		
+engingeering's	engineering's	3		
 engings	engines	3		
 enhaced	enhanced	3		
 enhancment	enhancement	3		
@@ -5755,6 +5774,9 @@ expenditures	expenses	0
 expends	pays out, spends	0		
 expense	cost, fee	0		
 expenses	costs, fees	0		
+expereince	experience	3		
+expereince's	experience's	3		
+expereinces	experiences	3		
 experiance	experience	3		
 experiance's	experience's	3		
 experianced	experienced	3		
@@ -6251,6 +6273,7 @@ formulating	drawing up, planning	0
 forsaw	foresaw	3		
 forse	force	3		
 forseeable	foreseeable	3		
+forstated	aforestated	3		
 fortelling	foretelling	3		
 fortunatly	fortunately	3		
 fortunetly	fortunately	3		
@@ -7621,6 +7644,7 @@ inclue	include	3
 inclued	included	3		
 inclues	includes	3		
 incluing	including	3		
+inclusing	including	3		
 incoherent	confused	0		
 incombustible	fireproof	0		
 incomming	incoming	3		
@@ -7920,6 +7944,8 @@ insistance	insistence	3
 insitution	institution	3		
 insitutions	institutions	3		
 insolvent	bankrupt	0		
+insomina	insomnia	3		
+insomina's	insomnia's	3		
 instace	instance	3		
 instade	instead	3		
 installating	installing	3		
@@ -7937,6 +7963,9 @@ institution of higher learning	college, university	0
 Instragram	Instagram	3		
 Instragram's	Instagram's	3		
 instuction	instruction	3		
+instuition	institution	3		
+instuition's	institution's	3		
+instuitions	institutions	3		
 instuments	instruments	3		
 instutionalized	institutionalized	3		
 instutions	intuitions	3		
@@ -8057,6 +8086,9 @@ intimate	hint, suggest	0
 intimated	hinted, suggested	0		
 intimates	hints, suggests	0		
 intimating	hinting, suggesting	0		
+intoduction	introduction	3		
+intoduction's	introduction's	3		
+intoductions	introductions	3		
 intractable	stubborn	0		
 intractably	stubbornly	0		
 intrduced	introduced	3		
@@ -8438,8 +8470,14 @@ killing two birds with one stone	achieving two objectives with one effort	2
 kills two birds with one stone	achieves two objectives with one effort	2		
 Kindergarden	Kindergarten	3		
 Kindergarden's	Kindergarten's	3		
+kindergartner	kingergartener	3		
+kindergartner's	kingergartener's	3		
+kindergartners	kingergarteners	3		
 king's english	properly spoken/written English	2		
 king's ransom	large amount of money	2		
+kingergarten	kindergarten	3		
+kingergarten's	kindergarten's	3		
+kingergartens	kindergartens	3		
 knew the score	understood what is happening	2		
 knifes	knives	3		
 knock it out of the park	do well	2		
@@ -8960,6 +8998,9 @@ materials	content	0
 mathamatics	mathematics	3		
 mathematican	mathematician	3		
 mathematicas	mathematics	3		
+mathemetician	mathematician	3		
+mathemetician's	mathematician's	3		
+mathemeticians	mathematicians	3		
 matheticians	mathematicians	3		
 mathimatical	mathematical	3		
 mathimatics	mathematics	3		
@@ -9314,6 +9355,9 @@ murphy's law	what can go wrong will go wrong	2
 muscial	musical	3		
 muscician	musician	3		
 muscicians	musicians	3		
+musicial	musical	3		
+musicial's	musical's	3		
+musicials	musicals	3		
 musn't	mustn't	3		
 must decided	must have decided	3		
 must likely	most likely	3		
@@ -9888,6 +9932,9 @@ oppenly	openly	3
 oppinion	opinion	3		
 opponant	opponent	3		
 oppononent	opponent	3		
+opportinities	opportunities	3		
+opportinity	opportunity	3		
+opportinity's	opportunity's	3		
 opportunites	opportunities	3		
 opportunities	chances	0		
 opportunity	chance	0		
@@ -11418,6 +11465,7 @@ putting your best foot forward	presenting your best performance	2
 putting your foot down	taking a firm stand	2		
 putting your money where your mouth is	not just bragging and backing up your argument	2		
 pwoer	power	3		
+pychological	psychological	3		
 pyscic	psychic	3		
 pysical	physical	3		
 pysically	physically	3		
@@ -12053,17 +12101,24 @@ requrire	require	3
 requrired	required	3		
 requrires	requires	3		
 requriring	requiring	3		
+resarch	research	3		
 resaurant	restaurant	3		
 rescind	repeal, cancel	0		
 rescinded	repealed, canceled	0		
 rescinding	repealing, canceling	0		
 rescinds	repeals, cancels	0		
+researc	research	3		
 research manger	research manager	3		
 research mangers	research managers	3		
 resembelance	resemblance	3		
 resembes	resembles	3		
 resemblance	likeness	0		
 resemblence	resemblance	3		
+reserch	research	3		
+reserch's	research's	3		
+reserched	researched	3		
+reserches	researches	3		
+reserching	researching	3		
 reserverd	reserved	3		
 resetable	resettable	3		
 resevoir	reservoir	3		
@@ -12146,6 +12201,9 @@ result in	lead to	0
 resulted in	lead to	0		
 resulting in	leading to	0		
 results in	leads to	0		
+resumé	résumé	3		
+resumé's	résumé's	3		
+resumés	résumés	3		
 resurecting	resurrecting	3		
 resursive	recursive	3		
 resursively	recursively	3		
@@ -13143,6 +13201,9 @@ subjugation	conquest	0
 subjugations	conquests	0		
 suble	subtle	3		
 sublimity	majesty	0		
+submisison	submission	3		
+submisison's	submission's	3		
+submisisons	submissions	3		
 submit	give, send	0		
 submit an application for	apply for	0		
 submits	sends, gives	0		
@@ -13416,6 +13477,7 @@ synagouge	synagogue	3
 synax	syntax	3		
 synchonized	synchronized	3		
 synchonizes	synchronizes	3		
+synchonously	synchronously	3		
 syncronization	synchronization	3		
 syncronize	synchronize	3		
 syncronizing	synchronizing	3		

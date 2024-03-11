@@ -434,6 +434,7 @@ Richd.
 rm.
 Robt.
 rpt.
+rqmt.
 rt.
 rus.
 ry.

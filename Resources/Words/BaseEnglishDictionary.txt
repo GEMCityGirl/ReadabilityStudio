@@ -2863,6 +2863,9 @@ alehouse's
 alehouses
 alembic's
 alembics
+alemtuzumab
+alemtuzumab's
+alemtuzumabs
 aleph
 aleph's
 alert
@@ -7639,6 +7642,9 @@ attested
 attester
 attester's
 attesting
+attestor
+attestor's
+attestors
 attests
 attic
 attic's
@@ -12123,6 +12129,9 @@ biosystem's
 biosystems
 biota
 biotech
+biotechnician
+biotechnician's
+biotechnicians
 biotechnological
 biotechnologies
 biotechnologist
@@ -17198,6 +17207,9 @@ campily
 campiness
 camping
 campings
+campout
+campout's
+campouts
 camps
 campsite
 campsite's
@@ -18908,6 +18920,8 @@ causeway's
 causewayed
 causewaying
 causeways
+causey
+causey's
 causing
 caustic
 caustically
@@ -23463,6 +23477,8 @@ colitis
 colitis's
 colitises
 coll
+collab
+collab's
 collaborate
 collaborated
 collaborates
@@ -23479,6 +23495,7 @@ collaboratives
 collaborator
 collaborator's
 collaborators
+collabs
 collage
 collage's
 collaged
@@ -26489,6 +26506,9 @@ contralaterally
 contralto
 contralto's
 contraltos
+contraposition
+contraposition's
+contrapositions
 contrapositive
 contrapositives
 contraption
@@ -27704,6 +27724,9 @@ councillor's
 councillors
 councilman
 councilman's
+councilmember
+councilmember's
+councilmembers
 councilmen
 councilmen's
 councilor
@@ -27984,6 +28007,7 @@ courser
 courser's
 coursers
 courses
+coursetaking
 courseware
 courseware's
 coursewares
@@ -28859,6 +28883,10 @@ criminalise
 criminalised
 criminalises
 criminalising
+criminalist
+criminalist's
+criminalistics
+criminalists
 criminalities
 criminality
 criminality's
@@ -30513,6 +30541,9 @@ cystoscopy
 cystourethrogram
 cystourethrography
 cysts
+cytarabine
+cytarabine's
+cytarabines
 cyte
 cyto
 cytoarchitecture
@@ -31008,6 +31039,9 @@ dataflow
 datagram
 datagram's
 datagrams
+datalab
+datalab's
+datalabs
 datamart
 datamart's
 datamarts
@@ -35457,6 +35491,9 @@ dipeptidase
 dipeptide
 dipeptides
 diphallia
+diphenhydramine
+diphenhydramine's
+diphenhydramines
 diphosphate
 diphosphorus
 diphtheria
@@ -39770,6 +39807,7 @@ eccentrics
 ecchymosis
 ecchymotic
 eccl
+ecclesial
 ecclesiastic
 ecclesiastic's
 ecclesiastical
@@ -43717,6 +43755,9 @@ etiology's
 etiquette
 etiquette's
 etiquettes
+etoposide
+etoposide's
+etoposides
 eTranscript
 eTranscript's
 eTranscripts
@@ -48861,6 +48902,9 @@ flub
 flubbed
 flubbing
 flubs
+fluconazole
+fluconazole's
+fluconazoles
 fluctuate
 fluctuated
 fluctuates
@@ -49287,6 +49331,7 @@ followships
 followup's
 folly
 folly's
+folx
 foment
 fomentation
 fomentation's
@@ -52518,6 +52563,7 @@ gemstone's
 gemstones
 gen
 gen's
+genAI
 gendarme
 gendarme's
 gendarmes
@@ -55403,6 +55449,9 @@ groundlessness's
 groundnut
 groundnut's
 groundnuts
+groundplan
+groundplan's
+groundplans
 grounds
 groundsheet
 groundsheet's
@@ -60472,6 +60521,7 @@ ht
 htm
 html
 http
+https
 huarache
 huarache's
 huaraches
@@ -62658,6 +62708,7 @@ imperceptibility's
 imperceptible
 imperceptibly
 imperceptive
+imperceptiveness
 imperf
 imperfect
 imperfecta
@@ -63584,6 +63635,7 @@ incomplete
 incompletely
 incompleteness
 incompleteness's
+incompletes
 incompletion
 incompletion's
 incomprehensibilities
@@ -64686,6 +64738,9 @@ info's
 infobar
 infobar's
 infobars
+infocard
+infocard's
+infocards
 infographic
 infographic's
 infographics
@@ -64786,6 +64841,7 @@ infusibleness's
 infusing
 infusion
 infusion's
+infusional
 infusions
 Inga
 Ingaberg
@@ -66498,6 +66554,7 @@ interrelations
 interrelationship
 interrelationship's
 interrelationships
+interreligious
 interring
 interrobang
 interrobangs
@@ -69327,6 +69384,9 @@ keyframing
 keygen
 keygen's
 keygens
+keyholder
+keyholder's
+keyholders
 keyhole
 keyhole's
 keyholes
@@ -72282,6 +72342,9 @@ lifesaver's
 lifesavers
 lifesaving
 lifesavings
+lifeskill
+lifeskill's
+lifeskills
 lifespan
 lifespans
 lifestyle
@@ -76396,6 +76459,9 @@ mathematics's
 mathian
 mathian's
 mathians
+mathlab
+mathlab's
+mathlabs
 maths
 matily
 matinee
@@ -77912,6 +77978,9 @@ metamorphosis
 metamorphosis's
 metanephridia
 metanephridium
+metaparadigm
+metaparadigm's
+metaparadigms
 metaperiodic
 metaphase
 metaphor
@@ -78290,6 +78359,8 @@ microcrystalline
 microcuries
 microcystic
 microcytic
+microdata
+microdata's
 microdeletion
 microdensitometer
 microdermabrasion
@@ -78561,6 +78632,8 @@ microstructures
 microsurgeries
 microsurgery
 microsurgery's
+microsystem
+microsystem's
 microsystems
 microtia
 microtome
@@ -82045,6 +82118,7 @@ multibrands
 multibus
 multibus's
 multibyte
+multicampus
 multicandidate
 multicandidate's
 multicandidates
@@ -82062,6 +82136,7 @@ multichannel
 multichannel's
 multichromosomal
 multicloud
+multicnty
 multicollinearity
 multicollinearity's
 multicolor
@@ -82078,6 +82153,7 @@ multicomputer
 multicomputer's
 multicomputers
 multicore
+multicounty
 multics
 multicultural
 multiculturalism
@@ -85584,6 +85660,7 @@ nonresistants
 nonresistive
 nonrespondent
 nonrespondents
+nonresponding
 nonresponse
 nonresponsive
 nonrestrictive
@@ -87697,6 +87774,7 @@ onsite
 onslaught
 onslaught's
 onslaughts
+onstage
 Ont
 onto
 ontogenies
@@ -93120,6 +93198,9 @@ pentamers
 pentameter
 pentameter's
 pentameters
+pentamidine
+pentamidine's
+pentamidines
 pentane
 pentanol
 pentaoxide
@@ -97936,6 +98017,9 @@ postanal
 postarrival
 postarrival's
 postarrivals
+postbachelor
+postbachelor's
+postbachelors
 postbag
 postbag's
 postbellum
@@ -97955,6 +98039,7 @@ postcode
 postcode's
 postcodes
 postcoital
+postcolonialism
 postcolonialist
 postcolonialist's
 postcolonialists
@@ -98086,6 +98171,7 @@ postseason
 postseason's
 postseasons
 postseasons'
+postsec
 postsecondary
 postsynaptic
 posttraumatic
@@ -98207,6 +98293,9 @@ potsherd's
 potsherds
 potshot
 potshots
+potsticker
+potsticker's
+potstickers
 pottage
 pottage's
 pottages
@@ -99831,6 +99920,9 @@ principality's
 principally
 principals
 principals'
+principalship
+principalship's
+principalships
 principle
 principle's
 principled
@@ -101584,6 +101676,9 @@ psychologists
 psychology
 psychology's
 psychometric
+psychometrician
+psychometrician's
+psychometricians
 psychometrics
 psychometrics's
 psychometrist
@@ -112850,6 +112945,7 @@ savvied
 savvier
 savvies
 savviest
+savviness
 savvy
 savvying
 saw
@@ -119752,6 +119848,7 @@ sociable
 sociables
 sociably
 social
+socialemotional
 socialisation
 socialisations
 socialise
@@ -124831,6 +124928,9 @@ subaverage
 subaward
 subaward's
 subawards
+subbaccalaureate
+subbaccalaureate's
+subbaccalaureates
 subbasement
 subbasement's
 subbasements
@@ -125964,6 +126064,9 @@ Sulcus
 sulfa
 sulfadiazine
 sulfadoxine
+sulfamethoxazole
+sulfamethoxazole's
+sulfamethoxazoles
 sulfaquinoxaline
 sulfas
 sulfasalicylic
@@ -134231,6 +134334,9 @@ trimer's
 trimester
 trimester's
 trimesters
+trimethoprim
+trimethoprim's
+trimethoprims
 trimethyl
 trimethylamine
 trimethylaminuria
@@ -136594,6 +136700,7 @@ undeniable
 undeniableness
 undeniableness's
 undeniably
+undenominational
 undependable
 undepicted
 under
@@ -137082,6 +137189,7 @@ undiminished
 undimmed
 undiplomatic
 undirected
+undisbursed
 undiscerning
 undischarged
 undisciplined
@@ -143474,6 +143582,9 @@ websites
 webstore
 webstore's
 webstores
+webtool
+webtool's
+webtools
 webview
 webview's
 webviews
