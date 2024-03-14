@@ -314,8 +314,8 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
     // check the response code
     if (QueueDownload::IsBadResponseCode(responseCode))
         {
-        wxLogWarning(L"%s: Unable to connect to page, error code #%i (%s).", Url,
-                     responseCode, QueueDownload::GetResponseMessage(responseCode));
+        wxLogWarning(L"%s: Unable to connect to page, error code #%i (%s).",
+                     Url, responseCode, QueueDownload::GetResponseMessage(responseCode));
         downloadPath.clear();
         }
     // otherwise, if file is OK then download it
