@@ -40,7 +40,7 @@ void WebHarvesterDlg::OnFolderBrowseButtonClick([[maybe_unused]] wxCommandEvent&
         }
     m_downloadFolder = dirDlg.GetPath();
     TransferDataToWindow();
-    SetFocus();
+    m_localFolderEdit->SetFocus();
     }
 
 //-------------------------------------------------------------
