@@ -3262,11 +3262,11 @@ void MainFrame::OnViewLogReport([[maybe_unused]] wxRibbonButtonBarEvent& event)
                 wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
                 wxGetApp().GetAppOptions().GetRibbonHoverColor(),
                 wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
-                LD_SAVE_BUTTON|LD_COPY_BUTTON|LD_PRINT_BUTTON|LD_SELECT_ALL_BUTTON|LD_FIND_BUTTON|
-                LD_COLUMN_HEADERS|LD_SORT_BUTTON|LD_CLEAR_BUTTON|LD_REFRESH_BUTTON, wxID_ANY,
-                wxString::Format(_(L"Log Report: %s Log Level"),
-                    wxLog::GetVerbose() ? _(L"Verbose") :
-                        _(L"Standard")),
+                LD_SAVE_BUTTON | LD_COPY_BUTTON | LD_PRINT_BUTTON |
+                LD_SELECT_ALL_BUTTON | LD_FIND_BUTTON |
+                LD_COLUMN_HEADERS | LD_SORT_BUTTON | LD_CLEAR_BUTTON |
+                LD_REFRESH_BUTTON | LD_LOG_VERBOSE_BUTTON, wxID_ANY,
+                _(L"Log Report"),
                 wxString{}, wxDefaultPosition,
                 FromDIP(wxSize(800, 400)),
                 wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER | wxDIALOG_NO_PARENT);
