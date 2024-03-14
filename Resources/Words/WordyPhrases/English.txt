@@ -338,6 +338,7 @@ acident	accident	3
 acident's	accident's	3		
 acidents	accidents	3		
 acient	ancient	3		
+acitivties	activities	3		
 acknowldeged	acknowledged	3		
 acknowldegement	acknowledgment	3		
 acknowledge	admit, express thanks for	0		
@@ -355,6 +356,9 @@ acomplishment	accomplishment	3
 acomplishments	accomplishments	3		
 acording	according	3		
 acordingly	accordingly	3		
+acountant	accountant	3		
+acountant's	accountant's	3		
+acountants	accountants	3		
 acquaintance	friend	0		
 acquaintance's	friend's	0		
 acquaintances	friends	0		
@@ -500,6 +504,9 @@ administered	managed	0
 administering	managing	0		
 administers	manages	0		
 administratator	administrator	3		
+administratior	administrator	3		
+administratior's	administrator's	3		
+administratiors	administrators	3		
 adminstered	administered	3		
 adminstrate	administrate	3		
 adminstration	administration	3		
@@ -1257,6 +1264,7 @@ approximatly	approximately	3
 approximitely	approximately	3		
 approxmate	approximate	3		
 apprpriate	appropriate	3		
+appy	apply	3		
 aprehensive	apprehensive	3		
 apropriate	appropriate	3		
 aproval	approval	3		
@@ -2866,6 +2874,8 @@ chewed the cud	pondered or thought over something	2
 chewing the cud	pondering or thinking over something	2		
 chews the cud	ponders or thinks over something	2		
 chicanery	trickery	0		
+Chigaco	Chicago	3		
+Chigaco's	Chicago's	3		
 child's play	easy task	2		
 childbird	childbirth	3		
 childen	children	3		
@@ -3009,6 +3019,7 @@ coctail	cocktail	3
 coefficent	coefficient	3		
 coefficents	coefficients	3		
 coeficients	coefficients	3		
+coffe	coffee	3		
 cofiguration	configuration	3		
 cofiguration's	configuration's	3		
 cofigurations	configurations	3		
@@ -3639,6 +3650,9 @@ constuctor	constructor	3
 constuctors	constructors	3		
 constucts	constructs	3		
 consulant	consultant	3		
+consultatnt	consultant	3		
+consultatnt's	consultant's	3		
+consultatnts	consultants	3		
 consumate	consummate	3		
 consumated	consummated	3		
 consume	use up	0		
@@ -3880,6 +3894,9 @@ corparate	corporate	3
 corperations	corporations	3		
 corporeal	bodily	0		
 corpulent	fat	0		
+corrdinator	coordinator	3		
+corrdinator's	coordinator's	3		
+corrdinators	coordinators	3		
 correctional institution	prison	0		
 correctional institutions	prisons	0		
 correctnes	correctness	3		
@@ -4222,6 +4239,7 @@ defitions	deviations	3
 defualt	default	3		
 defunct	dead	0		
 degrate	degrade	3		
+degre	degree	3		
 degredation	degradation	3		
 delagates	delegates	3		
 delapidated	dilapidated	3		
@@ -5388,6 +5406,7 @@ entered into an agreement	agreed	0
 enterily	entirely	3		
 entering into a contract	contracting	0		
 entering into an agreement	agreeing	0		
+enterpreneurship	entrepreneurship	3		
 enters into a contract	contracts	0		
 enters into an agreement	agrees	0		
 enthusiatic	enthusiastic	3		
@@ -6394,6 +6413,9 @@ fundamentally	basically	0
 fundamentals	basics	0		
 fundametal	fundamental	3		
 fundametals	fundamentals	3		
+fundation	foundation	3		
+fundation's	foundation's	3		
+fundations	foundations	3		
 funny money	counterfeit	2		
 funtion	function	3		
 funtions	functions	3		
@@ -6415,6 +6437,7 @@ future developments	developments	0
 future plans	plans	1		
 future projections	projections	1		
 future prospects	prospects	1		
+Galapágos	Galápagos	3		
 galatic	galactic	3		
 Galations	Galatians	3		
 gallaxies	galaxies	3		
@@ -6484,6 +6507,9 @@ genereated	generated	3
 genereates	generates	3		
 genereating	generating	3		
 generiously	generously	3		
+genetecist	geneticist	3		
+genetecist's	geneticist's	3		
+genetecists	geneticists	3		
 genialia	genitalia	3		
 geniune	genuine	3		
 genral	general	3		
@@ -7221,6 +7247,7 @@ if this is not the case	if not	0
 if this is the case	if so	0		
 if this is the situation	if so	0		
 if this is true	if so	0		
+Ignation	Ignatian	3		
 ignoble	base, common, dishonorable, mean	0		
 ignominious	shameful	0		
 ignominiously	shamefully	0		
@@ -7244,6 +7271,8 @@ ilness	illness	3
 ilogical	illogical	3		
 imagenary	imaginary	3		
 imagin	imagine	3		
+imagration	aimmigration	3		
+imagration's	immigration's	3		
 imbue	fill	0		
 imbued	filled	0		
 imbues	fills	0		
@@ -7941,6 +7970,9 @@ insinuation	hint, suggestion	0
 insinuations	hints, suggestions	0		
 insipid	weak	0		
 insistance	insistence	3		
+insitute	institute	3		
+insitute's	institute's	3		
+insitutes	institutes	3		
 insitution	institution	3		
 insitutions	institutions	3		
 insolvent	bankrupt	0		
@@ -8082,6 +8114,9 @@ intialize	initialize	3
 intialized	initialized	3		
 intializes	initializes	3		
 intializing	initializing	3		
+intiation	initiation	3		
+intiation's	initiation's	3		
+intiations	initiations	3		
 intimate	hint, suggest	0		
 intimated	hinted, suggested	0		
 intimates	hints, suggests	0		
@@ -8913,6 +8948,7 @@ making up their minds	deciding	0
 making up your mind	deciding	0		
 making waves	causing problems, creating trouble	2		
 makse	makes	3		
+Malcom	Malcolm	3		
 malediction	curse	0		
 maledictions	curses	0		
 malevolence	spite, maliciousness	0		
@@ -9007,6 +9043,7 @@ mathimatics	mathematics	3
 mathmatically	mathematically	3		
 mathmatician	mathematician	3		
 mathmaticians	mathematicians	3		
+mathmatics	mathematics	3		
 mathod	method	3		
 matris	matrix	3		
 maximum	most, greatest	0		
@@ -9287,6 +9324,7 @@ montain	mountain	3
 montain's	mountain's	3		
 montains	mountains	3		
 montanous	mountainous	3		
+Montesorri	Montessori	3		
 monts	months	3		
 mordant	biting, sarcastic	0		
 more power to you	good luck, I fully encourage you	2		
@@ -9336,6 +9374,7 @@ mudering	murdering	3
 muliple	multiple	3		
 mulitple	multiple	3		
 mulitplied	multiplied	3		
+mult-age	multi-age	3		
 multicultralism	multiculturalism	3		
 multidimensionnal	multidimensional	3		
 multiple	many	0		Myeloma
@@ -9403,6 +9442,9 @@ naturual	natural	3
 naturually	naturally	3		
 nauseous	sickening	0		
 navagating	navigating	3		
+navgation	navigation	3		
+navgation's	navigation's	3		
+navgations	navigations	3		
 Nazereth	Nazareth	3		
 Nazereth's	Nazareth's	3		
 nebulous	hazy, vague	0		
@@ -9937,6 +9979,7 @@ opportinity	opportunity	3
 opportinity's	opportunity's	3		
 opportunites	opportunities	3		
 opportunities	chances	0		
+opportunitites	opportunities	3		
 opportunity	chance	0		
 opportuniy	opportunity	3		
 opportuniy's	opportunity's	3		
@@ -10452,6 +10495,9 @@ perpetrating	committing	0
 perpetuity	forever	0		
 perphas	perhaps	3		
 perpindicular	perpendicular	3		
+persective	perspective	3		
+persective's	perspective's	3		
+persectives	perspectives	3		
 persevere	persist	0		
 persevered	persisted	0		
 perseverence	perseverance	3		
@@ -10529,6 +10575,7 @@ phoned it in	performed with little enthusiasm	2
 phones it in	performs with little enthusiasm	2		
 phongraph	phonograph	3		
 phoning it in	performing with little enthusiasm	2		
+phyiscally	physically	3		
 phylosophical	philosophical	3		
 physicaly	physically	3		
 physician	doctor	0		
@@ -10808,6 +10855,9 @@ poverful	powerful	3
 poweful	powerful	3		
 powerfull	powerful	3		
 powers that be	people in charge, authorities	2		
+pprogram	program	3		
+pprogram's	program's	3		
+pprograms	programs	3		
 practial	practical	3		
 practially	practically	3		
 practicable	can be done	0		
@@ -11486,8 +11536,11 @@ quality mangers	quality managers	3
 quandaries	problems	0		
 quandary	problem	0		
 quandary's	problem's	0		
+quantative	quantitative	3		
+quantatively	quantitatively	3		
 quantaty	quantity	3		
 quantify	measure	0		
+quantitatve	quantitative	3		
 quantitiy	quantity	3		
 quarantaine	quarantine	3		
 quarentine	quarantine	3		
@@ -12043,6 +12096,7 @@ reprehends	blames	0
 represantative	representative	3		
 represenation	representation	3		
 representaiton	representation	3		
+representedon	represented on	3		
 representive	representative	3		
 representives	representatives	3		
 represents	is	0		
@@ -12373,6 +12427,9 @@ rythim	rhythm	3
 rythm	rhythm	3		
 rythmic	rhythmic	3		
 rythyms	rhythms	3		
+résume	résumé	3		
+résume's	résumé's	3		
+résumes	résumés	3		
 saccharine	sweet	0		
 sacrafice	sacrifice	3		
 sacrafice's	sacrifice's	3		
@@ -12606,6 +12663,10 @@ seqence	sequence	3
 sequencial	sequential	3		
 sequestration	removal	0		
 sequestrations	removals	0		
+serch	search	3		
+serched	searched	3		
+serches	searches	3		
+serching	searching	3		
 sercvice	service	3		
 sercvice's	service's	3		
 sercvices	services	3		
@@ -12825,6 +12886,9 @@ smelled a rat	has some suspicions	2
 smelling a rat	having some suspicions	2		
 smells a rat	has some suspicions	2		
 smells fishy	suspect, doubtful	2		
+sminar	seminar	3		
+sminar's	seminar's	3		
+sminars	seminars	3		
 smoe	some	3		
 smoke test	validation test	2		
 smoke-filled room	secret place where important decisions are (allegedly) made	2		
@@ -14735,6 +14799,9 @@ visually saw	visualized, saw	1
 visually see	visualize, see	1		
 visually seeing	visualizing, seeing	1		
 visually sees	visualizes, sees	1		
+visulaization	visualization	3		
+visulaization's	visualization's	3		
+visulaizations	visualizations	3		
 vitories	victories	3		
 vitreous	glassy	0		
 vitual	virtual	3		
@@ -14821,6 +14888,9 @@ walk on eggshells	proceed cautiously	2
 walked on eggshells	proceeded cautiously	2		
 walking on eggshells	proceeding cautiously	2		
 walks on eggshells	proceeds cautiously	2		
+Wallce	Wallace	3		
+Wallce's	Wallace's	3		
+Wallces	Wallaces	3		
 wan't	want	3		
 warantee	warranty	3		
 wardobe	wardrobe	3		

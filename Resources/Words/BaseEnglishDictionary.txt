@@ -2563,6 +2563,9 @@ Ag₂CrO
 Ag₄Fe
 ah
 aha
+ahalogies
+ahalogy
+ahalogy's
 ahas
 ahead
 ahem
@@ -2818,6 +2821,9 @@ alchemist's
 alchemists
 alchemy
 alchemy's
+alchemyst
+alchemyst's
+alchemysts
 alcibiades
 alcibiades's
 alcohol
@@ -3238,6 +3244,9 @@ alluvium's
 alluviums
 ally
 allying
+allyship
+allyship's
+allyships
 alma
 almagest
 almanac
@@ -3421,10 +3430,13 @@ aluminized
 aluminum
 aluminum's
 aluminums
+alumn
+alumn's
 alumna
 alumna's
 alumnae
 alumni
+alumns
 alumnus
 alumnus's
 alumnuses
@@ -5700,6 +5712,7 @@ appetiser's
 appetisers
 appetising
 appetisingly
+appetit
 appetite
 appetite's
 appetites
@@ -5928,6 +5941,7 @@ appurtenance's
 appurtenances
 appurtenant
 appurtenants
+appétit
 apraxia
 apricot
 apricot's
@@ -7763,6 +7777,9 @@ audience's
 audiences
 audio
 audio's
+audiobook
+audiobook's
+audiobooks
 audiogram
 audiogram's
 audiograms
@@ -12046,6 +12063,9 @@ biometrics
 biometrics's
 biometry
 biometry's
+biomimicries
+biomimicry
+biomimicry's
 biomineral
 biomineral's
 biomineralized
@@ -12095,6 +12115,9 @@ biopsychology
 biopsychosocial
 biopsychosocially
 biopsying
+bioregion
+bioregion's
+bioregions
 bioremediation
 bioremediation's
 bioremediators
@@ -13650,6 +13673,7 @@ bombshells
 bomeobox
 bomeobox's
 bomeoboxes
+bon
 bona
 bonanza
 bonanza's
@@ -17748,6 +17772,9 @@ caption's
 captioned
 captioner
 captioning
+captionist
+captionist's
+captionists
 captions
 captious
 captiously
@@ -22478,6 +22505,9 @@ clockings
 clockmaker
 clockmaker's
 clocks
+clocktower
+clocktower's
+clocktowers
 clockwatcher
 clockwise
 clockwork
@@ -28052,6 +28082,9 @@ courts
 courtship
 courtship's
 courtships
+courtside
+courtside's
+courtsides
 courtyard
 courtyard's
 courtyards
@@ -34633,6 +34666,9 @@ diagonalises
 diagonalising
 diagonalizability
 diagonalizable
+diagonalization
+diagonalization's
+diagonalizations
 diagonalize
 diagonalized
 diagonalizes
@@ -34663,6 +34699,9 @@ dialectic's
 dialectical
 dialectically
 dialectics
+dialectologies
+dialectology
+dialectology's
 dialects
 dialed
 dialer
@@ -49383,6 +49422,8 @@ foodborne
 foodie
 foodies
 foods
+foodservice
+foodservice's
 foodstuff
 foodstuff's
 foodstuffs
@@ -56926,6 +56967,9 @@ hangover
 hangover's
 hangovers
 hangs
+hangtag
+hangtag's
+hangtags
 hangup
 hangups
 hank
@@ -57588,6 +57632,8 @@ headboard
 headboard's
 headboards
 headcount
+headcount's
+headcounts
 headdress
 headdress's
 headdresses
@@ -61901,7 +61947,9 @@ idealogical
 ideals
 ideas
 ideate
+ideated
 ideates
+ideating
 ideation
 ideation's
 idem
@@ -63839,6 +63887,7 @@ inculpate
 inculpated
 inculpates
 inculpating
+inculpatory
 incumbencies
 incumbency
 incumbency's
@@ -64034,6 +64083,10 @@ indigence
 indigence's
 indigences
 indigeneity
+indigenism
+indigenist
+indigenist's
+indigenists
 indigenous
 indigenously
 indigenousness
@@ -74699,6 +74752,9 @@ macrostates
 macrostructure
 macrostructure's
 macrostructures
+macrosystem
+macrosystem's
+macrosystems
 macrovascular
 Macula
 macula's
@@ -82161,6 +82217,7 @@ multiculturalisms
 multiculturalities
 multiculturality
 multiculturality's
+multiculturally
 multiday
 multidetector
 multidimensional
@@ -82932,6 +82989,7 @@ myopically
 myopics
 myosin
 myositis
+myoskeletal
 myostatin
 myotonia
 myotonic
@@ -84165,7 +84223,14 @@ neurodevelopment's
 neurodevelopmental
 neurodevelopments
 neurodiagnostic
+neurodivergence
+neurodivergence's
+neurodivergences
 neurodivergent
+neurodiverse
+neurodiversities
+neurodiversity
+neurodiversity's
 neuroectoderm
 neuroectodermal
 neuroeffector
@@ -85324,6 +85389,7 @@ nonfictions
 nonfiltered
 nonfinancial
 nonfinancially
+nonfiscal
 nonfissionable
 nonflammable
 nonflowering
@@ -85604,6 +85670,7 @@ nonproteobacteria's
 nonprovisional
 nonpublic
 nonpunishable
+nonpunitive
 nonqualitative
 nonqualitatively
 nonquantitative
@@ -89937,6 +90004,7 @@ overruns
 overs
 oversample
 oversampled
+oversamples
 oversampling
 oversaturate
 oversaturation
@@ -92447,6 +92515,7 @@ pavementing
 pavements
 paver
 paver's
+pavers
 paves
 Pavia
 pavilion
@@ -92532,6 +92601,9 @@ payscale's
 payscales
 payslip
 payslips
+paystub
+paystub's
+paystubs
 paywall
 paywall's
 paywalls
@@ -92556,6 +92628,7 @@ Pd's
 pdaleo
 Pde
 PDF
+pdfs
 PDP
 PDQ
 PDSA
@@ -94363,6 +94436,7 @@ pharmacopeia
 pharmacopoeia
 pharmacopoeia's
 pharmacopoeias
+pharmacotherapeutics
 pharmacotherapies
 pharmacotherapy
 pharmacotherapy's
@@ -94417,6 +94491,8 @@ phenology's
 phenolphthalein
 phenolphthalein's
 phenols
+phenom
+phenom's
 phenomena
 phenomena's
 phenomenal
@@ -94430,6 +94506,7 @@ phenomenology's
 phenomenon
 phenomenon's
 phenomenons
+phenoms
 phenothiazine
 phenotype
 phenotype's
@@ -98175,6 +98252,9 @@ postsec
 postsecondary
 postsynaptic
 posttraumatic
+postulant
+postulant's
+postulants
 postulate
 postulated
 postulates
@@ -99100,6 +99180,8 @@ prejudicial
 prejudicially
 prejudicialness
 prejudicing
+preK
+preK-12
 prekindergarten
 prekindergarten's
 prekindergartens
@@ -99336,6 +99418,7 @@ preppiest
 prepping
 preppy
 preprepared
+preprimary
 preprimer
 preprint
 preprint's
@@ -101519,6 +101602,7 @@ psalms
 psalteries
 psaltery
 psaltery's
+psas
 psd
 psephological
 psephologically
@@ -101699,6 +101783,7 @@ psychopath's
 psychopathic
 psychopathics
 psychopathies
+psychopathological
 psychopathology
 psychopathology's
 psychopaths
@@ -102819,6 +102904,7 @@ quandary
 quandary's
 quango
 quangos
+quant
 quanta
 quanta's
 quantifiabilities
@@ -104179,6 +104265,9 @@ rapturous
 rapturously
 rapturousness
 rapturousness's
+raquetball
+raquetball's
+raquetballs
 rare
 rarebit
 rarebit's
@@ -105794,11 +105883,17 @@ recursively
 recursiveness
 recurved
 recurving
+recusal
+recusal's
+recusals
 recusance
 recusancy
 recusant
 recusant's
 recuse
+recused
+recuses
+recusing
 recyclable
 recyclables
 recycle
@@ -107405,6 +107500,10 @@ remarkableness
 remarkablenesses
 remarkably
 remarked
+remarket
+remarketed
+remarketing
+remarkets
 remarking
 remarks
 remarriage
@@ -113345,6 +113444,7 @@ sch
 sch.
 schadenfreude
 schedulability
+schedulable
 schedule
 schedule's
 scheduled
@@ -128443,6 +128543,9 @@ talented
 talented's
 talentless
 talents
+talentship
+talentship's
+talentships
 taler
 taler's
 tales
@@ -131954,6 +132057,8 @@ titrations
 Titre
 titre's
 titres
+titrimetric
+titrimetric's
 titrimetry
 tits
 titted
@@ -141448,9 +141553,13 @@ videoed
 videogame
 videogame's
 videogames
+videograph
+videographed
 videographer
 videographer's
 videographers
+videographing
+videographs
 videography
 videoing
 videolink
@@ -144004,6 +144113,7 @@ whens
 whensoever
 where
 where'd
+where'er
 where're
 where's
 whereabout
@@ -144915,6 +145025,9 @@ wiremap's
 wiremaps
 wiremen
 wiremen's
+wiremold
+wiremold's
+wiremolds
 wirer
 wirer's
 wires
@@ -145426,6 +145539,9 @@ wordplay
 wordplay's
 wordplays
 words
+wordsmith
+wordsmith's
+wordsmiths
 wordy
 wore
 work
@@ -145881,6 +145997,7 @@ WY
 WYSIWYG
 X
 X's
+x-ccelerated
 X.
 xaml
 xanthelasma

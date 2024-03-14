@@ -26,6 +26,8 @@ Ceasar's	Caesar's	3
 Celcius	Celsius	3		
 Champange	Champagne	3		
 Champange's	Champagne's	3		
+Chigaco	Chicago	3		
+Chigaco's	Chicago's	3		
 Cincinatti	Cincinnati	3		
 Cincinnatti	Cincinnati	3		
 Conneticut	Connecticut	3		
@@ -87,6 +89,7 @@ Microsot's	Microsoft's	3
 Misouri	Missouri	3		
 Missisipi	Mississippi	3		
 Missisippi	Mississippi	3		
+Montesorri	Montessori	3		
 Montnana	Montana	3		
 Morisette	Morissette	3		
 Morrisette	Morissette	3		
@@ -135,3 +138,6 @@ Ukranian	Ukrainian	3
 UnitesStates	United States	3		
 Vileck	Vilcek	3		
 Vileck's	Vilcek's	3		
+Wallce	Wallace	3		
+Wallce's	Wallace's	3		
+Wallces	Wallaces	3		
