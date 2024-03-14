@@ -735,7 +735,7 @@ void ProjectView::OnListDblClick(wxListEvent& event)
             textWindow->SetSelection(0, 0);
             // If looking for an entire sentence, then don't use whole-word search.
             // Whole-word search behaves differently between platforms and won't work for
-            // sentences under GTK+ as expceted (because of the terminal period).
+            // sentences under GTK+ as expected (because of the terminal period).
             if (event.GetId() == LONG_SENTENCES_LIST_PAGE_ID)
                 {
                 textWindow->FindText(searchText, true, false, false);
