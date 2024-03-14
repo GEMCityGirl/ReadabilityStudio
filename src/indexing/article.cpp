@@ -29,7 +29,7 @@ bool is_incorrect_english_article::operator()(std::wstring_view article,
     // words that are debatable, just return that they match
     if ((word.length() == 3 && traits::case_insensitive_ex::compare(word.data(), L"URL", 3) == 0) ||
         // the pronunciation of Xavier is debated, so ignore that word entirely
-        (word.length() >= 2 && traits::case_insensitive_ex::compare(word.data(), L"Xa", 2) == 0) )
+        (word.length() >= 3 && traits::case_insensitive_ex::compare(word.data(), L"Xav", 3) == 0) )
         {
         return false;
         }
