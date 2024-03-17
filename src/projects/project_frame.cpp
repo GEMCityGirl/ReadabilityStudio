@@ -2158,6 +2158,12 @@ void ProjectDocChildFrame::OnCustomTestBundle(wxCommandEvent& event)
     }
 
 //-------------------------------------------------------
+void ProjectDocChildFrame::OnSaveDropdown(wxRibbonButtonBarEvent& evt)
+    {
+    evt.PopupMenu(&m_exportMenu);
+    }
+
+//-------------------------------------------------------
 void ProjectDocChildFrame::OnDictionaryDropdown(wxRibbonButtonBarEvent& evt)
     {
     wxMenu menu;

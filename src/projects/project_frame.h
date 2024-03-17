@@ -137,10 +137,7 @@ class ProjectDocChildFrame : public wxDocChildFrame
         evt.PopupMenu(&m_fileOpenMenu);
         }
 
-    void OnSaveDropdown(wxRibbonButtonBarEvent& evt)
-        {
-        evt.PopupMenu(&m_exportMenu);
-        }
+    void OnSaveDropdown(wxRibbonButtonBarEvent& evt);
 
     void OnLongSentencesDropdown(wxRibbonButtonBarEvent& event)
         {
