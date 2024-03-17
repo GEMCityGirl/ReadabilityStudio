@@ -380,7 +380,7 @@ void ExplanationListCtrl::OnSave([[maybe_unused]] wxCommandEvent& event)
     }
 
 //------------------------------------------------------
-void ExplanationListCtrl::OnCopy(wxCommandEvent& event)
+void ExplanationListCtrl::OnCopy([[maybe_unused]] wxCommandEvent& event)
     {
     wxArrayString choices, descriptions;
     choices.Add(_(L"Grid (selected item)"));
@@ -405,7 +405,7 @@ void ExplanationListCtrl::OnCopy(wxCommandEvent& event)
         GetResultsListCtrl()->Copy(false, true);
         break;
     case 2:
-        GetExplanationView()->OnCopyAll(event);
+        GetExplanationView()->Copy();
         break;
         }
     m_lastCopyOption = static_cast<ExplanationListExportOptions>(choiceDlg.GetSelection());

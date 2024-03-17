@@ -226,12 +226,13 @@ class ExplanationListCtrl final : public wxSplitterWindow
         }
 
   private:
+
     ExplanationListCtrl() = default;
 
     void OnPreview([[maybe_unused]] wxCommandEvent& event);
     void OnPrint([[maybe_unused]] wxCommandEvent& event);
     void OnSave([[maybe_unused]] wxCommandEvent& event);
-    void OnCopy(wxCommandEvent& event);
+    void OnCopy([[maybe_unused]] wxCommandEvent& event);
     void OnFind(wxFindDialogEvent& event);
     void OnItemSelected(wxListEvent& event);
     void OnResize(wxSizeEvent& event);
