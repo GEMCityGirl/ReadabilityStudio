@@ -3375,7 +3375,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawTextWithEncoding(const wxString&
 
     try
         {
-        if (isHtmlExtension(fileExtension))
+        if (isHtmlExtension(fileExtension.wc_str()))
             {
             const wxString filteredText(filter_html(sourceFileText, sourceFileText.length(), true, false));
             if (filter_html.get_log().length())
@@ -3407,7 +3407,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
     PROFILE();
     if (sourceFileText == nullptr || streamSize == 0)
         { return std::make_pair(false, wxString{}); }
-    wxLogVerbose(wxString::Format(L"%s parser being called.", fileExtension.Upper()));
+    wxLogVerbose(L"%s parser being called.", fileExtension.Upper());
 
     const WebPageExtension isHtmlExtension;
 
@@ -3632,12 +3632,29 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
             return std::make_pair(false, wxString{});
             }
         }
-    else if (isHtmlExtension(fileExtension))
+    else if (isHtmlExtension(fileExtension.wc_str()))
         {
-        std::pair<bool,wxString> extractResult(false,wxString{});
+        if (isHtmlExtension.IsDynamicExtension(fileExtension.wc_str()))
+            {
+            size_t bomStartLength{ 0 };
+            if (utf8::starts_with_bom(sourceFileText, sourceFileText + streamSize))
+                { bomStartLength = 3; }
+            const size_t firstChar =
+                string_util::find_first_not_of(sourceFileText + bomStartLength,
+                                               streamSize - bomStartLength, " \t\n\r", 4) +
+                    bomStartLength;
+            // See if maybe it's HTML (based on if first character is a '<').
+            if (firstChar >= streamSize ||
+                (firstChar < streamSize && sourceFileText[firstChar] != '<'))
+                {
+                wxLogVerbose(L"Dynamic webpage is not valid HTML. Document will not be loaded.");
+                return std::make_pair(false, wxString{});
+                }
+            }
+        std::pair<bool,wxString> extractResult(false, wxString{});
         wxString label;
         // if UTF-8 or simply 7-bit ASCII, then just convert as UTF-8 and run the HTML parser on it
-        if (utf8::is_valid(sourceFileText,sourceFileText+streamSize))
+        if (utf8::is_valid(sourceFileText, sourceFileText+streamSize))
             {
             extractResult =
                 ExtractRawTextWithEncoding(Wisteria::TextStream::CharStreamToUnicode(sourceFileText, streamSize),
@@ -3665,7 +3682,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(const char* sourceFileText,
                      label,
                      wxFileName(GetOriginalDocumentFilePath()).GetName()
                      }));
-        return std::make_pair(true,extractResult.second);
+        return std::make_pair(true, extractResult.second);
         }
     else if (fileExtension.CmpNoCase(L"ps") == 0)
         {
