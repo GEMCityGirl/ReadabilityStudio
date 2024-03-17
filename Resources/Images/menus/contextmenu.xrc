@@ -101,39 +101,4 @@
         <object class="wxMenuItem" name="wxID_SELECTALL">
         </object>
     </object>
-    <object class="wxMenu" name="IDM_HTML_MENU">
-        <object class="wxMenuItem" name="wxID_COPY">
-        </object>
-        <object class="wxMenuItem" name="ID_COPY_ALL">
-            <label>Copy All</label>
-        </object>
-        <object class="separator">
-        </object>
-        <object class="wxMenuItem" name="wxID_PRINT">
-        </object>
-        <object class="wxMenuItem" name="ID_SAVE_ITEM">
-            <label>Save...</label>
-        </object>
-    </object>
-    <object class="wxMenu" name="IDM_HTML_MENU_NO_SAVE">
-        <object class="wxMenuItem" name="wxID_COPY">
-        </object>
-        <object class="wxMenuItem" name="ID_COPY_ALL">
-            <label>Copy All</label>
-        </object>
-    </object>
-    <object class="wxMenu" name="IDM_SIDEBAR_HTML_MENU">
-        <object class="wxMenuItem" name="wxID_COPY">
-        </object>
-        <object class="wxMenuItem" name="ID_COPY_ALL">
-            <label>Copy All</label>
-        </object>
-        <object class="separator">
-        </object>
-        <object class="wxMenuItem" name="wxID_PRINT">
-        </object>
-        <object class="wxMenuItem" name="wxID_SAVE">
-            <label>Save...</label>
-        </object>
-    </object>
 </resource>
