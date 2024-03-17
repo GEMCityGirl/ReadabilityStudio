@@ -3293,7 +3293,7 @@ void MainFrame::OnTestsOverview([[maybe_unused]] wxRibbonButtonBarEvent& event)
             wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
             LD_SAVE_BUTTON|LD_COPY_BUTTON|LD_PRINT_BUTTON|LD_SELECT_ALL_BUTTON|
             LD_COLUMN_HEADERS|LD_FIND_BUTTON|LD_SORT_BUTTON, wxID_ANY, _(L"Readability Tests Overview"),
-            wxEmptyString, wxDefaultPosition, FromDIP(wxSize(800, 400)));
+            wxString{}, wxDefaultPosition, FromDIP(wxSize(1600, 800)));
 
     wxGetApp().UpdateRibbonTheme(testsOverviewDlg.GetRibbon());
     testsOverviewDlg.GetListCtrl()->ClearAll();
@@ -5360,7 +5360,9 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
             }
         }
 
-    // update globl internet options that mirror the same options from the dialog
+    // update global internet options that mirror the same options from the dialog
     wxGetApp().GetWebHarvester().DisablePeerVerify(webHarvestDlg.IsPeerVerifyDisabled()),
     wxGetApp().GetWebHarvester().SetUserAgent(webHarvestDlg.GetUserAgent());
+
+    wxMessageBox(_(L"Web crawl complete."), _(L"Web Harvester"), wxOK | wxICON_INFORMATION);
     }
