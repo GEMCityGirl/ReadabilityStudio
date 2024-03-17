@@ -736,7 +736,10 @@ void ProjectView::OnListDblClick(wxListEvent& event)
             // If looking for an entire sentence, then don't use whole-word search.
             // Whole-word search behaves differently between platforms and won't work for
             // sentences under GTK+ as expected (because of the terminal period).
-            if (event.GetId() == LONG_SENTENCES_LIST_PAGE_ID)
+            if (event.GetId() == LONG_SENTENCES_LIST_PAGE_ID ||
+                event.GetId() == SENTENCES_LOWERCASE_START_LIST_PAGE_ID ||
+                event.GetId() == SENTENCES_CONJUNCTION_START_LIST_PAGE_ID ||
+                event.GetId() == OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID)
                 {
                 textWindow->FindText(searchText, true, false, false);
                 }
@@ -1458,8 +1461,6 @@ bool ProjectView::OnCreate(wxDocument* doc, long flags)
         wxString(L"</body></html>"));
     readabilityScoresView->GetResultsListCtrl()->AssignContextMenu(
         wxXmlResource::Get()->LoadMenu(L"IDM_READABILITY_SCORE_LIST") );
-    readabilityScoresView->GetExplanationView()->AssignContextMenu(
-        wxXmlResource::Get()->LoadMenu(L"IDM_HTML_MENU_NO_SAVE") );
     readabilityScoresView->SetPrinterSettings(wxGetApp().GetPrintData());
     readabilityScoresView->SetLeftPrinterHeader(wxGetApp().GetAppOptions().GetLeftPrinterHeader());
     readabilityScoresView->SetCenterPrinterHeader(wxGetApp().GetAppOptions().GetCenterPrinterHeader());
