@@ -1030,7 +1030,6 @@ void ProjectDoc::DisplayReadabilityScores(const bool setFocus)
                                                    BaseProjectView::READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID);
                 scoresReport->Hide();
                 scoresReport->SetName(_(L"Summary Report"));
-                scoresReport->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_HTML_MENU") );
                 scoresReport->SetPrinterSettings(wxGetApp().GetPrintData());
                 scoresReport->SetLeftPrinterHeader(wxGetApp().GetAppOptions().GetLeftPrinterHeader());
                 scoresReport->SetCenterPrinterHeader(wxGetApp().GetAppOptions().GetCenterPrinterHeader());
@@ -3584,7 +3583,6 @@ void ProjectDoc::DisplayStatistics()
             summaryReportWindow->Hide();
             summaryReportWindow->SetLabel(BaseProjectView::GetFormattedReportLabel());
             summaryReportWindow->SetName(BaseProjectView::GetFormattedReportLabel());
-            summaryReportWindow->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_HTML_MENU") );
             summaryReportWindow->SetPrinterSettings(wxGetApp().GetPrintData());
             summaryReportWindow->SetLeftPrinterHeader(wxGetApp().GetAppOptions().GetLeftPrinterHeader());
             summaryReportWindow->SetCenterPrinterHeader(wxGetApp().GetAppOptions().GetCenterPrinterHeader());
@@ -3667,7 +3665,6 @@ void ProjectDoc::DisplayStatistics()
             sumWindow->Hide();
             sumWindow->SetLabel(_(L"Summary"));
             sumWindow->SetName(_(L"Dolch Summary"));
-            sumWindow->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_HTML_MENU") );
             sumWindow->SetPrinterSettings(wxGetApp().GetPrintData());
             sumWindow->SetLeftPrinterHeader(wxGetApp().GetAppOptions().GetLeftPrinterHeader());
             sumWindow->SetCenterPrinterHeader(wxGetApp().GetAppOptions().GetCenterPrinterHeader());
