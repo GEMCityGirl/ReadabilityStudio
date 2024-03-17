@@ -308,35 +308,29 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
         }
 
     wxLogVerbose(L"Preparing to download '%s'", Url);
-    m_downloader.RequestResponse(Url);
-    auto responseCode = m_downloader.GetLastStatus();
-
-    // check the response code
-    if (QueueDownload::IsBadResponseCode(responseCode))
+    // create the target folder
+    if (!wxFileName::DirExists(downloadPathFolder))
         {
-        wxLogWarning(L"%s: Unable to connect to page, error code #%i (%s).",
-                     Url, responseCode, QueueDownload::GetResponseMessage(responseCode));
-        downloadPath.clear();
+        wxFileName::Mkdir(downloadPathFolder, wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
         }
-    // otherwise, if file is OK then download it
+
+    // now download the file locally
+    if (m_downloader.Download(Url, downloadPath))
+        {
+        m_downloadedFiles.insert(downloadPath);
+        }
     else
         {
-        // create the target folder
-        if (!wxFileName::DirExists(downloadPathFolder))
-            {
-            wxFileName::Mkdir(downloadPathFolder, wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
-            }
+        wxLogWarning(L"Unable to write to '%s'", downloadPath);
+        const int responseCode = m_downloader.GetLastStatus();
 
-        // now download the file locally
-        if (m_downloader.Download(Url, downloadPath))
+        // check the response code
+        if (QueueDownload::IsBadResponseCode(responseCode))
             {
-            m_downloadedFiles.insert(downloadPath);
+            wxLogWarning(L"%s: unable to connect to page, error code #%i (%s).",
+                        Url, responseCode, QueueDownload::GetResponseMessage(responseCode));
             }
-        else
-            {
-            wxLogWarning(L"Unable to write to %s", downloadPath);
-            downloadPath.clear();
-            }
+        downloadPath.clear();
         }
 
     return downloadPath;
@@ -476,7 +470,7 @@ bool WebHarvester::ReadWebPage(wxString& Url, wxString& webPageContent, wxString
         Url = m_downloader.GetLastUrl();
         /* Convert from the file's charset to the application's charset.
            Try to get it from the response header first because that is more
-           accurate when the file is really UTF8 but the designer put something like
+           accurate when the file is really UTF-8 but the designer put something like
            8859-1 in the meta section. If that fails, then read the meta section.*/
         wxString charSet = GetCharsetFromContentType(contentType);
         if (charSet.empty())
@@ -500,6 +494,12 @@ bool WebHarvester::ReadWebPage(wxString& Url, wxString& webPageContent, wxString
             webPageContent = Wisteria::TextStream::CharStreamToUnicode(
                 &m_downloader.GetLastRead()[0], m_downloader.GetLastRead().size(), charSet);
             }
+        }
+    else
+        {
+        responseCode = 204;
+        wxLogWarning(L"'%s': connection successful, but no content was read.", Url);
+        return false;
         }
 
     return true;
@@ -803,7 +803,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
         {
         pageIsHtml = false;
         }
-    else if (IsWebPageExtension(fileExt))
+    else if (IsWebPageExtension(fileExt.wc_str()))
         {
         pageIsHtml = true;
         }
@@ -849,7 +849,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
         /* If not a known "regular" file extension (e.g., PDF) or a webpage extension (e.g., HTML),
            then figure out its type. If a webpage, then crawl it or see if it is a type of file that
            we want to download.*/
-        if (IsWebPageExtension(fileExt) ||
+        if (IsWebPageExtension(fileExt.wc_str()) ||
             html_utilities::html_url_format::is_url_top_level_domain(fullUrl))
             {
             CrawlLinks(fullUrl, html_utilities::hyperlink_parse::hyperlink_parse_method::html);
