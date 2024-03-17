@@ -23,6 +23,7 @@ std::set<is_double_word_exception::string_type>
         L"ho",       // "Ho ho ho," said Santa
         L"Sapiens",  // Homo Sapiens Sapiens is modern humans (subspecies of Homo Sapiens)
         L"Hool",     // from a Chief Joseph speech
+        L"la",       // La La Land
         L"Leng",     // common name to appear doubled
         L"log",      // log-log function in math
         L"long",     // long long integers
@@ -30,6 +31,7 @@ std::set<is_double_word_exception::string_type>
         L"no",       // "Using C macros in new code is a no no!"
         L"now",      // "now now, take it easy"
         L"Pago",     // capital of American Samoa
+        L"pee",
         L"plus",     // C plus plus (it sometimes gets spelled out like this)
         L"sie",      // German word that can be repeated
         L"sigma",    // Sigma Sigma is a fraternity at U. of Cincinnati
