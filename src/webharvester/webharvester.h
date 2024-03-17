@@ -49,15 +49,32 @@ class WebPageExtension
         @param extension The file extension to review.*/
     [[nodiscard]]
     inline bool
-    operator()(const wchar_t* extension) const
+    operator()(std::wstring_view extension) const
         {
         // any sort of PHP page (even without the extension PHP) will follow this syntax
-        if (std::wcschr(extension, L'?') && std::wcschr(extension, L'='))
+        if (extension.find(L'?') != std::wstring_view::npos &&
+            extension.find(L'=') != std::wstring_view::npos)
             {
             return true;
             }
-        return (m_knownRegularFileExtensions.find(extension) !=
+        return (m_knownRegularFileExtensions.find(extension.data()) !=
                 m_knownRegularFileExtensions.cend());
+        }
+
+    /** @returns @c true if @c extension is a dynamic webpaaage extension.
+        @param extension The file extension to review.*/
+    [[nodiscard]]
+    inline bool
+    IsDynamicExtension(std::wstring_view extension) const
+        {
+        // any sort of PHP page (even without the extension PHP) will follow this syntax
+        if (extension.find(L'?') != std::wstring_view::npos &&
+            extension.find(L'=') != std::wstring_view::npos)
+            {
+            return true;
+            }
+        return (m_knownDynamicExtensions.find(extension.data()) !=
+                m_knownDynamicExtensions.cend());
         }
 
   private:
@@ -65,6 +82,9 @@ class WebPageExtension
         _DT(L"asp"),  _DT(L"aspx"), _DT(L"ca"),    _DT(L"cfm"), _DT(L"cfml"), _DT(L"biz"),
         _DT(L"com"),  _DT(L"net"),  _DT(L"org"),   _DT(L"php"), _DT(L"php3"), _DT(L"php4"),
         _DT(L"html"), _DT(L"htm"),  _DT(L"xhtml"), _DT(L"sgml")
+    };
+    std::set<string_util::case_insensitive_wstring> m_knownDynamicExtensions{
+        _DT(L"asp"),  _DT(L"aspx"), _DT(L"php"), _DT(L"php3"), _DT(L"php4")
     };
     };
 
