@@ -128,6 +128,9 @@ abondoned	abandoned	3
 abondoning	abandoning	3		
 abondons	abandons	3		
 aborigene	aborigine	3		
+abortorium	arboretum	3		
+abortorium's	arboretum's	3		
+abortoriums	arboretums	3		
 abotu	about	3		
 abouta	about a	3		
 aboutit	about it	3		
@@ -811,6 +814,9 @@ along with the fact that	and that	0
 alongside of	alongside (unless proceeding a pronoun)	0		
 alotted	allotted	3		
 alow	allow	3		
+alowance	allowance	3		
+alowance's	allowance's	3		
+alowances	allowances	3		
 alowed	allowed	3		
 alowing	allowing	3		
 alows	allows	3		
@@ -1324,6 +1330,7 @@ architypical	archetypal	3
 archtiecture	architecture	3		
 archtype	archetype	3		
 archtypes	archetypes	3		
+archtypical	archetypical	3		
 archvie	archive	3		
 archvies	archives	3		
 arduous	hard	0		
@@ -1644,6 +1651,9 @@ assisting	aiding, helping	0
 assists	aids, helps	0		
 assit	assist	3		
 assitant	assistant	3		
+assment	assessment	3		
+assment's	assessment's	3		
+assments	assessments	3		
 assocate	associate	3		
 assocated	associated	3		
 assocates	associates	3		
@@ -1814,6 +1824,7 @@ authenticaion's	authentication's	3
 authenticaions	authentications	3		
 authenticaiton	authentication	3		
 authentically	really	0		
+authenticy	authenticity	3		
 authentification	authentication	3		
 auther	author	3		
 authobiographic	autobiographic	3		
@@ -2676,6 +2687,9 @@ cash cow	lucrative product	2
 cash cows	lucrative products	2		
 cash of weapons	caché of weapons	3		
 casion	caisson	3		
+cassification	classification	3		
+cassification's	classification's	3		
+cassifications	classifications	3		
 cast doubt on	challenge, dispute	0		
 casted doubt on	challenged, disputed	0		
 casting doubt on	challenging, disputing	0		
@@ -2749,6 +2763,9 @@ catterpillars	caterpillars	3
 caught by surprise	startled, surprised	0		
 caugt	caught	3		
 cauhgt	caught	3		
+causasian	caucasian	3		
+causasian's	caucasian's	3		
+causasians	caucasians	3		
 cause to happen	cause	0		
 caused to happen	caused	0		
 causes to happen	causes	0		
@@ -4844,6 +4861,7 @@ distrobution	distribution	3
 distrobution's	distribution's	3		
 distrobutions	distributions	3		
 distroying	destroying	3		
+distrubances	disturbances	3		
 distrubution	distribution	3		
 distruction	destruction	3		
 distructive	destructive	3		
@@ -5349,6 +5367,9 @@ engeneering	engineering	3
 engery	energy	3		
 engieneer	engineer	3		
 engieneers	engineers	3		
+engineeer	engineer	3		
+engineeer's	engineer's	3		
+engineeers	engineers	3		
 enging	engine	3		
 enging's	engine's	3		
 engingeering	engineering	3		
@@ -6621,6 +6642,7 @@ giving offense to	offending	0
 giving rise to	causing, leading to, resulting in	0		
 glamourous	glamorous	3		
 glamourously	glamorously	3		
+globl	global	3		
 gloomy	sad	0		
 glpyh	glyph	3		
 glpyhs	glyphs	3		
@@ -6661,6 +6683,7 @@ going to the dogs	deteriorating, falling apart	2
 going to town	doing it excitedly	2		
 gonig	going	3		
 goody two-shoes	an excessively good person	2		
+goofyness	goofiness	3		
 got across	explained, conveyed	0		
 got her act together	got organized	2		
 got her arms around	fully understood	2		
@@ -8079,6 +8102,7 @@ internation	international	3
 internecine	deadly	0		
 internel	internal	3		
 internels	internals	3		
+interntational	international	3		
 interoperatability	interoperability	3		
 interpet	interpret	3		
 interpeted	interpreted	3		
@@ -8493,6 +8517,9 @@ kept up with the joneses	tried to live the lifestyles of one's neighbors	2
 kernal	kernel	3		
 kernal's	kernel's	3		
 kernals	kernels	3		
+keywoard	keyword	3		
+keywoard's	keyword's	3		
+keywoards	keywords	3		
 keywork	keyword	3		
 kick in the pants	motivational push	2		
 kick the bucket	die	2		
@@ -8513,6 +8540,10 @@ king's ransom	large amount of money	2
 kingergarten	kindergarten	3		
 kingergarten's	kindergarten's	3		
 kingergartens	kindergartens	3		
+kneed	knead, need	3		
+kneeded	kneaded, needed	3		
+kneeding	kneading, needing	3		
+kneeds	kneads, needs	3		
 knew the score	understood what is happening	2		
 knifes	knives	3		
 knock it out of the park	do well	2		
@@ -8575,6 +8606,9 @@ lap of luxury	well off lifestyle	2
 larg	large	3		
 larget	largest	3		
 largst	largest	3		
+lasbian	lesbian	3		
+lasbian's	lesbian's	3		
+lasbians	lesbians	3		
 last of all	last	0		
 last resort	last place to turn for help	2		
 last straw	gone too far	2		
@@ -8741,6 +8775,9 @@ literture	literature	3
 litterally	literally	3		
 little by little	gradually	0		
 little iota	iota	0		
+liturature	literature	3		
+liturature's	literature's	3		
+lituratures	literatures	3		
 livley	lively	3		
 llibraries	libraries	3		
 llibrary	library	3		
@@ -9007,6 +9044,9 @@ marketting	marketing	3
 marmelade	marmalade	3		
 marrage	marriage	3		
 marraige	marriage	3		
+Marriot	Marriott	3		
+Marriot's	Marriott's	3		
+Marriots	Marriotts	3		
 marrtyred	martyred	3		
 marryied	married	3		
 marshmellow	marshmallow	3		
@@ -9183,6 +9223,7 @@ mimicing	mimicking	3
 mimick	mimic	3		
 mimicks	mimics	3		
 minature	miniature	3		
+mindfuness	mindfullness	3		
 minerial	mineral	3		
 mingle together	mingle	1		
 mingled together	mingled	1		
@@ -9325,6 +9366,7 @@ montain's	mountain's	3
 montains	mountains	3		
 montanous	mountainous	3		
 Montesorri	Montessori	3		
+monthy	monthly	3		
 monts	months	3		
 mordant	biting, sarcastic	0		
 more power to you	good luck, I fully encourage you	2		
@@ -9488,6 +9530,7 @@ neeed	need	3
 neeeded	needed	3		
 neeeding	needing	3		
 neeeds	needs	3		
+negagtively	negatively	3		
 neglectful	careless	0		
 neglectfully	carelessly	0		
 neglible	negligible	3		
@@ -11546,7 +11589,6 @@ quarantaine	quarantine	3
 quarentine	quarantine	3		
 quarrelsome	cross	0		
 quarry	prey	0		
-que	queue	3		
 queing	queuing	3		
 quering	querying	3		
 querulous	fretful	0		
@@ -11747,6 +11789,9 @@ recieved	received	3
 reciever	receiver	3		
 recieves	receives	3		
 recieving	receiving	3		
+recipeint	recipient	3		
+recipeint's	recipient's	3		
+recipeints	recipients	3		
 recipiant	recipient	3		
 recipiants	recipients	3		
 recipies	recipes	3		
@@ -11789,6 +11834,9 @@ reconnaisance	reconnaissance	3
 reconnaissance	survey	0		
 reconnaissence	reconnaissance	3		
 recontructed	reconstructed	3		
+recource	resource	3		
+recource's	resource's	3		
+recources	resources	3		
 recquired	required	3		
 recrational	recreational	3		
 recrod	record	3		
@@ -12555,6 +12603,9 @@ searchs	searches	3
 seasoned veteran	veteran	0		
 seasoned veterans	veterans	0		
 sebaceous	fatty, greasy	0		
+Sebastain	Sebastian	3		
+Sebastain's	Sebastian's	3		
+Sebastains	Sebastians	3		
 sechedule	schedule	3		
 secheduled	scheduled	3		
 sechedules	schedules	3		
@@ -12618,6 +12669,7 @@ sematic	semantic	3
 sematically	semantically	3		
 sematics	semantics	3		
 semblance	likeness	0		
+semi-transpartent	semi-transparent	3		
 sempahore	semaphore	3		
 sempahores	semaphores	3		
 senarios	scenarios	3		
@@ -13057,6 +13109,7 @@ spritual	spiritual	3
 spurios	spurious	3		
 sqaure	square	3		
 square deal	fair deal	2		
+squiming	squirming	3		
 stablility	stability	3		
 stack on top of each other	stack	0		
 stacked on top of each other	stacked	0		
@@ -13292,6 +13345,7 @@ subsequest	subsequent	3
 subservient	servile	0		
 subsidary	subsidiary	3		
 subsiduary	subsidiary	3		
+subsity	subsidy	3		
 subsquent	subsequent	3		
 subsquently	subsequently	3		
 substace	substance	3		
@@ -14061,7 +14115,7 @@ to being with	to begin with	3
 to explorer the	to explore the	3		
 to generated	to generate, to be generated	3		identifiers;IDs;invalid;strings;valid;values
 to hell in a hand basket	going very badly	2		
-to late	too late	3	mid;subject	charges;fees
+to late	too late	3	early;mid;subject	charges;fees
 to make matters worse	worse yet	0		
 to no avail	unsuccessful	0		
 to provided	to provide	3		
@@ -14253,6 +14307,7 @@ transmitting	sending	0
 transparency	clearness	0		
 transparent	clear	0		
 transparently	clearly	0		
+transpartent	transparent	3		
 transpiration	happening, occurrence	0		
 transpirations	happenings, occurrences	0		
 transpire	take place, happen	0		
@@ -14583,6 +14638,7 @@ usual custom	custom	1
 usually	often	0		
 usualy	usually	3		
 ususally	usually	3		
+Utahns	Utahans	3		
 utalize	utilize	3		
 utililties	utilities	3		
 utililty	utility	3		
@@ -15017,7 +15073,7 @@ we am	we are	3
 we are of the opinion	we believe, we think	0		
 we has	we have	3		
 we herd	we heard	3		
-we here	we hear, we are	3		are
+we here	we hear, we are	3	are	
 we is	we are	3		
 we new	we knew	3		
 we ourselves	we	1		

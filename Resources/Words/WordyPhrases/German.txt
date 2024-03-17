@@ -78,6 +78,9 @@ Kindergarden's	Kindergarten's	3
 Lotharingen	Lothringen	3		
 Lybia	Libya	3		
 Malcom	Malcolm	3		
+Marriot	Marriott	3		
+Marriot's	Marriott's	3		
+Marriots	Marriotts	3		
 Massachusett	Massachusetts	3		
 Massachussets	Massachusetts	3		
 Massachussetts	Massachusetts	3		
@@ -131,11 +134,15 @@ Rockfeller's	Rockefeller's	3
 Rockfellers	Rockefellers	3		
 Russion	Russian	3		
 Sacremento	Sacramento	3		
+Sebastain	Sebastian	3		
+Sebastain's	Sebastian's	3		
+Sebastains	Sebastians	3		
 Sweeden	Sweden	3		
 Sweeden's	Sweden's	3		
 Tolkein	Tolkien	3		
 Ukranian	Ukrainian	3		
 UnitesStates	United States	3		
+Utahns	Utahans	3		
 Vileck	Vilcek	3		
 Vileck's	Vilcek's	3		
 Wallce	Wallace	3		

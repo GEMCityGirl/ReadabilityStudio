@@ -24,6 +24,7 @@ AccessLex
 Accountingfly
 Accra
 Accuplacer
+AccuWeather
 Achaean
 Achalasia
 ACLU
@@ -58,6 +59,9 @@ African
 Africana
 Africanism
 Africanize
+Africanized
+Africanizes
+Africanizing
 Afrika
 Afrikaans
 Afrikaner
@@ -68,6 +72,7 @@ Afrocentrism
 Agerholm
 Agnosia
 Agricola
+AgTech
 Aguascalientes
 Ahlstrom
 Airbender
@@ -151,6 +156,7 @@ Altiplano
 Altra
 Altran
 AlumNet
+AlumniCorps
 Amarillo
 Amastia
 Amati
@@ -175,6 +181,7 @@ Amerindian
 Ameritrade
 Amery
 Ameslan
+Amgen
 Amharic
 Amish
 Ammamaria
@@ -182,6 +189,7 @@ Amman
 Amoco
 Amoxicillin
 Ampex
+Amphotericin
 Amsterdam
 Amtrak
 Amway
@@ -271,6 +279,7 @@ AppImage
 AppleInsider
 Appolonia
 Appomattox
+Appworx
 Apr
 April
 Apriori
@@ -302,6 +311,7 @@ Arbitron
 Arbroath
 Arcadia
 Arcadian
+ArcGIS
 Archaea
 Archean
 Archimedean
@@ -362,6 +372,7 @@ Arveiron
 Aryan
 ASCI
 ASCII
+Aseret
 Asheville
 Ashgabat
 Ashkenazim
@@ -417,6 +428,7 @@ Atreus
 Atria
 Atropa
 Attica
+Atzeret
 au
 Auckland
 Audi
@@ -684,6 +696,7 @@ Biscay
 Biscayne
 Bishkek
 Bishopsgate
+Bishvat
 Bismarck
 Bismark
 Bismol
@@ -772,6 +785,7 @@ Brahman
 Brahmanism
 Brahmaputra
 Brahmin
+BrainFuse
 Braintree
 Branchville
 Brandenburg
@@ -991,6 +1005,7 @@ Carmelite
 Carnitine
 Carolingian
 Carpathian
+Carshare
 Cartagena
 Cartesian
 Carthage
@@ -1127,6 +1142,7 @@ Chiquita
 Chisinau
 Chittagong
 Choctaw
+Chodesh
 Chomsky
 Chongqing
 Chopin
@@ -1211,6 +1227,7 @@ Coleraine
 Coleridge
 Colima
 Collaboratory
+Collegetown
 Collinsville
 Coloboma
 Colombia
@@ -1267,6 +1284,7 @@ Corcovado
 Cordova
 Corel
 Corinthian
+Cornellian
 Cornhill
 Corningware
 Cornish
@@ -1485,6 +1503,7 @@ DirectX
 Disneyland
 District
 Divina
+Diwali
 Dixie
 Dixiecrat
 Dixieland
@@ -1573,6 +1592,7 @@ Ealing
 Earth
 Earthlinks
 Earthman
+Earthrealm
 Easter
 Easterseals
 Easthampstead
@@ -1673,6 +1693,7 @@ Eniwetok
 Enola
 Enoxaparin
 Enron
+EnterpriseWorks
 Entra
 Envermeu
 EnVu
@@ -1724,6 +1745,7 @@ Etchingham
 ETHE
 Ethicon
 EthicsLine
+EthicsPoint
 Ethiopia
 Ethiopian
 Ethiopic
@@ -1774,6 +1796,7 @@ Evanston
 Evansville
 Evenki
 Eventbee
+EventBrite
 Everest
 Everglades
 Evergrande
@@ -2007,6 +2030,7 @@ Gainesville
 Gainsboro
 Gainsborough
 Gaithersburg
+Galaga
 Galapagos
 Galatea
 Galatia
@@ -2032,6 +2056,7 @@ Gambia
 Gambian
 Gameboy
 GameCube
+GameGenie
 Gameloft
 GameSim
 Gameworks
@@ -2061,6 +2086,7 @@ Gazza
 GCC
 Gdansk
 GDB
+Gedalia
 GeekWire
 Gehenna
 Geico
@@ -2174,6 +2200,7 @@ GradReady
 Graffias
 Grainger
 Gramercy
+Grammarly
 Grammy
 Grammys
 Grampian
@@ -2192,6 +2219,7 @@ Greenpeace
 Greenpoint
 Greensboro
 Greensville
+Greenup
 Greenville
 Greenwich
 Gregorian
@@ -2241,6 +2269,8 @@ Guyana
 Guyanese
 Gymnogyps
 Gàidhlig
+Ha'atzmaut
+HaAliyah
 Haas
 Hacktoberfest
 Hadar
@@ -2299,6 +2329,8 @@ Harwell
 Harwich
 Harwilll
 Hasbro
+Hashanah
+HaShoah
 Haslett
 Hastings
 Hatteras
@@ -2315,8 +2347,11 @@ Hawaiian
 Hawaiin
 HawkGrips
 Hayabusa
+Hazelwood
+Hazikaron
 HBO
 HealthEast
+HealthFeed
 HealthNorth
 HealthPill
 HealthSouth
@@ -2497,6 +2532,7 @@ Ikea
 Iliac
 Iliad
 ILLiad
+Illini
 Illinois
 Illinoisan
 Illuminati
@@ -2520,6 +2556,7 @@ Imojean
 Impraise
 Inca
 Incan
+Incheon
 Inchon
 Incio
 Incredibles
@@ -2559,10 +2596,12 @@ InputAccel
 Instagram
 Installshield
 Instapots
+Instaworld
 Instron
 Insureon
 IntelliSense
 Intelsat
+Interfolio
 Intermont
 Intune
 Inuit
@@ -2666,6 +2705,7 @@ Jesuit
 JetBlue
 JetBrains
 JFK
+Jihlavou
 Jima
 Jira
 Jivaro
@@ -2746,6 +2786,7 @@ Karonga
 Kashmir
 Kasson
 Katakana
+Katan
 Kathmandu
 Kauai
 Kawabata
@@ -2852,6 +2893,7 @@ Kremlin
 Kresge
 Kreuzkirche
 Krieger
+Kristallnacht
 Kristian
 Kroc
 Kropotkin
@@ -3123,6 +3165,7 @@ Mahala
 Mahalia
 Maharashtra
 Mahican
+Mahinapua
 Mahtesian
 MaidPro
 MailChimp
@@ -3210,6 +3253,7 @@ Mars
 Marseillaise
 Marseilles
 Marshall
+Marshallese
 Martian
 Martinique
 Marxian
@@ -3368,7 +3412,8 @@ Mimas
 Minecraft
 Mineola
 Minford
-Mingw
+MingW
+MiniTab
 Minnaminnie
 Minneapolis
 Minnesota
@@ -3397,6 +3442,7 @@ MLA
 Mobil
 Mobutu
 Mocksville
+ModelBuilder
 Modesta
 Modestia
 Modesto
@@ -3506,6 +3552,7 @@ MyPillow
 MyPlate
 MyPyramid
 Myrdal
+MyResearch
 Mysore
 MySQL
 Myst
@@ -3608,6 +3655,7 @@ Netflixer
 Netherlander
 Netherlands
 Netherrealm
+NetPrint
 Netscape
 NetSuite
 Nettleton
@@ -3636,6 +3684,7 @@ Newtonsoft
 Newtownabbey
 Nexis
 NexTag
+NextGen
 NF
 NFC
 NFL
@@ -3869,6 +3918,7 @@ Ottoman
 Ouagadougou
 Ouija
 Outbrain
+Outworld
 Overfield
 Owasso
 Owatonna
@@ -3939,6 +3989,7 @@ Parisian
 Parkersburg
 Parkinson
 Parkinsonism
+Parkmobile
 Parkside
 Parkview
 Parroquia
@@ -3988,6 +4039,7 @@ Pepto
 Pereira
 Perfmon
 Periclean
+Perignon
 Permian
 Perrier
 Perrysburg
@@ -4100,6 +4152,7 @@ Polynesian
 Polyuria
 Pomalyst
 Pomerania
+Pomodoro
 Pomona
 Pompe
 Pompeian
@@ -4189,6 +4242,7 @@ Psalms
 Psalter
 pseudoephedrine
 Psychometrika
+Psyonic
 PTA
 PTO
 Ptolemaic
@@ -4200,10 +4254,12 @@ Pueblito
 Pueblo
 Puerto
 Pulitzer
+Punakaiki
 Punjab
 Punjabi
 Punxsutawney
 Purdue
+Purim
 Purina
 Purine
 Puritan
@@ -4241,7 +4297,9 @@ Quebecois
 Quechua
 Queensborough
 Queensland
+Queenstown
 Querétaro
+QuestBridge
 Quetzalcoatl
 Quezon
 QuickBooks
@@ -4311,6 +4369,7 @@ Redis
 Redlands
 Redmond
 Redondo
+RedStorm
 Reebok
 Reedville
 Refugio
@@ -4365,6 +4424,7 @@ Ritalin
 Rittal
 Rittenberg
 Ritz
+Riverdale
 RiverMobile
 Riverview
 Riviera
@@ -4392,6 +4452,7 @@ Rolex
 Rollo
 Rolodex
 Roman
+Romani
 Romania
 Romanian
 Romanist
@@ -4448,6 +4509,7 @@ Sachs
 Sachsen
 Sacramento
 SAFEMap
+SafeU
 Safeway
 Saginaw
 Sagittarius
@@ -4583,6 +4645,7 @@ Secheron
 secobarbital
 Sedgefield
 Sedgemoor
+Sefirah
 Sega
 Segovia
 Seiko
@@ -4613,6 +4676,7 @@ Serbia
 Serbian
 Serengeti
 Seri
+Serionix
 ServiceLink
 ServiceNow
 Servox
@@ -4630,11 +4694,13 @@ Shakespearian
 Shanghai
 Shanghaiing
 Shanweiniao
+Shaolin
 Shapland
 SharePoint
 Sharity
 Sharpsburg
 Shasta
+Shavuot
 Shawnee
 Sheboygan
 Sheepshead
@@ -4642,6 +4708,7 @@ Sheffield
 Sheffielder
 Shelburne
 Sheltand
+Shemini
 Shenandoah
 Sherwood
 Shetland
@@ -4664,6 +4731,8 @@ Shotokan
 Shreveport
 Shrewsbury
 Shropshire
+Shrublands
+Shushan
 Shutterstock
 Shylockian
 Siam
@@ -4685,6 +4754,7 @@ Silica
 Silurian
 Silverado
 Silverlight
+Simchat
 SimCity
 Simmonsville
 SimQuest
@@ -4759,6 +4829,7 @@ Somerset
 Somerton
 Somerville
 Somme
+Songdo
 Songhay
 Sonicbrush
 Soninke
@@ -4836,6 +4907,7 @@ Starbreeze
 Starbucks
 StarKist
 StartWire
+Stata
 StatChat
 Staten
 Statesboro
@@ -4883,6 +4955,7 @@ Sufism
 Sugarbush
 Suiss
 Suisse
+Sukkot
 Sulawesi
 Sulzberger
 Sumatra
@@ -4986,6 +5059,7 @@ Talmudic
 Talmudist
 Tamaulipas
 Tamiflu
+Tammuz
 Tampa
 Tampax
 Tamra
@@ -5045,6 +5119,7 @@ Teignbridge
 Tekken
 Tekmar
 Tektronix
+Telecheck
 Teledyne
 Telefonica
 Telefunken
@@ -5070,6 +5145,7 @@ Terastor
 Teredo
 Terranova
 Tesco
+Teshuva
 Testarossa
 Tet
 Tetris
@@ -5209,6 +5285,7 @@ Trastevere
 Trastuzumab
 Travan
 Traver
+TRAX
 Treadwell
 Treblinka
 Trekkie
@@ -5244,6 +5321,7 @@ Tsimshian
 Tsitsihar
 Tsunematsu
 Tswana
+Tu
 Tuamotu
 Tuareg
 Tuaregs
@@ -5300,6 +5378,7 @@ Tyneside
 Tyrolean
 Tyrosinemia
 Tzeltal
+Tzom
 Tórshavn
 Türkiye
 Ubangi
@@ -5326,6 +5405,7 @@ Ulster
 Ulthar
 Ultima
 Ultrium
+UMail
 Umass
 Umbriel
 UNESCO
@@ -5408,6 +5488,7 @@ Valhalla
 Valina
 Valium
 Valkyrie
+Vallarta
 Vallejo
 Valletta
 Valparaiso
@@ -5444,6 +5525,7 @@ Venezuelan
 Venice
 Venmo
 Venn
+VentureWell
 Venus
 Venusian
 Veracruz
@@ -5698,6 +5780,7 @@ Wininet
 Winnetka
 Winnipeg
 Winsborough
+Winsock
 WinZip
 Wireshark
 Wisc
@@ -5730,6 +5813,7 @@ Wordpad
 Wordpress
 Workington
 Worldatlas
+WorldCat
 WorldCom
 Wrekin
 WritePlacer
@@ -5812,6 +5896,7 @@ Yaroslavl
 Yekaterinburg
 Yellowknife
 Yellowstone
+Yemei
 Yemen
 Yemeni
 Yemenite
@@ -5819,6 +5904,7 @@ Yenisei
 Yenisey
 Yeovil
 Yerevan
+Yerushalayim
 Yggdrasil
 Yiddish
 ying
@@ -5827,6 +5913,7 @@ YMHA
 YMMV
 Yoknapatawpha
 Yokohama
+Yom
 Yonkers
 York
 Yorker
@@ -5857,11 +5944,13 @@ Yunnan
 YWCA
 YWHA
 Zacatecas
+ZagMail
 Zagreb
 Zahara
 Zaibatsu
 Zaire
 Zairian
+Zakynthos
 Zales
 Zambezi
 Zambia
