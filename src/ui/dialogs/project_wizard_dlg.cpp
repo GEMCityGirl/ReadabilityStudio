@@ -99,6 +99,7 @@ ProjectWizardDlg::ProjectWizardDlg(wxWindow* parent, const ProjectType projectTy
     long style /*= wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER*/,
     ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode fileTruncMode /*=
         ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::NoTruncation*/) :
+    m_minDocWordCountForBatch(wxGetApp().GetAppOptions().GetMinDocWordCountForBatch()),
     m_fromFileSelected(wxGetApp().GetAppOptions().GetTextSource() == TextSource::FromFile),
     m_manualSelected(wxGetApp().GetAppOptions().GetTextSource() == TextSource::EnteredText),
     m_testSelectionMethod(static_cast<int>(wxGetApp().GetAppOptions().GetTestRecommendation())),
@@ -399,6 +400,23 @@ void ProjectWizardDlg::CreateControls()
         optionsSizer->Add(m_fileList, 2, wxALIGN_LEFT | wxEXPAND | wxALL,
                           wxSizerFlags::GetDefaultBorder());
 
+        // min word count
+        wxBoxSizer* minDocSizeBoxSizer = new wxBoxSizer(wxHORIZONTAL);
+
+        wxStaticText* minDocSizeLabel =
+            new wxStaticText(page, wxID_STATIC, _(L"Minimum document word count:"),
+                             wxDefaultPosition, wxDefaultSize, wxALIGN_LEFT);
+        minDocSizeBoxSizer->Add(minDocSizeLabel, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT,
+                                wxSizerFlags::GetDefaultBorder());
+
+        wxSpinCtrl* minDocWordCountForBatchSpinCtrl =
+            new wxSpinCtrl(page, wxID_ANY,
+                           std::to_wstring(m_minDocWordCountForBatch),
+                           wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1,
+                           std::numeric_limits<int>::max(), 0);
+        minDocWordCountForBatchSpinCtrl->SetValidator(wxGenericValidator(&m_minDocWordCountForBatch));
+        minDocSizeBoxSizer->Add(minDocWordCountForBatchSpinCtrl, 0, wxALIGN_CENTER_VERTICAL | wxALL, 0);
+
         // random sampling
         wxBoxSizer* randomOptionsSizer = new wxBoxSizer(wxHORIZONTAL);
         m_isRandomSampling = new wxCheckBox(page, ID_RANDOM_SAMPLE_CHECK, _(L"Randomly sample "));
@@ -417,6 +435,8 @@ void ProjectWizardDlg::CreateControls()
             wxALIGN_CENTER_VERTICAL, 0);
 
         pageSizer->Add(optionsSizer, 1, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
+        pageSizer->Add(minDocSizeBoxSizer, 0, wxALIGN_LEFT | wxEXPAND | wxLEFT,
+                       wxSizerFlags::GetDefaultBorder());
         pageSizer->Add(randomOptionsSizer, 0, wxALIGN_LEFT | wxEXPAND | wxALL,
                        wxSizerFlags::GetDefaultBorder());
         }
@@ -1383,6 +1403,7 @@ void ProjectWizardDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
                 }
             }
         }
+
     // if user indicates that the document is non-narrative text that should be fully analyzed, then
     // non-narrative form on the document type page should be selected too
     if (IsFragmentedTextSelected() && IsDocumentTypeSelected() &&

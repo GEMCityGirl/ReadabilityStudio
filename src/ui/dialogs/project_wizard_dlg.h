@@ -75,6 +75,13 @@ class ProjectWizardDlg final : public wxDialog
         return m_isRandomSampling->IsChecked();
         }
 
+    /// @returns The minimum number of words a document must have to be included in the batch.
+    [[nodiscard]]
+    int GetMinDocWordCountForBatch() const noexcept
+        {
+        return m_minDocWordCountForBatch;
+        }
+
     [[nodiscard]]
     int GetRandomSamplePercentage() const
         {
@@ -400,6 +407,8 @@ class ProjectWizardDlg final : public wxDialog
     wxCheckBox* m_isRandomSampling{ nullptr };
     wxSpinCtrl* m_randPercentageCtrl{ nullptr };
     static wxString m_lastSelectedFolder;
+
+    int m_minDocWordCountForBatch;
 
     // text/document entry
     wxTextCtrl* m_filePathEdit{ nullptr };

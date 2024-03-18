@@ -163,6 +163,7 @@ bool BatchProjectDoc::OnCreate(const wxString& path, long flags)
     return wxDocument::OnCreate(path, flags);
     }
 
+//-------------------------------------------------------
 bool BatchProjectDoc::OnNewDocument()
     {
     if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
@@ -1566,9 +1567,11 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                 if (memstream.GetLength())
                     {
                     const std::pair<bool,wxString> extractResult =
-                        (*pos)->ExtractRawText(static_cast<const char*>(
-                            memstream.GetOutputStreamBuffer()->GetBufferStart()),
-                            memstream.GetLength(),
+                        (*pos)->ExtractRawText(
+                            {
+                            static_cast<const char*>(memstream.GetOutputStreamBuffer()->GetBufferStart()),
+                            static_cast<size_t>(memstream.GetLength())
+                            },
                             wxFileName((*pos)->GetOriginalDocumentFilePath()).GetExt());
                     (*pos)->LoadDocumentAsSubProject((*pos)->GetOriginalDocumentFilePath(),
                         extractResult.second, GetMinDocWordCountForBatch() );
@@ -3377,8 +3380,6 @@ void BatchProjectDoc::DisplayCrawfordGraph()
                 get_test_long_name(ReadabilityMessages::CRAWFORD()).c_str());
             view->GetCrawfordGraph()->SetName(GetReadabilityTests().
                 get_test_long_name(ReadabilityMessages::CRAWFORD()).c_str());
-            view->GetCrawfordGraph()->AssignContextMenu(
-                wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
             }
         else
             {
@@ -3484,8 +3485,6 @@ void BatchProjectDoc::DisplayDB2Plot()
                 get_test_long_name(ReadabilityMessages::DANIELSON_BRYAN_2()).c_str());
             view->GetDB2Plot()->SetName(GetReadabilityTests().
                 get_test_long_name(ReadabilityMessages::DANIELSON_BRYAN_2()).c_str());
-            view->GetDB2Plot()->AssignContextMenu(
-                wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
             }
         else
             {
@@ -3610,8 +3609,6 @@ void BatchProjectDoc::DisplayFleschChart()
                 get_test_long_name(ReadabilityMessages::FLESCH()).c_str());
             view->GetFleschChart()->SetName(GetReadabilityTests().
                 get_test_long_name(ReadabilityMessages::FLESCH()).c_str());
-            view->GetFleschChart()->AssignContextMenu(
-                wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
             }
         else
             {
@@ -3711,7 +3708,6 @@ void BatchProjectDoc::DisplayGermanLixGauge()
             view->SetGermanLixGauge(lixGaugeCanvas);
             view->GetGermanLixGauge()->SetLabel(BaseProjectView::GetGermanLixGaugeLabel());
             view->GetGermanLixGauge()->SetName(BaseProjectView::GetGermanLixGaugeLabel());
-            view->GetGermanLixGauge()->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
             }
         else
             {
@@ -3815,7 +3811,6 @@ void BatchProjectDoc::DisplayLixGauge()
                 GetReadabilityTests().get_test_long_name(ReadabilityMessages::LIX()).c_str());
             view->GetLixGauge()->SetName(
                 GetReadabilityTests().get_test_long_name(ReadabilityMessages::LIX()).c_str());
-            view->GetLixGauge()->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
             }
         else
             {
@@ -3955,8 +3950,6 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
                 get_test_long_name(ReadabilityMessages::FRY()).c_str());
             view->GetFryGraph()->SetName(GetReadabilityTests().
                 get_test_long_name(ReadabilityMessages::FRY()).c_str());
-            view->GetFryGraph()->AssignContextMenu(
-                wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
             }
         else
             {
@@ -4030,8 +4023,6 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
                 get_test_long_name(ReadabilityMessages::GPM_FRY()).c_str());
             view->GetGpmFryGraph()->SetName(GetReadabilityTests().
                 get_test_long_name(ReadabilityMessages::GPM_FRY()).c_str());
-            view->GetGpmFryGraph()->AssignContextMenu(
-                wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
             }
         else
             {
@@ -4106,8 +4097,6 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
             view->GetSchwartzGraph()->SetName(
                 GetReadabilityTests().get_test_long_name(
                     ReadabilityMessages::SCHWARTZ()).c_str());
-            view->GetSchwartzGraph()->AssignContextMenu(
-                wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
             }
         else
             {
@@ -4183,8 +4172,6 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
             view->GetFraseGraph()->SetName(
                 GetReadabilityTests().get_test_long_name(
                     ReadabilityMessages::FRASE()).c_str());
-            view->GetFraseGraph()->AssignContextMenu(
-                wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
             }
         else
             {
@@ -4257,8 +4244,6 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
                 get_test_long_name(ReadabilityMessages::RAYGOR()).c_str());
             view->GetRaygorGraph()->SetName(
                 GetReadabilityTests().get_test_long_name(ReadabilityMessages::RAYGOR()).c_str());
-            view->GetRaygorGraph()->AssignContextMenu(
-                wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
             }
         else
             {
@@ -4336,7 +4321,6 @@ void BatchProjectDoc::DisplayBoxPlots()
                     boxPlotCanvas->Hide();
                     boxPlotCanvas->SetLabel(pageLabel);
                     boxPlotCanvas->SetName(pageLabel);
-                    boxPlotCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
                     view->GetBoxPlotView().AddWindow(boxPlotCanvas);
                     }
                 UpdateGraphOptions(boxPlotCanvas);
@@ -4413,7 +4397,6 @@ void BatchProjectDoc::DisplayBoxPlots()
                     boxPlotCanvas->Hide();
                     boxPlotCanvas->SetLabel(pageLabel);
                     boxPlotCanvas->SetName(pageLabel);
-                    boxPlotCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
                     view->GetBoxPlotView().AddWindow(boxPlotCanvas);
                     }
                 UpdateGraphOptions(boxPlotCanvas);
@@ -4501,7 +4484,6 @@ void BatchProjectDoc::DisplayBoxPlots()
                     boxPlotCanvas->Hide();
                     boxPlotCanvas->SetLabel(pageLabel);
                     boxPlotCanvas->SetName(pageLabel);
-                    boxPlotCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
                     view->GetBoxPlotView().AddWindow(boxPlotCanvas);
                     }
                 UpdateGraphOptions(boxPlotCanvas);
@@ -4574,7 +4556,6 @@ void BatchProjectDoc::DisplayBoxPlots()
                     boxPlotCanvas->Hide();
                     boxPlotCanvas->SetLabel(testPos->GetIterator()->get_name().c_str());
                     boxPlotCanvas->SetName(testPos->GetIterator()->get_name().c_str());
-                    boxPlotCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
                     view->GetBoxPlotView().AddWindow(boxPlotCanvas);
                     }
                 UpdateGraphOptions(boxPlotCanvas);
@@ -4646,7 +4627,6 @@ void BatchProjectDoc::DisplayBoxPlots()
                     boxPlotCanvas->Hide();
                     boxPlotCanvas->SetLabel(testPos->GetIterator()->get_name().c_str());
                     boxPlotCanvas->SetName(testPos->GetIterator()->get_name().c_str());
-                    boxPlotCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
                     view->GetBoxPlotView().AddWindow(boxPlotCanvas);
                     }
                 UpdateGraphOptions(boxPlotCanvas);
@@ -4827,7 +4807,6 @@ void BatchProjectDoc::DisplayHistogram(const wxString& name, const wxWindowID Id
             canvas->Hide();
             canvas->SetLabel(name);
             canvas->SetName(name);
-            canvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
             view->GetHistogramsView().AddWindow(canvas);
             }
         UpdateGraphOptions(canvas);
@@ -5309,6 +5288,8 @@ bool BatchProjectDoc::RunProjectWizard(const wxString& path)
 
         wxGetApp().GetAppOptions().SetBatchRandomSamplingSize(wizard->GetRandomSamplePercentage());
         }
+    SetMinDocWordCountForBatch(wizard->GetMinDocWordCountForBatch());
+    wxGetApp().GetAppOptions().SetMinDocWordCountForBatch(wizard->GetMinDocWordCountForBatch());
 
     wxGetApp().GetAppOptions().SetTestRecommendation(wizard->IsDocumentTypeSelected() ?
         TestRecommendation::BasedOnDocumentType :
@@ -6351,7 +6332,6 @@ void BatchProjectDoc::DisplayHardWords()
             wordCloudCanvas->Hide();
             wordCloudCanvas->SetLabel(BaseProjectView::GetWordCloudLabel());
             wordCloudCanvas->SetName(BaseProjectView::GetWordCloudLabel());
-            wordCloudCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
             wordCloudCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
             view->GetWordsBreakdownView().AddWindow(wordCloudCanvas);
             }
