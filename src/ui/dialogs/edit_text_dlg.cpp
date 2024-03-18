@@ -303,7 +303,6 @@ void EditTextDlg::CreateControls()
     m_textEntry = new FormattedTextCtrl(this, wxID_ANY, wxDefaultPosition, wxSize(-1, FromDIP(500)),
                                         wxTE_AUTO_URL | wxTE_PROCESS_TAB);
     m_textEntry->SetMargins(10, 10);
-    m_textEntry->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_TEXT_EDITOR_MENU"));
     if (m_parentDoc != nullptr)
         {
         m_textEntry->SetBackgroundColour(m_parentDoc->GetTextReportBackgroundColor());

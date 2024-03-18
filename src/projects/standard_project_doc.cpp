@@ -1990,7 +1990,6 @@ void ProjectDoc::DisplaySentenceCharts()
             sentenceBoxPlotCanvas->GetTopTitles().push_back(
                 GraphItems::Label(GraphItemInfo(_(L"Sentence-lengths Spread")).Scaling(
                     sentenceBoxPlotCanvas->GetScaling()).Pen(wxNullPen)));
-            sentenceBoxPlotCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
             sentenceBoxPlotCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
             view->GetSentencesBreakdownView().AddWindow(sentenceBoxPlotCanvas);
             }
@@ -2040,7 +2039,6 @@ void ProjectDoc::DisplaySentenceCharts()
             sentenceHistogramCanvas->Hide();
             sentenceHistogramCanvas->SetLabel(BaseProjectView::GetSentenceLengthHistogramLabel());
             sentenceHistogramCanvas->SetName(BaseProjectView::GetSentenceLengthHistogramLabel());
-            sentenceHistogramCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
             sentenceHistogramCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
             view->GetSentencesBreakdownView().AddWindow(sentenceHistogramCanvas);
             }
@@ -2101,7 +2099,6 @@ void ProjectDoc::DisplaySentenceCharts()
             sentenceHeatmapCanvas->SetLabel(BaseProjectView::GetSentenceLengthHeatmapLabel());
             sentenceHeatmapCanvas->SetName(BaseProjectView::GetSentenceLengthHeatmapLabel());
 
-            sentenceHeatmapCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
             sentenceHeatmapCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
             view->GetSentencesBreakdownView().AddWindow(sentenceHeatmapCanvas);
             }
@@ -2169,7 +2166,6 @@ void ProjectDoc::DisplayWordCharts()
             wordBarChartCanvas->GetTopTitles().push_back(GraphItems::Label(
                 GraphItemInfo(_(L"Word Totals (by Category)")).
                 Scaling(wordBarChartCanvas->GetScaling()).Pen(wxNullPen)));
-            wordBarChartCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
             wordBarChartCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
             std::dynamic_pointer_cast<BarChart>(wordBarChartCanvas->GetFixedObject(0, 0))->SetSortable(true);
             std::dynamic_pointer_cast<BarChart>(
@@ -2349,7 +2345,6 @@ void ProjectDoc::DisplayWordCharts()
             histoCanvas->Hide();
             histoCanvas->SetLabel(BaseProjectView::GetSyllableCountsLabel());
             histoCanvas->SetName(BaseProjectView::GetSyllableCountsLabel());
-            histoCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
             histoCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
             const auto wordChartPosition =
                 view->GetWordsBreakdownView().FindWindowPositionById(BaseProjectView::WORD_BREAKDOWN_PAGE_ID);
@@ -2443,7 +2438,6 @@ void ProjectDoc::DisplayWordCharts()
             syllablePieCanvas->Hide();
             syllablePieCanvas->SetLabel(BaseProjectView::GetSyllableCountsLabel());
             syllablePieCanvas->SetName(BaseProjectView::GetSyllableCountsLabel());
-            syllablePieCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
             syllablePieCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
             const auto wordChartPosition =
                 view->GetWordsBreakdownView().FindWindowPositionById(BaseProjectView::WORD_BREAKDOWN_PAGE_ID);
@@ -2499,7 +2493,6 @@ void ProjectDoc::DisplayWordCharts()
             wordCloudCanvas->Hide();
             wordCloudCanvas->SetLabel(BaseProjectView::GetWordCloudLabel());
             wordCloudCanvas->SetName(BaseProjectView::GetWordCloudLabel());
-            wordCloudCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
             wordCloudCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
 
             // place beneath bar charts (if included)
@@ -2578,7 +2571,6 @@ void ProjectDoc::AddCrawfordGraph(const bool setFocus)
         crawfordGraphView->Hide();
         crawfordGraphView->SetLabel(BaseProjectView::GetCrawfordGraphLabel());
         crawfordGraphView->SetName(BaseProjectView::GetCrawfordGraphLabel());
-        crawfordGraphView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
         crawfordGraphView->SetPrinterSettings(*wxGetApp().GetPrintData());
 
         auto crawfordGraph =
@@ -2642,7 +2634,6 @@ void ProjectDoc::AddDB2Plot(const bool setFocus)
         db2PlotView->Hide();
         db2PlotView->SetLabel(BaseProjectView::GetDB2Label());
         db2PlotView->SetName(BaseProjectView::GetDB2Label());
-        db2PlotView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
         db2PlotView->SetPrinterSettings(*wxGetApp().GetPrintData());
 
         auto db2Plot =
@@ -2705,7 +2696,6 @@ void ProjectDoc::AddLixGermanGuage(const bool setFocus)
         lixGaugeView->Hide();
         lixGaugeView->SetLabel(BaseProjectView::GetGermanLixGaugeLabel());
         lixGaugeView->SetName(BaseProjectView::GetGermanLixGaugeLabel());
-        lixGaugeView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
         lixGaugeView->SetPrinterSettings(*wxGetApp().GetPrintData());
 
         auto lixGauge =
@@ -2773,7 +2763,6 @@ void ProjectDoc::AddLixGauge(const bool setFocus)
         lixGaugeView->Hide();
         lixGaugeView->SetLabel(BaseProjectView::GetLixGaugeLabel());
         lixGaugeView->SetName(BaseProjectView::GetLixGaugeLabel());
-        lixGaugeView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
         lixGaugeView->SetPrinterSettings(*wxGetApp().GetPrintData());
 
         auto lixGauge =
@@ -2848,7 +2837,6 @@ void ProjectDoc::AddFleschChart(const bool setFocus)
         fleschChartCanvas->Hide();
         fleschChartCanvas->SetLabel(BaseProjectView::GetFleschChartLabel());
         fleschChartCanvas->SetName(BaseProjectView::GetFleschChartLabel());
-        fleschChartCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
         fleschChartCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
 
         auto fleschChart =
@@ -2950,7 +2938,6 @@ bool ProjectDoc::AddSchwartzTest(const bool setFocus)
         schwartzGraphView->Hide();
         schwartzGraphView->SetLabel(BaseProjectView::GetSchwartzLabel());
         schwartzGraphView->SetName(BaseProjectView::GetSchwartzLabel());
-        schwartzGraphView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
         schwartzGraphView->SetPrinterSettings(*wxGetApp().GetPrintData());
 
         auto schwartzGraph =
@@ -3117,7 +3104,6 @@ bool ProjectDoc::AddFraseTest(const bool setFocus)
         fraseGraphView->Hide();
         fraseGraphView->SetLabel(BaseProjectView::GetFraseLabel());
         fraseGraphView->SetName(BaseProjectView::GetFraseLabel());
-        fraseGraphView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
         fraseGraphView->SetPrinterSettings(*wxGetApp().GetPrintData());
 
         auto fraseGraph = std::make_shared<FraseGraph>(fraseGraphView,
@@ -3253,7 +3239,6 @@ void ProjectDoc::DisplayReadabilityGraphs()
                     GraphItems::Label(
                         GraphItemInfo(_(L"Dolch Word Coverage (%)")).
                         Scaling(coverageBarChartCanvas->GetScaling()).Pen(wxNullPen)));
-                coverageBarChartCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
                 coverageBarChartCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
                 std::dynamic_pointer_cast<BarChart>(coverageBarChartCanvas->GetFixedObject(0, 0))->SetSortable(true);
                 view->GetDolchSightWordsView().AddWindow(coverageBarChartCanvas);
@@ -3401,7 +3386,6 @@ void ProjectDoc::DisplayReadabilityGraphs()
                     GraphItems::Label(
                         GraphItemInfo(_(L"Dolch Word Breakdown")).
                         Scaling(wordBarChartCanvas->GetScaling()).Pen(wxNullPen)));
-                wordBarChartCanvas->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
                 wordBarChartCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
                 std::dynamic_pointer_cast<BarChart>(wordBarChartCanvas->GetFixedObject(0, 0))->SetSortable(true);
                 view->GetDolchSightWordsView().AddWindow(wordBarChartCanvas);
@@ -3760,7 +3744,6 @@ bool ProjectDoc::AddGilliamPenaMountainFryTest(const bool setFocus)
         fryGraphView->Hide();
         fryGraphView->SetLabel(BaseProjectView::GetGilliamPenanMountainFryLabel());
         fryGraphView->SetName(BaseProjectView::GetGilliamPenanMountainFryLabel());
-        fryGraphView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
         fryGraphView->SetPrinterSettings(*wxGetApp().GetPrintData());
 
         auto gFryGraph = std::make_shared<FryGraph>(fryGraphView,
@@ -3934,7 +3917,6 @@ bool ProjectDoc::AddFryTest(const bool setFocus)
         fryGraphView->Hide();
         fryGraphView->SetLabel(BaseProjectView::GetFryLabel());
         fryGraphView->SetName(BaseProjectView::GetFryLabel());
-        fryGraphView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
         fryGraphView->SetPrinterSettings(*wxGetApp().GetPrintData());
 
         auto fryGraph = std::make_shared<FryGraph>(fryGraphView,
@@ -4106,8 +4088,6 @@ bool ProjectDoc::AddRaygorTest(const bool setFocus)
         raygorGraphView->Hide();
         raygorGraphView->SetLabel(BaseProjectView::GetRaygorLabel());
         raygorGraphView->SetName(BaseProjectView::GetRaygorLabel());
-        raygorGraphView->AssignContextMenu(
-            wxXmlResource::Get()->LoadMenu(L"IDM_GRAPH_MENU") );
         raygorGraphView->SetPrinterSettings(*wxGetApp().GetPrintData());
 
         auto raygorGraph = std::make_shared<RaygorGraph>(raygorGraphView,
@@ -5422,7 +5402,6 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 textWindow =
                     new FormattedTextCtrl(view->GetSplitter(), ID, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
                 textWindow->Hide();
-                textWindow->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_TEXT_MENU"));
                 textWindow->SetMargins(10, 10);
                 textWindow->SetLabel(label);
                 textWindow->SetName(label);
@@ -5549,7 +5528,6 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 m_dcTextWindow = new FormattedTextCtrl(view->GetSplitter(),
                     BaseProjectView::DC_WORDS_TEXT_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
                 m_dcTextWindow->Hide();
-                m_dcTextWindow->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_TEXT_MENU"));
                 m_dcTextWindow->SetMargins(10, 10);
                 m_dcTextWindow->SetLabel(_(L"Dale-Chall (Unfamiliar) Report"));
                 m_dcTextWindow->SetName(_(L"Dale-Chall (Unfamiliar) Report"));
@@ -5694,7 +5672,6 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     BaseProjectView::HARRIS_JACOBSON_WORDS_TEXT_PAGE_ID, wxDefaultPosition,
                     wxDefaultSize, wxTE_READONLY);
                 m_hjTextWindow->Hide();
-                m_hjTextWindow->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_TEXT_MENU"));
                 m_hjTextWindow->SetMargins(10, 10);
                 m_hjTextWindow->SetLabel(_(L"Harris-Jacobson (Unfamiliar) Report"));
                 m_hjTextWindow->SetName(_(L"Harris-Jacobson (Unfamiliar) Report"));
@@ -5825,7 +5802,6 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                         new FormattedTextCtrl(view->GetSplitter(), pos->GetIterator()->get_interface_id(),
                                               wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
                     textWindow->Hide();
-                    textWindow->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_TEXT_MENU"));
                     textWindow->SetMargins(10, 10);
                     textWindow->SetLabel(windowLabel);
                     textWindow->SetName(windowLabel);
@@ -6086,7 +6062,6 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     BaseProjectView::LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID, wxDefaultPosition,
                     wxDefaultSize, wxTE_READONLY);
                 textWindow->Hide();
-                textWindow->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_TEXT_MENU"));
                 textWindow->SetMargins(10, 10);
                 textWindow->SetLabel(_(L"Highlighted Report"));
                 textWindow->SetName(_(L"Highlighted Report"));

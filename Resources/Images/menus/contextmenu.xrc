@@ -1,46 +1,5 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <resource version="2.3.0.1" xmlns="http://www.wxwindows.org/wxxrc">
-    <object class="wxMenu" name="IDM_GRAPH_MENU">
-        <object class="wxMenuItem" name="wxID_COPY">
-        </object>
-        <object class="separator">
-        </object>
-        <object class="wxMenuItem" name="wxID_PRINT">
-        </object>
-        <object class="wxMenuItem" name="ID_SAVE_ITEM">
-            <label>Save...</label>
-         </object>
-    </object>
-    <object class="wxMenu" name="IDM_TEXT_MENU">
-        <object class="wxMenuItem" name="wxID_COPY">
-        </object>
-        <object class="wxMenuItem" name="ID_COPY_ALL">
-            <label>Copy All</label>
-         </object>
-        <object class="separator">
-        </object>
-        <object class="wxMenuItem" name="wxID_SELECTALL">
-        </object>
-        <object class="separator">
-        </object>
-        <object class="wxMenuItem" name="wxID_PRINT">
-        </object>
-        <object class="wxMenuItem" name="ID_SAVE_ITEM">
-            <label>Save...</label>
-        </object>
-    </object>
-    <object class="wxMenu" name="IDM_TEXT_EDITOR_MENU">
-        <object class="wxMenuItem" name="wxID_CUT">
-        </object>
-        <object class="wxMenuItem" name="wxID_COPY">
-        </object>
-        <object class="wxMenuItem" name="wxID_PASTE">
-        </object>
-        <object class="separator">
-        </object>
-        <object class="wxMenuItem" name="wxID_SELECTALL">
-        </object>
-    </object>
     <object class="wxMenu" name="IDM_READABILITY_SCORE_LIST">
         <object class="wxMenuItem" name="wxID_COPY">
         </object>
