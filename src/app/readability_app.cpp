@@ -2113,10 +2113,6 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
                     wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
                     _(L"Copy the report."));
-                editButtonBar->AddButton(wxID_SELECTALL,
-                    _(L"Select All"),
-                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
-                    _(L"Select All"));
                 }
             // explanation list control
                 {
@@ -2221,10 +2217,6 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                     _(L"Copy"),
                     wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
                     _(L"Copy"));
-                editButtonBar->AddButton(wxID_SELECTALL,
-                    _(L"Select All"),
-                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
-                    _(L"Select All"));
                 }
             // bar chart panel
                 {
@@ -5256,8 +5248,11 @@ void MainFrame::OnToolsChapterSplit([[maybe_unused]] wxRibbonButtonBarEvent& eve
             MemoryMappedFile filemap(dialog.GetPath(), true, true);
             BaseProject project;
             auto extractedResult =
-                project.ExtractRawText(static_cast<const char*>(filemap.GetStream()), filemap.GetMapSize(),
-                                       wxFileName(dialog.GetPath()).GetExt());
+                project.ExtractRawText(
+                    {
+                    static_cast<const char*>(filemap.GetStream()), static_cast<size_t>(filemap.GetMapSize())
+                    },
+                    wxFileName(dialog.GetPath()).GetExt());
             if (extractedResult.first)
                 { cSplit.SplitIntoChapters(extractedResult.second.wc_str()); }
             else
