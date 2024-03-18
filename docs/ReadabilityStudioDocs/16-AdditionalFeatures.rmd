@@ -101,14 +101,16 @@ While it is running, *Readability Studio* logs various diagnostic information. T
 - Warnings and errors encountered while performing analyses
 - The paths of documents being analyzed (verbose mode only)
 - Information about the operating system (e.g., OS version, default font, etc.)
+- Version information about various libraries used by the program
 
-Logging behavior is controlled by either the [command line](#command-line-options) or by holding down the `r keys("Shift")` (`r os_logo('windows')`) or `r keys("\\shift")` (`r os_logo('apple')`) button on your keyword while the program starts.
+Logging behavior is controlled by the [command line](#command-line-options), the **Verbose** button on the **Log Report** dialog, or by holding down the `r keys("Shift")` (`r os_logo('windows')`) or `r keys("\\shift")` (`r os_logo('apple')`) button on your keyword while the program starts.
 Holding `r keys("Shift")` (`r os_logo('windows')`) or `r keys("\\shift")` (`r os_logo('apple')`) instructs the program to:
 
 -   Use maximum, verbose logging
--   Append to an existing log report (the default behavior is to clear the log file every time the program starts)
+-   Append to the previous log report (the default behavior is to clear the log file every time the program starts)
 
-To view this diagnostic information, go to the **Tools** tab on the ribbon, then click **Log Report** under the **Tools & Settings** section. From the **Log Report** dialog, you can review, save, and print this information.
+To view this diagnostic information, go to the **Tools** tab on the ribbon, then click **Log Report** under the **Tools & Settings** section.
+From the **Log Report** dialog, you can review, save, and print this information.
 
 The messages in this report are displayed such that:
 

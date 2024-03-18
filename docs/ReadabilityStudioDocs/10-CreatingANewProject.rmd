@@ -127,9 +127,15 @@ To add an individual web page to the project, click the `r keys("Add web page")`
 
 You can also select local files to include in the project. Click the `r keys("Add file(s)")` button and then select the file(s) that you want to include.
 
-As you add files to the project, you can also include a helpful description next to any file. Double click in the **Description** column next to any filename, and then type a description to be attached to that file. When the batch project is loaded, this description will appear in any results window that displays filenames. (Note that for some file formats, the program will fill this field with the document's subject or title information if you leave it blank.)
+As you add files to the project, you can also include a helpful description next to any file. Double click in the **Description** column next to any filename, and then type a description to be attached to that file.
+When the batch project is loaded, this description will appear in any results window that displays filenames. (Note that for some file formats, the program will fill this field with the document's subject or title information if you leave it blank.)
 
-After you have selected your files, you can randomly sample a subset of these documents for your project. Normally, you will want to analyze all the documents that you have selected and ignore this feature. However, some research projects may require random sampling. For these situations, check the **Randomly sample** option and enter the percentage of documents to analyze.
+After you have selected your files, you can randomly sample a subset of these documents for your project.
+Normally, you will want to analyze all the documents that you have selected and ignore this feature. However, some research projects may require random sampling.
+For these situations, check the **Randomly sample** option and enter the percentage of documents to analyze.
+
+You can also filter documents based on content size. Enter into the field **Minimum document word count** the minimum number of words a document must have to be included in the batch.
+Any document which does not meet this threshold will be ignored during import.
 
 ![](images/randomsample.png)
 
