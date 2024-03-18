@@ -1087,12 +1087,10 @@ public:
     /** @returns A @c true value and raw/encoded text converted into a
             filtered string on success, @c false and empty string otherwise.
         @param sourceFileText The encoded text to filter.
-        @param streamSize The size of the text stream.
         @param fileExtension The file's extension.*/
     [[nodiscard]]
     std::pair<bool,wxString> ExtractRawText(
-        const char* sourceFileText,
-        const size_t streamSize, const wxString& fileExtension);
+        std::string_view sourceFileText, const wxString& fileExtension);
 
     [[nodiscard]]
     const double& GetUnusedDolchConjunctions() const noexcept
