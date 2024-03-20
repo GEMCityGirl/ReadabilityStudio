@@ -315,7 +315,23 @@ When *Readability Studio* encounters a hyphenated word at the end of a line, it 
 
 With the above example, *Bus-iness* will be recognized as *Business*. In contrast, *Point-of-Sale* will remain as a hyphenated compound word because *PointofSale* is not a known word.
 
-## Option Changes that Require Reanalyzing the Document
+## Special Characters
+
+When a *%* is proceeded by a space, the program will check if the character
+before the space is a number.
+If it is, then the *%* will be joined with the proceeding word; otherwise, it will
+be treated as the start of a new word.
+Consider the following:
+
+::: {.fancyquotes data-latex=''}
+What *%* of viewers enjoyed the film *Prometheus*?
+From my independent survey, over *95 %* of respondents said that they did.
+:::
+
+In the above example, the first *%* will be counted as a word. The second one will be
+combined to create the word *95 %*.
+
+## Option Changes that Require Reanalysis
 
 When changing the options of a project (either from the ribbon or **Project Properties** dialog), most changes can be applied without the program needing to analyze the document again. For example, changing graph options or adding a test will process immediately, without the program needing to refresh the rest of the results. This is helpful when working with large documents or batch projects that may take some time to process.
 

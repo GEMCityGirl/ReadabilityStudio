@@ -68,8 +68,8 @@
 - Aggressive exclusion will now exclude:
   - sentences that end with a semicolon at the end of a line.
   - sentences that contain only one word that end with a colon at the end of a line.
-- Lone '%' characters (unless proceeded by a number) are now treated as whole words (rather than punctuation).
-- If '%', '¢', or '°' characters are proceeded by a number, then they will now be connected to the previous word.
+- Lone *%* characters (unless proceeded by a number) are now treated as whole words (rather than punctuation).
+- If *%*, *¢*, or *°* characters are proceeded by a number, then they will now be connected to the previous word.
 - Custom-test formulas can now contain C/C++ style comments.
   This includes multi-line (text inside of `/*` and `*/`) and single-line (`//`) comments.
 - All Words (Condensed) will now exclude more variations of common words.
