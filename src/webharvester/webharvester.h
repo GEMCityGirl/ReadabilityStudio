@@ -547,12 +547,12 @@ class WebHarvester
         // May need to be set if not initialized.
         // Needs to be initialized here because wxGetOsDescription()
         // can't be called during global startup.
-        // Note that we call this a "WebBrowser," although this may not be used
-        // in that context. Using words like "harvester," "crawler," and
-        // "scraper" will actually result in a forbidden response from some sites,
+        // Note that we call this a "WebLion."
+        // Using words like "harvester," "crawler," "scraper," and
+        // even "browser" will result in a forbidden response from some sites,
         // so avoid using those words.
         return (m_userAgent.empty() ?
-            _DT(L"Mozilla/5.0 (") + wxGetOsDescription() + _DT(L") WebKit/12.0 WebBrowser") :
+            _DT(L"Mozilla/5.0 (") + wxGetOsDescription() + _DT(L") WebKit/12.0 WebLion") :
             m_userAgent);
         }
 
