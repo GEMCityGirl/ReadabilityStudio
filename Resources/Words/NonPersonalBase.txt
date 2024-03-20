@@ -14,6 +14,8 @@ Aborigine
 Abuja
 Abyssinia
 Abyssinian
+AcademicBlue
+AcademicLiveCare
 Acadia
 Acalog
 Acapulco
@@ -193,6 +195,7 @@ Amphotericin
 Amsterdam
 Amtrak
 Amway
+Amwell
 Anabaptist
 Anaheim
 Ananias
@@ -277,6 +280,7 @@ Appia
 Appian
 AppImage
 AppleInsider
+ApplyTexas
 Appolonia
 Appomattox
 Appworx
@@ -398,6 +402,7 @@ Astrakhan
 Astrix
 Astro
 Astro's
+Astrodome
 Astros
 Asturias
 Asunción
@@ -676,6 +681,7 @@ Bidenomics
 Bienville
 BigSun
 Biionix
+Bikeep
 Bilbao
 Bilharzia
 Bilharziasis
@@ -722,9 +728,12 @@ Bloomingdale
 Bloomington
 Bloomville
 Blu-ray
+BlueCross
+BlueShield
 Bluesky
 Bluetooth
 Bluffton
+Blytheville
 BMW
 BNFL
 BoardDocs
@@ -1145,6 +1154,7 @@ Choctaw
 Chodesh
 Chomsky
 Chongqing
+ChooseEnergy
 Chopin
 Chorley
 Chris
@@ -1256,6 +1266,7 @@ Compuware
 Comte
 Comté
 Conakry
+Concentra
 Concord
 Conda
 Confucian
@@ -1305,6 +1316,7 @@ Costco
 Cote
 Cotonou
 Cotopaxi
+Cougarnet
 Coupar
 Couperin
 Coursera
@@ -1457,6 +1469,7 @@ Delft
 Delhi
 Deloitte
 Delphi
+Delphian
 Delphic
 Delport
 Deltek
@@ -1634,6 +1647,7 @@ Ediva
 Edmonton
 Edmundsbury
 Edsel
+EduBirdie
 Edwardian
 Edwardsville
 EFLAW
@@ -1741,6 +1755,7 @@ Esty
 Estée
 Eswatini
 Etables-sur-Mer
+eTASFA
 Etchingham
 ETHE
 Ethicon
@@ -2009,11 +2024,13 @@ Fujiyama
 Fukuoka
 Fukushima
 Fulani
+Fulbrighter
 Funafuti
 Fundy
 Furigana
 Fushun
 Futuna
+Futurama
 Fuzhou
 Fuzzbuster
 GA
@@ -2219,6 +2236,7 @@ Greenpeace
 Greenpoint
 Greensboro
 Greensville
+Greentown
 Greenup
 Greenville
 Greenwich
@@ -2560,6 +2578,7 @@ Incheon
 Inchon
 Incio
 Incredibles
+IncuCyte
 Incus
 Ind
 India
@@ -2589,6 +2608,7 @@ Initech
 Initrode
 Inkscape
 Inno
+InnovateMass
 Innovu
 Innsbruck
 Inola
@@ -3161,6 +3181,7 @@ Magna
 Magnitogorsk
 Magnuson
 Magstar
+Mahagonny
 Mahala
 Mahalia
 Maharashtra
@@ -3199,6 +3220,7 @@ Mali
 Malia
 Malian
 Malibu
+Malpais
 Malta
 Maltese
 Malthusian
@@ -3268,6 +3290,7 @@ Maseru
 Masonic
 Massachusetts
 MasterCard
+Matarangi
 Matchup
 Mathematica
 Mathematik
@@ -3304,6 +3327,7 @@ Meadowbrook
 Meadowlands
 Mecca
 Mecklenburg
+MedExpress
 Medford
 Medicaid
 MedicAlert
@@ -3423,6 +3447,7 @@ Minoan
 Minolta
 Minos
 Minsk
+MinuteClinic
 Miskatonic
 MISRA
 Mississinawa
@@ -3545,6 +3570,7 @@ Muslim
 Muzak
 Myanmar
 MyChart
+Mykonos
 Mylanta
 Mylar
 MyLearning
@@ -3557,6 +3583,7 @@ Mysore
 MySQL
 Myst
 Mythbots
+myUH
 Myxomata
 México
 München
@@ -3611,6 +3638,7 @@ Nauru
 Navaho
 Navajo
 Navex
+Naviance
 Navidad
 Nayarit
 Naypyidaw
@@ -3700,6 +3728,7 @@ Nicaean
 Nicaragua
 Nicaraguan
 Nickelback
+Nicolet
 Nicosia
 Nicotera
 Niedersachsen
@@ -4224,11 +4253,13 @@ Pronethalol
 Prophetstown
 Propranolol
 ProPublica
+ProQuest
 Proseware
 Prospurly
 Protech
 Proteus
 Provence
+ProVerifier
 Providence
 Proxima
 Proxmire
@@ -4387,6 +4418,7 @@ Renfrewshire
 Reno
 Rensselaer
 Renville
+ResearchGate
 Respironics
 Resveratrol
 RETA
@@ -4523,6 +4555,7 @@ Salesforce
 Saleve
 Salford
 Salisbury
+SallieMae
 Sallisaw
 Salpingo
 Salvador
@@ -4637,6 +4670,7 @@ Scroggins
 Scutellaria
 Scythia
 Seabrook
+SeaDeep
 Seagram
 Sears
 Seattle
@@ -4923,6 +4957,7 @@ Stockport
 Stonehenge
 Stoneleigh
 Stonemill
+StormReady
 Stornoway
 Storyworks
 Stourbridge
@@ -5325,6 +5360,7 @@ Tu
 Tuamotu
 Tuareg
 Tuaregs
+Tubi
 Tucson
 Tucuman
 Tue
@@ -5402,6 +5438,7 @@ Ulaanbaatar
 Ulan
 ULifeline
 Ulster
+Ulta
 Ulthar
 Ultima
 Ultrium
@@ -5444,6 +5481,7 @@ Urbana
 Urbano
 Urbanus
 Urdu
+Urinetown
 Uris
 Uruguay
 Uruguayan
@@ -5517,6 +5555,7 @@ Velcade
 Velcro
 Velpeau
 Velveeta
+Venera
 Venetia
 Venetian
 Venezia
@@ -5548,6 +5587,7 @@ Vevay
 Viacom
 Viagra
 Vibramycin
+Vibratone
 Vichy
 Vicksburg
 Victoria
@@ -5732,6 +5772,8 @@ Westworld
 WetJet
 WeWork
 WFF
+Whangarei
+Whangārei
 Wharton
 WhatsApp
 Wheaties
@@ -5761,6 +5803,7 @@ Wii
 WikiLeaks
 Wikimedia
 Wikipedia
+Wikiquote
 Wikisource
 Wilberforce
 Wilberforcean
@@ -5794,6 +5837,7 @@ WNW
 WO
 Wokingham
 Wolfenstein
+Wolffest
 Wolfsonian
 Wolverhampton
 Wonderbox

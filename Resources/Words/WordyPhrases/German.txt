@@ -1,5 +1,10 @@
+AcaemicBlue	AcademicBlue	3		
+AcaemicBlues	AcademicBlues	3		
 Aisian	Asian	3		
 Amercia	America	3		
+Amstberg	Amtsberg	3		
+Amstberg's	Amtsberg's	3		
+Amstbergs	Amtsbergs	3		
 Archimedian	Archimedean	3		
 Athenean	Athenian	3		
 Atheneans	Athenians	3		
@@ -111,6 +116,8 @@ Peloponnes	Peloponnese	3
 Peloponnesus	Peloponnese	3		
 Pennyslvania	Pennsylvania	3		
 Pennyslvania's	Pennsylvania's	3		
+PeopleSfoft	PeopleSoft	3		
+PeopleSfoft's	PeopleSoft's	3		
 Pharoah	Pharaoh	3		
 Pharoah's	Pharaoh's	3		
 Pharoahs	Pharaohs	3		

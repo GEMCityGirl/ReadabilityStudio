@@ -185,6 +185,8 @@ academies	schools	0
 academy	school	0		
 academy's	school's	0		
 acadmic	academic	3		
+AcaemicBlue	AcademicBlue	3		
+AcaemicBlues	AcademicBlues	3		
 accademic	academic	3		
 accademy	academy	3		
 acccept	accept	3		
@@ -977,6 +979,9 @@ amputate	cut off	0
 amputated	cut off	0		
 amputates	cuts off	0		
 amputating	cutting off	0		
+Amstberg	Amtsberg	3		
+Amstberg's	Amtsberg's	3		
+Amstbergs	Amtsbergs	3		
 amung	among	3		
 amunition	ammunition	3		
 amusement	fun	0		
@@ -1099,6 +1104,7 @@ anouncement	announcement	3
 anoymous	anonymous	3		
 anoymously	anonymously	3		
 ansestors	ancestors	3		
+answererd	answered	3		
 antagonist	enemy	0		
 antagonist's	enemy's	0		
 antagonists	enemies	0		
@@ -1107,6 +1113,7 @@ Antartica	Antarctica	3
 Antartica's	Antarctica's	3		
 antecedant	antecedent	3		
 antecedent to	before	0		
+antennaes	antennas	3		
 anterior	front	0		
 anterior to	before	0		
 anthor	another	3		
@@ -1320,6 +1327,9 @@ archiac	archaic	3
 archictect	architect	3		
 archiecture	architecture	3		
 archiectures	architectures	3		
+archietecture	architecture	3		
+archietecture's	architecture's	3		
+archietectures	architectures	3		
 architecht	architect	3		
 architechturally	architecturally	3		
 architechture	architecture	3		
@@ -1642,6 +1652,8 @@ assisnate	assassinate	3
 assist	aid, help	0		
 assistance	help	0		
 assistanship	assistantship	3		
+assistanship's	assistantship's	3		
+assistanships	assistantships	3		
 assistant	helper	0		
 assistant's	helper's	0		
 assistants	helpers	0		
@@ -1796,6 +1808,8 @@ attirbute	attribute	3
 attirbutes	attributes	3		
 attire	dress	0		
 attitide	attitude	3		
+attorny	attorney	3		
+attorny's	attorney's	3		
 attractive	pleasing	0		
 attribue	attribute	3		
 attribue's	attribute's	3		
@@ -2199,6 +2213,8 @@ billling	billing	3
 billon dollars	billion dollars	3		
 billon years	billion years	3		
 binominal	binomial	3		
+biochemsitry	biochemistry	3		
+biochemsitry's	biochemistry's	3		
 biography of her life	her biography	1		
 biography of his life	his biography	1		
 biography of my life	my biography	1		
@@ -2298,6 +2314,7 @@ bogous	bogus	3
 bombardement	bombardment	3		
 bombarment	bombardment	3		
 bona fide	in good faith	0		
+bonafied	bona fide	3		
 bondary	boundary	3		
 bone dry	very dry	2		
 Bonnano	Bonanno	3		
@@ -2800,6 +2817,7 @@ center mangers	center managers	3
 center of attention	focus	0		
 centre manger	centre manager	3		
 centre mangers	centre managers	3		
+centrifuguration	centrifugation	3		
 centruies	centuries	3		
 centruy	century	3		
 centuties	centuries	3		
@@ -3122,6 +3140,7 @@ combinine	combine	3
 combining	joining	0		
 combining together	combining	1		
 combusion	combustion	3		
+combustable	combustible	3		
 comdemnation	condemnation	3		
 come as a disappointment	disappoint	0		
 come as a relief	relief	0		
@@ -3667,6 +3686,9 @@ constuctor	constructor	3
 constuctors	constructors	3		
 constucts	constructs	3		
 consulant	consultant	3		
+consulation	consultation	3		
+consulation's	consultation's	3		
+consulations	consultations	3		
 consultatnt	consultant	3		
 consultatnt's	consultant's	3		
 consultatnts	consultants	3		
@@ -4299,6 +4321,10 @@ delevopp	develop	3
 delevops	develops	3		
 deliberately	on purpose	0		
 deliberatly	deliberately	3		
+deliever	deliver	3		
+delievered	delivered	3		
+delievering	delivering	3		
+delievers	delivers	3		
 delimeter	delimiter	3		
 delimeters	delimiters	3		
 delimters	delimiter	3		
@@ -4935,6 +4961,7 @@ domesticating	taming	0
 domicile	home	0		
 domiciles	homes	0		
 dominaton	domination	3		
+domincal	dominical	3		
 domineer	rule over	0		
 domineered	ruled over	0		
 domineering	ruling over	0		
@@ -5190,6 +5217,7 @@ elicited	drew out, called forth	0
 eliciting	drawing out, calling forth	0		
 elicits	draws out, calls forth	0		
 eligable	eligible	3		
+eligbility	eligibility	3		
 elimentary	elementary	3		
 elimiante	eliminate	3		
 eliminate	cut, drop, end	0		
@@ -5772,6 +5800,9 @@ exilerate	exhilarate	3
 exilerated	exhilarated	3		
 exilerates	exhilarates	3		
 exilerating	exhilarating	3		
+eximer	excimer	3		
+eximer's	excimer's	3		
+eximers	excimers	3		
 exinct	extinct	3		
 exising	existing	3		
 exisiting	existing	3		
@@ -6075,6 +6106,7 @@ feeback's	feedback's	3
 feel the pinch	be affected by adversity	2		
 feeling the pinch	being affected by adversity	2		
 feels the pinch	is affected by adversity	2		
+feets	feet	3		
 felicitous	apt	0		
 felicity	bliss	0		
 fell by the wayside	dropped out of a contest	2		
@@ -6730,8 +6762,6 @@ grahical	graphical	3
 grahpical	graphical	3		
 gramatically	grammatically	3		
 grammaticaly	grammatically	3		
-grammer	grammar	3		
-grammers	grammars	3		
 grandiose	large, huge	0		
 granilarity	granularity	3		
 grapic	graphic	3		
@@ -7171,6 +7201,7 @@ how likes	who likes	3
 howerver	however	3		
 however	but	0		
 howver	however	3		
+hre	her	3		
 hsitorians	historians	3		
 hstory	history	3		
 hten	then	3		
@@ -7230,6 +7261,7 @@ I've heart that	I've heard that	3
 iconclastic	iconoclastic	3		
 idae	idea	3		
 idaes	ideas	3		
+idealic	idyllic	3		
 idealogies	ideologies	3		
 idealogy	ideology	3		
 idenfies	identifies	3		
@@ -7910,6 +7942,7 @@ initalizing	initializing	3
 initally	initially	3		
 initating	initiating	3		
 initation	initiation	3		
+initative	initiative	3		
 initators	initiators	3		
 initiaitive	initiative	3		
 initial	first	0		
@@ -8130,6 +8163,7 @@ interupted	interrupted	3
 interupting	interrupting	3		
 interupts	interrupts	3		
 intervines	intervenes	3		
+intested	interested	3		
 intevene	intervene	3		
 intex	index	3		
 intial	initial	3		
@@ -8651,6 +8685,7 @@ leaves no stone unturned	is thorough	2
 leaves out in the cold	ostracizes, excludes	2		
 leaving no stone unturned	being thorough	2		
 leaving out in the cold	ostracizing, excluding	2		
+ledgible	legible	3		
 left in the lurch	left behind, abandoned	2		
 left no stone unturned	was thorough	2		
 left out in the cold	ostracized, excluded	2		
@@ -9058,6 +9093,10 @@ Massachusett	Massachusetts	3
 Massachussets	Massachusetts	3		
 Massachussetts	Massachusetts	3		
 massive	large	0		
+masterbate	masturbate	3		
+masterbated	masturbated	3		
+masterbates	masturbates	3		
+masterbating	masturbating	3		
 masterbation	masturbation	3		
 masterbation's	masturbation's	3		
 masticate	chew	0		
@@ -9417,6 +9456,8 @@ muliple	multiple	3
 mulitple	multiple	3		
 mulitplied	multiplied	3		
 mult-age	multi-age	3		
+multiciscipline	multidiscipline	3		
+multiciscipline-trained	multidiscipline-trained	3		
 multicultralism	multiculturalism	3		
 multidimensionnal	multidimensional	3		
 multiple	many	0		Myeloma
@@ -10026,6 +10067,7 @@ opportunitites	opportunities	3
 opportunity	chance	0		
 opportuniy	opportunity	3		
 opportuniy's	opportunity's	3		
+opportunties	opportunities	3		
 oppositition	opposition	3		
 oppossed	opposed	3		
 opprobrium	scorn, abuse	0		
@@ -10456,6 +10498,8 @@ penuriously	stingily	0
 peom	poem	3		
 peoms	poems	3		
 peopel	people	3		
+PeopleSfoft	PeopleSoft	3		
+PeopleSfoft's	PeopleSoft's	3		
 peotry	poetry	3		
 peprocessor	preprocessor	3		
 per annum	a year, yearly, for each year	0		
@@ -10994,6 +11038,7 @@ preocupation	preoccupation	3
 prepair	prepare	3		
 prepaired	prepared	3		
 preparation	readiness	0		
+prepardness	preparedness	3		
 preparedness	readiness	0		
 prepartion	preparation	3		
 prepartions	preparations	3		
@@ -12216,6 +12261,8 @@ resembelance	resemblance	3
 resembes	resembles	3		
 resemblance	likeness	0		
 resemblence	resemblance	3		
+reserach	research	3		
+reserach-based	research-based	3		
 reserch	research	3		
 reserch's	research's	3		
 reserched	researched	3		
@@ -12771,6 +12818,9 @@ share in common	share	0
 share together	share	1		
 shared together	shared	1		
 sharing together	sharing	1		
+shcool	school	3		
+shcool's	school's	3		
+shcools	schools	3		
 she am	she is	3		
 she are	she is	3	or	
 she be	she is	3	can;could;couldn't;might;mightn't;or;should;shouldn't;that;will;would;wouldn't	
@@ -12911,6 +12961,7 @@ skirting around	skirting	0
 skirts around	skirts	0		
 sky's the limit	there is no limit	2		
 slashs	slashes	3		
+slatherings	slathering	3		
 slaugterhouse	slaughterhouse	3		
 slaugterhouse's	slaughterhouse's	3		
 slaugterhouses	slaughterhouses	3		
@@ -13094,6 +13145,8 @@ splits hairs	argues over trifle	2
 splitted	split	3		
 splitting hairs	arguing over trifle	2		
 spoace	space	3		
+spoantnous	spontaneous	3		
+spoantnously	spontaneously	3		
 sponser	sponsor	3		
 sponsered	sponsored	3		
 spontanous	spontaneous	3		
@@ -13111,6 +13164,7 @@ sqaure	square	3
 square deal	fair deal	2		
 squiming	squirming	3		
 stablility	stability	3		
+stablished	established	3		
 stack on top of each other	stack	0		
 stacked on top of each other	stacked	0		
 stage manger	stage manager	3		
@@ -14314,6 +14368,9 @@ transpire	take place, happen	0
 transpired	took place, happened	0		
 transpires	takes place, happens	0		
 transpiring	happening, occurring	0		
+transplanatation	transplantation	3		
+transplanatation's	transplantation's	3		
+transplanatations	transplantations	3		
 transporation	transportation	3		
 transtion	transition	3		
 transtions	transitions	3		
@@ -14455,6 +14512,9 @@ underate	underrate	3
 underated	underrated	3		
 undergraduate student	undergraduate	0		
 undergraduate students	undergraduates	0		
+undergradute	undergraduate	3		
+undergradute's	undergraduate's	3		
+undergradutes	undergraduates	3		
 underground subway	subway	1		
 underground subways	subways	1		
 understand of	understanding of	3		

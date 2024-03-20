@@ -1,5 +1,8 @@
 #
 $
+%
+%'s
+%s
 &
 'mongst
 'neath
@@ -1369,6 +1372,9 @@ adaptively
 adaptiveness
 adaptiveness's
 adaptivity
+adaptogen
+adaptogen's
+adaptogens
 adaptor
 adaptors
 adapts
@@ -2491,11 +2497,14 @@ agonizing
 agonizingly
 agony
 agony's
+agora
+agora's
 agoraphobia
 agoraphobia's
 agoraphobias
 agoraphobic
 agoraphobics
+agoras
 agouti
 agranular
 agranulocyte
@@ -2520,6 +2529,7 @@ agreer
 agreer's
 agreers
 agrees
+agri
 agribusiness
 agribusiness's
 agribusinesses
@@ -8680,6 +8690,9 @@ babushkas
 baby
 baby's
 babycare
+babydoll
+babydoll's
+babydolls
 babyhood
 babyhood's
 babyhoods
@@ -9648,6 +9661,7 @@ barbell
 barbell's
 barbells
 barbels
+barbeque
 barbeque's
 barbeques
 barber
@@ -10150,6 +10164,9 @@ bathroom's
 bathroomed
 bathrooms
 baths
+bathtime
+bathtime's
+bathtimes
 bathtub
 bathtub's
 bathtubs
@@ -11124,6 +11141,7 @@ bending
 bendite
 bendite's
 bends
+bendy
 beneath
 benedictine
 benediction
@@ -12097,6 +12115,8 @@ bionic
 bionically
 bionics
 bionics's
+biopharma
+biopharma's
 biopharmaceutical
 biophoto
 biophoto's
@@ -12118,7 +12138,9 @@ biopolymer's
 biopolymers
 bioprocess
 bioprocess's
+bioprocessed
 bioprocesses
+bioprocessing
 bioproduct
 bioproduct's
 bioproducts
@@ -18269,6 +18291,9 @@ carp's
 carpal
 carpal's
 carpals
+carpark
+carpark's
+carparks
 carped
 carpel
 carpel's
@@ -19446,6 +19471,7 @@ centrifugate
 centrifugate's
 centrifugation
 centrifugation's
+centrifugations
 centrifuge
 centrifuge's
 centrifuged
@@ -26905,6 +26931,9 @@ cony
 cony's
 coo
 cooed
+coog
+coog's
+coogs
 cooing
 cook
 cook's
@@ -28617,7 +28646,9 @@ craw
 craw's
 crawdad
 crawdads
+crawfish
 crawfish's
+crawfishes
 crawl
 crawled
 crawler
@@ -30655,6 +30686,9 @@ cytology's
 cytolysis
 cytolysis's
 cytomegalovirus
+cytometer
+cytometer's
+cytometers
 cytometry
 cytopathic
 cytopathy
@@ -34055,6 +34089,10 @@ desolatingly
 desolation
 desolation's
 desolations
+desolvate
+desolvated
+desolvates
+desolvating
 desorption
 desorption's
 despair
@@ -35129,6 +35167,8 @@ diffractions
 diffractometer
 diffractometer's
 diffractometers
+diffractometry
+diffractometry's
 diffracts
 diffs
 diffuse
@@ -35320,6 +35360,7 @@ dilation
 dilation's
 dilations
 dilative
+dilatometry
 dilator
 dilator's
 dilatoriness
@@ -36864,6 +36905,9 @@ disproofs
 disproportion
 disproportion's
 disproportional
+disproportionalities
+disproportionality
+disproportionality's
 disproportionally
 disproportionate
 disproportionated
@@ -37326,6 +37370,7 @@ ditty's
 dittying
 ditz
 ditzes
+ditzy
 diuresis
 diuresis's
 diuretic
@@ -38537,7 +38582,14 @@ dramatizer's
 dramatizers
 dramatizes
 dramatizing
+dramaturg
+dramaturg's
+dramaturge
+dramaturge's
+dramaturges
 dramaturgical
+dramaturgies
+dramaturgs
 dramaturgy
 dramaturgy's
 dramedies
@@ -38724,6 +38776,7 @@ dribbler's
 dribblers
 dribbles
 dribbling
+dribbly
 driblet
 driblet's
 driblets
@@ -39529,6 +39582,9 @@ dynamiting
 dynamized
 dynamo
 dynamo's
+dynamometer
+dynamometer's
+dynamometers
 dynamos
 dynaset
 dynaset's
@@ -40718,6 +40774,7 @@ electrify
 electrifying
 electro
 electro's
+electroacoustic
 electrocardiogram
 electrocardiogram's
 electrocardiograms
@@ -41179,6 +41236,9 @@ embattle
 embattled
 embattles
 embattling
+embayment
+embayment's
+embayments
 embed
 embeddable
 embedded
@@ -44370,6 +44430,9 @@ excavator's
 excavators
 excavatum
 exceed
+exceedance
+exceedance's
+exceedances
 exceeded
 exceeder
 exceeder's
@@ -44684,6 +44747,9 @@ exfiltration
 exfiltration's
 exfiltrations
 exfoliate
+exfoliated
+exfoliates
+exfoliating
 exfoliation
 exhalation
 exhalation's
@@ -44773,6 +44839,7 @@ exile's
 exiled
 exiles
 exiling
+eximer
 exine
 exist
 existant
@@ -46608,6 +46675,8 @@ fauns
 fauvism
 fauvisms
 faux
+fav
+fav's
 fava
 favicon
 favicon's
@@ -46668,6 +46737,7 @@ favouritism
 favouritism's
 favouritisms
 favours
+favs
 fawn
 fawn's
 fawned
@@ -46781,6 +46851,7 @@ feature's
 featured
 featureless
 features
+featuresome
 featuring
 featurization
 featurization's
@@ -47071,6 +47142,9 @@ fermentations
 fermented
 fermenter
 fermenting
+fermentor
+fermentor's
+fermentors
 ferments
 fermion
 fermion's
@@ -48970,6 +49044,9 @@ flourisher's
 flourishes
 flourishing
 flourishingly
+flourometer
+flourometer's
+flourometers
 flours
 floury
 flout
@@ -51997,6 +52074,9 @@ gamekeepers
 gamelab
 gamelab's
 gamelabs
+gamelan
+gamelan's
+gamelans
 gamely
 gameness
 gameness's
@@ -53032,6 +53112,10 @@ geoscientific
 geoscientist
 geoscientist's
 geoscientists
+geosense
+geosensed
+geosenses
+geosensing
 geospatial
 geostationary
 geostrategic
@@ -53564,6 +53648,7 @@ glads
 gladsome
 gladsomer
 gladsomest
+glam
 glamor
 glamor's
 glamored
@@ -54404,6 +54489,8 @@ goodwill's
 goodwills
 goody
 goody's
+gooed
+gooes
 gooey
 goof
 goof's
@@ -54419,6 +54506,7 @@ googlies
 googly
 gooier
 gooiest
+gooing
 goon
 goon's
 goons
@@ -59601,6 +59689,9 @@ homburg's
 homburgs
 home
 home's
+homebase
+homebase's
+homebases
 homebodies
 homebody
 homebody's
@@ -61233,6 +61324,9 @@ hydrogenosome's
 hydrogenosomes
 hydrogenous
 hydrogens
+hydrogeochemistries
+hydrogeochemistry
+hydrogeochemistry's
 hydrogeology
 hydrohalic
 hydroid
@@ -61428,6 +61522,7 @@ hyperaldosteronism
 hyperandrogenism
 hyperandrogenism's
 hyperatomic
+hyperaware
 hyperbaric
 hyperbilirubinemia
 hyperbola
@@ -61582,6 +61677,7 @@ hypersonic
 hypersonics
 hyperspace
 hyperspace's
+hyperspectral
 hypersphere
 hypersphere's
 hyperstimulation
@@ -62363,7 +62459,10 @@ Ilyushin
 image
 image's
 imaged
+imager
+imager's
 imageries
+imagers
 imagery
 imagery's
 images
@@ -65290,6 +65389,9 @@ inkiness
 inkiness's
 inking
 inkings
+inkjet
+inkjet's
+inkjets
 inkling
 inkling's
 inklings
@@ -70423,6 +70525,7 @@ labs
 laburnum
 laburnum's
 laburnums
+labview
 labyrinth
 labyrinth's
 labyrinthine
@@ -70778,6 +70881,8 @@ landfill
 landfilled
 landfilling
 landfills
+landform
+landform's
 landforms
 landhold
 landholder
@@ -71974,6 +72079,10 @@ leotards
 leper
 leper's
 lepers
+lepidoptera
+lepidopteran
+lepidopterans
+lepidopteras
 lepidosaur
 lepidosaur's
 lepidosaurian
@@ -72105,6 +72214,7 @@ leukemia's
 leukemias
 leukemic
 leukemics
+leukemogenesis
 leukemoid
 leukocidin
 leukocidin's
@@ -72406,6 +72516,7 @@ licked
 licker
 licker's
 lickerish
+lickers
 lickety
 licking
 licking's
@@ -73494,6 +73605,9 @@ localisers
 localises
 localising
 localisms
+localist
+localist's
+localists
 localities
 locality
 locality's
@@ -76166,6 +76280,9 @@ markka
 markka's
 markkaa
 marks
+marksheet
+marksheet's
+marksheets
 marksman
 marksman's
 marksmanship
@@ -76463,6 +76580,8 @@ masted
 master
 master's
 masterclass
+masterclass's
+masterclasses
 mastered
 masterful
 masterfully
@@ -76528,6 +76647,9 @@ masturbating
 masturbation
 masturbation's
 masturbations
+masturbator
+masturbator's
+masturbators
 masturbatory
 mat
 mat's
@@ -78456,6 +78578,11 @@ microarchitectures
 microarcsec
 microarray
 microarrays
+microbalance
+microbalance's
+microbalanced
+microbalances
+microbalancing
 microbe
 microbe's
 microbenchmark
@@ -79580,6 +79707,9 @@ minivan
 minivans
 miniver
 miniver's
+minivid
+minivid's
+minivids
 miniwords
 mink
 mink's
@@ -80547,6 +80677,9 @@ mockingbird's
 mockingbirds
 mockingly
 mocks
+mocktail
+mocktail's
+mocktails
 mockumentary
 mockumentary's
 mockumentarys
@@ -82269,6 +82402,7 @@ mulish
 mulishly
 mulishness
 mulishness's
+mulitcore
 mull
 mullah
 mullah's
@@ -82382,6 +82516,7 @@ multifunction
 multifunctional
 multifunctionally
 multifunctioned
+multigas
 multigenerational
 multigenic
 multilanguage
@@ -83381,6 +83516,10 @@ nanofibers
 nanofibers'
 nanogram
 nanograms
+nanoimprint
+nanoimprinted
+nanoimprinting
+nanoimprints
 nanomanufacturing
 nanomaterial
 nanomaterial's
@@ -84389,6 +84528,7 @@ neurofibromatosis
 neurofilaments
 neurogenerative
 neurogenesis
+neurogenetics
 neurogenic
 neuroglia
 neuroglial
@@ -84400,6 +84540,7 @@ neuroimagine
 neuroimagined
 neuroimagines
 neuroimaging
+neuroimmune
 neuroinvasive
 neuroleptic
 neurologic
@@ -85305,6 +85446,9 @@ nonchalantly
 nonchalantness
 nonchargeable
 nonchemical
+noncitizen
+noncitizen's
+noncitizens
 nonclassical
 nonclerical
 nonclericals
@@ -86311,9 +86455,13 @@ notepaper's
 notepapers
 noter
 notes
+notetake
+notetaked
 notetaker
 notetaker's
 notetakers
+notetakes
+notetaking
 noteworthies
 noteworthiness
 noteworthiness's
@@ -87822,10 +87970,18 @@ olé
 om
 Omagh
 omasum
+ombud
+ombud's
+ombuds
 ombudsman
 ombudsman's
 ombudsmen
 ombudsperson
+ombudsperson's
+ombudspersons
+ombudswoman
+ombudswoman's
+ombudswomen
 Omdurman
 omega
 omega's
@@ -88025,6 +88181,9 @@ oocyte
 oocytes
 oodles
 oogenesis
+oogle
+oogle's
+oogles
 oogonia
 oogonium
 ooh
@@ -90966,6 +91125,8 @@ paleographies
 paleography
 paleography's
 paleolithic
+paleomagnetic
+paleomagnetics
 paleontological
 paleontologies
 paleontologist
@@ -91337,6 +91498,8 @@ pants
 pantsuit
 pantsuit's
 pantsuits
+panty
+panty's
 pantyhose
 pantyliner
 pantywaist
@@ -94607,6 +94770,7 @@ pharmacotherapy
 pharmacotherapy's
 pharmacy
 pharmacy's
+pharmD
 pharyngeal
 pharyngeals
 pharynges
@@ -95006,6 +95170,7 @@ photocopies
 photocopy
 photocopy's
 photocopying
+photocurrent
 photodegrading
 photodetector
 photodynamic
@@ -95033,6 +95198,9 @@ photogate's
 photogates
 photogenic
 photogenically
+photogrammetries
+photogrammetry
+photogrammetry's
 photograph
 photograph's
 photographed
@@ -95068,6 +95236,9 @@ photoletters
 photolithoautotroph
 photolithoautotroph's
 photolithoautotrophs
+photolithographies
+photolithography
+photolithography's
 photolithotroph
 photolithotroph's
 photolithotrophs
@@ -95345,6 +95516,8 @@ piazzas
 pibroch
 pibroch's
 pibrochs
+pic
+pic's
 pica
 pica's
 picador
@@ -95435,6 +95608,7 @@ picots
 picowave
 picowave's
 picowaves
+pics
 pict
 pict's
 pictogram
@@ -95695,6 +95869,7 @@ pillowing
 pillows
 pillowslip
 pillowslips
+pillowy
 pills
 piloerection
 pilonidal
@@ -98202,6 +98377,9 @@ position
 position's
 positionable
 positional
+positionalities
+positionality
+positionality's
 positionally
 positioned
 positioning
@@ -98258,6 +98436,9 @@ possum's
 possums
 post
 post's
+post-vention
+post-vention's
+post-ventions
 postabsorptive
 postaction
 postaction's
@@ -98271,6 +98452,9 @@ postanal
 postarrival
 postarrival's
 postarrivals
+postbaccalaureate
+postbaccalaureate's
+postbaccalaureates
 postbachelor
 postbachelor's
 postbachelors
@@ -98413,6 +98597,7 @@ postpones
 postponing
 postpositions
 postprandial
+postpresidential
 postrema
 postremission
 postretirement
@@ -98449,6 +98634,9 @@ posturer's
 postures
 posturing
 posturings
+postvention
+postvention's
+postventions
 postvocalic
 postwar
 postzygotic
@@ -98817,6 +99005,8 @@ prayed
 prayer
 prayer's
 prayerbook
+prayerbook's
+prayerbooks
 prayerful
 prayerfully
 prayerfulness
@@ -105287,6 +105477,10 @@ rebels
 rebid
 rebidding
 rebids
+rebill
+rebilled
+rebilling
+rebills
 rebind
 rebinding
 rebinds
@@ -109716,6 +109910,7 @@ retrospectives
 retrospects
 retrosternal
 retroversion
+retroviral
 retrovirus
 retroviruses
 retrovision
@@ -111094,6 +111289,10 @@ roisters
 Roldan
 role
 role's
+roleplay
+roleplayed
+roleplaying
+roleplays
 roles
 Roley
 roll
@@ -119130,6 +119329,7 @@ slivered
 slivering
 slivers
 slivery
+slo-mo
 slob
 slob's
 slobber
@@ -119152,6 +119352,7 @@ slogans
 slogged
 slogging
 slogs
+slomo
 sloop
 sloop's
 sloops
@@ -121757,10 +121958,14 @@ spiels
 spier
 spier's
 spies
+spiff
+spiffed
 spiffied
 spiffier
 spiffies
 spiffiest
+spiffing
+spiffs
 spiffy
 spiffying
 spigot
@@ -121856,6 +122061,9 @@ spinoffs
 spinosum
 spinothalamic
 spinous
+spinout
+spinout's
+spinouts
 spins
 spinster
 spinster's
@@ -126347,6 +126555,9 @@ sugillate
 Suharto
 Sui
 suicidal
+suicidalities
+suicidality
+suicidality's
 suicidally
 suicide
 suicide's
@@ -126580,7 +126791,10 @@ sumptuousnesses
 sums
 sun
 sun's
+sunbake
 sunbaked
+sunbakes
+sunbaking
 sunbath
 sunbathe
 sunbathed
@@ -129471,6 +129685,7 @@ Tay
 Tayside
 Tb
 TBA
+tbd
 Tbilisi
 tbs
 tbsp
@@ -129644,6 +129859,7 @@ technocracy's
 technocrat
 technocratic
 technocrats
+technocultural
 technoeconomic
 technoeconomical
 technoeconomically
@@ -130063,6 +130279,7 @@ temporariness
 temporariness's
 temporarinesses
 temporary
+tempore
 temporise
 temporised
 temporiser
@@ -130991,6 +131208,9 @@ thermoceptive
 thermochemical
 thermochemistry
 thermochromic
+thermochronologies
+thermochronology
+thermochronology's
 thermocline
 thermocouple
 thermocouple's
@@ -135336,6 +135556,7 @@ tubing
 tubing's
 tubings
 tubs
+tubside
 tubular
 tubularly
 tubule
@@ -136176,6 +136397,7 @@ ultracentrifugally
 ultracentrifugation
 ultracentrifuge
 ultracentrifuge's
+ultrachrome
 ultracold
 ultraconservative
 ultraconservatives
@@ -141787,6 +142009,8 @@ victualling
 victuals
 vicuña
 vicuñas
+vid
+vid's
 vida
 vida's
 vidal's
@@ -141837,6 +142061,7 @@ videotapes
 videotaping
 vidian
 vidovic
+vids
 vie
 vied
 Vieira
@@ -142015,6 +142240,9 @@ vines
 vineyard
 vineyard's
 vineyards
+vinification
+vinification's
+vinifications
 vining
 Vinita
 vino
@@ -143143,6 +143371,7 @@ wampums
 wan
 wand
 wand's
+wanded
 wander
 wandered
 wanderer
@@ -143154,6 +143383,7 @@ wanderlust
 wanderlust's
 wanderlusts
 wanders
+wanding
 wands
 wane
 waned
@@ -143304,6 +143534,9 @@ warms
 warmth
 warmth's
 warmths
+warmup
+warmup's
+warmups
 warn
 warned
 warner
@@ -143924,6 +144157,9 @@ webmail's
 webmaster
 webmaster's
 webmasters
+webmistress
+webmistress's
+webmistresses
 webpage
 webpage's
 webpages
@@ -143969,10 +144205,12 @@ wedge's
 wedged
 wedges
 wedgie
+wedgie's
 wedgier
 wedgies
 wedgiest
 wedging
+wedgy's
 wedlock
 wedlock's
 wedlocks
@@ -146190,6 +146428,9 @@ writes
 writeup
 writhe
 writhed
+writher
+writher's
+writhers
 writhes
 writhing
 writing
@@ -146433,6 +146674,8 @@ yards
 yardstick
 yardstick's
 yardsticks
+yardwork
+yardwork's
 yarmulke
 yarmulke's
 yarmulkes

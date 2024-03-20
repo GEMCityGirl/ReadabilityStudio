@@ -1,5 +1,6 @@
 and
 FAQ
+FAQs
 fenv_t
 fexcept_t
 fmask
