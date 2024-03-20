@@ -17,7 +17,8 @@
   - Clicking an expanded folder will collapse it. (Double clicking it is no longer necessary.)
   - Can now be shown/hidden with the `r keys('F2')` key or from the ribbon.
 - **Log Report** window improvements:
-  - Added **Clear** and **Refresh** options.
+  - Added **Clear**, **Refresh**, and **Verbose** options.
+    - Verbose logging can now be toggled from this dialog via the **Verbose** button.
   - Dialog is now modeless; other windows can be accessed while this dialog is open.
   - Holding down `r keys('SHIFT')` while the program opens will load the log report from the previous run of the program (if ran during the same day).
 - The **User agent** option on the **Web Harvester** dialog is now available on the **General Settings** page of the **Options** dialog also.
