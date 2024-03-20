@@ -259,6 +259,8 @@ namespace characters
             // clang-format off
             return is_either<wchar_t>(ch, 35, 0xFF03) ? // #
                     true :
+                   is_either<wchar_t>(ch, 37, 0xFF05) ? // % (could be the entire word)
+                    true :
                    is_either<wchar_t>(ch, 36, 0xFF04) ? // $
                     true :
                    is_either<wchar_t>(ch, L'&', 0xFF06) ?
@@ -319,7 +321,7 @@ namespace characters
             // clang-format on
             }
 
-        /** @returns @c true if a character can appear at the end of a word.
+        /** @returns @c true if a (non-numeric) character can appear at the end of a word.
             @param ch The letter to be reviewed.*/
         [[nodiscard]]
         constexpr static bool can_character_end_word(const wchar_t ch) noexcept
@@ -344,6 +346,22 @@ namespace characters
                    is_either<wchar_t>(ch, 92, 0xFF3C) ? /*\*/
                     true :
                    (ch == 0x9F) ? // Y with diaeresis
+                    true :
+                   is_either<wchar_t>(ch, 162, 0xFFE0) ? // cent
+                    true :
+                   is_either<wchar_t>(ch, 176, 0xFFEE) ? // degree
+                    true :
+                    false;
+            // clang-format on
+            }
+
+        /** @returns @c true if a (non-numeric) character can appear at the end of a number.
+            @param ch The letter to be reviewed.*/
+        [[nodiscard]]
+        constexpr static bool can_character_end_numeral(const wchar_t ch) noexcept
+            {
+            // clang-format off
+            return is_either<wchar_t>(ch, 37, 0xFF05) ? // %
                     true :
                    is_either<wchar_t>(ch, 162, 0xFFE0) ? // cent
                     true :
@@ -465,7 +483,8 @@ namespace characters
                     ch == 0xFF61 /*half-width, more commonly used*/);
             }
 
-        /** @returns @c true if a character can appear in front of a number (e.g., a dollar sign).
+        /** @returns @c true if a (non-numeric) character can appear in front of a number
+                (e.g., a dollar sign).
             @param ch The letter to be reviewed.*/
         [[nodiscard]]
         constexpr static bool can_character_prefix_numeral(const wchar_t ch) noexcept
@@ -624,7 +643,7 @@ namespace characters
         /** @returns Whether a character sequence is a number (works with wide Unicode numbers too).
             @param word The character stream to be reviewed*/
         [[nodiscard]]
-        static bool is_numeric(std::wstring word) noexcept
+        static bool is_numeric(std::wstring_view word) noexcept
             {
             if (word.empty())
                 {
@@ -708,7 +727,7 @@ namespace characters
             return (is_space_vertical(ch) || is_space_horizontal(ch));
             }
 
-        /** @returns Whether a character is a space or tab.
+        /** @returns Whether a character is a horizontal space or tab.
                 Also includes double-width and no-break spaces.
             @param ch The letter to be reviewed.*/
         [[nodiscard]]
@@ -718,6 +737,25 @@ namespace characters
             return (ch == 0x20) ? // regular space
                     true :
                    (ch == 0x09) ? // tab
+                    true :
+                   (ch == 0xA0 || ch == 0x202F) ? // no-break space, narrow
+                    true :
+                   (ch == 0x3000) ? // Japanese Ideographic Space
+                                    // En quad, thin space, hair space, em space,
+                                    // zero-width non-joiner (word separator), etc.
+                    true :
+                   (ch >= 0x2000 && ch <= 0x200C) ? true : false;
+            // clang-format on
+            }
+
+        /** @returns Whether a character is a horizontal space.
+                Also includes double-width and no-break spaces.
+            @param ch The letter to be reviewed.*/
+        [[nodiscard]]
+        constexpr static bool is_space_horizontal_except_tab(const wchar_t ch) noexcept
+            {
+            // clang-format off
+            return (ch == 0x20) ? // regular space
                     true :
                    (ch == 0xA0 || ch == 0x202F) ? // no-break space, narrow
                     true :

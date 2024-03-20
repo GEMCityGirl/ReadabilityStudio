@@ -332,9 +332,10 @@ namespace tokenize
                     // through to let the punctuation indexer pick it up.
                     if (isPunctuation(m_current_char[0]) &&
                         // a few punctuations marks can be full words by themselves
-                        // NOTE: if this is updated, then update the punctuation_count class also.
-                        !string_util::is_one_of(string_util::full_width_to_narrow(m_current_char[0]), L"&#@") &&
-                        m_current_char+1 < m_text_block_end &&
+                        !string_util::is_one_of(
+                            string_util::full_width_to_narrow(m_current_char[0]),
+                            punctuation::punctuation_count::m_whole_word_punctuation.data()) &&
+                        m_current_char + 1 < m_text_block_end &&
                         !is_character(m_current_char[1]) )
                         { /*noop*/ }
                     // Otherwise, the first character is a real character or punctuation that can start
@@ -554,13 +555,13 @@ namespace tokenize
                     }
                 /* We need to scan ahead for situations where there is a space or dash between the last word of
                    a sentence and the period.*/
-                else if (m_current_char[0] == common_lang_constants::SPACE ||
+                else if (is_character.is_space_horizontal_except_tab(m_current_char[0]) ||
                          is_character.is_dash_or_hyphen(m_current_char[0]))
                     {
                     const wchar_t* currentPeekChar = m_current_char + 1;
                     // eat any spaces, dashes, or right brackets/parentheses
                     while (currentPeekChar < m_text_block_end &&
-                        (currentPeekChar[0] == common_lang_constants::SPACE ||
+                        (is_character.is_space_horizontal_except_tab(currentPeekChar[0]) ||
                          is_character.is_dash_or_hyphen(currentPeekChar[0]) ||
                          traits::case_insensitive_ex::eq(currentPeekChar[0],
                              common_lang_constants::RIGHT_PARENTHESIS) ||
@@ -596,6 +597,14 @@ namespace tokenize
                         m_at_eol = true;
                         m_current_char = currentPeekChar;
                         break;
+                        }
+                    // "50 %" will be seen as one word
+                    else if (is_character.can_character_end_numeral(currentPeekChar[0]) &&
+                        m_current_char > word_start &&
+                        is_character.is_numeric(*std::prev(m_current_char, 1)))
+                        {
+                        m_current_char = currentPeekChar;
+                        continue;
                         }
                     // if just spaces (and maybe following dashes) after the word but it is
                     // not terminated by a line end or sentence terminator, then just stop on this

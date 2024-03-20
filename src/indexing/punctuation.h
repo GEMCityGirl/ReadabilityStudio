@@ -42,8 +42,9 @@ namespace punctuation
                 punctuation into account, as well as special logic for puncutation only words.
             @param text The character stream to analyze.
             @returns The number of punctuation marks from character stream.
-            @note If the stream is just a single ampersand/pound/at, then it is treated
-                  as NOT being punctuation, but rather a word.*/
+            @note If the stream is just a single punctuation that can be a whole word
+                (e.g., an ampersand), then it is treated as NOT being punctuation,
+                but rather a word.*/
         [[nodiscard]]
         inline size_t
         operator()(std::wstring_view text) const
@@ -52,16 +53,20 @@ namespace punctuation
                 {
                 return 0;
                 }
-            /* special case where the word is just '&', '#', or '@';
+            /* special case where the word is just ('&', '#', '@', or '%');
                treat it like a regular character (e.g., not punctuation)*/
             if (text.length() == 1 &&
-                string_util::is_one_of(string_util::full_width_to_narrow(text[0]), L"&#@"))
+                string_util::is_one_of(
+                    string_util::full_width_to_narrow(text[0]),
+                        m_whole_word_punctuation.data()))
                 {
                 return 0;
                 }
             return std::count_if(text.cbegin(), text.cend(),
                                  characters::is_character::is_punctuation);
             }
+        /// @brief Punctuations marks can be full words by themselves.
+        inline static const std::wstring_view m_whole_word_punctuation{ L"&#@%" };
         };
 
     /** @brief Punctuation mark class. Used in tokenizer to keep track of

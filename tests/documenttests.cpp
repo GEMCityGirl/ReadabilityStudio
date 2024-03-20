@@ -4491,3 +4491,33 @@ TEST_CASE("Document", "[document]")
         CHECK(std::wcscmp(doc.get_word(7).c_str(), L"twould") == 0);
         }
     }
+
+TEST_CASE("Document 2", "[document]")
+    {
+    grammar::english_syllabize ENsyllabizer;
+    stemming::english_stem<std::wstring> ENStemmer;
+    grammar::is_english_coordinating_conjunction is_conjunction;
+    grammar::is_incorrect_english_article is_english_mismatched_article;
+    grammar::phrase_collection pmap;
+    grammar::phrase_collection copyrightPMap;
+    grammar::phrase_collection citationPMap;
+    grammar::phrase_collection excludedPMap;
+    word_list Known_proper_nouns;
+    word_list Known_personal_nouns;
+    word_list Known_spellings;
+    word_list Secondary_known_spellings;
+    word_list Programming_known_spellings;
+
+    SECTION("Spaced Percent")
+        {
+        document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
+        const wchar_t* text = L"I have 5 %. What % do you have? That is a %.";
+        doc.load_document(text, wcslen(text), false, false, false, false);
+        CHECK(doc.get_sentence_count() == 3);
+        CHECK(doc.get_words()[2] == L"5 %");
+        CHECK(doc.get_words()[4] == L"%");
+        CHECK(doc.get_words()[11] == L"%");
+        CHECK(doc.get_valid_word_count() == 12);
+        CHECK(doc.get_word_count() == 12);
+        }
+    }
