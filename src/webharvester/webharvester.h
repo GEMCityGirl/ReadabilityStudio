@@ -20,6 +20,7 @@
 #include <algorithm>
 #include <functional>
 #include <limits>
+#include <optional>
 #include <set>
 #include <string_view>
 #include <wx/dir.h>
