@@ -606,7 +606,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
     if (doc.Error())
         {
         // may appear while program is loading
-        wxLogError(wxString::Format(L"Unable to load configuration file:\n%s", doc.ErrorStr()) );
+        wxLogError(L"Unable to load configuration file:\n%s", doc.ErrorStr() );
         return false;
         }
     // see if it is a valid config file
@@ -667,6 +667,13 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile, const b
                     wxGetApp().GetWebHarvester().SetUserAgent(convertedStr);
                     }
                 }
+            }
+
+        auto downloadMinFileSizeNode = configRootNode->FirstChildElement(XML_DOWNLOAD_MIN_FILESIZE.data());
+        if (downloadMinFileSizeNode != nullptr)
+            {
+            wxGetApp().GetWebHarvester().SetMinimumDownloadFileSizeInKilobytes(
+                downloadMinFileSizeNode->ToElement()->IntAttribute(XML_VALUE.data(), 0) );
             }
 
         auto disablePeerVerifyNode = configRootNode->FirstChildElement(XML_DISABLE_PEER_VERIFY.data());
@@ -3302,6 +3309,11 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     userAgent->SetAttribute(XML_VALUE.data(),
         wxString(encode({ GetUserAgent().wc_str() }, false).c_str()).mb_str());
     configSection->InsertEndChild(userAgent);
+
+    auto downloadMinSize = doc.NewElement(XML_DOWNLOAD_MIN_FILESIZE.data());
+    downloadMinSize->SetAttribute(XML_VALUE.data(),
+        wxGetApp().GetWebHarvester().GetMinimumDownloadFileSizeInKilobytes().value_or(5) );
+    configSection->InsertEndChild(downloadMinSize);
 
     auto disablePv = doc.NewElement(XML_DISABLE_PEER_VERIFY.data());
     disablePv->SetAttribute(XML_VALUE.data(), bool_to_int(IsPeerVerifyDisabled()) );

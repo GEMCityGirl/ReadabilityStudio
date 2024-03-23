@@ -2617,11 +2617,10 @@ class ReadabilityAppOptions
     wxString m_projectPath;
     wxString m_wordlistPath;
     // internet features
-    // Note that we call this a "WebBrowser," although this may not be used
-    // in that context. Using words like "harvester," "crawler," and
-    // "scraper" will actually result in a forbidden response from some sites,
+    // Note that we call this a "WebLion". Using words like "harvester," "crawler,"
+    // "scraper," and even "browser" will result in a forbidden response from some sites,
     // so avoid using those words.
-    wxString m_userAgent{ _DT(L"Mozilla/5.0 (") + wxGetOsDescription() + _DT(L") WebKit/12.0 WebBrowser") };
+    wxString m_userAgent{ _DT(L"Mozilla/5.0 (") + wxGetOsDescription() + _DT(L") WebKit/12.0 WebLion") };
     bool m_disablePeerVerify{ false };
     // graph information
     bool m_boxPlotShowAllPoints{ false };
@@ -2966,6 +2965,7 @@ class ReadabilityAppOptions
     const std::string_view XML_LICENSE_ACCEPTED{ _DT("license-accepted") };
     const std::string_view XML_USER_AGENT{ _DT("user-agent") };
     const std::string_view XML_DISABLE_PEER_VERIFY{ _DT("disable-peer-verify") };
+    const std::string_view XML_DOWNLOAD_MIN_FILESIZE{ _DT("download-min-file-size") };
     // project options
     const std::string_view XML_REVIEWER{ _DT("project-reviewer") };
     const std::string_view XML_STATUS{ _DT("project-status") };

@@ -5298,6 +5298,8 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
         wxGetApp().GetWebHarvester().GetAllowableWebFolders(),
         wxGetApp().GetWebHarvester().IsPeerVerifyDisabled(),
         wxGetApp().GetWebHarvester().GetUserAgent());
+    webHarvestDlg.SetMinimumDownloadFileSizeInKilobytes(
+        wxGetApp().GetWebHarvester().GetMinimumDownloadFileSizeInKilobytes().value_or(5));
     webHarvestDlg.UpdateFromHarvesterSettings(wxGetApp().GetWebHarvester());
     // force downloading locally
     webHarvestDlg.DownloadFilesLocally(true);
@@ -5347,17 +5349,22 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
     if (webHarvestDlg.GetRawHtmlPage().length())
         {
         wxGetApp().GetWebHarvester().SetUrl(webHarvestDlg.GetRawHtmlPage());
+        wxGetApp().GetWebHarvester().AttemptToCrawlFromRawHtml(true);
         webHarvestDlg.UpdateHarvesterSettings(wxGetApp().GetWebHarvester());
         if (wxGetApp().GetWebHarvester().CrawlLinks())
             {
             for (const auto& bLink : wxGetApp().GetWebHarvester().GetBrokenLinks())
                 { wxLogWarning(L"Broken link '%s' (from '%s')", bLink.first, bLink.second); }
             }
+        // this feature is not commonly used, so turn it back off
+        wxGetApp().GetWebHarvester().AttemptToCrawlFromRawHtml(false);
         }
 
     // update global internet options that mirror the same options from the dialog
     wxGetApp().GetWebHarvester().DisablePeerVerify(webHarvestDlg.IsPeerVerifyDisabled()),
     wxGetApp().GetWebHarvester().SetUserAgent(webHarvestDlg.GetUserAgent());
+    wxGetApp().GetWebHarvester().SetMinimumDownloadFileSizeInKilobytes(
+        webHarvestDlg.GetMinimumDownloadFileSizeInKilobytes());
 
     wxMessageBox(_(L"Web crawl complete."), _(L"Web Harvester"), wxOK | wxICON_INFORMATION);
     }
