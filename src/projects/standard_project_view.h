@@ -21,8 +21,6 @@ class ProjectView final : public BaseProjectView
     ProjectView(const ProjectView&) = delete;
     ProjectView& operator=(const ProjectView&) = delete;
 
-    /// @brief Destructor.
-    ~ProjectView() { wxDELETE(m_statsListData); }
 
     /** @brief Saves all the results to an HTML report.
         @param filePath The path to save the report to.
@@ -141,7 +139,13 @@ class ProjectView final : public BaseProjectView
 
     // Shortcuts to the sub-windows
     [[nodiscard]]
-    ListCtrlExDataProvider* GetSummaryStatisticsListData() noexcept
+    std::shared_ptr<ListCtrlExDataProvider>& GetSummaryStatisticsListData()
+        {
+        return m_statsListData;
+        }
+
+    [[nodiscard]]
+    const std::shared_ptr<ListCtrlExDataProvider>& GetSummaryStatisticsListData() const
         {
         return m_statsListData;
         }
@@ -192,7 +196,7 @@ class ProjectView final : public BaseProjectView
     WindowContainer m_sightWordView;
     WindowContainer m_grammarView;
 
-    ListCtrlExDataProvider* m_statsListData{ nullptr };
+    std::shared_ptr<ListCtrlExDataProvider> m_statsListData{ nullptr };
 
     EditTextDlg* m_embeddedTextEditor{ nullptr };
 

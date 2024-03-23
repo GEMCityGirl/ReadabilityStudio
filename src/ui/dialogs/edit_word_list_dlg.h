@@ -51,8 +51,6 @@ class EditWordListDlg final : public Wisteria::UI::DialogWithHelp
                              long style = wxDEFAULT_DIALOG_STYLE | wxCLIP_CHILDREN |
                                           wxRESIZE_BORDER);
 
-    /// @private
-    ~EditWordListDlg() { wxDELETE(m_wordData); }
 
     /// @brief Sets the path to the file that is being edited.
     /// @param path The path of the file.
@@ -108,7 +106,7 @@ class EditWordListDlg final : public Wisteria::UI::DialogWithHelp
     void OnEditItem([[maybe_unused]] wxCommandEvent& event);
     void OnDeleteItem([[maybe_unused]] wxCommandEvent& event);
 
-    ListCtrlExDataProvider* m_wordData{ new ListCtrlExDataProvider() };
+    std::shared_ptr<ListCtrlExDataProvider> m_wordData{ std::make_shared<ListCtrlExDataProvider>() };
     ListCtrlEx* m_wordsList{ nullptr };
     wxTextCtrl* m_wordListFilePathCtrl{ nullptr };
     wxString m_wordListFilePath;

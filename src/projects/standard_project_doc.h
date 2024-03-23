@@ -31,18 +31,6 @@ class ProjectDoc final : public BaseProjectDoc
     /// @private
     ~ProjectDoc()
         {
-        wxDELETE(m_dupWordData);
-        wxDELETE(m_misspelledWordData);
-        wxDELETE(m_incorrectArticleData);
-        wxDELETE(m_passiveVoiceData);
-        wxDELETE(m_wordyPhraseData);
-        wxDELETE(m_overusedWordsBySentenceData);
-        wxDELETE(m_redundantPhraseData);
-        wxDELETE(m_wordingErrorData);
-        wxDELETE(m_clichePhraseData);
-        wxDELETE(m_overlyLongSentenceData);
-        wxDELETE(m_sentenceStartingWithConjunctionsData);
-        wxDELETE(m_sentenceStartingWithLowercaseData);
         DeleteExcludedPhrases();
         }
 
@@ -82,19 +70,19 @@ class ProjectDoc final : public BaseProjectDoc
     void DisplayHighlightedText(const wxColour& highlightColor, const wxFont& textViewFont);
 
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetMisspelledWordData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetMisspelledWordData() const noexcept
         {
         return m_misspelledWordData;
         }
 
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetOverusedWordsBySentenceData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetOverusedWordsBySentenceData() const noexcept
         {
         return m_overusedWordsBySentenceData;
         }
 
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetPassiveVoiceData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetPassiveVoiceData() const noexcept
         {
         return m_passiveVoiceData;
         }
@@ -111,7 +99,7 @@ class ProjectDoc final : public BaseProjectDoc
 
   private:
     [[nodiscard]]
-    ListCtrlExNumericDataProvider* GetOverusedWordsBySentenceData() noexcept
+    std::shared_ptr<ListCtrlExNumericDataProvider>& GetOverusedWordsBySentenceData() noexcept
         {
         return m_overusedWordsBySentenceData;
         }
@@ -277,23 +265,23 @@ class ProjectDoc final : public BaseProjectDoc
     void UpdateSourceFileModifiedTime();
     void OnRealTimeTimer([[maybe_unused]] wxTimerEvent& event);
 
-    ListCtrlExNumericDataProvider* m_dupWordData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_misspelledWordData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_incorrectArticleData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_passiveVoiceData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_wordyPhraseData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_overusedWordsBySentenceData{
-        new ListCtrlExNumericDataProvider
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_dupWordData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_misspelledWordData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_incorrectArticleData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_passiveVoiceData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_wordyPhraseData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_overusedWordsBySentenceData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
     };
-    ListCtrlExNumericDataProvider* m_clichePhraseData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_redundantPhraseData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_wordingErrorData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_overlyLongSentenceData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_sentenceStartingWithConjunctionsData{
-        new ListCtrlExNumericDataProvider
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_clichePhraseData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_redundantPhraseData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_wordingErrorData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_overlyLongSentenceData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_sentenceStartingWithConjunctionsData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
     };
-    ListCtrlExNumericDataProvider* m_sentenceStartingWithLowercaseData{
-        new ListCtrlExNumericDataProvider
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_sentenceStartingWithLowercaseData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
     };
     FormattedTextCtrl* m_dcTextWindow{ nullptr };
     FormattedTextCtrl* m_spacheTextWindow{ nullptr };

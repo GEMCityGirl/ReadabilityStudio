@@ -51,13 +51,6 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
         }
 
     /// @private
-    ~WebHarvesterDlg()
-        {
-        wxDELETE(m_domainData);
-        wxDELETE(m_urlData);
-        }
-
-    /// @private
     WebHarvesterDlg(WebHarvesterDlg&) = delete;
     /// @private
     WebHarvesterDlg& operator=(const WebHarvesterDlg&) = delete;
@@ -197,7 +190,7 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
     wxSpinCtrl* m_depthLevelCtrl{ nullptr };
     wxComboBox* m_domainCombo{ nullptr };
     ListCtrlEx* m_domainList{ nullptr };
-    ListCtrlExDataProvider* m_domainData{ new ListCtrlExDataProvider };
+    std::shared_ptr<ListCtrlExDataProvider> m_domainData{ std::make_shared<ListCtrlExDataProvider>() };
     wxTextCtrl* m_localFolderEdit{ nullptr };
     wxStaticText* m_localFolderLabel{ nullptr };
     wxCheckBox* m_retainWebsiteFolderStuctureCheckBox{ nullptr };
@@ -208,7 +201,7 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
     wxSpinCtrl* m_minFileSizeCtrl{ nullptr };
 
     wxArrayString m_urls;
-    ListCtrlExDataProvider* m_urlData{ new ListCtrlExDataProvider };
+    std::shared_ptr<ListCtrlExDataProvider> m_urlData{ std::make_shared<ListCtrlExDataProvider>() };
     wxString m_rawHtmlPage;
 
     wxString m_downloadFolder;

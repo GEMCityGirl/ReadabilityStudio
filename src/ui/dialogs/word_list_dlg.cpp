@@ -128,7 +128,7 @@ void WordListDlg::OnNegative(wxCommandEvent& event)
 //---------------------------------------------
 void WordListDlg::AddSingleColumnPage(Wisteria::UI::SideBarBook* sideBar, const int id,
                                       const int listId, const wxString& label, const int imageId,
-                                      ListCtrlExDataProvider* data, const word_list& wordList)
+                                      std::shared_ptr<ListCtrlExDataProvider> data, const word_list& wordList)
     {
     wxPanel* page = new wxPanel(sideBar, id, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);

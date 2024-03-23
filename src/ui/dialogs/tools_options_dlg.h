@@ -69,9 +69,6 @@ class ToolsOptionsDlg final : public wxDialog
     explicit ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project = nullptr,
                              const ToolSections sectionsToInclude = AllSections);
 
-    /// @private
-    ~ToolsOptionsDlg() { wxDELETE(m_fileData); }
-
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& caption = _(L"Options"),
                 const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
                 long style = wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
@@ -968,7 +965,8 @@ class ToolsOptionsDlg final : public wxDialog
     wxBitmapButton* m_addFileButton{ nullptr };
     wxBitmapButton* m_deleteFileButton{ nullptr };
     ListCtrlEx* m_fileList{ nullptr };
-    ListCtrlExDataProvider* m_fileData{ new ListCtrlExDataProvider };
+    std::shared_ptr<ListCtrlExDataProvider> m_fileData
+        { std::make_shared<ListCtrlExDataProvider>() };
 
     BackupVariable<wxString> m_userAgent;
     BackupVariable<bool> m_disablePeerVerify;

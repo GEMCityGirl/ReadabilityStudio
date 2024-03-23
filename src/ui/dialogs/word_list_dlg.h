@@ -38,16 +38,6 @@ class WordListDlg final : public wxDialog
                          long style = wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER);
 
     /// @private
-    ~WordListDlg()
-        {
-        wxDELETE(m_DCData);
-        wxDELETE(m_StockerData);
-        wxDELETE(m_SpacheData);
-        wxDELETE(m_HJData);
-        wxDELETE(m_DolchData);
-        }
-
-    /// @private
     WordListDlg(const WordListDlg&) = delete;
     /// @private
     WordListDlg& operator=(const WordListDlg&) = delete;
@@ -67,6 +57,7 @@ class WordListDlg final : public wxDialog
     constexpr static int DOLCH_PAGE_ID = wxID_HIGHEST + 4;
 
   private:
+
     void CreateControls();
     [[nodiscard]]
     ListCtrlEx* GetActiveList();
@@ -74,8 +65,10 @@ class WordListDlg final : public wxDialog
     void OnRibbonButton(wxRibbonButtonBarEvent& event);
     void OnNegative(wxCommandEvent& event);
     void OnClose([[maybe_unused]] wxCloseEvent& event);
-    void AddSingleColumnPage(Wisteria::UI::SideBarBook* sideBar, const int id, const int listId,
-                             const wxString& label, const int imageId, ListCtrlExDataProvider* data,
+    void AddSingleColumnPage(Wisteria::UI::SideBarBook* sideBar,
+                             const int id, const int listId,
+                             const wxString& label, const int imageId,
+                             std::shared_ptr<ListCtrlExDataProvider> data,
                              const word_list& wordList);
 
     constexpr static int DALE_CHALL_LIST_ID = wxID_HIGHEST + 5;
@@ -84,11 +77,11 @@ class WordListDlg final : public wxDialog
     constexpr static int HARRIS_JACOBSON_LIST_ID = wxID_HIGHEST + 8;
     constexpr static int DOLCH_LIST_ID = wxID_HIGHEST + 9;
 
-    ListCtrlExDataProvider* m_DCData{ new ListCtrlExDataProvider };
-    ListCtrlExDataProvider* m_StockerData{ new ListCtrlExDataProvider };
-    ListCtrlExDataProvider* m_SpacheData{ new ListCtrlExDataProvider };
-    ListCtrlExDataProvider* m_HJData{ new ListCtrlExDataProvider };
-    ListCtrlExDataProvider* m_DolchData{ new ListCtrlExDataProvider };
+    std::shared_ptr<ListCtrlExDataProvider> m_DCData{ std::make_shared<ListCtrlExDataProvider>() };
+    std::shared_ptr<ListCtrlExDataProvider> m_StockerData{ std::make_shared<ListCtrlExDataProvider>() };
+    std::shared_ptr<ListCtrlExDataProvider> m_SpacheData{ std::make_shared<ListCtrlExDataProvider>() };
+    std::shared_ptr<ListCtrlExDataProvider> m_HJData{ std::make_shared<ListCtrlExDataProvider>() };
+    std::shared_ptr<ListCtrlExDataProvider> m_DolchData{ std::make_shared<ListCtrlExDataProvider>() };
     Wisteria::UI::SideBarBook* m_sideBar{ nullptr };
     };
 

@@ -3255,10 +3255,10 @@ void BatchProjectDoc::DisplayScores()
 
 //------------------------------------------------------------
 void BatchProjectDoc::DisplayScoreStatisticsWindow(const wxString& windowName, const int windowId,
-                                                     ListCtrlExNumericDataProvider* data,
-                                                     const wxString& firstColumnName,
-                                                     const wxString& optionalSecondColumnName,
-                                                     const bool multiSelectable)
+                                                   std::shared_ptr<ListCtrlExNumericDataProvider> data,
+                                                   const wxString& firstColumnName,
+                                                   const wxString& optionalSecondColumnName,
+                                                   const bool multiSelectable)
     {
     BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
     ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetScoresView().FindWindowById(windowId));
@@ -6504,7 +6504,7 @@ void BatchProjectDoc::DisplaySightWords()
     }
 
 //-------------------------------------------------------
-void BatchProjectDoc::SetScoreStatsRow(ListCtrlExNumericDataProvider* dataGrid,
+void BatchProjectDoc::SetScoreStatsRow(std::shared_ptr<ListCtrlExNumericDataProvider> dataGrid,
                                        const wxString& rowName,
                                        const wxString& optionalDescription,
                                        const long rowNum,

@@ -1878,7 +1878,7 @@ void BaseProject::LoadHardWords()
     if (HasUI())
         {
         if (Get3SyllablePlusData() == nullptr)
-            { m_3SybPlusData = new ListCtrlExNumericDataProvider; }
+            { m_3SybPlusData = std::make_shared<ListCtrlExNumericDataProvider>(); }
         Get3SyllablePlusData()->DeleteAllItems();
         Get3SyllablePlusData()->SetSize(m_word_frequency_map->get_data().size(), 4);
         }
@@ -1890,7 +1890,7 @@ void BaseProject::LoadHardWords()
     if (HasUI())
         {
         if (Get6CharacterPlusData() == nullptr)
-            { m_6CharPlusData = new ListCtrlExNumericDataProvider; }
+            { m_6CharPlusData = std::make_shared<ListCtrlExNumericDataProvider>(); }
         Get6CharacterPlusData()->DeleteAllItems();
         Get6CharacterPlusData()->SetSize(m_word_frequency_map->get_data().size(), 4);
         }
@@ -1903,7 +1903,7 @@ void BaseProject::LoadHardWords()
     if (HasUI())
         {
         if (GetDaleChallHardWordData() == nullptr)
-            { m_DCHardWordsData = new ListCtrlExNumericDataProvider; }
+            { m_DCHardWordsData = std::make_shared<ListCtrlExNumericDataProvider>(); }
         GetDaleChallHardWordData()->DeleteAllItems();
         GetDaleChallHardWordData()->SetSize(m_word_frequency_map->get_data().size(), 3);
         }
@@ -1929,7 +1929,7 @@ void BaseProject::LoadHardWords()
     if (HasUI())
         {
         if (GetSpacheHardWordData() == nullptr)
-            { m_SpacheHardWordsData = new ListCtrlExNumericDataProvider; }
+            { m_SpacheHardWordsData = std::make_shared<ListCtrlExNumericDataProvider>(); }
         GetSpacheHardWordData()->DeleteAllItems();
         GetSpacheHardWordData()->SetSize(m_word_frequency_map->get_data().size(), 3);
         }
@@ -1961,7 +1961,7 @@ void BaseProject::LoadHardWords()
     if (HasUI())
         {
         if (GetHarrisJacobsonHardWordDataData() == nullptr)
-            { m_harrisJacobsonHardWordsData = new ListCtrlExNumericDataProvider; }
+            { m_harrisJacobsonHardWordsData = std::make_shared<ListCtrlExNumericDataProvider>(); }
         GetHarrisJacobsonHardWordDataData()->DeleteAllItems();
         GetHarrisJacobsonHardWordDataData()->SetSize(m_word_frequency_map->get_data().size(), 3);
         }
@@ -1970,7 +1970,7 @@ void BaseProject::LoadHardWords()
     if (HasUI())
         {
         if (GetDolchWordData() == nullptr)
-            { m_dolchWordsData = new ListCtrlExNumericDataProvider; }
+            { m_dolchWordsData = std::make_shared<ListCtrlExNumericDataProvider>(); }
         GetDolchWordData()->DeleteAllItems();
         GetDolchWordData()->SetSize(m_word_frequency_map->get_data().size(), 4);
         }
@@ -1979,7 +1979,7 @@ void BaseProject::LoadHardWords()
     if (HasUI())
         {
         if (GetNonDolchWordData() == nullptr)
-            { m_nonDolchWordsData = new ListCtrlExNumericDataProvider; }
+            { m_nonDolchWordsData = std::make_shared<ListCtrlExNumericDataProvider>(); }
         GetNonDolchWordData()->DeleteAllItems();
         GetNonDolchWordData()->SetSize(m_word_frequency_map->get_data().size(), 2);
         }
@@ -2019,7 +2019,7 @@ void BaseProject::LoadHardWords()
     if (HasUI())
         {
         if (GetUnusedDolchWordData() == nullptr)
-            { m_unusedDolchWordsData = new ListCtrlExDataProvider; }
+            { m_unusedDolchWordsData = std::make_shared<ListCtrlExDataProvider>(); }
         GetUnusedDolchWordData()->DeleteAllItems();
         GetUnusedDolchWordData()->SetSize(unusedDolchWords.size(), 2);
         }
@@ -2070,17 +2070,17 @@ void BaseProject::LoadHardWords()
     if (HasUI())
         {
         if (GetProperNounsData() == nullptr)
-            { m_ProperNounsData = new ListCtrlExNumericDataProvider; }
+            { m_ProperNounsData = std::make_shared<ListCtrlExNumericDataProvider>(); }
         GetProperNounsData()->DeleteAllItems();
         GetProperNounsData()->SetSize(GetWordsWithFrequencies()->get_data().size(), 3);
 
         if (GetContractionsData() == nullptr)
-            { m_contractionsData = new  ListCtrlExNumericDataProvider; }
+            { m_contractionsData = std::make_shared<ListCtrlExNumericDataProvider>(); }
         GetContractionsData()->DeleteAllItems();
         GetContractionsData()->SetSize(GetWordsWithFrequencies()->get_data().size(), 2);
 
         if (GetAllWordsBaseData() == nullptr)
-            { m_AllWordsBaseData = new ListCtrlExNumericDataProvider; }
+            { m_AllWordsBaseData = std::make_shared<ListCtrlExNumericDataProvider>(); }
         GetAllWordsBaseData()->DeleteAllItems();
         GetAllWordsBaseData()->SetSize(GetWordsWithFrequencies()->get_data().size(), 4);
         }
@@ -2577,7 +2577,7 @@ void BaseProject::LoadHardWords()
         {
         // key words list
         if (GetKeyWordsBaseData() == nullptr)
-            { m_keyWordsBaseData = new ListCtrlExNumericDataProvider; }
+            { m_keyWordsBaseData = std::make_shared<ListCtrlExNumericDataProvider>(); }
         GetKeyWordsBaseData()->DeleteAllItems();
         GetKeyWordsBaseData()->SetSize(keyWordsStemmedWithCounts.get_data().size(), 2);
 
@@ -2680,7 +2680,7 @@ void BaseProject::LoadHardWords()
         SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings))
         {
         if (GetHarrisJacobsonHardWordDataData() == nullptr)
-            { m_harrisJacobsonHardWordsData = new ListCtrlExNumericDataProvider; }
+            { m_harrisJacobsonHardWordsData = std::make_shared<ListCtrlExNumericDataProvider>(); }
         GetHarrisJacobsonHardWordDataData()->DeleteAllItems();
         GetHarrisJacobsonHardWordDataData()->SetSize(
             complete_sent_and_header_word_frequency_map.get_data().size(), 3);
@@ -2689,7 +2689,7 @@ void BaseProject::LoadHardWords()
         SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) )
         {
         if (GetDaleChallHardWordData() == nullptr)
-            { m_DCHardWordsData = new ListCtrlExNumericDataProvider; }
+            { m_DCHardWordsData = std::make_shared<ListCtrlExNumericDataProvider>(); }
         GetDaleChallHardWordData()->DeleteAllItems();
         GetDaleChallHardWordData()->SetSize(
             complete_sent_and_header_word_frequency_map.get_data().size(), 3);

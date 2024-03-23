@@ -350,7 +350,6 @@ void ProjectWizardDlg::CreateControls()
 
         optionsSizer->Add(filesButtonsSizer, 0, wxALIGN_RIGHT);
 
-        m_fileData = new ListCtrlExDataProvider;
         if (GetFilePath().length())
             {
             FilePathResolver rp(GetFilePath(), false);

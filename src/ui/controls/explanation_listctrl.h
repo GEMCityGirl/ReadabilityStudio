@@ -54,9 +54,6 @@ class ExplanationListCtrl final : public wxSplitterWindow
     /// @private
     ExplanationListCtrl& operator=(const ExplanationListCtrl&) = delete;
 
-    /// @private
-    ~ExplanationListCtrl() { wxDELETE(m_data); }
-
     /// @brief Splits the windows to show the items in the list control.
     void FitWindows();
     /// @brief Updates the HTML window to display the associated text
@@ -209,7 +206,7 @@ class ExplanationListCtrl final : public wxSplitterWindow
 
     /// @returns The list's data provider.
     [[nodiscard]]
-    ListCtrlExNumericDataProvider* GetDataProvider() noexcept
+    std::shared_ptr<ListCtrlExNumericDataProvider>& GetDataProvider() noexcept
         {
         return m_data;
         }
@@ -238,7 +235,8 @@ class ExplanationListCtrl final : public wxSplitterWindow
     void OnResize(wxSizeEvent& event);
     void OnMenuCommand(wxCommandEvent& event);
 
-    ListCtrlExNumericDataProvider* m_data{ new ListCtrlExNumericDataProvider() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_data
+        { std::make_shared<ListCtrlExNumericDataProvider>() };
     std::map<wxString, wxString> m_explanations;
     // view classes
     Wisteria::UI::HtmlTableWindow* m_explanation_view{ nullptr };

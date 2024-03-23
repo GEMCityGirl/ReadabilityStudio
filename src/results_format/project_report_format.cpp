@@ -151,7 +151,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* proje
                                                         const StatisticsReportInfo& statsInfo,
                                                         const bool includeExplanation,
                                                         const wxColour attentionColor,
-                                                        ListCtrlExDataProviderBase* listData)
+                                                        std::shared_ptr<ListCtrlExDataProviderBase> listData)
     {
     assert(project);
     if (!project)
@@ -1265,7 +1265,7 @@ wxString ProjectReportFormat::FormatHtmlReportEnd() { return wxString(L"\n</body
 wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                                                    const StatisticsReportInfo& statsInfo,
                                                    const wxColour attentionColor,
-                                                   ListCtrlExDataProviderBase* listData)
+                                                   std::shared_ptr<ListCtrlExDataProviderBase> listData)
     {
     PROFILE();
     if (!project)

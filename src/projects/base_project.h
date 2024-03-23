@@ -105,7 +105,7 @@ class CustomReadabilityTestInterface
         : m_formulasFlags(that.m_formulasFlags), m_testName(that.m_testName),
           m_uniqueUnfamiliarWordCount(that.m_uniqueUnfamiliarWordCount),
           m_unfamiliarWordCount(that.m_unfamiliarWordCount), m_iter(that.m_iter)
-        // don't copy over list view data (not copy safe), but that should be empty anyway. This
+        // don't copy over list view data, but that should be empty anyway. This
         // will be filled in later after the next recalculation.
         {
         }
@@ -120,12 +120,10 @@ class CustomReadabilityTestInterface
             m_unfamiliarWordCount = that.m_unfamiliarWordCount;
             m_iter = that.m_iter;
             }
-        // don't copy over list view data (not copy safe), but that should be empty anyway. This
+        // don't copy over list view data, but that should be empty anyway. This
         // will be filled in later after the next recalculation.
         return *this;
         }
-
-    ~CustomReadabilityTestInterface() { wxDELETE(m_listViewData); }
 
     [[nodiscard]]
     inline bool
@@ -210,17 +208,17 @@ class CustomReadabilityTestInterface
         }
 
     [[nodiscard]]
-    ListCtrlExNumericDataProvider* GetListViewData()
+    std::shared_ptr<ListCtrlExNumericDataProvider>& GetListViewData()
         {
         if (m_listViewData == nullptr)
             {
-            m_listViewData = new ListCtrlExNumericDataProvider;
+            m_listViewData = std::make_shared<ListCtrlExNumericDataProvider>();
             }
         return m_listViewData;
         }
 
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetListViewData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetListViewData() const
         {
         assert(m_listViewData);
         return m_listViewData;
@@ -251,7 +249,7 @@ class CustomReadabilityTestInterface
     double m_uniqueUnfamiliarWordCount{ 0 };
     double m_unfamiliarWordCount{ 0 };
     CustomReadabilityTestCollection::iterator m_iter;
-    ListCtrlExNumericDataProvider* m_listViewData{ nullptr };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_listViewData{ nullptr };
     };
 
 /** @brief The base class for readability projects. */
@@ -274,18 +272,6 @@ public:
         wxDELETE(m_messages);
         wxDELETE(m_words);
         wxDELETE(m_word_frequency_map);
-        wxDELETE(m_3SybPlusData);
-        wxDELETE(m_6CharPlusData);
-        wxDELETE(m_DCHardWordsData);
-        wxDELETE(m_SpacheHardWordsData);
-        wxDELETE(m_harrisJacobsonHardWordsData);
-        wxDELETE(m_unusedDolchWordsData);
-        wxDELETE(m_dolchWordsData);
-        wxDELETE(m_nonDolchWordsData);
-        wxDELETE(m_ProperNounsData);
-        wxDELETE(m_contractionsData);
-        wxDELETE(m_keyWordsBaseData);
-        wxDELETE(m_AllWordsBaseData);
         /* Note that m_excluded_phrases should not be deleted here, it should be
            deleted by the standard or batch project that owns it. This is because
            a batch project will share its phrase list with its subprojects, so these
@@ -1362,76 +1348,76 @@ public:
     virtual void RemoveMisspellings(const wxArrayString&) {}
 
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* Get3SyllablePlusData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& Get3SyllablePlusData() const
         { return m_3SybPlusData; }
     [[nodiscard]]
-    ListCtrlExNumericDataProvider* Get3SyllablePlusData() noexcept
+    std::shared_ptr<ListCtrlExNumericDataProvider>& Get3SyllablePlusData()
         { return m_3SybPlusData; }
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* Get6CharacterPlusData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& Get6CharacterPlusData() const
         { return m_6CharPlusData; }
     [[nodiscard]]
-    ListCtrlExNumericDataProvider* Get6CharacterPlusData() noexcept
+    std::shared_ptr<ListCtrlExNumericDataProvider>& Get6CharacterPlusData()
         { return m_6CharPlusData; }
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetDaleChallHardWordData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetDaleChallHardWordData() const
         { return m_DCHardWordsData; }
     [[nodiscard]]
-    ListCtrlExNumericDataProvider* GetDaleChallHardWordData() noexcept
+    std::shared_ptr<ListCtrlExNumericDataProvider>& GetDaleChallHardWordData()
         { return m_DCHardWordsData; }
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetSpacheHardWordData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetSpacheHardWordData() const
         { return m_SpacheHardWordsData; }
     [[nodiscard]]
-    ListCtrlExNumericDataProvider* GetSpacheHardWordData() noexcept
+    std::shared_ptr<ListCtrlExNumericDataProvider>& GetSpacheHardWordData()
         { return m_SpacheHardWordsData; }
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetHarrisJacobsonHardWordDataData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetHarrisJacobsonHardWordDataData() const
         { return m_harrisJacobsonHardWordsData; }
     [[nodiscard]]
-    ListCtrlExNumericDataProvider* GetHarrisJacobsonHardWordDataData() noexcept
+    std::shared_ptr<ListCtrlExNumericDataProvider>& GetHarrisJacobsonHardWordDataData()
         { return m_harrisJacobsonHardWordsData; }
     [[nodiscard]]
-    const ListCtrlExDataProvider* GetUnusedDolchWordData() const noexcept
+    const std::shared_ptr<ListCtrlExDataProvider>& GetUnusedDolchWordData() const
         { return m_unusedDolchWordsData; }
     [[nodiscard]]
-    ListCtrlExDataProvider* GetUnusedDolchWordData() noexcept
+    std::shared_ptr<ListCtrlExDataProvider>& GetUnusedDolchWordData()
         { return m_unusedDolchWordsData; }
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetDolchWordData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetDolchWordData() const
         { return m_dolchWordsData; }
     [[nodiscard]]
-    ListCtrlExNumericDataProvider* GetDolchWordData() noexcept
+    std::shared_ptr<ListCtrlExNumericDataProvider>& GetDolchWordData()
         { return m_dolchWordsData; }
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetNonDolchWordData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetNonDolchWordData() const
         { return m_nonDolchWordsData; }
     [[nodiscard]]
-    ListCtrlExNumericDataProvider* GetNonDolchWordData() noexcept
+    std::shared_ptr<ListCtrlExNumericDataProvider>& GetNonDolchWordData()
         { return m_nonDolchWordsData; }
     [[nodiscard]]
-    ListCtrlExNumericDataProvider* GetKeyWordsBaseData() noexcept
+    std::shared_ptr<ListCtrlExNumericDataProvider>& GetKeyWordsBaseData()
         { return m_keyWordsBaseData; }
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetKeyWordsBaseData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetKeyWordsBaseData() const
         { return m_keyWordsBaseData; }
     [[nodiscard]]
-    ListCtrlExNumericDataProvider* GetAllWordsBaseData() noexcept
+    std::shared_ptr<ListCtrlExNumericDataProvider>& GetAllWordsBaseData()
         { return m_AllWordsBaseData; }
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetAllWordsBaseData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetAllWordsBaseData() const
         { return m_AllWordsBaseData; }
     [[nodiscard]]
-    ListCtrlExNumericDataProvider* GetProperNounsData() noexcept
+    std::shared_ptr<ListCtrlExNumericDataProvider>& GetProperNounsData()
         { return m_ProperNounsData; }
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetProperNounsData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetProperNounsData() const
         { return m_ProperNounsData; }
     [[nodiscard]]
-    ListCtrlExNumericDataProvider* GetContractionsData() noexcept
+    std::shared_ptr<ListCtrlExNumericDataProvider>& GetContractionsData()
         { return m_contractionsData; }
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetContractionsData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetContractionsData() const
         { return m_contractionsData; }
 
     [[nodiscard]]
@@ -1833,18 +1819,18 @@ private:
     // but stored as double so that it can be set to NaN if invalid.
     double m_clozeScore{ 0 };
 
-    ListCtrlExNumericDataProvider* m_3SybPlusData{ nullptr };
-    ListCtrlExNumericDataProvider* m_6CharPlusData{ nullptr };
-    ListCtrlExNumericDataProvider* m_DCHardWordsData{ nullptr };
-    ListCtrlExNumericDataProvider* m_SpacheHardWordsData{ nullptr };
-    ListCtrlExNumericDataProvider* m_harrisJacobsonHardWordsData{ nullptr };
-    ListCtrlExDataProvider* m_unusedDolchWordsData{ nullptr };
-    ListCtrlExNumericDataProvider* m_dolchWordsData{ nullptr };
-    ListCtrlExNumericDataProvider* m_nonDolchWordsData{ nullptr };
-    ListCtrlExNumericDataProvider* m_ProperNounsData{ nullptr };
-    ListCtrlExNumericDataProvider* m_contractionsData{ nullptr };
-    ListCtrlExNumericDataProvider* m_keyWordsBaseData{ nullptr };
-    ListCtrlExNumericDataProvider* m_AllWordsBaseData{ nullptr };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_3SybPlusData{ nullptr };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_6CharPlusData{ nullptr };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_DCHardWordsData{ nullptr };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_SpacheHardWordsData{ nullptr };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_harrisJacobsonHardWordsData{ nullptr };
+    std::shared_ptr<ListCtrlExDataProvider> m_unusedDolchWordsData{ nullptr };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_dolchWordsData{ nullptr };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_nonDolchWordsData{ nullptr };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_ProperNounsData{ nullptr };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_contractionsData{ nullptr };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_keyWordsBaseData{ nullptr };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_AllWordsBaseData{ nullptr };
 
     CaseInSensitiveNonStemmingDocument* m_words{ nullptr };
     double_frequency_set<word_case_insensitive_no_stem>* m_word_frequency_map{ nullptr };

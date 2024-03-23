@@ -52,9 +52,6 @@ class ProjectWizardDlg final : public wxDialog
     /// @private
     ProjectWizardDlg& operator=(const ProjectWizardDlg&) = delete;
 
-    /// @private
-    ~ProjectWizardDlg() { wxDELETE(m_fileData); }
-
     /// Creates the controls and sizers.
     void CreateControls();
     [[nodiscard]]
@@ -62,7 +59,7 @@ class ProjectWizardDlg final : public wxDialog
 
     /// @returns The list control data containing files for a batch project.
     [[nodiscard]]
-    const ListCtrlExDataProvider* GetFileData() const noexcept
+    const std::shared_ptr<ListCtrlExDataProvider>& GetFileData() const
         {
         return m_fileData;
         }
@@ -403,7 +400,8 @@ class ProjectWizardDlg final : public wxDialog
 
     // batch document entry
     ListCtrlEx* m_fileList{ nullptr };
-    ListCtrlExDataProvider* m_fileData{ nullptr };
+    std::shared_ptr<ListCtrlExDataProvider> m_fileData
+        { std::make_shared<ListCtrlExDataProvider>() };
     wxCheckBox* m_isRandomSampling{ nullptr };
     wxSpinCtrl* m_randPercentageCtrl{ nullptr };
     static wxString m_lastSelectedFolder;

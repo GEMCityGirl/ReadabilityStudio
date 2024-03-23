@@ -24,31 +24,6 @@ class BatchProjectDoc final : public BaseProjectDoc
 
     ~BatchProjectDoc()
         {
-        wxDELETE(m_scoreRawData);
-        wxDELETE(m_goalsData);
-        wxDELETE(m_scoreStatsData);
-        wxDELETE(m_aggregatedGradeScoresData);
-        wxDELETE(m_aggregatedClozeScoresData);
-        wxDELETE(m_warnings);
-        wxDELETE(m_dupWordData);
-        wxDELETE(m_incorrectArticleData);
-        wxDELETE(m_overusedWordBySentenceData);
-        wxDELETE(m_passiveVoiceData);
-        wxDELETE(m_misspelledWordData);
-        wxDELETE(m_wordyPhraseData);
-        wxDELETE(m_clichePhraseData);
-        wxDELETE(m_allWordsBatchData);
-        wxDELETE(m_keyWordsBatchData);
-        wxDELETE(m_redundantPhraseData);
-        wxDELETE(m_wordingErrorData);
-        wxDELETE(m_hardWordsData);
-        wxDELETE(m_summaryStatsData);
-        wxDELETE(m_overlyLongSentenceData);
-        wxDELETE(m_sentenceStartingWithConjunctionsData);
-        wxDELETE(m_sentenceStartingWithLowercaseData);
-        wxDELETE(m_dolchCompletionData);
-        wxDELETE(m_dolchWordsBatchData);
-        wxDELETE(m_NonDolchWordsData);
         for (std::vector<BaseProject*>::iterator pos = m_docs.begin();
             pos != m_docs.end();
             ++pos)
@@ -121,110 +96,110 @@ class BatchProjectDoc final : public BaseProjectDoc
     void RemoveMisspellings(const wxArrayString& misspellingsToRemove) final;
 
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetMisspelledWordData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetMisspelledWordData() const noexcept
         {
         return m_misspelledWordData;
         }
 
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetRepeatedWordData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetRepeatedWordData() const noexcept
         {
         return m_dupWordData;
         }
 
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetIncorrectArticleData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetIncorrectArticleData() const noexcept
         {
         return m_incorrectArticleData;
         }
 
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetOverusedWordBySentenceData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetOverusedWordBySentenceData() const noexcept
         {
         return m_overusedWordBySentenceData;
         }
 
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetPassiveVoiceData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetPassiveVoiceData() const noexcept
         {
         return m_passiveVoiceData;
         }
 
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetWordyItemsData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetWordyItemsData() const noexcept
         {
         return m_wordyPhraseData;
         }
 
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetRedundantPhrasesData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetRedundantPhrasesData() const noexcept
         {
         return m_redundantPhraseData;
         }
 
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetWordingErrorsData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetWordingErrorsData() const noexcept
         {
         return m_wordingErrorData;
         }
 
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetClicheData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetClicheData() const noexcept
         {
         return m_clichePhraseData;
         }
 
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetAllWordsBatchData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetAllWordsBatchData() const noexcept
         {
         return m_allWordsBatchData;
         }
 
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetKeyWordsBatchData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetKeyWordsBatchData() const noexcept
         {
         return m_keyWordsBatchData;
         }
 
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetLongSentencesData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetLongSentencesData() const noexcept
         {
         return m_overlyLongSentenceData;
         }
 
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetConjunctionStartingSentencesData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetConjunctionStartingSentencesData() const noexcept
         {
         return m_sentenceStartingWithConjunctionsData;
         }
 
     [[nodiscard]]
-    const ListCtrlExNumericDataProvider* GetLowerCasedSentencesData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetLowerCasedSentencesData() const noexcept
         {
         return m_sentenceStartingWithLowercaseData;
         }
 
   private:
     [[nodiscard]]
-    ListCtrlExNumericDataProvider* GetMisspelledWordData() noexcept
+    std::shared_ptr<ListCtrlExNumericDataProvider>& GetMisspelledWordData() noexcept
         {
         return m_misspelledWordData;
         }
 
     [[nodiscard]]
-    ListCtrlExNumericDataProvider* GetRepeatedWordData() noexcept
+    std::shared_ptr<ListCtrlExNumericDataProvider>& GetRepeatedWordData() noexcept
         {
         return m_dupWordData;
         }
 
     [[nodiscard]]
-    ListCtrlExNumericDataProvider* GetAllWordsBatchData() noexcept
+    std::shared_ptr<ListCtrlExNumericDataProvider>& GetAllWordsBatchData() noexcept
         {
         return m_allWordsBatchData;
         }
 
     [[nodiscard]]
-    ListCtrlExNumericDataProvider* GetKeyWordsBatchData() noexcept
+    std::shared_ptr<ListCtrlExNumericDataProvider>& GetKeyWordsBatchData() noexcept
         {
         return m_keyWordsBatchData;
         }
@@ -290,7 +265,7 @@ class BatchProjectDoc final : public BaseProjectDoc
         @param varianceMethod The variance method to calculate with (population or sample).
         @param allowCustomFormatting Whether custom formatting should be used for number formatting
             in the @c dataGrid.*/
-    static void SetScoreStatsRow(ListCtrlExNumericDataProvider* dataGrid, const wxString& rowName,
+    static void SetScoreStatsRow(std::shared_ptr<ListCtrlExNumericDataProvider> dataGrid, const wxString& rowName,
                                  const wxString& optionalDescription, const long rowNum,
                                  const std::vector<double>& data, const int decimalSize,
                                  const VarianceMethod varianceMethod,
@@ -305,7 +280,7 @@ class BatchProjectDoc final : public BaseProjectDoc
             This parameter only makes sense for adding a description next to a document.
         @param multiSelectable @c true to make the list control multi-item selectable.*/
     void DisplayScoreStatisticsWindow(const wxString& windowName, const int windowId,
-                                      ListCtrlExNumericDataProvider* data,
+                                      std::shared_ptr<ListCtrlExNumericDataProvider> data,
                                       const wxString& firstColumnName,
                                       const wxString& optionalSecondColumnName,
                                       const bool multiSelectable);
@@ -342,43 +317,43 @@ class BatchProjectDoc final : public BaseProjectDoc
     std::map<traits::case_insensitive_wstring_ex, Wisteria::Data::GroupIdType> m_docLabels;
     Wisteria::Data::ColumnWithStringTable::StringTableType m_groupStringTable;
     // score list data
-    ListCtrlExNumericDataProvider* m_scoreRawData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_goalsData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_scoreStatsData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_aggregatedGradeScoresData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_aggregatedClozeScoresData{ new ListCtrlExNumericDataProvider };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_scoreRawData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_goalsData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_scoreStatsData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_aggregatedGradeScoresData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_aggregatedClozeScoresData{ std::make_shared<ListCtrlExNumericDataProvider>() };
     // grammar list data
-    ListCtrlExNumericDataProvider* m_dupWordData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_incorrectArticleData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_passiveVoiceData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_misspelledWordData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_wordyPhraseData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_redundantPhraseData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_wordingErrorData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_overusedWordBySentenceData{
-        new ListCtrlExNumericDataProvider
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_dupWordData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_incorrectArticleData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_passiveVoiceData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_misspelledWordData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_wordyPhraseData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_redundantPhraseData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_wordingErrorData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_overusedWordBySentenceData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
     };
-    ListCtrlExNumericDataProvider* m_clichePhraseData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_overlyLongSentenceData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_sentenceStartingWithConjunctionsData{
-        new ListCtrlExNumericDataProvider
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_clichePhraseData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_overlyLongSentenceData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_sentenceStartingWithConjunctionsData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
     };
-    ListCtrlExNumericDataProvider* m_sentenceStartingWithLowercaseData{
-        new ListCtrlExNumericDataProvider
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_sentenceStartingWithLowercaseData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
     };
-    ListCtrlExNumericDataProvider* m_allWordsBatchData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_keyWordsBatchData{ new ListCtrlExNumericDataProvider };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_allWordsBatchData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_keyWordsBatchData{ std::make_shared<ListCtrlExNumericDataProvider>() };
     // difficult words list data
-    ListCtrlExNumericDataProvider* m_hardWordsData{ new ListCtrlExNumericDataProvider };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_hardWordsData{ std::make_shared<ListCtrlExNumericDataProvider>() };
     // summary stats data
-    ListCtrlExNumericDataProvider* m_summaryStatsData{ new ListCtrlExNumericDataProvider };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_summaryStatsData{ std::make_shared<ListCtrlExNumericDataProvider>() };
     std::vector<wxString> m_summaryStatsColumnNames;
     // warnings list data
-    ListCtrlExDataProvider* m_warnings{ new ListCtrlExDataProvider };
+    std::shared_ptr<ListCtrlExDataProvider> m_warnings{ std::make_shared<ListCtrlExDataProvider>() };
     // dolch list data
-    ListCtrlExNumericDataProvider* m_dolchCompletionData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_dolchWordsBatchData{ new ListCtrlExNumericDataProvider };
-    ListCtrlExNumericDataProvider* m_NonDolchWordsData{ new ListCtrlExNumericDataProvider };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_dolchCompletionData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_dolchWordsBatchData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_NonDolchWordsData{ std::make_shared<ListCtrlExNumericDataProvider>() };
 
     wxDECLARE_DYNAMIC_CLASS(BatchProjectDoc);
     };
