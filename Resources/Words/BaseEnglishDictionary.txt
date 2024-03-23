@@ -8845,6 +8845,9 @@ backless
 backlight
 backlighting
 backlights
+backlink
+backlink's
+backlinks
 backlit
 backlog
 backlog's
@@ -10171,6 +10174,9 @@ bathtub
 bathtub's
 bathtubs
 bathwater
+bathymetries
+bathymetry
+bathymetry's
 bathyscaphe's
 bathysphere
 bathysphere's
@@ -11944,6 +11950,9 @@ bioaccumulation's
 bioacoustic
 bioactive
 bioarchaeology
+bioassay
+bioassay's
+bioassays
 bioastronomy
 bioastronomy's
 bioavailable
@@ -11951,6 +11960,9 @@ biobased
 biobehavioral
 biocatalysis
 biocatalytic
+biochar
+biochar's
+biochars
 biochemical
 biochemically
 biochemicals
@@ -14815,6 +14827,9 @@ breakdowns
 breaker
 breaker's
 breakers
+breakerspace
+breakerspace's
+breakerspaces
 breakfast
 breakfast's
 breakfasted
@@ -20124,12 +20139,14 @@ charioteers
 charioting
 chariots
 charism
+charism's
 charisma
 charisma's
 charismata
 charismatic
 charismatically
 charismatics
+charisms
 charitable
 charitableness
 charitableness's
@@ -23014,6 +23031,8 @@ cobwebby
 cobwebs
 coca
 coca's
+cocaethylene
+cocaethylene's
 cocaine
 cocaine's
 cocaines
@@ -29079,7 +29098,9 @@ criterion's
 critic
 critic's
 critical
+criticalities
 criticality
+criticality's
 critically
 criticalness
 criticalness's
@@ -29760,6 +29781,7 @@ cu.
 cub
 cub's
 cubbed
+cubbies
 cubbing
 cubbyhole
 cubbyhole's
@@ -30134,6 +30156,8 @@ curricle
 curricle's
 curricula
 curricular
+curricular's
+curriculars
 curriculog
 curriculog's
 curriculogs
@@ -31662,6 +31686,9 @@ decapitations
 decapitator
 decapitator's
 decapitators
+decarbonization
+decarbonization's
+decarbonizations
 decarboxylase
 decarboxylate
 decarboxylated
@@ -43883,6 +43910,7 @@ ethnology
 ethnology's
 ethnomethodology
 ethnomusicology
+ethnoracially
 ethnoreligious
 ethological
 ethologies
@@ -54074,12 +54102,15 @@ glutamatergic
 glutamic
 glutamine
 glutathione
+glute
+glute's
 gluteal
 glutei
 gluten
 gluten's
 glutenous
 glutens
+glutes
 gluteus
 glutinous
 glutinously
@@ -58435,6 +58466,8 @@ hemal
 hemangioblasts
 hemangioma
 hemangiomas
+hemangiosarcoma
+hemangiosarcoma's
 hemarthrosis
 hematemesis
 hematite
@@ -61368,6 +61401,8 @@ hydrometers
 hydrometries
 hydrometry
 hydrometry's
+hydromorphone
+hydromorphone's
 hydronephrosis
 hydronium
 hydronium's
@@ -70849,6 +70884,9 @@ lamps
 lampshade
 lampshade's
 lampshades
+lampstand
+lampstand's
+lampstands
 lams
 lamé
 LAN
@@ -72826,6 +72864,9 @@ limekiln's
 limelight
 limelight's
 limelighted
+limelighter
+limelighter's
+limelighters
 limelighting
 limelights
 limerick
@@ -83169,6 +83210,9 @@ mycologists
 mycology
 mycology's
 mycoplasma
+mycoremediation
+mycoremediation's
+mycoremediations
 mycorrhiza
 mycorrhiza's
 mycorrhizae
@@ -84578,6 +84622,7 @@ neuropathy
 neuropeptide
 neuropeptide's
 neuropeptides
+neuropharmacology
 neurophilosopher
 neurophilosopher's
 neurophilosophers
@@ -84619,6 +84664,9 @@ neurosurgeries
 neurosurgery
 neurosurgery's
 neurosyphilis
+neurotechnologies
+neurotechnology
+neurotechnology's
 neurotheology
 neurotic
 neurotically
@@ -86001,6 +86049,9 @@ nonrelevant
 nonreligious
 nonrenal
 nonrenewable
+nonrenewal
+nonrenewal's
+nonrenewals
 nonrepayable
 nonrepresentational
 nonreproductive
@@ -86254,6 +86305,8 @@ nor
 noradrenalin
 noradrenaline
 noradrenaline's
+norcocaine
+norcocaine's
 Norean
 norepinephrine
 norepinephrine's
@@ -90719,6 +90772,8 @@ oxymetholone
 oxymora
 oxymoron
 oxymoron's
+oxymorphone
+oxymorphone's
 oxyphil
 oxytocin
 oxyuris
@@ -91941,6 +91996,9 @@ parathyrin
 parathyroid
 parathyroidectomy
 parathyroids
+paratransit
+paratransit's
+paratransits
 paratriathlon
 paratriathlon's
 paratriathlons
@@ -92877,6 +92935,7 @@ pawnshop's
 pawnshops
 pawpaw's
 paws
+pax
 paxes
 pay
 payable
@@ -94158,6 +94217,7 @@ permissiveness
 permissiveness's
 permit
 permit's
+permitless
 permits
 permitted
 permitting
@@ -94807,6 +94867,8 @@ phelloderm
 phenacetin
 phenacetin's
 phenacetins
+phencyclidine
+phencyclidine's
 phenobarbital
 phenobarbital's
 phenobarbitals
@@ -111489,6 +111551,7 @@ rootlets
 roots
 rootstock
 rootstock's
+rootstocks
 rootworm
 rootworm's
 rootworms
@@ -114778,6 +114841,9 @@ seafronts
 seagate
 seagate's
 seagoing
+seagrass
+seagrass's
+seagrasses
 seagull
 seagulls
 seahawk
@@ -116182,6 +116248,9 @@ serviceman's
 servicemark
 servicemark's
 servicemarks
+servicemember
+servicemember's
+servicemembers
 servicemen
 servicemen's
 servicer
@@ -118893,6 +118962,7 @@ skywards
 skywave
 skyway
 skyway's
+skyways
 skywriter
 skywriter's
 skywriters
@@ -119714,6 +119784,9 @@ smoked
 smokehouse
 smokehouse's
 smokehouses
+smokejumper
+smokejumper's
+smokejumpers
 smokeless
 smoker
 smoker's
@@ -120378,6 +120451,7 @@ socialists
 socialite
 socialite's
 socialites
+socialities
 sociality
 sociality's
 socialization
@@ -120398,6 +120472,7 @@ societies
 society
 society's
 socio
+sociobehavioral
 sociobiology
 sociobiology's
 sociocultural
@@ -125990,6 +126065,9 @@ subscription
 subscription's
 subscriptions
 subscripts
+subsea
+subsea's
+subseas
 subsection
 subsection's
 subsections
@@ -127113,6 +127191,8 @@ superlativeness
 superlativeness's
 superlatives
 superlattice
+superlattice;s
+superlattices
 superluminous
 superlunary
 supermachine
@@ -128127,6 +128207,9 @@ switchmen
 switchmen's
 switchover
 switchover's
+switchyard
+switchyard's
+switchyards
 swivel
 swivel's
 swiveled
@@ -129741,6 +129824,9 @@ tealeaves
 teals
 team
 team's
+teambacker
+teambacker's
+teambackers
 teambonding
 teambonding's
 teambuilder
@@ -138189,6 +138275,7 @@ ungainlinesses
 ungainly
 ungallant
 ungallantly
+ungated
 ungeneralized
 ungenerous
 ungenerously

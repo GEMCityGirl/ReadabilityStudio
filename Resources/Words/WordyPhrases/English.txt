@@ -988,7 +988,7 @@ amusement	fun	0
 an a	(strike one of these)	3		and;component;in;on;or;priori;record
 an abundance of	plenty of	0		
 an affect on	an effect on	3		
-an alter	an altar (unless referring to a SQL command)	3		column;command;database;ego;event;login;permission;statement;syntax;table;user
+an alter	an altar (unless referring to a SQL command or Alter as a proper name)	3		column;command;database;ego;event;high;improv;login;permission;statement;syntax;table;user
 an alternative	any other, another	0		
 an an example	as an example, strike extra 'an'	3		
 an another	another	3		
@@ -1127,9 +1127,12 @@ anticipated	expected, awaited	0
 anticipates	expects, awaits	0		
 anticipating	expecting, awaiting	0		
 anticipation	expectation	0		
+antime	anytime	3		
 antipathy	dislike	0		
 antiquated	out-of-date	0		
 antithesis	opposite	0		
+Antractica	Antarctica	3		
+Antractica's	Antarctica's	3		
 anual	annual	3		
 anualization	annualization	3		
 anualize	annualize	3		
@@ -1754,6 +1757,9 @@ atain	attain	3
 ate crow	acknowledged being wrong	2		
 ate humble pie	acknowledged being wrong	2		
 atempting	attempting	3		
+aternate	alternate	3		
+aternate's	alternate's	3		
+aternates	alternates	3		
 atheistical	atheistic	3		
 athiesm	atheism	3		
 athiest	atheist	3		
@@ -4066,6 +4072,7 @@ cultivate	grow, till, raise, farm	0
 cultivated	grew, tilled, raised, farmed	0		
 cultivates	grows, tills, raises, farms	0		
 cultivating	growing, tilling, raising, farming	0		
+cultur	culture	3		
 cummulative	cumulative	3		
 cumulatative	cumulative	3		
 curch	church	3		
@@ -4116,6 +4123,7 @@ cutting by half	halving	0
 cutting corners	(irresponsibly) taking shortcuts to finish a task	2		
 cutting mustard	passing, doing well	2		
 cutting the mustard	passing, doing well	2		
+cuturally	culturally	3		
 Cyberbulling	Cyberbullying	3		
 cyclinder	cylinder	3		
 CYMK	CMYK	3		
@@ -5398,6 +5406,9 @@ engieneers	engineers	3
 engineeer	engineer	3		
 engineeer's	engineer's	3		
 engineeers	engineers	3		
+enginering	engineering	3		
+enginering's	engineering's	3		
+enginerings	engineerings	3		
 enging	engine	3		
 enging's	engine's	3		
 engingeering	engineering	3		
@@ -7169,6 +7180,8 @@ homogeneize	homogenize	3
 homogeneized	homogenized	3		
 homogeneous	similar	0		
 homogeneously	similarly	0		
+Hondurus	Honduras	3		
+Hondurus's	Honduras's	3		
 honest as the day is long	consistently reliable	2		
 honest injun	truthfully, I'm being truthful (this phrase is highly offensive and should be avoided)	2		
 honest to goodness	truthfully, I'm being truthful	2		
@@ -7213,6 +7226,7 @@ htink	think	3
 htis	this	3		
 hueristic	heuristic	3		
 hueristics	heuristics	3		
+humanitites	humanities	3		
 humerous	humorous	3		
 huminoid	humanoid	3		
 humongous	giant	0		
@@ -7281,6 +7295,8 @@ identify	find, name, show	0
 identifying	naming, finding	0		
 identitiy	identify	3		
 ideosyncratic	idiosyncratic	3		
+Idianapolis	Indianapolis	3		
+Idianapolis's	Indianapolis's	3		
 idicate	indicate	3		
 idicated	indicated	3		
 idicates	indicates	3		
@@ -7978,6 +7994,9 @@ initilize	initialize	3
 initilized	initialized	3		
 initilizes	initializes	3		
 initilizing	initializing	3		
+initivative	initiative	3		
+initivative's	initiative's	3		
+initivatives	initiatives	3		
 injudicious	unwise	0		
 injudiciously	unwisely	0		
 inlcude	include	3		
@@ -8057,6 +8076,9 @@ instuitions	institutions	3
 instuments	instruments	3		
 instutionalized	institutionalized	3		
 instutions	intuitions	3		
+insuance	insurance	3		
+insuance's	insurance's	3		
+insuances	insurances	3		
 insubordination	disobeying	0		
 insubstantial	flimsy	0		
 insubstantially	flimsily	0		
@@ -8803,6 +8825,7 @@ links together	links	1
 lion's share	greater part of an allotment	2		
 lips are sealed	won't reveal something	2		
 liquify	liquefy	3		
+liscensed	licensed	3		
 listners	listeners	3		
 litature	literature	3		
 literaly	literally	3		
@@ -9041,6 +9064,9 @@ maneouvre	manoeuvre	3
 maneouvred	manoeuvred	3		
 maneouvres	manoeuvres	3		
 maneouvring	manoeuvring	3		
+mangement	management	3		
+mangement's	management's	3		
+mangements	managements	3		
 manisfestations	manifestations	3		
 manner	way	0		
 manoeuverability	maneuverability	3		
@@ -11641,6 +11667,7 @@ querulously	fretfully	0
 questbook	guestbook	3		
 questbook's	guestbook's	3		
 questbooks	guestbooks	3		
+questinos	questions	3		
 questionaire	questionnaire	3		
 questionaire's	questionnaire's	3		
 questionaires	questionnaires	3		
@@ -12181,6 +12208,7 @@ report provide	report provides	3
 reportadly	reportedly	3		
 reported back	reported	0		
 reporting back	reporting	0		
+reportint	reporting	3		
 reports back	reports	0		
 reprehend	blame	0		
 reprehended	blamed	0		
@@ -13860,7 +13888,7 @@ thats	that's	3
 the a	(strike one of these)	3		and;component;drive;priori;record;z
 the acorn doesn't fall far from the tree	he exhibits the same behavior as his parent/boss/etc.	2		
 the affect	the effect	3		
-the alter	the altar (unless referring to a SQL command)	3		column;command;database;ego;event;login;permission;statement;syntax;table;user
+the alter	the altar (unless referring to a SQL command or Alter as a proper name)	3		column;command;database;ego;event;high;improv;login;permission;statement;syntax;table;user
 the alters	the altars	3		
 the an	(strike one of these)	3		
 the ball is in her court	it is her turn, she needs to make the next move	2		
@@ -14671,6 +14699,7 @@ updateing	updating	3
 upgradded	upgraded	3		
 uphill battle	difficult struggle	2		
 upholstry	upholstery	3		
+upmost	utmost	3		
 upon	on	0		
 upped the ante	invested more	2		
 upper crust	aristocracy	2		

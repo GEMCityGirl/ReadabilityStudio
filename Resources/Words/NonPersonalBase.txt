@@ -74,6 +74,7 @@ Afrocentrism
 Agerholm
 Agnosia
 Agricola
+AgriTech
 AgTech
 Aguascalientes
 Ahlstrom
@@ -1276,6 +1277,7 @@ Congolese
 Connecticut
 Connectix
 Conoco
+ConocoPhillips
 Conrail
 Consolas
 Constancia
@@ -1365,6 +1367,7 @@ Cumbrian
 Cunha
 Cupertino
 Curacao
+Curator.io
 Curaçao
 Curitiba
 Currarino
@@ -1637,6 +1640,7 @@ Ecuador
 Ecuadoran
 Ecuadorean
 Ecuadorian
+EdChoice
 Eden
 Edgbaston
 Edgewater
@@ -1710,6 +1714,7 @@ Enron
 EnterpriseWorks
 Entra
 Envermeu
+Envirothon
 EnVu
 Eocene
 EPA
@@ -1815,6 +1820,7 @@ EventBrite
 Everest
 Everglades
 Evergrande
+eVerify
 Evernote
 EverReady
 Everton
@@ -1963,6 +1969,7 @@ Fortran
 Fortunoff
 Forza
 FOSS
+FotoFest
 Fotopedia
 FoundationDB
 Fourierism
@@ -2372,6 +2379,7 @@ HealthEast
 HealthFeed
 HealthNorth
 HealthPill
+HealthSelect
 HealthSouth
 HealthTree
 HealthWest
@@ -2486,6 +2494,7 @@ Houdaille
 Houndsditch
 Hounslow
 Houston
+Houstonian
 Howrah
 Hox
 Hts
@@ -2539,6 +2548,7 @@ Iceland
 Icelander
 Icelandic
 iCloud
+iCorps
 Icterus
 Ida
 Idaho
@@ -2883,6 +2893,7 @@ Kleon
 Klingon
 Klondike
 Klux
+Knicks
 Knoodle
 Knugget
 Kodachrome
@@ -3235,6 +3246,7 @@ Manchurian
 Mancunian
 Mandalay
 Manhattan
+Manhattanville
 Manichean
 Manila
 Manitoba
@@ -3786,6 +3798,7 @@ Northcoast
 Northcrest
 Northfield
 Northlandz
+Northmont
 Northport
 Northridge
 Northside
@@ -4273,6 +4286,7 @@ Psalms
 Psalter
 pseudoephedrine
 Psychometrika
+PsycInfo
 Psyonic
 PTA
 PTO
@@ -4280,6 +4294,7 @@ Ptolemaic
 Ptolemaism
 Ptolemaist
 Publix
+PubMed
 Puebla
 Pueblito
 Pueblo
@@ -4621,6 +4636,7 @@ Scala
 Scandinavia
 Scandinavian
 Scantron
+Scattergories
 Schaumburg
 Scheat
 Schedar
@@ -5160,6 +5176,7 @@ Telefonica
 Telefunken
 Telelogic
 Telemundo
+Telenovela
 TelePrompters
 Telerik
 Telescopium
@@ -5192,7 +5209,9 @@ Texaco
 Texan
 Texarkana
 Texas
+TexaSaver
 Texcoco
+TexFlex
 Textron
 Thai
 Thailand
@@ -5797,6 +5816,7 @@ WIC
 Wicca
 Wiccan
 Wichita
+WidgetCo
 Wiemar
 Wiesbaden
 Wii

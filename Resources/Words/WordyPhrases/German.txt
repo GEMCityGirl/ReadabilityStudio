@@ -5,6 +5,8 @@ Amercia	America	3
 Amstberg	Amtsberg	3		
 Amstberg's	Amtsberg's	3		
 Amstbergs	Amtsbergs	3		
+Antractica	Antarctica	3		
+Antractica's	Antarctica's	3		
 Archimedian	Archimedean	3		
 Athenean	Athenian	3		
 Atheneans	Athenians	3		
@@ -68,6 +70,10 @@ Guiseppe	Giuseppe	3
 Habsbourg	Hapsburg	3		
 Hatian	Haitian	3		
 Heidelburg	Heidelberg	3		
+Hondurus	Honduras	3		
+Hondurus's	Honduras's	3		
+Idianapolis	Indianapolis	3		
+Idianapolis's	Indianapolis's	3		
 Ihaca	Ithaca	3		
 Instragram	Instagram	3		
 Instragram's	Instagram's	3		
