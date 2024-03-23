@@ -27,6 +27,8 @@ void WebHarvesterDlg::OnDownloadCheck([[maybe_unused]] wxCommandEvent& event)
     m_localFolderLabel->Enable(m_downloadFilesLocally);
     m_localFolderEdit->Enable(m_downloadFilesLocally);
     m_retainWebsiteFolderStuctureCheckBox->Enable(m_downloadFilesLocally);
+    m_minFileSizeLabel->Enable(m_downloadFilesLocally);
+    m_minFileSizeCtrl->Enable(m_downloadFilesLocally);
     }
 
 //-------------------------------------------------------------
@@ -217,10 +219,11 @@ void WebHarvesterDlg::CreateControls()
         if (wxGetMouseState().ShiftDown())
             {
             urlSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-            urlSizer->Add(new wxStaticText(Panel, wxID_ANY, _(L"HTML Text:")));
+            urlSizer->Add(new wxStaticText(urlSizer->GetStaticBox(), wxID_ANY, _(L"HTML Text:")));
             urlSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             wxTextCtrl* rawHtmlPageEdit =
-                new wxTextCtrl(Panel, wxID_ANY, wxString{}, wxDefaultPosition, wxDefaultSize,
+                new wxTextCtrl(urlSizer->GetStaticBox(), wxID_ANY, wxString{},
+                               wxDefaultPosition, wxDefaultSize,
                                wxBORDER_THEME | wxTE_MULTILINE, wxGenericValidator(&m_rawHtmlPage));
             urlSizer->Add(rawHtmlPageEdit, 1, wxEXPAND);
             }
@@ -267,19 +270,43 @@ void WebHarvesterDlg::CreateControls()
         m_docFilterCombo->SetValue(m_selectedDocFilter);
         fileTypeSizer->Add(m_docFilterCombo,
                            wxSizerFlags(1).Expand()
-                           .Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+                           .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
+                           .Border(wxRIGHT, wxSizerFlags::GetDefaultBorder()));
+        panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
+        // min file size
+        wxBoxSizer* minFileSizeSizer = new wxBoxSizer(wxHORIZONTAL);
+        panelSizer->Add(minFileSizeSizer,
+                        wxSizerFlags(0).Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+
+        m_minFileSizeLabel =
+            new wxStaticText(Panel, wxID_STATIC, _(L"Minimum file size to download (in Kbs.):"));
+        m_minFileSizeLabel->Enable(m_downloadFilesLocally);
+        minFileSizeSizer->Add(m_minFileSizeLabel, 0, wxALIGN_CENTER_VERTICAL);
+
+        m_minFileSizeCtrl = new wxSpinCtrl(Panel, wxID_ANY,
+            wxString::Format(wxT("%d"), m_minFileSizeInKiloBytes));
+        m_minFileSizeCtrl->SetRange(1, 1024 * 20);
+        m_minFileSizeCtrl->SetValidator(wxGenericValidator(&m_minFileSizeInKiloBytes));
+        m_minFileSizeCtrl->Enable(m_downloadFilesLocally);
+        minFileSizeSizer->Add(m_minFileSizeCtrl);
+        panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+
+        // user agent
         wxBoxSizer* userAgentSizer = new wxBoxSizer(wxHORIZONTAL);
-            panelSizer->Add(userAgentSizer, wxSizerFlags().Expand());
+        panelSizer->Add(userAgentSizer,
+                        wxSizerFlags(0).Expand().
+                            Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
 
         userAgentSizer->Add(
-            new wxStaticText(Panel, wxID_STATIC, _(L"User agent:")),
-            0, wxALIGN_CENTER_VERTICAL);
+            new wxStaticText(Panel, wxID_STATIC, _(L"User agent:")), 0, wxALIGN_CENTER_VERTICAL);
         wxTextCtrl* userAgentEdit =
             new wxTextCtrl(Panel, wxID_ANY, wxString{}, wxDefaultPosition,
                 wxDefaultSize, wxBORDER_THEME, wxGenericValidator(&m_userAgent));
         userAgentSizer->Add(userAgentEdit,
-            wxSizerFlags(1).Expand().Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+                           wxSizerFlags(1).Expand()
+                           .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
+                           .Border(wxRIGHT, wxSizerFlags::GetDefaultBorder()));
 
         panelSizer->Add(new wxCheckBox(Panel, wxID_ANY,
                 _(L"Disable SSL certificate verification"),
@@ -295,6 +322,7 @@ void WebHarvesterDlg::CreateControls()
         panelSizer->Add(logBrokenLinksCheckBox,
                         wxSizerFlags().Expand().Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
                         .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
+        panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
         }
 
         // domain restriction page

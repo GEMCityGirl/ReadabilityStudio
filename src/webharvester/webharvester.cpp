@@ -321,7 +321,6 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
         }
     else
         {
-        wxLogWarning(L"Unable to write to '%s'", downloadPath);
         const int responseCode = m_downloader.GetLastStatus();
 
         // check the response code
@@ -330,6 +329,7 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
             wxLogWarning(L"%s: unable to connect to page, error code #%i (%s).",
                         Url, responseCode, QueueDownload::GetResponseMessage(responseCode));
             }
+        wxLogWarning(L"Unable to download to '%s'", downloadPath);
         downloadPath.clear();
         }
 
@@ -622,8 +622,8 @@ bool WebHarvester::CrawlLinks(wxString& url,
         {
         Wisteria::TextStream::ReadFile(url, fileText);
         }
-    // if raw HTML text was passed in, then parse that instead
-    else if (string_util::stristr(url.wc_str(), L"<html"))
+    // if raw HTML text was maybe passed in, then parse that instead
+    else if (m_crawlFromRawHtml)
         {
         fileText = url;
         }

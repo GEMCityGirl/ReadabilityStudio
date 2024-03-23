@@ -526,6 +526,7 @@ class WebHarvester
     void SetEventHandler(wxEvtHandler* handler) { m_downloader.SetAndBindEventHandler(handler); }
 
     /// @returns The list of harvested links.
+    [[nodiscard]]
     const std::set<UrlWithNumericSequence>& GetHarvestedLinks() const noexcept
         {
         return m_harvestedLinks;
@@ -533,10 +534,12 @@ class WebHarvester
 
     /// @returns The list of files downloaded.
     /// @note DownloadFilesWhileCrawling() must be enabled.
+    [[nodiscard]]
     const std::set<wxString>& GetDownloadedFilePaths() const noexcept { return m_downloadedFiles; }
 
     /// @returns A map of broken links and the respective pages they were found on.
     /// @note SeachForBrokenLinks() must be enabled.
+    [[nodiscard]]
     const std::map<wxString, wxString>& GetBrokenLinks() const noexcept { return m_brokenLinks; }
 
     /// @returns The user agent sent to websites when crawling.
@@ -580,10 +583,36 @@ class WebHarvester
         return m_disablePeerVerify;
         }
 
+    /// @brief If base URL cannot be loaded as a legit URL or local file,
+    ///     then treat it as raw HTML content and attempt to crawl the
+    ///     links from that.
+    /// @param fromRawHtml @c true to treat base URL as raw HTML if it
+    ///     cannot be validated as a link.
+    void AttemptToCrawlFromRawHtml(const bool fromRawHtml)
+        {
+        m_crawlFromRawHtml = fromRawHtml;
+        }
+
+    /// @brief Sets the minimum size that a file has to be to download it.
+    /// @param size The minimum file size, in kilobytes.
+    void SetMinimumDownloadFileSizeInKilobytes(const std::optional<uint32_t> size)
+        {
+        m_minFileDownloadSizeKilobytes = size;
+        }
+    /// @returns The minimum size a file must be to download. Will be `std::nullopt`
+    ///     if size constraints are not being enforced.
+    std::optional<uint32_t>  GetMinimumDownloadFileSizeInKilobytes() const
+        {
+        return m_minFileDownloadSizeKilobytes;
+        }
+
     /// @returns The character set, parsed from HTML's content type.
     /// @param contentType The content type section from a block of HTML to parse.
     [[nodiscard]]
     static wxString GetCharsetFromContentType(const wxString& contentType);
+
+    /// @returns The character set, parsed from HTML's content.
+    /// @param pageContent The full content of the HTML page.
     [[nodiscard]]
     static wxString GetCharsetFromPageContent(std::string_view pageContent);
 
@@ -658,12 +687,12 @@ class WebHarvester
     DomainRestriction m_domainRestriction{ DomainRestriction::RestrictToDomain };
     bool m_searchForMissingSequentialFiles{ false };
     bool m_downloadWhileCrawling{ false };
-    constexpr static size_t KILOBYTE = 1024;
-    constexpr static size_t MEGABYTE = 1024 * 1024;
 
+    std::optional<uint32_t> m_minFileDownloadSizeKilobytes{ std::nullopt };
     bool m_replaceExistingFiles{ true };
     bool m_harvestAllHtml{ false };
     bool m_searchForBrokenLinks{ false };
+    bool m_crawlFromRawHtml{ false };
 
     FileDownload m_downloader;
     // UI functionality

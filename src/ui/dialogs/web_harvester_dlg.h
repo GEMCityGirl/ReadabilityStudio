@@ -131,6 +131,18 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
         return m_rawHtmlPage;
         }
 
+    void SetMinimumDownloadFileSizeInKilobytes(const int minKbs) noexcept
+        {
+        m_minFileSizeInKiloBytes = minKbs;
+        TransferDataToWindow();
+        }
+
+    [[nodiscard]]
+    int GetMinimumDownloadFileSizeInKilobytes() const noexcept
+        {
+        return m_minFileSizeInKiloBytes;
+        }
+
     /// Updates the dialog from a harvester's settings,
     void UpdateFromHarvesterSettings(const WebHarvester& harvester);
     /// Sets a harvest object to use the settings from this dialog.
@@ -179,6 +191,7 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
     bool m_downloadFilesLocally{ true };
     bool m_keepWebPathWhenDownloading{ true };
     bool m_logBrokenLinks{ false };
+    int m_minFileSizeInKiloBytes{ 5 };
     Wisteria::UI::SideBarBook* m_sideBarBook{ nullptr };
     wxComboBox* m_docFilterCombo{ nullptr };
     wxSpinCtrl* m_depthLevelCtrl{ nullptr };
@@ -191,6 +204,8 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
     ListCtrlEx* m_urlList{ nullptr };
     wxBitmapButton* m_addDomainButton{ nullptr };
     wxBitmapButton* m_deleteDomainButton{ nullptr };
+    wxStaticText* m_minFileSizeLabel{ nullptr };
+    wxSpinCtrl* m_minFileSizeCtrl{ nullptr };
 
     wxArrayString m_urls;
     ListCtrlExDataProvider* m_urlData{ new ListCtrlExDataProvider };
