@@ -1319,37 +1319,35 @@ void BatchProjectDoc::LoadSummaryStatsSection()
 void BatchProjectDoc::LoadWarningsSection()
     {
     m_warnings->DeleteAllItems();
-    m_warnings->SetSize(m_docs.size()*2+GetSubProjectMessages()->size(), 3);
+    m_warnings->SetSize(m_docs.size() * 2 + GetSubProjectMessages().size(), 3);
 
     size_t warningCount = 0;
 
     // warnings from batch project itself (shouldn't really happen)
-    for (std::vector<WarningMessage>::const_iterator messagePos = GetSubProjectMessages()->cbegin();
-         messagePos != GetSubProjectMessages()->cend();
-         ++messagePos)
+    for (const auto& message : GetSubProjectMessages())
         {
         // in case there are more warnings than expected, then resize it
         if (warningCount >= m_warnings->GetItemCount())
             { m_warnings->SetSize(m_warnings->GetItemCount()*1.5); }
-        m_warnings->SetItemText(warningCount, 0, messagePos->GetMessage());
+        m_warnings->SetItemText(warningCount, 0, message.GetMessage());
         ++warningCount;
         }
     for (std::vector<BaseProject*>::iterator pos = m_docs.begin();
         pos != m_docs.end();
         ++pos)
         {
-        if ((*pos)->GetSubProjectMessages())
+        if ((*pos)->GetSubProjectMessages().size())
             {
-            for (std::vector<WarningMessage>::const_iterator messagePos = (*pos)->GetSubProjectMessages()->cbegin();
-                 messagePos != (*pos)->GetSubProjectMessages()->cend();
-                 ++messagePos)
+            for (const auto& message : (*pos)->GetSubProjectMessages())
                 {
                 // in case there are more warnings than expected, then resize it
                 if (warningCount >= m_warnings->GetItemCount())
-                    { m_warnings->SetSize(m_warnings->GetItemCount()*1.5); }
+                    {
+                    m_warnings->SetSize(m_warnings->GetItemCount() * 1.5);
+                    }
                 m_warnings->SetItemText(warningCount, 0, (*pos)->GetOriginalDocumentFilePath());
                 m_warnings->SetItemText(warningCount, 1, (*pos)->GetOriginalDocumentDescription());
-                m_warnings->SetItemText(warningCount, 2, messagePos->GetMessage());
+                m_warnings->SetItemText(warningCount, 2, message.GetMessage());
                 ++warningCount;
                 }
             }

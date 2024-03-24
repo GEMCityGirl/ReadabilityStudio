@@ -266,10 +266,9 @@ public:
     BaseProject();
     BaseProject(const BaseProject&) = delete;
     BaseProject& operator==(const BaseProject&) = delete;
+
     virtual ~BaseProject()
         {
-        wxDELETE(m_formulaParser);
-        wxDELETE(m_messages);
         wxDELETE(m_words);
         wxDELETE(m_word_frequency_map);
         /* Note that m_excluded_phrases should not be deleted here, it should be
@@ -277,17 +276,21 @@ public:
            a batch project will share its phrase list with its subprojects, so these
            subprojects should not delete that list pointer.*/
         }
+
     [[nodiscard]]
-    wxString GetCurrentCustomTest() const
+    const wxString& GetCurrentCustomTest() const
         { return m_currentCustTest; }
-    //-------------------------------------
+
+    /// @brief Gets (and constructs, if necessary) the formula parser.
+    /// @note This is created on demand on the heap as we don't won't create this in a
+    ///     thin client unless really needed.
     [[nodiscard]]
     ReadabilityFormulaParser& GetFormulaParser()
         {
         if (m_formulaParser == nullptr)
             {
             m_formulaParser =
-                new ReadabilityFormulaParser(this, wxNumberFormatter::GetDecimalSeparator(),
+                std::make_shared<ReadabilityFormulaParser>(this, wxNumberFormatter::GetDecimalSeparator(),
                                              FormulaFormat::GetListSeparator());
             }
         return *m_formulaParser;
@@ -953,34 +956,34 @@ public:
     ///     It will not be shown until ShowQueuedMessages() is called.
     void LogMessage(wxString message, const wxString& title, const int icon,
                     const wxString& messageId = wxString{}, const bool queue = false);
+
     void LogMessage(const WarningMessage& message, const bool queue = false)
         {
         // in case this is something that the user asked to be suppressed
         if (message.ShouldBeShown())
-            { LogMessage(message.GetMessage(), message.GetTitle(), message.GetFlags(), message.GetId(), queue); }
+            {
+            LogMessage(message.GetMessage(), message.GetTitle(), message.GetFlags(),
+                       message.GetId(), queue);
+            }
         }
     /// @brief Clear the queued list of error/warning messages encountered while loading.
     void ClearSubProjectMessages()
         {
-        if (GetSubProjectMessages())
-            { m_messages->clear(); }
+        m_messages.clear();
         }
     /// @returns The collection of messages queued while loading documents and whatnot.
     [[nodiscard]]
-    const std::vector<WarningMessage>* GetSubProjectMessages() const
+    const std::vector<WarningMessage>& GetSubProjectMessages() const
         {
-        if (m_messages == nullptr)
-            { m_messages = new std::vector<WarningMessage>; }
         return m_messages;
         }
     /// Adds a message that will be added to a list, where the caller will be responsible
     /// for showing them via GetMessages().
-    /// Normally, LogMessage should be called unless you need to explicitly not show the message right away.
+    /// Normally, LogMessage should be called unless you need to explicitly
+    /// not show the message right away.
     void AddQuietSubProjectMessage(const wxString& message, const int icon)
         {
-        if (GetSubProjectMessages() == nullptr)
-            { m_messages = new std::vector<WarningMessage>; }
-        m_messages->emplace_back(wxString{},message,wxString{},wxString{},icon);
+        m_messages.emplace_back(wxString{}, message, wxString{}, wxString{}, icon);
         }
 
     /// @return the messages that won't be shown until client asks from them to be shown.
@@ -1834,8 +1837,8 @@ private:
 
     CaseInSensitiveNonStemmingDocument* m_words{ nullptr };
     double_frequency_set<word_case_insensitive_no_stem>* m_word_frequency_map{ nullptr };
-    mutable std::vector<WarningMessage>* m_messages{ nullptr };
-    ReadabilityFormulaParser* m_formulaParser{ nullptr };
+    mutable std::vector<WarningMessage> m_messages;
+    std::shared_ptr<ReadabilityFormulaParser> m_formulaParser{ nullptr };
 
     // these can vary from project to project
     grammar::phrase_collection* m_excluded_phrases{ nullptr };
