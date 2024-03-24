@@ -992,7 +992,7 @@ public:
     void set_citation_phrase_function(const grammar::phrase_collection* citation_phrase)
         { is_citation_phrase = citation_phrase; }
 
-    void set_excluded_phrase_function(const grammar::phrase_collection* excluded_phrase) noexcept
+    void set_excluded_phrase_function(std::shared_ptr<const grammar::phrase_collection> excluded_phrase) noexcept
         { is_excluded_phrase = excluded_phrase; }
 
     void set_known_proper_nouns(const word_list* known_proper_nouns)
@@ -2464,14 +2464,14 @@ private:
     const word_list* is_known_personal_nouns{ nullptr };
     const grammar::phrase_collection* is_copyright_phrase{ nullptr }; // this should be shared from a parent
     const grammar::phrase_collection* is_citation_phrase{ nullptr };  // this should be shared from a parent
-    const grammar::phrase_collection* is_excluded_phrase{ nullptr };  // this should be shared from a parent
+    std::shared_ptr<const grammar::phrase_collection> is_excluded_phrase{ nullptr };  // this should be shared from a parent
 
     const word_list* m_stop_list{ nullptr };
     is_correctly_spelled_word<Tword_type, word_list> is_correctly_spelled;
     characters::is_character is_character;
     grammar::is_non_proper_word non_proper;
     grammar::is_double_word_exception is_double_word_allowed;
-    std::vector<std::pair<wchar_t,wchar_t>> m_exclusion_block_tags;
+    std::vector<std::pair<wchar_t, wchar_t>> m_exclusion_block_tags;
     // data structures and values
     //--------------------------
     std::vector<size_t> m_quoteStartWords;

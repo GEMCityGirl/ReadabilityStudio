@@ -82,7 +82,7 @@
     checking for duplicate test IDs ourselves.*/
 using CustomReadabilityTestCollection = std::vector<CustomReadabilityTest>;
 
-/// Helper structure for handling an Excel (XLSX) file.
+/// @brief Helper structure for handling an Excel (XLSX) file.
 struct ExcelFile
     {
     explicit ExcelFile(const wxString& filePath) : m_zip(filePath) {}
@@ -100,7 +100,7 @@ class CustomReadabilityTestInterface
   public:
     CustomReadabilityTestInterface() = delete;
 
-    explicit CustomReadabilityTestInterface(const wxString& testName) : m_testName(testName) {}
+    explicit CustomReadabilityTestInterface(wxString testName) : m_testName(std::move(testName)) {}
     CustomReadabilityTestInterface(const CustomReadabilityTestInterface& that)
         : m_formulasFlags(that.m_formulasFlags), m_testName(that.m_testName),
           m_uniqueUnfamiliarWordCount(that.m_uniqueUnfamiliarWordCount),
@@ -267,13 +267,7 @@ public:
     BaseProject(const BaseProject&) = delete;
     BaseProject& operator==(const BaseProject&) = delete;
 
-    virtual ~BaseProject()
-        {
-        /* Note that m_excluded_phrases should not be deleted here, it should be
-           deleted by the standard or batch project that owns it. This is because
-           a batch project will share its phrase list with its subprojects, so these
-           subprojects should not delete that list pointer.*/
-        }
+    virtual ~BaseProject() {}
 
     [[nodiscard]]
     const wxString& GetCurrentCustomTest() const
@@ -1439,7 +1433,7 @@ public:
     void LoadExcludePhrases()
         {
         DeleteExcludedPhrases();
-        m_excluded_phrases = new grammar::phrase_collection;
+        m_excluded_phrases = std::make_shared<grammar::phrase_collection>();
         if (!GetExcludedPhrasesPath().empty())
             {
             wxString phrases, filePath(GetExcludedPhrasesPath()), fileBySameNameInProjectDirectory;
@@ -1599,12 +1593,13 @@ private:
             return std::make_shared<stemming::no_op_stem<traits::case_insensitive_wstring_ex>>();
             }
         };
-    void SetCurrentCustomTest(const wxString& test)
-        { m_currentCustTest = test; }
-    void DeleteExcludedPhrases()
-        { wxDELETE(m_excluded_phrases); }
+    void SetCurrentCustomTest(const wxString& test) { m_currentCustTest = test; }
+
+    void DeleteExcludedPhrases() { m_excluded_phrases.reset(); }
+
     [[nodiscard]]
-    bool VerifyTestBeforeAdding(const std::pair<std::vector<ProjectTestType>::const_iterator, bool>& theTest);
+    bool VerifyTestBeforeAdding(
+        const std::pair<std::vector<ProjectTestType>::const_iterator, bool>& theTest);
     void HandleFailedTestCalculation(const wxString& testName);
     [[nodiscard]]
     bool FindMissingFile(const wxString& filePath, wxString& fileBySameNameInProjectDirectory);
@@ -1858,7 +1853,7 @@ private:
     std::shared_ptr<ReadabilityFormulaParser> m_formulaParser{ nullptr };
 
     // these can vary from project to project
-    grammar::phrase_collection* m_excluded_phrases{ nullptr };
+    std::shared_ptr<grammar::phrase_collection> m_excluded_phrases{ nullptr };
 
     StatisticsInfo m_statsInfo;
     StatisticsReportInfo m_statsReportInfo;
@@ -1920,6 +1915,7 @@ class BaseProjectProcessingLock
   public:
     explicit BaseProjectProcessingLock(BaseProject* project) : m_project(project)
         {
+        assert(m_project);
         m_project->SetProcessing(true);
         }
 
