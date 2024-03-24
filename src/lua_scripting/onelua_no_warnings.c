@@ -19,7 +19,7 @@
     // not entire classes of warning like 'all' or 'pendantic'.
     #pragma GCC diagnostic ignored "-Wpedantic"
 #elif defined(_MSC_VER)
-    #pragma warning(disable: 4701 4702 4310 4244)
+    #pragma warning(disable : 4701 4702 4310 4244 4334 4267)
 #endif
 
 // don't build the interpreter, just the library
