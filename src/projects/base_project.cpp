@@ -3080,7 +3080,7 @@ void BaseProject::CalculateStatisticsIgnoringInvalidSentences()
         valid_word_length_excluding_punctuation_greater_equals<word_case_insensitive_no_stem>(7) );
 
     // load the unique words and their frequencies.
-    m_word_frequency_map = new double_frequency_set<word_case_insensitive_no_stem>;
+    m_word_frequency_map = std::make_shared<double_frequency_set<word_case_insensitive_no_stem>>();
     for (const auto& word : GetWords()->get_words())
         {
         if (word.is_valid())
@@ -3251,7 +3251,7 @@ void BaseProject::CalculateStatistics()
         word_length_excluding_punctuation_greater_equals<word_case_insensitive_no_stem>(7) );
 
     // load the unique words and their frequencies
-    m_word_frequency_map = new double_frequency_set<word_case_insensitive_no_stem>;
+    m_word_frequency_map = std::make_shared<double_frequency_set<word_case_insensitive_no_stem>>();
     std::vector<word_case_insensitive_no_stem>::const_iterator currentWord;
     for (std::vector<grammar::sentence_info>::const_iterator sentPos = GetWords()->get_sentences().cbegin();
         sentPos != GetWords()->get_sentences().cend();

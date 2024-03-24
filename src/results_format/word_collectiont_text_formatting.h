@@ -19,7 +19,7 @@
 #include "../Wisteria-Dataviz/src/math/mathematics.h"
 
 template<typename documentT, typename highlightDeterminantT>
-static size_t FormatWordCollectionHighlightedWords(const documentT* theDocument,
+static size_t FormatWordCollectionHighlightedWords(const std::shared_ptr<documentT>& theDocument,
                         const highlightDeterminantT& shouldHighlight,
                         wchar_t* text,
                         const size_t bufferSize,
@@ -253,7 +253,7 @@ static size_t FormatWordCollectionHighlightedWords(const documentT* theDocument,
     }
 
 template<typename documentT>
-static size_t FormatWordCollectionHighlightedGrammarIssues(const documentT* theDocument,
+static size_t FormatWordCollectionHighlightedGrammarIssues(const std::shared_ptr<documentT>& theDocument,
                                         const size_t longSentenceValue,
                                         wchar_t* text,
                                         const size_t bufferSize,
@@ -580,7 +580,7 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(const documentT* theD
     }
 
 template<typename documentT>
-static size_t FormatFilteredWordCollection(const documentT* theDocument,
+static size_t FormatFilteredWordCollection(const std::shared_ptr<documentT>& theDocument,
                                            wchar_t* text,
                                            const size_t bufferSize,
                                            const InvalidTextFilterFormat validTextFormatting,

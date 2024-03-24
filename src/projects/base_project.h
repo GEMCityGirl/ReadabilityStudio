@@ -269,8 +269,6 @@ public:
 
     virtual ~BaseProject()
         {
-        wxDELETE(m_words);
-        wxDELETE(m_word_frequency_map);
         /* Note that m_excluded_phrases should not be deleted here, it should be
            deleted by the standard or batch project that owns it. This is because
            a batch project will share its phrase list with its subprojects, so these
@@ -342,18 +340,22 @@ public:
         if (GetProjectLanguage() != readability::test_language::english_test)
             { GetWords()->clear_misspelled_words(); }
         }
-    void DeleteWords()
-        { wxDELETE(m_words); }
 
-    void DeleteUniqueWordMap()
-        { wxDELETE(m_word_frequency_map); }
+    void DeleteWords() { m_words.reset(); }
+
+    void DeleteUniqueWordMap() { m_word_frequency_map.reset(); }
 
     [[nodiscard]]
-    const CaseInSensitiveNonStemmingDocument* GetWords() const noexcept
-        { return m_words; }
+    const std::shared_ptr<CaseInSensitiveNonStemmingDocument>& GetWords() const noexcept
+        {
+        return m_words;
+        }
+
     [[nodiscard]]
-    CaseInSensitiveNonStemmingDocument* GetWords() noexcept
-        { return m_words; }
+    std::shared_ptr<CaseInSensitiveNonStemmingDocument>& GetWords() noexcept
+        {
+        return m_words;
+        }
 
     [[nodiscard]]
     int GetDifficultSentenceLength() const noexcept
@@ -1519,8 +1521,11 @@ public:
         { return m_sentencesBreakdownInfo; }
 
     [[nodiscard]]
-    const double_frequency_set<word_case_insensitive_no_stem>* GetWordsWithFrequencies() const noexcept
-        { return m_word_frequency_map; }
+    const std::shared_ptr<double_frequency_set<word_case_insensitive_no_stem>>&
+    GetWordsWithFrequencies() const noexcept
+        {
+        return m_word_frequency_map;
+        }
 
     /// @returns The stop list, based on the project's language.
     [[nodiscard]]
@@ -1565,24 +1570,34 @@ private:
         {
         DeleteWords();
         // UpdateDocumentSettings() will set these parameters properly
-        m_words = new CaseInSensitiveNonStemmingDocument(
+        m_words = std::make_shared<CaseInSensitiveNonStemmingDocument>(
             L"", nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr,
             nullptr, nullptr, nullptr, nullptr, nullptr);
         UpdateDocumentSettings();
         }
+
     void UpdateDocumentSettings();
-protected:
+
+  protected:
     [[nodiscard]]
     std::shared_ptr<stemming::stem<traits::case_insensitive_wstring_ex>> CreateStemmer() const
         {
         if (GetProjectLanguage() == readability::test_language::english_test)
-            { return std::make_shared<stemming::english_stem<traits::case_insensitive_wstring_ex>>(); }
+            {
+            return std::make_shared<stemming::english_stem<traits::case_insensitive_wstring_ex>>();
+            }
         else if (GetProjectLanguage() == readability::test_language::spanish_test)
-            { return std::make_shared<stemming::spanish_stem<traits::case_insensitive_wstring_ex>>(); }
+            {
+            return std::make_shared<stemming::spanish_stem<traits::case_insensitive_wstring_ex>>();
+            }
         else if (GetProjectLanguage() == readability::test_language::german_test)
-            { return std::make_shared<stemming::german_stem<traits::case_insensitive_wstring_ex>>(); }
+            {
+            return std::make_shared<stemming::german_stem<traits::case_insensitive_wstring_ex>>();
+            }
         else
-            { return std::make_shared<stemming::no_op_stem<traits::case_insensitive_wstring_ex>>(); }
+            {
+            return std::make_shared<stemming::no_op_stem<traits::case_insensitive_wstring_ex>>();
+            }
         };
     void SetCurrentCustomTest(const wxString& test)
         { m_currentCustTest = test; }
@@ -1835,8 +1850,10 @@ private:
     std::shared_ptr<ListCtrlExNumericDataProvider> m_keyWordsBaseData{ nullptr };
     std::shared_ptr<ListCtrlExNumericDataProvider> m_AllWordsBaseData{ nullptr };
 
-    CaseInSensitiveNonStemmingDocument* m_words{ nullptr };
-    double_frequency_set<word_case_insensitive_no_stem>* m_word_frequency_map{ nullptr };
+    std::shared_ptr<CaseInSensitiveNonStemmingDocument> m_words{ nullptr };
+    std::shared_ptr<double_frequency_set<word_case_insensitive_no_stem>> m_word_frequency_map{
+        nullptr
+    };
     mutable std::vector<WarningMessage> m_messages;
     std::shared_ptr<ReadabilityFormulaParser> m_formulaParser{ nullptr };
 
