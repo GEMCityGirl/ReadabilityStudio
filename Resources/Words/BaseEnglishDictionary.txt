@@ -7334,6 +7334,7 @@ astrobiologist's
 astrobiologists
 astrobiology
 astrobiology's
+astrobotics
 astrocyte
 astrocytes
 astrocytoma
@@ -12605,6 +12606,9 @@ blackguards
 blackhat
 blackhat's
 blackhats
+blackhawk
+blackhawk's
+blackhawks
 blackhead
 blackhead's
 blackheads
@@ -41211,6 +41215,9 @@ emaciations
 email
 email's
 emailed
+emailer
+emailer's
+emailers
 emailing
 emails
 emanate
@@ -61485,6 +61492,9 @@ hydrostatics
 hydrostatics's
 hydrosulfide
 hydrosulfuric
+hydrosystem
+hydrosystem's
+hydrosystems
 hydrotherapies
 hydrotherapy
 hydrotherapy's
@@ -62126,6 +62136,7 @@ icers
 ices
 ichneumon
 ichneumon's
+ichthyological
 ichthyologies
 ichthyologist
 ichthyologist's
@@ -83590,6 +83601,10 @@ nanocelebrity
 nanocelebrity's
 nanocomposite
 nanocomposites
+nanoconfine
+nanoconfined
+nanoconfines
+nanoconfining
 nanocoulomb
 nanocoulomb's
 nanocoulombs
@@ -86267,6 +86282,7 @@ nonthreatening
 nontoxic
 nontraditional
 nontraditionally
+nontransactional
 nontransferable
 nontransgender
 nontransgender's
@@ -97958,6 +97974,9 @@ polynomially
 polynomials
 polynuclear
 polynucleotide
+polyolefin
+polyolefin's
+polyolefins
 polyostotic
 polyoxy
 polyp
@@ -99367,6 +99386,7 @@ precondition's
 preconditioned
 preconditioning
 preconditions
+preconference
 preconfigure
 preconfigured
 preconfigures
@@ -106105,6 +106125,9 @@ recomputed
 recomputes
 recomputing
 reconceptualization
+reconceptualize
+reconceptualized
+reconceptualizes
 reconceptualizing
 reconcilable
 reconcile
@@ -126081,6 +126104,9 @@ subproblems
 subprocess
 subprocess's
 subprocesses
+subprocessor
+subprocessor's
+subprocessors
 subprofessional
 subprofessionals
 subprogram
@@ -130164,6 +130190,9 @@ tektite's
 tektites
 tel
 telangiectasia
+telecampus
+telecampus's
+telecampuses
 telecast
 telecaster
 telecaster's
@@ -134904,6 +134933,9 @@ tribute
 tribute's
 tributes
 tributing
+tricampus
+tricampus's
+tricampuses
 tricarboxylic
 trication
 trice
@@ -141061,6 +141093,9 @@ Vally
 Valma
 valor
 valor's
+valorization
+valorization's
+valorizations
 valorous
 valorously
 valors

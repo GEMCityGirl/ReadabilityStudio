@@ -15,6 +15,7 @@ Bernouilli	Bernoulli	3
 Bethoven	Beethoven	3		
 Bethoven's	Beethoven's	3		
 Blitzkreig	Blitzkrieg	3		
+Blitzkreig's	Blitzkrieg's	3		
 Bonnano	Bonanno	3		
 Brasillian	Brazilian	3		
 Britian	Britain	3		
@@ -50,6 +51,7 @@ Eurpoean	European	3
 Farenheit	Fahrenheit	3		
 Febuary	February	3		
 Feburary	February	3		
+Fitzpatick	Fitzpatrick	3		
 Flemmish	Flemish	3		
 Flinstone	Flintstone	3		
 Flinstone's	Flintstone's	3		

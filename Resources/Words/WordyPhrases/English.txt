@@ -1948,6 +1948,7 @@ avoids him like the plague	avoids him all costs	2
 avoids it like the black death	avoids it all costs	2		
 avoids it like the plague	avoids it all costs	2		
 avove	above	3		
+awardsfor	awards for	3		
 awared	awarded	3		
 away form	away from	3		
 aweful	awful	3		
@@ -2282,6 +2283,7 @@ blew your own horn	boasted, bragged	2
 blew your stack	exploded in anger	2		
 blindsighted	blindsided	3		
 blindy	blindly	3		
+Blitzkreig's	Blitzkrieg's	3		
 block out	block	0		
 blood is thicker than water	family is more important/reliable than friends	2		
 blow her own horn	boast, brag	2		
@@ -5875,6 +5877,7 @@ experiance	experience	3
 experiance's	experience's	3		
 experianced	experienced	3		
 experiances	experiences	3		
+experiemental	experimental	3		
 expertise	ability	0		
 expesially	especially	3		
 expession	expression	3		
@@ -6234,6 +6237,7 @@ fisionable	fissionable	3
 fit as a fiddle	in good shape, healthy	2		
 fitler	filter	3		
 fitlers	filters	3		
+Fitzpatick	Fitzpatrick	3		
 flack	flak (it's a German word)	3		
 flamable	flammable	3		
 flash in the pan	temporary success	2		
