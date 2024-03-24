@@ -388,6 +388,7 @@ acqure	acquire	3
 acqured	acquired	3		
 acqures	acquires	3		
 acquring	acquiring	3		
+acqusition	acquisition	3		
 acrage	acreage	3		
 acreditation	accreditation	3		
 acreditation's	accreditation's	3		
@@ -1206,6 +1207,7 @@ appereance	appearance	3
 appication	application	3		
 appication's	application's	3		
 appications	applications	3		
+applciation	application	3		
 apple of her eye	object of her affection	2		
 apple of his eye	object of his affection	2		
 apple of my eye	object of my affection	2		
@@ -1970,6 +1972,8 @@ backgroud	background	3
 background experience	background, experience	0		
 backhanded compliment	thinly guised insult	2		
 backhanded compliments	thinly guised insults	2		
+backround	background	3		
+backround's	background's	3		
 backrounds	backgrounds	3		
 bad blood	unsettled dispute, a grudge, ill feelings	2		
 bahavior	behavior	3		
@@ -2624,6 +2628,7 @@ can't hold a candle to	can't compare to	2
 can't not	can't	3		
 can't see the forest for the trees	unable to understand the full meaning of something because of a fixation on minor details	2		
 cancel out	cancel	0		
+cancelation	cancellation	3		
 cancled	canceled	3		
 candadate	candidate	3		
 candiate	candidate	3		
@@ -3040,6 +3045,10 @@ cmoputer	computer	3
 cmoputer's	computer's	3		
 cmoputers	computers	3		
 cna	can	3		
+cnahge	change	3		
+cnahged	changed	3		
+cnahges	changes	3		
+cnahging	changing	3		
 coagulate	thicken	0		
 coagulated	thickened	0		
 coagulates	thickens	0		
@@ -3726,7 +3735,7 @@ contan	contain	3
 contaned	contained	3		
 contaning	containing	3		
 contans	contains	3		
-contants	constants	3		
+contants	constants, contents	3		
 contein	contain	3		
 conteined	contained	3		
 conteining	containing	3		
@@ -3868,6 +3877,7 @@ convertables	convertibles	3
 convertion	conversion	3		
 convertions	conversions	3		
 convertor	converter	3		
+conververting	controverting	3		
 convet	convert	3		
 conveted	converted	3		
 conveting	converting	3		
@@ -4093,6 +4103,7 @@ currently	(omit), now	0
 currenty	currently	3		
 curretly	currently	3		
 curriculem	curriculum	3		
+currrently	currently	3		
 cusom	custom, CUSUM (Cumulative Sum Chart)	3		
 custiomer	customer	3		
 custiomer's	customer's	3		
@@ -5340,6 +5351,7 @@ enbled	enabled	3
 enbling	enabling	3		
 enchanced	enhanced	3		
 enchancement	enhancement	3		
+encodeded	encoded	3		
 enconding	encoding	3		
 encondings	encodings	3		
 encorage	encourage	3		
@@ -6319,6 +6331,9 @@ forbearance	patience	0
 forbidden fruit	forbidden item, restricted	2		
 forbiden	forbidden	3		
 forebiden	forbidden	3		
+foregroud	foreground	3		
+foregroud's	foreground's	3		
+foregrouds	foregrounds	3		
 foreign import	import	1		
 foreign imports	imports	1		
 foreing	foreign	3		
@@ -6515,9 +6530,7 @@ garantee	guarantee	3
 garanteed	guaranteed	3		
 garanteeed	guaranteed	3		
 garantees	guarantees	3		
-garantie	guarantee	3		
 garantied	guaranteed	3		
-garanties	guarantees	3		
 garanty	guarantee	3		
 garentee	guarantee	3		
 gargantuan	giant	0		
@@ -7440,6 +7453,7 @@ implenting	implementing	3
 implents	implements	3		
 implicitely	implicitly	3		
 implicity	implicitly	3		
+impliclicly	implicitly	3		
 impliment	implement	3		
 implimented	implemented	3		
 implment	implement	3		
@@ -7880,6 +7894,7 @@ ineffectual	useless	0
 ineffectually	uselessly	0		
 inefficency	inefficiency	3		
 inefficienty	inefficiently	3		
+ineffiency	inefficiency	3		
 ineqality	inequality	3		
 inevatible	inevitable	3		
 inevitible	inevitable	3		
@@ -8213,7 +8228,7 @@ intrepidly	fearlessly	0
 intrest	interest	3		
 intrinisic	intrinsic	3		
 intrinisics	intrinsics	3		
-intrinsincs	intrinsic	3		
+intrinsincs	intrinsics	3		
 introdued	introduced	3		
 intruction	instruction	3		
 intructions	instructions	3		
@@ -9486,6 +9501,7 @@ multiciscipline	multidiscipline	3
 multiciscipline-trained	multidiscipline-trained	3		
 multicultralism	multiculturalism	3		
 multidimensionnal	multidimensional	3		
+multingual	multilingual	3		
 multiple	many	0		Myeloma
 multipled	multiplied	3		
 multiplers	multipliers	3		
@@ -9628,6 +9644,7 @@ nessecary	necessary	3
 nessesary	necessary	3		
 nessessary	necessary	3		
 nestin	nesting	3		
+netural	neutral	3		
 network manger	network manager	3		
 network mangers	network managers	3		
 neutralize	offset	0		
@@ -11284,6 +11301,10 @@ product manger	product manager	3
 product mangers	product managers	3		
 production manger	production manager	3		
 production mangers	production managers	3		
+proecess	process	3		
+proecessed	processed	3		
+proecesses	processes	3		
+proecessing	processing	3		
 proeprties	properties	3		
 proeprty	property	3		
 proeprty's	property's	3		
@@ -11643,6 +11664,9 @@ qoutes	quotes	3
 qouting	quoting	3		
 quadradic	quadratic	3		
 quadrilateral	four-sided	0		
+qualifer	qualifier	3		
+qualifer's	qualifier's	3		
+qualifers	qualifiers	3		
 qualified expert	expert	0		
 qualified experts	experts	0		
 quality manger	quality manager	3		
@@ -11886,12 +11910,14 @@ recogizing	recognizing	3
 recogniced	recognized	3		
 recognizeable	recognizable	3		
 recomend	recommend	3		
+recomendations	recommendations	3		
 recomended	recommended	3		
 recomending	recommending	3		
 recomends	recommends	3		
 recommanded	recommended	3		
 recommedations	recommendations	3		
 recommend	suggest	0		
+recommendatations	recommendations	3		
 recommended	suggested	0		
 recommending	suggesting	0		
 recommends	suggests	0		
@@ -12014,6 +12040,7 @@ regaring	regarding	3
 regimen	routine, rule	0		
 registerd	registered	3		
 registraration	registration	3		
+registred	registered	3		
 regluar	regular	3		
 regress back	regress	1		
 regressed back	regressed	1		
@@ -13037,6 +13064,8 @@ so therefore	therefore	1
 socalism	socialism	3		
 socities	societies	3		
 soem	some	3		
+softare	software	3		
+softare's	software's	3		
 sofware	software	3		
 soilders	soldiers	3		
 solatary	solitary	3		
@@ -13570,6 +13599,7 @@ supportin	supporting	3
 suppose to	supposed to	3		
 supposingly	supposedly	3		
 suppoted	supported	3		
+suppplied	supplied	3		
 suppport	support	3		
 suppported	supported	3		
 suppporting	supporting	3		
@@ -13885,7 +13915,7 @@ that where	that were, strike 'that'	3	such	a;clause;her;his;its;statement;that;t
 that's the way the cookie crumbles	that's the way things are	2		
 that's'had	that's had	3		
 thats	that's	3		
-the a	(strike one of these)	3		and;component;drive;priori;record;z
+the a	(strike one of these)	3		and;button;component;drive;key;priori;record;z
 the acorn doesn't fall far from the tree	he exhibits the same behavior as his parent/boss/etc.	2		
 the affect	the effect	3		
 the alter	the altar (unless referring to a SQL command or Alter as a proper name)	3		column;command;database;ego;event;high;improv;login;permission;statement;syntax;table;user
@@ -13968,7 +13998,7 @@ the total of	all	0		each
 the truth is	actually	0		
 the truth of the matter is	actually, in fact	0		
 the use of	(omit)	0		
-the when	then when	3		clause;clauses
+the when	then when	3		clause;clauses;to
 the whether	the weather, whether the	3		
 the whole 9 yards	everything	2		
 the whole ball of wax	everything	2		
@@ -15428,7 +15458,7 @@ young lad	lad	1
 young lads	lads	1		
 young lass	lass	1		
 young lasses	lasses	1		
-your can	you can	3		of
+your can	you can (should be reviewed)	3		of
 your's	yours	3		
 youseff	yourself	3		
 youself	yourself	3		

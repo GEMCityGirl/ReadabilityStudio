@@ -2618,6 +2618,7 @@ Initech
 Initrode
 Inkscape
 Inno
+InnoSetup
 InnovateMass
 Innovu
 Innsbruck
@@ -2913,6 +2914,7 @@ Kornberg
 Kosovo
 Kossuth
 Kotaku
+Kotlin
 Kotte
 Kraemer
 Krakatau
@@ -3836,6 +3838,7 @@ Nubia
 Nubian
 Nuku'alofa
 Nullarbor
+NullSoft
 Nunavut
 Nuneaton
 Nuremberg
@@ -4215,6 +4218,7 @@ Portsmouth
 Portugal
 Portuguese
 POSIX
+Postgres
 PostgreSQL
 Potawatomis
 Potosí
@@ -4225,6 +4229,7 @@ Powerball
 PowerPoint
 Powershell
 PowerStats
+PowerToys
 Powhatan
 Powys
 Poznan
@@ -5669,6 +5674,7 @@ Vox
 Vreeland
 Vuelta
 Vulcan
+Vulkan
 Vungle
 Wabasha
 Wachovia

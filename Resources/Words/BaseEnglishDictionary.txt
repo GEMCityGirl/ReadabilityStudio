@@ -1751,6 +1751,9 @@ adoring
 adoringly
 adorn
 adorned
+adorner
+adorner's
+adorners
 adorning
 adornment
 adornment's
@@ -8129,6 +8132,10 @@ autographs
 autogyro
 autogyro's
 autogyros
+autohid
+autohide
+autohides
+autohiding
 autohypnotism
 autohypnotism's
 autoignition
@@ -14029,6 +14036,9 @@ bootprints
 boots
 bootstrap
 bootstrap's
+bootstraper
+bootstraper's
+bootstrapers
 bootstrapped
 bootstrapper
 bootstrapper's
@@ -15765,6 +15775,9 @@ bugbear
 bugbear's
 bugbears
 bugeyed
+bugfix
+bugfix's
+bugfixes
 bugged
 bugger
 bugger's
@@ -24799,6 +24812,10 @@ complying
 complyings
 component
 component's
+componentize
+componentized
+componentizes
+componentizing
 components
 comport
 comported
@@ -31658,6 +31675,8 @@ decalcified
 decalcifies
 decalcify
 decalcifying
+decaling
+decaling's
 decals
 decamp
 decamped
@@ -33315,6 +33334,8 @@ denominative
 denominator
 denominator's
 denominators
+denorm
+denorm's
 denormalization
 denormalization's
 denormalizations
@@ -33322,6 +33343,7 @@ denormalize
 denormalized
 denormalizes
 denormalizing
+denorms
 denotable
 denotation
 denotation's
@@ -33741,6 +33763,7 @@ deque's
 deques
 dequeue
 dequeued
+dequeueing
 dequeues
 dequeuing
 der
@@ -34586,6 +34609,9 @@ devious
 deviously
 deviousness
 deviousness's
+devirtualization
+devirtualization's
+devirtualizations
 devirtualize
 devirtualized
 devirtualizes
@@ -36717,6 +36743,7 @@ dismemberment's
 dismemberments
 dismembers
 dismiss
+dismissable
 dismissal
 dismissal's
 dismissals
@@ -48830,6 +48857,8 @@ flimflam's
 flimflammed
 flimflamming
 flimflams
+flimmering
+flimmering's
 flimsier
 flimsies
 flimsiest
@@ -51418,6 +51447,7 @@ fullscan
 fullscan's
 fullscans
 fullscreen
+fullstack
 fullstops
 fullword
 fullword's
@@ -53037,6 +53067,9 @@ geocode
 geocoded
 geocodes
 geocoding
+geocoordinate
+geocoordinate's
+geocoordinates
 geode
 geode's
 geodemographic
@@ -53054,6 +53087,11 @@ geoengineer
 geoengineered
 geoengineering
 geoengineers
+geofence
+geofence's
+geofenced
+geofences
+geofencing
 geog
 geographer
 geographer's
@@ -53129,6 +53167,9 @@ geopolitical
 geopolitically
 geopolitics
 geopolitics's
+geoposition
+geoposition's
+geopositions
 georeference
 georeferenced
 georeferencing
@@ -67412,6 +67453,9 @@ inversions
 inversive
 inversus
 invert
+invertabilities
+invertability
+invertability's
 invertebral
 invertebrate
 invertebrate's
@@ -79198,6 +79242,7 @@ migrans
 migrant
 migrant's
 migrants
+migratable
 migrate
 migrated
 migrates
@@ -79666,6 +79711,9 @@ minification
 minification's
 minifications
 minified
+minifier
+minifier's
+minifiers
 minifies
 minify
 minifying
@@ -83511,6 +83559,9 @@ names
 namesake
 namesake's
 namesakes
+namescope
+namescope's
+namescopes
 namespace
 namespace's
 namespaced
@@ -85969,6 +86020,7 @@ nonphotosynthetic
 nonphysical
 nonphysically
 nonphysiological
+nonplanar
 nonplus
 nonpluses
 nonplussed
@@ -89531,6 +89583,9 @@ outpoint
 outpointed
 outpointing
 outpoints
+outport
+outport's
+outports
 outpost
 outpost's
 outposts
@@ -89837,6 +89892,10 @@ overcharge
 overcharged
 overcharges
 overcharging
+overclip
+overclipped
+overclipping
+overclips
 overcloud
 overclouded
 overclouding
@@ -90382,6 +90441,10 @@ oversaturation
 oversaturation's
 oversaturations
 oversaw
+overscan
+overscanned
+overscanning
+overscans
 overscroll
 overscrolled
 overscrolling
@@ -97803,6 +97866,7 @@ polyfill
 polyfill's
 polyfilled
 polyfilling
+polyfills
 polygamies
 polygamist
 polygamist's
@@ -99146,6 +99210,10 @@ prebendary's
 prebiotic
 preborn
 prebuilt
+precalculate
+precalculated
+precalculates
+precalculating
 precalculus
 precancel
 precanceled
@@ -99624,6 +99692,10 @@ prelacy's
 prelate
 prelate's
 prelates
+prelaunch
+prelaunched
+prelaunches
+prelaunching
 prelaw
 preleukemia
 prelicensing
@@ -99719,6 +99791,9 @@ premonition's
 premonitions
 premonitory
 premotor
+premultiplication
+premultiplication's
+premultiplications
 premultiplied
 premultiplies
 premultiply
@@ -100660,6 +100735,7 @@ problems
 proboscis
 proboscis's
 proboscises
+proc
 procainamide
 procaine
 procaine's
@@ -102086,6 +102162,7 @@ pseudopeptidoglycan
 pseudopod
 pseudopodia
 pseudopods
+pseudorandom
 pseudos
 pseudoscience
 pseudosciences
@@ -102119,6 +102196,9 @@ psst
 pssts
 PST
 psuedo
+psuedocolor
+psuedocolor's
+psuedocolors
 psyberartist
 psych
 psychasthenia
@@ -102924,6 +103004,9 @@ Pushkin
 pushover
 pushover's
 pushovers
+pushpin
+pushpin's
+pushpins
 Pushtu
 pushup
 pushup's
@@ -106797,6 +106880,8 @@ reenter
 reentered
 reentering
 reenters
+reentrancy
+reentrancy's
 reentrant
 reentries
 reentry
@@ -107303,6 +107388,9 @@ registrations
 registries
 registry
 registry's
+regkey
+regkey's
+regkeys
 regnant
 regrade
 regraded
@@ -107448,6 +107536,7 @@ rehydratable
 rehydrate
 rehydrated
 rehydrates
+rehydrating
 rehydration
 reich
 reidentified
@@ -118043,6 +118132,7 @@ signboard
 signboard's
 signboards
 signed
+signedness
 signer
 signer's
 signers
@@ -124939,6 +125029,7 @@ streetlight
 streetlight's
 streetlights
 streets
+streetside
 streetwalker
 streetwalker's
 streetwalkers
@@ -125455,6 +125546,9 @@ styler
 styler's
 stylers
 styles
+stylesheet
+stylesheet's
+stylesheets
 styli
 styling
 stylings
@@ -129552,6 +129646,9 @@ taskforce
 taskforce's
 taskforces
 tasking
+tasklist
+tasklist's
+tasklists
 taskmaster
 taskmaster's
 taskmasters
@@ -130977,6 +131074,9 @@ texel's
 texels
 text
 text's
+textblock
+textblock's
+textblocks
 textbook
 textbook's
 textbooks
@@ -132588,6 +132688,9 @@ titivation's
 titivations
 title
 title's
+titlebar
+titlebar's
+titlebars
 titled
 titleholder
 titleholder's
@@ -134009,6 +134112,9 @@ transcending
 transcends
 transcode
 transcoded
+transcoder
+transcoder's
+transcoders
 transcodes
 transcoding
 transconductance
@@ -136177,6 +136283,7 @@ twirlingly
 twirls
 twirly
 twist
+twistable
 twisted
 twister
 twister's
@@ -136424,6 +136531,9 @@ uglier
 uglies
 ugliest
 uglification
+uglifies
+uglify
+uglifying
 ugliness
 ugliness's
 uglinesses
@@ -137971,6 +138081,7 @@ unedited
 uneducated
 unelectable
 unelected
+unelevated
 unembarrassed
 unembellished
 unemotional
@@ -138936,6 +139047,7 @@ unmeritorious
 unmeshed
 unmesmerized
 unmet
+unmetered
 unmethodical
 unmindful
 unmineralized
@@ -139860,8 +139972,11 @@ untangles
 untangling
 untanned
 untantalized
+untap
 untaped
 untapped
+untapping
+untaps
 untarnished
 untasted
 untaught
@@ -140014,6 +140129,7 @@ unversed
 unversioned
 unviable
 unvictimized
+unvirtualized
 unvisitable
 unvisited
 unvisualized
@@ -140243,6 +140359,9 @@ uplinking
 uplinks
 upload
 uploaded
+uploader
+uploader's
+uploaders
 uploading
 uploads
 upmanship
@@ -140492,6 +140611,8 @@ urger's
 urges
 urging
 urgings
+uri
+uri's
 uric
 uridine
 uridine's
@@ -140515,6 +140636,7 @@ urinations
 urine
 urine's
 urines
+uris
 URL
 URL's
 URLs
@@ -142158,6 +142280,9 @@ vier's
 vies
 view
 view's
+viewabilities
+viewability
+viewability's
 viewable
 viewbook
 viewbook's
@@ -143988,6 +144113,9 @@ wavering
 waveringly
 wavers
 waves
+wavetable
+wavetable's
+wavetables
 wavier
 wavies
 waviest
