@@ -21,6 +21,7 @@ std::set<is_double_word_exception::string_type>
         L"ha",                       // "ha ha ha," she laughed at Blake's hilarious joke
         L"had",
         L"ho",       // "Ho ho ho," said Santa
+        L"hush",     // Let's keep that hush hush
         L"Sapiens",  // Homo Sapiens Sapiens is modern humans (subspecies of Homo Sapiens)
         L"Hool",     // from a Chief Joseph speech
         L"la",       // La La Land
