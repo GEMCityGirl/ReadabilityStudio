@@ -37,6 +37,7 @@
 
 #### Graph Enhancements {-}
 
+- Added **Display grouped documents on syllable ruler** option to the Flesch chart.
 - Added a syllable count donut chart to standard projects, which includes a parent group showing the simple and complex words.
 - Added a word cloud to visualize the key terms within a document.
 - Graphs now use Direct2D for rendering on Windows, resulting in faster drawing and sharper text.
@@ -66,7 +67,6 @@
 
 #### Analysis/Test Enhancements {-}
 
-- Added **Display grouped documents on syllable ruler** feature to the Flesch chart.
 - Made copyright notice exclusion more aggressive.
 - Aggressive exclusion will now exclude:
   - sentences that end with a semicolon at the end of a line.
@@ -75,17 +75,21 @@
 - If *%*, *¢*, or *°* characters are proceeded by a number, then they will now be connected to the previous word.
 - Custom-test formulas can now contain C/C++ style comments.
   This includes multi-line (text inside of `/*` and `*/`) and single-line (`//`) comments.
-- All Words (Condensed) will now exclude more variations of common words.
-- Renamed All Words (Condensed) to Key Words.
-- Overused Words (x Sentence) now:
+- The **Wording Errors** and **Misspellings** have been renamed to **Errors & Misspellings** and **Possible Misspellings**, respectively.
+  - **Errors & Misspellings** now contains known misspellings and the suggested correction.
+  - **Possible Misspellings** behaves the same as the **Misspellings** section did before, showing words not found in the included dictionaries.
+- **All Words (Condensed)** will now exclude more variations of common words.
+- Renamed **All Words (Condensed)** to **Key Words**.
+- **Overused Words (x Sentence)&& now:
   - only looks at words containing more than three characters.
   - ignores words that are part of a common phrase (e.g., "*again* and *again*").
   - counts if the word appears at least once every fifth word.
+- Expanded spell checker to include terms from higher education, healthcare, and cosmetology.
 - Updated Spanish, Russian, Italian, French, Swedish, and German stemmers to the latest Snowball 2.3 standard.
 
 #### Importing/Exporting Enhancements {-}
 
-- Added Markdown importer. Standard Markdown and basic RMarkdown and Quarto documents are supported.
+- Added Markdown importer. Standard Markdown, *RMarkdown*, and *Quarto* documents are supported.
 - Lists can now be exported as `r latex_logo(TRUE)`(in `longtable{}` environments).
 
 #### Documentation Enhancements {-}

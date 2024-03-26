@@ -482,19 +482,23 @@ Note that if there are no article mismatches in your document, then this window 
 
 Refer to \@ref(article-mismatching) to learn more.
 
-### Reviewing Wording Errors {-#reviewing-wording-errors}
+### Reviewing Wording Errors & Misspellings {-#reviewing-wording-errors}
 
-After opening a project, click on the **Grammar** icon on the project sidebar and select the **Wording Errors** subitem. This window will display a list of misused phrases and possible grammatical wording errors from the document.
+After opening a project, click on the **Grammar** icon on the project sidebar and select the **Errors & Misspellings** subitem.
+This window will display a list of misused phrases, grammatically incorrect wording, and known misspellings from each document.
 
 ![](images/wordingerrors.png)
 
 For example:
 
 ::: {.fancyquotes data-latex=''}
-*We is* offering standard benefits (e.g., 401K matching and health insurance), as well as *French benefits* to all new employees.
+*We is* offering standard benefits (e.g., 401K matching and health *ensurance*), as well as *French benefits* to all new employees.
 :::
 
-In this case, *We is* is not grammatically correct, and *We are* will be offered as a suggested replacement. Also, *French benefits* is not the correct expression and *fringe benefits* will be offered as a suggested replacement. Both of these items will be considered wording errors and shown in this list.
+In this case, *We is* is not grammatically correct, and *We are* will be offered as a suggested replacement.
+Also, *ensurance* is a misspelling of *insurance* (which will be the suggested replacement).
+Finally, *French benefits* is not the correct expression and *fringe benefits* will be offered as a suggested replacement.
+All of these will be considered wording errors and shown in this list.
 
 Wording errors are bound to the sentence level. If part of a phrase ends one sentence and begins the next, then it will not be considered an error.
 
@@ -502,11 +506,12 @@ This search is applied to all sentences. [Incomplete sentences](#how-text-is-exc
 
 To view any wording error in its original context, double-click on it. This will take you to the [**Highlighted Report**](#reviewing-standard-grammar) page with that phrase selected.
 
-Note that if there are no wording errors in your document, then this window will not be included.
+Note that if there are no errors in your document, then this window will not be included.
 
-### Reviewing Misspellings {-#reviewing-misspellings}
+### Reviewing Possible Misspellings {-#reviewing-misspellings}
 
-After opening a project, click on the **Grammar** icon on the project sidebar and select the **Misspellings** subitem. This window will display a list of all misspellings from the document.
+After opening a project, click on the **Grammar** icon on the project sidebar and select the **Possible Misspellings** subitem.
+This window will display a list of all possible misspellings from the document.
 
 ![](images/misspellings.png)
 

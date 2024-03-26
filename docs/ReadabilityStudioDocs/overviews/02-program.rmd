@@ -120,9 +120,9 @@ Difficult words and sentences are also shown highlighted in their original conte
 
 Along with readability analysis, *Readability Studio* also offers basic grammar checking. The program can detect the following problems:
 
-- [misspellings (English only)](#reviewing-misspellings)
+- [wording errors and known misspellings (English only)](#reviewing-wording-errors)
+- [possible misspellings (English only)](#reviewing-misspellings)
 - [repeated words](#reviewing-repeated-words)
-- [wording errors (English only)](#reviewing-wording-errors)
 - [article mismatching (English only)](#reviewing-article-mismatches)
 - [redundant phrases (English only)](#reviewing-redundant-phrases)
 - [wordy items (English only)](#reviewing-wordy-items)

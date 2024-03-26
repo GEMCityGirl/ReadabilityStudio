@@ -252,7 +252,7 @@ class BaseProjectView : public wxView
     [[nodiscard]]
     static wxString GetPhrasingErrorsTabLabel()
         {
-        return _(L"Wording Errors");
+        return _(L"Errors & Misspellings");
         }
 
     [[nodiscard]]
@@ -515,7 +515,7 @@ class BaseProjectView : public wxView
     [[nodiscard]]
     static wxString GetMisspellingsLabel()
         {
-        return _(L"Misspellings");
+        return _(L"Possible Misspellings");
         }
 
     [[nodiscard]]

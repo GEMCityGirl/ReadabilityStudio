@@ -157,7 +157,7 @@ void ProjectView::OnSummation([[maybe_unused]] wxRibbonButtonBarEvent& event)
     ListCtrlItemViewDlg viewDlg;
     if (GetActiveProjectWindow()->GetId() == MISSPELLED_WORD_LIST_PAGE_ID)
         {
-        viewDlg.AddValue(_(L"Total Misspellings"),
+        viewDlg.AddValue(_(L"Total Possible Misspellings"),
             wxNumberFormatter::ToString(doc->GetMisspelledWordData()->GetColumnSum(1), 0,
                 wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep));
         }

@@ -153,7 +153,7 @@ void BatchProjectView::OnSummation([[maybe_unused]] wxRibbonButtonBarEvent& even
     ListCtrlItemViewDlg viewDlg;
     if (GetActiveProjectWindow()->GetId() == MISSPELLED_WORD_LIST_PAGE_ID)
         {
-        viewDlg.AddValue(_(L"Total Misspellings"),
+        viewDlg.AddValue(_(L"Total Possible Misspellings"),
             std::to_wstring(static_cast<size_t>(doc->GetMisspelledWordData()->GetColumnSum(2))) );
         }
     else if (GetActiveProjectWindow()->GetId() == DUPLICATES_LIST_PAGE_ID)
@@ -188,7 +188,7 @@ void BatchProjectView::OnSummation([[maybe_unused]] wxRibbonButtonBarEvent& even
         }
     else if (GetActiveProjectWindow()->GetId() == WORDING_ERRORS_LIST_PAGE_ID)
         {
-        viewDlg.AddValue(_(L"Total Wording Errors"),
+        viewDlg.AddValue(_(L"Total Errors & Misspellings"),
             std::to_wstring(static_cast<size_t>(doc->GetWordingErrorsData()->GetColumnSum(2))) );
         }
     else if (GetActiveProjectWindow()->GetId() == CLICHES_LIST_PAGE_ID)

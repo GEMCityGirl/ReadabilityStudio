@@ -1025,10 +1025,10 @@ void BatchProjectDoc::LoadSummaryStatsSection()
     if (GetStatisticsReportInfo().IsGrammarEnabled() &&
         GetGrammarInfo().IsAnyFeatureEnabled())
         {
-        m_summaryStatsColumnNames.push_back(_(L"Number of misspellings"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of possible misspellings"));
         m_summaryStatsColumnNames.push_back(_(L"Number of repeated words"));
         m_summaryStatsColumnNames.push_back(_(L"Number of article mismatches"));
-        m_summaryStatsColumnNames.push_back(_(L"Number of wording errors"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of errors & misspellings"));
         m_summaryStatsColumnNames.push_back(_(L"Number of redundant phrases"));
         m_summaryStatsColumnNames.push_back(_(L"Number of overused words (x sentence)"));
         m_summaryStatsColumnNames.push_back(_(L"Number of wordy items"));
@@ -1273,13 +1273,13 @@ void BatchProjectDoc::LoadSummaryStatsSection()
         if (GetStatisticsReportInfo().IsGrammarEnabled() &&
             GetGrammarInfo().IsAnyFeatureEnabled())
             {
-            assert(m_summaryStatsColumnNames[columnCount] == _(L"Number of misspellings"));
+            assert(m_summaryStatsColumnNames[columnCount] == _(L"Number of possible misspellings"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetMisspelledWordCount());
             assert(m_summaryStatsColumnNames[columnCount] == _(L"Number of repeated words"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetDuplicateWordCount());
             assert(m_summaryStatsColumnNames[columnCount] == _(L"Number of article mismatches"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetMismatchedArticleCount());
-            assert(m_summaryStatsColumnNames[columnCount] == _(L"Number of wording errors"));
+            assert(m_summaryStatsColumnNames[columnCount] == _(L"Number of errors & misspellings"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetWordingErrorCount());
             assert(m_summaryStatsColumnNames[columnCount] == _(L"Number of redundant phrases"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetRedundantPhraseCount());

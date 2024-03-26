@@ -2661,7 +2661,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
 
             if (listData)
                 {
-                listData->SetItemText(listDataItemCount, 0, _(L"Number of misspellings"));
+                listData->SetItemText(listDataItemCount, 0, _(L"Number of possible misspellings"));
                 listData->SetItemText(listDataItemCount++, 1,
                                       wxNumberFormatter::ToString(
                                           project->GetMisspelledWordCount(), 0,
@@ -2731,7 +2731,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                                 wxNumberFormatter::Style::Style_WithThousandsSep));
                     }
                 }
-            // Wording Errors
+            // Wording Errors & Known Misspellnigs
             if (project->GetGrammarInfo().IsWordingErrorsEnabled())
                 {
                 currentLabel.clear();
@@ -2739,7 +2739,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
                     {
                     currentLabel += L"<a href=\"#WordingErrors\">";
                     }
-                currentLabel += _(L"Wording errors:");
+                currentLabel += _(L"Wording errors & misspellings:");
                 if (project->GetWordingErrorCount())
                     {
                     currentLabel += L"</a>";
@@ -2752,7 +2752,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
 
                 if (listData)
                     {
-                    listData->SetItemText(listDataItemCount, 0, _(L"Number of wording errors"));
+                    listData->SetItemText(listDataItemCount, 0, _(L"Number of wording errors & misspellings"));
                     listData->SetItemText(
                         listDataItemCount++, 1,
                         wxNumberFormatter::ToString(

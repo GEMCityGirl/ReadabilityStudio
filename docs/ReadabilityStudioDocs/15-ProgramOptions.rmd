@@ -603,13 +603,13 @@ The options in this section customize which features are included in the grammar
 
 **Highlighted Report**: Check this to include the [highlighted grammar report](#reviewing-standard-grammar) in the results.
 
-**Misspellings**: Check this to include [misspellings](#reviewing-misspellings) in the results.
+**Wording Errors & Misspellings**: Check this to include [wording errors and known misspellings](#reviewing-wording-errors) in the results.
+
+**Possible Misspellings**: Check this to include [possible misspellings](#reviewing-misspellings) in the results.
 
 **Repeated Words**: Check this to include [repeated words](#reviewing-repeated-words) in the results.
 
 **Article Mismatches**: Check this to include [article mismatches](#reviewing-article-mismatches) in the results.
-
-**Wording Errors**: Check this to include [wording errors](#reviewing-wording-errors) in the results.
 
 **Redundant Phrases**: Check this to include [redundant phrases](#reviewing-redundant-phrases) in the results.
 

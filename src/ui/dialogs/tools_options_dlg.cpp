@@ -4188,6 +4188,17 @@ void ToolsOptionsDlg::CreateControls()
             GetGrammarHighlightedReportLabel(),
             _(L"Check this to include the highlighted grammar report in the results."));
 
+        m_grammarPropertyGrid->Append(new wxBoolProperty(
+            BaseProjectView::GetPhrasingErrorsTabLabel(), wxPG_LABEL,
+            (m_readabilityProjectDoc ?
+                 m_readabilityProjectDoc->GetGrammarInfo().IsWordingErrorsEnabled() :
+                 wxGetApp().GetAppOptions().GetGrammarInfo().IsWordingErrorsEnabled())));
+        m_grammarPropertyGrid->SetPropertyAttribute(BaseProjectView::GetPhrasingErrorsTabLabel(),
+                                                    wxPG_BOOL_USE_CHECKBOX, true);
+        m_grammarPropertyGrid->SetPropertyHelpString(
+            BaseProjectView::GetPhrasingErrorsTabLabel(),
+            _(L"Check this to include wording errors and known misspellings in the results."));
+
         m_grammarPropertyGrid->Append(
             new wxBoolProperty(BaseProjectView::GetMisspellingsLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
@@ -4197,7 +4208,7 @@ void ToolsOptionsDlg::CreateControls()
             BaseProjectView::GetMisspellingsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
         m_grammarPropertyGrid->SetPropertyHelpString(
             BaseProjectView::GetMisspellingsLabel(),
-            _(L"Check this to include misspellings in the results."));
+            _(L"Check this to include possible misspellings in the results."));
 
         m_grammarPropertyGrid->Append(
             new wxBoolProperty(BaseProjectView::GetRepeatedWordsLabel(), wxPG_LABEL,
@@ -4220,17 +4231,6 @@ void ToolsOptionsDlg::CreateControls()
         m_grammarPropertyGrid->SetPropertyHelpString(
             BaseProjectView::GetArticleMismatchesLabel(),
             _(L"Check this to include article mismatches in the results."));
-
-        m_grammarPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetPhrasingErrorsTabLabel(), wxPG_LABEL,
-            (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetGrammarInfo().IsWordingErrorsEnabled() :
-                wxGetApp().GetAppOptions().GetGrammarInfo().IsWordingErrorsEnabled())) );
-        m_grammarPropertyGrid->SetPropertyAttribute(
-            BaseProjectView::GetPhrasingErrorsTabLabel(), wxPG_BOOL_USE_CHECKBOX, true);
-        m_grammarPropertyGrid->SetPropertyHelpString(
-            BaseProjectView::GetPhrasingErrorsTabLabel(),
-            _(L"Check this to include wording errors in the results."));
 
         m_grammarPropertyGrid->Append(
             new wxBoolProperty(BaseProjectView::GetRedundantPhrasesTabLabel(), wxPG_LABEL,

@@ -6465,7 +6465,7 @@ void ProjectDoc::DisplayGrammar()
     m_wordingErrorData->SetSize(wordingErrorCount);
     m_clichePhraseData->SetSize(clicheCount);
 
-    // Wording errors
+    // Wording errors and known misspellings
         {
         ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
             BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID));
@@ -6505,7 +6505,7 @@ void ProjectDoc::DisplayGrammar()
             }
         }
 
-    // misspelled words
+    // possibly misspelled words
         {
         frequency_set<traits::case_insensitive_wstring_ex> misspelledWords;
         const auto& misspelledWordIndices = GetWords()->get_misspelled_words();
