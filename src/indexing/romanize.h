@@ -68,7 +68,7 @@ namespace text_transform
       private:
         static const romanization_conversion_table m_conversionTable;
         grammar::is_end_of_sentence isEndOfSentence;
-        grammar::is_bulleted_text is_bullet;
+        grammar::is_bulleted_text isBullet;
         };
     } // namespace text_transform
 

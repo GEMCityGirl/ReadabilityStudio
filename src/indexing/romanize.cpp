@@ -160,12 +160,12 @@ namespace text_transform
                 {
                 if (i == 0 || text[i] == L'\n' || text[i] == L'\r')
                     {
-                    while (i < text.length ()&& characters::is_character::is_space(text[i]))
+                    while (i < text.length() && characters::is_character::is_space(text[i]))
                         // copy over any whitespace (including the newline we are on)
                         {
                         encoded_text += text[i++];
                         }
-                    const std::pair<bool, size_t> bullet = is_bullet(text.data() + i);
+                    const std::pair<bool, size_t> bullet = isBullet(text.data() + i);
                     if (bullet.first)
                         {
                         // if there is not a proceeding character in front of this bullet

@@ -32,50 +32,7 @@ namespace grammar
         [[nodiscard]]
         bool
         operator()(const std::wstring_view text,
-                   const std::wstring_view nextWord = std::wstring_view{}) const
-            {
-            if (text.length() < 3)
-                {
-                return false;
-                }
-            for (size_t i = 0; i < text.length(); ++i)
-                {
-                if (characters::is_character::is_apostrophe(text[i]))
-                    {
-                    if (text.length() > 2 && i == text.length() - 2 &&
-                        traits::case_insensitive_ex::eq(text.back(), L's'))
-                        {
-                        // If something like "that's", then we know it is "that is"
-                        // and indeed a contraction.
-                        if (m_s_contractions.find(string_type{ text.data(), text.length() }) !=
-                            m_s_contractions.cend())
-                            {
-                            return true;
-                            }
-                        // ...otherwise, it might be a possessive word; review it.
-                        else
-                            {
-                            if (nextWord.length() > 0)
-                                {
-                                return m_s_contractions_following_word.find(
-                                           string_type{ nextWord.data(), nextWord.length() }) !=
-                                       m_s_contractions_following_word.cend();
-                                }
-                            return false;
-                            }
-                        }
-                    // something like "that'll" or "I'd" or "would've" will immediately return true
-                    return true;
-                    }
-                }
-            // "it [word]" being contracted to "t[word]"
-            if (m_contraction_without_apostrophe.find(string_type{ text.data(), text.length() }) !=
-                m_contraction_without_apostrophe.cend())
-                {
-                return true;
-                }
-            return false;
-            }
+                   const std::wstring_view nextWord = std::wstring_view{}) const;
 
       private:
         using string_type = std::basic_string_view<wchar_t, traits::case_insensitive_ex>;
