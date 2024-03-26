@@ -24,6 +24,7 @@ std::set<is_double_word_exception::string_type>
         L"hush",     // Let's keep that hush hush
         L"Sapiens",  // Homo Sapiens Sapiens is modern humans (subspecies of Homo Sapiens)
         L"Hool",     // from a Chief Joseph speech
+        L"ice",      // "Ice Ice Baby" is (arguably) as song
         L"la",       // La La Land
         L"Leng",     // common name to appear doubled
         L"log",      // log-log function in math
@@ -33,12 +34,25 @@ std::set<is_double_word_exception::string_type>
         L"now",      // "now now, take it easy"
         L"Pago",     // capital of American Samoa
         L"pee",
-        L"plus",     // C plus plus (it sometimes gets spelled out like this)
-        L"sie",      // German word that can be repeated
-        L"sigma",    // Sigma Sigma is a fraternity at U. of Cincinnati
-        L"Sirhan",   // "Sirhan Sirhan" was RFJ's assassin
-        L"ta",       // "ta ta" means "goodbye"
+        L"plus",   // C plus plus (it sometimes gets spelled out like this)
+        L"sie",    // German word that can be repeated
+        L"sigma",  // Sigma Sigma is a fraternity at U. of Cincinnati
+        L"Sirhan", // "Sirhan Sirhan" was RFJ's assassin
+        L"snip",   // "snip snip," said the urologist
+        L"ta",     // "ta ta" means "goodbye"
         L"that",
         L"uh",   // variation of "no"
         L"Walla" // Walla Walla, Washington
     };
+
+//--------------------------------------------------
+bool is_double_word_exception::operator()(const std::wstring_view text) const
+    {
+    if (text.empty() || // if empty, then I suppose it should be an exception
+        (text.length() == 1 && characters::is_character::is_punctuation(text[0])))
+        {
+        return true;
+        }
+    return m_double_word_exceptions.find(string_type{ text.data(), text.length() }) !=
+           m_double_word_exceptions.cend();
+    }

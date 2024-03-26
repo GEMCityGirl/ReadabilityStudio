@@ -31,16 +31,7 @@ namespace grammar
         /// @returns @c true if this word is allowed to be repeated.
         [[nodiscard]]
         bool
-        operator()(const std::wstring_view text) const
-            {
-            if (text.empty() || // if empty, then I suppose it should be an exception
-                (text.length() == 1 && characters::is_character::is_punctuation(text[0])))
-                {
-                return true;
-                }
-            return m_double_word_exceptions.find(string_type{ text.data(), text.length() }) !=
-                   m_double_word_exceptions.cend();
-            }
+        operator()(const std::wstring_view text) const;
 
       private:
         using string_type = std::basic_string_view<wchar_t, traits::case_insensitive_ex>;
