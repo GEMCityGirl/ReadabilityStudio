@@ -27,7 +27,9 @@ extern grammar::is_english_coordinating_conjunction is_conjunction;
 extern grammar::phrase_collection pmap;
 extern grammar::phrase_collection copyrightPMap;
 extern grammar::phrase_collection citationPMap;
-extern grammar::phrase_collection excludedPMap;
+std::shared_ptr<grammar::phrase_collection> excludedPMap{
+    std::make_shared<grammar::phrase_collection>()
+};
 extern word_list Known_proper_nouns;
 extern word_list Known_personal_nouns;
 extern word_list Known_spellings;
@@ -55,11 +57,11 @@ TEST_CASE("Punctuation", "[punctuation]")
         CHECK(counter(L"ABCDEFGHIJKLMNOPQRSTUVWXYZ") == 0);
         CHECK(counter(L"0123456789") == 0);
         CHECK(counter(L"Hi!?.,+-\\/\"`~&") == 12);
-        //should not count spaces
+        // should not count spaces
         CHECK(counter(L"    012") == 0);
         CHECK(counter(L"àáâãäååæçèéêëìíîïðñòóôõöøùúûüýß") == 0);
         CHECK(counter(L"ÀÁÂÃÄÅÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝß") == 0);
-        //find the quid, euro, and degree symbols
+        // find the quid, euro, and degree symbols
         CHECK(counter(L"ÀÁÂÃÄÅ€ÅÆÇÈÉÊË£ÌÍÎÏÐÑÒÓÔ°ÕÖØÙÚÛÜÝß") == 3);
         }
     }
@@ -1729,10 +1731,10 @@ TEST_CASE("Exclude words", "[excludewords]")
     {
     SECTION("Phrases")
         {
-        excludedPMap.load_phrases(L"star wars\nfor real", true, false);
+        excludedPMap->load_phrases(L"star wars\nfor real", true, false);
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"The Star Wars prequels were awful star. Wars prequels were bad, for real. Star, wars prequels weren't good.";
-        doc.set_excluded_phrase_function(&excludedPMap);
+        doc.set_excluded_phrase_function(excludedPMap);
         doc.load_document(text, wcslen(text), false, false, false, false);
 
         CHECK(doc.get_words()[0].is_valid());
@@ -1766,10 +1768,10 @@ TEST_CASE("Exclude words", "[excludewords]")
         }
     SECTION("Phrases Start AndEnd Of Sentences")
         {
-        excludedPMap.load_phrases(L"star wars\nfor real\nprequels", true, false);
+        excludedPMap->load_phrases(L"star wars\nfor real\nprequels", true, false);
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"Star Wars prequels were awful star. Wars prequels were bad, for real.";
-        doc.set_excluded_phrase_function(&excludedPMap);
+        doc.set_excluded_phrase_function(excludedPMap);
         doc.load_document(text, wcslen(text), false, false, false, false);
 
         CHECK(doc.get_words()[0].is_valid() == false);
@@ -1795,10 +1797,10 @@ TEST_CASE("Exclude words", "[excludewords]")
         }
     SECTION("Phrases Include First Instance")
         {
-        excludedPMap.load_phrases(L"star wars\nfor real\rbad", true, false);
+        excludedPMap->load_phrases(L"star wars\nfor real\rbad", true, false);
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"The Star Wars prequels were awful star. Wars prequels were bad, for real. Star, wars prequels weren't for real, so bad!";
-        doc.set_excluded_phrase_function(&excludedPMap);
+        doc.set_excluded_phrase_function(excludedPMap);
         doc.include_excluded_phrase_first_occurrence(true);
         doc.load_document(text, wcslen(text), false, false, false, false);
 

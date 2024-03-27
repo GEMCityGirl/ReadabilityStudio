@@ -25,7 +25,6 @@ TEST_CASE("English Article", "[articles]")
     grammar::phrase_collection pmap;
     grammar::phrase_collection copyrightPMap;
     grammar::phrase_collection citationPMap;
-    grammar::phrase_collection excludedPMap;
     word_list Known_proper_nouns;
     word_list Known_personal_nouns;
     word_list Known_spellings;
