@@ -171,6 +171,7 @@ absolut	absolute	3
 absolutely	wholly	0		
 absolutely essential	essential	0		
 absolutely sure	sure	0		
+absolutley	absolutely	3		
 absolutly	absolutely	3		
 absorbsion	absorption	3		
 absorbtion	absorption	3		
@@ -269,6 +270,7 @@ account manger	account manager	3
 account mangers	account managers	3		
 accoustic	acoustic	3		
 accout	account	3		
+accoutns	accounts	3		
 accoutrements	accouterments	3		
 accquainted	acquainted	3		
 accrediation	accreditation	3		
@@ -513,6 +515,10 @@ administratator	administrator	3
 administratior	administrator	3		
 administratior's	administrator's	3		
 administratiors	administrators	3		
+administratrive	administrative	3		
+adminstartor	administrator	3		
+adminstartor's	administrator's	3		
+adminstartors	administrators	3		
 adminstered	administered	3		
 adminstrate	administrate	3		
 adminstration	administration	3		
@@ -1015,6 +1021,7 @@ analyze	review, study	0
 analyzed	reviewed, studied	0		
 analyzes	reviews, studies	0		
 analyzing	reviewing, studying	0		
+anananomous	anonymous	3		
 ananlyse	analyze	3		
 ananlysis	analysis	3		
 ananlyst	analyst	3		
@@ -1852,6 +1859,7 @@ auther	author	3
 authobiographic	autobiographic	3		
 authobiography	autobiography	3		
 authorative	authoritative	3		
+authories	authorizes	3		
 authoriship	authorship	3		
 authoriship's	authorship's	3		
 authoriships	authorships	3		
@@ -1896,9 +1904,11 @@ auxilliaries	auxiliaries	3
 auxilliary	auxiliary	3		
 avaiable	available	3		
 availabe	available	3		
+availabile	available	3		
 availabl	available	3		
 available	offered, ready	0		
 availabled	available	3		
+availablility	availability	3		
 availablity	availability	3		
 availaible	available	3		
 availale	available	3		
@@ -2127,6 +2137,9 @@ bellweather	bellwether	3
 bemusemnt	bemusement	3		
 benchmkar	benchmark	3		
 bend over backwards	do everything	2		
+Bendictine	Benedictine	3		
+Bendictine's	Benedictine's	3		
+Bendictines	Benedictines	3		
 bending over backwards	doing everything	2		
 bends over backwards	does everything	2		
 benediction	blessing	0		
@@ -2627,7 +2640,7 @@ can here	can hear	3
 can not	cannot,can't	3		only
 can't hit the broadside of a barn	has poor aim/marksmanship	2		
 can't hold a candle to	can't compare to	2		
-can't not	can't	3		
+can't not	can't, can (if double negative was intended)	3		
 can't see the forest for the trees	unable to understand the full meaning of something because of a fixation on minor details	2		
 cancel out	cancel	0		
 cancelation	cancellation	3		
@@ -2785,6 +2798,9 @@ caterpiller	caterpillar	3
 caterpillers	caterpillars	3		
 cathlic	catholic	3		
 Cathoilc	Catholic	3		
+Cathoilic	Catholic	3		
+Cathoilic's	Catholic's	3		
+Cathoilics	Catholics	3		
 Catholocism	Catholicism	3		
 catterpilar	caterpillar	3		
 catterpilars	caterpillars	3		
@@ -2960,6 +2976,9 @@ chumming the waters	picking a fight, stirring up trouble	2
 chums the waters	picks a fight, stirs up trouble	2		
 churchs	churches	3		
 cicular	circular	3		
+ciinical	clinical	3		
+ciinical's	clinical's	3		
+ciinicals	clinicals	3		
 ciminstance	circumstance	3		
 ciminstance's	circumstance's	3		
 ciminstances	circumstances	3		
@@ -3153,6 +3172,7 @@ combined	joined	0
 combined together	combined	1		
 combines	joins	0		
 combines together	combines	1		
+combiniation	combination	3		
 combinine	combine	3		
 combining	joining	0		
 combining together	combining	1		
@@ -3173,6 +3193,8 @@ comemoretion	commemoration	3
 coment	comment	3		
 comented	commented	3		
 comenting	commenting	3		
+Comentiy	Comenity	3		
+Comentiy's	Comenity's	3		
 coments	comments	3		
 comes as a disappointment	disappoints	0		
 comes as a relief	relieves	0		
@@ -3526,6 +3548,9 @@ confidental	confidential	3
 confidentally	confidentially	3		
 confids	confides	3		
 configiuration	configuration	3		
+configuaration	configuration	3		
+configuaration's	configuration's	3		
+configuarations	configurations	3		
 configuation	configuration	3		
 configuations	configurations	3		
 configuratoin	configuration	3		
@@ -3993,6 +4018,9 @@ corruption	decay, rot, immorality	0
 corse	coarse, course	3		
 corse's	courses	3		
 corses	courses	3		
+cosmpolitan	cosmopolitan	3		
+cosmpolitan's	cosmopolitan's	3		
+cosmpolitans	cosmopolitans	3		
 cosntructed	constructed	3		
 costant	constant	3		
 costitution	constitution	3		
@@ -4352,6 +4380,7 @@ delimters	delimiter	3
 delted	deleted	3		
 delusionally	delusively	3		
 demenor	demeanor	3		
+demin	denim	3		
 demise	death	0		
 demographical	demographic	3		
 demolision	demolition	3		
@@ -4674,6 +4703,10 @@ diplomacy	tact	0
 diplomancy	diplomacy	3		
 diplomatic	tactful	0		
 diplomatically	tactfully	0		
+dipslay	display	3		
+dipslayed	displayed	3		
+dipslaying	displaying	3		
+dipslays	displays	3		
 dipthong	diphthong	3		
 dipthongs	diphthongs	3		
 dire straights	dire straits	3		
@@ -5116,6 +5149,7 @@ eagle eye	one with sharp vision	2
 eahc	each	3		
 eaily	easily	3		
 ealier	earlier	3		
+eariler	earlier	3		
 earlies	earliest	3		
 early adapter	early adopter	3		
 early adapters	early adopters	3		
@@ -5337,6 +5371,9 @@ employment	work, job, use	0
 employment opportunities	jobs	0		
 employment opportunity	job	0		
 employments	uses	0		
+empolyee	employee	3		
+empolyee's	employee's	3		
+empolyees	employees	3		
 emporer	emperor	3		
 emprisoned	imprisoned	3		
 empted	emptied	3		
@@ -5464,6 +5501,9 @@ enrollents	enrollments	3
 enrties	entries	3		
 enrty	entry	3		
 ensconsed	ensconced	3		
+ensurance	insurance	3		
+ensurance's	insurance's	3		
+ensurances	insurances	3		
 ensure	make sure	0		
 ensured	made sure	0		
 ensures	makes sure	0		
@@ -5628,6 +5668,9 @@ estate manger	estate manager	3
 estate mangers	estate managers	3		
 estbalishment	establishment	3		
 estimated at about	estimated at	0		
+ethylhexl	ethylhexyl	3		
+ethylhexl's	ethylhexyl's	3		
+ethylhexls	ethylhexyls	3		
 etsablishment	establishment	3		
 etsbalishment	establishment	3		
 Euclidian	Euclidean	3		
@@ -7862,6 +7905,7 @@ indiciate	indicate	3
 indiciated	indicated	3		
 indiciates	indicates	3		
 indiciating	indicating	3		
+indicies	indices	3		
 indictement	indictment	3		
 indigent	poor, needy	0		
 indigineous	indigenous	3		
@@ -8022,6 +8066,7 @@ inlcude	include	3
 inlcuded	included	3		
 inlcudes	includes	3		
 inlcuding	including	3		
+inmediately	immediately	3		
 inmigrant	immigrant	3		
 inmigrants	immigrants	3		
 inner core	core	1		
@@ -8079,6 +8124,7 @@ instanciate	instantiate	3
 instanciated	instantiated	3		
 instanciates	instantiates	3		
 instanciating	instantiating	3		
+instanly	instantly	3		
 instant of a	instance of a	3		
 instant of the	instance of the	3	brief;quick	
 instantly	right away	0		
@@ -8204,6 +8250,10 @@ interupted	interrupted	3
 interupting	interrupting	3		
 interupts	interrupts	3		
 intervines	intervenes	3		
+intesified	intensified	3		
+intesifies	intensifies	3		
+intesify	intensify	3		
+intesifying	intensifying	3		
 intested	interested	3		
 intevene	intervene	3		
 intex	index	3		
@@ -8888,6 +8938,9 @@ long shot	a risky chance	2
 longers	longer	3		
 longitudonal	longitudinal	3		
 lonley	lonely	3		
+loofa	loofah	3		
+loofa's	loofah's	3		
+loofas	loofahs	3		
 look ate	look at	3		
 looked ate	looked at	3		
 looking ate	looking at	3		
@@ -9534,6 +9587,7 @@ mustn't not	mustn't	3
 mutable	fickle, prone to change	0		
 mute point	moot point	3		
 mute points	moot points	3		
+mutilabel	multilabel	3		
 mutiliated	mutilated	3		
 mutimedia	multimedia	3		
 mutiple	multiple	3		
@@ -10408,6 +10462,9 @@ pasttime	pastime	3
 pasttime's	pastime's	3		
 pasttimes	pastimes	3		
 pastural	pastoral	3		
+pathenol	panthenol	3		
+pathenol's	panthenol's	3		
+pathenols	panthenols	3		
 pathes	paths	3		
 paticular	particular	3		
 pattented	patented	3		
@@ -11352,6 +11409,7 @@ prohibt	prohibit	3
 prohibted	prohibited	3		
 prohibting	prohibiting	3		
 prohibts	prohibits	3		
+proiding	providing	3		
 project manger	project manager	3		
 project mangers	project managers	3		
 prominance	prominence	3		
@@ -12469,6 +12527,7 @@ review	check	0
 reviewed	checked	0		
 reviewing	checking	0		
 reviews	checks	0		
+revitaliing	revitalizing	3		
 revocation	repeal	0		
 revocations	repeals	0		
 revolutionar	revolutionary	3		
@@ -12514,6 +12573,9 @@ Rockfellers	Rockefellers	3
 rocking the boat	disturbing the equilibrium	2		
 rocks the boat	disturbs the equilibrium	2		
 rococco	rococo	3		
+Rodirguez	Rodriguez	3		
+Rodirguez's	Rodriguez's	3		
+Rodirguezes	Rodriguezes	3		
 role call	roll call	3		
 role calls	roll calls	3		
 roll with the punches	adjust to adversity	2		
@@ -12808,6 +12870,9 @@ seperated	separated	3
 seperately	separately	3		
 seperates	separates	3		
 seperating	separating	3		
+seperation	separation	3		
+seperation's	separation's	3		
+seperations	separations	3		
 seperatly	separately	3		
 seperator	separator	3		
 seperator's	separator's	3		
@@ -12938,6 +13003,8 @@ side affect	side effect	3
 sieze	seize	3		
 siezure	seizure	3		
 siezures	seizures	3		
+sigesbecia	sigesbeckia	3		
+sigesbecia's	sigesbeckia's	3		
 sight for sore eyes	something relieving/pleasant to see	2		
 sight unseen	without previous inspection	2		
 sigificance	significance	3		
@@ -13942,7 +14009,6 @@ the country of	Consider removing this	0
 the cream of the crop	the best choice	2		
 the date of	Consider removing this	0		
 the degree to which	how far, how much	0		
-the enable	that enable, the enabling	3		button;buttons;option;options;toggle;toggles
 the extent to which	how far, how much	0		
 the fact of the matter is	in fact	0		
 the fact that	that	0		
@@ -14079,6 +14145,7 @@ think off	think of	3
 think outside the box	think creatively, think unconventionally	2		
 think tank	policy makers of a group or company	2		
 think to myself	think	0		
+thinkening	thickening	3		
 thinking off	thinking of	3		and
 thinking outside the box	thinking creatively, thinking unconventionally	2		
 thinking to myself	thinking	0		
@@ -14446,6 +14513,9 @@ trasfers	transfers	3
 trasmission	transmission	3		
 trasmission's	transmission's	3		
 trasmissions	transmissions	3		
+treatement	treatment	3		
+treatement's	treatment's	3		
+treatements	treatments	3		
 trenchant	sharp, keen	0		
 trepidation	fear	0		
 trepidations	fears	0		
@@ -14824,6 +14894,8 @@ vaiable	variable	3
 vaiables	variables	3		
 vaieties	varieties	3		
 vailidty	validity	3		
+vailla	vanilla	3		
+vailla's	vanilla's	3		
 valcano	volcano	3		
 valcano's	volcano's	3		
 valcanoes	volcanoes	3		
@@ -14849,6 +14921,9 @@ varables	variables	3
 varations	variations	3		
 variabe	variable	3		
 variabes	variables	3		
+variabilties	variabilities	3		
+variabilty	variability	3		
+variabilty's	variability's	3		
 variantions	variations	3		
 variation	change, difference	0		
 variations	changes, differences	0		
@@ -14920,6 +14995,9 @@ verson	version	3
 versoned	versioned	3		
 versons	versions	3		
 vertically	upward	0		
+vertiver	vetiver	3		
+vertiver's	vetiver's	3		
+vertivers	vetivers	3		
 verus	versus	3		
 very beginning	beginning	0		
 very end	end	0		

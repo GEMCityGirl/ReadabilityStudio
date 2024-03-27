@@ -1208,6 +1208,7 @@ acrux's
 acrylamide
 acrylate
 acrylate's
+acrylates
 acrylic
 acrylics
 acrylonitrile
@@ -1255,6 +1256,9 @@ actively
 activeness
 activeness's
 actives
+activewear
+activewear's
+activewears
 activism
 activism's
 activisms
@@ -1402,6 +1406,7 @@ addiction
 addiction's
 addictions
 addictive
+addictively
 addictiveness
 addicts
 addin
@@ -2154,6 +2159,10 @@ affiliation's
 affiliations
 affine
 affinities
+affinitize
+affinitized
+affinitizes
+affinitizing
 affinity
 affinity's
 affirm
@@ -3049,6 +3058,9 @@ all-nighter
 all-nighter's
 all-nighters
 all-time
+allantoin
+allantoin's
+allantoins
 allantois
 allay
 allayed
@@ -3548,6 +3560,7 @@ ambergris
 ambergris's
 ambergrises
 ambers
+ambery
 ambiance
 ambiance's
 ambiances
@@ -4973,6 +4986,7 @@ anti-retroviral
 antiabortion
 antiabortionist
 antiabortionists
+antiaging
 antiaircraft
 antialias
 antialiased
@@ -6071,6 +6085,7 @@ arbitrages
 arbitrageur
 arbitrageurs
 arbitraging
+arbitral
 arbitrament
 arbitrament's
 arbitraments
@@ -6509,6 +6524,9 @@ army
 army's
 aroma
 aroma's
+aromaologies
+aromaology
+aromaology's
 aromas
 aromasin
 aromatase
@@ -8060,6 +8078,13 @@ autocompletes
 autocompleting
 autocompletion
 autoconfig
+autoconfiguration
+autoconfiguration's
+autoconfigurations
+autoconfigure
+autoconfigured
+autoconfigures
+autoconfiguring
 autocorrelate
 autocorrelated
 autocorrelates
@@ -8087,8 +8112,11 @@ autodetected
 autodetecting
 autodetects
 autodial
+autodialed
 autodialer
+autodialing
 autodialler
+autodials
 autodidact
 autodidact's
 autodidactic
@@ -8630,6 +8658,7 @@ ayers
 ayes
 ayurveda
 ayurveda's
+ayurvedic
 AZ
 azalea
 azalea's
@@ -8774,6 +8803,10 @@ backcasts
 backchaining
 backcloth
 backcloth's
+backcomb
+backcombed
+backcombing
+backcombs
 backcountries
 backcountry
 backcountry's
@@ -9007,6 +9040,8 @@ backyard
 backyard's
 backyards
 BaCl
+bacne
+bacne's
 bacon
 bacon's
 baconer
@@ -9209,6 +9244,9 @@ baklava's
 baksheesh
 baksheesh's
 baksheeshes
+bakuchiol
+bakuchiol's
+bakuchiols
 balaclava
 balaclava's
 balaclavas
@@ -9228,6 +9266,9 @@ balanitis
 balanoposthitis
 balantidiasis
 balantidium
+balayage
+balayage's
+balayages
 balconied
 balconies
 balcony
@@ -9380,6 +9421,10 @@ balsam's
 balsamed
 balsamic
 balsaming
+balsamize
+balsamized
+balsamizes
+balsamizing
 balsams
 balsas
 balun
@@ -9686,6 +9731,9 @@ barbers
 barbershop
 barbershop's
 barbershops
+barbicide
+barbicide's
+barbicides
 barbing
 barbital
 barbital's
@@ -10367,6 +10415,7 @@ beaching
 beachside
 beachwear
 beachwear's
+beachy
 beacon
 beacon's
 beaconed
@@ -11238,9 +11287,15 @@ benzoate
 benzodiazepines
 benzoic
 benzothiazepine
+benzoyl
+benzoyl's
+benzoyls
 benzphetamine
 benzphetamine's
 benzphetamines
+benzyl
+benzyl's
+benzyls
 bequeath
 bequeathed
 bequeathes
@@ -11375,6 +11430,9 @@ bestially
 bestiaries
 bestiary
 bestiary's
+bestie
+bestie's
+besties
 besting
 bestir
 bestirred
@@ -11681,6 +11739,7 @@ bier's
 biers
 bifid
 bifida
+bifidus
 bifocal
 bifocals
 bifurcate
@@ -11968,6 +12027,9 @@ biobased
 biobehavioral
 biocatalysis
 biocatalytic
+biocellulose
+biocellulose's
+biocelluloses
 biochar
 biochar's
 biochars
@@ -12022,6 +12084,10 @@ bioethics
 biofeedback
 biofeedback's
 biofeedbacks
+bioferment
+biofermented
+biofermenting
+bioferments
 biofertilizers
 biofilm
 biofilm's
@@ -12119,6 +12185,7 @@ biometrics
 biometrics's
 biometry
 biometry's
+biomimetic
 biomimicries
 biomimicry
 biomimicry's
@@ -12259,6 +12326,7 @@ biplanes
 biplot
 biplot's
 biplots
+BIPOC
 bipolar
 bipolarities
 bipolarity
@@ -12399,6 +12467,7 @@ bismuth's
 bismuths
 bison
 bison's
+bisous
 bispecific
 bispecific's
 bispecifics
@@ -12881,6 +12950,7 @@ blenched
 blenches
 blenching
 blend
+blendable
 blended
 blender
 blender's
@@ -13200,6 +13270,7 @@ blotched
 blotches
 blotchier
 blotchiest
+blotchiness
 blotching
 blotchy
 blots
@@ -13215,6 +13286,10 @@ bloused
 blouses
 blousing
 blow
+blowdried
+blowdries
+blowdry
+blowdrying
 blower
 blower's
 blowers
@@ -13410,6 +13485,9 @@ blushers
 blushes
 blushing
 blushingly
+blushlighter
+blushlighter's
+blushlighters
 bluster
 blustered
 blusterer
@@ -13578,6 +13656,8 @@ bodybuilder's
 bodybuilders
 bodybuilding
 bodybuildings
+bodycare
+bodycare's
 bodyguard
 bodyguard's
 bodyguards
@@ -13760,6 +13840,7 @@ bonders
 bondholder
 bondholder's
 bondholders
+bondi
 bonding
 bondings
 bondman
@@ -15386,9 +15467,12 @@ bronze's
 bronzed
 bronzed's
 bronzer
+bronzer's
+bronzers
 bronzes
 bronzing
 bronzing's
+bronzy
 brooch
 brooch's
 brooches
@@ -16428,6 +16512,7 @@ busywork's
 busyworks
 but
 butadiene
+butaiene
 butane
 butane's
 butanes
@@ -16537,10 +16622,16 @@ buttressing
 butts
 butyl
 butyl's
+butylene
+butylene's
+butylenes
 butyne
 butyrate
 butyrate's
 butyric
+butyrospermum
+butyrospermum's
+butyrospermums
 buxom
 buxomer
 buxomest
@@ -16916,6 +17007,7 @@ cajoling
 cake
 cake's
 caked
+cakeless
 cakes
 cakeshop
 cakeshop's
@@ -18051,6 +18143,9 @@ card's
 cardamom
 cardamom's
 cardamoms
+cardamon
+cardamon's
+cardamons
 cardboard
 cardboard's
 cardboards
@@ -18120,6 +18215,9 @@ cardiovascular
 cardioversion
 cardioverter
 carditis
+cardmember
+cardmember's
+cardmembers
 cards
 cardsharp
 cardsharp's
@@ -19224,6 +19322,8 @@ ceilings
 celandine
 celandine's
 celandines
+celeb
+celeb's
 celebrant
 celebrant's
 celebrants
@@ -19245,6 +19345,7 @@ celebratory
 celebrities
 celebrity
 celebrity's
+celebs
 celeries
 celerities
 celerity
@@ -19573,6 +19674,9 @@ ceramicist
 ceramicist's
 ceramicists
 ceramics
+ceramide
+ceramide's
+ceramides
 ceramist
 ceramist's
 ceramists
@@ -21919,6 +22023,7 @@ citrulline
 citrus
 citrus's
 citruses
+citrusy
 cits
 city
 city's
@@ -23506,6 +23611,7 @@ coil
 coiled
 coiling
 coils
+coily
 coimbatore
 coimbatore's
 coin
@@ -23552,6 +23658,9 @@ col
 col's
 cola
 cola's
+colada
+colada's
+coladas
 colander
 colander's
 colanders
@@ -23921,6 +24030,9 @@ colorfully
 colorfulness
 colorfulness's
 colorfulnesses
+colorguard
+colorguard's
+colorguards
 colorimeter
 colorimeter's
 colorimeters
@@ -23932,6 +24044,9 @@ colorings
 colorism
 colorism's
 colorisms
+colorist
+colorist's
+colorists
 colorization
 colorizations
 colorize
@@ -24117,6 +24232,7 @@ comedienne's
 comediennes
 comedies
 comedo
+comedogenic
 comedones
 comedown
 comedown's
@@ -28296,6 +28412,10 @@ cowardliness
 cowardliness's
 cowardly
 cowards
+cowash
+cowashed
+cowashes
+cowashing
 cowbell
 cowbell's
 cowbells
@@ -28370,6 +28490,10 @@ cowpunchers
 cowrie
 cowrie's
 cowries
+cowrite
+cowrites
+cowriting
+cowrote
 cows
 cowshed
 cowshed's
@@ -28668,6 +28792,9 @@ cravats
 cravatted
 cravatting
 crave
+craveable
+craveable's
+craveables
 craved
 craven
 cravened
@@ -28757,6 +28884,7 @@ creamy
 crease
 crease's
 creased
+creaseless
 creaser
 creases
 creasing
@@ -28913,6 +29041,7 @@ crepe
 crepe's
 creped
 crepes
+crepiness
 creping
 crepitus
 crept
@@ -29165,6 +29294,8 @@ croakiest
 croaking
 croaks
 croaky
+croc
+croc's
 crochet
 crocheted
 crocheter
@@ -29190,6 +29321,7 @@ crocodiles
 crocodilia
 crocodilian
 crocodilians
+crocs
 crocus
 crocus's
 crocuses
@@ -29763,6 +29895,7 @@ crèche
 crèche's
 crèches
 crème
+créme
 crêpe
 crêpe's
 crêpes
@@ -30283,6 +30416,7 @@ cushion's
 cushioned
 cushioning
 cushions
+cushiony
 cushy
 cusp
 cusp's
@@ -30457,6 +30591,9 @@ cyanides
 cyaniding
 cyanoacetylene
 cyanoacetylene's
+cyanoacrylate
+cyanoacrylate's
+cyanoacrylates
 cyanobacteria
 cyanobacterial
 cyanobacterium
@@ -31317,6 +31454,10 @@ daylights
 daylilies
 daylily
 daylong
+daymaker
+daymaker's
+daymakers
+daymaking
 days
 daysack
 daytime
@@ -31590,6 +31731,10 @@ debit's
 debited
 debiting
 debits
+debloat
+debloated
+debloating
+debloats
 deblock
 deblocked
 deblocking
@@ -32542,6 +32687,10 @@ defrayals
 defrayed
 defraying
 defrays
+defrizz
+defrizzed
+defrizzes
+defrizzing
 defrock
 defrocked
 defrocking
@@ -32569,6 +32718,9 @@ defuse
 defused
 defuses
 defusing
+defuzzer
+defuzzer's
+defuzzers
 defy
 defying
 defyingly
@@ -32651,6 +32803,9 @@ dehydrations
 dehydrator
 dehydrator's
 dehydrators
+dehydrocholesterol
+dehydrocholesterol's
+dehydrocholesterols
 dehydroepiandrosterone
 dehydrogenase
 dehydrogenate
@@ -32757,6 +32912,13 @@ dekagram
 dekagram's
 dekagrams
 del
+delaminate
+delaminated
+delaminates
+delaminating
+delamination
+delamination's
+delaminations
 delay
 delayed
 delayer
@@ -33380,6 +33542,10 @@ denseness
 denseness's
 denser
 densest
+densified
+densifies
+densify
+densifying
 densities
 densitometer
 densitometer's
@@ -33744,6 +33910,13 @@ depth
 depth's
 depthless
 depths
+depuff
+depuffed
+depuffer
+depuffer's
+depuffers
+depuffing
+depuffs
 deputation
 deputation's
 deputations
@@ -33848,6 +34021,8 @@ dermabrasion
 dermabrasion's
 dermabrasions
 dermal
+dermaplaning
+dermaplaning's
 dermatitides
 dermatitidis
 dermatitis
@@ -34231,6 +34406,10 @@ destabilizes
 destabilizing
 destigmatization
 destigmatization's
+destigmatize
+destigmatized
+destigmatizes
+destigmatizing
 destinate
 destination
 destination's
@@ -34324,6 +34503,13 @@ detainment
 detainment's
 detainments
 detains
+detangle
+detangled
+detangler
+detangler's
+detanglers
+detangles
+detangling
 detect
 detectability
 detectable
@@ -35382,6 +35568,9 @@ dihydroxycholecalciferols
 dihydroxyvitamin
 dihydroxyvitamin's
 dihydroxyvitamins
+diisostearyl
+diisostearyl's
+diisostearyls
 dijon
 dijon's
 dikaryon
@@ -35508,6 +35697,9 @@ dimerizes
 dimerizing
 dimers
 dimes
+dimethicone
+dimethicone's
+dimethicones
 dimethyl
 dimethyl's
 dimethylamine
@@ -37234,6 +37426,9 @@ distastefulness's
 distastefulnesses
 distastes
 distasting
+disteardimonium
+disteardimonium's
+disteardimoniums
 distemper
 distemper's
 distempered
@@ -40549,6 +40744,9 @@ eggshell's
 eggshells
 eGift
 eGift's
+eGiftcard
+eGiftcard's
+eGiftcards
 eGifts
 egis's
 eglantine
@@ -41532,6 +41730,7 @@ emoji
 emoji's
 emojis
 emollient
+emollient's
 emollients
 emolument
 emolument's
@@ -43065,6 +43264,9 @@ epigraphs
 epigraphy
 epigraphy's
 epilation
+epilator
+epilator's
+epilators
 epilepsies
 epilepsy
 epilepsy's
@@ -43772,8 +43974,15 @@ esthetes
 esthetic
 esthetic's
 esthetically
+esthetician
+esthetician's
+estheticians
 esthetics
 esthetics's
+esthi
+esthiologies
+esthiology
+esthiology's
 estimability
 estimable
 estimableness
@@ -43967,6 +44176,15 @@ ethylene's
 ethylenediamine
 ethylenes
 ethylhexane
+ethylhexanoate
+ethylhexanoate's
+ethylhexanoates
+ethylhexyl
+ethylhexyl's
+ethylhexylglycerin
+ethylhexylglycerin's
+ethylhexylglycerins
+ethylhexyls
 ethylmethyl
 ethyls
 ethyne
@@ -44808,11 +45026,17 @@ exfiltrating
 exfiltration
 exfiltration's
 exfiltrations
+exfoliant
+exfoliant's
+exfoliants
 exfoliate
 exfoliated
 exfoliates
 exfoliating
 exfoliation
+exfoliator
+exfoliator's
+exfoliators
 exhalation
 exhalation's
 exhalations
@@ -45813,6 +46037,9 @@ eyelids
 eyeliner
 eyeliner's
 eyeliners
+eyelining
+eyelining's
+eyelinings
 eyeopener
 eyeopener's
 eyeopeners
@@ -45831,6 +46058,8 @@ eyeshade
 eyeshade's
 eyeshades
 eyeshadow
+eyeshadow's
+eyeshadows
 eyesight
 eyesight's
 eyesights
@@ -46740,6 +46969,9 @@ faux
 fav
 fav's
 fava
+fave
+fave's
+faves
 favicon
 favicon's
 favicons
@@ -47824,6 +48056,9 @@ filmmaking
 filmmaking's
 filmmakings
 films
+filmstar
+filmstar's
+filmstars
 filmstrip
 filmstrip's
 filmstrips
@@ -53444,6 +53679,7 @@ gif's
 gifs
 gift
 gift's
+giftable
 gifted
 giftedly
 giftedness
@@ -53725,6 +53961,8 @@ gladsome
 gladsomer
 gladsomest
 glam
+glammed
+glamming
 glamor
 glamor's
 glamored
@@ -53762,6 +54000,7 @@ glamp
 glamped
 glamping
 glamps
+glams
 glance
 glanceable
 glanced
@@ -54098,6 +54337,7 @@ glows
 glowworm
 glowworm's
 glowworms
+glowy
 glucan
 glucan's
 glucans
@@ -55336,6 +55576,7 @@ greener
 greeneries
 greenery
 greenery's
+greeness
 greenest
 greenfinch
 greenfinch's
@@ -56721,6 +56962,9 @@ haircare
 haircloth
 haircloth's
 haircloths
+haircolor
+haircolor's
+haircolors
 haircut
 haircut's
 haircuts
@@ -56760,6 +57004,9 @@ hairpins
 hairs
 hairsbreadth
 hairsbreadths
+hairsetter
+hairsetter's
+hairsetters
 hairsplitter
 hairsplitter's
 hairsplitters
@@ -56767,6 +57014,8 @@ hairsplitting
 hairsplitting's
 hairsplittings
 hairspray
+hairspray's
+hairsprays
 hairspring
 hairspring's
 hairsprings
@@ -58026,6 +58275,9 @@ headwinds
 headword
 headword's
 headwords
+headwrap
+headwrap's
+headwraps
 heady
 heal
 healed
@@ -58267,6 +58519,9 @@ hectometres
 hector
 hectored
 hectoring
+hectorite
+hectorite's
+hectorites
 hectors
 hedge
 hedge's
@@ -59019,6 +59274,9 @@ hexameter
 hexameter's
 hexameters
 hexane
+hexanediol
+hexanediol's
+hexanediols
 hexanol
 hexaoxide
 hexaploid
@@ -59845,6 +60103,8 @@ homeowner
 homeowners
 homeownership
 homepage
+homepage's
+homepages
 homer
 homer's
 homered
@@ -59928,6 +60188,7 @@ hominoid's
 hominoids
 hominy
 hominy's
+homme
 homo
 homo's
 homocysteine
@@ -60540,6 +60801,9 @@ hostelries
 hostelry
 hostelry's
 hostels
+hoster
+hoster's
+hosters
 hostess
 hostess's
 hostessed
@@ -61002,6 +61266,9 @@ humdrum
 humdrums
 hume
 hume's
+humectant
+humectant's
+humectants
 humeral
 humerals
 humeri
@@ -61298,6 +61565,9 @@ hyaenas
 hyaline
 hyalinosis
 hyaluronan
+hyaluronate
+hyaluronate's
+hyaluronates
 hyaluronic
 hybrid
 hybrid's
@@ -61323,6 +61593,9 @@ hydatid
 hydatidiform
 hydra
 hydra's
+hydrafacial
+hydrafacial's
+hydrafacials
 hydralazine
 hydranencephaly
 hydrangea
@@ -61340,6 +61613,9 @@ hydrating
 hydration
 hydration's
 hydrations
+hydrator
+hydrator's
+hydrators
 hydraulic
 hydraulically
 hydraulicked
@@ -61372,6 +61648,9 @@ hydrochloride's
 hydrochlorofluorocarbon
 hydrochlorofluorocarbons
 hydrochlorothiazide
+hydrocolloid
+hydrocolloid's
+hydrocolloids
 hydrocortisone
 hydrocyanic
 hydrodynamic
@@ -61515,6 +61794,9 @@ hydroxycarbonates
 hydroxycholecalciferol
 hydroxyethyl
 hydroxyethyl's
+hydroxyhydrocinnamate
+hydroxyhydrocinnamate's
+hydroxyhydrocinnamates
 hydroxyl
 hydroxyl's
 hydroxylamine
@@ -61552,6 +61834,7 @@ hygienists
 hygrometer
 hygrometer's
 hygrometers
+hygroscopi
 hygroscopic
 hying
 hylobatidae
@@ -61642,6 +61925,7 @@ hypercolumns
 hypercompetitive
 hypercompetitively
 hyperconscious
+hyperconverged
 hypercritical
 hypercritically
 hypercube
@@ -65207,6 +65491,8 @@ Ingersoll
 ingest
 ingested
 ingestible
+ingestible's
+ingestibles
 ingesting
 ingestion
 ingestion's
@@ -65935,6 +66221,7 @@ inspirited
 inspiriting
 inspirits
 inspissate
+inspo
 inst
 instabilities
 instability
@@ -67713,6 +68000,8 @@ ipr
 ipsilateral
 ipso
 ipsum
+ipv4
+ipv6
 iq
 Iqaluit
 Iqbal
@@ -68033,12 +68322,18 @@ isocyanate's
 isocyano
 isodine
 isodisomy
+isododecane
+isododecane's
+isododecanes
 isoelectronic
 isoenzymes
 isoflavone
 isoform
 isoform's
 isoforms
+isohexadecane
+isohexadecane's
+isohexadecanes
 isolate
 isolated
 isolates
@@ -68100,6 +68395,9 @@ isoproterenol
 isosceles
 isosmotic
 isostatic
+isostearate
+isostearate's
+isostearates
 isotherm
 isotherm's
 isothermal
@@ -68954,6 +69252,7 @@ joist's
 joisted
 joisting
 joists
+jojoba
 joke
 joke's
 joked
@@ -71240,6 +71539,9 @@ lashes
 lashing
 lashing's
 lashings
+lashline
+lashline's
+lashlines
 lasing
 lass
 lass's
@@ -71321,6 +71623,7 @@ lathered
 latherer
 latherer's
 lathering
+latherless
 lathers
 lathery
 lathes
@@ -71460,6 +71763,9 @@ laureling
 laurelled
 laurelling
 laurels
+lauroyl
+lauroyl's
+lauroyls
 lava
 lava's
 lavage
@@ -71568,6 +71874,7 @@ layaway
 layaways
 layer
 layer's
+layerable
 layered
 layering
 layering's
@@ -72094,6 +72401,7 @@ lemonade
 lemonade's
 lemonades
 lemoned
+lemongrass
 lemoning
 lemons
 lemony
@@ -73169,7 +73477,16 @@ lip's
 lipase
 lipase's
 lipases
+lipcolor
+lipcolor's
+lipcolors
+lipcolour
+lipcolour's
+lipcolours
 lipectomy
+lipgloss
+lipgloss's
+lipglosses
 lipid
 lipid's
 lipidologist
@@ -73179,6 +73496,9 @@ lipids
 lipitor
 lipless
 liplike
+lipliner
+lipliner's
+lipliners
 lipodystrophy
 lipogenesis
 lipoid
@@ -74010,6 +74330,7 @@ longitudes
 longitudinal
 longitudinalis
 longitudinally
+longlasting
 longlegs
 longly
 longness
@@ -74034,6 +74355,7 @@ longueur's
 longueurs
 longus
 longways
+longwear
 longwise
 longword
 longword's
@@ -74580,6 +74902,9 @@ luminescent
 luminesces
 luminescing
 luminiferous
+luminizer
+luminizer's
+luminizers
 luminosities
 luminosity
 luminosity's
@@ -74928,10 +75253,13 @@ Macao
 macaque
 macaque's
 macaques
+macaron
+macaron's
 macaroni
 macaroni's
 macaronic
 macaronis
+macarons
 macaroon
 macaroon's
 macaroons
@@ -74941,6 +75269,9 @@ macaw's
 macaws
 Maccabeus
 maccheroni
+macchiato
+macchiato's
+macchiatos
 mace
 mace's
 maced
@@ -75647,6 +75978,7 @@ malfunction
 malfunctioned
 malfunctioning
 malfunctions
+malic
 malice
 malice's
 maliced
@@ -75885,6 +76217,9 @@ mandrill's
 mandrills
 mane
 mane's
+maneater
+maneater's
+maneaters
 maned
 manes
 maneuver
@@ -76914,9 +77249,14 @@ matted
 matter
 matter's
 mattered
+matterial
 mattering
 matters
 mattes
+mattified
+mattifies
+mattify
+mattifying
 matting
 matting's
 mattings
@@ -77489,6 +77829,9 @@ meetups
 meg
 meg's
 mega
+megababe
+megababe's
+megababes
 megabase
 megabecquerel
 megabit
@@ -78487,6 +78830,7 @@ metes
 metformin
 metformin's
 meth
+methacrylic
 methadone
 methadone's
 methadones
@@ -78703,6 +79047,10 @@ microbiome's
 microbiomes
 microbiota
 microbiota's
+microblade
+microbladed
+microblades
+microblading
 microblog
 microblogged
 microblogging
@@ -78758,13 +79106,22 @@ microcredit's
 microcredits
 microcrystalline
 microcuries
+microcurrent
 microcystic
 microcytic
+microdart
+microdart's
+microdarts
 microdata
 microdata's
 microdeletion
+microdelivery
+microdelivery's
 microdensitometer
+microderm
+microderm's
 microdermabrasion
+microderms
 microdiscectomy
 microdose
 microdosed
@@ -78823,6 +79180,9 @@ microfinancing
 microflora
 microfluidics
 microfold
+microfoliant
+microfoliant's
+microfoliants
 microform
 microform's
 microforms
@@ -78909,9 +79269,12 @@ micron's
 micronation
 micronation's
 micronations
+microneeded
 microneedle
 microneedle's
 microneedles
+microneedling
+microneeds
 micronesia
 micronesia's
 micronesian
@@ -79044,6 +79407,8 @@ microtome
 microtrauma
 microtubule
 microtubules
+microtwill
+microtwill's
 microvascular
 microvilli
 microvillus
@@ -80381,6 +80746,10 @@ misposition
 mispositioned
 mispositioning
 mispositions
+misprice
+mispriced
+misprices
+mispricing
 misprint
 misprint's
 misprinted
@@ -80993,9 +81362,13 @@ moisturiser's
 moisturisers
 moisturises
 moisturising
+moisturization
+moisturization's
+moisturizations
 moisturize
 moisturized
 moisturizer
+moisturizer's
 moisturizers
 moisturizes
 moisturizing
@@ -82556,6 +82929,9 @@ multicentres
 multicentric
 multichannel
 multichannel's
+multichrome
+multichrome's
+multichromes
 multichromosomal
 multicloud
 multicnty
@@ -82725,6 +83101,9 @@ multiply
 multiplying
 multipoint
 multipolar
+multiport
+multiport's
+multiports
 multipotency
 multipotent
 multipreneurs
@@ -82771,6 +83150,7 @@ multistate's
 multistates
 multistep
 multisteps
+multistick
 multistories
 multistory
 multistrategies
@@ -82795,6 +83175,7 @@ multithread
 multithreaded
 multithreading
 multithreads
+multitier
 multitrack
 multitrack's
 multitracks
@@ -82807,6 +83188,7 @@ multitudinously
 multitudinousness
 multitudinousness's
 multiunit
+multiuse
 multiuser
 multivalent
 multivalued
@@ -84940,6 +85322,9 @@ nez
 Ni
 niacin
 niacin's
+niacinamide
+niacinamide's
+niacinamides
 niacins
 Nial
 Niall
@@ -85006,6 +85391,8 @@ Nicobar
 Nicosia
 Nicotiana
 nicotinamide
+nicotinamide's
+nicotinamides
 nicotine
 nicotine's
 nicotines
@@ -85060,6 +85447,8 @@ nightdress
 nightdress's
 nightdresses
 nighted
+nighter
+nighter's
 nighters
 nightfall
 nightfall's
@@ -85471,6 +85860,7 @@ nonadhesive
 nonadjacent
 nonadjustable
 nonadministrative
+nonaffiliated
 nonage
 nonage's
 nonagenarian
@@ -85804,6 +86194,7 @@ nonfood's
 nonforfeitable
 nonformalized
 nonfreezing
+nonfrivolous
 nonfunctional
 nongaussianity
 nongenetic
@@ -86287,6 +86678,7 @@ nontransferable
 nontransgender
 nontransgender's
 nontransgenders
+nontransitive
 nontransparent
 nontresspassory
 nontrivial
@@ -86814,6 +87206,7 @@ nudging
 nudibranch
 nudibranch's
 nudibranches
+nudies
 nudism
 nudism's
 nudisms
@@ -87096,6 +87489,7 @@ Oahu
 oak
 oak's
 oaken
+oakmoss
 oaks
 oakum
 oakum's
@@ -87651,6 +88045,9 @@ octopuses
 octoroon
 octoroon's
 octoroons
+octyldodecanol
+octyldodecanol's
+octyldodecanols
 octyne
 ocular
 oculars
@@ -88091,6 +88488,7 @@ olé
 om
 Omagh
 omasum
+ombre
 ombud
 ombud's
 ombuds
@@ -88298,6 +88696,9 @@ onychomycosis
 onyx
 onyx's
 onyxes
+octyldodecyl
+octyldodecyl's
+octyldodecyls
 oocyte
 oocytes
 oodles
@@ -88318,6 +88719,9 @@ oophorectomy
 oophoritis
 oops
 oopses
+oopsie
+oopsie's
+oopsies
 ooze
 oozed
 oozes
@@ -90827,6 +91231,9 @@ oxyacids
 oxyanion
 oxyanions
 oxycarbonate
+oxychloride
+oxychloride's
+oxychlorides
 oxygen
 oxygen's
 oxygenase
@@ -91369,6 +91776,9 @@ palmistry's
 palmists
 palmitate
 palmitic
+palmitoyl
+palmitoyl's
+palmitoyls
 palmoplantar
 palms
 palmtop
@@ -91765,6 +92175,9 @@ para's
 parabasal
 parabasalid
 parabasalids
+paraben
+paraben's
+parabens
 Parabiosis
 parable
 parable's
@@ -92181,6 +92594,9 @@ paresthetica
 parfait
 parfait's
 parfaits
+parfum
+parfum's
+parfums
 pariah
 pariah's
 pariahs
@@ -92442,6 +92858,7 @@ partisanship's
 partisanships
 partition
 partition's
+partitionable
 partitioned
 partitioner
 partitioner's
@@ -92545,6 +92962,9 @@ passioned
 passionflower
 passionflower's
 passionflowers
+passionfruit
+passionfruit's
+passionfruits
 passioning
 passionless
 passions
@@ -93178,12 +93598,17 @@ Pearla
 pearled
 pearler
 pearler's
+pearlescent
 Pearlie
 pearlier
 pearlies
 pearliest
 Pearline
 pearling
+pearlize
+pearlized
+pearlizes
+pearlizing
 pearls
 pearly
 pears
@@ -93334,6 +93759,8 @@ pedestrianized
 pedestrianizes
 pedestrianizing
 pedestrians
+pedi
+pedi's
 pediatric
 pediatrician
 pediatrician's
@@ -93714,6 +94141,9 @@ pentacle
 pentacle's
 pentacles
 pentadentate
+pentaerythrityl
+pentaerythrityl's
+pentaerythrityls
 pentafluoride
 pentagon
 pentagon's
@@ -93727,6 +94157,9 @@ pentagrams
 pentahalides
 pentahydrate
 pentaiodide
+pentaisostearate
+pentaisostearate's
+pentaisostearates
 pentamer
 pentamer's
 pentameric
@@ -94010,6 +94443,9 @@ perfectiveness's
 perfectly
 perfectness
 perfectness's
+perfector
+perfector's
+perfectors
 perfects
 perfidies
 perfidious
@@ -95617,6 +96053,8 @@ phytoestrogen's
 phytoestrogens
 phytogeography
 phytonutrient
+phytonutrient's
+phytonutrients
 phytopathology
 phytopathology's
 phytophthora
@@ -95626,6 +96064,9 @@ phytoplasma
 phytoplasma's
 phytoplasmas
 phytosterol
+phytosteryl
+phytosteryl's
+phytosteryls
 phytotoxin
 pi
 pianism
@@ -97282,6 +97723,7 @@ plumped
 plumpen
 plumper
 plumper's
+plumpers
 plumpest
 plumping
 plumpish
@@ -97828,6 +98270,9 @@ poly
 polyacrylamide
 polyacrylamide's
 polyacrylonitrile
+polyacyladipate
+polyacyladipate's
+polyacyladipates
 polyadenylation
 polyadenylation's
 polyadenylations
@@ -97902,6 +98347,9 @@ polygeny
 polyglandular
 polyglot
 polyglots
+polyglyceryl
+polyglyceryl's
+polyglyceryls
 polygon
 polygon's
 polygonal
@@ -97923,8 +98371,12 @@ polyhedron
 polyhedron's
 polyhedrons
 polyhydramnios
+polyhydroxystearic
 polyhymnia
 polyhymnia's
+polyisobutene
+polyisobutene's
+polyisobutenes
 polyisobutylene
 polyisocyanates
 polyline
@@ -98019,6 +98471,9 @@ polysaccharides
 polysilicon
 polysome
 polysomnography
+polysorbate
+polysorbate's
+polysorbates
 polyspermy
 polystyrene
 polystyrene's
@@ -98329,6 +98784,7 @@ porcupine's
 porcupines
 pore
 pored
+poreless
 porencephaly
 porer
 porers
@@ -98471,6 +98927,9 @@ portmanteau's
 portmanteaus
 portmanteaux
 porto
+portobello
+portobello's
+portobellos
 portosystemic
 portrait
 portrait's
@@ -98932,6 +99391,9 @@ pound's
 poundage
 poundage's
 poundages
+poundcake
+poundcake's
+poundcakes
 pounded
 pounder
 pounder's
@@ -98955,6 +99417,7 @@ pouter's
 pouters
 pouting
 pouts
+pouty
 POV
 poverties
 poverty
@@ -99943,6 +100406,9 @@ prepotency
 prepotency's
 prepotential
 prepped
+prepper
+prepper's
+preppers
 preppier
 preppies
 preppiest
@@ -100382,6 +100848,9 @@ price
 price's
 priced
 priceless
+pricepoint
+pricepoint's
+pricepoints
 pricer
 pricer's
 pricers
@@ -100550,6 +101019,7 @@ printably
 printed
 printer
 printer's
+printerless
 printers
 printing
 printing's
@@ -101759,6 +102229,9 @@ protease's
 proteases
 proteasome
 protect
+protectant
+protectant's
+protectants
 protected
 protectedly
 protecting
@@ -102024,6 +102497,9 @@ provisions
 proviso
 proviso's
 provisos
+provitamin
+provitamin's
+provitamins
 Provo
 provocateur
 provocateurs
@@ -102763,11 +103239,13 @@ punitiveness
 punitiveness's
 punk
 punk's
+punked
 punker
 punkest
 punkier
 punkies
 punkiness
+punking
 punks
 punky
 punned
@@ -102835,6 +103313,9 @@ purdah
 purdah's
 purdahs
 pure
+pure-fessional
+pure-fessional's
+pure-fessionals
 purebred
 purebreds
 pured
@@ -102843,6 +103324,9 @@ puree's
 pureed
 pureeing
 purees
+purefessional
+purefessional's
+purefessionals
 purely
 pureness
 pureness's
@@ -104467,6 +104951,9 @@ rain's
 rainbow
 rainbow's
 rainbows
+raincheck
+raincheck's
+rainchecks
 raincloud
 rainclouds
 raincoat
@@ -105221,6 +105708,9 @@ reactivating
 reactivation
 reactivation's
 reactivations
+reactivator
+reactivator's
+reactivators
 reactive
 reactively
 reactiveness
@@ -108690,6 +109180,10 @@ replotted
 replug
 replugged
 replugging
+replump
+replumped
+replumping
+replumps
 reply
 replying
 repo
@@ -109843,6 +110337,10 @@ retest's
 retested
 retesting
 retests
+retexturize
+retexturized
+retexturizes
+retexturizing
 rethink
 rethinker
 rethinking
@@ -111476,6 +111974,9 @@ rollbacks
 rolled
 roller
 roller's
+rollerball
+rollerball's
+rollerballs
 rollerblade
 rollerblades
 rollercoaster
@@ -112918,6 +113419,9 @@ salmons
 salon
 salon's
 salons
+salonspa
+salonspa's
+salonspas
 saloon
 saloon's
 saloonkeeper
@@ -114749,6 +115253,8 @@ scrums
 scrunch
 scrunched
 scrunches
+scrunchie
+scrunchie's
 scrunchies
 scrunching
 scrunchy
@@ -116333,6 +116839,9 @@ Sertoli
 sertolis
 serum
 serum's
+serumizer
+serumizer's
+serumizers
 serums
 servant
 servant's
@@ -117525,6 +118034,9 @@ shortlisted
 shortlisting
 shortlived
 shortly
+shortname
+shortname's
+shortnames
 shortness
 shortness's
 shortnesses
@@ -117953,6 +118465,8 @@ sidebars
 sideboard
 sideboard's
 sideboards
+sideburn
+sideburn's
 sideburns
 sidecar
 sidecar's
@@ -118072,6 +118586,9 @@ sifters
 sifting
 siftings
 sifts
+sigesbeckia
+sigesbeckia's
+sigesbeckias
 sigh
 sighed
 sigher
@@ -118910,6 +119427,9 @@ skinflints
 skinhead
 skinhead's
 skinheads
+skinification
+skinification's
+skinifications
 skinless
 skinned
 skinner
@@ -118923,6 +119443,10 @@ skinniness's
 skinninesses
 skinning
 skinny
+skinnydip
+skinnydipped
+skinnydipping
+skinnydips
 skins
 skintight
 skip
@@ -119975,6 +120499,9 @@ SMTP
 smudge
 smudged
 smudgeless
+smudger
+smudger's
+smudgers
 smudges
 smudgier
 smudgiest
@@ -121283,6 +121810,9 @@ sou's
 sou'wester
 soubriquet
 soubriquet's
+souffle
+souffle's
+souffles
 soufflé
 soufflé's
 soufflés
@@ -122950,6 +123480,9 @@ squadroned
 squadroning
 squadrons
 squads
+squalane
+squalane's
+squalanes
 squalene
 squalene's
 squalenes
@@ -123623,6 +124156,9 @@ starless
 starlet
 starlet's
 starlets
+starlette
+starlette's
+starlettes
 starlight
 starlight's
 starlights
@@ -125451,6 +125987,8 @@ studying
 stuff
 stuffed
 stuffer
+stuffer's
+stuffers
 stuffier
 stuffiest
 stuffily
@@ -125494,6 +126032,7 @@ stunk
 stunned
 stunner
 stunner's
+stunners
 stunning
 stunningly
 stuns
@@ -127023,6 +127562,7 @@ sunburnt
 sunburst
 sunburst's
 sunbursts
+suncare
 suncream
 sundae
 sundae's
@@ -127086,6 +127626,9 @@ sunning
 sunny
 sunny's
 sunnyside
+sunnysider
+sunnysider's
+sunnysiders
 sunray
 sunray's
 sunrays
@@ -127146,6 +127689,9 @@ superannuation's
 superannuations
 superb
 superber
+superberries
+superberry
+superberry's
 superbest
 superbly
 superbness
@@ -127243,6 +127789,11 @@ superfluous
 superfluously
 superfluousness
 superfluousnesses
+superfoliant
+superfoliant's
+superfoliants
+superfood
+superfood's
 superfoods
 superforce
 superforce's
@@ -128181,6 +128732,9 @@ sweets
 sweetshop
 sweetshop's
 sweetshops
+sweetspot
+sweetspot's
+sweetspots
 swell
 swelled
 sweller
@@ -129668,6 +130222,9 @@ taskbar
 taskbar's
 taskbars
 tasked
+tasker
+tasker's
+taskers
 taskforce
 taskforce's
 taskforces
@@ -129823,12 +130380,14 @@ tawdriness
 tawdriness's
 tawdrinesses
 tawdry
+tawnied
 tawnier
 tawnies
 tawniest
 tawniness
 tawny
 tawny's
+tawnying
 Tawsha
 tax
 tax's
@@ -131127,6 +131686,12 @@ texture's
 textured
 textures
 texturing
+texturize
+texturized
+texturizes
+texturizing
+texturizing's
+texturizings
 tga
 th
 th's
@@ -131394,6 +131959,9 @@ theriogenology
 theriogenology's
 therm
 therm's
+thermafoliant
+thermafoliant's
+thermafoliants
 thermal
 thermalequilibrium
 thermalised
@@ -132847,6 +133415,9 @@ tocolytic
 tocopherol
 tocopherol's
 tocopherols
+tocopheryl
+tocopheryl's
+tocopheryls
 tocophobia
 tocsin
 tocsin's
@@ -133268,6 +133839,7 @@ topicalities
 topicality
 topicality's
 topically
+topicals
 topics
 toping
 topknot
@@ -133589,6 +134161,9 @@ touchstone
 touchstone's
 touchstones
 touchtone
+touchup
+touchup's
+touchups
 touchwood
 touchy
 touché
@@ -134810,6 +135385,8 @@ trendinesses
 trending
 trends
 trendsetter
+trendsetter's
+trendsetters
 trendsetting
 trendy
 Trenna
@@ -135033,6 +135610,9 @@ trier's
 triers
 tries
 Trieste
+triethoxycaprylylsilane
+triethoxycaprylylsilane's
+triethoxycaprylylsilanes
 triethylamine
 trifecta
 trifecta's
@@ -135141,6 +135721,9 @@ trimethylaminuria
 trimethylhexane
 trimethylpentane
 trimethylphosphine
+trimethylsiloxysilicate
+trimethylsiloxysilicate's
+trimethylsiloxysilicates
 trimly
 trimmed
 trimmer
@@ -135173,6 +135756,8 @@ trinkets
 trinucleotide
 trio
 trio's
+triochrome
+triochrome's
 triode
 triode's
 triodes
@@ -135817,6 +136402,7 @@ tugboat's
 tugboats
 tugged
 tugging
+tugless
 tugs
 tuition
 tuition's
@@ -137443,6 +138029,10 @@ uncuffing
 uncuffs
 uncultivated
 uncultured
+uncurate
+uncurated
+uncurates
+uncurating
 uncured
 uncurl
 uncurled
@@ -137645,6 +138235,9 @@ underexposing
 underexposure
 underexposure's
 underexposures
+undereye
+undereye's
+undereyes
 underfed
 underfeed
 underfeeding
@@ -138147,6 +138740,7 @@ unendurably
 unenergized
 unenergized's
 unenergizeds
+unenforceability
 unenforceable
 unenforced
 unenforcible
@@ -138816,6 +139410,9 @@ unitized
 unitizes
 unitizing
 unitless
+unitrust
+unitrust's
+unitrusts
 units
 unity
 unity's
@@ -139530,6 +140127,7 @@ unrepeatability
 unrepeatable
 unrepeated
 unrepentant
+unreplicated
 unreported
 unrepresentable
 unrepresentative
@@ -139849,6 +140447,9 @@ unspecific
 unspecified
 unspectacular
 unspent
+unsplit
+unsplits
+unsplitting
 unspoiled
 unspoilt
 unspoke
@@ -140328,6 +140929,7 @@ updater's
 updaters
 updates
 updating
+updo
 updraft
 updraft's
 updrafts
@@ -140892,6 +141494,9 @@ vacationist's
 vacationists
 vacationland
 vacations
+vacay
+vacay's
+vacays
 vaccinate
 vaccinated
 vaccinates
@@ -141004,6 +141609,9 @@ vainglory
 vainglory's
 vainly
 vainness
+vajacial
+vajacial's
+vajacials
 val
 val's
 valance
@@ -141870,6 +142478,7 @@ veritable
 veritableness
 veritableness's
 veritably
+veritas
 verities
 verity
 verity's
@@ -142067,6 +142676,7 @@ veterinarian's
 veterinarians
 veterinaries
 veterinary
+vetiver
 veto
 veto's
 vetoed
@@ -143123,6 +143733,13 @@ voluminously
 voluminousness
 voluminousness's
 voluminousnesses
+volumize
+volumized
+volumizer
+volumizer's
+volumizers
+volumizes
+volumizing
 voluntaries
 voluntarily
 voluntariness
@@ -144029,6 +144646,9 @@ watercresses
 watered
 waterer
 waterer's
+waterfacial
+waterfacial's
+waterfacials
 waterfall
 waterfall's
 waterfalls
@@ -144063,6 +144683,7 @@ watermarks
 watermelon
 watermelon's
 watermelons
+watermelony
 watermen
 watermen's
 watermill
@@ -144279,6 +144900,8 @@ weaponry
 weaponry's
 weapons
 wear
+wearability
+wearability's
 wearable
 wearables
 wearer
@@ -145725,6 +146348,9 @@ winterer's
 wintergreen
 wintergreen's
 wintergreens
+winterguard
+winterguard's
+winterguards
 wintering
 winterize
 winterized
@@ -145950,6 +146576,7 @@ wived
 wives
 wives's
 wiving
+wiz
 wiz's
 wizard
 wizard's
@@ -145960,6 +146587,7 @@ wizardry's
 wizards
 wizen
 wizened
+wizzes
 wk
 wkly
 wm

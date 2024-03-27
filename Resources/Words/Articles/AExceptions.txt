@@ -2,6 +2,7 @@ AAA
 and
 are
 FBI
+FSMO
 hdrstop
 is
 nor

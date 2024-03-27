@@ -11,6 +11,9 @@ Archimedian	Archimedean	3
 Athenean	Athenian	3		
 Atheneans	Athenians	3		
 Beligum	Belgium	3		
+Bendictine	Benedictine	3		
+Bendictine's	Benedictine's	3		
+Bendictines	Benedictines	3		
 Bernouilli	Bernoulli	3		
 Bethoven	Beethoven	3		
 Bethoven's	Beethoven's	3		
@@ -28,6 +31,9 @@ Carnigie	Carnegie	3
 Carnigie's	Carnegie's	3		
 Carribbean	Caribbean	3		
 Carribean	Caribbean	3		
+Cathoilic	Catholic	3		
+Cathoilic's	Catholic's	3		
+Cathoilics	Catholics	3		
 Catholocism	Catholicism	3		
 Ceasar	Caesar	3		
 Ceasar's	Caesar's	3		
@@ -38,6 +44,8 @@ Chigaco	Chicago	3
 Chigaco's	Chicago's	3		
 Cincinatti	Cincinnati	3		
 Cincinnatti	Cincinnati	3		
+Comentiy	Comenity	3		
+Comentiy's	Comenity's	3		
 Conneticut	Connecticut	3		
 Conneticut's	Connecticut's	3		
 Dardenelles	Dardanelles	3		
@@ -120,6 +128,9 @@ Nuremburg	Nuremberg	3
 Palistian	Palestinian	3		
 Palistinian	Palestinian	3		
 Palistinians	Palestinians	3		
+pathenol	panthenol	3		
+pathenol's	panthenol's	3		
+pathenols	panthenols	3		
 Peloponnes	Peloponnese	3		
 Peloponnesus	Peloponnese	3		
 Pennyslvania	Pennsylvania	3		
@@ -147,6 +158,9 @@ Rockerfeller	Rockefeller	3
 Rockfeller	Rockefeller	3		
 Rockfeller's	Rockefeller's	3		
 Rockfellers	Rockefellers	3		
+Rodirguez	Rodriguez	3		
+Rodirguez's	Rodriguez's	3		
+Rodirguezes	Rodriguezes	3		
 Russion	Russian	3		
 Sacremento	Sacramento	3		
 Sebastain	Sebastian	3		

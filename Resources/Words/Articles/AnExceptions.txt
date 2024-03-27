@@ -31,6 +31,7 @@ RAII
 Rh-negative
 Rh-positive
 RNA
+RODC
 ROI
 rvalue
 SaaS
@@ -38,6 +39,7 @@ SAP
 SAS
 SEH
 SEM
+SID
 SLA
 SMB
 SME
@@ -47,4 +49,6 @@ ssDNA
 ssRNA
 SUV
 Ubuntu
+URI
+URL
 XInput
