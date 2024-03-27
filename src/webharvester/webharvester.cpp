@@ -728,20 +728,12 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
         return;
         }
 
-    // skip "mailto" anchors
-    if (currentLink.length() >= 7 &&
-        string_util::strnicmp(currentLink.wc_str(), _DT(L"mailto:"), 7) == 0)
-        {
-        return;
-        }
-    // and telephone numbers
-    if (currentLink.length() >= 4 &&
-        string_util::strnicmp(currentLink.wc_str(), _DT(L"tel:"), 4) == 0)
-        {
-        return;
-        }
-    // ...or any bookmarks on the same page
-    else if (currentLink.length() >= 1 && currentLink[0] == L'#')
+    // skip "mailto" anchors, telephone numbers, placeholders,
+    // and any bookmarks on the same page
+    const wxRegEx anchorsToSkip{ L"[[:space:]]*(mailto[:]|tel[:]|#|"
+                                  "javascript[:][[:space:]]*void).*" };
+
+    if (anchorsToSkip.Matches(currentLink))
         {
         return;
         }

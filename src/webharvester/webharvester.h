@@ -28,6 +28,7 @@
 #include <wx/filename.h>
 #include <wx/filesys.h>
 #include <wx/progdlg.h>
+#include <wx/regex.h>
 #include <wx/stream.h>
 #include <wx/url.h>
 #include <wx/utils.h>
