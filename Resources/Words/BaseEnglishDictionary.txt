@@ -88048,6 +88048,9 @@ octoroons
 octyldodecanol
 octyldodecanol's
 octyldodecanols
+octyldodecyl
+octyldodecyl's
+octyldodecyls
 octyne
 ocular
 oculars
@@ -88696,9 +88699,6 @@ onychomycosis
 onyx
 onyx's
 onyxes
-octyldodecyl
-octyldodecyl's
-octyldodecyls
 oocyte
 oocytes
 oodles
