@@ -285,7 +285,7 @@ void WebHarvesterDlg::CreateControls()
         minFileSizeSizer->Add(m_minFileSizeLabel, 0, wxALIGN_CENTER_VERTICAL);
 
         m_minFileSizeCtrl = new wxSpinCtrl(Panel, wxID_ANY,
-            wxString::Format(wxT("%d"), m_minFileSizeInKiloBytes));
+            std::to_wstring(m_minFileSizeInKiloBytes));
         m_minFileSizeCtrl->SetRange(1, 1024 * 20);
         m_minFileSizeCtrl->SetValidator(wxGenericValidator(&m_minFileSizeInKiloBytes));
         m_minFileSizeCtrl->Enable(m_downloadFilesLocally);
