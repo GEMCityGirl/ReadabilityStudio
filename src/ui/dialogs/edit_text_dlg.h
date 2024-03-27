@@ -15,6 +15,7 @@
 #include "../../Wisteria-Dataviz/src/ui/controls/formattedtextctrl.h"
 #include "../../Wisteria-Dataviz/src/ui/ribbon/artmetro.h"
 #include <wx/dialog.h>
+#include <wx/datetime.h>
 #include <wx/fdrepdlg.h>
 #include <wx/ribbon/art.h>
 #include <wx/ribbon/bar.h>

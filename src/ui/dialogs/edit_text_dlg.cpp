@@ -71,6 +71,14 @@ EditTextDlg::EditTextDlg(wxWindow* parent, BaseProjectDoc* parentDoc, wxString v
                 evt.SetFlags(m_findData.GetFlags());
                 EditTextDlg::OnFindDialog(evt);
                 }
+            else if (event.ControlDown() && event.ShiftDown() && event.GetKeyCode() == L';')
+                {
+                m_textEntry->WriteText(wxDateTime::Now().FormatTime());
+                }
+            else if (event.ControlDown() && event.GetKeyCode() == L';')
+                {
+                m_textEntry->WriteText(wxDateTime::Now().FormatDate());
+                }
             event.Skip(true);
         },
         wxID_ANY);

@@ -131,6 +131,16 @@ Redo previous edit                      `r keys(c('Ctrl','Y'))` (`r os_logo('win
 
 &nbsp;                                  &nbsp;
 
+Insert date                             `r keys(c('Ctrl',';'))` (`r os_logo('windows')`) or<br>\linebreak
+                                        `r keys(c('\\cmd',';'))` (`r os_logo('apple')`)
+
+&nbsp;                                  &nbsp;
+
+Insert time                             `r keys(c('Ctrl','Shift',';'))` (`r os_logo('windows')`) or<br>\linebreak
+                                        `r keys(c('\\cmd','\\shift',';'))` (`r os_logo('apple')`)
+
+&nbsp;                                  &nbsp;
+
 Find                                    `r keys(c('Ctrl','F'))` (`r os_logo('windows')`) or<br>\linebreak
                                         `r keys(c('\\cmd','F'))` (`r os_logo('apple')`)
 
@@ -145,7 +155,7 @@ Replace                                 `r keys(c('Ctrl','H'))` (`r os_logo('win
 
 &nbsp;                                  &nbsp;
 
-Select all text                         `r keys(c('Ctrl','A'))` (`r os_logo('windows')`) or<br>\linebreak
+Select all                              `r keys(c('Ctrl','A'))` (`r os_logo('windows')`) or<br>\linebreak
                                         `r keys(c('\\cmd','A'))` (`r os_logo('apple')`)
 ------------------------------------------------------------------------------------------------
 :::
