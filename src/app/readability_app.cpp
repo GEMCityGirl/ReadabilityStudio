@@ -5047,7 +5047,7 @@ void MainFrame::OnHelpManual([[maybe_unused]] wxRibbonButtonBarEvent& event)
 void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     wxString updateFileContent, contentType, statusText;
-#ifdef __WXMAC__
+#ifdef __WXOSX__
     wxString updatedFilePath =
         _DT(L"http:// oleandersoftware.com/downloads/readabilitystudio/CurrentMacVersionReadabilityStudio.txt");
     int responseCode;

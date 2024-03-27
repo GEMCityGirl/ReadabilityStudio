@@ -72,7 +72,7 @@ class FlatTabArt : public wxAuiGenericTabArt
     //-------------------------------------------------------
     static void ScaleBitmap(wxBitmap& bmp, double scale)
         {
-#if wxUSE_IMAGE && !defined(__WXGTK3__) && !defined(__WXMAC__)
+#if wxUSE_IMAGE && !defined(__WXGTK3__) && !defined(__WXOSX__)
         // scale to a close round number to improve quality
         scale = std::floor(scale + 0.25);
         if (scale > 1.0 && !(bmp.GetScaleFactor() > 1.0))
@@ -230,7 +230,7 @@ class FlatTabArt : public wxAuiGenericTabArt
         // draw tab outline
         dc.SetPen(ColorContrast::BlackOrWhiteContrast(m_baseColour));
         dc.SetBrush(*wxTRANSPARENT_BRUSH);
-        dc.DrawPolygon(WXSIZEOF(border_points), border_points);
+        dc.DrawPolygon(std::size(border_points), border_points);
 
         // there are two horizontal grey lines at the bottom of the tab control,
         // this gets rid of the top one of those lines in the tab control
