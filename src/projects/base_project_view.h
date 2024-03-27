@@ -684,7 +684,7 @@ class BaseProjectView : public wxView
     void OnActivateView(bool activate, wxView*, wxView*) override;
 
     bool OnClose(bool deleteWindow = true) override;
-    
+
     void OnDraw(wxDC*) override{};
 
     void OnDClickRibbonBar([[maybe_unused]] wxRibbonBarEvent& event);

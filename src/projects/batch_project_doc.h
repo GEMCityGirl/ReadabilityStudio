@@ -24,10 +24,10 @@ class BatchProjectDoc final : public BaseProjectDoc
 
     ~BatchProjectDoc()
         {
-        for (std::vector<BaseProject*>::iterator pos = m_docs.begin();
-            pos != m_docs.end();
-            ++pos)
-            { wxDELETE(*pos); }
+        for (std::vector<BaseProject*>::iterator pos = m_docs.begin(); pos != m_docs.end(); ++pos)
+            {
+            wxDELETE(*pos);
+            }
         DeleteExcludedPhrases();
         }
 
@@ -114,7 +114,8 @@ class BatchProjectDoc final : public BaseProjectDoc
         }
 
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetOverusedWordBySentenceData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>&
+    GetOverusedWordBySentenceData() const noexcept
         {
         return m_overusedWordBySentenceData;
         }
@@ -168,13 +169,15 @@ class BatchProjectDoc final : public BaseProjectDoc
         }
 
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetConjunctionStartingSentencesData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>&
+    GetConjunctionStartingSentencesData() const noexcept
         {
         return m_sentenceStartingWithConjunctionsData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetLowerCasedSentencesData() const noexcept
+    const std::shared_ptr<ListCtrlExNumericDataProvider>&
+    GetLowerCasedSentencesData() const noexcept
         {
         return m_sentenceStartingWithLowercaseData;
         }
@@ -265,10 +268,10 @@ class BatchProjectDoc final : public BaseProjectDoc
         @param varianceMethod The variance method to calculate with (population or sample).
         @param allowCustomFormatting Whether custom formatting should be used for number formatting
             in the @c dataGrid.*/
-    static void SetScoreStatsRow(std::shared_ptr<ListCtrlExNumericDataProvider> dataGrid, const wxString& rowName,
-                                 const wxString& optionalDescription, const long rowNum,
-                                 const std::vector<double>& data, const int decimalSize,
-                                 const VarianceMethod varianceMethod,
+    static void SetScoreStatsRow(std::shared_ptr<ListCtrlExNumericDataProvider> dataGrid,
+                                 const wxString& rowName, const wxString& optionalDescription,
+                                 const long rowNum, const std::vector<double>& data,
+                                 const int decimalSize, const VarianceMethod varianceMethod,
                                  const bool allowCustomFormatting);
     /** @brief Fills a score list control with statistics.
         @param The name of the list control.
@@ -317,43 +320,87 @@ class BatchProjectDoc final : public BaseProjectDoc
     std::map<traits::case_insensitive_wstring_ex, Wisteria::Data::GroupIdType> m_docLabels;
     Wisteria::Data::ColumnWithStringTable::StringTableType m_groupStringTable;
     // score list data
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_scoreRawData{ std::make_shared<ListCtrlExNumericDataProvider>() };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_goalsData{ std::make_shared<ListCtrlExNumericDataProvider>() };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_scoreStatsData{ std::make_shared<ListCtrlExNumericDataProvider>() };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_aggregatedGradeScoresData{ std::make_shared<ListCtrlExNumericDataProvider>() };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_aggregatedClozeScoresData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_scoreRawData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_goalsData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_scoreStatsData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_aggregatedGradeScoresData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_aggregatedClozeScoresData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
     // grammar list data
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_dupWordData{ std::make_shared<ListCtrlExNumericDataProvider>() };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_incorrectArticleData{ std::make_shared<ListCtrlExNumericDataProvider>() };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_passiveVoiceData{ std::make_shared<ListCtrlExNumericDataProvider>() };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_misspelledWordData{ std::make_shared<ListCtrlExNumericDataProvider>() };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_wordyPhraseData{ std::make_shared<ListCtrlExNumericDataProvider>() };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_redundantPhraseData{ std::make_shared<ListCtrlExNumericDataProvider>() };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_wordingErrorData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_dupWordData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_incorrectArticleData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_passiveVoiceData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_misspelledWordData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_wordyPhraseData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_redundantPhraseData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_wordingErrorData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
     std::shared_ptr<ListCtrlExNumericDataProvider> m_overusedWordBySentenceData{
         std::make_shared<ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_clichePhraseData{ std::make_shared<ListCtrlExNumericDataProvider>() };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_overlyLongSentenceData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_clichePhraseData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_overlyLongSentenceData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
     std::shared_ptr<ListCtrlExNumericDataProvider> m_sentenceStartingWithConjunctionsData{
         std::make_shared<ListCtrlExNumericDataProvider>()
     };
     std::shared_ptr<ListCtrlExNumericDataProvider> m_sentenceStartingWithLowercaseData{
         std::make_shared<ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_allWordsBatchData{ std::make_shared<ListCtrlExNumericDataProvider>() };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_keyWordsBatchData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_allWordsBatchData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_keyWordsBatchData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
     // difficult words list data
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_hardWordsData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_hardWordsData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
     // summary stats data
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_summaryStatsData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_summaryStatsData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
     std::vector<wxString> m_summaryStatsColumnNames;
     // warnings list data
-    std::shared_ptr<ListCtrlExDataProvider> m_warnings{ std::make_shared<ListCtrlExDataProvider>() };
+    std::shared_ptr<ListCtrlExDataProvider> m_warnings{
+        std::make_shared<ListCtrlExDataProvider>()
+    };
     // dolch list data
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_dolchCompletionData{ std::make_shared<ListCtrlExNumericDataProvider>() };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_dolchWordsBatchData{ std::make_shared<ListCtrlExNumericDataProvider>() };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_NonDolchWordsData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_dolchCompletionData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_dolchWordsBatchData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_NonDolchWordsData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
 
     wxDECLARE_DYNAMIC_CLASS(BatchProjectDoc);
     };

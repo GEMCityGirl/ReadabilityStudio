@@ -843,7 +843,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
         assert(buttonBar != nullptr && buttonBar->IsKindOf(CLASSINFO(wxRibbonButtonBar)));
         return dynamic_cast<wxRibbonButtonBar*>(buttonBar);
         };
-    
+
     wxRibbonPanel* editListButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_PANEL);
     hideEditPanel(MainFrame::ID_EDIT_RIBBON_SUMMARY_REPORT_PANEL);

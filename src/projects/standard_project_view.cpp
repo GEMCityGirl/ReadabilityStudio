@@ -1934,7 +1934,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         assert(buttonBar != nullptr && buttonBar->IsKindOf(CLASSINFO(wxRibbonButtonBar)));
         return dynamic_cast<wxRibbonButtonBar*>(buttonBar);
         };
-    
+
     wxRibbonPanel* editListButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_PANEL);
     wxRibbonPanel* editSummaryReportButtonBarWindow =
@@ -2334,7 +2334,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
             wxString::Format(_(L"Export %s..."), GetActiveProjectWindow()->GetName()));
         MenuBarEnableAll(GetMenuBar(), wxID_SELECTALL, true);
         }
-    
+
     GetRibbon()->Realize();
     GetRibbon()->Layout();
 

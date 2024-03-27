@@ -2775,9 +2775,12 @@ class ReadabilityAppOptions
     const std::string_view XML_LONG_SENTENCE_LENGTH{ _DT("long-sentence-length") };
     const std::string_view XML_NUMERAL_SYLLABICATION_METHOD{ _DT("numeral-syllabication-method") };
     const std::string_view XML_PARAGRAPH_PARSING_METHOD{ _DT("paragraph-parsing-method") };
-    const std::string_view XML_IGNORE_BLANK_LINES_FOR_PARAGRAPH_PARSING{ _DT("ignore-blank-lines-for-paragraphs") };
-    const std::string_view XML_IGNORE_INDENTING_FOR_PARAGRAPH_PARSING{ _DT("ignore-indenting-for-paragraphs") };
-    const std::string_view XML_SENTENCES_MUST_START_CAPITALIZED{ _DT("sentences-must-start-capitalized") };
+    const std::string_view XML_IGNORE_BLANK_LINES_FOR_PARAGRAPH_PARSING{ _DT(
+        "ignore-blank-lines-for-paragraphs") };
+    const std::string_view XML_IGNORE_INDENTING_FOR_PARAGRAPH_PARSING{ _DT(
+        "ignore-indenting-for-paragraphs") };
+    const std::string_view XML_SENTENCES_MUST_START_CAPITALIZED{ _DT(
+        "sentences-must-start-capitalized") };
     const std::string_view XML_AGGRESSIVE_EXCLUSION{ _DT("aggressively-deduce-lists") };
     const std::string_view XML_IGNORE_COPYRIGHT_NOTICES{ _DT("ignore-trailing-copyright-notices") };
     const std::string_view XML_IGNORE_CITATIONS{ _DT("ignore-trailing-citations") };
@@ -2785,7 +2788,8 @@ class ReadabilityAppOptions
     const std::string_view XML_IGNORE_NUMERALS{ _DT("ignore-numerals") };
     const std::string_view XML_IGNORE_PROPER_NOUNS{ _DT("ignore-proper-nouns") };
     const std::string_view XML_EXCLUDED_PHRASES_PATH{ _DT("excluded-phrases-filepath") };
-    const std::string_view XML_EXCLUDED_PHRASES_INCLUDE_FIRST_OCCURRENCE{ _DT("excluded-phrases-include-first-occurrence") };
+    const std::string_view XML_EXCLUDED_PHRASES_INCLUDE_FIRST_OCCURRENCE{ _DT(
+        "excluded-phrases-include-first-occurrence") };
     const std::string_view XML_EXCLUDE_BLOCK_TAGS{ _DT("exclude-block-tags") };
     const std::wstring_view XML_EXCLUDE_BLOCK_TAGS_W{ _DT(L"exclude-block-tags") };
     const std::string_view XML_EXCLUDE_BLOCK_TAG{ _DT("exclude-block-tag") };
@@ -2798,8 +2802,10 @@ class ReadabilityAppOptions
     const std::string_view XML_WIZARD_PAGES_SETTINGS{ _DT("wizard-page-defaults") };
     const std::string_view XML_PROJECT_LANGUAGE{ _DT("project-language") };
     // test settings
-    const std::string_view XML_READABILITY_TEST_GRADE_SCALE_DISPLAY{ _DT("readability-test-grade-scale-display") };
-    const std::string_view XML_READABILITY_TEST_GRADE_SCALE_LONG_FORMAT{ _DT("readability-test-grade-scale-long-format") };
+    const std::string_view XML_READABILITY_TEST_GRADE_SCALE_DISPLAY{ _DT(
+        "readability-test-grade-scale-display") };
+    const std::string_view XML_READABILITY_TEST_GRADE_SCALE_LONG_FORMAT{ _DT(
+        "readability-test-grade-scale-long-format") };
     const std::string_view XML_NEW_DALE_CHALL_OPTIONS{ _DT("dale-chall-options") };
     const std::wstring_view XML_NEW_DALE_CHALL_OPTIONS_W{ _DT(L"dale-chall-options") };
     const std::string_view XML_STOCKER_LIST{ _DT("include-stocker-catholic-supplement") };
@@ -2808,7 +2814,8 @@ class ReadabilityAppOptions
     const std::string_view XML_GUNNING_FOG_OPTIONS{ _DT("gunning-fog-options") };
     const std::wstring_view XML_GUNNING_FOG_OPTIONS_W{ _DT(L"gunning-fog-options") };
     const std::string_view XML_TEXT_EXCLUSION{ _DT("text-exclusion-mode") };
-    const std::string_view XML_INCLUDE_INCOMPLETE_SENTENCES_LONGER_THAN{ _DT("include-incomplete-sentences-longer-than") };
+    const std::string_view XML_INCLUDE_INCOMPLETE_SENTENCES_LONGER_THAN{ _DT(
+        "include-incomplete-sentences-longer-than") };
     const std::string_view XML_USE_SENTENCE_UNITS{ _DT("use-sentence-units") };
     const std::string_view XML_USE_HIGH_PRECISION{ _DT("use-precision") };
     const std::string_view XML_PROPER_NOUN_COUNTING_METHOD{ _DT("proper-noun-counting-method") };
@@ -2848,11 +2855,15 @@ class ReadabilityAppOptions
     const std::string_view XML_GRAPH_BACKGROUND_COLOR{ _DT("graph-background-color") };
     const std::string_view XML_GRAPH_PLOT_BACKGROUND_COLOR{ _DT("graph-plot-background-color") };
     const std::string_view XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH{ _DT("graph-background-image") };
-    const std::string_view XML_GRAPH_PLOT_BACKGROUND_IMAGE_OPACITY{ _DT("graph-background-opacity") };
-    const std::string_view XML_GRAPH_PLOT_BACKGROUND_IMAGE_EFFECT{ _DT("graph-background-image-effect") };
+    const std::string_view XML_GRAPH_PLOT_BACKGROUND_IMAGE_OPACITY{ _DT(
+        "graph-background-opacity") };
+    const std::string_view XML_GRAPH_PLOT_BACKGROUND_IMAGE_EFFECT{ _DT(
+        "graph-background-image-effect") };
     const std::string_view XML_GRAPH_PLOT_BACKGROUND_IMAGE_FIT{ _DT("graph-background-image-fit") };
-    const std::string_view XML_GRAPH_PLOT_BACKGROUND_COLOR_OPACITY{ _DT("graph-plot-background-color-opacity") };
-    const std::string_view XML_GRAPH_BACKGROUND_LINEAR_GRADIENT{ _DT("graph-background-linear-gradient") };
+    const std::string_view XML_GRAPH_PLOT_BACKGROUND_COLOR_OPACITY{ _DT(
+        "graph-plot-background-color-opacity") };
+    const std::string_view XML_GRAPH_BACKGROUND_LINEAR_GRADIENT{ _DT(
+        "graph-background-linear-gradient") };
     const std::string_view XML_GRAPH_WATERMARK{ _DT("watermark") };
     const std::string_view XML_GRAPH_WATERMARK_LOGO_IMAGE_PATH{ _DT("watermark-logo") };
     const std::string_view XML_GRAPH_COMMON_IMAGE_PATH{ _DT("common-image") };
@@ -2920,10 +2931,12 @@ class ReadabilityAppOptions
     const std::string_view XML_TEST_BY_INDUSTRY{ _DT("tests-by-industry") };
     const std::string_view XML_TEST_BY_DOCUMENT_TYPE{ _DT("tests-by-document-type") };
     const std::string_view XML_SELECTED_TEST_BUNDLE{ _DT("selected-test-bundle") };
-    const std::string_view XML_INDUSTRY_CHILDRENS_PUBLISHING{ _DT("industry-childrens-publishing") };
+    const std::string_view XML_INDUSTRY_CHILDRENS_PUBLISHING{ _DT(
+        "industry-childrens-publishing") };
     const std::string_view XML_INDUSTRY_ADULTPUBLISHING{ _DT("industry-adult-publishing") };
     const std::string_view XML_INDUSTRY_SECONDARY_LANGUAGE{ _DT("industry-secondary-language") };
-    const std::string_view XML_INDUSTRY_CHILDRENS_HEALTHCARE{ _DT("industry-childrens-healthcare") };
+    const std::string_view XML_INDUSTRY_CHILDRENS_HEALTHCARE{ _DT(
+        "industry-childrens-healthcare") };
     const std::string_view XML_INDUSTRY_ADULT_HEALTHCARE{ _DT("industry-healthcare") };
     const std::string_view XML_INDUSTRY_MILITARY_GOVERNMENT{ _DT("industry-military-government") };
     const std::string_view XML_INDUSTRY_BROADCASTING{ _DT("industry-broadcasting") };
@@ -2940,8 +2953,10 @@ class ReadabilityAppOptions
     const std::string_view XML_TEXT_VIEWS_SECTION{ _DT("text-views") };
     const std::string_view XML_DOCUMENT_DISPLAY_FONTCOLOR{ _DT("document-display-font-color") };
     const std::string_view XML_DOCUMENT_DISPLAY_FONT{ _DT("document-display-font") };
-    const std::string_view XML_DOLCH_CONJUNCTIONS_HIGHLIGHTCOLOR{ _DT("dolch-conjunction-font-color") };
-    const std::string_view XML_DOLCH_PREPOSITIONS_HIGHLIGHTCOLOR{ _DT("dolch-preposition-font-color") };
+    const std::string_view XML_DOLCH_CONJUNCTIONS_HIGHLIGHTCOLOR{ _DT(
+        "dolch-conjunction-font-color") };
+    const std::string_view XML_DOLCH_PREPOSITIONS_HIGHLIGHTCOLOR{ _DT(
+        "dolch-preposition-font-color") };
     const std::string_view XML_DOLCH_PRONOUNS_HIGHLIGHTCOLOR{ _DT("dolch-pronoun-font-color") };
     const std::string_view XML_DOLCH_ADVERBS_HIGHLIGHTCOLOR{ _DT("dolch-adverb-font-color") };
     const std::string_view XML_DOLCH_ADJECTIVES_HIGHLIGHTCOLOR{ _DT("dolch-adjective-font-color") };
@@ -2955,8 +2970,10 @@ class ReadabilityAppOptions
     const std::string_view XML_SIDEBAR_BACKGROUND_COLOR{ _DT("sidebar-background-color") };
     const std::string_view XML_SIDEBAR_ACTIVE_COLOR{ _DT("sidebar-active-color") };
     const std::string_view XML_SIDEBAR_PARENT_COLOR{ _DT("sidebar-parent-color") };
-    const std::string_view XML_STARTPAGE_BACKSTAGE_BACKGROUND_COLOR{ _DT("start-page-backstage-background-color") };
-    const std::string_view XML_STARTPAGE_DETAIL_BACKGROUND_COLOR{ _DT("start-page-detail-background-color") };
+    const std::string_view XML_STARTPAGE_BACKSTAGE_BACKGROUND_COLOR{ _DT(
+        "start-page-backstage-background-color") };
+    const std::string_view XML_STARTPAGE_DETAIL_BACKGROUND_COLOR{ _DT(
+        "start-page-detail-background-color") };
     // general options
     const std::string_view XML_APPEARANCE{ _DT("appearance") };
     const std::string_view XML_WINDOW_MAXIMIZED{ _DT("app-window-maximized") };
@@ -2998,8 +3015,11 @@ class ReadabilityAppOptions
     const std::string_view XML_WARNING_MESSAGE{ _DT("warning-message") };
     const std::string_view XML_PREVIOUS_RESPONSE{ _DT("previous-response") };
     // general strings
-    const std::wstring_view ALL_DOCUMENTS_WILDCARD{ _DT(LR"(*.txt;*.htm;*.html;*.xhtml;*.sgml;*.php;*.php3;*.php4;*.aspx;*.asp;*.rtf;*.doc;*.docx;*.docm;*.pptx;*.pptm;*.dot;*.wri;*.odt;*.ott;*.odp;*.otp;*.ps;*.idl;*.cpp;*.c;*.h;*.md;*.qmd;*.rmd)") };
-    const std::wstring_view ALL_IMAGES_WILDCARD{ _DT(LR"(*.bmp;*.jpg;*.jpeg;*.jpe;*.png;*.gif;*.tga;*.tif;*.tiff;*.pcx)") };
+    const std::wstring_view ALL_DOCUMENTS_WILDCARD{
+        _DT(LR"(*.txt;*.htm;*.html;*.xhtml;*.sgml;*.php;*.php3;*.php4;*.aspx;*.asp;*.rtf;*.doc;*.docx;*.docm;*.pptx;*.pptm;*.dot;*.wri;*.odt;*.ott;*.odp;*.otp;*.ps;*.idl;*.cpp;*.c;*.h;*.md;*.qmd;*.rmd)")
+    };
+    const std::wstring_view ALL_IMAGES_WILDCARD{ _DT(
+        LR"(*.bmp;*.jpg;*.jpeg;*.jpe;*.png;*.gif;*.tga;*.tif;*.tiff;*.pcx)") };
     // last opened file locations
     const std::string_view XML_FILE_OPEN_PATHS{ _DT("file-open-paths") };
     const std::string_view XML_FILE_OPEN_IMAGE_PATH{ _DT("image-path") };
@@ -3007,13 +3027,18 @@ class ReadabilityAppOptions
     const std::string_view XML_FILE_OPEN_WORDLIST_PATH{ _DT("wordlist-path") };
     // grammar
     const std::string_view XML_GRAMMAR{ _DT("grammar") };
-    const std::string_view XML_SPELLCHECK_IGNORE_PROPER_NOUNS{ _DT("spellcheck-ignore-proper-nouns") };
+    const std::string_view XML_SPELLCHECK_IGNORE_PROPER_NOUNS{ _DT(
+        "spellcheck-ignore-proper-nouns") };
     const std::string_view XML_SPELLCHECK_IGNORE_UPPERCASED{ _DT("spellcheck-ignore-uppercased") };
     const std::string_view XML_SPELLCHECK_IGNORE_NUMERALS{ _DT("spellcheck-ignore-numerals") };
-    const std::string_view XML_SPELLCHECK_IGNORE_FILE_ADDRESSES{ _DT("spellcheck-ignore-file-address") };
-    const std::string_view XML_SPELLCHECK_IGNORE_PROGRAMMER_CODE{ _DT("spellcheck-ignore-programmer-code") };
-    const std::string_view XML_SPELLCHECK_ALLOW_COLLOQUIALISMS{ _DT("spellcheck-allow-colloquialisms") };
-    const std::string_view XML_SPELLCHECK_IGNORE_SOCIAL_MEDIA_TAGS{ _DT("spellcheck-ignore-social-media-tags") };
+    const std::string_view XML_SPELLCHECK_IGNORE_FILE_ADDRESSES{ _DT(
+        "spellcheck-ignore-file-address") };
+    const std::string_view XML_SPELLCHECK_IGNORE_PROGRAMMER_CODE{ _DT(
+        "spellcheck-ignore-programmer-code") };
+    const std::string_view XML_SPELLCHECK_ALLOW_COLLOQUIALISMS{ _DT(
+        "spellcheck-allow-colloquialisms") };
+    const std::string_view XML_SPELLCHECK_IGNORE_SOCIAL_MEDIA_TAGS{ _DT(
+        "spellcheck-ignore-social-media-tags") };
     const std::string_view XML_GRAMMAR_INFO{ _DT("grammar-features") };
     // words breakdown
     const std::string_view XML_WORDS_BREAKDOWN{ _DT("words-breakdown") };

@@ -2453,18 +2453,27 @@ private:
         m_valid_punctuation_count = m_current_sentence_begin = m_current_paragraph_begin =
             m_valid_paragraph_count = m_complete_sentence_count = m_valid_word_count = 0;
         }
+
     std::wstring m_name;
     grammar::base_syllabize* syllabize{ nullptr };
     stemming::stem<>* stem_word{ nullptr };
     const grammar::is_incorrect_article* is_mismatched_article{ nullptr };
     grammar::is_english_passive_voice is_passive_voice;
     const grammar::is_coordinating_conjunction* is_conjunction{ nullptr };
-    const grammar::phrase_collection* is_known_phrase{ nullptr };     // this should be shared from a parent
+    const grammar::phrase_collection* is_known_phrase{
+        nullptr
+    }; // this should be shared from a parent
     const word_list* is_known_proper_nouns{ nullptr };
     const word_list* is_known_personal_nouns{ nullptr };
-    const grammar::phrase_collection* is_copyright_phrase{ nullptr }; // this should be shared from a parent
-    const grammar::phrase_collection* is_citation_phrase{ nullptr };  // this should be shared from a parent
-    std::shared_ptr<const grammar::phrase_collection> is_excluded_phrase{ nullptr };  // this should be shared from a parent
+    const grammar::phrase_collection* is_copyright_phrase{
+        nullptr
+    }; // this should be shared from a parent
+    const grammar::phrase_collection* is_citation_phrase{
+        nullptr
+    }; // this should be shared from a parent
+    std::shared_ptr<const grammar::phrase_collection> is_excluded_phrase{
+        nullptr
+    }; // this should be shared from a parent
 
     const word_list* m_stop_list{ nullptr };
     is_correctly_spelled_word<Tword_type, word_list> is_correctly_spelled;
@@ -2475,12 +2484,13 @@ private:
     // data structures and values
     //--------------------------
     std::vector<size_t> m_quoteStartWords;
-    // the index into the words and the index into the list of known phrases (which is inside of "is_known_phrase")
-    std::vector<comparable_first_pair<size_t,size_t>> m_known_phrase_indices;
+    // the index into the words and the index into the list of known phrases
+    // (which is inside of "is_known_phrase")
+    std::vector<comparable_first_pair<size_t, size_t>> m_known_phrase_indices;
     std::vector<std::pair<size_t, size_t>> m_proper_phrase_indices;
     std::vector<std::pair<size_t, size_t>> m_negating_phrase_indices;
     // the index into the words and the number of words that this phrase takes up
-    std::vector<std::pair<size_t,size_t>> m_n_grams_indices;
+    std::vector<std::pair<size_t, size_t>> m_n_grams_indices;
     std::vector<size_t> m_n_gram_sizes_to_auto_detect;
     std::vector<grammar::sentence_info> m_sentences;
     std::vector<grammar::paragraph_info> m_paragraphs;
@@ -2489,8 +2499,8 @@ private:
     std::vector<size_t> m_lowercase_beginning_sentences;
     std::vector<size_t> m_misspelled_words;
     std::vector<size_t> m_incorrect_articles;
-    std::vector<std::pair<size_t,size_t>> m_passive_voices;
-    std::vector<std::pair<size_t,std::set<size_t>>> m_overused_words_by_sentence;
+    std::vector<std::pair<size_t, size_t>> m_passive_voices;
+    std::vector<std::pair<size_t, std::set<size_t>>> m_overused_words_by_sentence;
     std::vector<punctuation::punctuation_mark> m_punctuation;
     std::vector<Tword_type> m_words;
     multi_value_aggregate_map<grammar::phrase<Tword_type>, size_t> m_aggregated_tokens;

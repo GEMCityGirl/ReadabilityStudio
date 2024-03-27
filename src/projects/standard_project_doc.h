@@ -265,18 +265,36 @@ class ProjectDoc final : public BaseProjectDoc
     void UpdateSourceFileModifiedTime();
     void OnRealTimeTimer([[maybe_unused]] wxTimerEvent& event);
 
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_dupWordData{ std::make_shared<ListCtrlExNumericDataProvider>() };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_misspelledWordData{ std::make_shared<ListCtrlExNumericDataProvider>() };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_incorrectArticleData{ std::make_shared<ListCtrlExNumericDataProvider>() };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_passiveVoiceData{ std::make_shared<ListCtrlExNumericDataProvider>() };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_wordyPhraseData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_dupWordData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_misspelledWordData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_incorrectArticleData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_passiveVoiceData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_wordyPhraseData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
     std::shared_ptr<ListCtrlExNumericDataProvider> m_overusedWordsBySentenceData{
         std::make_shared<ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_clichePhraseData{ std::make_shared<ListCtrlExNumericDataProvider>() };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_redundantPhraseData{ std::make_shared<ListCtrlExNumericDataProvider>() };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_wordingErrorData{ std::make_shared<ListCtrlExNumericDataProvider>() };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_overlyLongSentenceData{ std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_clichePhraseData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_redundantPhraseData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_wordingErrorData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_overlyLongSentenceData{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
     std::shared_ptr<ListCtrlExNumericDataProvider> m_sentenceStartingWithConjunctionsData{
         std::make_shared<ListCtrlExNumericDataProvider>()
     };
