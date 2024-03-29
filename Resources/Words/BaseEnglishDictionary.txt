@@ -14888,6 +14888,8 @@ breadboards
 breadbox
 breadboxes
 breadcrumb
+breadcrumbed
+breadcrumbing
 breadcrumbs
 breaded
 breadfold
@@ -33984,6 +33986,10 @@ dereferencer's
 dereferencers
 dereferences
 dereferencing
+deregister
+deregistered
+deregistering
+deregisters
 deregulate
 deregulated
 deregulates
@@ -45596,6 +45602,7 @@ expounders
 expounding
 expounds
 express
+expressable
 expressed
 expresser
 expresser's
@@ -74391,6 +74398,7 @@ look
 lookahead
 lookalike
 lookalikes
+lookaside
 lookback
 looked
 looker
@@ -80101,6 +80109,9 @@ minicourses
 minidress
 minidress's
 minidresses
+minidriver
+minidriver's
+minidrivers
 minidump
 minidump's
 minidumps
@@ -80113,6 +80124,9 @@ minifier
 minifier's
 minifiers
 minifies
+minifilter
+minifilter's
+minifilters
 minify
 minifying
 minim
@@ -83076,6 +83090,7 @@ multipixel
 multiplace
 multiplan
 multiplan's
+multiplane
 multiplanet
 multiplanet's
 multiplanets
@@ -85997,6 +86012,7 @@ noncommercials
 noncommissioned
 noncommittal
 noncommittally
+noncommitted
 noncommunicable
 noncompete
 noncompeting
@@ -86335,6 +86351,7 @@ nonmarket
 nonmarket's
 nonmarketing
 nonmarkets
+nonmaskable
 nonmaterial
 nonmaterial's
 nonmaterialistic
@@ -86404,6 +86421,8 @@ nonowner's
 nonowners
 nonoxidizing
 nonoxynol
+nonpageable
+nonpaged
 nonparallel
 nonparallels
 nonparametric
@@ -99229,6 +99248,10 @@ postponing
 postpositions
 postprandial
 postpresidential
+postprocess
+postprocessed
+postprocesses
+postprocessing
 postrema
 postremission
 postretirement
@@ -100106,6 +100129,7 @@ preferred
 preferring
 prefers
 prefetch
+prefetchable
 prefetched
 prefetches
 prefetching
@@ -100374,6 +100398,7 @@ preparer
 preparers
 prepares
 preparing
+preparsed
 prepatellar
 prepay
 prepaying
@@ -108173,6 +108198,10 @@ reinitialize
 reinitialized
 reinitializes
 reinitializing
+reinject
+reinjected
+reinjecting
+reinjects
 reinnervate
 reinnervation
 reinoculate
@@ -109050,6 +109079,10 @@ repast's
 repasted
 repasting
 repasts
+repatch
+repatched
+repatches
+repatching
 repatriate
 repatriated
 repatriates
@@ -126329,6 +126362,9 @@ subdeltoid
 subdesignation
 subdesignation's
 subdesignations
+subdevice
+subdevice's
+subdevices
 subdirectories
 subdirectory
 subdiscipline
@@ -126546,6 +126582,9 @@ submatrices'
 submatrix
 submatrix's
 submaxillary
+submember
+submember's
+submembers
 submenu
 submenu's
 submenus
@@ -126566,6 +126605,9 @@ submersion
 submersion's
 submersions
 submicroscopic
+submicrosecond
+submicrosecond's
+submicroseconds
 submission
 submission's
 submissions
@@ -126659,6 +126701,9 @@ subphases
 subphyla
 subphylum
 subpial
+subpicture
+subpicture's
+subpictures
 subpixel
 subpixel's
 subpixels
@@ -126722,6 +126767,9 @@ subregion's
 subregional
 subregionally
 subregions
+subresource
+subresource's
+subresources
 subrogate
 subrogated
 subrogates
@@ -127058,6 +127106,9 @@ suburbia's
 suburbias
 suburbs
 subutex
+subvendor
+subvendor's
+subvendors
 subvention
 subvention's
 subventions
@@ -137508,7 +137559,10 @@ unasked
 unassailable
 unassailableness
 unassailableness's
+unassemble
 unassembled
+unassembles
+unassembling
 unassertive
 unassign
 unassigned
@@ -138457,6 +138511,9 @@ underreward
 underrewarded
 underrewarding
 underrewards
+underrun
+underrunning
+underruns
 underscore
 underscored
 underscores
@@ -140062,6 +140119,7 @@ unquoted
 unquotes
 unquoting
 unraisable
+unraised
 unranked
 unrated
 unravel
@@ -143908,6 +143966,9 @@ VP
 VPN
 vricellachickenpox
 vs
+vsync
+vsync's
+vsyncs
 VT
 VTOL
 vu

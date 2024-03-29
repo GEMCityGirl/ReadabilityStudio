@@ -128,6 +128,8 @@ abondoned	abandoned	3
 abondoning	abandoning	3		
 abondons	abandons	3		
 aborigene	aborigine	3		
+abormal	abnormal	3		
+abormally	abnormally	3		
 abortorium	arboretum	3		
 abortorium's	arboretum's	3		
 abortoriums	arboretums	3		
@@ -12337,6 +12339,10 @@ repulic	republic	3
 repulican	republican	3		
 repulicans	republicans	3		
 repulics	republics	3		
+reqeust	request	3		
+reqeusted	requested	3		
+reqeusting	requesting	3		
+reqeusts	requests	3		
 request	ask	0		
 requested	asked	0		
 requesting	asking	0		
@@ -14110,6 +14116,7 @@ there's the rub	that's the problem	2
 thereafter	then, afterwards	0		
 therefor	therefore	3		
 therefore	so, thus	0		
+therefure	therefore	3		
 therein	there	0		
 thereof	its, their	0		
 theres	there's	3		
