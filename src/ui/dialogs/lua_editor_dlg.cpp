@@ -360,7 +360,8 @@ LuaEditorDlg::LuaEditorDlg(
     const wxPoint& pos /*= wxDefaultPosition*/, const wxSize& size /*= wxDefaultSize*/,
     long style /*= wxCAPTION | wxCLOSE_BOX | wxMINIMIZE_BOX | wxMAXIMIZE_BOX | wxRESIZE_BORDER*/)
     : wxFrame(parent, id, caption, pos, size,
-              ((parent == nullptr) ? style | wxDIALOG_NO_PARENT : style)), m_debugMessageWindow(nullptr)
+              ((parent == nullptr) ? style | wxDIALOG_NO_PARENT : style)),
+      m_debugMessageWindow(nullptr)
     {
     m_mgr.SetManagedWindow(this);
 
@@ -368,18 +369,16 @@ LuaEditorDlg::LuaEditorDlg(
     ico.CopyFromBitmap(wxGetApp()
                            .GetResourceManager()
                            .GetSVG(L"ribbon/lua.svg")
-                           .GetBitmap(FromDIP(wxSize(16, 16))));
+                           .GetBitmap(FromDIP(wxSize(32, 32))));
     SetIcon(ico);
 
     CreateControls();
     Center();
     // move over to the right side of the screen
-    const auto screenWidth{ wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X) };
-    const auto screenHeight{ wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y) };
+    const int screenWidth{ wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X) };
     int xPos{ 0 }, yPos{ 0 };
     GetScreenPosition(&xPos, &yPos);
-    Move(wxPoint(xPos + (screenWidth - (xPos + GetSize().GetWidth())),
-                 yPos + ((screenHeight - GetSize().GetWidth()) / 2.0)));
+    Move(wxPoint{ xPos + (screenWidth - (xPos + GetSize().GetWidth())), yPos });
 
     Bind(wxEVT_CLOSE_WINDOW, &LuaEditorDlg::OnClose, this);
 
