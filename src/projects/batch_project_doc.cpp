@@ -291,7 +291,7 @@ bool BatchProjectDoc::OnNewDocument()
             }
         else if (resolvePath.IsWebFile())
             {
-            const html_utilities::html_url_format hformat(resolvePath.GetResolvedPath());
+            const html_utilities::html_url_format hformat(resolvePath.GetResolvedPath().wc_str());
             wxString domain = hformat.get_root_domain().c_str();
             const auto dotPos = domain.find(L'.', true);
             if (dotPos != wxString::npos)

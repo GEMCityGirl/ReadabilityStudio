@@ -98,9 +98,9 @@ class KnownRegularFileExtension
         @param extension The file extension to review.*/
     [[nodiscard]]
     inline bool
-    operator()(const wchar_t* extension) const
+    operator()(std::wstring_view extension) const
         {
-        return (m_knownRegularFileExtensions.find(extension) !=
+        return (m_knownRegularFileExtensions.find(extension.data()) !=
                 m_knownRegularFileExtensions.cend());
         }
 
@@ -108,7 +108,7 @@ class KnownRegularFileExtension
     std::set<string_util::case_insensitive_wstring> m_knownRegularFileExtensions{
         // images
         _DT(L"ico"), _DT(L"jpg"), _DT(L"jpeg"), _DT(L"bmp"), _DT(L"gif"), _DT(L"png"), _DT(L"psd"),
-        _DT(L"tif"), _DT(L"tiff"), _DT(L"wmf"), _DT(L"tga"),
+        _DT(L"tif"), _DT(L"tiff"), _DT(L"wmf"), _DT(L"tga"), _DT(L"svg"),
         // style sheets
         _DT(L"css"),
         // documents
@@ -134,9 +134,9 @@ class KnownScriptFileExtension
         @param extension The file extension to review.*/
     [[nodiscard]]
     inline bool
-    operator()(const wchar_t* extension) const
+    operator()(std::wstring_view extension) const
         {
-        return (m_knownFileExtensions.find(extension) != m_knownFileExtensions.cend());
+        return (m_knownFileExtensions.find(extension.data()) != m_knownFileExtensions.cend());
         }
 
   private:
@@ -403,7 +403,7 @@ class WebHarvester
     void SetUrl(const wxString& url)
         {
         m_url = url;
-        html_utilities::html_url_format formatUrl(m_url);
+        html_utilities::html_url_format formatUrl(m_url.wc_str());
         m_domain = formatUrl.get_root_domain().c_str();
         m_fullDomain = formatUrl.get_root_full_domain().c_str();
         m_fullDomainFolderPath = formatUrl.get_directory_path().c_str();

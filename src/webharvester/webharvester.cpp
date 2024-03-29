@@ -222,7 +222,7 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
         // chop off the trailing '/'
         urlLocalFileFriendlyName.RemoveLast();
         // add an extension to the url, unless it is the main page
-        if (!html_utilities::html_url_format::is_url_top_level_domain(urlLocalFileFriendlyName))
+        if (!html_utilities::html_url_format::is_url_top_level_domain(urlLocalFileFriendlyName.wc_str()))
             {
             urlLocalFileFriendlyName.Append(L".htm");
             }
@@ -238,7 +238,7 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
     // "mirror" the webpage's path on the local system
     if (m_keepWebPathWhenDownloading)
         {
-        html_utilities::html_url_format formatUrl(urlLocalFileFriendlyName);
+        html_utilities::html_url_format formatUrl(urlLocalFileFriendlyName.wc_str());
         wxString webDirPath = formatUrl.get_directory_path().c_str();
 
         // convert the path to something acceptable for the local system
@@ -277,7 +277,7 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
                                      GetFileTypeFromContentType(GetContentType(Url, rCode)));
         downloadPath += L'.' + downloadExt;
         }
-    else if (html_utilities::html_url_format::is_url_top_level_domain(Url))
+    else if (html_utilities::html_url_format::is_url_top_level_domain(Url.wc_str()))
         {
         downloadPath += L".html";
         }
@@ -677,12 +677,12 @@ bool WebHarvester::CrawlLinks(wxString& url,
 
     // NOTE: if a 302 or 300 are encountered, then the url may be different now,
     // as well as a base url in the head
-    html_utilities::html_url_format formatUrl(url);
+    html_utilities::html_url_format formatUrl(url.wc_str());
     while (true)
         {
         // gather its hyperlinks
         const auto* currentLink = getHyperLinks();
-        if (currentLink)
+        if (currentLink != nullptr)
             {
             CrawlLink(wxString(currentLink, getHyperLinks.get_current_hyperlink_length()),
                       formatUrl, url,
@@ -739,7 +739,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
         }
 
     wxString fullUrl;
-    fullUrl.assign(formatUrl(currentLink, currentLink.length(), isImage));
+    fullUrl.assign(formatUrl(currentLink.wc_str(), isImage));
     if (fullUrl.empty())
         {
         return;
@@ -791,7 +791,8 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
     wxString contentType;
     bool pageIsHtml = false;
 
-    if (IsKnownRegularFileExtension(fileExt) || IsKnownScriptFileExtension(fileExt))
+    if (IsKnownRegularFileExtension(fileExt.wc_str()) ||
+        IsKnownScriptFileExtension(fileExt.wc_str()))
         {
         pageIsHtml = false;
         }
@@ -799,7 +800,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
         {
         pageIsHtml = true;
         }
-    else if (html_utilities::html_url_format::is_url_top_level_domain(fullUrl))
+    else if (html_utilities::html_url_format::is_url_top_level_domain(fullUrl.wc_str()))
         {
         pageIsHtml = true;
         }
@@ -808,12 +809,12 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
         pageIsHtml = IsPageHtml(fullUrl, contentType);
         }
 
-    html_utilities::html_url_format formatCurrentUrl(fullUrl);
+    html_utilities::html_url_format formatCurrentUrl(fullUrl.wc_str());
 
     // First, crawl the page (if applicable)
     ///////////////////////////////////////
     // Javascript/VBScript files are crawled differently, so check that first
-    if (IsKnownScriptFileExtension(fileExt))
+    if (IsKnownScriptFileExtension(fileExt.wc_str()))
         {
         CrawlLinks(fullUrl, html_utilities::hyperlink_parse::hyperlink_parse_method::script);
         if (ShouldFileBeHarvested(fileExt))
@@ -822,7 +823,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
             }
         return;
         }
-    else if (IsKnownRegularFileExtension(fileExt))
+    else if (IsKnownRegularFileExtension(fileExt.wc_str()))
         {
         // sometimes pages with a certain file extension are really HTML pages,
         // so crawl if necessary
@@ -842,7 +843,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
            then figure out its type. If a webpage, then crawl it or see if it is a type of file that
            we want to download.*/
         if (IsWebPageExtension(fileExt.wc_str()) ||
-            html_utilities::html_url_format::is_url_top_level_domain(fullUrl))
+            html_utilities::html_url_format::is_url_top_level_domain(fullUrl.wc_str()))
             {
             CrawlLinks(fullUrl, html_utilities::hyperlink_parse::hyperlink_parse_method::html);
             if (m_harvestAllHtml || ShouldFileBeHarvested(fileExt))
@@ -907,8 +908,8 @@ bool WebHarvester::VerifyUrlDomainCriteria(const wxString& url)
         }
     // this URL should already be fully expanded, so just initialize the formatter with it
     // as the root URL and then set it as the main URL.
-    html_utilities::html_url_format formatUrl(url);
-    formatUrl(url, url.length());
+    html_utilities::html_url_format formatUrl(url.wc_str());
+    formatUrl(url.wc_str(), false);
     if (m_domainRestriction == DomainRestriction::RestrictToDomain)
         {
         if (m_domain != formatUrl.get_domain().c_str())
