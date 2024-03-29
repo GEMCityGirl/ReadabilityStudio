@@ -77,6 +77,7 @@ RSArtProvider::RSArtProvider()
         };
     }
 
+//-------------------------------------------
 wxBitmapBundle RSArtProvider::CreateBitmapBundle(const wxArtID& id,
                                                  const wxArtClient& client,
                                                  const wxSize& size)
@@ -88,6 +89,7 @@ wxBitmapBundle RSArtProvider::CreateBitmapBundle(const wxArtID& id,
         wxArtProvider::CreateBitmapBundle(id, client, size);
     }
 
+//-------------------------------------------
 void ReadabilityApp::EditDictionary(const readability::test_language lang)
     {
     EditWordListDlg editDlg(GetMainFrame(),
@@ -483,10 +485,16 @@ bool ReadabilityApp::OnInit()
     // if app-specific data folder can't be determined
     // (really just relic behavior from Win9.x) then use documents dir
     if (wxStandardPaths::Get().GetUserDataDir().empty())
-        { AppSettingFolderPath = wxStandardPaths::Get().GetAppDocumentsDir() + wxFileName::GetPathSeparator(); }
+        {
+        AppSettingFolderPath =
+            wxStandardPaths::Get().GetAppDocumentsDir() + wxFileName::GetPathSeparator();
+        }
     // write to app folder in User's data folder (this should be the norm)
     else
-        { AppSettingFolderPath = wxStandardPaths::Get().GetUserDataDir() + wxFileName::GetPathSeparator(); }
+        {
+        AppSettingFolderPath =
+            wxStandardPaths::Get().GetUserDataDir() + wxFileName::GetPathSeparator();
+        }
 
     if (!wxFileName::DirExists(AppSettingFolderPath))
         {
@@ -549,57 +557,57 @@ bool ReadabilityApp::OnInit()
     wxLogMessage(L"Settings file loaded from: " + AppSettingFolderPath + L"Settings.xml");
 
     // load map of graph icons to human readable strings
-    m_shapeMap.insert(std::make_pair(_(L"Sun"), DONTTRANSLATE(L"sun")));
-    m_shapeMap.insert(std::make_pair(_(L"Book"), DONTTRANSLATE(L"book")));
-    m_shapeMap.insert(std::make_pair(_(L"Fall leaf"), DONTTRANSLATE(L"fall-leaf")));
-    m_shapeMap.insert(std::make_pair(_(L"Man"), DONTTRANSLATE(L"man")));
-    m_shapeMap.insert(std::make_pair(_(L"Woman"), DONTTRANSLATE(L"woman")));
-    m_shapeMap.insert(std::make_pair(_(L"Business woman"), DONTTRANSLATE(L"business-woman")));
-    m_shapeMap.insert(std::make_pair(_(L"Tire"), DONTTRANSLATE(L"tire")));
-    m_shapeMap.insert(std::make_pair(_(L"Flower"), DONTTRANSLATE(L"flower")));
-    m_shapeMap.insert(std::make_pair(_(L"Warning road sign"), DONTTRANSLATE(L"warning-road-sign")));
-    m_shapeMap.insert(std::make_pair(_(L"Location marker"), DONTTRANSLATE(L"location-marker")));
-    m_shapeMap.insert(std::make_pair(_(L"Graduation cap"), DONTTRANSLATE(L"graduation-cap")));
-    m_shapeMap.insert(std::make_pair(_(L"Car"), DONTTRANSLATE(L"car")));
-    m_shapeMap.insert(std::make_pair(_(L"Newspaper"), DONTTRANSLATE(L"newspaper")));
-    m_shapeMap.insert(std::make_pair(_(L"Snowflake"), DONTTRANSLATE(L"snowflake")));
-    m_shapeMap.insert(std::make_pair(_(L"Blackboard"), DONTTRANSLATE(L"blackboard")));
-    m_shapeMap.insert(std::make_pair(_(L"Clock"), DONTTRANSLATE(L"clock")));
-    m_shapeMap.insert(std::make_pair(_(L"Ruler"), DONTTRANSLATE(L"ruler")));
+    m_shapeMap = { std::make_pair(_(L"Sun"), DONTTRANSLATE(L"sun")),
+                   std::make_pair(_(L"Book"), DONTTRANSLATE(L"book")),
+                   std::make_pair(_(L"Fall leaf"), DONTTRANSLATE(L"fall-leaf")),
+                   std::make_pair(_(L"Man"), DONTTRANSLATE(L"man")),
+                   std::make_pair(_(L"Woman"), DONTTRANSLATE(L"woman")),
+                   std::make_pair(_(L"Business woman"), DONTTRANSLATE(L"business-woman")),
+                   std::make_pair(_(L"Tire"), DONTTRANSLATE(L"tire")),
+                   std::make_pair(_(L"Flower"), DONTTRANSLATE(L"flower")),
+                   std::make_pair(_(L"Warning road sign"), DONTTRANSLATE(L"warning-road-sign")),
+                   std::make_pair(_(L"Location marker"), DONTTRANSLATE(L"location-marker")),
+                   std::make_pair(_(L"Graduation cap"), DONTTRANSLATE(L"graduation-cap")),
+                   std::make_pair(_(L"Car"), DONTTRANSLATE(L"car")),
+                   std::make_pair(_(L"Newspaper"), DONTTRANSLATE(L"newspaper")),
+                   std::make_pair(_(L"Snowflake"), DONTTRANSLATE(L"snowflake")),
+                   std::make_pair(_(L"Blackboard"), DONTTRANSLATE(L"blackboard")),
+                   std::make_pair(_(L"Clock"), DONTTRANSLATE(L"clock")),
+                   std::make_pair(_(L"Ruler"), DONTTRANSLATE(L"ruler")) };
 
     // do the same for the color schemes (for the graphs)
-    m_colorSchemeMap.insert(std::make_pair(_(L"Dusk"), DONTTRANSLATE(L"dusk")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"Earth Tones"), DONTTRANSLATE(L"earthtones")));
-    m_colorSchemeMap.insert(std::make_pair(_DT(L"1920s"), DONTTRANSLATE(L"decade1920s")));
-    m_colorSchemeMap.insert(std::make_pair(_DT(L"1940s"), DONTTRANSLATE(L"decade1940s")));
-    m_colorSchemeMap.insert(std::make_pair(_DT(L"1950s"), DONTTRANSLATE(L"decade1950s")));
-    m_colorSchemeMap.insert(std::make_pair(_DT(L"1960s"), DONTTRANSLATE(L"decade1960s")));
-    m_colorSchemeMap.insert(std::make_pair(_DT(L"1970s"), DONTTRANSLATE(L"decade1970s")));
-    m_colorSchemeMap.insert(std::make_pair(_DT(L"1980s"), DONTTRANSLATE(L"decade1980s")));
-    m_colorSchemeMap.insert(std::make_pair(_DT(L"1990s"), DONTTRANSLATE(L"decade1990s")));
-    m_colorSchemeMap.insert(std::make_pair(_DT(L"2000s"), DONTTRANSLATE(L"decade2000s")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"October"), DONTTRANSLATE(L"october")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"Slytherin"), DONTTRANSLATE(L"slytherin")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"Campfire"), DONTTRANSLATE(L"campfire")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"Coffee Shop"), DONTTRANSLATE(L"coffeeshop")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"Arctic Chill"), DONTTRANSLATE(L"arcticchill")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"Back to School"), DONTTRANSLATE(L"backtoschool")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"Box of Chocolates"), DONTTRANSLATE(L"boxofchocolates")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"Cosmopolitan"), DONTTRANSLATE(L"cosmopolitan")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"Day and Night"), DONTTRANSLATE(L"dayandnight")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"Fresh Flowers"), DONTTRANSLATE(L"freshflowers")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"Icecream"), DONTTRANSLATE(L"icecream")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"Urban Oasis"), DONTTRANSLATE(L"urbanoasis")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"Typewriter"), DONTTRANSLATE(L"typewriter")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"Tasty Waves"), DONTTRANSLATE(L"tastywaves")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"Spring"), DONTTRANSLATE(L"spring")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"Shabby Chic"), DONTTRANSLATE(L"shabbychic")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"Rolling Thunder"), DONTTRANSLATE(L"rollingthunder")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"Produce Section"), DONTTRANSLATE(L"producesection")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"Nautical"), DONTTRANSLATE(L"nautical")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"Semesters"), DONTTRANSLATE(L"semesters")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"Seasons"), DONTTRANSLATE(L"seasons")));
-    m_colorSchemeMap.insert(std::make_pair(_(L"Meadow Sunset"), DONTTRANSLATE(L"meadowsunset")));
+    m_colorSchemeMap = { std::make_pair(_(L"Dusk"), DONTTRANSLATE(L"dusk")),
+                         std::make_pair(_(L"Earth Tones"), DONTTRANSLATE(L"earthtones")),
+                         std::make_pair(_DT(L"1920s"), DONTTRANSLATE(L"decade1920s")),
+                         std::make_pair(_DT(L"1940s"), DONTTRANSLATE(L"decade1940s")),
+                         std::make_pair(_DT(L"1950s"), DONTTRANSLATE(L"decade1950s")),
+                         std::make_pair(_DT(L"1960s"), DONTTRANSLATE(L"decade1960s")),
+                         std::make_pair(_DT(L"1970s"), DONTTRANSLATE(L"decade1970s")),
+                         std::make_pair(_DT(L"1980s"), DONTTRANSLATE(L"decade1980s")),
+                         std::make_pair(_DT(L"1990s"), DONTTRANSLATE(L"decade1990s")),
+                         std::make_pair(_DT(L"2000s"), DONTTRANSLATE(L"decade2000s")),
+                         std::make_pair(_(L"October"), DONTTRANSLATE(L"october")),
+                         std::make_pair(_(L"Slytherin"), DONTTRANSLATE(L"slytherin")),
+                         std::make_pair(_(L"Campfire"), DONTTRANSLATE(L"campfire")),
+                         std::make_pair(_(L"Coffee Shop"), DONTTRANSLATE(L"coffeeshop")),
+                         std::make_pair(_(L"Arctic Chill"), DONTTRANSLATE(L"arcticchill")),
+                         std::make_pair(_(L"Back to School"), DONTTRANSLATE(L"backtoschool")),
+                         std::make_pair(_(L"Box of Chocolates"), DONTTRANSLATE(L"boxofchocolates")),
+                         std::make_pair(_(L"Cosmopolitan"), DONTTRANSLATE(L"cosmopolitan")),
+                         std::make_pair(_(L"Day and Night"), DONTTRANSLATE(L"dayandnight")),
+                         std::make_pair(_(L"Fresh Flowers"), DONTTRANSLATE(L"freshflowers")),
+                         std::make_pair(_(L"Icecream"), DONTTRANSLATE(L"icecream")),
+                         std::make_pair(_(L"Urban Oasis"), DONTTRANSLATE(L"urbanoasis")),
+                         std::make_pair(_(L"Typewriter"), DONTTRANSLATE(L"typewriter")),
+                         std::make_pair(_(L"Tasty Waves"), DONTTRANSLATE(L"tastywaves")),
+                         std::make_pair(_(L"Spring"), DONTTRANSLATE(L"spring")),
+                         std::make_pair(_(L"Shabby Chic"), DONTTRANSLATE(L"shabbychic")),
+                         std::make_pair(_(L"Rolling Thunder"), DONTTRANSLATE(L"rollingthunder")),
+                         std::make_pair(_(L"Produce Section"), DONTTRANSLATE(L"producesection")),
+                         std::make_pair(_(L"Nautical"), DONTTRANSLATE(L"nautical")),
+                         std::make_pair(_(L"Semesters"), DONTTRANSLATE(L"semesters")),
+                         std::make_pair(_(L"Seasons"), DONTTRANSLATE(L"seasons")),
+                         std::make_pair(_(L"Meadow Sunset"), DONTTRANSLATE(L"meadowsunset")) };
 
     // this needs to be called before prompting for the
     // serial number because wxGetTextFromUser will need a parent
@@ -688,11 +696,10 @@ bool ReadabilityApp::OnInit()
     // now load any menus which are affected by licensing
     LoadInterfaceLicensableFeatures();
 
-    m_dynamicIdMap =
-    {
+    m_dynamicIdMap = {
         // These are the IDs that this constants map to in "Resources/Scripting/RSConstants.lua";
-        // When adding a new constant (e.g., enum value) to RSConstants.lua, that numeric ID from there
-        // to the respective window ID here.
+        // When adding a new constant (e.g., enum value) to RSConstants.lua, that numeric ID from
+        // there to the respective window ID here.
         { 30001, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR },
         { 30002, MainFrame::ID_PROOFING_RIBBON_BUTTON_BAR },
         { 30003, MainFrame::ID_PARAGRAPH_DEDUCTION_RIBBON_BUTTON_BAR },
@@ -918,8 +925,8 @@ bool ReadabilityApp::OnInit()
     PskBundle.GetTestGoals().insert(TestGoal{ ReadabilityMessages::PSK_FARR_JENKINS_PATERSON().wc_str() });
     PskBundle.SetDescription(
         _(L"Powers, Sumner, and Kearl's four adjusted formulas, which were recalculated "
-          "using the McCall-Crabbs 1950 tests. These formulas were also adjusted to predict "
-          "closer scores to each other.").wc_str());
+           "using the McCall-Crabbs 1950 tests. These formulas were also adjusted to predict "
+           "closer scores to each other.").wc_str());
     PskBundle.SetLanguage(readability::test_language::english_test);
     PskBundle.Lock();
     BaseProject::m_testBundles.insert(PskBundle);
@@ -932,7 +939,7 @@ bool ReadabilityApp::OnInit()
     NavyBundle.GetTestGoals().insert(TestGoal{ ReadabilityMessages::NEW_FOG().wc_str() });
     NavyBundle.SetDescription(
         _(L"Kincaid's collection of recalculated tests, "
-          "designed for enlisted U.S. Navy Personnel.").wc_str());
+           "designed for enlisted U.S. Navy Personnel.").wc_str());
     NavyBundle.SetLanguage(readability::test_language::english_test);
     NavyBundle.Lock();
     BaseProject::m_testBundles.insert(NavyBundle);
@@ -958,10 +965,10 @@ bool ReadabilityApp::OnInit()
         };
     ConsentFormsBundle.SetDescription(
         _(L"Grundner's recommendations for patient consent forms.\n\n"
-          "This bundle includes the tests Fry, Flesch Reading Ease, SMOG, and "
-          "the Easy Listening Formula, as recommended by T. M. Grundner (\"Consent Forms\" 9-10). "
-          "Also included are the recommended test scores (i.e., goals) that consent forms "
-          "should fall within. (Note that SMOG did not have a recommended test score.)").wc_str());
+           "This bundle includes the tests Fry, Flesch Reading Ease, SMOG, and "
+           "the Easy Listening Formula, as recommended by T. M. Grundner (\"Consent Forms\" 9-10). "
+           "Also included are the recommended test scores (i.e., goals) that consent forms "
+           "should fall within. (Note that SMOG did not have a recommended test score.)").wc_str());
     ConsentFormsBundle.SetLanguage(readability::test_language::english_test);
     ConsentFormsBundle.Lock();
     BaseProject::m_testBundles.insert(ConsentFormsBundle);
@@ -3105,7 +3112,6 @@ wxBEGIN_EVENT_TABLE(MainFrame, Wisteria::UI::BaseMainFrame)
     // list editing
     EVT_MENU(XRCID("ID_EDIT_WORD_LIST"), MainFrame::OnEditWordList)
     EVT_MENU(XRCID("ID_EDIT_PHRASE_LIST"), MainFrame::OnEditPhraseList)
-
     EVT_MENU(XRCID("ID_SCRIPT_WINDOW"), MainFrame::OnScriptEditor)
     // custom test menu
     EVT_MENU(XRCID("ID_ADD_CUSTOM_TEST"), MainFrame::OnAddCustomTest)
@@ -3189,13 +3195,17 @@ void MainFrame::OnViewProfileReport([[maybe_unused]] wxRibbonButtonBarEvent& eve
     {
     DUMP_PROFILER_REPORT();
 
-    ListDlg profileReportDialog(this,
-            wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
-            wxGetApp().GetAppOptions().GetRibbonHoverColor(),
-            wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
-            LD_SAVE_BUTTON|LD_COPY_BUTTON|LD_PRINT_BUTTON|LD_SELECT_ALL_BUTTON|
-            LD_FIND_BUTTON|LD_COLUMN_HEADERS|LD_SORT_BUTTON, wxID_ANY, _(L"Profile Report"),
-            wxEmptyString, wxDefaultPosition, FromDIP(wxSize(800, 400)));
+    const wxSize screenSize{ wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X),
+                             wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y) };
+    ListDlg profileReportDialog(
+        this, wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
+        wxGetApp().GetAppOptions().GetRibbonHoverColor(),
+        wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
+        LD_SAVE_BUTTON | LD_COPY_BUTTON | LD_PRINT_BUTTON | LD_SELECT_ALL_BUTTON | LD_FIND_BUTTON |
+            LD_COLUMN_HEADERS | LD_SORT_BUTTON,
+        wxID_ANY, _(L"Profile Report"), wxString{}, wxDefaultPosition,
+        wxSize{ static_cast<int>(screenSize.GetWidth() * math_constants::half),
+                static_cast<int>(screenSize.GetHeight() * math_constants::half) });
 
     wxGetApp().UpdateRibbonTheme(profileReportDialog.GetRibbon());
     profileReportDialog.GetListCtrl()->ClearAll();
@@ -3237,7 +3247,7 @@ void MainFrame::OnViewProfileReport([[maybe_unused]] wxRibbonButtonBarEvent& eve
     profileReportDialog.GetListCtrl()->SetItemCount(static_cast<long>((rowCount)));
 
     // fit the columns
-    profileReportDialog.GetListCtrl()->DistributeColumns();
+    profileReportDialog.GetListCtrl()->DistributeColumns(-1);
     // sort by time, largest to smallest
     profileReportDialog.GetListCtrl()->SortColumn(2, Wisteria::SortDirection::SortDescending);
 
@@ -3249,25 +3259,34 @@ void MainFrame::OnViewLogReport([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     if (m_logWindow == nullptr)
         {
+        const wxSize screenSize{ wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X),
+                                 wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y) };
         m_logWindow =
-            new ListDlg(nullptr,
-                wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
-                wxGetApp().GetAppOptions().GetRibbonHoverColor(),
-                wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
-                LD_SAVE_BUTTON | LD_COPY_BUTTON | LD_PRINT_BUTTON |
-                LD_SELECT_ALL_BUTTON | LD_FIND_BUTTON |
-                LD_COLUMN_HEADERS | LD_SORT_BUTTON | LD_CLEAR_BUTTON |
-                LD_REFRESH_BUTTON | LD_LOG_VERBOSE_BUTTON, wxID_ANY,
-                _(L"Log Report"),
-                wxString{}, wxDefaultPosition,
-                FromDIP(wxSize(800, 400)),
-                wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER | wxDIALOG_NO_PARENT);
+            new ListDlg(nullptr, wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
+                        wxGetApp().GetAppOptions().GetRibbonHoverColor(),
+                        wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
+                        LD_SAVE_BUTTON | LD_COPY_BUTTON | LD_PRINT_BUTTON | LD_SELECT_ALL_BUTTON |
+                            LD_FIND_BUTTON | LD_COLUMN_HEADERS | LD_SORT_BUTTON | LD_CLEAR_BUTTON |
+                            LD_REFRESH_BUTTON | LD_LOG_VERBOSE_BUTTON,
+                        wxID_ANY, _(L"Log Report"), wxString{}, wxDefaultPosition,
+                        wxSize{ static_cast<int>(screenSize.GetWidth() * math_constants::half),
+                                static_cast<int>(screenSize.GetHeight() * math_constants::half) },
+                        wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER | wxDIALOG_NO_PARENT);
+        // move over to the right side of the screen
+        const int screenWidth{ wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X) };
+        int xPos{ 0 }, yPos{ 0 };
+        m_logWindow->GetScreenPosition(&xPos, &yPos);
+        m_logWindow->Move(
+            wxPoint{ xPos + (screenWidth - (xPos + m_logWindow->GetSize().GetWidth())), yPos });
+
         m_logWindow->SetSortHelpTopic(
             GetHelpDirectory(), _DT(L"column-sorting.html"));
         }
     wxGetApp().UpdateRibbonTheme(m_logWindow->GetRibbon());
     m_logWindow->SetActiveLog(wxGetApp().GetLogFile());
     m_logWindow->Readlog();
+    // fit the columns
+    m_logWindow->GetListCtrl()->DistributeColumns(-1);
 
     BaseProjectDoc::UpdateListOptions(m_logWindow->GetListCtrl());
 
@@ -3278,14 +3297,18 @@ void MainFrame::OnViewLogReport([[maybe_unused]] wxRibbonButtonBarEvent& event)
 //-------------------------------------------------------
 void MainFrame::OnTestsOverview([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
+    const wxSize screenSize{ wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X),
+                             wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y) };
     // test overview dialog
-    ListDlg testsOverviewDlg(this,
-            wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
-            wxGetApp().GetAppOptions().GetRibbonHoverColor(),
-            wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
-            LD_SAVE_BUTTON|LD_COPY_BUTTON|LD_PRINT_BUTTON|LD_SELECT_ALL_BUTTON|
-            LD_COLUMN_HEADERS|LD_FIND_BUTTON|LD_SORT_BUTTON, wxID_ANY, _(L"Readability Tests Overview"),
-            wxString{}, wxDefaultPosition, FromDIP(wxSize(1600, 800)));
+    ListDlg testsOverviewDlg(
+        this, wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
+        wxGetApp().GetAppOptions().GetRibbonHoverColor(),
+        wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
+        LD_SAVE_BUTTON | LD_COPY_BUTTON | LD_PRINT_BUTTON | LD_SELECT_ALL_BUTTON |
+            LD_COLUMN_HEADERS | LD_FIND_BUTTON | LD_SORT_BUTTON,
+        wxID_ANY, _(L"Readability Tests Overview"), wxString{}, wxDefaultPosition,
+        wxSize{ static_cast<int>(screenSize.GetWidth() * math_constants::three_quarters),
+                static_cast<int>(screenSize.GetHeight() * math_constants::half) });
 
     wxGetApp().UpdateRibbonTheme(testsOverviewDlg.GetRibbon());
     testsOverviewDlg.GetListCtrl()->ClearAll();
@@ -3381,7 +3404,7 @@ void MainFrame::OnTestsOverview([[maybe_unused]] wxRibbonButtonBarEvent& event)
             testPos->get_description().length(), true, false)) );
         }
     // fit the columns
-    testsOverviewDlg.GetListCtrl()->DistributeColumns();
+    testsOverviewDlg.GetListCtrl()->DistributeColumns(-1);
 
     testsOverviewDlg.ShowModal();
     }
@@ -3985,7 +4008,12 @@ void MainFrame::OnScriptEditor([[maybe_unused]] wxCommandEvent& event)
         }
     if (m_luaEditor == nullptr)
         {
-        m_luaEditor = new LuaEditorDlg(nullptr);
+        const wxSize screenSize{ wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X),
+                                 wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y) };
+        m_luaEditor = new LuaEditorDlg(
+            nullptr, wxID_ANY, _(L"Lua Script"), wxDefaultPosition,
+            wxSize{ static_cast<int>(screenSize.GetWidth() * math_constants::third),
+                    static_cast<int>(screenSize.GetHeight() * math_constants::three_quarters) });
         }
     m_luaEditor->SetThemeColor(wxGetApp().GetAppOptions().GetControlBackgroundColor());
     m_luaEditor->Show();
