@@ -407,6 +407,7 @@ ASPCA
 Aspell
 Aspen
 Aspidiske
+Aspira
 Astana
 Astoria
 Astrakhan
@@ -482,6 +483,7 @@ Automake
 Autozone
 Auvergne
 Avarua
+Avathon
 Aveda
 Aveeno
 Aventine
@@ -499,6 +501,7 @@ Aviv
 Aviva
 Avon
 Avondale
+Avonite
 Avène
 AWACS
 Axios
@@ -1173,6 +1176,7 @@ Chiappetta
 Chiba
 Chicago
 Chicagoan
+Chicagoland
 Chicanx
 Chickasaw
 Chickasha
@@ -1220,6 +1224,7 @@ Christianize
 Christianized
 Christianizes
 Christianizing
+Christiansburg
 Christlike
 Christmas
 Christmastide
@@ -1680,6 +1685,7 @@ Eastleigh
 Eastside
 Eastward
 Eastwick
+EasyBib
 Eaton
 EBA
 eBay
@@ -1915,6 +1921,7 @@ Facebooking
 Facebooks
 FactFinder
 Faeroe
+FAFSANet
 Fagatogo
 Fahrenheit
 Fairborn
@@ -2247,6 +2254,7 @@ Glassdoor
 Glastonbury
 Glaswegian
 GlaxoSmithKline
+Glenbrook
 Glenwood
 Glibc
 Glossimer
@@ -2380,6 +2388,7 @@ Gàidhlig
 Ha'atzmaut
 HaAliyah
 Haas
+Hackensack
 Hacktoberfest
 Hadar
 Hagstrom
@@ -2496,6 +2505,7 @@ Hellenizing
 Helsinki
 Helvetian
 Hempstead
+Hendersonville
 Herbalife
 Herculaneum
 Hereford
@@ -2701,6 +2711,7 @@ Indra
 Indurain
 Indus
 Indy
+InfoBase
 Infomatics
 Informatica
 Infosys
@@ -2934,6 +2945,7 @@ Kenosha
 Kenra
 Kentuckian
 Kentucky
+Kentwood
 Kenya
 Kenyan
 Kenyon
@@ -3204,6 +3216,7 @@ Llanelli
 LLVM
 Lockean
 Lockian
+Lockport
 Logitech
 Loire
 Lokibot
@@ -3416,6 +3429,7 @@ Maryland
 Marylander
 Marymount
 Marysville
+Maryville
 Mascserum
 Maseru
 Masonic
@@ -3498,6 +3512,7 @@ Mercosur
 Mercurian
 Mercury
 MerKadoTeknia
+Merrillville
 Merrimac
 Merrimack
 Merseyside
@@ -3636,6 +3651,7 @@ Monmouthshire
 Monoceros
 Monocerotis
 Monongahela
+Monroeville
 Monrovia
 Monsanto
 Montalegre
@@ -3700,6 +3716,7 @@ Munchausen
 Muncie
 Munich
 Munson
+Murfreesboro
 Murmansk
 Murrumbidgee
 Muscat
@@ -3750,6 +3767,7 @@ Nam
 Namco
 Namibia
 Namibian
+Nampa
 Namur
 Nanchang
 Nanism
@@ -3934,6 +3952,7 @@ Norsemen
 Nortel
 Northampton
 Northamptonshire
+Northbrook
 Northcentral
 Northcoast
 Northcrest
@@ -3999,6 +4018,7 @@ NYSE
 NYSSA
 NZ
 O'Lakes
+Oakbrook
 Oakland
 Oakleaf
 Oakmont
@@ -4309,6 +4329,7 @@ Pixar
 Pkware
 Pkware's
 PlaceU
+Plaines
 Plainfield
 Plainpalais
 Plainview
@@ -4388,6 +4409,7 @@ Powys
 Poznan
 Prabhat
 Prada
+Praedicare
 Prague
 Praia
 Prattville
@@ -4613,6 +4635,7 @@ Reuters
 Revcontent
 Revlimid
 Revlon
+Rexburg
 Reykjanes
 Reykjavik
 Reykjavík
@@ -5084,11 +5107,13 @@ Soundcloud
 Southampton
 Southcentral
 Southfield
+Southlake
 Southpark
 Southport
 Southside
 Southtown
 Southwark
+Southworks
 Soviet
 Sox
 Spaceguard
@@ -5148,6 +5173,8 @@ Stapi
 Starbreeze
 Starbright
 Starbucks
+Starcatcher
+Starcom
 StarKist
 StartWire
 Stata
@@ -5385,6 +5412,7 @@ TelePrompters
 Telerik
 Telescopium
 Telex
+Temecula
 Tempe
 Templar
 Tencent
@@ -5401,6 +5429,7 @@ Tenoverten
 Teotihuacan
 Terastor
 Teredo
+Teriyaki
 Terranova
 Tesco
 Teshuva
@@ -5444,6 +5473,7 @@ ThinPrep
 Thomism
 Thomistic
 Thonon
+Thornridge
 Thornwood
 ThoughtCo
 Thrace
@@ -5952,6 +5982,7 @@ Wayfair
 Wayland
 Waymaker
 Waynesboro
+Waynesburg
 Waynesfield
 Waynesville
 WC

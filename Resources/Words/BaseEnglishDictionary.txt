@@ -21418,6 +21418,9 @@ chorionic
 chorister
 chorister's
 choristers
+chorizo
+chorizo's
+chorizos
 choroid
 choroidal
 choroiditis
@@ -22541,6 +22544,9 @@ clickers
 clickety
 clicking
 clicks
+clickstream
+clickstream's
+clickstreams
 client
 client's
 clientele
@@ -25165,6 +25171,10 @@ conceiver
 conceiver's
 conceives
 conceiving
+concelebrate
+concelebrated
+concelebrates
+concelebrating
 concentrate
 concentrated
 concentrates
@@ -30493,6 +30503,9 @@ customs
 cusum
 cut
 cut's
+cut-a-thon
+cut-a-thon's
+cut-a-thons
 cutanea
 cutaneous
 cutaneously
@@ -40358,6 +40371,9 @@ economy
 economy's
 ecophysiology
 ecophysiology's
+ecopreneur
+ecopreneur's
+ecopreneurs
 ecopreneurship
 ecopreneurship's
 ecopreneurships
@@ -45650,6 +45666,7 @@ exsanguinations
 exstrophy
 ext
 extant
+extemp
 extemporaneous
 extemporaneously
 extemporaneousness
@@ -51465,6 +51482,7 @@ frontwards
 fros
 frosh
 frosh's
+froshes
 frost
 frost's
 frostbelt
@@ -72138,6 +72156,9 @@ lectern
 lectern's
 lecterns
 lectin
+lector
+lector's
+lectors
 lecture
 lecture's
 lectured
@@ -74234,6 +74255,7 @@ loglevels
 lognormal
 logo
 logo's
+logoed
 logoff
 logoff's
 logoffs
@@ -82449,6 +82471,7 @@ mottling
 motto
 motto's
 mottoes
+mottos
 Motulsky
 moue
 moue's
@@ -93455,6 +93478,9 @@ payees
 payer
 payer's
 payers
+paygrade
+paygrade's
+paygrades
 paying
 payload
 payload's
@@ -99081,6 +99107,7 @@ postcode
 postcode's
 postcodes
 postcoital
+postcolonial
 postcolonialism
 postcolonialist
 postcolonialist's
@@ -104081,6 +104108,9 @@ quasidominant
 quasilinear
 quasiparticle
 quater
+quaterfinal
+quaterfinal's
+quaterfinals
 quaternaries
 quaternary
 quaternion
@@ -112573,6 +112603,7 @@ rubbers
 rubbery
 rubbing
 rubbing's
+rubbings
 rubbish
 rubbish's
 rubbished
@@ -122910,6 +122941,9 @@ splashscreens
 splashy
 splat
 splat's
+splatoon
+splatoon's
+splatoons
 splats
 splatted
 splatter
@@ -123103,6 +123137,9 @@ spookiness's
 spookinesses
 spooking
 spooks
+spooktacular
+spooktacular's
+spooktaculars
 spooky
 spool
 spool's
@@ -127771,6 +127808,9 @@ supererogatory
 superfamilies
 superfamily
 superfamily;s
+superfan
+superfan's
+superfans
 superfetation
 superficial
 superficialis
@@ -131862,8 +131902,11 @@ theodolites
 theologian
 theologian's
 theologians
+theologica
+theologica's
 theological
 theologically
+theologicas
 theologies
 theologists
 theology
@@ -134525,9 +134568,13 @@ tragicomedy's
 tragicomic
 tragics
 trail
+trailblaze
+trailblazed
 trailblazer
 trailblazer's
 trailblazers
+trailblazes
+trailblazign
 trailblazing
 trailblazings
 trailed

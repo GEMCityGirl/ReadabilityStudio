@@ -710,6 +710,9 @@ alegiance	allegiance	3
 alegience	allegiance	3		
 alegorical	allegorical	3		
 alernatively	alternatively	3		
+Alexnder	Alexander	3		
+Alexnder's	Alexander's	3		
+Alexnders	Alexanders	3		
 algebraical	algebraic	3		
 algebric	algebraic	3		
 algorhitms	algorithms	3		
@@ -9980,7 +9983,7 @@ odiously	hatefully	0
 odium	hatred, blame	0		
 oeprating	operating	3		
 of a different opinion	differ, disagree	0		
-of cause	of course	3		and
+of cause	of course	3		and;code;codes
 of her own accord	willingly	0		
 of her own free will	willingly	0		
 of his own accord	willingly	0		

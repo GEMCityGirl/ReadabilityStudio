@@ -1,6 +1,9 @@
 AcaemicBlue	AcademicBlue	3		
 AcaemicBlues	AcademicBlues	3		
 Aisian	Asian	3		
+Alexnder	Alexander	3		
+Alexnder's	Alexander's	3		
+Alexnders	Alexanders	3		
 Amercia	America	3		
 Amstberg	Amtsberg	3		
 Amstberg's	Amtsberg's	3		
