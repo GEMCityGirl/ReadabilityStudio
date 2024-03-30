@@ -153,10 +153,7 @@ void ChapterSplit::WriteChapterFile(const wchar_t* textStart, const wchar_t* tex
               wxFile::write);
     if (ff.IsOpened())
         {
-#ifdef __WXMSW__
-        ff.Write(utf8::bom, sizeof(utf8::bom));
-#endif
-        ff.Write(chapterContent);
+        ff.Write(chapterContent, wxConvUTF8);
         }
     }
 

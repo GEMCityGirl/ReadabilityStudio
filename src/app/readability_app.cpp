@@ -222,10 +222,6 @@ void ReadabilityApp::AddWordsToDictionaries(const wxArrayString& theWords, const
     outputStr.Trim();
     wxFileName(customDictionaryPath).SetPermissions(wxS_DEFAULT);
     wxFile outputFile(customDictionaryPath, wxFile::write);
-#ifdef __WXMSW__
-    if (outputStr.length())
-        { outputFile.Write(utf8::bom, sizeof(utf8::bom)); }
-#endif
     outputFile.Write(outputStr, wxConvUTF8);
     }
 

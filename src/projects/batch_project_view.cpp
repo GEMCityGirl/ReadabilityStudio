@@ -277,12 +277,7 @@ void BatchProjectView::OnBatchExportFilteredDocuments([[maybe_unused]] wxCommand
             }
         wxFileName(exportFilePath).SetPermissions(wxS_DEFAULT);
         wxFile filteredFile(exportFilePath, wxFile::write);
-    // write out UTF-8 Windows marker if text isn't being Romanized
-    #ifdef __WXMSW__
-        if (validDocText.length() && !optDlg.IsReplacingCharacters())
-            { filteredFile.Write(utf8::bom, sizeof(utf8::bom)); }
-    #endif
-        if (!filteredFile.Write(validDocText))
+        if (!filteredFile.Write(validDocText, wxConvUTF8))
             {
             wxMessageBox(_(L"Unable to write to output file."),
                 _(L"Error"), wxOK|wxICON_EXCLAMATION);
@@ -2440,12 +2435,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                     {
                     wxFileName(fdialog.GetPath()).SetPermissions(wxS_DEFAULT);
                     wxFile filteredFile(fdialog.GetPath(), wxFile::write);
-                    // write out UTF-8 Windows marker if text isn't being Romanized
-                #ifdef __WXMSW__
-                    if (validDocText.length() && !optDlg.IsReplacingCharacters())
-                        { filteredFile.Write(utf8::bom, sizeof(utf8::bom)); }
-                #endif
-                    if (!filteredFile.Write(validDocText))
+                    if (!filteredFile.Write(validDocText, wxConvUTF8))
                         {
                         wxMessageBox(_(L"Unable to write to output file."),
                             _(L"Error"), wxOK|wxICON_EXCLAMATION);

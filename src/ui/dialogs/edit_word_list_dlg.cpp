@@ -137,17 +137,11 @@ bool EditWordListDlg::Save(const wxString& filePath)
         wxMessageBox(
             wxString::Format(
                 _(L"Unable to save \"%s\".\n"
-                  "Verify that you have write access to this file or that it is not in use."),
+                   "Verify that you have write access to this file or that it is not in use."),
                 filePath),
             _(L"Error"), wxOK | wxICON_ERROR);
         return false;
         }
-#ifdef __WXMSW__
-    if (outputStr.length())
-        {
-        outputFile.Write(utf8::bom, sizeof(utf8::bom));
-        }
-#endif
     return outputFile.Write(outputStr, wxConvUTF8);
     }
 

@@ -1372,12 +1372,7 @@ namespace LuaScripting
         wxFileName::Mkdir(wxFileName(exportFilePath).GetPath(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
         wxFileName(exportFilePath).SetPermissions(wxS_DEFAULT);
         wxFile filteredFile(exportFilePath, wxFile::write);
-        // write out UTF-8 Windows marker if text isn't being Romanized
-   #ifdef __WXMSW__
-        if (filteredText.length() && !lua_toboolean(L, 3))
-            { filteredFile.Write(utf8::bom, sizeof(utf8::bom)); }
-    #endif
-        if (!filteredFile.Write(filteredText))
+        if (!filteredFile.Write(filteredText, wxConvUTF8))
             {
             wxLogError(L"Unable to write to output file.");
             lua_pushboolean(L, false);

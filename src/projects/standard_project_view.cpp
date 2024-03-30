@@ -1347,10 +1347,6 @@ void ProjectView::OnMenuCommand(wxCommandEvent& event)
                 }
             else
                 {
-            #ifdef __WXMSW__
-                if (outputStr.length())
-                    { outputFile.Write(utf8::bom, sizeof(utf8::bom)); }
-            #endif
                 outputFile.Write(outputStr, wxConvUTF8);
                 doc->SetExcludedPhrasesPath(filePath);
                 }
