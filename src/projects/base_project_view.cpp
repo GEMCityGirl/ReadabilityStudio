@@ -1064,6 +1064,8 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
     accelEntries[12].Set(wxACCEL_CMD, WXK_DELETE, XRCID("ID_REMOVE_TEST"));
     accelEntries[13].Set(wxACCEL_NORMAL, WXK_F2, XRCID("ID_SHOW_SIDEBAR"));
     accelEntries[14].Set(wxACCEL_NORMAL, WXK_F3, XRCID("ID_FIND_NEXT"));
+    // the Microsoft Office shortcut for this is Ctrl+F1, but Ctrl and function key
+    // combinations don't seem to work under GTK+
     accelEntries[15].Set(wxACCEL_NORMAL, WXK_F4, XRCID("ID_TOGGLE_RIBBON"));
     wxAcceleratorTable accelTable(std::size(accelEntries), accelEntries);
     m_frame->SetAcceleratorTable(accelTable);
