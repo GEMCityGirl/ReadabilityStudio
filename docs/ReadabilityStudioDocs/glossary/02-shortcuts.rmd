@@ -135,7 +135,15 @@ Remove selected item(s)                 `r keys('Del')` (`r os_logo('windows')`)
 
 &nbsp;                                  &nbsp;
 
-Edit selected item                      `r keys('Ins')`                                      
+Edit selected item                      `r keys('F2')`
+
+&nbsp;                                  &nbsp;
+
+Accept edited item                      `r keys('Enter')`, `r keys('Tab')`, `r keys('\\arrowkeyup')`, `r keys('\\arrowkeydown')` (or mouse click outside of edit box)
+
+&nbsp;                                  &nbsp;
+
+Cancel editing item                     `r keys('Esc')`
 
 &nbsp;                                  &nbsp;
 
