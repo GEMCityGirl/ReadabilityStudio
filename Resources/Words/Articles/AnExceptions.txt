@@ -6,6 +6,7 @@ fexcept_t
 fmask
 fMRI
 FOB
+Fx
 FYI
 HBO
 HICON
@@ -44,6 +45,7 @@ SLA
 SMB
 SME
 SMS
+SOP
 SQL
 ssDNA
 ssRNA

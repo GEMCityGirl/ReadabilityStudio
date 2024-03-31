@@ -804,6 +804,7 @@ Bonaire
 Bonanno
 Bonaventure
 Bonneville
+Bookland
 Bookshare
 Borax
 Borealis
@@ -1664,6 +1665,7 @@ Dutchmen
 Dutchwoman
 Dutchwomen
 Duxford
+Dxgkrnl
 Dyersville
 Dynacin
 Düsseldorf
@@ -2322,6 +2324,7 @@ Grandview
 Granita
 Grantchester
 Granville
+Graphviz
 Grecian
 Greco
 Greece
@@ -2853,6 +2856,7 @@ Jivaro
 Jivaroan
 Jo'burg
 Jogjakarta
+Johab
 Johannesburg
 Johnsburg
 Johnsonville
@@ -3155,6 +3159,7 @@ Levittown
 Lewisburg
 Lewisham
 Lewistown
+Lexilla
 Lexington
 LexisNexis
 Lexmark
@@ -3310,6 +3315,7 @@ Macon
 macOS
 MacPaint
 Macrogol
+Macrovision
 Macworld
 Madagascan
 Madagascar
@@ -3451,6 +3457,7 @@ Mauritian
 Mauritius
 Maurya
 Maxi
+Maxicode
 Maxon
 Maxtor
 Maxwellian
@@ -4156,11 +4163,13 @@ Pacheco
 Pacific
 Pacifica
 Pacinian
+Pacman
 PacSun
 Pagetic
 Pakistan
 Pakistani
 Palatinate
+Palatino
 Palau
 Palembang
 Paleolithic
@@ -4185,6 +4194,7 @@ Pangaea
 Pango
 Panhellenic
 Panmunjom
+PANOSE
 Pantagruel
 Papanicolaou
 Papenhausen
@@ -4591,6 +4601,7 @@ Raytheon
 Reaganesque
 Reaganomics
 RealClearPolitics
+Realtek
 Realtree
 Reconquista
 Recplex
@@ -4848,6 +4859,7 @@ Schwerin
 Scientologies
 Scientologist
 Scientology
+Scintilla
 Scioto
 Sciotoville
 Scorpio
@@ -5197,6 +5209,7 @@ Stoneleigh
 Stonemill
 StormReady
 Stornoway
+Storport
 Storyworks
 Stourbridge
 Stradivaris
@@ -5715,7 +5728,9 @@ Ungava
 Unguis
 Unibus
 UNICEF
+Unices
 Unicode
+Unidrv
 Unigo
 Unilever
 Uniondale
@@ -5952,6 +5967,7 @@ Wampanoag
 Wannacry
 Wansbeck
 Wansee
+Wansung
 Wapakoneta
 Warby
 Warcraft
@@ -6092,6 +6108,7 @@ Wimbledon
 Win2K
 Winans
 Winceyette
+Windbg
 Windhoek
 Windsor
 Wininet

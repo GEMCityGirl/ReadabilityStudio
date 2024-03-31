@@ -749,7 +749,7 @@ all in a day's work	that's part of the job	2
 all in due time	be patient	2		
 all in the same boat	all in the same situation	2		
 all most	almost	3		
-all of	all (unless proceeding a pronoun), Consider removing this	0		them
+all of	all (unless proceeding a pronoun), (consider removing this)	0		them
 all of a sudden	suddenly	0		
 all of the sudden	all of a sudden	3		
 all over the map	not focused	2		
@@ -844,6 +844,7 @@ already existing	existing	0
 alreay	already	3		
 alreayd	already	3		
 alredy	already	3		
+alse	false, also, ales	3		
 also know as	also known as	3		
 alsoneeds	also needs	3		
 alsot	also	3		
@@ -1168,6 +1169,7 @@ anylzing	analyzing	3
 anyother	any other	3		
 anyting	anything	3		
 anytying	anything	3		
+aointer	a pointer	3		
 aparent	apparent	3		
 aparment	apartment	3		
 aparrent	apparent	3		
@@ -1271,6 +1273,8 @@ approachs	approaches	3
 approbation	praise	0		
 approbations	praises	0		
 appropiate	appropriate	3		
+appropirate	appropriate	3		
+appropirately	appropriately	3		
 appropraite	appropriate	3		
 appropriate	proper (adj.), set aside (verb)	0		
 appropriated	set aside	0		
@@ -1482,6 +1486,7 @@ argumetn	argument	3
 argumets	arguments	3		
 aribtrary	arbitrary	3		
 arised	arose	3		
+arithemtic	arithmetic	3		
 arithmatic	arithmetic	3		
 aritmetic	arithmetic	3		
 arival	arrival	3		
@@ -1734,6 +1739,8 @@ asychronous	asynchronous	3
 asycronous	asynchronous	3		
 asynchonous	asynchronous	3		
 asynchonously	asynchronously	3		
+asynchornous	asynchronous	3		
+asynchornously	asynchronously	3		
 asynchrounous	asynchronous	3		
 asynchrounously	asynchronously	3		
 at a future time	eventually, in time, later	0		
@@ -1786,6 +1793,10 @@ atleast	at least	3
 atomatically	automatically	3		
 atomicly	atomically	3		
 atorney	attorney	3		
+atrempt	attempt	3		
+atrempted	attempted	3		
+atrempting	attempting	3		
+atrempts	attempts	3		
 atribute	attribute	3		
 atributed	attributed	3		
 atributes	attributes	3		
@@ -2593,6 +2604,9 @@ call a spade a spade	talk without euphemisms, speak frankly	2
 call a stop to	stop	0		
 call attention to	disclose, broadcast, divulge, expose, point out, promote, reveal	0		
 call into question	challenge	2		
+callabck	callback	3		
+callabck's	callback's	3		
+callabcks	callbacks	3		
 called a end to	ended	0		
 called a halt to	halted	0		
 called a stop to	stopped	0		
@@ -2856,6 +2870,8 @@ centruies	centuries	3
 centruy	century	3		
 centuties	centuries	3		
 centuty	century	3		
+ceratin	certain, Keratin	3		
+ceratinly	certainly	3		
 cerimonial	ceremonial	3		
 cerimonies	ceremonies	3		
 cerimonious	ceremonious	3		
@@ -3084,6 +3100,7 @@ coalesced	grew together	0
 coalesces	grows together	0		
 coalescing	growing together	0		
 coalesed	coalesced	3		
+coalesing	coalescing	3		
 coalition	union	0		
 coalitions	unions	0		
 coallese	coalesce	3		
@@ -3321,6 +3338,9 @@ compability	compatibility	3
 companion	friend, mate	0		
 companion's	friend's, mate's	0		
 companions	friends, mates	0		
+comparion	comparison	3		
+comparion's	comparison's	3		
+comparions	comparisons	3		
 comparision	comparison	3		
 comparisions	comparisons	3		
 comparitive	comparative	3		
@@ -3768,6 +3788,9 @@ contaned	contained	3
 contaning	containing	3		
 contans	contains	3		
 contants	constants, contents	3		
+contect	contact	3		
+contect's	contact's	3		
+contects	contacts	3		
 contein	contain	3		
 conteined	contained	3		
 conteining	containing	3		
@@ -4026,6 +4049,9 @@ corses	courses	3
 cosmpolitan	cosmopolitan	3		
 cosmpolitan's	cosmopolitan's	3		
 cosmpolitans	cosmopolitans	3		
+cosntant	constant	3		
+cosntant's	constant's	3		
+cosntants	constants	3		
 cosntructed	constructed	3		
 costant	constant	3		
 costitution	constitution	3		
@@ -4138,7 +4164,10 @@ currently	(omit), now	0
 currenty	currently	3		
 curretly	currently	3		
 curriculem	curriculum	3		
+currrent	current	3		
+currrent's	current's	3		
 currrently	currently	3		
+currrents	currents	3		
 cusom	custom, CUSUM (Cumulative Sum Chart)	3		
 custiomer	customer	3		
 custiomer's	customer's	3		
@@ -4208,6 +4237,9 @@ daugher's	daughter's	3
 daughers	daughters	3		
 day late and a dollar short	not enough, just came up short	2		
 de facto	real	0		
+de-initialiation	de-initialization	3		
+de-initialiation's	de-initialization's	3		
+de-initialiations	de-initializations	3		
 dead presidents	money (U.S. currency)	2		
 dead to rights	irretrievably, without the ability to escape, red-handed	2		
 deafault	default	3		
@@ -4508,6 +4540,10 @@ desctiptors	descriptors	3
 desctruction	destruction	3		
 desctructive	destructive	3		
 descuss	discuss	3		
+desginate	designate	3		
+desginated	designated	3		
+desginates	designates	3		
+desginating	designating	3		
 desgined	designed	3		
 deside	decide	3		
 desigining	designing	3		
@@ -4761,6 +4797,7 @@ disclosoure's	disclosure's	3
 disclosoures	disclosures	3		
 disconnected	undone	0		
 discontented	uneasy	0		
+discontiguities	discontinuities	3		
 discontinuance	dropping, stop	0		
 discontinuances	droppings, stops	0		
 discontinuation	dropping, stop	0		
@@ -5564,6 +5601,9 @@ enumerations	counts	0
 enumerator	counter	0		
 enumerator's	counter's	0		
 enumerators	counters	0		
+enumumeration	enumeration	3		
+enumumeration's	enumeration's	3		
+enumumerations	enumerations	3		
 envionment	environment	3		
 enviorment	environment	3		
 enviormental	environmental	3		
@@ -6003,6 +6043,7 @@ extened	extended	3
 extensability	extensibility	3		
 extenstion	extension	3		
 extenstions	extensions	3		
+extented	extended	3		
 extention	extension	3		
 exteral	external	3		
 extered	exerted	3		
@@ -6456,6 +6497,11 @@ foward	forward	3
 fowarded	forwarded	3		
 fowarding	forwarding	3		
 fowards	forwards	3		
+fragement	fragment	3		
+fragement's	fragment's	3		
+fragemented	fragmented	3		
+fragementing	fragmenting	3		
+fragements	fragments	3		
 frame of mind	attitude, posture, view, viewpoint	0		
 framwork	framework	3		
 framwork's	framework's	3		
@@ -6526,6 +6572,9 @@ funcions	functions	3
 funciton	function	3		
 funcitons	functions	3		
 functin	function	3		
+functioin	function	3		
+functioin's	function's	3		
+functioins	functions	3		
 function	act, role	0		
 functionallity	functionality	3		
 functionaly	functionally	3		
@@ -6941,6 +6990,7 @@ hand over fist	quickly	2
 hand-to-mouth	living in poverty	2		
 handfull	handful	3		
 hang in the balance	has an uncertain outcome	2		
+Hangeul	Hangul	3		
 hanging in the balance	having an uncertain outcome	2		
 hangs in the balance	has an uncertain outcome	2		
 Hanguel	Hangul	3		
@@ -7127,6 +7177,7 @@ hesitating	pausing	0
 heterogeneous	varied	0		
 heterogeneously	variably	0		
 heterogenous	heterogeneous	3		
+hexdecimal	hexadecimal	3		
 hexidecimal	hexadecimal	3		
 hiearchies	hierarchies	3		
 hiearchy	hierarchy	3		
@@ -7722,7 +7773,7 @@ in the neighbourhood of	close to, nearby, about, roughly	0
 in the nick of time	just in time	2		
 in the not too distant future	soon	0		
 in the opposite direction	against	0		
-in the passed	in the past	3		group;groups;range;ranges;value;values
+in the passed	in the past	3		group;groups;range;ranges;string;strings;value;values
 in the place in which	where	0		
 in the presence of	with, before	0		
 in the process of	(omit), while	0		
@@ -7773,6 +7824,8 @@ inaguration	inauguration	3
 inanimate	lifeless	0		
 inanimately	lifelessly	0		
 inapplicable	not suited	0		
+inappropirate	inappropriate	3		
+inappropirately	inappropriately	3		
 inasmuch as	because, since, as, as far as	0		
 inattentive	careless	0		
 inattentively	carelessly	0		
@@ -8030,6 +8083,9 @@ initative	initiative	3
 initators	initiators	3		
 initiaitive	initiative	3		
 initial	first	0		
+initialiation	initialization	3		
+initialiation's	initialization's	3		
+initialiations	initializations	3		
 initialisation	start	0		
 initialisations	starts	0		
 initialise	start	0		
@@ -8053,6 +8109,9 @@ initialzes	initializes	3
 initiate	start	0		
 initiated	started	0		
 initiates	starts	0		
+initiatiator	initiator	3		
+initiatiator's	initiator's	3		
+initiatiators	initiators	3		
 initiating	starting	0		
 initiliaze	initialize	3		
 initiliazed	initialized	3		
@@ -8065,6 +8124,9 @@ initilizing	initializing	3
 initivative	initiative	3		
 initivative's	initiative's	3		
 initivatives	initiatives	3		
+inivitation	invitation	3		
+inivitation's	invitation's	3		
+inivitations	invitations	3		
 injudicious	unwise	0		
 injudiciously	unwisely	0		
 inlcude	include	3		
@@ -8208,7 +8270,7 @@ interesections	intersections	3
 interesects	intersects	3		
 interesing	interesting	3		
 interesting in	interested in	3		and of;more
-interestingly enough	Consider removing this	0		
+interestingly enough	(consider removing this)	0		
 interferance	interference	3		
 interfereing	interfering	3		
 interferred	interfered	3		
@@ -8217,6 +8279,10 @@ interger	integer	3
 intergers	integers	3		
 intergrated	integrated	3		
 intergration	integration	3		
+interit	inherit	3		
+interited	inherited	3		
+interiting	inheriting	3		
+interits	inherits	3		
 interm	interim	3		
 interminable	endless	0		
 interminably	endlessly	0		
@@ -8471,7 +8537,7 @@ it has come to his attention	he has learned	0
 it has come to my attention	I have learned	0		
 it has come to our attention	we have learned	0		
 it has come to their attention	they have learned	0		
-it is a fact that	Consider removing this	0		
+it is a fact that	(consider removing this)	0		
 it is apparent that	clearly, apparently	0		
 it is crucial that	must, should	0		
 it is essential	must, need to	0		
@@ -8550,6 +8616,9 @@ it should be noted	note	0
 it this is	if this is	3		
 it would appear that	apparently	0		
 it's place	its place	3		
+Italium	Itanium, Italicum	3		
+Italium's	Itanium's, Italicum's	3		
+Italiums	Itaniums, Italicums	3		
 itialize	initialize	3		
 itialized	initialized	3		
 itializes	initializes	3		
@@ -8602,7 +8671,7 @@ just about	about	0
 just desserts	just deserts	3		
 just exactly	exactly, just	0		
 just fell off the turnip truck	naive, gullible, not very smart	2		
-just out of curiosity	Consider removing this	0		
+just out of curiosity	(consider removing this)	0		
 just recently	recently	0		
 just simply	simply	0		
 just the same as	just like	0		
@@ -8915,6 +8984,9 @@ llibraries	libraries	3
 llibrary	library	3		
 llibrary's	library's	3		
 lmits	limits	3		
+locaiton	location	3		
+locaiton's	location's	3		
+locaitons	locations	3		
 local resident	resident	1		
 local residents	residents	1		
 locatable	findable	0		
@@ -9190,6 +9262,7 @@ marryied	married	3
 marshmellow	marshmallow	3		
 marshmellows	marshmallows	3		
 mash potatoes	mashed potatoes	3		
+mashalling	marshalling	3		
 mass exodus	exodus	0		
 mass extinction	extinction	0		
 Massachusett	Massachusetts	3		
@@ -9232,6 +9305,7 @@ maximum	most, greatest	0
 maximum amount of	most, highest, maximum	0		
 maximum number of	most, highest, maximum	0		
 maximum potential	potential	1		
+maximun	maximum	3		
 maxium	maximum	3		
 may effect	may affect	3		
 may or may not	may, may not	0		
@@ -9323,6 +9397,9 @@ methodsfor	methods for	3
 meticulous	very careful	0		
 Michagan	Michigan	3		
 micoscopy	microscopy	3		
+microcontroler	microcontroller	3		
+microcontroler's	microcontroller's	3		
+microcontrolers	microcontrollers	3		
 microprocesspr	microprocessor	3		
 Microsot	Microsoft	3		
 Microsot's	Microsoft's	3		
@@ -9457,6 +9534,9 @@ mkaing	making	3
 mkea	make	3		
 mmeory	memory	3		
 mmnemonic	mnemonic	3		
+mniport	miniport	3		
+mniport's	miniport's	3		
+mniports	miniports	3		
 moderm	modem	3		
 modfied	modified	3		
 modfies	modifies	3		
@@ -9895,6 +9975,7 @@ oblivious	forgetful, clueless	0
 obliviously	forgetfully	0		
 obloquy	abuse, shame	0		
 obscured	hidden	0		
+obselete	obsolete	3		
 obsequious	fawning	0		
 obsequiously	fawningly	0		
 observe	watch	0		
@@ -9902,6 +9983,7 @@ observed	saw, seen, watched	0
 observered	observed	3		
 observes	sees, watches	0		
 observing	seeing, watching	0		
+obslete	obsolete	3		
 obssessed	obsessed	3		
 obstacal	obstacle	3		
 obstacle	problem	0		
@@ -10072,7 +10154,7 @@ on behalf of	for, backed, supported	0
 on cloud nine	exhilarated	2		
 on more than one occasion	many times, frequently	0		
 on most occasions	usually	0		
-on one hand	Consider removing this	0		
+on one hand	(consider removing this)	0		
 on or before	before	0		
 on or more	one or more	3		
 on pins and needles	nervous, on edge	2		
@@ -10148,7 +10230,10 @@ operatation	operation	3
 operate	run, use, work	0		
 operated	ran, worked	0		
 operates	runs, works	0		
+operatin	operation	3		
+operatin's	operation's	3		
 operating	running, working	0		
+operatins	operations	3		
 operational	working	0		
 opertaion	operation	3		
 opertaions	operations	3		
@@ -10268,10 +10353,10 @@ ouputting	outputting	3
 our from	our form	3		
 oustanding	outstanding	3		
 out loud	aloud	0		
-out of curiosity	Consider removing this	0		
+out of curiosity	(consider removing this)	0		
 out of the clear blue	without any warning or sign	2		
 out of the question	impossible	0		
-out of the realm of possibility	Consider removing this	0		
+out of the realm of possibility	(consider removing this)	0		
 out of the woods	away from danger	2		
 out of whack	misaligned, out of synchronization	2		
 out on a limb	in a dangerous position	2		
@@ -10418,6 +10503,9 @@ parrallel	parallel	3
 parrallell	parallel	3		
 parsimonious	stingy	0		
 parsimoniously	stingily	0		
+partameter	parameter	3		
+partameter's	parameter's	3		
+partameters	parameters	3		
 partialy	partially	3		
 participate	take part	0		
 participated	took part	0		
@@ -10975,6 +11063,9 @@ polysaccaride	polysaccharide	3
 polysaccharid	polysaccharide	3		
 pomegranite	pomegranate	3		
 pomotion	promotion	3		
+pooll	pool, poll	3		
+pooll's	pool's, poll's	3		
+poolls	pools, polls	3		
 poportional	proportional	3		
 popoulation	population	3		
 popularaty	popularity	3		
@@ -11149,6 +11240,7 @@ prepaired	prepared	3
 preparation	readiness	0		
 prepardness	preparedness	3		
 preparedness	readiness	0		
+preparesed	preparsed	3		
 prepartion	preparation	3		
 prepartions	preparations	3		
 prepatory	preparatory	3		
@@ -12339,6 +12431,11 @@ repulic	republic	3
 repulican	republican	3		
 repulicans	republicans	3		
 repulics	republics	3		
+reqeuest	request	3		
+reqeuest's	request's	3		
+reqeuested	requested	3		
+reqeuesting	requesting	3		
+reqeuests	requests	3		
 reqeust	request	3		
 reqeusted	requested	3		
 reqeusting	requesting	3		
@@ -12359,6 +12456,8 @@ requirements	needs	0
 requires	needs	0		
 requiring	needing	0		
 requirment	requirement	3		
+requirment's	requirement's	3		
+requirments	requirements	3		
 requisite	required, needed	0		
 requisites	necessities	0		
 requred	required	3		
@@ -12395,6 +12494,7 @@ reserched	researched	3
 reserches	researches	3		
 reserching	researching	3		
 reserverd	reserved	3		
+reservied	reserved	3		
 resetable	resettable	3		
 resevoir	reservoir	3		
 reside	live	0		
@@ -12596,6 +12696,9 @@ roomate's	roommate's	3
 roomates	roommates	3		
 root cause	root, cause, source	0		
 rose up	rose	1		
+rotatation	rotation	3		
+rotatation's	rotation's	3		
+rotatations	rotations	3		
 rotten to the core	corrupt	2		
 rotundity	roundness	0		
 rough draft	draft	0		
@@ -12818,6 +12921,9 @@ seesaws back and forth	seesaws	0
 seg ways	segues	3		
 segementation	segmentation	3		
 segment	part	0		
+segmentaion	segmentation	3		
+segmentaion's	segmentation's	3		
+segmentaions	segmentations	3		
 segments	parts	0		
 segregate	set apart, separate	0		
 segregated	set apart, separated	0		
@@ -13232,9 +13338,13 @@ specfies	specifies	3
 specfy	specify	3		
 specfying	specifying	3		
 special affects	special effects	3		
+specialiation	specialization	3		
+specialiation's	specialization's	3		
+specialiations	specializations	3		
 speciefied	specified	3		
 specifc	specific	3		
 specifed	specified	3		
+speciffying	specifying	3		
 specific details	details	1		
 specificatin	specification	3		
 specificaton	specification	3		
@@ -13322,6 +13432,7 @@ standing in need of	needing	0
 standing in the way of	impeding, blocking	0		
 stands in need of	needs	0		
 stands in the way of	impedes, blocks	0		
+standstand	standard	3		
 stange	strange	3		
 staring point	starting point	3		
 start a dialogue	speak, discuss, talk	0		
@@ -13469,6 +13580,8 @@ strnad	strand	3
 strong as an ox	very strong	2		
 struck while the iron is hot	took action during favorable conditions	2		
 structual	structural	3		
+structureare	structure are	3		
+structuresare	structure are	3		
 strung along	deceived	2		
 stubborn as a mule	very stubborn	2		
 stubborness	stubbornness	3		
@@ -13478,6 +13591,9 @@ stuck my neck out	took a risk	2
 stuck our necks out	took a risk	2		
 stuck their necks out	took a risk	2		
 stuck your neck out	took a risk	2		
+stuct	struct	3		
+stuct's	struct's	3		
+stucts	structs	3		
 stucture	structure	3		
 stucture's	structure's	3		
 stuctured	structured	3		
@@ -13668,6 +13784,7 @@ suppied	supplied	3
 suppies	supplies	3		
 supplamented	supplemented	3		
 supplemental	added, extra	0		
+supplieid	supplied	3		
 suppliementing	supplementing	3		
 supplment	supplement	3		
 supplmented	supplemented	3		
@@ -13788,6 +13905,9 @@ synax	syntax	3
 synchonized	synchronized	3		
 synchonizes	synchronizes	3		
 synchonously	synchronously	3		
+syncrhonization	synchronization	3		
+syncrhonization's	synchronization's	3		
+syncrhonizations	synchronizations	3		
 syncronization	synchronization	3		
 syncronize	synchronize	3		
 syncronizing	synchronizing	3		
@@ -13985,6 +14105,7 @@ testing out	testing	0
 testomony	testimony	3		
 tests out	tests	0		
 tghe	the	3		
+tha	that	3		
 thank your for	thank you for	3		
 thansk	thanks	3		
 thas	that	3		
@@ -14011,25 +14132,25 @@ the buck stops here	I accept responsibility	2
 the calculate value	the calculated value	3		
 the calculate values	the calculated values	3		
 the chips are down	the situation is grim	2		
-the city of	Consider removing this	0		
+the city of	(consider removing this)	0		
 the coast is clear	the path is clear	2		
-the concept of	Consider removing this	0		
-the country of	Consider removing this	0		
+the concept of	(consider removing this)	0		
+the country of	(consider removing this)	0		
 the cream of the crop	the best choice	2		
-the date of	Consider removing this	0		
+the date of	(consider removing this)	0		
 the degree to which	how far, how much	0		
 the extent to which	how far, how much	0		
 the fact of the matter is	in fact	0		
 the fact that	that	0		
 the flew	the flue	3		
-the from	the form	3		a;address;argument;button;clause;command;email;field;file;header;instruction;parameter;reference;statement;the
+the from	the form	3		a;address;argument;button;clause;command;email;field;file;header;instruction;page;parameter;reference;statement;the
 the have	they have, then have	3		
 the heart of the matter	crux, center	0		
 the hers	(strike one of these)	3		
 the his	(strike one of these)	3		
 the ins and outs	details	0		
 the interesting thing is	interestingly	0		
-the issue of	Consider removing this	0		
+the issue of	(consider removing this)	0		
 the its	(strike one of these)	3		department;help;office;service
 the last laugh	to unexpectedly win at the last moment	2		
 the length of time	the time	0		
@@ -14040,31 +14161,31 @@ the manner by which	how	0
 the means by which	how	0		
 the month of	(omit)	0		
 the only on	the only one	3		
-the or	or, the ore	3		boolean;button;buttons;operation;operator
+the or	or, the ore	3		boolean;button;buttons;gate;gates;operation;operations;operator;operators
 the other way around	the opposite	0		
 the passage of time	time	0		
 the possibility exists for	may, might, can, could	0		
-the practice of	Consider removing this	0		
-the presence of	Consider removing this	0		
-the problem of	Consider removing this	0		
-the process of	Consider removing this	0		
+the practice of	(consider removing this)	0		
+the presence of	(consider removing this)	0		
+the problem of	(consider removing this)	0		
+the process of	(consider removing this)	0		
 the question as to whether	the question, whether	0		
-the question of	Consider removing this	0		
-the reality of	Consider removing this	0		
-the realm of	Consider removing this	0		
+the question of	(consider removing this)	0		
+the reality of	(consider removing this)	0		
+the realm of	(consider removing this)	0		
 the reason for	because, since, why	0		
 the reason why is that	because	0		
 the responds	the response	3		
-the role of	Consider removing this	0		
+the role of	(consider removing this)	0		
 the same thing	the same	0		
-the scale of	Consider removing this	0		
-the scope of	Consider removing this	0		
+the scale of	(consider removing this)	0		
+the scope of	(consider removing this)	0		
 the shoe is on the other foot	the situation has reversed	2		
 the simple fact of the matter is	in fact	0		
 the single best	the best	0		
 the sky's the limit	there is no limit	2		
-the space of	Consider removing this	0		
-the state of	Consider removing this	0		
+the space of	(consider removing this)	0		
+the state of	(consider removing this)	0		
 the sum of	all	0		
 the them	(strike one of these)	3		
 the these	(strike one of these)	3		
@@ -14072,7 +14193,7 @@ the they	(strike one of these)	3
 the third degree	rough interrogation	2		
 the this	(strike one of these), or a comma may be needed between them	3		automatic;keyword;object;object's;pointer;pointer's;reference
 the time will come when	in due time, in time	0		
-the topic of	Consider removing this	0		
+the topic of	(consider removing this)	0		
 the total of	all	0		each
 the truth is	actually	0		
 the truth of the matter is	actually, in fact	0		
@@ -14100,6 +14221,7 @@ their are	there are	3
 their from	their form	3		
 their is	there is	3		
 theives	thieves	3		
+themby	them by	3		
 themselfs	themselves	3		
 themslves	themselves	3		
 then and only then	only then	0		
@@ -14143,6 +14265,7 @@ theyre	they're	3
 thgat	that	3		
 thge	the	3		
 thhis	this	3		
+thiat	that	3		
 thick as thieves	intimate, close	2		
 thie	the	3		
 thier	their	3		
@@ -14318,10 +14441,10 @@ to some extent	in a sense, somewhat, partly	0
 to soon	too soon	3	have	
 to start with	first	0		
 to such an extent	so much	0		
-to take this opportunity	Consider removing this	0		
+to take this opportunity	(consider removing this)	0		
 to tell you the truth	frankly, honestly, actually	0		
 to the contrary	however, but, rather	0		
-to the tune of	Consider removing this	0		
+to the tune of	(consider removing this)	0		
 to what degree	how much, how far	0		
 to what extent	how much, how far	0		
 to what length	how much, how far	0		
@@ -14537,7 +14660,12 @@ tribulations	troubles	0
 tributaries	rivers	0		
 tributary	river	0		
 tributary's	river's	0		
+triger	trigger	3		
+triger's	trigger's	3		
+trigered	triggered	3		
+trigering	triggering	3		
 trigerring	triggering	3		
+trigers	triggers	3		
 triguered	triggered	3		
 triologies	trilogies	3		
 triology	trilogy	3		
@@ -14676,6 +14804,7 @@ unexected	unexpected	3
 unexepcted	unexpected	3		
 unexpected surprise	surprise	1		
 unexpected surprises	surprises	1		
+unexpectly	unexpectedly	3		
 unfaltering	firm, steadfast	0		
 unfalteringly	firmly, steadfastly	0		
 unfamiliar	unknown	0		
@@ -14753,6 +14882,7 @@ unsing	using, unsung	3
 unsinged	unsigned	3		
 unsolved mysteries	mysteries	1		
 unsolved mystery	mystery	1		
+unspecificed	unspecified	3		
 unspported	unsupported	3		
 unsual	unusual	3		
 unsubstanciated	unsubstantiated	3		
@@ -14926,6 +15056,7 @@ valuble	valuable	3
 valud	valid	3		
 value	cost, worth	0		
 valueable	valuable	3		
+valuess	values	3		
 varable	variable	3		
 varables	variables	3		
 varations	variations	3		
@@ -15378,6 +15509,7 @@ whip cream	whipped cream	3
 whish	wish	3		
 whith	with	3		
 whithout	without	3		
+whitspace	whitespace	3		
 whlch	which	3		
 whn	when	3		
 who than	who then	3		

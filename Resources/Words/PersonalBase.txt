@@ -3643,6 +3643,7 @@ Caralee
 Caralie
 Caralyn
 Caravaggio
+Caraveo
 Carden
 Cardeña
 Cardimen
@@ -8458,6 +8459,7 @@ Gervasia
 Gerwig
 Gery
 Gesell
+Gesher
 Gessica
 Gessner
 Gesualdo
@@ -13067,6 +13069,7 @@ La'Angel
 La'youn
 Laan
 Laban
+Labenski
 LaBerge
 LaBranche
 Labreana
@@ -16350,6 +16353,7 @@ Nadyenka
 Naegele
 Naeva
 Nagelkerke
+Nagle
 Nagorno-Karabakh
 Nagy
 Nahla
@@ -17680,6 +17684,7 @@ Plath
 Plato
 Platt
 Pleiades
+Plessey
 Pleyel
 Ploeger
 Ploubidis
@@ -21195,6 +21200,7 @@ Telvin
 Temnyak
 Tempany
 Templeton
+Tenenhaus
 Tenesha
 Teneyuque
 Tenille
@@ -21502,6 +21508,7 @@ Tobye
 Tocarra
 Tod
 Todd
+Toeplitz
 Toft
 Togar
 Togo
