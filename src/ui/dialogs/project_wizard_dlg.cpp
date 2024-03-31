@@ -32,7 +32,6 @@ wxBEGIN_EVENT_TABLE(ProjectWizardDlg, wxDialog)
     EVT_BUTTON(ProjectWizardDlg::ID_WEB_PAGE_BROWSE_BUTTON, ProjectWizardDlg::OnAddWebPageButtonClick)
     EVT_BUTTON(ProjectWizardDlg::ID_ARCHIVE_FILE_BROWSE_BUTTON, ProjectWizardDlg::OnAddArchiveFileButtonClick)
     EVT_BUTTON(ProjectWizardDlg::ID_SPREADSHEET_FILE_BROWSE_BUTTON, ProjectWizardDlg::OnAddSpreadsheetFileButtonClick)
-    EVT_CHECKBOX(ProjectWizardDlg::ID_RANDOM_SAMPLE_CHECK, ProjectWizardDlg::OnRandomSampleCheck)
     EVT_BUTTON(ProjectWizardDlg::ID_ADD_FILE_BUTTON, ProjectWizardDlg::OnAddToListClick)
     EVT_BUTTON(ProjectWizardDlg::ID_DELETE_FILE_BUTTON, ProjectWizardDlg::OnDeleteFromListClick)
 wxEND_EVENT_TABLE()
@@ -153,6 +152,8 @@ ProjectWizardDlg::ProjectWizardDlg(wxWindow* parent, const ProjectType projectTy
         ParagraphParse::EachNewLineIsAParagraph);
 
     Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnGroupClick, this, ProjectWizardDlg::ID_GROUP_BUTTON);
+    Bind(wxEVT_CHECKBOX, &ProjectWizardDlg::OnRandomSampleCheck, this,
+         ProjectWizardDlg::ID_RANDOM_SAMPLE_CHECK);
     }
 
 //-------------------------------------------------------------
@@ -186,7 +187,7 @@ void ProjectWizardDlg::CreateControls()
         Banner* banner = new Banner(
             page, wxID_ANY,
             wxArtProvider::GetBitmap(L"ID_DOCUMENT", wxART_BUTTON, FromDIP(wxSize(32, 32))),
-            _(L"Select Your Document"));
+            _(L"Select Document"));
         optionsSizer->Add(banner, 0, wxEXPAND | wxBOTTOM, wxSizerFlags::GetDefaultBorder());
 
         // select the language
@@ -281,7 +282,7 @@ void ProjectWizardDlg::CreateControls()
         Banner* banner = new Banner(
             page, wxID_ANY,
             wxArtProvider::GetBitmap(L"ID_DOCUMENT", wxART_BUTTON, FromDIP(wxSize(32, 32))),
-            _(L"Select Your Documents"));
+            _(L"Select Documents"));
         optionsSizer->Add(banner, 0, wxEXPAND | wxBOTTOM, wxSizerFlags::GetDefaultBorder());
 
         // select the language
@@ -422,7 +423,7 @@ void ProjectWizardDlg::CreateControls()
         m_isRandomSampling->SetValue(false);
 
         m_randPercentageCtrl = new wxSpinCtrl(
-            page, wxID_ANY,
+            page, ID_RANDOM_SAMPLE_SPIN,
             std::to_wstring(wxGetApp().GetAppOptions().GetBatchRandomSamplingSize()));
         m_randPercentageCtrl->SetRange(1, 100);
         m_randPercentageCtrl->Enable(false);
