@@ -47,8 +47,8 @@ void UrlWithNumericSequence::ParseSequenceNumber()
         Reset();
         return;
         }
-    wchar_t* end = nullptr;
-    m_numeric_value = ::wxStrtol(m_string.wc_str() + m_number_start, &end, 10);
+    wchar_t* end{ nullptr };
+    m_numeric_value = std::wcstol(m_string.wc_str() + m_number_start, &end, 10);
     m_numeric_width = end - (m_string.wc_str() + m_number_start);
     // no number was found (this should not happen at this point)
     if (m_numeric_width == 0)
