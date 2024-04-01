@@ -124,7 +124,7 @@ void WebHarvesterDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
 //-------------------------------------------------------------
 void WebHarvesterDlg::OnAddUrlClick([[maybe_unused]] wxCommandEvent& event)
     {
-    if (m_urlList)
+    if (m_urlList != nullptr)
         {
         m_urlList->AddRow();
         m_urlList->EditItem(m_urlList->GetItemCount() - 1, 0);
@@ -134,20 +134,16 @@ void WebHarvesterDlg::OnAddUrlClick([[maybe_unused]] wxCommandEvent& event)
 //-------------------------------------------------------------
 void WebHarvesterDlg::OnDeleteUrlClick([[maybe_unused]] wxCommandEvent& event)
     {
-    if (m_urlList)
+    if (m_urlList != nullptr)
         {
-        const long selected = m_urlList->GetFirstSelected();
-        if (selected != wxNOT_FOUND)
-            {
-            m_urlList->DeleteItem(selected);
-            }
+        m_urlList->DeleteSelectedItems();
         }
     }
 
 //-------------------------------------------------------------
 void WebHarvesterDlg::OnAddDomainClick([[maybe_unused]] wxCommandEvent& event)
     {
-    if (m_domainList)
+    if (m_domainList != nullptr)
         {
         m_domainList->AddRow();
         m_domainList->EditItem(m_domainList->GetItemCount() - 1, 0);
@@ -157,13 +153,9 @@ void WebHarvesterDlg::OnAddDomainClick([[maybe_unused]] wxCommandEvent& event)
 //-------------------------------------------------------------
 void WebHarvesterDlg::OnDeleteDomainClick([[maybe_unused]] wxCommandEvent& event)
     {
-    if (m_domainList)
+    if (m_domainList != nullptr)
         {
-        const long selected = m_domainList->GetFirstSelected();
-        if (selected != wxNOT_FOUND)
-            {
-            m_domainList->DeleteItem(selected);
-            }
+        m_domainList->DeleteSelectedItems();
         }
     }
 
