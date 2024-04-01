@@ -825,6 +825,21 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
         }
     else if (IsKnownRegularFileExtension(fileExt.wc_str()))
         {
+        // Some JPG links are actually HTML pages being used as a gallery of sorts
+        // for a JPG, so treat it as such if the MIME type indicates that.
+        if (fileExt.CmpNoCase(L"jpg") == 0 || fileExt.CmpNoCase(L"jpeg") == 0)
+            {
+            int rCode{ 0 };
+            const wxString actualFileType =
+                GetFileTypeFromContentType(GetContentType(fullUrl, rCode));
+            if (actualFileType.CmpNoCase(L"html") == 0)
+                {
+                pageIsHtml = true;
+                fileExt = actualFileType;
+                wxLogVerbose(L"'%s': JPG is really HTML; will be crawled as such.", fullUrl);
+                }
+            }
+
         // sometimes pages with a certain file extension are really HTML pages,
         // so crawl if necessary
         if (pageIsHtml)
