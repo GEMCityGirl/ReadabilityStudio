@@ -538,6 +538,9 @@ admonishing	warning	0
 admonition	warning	0		
 adn	and	3		
 adolecent	adolescent	3		
+adpater	adapter	3		
+adpater's	adapter's	3		
+adpaters	adapters	3		
 adquire	acquire	3		
 adquired	acquired	3		
 adquires	acquires	3		
@@ -4795,6 +4798,7 @@ disclosing	showing	0
 disclosoure	disclosure	3		
 disclosoure's	disclosure's	3		
 disclosoures	disclosures	3		
+disclosurecs	disclosures	3		
 disconnected	undone	0		
 discontented	uneasy	0		
 discontiguities	discontinuities	3		
@@ -6253,6 +6257,7 @@ fetched	got	0
 fetches	gets	0		
 fetching	getting	0		
 few and far between	few, meager, scare	0		
+fianceé	fiancée (female), fiancé (male)	3		
 fianite	finite	3		
 fianlly	finally	3		
 ficticious	fictitious	3		
@@ -10454,6 +10459,8 @@ paleolitic	paleolithic	3
 palete	palette	3		
 pallete	palette	3		
 pallette	palette	3		
+pallette's	palette's	3		
+pallettes	palettes	3		
 pamflet	pamphlet	3		
 pamplet	pamphlet	3		
 panacea	cure-all	0		
@@ -11287,6 +11294,7 @@ prevaricating	lying, evading, shifting	0
 prevelant	prevalent	3		
 preventative	preventive	0		
 preverse	perverse	3		
+previoulsy	previously	3		
 previous	earlier	0		
 previous accomplishment	accomplishment	0		
 previous accomplishments	accomplishments	0		
@@ -13547,6 +13555,11 @@ strategies	plans	0
 strategy	plan	0		
 strategy's	plan's	0		
 stratifications	layers	0		
+strcuture	structure	3		
+strcuture's	structure's	3		
+strcutured	structured	3		
+strcutures	structures	3		
+strcuturing	structuring	3		
 streemlining	streamlining	3		
 street smarts	worldly wisdom	2		
 stregth	strength	3		
@@ -13644,6 +13657,9 @@ subract	subtract	3
 subracted	subtracted	3		
 subracting	subtracting	3		
 subracts	subtracts	3		
+subresouce	subresource	3		
+subresouce's	subresource's	3		
+subresouces	subresources	3		
 subseqent	subsequent	3		
 subsequent	later, next	0		
 subsequent to	after, afterward, later, next, since, then, following	0		
@@ -13791,6 +13807,7 @@ supplmented	supplemented	3
 supplmenting	supplementing	3		
 supplments	supplements	3		
 suppoed	supposed	3		
+suppoorted	supported	3		
 suppored	supported	3		
 supportin	supporting	3		
 suppose to	supposed to	3		
@@ -14729,6 +14746,7 @@ Ubunutu's	Ubuntu's	3
 uesd	used	3		
 ugly as sin	extremely ugly, repulsive	2		
 uise	use	3		
+uisng	using	3		
 uknown	unknown	3		
 uless	unless	3		
 ulterior	hidden	0		
@@ -15057,6 +15075,7 @@ valud	valid	3
 value	cost, worth	0		
 valueable	valuable	3		
 valuess	values	3		
+valuse	values	3		
 varable	variable	3		
 varables	variables	3		
 varations	variations	3		
