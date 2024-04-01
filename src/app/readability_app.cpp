@@ -5372,6 +5372,11 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
     // (only enabled if user holds down SHIFT key to see hidden interface)
     if (webHarvestDlg.GetRawHtmlPage().length())
         {
+        // Turn off domain restriction temporarily because if we are grabbing links
+        // from a block of HTML, then there is no starting domain.
+        const auto dResBak = wxGetApp().GetWebHarvester().GetDomainRestriction();
+        wxGetApp().GetWebHarvester().SetDomainRestriction(
+            WebHarvester::DomainRestriction::NotRestricted);
         wxGetApp().GetWebHarvester().SetUrl(webHarvestDlg.GetRawHtmlPage());
         wxGetApp().GetWebHarvester().AttemptToCrawlFromRawHtml(true);
         webHarvestDlg.UpdateHarvesterSettings(wxGetApp().GetWebHarvester());
@@ -5382,11 +5387,14 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
             }
         // this feature is not commonly used, so turn it back off
         wxGetApp().GetWebHarvester().AttemptToCrawlFromRawHtml(false);
+        wxGetApp().GetWebHarvester().SetDomainRestriction(dResBak);
         }
 
     // update global internet options that mirror the same options from the dialog
-    wxGetApp().GetWebHarvester().DisablePeerVerify(webHarvestDlg.IsPeerVerifyDisabled()),
+    wxGetApp().GetWebHarvester().DisablePeerVerify(webHarvestDlg.IsPeerVerifyDisabled());
+    wxGetApp().GetAppOptions().DisablePeerVerify(webHarvestDlg.IsPeerVerifyDisabled());
     wxGetApp().GetWebHarvester().SetUserAgent(webHarvestDlg.GetUserAgent());
+    wxGetApp().GetAppOptions().SetUserAgent(webHarvestDlg.GetUserAgent());
     wxGetApp().GetWebHarvester().SetMinimumDownloadFileSizeInKilobytes(
         webHarvestDlg.GetMinimumDownloadFileSizeInKilobytes());
 
