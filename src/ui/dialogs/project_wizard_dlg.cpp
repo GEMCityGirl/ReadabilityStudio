@@ -12,28 +12,7 @@ wxDECLARE_APP(ReadabilityApp);
 
 // clang-format off
 wxBEGIN_EVENT_TABLE(ProjectWizardDlg, wxDialog)
-    EVT_HELP(wxID_ANY, ProjectWizardDlg::OnContextHelp)
-    EVT_BUTTON(wxID_HELP, ProjectWizardDlg::OnHelp)
-    EVT_BUTTON(wxID_FORWARD, ProjectWizardDlg::OnNavigate)
-    EVT_BUTTON(wxID_BACKWARD, ProjectWizardDlg::OnNavigate)
-    EVT_BUTTON(wxID_OK, ProjectWizardDlg::OnOK)
-    EVT_BUTTON(ProjectWizardDlg::ID_FILE_BROWSE_BUTTON, ProjectWizardDlg::OnFileBrowseButtonClick)
-    EVT_CHOICE(ProjectWizardDlg::LANGUAGE_BUTTON, ProjectWizardDlg::OnLanguageChanged)
-    EVT_RADIOBUTTON(ProjectWizardDlg::ID_FROM_FILE_BUTTON, ProjectWizardDlg::OnSourceRadioChange)
-    EVT_RADIOBUTTON(ProjectWizardDlg::ID_MANUALLY_ENTERED_TEXT_BUTTON, ProjectWizardDlg::OnSourceRadioChange)
-    EVT_BUTTON(ProjectWizardDlg::NARRATIVE_WITH_ILLUSTRATIONS_LINK_ID, ProjectWizardDlg::OnButtonClick)
-    EVT_BUTTON(ProjectWizardDlg::FRAGMENTED_LINK_ID, ProjectWizardDlg::OnButtonClick)
-    EVT_BUTTON(ProjectWizardDlg::CENTERED_TEXT_LINK_ID, ProjectWizardDlg::OnButtonClick)
-    EVT_RADIOBOX(ProjectWizardDlg::TEST_SELECT_METHOD_BUTTON, ProjectWizardDlg::OnTestSelectionMethodChanged)
     EVT_SIDEBARBOOK_PAGE_CHANGED(wxID_ANY, ProjectWizardDlg::OnPageChange)
-    EVT_BUTTON(ProjectWizardDlg::ID_BATCH_FOLDER_BROWSE_BUTTON, ProjectWizardDlg::OnAddFolderButtonClick)
-    EVT_BUTTON(ProjectWizardDlg::ID_BATCH_FILE_BROWSE_BUTTON, ProjectWizardDlg::OnAddFileButtonClick)
-    EVT_BUTTON(ProjectWizardDlg::ID_WEB_PAGES_BROWSE_BUTTON, ProjectWizardDlg::OnAddWebPagesButtonClick)
-    EVT_BUTTON(ProjectWizardDlg::ID_WEB_PAGE_BROWSE_BUTTON, ProjectWizardDlg::OnAddWebPageButtonClick)
-    EVT_BUTTON(ProjectWizardDlg::ID_ARCHIVE_FILE_BROWSE_BUTTON, ProjectWizardDlg::OnAddArchiveFileButtonClick)
-    EVT_BUTTON(ProjectWizardDlg::ID_SPREADSHEET_FILE_BROWSE_BUTTON, ProjectWizardDlg::OnAddSpreadsheetFileButtonClick)
-    EVT_BUTTON(ProjectWizardDlg::ID_ADD_FILE_BUTTON, ProjectWizardDlg::OnAddToListClick)
-    EVT_BUTTON(ProjectWizardDlg::ID_DELETE_FILE_BUTTON, ProjectWizardDlg::OnDeleteFromListClick)
 wxEND_EVENT_TABLE()
 // clang-format on
 
@@ -152,8 +131,47 @@ ProjectWizardDlg::ProjectWizardDlg(wxWindow* parent, const ProjectType projectTy
         ParagraphParse::EachNewLineIsAParagraph);
 
     Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnGroupClick, this, ProjectWizardDlg::ID_GROUP_BUTTON);
+    Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnHelp, this, wxID_HELP);
+    Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnNavigate, this, wxID_FORWARD);
+    Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnNavigate, this, wxID_BACKWARD);
+    Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnOK, this, wxID_OK);
+    Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnFileBrowseButtonClick, this,
+        ProjectWizardDlg::ID_FILE_BROWSE_BUTTON);
+    Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnButtonClick, this,
+        ProjectWizardDlg::NARRATIVE_WITH_ILLUSTRATIONS_LINK_ID);
+    Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnButtonClick, this,
+        ProjectWizardDlg::FRAGMENTED_LINK_ID);
+    Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnButtonClick, this,
+        ProjectWizardDlg::CENTERED_TEXT_LINK_ID);
+    Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnAddFolderButtonClick, this,
+        ProjectWizardDlg::ID_BATCH_FOLDER_BROWSE_BUTTON);
+    Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnAddFileButtonClick, this,
+        ProjectWizardDlg::ID_BATCH_FILE_BROWSE_BUTTON);
+    Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnAddWebPagesButtonClick, this,
+        ProjectWizardDlg::ID_WEB_PAGES_BROWSE_BUTTON);
+    Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnAddWebPageButtonClick, this,
+        ProjectWizardDlg::ID_WEB_PAGE_BROWSE_BUTTON);
+    Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnAddArchiveFileButtonClick, this,
+        ProjectWizardDlg::ID_ARCHIVE_FILE_BROWSE_BUTTON);
+    Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnAddSpreadsheetFileButtonClick, this,
+        ProjectWizardDlg::ID_SPREADSHEET_FILE_BROWSE_BUTTON);
+    Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnAddToListClick, this,
+        ProjectWizardDlg::ID_ADD_FILE_BUTTON);
+    Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnDeleteFromListClick, this,
+        ProjectWizardDlg::ID_DELETE_FILE_BUTTON);
+
     Bind(wxEVT_CHECKBOX, &ProjectWizardDlg::OnRandomSampleCheck, this,
          ProjectWizardDlg::ID_RANDOM_SAMPLE_CHECK);
+    Bind(wxEVT_CHOICE, &ProjectWizardDlg::OnLanguageChanged, this,
+        ProjectWizardDlg::LANGUAGE_BUTTON);
+    Bind(wxEVT_RADIOBUTTON, &ProjectWizardDlg::OnSourceRadioChange, this,
+        ProjectWizardDlg::ID_FROM_FILE_BUTTON);
+    Bind(wxEVT_RADIOBUTTON, &ProjectWizardDlg::OnSourceRadioChange, this,
+        ProjectWizardDlg::ID_MANUALLY_ENTERED_TEXT_BUTTON);
+    Bind(wxEVT_RADIOBOX, &ProjectWizardDlg::OnTestSelectionMethodChanged, this,
+        ProjectWizardDlg::TEST_SELECT_METHOD_BUTTON);
+
+    Bind(wxEVT_HELP, &ProjectWizardDlg::OnContextHelp, this);
     }
 
 //-------------------------------------------------------------
