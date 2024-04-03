@@ -149,6 +149,11 @@ Cancel editing item                     `r keys('Esc')`
 
 Add an item                             `r keys(c('Ctrl','Ins'))` (`r os_logo('windows')`) or<br>\linebreak
                                         `r keys(c('\\cmd','Ins'))` (`r os_logo('apple')`)
+
+&nbsp;                                  &nbsp;
+
+Group selected items<br>\linebreak      `r keys(c('Ctrl','G'))` (`r os_logo('windows')`) or<br>\linebreak
+(batch project wizard file list)        `r keys(c('\\cmd','G'))` (`r os_logo('apple')`)
 ------------------------------------------------------------------------------------------------
 :::
 

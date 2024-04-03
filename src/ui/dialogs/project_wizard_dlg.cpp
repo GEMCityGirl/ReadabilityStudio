@@ -172,6 +172,19 @@ ProjectWizardDlg::ProjectWizardDlg(wxWindow* parent, const ProjectType projectTy
         ProjectWizardDlg::TEST_SELECT_METHOD_BUTTON);
 
     Bind(wxEVT_HELP, &ProjectWizardDlg::OnContextHelp, this);
+
+    Bind(
+        wxEVT_CHAR_HOOK,
+        [this](wxKeyEvent& event)
+            {
+            if (event.ControlDown() && event.GetKeyCode() == L'G')
+                {
+                wxRibbonButtonBarEvent dummyEvt;
+                OnGroupClick(dummyEvt);
+                }
+            event.Skip(true);
+            },
+        wxID_ANY);
     }
 
 //-------------------------------------------------------------
