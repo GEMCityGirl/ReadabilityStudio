@@ -215,7 +215,9 @@ namespace LuaScripting
         // ListType Which list to save.
         // FilePath The file path to save the list.
         int ExportList(lua_State* L);
-        // Saves a copy of the project's document with excluded text (and other optional items) filtered out.
+        // Saves a copy of the project's document with excluded text
+        // (and other optional items) filtered out.
+        // cppcheck-suppress functionConst
         int ExportFilteredText(lua_State* L);
         /*Sorts a list.
         ListToSort The list window to sort. Refer to ListTypes enumeration.
