@@ -52,24 +52,24 @@ EditTextDlg::EditTextDlg(wxWindow* parent, BaseProjectDoc* parentDoc, wxString v
             if (event.ControlDown() && event.GetKeyCode() == L'S')
                 {
                 wxRibbonButtonBarEvent dummyEvt;
-                EditTextDlg::OnSaveButton(dummyEvt);
+                OnSaveButton(dummyEvt);
                 }
             else if (event.ControlDown() && event.GetKeyCode() == L'F')
                 {
                 wxFindDialogEvent dummyEvt;
-                EditTextDlg::OnShowFindDialog(dummyEvt);
+                OnShowFindDialog(dummyEvt);
                 }
             else if (event.ControlDown() && event.GetKeyCode() == L'H')
                 {
                 wxFindDialogEvent dummyEvt;
-                EditTextDlg::OnShowReplaceDialog(dummyEvt);
+                OnShowReplaceDialog(dummyEvt);
                 }
             else if (event.GetKeyCode() == WXK_F3)
                 {
                 wxFindDialogEvent evt{ wxEVT_FIND_NEXT };
                 evt.SetFindString(m_findData.GetFindString());
                 evt.SetFlags(m_findData.GetFlags());
-                EditTextDlg::OnFindDialog(evt);
+                OnFindDialog(evt);
                 }
             else if (event.ControlDown() && event.ShiftDown() && event.GetKeyCode() == L';')
                 {
