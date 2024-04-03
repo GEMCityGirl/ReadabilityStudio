@@ -54,6 +54,7 @@ UMDF
 UMN
 unary
 unary_negate
+URB
 USB
 USC
 USHORT

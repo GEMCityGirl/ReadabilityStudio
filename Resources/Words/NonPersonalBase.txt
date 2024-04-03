@@ -2742,6 +2742,7 @@ Instaworld
 Instron
 InStyle
 Insureon
+Intellifont
 IntelliSense
 Intelsat
 Intercoiffure
@@ -5123,6 +5124,7 @@ Sophoclean
 Sorrentine
 Soulaines
 Soundcloud
+Soundwire
 Southampton
 Southcentral
 Southfield
@@ -5543,6 +5545,7 @@ Titleist
 Titusville
 TiVo
 Tlaxcala
+Toastmon
 Tobaccoville
 Tobago
 Tobruk
