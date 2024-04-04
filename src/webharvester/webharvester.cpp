@@ -271,10 +271,17 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
     const wxString webFileExt = wxFileName(downloadPath).GetExt();
     if (webFileExt.empty() || webFileExt.length() > 4)
         {
-        int rCode{ 0 };
+        int rCode{ 200 };
         const wxString downloadExt = StripIllegalFileCharacters(
             fileExtension.length() ? fileExtension :
                                      GetFileTypeFromContentType(GetContentType(Url, rCode)));
+        // If we needed to connect to the page to get its MIME type, then check the response
+        // code while we are at it. Bail early if we got a bad response (or timed out).
+        if (fileExtension.empty() && QueueDownload::IsBadResponseCode(rCode))
+            {
+            wxLogVerbose(L"'%s': bad response from web page; unable to download", Url);
+            return wxString{};
+            }
         downloadPath += L'.' + downloadExt;
         }
     else if (html_utilities::html_url_format::is_url_top_level_domain(Url.wc_str()))
@@ -506,7 +513,7 @@ bool WebHarvester::ReadWebPage(wxString& Url, wxString& webPageContent, wxString
     }
 
 //----------------------------------
-bool WebHarvester::IsPageHtml(wxString& Url, wxString& contentType)
+bool WebHarvester::IsPageHtml(wxString& Url, wxString& contentType, int& responseCode)
     {
     contentType.clear();
     if (Url.empty())
@@ -514,7 +521,6 @@ bool WebHarvester::IsPageHtml(wxString& Url, wxString& contentType)
         return false;
         }
 
-    int responseCode{ 0 };
     contentType = GetContentType(Url, responseCode);
     if (contentType.empty())
         {
@@ -562,14 +568,14 @@ bool WebHarvester::CrawlLinks()
     CrawlLinks(m_url, html_utilities::hyperlink_parse::hyperlink_parse_method::html);
 
     // Now check the original URL to see if it is a file that should be downloaded
-    int responseCode{ 0 };
+    int responseCode{ 200 };
     const wxString fnExt = wxFileName(m_url).GetExt();
     const wxString fileExt =
         fnExt.length() ? fnExt : GetFileTypeFromContentType(GetContentType(m_url, responseCode));
     wxString contentType;
     // Add the link to files to download if it matches our criteria
     if (!HasUrlAlreadyBeenHarvested(m_url) &&
-        ((m_harvestAllHtml && IsPageHtml(m_url, contentType)) || ShouldFileBeHarvested(fileExt)))
+        ((m_harvestAllHtml && IsPageHtml(m_url, contentType, responseCode)) || ShouldFileBeHarvested(fileExt)))
         {
         HarvestLink(m_url, m_url, fileExt);
         }
@@ -615,6 +621,8 @@ bool WebHarvester::CrawlLinks(wxString& url,
         if (!ReadWebPage(url, fileText, contentType, statusText, responseCode, true))
             {
             --m_currentLevel;
+            // don't bother trying to crawl this later if it failed
+            m_alreadyCrawledFiles.insert(url);
             return false;
             }
         }
@@ -753,11 +761,16 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
     // but it's a nice way to get a list of broken links from a site
     if (IsSearchingForBrokenLinks())
         {
-        int responseCode{ 0 };
+        int responseCode{ 200 };
         GetContentType(fullUrl, responseCode);
         if (responseCode == 404)
             {
             m_brokenLinks.emplace(std::make_pair(fullUrl, mainUrl));
+            }
+        if (QueueDownload::IsBadResponseCode(responseCode))
+            {
+            wxLogVerbose(L"'%s': bad response from web page; unable to crawl page", fullUrl);
+            return;
             }
         }
 
@@ -779,8 +792,13 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
             }
         else
             {
-            int rCode{ 0 };
-            fileExt = GetFileTypeFromContentType(GetContentType(fullUrl, rCode));
+            int responseCode{ 200 };
+            fileExt = GetFileTypeFromContentType(GetContentType(fullUrl, responseCode));
+            if (QueueDownload::IsBadResponseCode(responseCode))
+                {
+                wxLogVerbose(L"'%s': bad response from web page; unable to crawl page", fullUrl);
+                return;
+                }
             }
         }
 
@@ -806,7 +824,13 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
         }
     else
         {
-        pageIsHtml = IsPageHtml(fullUrl, contentType);
+        int responseCode{ 200 };
+        pageIsHtml = IsPageHtml(fullUrl, contentType, responseCode);
+        if (QueueDownload::IsBadResponseCode(responseCode))
+            {
+            wxLogVerbose(L"'%s': bad response from web page; unable to crawl page", fullUrl);
+            return;
+            }
         }
 
     html_utilities::html_url_format formatCurrentUrl(fullUrl.wc_str());
@@ -829,9 +853,14 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
         // for a JPG, so treat it as such if the MIME type indicates that.
         if (fileExt.CmpNoCase(L"jpg") == 0 || fileExt.CmpNoCase(L"jpeg") == 0)
             {
-            int rCode{ 0 };
+            int responseCode{ 200 };
             const wxString actualFileType =
-                GetFileTypeFromContentType(GetContentType(fullUrl, rCode));
+                GetFileTypeFromContentType(GetContentType(fullUrl, responseCode));
+            if (QueueDownload::IsBadResponseCode(responseCode))
+                {
+                wxLogVerbose(L"'%s': bad response from web page; unable to crawl page", fullUrl);
+                return;
+                }
             if (actualFileType.CmpNoCase(L"html") == 0)
                 {
                 pageIsHtml = true;

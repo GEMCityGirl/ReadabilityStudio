@@ -322,9 +322,10 @@ class WebHarvester
 
     /** @returns @c true if a link is pointing to an HTML page.
         @param[in,out] Url The link to test (may be redirected).
-        @param[out] contentType The MIME type read from the page.*/
+        @param[out] contentType The MIME type read from the page.
+        @param[out] responseCode The response code from the page.*/
     [[nodiscard]]
-    bool IsPageHtml(wxString& Url, wxString& contentType);
+    bool IsPageHtml(wxString& Url, wxString& contentType, int& responseCode);
 
     /// @brief Sets the depth level to crawl from the base URL.
     /// @param levels The number of levels to crawl.
