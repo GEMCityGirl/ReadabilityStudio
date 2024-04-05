@@ -354,6 +354,7 @@ public:
         return _DT(L"LPRT");
         }
 
+    [[nodiscard]]
     LuaInterpreter& GetLuaRunner() noexcept { return m_LuaRunner; }
 
     [[nodiscard]]
