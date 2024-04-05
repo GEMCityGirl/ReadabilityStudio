@@ -2,6 +2,9 @@
 #include <catch2/matchers/catch_matchers_floating_point.hpp>
 #include "../src/indexing/romanize.h"
 
+// clang-format off
+// NOLINTBEGIN
+
 using namespace Catch::Matchers;
 using namespace lily_of_the_valley;
 
@@ -72,3 +75,5 @@ TEST_CASE("Romanize", "[romanize]")
         CHECK(encode(L"\t one\n2. two\n\r13. three\nend of list", true, true, true, true) == L"\t one\n\t two\n\r\t three\nend of list");
         }
     }
+// NOLINTEND
+// clang-format on

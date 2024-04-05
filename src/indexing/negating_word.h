@@ -40,7 +40,7 @@ namespace grammar
 
       private:
         using string_type = std::basic_string_view<wchar_t, traits::case_insensitive_ex>;
-        static std::set<string_type> m_words;
+        static const std::set<string_type> m_words;
         };
     } // namespace grammar
 

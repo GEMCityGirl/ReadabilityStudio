@@ -3,6 +3,9 @@
 #include "../src/indexing/character_traits.h"
 #include "../src/OleanderStemmingLibrary/src/common_lang_constants.h"
 
+// clang-format off
+// NOLINTBEGIN
+
 using namespace Catch::Matchers;
 
 TEST_CASE("Western character traits", "[chartraits]")
@@ -464,3 +467,6 @@ TEST_CASE("Character traits", "[chartraits]")
         CHECK(characters::is_character::is_double_quote(0x300E));
         }
     }
+
+// NOLINTEND
+// clang-format on

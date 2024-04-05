@@ -8,9 +8,7 @@
 
 #include "negating_word.h"
 
-using namespace grammar;
-
-std::set<is_negating::string_type> is_negating::m_words = {
+const std::set<grammar::is_negating::string_type> grammar::is_negating::m_words = {
     L"ain't", L"aren't", L"can't", L"cannot", L"couldn't", L"didn't", L"doesn't", L"don't",
     L"hadn't", L"hasn't", L"haven't", L"isn't", L"mustn't", L"never", L"no", L"non", L"not",
     L"nowhere", L"shan't", L"wasn't", L"weren't", L"won't", L"wouldn't",

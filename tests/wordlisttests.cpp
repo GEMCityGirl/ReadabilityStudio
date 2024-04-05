@@ -5,6 +5,9 @@
 #include "../src/readability/readability.h"
 #include "../src/readability/custom_readability_test.h"
 
+// clang-format off
+// NOLINTBEGIN
+
 #define UNUSED_WORD_ARGS 0, 0, 0, false, false, false, false, 0, 0
 
 using namespace Catch::Matchers;
@@ -903,3 +906,5 @@ TEST_CASE("Word lists", "[word-list]")
         CHECK(WL.get_words().at(3) == L"the");
         }
     }
+// NOLINTEND
+// clang-format on

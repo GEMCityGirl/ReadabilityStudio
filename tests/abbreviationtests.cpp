@@ -3,6 +3,8 @@
 #include <catch2/matchers/catch_matchers_floating_point.hpp>
 #include "../src/indexing/abbreviation.h"
 
+// clang-format off
+// NOLINTBEGIN
 TEST_CASE("Abbreviation casing", "[abbreviations]")
     {
     grammar::is_abbreviation isAbbrev;
@@ -24,3 +26,5 @@ TEST_CASE("Abbreviation time", "[abbreviations]")
     CHECK_FALSE(isAbbrev(L"5:00d.m."));
     CHECK_FALSE(isAbbrev(L"500p.m."));
     }
+// NOLINTEND
+// clang-format on

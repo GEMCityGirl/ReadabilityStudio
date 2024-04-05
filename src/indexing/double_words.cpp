@@ -8,10 +8,8 @@
 
 #include "double_words.h"
 
-using namespace grammar;
-
-std::set<is_double_word_exception::string_type>
-    is_double_word_exception::m_double_word_exceptions = {
+const std::set<grammar::is_double_word_exception::string_type>
+    grammar::is_double_word_exception::m_double_word_exceptions = {
         L"bison",                    // Bison bison is American bison
         L"Boola",                    // "Boola Boola" is the Yale football song
         L"choo",                     // The train goes "choo choo"
@@ -46,7 +44,7 @@ std::set<is_double_word_exception::string_type>
     };
 
 //--------------------------------------------------
-bool is_double_word_exception::operator()(const std::wstring_view text) const
+bool grammar::is_double_word_exception::operator()(const std::wstring_view text) const
     {
     if (text.empty() || // if empty, then I suppose it should be an exception
         (text.length() == 1 && characters::is_character::is_punctuation(text[0])))

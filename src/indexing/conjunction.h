@@ -59,7 +59,7 @@ namespace grammar
             }
 
       private:
-        static std::set<string_type> m_conjunctions;
+        static const std::set<string_type> m_conjunctions;
         };
 
     /** Predicate for determining if a word is a Spanish coordinating
@@ -83,7 +83,7 @@ namespace grammar
             }
 
       private:
-        static std::set<string_type> m_conjunctions;
+        static const std::set<string_type> m_conjunctions;
         };
 
     /** @brief Predicate for determining if a word is a German coordinating
@@ -107,7 +107,7 @@ namespace grammar
             }
 
       private:
-        static std::set<string_type> m_conjunctions;
+        static const std::set<string_type> m_conjunctions;
         };
 
     /// @brief Predicate for determining if a word is a Russian coordinating

@@ -13,6 +13,22 @@ cmake_minimum_required(VERSION 3.12)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+# Options:
+# - USE_ADDRESS_SANITIZE to use ASAN
+# - USE_CLANG_TIDY to run clang-tidy
+
+find_program(CLANG_TIDY_COMMAND
+      NAMES
+         clang-tidy
+      NO_CACHE)
+if(CLANG_TIDY_COMMAND AND USE_CLANG_TIDY)
+    if(MSVC)
+        set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY_COMMAND} --extra-arg=/EHsc)
+    else()
+        set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY_COMMAND})
+    endif()
+endif()
+
 # place Catch2 in the src folder if not installed
 # (you will need to do this on Windows or macOS or if version 3 of Catch2 isn't installed)
 get_filename_component(_fullpath "${_dir}" REALPATH)

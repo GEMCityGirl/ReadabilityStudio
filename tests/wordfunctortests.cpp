@@ -8,6 +8,9 @@
 #include "../src/indexing/word.h"
 #include "../src/indexing/word_functional.h"
 
+// clang-format off
+// NOLINTBEGIN
+
 using namespace grammar;
 
 using MYWORD = word<traits::case_insensitive_ex,
@@ -646,3 +649,5 @@ TEST_CASE("Word Functors", "[word]")
         CHECK(std::count_if(doc.get_words().begin(),doc.get_words().end(),valid_syllable_count_equals<MYWORD >(2, true)) == 2);
         }
     }
+// NOLINTEND
+// clang-format on

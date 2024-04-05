@@ -3,6 +3,9 @@
 #include <catch2/matchers/catch_matchers_floating_point.hpp>
 #include "../src/indexing/contraction.h"
 
+// clang-format off
+// NOLINTBEGIN
+
 using namespace grammar;
 using namespace characters;
 
@@ -73,3 +76,6 @@ TEST_CASE("Contractions", "[contractions]")
         CHECK_FALSE(isContraction(L"Jane's", L"car"));
         }
     }
+
+// NOLINTEND
+// clang-format on

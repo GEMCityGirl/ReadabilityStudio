@@ -328,8 +328,8 @@ namespace grammar
         static std::pair<size_t, size_t> get_prefix_length(const wchar_t* start,
                                                            const size_t length);
 
-        static std::set<traits::case_insensitive_wstring_ex> m_e_disconnecting_prefixes;
-        static std::set<traits::case_insensitive_wstring_ex> m_non_affecting_suffixes_4;
+        static const std::set<traits::case_insensitive_wstring_ex> m_e_disconnecting_prefixes;
+        static const std::set<traits::case_insensitive_wstring_ex> m_non_affecting_suffixes_4;
 
         bool m_was_last_vowel_block_separable_vowels{ false };
         bool m_ends_with_nt_contraction{ false };

@@ -7,6 +7,9 @@
 #include "../src/readability/readability_test.h"
 #include "../src/readability/readability_project_test.h"
 
+// clang-format off
+// NOLINTBEGIN
+
 using namespace Catch::Matchers;
 using namespace readability;
 
@@ -1648,3 +1651,5 @@ TEST_CASE("Smog tests", "[smog][readability-tests]")
         CHECK_THROWS(readability::modified_smog(520, 0));
         }
     }
+// NOLINTEND
+// clang-format on

@@ -4,6 +4,9 @@
 #include "../src/indexing/word_collection.h"
 #include "../src/indexing/word.h"
 
+// clang-format off
+// NOLINTBEGIN
+
 using namespace grammar;
 using namespace characters;
 
@@ -279,3 +282,5 @@ TEST_CASE("ischaracter", "[ischaracter]")
             }
         }
     }
+// NOLINTEND
+// clang-format on

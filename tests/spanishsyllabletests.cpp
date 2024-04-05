@@ -2,6 +2,9 @@
 #include <catch2/matchers/catch_matchers_floating_point.hpp>
 #include "../src/indexing/spanish_syllabize.h"
 
+// clang-format off
+// NOLINTBEGIN
+
 using namespace Catch::Matchers;
 using namespace grammar;
 
@@ -158,3 +161,5 @@ TEST_CASE("Spanish syllabizer", "[syllable]")
         CHECK(syllabize(L'9') == 3);
         }
     }
+// NOLINTEND
+// clang-format on

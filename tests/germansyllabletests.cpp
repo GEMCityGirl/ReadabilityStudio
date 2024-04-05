@@ -3,6 +3,9 @@
 #include <catch2/matchers/catch_matchers_floating_point.hpp>
 #include "../src/indexing/german_syllabize.h"
 
+// clang-format off
+// NOLINTBEGIN
+
 using namespace grammar;
 
 TEST_CASE("German Syllabizer", "[syllable]")
@@ -275,3 +278,6 @@ TEST_CASE("German Syllabizer", "[syllable]")
         CHECK(syllabize(L'9') == 1);
         }
     }
+
+// NOLINTEND
+// clang-format on

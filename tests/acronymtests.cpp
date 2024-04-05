@@ -4,6 +4,9 @@
 #include "../src/indexing/word_collection.h"
 #include "../src/indexing/word.h"
 
+// clang-format off
+// NOLINTBEGIN
+
 using namespace grammar;
 
 using MYWORD = word<traits::case_insensitive_ex,
@@ -96,3 +99,6 @@ TEST_CASE("Acronyms", "[acronyms]")
         CHECK_FALSE(isAcronym.ends_with_lower_s());
         }
     }
+
+// NOLINTEND
+// clang-format on

@@ -8,14 +8,12 @@
 
 #include "conjunction.h"
 
-using namespace grammar;
+const std::set<grammar::is_coordinating_conjunction::string_type>
+    grammar::is_english_coordinating_conjunction::m_conjunctions = { L"&",  L"and", L"but", L"nor",
+                                                                     L"or", L"so",  L"yet" };
 
-std::set<is_coordinating_conjunction::string_type>
-    is_english_coordinating_conjunction::m_conjunctions = { L"&",  L"and", L"but", L"nor",
-                                                            L"or", L"so",  L"yet" };
-
-std::set<is_coordinating_conjunction::string_type>
-    is_spanish_coordinating_conjunction::m_conjunctions = {
+const std::set<grammar::is_coordinating_conjunction::string_type>
+    grammar::is_spanish_coordinating_conjunction::m_conjunctions = {
         L"&",
         L"e",    // and
         L"ni",   // nor
@@ -26,8 +24,8 @@ std::set<is_coordinating_conjunction::string_type>
         L"y"     // and
     };
 
-std::set<is_coordinating_conjunction::string_type>
-    is_german_coordinating_conjunction::m_conjunctions = {
+const std::set<grammar::is_coordinating_conjunction::string_type>
+    grammar::is_german_coordinating_conjunction::m_conjunctions = {
         L"&",
         L"und",     // and
         L"oder",    // or

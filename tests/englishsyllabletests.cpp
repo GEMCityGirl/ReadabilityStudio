@@ -6,6 +6,9 @@
 #include "../src/indexing/word_functional.h"
 #include "read_dictionaries.h"
 
+// clang-format off
+// NOLINTBEGIN
+
 using namespace grammar;
 
 TEST_CASE("English syllabizer baselines", "[syllable]")
@@ -1181,3 +1184,5 @@ TEST_CASE("English syllabizer", "[syllable]")
         CHECK(syllableAddNoNumbers(0, money) == 0);
         }
     }
+// NOLINTEND
+// clang-format on

@@ -1,0 +1,12 @@
+---
+Checks: '-clang-diagnostic-*,clang-analyzer-*,cppcoreguidelines-*,modernize-*,readability-*,cert-*,bugprone-*,misc-*,openmp-*,performance-*,portability-*,hicpp-*,google-*,-readability-function-cognitive-complexity,-bugprone-branch-clone,-hicpp-signed-bitwise,-misc-use-anonymous-namespace,-misc-no-recursion,-modernize-use-trailing-return-type,-misc-include-cleaner'
+HeaderFilterRegex:   ''
+FormatStyle:         none
+InheritParentConfig: true
+CheckOptions:
+  readability-braces-around-statements.ShortStatementLines: 1
+  readability-function-size.LineThreshold: 800
+  readability-identifier-naming.ClassMemberPrefix: m_
+  readability-identifier-naming.ClassMemberCase: camelBack
+  readability-identifier-naming.LocalVariableCase: camelBack
+  readability-identifier-naming.MacroDefinitionCase: UPPER_CASE

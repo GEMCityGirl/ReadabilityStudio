@@ -3,6 +3,9 @@
 #include <catch2/matchers/catch_matchers_floating_point.hpp>
 #include "../src/indexing/double_words.h"
 
+// clang-format off
+// NOLINTBEGIN
+
 using namespace grammar;
 using namespace characters;
 
@@ -40,3 +43,5 @@ TEST_CASE("Double Words", "[double words]")
         CHECK_FALSE(dwe(L"died"));
         }
     }
+// NOLINTEND
+// clang-format on

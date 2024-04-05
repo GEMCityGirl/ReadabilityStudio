@@ -3,6 +3,9 @@
 #include <catch2/matchers/catch_matchers_floating_point.hpp>
 #include "../src/indexing/character_traits.h"
 
+// clang-format off
+// NOLINTBEGIN
+
 TEST_CASE("Wide & Narrow", "[string]")
     {
     SECTION("Narrow letters")
@@ -12,3 +15,5 @@ TEST_CASE("Wide & Narrow", "[string]")
         CHECK(wide == narrow);
         }
     }
+// NOLINTEND
+// clang-format on

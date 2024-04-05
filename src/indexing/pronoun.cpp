@@ -8,9 +8,7 @@
 
 #include "pronoun.h"
 
-using namespace grammar;
-
-std::set<is_personal_pronoun::string_type> is_personal_pronoun::m_words = {
+const std::set<grammar::is_personal_pronoun::string_type> grammar::is_personal_pronoun::m_words = {
     // English
     L"he", L"her", L"him", L"I", L"it", L"me", L"she", L"them", L"they", L"us", L"we", L"you"
 };

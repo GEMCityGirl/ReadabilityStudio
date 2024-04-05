@@ -36,9 +36,9 @@ namespace grammar
 
       private:
         using string_type = std::basic_string_view<wchar_t, traits::case_insensitive_ex>;
-        static std::set<string_type> m_s_contractions;
-        static std::set<string_type> m_s_contractions_following_word;
-        static std::set<string_type> m_contraction_without_apostrophe;
+        static const std::set<string_type> m_s_contractions;
+        static const std::set<string_type> m_s_contractions_following_word;
+        static const std::set<string_type> m_contraction_without_apostrophe;
         };
     } // namespace grammar
 

@@ -12,6 +12,9 @@
 #include "../src/indexing/phrase.h"
 #include "../src/indexing/word_collection.h"
 
+// clang-format off
+// NOLINTBEGIN
+
 using namespace grammar;
 
 using MYWORD = word<traits::case_insensitive_ex,
@@ -2010,3 +2013,5 @@ TEST_CASE("Exclude words", "[excludewords]")
         CHECK(doc.get_valid_word_count() == 6);
         }
     }
+// NOLINTEND
+// clang-format on

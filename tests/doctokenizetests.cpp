@@ -3,6 +3,9 @@
 #include <catch2/matchers/catch_matchers_floating_point.hpp>
 #include "../src/indexing/tokenize.h"
 
+// clang-format off
+// NOLINTBEGIN
+
 TEST_CASE("C++ tokenize", "[document]")
     {
     SECTION("Regular")
@@ -520,3 +523,6 @@ TEST_CASE("Document tokenize", "[document]")
             }
         }
     }
+
+// NOLINTEND
+// clang-format on

@@ -7,6 +7,9 @@
 #include "../src/indexing/german_syllabize.h"
 #include "../src/indexing/word.h"
 
+// clang-format off
+// NOLINTBEGIN
+
 using namespace grammar;
 
 using MYWORD = word<traits::case_insensitive_ex,
@@ -594,3 +597,6 @@ TEST_CASE("English Article", "[articles]")
         CHECK(artc(L"an", L"20:87"));
         }
     }
+
+// NOLINTEND
+// clang-format on

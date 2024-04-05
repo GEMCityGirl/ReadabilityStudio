@@ -3,6 +3,8 @@
 #include "../src/indexing/word.h"
 #include "../src/indexing/punctuation.h"
 
+// clang-format off
+// NOLINTBEGIN
 using namespace Catch::Matchers;
 using namespace grammar;
 
@@ -355,3 +357,6 @@ TEST_CASE("Word", "[word]")
         }
 
     }
+
+// NOLINTEND
+// clang-format on

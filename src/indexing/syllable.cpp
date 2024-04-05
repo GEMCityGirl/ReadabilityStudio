@@ -10,27 +10,36 @@
 
 namespace grammar
     {
-    std::set<traits::case_insensitive_wstring_ex> english_syllabize::m_e_disconnecting_prefixes =
+    const std::set<traits::case_insensitive_wstring_ex>
+        english_syllabize::m_e_disconnecting_prefixes =
         { L"corr", L"minn", L"diss", L"disc", L"comm",
           L"dysp", L"ind", L"cer", L"alg", L"coh", L"phoeb",
           L"art", L"ben", L"tel", L"dis", L"irr", L"all",
           L"alp", L"amn", L"arr", L"agg", L"ass", L"eff",
           L"ell", L"ill", L"imm", L"un", L"dand" };
-    std::set<traits::case_insensitive_wstring_ex> english_syllabize::m_non_affecting_suffixes_4 =
+
+    const std::set<traits::case_insensitive_wstring_ex>
+        english_syllabize::m_non_affecting_suffixes_4 =
         { L"ness", L"ment", L"room", L"shoe", L"pick",
           L"maid", L"yard", L"book", L"hill" };
 
-    std::pair<bool,size_t> base_syllabize::is_special_math_word(const wchar_t* start, const size_t length) noexcept
+    //----------------------------------------------
+    std::pair<bool, size_t> base_syllabize::is_special_math_word(const wchar_t* start,
+                                                                 const size_t length) noexcept
         {
         assert(start);
-        if (length == 2 &&
-            characters::is_character::is_numeric_simple(start[0]) &&
-            traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_D) )
-            { return std::pair<bool,size_t>(true,2); }
+        if (length == 2 && characters::is_character::is_numeric_simple(start[0]) &&
+            traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_D))
+            {
+            return std::make_pair(true, 2);
+            }
         else
-            { return std::pair<bool,size_t>(false,0); }
+            {
+            return std::make_pair(false, 0);
+            }
         }
 
+    //----------------------------------------------
     size_t base_syllabize::get_symbol_syllable_count(const wchar_t* start,
                                                      const wchar_t* end,
                                                      const wchar_t* current_char) noexcept
@@ -82,57 +91,82 @@ namespace grammar
             { return 0; }
         }
 
+    //----------------------------------------------
     void base_syllabize::adjust_length_if_possesive(const wchar_t* start)
         {
         assert(start);
         if (start == nullptr)
-             { return; }
-        if (m_length >= 3 &&
-            isChar.is_apostrophe(start[m_length-2]) &&
-            traits::case_insensitive_ex::eq(start[m_length-1], common_lang_constants::LOWER_S))
-            { m_length -= 2; }
-        else if (m_length >= 2 && isChar.is_apostrophe(start[m_length-1]))
-            { --m_length; }
+            {
+            return;
+            }
+        if (m_length >= 3 && isChar.is_apostrophe(start[m_length - 2]) &&
+            traits::case_insensitive_ex::eq(start[m_length - 1], common_lang_constants::LOWER_S))
+            {
+            m_length -= 2;
+            }
+        else if (m_length >= 2 && isChar.is_apostrophe(start[m_length - 1]))
+            {
+            --m_length;
+            }
         }
 
+    //----------------------------------------------
     bool base_syllabize::is_consonant_y(const wchar_t* word, size_t position) const
         {
         assert(word);
-        assert(traits::case_insensitive_ex::eq(word[position], common_lang_constants::LOWER_Y) );
+        assert(traits::case_insensitive_ex::eq(word[position], common_lang_constants::LOWER_Y));
         if (word == nullptr)
-             { return false; }
-        if (!traits::case_insensitive_ex::eq(word[position], common_lang_constants::LOWER_Y) )
-            { return false; }
+            {
+            return false;
+            }
+        if (!traits::case_insensitive_ex::eq(word[position], common_lang_constants::LOWER_Y))
+            {
+            return false;
+            }
         // if 'y' begins word then it cannot be a vowel sound
         else if (position == 0)
-            { return true; }
+            {
+            return true;
+            }
         // or if after another vowel (alloyed)
-        else if (isChar.is_vowel(word[position-1]) )
+        else if (isChar.is_vowel(word[position - 1]))
             {
             // boy
             return true;
             }
         // tanya, anyu
-        else if (position+2 == m_length &&
-            isChar.is_vowel(word[position+1]) )
-            { return true; }
+        else if (position + 2 == m_length && isChar.is_vowel(word[position + 1]))
+            {
+            return true;
+            }
         // lAwyer, but watch out for compounds like "hIghflYer"
-        else if ((m_previous_vowel != m_length) &&
-                (position-m_previous_vowel) < 3 &&
-                (position+2 < m_length) &&
-                traits::case_insensitive_ex::eq(word[position+1], common_lang_constants::LOWER_E) &&
-                traits::case_insensitive_ex::eq(word[position+2], common_lang_constants::LOWER_R))
-            { return true; }
+        else if ((m_previous_vowel != m_length) && (position - m_previous_vowel) < 3 &&
+                 (position + 2 < m_length) &&
+                 traits::case_insensitive_ex::eq(word[position + 1],
+                                                 common_lang_constants::LOWER_E) &&
+                 traits::case_insensitive_ex::eq(word[position + 2],
+                                                 common_lang_constants::LOWER_R))
+            {
+            return true;
+            }
         // churchyard
-        else if ((position+3 < m_length) &&
-                traits::case_insensitive_ex::eq(word[position+1], common_lang_constants::LOWER_A) &&
-                traits::case_insensitive_ex::eq(word[position+2], common_lang_constants::LOWER_R) &&
-                traits::case_insensitive_ex::eq(word[position+3], common_lang_constants::LOWER_D))
-            { return true; }
+        else if ((position + 3 < m_length) &&
+                 traits::case_insensitive_ex::eq(word[position + 1],
+                                                 common_lang_constants::LOWER_A) &&
+                 traits::case_insensitive_ex::eq(word[position + 2],
+                                                 common_lang_constants::LOWER_R) &&
+                 traits::case_insensitive_ex::eq(word[position + 3],
+                                                 common_lang_constants::LOWER_D))
+            {
+            return true;
+            }
         else
-            { return false; }
+            {
+            return false;
+            }
         }
 
+    //----------------------------------------------
     size_t english_syllabize::operator()(const wchar_t* start, const size_t length)
         {
         // reset our data
@@ -165,7 +199,7 @@ namespace grammar
         if (syllabize_if_contains_dashes<english_syllabize>(start))
             { return m_syllable_count; }
 
-        const std::pair<size_t,size_t> prefixResult = get_prefix_length(start, m_length);
+        const std::pair<size_t, size_t> prefixResult = get_prefix_length(start, m_length);
         if (prefixResult.second > 0)
             {
             start += prefixResult.second;
@@ -303,6 +337,7 @@ namespace grammar
         return m_syllable_count;
         }
 
+    //----------------------------------------------
     void english_syllabize::finalize_special_cases(const wchar_t* start)
         {
         if (start == nullptr)
@@ -438,6 +473,7 @@ namespace grammar
             }
         }
 
+    //----------------------------------------------
     bool english_syllabize::is_silent_u(const wchar_t* word, size_t position) const
         {
         assert(word);
@@ -476,6 +512,7 @@ namespace grammar
             { return false; }
         }
 
+    //----------------------------------------------
     bool english_syllabize::does_prefix_silence_e(const wchar_t* word, size_t prefix_length) const
         {
         assert(word);
@@ -525,12 +562,14 @@ namespace grammar
             { return false; }
         }
 
+    //----------------------------------------------
     bool english_syllabize::does_prefix_disconnect_e(const wchar_t* word, size_t prefix_length)
         {
         return m_e_disconnecting_prefixes.find(traits::case_insensitive_wstring_ex(word, prefix_length)) !=
                 m_e_disconnecting_prefixes.end();
         }
 
+    //----------------------------------------------
     bool english_syllabize::is_none_affecting_suffix(const wchar_t* word, size_t suffix_length)
         {
         assert(word);
@@ -553,6 +592,7 @@ namespace grammar
         return false;
         }
 
+    //----------------------------------------------
     bool english_syllabize::does_suffix_negate_silent_e(const wchar_t* suffix, const size_t suffix_length,
             const size_t next_vowel_index) const
         {
@@ -831,6 +871,7 @@ namespace grammar
             }
         }
 
+    //----------------------------------------------
     bool english_syllabize::is_single_non_e_vowel_ignored(const wchar_t* word, const size_t position) const
         {
         assert(word);
@@ -855,6 +896,7 @@ namespace grammar
         return false;
         }
 
+    //----------------------------------------------
     bool english_syllabize::is_silent_e(const wchar_t* word, const size_t position) const
         {
         assert(word);
@@ -1808,6 +1850,7 @@ namespace grammar
         return true;
         }
 
+    //----------------------------------------------
     bool english_syllabize::is_vowels_separate_syllables(const wchar_t* word,
                                           const size_t position, const size_t vowel_block_size,
                                           const bool is_first_vowel_block_in_word) const
@@ -3202,6 +3245,7 @@ namespace grammar
         return false;
         }
 
+    //----------------------------------------------
     bool english_syllabize::can_consonants_end_sound(const wchar_t* consonants, size_t block_length)
         {
         assert(consonants);
@@ -3350,6 +3394,7 @@ namespace grammar
             }
         }
 
+    //----------------------------------------------
     bool english_syllabize::can_consonants_be_modified_by_following_e(const wchar_t* consonants, size_t block_length)
         {
         assert(consonants);
@@ -3542,6 +3587,7 @@ namespace grammar
             }
         }
 
+    //----------------------------------------------
     bool english_syllabize::can_consonants_begin_sound(const wchar_t* consonants, size_t block_length)
         {
         assert(consonants);
@@ -3643,7 +3689,9 @@ namespace grammar
             }
         }
 
-    std::pair<size_t,size_t> english_syllabize::get_prefix_length(const wchar_t* start, const size_t length)
+    //----------------------------------------------
+    std::pair<size_t, size_t> english_syllabize::get_prefix_length(const wchar_t* start,
+                                                                   const size_t length)
         {
         assert(start);
         if (start == nullptr)
@@ -3656,7 +3704,7 @@ namespace grammar
             traits::case_insensitive_ex::eq(start[3], common_lang_constants::LOWER_Y) &&
             traits::case_insensitive_ex::eq(start[4], common_lang_constants::LOWER_E) &&
             traits::case_insensitive_ex::eq(start[5], common_lang_constants::LOWER_R))
-            { return std::pair<size_t,size_t>(1,6); }
+            { return std::make_pair(1,6); }
         if (length >= 5)
             {
             // where
@@ -3668,8 +3716,8 @@ namespace grammar
                 {
                 // exception: wherever
                 if (length >= 6 && traits::case_insensitive_ex::eq(start[5], common_lang_constants::LOWER_V))
-                    { return std::pair<size_t,size_t>(2,6); }
-                return std::pair<size_t,size_t>(1,5);
+                    { return std::make_pair(2,6); }
+                return std::make_pair(1,5);
                 }
             // readj
             else if (traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_R) &&
@@ -3677,7 +3725,7 @@ namespace grammar
                 traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_A) &&
                 traits::case_insensitive_ex::eq(start[3], common_lang_constants::LOWER_D) &&
                 traits::case_insensitive_ex::eq(start[4], common_lang_constants::LOWER_J))
-                { return std::pair<size_t,size_t>(2,5); }
+                { return std::make_pair(2,5); }
             // rearm, readm
             else if (traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_R) &&
                 traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_E) &&
@@ -3685,7 +3733,7 @@ namespace grammar
                 (traits::case_insensitive_ex::eq(start[3], common_lang_constants::LOWER_R) ||
                     traits::case_insensitive_ex::eq(start[3], common_lang_constants::LOWER_D)) &&
                 traits::case_insensitive_ex::eq(start[4], common_lang_constants::LOWER_M))
-                { return std::pair<size_t,size_t>(2,5); }
+                { return std::make_pair(2,5); }
             // reall
             else if (traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_R) &&
                 traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_E) &&
@@ -3694,8 +3742,8 @@ namespace grammar
                 traits::case_insensitive_ex::eq(start[4], common_lang_constants::LOWER_L))
                 {
                 if (length == 6 && traits::case_insensitive_ex::eq(start[5], common_lang_constants::LOWER_Y))
-                    { return std::pair<size_t,size_t>(3,6); }
-                return std::pair<size_t,size_t>(2,5);
+                    { return std::make_pair(3,6); }
+                return std::make_pair(2,5);
                 }
             // reapp
             else if (traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_R) &&
@@ -3703,77 +3751,77 @@ namespace grammar
                 traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_A) &&
                 traits::case_insensitive_ex::eq(start[3], common_lang_constants::LOWER_P) &&
                 traits::case_insensitive_ex::eq(start[4], common_lang_constants::LOWER_P))
-                { return std::pair<size_t,size_t>(2,5); }
+                { return std::make_pair(2,5); }
             // sales
             else if (traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_S) &&
                 traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_A) &&
                 traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_L) &&
                 traits::case_insensitive_ex::eq(start[3], common_lang_constants::LOWER_E) &&
                 traits::case_insensitive_ex::eq(start[4], common_lang_constants::LOWER_S))
-                { return std::pair<size_t,size_t>(1,5); }
+                { return std::make_pair(1,5); }
             // intra
             else if (traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_I) &&
                 traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_N) &&
                 traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_T) &&
                 traits::case_insensitive_ex::eq(start[3], common_lang_constants::LOWER_R) &&
                 traits::case_insensitive_ex::eq(start[4], common_lang_constants::LOWER_A))
-                { return std::pair<size_t,size_t>(2,5); }
+                { return std::make_pair(2,5); }
             // reass
             else if (traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_R) &&
                 traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_E) &&
                 traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_A) &&
                 traits::case_insensitive_ex::eq(start[3], common_lang_constants::LOWER_S) &&
                 traits::case_insensitive_ex::eq(start[4], common_lang_constants::LOWER_S))
-                { return std::pair<size_t,size_t>(2,5); }
+                { return std::make_pair(2,5); }
             // reatt
             else if (traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_R) &&
                 traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_E) &&
                 traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_A) &&
                 traits::case_insensitive_ex::eq(start[3], common_lang_constants::LOWER_T) &&
                 traits::case_insensitive_ex::eq(start[4], common_lang_constants::LOWER_T))
-                { return std::pair<size_t,size_t>(2,5); }
+                { return std::make_pair(2,5); }
             // retro
             else if (traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_R) &&
                 traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_E) &&
                 traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_T) &&
                 traits::case_insensitive_ex::eq(start[3], common_lang_constants::LOWER_R) &&
                 traits::case_insensitive_ex::eq(start[4], common_lang_constants::LOWER_O))
-                { return std::pair<size_t,size_t>(2,5); }
+                { return std::make_pair(2,5); }
             // supra
             else if (traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_S) &&
                 traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_U) &&
                 traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_P) &&
                 traits::case_insensitive_ex::eq(start[3], common_lang_constants::LOWER_R) &&
                 traits::case_insensitive_ex::eq(start[4], common_lang_constants::LOWER_A))
-                { return std::pair<size_t,size_t>(2,5); }
+                { return std::make_pair(2,5); }
             // ultra
             else if (traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_U) &&
                 traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_L) &&
                 traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_T) &&
                 traits::case_insensitive_ex::eq(start[3], common_lang_constants::LOWER_R) &&
                 traits::case_insensitive_ex::eq(start[4], common_lang_constants::LOWER_A))
-                { return std::pair<size_t,size_t>(2,5); }
+                { return std::make_pair(2,5); }
             // video
             else if (traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_V) &&
                 traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_I) &&
                 traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_D) &&
                 traits::case_insensitive_ex::eq(start[3], common_lang_constants::LOWER_E) &&
                 traits::case_insensitive_ex::eq(start[4], common_lang_constants::LOWER_O))
-                { return std::pair<size_t,size_t>(3,5); }
+                { return std::make_pair(3,5); }
             // under
             else if (traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_U) &&
                 traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_N) &&
                 traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_D) &&
                 traits::case_insensitive_ex::eq(start[3], common_lang_constants::LOWER_E) &&
                 traits::case_insensitive_ex::eq(start[4], common_lang_constants::LOWER_R))
-                { return std::pair<size_t,size_t>(2,5); }
+                { return std::make_pair(2,5); }
             // inade
             else if (traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_I) &&
                 traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_N) &&
                 traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_A) &&
                 traits::case_insensitive_ex::eq(start[3], common_lang_constants::LOWER_D) &&
                 traits::case_insensitive_ex::eq(start[4], common_lang_constants::LOWER_E))
-                { return std::pair<size_t,size_t>(3,5); }
+                { return std::make_pair(3,5); }
             }
         if (length >= 4)
             {
@@ -3782,25 +3830,25 @@ namespace grammar
                 traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_V) &&
                 traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_E) &&
                 traits::case_insensitive_ex::eq(start[3], common_lang_constants::LOWER_R))
-                { return std::pair<size_t,size_t>(2,4); }
+                { return std::make_pair(2,4); }
             // reen
             else if (traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_R) &&
                 traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_E) &&
                 traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_E) &&
                 traits::case_insensitive_ex::eq(start[3], common_lang_constants::LOWER_N))
-                { return std::pair<size_t,size_t>(2,4); }
+                { return std::make_pair(2,4); }
             // reaf
             else if (traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_R) &&
                 traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_E) &&
                 traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_A) &&
                 traits::case_insensitive_ex::eq(start[3], common_lang_constants::LOWER_F))
-                { return std::pair<size_t,size_t>(2,4); }
+                { return std::make_pair(2,4); }
             // gyne
             else if (traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_G) &&
                 traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_Y) &&
                 traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_N) &&
                 traits::case_insensitive_ex::eq(start[3], common_lang_constants::LOWER_E))
-                { return std::pair<size_t,size_t>(2,4); }
+                { return std::make_pair(2,4); }
             // real
             else if (traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_R) &&
                 traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_E) &&
@@ -3809,10 +3857,10 @@ namespace grammar
                 {
                 // exceptions: realm, real
                 if (length >= 4 && traits::case_insensitive_ex::eq(start[4], common_lang_constants::LOWER_M))
-                    { return std::pair<size_t,size_t>(0,0); }
+                    { return std::make_pair(0,0); }
                 else if (length == 4)
-                    { return std::pair<size_t,size_t>(0,0); }
-                return std::pair<size_t,size_t>(2,4);
+                    { return std::make_pair(0,0); }
+                return std::make_pair(2,4);
                 }
             // blue
             else if (traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_B) &&
@@ -3823,38 +3871,38 @@ namespace grammar
                 if (length == 5 &&
                     (traits::case_insensitive_ex::eq(start[4], common_lang_constants::LOWER_R) ||
                     traits::case_insensitive_ex::eq(start[4], common_lang_constants::LOWER_T)) )
-                    { return std::pair<size_t,size_t>(2,5); }
+                    { return std::make_pair(2,5); }
                 else if (length == 6 && traits::case_insensitive_ex::eq(start[4], common_lang_constants::LOWER_S) &&
                     traits::case_insensitive_ex::eq(start[5], common_lang_constants::LOWER_T))
-                    { return std::pair<size_t,size_t>(2,6); }
-                return std::pair<size_t,size_t>(1,4);
+                    { return std::make_pair(2,6); }
+                return std::make_pair(1,4);
                 }
             // ecto
             else if (traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_E) &&
                     traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_C) &&
                     traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_T) &&
                     traits::case_insensitive_ex::eq(start[3], common_lang_constants::LOWER_O))
-                { return std::pair<size_t,size_t>(2,4); }
+                { return std::make_pair(2,4); }
             // seis
             else if (traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_S) &&
                     traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_E) &&
                     traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_I) &&
                     traits::case_insensitive_ex::eq(start[3], common_lang_constants::LOWER_S))
-                { return std::pair<size_t,size_t>(1,4); }
+                { return std::make_pair(1,4); }
             // hemi
             else if (traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_H) &&
                     traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_E) &&
                     traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_M) &&
                     traits::case_insensitive_ex::eq(start[3], common_lang_constants::LOWER_I))
-                { return std::pair<size_t,size_t>(2,4); }
+                { return std::make_pair(2,4); }
             }
         // exo
         if (length >= 3 &&
                 traits::case_insensitive_ex::eq(start[0], common_lang_constants::LOWER_E) &&
                 traits::case_insensitive_ex::eq(start[1], common_lang_constants::LOWER_X) &&
                 traits::case_insensitive_ex::eq(start[2], common_lang_constants::LOWER_O))
-            { return std::pair<size_t,size_t>(2,3); }
+            { return std::make_pair(2,3); }
         else
-            { return std::pair<size_t,size_t>(0,0); }
+            { return std::make_pair(0, 0); }
         }
     }

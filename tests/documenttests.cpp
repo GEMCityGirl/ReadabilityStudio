@@ -5,6 +5,9 @@
 #include "../src/indexing/word.h"
 #include "../src/indexing/word_collection.h"
 
+// clang-format off
+// NOLINTBEGIN
+
 using namespace grammar;
 using MYWORD = word<traits::case_insensitive_ex,
     stemming::english_stem<std::basic_string<wchar_t, traits::case_insensitive_ex> > >;
@@ -4521,3 +4524,5 @@ TEST_CASE("Document 2", "[document]")
         CHECK(doc.get_word_count() == 12);
         }
     }
+// NOLINTEND
+// clang-format on

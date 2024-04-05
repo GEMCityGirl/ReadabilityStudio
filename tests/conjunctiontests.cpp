@@ -3,6 +3,9 @@
 #include <catch2/matchers/catch_matchers_floating_point.hpp>
 #include "../src/indexing/conjunction.h"
 
+// clang-format off
+// NOLINTBEGIN
+
 using namespace grammar;
 using namespace characters;
 
@@ -130,3 +133,6 @@ TEST_CASE("Russian conjuctions", "[conjuctions]")
         CHECK_FALSE(isConj(L"даи"));
         }
     }
+
+// NOLINTEND
+// clang-format on

@@ -2,6 +2,9 @@
 #include <catch2/matchers/catch_matchers_floating_point.hpp>
 #include "../src/projects/project_refresh.h"
 
+// clang-format off
+// NOLINTBEGIN
+
 TEST_CASE("Project refresh", "[project]")
     {
     SECTION("Flags")
@@ -37,3 +40,5 @@ TEST_CASE("Project refresh", "[project]")
         CHECK(bp.IsDocumentReindexingRequired() == false);
         }
     }
+// NOLINTEND
+// clang-format on

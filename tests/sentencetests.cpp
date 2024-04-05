@@ -5,6 +5,9 @@
 #include "../src/indexing/word_collection.h"
 #include "../src/indexing/word.h"
 
+// clang-format off
+// NOLINTBEGIN
+
 using namespace grammar;
 
 using MYWORD = word<traits::case_insensitive_ex,
@@ -1212,3 +1215,5 @@ TEST_CASE("Sentences Incomplete", "[sentence]")
         CHECK(doc.get_valid_paragraph_count() == 2);
         }
     }
+// NOLINTEND
+// clang-format on

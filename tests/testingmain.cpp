@@ -14,6 +14,9 @@
 #include "../src/indexing/german_syllabize.h"
 #include "../src/Wisteria-Dataviz/src/utfcpp/source/utf8.h"
 
+// clang-format off
+// NOLINTBEGIN
+
 using namespace grammar;
 namespace fs = std::filesystem;
 
@@ -66,3 +69,5 @@ int main( int argc, char* argv[] )
 
     return EXIT_SUCCESS;
     }
+// NOLINTEND
+// clang-format on
