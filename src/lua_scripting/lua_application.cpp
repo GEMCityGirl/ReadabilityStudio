@@ -69,9 +69,10 @@ namespace LuaScripting
             if (percentIndex == wxString::npos ||
                 static_cast<size_t>(percentIndex) > path.length()-3)
                 { break; }
-            size_t hexLength(static_cast<size_t>(-1));
+            wchar_t* dummy{ nullptr };
+            const wxString extractedHexCode{ path.substr(percentIndex + 1, 2) };
             const wchar_t value =
-                string_util::axtoi(path.substr(percentIndex+1, 2).wc_str(), hexLength);
+                static_cast<wchar_t>(std::wcstol(extractedHexCode.wc_str(), &dummy, 16));
             path.replace(percentIndex, 3, wxString(1, value));
             }
         // strip off bookmark (if there is one)
