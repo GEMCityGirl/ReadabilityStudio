@@ -35,6 +35,7 @@
 #include <wx/wfstream.h>
 #include <wx/wx.h>
 
+/// @private
 class wxStringLessWebPath
     {
   public:
@@ -66,8 +67,7 @@ class WebPageExtension
     /** @returns @c true if @c extension is a dynamic webpaaage extension.
         @param extension The file extension to review.*/
     [[nodiscard]]
-    inline bool
-    IsDynamicExtension(std::wstring_view extension) const
+    inline bool IsDynamicExtension(std::wstring_view extension) const
         {
         // any sort of PHP page (even without the extension PHP) will follow this syntax
         if (extension.find(L'?') != std::wstring_view::npos &&
@@ -75,8 +75,7 @@ class WebPageExtension
             {
             return true;
             }
-        return (m_knownDynamicExtensions.find(extension.data()) !=
-                m_knownDynamicExtensions.cend());
+        return (m_knownDynamicExtensions.find(extension.data()) != m_knownDynamicExtensions.cend());
         }
 
   private:
@@ -86,7 +85,7 @@ class WebPageExtension
         _DT(L"html"), _DT(L"htm"),  _DT(L"xhtml"), _DT(L"sgml")
     };
     std::set<string_util::case_insensitive_wstring> m_knownDynamicExtensions{
-        _DT(L"asp"),  _DT(L"aspx"), _DT(L"php"), _DT(L"php3"), _DT(L"php4")
+        _DT(L"asp"), _DT(L"aspx"), _DT(L"php"), _DT(L"php3"), _DT(L"php4")
     };
     };
 
@@ -226,10 +225,11 @@ class UrlWithNumericSequence
     size_t m_numeric_width{ 0 };
     };
 
-/// @brief Interface for harvesting and (optionally) downloading links from a base URL.
+/// @brief Interface for harvesting and (optionally) downloading web content from a base URL.
 /// @details This is recommended to be a singleton object that connects to the application
 ///     or main frame. Be sure to call SetEventHandler() to connect the download events
-///     for your parent event handler to the harvester.
+///     for your parent event handler to the harvester. Also, call CancelPending() in the
+///     parent event handler's close event.
 class WebHarvester
     {
   public:
@@ -269,11 +269,18 @@ class WebHarvester
     ///     @c Url is empty, then the file extension will be determined by the MIME type.
     /// @returns The local file path of the file after downloading, or empty string upon failure.
     wxString DownloadFile(wxString& Url, const wxString& fileExtension = wxString{});
-    /// @brief Download all of the harvested links.
+    /// @brief Download all the harvested links.
     /// @note This should be called after CrawlLinks().
     void DownloadFiles();
 
-    // Static help functions
+    /// @brief Cancels any pending download or read operation.
+    void CancelPending() noexcept
+        {
+        m_isCancelled = true;
+        m_downloader.CancelPending();
+        }
+
+    // Helper functions
     //----------------------------------
     /** @brief Creates a new file based on @c filePath, embedding a numeric
             sequence in it (making it unique).
@@ -360,7 +367,7 @@ class WebHarvester
         }
 
     /// @brief When downloading locally, keep the folder structure from the website.
-    /// @param keep True to use the website's folder structure, false to download files in
+    /// @param keep @c true to use the website's folder structure, @c false to download files in
     ///     a flat folder structure.
     /// @note This is recommended to prevent overwriting files with the same name.
     void KeepWebPathWhenDownloading(const bool keep = true) noexcept
@@ -378,7 +385,7 @@ class WebHarvester
 
     /// @brief Specifies whether all HTML content should be downloaded,
     ///     regardless of the file's extension.
-    /// @param harvestAll True to download all HTML content.
+    /// @param harvestAll @c true to download all HTML content.
     /// @note This is recommended if needing to download PHP response
     ///     pages with non-standard file extensions.
     void HarvestAllHtmlFiles(const bool harvestAll = true) noexcept
@@ -387,9 +394,9 @@ class WebHarvester
         }
 
     /// @brief Sets whether to build a list of broken links while crawling.
-    /// @param search True to catalogue broken links.
-    /// @warning Enable this will degrade performance because it will need to
-    ///     attempt connecting to each link.
+    /// @param search @c true to catalogue broken links.
+    /// @warning Enabling this will degrade performance because it will
+    ///     attempt to connect to each link.
     void SeachForBrokenLinks(const bool search = true) noexcept { m_searchForBrokenLinks = search; }
 
     /// @returns @c true if a list of broken links are being catalogued while harvesting.
@@ -399,7 +406,7 @@ class WebHarvester
         return m_searchForBrokenLinks;
         }
 
-    /// @brief Sets the base URL to crawl and updates domain info based on that.
+    /// @brief Sets the base URL to crawl.
     /// @param url The base URL.
     void SetUrl(const wxString& url)
         {
@@ -417,14 +424,14 @@ class WebHarvester
         return m_url;
         }
 
-    /// @brief Sets the root folder to download files from the web.
+    /// @brief Sets the local folder to download files from the web.
     /// @param downloadDirectory The local download folder.
     void SetDownloadDirectory(const wxString& downloadDirectory)
         {
         m_downloadDirectory = downloadDirectory;
         }
 
-    /// @returns The load folder where web content is being downloaded.
+    /// @returns The local folder where web content is being downloaded.
     [[nodiscard]]
     const wxString& GetDownloadDirectory() const noexcept
         {
@@ -433,7 +440,7 @@ class WebHarvester
 
     /// @brief Specifies whether files being downloaded can overwrite
     ///     each other if they have the same path.
-    /// @param replaceExistingFiles True to overwrite existing files.
+    /// @param replaceExistingFiles @c true to overwrite existing files.
     /// @note If this is set to false and a file with the same path
     ///     is about to be downloaded, the program will attempt to download
     ///     it with a different (but similar) name.
@@ -442,14 +449,14 @@ class WebHarvester
         m_replaceExistingFiles = replaceExistingFiles;
         }
 
-    /// @brief Sets whether to download files locally while the crawl.
-    /// @param downloadWhileCrawling True to download the web content.
+    /// @brief Sets whether to download files locally while crawling.
+    /// @param downloadWhileCrawling @c true to download the web content.
     void DownloadFilesWhileCrawling(const bool downloadWhileCrawling = true) noexcept
         {
         m_downloadWhileCrawling = downloadWhileCrawling;
         }
 
-    /// @returns Whether files are being downloaded locally during the crawl.
+    /// @returns Whether files are being downloaded locally while crawling.
     [[nodiscard]]
     bool IsDownloadingFilesWhileCrawling() const noexcept
         {
@@ -538,12 +545,18 @@ class WebHarvester
     /// @returns The list of files downloaded.
     /// @note DownloadFilesWhileCrawling() must be enabled.
     [[nodiscard]]
-    const std::set<wxString>& GetDownloadedFilePaths() const noexcept { return m_downloadedFiles; }
+    const std::set<wxString>& GetDownloadedFilePaths() const noexcept
+        {
+        return m_downloadedFiles;
+        }
 
     /// @returns A map of broken links and the respective pages they were found on.
     /// @note SeachForBrokenLinks() must be enabled.
     [[nodiscard]]
-    const std::map<wxString, wxString>& GetBrokenLinks() const noexcept { return m_brokenLinks; }
+    const std::map<wxString, wxString>& GetBrokenLinks() const noexcept
+        {
+        return m_brokenLinks;
+        }
 
     /// @returns The user agent sent to websites when crawling.
     /// @note If the user agent is empty, then one will be built from the OS description.
@@ -558,8 +571,8 @@ class WebHarvester
         // even "browser" will result in a forbidden response from some sites,
         // so avoid using those words.
         return (m_userAgent.empty() ?
-            _DT(L"Mozilla/5.0 (") + wxGetOsDescription() + _DT(L") WebKit/12.0 WebLion") :
-            m_userAgent);
+                    _DT(L"Mozilla/5.0 (") + wxGetOsDescription() + _DT(L") WebKit/12.0 WebLion") :
+                    m_userAgent);
         }
 
     /// @brief Sets the user agent sent to websites when crawling.
@@ -571,14 +584,15 @@ class WebHarvester
         }
 
     /** @brief Disable SSL certificate verification.
-        @details This can be used to connect to self-signed servers or other invalid SSL connections.\n
-            Disabling verification makes the communication insecure.
+        @details This can be used to connect to self-signed servers or other invalid SSL
+       connections.\n Disabling verification makes the communication insecure.
         @param disable @c true to disable SSL certificate verification.*/
-    void DisablePeerVerify(const bool disable)noexcept
+    void DisablePeerVerify(const bool disable) noexcept
         {
         m_disablePeerVerify = disable;
         m_downloader.DisablePeerVerify(m_disablePeerVerify);
         }
+
     /// @returns Returns @c true if peer verification has been disabled.
     [[nodiscard]]
     bool IsPeerVerifyDisabled() const noexcept
@@ -591,10 +605,7 @@ class WebHarvester
     ///     links from that.
     /// @param fromRawHtml @c true to treat base URL as raw HTML if it
     ///     cannot be validated as a link.
-    void AttemptToCrawlFromRawHtml(const bool fromRawHtml)
-        {
-        m_crawlFromRawHtml = fromRawHtml;
-        }
+    void AttemptToCrawlFromRawHtml(const bool fromRawHtml) { m_crawlFromRawHtml = fromRawHtml; }
 
     /// @brief Sets the minimum size that a file has to be to download it.
     /// @param size The minimum file size, in kilobytes.
@@ -602,9 +613,10 @@ class WebHarvester
         {
         m_minFileDownloadSizeKilobytes = size;
         }
+
     /// @returns The minimum size a file must be to download. Will be `std::nullopt`
     ///     if size constraints are not being enforced.
-    std::optional<uint32_t>  GetMinimumDownloadFileSizeInKilobytes() const
+    std::optional<uint32_t> GetMinimumDownloadFileSizeInKilobytes() const
         {
         return m_minFileDownloadSizeKilobytes;
         }
