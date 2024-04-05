@@ -222,7 +222,8 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
         // chop off the trailing '/'
         urlLocalFileFriendlyName.RemoveLast();
         // add an extension to the url, unless it is the main page
-        if (!html_utilities::html_url_format::is_url_top_level_domain(urlLocalFileFriendlyName.wc_str()))
+        if (!html_utilities::html_url_format::is_url_top_level_domain(
+                urlLocalFileFriendlyName.wc_str()))
             {
             urlLocalFileFriendlyName.Append(L".htm");
             }
@@ -333,8 +334,8 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
         // check the response code
         if (QueueDownload::IsBadResponseCode(responseCode))
             {
-            wxLogWarning(L"%s: unable to connect to page, error code #%i (%s).",
-                        Url, responseCode, QueueDownload::GetResponseMessage(responseCode));
+            wxLogWarning(L"%s: unable to connect to page, error code #%i (%s).", Url, responseCode,
+                         QueueDownload::GetResponseMessage(responseCode));
             }
         wxLogWarning(L"Unable to download to '%s'", downloadPath);
         downloadPath.clear();
@@ -440,8 +441,8 @@ bool WebHarvester::ReadWebPage(wxString& Url, wxString& webPageContent, wxString
         {
         responseCode = m_downloader.GetLastStatus();
         statusText = m_downloader.GetLastStatusText();
-        wxLogWarning(L"%s: Unable to connect to page, error code #%i (%s).", Url,
-                     responseCode, QueueDownload::GetResponseMessage(responseCode));
+        wxLogWarning(L"%s: Unable to connect to page, error code #%i (%s).", Url, responseCode,
+                     QueueDownload::GetResponseMessage(responseCode));
         return false;
         }
 
@@ -449,8 +450,8 @@ bool WebHarvester::ReadWebPage(wxString& Url, wxString& webPageContent, wxString
     statusText = m_downloader.GetLastStatusText();
     if (QueueDownload::IsBadResponseCode(responseCode))
         {
-        wxLogWarning(L"%s: Unable to connect to page, error code #%i (%s).", Url,
-                     responseCode, QueueDownload::GetResponseMessage(responseCode));
+        wxLogWarning(L"%s: Unable to connect to page, error code #%i (%s).", Url, responseCode,
+                     QueueDownload::GetResponseMessage(responseCode));
         return false;
         }
     else if (m_downloader.GetLastRead().size() > 0)
@@ -482,8 +483,8 @@ bool WebHarvester::ReadWebPage(wxString& Url, wxString& webPageContent, wxString
         wxString charSet = GetCharsetFromContentType(contentType);
         if (charSet.empty())
             {
-            charSet = GetCharsetFromPageContent({ &m_downloader.GetLastRead()[0],
-                                                  m_downloader.GetLastRead().size()} );
+            charSet = GetCharsetFromPageContent(
+                { &m_downloader.GetLastRead()[0], m_downloader.GetLastRead().size() });
             }
         // Watch out for embedded NULLs in stream (happens with poorly formatted HTML).
         // In this situation, we need to split the stream into valid chunks, convert them,
@@ -575,7 +576,8 @@ bool WebHarvester::CrawlLinks()
     wxString contentType;
     // Add the link to files to download if it matches our criteria
     if (!HasUrlAlreadyBeenHarvested(m_url) &&
-        ((m_harvestAllHtml && IsPageHtml(m_url, contentType, responseCode)) || ShouldFileBeHarvested(fileExt)))
+        ((m_harvestAllHtml && IsPageHtml(m_url, contentType, responseCode)) ||
+         ShouldFileBeHarvested(fileExt)))
         {
         HarvestLink(m_url, m_url, fileExt);
         }
@@ -739,7 +741,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
     // skip "mailto" anchors, telephone numbers, placeholders,
     // and any bookmarks on the same page
     const wxRegEx anchorsToSkip{ L"[[:space:]]*(mailto[:]|tel[:]|#|"
-                                  "javascript[:][[:space:]]*void).*" };
+                                 "javascript[:][[:space:]]*void).*" };
 
     if (anchorsToSkip.Matches(currentLink))
         {
@@ -1050,8 +1052,8 @@ wxString WebHarvester::GetCharsetFromContentType(const wxString& contentType)
 //----------------------------------
 wxString WebHarvester::GetCharsetFromPageContent(std::string_view pageContent)
     {
-    std::string charSet =
-    lily_of_the_valley::html_extract_text::parse_charset(pageContent.data(), pageContent.length());
+    std::string charSet = lily_of_the_valley::html_extract_text::parse_charset(
+        pageContent.data(), pageContent.length());
     if (charSet.empty())
         {
         return wxLocale::GetSystemEncodingName();

@@ -195,11 +195,9 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
                     .ToStdString()) &&
             !IsIncludingNumeric())
             {
-            std::vector<WarningMessage>::iterator warningIter =
-                WarningManager::GetWarning(
-                    _DT(L"custom-test-numeral-settings-adjustment-required"));
-            if (warningIter != WarningManager::GetWarnings().end() &&
-                warningIter->ShouldBeShown())
+            std::vector<WarningMessage>::iterator warningIter = WarningManager::GetWarning(
+                _DT(L"custom-test-numeral-settings-adjustment-required"));
+            if (warningIter != WarningManager::GetWarnings().end() && warningIter->ShouldBeShown())
                 {
                 wxMessageBox(warningIter->GetMessage(), wxGetApp().GetAppName(),
                              warningIter->GetFlags(), this);
@@ -1100,8 +1098,7 @@ void CustomTestDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
         {
         std::vector<WarningMessage>::iterator warningIter =
             WarningManager::GetWarning(_DT(L"german-no-proper-noun-support"));
-        if (warningIter != WarningManager::GetWarnings().end() &&
-            warningIter->ShouldBeShown())
+        if (warningIter != WarningManager::GetWarnings().end() && warningIter->ShouldBeShown())
             {
             wxMessageBox(warningIter->GetMessage(), wxGetApp().GetAppName(),
                          warningIter->GetFlags(), this);

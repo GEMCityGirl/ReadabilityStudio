@@ -223,7 +223,6 @@ class ExplanationListCtrl final : public wxSplitterWindow
         }
 
   private:
-
     ExplanationListCtrl() = default;
 
     void OnPreview([[maybe_unused]] wxCommandEvent& event);
@@ -235,8 +234,9 @@ class ExplanationListCtrl final : public wxSplitterWindow
     void OnResize(wxSizeEvent& event);
     void OnMenuCommand(wxCommandEvent& event);
 
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_data
-        { std::make_shared<ListCtrlExNumericDataProvider>() };
+    std::shared_ptr<ListCtrlExNumericDataProvider> m_data{
+        std::make_shared<ListCtrlExNumericDataProvider>()
+    };
     std::map<wxString, wxString> m_explanations;
     // view classes
     Wisteria::UI::HtmlTableWindow* m_explanation_view{ nullptr };

@@ -1555,13 +1555,12 @@ class ReadabilityAppOptions
     void SetUserAgent(wxString path) { m_userAgent = std::move(path); }
 
     /** @brief Disable SSL certificate verification.
-        @details This can be used to connect to self-signed servers or other invalid SSL connections.\n
+        @details This can be used to connect to self-signed servers or
+            other invalid SSL connections.\n
             Disabling verification makes the communication insecure.
         @param disable @c true to disable SSL certificate verification.*/
-    void DisablePeerVerify(const bool disable)noexcept
-        {
-        m_disablePeerVerify = disable;
-        }
+    void DisablePeerVerify(const bool disable) noexcept { m_disablePeerVerify = disable; }
+
     /// @returns Returns @c true if peer verification has been disabled.
     [[nodiscard]]
     bool IsPeerVerifyDisabled() const noexcept
@@ -2485,7 +2484,8 @@ class ReadabilityAppOptions
     [[nodiscard]]
     static wxString GetImageFileFilter()
         {
-        return _(LR"(Image Files (*.bmp;*.jpg;*.jpeg;*.jpe;*.png;*.gif;*.tga;*.tif;*.tiff;*.pcx)|*.bmp;*.jpg;*.jpeg;*.jpe;*.png;*.gif;*.tga;*.tif;*.tiff;*.pcx|Bitmap (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe)|*.jpg;*.jpg;*.jpe|PNG (*.png)|*.png|GIF (*.gif)|*.gif|Targa (*.tga)|*.tga|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PCX (*.pcx)|*.pcx)");
+        return _(
+            LR"(Image Files (*.bmp;*.jpg;*.jpeg;*.jpe;*.png;*.gif;*.tga;*.tif;*.tiff;*.pcx)|*.bmp;*.jpg;*.jpeg;*.jpe;*.png;*.gif;*.tga;*.tif;*.tiff;*.pcx|Bitmap (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe)|*.jpg;*.jpg;*.jpe|PNG (*.png)|*.png|GIF (*.gif)|*.gif|Targa (*.tga)|*.tga|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PCX (*.pcx)|*.pcx)");
         }
 
   private:
@@ -2620,7 +2620,8 @@ class ReadabilityAppOptions
     // Note that we call this a "WebLion". Using words like "harvester," "crawler,"
     // "scraper," and even "browser" will result in a forbidden response from some sites,
     // so avoid using those words.
-    wxString m_userAgent{ _DT(L"Mozilla/5.0 (") + wxGetOsDescription() + _DT(L") WebKit/12.0 WebLion") };
+    wxString m_userAgent{ _DT(L"Mozilla/5.0 (") + wxGetOsDescription() +
+                          _DT(L") WebKit/12.0 WebLion") };
     bool m_disablePeerVerify{ false };
     // graph information
     bool m_boxPlotShowAllPoints{ false };

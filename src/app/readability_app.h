@@ -6,9 +6,9 @@
 #include "../Wisteria-Dataviz/src/math/mathematics.h"
 #include "../Wisteria-Dataviz/src/ui/app.h"
 #include "../Wisteria-Dataviz/src/ui/controls/codeeditor.h"
-#include "../Wisteria-Dataviz/src/ui/dialogs/listdlg.h"
 #include "../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/functionbrowserdlg.h"
+#include "../Wisteria-Dataviz/src/ui/dialogs/listdlg.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/printerheaderfooterdlg.h"
 #include "../Wisteria-Dataviz/src/ui/mainframe.h"
 #include "../Wisteria-Dataviz/src/util/formulaformat.h"
@@ -223,7 +223,8 @@ class MainFrame final : public Wisteria::UI::BaseMainFrame
     constexpr static wxWindowID ID_EDIT_RIBBON_RAYGOR_PANEL = wxID_HIGHEST + 23;
     constexpr static wxWindowID ID_EDIT_RIBBON_SCHWARTZ_PANEL = wxID_HIGHEST + 24;
     constexpr static wxWindowID ID_EDIT_RIBBON_FLESCH_PANEL = wxID_HIGHEST + 25;
-    constexpr static wxWindowID ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_AND_EXCLUDE_PANEL = wxID_HIGHEST + 26;
+    constexpr static wxWindowID ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_AND_EXCLUDE_PANEL =
+        wxID_HIGHEST + 26;
     constexpr static wxWindowID ID_EDIT_RIBBON_GRAPH_PANEL = wxID_HIGHEST + 27;
     constexpr static wxWindowID ID_EDIT_RIBBON_LIST_CSVSS_PANEL = wxID_HIGHEST + 28;
     constexpr static wxWindowID ID_EDIT_RIBBON_LIST_TEST_SCORES_PANEL = wxID_HIGHEST + 29;
@@ -270,7 +271,7 @@ class MainFrame final : public Wisteria::UI::BaseMainFrame
 // Define a new application
 class ReadabilityApp final : public Wisteria::UI::BaseApp
     {
-public:
+  public:
     ReadabilityApp() = default;
     ReadabilityApp(const ReadabilityApp&) = delete;
     ReadabilityApp& operator=(const ReadabilityApp&) = delete;
@@ -355,7 +356,10 @@ public:
         }
 
     [[nodiscard]]
-    LuaInterpreter& GetLuaRunner() noexcept { return m_LuaRunner; }
+    LuaInterpreter& GetLuaRunner() noexcept
+        {
+        return m_LuaRunner;
+        }
 
     [[nodiscard]]
     WebHarvester& GetWebHarvester() noexcept
@@ -481,7 +485,7 @@ public:
         return m_colorSchemeMap;
         }
 
-private:
+  private:
     void InitializeReadabilityFeatures();
 
     /// @brief IDs exposed to scripting and their respective dynamic IDs in the framework.

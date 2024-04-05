@@ -32,82 +32,86 @@ std::map<wxWindowID, wxWindowID> ReadabilityApp::m_dynamicIdMap;
 RSArtProvider::RSArtProvider()
     {
     // cppcheck-suppress useInitializationList
-    m_idFileMap =
-        {
-            { wxART_FILE_OPEN, L"ribbon/file-open.svg" },
-            { wxART_FILE_SAVE, L"ribbon/file-save.svg" },
-            { wxART_NEW, L"ribbon/document.svg" },
-            { wxART_PRINT, L"ribbon/print.svg" },
-            { wxART_CLOSE, L"ribbon/delete.svg" },
-            { wxART_DELETE, L"ribbon/delete.svg" },
-            { wxART_COPY, L"ribbon/copy.svg" },
-            { wxART_CUT, L"ribbon/cut.svg" },
-            { wxART_PASTE, L"ribbon/paste.svg" },
-            { wxART_UNDO, L"ribbon/undo.svg" },
-            { wxART_REDO, L"ribbon/redo.svg" },
-            { wxART_HELP_BOOK, L"ribbon/help.svg" },
-            { wxART_GO_DOWN, L"ribbon/down-arrow.svg" },
-            { wxART_GO_UP, L"ribbon/up-arrow.svg" },
-            { wxART_FIND, L"ribbon/find.svg" },
-            { wxART_FIND_AND_REPLACE, L"ribbon/find-replace.svg" },
-            { L"ID_ALIGN_LEFT", L"ribbon/align-left.svg" },
-            { L"ID_ALIGN_CENTER", L"ribbon/align-center.svg" },
-            { L"ID_ALIGN_RIGHT", L"ribbon/align-right.svg" },
-            { L"ID_ALIGN_JUSTIFIED", L"ribbon/justified.svg" },
-            { L"ID_PARAGRAPH_INDENT", L"ribbon/paragraph-indent.svg" },
-            { L"ID_LINE_SPACING", L"ribbon/line-spacing.svg" },
-            { L"ID_LIST_SORT", L"ribbon/sort.svg" },
-            { L"ID_ADD", L"ribbon/add.svg" },
-            { L"ID_GROUP", L"ribbon/group.svg" },
-            { L"ID_RUN", L"ribbon/run.svg" },
-            { L"ID_CLEAR", L"ribbon/clear.svg" },
-            { L"ID_DOCUMENT", L"ribbon/document.svg" },
-            { L"ID_DOCUMENTS", L"ribbon/documents.svg" },
-            { L"ID_EDIT_DOCUMENT", L"ribbon/edit-document.svg" },
-            { L"ID_FUNCTION", L"ribbon/function.svg" },
-            { L"ID_SPREADSHEET", L"ribbon/spreadsheet.svg" },
-            { L"ID_ARCHIVE", L"ribbon/archive.svg" },
-            { L"ID_GEARS", L"ribbon/gears.svg" },
-            { L"ID_WEB_EXPORT", L"ribbon/web-export.svg" },
-            { L"ID_EDIT", L"ribbon/edit.svg" },
-            { L"ID_FONT", L"ribbon/font.svg" },
-            { L"ID_SELECT_ALL", L"ribbon/select-all.svg" },
-            { L"ID_REFRESH", L"ribbon/reload.svg" },
-            { L"ID_REALTIME_UPDATE", L"ribbon/realtime.svg" },
-        };
+    m_idFileMap = {
+        { wxART_FILE_OPEN, L"ribbon/file-open.svg" },
+        { wxART_FILE_SAVE, L"ribbon/file-save.svg" },
+        { wxART_NEW, L"ribbon/document.svg" },
+        { wxART_PRINT, L"ribbon/print.svg" },
+        { wxART_CLOSE, L"ribbon/delete.svg" },
+        { wxART_DELETE, L"ribbon/delete.svg" },
+        { wxART_COPY, L"ribbon/copy.svg" },
+        { wxART_CUT, L"ribbon/cut.svg" },
+        { wxART_PASTE, L"ribbon/paste.svg" },
+        { wxART_UNDO, L"ribbon/undo.svg" },
+        { wxART_REDO, L"ribbon/redo.svg" },
+        { wxART_HELP_BOOK, L"ribbon/help.svg" },
+        { wxART_GO_DOWN, L"ribbon/down-arrow.svg" },
+        { wxART_GO_UP, L"ribbon/up-arrow.svg" },
+        { wxART_FIND, L"ribbon/find.svg" },
+        { wxART_FIND_AND_REPLACE, L"ribbon/find-replace.svg" },
+        { L"ID_ALIGN_LEFT", L"ribbon/align-left.svg" },
+        { L"ID_ALIGN_CENTER", L"ribbon/align-center.svg" },
+        { L"ID_ALIGN_RIGHT", L"ribbon/align-right.svg" },
+        { L"ID_ALIGN_JUSTIFIED", L"ribbon/justified.svg" },
+        { L"ID_PARAGRAPH_INDENT", L"ribbon/paragraph-indent.svg" },
+        { L"ID_LINE_SPACING", L"ribbon/line-spacing.svg" },
+        { L"ID_LIST_SORT", L"ribbon/sort.svg" },
+        { L"ID_ADD", L"ribbon/add.svg" },
+        { L"ID_GROUP", L"ribbon/group.svg" },
+        { L"ID_RUN", L"ribbon/run.svg" },
+        { L"ID_CLEAR", L"ribbon/clear.svg" },
+        { L"ID_DOCUMENT", L"ribbon/document.svg" },
+        { L"ID_DOCUMENTS", L"ribbon/documents.svg" },
+        { L"ID_EDIT_DOCUMENT", L"ribbon/edit-document.svg" },
+        { L"ID_FUNCTION", L"ribbon/function.svg" },
+        { L"ID_SPREADSHEET", L"ribbon/spreadsheet.svg" },
+        { L"ID_ARCHIVE", L"ribbon/archive.svg" },
+        { L"ID_GEARS", L"ribbon/gears.svg" },
+        { L"ID_WEB_EXPORT", L"ribbon/web-export.svg" },
+        { L"ID_EDIT", L"ribbon/edit.svg" },
+        { L"ID_FONT", L"ribbon/font.svg" },
+        { L"ID_SELECT_ALL", L"ribbon/select-all.svg" },
+        { L"ID_REFRESH", L"ribbon/reload.svg" },
+        { L"ID_REALTIME_UPDATE", L"ribbon/realtime.svg" },
+    };
     }
 
 //-------------------------------------------
-wxBitmapBundle RSArtProvider::CreateBitmapBundle(const wxArtID& id,
-                                                 const wxArtClient& client,
+wxBitmapBundle RSArtProvider::CreateBitmapBundle(const wxArtID& id, const wxArtClient& client,
                                                  const wxSize& size)
     {
     const auto filePath = m_idFileMap.find(id);
 
     return (filePath != m_idFileMap.cend()) ?
-        wxGetApp().GetResourceManager().GetSVG(filePath->second) :
-        wxArtProvider::CreateBitmapBundle(id, client, size);
+               wxGetApp().GetResourceManager().GetSVG(filePath->second) :
+               wxArtProvider::CreateBitmapBundle(id, client, size);
     }
 
 //-------------------------------------------
 void ReadabilityApp::EditDictionary(const readability::test_language lang)
     {
-    EditWordListDlg editDlg(GetMainFrame(),
-        wxID_ANY,
-        (lang == readability::test_language::spanish_test) ?
-        _(L"Custom Spanish Dictionary") :
-        (lang == readability::test_language::german_test) ?
-        _(L"Custom German Dictionary") : _(L"Custom English Dictionary") );
+    EditWordListDlg editDlg(
+        GetMainFrame(), wxID_ANY,
+        (lang == readability::test_language::spanish_test) ? _(L"Custom Spanish Dictionary") :
+        (lang == readability::test_language::german_test)  ? _(L"Custom German Dictionary") :
+                                                             _(L"Custom English Dictionary"));
     if (lang == readability::test_language::spanish_test)
-        { editDlg.SetFilePath(m_CustomSpanishDictionaryPath); }
+        {
+        editDlg.SetFilePath(m_CustomSpanishDictionaryPath);
+        }
     else if (lang == readability::test_language::german_test)
-        { editDlg.SetFilePath(m_CustomGermanDictionaryPath); }
+        {
+        editDlg.SetFilePath(m_CustomGermanDictionaryPath);
+        }
     else
-        { editDlg.SetFilePath(m_CustomEnglishDictionaryPath); }
+        {
+        editDlg.SetFilePath(m_CustomEnglishDictionaryPath);
+        }
     editDlg.SetHelpTopic(GetMainFrame()->GetHelpDirectory(), L"document-analysis.html");
     if (editDlg.ShowModal() == wxID_OK)
         {
-        // custom dictionary will be written back to with edit words at this point, so just reload it.
+        // custom dictionary will be written back to with edit words at this point,
+        // so just reload it.
         wxBusyCursor wait;
         // reload the custom dictionary
         if (lang == readability::test_language::spanish_test)
@@ -115,21 +119,30 @@ void ReadabilityApp::EditDictionary(const readability::test_language lang)
             wxString ExtraDictionaryText;
             if (wxFile::Exists(m_CustomSpanishDictionaryPath) &&
                 Wisteria::TextStream::ReadFile(m_CustomSpanishDictionaryPath, ExtraDictionaryText))
-                { BaseProject::known_custom_spanish_spellings.load_words(ExtraDictionaryText, true, false); }
+                {
+                BaseProject::known_custom_spanish_spellings.load_words(ExtraDictionaryText, true,
+                                                                       false);
+                }
             }
         else if (lang == readability::test_language::german_test)
             {
             wxString ExtraDictionaryText;
             if (wxFile::Exists(m_CustomGermanDictionaryPath) &&
                 Wisteria::TextStream::ReadFile(m_CustomGermanDictionaryPath, ExtraDictionaryText))
-                { BaseProject::known_custom_german_spellings.load_words(ExtraDictionaryText, true, false); }
+                {
+                BaseProject::known_custom_german_spellings.load_words(ExtraDictionaryText, true,
+                                                                      false);
+                }
             }
         else
             {
             wxString ExtraDictionaryText;
             if (wxFile::Exists(m_CustomEnglishDictionaryPath) &&
                 Wisteria::TextStream::ReadFile(m_CustomEnglishDictionaryPath, ExtraDictionaryText))
-                { BaseProject::known_custom_english_spellings.load_words(ExtraDictionaryText, true, false); }
+                {
+                BaseProject::known_custom_english_spellings.load_words(ExtraDictionaryText, true,
+                                                                       false);
+                }
             }
 
         // reload the projects
@@ -153,22 +166,22 @@ void ReadabilityApp::ShowSplashscreen()
         // an error message may appear under it and lock the program
         argc < 2)
         {
-        std::uniform_int_distribution<size_t> randNum(0, GetSplashscreenPaths().GetCount()-1);
+        std::uniform_int_distribution<size_t> randNum(0, GetSplashscreenPaths().GetCount() - 1);
         const size_t imageIndex = randNum(GetRandomNumberEngine());
         if (imageIndex < GetSplashscreenPaths().GetCount())
             {
             wxString ext{ GetSplashscreenPaths()[imageIndex] };
-            wxBitmap bitmap = GetScaledImage(GetSplashscreenPaths()[imageIndex],
-                                    Image::GetImageFileTypeFromExtension(ext),
-                                    wxSize(800, 600));
+            wxBitmap bitmap =
+                GetScaledImage(GetSplashscreenPaths()[imageIndex],
+                               Image::GetImageFileTypeFromExtension(ext), wxSize(800, 600));
             if (bitmap.IsOk())
                 {
-                bitmap = CreateSplashscreen(bitmap, GetAppName(), GetAppSubName(), GetVendorName(), true);
+                bitmap = CreateSplashscreen(bitmap, GetAppName(), GetAppSubName(), GetVendorName(),
+                                            true);
 
-                [[maybe_unused]] wxSplashScreen* splash = new wxSplashScreen(bitmap,
-                    wxSPLASH_CENTRE_ON_SCREEN|wxSPLASH_TIMEOUT,
-                    2000, GetMainFrame(), -1, wxDefaultPosition, wxDefaultSize,
-                    wxFRAME_NO_TASKBAR|wxSTAY_ON_TOP);
+                [[maybe_unused]] wxSplashScreen* splash = new wxSplashScreen(
+                    bitmap, wxSPLASH_CENTRE_ON_SCREEN | wxSPLASH_TIMEOUT, 2000, GetMainFrame(), -1,
+                    wxDefaultPosition, wxDefaultSize, wxFRAME_NO_TASKBAR | wxSTAY_ON_TOP);
                 }
             }
         }
@@ -176,7 +189,8 @@ void ReadabilityApp::ShowSplashscreen()
     }
 
 //-------------------------------------------
-void ReadabilityApp::AddWordsToDictionaries(const wxArrayString& theWords, const readability::test_language lang) const
+void ReadabilityApp::AddWordsToDictionaries(const wxArrayString& theWords,
+                                            const readability::test_language lang) const
     {
     wxString customDictionaryPath = m_CustomEnglishDictionaryPath;
     if (lang == readability::test_language::english_test)
@@ -184,41 +198,51 @@ void ReadabilityApp::AddWordsToDictionaries(const wxArrayString& theWords, const
         customDictionaryPath = m_CustomEnglishDictionaryPath;
         // add words to the currently loaded (custom) dictionary
         for (size_t i = 0; i < theWords.GetCount(); ++i)
-            { BaseProject::known_custom_english_spellings.add_word(theWords[i].wc_str()); }
+            {
+            BaseProject::known_custom_english_spellings.add_word(theWords[i].wc_str());
+            }
         }
     else if (lang == readability::test_language::spanish_test)
         {
         customDictionaryPath = m_CustomSpanishDictionaryPath;
         // add words to the currently loaded (custom) dictionary
         for (size_t i = 0; i < theWords.GetCount(); ++i)
-            { BaseProject::known_custom_spanish_spellings.add_word(theWords[i].wc_str()); }
+            {
+            BaseProject::known_custom_spanish_spellings.add_word(theWords[i].wc_str());
+            }
         }
     else if (lang == readability::test_language::german_test)
         {
         customDictionaryPath = m_CustomGermanDictionaryPath;
         // add words to the currently loaded (custom) dictionary
         for (size_t i = 0; i < theWords.GetCount(); ++i)
-            { BaseProject::known_custom_german_spellings.add_word(theWords[i].wc_str()); }
+            {
+            BaseProject::known_custom_german_spellings.add_word(theWords[i].wc_str());
+            }
         }
 
     // add to custom dictionary
     wxString text;
-    if (!Wisteria::TextStream::ReadFile(customDictionaryPath, text) )
+    if (!Wisteria::TextStream::ReadFile(customDictionaryPath, text))
         {
-        wxMessageBox(_(L"Error loading custom dictionary file."),
-            _(L"Error"), wxOK|wxICON_EXCLAMATION);
+        wxMessageBox(_(L"Error loading custom dictionary file."), _(L"Error"),
+                     wxOK | wxICON_EXCLAMATION);
         return;
         }
 
     word_list customWords;
     customWords.load_words(text, true, false);
     for (size_t i = 0; i < theWords.GetCount(); ++i)
-        { customWords.add_word(theWords[i].wc_str()); }
+        {
+        customWords.add_word(theWords[i].wc_str());
+        }
     // save the new list back to the original file
     wxString outputStr;
-    outputStr.reserve(customWords.get_list_size()*5);
+    outputStr.reserve(customWords.get_list_size() * 5);
     for (size_t i = 0; i < customWords.get_list_size(); ++i)
-        { outputStr += customWords.get_words().at(i).c_str() + wxString(L"\n"); }
+        {
+        outputStr += customWords.get_words().at(i).c_str() + wxString(L"\n");
+        }
     outputStr.Trim();
     wxFileName(customDictionaryPath).SetPermissions(wxS_DEFAULT);
     wxFile outputFile(customDictionaryPath, wxFile::write);
@@ -242,32 +266,21 @@ void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
             initEventProcessing = true;
             hasCommandLineBeenParsed = true;
             // parse the command line
-            const wxCmdLineEntryDesc cmdLineDesc[] =
-                {
-                    {
-                        wxCMD_LINE_SWITCH, _DT("help"), _DT("help"), wxTRANSLATE("Displays the help"),
-                            wxCMD_LINE_VAL_NONE, wxCMD_LINE_OPTION_HELP
-                    },
-                    {
-                        wxCMD_LINE_OPTION, _DT("bg"), _DT("background"),
-                        wxTRANSLATE("Sets the graph background image for the input project"),
-                        wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL
-                    },
-                    {
-                        wxCMD_LINE_OPTION, _DT("lua"), _DT("lua"), wxTRANSLATE("Runs a Lua script"),
-                        wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL
-                    },
-                    {
-                        wxCMD_LINE_OPTION, _DT("loglevel"), _DT("loglevel"),
-                        wxTRANSLATE("Log report level (0 = none, 1 = standard, 2 = verbose, 3 = max)."),
-                        wxCMD_LINE_VAL_NUMBER, wxCMD_LINE_PARAM_OPTIONAL
-                    },
-                    {
-                        wxCMD_LINE_PARAM, nullptr, nullptr, wxTRANSLATE("Input file"), wxCMD_LINE_VAL_STRING,
-                        wxCMD_LINE_PARAM_OPTIONAL
-                    },
-                    { wxCMD_LINE_NONE, nullptr, nullptr, nullptr, wxCMD_LINE_VAL_NONE, 0 }
-                };
+            const wxCmdLineEntryDesc cmdLineDesc[] = {
+                { wxCMD_LINE_SWITCH, _DT("help"), _DT("help"), wxTRANSLATE("Displays the help"),
+                  wxCMD_LINE_VAL_NONE, wxCMD_LINE_OPTION_HELP },
+                { wxCMD_LINE_OPTION, _DT("bg"), _DT("background"),
+                  wxTRANSLATE("Sets the graph background image for the input project"),
+                  wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
+                { wxCMD_LINE_OPTION, _DT("lua"), _DT("lua"), wxTRANSLATE("Runs a Lua script"),
+                  wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
+                { wxCMD_LINE_OPTION, _DT("loglevel"), _DT("loglevel"),
+                  wxTRANSLATE("Log report level (0 = none, 1 = standard, 2 = verbose, 3 = max)."),
+                  wxCMD_LINE_VAL_NUMBER, wxCMD_LINE_PARAM_OPTIONAL },
+                { wxCMD_LINE_PARAM, nullptr, nullptr, wxTRANSLATE("Input file"),
+                  wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
+                { wxCMD_LINE_NONE, nullptr, nullptr, nullptr, wxCMD_LINE_VAL_NONE, 0 }
+            };
             wxCmdLineParser cmdParser(cmdLineDesc, argc, argv);
             int CommandLineResult = 0;
                 {
@@ -282,9 +295,13 @@ void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
             if (cmdParser.Found(_DT(L"loglevel"), &loglevel))
                 {
                 if (loglevel <= 0)
-                    { wxLog::EnableLogging(false); }
+                    {
+                    wxLog::EnableLogging(false);
+                    }
                 else if (loglevel == 1)
-                    { wxLog::SetLogLevel(wxLOG_Status); }
+                    {
+                    wxLog::SetLogLevel(wxLOG_Status);
+                    }
                 else if (loglevel > 1)
                     {
                     wxLog::SetVerbose(true);
@@ -298,16 +315,21 @@ void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
                 {
                 wxString luaScript, errorMessage;
                 if (Wisteria::TextStream::ReadFile(luaScriptPath, luaScript))
-                    { GetLuaRunner().RunLuaCode(luaScript, luaScriptPath, errorMessage); }
+                    {
+                    GetLuaRunner().RunLuaCode(luaScript, luaScriptPath, errorMessage);
+                    }
                 }
 
             // see if they want to display the help
             if (CommandLineResult == -1)
-                { GetMainFrame()->DisplayHelp(); }
+                {
+                GetMainFrame()->DisplayHelp();
+                }
             else if (CommandLineResult == 0 && cmdParser.GetParamCount() > 0)
                 {
                 wxFileName fn(cmdParser.GetParam(0));
-                fn.Normalize(wxPATH_NORM_LONG|wxPATH_NORM_DOTS|wxPATH_NORM_TILDE|wxPATH_NORM_ABSOLUTE);
+                fn.Normalize(wxPATH_NORM_LONG | wxPATH_NORM_DOTS | wxPATH_NORM_TILDE |
+                             wxPATH_NORM_ABSOLUTE);
                 // allow ability to open native files or import something from command line
                 size_t i = 0;
                 for (i = 0; i < GetMainFrame()->GetDefaultFileExtentions().GetCount(); ++i)
@@ -325,23 +347,27 @@ void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
                     const auto& templateList = GetDocManager()->GetTemplates();
                     for (size_t j = 0; j < templateList.GetCount(); ++j)
                         {
-                        wxDocTemplate* docTemplate = dynamic_cast<wxDocTemplate*>(templateList.Item(j)->GetData());
-                        if (docTemplate && docTemplate->GetDocClassInfo()->IsKindOf(CLASSINFO(ProjectDoc)))
+                        wxDocTemplate* docTemplate =
+                            dynamic_cast<wxDocTemplate*>(templateList.Item(j)->GetData());
+                        if (docTemplate &&
+                            docTemplate->GetDocClassInfo()->IsKindOf(CLASSINFO(ProjectDoc)))
                             {
-                            ProjectDoc* newDoc =
-                                dynamic_cast<ProjectDoc*>(docTemplate->CreateDocument(fn.GetFullPath(), wxDOC_NEW));
-                            if (newDoc && !newDoc->OnNewDocument() )
+                            ProjectDoc* newDoc = dynamic_cast<ProjectDoc*>(
+                                docTemplate->CreateDocument(fn.GetFullPath(), wxDOC_NEW));
+                            if (newDoc && !newDoc->OnNewDocument())
                                 {
                                 // Document is implicitly deleted by DeleteAllViews
                                 newDoc->DeleteAllViews();
                                 newDoc = nullptr;
                                 }
-                            if (newDoc && newDoc->GetFirstView() )
+                            if (newDoc && newDoc->GetFirstView())
                                 {
                                 newDoc->GetFirstView()->Activate(true);
                                 GetDocManager()->ActivateView(newDoc->GetFirstView());
-                                if (newDoc->GetDocumentWindow() )
-                                    { newDoc->GetDocumentWindow()->SetFocus(); }
+                                if (newDoc->GetDocumentWindow())
+                                    {
+                                    newDoc->GetDocumentWindow()->SetFocus();
+                                    }
                                 wxString graphBackgroundPath;
                                 if (cmdParser.Found(_DT(L"bg"), &graphBackgroundPath))
                                     {
@@ -5063,8 +5089,8 @@ void MainFrame::OnHelpContents([[maybe_unused]] wxCommandEvent& event)
 //-------------------------------------------------------
 void MainFrame::OnHelpManual([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    const wxString manualPath = GetHelpDirectory() + wxFileName::GetPathSeparator() +
-        _DT(L"ReadabilityStudioManual.pdf");
+    const wxString manualPath =
+        GetHelpDirectory() + wxFileName::GetPathSeparator() + _DT(L"ReadabilityStudioManual.pdf");
     wxLaunchDefaultApplication(manualPath);
     }
 
@@ -5133,25 +5159,27 @@ void MainFrame::OnToolsOptions([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     ToolsOptionsDlg optionsDlg(this);
     if (optionsDlg.ShowModal() == wxID_OK)
-        { wxGetApp().GetAppOptions().SaveOptionsFile(); }
+        {
+        wxGetApp().GetAppOptions().SaveOptionsFile();
+        }
     }
 
 //-------------------------------------------------------
 void MainFrame::OnEditWordList([[maybe_unused]] wxCommandEvent& event)
     {
-    EditWordListDlg editDlg(this,
-        wxID_ANY, _(L"Edit Word List"));
+    EditWordListDlg editDlg(this, wxID_ANY, _(L"Edit Word List"));
     editDlg.SetDefaultDir(wxGetApp().GetAppOptions().GetWordListPath());
     editDlg.SetHelpTopic(GetHelpDirectory(), _DT(L"document-analysis.html"));
     if (editDlg.ShowModal() == wxID_OK)
-        { wxGetApp().GetAppOptions().SetWordListPath(wxFileName(editDlg.GetFilePath()).GetPath()); }
+        {
+        wxGetApp().GetAppOptions().SetWordListPath(wxFileName(editDlg.GetFilePath()).GetPath());
+        }
     }
 
 //-------------------------------------------------------
 void MainFrame::OnEditPhraseList([[maybe_unused]] wxCommandEvent& event)
     {
-    EditWordListDlg editDlg(this,
-        wxID_ANY, _(L"Edit Phrase List"));
+    EditWordListDlg editDlg(this, wxID_ANY, _(L"Edit Phrase List"));
     editDlg.SetDefaultDir(wxGetApp().GetAppOptions().GetWordListPath());
     editDlg.SetHelpTopic(GetHelpDirectory(), _DT(L"document-analysis.html"));
     editDlg.SetPhraseFileMode(true);
@@ -5161,11 +5189,13 @@ void MainFrame::OnEditPhraseList([[maybe_unused]] wxCommandEvent& event)
 //-------------------------------------------------------
 void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    GetDirFilterDialog dirDlg(this,
-        wxGetApp().GetAppOptions().GetDocumentFilter() + L"|" +
-        wxGetApp().GetAppOptions().GetImageFileFilter() + L"|" + _(L"All Files (*.*)|*.*"));
+    GetDirFilterDialog dirDlg(this, wxGetApp().GetAppOptions().GetDocumentFilter() + L"|" +
+                                        wxGetApp().GetAppOptions().GetImageFileFilter() + L"|" +
+                                        _(L"All Files (*.*)|*.*"));
     if (dirDlg.ShowModal() != wxID_OK || dirDlg.GetPath().empty())
-        { return; }
+        {
+        return;
+        }
 
     wxWindowDisabler disableAll;
     // get the list of files
@@ -5173,37 +5203,39 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
         {
         wxBusyInfo wait(_(L"Retrieving files..."));
         wxDir::GetAllFiles(dirDlg.GetPath(), &files, wxEmptyString,
-            dirDlg.IsRecursive() ? wxDIR_FILES | wxDIR_DIRS : wxDIR_FILES);
+                           dirDlg.IsRecursive() ? wxDIR_FILES | wxDIR_DIRS : wxDIR_FILES);
         files = FilterFiles(files, ExtractExtensionsFromFileFilter(dirDlg.GetSelectedFileFilter()));
         }
 
     // get the checksums
     multi_value_aggregate_map<std::uint32_t, wxString> filesMap;
         {
-        wxProgressDialog progressDlg(_(L"Duplicate Files"), _(L"Searching for duplicate files..."),
-            files.size(),
-            this,
-            wxPD_AUTO_HIDE|wxPD_SMOOTH|wxPD_ELAPSED_TIME|wxPD_ESTIMATED_TIME|wxPD_REMAINING_TIME|
-            wxPD_CAN_ABORT|wxPD_APP_MODAL);
+        wxProgressDialog progressDlg(
+            _(L"Duplicate Files"), _(L"Searching for duplicate files..."), files.size(), this,
+            wxPD_AUTO_HIDE | wxPD_SMOOTH | wxPD_ELAPSED_TIME | wxPD_ESTIMATED_TIME |
+                wxPD_REMAINING_TIME | wxPD_CAN_ABORT | wxPD_APP_MODAL);
         progressDlg.Centre();
 
         int counter{ 1 };
         for (const auto& curFile : files)
             {
-            progressDlg.SetTitle(wxString::Format(_(L"Processing %s of %s files..."),
+            progressDlg.SetTitle(wxString::Format(
+                _(L"Processing %s of %s files..."),
                 wxNumberFormatter::ToString(counter, 0,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
-                    wxNumberFormatter::Style::Style_WithThousandsSep),
+                                            wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                                wxNumberFormatter::Style::Style_WithThousandsSep),
                 wxNumberFormatter::ToString(files.size(), 0,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
-                    wxNumberFormatter::Style::Style_WithThousandsSep)));
-            if (!progressDlg.Update(counter,
-                wxFileName(curFile).GetFullName()))
-                { return; }
+                                            wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                                wxNumberFormatter::Style::Style_WithThousandsSep)));
+            if (!progressDlg.Update(counter, wxFileName(curFile).GetFullName()))
+                {
+                return;
+                }
             MemoryMappedFile memFile(curFile, true, true);
             if (memFile.IsOk())
                 {
-                const std::uint32_t crc = CRC::Calculate(memFile.GetStream(), memFile.GetMapSize(), CRC::CRC_32());
+                const std::uint32_t crc =
+                    CRC::Calculate(memFile.GetStream(), memFile.GetMapSize(), CRC::CRC_32());
                 filesMap.insert(crc, curFile);
                 }
             ++counter;
@@ -5214,7 +5246,7 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
     fileListDlg.GetListCtrl()->SetVirtualDataSize(files.size());
     size_t rowCount{ 0 };
     fileListDlg.GetListCtrl()->SetForegroundColour(*wxBLACK);
-    // catalogue duplicates
+        // catalogue duplicates
         {
         wxBusyInfo wait(_(L"Loading duplicates..."));
         unsigned long groupId{ 1 };
@@ -5227,7 +5259,8 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
                     {
                     const wxFileName fn(curFile);
                     wxItemAttr attribs;
-                    attribs.SetBackgroundColour((alternatingColor ? (*wxGREEN).ChangeLightness(160) : *wxWHITE));
+                    attribs.SetBackgroundColour(
+                        (alternatingColor ? (*wxGREEN).ChangeLightness(160) : *wxWHITE));
                     fileListDlg.GetListCtrlData()->SetRowAttributes(rowCount, attribs);
                     fileListDlg.GetListCtrlData()->SetItemText(rowCount, 0, fn.GetFullName());
                     fileListDlg.GetListCtrlData()->SetItemText(rowCount, 1, fn.GetPath());
@@ -5243,14 +5276,20 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
         fileListDlg.GetInforBar()->ShowMessage(
             wxString::Format(
                 _(L"Found %lu duplicate files. You can select and delete duplicates from a group, "
-                   "leaving one file for the group."),
-                   static_cast<decltype(groupId)>(fileListDlg.GetListCtrl()->GetItemCount()) - (groupId - 1)),
+                  "leaving one file for the group."),
+                static_cast<decltype(groupId)>(fileListDlg.GetListCtrl()->GetItemCount()) -
+                    (groupId - 1)),
             wxICON_INFORMATION);
         }
     if (rowCount == 0)
-        { wxMessageBox(_(L"No duplicate files found."), wxGetApp().GetAppDisplayName(), wxICON_INFORMATION | wxOK); }
+        {
+        wxMessageBox(_(L"No duplicate files found."), wxGetApp().GetAppDisplayName(),
+                     wxICON_INFORMATION | wxOK);
+        }
     else
-        { fileListDlg.ShowModal(); }
+        {
+        fileListDlg.ShowModal();
+        }
     }
 
 //-------------------------------------------------------
