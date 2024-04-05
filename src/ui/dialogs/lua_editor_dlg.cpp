@@ -404,7 +404,11 @@ LuaEditorDlg::LuaEditorDlg(
                 wxMessageBox(_(L"Line ") + errorMessage, _(L"Script Error"),
                              wxOK | wxICON_EXCLAMATION);
 
-                long lineNumber{ string_util::atoi(errorMessage.wc_str()) - 1 };
+                long lineNumber{ 0 };
+                if (errorMessage.ToLong(&lineNumber))
+                    {
+                    --lineNumber;
+                    }
                 if (lineNumber >= 0)
                     {
                     if (const auto foundPos = errorMessage.find(L':'); foundPos != wxString::npos)

@@ -98,8 +98,7 @@ namespace grammar
         // followed by an abbreviation.
         if (!result)
             {
-            const size_t lastSlash =
-                string_util::find_last_of(text.data(), L'/', text.length() - 1);
+            const size_t lastSlash = text.find_last_of(L'/');
             if (lastSlash != std::wstring_view::npos && lastSlash != text.length() - 1)
                 {
                 cmpKey.assign(text.data() + (lastSlash + 1), text.length() - (lastSlash + 1));

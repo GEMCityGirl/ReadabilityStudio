@@ -243,8 +243,8 @@ namespace tokenize
                     if (!nextToOtherBulletedLine && (origionalStop > m_text_block_beginning))
                         {
                         const size_t previousNewlineOffset =
-                            string_util::find_last_of(m_text_block_beginning, L"\r\n",
-                                                      (origionalStop-m_text_block_beginning)-1);
+                            std::wstring_view{ m_text_block_beginning }.find_last_of(
+                                L"\r\n", (origionalStop-m_text_block_beginning)-1);
                         // previous newline or start of text
                         const wchar_t* previousNewline =
                             (previousNewlineOffset != std::wstring::npos) ?

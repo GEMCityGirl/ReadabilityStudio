@@ -306,10 +306,10 @@ namespace grammar
             if (sentence_position_of_previous_word == 0)
                 {
                 // check each digit to verify that they are a number or period
-                if (string_util::find_first_not_of<wchar_t>(text+previous_word_position,
-                                                    (current_position - previous_word_position),
-                                                    common_lang_constants::NUMBERS_AND_DOT, 21)
-                                                        == (current_position - previous_word_position))
+                if (std::wstring_view{ text + previous_word_position,
+                                       current_position - previous_word_position }
+                        .find_first_not_of(common_lang_constants::NUMBERS_AND_DOT)
+                                                        == std::wstring_view::npos)
                     { return false; }
                 }
 
