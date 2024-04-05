@@ -6073,6 +6073,8 @@ arachnology
 arachnology's
 arachnophobia
 araldite
+arancini
+arancini's
 arbiter
 arbiter's
 arbiters
@@ -6527,6 +6529,8 @@ army
 army's
 aroma
 aroma's
+aromantic
+aromanticly
 aromaologies
 aromaology
 aromaology's
@@ -7819,6 +7823,9 @@ audio's
 audiobook
 audiobook's
 audiobooks
+audioengine
+audioengine's
+audioengines
 audiogram
 audiogram's
 audiograms
@@ -8073,6 +8080,10 @@ autoclave's
 autoclaved
 autoclaves
 autoclaving
+autoclear
+autocleared
+autoclearing
+autoclears
 autocollimator
 autocollimator's
 autocomplete
@@ -8282,6 +8293,8 @@ autoregulatory
 autorepeat
 autorepeating
 autorepeats
+autoreset
+autoresetting
 autoresolve
 autoresolved
 autoresolves
@@ -12111,6 +12124,7 @@ biofilms
 biofluid
 biofluid's
 biofluids
+bioforensics
 biofuel
 biofuel's
 biofuels
@@ -18953,6 +18967,7 @@ catchwords
 catchy
 catechesis
 catechetical
+catechetics
 catechise
 catechised
 catechises
@@ -21097,6 +21112,10 @@ chip
 chip's
 chipboard
 chipboard's
+chipmade
+chipmake
+chipmakes
+chipmaking
 chipmunk
 chipmunk's
 chipmunks
@@ -23212,6 +23231,8 @@ cocaines
 cocas
 coccidioides
 coccidioidomycosis
+coccidiosis
+coccidiosis's
 coccis
 coccus's
 coccydynia
@@ -25223,10 +25244,14 @@ conceiver
 conceiver's
 conceives
 conceiving
+concelebrant
 concelebrate
 concelebrated
 concelebrates
 concelebrating
+concelebration
+concelebration's
+concelebrations
 concentrate
 concentrated
 concentrates
@@ -28730,6 +28755,9 @@ craftspersons
 craftswoman
 craftswoman's
 craftswomen
+craftworker
+craftworker's
+craftworkers
 crafty
 crag
 crag's
@@ -31439,6 +31467,9 @@ datasources
 datastore
 datastore's
 datastores
+datatype
+datatype's
+datatypes
 dataviz
 dataviz's
 datavizes
@@ -31565,6 +31596,7 @@ dB's
 dba
 DBE
 dben's
+dbg
 dBi
 dbl
 dBm
@@ -39335,6 +39367,11 @@ dropping
 dropping's
 droppings
 drops
+dropship
+dropship's
+dropshipped
+dropshipping
+dropships
 dropsical
 dropsies
 dropsy
@@ -40355,6 +40392,8 @@ eccentrics
 ecchymosis
 ecchymotic
 eccl
+ecclesia
+ecclesiae
 ecclesial
 ecclesiastic
 ecclesiastic's
@@ -55320,6 +55359,7 @@ grammes
 gramophone
 gramophone's
 gramophones
+gramps
 grampus
 grampus's
 grampuses
@@ -60296,6 +60336,9 @@ homeroom
 homeroom's
 homerooms
 homers
+homerun
+homerun's
+homeruns
 homes
 homeschool
 homeschool's
@@ -60322,6 +60365,7 @@ homesteads
 homestretch
 homestretch's
 homestretches
+homestyle
 hometown
 hometown's
 hometowns
@@ -66996,6 +67040,9 @@ interesting
 interestingly
 interestingness
 interestingness's
+interestor
+interestor's
+interestors
 interests
 interface
 interface's
@@ -77836,6 +77883,7 @@ mechanoreception
 mechanoreceptor
 mechanoreceptors
 mechanosensitive
+mechatronic
 mechatronics
 meconium
 med
@@ -79636,6 +79684,7 @@ microwords
 microworld
 microworld's
 microworlds
+mics
 micturate
 micturition
 mid
@@ -82663,6 +82712,9 @@ motormen
 motormen's
 motormouth
 motormouths
+motorpool
+motorpool's
+motorpools
 motors
 motorsport
 motorsports
@@ -83379,6 +83431,7 @@ multisamples
 multisampling
 multiscale
 multisection
+multisector
 multiselect
 multiselected
 multiselecting
@@ -83466,6 +83519,7 @@ multivitamins
 multiwavelength
 multiway
 multiweek
+multiword
 multiyear
 mum
 mum's
@@ -86747,6 +86801,7 @@ nonpregnant
 nonprejudicial
 nonprescription
 nonpresidential
+nonprimitive
 nonprincessy
 nonprivileged
 nonprocedural
@@ -86844,6 +86899,7 @@ nonreversible
 nonrhythmic
 nonrigid
 nonrivalrous
+nonroot
 nonrotating
 nonroutine
 nonsalaried
@@ -93624,6 +93680,7 @@ patron's
 patronage
 patronage's
 patronages
+patronal
 patroness
 patronisation
 patronisations
@@ -98822,10 +98879,13 @@ polysyllabic
 polysyllable
 polysyllable's
 polysyllables
+polytech
+polytech's
 polytechnic
 polytechnic's
 polytechnical
 polytechnics
+polytechs
 polytheism
 polytheism's
 polytheisms
@@ -101070,6 +101130,7 @@ prestigiously
 prestigiousness
 presto
 prestos
+prestructured
 presumable
 presumably
 presume
@@ -101213,6 +101274,7 @@ preventiveness's
 preventives
 prevents
 prevertebral
+preveterinary
 previa
 preview
 preview's
@@ -107479,7 +107541,11 @@ redesignating
 redesigned
 redesigning
 redesigns
+redetect
+redetected
+redetecting
 redetection
+redetects
 redetermination
 redetermine
 redetermined
@@ -116598,6 +116664,9 @@ sell
 Sella
 sellable
 sellaturcica
+sellback
+sellback's
+sellbacks
 Selle
 seller
 seller's
@@ -117806,6 +117875,7 @@ sharding
 shards
 share
 share's
+shareability
 shareable
 sharealike
 sharecrop
@@ -121118,6 +121188,7 @@ snarfing
 snarfings
 snarfs
 snaring
+snarky
 snarl
 snarled
 snarler
@@ -126890,6 +126961,9 @@ subgroup
 subgroup's
 subgrouping
 subgroups
+subguard
+subguard's
+subguards
 subharmonic
 subharmonics
 subhead
@@ -126973,6 +127047,9 @@ sublevels
 sublicensable
 sublicense
 sublicensed
+sublicensee
+sublicensee's
+sublicensees
 sublicenses
 sublicensing
 sublimate
@@ -128250,6 +128327,9 @@ superberries
 superberry
 superberry's
 superbest
+superblock
+superblock's
+superblocks
 superbly
 superbness
 superbness's
@@ -133471,6 +133551,7 @@ tilde's
 tildes
 tile
 tile's
+tileable
 tiled
 tilefish
 Tiler
@@ -134348,6 +134429,9 @@ toolmaker's
 toolmakers
 toolmaking
 toolmaking's
+toolmark
+toolmark's
+toolmarks
 tools
 toolset
 toolset's
@@ -135064,6 +135148,8 @@ tradesman's
 tradesmen
 tradesmen's
 tradespeople
+tradesperson
+tradesperson's
 tradespersons
 tradeswoman
 tradeswoman's
@@ -140986,7 +141072,10 @@ unsequenced
 unsequences
 unsequencing
 unserialization
+unserialize
 unserialized
+unserializes
+unserializing
 unserved
 unserviced
 unservile
@@ -141314,6 +141403,7 @@ untie
 untied
 unties
 until
+untile
 untiled
 untiles
 untiling

@@ -190,6 +190,7 @@ academy's	school's	0
 acadmic	academic	3		
 AcaemicBlue	AcademicBlue	3		
 AcaemicBlues	AcademicBlues	3		
+acapella	a cappella	3		
 accademic	academic	3		
 accademy	academy	3		
 acccept	accept	3		
@@ -1023,6 +1024,7 @@ an another	another	3
 an arm and a leg	expensive, costs a lot	2		
 an ax to grind	a grudge	2		
 an axe to grind	a grudge	2		
+an d	and	3		
 an data	and data, a datum	3		
 an estimated	about, almost, around, close to, more than, nearly, or so, roughly	0		
 an important note to make is	note	0		
@@ -1597,6 +1599,7 @@ ascertaining	finding out, learning	0
 ascertains	finds out, learns	0		
 asetic	ascetic	3		
 asfar	as far	3		
+aside effect	a side effect	3		
 asign	assign	3		
 ask a question	ask	1		
 ask the question	ask	1		
@@ -1672,6 +1675,9 @@ asside	aside	3
 assigment	assignment	3		
 assigment's	assignment's	3		
 assigments	assignments	3		
+assignement	assignment	3		
+assignement's	assignment's	3		
+assignements	assignments	3		
 assignemnt	assignment	3		
 assignemnts	assignments	3		
 assignmen	assignment	3		
@@ -1999,6 +2005,9 @@ axes to grind	grudges	2
 axiom	truth, rule	0		
 axiom's	truth's, rule's	0		
 axioms	truths, rules	0		
+ayout	layout	3		
+ayout's	layout's	3		
+ayouts	layouts	3		
 babe in the woods	amateur, novice, rookie	2		
 baceause	because	3		
 back in forth	back and forth	3		
@@ -2363,6 +2372,7 @@ blows their own horn	boasts, brags	2
 blows their stack	explodes in anger	2		
 blows your own horn	boasts, brags	2		
 blows your stack	explodes in anger	2		
+bltted	blitted	3		
 blue blood	aristocrat	2		
 bob wire	barbed wire	3		
 bobwire	barbed wire	3		
@@ -2381,6 +2391,9 @@ bookkeeiping	bookkeeping	3
 bookkepp	bookkeep	3		
 bookstor	bookstore	3		
 boook	book	3		
+boostrap	bootstrap	3		
+boostrap's	bootstrap's	3		
+boostraps	bootstraps	3		
 bore a resemblance	looked like	0		
 bore witness to	attested to, certified to, testified to, verified	0		
 bored of	bored with	3		
@@ -2627,6 +2640,7 @@ call into question	challenge	2
 callabck	callback	3		
 callabck's	callback's	3		
 callabcks	callbacks	3		
+callbackcallback	callback	3		
 called a end to	ended	0		
 called a halt to	halted	0		
 called a stop to	stopped	0		
@@ -4790,6 +4804,7 @@ directy	directly	3
 dirived	derived	3		
 dirrectly	directly	3		
 dirt cheap	very inexpensive	2		
+disable this will	disabling this will	3		
 disagreeable	cross	0		
 disagreeed	disagreed	3		
 disapear	disappear	3		
@@ -5352,6 +5367,9 @@ eliminated	cut, dropped	0
 eliminates	cuts, drops	0		
 eliminating	cutting, dropping	0		
 eliminte	eliminate	3		
+elipse	ellipse	3		
+elipse's	ellipse's	3		
+elipses	ellipses	3		
 ellected	elected	3		
 elliminate	eliminate	3		
 elliminated	eliminated	3		
@@ -5458,6 +5476,7 @@ enaable	enable	3
 enaabled	enabled	3		
 enaables	enables	3		
 enaabling	enabling	3		
+enable this will	enabling this will	3		
 enalbe	enable	3		
 enalbed	enabled	3		
 enalbes	enables	3		
@@ -7982,6 +8001,10 @@ indempotent	idempotent	3
 indendation	indentation	3		
 indended	intended	3		
 indentical	identical	3		
+indentified	identified	3		
+indentifies	identifies	3		
+indentify	identify	3		
+indentifying	identifying	3		
 indepedantly	independently	3		
 indepedence	independence	3		
 independance	independence	3		
@@ -8245,8 +8268,6 @@ instanciated	instantiated	3
 instanciates	instantiates	3		
 instanciating	instantiating	3		
 instanly	instantly	3		
-instant of a	instance of a	3		
-instant of the	instance of the	3	brief;quick	
 instantly	right away	0		
 instatance	instance	3		
 institue	institute	3		
@@ -8440,9 +8461,16 @@ investment manger	investment manager	3
 investment mangers	investment managers	3		
 invididual	individual	3		
 inviolable	sacred	0		
+invitaion	invitation	3		
+invitaion's	invitation's	3		
+invitaions	invitations	3		
 invitiation	invitation	3		
 invitiation's	invitation's	3		
 invitiations	invitations	3		
+invlove	involve	3		
+invloved	involved	3		
+invloves	involves	3		
+invloving	involving	3		
 invokation	invocation	3		
 invokations	invocations	3		
 involvment	involvement	3		
@@ -8687,6 +8715,8 @@ ivory tower	out of touch with reality, unaware of other people's plight	2
 janus-faced	deceitful, deal both ways, two-faced	2		
 Javitz	Javits	3		
 jeapardy	jeopardy	3		
+Jeruselum	Jerusalem	3		
+Jeruselum's	Jerusalem's	3		
 jewllery	jewelry	3		
 jocular	funny	0		
 jocund	happy, lighthearted	0		
@@ -9679,6 +9709,9 @@ motionless	still, inert	0
 motiviated	motivated	3		
 mountainous	large, bulky	0		
 mounth	month	3		
+moustrap	mousetrap	3		
+moustrap's	mousetrap's	3		
+moustraps	mousetraps	3		
 moutain	mountain	3		
 moutain's	mountain's	3		
 moutains	mountains	3		
@@ -12415,6 +12448,7 @@ remunerating	paying, compensating	0
 remuneration	pay, payment	0		
 remuneration's	pay's	0		
 remunerations	pays	0		
+rended	rendered	3		
 render assistance to	assist, aid	0		
 rendered assistance to	assisted, aided	0		
 renderering	rendering	3		
@@ -12843,6 +12877,7 @@ runtim's	runtime's	3
 runtims	runtimes	3		
 Russion	Russian	3		
 rustic country	rustic	1		
+rypedef	typedef	3		
 rythem	rhythm	3		
 rythim	rhythm	3		
 rythm	rhythm	3		
@@ -14162,6 +14197,9 @@ techicians	technicians	3
 techiniques	techniques	3		
 technicalities	details	0		
 technicality	detail	0		
+technican	technician	3		
+technican's	technician's	3		
+technicans	technicians	3		
 technitian	technician	3		
 technnology	technology	3		
 technolgy	technology	3		
@@ -14201,6 +14239,8 @@ tendacy	tendency	3
 tendancies	tendencies	3		
 tendancy	tendency	3		
 tendancy's	tendency's	3		
+tennnis	tennis	3		
+tennnis's	tennis's	3		
 tenuous	thin, slender, slight, trivial	0		
 tenuously	slightly, trivially	0		
 tepmorarily	temporarily	3		
@@ -14849,6 +14889,7 @@ tyrrany	tyranny	3
 ubiquitious	ubiquitous	3		
 Ubunutu	Ubuntu	3		
 Ubunutu's	Ubuntu's	3		
+ued	used	3		
 uesd	used	3		
 ugly as sin	extremely ugly, repulsive	2		
 uise	use	3		
