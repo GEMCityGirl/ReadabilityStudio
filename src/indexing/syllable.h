@@ -125,15 +125,16 @@ namespace grammar
         template<typename Tsyllabizer>
         bool syllabize_if_contains_periods(const wchar_t* start, const wchar_t* end)
             {
-            auto periodPos = string_util::strncspn(start, m_length, L".\uFF0E\uFF61", 3);
-            const wchar_t* period = (periodPos == m_length) ? nullptr : start + periodPos;
-            if (period)
+            size_t periodPos = std::wstring_view{ start, m_length }.find_first_of(L".\uFF0E\uFF61");
+            if (periodPos != std::wstring_view::npos)
                 {
+                const wchar_t* period{ start + periodPos };
                 Tsyllabizer dotSyllabize{};
                 size_t periodCount{ 0 };
                 size_t separateSectionsSyllableCount{ 0 };
                 const wchar_t* currentSection{ start };
-                while (period)
+
+                while (period != nullptr)
                     {
                     /* don't consider this a valid dot in the word if it is at the end and is the
                        only one in the word. In this case it would be an initial.*/
@@ -147,12 +148,17 @@ namespace grammar
                     separateSectionsSyllableCount +=
                         dotSyllabize(currentSection, period - currentSection);
                     currentSection = period + 1;
-                    periodPos = string_util::strncspn(++period, m_length - (currentSection - start),
-                                                      L".\uFF0E\uFF61", 3);
-                    period = (periodPos == m_length - (currentSection - start) ||
-                              m_length - (currentSection - start) == 0) ?
-                                 nullptr :
-                                 period + periodPos;
+                    if (static_cast<size_t>(currentSection - start) >= m_length)
+                        {
+                        break;
+                        }
+                    periodPos = std::wstring_view{ ++period, m_length - (currentSection - start) }
+                                    .find_first_of(L".\uFF0E\uFF61");
+                    if (periodPos == std::wstring_view::npos)
+                        {
+                        break;
+                        }
+                    std::advance(period, periodPos);
                     }
                 separateSectionsSyllableCount +=
                     dotSyllabize(currentSection, m_length - (currentSection - start));
@@ -180,24 +186,30 @@ namespace grammar
         [[nodiscard]]
         bool syllabize_if_contains_dashes(const wchar_t* start)
             {
-            auto dashPos = string_util::strncspn(start, m_length, L"-\uFF0D", 2);
-            const wchar_t* dash = (dashPos == m_length) ? nullptr : start + dashPos;
-            if (dash)
+            size_t dashPos = std::wstring_view{ start, m_length }.find_first_of(L"-\uFF0D");
+            if (dashPos != std::wstring_view::npos)
                 {
+                const wchar_t* dash{ start + dashPos };
                 Tsyllabizer dashSyllabize{};
                 size_t separateSectionsSyllableCount{ 0 };
                 const wchar_t* currentSection{ start };
-                while (dash)
+
+                while (dash != nullptr)
                     {
                     separateSectionsSyllableCount +=
                         dashSyllabize(currentSection, dash - currentSection);
                     currentSection = dash + 1;
-                    dashPos = string_util::strncspn(++dash, m_length - (currentSection - start),
-                                                    L"-\uFF0D", 2);
-                    dash = (dashPos == m_length - (currentSection - start) ||
-                            m_length - (currentSection - start) == 0) ?
-                               nullptr :
-                               dash + dashPos;
+                    if (static_cast<size_t>(currentSection - start) >= m_length)
+                        {
+                        break;
+                        }
+                    dashPos = std::wstring_view{ ++dash, m_length - (currentSection - start) }
+                                  .find_first_of(L"-\uFF0D");
+                    if (dashPos == std::wstring_view::npos)
+                        {
+                        break;
+                        }
+                    std::advance(dash, dashPos);
                     }
                 separateSectionsSyllableCount +=
                     dashSyllabize(currentSection, m_length - (currentSection - start));
