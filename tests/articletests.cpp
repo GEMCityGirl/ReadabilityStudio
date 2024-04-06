@@ -63,6 +63,8 @@ TEST_CASE("English Article", "[articles]")
         CHECK(artc(L"a", L"IMP"));
         CHECK(artc(L"a", L"OMP"));
         CHECK(artc(L"a", L"SAT"));
+        CHECK(artc(L"a", L"STT"));
+        CHECK(artc(L"a", L"STT-AT"));
         CHECK(!artc(L"an", L"SAT"));
         }
     SECTION("Punctuation")

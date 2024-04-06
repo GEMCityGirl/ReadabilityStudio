@@ -32,12 +32,10 @@ bool grammar::is_incorrect_english_article::operator()(std::wstring_view article
         return false;
         }
 
-    const auto hyphenPos = string_util::strncspn(word.data(), word.length(), L"-\uFF0D", 2);
-    const wchar_t* const hyphenPosition =
-        (hyphenPos == word.length()) ? nullptr : word.data() + hyphenPos;
-    if (hyphenPosition != nullptr)
+    if (const size_t hyphenPos = word.find_first_of(L"-\uFF0D");
+        hyphenPos != std::wstring_view::npos)
         {
-        word = word.substr(0, hyphenPosition - word.data());
+        word = word.substr(0, hyphenPos);
         }
     // word starting with five consonants is without a doubt sounded out
     const bool startsWith5Consonants =
@@ -82,10 +80,8 @@ bool grammar::is_incorrect_english_article::operator()(std::wstring_view article
          // if an acronym and no vowels (including wide versions), then each letter should be
          // sounded out
          (isAcronym(word) &&
-          string_util::strncspn(word.data(), word.length(),
-                                L"aeiouy\uFF41\uFF45\uFF49\uFF4F\uFF55\uFF59AEIOUY\uFF21\uFF25"
-                                "\uFF29\uFF2F\uFF35\uFF39",
-                                24) == word.length()));
+          word.find_first_of(L"aeiouy\uFF41\uFF45\uFF49\uFF4F\uFF55\uFF59AEIOUY\uFF21\uFF25"
+                             "\uFF29\uFF2F\uFF35\uFF39") == std::wstring_view::npos));
     const bool isYear = (word.length() == 4 && characters::is_character::is_numeric(word[0]) &&
                          characters::is_character::is_numeric(word[1]) &&
                          characters::is_character::is_numeric(word[2]) &&
