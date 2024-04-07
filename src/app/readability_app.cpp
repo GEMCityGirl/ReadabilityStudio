@@ -3033,7 +3033,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             _(L"Shortcuts"),
             ReadRibbonSvgIcon(L"ribbon/keyboard-shortcuts.svg"),
             _(L"Display the keyboard shortcuts cheatsheet."));
-        helpButtonBar->AddHybridButton(XRCID("ID_EXAMPLES"),
+        helpButtonBar->AddDropdownButton(XRCID("ID_EXAMPLES"),
             _(L"Example Documents"),
             ReadRibbonSvgIcon(L"ribbon/examples.svg"),
             _(L"Analyze example documents from the help."));
