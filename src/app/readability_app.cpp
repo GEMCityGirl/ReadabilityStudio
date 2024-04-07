@@ -3130,29 +3130,6 @@ void ReadabilityApp::RemoveAllCustomTestBundles()
 wxIMPLEMENT_CLASS(MainFrame, Wisteria::UI::BaseMainFrame);
 
 wxBEGIN_EVENT_TABLE(MainFrame, Wisteria::UI::BaseMainFrame)
-    EVT_STARTPAGE_CLICKED(wxID_ANY, MainFrame::OnStartPageClick)
-    EVT_MENU(XRCID("ID_OPEN_DOCUMENT"), MainFrame::OnOpenDocument)
-    // list editing
-    EVT_MENU(XRCID("ID_EDIT_WORD_LIST"), MainFrame::OnEditWordList)
-    EVT_MENU(XRCID("ID_EDIT_PHRASE_LIST"), MainFrame::OnEditPhraseList)
-    EVT_MENU(XRCID("ID_SCRIPT_WINDOW"), MainFrame::OnScriptEditor)
-    // custom test menu
-    EVT_MENU(XRCID("ID_ADD_CUSTOM_TEST"), MainFrame::OnAddCustomTest)
-    EVT_MENU(XRCID("ID_ADD_CUSTOM_NEW_DALE_CHALL_TEST"), MainFrame::OnAddCustomTest)
-    EVT_MENU(XRCID("ID_ADD_CUSTOM_SPACHE_TEST"), MainFrame::OnAddCustomTest)
-    EVT_MENU(XRCID("ID_ADD_CUSTOM_HARRIS_JACOBSON_TEST"), MainFrame::OnAddCustomTest)
-    EVT_MENU(XRCID("ID_ADD_CUSTOM_TEST_BASED_ON"), MainFrame::OnAddCustomTest)
-    EVT_MENU(XRCID("ID_EDIT_CUSTOM_TEST"), MainFrame::OnEditCustomTest)
-    EVT_MENU(XRCID("ID_REMOVE_CUSTOM_TEST"), MainFrame::OnRemoveCustomTest)
-    EVT_MENU(XRCID("ID_ADD_CUSTOM_TEST_BUNDLE"), MainFrame::OnAddCustomTestBundle)
-    EVT_MENU(XRCID("ID_EDIT_CUSTOM_TEST_BUNDLE"), MainFrame::OnEditCustomTestBundle)
-    EVT_MENU(XRCID("ID_REMOVE_CUSTOM_TEST_BUNDLE"), MainFrame::OnRemoveCustomTestBundle)
-    // print and paste
-    EVT_MENU(XRCID("ID_PRINTER_HEADER_FOOTER"), MainFrame::OnPrinterHeaderFooter)
-    EVT_MENU(wxID_PASTE, MainFrame::OnPaste)
-    // dictionary menu
-    EVT_MENU(XRCID("ID_EDIT_ENGLISH_DICTIONARY"), MainFrame::OnEditEnglishDictionary)
-    EVT_MENU(XRCID("ID_EDIT_DICTIONARY_SETTINGS"), MainFrame::OnEditDictionarySettings)
     EVT_CLOSE(MainFrame::OnClose)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(wxID_NEW, MainFrame::OnNewDropdown)
     EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(wxID_OPEN, MainFrame::OnOpenDropdown)
@@ -3673,6 +3650,38 @@ MainFrame::MainFrame(wxDocManager* manager, wxFrame* frame,
         wxID_ABOUT);
 
     Bind(wxEVT_RIBBONBAR_HELP_CLICK, &MainFrame::OnRibbonBarHelpClicked, this);
+    Bind(wxEVT_STARTPAGE_CLICKED, &MainFrame::OnStartPageClick, this);
+
+    Bind(wxEVT_MENU, &MainFrame::OnOpenDocument, this, XRCID("ID_OPEN_DOCUMENT"));
+
+    // custom test menu
+    Bind(wxEVT_MENU, &MainFrame::OnAddCustomTest, this, XRCID("ID_ADD_CUSTOM_TEST"));
+    Bind(wxEVT_MENU, &MainFrame::OnAddCustomTest, this, XRCID("ID_ADD_CUSTOM_NEW_DALE_CHALL_TEST"));
+    Bind(wxEVT_MENU, &MainFrame::OnAddCustomTest, this, XRCID("ID_ADD_CUSTOM_SPACHE_TEST"));
+    Bind(wxEVT_MENU, &MainFrame::OnAddCustomTest, this,
+         XRCID("ID_ADD_CUSTOM_HARRIS_JACOBSON_TEST"));
+    Bind(wxEVT_MENU, &MainFrame::OnAddCustomTest, this, XRCID("ID_ADD_CUSTOM_TEST_BASED_ON"));
+    Bind(wxEVT_MENU, &MainFrame::OnEditCustomTest, this, XRCID("ID_EDIT_CUSTOM_TEST"));
+    Bind(wxEVT_MENU, &MainFrame::OnRemoveCustomTest, this, XRCID("ID_REMOVE_CUSTOM_TEST"));
+    Bind(wxEVT_MENU, &MainFrame::OnAddCustomTestBundle, this, XRCID("ID_ADD_CUSTOM_TEST_BUNDLE"));
+    Bind(wxEVT_MENU, &MainFrame::OnEditCustomTestBundle, this, XRCID("ID_EDIT_CUSTOM_TEST_BUNDLE"));
+    Bind(wxEVT_MENU, &MainFrame::OnRemoveCustomTestBundle, this,
+         XRCID("ID_REMOVE_CUSTOM_TEST_BUNDLE"));
+
+    // list editing
+    Bind(wxEVT_MENU, &MainFrame::OnEditWordList, this, XRCID("ID_EDIT_WORD_LIST"));
+    Bind(wxEVT_MENU, &MainFrame::OnEditPhraseList, this, XRCID("ID_EDIT_PHRASE_LIST"));
+    Bind(wxEVT_MENU, &MainFrame::OnScriptEditor, this, XRCID("ID_SCRIPT_WINDOW"));
+
+    // dictionary menu
+    Bind(wxEVT_MENU, &MainFrame::OnEditEnglishDictionary, this,
+         XRCID("ID_EDIT_ENGLISH_DICTIONARY"));
+    Bind(wxEVT_MENU, &MainFrame::OnEditDictionarySettings, this,
+         XRCID("ID_EDIT_DICTIONARY_SETTINGS"));
+
+    // print and paste
+    Bind(wxEVT_MENU, &MainFrame::OnPrinterHeaderFooter, this, XRCID("ID_PRINTER_HEADER_FOOTER"));
+    Bind(wxEVT_MENU, &MainFrame::OnPaste, this, wxID_PASTE);
 
     // blank graph menu
     Bind(wxEVT_MENU, &MainFrame::OnBlankGraph, this, XRCID("ID_BLANK_FRASE_GRAPH"));
