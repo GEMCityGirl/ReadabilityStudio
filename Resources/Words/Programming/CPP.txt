@@ -15,8 +15,6 @@
 %f
 %g
 %ld
-0xffffff
-0xffffffff
 __asm
 _Pragma
 acosh
@@ -317,6 +315,7 @@ mbsicmp
 mbsicoll
 mbstowcs
 mbtowc
+memchr
 memcmp
 memcpy
 memmove
@@ -448,6 +447,7 @@ str
 strcat
 strchr
 strcmp
+strcmpi
 strcoll
 strcpy
 strcspn
@@ -464,6 +464,8 @@ strlen
 strncat
 strncmp
 strncpy
+strnicmp
+strnlen
 strptime
 strrchr
 Strsafe
@@ -541,7 +543,9 @@ vtbl
 wchar_t
 wcout
 wcscat
+wcschr
 wcscmp
+wcscmpi
 wcscoll
 wcscpy
 wcsftime
@@ -551,6 +555,9 @@ wcslen
 wcsncat
 wcsncmp
 wcsncpy
+wcsnicmp
+wcsnlen
+wcsstr
 wcstod
 wcstombs
 wctomb
@@ -559,6 +566,7 @@ winrt
 Winsock
 wistringstream
 wmain
+wmemchr
 wnsprintf
 wostream
 wostream's

@@ -28,6 +28,8 @@ SKU
 SPN
 SQL
 SQLite
+ssh
+SSN
 UAV
 UAW
 Ubuntu
@@ -51,6 +53,7 @@ uint8_t
 UKG
 umask
 UMDF
+UML
 UMN
 unary
 unary_negate

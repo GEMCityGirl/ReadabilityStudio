@@ -874,6 +874,7 @@ alternative	choice	0
 alternative choice	alternative	0		
 alternative choices	alternatives	0		
 alternatives	choices	0		
+alternativly	alternatively	3		
 alternitives	alternatives	3		
 altho	although	3		
 althought	although	3		
@@ -1730,6 +1731,9 @@ assosication	assassination	3
 assotiated	associated	3		
 asssassans	assassins	3		
 asssembly	assembly	3		
+asssitant	assistant	3		
+asssitant's	assistant's	3		
+asssitants	assistants	3		
 asssociated	associated	3		
 asssume	assume	3		
 assualt	assault	3		
@@ -2144,6 +2148,8 @@ begin searched for	being searched for	3
 beging	beginning	3		
 begining	beginning	3		
 beginnig	beginning	3		
+Begium	Belgium	3		
+Begium's	Belgium's	3		
 behavior pattern	behavior	0		
 behavioral pattern	behavior	0		
 behaviour pattern	behaviour	0		
@@ -2167,6 +2173,8 @@ beleive	believe	3
 beleived	believed	3		
 beleives	believes	3		
 beleiving	believing	3		
+Beligum	Belgium	3		
+Beligum's	Belgium's	3		
 belive	believe	3		
 belived	believed	3		
 belives	believes	3		
@@ -3027,6 +3035,9 @@ chosing	choosing	3
 chould	could	3		
 chracter	character	3		
 chracters	characters	3		
+Chrismas	Christmas	3		
+Chrismas's	Christmas's	3		
+Chrismases	Christmases	3		
 chuch	church	3		
 chum the waters	pick a fight, stir up trouble	2		
 chummed the waters	picked a fight, stirred up trouble	2		
@@ -3359,6 +3370,9 @@ communiation	communication	3
 communiation's	communication's	3		
 communiations	communications	3		
 communicate	tell	0		
+communicaton	communication	3		
+communicaton's	communication's	3		
+communicatons	communications	3		
 communidad	comunidad	3		
 communidad's	comunidad's	3		
 communidads	comunidads	3		
@@ -3580,7 +3594,10 @@ conditionaly	conditionally	3
 conditionnaly	conditionally	3		
 conditionsof	conditions of	3		
 conditoinal	conditional	3		
+conditon	condition	3		
+conditon's	condition's	3		
 conditonal	conditional	3		
+conditons	conditions	3		
 condtiion	condition	3		
 condtion	condition	3		
 condtional	conditional	3		
@@ -4135,6 +4152,7 @@ cracefully	gracefully	3
 crazy like a fox	resourceful, smart	2		
 creaeted	created	3		
 cream of the crop	the best	2		
+creat	create	3		
 create	make	0		
 create a dialogue	speak, discuss, talk	0		
 created	made	0		
@@ -4159,6 +4177,9 @@ critisism	criticism	3
 critisisms	criticisms	3		
 critized	criticized	3		
 critizing	criticizing	3		
+Croation	Croatian	3		
+Croation's	Croatian's	3		
+Croations	Croatians	3		
 crockodiles	crocodiles	3		
 crocodile tears	insincere sympathy	2		
 cross that bridge when we come to it	not worry about a situation until it happens	2		
@@ -4368,6 +4389,9 @@ deer in the headlights	scared into temporary paralysis	2
 defalt	default	3		
 defaut	default	3		
 defautl	default	3		
+defedender	defender	3		
+defedender's	defender's	3		
+defedenders	defenders	3		
 defendent	defendant	3		
 defendents	defendants	3		
 defenition	definition	3		
@@ -4823,6 +4847,7 @@ disasterously	disastrously	3
 disatisfaction	dissatisfaction	3		
 disatisfied	dissatisfied	3		
 disatrous	disastrous	3		
+disbaled	disabled	3		
 disburse	pay out	0		
 disbursed	paid out	0		
 disburses	pays out	0		
@@ -5594,6 +5619,9 @@ enormous	large, huge	0
 enourmous	enormous	3		
 enourmously	enormously	3		
 enouth	enough	3		
+enpoint	endpoint	3		
+enpoint's	endpoint's	3		
+enpoints	endpoints	3		
 enrollent	enrollment	3		
 enrollent's	enrollment's	3		
 enrollents	enrollments	3		
@@ -5954,6 +5982,9 @@ exerpt	excerpt	3
 exerpts	excerpts	3		
 exersize	exercise	3		
 exerternal	external	3		
+exeuction	execution	3		
+exeuction's	execution's	3		
+exeuctions	executions	3		
 exexutable	executable	3		
 exhalted	exalted	3		
 exhaused	exhausted	3		
@@ -6026,6 +6057,7 @@ experiance's	experience's	3
 experianced	experienced	3		
 experiances	experiences	3		
 experiemental	experimental	3		
+experienc	experience	3		
 expertise	ability	0		
 expesially	especially	3		
 expession	expression	3		
@@ -7187,6 +7219,9 @@ heart's content	complete satisfaction	2
 heart-to-heart	frank discussion	2		
 heart-to-heart talk	frank discussion	2		
 heart-to-heart talks	frank discussions	2		
+heartbeart	heartbeat	3		
+heartbeart's	heartbeat's	3		
+heartbearts	heartbeats	3		
 heat up	heat	0		
 heated up	heated	0		
 heathy	healthy	3		
@@ -7461,6 +7496,10 @@ idealic	idyllic	3
 idealogies	ideologies	3		
 idealogy	ideology	3		
 idenfies	identifies	3		
+idenfitied	identified	3		
+idenfities	identifies	3		
+idenfity	identify	3		
+idenfitying	identifying	3		
 identical	same	0		
 identical to	the same as	0		
 identicalness	sameness	0		
@@ -9083,6 +9122,9 @@ locating	finding	0
 location	place	0		
 location's	place's	0		
 locations	places	0		
+locaton	location	3		
+locaton's	location's	3		
+locatons	locations	3		
 locla	local	3		
 lodge a complaint	complain	0		
 lodged a complaint	complained	0		
@@ -9486,7 +9528,13 @@ micoscopy	microscopy	3
 microcontroler	microcontroller	3		
 microcontroler's	microcontroller's	3		
 microcontrolers	microcontrollers	3		
+Microosoft	Microsoft	3		
+Microosoft's	Microsoft's	3		
 microprocesspr	microprocessor	3		
+Microsfot	Microsoft	3		
+Microsfot's	Microsoft's	3		
+Microsft	Microsoft	3		
+Microsft's	Microsoft's	3		
 Microsot	Microsoft	3		
 Microsot's	Microsoft's	3		
 mideval	medieval	3		
@@ -9629,6 +9677,7 @@ mmnemonic	mnemonic	3
 mniport	miniport	3		
 mniport's	miniport's	3		
 mniports	miniports	3		
+modals	models	3		
 moderm	modem	3		
 modfied	modified	3		
 modfies	modifies	3		
@@ -9663,6 +9712,9 @@ monday-morning quarterback	expert after the fact, one who second guesses others 
 monday-morning quarterbacked	was an expert after the fact	2		
 monday-morning quarterbacking	being expert after the fact	2		
 monday-morning quarterbacks	to be an expert after the fact	2		
+mondule	module	3		
+mondule's	module's	3		
+mondules	modules	3		
 monestaries	monasteries	3		
 money is no option	money is no object	3		
 monickers	monikers	3		
@@ -9944,6 +9996,7 @@ no thing	nothing	3
 no where	nowhere	3		
 Noble Prize	Nobel Prize	3		
 Noble Prizes	Nobel Prizes	3		
+nonaged	nonpaged	3		
 nondescrimination	nondiscrimination	3		
 none at all	none	0		
 nonexistant	nonexistent	3		
@@ -10298,6 +10351,7 @@ on the whole	in all, overall	0
 on this particular occasion	right now	0		
 on-const	non-const	3		
 on-trivial	non-trivial	3		
+onbaording	onboarding	3		
 once and a while	once in a while	3		
 once and awhile	once in a while	3		
 once and for all	finally	0		
@@ -10412,6 +10466,9 @@ organiztion	organization	3
 orgin	origin	3		
 orginal	original	3		
 orginally	originally	3		
+orgnaization	organization	3		
+orgnaization's	organization's	3		
+orgnaizations	organizations	3		
 oridinarily	ordinarily	3		
 orientaion	orientation	3		
 orientaion's	orientation's	3		
@@ -10579,7 +10636,10 @@ parallization	parallelization	3
 parallized	parallelized	3		
 paramameters	parameters	3		
 paramater	parameter	3		
-parameteris	parameters	3		
+paramenter	parameter	3		
+paramenter's	parameter's	3		
+paramenters	parameters	3		
+parameteris	parameters, parameter is	3		
 parameters	limits	0		
 parametes	parameters	3		
 paramount	top, chief, supreme	0		
@@ -11172,6 +11232,10 @@ pomotion	promotion	3
 pooll	pool, poll	3		
 pooll's	pool's, poll's	3		
 poolls	pools, polls	3		
+popluate	populate	3		
+popluated	populated	3		
+popluates	populates	3		
+popluating	populating	3		
 poportional	proportional	3		
 popoulation	population	3		
 popularaty	popularity	3		
@@ -11354,6 +11418,9 @@ preperation	preparation	3
 preperations	preparations	3		
 preponderant	overpowering, overruling, major, chief, dominant	0		
 preposterous	senseless, absurd	0		
+preprocesser	preprocessor	3		
+preprocesser's	preprocessor's	3		
+preprocessers	preprocessors	3		
 prequisite	prerequisite	3		
 prequisite's	prerequisite's	3		
 prequisites	prerequisites	3		
@@ -11950,6 +12017,9 @@ quarantaine	quarantine	3
 quarentine	quarantine	3		
 quarrelsome	cross	0		
 quarry	prey	0		
+quatities	quantities	3		
+quatity	quantity	3		
+quatity's	quantity's	3		
 queing	queuing	3		
 quering	querying	3		
 querulous	fretful	0		
@@ -12993,6 +13063,9 @@ scrape the bottom of the barrel	get desperate, take whatever is left	2
 scraped the bottom of the barrel	got desperate, took whatever was left	2		
 scrapes the bottom of the barrel	gets desperate, takes whatever is left	2		
 scraping the bottom of the barrel	getting desperate, taking whatever is left	2		
+screeenshot	screenshot	3		
+screeenshot's	screenshot's	3		
+screeenshots	screenshots	3		
 screen plot	scree plot	3		
 screen plot's	scree plot's	3		
 screen plots	scree plots	3		
@@ -13171,6 +13244,9 @@ settles the score	gets even, settles an obligation	2
 settling an old score	getting even, settling an obligation	2		
 settling the score	getting even, settling an obligation	2		
 settlment	settlement	3		
+settng	setting	3		
+settng's	setting's	3		
+settngs	settings	3		
 settting	setting	3		
 setttings	settings	3		
 seventh heaven	elated, very happy	2		
@@ -14526,6 +14602,7 @@ throws caution to the wind	decides on a bold course of action	2
 throws in the towel	surrenders, admits defeat	2		
 throws the baby out with the bathwater	disregards the important part	2		
 throws the book at	gives the maximum penalty	2		
+ths	this	3		
 thses	these	3		
 thsi	this	3		
 thsoe	those	3		
@@ -14763,6 +14840,12 @@ transcendant	transcendent	3
 transcendent	superior	0		
 transcendentational	transcendental	3		
 transcendently	superiorly	0		
+transcipt	transcript	3		
+transcipt's	transcript's	3		
+transciption	transcription	3		
+transciption's	transcription's	3		
+transciptions	transcriptions	3		
+transcipts	transcripts	3		
 transcription	copy	0		
 transcriptions	copies	0		
 transending	transcending	3		
@@ -14905,6 +14988,7 @@ unable use	unable to use	3
 unacompanied	unaccompanied	3		
 unadvisedly	rashly	0		
 unanymous	unanimous	3		
+unasnwered	unanswered	3		
 unassuming	modest	0		
 unassumingly	modestly	0		
 unathorised	unauthorized	3		
@@ -15710,6 +15794,7 @@ wierdly	weirdly	3
 wih	with	3		
 wihout	without	3		
 wiht	with	3		
+wihtin	within	3		
 wiil	will	3		
 wilcard	wildcard	3		
 wilcards	wildcards	3		
@@ -15754,6 +15839,7 @@ within recent past	recently	0
 within the realm of possibility	possible	0		
 withing	within	3		
 withold	withhold	3		
+withor	with or, wither	3		
 without exception	all, everybody, everything, ever time, ever	0		
 without foundation	baseless, unfounded	0		
 witht	with	3		
@@ -15879,6 +15965,8 @@ zellot's	zealot's	3
 zellots	zealots	3		
 zero-sum gain	zero-sum game	3		
 zero-sum gains	zero-sum games	3		
+Zimperuim	Zimperium	3		
+Zimperuim's	Zimperium's	3		
 zink	zinc	3		
 zylophone	xylophone	3		
 zylophones	xylophones	3		

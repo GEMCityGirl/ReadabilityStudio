@@ -39,6 +39,7 @@ rvalue
 SaaS
 SAP
 SAS
+SDK
 SEH
 SEM
 SID

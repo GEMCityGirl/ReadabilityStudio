@@ -13,7 +13,10 @@ Antractica's	Antarctica's	3
 Archimedian	Archimedean	3		
 Athenean	Athenian	3		
 Atheneans	Athenians	3		
+Begium	Belgium	3		
+Begium's	Belgium's	3		
 Beligum	Belgium	3		
+Beligum's	Belgium's	3		
 Bendictine	Benedictine	3		
 Bendictine's	Benedictine's	3		
 Bendictines	Benedictines	3		
@@ -45,6 +48,9 @@ Champange	Champagne	3
 Champange's	Champagne's	3		
 Chigaco	Chicago	3		
 Chigaco's	Chicago's	3		
+Chrismas	Christmas	3		
+Chrismas's	Christmas's	3		
+Chrismases	Christmases	3		
 Cincinatti	Cincinnati	3		
 Cincinnatti	Cincinnati	3		
 Comentiy	Comenity	3		
@@ -54,6 +60,9 @@ communidad's	comunidad's	3
 communidads	comunidads	3		
 Conneticut	Connecticut	3		
 Conneticut's	Connecticut's	3		
+Croation	Croatian	3		
+Croation's	Croatian's	3		
+Croations	Croatians	3		
 Dardenelles	Dardanelles	3		
 Dicken	Dickens	3		
 Dicken's	Dickens's	3		
@@ -120,6 +129,12 @@ Massachussetts	Massachusetts	3
 Mediterainnean	Mediterranean	3		
 Mediteranean	Mediterranean	3		
 Michagan	Michigan	3		
+Microosoft	Microsoft	3		
+Microosoft's	Microsoft's	3		
+Microsfot	Microsoft	3		
+Microsfot's	Microsoft's	3		
+Microsft	Microsoft	3		
+Microsft's	Microsoft's	3		
 Microsot	Microsoft	3		
 Microsot's	Microsoft's	3		
 Misouri	Missouri	3		
@@ -189,3 +204,5 @@ Vileck's	Vilcek's	3
 Wallce	Wallace	3		
 Wallce's	Wallace's	3		
 Wallces	Wallaces	3		
+Zimperuim	Zimperium	3		
+Zimperuim's	Zimperium's	3		
