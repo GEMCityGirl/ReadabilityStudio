@@ -3129,19 +3129,6 @@ void ReadabilityApp::RemoveAllCustomTestBundles()
 
 wxIMPLEMENT_CLASS(MainFrame, Wisteria::UI::BaseMainFrame);
 
-wxBEGIN_EVENT_TABLE(MainFrame, Wisteria::UI::BaseMainFrame)
-    EVT_CLOSE(MainFrame::OnClose)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(wxID_NEW, MainFrame::OnNewDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(wxID_OPEN, MainFrame::OnOpenDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_PRINT_OPTIONS"), MainFrame::OnPrintDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_WORD_LISTS"), MainFrame::OnWordListDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_BLANK_GRAPHS"), MainFrame::OnBlankGraphDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EDIT_DICTIONARY"), MainFrame::OnDictionaryDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_EXAMPLES"), MainFrame::OnExampleDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_CUSTOM_TESTS"), MainFrame::OnCustomTestsDropdown)
-    EVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED(XRCID("ID_TEST_BUNDLES"), MainFrame::OnTestBundlesDropdown)
-wxEND_EVENT_TABLE()
-
 std::map<int, wxString> MainFrame::m_testBundleMenuIds;
 std::map<int, wxString> MainFrame::m_customTestMenuIds;
 std::map<int, wxString> MainFrame::m_examplesMenuIds;
@@ -3648,6 +3635,24 @@ MainFrame::MainFrame(wxDocManager* manager, wxFrame* frame,
             OnAbout(event);
             },
         wxID_ABOUT);
+
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &MainFrame::OnPrintDropdown, this,
+         XRCID("ID_PRINT_OPTIONS"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &MainFrame::OnWordListDropdown, this,
+         XRCID("ID_WORD_LISTS"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &MainFrame::OnBlankGraphDropdown, this,
+         XRCID("ID_BLANK_GRAPHS"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &MainFrame::OnDictionaryDropdown, this, XRCID("ID_EDIT_DICTIONARY"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &MainFrame::OnExampleDropdown, this,
+         XRCID("ID_EXAMPLES"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &MainFrame::OnCustomTestsDropdown, this,
+         XRCID("ID_CUSTOM_TESTS"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &MainFrame::OnTestBundlesDropdown, this,
+         XRCID("ID_TEST_BUNDLES"));
+
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &MainFrame::OnNewDropdown, this, wxID_NEW);
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &MainFrame::OnOpenDropdown, this, wxID_OPEN);
+    Bind(wxEVT_CLOSE_WINDOW, &MainFrame::OnClose, this);
 
     Bind(wxEVT_RIBBONBAR_HELP_CLICK, &MainFrame::OnRibbonBarHelpClicked, this);
     Bind(wxEVT_STARTPAGE_CLICKED, &MainFrame::OnStartPageClick, this);

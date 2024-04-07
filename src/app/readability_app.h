@@ -265,7 +265,6 @@ class MainFrame final : public Wisteria::UI::BaseMainFrame
     wxBitmap m_aboutBmp;
 
     wxDECLARE_CLASS(MainFrame);
-    wxDECLARE_EVENT_TABLE();
     };
 
 // Define a new application
