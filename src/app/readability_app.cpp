@@ -540,7 +540,7 @@ bool ReadabilityApp::OnInit()
 #ifndef NDEBUG
     wxFileTranslationsLoader::AddCatalogLookupPathPrefix(L".");
 #endif
-    wxTranslations* const translations = new wxTranslations{};
+    wxTranslations* const translations{ new wxTranslations{} };
     wxTranslations::Set(translations);
     if (!translations->AddCatalog(_READSTUDIO_BINARY_NAME))
         {
