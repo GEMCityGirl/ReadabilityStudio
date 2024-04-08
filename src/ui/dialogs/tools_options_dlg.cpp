@@ -31,46 +31,6 @@ wxDECLARE_APP(ReadabilityApp);
 
 wxIMPLEMENT_CLASS(ToolsOptionsDlg, wxDialog)
 
-wxBEGIN_EVENT_TABLE(ToolsOptionsDlg, wxDialog)
-    EVT_BUTTON(wxID_OK, ToolsOptionsDlg::OnOK)
-    EVT_BUTTON(ID_EXPORT_SETTINGS_BUTTON, ToolsOptionsDlg::OnExportSettings)
-    EVT_BUTTON(ID_LOAD_SETTINGS_BUTTON, ToolsOptionsDlg::OnImportSettings)
-    EVT_BUTTON(ID_RESET_SETTINGS_BUTTON, ToolsOptionsDlg::OnResetSettings)
-    EVT_BUTTON(wxID_HELP, ToolsOptionsDlg::OnHelp)
-    EVT_HELP(wxID_ANY, ToolsOptionsDlg::OnContextHelp)
-    EVT_BUTTON(ID_HIGHLIGHT_COLOR_BUTTON, ToolsOptionsDlg::OnHighlightColorSelect)
-    EVT_BUTTON(ID_EXCLUDED_HIGHLIGHT_COLOR_BUTTON, ToolsOptionsDlg::OnExcludedHighlightColorSelect)
-    EVT_BUTTON(ID_DUP_WORD_COLOR_BUTTON, ToolsOptionsDlg::OnDupWordHighlightColorSelect)
-    EVT_BUTTON(ID_WORDY_PHRASE_COLOR_BUTTON, ToolsOptionsDlg::OnWordyPhraseHighlightColorSelect)
-    EVT_BUTTON(ID_FONT_BUTTON, ToolsOptionsDlg::OnFontSelect)
-    EVT_BUTTON(ID_X_AXIS_FONT_BUTTON, ToolsOptionsDlg::OnFontSelect)
-    EVT_BUTTON(ID_Y_AXIS_FONT_BUTTON, ToolsOptionsDlg::OnFontSelect)
-    EVT_BUTTON(ID_GRAPH_TOP_TITLE_FONT_BUTTON, ToolsOptionsDlg::OnFontSelect)
-    EVT_BUTTON(ID_GRAPH_BOTTOM_TITLE_FONT_BUTTON, ToolsOptionsDlg::OnFontSelect)
-    EVT_BUTTON(ID_GRAPH_LEFT_TITLE_FONT_BUTTON, ToolsOptionsDlg::OnFontSelect)
-    EVT_BUTTON(ID_GRAPH_RIGHT_TITLE_FONT_BUTTON, ToolsOptionsDlg::OnFontSelect)
-    EVT_CHOICE(ID_TEXT_EXCLUDE_METHOD, ToolsOptionsDlg::OnIncompleteSentencesChange)
-    EVT_RADIOBOX(ID_DOCUMENT_STORAGE_RADIO_BOX, ToolsOptionsDlg::OnDocumentStorageRadioButtonClick)
-    EVT_CHOICE(ID_PARAGRAPH_PARSE, ToolsOptionsDlg::OnParagraphParseChange)
-    EVT_CHOICE(ID_NUMBER_SYLLABIZE_METHOD, ToolsOptionsDlg::OnNumberSyllabizeChange)
-    EVT_CHOICE(ID_EXCLUSION_TAG_BLOCK_SELCTION, ToolsOptionsDlg::OnExclusionBlockTagChange)
-    EVT_BUTTON(ID_FILE_BROWSE_BUTTON, ToolsOptionsDlg::OnFileBrowseButtonClick)
-    EVT_BUTTON(ID_ADDITIONAL_FILE_BROWSE_BUTTON, ToolsOptionsDlg::OnAdditionalDocumentFileBrowseButtonClick)
-    EVT_BUTTON(ID_EXCLUDED_PHRASES_FILE_EDIT_BUTTON, ToolsOptionsDlg::OnExcludedPhrasesFileEditButtonClick)
-    EVT_BUTTON(ToolsOptionsDlg::ID_WARNING_MESSAGES_BUTTON, ToolsOptionsDlg::OnWarningMessagesButtonClick)
-    EVT_BUTTON(ID_DOLCH_CONJUNCTIONS_COLOR_BUTTON, ToolsOptionsDlg::OnDolchConjunctionsHighlightColorSelect)
-    EVT_BUTTON(ID_DOLCH_PREPOSITIONS_COLOR_BUTTON, ToolsOptionsDlg::OnDolchPrepositionsHighlightColorSelect)
-    EVT_BUTTON(ID_DOLCH_PRONOUNS_COLOR_BUTTON, ToolsOptionsDlg::OnDolchPronounsHighlightColorSelect)
-    EVT_BUTTON(ID_DOLCH_ADVERBS_COLOR_BUTTON, ToolsOptionsDlg::OnDolchAdverbsHighlightColorSelect)
-    EVT_BUTTON(ID_DOLCH_ADJECTIVES_COLOR_BUTTON, ToolsOptionsDlg::OnDolchHighlightColorSelect)
-    EVT_BUTTON(ID_DOLCH_VERBS_COLOR_BUTTON, ToolsOptionsDlg::OnDolchHighlightColorSelect)
-    EVT_BUTTON(ID_DOLCH_NOUN_COLOR_BUTTON, ToolsOptionsDlg::OnDolchNounHighlightColorSelect)
-    EVT_BUTTON(ID_ADD_FILE_BUTTON, ToolsOptionsDlg::OnAddFileClick)
-    EVT_BUTTON(ID_ADD_FILES_BUTTON, ToolsOptionsDlg::OnAddFilesClick)
-    EVT_BUTTON(ID_DELETE_FILE_BUTTON, ToolsOptionsDlg::OnDeleteFileClick)
-    EVT_CHECKBOX(ID_EXCLUDE_NUMERALS_CHECKBOX, ToolsOptionsDlg::OnExcludeNumeralsCheck)
-wxEND_EVENT_TABLE()
-
 //-------------------------------------------------------------
 void ToolsOptionsDlg::OnExcludeNumeralsCheck(wxCommandEvent& event)
     {
@@ -853,8 +813,9 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
         { title = wxString::Format(_(L"\"%s\" Properties"), displayableProjectName); }
     Create(parent, wxID_ANY, title, wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER);
 
-    // Changing the list of files for a batch will need to disable the linking & embedded options until this dialog
-    // is closed and those new documents can be reloaded.
+    // Changing the list of files for a batch will need to disable the
+    // linking & embedded options until this dialog is closed and
+    // those new documents can be reloaded.
     Bind(wxEVT_LISTCTRLEX_EDITED, [this]([[maybe_unused]] wxCommandEvent& event)
         {
         if (m_docStorageRadioBox && m_fileList && m_fileList->HasItemBeenEditedByUser())
@@ -869,13 +830,75 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
         if (m_filePath.has_changed() && m_docStorageRadioBox)
             { m_docStorageRadioBox->Enable(false); }
         }, ID_DOCUMENT_PATH_FIELD);
+
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnHighlightColorSelect, this, ID_HIGHLIGHT_COLOR_BUTTON);
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnExcludedHighlightColorSelect, this,
+         ID_EXCLUDED_HIGHLIGHT_COLOR_BUTTON);
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnDupWordHighlightColorSelect, this,
+         ID_DUP_WORD_COLOR_BUTTON);
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnWordyPhraseHighlightColorSelect, this,
+         ID_WORDY_PHRASE_COLOR_BUTTON);
+
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnDolchNounHighlightColorSelect, this,
+         ID_DOLCH_NOUN_COLOR_BUTTON);
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnDolchHighlightColorSelect, this,
+         ID_DOLCH_VERBS_COLOR_BUTTON);
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnDolchHighlightColorSelect, this,
+         ID_DOLCH_ADJECTIVES_COLOR_BUTTON);
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnDolchAdverbsHighlightColorSelect, this,
+         ID_DOLCH_ADVERBS_COLOR_BUTTON);
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnDolchPronounsHighlightColorSelect, this,
+         ID_DOLCH_PRONOUNS_COLOR_BUTTON);
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnDolchPrepositionsHighlightColorSelect, this,
+         ID_DOLCH_PREPOSITIONS_COLOR_BUTTON);
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnDolchConjunctionsHighlightColorSelect, this,
+         ID_DOLCH_CONJUNCTIONS_COLOR_BUTTON);
+
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnDeleteFileClick, this, ID_DELETE_FILE_BUTTON);
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnAddFileClick, this, ID_ADD_FILE_BUTTON);
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnAddFilesClick, this, ID_ADD_FILES_BUTTON);
+
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnExportSettings, this, ID_EXPORT_SETTINGS_BUTTON);
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnImportSettings, this, ID_LOAD_SETTINGS_BUTTON);
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnResetSettings, this, ID_RESET_SETTINGS_BUTTON);
+
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnWarningMessagesButtonClick, this,
+         ID_WARNING_MESSAGES_BUTTON);
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnExcludedPhrasesFileEditButtonClick, this,
+         ID_EXCLUDED_PHRASES_FILE_EDIT_BUTTON);
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnAdditionalDocumentFileBrowseButtonClick, this,
+         ID_ADDITIONAL_FILE_BROWSE_BUTTON);
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnFileBrowseButtonClick, this, ID_FILE_BROWSE_BUTTON);
+
+    Bind(wxEVT_CHECKBOX, &ToolsOptionsDlg::OnExcludeNumeralsCheck, this,
+         ID_EXCLUDE_NUMERALS_CHECKBOX);
+    Bind(wxEVT_CHOICE, &ToolsOptionsDlg::OnIncompleteSentencesChange, this, ID_TEXT_EXCLUDE_METHOD);
+    Bind(wxEVT_RADIOBOX, &ToolsOptionsDlg::OnDocumentStorageRadioButtonClick, this,
+         ID_DOCUMENT_STORAGE_RADIO_BOX);
+
+    Bind(wxEVT_CHOICE, &ToolsOptionsDlg::OnParagraphParseChange, this, ID_PARAGRAPH_PARSE);
+    Bind(wxEVT_CHOICE, &ToolsOptionsDlg::OnNumberSyllabizeChange, this, ID_NUMBER_SYLLABIZE_METHOD);
+    Bind(wxEVT_CHOICE, &ToolsOptionsDlg::OnExclusionBlockTagChange, this,
+         ID_EXCLUSION_TAG_BLOCK_SELCTION);
+
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnOK, this, wxID_OK);
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnHelp, this, wxID_HELP);
+    Bind(wxEVT_HELP, &ToolsOptionsDlg::OnContextHelp, this);
+
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnFontSelect, this, ID_FONT_BUTTON);
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnFontSelect, this, ID_X_AXIS_FONT_BUTTON);
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnFontSelect, this, ID_Y_AXIS_FONT_BUTTON);
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnFontSelect, this, ID_GRAPH_TOP_TITLE_FONT_BUTTON);
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnFontSelect, this, ID_GRAPH_BOTTOM_TITLE_FONT_BUTTON);
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnFontSelect, this, ID_GRAPH_LEFT_TITLE_FONT_BUTTON);
+    Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnFontSelect, this, ID_GRAPH_RIGHT_TITLE_FONT_BUTTON);
     }
 
 //-------------------------------------------------------------
 bool ToolsOptionsDlg::Create(wxWindow* parent, wxWindowID id, const wxString& caption,
                              const wxPoint& pos, const wxSize& size, long style)
     {
-    SetExtraStyle(GetExtraStyle()|wxWS_EX_VALIDATE_RECURSIVELY);
+    SetExtraStyle(GetExtraStyle() | wxWS_EX_VALIDATE_RECURSIVELY);
     wxDialog::Create(parent, id, caption, pos, size, style);
 
     CreateControls();
@@ -885,95 +908,143 @@ bool ToolsOptionsDlg::Create(wxWindow* parent, wxWindowID id, const wxString& ca
 
     // select the appropriate options if this is a project properties dialog
     if (GetSectionsBeingShown() == GraphsSection)
-        { SelectPage(ToolsOptionsDlg::GRAPH_GENERAL_PAGE); }
+        {
+        SelectPage(ToolsOptionsDlg::GRAPH_GENERAL_PAGE);
+        }
     else if (GetSectionsBeingShown() == TextSection)
-        { SelectPage(ToolsOptionsDlg::DOCUMENT_DISPLAY_GENERAL_PAGE); }
+        {
+        SelectPage(ToolsOptionsDlg::DOCUMENT_DISPLAY_GENERAL_PAGE);
+        }
     else if (GetSectionsBeingShown() == ProjectSection)
-        { SelectPage(ToolsOptionsDlg::PROJECT_SETTINGS_PAGE); }
+        {
+        SelectPage(ToolsOptionsDlg::PROJECT_SETTINGS_PAGE);
+        }
     else if (GetSectionsBeingShown() == ScoresSection)
-        { SelectPage(ToolsOptionsDlg::SCORES_TEST_OPTIONS_PAGE); }
+        {
+        SelectPage(ToolsOptionsDlg::SCORES_TEST_OPTIONS_PAGE);
+        }
     else if (GetSectionsBeingShown() == DocumentIndexing)
-        { SelectPage(ToolsOptionsDlg::ANALYSIS_INDEXING_PAGE); }
+        {
+        SelectPage(ToolsOptionsDlg::ANALYSIS_INDEXING_PAGE);
+        }
     else if (GetSectionsBeingShown() == Grammar)
-        { SelectPage(ToolsOptionsDlg::GRAMMAR_PAGE); }
+        {
+        SelectPage(ToolsOptionsDlg::GRAMMAR_PAGE);
+        }
     else if (GetSectionsBeingShown() == Statistics)
-        { SelectPage(ToolsOptionsDlg::ANALYSIS_STATISTICS_PAGE); }
+        {
+        SelectPage(ToolsOptionsDlg::ANALYSIS_STATISTICS_PAGE);
+        }
     else if (IsStandardProjectSettings())
         {
-        const ProjectView* view = dynamic_cast<const ProjectView*>(m_readabilityProjectDoc->GetFirstView());
+        const ProjectView* view =
+            dynamic_cast<const ProjectView*>(m_readabilityProjectDoc->GetFirstView());
         const auto selectedID = view->GetSideBar()->GetSelectedFolderId();
         if (typeid(*view->GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
             {
             const auto& graphType =
-                typeid(*dynamic_cast<const Wisteria::Canvas*>(view->GetActiveProjectWindow())->GetFixedObject(0, 0));
-            if (graphType == typeid(FleschChart) ||
-                graphType == typeid(LixGauge) ||
-                graphType == typeid(LixGaugeGerman) ||
-                graphType == typeid(CrawfordGraph) ||
-                graphType == typeid(DanielsonBryan2Plot) ||
-                graphType == typeid(FraseGraph) ||
-                graphType == typeid(FryGraph) ||
-                graphType == typeid(RaygorGraph) ||
-                graphType == typeid(SchwartzGraph) )
-                { SelectPage(GRAPH_READABILITY_GRAPHS_PAGE); }
+                typeid(*dynamic_cast<const Wisteria::Canvas*>(view->GetActiveProjectWindow())
+                            ->GetFixedObject(0, 0));
+            if (graphType == typeid(FleschChart) || graphType == typeid(LixGauge) ||
+                graphType == typeid(LixGaugeGerman) || graphType == typeid(CrawfordGraph) ||
+                graphType == typeid(DanielsonBryan2Plot) || graphType == typeid(FraseGraph) ||
+                graphType == typeid(FryGraph) || graphType == typeid(RaygorGraph) ||
+                graphType == typeid(SchwartzGraph))
+                {
+                SelectPage(GRAPH_READABILITY_GRAPHS_PAGE);
+                }
             else
-                { SelectPage(GRAPH_GENERAL_PAGE); }
+                {
+                SelectPage(GRAPH_GENERAL_PAGE);
+                }
             }
         else if (!selectedID.has_value())
-            { SelectPage(SCORES_DISPLAY_PAGE); }
+            {
+            SelectPage(SCORES_DISPLAY_PAGE);
+            }
         else if (selectedID == BaseProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID)
-            { SelectPage(SCORES_DISPLAY_PAGE); }
+            {
+            SelectPage(SCORES_DISPLAY_PAGE);
+            }
         else if (selectedID == BaseProjectView::SIDEBAR_STATS_SUMMARY_SECTION_ID)
-            { SelectPage(ANALYSIS_INDEXING_PAGE); }
+            {
+            SelectPage(ANALYSIS_INDEXING_PAGE);
+            }
         else if (selectedID == BaseProjectView::SIDEBAR_GRAMMAR_SECTION_ID)
-            { SelectPage(GRAMMAR_PAGE); }
+            {
+            SelectPage(GRAMMAR_PAGE);
+            }
         else if (selectedID == BaseProjectView::SIDEBAR_DOLCH_SECTION_ID)
-            { SelectPage(DOCUMENT_DISPLAY_DOLCH_PAGE); }
+            {
+            SelectPage(DOCUMENT_DISPLAY_DOLCH_PAGE);
+            }
         else if (selectedID == BaseProjectView::SIDEBAR_WORDS_BREAKDOWN_SECTION_ID)
-            { SelectPage(WORDS_BREAKDOWN_PAGE); }
+            {
+            SelectPage(WORDS_BREAKDOWN_PAGE);
+            }
         else if (selectedID == BaseProjectView::SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID)
-            { SelectPage(SENTENCES_BREAKDOWN_PAGE); }
+            {
+            SelectPage(SENTENCES_BREAKDOWN_PAGE);
+            }
         else
-            { SelectPage(ANALYSIS_INDEXING_PAGE); }
+            {
+            SelectPage(ANALYSIS_INDEXING_PAGE);
+            }
         }
     else if (IsBatchProjectSettings())
         {
-        const BatchProjectView* view = dynamic_cast<const BatchProjectView*>(m_readabilityProjectDoc->GetFirstView());
+        const BatchProjectView* view =
+            dynamic_cast<const BatchProjectView*>(m_readabilityProjectDoc->GetFirstView());
         const auto selectedID = view->GetSideBar()->GetSelectedFolderId();
         if (typeid(*view->GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
             {
             const auto& graphType =
-                typeid(*dynamic_cast<const Wisteria::Canvas*>(view->GetActiveProjectWindow())->GetFixedObject(0, 0));
-            if (graphType == typeid(FleschChart) ||
-                graphType == typeid(LixGauge) ||
-                graphType == typeid(LixGaugeGerman) ||
-                graphType == typeid(CrawfordGraph) ||
-                graphType == typeid(DanielsonBryan2Plot) ||
-                graphType == typeid(FraseGraph) ||
-                graphType == typeid(FryGraph) ||
-                graphType == typeid(RaygorGraph) ||
-                graphType == typeid(SchwartzGraph) )
-                { SelectPage(GRAPH_READABILITY_GRAPHS_PAGE); }
+                typeid(*dynamic_cast<const Wisteria::Canvas*>(view->GetActiveProjectWindow())
+                            ->GetFixedObject(0, 0));
+            if (graphType == typeid(FleschChart) || graphType == typeid(LixGauge) ||
+                graphType == typeid(LixGaugeGerman) || graphType == typeid(CrawfordGraph) ||
+                graphType == typeid(DanielsonBryan2Plot) || graphType == typeid(FraseGraph) ||
+                graphType == typeid(FryGraph) || graphType == typeid(RaygorGraph) ||
+                graphType == typeid(SchwartzGraph))
+                {
+                SelectPage(GRAPH_READABILITY_GRAPHS_PAGE);
+                }
             else
-                { SelectPage(GRAPH_GENERAL_PAGE); }
+                {
+                SelectPage(GRAPH_GENERAL_PAGE);
+                }
             }
         else if (!selectedID.has_value())
-            { SelectPage(SCORES_DISPLAY_PAGE); }
+            {
+            SelectPage(SCORES_DISPLAY_PAGE);
+            }
         else if (selectedID == BatchProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID)
             {
             if (m_projectLanguage == static_cast<int>(readability::test_language::english_test))
-                { SelectPage(SCORES_TEST_OPTIONS_PAGE); }
+                {
+                SelectPage(SCORES_TEST_OPTIONS_PAGE);
+                }
             else
-                { SelectPage(SCORES_DISPLAY_PAGE); }
+                {
+                SelectPage(SCORES_DISPLAY_PAGE);
+                }
             }
         else if (selectedID == BatchProjectView::SIDEBAR_HISTOGRAMS_SECTION_ID)
-            { SelectPage(GRAPH_HISTOGRAM_PAGE); }
+            {
+            SelectPage(GRAPH_HISTOGRAM_PAGE);
+            }
         else if (selectedID == BatchProjectView::SIDEBAR_BOXPLOTS_SECTION_ID)
-            { SelectPage(GRAPH_BOX_PLOT_PAGE); }
+            {
+            SelectPage(GRAPH_BOX_PLOT_PAGE);
+            }
         else if (selectedID == BatchProjectView::SIDEBAR_GRAMMAR_SECTION_ID)
-            { SelectPage(GRAMMAR_PAGE); }
+            {
+            SelectPage(GRAMMAR_PAGE);
+            }
         else
-            { SelectPage(ANALYSIS_INDEXING_PAGE); }
+            {
+            SelectPage(ANALYSIS_INDEXING_PAGE);
+            }
         }
 
     Center();

@@ -120,10 +120,10 @@ wxBEGIN_EVENT_TABLE(BatchProjectView, BaseProjectView)
 wxEND_EVENT_TABLE()
 
 //-------------------------------------------------------
-    BatchProjectView::BatchProjectView()
+BatchProjectView::BatchProjectView()
     {
     Bind(wxEVT_LIST_ITEM_SELECTED, &BatchProjectView::OnNonScoreItemSelected, this,
-         BaseProjectView::STATS_LIST_PAGE_ID);
+         STATS_LIST_PAGE_ID);
     Bind(wxEVT_SIDEBAR_CLICK, &BatchProjectView::OnItemSelected, this, BaseProjectView::LEFT_PANE);
     }
 

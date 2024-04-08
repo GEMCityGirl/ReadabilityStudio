@@ -1052,7 +1052,6 @@ class ToolsOptionsDlg final : public wxDialog
     BackupVariable<wxFont> m_rightTitleFont;
 
     wxDECLARE_CLASS(ToolsOptionsDlg);
-    wxDECLARE_EVENT_TABLE();
     };
 
     /** @}*/
