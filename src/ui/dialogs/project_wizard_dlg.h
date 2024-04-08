@@ -401,8 +401,9 @@ class ProjectWizardDlg final : public wxDialog
 
     // batch document entry
     ListCtrlEx* m_fileList{ nullptr };
-    std::shared_ptr<ListCtrlExDataProvider> m_fileData
-        { std::make_shared<ListCtrlExDataProvider>() };
+    std::shared_ptr<ListCtrlExDataProvider> m_fileData{
+        std::make_shared<ListCtrlExDataProvider>()
+    };
     wxCheckBox* m_isRandomSampling{ nullptr };
     wxSpinCtrl* m_randPercentageCtrl{ nullptr };
     static wxString m_lastSelectedFolder;
@@ -460,8 +461,6 @@ class ProjectWizardDlg final : public wxDialog
     ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode m_fileListTruncationMode{
         ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::NoTruncation
     };
-
-    wxDECLARE_EVENT_TABLE();
     };
 
     /** @}*/

@@ -10,12 +10,6 @@
 
 wxDECLARE_APP(ReadabilityApp);
 
-// clang-format off
-wxBEGIN_EVENT_TABLE(ProjectWizardDlg, wxDialog)
-    EVT_SIDEBARBOOK_PAGE_CHANGED(wxID_ANY, ProjectWizardDlg::OnPageChange)
-wxEND_EVENT_TABLE()
-// clang-format on
-
 using namespace Wisteria;
 using namespace Wisteria::GraphItems;
 using namespace Wisteria::UI;
@@ -170,6 +164,8 @@ ProjectWizardDlg::ProjectWizardDlg(wxWindow* parent, const ProjectType projectTy
         ProjectWizardDlg::ID_MANUALLY_ENTERED_TEXT_BUTTON);
     Bind(wxEVT_RADIOBOX, &ProjectWizardDlg::OnTestSelectionMethodChanged, this,
         ProjectWizardDlg::TEST_SELECT_METHOD_BUTTON);
+
+    Bind(wxEVT_SIDEBARBOOK_PAGE_CHANGED, &ProjectWizardDlg::OnPageChange, this);
 
     Bind(wxEVT_HELP, &ProjectWizardDlg::OnContextHelp, this);
 
