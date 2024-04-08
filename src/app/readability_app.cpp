@@ -5143,9 +5143,9 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
         }
 #endif
 
-    wxString currentVersion = updateFileContent.Strip(wxString::both);
+    updateFileContent.Trim(false).Trim(true); // will just be a version string
 
-    if (wxGetApp().GetAppVersion() < currentVersion)
+    if (wxGetApp().GetAppVersion() < updateFileContent)
         {
         if (wxMessageBox(wxString::Format(
             _(L"There is a new version of %s currently available.\nDo you wish to go to the download page?"),
