@@ -113,7 +113,6 @@ wxBEGIN_EVENT_TABLE(BatchProjectView, BaseProjectView)
     EVT_MENU(XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"), BatchProjectView::OnBatchExportFilteredDocuments)
     EVT_MENU(XRCID("ID_ADD_ITEM_TO_DICTIONARY"), BatchProjectView::OnAddToDictionary)
     EVT_COMMAND(wxID_ANY, EVT_WISTERIA_CANVAS_DCLICK, BatchProjectView::OnEditGraphOptions)
-    EVT_COMMAND(BaseProjectView::LEFT_PANE, EVT_SIDEBAR_CLICK, BatchProjectView::OnItemSelected)
     // find options
     EVT_FIND(wxID_ANY, BatchProjectView::OnFind)
     EVT_FIND_NEXT(wxID_ANY, BatchProjectView::OnFind)
@@ -121,10 +120,11 @@ wxBEGIN_EVENT_TABLE(BatchProjectView, BaseProjectView)
 wxEND_EVENT_TABLE()
 
 //-------------------------------------------------------
-BatchProjectView::BatchProjectView()
+    BatchProjectView::BatchProjectView()
     {
-    Bind(wxEVT_LIST_ITEM_SELECTED, &BatchProjectView::OnNonScoreItemSelected,
-         this, BaseProjectView::STATS_LIST_PAGE_ID);
+    Bind(wxEVT_LIST_ITEM_SELECTED, &BatchProjectView::OnNonScoreItemSelected, this,
+         BaseProjectView::STATS_LIST_PAGE_ID);
+    Bind(wxEVT_SIDEBAR_CLICK, &BatchProjectView::OnItemSelected, this, BaseProjectView::LEFT_PANE);
     }
 
 //-------------------------------------------------------

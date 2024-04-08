@@ -116,7 +116,6 @@ wxBEGIN_EVENT_TABLE(ProjectView, BaseProjectView)
     EVT_LIST_ITEM_ACTIVATED(WORDING_ERRORS_LIST_PAGE_ID, ProjectView::OnListDblClick)
     EVT_LIST_ITEM_ACTIVATED(READABILITY_SCORES_PAGE_ID, ProjectView::OnTestListDblClick)
     EVT_COMMAND(wxID_ANY, EVT_WISTERIA_CANVAS_DCLICK, ProjectView::OnEditGraphOptions)
-    EVT_COMMAND(ProjectView::LEFT_PANE, EVT_SIDEBAR_CLICK, ProjectView::OnItemSelected)
 wxEND_EVENT_TABLE()
 
 //------------------------------------------------------
@@ -129,6 +128,9 @@ ProjectView::ProjectView() :
         Bind(wxEVT_RIBBONBUTTONBAR_CLICKED,
             &ProjectView::OnRealTimeUpdate, this,
             XRCID("ID_REALTIME_UPDATE"));
+
+        Bind(wxEVT_SIDEBAR_CLICK, &ProjectView::OnItemSelected, this,
+             BaseProjectView::LEFT_PANE);
         }
 
 //------------------------------------------------------
