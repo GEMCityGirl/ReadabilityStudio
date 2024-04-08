@@ -115,7 +115,6 @@ wxBEGIN_EVENT_TABLE(ProjectView, BaseProjectView)
     EVT_LIST_ITEM_ACTIVATED(REDUNDANT_PHRASE_LIST_PAGE_ID, ProjectView::OnListDblClick)
     EVT_LIST_ITEM_ACTIVATED(WORDING_ERRORS_LIST_PAGE_ID, ProjectView::OnListDblClick)
     EVT_LIST_ITEM_ACTIVATED(READABILITY_SCORES_PAGE_ID, ProjectView::OnTestListDblClick)
-    EVT_COMMAND(wxID_ANY, EVT_WISTERIA_CANVAS_DCLICK, ProjectView::OnEditGraphOptions)
 wxEND_EVENT_TABLE()
 
 //------------------------------------------------------
@@ -131,6 +130,8 @@ ProjectView::ProjectView() :
 
         Bind(wxEVT_SIDEBAR_CLICK, &ProjectView::OnItemSelected, this,
              BaseProjectView::LEFT_PANE);
+
+        Bind(wxEVT_WISTERIA_CANVAS_DCLICK, &ProjectView::OnEditGraphOptions, this);
         }
 
 //------------------------------------------------------
