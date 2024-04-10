@@ -119,13 +119,48 @@ wxBEGIN_EVENT_TABLE(BatchProjectView, BaseProjectView)
 wxEND_EVENT_TABLE()
 
 //-------------------------------------------------------
-BatchProjectView::BatchProjectView()
+    BatchProjectView::BatchProjectView()
     {
     Bind(wxEVT_LIST_ITEM_SELECTED, &BatchProjectView::OnNonScoreItemSelected, this,
          STATS_LIST_PAGE_ID);
     Bind(wxEVT_SIDEBAR_CLICK, &BatchProjectView::OnItemSelected, this, BaseProjectView::LEFT_PANE);
 
     Bind(wxEVT_WISTERIA_CANVAS_DCLICK, &BatchProjectView::OnEditGraphOptions, this);
+    Bind(wxEVT_MENU, &BatchProjectView::OnMenuCommand, this, XRCID("ID_PRINT"));
+
+    Bind(
+        wxEVT_RIBBONBUTTONBAR_CLICKED,
+        [this]([[maybe_unused]] wxCommandEvent&)
+        {
+            BatchProjectDoc* projDoc = dynamic_cast<BatchProjectDoc*>(GetDocument());
+            if (projDoc != nullptr)
+                {
+                projDoc->Save();
+                }
+        },
+        XRCID("ID_SAVE_PROJECT"));
+    Bind(
+        wxEVT_MENU,
+        [this]([[maybe_unused]] wxCommandEvent&)
+        {
+            BatchProjectDoc* projDoc = dynamic_cast<BatchProjectDoc*>(GetDocument());
+            if (projDoc != nullptr)
+                {
+                projDoc->Save();
+                }
+        },
+        XRCID("ID_SAVE_PROJECT"));
+    Bind(
+        wxEVT_MENU,
+        [this]([[maybe_unused]] wxCommandEvent&)
+        {
+            BatchProjectDoc* projDoc = dynamic_cast<BatchProjectDoc*>(GetDocument());
+            if (projDoc != nullptr)
+                {
+                projDoc->SaveAs();
+                }
+        },
+        XRCID("ID_SAVE_PROJECT_AS"));
     }
 
 //-------------------------------------------------------
@@ -2301,6 +2336,10 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
         {
         event.SetId(wxID_SAVE);
         }
+    else if (event.GetId() == XRCID("ID_PRINT"))
+        {
+        event.SetId(wxID_PRINT);
+        }
     else if (event.GetId() == XRCID("ID_EXPORT_ALL") )
         {
         wxArrayString choices, descriptions;
@@ -2649,6 +2688,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                 activeWindow->SetCenterPrinterFooter(wxGetApp().GetAppOptions().GetCenterPrinterFooter());
                 activeWindow->SetRightPrinterFooter(wxGetApp().GetAppOptions().GetRightPrinterFooter());
                 }
+
             activeWindow->SetLabel(wxString::Format(L"%s [%s]", activeWindow->GetName(),
                 wxFileName::StripExtension(doc->GetTitle())));
             ParentEventBlocker blocker(activeWindow);

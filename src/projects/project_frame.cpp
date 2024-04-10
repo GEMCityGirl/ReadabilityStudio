@@ -42,7 +42,7 @@ ProjectDocChildFrame::ProjectDocChildFrame(wxDocument *doc,
     Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnOpenDropdown, this,
         wxID_OPEN);
     Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnSaveDropdown, this,
-        XRCID("ID_SAVE_OPTIONS"));
+        XRCID("ID_SAVE_PROJECT"));
     Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnZoomButtonDropdown, this,
         wxID_ZOOM_IN);
     Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnEditGraphBackgroundDropdown, this,
@@ -422,6 +422,9 @@ ProjectDocChildFrame::ProjectDocChildFrame(wxDocument *doc,
         wxID_PREVIEW);
     Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
         wxID_PRINT);
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this, XRCID("ID_PRINT"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this, XRCID("ID_SAVE_PROJECT"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this, XRCID("ID_SAVE_PROJECT_AS"));
     Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
         wxID_ZOOM_IN);
     Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,

@@ -118,21 +118,56 @@ wxBEGIN_EVENT_TABLE(ProjectView, BaseProjectView)
 wxEND_EVENT_TABLE()
 
 //------------------------------------------------------
-ProjectView::ProjectView() :
-        m_statsListData(new ListCtrlExDataProvider)
+    ProjectView::ProjectView()
+    : m_statsListData(new ListCtrlExDataProvider)
+    {
+    Bind(wxEVT_COMMAND_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this,
+         SIDEBAR_CUSTOM_TESTS_START_ID, SIDEBAR_CUSTOM_TESTS_START_ID + 1000);
+
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRealTimeUpdate, this,
+         XRCID("ID_REALTIME_UPDATE"));
+
+    Bind(wxEVT_SIDEBAR_CLICK, &ProjectView::OnItemSelected, this, BaseProjectView::LEFT_PANE);
+
+    Bind(wxEVT_WISTERIA_CANVAS_DCLICK, &ProjectView::OnEditGraphOptions, this);
+    Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, XRCID("ID_PRINT"));
+
+    Bind(
+        wxEVT_RIBBONBUTTONBAR_CLICKED,
+        [this]([[maybe_unused]] wxCommandEvent&)
         {
-        Bind(wxEVT_COMMAND_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this,
-             SIDEBAR_CUSTOM_TESTS_START_ID, SIDEBAR_CUSTOM_TESTS_START_ID + 1000);
-
-        Bind(wxEVT_RIBBONBUTTONBAR_CLICKED,
-            &ProjectView::OnRealTimeUpdate, this,
-            XRCID("ID_REALTIME_UPDATE"));
-
-        Bind(wxEVT_SIDEBAR_CLICK, &ProjectView::OnItemSelected, this,
-             BaseProjectView::LEFT_PANE);
-
-        Bind(wxEVT_WISTERIA_CANVAS_DCLICK, &ProjectView::OnEditGraphOptions, this);
-        }
+            ProjectDoc* projDoc = dynamic_cast<ProjectDoc*>(GetDocument());
+            if (projDoc != nullptr)
+                {
+                projDoc->Save();
+                }
+        },
+        XRCID("ID_SAVE_PROJECT"));
+    Bind(
+        wxEVT_MENU,
+        [this]([[maybe_unused]] wxCommandEvent&)
+        {
+            ProjectDoc* projDoc = dynamic_cast<ProjectDoc*>(GetDocument());
+            if (projDoc != nullptr)
+                {
+                projDoc->Save();
+                }
+        },
+        // don't use wxID_SAVE for a hybrid ribbon button because it becomes disabled
+        // when the document isn't dirty and then you can't access the export menu
+        XRCID("ID_SAVE_PROJECT"));
+    Bind(
+        wxEVT_MENU,
+        [this]([[maybe_unused]] wxCommandEvent&)
+        {
+            ProjectDoc* projDoc = dynamic_cast<ProjectDoc*>(GetDocument());
+            if (projDoc != nullptr)
+                {
+                projDoc->SaveAs();
+                }
+        },
+        XRCID("ID_SAVE_PROJECT_AS"));
+    }
 
 //------------------------------------------------------
 void ProjectView::OnRealTimeUpdate([[maybe_unused]] wxRibbonButtonBarEvent& event)
@@ -1176,8 +1211,14 @@ void ProjectView::OnMenuCommand(wxCommandEvent& event)
         }
 
     // propagate standard save command to active subwindow if "export window" option selected
-    if (event.GetId() == XRCID("ID_SAVE_ITEM") )
-        { event.SetId(wxID_SAVE); }
+    if (event.GetId() == XRCID("ID_SAVE_ITEM"))
+        {
+        event.SetId(wxID_SAVE);
+        }
+    else if (event.GetId() == XRCID("ID_PRINT"))
+        {
+        event.SetId(wxID_PRINT);
+        }
     else if (event.GetId() == XRCID("ID_SORT_ASCENDING") &&
         GetActiveProjectWindow() &&
         typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&

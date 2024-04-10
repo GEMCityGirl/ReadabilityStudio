@@ -1750,11 +1750,16 @@ void ReadabilityApp::FillSaveMenu(wxMenu& saveMenu, const RibbonType rtype)
 
     if (rtype == RibbonType::StandardProjectRibbon)
         {
-        wxMenuItem* item = new wxMenuItem(&saveMenu, wxID_SAVE, _(L"Save") + L"\tCtrl+S");
+        // Don't use stock wxID_SAVE and wxID_SAVEAS because of event handling issues
+        // under GTK+ and also because we use can't use wxID_SAVE on a hybrid ribbon
+        // button; otherwise, it because disabled with the document isn't dirty and
+        // then you can't access the other export options from the menu.
+        wxMenuItem* item =
+            new wxMenuItem(&saveMenu, XRCID("ID_SAVE_PROJECT"), _(L"Save") + L"\tCtrl+S");
         item->SetBitmap(saveIcon);
         saveMenu.Append(item);
 
-        item = new wxMenuItem(&saveMenu, wxID_SAVEAS, _(L"Save As..."));
+        item = new wxMenuItem(&saveMenu, XRCID("ID_SAVE_PROJECT_AS"), _(L"Save As..."));
         item->SetBitmap(saveIcon);
         saveMenu.Append(item);
         saveMenu.AppendSeparator();
@@ -1774,11 +1779,12 @@ void ReadabilityApp::FillSaveMenu(wxMenu& saveMenu, const RibbonType rtype)
         }
     else if (rtype == RibbonType::BatchProjectRibbon)
         {
-        wxMenuItem* item = new wxMenuItem(&saveMenu, wxID_SAVE, _(L"Save") + L"\tCtrl+S");
+        wxMenuItem* item =
+            new wxMenuItem(&saveMenu, XRCID("ID_SAVE_PROJECT"), _(L"Save") + L"\tCtrl+S");
         item->SetBitmap(saveIcon);
         saveMenu.Append(item);
 
-        item = new wxMenuItem(&saveMenu, wxID_SAVEAS, _(L"Save As..."));
+        item = new wxMenuItem(&saveMenu, XRCID("ID_SAVE_PROJECT_AS"), _(L"Save As..."));
         item->SetBitmap(saveIcon);
         saveMenu.Append(item);
         saveMenu.AppendSeparator();
@@ -1820,7 +1826,8 @@ void ReadabilityApp::FillPrintMenu(wxMenu& printMenu, const RibbonType rtype)
     wxMenuItem* item(nullptr);
     if (rtype != RibbonType::MainFrameRibbon)
         {
-        item = new wxMenuItem(&printMenu, wxID_PRINT, _(L"Print...")+_DT(L"\tCtrl+P"));
+        // Don't use stock wxID_PRINT because of event handling issues under GTK+
+        item = new wxMenuItem(&printMenu, XRCID("ID_PRINT"), _(L"Print...") + _DT(L"\tCtrl+P"));
         item->SetBitmap(GetResourceManager().GetSVG(L"ribbon/print.svg"));
         printMenu.Append(item);
     // macOS's and GTK+'s print dialogs have their own built-in preview option
@@ -1833,7 +1840,8 @@ void ReadabilityApp::FillPrintMenu(wxMenu& printMenu, const RibbonType rtype)
     item = new wxMenuItem(&printMenu, wxID_PRINT_SETUP, _(L"Page Setup..."));
     item->SetBitmap(GetResourceManager().GetSVG(L"ribbon/print-setup.svg"));
     printMenu.Append(item);
-    item = new wxMenuItem(&printMenu, XRCID("ID_PRINTER_HEADER_FOOTER"), _(L"Headers && Footers..."));
+    item =
+        new wxMenuItem(&printMenu, XRCID("ID_PRINTER_HEADER_FOOTER"), _(L"Headers && Footers..."));
     item->SetBitmap(GetResourceManager().GetSVG(L"ribbon/print-header-footer.svg"));
     printMenu.Append(item);
     }
@@ -3879,6 +3887,7 @@ void MainFrame::OnStartPageClick(wxCommandEvent& event)
         }
     }
 
+//---------------------------------------------------
 void MainFrame::OnNewDropdown(wxRibbonButtonBarEvent& event)
     {
     wxMenu menu;
@@ -3890,21 +3899,31 @@ void MainFrame::OnNewDropdown(wxRibbonButtonBarEvent& event)
     event.PopupMenu(&menu);
     }
 
-void MainFrame::OnOpenDropdown(wxRibbonButtonBarEvent& event)
-    { event.PopupMenu(&m_fileOpenMenu); }
+//---------------------------------------------------
+void MainFrame::OnOpenDropdown(wxRibbonButtonBarEvent& event) { event.PopupMenu(&m_fileOpenMenu); }
 
-void MainFrame::OnPrintDropdown(wxRibbonButtonBarEvent& event)
-    { event.PopupMenu(&m_printMenu); }
+//---------------------------------------------------
+void MainFrame::OnPrintDropdown(wxRibbonButtonBarEvent& event) { event.PopupMenu(&m_printMenu); }
 
+//---------------------------------------------------
 void MainFrame::OnCustomTestsDropdown(wxRibbonButtonBarEvent& event)
-    { event.PopupMenu(&m_customTestsMenu); }
+    {
+    event.PopupMenu(&m_customTestsMenu);
+    }
 
+//---------------------------------------------------
 void MainFrame::OnTestBundlesDropdown(wxRibbonButtonBarEvent& event)
-    { event.PopupMenu(&m_testsBundleMenu); }
+    {
+    event.PopupMenu(&m_testsBundleMenu);
+    }
 
+//---------------------------------------------------
 void MainFrame::OnExampleDropdown(wxRibbonButtonBarEvent& event)
-    { event.PopupMenu(&m_exampleMenu); }
+    {
+    event.PopupMenu(&m_exampleMenu);
+    }
 
+//---------------------------------------------------
 void MainFrame::OnDictionaryDropdown(wxRibbonButtonBarEvent& event)
     {
     wxMenu menu;
@@ -3913,15 +3932,18 @@ void MainFrame::OnDictionaryDropdown(wxRibbonButtonBarEvent& event)
     event.PopupMenu(&menu);
     }
 
+//---------------------------------------------------
 void MainFrame::OnWordList([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     WordListDlg wordListsDlg(this);
     wordListsDlg.ShowModal();
     }
 
+//---------------------------------------------------
 void MainFrame::OnWordListDropdown(wxRibbonButtonBarEvent& event)
     { event.PopupMenu(&m_wordListMenu); }
 
+//---------------------------------------------------
 void MainFrame::OnBlankGraphDropdown(wxRibbonButtonBarEvent& event)
     { event.PopupMenu(&m_blankGraphMenu); }
 
@@ -4017,19 +4039,29 @@ void MainFrame::OnWordListByPage(wxCommandEvent& event)
     WordListDlg wordListsDlg(this);
     // New Dale-Chall Words
     if (event.GetId() == XRCID("ID_DC_WORD_LIST_WINDOW"))
-        { wordListsDlg.SelectPage(WordListDlg::DALE_CHALL_PAGE_ID); }
+        {
+        wordListsDlg.SelectPage(WordListDlg::DALE_CHALL_PAGE_ID);
+        }
     // Stocker list
     else if (event.GetId() == XRCID("ID_STOCKER_CATHOLIC_WORD_LIST_WINDOW"))
-        { wordListsDlg.SelectPage(WordListDlg::STOCKER_PAGE_ID); }
+        {
+        wordListsDlg.SelectPage(WordListDlg::STOCKER_PAGE_ID);
+        }
     // Spache list
     else if (event.GetId() == XRCID("ID_SPACHE_WORD_LIST_WINDOW"))
-        { wordListsDlg.SelectPage(WordListDlg::SPACHE_PAGE_ID); }
+        {
+        wordListsDlg.SelectPage(WordListDlg::SPACHE_PAGE_ID);
+        }
     // Harris-Jacobson
     else if (event.GetId() == XRCID("ID_HARRIS_JACOBSON_WORD_LIST_WINDOW"))
-        { wordListsDlg.SelectPage(WordListDlg::HARRIS_JACOBSON_PAGE_ID); }
+        {
+        wordListsDlg.SelectPage(WordListDlg::HARRIS_JACOBSON_PAGE_ID);
+        }
      // Dolch words
     else if (event.GetId() == XRCID("ID_DOLCH_WORD_LIST_WINDOW"))
-        { wordListsDlg.SelectPage(WordListDlg::DOLCH_PAGE_ID); }
+        {
+        wordListsDlg.SelectPage(WordListDlg::DOLCH_PAGE_ID);
+        }
     wordListsDlg.ShowModal();
     }
 

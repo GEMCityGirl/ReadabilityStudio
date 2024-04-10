@@ -141,6 +141,39 @@ void WebHarvesterDlg::OnDeleteUrlClick([[maybe_unused]] wxCommandEvent& event)
     }
 
 //-------------------------------------------------------------
+void WebHarvesterDlg::OnLoadUrlsClick([[maybe_unused]] wxCommandEvent& event)
+    {
+    if (m_urlList != nullptr)
+        {
+        wxWindowUpdateLocker noUpdates(m_urlList);
+        wxTextEntryDialog textDlg(this, _(L"Enter a block of HTML content to extract URLs from."),
+                                  _(L"Load URLs"), wxString{},
+                                  wxTextEntryDialogStyle | wxTE_MULTILINE);
+        if (textDlg.ShowModal() == wxID_OK)
+            {
+            wxString content{ textDlg.GetValue() };
+            html_utilities::hyperlink_parse getHyperLinks(
+                content.wc_str(), content.length(),
+                html_utilities::hyperlink_parse::hyperlink_parse_method::html);
+            while (true)
+                {
+                // gather its hyperlinks
+                const wchar_t* currentLink = getHyperLinks();
+                if (currentLink != nullptr)
+                    {
+                    m_urlList->AddRow(
+                        wxString{ currentLink, getHyperLinks.get_current_hyperlink_length() });
+                    }
+                else
+                    {
+                    break;
+                    }
+                }
+            }
+        }
+    }
+
+//-------------------------------------------------------------
 void WebHarvesterDlg::OnAddDomainClick([[maybe_unused]] wxCommandEvent& event)
     {
     if (m_domainList != nullptr)
@@ -192,6 +225,12 @@ void WebHarvesterDlg::CreateControls()
             wxArtProvider::GetBitmap(wxART_DELETE, wxART_BUTTON, FromDIP(wxSize(16, 16))));
         deleteUrlButton->SetToolTip(_(L"Delete selected website"));
         urlButtonsSizer->Add(deleteUrlButton);
+
+        wxBitmapButton* loadUrlsButton = new wxBitmapButton(
+            urlSizer->GetStaticBox(), ID_LOAD_URLS_BUTTON,
+            wxArtProvider::GetBitmap(L"ID_WEB_EXPORT", wxART_BUTTON, FromDIP(wxSize(16, 16))));
+        loadUrlsButton->SetToolTip(_(L"Load URLs from HTML"));
+        urlButtonsSizer->Add(loadUrlsButton);
         urlSizer->Add(urlButtonsSizer, 0, wxALIGN_RIGHT);
 
         m_urlData->SetValues(m_urls);
@@ -207,18 +246,6 @@ void WebHarvesterDlg::CreateControls()
         m_urlList->SetColumnEditable(0);
         m_urlList->SetVirtualDataProvider(m_urlData);
         m_urlList->SetVirtualDataSize(m_urlData->GetItemCount(), 1);
-
-        if (wxGetMouseState().ShiftDown())
-            {
-            urlSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-            urlSizer->Add(new wxStaticText(urlSizer->GetStaticBox(), wxID_ANY, _(L"HTML Text:")));
-            urlSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-            wxTextCtrl* rawHtmlPageEdit =
-                new wxTextCtrl(urlSizer->GetStaticBox(), wxID_ANY, wxString{},
-                               wxDefaultPosition, wxDefaultSize,
-                               wxBORDER_THEME | wxTE_MULTILINE, wxGenericValidator(&m_rawHtmlPage));
-            urlSizer->Add(rawHtmlPageEdit, 1, wxEXPAND);
-            }
 
         panelSizer->Add(urlSizer, 1, wxALL | wxEXPAND, wxSizerFlags::GetDefaultBorder());
 
@@ -434,7 +461,7 @@ void WebHarvesterDlg::CreateControls()
     }
 
 //-------------------------------------------------------------
-void WebHarvesterDlg::UpdateHarvesterSettings(WebHarvester& harvester)
+void WebHarvesterDlg::UpdateHarvesterSettings(WebHarvester& harvester) const
     {
     wxStringTokenizer tkz(ExtractExtensionsFromFileFilter(GetSelectedDocFilter()), L"*.;");
     wxString nextFileExt;
@@ -518,6 +545,8 @@ bool WebHarvesterDlg::Create(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
          WebHarvesterDlg::ID_DELETE_URL_BUTTON);
     Bind(wxEVT_BUTTON, &WebHarvesterDlg::OnAddDomainClick, this,
          WebHarvesterDlg::ID_ADD_DOMAIN_BUTTON);
+    Bind(wxEVT_BUTTON, &WebHarvesterDlg::OnLoadUrlsClick, this,
+         WebHarvesterDlg::ID_LOAD_URLS_BUTTON);
     Bind(wxEVT_BUTTON, &WebHarvesterDlg::OnDeleteDomainClick, this,
          WebHarvesterDlg::ID_DELETE_DOMAIN_BUTTON);
     Bind(wxEVT_CHECKBOX, &WebHarvesterDlg::OnDownloadCheck, this,
