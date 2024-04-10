@@ -57,6 +57,7 @@ UML
 UMN
 unary
 unary_negate
+UPN
 URB
 USB
 USC

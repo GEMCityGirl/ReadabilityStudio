@@ -5105,6 +5105,7 @@ antifascist
 antifascist's
 antifascists
 antifeminist
+antiforgery
 antiformant
 antifraud
 antifreeze
@@ -8333,6 +8334,11 @@ autoresolve
 autoresolved
 autoresolves
 autoresolving
+autoresponse
+autoresponse's
+autoresponsed
+autoresponses
+autoresponsing
 autorhythmic
 autorhythmically
 autorhythmicity
@@ -8953,6 +8959,8 @@ backlog's
 backlogged
 backlogging
 backlogs
+backmatter
+backmatter's
 backorder
 backpack
 backpack's
@@ -16783,6 +16791,7 @@ byname
 BYOB
 bypass
 bypass's
+bypassable
 bypassed
 bypasses
 bypassing
@@ -17271,6 +17280,9 @@ callees
 caller
 caller's
 callers
+callgraph
+callgraph's
+callgraphs
 calligraph
 calligrapher
 calligrapher's
@@ -23750,6 +23762,9 @@ coiner
 coiner's
 coiners
 coining
+coinminer
+coinminer's
+coinminers
 coins
 coinsurance
 coinsurance's
@@ -29999,6 +30014,12 @@ cryptographies
 cryptographs
 cryptography
 cryptography's
+cryptojacked
+cryptojacker
+cryptojacker's
+cryptojackers
+cryptojacking
+cryptojacks
 cryptologic
 cryptological
 cryptologist
@@ -34435,6 +34456,9 @@ deserialising
 deserialization
 deserialize
 deserialized
+deserializer
+deserializer's
+deserializers
 deserializes
 deserializing
 desert
@@ -35006,6 +35030,9 @@ developmental
 developmentally
 developments
 develops
+devenv
+devenv's
+devenvs
 devhub
 devhub's
 devhubs
@@ -45986,10 +46013,12 @@ extends
 extensibility
 extensibility's
 extensible
+extensiblity
 extension
 extension's
 extensional
 extensionally
+extensionless
 extensions
 extensive
 extensively
@@ -48684,6 +48713,9 @@ firmed
 firmer
 firmest
 firming
+firmlink
+firmlink's
+firmlinks
 firmly
 firmness
 firmness's
@@ -51764,6 +51796,8 @@ frontload
 frontloaded
 frontloading
 frontloads
+frontmatter
+frontmatter's
 frontotemporal
 frontrunner
 frontrunner's
@@ -55830,6 +55864,7 @@ grayness
 graynesses
 grays
 grayscale
+grayscaling
 grayware
 grayware's
 graywares
@@ -60456,6 +60491,9 @@ homeschools
 homesick
 homesickness
 homesickness's
+homesite
+homesite's
+homesites
 homespun
 homespuns
 homestay
@@ -63168,6 +63206,9 @@ image
 image's
 imageable
 imaged
+imagelist
+imagelist's
+imagelists
 imager
 imager's
 imageries
@@ -74547,6 +74588,9 @@ logbooks
 loge
 loge's
 loges
+logfile
+logfile's
+logfiles
 loggable
 logged
 logger
@@ -74610,6 +74654,9 @@ logotype
 logotype's
 logotypes
 logout
+logpoint
+logpoint's
+logpoints
 logrank
 logrolling
 logrolling's
@@ -83617,6 +83664,7 @@ multithreaded
 multithreading
 multithreads
 multitier
+multitiered
 multitrack
 multitrack's
 multitracks
@@ -86061,6 +86109,7 @@ nitpickers
 nitpicking
 nitpickings
 nitpicks
+nitpicky
 nitrate
 nitrate's
 nitrated
@@ -86332,6 +86381,7 @@ nonalignment
 nonalignment's
 nonalignments
 nonallergic
+nonalphabetic
 nonane
 nonanimal
 nonappearance
@@ -86695,6 +86745,7 @@ nonimmigrant's
 nonimmigrants
 nonimmune
 noninclusive
+nonincremental
 nonindependent
 nonindexed
 nonindustrial
@@ -86776,6 +86827,7 @@ nonlymphocytic
 nonmagical
 nonmagnetic
 nonmalignant
+nonmanaged
 nonmanagement
 nonmanagement's
 nonmanager
@@ -93268,6 +93320,7 @@ parrying
 pars
 parsable
 parse
+parseable
 parsec
 parsec's
 parsecs
@@ -95376,6 +95429,7 @@ persimmons
 Persis
 Persis's
 persist
+persistable
 persisted
 persistence
 persistence's
@@ -100488,6 +100542,7 @@ predesignate
 predesignated
 predesignates
 predesignating
+predesigned
 predestination
 predestination's
 predestinations
@@ -101090,6 +101145,10 @@ presbyters
 presbytership
 presbytery
 presbytery's
+prescale
+prescaled
+prescales
+prescaling
 preschool
 preschooler
 preschoolers
@@ -106213,6 +106272,9 @@ raws
 ray
 ray's
 rayed
+raygun
+raygun's
+rayguns
 raying
 rayon
 rayon's
@@ -108709,9 +108771,13 @@ reignites
 reigniting
 reignition
 reigns
+reimage
+reimaged
+reimages
 reimagine
 reimagined
 reimagines
+reimaging
 reimagining
 reimbursable
 reimburse
@@ -115758,6 +115824,10 @@ screed's
 screeds
 screen
 screen's
+screencast
+screencasted
+screencasting
+screencasts
 screened
 screener
 screening
@@ -121316,6 +121386,9 @@ snapback's
 snapdragon
 snapdragon's
 snapdragons
+snapline
+snapline's
+snaplines
 snappable
 snapped
 snapper
@@ -127007,6 +127080,9 @@ subconsciousness
 subconsciousness's
 subconsciousnesses
 subconstituent
+subcontainer
+subcontainer's
+subcontainers
 subcontinent
 subcontinent's
 subcontinental
@@ -132772,6 +132848,7 @@ therapy's
 there
 there'd
 there'll
+there're
 there's
 there've
 thereabout
@@ -138831,6 +138908,7 @@ unconstitutionalities
 unconstitutionality
 unconstitutionally
 unconstrained
+unconstructed
 unconsumed
 unconsummated
 uncontainable
@@ -139815,8 +139893,11 @@ unfixable
 unfixed
 unfixes
 unfixing
+unflag
+unflagged
 unflagging
 unflaggingly
+unflags
 unflappabilities
 unflappability
 unflappable

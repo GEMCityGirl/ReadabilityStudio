@@ -48,6 +48,7 @@ Adelphi
 Adhara
 Adidas
 Adnexa
+Adoptium
 Adorables
 Adriaen
 Adriatic
@@ -767,6 +768,7 @@ Bloomington
 Bloomville
 Blu-ray
 BlueCross
+Bluehost
 Bluemercury
 BlueRewards
 BlueShield
@@ -1300,6 +1302,7 @@ Coleraine
 Coleridge
 Colima
 Collaboratory
+Collada
 Collegetown
 Collinsville
 Coloboma
@@ -1629,6 +1632,7 @@ Dorchester
 Doritos
 Dorsa
 Dotdash
+Dotfuscator
 Dotnet
 Dover
 Doxygen
@@ -1948,6 +1952,7 @@ Fairfax
 Fairfield
 Fairhill
 Fairlawn
+Fairlearn
 Fairmont
 Fairport
 Fairview
@@ -2018,6 +2023,7 @@ Finn
 Finnish
 Finsbury
 Firebase
+Firebird
 Firefox
 Firelands
 FirePro
@@ -2611,6 +2617,7 @@ Hopkinsian
 Hormuz
 Horrorland
 Hortonworks
+Hostgator
 Hotmail
 Hottentot
 Houdaille
@@ -2716,6 +2723,7 @@ Incheon
 Inchon
 Incio
 Incredibles
+Incredibuild
 IncuCyte
 Incus
 Ind
@@ -2767,6 +2775,7 @@ InStyle
 Insureon
 Intellifont
 IntelliSense
+Intellitrace
 Intelsat
 Intercoiffure
 Interfolio
@@ -2926,6 +2935,7 @@ Jurvetson
 Jussi
 Justinian
 Jutland
+Jython
 Kabul
 Kabuli
 Kafkaesque
@@ -3292,6 +3302,7 @@ Lucerne
 Lucia
 Lucian
 Luciana
+Lucida
 Ludhiana
 Lufthansa
 Luftwaffe
@@ -4781,6 +4792,7 @@ Roseglow
 Rosemont
 Rosetta
 Rosicrucian
+Roslynator
 Rossburg
 Rostov
 Roswell

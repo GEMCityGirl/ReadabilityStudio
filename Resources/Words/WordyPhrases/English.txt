@@ -1520,6 +1520,10 @@ aroma's	smell's	0
 aromas	smells	0		
 aroud	around	3		
 aroung	around	3		
+arrage	arrange	3		
+arraged	arranged	3		
+arrages	arranges	3		
+arraging	arranging	3		
 arraival	arrival	3		
 arrangment	arrangement	3		
 arrangments	arrangements	3		
@@ -1602,6 +1606,7 @@ asetic	ascetic	3
 asfar	as far	3		
 aside effect	a side effect	3		
 asign	assign	3		
+asistance	assistance	3		
 ask a question	ask	1		
 ask the question	ask	1		
 asked a question	asked	1		
@@ -1766,6 +1771,7 @@ asynchonous	asynchronous	3
 asynchonously	asynchronously	3		
 asynchornous	asynchronous	3		
 asynchornously	asynchronously	3		
+asynchroniously	asynchronously	3		
 asynchrounous	asynchronous	3		
 asynchrounously	asynchronously	3		
 at a future time	eventually, in time, later	0		
@@ -2398,6 +2404,9 @@ bookkeeing	bookkeeping	3
 bookkeeiping	bookkeeping	3		
 bookkepp	bookkeep	3		
 bookstor	bookstore	3		
+boolen	boolean	3		
+boolen's	boolean's	3		
+boolens	booleans	3		
 boook	book	3		
 boostrap	bootstrap	3		
 boostrap's	bootstrap's	3		
@@ -3632,6 +3641,7 @@ configuaration's	configuration's	3
 configuarations	configurations	3		
 configuation	configuration	3		
 configuations	configurations	3		
+configurate	configuration	3		
 configuratoin	configuration	3		
 configureable	configurable	3		
 configury	configure	3		
@@ -4229,6 +4239,9 @@ currrent	current	3
 currrent's	current's	3		
 currrently	currently	3		
 currrents	currents	3		
+curser	cursor (if referring to a computer cursor)	3		
+curser's	cursor's (if referring to a computer cursor)	3		
+cursers	cursors (if referring to a computer cursor)	3		
 cusom	custom, CUSUM (Cumulative Sum Chart)	3		
 custiomer	customer	3		
 custiomer's	customer's	3		
@@ -4249,6 +4262,10 @@ cut off her nose to spite her face	self-defeating action (usually of revenge)	2
 cut off his nose to spite his face	self-defeating action (usually of revenge)	2		
 cut off your nose to spite your face	self-defeating action (usually of revenge)	2		
 cut the mustard	pass, do well	2		
+cutomize	customize	3		
+cutomized	customized	3		
+cutomizes	customizes	3		
+cutomizing	customizing	3		
 cuts and runs	leaves quickly, retreats	2		
 cuts by half	halves	0		
 cuts corners	(irresponsibly) takes shortcuts to finish a task	2		
@@ -5889,6 +5906,9 @@ examine	check, look at	0
 examined	checked, looked at	0		
 examines	checks, looks at	0		
 examining	checking, looking at	0		
+examle	example	3		
+examle's	example's	3		
+examles	examples	3		
 exampes	examples	3		
 exampt	exempt	3		
 exapansion	expansion	3		
@@ -7147,6 +7167,9 @@ has the opportunity to	can	0
 has to do with	deals with	0		
 hasn't not	hasn't	3		
 hasnt	hasn't	3		
+hastable	hashtable	3		
+hastable's	hashtable's	3		
+hastables	hashtables	3		
 have a bearing on	affect, influence	0		
 have a bone to pick	have a complaint	2		
 have a dialogue	speak, discuss, talk	0		
@@ -7279,6 +7302,10 @@ heterogeneously	variably	0
 heterogenous	heterogeneous	3		
 hexdecimal	hexadecimal	3		
 hexidecimal	hexadecimal	3		
+hhare	share	3		
+hhared	shared	3		
+hhares	shares	3		
+hharing	sharing	3		
 hiearchies	hierarchies	3		
 hiearchy	hierarchy	3		
 hieght	height	3		
@@ -8031,6 +8058,7 @@ incure	incur	3
 indeces	indices	3		
 indefatigable	tireless	0		
 indefinitly	indefinitely	3		
+indefintely	indefinitely	3		
 indelicate	coarse, rough	0		
 indemnified	repaid, paid back	0		
 indemnifies	repays, pays back	0		
@@ -8339,6 +8367,10 @@ intance	instance	3
 intances	instances	3		
 intead	instead	3		
 inteface	interface	3		
+integragte	integrate	3		
+integragted	integrated	3		
+integragtes	integrates	3		
+integragting	integrating	3		
 integral part of	part of	1		
 integreated	integrated	3		
 integrety	integrity	3		
@@ -8447,6 +8479,7 @@ intialize	initialize	3
 intialized	initialized	3		
 intializes	initializes	3		
 intializing	initializing	3		
+intially	initially	3		
 intiation	initiation	3		
 intiation's	initiation's	3		
 intiations	initiations	3		
@@ -9387,6 +9420,7 @@ Marriot's	Marriott's	3
 Marriots	Marriotts	3		
 marrtyred	martyred	3		
 marryied	married	3		
+marshalable	marshallable	3		
 marshmellow	marshmallow	3		
 marshmellows	marshmallows	3		
 mash potatoes	mashed potatoes	3		
@@ -9783,6 +9817,8 @@ muddying the water	confusing the matter	2
 muder	murder	3		
 mudering	murdering	3		
 muliple	multiple	3		
+mulitbyte	multibyte	3		
+mulitbyte's	multibyte's	3		
 mulitple	multiple	3		
 mulitplied	multiplied	3		
 mult-age	multi-age	3		
@@ -9955,6 +9991,8 @@ night manger	night manager	3
 night mangers	night managers	3		
 nightime	nighttime	3		
 nineth	ninth	3		
+ninherit	inherit	3		
+ninherits	inherits	3		
 ninteenth	nineteenth	3		
 ninty	ninety	3		
 nip in the bud	stop at an early stage	2		
@@ -11418,6 +11456,9 @@ preperation	preparation	3
 preperations	preparations	3		
 preponderant	overpowering, overruling, major, chief, dominant	0		
 preposterous	senseless, absurd	0		
+preprequisite	prerequisite	3		
+preprequisite's	prerequisite's	3		
+preprequisites	prerequisites	3		
 preprocesser	preprocessor	3		
 preprocesser's	preprocessor's	3		
 preprocessers	preprocessors	3		
@@ -11720,6 +11761,7 @@ propagates	breeds, reproduces	0
 propagating	breeding, reproducing	0		
 propensities	inclinations, tendencies	0		
 propensity	inclination, tendency	0		
+propertly	properly	3		
 propery	properly, property	3		
 prophacy	prophecy	3		
 propietary	proprietary	3		
@@ -12107,6 +12149,9 @@ rapid	quick	0
 rapidly	quickly	0		
 rare view	rear view	3		
 rarely ever	rarely	0		
+raspberies	raspberries	3		
+raspbery	raspberry	3		
+raspbery's	raspberry's	3		
 rat race	a struggling job	2		
 rather then	rather than	3		
 ratification	approval	0		
@@ -12153,6 +12198,7 @@ reactives	reactivates	3
 reactiving	reactivating	3		
 read between the lines	surmise the hidden meaning	2		
 readabilty	readability	3		
+readding	reading	3		
 readible	readable	3		
 reading between the lines	surmising the hidden meaning	2		
 readmition	readmission	3		
@@ -13474,6 +13520,9 @@ soliders	soldiers	3
 soliliquy	soliloquy	3		
 solitary	alone, single	0		
 soluable	soluble	3		
+soluion	solution	3		
+soluion's	solution's	3		
+soluions	solutions	3		
 some but not all	some	0		
 some extend	some extent	3		
 some how	somehow	3		
@@ -14722,6 +14771,9 @@ too big for my britches	arrogant	2
 too big for their britches	arrogant	2		
 too big for your britches	arrogant	2		
 too go	to go	3		
+toobox	toolbox	3		
+toobox's	toolbox's	3		
+tooboxes	toolboxes	3		
 took 5	took a break	2		
 took a listen	listened	0		
 took a shine to	began to like	2		
@@ -14983,6 +15035,7 @@ ulterior	hidden	0
 ultimate conclusion	conclusion	0		
 ultimate outcome	outcome	0		
 ultimely	ultimately	3		
+umanaged	unmanaged	3		
 un supported	unsupported	3		
 unable use	unable to use	3		
 unacompanied	unaccompanied	3		
