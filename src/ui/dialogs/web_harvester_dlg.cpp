@@ -59,7 +59,7 @@ void WebHarvesterDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
             }
         }
 
-    if (GetUrls().GetCount() == 0 && GetRawHtmlPage().empty())
+    if (GetUrls().GetCount() == 0)
         {
         wxMessageBox(_(L"Please enter a website to harvest."), _(L"Error"),
                      wxOK | wxICON_EXCLAMATION);
@@ -159,12 +159,13 @@ void WebHarvesterDlg::OnLoadUrlsClick([[maybe_unused]] wxCommandEvent& event)
                 {
                 // gather its hyperlinks
                 const wchar_t* currentLink = getHyperLinks();
-                if (currentLink != nullptr)
+                if (currentLink != nullptr &&
+                    html_utilities::html_url_format::is_absolute_url(currentLink))
                     {
                     m_urlList->AddRow(
                         wxString{ currentLink, getHyperLinks.get_current_hyperlink_length() });
                     }
-                else
+                else if (currentLink == nullptr)
                     {
                     break;
                     }

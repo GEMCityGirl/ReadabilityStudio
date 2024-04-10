@@ -118,12 +118,6 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
         return m_downloadFolder;
         }
 
-    [[nodiscard]]
-    const wxString& GetRawHtmlPage() const noexcept
-        {
-        return m_rawHtmlPage;
-        }
-
     void SetMinimumDownloadFileSizeInKilobytes(const int minKbs) noexcept
         {
         m_minFileSizeInKiloBytes = minKbs;
@@ -139,15 +133,7 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
     /// Updates the dialog from a harvester's settings,
     void UpdateFromHarvesterSettings(const WebHarvester& harvester);
     /// Sets a harvest object to use the settings from this dialog.
-    void UpdateHarvesterSettings(WebHarvester& harvester);
-    void OnOK([[maybe_unused]] wxCommandEvent& event);
-    void OnDownloadCheck([[maybe_unused]] wxCommandEvent& event);
-    void OnFolderBrowseButtonClick([[maybe_unused]] wxCommandEvent& event);
-    void OnDomainComboSelect([[maybe_unused]] wxCommandEvent& event);
-    void OnAddUrlClick([[maybe_unused]] wxCommandEvent& event);
-    void OnDeleteUrlClick([[maybe_unused]] wxCommandEvent& event);
-    void OnAddDomainClick([[maybe_unused]] wxCommandEvent& event);
-    void OnDeleteDomainClick([[maybe_unused]] wxCommandEvent& event);
+    void UpdateHarvesterSettings(WebHarvester& harvester) const;
 
   private:
     constexpr static int ID_DOWNLOAD_CHECKBOX = wxID_HIGHEST;
@@ -160,6 +146,17 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
     constexpr static int ID_HARVESTING_PAGE = wxID_HIGHEST + 7;
     constexpr static int ID_DOMAINS_PAGE = wxID_HIGHEST + 8;
     constexpr static int ID_DOWNLOAD_PAGE = wxID_HIGHEST + 9;
+    constexpr static int ID_LOAD_URLS_BUTTON = wxID_HIGHEST + 10;
+
+    void OnOK([[maybe_unused]] wxCommandEvent& event);
+    void OnDownloadCheck([[maybe_unused]] wxCommandEvent& event);
+    void OnFolderBrowseButtonClick([[maybe_unused]] wxCommandEvent& event);
+    void OnDomainComboSelect([[maybe_unused]] wxCommandEvent& event);
+    void OnAddUrlClick([[maybe_unused]] wxCommandEvent& event);
+    void OnDeleteUrlClick([[maybe_unused]] wxCommandEvent& event);
+    void OnAddDomainClick([[maybe_unused]] wxCommandEvent& event);
+    void OnLoadUrlsClick([[maybe_unused]] wxCommandEvent& event);
+    void OnDeleteDomainClick([[maybe_unused]] wxCommandEvent& event);
 
     [[nodiscard]]
     wxString GetUserSpecifiedDomainsLabel() const
@@ -202,7 +199,6 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
 
     wxArrayString m_urls;
     std::shared_ptr<ListCtrlExDataProvider> m_urlData{ std::make_shared<ListCtrlExDataProvider>() };
-    wxString m_rawHtmlPage;
 
     wxString m_downloadFolder;
     };

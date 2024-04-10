@@ -691,7 +691,7 @@ bool WebHarvester::CrawlLinks(wxString& url,
     while (true)
         {
         // gather its hyperlinks
-        const auto* currentLink = getHyperLinks();
+        const wchar_t* currentLink = getHyperLinks();
         if (currentLink != nullptr)
             {
             CrawlLink(wxString(currentLink, getHyperLinks.get_current_hyperlink_length()),
