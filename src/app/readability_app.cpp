@@ -1830,12 +1830,12 @@ void ReadabilityApp::FillPrintMenu(wxMenu& printMenu, const RibbonType rtype)
         item = new wxMenuItem(&printMenu, XRCID("ID_PRINT"), _(L"Print...") + _DT(L"\tCtrl+P"));
         item->SetBitmap(GetResourceManager().GetSVG(L"ribbon/print.svg"));
         printMenu.Append(item);
-    // macOS's and GTK+'s print dialogs have their own built-in preview option
-    #ifdef __WXMSW__
+// macOS's and GTK+'s print dialogs have their own built-in preview option
+#ifdef __WXMSW__
         item = new wxMenuItem(&printMenu, wxID_PREVIEW, _(L"Print Preview..."));
         item->SetBitmap(GetResourceManager().GetSVG(L"ribbon/preview.svg"));
         printMenu.Append(item);
-    #endif
+#endif
         }
     item = new wxMenuItem(&printMenu, wxID_PRINT_SETUP, _(L"Page Setup..."));
     item->SetBitmap(GetResourceManager().GetSVG(L"ribbon/print-setup.svg"));
@@ -1941,7 +1941,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                     ReadRibbonSvgIcon(L"ribbon/realtime.svg"),
                     _(L"Automatically reload the project as the source document is edited externally."));
                 }
-            projectButtonBar->AddDropdownButton(XRCID("ID_SAVE_OPTIONS"),
+            projectButtonBar->AddHybridButton(XRCID("ID_SAVE_PROJECT"),
                 _(L"Save"),
                 ReadRibbonSvgIcon(L"ribbon/file-save.svg"),
                 _(L"Save the project."));
@@ -4057,7 +4057,7 @@ void MainFrame::OnWordListByPage(wxCommandEvent& event)
         {
         wordListsDlg.SelectPage(WordListDlg::HARRIS_JACOBSON_PAGE_ID);
         }
-     // Dolch words
+    // Dolch words
     else if (event.GetId() == XRCID("ID_DOLCH_WORD_LIST_WINDOW"))
         {
         wordListsDlg.SelectPage(WordListDlg::DOLCH_PAGE_ID);
@@ -5453,27 +5453,6 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
         {
         wxRibbonButtonBarEvent unusedCmd;
         OnViewLogReport(unusedCmd);
-        }
-    // crawl a block of HTML text that the user may have entered
-    // (only enabled if user holds down SHIFT key to see hidden interface)
-    if (webHarvestDlg.GetRawHtmlPage().length())
-        {
-        // Turn off domain restriction temporarily because if we are grabbing links
-        // from a block of HTML, then there is no starting domain.
-        const auto dResBak = wxGetApp().GetWebHarvester().GetDomainRestriction();
-        wxGetApp().GetWebHarvester().SetDomainRestriction(
-            WebHarvester::DomainRestriction::NotRestricted);
-        wxGetApp().GetWebHarvester().SetUrl(webHarvestDlg.GetRawHtmlPage());
-        wxGetApp().GetWebHarvester().AttemptToCrawlFromRawHtml(true);
-        webHarvestDlg.UpdateHarvesterSettings(wxGetApp().GetWebHarvester());
-        if (wxGetApp().GetWebHarvester().CrawlLinks())
-            {
-            for (const auto& bLink : wxGetApp().GetWebHarvester().GetBrokenLinks())
-                { wxLogWarning(L"Broken link '%s' (from '%s')", bLink.first, bLink.second); }
-            }
-        // this feature is not commonly used, so turn it back off
-        wxGetApp().GetWebHarvester().AttemptToCrawlFromRawHtml(false);
-        wxGetApp().GetWebHarvester().SetDomainRestriction(dResBak);
         }
 
     // update global internet options that mirror the same options from the dialog
