@@ -145,12 +145,13 @@ void WebHarvesterDlg::OnLoadUrlsClick([[maybe_unused]] wxCommandEvent& event)
     {
     if (m_urlList != nullptr)
         {
-        wxWindowUpdateLocker noUpdates(m_urlList);
-        wxTextEntryDialog textDlg(this, _(L"Enter a block of HTML content to extract URLs from."),
-                                  _(L"Load URLs"), wxString{},
-                                  wxTextEntryDialogStyle | wxTE_MULTILINE);
+        wxTextEntryDialog textDlg(
+            this, _(L"Enter a block of HTML content to extract website links from."),
+            _(L"Load URLs"), wxString{}, wxTextEntryDialogStyle | wxTE_MULTILINE);
         if (textDlg.ShowModal() == wxID_OK)
             {
+            // case sensitive is fine since Linux servers use case-sensitive page links
+            std::set<wxString> gatheredLinks;
             wxString content{ textDlg.GetValue() };
             html_utilities::hyperlink_parse getHyperLinks(
                 content.wc_str(), content.length(),
@@ -162,13 +163,18 @@ void WebHarvesterDlg::OnLoadUrlsClick([[maybe_unused]] wxCommandEvent& event)
                 if (currentLink != nullptr &&
                     html_utilities::html_url_format::is_absolute_url(currentLink))
                     {
-                    m_urlList->AddRow(
+                    gatheredLinks.insert(
                         wxString{ currentLink, getHyperLinks.get_current_hyperlink_length() });
                     }
                 else if (currentLink == nullptr)
                     {
                     break;
                     }
+                }
+            wxWindowUpdateLocker noUpdates(m_urlList);
+            for (const auto& link : gatheredLinks)
+                {
+                m_urlList->AddRow(link);
                 }
             }
         }
@@ -289,9 +295,10 @@ void WebHarvesterDlg::CreateControls()
             wxGetMouseState().ShiftDown() ? wxCB_DROPDOWN : wxCB_DROPDOWN | wxCB_READONLY);
         m_docFilterCombo->SetValue(m_selectedDocFilter);
         fileTypeSizer->Add(m_docFilterCombo,
-                           wxSizerFlags(1).Expand()
-                           .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
-                           .Border(wxRIGHT, wxSizerFlags::GetDefaultBorder()));
+                           wxSizerFlags(1)
+                               .Expand()
+                               .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
+                               .Border(wxRIGHT, wxSizerFlags::GetDefaultBorder()));
         panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
         // min file size
@@ -304,8 +311,8 @@ void WebHarvesterDlg::CreateControls()
         m_minFileSizeLabel->Enable(m_downloadFilesLocally);
         minFileSizeSizer->Add(m_minFileSizeLabel, 0, wxALIGN_CENTER_VERTICAL);
 
-        m_minFileSizeCtrl = new wxSpinCtrl(Panel, wxID_ANY,
-            std::to_wstring(m_minFileSizeInKiloBytes));
+        m_minFileSizeCtrl =
+            new wxSpinCtrl(Panel, wxID_ANY, std::to_wstring(m_minFileSizeInKiloBytes));
         m_minFileSizeCtrl->SetRange(1, 1024 * 20);
         m_minFileSizeCtrl->SetValidator(wxGenericValidator(&m_minFileSizeInKiloBytes));
         m_minFileSizeCtrl->Enable(m_downloadFilesLocally);
@@ -315,33 +322,35 @@ void WebHarvesterDlg::CreateControls()
         // user agent
         wxBoxSizer* userAgentSizer = new wxBoxSizer(wxHORIZONTAL);
         panelSizer->Add(userAgentSizer,
-                        wxSizerFlags(0).Expand().
-                            Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+                        wxSizerFlags(0).Expand().Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
 
-        userAgentSizer->Add(
-            new wxStaticText(Panel, wxID_STATIC, _(L"User agent:")), 0, wxALIGN_CENTER_VERTICAL);
+        userAgentSizer->Add(new wxStaticText(Panel, wxID_STATIC, _(L"User agent:")), 0,
+                            wxALIGN_CENTER_VERTICAL);
         wxTextCtrl* userAgentEdit =
-            new wxTextCtrl(Panel, wxID_ANY, wxString{}, wxDefaultPosition,
-                wxDefaultSize, wxBORDER_THEME, wxGenericValidator(&m_userAgent));
-        userAgentSizer->Add(userAgentEdit,
-                           wxSizerFlags(1).Expand()
-                           .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
-                           .Border(wxRIGHT, wxSizerFlags::GetDefaultBorder()));
+            new wxTextCtrl(Panel, wxID_ANY, wxString{}, wxDefaultPosition, wxDefaultSize,
+                           wxBORDER_THEME, wxGenericValidator(&m_userAgent));
+        userAgentSizer->Add(userAgentEdit, wxSizerFlags(1)
+                                               .Expand()
+                                               .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
+                                               .Border(wxRIGHT, wxSizerFlags::GetDefaultBorder()));
 
-        panelSizer->Add(new wxCheckBox(Panel, wxID_ANY,
-                _(L"Disable SSL certificate verification"),
-                wxDefaultPosition, wxDefaultSize, 0,
-                wxGenericValidator(&m_disablePeerVerify)),
-            wxSizerFlags().Expand().Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
-                .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
+        panelSizer->Add(new wxCheckBox(Panel, wxID_ANY, _(L"Disable SSL certificate verification"),
+                                       wxDefaultPosition, wxDefaultSize, 0,
+                                       wxGenericValidator(&m_disablePeerVerify)),
+                        wxSizerFlags()
+                            .Expand()
+                            .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
+                            .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
 
         // check links
         auto logBrokenLinksCheckBox =
             new wxCheckBox(Panel, wxID_ANY, _(L"&Log broken links"), wxDefaultPosition,
                            wxDefaultSize, 0, wxGenericValidator(&m_logBrokenLinks));
         panelSizer->Add(logBrokenLinksCheckBox,
-                        wxSizerFlags().Expand().Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
-                        .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
+                        wxSizerFlags()
+                            .Expand()
+                            .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
+                            .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
         panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
         }
 
