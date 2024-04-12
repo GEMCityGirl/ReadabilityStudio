@@ -563,13 +563,13 @@ class WebHarvester
     [[nodiscard]]
     wxString GetUserAgent() const
         {
-        // May need to be set if not initialized.
-        // Needs to be initialized here because wxGetOsDescription()
-        // can't be called during global startup.
-        // Note that we call this a "WebLion."
-        // Using words like "harvester," "crawler," "scraper," and
-        // even "browser" will result in a forbidden response from some sites,
-        // so avoid using those words.
+        /* May need to be set if not initialized.
+           Needs to be initialized here because wxGetOsDescription()
+           can't be called during global startup.
+           Note that we call this a "WebLion."
+           Using words like "harvester," "crawler," "scraper," and
+           even "browser" will result in a forbidden response from some sites,
+           so avoid using those words. */
         return (m_userAgent.empty() ?
                     _DT(L"Mozilla/5.0 (") + wxGetOsDescription() + _DT(L") WebKit/12.0 WebLion") :
                     m_userAgent);
@@ -584,8 +584,9 @@ class WebHarvester
         }
 
     /** @brief Disable SSL certificate verification.
-        @details This can be used to connect to self-signed servers or other invalid SSL
-       connections.\n Disabling verification makes the communication insecure.
+        @details This can be used to connect to self-signed servers or other
+            invalid SSL connections.\n
+            Disabling verification makes the communication insecure.
         @param disable @c true to disable SSL certificate verification.*/
     void DisablePeerVerify(const bool disable) noexcept
         {
@@ -599,13 +600,6 @@ class WebHarvester
         {
         return m_disablePeerVerify;
         }
-
-    /// @brief If base URL cannot be loaded as a legit URL or local file,
-    ///     then treat it as raw HTML content and attempt to crawl the
-    ///     links from that.
-    /// @param fromRawHtml @c true to treat base URL as raw HTML if it
-    ///     cannot be validated as a link.
-    void AttemptToCrawlFromRawHtml(const bool fromRawHtml) { m_crawlFromRawHtml = fromRawHtml; }
 
     /// @brief Sets the minimum size that a file has to be to download it.
     /// @param size The minimum file size, in kilobytes.
@@ -707,7 +701,6 @@ class WebHarvester
     bool m_replaceExistingFiles{ true };
     bool m_harvestAllHtml{ false };
     bool m_searchForBrokenLinks{ false };
-    bool m_crawlFromRawHtml{ false };
 
     FileDownload m_downloader;
     // UI functionality
@@ -715,9 +708,10 @@ class WebHarvester
     bool m_hideFileNamesWhileDownloading{ false };
     bool m_isCancelled{ false };
 
-    static const wxString HTML_CONTENT_TYPE;
-    static const wxString JAVASCRIPT_CONTENT_TYPE;
-    static const wxString VBSCRIPT_CONTENT_TYPE;
+    inline static const std::wstring_view HTML_CONTENT_TYPE{ _DT(L"text/html") };
+    inline static const std::wstring_view JAVASCRIPT_CONTENT_TYPE{ _DT(
+        L"application/x-javascript") };
+    inline static const std::wstring_view VBSCRIPT_CONTENT_TYPE{ _DT(L"application/x-vbscript") };
     };
 
     /** @}*/

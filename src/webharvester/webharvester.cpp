@@ -9,10 +9,6 @@
 #include "webharvester.h"
 #include "filepathresolver.h"
 
-const wxString WebHarvester::HTML_CONTENT_TYPE = _DT(L"text/html");
-const wxString WebHarvester::JAVASCRIPT_CONTENT_TYPE = _DT(L"application/x-javascript");
-const wxString WebHarvester::VBSCRIPT_CONTENT_TYPE = _DT(L"application/x-vbscript");
-
 //----------------------------------
 bool wxStringLessWebPath::operator()(const wxString& first, const wxString& second) const
     {
@@ -464,11 +460,11 @@ bool WebHarvester::ReadWebPage(wxString& Url, wxString& webPageContent, wxString
 
         // first make sure it is really a webpage
         if (acceptOnlyHtmlOrScriptFiles && contentType.length() &&
-            string_util::strnicmp(contentType.wc_str(), HTML_CONTENT_TYPE.wc_str(),
+            string_util::strnicmp(contentType.wc_str(), HTML_CONTENT_TYPE.data(),
                                   HTML_CONTENT_TYPE.length()) != 0 &&
-            string_util::strnicmp(contentType.wc_str(), JAVASCRIPT_CONTENT_TYPE.wc_str(),
+            string_util::strnicmp(contentType.wc_str(), JAVASCRIPT_CONTENT_TYPE.data(),
                                   JAVASCRIPT_CONTENT_TYPE.length()) != 0 &&
-            string_util::strnicmp(contentType.wc_str(), VBSCRIPT_CONTENT_TYPE.wc_str(),
+            string_util::strnicmp(contentType.wc_str(), VBSCRIPT_CONTENT_TYPE.data(),
                                   VBSCRIPT_CONTENT_TYPE.length()) != 0)
             {
             return false;
@@ -527,7 +523,7 @@ bool WebHarvester::IsPageHtml(wxString& Url, wxString& contentType, int& respons
         {
         return false;
         }
-    return string_util::strnicmp(contentType.wc_str(), HTML_CONTENT_TYPE.wc_str(),
+    return string_util::strnicmp(contentType.wc_str(), HTML_CONTENT_TYPE.data(),
                                  HTML_CONTENT_TYPE.length()) == 0;
     }
 
@@ -631,11 +627,6 @@ bool WebHarvester::CrawlLinks(wxString& url,
     else if (resolve.IsLocalOrNetworkFile())
         {
         Wisteria::TextStream::ReadFile(url, fileText);
-        }
-    // if raw HTML text was maybe passed in, then parse that instead
-    else if (m_crawlFromRawHtml)
-        {
-        fileText = url;
         }
     else
         {
