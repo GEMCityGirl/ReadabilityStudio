@@ -892,6 +892,7 @@ Bromism
 Bromsgrove
 Bromwich
 Bronx
+Bronxville
 Brookfield
 Brookhaven
 Brooklyn
@@ -1636,6 +1637,7 @@ Dorsa
 Dotdash
 Dotfuscator
 Dotnet
+Doubletree
 Dover
 Doxygen
 Drakensberg
@@ -1967,6 +1969,7 @@ Fanconi
 Fanzone
 Fareham
 Fargo
+Farmingdale
 Farmington
 Farmville
 Farnborough
@@ -2360,6 +2363,7 @@ Grecian
 Greco
 Greece
 Greek
+Greenburgh
 Greencastle
 Greenland
 Greenlawn
@@ -4443,6 +4447,7 @@ PolitiFact
 Polk
 Polle
 Polony
+Polycom
 Polynesia
 Polynesian
 Polyuria
@@ -6219,6 +6224,7 @@ Windsor
 Wininet
 Winky
 Winnetka
+Winnette
 Winnipeg
 Winsborough
 Winsock
@@ -6306,6 +6312,7 @@ Xingu
 Xmas
 XML
 Xochimilco
+Xochitl
 Xpress
 XRC
 XRCID

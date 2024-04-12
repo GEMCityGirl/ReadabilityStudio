@@ -1298,6 +1298,7 @@ apprise	tell	0
 approachs	approaches	3		
 approbation	praise	0		
 approbations	praises	0		
+approperiate	appropriate	3		
 appropiate	appropriate	3		
 appropirate	appropriate	3		
 appropirately	appropriately	3		
@@ -1512,6 +1513,9 @@ argumetn	argument	3
 argumets	arguments	3		
 aribtrary	arbitrary	3		
 arised	arose	3		
+arist	artist	3		
+arist's	artist's	3		
+arists	artists	3		
 arithemtic	arithmetic	3		
 arithmatic	arithmetic	3		
 aritmetic	arithmetic	3		
@@ -3847,7 +3851,6 @@ contaiminate	contaminate	3
 contain	have, hold	0		
 contained	had, held	0		
 contained in	in	0		
-containerd	contained	3		
 containes	contains	3		
 containg	containing	3		
 containing	having, holding	0		
@@ -4354,6 +4357,10 @@ decalare	declare	3
 decalared	declared	3		
 decalares	declares	3		
 decalaring	declaring	3		
+decalre	declare	3		
+decalred	declared	3		
+decalres	declares	3		
+decalring	declaring	3		
 decapitate	behead	0		
 decapitated	beheaded	0		
 decapitates	beheads	0		
@@ -6510,6 +6517,7 @@ flying the coop	escaping	2
 foget	forget	3		
 fogot	forgot	3		
 fogotten	forgotten	3		
+folling	following	3		
 folloing	following	3		
 follow after	follow	1		
 follow along the lines of	imitate, resemble	0		
@@ -7626,6 +7634,7 @@ immedately	immediately	3
 immediately	at once	0		
 immediatley	immediately	3		
 immediatly	immediately	3		
+immeidately	immediately	3		
 immense	huge, vast	0		
 immidately	immediately	3		
 immidiately	immediately	3		
@@ -7922,7 +7931,7 @@ in the neighbourhood of	close to, nearby, about, roughly	0
 in the nick of time	just in time	2		
 in the not too distant future	soon	0		
 in the opposite direction	against	0		
-in the passed	in the past	3		group;groups;range;ranges;string;strings;value;values
+in the passed	in the past	3		group;groups;note;notes;range;ranges;string;strings;value;values
 in the place in which	where	0		
 in the presence of	with, before	0		
 in the process of	(omit), while	0		
@@ -11791,8 +11800,10 @@ propagates	breeds, reproduces	0
 propagating	breeding, reproducing	0		
 propensities	inclinations, tendencies	0		
 propensity	inclination, tendency	0		
+properies	properties	3		
 propertly	properly	3		
 propery	properly, property	3		
+propery's	property's	3		
 prophacy	prophecy	3		
 propietary	proprietary	3		
 propigate	propagate	3		
@@ -13176,6 +13187,9 @@ secratary's	secretary's	3
 secreteries	secretaries	3		
 secretery	secretary	3		
 secretery's	secretary's	3		
+secton	section	3		
+secton's	section's	3		
+sectons	sections	3		
 secund	second	3		
 securty	security	3		
 sedereal	sidereal	3		
@@ -15320,6 +15334,7 @@ useing	using	3
 usera	users	3		
 userful	useful	3		
 uses up	uses	0		
+usess	uses	3		
 usible	usable	3		
 using up	using	0		
 usuable	usable	3		
