@@ -701,7 +701,7 @@ class WebHarvester
 
     std::optional<uint32_t> m_minFileDownloadSizeKilobytes{ std::nullopt };
     bool m_replaceExistingFiles{ true };
-    bool m_harvestAllHtml{ false };
+    bool m_harvestAllHtml{ true };
     bool m_searchForBrokenLinks{ false };
 
     FileDownload m_downloader;
