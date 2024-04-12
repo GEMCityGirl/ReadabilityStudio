@@ -473,6 +473,11 @@ void WebHarvesterDlg::CreateControls()
 //-------------------------------------------------------------
 void WebHarvesterDlg::UpdateHarvesterSettings(WebHarvester& harvester) const
     {
+    // will be turned back on if looking for HTML files; otherwise, limit file extension
+    // criteria from what was explicitly selected
+    harvester.HarvestAllHtmlFiles(false);
+    harvester.ClearAllowableFileTypes();
+
     wxStringTokenizer tkz(ExtractExtensionsFromFileFilter(GetSelectedDocFilter()), L"*.;");
     wxString nextFileExt;
     while (tkz.HasMoreTokens())
@@ -480,10 +485,10 @@ void WebHarvesterDlg::UpdateHarvesterSettings(WebHarvester& harvester) const
         nextFileExt = tkz.GetNextToken();
         if (!nextFileExt.empty())
             {
-            harvester.AddFileTypeToDownload(nextFileExt);
+            harvester.AddAllowableFileType(nextFileExt);
             if (nextFileExt.CmpNoCase(L"html") == 0 || nextFileExt.CmpNoCase(L"htm") == 0)
                 {
-                harvester.HarvestAllHtmlFiles();
+                harvester.HarvestAllHtmlFiles(true);
                 }
             }
         }

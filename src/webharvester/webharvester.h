@@ -335,11 +335,11 @@ class WebHarvester
         return m_levelDepth;
         }
 
-    /// @brief Adds a file type to download (based on extension).
+    /// @brief Adds a file type to harvest and download (based on extension).
     /// @param fileExtension The file extension to download.
     /// @note You can pass in the extension,
     ///     or a full filepath and it will get the extension from that.
-    void AddFileTypeToDownload(const wxString& fileExtension)
+    void AddAllowableFileType(const wxString& fileExtension)
         {
         if (fileExtension.find(L'.') == std::wstring::npos)
             {
@@ -350,6 +350,10 @@ class WebHarvester
             m_fileExtensions.insert(wxFileName(fileExtension).GetExt());
             }
         }
+
+    /// @brief Removes any explicit file extensions that are restricting
+    ///     to while harvesting and downloading.
+    void ClearAllowableFileTypes() { m_fileExtensions.clear(); }
 
     void EnableMissingSequentialFileSearcing(const bool enable = true) noexcept
         {
