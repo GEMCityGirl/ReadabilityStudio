@@ -441,7 +441,7 @@ class WebHarvester
     /// @brief Specifies whether files being downloaded can overwrite
     ///     each other if they have the same path.
     /// @param replaceExistingFiles @c true to overwrite existing files.
-    /// @note If this is set to false and a file with the same path
+    /// @note If this is set to @c false and a file with the same path
     ///     is about to be downloaded, the program will attempt to download
     ///     it with a different (but similar) name.
     void ReplaceExistingFiles(const bool replaceExistingFiles = true) noexcept
