@@ -542,10 +542,9 @@ bool WebHarvester::CrawlLinks()
     const wxString fileExt =
         fnExt.length() ? fnExt : GetFileTypeFromContentType(GetContentType(m_url, responseCode));
     wxString contentType;
-    // Add the link to files to download if it matches our criteria
-    if (!HasUrlAlreadyBeenHarvested(m_url) &&
-        ((m_harvestAllHtml && IsPageHtml(m_url, contentType, responseCode)) ||
-         ShouldFileBeHarvested(fileExt)))
+    // Add the link to files to harvest/download if it matches our criteria
+    if ((m_harvestAllHtml && IsPageHtml(m_url, contentType, responseCode)) ||
+         VerifyFileExtension(fileExt))
         {
         HarvestLink(m_url, m_url, fileExt);
         }
@@ -806,7 +805,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
     if (IsKnownScriptFileExtension(fileExt.wc_str()))
         {
         CrawlLinks(fullUrl, html_utilities::hyperlink_parse::hyperlink_parse_method::script);
-        if (ShouldFileBeHarvested(fileExt))
+        if (VerifyFileExtension(fileExt))
             {
             HarvestLink(fullUrl, mainUrl, fileExt);
             }
@@ -840,8 +839,8 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
             {
             CrawlLinks(fullUrl, html_utilities::hyperlink_parse::hyperlink_parse_method::html);
             }
-        // add the link to files to download later if it matches our criteria
-        if ((m_harvestAllHtml && pageIsHtml) || ShouldFileBeHarvested(fileExt))
+        // add the link to files to harvest/download if it matches our criteria
+        if ((m_harvestAllHtml && pageIsHtml) || VerifyFileExtension(fileExt))
             {
             HarvestLink(fullUrl, mainUrl, fileExt);
             }
@@ -855,7 +854,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
             html_utilities::html_url_format::is_url_top_level_domain(fullUrl.wc_str()))
             {
             CrawlLinks(fullUrl, html_utilities::hyperlink_parse::hyperlink_parse_method::html);
-            if (m_harvestAllHtml || ShouldFileBeHarvested(fileExt))
+            if (m_harvestAllHtml || VerifyFileExtension(fileExt))
                 {
                 HarvestLink(fullUrl, mainUrl, fileExt);
                 }
@@ -873,7 +872,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
                     }
                 // need to get this page's type and download it if it meets the criteria
                 fileExt = GetFileTypeFromContentType(contentType);
-                if (ShouldFileBeHarvested(fileExt) || (pageIsHtml && m_harvestAllHtml))
+                if (VerifyFileExtension(fileExt) || (pageIsHtml && m_harvestAllHtml))
                     {
                     // need to override its extension too because the url has a different
                     // file extension on it due to it being a PHP query
@@ -885,7 +884,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
             else if (pageIsHtml)
                 {
                 CrawlLinks(fullUrl, html_utilities::hyperlink_parse::hyperlink_parse_method::html);
-                if (m_harvestAllHtml || ShouldFileBeHarvested(fileExt))
+                if (m_harvestAllHtml || VerifyFileExtension(fileExt))
                     {
                     HarvestLink(fullUrl, mainUrl, fileExt);
                     }
@@ -896,7 +895,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
             else if (contentType.length())
                 {
                 fileExt = GetFileTypeFromContentType(contentType);
-                if (ShouldFileBeHarvested(fileExt))
+                if (VerifyFileExtension(fileExt))
                     {
                     HarvestLink(fullUrl, mainUrl, fileExt);
                     }
@@ -963,10 +962,13 @@ bool WebHarvester::VerifyUrlDomainCriteria(const wxString& url)
 bool WebHarvester::HarvestLink(wxString& url, const wxString& referringUrl,
                                const wxString& fileExtension /*= wxString{}*/)
     {
-    if (m_isCancelled || url.empty() || HasUrlAlreadyBeenHarvested(url) ||
-        !VerifyUrlDomainCriteria(url))
+    if (m_isCancelled || url.empty() || !VerifyUrlDomainCriteria(url))
         {
         return false;
+        }
+    else if (HasUrlAlreadyBeenHarvested(url))
+        {
+        return true;
         }
 
     // Verify that the file is HTTP/HTTPS.
@@ -975,7 +977,7 @@ bool WebHarvester::HarvestLink(wxString& url, const wxString& referringUrl,
         {
         return false;
         }
-    m_harvestedLinks.emplace(UrlWithNumericSequence(url, referringUrl));
+    m_harvestedLinks.insert(UrlWithNumericSequence(url, referringUrl));
     if (IsDownloadingFilesWhileCrawling())
         {
         DownloadFile(url, fileExtension);
