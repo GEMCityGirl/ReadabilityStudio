@@ -29,6 +29,7 @@ void WebHarvesterDlg::OnDownloadCheck([[maybe_unused]] wxCommandEvent& event)
     m_retainWebsiteFolderStuctureCheckBox->Enable(m_downloadFilesLocally);
     m_minFileSizeLabel->Enable(m_downloadFilesLocally);
     m_minFileSizeCtrl->Enable(m_downloadFilesLocally);
+    m_folderBrowseButton->Enable(m_downloadFilesLocally);
     }
 
 //-------------------------------------------------------------
@@ -427,10 +428,11 @@ void WebHarvesterDlg::CreateControls()
         m_localFolderEdit->Enable(m_downloadFilesLocally);
         downloadFolderPathSizer->Add(m_localFolderEdit, 1, wxRIGHT | wxEXPAND, 2);
 
-        wxBitmapButton* folderBrowseButton = new wxBitmapButton(
+        m_folderBrowseButton = new wxBitmapButton(
             Panel, ID_DOWNLOAD_FOLDER_BROWSE_BUTTON,
             wxArtProvider::GetBitmap(wxART_FILE_OPEN, wxART_BUTTON, FromDIP(wxSize(16, 16))));
-        downloadFolderPathSizer->Add(folderBrowseButton, 0, wxRIGHT,
+        m_folderBrowseButton->Enable(m_downloadFilesLocally);
+        downloadFolderPathSizer->Add(m_folderBrowseButton, 0, wxRIGHT,
                                      wxSizerFlags::GetDefaultBorder());
         panelSizer->Add(downloadFolderPathSizer, 0, wxLEFT | wxEXPAND,
                         wxSizerFlags::GetDefaultBorder());
@@ -439,7 +441,7 @@ void WebHarvesterDlg::CreateControls()
         // min file size
         wxBoxSizer* minFileSizeSizer = new wxBoxSizer(wxHORIZONTAL);
         panelSizer->Add(minFileSizeSizer,
-                        wxSizerFlags(0).Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+                        wxSizerFlags().Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
 
         m_minFileSizeLabel =
             new wxStaticText(Panel, wxID_STATIC, _(L"Minimum file size to download (in Kbs.):"));

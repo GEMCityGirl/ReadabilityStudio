@@ -196,6 +196,7 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
     wxBitmapButton* m_deleteDomainButton{ nullptr };
     wxStaticText* m_minFileSizeLabel{ nullptr };
     wxSpinCtrl* m_minFileSizeCtrl{ nullptr };
+    wxBitmapButton* m_folderBrowseButton{ nullptr };
 
     wxArrayString m_urls;
     std::shared_ptr<ListCtrlExDataProvider> m_urlData{ std::make_shared<ListCtrlExDataProvider>() };
