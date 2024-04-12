@@ -14,8 +14,6 @@ The **Web Harvester** dialog enables you to gather (and optionally download) lin
 
 **File types to include**: Select from this list the types of documents to include from the website.
 
-**Minimum file size to download (in Kbs.)**: Enter into this field the minimum size that a file must be for it to be downloaded.
-
 **User agent**: Enter into this field your user agent. The user agent is the name of the client program that is sent to websites when you try to read and download pages from them.
 
 **Disable SSL certificate verification**: Check this option to disable SSL certificate verification when reading and downloading webpages.
@@ -66,6 +64,8 @@ If you intend to review a website and need to always analyze its latest changes,
 **Download files locally**: Select this option to download the files from the website locally.
 
 **Folder to download files to**: Enter in this field the folder path where the website's files should be downloaded.
+
+**Minimum file size to download (in Kbs.)**: Enter into this field the minimum size that a file must be for it to be downloaded.
 
 **Use website's folder structure**: Select this option to organize the downloaded files into a folder structure similar to the website's folder structure. Deselecting this option will download the files into a flat folder structure.
 

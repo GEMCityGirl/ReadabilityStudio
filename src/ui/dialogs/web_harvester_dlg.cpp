@@ -230,7 +230,7 @@ void WebHarvesterDlg::CreateControls()
         wxBitmapButton* deleteUrlButton = new wxBitmapButton(
             urlSizer->GetStaticBox(), ID_DELETE_URL_BUTTON,
             wxArtProvider::GetBitmap(wxART_DELETE, wxART_BUTTON, FromDIP(wxSize(16, 16))));
-        deleteUrlButton->SetToolTip(_(L"Delete selected website"));
+        deleteUrlButton->SetToolTip(_(L"Delete selected websites"));
         urlButtonsSizer->Add(deleteUrlButton);
 
         wxBitmapButton* loadUrlsButton = new wxBitmapButton(
@@ -301,28 +301,10 @@ void WebHarvesterDlg::CreateControls()
                                .Border(wxRIGHT, wxSizerFlags::GetDefaultBorder()));
         panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
-        // min file size
-        wxBoxSizer* minFileSizeSizer = new wxBoxSizer(wxHORIZONTAL);
-        panelSizer->Add(minFileSizeSizer,
-                        wxSizerFlags(0).Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
-
-        m_minFileSizeLabel =
-            new wxStaticText(Panel, wxID_STATIC, _(L"Minimum file size to download (in Kbs.):"));
-        m_minFileSizeLabel->Enable(m_downloadFilesLocally);
-        minFileSizeSizer->Add(m_minFileSizeLabel, 0, wxALIGN_CENTER_VERTICAL);
-
-        m_minFileSizeCtrl =
-            new wxSpinCtrl(Panel, wxID_ANY, std::to_wstring(m_minFileSizeInKiloBytes));
-        m_minFileSizeCtrl->SetRange(1, 1024 * 20);
-        m_minFileSizeCtrl->SetValidator(wxGenericValidator(&m_minFileSizeInKiloBytes));
-        m_minFileSizeCtrl->Enable(m_downloadFilesLocally);
-        minFileSizeSizer->Add(m_minFileSizeCtrl);
-        panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-
         // user agent
         wxBoxSizer* userAgentSizer = new wxBoxSizer(wxHORIZONTAL);
         panelSizer->Add(userAgentSizer,
-                        wxSizerFlags(0).Expand().Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+                        wxSizerFlags().Expand().Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
 
         userAgentSizer->Add(new wxStaticText(Panel, wxID_STATIC, _(L"User agent:")), 0,
                             wxALIGN_CENTER_VERTICAL);
@@ -343,10 +325,8 @@ void WebHarvesterDlg::CreateControls()
                             .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
 
         // check links
-        auto logBrokenLinksCheckBox =
-            new wxCheckBox(Panel, wxID_ANY, _(L"&Log broken links"), wxDefaultPosition,
-                           wxDefaultSize, 0, wxGenericValidator(&m_logBrokenLinks));
-        panelSizer->Add(logBrokenLinksCheckBox,
+        panelSizer->Add(new wxCheckBox(Panel, wxID_ANY, _(L"&Log broken links"), wxDefaultPosition,
+                                       wxDefaultSize, 0, wxGenericValidator(&m_logBrokenLinks)),
                         wxSizerFlags()
                             .Expand()
                             .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
@@ -456,6 +436,25 @@ void WebHarvesterDlg::CreateControls()
                         wxSizerFlags::GetDefaultBorder());
         panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
+        // min file size
+        wxBoxSizer* minFileSizeSizer = new wxBoxSizer(wxHORIZONTAL);
+        panelSizer->Add(minFileSizeSizer,
+                        wxSizerFlags(0).Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+
+        m_minFileSizeLabel =
+            new wxStaticText(Panel, wxID_STATIC, _(L"Minimum file size to download (in Kbs.):"));
+        m_minFileSizeLabel->Enable(m_downloadFilesLocally);
+        minFileSizeSizer->Add(m_minFileSizeLabel, 0, wxALIGN_CENTER_VERTICAL);
+
+        m_minFileSizeCtrl =
+            new wxSpinCtrl(Panel, wxID_ANY, std::to_wstring(m_minFileSizeInKiloBytes));
+        m_minFileSizeCtrl->SetRange(1, 1024 * 20);
+        m_minFileSizeCtrl->SetValidator(wxGenericValidator(&m_minFileSizeInKiloBytes));
+        m_minFileSizeCtrl->Enable(m_downloadFilesLocally);
+        minFileSizeSizer->Add(m_minFileSizeCtrl);
+        panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+
+        // folder structure
         m_retainWebsiteFolderStuctureCheckBox = new wxCheckBox(
             Panel, wxID_ANY, _(L"&Use website's folder structure"), wxDefaultPosition,
             wxDefaultSize, 0, wxGenericValidator(&m_keepWebPathWhenDownloading));
