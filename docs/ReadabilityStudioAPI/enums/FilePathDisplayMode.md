@@ -1,11 +1,11 @@
-::: {.minipage data-latex="{\textwidth}"}
 ## FilePathDisplayMode {-}
 
-The following values are available for controlling how filepaths in [batch project](#batchproject) lists are displayed.
+The following values are available for controlling how filepaths in batch project lists are displayed.
 
-**Value**   |   **Description**
+| **Value** | **Description** |
 | :-- | :-- |
-NoTruncation   |   Show the full filepath.
-OnlyShowFileNames   |   Only show the filename.
-TruncatePaths   |   Show the filename after an abbreviated filepath.
-:::
+| NoTruncation | Show the full filepath. |
+| OnlyShowFileNames | Only show the filename. |
+| TruncatePaths | Show the filename after an abbreviated filepath. |
+
+\newpage

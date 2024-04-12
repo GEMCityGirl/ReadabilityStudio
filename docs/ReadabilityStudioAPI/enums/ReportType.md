@@ -1,11 +1,11 @@
-::: {.minipage data-latex="{\textwidth}"}
 ## ReportType {-}
 
 The following report types are available.
 
-**Value**   |   **Description**
+| **Value** | **Description** |
 | :-- | :-- |
-StatisticsSummaryReport   |   The statistics summary report.
-ReadabilityScoresSummaryReport   |   The readability-scores summary report.
-ReadabilityScoresTabularReport   |   The statistics summary report (in tabular format).
-:::
+| ReadabilityScoresSummaryReport | The readability-scores summary report. |
+| ReadabilityScoresTabularReport | The statistics summary report (in tabular format). |
+| StatisticsSummaryReport | The statistics summary report. |
+
+\newpage

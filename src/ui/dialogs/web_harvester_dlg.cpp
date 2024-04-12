@@ -317,7 +317,12 @@ void WebHarvesterDlg::CreateControls()
                                                .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
                                                .Border(wxRIGHT, wxSizerFlags::GetDefaultBorder()));
 
-        panelSizer->Add(new wxCheckBox(Panel, wxID_ANY, _(L"Disable SSL certificate verification"),
+        wxBoxSizer* extendedOpsSizer = new wxBoxSizer(wxVERTICAL);
+        panelSizer->Add(extendedOpsSizer,
+                        wxSizerFlags().Expand().Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+        // SSL disable
+        extendedOpsSizer->Add(new wxCheckBox(Panel, wxID_ANY,
+                                             _(L"Disable SSL certificate verification"),
                                        wxDefaultPosition, wxDefaultSize, 0,
                                        wxGenericValidator(&m_disablePeerVerify)),
                         wxSizerFlags()
@@ -326,7 +331,8 @@ void WebHarvesterDlg::CreateControls()
                             .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
 
         // check links
-        panelSizer->Add(new wxCheckBox(Panel, wxID_ANY, _(L"&Log broken links"), wxDefaultPosition,
+        extendedOpsSizer->Add(new wxCheckBox(Panel, wxID_ANY, _(L"&Log broken links"),
+                                             wxDefaultPosition,
                                        wxDefaultSize, 0, wxGenericValidator(&m_logBrokenLinks)),
                         wxSizerFlags()
                             .Expand()

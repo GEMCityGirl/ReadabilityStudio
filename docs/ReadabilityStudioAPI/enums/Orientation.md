@@ -1,10 +1,10 @@
-::: {.minipage data-latex="{\textwidth}"}
 ## Orientation {-}
 
 The following types of orientation are available.
 
-**Value**   |   **Description**
+| **Value** | **Description** |
 | :-- | :-- |
-Horizontal   |   Left and right.
-Vertical   |   Up and down.
-:::
+| Horizontal | Left and right. |
+| Vertical | Up and down. |
+
+\newpage
