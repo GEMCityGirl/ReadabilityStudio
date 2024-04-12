@@ -236,7 +236,7 @@ void WebHarvesterDlg::CreateControls()
         wxBitmapButton* loadUrlsButton = new wxBitmapButton(
             urlSizer->GetStaticBox(), ID_LOAD_URLS_BUTTON,
             wxArtProvider::GetBitmap(L"ID_WEB_EXPORT", wxART_BUTTON, FromDIP(wxSize(16, 16))));
-        loadUrlsButton->SetToolTip(_(L"Load URLs from HTML"));
+        loadUrlsButton->SetToolTip(_(L"Load links from HTML content"));
         urlButtonsSizer->Add(loadUrlsButton);
         urlSizer->Add(urlButtonsSizer, 0, wxALIGN_RIGHT);
 
@@ -568,6 +568,19 @@ bool WebHarvesterDlg::Create(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
          WebHarvesterDlg::ID_DOWNLOAD_CHECKBOX);
     Bind(wxEVT_COMBOBOX, &WebHarvesterDlg::OnDomainComboSelect, this,
          WebHarvesterDlg::ID_DOMAIN_COMBO);
+
+    Bind(
+        wxEVT_CHAR_HOOK,
+        [this](wxKeyEvent& event)
+        {
+            if (event.ControlDown() && event.GetKeyCode() == L'K')
+                {
+                wxRibbonButtonBarEvent dummyEvt;
+                OnLoadUrlsClick(dummyEvt);
+                }
+            event.Skip(true);
+        },
+        wxID_ANY);
 
     return true;
     }
