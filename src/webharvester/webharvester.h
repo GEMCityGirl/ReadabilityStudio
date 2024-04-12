@@ -150,8 +150,8 @@ class UrlWithNumericSequence
     /** @brief Constructor.
         @param path The URL to parse.
         @param referUrl The referring URL that @c path originated from.*/
-    UrlWithNumericSequence(const wxString& path, const wxString& referUrl)
-        : m_string(path), m_refererUrl(referUrl)
+    UrlWithNumericSequence(wxString path, wxString referUrl)
+        : m_url(std::move(path)), m_refererUrl(std::move(referUrl))
         {
         ParseSequenceNumber();
         }
@@ -162,14 +162,14 @@ class UrlWithNumericSequence
     bool
     operator<(const UrlWithNumericSequence& that) const
         {
-        return pathCmp(m_string, that.m_string);
+        return pathCmp(m_url, that.m_url);
         }
 
     /// @returns The base URL.
     [[nodiscard]]
     const wxString& GetPath() const noexcept
         {
-        return m_string;
+        return m_url;
         }
 
     /// @returns The referring URL.
@@ -197,14 +197,14 @@ class UrlWithNumericSequence
     [[nodiscard]]
     wxString GetPathPrefix() const
         {
-        return m_string.substr(0, m_number_start);
+        return m_url.substr(0, m_number_start);
         }
 
     /// @returns The section of the URL starting at the number.
     [[nodiscard]]
     wxString GetPathSuffix() const
         {
-        return m_string.substr(m_number_end);
+        return m_url.substr(m_number_end);
         }
 
   protected:
@@ -217,7 +217,7 @@ class UrlWithNumericSequence
         }
 
     wxStringLessWebPath pathCmp;
-    wxString m_string;
+    wxString m_url;
     wxString m_refererUrl;
     size_t m_number_start{ 0 };
     size_t m_number_end{ 0 };
