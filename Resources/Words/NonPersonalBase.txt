@@ -143,6 +143,7 @@ Allegheny
 Allentown
 Alleyoop
 Allhallows
+Allianz
 Allograft
 Allscripts
 Allstate
@@ -1582,6 +1583,7 @@ Dextroamphetamine
 Dhabi
 Dhaka
 Dhaulagiri
+Dialogtech
 Dibenzoxazepine
 Dickensian
 Digimarc
@@ -2223,6 +2225,7 @@ Gazza
 GCC
 Gdansk
 GDB
+Gearflow
 Geauga
 Gedalia
 GeekWire
@@ -3306,6 +3309,7 @@ Lucida
 Ludhiana
 Lufthansa
 Luftwaffe
+LuLuLemon
 Luminarium
 Lumière
 Lumpur
@@ -3763,6 +3767,7 @@ Mozelle
 Mozilla
 MSBuild
 MSconfig
+MSSql
 MSVC
 MTV
 Muhammadan
@@ -3907,6 +3912,7 @@ Nestle
 Nestlé
 NetBIOS
 NetBSD
+Netezza
 Netflix
 Netflixer
 Netherlander
@@ -4159,6 +4165,7 @@ OpenGL
 OpenOffice
 OpenOffice.org
 OpenPGP
+OpenSSL
 OpenStax
 OpenSuse
 OpenText
@@ -5219,6 +5226,7 @@ Spantran
 Spanx
 SPARC
 SPARCstation
+Sparkhead
 Sparta
 Spartan
 Spartanburg
@@ -5392,6 +5400,7 @@ Sydney
 Sylvania
 Sylvatic
 Symantec
+Synpase
 Syntech
 Syntex
 Syquest

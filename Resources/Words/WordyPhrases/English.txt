@@ -819,6 +819,8 @@ alluding	referring	0
 allways	always	3		
 almost all	most	0		
 almsot	almost	3		
+almuminum	aluminum	3		
+almuminum's	aluminum's	3		
 alocatable	allocatable	3		
 alocate	allocate	3		
 alocated	allocated	3		
@@ -882,6 +884,8 @@ altough	although	3
 alue	value	3		
 alue's	value's	3		
 alues	values	3		
+alumunim	aluminum	3		
+alumunim's	aluminum's	3		
 alwasy	always	3		
 alway	always	3		
 alwyas	always	3		
@@ -1268,6 +1272,10 @@ apportioning	dividing	0
 apportions	divides	0		
 appoximately	approximately	3		
 apppears	appears	3		
+apppend	append	3		
+apppended	appended	3		
+apppending	appending	3		
+apppends	appends	3		
 appplication	application	3		
 appplications	applications	3		
 appplying	applying	3		
@@ -1958,6 +1966,9 @@ availabled	available	3
 availablility	availability	3		
 availablity	availability	3		
 availaible	available	3		
+availailabilities	availabilities	3		
+availailability	availability	3		
+availailability's	availability's	3		
 availale	available	3		
 availavility	availability	3		
 availble	available	3		
@@ -4038,6 +4049,10 @@ copious	plenty	0
 copmetitors	competitors	3		
 copmilation	compilation	3		
 copmutations	computations	3		
+coppied	copied	2		
+coppies	copies	2		
+coppy	copy	2		
+coppying	copying	2		
 coputer	computer	3		
 copy manger	copy manager	3		
 copy mangers	copy managers	3		
@@ -4205,7 +4220,9 @@ cry over spilled milk	pointlessly lament	2
 cry wolf	raise false alarm	2		
 crying over spilled milk	pointlessly lamenting	2		
 crying wolf	raising false alarm	2		
+crypthographic	cryptographic	3		
 cryptocraphic	cryptographic	3		
+cryptograpihic	cryptographic	3		
 culiminating	culminating	3		
 culinarian	cook	0		
 culinarian's	cook's	0		
@@ -7754,7 +7771,7 @@ in an effort to	to	0
 in and of itself	in itself	0		
 in anticipation of	before	0		
 in any case	anyhow, even so	0		
-in any from	in any form	3		
+in any from	in any form	3		clause;statement
 in any way shape or fashion	in any way	0		
 in any way shape or form	in any way	0		
 in association with	along with, as well as	0		
@@ -8480,6 +8497,7 @@ intialized	initialized	3
 intializes	initializes	3		
 intializing	initializing	3		
 intially	initially	3		
+intiating	initiating	3		
 intiation	initiation	3		
 intiation's	initiation's	3		
 intiations	initiations	3		
@@ -8539,6 +8557,7 @@ invitaions	invitations	3
 invitiation	invitation	3		
 invitiation's	invitation's	3		
 invitiations	invitations	3		
+invlid	invalid	3		
 invlove	involve	3		
 invloved	involved	3		
 invloves	involves	3		
@@ -10431,6 +10450,9 @@ operatin's	operation's	3
 operating	running, working	0		
 operatins	operations	3		
 operational	working	0		
+operatoin	operation	3		
+operatoin's	operation's	3		
+operatoins	operations	3		
 opertaion	operation	3		
 opertaions	operations	3		
 opertation	operation	3		
@@ -10950,6 +10972,9 @@ peripatetic	walking about	0
 peripathetic	peripatetic	3		
 peripheries	outer edges	0		
 periphery	outer edge	0		
+perission	permission	3		
+perission's	permission's	3		
+perissions	permissions	3		
 peristent	persistent	3		
 perjery	perjury	3		
 perjorative	pejorative	3		
@@ -11219,6 +11244,11 @@ please not that	please note that	3
 pleasent	pleasant	3		
 plebeian	common, vulgar	0		
 plebicite	plebiscite	3		
+plegde	pledge	3		
+plegde's	pledge's	3		
+plegded	pledged	3		
+plegdes	pledges	3		
+plegding	pledging	3		
 plenary	full	0		
 plenteous	plenty	0		
 plesant	pleasant	3		
@@ -12381,6 +12411,7 @@ refereces	references	3
 refered	referred	3		
 referemce	reference	3		
 referemces	references	3		
+referenc	reference	3		
 referencs	references	3		
 referenece	reference	3		
 refereneced	referenced	3		
@@ -13167,7 +13198,10 @@ seesawed back and forth	seesawed	0
 seesawing back and forth	seesawing	0		
 seesaws back and forth	seesaws	0		
 seg ways	segues	3		
+segement	segment	3		
+segement's	segment's	3		
 segementation	segmentation	3		
+segements	segments	3		
 segment	part	0		
 segmentaion	segmentation	3		
 segmentaion's	segmentation's	3		
@@ -13510,6 +13544,9 @@ solatary	solitary	3
 sold like hotcakes	sold quickly	2		
 soley	solely	3		
 solicit	ask for, request	0		
+solicitaiton	solicitation	3		
+solicitaiton's	solicitation's	3		
+solicitaitons	solicitations	3		
 solicited	asked for, requested	0		
 soliciting	asking for, requesting	0		
 solicitous	anxious, eager	0		
@@ -13708,6 +13745,7 @@ starts out	starts	0
 state-of-the-art	latest	0		
 stateman	statesman	3		
 statememts	statements	3		
+statemen	statement	3		
 staticly	statically	3		
 station manger	station manager	3		
 station mangers	station managers	3		
@@ -14980,6 +15018,9 @@ true blue	loyal	2
 true fact	fact	1		
 true facts	facts	1		
 truely	truly	3		
+trunctation	truncation	3		
+trunctation's	truncation's	3		
+trunctations	truncations	3		
 trustworthyness	trustworthiness	3		
 tthe	the	3		
 tumultuous	turbulent, violent	0		
@@ -15265,6 +15306,7 @@ upping the ante	investing more	2
 ups the ante	invests more	2		
 upto	up to	3		
 urine analysis	urinalysis	3		
+usablilty	usability	3		
 usal	usual	3		
 usally	usually	3		
 use up	use	0		

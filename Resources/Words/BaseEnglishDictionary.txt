@@ -7786,6 +7786,9 @@ attune
 attuned
 attunes
 attuning
+attunities
+attunity
+attunity's
 atty
 ATV
 ATV's
@@ -15826,6 +15829,9 @@ bucketful
 bucketful's
 bucketfuls
 bucketing
+bucketization
+bucketization's
+bucketizations
 bucketize
 bucketized
 bucketizes
@@ -25047,6 +25053,7 @@ complexness's
 compliance
 compliance's
 compliances
+compliancies
 compliant
 compliantly
 complicate
@@ -31693,6 +31700,7 @@ dBi
 dbl
 dBm
 DBMS
+dbo
 dBW
 DC
 DCB
@@ -48316,6 +48324,9 @@ filer
 filer's
 filers
 files
+filestream
+filestream's
+filestreams
 filesystem
 filesystem's
 filesystems
@@ -60277,6 +60288,7 @@ holacracies
 holacracy
 holacracy's
 hold
+holdability
 holdable
 holdall
 holdall's
@@ -79185,6 +79197,9 @@ metastasized
 metastasizes
 metastasizing
 metastatic
+metastore
+metastore's
+metastores
 metasurvey
 metasurvey's
 metasurveys
@@ -95434,6 +95449,9 @@ persisted
 persistence
 persistence's
 persistences
+persistencies
+persistency
+persistency's
 persistent
 persistently
 persister
@@ -109619,6 +109637,7 @@ renowning
 renowns
 rent
 rent's
+rentable
 rental
 rental's
 rentaller
@@ -111014,6 +111033,10 @@ resymbolizations
 resymbolizes
 resync
 resynced
+resynch
+resynched
+resynches
+resynching
 resynchronisation
 resynchronisations
 resynchronise
@@ -111348,6 +111371,7 @@ retrovirus
 retroviruses
 retrovision
 retry
+retryable
 retrying
 retsina
 retsina's
@@ -113171,6 +113195,8 @@ roundtable
 roundtable's
 roundtables
 roundtrip
+roundtrip's
+roundtrips
 roundup
 roundup's
 roundups
@@ -116546,6 +116572,7 @@ secularizing
 secularly
 seculars
 securable
+securables
 secure
 secured
 securely
@@ -123262,6 +123289,9 @@ speedboater
 speedboating
 speedboating's
 speedboats
+speedbump
+speedbump's
+speedbumps
 speeded
 speeder
 speeder's
@@ -139073,6 +139103,7 @@ undeniably
 undenominational
 undependable
 undepicted
+undeprecated
 under
 underachieve
 underachieved
@@ -140874,6 +140905,10 @@ unpin
 unpinned
 unpinning
 unpins
+unpivot
+unpivoted
+unpivoting
+unpivots
 unplaceable
 unplaced
 unplagued
@@ -147711,6 +147746,9 @@ wolfish
 wolfishly
 wolfishness
 wolfishness's
+wolfpack
+wolfpack's
+wolfpacks
 wolfram
 wolfram's
 wolframs
@@ -149139,6 +149177,8 @@ zoogeography
 zooid
 zooid's
 zooids
+zookeeper
+zookeeper's
 zookeepers
 zoological
 zoologically
