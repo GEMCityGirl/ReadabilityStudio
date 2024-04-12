@@ -16,6 +16,7 @@
 #include "../Wisteria-Dataviz/src/i18n-check/src/donttranslate.h"
 #include "../Wisteria-Dataviz/src/import/html_extract_text.h"
 #include "../Wisteria-Dataviz/src/util/downloadfile.h"
+#include "../Wisteria-Dataviz/src/util/fileutil.h"
 #include "../Wisteria-Dataviz/src/util/textstream.h"
 #include <algorithm>
 #include <functional>
@@ -258,7 +259,7 @@ class WebHarvester
     WebHarvester& operator=(const WebHarvester&) = delete;
 
     /// @brief Crawls the loaded URL.
-    /// @returns @c false is crawl was cancelled.
+    /// @returns @c false if crawl was cancelled.
     [[nodiscard]]
     bool CrawlLinks();
 
@@ -273,23 +274,12 @@ class WebHarvester
     /// @note This should be called after CrawlLinks().
     void DownloadFiles();
 
-    /// @brief Cancels any pending download or read operation.
+    /// @brief Cancels any pending download, read, or harvesting operation.
     void CancelPending() noexcept
         {
         m_isCancelled = true;
         m_downloader.CancelPending();
         }
-
-    // Helper functions
-    //----------------------------------
-    /** @brief Creates a new file based on @c filePath, embedding a numeric
-            sequence in it (making it unique).
-            This is useful for saving a file and not overwriting one that
-            already exists with the same name.
-        @param filePath The original filepath
-        @returns The new filepath that was created.*/
-    [[nodiscard]]
-    static wxString CreateNewFileName(const wxString& filePath);
 
     /** @brief Reads the content of a webpage into a buffer.
         @param[in,out] Url The webpage (may be altered if redirected).
