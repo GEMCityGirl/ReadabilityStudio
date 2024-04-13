@@ -237,7 +237,7 @@ void WebHarvesterDlg::CreateControls()
 
         wxBitmapButton* loadUrlsButton = new wxBitmapButton(
             urlSizer->GetStaticBox(), ID_LOAD_URLS_BUTTON,
-            wxArtProvider::GetBitmap(L"ID_WEB_EXPORT", wxART_BUTTON, FromDIP(wxSize(16, 16))));
+            wxArtProvider::GetBitmap(L"ID_LINK", wxART_BUTTON, FromDIP(wxSize(16, 16))));
         loadUrlsButton->SetToolTip(_(L"Load links from HTML content"));
         urlButtonsSizer->Add(loadUrlsButton);
         urlSizer->Add(urlButtonsSizer, 0, wxALIGN_RIGHT);

@@ -73,6 +73,7 @@ RSArtProvider::RSArtProvider()
         { L"ID_SELECT_ALL", L"ribbon/select-all.svg" },
         { L"ID_REFRESH", L"ribbon/reload.svg" },
         { L"ID_REALTIME_UPDATE", L"ribbon/realtime.svg" },
+        { L"ID_LINK", L"ribbon/link.svg" }
     };
     }
 
@@ -5341,13 +5342,10 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
 //-------------------------------------------------------
 void MainFrame::OnToolsChapterSplit([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    wxFileDialog dialog
-                (this,
-                _(L"Select File to Split"),
-                wxGetApp().GetAppOptions().GetProjectPath(),
-                wxEmptyString,
-                wxGetApp().GetAppOptions().GetDocumentFilter(),
-                wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
+    wxFileDialog dialog(this, _(L"Select File to Split"),
+                        wxGetApp().GetAppOptions().GetProjectPath(), wxEmptyString,
+                        wxGetApp().GetAppOptions().GetDocumentFilter(),
+                        wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
 
     if (dialog.ShowModal() == wxID_OK)
         {
@@ -5358,22 +5356,23 @@ void MainFrame::OnToolsChapterSplit([[maybe_unused]] wxRibbonButtonBarEvent& eve
             MemoryMappedFile filemap(dialog.GetPath(), true, true);
             BaseProject project;
             auto extractedResult =
-                project.ExtractRawText(
-                    {
-                    static_cast<const char*>(filemap.GetStream()), static_cast<size_t>(filemap.GetMapSize())
-                    },
-                    wxFileName(dialog.GetPath()).GetExt());
+                project.ExtractRawText({ static_cast<const char*>(filemap.GetStream()),
+                                         static_cast<size_t>(filemap.GetMapSize()) },
+                                       wxFileName(dialog.GetPath()).GetExt());
             if (extractedResult.first)
-                { cSplit.SplitIntoChapters(extractedResult.second.wc_str()); }
+                {
+                cSplit.SplitIntoChapters(extractedResult.second.wc_str());
+                }
             else
                 {
                 wxMessageBox(_(L"Unable to split document."), wxGetApp().GetAppDisplayName(),
-                             wxICON_EXCLAMATION|wxOK);
+                             wxICON_EXCLAMATION | wxOK);
                 }
             }
         catch (...)
             {
-            wxMessageBox(_(L"Unable to split document."), wxGetApp().GetAppDisplayName(), wxICON_EXCLAMATION|wxOK);
+            wxMessageBox(_(L"Unable to split document."), wxGetApp().GetAppDisplayName(),
+                         wxICON_EXCLAMATION | wxOK);
             return;
             }
         }
@@ -5385,17 +5384,18 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
     if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
         {
         wxMessageBox(_(L"Web Harvester is only available in the "
-                        "Professional Edition of Readability Studio."),
-            _(L"Feature Not Licensed"), wxOK|wxICON_INFORMATION);
+                       "Professional Edition of Readability Studio."),
+                     _(L"Feature Not Licensed"), wxOK | wxICON_INFORMATION);
         return;
         }
 
-    WebHarvesterDlg webHarvestDlg(this, wxGetApp().GetLastSelectedWebPages(),
-            wxString::Format(_(L"Documents & Images (%s;%s)|%s;%s|"),
-                wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD.data(),
-                wxGetApp().GetAppOptions().ALL_IMAGES_WILDCARD.data(),
-                wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD.data(),
-                wxGetApp().GetAppOptions().ALL_IMAGES_WILDCARD.data()) +
+    WebHarvesterDlg webHarvestDlg(
+        this, wxGetApp().GetLastSelectedWebPages(),
+        wxString::Format(_(L"Documents & Images (%s;%s)|%s;%s|"),
+                         wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD.data(),
+                         wxGetApp().GetAppOptions().ALL_IMAGES_WILDCARD.data(),
+                         wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD.data(),
+                         wxGetApp().GetAppOptions().ALL_IMAGES_WILDCARD.data()) +
             wxGetApp().GetAppOptions().GetDocumentFilter() + L"|" +
             wxGetApp().GetAppOptions().GetImageFileFilter(),
         wxGetApp().GetLastSelectedDocFilter(),
@@ -5407,7 +5407,9 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
     webHarvestDlg.SetHelpTopic(GetHelpDirectory(), _DT(L"web-harvester.html"));
 
     if (webHarvestDlg.ShowModal() != wxID_OK)
-        { return; }
+        {
+        return;
+        }
 
     wxGetApp().SetLastSelectedWebPages(webHarvestDlg.GetUrls());
     wxGetApp().SetLastSelectedDocFilter(webHarvestDlg.GetSelectedDocFilter());
@@ -5422,19 +5424,22 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
 
         // if user cancelled harvesting, then stop
         if (!wxGetApp().GetWebHarvester().CrawlLinks())
-            { break; }
+            {
+            break;
+            }
 
         for (const auto& bLink : wxGetApp().GetWebHarvester().GetBrokenLinks())
-            { wxLogWarning(L"Broken link '%s' (from '%s')", bLink.first, bLink.second); }
+            {
+            wxLogWarning(L"Broken link '%s' (from '%s')", bLink.first, bLink.second);
+            }
 
         if (wxGetApp().GetWebHarvester().GetDownloadedFilePaths().size() == 0)
             {
-            wxMessageBox(
-                wxString::Format(
-                    _(L"No files were downloaded from '%s'. "
-                       "Please review the log report for any possible connection issues."),
-                    wxGetApp().GetWebHarvester().GetUrl()),
-                _(L"Warning"), wxOK | wxICON_WARNING);
+            wxMessageBox(wxString::Format(
+                             _(L"No files were downloaded from '%s'. "
+                               "Please review the log report for any possible connection issues."),
+                             wxGetApp().GetWebHarvester().GetUrl()),
+                         _(L"Warning"), wxOK | wxICON_WARNING);
             showLogReport = true;
             }
         }
