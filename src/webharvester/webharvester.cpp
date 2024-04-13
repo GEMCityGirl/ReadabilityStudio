@@ -27,36 +27,6 @@ bool wxStringLessWebPath::operator()(const wxString& first, const wxString& seco
     }
 
 //----------------------------------
-void UrlWithNumericSequence::ParseSequenceNumber()
-    {
-    const auto lastSlash = m_url.find(L'/', true);
-    if (lastSlash == wxString::npos)
-        {
-        // no slash? this is a bad url
-        Reset();
-        return;
-        }
-    m_number_start = std::wcscspn(m_url.wc_str() + lastSlash, L"0123456789") + lastSlash;
-    // no number was found, so don't bother
-    if (m_number_start == m_url.length())
-        {
-        Reset();
-        return;
-        }
-    wchar_t* end{ nullptr };
-    m_numeric_value = std::wcstol(m_url.wc_str() + m_number_start, &end, 10);
-    m_numeric_width = end - (m_url.wc_str() + m_number_start);
-    // no number was found (this should not happen at this point)
-    if (m_numeric_width == 0)
-        {
-        Reset();
-        return;
-        }
-
-    m_number_end = m_number_start + m_numeric_width;
-    }
-
-//----------------------------------
 wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension /*= wxString{}*/)
     {
     if (Url.empty())
@@ -380,7 +350,7 @@ void WebHarvester::DownloadFiles()
             {
             break;
             }
-        wxString currentPage = link.GetPath();
+        wxString currentPage{ link };
         DownloadFile(currentPage);
         }
     }
@@ -844,7 +814,7 @@ bool WebHarvester::HarvestLink(wxString& url, const wxString& referringUrl,
         {
         return false;
         }
-    m_harvestedLinks.insert(UrlWithNumericSequence(url, referringUrl));
+    m_harvestedLinks.insert(url);
     if (IsDownloadingFilesWhileCrawling())
         {
         DownloadFile(url, fileExtension);

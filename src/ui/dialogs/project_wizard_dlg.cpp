@@ -1722,7 +1722,7 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
                 currentFileCount + wxGetApp().GetWebHarvester().GetHarvestedLinks().size(), 2);
             for (const auto& path : wxGetApp().GetWebHarvester().GetHarvestedLinks())
                 {
-                m_fileData->SetItemText(currentFileCount + i, 0, path.GetPath());
+                m_fileData->SetItemText(currentFileCount + i, 0, path);
                 if (groupLabel.length())
                     {
                     m_fileData->SetItemText(currentFileCount + i, 1, groupLabel);

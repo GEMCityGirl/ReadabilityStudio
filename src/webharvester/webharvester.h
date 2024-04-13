@@ -144,88 +144,6 @@ class KnownScriptFileExtension
                                                                            _DT(L"vbs") };
     };
 
-/// @brief URL wrapper class that supports parsing a numeric sequence from the path.
-class UrlWithNumericSequence
-    {
-  public:
-    /** @brief Constructor.
-        @param path The URL to parse.
-        @param referUrl The referring URL that @c path originated from.*/
-    UrlWithNumericSequence(wxString path, wxString referUrl)
-        : m_url(std::move(path)), m_refererUrl(std::move(referUrl))
-        {
-        ParseSequenceNumber();
-        }
-
-    /** @returns @c true if this URL is less than @c that.
-        @param that The URL to compare against.*/
-    [[nodiscard]]
-    bool
-    operator<(const UrlWithNumericSequence& that) const
-        {
-        return pathCmp(m_url, that.m_url);
-        }
-
-    /// @returns The base URL.
-    [[nodiscard]]
-    const wxString& GetPath() const noexcept
-        {
-        return m_url;
-        }
-
-    /// @returns The referring URL.
-    [[nodiscard]]
-    const wxString& GetReferUrl() const noexcept
-        {
-        return m_refererUrl;
-        }
-
-    /// @returns The number parsed from the URL.
-    [[nodiscard]]
-    long GetNumericValue() const noexcept
-        {
-        return m_numeric_value;
-        }
-
-    /// @returns The length of the numeric string in the URL.
-    [[nodiscard]]
-    size_t GetNumericWidth() const noexcept
-        {
-        return m_numeric_width;
-        }
-
-    /// @returns The section of the URL up to the number.
-    [[nodiscard]]
-    wxString GetPathPrefix() const
-        {
-        return m_url.substr(0, m_number_start);
-        }
-
-    /// @returns The section of the URL starting at the number.
-    [[nodiscard]]
-    wxString GetPathSuffix() const
-        {
-        return m_url.substr(m_number_end);
-        }
-
-  protected:
-    void ParseSequenceNumber();
-
-    void Reset() noexcept
-        {
-        m_numeric_value = wxNOT_FOUND;
-        m_number_start = m_number_end = m_numeric_width = 0;
-        }
-
-    wxStringLessWebPath pathCmp;
-    wxString m_url;
-    wxString m_refererUrl;
-    size_t m_number_start{ 0 };
-    size_t m_number_end{ 0 };
-    long m_numeric_value{ wxNOT_FOUND };
-    size_t m_numeric_width{ 0 };
-    };
-
 /// @brief Interface for harvesting and (optionally) downloading web content from a base URL.
 /// @details This is recommended to be a singleton object that connects to the application
 ///     or main frame. Be sure to call SetEventHandler() to connect the download events
@@ -535,7 +453,7 @@ class WebHarvester
 
     /// @returns The list of harvested links.
     [[nodiscard]]
-    const std::set<UrlWithNumericSequence>& GetHarvestedLinks() const noexcept
+    const std::set<wxString, wxStringLessWebPath>& GetHarvestedLinks() const noexcept
         {
         return m_harvestedLinks;
         }
@@ -651,7 +569,7 @@ class WebHarvester
     [[nodiscard]]
     bool HasUrlAlreadyBeenHarvested(const wxString& url) const
         {
-        return (m_harvestedLinks.find(UrlWithNumericSequence(url, url)) != m_harvestedLinks.cend());
+        return (m_harvestedLinks.find(url) != m_harvestedLinks.cend());
         }
 
     [[nodiscard]]
@@ -688,7 +606,7 @@ class WebHarvester
     std::set<string_util::case_insensitive_wstring> m_allowableWebFolders;
     std::set<wxString, wxStringLessNoCase> m_fileExtensions;
     // cached state information
-    std::set<UrlWithNumericSequence> m_harvestedLinks;
+    std::set<wxString, wxStringLessWebPath> m_harvestedLinks;
     std::set<wxString> m_downloadedFiles;
     std::map<wxString, wxString> m_brokenLinks;
     std::set<wxString, wxStringLessWebPath> m_alreadyCrawledFiles;
