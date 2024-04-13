@@ -52,20 +52,6 @@ wxBEGIN_EVENT_TABLE(ProjectView, BaseProjectView)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_MULTI_COLUMN_SORT_DESCENDING"), ProjectView::OnRibbonButtonCommand)
     EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_SUMMATION"), ProjectView::OnSummation)
     EVT_MENU(XRCID("ID_ADD_ITEM_TO_DICTIONARY"), ProjectView::OnAddToDictionary)
-    EVT_MENU(XRCID("ID_K12_US"), ProjectView::OnGradeScale)
-    EVT_MENU(XRCID("ID_K12_NEWFOUNDLAND"), ProjectView::OnGradeScale)
-    EVT_MENU(XRCID("ID_K12_BC"), ProjectView::OnGradeScale)
-    EVT_MENU(XRCID("ID_K12_NEW_BRUNSWICK"), ProjectView::OnGradeScale)
-    EVT_MENU(XRCID("ID_K12_NOVA_SCOTIA"), ProjectView::OnGradeScale)
-    EVT_MENU(XRCID("ID_K12_ONTARIO"), ProjectView::OnGradeScale)
-    EVT_MENU(XRCID("ID_K12_SASKATCHEWAN"), ProjectView::OnGradeScale)
-    EVT_MENU(XRCID("ID_K12_PE"), ProjectView::OnGradeScale)
-    EVT_MENU(XRCID("ID_K12_MANITOBA"), ProjectView::OnGradeScale)
-    EVT_MENU(XRCID("ID_K12_NT"), ProjectView::OnGradeScale)
-    EVT_MENU(XRCID("ID_K12_ALBERTA"), ProjectView::OnGradeScale)
-    EVT_MENU(XRCID("ID_K12_NUNAVUT"), ProjectView::OnGradeScale)
-    EVT_MENU(XRCID("ID_QUEBEC"), ProjectView::OnGradeScale)
-    EVT_MENU(XRCID("ID_ENGLAND"), ProjectView::OnGradeScale)
     EVT_MENU(XRCID("ID_REMOVE_TEST"), ProjectView::OnTestDeleteMenu)
     EVT_MENU(XRCID("ID_EXPORT_FILTERED_DOCUMENT"), ProjectView::OnExportFilteredDocument)
     EVT_MENU(XRCID("ID_EXPORT_ALL"), ProjectView::OnExportAll)
@@ -131,6 +117,20 @@ wxEND_EVENT_TABLE()
 
     Bind(wxEVT_WISTERIA_CANVAS_DCLICK, &ProjectView::OnEditGraphOptions, this);
     Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, XRCID("ID_PRINT"));
+    Bind(wxEVT_MENU, &ProjectView::OnGradeScale, this, XRCID("ID_K12_US"));
+    Bind(wxEVT_MENU, &ProjectView::OnGradeScale, this, XRCID("ID_K12_NEWFOUNDLAND"));
+    Bind(wxEVT_MENU, &ProjectView::OnGradeScale, this, XRCID("ID_K12_BC"));
+    Bind(wxEVT_MENU, &ProjectView::OnGradeScale, this, XRCID("ID_K12_NEW_BRUNSWICK"));
+    Bind(wxEVT_MENU, &ProjectView::OnGradeScale, this, XRCID("ID_K12_NOVA_SCOTIA"));
+    Bind(wxEVT_MENU, &ProjectView::OnGradeScale, this, XRCID("ID_K12_ONTARIO"));
+    Bind(wxEVT_MENU, &ProjectView::OnGradeScale, this, XRCID("ID_K12_SASKATCHEWAN"));
+    Bind(wxEVT_MENU, &ProjectView::OnGradeScale, this, XRCID("ID_K12_PE"));
+    Bind(wxEVT_MENU, &ProjectView::OnGradeScale, this, XRCID("ID_K12_MANITOBA"));
+    Bind(wxEVT_MENU, &ProjectView::OnGradeScale, this, XRCID("ID_K12_NT"));
+    Bind(wxEVT_MENU, &ProjectView::OnGradeScale, this, XRCID("ID_K12_ALBERTA"));
+    Bind(wxEVT_MENU, &ProjectView::OnGradeScale, this, XRCID("ID_K12_NUNAVUT"));
+    Bind(wxEVT_MENU, &ProjectView::OnGradeScale, this, XRCID("ID_QUEBEC"));
+    Bind(wxEVT_MENU, &ProjectView::OnGradeScale, this, XRCID("ID_ENGLAND"));
 
     Bind(
         wxEVT_RIBBONBUTTONBAR_CLICKED,
