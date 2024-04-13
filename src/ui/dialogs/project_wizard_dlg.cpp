@@ -1647,15 +1647,10 @@ void ProjectWizardDlg::OnAddWebPageButtonClick([[maybe_unused]] wxCommandEvent& 
 void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent& event)
     {
     WebHarvesterDlg webHarvestDlg(
-        this, wxGetApp().GetLastSelectedWebPages(), wxGetApp().GetWebHarvester().GetDepthLevel(),
+        this, wxGetApp().GetLastSelectedWebPages(),
         wxGetApp().GetAppOptions().GetDocumentFilter(), wxGetApp().GetLastSelectedDocFilter(),
-        false, wxGetApp().GetWebHarvester().IsDownloadingFilesWhileCrawling(),
-        wxGetApp().GetWebHarvester().IsKeepingWebPathWhenDownloading(),
-        wxGetApp().GetWebHarvester().GetDownloadDirectory(),
-        static_cast<int>(wxGetApp().GetWebHarvester().GetDomainRestriction()),
-        wxGetApp().GetWebHarvester().GetAllowableWebFolders(),
-        wxGetApp().GetWebHarvester().IsPeerVerifyDisabled(),
-        wxGetApp().GetWebHarvester().GetUserAgent());
+        false);
+    webHarvestDlg.UpdateFromHarvesterSettings(wxGetApp().GetWebHarvester());
     webHarvestDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
                                L"web-harvester.html");
     if (webHarvestDlg.ShowModal() != wxID_OK)
@@ -1694,7 +1689,6 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
         {
         FilePathResolver resolver(webHarvestDlg.GetUrls().Item(urlCounter), false);
         wxGetApp().GetWebHarvester().SetUrl(resolver.GetResolvedPath());
-        webHarvestDlg.UpdateHarvesterSettings(wxGetApp().GetWebHarvester());
 
         // if cancelled, we still will want what was harvested up to that point,
         // so it's OK to ignore the user response here

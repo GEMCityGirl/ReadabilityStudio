@@ -30,22 +30,15 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
     {
   public:
     /// @brief Constructor.
-    WebHarvesterDlg(wxWindow* parent, const wxArrayString& urls, const int depthLevel,
-                    const wxString& fullDocFilter, const wxString& selectedDocFilter,
-                    const bool hideLocalDownloadOption, const bool downloadFilesLocally,
-                    const bool keepWebPathWhenDownloading, const wxString& downloadFolder,
-                    const int domainRestriction, const wxArrayString& domainStrings,
-                    const bool disablePeerVerify, wxString userAgent,
+    /// @note Call UpdateFromHarvesterSettings() to fill in the remaining settings
+    ///     from an existing WebHarvester object.
+    WebHarvesterDlg(wxWindow* parent, const wxArrayString& urls, const wxString& fullDocFilter,
+                    const wxString& selectedDocFilter, const bool hideLocalDownloadOption,
                     wxWindowID id = wxID_ANY, const wxString& caption = _(L"Web Harvester"),
                     const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
                     long style = wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER)
-        : m_depthLevel(depthLevel), m_userAgent(std::move(userAgent)), m_disablePeerVerify(disablePeerVerify),
-          m_fullDocFilter(fullDocFilter),
-          m_selectedDocFilter(selectedDocFilter), m_selectedDomainRestriction(domainRestriction),
-          m_domains(domainStrings), m_hideLocalDownloadOption(hideLocalDownloadOption),
-          m_downloadFilesLocally(downloadFilesLocally),
-          m_keepWebPathWhenDownloading(keepWebPathWhenDownloading), m_urls(urls),
-          m_downloadFolder(downloadFolder)
+        : m_fullDocFilter(fullDocFilter), m_selectedDocFilter(selectedDocFilter),
+          m_hideLocalDownloadOption(hideLocalDownloadOption), m_urls(urls)
         {
         Create(parent, id, caption, pos, size, style);
         }

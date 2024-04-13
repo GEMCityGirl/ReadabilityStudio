@@ -5391,7 +5391,6 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
         }
 
     WebHarvesterDlg webHarvestDlg(this, wxGetApp().GetLastSelectedWebPages(),
-        wxGetApp().GetWebHarvester().GetDepthLevel(),
             wxString::Format(_(L"Documents & Images (%s;%s)|%s;%s|"),
                 wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD.data(),
                 wxGetApp().GetAppOptions().ALL_IMAGES_WILDCARD.data(),
@@ -5401,13 +5400,7 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
             wxGetApp().GetAppOptions().GetImageFileFilter(),
         wxGetApp().GetLastSelectedDocFilter(),
         // hide the option that disables local file downloading
-        true, true,
-        wxGetApp().GetWebHarvester().IsKeepingWebPathWhenDownloading(),
-        wxGetApp().GetWebHarvester().GetDownloadDirectory(),
-        static_cast<int>(wxGetApp().GetWebHarvester().GetDomainRestriction()),
-        wxGetApp().GetWebHarvester().GetAllowableWebFolders(),
-        wxGetApp().GetWebHarvester().IsPeerVerifyDisabled(),
-        wxGetApp().GetWebHarvester().GetUserAgent());
+        true);
     webHarvestDlg.UpdateFromHarvesterSettings(wxGetApp().GetWebHarvester());
     // force downloading locally
     webHarvestDlg.DownloadFilesLocally(true);
@@ -5426,7 +5419,6 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
         {
         FilePathResolver resolver(webHarvestDlg.GetUrls().Item(i), true);
         wxGetApp().GetWebHarvester().SetUrl(resolver.GetResolvedPath());
-        webHarvestDlg.UpdateHarvesterSettings(wxGetApp().GetWebHarvester());
 
         // if user cancelled harvesting, then stop
         if (!wxGetApp().GetWebHarvester().CrawlLinks())
@@ -5454,12 +5446,8 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
         }
 
     // update global internet options that mirror the same options from the dialog
-    wxGetApp().GetWebHarvester().DisablePeerVerify(webHarvestDlg.IsPeerVerifyDisabled());
     wxGetApp().GetAppOptions().DisablePeerVerify(webHarvestDlg.IsPeerVerifyDisabled());
-    wxGetApp().GetWebHarvester().SetUserAgent(webHarvestDlg.GetUserAgent());
     wxGetApp().GetAppOptions().SetUserAgent(webHarvestDlg.GetUserAgent());
-    wxGetApp().GetWebHarvester().SetMinimumDownloadFileSizeInKilobytes(
-        webHarvestDlg.GetMinimumDownloadFileSizeInKilobytes());
 
     wxMessageBox(_(L"Web crawl complete."), _(L"Web Harvester"), wxOK | wxICON_INFORMATION);
     }
