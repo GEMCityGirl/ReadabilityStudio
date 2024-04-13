@@ -587,7 +587,8 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
     if (fileExt.empty())
         {
         // any sort of PHP page (even without the extension PHP) will follow this syntax
-        if (std::wcschr(fullUrl, L'?') && std::wcschr(fullUrl, L'='))
+        if (fullUrl.find(L'?') != std::wstring_view::npos &&
+            fullUrl.find(L'=') != std::wstring_view::npos)
             {
             fileExt = L"php";
             }

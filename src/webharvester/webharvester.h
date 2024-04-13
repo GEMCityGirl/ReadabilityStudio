@@ -65,7 +65,7 @@ class WebPageExtension
                 m_knownRegularFileExtensions.cend());
         }
 
-    /** @returns @c true if @c extension is a dynamic webpaaage extension.
+    /** @returns @c true if @c extension is a dynamic webpage extension.
         @param extension The file extension to review.*/
     [[nodiscard]]
     inline bool IsDynamicExtension(std::wstring_view extension) const
