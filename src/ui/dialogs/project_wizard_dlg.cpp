@@ -178,7 +178,10 @@ ProjectWizardDlg::ProjectWizardDlg(wxWindow* parent, const ProjectType projectTy
                 wxRibbonButtonBarEvent dummyEvt;
                 OnGroupClick(dummyEvt);
                 }
-            event.Skip(true);
+            else
+                {
+                event.Skip(true);
+                }
             },
         wxID_ANY);
     }

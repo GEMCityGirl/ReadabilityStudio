@@ -599,7 +599,10 @@ bool WebHarvesterDlg::Create(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
                 wxRibbonButtonBarEvent dummyEvt;
                 OnLoadUrlsClick(dummyEvt);
                 }
-            event.Skip(true);
+            else
+                {
+                event.Skip(true);
+                }
         },
         wxID_ANY);
 
