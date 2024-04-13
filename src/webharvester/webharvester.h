@@ -636,7 +636,7 @@ class WebHarvester
             If downloading while crawling, will also download the file.
         @param url The URL to review.
         @param referringUrl The URL that this URL came from.
-        @param fileExtension File extention information about the URL.
+        @param fileExtension File extension information about the URL.
             This will be used if filtering file types to harvest (and download).
         @returns @c true if the provided URL will be included in the harvested results
             (and downloaded, if applicable).
