@@ -604,6 +604,7 @@ class WebHarvester
     void SetMinimumDownloadFileSizeInKilobytes(const std::optional<uint32_t> size)
         {
         m_minFileDownloadSizeKilobytes = size;
+        m_downloader.SetMinimumDownloadFileSizeInKilobytes(size);
         }
 
     /// @returns The minimum size a file must be to download. Will be `std::nullopt`
