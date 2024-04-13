@@ -78,29 +78,6 @@ wxBEGIN_EVENT_TABLE(ProjectView, BaseProjectView)
     EVT_FIND(wxID_ANY, ProjectView::OnFind)
     EVT_FIND_NEXT(wxID_ANY, ProjectView::OnFind)
     EVT_FIND_CLOSE(wxID_ANY, ProjectView::OnFind)
-    EVT_LIST_ITEM_ACTIVATED(HARD_WORDS_LIST_PAGE_ID, ProjectView::OnListDblClick)
-    EVT_LIST_ITEM_ACTIVATED(LONG_WORDS_LIST_PAGE_ID, ProjectView::OnListDblClick)
-    EVT_LIST_ITEM_ACTIVATED(DC_WORDS_LIST_PAGE_ID, ProjectView::OnListDblClick)
-    EVT_LIST_ITEM_ACTIVATED(HARRIS_JACOBSON_WORDS_LIST_PAGE_ID, ProjectView::OnListDblClick)
-    EVT_LIST_ITEM_ACTIVATED(SPACHE_WORDS_LIST_PAGE_ID, ProjectView::OnListDblClick)
-    EVT_LIST_ITEM_ACTIVATED(ALL_WORDS_LIST_PAGE_ID, ProjectView::OnListDblClick)
-    EVT_LIST_ITEM_ACTIVATED(ALL_WORDS_CONDENSED_LIST_PAGE_ID, ProjectView::OnListDblClick)
-    EVT_LIST_ITEM_ACTIVATED(PROPER_NOUNS_LIST_PAGE_ID, ProjectView::OnListDblClick)
-    EVT_LIST_ITEM_ACTIVATED(OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID, ProjectView::OnListDblClick)
-    EVT_LIST_ITEM_ACTIVATED(DOLCH_WORDS_LIST_PAGE_ID, ProjectView::OnListDblClick)
-    EVT_LIST_ITEM_ACTIVATED(NON_DOLCH_WORDS_LIST_PAGE_ID, ProjectView::OnListDblClick)
-    EVT_LIST_ITEM_ACTIVATED(LONG_SENTENCES_LIST_PAGE_ID, ProjectView::OnListDblClick)
-    EVT_LIST_ITEM_ACTIVATED(SENTENCES_CONJUNCTION_START_LIST_PAGE_ID, ProjectView::OnListDblClick)
-    EVT_LIST_ITEM_ACTIVATED(SENTENCES_LOWERCASE_START_LIST_PAGE_ID, ProjectView::OnListDblClick)
-    EVT_LIST_ITEM_ACTIVATED(DUPLICATES_LIST_PAGE_ID, ProjectView::OnListDblClick)
-    EVT_LIST_ITEM_ACTIVATED(INCORRECT_ARTICLE_PAGE_ID, ProjectView::OnListDblClick)
-    EVT_LIST_ITEM_ACTIVATED(PASSIVE_VOICE_PAGE_ID, ProjectView::OnListDblClick)
-    EVT_LIST_ITEM_ACTIVATED(MISSPELLED_WORD_LIST_PAGE_ID, ProjectView::OnListDblClick)
-    EVT_LIST_ITEM_ACTIVATED(CLICHES_LIST_PAGE_ID, ProjectView::OnListDblClick)
-    EVT_LIST_ITEM_ACTIVATED(WORDY_PHRASES_LIST_PAGE_ID, ProjectView::OnListDblClick)
-    EVT_LIST_ITEM_ACTIVATED(REDUNDANT_PHRASE_LIST_PAGE_ID, ProjectView::OnListDblClick)
-    EVT_LIST_ITEM_ACTIVATED(WORDING_ERRORS_LIST_PAGE_ID, ProjectView::OnListDblClick)
-    EVT_LIST_ITEM_ACTIVATED(READABILITY_SCORES_PAGE_ID, ProjectView::OnTestListDblClick)
 wxEND_EVENT_TABLE()
 
 //------------------------------------------------------
@@ -116,6 +93,41 @@ wxEND_EVENT_TABLE()
     Bind(wxEVT_SIDEBAR_CLICK, &ProjectView::OnItemSelected, this, BaseProjectView::LEFT_PANE);
 
     Bind(wxEVT_WISTERIA_CANVAS_DCLICK, &ProjectView::OnEditGraphOptions, this);
+
+    Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this, HARD_WORDS_LIST_PAGE_ID);
+    Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this, LONG_WORDS_LIST_PAGE_ID);
+    Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this, DC_WORDS_LIST_PAGE_ID);
+    Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this,
+         HARRIS_JACOBSON_WORDS_LIST_PAGE_ID);
+    Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this, SPACHE_WORDS_LIST_PAGE_ID);
+    Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this, ALL_WORDS_LIST_PAGE_ID);
+    Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this,
+         ALL_WORDS_CONDENSED_LIST_PAGE_ID);
+    Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this, PROPER_NOUNS_LIST_PAGE_ID);
+    Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this,
+         OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID);
+    Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this, DOLCH_WORDS_LIST_PAGE_ID);
+    Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this,
+         NON_DOLCH_WORDS_LIST_PAGE_ID);
+    Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this,
+         LONG_SENTENCES_LIST_PAGE_ID);
+    Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this,
+         SENTENCES_CONJUNCTION_START_LIST_PAGE_ID);
+    Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this,
+         SENTENCES_LOWERCASE_START_LIST_PAGE_ID);
+    Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this, DUPLICATES_LIST_PAGE_ID);
+    Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this, INCORRECT_ARTICLE_PAGE_ID);
+    Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this, PASSIVE_VOICE_PAGE_ID);
+    Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this,
+         MISSPELLED_WORD_LIST_PAGE_ID);
+    Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this, CLICHES_LIST_PAGE_ID);
+    Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this, WORDY_PHRASES_LIST_PAGE_ID);
+    Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this,
+         REDUNDANT_PHRASE_LIST_PAGE_ID);
+    Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this, WORDING_ERRORS_LIST_PAGE_ID);
+    Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnTestListDblClick, this,
+         READABILITY_SCORES_PAGE_ID);
+
     Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, XRCID("ID_PRINT"));
     Bind(wxEVT_MENU, &ProjectView::OnGradeScale, this, XRCID("ID_K12_US"));
     Bind(wxEVT_MENU, &ProjectView::OnGradeScale, this, XRCID("ID_K12_NEWFOUNDLAND"));
