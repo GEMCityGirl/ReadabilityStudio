@@ -67,7 +67,17 @@ If you intend to review a website and need to always analyze its latest changes,
 
 **Minimum file size to download (in Kbs.)**: Enter into this field the minimum size that a file must be for it to be downloaded.
 
-**Use website's folder structure**: Select this option to organize the downloaded files into a folder structure similar to the website's folder structure. Deselecting this option will download the files into a flat folder structure.
+**Use website's folder structure**: Select this option to organize the downloaded files into a folder structure similar to the website's folder structure.
+Deselecting this option will download the files into a flat folder structure.
+
+::: {.warningsection data-latex=""}
+If you deselect this option, then it is recommended that you also deselect **Replace existing files**.
+Downloading all files into the same folder will risk having conflicting file names; deselecting **Replace existing files** will help with not overwriting
+these files.
+:::
+
+**Replace existing files**: Select this option to overwrite existing files as they are downloaded.
+Deselecting this option will rename files as they are downloaded (if necessary) to avoid overwriting existing files.
 
 ## Command Line Options {#command-line-options}
 

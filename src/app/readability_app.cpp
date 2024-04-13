@@ -5400,7 +5400,7 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
             wxGetApp().GetAppOptions().GetDocumentFilter() + L"|" +
             wxGetApp().GetAppOptions().GetImageFileFilter(),
         wxGetApp().GetLastSelectedDocFilter(),
-        // hide the option to change local file downloading
+        // hide the option that disables local file downloading
         true, true,
         wxGetApp().GetWebHarvester().IsKeepingWebPathWhenDownloading(),
         wxGetApp().GetWebHarvester().GetDownloadDirectory(),
@@ -5408,8 +5408,6 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
         wxGetApp().GetWebHarvester().GetAllowableWebFolders(),
         wxGetApp().GetWebHarvester().IsPeerVerifyDisabled(),
         wxGetApp().GetWebHarvester().GetUserAgent());
-    webHarvestDlg.SetMinimumDownloadFileSizeInKilobytes(
-        wxGetApp().GetWebHarvester().GetMinimumDownloadFileSizeInKilobytes().value_or(5));
     webHarvestDlg.UpdateFromHarvesterSettings(wxGetApp().GetWebHarvester());
     // force downloading locally
     webHarvestDlg.DownloadFilesLocally(true);

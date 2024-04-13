@@ -27,6 +27,7 @@ void WebHarvesterDlg::OnDownloadCheck([[maybe_unused]] wxCommandEvent& event)
     m_localFolderLabel->Enable(m_downloadFilesLocally);
     m_localFolderEdit->Enable(m_downloadFilesLocally);
     m_retainWebsiteFolderStuctureCheckBox->Enable(m_downloadFilesLocally);
+    m_replaceExistingFilesCheckBox->Enable(m_downloadFilesLocally);
     m_minFileSizeLabel->Enable(m_downloadFilesLocally);
     m_minFileSizeCtrl->Enable(m_downloadFilesLocally);
     m_folderBrowseButton->Enable(m_downloadFilesLocally);
@@ -323,21 +324,21 @@ void WebHarvesterDlg::CreateControls()
         // SSL disable
         extendedOpsSizer->Add(new wxCheckBox(Panel, wxID_ANY,
                                              _(L"Disable SSL certificate verification"),
-                                       wxDefaultPosition, wxDefaultSize, 0,
-                                       wxGenericValidator(&m_disablePeerVerify)),
-                        wxSizerFlags()
-                            .Expand()
-                            .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
-                            .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
+                                             wxDefaultPosition, wxDefaultSize, 0,
+                                             wxGenericValidator(&m_disablePeerVerify)),
+                              wxSizerFlags()
+                                  .Expand()
+                                  .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
+                                  .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
 
         // check links
         extendedOpsSizer->Add(new wxCheckBox(Panel, wxID_ANY, _(L"&Log broken links"),
-                                             wxDefaultPosition,
-                                       wxDefaultSize, 0, wxGenericValidator(&m_logBrokenLinks)),
-                        wxSizerFlags()
-                            .Expand()
-                            .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
-                            .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
+                                             wxDefaultPosition, wxDefaultSize, 0,
+                                             wxGenericValidator(&m_logBrokenLinks)),
+                              wxSizerFlags()
+                                  .Expand()
+                                  .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
+                                  .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
         panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
         }
 
@@ -469,6 +470,13 @@ void WebHarvesterDlg::CreateControls()
         m_retainWebsiteFolderStuctureCheckBox->Enable(m_downloadFilesLocally);
         panelSizer->Add(m_retainWebsiteFolderStuctureCheckBox, 0, wxALL,
                         wxSizerFlags::GetDefaultBorder());
+
+        // existing files
+        m_replaceExistingFilesCheckBox =
+            new wxCheckBox(Panel, wxID_ANY, _(L"Replace existing files"), wxDefaultPosition,
+                           wxDefaultSize, 0, wxGenericValidator(&m_replaceExistingFiles));
+        m_replaceExistingFilesCheckBox->Enable(m_downloadFilesLocally);
+        panelSizer->Add(m_replaceExistingFilesCheckBox, 0, wxALL, wxSizerFlags::GetDefaultBorder());
         }
 
     mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL | wxHELP), 0, wxEXPAND | wxALL,
@@ -516,6 +524,7 @@ void WebHarvesterDlg::UpdateHarvesterSettings(WebHarvester& harvester) const
     harvester.DownloadFilesWhileCrawling(IsDownloadFilesLocally());
     harvester.SetDownloadDirectory(GetDownloadFolder());
     harvester.KeepWebPathWhenDownloading(IsRetainingWebsiteFolderStructure());
+    harvester.ReplaceExistingFiles(IsReplacingExistingFiles());
     harvester.SeachForBrokenLinks(m_logBrokenLinks);
     }
 
@@ -532,11 +541,15 @@ void WebHarvesterDlg::UpdateFromHarvesterSettings(const WebHarvester& harvester)
         m_domainList->SetVirtualDataSize(m_domainData->GetItemCount(), 1);
         }
     m_depthLevel = harvester.GetDepthLevel();
+    m_userAgent = harvester.GetUserAgent();
+    m_disablePeerVerify = harvester.IsPeerVerifyDisabled();
+    m_logBrokenLinks = harvester.IsSearchingForBrokenLinks();
     m_selectedDomainRestriction = static_cast<int>(harvester.GetDomainRestriction());
     m_downloadFilesLocally = harvester.IsDownloadingFilesWhileCrawling();
     m_downloadFolder = harvester.GetDownloadDirectory();
     m_keepWebPathWhenDownloading = harvester.IsKeepingWebPathWhenDownloading();
-    m_logBrokenLinks = harvester.IsSearchingForBrokenLinks();
+    m_replaceExistingFiles = harvester.IsReplacingExistingFiles();
+    m_minFileSizeInKiloBytes = harvester.GetMinimumDownloadFileSizeInKilobytes().value_or(5);
 
     TransferDataToWindow();
     }

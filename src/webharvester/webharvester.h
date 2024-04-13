@@ -432,6 +432,15 @@ class WebHarvester
         return m_downloadDirectory;
         }
 
+    /// @returns @c true if files being downloaded will replace existing ones.
+    /// @note If this returns @c false, then downloaded files will be renamed
+    ///     if necessary to avoid overwriting existing files.
+    [[nodiscard]]
+    bool IsReplacingExistingFiles() const noexcept
+        {
+        return m_replaceExistingFiles;
+        }
+
     /// @brief Specifies whether files being downloaded can overwrite
     ///     each other if they have the same path.
     /// @param replaceExistingFiles @c true to overwrite existing files.

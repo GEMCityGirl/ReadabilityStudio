@@ -98,7 +98,11 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
         return m_domains;
         }
 
-    void DownloadFilesLocally(const bool download) noexcept { m_downloadFilesLocally = download; }
+    void DownloadFilesLocally(const bool download) noexcept
+        {
+        m_downloadFilesLocally = download;
+        TransferDataToWindow();
+        }
 
     [[nodiscard]]
     bool IsDownloadFilesLocally() const noexcept
@@ -110,6 +114,12 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
     bool IsRetainingWebsiteFolderStructure() const noexcept
         {
         return m_keepWebPathWhenDownloading;
+        }
+
+    [[nodiscard]]
+    bool IsReplacingExistingFiles() const noexcept
+        {
+        return m_replaceExistingFiles;
         }
 
     [[nodiscard]]
@@ -180,6 +190,7 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
     bool m_hideLocalDownloadOption{ false };
     bool m_downloadFilesLocally{ true };
     bool m_keepWebPathWhenDownloading{ true };
+    bool m_replaceExistingFiles{ true };
     bool m_logBrokenLinks{ false };
     int m_minFileSizeInKiloBytes{ 5 };
     Wisteria::UI::SideBarBook* m_sideBarBook{ nullptr };
@@ -187,10 +198,13 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
     wxSpinCtrl* m_depthLevelCtrl{ nullptr };
     wxComboBox* m_domainCombo{ nullptr };
     ListCtrlEx* m_domainList{ nullptr };
-    std::shared_ptr<ListCtrlExDataProvider> m_domainData{ std::make_shared<ListCtrlExDataProvider>() };
+    std::shared_ptr<ListCtrlExDataProvider> m_domainData{
+        std::make_shared<ListCtrlExDataProvider>()
+    };
     wxTextCtrl* m_localFolderEdit{ nullptr };
     wxStaticText* m_localFolderLabel{ nullptr };
     wxCheckBox* m_retainWebsiteFolderStuctureCheckBox{ nullptr };
+    wxCheckBox* m_replaceExistingFilesCheckBox{ nullptr };
     ListCtrlEx* m_urlList{ nullptr };
     wxBitmapButton* m_addDomainButton{ nullptr };
     wxBitmapButton* m_deleteDomainButton{ nullptr };

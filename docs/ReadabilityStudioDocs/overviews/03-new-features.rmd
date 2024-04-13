@@ -27,6 +27,8 @@
   - Added option to disable SSL certificate verification when reading webpages.
     Although not recommended, this can be useful for connecting to self-signed (or misconfigured) websites.
   - Added a **Minimum file size to download** option to the **Web Harvester** dialog.
+  - Added **Replace existing files** option to the **Web Harvester** dialog.
+    This allows for renaming files as they are downloaded to avoid overwriting existing ones.
 - Added **Minimum document word count** option to the batch project wizard.
 - The **Readability Graphs** page on the **Options** dialog has been moved to be under the **Graphs** section.
 - **Ignore social media hashtags** feature of spell checker now recognizes handles, such as *\@AskLibreOffice*.
