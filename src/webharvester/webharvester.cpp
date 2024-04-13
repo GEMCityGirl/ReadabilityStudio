@@ -586,11 +586,26 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
     // try to determine the file type if there is no extension
     if (fileExt.empty())
         {
-        // any sort of PHP page (even without the extension PHP) will follow this syntax
-        if (fullUrl.find(L'?') != std::wstring_view::npos &&
+        // any sort of page with a query will follow this syntax
+        if (const size_t queryPos = fullUrl.find(L'?');
+            queryPos != std::wstring_view::npos &&
             fullUrl.find(L'=') != std::wstring_view::npos)
             {
-            fileExt = L"php";
+            // might be a JS extension, so get the real extension in front of the query...
+            const wxFileName fn(fullUrl.substr(0, queryPos));
+            if (fn.GetExt().length())
+                {
+                fileExt = fn.GetExt();
+                }
+            else if (fn.GetName().CmpNoCase(L"js") == 0)
+                {
+                fileExt = L"js";
+                }
+            // ...or fall back to PHP
+            else
+                {
+                fileExt = L"php";
+                }
             }
         else
             {
