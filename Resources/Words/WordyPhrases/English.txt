@@ -2951,6 +2951,9 @@ certainity	certainty	3
 certainly	surely	0		
 certficate	certificate	3		
 certficates	certificates	3		
+certficication	certification	3		
+certficication's	certification's	3		
+certficications	certifications	3		
 certian	certain	3		
 certicate	certificate	3		
 certicates	certificates	3		
@@ -3722,6 +3725,7 @@ conrolled	controlled	3
 conrolling	controlling	3		
 conrols	controls	3		
 consanguinity	blood	0		
+consant	constant	3		
 conscent	consent	3		
 consciencious	conscientious	3		
 consciouness	consciousness	3		
@@ -4870,6 +4874,7 @@ dirived	derived	3
 dirrectly	directly	3		
 dirt cheap	very inexpensive	2		
 disable this will	disabling this will	3		
+disablesd	disabled, disabled	3		
 disagreeable	cross	0		
 disagreeed	disagreed	3		
 disapear	disappear	3		
@@ -6389,6 +6394,7 @@ fetched	got	0
 fetches	gets	0		
 fetching	getting	0		
 few and far between	few, meager, scare	0		
+ffor	for	3		
 fianceé	fiancée (female), fiancé (male)	3		
 fianite	finite	3		
 fianlly	finally	3		
@@ -10178,6 +10184,9 @@ objecs	objects	3
 objective	aim, goal	0		
 objective's	aim's, goal's	0		
 objectives	aims, goals	0		
+objet	object	3		
+objet's	object's	3		
+objets	objects	3		
 obligate	bind, compel, pledge	0		
 obligated	bound, compelled, pledged	0		
 obligates	pledges, binds, compels	0		
@@ -10760,6 +10769,9 @@ particulary	particularly	3
 partioning	partitioning	3		
 pased	passed	3		
 pasengers	passengers	3		
+pasport	passport	3		
+pasport's	passport's	3		
+pasports	passports	3		
 pass judgment on	judge	0		
 pass mustard	pass muster	3		
 pass the buck	shift responsibility	2		

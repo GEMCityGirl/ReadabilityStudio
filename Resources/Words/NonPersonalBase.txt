@@ -1690,6 +1690,7 @@ Duxford
 Dxgkrnl
 Dyersville
 Dynacin
+Dynamag
 Düsseldorf
 E-ZPass
 eAIR
@@ -2786,6 +2787,7 @@ Intellitrace
 Intelsat
 Intercoiffure
 Interfolio
+Intermec
 Intermont
 Intune
 Inuit
@@ -3379,6 +3381,7 @@ Magna
 Magnitogorsk
 Magnuson
 Magstar
+Magtek
 Mahagonny
 Mahala
 Mahalia
@@ -3620,6 +3623,7 @@ Michiganite
 Michoacán
 Micmac
 Micronesia
+Micronics
 MicroSD
 MicroVAX
 Middleburg
@@ -3680,6 +3684,7 @@ Mithridate
 Mitsubishi
 MLA
 Mobil
+Mobilink
 Mobutu
 Mocksville
 ModelBuilder
