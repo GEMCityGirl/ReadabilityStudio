@@ -2981,9 +2981,13 @@ class ReadabilityAppOptions
     const std::string_view XML_WINDOW_WIDTH{ _DT("app-window-width") };
     const std::string_view XML_WINDOW_HEIGHT{ _DT("app-window-height") };
     const std::string_view XML_LICENSE_ACCEPTED{ _DT("license-accepted") };
+    // web harvester options
     const std::string_view XML_USER_AGENT{ _DT("user-agent") };
     const std::string_view XML_DISABLE_PEER_VERIFY{ _DT("disable-peer-verify") };
     const std::string_view XML_DOWNLOAD_MIN_FILESIZE{ _DT("download-min-file-size") };
+    const std::string_view XML_DOWNLOAD_KEEP_FOLDER_STRUCTURE{ _DT(
+        "download-keep-web-folder-structure") };
+    const std::string_view XML_DOWNLOAD_REPLACE_EXISTING{ _DT("download-replace-existing-files") };
     // project options
     const std::string_view XML_REVIEWER{ _DT("project-reviewer") };
     const std::string_view XML_STATUS{ _DT("project-status") };

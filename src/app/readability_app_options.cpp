@@ -769,6 +769,26 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                 }
             }
 
+        auto downloadReplaceExistingNode =
+            configRootNode->FirstChildElement(XML_DOWNLOAD_REPLACE_EXISTING.data());
+        if (downloadReplaceExistingNode != nullptr)
+            {
+            wxGetApp().GetWebHarvester().ReplaceExistingFiles(
+                downloadReplaceExistingNode->ToElement()->IntAttribute(
+                    XML_VALUE.data(),
+                    bool_to_int(wxGetApp().GetWebHarvester().IsReplacingExistingFiles())));
+            }
+
+        auto downloadWebFolderStructureNode =
+            configRootNode->FirstChildElement(XML_DOWNLOAD_KEEP_FOLDER_STRUCTURE.data());
+        if (downloadWebFolderStructureNode != nullptr)
+            {
+            wxGetApp().GetWebHarvester().KeepWebPathWhenDownloading(
+                downloadWebFolderStructureNode->ToElement()->IntAttribute(
+                    XML_VALUE.data(),
+                    bool_to_int(wxGetApp().GetWebHarvester().IsKeepingWebPathWhenDownloading())));
+            }
+
         auto downloadMinFileSizeNode =
             configRootNode->FirstChildElement(XML_DOWNLOAD_MIN_FILESIZE.data());
         if (downloadMinFileSizeNode != nullptr)
@@ -3643,6 +3663,17 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     userAgent->SetAttribute(XML_VALUE.data(),
                             wxString(encode({ GetUserAgent().wc_str() }, false).c_str()).mb_str());
     configSection->InsertEndChild(userAgent);
+
+    auto downloadReplaceExistingNode = doc.NewElement(XML_DOWNLOAD_REPLACE_EXISTING.data());
+    downloadReplaceExistingNode->SetAttribute(
+        XML_VALUE.data(), bool_to_int(wxGetApp().GetWebHarvester().IsReplacingExistingFiles()));
+    configSection->InsertEndChild(downloadReplaceExistingNode);
+
+    auto downloadWebFolderStructureNode = doc.NewElement(XML_DOWNLOAD_KEEP_FOLDER_STRUCTURE.data());
+    downloadWebFolderStructureNode->SetAttribute(
+        XML_VALUE.data(),
+        bool_to_int(wxGetApp().GetWebHarvester().IsKeepingWebPathWhenDownloading()));
+    configSection->InsertEndChild(downloadWebFolderStructureNode);
 
     auto downloadMinSize = doc.NewElement(XML_DOWNLOAD_MIN_FILESIZE.data());
     downloadMinSize->SetAttribute(
