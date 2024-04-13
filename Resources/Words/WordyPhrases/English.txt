@@ -3051,6 +3051,8 @@ chivalrously	gallantly	0
 chlids	children	3		
 chnage	change	3		
 chnages	changes	3		
+Chocolately	Chocolatey	3		
+Chocolately's	Chocolatey's	3		
 choicing	choosing	3		
 choise	choice	3		
 chomp at the bit	champ at the bit	3		
@@ -10533,6 +10535,11 @@ orcders	orders	3
 orded	ordered	3		
 orderd	ordered	3		
 ordeurves	hors d'oeuvres	3		
+ordfer	order	3		
+ordfer's	order's	3		
+ordfered	ordered	3		
+ordfering	ordering	3		
+ordfers	orders	3		
 ordinance	rule, law	0		
 ordinances	rules, laws	0		
 organim	organism	3		

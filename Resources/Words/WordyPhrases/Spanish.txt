@@ -48,6 +48,8 @@ Champange	Champagne	3
 Champange's	Champagne's	3		
 Chigaco	Chicago	3		
 Chigaco's	Chicago's	3		
+Chocolately	Chocolatey	3		
+Chocolately's	Chocolatey's	3		
 Chrismas	Christmas	3		
 Chrismas's	Christmas's	3		
 Chrismases	Christmases	3		

@@ -80940,6 +80940,10 @@ miscode
 miscoded
 miscodes
 miscoding
+miscolor
+miscolored
+miscoloring
+miscolors
 miscommunicate
 miscommunicated
 miscommunicates
@@ -138605,6 +138609,7 @@ unblocking
 unblocks
 unbloodied
 unblown
+unblurred
 unblushing
 unblushingly
 unbodied
