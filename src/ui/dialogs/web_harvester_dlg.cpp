@@ -147,6 +147,7 @@ void WebHarvesterDlg::OnLoadUrlsClick([[maybe_unused]] wxCommandEvent& event)
     {
     if (m_urlList != nullptr)
         {
+        /// @todo Make larger when new API in wx 3.3.0 is available
         wxTextEntryDialog textDlg(
             this, _(L"Enter a block of HTML content to extract website links from."),
             _(L"Load URLs"), wxString{}, wxTextEntryDialogStyle | wxTE_MULTILINE);

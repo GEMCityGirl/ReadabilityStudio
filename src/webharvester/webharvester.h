@@ -688,7 +688,6 @@ class WebHarvester
             }
         };
 
-    size_t m_currentLevel{ 0 };
     size_t m_levelDepth{ 1 };
     wxString m_url;
     wxString m_userAgent;
@@ -697,11 +696,15 @@ class WebHarvester
     string_util::case_insensitive_wstring m_fullDomain;
     string_util::case_insensitive_wstring m_fullDomainFolderPath;
     std::set<string_util::case_insensitive_wstring> m_allowableWebFolders;
+    std::set<wxString, wxStringLessNoCase> m_fileExtensions;
+    // cached state information
     std::set<UrlWithNumericSequence> m_harvestedLinks;
     std::set<wxString> m_downloadedFiles;
     std::map<wxString, wxString> m_brokenLinks;
     std::set<wxString, wxStringLessWebPath> m_alreadyCrawledFiles;
-    std::set<wxString, wxStringLessNoCase> m_fileExtensions;
+    size_t m_currentLevel{ 0 };
+    bool m_isCancelled{ false };
+
     wxString m_downloadDirectory;
     bool m_keepWebPathWhenDownloading{ true };
     KnownRegularFileExtension IsKnownRegularFileExtension;
@@ -716,12 +719,11 @@ class WebHarvester
     bool m_replaceExistingFiles{ true };
     bool m_harvestAllHtml{ true };
     bool m_searchForBrokenLinks{ false };
+    bool m_hideFileNamesWhileDownloading{ false };
 
     FileDownload m_downloader;
     // UI functionality
     wxProgressDialog* m_progressDlg{ nullptr };
-    bool m_hideFileNamesWhileDownloading{ false };
-    bool m_isCancelled{ false };
 
     inline static const std::wstring_view HTML_CONTENT_TYPE{ _DT(L"text/html") };
     inline static const std::wstring_view JAVASCRIPT_CONTENT_TYPE{ _DT(

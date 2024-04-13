@@ -529,11 +529,14 @@ bool WebHarvester::CrawlLinks()
     m_progressDlg->Centre();
     m_progressDlg->Raise();
 
+    // reset state information
     m_isCancelled = false;
     m_currentLevel = 0;
+
+    m_harvestedLinks.clear();
     m_downloadedFiles.clear();
-    m_alreadyCrawledFiles.clear();
     m_brokenLinks.clear();
+    m_alreadyCrawledFiles.clear();
     CrawlLinks(m_url, html_utilities::hyperlink_parse::hyperlink_parse_method::html);
 
     // Now check the original URL to see if it is a file that should be downloaded
