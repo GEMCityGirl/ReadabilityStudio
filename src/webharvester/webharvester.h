@@ -355,11 +355,6 @@ class WebHarvester
     ///     to while harvesting and downloading.
     void ClearAllowableFileTypes() { m_fileExtensions.clear(); }
 
-    void EnableMissingSequentialFileSearcing(const bool enable = true) noexcept
-        {
-        m_searchForMissingSequentialFiles = enable;
-        }
-
     /// @brief When downloading locally, keep the folder structure from the website.
     /// @param keep @c true to use the website's folder structure, @c false to download files in
     ///     a flat folder structure.
@@ -651,12 +646,6 @@ class WebHarvester
     // cppcheck-suppress constParameter
     void CrawlLink(const wxString& currentLink, html_utilities::html_url_format& formatUrl,
                    const wxString& mainUrl, const bool isImage);
-    //----------------------------------
-    void SearchForMissingFiles();
-    void DownloadSequentialRange(const wxString& prefix, const wxString& suffix,
-                                 const size_t numericWidth, const wxString& referUrl,
-                                 const std::set<long>& alreadyDownloadedNumbers,
-                                 std::set<UrlWithNumericSequence>& newFilesToDownload);
 
     [[nodiscard]]
     bool HasUrlAlreadyBeenHarvested(const wxString& url) const
@@ -712,7 +701,6 @@ class WebHarvester
     WebPageExtension IsWebPageExtension;
     // download criteria
     DomainRestriction m_domainRestriction{ DomainRestriction::RestrictToDomain };
-    bool m_searchForMissingSequentialFiles{ false };
     bool m_downloadWhileCrawling{ false };
 
     std::optional<uint32_t> m_minFileDownloadSizeKilobytes{ std::nullopt };
