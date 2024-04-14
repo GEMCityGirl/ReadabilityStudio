@@ -53,10 +53,10 @@ class WebPageExtension
         @param extension The file extension to review.*/
     [[nodiscard]]
     bool
-    operator()(std::wstring_view extension) const
+    operator()(const wxString& extension) const
         {
-        const auto foundPos = m_knownRegularFileExtensions.find(extension.data());
-        if (foundPos != m_knownRegularFileExtensions.cend())
+        const auto foundPos = m_knownWebPageExtensions.find(extension.wc_str());
+        if (foundPos != m_knownWebPageExtensions.cend())
             {
             return true;
             }
@@ -65,15 +65,15 @@ class WebPageExtension
         // Note that some pages are malformed and missing the variable assignment,
         // so only look for the initial query (i.e., the '?') and go back from there.
         const size_t queryPos = extension.rfind(L'?');
-        if (queryPos != std::wstring_view::npos)
+        if (queryPos != wxString::npos)
             {
             // might be a JS, CSS, or other extension, so get the real extension
             // in front of the query...
             const wxFileName fn(wxString{ extension.substr(0, queryPos).data() });
             if (fn.GetExt().length())
                 {
-                return (m_knownRegularFileExtensions.find(fn.GetExt().wc_str()) !=
-                        m_knownRegularFileExtensions.cend());
+                return (m_knownWebPageExtensions.find(fn.GetExt().wc_str()) !=
+                        m_knownWebPageExtensions.cend());
                 }
             }
 
@@ -83,16 +83,16 @@ class WebPageExtension
     /** @returns @c true if @c extension is a dynamic webpage extension.
         @param extension The file extension to review.*/
     [[nodiscard]]
-    bool IsDynamicExtension(std::wstring_view extension) const
+    bool IsDynamicExtension(const wxString& extension) const
         {
-        const auto foundPos = m_knownDynamicExtensions.find(extension.data());
+        const auto foundPos = m_knownDynamicExtensions.find(extension.wc_str());
         if (foundPos != m_knownDynamicExtensions.cend())
             {
             return true;
             }
 
         const size_t queryPos = extension.rfind(L'?');
-        if (queryPos != std::wstring_view::npos)
+        if (queryPos != wxString::npos)
             {
             const wxFileName fn(wxString{ extension.substr(0, queryPos).data() });
             if (fn.GetExt().length())
@@ -106,7 +106,7 @@ class WebPageExtension
         }
 
   private:
-    std::set<string_util::case_insensitive_wstring> m_knownRegularFileExtensions{
+    std::set<string_util::case_insensitive_wstring> m_knownWebPageExtensions{
         _DT(L"asp"),  _DT(L"aspx"), _DT(L"ca"),    _DT(L"cfm"), _DT(L"cfml"), _DT(L"biz"),
         _DT(L"com"),  _DT(L"net"),  _DT(L"org"),   _DT(L"php"), _DT(L"php3"), _DT(L"php4"),
         _DT(L"html"), _DT(L"htm"),  _DT(L"xhtml"), _DT(L"sgml")

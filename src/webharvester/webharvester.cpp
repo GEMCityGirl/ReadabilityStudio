@@ -636,7 +636,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
         {
         pageIsHtml = false;
         }
-    else if (IsWebPageExtension(fileExt.wc_str()))
+    else if (IsWebPageExtension(fileExt))
         {
         pageIsHtml = true;
         }
@@ -708,7 +708,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
         /* If not a known "regular" file extension (e.g., PDF) or a webpage extension (e.g., HTML),
            then figure out its type. If a webpage, then crawl it or see if it is a type of file that
            we want to download.*/
-        if (IsWebPageExtension(fileExt.wc_str()) ||
+        if (IsWebPageExtension(fileExt) ||
             html_utilities::html_url_format::is_url_top_level_domain(fullUrl.wc_str()))
             {
             CrawlLinks(fullUrl, html_utilities::hyperlink_parse::hyperlink_parse_method::html);

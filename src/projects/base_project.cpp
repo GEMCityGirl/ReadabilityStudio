@@ -3640,9 +3640,9 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(std::string_view sourceFile
             return std::make_pair(false, wxString{});
             }
         }
-    else if (isHtmlExtension(fileExtension.wc_str()))
+    else if (isHtmlExtension(fileExtension))
         {
-        if (isHtmlExtension.IsDynamicExtension(fileExtension.wc_str()))
+        if (isHtmlExtension.IsDynamicExtension(fileExtension))
             {
             const size_t bomStartLength =
                 (utf8::starts_with_bom(sourceFileText.data(),
