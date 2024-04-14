@@ -52,31 +52,57 @@ class WebPageExtension
     /** @returns @c true if @c extension is a known web file extension.
         @param extension The file extension to review.*/
     [[nodiscard]]
-    inline bool
+    bool
     operator()(std::wstring_view extension) const
         {
-        // any sort of PHP page (even without the extension PHP) will follow this syntax
-        if (extension.find(L'?') != std::wstring_view::npos &&
-            extension.find(L'=') != std::wstring_view::npos)
+        const auto foundPos = m_knownRegularFileExtensions.find(extension.data());
+        if (foundPos != m_knownRegularFileExtensions.cend())
             {
             return true;
             }
-        return (m_knownRegularFileExtensions.find(extension.data()) !=
-                m_knownRegularFileExtensions.cend());
+
+        // Any sort of page with a query.
+        // Note that some pages are malformed and missing the variable assignment,
+        // so only look for the initial query (i.e., the '?') and go back from there.
+        const size_t queryPos = extension.rfind(L'?');
+        if (queryPos != std::wstring_view::npos)
+            {
+            // might be a JS, CSS, or other extension, so get the real extension
+            // in front of the query...
+            const wxFileName fn(wxString{ extension.substr(0, queryPos).data() });
+            if (fn.GetExt().length())
+                {
+                return (m_knownRegularFileExtensions.find(fn.GetExt().wc_str()) !=
+                    m_knownRegularFileExtensions.cend());
+                }
+            }
+
+        return false;
         }
 
     /** @returns @c true if @c extension is a dynamic webpage extension.
         @param extension The file extension to review.*/
     [[nodiscard]]
-    inline bool IsDynamicExtension(std::wstring_view extension) const
+    bool IsDynamicExtension(std::wstring_view extension) const
         {
-        // any sort of PHP page (even without the extension PHP) will follow this syntax
-        if (extension.find(L'?') != std::wstring_view::npos &&
-            extension.find(L'=') != std::wstring_view::npos)
+        const auto foundPos = m_knownDynamicExtensions.find(extension.data());
+        if (foundPos != m_knownDynamicExtensions.cend())
             {
             return true;
             }
-        return (m_knownDynamicExtensions.find(extension.data()) != m_knownDynamicExtensions.cend());
+
+        const size_t queryPos = extension.rfind(L'?');
+        if (queryPos != std::wstring_view::npos)
+            {
+            const wxFileName fn(wxString{ extension.substr(0, queryPos).data() });
+            if (fn.GetExt().length())
+                {
+                return (m_knownDynamicExtensions.find(fn.GetExt().wc_str()) !=
+                    m_knownDynamicExtensions.cend());
+                }
+            }
+
+        return false;
         }
 
   private:

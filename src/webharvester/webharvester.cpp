@@ -586,12 +586,17 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
     // try to determine the file type if there is no extension
     if (fileExt.empty())
         {
-        // any sort of page with a query will follow this syntax
-        if (const size_t queryPos = fullUrl.find(L'?');
-            queryPos != std::wstring_view::npos &&
-            fullUrl.find(L'=') != std::wstring_view::npos)
+        const size_t lastSlash = fullUrl.rfind(L'/');
+        const size_t queryPos = (lastSlash != wxString::npos) ?
+            fullUrl.find(L'?', lastSlash) : wxString::npos;
+
+        // Any sort of page with a query.
+        // Note that some pages are malformed and missing the variable assignment,
+        // so only look for the initial query (i.e., the '?') and go back from there.
+        if (queryPos != std::wstring_view::npos)
             {
-            // might be a JS extension, so get the real extension in front of the query...
+            // might be a JS, CSS, or other extension, so get the real extension
+            // in front of the query...
             const wxFileName fn(fullUrl.substr(0, queryPos));
             if (fn.GetExt().length())
                 {
