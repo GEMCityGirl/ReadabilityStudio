@@ -9595,6 +9595,7 @@ baneful
 banefuller
 banefullest
 banefully
+banefulness
 banes
 bang
 bang's
@@ -14991,6 +14992,9 @@ breadline
 breadline's
 breadlines
 breads
+breadstick
+breadstick's
+breadsticks
 breadth
 breadth's
 breadths
@@ -39853,6 +39857,9 @@ dumbing
 dumbly
 dumbness
 dumbness's
+dumbphone
+dumbphone's
+dumbphones
 dumbs
 dumbstruck
 dumbwaiter
@@ -60529,6 +60536,9 @@ hometown's
 hometowns
 homeward
 homewards
+homeware
+homeware's
+homewares
 homework
 homework's
 homeworker
@@ -83767,6 +83777,9 @@ munchers
 munches
 munchies
 munching
+munchkin
+munchkin's
+munchkins
 mundane
 mundanely
 mundaneness
@@ -84319,9 +84332,13 @@ mystique's
 mystiques
 myth
 myth's
+mythbust
+mythbusted
 mythbuster
 mythbuster's
 mythbusters
+mythbusting
+mythbusts
 mythes
 mythic
 mythical
@@ -91448,6 +91465,7 @@ oversampled
 oversamples
 oversampling
 oversaturate
+oversaturating
 oversaturation
 oversaturation's
 oversaturations
@@ -112586,7 +112604,10 @@ roast
 roasted
 roaster
 roaster's
+roasteries
 roasters
+roastery
+roastery's
 roasting
 roastings
 roasts
@@ -130433,6 +130454,7 @@ tableland
 tableland's
 tablelands
 tables
+tableside
 tablespace
 tablespace's
 tablespaces
@@ -147489,6 +147511,7 @@ winters
 wintertime
 wintertime's
 wintertimes
+wintery
 wintrier
 wintriest
 wintriness

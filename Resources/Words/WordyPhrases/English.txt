@@ -1075,7 +1075,7 @@ ancilliary	ancillary	3
 and also	and, also	0		
 and etc.	etc.	0		
 and so on and so forth	and so on, and so forth	0		
-and so one	and so on	3		can;could;couldn't;last;must;should;shouldn't;will;would;wouldn't
+and so one	and so on	3		afternoon;can;could;couldn't;day;evening;last;morning;must;night;should;shouldn't;will;would;wouldn't
 and than	and then	3		
 andd	and	3		
 androgenous	androgynous	3		

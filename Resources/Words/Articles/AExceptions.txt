@@ -55,6 +55,7 @@ umask
 UMDF
 UML
 UMN
+UN
 unary
 unary_negate
 UPN
