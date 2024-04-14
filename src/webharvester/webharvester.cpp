@@ -388,7 +388,7 @@ bool WebHarvester::CrawlLinks()
     if ((m_harvestAllHtml && IsPageHtml(m_url, contentType, responseCode)) ||
          VerifyFileExtension(fileExt))
         {
-        HarvestLink(m_url, m_url, fileExt);
+        HarvestLink(m_url, fileExt);
         }
     m_progressDlg->Pulse();
 
@@ -665,7 +665,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
         CrawlLinks(fullUrl, html_utilities::hyperlink_parse::hyperlink_parse_method::script);
         if (VerifyFileExtension(fileExt))
             {
-            HarvestLink(fullUrl, mainUrl, fileExt);
+            HarvestLink(fullUrl, fileExt);
             }
         return;
         }
@@ -700,7 +700,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
         // add the link to files to harvest/download if it matches our criteria
         if ((m_harvestAllHtml && pageIsHtml) || VerifyFileExtension(fileExt))
             {
-            HarvestLink(fullUrl, mainUrl, fileExt);
+            HarvestLink(fullUrl, fileExt);
             }
         }
     else
@@ -714,7 +714,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
             CrawlLinks(fullUrl, html_utilities::hyperlink_parse::hyperlink_parse_method::html);
             if (m_harvestAllHtml || VerifyFileExtension(fileExt))
                 {
-                HarvestLink(fullUrl, mainUrl, fileExt);
+                HarvestLink(fullUrl, fileExt);
                 }
             return;
             }
@@ -734,7 +734,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
                     {
                     // need to override its extension too because the url has a different
                     // file extension on it due to it being a PHP query
-                    HarvestLink(fullUrl, mainUrl, fileExt);
+                    HarvestLink(fullUrl, fileExt);
                     }
                 return;
                 }
@@ -744,7 +744,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
                 CrawlLinks(fullUrl, html_utilities::hyperlink_parse::hyperlink_parse_method::html);
                 if (m_harvestAllHtml || VerifyFileExtension(fileExt))
                     {
-                    HarvestLink(fullUrl, mainUrl, fileExt);
+                    HarvestLink(fullUrl, fileExt);
                     }
                 return;
                 }
@@ -755,7 +755,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
                 fileExt = GetFileTypeFromContentType(contentType);
                 if (VerifyFileExtension(fileExt))
                     {
-                    HarvestLink(fullUrl, mainUrl, fileExt);
+                    HarvestLink(fullUrl, fileExt);
                     }
                 return;
                 }
@@ -817,7 +817,7 @@ bool WebHarvester::VerifyUrlDomainCriteria(const wxString& url)
     }
 
 //----------------------------------
-bool WebHarvester::HarvestLink(wxString& url, const wxString& referringUrl,
+bool WebHarvester::HarvestLink(wxString& url,
                                const wxString& fileExtension /*= wxString{}*/)
     {
     if (m_isCancelled || url.empty() || !VerifyUrlDomainCriteria(url))

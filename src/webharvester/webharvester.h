@@ -73,7 +73,7 @@ class WebPageExtension
             if (fn.GetExt().length())
                 {
                 return (m_knownRegularFileExtensions.find(fn.GetExt().wc_str()) !=
-                    m_knownRegularFileExtensions.cend());
+                        m_knownRegularFileExtensions.cend());
                 }
             }
 
@@ -98,7 +98,7 @@ class WebPageExtension
             if (fn.GetExt().length())
                 {
                 return (m_knownDynamicExtensions.find(fn.GetExt().wc_str()) !=
-                    m_knownDynamicExtensions.cend());
+                        m_knownDynamicExtensions.cend());
                 }
             }
 
@@ -575,7 +575,6 @@ class WebHarvester
             that we are gathering for the client.\n
             If downloading while crawling, will also download the file.
         @param url The URL to review.
-        @param referringUrl The URL that this URL came from.
         @param fileExtension File extension information about the URL.
             This will be used if filtering file types to harvest (and download).
         @returns @c true if the provided URL will be included in the harvested results
@@ -583,8 +582,7 @@ class WebHarvester
         @warning File extension criteria must be handled by the caller because
             if the harvester is include all HTML pages then it will need to determine
             if an URL is HTML before passing it to this function.*/
-    bool HarvestLink(wxString& url, const wxString& referringUrl,
-                     const wxString& fileExtension = wxString{});
+    bool HarvestLink(wxString& url, const wxString& fileExtension);
     //----------------------------------
     bool CrawlLinks(wxString& url,
                     const html_utilities::hyperlink_parse::hyperlink_parse_method method);
