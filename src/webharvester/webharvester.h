@@ -55,26 +55,11 @@ class WebPageExtension
     bool
     operator()(const wxString& extension) const
         {
-        const auto foundPos = m_knownWebPageExtensions.find(extension.wc_str());
-        if (foundPos != m_knownWebPageExtensions.cend())
+        if (m_knownWebPageExtensions.find(extension.wc_str()) != m_knownWebPageExtensions.cend() ||
+            m_knownWebPageExtensions.find(GetExtensionOrDomain(extension).wc_str()) !=
+                m_knownWebPageExtensions.cend())
             {
             return true;
-            }
-
-        // Any sort of page with a query.
-        // Note that some pages are malformed and missing the variable assignment,
-        // so only look for the initial query (i.e., the '?') and go back from there.
-        const size_t queryPos = extension.rfind(L'?');
-        if (queryPos != wxString::npos)
-            {
-            // might be a JS, CSS, or other extension, so get the real extension
-            // in front of the query...
-            const wxFileName fn(wxString{ extension.substr(0, queryPos).data() });
-            if (fn.GetExt().length())
-                {
-                return (m_knownWebPageExtensions.find(fn.GetExt().wc_str()) !=
-                        m_knownWebPageExtensions.cend());
-                }
             }
 
         return false;
@@ -85,21 +70,11 @@ class WebPageExtension
     [[nodiscard]]
     bool IsDynamicExtension(const wxString& extension) const
         {
-        const auto foundPos = m_knownDynamicExtensions.find(extension.wc_str());
-        if (foundPos != m_knownDynamicExtensions.cend())
+        if (m_knownDynamicExtensions.find(extension.wc_str()) != m_knownDynamicExtensions.cend() ||
+            m_knownDynamicExtensions.find(GetExtensionOrDomain(extension).wc_str()) !=
+                m_knownDynamicExtensions.cend())
             {
             return true;
-            }
-
-        const size_t queryPos = extension.rfind(L'?');
-        if (queryPos != wxString::npos)
-            {
-            const wxFileName fn(wxString{ extension.substr(0, queryPos).data() });
-            if (fn.GetExt().length())
-                {
-                return (m_knownDynamicExtensions.find(fn.GetExt().wc_str()) !=
-                        m_knownDynamicExtensions.cend());
-                }
             }
 
         return false;

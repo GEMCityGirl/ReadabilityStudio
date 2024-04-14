@@ -380,13 +380,13 @@ bool WebHarvester::CrawlLinks()
 
     // Now check the original URL to see if it is a file that should be downloaded
     int responseCode{ 200 };
-    const wxString fnExt = wxFileName(m_url).GetExt();
+    const wxString fnExt = GetExtensionOrDomain(m_url);
     const wxString fileExt =
         fnExt.length() ? fnExt : GetFileTypeFromContentType(GetContentType(m_url, responseCode));
     wxString contentType;
     // Add the link to files to harvest/download if it matches our criteria
     if ((m_harvestAllHtml && IsPageHtml(m_url, contentType, responseCode)) ||
-         VerifyFileExtension(fileExt))
+        VerifyFileExtension(fileExt))
         {
         HarvestLink(m_url, fileExt);
         }
@@ -582,35 +582,18 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
         return;
         }
 
-    wxString fileExt = wxFileName(fullUrl).GetExt();
+    wxString fileExt = GetExtensionOrDomain(fullUrl);
     // try to determine the file type if there is no extension
     if (fileExt.empty())
         {
         const size_t lastSlash = fullUrl.rfind(L'/');
-        const size_t queryPos = (lastSlash != wxString::npos) ?
-            fullUrl.find(L'?', lastSlash) : wxString::npos;
+        const size_t queryPos =
+            (lastSlash != wxString::npos) ? fullUrl.find(L'?', lastSlash) : wxString::npos;
 
-        // Any sort of page with a query.
-        // Note that some pages are malformed and missing the variable assignment,
-        // so only look for the initial query (i.e., the '?') and go back from there.
+        // Any sort of page with a query, then treat as PHP
         if (queryPos != std::wstring_view::npos)
             {
-            // might be a JS, CSS, or other extension, so get the real extension
-            // in front of the query...
-            const wxFileName fn(fullUrl.substr(0, queryPos));
-            if (fn.GetExt().length())
-                {
-                fileExt = fn.GetExt();
-                }
-            else if (fn.GetName().CmpNoCase(L"js") == 0)
-                {
-                fileExt = L"js";
-                }
-            // ...or fall back to PHP
-            else
-                {
-                fileExt = L"php";
-                }
+            fileExt = L"php";
             }
         else
             {
@@ -817,8 +800,7 @@ bool WebHarvester::VerifyUrlDomainCriteria(const wxString& url)
     }
 
 //----------------------------------
-bool WebHarvester::HarvestLink(wxString& url,
-                               const wxString& fileExtension /*= wxString{}*/)
+bool WebHarvester::HarvestLink(wxString& url, const wxString& fileExtension)
     {
     if (m_isCancelled || url.empty() || !VerifyUrlDomainCriteria(url))
         {
