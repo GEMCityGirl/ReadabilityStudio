@@ -138,7 +138,7 @@ int TestApp::RunTests()
     if (session.configData().reporterSpecifications.size() == 0)
         {
         session.configData().reporterSpecifications.push_back(
-            { "junit", Catch::Optional<std::string>("WisteriaTestResults.xml"),
+            { "junit", Catch::Optional<std::string>("ReadabilityStudioGUITestResults.xml"),
                Catch::ColourMode::PlatformDefault, std::map<std::string, std::string>{} });
         }
 
