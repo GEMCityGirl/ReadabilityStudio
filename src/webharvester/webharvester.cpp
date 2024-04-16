@@ -583,28 +583,11 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
         }
 
     wxString fileExt = GetExtensionOrDomain(fullUrl);
-    // try to determine the file type if there is no extension
+    // If no extension, fall back to it being a regular webpage.
+    // Modern webpages generally don't have HTM extentions (or any extension) like in the past.
     if (fileExt.empty())
         {
-        const size_t lastSlash = fullUrl.rfind(L'/');
-        const size_t queryPos =
-            (lastSlash != wxString::npos) ? fullUrl.find(L'?', lastSlash) : wxString::npos;
-
-        // Any sort of page with a query, then treat as PHP
-        if (queryPos != std::wstring_view::npos)
-            {
-            fileExt = L"php";
-            }
-        else
-            {
-            int responseCode{ 200 };
-            fileExt = GetFileTypeFromContentType(GetContentType(fullUrl, responseCode));
-            if (QueueDownload::IsBadResponseCode(responseCode))
-                {
-                wxLogVerbose(L"'%s': bad response from web page; unable to crawl page", fullUrl);
-                return;
-                }
-            }
+        fileExt = L"htm";
         }
 
     /* See if the page is HTML so that we know whether to crawl it or not. Sometimes
