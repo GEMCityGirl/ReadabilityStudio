@@ -390,7 +390,8 @@ void ProjectWizardDlg::CreateControls()
                 wxBusyCursor wait;
                 wxArrayString files;
                 wxDir::GetAllFiles(GetFilePath(), &files, wxString{}, wxDIR_FILES | wxDIR_DIRS);
-                files = FilterFiles(files, wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD.data());
+                files =
+                    FilterFiles(files, wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD.data());
 
                 m_fileData->SetSize(files.GetCount(), 2);
                 m_fileData->SetValues(files);
@@ -439,13 +440,13 @@ void ProjectWizardDlg::CreateControls()
         minDocSizeBoxSizer->Add(minDocSizeLabel, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT,
                                 wxSizerFlags::GetDefaultBorder());
 
-        wxSpinCtrl* minDocWordCountForBatchSpinCtrl =
-            new wxSpinCtrl(page, wxID_ANY,
-                           std::to_wstring(m_minDocWordCountForBatch),
-                           wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1,
-                           std::numeric_limits<int>::max(), 0);
-        minDocWordCountForBatchSpinCtrl->SetValidator(wxGenericValidator(&m_minDocWordCountForBatch));
-        minDocSizeBoxSizer->Add(minDocWordCountForBatchSpinCtrl, 0, wxALIGN_CENTER_VERTICAL | wxALL, 0);
+        wxSpinCtrl* minDocWordCountForBatchSpinCtrl = new wxSpinCtrl(
+            page, wxID_ANY, std::to_wstring(m_minDocWordCountForBatch), wxDefaultPosition,
+            wxDefaultSize, wxSP_ARROW_KEYS, 1, std::numeric_limits<int>::max(), 0);
+        minDocWordCountForBatchSpinCtrl->SetValidator(
+            wxGenericValidator(&m_minDocWordCountForBatch));
+        minDocSizeBoxSizer->Add(minDocWordCountForBatchSpinCtrl, 0, wxALIGN_CENTER_VERTICAL | wxALL,
+                                0);
 
         // random sampling
         wxBoxSizer* randomOptionsSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -1041,8 +1042,7 @@ void ProjectWizardDlg::LoadArchive(wxString archivePath /*= wxString{}*/)
     // see what sort of labeling should be used
     wxString groupLabel;
     auto warningIter = WarningManager::GetWarning(_DT(L"prompt-for-batch-label"));
-    if (warningIter != WarningManager::GetWarnings().end() &&
-        warningIter->ShouldBeShown())
+    if (warningIter != WarningManager::GetWarnings().end() && warningIter->ShouldBeShown())
         {
         DocGroupSelectDlg selectLabelTypeDlg(this);
         selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
@@ -1115,8 +1115,7 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
     // see what sort of labeling should be used
     wxString groupLabel;
     auto warningIter = WarningManager::GetWarning(_DT(L"prompt-for-batch-label"));
-    if (warningIter != WarningManager::GetWarnings().end() &&
-        warningIter->ShouldBeShown())
+    if (warningIter != WarningManager::GetWarnings().end() && warningIter->ShouldBeShown())
         {
         DocGroupSelectDlg selectLabelTypeDlg(this);
         selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
@@ -1613,8 +1612,7 @@ void ProjectWizardDlg::OnAddWebPageButtonClick([[maybe_unused]] wxCommandEvent& 
         // see what sort of labeling should be used
         wxString groupLabel;
         auto warningIter = WarningManager::GetWarning(_DT(L"prompt-for-batch-label"));
-        if (warningIter != WarningManager::GetWarnings().end() &&
-            warningIter->ShouldBeShown())
+        if (warningIter != WarningManager::GetWarnings().end() && warningIter->ShouldBeShown())
             {
             DocGroupSelectDlg selectLabelTypeDlg(this);
             selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
@@ -1649,10 +1647,9 @@ void ProjectWizardDlg::OnAddWebPageButtonClick([[maybe_unused]] wxCommandEvent& 
 //-------------------------------------------------------------
 void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent& event)
     {
-    WebHarvesterDlg webHarvestDlg(
-        this, wxGetApp().GetLastSelectedWebPages(),
-        wxGetApp().GetAppOptions().GetDocumentFilter(), wxGetApp().GetLastSelectedDocFilter(),
-        false);
+    WebHarvesterDlg webHarvestDlg(this, wxGetApp().GetLastSelectedWebPages(),
+                                  wxGetApp().GetAppOptions().GetDocumentFilter(),
+                                  wxGetApp().GetLastSelectedDocFilter(), false);
     webHarvestDlg.UpdateFromHarvesterSettings(wxGetApp().GetWebHarvester());
     webHarvestDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
                                L"web-harvester.html");
@@ -1664,8 +1661,7 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
     // see what sort of labeling should be used
     wxString groupLabel;
     auto warningIter = WarningManager::GetWarning(_DT(L"prompt-for-batch-label"));
-    if (warningIter != WarningManager::GetWarnings().end() &&
-        warningIter->ShouldBeShown())
+    if (warningIter != WarningManager::GetWarnings().end() && warningIter->ShouldBeShown())
         {
         DocGroupSelectDlg selectLabelTypeDlg(this);
         selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
@@ -1764,8 +1760,7 @@ void ProjectWizardDlg::OnAddFolderButtonClick([[maybe_unused]] wxCommandEvent& e
     // see what sort of labeling should be used
     wxString groupLabel;
     auto warningIter = WarningManager::GetWarning(_DT(L"prompt-for-batch-label"));
-    if (warningIter != WarningManager::GetWarnings().end() &&
-        warningIter->ShouldBeShown())
+    if (warningIter != WarningManager::GetWarnings().end() && warningIter->ShouldBeShown())
         {
         DocGroupSelectDlg selectLabelTypeDlg(this);
         selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
@@ -1836,8 +1831,7 @@ void ProjectWizardDlg::OnAddFileButtonClick([[maybe_unused]] wxCommandEvent& eve
     // see what sort of labeling should be used
     wxString groupLabel;
     auto warningIter = WarningManager::GetWarning(_DT(L"prompt-for-batch-label"));
-    if (warningIter != WarningManager::GetWarnings().end() &&
-        warningIter->ShouldBeShown())
+    if (warningIter != WarningManager::GetWarnings().end() && warningIter->ShouldBeShown())
         {
         DocGroupSelectDlg selectLabelTypeDlg(this);
         selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
