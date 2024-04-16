@@ -614,8 +614,8 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
     wxString contentType;
     bool pageIsHtml = false;
 
-    if (IsKnownRegularFileExtension(fileExt.wc_str()) ||
-        IsKnownScriptFileExtension(fileExt.wc_str()))
+    if (IsNonWebPageFileExtension(fileExt.wc_str()) ||
+        IsScriptFileExtension(fileExt.wc_str()))
         {
         pageIsHtml = false;
         }
@@ -643,7 +643,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
     // First, crawl the page (if applicable)
     ///////////////////////////////////////
     // Javascript/VBScript files are crawled differently, so check that first
-    if (IsKnownScriptFileExtension(fileExt.wc_str()))
+    if (IsScriptFileExtension(fileExt.wc_str()))
         {
         CrawlLinks(fullUrl, html_utilities::hyperlink_parse::hyperlink_parse_method::script);
         if (VerifyFileExtension(fileExt))
@@ -652,7 +652,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
             }
         return;
         }
-    else if (IsKnownRegularFileExtension(fileExt.wc_str()))
+    else if (IsNonWebPageFileExtension(fileExt.wc_str()))
         {
         // Some JPG links are actually HTML pages being used as a gallery of sorts
         // for a JPG, so treat it as such if the MIME type indicates that.

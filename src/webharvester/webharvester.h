@@ -91,8 +91,9 @@ class WebPageExtension
     };
     };
 
-/// @brief List of known file extensions that can be downloaded from a website.
-class KnownRegularFileExtension
+/// @brief List of known document or media file extensions that can be downloaded from a website.
+/// @details These would be documents such as PDF or images, rather than HTML pages.
+class NonWebPageFileExtension
     {
   public:
     /** @returns @c true if @c extension is a known file extension.
@@ -101,12 +102,12 @@ class KnownRegularFileExtension
     inline bool
     operator()(std::wstring_view extension) const
         {
-        return (m_knownRegularFileExtensions.find(extension.data()) !=
-                m_knownRegularFileExtensions.cend());
+        return (m_nonWebPageFileExtensions.find(extension.data()) !=
+                m_nonWebPageFileExtensions.cend());
         }
 
   private:
-    std::set<string_util::case_insensitive_wstring> m_knownRegularFileExtensions{
+    std::set<string_util::case_insensitive_wstring> m_nonWebPageFileExtensions{
         // images
         _DT(L"ico"), _DT(L"jpg"), _DT(L"jpeg"), _DT(L"bmp"), _DT(L"gif"), _DT(L"png"), _DT(L"psd"),
         _DT(L"tif"), _DT(L"tiff"), _DT(L"wmf"), _DT(L"tga"), _DT(L"svg"),
@@ -128,20 +129,20 @@ class KnownRegularFileExtension
     };
 
 /// @brief List of known web script (e.g., JavaScript) extensions.
-class KnownScriptFileExtension
+class ScriptFileExtension
     {
   public:
-    /** @returns @c true if @c extension is a known web script file extension.
+    /** @returns @c true if @c extension is a web script file extension.
         @param extension The file extension to review.*/
     [[nodiscard]]
     inline bool
     operator()(std::wstring_view extension) const
         {
-        return (m_knownFileExtensions.find(extension.data()) != m_knownFileExtensions.cend());
+        return (m_scriptFileExtensions.find(extension.data()) != m_scriptFileExtensions.cend());
         }
 
   private:
-    std::set<string_util::case_insensitive_wstring> m_knownFileExtensions{ _DT(L"js"),
+    std::set<string_util::case_insensitive_wstring> m_scriptFileExtensions{ _DT(L"js"),
                                                                            _DT(L"vbs") };
     };
 
@@ -614,8 +615,8 @@ class WebHarvester
 
     wxString m_downloadDirectory;
     bool m_keepWebPathWhenDownloading{ true };
-    KnownRegularFileExtension IsKnownRegularFileExtension;
-    KnownScriptFileExtension IsKnownScriptFileExtension;
+    NonWebPageFileExtension IsNonWebPageFileExtension;
+    ScriptFileExtension IsScriptFileExtension;
     WebPageExtension IsWebPageExtension;
     // download criteria
     DomainRestriction m_domainRestriction{ DomainRestriction::RestrictToDomain };
