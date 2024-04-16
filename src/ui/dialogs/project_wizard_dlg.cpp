@@ -130,40 +130,40 @@ ProjectWizardDlg::ProjectWizardDlg(wxWindow* parent, const ProjectType projectTy
     Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnNavigate, this, wxID_BACKWARD);
     Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnOK, this, wxID_OK);
     Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnFileBrowseButtonClick, this,
-        ProjectWizardDlg::ID_FILE_BROWSE_BUTTON);
+         ProjectWizardDlg::ID_FILE_BROWSE_BUTTON);
     Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnButtonClick, this,
-        ProjectWizardDlg::NARRATIVE_WITH_ILLUSTRATIONS_LINK_ID);
+         ProjectWizardDlg::NARRATIVE_WITH_ILLUSTRATIONS_LINK_ID);
     Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnButtonClick, this,
-        ProjectWizardDlg::FRAGMENTED_LINK_ID);
+         ProjectWizardDlg::FRAGMENTED_LINK_ID);
     Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnButtonClick, this,
-        ProjectWizardDlg::CENTERED_TEXT_LINK_ID);
+         ProjectWizardDlg::CENTERED_TEXT_LINK_ID);
     Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnAddFolderButtonClick, this,
-        ProjectWizardDlg::ID_BATCH_FOLDER_BROWSE_BUTTON);
+         ProjectWizardDlg::ID_BATCH_FOLDER_BROWSE_BUTTON);
     Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnAddFileButtonClick, this,
-        ProjectWizardDlg::ID_BATCH_FILE_BROWSE_BUTTON);
+         ProjectWizardDlg::ID_BATCH_FILE_BROWSE_BUTTON);
     Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnAddWebPagesButtonClick, this,
-        ProjectWizardDlg::ID_WEB_PAGES_BROWSE_BUTTON);
+         ProjectWizardDlg::ID_WEB_PAGES_BROWSE_BUTTON);
     Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnAddWebPageButtonClick, this,
-        ProjectWizardDlg::ID_WEB_PAGE_BROWSE_BUTTON);
+         ProjectWizardDlg::ID_WEB_PAGE_BROWSE_BUTTON);
     Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnAddArchiveFileButtonClick, this,
-        ProjectWizardDlg::ID_ARCHIVE_FILE_BROWSE_BUTTON);
+         ProjectWizardDlg::ID_ARCHIVE_FILE_BROWSE_BUTTON);
     Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnAddSpreadsheetFileButtonClick, this,
-        ProjectWizardDlg::ID_SPREADSHEET_FILE_BROWSE_BUTTON);
+         ProjectWizardDlg::ID_SPREADSHEET_FILE_BROWSE_BUTTON);
     Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnAddToListClick, this,
-        ProjectWizardDlg::ID_ADD_FILE_BUTTON);
+         ProjectWizardDlg::ID_ADD_FILE_BUTTON);
     Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnDeleteFromListClick, this,
-        ProjectWizardDlg::ID_DELETE_FILE_BUTTON);
+         ProjectWizardDlg::ID_DELETE_FILE_BUTTON);
 
     Bind(wxEVT_CHECKBOX, &ProjectWizardDlg::OnRandomSampleCheck, this,
          ProjectWizardDlg::ID_RANDOM_SAMPLE_CHECK);
     Bind(wxEVT_CHOICE, &ProjectWizardDlg::OnLanguageChanged, this,
-        ProjectWizardDlg::LANGUAGE_BUTTON);
+         ProjectWizardDlg::LANGUAGE_BUTTON);
     Bind(wxEVT_RADIOBUTTON, &ProjectWizardDlg::OnSourceRadioChange, this,
-        ProjectWizardDlg::ID_FROM_FILE_BUTTON);
+         ProjectWizardDlg::ID_FROM_FILE_BUTTON);
     Bind(wxEVT_RADIOBUTTON, &ProjectWizardDlg::OnSourceRadioChange, this,
-        ProjectWizardDlg::ID_MANUALLY_ENTERED_TEXT_BUTTON);
+         ProjectWizardDlg::ID_MANUALLY_ENTERED_TEXT_BUTTON);
     Bind(wxEVT_RADIOBOX, &ProjectWizardDlg::OnTestSelectionMethodChanged, this,
-        ProjectWizardDlg::TEST_SELECT_METHOD_BUTTON);
+         ProjectWizardDlg::TEST_SELECT_METHOD_BUTTON);
 
     Bind(wxEVT_SIDEBARBOOK_PAGE_CHANGED, &ProjectWizardDlg::OnPageChange, this);
 
@@ -172,7 +172,7 @@ ProjectWizardDlg::ProjectWizardDlg(wxWindow* parent, const ProjectType projectTy
     Bind(
         wxEVT_CHAR_HOOK,
         [this](wxKeyEvent& event)
-            {
+        {
             if (event.ControlDown() && event.GetKeyCode() == L'G')
                 {
                 wxRibbonButtonBarEvent dummyEvt;
@@ -182,7 +182,7 @@ ProjectWizardDlg::ProjectWizardDlg(wxWindow* parent, const ProjectType projectTy
                 {
                 event.Skip(true);
                 }
-            },
+        },
         wxID_ANY);
     }
 
@@ -981,12 +981,55 @@ void ProjectWizardDlg::OnGroupClick([[maybe_unused]] wxCommandEvent& event)
     {
     if (m_fileList)
         {
+        const auto getCommonFolder = [this]()
+        {
+            auto selectedItem = m_fileList->GetFirstSelected();
+            if (selectedItem != wxNOT_FOUND)
+                {
+                wxString lastPath{ m_fileList->GetItemTextFormatted(selectedItem, 0) };
+                wxString currentCommonFolder;
+                wxString lastCommonFolder;
+                while (selectedItem != wxNOT_FOUND)
+                    {
+                    selectedItem = m_fileList->GetNextSelected(selectedItem);
+                    if (selectedItem == wxNOT_FOUND)
+                        {
+                        break;
+                        }
+                    currentCommonFolder = GetCommonFolder(
+                        lastPath, m_fileList->GetItemTextFormatted(selectedItem, 0));
+                    if (currentCommonFolder.empty())
+                        {
+                        return wxString{};
+                        }
+                    if (lastCommonFolder.length() &&
+                        currentCommonFolder.CmpNoCase(lastCommonFolder) != 0)
+                        {
+                        return wxString{};
+                        }
+                    lastPath = m_fileList->GetItemTextFormatted(selectedItem, 0);
+                    lastCommonFolder = currentCommonFolder;
+                    }
+                return currentCommonFolder;
+                }
+            else
+                {
+                return wxString{};
+                }
+        };
+
         auto firstSelected = m_fileList->GetFirstSelected();
         if (firstSelected != wxNOT_FOUND)
             {
+            // use either the first group (if already specified), or find the common folder
+            // from selected items and use that as the default group 
+            wxString currentGroup{ m_fileList->GetItemTextFormatted(firstSelected, 1) };
+            if (currentGroup.empty())
+                {
+                currentGroup = getCommonFolder();
+                }
             wxTextEntryDialog dlg(this, _(L"Enter a group label for the selected documents"),
-                                  _(L"Group Label"),
-                                  m_fileList->GetItemTextFormatted(firstSelected, 1));
+                                  _(L"Group Label"), currentGroup);
             if (dlg.ShowModal() == wxID_OK)
                 {
                 wxWindowUpdateLocker noUpdates(m_fileList);
