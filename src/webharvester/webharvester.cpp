@@ -379,16 +379,16 @@ bool WebHarvester::CrawlLinks()
     CrawlLinks(m_url, html_utilities::hyperlink_parse::hyperlink_parse_method::html);
 
     // Now check the original URL to see if it is a file that should be downloaded
-    int responseCode{ 200 };
-    const wxString fnExt = GetExtensionOrDomain(m_url);
-    const wxString fileExt =
-        fnExt.length() ? fnExt : GetFileTypeFromContentType(GetContentType(m_url, responseCode));
-    wxString contentType;
-    // Add the link to files to harvest/download if it matches our criteria
-    if ((m_harvestAllHtml && IsPageHtml(m_url, contentType, responseCode)) ||
-        VerifyFileExtension(fileExt))
+    // (falling back to HTM if no extension, as most webpages are)
+    wxString fnExt = GetExtensionOrDomain(m_url);
+    if (fnExt.empty())
         {
-        HarvestLink(m_url, fileExt);
+        fnExt = L"htm";
+        }
+    // Add the link to files to harvest/download if it matches our criteria
+    if ((m_harvestAllHtml && IsWebPageExtension(fnExt)) || VerifyFileExtension(fnExt))
+        {
+        HarvestLink(m_url, fnExt);
         }
     m_progressDlg->Pulse();
 
