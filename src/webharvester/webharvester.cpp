@@ -376,7 +376,12 @@ bool WebHarvester::CrawlLinks()
     m_downloadedFiles.clear();
     m_brokenLinks.clear();
     m_alreadyCrawledFiles.clear();
+    // depth level of zero means that we just want to download the root URL and don't actually
+    // crawl anything
+    if (GetDepthLevel() > 0)
+        {
     CrawlLinks(m_url, html_utilities::hyperlink_parse::hyperlink_parse_method::html);
+        }
 
     // Now check the original URL to see if it is a file that should be downloaded
     // (falling back to HTM if no extension, as most webpages are)

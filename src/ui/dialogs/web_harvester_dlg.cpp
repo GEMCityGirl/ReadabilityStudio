@@ -266,7 +266,7 @@ void WebHarvesterDlg::CreateControls()
         depthLevelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
         m_depthLevelCtrl = new wxSpinCtrl(Panel, wxID_ANY, std::to_wstring(m_depthLevel));
-        m_depthLevelCtrl->SetRange(1, 10);
+        m_depthLevelCtrl->SetRange(0, 10);
         depthLevelSizer->Add(m_depthLevelCtrl, 0, wxALIGN_CENTER_VERTICAL);
         panelSizer->Add(depthLevelSizer, 0, wxLEFT, wxSizerFlags::GetDefaultBorder());
         panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());

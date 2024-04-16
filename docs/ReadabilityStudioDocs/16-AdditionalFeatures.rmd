@@ -10,7 +10,9 @@ The **Web Harvester** dialog enables you to gather (and optionally download) lin
 
 **Websites to Harvest**: Enter the base webpage(s) to begin your search into this list.
 
-**Depth Level**: Enter the depth of the website that you want to crawl. A level of 1 will gather only the links from the main page, whereas a level of 2 will gather all the links from the main page and then gather all links from those pages.
+**Depth Level**: Enter the depth of the website that you want to crawl.
+A level of 1 will gather only the links from the main page, whereas a level of 2 will gather all the links from the main page and then gather all links from those pages.
+A level of 0 will only download the base webpage(s), not crawling it or gathering any other links from it.
 
 **File types to include**: Select from this list the types of documents to include from the website.
 
