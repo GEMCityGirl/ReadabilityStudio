@@ -170,7 +170,8 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
             wxLogWarning(L"%s: unable to connect to page, error code #%i (%s).", Url, responseCode,
                          QueueDownload::GetResponseMessage(responseCode));
             }
-        wxLogWarning(L"Unable to download to '%s'", downloadPath);
+        wxLogWarning(L"Unable to download to '%s': %s", downloadPath,
+                     m_downloader.GetLastStatusText());
         downloadPath.clear();
         }
 
@@ -793,14 +794,15 @@ bool WebHarvester::HarvestLink(wxString& url, const wxString& fileExtension)
                     wxString fileText;
                     if (Wisteria::TextStream::ReadFile(downloadPath, fileText))
                         {
-                        html_utilities::hyperlink_parse getHyperLinks(fileText.wc_str(), fileText.length(),
+                        html_utilities::hyperlink_parse getHyperLinks(
+                            fileText.wc_str(), fileText.length(),
                             html_utilities::hyperlink_parse::hyperlink_parse_method::html);
                         // gather its hyperlinks
                         const wchar_t* currentLink = getHyperLinks();
                         if (currentLink != nullptr)
                             {
                             const wxString cLink{ currentLink,
-                                            getHyperLinks.get_current_hyperlink_length() };
+                                                  getHyperLinks.get_current_hyperlink_length() };
                             const wxFileName fn(cLink);
                             if (fn.GetFullName().CmpNoCase(jpgName) == 0 &&
                                 html_utilities::html_url_format::is_absolute_url(cLink.wc_str()))
