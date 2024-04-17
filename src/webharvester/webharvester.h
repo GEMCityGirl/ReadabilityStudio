@@ -548,7 +548,7 @@ class WebHarvester
     /// @returns An URL with spaces encoded to '%20', '\/' converted to '/', and trimmed.
     /// @param url The URL to normalized.
     [[nodiscard]]
-    wxString NormalizeUrl(const wxString& url)
+    static wxString NormalizeUrl(const wxString& url)
         {
         wxString adjUrl{ url };
         adjUrl.Trim(true).Trim(false);
@@ -558,6 +558,7 @@ class WebHarvester
 
         return adjUrl;
         }
+
     [[nodiscard]]
     bool VerifyUrlDomainCriteria(const wxString& url);
     /** @brief If @c url meets all the criteria, adds it to the list of links

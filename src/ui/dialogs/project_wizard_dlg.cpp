@@ -1024,6 +1024,7 @@ void ProjectWizardDlg::OnGroupClick([[maybe_unused]] wxCommandEvent& event)
             // use either the first group (if already specified), or find the common folder
             // from selected items and use that as the default group
             wxString currentGroup{ m_fileList->GetItemTextFormatted(firstSelected, 1) };
+            // cppcheck-suppress knownConditionTrueFalse
             if (currentGroup.empty())
                 {
                 currentGroup = getCommonFolder();
