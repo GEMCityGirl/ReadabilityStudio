@@ -143,7 +143,7 @@ class ScriptFileExtension
 
   private:
     std::set<string_util::case_insensitive_wstring> m_scriptFileExtensions{ _DT(L"js"),
-                                                                           _DT(L"vbs") };
+                                                                            _DT(L"vbs") };
     };
 
 /// @brief Interface for harvesting and (optionally) downloading web content from a base URL.
@@ -545,6 +545,19 @@ class WebHarvester
     static wxString GetCharsetFromPageContent(std::string_view pageContent);
 
   protected:
+    /// @returns An URL with spaces encoded to '%20', '\/' converted to '/', and trimmed.
+    /// @param url The URL to normalized.
+    [[nodiscard]]
+    wxString NormalizeUrl(const wxString& url)
+        {
+        wxString adjUrl{ url };
+        adjUrl.Trim(true).Trim(false);
+        // encode any spaces
+        adjUrl.Replace(L" ", L"%20");
+        adjUrl.Replace(L"\\/", L"/");
+
+        return adjUrl;
+        }
     [[nodiscard]]
     bool VerifyUrlDomainCriteria(const wxString& url);
     /** @brief If @c url meets all the criteria, adds it to the list of links

@@ -40,9 +40,7 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
         {
         Url.Truncate(bookMarkIndex);
         }
-    Url.Trim(true).Trim(false);
-    // encode any spaces
-    Url.Replace(L" ", L"%20");
+    Url = NormalizeUrl(Url);
 
     // remove "https" (and the like) from the file path so that when
     // we build a mirrored local folder structure, we don't have a
@@ -206,9 +204,7 @@ wxString WebHarvester::GetContentType(wxString& Url, int& responseCode)
         {
         return wxString{};
         }
-    // encode any spaces
-    Url.Trim(true).Trim(false);
-    Url.Replace(L" ", L"%20");
+    Url = NormalizeUrl(Url);
 
     wxLogVerbose(L"Preparing to get content type from '%s'", Url);
     m_downloader.RequestResponse(Url);
@@ -239,9 +235,7 @@ bool WebHarvester::ReadWebPage(wxString& Url, wxString& webPageContent, wxString
         {
         Url.Truncate(bookMarkIndex);
         }
-    Url.Trim(true).Trim(false);
-    // encode any spaces
-    Url.Replace(L" ", L"%20");
+    Url = NormalizeUrl(Url);
 
     wxLogVerbose(L"Preparing to read %s", Url);
     if (!m_downloader.Read(Url))

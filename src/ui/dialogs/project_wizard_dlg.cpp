@@ -1799,6 +1799,7 @@ void ProjectWizardDlg::OnAddFolderButtonClick([[maybe_unused]] wxCommandEvent& e
                            dirDlg.IsRecursive() ? wxDIR_FILES | wxDIR_DIRS : wxDIR_FILES);
         files = FilterFiles(files, ExtractExtensionsFromFileFilter(dirDlg.GetSelectedFileFilter()));
         }
+    files.Sort();
 
     // see what sort of labeling should be used
     wxString groupLabel;
@@ -1822,6 +1823,7 @@ void ProjectWizardDlg::OnAddFolderButtonClick([[maybe_unused]] wxCommandEvent& e
             }
         }
 
+    wxWindowUpdateLocker noUpdates(m_fileList);
     const size_t currentFileCount = m_fileData->GetItemCount();
     m_fileData->SetSize(currentFileCount + files.GetCount(), 2);
     for (size_t i = 0; i < files.GetCount(); ++i)
@@ -1832,7 +1834,7 @@ void ProjectWizardDlg::OnAddFolderButtonClick([[maybe_unused]] wxCommandEvent& e
             m_fileData->SetItemText(currentFileCount + i, 1, groupLabel);
             }
         // if they chose to use the documents' descriptions as the labels,
-        // then those are loaded on import
+        // then those are loaded on import later
         }
     m_fileList->SetVirtualDataSize(m_fileData->GetItemCount());
     m_fileList->SetColumnWidth(0, m_fileList->GetClientSize().GetWidth() * .75);
