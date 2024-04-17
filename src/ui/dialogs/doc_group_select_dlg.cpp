@@ -13,9 +13,9 @@ void DocGroupSelectDlg::CreateControls()
     {
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
 
-    wxArrayString choices;
-    choices.push_back(_(L"Use documents' descriptions (will be loaded during import)"));
-    choices.push_back(_(L"Use a grouping label"));
+    wxArrayString choices = { _(L"Use documents' descriptions (will be loaded during import)"),
+                              _(L"Use a grouping label"),
+                              _(L"Use the last common folder between files") };
 
     wxRadioBox* radioBox = new wxRadioBox(
         this, wxID_ANY, _(L"Select how to label the document(s):"), wxDefaultPosition,
@@ -36,13 +36,6 @@ void DocGroupSelectDlg::CreateControls()
     m_groupingLabelEntry->Enable(m_selected == 1);
 
     mainSizer->Add(labelSizer, 1, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
-
-    auto tipLabel = new wxStaticText(
-        this, wxID_STATIC,
-        _(L"Select whether to extract descriptions from each document as their label, "
-          "or to use a label to group them by."));
-    tipLabel->Wrap(FromDIP(wxSize(400, 400)).GetWidth());
-    mainSizer->Add(tipLabel, 1, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
 
     // don't show this again
     wxCheckBox* checkBox = new wxCheckBox(

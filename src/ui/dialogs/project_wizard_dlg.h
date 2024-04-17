@@ -52,8 +52,6 @@ class ProjectWizardDlg final : public wxDialog
     /// @private
     ProjectWizardDlg& operator=(const ProjectWizardDlg&) = delete;
 
-    /// Creates the controls and sizers.
-    void CreateControls();
     [[nodiscard]]
     readability::test_language GetLanguage() const;
 
@@ -337,6 +335,9 @@ class ProjectWizardDlg final : public wxDialog
         }
 
   private:
+    /// @brief Creates the controls and sizers.
+    void CreateControls();
+
     [[nodiscard]]
     ProjectType GetProjectType() const noexcept
         {
@@ -347,6 +348,11 @@ class ProjectWizardDlg final : public wxDialog
     void LoadArchive(wxString archivePath = wxString{});
     void UpdateTestSelectionMethodUI();
     void UpdateTestsUI();
+    /** @brief Fills the file list from @c currentFileCount with group labels
+            based on the paths in @c files.
+        @warning @c files should be what is already in the list control and should
+            already be sorted.*/
+    void LoadGroupFromLastCommonFolder(const size_t currentFileCount, const wxArrayString& files);
 
     constexpr static int ID_FILE_BROWSE_BUTTON = wxID_HIGHEST;
     constexpr static int ID_FROM_FILE_BUTTON = wxID_HIGHEST + 1;

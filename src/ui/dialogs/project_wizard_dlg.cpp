@@ -996,7 +996,7 @@ void ProjectWizardDlg::OnGroupClick([[maybe_unused]] wxCommandEvent& event)
                         {
                         break;
                         }
-                    currentCommonFolder = GetCommonFolder(
+                    const auto [currentCommonFolder, folderPos] = GetCommonFolder(
                         lastPath, m_fileList->GetItemTextFormatted(selectedItem, 0));
                     if (currentCommonFolder.empty())
                         {
@@ -1022,7 +1022,7 @@ void ProjectWizardDlg::OnGroupClick([[maybe_unused]] wxCommandEvent& event)
         if (firstSelected != wxNOT_FOUND)
             {
             // use either the first group (if already specified), or find the common folder
-            // from selected items and use that as the default group 
+            // from selected items and use that as the default group
             wxString currentGroup{ m_fileList->GetItemTextFormatted(firstSelected, 1) };
             if (currentGroup.empty())
                 {
@@ -1084,6 +1084,7 @@ void ProjectWizardDlg::LoadArchive(wxString archivePath /*= wxString{}*/)
 
     // see what sort of labeling should be used
     wxString groupLabel;
+    bool groupByLastCommonFolder{ false };
     auto warningIter = WarningManager::GetWarning(_DT(L"prompt-for-batch-label"));
     if (warningIter != WarningManager::GetWarnings().end() && warningIter->ShouldBeShown())
         {
@@ -1098,6 +1099,10 @@ void ProjectWizardDlg::LoadArchive(wxString archivePath /*= wxString{}*/)
             {
             groupLabel = selectLabelTypeDlg.GetGroupingLabel();
             }
+        else if (selectLabelTypeDlg.GetSelection() == 2)
+            {
+            groupByLastCommonFolder = true;
+            }
         if (selectLabelTypeDlg.IsNotShowingAgain())
             {
             warningIter->Show(false);
@@ -1109,8 +1114,9 @@ void ProjectWizardDlg::LoadArchive(wxString archivePath /*= wxString{}*/)
     wxGetApp().SetLastSelectedDocFilter(dlg.GetSelectedFileFilter());
 
     Wisteria::ZipCatalog archive(dlg.GetPath());
-    const wxArrayString files = FilterFiles(
-        archive.GetPaths(), ExtractExtensionsFromFileFilter(dlg.GetSelectedFileFilter()));
+    wxArrayString files = FilterFiles(archive.GetPaths(),
+                                      ExtractExtensionsFromFileFilter(dlg.GetSelectedFileFilter()));
+    files.Sort();
 
     const size_t currentFileCount = m_fileData->GetItemCount();
     m_fileData->SetSize(currentFileCount + files.GetCount(), 2);
@@ -1122,6 +1128,12 @@ void ProjectWizardDlg::LoadArchive(wxString archivePath /*= wxString{}*/)
             m_fileData->SetItemText(currentFileCount + i, 1, groupLabel);
             }
         }
+
+    if (groupByLastCommonFolder && files.size())
+        {
+        LoadGroupFromLastCommonFolder(currentFileCount, files);
+        }
+
     if (m_fileList)
         {
         m_fileList->SetVirtualDataSize(m_fileData->GetItemCount());
@@ -1155,25 +1167,17 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
         excelPath = dlg.GetPath();
         }
 
-    // see what sort of labeling should be used
+    // only a provided group label makes sense here since cells don't have document
+    // descriptions and there aren't any folders to pull a group from
     wxString groupLabel;
     auto warningIter = WarningManager::GetWarning(_DT(L"prompt-for-batch-label"));
     if (warningIter != WarningManager::GetWarnings().end() && warningIter->ShouldBeShown())
         {
-        DocGroupSelectDlg selectLabelTypeDlg(this);
-        selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                                        L"batch-project-import-features.html");
-        if (selectLabelTypeDlg.ShowModal() != wxID_OK)
+        wxTextEntryDialog dlg(this, _(L"Enter a group label for the selected documents"),
+                              _(L"Group Label"));
+        if (dlg.ShowModal() == wxID_OK)
             {
-            return;
-            }
-        if (selectLabelTypeDlg.GetSelection() == 1)
-            {
-            groupLabel = selectLabelTypeDlg.GetGroupingLabel();
-            }
-        if (selectLabelTypeDlg.IsNotShowingAgain())
-            {
-            warningIter->Show(false);
+            groupLabel = dlg.GetValue();
             }
         }
 
@@ -1703,6 +1707,7 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
 
     // see what sort of labeling should be used
     wxString groupLabel;
+    bool groupByLastCommonFolder{ false };
     auto warningIter = WarningManager::GetWarning(_DT(L"prompt-for-batch-label"));
     if (warningIter != WarningManager::GetWarnings().end() && warningIter->ShouldBeShown())
         {
@@ -1717,6 +1722,10 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
             {
             groupLabel = selectLabelTypeDlg.GetGroupingLabel();
             }
+        else if (selectLabelTypeDlg.GetSelection() == 2)
+            {
+            groupByLastCommonFolder = true;
+            }
         if (selectLabelTypeDlg.IsNotShowingAgain())
             {
             warningIter->Show(false);
@@ -1726,6 +1735,9 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
     wxGetApp().SetLastSelectedWebPages(webHarvestDlg.GetUrls());
     wxGetApp().SetLastSelectedDocFilter(webHarvestDlg.GetSelectedDocFilter());
     webHarvestDlg.UpdateHarvesterSettings(wxGetApp().GetWebHarvester());
+
+    size_t totalFileCount{ 0 };
+    wxArrayString files;
 
     for (size_t urlCounter = 0; urlCounter < webHarvestDlg.GetUrls().GetCount(); ++urlCounter)
         {
@@ -1738,6 +1750,7 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
 
         // add the new links to the list
         const size_t currentFileCount = m_fileData->GetItemCount();
+        totalFileCount += currentFileCount;
         size_t i = 0;
         if (webHarvestDlg.IsDownloadFilesLocally())
             {
@@ -1746,6 +1759,7 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
             for (const auto& path : wxGetApp().GetWebHarvester().GetDownloadedFilePaths())
                 {
                 m_fileData->SetItemText(currentFileCount + i, 0, path);
+                files.push_back(path);
                 if (groupLabel.length())
                     {
                     m_fileData->SetItemText(currentFileCount + i, 1, groupLabel);
@@ -1762,6 +1776,7 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
             for (const auto& path : wxGetApp().GetWebHarvester().GetHarvestedLinks())
                 {
                 m_fileData->SetItemText(currentFileCount + i, 0, path);
+                files.push_back(path);
                 if (groupLabel.length())
                     {
                     m_fileData->SetItemText(currentFileCount + i, 1, groupLabel);
@@ -1769,6 +1784,11 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
                 ++i;
                 }
             }
+        }
+
+    if (groupByLastCommonFolder && files.size())
+        {
+        LoadGroupFromLastCommonFolder(totalFileCount, files);
         }
 
     m_fileList->SetVirtualDataSize(m_fileData->GetItemCount());
@@ -1803,6 +1823,7 @@ void ProjectWizardDlg::OnAddFolderButtonClick([[maybe_unused]] wxCommandEvent& e
 
     // see what sort of labeling should be used
     wxString groupLabel;
+    bool groupByLastCommonFolder{ false };
     auto warningIter = WarningManager::GetWarning(_DT(L"prompt-for-batch-label"));
     if (warningIter != WarningManager::GetWarnings().end() && warningIter->ShouldBeShown())
         {
@@ -1816,6 +1837,10 @@ void ProjectWizardDlg::OnAddFolderButtonClick([[maybe_unused]] wxCommandEvent& e
         if (selectLabelTypeDlg.GetSelection() == 1)
             {
             groupLabel = selectLabelTypeDlg.GetGroupingLabel();
+            }
+        else if (selectLabelTypeDlg.GetSelection() == 2)
+            {
+            groupByLastCommonFolder = true;
             }
         if (selectLabelTypeDlg.IsNotShowingAgain())
             {
@@ -1836,9 +1861,46 @@ void ProjectWizardDlg::OnAddFolderButtonClick([[maybe_unused]] wxCommandEvent& e
         // if they chose to use the documents' descriptions as the labels,
         // then those are loaded on import later
         }
+
+    if (groupByLastCommonFolder && files.size())
+        {
+        LoadGroupFromLastCommonFolder(currentFileCount, files);
+        }
+
     m_fileList->SetVirtualDataSize(m_fileData->GetItemCount());
     m_fileList->SetColumnWidth(0, m_fileList->GetClientSize().GetWidth() * .75);
     m_fileList->SetColumnWidth(1, m_fileList->GetClientSize().GetWidth() * .25);
+    }
+
+//-------------------------------------------------------------
+void ProjectWizardDlg::LoadGroupFromLastCommonFolder(const size_t currentFileCount,
+                                                     const wxArrayString& files)
+    {
+    std::pair<wxString, size_t> commonFolder{ wxString{}, wxString::npos };
+    size_t i{ 0 };
+    for (; i < files.GetCount() - 1; ++i)
+        {
+        // if last item had a common folder group match, then...
+        if (commonFolder.first.length() > 0)
+            {
+            const auto lastMatch{ commonFolder };
+            commonFolder = GetCommonFolder(files[i], files[i + 1]);
+            // ...update if the match between the current item and the next one
+            // is a longer path
+            if (commonFolder.first.length() > 0 && lastMatch.second <= commonFolder.second)
+                {
+                m_fileData->SetItemText(currentFileCount + i, 1, commonFolder.first);
+                m_fileData->SetItemText(currentFileCount + i + 1, 1, commonFolder.first);
+                }
+            continue;
+            }
+        commonFolder = GetCommonFolder(files[i], files[i + 1]);
+        if (commonFolder.first.length() > 0)
+            {
+            m_fileData->SetItemText(currentFileCount + i, 1, commonFolder.first);
+            m_fileData->SetItemText(currentFileCount + i + 1, 1, commonFolder.first);
+            }
+        }
     }
 
 //-------------------------------------------------------------
@@ -1875,6 +1937,7 @@ void ProjectWizardDlg::OnAddFileButtonClick([[maybe_unused]] wxCommandEvent& eve
 
     // see what sort of labeling should be used
     wxString groupLabel;
+    bool groupByLastCommonFolder{ false };
     auto warningIter = WarningManager::GetWarning(_DT(L"prompt-for-batch-label"));
     if (warningIter != WarningManager::GetWarnings().end() && warningIter->ShouldBeShown())
         {
@@ -1888,6 +1951,10 @@ void ProjectWizardDlg::OnAddFileButtonClick([[maybe_unused]] wxCommandEvent& eve
         if (selectLabelTypeDlg.GetSelection() == 1)
             {
             groupLabel = selectLabelTypeDlg.GetGroupingLabel();
+            }
+        else if (selectLabelTypeDlg.GetSelection() == 2)
+            {
+            groupByLastCommonFolder = true;
             }
         if (selectLabelTypeDlg.IsNotShowingAgain())
             {
@@ -1911,6 +1978,12 @@ void ProjectWizardDlg::OnAddFileButtonClick([[maybe_unused]] wxCommandEvent& eve
         // if they chose to use the documents' descriptions as the labels,
         // then those are loaded on import
         }
+
+    if (groupByLastCommonFolder && files.size())
+        {
+        LoadGroupFromLastCommonFolder(currentFileCount, files);
+        }
+
     m_fileList->SetVirtualDataSize(m_fileData->GetItemCount());
     m_fileList->SetColumnWidth(0, m_fileList->GetClientSize().GetWidth() * .75);
     m_fileList->SetColumnWidth(1, m_fileList->GetClientSize().GetWidth() * .25);

@@ -31,6 +31,7 @@
     This allows for renaming files as they are downloaded to avoid overwriting existing ones.
   - A depth level of 0 can now be entered. This allows for only downloading the base webpage(s) and nothing else.
 - Added **Minimum document word count** option to the batch project wizard.
+- Folders can now be used as grouping labels when adding documents in the batch project wizard.
 - The **Readability Graphs** page on the **Options** dialog has been moved to be under the **Graphs** section.
 - **Ignore social media hashtags** feature of spell checker now recognizes handles, such as *\@AskLibreOffice*.
 - Projects that were created from manually entered text can now be changed to link to external documents.
