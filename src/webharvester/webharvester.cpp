@@ -380,7 +380,7 @@ bool WebHarvester::CrawlLinks()
     // crawl anything
     if (GetDepthLevel() > 0)
         {
-    CrawlLinks(m_url, html_utilities::hyperlink_parse::hyperlink_parse_method::html);
+        CrawlLinks(m_url, html_utilities::hyperlink_parse::hyperlink_parse_method::html);
         }
 
     // Now check the original URL to see if it is a file that should be downloaded
@@ -602,8 +602,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
     wxString contentType;
     bool pageIsHtml = false;
 
-    if (IsNonWebPageFileExtension(fileExt.wc_str()) ||
-        IsScriptFileExtension(fileExt.wc_str()))
+    if (IsNonWebPageFileExtension(fileExt.wc_str()) || IsScriptFileExtension(fileExt.wc_str()))
         {
         pageIsHtml = false;
         }
@@ -642,32 +641,6 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
         }
     else if (IsNonWebPageFileExtension(fileExt.wc_str()))
         {
-        // Some JPG links are actually HTML pages being used as a gallery of sorts
-        // for a JPG, so treat it as such if the MIME type indicates that.
-        if (fileExt.CmpNoCase(L"jpg") == 0 || fileExt.CmpNoCase(L"jpeg") == 0)
-            {
-            int responseCode{ 200 };
-            const wxString actualFileType =
-                GetFileTypeFromContentType(GetContentType(fullUrl, responseCode));
-            if (QueueDownload::IsBadResponseCode(responseCode))
-                {
-                wxLogVerbose(L"'%s': bad response from web page; unable to crawl page", fullUrl);
-                return;
-                }
-            if (actualFileType.CmpNoCase(L"html") == 0)
-                {
-                pageIsHtml = true;
-                fileExt = actualFileType;
-                wxLogVerbose(L"'%s': JPG is really HTML; will be crawled as such.", fullUrl);
-                }
-            }
-
-        // sometimes pages with a certain file extension are really HTML pages,
-        // so crawl if necessary
-        if (pageIsHtml)
-            {
-            CrawlLinks(fullUrl, html_utilities::hyperlink_parse::hyperlink_parse_method::html);
-            }
         // add the link to files to harvest/download if it matches our criteria
         if ((m_harvestAllHtml && pageIsHtml) || VerifyFileExtension(fileExt))
             {
@@ -808,7 +781,47 @@ bool WebHarvester::HarvestLink(wxString& url, const wxString& fileExtension)
     m_harvestedLinks.insert(url);
     if (IsDownloadingFilesWhileCrawling())
         {
-        DownloadFile(url, fileExtension);
+        wxString downloadPath = DownloadFile(url, fileExtension);
+        if (downloadPath.length())
+            {
+            // Some JPG links are actually HTML pages being used as a gallery of sorts
+            // for a JPG, so treat it as such if the MIME type indicates that.
+            if (fileExtension.CmpNoCase(L"jpg") == 0 || fileExtension.CmpNoCase(L"jpeg") == 0)
+                {
+                const wxString actualFileType =
+                    GetFileTypeFromContentType(m_downloader.GetLastContentType());
+                if (actualFileType.CmpNoCase(L"html") == 0)
+                    {
+                    wxLogVerbose(L"'%s': JPG is really HTML; will attempt to download actual JPG.",
+                                 url);
+                    std::set<wxString, wxStringLessWebPath> queuedDownloads;
+                    const wxString jpgName{ wxFileName{ downloadPath }.GetFullName() };
+                    wxString fileText;
+                    if (Wisteria::TextStream::ReadFile(downloadPath, fileText))
+                        {
+                        html_utilities::hyperlink_parse getHyperLinks(fileText.wc_str(), fileText.length(),
+                            html_utilities::hyperlink_parse::hyperlink_parse_method::html);
+                        // gather its hyperlinks
+                        const wchar_t* currentLink = getHyperLinks();
+                        if (currentLink != nullptr)
+                            {
+                            const wxString cLink{ currentLink,
+                                            getHyperLinks.get_current_hyperlink_length() };
+                            const wxFileName fn(cLink);
+                            if (fn.GetFullName().CmpNoCase(jpgName) == 0 &&
+                                html_utilities::html_url_format::is_absolute_url(cLink.wc_str()))
+                                {
+                                queuedDownloads.insert(cLink);
+                                }
+                            }
+                        for (auto link : queuedDownloads)
+                            {
+                            DownloadFile(link, fileExtension);
+                            }
+                        }
+                    }
+                }
+            }
         }
     return true;
     }
