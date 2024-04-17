@@ -8272,6 +8272,10 @@ automatizing
 automaton
 automaton's
 automatons
+automerge
+automerged
+automerges
+automerging
 automobile
 automobile's
 automobiled
@@ -8379,6 +8383,10 @@ autosuggestibility
 autosuggestibility's
 autosuggesting
 autosuggests
+autosum
+autosummed
+autosumming
+autosums
 autotoxicities
 autotoxicity
 autotoxicity's
@@ -23404,6 +23412,7 @@ cocooning
 cocoons
 cocos
 cocos's
+cocreatable
 cocreate
 cocreated
 cocreates
@@ -32354,6 +32363,7 @@ decommissioning
 decommissions
 decommit
 decommits
+decommittable
 decommitted
 decommitting
 decompensate
@@ -34022,6 +34032,9 @@ deploringly
 deploy
 deployable
 deployed
+deployer
+deployer's
+deployers
 deploying
 deployment
 deployment's
@@ -34274,6 +34287,7 @@ derisiveness's
 derisory
 derivable
 derivate
+derivated
 derivation
 derivation's
 derivations
@@ -43297,8 +43311,11 @@ entrancements
 entrances
 entranceway
 entranceway's
+entrancies
 entrancing
 entrancingly
+entrancy
+entrancy's
 entrant
 entrant's
 entrants
@@ -61280,6 +61297,12 @@ hotlinks
 hotly
 hotness
 hotness's
+hotpatch
+hotpatch's
+hotpatchable
+hotpatched
+hotpatches
+hotpatching
 hotplate
 hotplate's
 hotplates
@@ -66200,6 +66223,9 @@ inlier's
 inlinable
 inline
 inlined
+inlinee
+inlinee's
+inlinees
 inlines
 inlining
 inly
@@ -67735,6 +67761,7 @@ interwar
 interwar's
 interwars
 interweave
+interweaved
 interweaves
 interweaving
 interwork
@@ -73869,6 +73896,7 @@ lintel's
 lintels
 linter
 linter's
+linters
 lintier
 linties
 lintiest
@@ -75938,10 +75966,13 @@ magazine's
 magazined
 magazines
 magazining
+mage
+mage's
 Magendie
 magenta
 magenta's
 magentas
+mages
 magged
 magging
 maggot
@@ -80864,6 +80895,10 @@ misappropriates
 misappropriating
 misappropriation
 misappropriations
+misassign
+misassigned
+misassigning
+misassigns
 misattribution
 misattribution's
 misattributions
@@ -83417,6 +83452,7 @@ multicandidate
 multicandidate's
 multicandidates
 multicarbon
+multicaret
 multicast
 multicellular
 multicellularity
@@ -86477,6 +86513,7 @@ nonbusiness
 noncacheable
 noncached
 noncalcified
+noncallable
 noncaloric
 noncancerous
 noncarbohydrate
@@ -86541,6 +86578,7 @@ noncomplyings
 noncomprehending
 noncomprehensive
 noncomprehensively
+noncompressed
 noncomputerized
 noncoms
 nonconducting
@@ -86813,6 +86851,7 @@ noninstitutionalize
 noninstitutionalized
 noninstitutionalizes
 noninstitutionalizing
+noninstrumented
 nonintellectual
 nonintellectuals
 noninteracting
@@ -86863,6 +86902,7 @@ nonliterary
 nonliving
 nonlocal
 nonlocalizable
+nonlocalized
 nonluminous
 nonlymphocytic
 nonmagical
@@ -87215,6 +87255,7 @@ nonstudy
 nonsubject
 nonsubject's
 nonsubjects
+nonsubstantive
 nonsuccess
 nonsuccessive
 nonsuch
@@ -90912,6 +90953,10 @@ overcharge
 overcharged
 overcharges
 overcharging
+overclaim
+overclaimed
+overclaiming
+overclaims
 overclip
 overclipped
 overclipping
@@ -100355,7 +100400,11 @@ preauricular
 preauthentication
 preauthentication's
 preauthentications
+preauthor
+preauthored
+preauthoring
 preauthorize
+preauthors
 prebendary
 prebendary's
 prebiotic
@@ -108237,6 +108286,7 @@ refereeing
 referees
 reference
 reference's
+referenceable
 referenced
 referenceness
 referencer
@@ -115919,6 +115969,9 @@ screenshots
 screenshotted
 screentime
 screentime's
+screentip
+screentip's
+screentips
 screenwrite
 screenwriter
 screenwriter's
@@ -127156,6 +127209,9 @@ subconstituent
 subcontainer
 subcontainer's
 subcontainers
+subcontext
+subcontext's
+subcontexts
 subcontinent
 subcontinent's
 subcontinental
@@ -128968,6 +129024,9 @@ supertanker
 supertanker's
 supertankers
 supertaster
+supertip
+supertip's
+supertips
 supertitle
 supertitle's
 supertitled
@@ -129871,6 +129930,7 @@ swizzle
 swizzle's
 swizzled
 swizzler
+swizzles
 swizzling
 swob's
 swollen
@@ -130437,6 +130497,10 @@ tabernacles
 tabernacling
 tabers
 Tabes
+tabified
+tabifies
+tabify
+tabifying
 Tabina
 tabla
 tabla's
@@ -140344,6 +140408,9 @@ uninitialise
 uninitialised
 uninitialises
 uninitialising
+uninitialization
+uninitialization's
+uninitializations
 uninitialize
 uninitialized
 uninitializes
@@ -140745,6 +140812,7 @@ unmentionables
 unmentioned
 unmerciful
 unmercifully
+unmerged
 unmerited
 unmeritorious
 unmeshed
@@ -141007,6 +141075,7 @@ unpredictably
 unpredicted
 unpredictive
 unpreemphasized
+unprefixed
 unprejudiced
 unpremeditated
 unprepared
@@ -141902,6 +141971,7 @@ unvulcanized's
 unvulcanizeds
 unwaged
 unwaivering
+unwalkable
 unwanted
 unwarier
 unwarily
@@ -146156,6 +146226,7 @@ webfoot's
 webhook
 webhook's
 webhooks
+webhosted
 webinar
 webinar's
 webinars

@@ -2691,6 +2691,9 @@ calls attention to	discloses, broadcasts, divulges, exposes, points out, promote
 calls into question	challenges	2		
 caluclate	calculate	3		
 caluclated	calculated	3		
+caluclation	calculation	3		
+caluclation's	calculation's	3		
+caluclations	calculations	3		
 caluculate	calculate	3		
 caluculated	calculated	3		
 calulate	calculate	3		
@@ -2755,6 +2758,7 @@ capabilites	capabilities	3
 capabilities	abilities	0		
 capability	ability	0		
 capability's	ability's	0		
+capabilties	capabilities	3		
 capabilty	capability	3		
 capable	able	0		
 capablities	capabilities	3		
@@ -4358,6 +4362,9 @@ debilitate	weaken	0
 debilitated	weakened	0		
 debilitates	weakens	0		
 debilitating	weakening	0		
+debugguer	debugger	3		
+debugguer's	debugger's	3		
+debugguers	debuggers	3		
 debuging	debugging	3		
 decalare	declare	3		
 decalared	declared	3		
@@ -4477,6 +4484,11 @@ defunct	dead	0
 degrate	degrade	3		
 degre	degree	3		
 degredation	degradation	3		
+deisgn	design	3		
+deisgn's	design's	3		
+deisgned	designed	3		
+deisgning	designing	3		
+deisgns	designs	3		
 delagates	delegates	3		
 delapidated	dilapidated	3		
 delare	declare	3		
@@ -4791,6 +4803,7 @@ dicovers	discovers	3
 dicovery	discovery	3		
 dictionarys	dictionaries	3		
 dictionnary	dictionary	3		
+dictonaries	dictionaries	3		
 did away with	removed, canceled, ended	0		
 did not pay any attention to	ignored	0		
 did not pay attention to	ignored	0		
@@ -5385,6 +5398,7 @@ efficent	efficient	3
 efficently	efficiently	3		
 effulence	effluence	3		
 effusive	pouring out, gushing, overflowing	0		
+egardless	regardless	3		
 egde	edge	3		
 egdes	edges	3		
 egg on her face	embarrassed	2		
@@ -5402,6 +5416,10 @@ egress	emerge	0
 egressed	emerged	0		
 egresses	emerges	0		
 egressing	emerging	0		
+ehance	enhance	3		
+ehanced	enhanced	3		
+ehances	enhances	3		
+ehancing	enhancing	3		
 eight hundred pound gorilla	dominant company	2		
 eiter	either	3		
 elapse	pass	0		
@@ -5479,6 +5497,7 @@ emasculate	weaken	0
 emasculated	weakened	0		
 emasculates	weakens	0		
 emasculating	weakening	0		
+emaximum	maximum	3		
 embarass	embarrass	3		
 embarassed	embarrassed	3		
 embarasses	embarrasses	3		
@@ -8987,6 +9006,9 @@ langauage	language	3
 langauge	language	3		
 langauge's	language's	3		
 langauges	languages	3		
+languate	language	3		
+languate's	language's	3		
+languates	languages	3		
 langugage	language	3		
 languge	language	3		
 languges	languages	3		
@@ -9456,7 +9478,6 @@ Marriot's	Marriott's	3
 Marriots	Marriotts	3		
 marrtyred	martyred	3		
 marryied	married	3		
-marshalable	marshallable	3		
 marshmellow	marshmallow	3		
 marshmellows	marshmallows	3		
 mash potatoes	mashed potatoes	3		
@@ -10186,6 +10207,7 @@ objecs	objects	3
 objective	aim, goal	0		
 objective's	aim's, goal's	0		
 objectives	aims, goals	0		
+objecy	object	3		
 objet	object	3		
 objet's	object's	3		
 objets	objects	3		
@@ -12900,6 +12922,10 @@ retention	keeping, holding	0
 reticent	silent	0		
 retiremetnt	retirement	3		
 retiremetnt's	retirement's	3		
+retireve	retrieve	3		
+retireved	retrieved	3		
+retireves	retrieves	3		
+retireving	retrieving	3		
 retore	restore	3		
 retored	restored	3		
 retores	restores	3		
@@ -13317,6 +13343,9 @@ seqence	sequence	3
 sequencial	sequential	3		
 sequestration	removal	0		
 sequestrations	removals	0		
+sequnce	sequence	3		
+sequnce's	sequence's	3		
+sequnces	sequences	3		
 serch	search	3		
 serched	searched	3		
 serches	searches	3		
@@ -13865,6 +13894,9 @@ storise	stories	3
 stornegst	strongest	3		
 stoyr	story	3		
 stpo	stop	3		
+stracture	structure	3		
+stracture's	structure's	3		
+stractures	structures	3		
 stradegies	strategies	3		
 stradegy	strategy	3		
 straightfoward	straightforward	3		
@@ -14499,7 +14531,7 @@ the extent to which	how far, how much	0
 the fact of the matter is	in fact	0		
 the fact that	that	0		
 the flew	the flue	3		
-the from	the form	3		a;address;argument;button;clause;command;email;field;file;header;instruction;page;parameter;reference;state;statement;the
+the from	the form	3		a;address;argument;button;clause;command;email;field;file;header;instruction;page;parameter;pin;pins;reference;state;statement;the
 the have	they have, then have	3		
 the heart of the matter	crux, center	0		
 the hers	(strike one of these)	3		
@@ -15897,6 +15929,7 @@ wheter	whether	3
 whic	which	3		
 which beings with	which begins with	3		
 which where	which were	3		
+whichs	which	3		
 whihc	which	3		
 whilst	while	0		
 whip cream	whipped cream	3		
