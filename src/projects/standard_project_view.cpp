@@ -55,24 +55,6 @@ wxBEGIN_EVENT_TABLE(ProjectView, BaseProjectView)
     EVT_MENU(XRCID("ID_REMOVE_TEST"), ProjectView::OnTestDeleteMenu)
     EVT_MENU(XRCID("ID_EXPORT_FILTERED_DOCUMENT"), ProjectView::OnExportFilteredDocument)
     EVT_MENU(XRCID("ID_EXPORT_ALL"), ProjectView::OnExportAll)
-    EVT_MENU(wxID_SELECTALL, ProjectView::OnMenuCommand)
-    EVT_MENU(wxID_COPY, ProjectView::OnMenuCommand)
-    EVT_MENU(wxID_PREVIEW, ProjectView::OnMenuCommand)
-    EVT_MENU(wxID_PRINT, ProjectView::OnMenuCommand)
-    EVT_MENU(wxID_ZOOM_IN, ProjectView::OnMenuCommand)
-    EVT_MENU(wxID_ZOOM_OUT, ProjectView::OnMenuCommand)
-    EVT_MENU(wxID_ZOOM_FIT, ProjectView::OnMenuCommand)
-    EVT_MENU(XRCID("ID_SAVE_ITEM"), ProjectView::OnMenuCommand)
-    EVT_MENU(XRCID("ID_COPY_ALL"), ProjectView::OnMenuCommand)
-    EVT_MENU(XRCID("ID_COPY_WITH_COLUMN_HEADERS"), ProjectView::OnMenuCommand)
-    EVT_MENU(XRCID("ID_COPY_FIRST_COLUMN"), ProjectView::OnMenuCommand)
-    EVT_MENU(XRCID("ID_VIEW_ITEM"), ProjectView::OnMenuCommand)
-    EVT_MENU(XRCID("ID_LIST_SORT"), ProjectView::OnMenuCommand)
-    EVT_MENU(XRCID("ID_SORT_ASCENDING"), ProjectView::OnMenuCommand)
-    EVT_MENU(XRCID("ID_SORT_DESCENDING"), ProjectView::OnMenuCommand)
-    EVT_MENU(XRCID("ID_EXCLUDE_SELECTED"), ProjectView::OnMenuCommand)
-    EVT_MENU(XRCID("ID_MULTI_COLUMN_SORT_ASCENDING"), ProjectView::OnMenuCommand)
-    EVT_MENU(XRCID("ID_MULTI_COLUMN_SORT_DESCENDING"), ProjectView::OnMenuCommand)
     // not actually a test (it doesn't have an ID), but we'll add it in this function
     EVT_MENU(XRCID("ID_DOLCH"), ProjectView::OnAddTest)
     EVT_FIND(wxID_ANY, ProjectView::OnFind)
@@ -143,6 +125,25 @@ wxEND_EVENT_TABLE()
     Bind(wxEVT_MENU, &ProjectView::OnGradeScale, this, XRCID("ID_K12_NUNAVUT"));
     Bind(wxEVT_MENU, &ProjectView::OnGradeScale, this, XRCID("ID_QUEBEC"));
     Bind(wxEVT_MENU, &ProjectView::OnGradeScale, this, XRCID("ID_ENGLAND"));
+
+    Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, wxID_SELECTALL);
+    Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, wxID_COPY);
+    Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, wxID_PREVIEW);
+    Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, wxID_PRINT);
+    Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, wxID_ZOOM_IN);
+    Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, wxID_ZOOM_OUT);
+    Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, wxID_ZOOM_FIT);
+    Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, XRCID("ID_SAVE_ITEM"));
+    Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, XRCID("ID_COPY_ALL"));
+    Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, XRCID("ID_COPY_WITH_COLUMN_HEADERS"));
+    Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, XRCID("ID_COPY_FIRST_COLUMN"));
+    Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, XRCID("ID_VIEW_ITEM"));
+    Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, XRCID("ID_LIST_SORT"));
+    Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, XRCID("ID_SORT_ASCENDING"));
+    Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, XRCID("ID_SORT_DESCENDING"));
+    Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, XRCID("ID_EXCLUDE_SELECTED"));
+    Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, XRCID("ID_MULTI_COLUMN_SORT_ASCENDING"));
+    Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, XRCID("ID_MULTI_COLUMN_SORT_DESCENDING"));
 
     Bind(
         wxEVT_RIBBONBUTTONBAR_CLICKED,
