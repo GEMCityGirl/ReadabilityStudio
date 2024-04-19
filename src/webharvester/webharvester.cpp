@@ -117,24 +117,24 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
         if (webFileExt.empty())
             {
             wxLogVerbose(L"'%s': querying file type from MIME type", Url);
-        int rCode{ 200 };
-        const wxString downloadExt = StripIllegalFileCharacters(
-            fileExtension.length() ? fileExtension :
-                                     GetFileTypeFromContentType(GetContentType(Url, rCode)));
-        // If we needed to connect to the page to get its MIME type, then check the response
-        // code while we are at it. Bail early if we got a bad response (or timed out).
-        if (fileExtension.empty() && QueueDownload::IsBadResponseCode(rCode))
-            {
-            wxLogVerbose(L"'%s': bad response from web page; unable to download", Url);
-            return wxString{};
+            int rCode{ 200 };
+            const wxString downloadExt = StripIllegalFileCharacters(
+                fileExtension.length() ? fileExtension :
+                                         GetFileTypeFromContentType(GetContentType(Url, rCode)));
+            // If we needed to connect to the page to get its MIME type, then check the response
+            // code while we are at it. Bail early if we got a bad response (or timed out).
+            if (fileExtension.empty() && QueueDownload::IsBadResponseCode(rCode))
+                {
+                wxLogVerbose(L"'%s': bad response from web page; unable to download", Url);
+                return wxString{};
+                }
+            downloadPath += L'.' + downloadExt;
             }
-        downloadPath += L'.' + downloadExt;
-        }
         // ...or use what GetExtensionOrDomain() was able to figure out
         else
-        {
+            {
             downloadPath += L'.' + webFileExt;
-        }
+            }
         }
     // ...otherwise, the download path already has a proper extension
 
@@ -794,16 +794,17 @@ bool WebHarvester::HarvestLink(wxString& url, const wxString& fileExtension)
         wxString downloadPath = DownloadFile(url, fileExtension);
         if (downloadPath.length())
             {
-            // Some JPG links are actually HTML pages being used as a gallery of sorts
-            // for a JPG, so treat it as such if the MIME type indicates that.
-            if (fileExtension.CmpNoCase(L"jpg") == 0 || fileExtension.CmpNoCase(L"jpeg") == 0)
+            // Some image links are actually HTML pages being used as a gallery of sorts
+            // for an image, so treat it as such if the MIME type indicates that.
+            if (fileExtension.CmpNoCase(L"jpg") == 0 || fileExtension.CmpNoCase(L"jpeg") == 0 ||
+                fileExtension.CmpNoCase(L"png") == 0)
                 {
                 const wxString actualFileType =
                     GetFileTypeFromContentType(m_downloader.GetLastContentType());
                 if (actualFileType.CmpNoCase(L"html") == 0)
                     {
-                    wxLogVerbose(L"'%s': JPG is really HTML; will attempt to download actual JPG.",
-                                 url);
+                    wxLogVerbose(
+                        L"'%s': image is really HTML; will attempt to download actual image", url);
                     std::set<wxString, wxStringLessWebPath> queuedDownloads;
                     const wxString jpgName{ wxFileName{ downloadPath }.GetFullName() };
                     wxString fileText;
