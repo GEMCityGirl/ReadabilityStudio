@@ -185,7 +185,8 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
             wxLogWarning(L"%s: unable to connect to page, error code #%i (%s).", Url, responseCode,
                          QueueDownload::GetResponseMessage(responseCode));
             }
-        wxLogWarning(L"Unable to download to '%s'", downloadPath);
+        wxLogWarning(L"Unable to download to '%s': %s", downloadPath,
+                     m_downloader.GetLastStatusText());
         downloadPath.clear();
         }
 
