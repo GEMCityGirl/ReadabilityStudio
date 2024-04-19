@@ -98,13 +98,25 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
         return wxString{};
         }
     downloadPath = downloadPath + StripIllegalFileCharacters(fileName);
-    /* Check the extension on the file we are downloading. It might not have one, might be
-       junk (because it is a PHP query), or it might be a domain that wouldn't make sense for
+
+    /* Check the extension on the file we are downloading. It might not have one
+       or it might be a domain that wouldn't make sense for
        local file types. If so, append the file extension "hint" onto it
        (or determine it from the MIME type).*/
-    const wxString webFileExt = wxFileName(downloadPath).GetExt();
-    if (webFileExt.empty() || webFileExt.length() > 4)
+    const wxString webFileExt = GetExtensionOrDomain(downloadPath);
+    if (webFileExt.empty() ||
+        html_utilities::html_url_format::is_url_top_level_domain(Url.wc_str()))
         {
+        downloadPath += L".html";
+        }
+    // if a PHP query (or something like that)...
+    else if (wxFileName{ downloadPath }.GetExt().length() > 4)
+        {
+        // ...append the file extension based on MIME type
+        // if GetExtensionOrDomain() couldn't figure out an extension
+        if (webFileExt.empty())
+            {
+            wxLogVerbose(L"'%s': querying file type from MIME type", Url);
         int rCode{ 200 };
         const wxString downloadExt = StripIllegalFileCharacters(
             fileExtension.length() ? fileExtension :
@@ -118,10 +130,13 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
             }
         downloadPath += L'.' + downloadExt;
         }
-    else if (html_utilities::html_url_format::is_url_top_level_domain(Url.wc_str()))
+        // ...or use what GetExtensionOrDomain() was able to figure out
+        else
         {
-        downloadPath += L".html";
+            downloadPath += L'.' + webFileExt;
         }
+        }
+    // ...otherwise, the download path already has a proper extension
 
     if (!m_replaceExistingFiles && wxFileName::FileExists(downloadPath))
         {
