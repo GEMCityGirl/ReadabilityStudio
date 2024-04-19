@@ -150,7 +150,7 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
         }
 
     wxYield();
-    if (m_progressDlg)
+    if (m_progressDlg != nullptr)
         {
         wxStringTokenizer tkz(Url, L"\n\r", wxTOKEN_STRTOK);
         const wxString urlLabel = tkz.GetNextToken();
@@ -185,8 +185,7 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
             wxLogWarning(L"%s: unable to connect to page, error code #%i (%s).", Url, responseCode,
                          QueueDownload::GetResponseMessage(responseCode));
             }
-        wxLogWarning(L"Unable to download to '%s': %s", downloadPath,
-                     m_downloader.GetLastStatusText());
+        wxLogWarning(L"Unable to download to '%s'", downloadPath);
         downloadPath.clear();
         }
 
@@ -599,7 +598,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
 
     wxString fileExt = GetExtensionOrDomain(fullUrl);
     // If no extension, fall back to it being a regular webpage.
-    // Modern webpages generally don't have HTM extensions (or any extension) like in the past.
+    // Modern webpages generally don't have HTM extentions (or any extension) like in the past.
     if (fileExt.empty())
         {
         fileExt = L"htm";
