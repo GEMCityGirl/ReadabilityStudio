@@ -2307,6 +2307,9 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
                     wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
                     _(L"Copy"));
+                editButtonBar->AddHybridButton(wxID_ZOOM_IN, _(L"Zoom"),
+                                               wxGetApp().ReadRibbonSvgIcon(L"ribbon/zoom-in.svg"),
+                                               _(L"Zoom"));
                 }
             // box plot panel
                 {
