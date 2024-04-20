@@ -114,6 +114,7 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
         {
         // ...append the file extension based on MIME type
         // if GetExtensionOrDomain() couldn't figure out an extension
+        // cppcheck-suppress knownConditionTrueFalse
         if (webFileExt.empty())
             {
             wxLogVerbose(L"'%s': querying file type from MIME type", Url);
