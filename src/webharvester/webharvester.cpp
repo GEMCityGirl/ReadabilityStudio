@@ -599,7 +599,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
 
     wxString fileExt = GetExtensionOrDomain(fullUrl);
     // If no extension, fall back to it being a regular webpage.
-    // Modern webpages generally don't have HTM extentions (or any extension) like in the past.
+    // Modern webpages generally don't have HTM extensions (or any extension) like in the past.
     if (fileExt.empty())
         {
         fileExt = L"htm";
