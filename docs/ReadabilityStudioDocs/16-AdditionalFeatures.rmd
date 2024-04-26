@@ -150,8 +150,6 @@ After selecting a group of documents, you will be presented with this dialog to 
 **Use the last common folder between files**: Select this to group documents by folder. The paths between each pair of files will be compared, and the last folder that they have in common will be their group. 
 :::
 
-**Do not show this again (always use document descriptions)**: Check this to no longer prompt for how to label batch documents; document descriptions will always be used instead.
-
 Refer to \@ref(adding-labels-to-batch) and \@ref(grouping-docs-in-batch) for examples of this feature.
 
 ### Select Directory

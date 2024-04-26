@@ -27,7 +27,7 @@ void DocGroupSelectDlg::CreateControls()
     wxBoxSizer* labelSizer = new wxBoxSizer(wxHORIZONTAL);
     m_groupingLabelText = new wxStaticText(this, wxID_STATIC, _(L"Grouping label:"));
     m_groupingLabelEntry =
-        new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize,
+        new wxTextCtrl(this, wxID_ANY, wxString{}, wxDefaultPosition, wxDefaultSize,
                        wxBORDER_THEME, wxGenericValidator(&m_groupingLabel));
     labelSizer->Add(m_groupingLabelText, 0, wxALIGN_CENTER_VERTICAL);
     labelSizer->Add(m_groupingLabelEntry, 1, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
@@ -36,12 +36,6 @@ void DocGroupSelectDlg::CreateControls()
     m_groupingLabelEntry->Enable(m_selected == 1);
 
     mainSizer->Add(labelSizer, 1, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
-
-    // don't show this again
-    wxCheckBox* checkBox = new wxCheckBox(
-        this, wxID_ANY, _(L"Do not show this again (always use document descriptions)"),
-        wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_doNotShowThisAgain));
-    mainSizer->Add(checkBox, 0, wxALL, wxSizerFlags::GetDefaultBorder());
 
     mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL | wxHELP), 0, wxEXPAND | wxALL,
                    wxSizerFlags::GetDefaultBorder());

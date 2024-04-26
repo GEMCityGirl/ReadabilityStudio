@@ -151,10 +151,6 @@ ReadabilityAppOptions::ReadabilityAppOptions()
           "along with an icon indicating whether the document is passing these constraints."),
         wxString{}, _(L"Prompt about how the Goals window works in a batch project."),
         wxICON_INFORMATION, true));
-    WarningManager::AddWarning(
-        WarningMessage(_DT(L"prompt-for-batch-label"), wxString{}, wxString{},
-                       _(L"Prompt for labels when adding documents to a batch project."),
-                       wxICON_INFORMATION, false));
     WarningManager::AddWarning(WarningMessage(
         _DT(L"set-app-exclusion-list-from-project"),
         _(L"Would you like to use this word exclusion list for all future projects?"),
@@ -303,6 +299,7 @@ void ReadabilityAppOptions::ResetSettings()
     m_wordyPhraseHighlightColor = wxColour(0, 255, 255);
     m_fontColor = wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT);
     m_textSource = TextSource::FromFile;
+    m_batchGroupDefault = 2;
     m_longSentenceMethod = LongSentence::LongerThanSpecifiedLength;
     m_difficultSentenceLength = 22;
     m_numeralSyllabicationMethod = NumeralSyllabize::WholeWordIsOneSyllable;
@@ -3020,6 +3017,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                 projectSettings->FirstChildElement(XML_WIZARD_PAGES_SETTINGS.data());
             if (wizardPageDefaultsNode)
                 {
+                // batch grouping method
+                auto batchGrouping =
+                    wizardPageDefaultsNode->FirstChildElement(XML_WIZARD_BATCH_GROUP.data());
+                if (batchGrouping != nullptr)
+                    {
+                    m_batchGroupDefault = batchGrouping->ToElement()->IntAttribute(
+                            XML_METHOD.data(), m_batchGroupDefault);
+                    }
                 // Text Source
                 auto textSource = wizardPageDefaultsNode->FirstChildElement(XML_TEXT_SOURCE.data());
                 if (textSource)
@@ -4738,6 +4743,10 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
 
     // wizard page defaults
     auto wizardPageDefaultsSection = doc.NewElement(XML_WIZARD_PAGES_SETTINGS.data());
+    
+    auto batchGrouping = doc.NewElement(XML_WIZARD_BATCH_GROUP.data());
+    batchGrouping->SetAttribute(XML_METHOD.data(), m_batchGroupDefault);
+    wizardPageDefaultsSection->InsertEndChild(batchGrouping);
 
     // Text Source
     auto textSource = doc.NewElement(XML_TEXT_SOURCE.data());

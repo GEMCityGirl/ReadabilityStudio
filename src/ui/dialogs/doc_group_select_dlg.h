@@ -81,18 +81,10 @@ class DocGroupSelectDlg final : public Wisteria::UI::DialogWithHelp
         @param selected The radio button to select.*/
     void SetSelection(const int selected)
         {
-        m_selected = std::clamp(selected, 0, 1);
+        m_selected = std::clamp(selected, 0, 2);
         m_groupingLabelText->Enable(m_selected == 1);
         m_groupingLabelEntry->Enable(m_selected == 1);
         TransferDataToWindow();
-        }
-
-    /// @returns Whether the "Do not show again" checkbox was checked.
-    [[nodiscard]]
-    bool IsNotShowingAgain() noexcept
-        {
-        TransferDataFromWindow();
-        return m_doNotShowThisAgain;
         }
 
   private:
@@ -104,7 +96,6 @@ class DocGroupSelectDlg final : public Wisteria::UI::DialogWithHelp
 
     wxString m_groupingLabel;
     int m_selected{ 0 };
-    bool m_doNotShowThisAgain{ false };
     wxStaticText* m_groupingLabelText{ nullptr };
     wxTextCtrl* m_groupingLabelEntry{ nullptr };
     };

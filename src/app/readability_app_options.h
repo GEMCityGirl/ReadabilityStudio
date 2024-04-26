@@ -1259,6 +1259,15 @@ class ReadabilityAppOptions
         {
         m_documentStorageMethod = method;
         }
+    
+    // how documents are grouped
+    [[nodiscard]]
+    int GetBatchGroupMethod() const noexcept
+        {
+        return m_batchGroupDefault;
+        }
+
+    void SetBatchGroupMethod(int group) { m_batchGroupDefault = group; }
 
     // Window information
     [[nodiscard]]
@@ -2586,6 +2595,7 @@ class ReadabilityAppOptions
     };
     // tests by test bundle (this will be the selected bundle name)
     wxString m_selectedTestBundle;
+    int m_batchGroupDefault{ 2 };
     // document storage/linking information
     TextStorage m_documentStorageMethod{ TextStorage::NoEmbedText };
     // Window information
@@ -2801,6 +2811,7 @@ class ReadabilityAppOptions
     const std::string_view XML_DISPLAY{ _DT("display") };
     const std::string_view XML_CONFIG_HEADER{ _DT("oleander-readability-studio-configuration") };
     const std::string_view XML_WIZARD_PAGES_SETTINGS{ _DT("wizard-page-defaults") };
+    const std::string_view XML_WIZARD_BATCH_GROUP{ _DT("batch-group-method") };
     const std::string_view XML_PROJECT_LANGUAGE{ _DT("project-language") };
     // test settings
     const std::string_view XML_READABILITY_TEST_GRADE_SCALE_DISPLAY{ _DT(
