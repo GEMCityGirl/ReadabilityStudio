@@ -21,7 +21,6 @@ class ProjectView final : public BaseProjectView
     ProjectView(const ProjectView&) = delete;
     ProjectView& operator=(const ProjectView&) = delete;
 
-
     /** @brief Saves all the results to an HTML report.
         @param filePath The path to save the report to.
         @param graphExt The file extension to save graphs as (e.g., PNG).
@@ -201,7 +200,6 @@ class ProjectView final : public BaseProjectView
     EditTextDlg* m_embeddedTextEditor{ nullptr };
 
     wxDECLARE_DYNAMIC_CLASS(ProjectView);
-    wxDECLARE_EVENT_TABLE();
     };
 
 #endif //__PROJECT_VIEW_H__

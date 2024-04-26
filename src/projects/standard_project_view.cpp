@@ -22,46 +22,6 @@ wxDECLARE_APP(ReadabilityApp);
 
 wxIMPLEMENT_DYNAMIC_CLASS(ProjectView, BaseProjectView)
 
-wxBEGIN_EVENT_TABLE(ProjectView, BaseProjectView)
-    EVT_HTML_LINK_CLICKED(wxID_ANY, ProjectView::OnHyperlinkClicked)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_LAUNCH_SOURCE_FILE"), ProjectView::OnLaunchSourceFile)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_TEXT_WINDOW_FONT"), ProjectView::OnTextWindowFontChange)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_TEXT_WINDOW_COLORS"), ProjectView::OnTextWindowColorsChange)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_LONG_FORMAT"), ProjectView::OnLongFormat)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_REMOVE_TEST"), ProjectView::OnTestDelete)
-    EVT_RIBBONBUTTONBAR_CLICKED(wxID_SELECTALL, ProjectView::OnRibbonButtonCommand)
-    EVT_RIBBONBUTTONBAR_CLICKED(wxID_NEW, ProjectView::OnRibbonButtonCommand)
-    EVT_RIBBONBUTTONBAR_CLICKED(wxID_OPEN, ProjectView::OnRibbonButtonCommand)
-    EVT_RIBBONBUTTONBAR_CLICKED(wxID_SAVE, ProjectView::OnRibbonButtonCommand)
-    EVT_RIBBONBUTTONBAR_CLICKED(wxID_COPY, ProjectView::OnRibbonButtonCommand)
-    EVT_RIBBONBUTTONBAR_CLICKED(wxID_PREVIEW, ProjectView::OnRibbonButtonCommand)
-    EVT_RIBBONBUTTONBAR_CLICKED(wxID_PRINT, ProjectView::OnRibbonButtonCommand)
-    EVT_RIBBONBUTTONBAR_CLICKED(wxID_ZOOM_IN, ProjectView::OnRibbonButtonCommand)
-    EVT_RIBBONBUTTONBAR_CLICKED(wxID_ZOOM_OUT, ProjectView::OnRibbonButtonCommand)
-    EVT_RIBBONBUTTONBAR_CLICKED(wxID_ZOOM_FIT, ProjectView::OnRibbonButtonCommand)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_SAVE_ITEM"), ProjectView::OnRibbonButtonCommand)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_COPY_ALL"), ProjectView::OnRibbonButtonCommand)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_COPY_WITH_COLUMN_HEADERS"), ProjectView::OnRibbonButtonCommand)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_COPY_FIRST_COLUMN"), ProjectView::OnRibbonButtonCommand)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_VIEW_ITEM"), ProjectView::OnRibbonButtonCommand)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_LIST_SORT"), ProjectView::OnRibbonButtonCommand)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_SORT_ASCENDING"), ProjectView::OnRibbonButtonCommand)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_SORT_DESCENDING"), ProjectView::OnRibbonButtonCommand)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_EXCLUDE_SELECTED"), ProjectView::OnRibbonButtonCommand)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_MULTI_COLUMN_SORT_ASCENDING"), ProjectView::OnRibbonButtonCommand)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_MULTI_COLUMN_SORT_DESCENDING"), ProjectView::OnRibbonButtonCommand)
-    EVT_RIBBONBUTTONBAR_CLICKED(XRCID("ID_SUMMATION"), ProjectView::OnSummation)
-    EVT_MENU(XRCID("ID_ADD_ITEM_TO_DICTIONARY"), ProjectView::OnAddToDictionary)
-    EVT_MENU(XRCID("ID_REMOVE_TEST"), ProjectView::OnTestDeleteMenu)
-    EVT_MENU(XRCID("ID_EXPORT_FILTERED_DOCUMENT"), ProjectView::OnExportFilteredDocument)
-    EVT_MENU(XRCID("ID_EXPORT_ALL"), ProjectView::OnExportAll)
-    // not actually a test (it doesn't have an ID), but we'll add it in this function
-    EVT_MENU(XRCID("ID_DOLCH"), ProjectView::OnAddTest)
-    EVT_FIND(wxID_ANY, ProjectView::OnFind)
-    EVT_FIND_NEXT(wxID_ANY, ProjectView::OnFind)
-    EVT_FIND_CLOSE(wxID_ANY, ProjectView::OnFind)
-wxEND_EVENT_TABLE()
-
 //------------------------------------------------------
     ProjectView::ProjectView()
     : m_statsListData(new ListCtrlExDataProvider)
@@ -75,6 +35,49 @@ wxEND_EVENT_TABLE()
     Bind(wxEVT_SIDEBAR_CLICK, &ProjectView::OnItemSelected, this, BaseProjectView::LEFT_PANE);
 
     Bind(wxEVT_WISTERIA_CANVAS_DCLICK, &ProjectView::OnEditGraphOptions, this);
+
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnTestDelete, this, XRCID("ID_REMOVE_TEST"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnLongFormat, this, XRCID("ID_LONG_FORMAT"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnTextWindowColorsChange, this,
+         XRCID("ID_TEXT_WINDOW_COLORS"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnTextWindowFontChange, this,
+         XRCID("ID_TEXT_WINDOW_FONT"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnLaunchSourceFile, this,
+         XRCID("ID_LAUNCH_SOURCE_FILE"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnSummation, this, XRCID("ID_SUMMATION"));
+
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRibbonButtonCommand, this, wxID_SELECTALL);
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRibbonButtonCommand, this, wxID_NEW);
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRibbonButtonCommand, this, wxID_OPEN);
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRibbonButtonCommand, this, wxID_SAVE);
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRibbonButtonCommand, this, wxID_COPY);
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRibbonButtonCommand, this, wxID_PREVIEW);
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRibbonButtonCommand, this, wxID_PRINT);
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRibbonButtonCommand, this, wxID_ZOOM_IN);
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRibbonButtonCommand, this, wxID_ZOOM_OUT);
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRibbonButtonCommand, this, wxID_ZOOM_FIT);
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRibbonButtonCommand, this,
+         XRCID("ID_MULTI_COLUMN_SORT_DESCENDING"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRibbonButtonCommand, this,
+         XRCID("ID_MULTI_COLUMN_SORT_ASCENDING"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRibbonButtonCommand, this,
+         XRCID("ID_EXCLUDE_SELECTED"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRibbonButtonCommand, this,
+         XRCID("ID_SORT_DESCENDING"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRibbonButtonCommand, this,
+         XRCID("ID_SORT_ASCENDING"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRibbonButtonCommand, this,
+         XRCID("ID_LIST_SORT"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRibbonButtonCommand, this,
+         XRCID("ID_VIEW_ITEM"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRibbonButtonCommand, this,
+         XRCID("ID_COPY_FIRST_COLUMN"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRibbonButtonCommand, this,
+         XRCID("ID_COPY_WITH_COLUMN_HEADERS"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRibbonButtonCommand, this,
+         XRCID("ID_COPY_ALL"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRibbonButtonCommand, this,
+         XRCID("ID_SAVE_ITEM"));
 
     Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this, HARD_WORDS_LIST_PAGE_ID);
     Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this, LONG_WORDS_LIST_PAGE_ID);
@@ -106,9 +109,16 @@ wxEND_EVENT_TABLE()
     Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this, WORDY_PHRASES_LIST_PAGE_ID);
     Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this,
          REDUNDANT_PHRASE_LIST_PAGE_ID);
-    Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this, WORDING_ERRORS_LIST_PAGE_ID);
+    Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnListDblClick, this,
+         WORDING_ERRORS_LIST_PAGE_ID);
     Bind(wxEVT_LIST_ITEM_ACTIVATED, &ProjectView::OnTestListDblClick, this,
          READABILITY_SCORES_PAGE_ID);
+
+    Bind(wxEVT_FIND, &ProjectView::OnFind, this);
+    Bind(wxEVT_FIND_NEXT, &ProjectView::OnFind, this);
+    Bind(wxEVT_FIND_CLOSE, &ProjectView::OnFind, this);
+
+    Bind(wxEVT_HTML_LINK_CLICKED, &ProjectView::OnHyperlinkClicked, this);
 
     Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, XRCID("ID_PRINT"));
     Bind(wxEVT_MENU, &ProjectView::OnGradeScale, this, XRCID("ID_K12_US"));
@@ -125,6 +135,14 @@ wxEND_EVENT_TABLE()
     Bind(wxEVT_MENU, &ProjectView::OnGradeScale, this, XRCID("ID_K12_NUNAVUT"));
     Bind(wxEVT_MENU, &ProjectView::OnGradeScale, this, XRCID("ID_QUEBEC"));
     Bind(wxEVT_MENU, &ProjectView::OnGradeScale, this, XRCID("ID_ENGLAND"));
+
+    Bind(wxEVT_MENU, &ProjectView::OnAddToDictionary, this, XRCID("ID_ADD_ITEM_TO_DICTIONARY"));
+    Bind(wxEVT_MENU, &ProjectView::OnTestDeleteMenu, this, XRCID("ID_REMOVE_TEST"));
+    Bind(wxEVT_MENU, &ProjectView::OnExportFilteredDocument, this,
+         XRCID("ID_EXPORT_FILTERED_DOCUMENT"));
+    Bind(wxEVT_MENU, &ProjectView::OnExportAll, this, XRCID("ID_EXPORT_ALL"));
+    // not actually a test (it doesn't have an ID), but we'll add it in this function
+    Bind(wxEVT_MENU, &ProjectView::OnAddTest, this, XRCID("ID_DOLCH"));
 
     Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, wxID_SELECTALL);
     Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, wxID_COPY);
