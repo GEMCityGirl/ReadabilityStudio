@@ -546,7 +546,7 @@ class WebHarvester
 
   protected:
     /// @returns An URL with spaces encoded to '%20', '\/' converted to '/', and trimmed.
-    /// @param url The URL to normalized.
+    /// @param url The URL to normalize.
     [[nodiscard]]
     static wxString NormalizeUrl(const wxString& url)
         {
