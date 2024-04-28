@@ -129,18 +129,24 @@ namespace grammar
         const std::pair<bool,size_t> operator()(const wchar_t* text) const noexcept
             {
             if (text == nullptr || text[0] == 0)
-                { return std::pair<bool,size_t>(false,0); }
+                {
+                return std::make_pair(false, 0);
+                }
             // first see if it's a tab
             else if (text[0] == 0x09)
-                { return std::pair<bool,size_t>(true,1); }
+                {
+                return std::make_pair(true, 1);
+                }
             // else, see if it more than two spaces (more than likely an indentation)
             const wchar_t* current_char = text;
             while (current_char[0] != 0 &&
                    characters::is_character::is_space_horizontal(current_char[0]))
                 { ++current_char; }
             if ((current_char - text) > 2)
-                { return std::pair<bool,size_t>(true,(current_char-text)); }
-            return std::pair<bool,size_t>(false,0);
+                {
+                return std::make_pair(true, (current_char - text));
+                }
+            return std::make_pair(false, 0);
             }
         };
 
@@ -157,7 +163,9 @@ namespace grammar
         const std::pair<bool, size_t> operator()(std::wstring_view text) const noexcept
             {
             if (text.empty())
-                { return std::pair<bool,size_t>(false, 0); }
+                {
+                return std::make_pair(false, 0);
+                }
             // first, step over any spaces at the start of the line,
             // sometimes bullets can be indented
             while (text.length() &&
@@ -166,25 +174,33 @@ namespace grammar
                 text.remove_prefix(1);
                 }
             if (text.empty())
-                { return std::pair<bool,size_t>(false, 0); }
+                {
+                return std::make_pair(false, 0);
+                }
             // first see if it's a bullet
             else if (string_util::is_either<wchar_t>(text[0], 0x95, 0x2022)/* bullet*/ ||
                 text[0] == 0x2023 /* triangle bullet*/ ||
                 text[0] == 0x25A0 /* filled in square*/ ||
                 text[0] == 0x25CF /* filled in circle*/ ||
                 text[0] == 0xB7   /* middle dot*/)
-                { return std::pair<bool,size_t>(true,1); }
+                {
+                return std::make_pair(true, 1);
+                }
             // or a dash followed by a space
             else if (characters::is_character::is_hyphen(text[0]) &&
                 characters::is_character::is_space_horizontal(text[1]))
-                { return std::pair<bool,size_t>(true,1); }
+                {
+                return std::make_pair(true, 1);
+                }
             // else, see if it more than two spaces (more than likely an indentation)
             const wchar_t* current_char = text.data();
             while (current_char[0] != 0 &&
                 characters::is_character::is_space_horizontal(current_char[0]))
                 { ++current_char; }
             if (current_char[0] == 0)
-                { return std::pair<bool,size_t>(false,0); }
+                {
+                return std::make_pair(false, 0);
+                }
             // or a numeric bullet
             if (characters::is_character::is_numeric(current_char[0]))
                 {
@@ -199,7 +215,9 @@ namespace grammar
                     } while (current_char[0]);
                 // if at the end of the text then this is not a bullet
                 if (current_char[0] == 0)
-                    { return std::pair<bool,size_t>(false,0); }
+                    {
+                    return std::make_pair(false, 0);
+                    }
                 // if number if followed by a dot, tab, closing parenthesis, or colon then it is a numeric bullet
                 else if (characters::is_character::is_period(current_char[0]) ||
                     current_char[0] == 0x09 ||
@@ -218,7 +236,7 @@ namespace grammar
                             // right parentheses
                             current_char[0] == 0x29 ||
                             current_char[0] == 0xFF09));
-                    return std::pair<bool, size_t>(true, (current_char - text.data()));
+                    return std::make_pair(true, (current_char - text.data()));
                     }
                 else
                     {
@@ -229,7 +247,9 @@ namespace grammar
                     while (nextLine[0] != 0 && string_util::is_neither<wchar_t>(nextLine[0],10,13))
                         { ++nextLine; }
                     if (nextLine[0] == 0)
-                        { return std::pair<bool,size_t>(false,0); }
+                        {
+                        return std::make_pair(false, 0);
+                        }
                     // hit the next newline, so skip to the start of the line
                     const wchar_t* const newLineStart = nextLine;
                     while (nextLine[0] != 0 && characters::is_character::is_space(nextLine[0]))
@@ -238,11 +258,13 @@ namespace grammar
                     // a bullet.
                     isEol(newLineStart, nextLine);
                     if (isEol.get_eol_count() > 1)
-                        { return std::pair<bool,size_t>(true,(current_char - text.data())); }
+                        {
+                        return std::make_pair(true, (current_char - text.data()));
+                        }
                     return characters::is_character::is_numeric(nextLine[0]) ?
-                               std::pair<bool, size_t>(true, (current_char - text.data())) :
+                        std::pair<bool, size_t>(true, (current_char - text.data())) :
                         // anything else means that this probably is not a numeric bullet
-                        std::pair<bool,size_t>(false,0);
+                        std::pair<bool,size_t>(false, 0);
                     }
                 }
             /* ..or a letter bullet point. Note that we only count a single-digit,
@@ -265,13 +287,15 @@ namespace grammar
                            (characters::is_character::is_period(current_char[0]) ||
                             current_char[0] == 0x29 ||
                             current_char[0] == 0xFF09));
-                    return std::pair<bool, size_t>(true, (current_char - text.data()));
+                    return std::make_pair(true, (current_char - text.data()));
                     }
                 // anything else means that this probably is not a letter bullet
                 else
-                    { return std::pair<bool,size_t>(false,0); }
+                    {
+                    return std::make_pair(false, 0);
+                    }
                 }
-            return std::pair<bool,size_t>(false,0);
+            return std::make_pair(false, 0);
             }
         };
 
@@ -289,7 +313,8 @@ namespace grammar
             @param current_position The position in the text (usually a period) to analyze.
             @param previous_word_position The position in the text of the start of the word in
                 front of the period we are analyzing.
-            @param sentence_position_of_previous_word The position in the sentence of the proceeding word.*/
+            @param sentence_position_of_previous_word The position in the sentence
+                of the proceeding word.*/
         [[nodiscard]]
         bool operator()(const wchar_t* text,
                         const size_t length,
@@ -339,8 +364,9 @@ namespace grammar
                         { return true; }
                     return characters::is_character::is_space_vertical(text[i]);
                     }
-                /* ...or special case with dash (not hyphens, but actual long dashes) followed by a double quote
-                   and then a hard return. This happens with dialog that "trails" off at the end of a paragraph.
+                /* ...or special case with dash (not hyphens, but actual long dashes)
+                   followed by a double quote and then a hard return.
+                   This happens with dialog that "trails" off at the end of a paragraph.
                    For example:
                    
                    "Why don't we—"
@@ -359,7 +385,8 @@ namespace grammar
 
                    "Welcome to WIC . 13"
 
-                   Note that if there is no space before the period, then we will not do this check,
+                   Note that if there is no space before the period,
+                   then we will not do this check,
                    that would lead to a false positive more often than not.*/
                 if ((characters::is_character::is_period(text[current_position]) ||
                     text[current_position] == common_lang_constants::ELLIPSE) &&
@@ -413,11 +440,13 @@ namespace grammar
                     // "words. . . . This is a new sentence." is fine, this would appear in a
                     // quotation block that is paraphrasing.
                     // But more than 4 dots would be something like a line in a Table of Contents,
-                    // where there is a space between the last dot and the page number. For example:
+                    // where there is a space between the last dot and the page number.
+                    // For example:
                     // "Welcome to WIC........ 13"
                     if (periodCount > 4 || ellipsesCount > 1)
                         { return false; }
-                    // move the current (sentence-ending) punctuation to the last one in the sequence
+                    // move the current (sentence-ending) punctuation to the
+                    // last one in the sequence
                     current_position = lastSentenceEndingPunctuation;
                     }
                 // "word1. (word2", will be an end of sentence
@@ -531,7 +560,8 @@ namespace grammar
                         characters::is_character::is_period(text[original_position]))
                         { return false; }
                     // Special case with "no. of." (number of).
-                    // We can't make "no." an abbreviation because it is such a common word that can end a sentence.
+                    // We can't make "no." an abbreviation because it is such a
+                    // common word that can end a sentence.
                     // Note that "of" is a case sensitive comparison, so "No. Of course not."
                     // would be seen as two sentences.
                     // Note that we also treat "no. #" and "no. [0-9]" as an abbreviation.
@@ -546,8 +576,8 @@ namespace grammar
                                  (string_util::full_width_to_narrow(text[i]) == L'#') ||
                                  is_character.is_numeric(text[i])) )
                         { return false; }
-                    // "Vs." can never start a sentence, so if a word is in front of it that ends with a period
-                    // then it must be an unknown abbreviation
+                    // "Vs." can never start a sentence, so if a word is in front of it that
+                    // ends with a period, then it must be an unknown abbreviation
                     else if (i+2 < length &&
                              traits::case_insensitive_ex::eq(text[i], L'v') &&
                              traits::case_insensitive_ex::eq(text[i+1], L's') &&
@@ -576,8 +606,10 @@ namespace grammar
                     /* "Hello." he said (this is one sentence)
                        "Hello." Blake said (this is two sentences)
                        "Hello." -unknown quote (this is two sentences)
-                       Note, this quote scenario overrides the 'sentence_start_must_be_uppercased' flag.
-                       Sentence termination inside of a quote is tricky, so we need to have special logic for that.*/
+                       Note, this quote scenario overrides the
+                       'sentence_start_must_be_uppercased' flag.
+                       Sentence termination inside of a quote is tricky,
+                       so we need to have special logic for that.*/
                     else if (can_character_begin_or_end_parenthetical_or_quoted_section(text[current_position+1]) &&
                         // if following word is lowercase
                         characters::is_character::is_lower(text[i]) &&
@@ -635,10 +667,12 @@ namespace grammar
                      // or if simply a quote symbol
                     is_character.is_quote(ch) );
             }
-        /** @returns @c true if a character can be valid sentence-ending punctuation, other than period and ellipsis.
+        /** @returns @c true if a character can be valid sentence-ending punctuation,
+                other than period and ellipsis.
             @param character The character to review.
-            @note This variation only returns true if character is a standard stop character (e.g., '?' or '.')
-                  or something like ':' or ellipse followed by a hard return.*/
+            @note This variation only returns true if character is a standard
+                stop character (e.g., '?' or '.') or something like ':' or
+                ellipse followed by a hard return.*/
         [[nodiscard]]
         inline static bool is_non_period_terminator(const wchar_t character) noexcept
             {
@@ -651,8 +685,9 @@ namespace grammar
             }
         /** @returns @c true if a character can be valid sentence-ending punctuation.
             @param character The character to review.
-            @note This variation only returns @c true if character is a standard stop character (e.g., '?' or '.')
-                  or something like ':' or ellipse followed by a hard return.*/
+            @note This variation only returns @c true if character is a
+                standard stop character (e.g., '?' or '.')
+                or something like ':' or ellipse followed by a hard return.*/
         [[nodiscard]]
         inline static bool can_character_end_sentence_strict(const wchar_t character) noexcept
             {
