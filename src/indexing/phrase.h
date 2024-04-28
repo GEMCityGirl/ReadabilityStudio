@@ -56,10 +56,10 @@ namespace grammar
     public:
         /// @private
         phrase() = default;
-        /** @brief Simple 1-word "phrase".
+        /** @brief Simple 1-word "phrase."
             @param src The word to initialize the phrase to.*/
-        explicit phrase(const word_typeT& src)
-            { m_words.push_back(src); }
+        explicit phrase(word_typeT src)
+            { m_words.push_back(std::move(src)); }
         /** @returns The phrase_type of the phrase. For example, it could be redundant or a cliché.*/
         [[nodiscard]]
         phrase_type get_type() const noexcept
@@ -89,7 +89,7 @@ namespace grammar
         void copy_words(const std::vector<word_typeT>& src, const size_t count)
             {
             m_words.resize(count);
-            std::copy(src.begin(), src.begin()+count, m_words.begin());
+            std::copy(src.cbegin(), src.cbegin() + count, m_words.begin());
             }
         /** @brief Copies a vector of words into the phrase.
             @note The current contents of the phrase will be cleared.
@@ -98,7 +98,7 @@ namespace grammar
         void copy_words(typename std::vector<word_typeT>::const_iterator src, const size_t count)
             {
             m_words.resize(count);
-            std::copy(src, src+count, m_words.begin());
+            std::copy(src, src + count, m_words.begin());
             }
         /** @brief Indicates whether or not this phrase is less than another phrase.
             @details A phrase is less than other phrase if sorts alphabetically before the other phrase.\n
