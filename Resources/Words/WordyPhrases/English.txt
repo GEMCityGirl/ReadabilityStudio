@@ -4887,6 +4887,7 @@ dimentions	dimensions	3
 dimesions	dimensions	3		
 dimesnional	dimensional	3		
 diminish	lessen	0		
+diminshes	diminishes	3		
 diminuitive	diminutive	3		
 diminution	lessening	0		
 dimunitive	diminutive	3		
@@ -5105,6 +5106,10 @@ dissobediant	disobedient	3
 dissobedience	disobedience	3		
 dissobedient	disobedient	3		
 dissolute	evil	0		
+dissovlve	dissolve	3		
+dissovlved	dissolved	3		
+dissovlves	dissolves	3		
+dissovlving	dissolving	3		
 distend	stretch out	0		
 distended	stretched out	0		
 distending	stretching out	0		
@@ -6665,6 +6670,9 @@ formed an opinion	judged, decided, concluded	0
 formelly	formerly	3		
 formidible	formidable	3		
 forming an opinion	judging, deciding, concluding	0		
+formla	formula	3		
+formla's	formula's	3		
+formlas	formulas	3		
 formost	foremost	3		
 forms an opinion	judges, decides, concludes	0		
 formulate	draw up, plan	0		
@@ -7094,6 +7102,7 @@ gradutes	graduates	3
 graet	great	3		
 grafitti	graffiti	3		
 grahical	graphical	3		
+grahics	graphics	3		
 grahpical	graphical	3		
 gramatically	grammatically	3		
 grammaticaly	grammatically	3		
@@ -8046,6 +8055,7 @@ inablility	inability	3
 inaccessable	inaccessible	3		
 inaccuracies	mistakes	0		
 inaccuracy	mistake	0		
+inacessible	inaccessible	3		
 inactive	idle	0		
 inadiquate	inadequate	3		
 inadquate	inadequate	3		
@@ -8550,7 +8560,13 @@ internecine	deadly	0
 internel	internal	3		
 internels	internals	3		
 interntational	international	3		
+interopabilities	interoperabilities	3		
+interopability	interoperability	3		
+interopability's	interoperability's	3		
 interoperatability	interoperability	3		
+interoplation	interpolation	3		
+interoplation's	interpolation's	3		
+interoplations	interpolations	3		
 interpet	interpret	3		
 interpeted	interpreted	3		
 interpeter	interpreter	3		
@@ -9984,6 +10000,10 @@ mutilabel	multilabel	3
 mutiliated	mutilated	3		
 mutimedia	multimedia	3		
 mutiple	multiple	3		
+mutiplied	multiplied	3		
+mutiplies	multiplies	3		
+mutiply	multiply	3		
+mutiplying	multiplying	3		
 mutliple	multiple	3		
 mutual agreement	agreement	0		
 mutual cooperation	cooperation	1		
@@ -10544,6 +10564,8 @@ ongoing	continuing	0
 onlinen	online	3		
 onself	oneself	3		
 onyl	only	3		
+opacty	opacity	3		
+opacty's	opacity's	3		
 opague	opaque	3		
 open a dialogue	speak, discuss, talk	0		
 open to doubt	debatable, doubtful, in doubt, questionable	0		
@@ -10575,6 +10597,9 @@ ophaned	orphaned	3
 ophans	orphans	3		
 opion	option	3		
 opions	options	3		
+opiton	option	3		
+opiton's	option's	3		
+opitons	options	3		
 oponent	opponent	3		
 oportunity	opportunity	3		
 opose	oppose	3		
@@ -11763,6 +11788,7 @@ priviliges	privileges	3
 privledge	privilege	3		
 privte	private	3		
 privtely	privately	3		
+prmultiplied	premultiplied	3		
 pro's and con's	pros and cons	3		
 probabilaty	probability	3		
 probabilities	chances	0		
@@ -14074,6 +14100,9 @@ stultify	make foolish	0
 stultifying	making foolish	0		
 stupefaction	stupor	0		
 stupefactions	stupors	0		
+sturation	saturation	3		
+sturation's	saturation's	3		
+sturations	saturations	3		
 sturcture	structure	3		
 subconsiously	subconsciously	3		
 subject matter	subject	0		

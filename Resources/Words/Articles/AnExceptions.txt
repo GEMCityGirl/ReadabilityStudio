@@ -54,6 +54,7 @@ SMS
 SOP
 sprintf
 SQL
+sRGB
 ssDNA
 ssRNA
 STNA
@@ -63,3 +64,4 @@ URB
 URI
 URL
 XInput
+XOR

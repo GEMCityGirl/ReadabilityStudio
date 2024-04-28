@@ -47042,6 +47042,7 @@ fanny
 fanny's
 fanout
 fans
+fant
 fantail
 fantail's
 fantails
@@ -67613,6 +67614,7 @@ interoperated
 interoperates
 interoperating
 interoperation
+interopped
 interops
 interorganizational
 interossei
@@ -73879,8 +73881,14 @@ linebackers
 linebreak
 linebreak's
 linebreaks
+linecap
+linecap's
+linecaps
 lined
 linefeed
+linejoin
+linejoin's
+linejoins
 lineman
 lineman's
 linemen
@@ -92436,6 +92444,7 @@ palest
 palette
 palette's
 palettes
+paletting
 palettize
 palettized
 palettizes
@@ -93055,6 +93064,7 @@ paralleling
 parallelism
 parallelism's
 parallelisms
+parallelizable
 parallelization
 parallelization's
 parallelizations
@@ -97685,6 +97695,9 @@ pixelate
 pixelated
 pixelates
 pixelating
+pixelization
+pixelization's
+pixelizations
 pixels
 pixes
 pixie
@@ -99913,6 +99926,10 @@ posteriors
 posterities
 posterity
 posterity's
+posterize
+posterized
+posterizes
+posterizing
 posteroanterior
 posteroinferior
 posterolateral
@@ -100517,6 +100534,7 @@ preauthors
 prebendary
 prebendary's
 prebiotic
+preblend
 preborn
 prebucketing
 prebuild
@@ -101887,6 +101905,7 @@ principled
 principles
 principling
 print
+printability
 printable
 printables
 printably
@@ -109744,6 +109763,7 @@ renatures
 renaturing
 rend
 render
+renderable
 rendered
 renderer
 renderer's
@@ -126064,6 +126084,7 @@ stirrups
 stirs
 stitch
 stitch's
+stitchable
 stitched
 stitcher
 stitcher's
@@ -141249,6 +141270,8 @@ unpreemphasized
 unprefixed
 unprejudiced
 unpremeditated
+unpremultiplied
+unpremultiply
 unprepared
 unpreparedness
 unpreparedness's
