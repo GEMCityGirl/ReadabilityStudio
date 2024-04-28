@@ -7,6 +7,10 @@
 # License:     3-Clause BSD license
 #############################################################################
 
+# Build targets:
+# docs:       builds the manuals and HTML help
+# ReadStudio: builds the main application
+
 # Declare the minimum required CMake version
 # Note that CMake 3.24 is needed for compiling wxWidgets
 cmake_minimum_required(VERSION 3.24)
@@ -75,7 +79,7 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
 endif()
 
 message(STATUS "Build: ${CMAKE_BUILD_TYPE}")
-if(BUILD_DOCS)
+if(TARGET docs)
     message(STATUS "Help build has been requested.")
 endif()
 if(BUILD_TESTING)
@@ -164,27 +168,23 @@ endif()
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs/ReadabilityStudioDocs/docs/)
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs/ReadabilityTestsReference/docs/)
 
-get_filename_component(MANUAL_PATH "${CMAKE_CURRENT_SOURCE_DIR}/docs/ReadabilityStudioDocs/docs/ReadabilityStudioManual.pdf" REALPATH)
 include(cmake/modules/FindR.cmake)
 # TODO: Windows path to Pandoc currently only looks for Quarto installations.
 include(cmake/modules/FindPandoc.cmake)
-# Build the help always for release build,
-# if BUILD_DOCS is defined,or PDF manual is missing.
-if(NOT EXISTS ${MANUAL_PATH} OR
-   BUILD_DOCS OR
-   ${CMAKE_BUILD_TYPE} STREQUAL "Release")
+if(TARGET docs)
     if(NOT R_FOUND)
-        message(WARNING "R not found. Help cannot be built.")
+        message(FATAL_ERROR "R not found. Help cannot be built.")
     elseif(NOT PANDOC_FOUND)
-        message(WARNING "Pandoc not found. Help cannot be built.")
-    else()
-        execute_process(COMMAND "${R_SCRIPT}"
-                            "${CMAKE_CURRENT_SOURCE_DIR}/docs/BuildHelpProjects.R"
-                            "${PANDOC_ROOT_DIR}"
-                        WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/docs/"
-                        COMMAND_ERROR_IS_FATAL ANY)
+        message(FATAL_ERROR "Pandoc not found. Help cannot be built.")
     endif()
 endif()
+
+add_custom_target(docs
+                ALL
+                COMMAND "${R_SCRIPT}"
+                    "${CMAKE_CURRENT_SOURCE_DIR}/docs/BuildHelpProjects.R"
+                    "${PANDOC_ROOT_DIR}"
+                WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/docs/")
 
 if(APPLE AND NOT CMAKE_OSX_DEPLOYMENT_TARGET)
     # If no deployment target has been set default to the minimum supported
