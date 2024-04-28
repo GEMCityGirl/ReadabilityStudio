@@ -4573,7 +4573,6 @@ demonstrate	show	0
 demonstrated	showed	0		
 demonstrates	shows	0		
 demonstrating	showing	0		
-demonstrational	demonstrable	3		
 demorcracy	democracy	3		
 demostrate	demonstrate	3		
 demostrated	demonstrated	3		
