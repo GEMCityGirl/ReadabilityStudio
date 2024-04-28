@@ -52,6 +52,7 @@ SMB
 SME
 SMS
 SOP
+sprintf
 SQL
 ssDNA
 ssRNA

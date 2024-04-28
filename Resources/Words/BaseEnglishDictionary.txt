@@ -8122,6 +8122,10 @@ autoconfigure
 autoconfigured
 autoconfigures
 autoconfiguring
+autoconnect
+autoconnected
+autoconnecting
+autoconnects
 autocorrelate
 autocorrelated
 autocorrelates
@@ -8408,6 +8412,10 @@ autotrophic
 autotrophically
 autotrophs
 autotrophy
+autoupdate
+autoupdated
+autoupdates
+autoupdating
 autoworker
 autoworkers
 autumn
@@ -23111,6 +23119,7 @@ clunky
 clunkyly
 cluster
 cluster's
+clusterable
 clustered
 clustering
 clusterings
@@ -27046,6 +27055,7 @@ controllably
 controlled
 controller
 controller's
+controllerless
 controllers
 controlling
 contrology
@@ -35215,6 +35225,9 @@ devoutest
 devoutly
 devoutness
 devoutness's
+devproxies
+devproxy
+devproxy's
 devs
 devspace
 devspace's
@@ -46790,6 +46803,7 @@ fajita's
 fajitas
 fake
 faked
+fakemodem
 faker
 faker's
 fakers
@@ -50241,7 +50255,9 @@ follows
 followship
 followship's
 followships
+followup
 followup's
+followups
 folly
 folly's
 folx
@@ -80057,6 +80073,7 @@ midnight
 midnight's
 midnightly
 midnights
+midoperation
 midpalmar
 midplane
 midpoint
@@ -86789,6 +86806,7 @@ nonenforceable
 nonentities
 nonentity
 nonentity's
+nonenumerable
 nonequilibrium
 nonequivalence
 nonequivalence's
@@ -86903,6 +86921,7 @@ noninfectious
 noninflammatory
 noninflationary
 noninflected
+noninfringement
 noninfringing
 noninherited
 noninstitutional
@@ -92174,6 +92193,7 @@ paella's
 paellas
 paeony
 paeony's
+pagable
 pagan
 pagan's
 Paganini
@@ -101613,6 +101633,10 @@ prettying
 pretzel
 pretzel's
 pretzels
+preupgrade
+preupgraded
+preupgrades
+preupgrading
 prev
 prevail
 prevailed
@@ -101860,6 +101884,7 @@ printer
 printer's
 printerless
 printers
+printf
 printing
 printing's
 printings
@@ -109044,6 +109069,9 @@ reinitiating
 reinject
 reinjected
 reinjecting
+reinjection
+reinjection's
+reinjections
 reinjects
 reinnervate
 reinnervation
@@ -118757,6 +118785,9 @@ shippers
 shipping
 shipping's
 shippings
+shiproom
+shiproom's
+shiprooms
 ships
 shipshape
 shipworm
@@ -127706,6 +127737,9 @@ subpage
 subpar
 subparagraph
 subparagraph's
+subparameter
+subparameter's
+subparameters
 subpart
 subpart's
 subparts
@@ -141099,6 +141133,7 @@ unparliamentary
 unparodied
 unparsable
 unparsed
+unpartitionable
 unpartitioned
 unpartizan
 unpasted
@@ -141831,6 +141866,7 @@ unstuck
 unstudied
 unstuffy
 unsubdued
+unsubmitted
 unsubscribe
 unsubscribed
 unsubscribes

@@ -677,6 +677,7 @@ Bengal
 Bengali
 Bengaluru
 Benghazi
+Benguiat
 Benin
 Beninese
 Bensalem
@@ -817,6 +818,7 @@ Bonanno
 Bonaventure
 Bonneville
 Bookland
+Bookman
 Bookshare
 Borax
 Borealis
@@ -2222,6 +2224,7 @@ Gannon
 Gantt
 Ganymede
 GarageBand
+Garamond
 Gardasil
 Garmin
 Garmon
@@ -2717,6 +2720,7 @@ Illiana
 Illini
 Illinois
 Illinoisan
+Illuminance
 Illuminati
 iMac
 ImageMagick
@@ -4176,6 +4180,7 @@ Omnichannel
 Onalaska
 OneBlood
 OneDrive
+OneNote
 Oneonta
 OneSource
 ONet
@@ -4949,6 +4954,7 @@ Saybrook
 Scala
 Scandinavia
 Scandinavian
+Scandisk
 Scantron
 Scattergories
 Schaumburg
@@ -4999,6 +5005,7 @@ Scribblenauts
 ScribeAmerica
 Scribner
 Scroggins
+ScsiPort
 Scutellaria
 Scythia
 Scünci
@@ -5328,7 +5335,7 @@ Stoneleigh
 Stonemill
 StormReady
 Stornoway
-Storport
+StorPort
 Storyworks
 Stourbridge
 Stradivaris
@@ -5601,6 +5608,7 @@ Therabreath
 Theranos
 Theravada
 Thessalonian
+Thesycon
 Thiensville
 Thimphu
 ThinkProgress
@@ -6491,6 +6499,7 @@ Zubenelgenubi
 Zubeneschamali
 Zulu
 Zululand
+Zune
 Zuni
 Zurich
 Zypper

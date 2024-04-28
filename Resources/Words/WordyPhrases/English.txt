@@ -860,6 +860,7 @@ alse	false, also, ales	3
 also know as	also known as	3		
 alsoneeds	also needs	3		
 alsot	also	3		
+altenrate	alternate	3		
 alter	change	0		
 alterante	alternate	3		
 alterante's	alternate's	3		
@@ -971,6 +972,7 @@ amalgamating	combining, blending, uniting	0
 amalgomated	amalgamated	3		
 amatuer	amateur	3		
 amature	amateur	3		
+ambent	ambient	3		
 ambigious	ambiguous	3		
 ambigous	ambiguous	3		
 ambiguous	unclear	0		
@@ -1036,6 +1038,7 @@ an important note to make is	note	0
 an increased number of	more	0		
 an increasing number of	more, increasing	0		
 an integral part of	integral to	0		
+an one	and one	3		
 an other	another	3		
 an ran	and ran	3		
 an the	(strike one of these)	3		
@@ -2058,6 +2061,9 @@ baited breath	bated breath	3
 bakc	back	3		
 balacing	balancing	3		
 bald headed	bald	1		
+ballon	balloon	3		
+ballon's	balloon's	3		
+ballons	balloons	3		
 baloon	balloon	3		
 baloons	balloons	3		
 balsa wood	balsa	1		
@@ -2427,6 +2433,7 @@ boook	book	3
 boostrap	bootstrap	3		
 boostrap's	bootstrap's	3		
 boostraps	bootstraps	3		
+boottom	bottom	3		
 bore a resemblance	looked like	0		
 bore witness to	attested to, certified to, testified to, verified	0		
 bored of	bored with	3		
@@ -2889,6 +2896,7 @@ caterpilar	caterpillar	3
 caterpilars	caterpillars	3		
 caterpiller	caterpillar	3		
 caterpillers	caterpillars	3		
+catersian	cartesian	3		
 cathlic	catholic	3		
 Cathoilc	Catholic	3		
 Cathoilic	Catholic	3		
@@ -3773,6 +3781,10 @@ considerd	considered	3
 consideres	considered	3		
 considering the fact that	considering, because, given that	0		
 consious	conscious	3		
+consisder	consider	3		
+consisdered	considered	3		
+consisdering	considering	3		
+consisders	considers	3		
 consistancy	consistency	3		
 consistant	consistent	3		
 consistuents	constituents	3		
@@ -3874,6 +3886,7 @@ containg	containing	3
 containing	having, holding	0		
 containings	containing	3		
 contains	has, holds	0		
+containsng	containing	3		
 containts	contains	3		
 contaisn	contains	3		
 contaminate	taint	0		
@@ -4560,6 +4573,7 @@ demonstrate	show	0
 demonstrated	showed	0		
 demonstrates	shows	0		
 demonstrating	showing	0		
+demonstrational	demonstrable	3		
 demorcracy	democracy	3		
 demostrate	demonstrate	3		
 demostrated	demonstrated	3		
@@ -4853,6 +4867,7 @@ dificulties	difficulties	3
 dificulty	difficulty	3		
 difinition	definition	3		
 difinitions	definitions	3		
+digial	digital	3		
 digitial	digital	3		
 dilatory	not prompt	0		
 dilema	dilemma	3		
@@ -4897,6 +4912,9 @@ directy	directly	3
 dirived	derived	3		
 dirrectly	directly	3		
 dirt cheap	very inexpensive	2		
+dirver	driver	3		
+dirver's	driver's	3		
+dirvers	drivers	3		
 disable this will	disabling this will	3		
 disablesd	disabled, disabled	3		
 disagreeable	cross	0		
@@ -5325,6 +5343,9 @@ dwindles down	dwindles	1
 dwindling down	dwindling	1		
 dyanamic	dynamic	3		
 dyanamics	dynamics	3		
+dyanmic	dynamic	3		
+dyanmically	dynamically	3		
+dyanmics	dynamics	3		
 dynamicaly	dynamically	3		
 each and every	all, each, every	1		
 each of this	each of these	3		
@@ -5580,6 +5601,10 @@ enaable	enable	3
 enaabled	enabled	3		
 enaables	enables	3		
 enaabling	enabling	3		
+enabe	enable	3		
+enabed	enabled	3		
+enabes	enables	3		
+enabing	enabling	3		
 enable this will	enabling this will	3		
 enalbe	enable	3		
 enalbed	enabled	3		
@@ -7593,6 +7618,9 @@ idenfitied	identified	3
 idenfities	identifies	3		
 idenfity	identify	3		
 idenfitying	identifying	3		
+idenitifer	identifier	3		
+idenitifer's	identifier's	3		
+idenitifers	identifiers	3		
 identical	same	0		
 identical to	the same as	0		
 identicalness	sameness	0		
@@ -7666,6 +7694,9 @@ imcomplete	incomplete	3
 imediate	immediate	3		
 imediately	immediately	3		
 imense	immense	3		
+imlementation	implementation	3		
+imlementation's	implementation's	3		
+imlementations	implementations	3		
 immaculate	pure, spotless	0		heart
 Immaculate Heart of Jesus	Sacred Heart of Jesus	3		
 Immaculate Heart of Marv	Immaculate Heart of Mary	3		
@@ -8547,6 +8578,8 @@ intesifying	intensifying	3
 intested	interested	3		
 intevene	intervene	3		
 intex	index	3		
+intformation	information	3		
+intformation's	information's	3		
 intial	initial	3		
 intialization	initialization	3		
 intialize	initialize	3		
@@ -9002,6 +9035,7 @@ konw	know	3
 konws	knows	3		
 Kuberenetes	Kubernetes	3		
 kwno	know	3		
+labele	labeled	3		
 labor of love	a job done out of deep interest or affection	2		
 labors of love	jobs done out of deep interest or affection	2		
 labour of love	a job done out of deep interest or affection	2		
@@ -9684,6 +9718,8 @@ millioniare	millionaire	3
 milliseonds	milliseconds	3		
 millitary	military	3		
 millon	million	3		
+millsecond	millisecond	3		
+millseconds	milliseconds	3		
 miltary	military	3		
 mimicing	mimicking	3		
 mimick	mimic	3		
@@ -9904,6 +9940,7 @@ mulitbyte's	multibyte's	3
 mulitple	multiple	3		
 mulitplied	multiplied	3		
 mult-age	multi-age	3		
+multichanel	multichannel	3		
 multiciscipline	multidiscipline	3		
 multiciscipline-trained	multidiscipline-trained	3		
 multicultralism	multiculturalism	3		
@@ -12334,6 +12371,7 @@ reasearchers	researchers	3
 reason why	reason	0		
 reasonble	reasonable	3		
 reasonbly	reasonably	3		
+reative	relative	3		
 rebiulding	rebuilding	3		
 rebllions	rebellions	3		
 rebounce	rebound	3		
@@ -13029,6 +13067,7 @@ rise up	rise	1
 rises up	rises	1		
 risible	funny	0		
 rising up	rising	1		
+rlated	related	3		
 rmeove	remove	3		
 rmeoved	removed	3		
 rmeoves	removes	3		
@@ -15234,6 +15273,7 @@ understaning	understanding	3
 understaning's	understanding's	3		
 understanings	understandings	3		
 understoon	understood	3		
+underying	underlying	3		
 undesireable	undesirable	3		
 undetecable	undetectable	3		
 undoubtely	undoubtedly	3		
@@ -15473,6 +15513,7 @@ utliized	utilized	3
 utliizes	utilizes	3		
 utliizing	utilizing	3		
 utlity	utility	3		
+utomatically	automatically	3		
 vaccum	vacuum	3		
 vaccume	vacuum	3		
 vaccumed	vacuumed	3		
@@ -15882,7 +15923,7 @@ we am	we are	3
 we are of the opinion	we believe, we think	0		
 we has	we have	3		
 we herd	we heard	3		
-we here	we hear, we are	3	are;at
+we here	we hear, we are	3	are;at	
 we is	we are	3		
 we new	we knew	3		
 we ourselves	we	1		
