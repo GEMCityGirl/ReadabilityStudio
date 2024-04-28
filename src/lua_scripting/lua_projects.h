@@ -12,9 +12,9 @@
 #ifndef __LUAPROJECTS_H__
 #define __LUAPROJECTS_H__
 
-#include <wx/wx.h>
-#include "luna.h"
 #include "lua_debug.h"
+#include "luna.h"
+#include <wx/wx.h>
 
 class ProjectDoc;
 class BatchProjectDoc;
@@ -33,19 +33,23 @@ namespace LuaScripting
         {
         ProjectDoc* m_project{ nullptr };
         ToolsOptionsDlg* m_settingsDlg{ nullptr };
+
         [[nodiscard]]
         bool VerifyProjectIsOpen(const wxString& functionName) const
             {
             if (!m_project)
                 {
-                wxMessageBox(
-                    wxString::Format(_(L"%s: Accessing project that is already closed."), functionName),
-                    _(L"Warning"), wxOK|wxICON_INFORMATION);
+                wxMessageBox(wxString::Format(_(L"%s: Accessing project that is already closed."),
+                                              functionName),
+                             _(L"Warning"), wxOK | wxICON_INFORMATION);
                 return false;
                 }
             else
-                { return true; }
+                {
+                return true;
+                }
             }
+
         /// @note This takes into account the boolean parameter in the front
         ///     passed to Lunar objects, so @c minParemeterCount should be the actual
         ///     expected number of parameters.
@@ -59,22 +63,28 @@ namespace LuaScripting
             // routing the function to the class object.
             if ((lua_gettop(L) - 1) < minParemeterCount)
                 {
-                wxMessageBox(wxString::Format(
-                    _(L"%s: Invalid number of arguments.\n\n%d expected, %d provided."),
+                wxMessageBox(
+                    wxString::Format(
+                        _(L"%s: Invalid number of arguments.\n\n%d expected, %d provided."),
                         functionName, minParemeterCount, (lua_gettop(L) - 1)),
-                    _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                    _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
                 return false;
                 }
             else
-                { return true; }
+                {
+                return true;
+                }
             }
+
         bool ReloadIfNotDelayed();
         bool ReloadIfNotDelayedSimple();
         bool m_delayReloading{ false };
-    public:
+
+      public:
         StandardProject() = default;
-        void SetProject(ProjectDoc* doc) noexcept
-            { m_project = doc; }
+
+        void SetProject(ProjectDoc* doc) noexcept { m_project = doc; }
+
         static const char className[];
         static Luna<StandardProject>::FunctionType methods[];
         static Luna<StandardProject>::PropertyType properties[];
@@ -267,18 +277,22 @@ namespace LuaScripting
         {
         BatchProjectDoc* m_project{ nullptr };
         ToolsOptionsDlg* m_settingsDlg{ nullptr };
+
         bool VerifyProjectIsOpen(const wxString& functionName) const
             {
             if (!m_project)
                 {
-                wxMessageBox(
-                    wxString::Format(_(L"%s: Accessing project that is already closed."), functionName),
-                    _(L"Warning"), wxOK|wxICON_INFORMATION);
+                wxMessageBox(wxString::Format(_(L"%s: Accessing project that is already closed."),
+                                              functionName),
+                             _(L"Warning"), wxOK | wxICON_INFORMATION);
                 return false;
                 }
             else
-                { return true; }
+                {
+                return true;
+                }
             }
+
         /// @note This takes into account the boolean parameter in the front
         ///     passed to Lunar objects, so @c minParemeterCount should be the actual
         ///     expected number of parameters.
@@ -292,26 +306,32 @@ namespace LuaScripting
             // routing the function to the class object.
             if ((lua_gettop(L) - 1) < minParemeterCount)
                 {
-                wxMessageBox(wxString::Format(
-                    _(L"%s: Invalid number of arguments.\n\n%d expected, %d provided."),
+                wxMessageBox(
+                    wxString::Format(
+                        _(L"%s: Invalid number of arguments.\n\n%d expected, %d provided."),
                         functionName, minParemeterCount, (lua_gettop(L) - 1)),
-                    _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                    _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
                 return false;
                 }
             else
-                { return true; }
+                {
+                return true;
+                }
             }
+
         bool ReloadIfNotDelayed();
         bool ReloadIfNotDelayedSimple();
         bool m_delayReloading{ false };
-    public:
+
+      public:
         static const char className[];
         static Luna<BatchProject>::FunctionType methods[];
         static Luna<BatchProject>::PropertyType properties[];
 
         explicit BatchProject(lua_State* L);
-        void SetProject(BatchProjectDoc* doc) noexcept
-            { m_project = doc; }
+
+        void SetProject(BatchProjectDoc* doc) noexcept { m_project = doc; }
+
         int GetTitle(lua_State* L);
         int SetWindowSize(lua_State* L);
         int DelayReloading(lua_State* L);
@@ -424,7 +444,7 @@ namespace LuaScripting
         int OpenProperties(lua_State* L);
         int CloseProperties(lua_State*);
         };
-    }
+    } // namespace LuaScripting
 
 /** @}*/
 

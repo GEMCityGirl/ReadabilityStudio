@@ -37,14 +37,15 @@ namespace Wisteria::Graphs
             vol. 65, no. 2, 1981, pp. 141-48.*/
     class FraseGraph final : public PolygonReadabilityGraph
         {
-    public:
+      public:
         /** @brief Constructor.
             @param canvas The parent canvas to render on.
             @param colors The color scheme to apply to the points.
                Leave as null to use the default theme.
             @param shapes The shape scheme to use for the points.
                Leave as null to use the standard shapes.*/
-        explicit FraseGraph(Wisteria::Canvas* canvas,
+        explicit FraseGraph(
+            Wisteria::Canvas* canvas,
             std::shared_ptr<Wisteria::Colors::Schemes::ColorScheme> colors = nullptr,
             std::shared_ptr<Wisteria::Icons::Schemes::IconScheme> shapes = nullptr);
 
@@ -73,8 +74,11 @@ namespace Wisteria::Graphs
         ///     when it was initially passed to SetData().
         [[nodiscard]]
         const std::vector<Wisteria::ScorePoint>& GetScores() const noexcept
-            { return m_results; }
-    private:
+            {
+            return m_results;
+            }
+
+      private:
         void RecalcSizes(wxDC& dc) final;
         void CalculateScorePositions(wxDC& dc) final;
         void BuildBackscreen();
@@ -90,7 +94,7 @@ namespace Wisteria::Graphs
         // used for consistent polygon calculations
         std::unique_ptr<FraseGraph> m_backscreen{ nullptr };
         };
-    }
+    } // namespace Wisteria::Graphs
 
 /** @}*/
 

@@ -22,13 +22,15 @@ namespace LuaScripting
         if (lua_gettop(L) < minParemeterCount)
             {
             wxMessageBox(wxString::Format(
-                _(L"%s: Invalid number of arguments.\n\n%d expected, %d provided."),
-                    functionName, minParemeterCount, lua_gettop(L)),
-                _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                             _(L"%s: Invalid number of arguments.\n\n%d expected, %d provided."),
+                             functionName, minParemeterCount, lua_gettop(L)),
+                         _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
             return false;
             }
         else
-            { return true; }
+            {
+            return true;
+            }
         }
 
     //-------------------------------------------------------------
@@ -43,16 +45,15 @@ namespace LuaScripting
         {
         if (wxGetApp().GetLuaRunner().GetScriptFilePath().empty())
             {
-            DebugPrint(wxString::Format(
-                _(L"%sError%s: call to %s returned empty because "
-                  "the script has not been saved yet."),
-                L"<span style='color:red; font-weight:bold;'>",
-                L"</span>", __WXFUNCTION__));
+            DebugPrint(wxString::Format(_(L"%sError%s: call to %s returned empty because "
+                                          "the script has not been saved yet."),
+                                        L"<span style='color:red; font-weight:bold;'>", L"</span>",
+                                        __WXFUNCTION__));
             lua_pushstring(L, "");
             return 1;
             }
         lua_pushstring(L,
-            wxFileName(wxGetApp().GetLuaRunner().GetScriptFilePath()).GetPathWithSep());
+                       wxFileName(wxGetApp().GetLuaRunner().GetScriptFilePath()).GetPathWithSep());
         return 1;
         }
 
@@ -60,7 +61,9 @@ namespace LuaScripting
     int Print(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
-            { return 0; }
+            {
+            return 0;
+            }
         DebugPrint(wxString(luaL_checkstring(L, 1), wxConvUTF8));
         return 0;
         }
@@ -72,4 +75,4 @@ namespace LuaScripting
         wxGetApp().Yield();
         return 0;
         }
-    }
+    } // namespace LuaScripting

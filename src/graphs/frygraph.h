@@ -32,14 +32,16 @@ namespace Wisteria::Graphs
          - Blank group labels will be lumped into a "[NO GROUP]" category.
 
         @par Citation:
-            Fry, Edward. “A Readability Formula That Saves Time.” *Journal of Reading*, vol. 11, no. 7, 1968,
+            Fry, Edward.
+            “A Readability Formula That Saves Time.” *Journal of Reading*, vol. 11, no. 7, 1968,
             pp. 513-16, 575-78.
 
-            Gilliam, Bettye, Sylvia C. Peña, and Lee Mountain. “The Fry Graph Applied to Spanish Readability.”
+            Gilliam, Bettye, Sylvia C. Peña, and Lee Mountain.
+            “The Fry Graph Applied to Spanish Readability.”
             *Reading Teacher*, vol. 33, 1980, pp. 426-30.*/
     class FryGraph final : public PolygonReadabilityGraph
         {
-    public:
+      public:
         /// @brief Which type of Fry graph.
         enum class FryGraphType
             {
@@ -55,10 +57,9 @@ namespace Wisteria::Graphs
                Leave as null to use the default theme.
             @param shapes The shape scheme to use for the points.
                Leave as null to use the standard shapes.*/
-        FryGraph(Wisteria::Canvas* canvas,
-            const FryGraphType fType,
-            std::shared_ptr<Wisteria::Colors::Schemes::ColorScheme> colors = nullptr,
-            std::shared_ptr<Wisteria::Icons::Schemes::IconScheme> shapes = nullptr);
+        FryGraph(Wisteria::Canvas* canvas, const FryGraphType fType,
+                 std::shared_ptr<Wisteria::Colors::Schemes::ColorScheme> colors = nullptr,
+                 std::shared_ptr<Wisteria::Icons::Schemes::IconScheme> shapes = nullptr);
 
         /** @brief Sets the data.
             @param data The data to use.
@@ -85,8 +86,11 @@ namespace Wisteria::Graphs
         ///     when it was initially passed to SetData().
         [[nodiscard]]
         const std::vector<Wisteria::ScorePoint>& GetScores() const noexcept
-            { return m_results; }
-    protected:
+            {
+            return m_results;
+            }
+
+      protected:
         void RecalcSizes(wxDC& dc) final;
         void CalculateScorePositions(wxDC& dc) final;
         void AddLevelLabels();
@@ -94,8 +98,11 @@ namespace Wisteria::Graphs
 
         [[nodiscard]]
         size_t GetSyllableAxisOffset() const noexcept
-            { return m_syllableAxisOffset; }
-    private:
+            {
+            return m_syllableAxisOffset;
+            }
+
+      private:
         void BuildBackscreen();
         /// @brief Set as a Spanish variation of the Fry graph.
         void SetAsGilliamPenaMountainGraph();
@@ -116,7 +123,7 @@ namespace Wisteria::Graphs
         // used for consistent polygon calculations
         std::unique_ptr<FryGraph> m_backscreen{ nullptr };
         };
-    }
+    } // namespace Wisteria::Graphs
 
 /** @}*/
 

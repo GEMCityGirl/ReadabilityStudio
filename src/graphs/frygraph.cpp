@@ -15,113 +15,119 @@ using namespace Wisteria::GraphItems;
 namespace Wisteria::Graphs
     {
     //----------------------------------------------------------------
-    FryGraph::FryGraph(Wisteria::Canvas* canvas,
-            const FryGraphType fType,
-            std::shared_ptr<Wisteria::Colors::Schemes::ColorScheme> colors /*= nullptr*/,
-            std::shared_ptr<Wisteria::Icons::Schemes::IconScheme> shapes /*= nullptr*/) :
-        PolygonReadabilityGraph(canvas), m_fryGraphType(fType)
+    FryGraph::FryGraph(Wisteria::Canvas* canvas, const FryGraphType fType,
+                       std::shared_ptr<Wisteria::Colors::Schemes::ColorScheme> colors /*= nullptr*/,
+                       std::shared_ptr<Wisteria::Icons::Schemes::IconScheme> shapes /*= nullptr*/)
+        : PolygonReadabilityGraph(canvas), m_fryGraphType(fType)
         {
-        SetColorScheme(colors != nullptr ? colors :
-            Settings::GetDefaultColorScheme());
+        SetColorScheme(colors != nullptr ? colors : Settings::GetDefaultColorScheme());
         SetShapeScheme(shapes != nullptr ? shapes :
-            std::make_shared<Wisteria::Icons::Schemes::IconScheme>(
-                Wisteria::Icons::Schemes::StandardShapes()));
+                                           std::make_shared<Wisteria::Icons::Schemes::IconScheme>(
+                                               Wisteria::Icons::Schemes::StandardShapes()));
 
         GetCanvas()->SetLabel(_(L"Fry Graph"));
         GetCanvas()->SetName(_(L"Fry Graph"));
-        GetTitle() =
-            GraphItems::Label(
-                GraphItemInfo(_(L"GRAPH FOR ESTIMATING READABILITY"
-                    "\U00002014EXTENDED\nby Edward Fry, Rutgers University Reading Center, "
-                    "New Brunswick, NJ 08904")).
-                Scaling(GetScaling()).Pen(wxNullPen).
-                LabelAlignment(TextAlignment::Centered));
+        GetTitle() = GraphItems::Label(
+            GraphItemInfo(_(L"GRAPH FOR ESTIMATING READABILITY"
+                            "\U00002014EXTENDED\nby Edward Fry, Rutgers University Reading Center, "
+                            "New Brunswick, NJ 08904"))
+                .Scaling(GetScaling())
+                .Pen(wxNullPen)
+                .LabelAlignment(TextAlignment::Centered));
         GetTitle().GetFont().MakeSmaller();
         GetLeftYAxis().GetTitle().SetText(_(L"Average number of sentences per 100 words"));
         GetLeftYAxis().GetTitle().GetFont().MakeSmaller();
         GetTopXAxis().GetTitle().SetText(_(L"Average number of syllables per 100 words"));
         GetTopXAxis().GetTitle().GetFont().MakeSmaller();
 
-        for (size_t i = 108 + GetSyllableAxisOffset(); i <= 180 + GetSyllableAxisOffset(); i +=2)
+        for (size_t i = 108 + GetSyllableAxisOffset(); i <= 180 + GetSyllableAxisOffset(); i += 2)
             {
-            GetBottomXAxis().AddUnevenAxisPoint(i,
-                wxNumberFormatter::ToString(i, 0,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes));
+            GetBottomXAxis().AddUnevenAxisPoint(
+                i, wxNumberFormatter::ToString(i, 0,
+                                               wxNumberFormatter::Style::Style_NoTrailingZeroes));
             }
-        GetBottomXAxis().SetCustomLabel(108 + GetSyllableAxisOffset(),
-            GraphItems::Label(wxNumberFormatter::ToString(108 + GetSyllableAxisOffset(), 0,
-                wxNumberFormatter::Style::Style_NoTrailingZeroes) + _DT(L"-")));
-        GetBottomXAxis().AddUnevenAxisPoint(181 + GetSyllableAxisOffset(),
+        GetBottomXAxis().SetCustomLabel(
+            108 + GetSyllableAxisOffset(),
+            GraphItems::Label(
+                wxNumberFormatter::ToString(108 + GetSyllableAxisOffset(), 0,
+                                            wxNumberFormatter::Style::Style_NoTrailingZeroes) +
+                _DT(L"-")));
+        GetBottomXAxis().AddUnevenAxisPoint(
+            181 + GetSyllableAxisOffset(),
             wxNumberFormatter::ToString(181 + GetSyllableAxisOffset(), 0,
-                wxNumberFormatter::Style::Style_NoTrailingZeroes));
-        GetBottomXAxis().AddUnevenAxisPoint(182 + GetSyllableAxisOffset(),
+                                        wxNumberFormatter::Style::Style_NoTrailingZeroes));
+        GetBottomXAxis().AddUnevenAxisPoint(
+            182 + GetSyllableAxisOffset(),
             wxNumberFormatter::ToString(182 + GetSyllableAxisOffset(), 0,
-                wxNumberFormatter::Style::Style_NoTrailingZeroes) + _DT(L"+"));
+                                        wxNumberFormatter::Style::Style_NoTrailingZeroes) +
+                _DT(L"+"));
         GetBottomXAxis().AdjustRangeToLabels();
         GetBottomXAxis().SetDisplayInterval(2);
 
         MirrorXAxis(true);
         MirrorYAxis(true);
 
-        GetLeftYAxis().AddUnevenAxisPoint(2.0, wxNumberFormatter::ToString(2.0, 1,
-            wxNumberFormatter::Style::Style_None) + _DT(L"-"));
-        GetLeftYAxis().AddUnevenAxisPoint(2.5, wxNumberFormatter::ToString(2.5, 1,
-            wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(3.0, wxNumberFormatter::ToString(3.0, 1,
-            wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(3.3, wxNumberFormatter::ToString(3.3, 1,
-            wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(3.5,
-            wxNumberFormatter::ToString(3.5, 1, wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(3.6,
-            wxNumberFormatter::ToString(3.6, 1, wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(3.7,
-            wxNumberFormatter::ToString(3.7, 1, wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(3.8,
-            wxNumberFormatter::ToString(3.8, 1, wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(4.0,
-            wxNumberFormatter::ToString(4.0, 1, wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(4.2,
-            wxNumberFormatter::ToString(4.2, 1, wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(4.3,
-            wxNumberFormatter::ToString(4.3, 1, wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(4.5,
-            wxNumberFormatter::ToString(4.5, 1, wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(4.8,
-            wxNumberFormatter::ToString(4.8, 1, wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(5.0,
-            wxNumberFormatter::ToString(5.0, 1, wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(5.2,
-            wxNumberFormatter::ToString(5.2, 1, wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(5.6,
-            wxNumberFormatter::ToString(5.6, 1, wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(5.9,
-            wxNumberFormatter::ToString(5.9, 1, wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(6.3,
-            wxNumberFormatter::ToString(6.3, 1, wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(6.7,
-            wxNumberFormatter::ToString(6.7, 1, wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(7.1,
-            wxNumberFormatter::ToString(7.1, 1, wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(7.7,
-            wxNumberFormatter::ToString(7.7, 1, wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(8.3,
-            wxNumberFormatter::ToString(8.3, 1, wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(9.1,
-            wxNumberFormatter::ToString(9.1, 1, wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(10.0,
-            wxNumberFormatter::ToString(10.0, 1, wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(11.1,
-            wxNumberFormatter::ToString(11.1, 1, wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(12.5,
-            wxNumberFormatter::ToString(12.5, 1, wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(14.3,
-            wxNumberFormatter::ToString(14.3, 1, wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(16.7,
-            wxNumberFormatter::ToString(16.7, 1, wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(20.0,
-            wxNumberFormatter::ToString(20.0, 1, wxNumberFormatter::Style::Style_None));
-        GetLeftYAxis().AddUnevenAxisPoint(25.0,
+        GetLeftYAxis().AddUnevenAxisPoint(
+            2.0,
+            wxNumberFormatter::ToString(2.0, 1, wxNumberFormatter::Style::Style_None) + _DT(L"-"));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            2.5, wxNumberFormatter::ToString(2.5, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            3.0, wxNumberFormatter::ToString(3.0, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            3.3, wxNumberFormatter::ToString(3.3, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            3.5, wxNumberFormatter::ToString(3.5, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            3.6, wxNumberFormatter::ToString(3.6, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            3.7, wxNumberFormatter::ToString(3.7, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            3.8, wxNumberFormatter::ToString(3.8, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            4.0, wxNumberFormatter::ToString(4.0, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            4.2, wxNumberFormatter::ToString(4.2, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            4.3, wxNumberFormatter::ToString(4.3, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            4.5, wxNumberFormatter::ToString(4.5, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            4.8, wxNumberFormatter::ToString(4.8, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            5.0, wxNumberFormatter::ToString(5.0, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            5.2, wxNumberFormatter::ToString(5.2, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            5.6, wxNumberFormatter::ToString(5.6, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            5.9, wxNumberFormatter::ToString(5.9, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            6.3, wxNumberFormatter::ToString(6.3, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            6.7, wxNumberFormatter::ToString(6.7, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            7.1, wxNumberFormatter::ToString(7.1, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            7.7, wxNumberFormatter::ToString(7.7, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            8.3, wxNumberFormatter::ToString(8.3, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            9.1, wxNumberFormatter::ToString(9.1, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            10.0, wxNumberFormatter::ToString(10.0, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            11.1, wxNumberFormatter::ToString(11.1, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            12.5, wxNumberFormatter::ToString(12.5, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            14.3, wxNumberFormatter::ToString(14.3, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            16.7, wxNumberFormatter::ToString(16.7, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            20.0, wxNumberFormatter::ToString(20.0, 1, wxNumberFormatter::Style::Style_None));
+        GetLeftYAxis().AddUnevenAxisPoint(
+            25.0,
             wxNumberFormatter::ToString(25.0, 1, wxNumberFormatter::Style::Style_None) + _DT(L"+"));
         GetLeftYAxis().AdjustRangeToLabels();
 
@@ -129,38 +135,40 @@ namespace Wisteria::Graphs
         AddBrackets();
 
         if (m_fryGraphType == FryGraphType::GPM)
-            { SetAsGilliamPenaMountainGraph(); }
+            {
+            SetAsGilliamPenaMountainGraph();
+            }
         }
 
     //----------------------------------------------------------------
     void FryGraph::SetData(std::shared_ptr<const Wisteria::Data::Dataset> data,
-        const wxString& numberOfWordsColumnName,
-        const wxString& numberOfSyllablesColumnName,
-        const wxString& numberOfSentencesColumnName,
-        std::optional<const wxString> groupColumnName /*= std::nullopt*/)
+                           const wxString& numberOfWordsColumnName,
+                           const wxString& numberOfSyllablesColumnName,
+                           const wxString& numberOfSentencesColumnName,
+                           std::optional<const wxString> groupColumnName /*= std::nullopt*/)
         {
         SetDataset(data);
         ResetGrouping();
         m_results.clear();
-        m_numberOfWordsColumn = m_numberOfSyllablesColumn =
-            m_numberOfSentencesColumn = nullptr;
+        m_numberOfWordsColumn = m_numberOfSyllablesColumn = m_numberOfSentencesColumn = nullptr;
         GetSelectedIds().clear();
 
         if (GetDataset() == nullptr)
-            { return; }
+            {
+            return;
+            }
 
         SetGroupColumn(groupColumnName);
 
         // if grouping, build the list of group IDs, sorted by their respective labels
         if (IsUsingGrouping())
-            { BuildGroupIdMap(); }
+            {
+            BuildGroupIdMap();
+            }
 
-        m_numberOfWordsColumn =
-            GetContinuousColumnRequired(numberOfWordsColumnName);
-        m_numberOfSyllablesColumn =
-            GetContinuousColumnRequired(numberOfSyllablesColumnName);
-        m_numberOfSentencesColumn =
-            GetContinuousColumnRequired(numberOfSentencesColumnName);
+        m_numberOfWordsColumn = GetContinuousColumnRequired(numberOfWordsColumnName);
+        m_numberOfSyllablesColumn = GetContinuousColumnRequired(numberOfSyllablesColumnName);
+        m_numberOfSentencesColumn = GetContinuousColumnRequired(numberOfSentencesColumnName);
 
         BuildBackscreen();
         }
@@ -171,7 +179,7 @@ namespace Wisteria::Graphs
         if (m_backscreen == nullptr)
             {
             // Shape and color schemes are irrelevant, as this is used
-            // only for the base polygon calculations. 
+            // only for the base polygon calculations.
             m_backscreen = std::make_unique<FryGraph>(GetCanvas(), m_fryGraphType);
             m_backscreen->SetMessageCatalog(GetMessageCatalog());
             // Also, leave the data as null, as that isn't used either for
@@ -185,8 +193,7 @@ namespace Wisteria::Graphs
             // collision within; this isn't actually being presented. This is also why
             // this canvas's DPI scale factor is hard coded to 1.9 (above).
             m_backscreen->SetBoundingBox(
-                wxSize(Canvas::GetDefaultCanvasWidthDIPs(),
-                       Canvas::GetDefaultCanvasHeightDIPs()),
+                wxSize(Canvas::GetDefaultCanvasWidthDIPs(), Canvas::GetDefaultCanvasHeightDIPs()),
                 dc, 1.0);
             m_backscreen->RecalcSizes(dc);
             }
@@ -197,21 +204,22 @@ namespace Wisteria::Graphs
         {
         Graph2D::RecalcSizes(dc);
 
-        assert((!m_backscreen ||
-            m_backscreen->GetBoundingBox(dc).GetWidth() ==
-            Canvas::GetDefaultCanvasWidthDIPs()) && L"Invalid backscreen size!");
-        assert((!m_backscreen ||
-            m_backscreen->GetBoundingBox(dc).GetHeight() ==
-            Canvas::GetDefaultCanvasHeightDIPs()) && L"Invalid backscreen size!");
+        assert((!m_backscreen || m_backscreen->GetBoundingBox(dc).GetWidth() ==
+                                     Canvas::GetDefaultCanvasWidthDIPs()) &&
+               L"Invalid backscreen size!");
+        assert((!m_backscreen || m_backscreen->GetBoundingBox(dc).GetHeight() ==
+                                     Canvas::GetDefaultCanvasHeightDIPs()) &&
+               L"Invalid backscreen size!");
 
         // long sentence danger area
         GetPhysicalCoordinates(108 + GetSyllableAxisOffset(), 2.0, m_longSentencesPoints[0]);
         GetPhysicalCoordinates(124 + GetSyllableAxisOffset(), 2.0, m_longSentencesPoints[1]);
         GetPhysicalCoordinates(108 + GetSyllableAxisOffset(), 4.2, m_longSentencesPoints[2]);
         AddObject(std::make_shared<GraphItems::Polygon>(
-            GraphItemInfo().Pen(wxNullPen).
-            Text(_(L"Invalid region: sentences are too long")).
-            Brush(wxBrush(ColorContrast::ChangeOpacity(GetInvalidAreaColor(), 100))),
+            GraphItemInfo()
+                .Pen(wxNullPen)
+                .Text(_(L"Invalid region: sentences are too long"))
+                .Brush(wxBrush(ColorContrast::ChangeOpacity(GetInvalidAreaColor(), 100))),
             m_longSentencesPoints));
         // long word danger area
         GetPhysicalCoordinates(141 + GetSyllableAxisOffset(), 25.0, m_longWordPoints[0]);
@@ -224,9 +232,10 @@ namespace Wisteria::Graphs
         GetPhysicalCoordinates(182 + GetSyllableAxisOffset(), 7.3, m_longWordPoints[7]);
         GetPhysicalCoordinates(182 + GetSyllableAxisOffset(), 25.0, m_longWordPoints[8]);
         AddObject(std::make_shared<GraphItems::Polygon>(
-            GraphItemInfo().Pen(wxNullPen).
-            Text(_(L"Invalid region: too many complex words")).
-            Brush(wxBrush(ColorContrast::ChangeOpacity(GetInvalidAreaColor(), 100))),
+            GraphItemInfo()
+                .Pen(wxNullPen)
+                .Text(_(L"Invalid region: too many complex words"))
+                .Brush(wxBrush(ColorContrast::ChangeOpacity(GetInvalidAreaColor(), 100))),
             m_longWordPoints));
         // divider line
         GetPhysicalCoordinates(119.5 + GetSyllableAxisOffset(), 15.8, m_dividerLinePoints[0]);
@@ -305,24 +314,26 @@ namespace Wisteria::Graphs
 
         // the separator line
         auto levelsSpline = std::make_shared<GraphItems::Polygon>(
-            GraphItemInfo().Pen(wxPen(lightGray)).
-            Brush(wxBrush(lightGray)).Scaling(GetScaling()),
+            GraphItemInfo().Pen(wxPen(lightGray)).Brush(wxBrush(lightGray)).Scaling(GetScaling()),
             &m_dividerLinePoints[0], std::size(m_dividerLinePoints) - 2);
         levelsSpline->SetShape(GraphItems::Polygon::PolygonShape::Spline);
         AddObject(levelsSpline);
 
         // draw the grade lines
         AddObject(std::make_shared<GraphItems::Polygon>(
-            GraphItemInfo().Pen(wxPen(ColorContrast::ChangeOpacity(*wxBLUE, 200))).
-            Brush(*wxBLACK_BRUSH).Scaling(GetScaling()),
+            GraphItemInfo()
+                .Pen(wxPen(ColorContrast::ChangeOpacity(*wxBLUE, 200)))
+                .Brush(*wxBLACK_BRUSH)
+                .Scaling(GetScaling()),
             &m_gradeLinePoints[3], 2));
         // the rest of grade region lines
         for (size_t i = 2, pointIter = 5; i <= 16; ++i, pointIter += 2)
             {
             AddObject(std::make_shared<GraphItems::Polygon>(
-                GraphItemInfo().
-                Pen(wxPen(ColorContrast::ChangeOpacity(*wxBLUE, 200))).
-                Brush(*wxBLACK_BRUSH).Scaling(GetScaling()),
+                GraphItemInfo()
+                    .Pen(wxPen(ColorContrast::ChangeOpacity(*wxBLUE, 200)))
+                    .Brush(*wxBLACK_BRUSH)
+                    .Scaling(GetScaling()),
                 &m_gradeLinePoints[pointIter], 2));
             }
 
@@ -330,45 +341,52 @@ namespace Wisteria::Graphs
 
         // draw the grade areas (for selecting)
         AddObject(std::make_shared<GraphItems::Polygon>(
-            GraphItemInfo(GetMessageCatalog()->GetGradeScaleLongLabel(1)).
-            Pen(wxNullPen).Brush(wxNullBrush).SelectionBrush(selectionBrush),
+            GraphItemInfo(GetMessageCatalog()->GetGradeScaleLongLabel(1))
+                .Pen(wxNullPen)
+                .Brush(wxNullBrush)
+                .SelectionBrush(selectionBrush),
             &m_gradeLinePoints[0], 5));
         // the rest of the grade areas
         for (size_t i = 2, pointIter = 5; i <= 16; ++i, pointIter += 2)
             {
             AddObject(std::make_shared<GraphItems::Polygon>(
-                GraphItemInfo(GetMessageCatalog()->GetGradeScaleLongLabel(i)).
-                Pen(wxNullPen).Brush(wxNullBrush).SelectionBrush(selectionBrush),
-                &m_gradeLinePoints[(pointIter-2)], 4));
+                GraphItemInfo(GetMessageCatalog()->GetGradeScaleLongLabel(i))
+                    .Pen(wxNullPen)
+                    .Brush(wxNullBrush)
+                    .SelectionBrush(selectionBrush),
+                &m_gradeLinePoints[(pointIter - 2)], 4));
             }
-        AddObject(std::make_shared<GraphItems::Polygon>(
-            GraphItemInfo(_(L"Post-graduate+")).Pen(wxNullPen).
-            Brush(wxNullBrush).SelectionBrush(selectionBrush),
-            &m_gradeLinePoints[33], 4));
+        AddObject(std::make_shared<GraphItems::Polygon>(GraphItemInfo(_(L"Post-graduate+"))
+                                                            .Pen(wxNullPen)
+                                                            .Brush(wxNullBrush)
+                                                            .SelectionBrush(selectionBrush),
+                                                        &m_gradeLinePoints[33], 4));
 
         wxPoint pt1, pt2;
         GetPhysicalCoordinates(112 + GetSyllableAxisOffset(), 5.0, pt1);
         GetPhysicalCoordinates(128 + GetSyllableAxisOffset(), 3.3, pt2);
-        auto gradeLevelLabel =
-            std::make_shared<GraphItems::Label>(
-            GraphItemInfo(_(L"APPROXIMATE  GRADE  LEVEL")).
-            Pen(wxNullPen).Selectable(false).
+        auto gradeLevelLabel = std::make_shared<GraphItems::Label>(
+            GraphItemInfo(_(L"APPROXIMATE  GRADE  LEVEL"))
+                .Pen(wxNullPen)
+                .Selectable(false)
+                .
             // overriding scaling with a hard-coded font size returned from CalcDiagonalFontSize()
-            Scaling(1).DPIScaling(1).
-            AnchorPoint(pt1).Anchoring(Anchoring::TopLeftCorner));
+            Scaling(1)
+                .DPIScaling(1)
+                .AnchorPoint(pt1)
+                .Anchoring(Anchoring::TopLeftCorner));
         gradeLevelLabel->Tilt(-45);
         // make it fit inside of the graph
         wxRect gradeLabelArea{ pt1, pt2 };
         wxFont labelFont(wxFontInfo().FaceName(GetFancyFontFaceName()));
-        labelFont.SetPointSize(Label::CalcDiagonalFontSize(dc, labelFont, gradeLabelArea,
-            45, gradeLevelLabel->GetText()));
+        labelFont.SetPointSize(Label::CalcDiagonalFontSize(dc, labelFont, gradeLabelArea, 45,
+                                                           gradeLevelLabel->GetText()));
         gradeLevelLabel->SetFont(labelFont);
-        if constexpr(Settings::IsDebugFlagEnabled(DebugSettings::DrawExtraInformation))
+        if constexpr (Settings::IsDebugFlagEnabled(DebugSettings::DrawExtraInformation))
             {
-            AddObject(std::make_shared<GraphItems::Polygon>(GraphItemInfo().
-                Pen(*wxRED).Brush(wxNullBrush),
-                std::vector<wxPoint>{ gradeLabelArea.GetTopLeft(),
-                                      gradeLabelArea.GetTopRight(),
+            AddObject(std::make_shared<GraphItems::Polygon>(
+                GraphItemInfo().Pen(*wxRED).Brush(wxNullBrush),
+                std::vector<wxPoint>{ gradeLabelArea.GetTopLeft(), gradeLabelArea.GetTopRight(),
                                       gradeLabelArea.GetBottomRight(),
                                       gradeLabelArea.GetBottomLeft() }));
             }
@@ -379,20 +397,21 @@ namespace Wisteria::Graphs
 
         // add the grade labels to the regions
         // (and highlight in heavy bold and a different color the one where the score lies)
-        labelFont = wxFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).
-            GetPointSize()*1.25f, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_ITALIC,
-            wxFONTWEIGHT_NORMAL, false, GetFancyFontFaceName());
+        labelFont = wxFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize() * 1.25f,
+                           wxFONTFAMILY_DEFAULT, wxFONTSTYLE_ITALIC, wxFONTWEIGHT_NORMAL, false,
+                           GetFancyFontFaceName());
         for (const auto& level : GetLevelLabels())
             {
             wxPoint pt;
             GetPhysicalCoordinates(level.GetX(), level.GetY(), pt);
 
-            auto levelLabel = std::make_shared<GraphItems::Label>(
-                GraphItemInfo(level.GetLabel()).Scaling(GetScaling()).Pen(wxNullPen).
-                Font(labelFont).AnchorPoint(pt));
+            auto levelLabel = std::make_shared<GraphItems::Label>(GraphItemInfo(level.GetLabel())
+                                                                      .Scaling(GetScaling())
+                                                                      .Pen(wxNullPen)
+                                                                      .Font(labelFont)
+                                                                      .AnchorPoint(pt));
             levelLabel->SetTextAlignment(TextAlignment::Centered);
-            if (GetScores().size() == 1 &&
-                level == GetScores().front().GetScore())
+            if (GetScores().size() == 1 && level == GetScores().front().GetScore())
                 {
                 levelLabel->GetFont().SetWeight(wxFontWeight::wxFONTWEIGHT_EXTRAHEAVY);
                 levelLabel->SetFontColor(GetColorScheme()->GetColor(0));
@@ -405,13 +424,16 @@ namespace Wisteria::Graphs
     void FryGraph::CalculateScorePositions(wxDC& dc)
         {
         if (GetDataset() == nullptr)
-            { return; }
+            {
+            return;
+            }
 
         assert(m_backscreen && L"Backscreen not set!");
-        assert(m_backscreen->GetBoundingBox(dc).GetWidth() ==
-            Canvas::GetDefaultCanvasWidthDIPs() && L"Invalid backscreen size!");
+        assert(m_backscreen->GetBoundingBox(dc).GetWidth() == Canvas::GetDefaultCanvasWidthDIPs() &&
+               L"Invalid backscreen size!");
         assert(m_backscreen->GetBoundingBox(dc).GetHeight() ==
-            Canvas::GetDefaultCanvasHeightDIPs() && L"Invalid backscreen size!");
+                   Canvas::GetDefaultCanvasHeightDIPs() &&
+               L"Invalid backscreen size!");
 
         auto points = std::make_shared<GraphItems::Points2D>(wxNullPen);
         points->SetScaling(GetScaling());
@@ -431,91 +453,123 @@ namespace Wisteria::Graphs
                 safe_divide<double>(100, m_numberOfWordsColumn->GetValue(i));
 
             // add the score to the grouped data
-            m_results[i] =
-                Wisteria::ScorePoint(
-                    std::clamp<double>(
-                        normalizationFactor * m_numberOfSyllablesColumn->GetValue(i),
-                        108 + static_cast<double>(GetSyllableAxisOffset()),
-                        182 + static_cast<double>(GetSyllableAxisOffset())),
-                    std::clamp<double>(
-                        normalizationFactor * m_numberOfSentencesColumn->GetValue(i),
-                        2, 25));
+            m_results[i] = Wisteria::ScorePoint(
+                std::clamp<double>(normalizationFactor * m_numberOfSyllablesColumn->GetValue(i),
+                                   108 + static_cast<double>(GetSyllableAxisOffset()),
+                                   182 + static_cast<double>(GetSyllableAxisOffset())),
+                std::clamp<double>(normalizationFactor * m_numberOfSentencesColumn->GetValue(i), 2,
+                                   25));
 
             m_results[i].ResetStatus();
 
-            const auto calcScoreFromPolygons = [](
-                const std::unique_ptr<FryGraph>& graph,
-                ScorePoint& scorePoint)
-                {
+            const auto calcScoreFromPolygons =
+                [](const std::unique_ptr<FryGraph>& graph, ScorePoint& scorePoint)
+            {
                 // see where the point is
                 if (!graph->GetPhysicalCoordinates(scorePoint.m_wordStatistic,
-                                            scorePoint.m_sentenceStatistic,
-                                            scorePoint.m_scorePoint))
+                                                   scorePoint.m_sentenceStatistic,
+                                                   scorePoint.m_scorePoint))
                     {
                     scorePoint.SetScoreInvalid(true);
                     return false;
                     }
 
-                if (IsScoreInsideRegion(scorePoint.m_scorePoint,
-                                        &graph->m_gradeLinePoints[33], 4, 1, 1) )
-                    { scorePoint.SetScore(17); }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint,
-                                             &graph->m_gradeLinePoints[31], 4, 1, 1) )
-                    { scorePoint.SetScore(16); }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint,
-                                             &graph->m_gradeLinePoints[29], 4, 1, 1) )
-                    { scorePoint.SetScore(15); }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint,
-                                             &graph->m_gradeLinePoints[27], 4, 1, 1) )
-                    { scorePoint.SetScore(14); }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint,
-                                             &graph->m_gradeLinePoints[25], 4, 1, 1) )
-                    { scorePoint.SetScore(13); }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint,
-                                             &graph->m_gradeLinePoints[23], 4, 1, 1) )
-                    { scorePoint.SetScore(12); }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint,
-                                             &graph->m_gradeLinePoints[21], 4, 1, 1) )
-                    { scorePoint.SetScore(11); }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint,
-                                             &graph->m_gradeLinePoints[19], 4, 1, 1) )
-                    { scorePoint.SetScore(10); }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint,
-                                             &graph->m_gradeLinePoints[17], 4, 1, 1) )
-                    { scorePoint.SetScore(9); }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint,
-                                             &graph->m_gradeLinePoints[15], 4, 1, 1) )
-                    { scorePoint.SetScore(8); }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint,
-                                             &graph->m_gradeLinePoints[13], 4, 1, 1) )
-                    { scorePoint.SetScore(7); }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint,
-                                             &graph->m_gradeLinePoints[11], 4, 1, 1) )
-                    { scorePoint.SetScore(6); }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint,
-                                             &graph->m_gradeLinePoints[9], 4, 1, 1) )
-                    { scorePoint.SetScore(5); }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint,
-                                             &graph->m_gradeLinePoints[7], 4, 1, 1) )
-                    { scorePoint.SetScore(4); }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint,
-                                             &graph->m_gradeLinePoints[5], 4, 1, 1) )
-                    { scorePoint.SetScore(3); }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint,
-                                             &graph->m_gradeLinePoints[3], 4, 1, 1) )
-                    { scorePoint.SetScore(2); }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint,
-                                             &graph->m_gradeLinePoints[0], 5, 1, 1) )
-                    { scorePoint.SetScore(1); }
+                if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[33], 4,
+                                        1, 1))
+                    {
+                    scorePoint.SetScore(17);
+                    }
+                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[31],
+                                             4, 1, 1))
+                    {
+                    scorePoint.SetScore(16);
+                    }
+                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[29],
+                                             4, 1, 1))
+                    {
+                    scorePoint.SetScore(15);
+                    }
+                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[27],
+                                             4, 1, 1))
+                    {
+                    scorePoint.SetScore(14);
+                    }
+                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[25],
+                                             4, 1, 1))
+                    {
+                    scorePoint.SetScore(13);
+                    }
+                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[23],
+                                             4, 1, 1))
+                    {
+                    scorePoint.SetScore(12);
+                    }
+                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[21],
+                                             4, 1, 1))
+                    {
+                    scorePoint.SetScore(11);
+                    }
+                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[19],
+                                             4, 1, 1))
+                    {
+                    scorePoint.SetScore(10);
+                    }
+                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[17],
+                                             4, 1, 1))
+                    {
+                    scorePoint.SetScore(9);
+                    }
+                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[15],
+                                             4, 1, 1))
+                    {
+                    scorePoint.SetScore(8);
+                    }
+                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[13],
+                                             4, 1, 1))
+                    {
+                    scorePoint.SetScore(7);
+                    }
+                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[11],
+                                             4, 1, 1))
+                    {
+                    scorePoint.SetScore(6);
+                    }
+                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[9],
+                                             4, 1, 1))
+                    {
+                    scorePoint.SetScore(5);
+                    }
+                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[7],
+                                             4, 1, 1))
+                    {
+                    scorePoint.SetScore(4);
+                    }
+                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[5],
+                                             4, 1, 1))
+                    {
+                    scorePoint.SetScore(3);
+                    }
+                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[3],
+                                             4, 1, 1))
+                    {
+                    scorePoint.SetScore(2);
+                    }
+                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[0],
+                                             5, 1, 1))
+                    {
+                    scorePoint.SetScore(1);
+                    }
                 else
-                    { scorePoint.SetScoreOutOfGradeRange(true); }
+                    {
+                    scorePoint.SetScoreOutOfGradeRange(true);
+                    }
 
                 // if in a valid grade area see if it
                 // leans towards having harder sentences or words
                 if (!scorePoint.IsScoreInvalid())
                     {
-                    if (IsScoreInsideRegion(scorePoint.m_scorePoint,
-                                            graph->m_dividerLinePoints, 1, 1))
+                    if (IsScoreInsideRegion(scorePoint.m_scorePoint, graph->m_dividerLinePoints, 1,
+                                            1))
                         {
                         scorePoint.SetSentencesHard(false);
                         scorePoint.SetWordsHard(true);
@@ -528,55 +582,51 @@ namespace Wisteria::Graphs
                     }
 
                 return true;
-                };
+            };
 
             calcScoreFromPolygons(m_backscreen, m_results[i]);
 
             // Convert group ID into color scheme index
             // (index is ordered by labels alphabetically).
             // Note that this will be zero if grouping is not in use.
-            const size_t colorIndex = IsUsingGrouping() ?
-                GetSchemeIndexFromGroupId(GetGroupColumn()->GetValue(i)) :
-                0;
+            const size_t colorIndex =
+                IsUsingGrouping() ? GetSchemeIndexFromGroupId(GetGroupColumn()->GetValue(i)) : 0;
 
             // see where the point is on this graph (not the backscreen) and
             // add it to be physically plotted
             if (GetPhysicalCoordinates(m_results[i].m_wordStatistic,
-                                       m_results[i].m_sentenceStatistic,
-                                       m_results[i].m_scorePoint))
+                                       m_results[i].m_sentenceStatistic, m_results[i].m_scorePoint))
                 {
-                points->AddPoint(Point2D(
-                        GraphItemInfo(GetDataset()->GetIdColumn().GetValue(i)).
-                        AnchorPoint(m_results[i].m_scorePoint).
-                        Brush(GetColorScheme()->GetColor(colorIndex)),
-                        Settings::GetPointRadius(),
-                        GetShapeScheme()->GetShape(colorIndex)), dc);
+                points->AddPoint(Point2D(GraphItemInfo(GetDataset()->GetIdColumn().GetValue(i))
+                                             .AnchorPoint(m_results[i].m_scorePoint)
+                                             .Brush(GetColorScheme()->GetColor(colorIndex)),
+                                         Settings::GetPointRadius(),
+                                         GetShapeScheme()->GetShape(colorIndex)),
+                                 dc);
                 }
             else
                 {
-                wxFAIL_MSG(
-                    wxString::Format(
-                        L"Point plotted on backscreen, but failed on main graph!\n"
-                         "%.2f, %.2f", m_results[i].m_wordStatistic,
-                                       m_results[i].m_sentenceStatistic));
+                wxFAIL_MSG(wxString::Format(
+                    L"Point plotted on backscreen, but failed on main graph!\n"
+                    "%.2f, %.2f",
+                    m_results[i].m_wordStatistic, m_results[i].m_sentenceStatistic));
                 }
             }
         AddObject(points);
 
-        if (m_results.size() == 1 &&
-            m_results.front().IsScoreInvalid())
+        if (m_results.size() == 1 && m_results.front().IsScoreInvalid())
             {
             wxFont LabelFont = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);
             LabelFont.SetPointSize(12);
             const wxPoint textCoordinate(
-                GetPlotAreaBoundingBox().GetX() +
-                (GetPlotAreaBoundingBox().GetWidth()/2), GetPlotAreaBoundingBox().GetY() +
-                (GetPlotAreaBoundingBox().GetHeight()/2));
+                GetPlotAreaBoundingBox().GetX() + (GetPlotAreaBoundingBox().GetWidth() / 2),
+                GetPlotAreaBoundingBox().GetY() + (GetPlotAreaBoundingBox().GetHeight() / 2));
             AddObject(std::make_shared<Wisteria::GraphItems::Label>(
-                GraphItemInfo(_(L"Invalid score: text is too difficult to be plotted")).
-                Scaling(GetScaling()).Pen(*wxBLACK_PEN).
-                Font(LabelFont).
-                AnchorPoint(textCoordinate)) );
+                GraphItemInfo(_(L"Invalid score: text is too difficult to be plotted"))
+                    .Scaling(GetScaling())
+                    .Pen(*wxBLACK_PEN)
+                    .Font(LabelFont)
+                    .AnchorPoint(textCoordinate)));
             }
         }
 
@@ -591,19 +641,25 @@ namespace Wisteria::Graphs
         GetBottomXAxis().Reset();
         for (size_t i = 108 + GetSyllableAxisOffset(); i <= 180 + GetSyllableAxisOffset(); i += 2)
             {
-            GetBottomXAxis().AddUnevenAxisPoint(i,
-                wxNumberFormatter::ToString(i, 0,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes));
+            GetBottomXAxis().AddUnevenAxisPoint(
+                i, wxNumberFormatter::ToString(i, 0,
+                                               wxNumberFormatter::Style::Style_NoTrailingZeroes));
             }
-        GetBottomXAxis().SetCustomLabel(108 + GetSyllableAxisOffset(),
-            GraphItems::Label(wxNumberFormatter::ToString(108+GetSyllableAxisOffset(), 0,
-                wxNumberFormatter::Style::Style_NoTrailingZeroes) + L"-"));
-        GetBottomXAxis().AddUnevenAxisPoint(181 + GetSyllableAxisOffset(),
+        GetBottomXAxis().SetCustomLabel(
+            108 + GetSyllableAxisOffset(),
+            GraphItems::Label(
+                wxNumberFormatter::ToString(108 + GetSyllableAxisOffset(), 0,
+                                            wxNumberFormatter::Style::Style_NoTrailingZeroes) +
+                L"-"));
+        GetBottomXAxis().AddUnevenAxisPoint(
+            181 + GetSyllableAxisOffset(),
             wxNumberFormatter::ToString(181 + GetSyllableAxisOffset(), 0,
-                wxNumberFormatter::Style::Style_NoTrailingZeroes));
-        GetBottomXAxis().AddUnevenAxisPoint(182 + GetSyllableAxisOffset(),
+                                        wxNumberFormatter::Style::Style_NoTrailingZeroes));
+        GetBottomXAxis().AddUnevenAxisPoint(
+            182 + GetSyllableAxisOffset(),
             wxNumberFormatter::ToString(182 + GetSyllableAxisOffset(), 0,
-                wxNumberFormatter::Style::Style_NoTrailingZeroes) + L"+");
+                                        wxNumberFormatter::Style::Style_NoTrailingZeroes) +
+                L"+");
         GetBottomXAxis().AdjustRangeToLabels();
         GetBottomXAxis().SetDisplayInterval(2);
 
@@ -632,18 +688,17 @@ namespace Wisteria::Graphs
         GetLeftYAxis().EnableAutoStacking(false);
 
         GetTopXAxis().ClearBrackets();
-        Axis::AxisBracket xBracketLong(
-            140+GetSyllableAxisOffset(), 182+GetSyllableAxisOffset(),
-            164+GetSyllableAxisOffset(), _(L"Long words"));
+        Axis::AxisBracket xBracketLong(140 + GetSyllableAxisOffset(), 182 + GetSyllableAxisOffset(),
+                                       164 + GetSyllableAxisOffset(), _(L"Long words"));
         xBracketLong.SetBracketLineStyle(Wisteria::BracketLineStyle::NoConnectionLines);
         xBracketLong.GetLabel().SetTextOrientation(Orientation::Horizontal);
         xBracketLong.SetPadding(0);
         xBracketLong.GetLabel().SetFont(GetLeftYAxis().GetFont());
         GetTopXAxis().AddBracket(xBracketLong);
 
-        Axis::AxisBracket xBracketShort(
-            108+GetSyllableAxisOffset(),
-            140+GetSyllableAxisOffset(), 126+GetSyllableAxisOffset(), _(L"Short words"));
+        Axis::AxisBracket xBracketShort(108 + GetSyllableAxisOffset(),
+                                        140 + GetSyllableAxisOffset(),
+                                        126 + GetSyllableAxisOffset(), _(L"Short words"));
         xBracketShort.SetBracketLineStyle(Wisteria::BracketLineStyle::NoConnectionLines);
         xBracketShort.GetLabel().SetTextOrientation(Orientation::Horizontal);
         xBracketShort.SetPadding(0);
@@ -673,4 +728,4 @@ namespace Wisteria::Graphs
         AddLevelLabel(LevelLabel(176.5 + GetSyllableAxisOffset(), 3.48, L"16", 16, 16));
         AddLevelLabel(LevelLabel(180.8 + GetSyllableAxisOffset(), 3.48, L"17+", 17, 17));
         }
-    }
+    } // namespace Wisteria::Graphs

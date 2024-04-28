@@ -36,14 +36,15 @@ namespace Wisteria::Graphs
     /// @brief Raygor readability graph.
     class RaygorGraph final : public PolygonReadabilityGraph
         {
-    public:
+      public:
         /** @brief Constructor.
             @param canvas The parent canvas to render on.
             @param colors The color scheme to apply to the points.
                Leave as null to use the default theme.
             @param shapes The shape scheme to use for the points.
                Leave as null to use the standard shapes.*/
-        explicit RaygorGraph(Wisteria::Canvas* canvas,
+        explicit RaygorGraph(
+            Wisteria::Canvas* canvas,
             std::shared_ptr<Wisteria::Colors::Schemes::ColorScheme> colors = nullptr,
             std::shared_ptr<Wisteria::Icons::Schemes::IconScheme> shapes = nullptr);
 
@@ -72,22 +73,28 @@ namespace Wisteria::Graphs
         ///     when it was initially passed to SetData().
         [[nodiscard]]
         const std::vector<Wisteria::ScorePoint>& GetScores() const noexcept
-            { return m_results; }
+            {
+            return m_results;
+            }
 
         /// @returns The style (appearance) of the graph.
         [[nodiscard]]
         RaygorStyle GetRaygorStyle() const noexcept
-            { return m_raygorStyle; }
+            {
+            return m_raygorStyle;
+            }
+
         /** @brief Sets the style for the graph.
             @param style The appearance to use for the graph.*/
         void SetRaygorStyle(const RaygorStyle style);
-    private:
+
+      private:
         void RecalcSizes(wxDC& dc) final;
         void CalculateScorePositions(wxDC& dc) final;
         void BuildBackscreen();
 
         std::array<wxPoint, 27> m_gradeLinePoints;
-        std::array<wxPoint, 8>  m_longSentencesPoints;
+        std::array<wxPoint, 8> m_longSentencesPoints;
         std::array<wxPoint, 10> m_longWordPoints;
         std::array<wxPoint, 10> m_dividerLinePoints;
 
@@ -101,7 +108,7 @@ namespace Wisteria::Graphs
         // used for consistent polygon calculations
         std::unique_ptr<RaygorGraph> m_backscreen{ nullptr };
         };
-    }
+    } // namespace Wisteria::Graphs
 
 /** @}*/
 

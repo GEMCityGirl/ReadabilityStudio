@@ -34,14 +34,11 @@ namespace LuaScripting
     int Clear(lua_State*);
     int GetScriptFolderPath(lua_State*);
 
-    static const luaL_Reg DebugLib[] =
-        {
-            { "Print", Print },
-            { "Clear", Clear },
-            { "GetScriptFolderPath", GetScriptFolderPath },
-            { nullptr, nullptr }
-        };
-    }
+    static const luaL_Reg DebugLib[] = { { "Print", Print },
+                                         { "Clear", Clear },
+                                         { "GetScriptFolderPath", GetScriptFolderPath },
+                                         { nullptr, nullptr } };
+    } // namespace LuaScripting
 
 /** @}*/
 

@@ -10,39 +10,34 @@
 #ifndef __READABILITY_GRAPH_H__
 #define __READABILITY_GRAPH_H__
 
-#include "../Wisteria-Dataviz/src/graphs/groupgraph2d.h"
 #include "../Wisteria-Dataviz/src/base/colorbrewer.h"
-#include <array>
-#include "scorepoint.h"
+#include "../Wisteria-Dataviz/src/graphs/groupgraph2d.h"
 #include "../results_format/readability_messages.h"
+#include "scorepoint.h"
+#include <array>
 
 namespace Wisteria::Graphs
     {
     /** @brief Readability graph base class which uses polygons to determine a test score.*/
     class PolygonReadabilityGraph : public GroupGraph2D
         {
-    public:
+      public:
         /** @brief Constructor.
             @param canvas The parent canvas to render on.*/
-        explicit PolygonReadabilityGraph(Wisteria::Canvas* canvas) :
-            GroupGraph2D(canvas),
-            m_graphInvalidAreaColor(
-                Wisteria::Colors::ColorBrewer::GetColor(
-                    Wisteria::Colors::Color::Red)),
-            m_fancyFontFaceName( Wisteria::GraphItems::Label::GetFirstAvailableFont(
-                    {
-                    DONTTRANSLATE(L"Georgia", DTExplanation::FontName),
-                    DONTTRANSLATE(L"Century Gothic"),
-                    DONTTRANSLATE(L"Century"),
-                    DONTTRANSLATE(L"Garamond")
-                    }
-                ))
-            {}
+        explicit PolygonReadabilityGraph(Wisteria::Canvas* canvas)
+            : GroupGraph2D(canvas), m_graphInvalidAreaColor(Wisteria::Colors::ColorBrewer::GetColor(
+                                        Wisteria::Colors::Color::Red)),
+              m_fancyFontFaceName(Wisteria::GraphItems::Label::GetFirstAvailableFont(
+                  { DONTTRANSLATE(L"Georgia", DTExplanation::FontName),
+                    DONTTRANSLATE(L"Century Gothic"), DONTTRANSLATE(L"Century"),
+                    DONTTRANSLATE(L"Garamond") }))
+            {
+            }
 
         /// @brief A label display on a level (e.g., grade level).
         struct LevelLabel
             {
-        public:
+          public:
             /** @brief Constructor.
                 @param x The x axis position.
                 @param y The y axis position.
@@ -50,26 +45,41 @@ namespace Wisteria::Graphs
                 @param startValue The start value of the level's range of values.
                 @param endValue The end value of the level's range of values.*/
             LevelLabel(const double x, const double y, const wxString& label,
-                       const double startValue, const double endValue) :
-                m_x(x), m_y(y), m_value1(startValue), m_value2(endValue), m_label(label)
-                {}
+                       const double startValue, const double endValue)
+                : m_x(x), m_y(y), m_value1(startValue), m_value2(endValue), m_label(label)
+                {
+                }
+
             /// @returns @c true if a @c value falls within the range of the level.
             [[nodiscard]]
-            bool operator==(const double value) const noexcept
-                { return value >= m_value1 && value <= m_value2; }
+            bool
+            operator==(const double value) const noexcept
+                {
+                return value >= m_value1 && value <= m_value2;
+                }
+
             /// @returns The x axis position of the label.
             [[nodiscard]]
             double GetX() const noexcept
-                { return m_x; }
-             /// @returns The y axis position of the label.
+                {
+                return m_x;
+                }
+
+            /// @returns The y axis position of the label.
             [[nodiscard]]
             double GetY() const noexcept
-                { return m_y; }
-             /// @returns The label's display string.
+                {
+                return m_y;
+                }
+
+            /// @returns The label's display string.
             [[nodiscard]]
             const wxString& GetLabel() const noexcept
-                { return m_label; }
-        private:
+                {
+                return m_label;
+                }
+
+          private:
             double m_x{ 0 };
             double m_y{ 0 };
             double m_value1{ 0 };
@@ -78,50 +88,62 @@ namespace Wisteria::Graphs
             };
 
         /// @returns The face name of a "fancy" fontface that can be used on the graphs.
-        const wxString& GetFancyFontFaceName() const noexcept
-            { return m_fancyFontFaceName; }
+        const wxString& GetFancyFontFaceName() const noexcept { return m_fancyFontFaceName; }
 
         /// @returns The color used for invalid areas (e.g., on a Fry graph).
         [[nodiscard]]
         const wxColour& GetInvalidAreaColor() const noexcept
-            { return m_graphInvalidAreaColor; }
+            {
+            return m_graphInvalidAreaColor;
+            }
+
         /** @brief Sets the color used for invalid areas.
             @param color The color to use.*/
         void SetInvalidAreaColor(const wxColour& color)
             {
             if (color.IsOk())
-                { m_graphInvalidAreaColor = color; }
+                {
+                m_graphInvalidAreaColor = color;
+                }
             }
 
         /// @brief Sets the extended label information usually shown when a region is selected.
         /// @param cat The message catalog to use.
-        void SetMessageCatalog(const ReadabilityMessages* cat) noexcept
-            { m_readMessages = cat; }
+        void SetMessageCatalog(const ReadabilityMessages* cat) noexcept { m_readMessages = cat; }
+
         /// @returns The extended label information usually shown when a region is selected.
         [[nodiscard]]
         const ReadabilityMessages* GetMessageCatalog() const noexcept
-            { return m_readMessages; }
+            {
+            return m_readMessages;
+            }
 
         /// @brief Adds a label to be shown on a level.
         /// @param label The level label to add.
-        void AddLevelLabel(const LevelLabel& label)
-            { m_levelLabels.push_back(label); }
+        void AddLevelLabel(const LevelLabel& label) { m_levelLabels.push_back(label); }
+
         /// @returns The labels displayed on various levels (e.g., grade levels).
         [[nodiscard]]
         std::vector<LevelLabel>& GetLevelLabels() noexcept
-            { return m_levelLabels; }
+            {
+            return m_levelLabels;
+            }
 
         /// @private
         [[nodiscard]]
         const std::vector<LevelLabel>& GetLevelLabels() const noexcept
-            { return m_levelLabels; }
-    protected:
+            {
+            return m_levelLabels;
+            }
+
+      protected:
         /// @brief Can be derived for custom score position calculations when laying out the plot.
         /// @param dc The measuring DC.
         virtual void CalculateScorePositions([[maybe_unused]] wxDC& dc) {}
+
         /** This is a more liberal than calling `Polygon::IsInsidePolygon()` because it
                 will see if the point next to or below the point are also in the polygon.
-                This helps prevent scores that are right on a line to switch between regions 
+                This helps prevent scores that are right on a line to switch between regions
                 when different screen resolutions. This way, it will error on the side of going
                 into the more difficult region.
             @note The backscreened plot that this is used on is not DPI scaled, so the offset
@@ -134,22 +156,23 @@ namespace Wisteria::Graphs
             @param yOffset How much "wiggle room" (in pixels) to test around to
                 y axis of the polygon's vertices.*/
         [[nodiscard]]
-        static bool IsScoreInsideRegion(const wxPoint pt, const wxPoint* polygon,
-                                        const int N, const int xOffset, const int yOffset)
+        static bool IsScoreInsideRegion(const wxPoint pt, const wxPoint* polygon, const int N,
+                                        const int xOffset, const int yOffset)
             {
             // see if the point is even in the polygon's bounding box, then see if it's
             // actually in the polygon
             return Wisteria::GraphItems::Polygon::GetPolygonBoundingBox(polygon, N).Contains(pt) ?
-                (Wisteria::GraphItems::Polygon::IsInsidePolygon(pt, polygon, N) ||
-                 Wisteria::GraphItems::Polygon::IsInsidePolygon(
-                     wxPoint(pt.x + xOffset, pt.y), polygon, N) ||
-                 Wisteria::GraphItems::Polygon::IsInsidePolygon(
-                     wxPoint(pt.x, pt.y + yOffset), polygon, N)) :
-                false;
+                       (Wisteria::GraphItems::Polygon::IsInsidePolygon(pt, polygon, N) ||
+                        Wisteria::GraphItems::Polygon::IsInsidePolygon(
+                            wxPoint(pt.x + xOffset, pt.y), polygon, N) ||
+                        Wisteria::GraphItems::Polygon::IsInsidePolygon(
+                            wxPoint(pt.x, pt.y + yOffset), polygon, N)) :
+                       false;
             }
+
         /** This is a more liberal than calling `Polygon::IsInsidePolygon()` because it
                 will see if the point next to or below the point are also in the polygon.
-                This helps prevent scores that are right on a line to switch between regions 
+                This helps prevent scores that are right on a line to switch between regions
                 when different screen resolutions. This way, it will error on the side of going
                 into the more difficult region.
             @note The backscreened plot that this is used on is not DPI scaled, so the offset
@@ -167,22 +190,24 @@ namespace Wisteria::Graphs
             {
             // see if the point is even in the polygon's bounding box, then see if it's
             // actually in the polygon
-            return Wisteria::GraphItems::Polygon::GetPolygonBoundingBox(
-                    &polygon[0], polygon.size()).Contains(pt) ?
-                (Wisteria::GraphItems::Polygon::IsInsidePolygon(pt, &polygon[0], polygon.size()) ||
-                 Wisteria::GraphItems::Polygon::IsInsidePolygon(
-                     wxPoint(pt.x + xOffset, pt.y), &polygon[0], polygon.size()) ||
-                 Wisteria::GraphItems::Polygon::IsInsidePolygon(
-                     wxPoint(pt.x, pt.y + yOffset), &polygon[0], polygon.size())) :
-                false;
+            return Wisteria::GraphItems::Polygon::GetPolygonBoundingBox(&polygon[0], polygon.size())
+                           .Contains(pt) ?
+                       (Wisteria::GraphItems::Polygon::IsInsidePolygon(pt, &polygon[0],
+                                                                       polygon.size()) ||
+                        Wisteria::GraphItems::Polygon::IsInsidePolygon(
+                            wxPoint(pt.x + xOffset, pt.y), &polygon[0], polygon.size()) ||
+                        Wisteria::GraphItems::Polygon::IsInsidePolygon(
+                            wxPoint(pt.x, pt.y + yOffset), &polygon[0], polygon.size())) :
+                       false;
             }
-    private:
+
+      private:
         std::vector<LevelLabel> m_levelLabels;
         wxColour m_graphInvalidAreaColor;
         wxString m_fancyFontFaceName;
         const ReadabilityMessages* m_readMessages{ nullptr };
         };
-    }
+    } // namespace Wisteria::Graphs
 
 /** @}*/
 

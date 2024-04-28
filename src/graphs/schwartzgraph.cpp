@@ -15,16 +15,16 @@ using namespace Wisteria::GraphItems;
 namespace Wisteria::Graphs
     {
     //----------------------------------------------------------------
-    SchwartzGraph::SchwartzGraph(Wisteria::Canvas* canvas,
-            std::shared_ptr<Wisteria::Colors::Schemes::ColorScheme> colors /*= nullptr*/,
-            std::shared_ptr<Wisteria::Icons::Schemes::IconScheme> shapes /*= nullptr*/) :
-        PolygonReadabilityGraph(canvas)
+    SchwartzGraph::SchwartzGraph(
+        Wisteria::Canvas* canvas,
+        std::shared_ptr<Wisteria::Colors::Schemes::ColorScheme> colors /*= nullptr*/,
+        std::shared_ptr<Wisteria::Icons::Schemes::IconScheme> shapes /*= nullptr*/)
+        : PolygonReadabilityGraph(canvas)
         {
-        SetColorScheme(colors != nullptr ? colors :
-            Settings::GetDefaultColorScheme());
+        SetColorScheme(colors != nullptr ? colors : Settings::GetDefaultColorScheme());
         SetShapeScheme(shapes != nullptr ? shapes :
-            std::make_shared<Wisteria::Icons::Schemes::IconScheme>(
-                Wisteria::Icons::Schemes::StandardShapes()));
+                                           std::make_shared<Wisteria::Icons::Schemes::IconScheme>(
+                                               Wisteria::Icons::Schemes::StandardShapes()));
 
         GetCanvas()->SetLabel(_(L"Schwartz Graph"));
         GetCanvas()->SetName(_(L"Schwartz Graph"));
@@ -35,7 +35,9 @@ namespace Wisteria::Graphs
         GetLeftYAxis().ShowOuterLabels(true);
         GetLeftYAxis().EnableAutoStacking(true);
         if (GetLeftYAxis().GetGridlinePen().IsOk())
-            { GetLeftYAxis().GetGridlinePen().SetColour(wxColour(211, 211, 211, 75)); }
+            {
+            GetLeftYAxis().GetGridlinePen().SetColour(wxColour(211, 211, 211, 75));
+            }
 
         GetBottomXAxis().SetRange(125, 189, 0, 1, 1);
         // The axis points are displayed with the 100 chopped off of it
@@ -44,8 +46,9 @@ namespace Wisteria::Graphs
         // (Not my design, that's how the published graph is designed).
         for (const auto& label : GetBottomXAxis().GetAxisPoints())
             {
-            GetBottomXAxis().SetCustomLabel(label.GetValue(),
-                GraphItems::Label(wxString::FromDouble(label.GetValue()-100, 0)));
+            GetBottomXAxis().SetCustomLabel(
+                label.GetValue(),
+                GraphItems::Label(wxString::FromDouble(label.GetValue() - 100, 0)));
             }
         GetBottomXAxis().ShowOuterLabels(true);
         GetBottomXAxis().GetFooter().SetText(_DT(L"100+", DTExplanation::Constant));
@@ -55,7 +58,9 @@ namespace Wisteria::Graphs
         GetBottomXAxis().GetFooter().SetLabelStyle(LabelStyle::RightArrowLinedPaperWithMargins);
         GetBottomXAxis().GetFooter().SetPadding(0, 25, 5, 5);
         if (GetBottomXAxis().GetGridlinePen().IsOk())
-            { GetBottomXAxis().GetGridlinePen().SetColour(wxColour(211, 211, 211, 75)); }
+            {
+            GetBottomXAxis().GetGridlinePen().SetColour(wxColour(211, 211, 211, 75));
+            }
 
         // add the labels for the grades
         AddLevelLabel(LevelLabel(129, 11, _DT(L"1"), 1, 1));
@@ -68,33 +73,33 @@ namespace Wisteria::Graphs
 
     //----------------------------------------------------------------
     void SchwartzGraph::SetData(std::shared_ptr<const Wisteria::Data::Dataset> data,
-        const wxString& numberOfWordsColumnName,
-        const wxString& numberOfSyllablesColumnName,
-        const wxString& numberOfSentencesColumnName,
-        std::optional<const wxString> groupColumnName /*= std::nullopt*/)
+                                const wxString& numberOfWordsColumnName,
+                                const wxString& numberOfSyllablesColumnName,
+                                const wxString& numberOfSentencesColumnName,
+                                std::optional<const wxString> groupColumnName /*= std::nullopt*/)
         {
         SetDataset(data);
         ResetGrouping();
         m_results.clear();
-        m_numberOfWordsColumn = m_numberOfSyllablesColumn =
-            m_numberOfSentencesColumn = nullptr;
+        m_numberOfWordsColumn = m_numberOfSyllablesColumn = m_numberOfSentencesColumn = nullptr;
         GetSelectedIds().clear();
 
         if (GetDataset() == nullptr)
-            { return; }
+            {
+            return;
+            }
 
         SetGroupColumn(groupColumnName);
 
         // if grouping, build the list of group IDs, sorted by their respective labels
         if (IsUsingGrouping())
-            { BuildGroupIdMap(); }
+            {
+            BuildGroupIdMap();
+            }
 
-        m_numberOfWordsColumn =
-            GetContinuousColumnRequired(numberOfWordsColumnName);
-        m_numberOfSyllablesColumn =
-            GetContinuousColumnRequired(numberOfSyllablesColumnName);
-        m_numberOfSentencesColumn =
-            GetContinuousColumnRequired(numberOfSentencesColumnName);
+        m_numberOfWordsColumn = GetContinuousColumnRequired(numberOfWordsColumnName);
+        m_numberOfSyllablesColumn = GetContinuousColumnRequired(numberOfSyllablesColumnName);
+        m_numberOfSentencesColumn = GetContinuousColumnRequired(numberOfSentencesColumnName);
 
         BuildBackscreen();
         }
@@ -105,7 +110,7 @@ namespace Wisteria::Graphs
         if (m_backscreen == nullptr)
             {
             // Shape and color schemes are irrelevant, as this is used
-            // only for the base polygon calculations. 
+            // only for the base polygon calculations.
             m_backscreen = std::make_unique<SchwartzGraph>(GetCanvas());
             m_backscreen->SetMessageCatalog(GetMessageCatalog());
             // Also, leave the data as null, as that isn't used either for
@@ -119,8 +124,7 @@ namespace Wisteria::Graphs
             // collision within; this isn't actually being presented. This is also why
             // this canvas's DPI scale factor is hard coded to 1.9 (above).
             m_backscreen->SetBoundingBox(
-                wxSize(Canvas::GetDefaultCanvasWidthDIPs(),
-                       Canvas::GetDefaultCanvasHeightDIPs()),
+                wxSize(Canvas::GetDefaultCanvasWidthDIPs(), Canvas::GetDefaultCanvasHeightDIPs()),
                 dc, 1.0);
             m_backscreen->RecalcSizes(dc);
             }
@@ -135,12 +139,12 @@ namespace Wisteria::Graphs
 
         Graph2D::RecalcSizes(dc);
 
-        assert((!m_backscreen ||
-            m_backscreen->GetBoundingBox(dc).GetWidth() ==
-            Canvas::GetDefaultCanvasWidthDIPs()) && L"Invalid backscreen size!");
-        assert((!m_backscreen ||
-            m_backscreen->GetBoundingBox(dc).GetHeight() ==
-            Canvas::GetDefaultCanvasHeightDIPs()) && L"Invalid backscreen size!");
+        assert((!m_backscreen || m_backscreen->GetBoundingBox(dc).GetWidth() ==
+                                     Canvas::GetDefaultCanvasWidthDIPs()) &&
+               L"Invalid backscreen size!");
+        assert((!m_backscreen || m_backscreen->GetBoundingBox(dc).GetHeight() ==
+                                     Canvas::GetDefaultCanvasHeightDIPs()) &&
+               L"Invalid backscreen size!");
 
         // long sentence region
         GetPhysicalCoordinates(125, 10.8, m_longSentencesPoints[0]);
@@ -161,9 +165,10 @@ namespace Wisteria::Graphs
         GetPhysicalCoordinates(125, 2.4, m_longSentencesPoints[15]);
 
         auto invalidSentenceArea = std::make_shared<GraphItems::Polygon>(
-            GraphItemInfo().Pen(wxNullPen).
-            Brush(wxBrush(GetInvalidAreaColor(), wxBRUSHSTYLE_FDIAGONAL_HATCH)).
-            Text(_(L"Invalid region: sentences are too long")),
+            GraphItemInfo()
+                .Pen(wxNullPen)
+                .Brush(wxBrush(GetInvalidAreaColor(), wxBRUSHSTYLE_FDIAGONAL_HATCH))
+                .Text(_(L"Invalid region: sentences are too long")),
             m_longSentencesPoints);
         invalidSentenceArea->SetBackgroundFill(Colors::GradientFill(*wxWHITE));
         AddObject(invalidSentenceArea);
@@ -202,9 +207,10 @@ namespace Wisteria::Graphs
         GetPhysicalCoordinates(189, 20.0, m_longWordPoints[30]);
 
         auto invalidWordArea = std::make_shared<GraphItems::Polygon>(
-            GraphItemInfo().Pen(wxNullPen).
-            Brush(wxBrush(GetInvalidAreaColor(), wxBRUSHSTYLE_FDIAGONAL_HATCH)).
-            Text(_(L"Invalid region: words are too long")),
+            GraphItemInfo()
+                .Pen(wxNullPen)
+                .Brush(wxBrush(GetInvalidAreaColor(), wxBRUSHSTYLE_FDIAGONAL_HATCH))
+                .Text(_(L"Invalid region: words are too long")),
             m_longWordPoints);
         invalidWordArea->SetBackgroundFill(Colors::GradientFill(*wxWHITE));
         AddObject(invalidWordArea);
@@ -231,45 +237,51 @@ namespace Wisteria::Graphs
         GetPhysicalCoordinates(160.5, 20.0, m_gradeLinePoints[2]);
         GetPhysicalCoordinates(162.45, 17.1, m_gradeLinePoints[3]);
         GetPhysicalCoordinates(128.2, 7.6, m_gradeLinePoints[4]);
-        AddObject(std::make_shared<GraphItems::Polygon>(
-            GraphItemInfo().Pen(wxPen(wxColour(0, 0, 255, 200))).
-            Brush(*wxBLACK_BRUSH).Scaling(GetScaling()),
-            &m_gradeLinePoints[3], 2));
+        AddObject(std::make_shared<GraphItems::Polygon>(GraphItemInfo()
+                                                            .Pen(wxPen(wxColour(0, 0, 255, 200)))
+                                                            .Brush(*wxBLACK_BRUSH)
+                                                            .Scaling(GetScaling()),
+                                                        &m_gradeLinePoints[3], 2));
         // 2th grade
         GetPhysicalCoordinates(168.5, 13.1, m_gradeLinePoints[5]);
         GetPhysicalCoordinates(135, 4, m_gradeLinePoints[6]);
-        AddObject(std::make_shared<GraphItems::Polygon>(
-            GraphItemInfo().Pen(wxPen(wxColour(0, 0, 255, 200))).
-            Brush(*wxBLACK_BRUSH).Scaling(GetScaling()),
-            &m_gradeLinePoints[5], 2));
+        AddObject(std::make_shared<GraphItems::Polygon>(GraphItemInfo()
+                                                            .Pen(wxPen(wxColour(0, 0, 255, 200)))
+                                                            .Brush(*wxBLACK_BRUSH)
+                                                            .Scaling(GetScaling()),
+                                                        &m_gradeLinePoints[5], 2));
         // 3rd-4th grade
         GetPhysicalCoordinates(148, 2.4, m_gradeLinePoints[7]);
         GetPhysicalCoordinates(170.1, 12.5, m_gradeLinePoints[8]);
-        AddObject(std::make_shared<GraphItems::Polygon>(
-            GraphItemInfo().Pen(wxPen(wxColour(0, 0, 255, 200))).
-            Brush(*wxBLACK_BRUSH).Scaling(GetScaling()),
-            &m_gradeLinePoints[7], 2));
+        AddObject(std::make_shared<GraphItems::Polygon>(GraphItemInfo()
+                                                            .Pen(wxPen(wxColour(0, 0, 255, 200)))
+                                                            .Brush(*wxBLACK_BRUSH)
+                                                            .Scaling(GetScaling()),
+                                                        &m_gradeLinePoints[7], 2));
         // 5th-6th grade
         GetPhysicalCoordinates(172, 11.9, m_gradeLinePoints[9]);
         GetPhysicalCoordinates(165, 2.4, m_gradeLinePoints[10]);
-        AddObject(std::make_shared<GraphItems::Polygon>(
-            GraphItemInfo().Pen(wxPen(wxColour(0, 0, 255, 200))).
-            Brush(*wxBLACK_BRUSH).Scaling(GetScaling()),
-            &m_gradeLinePoints[9], 2));
+        AddObject(std::make_shared<GraphItems::Polygon>(GraphItemInfo()
+                                                            .Pen(wxPen(wxColour(0, 0, 255, 200)))
+                                                            .Brush(*wxBLACK_BRUSH)
+                                                            .Scaling(GetScaling()),
+                                                        &m_gradeLinePoints[9], 2));
         // 7th-8th grade
         GetPhysicalCoordinates(177.5, 2.4, m_gradeLinePoints[11]);
         GetPhysicalCoordinates(180, 10.45, m_gradeLinePoints[12]);
-        AddObject(std::make_shared<GraphItems::Polygon>(
-            GraphItemInfo().Pen(wxPen(wxColour(0, 0, 255, 200))).
-            Brush(*wxBLACK_BRUSH).Scaling(GetScaling()),
-            &m_gradeLinePoints[11], 2));
+        AddObject(std::make_shared<GraphItems::Polygon>(GraphItemInfo()
+                                                            .Pen(wxPen(wxColour(0, 0, 255, 200)))
+                                                            .Brush(*wxBLACK_BRUSH)
+                                                            .Scaling(GetScaling()),
+                                                        &m_gradeLinePoints[11], 2));
         // 8th grade+
         GetPhysicalCoordinates(189, 10.24, m_gradeLinePoints[13]);
         GetPhysicalCoordinates(189, 2.4, m_gradeLinePoints[14]);
-        AddObject(std::make_shared<GraphItems::Polygon>(
-            GraphItemInfo().Pen(wxPen(wxColour(0, 0, 255, 200))).
-            Brush(*wxBLACK_BRUSH).Scaling(GetScaling()),
-            &m_gradeLinePoints[13], 2));
+        AddObject(std::make_shared<GraphItems::Polygon>(GraphItemInfo()
+                                                            .Pen(wxPen(wxColour(0, 0, 255, 200)))
+                                                            .Brush(*wxBLACK_BRUSH)
+                                                            .Scaling(GetScaling()),
+                                                        &m_gradeLinePoints[13], 2));
 
         assert(GetMessageCatalog() && L"Label manager not set in Schwartz Graph!");
 
@@ -284,8 +296,10 @@ namespace Wisteria::Graphs
         GetPhysicalCoordinates(127.2, 8.6, m_grade1Polygon[7]);
         GetPhysicalCoordinates(125, 10.8, m_grade1Polygon[8]);
         AddObject(std::make_shared<GraphItems::Polygon>(
-            GraphItemInfo(GetMessageCatalog()->GetGradeScaleLongLabel(1)).
-            Pen(wxNullPen).Brush(wxNullBrush).SelectionBrush(selectionBrush),
+            GraphItemInfo(GetMessageCatalog()->GetGradeScaleLongLabel(1))
+                .Pen(wxNullPen)
+                .Brush(wxNullBrush)
+                .SelectionBrush(selectionBrush),
             m_grade1Polygon));
         // 2nd grade polygon
         GetPhysicalCoordinates(162.45, 17.1, m_grade2Polygon[0]);
@@ -305,8 +319,10 @@ namespace Wisteria::Graphs
         GetPhysicalCoordinates(129.25, 6.8, m_grade2Polygon[14]);
         GetPhysicalCoordinates(128.2, 7.6, m_grade2Polygon[15]);
         AddObject(std::make_shared<GraphItems::Polygon>(
-            GraphItemInfo(GetMessageCatalog()->GetGradeScaleLongLabel(2)).
-            Pen(wxNullPen).Brush(wxNullBrush).SelectionBrush(selectionBrush),
+            GraphItemInfo(GetMessageCatalog()->GetGradeScaleLongLabel(2))
+                .Pen(wxNullPen)
+                .Brush(wxNullBrush)
+                .SelectionBrush(selectionBrush),
             m_grade2Polygon));
         // 3rd-4th grade polygon
         GetPhysicalCoordinates(168.5, 13.1, m_grade3to4Polygon[0]);
@@ -319,10 +335,11 @@ namespace Wisteria::Graphs
         GetPhysicalCoordinates(136.85, 3.45, m_grade3to4Polygon[7]);
         GetPhysicalCoordinates(135, 4, m_grade3to4Polygon[8]);
         AddObject(std::make_shared<GraphItems::Polygon>(
-            GraphItemInfo(wxString::Format(L"%s-%s",
-                GetMessageCatalog()->GetGradeScaleLongLabel(3),
-                GetMessageCatalog()->GetGradeScaleLongLabel(4))).
-            Pen(wxNullPen).Brush(wxNullBrush).SelectionBrush(selectionBrush),
+            GraphItemInfo(wxString::Format(L"%s-%s", GetMessageCatalog()->GetGradeScaleLongLabel(3),
+                                           GetMessageCatalog()->GetGradeScaleLongLabel(4)))
+                .Pen(wxNullPen)
+                .Brush(wxNullBrush)
+                .SelectionBrush(selectionBrush),
             m_grade3to4Polygon));
         // 5th-6th grade polygon
         GetPhysicalCoordinates(170.1, 12.5, m_grade5to6Polygon[0]);
@@ -331,10 +348,11 @@ namespace Wisteria::Graphs
         GetPhysicalCoordinates(165, 2.4, m_grade5to6Polygon[3]);
         GetPhysicalCoordinates(148, 2.4, m_grade5to6Polygon[4]);
         AddObject(std::make_shared<GraphItems::Polygon>(
-            GraphItemInfo(wxString::Format(L"%s-%s",
-                GetMessageCatalog()->GetGradeScaleLongLabel(5),
-                GetMessageCatalog()->GetGradeScaleLongLabel(6))).
-            Pen(wxNullPen).Brush(wxNullBrush).SelectionBrush(selectionBrush),
+            GraphItemInfo(wxString::Format(L"%s-%s", GetMessageCatalog()->GetGradeScaleLongLabel(5),
+                                           GetMessageCatalog()->GetGradeScaleLongLabel(6)))
+                .Pen(wxNullPen)
+                .Brush(wxNullBrush)
+                .SelectionBrush(selectionBrush),
             m_grade5to6Polygon));
         // 7th-8th grade polygon
         GetPhysicalCoordinates(172, 11.9, m_grade7to8Polygon[0]);
@@ -349,10 +367,11 @@ namespace Wisteria::Graphs
         GetPhysicalCoordinates(177.5, 2.4, m_grade7to8Polygon[9]);
         GetPhysicalCoordinates(165, 2.4, m_grade7to8Polygon[10]);
         AddObject(std::make_shared<GraphItems::Polygon>(
-            GraphItemInfo(wxString::Format(L"%s-%s",
-                GetMessageCatalog()->GetGradeScaleLongLabel(7),
-                GetMessageCatalog()->GetGradeScaleLongLabel(8))).
-            Pen(wxNullPen).Brush(wxNullBrush).SelectionBrush(selectionBrush),
+            GraphItemInfo(wxString::Format(L"%s-%s", GetMessageCatalog()->GetGradeScaleLongLabel(7),
+                                           GetMessageCatalog()->GetGradeScaleLongLabel(8)))
+                .Pen(wxNullPen)
+                .Brush(wxNullBrush)
+                .SelectionBrush(selectionBrush),
             m_grade7to8Polygon));
         // 8+ polygon
         GetPhysicalCoordinates(180, 10.5, m_gradeOver8Polygon[0]);
@@ -368,8 +387,10 @@ namespace Wisteria::Graphs
         GetPhysicalCoordinates(189, 2.4, m_gradeOver8Polygon[10]);
         GetPhysicalCoordinates(177.5, 2.4, m_gradeOver8Polygon[11]);
         AddObject(std::make_shared<GraphItems::Polygon>(
-            GraphItemInfo(GetMessageCatalog()->GetGradeScaleLongLabel(8) + _DT(L"+")).
-            Pen(wxNullPen).Brush(wxNullBrush).SelectionBrush(selectionBrush),
+            GraphItemInfo(GetMessageCatalog()->GetGradeScaleLongLabel(8) + _DT(L"+"))
+                .Pen(wxNullPen)
+                .Brush(wxNullBrush)
+                .SelectionBrush(selectionBrush),
             m_gradeOver8Polygon));
 
         // middle points on the separator line
@@ -377,33 +398,36 @@ namespace Wisteria::Graphs
         auto linePoints = std::make_shared<GraphItems::Points2D>(wxNullPen);
         linePoints->SetScaling(GetScaling());
         linePoints->SetDPIScaleFactor(GetDPIScaleFactor());
-        linePoints->AddPoint(Point2D(
-            GraphItemInfo().AnchorPoint(m_dividerLinePoints[1]).
-            Brush(lightGray),
-            Settings::GetPointRadius(), Icons::IconShape::Circle), dc);
-        linePoints->AddPoint(Point2D(
-            GraphItemInfo().AnchorPoint(m_dividerLinePoints[2]).
-            Brush(lightGray),
-            Settings::GetPointRadius(), Icons::IconShape::Circle), dc);
-        linePoints->AddPoint(Point2D(
-            GraphItemInfo().AnchorPoint(m_dividerLinePoints[3]).
-            Brush(lightGray),
-            Settings::GetPointRadius(), Icons::IconShape::Circle), dc);
-        linePoints->AddPoint(Point2D(
-            GraphItemInfo().AnchorPoint(m_dividerLinePoints[4]).
-            Brush(lightGray),
-            Settings::GetPointRadius(), Icons::IconShape::Circle), dc);
+        linePoints->AddPoint(
+            Point2D(GraphItemInfo().AnchorPoint(m_dividerLinePoints[1]).Brush(lightGray),
+                    Settings::GetPointRadius(), Icons::IconShape::Circle),
+            dc);
+        linePoints->AddPoint(
+            Point2D(GraphItemInfo().AnchorPoint(m_dividerLinePoints[2]).Brush(lightGray),
+                    Settings::GetPointRadius(), Icons::IconShape::Circle),
+            dc);
+        linePoints->AddPoint(
+            Point2D(GraphItemInfo().AnchorPoint(m_dividerLinePoints[3]).Brush(lightGray),
+                    Settings::GetPointRadius(), Icons::IconShape::Circle),
+            dc);
+        linePoints->AddPoint(
+            Point2D(GraphItemInfo().AnchorPoint(m_dividerLinePoints[4]).Brush(lightGray),
+                    Settings::GetPointRadius(), Icons::IconShape::Circle),
+            dc);
         // index [5] is just added to the spline to curve it better,
         // not used for a middle point
-        linePoints->AddPoint(Point2D(
-            GraphItemInfo().AnchorPoint(m_dividerLinePoints[6]).
-            Brush(lightGray), Settings::GetPointRadius(), Icons::IconShape::Circle), dc);
+        linePoints->AddPoint(
+            Point2D(GraphItemInfo().AnchorPoint(m_dividerLinePoints[6]).Brush(lightGray),
+                    Settings::GetPointRadius(), Icons::IconShape::Circle),
+            dc);
         AddObject(linePoints);
 
         // separator line
         auto levelsSpline = std::make_shared<GraphItems::Polygon>(
-            GraphItemInfo().Pen(wxPen(wxColour(0, 0, 0, 200))).
-            Brush(wxBrush(wxColour(0, 0, 0, 200))).Scaling(GetScaling()),
+            GraphItemInfo()
+                .Pen(wxPen(wxColour(0, 0, 0, 200)))
+                .Brush(wxBrush(wxColour(0, 0, 0, 200)))
+                .Scaling(GetScaling()),
             &m_dividerLinePoints[1], m_dividerLinePoints.size() - 3);
         levelsSpline->SetShape(GraphItems::Polygon::PolygonShape::Spline);
         AddObject(levelsSpline);
@@ -413,28 +437,29 @@ namespace Wisteria::Graphs
         auto polysepLineWords =
             std::make_shared<GraphItems::Lines>(wxPen(L"#ECECEC", 1), GetScaling());
         for (size_t i = 0; i < m_longWordPoints.size() - 2; ++i)
-            { polysepLineWords->AddLine(m_longWordPoints[i], m_longWordPoints[i+1]); }
+            {
+            polysepLineWords->AddLine(m_longWordPoints[i], m_longWordPoints[i + 1]);
+            }
         AddObject(polysepLineWords);
 
-        auto polysepLineWordsAxis = std::make_shared<GraphItems::Lines>(
-            GetLeftYAxis().GetPen(), GetScaling());
+        auto polysepLineWordsAxis =
+            std::make_shared<GraphItems::Lines>(GetLeftYAxis().GetPen(), GetScaling());
         polysepLineWordsAxis->AddLine(m_longWordPoints[m_longWordPoints.size() - 2],
-            m_longWordPoints[m_longWordPoints.size() - 1]);
+                                      m_longWordPoints[m_longWordPoints.size() - 1]);
         polysepLineWordsAxis->AddLine(m_longWordPoints[m_longWordPoints.size() - 1],
-            m_longWordPoints[0]);
+                                      m_longWordPoints[0]);
         AddObject(polysepLineWordsAxis);
 
         auto polysepLineSentences =
             std::make_shared<GraphItems::Lines>(wxPen(L"#ECECEC"), GetScaling());
         for (size_t i = 0; i < m_longSentencesPoints.size() - 2; ++i)
             {
-            polysepLineSentences->AddLine(m_longSentencesPoints[i],
-                                          m_longSentencesPoints[i + 1]);
+            polysepLineSentences->AddLine(m_longSentencesPoints[i], m_longSentencesPoints[i + 1]);
             }
         AddObject(polysepLineSentences);
 
-        auto polysepLineSentencesAxis = std::make_shared<GraphItems::Lines>(
-            GetTopXAxis().GetPen(), GetScaling());
+        auto polysepLineSentencesAxis =
+            std::make_shared<GraphItems::Lines>(GetTopXAxis().GetPen(), GetScaling());
         polysepLineSentencesAxis->AddLine(m_longSentencesPoints[m_longSentencesPoints.size() - 2],
                                           m_longSentencesPoints[m_longSentencesPoints.size() - 1]);
         polysepLineSentencesAxis->AddLine(m_longSentencesPoints[m_longSentencesPoints.size() - 1],
@@ -442,44 +467,44 @@ namespace Wisteria::Graphs
         AddObject(polysepLineSentencesAxis);
 
         // the explanatory legends (embedded on the graph)
-        const wxFont legendFont(
-            wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize(),
-            wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD,
-            false, GetFancyFontFaceName());
+        const wxFont legendFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize(),
+                                wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false,
+                                GetFancyFontFaceName());
         // main label on graph
         wxPoint textCoordinate;
         GetPhysicalCoordinates(126, 19.6, textCoordinate);
         auto mainLabel = std::make_shared<GraphItems::Label>(
-            GraphItemInfo(_(L"German\nReadability Graph")).
-            Pen(*wxBLACK_PEN).FontBackgroundColor(*wxWHITE).
-            Scaling(GetScaling()).
-            Font(wxFont(wxSystemSettings::GetFont(
-                wxSYS_DEFAULT_GUI_FONT).GetPointSize()*1.5,
-                wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD,
-                false, GetFancyFontFaceName())).
-            LabelAlignment(TextAlignment::Centered).
-            Anchoring(Anchoring::BottomLeftCorner).Padding(4, 4, 4, 4).
-            AnchorPoint(textCoordinate));
+            GraphItemInfo(_(L"German\nReadability Graph"))
+                .Pen(*wxBLACK_PEN)
+                .FontBackgroundColor(*wxWHITE)
+                .Scaling(GetScaling())
+                .Font(wxFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize() * 1.5,
+                             wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false,
+                             GetFancyFontFaceName()))
+                .LabelAlignment(TextAlignment::Centered)
+                .Anchoring(Anchoring::BottomLeftCorner)
+                .Padding(4, 4, 4, 4)
+                .AnchorPoint(textCoordinate));
         mainLabel->SetBoxCorners(BoxCorners::Straight);
         AddObject(mainLabel);
 
             {
             wxGCDC measureDC;
             auto legend = std::make_shared<GraphItems::Label>(
-                GraphItemInfo(_(L"Average line\nAverage, each zone")).
-                Scaling(GetScaling()).Pen(*wxBLACK_PEN).FontBackgroundColor(*wxWHITE).
-                Font(legendFont).LabelAlignment(TextAlignment::FlushLeft).
-                Anchoring(Anchoring::BottomLeftCorner).
-                Padding(4,4,4,GraphItems::Label::GetMinLegendWidthDIPs()).
-                AnchorPoint(
-                    mainLabel->GetBoundingBox(measureDC).GetTopLeft() -
-                        wxPoint(0,ScaleToScreenAndCanvas(2))));
-            legend->GetLegendIcons().push_back(
-                Icons::LegendIcon(Icons::IconShape::HorizontalLine,
-                                  wxColour(0, 0, 0, 200), wxColour(0, 0, 0, 200)));
-            legend->GetLegendIcons().push_back(
-                Icons::LegendIcon(Icons::IconShape::Circle,
-                                  wxColour(0, 0, 0, 200), wxColour(0, 0, 0, 200)));
+                GraphItemInfo(_(L"Average line\nAverage, each zone"))
+                    .Scaling(GetScaling())
+                    .Pen(*wxBLACK_PEN)
+                    .FontBackgroundColor(*wxWHITE)
+                    .Font(legendFont)
+                    .LabelAlignment(TextAlignment::FlushLeft)
+                    .Anchoring(Anchoring::BottomLeftCorner)
+                    .Padding(4, 4, 4, GraphItems::Label::GetMinLegendWidthDIPs())
+                    .AnchorPoint(mainLabel->GetBoundingBox(measureDC).GetTopLeft() -
+                                 wxPoint(0, ScaleToScreenAndCanvas(2))));
+            legend->GetLegendIcons().push_back(Icons::LegendIcon(
+                Icons::IconShape::HorizontalLine, wxColour(0, 0, 0, 200), wxColour(0, 0, 0, 200)));
+            legend->GetLegendIcons().push_back(Icons::LegendIcon(
+                Icons::IconShape::Circle, wxColour(0, 0, 0, 200), wxColour(0, 0, 0, 200)));
             legend->SetBoxCorners(BoxCorners::Straight);
             AddObject(legend);
             }
@@ -488,21 +513,23 @@ namespace Wisteria::Graphs
 
         // Add the grade labels to the regions
         // (and highlight in heavy bold and a different color the one where the score lies)
-        const wxFont numberFont(wxSystemSettings::GetFont(
-            wxSYS_DEFAULT_GUI_FONT).GetPointSize() * 3,
-            wxFONTFAMILY_DEFAULT, wxFONTSTYLE_ITALIC, wxFONTWEIGHT_NORMAL,
-            false, GetFancyFontFaceName());
+        const wxFont numberFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize() *
+                                    3,
+                                wxFONTFAMILY_DEFAULT, wxFONTSTYLE_ITALIC, wxFONTWEIGHT_NORMAL,
+                                false, GetFancyFontFaceName());
         for (const auto& level : GetLevelLabels())
             {
             wxPoint pt;
             GetPhysicalCoordinates(level.GetX(), level.GetY(), pt);
 
-            auto gradeLabel = std::make_shared<GraphItems::Label>(
-                GraphItemInfo(level.GetLabel()).Scaling(GetScaling()).
-                Pen(wxNullPen).Font(numberFont).AnchorPoint(pt));
+            auto gradeLabel = std::make_shared<GraphItems::Label>(GraphItemInfo(level.GetLabel())
+                                                                      .Scaling(GetScaling())
+                                                                      .Pen(wxNullPen)
+                                                                      .Font(numberFont)
+                                                                      .AnchorPoint(pt));
             gradeLabel->SetAnchoring(Anchoring::TopLeftCorner);
             if (GetScores().size() == 1 &&
-                level == std::floor(GetScores().front().GetScoreAverage()) )
+                level == std::floor(GetScores().front().GetScoreAverage()))
                 {
                 gradeLabel->GetFont().SetWeight(wxFontWeight::wxFONTWEIGHT_EXTRAHEAVY);
                 gradeLabel->SetFontColor(GetColorScheme()->GetColor(0));
@@ -515,13 +542,16 @@ namespace Wisteria::Graphs
     void SchwartzGraph::CalculateScorePositions(wxDC& dc)
         {
         if (GetDataset() == nullptr)
-            { return; }
+            {
+            return;
+            }
 
         assert(m_backscreen && L"Backscreen not set!");
-        assert(m_backscreen->GetBoundingBox(dc).GetWidth() ==
-            Canvas::GetDefaultCanvasWidthDIPs() && L"Invalid backscreen size!");
+        assert(m_backscreen->GetBoundingBox(dc).GetWidth() == Canvas::GetDefaultCanvasWidthDIPs() &&
+               L"Invalid backscreen size!");
         assert(m_backscreen->GetBoundingBox(dc).GetHeight() ==
-            Canvas::GetDefaultCanvasHeightDIPs() && L"Invalid backscreen size!");
+                   Canvas::GetDefaultCanvasHeightDIPs() &&
+               L"Invalid backscreen size!");
 
         auto points = std::make_shared<GraphItems::Points2D>(wxNullPen);
         points->SetScaling(GetScaling());
@@ -541,50 +571,65 @@ namespace Wisteria::Graphs
                 safe_divide<double>(100, m_numberOfWordsColumn->GetValue(i));
 
             // add the score to the grouped data
-            m_results[i] =
-                Wisteria::ScorePoint(
-                    std::clamp<double>(
-                        normalizationFactor * m_numberOfSyllablesColumn->GetValue(i),
-                        125, 189),
-                    std::clamp<double>(
-                        normalizationFactor * m_numberOfSentencesColumn->GetValue(i),
-                        2.4, 20));
+            m_results[i] = Wisteria::ScorePoint(
+                std::clamp<double>(normalizationFactor * m_numberOfSyllablesColumn->GetValue(i),
+                                   125, 189),
+                std::clamp<double>(normalizationFactor * m_numberOfSentencesColumn->GetValue(i),
+                                   2.4, 20));
 
             m_results[i].ResetStatus();
 
-            const auto calcScoreFromPolygons = [](
-                const std::unique_ptr<SchwartzGraph>& graph,
-                ScorePoint& scorePoint)
-                {
+            const auto calcScoreFromPolygons =
+                [](const std::unique_ptr<SchwartzGraph>& graph, ScorePoint& scorePoint)
+            {
                 // see where the point is
                 if (!graph->GetPhysicalCoordinates(scorePoint.m_wordStatistic,
-                                            scorePoint.m_sentenceStatistic,
-                                            scorePoint.m_scorePoint))
+                                                   scorePoint.m_sentenceStatistic,
+                                                   scorePoint.m_scorePoint))
                     {
                     scorePoint.SetScoreInvalid(true);
                     return false;
                     }
 
-                if (IsScoreInsideRegion(scorePoint.m_scorePoint, graph->m_gradeOver8Polygon, 1, -1) )
-                    { scorePoint.SetScore(8); }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, graph->m_grade7to8Polygon, 1, -1) )
-                    { scorePoint.SetScoreRange(7,8); }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, graph->m_grade5to6Polygon, 1, -1) )
-                    { scorePoint.SetScoreRange(5,6); }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, graph->m_grade3to4Polygon, 1, -1) )
-                    { scorePoint.SetScoreRange(3,4); }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, graph->m_grade2Polygon, 1, -1) )
-                    { scorePoint.SetScore(2); }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, graph->m_grade1Polygon, 1, -1) )
-                    { scorePoint.SetScore(1); }
+                if (IsScoreInsideRegion(scorePoint.m_scorePoint, graph->m_gradeOver8Polygon, 1, -1))
+                    {
+                    scorePoint.SetScore(8);
+                    }
+                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, graph->m_grade7to8Polygon, 1,
+                                             -1))
+                    {
+                    scorePoint.SetScoreRange(7, 8);
+                    }
+                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, graph->m_grade5to6Polygon, 1,
+                                             -1))
+                    {
+                    scorePoint.SetScoreRange(5, 6);
+                    }
+                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, graph->m_grade3to4Polygon, 1,
+                                             -1))
+                    {
+                    scorePoint.SetScoreRange(3, 4);
+                    }
+                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, graph->m_grade2Polygon, 1,
+                                             -1))
+                    {
+                    scorePoint.SetScore(2);
+                    }
+                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, graph->m_grade1Polygon, 1,
+                                             -1))
+                    {
+                    scorePoint.SetScore(1);
+                    }
                 else
-                    { scorePoint.SetScoreOutOfGradeRange(true); }
+                    {
+                    scorePoint.SetScoreOutOfGradeRange(true);
+                    }
 
                 // if in a valid grade area see if it leans towards having harder sentences or words
                 if (!scorePoint.IsScoreInvalid())
                     {
-                    if (IsScoreInsideRegion(scorePoint.m_scorePoint,
-                        graph->m_dividerLinePoints, 1, -1))
+                    if (IsScoreInsideRegion(scorePoint.m_scorePoint, graph->m_dividerLinePoints, 1,
+                                            -1))
                         {
                         scorePoint.SetSentencesHard(false);
                         scorePoint.SetWordsHard(true);
@@ -597,55 +642,51 @@ namespace Wisteria::Graphs
                     }
 
                 return true;
-                };
+            };
 
             calcScoreFromPolygons(m_backscreen, m_results[i]);
 
             // Convert group ID into color scheme index
             // (index is ordered by labels alphabetically).
             // Note that this will be zero if grouping is not in use.
-            const size_t colorIndex = IsUsingGrouping() ?
-                GetSchemeIndexFromGroupId(GetGroupColumn()->GetValue(i)) :
-                0;
+            const size_t colorIndex =
+                IsUsingGrouping() ? GetSchemeIndexFromGroupId(GetGroupColumn()->GetValue(i)) : 0;
 
             // see where the point is on this graph (not the backscreen) and
             // add it to be physically plotted
             if (GetPhysicalCoordinates(m_results[i].m_wordStatistic,
-                                       m_results[i].m_sentenceStatistic,
-                                       m_results[i].m_scorePoint))
+                                       m_results[i].m_sentenceStatistic, m_results[i].m_scorePoint))
                 {
-                points->AddPoint(Point2D(
-                        GraphItemInfo(GetDataset()->GetIdColumn().GetValue(i)).
-                        AnchorPoint(m_results[i].m_scorePoint).
-                        Brush(GetColorScheme()->GetColor(colorIndex)),
-                        Settings::GetPointRadius(),
-                        GetShapeScheme()->GetShape(colorIndex)), dc);
+                points->AddPoint(Point2D(GraphItemInfo(GetDataset()->GetIdColumn().GetValue(i))
+                                             .AnchorPoint(m_results[i].m_scorePoint)
+                                             .Brush(GetColorScheme()->GetColor(colorIndex)),
+                                         Settings::GetPointRadius(),
+                                         GetShapeScheme()->GetShape(colorIndex)),
+                                 dc);
                 }
             else
                 {
-                wxFAIL_MSG(
-                    wxString::Format(
-                        L"Point plotted on backscreen, but failed on main graph!\n"
-                         "%.2f, %.2f", m_results[i].m_wordStatistic,
-                                       m_results[i].m_sentenceStatistic));
+                wxFAIL_MSG(wxString::Format(
+                    L"Point plotted on backscreen, but failed on main graph!\n"
+                    "%.2f, %.2f",
+                    m_results[i].m_wordStatistic, m_results[i].m_sentenceStatistic));
                 }
             }
         AddObject(points);
 
-        if (m_results.size() == 1 &&
-            m_results.front().IsScoreInvalid())
+        if (m_results.size() == 1 && m_results.front().IsScoreInvalid())
             {
             wxFont LabelFont = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);
             LabelFont.SetPointSize(12);
             const wxPoint textCoordinate(
-                GetPlotAreaBoundingBox().GetX() +
-                (GetPlotAreaBoundingBox().GetWidth()/2), GetPlotAreaBoundingBox().GetY() +
-                (GetPlotAreaBoundingBox().GetHeight()/2));
+                GetPlotAreaBoundingBox().GetX() + (GetPlotAreaBoundingBox().GetWidth() / 2),
+                GetPlotAreaBoundingBox().GetY() + (GetPlotAreaBoundingBox().GetHeight() / 2));
             AddObject(std::make_shared<Wisteria::GraphItems::Label>(
-                GraphItemInfo(_(L"Invalid score: text is too difficult to be plotted")).
-                Scaling(GetScaling()).Pen(*wxBLACK_PEN).
-                Font(LabelFont).
-                AnchorPoint(textCoordinate)) );
+                GraphItemInfo(_(L"Invalid score: text is too difficult to be plotted"))
+                    .Scaling(GetScaling())
+                    .Pen(*wxBLACK_PEN)
+                    .Font(LabelFont)
+                    .AnchorPoint(textCoordinate)));
             }
         }
-    }
+    } // namespace Wisteria::Graphs

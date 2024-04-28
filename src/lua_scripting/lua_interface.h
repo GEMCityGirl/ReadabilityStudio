@@ -21,7 +21,7 @@
 ///     Also prevents more than one script from running at a time.
 class LuaInterpreter
     {
-public:
+  public:
     /// @brief Constructor.
     LuaInterpreter();
     /// @private
@@ -36,29 +36,38 @@ public:
     /** @brief Runs a block of Lua code.
         @param code The code to run.
         @param filePath The script's file path. This is only used for any calls to GetScriptPath()
-                        from the script, it will not affect the code being ran. It can be left empty,
-                        that will just cause any calls to GetScriptPath() to return empty as well.
-        @param[out] errorMessage If an error is encountered, the message reported by the interpreter.*/
+                        from the script, it will not affect the code being ran.
+                        It can be left empty, that will just cause any calls to
+                        GetScriptPath() to return empty as well.
+        @param[out] errorMessage If an error is encountered,
+            the message reported by the interpreter.*/
     void RunLuaCode(const wxString& code, const wxString& filePath, wxString& errorMessage);
+
     /// @returns @c true if another block of Lua code is already running.
     [[nodiscard]]
     static bool IsRunning() noexcept
-        { return m_isRunning; }
+        {
+        return m_isRunning;
+        }
+
     /// @returns The file path of the currently running script
     ///     (may be empty if RunLuaCode() was called with no defined file path).
     [[nodiscard]]
     static const wxString& GetScriptFilePath() noexcept
-        { return m_scriptFilePath; }
+        {
+        return m_scriptFilePath;
+        }
+
     /// @brief Sets the path of the currently running script.
     /// @param path The filepath of the currently running script.
-    static void SetScriptFilePath(const wxString& path)
-        { m_scriptFilePath = path; }
-private:
+    static void SetScriptFilePath(const wxString& path) { m_scriptFilePath = path; }
+
+  private:
     lua_State* m_L{ nullptr };
     static bool m_isRunning;
     static wxString m_scriptFilePath;
     };
 
-/** @}*/
+    /** @}*/
 
 #endif //__LUAINTERFACE_H__
