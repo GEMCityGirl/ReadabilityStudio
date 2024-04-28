@@ -6,6 +6,7 @@ fexcept_t
 fmask
 fMRI
 FOB
+fprintf
 ftp
 Fx
 FYI
@@ -57,6 +58,7 @@ ssRNA
 STNA
 SUV
 Ubuntu
+URB
 URI
 URL
 XInput

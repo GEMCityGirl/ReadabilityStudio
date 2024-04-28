@@ -8094,6 +8094,9 @@ autoblock
 autoblocked
 autoblocking
 autoblocks
+autochanger
+autochanger's
+autochangers
 autochthonous
 autoclave
 autoclave's
@@ -8331,6 +8334,10 @@ autoregulatory
 autorepeat
 autorepeating
 autorepeats
+autorequest
+autorequested
+autorequesting
+autorequests
 autoreseed
 autoreseeded
 autoreseeding
@@ -13400,6 +13407,9 @@ blowfly's
 blowgun
 blowgun's
 blowguns
+blowhard
+blowhard's
+blowhards
 blowier
 blowies
 blowiest
@@ -13921,6 +13931,7 @@ bomeobox's
 bomeoboxes
 bon
 bona
+bonafide
 bonanza
 bonanza's
 bonanzas
@@ -15948,6 +15959,7 @@ bufferer
 bufferer's
 bufferers
 buffering
+bufferless
 buffers
 buffet
 buffet's
@@ -17415,6 +17427,9 @@ calyptra
 calyx
 calyx's
 calyxes
+calzone
+calzone's
+calzones
 cam
 cam's
 camaraderie
@@ -21358,6 +21373,8 @@ chloroquine
 chloroquine's
 chlorosis
 chlorous
+chlorpromazine
+chlorpromazine's
 chlorpyrifos
 chm
 choanocyte
@@ -27899,6 +27916,7 @@ corrupt
 corrupted
 corrupter
 corrupter's
+corrupters
 corruptest
 corruptibilities
 corruptibility
@@ -28039,6 +28057,13 @@ cosmos
 cosmos's
 cosmoses
 cospectral
+cosplay
+cosplayed
+cosplayer
+cosplayer's
+cosplayers
+cosplaying
+cosplays
 cosponsor
 cosponsored
 cosponsoring
@@ -31549,6 +31574,9 @@ datacenter
 datacenter's
 datacenters
 datacentric
+datafield
+datafield's
+datafields
 datafile
 datafile's
 datafiles
@@ -31833,6 +31861,9 @@ deallocation
 deallocation's
 deallocations
 deallocator
+dealmaker
+dealmaker's
+dealmakers
 dealmaking
 deals
 dealt
@@ -32012,6 +32043,11 @@ debtor's
 debtors
 debts
 debug
+debugee
+debugee's
+debugees
+debuggability
+debuggability's
 debuggable
 debugged
 debuggee
@@ -43374,6 +43410,9 @@ entrusting
 entrusts
 entry
 entry's
+entrypoint
+entrypoint's
+entrypoints
 entryway
 entryway's
 entryways
@@ -47581,6 +47620,7 @@ feds
 fee
 fee's
 feeble
+feebleminded
 feebleness
 feebleness's
 feebler
@@ -47950,6 +47990,7 @@ fetal
 fetalis
 fetas
 fetch
+fetchable
 fetched
 fetcher
 fetcher's
@@ -49177,6 +49218,7 @@ flashiness's
 flashing
 flashing's
 flashings
+flashless
 flashlight
 flashlight's
 flashlights
@@ -55905,6 +55947,7 @@ grayness
 graynesses
 grays
 grayscale
+grayscaled
 grayscaling
 grayware
 grayware's
@@ -56885,6 +56928,7 @@ gunny's
 gunnysack
 gunnysack's
 gunnysacks
+gunplay
 gunpoint
 gunpoint's
 gunpoints
@@ -57115,6 +57159,7 @@ gyromagnetic
 gyrometer
 gyrometer's
 gyrometers
+gyrometric
 gyros
 gyroscope
 gyroscope's
@@ -57479,6 +57524,7 @@ halftime
 halftimes
 halftone
 halftone's
+halftoned
 halftones
 halftoning
 halfway
@@ -58672,6 +58718,8 @@ headwaters
 headway
 headway's
 headways
+headwear
+headwear's
 headwind
 headwind's
 headwinds
@@ -58745,6 +58793,7 @@ heartache's
 heartaches
 heartbeat
 heartbeat's
+heartbeating
 heartbeats
 heartbreak
 heartbreak's
@@ -61405,6 +61454,8 @@ housekeepers
 housekeeping
 housekeeping's
 housekeepings
+houseless
+houselessness
 houselights
 housemaid
 housemaid's
@@ -62400,6 +62451,7 @@ hyperlinked
 hyperlinking
 hyperlinks
 hyperlipidemia
+hyperlocal
 hypermagnesemia
 hypermarket
 hypermarket's
@@ -62729,7 +62781,9 @@ hypothesizes
 hypothesizing
 hypothetic
 hypothetical
+hypothetical's
 hypothetically
+hypotheticals
 hypothyroid
 hypothyroidism
 hypothyroidism's
@@ -68135,6 +68189,7 @@ invasion's
 invasional
 invasions
 invasive
+invasively
 invasiveness
 invective
 invective's
@@ -69411,6 +69466,7 @@ jestingly
 jests
 jet
 jet's
+jetlag
 jetliner
 jetliner's
 jetliners
@@ -74869,6 +74925,8 @@ loony
 loop
 loop's
 loopback
+loopback's
+loopbacks
 looped
 looper
 looper's
@@ -82855,6 +82913,9 @@ motherlands
 motherless
 motherliness
 motherliness's
+motherlode
+motherlode's
+motherlodes
 motherly
 mothers
 mothership
@@ -83471,6 +83532,7 @@ multichrome
 multichrome's
 multichromes
 multichromosomal
+multicircuit
 multicloud
 multicnty
 multicollinearity
@@ -83553,6 +83615,7 @@ multimap
 multimap's
 multimaps
 multimarkdown
+multimatrix
 multimedia
 multimedias
 multimegaton
@@ -83565,6 +83628,7 @@ multimillionaire
 multimillionaire's
 multimillionaires
 multimodal
+multimode
 multinational
 multinationally
 multinationals
@@ -83738,6 +83802,7 @@ multithreading
 multithreads
 multitier
 multitiered
+multitouch
 multitrack
 multitrack's
 multitracks
@@ -86694,6 +86759,7 @@ nondisparagement
 nondiverse
 nondominant
 nondramatic
+nondrawing
 nondrinker
 nondrinker's
 nondrinkers
@@ -87346,6 +87412,7 @@ nonviolences
 nonviolent
 nonviolently
 nonvirtual
+nonvirtualized
 nonvirulent
 nonvisible
 nonvisual
@@ -92785,6 +92852,9 @@ papermakers
 papermakes
 papermaking
 papers
+papersize
+papersize's
+papersizes
 papersource
 papersource's
 papersources
@@ -93880,6 +93950,10 @@ pathologies
 pathologist
 pathologist's
 pathologists
+pathologize
+pathologized
+pathologizes
+pathologizing
 pathology
 pathology's
 pathophysiology
@@ -98967,6 +99041,7 @@ polyadenylation
 polyadenylation's
 polyadenylations
 polyamines
+polyamory
 polyandries
 polyandrous
 polyandry
@@ -108357,6 +108432,10 @@ refit
 refits
 refitted
 refitting
+reflash
+reflashed
+reflashes
+reflashing
 reflate
 reflation
 reflationary
@@ -109008,6 +109087,9 @@ reinstituted
 reinstitutes
 reinstitution
 reinstitution's
+reinstitutionalization
+reinstitutionalization's
+reinstitutionalizations
 reinsurance
 reinsurance's
 reintegrate
@@ -113314,6 +113396,7 @@ rout's
 routable
 route
 route's
+routeable
 routed
 routeing
 router
@@ -119072,6 +119155,9 @@ showroom
 showroom's
 showrooming
 showrooms
+showrunner
+showrunner's
+showrunners
 shows
 showstopper
 showstopper's
@@ -119150,6 +119236,9 @@ shrinkage's
 shrinkages
 shrinker
 shrinker's
+shrinkflation
+shrinkflation's
+shrinkflations
 shrinking
 shrinkingly
 shrinks
@@ -121737,6 +121826,9 @@ snoots
 snooty
 snooze
 snoozed
+snoozer
+snoozer's
+snoozers
 snoozes
 snoozing
 snore
@@ -126193,6 +126285,7 @@ storeroom
 storeroom's
 storerooms
 stores
+storewide
 storey
 storeys
 storied
@@ -127189,6 +127282,9 @@ subcode's
 subcoded
 subcodes
 subcoding
+subcollection
+subcollection's
+subcollections
 subcommand
 subcommands
 subcommittee
@@ -127196,6 +127292,7 @@ subcommittee's
 subcommittees
 subcompact
 subcompacts
+subcompatible
 subcomponent
 subcomponent's
 subcomponents
@@ -127284,6 +127381,7 @@ subelements
 subenclosure
 subenclosure's
 subenclosures
+subentries
 subenvironment
 subenvironment's
 subenvironments
@@ -127567,6 +127665,7 @@ subnetworks
 subnode
 subnode's
 subnodes
+subnominal
 subnormal
 subnormally
 subnormals
@@ -127897,6 +127996,9 @@ substitutively
 substorage
 substorage's
 substorages
+substore
+substore's
+substores
 substrata
 substrate
 substrate's
@@ -131182,6 +131284,7 @@ tared
 tares
 target
 target's
+targetable
 targeted
 targeting
 targets
@@ -131688,6 +131791,7 @@ technologist's
 technologists
 technology
 technology's
+technomic
 technophile
 technophile's
 technophiles
@@ -133619,6 +133723,7 @@ throwout
 throws
 thru
 thru's
+thruing
 thrum
 thrummed
 thrumming
@@ -138569,7 +138674,11 @@ unassemble
 unassembled
 unassembles
 unassembling
+unassert
+unasserted
+unasserting
 unassertive
+unasserts
 unassign
 unassigned
 unassigning
@@ -138689,6 +138798,7 @@ unbinds
 unblanched
 unbleached
 unblemished
+unblended
 unblessed
 unblinded
 unblinking
@@ -139578,6 +139688,8 @@ underspecified
 underspend
 underspending
 understaffed
+understaffing
+understaffs
 understand
 understandability
 understandability's
@@ -140375,6 +140487,9 @@ unimaginatively
 unimagined
 unimmortalized
 unimodal
+unimodem
+unimodem's
+unimodems
 unimolecular
 unimpaired
 unimpassioned
@@ -140392,6 +140507,7 @@ unimproved
 unincorporated
 unindented
 unindexed
+unindicated
 unindividualized
 unindividualizes
 unindustrialized
@@ -140902,6 +141018,7 @@ unnerved
 unnerves
 unnerving
 unnervingly
+unnested
 unneutralized
 unnilhexium
 unniloctium
@@ -142528,6 +142645,9 @@ usably
 usage
 usage's
 usages
+usb
+usb's
+usbs
 use
 useable
 used
