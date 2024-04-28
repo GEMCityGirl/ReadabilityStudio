@@ -2985,6 +2985,7 @@ alighted
 alighting
 alights
 align
+alignable
 aligned
 aligner
 aligner's
@@ -8158,6 +8159,9 @@ autodecompiling
 autodetect
 autodetected
 autodetecting
+autodetection
+autodetection's
+autodetections
 autodetects
 autodial
 autodialed
@@ -26813,6 +26817,7 @@ contesting
 contests
 context
 context's
+contextless
 contexts
 contextual
 contextualisation
@@ -44508,6 +44513,9 @@ ethernet
 ethernet's
 ethernets
 ethers
+ethertype
+ethertype's
+ethertypes
 ethic
 ethic's
 ethical
@@ -94349,6 +94357,9 @@ peakedness
 peakiness
 peakiness's
 peaking
+peakmeter
+peakmeter's
+peakmeters
 peaks
 peaky
 peal
@@ -112981,6 +112992,9 @@ Rollie
 Rollin
 rolling
 rollings
+rolloff
+rolloff's
+rolloffs
 rollout
 rollout's
 rollouts

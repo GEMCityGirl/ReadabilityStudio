@@ -851,6 +851,7 @@ alpabetic	alphabetic	3
 alpabetical	alphabetical	3		
 alpabets	alphabets	3		
 alrady	already	3		
+alread	already	3		
 alreadh	already	3		
 already existing	existing	0		
 alreay	already	3		
@@ -1668,6 +1669,9 @@ assay	try, test	0
 assayed	tried, tested	0		
 assaying	trying, testing	0		
 assays	tries, tests	0		
+assember	assembler	3		
+assember's	assembler's	3		
+assembers	assemblers	3		
 assemble	gather	0		
 assemble together	assemble	1		
 assembled	gathered	0		
@@ -1853,6 +1857,9 @@ atrophying	wasting away	0
 atrribute	attribute	3		
 attached herewith is	here is	0		
 attachement	attachment	3		
+attachmment	attachment	3		
+attachmment's	attachment's	3		
+attachmments	attachments	3		
 attain	reach, gain	0		
 attained	reached, gained	0		
 attaining	reaching, gaining	0		
@@ -10152,6 +10159,7 @@ no thing	nothing	3
 no where	nowhere	3		
 Noble Prize	Nobel Prize	3		
 Noble Prizes	Nobel Prizes	3		
+nomial	nominal	3		
 nonaged	nonpaged	3		
 nondescrimination	nondiscrimination	3		
 none at all	none	0		
@@ -10561,6 +10569,10 @@ operatoins	operations	3
 opertaion	operation	3		
 opertaions	operations	3		
 opertation	operation	3		
+ophan	orphan	3		
+ophan's	orphan's	3		
+ophaned	orphaned	3		
+ophans	orphans	3		
 opion	option	3		
 opions	options	3		
 oponent	opponent	3		
@@ -10738,6 +10750,7 @@ overwhelming consensus	consensus	0
 overwite	overwrite	3		
 overwites	overwrites	3		
 overwitten	overwritten	3		
+overyling	overlying	3		
 ovverridden	overridden	3		
 ovverride	override	3		
 ovverrides	overrides	3		
@@ -11901,6 +11914,11 @@ pronounciation's	pronunciation's	3
 pronounciations	pronunciations	3		
 pronunce	pronounce	3		
 proof is in the pudding	proof of the pudding (is in the eating)	3		
+proofile	profile	3		
+proofile's	profile's	3		
+proofiled	profiled	3		
+proofiles	profiles	3		
+proofiling	profiling	3		
 proove	prove	3		
 prooved	proved	3		
 propagate	breed, reproduce	0		
@@ -13243,6 +13261,7 @@ scandalous	shocking	0
 scandalously	shockingly	0		
 scaned	scanned	3		
 scaning	scanning	3		
+scannot	cannot	3		
 scaricity	scarcity	3		
 scavanged	scavenged	3		
 schedual	schedule	3		
@@ -14856,6 +14875,9 @@ tigthening	tightening	3
 tigthens	tightens	3		
 tihkn	think	3		
 tihs	this	3		
+tim-eout	time-out	3		
+tim-eout's	time-out's	3		
+tim-eouts	time-outs	3		
 time after time	often, repeatedly	0		
 time and time again	often, repeatedly	0		
 time clock	clock	1		
@@ -15440,6 +15462,7 @@ updateing	updating	3
 upgradded	upgraded	3		
 uphill battle	difficult struggle	2		
 upholstry	upholstery	3		
+uplication	duplication	3		
 upmost	utmost	3		
 upon	on	0		
 upped the ante	invested more	2		
@@ -15551,6 +15574,9 @@ validaton's	validation's	3
 validatons	validations	3		
 validing	validating	3		
 validity	truth	0		
+vallue	value	3		
+vallue's	value's	3		
+vallues	values	3		
 valorous	brave	0		
 valorously	bravely	0		
 valuable asset	asset	0		

@@ -9583,6 +9583,7 @@ Havemeyer
 Haven
 Havenwyck
 Haversian
+Haversine
 Havgan
 Havighurst
 Haviland
