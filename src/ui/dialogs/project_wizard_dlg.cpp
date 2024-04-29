@@ -987,7 +987,6 @@ void ProjectWizardDlg::OnGroupClick([[maybe_unused]] wxCommandEvent& event)
             if (selectedItem != wxNOT_FOUND)
                 {
                 wxString lastPath{ m_fileList->GetItemTextFormatted(selectedItem, 0) };
-                wxString currentCommonFolder;
                 wxString lastCommonFolder;
                 while (selectedItem != wxNOT_FOUND)
                     {
@@ -1002,7 +1001,7 @@ void ProjectWizardDlg::OnGroupClick([[maybe_unused]] wxCommandEvent& event)
                         {
                         return wxString{};
                         }
-                    if (lastCommonFolder.length() &&
+                    if (lastCommonFolder.length() > 0 &&
                         currentCommonFolder.CmpNoCase(lastCommonFolder) != 0)
                         {
                         return wxString{};
@@ -1010,7 +1009,7 @@ void ProjectWizardDlg::OnGroupClick([[maybe_unused]] wxCommandEvent& event)
                     lastPath = m_fileList->GetItemTextFormatted(selectedItem, 0);
                     lastCommonFolder = currentCommonFolder;
                     }
-                return currentCommonFolder;
+                return lastCommonFolder;
                 }
             else
                 {
