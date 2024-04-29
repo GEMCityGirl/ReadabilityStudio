@@ -4743,7 +4743,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
 
     // wizard page defaults
     auto wizardPageDefaultsSection = doc.NewElement(XML_WIZARD_PAGES_SETTINGS.data());
-    
+
     auto batchGrouping = doc.NewElement(XML_WIZARD_BATCH_GROUP.data());
     batchGrouping->SetAttribute(XML_METHOD.data(), m_batchGroupDefault);
     wizardPageDefaultsSection->InsertEndChild(batchGrouping);

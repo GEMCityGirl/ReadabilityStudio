@@ -1259,7 +1259,7 @@ class ReadabilityAppOptions
         {
         m_documentStorageMethod = method;
         }
-    
+
     // how documents are grouped
     [[nodiscard]]
     int GetBatchGroupMethod() const noexcept
