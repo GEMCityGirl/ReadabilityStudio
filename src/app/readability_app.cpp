@@ -5406,7 +5406,7 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
         }
 
     WebHarvesterDlg webHarvestDlg(
-        this, wxGetApp().GetLastSelectedWebPages(),
+        this, wxArrayString{},
         wxString::Format(_(L"Documents & Images (%s;%s)|%s;%s|"),
                          wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD.data(),
                          wxGetApp().GetAppOptions().ALL_IMAGES_WILDCARD.data(),
