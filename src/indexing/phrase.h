@@ -266,7 +266,7 @@ namespace grammar
             }
 
         /** @brief Sets the trailing exceptions, which are used in equal_to_words().
-            @detials If equal_to_words() determines if a sequence of strings
+            @details If equal_to_words() determines if a sequence of strings
                 matches the phrase, then it will be equal unless the next word in
                 the sequence is one of these trailing exception.
                 This helps prevent false positives when searching for grammar errors.
