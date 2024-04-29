@@ -257,8 +257,8 @@ void WebHarvesterDlg::CreateControls()
 
         // depth level
         wxBoxSizer* depthLevelSizer = new wxBoxSizer(wxHORIZONTAL);
-        wxStaticText* depthLevelLabel = new wxStaticText(Panel, wxID_ANY, _(L"Depth level:"));
-        depthLevelSizer->Add(depthLevelLabel, 0, wxALIGN_CENTER_VERTICAL);
+        depthLevelSizer->Add(new wxStaticText(Panel, wxID_ANY, _(L"Depth level:")), 0,
+                             wxALIGN_CENTER_VERTICAL);
         depthLevelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
         m_depthLevelCtrl = new wxSpinCtrl(Panel);
