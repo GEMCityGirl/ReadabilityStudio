@@ -70,7 +70,7 @@ class FlatTabArt : public wxAuiGenericTabArt
     /// @private
     /// A utility function to scale a bitmap in place for use at the given scale factor.
     //-------------------------------------------------------
-    static void ScaleBitmap(wxBitmap& bmp, double scale)
+    static void ScaleBitmap([[maybe_unused]] wxBitmap& bmp, [[maybe_unused]] double scale)
         {
 #if wxUSE_IMAGE && !defined(__WXGTK3__) && !defined(__WXOSX__)
         // scale to a close round number to improve quality
@@ -82,9 +82,6 @@ class FlatTabArt : public wxAuiGenericTabArt
                         wxIMAGE_QUALITY_BOX_AVERAGE);
             bmp = wxBitmap(img);
             }
-#else
-        wxUnusedVar(bmp);
-        wxUnusedVar(scale);
 #endif // wxUSE_IMAGE
         }
 
