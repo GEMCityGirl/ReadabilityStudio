@@ -3256,6 +3256,12 @@ void MainFrame::OnViewProfileReport([[maybe_unused]] wxRibbonButtonBarEvent& eve
 //-------------------------------------------------------
 void MainFrame::OnViewLogReport([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
+    if (m_logWindow != nullptr && m_logWindow->IsShown())
+        {
+        m_logWindow->Hide();
+        return;
+        }
+
     if (m_logWindow == nullptr)
         {
         const wxSize screenSize{ wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X),
@@ -4079,6 +4085,13 @@ void MainFrame::OnScriptEditor([[maybe_unused]] wxCommandEvent& event)
             _(L"Feature Not Licensed"), wxOK|wxICON_INFORMATION);
         return;
         }
+
+    if (m_luaEditor != nullptr && m_luaEditor->IsShown())
+        {
+        m_luaEditor->Hide();
+        return;
+        }
+
     if (m_luaEditor == nullptr)
         {
         const wxSize screenSize{ wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X),
