@@ -136,7 +136,7 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
     /// Updates the dialog from a harvester's settings,
     void UpdateFromHarvesterSettings(const WebHarvester& harvester);
     /// Sets a harvest object to use the settings from this dialog.
-    void UpdateHarvesterSettings(WebHarvester& harvester) const;
+    void UpdateHarvesterSettings(WebHarvester& harvester);
 
   private:
     constexpr static int ID_DOWNLOAD_CHECKBOX = wxID_HIGHEST;

@@ -89,10 +89,6 @@ void WebHarvesterDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
             }
         }
 
-    m_depthLevel = m_depthLevelCtrl->GetValue();
-
-    m_selectedDomainRestriction = m_domainCombo->GetSelection();
-
     m_domains.clear();
     for (long i = 0; i < m_domainList->GetItemCount(); ++i)
         {
@@ -265,8 +261,9 @@ void WebHarvesterDlg::CreateControls()
         depthLevelSizer->Add(depthLevelLabel, 0, wxALIGN_CENTER_VERTICAL);
         depthLevelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
-        m_depthLevelCtrl = new wxSpinCtrl(Panel, wxID_ANY, std::to_wstring(m_depthLevel));
+        m_depthLevelCtrl = new wxSpinCtrl(Panel);
         m_depthLevelCtrl->SetRange(0, 10);
+        m_depthLevelCtrl->SetValidator(wxGenericValidator(&m_depthLevel));
         depthLevelSizer->Add(m_depthLevelCtrl, 0, wxALIGN_CENTER_VERTICAL);
         panelSizer->Add(depthLevelSizer, 0, wxLEFT, wxSizerFlags::GetDefaultBorder());
         panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
@@ -365,11 +362,7 @@ void WebHarvesterDlg::CreateControls()
         m_domainCombo = new wxComboBox(domainBoxSizer->GetStaticBox(), ID_DOMAIN_COMBO, wxString{},
                                        wxDefaultPosition, wxDefaultSize, choiceStrings,
                                        wxCB_DROPDOWN | wxCB_READONLY);
-        m_domainCombo->SetValue(
-            (m_selectedDomainRestriction >= 0 &&
-             static_cast<size_t>(m_selectedDomainRestriction) < choiceStrings.GetCount()) ?
-                choiceStrings[m_selectedDomainRestriction] :
-                wxString{});
+        m_domainCombo->SetValidator(wxGenericValidator(&m_selectedDomainRestriction));
         domainBoxSizer->Add(m_domainCombo, 0, wxEXPAND);
         domainBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
@@ -487,8 +480,10 @@ void WebHarvesterDlg::CreateControls()
     }
 
 //-------------------------------------------------------------
-void WebHarvesterDlg::UpdateHarvesterSettings(WebHarvester& harvester) const
+void WebHarvesterDlg::UpdateHarvesterSettings(WebHarvester& harvester)
     {
+    TransferDataFromWindow();
+
     // will be turned back on if looking for HTML files; otherwise, limit file extension
     // criteria from what was explicitly selected
     harvester.HarvestAllHtmlFiles(false);
