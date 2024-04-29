@@ -26,8 +26,13 @@ wxDECLARE_APP(ReadabilityApp);
 //-------------------------------------------------------------
 void CustomTestDlg::OnInsertFunctionClick([[maybe_unused]] wxCommandEvent& event)
     {
-    TransferDataFromWindow();
-    m_functionBrowser->ShowModal();
+    if (m_functionBrowser->IsShown())
+        {
+        m_functionBrowser->Hide();
+        return;
+        }
+
+    m_functionBrowser->Show();
     m_formulaCtrl->SetFocus();
     }
 
@@ -638,7 +643,7 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
     CreateControls();
     Centre();
 
-    m_functionBrowser = new FunctionBrowserDlg(this, m_formulaCtrl, wxID_ANY);
+    m_functionBrowser = new FunctionBrowserDlg(nullptr, m_formulaCtrl, wxID_ANY);
     wxGetApp().UpdateSideBarTheme(m_functionBrowser->GetSidebar());
     m_functionBrowser->SetParameterSeparator(FormulaFormat::GetListSeparator());
     m_functionBrowser->SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),

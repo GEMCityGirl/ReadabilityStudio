@@ -73,7 +73,14 @@ class CustomTestDlg final : public wxDialog
         }
 
     /// @private
-    ~CustomTestDlg() { wxDELETE(m_functionBrowser); }
+    ~CustomTestDlg()
+        {
+        // modeless dialog that do not have parents
+        if (m_functionBrowser != nullptr)
+            {
+            m_functionBrowser->Destroy();
+            }
+        }
 
     /** @brief Creates the dialog (used when using empty constructor).
         @param parent The parent window.
