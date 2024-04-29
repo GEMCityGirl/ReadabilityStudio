@@ -3175,7 +3175,7 @@ void MainFrame::OnAbout([[maybe_unused]] wxCommandEvent& event)
 
     AboutDialogEx aboutDlg(this, GetAboutDialogImage(),
         wxGetApp().GetAppVersion(),
-        wxString::Format(_(L"Copyright %c2006-%d %s. All rights reserved."), 0xA9,
+        wxString::Format(_(L"Copyright \U000000A92006-%d %s. All rights reserved."),
                          buildDate.GetYear(), wxGetApp().GetVendorDisplayName()),
         &wxGetApp().GetLicenseAdmin(), eula);
     wxGetApp().UpdateSideBarTheme(aboutDlg.GetSideBar());
