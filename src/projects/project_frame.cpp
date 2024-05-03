@@ -1667,7 +1667,9 @@ void ProjectDocChildFrame::OnEditPlotBackgroundImage([[maybe_unused]] wxCommandE
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(doc && L"Failed to get document!");
     if (!doc)
-        { return; }
+        {
+        return;
+        }
 
     wxFileDialog fd(
         this, _(L"Select Plot Background Image"),
@@ -1676,8 +1678,10 @@ void ProjectDocChildFrame::OnEditPlotBackgroundImage([[maybe_unused]] wxCommandE
         doc->GetPlotBackGroundImagePath(), Wisteria::GraphItems::Image::GetImageFileFilter(),
         wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
     if (fd.ShowModal() != wxID_OK)
-        { return; }
-    wxGetApp().GetAppOptions().SetImagePath(wxFileName(fd.GetPath()).GetPath());
+        {
+        return;
+        }
+    wxGetApp().GetAppOptions().SetImagePath(fd.GetPath());
     doc->SetPlotBackGroundImagePath(fd.GetPath());
     doc->RefreshRequired(ProjectRefresh::Minimal);
     doc->RefreshGraphs();
