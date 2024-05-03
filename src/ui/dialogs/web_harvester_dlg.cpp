@@ -222,26 +222,26 @@ void WebHarvesterDlg::CreateControls()
         wxBoxSizer* urlButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
         wxBitmapButton* addUrlButton = new wxBitmapButton(
             urlSizer->GetStaticBox(), ID_ADD_URL_BUTTON,
-            wxArtProvider::GetBitmap(L"ID_ADD", wxART_BUTTON, FromDIP(wxSize(16, 16))));
+            wxArtProvider::GetBitmap(L"ID_ADD", wxART_BUTTON, FromDIP(wxSize{ 16, 16 })));
         addUrlButton->SetToolTip(_(L"Add a website to the list"));
         urlButtonsSizer->Add(addUrlButton);
 
         wxBitmapButton* deleteUrlButton = new wxBitmapButton(
             urlSizer->GetStaticBox(), ID_DELETE_URL_BUTTON,
-            wxArtProvider::GetBitmap(wxART_DELETE, wxART_BUTTON, FromDIP(wxSize(16, 16))));
+            wxArtProvider::GetBitmap(wxART_DELETE, wxART_BUTTON, FromDIP(wxSize{ 16, 16 })));
         deleteUrlButton->SetToolTip(_(L"Delete selected websites"));
         urlButtonsSizer->Add(deleteUrlButton);
 
         wxBitmapButton* loadUrlsButton = new wxBitmapButton(
             urlSizer->GetStaticBox(), ID_LOAD_URLS_BUTTON,
-            wxArtProvider::GetBitmap(L"ID_LINK", wxART_BUTTON, FromDIP(wxSize(16, 16))));
+            wxArtProvider::GetBitmap(L"ID_LINK", wxART_BUTTON, FromDIP(wxSize{ 16, 16 })));
         loadUrlsButton->SetToolTip(_(L"Load links from HTML content"));
         urlButtonsSizer->Add(loadUrlsButton);
         urlSizer->Add(urlButtonsSizer, 0, wxALIGN_RIGHT);
 
         m_urlData->SetValues(m_urls);
         m_urlList = new ListCtrlEx(urlSizer->GetStaticBox(), wxID_ANY, wxDefaultPosition,
-                                   FromDIP(wxSize(600, 200)),
+                                   FromDIP(wxSize{ 600, 200 }),
                                    wxLC_VIRTUAL | wxLC_EDIT_LABELS | wxLC_REPORT | wxLC_ALIGN_LEFT);
         urlSizer->Add(m_urlList, 1, wxEXPAND);
         m_urlList->EnableGridLines();
@@ -369,22 +369,22 @@ void WebHarvesterDlg::CreateControls()
         wxBoxSizer* domainButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
         m_addDomainButton = new wxBitmapButton(
             domainBoxSizer->GetStaticBox(), ID_ADD_DOMAIN_BUTTON,
-            wxArtProvider::GetBitmap(L"ID_ADD", wxART_BUTTON, FromDIP(wxSize(16, 16))));
+            wxArtProvider::GetBitmap(L"ID_ADD", wxART_BUTTON, FromDIP(wxSize{ 16, 16 })));
         m_addDomainButton->SetToolTip(_(L"Add a domain to the list"));
         m_addDomainButton->Enable(m_domainCombo->GetValue() == GetUserSpecifiedDomainsLabel());
         domainButtonsSizer->Add(m_addDomainButton);
 
         m_deleteDomainButton = new wxBitmapButton(
             domainBoxSizer->GetStaticBox(), ID_DELETE_DOMAIN_BUTTON,
-            wxArtProvider::GetBitmap(wxART_DELETE, wxART_BUTTON, FromDIP(wxSize(16, 16))));
+            wxArtProvider::GetBitmap(wxART_DELETE, wxART_BUTTON, FromDIP(wxSize{ 16, 16 })));
         m_deleteDomainButton->SetToolTip(_(L"Delete selected domain"));
         m_deleteDomainButton->Enable(m_domainCombo->GetValue() == GetUserSpecifiedDomainsLabel());
         domainButtonsSizer->Add(m_deleteDomainButton);
         domainBoxSizer->Add(domainButtonsSizer, 0, wxALIGN_RIGHT);
 
         m_domainData->SetValues(m_domains);
-        m_domainList = new ListCtrlEx(
-            domainBoxSizer->GetStaticBox(), wxID_ANY, wxDefaultPosition, FromDIP(wxSize(600, 200)),
+        m_domainList = new ListCtrlEx(domainBoxSizer->GetStaticBox(), wxID_ANY, wxDefaultPosition,
+                           FromDIP(wxSize{ 600, 200 }),
             wxLC_VIRTUAL | wxLC_EDIT_LABELS | wxLC_REPORT | wxLC_ALIGN_LEFT);
         domainBoxSizer->Add(m_domainList, 1, wxEXPAND | wxALL);
         m_domainList->EnableGridLines();
@@ -431,7 +431,7 @@ void WebHarvesterDlg::CreateControls()
 
         m_folderBrowseButton = new wxBitmapButton(
             Panel, ID_DOWNLOAD_FOLDER_BROWSE_BUTTON,
-            wxArtProvider::GetBitmap(wxART_FILE_OPEN, wxART_BUTTON, FromDIP(wxSize(16, 16))));
+            wxArtProvider::GetBitmap(wxART_FILE_OPEN, wxART_BUTTON, FromDIP(wxSize{ 16, 16 })));
         m_folderBrowseButton->Enable(m_downloadFilesLocally);
         downloadFolderPathSizer->Add(m_folderBrowseButton, 0, wxRIGHT,
                                      wxSizerFlags::GetDefaultBorder());
