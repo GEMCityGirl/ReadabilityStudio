@@ -32,13 +32,13 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
     /// @brief Constructor.
     /// @note Call UpdateFromHarvesterSettings() to fill in the remaining settings
     ///     from an existing WebHarvester object.
-    WebHarvesterDlg(wxWindow* parent, const wxArrayString& urls, const wxString& fullDocFilter,
+    WebHarvesterDlg(wxWindow* parent, wxArrayString urls, const wxString& fullDocFilter,
                     const wxString& selectedDocFilter, const bool hideLocalDownloadOption,
                     wxWindowID id = wxID_ANY, const wxString& caption = _(L"Web Harvester"),
                     const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
                     long style = wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER)
         : m_fullDocFilter(fullDocFilter), m_selectedDocFilter(selectedDocFilter),
-          m_hideLocalDownloadOption(hideLocalDownloadOption), m_urls(urls)
+          m_hideLocalDownloadOption(hideLocalDownloadOption), m_urls(std::move(urls))
         {
         Create(parent, id, caption, pos, size, style);
         }
