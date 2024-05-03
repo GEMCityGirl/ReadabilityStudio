@@ -2489,14 +2489,6 @@ class ReadabilityAppOptions
     [[nodiscard]]
     static wxString GetDocumentFilter();
 
-    /// @returns The file filter string for opening our supported image types.
-    [[nodiscard]]
-    static wxString GetImageFileFilter()
-        {
-        return _(
-            LR"(Image Files (*.bmp;*.jpg;*.jpeg;*.jpe;*.png;*.gif;*.tga;*.tif;*.tiff;*.pcx)|*.bmp;*.jpg;*.jpeg;*.jpe;*.png;*.gif;*.tga;*.tif;*.tiff;*.pcx|Bitmap (*.bmp)|*.bmp|JPEG (*.jpg;*.jpeg;*.jpe)|*.jpg;*.jpg;*.jpe|PNG (*.png)|*.png|GIF (*.gif)|*.gif|Targa (*.tga)|*.tga|TIFF (*.tif;*.tiff)|*.tif;*.tiff|PCX (*.pcx)|*.pcx)");
-        }
-
   private:
     void LoadThemeNode(tinyxml2::XMLElement* appearanceNode);
     [[nodiscard]]

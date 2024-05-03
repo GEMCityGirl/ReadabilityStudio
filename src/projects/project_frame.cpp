@@ -1045,8 +1045,8 @@ void ProjectDocChildFrame::OnBarStyleSelected(wxCommandEvent& event)
         if (!wxFile::Exists(baseDoc->GetStippleImagePath()))
             {
             wxFileDialog fd(this, _(L"Select Stipple Image"),
-                wxGetApp().GetAppOptions().GetImagePath(),
-                wxString{}, wxGetApp().GetAppOptions().GetImageFileFilter(),
+                wxGetApp().GetAppOptions().GetImagePath(), wxString{},
+                            Wisteria::GraphItems::Image::GetImageFileFilter(),
                 wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
             if (fd.ShowModal() != wxID_OK)
                 { return; }
@@ -1067,7 +1067,7 @@ void ProjectDocChildFrame::OnBarStyleSelected(wxCommandEvent& event)
             {
             wxFileDialog fd(this, _(L"Select Common Image"),
                 wxGetApp().GetAppOptions().GetImagePath(), wxString{},
-                wxGetApp().GetAppOptions().GetImageFileFilter(),
+                            Wisteria::GraphItems::Image::GetImageFileFilter(),
                 wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
             if (fd.ShowModal() != wxID_OK)
                 { return; }
@@ -1102,7 +1102,7 @@ void ProjectDocChildFrame::OnHistoBarStyleSelected(wxCommandEvent& event)
             {
             wxFileDialog fd(this, _(L"Select Stipple Image"),
                 wxGetApp().GetAppOptions().GetImagePath(), wxString{},
-                wxGetApp().GetAppOptions().GetImageFileFilter(),
+                            Wisteria::GraphItems::Image::GetImageFileFilter(),
                 wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
             if (fd.ShowModal() != wxID_OK)
                 { return; }
@@ -1123,7 +1123,7 @@ void ProjectDocChildFrame::OnHistoBarStyleSelected(wxCommandEvent& event)
             {
             wxFileDialog fd(this, _(L"Select Common Image"),
                 wxGetApp().GetAppOptions().GetImagePath(), wxString{},
-                wxGetApp().GetAppOptions().GetImageFileFilter(),
+                            Wisteria::GraphItems::Image::GetImageFileFilter(),
                 wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
             if (fd.ShowModal() != wxID_OK)
                 { return; }
@@ -1145,8 +1145,7 @@ void ProjectDocChildFrame::OnHistoBarSelectStippleBrush([[maybe_unused]] wxComma
         { return; }
 
     wxFileDialog fd(this, _(L"Select Stipple Image"),
-        wxGetApp().GetAppOptions().GetImagePath(), wxString{},
-        wxGetApp().GetAppOptions().GetImageFileFilter(),
+        wxGetApp().GetAppOptions().GetImagePath(), wxString{}, Wisteria::GraphItems::Image::GetImageFileFilter(),
         wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
     if (fd.ShowModal() != wxID_OK)
         { return; }
@@ -1255,8 +1254,7 @@ void ProjectDocChildFrame::OnHistoBarSelectCommonImage([[maybe_unused]] wxComman
         { return; }
 
     wxFileDialog fd(this, _(L"Select Common Image"),
-        wxGetApp().GetAppOptions().GetImagePath(), wxString{},
-        wxGetApp().GetAppOptions().GetImageFileFilter(),
+        wxGetApp().GetAppOptions().GetImagePath(), wxString{}, Wisteria::GraphItems::Image::GetImageFileFilter(),
         wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
     if (fd.ShowModal() != wxID_OK)
         { return; }
@@ -1278,8 +1276,7 @@ void ProjectDocChildFrame::OnBoxSelectCommonImage([[maybe_unused]] wxCommandEven
         { return; }
 
     wxFileDialog fd(this, _(L"Select Common Image"),
-        wxGetApp().GetAppOptions().GetImagePath(), wxString{},
-        wxGetApp().GetAppOptions().GetImageFileFilter(),
+        wxGetApp().GetAppOptions().GetImagePath(), wxString{}, Wisteria::GraphItems::Image::GetImageFileFilter(),
         wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
     if (fd.ShowModal() != wxID_OK)
         { return; }
@@ -1301,8 +1298,7 @@ void ProjectDocChildFrame::OnBoxSelectStippleBrush([[maybe_unused]] wxCommandEve
         { return; }
 
     wxFileDialog fd(this, _(L"Select Stipple Image"),
-        wxGetApp().GetAppOptions().GetImagePath(), wxString{},
-        wxGetApp().GetAppOptions().GetImageFileFilter(),
+        wxGetApp().GetAppOptions().GetImagePath(), wxString{}, Wisteria::GraphItems::Image::GetImageFileFilter(),
         wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
     if (fd.ShowModal() != wxID_OK)
         { return; }
@@ -1324,8 +1320,7 @@ void ProjectDocChildFrame::OnBarSelectStippleBrush([[maybe_unused]] wxCommandEve
         { return; }
 
     wxFileDialog fd(this, _(L"Select Stipple Image"),
-        wxGetApp().GetAppOptions().GetImagePath(), wxString{},
-        wxGetApp().GetAppOptions().GetImageFileFilter(),
+        wxGetApp().GetAppOptions().GetImagePath(), wxString{}, Wisteria::GraphItems::Image::GetImageFileFilter(),
         wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
     if (fd.ShowModal() != wxID_OK)
         { return; }
@@ -1347,8 +1342,7 @@ void ProjectDocChildFrame::OnBarSelectCommonImage([[maybe_unused]] wxCommandEven
         { return; }
 
     wxFileDialog fd(this, _(L"Select Common Image"),
-        wxGetApp().GetAppOptions().GetImagePath(), wxString{},
-        wxGetApp().GetAppOptions().GetImageFileFilter(),
+        wxGetApp().GetAppOptions().GetImagePath(), wxString{}, Wisteria::GraphItems::Image::GetImageFileFilter(),
         wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
     if (fd.ShowModal() != wxID_OK)
         { return; }
@@ -1380,7 +1374,7 @@ void ProjectDocChildFrame::OnBoxStyleSelected(wxCommandEvent& event)
             {
             wxFileDialog fd(this, _(L"Select Stipple Image"),
                 wxGetApp().GetAppOptions().GetImagePath(), wxString{},
-                wxGetApp().GetAppOptions().GetImageFileFilter(),
+                            Wisteria::GraphItems::Image::GetImageFileFilter(),
                 wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
             if (fd.ShowModal() != wxID_OK)
                 { return; }
@@ -1401,7 +1395,7 @@ void ProjectDocChildFrame::OnBoxStyleSelected(wxCommandEvent& event)
             {
             wxFileDialog fd(this, _(L"Select Common Image"),
                 wxGetApp().GetAppOptions().GetImagePath(), wxString{},
-                wxGetApp().GetAppOptions().GetImageFileFilter(),
+                            Wisteria::GraphItems::Image::GetImageFileFilter(),
                 wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
             if (fd.ShowModal() != wxID_OK)
                 { return; }
@@ -1477,8 +1471,7 @@ void ProjectDocChildFrame::OnGraphLogo([[maybe_unused]] wxRibbonButtonBarEvent& 
 
     wxFileDialog fd(this, _(L"Select Logo Image"),
         doc->GetWatermarkLogoPath().length() ? wxString{} : wxGetApp().GetAppOptions().GetImagePath(),
-        doc->GetWatermarkLogoPath(),
-        wxGetApp().GetAppOptions().GetImageFileFilter(),
+        doc->GetWatermarkLogoPath(), Wisteria::GraphItems::Image::GetImageFileFilter(),
         wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
     if (fd.ShowModal() == wxID_OK)
         {
@@ -1676,11 +1669,12 @@ void ProjectDocChildFrame::OnEditPlotBackgroundImage([[maybe_unused]] wxCommandE
     if (!doc)
         { return; }
 
-    wxFileDialog fd(this, _(L"Select Plot Background Image"),
-            doc->GetPlotBackGroundImagePath().length() ? wxString{} : wxGetApp().GetAppOptions().GetImagePath(),
-            doc->GetPlotBackGroundImagePath(),
-            wxGetApp().GetAppOptions().GetImageFileFilter(),
-            wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
+    wxFileDialog fd(
+        this, _(L"Select Plot Background Image"),
+        doc->GetPlotBackGroundImagePath().length() ? wxString{} :
+                                                     wxGetApp().GetAppOptions().GetImagePath(),
+        doc->GetPlotBackGroundImagePath(), Wisteria::GraphItems::Image::GetImageFileFilter(),
+        wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
     if (fd.ShowModal() != wxID_OK)
         { return; }
     wxGetApp().GetAppOptions().SetImagePath(wxFileName(fd.GetPath()).GetPath());
@@ -1720,8 +1714,8 @@ void ProjectDocChildFrame::OnEditGraphOpacity(wxCommandEvent& event)
                         wxString{} :
                         wxGetApp().GetAppOptions().GetImagePath(),
                     doc->GetPlotBackGroundImagePath(),
-                    wxGetApp().GetAppOptions().GetImageFileFilter(),
-                    wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
+                            Wisteria::GraphItems::Image::GetImageFileFilter(),
+                            wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
             if (fd.ShowModal() != wxID_OK)
                 { return; }
             wxGetApp().GetAppOptions().SetImagePath(wxFileName(fd.GetPath()).GetPath());

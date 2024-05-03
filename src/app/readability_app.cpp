@@ -5253,7 +5253,7 @@ void MainFrame::OnEditPhraseList([[maybe_unused]] wxCommandEvent& event)
 void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     GetDirFilterDialog dirDlg(this, wxGetApp().GetAppOptions().GetDocumentFilter() + L"|" +
-                                        wxGetApp().GetAppOptions().GetImageFileFilter() + L"|" +
+                                        Wisteria::GraphItems::Image::GetImageFileFilter() + L"|" +
                                         _(L"All Files (*.*)|*.*"));
     if (dirDlg.ShowModal() != wxID_OK || dirDlg.GetPath().empty())
         {
@@ -5413,7 +5413,7 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
                          wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD.data(),
                          wxGetApp().GetAppOptions().ALL_IMAGES_WILDCARD.data()) +
             wxGetApp().GetAppOptions().GetDocumentFilter() + L"|" +
-            wxGetApp().GetAppOptions().GetImageFileFilter(),
+            Wisteria::GraphItems::Image::GetImageFileFilter(),
         wxGetApp().GetLastSelectedDocFilter(),
         // hide the option that disables local file downloading
         true);

@@ -30,10 +30,9 @@ Install the following tools to build *Readability Studio*:
 git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
 ```
 - Open wxWidgets's CMake file in *Visual Studio*
-  - Open **Project** > **CMake Project Settings**
+  - Open **Project** > **CMake Settings for wxWidgets**
     - Uncheck **wxBUILD_SHARED** and save
-  - Select **Build** > **Build All**
-  - Select **Build** > **Install wxWidgets** (really just copies the header, lib, and cmake files to the prefix folder)
+  - Select **Build** > **Install wxWidgets** (builds and then copies the header, lib, and cmake files to the prefix folder)
 - Open this project's CMake file in *Visual Studio* and save it (this is equivalent to configuring CMake and will generate some necessary configuration files)
 - Open "ReadabilityStudio/docs/BuildHelpProjects.R" in *RStudio* and source the entire script
 - Go back to *Visual Studio* and build the project

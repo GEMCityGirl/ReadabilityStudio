@@ -44,20 +44,16 @@ class ProjectDocChildFrame : public wxDocChildFrame
     friend ProjectView;
     friend BatchProjectView;
     friend MainFrame;
+
   public:
     ProjectDocChildFrame() = delete;
     ProjectDocChildFrame(const ProjectDocChildFrame&) = delete;
     ProjectDocChildFrame& operator=(const ProjectDocChildFrame&) = delete;
 
-    ProjectDocChildFrame(wxDocument *doc,
-        wxView *view,
-        wxFrame *parent,
-        wxWindowID id,
-        const wxString& title,
-        const wxPoint& pos = wxDefaultPosition,
-        const wxSize& size = wxDefaultSize,
-        long style = wxDEFAULT_FRAME_STYLE,
-        const wxString& name = wxASCII_STR(wxFrameNameStr));
+    ProjectDocChildFrame(wxDocument* doc, wxView* view, wxFrame* parent, wxWindowID id,
+                         const wxString& title, const wxPoint& pos = wxDefaultPosition,
+                         const wxSize& size = wxDefaultSize, long style = wxDEFAULT_FRAME_STYLE,
+                         const wxString& name = wxASCII_STR(wxFrameNameStr));
 
     void OnCustomTest(wxCommandEvent& event);
 
@@ -132,10 +128,7 @@ class ProjectDocChildFrame : public wxDocChildFrame
         OnDocumentRefresh(cmd);
         }
 
-    void OnOpenDropdown(wxRibbonButtonBarEvent& evt)
-        {
-        evt.PopupMenu(&m_fileOpenMenu);
-        }
+    void OnOpenDropdown(wxRibbonButtonBarEvent& evt) { evt.PopupMenu(&m_fileOpenMenu); }
 
     void OnSaveDropdown(wxRibbonButtonBarEvent& evt);
 
@@ -144,10 +137,7 @@ class ProjectDocChildFrame : public wxDocChildFrame
         event.PopupMenu(&m_longSentencesMenu);
         }
 
-    void OnLineEndsDropdown(wxRibbonButtonBarEvent& event)
-        {
-        event.PopupMenu(&m_lineEndsMenu);
-        }
+    void OnLineEndsDropdown(wxRibbonButtonBarEvent& event) { event.PopupMenu(&m_lineEndsMenu); }
 
     void OnNumeralSyllabicationDropdown(wxRibbonButtonBarEvent& event)
         {
@@ -164,10 +154,7 @@ class ProjectDocChildFrame : public wxDocChildFrame
         event.PopupMenu(&m_histobarLabelsMenu);
         }
 
-    void OnZoomButtonDropdown(wxRibbonButtonBarEvent& event)
-        {
-        event.PopupMenu(&m_zoomMenu);
-        }
+    void OnZoomButtonDropdown(wxRibbonButtonBarEvent& event) { event.PopupMenu(&m_zoomMenu); }
 
     void OnEditGraphBackgroundDropdown(wxRibbonButtonBarEvent& event)
         {
@@ -184,65 +171,32 @@ class ProjectDocChildFrame : public wxDocChildFrame
         event.PopupMenu(&m_barOrientationMenu);
         }
 
-    void OnBarStyleDropdown(wxRibbonButtonBarEvent& event)
-        {
-        event.PopupMenu(&m_barStyleMenu);
-        }
+    void OnBarStyleDropdown(wxRibbonButtonBarEvent& event) { event.PopupMenu(&m_barStyleMenu); }
 
-    void OnBoxStyleDropdown(wxRibbonButtonBarEvent& event)
-        {
-        event.PopupMenu(&m_boxStyleMenu);
-        }
+    void OnBoxStyleDropdown(wxRibbonButtonBarEvent& event) { event.PopupMenu(&m_boxStyleMenu); }
 
     void OnEditGraphFontsDropdown(wxRibbonButtonBarEvent& event)
         {
         event.PopupMenu(&m_graphFontsMenu);
         }
 
-    void OnCopyDropdown(wxRibbonButtonBarEvent& evt)
-        {
-        evt.PopupMenu(&m_copyMenu);
-        }
+    void OnCopyDropdown(wxRibbonButtonBarEvent& evt) { evt.PopupMenu(&m_copyMenu); }
 
-    void OnWordListDropdown(wxRibbonButtonBarEvent& evt)
-        {
-        evt.PopupMenu(&m_wordListMenu);
-        }
+    void OnWordListDropdown(wxRibbonButtonBarEvent& evt) { evt.PopupMenu(&m_wordListMenu); }
 
-    void OnBlankGraphDropdown(wxRibbonButtonBarEvent& evt)
-        {
-        evt.PopupMenu(&m_blankGraphMenu);
-        }
+    void OnBlankGraphDropdown(wxRibbonButtonBarEvent& evt) { evt.PopupMenu(&m_blankGraphMenu); }
 
-    void OnCustomTestsDropdown(wxRibbonButtonBarEvent& evt)
-        {
-        evt.PopupMenu(&m_customTestsMenu);
-        }
+    void OnCustomTestsDropdown(wxRibbonButtonBarEvent& evt) { evt.PopupMenu(&m_customTestsMenu); }
 
-    void OnTestBundlesDropdown(wxRibbonButtonBarEvent& evt)
-        {
-        evt.PopupMenu(&m_testsBundleMenu);
-        }
+    void OnTestBundlesDropdown(wxRibbonButtonBarEvent& evt) { evt.PopupMenu(&m_testsBundleMenu); }
 
-    void OnPrintDropdown(wxRibbonButtonBarEvent& evt)
-        {
-        evt.PopupMenu(&m_printMenu);
-        }
+    void OnPrintDropdown(wxRibbonButtonBarEvent& evt) { evt.PopupMenu(&m_printMenu); }
 
-    void OnExampleDropdown(wxRibbonButtonBarEvent& evt)
-        {
-        evt.PopupMenu(&m_exampleMenu);
-        }
+    void OnExampleDropdown(wxRibbonButtonBarEvent& evt) { evt.PopupMenu(&m_exampleMenu); }
 
-    void OnGraphSortDropdown(wxRibbonButtonBarEvent& evt)
-        {
-        evt.PopupMenu(&m_graphSortMenu);
-        }
+    void OnGraphSortDropdown(wxRibbonButtonBarEvent& evt) { evt.PopupMenu(&m_graphSortMenu); }
 
-    void OnGradeScaleDropdown(wxRibbonButtonBarEvent& evt)
-        {
-        evt.PopupMenu(&m_gradeScaleMenu);
-        }
+    void OnGradeScaleDropdown(wxRibbonButtonBarEvent& evt) { evt.PopupMenu(&m_gradeScaleMenu); }
 
     void OnBarLabelsButton([[maybe_unused]] wxRibbonButtonBarEvent& event);
 
@@ -317,6 +271,8 @@ class ProjectDocChildFrame : public wxDocChildFrame
     void OnEditGraphOpacity(wxCommandEvent& event);
 
     void OnEditPlotBackgroundImage([[maybe_unused]] wxCommandEvent& event);
+
+    void OnMergePlotBackgroundImages([[maybe_unused]] wxCommandEvent& event);
 
     void OnLongSentencesOptions([[maybe_unused]] wxCommandEvent& event);
 

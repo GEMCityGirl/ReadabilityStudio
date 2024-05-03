@@ -680,7 +680,7 @@ void BaseProjectView::Present()
         GetDocFrame()->m_raygorStyleMenu.Check(XRCID("ID_EDIT_GRAPH_RAYGOR_MODERN"), true);
         }
 
-    // other menu items with checks that need to be checked here
+    // other menu items with checkmarks that need to be checked here
     wxMenuItem* fadeOption = GetDocFrame()->m_graphBackgroundMenu.FindItem(XRCID("ID_GRAPH_BKCOLOR_FADE"));
     if (fadeOption)
         { fadeOption->Check(doc->GetGraphBackGroundLinearGradient()); }
