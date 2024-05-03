@@ -103,6 +103,11 @@ ProjectDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView*
     item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
     graphBackgroundImageSubMenu->Append(item);
 
+    item =
+        new wxMenuItem(graphBackgroundImageSubMenu, XRCID("ID_MERGE_PLOT_BKIMAGES"), _(L"Merge Images..."));
+    item->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/photos-merge.svg"));
+    graphBackgroundImageSubMenu->Append(item);
+
     graphBackgroundImageSubMenu->Append(
         new wxMenuItem(graphBackgroundImageSubMenu,
         XRCID("ID_EDIT_PLOT_BKIMAGE_OPACITY"), _(L"Opacity...")));

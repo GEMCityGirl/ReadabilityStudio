@@ -1,12 +1,13 @@
 #include "project_frame.h"
+#include "../Wisteria-Dataviz/src/ui/dialogs/imagemergedlg.h"
+#include "../Wisteria-Dataviz/src/ui/dialogs/opacitydlg.h"
+#include "../app/readability_app.h"
+#include "../ui/dialogs/edit_word_list_dlg.h"
+#include "../ui/dialogs/tools_options_dlg.h"
 #include "base_project.h"
 #include "base_project_view.h"
 #include "batch_project_doc.h"
 #include "standard_project_doc.h"
-#include "../app/readability_app.h"
-#include "../ui/dialogs/tools_options_dlg.h"
-#include "../ui/dialogs/edit_word_list_dlg.h"
-#include "../Wisteria-Dataviz/src/ui/dialogs/opacitydlg.h"
 
 wxDECLARE_APP(ReadabilityApp);
 
@@ -221,6 +222,8 @@ ProjectDocChildFrame::ProjectDocChildFrame(wxDocument *doc,
         XRCID("ID_EDIT_PLOT_BKCOLOR_OPACITY"));
     Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditPlotBackgroundImage, this,
         XRCID("ID_EDIT_PLOT_BKIMAGE"));
+    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMergePlotBackgroundImages, this,
+         XRCID("ID_MERGE_PLOT_BKIMAGES"));
     Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditGraphFont, this,
         XRCID("ID_EDIT_Y_AXIS_FONT"));
     Bind(wxEVT_MENU, &ProjectDocChildFrame::OnEditGraphFont, this,
@@ -1657,6 +1660,44 @@ void ProjectDocChildFrame::OnEditPlotBackgroundImageEffect(wxCommandEvent& event
 
     if (menuItem)
         { menuItem->Check(true); }
+    doc->RefreshRequired(ProjectRefresh::Minimal);
+    doc->RefreshGraphs();
+    }
+
+//---------------------------------------------------
+void ProjectDocChildFrame::OnMergePlotBackgroundImages([[maybe_unused]] wxCommandEvent& event)
+    {
+    BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
+    assert(doc && L"Failed to get document!");
+    if (!doc)
+        {
+        return;
+        }
+
+    wxFileDialog fd(
+        this, _(L"Select Images"),
+        wxGetApp().GetAppOptions().GetImagePath(),
+                    wxString{}, Wisteria::GraphItems::Image::GetImageFileFilter(),
+        wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_MULTIPLE | wxFD_PREVIEW);
+    if (fd.ShowModal() != wxID_OK)
+        {
+        return;
+        }
+    wxArrayString imgPaths;
+    fd.GetPaths(imgPaths);
+    if (imgPaths.size() == 0)
+        {
+        return;
+        }
+
+    ImageMergeDlg imgDlg(this, imgPaths, wxHORIZONTAL);
+    if (imgDlg.ShowModal() != wxID_OK)
+        {
+        return;
+        }
+
+    wxGetApp().GetAppOptions().SetImagePath(imgDlg.GetMergedFilePath());
+    doc->SetPlotBackGroundImagePath(imgDlg.GetMergedFilePath());
     doc->RefreshRequired(ProjectRefresh::Minimal);
     doc->RefreshGraphs();
     }

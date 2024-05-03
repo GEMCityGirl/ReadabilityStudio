@@ -106,6 +106,7 @@ ribbon/paste.svg
 ribbon/period-needed.svg
 ribbon/person.svg
 ribbon/photos.svg
+ribbon/photos-merge.svg
 ribbon/preview.svg
 ribbon/print-header-footer.svg
 ribbon/print-setup.svg
