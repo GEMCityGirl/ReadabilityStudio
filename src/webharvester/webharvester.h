@@ -276,8 +276,8 @@ class WebHarvester
     void ClearAllowableFileTypes() { m_fileExtensions.clear(); }
 
     /// @brief When downloading locally, keep the folder structure from the website.
-    /// @param keep @c true to use the website's folder structure, @c false to download files in
-    ///     a flat folder structure.
+    /// @param keep @c true to use the website's folder structure,
+    ///     @c false to download files in a flat folder structure.
     /// @note This is recommended to prevent overwriting files with the same name.
     void KeepWebPathWhenDownloading(const bool keep = true) noexcept
         {
@@ -544,7 +544,7 @@ class WebHarvester
     [[nodiscard]]
     static wxString GetCharsetFromPageContent(std::string_view pageContent);
 
-  protected:
+  private:
     /// @returns An URL with spaces encoded to '%20', '\/' converted to '/', and trimmed.
     /// @param url The URL to normalize.
     [[nodiscard]]
@@ -598,7 +598,6 @@ class WebHarvester
         return (m_fileExtensions.find(fileExt) != m_fileExtensions.cend());
         }
 
-  private:
     class wxStringLessNoCase
         {
       public:
