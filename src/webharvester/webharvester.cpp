@@ -171,6 +171,20 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
         wxFileName::Mkdir(downloadPathFolder, wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
         }
 
+    if (m_useJsCookies)
+        {
+        wxString fileText;
+        wxString contentType;
+        wxString statusText;
+        int responseCode{ 200 };
+        if (ReadWebPage(Url, fileText, contentType, statusText, responseCode, true))
+            {
+            const std::wstring cookies = html_utilities::javascript_hyperlink_parse::get_cookies(
+                { fileText.wc_str(), fileText.length() });
+            m_downloader.SetCookies(cookies.c_str());
+            }
+        }
+
     // now download the file locally
     if (m_downloader.Download(Url, downloadPath))
         {
@@ -190,6 +204,9 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
                      m_downloader.GetLastStatusText());
         downloadPath.clear();
         }
+
+    // reset to empty cookies
+    m_downloader.SetCookies(wxString{});
 
     return downloadPath;
     }
@@ -446,6 +463,26 @@ bool WebHarvester::CrawlLinks(wxString& url,
             // don't bother trying to crawl this later if it failed
             m_alreadyCrawledFiles.insert(url);
             return false;
+            }
+        if (m_useJsCookies)
+            {
+            const std::wstring cookies = html_utilities::javascript_hyperlink_parse::get_cookies(
+                { fileText.wc_str(), fileText.length() });
+            if (cookies.length() > 0)
+                {
+                m_downloader.SetCookies(cookies.c_str());
+
+                if (!ReadWebPage(url, fileText, contentType, statusText, responseCode, true))
+                    {
+                    --m_currentLevel;
+                    // don't bother trying to crawl this later if it failed
+                    m_alreadyCrawledFiles.insert(url);
+                    return false;
+                    }
+
+                // reset to empty cookies
+                m_downloader.SetCookies(wxString{});
+                }
             }
         }
     else if (resolve.IsLocalOrNetworkFile())
