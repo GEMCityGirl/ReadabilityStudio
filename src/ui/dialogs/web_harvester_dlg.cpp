@@ -143,10 +143,10 @@ void WebHarvesterDlg::OnLoadUrlsClick([[maybe_unused]] wxCommandEvent& event)
     {
     if (m_urlList != nullptr)
         {
-        /// @todo Make larger when new API in wx 3.3.0 is available
         wxTextEntryDialog textDlg(
             this, _(L"Enter a block of HTML content to extract website links from."),
-            _(L"Load URLs"), wxString{}, wxTextEntryDialogStyle | wxTE_MULTILINE);
+            _(L"Load URLs"), wxString{}, wxTextEntryDialogStyle | wxTE_MULTILINE, wxDefaultPosition,
+            FromDIP(wxSize{ 500, 600 }));
         if (textDlg.ShowModal() == wxID_OK)
             {
             // case sensitive is fine since Linux servers use case-sensitive page links
