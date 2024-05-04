@@ -7,6 +7,7 @@
 
 using namespace Wisteria;
 using namespace Wisteria::Graphs;
+using namespace Wisteria::UI;
 
 wxDECLARE_APP(ReadabilityApp);
 

@@ -106,8 +106,10 @@ class EditWordListDlg final : public Wisteria::UI::DialogWithHelp
     void OnEditItem([[maybe_unused]] wxCommandEvent& event);
     void OnDeleteItem([[maybe_unused]] wxCommandEvent& event);
 
-    std::shared_ptr<ListCtrlExDataProvider> m_wordData{ std::make_shared<ListCtrlExDataProvider>() };
-    ListCtrlEx* m_wordsList{ nullptr };
+    std::shared_ptr<Wisteria::UI::ListCtrlExDataProvider> m_wordData{
+        std::make_shared<Wisteria::UI::ListCtrlExDataProvider>()
+    };
+    Wisteria::UI::ListCtrlEx* m_wordsList{ nullptr };
     wxTextCtrl* m_wordListFilePathCtrl{ nullptr };
     wxString m_wordListFilePath;
     wxString m_previousListFilePath;

@@ -177,14 +177,14 @@ class ExplanationListCtrl final : public wxSplitterWindow
 
     /// @returns The list control.
     [[nodiscard]]
-    ListCtrlEx* GetResultsListCtrl() noexcept
+    Wisteria::UI::ListCtrlEx* GetResultsListCtrl() noexcept
         {
         return m_results_view;
         }
 
     /// @private
     [[nodiscard]]
-    const ListCtrlEx* GetResultsListCtrl() const noexcept
+    const Wisteria::UI::ListCtrlEx* GetResultsListCtrl() const noexcept
         {
         return m_results_view;
         }
@@ -206,7 +206,7 @@ class ExplanationListCtrl final : public wxSplitterWindow
 
     /// @returns The list's data provider.
     [[nodiscard]]
-    std::shared_ptr<ListCtrlExNumericDataProvider>& GetDataProvider() noexcept
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetDataProvider() noexcept
         {
         return m_data;
         }
@@ -234,13 +234,13 @@ class ExplanationListCtrl final : public wxSplitterWindow
     void OnResize(wxSizeEvent& event);
     void OnMenuCommand(wxCommandEvent& event);
 
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_data{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_data{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
     std::map<wxString, wxString> m_explanations;
     // view classes
     Wisteria::UI::HtmlTableWindow* m_explanation_view{ nullptr };
-    ListCtrlEx* m_results_view{ nullptr };
+    Wisteria::UI::ListCtrlEx* m_results_view{ nullptr };
 
     wxPrintData* m_printData{ nullptr };
     // headers

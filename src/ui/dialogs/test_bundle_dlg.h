@@ -75,8 +75,8 @@ class TestBundleDlg final : public Wisteria::UI::DialogWithHelp
     CustomReadabilityTestCollection m_custom_tests;
     wxTextCtrl* m_bundleNameCtrl{ nullptr };
     wxTextCtrl* m_bundleDescriptionCtrl{ nullptr };
-    ListCtrlEx* m_testGoalsListCtrl{ nullptr };
-    ListCtrlEx* m_statGoalsListCtrl{ nullptr };
+    Wisteria::UI::ListCtrlEx* m_testGoalsListCtrl{ nullptr };
+    Wisteria::UI::ListCtrlEx* m_statGoalsListCtrl{ nullptr };
     Wisteria::UI::SideBarBook* m_sideBarBook{ nullptr };
     };
 

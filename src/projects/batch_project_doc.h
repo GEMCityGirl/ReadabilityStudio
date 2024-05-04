@@ -96,87 +96,87 @@ class BatchProjectDoc final : public BaseProjectDoc
     void RemoveMisspellings(const wxArrayString& misspellingsToRemove) final;
 
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetMisspelledWordData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetMisspelledWordData() const noexcept
         {
         return m_misspelledWordData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetRepeatedWordData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetRepeatedWordData() const noexcept
         {
         return m_dupWordData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetIncorrectArticleData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetIncorrectArticleData() const noexcept
         {
         return m_incorrectArticleData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>&
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>&
     GetOverusedWordBySentenceData() const noexcept
         {
         return m_overusedWordBySentenceData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetPassiveVoiceData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetPassiveVoiceData() const noexcept
         {
         return m_passiveVoiceData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetWordyItemsData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetWordyItemsData() const noexcept
         {
         return m_wordyPhraseData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetRedundantPhrasesData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetRedundantPhrasesData() const noexcept
         {
         return m_redundantPhraseData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetWordingErrorsData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetWordingErrorsData() const noexcept
         {
         return m_wordingErrorData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetClicheData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetClicheData() const noexcept
         {
         return m_clichePhraseData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetAllWordsBatchData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetAllWordsBatchData() const noexcept
         {
         return m_allWordsBatchData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetKeyWordsBatchData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetKeyWordsBatchData() const noexcept
         {
         return m_keyWordsBatchData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetLongSentencesData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetLongSentencesData() const noexcept
         {
         return m_overlyLongSentenceData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>&
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>&
     GetConjunctionStartingSentencesData() const noexcept
         {
         return m_sentenceStartingWithConjunctionsData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>&
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>&
     GetLowerCasedSentencesData() const noexcept
         {
         return m_sentenceStartingWithLowercaseData;
@@ -184,25 +184,25 @@ class BatchProjectDoc final : public BaseProjectDoc
 
   private:
     [[nodiscard]]
-    std::shared_ptr<ListCtrlExNumericDataProvider>& GetMisspelledWordData() noexcept
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetMisspelledWordData() noexcept
         {
         return m_misspelledWordData;
         }
 
     [[nodiscard]]
-    std::shared_ptr<ListCtrlExNumericDataProvider>& GetRepeatedWordData() noexcept
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetRepeatedWordData() noexcept
         {
         return m_dupWordData;
         }
 
     [[nodiscard]]
-    std::shared_ptr<ListCtrlExNumericDataProvider>& GetAllWordsBatchData() noexcept
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetAllWordsBatchData() noexcept
         {
         return m_allWordsBatchData;
         }
 
     [[nodiscard]]
-    std::shared_ptr<ListCtrlExNumericDataProvider>& GetKeyWordsBatchData() noexcept
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetKeyWordsBatchData() noexcept
         {
         return m_keyWordsBatchData;
         }
@@ -268,7 +268,7 @@ class BatchProjectDoc final : public BaseProjectDoc
         @param varianceMethod The variance method to calculate with (population or sample).
         @param allowCustomFormatting Whether custom formatting should be used for number formatting
             in the @c dataGrid.*/
-    static void SetScoreStatsRow(std::shared_ptr<ListCtrlExNumericDataProvider> dataGrid,
+    static void SetScoreStatsRow(std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> dataGrid,
                                  const wxString& rowName, const wxString& optionalDescription,
                                  const long rowNum, const std::vector<double>& data,
                                  const int decimalSize, const VarianceMethod varianceMethod,
@@ -283,7 +283,7 @@ class BatchProjectDoc final : public BaseProjectDoc
             This parameter only makes sense for adding a description next to a document.
         @param multiSelectable @c true to make the list control multi-item selectable.*/
     void DisplayScoreStatisticsWindow(const wxString& windowName, const int windowId,
-                                      std::shared_ptr<ListCtrlExNumericDataProvider> data,
+                                      std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> data,
                                       const wxString& firstColumnName,
                                       const wxString& optionalSecondColumnName,
                                       const bool multiSelectable);
@@ -320,86 +320,86 @@ class BatchProjectDoc final : public BaseProjectDoc
     std::map<traits::case_insensitive_wstring_ex, Wisteria::Data::GroupIdType> m_docLabels;
     Wisteria::Data::ColumnWithStringTable::StringTableType m_groupStringTable;
     // score list data
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_scoreRawData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_scoreRawData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_goalsData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_goalsData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_scoreStatsData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_scoreStatsData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_aggregatedGradeScoresData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_aggregatedGradeScoresData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_aggregatedClozeScoresData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_aggregatedClozeScoresData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
     // grammar list data
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_dupWordData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_dupWordData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_incorrectArticleData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_incorrectArticleData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_passiveVoiceData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_passiveVoiceData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_misspelledWordData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_misspelledWordData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_wordyPhraseData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_wordyPhraseData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_redundantPhraseData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_redundantPhraseData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_wordingErrorData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_wordingErrorData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_overusedWordBySentenceData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_overusedWordBySentenceData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_clichePhraseData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_clichePhraseData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_overlyLongSentenceData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_overlyLongSentenceData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_sentenceStartingWithConjunctionsData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_sentenceStartingWithConjunctionsData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_sentenceStartingWithLowercaseData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_sentenceStartingWithLowercaseData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_allWordsBatchData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_allWordsBatchData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_keyWordsBatchData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_keyWordsBatchData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
     // difficult words list data
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_hardWordsData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_hardWordsData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
     // summary stats data
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_summaryStatsData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_summaryStatsData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
     std::vector<wxString> m_summaryStatsColumnNames;
     // warnings list data
-    std::shared_ptr<ListCtrlExDataProvider> m_warnings{
-        std::make_shared<ListCtrlExDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExDataProvider> m_warnings{
+        std::make_shared<Wisteria::UI::ListCtrlExDataProvider>()
     };
     // dolch list data
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_dolchCompletionData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_dolchCompletionData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_dolchWordsBatchData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_dolchWordsBatchData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_NonDolchWordsData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_NonDolchWordsData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
 
     wxDECLARE_DYNAMIC_CLASS(BatchProjectDoc);

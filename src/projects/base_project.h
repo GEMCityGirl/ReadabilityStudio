@@ -208,17 +208,17 @@ class CustomReadabilityTestInterface
         }
 
     [[nodiscard]]
-    std::shared_ptr<ListCtrlExNumericDataProvider>& GetListViewData()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetListViewData()
         {
         if (m_listViewData == nullptr)
             {
-            m_listViewData = std::make_shared<ListCtrlExNumericDataProvider>();
+            m_listViewData = std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>();
             }
         return m_listViewData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetListViewData() const
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetListViewData() const
         {
         assert(m_listViewData);
         return m_listViewData;
@@ -249,7 +249,7 @@ class CustomReadabilityTestInterface
     double m_uniqueUnfamiliarWordCount{ 0 };
     double m_unfamiliarWordCount{ 0 };
     CustomReadabilityTestCollection::iterator m_iter;
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_listViewData{ nullptr };
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_listViewData{ nullptr };
     };
 
 /** @brief The base class for readability projects. */
@@ -1347,76 +1347,81 @@ public:
     virtual void RemoveMisspellings(const wxArrayString&) {}
 
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& Get3SyllablePlusData() const
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& Get3SyllablePlusData() const
         { return m_3SybPlusData; }
     [[nodiscard]]
-    std::shared_ptr<ListCtrlExNumericDataProvider>& Get3SyllablePlusData()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& Get3SyllablePlusData()
         { return m_3SybPlusData; }
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& Get6CharacterPlusData() const
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>&
+    Get6CharacterPlusData() const
         { return m_6CharPlusData; }
     [[nodiscard]]
-    std::shared_ptr<ListCtrlExNumericDataProvider>& Get6CharacterPlusData()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& Get6CharacterPlusData()
         { return m_6CharPlusData; }
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetDaleChallHardWordData() const
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>&
+    GetDaleChallHardWordData() const
         { return m_DCHardWordsData; }
     [[nodiscard]]
-    std::shared_ptr<ListCtrlExNumericDataProvider>& GetDaleChallHardWordData()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetDaleChallHardWordData()
         { return m_DCHardWordsData; }
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetSpacheHardWordData() const
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>&
+    GetSpacheHardWordData() const
         { return m_SpacheHardWordsData; }
     [[nodiscard]]
-    std::shared_ptr<ListCtrlExNumericDataProvider>& GetSpacheHardWordData()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetSpacheHardWordData()
         { return m_SpacheHardWordsData; }
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetHarrisJacobsonHardWordDataData() const
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>&
+    GetHarrisJacobsonHardWordDataData() const
         { return m_harrisJacobsonHardWordsData; }
     [[nodiscard]]
-    std::shared_ptr<ListCtrlExNumericDataProvider>& GetHarrisJacobsonHardWordDataData()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>&
+    GetHarrisJacobsonHardWordDataData()
         { return m_harrisJacobsonHardWordsData; }
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExDataProvider>& GetUnusedDolchWordData() const
+    const std::shared_ptr<Wisteria::UI::ListCtrlExDataProvider>& GetUnusedDolchWordData() const
         { return m_unusedDolchWordsData; }
     [[nodiscard]]
-    std::shared_ptr<ListCtrlExDataProvider>& GetUnusedDolchWordData()
+    std::shared_ptr<Wisteria::UI::ListCtrlExDataProvider>& GetUnusedDolchWordData()
         { return m_unusedDolchWordsData; }
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetDolchWordData() const
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetDolchWordData() const
         { return m_dolchWordsData; }
     [[nodiscard]]
-    std::shared_ptr<ListCtrlExNumericDataProvider>& GetDolchWordData()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetDolchWordData()
         { return m_dolchWordsData; }
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetNonDolchWordData() const
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetNonDolchWordData() const
         { return m_nonDolchWordsData; }
     [[nodiscard]]
-    std::shared_ptr<ListCtrlExNumericDataProvider>& GetNonDolchWordData()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetNonDolchWordData()
         { return m_nonDolchWordsData; }
     [[nodiscard]]
-    std::shared_ptr<ListCtrlExNumericDataProvider>& GetKeyWordsBaseData()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetKeyWordsBaseData()
         { return m_keyWordsBaseData; }
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetKeyWordsBaseData() const
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetKeyWordsBaseData() const
         { return m_keyWordsBaseData; }
     [[nodiscard]]
-    std::shared_ptr<ListCtrlExNumericDataProvider>& GetAllWordsBaseData()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetAllWordsBaseData()
         { return m_AllWordsBaseData; }
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetAllWordsBaseData() const
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetAllWordsBaseData() const
         { return m_AllWordsBaseData; }
     [[nodiscard]]
-    std::shared_ptr<ListCtrlExNumericDataProvider>& GetProperNounsData()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetProperNounsData()
         { return m_ProperNounsData; }
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetProperNounsData() const
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetProperNounsData() const
         { return m_ProperNounsData; }
     [[nodiscard]]
-    std::shared_ptr<ListCtrlExNumericDataProvider>& GetContractionsData()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetContractionsData()
         { return m_contractionsData; }
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetContractionsData() const
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetContractionsData() const
         { return m_contractionsData; }
 
     [[nodiscard]]
@@ -1832,18 +1837,20 @@ private:
     // but stored as double so that it can be set to NaN if invalid.
     double m_clozeScore{ 0 };
 
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_3SybPlusData{ nullptr };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_6CharPlusData{ nullptr };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_DCHardWordsData{ nullptr };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_SpacheHardWordsData{ nullptr };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_harrisJacobsonHardWordsData{ nullptr };
-    std::shared_ptr<ListCtrlExDataProvider> m_unusedDolchWordsData{ nullptr };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_dolchWordsData{ nullptr };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_nonDolchWordsData{ nullptr };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_ProperNounsData{ nullptr };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_contractionsData{ nullptr };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_keyWordsBaseData{ nullptr };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_AllWordsBaseData{ nullptr };
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_3SybPlusData{ nullptr };
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_6CharPlusData{ nullptr };
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_DCHardWordsData{ nullptr };
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_SpacheHardWordsData{ nullptr };
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_harrisJacobsonHardWordsData{
+        nullptr
+    };
+    std::shared_ptr<Wisteria::UI::ListCtrlExDataProvider> m_unusedDolchWordsData{ nullptr };
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_dolchWordsData{ nullptr };
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_nonDolchWordsData{ nullptr };
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_ProperNounsData{ nullptr };
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_contractionsData{ nullptr };
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_keyWordsBaseData{ nullptr };
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_AllWordsBaseData{ nullptr };
 
     std::shared_ptr<CaseInSensitiveNonStemmingDocument> m_words{ nullptr };
     std::shared_ptr<double_frequency_set<word_case_insensitive_no_stem>> m_word_frequency_map{

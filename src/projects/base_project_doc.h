@@ -1072,12 +1072,12 @@ class BaseProjectDoc : public BaseProject, public wxDocument
     void LoadSettingsFile(const wchar_t* settingsFileText);
 
     void UpdateGraphOptions(Wisteria::Canvas* canvas);
-    static void UpdateListOptions(ListCtrlEx* list);
-    void UpdateTextWindowOptions(FormattedTextCtrl* textW) const;
+    static void UpdateListOptions(Wisteria::UI::ListCtrlEx* list);
+    void UpdateTextWindowOptions(Wisteria::UI::FormattedTextCtrl* textW) const;
     static void UpdateExplanationListOptions(ExplanationListCtrl* eList);
     static void UpdatePrinterHeaderAndFooters(Wisteria::Canvas* window);
-    static void UpdatePrinterHeaderAndFooters(ListCtrlEx* window);
-    static void UpdatePrinterHeaderAndFooters(FormattedTextCtrl* window);
+    static void UpdatePrinterHeaderAndFooters(Wisteria::UI::ListCtrlEx* window);
+    static void UpdatePrinterHeaderAndFooters(Wisteria::UI::FormattedTextCtrl* window);
     static void UpdatePrinterHeaderAndFooters(ExplanationListCtrl* window);
     static void UpdatePrinterHeaderAndFooters(Wisteria::UI::HtmlTableWindow* window);
 
@@ -1111,13 +1111,14 @@ class BaseProjectDoc : public BaseProject, public wxDocument
 
     /// how file paths are shown in batch projects
     void SetFilePathTruncationMode(
-        const ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode TruncMode) noexcept
+        const Wisteria::UI::ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode TruncMode) noexcept
         {
         m_filePathTruncationMode = TruncMode;
         }
 
     [[nodiscard]]
-    ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode GetFilePathTruncationMode() const noexcept
+    Wisteria::UI::ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode
+    GetFilePathTruncationMode() const noexcept
         {
         return m_filePathTruncationMode;
         }
@@ -1310,8 +1311,8 @@ class BaseProjectDoc : public BaseProject, public wxDocument
     bool m_highlightDolchNouns{ false };
 
     // batch project options
-    ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode m_filePathTruncationMode{
-        ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames
+    Wisteria::UI::ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode m_filePathTruncationMode{
+        Wisteria::UI::ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames
     };
 
     //"Export All" options

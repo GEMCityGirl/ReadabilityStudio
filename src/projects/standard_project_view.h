@@ -138,13 +138,14 @@ class ProjectView final : public BaseProjectView
 
     // Shortcuts to the sub-windows
     [[nodiscard]]
-    std::shared_ptr<ListCtrlExDataProvider>& GetSummaryStatisticsListData()
+    std::shared_ptr<Wisteria::UI::ListCtrlExDataProvider>& GetSummaryStatisticsListData()
         {
         return m_statsListData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExDataProvider>& GetSummaryStatisticsListData() const
+    const std::shared_ptr<Wisteria::UI::ListCtrlExDataProvider>&
+    GetSummaryStatisticsListData() const
         {
         return m_statsListData;
         }
@@ -195,7 +196,7 @@ class ProjectView final : public BaseProjectView
     WindowContainer m_sightWordView;
     WindowContainer m_grammarView;
 
-    std::shared_ptr<ListCtrlExDataProvider> m_statsListData{ nullptr };
+    std::shared_ptr<Wisteria::UI::ListCtrlExDataProvider> m_statsListData{ nullptr };
 
     EditTextDlg* m_embeddedTextEditor{ nullptr };
 

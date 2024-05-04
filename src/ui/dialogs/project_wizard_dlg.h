@@ -40,13 +40,13 @@ class ProjectWizardDlg final : public wxDialog
     friend ReadabilityApp;
 
   public:
-    ProjectWizardDlg(wxWindow* parent, const ProjectType projectType,
-                     const wxString& path = wxString{}, wxWindowID id = wxID_ANY,
-                     const wxString& caption = _(L"New Project Wizard"),
-                     const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
-                     long style = wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER,
-                     ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode fileTruncMode =
-                         ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::NoTruncation);
+    ProjectWizardDlg(
+        wxWindow* parent, const ProjectType projectType, const wxString& path = wxString{},
+        wxWindowID id = wxID_ANY, const wxString& caption = _(L"New Project Wizard"),
+        const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
+        long style = wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER,
+        Wisteria::UI::ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode fileTruncMode =
+            Wisteria::UI::ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::NoTruncation);
     /// @private
     ProjectWizardDlg(const ProjectWizardDlg&) = delete;
     /// @private
@@ -57,7 +57,7 @@ class ProjectWizardDlg final : public wxDialog
 
     /// @returns The list control data containing files for a batch project.
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExDataProvider>& GetFileData() const
+    const std::shared_ptr<Wisteria::UI::ListCtrlExDataProvider>& GetFileData() const
         {
         return m_fileData;
         }
@@ -92,7 +92,7 @@ class ProjectWizardDlg final : public wxDialog
     static void SetLastSelectedFolder(const wxString& folder) { m_lastSelectedFolder = folder; }
 
     [[nodiscard]]
-    ListCtrlEx* GetFileList() noexcept
+    Wisteria::UI::ListCtrlEx* GetFileList() noexcept
         {
         return m_fileList;
         }
@@ -329,7 +329,7 @@ class ProjectWizardDlg final : public wxDialog
         }
 
     void SetFileListTruncationMode(
-        const ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode mode) noexcept
+        const Wisteria::UI::ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode mode) noexcept
         {
         m_fileListTruncationMode = mode;
         }
@@ -406,9 +406,9 @@ class ProjectWizardDlg final : public wxDialog
     void OnDeleteFromListClick([[maybe_unused]] wxCommandEvent& event);
 
     // batch document entry
-    ListCtrlEx* m_fileList{ nullptr };
-    std::shared_ptr<ListCtrlExDataProvider> m_fileData{
-        std::make_shared<ListCtrlExDataProvider>()
+    Wisteria::UI::ListCtrlEx* m_fileList{ nullptr };
+    std::shared_ptr<Wisteria::UI::ListCtrlExDataProvider> m_fileData{
+        std::make_shared<Wisteria::UI::ListCtrlExDataProvider>()
     };
     wxCheckBox* m_isRandomSampling{ nullptr };
     wxSpinCtrl* m_randPercentageCtrl{ nullptr };
@@ -464,8 +464,8 @@ class ProjectWizardDlg final : public wxDialog
     Wisteria::UI::SideBarBook* m_sideBarBook{ nullptr };
     int m_selectedLang{ 0 };
 
-    ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode m_fileListTruncationMode{
-        ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::NoTruncation
+    Wisteria::UI::ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode m_fileListTruncationMode{
+        Wisteria::UI::ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::NoTruncation
     };
     };
 

@@ -132,7 +132,7 @@ class EditTextDlg final : public wxDialog
     wxTextAttrLineSpacing m_lineSpacing{ wxTEXT_ATTR_LINE_SPACING_NORMAL };
 
     BaseProjectDoc* m_parentDoc{ nullptr };
-    FormattedTextCtrl* m_textEntry{ nullptr };
+    Wisteria::UI::FormattedTextCtrl* m_textEntry{ nullptr };
     wxRibbonBar* m_ribbon{ nullptr };
 
     wxFindReplaceData m_findData{ wxFR_DOWN };

@@ -1144,7 +1144,7 @@ namespace LuaScripting
             return 0;
             }
         wxGetApp().GetAppOptions().SetFilePathTruncationMode(
-            static_cast<ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode>(
+            static_cast<Wisteria::UI::ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode>(
                 static_cast<int>(lua_tonumber(L, 1))));
         return 0;
         }

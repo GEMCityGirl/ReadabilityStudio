@@ -240,9 +240,9 @@ void WebHarvesterDlg::CreateControls()
         urlSizer->Add(urlButtonsSizer, 0, wxALIGN_RIGHT);
 
         m_urlData->SetValues(m_urls);
-        m_urlList = new ListCtrlEx(urlSizer->GetStaticBox(), wxID_ANY, wxDefaultPosition,
-                                   FromDIP(wxSize{ 600, 200 }),
-                                   wxLC_VIRTUAL | wxLC_EDIT_LABELS | wxLC_REPORT | wxLC_ALIGN_LEFT);
+        m_urlList = new Wisteria::UI::ListCtrlEx(
+            urlSizer->GetStaticBox(), wxID_ANY, wxDefaultPosition, FromDIP(wxSize{ 600, 200 }),
+            wxLC_VIRTUAL | wxLC_EDIT_LABELS | wxLC_REPORT | wxLC_ALIGN_LEFT);
         urlSizer->Add(m_urlList, 1, wxEXPAND);
         m_urlList->EnableGridLines();
         m_urlList->EnableItemAdd();
@@ -393,9 +393,10 @@ void WebHarvesterDlg::CreateControls()
         domainBoxSizer->Add(domainButtonsSizer, 0, wxALIGN_RIGHT);
 
         m_domainData->SetValues(m_domains);
-        m_domainList = new ListCtrlEx(domainBoxSizer->GetStaticBox(), wxID_ANY, wxDefaultPosition,
-                           FromDIP(wxSize{ 600, 200 }),
-            wxLC_VIRTUAL | wxLC_EDIT_LABELS | wxLC_REPORT | wxLC_ALIGN_LEFT);
+        m_domainList = new Wisteria::UI::ListCtrlEx(domainBoxSizer->GetStaticBox(), wxID_ANY,
+                                                    wxDefaultPosition, FromDIP(wxSize{ 600, 200 }),
+                                                    wxLC_VIRTUAL | wxLC_EDIT_LABELS | wxLC_REPORT |
+                                                        wxLC_ALIGN_LEFT);
         domainBoxSizer->Add(m_domainList, 1, wxEXPAND | wxALL);
         m_domainList->EnableGridLines();
         m_domainList->EnableItemAdd();

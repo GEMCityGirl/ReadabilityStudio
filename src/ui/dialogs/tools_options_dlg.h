@@ -237,7 +237,7 @@ class ToolsOptionsDlg final : public wxDialog
     bool HaveSentencesBreakdownOptionsChanged() const;
 
     [[nodiscard]]
-    ListCtrlEx* GetFileList() noexcept
+    Wisteria::UI::ListCtrlEx* GetFileList() noexcept
         {
         return m_fileList;
         }
@@ -964,9 +964,10 @@ class ToolsOptionsDlg final : public wxDialog
     wxBitmapButton* m_addFilesButton{ nullptr };
     wxBitmapButton* m_addFileButton{ nullptr };
     wxBitmapButton* m_deleteFileButton{ nullptr };
-    ListCtrlEx* m_fileList{ nullptr };
-    std::shared_ptr<ListCtrlExDataProvider> m_fileData
-        { std::make_shared<ListCtrlExDataProvider>() };
+    Wisteria::UI::ListCtrlEx* m_fileList{ nullptr };
+    std::shared_ptr<Wisteria::UI::ListCtrlExDataProvider> m_fileData{
+        std::make_shared<Wisteria::UI::ListCtrlExDataProvider>()
+    };
 
     BackupVariable<wxString> m_userAgent;
     BackupVariable<bool> m_disablePeerVerify;

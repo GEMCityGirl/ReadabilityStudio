@@ -147,11 +147,10 @@ wxString ProjectReportFormat::FormatFormulaToHtml(const wxString& formula)
     }
 
 //------------------------------------------------
-wxString ProjectReportFormat::FormatDolchStatisticsInfo(const BaseProject* project,
-                                                        const StatisticsReportInfo& statsInfo,
-                                                        const bool includeExplanation,
-                                                        const wxColour attentionColor,
-                                                        std::shared_ptr<ListCtrlExDataProviderBase> listData)
+wxString ProjectReportFormat::FormatDolchStatisticsInfo(
+    const BaseProject* project, const StatisticsReportInfo& statsInfo,
+    const bool includeExplanation, const wxColour attentionColor,
+    std::shared_ptr<Wisteria::UI::ListCtrlExDataProviderBase> listData)
     {
     assert(project);
     if (!project)
@@ -1262,10 +1261,10 @@ wxString ProjectReportFormat::FormatHtmlReportStart([[maybe_unused]] const wxCol
 wxString ProjectReportFormat::FormatHtmlReportEnd() { return wxString(L"\n</body>\n</html>"); }
 
 //------------------------------------------------
-wxString ProjectReportFormat::FormatStatisticsInfo(const BaseProject* project,
-                                                   const StatisticsReportInfo& statsInfo,
-                                                   const wxColour attentionColor,
-                                                   std::shared_ptr<ListCtrlExDataProviderBase> listData)
+wxString ProjectReportFormat::FormatStatisticsInfo(
+    const BaseProject* project, const StatisticsReportInfo& statsInfo,
+    const wxColour attentionColor,
+    std::shared_ptr<Wisteria::UI::ListCtrlExDataProviderBase> listData)
     {
     PROFILE();
     if (!project)

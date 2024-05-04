@@ -313,8 +313,8 @@ void TestBundleDlg::CreateControls()
 
             // prepare the control
             availableTestNames.Sort();
-            m_testGoalsListCtrl = new ListCtrlEx(page, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-                                                 wxLC_REPORT | wxBORDER_SUNKEN);
+            m_testGoalsListCtrl = new Wisteria::UI::ListCtrlEx(
+                page, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT | wxBORDER_SUNKEN);
             m_testGoalsListCtrl->InsertColumn(0, _(L"Test"));
             m_testGoalsListCtrl->InsertColumn(1, _(L"Minimum Recommended Score"));
             m_testGoalsListCtrl->InsertColumn(2, _(L"Maximum Recommended Score"));
@@ -427,8 +427,8 @@ void TestBundleDlg::CreateControls()
                 availableStats.push_back(statName.first.second.c_str());
                 }
             availableStats.Sort();
-            m_statGoalsListCtrl = new ListCtrlEx(page, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-                                                 wxLC_REPORT | wxBORDER_SUNKEN);
+            m_statGoalsListCtrl = new Wisteria::UI::ListCtrlEx(
+                page, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT | wxBORDER_SUNKEN);
             m_statGoalsListCtrl->InsertColumn(0, _(L"Statistic"));
             m_statGoalsListCtrl->InsertColumn(1, _(L"Minimum Recommended Value"));
             m_statGoalsListCtrl->InsertColumn(2, _(L"Maximum Recommended Value"));

@@ -82,7 +82,8 @@ bool EditWordListDlg::Save(const wxString& filePath)
         }
     else
         {
-        m_wordsList->FormatToText(outputStr, ListCtrlEx::ExportRowSelection::ExportAll, 0, -1, 0,
+        m_wordsList->FormatToText(outputStr,
+                                  Wisteria::UI::ListCtrlEx::ExportRowSelection::ExportAll, 0, -1, 0,
                                   -1, false);
         grammar::phrase_collection phrases;
         phrases.load_phrases(outputStr, true, false);
@@ -245,7 +246,8 @@ void EditWordListDlg::CreateControls()
     wordListSizer->Add(toolbarSizer, 0, wxALIGN_RIGHT);
 
     // the word list
-    m_wordsList = new ListCtrlEx(this, wxID_ANY, wxDefaultPosition, FromDIP(wxSize(400, 300)),
+    m_wordsList = new Wisteria::UI::ListCtrlEx(
+        this, wxID_ANY, wxDefaultPosition, FromDIP(wxSize(400, 300)),
                                  wxLC_VIRTUAL | wxLC_EDIT_LABELS | wxLC_REPORT | wxLC_ALIGN_LEFT |
                                      wxBORDER_THEME);
     m_wordsList->EnableGridLines();
@@ -299,11 +301,13 @@ void EditWordListDlg::OnFilePathChanged(wxCommandEvent& event)
             {
             lily_of_the_valley::standard_delimited_character_column tabbedColumn(
                 lily_of_the_valley::text_column_delimited_character_parser{ L'\t' }, 5);
-            lily_of_the_valley::text_row<ListCtrlExDataProvider::ListCellString> row(std::nullopt);
+            lily_of_the_valley::text_row<Wisteria::UI::ListCtrlExDataProvider::ListCellString> row(
+                std::nullopt);
             row.treat_consecutive_delimitors_as_one(false);
             row.add_column(tabbedColumn);
 
-            lily_of_the_valley::text_matrix<ListCtrlExDataProvider::ListCellString> importer(
+            lily_of_the_valley::text_matrix<Wisteria::UI::ListCtrlExDataProvider::ListCellString>
+                importer(
                 &m_wordData->GetMatrix());
             importer.add_row_definition(row);
 

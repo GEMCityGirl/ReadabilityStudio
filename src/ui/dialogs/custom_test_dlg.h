@@ -565,7 +565,7 @@ class CustomTestDlg final : public wxDialog
     /// @private
     /// @internal This is only used for automation screenshots
     [[nodiscard]]
-    FunctionBrowserDlg* GetFunctionBrowser() noexcept
+    Wisteria::UI::FunctionBrowserDlg* GetFunctionBrowser() noexcept
         {
         return m_functionBrowser;
         }
@@ -712,7 +712,7 @@ class CustomTestDlg final : public wxDialog
         return _(L"Only use words common to all lists");
         }
 
-    FunctionBrowserDlg* m_functionBrowser{ nullptr };
+    Wisteria::UI::FunctionBrowserDlg* m_functionBrowser{ nullptr };
     Wisteria::UI::SideBarBook* m_sideBarBook{ nullptr };
     wxTextCtrl* m_testNameCtrl{ nullptr };
     Wisteria::UI::CodeEditor* m_formulaCtrl{ nullptr };
@@ -728,15 +728,15 @@ class CustomTestDlg final : public wxDialog
     wxArrayString m_documentNames;
 
     // data used for browser and function guide
-    FunctionBrowserDlg::NameList m_operators;
-    FunctionBrowserDlg::NameList m_logic;
-    FunctionBrowserDlg::NameList m_math;
-    FunctionBrowserDlg::NameList m_statistics;
-    FunctionBrowserDlg::NameList m_generalDocumentStatistics;
-    FunctionBrowserDlg::NameList m_customFamiliarWords;
-    FunctionBrowserDlg::NameList m_wordFunctions;
-    FunctionBrowserDlg::NameList m_sentenceFunctions;
-    FunctionBrowserDlg::NameList m_shortcuts;
+    Wisteria::UI::FunctionBrowserDlg::NameList m_operators;
+    Wisteria::UI::FunctionBrowserDlg::NameList m_logic;
+    Wisteria::UI::FunctionBrowserDlg::NameList m_math;
+    Wisteria::UI::FunctionBrowserDlg::NameList m_statistics;
+    Wisteria::UI::FunctionBrowserDlg::NameList m_generalDocumentStatistics;
+    Wisteria::UI::FunctionBrowserDlg::NameList m_customFamiliarWords;
+    Wisteria::UI::FunctionBrowserDlg::NameList m_wordFunctions;
+    Wisteria::UI::FunctionBrowserDlg::NameList m_sentenceFunctions;
+    Wisteria::UI::FunctionBrowserDlg::NameList m_shortcuts;
     };
 
     /** @}*/

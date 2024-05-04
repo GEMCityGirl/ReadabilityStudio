@@ -109,8 +109,8 @@ void BatchProjectDoc::RemoveMisspellings(const wxArrayString& misspellingsToRemo
             { ++i; }
         }
     BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
-    ListCtrlEx* listView =
-        dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+    Wisteria::UI::ListCtrlEx* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
+        view->GetGrammarView().FindWindowById(
             BaseProjectView::MISSPELLED_WORD_LIST_PAGE_ID));
     if (listView)
         {
@@ -263,7 +263,9 @@ bool BatchProjectDoc::OnNewDocument()
     UpdateAllViews();
 
     view->GetSideBar()->SelectSubItem(view->GetSideBar()->FindSubItem(BaseProjectView::ID_SCORE_LIST_PAGE_ID));
-    dynamic_cast<ListCtrlEx*>(view->GetScoresView().FindWindowById(BaseProjectView::ID_SCORE_LIST_PAGE_ID))->Select(0);
+    dynamic_cast<Wisteria::UI::ListCtrlEx*>(
+        view->GetScoresView().FindWindowById(BaseProjectView::ID_SCORE_LIST_PAGE_ID))
+        ->Select(0);
 
     // try to base the default name of this project from the folder/web domain of the first file
     if (GetSourceFilesInfo().size() > 0)
@@ -369,15 +371,15 @@ bool BatchProjectDoc::CheckForFailedDocuments()
             { failedDocs.Add((*pos)->GetOriginalDocumentFilePath()); }
         }
     // show the names of the failed documents somehow so the user can review it before removing them
-    ListDlg listDlg(wxGetApp().GetMainFrame(), failedDocs, false,
-                    wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
-                    wxGetApp().GetAppOptions().GetRibbonHoverColor(),
-                    wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
-                    LD_YES_NO_BUTTONS, wxID_ANY,
-                    _(L"Warning"),
-                    _(L"The following documents could not be loaded because they either do not contain "
-                       "enough valid text or could not be found. Do you wish to remove these documents "
-                       "from this project?"));
+    Wisteria::UI::ListDlg listDlg(
+        wxGetApp().GetMainFrame(), failedDocs, false,
+        wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
+        wxGetApp().GetAppOptions().GetRibbonHoverColor(),
+        wxGetApp().GetAppOptions().GetRibbonActiveFontColor(), Wisteria::UI::LD_YES_NO_BUTTONS,
+        wxID_ANY, _(L"Warning"),
+        _(L"The following documents could not be loaded because they either do not contain "
+          "enough valid text or could not be found. Do you wish to remove these documents "
+          "from this project?"));
     if (failedDocs.GetCount() &&
         listDlg.ShowModal() == wxID_YES)
         {
@@ -589,7 +591,8 @@ void BatchProjectDoc::RefreshProject()
             }
         }
     view->ShowSideBar(view->IsSideBarShown());
-    dynamic_cast<ListCtrlEx*>(view->GetScoresView().FindWindowById(
+    dynamic_cast<Wisteria::UI::ListCtrlEx*>(
+        view->GetScoresView().FindWindowById(
         BaseProjectView::ID_SCORE_LIST_PAGE_ID))->Select(0);
 
     view->UpdateStatAndTestPanes(currentlySelectedFile);
@@ -2957,19 +2960,19 @@ void BatchProjectDoc::DisplayScores()
 
     // main scores grid
         {
-        ListCtrlEx* listView =
-            dynamic_cast<ListCtrlEx*>(view->GetScoresView().FindWindowById(BaseProjectView::ID_SCORE_LIST_PAGE_ID));
+        Wisteria::UI::ListCtrlEx* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
+            view->GetScoresView().FindWindowById(BaseProjectView::ID_SCORE_LIST_PAGE_ID));
         if (!listView)
             {
-            listView = new ListCtrlEx(view->GetSplitter(),
-                BaseProjectView::ID_SCORE_LIST_PAGE_ID, wxDefaultPosition,
-                wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+            listView = new Wisteria::UI::ListCtrlEx(
+                view->GetSplitter(), BaseProjectView::ID_SCORE_LIST_PAGE_ID, wxDefaultPosition,
+                wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetRawScoresTabLabel());
             listView->SetName(BaseProjectView::GetRawScoresTabLabel());
             listView->EnableGridLines();
             listView->EnableItemViewOnDblClick();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU"));
             view->GetScoresView().AddWindow(listView);
             }
         listView->DeleteAllColumns();
@@ -3038,12 +3041,13 @@ void BatchProjectDoc::DisplayScores()
     // add/remove the goals
     if (GetTestGoals().size() || GetStatGoals().size())
         {
-        ListCtrlEx* goalsList =
-            dynamic_cast<ListCtrlEx*>(view->GetScoresView().FindWindowById(
+        Wisteria::UI::ListCtrlEx* goalsList = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
+            view->GetScoresView().FindWindowById(
                 BaseProjectView::READABILITY_GOALS_PAGE_ID));
         if (!goalsList)
             {
-            goalsList = new ListCtrlEx(view->GetSplitter(), BaseProjectView::READABILITY_GOALS_PAGE_ID,
+            goalsList = new Wisteria::UI::ListCtrlEx(
+                view->GetSplitter(), BaseProjectView::READABILITY_GOALS_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_REPORT|wxLC_VIRTUAL|wxBORDER_SUNKEN);
             goalsList->Hide();
             goalsList->SetLabel(_(L"Goals"));
@@ -3252,20 +3256,22 @@ void BatchProjectDoc::DisplayScores()
     }
 
 //------------------------------------------------------------
-void BatchProjectDoc::DisplayScoreStatisticsWindow(const wxString& windowName, const int windowId,
-                                                   std::shared_ptr<ListCtrlExNumericDataProvider> data,
-                                                   const wxString& firstColumnName,
-                                                   const wxString& optionalSecondColumnName,
-                                                   const bool multiSelectable)
+void BatchProjectDoc::DisplayScoreStatisticsWindow(
+    const wxString& windowName, const int windowId,
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> data,
+    const wxString& firstColumnName, const wxString& optionalSecondColumnName,
+    const bool multiSelectable)
     {
     BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
-    ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetScoresView().FindWindowById(windowId));
+    Wisteria::UI::ListCtrlEx* listView =
+        dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetScoresView().FindWindowById(windowId));
     if (!listView)
         {
         long style = wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN;
         if (!multiSelectable)
             { style |= wxLC_SINGLE_SEL; }
-        listView = new ListCtrlEx(view->GetSplitter(), windowId, wxDefaultPosition, wxDefaultSize, style);
+        listView = new Wisteria::UI::ListCtrlEx(view->GetSplitter(), windowId, wxDefaultPosition,
+                                                wxDefaultSize, style);
         listView->Hide();
         listView->SetLabel(windowName);
         listView->SetName(windowName);
@@ -5596,7 +5602,8 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
     UpdateAllViews();
 
     view->GetSideBar()->SelectSubItem(view->GetSideBar()->FindSubItem(BatchProjectView::ID_SCORE_LIST_PAGE_ID));
-    dynamic_cast<ListCtrlEx*>(view->GetScoresView().FindWindowById(
+    dynamic_cast<Wisteria::UI::ListCtrlEx*>(
+        view->GetScoresView().FindWindowById(
         BatchProjectView::ID_SCORE_LIST_PAGE_ID))->Select(0);
 
     return true;
@@ -5640,14 +5647,15 @@ void BatchProjectDoc::DisplayGrammar()
     assert(view);
 
     // Wording Errors
-    ListCtrlEx* listView =
-        dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+    Wisteria::UI::ListCtrlEx* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
+        view->GetGrammarView().FindWindowById(
             BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID));
     if (GetGrammarInfo().IsWordingErrorsEnabled() &&m_wordingErrorData->GetItemCount())
         {
         if (!listView)
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID,
+            listView = new Wisteria::UI::ListCtrlEx(
+                view->GetSplitter(), BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetPhrasingErrorsTabLabel());
@@ -5680,14 +5688,15 @@ void BatchProjectDoc::DisplayGrammar()
         { view->GetGrammarView().RemoveWindowById(BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID); }
 
     // Misspelled words
-    listView =
-        dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+    listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
+        view->GetGrammarView().FindWindowById(
             BaseProjectView::MISSPELLED_WORD_LIST_PAGE_ID));
     if (GetGrammarInfo().IsMisspellingsEnabled() && GetMisspelledWordData()->GetItemCount())
         {
         if (!listView)
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::MISSPELLED_WORD_LIST_PAGE_ID,
+            listView = new Wisteria::UI::ListCtrlEx(
+                view->GetSplitter(), BaseProjectView::MISSPELLED_WORD_LIST_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetMisspellingsLabel());
@@ -5719,14 +5728,15 @@ void BatchProjectDoc::DisplayGrammar()
         { view->GetGrammarView().RemoveWindowById(BaseProjectView::MISSPELLED_WORD_LIST_PAGE_ID); }
 
     // Repeated words
-    listView =
-        dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+    listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
+        view->GetGrammarView().FindWindowById(
             BaseProjectView::DUPLICATES_LIST_PAGE_ID));
     if (GetGrammarInfo().IsRepeatedWordsEnabled() && GetRepeatedWordData()->GetItemCount())
         {
         if (!listView)
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::DUPLICATES_LIST_PAGE_ID,
+            listView = new Wisteria::UI::ListCtrlEx(
+                view->GetSplitter(), BaseProjectView::DUPLICATES_LIST_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetRepeatedWordsLabel());
@@ -5757,14 +5767,15 @@ void BatchProjectDoc::DisplayGrammar()
         { view->GetGrammarView().RemoveWindowById(BaseProjectView::DUPLICATES_LIST_PAGE_ID); }
 
     // Incorrect articles
-    listView =
-        dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+    listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
+        view->GetGrammarView().FindWindowById(
             BaseProjectView::INCORRECT_ARTICLE_PAGE_ID));
     if (GetGrammarInfo().IsArticleMismatchesEnabled() && m_incorrectArticleData->GetItemCount())
         {
         if (!listView)
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::INCORRECT_ARTICLE_PAGE_ID,
+            listView = new Wisteria::UI::ListCtrlEx(
+                view->GetSplitter(), BaseProjectView::INCORRECT_ARTICLE_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetArticleMismatchesLabel());
@@ -5795,14 +5806,15 @@ void BatchProjectDoc::DisplayGrammar()
         { view->GetGrammarView().RemoveWindowById(BaseProjectView::INCORRECT_ARTICLE_PAGE_ID); }
 
     // redundant phrases
-    listView =
-        dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+    listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
+        view->GetGrammarView().FindWindowById(
             BaseProjectView::REDUNDANT_PHRASE_LIST_PAGE_ID));
     if (GetGrammarInfo().IsRedundantPhrasesEnabled() && m_redundantPhraseData->GetItemCount())
         {
         if (!listView)
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::REDUNDANT_PHRASE_LIST_PAGE_ID,
+            listView = new Wisteria::UI::ListCtrlEx(
+                view->GetSplitter(), BaseProjectView::REDUNDANT_PHRASE_LIST_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetRedundantPhrasesTabLabel());
@@ -5835,14 +5847,14 @@ void BatchProjectDoc::DisplayGrammar()
         { view->GetGrammarView().RemoveWindowById(BaseProjectView::REDUNDANT_PHRASE_LIST_PAGE_ID); }
 
     // overused words (by sentence)
-    listView =
-        dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+    listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetGrammarView().FindWindowById(
             BaseProjectView::OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID));
     if (GetGrammarInfo().IsOverUsedWordsBySentenceEnabled() && m_overusedWordBySentenceData->GetItemCount())
         {
         if (!listView)
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID,
+            listView = new Wisteria::UI::ListCtrlEx(
+                view->GetSplitter(), BaseProjectView::OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetOverusedWordsBySentenceLabel());
@@ -5873,14 +5885,15 @@ void BatchProjectDoc::DisplayGrammar()
         { view->GetGrammarView().RemoveWindowById(BaseProjectView::OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID); }
 
     // wordy items
-    listView =
-        dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+    listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
+        view->GetGrammarView().FindWindowById(
             BaseProjectView::WORDY_PHRASES_LIST_PAGE_ID));
     if (GetGrammarInfo().IsWordyPhrasesEnabled() && m_wordyPhraseData->GetItemCount())
         {
         if (!listView)
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::WORDY_PHRASES_LIST_PAGE_ID,
+            listView = new Wisteria::UI::ListCtrlEx(
+                view->GetSplitter(), BaseProjectView::WORDY_PHRASES_LIST_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetWordyPhrasesTabLabel());
@@ -5913,14 +5926,15 @@ void BatchProjectDoc::DisplayGrammar()
         { view->GetGrammarView().RemoveWindowById(BaseProjectView::WORDY_PHRASES_LIST_PAGE_ID); }
 
     // cliches
-    listView =
-        dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+    listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
+        view->GetGrammarView().FindWindowById(
             BaseProjectView::CLICHES_LIST_PAGE_ID));
     if (GetGrammarInfo().IsClichesEnabled() && m_clichePhraseData->GetItemCount())
         {
         if (!listView)
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::CLICHES_LIST_PAGE_ID,
+            listView = new Wisteria::UI::ListCtrlEx(
+                view->GetSplitter(), BaseProjectView::CLICHES_LIST_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetClichesTabLabel());
@@ -5953,14 +5967,15 @@ void BatchProjectDoc::DisplayGrammar()
         { view->GetGrammarView().RemoveWindowById(BaseProjectView::CLICHES_LIST_PAGE_ID); }
 
     // Passive voice
-    listView =
-        dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+    listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
+        view->GetGrammarView().FindWindowById(
             BaseProjectView::PASSIVE_VOICE_PAGE_ID));
     if (GetGrammarInfo().IsPassiveVoiceEnabled() && m_passiveVoiceData->GetItemCount())
         {
         if (!listView)
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::PASSIVE_VOICE_PAGE_ID,
+            listView = new Wisteria::UI::ListCtrlEx(
+                view->GetSplitter(), BaseProjectView::PASSIVE_VOICE_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetPassiveLabel());
@@ -5991,15 +6006,15 @@ void BatchProjectDoc::DisplayGrammar()
         { view->GetGrammarView().RemoveWindowById(BaseProjectView::PASSIVE_VOICE_PAGE_ID); }
 
     // sentences that begin with conjunctions
-    listView =
-        dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+    listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetGrammarView().FindWindowById(
             BaseProjectView::SENTENCES_CONJUNCTION_START_LIST_PAGE_ID));
     if (GetGrammarInfo().IsConjunctionStartingSentencesEnabled() &&
         m_sentenceStartingWithConjunctionsData->GetItemCount())
         {
         if (!listView)
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::SENTENCES_CONJUNCTION_START_LIST_PAGE_ID,
+            listView = new Wisteria::UI::ListCtrlEx(
+                view->GetSplitter(), BaseProjectView::SENTENCES_CONJUNCTION_START_LIST_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetSentenceStartingWithConjunctionsTabLabel());
@@ -6030,14 +6045,14 @@ void BatchProjectDoc::DisplayGrammar()
         { view->GetGrammarView().RemoveWindowById(BaseProjectView::SENTENCES_CONJUNCTION_START_LIST_PAGE_ID); }
 
     // sentences that begin with lowercased words
-    listView =
-        dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+    listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetGrammarView().FindWindowById(
             BaseProjectView::SENTENCES_LOWERCASE_START_LIST_PAGE_ID));
     if (GetGrammarInfo().IsLowercaseSentencesEnabled() && m_sentenceStartingWithLowercaseData->GetItemCount())
         {
         if (!listView)
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::SENTENCES_LOWERCASE_START_LIST_PAGE_ID,
+            listView = new Wisteria::UI::ListCtrlEx(
+                view->GetSplitter(), BaseProjectView::SENTENCES_LOWERCASE_START_LIST_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetSentenceStartingWithLowercaseTabLabel());
@@ -6073,8 +6088,8 @@ void BatchProjectDoc::DisplaySummaryStats()
     {
     BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
     // summary stats
-    ListCtrlEx* listView =
-        dynamic_cast<ListCtrlEx*>(view->GetSummaryStatsView().FindWindowById(
+    Wisteria::UI::ListCtrlEx* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
+        view->GetSummaryStatsView().FindWindowById(
             BaseProjectView::STATS_LIST_PAGE_ID));
     if (m_summaryStatsData->GetItemCount() &&
         GetStatisticsInfo().IsTableEnabled() &&
@@ -6082,7 +6097,8 @@ void BatchProjectDoc::DisplaySummaryStats()
         {
         if (!listView)
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::STATS_LIST_PAGE_ID,
+            listView = new Wisteria::UI::ListCtrlEx(
+                view->GetSplitter(), BaseProjectView::STATS_LIST_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetSummaryStatisticsLabel());
@@ -6119,14 +6135,15 @@ void BatchProjectDoc::DisplaySentencesBreakdown()
     {
     BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
     // long sentences
-    ListCtrlEx* listView =
-        dynamic_cast<ListCtrlEx*>(view->GetSentencesBreakdownView().FindWindowById(
+    Wisteria::UI::ListCtrlEx* listView =
+        dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetSentencesBreakdownView().FindWindowById(
             BaseProjectView::LONG_SENTENCES_LIST_PAGE_ID));
     if (m_overlyLongSentenceData->GetItemCount())
         {
         if (!listView)
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::LONG_SENTENCES_LIST_PAGE_ID,
+            listView = new Wisteria::UI::ListCtrlEx(
+                view->GetSplitter(), BaseProjectView::LONG_SENTENCES_LIST_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetLongSentencesLabel());
@@ -6168,12 +6185,13 @@ void BatchProjectDoc::DisplayHardWords()
     // Difficult words
     if (m_hardWordsData->GetItemCount())
         {
-        ListCtrlEx* listView =
-            dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+        Wisteria::UI::ListCtrlEx* listView =
+            dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
                 BaseProjectView::ID_DIFFICULT_WORDS_LIST_PAGE_ID));
         if (!listView)
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::ID_DIFFICULT_WORDS_LIST_PAGE_ID,
+            listView = new Wisteria::UI::ListCtrlEx(
+                view->GetSplitter(), BaseProjectView::ID_DIFFICULT_WORDS_LIST_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetDifficultWordsLabel());
@@ -6250,12 +6268,13 @@ void BatchProjectDoc::DisplayHardWords()
     // All words
     if (GetAllWordsBatchData()->GetItemCount())
         {
-        ListCtrlEx* listView =
-            dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+        Wisteria::UI::ListCtrlEx* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
+            view->GetWordsBreakdownView().FindWindowById(
                 BaseProjectView::ALL_WORDS_LIST_PAGE_ID));
         if (!listView)
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::ALL_WORDS_LIST_PAGE_ID,
+            listView = new Wisteria::UI::ListCtrlEx(
+                view->GetSplitter(), BaseProjectView::ALL_WORDS_LIST_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetAllWordsLabel());
@@ -6285,12 +6304,13 @@ void BatchProjectDoc::DisplayHardWords()
         // these lists are the same).
         (GetKeyWordsBatchData()->GetItemCount() != GetAllWordsBatchData()->GetItemCount()))
         {
-        ListCtrlEx* listView =
-            dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+        Wisteria::UI::ListCtrlEx* listView =
+            dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
                 BaseProjectView::ALL_WORDS_CONDENSED_LIST_PAGE_ID));
         if (!listView)
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::ALL_WORDS_CONDENSED_LIST_PAGE_ID,
+            listView = new Wisteria::UI::ListCtrlEx(
+                view->GetSplitter(), BaseProjectView::ALL_WORDS_CONDENSED_LIST_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetKeyWordsLabel());
@@ -6357,14 +6377,15 @@ void BatchProjectDoc::DisplaySightWords()
     PROFILE();
     BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
 
-    ListCtrlEx* listView =
-        dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
+    Wisteria::UI::ListCtrlEx* listView =
+        dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
             BaseProjectView::ID_DOLCH_COVERAGE_LIST_PAGE_ID));
     if (IsIncludingDolchSightWords() && m_dolchCompletionData->GetItemCount())
         {
         if (!listView)
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::ID_DOLCH_COVERAGE_LIST_PAGE_ID,
+            listView = new Wisteria::UI::ListCtrlEx(
+                view->GetSplitter(), BaseProjectView::ID_DOLCH_COVERAGE_LIST_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetDolchCoverageTabLabel());
@@ -6401,13 +6422,14 @@ void BatchProjectDoc::DisplaySightWords()
         { view->GetDolchSightWordsView().RemoveWindowById(BaseProjectView::ID_DOLCH_COVERAGE_LIST_PAGE_ID); }
 
     listView =
-        dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
+        dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
             BaseProjectView::ID_DOLCH_WORDS_LIST_PAGE_ID));
     if (IsIncludingDolchSightWords() && m_dolchWordsBatchData->GetItemCount())
         {
         if (!listView)
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::ID_DOLCH_WORDS_LIST_PAGE_ID,
+            listView = new Wisteria::UI::ListCtrlEx(
+                view->GetSplitter(), BaseProjectView::ID_DOLCH_WORDS_LIST_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetDolchWordTabLabel());
@@ -6460,13 +6482,14 @@ void BatchProjectDoc::DisplaySightWords()
         { view->GetDolchSightWordsView().RemoveWindowById(BaseProjectView::ID_DOLCH_WORDS_LIST_PAGE_ID); }
 
     listView =
-        dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
+        dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
             BaseProjectView::ID_NON_DOLCH_WORDS_LIST_PAGE_ID));
     if (IsIncludingDolchSightWords() && m_NonDolchWordsData->GetItemCount())
         {
         if (!listView)
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::ID_NON_DOLCH_WORDS_LIST_PAGE_ID,
+            listView = new Wisteria::UI::ListCtrlEx(
+                view->GetSplitter(), BaseProjectView::ID_NON_DOLCH_WORDS_LIST_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetNonDolchWordTabLabel());
@@ -6502,13 +6525,10 @@ void BatchProjectDoc::DisplaySightWords()
     }
 
 //-------------------------------------------------------
-void BatchProjectDoc::SetScoreStatsRow(std::shared_ptr<ListCtrlExNumericDataProvider> dataGrid,
-                                       const wxString& rowName,
-                                       const wxString& optionalDescription,
-                                       const long rowNum,
-                                       const std::vector<double>& data, const int decimalSize,
-                                       const VarianceMethod varianceMethod,
-                                       const bool allowCustomFormatting)
+void BatchProjectDoc::SetScoreStatsRow(
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> dataGrid, const wxString& rowName,
+    const wxString& optionalDescription, const long rowNum, const std::vector<double>& data,
+    const int decimalSize, const VarianceMethod varianceMethod, const bool allowCustomFormatting)
     {
     PROFILE();
     size_t currentColumn = 0;

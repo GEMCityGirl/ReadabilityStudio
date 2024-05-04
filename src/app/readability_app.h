@@ -249,7 +249,7 @@ class MainFrame final : public Wisteria::UI::BaseMainFrame
     LuaEditorDlg* GetLuaEditor() noexcept { return m_luaEditor; }
 
     /// @returns The log report dialog.
-    ListDlg* GetLogWindow() noexcept { return m_logWindow; }
+    Wisteria::UI::ListDlg* GetLogWindow() noexcept { return m_logWindow; }
 
   private:
     static std::map<int, wxString> m_testBundleMenuIds;
@@ -260,7 +260,7 @@ class MainFrame final : public Wisteria::UI::BaseMainFrame
 
     wxStartPage* m_startPage{ nullptr };
     LuaEditorDlg* m_luaEditor{ nullptr };
-    ListDlg* m_logWindow{ nullptr };
+    Wisteria::UI::ListDlg* m_logWindow{ nullptr };
 
     wxBitmap m_aboutBmp;
 

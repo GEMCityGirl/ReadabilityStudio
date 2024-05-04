@@ -60,7 +60,7 @@ class WordListDlg final : public wxDialog
 
     void CreateControls();
     [[nodiscard]]
-    ListCtrlEx* GetActiveList();
+    Wisteria::UI::ListCtrlEx* GetActiveList();
     void OnFind(wxFindDialogEvent& event);
     void OnRibbonButton(wxRibbonButtonBarEvent& event);
     void OnNegative(wxCommandEvent& event);
@@ -68,7 +68,7 @@ class WordListDlg final : public wxDialog
     void AddSingleColumnPage(Wisteria::UI::SideBarBook* sideBar,
                              const int id, const int listId,
                              const wxString& label, const int imageId,
-                             std::shared_ptr<ListCtrlExDataProvider> data,
+                             std::shared_ptr<Wisteria::UI::ListCtrlExDataProvider> data,
                              const word_list& wordList);
 
     constexpr static int DALE_CHALL_LIST_ID = wxID_HIGHEST + 5;
@@ -77,11 +77,21 @@ class WordListDlg final : public wxDialog
     constexpr static int HARRIS_JACOBSON_LIST_ID = wxID_HIGHEST + 8;
     constexpr static int DOLCH_LIST_ID = wxID_HIGHEST + 9;
 
-    std::shared_ptr<ListCtrlExDataProvider> m_DCData{ std::make_shared<ListCtrlExDataProvider>() };
-    std::shared_ptr<ListCtrlExDataProvider> m_StockerData{ std::make_shared<ListCtrlExDataProvider>() };
-    std::shared_ptr<ListCtrlExDataProvider> m_SpacheData{ std::make_shared<ListCtrlExDataProvider>() };
-    std::shared_ptr<ListCtrlExDataProvider> m_HJData{ std::make_shared<ListCtrlExDataProvider>() };
-    std::shared_ptr<ListCtrlExDataProvider> m_DolchData{ std::make_shared<ListCtrlExDataProvider>() };
+    std::shared_ptr<Wisteria::UI::ListCtrlExDataProvider> m_DCData{
+        std::make_shared<Wisteria::UI::ListCtrlExDataProvider>()
+    };
+    std::shared_ptr<Wisteria::UI::ListCtrlExDataProvider> m_StockerData{
+        std::make_shared<Wisteria::UI::ListCtrlExDataProvider>()
+    };
+    std::shared_ptr<Wisteria::UI::ListCtrlExDataProvider> m_SpacheData{
+        std::make_shared<Wisteria::UI::ListCtrlExDataProvider>()
+    };
+    std::shared_ptr<Wisteria::UI::ListCtrlExDataProvider> m_HJData{
+        std::make_shared<Wisteria::UI::ListCtrlExDataProvider>()
+    };
+    std::shared_ptr<Wisteria::UI::ListCtrlExDataProvider> m_DolchData{
+        std::make_shared<Wisteria::UI::ListCtrlExDataProvider>()
+    };
     Wisteria::UI::SideBarBook* m_sideBar{ nullptr };
     };
 

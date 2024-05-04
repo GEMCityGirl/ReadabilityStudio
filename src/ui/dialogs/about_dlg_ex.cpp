@@ -223,7 +223,8 @@ void AboutDialogEx::CreateControls()
         mainPanelSizer->Add(userInfoGrid, wxSizerFlags().Border(wxALL).Align(wxALIGN_LEFT));
 
         // license grid
-        m_licenseGrid = new ListCtrlEx(mainPage, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+        m_licenseGrid =
+            new Wisteria::UI::ListCtrlEx(mainPage, wxID_ANY, wxDefaultPosition, wxDefaultSize,
                                        wxLC_SINGLE_SEL | wxLC_REPORT | wxBORDER_SUNKEN);
         m_licenseGrid->EnableGridLines();
         m_licenseGrid->InsertColumn(0, _(L"Product Feature"), wxLIST_FORMAT_LEFT,

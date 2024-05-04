@@ -76,7 +76,7 @@ class AboutDialogEx final : public wxDialog
     void FillLicenseGrid();
 
     LicenseAdmin* m_licenseAdmin{ nullptr };
-    ListCtrlEx* m_licenseGrid{ nullptr };
+    Wisteria::UI::ListCtrlEx* m_licenseGrid{ nullptr };
     Wisteria::UI::SideBarBook* m_sideBarBook{ nullptr };
 
     wxBitmap m_logo;

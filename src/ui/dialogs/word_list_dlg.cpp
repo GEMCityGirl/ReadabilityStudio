@@ -57,7 +57,7 @@ void WordListDlg::SelectPage(const int pageId)
 //------------------------------------------------------
 void WordListDlg::OnFind(wxFindDialogEvent& event)
     {
-    ListCtrlEx* listCtrl = GetActiveList();
+    Wisteria::UI::ListCtrlEx* listCtrl = GetActiveList();
 
     if (listCtrl)
         {
@@ -70,7 +70,7 @@ void WordListDlg::OnFind(wxFindDialogEvent& event)
 //------------------------------------------------------
 void WordListDlg::OnRibbonButton(wxRibbonButtonBarEvent& event)
     {
-    ListCtrlEx* listCtrl = GetActiveList();
+    Wisteria::UI::ListCtrlEx* listCtrl = GetActiveList();
 
     if (listCtrl)
         {
@@ -80,7 +80,7 @@ void WordListDlg::OnRibbonButton(wxRibbonButtonBarEvent& event)
     }
 
 //------------------------------------------------------
-ListCtrlEx* WordListDlg::GetActiveList()
+Wisteria::UI::ListCtrlEx* WordListDlg::GetActiveList()
     {
     wxWindow* listCtrl{ nullptr };
     const auto currentId{ m_sideBar->GetCurrentPage()->GetId() };
@@ -105,10 +105,10 @@ ListCtrlEx* WordListDlg::GetActiveList()
         listCtrl = m_sideBar->GetCurrentPage()->FindWindow(DOLCH_LIST_ID);
         }
 
-    assert(listCtrl && listCtrl->IsKindOf(CLASSINFO(ListCtrlEx)) &&
+    assert(listCtrl && listCtrl->IsKindOf(CLASSINFO(Wisteria::UI::ListCtrlEx)) &&
            L"Invalid list control in word list dialog?!");
-    return (listCtrl && listCtrl->IsKindOf(CLASSINFO(ListCtrlEx))) ?
-               dynamic_cast<ListCtrlEx*>(listCtrl) :
+    return (listCtrl && listCtrl->IsKindOf(CLASSINFO(Wisteria::UI::ListCtrlEx))) ?
+               dynamic_cast<Wisteria::UI::ListCtrlEx*>(listCtrl) :
                nullptr;
     }
 
@@ -128,15 +128,16 @@ void WordListDlg::OnNegative(wxCommandEvent& event)
 //---------------------------------------------
 void WordListDlg::AddSingleColumnPage(Wisteria::UI::SideBarBook* sideBar, const int id,
                                       const int listId, const wxString& label, const int imageId,
-                                      std::shared_ptr<ListCtrlExDataProvider> data, const word_list& wordList)
+                                      std::shared_ptr<Wisteria::UI::ListCtrlExDataProvider> data,
+                                      const word_list& wordList)
     {
     wxPanel* page = new wxPanel(sideBar, id, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
     page->SetSizer(panelSizer);
     sideBar->AddPage(page, label, id, false, imageId);
 
-    ListCtrlEx* list =
-        new ListCtrlEx(page, listId, wxDefaultPosition, wxDefaultSize,
+    Wisteria::UI::ListCtrlEx* list =
+        new Wisteria::UI::ListCtrlEx(page, listId, wxDefaultPosition, wxDefaultSize,
                        wxLC_VIRTUAL | wxLC_REPORT | wxLC_ALIGN_LEFT | wxLC_NO_HEADER);
     list->SetLabel(label);
     list->EnableGridLines();
@@ -240,8 +241,9 @@ void WordListDlg::CreateControls()
         page->SetSizer(panelSizer);
         m_sideBar->AddPage(page, _(L"Dolch Sight Words"), DOLCH_PAGE_ID, true, 4);
 
-        ListCtrlEx* list = new ListCtrlEx(page, DOLCH_LIST_ID, wxDefaultPosition, wxDefaultSize,
-                                          wxLC_VIRTUAL | wxLC_REPORT | wxLC_ALIGN_LEFT);
+        Wisteria::UI::ListCtrlEx* list =
+            new Wisteria::UI::ListCtrlEx(page, DOLCH_LIST_ID, wxDefaultPosition, wxDefaultSize,
+                                         wxLC_VIRTUAL | wxLC_REPORT | wxLC_ALIGN_LEFT);
         list->SetLabel(_(L"Dolch Sight Words"));
         list->EnableGridLines();
         list->InsertColumn(0, _(L"Dolch Words"));

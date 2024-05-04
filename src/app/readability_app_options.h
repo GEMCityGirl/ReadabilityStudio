@@ -2234,13 +2234,14 @@ class ReadabilityAppOptions
 
     // how file paths are shown in batch projects
     void SetFilePathTruncationMode(
-        const ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode TruncMode) noexcept
+        const Wisteria::UI::ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode TruncMode) noexcept
         {
         m_filePathTruncationMode = TruncMode;
         }
 
     [[nodiscard]]
-    ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode GetFilePathTruncationMode() const noexcept
+    Wisteria::UI::ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode
+    GetFilePathTruncationMode() const noexcept
         {
         return m_filePathTruncationMode;
         }
@@ -2713,8 +2714,8 @@ class ReadabilityAppOptions
     VarianceMethod m_varianceMethod{ VarianceMethod::PopulationVariance };
     size_t m_minDocWordCountForBatch{ 50 };
     size_t m_randomSampleSizeForBatch{ 15 };
-    ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode m_filePathTruncationMode{
-        ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames
+    Wisteria::UI::ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode m_filePathTruncationMode{
+        Wisteria::UI::ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames
     };
     wxString m_reviewer;
     wxString m_appendedDocumentFilePath;

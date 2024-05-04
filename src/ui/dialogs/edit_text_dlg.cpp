@@ -308,8 +308,9 @@ void EditTextDlg::CreateControls()
     // resets the control's wxTextAttr information. It seems that you can only use
     // AppendText() to preserve the default style information, so we need to manually
     // handle connecting the text control to m_value via Save() and OnOK().
-    m_textEntry = new FormattedTextCtrl(this, wxID_ANY, wxDefaultPosition, wxSize(-1, FromDIP(500)),
-                                        wxTE_AUTO_URL | wxTE_PROCESS_TAB);
+    m_textEntry = new Wisteria::UI::FormattedTextCtrl(this, wxID_ANY, wxDefaultPosition,
+                                                      wxSize(-1, FromDIP(500)),
+                                                      wxTE_AUTO_URL | wxTE_PROCESS_TAB);
     m_textEntry->SetMargins(10, 10);
     if (m_parentDoc != nullptr)
         {

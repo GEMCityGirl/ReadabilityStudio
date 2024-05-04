@@ -70,19 +70,19 @@ class ProjectDoc final : public BaseProjectDoc
     void DisplayHighlightedText(const wxColour& highlightColor, const wxFont& textViewFont);
 
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetMisspelledWordData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetMisspelledWordData() const noexcept
         {
         return m_misspelledWordData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetOverusedWordsBySentenceData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetOverusedWordsBySentenceData() const noexcept
         {
         return m_overusedWordsBySentenceData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<ListCtrlExNumericDataProvider>& GetPassiveVoiceData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetPassiveVoiceData() const noexcept
         {
         return m_passiveVoiceData;
         }
@@ -99,7 +99,7 @@ class ProjectDoc final : public BaseProjectDoc
 
   private:
     [[nodiscard]]
-    std::shared_ptr<ListCtrlExNumericDataProvider>& GetOverusedWordsBySentenceData() noexcept
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetOverusedWordsBySentenceData() noexcept
         {
         return m_overusedWordsBySentenceData;
         }
@@ -265,45 +265,45 @@ class ProjectDoc final : public BaseProjectDoc
     void UpdateSourceFileModifiedTime();
     void OnRealTimeTimer([[maybe_unused]] wxTimerEvent& event);
 
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_dupWordData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_dupWordData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_misspelledWordData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_misspelledWordData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_incorrectArticleData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_incorrectArticleData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_passiveVoiceData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_passiveVoiceData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_wordyPhraseData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_wordyPhraseData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_overusedWordsBySentenceData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_overusedWordsBySentenceData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_clichePhraseData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_clichePhraseData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_redundantPhraseData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_redundantPhraseData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_wordingErrorData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_wordingErrorData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_overlyLongSentenceData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_overlyLongSentenceData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_sentenceStartingWithConjunctionsData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_sentenceStartingWithConjunctionsData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<ListCtrlExNumericDataProvider> m_sentenceStartingWithLowercaseData{
-        std::make_shared<ListCtrlExNumericDataProvider>()
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_sentenceStartingWithLowercaseData{
+        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    FormattedTextCtrl* m_dcTextWindow{ nullptr };
-    FormattedTextCtrl* m_spacheTextWindow{ nullptr };
-    FormattedTextCtrl* m_hjTextWindow{ nullptr };
+    Wisteria::UI::FormattedTextCtrl* m_dcTextWindow{ nullptr };
+    Wisteria::UI::FormattedTextCtrl* m_spacheTextWindow{ nullptr };
+    Wisteria::UI::FormattedTextCtrl* m_hjTextWindow{ nullptr };
 
     wxDateTime m_sourceFileLastModified;
     constexpr static int REALTIME_UPDATE_INTERVAL{ 5000 }; // in milliseconds

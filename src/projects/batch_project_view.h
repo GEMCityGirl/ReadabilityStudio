@@ -100,13 +100,13 @@ class BatchProjectView final : public BaseProjectView
         }
 
     [[nodiscard]]
-    ListCtrlEx* GetWarningsView() noexcept
+    Wisteria::UI::ListCtrlEx* GetWarningsView() noexcept
         {
         return m_warningsView;
         }
 
     [[nodiscard]]
-    const ListCtrlEx* GetWarningsView() const noexcept
+    const Wisteria::UI::ListCtrlEx* GetWarningsView() const noexcept
         {
         return m_warningsView;
         }
@@ -425,7 +425,7 @@ class BatchProjectView final : public BaseProjectView
     WindowContainer m_scoresView;
     WindowContainer m_histogramsView;
     WindowContainer m_boxPlotView;
-    ListCtrlEx* m_warningsView{ nullptr };
+    Wisteria::UI::ListCtrlEx* m_warningsView{ nullptr };
     WindowContainer m_wordsBreakdownView;
     WindowContainer m_sentencesBreakdownView;
     WindowContainer m_summaryStatsView;
