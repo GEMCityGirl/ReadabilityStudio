@@ -970,6 +970,7 @@ class ToolsOptionsDlg final : public wxDialog
 
     BackupVariable<wxString> m_userAgent;
     BackupVariable<bool> m_disablePeerVerify;
+    BackupVariable<bool> m_useJsCookies;
 
     // project settings
     BackupVariable<int> m_projectLanguage;

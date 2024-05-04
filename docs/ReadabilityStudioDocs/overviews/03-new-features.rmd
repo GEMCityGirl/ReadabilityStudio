@@ -24,11 +24,12 @@
     - Verbose logging can now be toggled from this dialog via the **Verbose** button.
   - Dialog is now modeless; other windows can be accessed while this dialog is open.
   - Holding down `r keys('SHIFT')` while the program opens will load the log report from the previous run of the program (if ran during the same day).
-- **Web Harvester** improvements
+- **Web Harvester** improvements:
   - The **User agent** option on the **Web Harvester** dialog is now available on the **General Settings** page of the **Options** dialog also.
-    This allows for changing the user agent when reading single web pages, as well as when harvesting pages.
+    This allows for changing the user agent when reading single web pages, as well as when harvesting websites.
   - Added option to disable SSL certificate verification when reading webpages.
     Although not recommended, this can be useful for connecting to self-signed (or misconfigured) websites.
+  - Added option to send cookies defined in webpages' JavaScript code to help with connecting to pages that require JavaScript.
   - Added a **Minimum file size to download** option to the **Web Harvester** dialog.
   - Added **Replace existing files** option to the **Web Harvester** dialog.
     This allows for renaming files as they are downloaded to avoid overwriting existing ones.

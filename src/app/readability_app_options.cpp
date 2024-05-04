@@ -345,7 +345,9 @@ void ReadabilityAppOptions::ResetSettings()
     m_userAgent = _DT(L"Mozilla/5.0 (") + wxGetOsDescription() + _DT(L") WebKit/12.0 WebLion");
     wxGetApp().GetWebHarvester().SetUserAgent(m_userAgent);
     m_disablePeerVerify = false;
+    m_useJsCookies = false;
     wxGetApp().GetWebHarvester().DisablePeerVerify(m_disablePeerVerify);
+    wxGetApp().GetWebHarvester().UseJavaScriptCookies(m_useJsCookies);
     // graph information
     m_boxPlotShowAllPoints = false;
     m_boxDisplayLabels = false;
@@ -792,6 +794,15 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
             {
             wxGetApp().GetWebHarvester().SetMinimumDownloadFileSizeInKilobytes(
                 downloadMinFileSizeNode->ToElement()->IntAttribute(XML_VALUE.data(), 0));
+            }
+
+        auto useJsCookiesNode =
+            configRootNode->FirstChildElement(XML_USE_JS_COOKIES.data());
+        if (useJsCookiesNode != nullptr)
+            {
+            const int value = useJsCookiesNode->ToElement()->IntAttribute(XML_VALUE.data(), 0);
+            m_useJsCookies = int_to_bool(value);
+            wxGetApp().GetWebHarvester().UseJavaScriptCookies(m_useJsCookies);
             }
 
         auto disablePeerVerifyNode =
@@ -3685,6 +3696,10 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         XML_VALUE.data(),
         wxGetApp().GetWebHarvester().GetMinimumDownloadFileSizeInKilobytes().value_or(5));
     configSection->InsertEndChild(downloadMinSize);
+    
+    auto jsCookies = doc.NewElement(XML_USE_JS_COOKIES.data());
+    jsCookies->SetAttribute(XML_VALUE.data(), bool_to_int(IsUsingJavaScriptCookies()));
+    configSection->InsertEndChild(jsCookies);
 
     auto disablePv = doc.NewElement(XML_DISABLE_PEER_VERIFY.data());
     disablePv->SetAttribute(XML_VALUE.data(), bool_to_int(IsPeerVerifyDisabled()));

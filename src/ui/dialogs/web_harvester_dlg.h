@@ -79,6 +79,14 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
         return m_disablePeerVerify;
         }
 
+    /// @returns Whether cookies should be extracted from JS code and sent back to the
+    ///     server when connected to them.
+    [[nodiscard]]
+    bool IsUsingJavaScriptCookies() const noexcept
+        {
+        return m_useJsCookies;
+        }
+
     [[nodiscard]]
     int GetDomainRestriction() const noexcept
         {
@@ -133,7 +141,7 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
         return m_minFileSizeInKiloBytes;
         }
 
-    /// Updates the dialog from a harvester's settings,
+    /// Updates the dialog from a harvester's settings.
     void UpdateFromHarvesterSettings(const WebHarvester& harvester);
     /// Sets a harvest object to use the settings from this dialog.
     void UpdateHarvesterSettings(WebHarvester& harvester);
@@ -176,6 +184,7 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
     int m_depthLevel{ 1 };
     wxString m_userAgent;
     bool m_disablePeerVerify{ false };
+    bool m_useJsCookies{ false };
     wxString m_fullDocFilter;
     wxString m_selectedDocFilter;
     int m_selectedDomainRestriction{ 0 };

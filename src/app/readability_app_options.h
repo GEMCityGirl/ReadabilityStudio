@@ -1577,6 +1577,24 @@ class ReadabilityAppOptions
         return m_disablePeerVerify;
         }
 
+    /** @brief If @c true, will read any cookies being set via JavaScript when
+            reading or downloading a page. If any cookies are found,
+            then the page will be reconnected to with these cookies being sent.
+        @details This is useful when connecting to pages that won't load as expected unless
+            cookies being set via JavaScript are sent back to the server.
+        @warning This will result in an additional call to read each webpage and is
+            only recommended if JavaScript is being used to block headless connections.
+        @param useCookies @c true to reconnect with cookies in the JavaScript.*/
+    void UseJavaScriptCookies(const bool useCookies) { m_useJsCookies = useCookies; }
+
+    /// @returns Whether cookies should be extracted from JS code and sent back to the
+    ///     server when connected to them.
+    [[nodiscard]]
+    bool IsUsingJavaScriptCookies() const noexcept
+        {
+        return m_useJsCookies;
+        }
+
     // graph information
     //------------------------------
     void ShowAllBoxPlotPoints(const bool show) noexcept { m_boxPlotShowAllPoints = show; }
@@ -2625,6 +2643,7 @@ class ReadabilityAppOptions
     wxString m_userAgent{ _DT(L"Mozilla/5.0 (") + wxGetOsDescription() +
                           _DT(L") WebKit/12.0 WebLion") };
     bool m_disablePeerVerify{ false };
+    bool m_useJsCookies{ false };
     // graph information
     bool m_boxPlotShowAllPoints{ false };
     bool m_boxDisplayLabels{ false };
@@ -2987,6 +3006,7 @@ class ReadabilityAppOptions
     // web harvester options
     const std::string_view XML_USER_AGENT{ _DT("user-agent") };
     const std::string_view XML_DISABLE_PEER_VERIFY{ _DT("disable-peer-verify") };
+    const std::string_view XML_USE_JS_COOKIES{ _DT("use-javascript-cookies") };
     const std::string_view XML_DOWNLOAD_MIN_FILESIZE{ _DT("download-min-file-size") };
     const std::string_view XML_DOWNLOAD_KEEP_FOLDER_STRUCTURE{ _DT(
         "download-keep-web-folder-structure") };

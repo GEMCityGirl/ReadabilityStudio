@@ -5468,6 +5468,7 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
 
     // update global internet options that mirror the same options from the dialog
     wxGetApp().GetAppOptions().DisablePeerVerify(webHarvestDlg.IsPeerVerifyDisabled());
+    wxGetApp().GetAppOptions().UseJavaScriptCookies(webHarvestDlg.IsUsingJavaScriptCookies());
     wxGetApp().GetAppOptions().SetUserAgent(webHarvestDlg.GetUserAgent());
 
     wxMessageBox(_(L"Web crawl complete."), _(L"Web Harvester"), wxOK | wxICON_INFORMATION);

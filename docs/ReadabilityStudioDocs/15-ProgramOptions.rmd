@@ -51,6 +51,14 @@ This can be used to connect to self-signed servers or other invalid SSL connecti
 Disabling SSL verification makes the communication insecure.
 :::
 
+**Use JavaScript cookies**: Check this option to scan for any cookies meant to be sent via JavaScript when reading or downloading a page.
+If any cookies are found, then page will be re-read with the cookies being sent.
+This is useful when connecting to pages that won't load as expected unless certain cookies are sent back to the server.
+
+::: {.warningsection data-latex=""}
+This will result in an additional call to read each webpage and is only recommended if JavaScript is being used to block non-browser connections.
+:::
+
 ### Warnings & Prompts {-}
 
 **Customize**: Click this button to display the **Warnings & Prompts Display** dialog. This dialog enables you to display or suppress various warnings and prompts, including:

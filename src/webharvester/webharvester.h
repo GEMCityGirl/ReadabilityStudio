@@ -519,18 +519,18 @@ class WebHarvester
         return m_disablePeerVerify;
         }
 
-    /** @brief If @c true, will read any cookies being set via JavaScript when
+    /** @brief If @c true, will scan for any cookies meant to be sent via JavaScript when
             reading or downloading a page. If any cookies are found,
-            then the page will be reconnected to with these cookies being sent.
-        @details This is useful when connecting to pages that won't load as expected unless
-            cookies being set via JavaScript are sent back to the server.
+            then page will be re-read with the cookies being sent.
+        @details This is useful when connecting to pages that won't load as expected
+            unless certain cookies are sent back to the server.
         @warning This will result in an additional call to read each webpage and is
             only recommended if JavaScript is being used to block headless connections.
         @param useCookies @c true to reconnect with cookies in the JavaScript.*/
     void UseJavaScriptCookies(const bool useCookies) { m_useJsCookies = useCookies; }
 
     /// @returns Whether cookies should be extracted from JS code and sent back to the
-    ///     server when connected to them.
+    ///     server when connecting to them.
     [[nodiscard]]
     bool IsUsingJavaScriptCookies() const noexcept
         {

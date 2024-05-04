@@ -319,11 +319,21 @@ void WebHarvesterDlg::CreateControls()
         wxBoxSizer* extendedOpsSizer = new wxBoxSizer(wxVERTICAL);
         panelSizer->Add(extendedOpsSizer,
                         wxSizerFlags().Expand().Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
-        // SSL disable
+        // disable SSL
         extendedOpsSizer->Add(new wxCheckBox(Panel, wxID_ANY,
                                              _(L"Disable SSL certificate verification"),
                                              wxDefaultPosition, wxDefaultSize, 0,
                                              wxGenericValidator(&m_disablePeerVerify)),
+                              wxSizerFlags()
+                                  .Expand()
+                                  .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
+                                  .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
+
+        // JS cookies
+        extendedOpsSizer->Add(new wxCheckBox(Panel, wxID_ANY,
+                                             _(L"Use JavaScript cookies"),
+                                             wxDefaultPosition, wxDefaultSize, 0,
+                                             wxGenericValidator(&m_useJsCookies)),
                               wxSizerFlags()
                                   .Expand()
                                   .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
@@ -517,6 +527,7 @@ void WebHarvesterDlg::UpdateHarvesterSettings(WebHarvester& harvester)
         }
     harvester.SetUserAgent(GetUserAgent());
     harvester.DisablePeerVerify(IsPeerVerifyDisabled());
+    harvester.UseJavaScriptCookies(IsUsingJavaScriptCookies());
     harvester.DownloadFilesWhileCrawling(IsDownloadFilesLocally());
     harvester.SetDownloadDirectory(GetDownloadFolder());
     harvester.KeepWebPathWhenDownloading(IsRetainingWebsiteFolderStructure());
@@ -540,6 +551,7 @@ void WebHarvesterDlg::UpdateFromHarvesterSettings(const WebHarvester& harvester)
     m_depthLevel = harvester.GetDepthLevel();
     m_userAgent = harvester.GetUserAgent();
     m_disablePeerVerify = harvester.IsPeerVerifyDisabled();
+    m_useJsCookies = harvester.IsUsingJavaScriptCookies();
     m_logBrokenLinks = harvester.IsSearchingForBrokenLinks();
     m_selectedDomainRestriction = static_cast<int>(harvester.GetDomainRestriction());
     m_downloadFilesLocally = harvester.IsDownloadingFilesWhileCrawling();

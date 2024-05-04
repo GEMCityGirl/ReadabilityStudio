@@ -613,6 +613,7 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
     m_readabilityProjectDoc(project),
     m_userAgent(wxGetApp().GetAppOptions().GetUserAgent()),
     m_disablePeerVerify(wxGetApp().GetAppOptions().IsPeerVerifyDisabled()),
+    m_useJsCookies(wxGetApp().GetAppOptions().IsUsingJavaScriptCookies()),
     // project settings
     m_projectLanguage(static_cast<int>(project ?
         project->GetProjectLanguage() : wxGetApp().GetAppOptions().GetProjectLanguage())),
@@ -1564,6 +1565,11 @@ void ToolsOptionsDlg::SaveOptions()
         {
         wxGetApp().GetAppOptions().DisablePeerVerify(m_disablePeerVerify.get_value());
         wxGetApp().GetWebHarvester().DisablePeerVerify(m_disablePeerVerify.get_value());
+        }
+    if (m_useJsCookies.has_changed())
+        {
+        wxGetApp().GetAppOptions().UseJavaScriptCookies(m_useJsCookies.get_value());
+        wxGetApp().GetWebHarvester().UseJavaScriptCookies(m_useJsCookies.get_value());
         }
     if (m_readabilityProjectDoc && HaveOptionsChanged())
         {
@@ -3021,6 +3027,15 @@ void ToolsOptionsDlg::CreateControls()
                     wxGenericValidator(&m_disablePeerVerify)),
                 wxSizerFlags().Expand().Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
                     .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
+
+            optionsSizer->Add(new wxCheckBox(generalSettingsPage, wxID_ANY,
+                                             _(L"Use JavaScript cookies"),
+                                             wxDefaultPosition, wxDefaultSize, 0,
+                                             wxGenericValidator(&m_useJsCookies)),
+                              wxSizerFlags()
+                                  .Expand()
+                                  .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
+                                  .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
 
             optionsSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
