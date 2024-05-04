@@ -73,13 +73,6 @@ wxBEGIN_EVENT_TABLE(BatchProjectView, BaseProjectView)
     EVT_LIST_ITEM_SELECTED(BaseProjectView::ID_AGGREGATED_CLOZE_SCORES_LIST_PAGE_ID,
         BatchProjectView::OnNonScoreItemSelected)
     EVT_MENU(XRCID("ID_REMOVE_TEST"), BatchProjectView::OnTestDeleteMenu)
-    EVT_MENU(wxID_SELECTALL, BatchProjectView::OnMenuCommand)
-    EVT_MENU(wxID_COPY, BatchProjectView::OnMenuCommand)
-    EVT_MENU(wxID_PREVIEW, BatchProjectView::OnMenuCommand)
-    EVT_MENU(wxID_PRINT, BatchProjectView::OnMenuCommand)
-    EVT_MENU(wxID_ZOOM_IN, BatchProjectView::OnMenuCommand)
-    EVT_MENU(wxID_ZOOM_OUT, BatchProjectView::OnMenuCommand)
-    EVT_MENU(wxID_ZOOM_FIT, BatchProjectView::OnMenuCommand)
     EVT_MENU(XRCID("ID_MULTI_COLUMN_SORT_ASCENDING"), BatchProjectView::OnMenuCommand)
     EVT_MENU(XRCID("ID_MULTI_COLUMN_SORT_DESCENDING"), BatchProjectView::OnMenuCommand)
     EVT_MENU(XRCID("ID_SAVE_ITEM"), BatchProjectView::OnMenuCommand)
@@ -127,6 +120,19 @@ wxEND_EVENT_TABLE()
     Bind(wxEVT_MENU, &BatchProjectView::OnGradeScale, this, XRCID("ID_K12_NUNAVUT"));
     Bind(wxEVT_MENU, &BatchProjectView::OnGradeScale, this, XRCID("ID_QUEBEC"));
     Bind(wxEVT_MENU, &BatchProjectView::OnGradeScale, this, XRCID("ID_ENGLAND"));
+
+    Bind(wxEVT_MENU, &BatchProjectView::OnMenuCommand, this,
+         wxID_SELECTALL);
+    Bind(wxEVT_MENU, &BatchProjectView::OnMenuCommand, this, wxID_COPY);
+    Bind(wxEVT_MENU, &BatchProjectView::OnMenuCommand, this,
+         wxID_PREVIEW);
+    Bind(wxEVT_MENU, &BatchProjectView::OnMenuCommand, this, wxID_PRINT);
+    Bind(wxEVT_MENU, &BatchProjectView::OnMenuCommand, this,
+         wxID_ZOOM_IN);
+    Bind(wxEVT_MENU, &BatchProjectView::OnMenuCommand, this,
+         wxID_ZOOM_OUT);
+    Bind(wxEVT_MENU, &BatchProjectView::OnMenuCommand, this,
+         wxID_ZOOM_FIT);
 
     Bind(
         wxEVT_RIBBONBUTTONBAR_CLICKED,
