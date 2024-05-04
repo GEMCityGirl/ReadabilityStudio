@@ -15,7 +15,6 @@
    version="1.1"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
    sodipodi:docname="log-book.svg"
-   inkscape:export-filename="Z:\Resources\ReadabilityStudio\ribbon\LogBook.png"
    inkscape:export-xdpi="64.673164"
    inkscape:export-ydpi="64.673164">
   <title
@@ -84,7 +83,6 @@
       <path
          inkscape:export-ydpi="300"
          inkscape:export-xdpi="300"
-         inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
          style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2.70122433;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
          d="M 907.20447,526.45753 1024.1124,615.37271 1154.7881,450.07495 1041.0746,373.6029 Z"
          id="path4434"
@@ -93,7 +91,6 @@
       <path
          inkscape:export-ydpi="300"
          inkscape:export-xdpi="300"
-         inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
          style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061228;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
          d="m 913.24395,514.15574 0.41324,8.92497 c -0.4257,1.83204 0.97753,3.43634 3.28322,4.8837 l 110.23719,83.52857 125.6591,-160.11579 -114.1697,-76.19338 z"
          id="path4436"
@@ -102,7 +99,6 @@
       <path
          inkscape:export-ydpi="300"
          inkscape:export-xdpi="300"
-         inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
          style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2.70122433;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
          d="m 1023.8918,614.34977 129.184,95.91163 130.6757,-165.29778 -128.2318,-84.32074 z"
          id="path4438"
@@ -111,7 +107,6 @@
       <path
          inkscape:export-ydpi="300"
          inkscape:export-xdpi="300"
-         inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
          style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061228;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
          d="m 1148.6273,690.21188 2.9095,14.65586 124.6422,-155.88044 c 1.7634,-2.06983 3.2267,-3.60339 2.3081,-6.59824 l -2.0576,-14.05923 z"
          id="path4440"
@@ -120,7 +115,6 @@
       <path
          inkscape:export-ydpi="300"
          inkscape:export-xdpi="300"
-         inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
          style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061228;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
          d="m 1026.2387,599.92306 0.7857,10.47239 121.2673,92.15973 c 3.9468,3.97867 3.6146,1.71542 3.0832,-0.74908 l -1.75,-12.27633 z"
          id="path4442"
@@ -129,7 +123,6 @@
       <path
          inkscape:export-ydpi="300"
          inkscape:export-xdpi="300"
-         inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
          style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2.02591848;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
          d="m 1021.9816,597.2288 c 42.5976,31.09256 75.598,56.74002 120.1872,88.05424 5.8033,4.67401 9.6757,2.37119 12.6093,-1.23212 l 119.1251,-149.37574 c 3.6463,-4.0487 3.3531,-8.69744 -2.131,-11.02974 -40.7946,-24.81985 -78.692,-51.28599 -118.5031,-77.42054 z"
          id="path4444"
@@ -138,7 +131,6 @@
       <path
          inkscape:export-ydpi="300"
          inkscape:export-xdpi="300"
-         inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
          style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2.02591848;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
          d="m 916.70243,516.48826 c 39.46342,32.71483 69.2082,51.79409 108.71237,83.73151 L 1159.815,449.52205 c -40.1897,-23.84975 -73.7984,-46.69216 -110.3236,-74.11809 -5.1736,-4.61364 -11.7218,-2.52264 -13.2028,0.3238 L 916.0702,506.58521 c -4.57329,3.86089 -2.12252,7.22224 0.63223,9.90305 z"
          id="path4446"
@@ -351,8 +343,7 @@
           <path
              inkscape:export-ydpi="300"
              inkscape:export-xdpi="300"
-             inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
-             style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061216;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
+            style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061216;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
              d="m 714.63391,510.52057 3.63579,2.55552 8.22379,-8.76651 -3.03326,-2.02876 z"
              id="path4554"
              sodipodi:nodetypes="ccccc"
@@ -360,7 +351,6 @@
           <path
              inkscape:export-ydpi="300"
              inkscape:export-xdpi="300"
-             inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
              style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061228;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
              d="m 717.79741,510.07552 4.68022,-5.09353 c -1.96178,-6.94845 -5.31326,-13.52481 -13.19908,-11.13342 l -5.99028,7.4842 c 9.28825,-3.42778 12.13865,-0.12304 14.50914,8.74275 z"
              id="path4556"
@@ -380,7 +370,6 @@
              id="path4691"
              d="m 714.63391,510.52057 3.63579,2.55552 8.22379,-8.76651 -3.03326,-2.02876 z"
              style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061216;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
-             inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
              inkscape:export-xdpi="300"
              inkscape:export-ydpi="300" />
           <path
@@ -389,7 +378,6 @@
              id="path4693"
              d="m 717.79741,510.07552 4.68022,-5.09353 c -1.96178,-6.94845 -5.31326,-13.52481 -13.19908,-11.13342 l -5.99028,7.4842 c 9.28825,-3.42778 12.13865,-0.12304 14.50914,8.74275 z"
              style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061228;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
-             inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
              inkscape:export-xdpi="300"
              inkscape:export-ydpi="300" />
         </g>
@@ -403,7 +391,6 @@
           <path
              inkscape:export-ydpi="300"
              inkscape:export-xdpi="300"
-             inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
              style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061216;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
              d="m 714.63391,510.52057 3.63579,2.55552 8.22379,-8.76651 -3.03326,-2.02876 z"
              id="path4699"
@@ -412,7 +399,6 @@
           <path
              inkscape:export-ydpi="300"
              inkscape:export-xdpi="300"
-             inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
              style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061228;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
              d="m 717.79741,510.07552 4.68022,-5.09353 c -1.96178,-6.94845 -5.31326,-13.52481 -13.19908,-11.13342 l -5.99028,7.4842 c 9.28825,-3.42778 12.13865,-0.12304 14.50914,8.74275 z"
              id="path4701"
@@ -432,7 +418,6 @@
              id="path4707"
              d="m 714.63391,510.52057 3.63579,2.55552 8.22379,-8.76651 -3.03326,-2.02876 z"
              style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061216;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
-             inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
              inkscape:export-xdpi="300"
              inkscape:export-ydpi="300" />
           <path
@@ -441,7 +426,6 @@
              id="path4709"
              d="m 717.79741,510.07552 4.68022,-5.09353 c -1.96178,-6.94845 -5.31326,-13.52481 -13.19908,-11.13342 l -5.99028,7.4842 c 9.28825,-3.42778 12.13865,-0.12304 14.50914,8.74275 z"
              style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061228;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
-             inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
              inkscape:export-xdpi="300"
              inkscape:export-ydpi="300" />
         </g>
@@ -455,7 +439,6 @@
           <path
              inkscape:export-ydpi="300"
              inkscape:export-xdpi="300"
-             inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
              style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061216;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
              d="m 714.63391,510.52057 3.63579,2.55552 8.22379,-8.76651 -3.03326,-2.02876 z"
              id="path4715"
@@ -464,8 +447,7 @@
           <path
              inkscape:export-ydpi="300"
              inkscape:export-xdpi="300"
-             inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
-             style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061228;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
+              style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061228;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
              d="m 717.79741,510.07552 4.68022,-5.09353 c -1.96178,-6.94845 -5.31326,-13.52481 -13.19908,-11.13342 l -5.99028,7.4842 c 9.28825,-3.42778 12.13865,-0.12304 14.50914,8.74275 z"
              id="path4717"
              sodipodi:nodetypes="ccccc"
@@ -484,7 +466,6 @@
              id="path4723"
              d="m 714.63391,510.52057 3.63579,2.55552 8.22379,-8.76651 -3.03326,-2.02876 z"
              style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061216;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
-             inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
              inkscape:export-xdpi="300"
              inkscape:export-ydpi="300" />
           <path
@@ -493,7 +474,6 @@
              id="path4725"
              d="m 717.79741,510.07552 4.68022,-5.09353 c -1.96178,-6.94845 -5.31326,-13.52481 -13.19908,-11.13342 l -5.99028,7.4842 c 9.28825,-3.42778 12.13865,-0.12304 14.50914,8.74275 z"
              style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061228;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
-             inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
              inkscape:export-xdpi="300"
              inkscape:export-ydpi="300" />
         </g>
@@ -507,7 +487,6 @@
           <path
              inkscape:export-ydpi="300"
              inkscape:export-xdpi="300"
-             inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
              style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061216;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
              d="m 714.63391,510.52057 3.63579,2.55552 8.22379,-8.76651 -3.03326,-2.02876 z"
              id="path4731"
@@ -516,7 +495,6 @@
           <path
              inkscape:export-ydpi="300"
              inkscape:export-xdpi="300"
-             inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
              style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061228;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
              d="m 717.79741,510.07552 4.68022,-5.09353 c -1.96178,-6.94845 -5.31326,-13.52481 -13.19908,-11.13342 l -5.99028,7.4842 c 9.28825,-3.42778 12.13865,-0.12304 14.50914,8.74275 z"
              id="path4733"
@@ -536,7 +514,6 @@
              id="path4761"
              d="m 714.63391,510.52057 3.63579,2.55552 8.22379,-8.76651 -3.03326,-2.02876 z"
              style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061216;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
-             inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
              inkscape:export-xdpi="300"
              inkscape:export-ydpi="300" />
           <path
@@ -545,7 +522,6 @@
              id="path4763"
              d="m 717.79741,510.07552 4.68022,-5.09353 c -1.96178,-6.94845 -5.31326,-13.52481 -13.19908,-11.13342 l -5.99028,7.4842 c 9.28825,-3.42778 12.13865,-0.12304 14.50914,8.74275 z"
              style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061228;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
-             inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
              inkscape:export-xdpi="300"
              inkscape:export-ydpi="300" />
         </g>
@@ -559,7 +535,6 @@
           <path
              inkscape:export-ydpi="300"
              inkscape:export-xdpi="300"
-             inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
              style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061216;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
              d="m 714.63391,510.52057 3.63579,2.55552 8.22379,-8.76651 -3.03326,-2.02876 z"
              id="path4791"
@@ -568,7 +543,6 @@
           <path
              inkscape:export-ydpi="300"
              inkscape:export-xdpi="300"
-             inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
              style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061228;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
              d="m 717.79741,510.07552 4.68022,-5.09353 c -1.96178,-6.94845 -5.31326,-13.52481 -13.19908,-11.13342 l -5.99028,7.4842 c 9.28825,-3.42778 12.13865,-0.12304 14.50914,8.74275 z"
              id="path4793"
@@ -588,7 +562,6 @@
              id="path4799"
              d="m 714.63391,510.52057 3.63579,2.55552 8.22379,-8.76651 -3.03326,-2.02876 z"
              style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061216;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
-             inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
              inkscape:export-xdpi="300"
              inkscape:export-ydpi="300" />
           <path
@@ -597,7 +570,6 @@
              id="path4801"
              d="m 717.79741,510.07552 4.68022,-5.09353 c -1.96178,-6.94845 -5.31326,-13.52481 -13.19908,-11.13342 l -5.99028,7.4842 c 9.28825,-3.42778 12.13865,-0.12304 14.50914,8.74275 z"
              style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061228;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
-             inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
              inkscape:export-xdpi="300"
              inkscape:export-ydpi="300" />
         </g>
@@ -611,7 +583,6 @@
           <path
              inkscape:export-ydpi="300"
              inkscape:export-xdpi="300"
-             inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
              style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061216;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
              d="m 714.63391,510.52057 3.63579,2.55552 8.22379,-8.76651 -3.03326,-2.02876 z"
              id="path4807"
@@ -620,7 +591,6 @@
           <path
              inkscape:export-ydpi="300"
              inkscape:export-xdpi="300"
-             inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
              style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061228;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
              d="m 717.79741,510.07552 4.68022,-5.09353 c -1.96178,-6.94845 -5.31326,-13.52481 -13.19908,-11.13342 l -5.99028,7.4842 c 9.28825,-3.42778 12.13865,-0.12304 14.50914,8.74275 z"
              id="path4809"
@@ -640,7 +610,6 @@
              id="path4815"
              d="m 714.63391,510.52057 3.63579,2.55552 8.22379,-8.76651 -3.03326,-2.02876 z"
              style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061216;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
-             inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
              inkscape:export-xdpi="300"
              inkscape:export-ydpi="300" />
           <path
@@ -649,7 +618,6 @@
              id="path4817"
              d="m 717.79741,510.07552 4.68022,-5.09353 c -1.96178,-6.94845 -5.31326,-13.52481 -13.19908,-11.13342 l -5.99028,7.4842 c 9.28825,-3.42778 12.13865,-0.12304 14.50914,8.74275 z"
              style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.35061228;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.5;stroke-opacity:1"
-             inkscape:export-filename="/Users/lmproulx/Desktop/À classer/isotype/schéma intégateur/étape 1.png"
              inkscape:export-xdpi="300"
              inkscape:export-ydpi="300" />
         </g>
