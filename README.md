@@ -78,7 +78,7 @@ cd ..
 git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
 cd wxWidgets
 cmake . -DCMAKE_INSTALL_PREFIX=./wxlib -DwxBUILD_SHARED=OFF
-cmake --build . --target install
+cmake --build . --target install -j 4
 cd ..
 cd ReadabilityStudio
 ```
@@ -87,7 +87,7 @@ Build the program as follows:
 
 ```
 cmake .
-cmake --build . --target all
+cmake --build . --target all  -j 4
 ```
 
 **...INCOMPLETE**
@@ -97,7 +97,7 @@ cmake --build . --target all
 ## Building
 
 The first time that you build, you may receive LaTeX errors about missing \*.sty files during the help build phase.
-Re-try the `cmake --build . --target all` command a few times until these go away.
+Re-try the `cmake --build . --target all  -j 4` command a few times until these go away.
 
 This happens because numerous \*.sty files need to be installed and the installation process times out occasionally.
 Once you have these files installed, this won't be an issue when rebuilding later.
