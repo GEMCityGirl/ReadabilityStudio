@@ -22,7 +22,7 @@ namespace Wisteria::Graphs
         {
         SetColorScheme(colors != nullptr ? colors : Settings::GetDefaultColorScheme());
         SetShapeScheme(shapes != nullptr ? shapes :
-                                           std::make_shared<Wisteria::Icons::Schemes::IconScheme>(
+                                           std::make_unique<Wisteria::Icons::Schemes::IconScheme>(
                                                Wisteria::Icons::Schemes::StandardShapes()));
 
         GetCanvas()->SetLabel(_(L"Fry Graph"));
@@ -215,7 +215,7 @@ namespace Wisteria::Graphs
         GetPhysicalCoordinates(108 + GetSyllableAxisOffset(), 2.0, m_longSentencesPoints[0]);
         GetPhysicalCoordinates(124 + GetSyllableAxisOffset(), 2.0, m_longSentencesPoints[1]);
         GetPhysicalCoordinates(108 + GetSyllableAxisOffset(), 4.2, m_longSentencesPoints[2]);
-        AddObject(std::make_shared<GraphItems::Polygon>(
+        AddObject(std::make_unique<GraphItems::Polygon>(
             GraphItemInfo()
                 .Pen(wxNullPen)
                 .Text(_(L"Invalid region: sentences are too long"))
@@ -231,7 +231,7 @@ namespace Wisteria::Graphs
         GetPhysicalCoordinates(175 + GetSyllableAxisOffset(), 7.6, m_longWordPoints[6]);
         GetPhysicalCoordinates(182 + GetSyllableAxisOffset(), 7.3, m_longWordPoints[7]);
         GetPhysicalCoordinates(182 + GetSyllableAxisOffset(), 25.0, m_longWordPoints[8]);
-        AddObject(std::make_shared<GraphItems::Polygon>(
+        AddObject(std::make_unique<GraphItems::Polygon>(
             GraphItemInfo()
                 .Pen(wxNullPen)
                 .Text(_(L"Invalid region: too many complex words"))
@@ -313,14 +313,14 @@ namespace Wisteria::Graphs
         const auto lightGray{ ColorContrast::ChangeOpacity(*wxBLACK, 200) };
 
         // the separator line
-        auto levelsSpline = std::make_shared<GraphItems::Polygon>(
+        auto levelsSpline = std::make_unique<GraphItems::Polygon>(
             GraphItemInfo().Pen(wxPen(lightGray)).Brush(wxBrush(lightGray)).Scaling(GetScaling()),
             &m_dividerLinePoints[0], std::size(m_dividerLinePoints) - 2);
         levelsSpline->SetShape(GraphItems::Polygon::PolygonShape::Spline);
-        AddObject(levelsSpline);
+        AddObject(std::move(levelsSpline));
 
         // draw the grade lines
-        AddObject(std::make_shared<GraphItems::Polygon>(
+        AddObject(std::make_unique<GraphItems::Polygon>(
             GraphItemInfo()
                 .Pen(wxPen(ColorContrast::ChangeOpacity(*wxBLUE, 200)))
                 .Brush(*wxBLACK_BRUSH)
@@ -329,7 +329,7 @@ namespace Wisteria::Graphs
         // the rest of grade region lines
         for (size_t i = 2, pointIter = 5; i <= 16; ++i, pointIter += 2)
             {
-            AddObject(std::make_shared<GraphItems::Polygon>(
+            AddObject(std::make_unique<GraphItems::Polygon>(
                 GraphItemInfo()
                     .Pen(wxPen(ColorContrast::ChangeOpacity(*wxBLUE, 200)))
                     .Brush(*wxBLACK_BRUSH)
@@ -340,7 +340,7 @@ namespace Wisteria::Graphs
         assert(GetMessageCatalog() && L"Label manager not set in Fry Graph!");
 
         // draw the grade areas (for selecting)
-        AddObject(std::make_shared<GraphItems::Polygon>(
+        AddObject(std::make_unique<GraphItems::Polygon>(
             GraphItemInfo(GetMessageCatalog()->GetGradeScaleLongLabel(1))
                 .Pen(wxNullPen)
                 .Brush(wxNullBrush)
@@ -349,14 +349,14 @@ namespace Wisteria::Graphs
         // the rest of the grade areas
         for (size_t i = 2, pointIter = 5; i <= 16; ++i, pointIter += 2)
             {
-            AddObject(std::make_shared<GraphItems::Polygon>(
+            AddObject(std::make_unique<GraphItems::Polygon>(
                 GraphItemInfo(GetMessageCatalog()->GetGradeScaleLongLabel(i))
                     .Pen(wxNullPen)
                     .Brush(wxNullBrush)
                     .SelectionBrush(selectionBrush),
                 &m_gradeLinePoints[(pointIter - 2)], 4));
             }
-        AddObject(std::make_shared<GraphItems::Polygon>(GraphItemInfo(_(L"Post-graduate+"))
+        AddObject(std::make_unique<GraphItems::Polygon>(GraphItemInfo(_(L"Post-graduate+"))
                                                             .Pen(wxNullPen)
                                                             .Brush(wxNullBrush)
                                                             .SelectionBrush(selectionBrush),
@@ -365,7 +365,7 @@ namespace Wisteria::Graphs
         wxPoint pt1, pt2;
         GetPhysicalCoordinates(112 + GetSyllableAxisOffset(), 5.0, pt1);
         GetPhysicalCoordinates(128 + GetSyllableAxisOffset(), 3.3, pt2);
-        auto gradeLevelLabel = std::make_shared<GraphItems::Label>(
+        auto gradeLevelLabel = std::make_unique<GraphItems::Label>(
             GraphItemInfo(_(L"APPROXIMATE  GRADE  LEVEL"))
                 .Pen(wxNullPen)
                 .Selectable(false)
@@ -384,14 +384,14 @@ namespace Wisteria::Graphs
         gradeLevelLabel->SetFont(labelFont);
         if constexpr (Settings::IsDebugFlagEnabled(DebugSettings::DrawExtraInformation))
             {
-            AddObject(std::make_shared<GraphItems::Polygon>(
+            AddObject(std::make_unique<GraphItems::Polygon>(
                 GraphItemInfo().Pen(*wxRED).Brush(wxNullBrush),
                 std::vector<wxPoint>{ gradeLabelArea.GetTopLeft(), gradeLabelArea.GetTopRight(),
                                       gradeLabelArea.GetBottomRight(),
                                       gradeLabelArea.GetBottomLeft() }));
             }
 
-        AddObject(gradeLevelLabel);
+        AddObject(std::move(gradeLevelLabel));
 
         CalculateScorePositions(dc);
 
@@ -405,7 +405,7 @@ namespace Wisteria::Graphs
             wxPoint pt;
             GetPhysicalCoordinates(level.GetX(), level.GetY(), pt);
 
-            auto levelLabel = std::make_shared<GraphItems::Label>(GraphItemInfo(level.GetLabel())
+            auto levelLabel = std::make_unique<GraphItems::Label>(GraphItemInfo(level.GetLabel())
                                                                       .Scaling(GetScaling())
                                                                       .Pen(wxNullPen)
                                                                       .Font(labelFont)
@@ -416,7 +416,7 @@ namespace Wisteria::Graphs
                 levelLabel->GetFont().SetWeight(wxFontWeight::wxFONTWEIGHT_EXTRAHEAVY);
                 levelLabel->SetFontColor(GetColorScheme()->GetColor(0));
                 }
-            AddObject(levelLabel);
+            AddObject(std::move(levelLabel));
             }
         }
 
@@ -435,7 +435,7 @@ namespace Wisteria::Graphs
                    Canvas::GetDefaultCanvasHeightDIPs() &&
                L"Invalid backscreen size!");
 
-        auto points = std::make_shared<GraphItems::Points2D>(wxNullPen);
+        auto points = std::make_unique<GraphItems::Points2D>(wxNullPen);
         points->SetScaling(GetScaling());
         points->SetDPIScaleFactor(GetDPIScaleFactor());
         points->Reserve(GetDataset()->GetRowCount());
@@ -612,7 +612,7 @@ namespace Wisteria::Graphs
                     m_results[i].m_wordStatistic, m_results[i].m_sentenceStatistic));
                 }
             }
-        AddObject(points);
+        AddObject(std::move(points));
 
         if (m_results.size() == 1 && m_results.front().IsScoreInvalid())
             {
@@ -621,7 +621,7 @@ namespace Wisteria::Graphs
             const wxPoint textCoordinate(
                 GetPlotAreaBoundingBox().GetX() + (GetPlotAreaBoundingBox().GetWidth() / 2),
                 GetPlotAreaBoundingBox().GetY() + (GetPlotAreaBoundingBox().GetHeight() / 2));
-            AddObject(std::make_shared<Wisteria::GraphItems::Label>(
+            AddObject(std::make_unique<Wisteria::GraphItems::Label>(
                 GraphItemInfo(_(L"Invalid score: text is too difficult to be plotted"))
                     .Scaling(GetScaling())
                     .Pen(*wxBLACK_PEN)

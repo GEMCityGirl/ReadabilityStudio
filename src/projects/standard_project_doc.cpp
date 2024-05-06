@@ -2128,8 +2128,8 @@ void ProjectDoc::DisplaySentenceCharts()
         auto legend = heatMap->CreateLegend(
             LegendOptions().PlacementHint(LegendCanvasPlacementHint::RightOfGraph).IncludeHeader(true));
         legend->SetLine(0, _(L"Sentence Word Counts"));
-        legend->SetCanvasWidthProportion(sentenceHeatmapCanvas->CalcMinWidthProportion(legend));
-        sentenceHeatmapCanvas->SetFixedObject(0, 1, legend);
+        legend->SetCanvasWidthProportion(sentenceHeatmapCanvas->CalcMinWidthProportion(*legend));
+        sentenceHeatmapCanvas->SetFixedObject(0, 1, std::move(legend));
 
         sentenceHeatmapCanvas->CalcAllSizes(gdc);
         }

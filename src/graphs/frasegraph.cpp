@@ -161,28 +161,28 @@ namespace Wisteria::Graphs
         const wxColour lightGray{ wxColour(0, 0, 0, 200) };
 
         // I
-        AddObject(std::make_shared<GraphItems::Polygon>(GraphItemInfo()
+        AddObject(std::make_unique<GraphItems::Polygon>(GraphItemInfo()
                                                             .Pen(wxNullPen)
                                                             .Text(_(L"Beginner Level"))
                                                             .Brush(wxNullBrush)
                                                             .SelectionBrush(selectionBrush),
                                                         &m_levelLinePoints[0], 3));
         // II
-        AddObject(std::make_shared<GraphItems::Polygon>(GraphItemInfo()
+        AddObject(std::make_unique<GraphItems::Polygon>(GraphItemInfo()
                                                             .Pen(wxNullPen)
                                                             .Text(_(L"Intermediate Level"))
                                                             .Brush(wxNullBrush)
                                                             .SelectionBrush(selectionBrush),
                                                         &m_levelLinePoints[3], 5));
         // III
-        AddObject(std::make_shared<GraphItems::Polygon>(GraphItemInfo()
+        AddObject(std::make_unique<GraphItems::Polygon>(GraphItemInfo()
                                                             .Pen(wxNullPen)
                                                             .Text(_(L"Advanced Intermediate Level"))
                                                             .Brush(wxNullBrush)
                                                             .SelectionBrush(selectionBrush),
                                                         &m_levelLinePoints[6], 4));
         // IV
-        AddObject(std::make_shared<GraphItems::Polygon>(GraphItemInfo()
+        AddObject(std::make_unique<GraphItems::Polygon>(GraphItemInfo()
                                                             .Pen(wxNullPen)
                                                             .Text(_(L"Advanced Level"))
                                                             .Brush(wxNullBrush)
@@ -191,29 +191,29 @@ namespace Wisteria::Graphs
 
         // separator line
         auto levelsSpline =
-            std::make_shared<GraphItems::Polygon>(GraphItemInfo()
+            std::make_unique<GraphItems::Polygon>(GraphItemInfo()
                                                       .Pen(wxPen(lightGray))
                                                       .Brush(lightGray)
                                                       .SelectionBrush(selectionBrush)
                                                       .Scaling(GetScaling()),
                                                   m_dividerLinePoints);
         levelsSpline->SetShape(Polygon::PolygonShape::Spline);
-        AddObject(levelsSpline);
+        AddObject(std::move(levelsSpline));
 
         // draw the region lines
-        AddObject(std::make_shared<GraphItems::Polygon>(GraphItemInfo()
+        AddObject(std::make_unique<GraphItems::Polygon>(GraphItemInfo()
                                                             .Pen(wxPen(lightGray))
                                                             .Brush(lightGray)
                                                             .SelectionBrush(selectionBrush)
                                                             .Scaling(GetScaling()),
                                                         &m_levelLinePoints[3], 2));
-        AddObject(std::make_shared<GraphItems::Polygon>(GraphItemInfo()
+        AddObject(std::make_unique<GraphItems::Polygon>(GraphItemInfo()
                                                             .Pen(wxPen(lightGray))
                                                             .Brush(lightGray)
                                                             .SelectionBrush(selectionBrush)
                                                             .Scaling(GetScaling()),
                                                         &m_levelLinePoints[6], 2));
-        AddObject(std::make_shared<GraphItems::Polygon>(GraphItemInfo()
+        AddObject(std::make_unique<GraphItems::Polygon>(GraphItemInfo()
                                                             .Pen(wxPen(lightGray))
                                                             .Brush(lightGray)
                                                             .SelectionBrush(selectionBrush)
@@ -232,7 +232,7 @@ namespace Wisteria::Graphs
         for (const auto& level : GetLevelLabels())
             {
             GetPhysicalCoordinates(level.GetX(), level.GetY(), pt1);
-            auto levelLabel = std::make_shared<GraphItems::Label>(GraphItemInfo(level.GetLabel())
+            auto levelLabel = std::make_unique<GraphItems::Label>(GraphItemInfo(level.GetLabel())
                                                                       .Scaling(GetScaling())
                                                                       .Pen(wxNullPen)
                                                                       .Font(quadLabelFont)
@@ -243,7 +243,7 @@ namespace Wisteria::Graphs
                 levelLabel->GetFont().SetWeight(wxFontWeight::wxFONTWEIGHT_EXTRAHEAVY);
                 levelLabel->SetFontColor(GetColorScheme()->GetColor(0));
                 }
-            AddObject(levelLabel);
+            AddObject(std::move(levelLabel));
             }
         }
 
@@ -262,7 +262,7 @@ namespace Wisteria::Graphs
                    Canvas::GetDefaultCanvasHeightDIPs() &&
                L"Invalid backscreen size!");
 
-        auto points = std::make_shared<GraphItems::Points2D>(wxNullPen);
+        auto points = std::make_unique<GraphItems::Points2D>(wxNullPen);
         points->SetScaling(GetScaling());
         points->SetDPIScaleFactor(GetDPIScaleFactor());
         points->Reserve(GetDataset()->GetRowCount());
@@ -373,7 +373,7 @@ namespace Wisteria::Graphs
                     m_results[i].m_wordStatistic, m_results[i].m_sentenceStatistic));
                 }
             }
-        AddObject(points);
+        AddObject(std::move(points));
 
         if (m_results.size() == 1 && m_results.front().IsScoreInvalid())
             {
@@ -382,7 +382,7 @@ namespace Wisteria::Graphs
             const wxPoint textCoordinate(
                 GetPlotAreaBoundingBox().GetX() + (GetPlotAreaBoundingBox().GetWidth() / 2),
                 GetPlotAreaBoundingBox().GetY() + (GetPlotAreaBoundingBox().GetHeight() / 2));
-            AddObject(std::make_shared<Wisteria::GraphItems::Label>(
+            AddObject(std::make_unique<Wisteria::GraphItems::Label>(
                 GraphItemInfo(_(L"Invalid score: text is too difficult to be plotted"))
                     .Scaling(GetScaling())
                     .Pen(*wxBLACK_PEN)
