@@ -486,7 +486,6 @@ namespace Wisteria::Graphs
                 .Padding(4, 4, 4, 4)
                 .AnchorPoint(textCoordinate));
         mainLabel->SetBoxCorners(BoxCorners::Straight);
-        AddObject(std::move(mainLabel));
 
             {
             wxGCDC measureDC;
@@ -508,6 +507,8 @@ namespace Wisteria::Graphs
             legend->SetBoxCorners(BoxCorners::Straight);
             AddObject(std::move(legend));
             }
+
+        AddObject(std::move(mainLabel));
 
         CalculateScorePositions(dc);
 
