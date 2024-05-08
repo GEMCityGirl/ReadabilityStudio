@@ -8019,6 +8019,7 @@ authenticity
 authenticity's
 author
 author's
+authorable
 authored
 authoress
 authoresses
@@ -13180,6 +13181,9 @@ blithest
 blits
 blittable
 blitted
+blitter
+blitter's
+blitters
 blitting
 blitz
 blitz's
@@ -42552,6 +42556,9 @@ endangerment's
 endangerments
 endangers
 endarterectomy
+endcap
+endcap's
+endcaps
 endear
 endeared
 endearing
@@ -43063,6 +43070,7 @@ enplaning
 enqueue
 enqueued
 enqueues
+enqueuing
 enquire
 enquired
 enquirer
@@ -54621,6 +54629,7 @@ glitch's
 glitched
 glitches
 glitching
+glitchless
 glitter
 glittered
 glittering
@@ -58618,6 +58627,7 @@ headedness's
 headednesses
 header
 header's
+headerless
 headers
 headfirst
 headgear
@@ -65915,6 +65925,9 @@ infos
 infotainment
 infotainment's
 infotainments
+infotip
+infotip's
+infotips
 infra
 infraction
 infraction's
@@ -73908,6 +73921,9 @@ linesman
 linesman's
 linesmen
 linesmen's
+linestrip
+linestrip's
+linestrips
 lineup
 lineups
 ling
@@ -83617,6 +83633,7 @@ multifiber
 multifiber's
 multifidus
 multifigure
+multifile
 multifocal
 multifold
 multiform
@@ -87285,6 +87302,7 @@ nonscience
 nonscientific
 nonscientists
 nonscoring
+nonscrollable
 nonseasonal
 nonseasonally
 nonsectarian
@@ -96102,6 +96120,8 @@ phantasy
 phantasy's
 phantom
 phantom's
+phantomed
+phantoming
 phantoms
 pharaoh
 pharaoh's
@@ -96986,6 +97006,8 @@ picot's
 picoted
 picoting
 picots
+picowatt
+picowatts
 picowave
 picowave's
 picowaves
@@ -97750,6 +97772,9 @@ placeable
 placebo
 placebo's
 placebos
+placecard
+placecard's
+placecards
 placed
 placeholder
 placeholders
@@ -100477,6 +100502,10 @@ preachment
 preachment's
 preachments
 preachy
+preacquire
+preacquired
+preacquires
+preacquiring
 preaction
 preactions
 preadaptation
@@ -107018,6 +107047,9 @@ rebalance
 rebalanced
 rebalances
 rebalancing
+rebar
+rebar's
+rebars
 rebase
 rebased
 rebases
@@ -107726,6 +107758,10 @@ recovering
 recovers
 recovery
 recovery's
+recrawl
+recrawled
+recrawling
+recrawls
 recreancy
 recreant
 recreantly
@@ -110525,6 +110561,10 @@ reradiated
 reradiates
 reradiating
 reran
+rerasterize
+rerasterized
+rerasterizes
+rerasterizing
 reread
 rereadable
 rereading
@@ -110658,6 +110698,10 @@ resents
 resepulchers
 resequence
 resequenced
+reserialize
+reserialized
+reserializes
+reserializing
 reserpine
 reserpine's
 reserpines
@@ -112029,6 +112073,7 @@ RFC
 RFD
 RFU
 RFU's
+rgba
 Rh
 Rh's
 rhabdite
@@ -124871,6 +124916,9 @@ stacker
 stacker's
 stacking
 stackless
+stackpanel
+stackpanel's
+stackpanels
 stacks
 stacktrace
 stacktrace's
@@ -127031,6 +127079,7 @@ stubbornness's
 stubbornnesses
 stubborns
 stubby
+stubless
 stubs
 stucco
 stucco's
@@ -138621,6 +138670,10 @@ unachievable
 unachieved
 unacknowledged
 unacquainted
+unacquire
+unacquired
+unacquires
+unacquiring
 unactivated
 unadaptable
 unadapted
@@ -140610,6 +140663,7 @@ uninitiated
 uninjectable
 uninjured
 uninominal
+uninspected
 uninspired
 uninspiring
 uninstall
@@ -140617,6 +140671,8 @@ uninstallable
 uninstallation
 uninstalled
 uninstaller
+uninstaller's
+uninstallers
 uninstalling
 uninstalls
 uninstantiated
@@ -140644,6 +140700,7 @@ uninteresting
 uninterestingly
 uninterpretable
 uninterpreted
+uninterruptable
 uninterrupted
 uninterruptedly
 uninterruptedness
@@ -141753,6 +141810,7 @@ unshifted
 unshifting
 unshod
 unshorn
+unshown
 unshrinking
 unsifted
 unsighted
@@ -142067,6 +142125,7 @@ untowardness
 untowardness's
 untraceable
 untraced
+untrackable
 untracked
 untraditional
 untrained
@@ -143859,6 +143918,7 @@ verifiability's
 verifiable
 verifiableness
 verifiableness's
+verifiably
 verification
 verifications
 verified
@@ -146231,6 +146291,9 @@ wayleave
 wayleave's
 wayleaves
 waymarked
+waypoint
+waypoint's
+waypoints
 ways
 wayside
 wayside's

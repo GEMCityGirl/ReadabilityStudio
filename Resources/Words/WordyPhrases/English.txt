@@ -746,6 +746,7 @@ aligment	alignment	3
 alignement	alignment	3		
 alignemnt	alignment	3		
 alignemnts	alignments	3		
+alignmen	alignment	3		
 all and all	all in all	3		
 all be it	albeit	3		
 all bets are off	any previous arrangements/agreements are no longer valid	2		
@@ -3408,6 +3409,8 @@ commmenting	commenting	3
 commments	comments	3		
 commodious	roomy	0		
 commoditiy	commodity	3		
+Commodo	Comodo	3		
+Commodo's	Comodo's	3		
 common bond	bond	0		
 common bonds	bonds	0		
 commongly	commonly	3		
@@ -3966,9 +3969,14 @@ continuing into the future	continuing	0
 continuing on	continuing	0		
 continuing to be	remaining	0		
 continuing to remain	remaining	1		
+contol	control	3		
+contol's	control's	3		
+contolled	controlled	3		
 contoller	controller	3		
 contoller's	controller's	3		
 contollers	controllers	3		
+contolling	controlling	3		
+contols	controls	3		
 contort	twist, bend	0		
 contorted	twisted, bent	0		
 contorting	twisting, bending	0		
@@ -4571,6 +4579,9 @@ delusionally	delusively	3
 demenor	demeanor	3		
 demin	denim	3		
 demise	death	0		
+demlimit	delimit	3		
+demlimited	delimited	3		
+demlimits	delimits	3		
 demographical	demographic	3		
 demolision	demolition	3		
 demoninator	denominator	3		
@@ -5056,6 +5067,12 @@ dispertion	dispersion	3
 dispicable	despicable	3		
 dispite	despite	3		
 displacment	displacement	3		
+displayign	displaying	3		
+disply	display	3		
+disply's	display's	3		
+displyed	displayed	3		
+displying	displaying	3		
+displys	displays	3		
 dispossess	deprive	0		
 dispossessed	deprived	0		
 dispossesses	deprives	0		
@@ -5785,6 +5802,9 @@ entreprenuer's	entrepreneur's	3
 entreprenuers	entrepreneurs	3		
 entreprenur	entrepreneur	3		
 enuf	enough	3		
+enumarant	enumerant	3		
+enumarant's	enumerant's	3		
+enumarants	enumerants	3		
 enumarate	enumerate	3		
 enumarated	enumerated	3		
 enumarates	enumerates	3		
@@ -6721,6 +6741,9 @@ fragemented	fragmented	3
 fragementing	fragmenting	3		
 fragements	fragments	3		
 frame of mind	attitude, posture, view, viewpoint	0		
+frameork	framework	3		
+frameork's	framework's	3		
+frameorks	frameworks	3		
 framwork	framework	3		
 framwork's	framework's	3		
 framworks	frameworks	3		
@@ -6840,6 +6863,9 @@ galatic	galactic	3
 Galations	Galatians	3		
 gallaxies	galaxies	3		
 galvinized	galvanized	3		
+gampad	gamepad	3		
+gampad's	gamepad's	3		
+gampads	gamepads	3		
 ganerate	generate	3		
 ganes	games, gains	3		
 ganster	gangster	3		
@@ -7056,6 +7082,7 @@ going off half-cocked	acting hastily	2
 going to pot	deteriorating, falling apart	2		
 going to the dogs	deteriorating, falling apart	2		
 going to town	doing it excitedly	2		
+going under the assumption	assuming	0		
 gonig	going	3		
 goody two-shoes	an excessively good person	2		
 goofyness	goofiness	3		
@@ -7525,6 +7552,9 @@ holds his own	withstand pressure	2
 holliday	holiday	3		
 holliday's	holiday's	3		
 hollidays	holidays	3		
+homegeneities	homogeneities	3		
+homegeneity	homogeneity	3		
+homegeneity's	homogeneity's	3		
 homogeneize	homogenize	3		
 homogeneized	homogenized	3		
 homogeneous	similar	0		
@@ -7751,6 +7781,10 @@ impeccable	faultless	0
 impeccably	faultlessly	0		
 impecunious	poor	0		
 impedence	impedance	3		
+impelment	implement	3		
+impelmented	implemented	3		
+impelmenting	implementing	3		
+impelments	implements	3		
 impementation	implementation	3		
 impementations	implementations	3		
 imperative	urgent	0		
@@ -8196,6 +8230,8 @@ indepenent	independent	3
 indepenently	independently	3		
 indespensable	indispensable	3		
 indespensible	indispensable	3		
+indeterminant	indeterminate	3		
+indeterminantly	indeterminately	3		
 indeterminate	vague	0		
 indeterminately	vaguely	0		
 indian giver	one who demands the return of a gift (this is highly offensive and should be avoided)	2		
@@ -9504,6 +9540,9 @@ managable	manageable	3
 managemment	management	3		
 managemment's	management's	3		
 managemments	managements	3		
+managent	management	3		
+managent's	management's	3		
+managents	managements	3		
 managmenet	management	3		
 managment	management	3		
 maneouvre	manoeuvre	3		
@@ -9578,6 +9617,7 @@ masticates	chews	0
 masticating	chewing	0		
 mataphysical	metaphysical	3		
 match perfectly	match	0		
+matche	matches, matched	3		
 matchin	matching	3		
 matcing	matching	3		
 materalists	materialist	3		
@@ -9991,7 +10031,6 @@ musicials	musicals	3
 musn't	mustn't	3		
 must decided	must have decided	3		
 must likely	most likely	3		
-must to	have to, must	3		
 mustn't not	mustn't	3		
 mutable	fickle, prone to change	0		
 mute point	moot point	3		
@@ -11146,6 +11185,7 @@ permitted	let	0
 permitting	letting	0		
 permuation	permutation	3		
 permuations	permutations	3		
+perodic	periodic	3		
 perogative	prerogative	3		
 peroid	period	3		
 peroids	periods	3		
@@ -12796,6 +12836,10 @@ repeats back	repeats	1
 repective	respective	3		
 repectively	respectively	3		
 repeition	repetition	3		
+repend	resend	3		
+repending	resending	3		
+repends	resends	3		
+repent	resent	3		
 repentance	regret	0		
 repentence	repentance	3		
 repentent	repentant	3		
@@ -13048,6 +13092,9 @@ retreive	retrieve	3
 retreived	retrieved	3		
 retreives	retrieves	3		
 retreiving	retrieving	3		
+retrival	retrieval	3		
+retrival's	retrieval's	3		
+retrivals	retrievals	3		
 retrive	retrieve	3		
 retrived	retrieved	3		
 retrives	retrieves	3		
@@ -13882,6 +13929,7 @@ spurios	spurious	3
 sqaure	square	3		
 square deal	fair deal	2		
 squiming	squirming	3		
+sreates	creates	3		
 stablility	stability	3		
 stablished	established	3		
 stack on top of each other	stack	0		
@@ -14945,7 +14993,7 @@ to being with	to begin with	3
 to explorer the	to explore the	3		
 to generated	to generate, to be generated	3		identifiers;IDs;invalid;results;strings;text;valid;values
 to hell in a hand basket	going very badly	2		
-to late	too late	3	early;mid;subject	charges;fees
+to late	too late	3	early;mid;subject	bind;charges;fees
 to make matters worse	worse yet	0		
 to no avail	unsuccessful	0		
 to provided	to provide	3		

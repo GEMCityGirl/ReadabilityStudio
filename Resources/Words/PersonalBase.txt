@@ -4758,6 +4758,7 @@ Coray
 Corazana
 Corazon
 Corballis
+Corbató
 Corbeil
 Corbet
 Corbett
@@ -8053,6 +8054,7 @@ Freytag
 Frick
 Frida
 Friden
+Frideric
 Fridmund
 Fridolf
 Fridriksson

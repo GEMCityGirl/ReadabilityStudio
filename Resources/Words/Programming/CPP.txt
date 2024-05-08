@@ -355,6 +355,7 @@ ostream
 ostream's
 ostreams
 ostringstream
+outptr
 override
 pch
 permutable
@@ -504,6 +505,7 @@ thread_local
 throw
 tolower
 toupper
+towupper
 tprintf
 transaction_safe
 transaction_safe_dynamic
@@ -578,6 +580,7 @@ wsprintf
 wstring
 wstringbuf
 wstringstream
+wvnsprintf
 wvsprintf
 xor
 xor_eq

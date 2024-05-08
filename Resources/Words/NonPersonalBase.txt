@@ -1126,6 +1126,7 @@ Centrino
 Cerave
 Ceremonia
 CERN
+Certum
 Cervarix
 Cessna
 Cetaphil
@@ -1334,6 +1335,7 @@ Comcast
 Comdex
 Comenity
 Comerica
+Comodo
 Comoros
 Compaq
 Compton
@@ -3084,6 +3086,7 @@ Klux
 Knicks
 Knoodle
 Knugget
+Kochava
 Kodachrome
 Kodak
 Koenigsberg
@@ -3336,6 +3339,7 @@ Ludhiana
 Lufthansa
 Luftwaffe
 LuLuLemon
+Lumia
 Luminarium
 Lumière
 Lumpur
@@ -5017,6 +5021,7 @@ Seattle
 SeaWorld
 Secheron
 secobarbital
+Sectigo
 Secureworks
 Sedgefield
 Sedgemoor
@@ -5212,6 +5217,7 @@ Socratic
 Sodom
 SoFi
 Softgrid
+Softice
 Soho
 Solara
 Solarcentury
@@ -6261,6 +6267,7 @@ Winky
 Winnetka
 Winnette
 Winnipeg
+WinRT
 Winsborough
 Winsock
 WinZip
