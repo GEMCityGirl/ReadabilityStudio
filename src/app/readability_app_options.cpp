@@ -3697,7 +3697,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         XML_VALUE.data(),
         wxGetApp().GetWebHarvester().GetMinimumDownloadFileSizeInKilobytes().value_or(5));
     configSection->InsertEndChild(downloadMinSize);
-    
+
     auto jsCookies = doc.NewElement(XML_USE_JS_COOKIES.data());
     jsCookies->SetAttribute(XML_VALUE.data(), bool_to_int(IsUsingJavaScriptCookies()));
     configSection->InsertEndChild(jsCookies);

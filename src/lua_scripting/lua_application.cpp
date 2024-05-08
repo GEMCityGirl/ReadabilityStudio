@@ -425,11 +425,10 @@ namespace LuaScripting
                                                    wxGetApp().GetAppSubName(),
                                                    wxGetApp().GetVendorName(), true);
 
-            wxSplashScreen* splash =
+            [[maybe_unused]] wxSplashScreen* splash =
                 new wxSplashScreen(bitmap, wxSPLASH_CENTRE_ON_SCREEN | wxSPLASH_TIMEOUT, 60000,
                                    nullptr, -1, wxDefaultPosition, wxDefaultSize,
                                    wxFRAME_NO_TASKBAR | wxSTAY_ON_TOP | wxSPLASH_NO_TIMEOUT);
-            wxUnusedVar(splash);
             }
         lua_pushboolean(L, true);
         return 1;
