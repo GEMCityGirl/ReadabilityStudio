@@ -110,6 +110,12 @@ class BaseProjectView : public wxView
         }
 
     [[nodiscard]]
+    const ProjectDocChildFrame* GetDocFrame() const noexcept
+        {
+        return m_frame;
+        }
+
+    [[nodiscard]]
     wxRibbonBar* GetRibbon() noexcept
         {
         return m_ribbon;
