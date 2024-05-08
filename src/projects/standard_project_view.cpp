@@ -57,10 +57,6 @@ wxIMPLEMENT_DYNAMIC_CLASS(ProjectView, BaseProjectView)
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRibbonButtonCommand, this, wxID_ZOOM_OUT);
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRibbonButtonCommand, this, wxID_ZOOM_FIT);
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRibbonButtonCommand, this,
-         XRCID("ID_MULTI_COLUMN_SORT_DESCENDING"));
-    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRibbonButtonCommand, this,
-         XRCID("ID_MULTI_COLUMN_SORT_ASCENDING"));
-    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRibbonButtonCommand, this,
          XRCID("ID_EXCLUDE_SELECTED"));
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectView::OnRibbonButtonCommand, this,
          XRCID("ID_SORT_DESCENDING"));
@@ -160,8 +156,6 @@ wxIMPLEMENT_DYNAMIC_CLASS(ProjectView, BaseProjectView)
     Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, XRCID("ID_SORT_ASCENDING"));
     Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, XRCID("ID_SORT_DESCENDING"));
     Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, XRCID("ID_EXCLUDE_SELECTED"));
-    Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, XRCID("ID_MULTI_COLUMN_SORT_ASCENDING"));
-    Bind(wxEVT_MENU, &ProjectView::OnMenuCommand, this, XRCID("ID_MULTI_COLUMN_SORT_DESCENDING"));
 
     Bind(
         wxEVT_RIBBONBUTTONBAR_CLICKED,

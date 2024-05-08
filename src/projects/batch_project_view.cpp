@@ -40,10 +40,6 @@ wxIMPLEMENT_DYNAMIC_CLASS(BatchProjectView, BaseProjectView)
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &BatchProjectView::OnRibbonButtonCommand, this,
          wxID_ZOOM_FIT);
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &BatchProjectView::OnRibbonButtonCommand, this,
-         XRCID("ID_MULTI_COLUMN_SORT_ASCENDING"));
-    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &BatchProjectView::OnRibbonButtonCommand, this,
-         XRCID("ID_MULTI_COLUMN_SORT_DESCENDING"));
-    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &BatchProjectView::OnRibbonButtonCommand, this,
          XRCID("ID_SAVE_ITEM"));
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &BatchProjectView::OnRibbonButtonCommand, this,
          XRCID("ID_VIEW_ITEM"));
@@ -142,10 +138,6 @@ wxIMPLEMENT_DYNAMIC_CLASS(BatchProjectView, BaseProjectView)
 
     Bind(wxEVT_MENU, &BatchProjectView::OnBatchExportFilteredDocuments, this,
          XRCID("ID_BATCH_EXPORT_FILTERED_DOCUMENTS"));
-    Bind(wxEVT_MENU, &BatchProjectView::OnMenuCommand, this,
-         XRCID("ID_MULTI_COLUMN_SORT_ASCENDING"));
-    Bind(wxEVT_MENU, &BatchProjectView::OnMenuCommand, this,
-         XRCID("ID_MULTI_COLUMN_SORT_DESCENDING"));
     Bind(wxEVT_MENU, &BatchProjectView::OnMenuCommand, this, XRCID("ID_SAVE_ITEM"));
     Bind(wxEVT_MENU, &BatchProjectView::OnMenuCommand, this, XRCID("ID_COPY_ALL"));
     Bind(wxEVT_MENU, &BatchProjectView::OnMenuCommand, this, XRCID("ID_COPY_WITH_COLUMN_HEADERS"));

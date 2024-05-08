@@ -441,10 +441,6 @@ ProjectDocChildFrame::ProjectDocChildFrame(wxDocument *doc,
     Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
         XRCID("ID_EXCLUDE_SELECTED"));
     Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
-        XRCID("ID_MULTI_COLUMN_SORT_ASCENDING"));
-    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
-        XRCID("ID_MULTI_COLUMN_SORT_DESCENDING"));
-    Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
         XRCID("ID_SAVE_ITEM"));
     Bind(wxEVT_MENU, &ProjectDocChildFrame::OnMenuCapture, this,
         XRCID("ID_COPY_ALL"));
