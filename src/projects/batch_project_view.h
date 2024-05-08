@@ -445,7 +445,6 @@ class BatchProjectView final : public BaseProjectView
     Wisteria::UI::HtmlTablePanel* m_statsReport{ nullptr };
 
     wxDECLARE_DYNAMIC_CLASS(BatchProjectView);
-    wxDECLARE_EVENT_TABLE();
     };
 
 #endif //__BATCH_PROJECT_VIEW_H__
