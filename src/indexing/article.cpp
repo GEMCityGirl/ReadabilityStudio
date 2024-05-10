@@ -64,6 +64,7 @@ bool grammar::is_incorrect_english_article::operator()(std::wstring_view article
           (traits::case_insensitive_ex::eq_case_sensitive(word[0], 'S') &&
            characters::is_character::is_consonant(word[1]) &&
            (!traits::case_insensitive_ex::eq_case_sensitive(word[1], 'C') &&
+            !traits::case_insensitive_ex::eq_case_sensitive(word[1], 'H') &&
             !traits::case_insensitive_ex::eq_case_sensitive(word[1], 'L') &&
             !traits::case_insensitive_ex::eq_case_sensitive(word[1], 'M') &&
             !traits::case_insensitive_ex::eq_case_sensitive(word[1], 'T') &&
@@ -366,6 +367,11 @@ bool grammar::is_incorrect_english_article::is_a_exception(std::wstring_view wor
             (word.length() == 3 &&
              traits::case_insensitive_ex::compare_case_sensitive(word.data(), L"UNC", 3) == 0) ||
             traits::case_insensitive_ex::compare(word.data(), L"uter", 4) == 0)
+            {
+            return true;
+            }
+        // "a UX" (User eXperience) is correct
+        else if (word.length() >= 2 && traits::case_insensitive_ex::eq(word[1], L'x'))
             {
             return true;
             }
