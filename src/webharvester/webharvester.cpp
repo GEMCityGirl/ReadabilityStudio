@@ -179,8 +179,21 @@ wxString WebHarvester::DownloadFile(wxString& Url, const wxString& fileExtension
         int responseCode{ 200 };
         if (ReadWebPage(Url, fileText, contentType, statusText, responseCode, true))
             {
-            const std::wstring cookies = html_utilities::javascript_hyperlink_parse::get_cookies(
+            std::wstring cookies = html_utilities::javascript_hyperlink_parse::get_cookies(
                 { fileText.wc_str(), fileText.length() });
+            if (m_persistJsCookies)
+                {
+                m_JsCookies.insert(cookies);
+                cookies.clear();
+                for (const auto& cookie : m_JsCookies)
+                    {
+                    cookies += cookie + L';';
+                    }
+                if (cookies.length() > 0 && cookies[cookies.length() - 1] == L';')
+                    {
+                    cookies.erase(cookies.length() - 1);
+                    }
+                }
             m_downloader.SetCookies(cookies.c_str());
             }
         }
@@ -466,10 +479,23 @@ bool WebHarvester::CrawlLinks(wxString& url,
             }
         if (m_useJsCookies)
             {
-            const std::wstring cookies = html_utilities::javascript_hyperlink_parse::get_cookies(
+            std::wstring cookies = html_utilities::javascript_hyperlink_parse::get_cookies(
                 { fileText.wc_str(), fileText.length() });
             if (cookies.length() > 0)
                 {
+                if (m_persistJsCookies)
+                    {
+                    m_JsCookies.insert(cookies);
+                    cookies.clear();
+                    for (const auto& cookie : m_JsCookies)
+                        {
+                        cookies += cookie + L';';
+                        }
+                    if (cookies.length() > 0 && cookies[cookies.length() - 1] == L';')
+                        {
+                        cookies.erase(cookies.length() - 1);
+                        }
+                    }
                 m_downloader.SetCookies(cookies.c_str());
 
                 if (!ReadWebPage(url, fileText, contentType, statusText, responseCode, true))

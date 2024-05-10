@@ -33,6 +33,13 @@ This is useful when connecting to pages that won't load as expected unless certa
 This will result in an additional call to read each webpage and is only recommended if JavaScript is being used to block non-browser connections.
 :::
 
+**Persist cookies for current sites**: If using JavaScript cookies, check this option to save and resend cookies from each site.
+As each site is harvested, any cookies from that site and previous ones will be sent.
+This is useful if harvesting pages from the different portions of a website that may expect the same cookies.
+
+Note that cookies will only persist for the pages currently being harvested from this dialog.
+All cookies will be cleared once this harvesting session is complete.
+
 **Log broken links**: Check this option to check for broken links while harvesting and save them to the [log report](#log-report).
 
 ::: {.warningsection data-latex=""}

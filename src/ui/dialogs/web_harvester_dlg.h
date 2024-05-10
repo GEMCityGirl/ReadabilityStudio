@@ -87,6 +87,22 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
         return m_useJsCookies;
         }
 
+    /** @brief If using JavaScript cookies, store and send all encountered cookies for
+            all sites being crawled during a given session.
+        @param presistCookies @c true to reuse cookies.*/
+    void PersistJavaScriptCookies(const bool presistCookies)
+        {
+        m_persistJsCookies = presistCookies;
+        }
+
+    /// @returns If using JavaScript cookies, store and send all encountered cookies for
+    ///     all sites being crawled during a given session.
+    [[nodiscard]]
+    bool IsPersistingJavaScriptCookies() const noexcept
+        {
+        return m_persistJsCookies;
+        }
+
     [[nodiscard]]
     int GetDomainRestriction() const noexcept
         {
@@ -158,6 +174,7 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
     constexpr static int ID_DOMAINS_PAGE = wxID_HIGHEST + 8;
     constexpr static int ID_DOWNLOAD_PAGE = wxID_HIGHEST + 9;
     constexpr static int ID_LOAD_URLS_BUTTON = wxID_HIGHEST + 10;
+    constexpr static int ID_JS_COOKIES_CHECKBOX = wxID_HIGHEST + 11;
 
     void OnOK([[maybe_unused]] wxCommandEvent& event);
     void OnDownloadCheck([[maybe_unused]] wxCommandEvent& event);
@@ -185,6 +202,7 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
     wxString m_userAgent;
     bool m_disablePeerVerify{ false };
     bool m_useJsCookies{ false };
+    bool m_persistJsCookies{ false };
     wxString m_fullDocFilter;
     wxString m_selectedDocFilter;
     int m_selectedDomainRestriction{ 0 };
@@ -213,6 +231,7 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
     wxStaticText* m_minFileSizeLabel{ nullptr };
     wxSpinCtrl* m_minFileSizeCtrl{ nullptr };
     wxBitmapButton* m_folderBrowseButton{ nullptr };
+    wxCheckBox* m_persistCookiesCheck{ nullptr };
 
     wxArrayString m_urls;
     std::shared_ptr<Wisteria::UI::ListCtrlExDataProvider> m_urlData{

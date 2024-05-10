@@ -170,6 +170,7 @@ class ToolsOptionsDlg final : public wxDialog
     constexpr static int ID_DOCUMENT_DESCRIPTION_FIELD = wxID_HIGHEST + 83;
     constexpr static int ID_FILE_LIST = wxID_HIGHEST + 84;
     constexpr static int ID_DOCUMENT_PATH_FIELD = wxID_HIGHEST + 85;
+    constexpr static int ID_JS_COOKIES_CHECKBOX = wxID_HIGHEST + 86;
 
     // button events
     void OnExportSettings([[maybe_unused]] wxCommandEvent& event);
@@ -903,6 +904,7 @@ class ToolsOptionsDlg final : public wxDialog
 
     BaseProjectDoc* m_readabilityProjectDoc{ nullptr };
     wxRadioBox* m_docStorageRadioBox{ nullptr };
+    wxCheckBox* m_persistCookiesCheck{ nullptr };
     wxCheckBox* m_realTimeUpdateCheckBox{ nullptr };
     wxCheckBox* m_ignoreCopyrightsCheckBox{ nullptr };
     wxCheckBox* m_ignoreCitationsCheckBox{ nullptr };
@@ -972,6 +974,7 @@ class ToolsOptionsDlg final : public wxDialog
     BackupVariable<wxString> m_userAgent;
     BackupVariable<bool> m_disablePeerVerify;
     BackupVariable<bool> m_useJsCookies;
+    BackupVariable<bool> m_persistJsCookies;
 
     // project settings
     BackupVariable<int> m_projectLanguage;

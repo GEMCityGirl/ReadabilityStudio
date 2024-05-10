@@ -526,7 +526,8 @@ class WebHarvester
             unless certain cookies are sent back to the server.
         @warning This will result in an additional call to read each webpage and is
             only recommended if JavaScript is being used to block headless connections.
-        @param useCookies @c true to reconnect with cookies in the JavaScript.*/
+        @param useCookies @c true to reconnect with cookies in the JavaScript.
+        @sa PersistJavaScriptCookies().*/
     void UseJavaScriptCookies(const bool useCookies) { m_useJsCookies = useCookies; }
 
     /// @returns Whether cookies should be extracted from JS code and sent back to the
@@ -536,6 +537,34 @@ class WebHarvester
         {
         return m_useJsCookies;
         }
+
+    /** @brief If using JavaScript cookies, store and send all encountered cookies for
+            all sites being crawled during a given session.
+        @details Client will be responsible for clearing persisting cookies via ClearCookies().
+        @note UseJavaScriptCookies() must be set to @c true; otherwise, this will be ignored.
+        @param presistCookies @c true to reuse cookies. If @c false, cookies will not be reused
+            and ClearCookies() will be called.
+        @sa UseJavaScriptCookies(), ClearCookies().*/
+    void PersistJavaScriptCookies(const bool presistCookies)
+        {
+        m_persistJsCookies = presistCookies;
+        if (!m_persistJsCookies)
+            {
+            ClearCookies();
+            }
+        }
+
+    /// @returns If using JavaScript cookies, store and send all encountered cookies for
+    ///     all sites being crawled during a given session.
+    [[nodiscard]]
+    bool IsPersistingJavaScriptCookies() const noexcept
+        {
+        return m_persistJsCookies;
+        }
+
+    /// @brief Clears any JavaScript cookies if they are being reused.
+    /// @sa UseJavaScriptCookies(), PersistJavaScriptCookies().
+    void ClearCookies() { m_JsCookies.clear(); }
 
     /// @brief Sets the minimum size that a file has to be to download it.
     /// @param size The minimum file size, in kilobytes.
@@ -632,12 +661,14 @@ class WebHarvester
     wxString m_userAgent;
     bool m_disablePeerVerify{ false };
     bool m_useJsCookies{ false };
+    bool m_persistJsCookies{ false };
     string_util::case_insensitive_wstring m_domain;
     string_util::case_insensitive_wstring m_fullDomain;
     string_util::case_insensitive_wstring m_fullDomainFolderPath;
     std::set<string_util::case_insensitive_wstring> m_allowableWebFolders;
     std::set<wxString, wxStringLessNoCase> m_fileExtensions;
     // cached state information
+    std::set<wxString, wxStringLessNoCase> m_JsCookies;
     std::set<wxString, wxStringLessWebPath> m_harvestedLinks;
     std::set<wxString> m_downloadedFiles;
     std::map<wxString, wxString> m_brokenLinks;

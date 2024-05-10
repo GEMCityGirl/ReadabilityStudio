@@ -5466,9 +5466,15 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
         OnViewLogReport(unusedCmd);
         }
 
+    // In case JS cookies are being reused, clear them from the current session
+    // (we are treating crawling multiple sites from here as one session, that restarts
+    //  when the dialog is opened up again).
+    wxGetApp().GetWebHarvester().ClearCookies();
+
     // update global internet options that mirror the same options from the dialog
     wxGetApp().GetAppOptions().DisablePeerVerify(webHarvestDlg.IsPeerVerifyDisabled());
     wxGetApp().GetAppOptions().UseJavaScriptCookies(webHarvestDlg.IsUsingJavaScriptCookies());
+    wxGetApp().GetAppOptions().PersistJavaScriptCookies(webHarvestDlg.IsPersistingJavaScriptCookies());
     wxGetApp().GetAppOptions().SetUserAgent(webHarvestDlg.GetUserAgent());
 
     wxMessageBox(_(L"Web crawl complete."), _(L"Web Harvester"), wxOK | wxICON_INFORMATION);

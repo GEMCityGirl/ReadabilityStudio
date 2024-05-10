@@ -330,14 +330,23 @@ void WebHarvesterDlg::CreateControls()
                                   .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
 
         // JS cookies
-        extendedOpsSizer->Add(new wxCheckBox(Panel, wxID_ANY,
-                                             _(L"Use JavaScript cookies"),
-                                             wxDefaultPosition, wxDefaultSize, 0,
-                                             wxGenericValidator(&m_useJsCookies)),
+        extendedOpsSizer->Add(new wxCheckBox(Panel, ID_JS_COOKIES_CHECKBOX,
+                                             _(L"Use JavaScript cookies"), wxDefaultPosition,
+                                             wxDefaultSize, 0, wxGenericValidator(&m_useJsCookies)),
                               wxSizerFlags()
                                   .Expand()
                                   .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
                                   .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
+
+        m_persistCookiesCheck = new wxCheckBox(
+            Panel, wxID_ANY, _(L"Persist cookies for current sites"), wxDefaultPosition,
+            wxDefaultSize, 0, wxGenericValidator(&m_persistJsCookies));
+        extendedOpsSizer->Add(m_persistCookiesCheck,
+                              wxSizerFlags()
+                                  .Expand()
+                                  .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
+                                  .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
+        m_persistCookiesCheck->Enable(m_useJsCookies);
 
         // check links
         extendedOpsSizer->Add(new wxCheckBox(Panel, wxID_ANY, _(L"&Log broken links"),
@@ -529,6 +538,7 @@ void WebHarvesterDlg::UpdateHarvesterSettings(WebHarvester& harvester)
     harvester.SetUserAgent(GetUserAgent());
     harvester.DisablePeerVerify(IsPeerVerifyDisabled());
     harvester.UseJavaScriptCookies(IsUsingJavaScriptCookies());
+    harvester.PersistJavaScriptCookies(IsPersistingJavaScriptCookies());
     harvester.DownloadFilesWhileCrawling(IsDownloadFilesLocally());
     harvester.SetDownloadDirectory(GetDownloadFolder());
     harvester.KeepWebPathWhenDownloading(IsRetainingWebsiteFolderStructure());
@@ -553,6 +563,7 @@ void WebHarvesterDlg::UpdateFromHarvesterSettings(const WebHarvester& harvester)
     m_userAgent = harvester.GetUserAgent();
     m_disablePeerVerify = harvester.IsPeerVerifyDisabled();
     m_useJsCookies = harvester.IsUsingJavaScriptCookies();
+    m_persistJsCookies = harvester.IsPersistingJavaScriptCookies();
     m_logBrokenLinks = harvester.IsSearchingForBrokenLinks();
     m_selectedDomainRestriction = static_cast<int>(harvester.GetDomainRestriction());
     m_downloadFilesLocally = harvester.IsDownloadingFilesWhileCrawling();
@@ -594,8 +605,17 @@ bool WebHarvesterDlg::Create(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
          WebHarvesterDlg::ID_LOAD_URLS_BUTTON);
     Bind(wxEVT_BUTTON, &WebHarvesterDlg::OnDeleteDomainClick, this,
          WebHarvesterDlg::ID_DELETE_DOMAIN_BUTTON);
+
     Bind(wxEVT_CHECKBOX, &WebHarvesterDlg::OnDownloadCheck, this,
          WebHarvesterDlg::ID_DOWNLOAD_CHECKBOX);
+    Bind(
+        wxEVT_CHECKBOX,
+        [this]([[maybe_unused]] wxCommandEvent& event)
+        {
+            TransferDataFromWindow();
+            m_persistCookiesCheck->Enable(m_useJsCookies);
+        },
+        WebHarvesterDlg::ID_JS_COOKIES_CHECKBOX);
     Bind(wxEVT_COMBOBOX, &WebHarvesterDlg::OnDomainComboSelect, this,
          WebHarvesterDlg::ID_DOMAIN_COMBO);
 

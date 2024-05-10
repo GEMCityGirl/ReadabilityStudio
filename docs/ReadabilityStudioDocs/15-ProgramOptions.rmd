@@ -59,6 +59,13 @@ This is useful when connecting to pages that won't load as expected unless certa
 This will result in an additional call to read each webpage and is only recommended if JavaScript is being used to block non-browser connections.
 :::
 
+**Persist cookies during each harvest**: If using JavaScript cookies, check this option to save and resend cookies from each site.
+As each site is harvested, any cookies from that site and previous ones will be sent.
+This is useful if harvesting pages from the different portions of a website that may expect the same cookies.
+
+Note that cookies will only persist for the pages being harvested from one instance of the **Web Harvester** dialog.
+All cookies will be cleared once the dialog's session is complete.
+
 ### Warnings & Prompts {-}
 
 **Customize**: Click this button to display the **Warnings & Prompts Display** dialog. This dialog enables you to display or suppress various warnings and prompts, including:

@@ -1595,6 +1595,22 @@ class ReadabilityAppOptions
         return m_useJsCookies;
         }
 
+    /** @brief If using JavaScript cookies, store and send all encountered cookies for
+            all sites being crawled during a given session.
+        @param presistCookies @c true to reuse cookies.*/
+    void PersistJavaScriptCookies(const bool presistCookies)
+        {
+        m_persistJsCookies = presistCookies;
+        }
+
+    /// @returns If using JavaScript cookies, store and send all encountered cookies for
+    ///     all sites being crawled during a given session.
+    [[nodiscard]]
+    bool IsPersistingJavaScriptCookies() const noexcept
+        {
+        return m_persistJsCookies;
+        }
+
     // graph information
     //------------------------------
     void ShowAllBoxPlotPoints(const bool show) noexcept { m_boxPlotShowAllPoints = show; }
@@ -2645,6 +2661,7 @@ class ReadabilityAppOptions
                           _DT(L") WebKit/12.0 WebLion") };
     bool m_disablePeerVerify{ false };
     bool m_useJsCookies{ false };
+    bool m_persistJsCookies{ false };
     // graph information
     bool m_boxPlotShowAllPoints{ false };
     bool m_boxDisplayLabels{ false };
@@ -3008,6 +3025,7 @@ class ReadabilityAppOptions
     const std::string_view XML_USER_AGENT{ _DT("user-agent") };
     const std::string_view XML_DISABLE_PEER_VERIFY{ _DT("disable-peer-verify") };
     const std::string_view XML_USE_JS_COOKIES{ _DT("use-javascript-cookies") };
+    const std::string_view XML_PERSIST_COOKIES{ _DT("persist-cookies") };
     const std::string_view XML_DOWNLOAD_MIN_FILESIZE{ _DT("download-min-file-size") };
     const std::string_view XML_DOWNLOAD_KEEP_FOLDER_STRUCTURE{ _DT(
         "download-keep-web-folder-structure") };

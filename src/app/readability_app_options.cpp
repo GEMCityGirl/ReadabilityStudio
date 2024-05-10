@@ -347,8 +347,10 @@ void ReadabilityAppOptions::ResetSettings()
     wxGetApp().GetWebHarvester().SetUserAgent(m_userAgent);
     m_disablePeerVerify = false;
     m_useJsCookies = false;
+    m_persistJsCookies = false;
     wxGetApp().GetWebHarvester().DisablePeerVerify(m_disablePeerVerify);
     wxGetApp().GetWebHarvester().UseJavaScriptCookies(m_useJsCookies);
+    wxGetApp().GetWebHarvester().PersistJavaScriptCookies(m_persistJsCookies);
     // graph information
     m_boxPlotShowAllPoints = false;
     m_boxDisplayLabels = false;
@@ -804,6 +806,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
             const int value = useJsCookiesNode->ToElement()->IntAttribute(XML_VALUE.data(), 0);
             m_useJsCookies = int_to_bool(value);
             wxGetApp().GetWebHarvester().UseJavaScriptCookies(m_useJsCookies);
+            }
+
+        auto persistCookiesNode = configRootNode->FirstChildElement(XML_PERSIST_COOKIES.data());
+        if (persistCookiesNode != nullptr)
+            {
+            const int value = persistCookiesNode->ToElement()->IntAttribute(XML_VALUE.data(), 0);
+            m_persistJsCookies = int_to_bool(value);
+            wxGetApp().GetWebHarvester().PersistJavaScriptCookies(m_persistJsCookies);
             }
 
         auto disablePeerVerifyNode =
@@ -3701,6 +3711,10 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto jsCookies = doc.NewElement(XML_USE_JS_COOKIES.data());
     jsCookies->SetAttribute(XML_VALUE.data(), bool_to_int(IsUsingJavaScriptCookies()));
     configSection->InsertEndChild(jsCookies);
+
+    auto persistCookies = doc.NewElement(XML_PERSIST_COOKIES.data());
+    persistCookies->SetAttribute(XML_VALUE.data(), bool_to_int(IsPersistingJavaScriptCookies()));
+    configSection->InsertEndChild(persistCookies);
 
     auto disablePv = doc.NewElement(XML_DISABLE_PEER_VERIFY.data());
     disablePv->SetAttribute(XML_VALUE.data(), bool_to_int(IsPeerVerifyDisabled()));

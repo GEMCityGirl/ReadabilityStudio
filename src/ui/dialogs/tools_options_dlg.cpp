@@ -614,6 +614,7 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
     m_userAgent(wxGetApp().GetAppOptions().GetUserAgent()),
     m_disablePeerVerify(wxGetApp().GetAppOptions().IsPeerVerifyDisabled()),
     m_useJsCookies(wxGetApp().GetAppOptions().IsUsingJavaScriptCookies()),
+    m_persistJsCookies(wxGetApp().GetAppOptions().IsPersistingJavaScriptCookies()),
     // project settings
     m_projectLanguage(static_cast<int>(project ?
         project->GetProjectLanguage() : wxGetApp().GetAppOptions().GetProjectLanguage())),
@@ -812,7 +813,17 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
         { title = _(L"Options"); }
     else
         { title = wxString::Format(_(L"\"%s\" Properties"), displayableProjectName); }
-    Create(parent, wxID_ANY, title, wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER);
+    Create(parent, wxID_ANY, title, wxDefaultPosition, wxDefaultSize,
+           wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
+
+    Bind(
+        wxEVT_CHECKBOX,
+        [this]([[maybe_unused]] wxCommandEvent& event)
+        {
+            TransferDataFromWindow();
+            m_persistCookiesCheck->Enable(m_useJsCookies);
+        },
+        ID_JS_COOKIES_CHECKBOX);
 
     // Changing the list of files for a batch will need to disable the
     // linking & embedded options until this dialog is closed and
@@ -1570,6 +1581,11 @@ void ToolsOptionsDlg::SaveOptions()
         {
         wxGetApp().GetAppOptions().UseJavaScriptCookies(m_useJsCookies.get_value());
         wxGetApp().GetWebHarvester().UseJavaScriptCookies(m_useJsCookies.get_value());
+        }
+    if (m_persistJsCookies.has_changed())
+        {
+        wxGetApp().GetAppOptions().PersistJavaScriptCookies(m_persistJsCookies.get_value());
+        wxGetApp().GetWebHarvester().PersistJavaScriptCookies(m_persistJsCookies.get_value());
         }
     if (m_readabilityProjectDoc && HaveOptionsChanged())
         {
@@ -3028,7 +3044,7 @@ void ToolsOptionsDlg::CreateControls()
                 wxSizerFlags().Expand().Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
                     .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
 
-            optionsSizer->Add(new wxCheckBox(generalSettingsPage, wxID_ANY,
+            optionsSizer->Add(new wxCheckBox(generalSettingsPage, ID_JS_COOKIES_CHECKBOX,
                                              _(L"Use JavaScript cookies"),
                                              wxDefaultPosition, wxDefaultSize, 0,
                                              wxGenericValidator(&m_useJsCookies)),
@@ -3036,6 +3052,17 @@ void ToolsOptionsDlg::CreateControls()
                                   .Expand()
                                   .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
                                   .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
+
+            m_persistCookiesCheck = new wxCheckBox(
+                generalSettingsPage, wxID_ANY, _(L"Persist cookies during each harvest"),
+                wxDefaultPosition,
+                wxDefaultSize, 0, wxGenericValidator(&m_persistJsCookies));
+            optionsSizer->Add(m_persistCookiesCheck,
+                              wxSizerFlags()
+                                  .Expand()
+                                  .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
+                                  .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
+            m_persistCookiesCheck->Enable(m_useJsCookies);
 
             optionsSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
