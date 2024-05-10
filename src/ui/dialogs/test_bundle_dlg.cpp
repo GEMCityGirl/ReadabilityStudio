@@ -383,7 +383,7 @@ void TestBundleDlg::CreateControls()
                 }
             m_testGoalsListCtrl->DistributeColumns();
             m_testGoalsListCtrl->SetColumnWidth(0, FromDIP(wxSize(200, 200).GetWidth()));
-            mainPanelSizer->Add(m_testGoalsListCtrl, wxSizerFlags().Expand().Border(
+            mainPanelSizer->Add(m_testGoalsListCtrl, wxSizerFlags(1).Expand().Border(
                                                          wxALL, wxSizerFlags::GetDefaultBorder()));
             }
 
@@ -473,11 +473,10 @@ void TestBundleDlg::CreateControls()
                 }
             m_statGoalsListCtrl->DistributeColumns();
             m_statGoalsListCtrl->SetColumnWidth(0, FromDIP(wxSize(200, 200).GetWidth()));
-            mainPanelSizer->Add(m_statGoalsListCtrl, wxSizerFlags().Expand().Border(
+            mainPanelSizer->Add(m_statGoalsListCtrl, wxSizerFlags(1).Expand().Border(
                                                          wxALL, wxSizerFlags::GetDefaultBorder()));
             }
 
-        mainPanelSizer->AddStretchSpacer();
         mainPanelSizer->Add(
             new wxStaticText(page, wxID_STATIC,
                              _(L"Goals are a way to warn if a statistic or test's score falls "
