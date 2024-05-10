@@ -17,7 +17,7 @@
   - Clicking an expanded folder will collapse it. (Double clicking it is no longer necessary.)
   - Can now be shown/hidden with the `r keys('F2')` key or from the ribbon.
 - **Custom Test Editor** improvements:
-  - You can now edit the formula while the function browser is open.
+  - The function browser is now embedded in this dialog (rather than being a separate window).
   - Double clicking an item in the function browser will now insert it into the formula.
 - **Log Report** window improvements:
   - Added **Clear**, **Refresh**, and **Verbose** options.

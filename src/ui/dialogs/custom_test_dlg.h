@@ -72,16 +72,6 @@ class CustomTestDlg final : public wxDialog
                pos, size, style);
         }
 
-    /// @private
-    ~CustomTestDlg()
-        {
-        // modeless dialog that do not have parents
-        if (m_functionBrowser != nullptr)
-            {
-            m_functionBrowser->Destroy();
-            }
-        }
-
     /** @brief Creates the dialog (used when using empty constructor).
         @param parent The parent window.
         @param id The dialog's ID.
@@ -562,14 +552,6 @@ class CustomTestDlg final : public wxDialog
             }
         }
 
-    /// @private
-    /// @internal This is only used for automation screenshots
-    [[nodiscard]]
-    Wisteria::UI::FunctionBrowserDlg* GetFunctionBrowser() noexcept
-        {
-        return m_functionBrowser;
-        }
-
     /// @brief General page.
     constexpr static int ID_GENERAL_PAGE = wxID_HIGHEST;
     /// @brief Word list page.
@@ -589,12 +571,12 @@ class CustomTestDlg final : public wxDialog
     constexpr static int ID_FORMULA_FIELD = wxID_HIGHEST + 9;
     constexpr static int ID_PROPER_NOUN_PROPERTY_GRID = wxID_HIGHEST + 10;
     constexpr static int ID_CLASSIFICATION_PROPERTY_GRID = wxID_HIGHEST + 11;
+    constexpr static int ID_FUNCTION_BROWSER = wxID_HIGHEST + 12;
 
     void OnOK([[maybe_unused]] wxCommandEvent& event);
     void OnHelp([[maybe_unused]] wxCommandEvent& event);
     void OnContextHelp([[maybe_unused]] wxHelpEvent& event);
     void OnValidateFormulaClick([[maybe_unused]] wxCommandEvent& event);
-    void OnInsertFunctionClick([[maybe_unused]] wxCommandEvent& event);
     void OnPropertyGridChange(wxPropertyGridEvent& event);
 
     bool ValidateFormula(const bool promptOnSuccess = false);
@@ -712,7 +694,6 @@ class CustomTestDlg final : public wxDialog
         return _(L"Only use words common to all lists");
         }
 
-    Wisteria::UI::FunctionBrowserDlg* m_functionBrowser{ nullptr };
     Wisteria::UI::SideBarBook* m_sideBarBook{ nullptr };
     wxTextCtrl* m_testNameCtrl{ nullptr };
     Wisteria::UI::CodeEditor* m_formulaCtrl{ nullptr };
@@ -728,15 +709,15 @@ class CustomTestDlg final : public wxDialog
     wxArrayString m_documentNames;
 
     // data used for browser and function guide
-    Wisteria::UI::FunctionBrowserDlg::NameList m_operators;
-    Wisteria::UI::FunctionBrowserDlg::NameList m_logic;
-    Wisteria::UI::FunctionBrowserDlg::NameList m_math;
-    Wisteria::UI::FunctionBrowserDlg::NameList m_statistics;
-    Wisteria::UI::FunctionBrowserDlg::NameList m_generalDocumentStatistics;
-    Wisteria::UI::FunctionBrowserDlg::NameList m_customFamiliarWords;
-    Wisteria::UI::FunctionBrowserDlg::NameList m_wordFunctions;
-    Wisteria::UI::FunctionBrowserDlg::NameList m_sentenceFunctions;
-    Wisteria::UI::FunctionBrowserDlg::NameList m_shortcuts;
+    Wisteria::UI::FunctionBrowserCtrl::NameList m_operators;
+    Wisteria::UI::FunctionBrowserCtrl::NameList m_logic;
+    Wisteria::UI::FunctionBrowserCtrl::NameList m_math;
+    Wisteria::UI::FunctionBrowserCtrl::NameList m_statistics;
+    Wisteria::UI::FunctionBrowserCtrl::NameList m_generalDocumentStatistics;
+    Wisteria::UI::FunctionBrowserCtrl::NameList m_customFamiliarWords;
+    Wisteria::UI::FunctionBrowserCtrl::NameList m_wordFunctions;
+    Wisteria::UI::FunctionBrowserCtrl::NameList m_sentenceFunctions;
+    Wisteria::UI::FunctionBrowserCtrl::NameList m_shortcuts;
     };
 
     /** @}*/

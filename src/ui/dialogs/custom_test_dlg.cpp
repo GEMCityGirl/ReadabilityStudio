@@ -24,19 +24,6 @@ using namespace Wisteria::UI;
 wxDECLARE_APP(ReadabilityApp);
 
 //-------------------------------------------------------------
-void CustomTestDlg::OnInsertFunctionClick([[maybe_unused]] wxCommandEvent& event)
-    {
-    if (m_functionBrowser->IsShown())
-        {
-        m_functionBrowser->Hide();
-        return;
-        }
-
-    m_functionBrowser->Show();
-    m_formulaCtrl->SetFocus();
-    }
-
-//-------------------------------------------------------------
 void CustomTestDlg::OnValidateFormulaClick([[maybe_unused]] wxCommandEvent& event)
     {
     TransferDataFromWindow();
@@ -643,25 +630,6 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
     CreateControls();
     Centre();
 
-    m_functionBrowser = new FunctionBrowserDlg(nullptr, m_formulaCtrl, wxID_ANY);
-    wxGetApp().UpdateSideBarTheme(m_functionBrowser->GetSidebar());
-    m_functionBrowser->SetParameterSeparator(FormulaFormat::GetListSeparator());
-    m_functionBrowser->SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                                    _DT(L"custom-test-functions.html"));
-    m_functionBrowser->AddCategory(_(L"Operators").ToStdWstring(), m_operators);
-    m_functionBrowser->AddCategory(_(L"Logic").ToStdWstring(), m_logic);
-    m_functionBrowser->AddCategory(_(L"Math").ToStdWstring(), m_math);
-    m_functionBrowser->AddCategory(_(L"Statistics").ToStdWstring(), m_statistics);
-    m_functionBrowser->AddCategory(_(L"Custom Familiar Word Tests").ToStdWstring(),
-                                   m_customFamiliarWords);
-    m_functionBrowser->AddCategory(_(L"Syllable/Character Counts").ToStdWstring(),
-                                   m_generalDocumentStatistics);
-    m_functionBrowser->AddCategory(_(L"Word Counts").ToStdWstring(), m_wordFunctions);
-    m_functionBrowser->AddCategory(_(L"Sentence Counts").ToStdWstring(), m_sentenceFunctions);
-    m_functionBrowser->AddCategory(_(L"Shortcuts").ToStdWstring(), m_shortcuts);
-
-    m_functionBrowser->FinalizeCategories();
-
     TransferDataToWindow();
 
     m_sideBarBook->SetSelection(0);
@@ -671,8 +639,6 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
     Bind(wxEVT_BUTTON, &CustomTestDlg::OnOK, this, wxID_OK);
     Bind(wxEVT_BUTTON, &CustomTestDlg::OnValidateFormulaClick, this,
          CustomTestDlg::ID_VALIDATE_FORMULA_BUTTON);
-    Bind(wxEVT_BUTTON, &CustomTestDlg::OnInsertFunctionClick, this,
-         CustomTestDlg::ID_INSERT_FUNCTION_BUTTON);
 
     return true;
     }
@@ -731,16 +697,15 @@ void CustomTestDlg::CreateControls()
             }
             // formula editor
             {
+            wxBoxSizer* functionControlsSizer = new wxBoxSizer(wxHORIZONTAL);
+            mainPanelSizer->Add(
+                functionControlsSizer,
+                wxSizerFlags(1).Expand().Border(wxALL, wxSizerFlags::GetDefaultBorder()));
             wxStaticBoxSizer* formulaBoxSizer = new wxStaticBoxSizer(
                 new wxStaticBox(mainPage, wxID_ANY, _(L"Formula:")), wxVERTICAL);
-            mainPanelSizer->Add(formulaBoxSizer, 1, wxEXPAND | wxALL,
-                                wxSizerFlags::GetDefaultBorder());
+            functionControlsSizer->Add(formulaBoxSizer, wxSizerFlags(1).Expand());
 
             wxBoxSizer* formulaButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
-            wxBitmapButton* InsertFunctionButton =
-                new wxBitmapButton(formulaBoxSizer->GetStaticBox(), ID_INSERT_FUNCTION_BUTTON,
-                                   wxArtProvider::GetBitmapBundle(L"ID_FUNCTION"));
-            formulaButtonsSizer->Add(InsertFunctionButton);
 
             wxBitmapButton* validateFormulaButton =
                 new wxBitmapButton(formulaBoxSizer->GetStaticBox(), ID_VALIDATE_FORMULA_BUTTON,
@@ -765,8 +730,8 @@ void CustomTestDlg::CreateControls()
             m_formulaCtrl->AddFunctionsOrClasses(m_sentenceFunctions);
             m_formulaCtrl->AddFunctionsOrClasses(m_shortcuts);
             m_formulaCtrl->Finalize();
-            formulaBoxSizer->Add(m_formulaCtrl, 1, wxEXPAND | wxALL,
-                                 wxSizerFlags::GetDefaultBorder());
+            formulaBoxSizer->Add(m_formulaCtrl, wxSizerFlags(1).Expand().Border(
+                                                    wxALL, wxSizerFlags::GetDefaultBorder()));
 
             // examples labels
             formulaBoxSizer->Add(new wxStaticText(formulaBoxSizer->GetStaticBox(), wxID_STATIC,
@@ -793,7 +758,30 @@ void CustomTestDlg::CreateControls()
                 wxFont(wxFontInfo().Family(wxFontFamily::wxFONTFAMILY_TELETYPE)));
             formulaBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             formulaBoxSizer->Add(formulaExample, 0, wxLEFT, wxSizerFlags::GetDefaultBorder() * 3);
-            formulaBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+
+            Wisteria::UI::FunctionBrowserCtrl* m_functionBrowser =
+                new FunctionBrowserCtrl(mainPage, m_formulaCtrl);
+            wxGetApp().UpdateSideBarTheme(m_functionBrowser->GetSidebar());
+            m_functionBrowser->SetParameterSeparator(FormulaFormat::GetListSeparator());
+
+            m_functionBrowser->AddCategory(_(L"Operators").ToStdWstring(), m_operators);
+            m_functionBrowser->AddCategory(_(L"Logic").ToStdWstring(), m_logic);
+            m_functionBrowser->AddCategory(_(L"Math").ToStdWstring(), m_math);
+            m_functionBrowser->AddCategory(_(L"Statistics").ToStdWstring(), m_statistics);
+            m_functionBrowser->AddCategory(_(L"Custom Familiar Word Tests").ToStdWstring(),
+                                           m_customFamiliarWords);
+            m_functionBrowser->AddCategory(_(L"Syllable/Character Counts").ToStdWstring(),
+                                           m_generalDocumentStatistics);
+            m_functionBrowser->AddCategory(_(L"Word Counts").ToStdWstring(), m_wordFunctions);
+            m_functionBrowser->AddCategory(_(L"Sentence Counts").ToStdWstring(),
+                                           m_sentenceFunctions);
+            m_functionBrowser->AddCategory(_(L"Shortcuts").ToStdWstring(), m_shortcuts);
+
+            m_functionBrowser->FinalizeCategories();
+
+            functionControlsSizer->Add(
+                m_functionBrowser,
+                wxSizerFlags().Border(wxLEFT, wxSizerFlags::GetDefaultBorder() * 3));
             }
         }
 
