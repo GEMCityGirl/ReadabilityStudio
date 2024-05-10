@@ -1253,6 +1253,7 @@ apple of her eye	object of her affection	2
 apple of his eye	object of his affection	2		
 apple of my eye	object of my affection	2		
 apple of your eye	object of your affection	2		
+appliable	applicable	3		
 appliance	device	0		
 appliances	devices	0		
 applicaiton	application	3		
@@ -1371,6 +1372,9 @@ arbitray	arbitrary	3
 archaelogical	archaeological	3		
 archaelogists	archaeologists	3		
 archeological	archaeological	3		
+archeologist	archaeologist	3		
+archeologist's	archaeologist's	3		
+archeologists	archaeologists	3		
 archetect	architect	3		
 archetects	architects	3		
 archetectural	architectural	3		
@@ -2047,6 +2051,10 @@ ayout's	layout's	3
 ayouts	layouts	3		
 babe in the woods	amateur, novice, rookie	2		
 baceause	because	3		
+bachelorette degree	baccalaureate degree	3		
+bachelorette degree's	baccalaureate degree's	3		
+bachelorette degrees	baccalaureate degrees	3		
+bachelorette's degree	baccalaureate degree	3		
 back in forth	back and forth	3		
 back in the saddle	regained his/her/my stature/position	2		
 back stabber	deceitful person who can't be trusted	2		
@@ -2548,6 +2556,7 @@ brokeness	brokenness	3
 broswer	browser	3		
 broswer's	browser's	3		
 broswers	browsers	3		
+brough	brought (unless referring to the town)	3		
 brought about	begun	0		
 brought attention to	disclosed, broadcasted, divulged, exposed, pointed out, promoted, revealed	0		
 brought home the bacon	earned the income for a household	2		
@@ -7652,6 +7661,9 @@ I would appreciate it if	please	0
 I'm curious why	why	0		
 I've heart that	I've heard that	3		
 icannot	I cannot	3		
+iceburg	iceberg	3		
+iceburg's	iceberg's	3		
+iceburgs	icebergs	3		
 iconclastic	iconoclastic	3		
 idae	idea	3		
 idaes	ideas	3		
@@ -11805,6 +11817,7 @@ prioritized	ranked	0
 prioritizes	ranks	0		
 prioritizing	ranking	0		
 priorty	priority	3		
+priot	prior	3		
 privalege	privilege	3		
 privaleges	privileges	3		
 priveledges	privileges	3		

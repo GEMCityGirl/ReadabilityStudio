@@ -8848,6 +8848,9 @@ bacchanals
 bacchic
 bachelor
 bachelor's
+bachelorette
+bachelorette's
+bachelorettes
 bachelorhood
 bachelorhood's
 bachelorhoods
@@ -13760,6 +13763,12 @@ bodega
 bodega's
 bodegas
 bodes
+bodhran
+bodhran's
+bodhrans
+bodhrán
+bodhrán's
+bodhráns
 bodice
 bodice's
 bodices
@@ -27137,6 +27146,7 @@ conveniences
 conveniencies
 conveniency
 conveniency's
+conveniens
 convenient
 conveniently
 convening
@@ -35426,6 +35436,8 @@ dialog
 dialog's
 dialogged
 dialogging
+dialogic
+dialogical
 dialogs
 dialogue
 dialogue's
@@ -37854,6 +37866,7 @@ distinctive
 distinctively
 distinctiveness
 distinctiveness's
+distinctives
 distinctly
 distinctness
 distinctness's
@@ -43036,6 +43049,9 @@ enmeshments
 enmities
 enmity
 enmity's
+enneagram
+enneagram's
+enneagrams
 ennoble
 ennobled
 ennoblement
@@ -44541,6 +44557,7 @@ ethispheres
 ethmoid
 ethmoidal
 ethnic
+ethnical
 ethnically
 ethnicities
 ethnicity
@@ -48787,6 +48804,9 @@ firer's
 firers
 fires
 firesafe
+firesale
+firesale's
+firesales
 fireside
 fireside's
 firesides
@@ -54149,6 +54169,8 @@ giftedly
 giftedness
 giftedness's
 gifting
+gifting's
+giftings
 gifts
 gig
 gig's
@@ -59771,6 +59793,7 @@ hexapod
 hexapod's
 hexapoda
 hexapods
+hexatonic
 hexavalent
 hexed
 hexene
@@ -100975,7 +100998,10 @@ prefigure
 prefigured
 prefigures
 prefiguring
+prefill
 prefilled
+prefilling
+prefills
 prefilter
 prefiltered
 prefiltering
@@ -106313,6 +106339,7 @@ rasters
 Rastus
 rat
 rat's
+rata
 ratable
 ratatouille
 ratchet
