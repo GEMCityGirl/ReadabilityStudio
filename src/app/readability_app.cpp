@@ -5431,8 +5431,7 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
     wxGetApp().SetLastSelectedDocFilter(webHarvestDlg.GetSelectedDocFilter());
     webHarvestDlg.UpdateHarvesterSettings(wxGetApp().GetWebHarvester());
 
-    bool showLogReport{ false };
-
+    wxString failedCrawls;
     for (size_t i = 0; i < webHarvestDlg.GetUrls().GetCount(); ++i)
         {
         FilePathResolver resolver(webHarvestDlg.GetUrls().Item(i), true);
@@ -5451,19 +5450,17 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
 
         if (wxGetApp().GetWebHarvester().GetDownloadedFilePaths().size() == 0)
             {
-            wxMessageBox(wxString::Format(
-                             _(L"No files were downloaded from '%s'. "
-                               "Please review the log report for any possible connection issues."),
-                             wxGetApp().GetWebHarvester().GetUrl()),
-                         _(L"Warning"), wxOK | wxICON_WARNING);
-            showLogReport = true;
+            failedCrawls += wxGetApp().GetWebHarvester().GetUrl() + L'\n';
             }
         }
 
-    if (showLogReport)
+    if (failedCrawls.length())
         {
-        wxRibbonButtonBarEvent unusedCmd;
-        OnViewLogReport(unusedCmd);
+        wxMessageBox(
+            wxString::Format(_(L"No files were downloaded from the following sites:\n\n'%s'\n"
+                               "Please review the log report for any possible connection issues."),
+                             failedCrawls),
+            _(L"Warning"), wxOK | wxICON_WARNING);
         }
 
     // In case JS cookies are being reused, clear them from the current session
