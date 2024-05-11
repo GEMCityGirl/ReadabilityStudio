@@ -25148,6 +25148,9 @@ complying
 complyings
 component
 component's
+componentization
+componentization's
+componentizations
 componentize
 componentized
 componentizes
@@ -39518,6 +39521,7 @@ drizzliest
 drizzling
 drizzlingly
 drizzly
+DRM
 drogue
 drogue's
 drogues
@@ -70628,6 +70632,9 @@ keynoting
 keypad
 keypad's
 keypads
+keyphrase
+keyphrase's
+keyphrases
 keypunch
 keypunched
 keypuncher
@@ -83845,6 +83852,7 @@ multistory
 multistrategies
 multistrategy
 multistrategy's
+multistream
 multistring
 multistroke
 multistrokes
@@ -83855,11 +83863,14 @@ multitarget
 multitarget's
 multitargeting
 multitargets
+multitask
+multitasked
 multitasker
 multitasker's
 multitaskers
 multitasking
 multitaskings
+multitasks
 multitaxon
 multitaxon's
 multitaxons
@@ -86783,6 +86794,7 @@ nondeductible
 nondefault
 nondefective
 nondegree
+nondelegating
 nondeliveries
 nondelivery
 nondelivery's
@@ -87047,6 +87059,7 @@ nonliving
 nonlocal
 nonlocalizable
 nonlocalized
+nonlooped
 nonluminous
 nonlymphocytic
 nonmagical
@@ -96418,6 +96431,9 @@ phone's
 phonebook
 phonebook's
 phonebooks
+phonecall
+phonecall's
+phonecalls
 phoned
 phoneme
 phoneme's
@@ -123350,6 +123366,9 @@ spathes
 spatial
 spatiality
 spatiality's
+spatialization
+spatialization's
+spatializations
 spatially
 spatio
 spats
@@ -123389,6 +123408,10 @@ speakeasy
 speakeasy's
 speaker
 speaker's
+speakerless
+speakerphone
+speakerphone's
+speakerphones
 speakers
 speakership
 speakership's
@@ -126870,6 +126893,7 @@ strikebreaker's
 strikebreakers
 strikebreaking
 strikebreaking's
+striked
 strikeout
 strikeouts
 striker
@@ -129156,9 +129180,12 @@ supermarkets
 supermassive
 supermen
 supermen's
+supermix
+supermix's
 supermixer
 supermixer's
 supermixers
+supermixes
 supermodel
 supermodels
 supermom
@@ -130611,6 +130638,7 @@ syntax
 syntax's
 syntaxes
 synth
+synth's
 synthase
 syntheses
 synthesis
@@ -130635,6 +130663,7 @@ synthetases
 synthetic
 synthetically
 synthetics
+synths
 synthwave
 synthwave's
 synuclein
@@ -140438,6 +140467,9 @@ ungratefully
 ungratefulness
 ungratefulness's
 ungratified
+ungrayed
+ungraying
+ungrays
 ungreased
 ungrounded
 ungroup
@@ -142478,6 +142510,10 @@ uploading
 uploads
 upmanship
 upmarket
+upmix
+upmixed
+upmixes
+upmixing
 upon
 upped
 upper

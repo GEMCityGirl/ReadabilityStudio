@@ -2120,6 +2120,7 @@ battlegound's	battleground's	3
 battlegounds	battlegrounds	3		
 bcak	back	3		
 be advised	(omit)	0		
+be bursted	burst	3		
 be in receipt of	have	0		
 be one in the same	be one and the same	3		
 be show	be shown	3		
@@ -2615,6 +2616,7 @@ burns the midnight oil	works all night, works late	2
 burnt the candle at both ends	overworked	2		
 burnt the midnight oil	worked all night, worked late	2		
 burried	buried	3		
+bursted	burst	3		
 bury the hatchet	end a dispute or grudge	2		
 burying the hatchet	ending a dispute or grudge	2		
 busines	business	3		
@@ -4157,6 +4159,10 @@ correspdoning	corresponding	3
 correspending	corresponding	3		
 correspnding	corresponding	3		
 correspoding	corresponding	3		
+correspoind	correspond	3		
+correspoinded	corresponded	3		
+correspoinding	corresponding	3		
+correspoinds	corresponds	3		
 correspondance	correspondence	3		
 correspondances	correspondences	3		
 correspondant	correspondent	3		
@@ -4527,6 +4533,9 @@ defintions	definitions	3
 defitions	deviations	3		
 defualt	default	3		
 defunct	dead	0		
+degotiation	negotiation	3		
+degotiation's	negotiation's	3		
+degotiations	negotiations	3		
 degrate	degrade	3		
 degre	degree	3		
 degredation	degradation	3		
@@ -4595,6 +4604,7 @@ demographical	demographic	3
 demolision	demolition	3		
 demoninator	denominator	3		
 demoninators	denominators	3		
+demonstarted	demonstrated	3		
 demonstrable	provable	0		
 demonstrate	show	0		
 demonstrated	showed	0		
@@ -4611,6 +4621,7 @@ denied of	denied	3
 dense	thick	0		
 density	thickness	0		
 densly	densely	3		
+dentified	identified	3		
 deparment	department	3		
 deparmental	departmental	3		
 deparments	departments	3		
@@ -9668,6 +9679,7 @@ measurments	measurements	3
 mecanism	mechanism	3		
 mecanisms	mechanisms	3		
 mechandise	merchandise	3		
+mechansim	mechanism	3		
 mechnancism	mechanism	3		
 mechnancism's	mechanism's	3		
 mechnancisms	mechanisms	3		
@@ -12861,6 +12873,7 @@ repetion	repetition	3
 repid	rapid	3		
 repitition	repetition	3		
 replacable	replaceable	3		
+replacment	replacement	3		
 replacments	replacements	3		
 replica	copy	0		
 replicas	copies	0		
@@ -13456,6 +13469,10 @@ seizes the bull by the horns	takes action against a difficult situation	2
 seizing the bull by the horns	taking action against a difficult situation	2		
 seldom ever	seldom	0		
 seldomly	seldom	3		
+selecct	select	3		
+seleccted	selected	3		
+seleccting	selecting	3		
+seleccts	selects	3		
 selectany	select any	3		
 selection	choice	0		
 seletion	selection	3		
@@ -14246,6 +14263,7 @@ succedes	succeeds	3
 succeding	succeeding	3		
 succeds	succeeds	3		
 succeedes	succeeds	3		
+succeeeded	succeeded	3		
 succesful	successful	3		
 succesfully	successfully	3		
 succesion	succession	3		
