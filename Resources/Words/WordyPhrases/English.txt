@@ -12864,7 +12864,6 @@ repeition	repetition	3
 repend	resend	3		
 repending	resending	3		
 repends	resends	3		
-repent	resent	3		
 repentance	regret	0		
 repentence	repentance	3		
 repentent	repentant	3		
