@@ -427,7 +427,8 @@ namespace Wisteria::Graphs
             GraphItemInfo()
                 .Pen(wxPen(wxColour(0, 0, 0, 200)))
                 .Brush(wxBrush(wxColour(0, 0, 0, 200)))
-                .Scaling(GetScaling()),
+                .Scaling(GetScaling())
+                .DPIScaling(GetDPIScaleFactor()),
             &m_dividerLinePoints[1], m_dividerLinePoints.size() - 3);
         levelsSpline->SetShape(GraphItems::Polygon::PolygonShape::Spline);
         AddObject(std::move(levelsSpline));
@@ -478,6 +479,7 @@ namespace Wisteria::Graphs
                 .Pen(*wxBLACK_PEN)
                 .FontBackgroundColor(*wxWHITE)
                 .Scaling(GetScaling())
+                .DPIScaling(GetDPIScaleFactor())
                 .Font(wxFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize() * 1.5,
                              wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false,
                              GetFancyFontFaceName()))
@@ -492,6 +494,7 @@ namespace Wisteria::Graphs
             auto legend = std::make_unique<GraphItems::Label>(
                 GraphItemInfo(_(L"Average line\nAverage, each zone"))
                     .Scaling(GetScaling())
+                    .DPIScaling(GetDPIScaleFactor())
                     .Pen(*wxBLACK_PEN)
                     .FontBackgroundColor(*wxWHITE)
                     .Font(legendFont)
@@ -523,11 +526,13 @@ namespace Wisteria::Graphs
             wxPoint pt;
             GetPhysicalCoordinates(level.GetX(), level.GetY(), pt);
 
-            auto gradeLabel = std::make_unique<GraphItems::Label>(GraphItemInfo(level.GetLabel())
-                                                                      .Scaling(GetScaling())
-                                                                      .Pen(wxNullPen)
-                                                                      .Font(numberFont)
-                                                                      .AnchorPoint(pt));
+            auto gradeLabel =
+                std::make_unique<GraphItems::Label>(GraphItemInfo(level.GetLabel())
+                                                        .Scaling(GetScaling())
+                                                        .DPIScaling(GetDPIScaleFactor())
+                                                        .Pen(wxNullPen)
+                                                        .Font(numberFont)
+                                                        .AnchorPoint(pt));
             gradeLabel->SetAnchoring(Anchoring::TopLeftCorner);
             if (GetScores().size() == 1 &&
                 level == std::floor(GetScores().front().GetScoreAverage()))
