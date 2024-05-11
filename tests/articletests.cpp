@@ -32,6 +32,11 @@ TEST_CASE("English article", "[articles]")
         CHECK_FALSE(artc(L"a", L"UX/UI"));
         CHECK(artc(L"an", L"UX/UI"));
         }
+    SECTION("UA")
+        {
+        CHECK_FALSE(artc(L"a", L"UAA-compliant"));
+        CHECK(artc(L"an", L"UAA-compliant"));
+        }
     SECTION("Histor")
         {
         CHECK_FALSE(artc(L"a", L"historic"));

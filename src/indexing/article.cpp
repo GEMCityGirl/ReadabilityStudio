@@ -375,6 +375,11 @@ bool grammar::is_incorrect_english_article::is_a_exception(std::wstring_view wor
             {
             return true;
             }
+        // "a UAA-compliant" is correct
+        else if (word.length() >= 2 && traits::case_insensitive_ex::eq(word[1], L'a'))
+            {
+            return true;
+            }
         else if (traits::case_insensitive_ex::compare(word.data(), L"uni", 3) == 0)
             {
             // unimpressed, uninteresting, unignored, uninitialized
