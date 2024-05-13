@@ -759,29 +759,36 @@ void CustomTestDlg::CreateControls()
             formulaBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             formulaBoxSizer->Add(formulaExample, 0, wxLEFT, wxSizerFlags::GetDefaultBorder() * 3);
 
-            Wisteria::UI::FunctionBrowserCtrl* m_functionBrowser =
-                new FunctionBrowserCtrl(mainPage, m_formulaCtrl);
-            wxGetApp().UpdateSideBarTheme(m_functionBrowser->GetSidebar());
-            m_functionBrowser->SetParameterSeparator(FormulaFormat::GetListSeparator());
-
-            m_functionBrowser->AddCategory(_(L"Operators").ToStdWstring(), m_operators);
-            m_functionBrowser->AddCategory(_(L"Logic").ToStdWstring(), m_logic);
-            m_functionBrowser->AddCategory(_(L"Math").ToStdWstring(), m_math);
-            m_functionBrowser->AddCategory(_(L"Statistics").ToStdWstring(), m_statistics);
-            m_functionBrowser->AddCategory(_(L"Custom Familiar Word Tests").ToStdWstring(),
-                                           m_customFamiliarWords);
-            m_functionBrowser->AddCategory(_(L"Syllable/Character Counts").ToStdWstring(),
-                                           m_generalDocumentStatistics);
-            m_functionBrowser->AddCategory(_(L"Word Counts").ToStdWstring(), m_wordFunctions);
-            m_functionBrowser->AddCategory(_(L"Sentence Counts").ToStdWstring(),
-                                           m_sentenceFunctions);
-            m_functionBrowser->AddCategory(_(L"Shortcuts").ToStdWstring(), m_shortcuts);
-
-            m_functionBrowser->FinalizeCategories();
-
+            m_fbCollapsePane = new wxCollapsiblePane(mainPage, wxID_ANY, _("Functions"));
             functionControlsSizer->Add(
-                m_functionBrowser,
+                m_fbCollapsePane,
                 wxSizerFlags().Border(wxLEFT, wxSizerFlags::GetDefaultBorder() * 3));
+
+            wxSizer* paneSz = new wxBoxSizer(wxVERTICAL);
+            Wisteria::UI::FunctionBrowserCtrl* functionBrowser =
+                new FunctionBrowserCtrl(m_fbCollapsePane->GetPane(), m_formulaCtrl);
+            wxGetApp().UpdateSideBarTheme(functionBrowser->GetSidebar());
+            functionBrowser->SetParameterSeparator(FormulaFormat::GetListSeparator());
+
+            functionBrowser->AddCategory(_(L"Operators").ToStdWstring(), m_operators);
+            functionBrowser->AddCategory(_(L"Logic").ToStdWstring(), m_logic);
+            functionBrowser->AddCategory(_(L"Math").ToStdWstring(), m_math);
+            functionBrowser->AddCategory(_(L"Statistics").ToStdWstring(), m_statistics);
+            functionBrowser->AddCategory(_(L"Custom Familiar Word Tests").ToStdWstring(),
+                                         m_customFamiliarWords);
+            functionBrowser->AddCategory(_(L"Syllable/Character Counts").ToStdWstring(),
+                                         m_generalDocumentStatistics);
+            functionBrowser->AddCategory(_(L"Word Counts").ToStdWstring(), m_wordFunctions);
+            functionBrowser->AddCategory(_(L"Sentence Counts").ToStdWstring(), m_sentenceFunctions);
+            functionBrowser->AddCategory(_(L"Shortcuts").ToStdWstring(), m_shortcuts);
+
+            functionBrowser->FinalizeCategories();
+
+            paneSz->Add(functionBrowser,
+                        wxSizerFlags().Expand().Border(wxALL, wxSizerFlags::GetDefaultBorder()));
+
+            m_fbCollapsePane->GetPane()->SetSizer(paneSz);
+            paneSz->SetSizeHints(m_fbCollapsePane->GetPane());
             }
         }
 

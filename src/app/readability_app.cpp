@@ -776,6 +776,7 @@ bool ReadabilityApp::OnInit()
         { 7003, CustomTestDlg::ID_WORD_LIST_PROPERTY_GRID },
         { 7004, CustomTestDlg::ID_PROPER_NOUN_PROPERTY_GRID },
         { 7005, CustomTestDlg::ID_CLASSIFICATION_PROPERTY_GRID },
+        { 7006, CustomTestDlg::ID_FUNCTION_BROWSER },
         { 8001, BaseProjectView::SENTENCES_CONJUNCTION_START_LIST_PAGE_ID },
         { 8002, BaseProjectView::SENTENCES_LOWERCASE_START_LIST_PAGE_ID },
         { 8003, BaseProjectView::WORDY_PHRASES_LIST_PAGE_ID },

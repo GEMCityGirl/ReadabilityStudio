@@ -60,6 +60,8 @@ namespace LuaScripting
     int CloseBatchProjectWizard(lua_State*);
     int ShowTestBundleDialog(lua_State* L);
     int CloseTestBundleDialog(lua_State*);
+    int ShowCustomTestDialogFunctionBrowser(lua_State*);
+    int CloseCustomTestDialogFunctionBrowser(lua_State*);
     int ShowCustomTestDialogGeneralSettings(lua_State* L);
     int ShowCustomTestDialogFamiliarWords(lua_State* L);
     int ShowCustomTestDialogProperNounsAndNumbers(lua_State* L);

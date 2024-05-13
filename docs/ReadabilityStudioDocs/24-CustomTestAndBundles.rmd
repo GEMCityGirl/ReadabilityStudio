@@ -24,7 +24,7 @@ To create a new formula based on Lix\index{Lix} that treats 6+ character words a
 
 `SixCharacterPlusWordCount() / SentenceCount()`
 
-A function browser is located on the right side of the dialog that will display all available functions:
+To view all available functions, click the **Functions** button. This will display a function browser on the right side of the dialog:
 
 ```{r echo=F, fig.align='center', out.width='50%'}
 knitr::include_graphics("images/FunctionBrowser.png")

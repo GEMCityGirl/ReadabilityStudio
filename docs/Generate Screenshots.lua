@@ -40,7 +40,7 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "TestBundle4F." .. FileExtension)
 ScreenshotLib.CloseTestBundleDialog()
 
 ScreenshotLib.ShowCustomTestDialogFunctionBrowser()
-ScreenshotLib.SnapScreenshot(ImagePath .. "FunctionBrowser." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "FunctionBrowser." .. FileExtension, 7006)
 ScreenshotLib.CloseCustomTestDialogFunctionBrowser()
 
 ScreenshotLib.ShowWebHarvesterDlg()

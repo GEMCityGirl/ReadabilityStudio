@@ -1184,6 +1184,34 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int ShowCustomTestDialogFunctionBrowser(lua_State*)
+        {
+        if (LuaCustomTestDlg == nullptr)
+            {
+            LuaCustomTestDlg = new CustomTestDlg(wxGetApp().GetMainFrame());
+            }
+        LuaCustomTestDlg->SelectPage(CustomTestDlg::ID_GENERAL_PAGE);
+        LuaCustomTestDlg->ShowFunctionBrowser(true);
+        LuaCustomTestDlg->Show();
+        wxGetApp().Yield();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int CloseCustomTestDialogFunctionBrowser(lua_State*)
+        {
+        if (LuaCustomTestDlg == nullptr)
+            {
+            return 0;
+            }
+        LuaCustomTestDlg->SelectPage(CustomTestDlg::ID_GENERAL_PAGE);
+        LuaCustomTestDlg->ShowFunctionBrowser(false);
+        LuaCustomTestDlg->Show();
+        wxGetApp().Yield();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
     int ShowCustomTestDialogProperNounsAndNumbers(lua_State* L)
         {
         if (LuaCustomTestDlg == nullptr)

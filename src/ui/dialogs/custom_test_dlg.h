@@ -28,6 +28,7 @@
 #include <vector>
 #include <wx/bmpbuttn.h>
 #include <wx/checklst.h>
+#include <wx/collpane.h>
 #include <wx/combobox.h>
 #include <wx/intl.h>
 #include <wx/propgrid/advprops.h>
@@ -552,6 +553,10 @@ class CustomTestDlg final : public wxDialog
             }
         }
 
+    /// @brief Shows or hides the embedded function browser.
+    /// @param show @c true to show the browser, @c false to hide it.
+    void ShowFunctionBrowser(const bool show) { m_fbCollapsePane->Collapse(!show); }
+
     /// @brief General page.
     constexpr static int ID_GENERAL_PAGE = wxID_HIGHEST;
     /// @brief Word list page.
@@ -701,6 +706,7 @@ class CustomTestDlg final : public wxDialog
     wxPropertyGridPage* m_wordListsPropertyGrid{ nullptr };
     wxPropertyGridPage* m_properNounsNumbersPropertyGrid{ nullptr };
     wxPropertyGrid* m_associationPropertyGrid{ nullptr };
+    wxCollapsiblePane* m_fbCollapsePane{ nullptr };
     wxString m_testName;
     wxString m_currentWordListFilePath;
     int m_testType{ 0 };
