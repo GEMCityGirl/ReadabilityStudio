@@ -100,7 +100,7 @@ bool grammar::is_incorrect_english_article::operator()(std::wstring_view article
     const bool isSoundingOutStartingNumbers = (isYear || isTime || is2Digit);
     // if something like "1,800,00" then don't bother analyzing, will be too complicated
     if (!isSoundingOutStartingNumbers && characters::is_character::is_numeric(word[0]) &&
-        string_util::strcspn_pointer(word.data(), L",.", 2))
+        std::wcscspn(word.data(), L",.") < word.length())
         {
         return false;
         }
