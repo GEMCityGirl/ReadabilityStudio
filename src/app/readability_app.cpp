@@ -5458,7 +5458,7 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
     if (failedCrawls.length())
         {
         wxMessageBox(
-            wxString::Format(_(L"No files were downloaded from the following sites:\n\n'%s'\n"
+            wxString::Format(_(L"No files were downloaded from the following sites:\n\n%s\n"
                                "Please review the log report for any possible connection issues."),
                              failedCrawls),
             _(L"Warning"), wxOK | wxICON_WARNING);
