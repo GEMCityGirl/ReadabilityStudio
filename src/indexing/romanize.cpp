@@ -170,7 +170,7 @@ namespace text_transform
                         {
                         // if there is not a proceeding character in front of this bullet
                         // already, then replace the bullet with a tab
-                        if (encoded_text.length() == 0 ||
+                        if (encoded_text.empty() ||
                             encoded_text[encoded_text.length() - 1] != L'\t')
                             {
                             encoded_text += L'\t';

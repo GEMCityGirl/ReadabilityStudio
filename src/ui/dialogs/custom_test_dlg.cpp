@@ -1118,7 +1118,7 @@ void CustomTestDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
         }
     }
 
-//---------------------------------------------
+//-------------------------------------------------------------
 void CustomTestDlg::SetStemmingType(stemming::stemming_type stemType)
     {
     m_wordListsPropertyGrid->SetPropertyValue(GetStemmingLanguageLabel(),

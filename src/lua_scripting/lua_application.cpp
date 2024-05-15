@@ -87,7 +87,7 @@ namespace LuaScripting
         if (bookMarkIndex != wxString::npos)
             {
             path.erase(bookMarkIndex);
-            if (path.length() == 0)
+            if (path.empty())
                 {
                 return;
                 }

@@ -19,7 +19,7 @@ bool grammar::is_incorrect_english_article::operator()(std::wstring_view article
     if (article.empty() || word.empty() || article.length() > 2 ||
         !traits::case_insensitive_ex::eq(article[0], L'a') ||
         (article.length() == 2 && !traits::case_insensitive_ex::eq(article[1], L'n')) ||
-        (word.length() == 0 || characters::is_character::is_punctuation(word[0])))
+        (word.empty() || characters::is_character::is_punctuation(word[0])))
         {
         return false;
         }
