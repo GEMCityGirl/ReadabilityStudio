@@ -3589,6 +3589,7 @@ Melanesia
 Melanesian
 Melbourn
 Melbourne
+Mellanox
 Memling
 Memphis
 Mendelism
@@ -5773,6 +5774,7 @@ Tripoli
 Trix
 Trobriand
 Trojan
+Tron
 Trondheim
 Troxell
 Troy
@@ -6275,7 +6277,7 @@ Wimbledon
 Win2K
 Winans
 Winceyette
-Windbg
+WinDbg
 Windhoek
 Windisk
 Windsor

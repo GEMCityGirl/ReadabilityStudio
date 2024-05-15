@@ -881,6 +881,7 @@ alternative choices	alternatives	0
 alternatives	choices	0		
 alternativly	alternatively	3		
 alternitives	alternatives	3		
+alterted	altered	3		
 altho	although	3		
 althought	although	3		
 altough	although	3		
@@ -1382,6 +1383,9 @@ archetecturally	architecturally	3
 archetecture	architecture	3		
 archiac	archaic	3		
 archictect	architect	3		
+archictecture	architecture	3		
+archictecture's	architecture's	3		
+archictectures	architectures	3		
 archiecture	architecture	3		
 archiectures	architectures	3		
 archietecture	architecture	3		
@@ -3739,6 +3743,7 @@ conneciton	connection	3
 connecitons	connections	3		
 connect together	connect	1		
 connected together	connected	1		
+connectiable	connectable	3		
 connecting together	connecting	1		
 connectinos	connections	3		
 connects together	connects	1		
@@ -5124,6 +5129,8 @@ dissappear	disappear	3
 dissappears	disappears	3		
 dissappointed	disappointed	3		
 dissarray	disarray	3		
+dissasembly	disasembly	3		
+dissasembly's	disasembly's	3		
 dissble	disable	3		
 disseminate	give, issue, pass, send	0		
 disseminated	scattered, spread out	0		
@@ -5880,6 +5887,9 @@ eqivalent	equivalent	3
 equable	even	0		
 equably	evenly	0		
 equally as	equally	1		
+equatabilities	equabilities	3		
+equatability	equability	3		
+equatability's	equability's	3		
 equialent	equivalent	3		
 equilibium	equilibrium	3		
 equilibrum	equilibrium	3		
@@ -6293,6 +6303,7 @@ extends an invitation	invites	0
 extendsions	extensions	3		
 extened	extended	3		
 extensability	extensibility	3		
+extensiblity	extensibility	3		
 extenstion	extension	3		
 extenstions	extensions	3		
 extented	extended	3		
@@ -8075,7 +8086,7 @@ in the neighbourhood of	close to, nearby, about, roughly	0
 in the nick of time	just in time	2		
 in the not too distant future	soon	0		
 in the opposite direction	against	0		
-in the passed	in the past	3		group;groups;note;notes;range;ranges;string;strings;value;values
+in the passed	in the past	3		categories;category;group;groups;note;notes;range;ranges;string;strings;value;values
 in the place in which	where	0		
 in the presence of	with, before	0		
 in the process of	(omit), while	0		
@@ -9059,6 +9070,9 @@ keeps his head above water	doesn't become overwhelmed	2
 keeps his shirt on	stays calm	2		
 keeps in mind	remembers	0		
 keeps up with the joneses	tries to live the lifestyles of one's neighbors	2		
+kenrel	kernel	3		
+kenrel's	kernel's	3		
+kenrels	kernels	3		
 kept in mind	remembered	0		
 kept up with the joneses	tried to live the lifestyles of one's neighbors	2		
 kernal	kernel	3		
@@ -9936,6 +9950,9 @@ modifing	modifying	3
 modify	change	0		
 modifying	changing	0		
 modle	model	3		
+modue	module	3		
+modue's	module's	3		
+modues	modules	3		
 modulues	modules	3		
 moeny	money	3		
 moist other	most other	3		

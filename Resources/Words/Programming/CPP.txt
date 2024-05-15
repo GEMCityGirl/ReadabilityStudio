@@ -22,6 +22,7 @@ afxmsg
 alignas
 alignof
 alloc
+allocs
 and
 and_eq
 argc
@@ -80,6 +81,7 @@ casinhf
 casinhl
 casinl
 cassert
+castable
 catan
 catanf
 catanh

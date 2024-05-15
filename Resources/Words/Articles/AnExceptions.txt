@@ -43,6 +43,7 @@ rvalue
 SaaS
 SAP
 SAS
+SCSI
 SDK
 SEH
 SEM
@@ -50,6 +51,7 @@ SID
 SLA
 SMB
 SME
+SMI
 SMS
 SOP
 sprintf
