@@ -219,7 +219,7 @@ add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE ${APP_SRC_FILES} ../Licensing
 if(MSVC)
     # _DISABLE_VECTOR_ANNOTATION _DISABLE_STRING_ANNOTATION are needed for ASAN not being enabled in linked wxWidgets libs
     # https://learn.microsoft.com/en-us/cpp/sanitizers/error-container-overflow?view=msvc-170
-    target_compile_definitions(${PROJECT_NAME} PUBLIC __WXMSW__ _CRT_SECURE_NO_WARNINGS CRCPP_USE_CPP11 LICENSE_FILE_GENERATOR_ENABLED _UNICODE
+    target_compile_definitions(${PROJECT_NAME} PUBLIC __WXMSW__ CRCPP_USE_CPP11 LICENSE_FILE_GENERATOR_ENABLED _UNICODE
         $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING _DISABLE_VECTOR_ANNOTATION _DISABLE_STRING_ANNOTATION> $<$<CONFIG:Release>:NDEBUG>)
     # /Zc:__cplusplus tells MSVC to set the C++ version what we are
     # actually compiling as. The default behavior in MSVC is to say that the
