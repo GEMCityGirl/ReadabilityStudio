@@ -572,6 +572,8 @@ void WebHarvesterDlg::UpdateFromHarvesterSettings(const WebHarvester& harvester)
     m_replaceExistingFiles = harvester.IsReplacingExistingFiles();
     m_minFileSizeInKiloBytes = harvester.GetMinimumDownloadFileSizeInKilobytes().value_or(5);
 
+    m_persistCookiesCheck->Enable(m_useJsCookies);
+
     TransferDataToWindow();
     }
 
