@@ -17,66 +17,35 @@
 #include <cassert>
 #include <string>
 
-/// String traits use special comparison logic.
+/// @brief String traits use special comparison logic.
 namespace traits
     {
     /** @brief Case-insensitive comparison traits for std::basic_string<>, which also has special
-       logic for comparing apostrophes and full-width characters.
-
-        Also includes helper functions for case-sensitive comparison which includes the additional
-        full-width and apostrophe logic.*/
-    class case_insensitive_ex
+            logic for comparing apostrophes and full-width characters.
+        @details Also includes helper functions for case-sensitive comparison which includes the
+            additional full-width and apostrophe logic.*/
+    class case_insensitive_ex : public std::char_traits<wchar_t>
         {
       public:
-        using char_type = wchar_t;
-        using int_type = wint_t;
-        using off_type = std::streamoff;
-        using pos_type = std::streampos;
-        using state_type = std::mbstate_t;
-
+        //-------------------------------------------------------------
         static constexpr bool eq_int_type(const int_type& i1, const int_type& i2) noexcept
             {
             return tolower(i1) == tolower(i2);
             }
 
-        static constexpr int_type eof() noexcept { return static_cast<int_type>(EOF); }
-
-        static constexpr int_type not_eof(const int_type& i) noexcept
-            {
-            // EOF is negative, so 0 != EOF
-            return (i == static_cast<int_type>(EOF)) ? 0 : 1;
-            }
-
+        //-------------------------------------------------------------
         static constexpr char_type to_char_type(const int_type& i) noexcept
             {
             return static_cast<char_type>(i);
             }
 
+        //-------------------------------------------------------------
         static constexpr int_type to_int_type(const char_type& c) noexcept
             {
             return static_cast<unsigned char>(c);
             }
 
-        inline static size_t length(const char_type* s) noexcept { return std::wcslen(s); }
-
-        inline static void assign(char_type& dst, const char_type src) noexcept { dst = src; }
-
-        inline static char_type* assign(char_type* dst, size_t n, char_type c) noexcept
-            {
-            return std::wmemset(dst, c, n);
-            }
-
-        inline static char_type* move(char_type* dst, const char_type* src, size_t n) noexcept
-            {
-            return std::wmemmove(dst, src, n);
-            }
-
-        inline static char_type* copy(char_type* strDest, const char_type* strSource,
-                                      size_t count) noexcept
-            {
-            return std::wcsncpy(strDest, strSource, count);
-            }
-
+        //-------------------------------------------------------------
         inline static bool eq(const char_type& first, const char_type& second) noexcept
             {
             // special logic for apostrophes
@@ -89,6 +58,7 @@ namespace traits
             }
 
         /// @todo Unit test
+        //-------------------------------------------------------------
         inline static constexpr bool eq_case_sensitive(const char_type& first,
                                                        const char_type& second) noexcept
             {
@@ -102,6 +72,7 @@ namespace traits
                     string_util::full_width_to_narrow(second));
             }
 
+        //-------------------------------------------------------------
         inline static bool lt(const char_type& first, const char_type& second) noexcept
             {
             // special logic for apostrophes
@@ -122,6 +93,7 @@ namespace traits
             }
 
         /// @todo unit test!
+        //-------------------------------------------------------------
         inline static bool lt_case_sensitive(const char_type& first,
                                              const char_type& second) noexcept
             {
@@ -144,6 +116,7 @@ namespace traits
             }
 
         /// @todo Unit test
+        //-------------------------------------------------------------
         inline static bool le(const char_type& first, const char_type& second) noexcept
             {
             // special logic for apostrophes
@@ -164,6 +137,7 @@ namespace traits
             }
 
         /// @todo Unit test
+        //-------------------------------------------------------------
         inline static bool ge(const char_type& first, const char_type& second) noexcept
             {
             // special logic for apostrophes
@@ -183,11 +157,13 @@ namespace traits
             return (tolower(first) >= tolower(second));
             }
 
+        //-------------------------------------------------------------
         static constexpr char_type tolower(const char_type& ch) noexcept
             {
             return characters::is_character::to_lower(string_util::full_width_to_narrow(ch));
             }
 
+        //-------------------------------------------------------------
         static int compare(const char_type* s1, const char_type* s2, size_t n) noexcept
             {
             assert(s1);
@@ -212,6 +188,7 @@ namespace traits
             }
 
         /// @todo unit test!
+        //-------------------------------------------------------------
         static int compare_case_sensitive(const char_type* s1, const char_type* s2,
                                           size_t n) noexcept
             {
@@ -235,6 +212,7 @@ namespace traits
             return 0;
             }
 
+        //-------------------------------------------------------------
         static const char_type* find(const char_type* s1, size_t n, const char_type ch) noexcept
             {
             assert(s1);
@@ -252,6 +230,7 @@ namespace traits
             return nullptr;
             }
 
+        //-------------------------------------------------------------
         static const char_type* find(const char_type* s1, size_t n1, const char_type* s2,
                                      size_t n2) noexcept
             {
