@@ -3424,6 +3424,7 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
         GraphDlg graphDlg(this, wxID_ANY, wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"FRASE")));
         graphDlg.GetCanvas()->SetFixedObject(0, 0, std::make_shared<FraseGraph>(graphDlg.GetCanvas()));
         wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
+        graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
     else if (event.GetId() == XRCID("ID_BLANK_CRAWFORD_GRAPH"))
@@ -3431,6 +3432,7 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
         GraphDlg graphDlg(this, wxID_ANY, wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Crawford")));
         graphDlg.GetCanvas()->SetFixedObject(0, 0, std::make_shared<CrawfordGraph>(graphDlg.GetCanvas()));
         wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
+        graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
     else if (event.GetId() == XRCID("ID_BLANK_FRY_GRAPH"))
@@ -3444,6 +3446,7 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
 
         graphDlg.GetCanvas()->SetFixedObject(0, 0, fryGraph);
         wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
+        graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
     else if (event.GetId() == XRCID("ID_BLANK_GPM_GRAPH"))
@@ -3458,6 +3461,7 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
 
         graphDlg.GetCanvas()->SetFixedObject(0, 0, gFryGraph);
         wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
+        graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
     else if (event.GetId() == XRCID("ID_BLANK_RAYGOR_GRAPH"))
@@ -3470,6 +3474,7 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
 
         graphDlg.GetCanvas()->SetFixedObject(0, 0, raygorGraph);
         wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
+        graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
     else if (event.GetId() == XRCID("ID_BLANK_FLESCH_GRAPH"))
@@ -3480,6 +3485,7 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
 
         graphDlg.GetCanvas()->SetFixedObject(0, 0, fleschChart);
         wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
+        graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
     else if (event.GetId() == XRCID("ID_BLANK_DB2_GRAPH"))
@@ -3487,6 +3493,7 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
         GraphDlg graphDlg(this, wxID_ANY, wxString::Format(_(L"Blank \"%s\" Graph"), BaseProjectView::GetDB2Label()));
         graphDlg.GetCanvas()->SetFixedObject(0, 0,std::make_shared<DanielsonBryan2Plot>(graphDlg.GetCanvas()));
         wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
+        graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
     else if (event.GetId() == XRCID("ID_BLANK_SCHWARTZ_GRAPH"))
@@ -3498,6 +3505,7 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
 
         graphDlg.GetCanvas()->SetFixedObject(0, 0, schwartzGraph);
         wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
+        graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
     else if (event.GetId() == XRCID("ID_BLANK_LIX_GRAPH"))
@@ -3505,6 +3513,7 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
         GraphDlg graphDlg(this, wxID_ANY, _(L"Blank Lix Gauge"));
         graphDlg.GetCanvas()->SetFixedObject(0, 0, std::make_shared<LixGauge>(graphDlg.GetCanvas()));
         wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
+        graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
     else if (event.GetId() == XRCID("ID_BLANK_GERMAN_LIX_GRAPH"))
@@ -3515,6 +3524,7 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
 
         graphDlg.GetCanvas()->SetFixedObject(0, 0, lixGauge);
         wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
+        graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
     }
