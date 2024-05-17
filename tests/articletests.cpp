@@ -56,6 +56,11 @@ TEST_CASE("English article", "[articles]")
         CHECK(artc(L"an", L"SHELLEXECUTEINFO"));
         CHECK_FALSE(artc(L"a", L"SHELLEXECUTEINFO"));
         }
+    SECTION("SHELLEXECUTEINFO")
+        {
+        CHECK_FALSE(artc(L"an", L"NTSTATUS"));
+        CHECK(artc(L"a", L"NTSTATUS"));
+        }
     SECTION("Acronyms")
         {
         CHECK(artc(L"a", L"UND"));
