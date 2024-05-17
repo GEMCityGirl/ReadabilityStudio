@@ -171,6 +171,7 @@ class WebHarvester
         {
         m_downloader.SetUserAgent(GetUserAgent());
         m_downloader.DisablePeerVerify(IsPeerVerifyDisabled());
+        m_downloader.UseSuggestedFileNames(true);
         }
 
     /// @private
