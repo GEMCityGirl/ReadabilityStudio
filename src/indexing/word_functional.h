@@ -1218,6 +1218,19 @@ class is_correctly_spelled_word
             {
             return true;
             }
+        // a hexadecimal string
+        else if (the_word.length() >= 3 && the_word[0] == L'0' &&
+                 string_util::is_either(the_word[1], L'x', L'X') &&
+                 string_util::is_hex_digit(the_word[2]))
+            {
+            return true;
+            }
+        // a possible printf command (e.g., "%d")
+        else if (the_word.length() == 2 && the_word[0] == L'%' &&
+                 characters::is_character::is_alpha(the_word[1]))
+            {
+            return true;
+            }
         // C/C++ preprocessor commands start with '#'
         // Visual Basic 6 variables can start with '$'
         // Doxygen commands start with '@'
@@ -1253,6 +1266,7 @@ class is_correctly_spelled_word
             {
             return true;
             }
+
         // see if the word has a [lowercase][UCASE], [letter][number],
         // [letter/number][:.][letter], [letter]-[UCASE][UCASE] pattern in it.
         for (size_t i = 0; i < the_word.length() - 1; ++i)
