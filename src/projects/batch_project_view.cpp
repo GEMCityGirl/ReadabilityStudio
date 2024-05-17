@@ -922,6 +922,16 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
         return dynamic_cast<wxRibbonButtonBar*>(buttonBar);
         };
 
+    const auto resetActiveCanvasResizeDelay = [this]()
+        {
+        if (GetActiveProjectWindow() != nullptr &&
+            typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
+            {
+            assert(dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow()));
+            dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())->ResetResizeDelay();
+            }
+        };
+
     wxRibbonPanel* editListButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_PANEL);
     hideEditPanel(MainFrame::ID_EDIT_RIBBON_SUMMARY_REPORT_PANEL);
@@ -960,8 +970,9 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     if (event.GetExtraLong() == SIDEBAR_READABILITY_SCORES_SECTION_ID)
         {
         m_activeWindow = GetScoresView().FindWindowById(event.GetInt());
-
+        resetActiveCanvasResizeDelay();
         assert(m_activeWindow != nullptr);
+
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -1049,8 +1060,9 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
             {
             // some tests have two box plots
             m_activeWindow = GetBoxPlotView().FindWindowByIdAndLabel(event.GetInt(), event.GetString());
-
+            resetActiveCanvasResizeDelay();
             assert(m_activeWindow != nullptr);
+
             if (GetActiveProjectWindow())
                 {
                 GetSplitter()->GetWindow2()->Hide();
@@ -1062,8 +1074,9 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
             {
             // some tests have two histograms
             m_activeWindow = GetHistogramsView().FindWindowByIdAndLabel(event.GetInt(), event.GetString());
-
+            resetActiveCanvasResizeDelay();
             assert(m_activeWindow != nullptr);
+
             if (GetActiveProjectWindow())
                 {
                 GetSplitter()->GetWindow2()->Hide();
@@ -1111,8 +1124,9 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
         m_activeWindow = (event.GetExtraLong() == SIDEBAR_WORDS_BREAKDOWN_SECTION_ID ?
             GetWordsBreakdownView().FindWindowById(event.GetInt()) :
             GetSummaryStatsView().FindWindowById(event.GetInt()) );
-
+        resetActiveCanvasResizeDelay();
         assert(m_activeWindow != nullptr);
+
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -1158,8 +1172,9 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetExtraLong() == SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID)
         {
         m_activeWindow = GetSentencesBreakdownView().FindWindowById(event.GetInt());
-
+        resetActiveCanvasResizeDelay();
         assert(m_activeWindow != nullptr);
+
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -1175,8 +1190,9 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetExtraLong() == SIDEBAR_GRAMMAR_SECTION_ID)
         {
         m_activeWindow = GetGrammarView().FindWindowById(event.GetInt());
-
+        resetActiveCanvasResizeDelay();
         assert(m_activeWindow != nullptr);
+
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -1192,8 +1208,9 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetExtraLong() == SIDEBAR_DOLCH_SECTION_ID)
         {
         m_activeWindow = GetDolchSightWordsView().FindWindowById(event.GetInt());
-
+        resetActiveCanvasResizeDelay();
         assert(m_activeWindow != nullptr);
+
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -1209,8 +1226,9 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetInt() == SIDEBAR_WARNINGS_SECTION_ID)
         {
         m_activeWindow = GetWarningsView();
-
+        resetActiveCanvasResizeDelay();
         assert(m_activeWindow != nullptr);
+
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();

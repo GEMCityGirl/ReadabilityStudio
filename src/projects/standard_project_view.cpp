@@ -2000,6 +2000,16 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         return dynamic_cast<wxRibbonButtonBar*>(buttonBar);
         };
 
+    const auto resetActiveCanvasResizeDelay = [this]()
+        {
+        if (GetActiveProjectWindow() != nullptr &&
+            typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
+            {
+            assert(dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow()));
+            dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())->ResetResizeDelay();
+            }
+        };
+
     wxRibbonPanel* editListButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_PANEL);
     wxRibbonPanel* editSummaryReportButtonBarWindow =
@@ -2046,8 +2056,9 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         event.GetInt() == READABILITY_GOALS_PAGE_ID)
         {
         m_activeWindow = GetReadabilityResultsView().FindWindowById(event.GetInt());
-
+        resetActiveCanvasResizeDelay();
         assert(m_activeWindow != nullptr);
+
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -2086,7 +2097,9 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         event.GetInt() == GPM_FRY_PAGE_ID)
         {
         m_activeWindow = GetReadabilityResultsView().FindWindowById(event.GetInt());
+        resetActiveCanvasResizeDelay();
         assert(m_activeWindow != nullptr);
+
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -2136,7 +2149,9 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetExtraLong() == SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID)
         {
         m_activeWindow = GetSentencesBreakdownView().FindWindowById(event.GetInt());
+        resetActiveCanvasResizeDelay();
         assert(m_activeWindow != nullptr);
+
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -2188,7 +2203,9 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetExtraLong() == SIDEBAR_STATS_SUMMARY_SECTION_ID)
         {
         m_activeWindow = GetSummaryView().FindWindowById(event.GetInt());
+        resetActiveCanvasResizeDelay();
         assert(m_activeWindow != nullptr);
+
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -2215,8 +2232,9 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         m_activeWindow = GetWordsBreakdownView().FindWindowByIdAndLabel(event.GetInt(), event.GetString());
         if (!GetActiveProjectWindow())
             { m_activeWindow = GetWordsBreakdownView().FindWindowById(event.GetInt()); }
-
+        resetActiveCanvasResizeDelay();
         assert(m_activeWindow != nullptr);
+
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -2301,8 +2319,9 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetExtraLong() == SIDEBAR_GRAMMAR_SECTION_ID)
         {
         m_activeWindow = GetGrammarView().FindWindowById(event.GetInt());
-
+        resetActiveCanvasResizeDelay();
         assert(m_activeWindow != nullptr);
+
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -2338,8 +2357,9 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
     else if (event.GetExtraLong() == SIDEBAR_DOLCH_SECTION_ID)
         {
         m_activeWindow = GetDolchSightWordsView().FindWindowById(event.GetInt());
-
+        resetActiveCanvasResizeDelay();
         assert(m_activeWindow != nullptr);
+
         if (GetActiveProjectWindow())
             {
             GetSplitter()->GetWindow2()->Hide();
@@ -2387,7 +2407,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
 
     // add the label for the window type to the export menu item
     assert(GetActiveProjectWindow());
-    if (wxMenuItem* exportMenuItem{ GetDocFrame()->m_exportMenu.FindChildItem(XRCID("ID_SAVE_ITEM")) };
+    if (wxMenuItem *
+            exportMenuItem{ GetDocFrame()->m_exportMenu.FindChildItem(XRCID("ID_SAVE_ITEM")) };
         exportMenuItem != nullptr && GetActiveProjectWindow() != nullptr)
         {
         exportMenuItem->SetItemLabel(
