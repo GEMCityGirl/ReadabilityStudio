@@ -1086,6 +1086,7 @@ and than	and then	3
 andd	and	3		
 androgenous	androgynous	3		
 androgeny	androgyny	3		
+angiven	any given	3		
 anhoter	another	3		
 anihilate	annihilate	3		
 anihilated	annihilated	3		
@@ -2344,6 +2345,9 @@ biography of their lives	their biographies	1
 biography of your life	your biography	1		
 birds of a feather	those of similar interest associate with each other	2		
 birds of a feather flock together	those of similar interest associate with each other	2		
+bistream	bitstream	3		
+bistream's	bitstream's	3		
+bistreams	bitstreams	3		
 bit off more than he can chew	took on a job that is too much for him to handle	2		
 bit off more than I can chew	took on a job that is too much for me to handle	2		
 bit off more than she can chew	took on a job that is too much for her to handle	2		
@@ -2574,8 +2578,6 @@ brought to a standstill	ceased, ended, halted, stopped	0
 brought to an end	closed, ended, finished, concluded	0		
 brought to light	disclosed, broadcasted, divulged, exposed, pointed out, promoted, revealed	0		
 brought to mind	recalled, recollected, remembered	0		
-brower	browser	3		hall
-browers	browsers	3		
 bsaed	based	3		
 buccaneer	pirate	0		
 buccaneer's	pirate's	0		
@@ -2787,6 +2789,7 @@ caost	coast	3
 capabilies	capabilities	3		
 capabilites	capabilities	3		
 capabilities	abilities	0		
+capabilitues	capabilities	3		
 capability	ability	0		
 capability's	ability's	0		
 capabilties	capabilities	3		
@@ -3958,13 +3961,16 @@ contiguities	continuities	3
 contiguity	nearness	0		
 contiguous	touching, near, next to	0		
 contiguous to	next to	0		
-contined	continued	3		
+contin	contain	3		
+contined	contained	3		
 continential	continental	3		
 contingencies	emergencies, predicaments	0		
 contingency	emergency, likelihood, predicament	0		
 continguous	contiguous	3		
+contining	containing	3		
 continous	continuous	3		
 continously	continuously	3		
+contins	contains	3		
 continue	keep, keep on	0		
 continue into the future	continue	0		
 continue on	continue	0		
@@ -4075,6 +4081,8 @@ convertables	convertibles	3
 convertion	conversion	3		
 convertions	conversions	3		
 convertor	converter	3		
+convertor's	converter's	3		
+convertors	converters	3		
 conververting	controverting	3		
 convet	convert	3		
 conveted	converted	3		
@@ -4672,6 +4680,9 @@ deprectates	deprecates	3
 deprectating	deprecating	3		
 deprected	deprecated	3		
 depricated	deprecated	3		
+deptch	depth	3		
+deptch's	depth's	3		
+deptchs	depths	3		
 derefenced	dereferenced	3		
 derivate	derivative	3		
 derivates	derivatives	3		
@@ -4761,7 +4772,10 @@ desparate	desperate	3
 despict	depict	3		
 despiration	desperation	3		
 despite the fact that	although, even though, despite	0		
+desribe	describe	3		
 desribed	described	3		
+desribes	describes	3		
+desribing	describing	3		
 desription	description	3		
 desription's	description's	3		
 desriptions	descriptions	3		
@@ -4839,6 +4853,9 @@ deviations	changes	0
 devide	divide	3		
 devided	divided	3		
 devistating	devastating	3		
+devloper	developer	3		
+devloper's	developer's	3		
+devlopers	developers	3		
 devolopement	development	3		
 dgit	digit	3		
 dgit's	digit's	3		
@@ -4850,6 +4867,9 @@ diablical	diabolical	3
 diabling	disabling	3		
 diaerers	diaereses	3		
 diagnositc	diagnostic	3		
+diagonistic	diagnostic	3		
+diagonistic's	diagnostic's	3		
+diagonistics	diagnostics	3		
 diagraming	diagramming	3		
 diamond in the rough	inexperienced/unpolished person or thing that shows promise	2		
 diamons	diamonds	3		
@@ -6367,6 +6387,9 @@ facilitating	easing, helping	0
 facilitation	help, helping	0		
 facilites	facilities	3		
 facillitate	facilitate	3		
+facilties	facilities	3		
+facilty	facility	3		
+facilty's	facility's	3		
 facinated	fascinated	3		
 facinating	fascinating	3		
 facinatingly	fascinatingly	3		
@@ -6533,6 +6556,9 @@ figuratively speaking	in a way	0
 figurine	doll	0		
 figurine's	doll's	0		
 figurines	dolls	0		
+fiind	find	3		
+fiinding	finding	3		
+fiinds	finds	3		
 file manger	file manager	3		
 file mangers	file managers	3		
 filiament	filament	3		
@@ -7882,6 +7908,7 @@ impolite	rude	0
 importamt	important	3		
 importunate	urgent	0		
 importunately	urgently	0		
+imposible	impossible	3		
 imposter	impostor	3		
 imposter's	impostor's	3		
 imposters	impostors	3		
@@ -8440,6 +8467,7 @@ initially	at first	0
 initialze	initialize	3		
 initialzed	initialized	3		
 initialzes	initializes	3		
+initialzied	initialized	3		
 initiate	start	0		
 initiated	started	0		
 initiates	starts	0		
@@ -8463,6 +8491,10 @@ inivitation's	invitation's	3
 inivitations	invitations	3		
 injudicious	unwise	0		
 injudiciously	unwisely	0		
+inlclude	include	3		
+inlcluded	included	3		
+inlcludes	includes	3		
+inlcluding	including	3		
 inlcude	include	3		
 inlcuded	included	3		
 inlcudes	includes	3		
@@ -8629,6 +8661,9 @@ internation	international	3
 internecine	deadly	0		
 internel	internal	3		
 internels	internals	3		
+internet brower	internet browser	3		
+internet brower's	internet browser's	3		
+internet browers	internet browsers	3		
 interntational	international	3		
 interopabilities	interoperabilities	3		
 interopability	interoperability	3		
@@ -8690,6 +8725,9 @@ intimating	hinting, suggesting	0
 intoduction	introduction	3		
 intoduction's	introduction's	3		
 intoductions	introductions	3		
+intput	input	3		
+intput's	input's	3		
+intputs	inputs	3		
 intractable	stubborn	0		
 intractably	stubbornly	0		
 intrduced	introduced	3		
@@ -8985,6 +9023,7 @@ its a	it's a	3
 its the	it's the	3		
 itslef	itself	3		
 ivory tower	out of touch with reality, unaware of other people's plight	2		
+iyou	you	3		
 janus-faced	deceitful, deal both ways, two-faced	2		
 Javitz	Javits	3		
 jeapardy	jeopardy	3		
@@ -9675,6 +9714,7 @@ mathmaticians	mathematicians	3
 mathmatics	mathematics	3		
 mathod	method	3		
 matris	matrix	3		
+matrixes	matrices	3		
 maximum	most, greatest	0		
 maximum amount of	most, highest, maximum	0		
 maximum number of	most, highest, maximum	0		
@@ -9684,6 +9724,7 @@ maxium	maximum	3
 may effect	may affect	3		
 may or may not	may, may not	0		
 may possibly	may	1		
+maynot	may not	3		
 mbedded	embedded	3		
 mchanics	mechanics	3		
 meaninful	meaningful	3		
@@ -10346,6 +10387,7 @@ nubmers	numbers	3
 nucular	nuclear	3		
 nuculear	nuclear	3		
 nuisanse	nuisance	3		
+nul	null	3		
 null and void	null, void, invalid	1		
 numberal	numeral	3		
 numberals	numerals	3		
@@ -11056,6 +11098,7 @@ pays them a compliment	compliments them	0
 pays through the nose	pays an exorbitant price	2		
 pblisher	publisher	3		
 pbulisher	publisher	3		
+pdated	updated	3		
 peace and quiet	peace, quiet	1		
 peageant	pageant	3		
 peak curiosity	pique curiosity	3		
@@ -12889,6 +12932,7 @@ repetion	repetition	3
 repid	rapid	3		
 repitition	repetition	3		
 replacable	replaceable	3		
+replaceing	replacing	3		
 replacment	replacement	3		
 replacments	replacements	3		
 replica	copy	0		
@@ -13134,6 +13178,7 @@ retreive	retrieve	3
 retreived	retrieved	3		
 retreives	retrieves	3		
 retreiving	retrieving	3		
+retrievedby	retrieved by	3		
 retrival	retrieval	3		
 retrival's	retrieval's	3		
 retrivals	retrievals	3		
@@ -13199,6 +13244,7 @@ rise up	rise	1
 rises up	rises	1		
 risible	funny	0		
 rising up	rising	1		
+rither	either	3		
 rlated	related	3		
 rmeove	remove	3		
 rmeoved	removed	3		
@@ -14302,6 +14348,7 @@ sucesion	succession	3
 sucess	success	3		
 sucesses	successes	3		
 sucessful	successful	3		
+sucessfull	successful	3		
 sucessfully	successfully	3		
 sucesss	success	3		
 sucide	suicide	3		
@@ -14510,7 +14557,6 @@ syncronizing	synchronizing	3
 syncronus	synchronous	3		
 synonomous	synonymous	3		
 synonymns	synonyms	3		
-synopsys	synopsis	3		
 synphony	symphony	3		
 syphyllis	syphilis	3		
 sypmtoms	symptoms	3		
@@ -15593,6 +15639,7 @@ upped the ante	invested more	2
 upper crust	aristocracy	2		
 upping the ante	investing more	2		
 ups the ante	invests more	2		
+upsteam	upstream	3		
 upto	up to	3		
 urine analysis	urinalysis	3		
 usablilty	usability	3		
@@ -15755,6 +15802,9 @@ velocity	speed	0
 vender	vendor	3		
 vender's	vendor's	3		
 venders	vendors	3		
+vendr	vendor	3		
+vendr's	vendor's	3		
+vendrs	vendors	3		
 venemous	venomous	3		
 vengance	vengeance	3		
 vengence	vengeance	3		
@@ -15770,6 +15820,9 @@ verbatium	verbatim	3
 verbatum	verbatim	3		
 verbse	verbose	3		
 verfication	verification	3		
+verficiation	verification	3		
+verficiation's	verification's	3		
+verficiations	verifications	3		
 verification	proof	0		
 verion	version	3		
 verions	versions	3		

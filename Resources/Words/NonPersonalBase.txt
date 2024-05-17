@@ -1309,6 +1309,7 @@ Cointon
 Cointreau
 Coldfield
 ColdFusion
+Coldstream
 Coldwater
 Coleraine
 Coleridge
@@ -1582,6 +1583,7 @@ Derbyshire
 Dermaflash
 Dermalogica
 Dermatan
+DesignWare
 Detroit
 Dettingen
 Deusenberg
@@ -4549,6 +4551,7 @@ Praxilla
 PRC
 Preble
 Precambrian
+Prefast
 Presario
 Presbyterian
 Presbyterianism
@@ -4859,6 +4862,7 @@ Roswell
 Rotarian
 Rotterdam
 Roussillon
+Roxio
 Roxxsaurus
 Royalton
 Royce
@@ -5460,6 +5464,7 @@ Sydney
 Sylvania
 Sylvatic
 Symantec
+Synopsys
 Synpase
 Syntech
 Syntex

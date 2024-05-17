@@ -42,6 +42,7 @@ UDC
 UDE
 UDP
 UFO
+UFX
 UIA
 UICC
 UICulture

@@ -12169,6 +12169,7 @@ biodiverse
 biodiversities
 biodiversity
 biodiversity's
+biodynamics
 bioeconomies
 bioeconomy
 bioeconomy's
@@ -12370,6 +12371,9 @@ biosensors
 biosignature
 biosignatures
 biosignatures's
+biospecimen
+biospecimen's
+biospecimens
 biosphere
 biosphere's
 biospheres
@@ -12618,6 +12622,9 @@ bitchiness
 bitchiness's
 bitching
 bitchy
+bitdepth
+bitdepth's
+bitdepths
 bite
 biter
 biter's
@@ -31141,6 +31148,7 @@ cytomegalovirus
 cytometer
 cytometer's
 cytometers
+cytometric
 cytometry
 cytopathic
 cytopathy
@@ -34229,6 +34237,10 @@ depressives
 depressor
 depressor's
 depressors
+deprioritize
+deprioritized
+deprioritizes
+deprioritizing
 deprivation
 deprivation's
 deprivations
@@ -44638,6 +44650,7 @@ etiology's
 etiquette
 etiquette's
 etiquettes
+ETL
 etoposide
 etoposide's
 etoposides
@@ -72107,6 +72120,9 @@ lasciviousness's
 lase
 laser
 laser's
+laserdisc
+laserdisc's
+laserdiscs
 lasers
 lases
 lash
@@ -74084,6 +74100,8 @@ lipid's
 lipidologist
 lipidologist's
 lipidologists
+lipidomic
+lipidomics
 lipids
 lipitor
 lipless
@@ -79629,6 +79647,9 @@ microaggressions
 microalbuminuria
 microalgae
 microamp
+microampere
+microampere's
+microamperes
 microanalyses
 microanalysis
 microanalysis's
@@ -83578,6 +83599,7 @@ multiband
 multibank
 multibillion
 multibillions
+multibit
 multibranched
 multibrand
 multibrand's
@@ -83596,6 +83618,9 @@ multicandidate's
 multicandidates
 multicarbon
 multicaret
+multicarrier
+multicarrier's
+multicarriers
 multicast
 multicellular
 multicellularity
@@ -83722,6 +83747,7 @@ multipacket's
 multipackets
 multipage
 multipara
+multiparameter
 multiparous
 multipart
 multiparty
@@ -84783,6 +84809,9 @@ nanotechs
 nanotube
 nanotube's
 nanotubes
+nanowizard
+nanowizard's
+nanowizards
 Nansen
 Naoma
 nap
@@ -86123,6 +86152,10 @@ nicotine
 nicotine's
 nicotines
 nicotinic
+nicrocapture
+nicrocaptured
+nicrocaptures
+nicrocapturing
 nictitate
 nictitating
 Niebuhr
@@ -86761,6 +86794,9 @@ nonconsumption
 nonconsumption's
 noncontact
 noncontagious
+noncontainer
+noncontainer's
+noncontainers
 noncontiguous
 noncontinuous
 noncontractile
@@ -87147,6 +87183,7 @@ nonorthogonal
 nonorthogonality
 nonoverlapped
 nonoverlapping
+nonowned
 nonowner
 nonowner's
 nonowners
@@ -93333,6 +93370,9 @@ paratyphoids
 paraventricular
 paravertebral
 paravirtual
+paravirtualization
+paravirtualization's
+paravirtualizations
 paravirtualize
 paravirtualized
 paravirtualizes
@@ -99748,6 +99788,9 @@ portamento's
 portcullis
 portcullis's
 portcullises
+portdriver
+portdriver's
+portdrivers
 Porte
 Porte's
 ported
@@ -104934,6 +104977,9 @@ quantitate
 quantitated
 quantitates
 quantitating
+quantitation
+quantitation's
+quantitations
 quantitative
 quantitatively
 quantitativeness
@@ -110649,6 +110695,10 @@ resampling
 resat
 resaturated
 resaturates
+resave
+resaved
+resaves
+resaving
 rescale
 rescaled
 rescales
@@ -111921,6 +111971,8 @@ revising
 revision
 revision's
 revisionary
+revisioned
+revisioning
 revisionism
 revisionism's
 revisionisms
@@ -119782,6 +119834,7 @@ sigmoidoscope
 sigmoidoscopy
 sign
 sign's
+signability
 signage
 signage's
 signal
@@ -123189,6 +123242,9 @@ spaceman's
 spacemen
 spacemen's
 spaceodissey
+spaceout
+spaceout's
+spaceouts
 spaceport
 spaceport's
 spaceports
@@ -126901,6 +126957,7 @@ striker's
 strikers
 strikes
 strikethrough
+strikethru
 striking
 strikingly
 strikings

@@ -1,7 +1,9 @@
+asc
 bigint
 columnstore
 datetime
 datetimeoffset
+desc
 nchar
 nvarchar
 smalldatetime
