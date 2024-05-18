@@ -3446,12 +3446,11 @@ std::pair<bool, std::wstring> BaseProject::ExtractRawText(std::string_view sourc
 
     if (fileExtension.CmpNoCase(L"rtf") == 0)
         {
-        lily_of_the_valley::rtf_extract_text filter_rtf;
-        filter_rtf.set_log_message_separator(L", ");
         try
             {
-            const std::wstring filteredText(
-                filter_rtf(sourceFileText.data(), sourceFileText.length()));
+            lily_of_the_valley::rtf_extract_text filter_rtf;
+            filter_rtf.set_log_message_separator(L", ");
+            filter_rtf(sourceFileText.data(), sourceFileText.length());
             if (filter_rtf.get_log().length())
                 { wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(), filter_rtf.get_log()); }
             SetOriginalDocumentDescription(
@@ -3464,7 +3463,7 @@ std::pair<bool, std::wstring> BaseProject::ExtractRawText(std::string_view sourc
                           filter_rtf.get_author(),
                           wxFileName(GetOriginalDocumentFilePath()).GetName().wc_str() }
                         ));
-            return std::make_pair(true, filteredText);
+            return std::make_pair(true, std::move(filter_rtf.get_filtered_buffer()));
             }
         catch (const rtf_extract_text::rtfparse_stack_underflow&)
             {
@@ -3513,12 +3512,11 @@ std::pair<bool, std::wstring> BaseProject::ExtractRawText(std::string_view sourc
     else if (fileExtension.CmpNoCase(L"doc") == 0 ||
              fileExtension.CmpNoCase(L"dot") == 0)
         {
-        word1997_extract_text filter_word; // Word 97-2003
-        filter_word.set_log_message_separator(L", ");
         try
             {
-            const std::wstring filteredText(
-                filter_word(sourceFileText.data(), sourceFileText.length()));
+            word1997_extract_text filter_word; // Word 97-2003
+            filter_word.set_log_message_separator(L", ");
+            filter_word(sourceFileText.data(), sourceFileText.length());
             if (filter_word.get_log().length())
                 { wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(), filter_word.get_log()); }
             SetOriginalDocumentDescription(
@@ -3531,7 +3529,7 @@ std::pair<bool, std::wstring> BaseProject::ExtractRawText(std::string_view sourc
                           filter_word.get_author(),
                           wxFileName(GetOriginalDocumentFilePath()).GetName().wc_str() }
                         ));
-            return std::make_pair(true, filteredText);
+            return std::make_pair(true, std::move(filter_word.get_filtered_buffer()));
             }
         catch (const rtf_extract_text::rtfparse_exception&)
             {
@@ -3634,11 +3632,10 @@ std::pair<bool, std::wstring> BaseProject::ExtractRawText(std::string_view sourc
         const wxString docxFileText = archive.ReadTextFile(L"word/document.xml");
         try
             {
-            const std::wstring filteredText(
-                filter_docx(docxFileText.wc_str(), docxFileText.length()));
+            filter_docx(docxFileText.wc_str(), docxFileText.length());
             if (filter_docx.get_log().length())
                 { wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(), filter_docx.get_log()); }
-            return std::make_pair(true, filteredText);
+            return std::make_pair(true, std::move(filter_docx.get_filtered_buffer()));
             }
         catch (...)
             {
@@ -3651,14 +3648,14 @@ std::pair<bool, std::wstring> BaseProject::ExtractRawText(std::string_view sourc
     else if (fileExtension.CmpNoCase(L"hhc") == 0 ||
              fileExtension.CmpNoCase(L"hhk") == 0)
         {
-        lily_of_the_valley::hhc_hhk_extract_text filter_hhc_hhk;
-        filter_hhc_hhk.set_log_message_separator(L", ");
         try
             {
+            lily_of_the_valley::hhc_hhk_extract_text filter_hhc_hhk;
+            filter_hhc_hhk.set_log_message_separator(L", ");
             const std::wstring hhStr =
                 Wisteria::TextStream::CharStreamToUnicode(
                     sourceFileText.data(), sourceFileText.length());
-            const std::wstring filteredText(filter_hhc_hhk(hhStr.c_str(), hhStr.length()));
+            filter_hhc_hhk(hhStr.c_str(), hhStr.length());
             if (filter_hhc_hhk.get_log().length())
                 {
                 wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(), filter_hhc_hhk.get_log());
@@ -3667,7 +3664,7 @@ std::pair<bool, std::wstring> BaseProject::ExtractRawText(std::string_view sourc
                 coalesce({ GetOriginalDocumentDescription(),
                            wxFileName(GetOriginalDocumentFilePath()).GetName() }
                         ));
-            return std::make_pair(true, filteredText);
+            return std::make_pair(true, std::move(filter_hhc_hhk.get_filtered_buffer()));
             }
         catch (...)
             {
@@ -3736,7 +3733,7 @@ std::pair<bool, std::wstring> BaseProject::ExtractRawText(std::string_view sourc
                      label,
                      wxFileName(GetOriginalDocumentFilePath()).GetName()
                      }));
-        return std::make_pair(true, extractResult.second);
+        return std::make_pair(true, std::move(extractResult.second));
         }
     else if (fileExtension.CmpNoCase(L"ps") == 0)
         {
@@ -3744,8 +3741,7 @@ std::pair<bool, std::wstring> BaseProject::ExtractRawText(std::string_view sourc
         filter_ps.set_log_message_separator(L", ");
         try
             {
-            const std::wstring filteredText(
-                filter_ps(sourceFileText.data(), sourceFileText.length()));
+            filter_ps(sourceFileText.data(), sourceFileText.length());
             if (filter_ps.get_log().length())
                 { wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(), filter_ps.get_log()); }
             SetOriginalDocumentDescription(
@@ -3753,7 +3749,7 @@ std::pair<bool, std::wstring> BaseProject::ExtractRawText(std::string_view sourc
                            wxString(filter_ps.get_title()),
                            wxFileName(GetOriginalDocumentFilePath()).GetName() }
                         ));
-            return std::make_pair(true, filteredText);
+            return std::make_pair(true, std::move(filter_ps.get_filtered_buffer()));
             }
         catch (const lily_of_the_valley::postscript_extract_text::postscript_header_not_found&)
             {
@@ -3789,36 +3785,34 @@ std::pair<bool, std::wstring> BaseProject::ExtractRawText(std::string_view sourc
         if (odtMetaFileText.length())
             {
             filter_odt.read_meta_data(odtMetaFileText, odtMetaFileText.length());
-            SetOriginalDocumentDescription(
-                coalesce<wchar_t>(
-                        { GetOriginalDocumentDescription().wc_str(),
-                          filter_odt.get_subject(),
-                          filter_odt.get_title(),
-                          filter_odt.get_keywords(),
-                          filter_odt.get_description(),
-                          filter_odt.get_author(),
-                          wxFileName(GetOriginalDocumentFilePath()).GetName().wc_str() }
-                        ));
+            SetOriginalDocumentDescription(coalesce<wchar_t>(
+                { GetOriginalDocumentDescription().wc_str(), filter_odt.get_subject(),
+                  filter_odt.get_title(), filter_odt.get_keywords(), filter_odt.get_description(),
+                  filter_odt.get_author(),
+                  wxFileName(GetOriginalDocumentFilePath()).GetName().wc_str() }));
             }
         const wxString odtFileText = archive.ReadTextFile(L"content.xml");
         if (odtFileText.empty() && archive.GetMessages().size())
             {
             LogMessage(wxString::Format(_(L"Unable to open ODT/ODP document: %s"),
-                archive.GetMessages().at(0).m_message), wxGetApp().GetAppDisplayName(), wxICON_EXCLAMATION|wxOK);
+                                        archive.GetMessages().at(0).m_message),
+                       wxGetApp().GetAppDisplayName(), wxICON_EXCLAMATION | wxOK);
             return std::make_pair(false, std::wstring{});
             }
         try
             {
-            const std::wstring filteredText(filter_odt(odtFileText, odtFileText.length()));
+            filter_odt(odtFileText, odtFileText.length());
             if (filter_odt.get_log().length())
-                { wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(), filter_odt.get_log()); }
-            return std::make_pair(true, filteredText);
+                {
+                wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(), filter_odt.get_log());
+                }
+            return std::make_pair(true, std::move(filter_odt.get_filtered_buffer()));
             }
         catch (...)
             {
             LogMessage(_(L"An unknown error occurred while importing. "
-                "Unable to continue creating project."),
-                _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
+                         "Unable to continue creating project."),
+                       _(L"Import Error"), wxOK | wxICON_EXCLAMATION);
             return std::make_pair(false, std::wstring{});
             }
         }
@@ -3833,64 +3827,64 @@ std::pair<bool, std::wstring> BaseProject::ExtractRawText(std::string_view sourc
         if (pptMetaFileText.length())
             {
             filter_pptx.read_meta_data(pptMetaFileText, pptMetaFileText.length());
-            SetOriginalDocumentDescription(
-                coalesce<wchar_t>(
-                        { GetOriginalDocumentDescription().wc_str(),
-                          filter_pptx.get_subject(),
-                          filter_pptx.get_title(),
-                          filter_pptx.get_keywords(),
-                          filter_pptx.get_description(),
-                          filter_pptx.get_author(),
-                          wxFileName(GetOriginalDocumentFilePath()).GetName().wc_str() }
-                        ));
+            SetOriginalDocumentDescription(coalesce<wchar_t>(
+                { GetOriginalDocumentDescription().wc_str(), filter_pptx.get_subject(),
+                  filter_pptx.get_title(), filter_pptx.get_keywords(),
+                  filter_pptx.get_description(), filter_pptx.get_author(),
+                  wxFileName(GetOriginalDocumentFilePath()).GetName().wc_str() }));
             }
         if (archive.Find(L"ppt/slides/slide1.xml") == nullptr)
             {
             LogMessage(_(L"Unable to open PowerPoint document; "
-                "file is either password-protected or corrupt."),
-                wxGetApp().GetAppDisplayName(), wxICON_EXCLAMATION|wxOK);
+                         "file is either password-protected or corrupt."),
+                       wxGetApp().GetAppDisplayName(), wxICON_EXCLAMATION | wxOK);
             return std::make_pair(false, std::wstring{});
             }
-        for (size_t i = 1;/*breaks when no more pages are found*/;++i)
+        for (size_t i = 1; /*breaks when no more pages are found*/; ++i)
             {
-            if (archive.Find(wxString::Format(L"ppt/slides/slide%zu.xml", i)) )
+            if (archive.Find(wxString::Format(L"ppt/slides/slide%zu.xml", i)))
                 {
                 const wxString pptxFileText =
-                    archive.ReadTextFile(wxString::Format(L"ppt/slides/slide%zu.xml",i));
+                    archive.ReadTextFile(wxString::Format(L"ppt/slides/slide%zu.xml", i));
                 try
                     {
                     pptParsedText += filter_pptx(pptxFileText.wc_str(), pptxFileText.length());
                     pptParsedText += L"\n";
                     if (filter_pptx.get_log().length())
-                        { wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(), filter_pptx.get_log()); }
+                        {
+                        wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(),
+                                     filter_pptx.get_log());
+                        }
                     }
                 catch (...)
                     {
-                    LogMessage(
-                        _(L"An unknown error occurred while importing. "
-                            "Unable to continue creating project."),
-                        _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
+                    LogMessage(_(L"An unknown error occurred while importing. "
+                                 "Unable to continue creating project."),
+                               _(L"Import Error"), wxOK | wxICON_EXCLAMATION);
                     return std::make_pair(false, std::wstring{});
                     }
                 }
             else
-                { break; }
+                {
+                break;
+                }
             }
-        return std::make_pair(true, pptParsedText);
+        return std::make_pair(true, std::move(pptParsedText));
         }
     else if (fileExtension.CmpNoCase(L"idl") == 0)
         {
         // override user settings, we would want to ignore code here
         SpellCheckIgnoreProgrammerCode(true);
-        lily_of_the_valley::idl_extract_text filter_idl;
-        const wxString unicodeStr =
+        const std::wstring unicodeStr =
             Wisteria::TextStream::CharStreamToUnicode(sourceFileText.data(), sourceFileText.length());
         SetOriginalDocumentDescription(
             coalesce({
                      GetOriginalDocumentDescription(),
                      wxFileName(GetOriginalDocumentFilePath()).GetName()
                      }));
-        return std::make_pair(true, filter_idl({ unicodeStr, unicodeStr.length() }));
+        lily_of_the_valley::idl_extract_text filter_idl;
+        filter_idl({ unicodeStr.c_str(), unicodeStr.length() });
+        return std::make_pair(true, std::move(filter_idl.get_filtered_buffer()));
         }
     else if (fileExtension.CmpNoCase(L"cpp") == 0 ||
         fileExtension.CmpNoCase(L"c") == 0 ||
@@ -3900,28 +3894,30 @@ std::pair<bool, std::wstring> BaseProject::ExtractRawText(std::string_view sourc
         lily_of_the_valley::cpp_extract_text filter_cpp;
         if (wxGetApp().IsUsingAdvancedImport())
             { filter_cpp.include_all_comments(true); }
-        const wxString unicodeStr =
+        const std::wstring unicodeStr =
             Wisteria::TextStream::CharStreamToUnicode(sourceFileText.data(), sourceFileText.length());
         SetOriginalDocumentDescription(
             coalesce<wchar_t>({ GetOriginalDocumentDescription().wc_str(),
                                 filter_cpp.get_author(),
                                 wxFileName(GetOriginalDocumentFilePath()).GetName().wc_str() }
                              ));
-        return std::make_pair(true, filter_cpp(unicodeStr, unicodeStr.length()));
+        filter_cpp(unicodeStr.c_str(), unicodeStr.length());
+        return std::make_pair(true, std::move(filter_cpp.get_filtered_buffer()));
         }
     else if (fileExtension.CmpNoCase(L"md") == 0 ||
         fileExtension.CmpNoCase(L"rmd") == 0 ||
         fileExtension.CmpNoCase(L"qmd") == 0)
         {
-        lily_of_the_valley::markdown_extract_text filter_md;
-        const wxString unicodeStr =
+        const std::wstring unicodeStr =
             Wisteria::TextStream::CharStreamToUnicode(sourceFileText.data(), sourceFileText.length());
         SetOriginalDocumentDescription(
             coalesce({
                      GetOriginalDocumentDescription(),
                      wxFileName(GetOriginalDocumentFilePath()).GetName()
                      }));
-        return std::make_pair(true, filter_md({ unicodeStr.wc_str(), unicodeStr.length() }));
+        lily_of_the_valley::markdown_extract_text filter_md;
+        filter_md({ unicodeStr.c_str(), unicodeStr.length() });
+        return std::make_pair(true, std::move(filter_md.get_filtered_buffer()));
         }
     else if (fileExtension.CmpNoCase(L"txt") == 0)
         {
@@ -3972,7 +3968,7 @@ std::pair<bool, std::wstring> BaseProject::ExtractRawText(std::string_view sourc
                            title,
                            wxFileName(GetOriginalDocumentFilePath()).GetName() }
                         ));
-            return std::make_pair(true, extractResult.second);
+            return std::make_pair(true, std::move(extractResult.second));
             }
         // ...otherwise, just load it as regular text
         else
