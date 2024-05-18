@@ -88,7 +88,7 @@ bool BaseProject::LoadAppendedDocument()
                 }
             }
         MemoryMappedFile sourceFile(GetAppendedDocumentFilePath(), true, true);
-        const std::pair<bool,wxString> extractResult =
+        const std::pair<bool, std::wstring> extractResult =
             ExtractRawText({ static_cast<const char*>(sourceFile.GetStream()), sourceFile.GetMapSize() },
                 wxFileName(GetAppendedDocumentFilePath()).GetExt());
         SetAppendedDocumentText(extractResult.first ? extractResult.second : wxString{});
@@ -4106,7 +4106,7 @@ bool BaseProject::LoadExternalDocument()
         try
             {
             MemoryMappedFile sourceFile(GetOriginalDocumentFilePath(), true, true);
-            const std::pair<bool, wxString> extractResult =
+            const std::pair<bool, std::wstring> extractResult =
                 ExtractRawText({ static_cast<const char*>(sourceFile.GetStream()),
                     sourceFile.GetMapSize() }, wxFileName(GetOriginalDocumentFilePath()).GetExt());
             if (extractResult.first)
@@ -4178,7 +4178,7 @@ bool BaseProject::LoadExternalDocument()
             LogMessage(zc.GetMessages().back().m_message,
                        poundFn.GetFullPath(), zc.GetMessages().back().m_icon);
             }
-        const std::pair<bool, wxString> extractResult =
+        const std::pair<bool, std::wstring> extractResult =
             ExtractRawText({ static_cast<const char*>(memstream.GetOutputStreamBuffer()->GetBufferStart()),
                               static_cast<size_t>(memstream.GetLength()) },
                            wxFileName(GetOriginalDocumentFilePath()).GetExt());
