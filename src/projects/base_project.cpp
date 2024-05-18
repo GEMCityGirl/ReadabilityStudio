@@ -244,7 +244,7 @@ void BaseProject::FormatFilteredText(wxString& text, const bool romanizeText,
     if (project->GetDocumentStorageMethod() == TextStorage::NoEmbedText)
         { project->FreeDocumentText(); }
     if (!project->LoadDocumentAsSubProject(project->GetOriginalDocumentFilePath(), project->GetDocumentText(), 1) ||
-        project->GetDocumentText().length() == 0)
+        project->GetDocumentText().empty())
         { return; }
     const size_t textLength = ((project->GetDocumentText().length()+project->GetAppendedDocumentText().length())*2);
     FormatFilteredWordCollection(project->GetWords(),
@@ -4241,7 +4241,8 @@ bool BaseProject::LoadExternalDocument()
                 const wxString sheetFile =
                     zc.ReadTextFile(wxString::Format(L"xl/worksheets/sheet%zu.xml",
                                     (sheetPos-filter_xlsx.get_worksheet_names().begin())+1));
-                wxString cellText = filter_xlsx.get_cell_text(CellName.wc_str(),
+                std::wstring cellText = filter_xlsx.get_cell_text(
+                    CellName.wc_str(),
                     sharedStrings.wc_str(), sharedStrings.length(),
                     sheetFile.wc_str(), sheetFile.length());
                 SetDocumentText(cellText);
