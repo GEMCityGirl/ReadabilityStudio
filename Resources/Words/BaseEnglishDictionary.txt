@@ -8193,6 +8193,10 @@ autofills
 autofit
 autofits
 autofitting
+autoflip
+autoflipped
+autoflipping
+autoflips
 autofluorescence
 autofocus
 autoforward
@@ -8252,6 +8256,8 @@ autologging
 autologous
 autologs
 autolysis
+automagic
+automagically
 automaker
 automakers
 automap
@@ -20632,6 +20638,7 @@ cheaply
 cheapness
 cheapness's
 cheapnesses
+cheapo
 cheaps
 cheapskate
 cheapskate's
@@ -21665,7 +21672,9 @@ chromatic
 chromatically
 chromaticism
 chromaticism's
+chromaticities
 chromaticity
+chromaticity's
 chromaticness
 chromaticness's
 chromatics
@@ -23835,6 +23844,9 @@ coinminer
 coinminer's
 coinminers
 coins
+coinstaller
+coinstaller's
+coinstallers
 coinsurance
 coinsurance's
 coinsurances
@@ -33671,6 +33683,7 @@ demonstrates
 demonstrating
 demonstration
 demonstration's
+demonstrational
 demonstrations
 demonstrative
 demonstratively
@@ -34762,6 +34775,10 @@ despondent
 despondently
 desponding
 desponds
+despool
+despooled
+despooling
+despools
 despot
 despot's
 despotic
@@ -41536,6 +41553,7 @@ electromagnetism's
 electromagnetisms
 electromagnets
 electromechanical
+electromechanically
 electromechanics
 electromotive
 electromyogram
@@ -50544,6 +50562,7 @@ forbore
 forborne
 force
 force's
+forceable
 forced
 forcedly
 forcefield
@@ -63342,6 +63361,9 @@ illumination
 illumination's
 illuminations
 illuminative
+illuminator
+illuminator's
+illuminators
 illumine
 illumined
 illumines
@@ -65161,6 +65183,8 @@ indeterminism's
 indeterministic
 index
 index's
+indexability
+indexability's
 indexable
 indexation
 indexations
@@ -69080,6 +69104,8 @@ items
 itemset
 itemset's
 itemsets
+iterability
+iterability's
 iterable
 iterate
 iterated
@@ -83838,6 +83864,8 @@ multiprotocols
 multipurpose
 multiracial
 multiread
+multiregion
+multiregions
 multirequest
 multirequest's
 multirequests
@@ -83882,6 +83910,7 @@ multistream
 multistring
 multistroke
 multistrokes
+multiswitch
 multisyllabic
 multisymbol
 multisystem
@@ -83931,6 +83960,8 @@ multivalent
 multivalued
 multivariable
 multivariate
+multivector
+multivectors
 multiverse
 multiverse's
 multiverses
@@ -86700,6 +86731,7 @@ noncached
 noncalcified
 noncallable
 noncaloric
+noncancelable
 noncancerous
 noncarbohydrate
 noncarbohydrate's
@@ -87028,6 +87060,7 @@ noninflected
 noninfringement
 noninfringing
 noninherited
+noninstallable
 noninstitutional
 noninstitutionalisation
 noninstitutionalisation's
@@ -87047,6 +87080,7 @@ noninstrumented
 nonintellectual
 nonintellectuals
 noninteracting
+noninteractive
 noninterchangeable
 noninterest
 noninterest's
@@ -92534,6 +92568,7 @@ pales
 palest
 palette
 palette's
+paletted
 palettes
 paletting
 palettize
@@ -101103,6 +101138,9 @@ preheated
 preheating
 preheats
 prehensile
+prehibernation
+prehibernation's
+prehibernations
 prehistoric
 prehistorical
 prehistorically
@@ -125029,6 +125067,10 @@ stacks
 stacktrace
 stacktrace's
 stacktraces
+stackwalk
+stackwalked
+stackwalking
+stackwalks
 stadia
 stadia's
 stadias
@@ -132212,6 +132254,7 @@ telemarketer
 telemarketers
 telemarketing
 telemarketings
+telematic
 telemedicine
 telemental
 telemeter
@@ -139402,6 +139445,7 @@ unconstructed
 unconsumed
 unconsummated
 uncontainable
+uncontained
 uncontaminated
 uncontentious
 uncontested
@@ -140277,6 +140321,7 @@ unexceptionally
 unexcited
 unexciting
 unexcused
+unexecuted
 unexpanded
 unexpected
 unexpectedly
@@ -142123,7 +142168,10 @@ unsurvivable
 unsuspected
 unsuspecting
 unsuspectingly
+unsuspend
 unsuspended
+unsuspending
+unsuspends
 unsustainabilities
 unsustainability
 unsustainability's
@@ -142170,6 +142218,7 @@ untaped
 untapped
 untapping
 untaps
+untargeted
 untarnished
 untasted
 untaught
@@ -149066,6 +149115,10 @@ xix
 XL
 xls
 xlsx
+xmit
+xmits
+xmitted
+xmitting
 XML
 XOR
 XP

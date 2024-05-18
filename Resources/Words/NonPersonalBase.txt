@@ -1543,6 +1543,7 @@ Daytona
 Daytonian
 Daytonian's
 Daytonians
+Dbghelp
 Dearborn
 Debian
 Dec
@@ -1789,6 +1790,7 @@ Elizabethan
 Elizabethtown
 Ellicott
 Ellinwood
+Ellisys
 Ellucian
 Elsiver
 EltaMD
@@ -1960,6 +1962,7 @@ Eyde
 Eyjafjallajokull
 Eyjafjallajökull
 Ezri
+Fabricam
 Fabrikam
 Facebooked
 Facebooking
@@ -5346,6 +5349,7 @@ StatChat
 Staten
 Statesboro
 Statista
+StatSoft
 Stavaganza
 Stellenbosch
 Stelter

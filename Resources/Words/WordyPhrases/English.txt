@@ -621,6 +621,7 @@ aforememtioned	aforementioned	3
 aforementionned	aforementioned	3		
 aformentioned	aforementioned	3		
 afterall	after all	3		
+aftet	after	3		
 again and again	repeatedly, recurrently, again	1		
 againnst	against	3		
 agains	against	3		
@@ -1582,6 +1583,9 @@ arriving onboard	arriving	0
 arrogant	cocky	0		
 arround	around	3		
 artcile	article	3		
+arthimetic	arithmetic	3		
+arthimetic's	arithmetic's	3		
+arthimetics	arithmetics	3		
 artic	arctic	3		
 artical	article	3		
 artice	article	3		
@@ -1594,6 +1598,8 @@ artillary	artillery	3
 arugment	argument	3		
 arugments	arguments	3		
 arument	argument	3		
+arument's	argument's	3		
+aruments	arguments	3		
 arund	around	3		
 as a as	as a	3		
 as a consequence of	because, because of, from, since	0		
@@ -4850,12 +4856,17 @@ deviates	strays, turns away	0
 deviating	straying, turning away	0		
 deviation	change	0		
 deviations	changes	0		
-devide	divide	3		
+devide	device, divide	3		
 devided	divided	3		
+devides	devices, divides	3		
+deviding	dividing	3		
 devistating	devastating	3		
 devloper	developer	3		
 devloper's	developer's	3		
 devlopers	developers	3		
+devlopment	development	3		
+devlopment's	development's	3		
+devlopments	developments	3		
 devolopement	development	3		
 dgit	digit	3		
 dgit's	digit's	3		
@@ -5348,6 +5359,7 @@ drive me up a wall	greatly irritates me	2
 drive them up a wall	greatly irritates them	2		
 drive us up a wall	greatly irritates us	2		
 drive you up a wall	greatly irritates you	2		
+driverrs	drivers	3		
 drives her up a wall	greatly irritates her	2		
 drives him up a wall	greatly irritates him	2		
 drives me up a wall	greatly irritates me	2		
@@ -6400,6 +6412,7 @@ factorisation	factorization	3
 factory manger	factory manager	3		
 factory mangers	factory managers	3		
 factual basis	basis, fact, reason	0		
+faiedl	failed	3		
 fail to comply with	disobey, violate	0		
 faild	failed	3		
 failed to	didn't	0		
@@ -6612,6 +6625,9 @@ first off	first	0
 first start	begin, start	0		
 first time ever	first time	0		
 firstly	first	0		
+firwmare	firmware	3		
+firwmare's	firmware's	3		
+firwmares	firmwares	3		
 fish out of water	out of his element	2		
 fisionable	fissionable	3		
 fit as a fiddle	in good shape, healthy	2		
@@ -7166,6 +7182,11 @@ got with the program	joined the effort	2
 got your act together	got organized	2		
 got your arms around	fully understood	2		
 got your foot in the door	started a business relationship	2		
+goup	group	3		
+goup's	group's	3		
+gouped	grouped	3		
+gouping	grouping	3		
+goups	groups	3		
 gouvener	governor	3		
 govement	government	3		
 govenment	government	3		
@@ -7774,6 +7795,9 @@ igore	ignore	3
 igored	ignored	3		
 igores	ignores	3		
 igoring	ignoring	3		
+iibraries	libraries	3		
+iibrary	library	3		
+iibrary's	library's	3		
 iidentity	identity	3		
 illegimacy	illegitimacy	3		
 illegitmate	illegitimate	3		
@@ -8317,6 +8341,10 @@ indictated	indicated	3
 indictates	indicates	3		
 indictating	indicating	3		
 indictement	indictment	3		
+indidate	indicate	3		
+indidated	indicated	3		
+indidates	indicates	3		
+indidating	indicating	3		
 indigent	poor, needy	0		
 indigineous	indigenous	3		
 indipendence	independence	3		
@@ -8405,6 +8433,9 @@ infrequent	rare	0
 infrequently	rarely	0		
 infrigement	infringement	3		
 infromation	information	3		
+ingedient	ingredient	3		
+ingedient's	ingredient's	3		
+ingedients	ingredients	3		
 ingenius	ingenious	3		
 ingenuous	frank, open	0		
 ingenuously	frankly, openly	0		
@@ -8483,6 +8514,9 @@ initilize	initialize	3
 initilized	initialized	3		
 initilizes	initializes	3		
 initilizing	initializing	3		
+initilzation	initialization	3		
+initilzation's	initialization's	3		
+initilzations	initializations	3		
 initivative	initiative	3		
 initivative's	initiative's	3		
 initivatives	initiatives	3		
@@ -9621,6 +9655,9 @@ managent's	management's	3
 managents	managements	3		
 managmenet	management	3		
 managment	management	3		
+manegement	management	3		
+manegement's	management's	3		
+manegements	managements	3		
 maneouvre	manoeuvre	3		
 maneouvred	manoeuvred	3		
 maneouvres	manoeuvres	3		
@@ -9834,6 +9871,9 @@ might possibly	might	1
 mightn't not	mightn't	3		
 migraine headache	migraine	0		
 migraine headaches	migraines	0		
+miiniport	miniport	3		
+miiniport's	miniport's	3		
+miiniports	miniports	3		
 mileau	milieu	3		
 milennia	millennia	3		
 milennium	millennium	3		
@@ -9996,6 +10036,9 @@ modue's	module's	3
 modues	modules	3		
 modulues	modules	3		
 moeny	money	3		
+mofification	modification	3		
+mofification's	modification's	3		
+mofifications	modifications	3		
 moist other	most other	3		
 moleclues	molecules	3		
 mollified	soothed	0		
@@ -10081,6 +10124,7 @@ mudering	murdering	3
 muliple	multiple	3		
 mulitbyte	multibyte	3		
 mulitbyte's	multibyte's	3		
+mulitipen	multipen	3		
 mulitple	multiple	3		
 mulitplied	multiplied	3		
 mult-age	multi-age	3		
@@ -10250,6 +10294,11 @@ new constructions	reconstructions	1
 new recruit	recruit	1		
 new recruits	recruits	1		
 newletters	newsletters	3		
+nework	network	3		
+nework's	network's	3		
+neworked	networked	3		
+neworking	networking	3		
+neworks	networks	3		
 news paper	newspaper	3		
 nieghbor	neighbor	3		
 nieghbour	neighbour	3		
@@ -10940,6 +10989,9 @@ paint yourself into a corner	leave yourself with no options	2
 pair of twins	twins	1		
 paitience	patience	3		
 pakage	package	3		
+paket	packet	3		
+paket's	packet's	3		
+pakets	packets	3		
 palatable	pleasing	0		
 paleolitic	paleolithic	3		
 palete	palette	3		
@@ -11907,6 +11959,10 @@ priviledge's	privilege's	3
 priviledged	privileged	3		
 priviledges	privileges	3		
 priviledging	privileging	3		
+privilge	privilege	3		
+privilge's	privilege's	3		
+privilges	privileges	3		
+privilging	privileging	3		
 privilige	privilege	3		
 privilige's	privilege's	3		
 priviliges	privileges	3		
@@ -14206,6 +14262,9 @@ structired	structured	3
 structires	structures	3		
 structiring	structuring	3		
 structual	structural	3		
+structuer	structure	3		
+structuer's	structure's	3		
+structuers	structures	3		
 structureare	structure are	3		
 structureed	structured	3		
 structuresare	structure are	3		
@@ -14389,6 +14448,9 @@ sunglases	sunglasses	3
 sunk down	sunk	1		
 suop	soup	3		
 supercede	supersede	3		
+superceded	superseded	3		
+supercedes	supersedes	3		
+superceding	superseding	3		
 superceeded	superseded	3		
 supercilious	arrogant, scornful	0		
 superciliously	arrogantly, scornfully	0		
@@ -14490,6 +14552,9 @@ surviver	survivor	3
 surviver's	survivor's	3		
 survivers	survivors	3		
 survivied	survived	3		
+susbscriber	subscriber	3		
+susbscriber's	subscriber's	3		
+susbscribers	subscribers	3		
 suseptable	susceptible	3		
 suseptible	susceptible	3		
 suspention	suspension	3		
@@ -14696,6 +14761,9 @@ teeth in the game	skin in the game	3
 teh	the	3		
 tehy	they	3		
 telelevision	television	3		
+telemtries	telemetries	3		
+telemtry	telemetry	3		
+telemtry's	telemetry's	3		
 televsion	television	3		
 tell the difference	discriminate	0		
 telling the difference	discriminating	0		

@@ -46,6 +46,7 @@ Abernethy
 Aberystwyth
 Abeu
 Abey
+Abhishek
 Abiann
 Abianne
 Abidjan
@@ -9363,6 +9364,7 @@ Hadaway
 Haddad
 Hadden
 Haden
+Haderle
 Hadlee
 Hadleigh
 Hadler
@@ -16240,6 +16242,7 @@ Mohamed
 Mohammad
 Mohammed
 Mohammedan
+Mohan
 Mohandas
 Mohandis
 Mohatt
@@ -17422,6 +17425,7 @@ Osibogun
 Osip
 Osiris
 Osita
+Oskar
 Osler
 Oslo
 Osma
@@ -17917,6 +17921,7 @@ Pippa
 Pippi
 Pippin
 Piqua
+Pirahesh
 Piran
 Pirandello
 Pirelli
@@ -18293,6 +18298,7 @@ Rainiero
 Raisa
 Raisch
 Rajashekara
+Rajeev
 Rajkumar
 Rakesh
 Raleigh
@@ -20794,6 +20800,7 @@ Spiridone
 Spiro
 Spitz
 Spitzer
+Spjotvoll
 Spjøtvoll
 Spock
 Spoltman
