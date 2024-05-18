@@ -5388,7 +5388,7 @@ void MainFrame::OnToolsChapterSplit([[maybe_unused]] wxRibbonButtonBarEvent& eve
                                        wxFileName(dialog.GetPath()).GetExt());
             if (extractedResult.first)
                 {
-                cSplit.SplitIntoChapters(extractedResult.second.wc_str());
+                cSplit.SplitIntoChapters(extractedResult.second.c_str());
                 }
             else
                 {

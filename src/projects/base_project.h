@@ -1074,7 +1074,7 @@ public:
         @param sourceFileText The encoded text to filter.
         @param fileExtension The file's extension.*/
     [[nodiscard]]
-    std::pair<bool,wxString> ExtractRawText(
+    std::pair<bool, std::wstring> ExtractRawText(
         std::string_view sourceFileText, const wxString& fileExtension);
 
     [[nodiscard]]
@@ -1630,8 +1630,8 @@ private:
         @param fileName The pathway to the file (only used for error logging).
         @param[out] label A descriptive label from the HTML file (e.g., title, subject, keywords).*/
     [[nodiscard]]
-    static std::pair<bool,wxString> ExtractRawTextWithEncoding(
-        const wxString& sourceFileText, const wxString& fileExtension,
+    static std::pair<bool, std::wstring>
+    ExtractRawTextWithEncoding(const std::wstring& sourceFileText, const wxString& fileExtension,
         const wxFileName& fileName, wxString& label);
     void CalculateStatistics();
     void CalculateStatisticsIgnoringInvalidSentences();

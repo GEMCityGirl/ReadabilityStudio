@@ -3396,7 +3396,8 @@ void BaseProject::CalculateStatistics()
     }
 
 //------------------------------------------------
-std::pair<bool,wxString> BaseProject::ExtractRawTextWithEncoding(const wxString& sourceFileText,
+std::pair<bool, std::wstring>
+BaseProject::ExtractRawTextWithEncoding(const std::wstring& sourceFileText,
     const wxString& fileExtension, const wxFileName& fileName, wxString& label)
     {
     lily_of_the_valley::html_extract_text filter_html;
@@ -3407,7 +3408,8 @@ std::pair<bool,wxString> BaseProject::ExtractRawTextWithEncoding(const wxString&
         {
         if (isHtmlExtension(fileExtension.wc_str()))
             {
-            const wxString filteredText(filter_html(sourceFileText, sourceFileText.length(), true, false));
+            const std::wstring filteredText(
+                filter_html(sourceFileText.c_str(), sourceFileText.length(), true, false));
             if (filter_html.get_log().length())
                 { wxLogWarning(L"%s: %s", fileName.GetFullPath(), filter_html.get_log()); }
             label = coalesce<wchar_t>(
@@ -3425,17 +3427,19 @@ std::pair<bool,wxString> BaseProject::ExtractRawTextWithEncoding(const wxString&
     catch (...)
         {
         wxLogWarning(L"An unknown error occurred while importing %s.", fileName.GetFullPath());
-        return std::make_pair(false, wxString{});
+        return std::make_pair(false, std::wstring{});
         }
     }
 
 //------------------------------------------------
-std::pair<bool,wxString> BaseProject::ExtractRawText(std::string_view sourceFileText,
+std::pair<bool, std::wstring> BaseProject::ExtractRawText(std::string_view sourceFileText,
                                  const wxString& fileExtension)
     {
     PROFILE();
     if (sourceFileText.empty())
-        { return std::make_pair(false, wxString{}); }
+        {
+        return std::make_pair(false, std::wstring{});
+        }
     wxLogVerbose(L"%s parser being called.", fileExtension.Upper());
 
     const WebPageExtension isHtmlExtension;
@@ -3446,7 +3450,8 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(std::string_view sourceFile
         filter_rtf.set_log_message_separator(L", ");
         try
             {
-            const wxString filteredText(filter_rtf(sourceFileText.data(), sourceFileText.length()));
+            const std::wstring filteredText(
+                filter_rtf(sourceFileText.data(), sourceFileText.length()));
             if (filter_rtf.get_log().length())
                 { wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(), filter_rtf.get_log()); }
             SetOriginalDocumentDescription(
@@ -3459,50 +3464,50 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(std::string_view sourceFile
                           filter_rtf.get_author(),
                           wxFileName(GetOriginalDocumentFilePath()).GetName().wc_str() }
                         ));
-            return std::make_pair(true,filteredText);
+            return std::make_pair(true, filteredText);
             }
         catch (const rtf_extract_text::rtfparse_stack_underflow&)
             {
             LogMessage(_(L"Unable to import RTF file. Stack underflow."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         catch (const rtf_extract_text::rtfparse_stack_overflow&)
             {
             LogMessage(_(L"Unable to import RTF file. Stack overflow."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         catch (const rtf_extract_text::rtfparse_unmatched_brace&)
             {
             LogMessage(_(L"Unable to import RTF file. Unmatched brace."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         catch (const rtf_extract_text::rtfparse_assertion&)
             {
             LogMessage(_(L"Unable to import RTF file. Assertion."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         catch (const rtf_extract_text::rtfparse_invalid_hex&)
             {
             LogMessage(_(L"Unable to import RTF file. Invalid hex value."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         catch (const rtf_extract_text::rtfparse_bad_table&)
             {
             LogMessage(_(L"Unable to import RTF file. Bad table."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         catch (...)
             {
             LogMessage(_(L"An unknown error occurred while importing. "
                 "Unable to continue creating project."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         }
     else if (fileExtension.CmpNoCase(L"doc") == 0 ||
@@ -3512,7 +3517,8 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(std::string_view sourceFile
         filter_word.set_log_message_separator(L", ");
         try
             {
-            const wxString filteredText(filter_word(sourceFileText.data(), sourceFileText.length()));
+            const std::wstring filteredText(
+                filter_word(sourceFileText.data(), sourceFileText.length()));
             if (filter_word.get_log().length())
                 { wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(), filter_word.get_log()); }
             SetOriginalDocumentDescription(
@@ -3531,43 +3537,43 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(std::string_view sourceFile
             {
             LogMessage(_(L"Invalid RTF file."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         catch (const word1997_extract_text::cfb_bad_bat&)
             {
             LogMessage(_(L"Word file is corrupted and cannot be read."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         catch (const word1997_extract_text::cfb_bad_bat_entry&)
             {
             LogMessage(_(L"Word file is corrupted and cannot be read."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         catch (const word1997_extract_text::cfb_bad_xbat&)
             {
             LogMessage(_(L"Word file is corrupted and cannot be read."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         catch (const word1997_extract_text::cfb_bad_xbat_entry&)
             {
             LogMessage(_(L"Word file is corrupted and cannot be read."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         catch (const word1997_extract_text::msword_encrypted&)
             {
             LogMessage(_(L"Word file is encrypted and cannot be read."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         catch (const word1997_extract_text::msword_corrupted&)
             {
             LogMessage(_(L"Word file is corrupted and cannot be read."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         catch (const word1997_extract_text::msword_fastsaved&)
             {
@@ -3575,26 +3581,26 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(std::string_view sourceFile
                 _(L"Word file is fast-saved and could not be read.\n"
                    "Please save file with fast-saving turned off and try again."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         catch (const word1997_extract_text::msword_header_not_found&)
             {
             LogMessage(_(L"File does not appear to be a valid Word file."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         catch (const word1997_extract_text::msword_root_enrty_not_found&)
             {
             LogMessage(_(L"File does not appear to be a valid Word file."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         catch (...)
             {
             LogMessage(_(L"An unknown error occurred while importing. "
                 "Unable to continue creating project."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         }
     else if (fileExtension.CmpNoCase(L"docx") == 0 ||
@@ -3623,12 +3629,13 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(std::string_view sourceFile
             LogMessage(_(L"Unable to open Word document, "
                 "file is either password-protected or corrupt."),
                 wxGetApp().GetAppDisplayName(), wxICON_EXCLAMATION|wxOK);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         const wxString docxFileText = archive.ReadTextFile(L"word/document.xml");
         try
             {
-            const wxString filteredText(filter_docx(docxFileText.wc_str(), docxFileText.length()));
+            const std::wstring filteredText(
+                filter_docx(docxFileText.wc_str(), docxFileText.length()));
             if (filter_docx.get_log().length())
                 { wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(), filter_docx.get_log()); }
             return std::make_pair(true, filteredText);
@@ -3638,7 +3645,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(std::string_view sourceFile
             LogMessage(_(L"An unknown error occurred while importing. "
                 "Unable to continue creating project."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         }
     else if (fileExtension.CmpNoCase(L"hhc") == 0 ||
@@ -3648,10 +3655,10 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(std::string_view sourceFile
         filter_hhc_hhk.set_log_message_separator(L", ");
         try
             {
-            const wxString hhStr =
+            const std::wstring hhStr =
                 Wisteria::TextStream::CharStreamToUnicode(
                     sourceFileText.data(), sourceFileText.length());
-            const wxString filteredText(filter_hhc_hhk(hhStr, hhStr.length()));
+            const std::wstring filteredText(filter_hhc_hhk(hhStr.c_str(), hhStr.length()));
             if (filter_hhc_hhk.get_log().length())
                 {
                 wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(), filter_hhc_hhk.get_log());
@@ -3667,7 +3674,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(std::string_view sourceFile
             LogMessage(_(L"An unknown error occurred while importing. "
                 "Unable to continue creating project."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         }
     else if (isHtmlExtension(fileExtension))
@@ -3688,10 +3695,10 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(std::string_view sourceFile
             if (firstCharIndex >= sourceFileText.length() || sourceFileText[firstCharIndex] != '<')
                 {
                 wxLogVerbose(L"Dynamic webpage is not valid HTML. Document will not be loaded.");
-                return std::make_pair(false, wxString{});
+                return std::make_pair(false, std::wstring{});
                 }
             }
-        std::pair<bool,wxString> extractResult(false, wxString{});
+        std::pair<bool, std::wstring> extractResult(false, std::wstring{});
         wxString label;
         // if UTF-8 or simply 7-bit ASCII, then just convert as UTF-8 and run the HTML parser on it
         if (utf8::is_valid(sourceFileText.data(), sourceFileText.data() + sourceFileText.length()))
@@ -3719,7 +3726,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(std::string_view sourceFile
             LogMessage(_(L"An unknown error occurred while importing. "
                 "Unable to continue creating project."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         // set the description to the title
         // (unless user specified a description already, e.g., from a batch project).
@@ -3737,7 +3744,8 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(std::string_view sourceFile
         filter_ps.set_log_message_separator(L", ");
         try
             {
-            const wxString filteredText(filter_ps(sourceFileText.data(), sourceFileText.length()));
+            const std::wstring filteredText(
+                filter_ps(sourceFileText.data(), sourceFileText.length()));
             if (filter_ps.get_log().length())
                 { wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(), filter_ps.get_log()); }
             SetOriginalDocumentDescription(
@@ -3751,21 +3759,21 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(std::string_view sourceFile
             {
             LogMessage(_(L"File does not appear to be a valid Postscript file."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         catch (const lily_of_the_valley::postscript_extract_text::postscript_version_not_supported&)
             {
             LogMessage(_(L"Only PostScript versions 1-2 are supported. "
                 "Unable to import file."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         catch (...)
             {
             LogMessage(_(L"An unknown error occurred while importing. "
                 "Unable to continue creating project."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         }
     // OpenDocument text or presentation files
@@ -3797,11 +3805,11 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(std::string_view sourceFile
             {
             LogMessage(wxString::Format(_(L"Unable to open ODT/ODP document: %s"),
                 archive.GetMessages().at(0).m_message), wxGetApp().GetAppDisplayName(), wxICON_EXCLAMATION|wxOK);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         try
             {
-            const wxString filteredText(filter_odt(odtFileText, odtFileText.length()));
+            const std::wstring filteredText(filter_odt(odtFileText, odtFileText.length()));
             if (filter_odt.get_log().length())
                 { wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(), filter_odt.get_log()); }
             return std::make_pair(true, filteredText);
@@ -3811,7 +3819,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(std::string_view sourceFile
             LogMessage(_(L"An unknown error occurred while importing. "
                 "Unable to continue creating project."),
                 _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         }
     else if (fileExtension.CmpNoCase(L"pptx") == 0 ||
@@ -3819,7 +3827,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(std::string_view sourceFile
         {
         lily_of_the_valley::pptx_extract_text filter_pptx;
         filter_pptx.set_log_message_separator(L", ");
-        wxString pptParsedText;
+        std::wstring pptParsedText;
         Wisteria::ZipCatalog archive(sourceFileText.data(), sourceFileText.length());
         const wxString pptMetaFileText = archive.ReadTextFile(L"docProps/core.xml");
         if (pptMetaFileText.length())
@@ -3841,7 +3849,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(std::string_view sourceFile
             LogMessage(_(L"Unable to open PowerPoint document; "
                 "file is either password-protected or corrupt."),
                 wxGetApp().GetAppDisplayName(), wxICON_EXCLAMATION|wxOK);
-            return std::make_pair(false, wxString{});
+            return std::make_pair(false, std::wstring{});
             }
         for (size_t i = 1;/*breaks when no more pages are found*/;++i)
             {
@@ -3862,7 +3870,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(std::string_view sourceFile
                         _(L"An unknown error occurred while importing. "
                             "Unable to continue creating project."),
                         _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-                    return std::make_pair(false, wxString{});
+                    return std::make_pair(false, std::wstring{});
                     }
                 }
             else
@@ -3929,7 +3937,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(std::string_view sourceFile
         {
         LogMessage(_(L"PDF files are not supported."),
                    _(L"Import Error"), wxOK|wxICON_EXCLAMATION);
-        return std::make_pair(false, wxString{});
+        return std::make_pair(false, std::wstring{});
         }
     // Unknown (or no) extension
     else
@@ -3937,7 +3945,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(std::string_view sourceFile
         // See if it is HTML, given that a lot of web pages may not use a known file extension
         if (string_util::stristr(sourceFileText.data(), "<html") )
             {
-            std::pair<bool,wxString> extractResult(false, wxString{});
+            std::pair<bool, std::wstring> extractResult(false, std::wstring{});
             wxString title;
             // if UTF-8 or simply 7-bit ASCII, then just convert as UTF-8 and run the HTML parser on it
             if (utf8::is_valid(sourceFileText.data(), sourceFileText.data() + sourceFileText.length()))
@@ -3952,7 +3960,7 @@ std::pair<bool,wxString> BaseProject::ExtractRawText(std::string_view sourceFile
             // then run the HTML parser on it
             else
                 {
-                const wxString str =
+                const std::wstring str =
                     Wisteria::TextStream::CharStreamToUnicode(
                         sourceFileText.data(), sourceFileText.length(),
                     WebHarvester::GetCharsetFromPageContent(
@@ -3996,9 +4004,9 @@ bool BaseProject::LoadExternalDocument()
                                                      responseCode, false))
             {
             wxString title;
-            std::pair<bool, wxString> extractResult =
-                ExtractRawTextWithEncoding(content, WebHarvester::GetFileTypeFromContentType(contentType),
-                                           GetOriginalDocumentFilePath(), title);
+            std::pair<bool, std::wstring> extractResult = ExtractRawTextWithEncoding(
+                content.wc_string(), WebHarvester::GetFileTypeFromContentType(contentType),
+                GetOriginalDocumentFilePath(), title);
             if (!extractResult.first)
                 { return false; }
             if (GetOriginalDocumentDescription().empty())
