@@ -355,92 +355,92 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
                            .GetBitmap(FromDIP(wxSize(16, 16))));
     SetIcon(ico);
 
-    m_operators = { wxString(_DT(L"*\t") + _(L"Multiplication.")).ToStdWstring(),
-                    wxString(_DT(L"/\t") + _(L"Division.")).ToStdWstring(),
+    m_operators = { wxString(_DT(L"*\t") + _(L"Multiplication.")).wc_string(),
+                    wxString(_DT(L"/\t") + _(L"Division.")).wc_string(),
                     wxString(_DT(L"%\t") +
                              _(L"Modulus: Divides two values and returns the remainder."))
-                        .ToStdWstring(),
-                    wxString(_DT(L"+\t") + _(L"Addition.")).ToStdWstring(),
-                    wxString(_DT(L"-\t") + _(L"Subtraction.")).ToStdWstring(),
-                    wxString(_DT(L"^\t") + _(L"Exponentiation.")).ToStdWstring(),
-                    wxString(_DT(L"=\t") + _(L"Equals.")).ToStdWstring(),
-                    wxString(_DT(L"<\t") + _(L"Less than.")).ToStdWstring(),
-                    wxString(_DT(L">\t") + _(L"Greater than.")).ToStdWstring(),
-                    wxString(_DT(L"<>\t") + _(L"Not equal to.")).ToStdWstring(),
-                    wxString(_DT(L">=\t") + _(L"Greater than or equal to.")).ToStdWstring(),
-                    wxString(_DT(L"<=\t") + _(L"Less than or equal to.")).ToStdWstring(),
-                    wxString(_DT(L"&\t") + _(L"Logical conjunction.")).ToStdWstring(),
-                    wxString(_DT(L"|\t") + _(L"Logical alternative.")).ToStdWstring() };
+                        .wc_string(),
+                    wxString(_DT(L"+\t") + _(L"Addition.")).wc_string(),
+                    wxString(_DT(L"-\t") + _(L"Subtraction.")).wc_string(),
+                    wxString(_DT(L"^\t") + _(L"Exponentiation.")).wc_string(),
+                    wxString(_DT(L"=\t") + _(L"Equals.")).wc_string(),
+                    wxString(_DT(L"<\t") + _(L"Less than.")).wc_string(),
+                    wxString(_DT(L">\t") + _(L"Greater than.")).wc_string(),
+                    wxString(_DT(L"<>\t") + _(L"Not equal to.")).wc_string(),
+                    wxString(_DT(L">=\t") + _(L"Greater than or equal to.")).wc_string(),
+                    wxString(_DT(L"<=\t") + _(L"Less than or equal to.")).wc_string(),
+                    wxString(_DT(L"&\t") + _(L"Logical conjunction.")).wc_string(),
+                    wxString(_DT(L"|\t") + _(L"Logical alternative.")).wc_string() };
 
     m_logic = { wxString(
                     FormulaFormat::FormatMathExpressionFromUS(
                         _DT(L"IF(condition,value_if_true,value_if_false)\t")) +
                     _(L"If \"condition\" is true (non-zero), then \"value_if_true\" is returned; "
                       "otherwise, \"value_if_false\" is returned."))
-                    .ToStdWstring(),
+                    .wc_string(),
                 wxString(FormulaFormat::FormatMathExpressionFromUS(_DT(L"NOT(value)\t")) +
                          _(L"Returns the logical negation of \"value.\""))
-                    .ToStdWstring() };
+                    .wc_string() };
 
     m_math = {
         wxString(_DT(L"MOD(Number,Divisor)\t") +
                  _(L"Returns the remainder after Number is divided by Divisor. "
                    "The result has the same sign as divisor."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"CLAMP(x,start,end)\t") +
                  _(L"Constrains x within the range of start and end."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"EXP(x)\t") + _(L"Exponential function (Euler to the power of x)."))
-            .ToStdWstring(),
-        wxString(_DT(L"LN(x)\t") + _(L"Natural logarithm of x (base Euler).")).ToStdWstring(),
-        wxString(_DT(L"LOG10(x)\t") + _(L"Common logarithm of x (base 10).")).ToStdWstring(),
-        wxString(_DT(L"SQRT(x)\t") + _(L"Square root of x.")).ToStdWstring(),
-        wxString(_DT(L"ABS(x)\t") + _(L"Absolute value of x.")).ToStdWstring(),
+            .wc_string(),
+        wxString(_DT(L"LN(x)\t") + _(L"Natural logarithm of x (base Euler).")).wc_string(),
+        wxString(_DT(L"LOG10(x)\t") + _(L"Common logarithm of x (base 10).")).wc_string(),
+        wxString(_DT(L"SQRT(x)\t") + _(L"Square root of x.")).wc_string(),
+        wxString(_DT(L"ABS(x)\t") + _(L"Absolute value of x.")).wc_string(),
         wxString(_DT(L"SIGN(x)\t") + _(L"Returns the sign of x. For example, ") +
                  _DT(L"\'x<0\' = -1, \'x=0\' = 0, \'x>0\' = 1"))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(
             _DT(L"TRUNC(x)\t") + _(L"Discards the fractional part of a number. For example, ") +
             FormulaFormat::FormatMathExpressionFromUS(_DT(L" TRUNC(-3.2) = -3, TRUNC(3.2) = 3")))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"CEIL(x)\t") +
                  _(L"Returns the smallest integer not less than x. For example, ") +
                  FormulaFormat::FormatMathExpressionFromUS(_DT(L"CEIL(-3.2) = -3, CEIL(3.2) = 4")))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(
             _DT(L"FLOOR(x)\t") +
             _(L"Returns the largest integer not greater than x. For example, ") +
             FormulaFormat::FormatMathExpressionFromUS(_DT(L"FLOOR(-3.2) = -4, FLOOR(3.2) = 3")))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(FormulaFormat::FormatMathExpressionFromUS(_DT(L"ROUND(x,n)\t")) +
                  _(L"Returns the number x rounded to n decimal places. "
                    "(n is optional and defaults to zero.) For example, ") +
                  FormulaFormat::FormatMathExpressionFromUS(
                      _DT(L"ROUND(-11.6, 0) = 12, ROUND(-11.6) = 12, ROUND(1.5, 0) = 2, "
                          "ROUND(1.55, 1) = 1.6, ROUND(3.1415, 3) = 3.142")))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"RAND()\t") +
                  _(L"Generates a random floating point number within the range of 0 and 1."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(FormulaFormat::FormatMathExpressionFromUS(_DT(L"POWER(Base,Exponent)\t")) +
                  _(L"The Power function raises Base to any power. "
                    "For fractional exponents, Base must be greater than 0."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(FormulaFormat::FormatMathExpressionFromUS(_DT(L"MIN(value,value2,...)\t")) +
                  _(L"Returns the lowest value from a specified range of values."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(FormulaFormat::FormatMathExpressionFromUS(_DT(L"MAX(value,value2,...)\t")) +
                  _(L"Returns the highest value from a specified range of values."))
-            .ToStdWstring()
+            .wc_string()
     };
 
     m_statistics = {
         wxString(FormulaFormat::FormatMathExpressionFromUS(_DT(L"SUM(value,value2,...)\t")) +
                  _(L"Returns the sum of a specified range of values."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(FormulaFormat::FormatMathExpressionFromUS(_DT(L"AVERAGE(value,value2,...)\t")) +
                  _(L"Returns the average of a specified range of values."))
-            .ToStdWstring()
+            .wc_string()
     };
 
     m_customFamiliarWords = {
@@ -448,15 +448,15 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
                  _(L"Performs a New Dale-Chall test with a custom familiar word list. "
                    "Note that this test will use the same text exclusion rules as the Dale-Chall "
                    "test (overriding your system defaults)."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(ReadabilityFormulaParser::GetCustomSpacheSignature() + L"\t" +
                  _(L"Performs a Spache Revised test with a custom familiar word list."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature() + L"\t" +
                  _(L"Performs a Harris-Jacobson test with a custom familiar word list. "
                    "Note that this test will use the same text exclusion rules as the "
                    "Harris-Jacobson test (overriding your system defaults)."))
-            .ToStdWstring()
+            .wc_string()
     };
 
     m_generalDocumentStatistics = {
@@ -465,109 +465,109 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
             _(L"Returns the number of syllables from the document.\n\n"
               "This function takes an argument specifying which numeral syllabizing method to use. "
               "These values are: Default, NumeralsFullySyllabized, and NumeralsAreOneSyllable"))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(
             _DT(L"CharacterCount()\t") +
             _(L"Returns the number of characters (i.e., letters and numbers) from the document.\n\n"
               "This function takes an argument specifying which text exclusion method to use. "
               "These values are: Default, DaleChall, and HarrisJacobson"))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"CharacterPlusPunctuationCount()\t") +
                  _(L"Returns the number of characters (i.e., letters and numbers) "
                    "and punctuation from the document.\n\n"
                    "Note that sentence-ending punctuation is not included in this count."))
-            .ToStdWstring()
+            .wc_string()
     };
 
     m_wordFunctions = {
         wxString(_DT(L"FamiliarWordCount()\t") +
                  _(L"Returns the number of familiar words (from a custom list) the document."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"UnfamiliarWordCount()\t") +
                  _(L"Returns the number of unfamiliar words (from a custom list) the document."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"UniqueUnfamiliarWordCount()\t") +
                  _(L"Returns the number of unique unfamiliar words (from a custom list) "
                    "from the document."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"UnfamiliarHarrisJacobsonWordCount()\t") +
                  _(L"Returns the number of unfamiliar Harris-Jacobson words from the document."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(
             _DT(L"UniqueUnfamiliarHarrisJacobsonWordCount()\t") +
             _(L"Returns the number of unique unfamiliar Harris-Jacobson words from the document."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"FamiliarHarrisJacobsonWordCount()\t") +
                  _(L"Returns the number of familiar Harris-Jacobson words from the document."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"UnfamiliarDaleChallWordCount()\t") +
                  _(L"Returns the number of unfamiliar New Dale-Chall words from the document."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(
             _DT(L"UniqueUnfamiliarDaleChallWordCount()\t") +
             _(L"Returns the number of unique unfamiliar New Dale-Chall words from the document."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"FamiliarDaleChallWordCount()\t") +
                  _(L"Returns the number of familiar Dale-Chall words from the document."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"UnfamiliarSpacheWordCount()\t") +
                  _(L"Returns the number of unfamiliar Spache words from the document."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"UniqueUnfamiliarSpacheWordCount()\t") +
                  _(L"Returns the number of unique unfamiliar Spache words from the document."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"FamiliarSpacheWordCount()\t") +
                  _(L"Returns the number of familiar Spache words from the document."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"SixCharacterPlusWordCount()\t") +
                  _(L"Returns the number of words consisting of six or more "
                    "characters from the document."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"SevenCharacterPlusWordCount()\t") +
                  _(L"Returns the number of words consisting of seven or more "
                    "characters from the document."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"OneSyllableWordCount()\t") +
                  _(L"Returns the number of monosyllabic words from the document."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(
             _DT(L"ThreeSyllablePlusWordCount()\t") +
             _(L"Returns the number of words consisting of three or more syllables from the "
               "document.\n\nThis function takes an argument specifying which numeral "
               "syllabizing method to use. These values are: Default or NumeralsFullySyllabized"))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"WordCount()\t") +
                  _(L"Returns the number of words from the document.\n\n"
                    "This function takes an argument specifying which text exclusion method to use. "
                    "These values are: Default, DaleChall, and HarrisJacobson"))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"NumeralCount()\t") + _(L"Returns the number of numerals from the document."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"ProperNounCount()\t") +
                  _(L"Returns the number of proper nouns from the document."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"UniqueWordCount()\t") +
                  _(L"Returns the number of unique words from the document."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"UniqueSixCharacterPlusWordCount()\t") +
                  _(L"Returns the number of unique words consisting of six or more characters "
                    "from the document."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(
             _DT(L"UniqueThreeSyllablePlusWordCount()\t") +
             _(L"Returns the number of unique words consisting of three or more syllables from the "
               "document.\n\nThis function takes an argument specifying which numeral syllabizing "
               "method to use. These values are: Default or NumeralsFullySyllabized"))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"UniqueOneSyllableWordCount()\t") +
                  _(L"Returns the number of unique monosyllabic words from the document."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"HardFogWordCount()\t") +
                  _(L"Returns the number of difficult Gunning Fog words."))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"MiniWordCount()\t") +
                  _(L"Returns the number of miniwords from the document."))
-            .ToStdWstring()
+            .wc_string()
     };
 
     m_sentenceFunctions = {
@@ -575,56 +575,56 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
                  _(L"Returns the number of sentences from the document.\n\n"
                    "This function takes an argument specifying which text exclusion method to use. "
                    "These values are: Default, DaleChall, HarrisJacobson, and GunningFog"))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"IndependentClauseCount()\t") +
                  _(L"Returns the number of units/independent clauses from the document.") +
                  _DT(L"\n\n") + ReadabilityMessages::GetUnitNote())
-            .ToStdWstring()
+            .wc_string()
     };
 
     m_shortcuts = {
         wxString(_DT(L"B\t") +
                  wxString::Format(_(L"Shortcut for %s."), _DT(L"SyllableCount(Default)")))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"C\t") + wxString::Format(_(L"Shortcut for %s."),
                                                 _DT(L"ThreeSyllablePlusWordCount(Default)")))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"D\t") +
                  wxString::Format(_(L"Shortcut for %s."), _DT(L"FamiliarDaleChallWordCount()")))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"F\t") + wxString::Format(_(L"Shortcut for %s."), _DT(L"HardFogWordCount()")))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"L\t") +
                  wxString::Format(_(L"Shortcut for %s."), _DT(L"SixCharacterPlusWordCount()")))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"M\t") +
                  wxString::Format(_(L"Shortcut for %s."), _DT(L"OneSyllableWordCount()")))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"R\t") +
                  wxString::Format(_(L"Shortcut for %s."), _DT(L"CharacterCount(Default)")))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"RP\t") +
                  wxString::Format(_(L"Shortcut for %s."), _DT(L"CharacterPlusPunctuationCount()")))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"S\t") +
                  wxString::Format(_(L"Shortcut for %s."), _DT(L"SentenceCount(Default)")))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"U\t") +
                  wxString::Format(_(L"Shortcut for %s."), _DT(L"IndependentClauseCount()")))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"UDC\t") +
                  wxString::Format(_(L"Shortcut for %s."), _DT(L"UnfamiliarDaleChallWordCount()")))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"UUS\t") + wxString::Format(_(L"Shortcut for %s."),
                                                   _DT(L"UniqueUnfamiliarSpacheWordCount()")))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"W\t") + wxString::Format(_(L"Shortcut for %s."), _DT(L"WordCount(Default)")))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"X\t") +
                  wxString::Format(_(L"Shortcut for %s."), _DT(L"SevenCharacterPlusWordCount()")))
-            .ToStdWstring(),
+            .wc_string(),
         wxString(_DT(L"T\t") + wxString::Format(_(L"Shortcut for %s."), _DT(L"MiniWordCount()")))
-            .ToStdWstring()
+            .wc_string()
     };
 
     CreateControls();
@@ -770,17 +770,17 @@ void CustomTestDlg::CreateControls()
             wxGetApp().UpdateSideBarTheme(functionBrowser->GetSidebar());
             functionBrowser->SetParameterSeparator(FormulaFormat::GetListSeparator());
 
-            functionBrowser->AddCategory(_(L"Operators").ToStdWstring(), m_operators);
-            functionBrowser->AddCategory(_(L"Logic").ToStdWstring(), m_logic);
-            functionBrowser->AddCategory(_(L"Math").ToStdWstring(), m_math);
-            functionBrowser->AddCategory(_(L"Statistics").ToStdWstring(), m_statistics);
-            functionBrowser->AddCategory(_(L"Custom Familiar Word Tests").ToStdWstring(),
+            functionBrowser->AddCategory(_(L"Operators").wc_string(), m_operators);
+            functionBrowser->AddCategory(_(L"Logic").wc_string(), m_logic);
+            functionBrowser->AddCategory(_(L"Math").wc_string(), m_math);
+            functionBrowser->AddCategory(_(L"Statistics").wc_string(), m_statistics);
+            functionBrowser->AddCategory(_(L"Custom Familiar Word Tests").wc_string(),
                                          m_customFamiliarWords);
-            functionBrowser->AddCategory(_(L"Syllable/Character Counts").ToStdWstring(),
+            functionBrowser->AddCategory(_(L"Syllable/Character Counts").wc_string(),
                                          m_generalDocumentStatistics);
-            functionBrowser->AddCategory(_(L"Word Counts").ToStdWstring(), m_wordFunctions);
-            functionBrowser->AddCategory(_(L"Sentence Counts").ToStdWstring(), m_sentenceFunctions);
-            functionBrowser->AddCategory(_(L"Shortcuts").ToStdWstring(), m_shortcuts);
+            functionBrowser->AddCategory(_(L"Word Counts").wc_string(), m_wordFunctions);
+            functionBrowser->AddCategory(_(L"Sentence Counts").wc_string(), m_sentenceFunctions);
+            functionBrowser->AddCategory(_(L"Shortcuts").wc_string(), m_shortcuts);
 
             functionBrowser->FinalizeCategories();
 

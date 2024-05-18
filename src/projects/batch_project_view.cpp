@@ -1940,7 +1940,7 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
             0, -1, 0, -1, true, false,
             wxString::Format(_(L"Table %zu.%zu: %s"), sectionCounter, tableCounter++,
                 htmlEncode({ list->GetName().wc_str(), list->GetName().length() }, true).c_str()));
-        std::wstring htmlText{ buffer.ToStdWstring() };
+        std::wstring htmlText{ buffer.wc_string() };
         lily_of_the_valley::html_format::strip_hyperlinks(htmlText);
 
         outputText += (includeLeadingPageBreak ? pageBreak : wxString{}) +

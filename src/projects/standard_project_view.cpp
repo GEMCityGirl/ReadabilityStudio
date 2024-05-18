@@ -2879,7 +2879,7 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
             0, -1, 0, -1, true, false,
             wxString::Format(_(L"Table %zu.%zu: %s"), sectionCounter, tableCounter++,
                 htmlEncode({ list->GetName().wc_str() }, true).c_str()));
-        std::wstring htmlText{ buffer.ToStdWstring() };
+        std::wstring htmlText{ buffer.wc_string() };
         lily_of_the_valley::html_format::strip_hyperlinks(htmlText);
 
         outputText += (includeLeadingPageBreak ? pageBreak : wxString{}) +
@@ -2893,7 +2893,8 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
         if (!textWindow)
             { return; }
         std::wstring htmlText =
-            textWindow->GetUnthemedFormattedTextHtml(wxString(textWindowStyleCounter++)).ToStdWstring();
+            textWindow->GetUnthemedFormattedTextHtml(wxString(textWindowStyleCounter++))
+                .wc_string();
         textWindowStyleSection += L"\n" +
             wxString(html_extract_text::get_style_section(htmlText));
         htmlText = html_extract_text::get_body(htmlText);
@@ -2911,7 +2912,7 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
         {
         if (!html)
             { return; }
-        std::wstring htmlText = (html->GetParser()->GetSource())->ToStdWstring();
+        std::wstring htmlText = (html->GetParser()->GetSource())->wc_string();
         lily_of_the_valley::html_format::strip_hyperlinks(htmlText);
         htmlText = html_extract_text::get_body(htmlText);
         outputText += wxString::Format(L"\n%s<div class='caption'>%s</div>\n%s\n",
