@@ -1428,7 +1428,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
         if (fileResolve.IsExcelCell())
             {
             FilePathResolver fileResolver;
-            size_t excelTag = (*pos)->GetOriginalDocumentFilePath().MakeLower().find(_DT(L".xlsx#"));
+            size_t excelTag = (*pos)->GetOriginalDocumentFilePath().Lower().find(_DT(L".xlsx#"));
             assert(excelTag != std::wstring::npos);
             if (excelTag != std::wstring::npos)
                 {
@@ -1440,7 +1440,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                         {
                         (*pos)->SetOriginalDocumentFilePath(
                             fileBySameNameInProjectDirectory+(*pos)->GetOriginalDocumentFilePath().substr(excelTag+5));
-                        excelTag = (*pos)->GetOriginalDocumentFilePath().MakeLower().find(_DT(L".xlsx#"));
+                        excelTag = (*pos)->GetOriginalDocumentFilePath().Lower().find(_DT(L".xlsx#"));
                         fn.Assign(fileBySameNameInProjectDirectory);
                         SetModifiedFlag();
                         }
@@ -1530,7 +1530,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
             }
         else if (fileResolve.IsArchivedFile())
             {
-            size_t archiveTag = (*pos)->GetOriginalDocumentFilePath().MakeLower().find(_DT(L".zip#"));
+            size_t archiveTag = (*pos)->GetOriginalDocumentFilePath().Lower().find(_DT(L".zip#"));
             assert(archiveTag != std::wstring::npos);
             if (archiveTag != std::wstring::npos)
                 {
@@ -1542,7 +1542,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                         {
                         (*pos)->SetOriginalDocumentFilePath(fileBySameNameInProjectDirectory +
                             (*pos)->GetOriginalDocumentFilePath().substr(archiveTag+4));
-                        archiveTag = (*pos)->GetOriginalDocumentFilePath().MakeLower().find(_DT(L".zip#"));
+                        archiveTag = (*pos)->GetOriginalDocumentFilePath().Lower().find(_DT(L".zip#"));
                         fn.Assign(fileBySameNameInProjectDirectory);
                         SetModifiedFlag();
                         }

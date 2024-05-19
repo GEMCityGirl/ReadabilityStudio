@@ -574,24 +574,30 @@ public:
     [[nodiscard]]
     TextSource GetTextSource() const noexcept
         { return m_textSource; }
-    /// Sets where the text being analyzed is coming from.
+    /// @brief Sets where the text being analyzed is coming from.
     /// @param ts The text source methods.
     void SetTextSource(const TextSource ts) noexcept
         { m_textSource = ts; }
     /** @returns The original document file path. Not the project path, but the file being analyzed.
         @param index The index into the list of documents.*/
     [[nodiscard]]
-    wxString GetOriginalDocumentFilePath(const size_t index = 0) const
+    const wxString& GetOriginalDocumentFilePath(const size_t index = 0) const
         {
         if (m_sourceFilePaths.size() <= index)
-            { return wxString{}; }
+            {
+            // note that we are returing a reference, so that is why we are using
+            // an already existing (and persistent) empty string instead of constructing
+            // a new one.
+            return m_emptyString;
+            }
         return m_sourceFilePaths[index].first;
         }
-    /** Sets the document path, at a given index. Standard projects just has one of these (index 0),
-        but batch projects will have a list of these.
+    /** @brief Sets the document path, at a given index.
+        @details Standard projects just has one of these (index 0),
+            but batch projects will have a list of these.
         @param filePath The path to the document being analyzed.
-        @param index The index in the document list to set to this path. Document list will be resized
-                     if this index is larger than the size of the list.*/
+        @param index The index in the document list to set to this path.
+            Document list will be resized if this index is larger than the size of the list.*/
     void SetOriginalDocumentFilePath(const wxString& filePath, const size_t index = 0)
         {
         if (m_sourceFilePaths.size() <= index)
@@ -605,10 +611,12 @@ public:
     /** @returns The original document description.
         @param index The index into the list of documents.*/
     [[nodiscard]]
-    wxString GetOriginalDocumentDescription(const size_t index = 0) const
+    const wxString& GetOriginalDocumentDescription(const size_t index = 0) const
         {
         if (m_sourceFilePaths.size() <= index)
-            { return wxString{}; }
+            {
+            return m_emptyString;
+            }
         return m_sourceFilePaths[index].second;
         }
     /** Sets the document description, at a given index. Standard projects just has one of these (index 0),
@@ -1918,6 +1926,9 @@ private:
     static readability::readability_test_collection<readability::readability_test>
         m_defaultReadabilityTestsTemplate;
     static std::map<wxString, int> m_testIdMap;
+
+    // just used to return a reference to an empty string
+    const wxString m_emptyString{};
     };
 
 /// Used to mark a project as being loaded or refreshed.

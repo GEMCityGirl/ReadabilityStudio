@@ -4155,7 +4155,7 @@ bool BaseProject::LoadExternalDocument()
     // if a file is in an archive then extract it and analyze it
     else if (resolvePath.IsArchivedFile())
         {
-        const size_t poundInFile = GetOriginalDocumentFilePath().MakeLower().find(_DT(L".zip#"));
+        const size_t poundInFile = GetOriginalDocumentFilePath().Lower().find(_DT(L".zip#"));
         wxFileName poundFn(GetOriginalDocumentFilePath().substr(0, poundInFile+4));
         if (!wxFile::Exists(poundFn.GetFullPath()) )
             {
@@ -4203,7 +4203,7 @@ bool BaseProject::LoadExternalDocument()
     // or a cell in an Excel file
     else if (resolvePath.IsExcelCell())
         {
-        const size_t excelTag = GetOriginalDocumentFilePath().MakeLower().find(_DT(L".xlsx#"));
+        const size_t excelTag = GetOriginalDocumentFilePath().Lower().find(_DT(L".xlsx#"));
         wxFileName poundFn(GetOriginalDocumentFilePath().substr(0, excelTag+5));
         if (!wxFile::Exists(poundFn.GetFullPath()) )
             {
