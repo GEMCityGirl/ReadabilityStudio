@@ -26,7 +26,7 @@ namespace LuaScripting
     [[nodiscard]]
     bool VerifyParameterCount(lua_State* L, const int minParemeterCount,
                               const wxString& functionName);
-    /** @brief Prints a messase to the debug window.
+    /** @brief Prints a message to the debug window.
         @param str The message to print.*/
     void DebugPrint(const wxString& str);
 

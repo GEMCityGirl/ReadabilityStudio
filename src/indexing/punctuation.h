@@ -39,7 +39,7 @@ namespace punctuation
       public:
         /** @brief Counts and returns the number of punctuation marks from character stream.
             @details This is an advanced version of ispunct that takes other Unicode
-                punctuation into account, as well as special logic for puncutation only words.
+                punctuation into account, as well as special logic for punctuation only words.
             @param text The character stream to analyze.
             @returns The number of punctuation marks from character stream.
             @note If the stream is just a single punctuation that can be a whole word

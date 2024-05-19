@@ -303,7 +303,7 @@ bool grammar::is_incorrect_english_article::is_a_exception(std::wstring_view wor
         }
 
     static const std::set<traits::case_insensitive_wstring_ex> case_i_u_3_prefixes = {
-        L"uac", L"ubi", L"udf", L"uef", L"uie", L"uin" /* a unint_32 is correct */,
+        L"uac", L"ubi", L"udf", L"uef", L"uie", L"uin" /* a uint_32 is correct */,
         L"ukr", L"ulo", /* a ULONG_PTR */
         L"ure", L"uri", L"uro", L"usa", L"usb", L"use",
         L"usi", L"usn", L"usu", L"utc", L"utf", L"uti",
@@ -394,7 +394,7 @@ bool grammar::is_incorrect_english_article::is_a_exception(std::wstring_view wor
                 {
                 return characters::is_character::is_vowel(word[4]);
                 }
-            // "a unidimensional" is correct, "a undertermined" is wrong
+            // "a unidimensional" is correct, "a undetermined" is wrong
             else if (word.length() > 4 && (traits::case_insensitive_ex::eq(word[3], L'd')))
                 {
                 return traits::case_insensitive_ex::eq(word[4], L'i');

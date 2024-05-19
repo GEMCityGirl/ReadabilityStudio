@@ -108,7 +108,7 @@ namespace Wisteria::Graphs
             m_backscreen->SetDPIScaleFactor(1.0);
             wxGCDC dc(GetCanvas());
             // Just use this size as-is, don't adjust it from DIP -> DPI under HiDPI.
-            // We are just interested in having a 700x500 size window to to do polygon
+            // We are just interested in having a 700x500 size window to do polygon
             // collision within; this isn't actually being presented. This is also why
             // this canvas's DPI scale factor is hard coded to 1.9 (above).
             m_backscreen->SetBoundingBox(

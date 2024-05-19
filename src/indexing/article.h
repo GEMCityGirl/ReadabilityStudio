@@ -41,7 +41,7 @@ namespace grammar
         operator()(std::wstring_view article, std::wstring_view word) const = 0;
         };
 
-    /** @brief Predicate for determining an mismatching article/proceeding word pair.*/
+    /** @brief Predicate for determining a mismatching article/proceeding word pair.*/
     class is_incorrect_english_article final : public is_incorrect_article
         {
       public:

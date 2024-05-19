@@ -484,7 +484,7 @@ class IsNotCustomFamiliarWordExcludeNumeralsWithHighlighting
         return m_inExcludeState ? m_endExcludeHighlight : m_endHighlight;
         }
 
-    /// @brief Resests the internal iterators.
+    /// @brief Resets the internal iterators.
     void Reset() { m_wordTest->ResetIterator(); }
 
   private:

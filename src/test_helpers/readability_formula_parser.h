@@ -57,7 +57,7 @@ class ReadabilityFormulaParser : public te_parser
 
     /// @brief Parses a signature to find the function name in it.
     /// @param signature The signature to parse.
-    /// @returns The name of the function from the signagure.
+    /// @returns The name of the function from the signature.
     [[nodiscard]]
     static const wxString SignatureToFunctionName(const wxString& signature)
         {

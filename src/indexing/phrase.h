@@ -75,8 +75,8 @@ namespace grammar
         void set_type(const phrase_type type) noexcept { m_phrase_type = type; }
 
         /** @brief Adds a word to the end of the phrase.
-            @param newword The word to add to the end of the phrase.*/
-        void add_word(const wchar_t* newword) { m_words.emplace_back(newword); }
+            @param newWord The word to add to the end of the phrase.*/
+        void add_word(const wchar_t* newWord) { m_words.emplace_back(newWord); }
 
         /** @brief Removes all of the words from the phrase.*/
         void clear_words() noexcept { m_words.clear(); }
@@ -444,7 +444,7 @@ namespace grammar
             - Trailing exceptions (optional, can be multiple values delimited by ';' or ',')
             @param text The text stream to load the phrases from.
             @param sort_phrases Whether or not to sort the phrases after loading them.
-                If loading multiple streams, then it is more optimcal to set this to @c false
+                If loading multiple streams, then it is more optimal to set this to @c false
                 and to call sort() after loading all other streams.
             @param preserve_phrases Whether phrases already in the list should be kept.
                 @c false will clear the old list while loading the new phrases,

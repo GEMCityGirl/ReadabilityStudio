@@ -2537,7 +2537,7 @@ namespace grammar
                     else if (position >= 1 &&
                         traits::case_insensitive_ex::eq(word[position-1], common_lang_constants::LOWER_B) )
                         {
-                        // exception: carribean
+                        // exception: Caribbean
                         if (position >= 2 &&
                             traits::case_insensitive_ex::eq(word[position-2], common_lang_constants::LOWER_B) )
                             { return true; }

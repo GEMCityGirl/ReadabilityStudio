@@ -2730,7 +2730,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                                 wxNumberFormatter::Style::Style_WithThousandsSep));
                     }
                 }
-            // Wording Errors & Known Misspellnigs
+            // Wording Errors & Known Misspellings
             if (project->GetGrammarInfo().IsWordingErrorsEnabled())
                 {
                 currentLabel.clear();

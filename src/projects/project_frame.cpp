@@ -881,7 +881,7 @@ void ProjectDocChildFrame::OnTestBundle(wxCommandEvent& event)
             else if (doc->IsIncludingDolchSightWords())
                 { doc->IncludeDolchSightWords(false); }
             // need to do a full refresh (except document re-indexing) for a batch project
-            // because some many sections in it involve test scores.
+            // because so many sections in it involve test scores.
             doc->RefreshRequired(ProjectRefresh::Minimal);
             doc->RefreshProject();
             }

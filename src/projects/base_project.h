@@ -585,7 +585,7 @@ public:
         {
         if (m_sourceFilePaths.size() <= index)
             {
-            // note that we are returing a reference, so that is why we are using
+            // note that we are returning a reference, so that is why we are using
             // an already existing (and persistent) empty string instead of constructing
             // a new one.
             return m_emptyString;

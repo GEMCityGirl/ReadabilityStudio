@@ -4872,7 +4872,7 @@ void BatchProjectDoc::DisplayHistogram(const wxString& name, const wxWindowID Id
                         { return bar.GetAxisPosition() == i && bar.GetLength() > 0; });
                     histogram->GetBarAxis().SetCustomLabel(i,
                         // include the Kindergarten bin label just to show where everything starts,
-                        // then then hide any labels where the bins are empty
+                        // then hide any labels where the bins are empty
                         (foundValidBar == histogram->GetBars().cend() && i > 0) ?
                         GraphItems::Label{} :
                         GraphItems::Label(GetReadabilityMessageCatalog().GetGradeScaleLongLabel(i)));
