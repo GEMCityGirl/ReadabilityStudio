@@ -10,6 +10,7 @@ for
 function
 ggplot
 ggplot2
+ggrepel
 gsub
 if
 in
@@ -19,6 +20,9 @@ is.subset
 lubridate
 magrittr
 maxlen
+metatable
+metatable's
+metatables
 minlen
 NA
 na.strings

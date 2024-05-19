@@ -2331,7 +2331,7 @@ biased opinion	bias, prejudice	0
 big cheese	the boss, important person	2		
 big honcho	the boss	2		
 big shot	self-important person	2		
-bigger then	bigger than	3		
+bigger then	bigger than, (or a comma is needed)	3		
 bigining	beginning	3		
 biginning	beginning	3		
 bilateral	two-sided	0		
@@ -3174,6 +3174,7 @@ clear as a bell	very clear	2
 clear the air	remove complications from a discussion	2		
 clear the deck	get ready for action	2		
 clear the decks	get ready for action	2		
+cleard	cleared	3		
 cleareance	clearance	3		
 clearified	clarified	3		
 clearifies	clarifies	3		
@@ -3435,6 +3436,7 @@ commodious	roomy	0
 commoditiy	commodity	3		
 Commodo	Comodo	3		
 Commodo's	Comodo's	3		
+commom	common	3		
 common bond	bond	0		
 common bonds	bonds	0		
 commongly	commonly	3		
@@ -4436,6 +4438,9 @@ debugguer	debugger	3
 debugguer's	debugger's	3		
 debugguers	debuggers	3		
 debuging	debugging	3		
+debuuger	debugger	3		
+debuuger's	debugger's	3		
+debuugers	debuggers	3		
 decalare	declare	3		
 decalared	declared	3		
 decalares	declares	3		
@@ -4710,6 +4715,10 @@ derivitive	derivative	3
 derogitory	derogatory	3		
 derrive	derive	3		
 derrived	derived	3		
+dertermine	determine	3		
+dertermined	determined	3		
+dertermines	determines	3		
+dertermining	determining	3		
 desactivate	deactivate	3		
 desccription	description	3		
 desccription's	description's	3		
@@ -6579,8 +6588,11 @@ filiing	filing	3
 filiing's	filing's	3		
 filiings	filings	3		
 fill to capacity	fill	1		
+fille	file	3		
+fille's	file's	3		
 filled to capacity	filled	1		
 filled to the brim	completely full	2		
+filles	files	3		
 filling to capacity	filling	1		
 fills to capacity	fills	1		
 filthy rich	very wealthy	2		
@@ -6941,6 +6953,9 @@ gampad's	gamepad's	3
 gampads	gamepads	3		
 ganerate	generate	3		
 ganes	games, gains	3		
+Gannt	Gantt	3		
+Gannt's	Gantt's	3		
+Gannts	Gantts	3		
 ganster	gangster	3		
 ganster's	gangster's	3		
 gansters	gangsters	3		
@@ -7201,6 +7216,11 @@ govormental	governmental	3
 govornment	government	3		
 grabing	grabbing	3		
 gracefull	graceful	3		
+gradudate	graduate	3		
+gradudate's	graduate's	3		
+gradudated	graduated	3		
+gradudates	graduates	3		
+gradudating	graduating	3		
 gradute	graduate	3		
 gradute's	graduate's	3		
 gradutes	graduates	3		
@@ -7234,7 +7254,7 @@ gravitated	moved towards	0
 gravitates	moves towards	0		
 gravitating	moving towards	0		
 gravy train	unearned luxury	2		
-greater then	greater than	3		
+greater then	greater than, (or a comma is needed)	3		
 greatful	grateful	3		
 greatfully	gratefully	3		
 green horn	amateur, inexperienced person	2		
@@ -8433,6 +8453,9 @@ infrequent	rare	0
 infrequently	rarely	0		
 infrigement	infringement	3		
 infromation	information	3		
+infuence	influence	3		
+infuence's	influence's	3		
+infuences	influences	3		
 ingedient	ingredient	3		
 ingedient's	ingredient's	3		
 ingedients	ingredients	3		
@@ -9242,6 +9265,7 @@ laoding	loading	3
 laods	loads	3		
 lap of luxury	well off lifestyle	2		
 larg	large	3		
+larger then	larger than, (or a comma is needed)	3		
 larget	largest	3		
 largst	largest	3		
 lasbian	lesbian	3		
@@ -9322,8 +9346,8 @@ leran	learn	3
 lerans	learns	3		
 less than enthusiastic	disinterested	0		
 less than thrilled	disinterested	0		
-less then	less than	3		
-lesser then	lesser than	3		
+less then	less than, (or a comma is needed)	3		
+lesser then	lesser than, (or a comma is needed)	3		
 let bygones be bygone	forget the past, forgive	2		
 let it all hang out	conceal nothing	2		
 let sleeping dogs lie	leave well enough alone	2		
@@ -9756,6 +9780,7 @@ maximum	most, greatest	0
 maximum amount of	most, highest, maximum	0		
 maximum number of	most, highest, maximum	0		
 maximum potential	potential	1		
+maximumn	maximum	3		
 maximun	maximum	3		
 maxium	maximum	3		
 may effect	may affect	3		
@@ -9827,6 +9852,9 @@ meshes together	meshes	1
 meshing together	meshing	1		
 messags	messages	3		
 messanger	messenger	3		
+messase	message	3		
+messase's	message's	3		
+messases	messages	3		
 messenging	messaging	3		
 messge	message	3		
 messges	messages	3		
@@ -9987,6 +10015,9 @@ missmatches	mismatches	3
 missmatching	mismatching	3		
 missonary	missionary	3		
 misspel	misspell	3		
+misspellnig	misspelling	3		
+misspellnig's	misspelling's	3		
+misspellnigs	misspellings	3		
 misterious	mysterious	3		
 mistery	mystery	3		
 misteryous	mysterious	3		
@@ -10320,7 +10351,7 @@ nkwo	know	3
 nmae	name	3		
 no affect	no effect	3		
 no better	best	0		
-no body	nobody	3		
+no body	nobody	3		element;elements;tag;tags
 no brainer	easy decision	2		
 no chance in hell	no chance	2		
 no holds barred	no rules or regulations	2		
@@ -10458,6 +10489,9 @@ obdurate	stubborn	0
 obediance	obedience	3		
 obediant	obedient	3		
 obejct	object	3		
+oberservation	observation	3		
+oberservation's	observation's	3		
+oberservations	observations	3		
 obession	obsession	3		
 obfusticate	obfuscate	3		
 obfusticated	obfuscated	3		
@@ -10804,6 +10838,8 @@ opthalmic	ophthalmic	3
 opthalmologist	ophthalmologist	3		
 opthalmology	ophthalmology	3		
 opthamologist	ophthalmologist	3		
+optimcal	optimal	3		
+optimcally	optimally	3		
 optimum	best, greatest, most	0		
 optinal	optional	3		
 optinally	optionally	3		
@@ -10867,6 +10903,7 @@ originnally	originally	3
 origional	original	3		
 orignal	original	3		
 orignially	originally	3		
+orininal	original, ordinal	3		
 ostentation	show, display	0		
 ostentations	shows, displays	0		
 ostracize	banish	0		
@@ -11041,6 +11078,9 @@ parisitic	parasitic	3
 paritcipant	participant	3		
 paritcipant's	participant's	3		
 paritcipants	participants	3		
+paritition	partition	3		
+paritition's	partition's	3		
+parititions	partitions	3		
 parituclar	particular	3		
 parlance	talk	0		
 parlances	talks	0		
@@ -12293,6 +12333,9 @@ punctation's	punctuation's	3
 punctations	punctuations	3		
 punctilious	exact	0		
 punctiliously	exactly	0		
+puncutation	punctuation	3		
+puncutation's	punctuation's	3		
+puncutations	punctuations	3		
 pungent	bitter, acrid, sharp, poignant	0		
 pungently	bitterly, acridly, sharply, poignantly	0		
 puplisher	publisher	3		
@@ -12704,6 +12747,9 @@ recrods	records	3
 rectange	rectangle	3		
 rectanges	rectangles	3		
 rectanglular	rectangular	3		
+rectanlge	rectangle	3		
+rectanlge's	rectangle's	3		
+rectanlges	rectangles	3		
 recuiting	recruiting	3		
 recuperate	get well	0		
 recuperated	got well	0		
@@ -13111,6 +13157,9 @@ reserches	researches	3
 reserching	researching	3		
 reserverd	reserved	3		
 reservied	reserved	3		
+resest	reset	3		
+resests	resets	3		
+resestting	resetting	3		
 resetable	resettable	3		
 reseve	reserve	3		
 reseved	reserved	3		
@@ -13282,6 +13331,7 @@ rhymme	rhyme	3
 rhythem	rhythm	3		
 rhythim	rhythm	3		
 rhytmic	rhythmic	3		
+righ	right	3		
 right as rain	quite correct	2		
 right on the money	correct	2		
 right on the nose	correct	2		
@@ -13783,6 +13833,9 @@ sight unseen	without previous inspection	2
 sigificance	significance	3		
 siginificant	significant	3		
 sign of the times	characteristic of the period	2		
+signagure	signature	3		
+signagure's	signature's	3		
+signagures	signatures	3		
 signficant	significant	3		
 signficantly	significantly	3		
 signficiant	significant	3		
@@ -13858,6 +13911,9 @@ skirt around	skirt	0
 skirted around	skirted	0		
 skirting around	skirting	0		
 skirts around	skirts	0		
+skrink	shrink	3		
+skrinking	shrinking	3		
+skrinks	shrinks	3		
 sky's the limit	there is no limit	2		
 slashs	slashes	3		
 slatherings	slathering	3		
@@ -13880,7 +13936,7 @@ slovenly	untidy	0
 slow as molasses in january	very slow	2		
 slowy	slowly	3		
 smae	same	3		
-smaller then	smaller than	3		
+smaller then	smaller than, (or a comma is needed)	3		
 smart as a whip	very smart, clever	2		
 smart cookie	bright, wily person	2		
 smell a rat	have some suspicions	2		
@@ -14859,7 +14915,7 @@ the extent to which	how far, how much	0
 the fact of the matter is	in fact	0		
 the fact that	that	0		
 the flew	the flue	3		
-the from	the form	3		a;address;argument;button;clause;command;email;field;file;header;instruction;page;parameter;pin;pins;reference;state;statement;the
+the from	the form	3		a;address;argument;button;clause;column;command;email;field;file;header;instruction;page;parameter;pin;pins;reference;state;statement;the
 the have	they have, then have	3		
 the heart of the matter	crux, center	0		
 the hers	(strike one of these)	3		
@@ -15532,6 +15588,7 @@ understaning	understanding	3
 understaning's	understanding's	3		
 understanings	understandings	3		
 understoon	understood	3		
+undertermined	undetermined	3		
 underying	underlying	3		
 undesireable	undesirable	3		
 undetecable	undetectable	3		
@@ -15573,6 +15630,10 @@ unilateraly	unilaterally	3
 unilatreal	unilateral	3		
 unilatreally	unilaterally	3		
 uninitalized	uninitialized	3		
+unint_16	uint_16	3		
+unint_32	uint_32	3		
+unint_64	uint_64	3		
+unint_8	uint_8	3		
 unintentially	unintentionally	3		
 unintentional mistake	mistake	1		
 unintentional mistakes	mistakes	1		
@@ -15911,6 +15972,8 @@ versitlity	versatility	3
 verson	version	3		
 versoned	versioned	3		
 versons	versions	3		
+vertial	vertical	3		
+vertially	vertically	3		
 vertically	upward	0		
 vertiver	vetiver	3		
 vertiver's	vetiver's	3		
@@ -16330,6 +16393,9 @@ wipes the slate clean	starts over again, retries	2
 wiping sweet from	wiping sweat from	3		
 wiping the slate clean	starting over again, retrying	2		
 wirting	writing	3		
+wistia	wisteria	3		
+wistia's	wisteria's	3		
+wistias	wisterias	3		
 with a view to	for	0		
 with bated breath	eagerly	2		
 with flying colors	triumphantly	2		

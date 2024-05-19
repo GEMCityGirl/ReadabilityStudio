@@ -1601,6 +1601,7 @@ Dhaulagiri
 Dialogtech
 Dibenzoxazepine
 Dickensian
+Digicam
 Digimarc
 Digimon
 DigiPen
@@ -2234,7 +2235,6 @@ Gandhinagar
 Ganges
 Gangtok
 Gannon
-Gantt
 Ganymede
 GarageBand
 Garamond

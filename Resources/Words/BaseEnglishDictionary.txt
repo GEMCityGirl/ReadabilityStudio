@@ -9045,6 +9045,8 @@ backscattering
 backscatters
 backscreen
 backscreen's
+backscreened
+backscreening
 backscreens
 backseat
 backseats
@@ -22721,6 +22723,9 @@ clew's
 clewed
 clewing
 clews
+cliche
+cliche's
+cliches
 cliché
 cliché's
 clichéd
@@ -27681,6 +27686,9 @@ coring
 coring's
 cork
 cork's
+corkboard
+corkboard's
+corkboards
 corked
 corker
 corker's
@@ -42092,6 +42100,9 @@ emcee's
 emceed
 emceeing
 emcees
+emdash
+emdash's
+emdashes
 emend
 emendable
 emendation
@@ -42603,6 +42614,9 @@ endangerment's
 endangerments
 endangers
 endarterectomy
+endash
+endash's
+endashes
 endcap
 endcap's
 endcaps
@@ -52604,6 +52618,7 @@ fuzzing
 fuzzy
 fwd
 fwy
+FX
 FY
 FYI
 fête
@@ -53934,6 +53949,9 @@ geopositions
 georeference
 georeferenced
 georeferencing
+georegion
+georegion's
+georegions
 geoscape
 geoscience
 geoscience's
@@ -56862,6 +56880,9 @@ guilelessness
 guilelessness's
 guiles
 guiling
+guillemet
+guillemet's
+guillemets
 guillemot
 guillemot's
 guillemots
@@ -58408,6 +58429,7 @@ hashtable's
 hashtables
 hashtag
 hashtag's
+hashtagged
 hashtags
 haslet
 haslet's
@@ -58984,6 +59006,7 @@ heatless
 heatliness
 heatmap
 heatmap's
+heatmapping
 heatmaps
 heatproof
 heats
@@ -62976,6 +62999,9 @@ icebreaking
 icecap
 icecap's
 icecaps
+icecream
+icecream's
+icecreams
 iced
 icemaker
 icemaker's
@@ -106492,6 +106518,7 @@ ratiocination
 ratiocination's
 ratiocinations
 ratiocinative
+ratioed
 ration
 ration's
 rationability
@@ -107282,6 +107309,7 @@ recache
 recached
 recaches
 recaching
+recalc
 recalcitrance
 recalcitrance's
 recalcitrances
@@ -111169,6 +111197,9 @@ resplendence's
 resplendences
 resplendent
 resplendently
+resplit
+resplits
+resplitting
 respond
 responded
 respondent
@@ -124243,6 +124274,7 @@ spline
 spline's
 splined
 splines
+splining
 splint
 splint's
 splinted
@@ -148557,6 +148589,9 @@ wordages
 wordbook
 wordbook's
 wordbooks
+wordcloud
+wordcloud's
+wordclouds
 worded
 worden
 worden's

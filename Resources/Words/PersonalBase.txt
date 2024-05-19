@@ -1683,6 +1683,7 @@ Averyl
 Avicenna
 Avie
 Avigdor
+Avijnata
 Avissar
 Avivah
 Avogadro
@@ -2457,6 +2458,7 @@ Bhattacharya
 Bhopal
 Bhote
 Bhrantivilasa
+Bhumika
 Bhutan
 Bhutto
 Bialystok
@@ -3049,6 +3051,7 @@ Breslow
 Bresson
 Brest
 Bret
+Bretaudeau
 Bretland
 Breton
 Brett
@@ -3404,6 +3407,7 @@ Bunton
 Bunyan
 Burak
 Burbank
+Burbary
 Burcardo
 Burcet
 Burchett
@@ -3887,6 +3891,7 @@ Cassius
 Cassondra
 Cassy
 Casta
+Castagnoli
 Castel
 Castellan
 Castiglione
@@ -8266,6 +8271,7 @@ Gannon
 Ganny
 Gansz
 Gantman
+Gantt
 Ganulin
 Gaposchkin
 Gar
@@ -18267,6 +18273,7 @@ Rafinski
 Raftery
 Ragan
 Ragen
+Raghavendra
 Raghnall
 Ragine
 Ragland
@@ -19165,6 +19172,7 @@ Rossy
 Rostand
 Rostislav
 Roswald
+Roswitha
 Roszko
 Rotabi
 Rotenberg
@@ -21664,6 +21672,7 @@ Thane
 Thanh
 Tharaldson
 Tharsis
+Thatte
 Thaxton
 Thayer
 Thea
