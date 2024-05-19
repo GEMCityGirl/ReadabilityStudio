@@ -890,7 +890,7 @@ bool WebHarvester::HarvestLink(wxString& url, const wxString& fileExtension)
                                 queuedDownloads.insert(cLink);
                                 }
                             }
-                        for (auto link : queuedDownloads)
+                        for (wxString link : queuedDownloads)
                             {
                             DownloadFile(link, fileExtension);
                             }
