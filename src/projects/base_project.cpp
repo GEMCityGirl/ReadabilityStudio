@@ -4010,7 +4010,7 @@ bool BaseProject::LoadExternalDocument()
             // load the extracted text into the indexing engine
             try
                 {
-                SetDocumentText(extractResult.second);
+                SetDocumentText(std::move(extractResult.second));
                 LoadDocument();
                 }
             catch (...)
@@ -4106,12 +4106,12 @@ bool BaseProject::LoadExternalDocument()
         try
             {
             MemoryMappedFile sourceFile(GetOriginalDocumentFilePath(), true, true);
-            const std::pair<bool, std::wstring> extractResult =
+            std::pair<bool, std::wstring> extractResult =
                 ExtractRawText({ static_cast<const char*>(sourceFile.GetStream()),
                     sourceFile.GetMapSize() }, wxFileName(GetOriginalDocumentFilePath()).GetExt());
             if (extractResult.first)
                 {
-                SetDocumentText(extractResult.second);
+                SetDocumentText(std::move(extractResult.second));
                 try
                     { LoadDocument(); }
                 catch (...)
@@ -4178,13 +4178,13 @@ bool BaseProject::LoadExternalDocument()
             LogMessage(zc.GetMessages().back().m_message,
                        poundFn.GetFullPath(), zc.GetMessages().back().m_icon);
             }
-        const std::pair<bool, std::wstring> extractResult =
+        std::pair<bool, std::wstring> extractResult =
             ExtractRawText({ static_cast<const char*>(memstream.GetOutputStreamBuffer()->GetBufferStart()),
                               static_cast<size_t>(memstream.GetLength()) },
                            wxFileName(GetOriginalDocumentFilePath()).GetExt());
         if (extractResult.first)
             {
-            SetDocumentText(extractResult.second);
+            SetDocumentText(std::move(extractResult.second));
             try
                 { LoadDocument(); }
             catch (...)
@@ -4241,11 +4241,9 @@ bool BaseProject::LoadExternalDocument()
                 const wxString sheetFile =
                     zc.ReadTextFile(wxString::Format(L"xl/worksheets/sheet%zu.xml",
                                     (sheetPos-filter_xlsx.get_worksheet_names().begin())+1));
-                std::wstring cellText = filter_xlsx.get_cell_text(
-                    CellName.wc_str(),
-                    sharedStrings.wc_str(), sharedStrings.length(),
-                    sheetFile.wc_str(), sheetFile.length());
-                SetDocumentText(cellText);
+                SetDocumentText(filter_xlsx.get_cell_text(
+                    CellName.wc_str(), sharedStrings.wc_str(), sharedStrings.length(),
+                    sheetFile.wc_str(), sheetFile.length()));
                 LoadDocument();
                 return true;
                 }
@@ -4264,7 +4262,7 @@ bool BaseProject::LoadExternalDocument()
     }
 
 //-------------------------------------------------------
-bool BaseProject::LoadDocumentAsSubProject(const wxString& path, const wxString& text,
+bool BaseProject::LoadDocumentAsSubProject(const wxString& path, const std::wstring& text,
                                            const size_t minWordCount)
     {
     if (!path.empty())

@@ -2683,7 +2683,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                            "Only the embedded text is editable from this dialog."): wxString{});
                     if (dlg.ShowModal() == wxID_OK)
                         {
-                        (*subDocPos)->SetDocumentText(dlg.GetValue());
+                        (*subDocPos)->SetDocumentText(dlg.GetValue().wc_string());
                         doc->Modify(true);
                         doc->RefreshRequired(ProjectRefresh::FullReindexing);
                         doc->RefreshProject();

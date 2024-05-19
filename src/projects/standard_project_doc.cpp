@@ -330,7 +330,7 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
         const wxString contentFile = cat.ReadTextFile(ProjectContentFileLabel());
         if (!contentFile.empty())
             {
-            SetDocumentText(contentFile);
+            SetDocumentText(contentFile.wc_string());
             try
                 { LoadDocument(); }
             catch (...)
@@ -354,7 +354,7 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
                     LogMessage(warningMsg);
                     }
                 // force loading empty text just so that we have an empty word collection to build statistics from
-                SetDocumentText(contentFile);
+                SetDocumentText(contentFile.wc_string());
                 try
                     { LoadDocument(); }
                 catch (...)
@@ -627,7 +627,7 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
     else if (wizard->IsManualTextEntrySelected() )
         {
         SetTitle(_(L"Untitled"));
-        SetDocumentText(wizard->GetEnteredText());
+        SetDocumentText(wizard->GetEnteredText().wc_string());
         SetTextSource(TextSource::EnteredText);
         }
 

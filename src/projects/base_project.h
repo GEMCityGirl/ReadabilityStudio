@@ -301,7 +301,7 @@ public:
             If the document has less words than this then LoadingOriginalTextSucceeded()
             will return @c false and an error will be issued.*/
     bool LoadDocumentAsSubProject(const wxString& path,
-                          const wxString& text /*if text is already loaded; otherwise, just pass in empty string*/,
+                          const std::wstring& text /*if text is already loaded; otherwise, just pass in empty string*/,
                           const size_t minWordCount);
     /** @brief Sets the project to "dirty" (i.e., it contains unsaved changes).
         @details This should be implemented by derived documents.\n
@@ -328,7 +328,7 @@ public:
         else
             {
             SetTextSize(GetDocumentText().length());
-            GetWords()->load(GetDocumentText(), GetDocumentText().length());
+            GetWords()->load(GetDocumentText().c_str(), GetDocumentText().length());
             }
         /// @todo when we have support for other language spell checkers, then change this
         if (GetProjectLanguage() != readability::test_language::english_test)
@@ -1055,13 +1055,18 @@ public:
     virtual std::vector<CustomReadabilityTestInterface>::iterator
         RemoveCustomReadabilityTest(const wxString& testName, [[maybe_unused]] const int Id);
 
-    void SetDocumentText(const wxString& text)
-        { m_documentContent = text; }
+    void SetDocumentText(std::wstring text) { m_documentContent = std::move(text); }
+
     [[nodiscard]]
-    const wxString& GetDocumentText() const noexcept
-        { return m_documentContent; }
+    const std::wstring& GetDocumentText() const noexcept
+        {
+        return m_documentContent;
+        }
     void FreeDocumentText()
-        { m_documentContent.Clear(); }
+        {
+        m_documentContent.clear();
+        m_documentContent.shrink_to_fit();
+        }
 
     void SetAppendedDocumentText(const wxString& text)
         { m_appendedDocumentContent = text; }
@@ -1869,7 +1874,7 @@ private:
     SentencesBreakdownInfo m_sentencesBreakdownInfo;
 
     // stores document text
-    wxString m_documentContent;
+    std::wstring m_documentContent;
     size_t m_textSize{ 0 };
 
     wxString m_appendedDocumentContent;

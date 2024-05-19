@@ -514,9 +514,9 @@ void BatchProjectDoc::RefreshProject()
     for (size_t i = 0; i < m_docs.size(); ++i)
         {
         // CopySettings will clear the embedded text, so back it up and then copy it back in
-        const wxString embeddedText = m_docs[i]->GetDocumentText();
+        std::wstring embeddedText = m_docs[i]->GetDocumentText();
         m_docs[i]->CopySettings(*this);
-        m_docs[i]->SetDocumentText(embeddedText);
+        m_docs[i]->SetDocumentText(std::move(embeddedText));
         m_docs[i]->SetAppendedDocumentText(GetAppendedDocumentText());
         m_docs[i]->ShareExcludePhrases(*this);
         m_docs[i]->SetUIMode(false);
@@ -1510,11 +1510,11 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                             {
                             // this will change the spreadsheet cell path to the real file path
                             (*pos)->LoadDocumentAsSubProject(fileResolver.GetResolvedPath(),
-                                wxString{}, GetMinDocWordCountForBatch() );
+                                std::wstring{}, GetMinDocWordCountForBatch() );
                             }
                         else
                             {
-                            (*pos)->SetDocumentText(cellText);
+                            (*pos)->SetDocumentText(cellText.wc_string());
                             (*pos)->LoadDocumentAsSubProject((*pos)->GetOriginalDocumentFilePath(),
                                 (*pos)->GetDocumentText(), GetMinDocWordCountForBatch() );
                             }
@@ -1567,7 +1567,7 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                 // will try to load the ZIP file and get the same error.
                 if (memstream.GetLength())
                     {
-                    const std::pair<bool,wxString> extractResult =
+                    const std::pair<bool, std::wstring> extractResult =
                         (*pos)->ExtractRawText(
                             {
                             static_cast<const char*>(memstream.GetOutputStreamBuffer()->GetBufferStart()),
@@ -5634,7 +5634,7 @@ void BatchProjectDoc::LoadProjectFile(const char* projectFileText, const size_t 
              ++pos)
             {
             wxString contentFile = cat.ReadTextFile(wxString::Format(_DT(L"Content%zu.txt"), pos-m_docs.begin()));
-            (*pos)->SetDocumentText(contentFile);
+            (*pos)->SetDocumentText(contentFile.wc_string());
             }
         }
     }

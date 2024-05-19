@@ -758,7 +758,7 @@ void EditTextDlg::Save()
         assert(projectDoc && L"Bad cast to standard project!");
         if (projectDoc)
             {
-            projectDoc->SetDocumentText(m_value);
+            projectDoc->SetDocumentText(m_value.wc_string());
             projectDoc->Modify(true);
             projectDoc->RefreshRequired(ProjectRefresh::FullReindexing);
             projectDoc->RefreshProject();
