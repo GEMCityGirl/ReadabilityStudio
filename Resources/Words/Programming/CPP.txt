@@ -382,6 +382,7 @@ ostringstream
 outptr
 override
 pch
+perf
 permutable
 pos
 pragma

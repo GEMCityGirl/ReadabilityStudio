@@ -61477,6 +61477,8 @@ hotplate's
 hotplates
 hotplug
 hotplug's
+hotplugged
+hotplugging
 hotplugs
 hotpot
 hotpot's
@@ -67738,6 +67740,9 @@ interplays
 interpoint
 interpol
 interpol's
+interpolant
+interpolant's
+interpolants
 interpolatable
 interpolate
 interpolated
@@ -109800,6 +109805,7 @@ reminiscent
 reminiscently
 reminisces
 reminiscing
+remirroring
 remiss
 remission
 remission's
@@ -128206,6 +128212,7 @@ subsidizes
 subsidizing
 subsidy
 subsidy's
+subsignaled
 subsist
 subsisted
 subsistence
@@ -129215,6 +129222,9 @@ superficials
 superfine
 superfix
 superfix's
+superfloppies
+superfloppy
+superfloppy's
 superfluities
 superfluity
 superfluity's

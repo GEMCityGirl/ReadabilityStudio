@@ -1778,6 +1778,7 @@ Eidos
 Eiffel
 Eileithyia
 Einsteinian
+Eisa
 Elavil
 Elba
 Elbe
@@ -3663,6 +3664,7 @@ Michigander
 Michiganite
 Michoacán
 Micmac
+MicroChannel
 Micronesia
 Micronics
 MicroSD
@@ -4358,6 +4360,7 @@ Paycor
 Payless
 PayPal
 PBS
+PCIBus
 PearsonVUE
 PedsAcademy
 Peking
@@ -5825,6 +5828,7 @@ Tunisian
 Tupi
 Tupperware
 Tupungato
+TurboChannel
 TurboTax
 Turcot
 Turin

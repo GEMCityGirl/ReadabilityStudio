@@ -1801,6 +1801,7 @@ asuming	assuming	3
 asumption	assumption	3		
 aswell	as well	3		
 asychronous	asynchronous	3		
+asychronously	asynchronously	3		
 asycronous	asynchronous	3		
 asynchonous	asynchronous	3		
 asynchonously	asynchronously	3		
@@ -2112,6 +2113,7 @@ barked up the wrong tree	looked in the wrong place for the answer, misdirected y
 barking up the wrong tree	looking in the wrong place for the answer, misdirecting your efforts	2		
 barks up the wrong tree	looks in the wrong place for the answer, misdirects your efforts	2		
 barrer	barrier	3		
+basec	based, basic	3		
 based off of	based on	3		
 based on the fact that	because, considering, given	0		
 baseless rumor	hearsay	0		
@@ -9935,6 +9937,9 @@ mimick	mimic	3
 mimicks	mimics	3		
 minature	miniature	3		
 mindfuness	mindfullness	3		
+mindriver	minidriver	3		
+mindriver's	minidriver's	3		
+mindrivers	minidrivers	3		
 minerial	mineral	3		
 mingle together	mingle	1		
 mingled together	mingled	1		
@@ -9962,6 +9967,9 @@ mininum	minimum	3
 miniscule	minuscule	3		
 ministery	ministry	3		
 miniture	miniature	3		
+minium	minimum	3		
+minium's	minimum's	3		
+miniums	minimums	3		
 minport	miniport	3		
 minport's	miniport's	3		
 minports	miniports	3		
@@ -10467,7 +10475,8 @@ nubmers	numbers	3
 nucular	nuclear	3		
 nuculear	nuclear	3		
 nuisanse	nuisance	3		
-nul	null	3		
+nul	null, nil	3		
+nul-terminated	null-terminated	2		
 null and void	null, void, invalid	1		
 numberal	numeral	3		
 numberals	numerals	3		
@@ -10915,6 +10924,7 @@ other fish to fry	other matters that need to be dealt with	2
 other people	others	0		
 other similar	similar	0		
 other then	other than	3		
+otheriwse	otherwise	3		
 otherwhise	otherwise	3		
 othwerwise	otherwise	3		
 ouevre	oeuvre	3		
@@ -13971,6 +13981,10 @@ soilders	soldiers	3
 solatary	solitary	3		
 sold like hotcakes	sold quickly	2		
 soley	solely	3		
+solicate	solicite	3		
+solicated	solicited	3		
+solicates	solicites	3		
+solicating	soliciting	3		
 solicit	ask for, request	0		
 solicitaiton	solicitation	3		
 solicitaiton's	solicitation's	3		
@@ -13984,6 +13998,13 @@ solider's	soldier's	3
 soliders	soldiers	3		
 soliliquy	soliloquy	3		
 solitary	alone, single	0		
+soliticate	solicitate	3		
+soliticated	solicitated	3		
+soliticates	solicitates	3		
+soliticating	solicitating	3		
+solitication	solicitation	3		
+solitication's	solicitation's	3		
+solitications	solicitations	3		
 soluable	soluble	3		
 soluion	solution	3		
 soluion's	solution's	3		
@@ -14656,6 +14677,8 @@ sychronization's	synchronization's	3
 sychronizations	synchronizations	3		
 sychronous	synchronous	3		
 sychronously	synchronously	3		
+sycnchronous	synchronous	3		
+sycnchronously	synchronously	3		
 symetrical	symmetrical	3		
 symetrically	symmetrically	3		
 symetry	symmetry	3		
@@ -15696,6 +15719,7 @@ unrepetent	unrepentant	3
 unsed	unused	3		
 unsing	using, unsung	3		
 unsinged	unsigned	3		
+unsolicated	unsolicited	3		
 unsolved mysteries	mysteries	1		
 unsolved mystery	mystery	1		
 unspecificed	unspecified	3		
