@@ -51,6 +51,7 @@ bool grammar::is_incorrect_english_article::operator()(std::wstring_view article
          // only certain consonant combinations make sense to look like a word you would pronounce
          ((word[0] == 'F' && characters::is_character::is_consonant(word[1]) &&
            (word[1] != 'L' && word[1] != 'R')) ||
+          ((word.length() >= 3 && word[0] == 'F' && word[1] == 'L' && word[2] == 'T')) ||
           (word[0] == 'L' && characters::is_character::is_consonant(word[1])) ||
           (word[0] == 'M' && characters::is_character::is_consonant(word[1])) ||
           (word[0] == 'N' && characters::is_character::is_consonant(word[1])) ||

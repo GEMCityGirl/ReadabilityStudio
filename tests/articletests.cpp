@@ -64,6 +64,24 @@ TEST_CASE("English article", "[articles]")
         CHECK_FALSE(artc(L"an", L"ntstatus"));
         CHECK(artc(L"a", L"ntstatus"));
         }
+    SECTION("FLT")
+        {
+        CHECK_FALSE(artc(L"an", L"FLT_IO"));
+        CHECK(artc(L"a", L"FLT_IO"));
+        CHECK_FALSE(artc(L"an", L"FLT"));
+        CHECK(artc(L"a", L"FLT"));
+        // would pronounce like "float"
+        CHECK(artc(L"an", L"flt_io"));
+        CHECK_FALSE(artc(L"a", L"flt_io"));
+        }
+    SECTION("RLT")
+        {
+        CHECK_FALSE(artc(L"an", L"RLT_IO"));
+        CHECK(artc(L"a", L"RLT_IO"));
+        // would pronounce like "rloat"
+        CHECK(artc(L"an", L"rlt_io"));
+        CHECK_FALSE(artc(L"a", L"rlt_io"));
+        }
     SECTION("Acronyms")
         {
         CHECK(artc(L"a", L"UND"));
