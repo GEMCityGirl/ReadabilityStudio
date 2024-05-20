@@ -1056,83 +1056,93 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     const size_t readSize = theFile.Read(wordyZipFileText.get(), theFile.Length());
     Wisteria::ZipCatalog cat(wordyZipFileText.get(), readSize);
     // read in the wordy items
-    wxString englishWordyPhraseFileText = cat.ReadTextFile(L"WordyPhrases/English.txt");
-    wxString spanishWordyPhraseFileText = cat.ReadTextFile(L"WordyPhrases/Spanish.txt");
-    wxString germanWordyPhraseFileText = cat.ReadTextFile(L"WordyPhrases/German.txt");
-    wxString DCReplacementFileText = cat.ReadTextFile(L"WordyPhrases/Dale-ChallReplacements.txt");
-    wxString SpacheReplacementFileText = cat.ReadTextFile(L"WordyPhrases/SpacheReplacements.txt");
-    wxString HarrisJacobsonReplacementFileText =
+    std::wstring englishWordyPhraseFileText = cat.ReadTextFile(L"WordyPhrases/English.txt");
+    std::wstring spanishWordyPhraseFileText = cat.ReadTextFile(L"WordyPhrases/Spanish.txt");
+    std::wstring germanWordyPhraseFileText = cat.ReadTextFile(L"WordyPhrases/German.txt");
+    std::wstring DCReplacementFileText =
+        cat.ReadTextFile(L"WordyPhrases/Dale-ChallReplacements.txt");
+    std::wstring SpacheReplacementFileText =
+        cat.ReadTextFile(L"WordyPhrases/SpacheReplacements.txt");
+    std::wstring HarrisJacobsonReplacementFileText =
         cat.ReadTextFile(L"WordyPhrases/Harris-JacobsonReplacements.txt");
-    wxString DifficultWordReplacementFileText =
+    std::wstring DifficultWordReplacementFileText =
         cat.ReadTextFile(L"WordyPhrases/SingleWordReplacementsEnglish.txt");
     // proper noun stop word list
-    wxString properNounStopList = cat.ReadTextFile(L"StopWords/ProperNounsStopList.txt");
+    std::wstring properNounStopList = cat.ReadTextFile(L"StopWords/ProperNounsStopList.txt");
     // copyright notices
-    wxString copyRightNoticePhraseFileText = cat.ReadTextFile(L"CopyrightNotices/List.txt");
+    std::wstring copyRightNoticePhraseFileText = cat.ReadTextFile(L"CopyrightNotices/List.txt");
     // citation headers
-    wxString citationPhraseFileText = cat.ReadTextFile(L"CitationHeaders/List.txt");
+    std::wstring citationPhraseFileText = cat.ReadTextFile(L"CitationHeaders/List.txt");
     // known proper nouns
-    wxString properNounsFileText = cat.ReadTextFile(L"ProperNouns/All.txt");
-    wxString personalNounsFileText = cat.ReadTextFile(L"ProperNouns/Personal.txt");
+    std::wstring properNounsFileText = cat.ReadTextFile(L"ProperNouns/All.txt");
+    std::wstring personalNounsFileText = cat.ReadTextFile(L"ProperNouns/Personal.txt");
     // stop lists
-    wxString EnglishStopList = cat.ReadTextFile(L"StopWords/English.txt");
-    wxString SpanishStopList = cat.ReadTextFile(L"StopWords/Spanish.txt");
-    wxString GermanStopList = cat.ReadTextFile(L"StopWords/German.txt");
+    std::wstring EnglishStopList = cat.ReadTextFile(L"StopWords/English.txt");
+    std::wstring SpanishStopList = cat.ReadTextFile(L"StopWords/Spanish.txt");
+    std::wstring GermanStopList = cat.ReadTextFile(L"StopWords/German.txt");
     // known spellings
-    wxString EnglishSpellingsFileText = cat.ReadTextFile(L"Dictionaries/English.txt");
-    wxString SpanishspellingsFileText = cat.ReadTextFile(L"Dictionaries/Spanish.txt");
-    wxString GermanspellingsFileText = cat.ReadTextFile(L"Dictionaries/German.txt");
-    wxString ProgrammingSpellingsFileText = cat.ReadTextFile(L"Programming/All Languages.txt");
+    std::wstring EnglishSpellingsFileText = cat.ReadTextFile(L"Dictionaries/English.txt");
+    std::wstring SpanishspellingsFileText = cat.ReadTextFile(L"Dictionaries/Spanish.txt");
+    std::wstring GermanspellingsFileText = cat.ReadTextFile(L"Dictionaries/German.txt");
+    std::wstring ProgrammingSpellingsFileText = cat.ReadTextFile(L"Programming/All Languages.txt");
     // articles
-    wxString aExceptionsFileText = cat.ReadTextFile(_DT(L"Articles/AExceptions.txt"));
-    wxString anExceptionsFileText = cat.ReadTextFile(_DT(L"Articles/AnExceptions.txt"));
+    std::wstring aExceptionsFileText = cat.ReadTextFile(_DT(L"Articles/AExceptions.txt"));
+    std::wstring anExceptionsFileText = cat.ReadTextFile(_DT(L"Articles/AnExceptions.txt"));
     // read in the abbreviations
-    wxString abbreviationsFileText = cat.ReadTextFile(_DT(L"Abbreviations/List.txt"));
-    wxString nonAbbreviationsFileText =
+    std::wstring abbreviationsFileText = cat.ReadTextFile(_DT(L"Abbreviations/List.txt"));
+    std::wstring nonAbbreviationsFileText =
         cat.ReadTextFile(_DT(L"Abbreviations/non-abbreviations.txt"));
     // read in the past-participle exceptions
-    wxString pastParticipleExceptionsFileText =
+    std::wstring pastParticipleExceptionsFileText =
         cat.ReadTextFile(_DT(L"PastParticiples/Exceptions.txt"));
     // read in the DC words
-    wxString dcFileText = cat.ReadTextFile(_DT(L"WordLists/New Dale-Chall.txt"));
+    std::wstring dcFileText = cat.ReadTextFile(_DT(L"WordLists/New Dale-Chall.txt"));
     // read in the DC Catholic supplementary words
-    wxString stockerCatholicFileText =
+    std::wstring stockerCatholicFileText =
         cat.ReadTextFile(_DT(L"WordLists/Stocker Catholic Supplement.txt"));
     // read in the Spache words
-    wxString spacheFileText = cat.ReadTextFile(_DT(L"WordLists/Revised Spache.txt"));
+    std::wstring spacheFileText = cat.ReadTextFile(_DT(L"WordLists/Revised Spache.txt"));
     // Harris-Jacobson words
-    wxString harrisJacobsonFileText = cat.ReadTextFile(_DT(L"WordLists/Harris-Jacobson.txt"));
+    std::wstring harrisJacobsonFileText = cat.ReadTextFile(_DT(L"WordLists/Harris-Jacobson.txt"));
     // read in the Dolch words
-    wxString dolchFileText = cat.ReadTextFile(_DT(L"WordLists/Dolch.txt"));
+    std::wstring dolchFileText = cat.ReadTextFile(_DT(L"WordLists/Dolch.txt"));
 
-    BaseProject::english_wordy_phrases.load_phrases(englishWordyPhraseFileText, false, false);
-    BaseProject::spanish_wordy_phrases.load_phrases(spanishWordyPhraseFileText, false, false);
-    BaseProject::german_wordy_phrases.load_phrases(germanWordyPhraseFileText, false, false);
+    BaseProject::english_wordy_phrases.load_phrases(englishWordyPhraseFileText.c_str(), false, false);
+    BaseProject::spanish_wordy_phrases.load_phrases(spanishWordyPhraseFileText.c_str(), false,
+                                                    false);
+    BaseProject::german_wordy_phrases.load_phrases(germanWordyPhraseFileText.c_str(), false, false);
 
-    BaseProject::dale_chall_replacement_list.load_words(DCReplacementFileText, false);
-    BaseProject::spache_replacement_list.load_words(SpacheReplacementFileText, false);
-    BaseProject::harris_jacobson_replacement_list.load_words(HarrisJacobsonReplacementFileText,
+    BaseProject::dale_chall_replacement_list.load_words(DCReplacementFileText.c_str(), false);
+    BaseProject::spache_replacement_list.load_words(SpacheReplacementFileText.c_str(), false);
+    BaseProject::harris_jacobson_replacement_list.load_words(
+        HarrisJacobsonReplacementFileText.c_str(),
                                                              false);
-    BaseProject::difficult_word_replacement_list.load_words(DifficultWordReplacementFileText,
+    BaseProject::difficult_word_replacement_list.load_words(
+        DifficultWordReplacementFileText.c_str(),
                                                             false);
 
-    BaseProject::known_proper_nouns.load_words(properNounsFileText, false, false);
-    BaseProject::known_personal_nouns.load_words(personalNounsFileText, false, false);
-    BaseProject::english_stoplist.load_words(EnglishStopList, false, false);
-    BaseProject::spanish_stoplist.load_words(SpanishStopList, false, false);
-    BaseProject::german_stoplist.load_words(GermanStopList, false, false);
+    BaseProject::known_proper_nouns.load_words(properNounsFileText.c_str(), false, false);
+    BaseProject::known_personal_nouns.load_words(personalNounsFileText.c_str(), false, false);
+    BaseProject::english_stoplist.load_words(EnglishStopList.c_str(), false, false);
+    BaseProject::spanish_stoplist.load_words(SpanishStopList.c_str(), false, false);
+    BaseProject::german_stoplist.load_words(GermanStopList.c_str(), false, false);
 
-    BaseProject::m_dale_chall_word_list.load_words(dcFileText, false, false);
-    BaseProject::m_stocker_catholic_word_list.load_words(stockerCatholicFileText, false, false);
-    BaseProject::m_dale_chall_plus_stocker_catholic_word_list.load_words(dcFileText, false, false);
-    BaseProject::m_dale_chall_plus_stocker_catholic_word_list.load_words(stockerCatholicFileText,
+    BaseProject::m_dale_chall_word_list.load_words(dcFileText.c_str(), false, false);
+    BaseProject::m_stocker_catholic_word_list.load_words(stockerCatholicFileText.c_str(), false,
+                                                         false);
+    BaseProject::m_dale_chall_plus_stocker_catholic_word_list.load_words(dcFileText.c_str(), false,
+                                                                         false);
+    BaseProject::m_dale_chall_plus_stocker_catholic_word_list.load_words(
+        stockerCatholicFileText.c_str(),
                                                                          true, true);
-    BaseProject::m_spache_word_list.load_words(spacheFileText, false, false);
-    BaseProject::m_harris_jacobson_word_list.load_words(harrisJacobsonFileText, false, false);
-    BaseProject::m_dolch_word_list.load_words(dolchFileText);
+    BaseProject::m_spache_word_list.load_words(spacheFileText.c_str(), false, false);
+    BaseProject::m_harris_jacobson_word_list.load_words(harrisJacobsonFileText.c_str(), false,
+                                                        false);
+    BaseProject::m_dolch_word_list.load_words(dolchFileText.c_str());
 
-    BaseProject::known_english_spellings.load_words(EnglishSpellingsFileText, false, false);
-    BaseProject::known_programming_spellings.load_words(ProgrammingSpellingsFileText, false, false);
+    BaseProject::known_english_spellings.load_words(EnglishSpellingsFileText.c_str(), false, false);
+    BaseProject::known_programming_spellings.load_words(ProgrammingSpellingsFileText.c_str(), false,
+                                                        false);
     m_CustomEnglishDictionaryPath = AppSettingFolderPath + L"DictionaryEN.txt";
     wxString ExtraDictionaryText;
     if (wxFile::Exists(m_CustomEnglishDictionaryPath) &&
@@ -1149,7 +1159,7 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
         outputFile.Write(L" ", wxConvUTF8);
         }
 
-    BaseProject::known_spanish_spellings.load_words(SpanishspellingsFileText, false, false);
+    BaseProject::known_spanish_spellings.load_words(SpanishspellingsFileText.c_str(), false, false);
     m_CustomSpanishDictionaryPath = AppSettingFolderPath + L"DictionaryES.txt";
     if (wxFile::Exists(m_CustomSpanishDictionaryPath) &&
         Wisteria::TextStream::ReadFile(m_CustomSpanishDictionaryPath, ExtraDictionaryText))
@@ -1163,7 +1173,7 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
         outputFile.Write(L" ", wxConvUTF8);
         }
 
-    BaseProject::known_german_spellings.load_words(GermanspellingsFileText, false, false);
+    BaseProject::known_german_spellings.load_words(GermanspellingsFileText.c_str(), false, false);
     m_CustomGermanDictionaryPath = AppSettingFolderPath + L"DictionaryDE.txt";
     if (wxFile::Exists(m_CustomGermanDictionaryPath) &&
         Wisteria::TextStream::ReadFile(m_CustomGermanDictionaryPath, ExtraDictionaryText))
@@ -1179,21 +1189,21 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
 
     // clang-format off
     BaseProject::copyright_notice_phrases.load_phrases(
-        copyRightNoticePhraseFileText, false, false);
+        copyRightNoticePhraseFileText.c_str(), false, false);
     BaseProject::citation_phrases.load_phrases(
-        citationPhraseFileText, false, false);
+        citationPhraseFileText.c_str(), false, false);
     grammar::is_non_proper_word::get_word_list().load_words(
-        properNounStopList, true, false);
+        properNounStopList.c_str(), true, false);
     grammar::is_abbreviation::get_abbreviations().load_words(
-        abbreviationsFileText, true, false);
+        abbreviationsFileText.c_str(), true, false);
     grammar::is_abbreviation::get_non_abbreviations().load_words(
-        nonAbbreviationsFileText, true, false);
+        nonAbbreviationsFileText.c_str(), true, false);
     grammar::is_english_passive_voice::get_past_participle_exeptions().load_words(
-        pastParticipleExceptionsFileText, true, false);
+        pastParticipleExceptionsFileText.c_str(), true, false);
     grammar::is_incorrect_english_article::get_a_exceptions().load_words(
-        aExceptionsFileText, true, false);
+        aExceptionsFileText.c_str(), true, false);
     grammar::is_incorrect_english_article::get_an_exceptions().load_words(
-        anExceptionsFileText, true, false);
+        anExceptionsFileText.c_str(), true, false);
     // clang-format on
 
     return true;

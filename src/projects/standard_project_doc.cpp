@@ -314,9 +314,9 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
     Wisteria::ZipCatalog cat(projectFileText, textLength);
 
     // open the project settings file
-    wxString settingsFile = cat.ReadTextFile(ProjectSettingsFileLabel());
+    std::wstring settingsFile = cat.ReadTextFile(ProjectSettingsFileLabel());
     if (!settingsFile.empty())
-        { LoadSettingsFile(settingsFile); }
+        { LoadSettingsFile(settingsFile.c_str()); }
     else
         {
         LogMessage(_(L"Settings file could not be found in the project file. Default settings will be used."),
@@ -327,10 +327,10 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
     if (GetDocumentStorageMethod() == TextStorage::EmbedText)
         {
         // load the embedded text
-        const wxString contentFile = cat.ReadTextFile(ProjectContentFileLabel());
+        std::wstring contentFile = cat.ReadTextFile(ProjectContentFileLabel());
         if (!contentFile.empty())
             {
-            SetDocumentText(contentFile.wc_string());
+            SetDocumentText(std::move(contentFile));
             try
                 { LoadDocument(); }
             catch (...)
@@ -354,7 +354,7 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
                     LogMessage(warningMsg);
                     }
                 // force loading empty text just so that we have an empty word collection to build statistics from
-                SetDocumentText(contentFile.wc_string());
+                SetDocumentText(std::move(contentFile));
                 try
                     { LoadDocument(); }
                 catch (...)

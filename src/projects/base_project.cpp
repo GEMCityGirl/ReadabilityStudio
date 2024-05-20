@@ -3609,10 +3609,10 @@ std::pair<bool, std::wstring> BaseProject::ExtractRawText(std::string_view sourc
         word2007_extract_text filter_docx;
         filter_docx.set_log_message_separator(L", ");
         Wisteria::ZipCatalog archive(sourceFileText.data(), sourceFileText.length());
-        const wxString docxMetaFileText = archive.ReadTextFile(L"docProps/core.xml");
+        const std::wstring docxMetaFileText = archive.ReadTextFile(L"docProps/core.xml");
         if (docxMetaFileText.length())
             {
-            filter_docx.read_meta_data(docxMetaFileText, docxMetaFileText.length());
+            filter_docx.read_meta_data(docxMetaFileText.c_str(), docxMetaFileText.length());
             SetOriginalDocumentDescription(
                 coalesce<wchar_t>(
                         { GetOriginalDocumentDescription().wc_str(),
@@ -3631,10 +3631,10 @@ std::pair<bool, std::wstring> BaseProject::ExtractRawText(std::string_view sourc
                 wxGetApp().GetAppDisplayName(), wxICON_EXCLAMATION|wxOK);
             return std::make_pair(false, std::wstring{});
             }
-        const wxString docxFileText = archive.ReadTextFile(L"word/document.xml");
+        const std::wstring docxFileText = archive.ReadTextFile(L"word/document.xml");
         try
             {
-            filter_docx(docxFileText.wc_str(), docxFileText.length());
+            filter_docx(docxFileText.c_str(), docxFileText.length());
             if (filter_docx.get_log().length())
                 { wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(), filter_docx.get_log()); }
             return std::make_pair(true, std::move(filter_docx.get_filtered_buffer()));
@@ -3783,17 +3783,17 @@ std::pair<bool, std::wstring> BaseProject::ExtractRawText(std::string_view sourc
         lily_of_the_valley::odt_odp_extract_text filter_odt;
         filter_odt.set_log_message_separator(L", ");
         Wisteria::ZipCatalog archive(sourceFileText.data(), sourceFileText.length());
-        const wxString odtMetaFileText = archive.ReadTextFile(L"meta.xml");
+        const std::wstring odtMetaFileText = archive.ReadTextFile(L"meta.xml");
         if (odtMetaFileText.length())
             {
-            filter_odt.read_meta_data(odtMetaFileText, odtMetaFileText.length());
+            filter_odt.read_meta_data(odtMetaFileText.c_str(), odtMetaFileText.length());
             SetOriginalDocumentDescription(coalesce<wchar_t>(
                 { GetOriginalDocumentDescription().wc_str(), filter_odt.get_subject(),
                   filter_odt.get_title(), filter_odt.get_keywords(), filter_odt.get_description(),
                   filter_odt.get_author(),
                   wxFileName(GetOriginalDocumentFilePath()).GetName().wc_str() }));
             }
-        const wxString odtFileText = archive.ReadTextFile(L"content.xml");
+        const std::wstring odtFileText = archive.ReadTextFile(L"content.xml");
         if (odtFileText.empty() && archive.GetMessages().size())
             {
             LogMessage(wxString::Format(_(L"Unable to open ODT/ODP document: %s"),
@@ -3803,7 +3803,7 @@ std::pair<bool, std::wstring> BaseProject::ExtractRawText(std::string_view sourc
             }
         try
             {
-            filter_odt(odtFileText, odtFileText.length());
+            filter_odt(odtFileText.c_str(), odtFileText.length());
             if (filter_odt.get_log().length())
                 {
                 wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(), filter_odt.get_log());
@@ -3825,10 +3825,10 @@ std::pair<bool, std::wstring> BaseProject::ExtractRawText(std::string_view sourc
         filter_pptx.set_log_message_separator(L", ");
         std::wstring pptParsedText;
         Wisteria::ZipCatalog archive(sourceFileText.data(), sourceFileText.length());
-        const wxString pptMetaFileText = archive.ReadTextFile(L"docProps/core.xml");
+        const std::wstring pptMetaFileText = archive.ReadTextFile(L"docProps/core.xml");
         if (pptMetaFileText.length())
             {
-            filter_pptx.read_meta_data(pptMetaFileText, pptMetaFileText.length());
+            filter_pptx.read_meta_data(pptMetaFileText.c_str(), pptMetaFileText.length());
             SetOriginalDocumentDescription(coalesce<wchar_t>(
                 { GetOriginalDocumentDescription().wc_str(), filter_pptx.get_subject(),
                   filter_pptx.get_title(), filter_pptx.get_keywords(),
@@ -3846,11 +3846,11 @@ std::pair<bool, std::wstring> BaseProject::ExtractRawText(std::string_view sourc
             {
             if (archive.Find(wxString::Format(L"ppt/slides/slide%zu.xml", i)))
                 {
-                const wxString pptxFileText =
+                const std::wstring pptxFileText =
                     archive.ReadTextFile(wxString::Format(L"ppt/slides/slide%zu.xml", i));
                 try
                     {
-                    pptParsedText += filter_pptx(pptxFileText.wc_str(), pptxFileText.length());
+                    pptParsedText += filter_pptx(pptxFileText.c_str(), pptxFileText.length());
                     pptParsedText += L"\n";
                     if (filter_pptx.get_log().length())
                         {
@@ -4229,10 +4229,10 @@ bool BaseProject::LoadExternalDocument()
             lily_of_the_valley::xlsx_extract_text filter_xlsx{ false };
             Wisteria::ZipCatalog zc(poundFn.GetFullPath());
             // read in the worksheets
-            wxString workBookFileText = zc.ReadTextFile(L"xl/workbook.xml");
-            filter_xlsx.read_worksheet_names(workBookFileText.wc_str(), workBookFileText.length());
+            std::wstring workBookFileText = zc.ReadTextFile(L"xl/workbook.xml");
+            filter_xlsx.read_worksheet_names(workBookFileText.c_str(), workBookFileText.length());
             // read in the string table
-            const wxString sharedStrings = zc.ReadTextFile(L"xl/sharedStrings.xml");
+            const std::wstring sharedStrings = zc.ReadTextFile(L"xl/sharedStrings.xml");
             if (!sharedStrings.length())
                 { return false; }
             // find the sheet to get the cells from
@@ -4240,12 +4240,12 @@ bool BaseProject::LoadExternalDocument()
                                       filter_xlsx.get_worksheet_names().end(), worksheetName.wc_str());
             if (sheetPos != filter_xlsx.get_worksheet_names().end())
                 {
-                const wxString sheetFile =
+                const std::wstring sheetFile =
                     zc.ReadTextFile(wxString::Format(L"xl/worksheets/sheet%zu.xml",
                                     (sheetPos-filter_xlsx.get_worksheet_names().begin())+1));
                 SetDocumentText(filter_xlsx.get_cell_text(
-                    CellName.wc_str(), sharedStrings.wc_str(), sharedStrings.length(),
-                    sheetFile.wc_str(), sheetFile.length()));
+                    CellName.wc_str(), sharedStrings.c_str(), sharedStrings.length(),
+                    sheetFile.c_str(), sheetFile.length()));
                 LoadDocument();
                 return true;
                 }

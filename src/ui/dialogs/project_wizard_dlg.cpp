@@ -1183,13 +1183,13 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
         {
         wxWindowDisabler disableAll;
         wxBusyInfo wait(_(L"Loading Excel file..."));
-        const wxString workbookFileText = archive.ReadTextFile(L"xl/workbook.xml");
-        excelExtract.read_worksheet_names(workbookFileText.wc_str(), workbookFileText.length());
+        const std::wstring workbookFileText = archive.ReadTextFile(L"xl/workbook.xml");
+        excelExtract.read_worksheet_names(workbookFileText.c_str(), workbookFileText.length());
         // read the string table
-        const wxString sharedStrings = archive.ReadTextFile(L"xl/sharedStrings.xml");
+        const std::wstring sharedStrings = archive.ReadTextFile(L"xl/sharedStrings.xml");
         if (sharedStrings.length())
             {
-            excelExtract.read_shared_strings(sharedStrings.wc_str(), sharedStrings.length());
+            excelExtract.read_shared_strings(sharedStrings.c_str(), sharedStrings.length());
             }
         }
     // name of worksheets and list of cells with text in them
@@ -1219,11 +1219,11 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
             {
             wxWindowDisabler disableAll;
             wxBusyInfo wait(_(L"Loading worksheet..."));
-            const wxString sheetFile = archive.ReadTextFile(
+            const std::wstring sheetFile = archive.ReadTextFile(
                 wxString::Format(L"xl/worksheets/sheet%d.xml", workSheetSelections.Item(i) + 1));
             if (sheetFile.length())
                 {
-                excelExtract(sheetFile.wc_str(), sheetFile.length(), wrk);
+                excelExtract(sheetFile.c_str(), sheetFile.length(), wrk);
                 }
             else
                 {

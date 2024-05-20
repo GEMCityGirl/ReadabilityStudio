@@ -1458,16 +1458,17 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                         excelFilePos = excelFiles.insert(
                             std::pair<wxString,ExcelFile*>(workSheetPath, new ExcelFile(fn.GetFullPath()))).first;
                         // read in the worksheets
-                        wxString workBookFileText = excelFilePos->second->m_zip.ReadTextFile(L"xl/workbook.xml");
+                        std::wstring workBookFileText =
+                            excelFilePos->second->m_zip.ReadTextFile(L"xl/workbook.xml");
                         excelFilePos->second->m_xlsx_extract.read_worksheet_names(
-                            workBookFileText.wc_str(), workBookFileText.length());
+                            workBookFileText.c_str(), workBookFileText.length());
                         // read in the string table
-                        const wxString sharedStrings =
+                        const std::wstring sharedStrings =
                             excelFilePos->second->m_zip.ReadTextFile(L"xl/sharedStrings.xml");
                         if (sharedStrings.length())
                             {
                             excelFilePos->second->m_xlsx_extract.read_shared_strings(
-                                sharedStrings.wc_str(), sharedStrings.length());
+                                sharedStrings.c_str(), sharedStrings.length());
                             }
                         }
 
@@ -1493,11 +1494,12 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                                         internalSheetName,
                                         lily_of_the_valley::xlsx_extract_text::worksheet()));
                             internalSheetPos = insertPos.first;
-                            const wxString sheetFile = excelFilePos->second->m_zip.ReadTextFile(internalSheetName);
+                            const std::wstring sheetFile =
+                                excelFilePos->second->m_zip.ReadTextFile(internalSheetName);
                             if (sheetFile.length())
                                 {
                                 excelFilePos->second->m_xlsx_extract(
-                                    sheetFile.wc_str(),
+                                    sheetFile.c_str(),
                                     sheetFile.length(),
                                     internalSheetPos->second);
                                 }
@@ -5617,9 +5619,9 @@ void BatchProjectDoc::LoadProjectFile(const char* projectFileText, const size_t 
     Wisteria::ZipCatalog cat(projectFileText, textLength);
 
     // open the project settings file
-    wxString settingsFile = cat.ReadTextFile(ProjectSettingsFileLabel());
+    std::wstring settingsFile = cat.ReadTextFile(ProjectSettingsFileLabel());
     if (!settingsFile.empty())
-        { LoadSettingsFile(settingsFile); }
+        { LoadSettingsFile(settingsFile.c_str()); }
     else
         {
         LogMessage(_(L"Settings file could not be found in the project file. Default settings will be used."),
@@ -5635,8 +5637,8 @@ void BatchProjectDoc::LoadProjectFile(const char* projectFileText, const size_t 
              pos != m_docs.end();
              ++pos)
             {
-            wxString contentFile = cat.ReadTextFile(wxString::Format(_DT(L"Content%zu.txt"), pos-m_docs.begin()));
-            (*pos)->SetDocumentText(contentFile.wc_string());
+            (*pos)->SetDocumentText(
+                cat.ReadTextFile(wxString::Format(_DT(L"Content%zu.txt"), pos - m_docs.begin())));
             }
         }
     }
