@@ -83,7 +83,7 @@ bool BaseProject::LoadAppendedDocument()
                 LogMessage(wxString::Format(
                     _(L"\"%s\": appended template file not found."), GetAppendedDocumentFilePath()),
                      wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
-                SetAppendedDocumentText(wxString{});
+                SetAppendedDocumentText(std::wstring{});
                 return false;
                 }
             }
@@ -91,11 +91,13 @@ bool BaseProject::LoadAppendedDocument()
         const std::pair<bool, std::wstring> extractResult =
             ExtractRawText({ static_cast<const char*>(sourceFile.GetStream()), sourceFile.GetMapSize() },
                 wxFileName(GetAppendedDocumentFilePath()).GetExt());
-        SetAppendedDocumentText(extractResult.first ? extractResult.second : wxString{});
+        SetAppendedDocumentText(extractResult.first ? extractResult.second : std::wstring{});
         return extractResult.first;
         }
     else
-        { SetAppendedDocumentText(wxString{}); }
+        {
+        SetAppendedDocumentText(std::wstring{});
+        }
     return true;
     }
 

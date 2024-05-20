@@ -321,9 +321,10 @@ public:
         CreateWords();
         if (GetAppendedDocumentText().length())
             {
-            const wxString concatenatedText = GetDocumentText() + L"\n\f\n" + GetAppendedDocumentText();
+            const std::wstring concatenatedText =
+                GetDocumentText() + L"\n\f\n" + GetAppendedDocumentText();
             SetTextSize(concatenatedText.length());
-            GetWords()->load(concatenatedText, concatenatedText.length());
+            GetWords()->load(concatenatedText.c_str(), concatenatedText.length());
             }
         else
             {
@@ -1070,17 +1071,26 @@ public:
         {
         return m_documentContent;
         }
+
+    [[nodiscard]]
+    std::wstring& GetDocumentText()
+        {
+        return m_documentContent;
+        }
+
     void FreeDocumentText()
         {
         m_documentContent.clear();
         m_documentContent.shrink_to_fit();
         }
 
-    void SetAppendedDocumentText(const wxString& text)
-        { m_appendedDocumentContent = text; }
+    void SetAppendedDocumentText(std::wstring text) { m_appendedDocumentContent = std::move(text); }
+
     [[nodiscard]]
-    const wxString& GetAppendedDocumentText() const noexcept
-        { return m_appendedDocumentContent; }
+    const std::wstring& GetAppendedDocumentText() const noexcept
+        {
+        return m_appendedDocumentContent;
+        }
 
     /** @returns A @c true value and raw/encoded text converted into a
             filtered string on success, @c false and empty string otherwise.
@@ -1885,7 +1895,7 @@ private:
     std::wstring m_documentContent;
     size_t m_textSize{ 0 };
 
-    wxString m_appendedDocumentContent;
+    std::wstring m_appendedDocumentContent;
 
     wxString m_testName;
     wxString m_gradeLevel;

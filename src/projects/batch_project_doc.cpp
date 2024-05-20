@@ -513,8 +513,8 @@ void BatchProjectDoc::RefreshProject()
     // reset all the sub documents so that they have the proper settings and tests included
     for (size_t i = 0; i < m_docs.size(); ++i)
         {
-        // CopySettings will clear the embedded text, so back it up and then copy it back in
-        std::wstring embeddedText = m_docs[i]->GetDocumentText();
+        // CopySettings will clear the embedded text, so back it up and then swap it back in
+        std::wstring embeddedText = std::move(m_docs[i]->GetDocumentText());
         m_docs[i]->CopySettings(*this);
         m_docs[i]->SetDocumentText(std::move(embeddedText));
         m_docs[i]->SetAppendedDocumentText(GetAppendedDocumentText());
@@ -1603,7 +1603,9 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
         (*pos)->SetDocumentStorageMethod(GetDocumentStorageMethod());
         // free the text from the document to conserve memory (unless we are embedding it in the project)
         if (GetDocumentStorageMethod() == TextStorage::NoEmbedText)
-            { (*pos)->FreeDocumentText(); }
+            {
+            (*pos)->FreeDocumentText();
+            }
 
         // NOTE: Grammar info needs to be loaded here before the documents' word collections are deleted
 
