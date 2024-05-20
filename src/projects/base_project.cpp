@@ -73,25 +73,28 @@ bool BaseProject::LoadAppendedDocument()
     {
     if (GetAppendedDocumentFilePath().length())
         {
-        if (!wxFile::Exists(GetAppendedDocumentFilePath()) )
+        if (!wxFile::Exists(GetAppendedDocumentFilePath()))
             {
             wxString fileBySameNameInProjectDirectory;
             if (FindMissingFile(GetAppendedDocumentFilePath(), fileBySameNameInProjectDirectory))
-                { SetAppendedDocumentFilePath(fileBySameNameInProjectDirectory); }
+                {
+                SetAppendedDocumentFilePath(fileBySameNameInProjectDirectory);
+                }
             else
                 {
-                LogMessage(wxString::Format(
-                    _(L"\"%s\": appended template file not found."), GetAppendedDocumentFilePath()),
-                     wxGetApp().GetAppName(), wxOK|wxICON_EXCLAMATION);
+                LogMessage(wxString::Format(_(L"\"%s\": appended template file not found."),
+                                            GetAppendedDocumentFilePath()),
+                           wxGetApp().GetAppName(), wxOK | wxICON_EXCLAMATION);
                 SetAppendedDocumentText(std::wstring{});
                 return false;
                 }
             }
         MemoryMappedFile sourceFile(GetAppendedDocumentFilePath(), true, true);
-        const std::pair<bool, std::wstring> extractResult =
-            ExtractRawText({ static_cast<const char*>(sourceFile.GetStream()), sourceFile.GetMapSize() },
-                wxFileName(GetAppendedDocumentFilePath()).GetExt());
-        SetAppendedDocumentText(extractResult.first ? extractResult.second : std::wstring{});
+        std::pair<bool, std::wstring> extractResult = ExtractRawText(
+            { static_cast<const char*>(sourceFile.GetStream()), sourceFile.GetMapSize() },
+            wxFileName(GetAppendedDocumentFilePath()).GetExt());
+        SetAppendedDocumentText(extractResult.first ? std::move(extractResult.second) :
+                                                      std::wstring{});
         return extractResult.first;
         }
     else
