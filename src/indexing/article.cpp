@@ -49,26 +49,15 @@ bool grammar::is_incorrect_english_article::operator()(std::wstring_view article
         (word.length() >= 2 && characters::is_character::is_upper(word[0]) &&
          characters::is_character::is_upper(word[1]) &&
          // only certain consonant combinations make sense to look like a word you would pronounce
-         ((traits::case_insensitive_ex::eq_case_sensitive(word[0], 'F') &&
-           characters::is_character::is_consonant(word[1]) &&
-           (!traits::case_insensitive_ex::eq_case_sensitive(word[1], 'L') &&
-            !traits::case_insensitive_ex::eq_case_sensitive(word[1], 'R'))) ||
-          (traits::case_insensitive_ex::eq_case_sensitive(word[0], 'L') &&
-           characters::is_character::is_consonant(word[1])) ||
-          (traits::case_insensitive_ex::eq_case_sensitive(word[0], 'M') &&
-           characters::is_character::is_consonant(word[1])) ||
-          (traits::case_insensitive_ex::eq_case_sensitive(word[0], 'N') &&
-           characters::is_character::is_consonant(word[1])) ||
-          (traits::case_insensitive_ex::eq_case_sensitive(word[0], 'R') &&
-           characters::is_character::is_consonant(word[1])) ||
-          (traits::case_insensitive_ex::eq_case_sensitive(word[0], 'S') &&
-           characters::is_character::is_consonant(word[1]) &&
-           (!traits::case_insensitive_ex::eq_case_sensitive(word[1], 'C') &&
-            !traits::case_insensitive_ex::eq_case_sensitive(word[1], 'H') &&
-            !traits::case_insensitive_ex::eq_case_sensitive(word[1], 'L') &&
-            !traits::case_insensitive_ex::eq_case_sensitive(word[1], 'M') &&
-            !traits::case_insensitive_ex::eq_case_sensitive(word[1], 'T') &&
-            !traits::case_insensitive_ex::eq_case_sensitive(word[1], 'W')))));
+         ((word[0] == 'F' && characters::is_character::is_consonant(word[1]) &&
+           (word[1] != 'L' && word[1] != 'R')) ||
+          (word[0] == 'L' && characters::is_character::is_consonant(word[1])) ||
+          (word[0] == 'M' && characters::is_character::is_consonant(word[1])) ||
+          (word[0] == 'N' && characters::is_character::is_consonant(word[1])) ||
+          (word[0] == 'R' && characters::is_character::is_consonant(word[1])) ||
+          (word[0] == 'S' && characters::is_character::is_consonant(word[1]) &&
+           (word[1] != 'C' && word[1] != 'H' && word[1] != 'L' && word[1] != 'M' &&
+            word[1] != 'T' && word[1] != 'W'))));
     const grammar::is_acronym isAcronym;
     const bool useLetterSoundedOut =
         (startsWith5Consonants || (word.length() == 1) ||
