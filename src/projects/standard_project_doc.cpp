@@ -53,32 +53,37 @@ void ProjectDoc::RemoveMisspellings([[maybe_unused]] const wxArrayString& misspe
 void ProjectDoc::ExcludeAllCustomTestsTests()
     {
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
-    for (std::vector<CustomReadabilityTestInterface>::const_iterator pos = GetCustTestsInUse().begin();
-        pos != GetCustTestsInUse().end();
-        ++pos)
+    for (std::vector<CustomReadabilityTestInterface>::const_iterator pos =
+             GetCustTestsInUse().begin();
+         pos != GetCustTestsInUse().end(); ++pos)
         {
-        while (view->GetWordsBreakdownView().RemoveWindowById(pos->GetIterator()->get_interface_id()) )
-            {}
+        while (
+            view->GetWordsBreakdownView().RemoveWindowById(pos->GetIterator()->get_interface_id()))
+            {
+            }
         }
     BaseProject::ExcludeAllCustomTestsTests();
     }
 
 //-------------------------------------------------------
-std::vector<CustomReadabilityTestInterface>::iterator ProjectDoc::RemoveCustomReadabilityTest(
-    const wxString& testName, const int Id)
+std::vector<CustomReadabilityTestInterface>::iterator
+ProjectDoc::RemoveCustomReadabilityTest(const wxString& testName, const int Id)
     {
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
 
     // remove any views that are related to this test
     // (text window and word list window)
     while (view->GetWordsBreakdownView().RemoveWindowById(Id))
-        {}
+        {
+        }
     // remove the test
     const auto iter = BaseProject::RemoveCustomReadabilityTest(testName, Id);
     // remove the test score
     const auto location = view->GetReadabilityScoresList()->GetResultsListCtrl()->FindEx(testName);
     if (location != wxNOT_FOUND)
-        { view->GetReadabilityScoresList()->GetResultsListCtrl()->DeleteItem(location); }
+        {
+        view->GetReadabilityScoresList()->GetResultsListCtrl()->DeleteItem(location);
+        }
 
     DisplayStatistics();
     view->UpdateSideBarIcons();
@@ -96,8 +101,9 @@ void ProjectDoc::LoadManuallyEnteredText()
         }
     catch (...)
         {
-        LogMessage(_(L"An unknown error occurred while analyzing the text. Unable to create project."),
-            _(L"Error"), wxOK|wxICON_EXCLAMATION);
+        LogMessage(
+            _(L"An unknown error occurred while analyzing the text. Unable to create project."),
+            _(L"Error"), wxOK | wxICON_EXCLAMATION);
         }
     }
 
@@ -105,11 +111,15 @@ void ProjectDoc::LoadManuallyEnteredText()
 void ProjectDoc::RefreshStatisticsReports()
     {
     if (!IsSafeToUpdate())
-        { return; }
+        {
+        return;
+        }
 
     // if refresh is not necessary then return
     if (IsRefreshRequired() == false)
-        { return; }
+        {
+        return;
+        }
 
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
     const auto selectedItem = view->GetSideBar()->GetSelectedFolderId();
@@ -125,7 +135,10 @@ void ProjectDoc::RefreshStatisticsReports()
 
     auto selectedIndex = view->GetSideBar()->FindFolder(selectedItem);
     if (!selectedIndex.has_value())
-        { selectedIndex = view->GetSideBar()->FindFolder(BaseProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID); }
+        {
+        selectedIndex =
+            view->GetSideBar()->FindFolder(BaseProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID);
+        }
     view->GetSideBar()->SelectFolder(selectedIndex, false);
 
     GetDocumentWindow()->Refresh();
@@ -137,11 +150,15 @@ void ProjectDoc::RefreshStatisticsReports()
 void ProjectDoc::RefreshGraphs()
     {
     if (!IsSafeToUpdate())
-        { return; }
+        {
+        return;
+        }
 
     // if refresh is not necessary then return
     if (IsRefreshRequired() == false)
-        { return; }
+        {
+        return;
+        }
 
     wxWindowUpdateLocker noUpdates(GetDocumentWindow());
     BaseProjectProcessingLock processingLock(this);
@@ -159,11 +176,15 @@ void ProjectDoc::RefreshGraphs()
 void ProjectDoc::RefreshProject()
     {
     if (!IsSafeToUpdate())
-        { return; }
+        {
+        return;
+        }
 
     // if refresh is not necessary then return
     if (IsRefreshRequired() == false)
-        { return; }
+        {
+        return;
+        }
 
     StopRealtimeUpdate();
 
@@ -180,8 +201,7 @@ void ProjectDoc::RefreshProject()
 
     // If the original text is gone (there won't be anything to analyze),
     // or if just cosmetic changes (e.g., graph options), then don't re-index, just do a simple refresh.
-    if (LoadingOriginalTextSucceeded() == false ||
-        !IsDocumentReindexingRequired())
+    if (LoadingOriginalTextSucceeded() == false || !IsDocumentReindexingRequired())
         {
         wxWindowUpdateLocker noUpdates(GetDocumentWindow());
         BaseProjectProcessingLock processingLock(this);
@@ -191,9 +211,13 @@ void ProjectDoc::RefreshProject()
         DisplayWordsBreakdown();
         DisplaySentencesBreakdown();
         if (IsTextSectionRefreshRequired())
-            { DisplayHighlightedText(GetTextHighlightColor(), GetTextViewFont()); }
+            {
+            DisplayHighlightedText(GetTextHighlightColor(), GetTextViewFont());
+            }
         else
-            { UpdateHighlightedTextWindows(); }
+            {
+            UpdateHighlightedTextWindows();
+            }
 
         view->UpdateSideBarIcons();
         view->UpdateRibbonState();
@@ -201,7 +225,9 @@ void ProjectDoc::RefreshProject()
         UpdateAllViews();
 
         if (!view->GetSideBar()->SelectSubItemById(selectedItem, true, true))
-            { view->GetSideBar()->SelectFolder(0, true, true); }
+            {
+            view->GetSideBar()->SelectFolder(0, true, true);
+            }
 
         GetDocumentWindow()->Refresh();
         ResetRefreshRequired();
@@ -214,7 +240,7 @@ void ProjectDoc::RefreshProject()
     // reload the document
     if (GetDocumentStorageMethod() == TextStorage::LoadFromExternalDocument)
         {
-        if (!LoadExternalDocument() )
+        if (!LoadExternalDocument())
             {
             // if the loading failed then reset everything and bail
             ResetRefreshRequired();
@@ -232,9 +258,9 @@ void ProjectDoc::RefreshProject()
             }
         catch (...)
             {
-            LogMessage(
-                _(L"An unknown error occurred while analyzing the document. Unable to create project."),
-                _(L"Error"), wxOK|wxICON_EXCLAMATION);
+            LogMessage(_(L"An unknown error occurred while analyzing the document. "
+                         "Unable to create project."),
+                       _(L"Error"), wxOK | wxICON_EXCLAMATION);
             return;
             }
         }
@@ -245,24 +271,28 @@ void ProjectDoc::RefreshProject()
         {
         LogMessage(
             _(L"You have requested to ignore incomplete sentences, but there are no other valid "
-               "sentences in the text. No text will be included in the analysis."),
-            _(L"Error"), wxOK|wxICON_EXCLAMATION);
+              "sentences in the text. No text will be included in the analysis."),
+            _(L"Error"), wxOK | wxICON_EXCLAMATION);
         }
 
     if (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
         GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings)
-        { CalculateStatisticsIgnoringInvalidSentences(); }
+        {
+        CalculateStatisticsIgnoringInvalidSentences();
+        }
     else if (GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences)
-        { CalculateStatistics(); }
+        {
+        CalculateStatistics();
+        }
     CalculateGraphData();
 
     if (GetTotalWords() == 0)
         {
-        LogMessage(
-            (GetTextSource() == TextSource::FromFile) ?
-                _(L"No words were found in the original document. Project cannot be recalculated.") :
-                _(L"No valid words were entered. Project cannot be recalculated."),
-            _(L"Import Error"), wxOK|wxICON_INFORMATION);
+        LogMessage((GetTextSource() == TextSource::FromFile) ?
+                       _(L"No words were found in the original document. "
+                         "Project cannot be recalculated.") :
+                       _(L"No valid words were entered. Project cannot be recalculated."),
+                   _(L"Import Error"), wxOK | wxICON_INFORMATION);
         GetDocumentWindow()->Refresh();
 
         ResetRefreshRequired();
@@ -298,7 +328,9 @@ void ProjectDoc::RefreshProject()
     // See if the view that was originally selected is gone.
     // If so then select the scores section.
     if (!view->GetSideBar()->SelectSubItemById(selectedItem, true, true))
-        { view->GetSideBar()->SelectFolder(0, true, true); }
+        {
+        view->GetSideBar()->SelectFolder(0, true, true);
+        }
     view->ShowSideBar(view->IsSideBarShown());
 
     GetDocumentWindow()->Refresh();
@@ -2731,23 +2763,21 @@ void ProjectDoc::AddLixGauge(const bool setFocus)
     readability::lix_difficulty diffLevel;
     size_t gradeLevel{ 1 };
     const size_t score = readability::lix(diffLevel, gradeLevel, GetTotalWords(),
-                                          GetTotalHardLixRixWords(), GetTotalSentences() );
+                                          GetTotalHardLixRixWords(), GetTotalSentences());
 
     const wxString scoresColumnName{ _DT(L"SCORES") };
 
     auto scoreDataset = std::make_shared<Wisteria::Data::Dataset>();
     scoreDataset->AddContinuousColumn(scoresColumnName);
 
-    scoreDataset->AddRow(Data::RowInfo().
-                    Continuous({ static_cast<double>(score) }));
+    scoreDataset->AddRow(Data::RowInfo().Continuous({ static_cast<double>(score) }));
 
     // Lix Gauge
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
     wxGCDC gdc(view->GetDocFrame());
 
-    Wisteria::Canvas* lixGaugeView =
-        dynamic_cast<Wisteria::Canvas*>(view->GetReadabilityResultsView().
-            FindWindowById(BaseProjectView::LIX_GAUGE_PAGE_ID));
+    Wisteria::Canvas* lixGaugeView = dynamic_cast<Wisteria::Canvas*>(
+        view->GetReadabilityResultsView().FindWindowById(BaseProjectView::LIX_GAUGE_PAGE_ID));
     if (lixGaugeView)
         {
         auto lixGauge = std::dynamic_pointer_cast<LixGauge>(lixGaugeView->GetFixedObject(0, 0));
@@ -2756,8 +2786,8 @@ void ProjectDoc::AddLixGauge(const bool setFocus)
         }
     else
         {
-        lixGaugeView = new Wisteria::Canvas(view->GetSplitter(),
-                                            BaseProjectView::LIX_GAUGE_PAGE_ID);
+        lixGaugeView =
+            new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::LIX_GAUGE_PAGE_ID);
         lixGaugeView->SetFixedObjectsGridSize(1, 1);
 
         lixGaugeView->Hide();
@@ -2765,11 +2795,10 @@ void ProjectDoc::AddLixGauge(const bool setFocus)
         lixGaugeView->SetName(BaseProjectView::GetLixGaugeLabel());
         lixGaugeView->SetPrinterSettings(*wxGetApp().GetPrintData());
 
-        auto lixGauge =
-            std::make_shared<LixGauge>(lixGaugeView,
-                std::make_shared<Colors::Schemes::ColorScheme>
-                 (Colors::Schemes::ColorScheme{
-                     ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
+        auto lixGauge = std::make_shared<LixGauge>(
+            lixGaugeView,
+            std::make_shared<Colors::Schemes::ColorScheme>(Colors::Schemes::ColorScheme{
+                ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
 
         lixGauge->SetData(scoreDataset, scoresColumnName);
         lixGaugeView->SetFixedObject(0, 0, lixGauge);
@@ -2793,14 +2822,16 @@ void ProjectDoc::AddFleschChart(const bool setFocus)
     const double ASL = safe_divide<double>(GetTotalWords(), GetTotalSentences());
     const double ASW = safe_divide<double>(
         (GetFleschNumeralSyllabizeMethod() == FleschNumeralSyllabize::NumeralIsOneSyllable) ?
-            GetTotalSyllablesNumeralsOneSyllable() : GetTotalSyllables(),
+            GetTotalSyllablesNumeralsOneSyllable() :
+            GetTotalSyllables(),
         GetTotalWords());
     readability::flesch_difficulty diffLevel;
-    const size_t score = readability::flesch_reading_ease(GetTotalWords(),
+    const size_t score = readability::flesch_reading_ease(
+        GetTotalWords(),
         (GetFleschNumeralSyllabizeMethod() == FleschNumeralSyllabize::NumeralIsOneSyllable) ?
-            GetTotalSyllablesNumeralsOneSyllable() : GetTotalSyllables(),
-        GetTotalSentences(),
-        diffLevel);
+            GetTotalSyllablesNumeralsOneSyllable() :
+            GetTotalSyllables(),
+        GetTotalSentences(), diffLevel);
 
     const wxString wordsColumnName{ _DT(L"WORDS") };
     const wxString scoresColumnName{ _DT(L"SCORES") };
@@ -2811,16 +2842,14 @@ void ProjectDoc::AddFleschChart(const bool setFocus)
     scoreDataset->AddContinuousColumn(scoresColumnName);
     scoreDataset->AddContinuousColumn(syllablesColumnName);
 
-    scoreDataset->AddRow(Data::RowInfo().
-                    Continuous({ ASL, static_cast<double>(score), ASW }));
+    scoreDataset->AddRow(Data::RowInfo().Continuous({ ASL, static_cast<double>(score), ASW }));
 
     // Flesch chart
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
     wxGCDC gdc(view->GetDocFrame());
 
-    Wisteria::Canvas* fleschChartCanvas =
-        dynamic_cast<Wisteria::Canvas*>(view->GetReadabilityResultsView().
-            FindWindowById(BaseProjectView::FLESCH_CHART_PAGE_ID));
+    Wisteria::Canvas* fleschChartCanvas = dynamic_cast<Wisteria::Canvas*>(
+        view->GetReadabilityResultsView().FindWindowById(BaseProjectView::FLESCH_CHART_PAGE_ID));
     if (fleschChartCanvas)
         {
         auto fleschChart =
@@ -2830,8 +2859,8 @@ void ProjectDoc::AddFleschChart(const bool setFocus)
         }
     else
         {
-        fleschChartCanvas = new Wisteria::Canvas(view->GetSplitter(),
-                                                 BaseProjectView::FLESCH_CHART_PAGE_ID);
+        fleschChartCanvas =
+            new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::FLESCH_CHART_PAGE_ID);
         fleschChartCanvas->SetFixedObjectsGridSize(1, 1);
 
         fleschChartCanvas->Hide();
@@ -2839,11 +2868,10 @@ void ProjectDoc::AddFleschChart(const bool setFocus)
         fleschChartCanvas->SetName(BaseProjectView::GetFleschChartLabel());
         fleschChartCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
 
-        auto fleschChart =
-            std::make_shared<FleschChart>(fleschChartCanvas,
-                std::make_shared<Colors::Schemes::ColorScheme>
-                 (Colors::Schemes::ColorScheme{
-                     ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
+        auto fleschChart = std::make_shared<FleschChart>(
+            fleschChartCanvas,
+            std::make_shared<Colors::Schemes::ColorScheme>(Colors::Schemes::ColorScheme{
+                ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
         assert(fleschChart);
         fleschChart->SetData(scoreDataset, wordsColumnName, scoresColumnName, syllablesColumnName);
         fleschChartCanvas->SetFixedObject(0, 0, fleschChart);
@@ -2853,8 +2881,8 @@ void ProjectDoc::AddFleschChart(const bool setFocus)
         }
     UpdateGraphOptions(fleschChartCanvas);
 
-    std::dynamic_pointer_cast<FleschChart>(fleschChartCanvas->GetFixedObject(0, 0))->
-        ShowConnectionLine(IsConnectingFleschPoints());
+    std::dynamic_pointer_cast<FleschChart>(fleschChartCanvas->GetFixedObject(0, 0))
+        ->ShowConnectionLine(IsConnectingFleschPoints());
     fleschChartCanvas->CalcAllSizes(gdc);
 
     // if they asked to set focus to the score then select the graph
