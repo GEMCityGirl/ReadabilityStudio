@@ -277,6 +277,11 @@ bool grammar::is_incorrect_english_article::is_an_exception(std::wstring_view wo
         {
         return true;
         }
+    // an NTSTATUS
+    else if (traits::case_insensitive_ex::compare(word.data(), L"nt", 2) == 0)
+        {
+        return true;
+        }
     else
         {
         return false;
