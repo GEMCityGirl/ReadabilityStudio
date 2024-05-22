@@ -398,12 +398,19 @@ acrage	acreage	3
 acreditation	accreditation	3		
 acreditation's	accreditation's	3		
 acreditations	accreditations	3		
+acreen	screen	3		
+acreen's	screen's	3		
+acreens	screens	3		
 acrimonious	sharp, bitter	0		
 acrimoniously	bitterly	0		
 across the board	everyone, everything	2		
 across the country	nationwide	0		
 across the globe	worldwide	0		
 across the world	worldwide	0		
+acruire	acquire	3		
+acruired	acquired	3		
+acruires	acquires	3		
+acruiring	acquiring	3		
 act in accord with	comply with, follow, obey	0		
 act in accordance with	comply with, follow, obey	0		
 actaul	actual	3		
@@ -486,7 +493,9 @@ addressings	addressing	3
 adds a further	adds	1		
 adds insult to injury	is remarkably harsh/insulting	2		
 addtion	addition	3		
+addtion's	addition's	3		
 addtional	additional	3		
+addtions	additions	3		
 adecuate	adequate	3		
 adequate	enough	0		
 adequate number of	enough	0		
@@ -870,6 +879,9 @@ alterante's	alternate's	3
 alterantes	alternates	3		
 alteration	change	0		
 alterations	changes	0		
+alterative	alternative	3		
+alteratively	alternatively	3		
+alteratives	alternatives	3		
 altercation	dispute	0		
 altercations	disputes	0		
 alternate	take turns (between), every other (adj.)	0		
@@ -1087,6 +1099,7 @@ and than	and then	3
 andd	and	3		
 androgenous	androgynous	3		
 androgeny	androgyny	3		
+andthe	and the	3		
 angiven	any given	3		
 anhoter	another	3		
 anihilate	annihilate	3		
@@ -2067,6 +2080,7 @@ bachelorette degree	baccalaureate degree	3
 bachelorette degree's	baccalaureate degree's	3		
 bachelorette degrees	baccalaureate degrees	3		
 bachelorette's degree	baccalaureate degree	3		
+bacis	basic	3		
 back in forth	back and forth	3		
 back in the saddle	regained his/her/my stature/position	2		
 back stabber	deceitful person who can't be trusted	2		
@@ -2794,6 +2808,7 @@ canonival	canonical	3
 canot	cannot	3		
 cant't	can't	3		
 caost	coast	3		
+capabile	capable	3		
 capabilies	capabilities	3		
 capabilites	capabilities	3		
 capabilities	abilities	0		
@@ -2917,6 +2932,7 @@ categorizations	groupings	0
 categorize	class, group	0		
 categorized	classed, grouped	0		
 categorizes	classes, groups	0		
+categorizied	categorized	3		
 categorizing	classing, grouping	0		
 category	class, group	0		
 catepillar	caterpillar	3		
@@ -3501,6 +3517,9 @@ compatibiliy	compatibility	3
 compatibilty	compatibility	3		
 compatibily	compatibility	3		
 compatibity	compatibility	3		
+compatiblilities	compatibilities	3		
+compatiblility	compatibility	3		
+compatiblility's	compatibility's	3		
 compatiblities	compatibilities	3		
 compatiblity	compatibility	3		
 compativle	compatible	3		
@@ -3573,6 +3592,9 @@ componant	component	3
 component	part	0		
 component's	part's	0		
 components	parts	0		
+componment	component	3		
+componment's	component's	3		
+componments	components	3		
 compontent	component	3		
 compontents	components	3		
 compose	make up, create	0		
@@ -3714,11 +3736,18 @@ confidental	confidential	3
 confidentally	confidentially	3		
 confids	confides	3		
 configiuration	configuration	3		
+configre	configure	3		
+configred	configured	3		
+configres	configures	3		
+configring	configuring	3		
 configuaration	configuration	3		
 configuaration's	configuration's	3		
 configuarations	configurations	3		
 configuation	configuration	3		
 configuations	configurations	3		
+configuraiton	configuration	3		
+configuraiton's	configuration's	3		
+configuraitons	configurations	3		
 configurate	configuration	3		
 configuratoin	configuration	3		
 configureable	configurable	3		
@@ -3732,6 +3761,10 @@ confrontations	meetings	0
 confronted	face, met	0		
 confronting	facing, meeting	0		
 confronts	faces, meets	0		
+confugure	configure	3		
+confugured	configured	3		
+confugures	configures	3		
+confuguring	configuring	3		
 congeal	freeze	0		
 congealed	froze	0		
 congealing	freezing	0		
@@ -3880,6 +3913,8 @@ constituted	was, formed	0
 constitutes	makes up, forms	0		
 constituting	being, forming	0		
 constitution	form, make-up	0		
+constrainst	constraint, constraints	3		
+constrainsts	constraints	3		
 constraucts	constructs	3		
 constriants	constraints	3		
 construciton	construction	3		
@@ -4477,6 +4512,7 @@ declation	declaration	3
 declations	declarations	3		
 declination	downward slope	0		
 declinations	downward slopes	0		
+decod	decode	3		
 decomissioned	decommissioned	3		
 decommision	decommission	3		
 decommisioned	decommissioned	3		
@@ -4721,6 +4757,9 @@ dertermine	determine	3
 dertermined	determined	3		
 dertermines	determines	3		
 dertermining	determining	3		
+dervie	derive	3		
+dervied	derived	3		
+dervies	derives	3		
 desactivate	deactivate	3		
 desccription	description	3		
 desccription's	description's	3		
@@ -4735,6 +4774,9 @@ descibe	describe	3
 descibed	described	3		
 descibes	describes	3		
 descibing	describing	3		
+desciption	description	3		
+desciption's	description's	3		
+desciptions	descriptions	3		
 desciptor	descriptor	3		
 desciptors	descriptors	3		
 descision	decision	3		
@@ -5001,6 +5043,7 @@ dirver	driver	3
 dirver's	driver's	3		
 dirvers	drivers	3		
 disable this will	disabling this will	3		
+disableing	disabling	3		
 disablesd	disabled, disabled	3		
 disagreeable	cross	0		
 disagreeed	disagreed	3		
@@ -5173,6 +5216,9 @@ dissappointed	disappointed	3
 dissarray	disarray	3		
 dissasembly	disasembly	3		
 dissasembly's	disasembly's	3		
+dissassemblies	disassemblies	3		
+dissassembly	disassembly	3		
+dissassembly's	disassembly's	3		
 dissble	disable	3		
 disseminate	give, issue, pass, send	0		
 disseminated	scattered, spread out	0		
@@ -6016,6 +6062,9 @@ ethylhexls	ethylhexyls	3
 etsablishment	establishment	3		
 etsbalishment	establishment	3		
 Euclidian	Euclidean	3		
+eumeration	enumeration	3		
+eumeration's	enumeration's	3		
+eumerations	enumerations	3		
 evaluate	check, rate	0		
 evaluated	checked, rated	0		
 evaluates	checks, rates	0		
@@ -6378,6 +6427,8 @@ extrapoliate	extrapolate	3
 extrat	extract	3		
 extraterrestial	extraterrestrial	3		
 extraterrestials	extraterrestrials	3		
+extratraneous	extraneous	3		
+extratraneously	extraneously	3		
 extravagent	extravagant	3		
 extreem	extreme	3		
 extreems	extremes	3		
@@ -7783,6 +7834,9 @@ identified	named, found	0
 identifies	names, finds	0		
 identify	find, name, show	0		
 identifying	naming, finding	0		
+identitifer	identifier	3		
+identitifer's	identifier's	3		
+identitifers	identifiers	3		
 identitiy	identify	3		
 ideosyncratic	idiosyncratic	3		
 Idianapolis	Indianapolis	3		
@@ -8474,12 +8528,19 @@ inhibiting	hindering	0
 inhibition	restraint	0		
 inhibitions	restraints	0		
 inhibits	hinders	0		
+inialization	initialization	3		
+inialization's	initialization's	3		
+inializations	initializations	3		
 iniative	initiative	3		
 iniative's	initiative's	3		
 iniatives	initiatives	3		
 inimitable	unmatched	0		
 iniquitous	wicked	0		
 iniquitously	wickedly	0		
+initailize	initialize	3		
+initailized	initialized	3		
+initailizes	initializes	3		
+initailizing	initializing	3		
 inital	initial	3		
 initalizate	initialize	3		
 initalizated	initialized	3		
@@ -8740,6 +8801,10 @@ interpets	interprets	3
 interpose no objection	don't object	0		
 interpretes	interprets	3		
 interpretted	interpreted	3		
+interract	interact	3		
+interracted	interacted	3		
+interracting	interacting	3		
+interracts	interacts	3		
 interrim	interim	3		
 interrogate	question	0		
 interrogated	questioned	0		
@@ -8808,6 +8873,9 @@ intrumenting	instrumenting	3
 intruments	instruments	3		
 intrusted	entrusted	3		
 intuative	intuitive	3		
+inturn	in turn, intern	3		
+inturn's	intern's	3		
+inturns	interns	3		
 intutive	intuitive	3		
 intutively	intuitively	3		
 inudstry	industry	3		
@@ -8844,6 +8912,10 @@ invloving	involving	3
 invokation	invocation	3		
 invokations	invocations	3		
 involvment	involvement	3		
+invovle	involve	3		
+invovled	involved	3		
+invovles	involves	3		
+invovling	involving	3		
 irelevent	irrelevant	3		
 iresistable	irresistible	3		
 iresistably	irresistibly	3		
@@ -9073,6 +9145,9 @@ it's place	its place	3
 Italium	Itanium, Italicum	3		
 Italium's	Itanium's, Italicum's	3		
 Italiums	Itaniums, Italicums	3		
+itialization	initialization	3		
+itialization's	initialization's	3		
+itializations	initializations	3		
 itialize	initialize	3		
 itialized	initialized	3		
 itializes	initializes	3		
@@ -9798,6 +9873,7 @@ measurments	measurements	3
 mecanism	mechanism	3		
 mecanisms	mechanisms	3		
 mechandise	merchandise	3		
+mechanims	mechanism	3		
 mechansim	mechanism	3		
 mechnancism	mechanism	3		
 mechnancism's	mechanism's	3		
@@ -10173,6 +10249,9 @@ multiciscipline-trained	multidiscipline-trained	3
 multicultralism	multiculturalism	3		
 multidimensionnal	multidimensional	3		
 multingual	multilingual	3		
+multipexer	multiplexer	3		
+multipexer's	multiplexer's	3		
+multipexers	multiplexers	3		
 multiple	many	0		Myeloma
 multipled	multiplied	3		
 multiplers	multipliers	3		
@@ -10390,6 +10469,7 @@ Noble Prize	Nobel Prize	3
 Noble Prizes	Nobel Prizes	3		
 nomial	nominal	3		
 nonaged	nonpaged	3		
+nonantialiased	aliased	3		
 nondescrimination	nondiscrimination	3		
 none at all	none	0		
 nonexistant	nonexistent	3		
@@ -11161,6 +11241,9 @@ pathenol's	panthenol's	3
 pathenols	panthenols	3		
 pathes	paths	3		
 paticular	particular	3		
+patner	partner	3		
+patner's	partner's	3		
+patners	partners	3		
 pattented	patented	3		
 pause for a moment	pause	0		
 paused for a moment	paused	0		
@@ -11465,6 +11548,9 @@ phoned it in	performed with little enthusiasm	2
 phones it in	performs with little enthusiasm	2		
 phongraph	phonograph	3		
 phoning it in	performing with little enthusiasm	2		
+phsycial	psychical	3		
+phsycial's	psychical's	3		
+phsycials	psychicals	3		
 phyiscally	physically	3		
 phylosophical	philosophical	3		
 physicaly	physically	3		
@@ -12133,6 +12219,10 @@ program mangers	program managers	3
 programable	programmable	3		
 programatically	programmatically	3		
 programers	programmers	3		
+progrees	progress	3		
+progreesed	progressed	3		
+progreeses	progresses	3		
+progreesing	progressing	3		
 prohabition	prohibition	3		
 prohibited	not allowed	0		
 prohibt	prohibit	3		
@@ -12267,6 +12357,9 @@ provisonal	provisional	3
 proximity	nearness	0		
 proximty	proximity	3		
 prufe	proof	3		
+pseudoname	pseudonym	3		
+pseudoname's	pseudonym's	3		
+pseudonames	pseudonyms	3		
 pseudononymous	pseudonymous	3		
 pseudonyn	pseudonym	3		
 psudo	pseudo	3		
@@ -13141,6 +13234,11 @@ requrire	require	3
 requrired	required	3		
 requrires	requires	3		
 requriring	requiring	3		
+requst	request	3		
+requst's	request's	3		
+requsted	requested	3		
+requsting	requesting	3		
+requsts	requests	3		
 rerquest	request	3		
 rerquested	requested	3		
 rerquesting	requesting	3		
@@ -13542,6 +13640,9 @@ scannot	cannot	3
 scaricity	scarcity	3		
 scavanged	scavenged	3		
 schedual	schedule	3		
+scheudler	scheduler	3		
+scheudler's	scheduler's	3		
+scheudlers	schedulers	3		
 scholarhip	scholarship	3		
 school principle	school principal	3		
 school principle's	school principal's	3		
@@ -14836,6 +14937,8 @@ technitian	technician	3
 technnology	technology	3		
 technolgy	technology	3		
 techologies	technologies	3		
+techology	technology	3		
+techology's	technology's	3		
 teeth in the game	skin in the game	3		
 teh	the	3		
 tehy	they	3		
@@ -15880,6 +15983,7 @@ vaguaries	vagaries	3
 vaiable	variable	3		
 vaiables	variables	3		
 vaieties	varieties	3		
+vailable	available	3		
 vailidty	validity	3		
 vailla	vanilla	3		
 vailla's	vanilla's	3		
@@ -15913,6 +16017,9 @@ valuess	values	3
 valuse	values	3		
 varable	variable	3		
 varables	variables	3		
+varaible	variable	3		
+varaible's	variable's	3		
+varaibles	variables	3		
 varations	variations	3		
 variabe	variable	3		
 variabes	variables	3		
@@ -15976,6 +16083,9 @@ verfication	verification	3
 verficiation	verification	3		
 verficiation's	verification's	3		
 verficiations	verifications	3		
+verfier	verifier	3		
+verfier's	verifier's	3		
+verfiers	verifiers	3		
 verification	proof	0		
 verion	version	3		
 verions	versions	3		

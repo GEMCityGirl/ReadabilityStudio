@@ -8179,6 +8179,10 @@ autodiscovered
 autodiscovering
 autodiscovers
 autodiscovery
+autoduplex
+autoduplexed
+autoduplexes
+autoduplexing
 autoecology
 autoecology's
 autoed
@@ -12630,6 +12634,9 @@ bitchiness
 bitchiness's
 bitching
 bitchy
+bitcode
+bitcode's
+bitcodes
 bitdepth
 bitdepth's
 bitdepths
@@ -23243,6 +23250,7 @@ coaler
 coaler's
 coalescable
 coalesce
+coalesceable
 coalesced
 coalescence
 coalescence's
@@ -24937,6 +24945,7 @@ compare
 compared
 comparer
 comparer's
+comparers
 compares
 comparing
 comparison
@@ -26910,6 +26919,9 @@ continuant's
 continuation
 continuation's
 continuations
+continuator
+continuator's
+continuators
 continue
 continued
 continuer
@@ -31990,6 +32002,10 @@ deauthenticating
 deauthentication
 deauthentication's
 deauthentications
+deauthorize
+deauthorized
+deauthorizes
+deauthorizing
 deaves
 debacle
 debacle's
@@ -32192,6 +32208,9 @@ decapitations
 decapitator
 decapitator's
 decapitators
+decapsulation
+decapsulation's
+decapsulations
 decarbonization
 decarbonization's
 decarbonizations
@@ -45255,6 +45274,7 @@ excessive
 excessively
 excessiveness
 excessiveness's
+exchangable
 exchange
 exchangeable
 exchanged
@@ -66539,6 +66559,7 @@ inotropic
 inpatient
 inpatient's
 inpatients
+inplace
 input
 input's
 inputed
@@ -79928,6 +79949,9 @@ microinstruction
 microinstruction's
 microinstructions
 microjoule
+microkernel
+microkernel's
+microkernels
 microlend
 microlender
 microlender's
@@ -80780,6 +80804,9 @@ minicams
 miniclass
 miniclass's
 miniclasses
+miniclient
+miniclient's
+miniclients
 minicompanies
 minicompany
 minicompany's
@@ -82514,6 +82541,8 @@ monomers
 monomial
 monomial's
 monomials
+monomode
+monomodes
 monomolecular
 mononeuritis
 mononeuropathy
@@ -83689,6 +83718,7 @@ multicentres
 multicentric
 multichannel
 multichannel's
+multichild
 multichrome
 multichrome's
 multichromes
@@ -83728,6 +83758,7 @@ multidimensional
 multidimensionality
 multidimensionally
 multidisciplinary
+multidisk
 multielectron
 multielectron's
 multielectrons
@@ -83750,6 +83781,7 @@ multifocal
 multifold
 multiform
 multiforme
+multiframe
 multifrequency
 multifunction
 multifunctional
@@ -83925,6 +83957,7 @@ multislice
 multispecialty
 multispecies
 multisport
+multispot
 multistage
 multistate
 multistate's
@@ -83976,6 +84009,7 @@ multitouch
 multitrack
 multitrack's
 multitracks
+multitransport
 multitrillion
 multitude
 multitude's
@@ -86757,6 +86791,7 @@ nonbureaucratic
 nonbureaucratically
 nonburnable
 nonbusiness
+nonbusy
 noncacheable
 noncached
 noncalcified
@@ -87119,6 +87154,7 @@ noninterests
 noninterference
 noninterference's
 noninterferences
+noninterlaced
 noninterrupt
 nonintervention
 nonintervention's
@@ -87133,6 +87169,7 @@ nonintrusively
 nonintuitive
 noninvasive
 noninvasively
+noninverted
 nonionic
 nonionized
 nonionizing
@@ -87146,6 +87183,7 @@ nonkinetochore
 nonleader
 nonleader's
 nonleaders
+nonlegacy
 nonlegal
 nonlethal
 nonlife
@@ -87327,11 +87365,14 @@ nonpregnant
 nonprejudicial
 nonprescription
 nonpresidential
+nonprimary
 nonprimitive
 nonprincessy
+nonprinting
 nonprivileged
 nonprocedural
 nonprocedurally
+nonproduction
 nonproductive
 nonprofessional
 nonprofessionals
@@ -87341,6 +87382,7 @@ nonprofits
 nonprogrammable
 nonprogrammed
 nonprogrammer
+nonprojected
 nonproliferation
 nonproliferation's
 nonproliferations
@@ -87400,6 +87442,7 @@ nonrenewals
 nonrepayable
 nonrepresentational
 nonreproductive
+nonreserved
 nonresident
 nonresident's
 nonresidential
@@ -87581,6 +87624,7 @@ nontuberculous
 nontubulin
 nonturbulent
 nonuniform
+nonuniformly
 nonunion
 nonunionized
 nonunions
@@ -100041,6 +100085,10 @@ postamble
 postamble's
 postambles
 postanal
+postanalyze
+postanalyzed
+postanalyzes
+postanalyzing
 postarrival
 postarrival's
 postarrivals
@@ -100143,6 +100191,9 @@ postindustrial
 posting
 posting's
 postings
+postinstallation
+postinstallation's
+postinstallations
 postlingual
 postlude
 postlude's
@@ -100210,6 +100261,9 @@ postprocess
 postprocessed
 postprocesses
 postprocessing
+postprocessor
+postprocessor's
+postprocessors
 postrema
 postremission
 postretirement
@@ -100225,6 +100279,10 @@ postseasons
 postseasons'
 postsec
 postsecondary
+postselect
+postselected
+postselecting
+postselects
 postsynaptic
 posttransform
 posttransformed
@@ -100241,6 +100299,9 @@ postulating
 postulation
 postulation's
 postulations
+postupgrade
+postupgrade's
+postupgrades
 postural
 posture
 posture's
@@ -100656,6 +100717,7 @@ preacquires
 preacquiring
 preaction
 preactions
+preactivated
 preadaptation
 preadaptations
 preadapted
@@ -100682,6 +100744,10 @@ preamp
 preamplifier
 preamplifier's
 preanalysis
+preanalyze
+preanalyzed
+preanalyzes
+preanalyzing
 preapproval
 preapproval's
 preapprovals
@@ -100730,6 +100796,10 @@ precancels
 precancerous
 precanned
 precapillary
+precapture
+precaptured
+precaptures
+precapturing
 precariat
 precariat's
 precariats
@@ -101060,6 +101130,7 @@ preener
 preener's
 preening
 preens
+preestablished
 preexcitation
 preexist
 preexisted
@@ -101115,6 +101186,9 @@ prefers
 prefetch
 prefetchable
 prefetched
+prefetcher
+prefetcher's
+prefetchers
 prefetches
 prefetching
 prefiguration
@@ -101191,6 +101265,7 @@ preinitializes
 preinitializing
 preinitiation
 preinstall
+preinstallable
 preinstallation
 preinstallation's
 preinstallations
@@ -101533,6 +101608,10 @@ prerogative
 prerogative's
 prerogatived
 prerogatives
+preroll
+prerolled
+prerolling
+prerolls
 pres
 presage
 presage's
@@ -108201,6 +108280,9 @@ redevelopment
 redevelopment's
 redevelopments
 redevelops
+redeye
+redeye's
+redeyes
 redhead
 redhead's
 redheaded
@@ -110506,6 +110588,10 @@ reprinter's
 reprinting
 reprintings
 reprints
+reprioritize
+reprioritized
+reprioritizes
+reprioritizing
 reprisal
 reprisal's
 reprisals
@@ -115544,6 +115630,9 @@ scamps
 scams
 scan
 scanable
+scancode
+scancode's
+scancodes
 scandal
 scandal's
 scandaled
@@ -116330,6 +116419,8 @@ screenshot
 screenshot's
 screenshots
 screenshotted
+screenspace
+screenspace's
 screentime
 screentime's
 screentip
@@ -119910,6 +120001,7 @@ sigmoidoscopy
 sign
 sign's
 signability
+signable
 signage
 signage's
 signal
@@ -128086,6 +128178,7 @@ subrecipients
 subrectangle
 subrectangle's
 subrectangles
+subrectangular
 subreddit
 subreddit's
 subreddits
@@ -136201,9 +136294,13 @@ transcarbamylase
 transcatheter
 transcatheter's
 transcatheters
+transceive
+transceived
 transceiver
 transceiver's
 transceivers
+transceives
+transceiving
 transcellular
 transcend
 transcended
@@ -136980,6 +137077,9 @@ triangulating
 triangulation
 triangulation's
 triangulations
+triangulator
+triangulator's
+triangulators
 triangulum
 triangulum's
 trianion
@@ -137377,6 +137477,9 @@ trisomy
 trisomy's
 trisoxalatoferrate
 tristate
+tristrip
+tristrip's
+tristrips
 trisulcate
 trisulfide
 trisyllable
@@ -139135,6 +139238,7 @@ unblushing
 unblushingly
 unbodied
 unboiled
+unbolded
 unbolt
 unbolted
 unbolting
@@ -140379,7 +140483,10 @@ unexploded
 unexploited
 unexplored
 unexported
+unexpose
 unexposed
+unexposes
+unexposing
 unexpressed
 unexpurgated
 unextended
@@ -141533,9 +141640,12 @@ unprejudiced
 unpremeditated
 unpremultiplied
 unpremultiply
+unprepare
 unprepared
 unpreparedness
 unpreparedness's
+unprepares
+unpreparing
 unprepossessing
 unprescribed
 unpreserved
@@ -141610,6 +141720,7 @@ unpunctuality's
 unpunished
 unpurchased
 unpushed
+unqouted
 unqualified
 unqualifiedly
 unquantifiable
@@ -142023,6 +142134,7 @@ unsightliness
 unsightliness's
 unsightlinesses
 unsightly
+unsignaled
 unsigned
 unsimplified
 unsinkable
@@ -145511,6 +145623,9 @@ vower
 vower's
 vowing
 vows
+voxel
+voxel's
+voxels
 voyage
 voyage's
 voyaged

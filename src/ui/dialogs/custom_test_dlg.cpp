@@ -700,10 +700,10 @@ void CustomTestDlg::CreateControls()
             wxBoxSizer* functionControlsSizer = new wxBoxSizer(wxHORIZONTAL);
             mainPanelSizer->Add(
                 functionControlsSizer,
-                wxSizerFlags(1).Expand().Border(wxALL, wxSizerFlags::GetDefaultBorder()));
+                wxSizerFlags().Expand().Border(wxALL, wxSizerFlags::GetDefaultBorder()));
             wxStaticBoxSizer* formulaBoxSizer = new wxStaticBoxSizer(
                 new wxStaticBox(mainPage, wxID_ANY, _(L"Formula:")), wxVERTICAL);
-            functionControlsSizer->Add(formulaBoxSizer, wxSizerFlags(1).Expand());
+            functionControlsSizer->Add(formulaBoxSizer, wxSizerFlags().Expand());
 
             wxBoxSizer* formulaButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
 
@@ -730,7 +730,7 @@ void CustomTestDlg::CreateControls()
             m_formulaCtrl->AddFunctionsOrClasses(m_sentenceFunctions);
             m_formulaCtrl->AddFunctionsOrClasses(m_shortcuts);
             m_formulaCtrl->Finalize();
-            formulaBoxSizer->Add(m_formulaCtrl, wxSizerFlags(1).Expand().Border(
+            formulaBoxSizer->Add(m_formulaCtrl, wxSizerFlags().Expand().Border(
                                                     wxALL, wxSizerFlags::GetDefaultBorder()));
 
             // examples labels
