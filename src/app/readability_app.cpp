@@ -535,8 +535,15 @@ bool ReadabilityApp::OnInit()
             }
         }
 
+    GetAppOptions().LoadOptionsFile(AppSettingFolderPath + L"Settings.xml", true);
+
+    AppendDailyLog(GetAppOptions().IsAppendingDailyLog());
+
     if (!BaseApp::OnInit())
         { return false; }
+
+    // delay this until BaseApp switches to a file logger
+    wxLogMessage(L"Settings file loaded from: " + AppSettingFolderPath + L"Settings.xml");
 
 #ifndef NDEBUG
     wxFileTranslationsLoader::AddCatalogLookupPathPrefix(L".");
@@ -568,16 +575,12 @@ bool ReadabilityApp::OnInit()
 
     m_webHarvester.SetEventHandler(this);
 
-    // holding down SHIFT while the program starts will turn on verbose logging
-    if (wxGetMouseState().ShiftDown())
+    if (GetLogFile() != nullptr && GetLogFile()->GetVerbose())
         {
         wxLog::SetVerbose(true);
         wxLog::SetLogLevel(wxLOG_Max);
         m_advancedImport = true;
         }
-
-    GetAppOptions().LoadOptionsFile(AppSettingFolderPath + L"Settings.xml", true);
-    wxLogMessage(L"Settings file loaded from: " + AppSettingFolderPath + L"Settings.xml");
 
     // load map of graph icons to human readable strings
     m_shapeMap = { std::make_pair(_(L"Sun"), DONTTRANSLATE(L"sun")),
@@ -5245,6 +5248,10 @@ void MainFrame::OnToolsOptions([[maybe_unused]] wxRibbonButtonBarEvent& event)
     if (optionsDlg.ShowModal() == wxID_OK)
         {
         wxGetApp().GetAppOptions().SaveOptionsFile();
+        }
+    if (m_logWindow != nullptr && wxGetApp().GetLogFile() != nullptr)
+        {
+        m_logWindow->EnableVerboseLogging(wxGetApp().GetLogFile()->GetVerbose());
         }
     }
 

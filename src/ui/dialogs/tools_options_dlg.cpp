@@ -615,6 +615,10 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
     m_disablePeerVerify(wxGetApp().GetAppOptions().IsPeerVerifyDisabled()),
     m_useJsCookies(wxGetApp().GetAppOptions().IsUsingJavaScriptCookies()),
     m_persistJsCookies(wxGetApp().GetAppOptions().IsPersistingJavaScriptCookies()),
+    // log options
+    m_logVerbose(wxGetApp().GetLogFile() != nullptr ?
+        wxGetApp().GetLogFile()->GetVerbose() : false),
+    m_logAppendDailyLog(wxGetApp().GetAppOptions().IsAppendingDailyLog()),
     // project settings
     m_projectLanguage(static_cast<int>(project ?
         project->GetProjectLanguage() : wxGetApp().GetAppOptions().GetProjectLanguage())),
@@ -1566,6 +1570,14 @@ void ToolsOptionsDlg::SaveOptions()
         {
         SaveStatisticsOptions();
         return;
+        }
+    if (m_logVerbose.has_changed() && wxGetApp().GetLogFile() != nullptr)
+        {
+        wxGetApp().GetLogFile()->SetVerbose(m_logVerbose.get_value());
+        }
+    if (m_logAppendDailyLog.has_changed())
+        {
+        wxGetApp().GetAppOptions().AppendDailyLog(m_logAppendDailyLog.get_value());
         }
     if (m_userAgent.has_changed())
         {
@@ -2947,7 +2959,8 @@ void ToolsOptionsDlg::CreateControls()
             CreateLabelHeader(generalSettingsPage, docpanelSizer, _(L"Settings:"), true);
 
             wxSizer* optionsSizer = new wxBoxSizer(wxVERTICAL);
-            docpanelSizer->Add(optionsSizer, 0, wxEXPAND|wxLEFT, OPTION_INDENT_SIZE);
+            docpanelSizer->Add(optionsSizer,
+                               wxSizerFlags().Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 
             wxButton* loadSettingsButton =
                 new wxButton(generalSettingsPage, ID_LOAD_SETTINGS_BUTTON, _(L"Import..."));
@@ -2965,7 +2978,8 @@ void ToolsOptionsDlg::CreateControls()
             CreateLabelHeader(generalSettingsPage, docpanelSizer, _(L"Themes:"), true);
 
             optionsSizer = new wxBoxSizer(wxVERTICAL);
-            docpanelSizer->Add(optionsSizer, 0, wxEXPAND|wxLEFT, OPTION_INDENT_SIZE);
+            docpanelSizer->Add(optionsSizer,
+                               wxSizerFlags().Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 
             // load the list of themes
             wxDir dir;
@@ -3023,7 +3037,8 @@ void ToolsOptionsDlg::CreateControls()
             CreateLabelHeader(generalSettingsPage, docpanelSizer, _(L"Internet:"), true);
 
             optionsSizer = new wxBoxSizer(wxVERTICAL);
-            docpanelSizer->Add(optionsSizer, 0, wxEXPAND | wxLEFT, OPTION_INDENT_SIZE);
+            docpanelSizer->Add(
+                optionsSizer, wxSizerFlags().Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 
             wxBoxSizer* userAgentSizer = new wxBoxSizer(wxHORIZONTAL);
             optionsSizer->Add(userAgentSizer, wxSizerFlags().Expand());
@@ -3069,11 +3084,34 @@ void ToolsOptionsDlg::CreateControls()
             CreateLabelHeader(generalSettingsPage, docpanelSizer, _(L"Warnings && Prompts:"), true);
 
             optionsSizer = new wxBoxSizer(wxVERTICAL);
-            docpanelSizer->Add(optionsSizer, 0, wxEXPAND|wxLEFT, OPTION_INDENT_SIZE);
+            docpanelSizer->Add(optionsSizer,
+                               wxSizerFlags().Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 
             wxButton* warningsButton =
                 new wxButton(generalSettingsPage, ID_WARNING_MESSAGES_BUTTON, _(L"Customize..."));
             optionsSizer->Add(warningsButton, 0, wxALIGN_LEFT|wxTOP|wxBOTTOM, wxSizerFlags::GetDefaultBorder());
+
+            CreateLabelHeader(generalSettingsPage, docpanelSizer, _(L"Log:"), true);
+
+            optionsSizer = new wxBoxSizer(wxVERTICAL);
+            docpanelSizer->Add(optionsSizer,
+                               wxSizerFlags().Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
+
+            optionsSizer->Add(new wxCheckBox(generalSettingsPage, wxID_ANY,
+                                             _(L"Verbose logging"), wxDefaultPosition,
+                                             wxDefaultSize, 0, wxGenericValidator(&m_logVerbose)),
+                              wxSizerFlags()
+                                  .Expand()
+                                  .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
+                                  .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
+
+            optionsSizer->Add(new wxCheckBox(generalSettingsPage, wxID_ANY, _(L"Append daily log"),
+                                             wxDefaultPosition, wxDefaultSize, 0,
+                                             wxGenericValidator(&m_logAppendDailyLog)),
+                              wxSizerFlags()
+                                  .Expand()
+                                  .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
+                                  .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
             }
         }
 

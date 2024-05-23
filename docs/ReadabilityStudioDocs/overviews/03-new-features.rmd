@@ -23,7 +23,8 @@
   - Added **Clear**, **Refresh**, and **Verbose** options.
     - Verbose logging can now be toggled from this dialog via the **Verbose** button.
   - Dialog is now modeless; other windows can be accessed while this dialog is open.
-  - Holding down `r keys('SHIFT')` while the program opens will load the log report from the previous run of the program (if ran during the same day).
+  - Added option to load the log report from the previous run of the program (if ran during the same day).
+  - Log report options are now available on the **Options** dialog.
 - **Web Harvester** improvements:
   - The **User agent** option on the **Web Harvester** dialog is now available on the **General Settings** page of the **Options** dialog also.
     This allows for changing the user agent when reading single web pages, as well as when harvesting websites.

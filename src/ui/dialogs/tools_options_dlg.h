@@ -976,6 +976,10 @@ class ToolsOptionsDlg final : public wxDialog
     BackupVariable<bool> m_useJsCookies;
     BackupVariable<bool> m_persistJsCookies;
 
+    // log settings
+    BackupVariable<bool> m_logVerbose;
+    BackupVariable<bool> m_logAppendDailyLog;
+
     // project settings
     BackupVariable<int> m_projectLanguage;
     BackupVariable<wxString> m_reviewer;

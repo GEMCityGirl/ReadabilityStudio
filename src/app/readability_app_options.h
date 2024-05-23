@@ -614,6 +614,18 @@ class ReadabilityAppOptions
         return m_textHighlight;
         }
 
+    [[nodiscard]]
+    bool IsAppendingDailyLog() const noexcept
+        {
+        return m_logAppendDailyLog;
+        }
+
+    [[nodiscard]]
+    void AppendDailyLog(const bool append) noexcept
+        {
+        m_logAppendDailyLog = append;
+        }
+
     void SetTextHighlightMethod(const TextHighlight highlight) noexcept
         {
         m_textHighlight = highlight;
@@ -2543,6 +2555,8 @@ class ReadabilityAppOptions
         wxTextAttrLineSpacing::wxTEXT_ATTR_LINE_SPACING_NORMAL
     };
 
+    bool m_logAppendDailyLog{ false };
+
     wxColour m_dolchConjunctionsColor{ wxColour{ 255, 255, 0 } };
     wxColour m_dolchPrepositionsColor{ wxColour{ 0, 245, 255 } };
     wxColour m_dolchPronounsColor{ wxColour{ 198, 226, 255 } };
@@ -2793,6 +2807,9 @@ class ReadabilityAppOptions
     const std::string_view XML_EDITOR_SPACE_AFTER_PARAGRAPH{ _DT("editor-space-after-paragraph") };
     const std::string_view XML_EDITOR_TEXT_ALIGNMENT{ _DT("editor-text-alignment") };
     const std::string_view XML_EDITOR_LINE_SPACING{ _DT("editor-line-spacing") };
+    const std::string_view XML_LOG_SETTINGS{ _DT("log-setting") };
+    const std::string_view XML_LOG_VERBOSE{ _DT("log-verbose") };
+    const std::string_view XML_LOG_APPEND_DAILY{ _DT("log-append-daily") };
     const std::string_view XML_PROJECT_HEADER{ _DT("oleander-readability-studio-project") };
     const std::string_view XML_DOCUMENT{ _DT("document") };
     const std::string_view XML_TEXT_SOURCE{ _DT("text-source") };

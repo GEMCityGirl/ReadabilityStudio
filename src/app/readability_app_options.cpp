@@ -279,6 +279,12 @@ void ReadabilityAppOptions::ResetSettings()
     m_editorTextAlignment = wxTextAttrAlignment::wxTEXT_ALIGNMENT_JUSTIFIED;
     m_editorLineSpacing = wxTextAttrLineSpacing::wxTEXT_ATTR_LINE_SPACING_NORMAL;
 
+    if (wxGetApp().GetLogFile() != nullptr)
+        {
+        wxGetApp().GetLogFile()->SetVerbose(false);
+        }
+    m_logAppendDailyLog = false;
+
     m_textHighlight = TextHighlight::HighlightBackground;
     m_dolchConjunctionsColor = wxColour(255, 255, 0);
     m_dolchPrepositionsColor = wxColour(0, 245, 255);
@@ -881,6 +887,23 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         SetImagePath(convertedStr);
                         }
                     }
+                }
+            }
+        // log report settings
+        auto logSettingsNode = configRootNode->FirstChildElement(XML_LOG_SETTINGS.data());
+        if (logSettingsNode != nullptr)
+            {
+            auto logVerboseNode = logSettingsNode->FirstChildElement(XML_LOG_VERBOSE.data());
+            if (logVerboseNode != nullptr)
+                {
+                wxGetApp().GetLogFile()->SetVerbose(
+                    int_to_bool(logVerboseNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
+                }
+            auto logAppendNode = logSettingsNode->FirstChildElement(XML_LOG_APPEND_DAILY.data());
+            if (logAppendNode != nullptr)
+                {
+                AppendDailyLog(
+                    int_to_bool(logAppendNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
                 }
             }
         // printer settings
@@ -3795,6 +3818,18 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     exportSection->InsertEndChild(includeWarnings);
 
     configSection->InsertEndChild(exportSection);
+
+    // log settings
+    auto* logSection = doc.NewElement(XML_LOG_SETTINGS.data());
+    auto* logVerbose = doc.NewElement(XML_LOG_VERBOSE.data());
+    logVerbose->SetAttribute(XML_VALUE.data(), bool_to_int(wxGetApp().GetLogFile()->GetVerbose()));
+    logSection->InsertEndChild(logVerbose);
+
+    auto* logAppend = doc.NewElement(XML_LOG_APPEND_DAILY.data());
+    logAppend->SetAttribute(XML_VALUE.data(), bool_to_int(IsAppendingDailyLog()));
+    logSection->InsertEndChild(logAppend);
+
+    configSection->InsertEndChild(logSection);
 
     // printer settings
     auto printerSection = doc.NewElement(XML_PRINTER_SETTINGS.data());

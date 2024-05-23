@@ -119,7 +119,7 @@ This example would tell the program to log the maximum level of information whil
 `ReadStudio -loglevel=2`
 :::
 
-Note that verbose logging can also be enabled by holding down the `r keys("Shift")` (`r os_logo('windows')`) or `r keys("\\shift")` (`r os_logo('apple')`) button on your keyboard while the program opens.
+Note that verbose logging can also be enabled from the **General** page of the **Options** dialog or the **Log Report** dialog.
 
 ## Log Report {#log-report}
 
@@ -132,20 +132,14 @@ While it is running, *Readability Studio* logs various diagnostic information. T
 - Information about the operating system (e.g., OS version, default font, etc.)
 - Version information about various libraries used by the program
 
-Logging behavior is controlled by the [command line](#command-line-options), the **Verbose** button on the **Log Report** dialog, or by holding down the `r keys("Shift")` (`r os_logo('windows')`) or `r keys("\\shift")` (`r os_logo('apple')`) button on your keyword while the program starts.
-Holding `r keys("Shift")` (`r os_logo('windows')`) or `r keys("\\shift")` (`r os_logo('apple')`) instructs the program to:
-
--   Use maximum, verbose logging
--   Append to the previous log report (the default behavior is to clear the log file every time the program starts)
-
 To view this diagnostic information, go to the **Tools** tab on the ribbon, then click **Log Report** under the **Tools & Settings** section.
 From the **Log Report** dialog, you can review, save, and print this information.
 
 The messages in this report are displayed such that:
 
--   General messages have a plain background
--   Warnings have a yellow background
--   Errors have a red background
+- General messages have a plain background
+- Warnings have a yellow background
+- Errors have a red background
 
 This information can be useful if you are experiencing issues with loading a document.
 
