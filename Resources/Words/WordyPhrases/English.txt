@@ -212,6 +212,7 @@ accelerating	hastening, quickening	0
 acceleratoin	acceleration	3		
 accellerated	accelerated	3		
 accelleration	acceleration	3		
+accellular	acellular	3		
 acceptable	welcome	0		
 acceptence	acceptance	3		
 acceptible	acceptable	3		
@@ -3464,6 +3465,9 @@ common bond	bond	0
 common bonds	bonds	0		
 commongly	commonly	3		
 commonweath	commonwealth	3		
+commpetition	competition	3		
+commpetition's	competition's	3		
+commpetitions	competitions	3		
 commtted	committed	3		
 commuications	communications	3		
 commuinications	communications	3		
@@ -6784,6 +6788,9 @@ fontrier	frontier	3
 food for thought	something to ponder	2		
 fool's gold	an illusion, not what it seems	2		
 foootball	football	3		
+foor	floor, for	3		
+foor's	floor's	3		
+foors	floors	3		
 for a period of	for	0		
 for all intensive purposes	for all intents and purposes	3		
 for all intents and purposes	in effect, in essence, practically	0		
@@ -7174,6 +7181,9 @@ getting with the program	joining the effort	2
 getting your act together	getting organized	2		
 getting your arms around	fully understanding	2		
 getting your foot in the door	starting a business relationship	2		
+ggraduate	graduate	3		
+ggraduate's	graduate's	3		
+ggraduates	graduates	3		
 Ghandi	Gandhi	3		
 gigantic	huge	0		
 give an indication of	show	0		
@@ -10931,6 +10941,9 @@ opportunity	chance	0
 opportuniy	opportunity	3		
 opportuniy's	opportunity's	3		
 opportunties	opportunities	3		
+opporunities	opportunities	3		
+opporunity	opportunity	3		
+opporunity's	opportunity's	3		
 oppositition	opposition	3		
 oppossed	opposed	3		
 opprobrium	scorn, abuse	0		
@@ -15366,7 +15379,7 @@ to provided	to provide	3
 to put it another way	in other words, that is	0		
 to some degree	in a sense, somewhat, partly	0		
 to some extent	in a sense, somewhat, partly	0		
-to soon	too soon	3	have	
+to soon	too soon	3	 hope; hopes; plan; plans;have	 start;begin
 to start with	first	0		
 to such an extent	so much	0		
 to take this opportunity	(consider removing this)	0		
@@ -16704,6 +16717,5 @@ zero-sum gain	zero-sum game	3
 zero-sum gains	zero-sum games	3		
 Zimperuim	Zimperium	3		
 Zimperuim's	Zimperium's	3		
-zink	zinc	3		
 zylophone	xylophone	3		
 zylophones	xylophones	3		

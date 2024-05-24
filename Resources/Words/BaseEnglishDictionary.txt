@@ -1105,6 +1105,7 @@ acoustician
 acoustician's
 acoustics
 acoustics's
+acousto
 acquaint
 acquaintance
 acquaintance's
@@ -2053,6 +2054,7 @@ aerodynamic
 aerodynamically
 aerodynamics
 aerodynamics's
+aeroelastic
 aerofoil
 aerofoil's
 aerofoils
@@ -2071,6 +2073,9 @@ aerophobia
 aeroplane
 aeroplane's
 aeroplanes
+aeropropulsion
+aeropropulsion's
+aeropropulsions
 aerosinusitis
 aerosol
 aerosol's
@@ -9599,6 +9604,9 @@ bandeaux
 banded
 bander
 bander's
+bandgap
+bandgap's
+bandgaps
 bandicoot
 bandicoot's
 bandicoots
@@ -11315,6 +11323,9 @@ benchmark's
 benchmarked
 benchmarking
 benchmarks
+benchtop
+benchtop's
+benchtops
 bend
 bendable
 bended
@@ -12177,6 +12188,9 @@ biocontrol
 biodegradabilities
 biodegradability
 biodegradable
+biodegradation
+biodegradation's
+biodegradations
 biodegrade
 biodemographies
 biodemography
@@ -12195,6 +12209,9 @@ bioeconomy's
 bioelectric
 bioelectrical
 bioelectricity
+bioelectronic
+bioelectronic's
+bioelectronics
 bioenergetic
 bioenergetics
 bioenergies
@@ -12209,6 +12226,9 @@ bioentropy
 bioethical
 bioethicists
 bioethics
+biofabrication
+biofabrication's
+biofabrications
 biofeedback
 biofeedback's
 biofeedbacks
@@ -12300,6 +12320,9 @@ biomaterial
 biomaterial's
 biomaterials
 biomathematics
+biomatter
+biomatter's
+biomatters
 biome
 biomechanic
 biomechanical
@@ -12352,6 +12375,10 @@ biopolitically
 biopolymer
 biopolymer's
 biopolymers
+bioprint
+bioprinted
+bioprinting
+bioprints
 bioprocess
 bioprocess's
 bioprocessed
@@ -12371,6 +12398,9 @@ biopsychology
 biopsychosocial
 biopsychosocially
 biopsying
+bioreactor
+bioreactor's
+bioreactors
 bioregion
 bioregion's
 bioregions
@@ -25236,7 +25266,13 @@ compositor's
 compositors
 compost
 compost's
+compostable
+compostable's
+compostables
 composted
+composter
+composter's
+composters
 composting
 composts
 composure
@@ -39432,6 +39468,9 @@ dreamed
 dreamer
 dreamer's
 dreamers
+dreamhouse
+dreamhouse's
+dreamhouses
 dreamier
 dreamiest
 dreamily
@@ -40865,6 +40904,9 @@ ecosphere
 ecosystem
 ecosystem's
 ecosystems
+ecotherapies
+ecotherapy
+ecotherapy's
 ecotourism
 ecotourism's
 ecotype
@@ -41445,6 +41487,7 @@ elastodynamics
 elastography
 elastomer
 elastomer's
+elastomeric
 elastomers
 elate
 elated
@@ -46251,6 +46294,9 @@ extensive
 extensively
 extensiveness
 extensiveness's
+extensometer
+extensometer's
+extensometers
 extensor
 extensor's
 extensors
@@ -52949,6 +52995,9 @@ gambolling
 gambols
 game
 game's
+gamechanger
+gamechanger's
+gamechangers
 gamecock
 gamecock's
 gamecocks
@@ -58970,6 +59019,9 @@ heartbeating
 heartbeats
 heartbreak
 heartbreak's
+heartbreaker
+heartbreaker's
+heartbreakers
 heartbreaking
 heartbreakingly
 heartbreaks
@@ -60676,6 +60728,8 @@ homebuilt
 homebuyer
 homebuyer's
 homebuyers
+homecare
+homecare's
 homecoming
 homecoming's
 homecomings
@@ -67779,6 +67833,7 @@ interop
 interop's
 interoperability
 interoperable
+interoperably
 interoperate
 interoperated
 interoperates
@@ -76144,6 +76199,9 @@ macrophages
 macrophagic
 macrophile
 macros
+macroscale
+macroscale's
+macroscales
 macroscopic
 macroscopically
 macrosimulation
@@ -77922,6 +77980,9 @@ materializing
 materially
 materialness
 materialness's
+materialographies
+materialography
+materialography's
 materials
 materiel
 maternal
@@ -79777,6 +79838,7 @@ microanalysis
 microanalysis's
 microanalytic
 microanalytical
+microanalytics
 microanatomy
 microangiopathy
 microarchitecture
@@ -79911,6 +79973,7 @@ microeconomist
 microeconomist's
 microeconomists
 microeconomy
+microelectromechanical
 microelectronic
 microelectronics
 microelectronics's
@@ -79948,6 +80011,7 @@ microfinanced
 microfinances
 microfinancing
 microflora
+microfluidic
 microfluidics
 microfold
 microfoliant
@@ -83003,6 +83067,7 @@ morphologically
 morphologies
 morphology
 morphology's
+morphometric
 morphophonemic
 morphophonemics
 morphophonemics's
@@ -83818,6 +83883,7 @@ multiethnic
 multifaceted
 multifactor
 multifactorial
+multifaith
 multifamily
 multifarious
 multifariously
@@ -84014,6 +84080,7 @@ multistage
 multistate
 multistate's
 multistates
+multistatic
 multistep
 multisteps
 multistick
@@ -84867,6 +84934,9 @@ nanny
 nanny's
 nannying
 nano
+nanoagriculture
+nanoagriculture's
+nanoagricultures
 nanoarchaeotum
 nanobiologies
 nanobiology
@@ -84877,6 +84947,9 @@ nanobubbles
 nanocelebrities
 nanocelebrity
 nanocelebrity's
+nanochemistries
+nanochemistry
+nanochemistry's
 nanocomposite
 nanocomposites
 nanoconfine
@@ -84911,6 +84984,9 @@ nanoimprints
 nanomanufacturing
 nanomaterial
 nanomaterial's
+nanomaterial-bioeffect
+nanomaterial-bioeffect's
+nanomaterial-bioeffects
 nanomaterials
 nanomaterials'
 nanomedicine
@@ -84922,6 +84998,7 @@ nanometers
 nanometre
 nanometre's
 nanometres
+nanometric
 Nanon
 nanoparticle
 nanoparticle's
@@ -84954,6 +85031,9 @@ nanotechnologies
 nanotechnology
 nanotechnology's
 nanotechs
+nanotoxicologies
+nanotoxicology
+nanotoxicology's
 nanotube
 nanotube's
 nanotubes
@@ -86034,6 +86114,7 @@ neurotransmission's
 neurotransmissions
 neurotransmitter
 neurotransmitters
+neurotypical
 neurulation
 neut
 neuter
@@ -87682,6 +87763,9 @@ nontuberculous
 nontubulin
 nonturbulent
 nonuniform
+nonuniformities
+nonuniformity
+nonuniformity's
 nonuniformly
 nonunion
 nonunionized
@@ -90019,6 +90103,7 @@ optioned
 optioning
 options
 optive
+opto
 optoelectronic
 optoelectronics
 optoelectronics's
@@ -96816,6 +96901,8 @@ photocopying
 photocurrent
 photodegrading
 photodetector
+photodetector's
+photodetectors
 photodynamic
 photoed
 photoelectric
@@ -96921,6 +97008,7 @@ photophobia
 photophosphorylation
 photopigment
 photopigments
+photopolymerization
 photopsins
 photorealism
 photorealistic
@@ -96930,6 +97018,8 @@ photoreceptor
 photoreceptor's
 photoreceptors
 photorefractive
+photorefractive's
+photorefractives
 photos
 photosensitive
 photosensitivity
@@ -96991,6 +97081,7 @@ phototypesetter
 phototypesetting
 phototypesetting's
 photovoltaic
+photovoltaics
 phragmoplast
 phragmoplasts
 phrasal
@@ -99135,6 +99226,7 @@ polar
 polarimeter
 polarimeter's
 polarimeters
+polarimetric
 polarimetry
 polarisation
 polarisations
@@ -100600,6 +100692,9 @@ powermeter
 powermeter's
 powermeters
 powers
+powertrain
+powertrain's
+powertrains
 powwow
 powwow's
 powwowed
@@ -101070,6 +101165,8 @@ predefining
 predefinition
 predefinition's
 predefinitions
+predental
+predental's
 predentistry
 predeparture
 predeparture's
@@ -101793,6 +101890,9 @@ preserver
 preserver's
 preservers
 preserves
+preservice
+preservice's
+preservices
 preserving
 preses
 preset
@@ -104392,6 +104492,9 @@ punch's
 punchable
 punchbowl
 punchbowl's
+punchcard
+punchcard's
+punchcards
 punched
 puncheon
 puncheon's
@@ -105368,6 +105471,9 @@ queenlier
 queenliest
 queenly
 queens
+queenship
+queenship's
+queenships
 queer
 queered
 queerer
@@ -118333,6 +118439,8 @@ servlet
 servlet's
 servlets
 servo
+servoed
+servoing
 servomechanism
 servomechanism's
 servomechanisms
@@ -123857,6 +123965,7 @@ spectre
 spectre's
 spectres
 spectrin
+spectro-polarimetric
 spectrochemical
 spectrogram
 spectrogram's
@@ -130881,6 +130990,7 @@ syndrome
 syndrome's
 syndromes
 syndromic
+synergetics
 synergid
 synergid's
 synergids
@@ -137193,6 +137303,7 @@ tribeswoman
 tribeswoman's
 tribeswomen
 tribloblastic
+tribological
 tribology
 triborough
 tribulate
@@ -146003,6 +146114,9 @@ waiving
 wake
 wake's
 wakeable
+wakeboarder
+wakeboarder's
+wakeboarders
 waked
 wakeful
 wakefully
@@ -146018,6 +146132,9 @@ wakens
 waker
 waker's
 wakes
+wakesurfer
+wakesurfer's
+wakesurfers
 wakeup
 waking
 wakings
@@ -146599,6 +146716,13 @@ waterside's
 watersider
 watersider's
 watersides
+waterski
+waterskied
+waterskiing
+waterskis
+watersport
+watersport's
+watersports
 waterspout
 waterspout's
 waterspouts
