@@ -56,6 +56,14 @@ TEST_CASE("English article", "[articles]")
         CHECK(artc(L"an", L"SHELLEXECUTEINFO"));
         CHECK_FALSE(artc(L"a", L"SHELLEXECUTEINFO"));
         }
+    SECTION("UC")
+        {
+        CHECK(artc(L"an", L"UCX_USBDEVICE_CHARACTERISTIC"));
+        CHECK_FALSE(artc(L"a", L"UCX_USBDEVICE_CHARACTERISTIC"));
+
+        CHECK(artc(L"an", L"UCM_TYPEC_PARTNER"));
+        CHECK_FALSE(artc(L"a", L"UCM_TYPEC_PARTNER"));
+        }
     SECTION("NTSTATUS")
         {
         // would always say it like "En Tee"

@@ -375,6 +375,12 @@ bool grammar::is_incorrect_english_article::is_a_exception(std::wstring_view wor
             {
             return true;
             }
+        // "a UCX_USBDEVICE_CHARACTERISTIC" and "a UCM_TYPEC_PARTNER" are correct
+        else if (traits::case_insensitive_ex::compare(word.data(), L"ucm", 3) == 0 ||
+                 traits::case_insensitive_ex::compare(word.data(), L"ucx", 3) == 0)
+            {
+            return true;
+            }
         else if (traits::case_insensitive_ex::compare(word.data(), L"uni", 3) == 0)
             {
             // unimpressed, uninteresting, unignored, uninitialized
