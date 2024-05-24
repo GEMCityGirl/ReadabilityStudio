@@ -892,19 +892,19 @@ bool ReadabilityApp::OnInit()
     // create the document template
     [[maybe_unused]] wxDocTemplate* docTemplate =
         new wxDocTemplate(GetDocManager(), _(L"Standard Project"), _DT(L"*.rsp"),
-            wxEmptyString, GetAppFileExtension(),
+            wxString{}, GetAppFileExtension(),
             GetAppFileExtension() + _DT(L" Doc"), _DT(L"View"),
-            CLASSINFO(ProjectDoc),
-            CLASSINFO(ProjectView));
+            wxCLASSINFO(ProjectDoc),
+            wxCLASSINFO(ProjectView));
 
     if (GetLicenseAdmin().IsFeatureEnabled(FeatureProfessionalCode()))
         {
         [[maybe_unused]] wxDocTemplate* batchDocTemplate =
             new wxDocTemplate(GetDocManager(), _(L"Batch Project"), _DT(L"*.rsbp"),
-                wxEmptyString, _DT(L"rsbp"),
+                wxString{}, _DT(L"rsbp"),
                 _DT(L"rsbp Doc"), _DT(L"View"),
-                CLASSINFO(BatchProjectDoc),
-                CLASSINFO(BatchProjectView));
+                wxCLASSINFO(BatchProjectDoc),
+                wxCLASSINFO(BatchProjectView));
         }
 
     wxArrayString extensions;
@@ -3874,14 +3874,15 @@ void MainFrame::OnStartPageClick(wxCommandEvent& event)
     if (GetStartPage()->IsCustomButtonId(event.GetId()))
         {
         if (event.GetId() == GetStartPage()->GetButtonID(0))
-            { OpenFileNew(wxEmptyString); }
+            {
+            OpenFileNew(wxString{});
+            }
         else if (event.GetId() == GetStartPage()->GetButtonID(1))
             {
             wxFileDialog dialog
                     (this,
                     _(L"Select Project to Open"),
-                    wxGetApp().GetAppOptions().GetProjectPath(),
-                    wxEmptyString,
+                    wxGetApp().GetAppOptions().GetProjectPath(), wxString{},
                     wxGetApp().GetLicenseAdmin().
                         IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()) ?
                         _(L"Readability Studio Project (*.rsp;*.rsbp)|*.rsp;*.rsbp") :
@@ -4034,7 +4035,7 @@ void MainFrame::OnOpenExample(wxCommandEvent& event)
         descriptions.push_back(_(L"Create a new project using the example document"));
         descriptions.push_back(_(L"View the document in your system's default editor"));
         RadioBoxDlg choiceDlg(this,
-            _(L"Select how to open the example document"), wxEmptyString, wxEmptyString,
+            _(L"Select how to open the example document"), wxString{}, wxString{},
             _(L"Open Example Document"), choices, descriptions);
         if (choiceDlg.ShowModal() == wxID_CANCEL)
             { return; }
@@ -4345,7 +4346,7 @@ void MainFrame::AddExamplesToMenu(wxMenu* exampleMenu)
         wxArrayString files;
         const wxString exampleFolder = wxGetApp().FindResourceDirectory(_DT(L"Examples"));
         if (!wxFileName::DirExists(exampleFolder) ||
-            dir.GetAllFiles(exampleFolder, &files, wxEmptyString, wxDIR_FILES) == 0)
+            dir.GetAllFiles(exampleFolder, &files, wxString{}, wxDIR_FILES) == 0)
             {
             wxLogWarning(L"Unable to find examples folder:\n%s", exampleFolder);
             return;
@@ -4978,8 +4979,8 @@ void MainFrame::OnOpenDocument([[maybe_unused]] wxCommandEvent& event)
     wxFileDialog dialog(
             this,
             _(L"Select Document to Analyze"),
-            wxEmptyString,
-            wxEmptyString,
+            wxString{},
+            wxString{},
             wxGetApp().GetAppOptions().GetDocumentFilter(),
             wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
     if (dialog.ShowModal() == wxID_CANCEL)
@@ -5193,12 +5194,13 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
         {
         updatedFilePath =
             _DT(L"https://oleandersoftware.com/downloads/readabilitystudio/CurrentVersionReadabilityStudio.txt");
-        if (!WebHarvester::ReadWebPage(updatedFilePath, updateFileContent,
-                                       contentType, statusText, responseCode, false) )
+        if (!WebHarvester::ReadWebPage(updatedFilePath, updateFileContent, contentType, statusText,
+                                       responseCode, false))
             {
-            wxMessageBox(wxString::Format(_(L"An error occurred while trying to connect to the website:\t%s"),
-                                            QueueDownload::GetResponseMessage(responseCode)),
-                        _(L"Connection Error"), wxOK|wxICON_EXCLAMATION);
+            wxMessageBox(wxString::Format(
+                             _(L"An error occurred while trying to connect to the website:\t%s"),
+                             QueueDownload::GetResponseMessage(responseCode)),
+                         _(L"Connection Error"), wxOK | wxICON_EXCLAMATION);
             return;
             }
         }
@@ -5209,9 +5211,10 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
     if (!wxGetApp().GetWebHarvester().ReadWebPage(updatedFilePath, updateFileContent,
                                                   contentType, statusText, responseCode, false) )
         {
-        wxMessageBox(wxString::Format(_(L"An error occurred while trying to connect to the website:\t%s"),
-                                        QueueDownload::GetResponseMessage(responseCode)),
-                    _(L"Connection Error"), wxOK|wxICON_EXCLAMATION);
+        wxMessageBox(
+            wxString::Format(_(L"An error occurred while trying to connect to the website:\t%s"),
+                             QueueDownload::GetResponseMessage(responseCode)),
+            _(L"Connection Error"), wxOK | wxICON_EXCLAMATION);
         return;
         }
 #endif
@@ -5220,24 +5223,24 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
 
     if (wxGetApp().GetAppVersion() < updateFileContent)
         {
-        if (wxMessageBox(wxString::Format(
-            _(L"There is a new version of %s currently available.\nDo you wish to go to the download page?"),
-            wxGetApp().GetAppName()),
-            wxGetApp().GetAppName(), wxYES_NO|wxICON_QUESTION) == wxYES)
+        if (wxMessageBox(wxString::Format(_(L"There is a new version of %s currently available.\n"
+                                            "Do you wish to go to the download page?"),
+                                          wxGetApp().GetAppName()),
+                         wxGetApp().GetAppName(), wxYES_NO | wxICON_QUESTION) == wxYES)
             {
-            if (!::wxLaunchDefaultBrowser(_DT(L"https://oleandersoftware.com/readabilitystudioupdate.html")))
+            if (!::wxLaunchDefaultBrowser(
+                    _DT(L"https://oleandersoftware.com/readabilitystudioupdate.html")))
                 {
-                wxMessageBox(
-                    _(L"Unable to open default browser. Please make sure that you have an Internet browser "
-                       "installed and are connected to the Internet."),
-                    _(L"Error"), wxOK|wxICON_ERROR);
+                wxMessageBox(_(L"Unable to open default browser. Please make sure that you have an "
+                               "Internet browser installed and are connected to the Internet."),
+                             _(L"Error"), wxOK | wxICON_ERROR);
                 }
             }
         }
     else
         {
-        wxMessageBox(_(L"There are no updates currently available."),
-            wxGetApp().GetAppName(), wxOK|wxICON_INFORMATION);
+        wxMessageBox(_(L"There are no updates currently available."), wxGetApp().GetAppName(),
+                     wxOK | wxICON_INFORMATION);
         }
     }
 
@@ -5293,7 +5296,7 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
     wxArrayString files;
         {
         wxBusyInfo wait(_(L"Retrieving files..."));
-        wxDir::GetAllFiles(dirDlg.GetPath(), &files, wxEmptyString,
+        wxDir::GetAllFiles(dirDlg.GetPath(), &files, wxString{},
                            dirDlg.IsRecursive() ? wxDIR_FILES | wxDIR_DIRS : wxDIR_FILES);
         files = FilterFiles(files, ExtractExtensionsFromFileFilter(dirDlg.GetSelectedFileFilter()));
         }
@@ -5387,7 +5390,7 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
 void MainFrame::OnToolsChapterSplit([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     wxFileDialog dialog(this, _(L"Select File to Split"),
-                        wxGetApp().GetAppOptions().GetProjectPath(), wxEmptyString,
+                        wxGetApp().GetAppOptions().GetProjectPath(), wxString{},
                         wxGetApp().GetAppOptions().GetDocumentFilter(),
                         wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
 
