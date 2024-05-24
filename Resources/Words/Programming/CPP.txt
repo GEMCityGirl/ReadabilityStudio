@@ -63,6 +63,12 @@ bitfield's
 bitfields
 bitor
 bitset
+bitsize
+bitsize's
+bitsizes
+bitwidth
+bitwidth's
+bitwidths
 bool
 boolalpha
 break
@@ -390,6 +396,7 @@ ostreams
 ostringstream
 outptr
 override
+params
 pch
 perf
 permutable

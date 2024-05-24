@@ -49,6 +49,7 @@ stringr
 subset.matrix
 suppressMessages
 Sys.getenv
+tibble
 tidyverse
 TRUE
 while

@@ -64,6 +64,7 @@ unary
 unary_negate
 Unidrv
 UPN
+UPS
 URB
 USB
 USC

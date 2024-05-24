@@ -1885,6 +1885,7 @@ atrophies	wastes away	0
 atrophy	waste away	0		
 atrophying	wasting away	0		
 atrribute	attribute	3		
+attache	attaché, attached, attaches	3		
 attached herewith is	here is	0		
 attachement	attachment	3		
 attachmment	attachment	3		
@@ -2018,6 +2019,9 @@ availale	available	3
 availavility	availability	3		
 availble	available	3		
 availiable	available	3		
+availibilities	availabilities	3		
+availibility	availability	3		
+availibility's	availability's	3		
 availible	available	3		
 avalable	available	3		
 avalance	avalanche	3		
@@ -2780,7 +2784,7 @@ camreas	cameras	3
 can effect	can affect	3		
 can goods	canned goods	3		
 can here	can hear	3		
-can not	cannot,can't	3		only
+can not	cannot,can't (unless putting emphasis on the word 'not')	3		only
 can't hit the broadside of a barn	has poor aim/marksmanship	2		
 can't hold a candle to	can't compare to	2		
 can't not	can't, can (if double negative was intended)	3		
@@ -3125,6 +3129,7 @@ chomp at the bit	champ at the bit	3
 chomped at the bit	champed at the bit	3		
 chomping at the bit	champing at the bit	3		
 chomps at the bit	champs at the bit	3		
+chooseing	choosing	3		
 choosen	chosen	3		
 chosing	choosing	3		
 chould	could	3		
@@ -4147,6 +4152,9 @@ conviniences	conveniences	3
 convinient	convenient	3		
 convolution	coil, fold, twist	0		
 convolutions	coils, folds, twists	0		
+conxt	context, const	3		
+conxt's	context's	3		
+conxts	contexts	3		
 cooly	coolly	3		
 cooperate	help	0		
 cooperate together	cooperate	1		
@@ -4540,6 +4548,9 @@ decriptions	descriptions	3
 decsriptor	descriptor	3		
 decsriptors	descriptors	3		
 dectect	detect	3		
+decyption	decryption	3		
+decyption's	decryption's	3		
+decyptions	decryptions	3		
 deductive reasoning	deduction	0		
 deem	treat as, think	0		
 deemed	thought	0		
@@ -6352,7 +6363,6 @@ explit	explicit	3
 explitly	explicitly	3		
 exploititive	exploitative	3		
 explotation	exploitation	3		
-exponentials	exponential	3		
 exponentialy	exponentially	3		
 expound	make clear	0		
 expounded	made clear	0		
@@ -6729,6 +6739,7 @@ flips her lid	become upset	2
 flips his lid	become upset	2		
 floor manger	floor manager	3		
 floor mangers	floor managers	3		
+Floqued	Floquet	3		
 florescent	fluorescent	3		
 floride	fluoride	3		
 floting	floating	3		
@@ -9166,6 +9177,8 @@ Jeruselum's	Jerusalem's	3
 jewllery	jewelry	3		
 jocular	funny	0		
 jocund	happy, lighthearted	0		
+John Singer Sergeant	John Singer Sargent	3		
+John Singer Sergeant's	John Singer Sargent's	3		
 join together	join, combine	1		
 joined at the hip	always together	2		
 joined together	joined, combined	1		
@@ -9195,6 +9208,8 @@ jumping in with both feet	committing whole heartedly	2
 jumping the gun	starting too early	2		
 jumps in with both feet	commits whole heartedly	2		
 jumps the gun	starts too early	2		
+Juptyer	Jupyter	3		
+Juptyer's	Jupyter's	3		
 juristiction	jurisdiction	3		
 juristictions	jurisdictions	3		
 jury is still out	not decided yet	2		
@@ -9991,8 +10006,11 @@ milions	millions	3
 miliraties	militaries	3		
 miliraty	military	3		
 miliraty's	military's	3		
+milisec	millisec	3		
+milisec's	millisec's	3		
 milisecond	millisecond	3		
 miliseconds	milliseconds	3		
+milisecs	millisecs	3		
 militate	fight	0		
 militated	fought	0		
 militates	fights	0		
@@ -11007,6 +11025,9 @@ other then	other than	3
 otheriwse	otherwise	3		
 otherwhise	otherwise	3		
 othwerwise	otherwise	3		
+otimization	optimization	3		
+otimization's	optimization's	3		
+otimizations	optimizations	3		
 ouevre	oeuvre	3		
 ouline	outline	3		
 ouline's	outline's	3		
@@ -12662,6 +12683,7 @@ ranges somewhere from	ranges from	0
 ranging anywhere from	ranging from	0		
 ranging somewhere from	ranging from	0		
 rank and file	regular people	2		
+ranndom	random	3		
 rant and rave	rant, rave	0		
 ranted and raved	ranted, raved	0		
 ranting and raving	ranting, raving	0		
@@ -13752,6 +13774,7 @@ selecct	select	3
 seleccted	selected	3		
 seleccting	selecting	3		
 seleccts	selects	3		
+selecd	select	3		
 selectany	select any	3		
 selection	choice	0		
 seletion	selection	3		

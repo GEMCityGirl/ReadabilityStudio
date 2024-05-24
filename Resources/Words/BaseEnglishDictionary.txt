@@ -1571,6 +1571,8 @@ adjoining
 adjoins
 adjoint
 adjoint's
+adjointable
+adjoints
 adjourn
 adjourned
 adjourning
@@ -3242,6 +3244,8 @@ allowedly
 allowing
 allowlist
 allowlist's
+allowlisted
+allowlisting
 allowlists
 allows
 alloy
@@ -4825,6 +4829,9 @@ anoxic
 anoxygenic
 ans
 ans's
+ansatz
+ansatz's
+ansatzes
 anserina
 answer
 answer's
@@ -12679,6 +12686,9 @@ bitser's
 bitstream
 bitstream's
 bitstreams
+bitstring
+bitstring's
+bitstrings
 bitted
 bitten
 bitter
@@ -17347,6 +17357,7 @@ call
 calla
 calla's
 callable
+callables
 callas
 callback
 callbacks
@@ -25606,6 +25617,13 @@ concreting
 concretion
 concretion's
 concretions
+concretization
+concretization's
+concretizations
+concretize
+concretized
+concretizes
+concretizing
 concubinage
 concubinage's
 concubinages
@@ -27051,6 +27069,7 @@ contrastive
 contrastively
 contrasts
 contrasty
+contravariant
 contravene
 contravened
 contravener
@@ -30154,6 +30173,9 @@ cryptomining's
 cryptorchidism
 cryptosporidiosis
 cryptosporidium
+cryptosystem
+cryptosystem's
+cryptosystems
 crypts
 crystal
 crystal's
@@ -32061,6 +32083,10 @@ debauching
 debenture
 debenture's
 debentures
+debias
+debiased
+debiases
+debiasing
 debilitate
 debilitated
 debilitates
@@ -32464,6 +32490,9 @@ decoders
 decodes
 decoding
 decodings
+decoherence
+decoherence's
+decoherences
 decolletes
 decollimate
 decolonization
@@ -41288,6 +41317,12 @@ eifuku
 eigenfunction
 eigenfunction's
 eigenfunctions
+eigenphase
+eigenphase's
+eigenphases
+eigensolver
+eigensolver's
+eigensolvers
 eigenspace
 eigenspace's
 eigenspaces
@@ -57645,6 +57680,9 @@ halfheartedly
 halfheartedness
 halfheartedness's
 halfheartednesses
+halfline
+halfline's
+halflines
 halfness
 halfpence
 halfpences
@@ -61578,6 +61616,9 @@ housefly's
 houseful
 houseful's
 housefuls
+houseguest
+houseguest's
+houseguests
 household
 household's
 householder
@@ -65046,6 +65087,9 @@ incremental
 incrementally
 incrementation
 incremented
+incrementer
+incrementer's
+incrementers
 incrementing
 increments
 incriminate
@@ -82544,6 +82588,13 @@ monomials
 monomode
 monomodes
 monomolecular
+monomorphization
+monomorphization's
+monomorphizations
+monomorphize
+monomorphized
+monomorphizes
+monomorphizing
 mononeuritis
 mononeuropathy
 mononuclear
@@ -83790,6 +83841,7 @@ multifunctioned
 multigas
 multigenerational
 multigenic
+multihomed
 multilanguage
 multilateral
 multilateralists
@@ -86739,6 +86791,7 @@ nonalignment
 nonalignment's
 nonalignments
 nonallergic
+nonalpha
 nonalphabetic
 nonane
 nonanimal
@@ -87004,6 +87057,7 @@ nonemployee's
 nonemployees
 nonempty
 nonencapsulated
+nonencrypted
 nonenforceable
 nonentities
 nonentity
@@ -87196,6 +87250,9 @@ nonlinguistic
 nonliterary
 nonliving
 nonlocal
+nonlocalities
+nonlocality
+nonlocality's
 nonlocalizable
 nonlocalized
 nonlooped
@@ -87261,6 +87318,7 @@ nonnatives
 nonnegative
 nonnegotiable
 nonnuclear
+nonnull
 nonnumerical
 nonnumericals
 nonobjective
@@ -98558,6 +98616,9 @@ pleurisy's
 pleuritis
 pleurodesis
 pleurodynia
+plex
+plex's
+plexes
 plexiglass
 plexippus
 plexus
@@ -100535,6 +100596,9 @@ powerlifts
 powerline
 powerline's
 powerlines
+powermeter
+powermeter's
+powermeters
 powers
 powwow
 powwow's
@@ -101160,6 +101224,10 @@ prefacer
 prefacer's
 prefaces
 prefacing
+prefactor
+prefactored
+prefactoring
+prefactors
 prefatory
 prefect
 prefect's
@@ -104917,6 +104985,7 @@ q.t.
 QA
 QB
 QC
+QDK
 qi
 qos
 qr
@@ -105147,6 +105216,7 @@ quantizes
 quantizing
 quantum
 quantum's
+quantums
 quaque
 quarantine
 quarantine's
@@ -105277,6 +105347,9 @@ quayside
 quayside's
 qubit
 qubit's
+qubitization
+qubitization's
+qubitizations
 qubits
 que
 que's
@@ -106531,6 +106604,9 @@ rasps
 raspy
 raster
 raster's
+rastercap
+rastercap's
+rastercaps
 rasterise
 rasterised
 rasterises
@@ -128393,6 +128469,7 @@ substitutionary
 substitutions
 substitutive
 substitutively
+substochastic
 substorage
 substorage's
 substorages
@@ -128512,7 +128589,9 @@ subtropical
 subtropics
 subtype
 subtype's
+subtyped
 subtypes
+subtyping
 subungual
 subunit
 subunit's
@@ -129506,6 +129585,7 @@ supersonics's
 superspace
 superspace's
 superspaces
+superspeed
 superspreader
 superspreader's
 superspreaders
@@ -129545,6 +129625,9 @@ supertitle's
 supertitled
 supertitles
 supertitling
+supertype
+supertype's
+supertypes
 superuser
 superuser's
 superusers
@@ -136355,6 +136438,9 @@ transcripts
 transcrypt
 transcrypted
 transcrypting
+transcryption
+transcryption's
+transcryptions
 transcrypts
 transcultural
 transcutaneous
@@ -139541,6 +139627,9 @@ uncompromises
 uncompromising
 uncompromisingly
 uncomputable
+uncomputation
+uncomputation's
+uncomputations
 unconcealed
 unconceivable
 unconcern
@@ -140413,6 +140502,10 @@ unenroll
 unenrolled
 unenrolling
 unenrolls
+unentangle
+unentangled
+unentangles
+unentangling
 unentered
 unenterprising
 unenthusiastic
@@ -141087,7 +141180,9 @@ unitarianism
 unitarianism's
 unitarianisms
 unitarians
+unitaries
 unitary
+unitary's
 unite
 united
 unitedly

@@ -80,6 +80,7 @@ Flemmish	Flemish	3
 Flinstone	Flintstone	3		
 Flinstone's	Flintstone's	3		
 Flinstones	Flintstones	3		
+Floqued	Floquet	3		
 Fransiscan	Franciscan	3		
 Fransiscans	Franciscans	3		
 Galations	Galatians	3		
@@ -115,10 +116,14 @@ Japanes	Japanese	3
 Javitz	Javits	3		
 Jeruselum	Jerusalem	3		
 Jeruselum's	Jerusalem's	3		
+John Singer Sergeant	John Singer Sargent	3		
+John Singer Sergeant's	John Singer Sargent's	3		
 Jospeh	Joseph	3		
 Jospeh's	Joseph's	3		
 Juadaism	Judaism	3		
 Juadism	Judaism	3		
+Juptyer	Jupyter	3		
+Juptyer's	Jupyter's	3		
 Kindergarden	Kindergarten	3		
 Kindergarden's	Kindergarten's	3		
 Lotharingen	Lothringen	3		

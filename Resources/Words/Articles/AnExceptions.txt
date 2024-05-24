@@ -1,6 +1,7 @@
 and
 FAQ
 FAQs
+FBI
 fenv_t
 fexcept_t
 fmask
@@ -29,7 +30,9 @@ NAACP
 NADH
 NADPH
 NAIA
+NCIS
 NEC
+NIC
 NIH
 NPM
 NVM
@@ -42,6 +45,7 @@ RNA
 RODC
 ROI
 rvalue
+Rx
 SaaS
 SAP
 SAS
@@ -62,6 +66,7 @@ SQL
 sRGB
 ssDNA
 ssRNA
+STI
 STNA
 SUV
 Ubuntu

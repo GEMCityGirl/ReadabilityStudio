@@ -513,6 +513,7 @@ Aviva
 Avon
 Avondale
 Avonite
+Avstream
 Avène
 AWACS
 Axios
@@ -805,6 +806,7 @@ Bolivarian
 Bolivarianism
 Bolivia
 Bolivian
+Bollywood
 Bologna
 BolshevikBoston
 Bolshevism
@@ -905,6 +907,7 @@ Brookfield
 Brookhaven
 Brooklyn
 Brookmont
+Broombridge
 Brownian
 Brownsburg
 Brownsville
@@ -3550,6 +3553,7 @@ Matchup
 Mathematica
 Mathematik
 Matlab
+Matplotlib
 Mattachine
 Mattel
 Matterhorn
@@ -4140,6 +4144,7 @@ Nuface
 Nuku'alofa
 Nullarbor
 NullSoft
+NumPy
 Nunavut
 Nuneaton
 Nuremberg
@@ -4359,6 +4364,7 @@ Parsifal
 Parthenon
 Pas
 Pasadena
+Pasqal
 Passaic
 Patagonia
 Patagonian
@@ -4648,12 +4654,14 @@ Puritan
 Puritanism
 Putney
 PwC
+PyLab
 Pyongyang
 Pyrenees
 Pyrex
 Pyrénées
 Pythagorean
 Périgueux
+Q#
 Qa'ida
 Qaeda
 Qantas
@@ -4661,9 +4669,11 @@ Qatar
 QED
 Qingdao
 Qiqihar
+Qiskit
 QM
 Qom
 QPR
+QSharp
 Quadrophenia
 Quaker
 Quakeress
@@ -4671,6 +4681,7 @@ Quakerism
 Qualcomm
 Qualtrics
 Quantico
+Quantinuum
 Quapaw
 Quassarte
 QuattroPro
