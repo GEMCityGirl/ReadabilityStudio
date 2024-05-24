@@ -351,8 +351,9 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
         { LoadSettingsFile(settingsFile.c_str()); }
     else
         {
-        LogMessage(_(L"Settings file could not be found in the project file. Default settings will be used."),
-                wxGetApp().GetAppName(), wxOK|wxICON_INFORMATION);
+        LogMessage(_(L"Settings file could not be found in the project file. "
+                     "Default settings will be used."),
+                   wxGetApp().GetAppName(), wxOK | wxICON_INFORMATION);
         }
 
     // if the document's content is just embedded and shouldn't be reloaded
@@ -367,8 +368,9 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
                 { LoadDocument(); }
             catch (...)
                 {
-                wxMessageBox(_(L"An unknown error occurred while analyzing the document. Unable to create project."),
-                    _(L"Error"), wxOK|wxICON_EXCLAMATION);
+                wxMessageBox(_(L"An unknown error occurred while analyzing the document. "
+                               "Unable to create project."),
+                             _(L"Error"), wxOK | wxICON_EXCLAMATION);
                 return false;
                 }
             }
@@ -418,8 +420,8 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
                 else
                     {
                     wxMessageBox(
-                        _(L"Document content could not be found in the project file and external document "
-                           "could not be located.\nUnable to create project."),
+                        _(L"Document content could not be found in the project file and "
+                           "external document could not be located.\nUnable to create project."),
                         _(L"Error"), wxOK|wxICON_EXCLAMATION);
                     return false;
                     }
@@ -431,28 +433,26 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
         {
         if (GetTextSource() == TextSource::FromFile)
             {
-            if (LoadExternalDocument() )
+            if (LoadExternalDocument())
                 {
                 UpdateSourceFileModifiedTime();
                 return true;
                 }
             else
                 {
-                wxMessageBox(
-                    _(L"External document could not be located.\n"
-                       "Unable to create project."),
-                    _(L"Error"), wxOK|wxICON_EXCLAMATION);
+                wxMessageBox(_(L"External document could not be located.\n"
+                               "Unable to create project."),
+                             _(L"Error"), wxOK | wxICON_EXCLAMATION);
                 return false;
                 }
             }
-        /* This should not happen because the entered text flag overrides the storage flag to force it to embed,
-           but just for the sake of being verbose... */
+        /* This should not happen because the entered text flag overrides the storage flag to force
+           it to embed, but just for the sake of being verbose... */
         else // TextSource::EnteredText
             {
-            wxMessageBox(
-                _(L"Manually entered text was not embedded previously.\n"
-                   "Unable to create project."),
-                _(L"Error"), wxOK|wxICON_EXCLAMATION);
+            wxMessageBox(_(L"Manually entered text was not embedded previously.\n"
+                           "Unable to create project."),
+                         _(L"Error"), wxOK | wxICON_EXCLAMATION);
             return false;
             }
         }
@@ -573,13 +573,14 @@ bool ProjectDoc::OnOpenDocument(const wxString& filename)
         /* if they set this to exclude headers and such, make sure we actually have some
            valid sentences to work with*/
         if ((GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
-            GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings) &&
+             GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings) &&
             GetWords()->get_complete_sentence_count() == 0)
             {
-            LogMessage(_(L"You have requested to ignore incomplete sentences, but there are no other "
-                          "valid sentences in the text. Incomplete sentences will need to be included "
-                          "in the analysis."),
-                       _(L"Warning"), wxOK|wxICON_EXCLAMATION);
+            LogMessage(
+                _(L"You have requested to ignore incomplete sentences, but there are no other "
+                  "valid sentences in the text. Incomplete sentences will need to be included "
+                  "in the analysis."),
+                _(L"Warning"), wxOK | wxICON_EXCLAMATION);
             SetInvalidSentenceMethod(InvalidSentence::IncludeAsFullSentences);
             }
 
@@ -7102,20 +7103,24 @@ void ProjectDoc::DisplaySightWords()
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
     assert(view && "Error getting view when displaying sight words!");
     if (!view)
-        { return; }
+        {
+        return;
+        }
 
     const auto resetListView = [this](ListCtrlEx* listView)
-        {
-        if (listView != nullptr &&
-            listView->GetVirtualDataProvider() != nullptr &&
+    {
+        if (listView != nullptr && listView->GetVirtualDataProvider() != nullptr &&
             listView->GetVirtualDataProvider()->GetItemCount() == 0)
-            { listView->SetItemCount(0); }
-        };
+            {
+            listView->SetItemCount(0);
+            }
+    };
 
     // Dolch words
         {
-        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
-            BaseProjectView::DOLCH_WORDS_LIST_PAGE_ID));
+        ListCtrlEx* listView =
+            dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
+                BaseProjectView::DOLCH_WORDS_LIST_PAGE_ID));
         if (IsIncludingDolchSightWords() && GetDolchWordData()->GetItemCount())
             {
             if (listView)
@@ -7126,8 +7131,9 @@ void ProjectDoc::DisplaySightWords()
                 }
             else
                 {
-                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::DOLCH_WORDS_LIST_PAGE_ID,
-                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView = new ListCtrlEx(
+                    view->GetSplitter(), BaseProjectView::DOLCH_WORDS_LIST_PAGE_ID,
+                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
                 listView->SetLabel(BaseProjectView::GetDolchWordTabLabel());
                 listView->SetName(BaseProjectView::GetDolchWordTabLabel());
@@ -7138,7 +7144,7 @@ void ProjectDoc::DisplaySightWords()
                 listView->SetVirtualDataProvider(GetDolchWordData());
                 listView->SetVirtualDataSize(GetDolchWordData()->GetItemCount());
                 listView->DistributeColumns();
-                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU"));
                 UpdateListOptions(listView);
                 view->GetDolchSightWordsView().AddWindow(listView);
                 }
@@ -7146,14 +7152,16 @@ void ProjectDoc::DisplaySightWords()
         else
             {
             resetListView(listView);
-            view->GetDolchSightWordsView().RemoveWindowById(BaseProjectView::DOLCH_WORDS_LIST_PAGE_ID);
+            view->GetDolchSightWordsView().RemoveWindowById(
+                BaseProjectView::DOLCH_WORDS_LIST_PAGE_ID);
             }
         }
 
     // non-Dolch words
         {
-        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
-            BaseProjectView::NON_DOLCH_WORDS_LIST_PAGE_ID));
+        ListCtrlEx* listView =
+            dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
+                BaseProjectView::NON_DOLCH_WORDS_LIST_PAGE_ID));
         if (IsIncludingDolchSightWords() && GetNonDolchWordData()->GetItemCount())
             {
             if (listView)
@@ -7164,8 +7172,9 @@ void ProjectDoc::DisplaySightWords()
                 }
             else
                 {
-                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::NON_DOLCH_WORDS_LIST_PAGE_ID,
-                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView = new ListCtrlEx(
+                    view->GetSplitter(), BaseProjectView::NON_DOLCH_WORDS_LIST_PAGE_ID,
+                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
                 listView->SetLabel(BaseProjectView::GetNonDolchWordTabLabel());
                 listView->SetName(BaseProjectView::GetNonDolchWordTabLabel());
@@ -7175,7 +7184,7 @@ void ProjectDoc::DisplaySightWords()
                 listView->SetVirtualDataProvider(GetNonDolchWordData());
                 listView->SetVirtualDataSize(GetNonDolchWordData()->GetItemCount());
                 listView->DistributeColumns();
-                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU"));
                 UpdateListOptions(listView);
                 view->GetDolchSightWordsView().AddWindow(listView);
                 }
@@ -7183,7 +7192,8 @@ void ProjectDoc::DisplaySightWords()
         else
             {
             resetListView(listView);
-            view->GetDolchSightWordsView().RemoveWindowById(BaseProjectView::NON_DOLCH_WORDS_LIST_PAGE_ID);
+            view->GetDolchSightWordsView().RemoveWindowById(
+                BaseProjectView::NON_DOLCH_WORDS_LIST_PAGE_ID);
             }
         }
 
@@ -7201,8 +7211,9 @@ void ProjectDoc::DisplaySightWords()
                 }
             else
                 {
-                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::UNUSED_DOLCH_WORDS_LIST_PAGE_ID,
-                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView = new ListCtrlEx(
+                    view->GetSplitter(), BaseProjectView::UNUSED_DOLCH_WORDS_LIST_PAGE_ID,
+                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
                 listView->SetLabel(BaseProjectView::GetUnusedDolchWordTabLabel());
                 listView->SetName(BaseProjectView::GetUnusedDolchWordTabLabel());
@@ -7212,7 +7223,7 @@ void ProjectDoc::DisplaySightWords()
                 listView->SetVirtualDataProvider(GetUnusedDolchWordData());
                 listView->SetVirtualDataSize(GetUnusedDolchWordData()->GetItemCount());
                 listView->DistributeColumns();
-                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU"));
                 UpdateListOptions(listView);
                 view->GetDolchSightWordsView().AddWindow(listView);
                 }
@@ -7220,7 +7231,8 @@ void ProjectDoc::DisplaySightWords()
         else
             {
             resetListView(listView);
-            view->GetDolchSightWordsView().RemoveWindowById(BaseProjectView::UNUSED_DOLCH_WORDS_LIST_PAGE_ID);
+            view->GetDolchSightWordsView().RemoveWindowById(
+                BaseProjectView::UNUSED_DOLCH_WORDS_LIST_PAGE_ID);
             }
         }
     }
@@ -7260,7 +7272,10 @@ void ProjectDoc::CalculateGraphData()
                         Continuous({ static_cast<double>(wordPos->get_syllable_count()) }).
                         // simple or complex?
                         Categoricals(
-                            { static_cast<Data::GroupIdType>((wordPos->get_syllable_count()) < 3 ? 0 : 1) }).
+                            {
+                            static_cast<Data::GroupIdType>(
+                                (wordPos->get_syllable_count()) < 3 ? 0 : 1)
+                            }).
                         // add the word as a row ID so that it appears as a tooltip on the bin
                         Id(wordPos->c_str()));
                     }
@@ -7295,23 +7310,24 @@ void ProjectDoc::CalculateGraphData()
         GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings)
         {
         for (auto paragraphIter = GetWords()->get_paragraphs().cbegin();
-            paragraphIter != GetWords()->get_paragraphs().cend();
-            ++paragraphIter)
+             paragraphIter != GetWords()->get_paragraphs().cend(); ++paragraphIter)
             {
             if (paragraphIter->is_valid())
                 {
                 for (size_t sentenceIndex = paragraphIter->get_first_sentence_index();
-                    sentenceIndex <= paragraphIter->get_last_sentence_index();
-                    ++sentenceIndex)
+                     sentenceIndex <= paragraphIter->get_last_sentence_index(); ++sentenceIndex)
                     {
                     if (GetWords()->get_sentences()[sentenceIndex].is_valid())
                         {
-                        m_sentenceWordLengths->AddRow(Data::RowInfo().
-                            Continuous({
-                                static_cast<double>(GetWords()->get_sentences()[sentenceIndex].get_valid_word_count()),
-                                static_cast<double>(sentenceIndex) }).
-                            Categoricals({ static_cast<Data::GroupIdType>(
-                                std::distance(GetWords()->get_paragraphs().cbegin(), paragraphIter)) }));
+                        m_sentenceWordLengths->AddRow(
+                            Data::RowInfo()
+                                .Continuous(
+                                    { static_cast<double>(GetWords()
+                                                              ->get_sentences()[sentenceIndex]
+                                                              .get_valid_word_count()),
+                                      static_cast<double>(sentenceIndex) })
+                                .Categoricals({ static_cast<Data::GroupIdType>(std::distance(
+                                    GetWords()->get_paragraphs().cbegin(), paragraphIter)) }));
                         }
                     }
                 }
