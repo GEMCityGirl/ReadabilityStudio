@@ -8,8 +8,9 @@
 #############################################################################
 
 # Build targets:
-# docs:       builds the manuals and HTML help
 # ReadStudio: builds the main application
+# manuals: builds the manuals and HTML help
+# doxygen-docs: builds the API documentation
 
 # Options:
 # - USE_ADDRESS_SANITIZE to use ASAN
@@ -82,7 +83,7 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
 endif()
 
 message(STATUS "Build: ${CMAKE_BUILD_TYPE}")
-if(TARGET docs)
+if(TARGET manuals)
     message(STATUS "Help build has been requested.")
 endif()
 if(BUILD_TESTING)
@@ -174,7 +175,7 @@ file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs/ReadabilityTestsReference/d
 include(cmake/modules/FindR.cmake)
 # TODO: Windows path to Pandoc currently only looks for Quarto installations.
 include(cmake/modules/FindPandoc.cmake)
-if(TARGET docs)
+if(TARGET manuals)
     if(NOT R_FOUND)
         message(FATAL_ERROR "R not found. Help cannot be built.")
     elseif(NOT PANDOC_FOUND)
@@ -182,12 +183,27 @@ if(TARGET docs)
     endif()
 endif()
 
-add_custom_target(docs
+add_custom_target(manuals
                 ALL
                 COMMAND "${R_SCRIPT}"
                     "${CMAKE_CURRENT_SOURCE_DIR}/docs/BuildHelpProjects.R"
                     "${PANDOC_ROOT_DIR}"
                 WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/docs/")
+
+# Build the documentation
+########################
+find_package(Doxygen)
+if(TARGET doxygen-docs)
+    if(NOT DOXYGEN_FOUND)
+        message("Doxygen not found. API documentation cannot be generated.")
+    endif()
+endif()
+
+add_custom_target(doxygen-docs ALL
+            COMMAND ${DOXYGEN_EXECUTABLE} "${CMAKE_SOURCE_DIR}/docs/doxygen/Doxyfile"
+            WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/docs/doxygen"
+            COMMENT "Generating API documentation with Doxygen"
+            VERBATIM)
 
 if(APPLE AND NOT CMAKE_OSX_DEPLOYMENT_TARGET)
     # If no deployment target has been set default to the minimum supported
