@@ -11,6 +11,9 @@
 # docs:       builds the manuals and HTML help
 # ReadStudio: builds the main application
 
+# Options:
+# - USE_ADDRESS_SANITIZE to use ASAN
+
 # Declare the minimum required CMake version
 # Note that CMake 3.24 is needed for compiling wxWidgets
 cmake_minimum_required(VERSION 3.24)
@@ -235,9 +238,15 @@ if(MSVC)
     # /wd6211 turns off C6211 warning: leaking memory due to an exception.
     # wxWidgets uses heap-based objects for most everything, and MVSC complains
     # about not wrapping all of this logic in try blocks.
-    target_compile_options(${PROJECT_NAME} PUBLIC /Zc:__cplusplus /MP /W3 /WX /wd6211 /openmp
-                           $<$<CONFIG:Debug>:/Od /fsanitize=address>
-                           $<$<CONFIG:Release>:/O2>)
+    if(USE_ADDRESS_SANITIZE)
+        target_compile_options(${PROJECT_NAME} PUBLIC /Zc:__cplusplus /MP /W3 /WX /wd6211 /openmp
+                               $<$<CONFIG:Debug>:/Od /fsanitize=address>
+                               $<$<CONFIG:Release>:/O2>)
+    else()
+        target_compile_options(${PROJECT_NAME} PUBLIC /Zc:__cplusplus /MP /W3 /WX /wd6211 /openmp
+                               $<$<CONFIG:Debug>:/Od>
+                               $<$<CONFIG:Release>:/O2>)
+    endif()
 elseif(MINGW OR MSYS)
     target_compile_definitions(${PROJECT_NAME} PUBLIC __WXMSW__ CRCPP_USE_CPP11 LICENSE_FILE_GENERATOR_ENABLED _UNICODE
             $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING> $<$<CONFIG:Release>:NDEBUG>)
