@@ -184,9 +184,12 @@ bool BatchProjectDoc::OnNewDocument()
     // load appended template file (if there is one)
     LoadAppendedDocument();
 
-    wxProgressDialog progressDlg(_(L"Creating Project"), _(L"Analyzing documents..."),
-        static_cast<int>(GetSourceFilesInfo().size()+13),
-        nullptr, wxPD_AUTO_HIDE|wxPD_SMOOTH|wxPD_ELAPSED_TIME|wxPD_CAN_ABORT|wxPD_APP_MODAL);
+    wxProgressDialog progressDlg(
+        _(L"Creating Project"),
+        wxString::Format(_(L"Analyzing %zu documents..."), GetSourceFilesInfo().size()),
+                                 static_cast<int>(GetSourceFilesInfo().size() + 13), nullptr,
+                                 wxPD_AUTO_HIDE | wxPD_SMOOTH | wxPD_ELAPSED_TIME | wxPD_CAN_ABORT |
+                                     wxPD_APP_MODAL);
     progressDlg.Centre();
     int counter{ 1 };
 
@@ -5523,10 +5526,11 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
         return false;
         }
 
-    wxProgressDialog progressDlg(wxString::Format(_(L"Opening \"%s\""), GetTitle()),
-        _(L"Analyzing documents..."),
-        static_cast<int>(GetSourceFilesInfo().size()+13),
-        nullptr, wxPD_AUTO_HIDE|wxPD_SMOOTH|wxPD_ELAPSED_TIME|wxPD_CAN_ABORT|wxPD_APP_MODAL);
+    wxProgressDialog progressDlg(
+        wxString::Format(_(L"Opening \"%s\""), GetTitle()),
+        wxString::Format(_(L"Analyzing %zu documents..."), GetSourceFilesInfo().size()),
+        static_cast<int>(GetSourceFilesInfo().size() + 13), nullptr,
+        wxPD_AUTO_HIDE | wxPD_SMOOTH | wxPD_ELAPSED_TIME | wxPD_CAN_ABORT | wxPD_APP_MODAL);
     progressDlg.Centre();
     int counter{ 1 };
 
