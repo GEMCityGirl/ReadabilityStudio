@@ -435,7 +435,7 @@ namespace readability
         [[nodiscard]]
         bool is_included() const noexcept
             { return m_included; }
-        /// @returns Whether to include the test in a test bundle (or any other need).
+        /// @brief Whether to include the test in a test bundle (or any other need).
         /// @param inc @c true to include the test, false to remove.
         void include(const bool inc) noexcept
             { m_included = inc; }

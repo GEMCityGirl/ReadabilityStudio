@@ -1,7 +1,9 @@
+# Licenses
+
 - Docs folder
   - Lua manual provided by Lua.org, PUC-Rio
     - MIT License
-  - Remain documentation was written by the Author
+  - Remaining documentation was written by the Author
 - Examples folder
   - "The Frog Prince," "The Tale of Peter Rabbit," and "A Christmas Carol" provided by Project Guttenburg
   - Remaining examples were created by the Author

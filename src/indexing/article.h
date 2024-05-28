@@ -32,9 +32,7 @@ namespace grammar
 
         /** @brief Determines if an article/proceeding word pair is a mismatch.
             @param article The article.
-            @param article_length The length of the article.
             @param word The word following the article.
-            @param word_length The length of the word.
             @returns Whether an article/following word pair is a mismatch.*/
         [[nodiscard]]
         virtual bool

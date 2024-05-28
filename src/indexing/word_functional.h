@@ -58,7 +58,8 @@ class syllable_count_equals
     /** @brief Constructor that takes the required syllable count and how to treat numerals.
         @param count The expected number of syllables that a passing word should have.
         @param treat_numerals_as_monosyllabic Whether numeric words should be seen as one
-            syllable.\nDefault is @c false.*/
+            syllable.\n
+            Default is @c false.*/
     explicit syllable_count_equals(const size_t count,
                                    const bool treat_numerals_as_monosyllabic = false) noexcept
         : m_count(count), m_treat_numerals_as_monosyllabic(treat_numerals_as_monosyllabic)
@@ -139,7 +140,8 @@ class syllable_count_greater_equal
     /** @brief Constructor that takes the required syllable count and how to treat numerals.
         @param count The expected number of syllables that a passing word should have.
         @param treat_numerals_as_monosyllabic Whether numeric words should be seen as one
-            syllable.\nDefault is @c false.*/
+            syllable.\n
+            Default is @c false.*/
     explicit syllable_count_greater_equal(const size_t count,
                                           bool treat_numerals_as_monosyllabic = false) noexcept
         : m_count(count), m_treat_numerals_as_monosyllabic(treat_numerals_as_monosyllabic)
@@ -175,7 +177,8 @@ class valid_syllable_count_greater_equal
     /** @brief Constructor that takes the required syllable count and how to treat numerals.
         @param count The expected number of syllables that a passing word should have.
         @param treat_numerals_as_monosyllabic Whether numeric words should be seen as one
-            syllable.\nDefault is @c false.*/
+            syllable.\n
+            Default is @c false.*/
     explicit valid_syllable_count_greater_equal(
         const size_t count, bool treat_numerals_as_monosyllabic = false) noexcept
         : m_count(count), m_treat_numerals_as_monosyllabic(treat_numerals_as_monosyllabic)

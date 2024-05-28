@@ -40,6 +40,16 @@ class ProjectWizardDlg final : public wxDialog
     friend ReadabilityApp;
 
   public:
+    /** @brief Constructor.
+        @param parent The parent dialog.
+        @param projectType The project type.
+        @param path An optional default path for a document for folder to analyze.
+        @param id The window ID.
+        @param caption The dialog caption.
+        @param pos The dialog position.
+        @param size The dialog size.
+        @param style The dialog style.
+        @param fileTruncMode For a batch project wizard, how to display the file paths.*/
     ProjectWizardDlg(
         wxWindow* parent, const ProjectType projectType, const wxString& path = wxString{},
         wxWindowID id = wxID_ANY, const wxString& caption = _(L"New Project Wizard"),

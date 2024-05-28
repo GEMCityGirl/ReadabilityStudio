@@ -32,7 +32,7 @@ class AboutDialogEx final : public wxDialog
     /** @brief Constructor.
         @param parent The dialog's parent.
         @param logo The application's logo.
-        @param AppVersion The application's version.
+        @param appVersion The application's version.
         @param copyright The copyright string.
         @param eula The end-user license agreement content.
         @param licenseAdmin The license administrator interface.

@@ -33,6 +33,7 @@ class EditTextDlg final : public wxDialog
   public:
     /** @brief Constructor.
         @param parent The parent window.
+        @param parentDoc The project that this dialog is linked to.
         @param value The text to edit.
         @param id The dialog's ID.
         @param caption The dialog's caption.

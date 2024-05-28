@@ -499,10 +499,10 @@ public:
                 }
             }
 
-        /** Now, do the opposite with terminated sentences. If they contain nothing but
-            numeric words (yet is terminated), it is some sort of equation or list of numbers followed
-            by a period. This is not a real sentence and should be made invalid.
-            Also, if using aggressive exclusion, exclude single-word sentences that end with a colon.*/
+        /* Now, do the opposite with terminated sentences. If they contain nothing but
+           numeric words (yet is terminated), it is some sort of equation or list of numbers followed
+           by a period. This is not a real sentence and should be made invalid.
+           Also, if using aggressive exclusion, exclude single-word sentences that end with a colon.*/
         for (auto para_iter = m_paragraphs.begin();
              para_iter != m_paragraphs.end();
              ++para_iter)

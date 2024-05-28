@@ -203,7 +203,7 @@ class WebHarvester
         }
 
     /** @brief Reads the content of a webpage into a buffer.
-        @param[in,out] Url The webpage (may be altered if redirected).
+        @param[in,out] url The webpage (may be altered if redirected).
         @param[out] webPageContent The content of the page.
         @param[out] contentType The MIME type (and possibly charset) of the page.
         @param[out] statusText Any possible information from the server
@@ -213,12 +213,12 @@ class WebHarvester
             JS script files should be read.
         @returns Whether the file was successfully read.*/
     [[nodiscard]]
-    bool ReadWebPage(wxString& Url, wxString& webPageContent, wxString& contentType,
+    bool ReadWebPage(wxString& url, wxString& webPageContent, wxString& contentType,
                      wxString& statusText, int& responseCode,
                      const bool acceptOnlyHtmlOrScriptFiles = true);
 
     /// @brief Attempts to connect to @c url.
-    /// @param Url The webpage to try to connect to.
+    /// @param url The webpage to try to connect to.
     void RequestResponse(const wxString& url) { m_downloader.RequestResponse(url); }
 
     /// @returns The internal FileDownload object.
@@ -229,21 +229,21 @@ class WebHarvester
         }
 
     /** @brief Gets the content type of a webpage.
-        @param[in,out] Url The webpage (may be altered if redirected).
+        @param[in,out] url The webpage (may be altered if redirected).
         @param[out] responseCode The response code when connecting to the page.
         @returns The MIME type (and possibly charset) of the page's content type.*/
-    wxString GetContentType(wxString& Url, int& responseCode);
+    wxString GetContentType(wxString& url, int& responseCode);
     /// @returns The file type (possibly an extension) from a MIME type string.
     /// @param contentType The MIME type string.
     [[nodiscard]]
     static wxString GetFileTypeFromContentType(const wxString& contentType);
 
     /** @returns @c true if a link is pointing to an HTML page.
-        @param[in,out] Url The link to test (may be redirected).
+        @param[in,out] url The link to test (may be redirected).
         @param[out] contentType The MIME type read from the page.
         @param[out] responseCode The response code from the page.*/
     [[nodiscard]]
-    bool IsPageHtml(wxString& Url, wxString& contentType, int& responseCode);
+    bool IsPageHtml(wxString& url, wxString& contentType, int& responseCode);
 
     /// @brief Sets the depth level to crawl from the base URL.
     /// @param levels The number of levels to crawl.

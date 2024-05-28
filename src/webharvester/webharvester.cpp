@@ -243,18 +243,18 @@ wxString WebHarvester::GetFileTypeFromContentType(const wxString& contentType)
     }
 
 //----------------------------------
-wxString WebHarvester::GetContentType(wxString& Url, int& responseCode)
+wxString WebHarvester::GetContentType(wxString& url, int& responseCode)
     {
     responseCode = 404;
 
-    if (Url.empty())
+    if (url.empty())
         {
         return wxString{};
         }
-    Url = NormalizeUrl(Url);
+    url = NormalizeUrl(url);
 
-    wxLogVerbose(L"Preparing to get content type from '%s'", Url);
-    m_downloader.RequestResponse(Url);
+    wxLogVerbose(L"Preparing to get content type from '%s'", url);
+    m_downloader.RequestResponse(url);
 
     responseCode = m_downloader.GetLastStatus();
 
@@ -262,7 +262,7 @@ wxString WebHarvester::GetContentType(wxString& Url, int& responseCode)
     }
 
 //----------------------------------
-bool WebHarvester::ReadWebPage(wxString& Url, wxString& webPageContent, wxString& contentType,
+bool WebHarvester::ReadWebPage(wxString& url, wxString& webPageContent, wxString& contentType,
                                wxString& statusText, int& responseCode,
                                const bool acceptOnlyHtmlOrScriptFiles /*= true*/)
     {
@@ -271,25 +271,25 @@ bool WebHarvester::ReadWebPage(wxString& Url, wxString& webPageContent, wxString
     statusText.clear();
     responseCode = 404;
 
-    if (Url.empty())
+    if (url.empty())
         {
         return false;
         }
 
     // strip off bookmark (if there is one)
-    const auto bookMarkIndex = Url.find(L'#', true);
+    const auto bookMarkIndex = url.find(L'#', true);
     if (bookMarkIndex != wxString::npos)
         {
-        Url.Truncate(bookMarkIndex);
+        url.Truncate(bookMarkIndex);
         }
-    Url = NormalizeUrl(Url);
+    url = NormalizeUrl(url);
 
-    wxLogVerbose(L"Preparing to read %s", Url);
-    if (!m_downloader.Read(Url))
+    wxLogVerbose(L"Preparing to read %s", url);
+    if (!m_downloader.Read(url))
         {
         responseCode = m_downloader.GetLastStatus();
         statusText = m_downloader.GetLastStatusText();
-        wxLogWarning(L"%s: Unable to connect to page, error code #%i (%s).", Url, responseCode,
+        wxLogWarning(L"%s: Unable to connect to page, error code #%i (%s).", url, responseCode,
                      QueueDownload::GetResponseMessage(responseCode));
         return false;
         }
@@ -298,7 +298,7 @@ bool WebHarvester::ReadWebPage(wxString& Url, wxString& webPageContent, wxString
     statusText = m_downloader.GetLastStatusText();
     if (QueueDownload::IsBadResponseCode(responseCode))
         {
-        wxLogWarning(L"%s: Unable to connect to page, error code #%i (%s).", Url, responseCode,
+        wxLogWarning(L"%s: Unable to connect to page, error code #%i (%s).", url, responseCode,
                      QueueDownload::GetResponseMessage(responseCode));
         return false;
         }
@@ -323,7 +323,7 @@ bool WebHarvester::ReadWebPage(wxString& Url, wxString& webPageContent, wxString
             }
 
         // get redirect URL (if we got redirected)
-        Url = m_downloader.GetLastUrl();
+        url = m_downloader.GetLastUrl();
         /* Convert from the file's charset to the application's charset.
            Try to get it from the response header first because that is more
            accurate when the file is really UTF-8 but the designer put something like
@@ -354,7 +354,7 @@ bool WebHarvester::ReadWebPage(wxString& Url, wxString& webPageContent, wxString
     else
         {
         responseCode = 204;
-        wxLogWarning(L"'%s': connection successful, but no content was read.", Url);
+        wxLogWarning(L"'%s': connection successful, but no content was read.", url);
         return false;
         }
 
@@ -362,15 +362,15 @@ bool WebHarvester::ReadWebPage(wxString& Url, wxString& webPageContent, wxString
     }
 
 //----------------------------------
-bool WebHarvester::IsPageHtml(wxString& Url, wxString& contentType, int& responseCode)
+bool WebHarvester::IsPageHtml(wxString& url, wxString& contentType, int& responseCode)
     {
     contentType.clear();
-    if (Url.empty())
+    if (url.empty())
         {
         return false;
         }
 
-    contentType = GetContentType(Url, responseCode);
+    contentType = GetContentType(url, responseCode);
     if (contentType.empty())
         {
         return false;

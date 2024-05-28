@@ -1075,10 +1075,20 @@ class BaseProjectDoc : public BaseProject, public wxDocument
     static void UpdateListOptions(Wisteria::UI::ListCtrlEx* list);
     void UpdateTextWindowOptions(Wisteria::UI::FormattedTextCtrl* textW) const;
     static void UpdateExplanationListOptions(ExplanationListCtrl* eList);
+    /// @brief Updates printer headers and footers for a canvas.
+    /// @param window The Canvas to update.
     static void UpdatePrinterHeaderAndFooters(Wisteria::Canvas* window);
+    /// @brief Updates printer headers and footers for a list control.
+    /// @param window The list control to update.
     static void UpdatePrinterHeaderAndFooters(Wisteria::UI::ListCtrlEx* window);
+    /// @brief Updates printer headers and footers for a text window.
+    /// @param window The text window to update.
     static void UpdatePrinterHeaderAndFooters(Wisteria::UI::FormattedTextCtrl* window);
+    /// @brief Updates printer headers and footers for a explanation list control.
+    /// @param window The explanation list control to update.
     static void UpdatePrinterHeaderAndFooters(ExplanationListCtrl* window);
+    /// @brief Updates printer headers and footers for an HTML report.
+    /// @param window The HTML report to update.
     static void UpdatePrinterHeaderAndFooters(Wisteria::UI::HtmlTableWindow* window);
 
     virtual void RefreshGraphs() {}
@@ -1164,7 +1174,7 @@ class BaseProjectDoc : public BaseProject, public wxDocument
                    std::make_tuple(foundStat->GetMinGoal(), foundStat->GetMaxGoal());
         }
 
-    /// @param Loads and image from given path, and will also search for the
+    /// @brief Loads and image from given path, and will also search for the
     ///     file in the project directory if not found.
     /// @param[in,out] filePath The image file path. Will be updated if not found
     ///     but then found in the project folder.
