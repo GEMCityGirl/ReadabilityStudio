@@ -661,8 +661,10 @@ void CustomTestDlg::CreateControls()
         {
         wxPanel* mainPage = new wxPanel(m_sideBarBook, ID_GENERAL_PAGE, wxDefaultPosition,
                                         wxDefaultSize, wxTAB_TRAVERSAL);
-        wxBoxSizer* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
-        mainPage->SetSizer(mainPanelSizer);
+        wxBoxSizer* editorSectionSizer = new wxBoxSizer(wxVERTICAL);
+        wxBoxSizer* mainPageSizer = new wxBoxSizer(wxHORIZONTAL);
+        mainPageSizer->Add(editorSectionSizer, wxSizerFlags(1).Expand());
+        mainPage->SetSizer(mainPageSizer);
         m_sideBarBook->AddPage(mainPage, _(L"General Settings"), ID_GENERAL_PAGE, true);
 
         // if no test name then we are in "add new test" mode
@@ -670,7 +672,7 @@ void CustomTestDlg::CreateControls()
             {
             wxStaticBoxSizer* nameBoxSizer = new wxStaticBoxSizer(
                 new wxStaticBox(mainPage, wxID_ANY, _(L"Test name:")), wxVERTICAL);
-            mainPanelSizer->Add(nameBoxSizer, 0, wxEXPAND | wxALL,
+            editorSectionSizer->Add(nameBoxSizer, 0, wxEXPAND | wxALL,
                                 wxSizerFlags::GetDefaultBorder());
 
             m_testNameCtrl = new wxTextCtrl(nameBoxSizer->GetStaticBox(), ID_TEST_NAME_FIELD,
@@ -678,12 +680,12 @@ void CustomTestDlg::CreateControls()
                                             wxTextValidator(wxFILTER_NONE, &m_testName));
             nameBoxSizer->Add(m_testNameCtrl, 1, wxEXPAND | wxALL,
                               wxSizerFlags::GetDefaultBorder());
-            mainPanelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+            editorSectionSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             }
             // test type
             {
             wxBoxSizer* testTypeSizer = new wxBoxSizer(wxHORIZONTAL);
-            mainPanelSizer->Add(testTypeSizer, 0, wxEXPAND | wxALL,
+            editorSectionSizer->Add(testTypeSizer, 0, wxEXPAND | wxALL,
                                 wxSizerFlags::GetDefaultBorder());
             testTypeSizer->Add(new wxStaticText(mainPage, wxID_STATIC, _(L"Test type:")), 0,
                                wxALIGN_CENTER_VERTICAL);
@@ -698,12 +700,12 @@ void CustomTestDlg::CreateControls()
             // formula editor
             {
             wxBoxSizer* functionControlsSizer = new wxBoxSizer(wxHORIZONTAL);
-            mainPanelSizer->Add(
+            editorSectionSizer->Add(
                 functionControlsSizer,
-                wxSizerFlags().Expand().Border(wxALL, wxSizerFlags::GetDefaultBorder()));
+                wxSizerFlags(1).Expand().Border(wxALL, wxSizerFlags::GetDefaultBorder()));
             wxStaticBoxSizer* formulaBoxSizer = new wxStaticBoxSizer(
                 new wxStaticBox(mainPage, wxID_ANY, _(L"Formula:")), wxVERTICAL);
-            functionControlsSizer->Add(formulaBoxSizer, wxSizerFlags().Expand());
+            functionControlsSizer->Add(formulaBoxSizer, wxSizerFlags(1).Expand());
 
             wxBoxSizer* formulaButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
 
@@ -730,7 +732,7 @@ void CustomTestDlg::CreateControls()
             m_formulaCtrl->AddFunctionsOrClasses(m_sentenceFunctions);
             m_formulaCtrl->AddFunctionsOrClasses(m_shortcuts);
             m_formulaCtrl->Finalize();
-            formulaBoxSizer->Add(m_formulaCtrl, wxSizerFlags().Expand().Border(
+            formulaBoxSizer->Add(m_formulaCtrl, wxSizerFlags(1).Expand().Border(
                                                     wxALL, wxSizerFlags::GetDefaultBorder()));
 
             // examples labels
@@ -758,15 +760,11 @@ void CustomTestDlg::CreateControls()
                 wxFont(wxFontInfo().Family(wxFontFamily::wxFONTFAMILY_TELETYPE)));
             formulaBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             formulaBoxSizer->Add(formulaExample, 0, wxLEFT, wxSizerFlags::GetDefaultBorder() * 3);
-
-            m_fbCollapsePane = new wxCollapsiblePane(mainPage, wxID_ANY, _("Functions"));
-            functionControlsSizer->Add(
-                m_fbCollapsePane,
-                wxSizerFlags().Border(wxLEFT, wxSizerFlags::GetDefaultBorder() * 3));
-
-            wxSizer* paneSz = new wxBoxSizer(wxVERTICAL);
+            }
+        // function browser
+            {
             Wisteria::UI::FunctionBrowserCtrl* functionBrowser =
-                new FunctionBrowserCtrl(m_fbCollapsePane->GetPane(), m_formulaCtrl);
+                new FunctionBrowserCtrl(mainPage, m_formulaCtrl);
             wxGetApp().UpdateSideBarTheme(functionBrowser->GetSidebar());
             functionBrowser->SetParameterSeparator(FormulaFormat::GetListSeparator());
 
@@ -784,11 +782,8 @@ void CustomTestDlg::CreateControls()
 
             functionBrowser->FinalizeCategories();
 
-            paneSz->Add(functionBrowser,
+            mainPageSizer->Add(functionBrowser,
                         wxSizerFlags().Expand().Border(wxALL, wxSizerFlags::GetDefaultBorder()));
-
-            m_fbCollapsePane->GetPane()->SetSizer(paneSz);
-            paneSz->SetSizeHints(m_fbCollapsePane->GetPane());
             }
         }
 
