@@ -334,14 +334,16 @@ bool WebHarvester::ReadWebPage(wxString& url, wxString& webPageContent, wxString
             charSet = GetCharsetFromPageContent(
                 { &m_downloader.GetLastRead()[0], m_downloader.GetLastRead().size() });
             }
-        // Watch out for embedded NULLs in stream (happens with poorly formatted HTML).
+        // Watch out for embedded NULLs in stream.
+        // It may be in the middle of the text, or just at the end of the zeroed-out stream
+        // (where what was read wasn't as large as the reported size).
         // In this situation, we need to split the stream into valid chunks, convert them,
-        // and then piece them back together.
+        // and then piece them back together (or simply read the valid text up to the
+        // zeroed-out region).
         if (string_util::strnlen(&m_downloader.GetLastRead()[0],
                                  m_downloader.GetLastRead().size()) <
             m_downloader.GetLastRead().size())
             {
-            wxLogWarning(L"Embedded null terminator(s) encountered in page.");
             webPageContent = Wisteria::TextStream::CharStreamWithEmbeddedNullsToUnicode(
                 &m_downloader.GetLastRead()[0], m_downloader.GetLastRead().size(), charSet);
             }
