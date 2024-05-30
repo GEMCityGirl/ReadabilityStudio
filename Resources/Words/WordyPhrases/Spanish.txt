@@ -23,6 +23,8 @@ Bendictines	Benedictines	3
 Bernouilli	Bernoulli	3		
 Bethoven	Beethoven	3		
 Bethoven's	Beethoven's	3		
+big-endean	big-endian	3		
+big-endeanness	big-endianness	3		
 Blitzkreig	Blitzkrieg	3		
 Blitzkreig's	Blitzkrieg's	3		
 Bonnano	Bonanno	3		
@@ -71,6 +73,7 @@ Dardenelles	Dardanelles	3
 Dicken	Dickens	3		
 Dicken's	Dickens's	3		
 Dudavera	Dudareva	3		
+endeanness	endianness	3		
 Europian	European	3		
 Europians	Europeans	3		
 Eurpean	European	3		
@@ -129,6 +132,8 @@ Juptyer	Jupyter	3
 Juptyer's	Jupyter's	3		
 Kindergarden	Kindergarten	3		
 Kindergarden's	Kindergarten's	3		
+little-endean	little-endian	3		
+little-endeanness	little-endianness	3		
 Lotharingen	Lothringen	3		
 Lybia	Libya	3		
 Malcom	Malcolm	3		
@@ -202,6 +207,7 @@ Rodirguez's	Rodriguez's	3
 Rodirguezes	Rodriguezes	3		
 Russion	Russian	3		
 Sacremento	Sacramento	3		
+Seaars	Sears	3		
 Sebastain	Sebastian	3		
 Sebastain's	Sebastian's	3		
 Sebastains	Sebastians	3		

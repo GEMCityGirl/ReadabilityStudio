@@ -2270,6 +2270,8 @@ afresh
 africanus
 afro
 afro's
+afrofuturism
+afrofuturism's
 afros
 aft
 after
@@ -2304,6 +2306,7 @@ afternoon
 afternoon's
 afternoons
 afternotes
+afterparty
 afters
 afters's
 afterschool
@@ -3482,6 +3485,9 @@ alumna
 alumna's
 alumnae
 alumni
+alumnote
+alumnote's
+alumnotes
 alumns
 alumnus
 alumnus's
@@ -6844,6 +6850,7 @@ artless
 artlessly
 artlessness
 artlessness's
+artmaking
 arts
 artsier
 artsiest
@@ -7419,6 +7426,8 @@ astronomically
 astronomies
 astronomy
 astronomy's
+astrophotography
+astrophotography's
 astrophysical
 astrophysicist
 astrophysicist's
@@ -8404,6 +8413,10 @@ autoscroll
 autoscrolled
 autoscrolling
 autoscrolls
+autosense
+autosensed
+autosenses
+autosensing
 autosensitivity
 autosensitivity's
 autosize
@@ -8755,6 +8768,7 @@ axolotls
 axon
 axon's
 axonal
+axonometrics
 axons
 axoplasm
 axoplasm's
@@ -16947,6 +16961,8 @@ byword
 byword's
 bywords
 bézier
+bézier's
+béziers
 bêche
 bête
 bêtes
@@ -22215,6 +22231,7 @@ cirri's
 cirrus
 cirrus's
 cis
+cisgender
 cisplatin
 cistern
 cistern's
@@ -22631,6 +22648,9 @@ claymore
 claymore's
 claymores
 clays
+claywork
+claywork's
+clayworks
 clean
 cleanability
 cleanable
@@ -26856,6 +26876,7 @@ contemporaneously
 contemporaneousness
 contemporaneousness's
 contemporaries
+contemporarily
 contemporariness
 contemporariness's
 contemporary
@@ -31123,6 +31144,7 @@ cyclopia
 cyclopropane
 cyclops
 cyclops's
+cyclorama
 cyclospora
 cyclosporiasis
 cyclosporine
@@ -36527,6 +36549,9 @@ dirge's
 dirged
 dirges
 dirging
+dirid
+dirid's
+dirids
 dirigible
 dirigibles
 dirk
@@ -37280,6 +37305,8 @@ dishrags
 dishtowel
 dishtowel's
 dishtowels
+dishware
+dishware's
 dishwaser
 dishwaser's
 dishwasers
@@ -37612,6 +37639,7 @@ displacing
 display
 display's
 displayable
+displayables
 displayed
 displayer
 displayer's
@@ -39326,6 +39354,7 @@ dram's
 drama
 drama's
 dramas
+dramatastic
 dramatic
 dramatical
 dramatically
@@ -39340,6 +39369,9 @@ dramatiser's
 dramatisers
 dramatises
 dramatising
+dramatism
+dramatism's
+dramatisms
 dramatist
 dramatist's
 dramatists
@@ -43565,6 +43597,9 @@ entrechats
 entrecôte
 entrecôte's
 entrecôtes
+entree
+entree's
+entrees
 entremets
 entrench
 entrenched
@@ -43688,6 +43723,7 @@ envisaged
 envisages
 envisaging
 envision
+envisional
 envisioned
 envisioning
 envisions
@@ -47008,6 +47044,7 @@ falconry's
 falcons
 fall
 fall's
+fall-ish
 fallacies
 fallacious
 fallaciously
@@ -51584,6 +51621,9 @@ frappeed
 frappeing
 frappes
 frapping
+frappuccino
+frappuccino's
+frappuccinos
 frappé
 fraps
 frat
@@ -52324,6 +52364,7 @@ fullscans
 fullscreen
 fullstack
 fullstops
+fulltime
 fullword
 fullword's
 fullwords
@@ -52618,6 +52659,9 @@ fusees
 fuselage
 fuselage's
 fuselages
+fuser
+fuser's
+fusers
 fuses
 fusibilities
 fusibility
@@ -54466,6 +54510,7 @@ ginkgos
 ginmill
 ginned
 ginning
+ginormous
 gins
 ginseng
 ginseng's
@@ -56102,6 +56147,9 @@ graves's
 gravesend
 graveside
 gravesides
+gravesite
+gravesite's
+gravesites
 gravest
 gravestone
 gravestone's
@@ -56221,6 +56269,9 @@ greediness
 greediness's
 greeds
 greedy
+greeenhouse
+greeenhouse's
+greeenhouses
 green
 green's
 greenback
@@ -56644,7 +56695,13 @@ groundplans
 grounds
 groundsheet
 groundsheet's
+groundskeep
+groundskeeper
+groundskeeper's
 groundskeepers
+groundskeeping
+groundskeeps
+groundskept
 groundsman
 groundsman's
 groundsmen
@@ -56828,6 +56885,8 @@ gs
 GSA
 gt
 GU
+guac
+guac's
 guacamole
 guacamole's
 guacamoles
@@ -60430,6 +60489,9 @@ HMS
 HMSO
 ho
 ho's
+hoagie
+hoagie's
+hoagies
 hoar
 hoar's
 hoard
@@ -61157,6 +61219,7 @@ hoofmarks
 hoofs
 hook
 hook's
+hookable
 hookah
 hookah's
 hookahs
@@ -62658,6 +62721,7 @@ hyperextension
 hyperfine
 hyperflexia
 hyperflexion
+hyperfocal
 hypergamous
 hypergamously
 hypergamy
@@ -63589,6 +63653,9 @@ imagines
 imaging
 imagining
 imaginings
+imagist
+imagist's
+imagists
 imago
 imago's
 imagoes
@@ -67604,6 +67671,7 @@ interim
 interims
 interindex
 interindustry
+interinstitutional
 interionic
 interior
 interior's
@@ -68005,6 +68073,7 @@ interspersion
 interspersion's
 interspersions
 interspinales
+intersquad
 interstage
 interstate
 interstates
@@ -69258,6 +69327,7 @@ itemsets
 iterability
 iterability's
 iterable
+iterables
 iterate
 iterated
 iterates
@@ -73904,6 +73974,7 @@ lightsabers
 lightship
 lightship's
 lightships
+lightspeed
 lightweight
 lightweights
 ligneous
@@ -79543,6 +79614,8 @@ metaparadigm's
 metaparadigms
 metaperiodic
 metaphase
+metaphonology
+metaphonology's
 metaphor
 metaphor's
 metaphoric
@@ -82761,6 +82834,7 @@ monotony
 monotony's
 monotreme
 monotremes
+monotype
 monounsaturated
 monovalent
 monoxide
@@ -83071,6 +83145,8 @@ morphometric
 morphophonemic
 morphophonemics
 morphophonemics's
+morphophonology
+morphophonology's
 morphs
 Morquio
 morrow
@@ -84077,6 +84153,7 @@ multispecies
 multisport
 multispot
 multistage
+multistandard
 multistate
 multistate's
 multistates
@@ -85840,6 +85917,7 @@ neptuniums
 nerd
 nerdier
 nerdiest
+nerdiness
 nerds
 nerdy
 Nereid
@@ -86964,6 +87042,7 @@ nonclustered
 noncoding
 noncognitive
 noncollectable
+noncollegiate
 noncom
 noncom's
 noncombat
@@ -87336,6 +87415,7 @@ nonlocality
 nonlocality's
 nonlocalizable
 nonlocalized
+nonlocking
 nonlooped
 nonluminous
 nonlymphocytic
@@ -87503,6 +87583,7 @@ nonpracticing
 nonpregnant
 nonprejudicial
 nonprescription
+nonpresent
 nonpresidential
 nonprimary
 nonprimitive
@@ -87598,6 +87679,7 @@ nonrespondents
 nonresponding
 nonresponse
 nonresponsive
+nonrestricted
 nonrestrictive
 nonretaliation
 nonretaliation's
@@ -92517,6 +92599,9 @@ paddocking
 paddocks
 paddy
 paddy's
+padfolio
+padfolio's
+padfolios
 Padget
 Padgett
 Padilla
@@ -94341,6 +94426,7 @@ pathologizes
 pathologizing
 pathology
 pathology's
+pathophysiological
 pathophysiology
 pathos
 pathos's
@@ -95819,6 +95905,9 @@ perks
 perky
 perm
 perm's
+permaculture
+permaculture's
+permacultures
 permafrost
 permafrost's
 permafrosts
@@ -96719,6 +96808,7 @@ phoebes
 phoenix
 phoenix's
 phoenixes
+phonatory
 phone
 phone's
 phonebook
@@ -96872,6 +96962,9 @@ photoautotroph's
 photoautotrophic
 photoautotrophs
 photoautotrophy
+photobooth
+photobooth's
+photobooths
 photocathode
 photocathode's
 photocathodes
@@ -96923,6 +97016,7 @@ photoengravings
 photofinishing
 photofinishing's
 photofinishings
+photog
 photogate
 photogate's
 photogates
@@ -100331,6 +100425,7 @@ posthaste
 posthastes
 postherpetic
 posthitis
+posthuman
 posthumous
 posthumously
 posthumousness
@@ -101276,6 +101371,7 @@ preemployment
 preemployment's
 preempt
 preempted
+preemptible
 preempting
 preemption
 preemption's
@@ -103959,6 +104055,9 @@ pseudoelater's
 pseudoelaters
 pseudoexfoliation
 pseudogout
+pseudoheader
+pseudoheader's
+pseudoheaders
 pseudohemophilia
 pseudoinstruction
 pseudoinstruction's
@@ -109548,6 +109647,8 @@ reinitialisation
 reinitialisations
 reinitialise
 reinitialization
+reinitialization's
+reinitializations
 reinitialize
 reinitialized
 reinitializes
@@ -113116,6 +113217,9 @@ riskinesses
 risking
 risks
 risky
+risograph
+risograph's
+risographs
 risotto
 risotto's
 risottos
@@ -116586,6 +116690,10 @@ screenings
 screenplay
 screenplay's
 screenplays
+screenprint
+screenprinted
+screenprinting
+screenprints
 screenreader
 screenreader's
 screenreaders
@@ -118313,6 +118421,7 @@ seriousnesses
 sermon
 sermon's
 sermoned
+sermonic
 sermoning
 sermonise
 sermonised
@@ -121479,6 +121588,9 @@ slideplayer's
 slideplayers
 slider
 slider's
+slideroom
+slideroom's
+sliderooms
 sliders
 slides
 slideshow
@@ -124278,6 +124390,9 @@ spigot's
 spigots
 spike
 spike's
+spikeball
+spikeball's
+spikeballs
 spiked
 spiker
 spiker's
@@ -126902,6 +127017,10 @@ storybooks
 storybuilding
 storybuilds
 storybuilt
+storycraft
+storycrafted
+storycrafting
+storycrafts
 storying
 storyline
 storyline's
@@ -127187,6 +127306,9 @@ streetcar
 streetcar's
 streetcars
 streeters
+streetlamp
+streetlamp's
+streetlamps
 streetlight
 streetlight's
 streetlights
@@ -133766,6 +133888,9 @@ thermocline
 thermocouple
 thermocouple's
 thermocouples
+thermocycler
+thermocycler's
+thermocyclers
 thermodynamic
 thermodynamical
 thermodynamically
@@ -137026,6 +137151,7 @@ trawls
 trax
 tray
 tray's
+trayless
 trays
 treacheries
 treacherous
@@ -139984,6 +140110,7 @@ underarm
 underarmed
 underarming
 underarms
+underassigned
 underbedding
 underbellies
 underbelly
@@ -140416,6 +140543,7 @@ undescribed
 undeserved
 undeservedly
 undeserving
+undesignated
 undesigned
 undesigning
 undesirabilities
@@ -141758,6 +141886,7 @@ unpaused
 unpauses
 unpausing
 unpaved
+unpeeled
 unpenalized
 unpeople
 unpeopled
@@ -142187,6 +142316,7 @@ unsavoriness's
 unsavory
 unsavory's
 unsay
+unsayable
 unsaying
 unsays
 unscalable
@@ -144871,6 +145001,7 @@ videocasting
 videocasts
 videoconference
 videoconference's
+videoconferenced
 videoconferences
 videoconferencing
 videodisc
@@ -148654,6 +148785,7 @@ wok's
 woke
 wokeism
 woken
+wokeness
 woks
 wold
 wold's
@@ -148699,6 +148831,9 @@ womanisers
 womanises
 womanish
 womanising
+womanist
+womanist's
+womanists
 womanize
 womanized
 womanizer
@@ -149062,6 +149197,9 @@ workspaces
 workstation
 workstation's
 workstations
+workstudies
+workstudy
+workstudy's
 worktable
 worktable's
 worktables
