@@ -623,7 +623,9 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
     const wxRegEx anchorsToSkip{ L"[[:space:]]*(mailto[:]|tel[:]|#|"
                                  "javascript[:][[:space:]]*void).*" };
 
-    if (anchorsToSkip.Matches(currentLink))
+    if (anchorsToSkip.Matches(currentLink) ||
+        // weird placeholders to ignore
+        currentLink == L"%link%")
         {
         return;
         }
