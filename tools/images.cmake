@@ -210,10 +210,10 @@ tests/spache-test.svg
 tests/stocker.svg
 tests/wheeler-smith-bamberger-vanecek.svg
 tests/wheeler-smith.svg
-wizard/CenteredText.png
-wizard/HardReturns.png
-wizard/LineEndsAreNewParagraphs.png
-wizard/Narrative.png
-wizard/NarrativeIllustrated.png
-wizard/NarrativeWithLines.png
-wizard/Sparse.png
+wizard/centered-text.png
+wizard/hard-returns.png
+wizard/line-ends-are-new-paragraphs.png
+wizard/narrative-text.png
+wizard/narrative-illustrated.png
+wizard/narrative-with-lines.png
+wizard/sparse-text.png

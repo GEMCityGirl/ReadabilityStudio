@@ -542,7 +542,7 @@ void ProjectWizardDlg::CreateControls()
 
             narrativeSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             wxBitmap previewImage = wxGetApp().GetScaledImage(
-                L"wizard/Narrative.png", wxBITMAP_TYPE_PNG,
+                L"wizard/narrative-text.png", wxBITMAP_TYPE_PNG,
                 wxSize(wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X) * .75,
                        wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y) * .75));
             wxMemoryDC memDc(previewImage);
@@ -596,7 +596,7 @@ void ProjectWizardDlg::CreateControls()
 
             sparseSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             wxBitmap previewImage = wxGetApp().GetScaledImage(
-                L"wizard/Sparse.png", wxBITMAP_TYPE_PNG,
+                L"wizard/sparse-text.png", wxBITMAP_TYPE_PNG,
                 wxSize(wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X) * .75,
                        wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y) * .75));
             wxMemoryDC memDc(previewImage);
@@ -649,7 +649,7 @@ void ProjectWizardDlg::CreateControls()
 
             narrativeSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             wxBitmap previewImage = wxGetApp().GetScaledImage(
-                L"wizard/NarrativeIllustrated.png", wxBITMAP_TYPE_PNG,
+                L"wizard/narrative-illustrated.png", wxBITMAP_TYPE_PNG,
                 wxSize(wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X) * .75,
                        wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y) * .75));
             wxMemoryDC memDc(previewImage);
@@ -668,7 +668,7 @@ void ProjectWizardDlg::CreateControls()
             narrativeSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
             previewImage = wxGetApp().GetScaledImage(
-                L"wizard/NarrativeWithLines.png", wxBITMAP_TYPE_PNG,
+                L"wizard/narrative-with-lines.png", wxBITMAP_TYPE_PNG,
                 wxSize(wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X) * .75,
                        wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y) * .75));
             wxMemoryDC memDc2(previewImage);
@@ -718,7 +718,7 @@ void ProjectWizardDlg::CreateControls()
             centeredSizer->Add(centeredLablesSizer, 0, wxALIGN_CENTER);
 
             wxBitmap previewImage = wxGetApp().GetScaledImage(
-                L"wizard/CenteredText.png", wxBITMAP_TYPE_PNG,
+                L"wizard/centered-text.png", wxBITMAP_TYPE_PNG,
                 wxSize(wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X) * .75,
                        wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y) * .75));
             wxMemoryDC memDc(previewImage);
@@ -760,7 +760,7 @@ void ProjectWizardDlg::CreateControls()
             wrappedSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
             wxBitmap previewImage = wxGetApp().GetScaledImage(
-                L"wizard/HardReturns.png", wxBITMAP_TYPE_PNG,
+                L"wizard/hard-returns.png", wxBITMAP_TYPE_PNG,
                 wxSize(wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X) * .75,
                        wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y) * .75));
             wxMemoryDC memDc(previewImage);
@@ -780,7 +780,7 @@ void ProjectWizardDlg::CreateControls()
             wrappedSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
             previewImage = wxGetApp().GetScaledImage(
-                L"wizard/LineEndsAreNewParagraphs.png", wxBITMAP_TYPE_PNG,
+                L"wizard/line-ends-are-new-paragraphs.png", wxBITMAP_TYPE_PNG,
                 wxSize(wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X) * .75,
                        wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y) * .75));
             wxMemoryDC memDc2(previewImage);
