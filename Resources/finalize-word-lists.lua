@@ -64,6 +64,10 @@ Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words/word-lists/revised-spache.txt",
     Debug.GetScriptFolderPath().."Words/word-lists/revised-spache.txt")
 
+Application.MergeWordLists(
+    Debug.GetScriptFolderPath().."Words/word-lists/stocker-catholic-supplement.txt",
+    Debug.GetScriptFolderPath().."Words/word-lists/stocker-catholic-supplement.txt")
+
 -- Expand the proper nouns to possessive forms
 -- (personal base is used by an upcoming test as well,
 --  so it gets added to the resources as a new file also.)
