@@ -1,4 +1,4 @@
-Abbreviations/List.txt
+Abbreviations/abbreviations.txt
 Abbreviations/non-abbreviations.txt
 Articles/AExceptions.txt
 Articles/AnExceptions.txt

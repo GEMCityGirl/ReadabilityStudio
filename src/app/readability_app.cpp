@@ -1092,7 +1092,7 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     std::wstring aExceptionsFileText = cat.ReadTextFile(_DT(L"Articles/AExceptions.txt"));
     std::wstring anExceptionsFileText = cat.ReadTextFile(_DT(L"Articles/AnExceptions.txt"));
     // read in the abbreviations
-    std::wstring abbreviationsFileText = cat.ReadTextFile(_DT(L"Abbreviations/List.txt"));
+    std::wstring abbreviationsFileText = cat.ReadTextFile(_DT(L"Abbreviations/abbreviations.txt"));
     std::wstring nonAbbreviationsFileText =
         cat.ReadTextFile(_DT(L"Abbreviations/non-abbreviations.txt"));
     // read in the past-participle exceptions
