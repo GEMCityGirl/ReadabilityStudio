@@ -1097,7 +1097,7 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
         cat.ReadTextFile(_DT(L"abbreviations/non-abbreviations.txt"));
     // read in the past-participle exceptions
     std::wstring pastParticipleExceptionsFileText =
-        cat.ReadTextFile(_DT(L"PastParticiples/exceptions.txt"));
+        cat.ReadTextFile(_DT(L"past-participles/exceptions.txt"));
     // read in the DC words
     std::wstring dcFileText = cat.ReadTextFile(_DT(L"WordLists/New Dale-Chall.txt"));
     // read in the DC Catholic supplementary words

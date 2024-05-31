@@ -26,7 +26,7 @@ Please refer to the following file & folder breakdown for reference:
 - **copyright-notices**:
   - **notices.txt**: list of phrases that would mark a copyright notice in a document.
 - **dictionaries**: all files in this folder are generated, **do not edit anything in here**.
-- **PastParticiples**:
+- **past-participles**:
   - **exceptions.txt**: adjectives that can be mistaken for past-tense verbs. These are entered as overrides that the program would see as passive voice otherwise.
 - **Programming**:
   - **all-languages.txt**: this file is generated, **do not edit**.

@@ -13,8 +13,8 @@ Application.MergeWordLists(
 
 -- Sort the word lists
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/PastParticiples/exceptions.txt",
-    Debug.GetScriptFolderPath().."Words/PastParticiples/exceptions.txt")
+    Debug.GetScriptFolderPath().."Words/past-participles/exceptions.txt",
+    Debug.GetScriptFolderPath().."Words/past-participles/exceptions.txt")
 
 Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words/base-english-dictionary.txt",
