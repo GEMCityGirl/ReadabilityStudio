@@ -1073,7 +1073,7 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     // proper noun stop word list
     std::wstring properNounStopList = cat.ReadTextFile(L"StopWords/ProperNounsStopList.txt");
     // copyright notices
-    std::wstring copyRightNoticePhraseFileText = cat.ReadTextFile(L"CopyrightNotices/List.txt");
+    std::wstring copyRightNoticePhraseFileText = cat.ReadTextFile(L"CopyrightNotices/notices.txt");
     // citation headers
     std::wstring citationPhraseFileText = cat.ReadTextFile(L"CitationHeaders/List.txt");
     // known proper nouns
