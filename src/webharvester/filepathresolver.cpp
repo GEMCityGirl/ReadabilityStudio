@@ -30,6 +30,9 @@ wxString FilePathResolver::ResolvePath(
             }
         wxString webPathToTest = m_path;
 
+        webPathToTest.Trim(true);
+        webPathToTest.Trim(false);
+
         webPathToTest.Replace(L"\\", L"/");
         // encode any spaces
         webPathToTest.Replace(L" ", L"%20");
