@@ -1,12 +1,12 @@
 abbreviations/abbreviations.txt
 abbreviations/non-abbreviations.txt
-Articles/a-exceptions.txt
-Articles/an-exceptions.txt
+articles/a-exceptions.txt
+articles/an-exceptions.txt
 citation-headers/citations.txt
 copyright-notices/notices.txt
-Dictionaries/english.txt
-Dictionaries/german.txt
-Dictionaries/spanish.txt
+dictionaries/english.txt
+dictionaries/german.txt
+dictionaries/spanish.txt
 PastParticiples/Exceptions.txt
 Programming/all-languages.txt
 Programming/Assembly.txt

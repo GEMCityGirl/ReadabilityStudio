@@ -45,12 +45,12 @@ Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words/abbreviations/non-abbreviations.txt")
 
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/Articles/a-exceptions.txt",
-    Debug.GetScriptFolderPath().."Words/Articles/a-exceptions.txt")
+    Debug.GetScriptFolderPath().."Words/articles/a-exceptions.txt",
+    Debug.GetScriptFolderPath().."Words/articles/a-exceptions.txt")
 
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/Articles/an-exceptions.txt",
-    Debug.GetScriptFolderPath().."Words/Articles/an-exceptions.txt")
+    Debug.GetScriptFolderPath().."Words/articles/an-exceptions.txt",
+    Debug.GetScriptFolderPath().."Words/articles/an-exceptions.txt")
 
 Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words/WordLists/New Dale-Chall.txt",
@@ -131,7 +131,7 @@ Application.CrossReferenceWordLists(
 
 -- Merge everything into the English dictionary
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/Dictionaries/english.txt",
+    Debug.GetScriptFolderPath().."Words/dictionaries/english.txt",
     Debug.GetScriptFolderPath().."Words/base-english-dictionary.txt",
     Debug.GetScriptFolderPath().."Words/abbreviations/abbreviations.txt",
     Debug.GetScriptFolderPath().."Words/ProperNouns/All.txt")
