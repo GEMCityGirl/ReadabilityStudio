@@ -104,10 +104,10 @@ Once you have these files installed, this won't be an issue when rebuilding late
 
 ### Word Lists
 
-If any of the word lists ("ReadabilityStudio/Resources/words") have changed, then:
+If any of the word lists ("ReadabilityStudio/resources/words") have changed, then:
 
 - Build the program as usual
-- Open up *Readability Studio* and open the file "ReadabilityStudio/Resources/Finalize Word Lists.lua" in the Lua editor and run it
+- Open up *Readability Studio* and open the file "ReadabilityStudio/resources/finalize-word-lists.lua" in the Lua editor and run it
 - Rebuild the program (this will re-package the word files)
 
 This is necessary to re-sort the files and also re-build other words lists (e.g., the spelling dictionaries) that are based on the ones you may have edited.

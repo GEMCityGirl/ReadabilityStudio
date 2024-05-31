@@ -324,16 +324,16 @@ add_custom_command(TARGET ${PROJECT_NAME}
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
-                   ${CMAKE_CURRENT_SOURCE_DIR}/Resources/scripting $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+                   ${CMAKE_CURRENT_SOURCE_DIR}/resources/scripting $<TARGET_FILE_DIR:${PROJECT_NAME}>)
 
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
-                   ${CMAKE_CURRENT_SOURCE_DIR}/Resources/themes $<TARGET_FILE_DIR:${PROJECT_NAME}>/themes)
+                   ${CMAKE_CURRENT_SOURCE_DIR}/resources/themes $<TARGET_FILE_DIR:${PROJECT_NAME}>/themes)
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
-                   ${CMAKE_CURRENT_SOURCE_DIR}/Resources/report-themes $<TARGET_FILE_DIR:${PROJECT_NAME}>/report-themes)
+                   ${CMAKE_CURRENT_SOURCE_DIR}/resources/report-themes $<TARGET_FILE_DIR:${PROJECT_NAME}>/report-themes)
 
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
@@ -351,14 +351,14 @@ add_custom_command(TARGET ${PROJECT_NAME}
                    COMMAND ${CMAKE_COMMAND} -E tar "cvf" "$<TARGET_FILE_DIR:${PROJECT_NAME}>/res.wad" --format=zip --files-from="${CMAKE_CURRENT_SOURCE_DIR}/tools/images.cmake"
                    COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE_DIR:${PROJECT_NAME}>/res.wad" "${CMAKE_CURRENT_SOURCE_DIR}/installers/resources/"
                    COMMENT "Building resourse bundle and copying to build and installer folders."
-                   WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/Resources/images")
+                   WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/resources/images")
 # Word lists
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E tar "cvf" "$<TARGET_FILE_DIR:${PROJECT_NAME}>/Words.wad" --format=zip --files-from="${CMAKE_CURRENT_SOURCE_DIR}/tools/words.cmake"
                    COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE_DIR:${PROJECT_NAME}>/Words.wad" "${CMAKE_CURRENT_SOURCE_DIR}/installers/resources/"
                    COMMENT "Building word lists and copying to build and installer folders."
-                   WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/Resources/words")
+                   WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/resources/words")
 
 # Copy application to installer folder (if a production build)
 if(${CMAKE_BUILD_TYPE} STREQUAL "Release")

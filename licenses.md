@@ -1,13 +1,13 @@
 # Licenses
 
-- Docs folder
+- docs folder
   - Lua manual provided by Lua.org, PUC-Rio
     - MIT License
   - Remaining documentation was written by the Author
 - Examples folder
   - "The Frog Prince," "The Tale of Peter Rabbit," and "A Christmas Carol" provided by Project Guttenburg
   - Remaining examples were created by the Author
-- Resources folder
+- resources folder
   - Most icons provided from *freesvg.org*
   - Other icons created by the Author
   - Splashscreens were created by the Author

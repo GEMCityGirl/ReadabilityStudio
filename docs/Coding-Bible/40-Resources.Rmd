@@ -1,14 +1,14 @@
-# Resources
+# resources
 
 ## Art Assets
 
-All art assets are stored in **Resources/images**. Images should be saved into the appropriate folder in SVG format (except the `splash` folder, these are JPEGs). SVGs should have an aspect ratio with the same width and height.
+All art assets are stored in **resources/images**. Images should be saved into the appropriate folder in SVG format (except the `splash` folder, these are JPEGs). SVGs should have an aspect ratio with the same width and height.
 
 ## Word Lists
 
 ### Editing Lists {-}
 
-In the **Resources/words** folder, the following folders contain word lists used by the program. Some can be edited, others are generated. Also, all these files are meant for all languages, unless otherwise noted.
+In the **resources/words** folder, the following folders contain word lists used by the program. Some can be edited, others are generated. Also, all these files are meant for all languages, unless otherwise noted.
 
 Please refer to the following file & folder breakdown for reference:
 
@@ -65,4 +65,4 @@ Please refer to the following file & folder breakdown for reference:
 
 ### Finalizing Lists {-}
 
-Run the script **Resources/Finalize Word Lists.lua** from *Readability Studio* to sort, merge, remove duplicates, and generate supplemental word lists.
+Run the script **resources/Finalize Word Lists.lua** from *Readability Studio* to sort, merge, remove duplicates, and generate supplemental word lists.

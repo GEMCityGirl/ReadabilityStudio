@@ -22,10 +22,10 @@ Source: release\ReadStudio.exe; DestDir: {app}; Components: ProgramFiles; Flags:
 ; resource files (required part of programs)
 Source: ..\resources\res.wad; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\resources\Words.wad; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
-Source: ..\..\Resources\scripting\*.api; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
-Source: ..\..\Resources\scripting\*.lua; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
-Source: ..\..\Resources\report-themes\*; DestDir: {app}\report-themes; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
-Source: ..\..\Resources\themes\*; DestDir: {app}\themes; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
+Source: ..\..\resources\scripting\*.api; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
+Source: ..\..\resources\scripting\*.lua; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
+Source: ..\..\resources\report-themes\*; DestDir: {app}\report-themes; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
+Source: ..\..\resources\themes\*; DestDir: {app}\themes; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\redist\license.rtf; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion
 ; help files
 Source: ..\..\docs\ReadabilityStudioDocs\docs\*; DestDir: {app}\ReadabilityStudioDocs; Components: HelpFiles; Excludes: "thumbs.db,*.tex,*.log,README.md,\.git"; Flags: replacesameversion restartreplace recursesubdirs
