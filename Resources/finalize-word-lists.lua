@@ -53,16 +53,16 @@ Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words/articles/an-exceptions.txt")
 
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/WordLists/New Dale-Chall.txt",
-    Debug.GetScriptFolderPath().."Words/WordLists/New Dale-Chall.txt")
+    Debug.GetScriptFolderPath().."Words/word-lists/new-dale-chall.txt",
+    Debug.GetScriptFolderPath().."Words/word-lists/new-dale-chall.txt")
 
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/WordLists/Harris-Jacobson.txt",
-    Debug.GetScriptFolderPath().."Words/WordLists/Harris-Jacobson.txt")
+    Debug.GetScriptFolderPath().."Words/word-lists/harris-jacobson.txt",
+    Debug.GetScriptFolderPath().."Words/word-lists/harris-jacobson.txt")
 
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/WordLists/Revised Spache.txt",
-    Debug.GetScriptFolderPath().."Words/WordLists/Revised Spache.txt")
+    Debug.GetScriptFolderPath().."Words/word-lists/revised-spache.txt",
+    Debug.GetScriptFolderPath().."Words/word-lists/revised-spache.txt")
 
 -- Expand the proper nouns to possessive forms
 -- (personal base is used by an upcoming test as well,
@@ -116,17 +116,17 @@ Application.PhraseListToWordList(
 
 Application.CrossReferenceWordLists(
     Debug.GetScriptFolderPath().."Words/wordy-phrases/single-word-replacements-english.txt",
-    Debug.GetScriptFolderPath().."Words/WordLists/New Dale-Chall.txt",
+    Debug.GetScriptFolderPath().."Words/word-lists/new-dale-chall.txt",
     Debug.GetScriptFolderPath().."Words/wordy-phrases/dale-chall-replacements.txt")
 
 Application.CrossReferenceWordLists(
     Debug.GetScriptFolderPath().."Words/wordy-phrases/single-word-replacements-english.txt",
-    Debug.GetScriptFolderPath().."Words/WordLists/Harris-Jacobson.txt",
+    Debug.GetScriptFolderPath().."Words/word-lists/harris-jacobson.txt",
     Debug.GetScriptFolderPath().."Words/wordy-phrases/harris-jacobson-replacements.txt")
 
 Application.CrossReferenceWordLists(
     Debug.GetScriptFolderPath().."Words/wordy-phrases/single-word-replacements-english.txt",
-    Debug.GetScriptFolderPath().."Words/WordLists/Revised Spache.txt",
+    Debug.GetScriptFolderPath().."Words/word-lists/revised-spache.txt",
     Debug.GetScriptFolderPath().."Words/wordy-phrases/spache-replacements.txt")
 
 -- Merge everything into the English dictionary

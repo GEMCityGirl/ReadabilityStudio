@@ -23,11 +23,11 @@ stop-words/english.txt
 stop-words/german.txt
 stop-words/proper-nouns-stoplist.txt
 stop-words/spanish.txt
-WordLists/Dolch.txt
-WordLists/Harris-Jacobson.txt
-WordLists/New Dale-Chall.txt
-WordLists/Revised Spache.txt
-WordLists/Stocker Catholic Supplement.txt
+word-lists/dolch.txt
+word-lists/harris-jacobson.txt
+word-lists/new-dale-chall.txt
+word-lists/revised-spache.txt
+word-lists/stocker-catholic-supplement.txt
 wordy-phrases/dale-chall-replacements.txt
 wordy-phrases/english.txt
 wordy-phrases/german.txt

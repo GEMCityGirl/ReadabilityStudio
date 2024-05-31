@@ -1099,16 +1099,16 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     std::wstring pastParticipleExceptionsFileText =
         cat.ReadTextFile(_DT(L"past-participles/exceptions.txt"));
     // read in the DC words
-    std::wstring dcFileText = cat.ReadTextFile(_DT(L"WordLists/New Dale-Chall.txt"));
+    std::wstring dcFileText = cat.ReadTextFile(_DT(L"word-lists/new-dale-chall.txt"));
     // read in the DC Catholic supplementary words
     std::wstring stockerCatholicFileText =
-        cat.ReadTextFile(_DT(L"WordLists/Stocker Catholic Supplement.txt"));
+        cat.ReadTextFile(_DT(L"word-lists/stocker-catholic-supplement.txt"));
     // read in the Spache words
-    std::wstring spacheFileText = cat.ReadTextFile(_DT(L"WordLists/Revised Spache.txt"));
+    std::wstring spacheFileText = cat.ReadTextFile(_DT(L"word-lists/revised-spache.txt"));
     // Harris-Jacobson words
-    std::wstring harrisJacobsonFileText = cat.ReadTextFile(_DT(L"WordLists/Harris-Jacobson.txt"));
+    std::wstring harrisJacobsonFileText = cat.ReadTextFile(_DT(L"word-lists/harris-jacobson.txt"));
     // read in the Dolch words
-    std::wstring dolchFileText = cat.ReadTextFile(_DT(L"WordLists/Dolch.txt"));
+    std::wstring dolchFileText = cat.ReadTextFile(_DT(L"word-lists/dolch.txt"));
 
     BaseProject::english_wordy_phrases.load_phrases(englishWordyPhraseFileText.c_str(), false, false);
     BaseProject::spanish_wordy_phrases.load_phrases(spanishWordyPhraseFileText.c_str(), false,

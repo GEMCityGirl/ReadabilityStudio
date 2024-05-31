@@ -37,12 +37,12 @@ Please refer to the following file & folder breakdown for reference:
   - **german.txt**: common **German** words that should be excluded from most text mining operations (e.g., n-gram searching).
   - **proper-nouns-stoplist.txt**: common words that would never be proper. This is used to prevent uppercased words from being seen as proper when they really aren't. (This should include stop words from all languages.)
   - **spanish.txt**: common **Spanish** words that should be excluded from most text mining operations (e.g., n-gram searching).
-- **WordLists**:
-  - **Dolch.txt**: Dolch list of Sight Words.
-  - **Harris-Jacobson.txt**: Harris-Jacobson known words.
-  - **New Dale-Chall.txt**: New Dale-Chall known words.
-  - **Revised Spache.txt**: Revised Spache known words.
-  - **Stocker Catholic Supplement": Stocker's Catholic Supplement (used with Dale-Chall).
+- **word-lists**:
+  - **dolch.txt**: Dolch list of Sight Words.
+  - **harris-jacobson.txt**: Harris-Jacobson known words.
+  - **new-dale-chall.txt**: New Dale-Chall known words.
+  - **revised-spache.txt**: Revised Spache known words.
+  - **stocker-catholic-supplement.txt": Stocker's Catholic Supplement (used with Dale-Chall).
 - **wordy-phrases**:
   - **base-english.txt**: English phrases.
   - **base-german.txt**: German phrases.
