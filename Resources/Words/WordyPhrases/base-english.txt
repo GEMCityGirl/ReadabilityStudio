@@ -188,8 +188,6 @@ academies	schools	0
 academy	school	0		
 academy's	school's	0		
 acadmic	academic	3		
-AcaemicBlue	AcademicBlue	3		
-AcaemicBlues	AcademicBlues	3		
 acapella	a cappella	3		
 accademic	academic	3		
 accademy	academy	3		
@@ -736,9 +734,6 @@ alegiance	allegiance	3
 alegience	allegiance	3		
 alegorical	allegorical	3		
 alernatively	alternatively	3		
-Alexnder	Alexander	3		
-Alexnder's	Alexander's	3		
-Alexnders	Alexanders	3		
 algebraical	algebraic	3		
 algebric	algebraic	3		
 algorhitms	algorithms	3		
@@ -1236,9 +1231,6 @@ aplications	applications	3
 aplied	applied	3		
 aply	apply	3		
 apon	apron, upon	3		
-Appalachain	Appalachian	3		
-Appalachain's	Appalachian's	3		
-Appalachains	Appalachians	3		
 apparant	apparent	3		
 apparantly	apparently	3		
 apparence	appearance	3		
@@ -2277,9 +2269,6 @@ bellweather	bellwether	3
 bemusemnt	bemusement	3		
 benchmkar	benchmark	3		
 bend over backwards	do everything	2		
-Bendictine	Benedictine	3		
-Bendictine's	Benedictine's	3		
-Bendictines	Benedictines	3		
 bending over backwards	doing everything	2		
 bends over backwards	does everything	2		
 benediction	blessing	0		
@@ -2367,8 +2356,6 @@ biased opinion	bias, prejudice	0
 big cheese	the boss, important person	2		
 big honcho	the boss	2		
 big shot	self-important person	2		
-big-endean	big-endian	3		
-big-endeanness	big-endianness	3		
 bigger then	bigger than, (or a comma is needed)	3		
 bigining	beginning	3		
 biginning	beginning	3		
@@ -2441,7 +2428,6 @@ blew your own horn	boasted, bragged	2
 blew your stack	exploded in anger	2		
 blindsighted	blindsided	3		
 blindy	blindly	3		
-Blitzkreig's	Blitzkrieg's	3		
 block out	block	0		
 bloks	blocks	3		
 blood is thicker than water	family is more important/reliable than friends	2		
@@ -2479,8 +2465,6 @@ blows your own horn	boasts, brags	2
 blows your stack	explodes in anger	2		
 bltted	blitted	3		
 blue blood	aristocrat	2		
-Bluffotn	Bluffton	3		
-Bluffotn's	Bluffton's	3		
 bob wire	barbed wire	3		
 bobwire	barbed wire	3		
 bodydbuilder	bodybuilder	3		
@@ -2491,7 +2475,6 @@ bona fide	in good faith	0
 bonafied	bona fide	3		
 bondary	boundary	3		
 bone dry	very dry	2		
-Bonnano	Bonanno	3		
 bookeeping	bookkeeping	3		
 bookkeeing	bookkeeping	3		
 bookkeeiping	bookkeeping	3		
@@ -2628,8 +2611,6 @@ bsaed	based	3
 buccaneer	pirate	0		
 buccaneer's	pirate's	0		
 buccaneers	pirates	0		
-Buddah	Buddha	3		
-Buddist	Buddhist	3		
 bufferat	buffer at	3		
 bufffer	buffer	3		
 bufffers	buffers	3		
@@ -2871,17 +2852,11 @@ cariage	carriage	3
 carismatic	charismatic	3		
 carmel corn	caramel corn	3		
 carmelcorn	caramelcorn	3		
-Carnagie	Carnegie	3		
-Carnagie's	Carnegie's	3		
-Carnigie	Carnegie	3		
-Carnigie's	Carnegie's	3		
 carniverous	carnivorous	3		
 carnivorous	flesh-eating	0		
 carreer	career	3		
 carreer's	career's	3		
 carrers	careers	3		
-Carribbean	Caribbean	3		
-carribean	Caribbean	3		
 carribean's	Caribbean's	3		
 carried out	done	0		
 carrtoon	cartoon	3		
@@ -2971,12 +2946,6 @@ caterpilars	caterpillars	3
 caterpiller	caterpillar	3		
 caterpillers	caterpillars	3		
 catersian	cartesian	3		
-cathlic	catholic	3		
-Cathoilc	Catholic	3		
-Cathoilic	Catholic	3		
-Cathoilic's	Catholic's	3		
-Cathoilics	Catholics	3		
-Catholocism	Catholicism	3		
 catterpilar	caterpillar	3		
 catterpilars	caterpillars	3		
 catterpillar	caterpillar	3		
@@ -2995,8 +2964,6 @@ caveat	warning	0
 ccapacities	capacities	3		
 ccapacity	capacity	3		
 ccapacity's	capacity's	3		
-Ceasar	Caesar	3		
-Ceasar's	Caesar's	3		
 cease	stop	0		
 ceate	create	3		
 ceated	created	3		
@@ -3061,8 +3028,6 @@ challange	challenge	3
 challanged	challenged	3		
 challanges	challenges	3		
 challege	challenge	3		
-Champange	Champagne	3		
-Champange's	Champagne's	3		
 chance the	change the, chance that the	3	a	Rapper;Rapper's
 changable	changeable	3		
 change of heart	change one's opinion/position	2		
@@ -3122,8 +3087,6 @@ chewed the cud	pondered or thought over something	2
 chewing the cud	pondering or thinking over something	2		
 chews the cud	ponders or thinks over something	2		
 chicanery	trickery	0		
-Chigaco	Chicago	3		
-Chigaco's	Chicago's	3		
 child's play	easy task	2		
 childbird	childbirth	3		
 childen	children	3		
@@ -3142,8 +3105,6 @@ chivalrously	gallantly	0
 chlids	children	3		
 chnage	change	3		
 chnages	changes	3		
-Chocolately	Chocolatey	3		
-Chocolately's	Chocolatey's	3		
 choicing	choosing	3		
 choise	choice	3		
 chomp at the bit	champ at the bit	3		
@@ -3156,9 +3117,6 @@ chosing	choosing	3
 chould	could	3		
 chracter	character	3		
 chracters	characters	3		
-Chrismas	Christmas	3		
-Chrismas's	Christmas's	3		
-Chrismases	Christmases	3		
 chuch	church	3		
 chum the waters	pick a fight, stir up trouble	2		
 chummed the waters	picked a fight, stirred up trouble	2		
@@ -3172,8 +3130,6 @@ ciinicals	clinicals	3
 ciminstance	circumstance	3		
 ciminstance's	circumstance's	3		
 ciminstances	circumstances	3		
-Cincinatti	Cincinnati	3		
-Cincinnatti	Cincinnati	3		
 circuitous	roundabout	0		
 circulaton	circulation	3		
 circumsicion	circumcision	3		
@@ -3390,8 +3346,6 @@ comemoretion	commemoration	3
 coment	comment	3		
 comented	commented	3		
 comenting	commenting	3		
-Comentiy	Comenity	3		
-Comentiy's	Comenity's	3		
 coments	comments	3		
 comes as a disappointment	disappoints	0		
 comes as a relief	relieves	0		
@@ -3482,8 +3436,6 @@ commmenting	commenting	3
 commments	comments	3		
 commodious	roomy	0		
 commoditiy	commodity	3		
-Commodo	Comodo	3		
-Commodo's	Comodo's	3		
 commom	common	3		
 common bond	bond	0		
 common bonds	bonds	0		
@@ -3506,9 +3458,6 @@ communicate	tell	0
 communicaton	communication	3		
 communicaton's	communication's	3		
 communicatons	communications	3		
-communidad	comunidad	3		
-communidad's	comunidad's	3		
-communidads	comunidads	3		
 communites	communities	3		
 commutated	commuted	3		
 commutating	commuting	3		
@@ -3829,8 +3778,6 @@ connectiable	connectable	3
 connecting together	connecting	1		
 connectinos	connections	3		
 connects together	connects	1		
-Conneticut	Connecticut	3		
-Conneticut's	Connecticut's	3		
 connetion	connection	3		
 connetion's	connection's	3		
 connetions	connections	3		
@@ -4363,9 +4310,6 @@ critisism	criticism	3
 critisisms	criticisms	3		
 critized	criticized	3		
 critizing	criticizing	3		
-Croation	Croatian	3		
-Croation's	Croatian's	3		
-Croations	Croatians	3		
 crockodiles	crocodiles	3		
 crocodile tears	insincere sympathy	2		
 cross that bridge when we come to it	not worry about a situation until it happens	2		
@@ -4986,8 +4930,6 @@ dichotomies	groups, branches, divisions	0
 dichotomy	group, branch, division	0		
 dichotomy's	group's, branch's, division's	0		
 dichtomy	dichotomy	3		
-Dicken	Dickens	3		
-Dicken's	Dickens's	3		
 diconnects	disconnects	3		
 dicover	discover	3		
 dicovered	discovered	3		
@@ -5850,7 +5792,6 @@ end product	product	1
 end products	products	1		
 end result	result	1		
 end results	results	1		
-endeanness	endianness	3		
 endeavor	try, attempt	0		
 endeavored	tried, attempted	0		
 endeavoring	trying, attempting	0		
@@ -6610,7 +6551,6 @@ far and away	a large margin	2
 far away from	far from	0		
 far be it for me	far be it from me	3		
 far cry	long distance	2		
-Farenheit	Fahrenheit	3		
 farm manger	farm manager	3		
 farm mangers	farm managers	3		
 fasciation	fascination	3		
@@ -6637,8 +6577,6 @@ feaure's	feature's	3
 feaures	features	3		
 feauture	feature	3		
 feautures	features	3		
-Febuary	February	3		
-Feburary	February	3		
 Federal Bureau of Investigations	Federal Bureau of Investigation	3		
 fedreally	federally	3		
 feeback	feedback	3		
@@ -6762,14 +6700,12 @@ fisionable	fissionable	3
 fit as a fiddle	in good shape, healthy	2		
 fitler	filter	3		
 fitlers	filters	3		
-Fitzpatick	Fitzpatrick	3		
 flack	flak (it's a German word)	3		
 flamable	flammable	3		
 flash in the pan	temporary success	2		
 flashes in the pan	temporary successes	2		
 flattenning	flattening	3		
 flawess	flawless	3		
-Flemmish	Flemish	3		
 Flesch Kincaide	Flesch Kincaid	3		
 Flesch-Kincaide	Flesch-Kincaid	3		
 flesh and blood	relative	2		
@@ -6784,16 +6720,12 @@ flied the coop	escaped	2
 flies in the face of	challenges, defies, ignores, contradicts	0		
 flies in the ointment	obstacles	2		
 flies the coop	escapes	2		
-Flinstone	Flintstone	3		
-Flinstone's	Flintstone's	3		
-Flinstones	Flintstones	3		
 flip my lid	become upset	2		
 flip your lid	become upset	2		
 flips her lid	become upset	2		
 flips his lid	become upset	2		
 floor manger	floor manager	3		
 floor mangers	floor managers	3		
-Floqued	Floquet	3		
 florescent	fluorescent	3		
 floride	fluoride	3		
 floting	floating	3		
@@ -6957,8 +6889,6 @@ frameorks	frameworks	3
 framwork	framework	3		
 framwork's	framework's	3		
 framworks	frameworks	3		
-Fransiscan	Franciscan	3		
-Fransiscans	Franciscans	3		
 free and clear	free, clear	0		
 free as a bird	unrestrained, free	2		
 free gift	gift	1		
@@ -7071,9 +7001,7 @@ future developments	developments	0
 future plans	plans	1		
 future projections	projections	1		
 future prospects	prospects	1		
-Galapágos	Galápagos	3		
 galatic	galactic	3		
-Galations	Galatians	3		
 gallaxies	galaxies	3		
 galvinized	galvanized	3		
 gampad	gamepad	3		
@@ -7081,9 +7009,6 @@ gampad's	gamepad's	3
 gampads	gamepads	3		
 ganerate	generate	3		
 ganes	games, gains	3		
-Gannt	Gantt	3		
-Gannt's	Gantt's	3		
-Gannts	Gantts	3		
 ganster	gangster	3		
 ganster's	gangster's	3		
 gansters	gangsters	3		
@@ -7241,7 +7166,6 @@ getting your foot in the door	starting a business relationship	2
 ggraduate	graduate	3		
 ggraduate's	graduate's	3		
 ggraduates	graduates	3		
-Ghandi	Gandhi	3		
 gigantic	huge	0		
 give an indication of	show	0		
 give and take	compromise, concession, exchange, discussion	0		
@@ -7420,7 +7344,6 @@ guarentee	guarantee	3
 guarenteed	guaranteed	3		
 guarenteeing	guaranteeing	3		
 guarentees	guarantees	3		
-Guassian	Gaussian	3		
 guerrila	guerrilla	3		
 guerrilas	guerrillas	3		
 guidence	guidance	3		
@@ -7920,8 +7843,6 @@ identitifer's	identifier's	3
 identitifers	identifiers	3		
 identitiy	identify	3		
 ideosyncratic	idiosyncratic	3		
-Idianapolis	Indianapolis	3		
-Idianapolis's	Indianapolis's	3		
 idicate	indicate	3		
 idicated	indicated	3		
 idicates	indicates	3		
@@ -8769,8 +8690,6 @@ instatance	instance	3
 institue	institute	3		
 institution	office, company, school	0		
 institution of higher learning	college, university	0		
-Instragram	Instagram	3		
-Instragram's	Instagram's	3		
 instuction	instruction	3		
 instuition	institution	3		
 instuition's	institution's	3		
@@ -9135,7 +9054,6 @@ island completely surrounded by water	island	1
 island surrounded by water	island	1		
 isn't not	isn't	3		
 isnt	isn't	3		
-Israelies	Israelis	3		
 issueing	issuing	3		
 istead	instead	3		
 it could happen that	may, might, can, could	0		
@@ -9228,9 +9146,6 @@ it should be noted	note	0
 it this is	if this is	3		
 it would appear that	apparently	0		
 it's place	its place	3		
-Italium	Itanium, Italicum	3		
-Italium's	Itanium's, Italicum's	3		
-Italiums	Itaniums, Italicums	3		
 itialization	initialization	3		
 itialization's	initialization's	3		
 itializations	initializations	3		
@@ -9245,15 +9160,10 @@ itslef	itself	3
 ivory tower	out of touch with reality, unaware of other people's plight	2		
 iyou	you	3		
 janus-faced	deceitful, deal both ways, two-faced	2		
-Javitz	Javits	3		
 jeapardy	jeopardy	3		
-Jeruselum	Jerusalem	3		
-Jeruselum's	Jerusalem's	3		
 jewllery	jewelry	3		
 jocular	funny	0		
 jocund	happy, lighthearted	0		
-John Singer Sergeant	John Singer Sargent	3		
-John Singer Sergeant's	John Singer Sargent's	3		
 join together	join, combine	1		
 joined at the hip	always together	2		
 joined together	joined, combined	1		
@@ -9262,16 +9172,12 @@ joins together	joins, combines	1
 joint agreement	agreement	0		
 joint cooperation	cooperation	0		
 jorunal	journal	3		
-Jospeh	Joseph	3		
-Jospeh's	Joseph's	3		
 jounalism	journalism	3		
 jouney	journey	3		
 journied	journeyed	3		
 journies	journeys	3		
 jstu	just	3		
 jsut	just	3		
-Juadaism	Judaism	3		
-Juadism	Judaism	3		
 judical	judicial	3		
 judisuary	judiciary	3		
 juducial	judicial	3		
@@ -9283,8 +9189,6 @@ jumping in with both feet	committing whole heartedly	2
 jumping the gun	starting too early	2		
 jumps in with both feet	commits whole heartedly	2		
 jumps the gun	starts too early	2		
-Juptyer	Jupyter	3		
-Juptyer's	Jupyter's	3		
 juristiction	jurisdiction	3		
 juristictions	jurisdictions	3		
 jury is still out	not decided yet	2		
@@ -9354,16 +9258,8 @@ kill two birds with one stone	achieve two objectives with one effort	2
 killed two birds with one stone	achieved two objectives with one effort	2		
 killing two birds with one stone	achieving two objectives with one effort	2		
 kills two birds with one stone	achieves two objectives with one effort	2		
-Kindergarden	Kindergarten	3		
-Kindergarden's	Kindergarten's	3		
-kindergartner	kingergartener	3		
-kindergartner's	kingergartener's	3		
-kindergartners	kingergarteners	3		
 king's english	properly spoken/written English	2		
 king's ransom	large amount of money	2		
-kingergarten	kindergarten	3		
-kingergarten's	kindergarten's	3		
-kingergartens	kindergartens	3		
 kneed	knead, need	3		
 kneeded	kneaded, needed	3		
 kneeding	kneading, needing	3		
@@ -9607,8 +9503,6 @@ literture	literature	3
 litterally	literally	3		
 little by little	gradually	0		
 little iota	iota	0		
-little-endean	little-endian	3		
-little-endeanness	little-endianness	3		
 liturature	literature	3		
 liturature's	literature's	3		
 lituratures	literatures	3		
@@ -9829,7 +9723,6 @@ making up their minds	deciding	0
 making up your mind	deciding	0		
 making waves	causing problems, creating trouble	2		
 makse	makes	3		
-Malcom	Malcolm	3		
 malediction	curse	0		
 maledictions	curses	0		
 malevolence	spite, maliciousness	0		
@@ -9898,9 +9791,6 @@ marketting	marketing	3
 marmelade	marmalade	3		
 marrage	marriage	3		
 marraige	marriage	3		
-Marriot	Marriott	3		
-Marriot's	Marriott's	3		
-Marriots	Marriotts	3		
 marrtyred	martyred	3		
 marryied	married	3		
 marshmellow	marshmallow	3		
@@ -9909,9 +9799,6 @@ mash potatoes	mashed potatoes	3
 mashalling	marshalling	3		
 mass exodus	exodus	0		
 mass extinction	extinction	0		
-Massachusett	Massachusetts	3		
-Massachussets	Massachusetts	3		
-Massachussetts	Massachusetts	3		
 massive	large	0		
 masterbate	masturbate	3		
 masterbated	masturbated	3		
@@ -10055,15 +9942,7 @@ micoscopy	microscopy	3
 microcontroler	microcontroller	3		
 microcontroler's	microcontroller's	3		
 microcontrolers	microcontrollers	3		
-Microosoft	Microsoft	3		
-Microosoft's	Microsoft's	3		
 microprocesspr	microprocessor	3		
-Microsfot	Microsoft	3		
-Microsfot's	Microsoft's	3		
-Microsft	Microsoft	3		
-Microsft's	Microsoft's	3		
-Microsot	Microsoft	3		
-Microsot's	Microsoft's	3		
 mideval	medieval	3		
 midway between	between	1		
 midwifes	midwives	3		
@@ -10073,9 +9952,6 @@ might possibly	might	1
 mightn't not	mightn't	3		
 migraine headache	migraine	0		
 migraine headaches	migraines	0		
-miiniport	miniport	3		
-miiniport's	miniport's	3		
-miiniports	miniports	3		
 mileau	milieu	3		
 milennia	millennia	3		
 milennium	millennium	3		
@@ -10189,8 +10065,6 @@ missconfigure	misconfigure	3
 missconfigured	misconfigured	3		
 missconfigures	misconfigures	3		
 missconfiguring	misconfiguring	3		
-Missisipi	Mississippi	3		
-Missisippi	Mississippi	3		
 missle	missile	3		
 missmatch	mismatch	3		
 missmatched	mismatched	3		
@@ -10284,7 +10158,6 @@ montain	mountain	3
 montain's	mountain's	3		
 montains	mountains	3		
 montanous	mountainous	3		
-Montesorri	Montessori	3		
 monthy	monthly	3		
 monts	months	3		
 mordant	biting, sarcastic	0		
@@ -10296,11 +10169,6 @@ more than surpassed	surpassed	0
 more then	more than, (or a comma is needed)	3		
 morever	moreover	3		
 morgage	mortgage	3		
-Morisette	Morissette	3		
-Morrisette	Morissette	3		
-Morroccan	Moroccan	3		
-Morrocco	Morocco	3		
-Morroco	Morocco	3		
 mortage	mortgage	3		
 mosiac	mosaic	3		
 mosiac's	mosaic's	3		
@@ -10429,8 +10297,6 @@ navagating	navigating	3
 navgation	navigation	3		
 navgation's	navigation's	3		
 navgations	navigations	3		
-Nazereth	Nazareth	3		
-Nazereth's	Nazareth's	3		
 nebulous	hazy, vague	0		
 nebulously	vaguely	0		
 neccesarily	necessarily	3		
@@ -11350,9 +11216,6 @@ pasttime	pastime	3
 pasttime's	pastime's	3		
 pasttimes	pastimes	3		
 pastural	pastoral	3		
-pathenol	panthenol	3		
-pathenol's	panthenol's	3		
-pathenols	panthenols	3		
 pathes	paths	3		
 paticular	particular	3		
 patner	partner	3		
@@ -11482,8 +11345,6 @@ penny for your thoughts	what are you thinking about?	2
 penny pincher	cheap person	2		
 penny pinchers	cheap people	2		
 penny wise and pound foolish	overly careful about minor details and careless about important ones	2		
-Pennyslvania	Pennsylvania	3		
-Pennyslvania's	Pennsylvania's	3		
 pensinula	peninsula	3		
 pensle	pencil	3		
 pensle's	pencil's	3		
@@ -11494,8 +11355,6 @@ penuriously	stingily	0
 peom	poem	3		
 peoms	poems	3		
 peopel	people	3		
-PeopleSfoft	PeopleSoft	3		
-PeopleSfoft's	PeopleSoft's	3		
 peotry	poetry	3		
 peprocessor	preprocessor	3		
 per annum	a year, yearly, for each year	0		
@@ -11637,9 +11496,6 @@ petulance	irritable, ill-tempered	0
 phantom	ghost	0		
 phantom's	ghost's	0		
 phantoms	ghosts	0		
-Pharoah	Pharaoh	3		
-Pharoah's	Pharaoh's	3		
-Pharoahs	Pharaohs	3		
 phenomenom	phenomenon	3		
 phenomenonal	phenomenal	3		
 phenomenonly	phenomenally	3		
@@ -11656,7 +11512,6 @@ philosphies	philosophies	3
 philosphy	philosophy	3		
 phlegmatic	sluggish	0		
 phlegmatically	sluggishly	0		
-Phoenecian	Phoenician	3		
 phone it in	perform with little enthusiasm	2		
 phoned it in	performed with little enthusiasm	2		
 phones it in	performs with little enthusiasm	2		
@@ -11703,8 +11558,6 @@ PIN number	PIN	1
 PIN numbers	PINs	1		
 pinnacle	peak	0		
 pinoneered	pioneered	3		
-Pintrest	Pinterest	3		
-Pintrest's	Pinterest's	3		
 pipe down	be quiet	2		
 piped down	was quiet	2		
 pipes down	is quiet	2		
@@ -11944,7 +11797,6 @@ possibly could	could	1
 possibly may	may	0		
 possibly might	might	0		
 possition	position	3		
-Postdam	Potsdam	3		
 posterior	rear	0		
 posterior to	after	0		
 posthomous	posthumous	3		
@@ -13611,9 +13463,6 @@ Rockfellers	Rockefellers	3
 rocking the boat	disturbing the equilibrium	2		
 rocks the boat	disturbs the equilibrium	2		
 rococco	rococo	3		
-Rodirguez	Rodriguez	3		
-Rodirguez's	Rodriguez's	3		
-Rodirguezes	Rodriguezes	3		
 role call	roll call	3		
 role calls	roll calls	3		
 roll with the punches	adjust to adversity	2		
@@ -13677,7 +13526,6 @@ runs circles around	vastly outperforms	2
 runtim	runtime	3		
 runtim's	runtime's	3		
 runtims	runtimes	3		
-Russion	Russian	3		
 rustic country	rustic	1		
 rypedef	typedef	3		
 rythem	rhythm	3		
@@ -13824,9 +13672,6 @@ searchs	searches	3
 seasoned veteran	veteran	0		
 seasoned veterans	veterans	0		
 sebaceous	fatty, greasy	0		
-Sebastain	Sebastian	3		
-Sebastain's	Sebastian's	3		
-Sebastains	Sebastians	3		
 sechedule	schedule	3		
 secheduled	scheduled	3		
 sechedules	schedules	3		
@@ -14902,8 +14747,6 @@ swaping	swapping	3
 sweat the details	worry about the details	2		
 sweating the details	worrying about the details	2		
 sweats the details	worries about the details	2		
-Sweeden	Sweden	3		
-Sweeden's	Sweden's	3		
 sweet in taste	sweet	1		
 sweeten the pot	add to the deal, increase the compensation	2		
 sweetened the pot	added to the deal, increased the compensation	2		
@@ -16072,7 +15915,6 @@ usual custom	custom	1
 usually	often	0		
 usualy	usually	3		
 ususally	usually	3		
-Utahns	Utahans	3		
 utalize	utilize	3		
 utililties	utilities	3		
 utililty	utility	3		
@@ -16282,8 +16124,6 @@ vides	videos	3
 vigilance	caution	0		
 vigilence	vigilance	3		
 vigourous	vigorous	3		
-Vileck	Vilcek	3		
-Vileck's	Vilcek's	3		
 viles	files, vile, vials	3		
 villian	villain	3		
 villification	vilification	3		
@@ -16416,9 +16256,6 @@ walk on eggshells	proceed cautiously	2
 walked on eggshells	proceeded cautiously	2		
 walking on eggshells	proceeding cautiously	2		
 walks on eggshells	proceeds cautiously	2		
-Wallce	Wallace	3		
-Wallce's	Wallace's	3		
-Wallces	Wallaces	3		
 wan't	want	3		
 warantee	warranty	3		
 wardobe	wardrobe	3		
@@ -16840,7 +16677,5 @@ zellot's	zealot's	3
 zellots	zealots	3		
 zero-sum gain	zero-sum game	3		
 zero-sum gains	zero-sum games	3		
-Zimperuim	Zimperium	3		
-Zimperuim's	Zimperium's	3		
 zylophone	xylophone	3		
 zylophones	xylophones	3		

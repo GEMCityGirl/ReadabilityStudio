@@ -44,6 +44,7 @@ Carnigie	Carnegie	3
 Carnigie's	Carnegie's	3		
 Carribbean	Caribbean	3		
 Carribean	Caribbean	3		
+Cathlic	Catholic	3		
 Cathoilic	Catholic	3		
 Cathoilic's	Catholic's	3		
 Cathoilics	Catholics	3		
@@ -66,9 +67,6 @@ Comentiy	Comenity	3
 Comentiy's	Comenity's	3		
 Commodo	Comodo	3		
 Commodo's	Comodo's	3		
-communidad	comunidad	3		
-communidad's	comunidad's	3		
-communidads	comunidads	3		
 Conneticut	Connecticut	3		
 Conneticut's	Connecticut's	3		
 Croation	Croatian	3		
@@ -87,13 +85,20 @@ Farenheit	Fahrenheit	3
 Febuary	February	3		
 Feburary	February	3		
 Fitzpatick	Fitzpatrick	3		
+Fitzpatick's	Fitzpatrick's	3		
+Fitzpaticks	Fitzpatricks	3		
 Flemmish	Flemish	3		
+Flesh Kincaid	Flesch Kincaid	3		
+Flesh Kincaide	Flesch Kincaid	3		
+Flesh Reading Ease	Flesch Reading Ease	3		
+Flesh-Kincaid	Flesch-Kincaid	3		
 Flinstone	Flintstone	3		
 Flinstone's	Flintstone's	3		
 Flinstones	Flintstones	3		
 Floqued	Floquet	3		
 Fransiscan	Franciscan	3		
 Fransiscans	Franciscans	3		
+Galapágos	Galápagos	3		
 Galations	Galatians	3		
 Gannt	Gantt	3		
 Gannt's	Gantt's	3		
@@ -137,6 +142,12 @@ Juptyer	Jupyter	3
 Juptyer's	Jupyter's	3		
 Kindergarden	Kindergarten	3		
 Kindergarden's	Kindergarten's	3		
+kindergartner	kingergartener	3		
+kindergartner's	kingergartener's	3		
+kindergartners	kingergarteners	3		
+kingergarten	kindergarten	3		
+kingergarten's	kindergarten's	3		
+kingergartens	kindergartens	3		
 little-endean	little-endian	3		
 little-endeanness	little-endianness	3		
 Lotharingen	Lothringen	3		
@@ -160,6 +171,9 @@ Microsft	Microsoft	3
 Microsft's	Microsoft's	3		
 Microsot	Microsoft	3		
 Microsot's	Microsoft's	3		
+miiniport	miniport	3		
+miiniport's	miniport's	3		
+miiniports	miniports	3		
 Misouri	Missouri	3		
 Missisipi	Mississippi	3		
 Missisippi	Mississippi	3		
@@ -212,6 +226,8 @@ Rodirguez	Rodriguez	3
 Rodirguez's	Rodriguez's	3		
 Rodirguezes	Rodriguezes	3		
 Russion	Russian	3		
+Russion's	Russian's	3		
+Russions	Russians	3		
 Sacremento	Sacramento	3		
 Seaars	Sears	3		
 Sebastain	Sebastian	3		
