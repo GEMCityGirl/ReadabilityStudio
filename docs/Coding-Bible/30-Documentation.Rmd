@@ -20,7 +20,7 @@ The documentation is stored in **bookdown** projects in the **ReadabilityStudioD
 
 To generate screenshots, do the following:
 
-- Run the script **docs/Generate Screenshots.lua** from *Readability Studio*
+- Run the script **docs/generate-screenshots.lua** from *Readability Studio*
 
 This will generate all new screenshots in the root **docs/ReadabilityStudioDocs/images**. The subdirectory **NonGenerated** will not be effected, but does not need to be.
 It should not contain images effected by the program's UI changes and should not contain images with content that should be localized.

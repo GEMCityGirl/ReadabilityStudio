@@ -117,6 +117,6 @@ This is necessary to re-sort the files and also re-build other words lists (e.g.
 If the documentation screenshots need updating, then:
 
 - Build the program as usual
-- Open up *Readability Studio* and open the file "ReadabilityStudio/docs/Generate Screenshots.lua" in the Lua editor and run it
+- Open up *Readability Studio* and open the file "ReadabilityStudio/docs/generate-screenshots.lua" in the Lua editor and run it
 - Open "ReadabilityStudio/docs/BuildHelpProjects.R" and source the entire script
 - Rebuild the program (this will re-package the documentation)
