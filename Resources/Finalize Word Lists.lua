@@ -17,16 +17,16 @@ Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words/PastParticiples/Exceptions.txt")
 
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/BaseEnglishDictionary.txt",
-    Debug.GetScriptFolderPath().."Words/BaseEnglishDictionary.txt")
+    Debug.GetScriptFolderPath().."Words/base-english-dictionary.txt",
+    Debug.GetScriptFolderPath().."Words/base-english-dictionary.txt")
 
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/PersonalBase.txt",
-    Debug.GetScriptFolderPath().."Words/PersonalBase.txt")
+    Debug.GetScriptFolderPath().."Words/base-personal.txt",
+    Debug.GetScriptFolderPath().."Words/base-personal.txt")
 
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/NonPersonalBase.txt",
-    Debug.GetScriptFolderPath().."Words/NonPersonalBase.txt")
+    Debug.GetScriptFolderPath().."Words/base-non-personal.txt",
+    Debug.GetScriptFolderPath().."Words/base-non-personal.txt")
 
 Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words/ProperNouns/Personal.txt",
@@ -68,11 +68,11 @@ Application.MergeWordLists(
 -- (personal base is used by an upcoming test as well,
 --  so it gets added to the resources as a new file also.)
 Application.ExpandWordList(
-    Debug.GetScriptFolderPath().."Words/PersonalBase.txt",
+    Debug.GetScriptFolderPath().."Words/base-personal.txt",
     Debug.GetScriptFolderPath().."Words/ProperNouns/Personal.txt", "s", "'s")
 
 Application.ExpandWordList(
-    Debug.GetScriptFolderPath().."Words/NonPersonalBase.txt",
+    Debug.GetScriptFolderPath().."Words/base-non-personal.txt",
     Debug.GetScriptFolderPath().."NonPersonalTEMP.txt", "s", "'s")
 
 Application.MergeWordLists(
@@ -122,7 +122,7 @@ Application.CrossReferenceWordLists(
 -- Merge everything into the English dictionary
 Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words/Dictionaries/English.txt",
-    Debug.GetScriptFolderPath().."Words/BaseEnglishDictionary.txt",
+    Debug.GetScriptFolderPath().."Words/base-english-dictionary.txt",
     Debug.GetScriptFolderPath().."Words/Abbreviations/List.txt",
     Debug.GetScriptFolderPath().."Words/ProperNouns/All.txt")
 
