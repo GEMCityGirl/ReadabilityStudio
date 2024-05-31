@@ -4,7 +4,7 @@
 #include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
 #include "../app/readability_app.h"
 #include "../indexing/character_traits.h"
-#include "../results_format/project_report_format.h"
+#include "../results-format/project_report_format.h"
 #include "../ui/dialogs/project_wizard_dlg.h"
 #include "batch_project_view.h"
 #include <limits>

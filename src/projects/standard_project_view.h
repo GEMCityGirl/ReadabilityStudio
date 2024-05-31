@@ -3,7 +3,7 @@
 
 #include "../Wisteria-Dataviz/src/math/statistics.h"
 #include "../graphs/frygraph.h"
-#include "../results_format/readability_messages.h"
+#include "../results-format/readability_messages.h"
 #include "../ui/dialogs/edit_text_dlg.h"
 #include "base_project_view.h"
 #include <map>

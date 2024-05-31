@@ -8,10 +8,10 @@
 
 #include "standard_project_doc.h"
 #include "standard_project_view.h"
-#include "../results_format/project_report_format.h"
-#include "../ui/dialogs/project_wizard_dlg.h"
-#include "../results_format/word_collectiont_text_formatting.h"
+#include "../results-format/project_report_format.h"
+#include "../results-format/word_collectiont_text_formatting.h"
 #include "../readability/readability.h"
+#include "../ui/dialogs/project_wizard_dlg.h"
 #include "../Wisteria-Dataviz/src/import/rtf_encode.h"
 #include "../Wisteria-Dataviz/src/import/html_encode.h"
 #include "../Wisteria-Dataviz/src/graphs/heatmap.h"

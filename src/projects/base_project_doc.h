@@ -5,7 +5,7 @@
 #include "../graphs/frygraph.h"
 #include "../graphs/raygorgraph.h"
 #include "../graphs/schwartzgraph.h"
-#include "../results_format/readability_messages.h"
+#include "../results-format/readability_messages.h"
 #include "../ui/controls/explanation_listctrl.h"
 #include "base_project.h"
 

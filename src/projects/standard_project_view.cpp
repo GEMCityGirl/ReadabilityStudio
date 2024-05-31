@@ -5,7 +5,7 @@
 #include "../ui/dialogs/tools_options_dlg.h"
 #include "../ui/dialogs/filtered_text_preview_dlg.h"
 #include "../ui/dialogs/filtered_text_export_options_dlg.h"
-#include "../results_format/project_report_format.h"
+#include "../results-format/project_report_format.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/radioboxdlg.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/gridexportdlg.h"
 #include "../Wisteria-Dataviz/src/graphs/heatmap.h"

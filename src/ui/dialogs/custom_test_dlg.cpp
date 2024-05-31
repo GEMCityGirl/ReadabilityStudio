@@ -12,8 +12,8 @@
 #include "../../projects/base_project.h"
 #include "../../projects/base_project_doc.h"
 #include "../../projects/base_project_view.h"
-#include "../../results_format/project_report_format.h"
-#include "../../test_helpers/readability_formula_parser.h"
+#include "../../results-format/project_report_format.h"
+#include "../../test-helpers/readability_formula_parser.h"
 #include "../controls/word_list_property.h"
 #include "edit_word_list_dlg.h"
 #include <wx/richmsgdlg.h>

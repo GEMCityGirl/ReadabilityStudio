@@ -4,7 +4,7 @@
 #include "../Wisteria-Dataviz/src/import/html_extract_text.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/radioboxdlg.h"
 #include "../app/readability_app.h"
-#include "../results_format/project_report_format.h"
+#include "../results-format/project_report_format.h"
 #include "../ui/dialogs/edit_text_dlg.h"
 #include "../ui/dialogs/export_all_dlg.h"
 #include "../ui/dialogs/filtered_text_export_options_dlg.h"

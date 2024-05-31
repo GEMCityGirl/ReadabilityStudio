@@ -12,7 +12,7 @@
 
 #include "../Wisteria-Dataviz/src/base/colorbrewer.h"
 #include "../Wisteria-Dataviz/src/graphs/groupgraph2d.h"
-#include "../results_format/readability_messages.h"
+#include "../results-format/readability_messages.h"
 #include "scorepoint.h"
 #include <array>
 

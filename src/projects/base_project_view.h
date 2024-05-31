@@ -11,7 +11,7 @@
 #include "../Wisteria-Dataviz/src/util/parentblocker.h"
 #include "../Wisteria-Dataviz/src/util/warningmanager.h"
 #include "../Wisteria-Dataviz/src/util/windowcontainer.h"
-#include "../results_format/readability_messages.h"
+#include "../results-format/readability_messages.h"
 #include "../ui/controls/explanation_listctrl.h"
 #include "project_frame.h"
 

@@ -14,7 +14,7 @@
 #include "../readability/readability.h"
 #include "../readability/readability_project_test.h"
 #include "../readability/readability_test.h"
-#include "../results_format/readability_messages.h"
+#include "../results-format/readability_messages.h"
 #include "../tinyxml2/tinyxml2.h"
 #include "optionenums.h"
 #include <wx/colourdata.h>
