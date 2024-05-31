@@ -4,7 +4,7 @@
 SET(APP_SRC_FILES
     src/app/readability_app.cpp
     src/app/readability_app_options.cpp
-    src/document_helpers/chapter_split.cpp
+    src/document-helpers/chapter_split.cpp
     src/graphs/frasegraph.cpp
     src/graphs/frygraph.cpp
     src/graphs/raygorgraph.cpp
@@ -20,12 +20,12 @@ SET(APP_SRC_FILES
     src/indexing/romanize.cpp
     src/indexing/stop_lists.cpp
     src/indexing/syllable.cpp
-    src/lua_scripting/lua_application.cpp
-    src/lua_scripting/lua_debug.cpp
-    src/lua_scripting/lua_interface.cpp
-    src/lua_scripting/lua_projects.cpp
-    src/lua_scripting/lua_screenshot.cpp
-    src/lua_scripting/onelua_no_warnings.c
+    src/lua-scripting/lua_application.cpp
+    src/lua-scripting/lua_debug.cpp
+    src/lua-scripting/lua_interface.cpp
+    src/lua-scripting/lua_projects.cpp
+    src/lua-scripting/lua_screenshot.cpp
+    src/lua-scripting/onelua_no_warnings.c
     src/projects/base_project.cpp
     src/projects/base_project_doc.cpp
     src/projects/base_project_view.cpp
@@ -34,9 +34,9 @@ SET(APP_SRC_FILES
     src/projects/project_frame.cpp
     src/projects/standard_project_doc.cpp
     src/projects/standard_project_view.cpp
-    src/results_format/project_report_format.cpp
-    src/results_format/readability_messages.cpp
-    src/test_helpers/readability_formula_parser.cpp
+    src/results-format/project_report_format.cpp
+    src/results-format/readability_messages.cpp
+    src/test-helpers/readability_formula_parser.cpp
     src/tinyexpr-plusplus/tinyexpr.cpp
     src/tinyxml2/tinyxml2.cpp
     src/ui/controls/explanation_listctrl.cpp

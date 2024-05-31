@@ -40,7 +40,7 @@
 #include "../indexing/german_syllabize.h"
 #include "../graphs/frasegraph.h"
 #include "../graphs/schwartzgraph.h"
-#include "../results_format/readability_messages.h"
+#include "../results-format/readability_messages.h"
 #include "../webharvester/filepathresolver.h"
 #include "../webharvester/webharvester.h"
 #include "../Wisteria-Dataviz/src/data/dataset.h"
@@ -71,9 +71,9 @@
 #include "../Wisteria-Dataviz/src/graphs/crawfordgraph.h"
 #include "../Wisteria-Dataviz/src/graphs/fleschchart.h"
 #include "../app/readability_app_options.h"
-#include "../test_helpers/tests_functional.h"
-#include "../test_helpers/test_bundle.h"
-#include "../test_helpers/readability_formula_parser.h"
+#include "../test-helpers/tests_functional.h"
+#include "../test-helpers/test_bundle.h"
+#include "../test-helpers/readability_formula_parser.h"
 #include "project_refresh.h"
 
 /** Using a set would be ideal so that we would be forced only have unique custom tests in here
