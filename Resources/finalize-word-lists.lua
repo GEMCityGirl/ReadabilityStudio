@@ -142,40 +142,40 @@ Application.MergeWordLists(
 
 -- Programming dictionaries (this is separate and optionally included)
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/Programming/Assembly.txt",
-    Debug.GetScriptFolderPath().."Words/Programming/Assembly.txt")
+    Debug.GetScriptFolderPath().."Words/Programming/assembly.txt",
+    debug.getscriptfolderpath().."words/programming/assembly.txt")
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/Programming/CPP.txt",
-    Debug.GetScriptFolderPath().."Words/Programming/CPP.txt")
+    Debug.GetScriptFolderPath().."Words/Programming/cpp.txt",
+    Debug.GetScriptFolderPath().."Words/Programming/cpp.txt")
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/Programming/CSharp.txt",
-    Debug.GetScriptFolderPath().."Words/Programming/CSharp.txt")
+    Debug.GetScriptFolderPath().."Words/Programming/csharp.txt",
+    Debug.GetScriptFolderPath().."Words/Programming/csharp.txt")
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/Programming/HTML.txt",
-    Debug.GetScriptFolderPath().."Words/Programming/HTML.txt")
+    Debug.GetScriptFolderPath().."Words/Programming/html.txt",
+    Debug.GetScriptFolderPath().."Words/Programming/html.txt")
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/Programming/Java.txt",
-    Debug.GetScriptFolderPath().."Words/Programming/Java.txt")
+    Debug.GetScriptFolderPath().."Words/Programming/java.txt",
+    Debug.GetScriptFolderPath().."Words/Programming/java.txt")
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/Programming/Python.txt",
-    Debug.GetScriptFolderPath().."Words/Programming/Python.txt")
+    Debug.GetScriptFolderPath().."Words/Programming/python.txt",
+    Debug.GetScriptFolderPath().."Words/Programming/python.txt")
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/Programming/VisualBasic.txt",
-    Debug.GetScriptFolderPath().."Words/Programming/VisualBasic.txt")
+    Debug.GetScriptFolderPath().."Words/Programming/visual-basic.txt",
+    Debug.GetScriptFolderPath().."Words/Programming/visual-basic.txt")
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/Programming/R.txt",
-    Debug.GetScriptFolderPath().."Words/Programming/R.txt")
+    Debug.GetScriptFolderPath().."Words/Programming/r.txt",
+    Debug.GetScriptFolderPath().."Words/Programming/r.txt")
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/Programming/SQL.txt",
-    Debug.GetScriptFolderPath().."Words/Programming/SQL.txt")
+    Debug.GetScriptFolderPath().."Words/Programming/sql.txt",
+    Debug.GetScriptFolderPath().."Words/Programming/sql.txt")
 Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words/Programming/all-languages.txt",
-    Debug.GetScriptFolderPath().."Words/Programming/Assembly.txt",
-    Debug.GetScriptFolderPath().."Words/Programming/CPP.txt",
-    Debug.GetScriptFolderPath().."Words/Programming/CSharp.txt",
-    Debug.GetScriptFolderPath().."Words/Programming/HTML.txt",
-    Debug.GetScriptFolderPath().."Words/Programming/Java.txt",
-    Debug.GetScriptFolderPath().."Words/Programming/Python.txt",
-    Debug.GetScriptFolderPath().."Words/Programming/VisualBasic.txt",
-    Debug.GetScriptFolderPath().."Words/Programming/SQL.txt",
-    Debug.GetScriptFolderPath().."Words/Programming/R.txt")
+    Debug.GetScriptFolderPath().."Words/Programming/assembly.txt",
+    Debug.GetScriptFolderPath().."Words/Programming/cpp.txt",
+    Debug.GetScriptFolderPath().."Words/Programming/csharp.txt",
+    Debug.GetScriptFolderPath().."Words/Programming/html.txt",
+    Debug.GetScriptFolderPath().."Words/Programming/java.txt",
+    Debug.GetScriptFolderPath().."Words/Programming/python.txt",
+    Debug.GetScriptFolderPath().."Words/Programming/visual-basic.txt",
+    Debug.GetScriptFolderPath().."Words/Programming/sql.txt",
+    Debug.GetScriptFolderPath().."Words/Programming/r.txt")
