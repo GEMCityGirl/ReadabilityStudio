@@ -1071,7 +1071,7 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     std::wstring DifficultWordReplacementFileText =
         cat.ReadTextFile(L"wordy-phrases/single-word-replacements-english.txt");
     // proper noun stop word list
-    std::wstring properNounStopList = cat.ReadTextFile(L"StopWords/proper-nouns-stoplist.txt");
+    std::wstring properNounStopList = cat.ReadTextFile(L"stop-words/proper-nouns-stoplist.txt");
     // copyright notices
     std::wstring copyRightNoticePhraseFileText = cat.ReadTextFile(L"copyright-notices/notices.txt");
     // citation headers
@@ -1080,9 +1080,9 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     std::wstring properNounsFileText = cat.ReadTextFile(L"ProperNouns/All.txt");
     std::wstring personalNounsFileText = cat.ReadTextFile(L"ProperNouns/Personal.txt");
     // stop lists
-    std::wstring EnglishStopList = cat.ReadTextFile(L"StopWords/english.txt");
-    std::wstring SpanishStopList = cat.ReadTextFile(L"StopWords/spanish.txt");
-    std::wstring GermanStopList = cat.ReadTextFile(L"StopWords/german.txt");
+    std::wstring EnglishStopList = cat.ReadTextFile(L"stop-words/english.txt");
+    std::wstring SpanishStopList = cat.ReadTextFile(L"stop-words/spanish.txt");
+    std::wstring GermanStopList = cat.ReadTextFile(L"stop-words/german.txt");
     // known spellings
     std::wstring EnglishSpellingsFileText = cat.ReadTextFile(L"Dictionaries/english.txt");
     std::wstring SpanishspellingsFileText = cat.ReadTextFile(L"Dictionaries/spanish.txt");

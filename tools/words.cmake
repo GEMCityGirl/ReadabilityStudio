@@ -19,10 +19,10 @@ Programming/R.txt
 Programming/VisualBasic.txt
 ProperNouns/All.txt
 ProperNouns/Personal.txt
-StopWords/english.txt
-StopWords/german.txt
-StopWords/proper-nouns-stoplist.txt
-StopWords/spanish.txt
+stop-words/english.txt
+stop-words/german.txt
+stop-words/proper-nouns-stoplist.txt
+stop-words/spanish.txt
 WordLists/Dolch.txt
 WordLists/Harris-Jacobson.txt
 WordLists/New Dale-Chall.txt

@@ -2,14 +2,14 @@ dofile(Application.GetLuaConstantsPath())
 
 -- Sort the stop lists
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/StopWords/english.txt",
-    Debug.GetScriptFolderPath().."Words/StopWords/english.txt")
+    Debug.GetScriptFolderPath().."Words/stop-words/english.txt",
+    Debug.GetScriptFolderPath().."Words/stop-words/english.txt")
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/StopWords/spanish.txt",
-    Debug.GetScriptFolderPath().."Words/StopWords/spanish.txt")
+    Debug.GetScriptFolderPath().."Words/stop-words/spanish.txt",
+    Debug.GetScriptFolderPath().."Words/stop-words/spanish.txt")
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/StopWords/german.txt",
-    Debug.GetScriptFolderPath().."Words/StopWords/german.txt")
+    Debug.GetScriptFolderPath().."Words/stop-words/german.txt",
+    Debug.GetScriptFolderPath().."Words/stop-words/german.txt")
 
 -- Sort the word lists
 Application.MergeWordLists(
@@ -33,8 +33,8 @@ Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words/ProperNouns/Personal.txt")
 
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/StopWords/proper-nouns-stoplist.txt",
-    Debug.GetScriptFolderPath().."Words/StopWords/proper-nouns-stoplist.txt")
+    Debug.GetScriptFolderPath().."Words/stop-words/proper-nouns-stoplist.txt",
+    Debug.GetScriptFolderPath().."Words/stop-words/proper-nouns-stoplist.txt")
 
 Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words/Abbreviations/abbreviations.txt",
