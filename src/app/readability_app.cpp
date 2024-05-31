@@ -1071,7 +1071,7 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     std::wstring DifficultWordReplacementFileText =
         cat.ReadTextFile(L"wordy-phrases/single-word-replacements-english.txt");
     // proper noun stop word list
-    std::wstring properNounStopList = cat.ReadTextFile(L"StopWords/ProperNounsStopList.txt");
+    std::wstring properNounStopList = cat.ReadTextFile(L"StopWords/proper-nouns-stoplist.txt");
     // copyright notices
     std::wstring copyRightNoticePhraseFileText = cat.ReadTextFile(L"copyright-notices/notices.txt");
     // citation headers

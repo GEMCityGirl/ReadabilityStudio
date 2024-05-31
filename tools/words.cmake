@@ -20,8 +20,8 @@ Programming/VisualBasic.txt
 ProperNouns/All.txt
 ProperNouns/Personal.txt
 StopWords/English.txt
-StopWords/German.txt
-StopWords/ProperNounsStopList.txt
+StopWords/german.txt
+StopWords/proper-nouns-stoplist.txt
 StopWords/Spanish.txt
 WordLists/Dolch.txt
 WordLists/Harris-Jacobson.txt

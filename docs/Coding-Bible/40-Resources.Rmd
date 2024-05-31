@@ -33,8 +33,8 @@ Please refer to the following file & folder breakdown for reference:
 - **ProperNouns**: all files in this folder are generated, **do not edit anything in here**.
 - **StopWords**:
   - **English.txt**: common **English** words that should be excluded from most text mining operations (e.g., n-gram searching).
-  - **German.txt**: common **German** words that should be excluded from most text mining operations (e.g., n-gram searching).
-  - **ProperNounsStopList.txt**: common words that would never be proper. This is used to prevent uppercased words from being seen as proper when they really aren't. (This should include stop words from all languages.)
+  - **german.txt**: common **German** words that should be excluded from most text mining operations (e.g., n-gram searching).
+  - **proper-nouns-stoplist.txt**: common words that would never be proper. This is used to prevent uppercased words from being seen as proper when they really aren't. (This should include stop words from all languages.)
   - **Spanish.txt**: common **Spanish** words that should be excluded from most text mining operations (e.g., n-gram searching).
 - **WordLists**:
   - **Dolch.txt**: Dolch list of Sight Words.

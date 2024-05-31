@@ -8,8 +8,8 @@ Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words/StopWords/Spanish.txt",
     Debug.GetScriptFolderPath().."Words/StopWords/Spanish.txt")
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/StopWords/German.txt",
-    Debug.GetScriptFolderPath().."Words/StopWords/German.txt")
+    Debug.GetScriptFolderPath().."Words/StopWords/german.txt",
+    Debug.GetScriptFolderPath().."Words/StopWords/german.txt")
 
 -- Sort the word lists
 Application.MergeWordLists(
@@ -33,8 +33,8 @@ Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words/ProperNouns/Personal.txt")
 
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/StopWords/ProperNounsStopList.txt",
-    Debug.GetScriptFolderPath().."Words/StopWords/ProperNounsStopList.txt")
+    Debug.GetScriptFolderPath().."Words/StopWords/proper-nouns-stoplist.txt",
+    Debug.GetScriptFolderPath().."Words/StopWords/proper-nouns-stoplist.txt")
 
 Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words/Abbreviations/abbreviations.txt",
