@@ -48,7 +48,7 @@ namespace LuaScripting
             DebugPrint(wxString::Format(_(L"%sError%s: call to %s returned empty because "
                                           "the script has not been saved yet."),
                                         L"<span style='color:red; font-weight:bold;'>", L"</span>",
-                                        __WXFUNCTION__));
+                                        __func__));
             lua_pushstring(L, "");
             return 1;
             }
@@ -60,7 +60,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int Print(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }

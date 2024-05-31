@@ -68,7 +68,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int ConvertImage(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 3, __func__))
             {
             return 0;
             }
@@ -82,7 +82,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SnapScreenshot(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -134,7 +134,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SnapScreenshotWithAnnotation(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 3, __func__))
             {
             return 0;
             }
@@ -174,7 +174,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SnapScreenshotOfActiveProject(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -256,7 +256,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SnapScreenshotOfTextWindow(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -285,7 +285,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SnapScreenshotOfRibbon(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -336,7 +336,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SnapScreenshotOfListControl(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -382,7 +382,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SnapScreenshotOfDialogWithPropertyGrid(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -421,7 +421,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int HighlightScreenshot(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -506,7 +506,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int ShowEditWordListDlg(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -651,7 +651,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int ShowStandardProjectWizardTextFromFilePage(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -675,7 +675,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetStandardProjectWizardTextFromFilePath(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1288,7 +1288,7 @@ namespace LuaScripting
         if (lua_gettop(L) < 5)
             {
             wxMessageBox(
-                wxString::Format(_(L"%s: Invalid number of arguments."), wxString(__WXFUNCTION__)),
+                wxString::Format(_(L"%s: Invalid number of arguments."), wxString(__func__)),
                 _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;
@@ -1313,7 +1313,7 @@ namespace LuaScripting
         if (lua_gettop(L) < 7)
             {
             wxMessageBox(
-                wxString::Format(_(L"%s: Invalid number of arguments."), wxString(__WXFUNCTION__)),
+                wxString::Format(_(L"%s: Invalid number of arguments."), wxString(__func__)),
                 _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;
@@ -1365,7 +1365,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int OpenOptions(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }

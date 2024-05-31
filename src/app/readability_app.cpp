@@ -1471,7 +1471,7 @@ void ReadabilityApp::LoadInterface()
 //-----------------------------------
 int ReadabilityApp::OnExit()
     {
-    wxLogDebug(__WXFUNCTION__);
+    wxLogDebug(__func__);
     m_webHarvester.CancelPending();
     GetAppOptions().SaveOptionsFile();
 

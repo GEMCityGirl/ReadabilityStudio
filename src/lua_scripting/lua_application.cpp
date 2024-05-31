@@ -237,7 +237,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int GetTestId(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -267,7 +267,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int MsgBox(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -291,7 +291,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int DownloadFile(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 2, __func__))
             {
             return 0;
             }
@@ -310,7 +310,7 @@ namespace LuaScripting
     int FindFiles(lua_State* L)
         {
         // should be passed a folder to search and the file filter to use
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 2, __func__))
             {
             return 0;
             }
@@ -335,7 +335,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int GetImageInfo(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -371,7 +371,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int GetFileCheckSum(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -396,7 +396,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int LogMessage(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -408,7 +408,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SplashScreen(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -444,7 +444,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int CheckHtmlLinks(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 2, __func__))
             {
             return 0;
             }
@@ -612,7 +612,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int GetAbsoluteFilePath(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 2, __func__))
             {
             return 0;
             }
@@ -637,7 +637,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int WriteToFile(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 2, __func__))
             {
             return 0;
             }
@@ -656,7 +656,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int LogError(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -683,14 +683,14 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int CrossReferenceWordLists(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 3, __func__))
             {
             return 0;
             }
         wxString path(luaL_checkstring(L, 1), wxConvUTF8);
         if (!wxFile::Exists(path))
             {
-            wxMessageBox(wxString::Format(_(L"%s: Invalid file path."), wxString(__WXFUNCTION__)),
+            wxMessageBox(wxString::Format(_(L"%s: Invalid file path."), wxString(__func__)),
                          _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;
@@ -708,7 +708,7 @@ namespace LuaScripting
         path = wxString(luaL_checkstring(L, 2), wxConvUTF8);
         if (!wxFile::Exists(path))
             {
-            wxMessageBox(wxString::Format(_(L"%s: Invalid file path."), wxString(__WXFUNCTION__)),
+            wxMessageBox(wxString::Format(_(L"%s: Invalid file path."), wxString(__func__)),
                          _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;
@@ -756,14 +756,14 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int PhraseListToWordList(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 2, __func__))
             {
             return 0;
             }
         wxString path(luaL_checkstring(L, 1), wxConvUTF8);
         if (!wxFile::Exists(path))
             {
-            wxMessageBox(wxString::Format(_(L"%s: Invalid file path."), wxString(__WXFUNCTION__)),
+            wxMessageBox(wxString::Format(_(L"%s: Invalid file path."), wxString(__func__)),
                          _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;
@@ -804,14 +804,14 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int ExpandWordList(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 3, __func__))
             {
             return 0;
             }
         wxString path(luaL_checkstring(L, 1), wxConvUTF8);
         if (!wxFile::Exists(path))
             {
-            wxMessageBox(wxString::Format(_(L"%s: Invalid file path."), wxString(__WXFUNCTION__)),
+            wxMessageBox(wxString::Format(_(L"%s: Invalid file path."), wxString(__func__)),
                          _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;
@@ -892,7 +892,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int MergePhraseLists(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 2, __func__))
             {
             return 0;
             }
@@ -987,7 +987,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int MergeWordLists(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 2, __func__))
             {
             return 0;
             }
@@ -1039,7 +1039,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetReviewer(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1059,7 +1059,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetProjectLanguage(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1080,7 +1080,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetDocumentStorageMethod(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1099,7 +1099,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetParagraphsParsingMethod(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1119,7 +1119,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetMinDocWordCountForBatch(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1138,7 +1138,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetFilePathDisplayMode(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1158,7 +1158,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int ImportSettings(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1173,7 +1173,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int ExportSettings(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1208,7 +1208,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int EnableWarning(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1219,7 +1219,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int DisableWarning(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1230,7 +1230,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetTextExclusion(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1242,7 +1242,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetIncludeIncompleteTolerance(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1254,7 +1254,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int AggressivelyExclude(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1265,7 +1265,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int ExcludeCopyrightNotices(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1277,7 +1277,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int ExcludeTrailingCitations(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1288,7 +1288,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int ExcludeFileAddress(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1299,7 +1299,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int ExcludeNumerals(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1310,7 +1310,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int ExcludeProperNouns(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1321,7 +1321,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetPhraseExclusionList(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1333,7 +1333,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetBlockExclusionTags(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1351,7 +1351,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetGraphBackgroundColor(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 3, __func__))
             {
             return 0;
             }
@@ -1363,7 +1363,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int ApplyGraphBackgroundFade(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1375,7 +1375,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetPlotBackgroundImage(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1387,7 +1387,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetPlotBackgroundImageOpacity(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1398,7 +1398,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetPlotBackgroundColor(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 3, __func__))
             {
             return 0;
             }
@@ -1410,7 +1410,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetPlotBackgroundOpacity(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1421,7 +1421,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetGraphWatermark(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1432,7 +1432,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetGraphLogoImage(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1443,7 +1443,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetStippleImage(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1455,7 +1455,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetStippleShape(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1466,7 +1466,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int DisplayGraphDropShadows(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1477,7 +1477,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetBarChartBarColor(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 3, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 3, __func__))
             {
             return 0;
             }
@@ -1489,7 +1489,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetBarChartBarOpacity(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1500,7 +1500,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetBarChartBarEffect(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1512,7 +1512,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetBarChartOrientation(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1564,7 +1564,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetWindowSize(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 2, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 2, __func__))
             {
             return 0;
             }
@@ -1579,7 +1579,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetLeftPrintHeader(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1591,7 +1591,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetCenterPrintHeader(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1603,7 +1603,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetRightPrintHeader(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1615,7 +1615,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetLeftPrintFooter(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1627,7 +1627,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetCenterPrintFooter(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
@@ -1639,7 +1639,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SetRightPrintFooter(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __WXFUNCTION__))
+        if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }

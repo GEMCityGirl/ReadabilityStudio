@@ -73,7 +73,7 @@ class MainFrame final : public Wisteria::UI::BaseMainFrame
 
     ~MainFrame()
         {
-        wxLogDebug(__WXFUNCTION__);
+        wxLogDebug(__func__);
         // modeless dialogs that do not have parents
         if (m_logWindow != nullptr)
             {

@@ -447,7 +447,7 @@ static double WordCount(const te_expr* context, const double wordType)
     else
         {
         throw std::runtime_error(
-            wxString::Format(_(L"Invalid value used in %s"), wxString(__WXFUNCTION__)).ToUTF8());
+            wxString::Format(_(L"Invalid value used in %s"), wxString(__func__)).ToUTF8());
         }
     }
 
@@ -471,7 +471,7 @@ static double ThreeSyllablePlusWordCount(const te_expr* context, const double wo
     else
         {
         throw std::runtime_error(
-            wxString::Format(_(L"Invalid value used in %s"), wxString(__WXFUNCTION__)).ToUTF8());
+            wxString::Format(_(L"Invalid value used in %s"), wxString(__func__)).ToUTF8());
         }
     }
 
@@ -495,7 +495,7 @@ static double UniqueThreeSyllablePlusWordCount(const te_expr* context, const dou
     else
         {
         throw std::runtime_error(
-            wxString::Format(_(L"Invalid value used in %s"), wxString(__WXFUNCTION__)).ToUTF8());
+            wxString::Format(_(L"Invalid value used in %s"), wxString(__func__)).ToUTF8());
         }
     }
 
@@ -523,7 +523,7 @@ static double SyllableCount(const te_expr* context, const double wordType)
     else
         {
         throw std::runtime_error(
-            wxString::Format(_(L"Invalid value used in %s"), wxString(__WXFUNCTION__)).ToUTF8());
+            wxString::Format(_(L"Invalid value used in %s"), wxString(__func__)).ToUTF8());
         }
     }
 
@@ -555,7 +555,7 @@ static double CharacterCount(const te_expr* context, const double wordType)
     else
         {
         throw std::runtime_error(
-            wxString::Format(_(L"Invalid value used in %s"), wxString(__WXFUNCTION__)).ToUTF8());
+            wxString::Format(_(L"Invalid value used in %s"), wxString(__func__)).ToUTF8());
         }
     }
 
@@ -594,7 +594,7 @@ static double SentenceCount(const te_expr* context, const double wordType)
     else
         {
         throw std::runtime_error(
-            wxString::Format(_(L"Invalid value used in %s"), wxString(__WXFUNCTION__)).ToUTF8());
+            wxString::Format(_(L"Invalid value used in %s"), wxString(__func__)).ToUTF8());
         }
     }
 
