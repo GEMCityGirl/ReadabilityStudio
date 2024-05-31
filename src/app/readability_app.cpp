@@ -723,7 +723,7 @@ bool ReadabilityApp::OnInit()
     LoadInterfaceLicensableFeatures();
 
     m_dynamicIdMap = {
-        // These are the IDs that this constants map to in "Resources/Scripting/RSConstants.lua";
+        // These are the IDs that this constants map to in "Resources/scripting/RSConstants.lua";
         // When adding a new constant (e.g., enum value) to RSConstants.lua, that numeric ID from
         // there to the respective window ID here.
         { 30001, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR },

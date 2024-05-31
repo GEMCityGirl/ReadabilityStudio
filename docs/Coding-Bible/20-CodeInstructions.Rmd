@@ -54,8 +54,8 @@ If wanting to edit this option from the ribbon:
   - Handle its exclusion in `ProjectDoc::DisplayReadabilityGraphs()`.
   - Add its `GetXXXLabel()` function in **src/projects/base_project_view.h**.
   - Define its graph window ID in **src/projects/base_project_view.h**.
-  - Add aforementioned window ID into the `GraphType` enum in **Resources/Scripting/RSConstants.lua**.
-  - Add to `GraphType`'s list of values in **Resources/Scripting/RSLibraries.api**.
+  - Add aforementioned window ID into the `GraphType` enum in **Resources/scripting/RSConstants.lua**.
+  - Add to `GraphType`'s list of values in **Resources/scripting/RSLibraries.api**.
   - Update `GraphType` in API docs (**docs/ReadabilityStudioAPI/enums/GraphType.md**).
   - Handle that aforementioned window ID in `ProjectView::OnEditGraphOptions()`, `ProjectView::OnHyperlinkClicked()`, `ProjectView::OnItemSelected()`, `MainFrame::OnHelpContents()`, and `BatchProjectDoc::DisplayReadabilityGraphs()`.
   - Add `Set/GetXXXGraph()` functions to **src/projects/batch_project_view.h**.
@@ -100,7 +100,7 @@ This applies to full words lists (e.g., **Dale-Chall**), not supplements such as
 
 ### Adding support for the list window {-}
 - Add a page ID for the list in **src/projects/base_project_view.h**.
-- Add this ID to the `ListType` enumeration in **Resources/Scripting/RSConstants.lua**.
+- Add this ID to the `ListType` enumeration in **Resources/scripting/RSConstants.lua**.
 - Add this new enumeration value to the `ListType` in **docs/ReadabilityStudioAPI/enums/ListType.md**.
 - Add hard word list data provider to `BaseProject`.
 - Initialize the data provider in `BaseProject`’s constructor.
@@ -113,7 +113,7 @@ This applies to full words lists (e.g., **Dale-Chall**), not supplements such as
 
 ### Adding support for the text window {-}
 - Add a page ID for the text window in **src/projects/base_project_view.h**.
-- Add this ID to the `HighlightedReportType` enumeration in **Resources/Scripting/RSConstants.lua**.
+- Add this ID to the `HighlightedReportType` enumeration in **Resources/scripting/RSConstants.lua**.
 - Add this new enumeration value to the `HighlightedReportType` in **docs/ReadabilityStudioAPI/enums/HighlightedReportType.md**.
 - Add a `wxFormattedTextCtrl` window in **src/projects/standard_project_doc.h**.
 - Add **UN**familiar function object (based on `IsNotFamiliarWordWithHighlighting`) to `ProjectDoc::DisplayHighlightedText()`. (An example is `isNotDCWord`.)
