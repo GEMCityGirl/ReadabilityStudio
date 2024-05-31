@@ -165,7 +165,7 @@ Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words/Programming/SQL.txt",
     Debug.GetScriptFolderPath().."Words/Programming/SQL.txt")
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/Programming/All Languages.txt",
+    Debug.GetScriptFolderPath().."Words/Programming/all-languages.txt",
     Debug.GetScriptFolderPath().."Words/Programming/Assembly.txt",
     Debug.GetScriptFolderPath().."Words/Programming/CPP.txt",
     Debug.GetScriptFolderPath().."Words/Programming/CSharp.txt",

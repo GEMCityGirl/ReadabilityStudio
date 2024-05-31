@@ -8,7 +8,7 @@ Dictionaries/English.txt
 Dictionaries/German.txt
 Dictionaries/Spanish.txt
 PastParticiples/Exceptions.txt
-Programming/All Languages.txt
+Programming/all-languages.txt
 Programming/Assembly.txt
 Programming/CPP.txt
 Programming/CSharp.txt

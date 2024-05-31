@@ -1087,7 +1087,7 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     std::wstring EnglishSpellingsFileText = cat.ReadTextFile(L"Dictionaries/English.txt");
     std::wstring SpanishspellingsFileText = cat.ReadTextFile(L"Dictionaries/Spanish.txt");
     std::wstring GermanspellingsFileText = cat.ReadTextFile(L"Dictionaries/German.txt");
-    std::wstring ProgrammingSpellingsFileText = cat.ReadTextFile(L"Programming/All Languages.txt");
+    std::wstring ProgrammingSpellingsFileText = cat.ReadTextFile(L"Programming/all-languages.txt");
     // articles
     std::wstring aExceptionsFileText = cat.ReadTextFile(_DT(L"Articles/a-exceptions.txt"));
     std::wstring anExceptionsFileText = cat.ReadTextFile(_DT(L"Articles/an-exceptions.txt"));

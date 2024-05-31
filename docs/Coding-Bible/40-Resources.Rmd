@@ -12,23 +12,23 @@ In the **Resources/Words** folder, the following folders contain word lists used
 
 Please refer to the following file & folder breakdown for reference:
 
-- **BaseEnglishDictionary.txt**: main English dictionary. All forms of a give words (e.g., plural, possessive) should go in here. Note that proper nouns should not go in here.
-- **NonPersonalBase.txt**: places (e.g., cities, countries), company names, species names, etc. should go in here.
-- **PersonalBase.txt**: person names should go in there.
+- **base-english-dictionary.txt**: main English dictionary. All forms of a give words (e.g., plural, possessive) should go in here. Note that proper nouns should not go in here.
+- **base-non-personal.txt**: places (e.g., cities, countries), company names, species names, etc. should go in here.
+- **base-personal.txt**: person names should go in there.
 - **Abbreviations**:
   - **List.txt**: list of abbreviations that the program uses to determine abbreviations. (Words in here must include their periods.)
 - **Articles**:
   - **a-xceptions.txt**: these are words that are correct to follow an 'a' that the program word otherwise misclassify.
   - **an-exceptions.txt**: these are words that are correct to follow an 'an' that the program word otherwise misclassify.
-- **CitationHeaders**:
- - **List.txt**: list of phrases that would mark the beginning of a citation section in a document.
-- **CopyrightNotices**:
-  - **List.txt**: list of phrases that would mark a copyright notice in a document.
+- **citation-headers**:
+ - **citations.txt**: list of phrases that would mark the beginning of a citation section in a document.
+- **copyright-notices**:
+  - **notices.txt**: list of phrases that would mark a copyright notice in a document.
 - **Dictionaries**: all files in this folder are generated, **do not edit anything in here**.
 - **PastParticiples**:
   - **Exceptions.txt**: adjectives that can be mistaken for past-tense verbs. These are entered as overrides that the program would see as passive voice otherwise.
 - **Programming**:
-  - **All Languages.txt**: this file is generated, **do not edit**.
+  - **all-languages.txt**: this file is generated, **do not edit**.
   - All other files in here are keywords/function names/etc. for various programming languages. These are used by the spell checker if the user is ignoring programming words.
 - **ProperNouns**: all files in this folder are generated, **do not edit anything in here**.
 - **StopWords**:
@@ -42,20 +42,25 @@ Please refer to the following file & folder breakdown for reference:
   - **New Dale-Chall.txt**: New Dale-Chall known words.
   - **Revised Spache.txt**: Revised Spache known words.
   - **Stocker Catholic Supplement": Stocker's Catholic Supplement (used with Dale-Chall).
-- **WordyPhrases**:
-  - **Dale-ChallReplacements.txt**: generated, **do not edit**.
-  - **Harris-JacobsonReplacements.txt**: generated, **do not edit**.
-  - **SingleWordReplacementsEnglish.txt**: generated, **do not edit**.
-  - **SpacheReplacements.txt**: generated, **do not edit**.
-  - **English.txt**: list of phrases used by the **English** grammar checker. Note that this file is also used as the basis when generating the "replacement" files in this folder.
-    Each row in this text should be a phrase, and the column values (tab-delimited) are:
+- **wordy-phrases**:
+  - **base-english.txt**: English phrases.
+  - **base-german.txt**: German phrases.
+  - **base-spanish.txt**: Spanish phrases.
+  - **common-errors.txt**: Phrases for all languages.
+  - **dale-chall-replacements.txt**: generated, **do not edit**.
+  - **english.txt**: generated, **do not edit**.
+  - **german.txt**: generated, **do not edit**.
+  - **harris-jacobson-replacements.txt**: generated, **do not edit**.
+  - **single-word-replacements-english.txt**: generated, **do not edit**.
+  - **spache-replacements.txt**: generated, **do not edit**.
+  - **spanish.txt**: generated, **do not edit**.
+
+  For phrase files, each row should be a phrase, and the column values (tab-delimited) are:
     - Phrase
     - Suggestion (optional)
-    - Type (wordy=0, redundant=1,cliche=2,error=3)
+    - Type (wordy = 0, redundant = 1, cliche = 2, error = 3)
     - Word proceeding the phrase that will override the grammar checker (optional, can be multiple values delimited by ';' or ',')
     - Word following the phrase that will override the grammar checker (optional, can be multiple values delimited by ';' or ',')
-  - **German.txt**: currently unused.
-  - **Spanish.txt**: currently unused.
 
 ### Finalizing Lists {-}
 
