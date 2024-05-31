@@ -9029,7 +9029,7 @@ is resentful of	resents	0
 is resistant to	resists	0		
 is respectful toward	respects	0		
 is responsible for	handles	0		
-is several	are several (please review noun/verb agreement)	3	 billion; hundred; million; thousand;difference	
+is several	are several (please review noun/verb agreement)	3	billion;difference;hundred;million;thousand	
 is should	it should	3		
 is skeptical about	doubts, questions	0		
 is supportive of	supports	0		
