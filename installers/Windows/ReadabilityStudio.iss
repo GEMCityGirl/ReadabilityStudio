@@ -18,7 +18,7 @@ AppendDefaultDirName=no
 
 [Files]
 ; program files
-Source: release\ReadStudio.exe; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace
+Source: release\readstudio.exe; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace
 ; resource files (required part of programs)
 Source: ..\resources\res.wad; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\resources\Words.wad; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
@@ -44,17 +44,17 @@ Source: ..\..\Examples\*; DestDir: {app}\examples; Components: Examples; Exclude
 
 [Registry]
 ; Make is so that you can run the program from the command line
-Root: HKLM; Subkey: SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\ReadStudio.exe; ValueType: string; ValueName: ; ValueData: {app}\ReadStudio.exe; Flags: uninsdeletekey
+Root: HKLM; Subkey: SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\readstudio.exe; ValueType: string; ValueName: ; ValueData: {app}\readstudio.exe; Flags: uninsdeletekey
 ; Set file association (standard project)
 Root: HKCR; Subkey: .rsp; ValueType: string; ValueData: ReadStudioProject; Flags: uninsdeletekey
 Root: HKCR; Subkey: ReadStudioProject; ValueType: string; ValueName: ; ValueData: Readability Studio Project; Flags: uninsdeletekey
-Root: HKCR; Subkey: ReadStudioProject\DefaultIcon; ValueType: string; ValueData: {app}\ReadStudio.EXE,0; Flags: uninsdeletekey
-Root: HKCR; Subkey: ReadStudioProject\shell\open\command; ValueType: string; ValueData: """{app}\ReadStudio.EXE"" ""%1"""; Flags: uninsdeletekey
+Root: HKCR; Subkey: ReadStudioProject\DefaultIcon; ValueType: string; ValueData: {app}\readstudio.EXE,0; Flags: uninsdeletekey
+Root: HKCR; Subkey: ReadStudioProject\shell\open\command; ValueType: string; ValueData: """{app}\readstudio.EXE"" ""%1"""; Flags: uninsdeletekey
 ; Set file association (batch project)
 Root: HKCR; Subkey: .rsbp; ValueType: string; ValueData: ReadStudioBatchProject; Flags: uninsdeletekey
 Root: HKCR; Subkey: ReadStudioBatchProject; ValueType: string; ValueName: ; ValueData: Readability Studio Project; Flags: uninsdeletekey
-Root: HKCR; Subkey: ReadStudioBatchProject\DefaultIcon; ValueType: string; ValueData: {app}\ReadStudio.EXE,0; Flags: uninsdeletekey
-Root: HKCR; Subkey: ReadStudioBatchProject\shell\open\command; ValueType: string; ValueData: """{app}\ReadStudio.EXE"" ""%1"""; Flags: uninsdeletekey
+Root: HKCR; Subkey: ReadStudioBatchProject\DefaultIcon; ValueType: string; ValueData: {app}\readstudio.EXE,0; Flags: uninsdeletekey
+Root: HKCR; Subkey: ReadStudioBatchProject\shell\open\command; ValueType: string; ValueData: """{app}\readstudio.EXE"" ""%1"""; Flags: uninsdeletekey
 
 [Components]
 Name: ProgramFiles; Description: {cm:ProgramFiles}; Flags: fixed; Types: Typical Custom

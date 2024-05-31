@@ -8,7 +8,7 @@
 #############################################################################
 
 # Build targets:
-# ReadStudio: builds the main application
+# readstudio: builds the main application
 # manuals: builds the manuals and HTML help
 # doxygen-docs: builds the API documentation
 
@@ -22,34 +22,34 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Edit these values when bumping the release
-project(ReadStudio VERSION 2021.4.0.0 DESCRIPTION "Readability Studio" HOMEPAGE_URL https://www.oleandersoftware.com/)
+project(readstudio VERSION 2021.4.0.0 DESCRIPTION "Readability Studio" HOMEPAGE_URL https://www.oleandersoftware.com/)
 set(PROGRAM_NUMBERED_VERSION 8.0)
 set(PUBLISHER "Oleander Software, Ltd.")
 set(PROGRAM_AUTHOR "Blake Madden")
 set(PROGRAM_COMMENTS "Readability analysis software")
 
 # Build a displayable version string that only includes the necessary parts
-set(FULL_DISPLAY_VERSION ${ReadStudio_VERSION_MAJOR})
-if(NOT ${ReadStudio_VERSION_MINOR} EQUAL 0)
-    string(APPEND FULL_DISPLAY_VERSION ".${ReadStudio_VERSION_MINOR}")
+set(FULL_DISPLAY_VERSION ${readstudio_VERSION_MAJOR})
+if(NOT ${readstudio_VERSION_MINOR} EQUAL 0)
+    string(APPEND FULL_DISPLAY_VERSION ".${readstudio_VERSION_MINOR}")
 endif()
-if(NOT ${ReadStudio_VERSION_PATCH} EQUAL 0)
-    string(APPEND FULL_DISPLAY_VERSION ".${ReadStudio_VERSION_PATCH}")
+if(NOT ${readstudio_VERSION_PATCH} EQUAL 0)
+    string(APPEND FULL_DISPLAY_VERSION ".${readstudio_VERSION_PATCH}")
 endif()
-if(NOT ${ReadStudio_VERSION_TWEAK} EQUAL 0)
-    string(APPEND FULL_DISPLAY_VERSION ".${ReadStudio_VERSION_TWEAK}")
+if(NOT ${readstudio_VERSION_TWEAK} EQUAL 0)
+    string(APPEND FULL_DISPLAY_VERSION ".${readstudio_VERSION_TWEAK}")
 endif()
 string(TIMESTAMP BUILD_YEAR "%Y")
 
-message(STATUS "${ReadStudio_DESCRIPTION}")
+message(STATUS "${readstudio_DESCRIPTION}")
 message(STATUS "${PROGRAM_COMMENTS}")
-message(STATUS "Full version: ${ReadStudio_VERSION_MAJOR}.${ReadStudio_VERSION_MINOR}.${ReadStudio_VERSION_PATCH}.${ReadStudio_VERSION_TWEAK}")
+message(STATUS "Full version: ${readstudio_VERSION_MAJOR}.${readstudio_VERSION_MINOR}.${readstudio_VERSION_PATCH}.${readstudio_VERSION_TWEAK}")
 message(STATUS "Display version: ${FULL_DISPLAY_VERSION}")
 message(STATUS "Numbered Version: ${PROGRAM_NUMBERED_VERSION}")
 message(STATUS "Built in: ${BUILD_YEAR}")
 message(STATUS "Authored by: ${PROGRAM_AUTHOR}")
 message(STATUS "Published by: ${PUBLISHER}")
-message(STATUS "Homepage: ${ReadStudio_HOMEPAGE_URL}")
+message(STATUS "Homepage: ${readstudio_HOMEPAGE_URL}")
 message(STATUS "Output program file: ${CMAKE_PROJECT_NAME}")
 message(STATUS "Writing program info to build peripheral files.")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/src/version.h.in"
@@ -226,7 +226,7 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/tools/files.cmake)
 if(WIN32)
     # Include an RC file and HiDPI manifest for Windows (provided by wxWidgets)
     set(wxUSE_DPI_AWARE_MANIFEST 1)
-    list(APPEND APP_SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/ReadStudio.rc)
+    list(APPEND APP_SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/readstudio.rc)
     list(APPEND APP_SRC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/../wxWidgets/include/wx/msw/wx_dpi_aware.manifest")
 elseif(APPLE)
     # Add an icon for the apple .app file
