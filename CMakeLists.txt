@@ -333,7 +333,7 @@ add_custom_command(TARGET ${PROJECT_NAME}
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
-                   ${CMAKE_CURRENT_SOURCE_DIR}/Resources/ReportThemes $<TARGET_FILE_DIR:${PROJECT_NAME}>/ReportThemes)
+                   ${CMAKE_CURRENT_SOURCE_DIR}/Resources/report-themes $<TARGET_FILE_DIR:${PROJECT_NAME}>/report-themes)
 
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
