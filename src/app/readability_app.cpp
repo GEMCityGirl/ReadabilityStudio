@@ -1075,7 +1075,7 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     // copyright notices
     std::wstring copyRightNoticePhraseFileText = cat.ReadTextFile(L"CopyrightNotices/notices.txt");
     // citation headers
-    std::wstring citationPhraseFileText = cat.ReadTextFile(L"CitationHeaders/List.txt");
+    std::wstring citationPhraseFileText = cat.ReadTextFile(L"CitationHeaders/citations.txt");
     // known proper nouns
     std::wstring properNounsFileText = cat.ReadTextFile(L"ProperNouns/All.txt");
     std::wstring personalNounsFileText = cat.ReadTextFile(L"ProperNouns/Personal.txt");
