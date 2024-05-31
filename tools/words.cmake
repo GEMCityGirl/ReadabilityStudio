@@ -2,8 +2,8 @@ Abbreviations/abbreviations.txt
 Abbreviations/non-abbreviations.txt
 Articles/AExceptions.txt
 Articles/AnExceptions.txt
-CitationHeaders/citations.txt
-CopyrightNotices/notices.txt
+citation-headers/citations.txt
+copyright-notices/notices.txt
 Dictionaries/English.txt
 Dictionaries/German.txt
 Dictionaries/Spanish.txt
@@ -28,10 +28,10 @@ WordLists/Harris-Jacobson.txt
 WordLists/New Dale-Chall.txt
 WordLists/Revised Spache.txt
 WordLists/Stocker Catholic Supplement.txt
-WordyPhrases/dale-chall-replacements.txt
-WordyPhrases/english.txt
-WordyPhrases/german.txt
-WordyPhrases/harris-jacobson-replacements.txt
-WordyPhrases/single-word-replacements-english.txt
-WordyPhrases/spache-replacements.txt
-WordyPhrases/spanish.txt
+wordy-phrases/dale-chall-replacements.txt
+wordy-phrases/english.txt
+wordy-phrases/german.txt
+wordy-phrases/harris-jacobson-replacements.txt
+wordy-phrases/single-word-replacements-english.txt
+wordy-phrases/spache-replacements.txt
+wordy-phrases/spanish.txt

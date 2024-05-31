@@ -1059,23 +1059,23 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     const size_t readSize = theFile.Read(wordyZipFileText.get(), theFile.Length());
     Wisteria::ZipCatalog cat(wordyZipFileText.get(), readSize);
     // read in the wordy items
-    std::wstring englishWordyPhraseFileText = cat.ReadTextFile(L"WordyPhrases/english.txt");
-    std::wstring spanishWordyPhraseFileText = cat.ReadTextFile(L"WordyPhrases/spanish.txt");
-    std::wstring germanWordyPhraseFileText = cat.ReadTextFile(L"WordyPhrases/german.txt");
+    std::wstring englishWordyPhraseFileText = cat.ReadTextFile(L"wordy-phrases/english.txt");
+    std::wstring spanishWordyPhraseFileText = cat.ReadTextFile(L"wordy-phrases/spanish.txt");
+    std::wstring germanWordyPhraseFileText = cat.ReadTextFile(L"wordy-phrases/german.txt");
     std::wstring DCReplacementFileText =
-        cat.ReadTextFile(L"WordyPhrases/dale-chall-replacements.txt");
+        cat.ReadTextFile(L"wordy-phrases/dale-chall-replacements.txt");
     std::wstring SpacheReplacementFileText =
-        cat.ReadTextFile(L"WordyPhrases/spache-replacements.txt");
+        cat.ReadTextFile(L"wordy-phrases/spache-replacements.txt");
     std::wstring HarrisJacobsonReplacementFileText =
-        cat.ReadTextFile(L"WordyPhrases/harris-jacobson-replacements.txt");
+        cat.ReadTextFile(L"wordy-phrases/harris-jacobson-replacements.txt");
     std::wstring DifficultWordReplacementFileText =
-        cat.ReadTextFile(L"WordyPhrases/single-word-replacements-english.txt");
+        cat.ReadTextFile(L"wordy-phrases/single-word-replacements-english.txt");
     // proper noun stop word list
     std::wstring properNounStopList = cat.ReadTextFile(L"StopWords/ProperNounsStopList.txt");
     // copyright notices
-    std::wstring copyRightNoticePhraseFileText = cat.ReadTextFile(L"CopyrightNotices/notices.txt");
+    std::wstring copyRightNoticePhraseFileText = cat.ReadTextFile(L"copyright-notices/notices.txt");
     // citation headers
-    std::wstring citationPhraseFileText = cat.ReadTextFile(L"CitationHeaders/citations.txt");
+    std::wstring citationPhraseFileText = cat.ReadTextFile(L"citation-headers/citations.txt");
     // known proper nouns
     std::wstring properNounsFileText = cat.ReadTextFile(L"ProperNouns/All.txt");
     std::wstring personalNounsFileText = cat.ReadTextFile(L"ProperNouns/Personal.txt");
