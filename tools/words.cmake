@@ -7,7 +7,7 @@ copyright-notices/notices.txt
 dictionaries/english.txt
 dictionaries/german.txt
 dictionaries/spanish.txt
-PastParticiples/Exceptions.txt
+PastParticiples/exceptions.txt
 Programming/all-languages.txt
 Programming/Assembly.txt
 Programming/CPP.txt

@@ -27,7 +27,7 @@ Please refer to the following file & folder breakdown for reference:
   - **notices.txt**: list of phrases that would mark a copyright notice in a document.
 - **dictionaries**: all files in this folder are generated, **do not edit anything in here**.
 - **PastParticiples**:
-  - **Exceptions.txt**: adjectives that can be mistaken for past-tense verbs. These are entered as overrides that the program would see as passive voice otherwise.
+  - **exceptions.txt**: adjectives that can be mistaken for past-tense verbs. These are entered as overrides that the program would see as passive voice otherwise.
 - **Programming**:
   - **all-languages.txt**: this file is generated, **do not edit**.
   - All other files in here are keywords/function names/etc. for various programming languages. These are used by the spell checker if the user is ignoring programming words.
