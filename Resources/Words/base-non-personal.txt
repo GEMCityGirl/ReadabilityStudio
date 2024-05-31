@@ -1710,6 +1710,7 @@ Dresden
 Dresdener
 Drexler
 Dropbox
+Dropzone
 Drupal
 Drybar
 Dshubba
@@ -2278,6 +2279,7 @@ Gambia
 Gambian
 Gameboy
 GameCube
+GameFest
 GameGenie
 Gameloft
 Gamergate
@@ -2783,6 +2785,7 @@ Ida
 Idaho
 Idahoan
 ideaHub
+IdeaLab
 Ignatian
 iHeartMedia
 Ikea
@@ -3162,6 +3165,7 @@ Klingon
 Klondike
 Klux
 Knicks
+Knighthawk
 Knoodle
 Knugget
 Kochava
@@ -5451,6 +5455,7 @@ Starbright
 Starbucks
 Starcatcher
 Starcom
+StarCraft
 StarKist
 StartWire
 Stata
@@ -5789,6 +5794,7 @@ Tienanmen
 Tientsin
 Tiffin
 Tigerpoint
+TigerTalk
 Tigris
 Tijuana
 TikTok

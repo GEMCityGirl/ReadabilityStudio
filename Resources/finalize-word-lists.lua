@@ -87,6 +87,16 @@ Application.MergePhraseLists(
     Debug.GetScriptFolderPath().."Words/wordy-phrases/common-errors.txt",
     Debug.GetScriptFolderPath().."Words/wordy-phrases/common-errors.txt")
 Application.MergePhraseLists(
+    Debug.GetScriptFolderPath().."Words/wordy-phrases/base-english.txt",
+    Debug.GetScriptFolderPath().."Words/wordy-phrases/base-english.txt")
+Application.MergePhraseLists(
+    Debug.GetScriptFolderPath().."Words/wordy-phrases/base-german.txt",
+    Debug.GetScriptFolderPath().."Words/wordy-phrases/base-german.txt")
+Application.MergePhraseLists(
+    Debug.GetScriptFolderPath().."Words/wordy-phrases/base-spanish.txt",
+    Debug.GetScriptFolderPath().."Words/wordy-phrases/base-spanish.txt")
+
+Application.MergePhraseLists(
     Debug.GetScriptFolderPath().."Words/wordy-phrases/german.txt",
     Debug.GetScriptFolderPath().."Words/wordy-phrases/common-errors.txt",
     Debug.GetScriptFolderPath().."Words/wordy-phrases/base-german.txt")

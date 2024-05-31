@@ -12211,6 +12211,7 @@ biochemistries
 biochemistry
 biochemistry's
 biochemists
+biochips
 biocompatibilities
 biocompatibility
 biocompatible
@@ -12307,6 +12308,9 @@ biohub
 biohub's
 biohubs
 bioidentical
+bioinformaticist
+bioinformaticist's
+bioinformaticists
 bioinformatics
 bioinstrumentation
 bioinstrumentation's
@@ -12445,6 +12449,7 @@ BIOS's
 biosafety
 bioscience
 biosciences
+biosensing
 biosensor
 biosensor's
 biosensors
@@ -18357,6 +18362,7 @@ carbonmonoxyhemoglobin
 carbons
 carbonyl
 carbonyl's
+carbonyls
 carboplatin
 carborundum
 carborundum's
@@ -24266,6 +24272,9 @@ cologne's
 cologned
 colognes
 colography
+coloid
+coloid's
+coloids
 colon
 colon's
 colonel
@@ -31080,6 +31089,7 @@ cybernetician
 cybernetics
 cybernetics's
 cyberphysical
+cyberpolitics
 cyberprotest
 cyberprotest's
 cyberprotested
@@ -41781,6 +41791,7 @@ electrophoresis's
 electrophoretic
 electrophorus
 electrophorus's
+electrophotography
 electrophysiologic
 electrophysiological
 electrophysiologists
@@ -41810,6 +41821,7 @@ electroshock's
 electroshocked
 electroshocking
 electroshocks
+electrospray
 electrostatic
 electrostatically
 electrostatics
@@ -48145,6 +48157,7 @@ fermentable
 fermentation
 fermentation's
 fermentations
+fermentative
 fermented
 fermenter
 fermenting
@@ -51620,6 +51633,7 @@ framebuffer
 framebuffer's
 framebuffers
 framed
+frameless
 framer
 framer's
 framerate
@@ -60040,6 +60054,8 @@ heterospecific
 heterospecifics
 heterosporous
 heterostructure
+heterostructure's
+heterostructures
 heterostyly
 heterotaxy
 heterothallic
@@ -63979,6 +63995,9 @@ immunoassay
 immunoassay's
 immunobiology
 immunobiology's
+immunoblot
+immunoblot's
+immunoblots
 immunocompetence
 immunocompetent
 immunocompromised
@@ -76572,6 +76591,7 @@ magnetizes
 magnetizing
 magneto
 magneto's
+magnetocaloric
 magnetocardiogram
 magnetocardiogram's
 magnetocardiograms
@@ -80258,6 +80278,7 @@ microlights
 microliter
 microliter's
 microliters
+microlithographic
 microloan
 microloan's
 microloans
@@ -80328,6 +80349,9 @@ microphyll
 microphyll's
 microphylls
 micropigmentation
+microplastic
+microplastic's
+microplastics
 micropolitics
 micropool
 micropool's
@@ -84271,6 +84295,7 @@ multisite
 multislice
 multispecialty
 multispecies
+multispectral
 multisport
 multispot
 multistage
@@ -85139,6 +85164,7 @@ nanoagriculture
 nanoagriculture's
 nanoagricultures
 nanoarchaeotum
+nanobio
 nanobiologies
 nanobiology
 nanobiology's
@@ -85178,10 +85204,13 @@ nanofibers
 nanofibers'
 nanogram
 nanograms
+nanoimaging
 nanoimprint
 nanoimprinted
 nanoimprinting
 nanoimprints
+nanolithography
+nanomagnetics
 nanomanufacturing
 nanomaterial
 nanomaterial's
@@ -85204,10 +85233,16 @@ Nanon
 nanoparticle
 nanoparticle's
 nanoparticles
+nanopatterning
+nanophotonics
+nanopower
+nanorotation
+nanorotations
 nanoscale
 nanoscale's
 nanoscales
 nanoscience
+nanosciences
 nanoscopy
 nanosecond
 nanosecond's
@@ -85238,6 +85273,7 @@ nanotoxicology's
 nanotube
 nanotube's
 nanotubes
+nanowires
 nanowizard
 nanowizard's
 nanowizards
@@ -86170,6 +86206,8 @@ neurochemistry
 neurocognition
 neurocognition's
 neurocognitions
+neurocognitive
+neurocognitively
 neurocomputing
 neuroconstructivism
 neuroconstructivism's
@@ -88466,6 +88504,7 @@ nucleons
 nucleophile
 nucleophile's
 nucleophiles
+nucleophilic
 nucleoplasm
 nucleosidase
 nucleosidases
@@ -89885,6 +89924,7 @@ onchocerciasis
 oncogene
 oncogene's
 oncogenes
+oncogenesis
 oncogenic
 oncological
 oncologies
@@ -90317,6 +90357,7 @@ optoelectronic
 optoelectronics
 optoelectronics's
 optofluidics
+optomechanical
 optometer
 optometer's
 optometers
@@ -92970,6 +93011,9 @@ paleobotanist's
 paleobotanists
 paleobotany
 paleocene
+paleoclimate
+paleoclimate's
+paleoclimates
 paleoecologies
 paleoecology
 paleoecology's
@@ -105510,6 +105554,7 @@ quandary's
 quango
 quangos
 quant
+quant's
 quanta
 quanta's
 quantifiabilities
@@ -105560,6 +105605,7 @@ quantizer's
 quantizers
 quantizes
 quantizing
+quants
 quantum
 quantum's
 quantums
@@ -110255,7 +110301,10 @@ remarried
 remarries
 remarry
 remarrying
+remaster
 remastered
+remastering
+remasters
 rematch
 rematch's
 rematched
@@ -117223,6 +117272,9 @@ seaboard's
 seaboards
 seaborgium
 seaborne
+seabreeze
+seabreeze's
+seabreezes
 seacoast
 seacoast's
 seacoasts
@@ -123262,6 +123314,9 @@ solitaires
 solitaries
 solitariness
 solitary
+soliton
+soliton's
+solitons
 solitude
 solitude's
 solitudes
@@ -126525,6 +126580,7 @@ stereo
 stereo's
 stereoblind
 stereoblindness
+stereochemistry
 stereocilia
 stereoed
 stereognosis
@@ -131048,6 +131104,9 @@ symbionts
 symbioses
 symbiosis
 symbiosis's
+symbiote
+symbiote's
+symbiotes
 symbiotic
 symbiotically
 symbol
@@ -132645,6 +132704,9 @@ tebibyte
 tebibytes
 tech
 teched
+techie
+techie's
+techies
 technetium
 technetium's
 technetiums
@@ -138567,6 +138629,7 @@ tummy's
 tumor
 tumor's
 tumored
+tumorigenesis
 tumorous
 tumors
 tumour

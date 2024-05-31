@@ -674,6 +674,9 @@ agitate	shake, stir, excite	0
 agitated	shook, stirred, excited	0		
 agitates	shakes, stirs, excites	0		
 agitating	shaking, stirring, exciting	0		
+agonistic	agnostic	3		
+agonistic's	agnostic's	3		
+agonistics	agnostics	3		
 agravate	aggravate	3		
 agre	agree	3		
 agred	agreed	3		
@@ -6163,7 +6166,7 @@ excedes	exceeds	3
 exceding	exceeding	3		
 exceedingly	very	0		
 excelent	excellent	3		
-excell	excel	3		
+excell	excel (to surpass), Excel (software), accel (to speed up)	3		
 excellance	excellence	3		
 excellant	excellent	3		
 excells	excels	3		
@@ -9026,7 +9029,7 @@ is resentful of	resents	0
 is resistant to	resists	0		
 is respectful toward	respects	0		
 is responsible for	handles	0		
-is several	are several (please review noun/verb agreement)	3	difference	
+is several	are several (please review noun/verb agreement)	3	 billion; hundred; million; thousand;difference	
 is should	it should	3		
 is skeptical about	doubts, questions	0		
 is supportive of	supports	0		
@@ -9873,6 +9876,8 @@ melancholy	sadness, depression, sad (adj.)	0
 memberd	members	3		
 membranaphone	membranophone	3		
 memeber	member	3		
+men's fraternities	fraternities	1		
+men's fraternity	fraternity	1		
 menally	mentally	3		
 mendacious	lying, false	0		
 mendicant	beggar	0		
@@ -10197,6 +10202,7 @@ mult-age	multi-age	3
 multichanel	multichannel	3		
 multiciscipline	multidiscipline	3		
 multiciscipline-trained	multidiscipline-trained	3		
+multicriteria	criteria (criteria is already plural)	1		
 multicultralism	multiculturalism	3		
 multidimensionnal	multidimensional	3		
 multingual	multilingual	3		
@@ -16551,6 +16557,8 @@ wokring	working	3
 wolf in sheep's clothing	someone pretending to be something they are not for malicious intent	2		
 wolves in sheep's clothing	those pretending to be something they are not for malicious intent	2		
 woman of principal	woman of principle	3		
+women's sororities	sororities	1		
+women's sorority	sorority	1		
 womens	women's	3		
 won hands down	won easily	2		
 won't not	wouldn't	3		

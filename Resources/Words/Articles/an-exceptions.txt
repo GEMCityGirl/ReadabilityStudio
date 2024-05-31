@@ -41,6 +41,7 @@ NYU
 RAII
 Rh-negative
 Rh-positive
+RIT
 RNA
 RODC
 ROI
