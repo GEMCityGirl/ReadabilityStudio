@@ -10,6 +10,9 @@ Amstberg's	Amtsberg's	3
 Amstbergs	Amtsbergs	3		
 Antractica	Antarctica	3		
 Antractica's	Antarctica's	3		
+Appalachain	Appalachian	3		
+Appalachain's	Appalachian's	3		
+Appalachains	Appalachians	3		
 Archimedian	Archimedean	3		
 Athenean	Athenian	3		
 Atheneans	Athenians	3		
@@ -27,6 +30,8 @@ big-endean	big-endian	3
 big-endeanness	big-endianness	3		
 Blitzkreig	Blitzkrieg	3		
 Blitzkreig's	Blitzkrieg's	3		
+Bluffotn	Bluffton	3		
+Bluffotn's	Bluffton's	3		
 Bonnano	Bonanno	3		
 Brasillian	Brazilian	3		
 Britian	Britain	3		
@@ -145,6 +150,7 @@ Massachussets	Massachusetts	3
 Massachussetts	Massachusetts	3		
 Mediterainnean	Mediterranean	3		
 Mediteranean	Mediterranean	3		
+meninngococcal	meningococcal	3		
 Michagan	Michigan	3		
 Microosoft	Microsoft	3		
 Microosoft's	Microsoft's	3		

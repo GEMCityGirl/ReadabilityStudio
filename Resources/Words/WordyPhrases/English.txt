@@ -579,6 +579,9 @@ advance reservations	reservations	1
 advance warning	warning	1		
 advance warnings	warnings	1		
 advanced in years	old, elderly	0		
+advancent	advancement	3		
+advancent's	advancement's	3		
+advancents	advancements	3		
 advantage	plus	0		
 advantageous	helpful	0		
 advantageously	helpfully	0		
@@ -1072,6 +1075,9 @@ analyze	review, study	0
 analyzed	reviewed, studied	0		
 analyzes	reviews, studies	0		
 analyzing	reviewing, studying	0		
+anamotage	anatomage	3		
+anamotage's	anatomage's	3		
+anamotages	anatomages	3		
 anananomous	anonymous	3		
 ananlyse	analyze	3		
 ananlysis	analysis	3		
@@ -1230,6 +1236,9 @@ aplications	applications	3
 aplied	applied	3		
 aply	apply	3		
 apon	apron, upon	3		
+Appalachain	Appalachian	3		
+Appalachain's	Appalachian's	3		
+Appalachains	Appalachians	3		
 apparant	apparent	3		
 apparantly	apparently	3		
 apparence	appearance	3		
@@ -2470,6 +2479,8 @@ blows your own horn	boasts, brags	2
 blows your stack	explodes in anger	2		
 bltted	blitted	3		
 blue blood	aristocrat	2		
+Bluffotn	Bluffton	3		
+Bluffotn's	Bluffton's	3		
 bob wire	barbed wire	3		
 bobwire	barbed wire	3		
 bodydbuilder	bodybuilder	3		
@@ -3559,6 +3570,9 @@ competent	able	0
 competion	completion	3		
 competions	completions	3		
 competitiion	competition	3		
+competiton	competition	3		
+competiton's	competition's	3		
+competitons	competitions	3		
 competive	competitive	3		
 competiveness	competitiveness	3		
 comphrehensive	comprehensive	3		
@@ -5167,6 +5181,10 @@ disinter	dig up	0
 disinterred	dug up	0		
 disinterring	digging up	0		
 disinters	digs up	0		
+disinvest	divest	3		
+disinvested	divested	3		
+disinvesting	divesting	3		
+disinvests	divests	3		
 disiplined	disciplined	3		
 disk overs	disk over, discovers	3		
 dismember	take apart	0		
@@ -5641,6 +5659,9 @@ electrial	electrical	3
 electricly	electrically	3		
 electricty	electricity	3		
 elects	chooses, picks	0		
+elegibilities	eligibilities	3		
+elegibility	eligibility	3		
+elegibility's	eligibility's	3		
 elementay	elementary	3		
 eleminated	eliminated	3		
 eleminating	eliminating	3		
@@ -6184,6 +6205,9 @@ examinations	checks	0
 examine	check, look at	0		
 examined	checked, looked at	0		
 examines	checks, looks at	0		
+examiniation	examination	3		
+examiniation's	examination's	3		
+examiniations	examinations	3		
 examining	checking, looking at	0		
 examle	example	3		
 examle's	example's	3		
@@ -9448,6 +9472,7 @@ lazyness	laziness	3
 leage	league	3		
 learn the ropes	learn a task	2		
 learning the ropes	learning a task	2		
+learnng	learing	3		
 learns the ropes	learns a task	2		
 leathal	lethal	3		
 leave no stone unturned	be thorough	2		
@@ -9978,6 +10003,7 @@ menally	mentally	3
 mendacious	lying, false	0		
 mendicant	beggar	0		
 mendicants	beggars	0		
+meninngococcal	meningococcal	3		
 ment	meant	3		
 mental telepathy	telepathy	1		
 mentality	mind	0		
@@ -11691,6 +11717,9 @@ placate	soothe	0
 placated	soothed	0		
 placates	soothes	0		
 placating	soothing	0		
+placce	place	3		
+placce's	place's	3		
+placces	places	3		
 place a burden on	burden	0		
 place a priority on	favor, prefer, prioritize	0		
 place a strain on	strain, tax, hamper	0		
@@ -12868,6 +12897,9 @@ receieve	receive	3
 receieved	received	3		
 receieves	receives	3		
 receieving	receiving	3		
+receipient	recipient	3		
+receipient's	recipient's	3		
+receipients	recipients	3		
 receivesthe	receives the	3		
 recepient	recipient	3		
 recepients	recipients	3		
@@ -13390,6 +13422,9 @@ resolute	firm	0
 resouce	resource	3		
 resouce's	resource's	3		
 resouces	resources	3		
+resoucre	resource	3		
+resoucre's	resource's	3		
+resoucres	resources	3		
 resoure	resource	3		
 resoures	resources	3		
 respectivley	respectively	3		
@@ -13809,6 +13844,9 @@ secton's	section's	3
 sectons	sections	3		
 secund	second	3		
 securty	security	3		
+secutiries	securities	3		
+secutiry	security	3		
+secutiry's	security's	3		
 sedereal	sidereal	3		
 see it through	stay with a task until completion	2		
 see red	become angry	2		
@@ -15450,14 +15488,14 @@ to being with	to begin with	3
 to explorer the	to explore the	3		
 to generated	to generate, to be generated	3		identifiers;IDs;invalid;results;strings;text;valid;values
 to hell in a hand basket	going very badly	2		
-to late	too late	3	early;mid;subject	bind;charges;fees
+to late	too late	3	available;early;mid;subject	bind;charges;fees
 to make matters worse	worse yet	0		
 to no avail	unsuccessful	0		
 to provided	to provide	3		
 to put it another way	in other words, that is	0		
 to some degree	in a sense, somewhat, partly	0		
 to some extent	in a sense, somewhat, partly	0		
-to soon	too soon	3	 plans;have;hope;hopes;plan	begin;start
+to soon	too soon	3	have;hope;hopes;plan;plans	begin;start
 to start with	first	0		
 to such an extent	so much	0		
 to take this opportunity	(consider removing this)	0		
@@ -16255,6 +16293,9 @@ vindicate	defend, uphold	0
 vindicated	defended, upheld	0		
 vindicates	defends, upholds	0		
 vindicating	defending, upholding	0		
+violance	violence	3		
+violance's	violence's	3		
+violances	violences	3		
 violent explosion	explosion	0		
 violent explosions	explosions	0		
 violentce	violence	3		
@@ -16517,6 +16558,9 @@ weather conditions	weather, climate	0
 weather or not	whether or not	3		
 weather you are	whether you are	3		
 weather you're	whether you're	3		
+webpate	webpage	3		
+webpate's	webpage's	3		
+webpates	webpages	3		
 wehn	when	3		
 weigth	weight	3		
 weilded	wielded	3		

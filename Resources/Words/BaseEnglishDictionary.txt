@@ -4239,6 +4239,9 @@ anathematize
 anathematized
 anathematizes
 anathematizing
+anatomage
+anatomage's
+anatomages
 anatomic
 anatomical
 anatomically
@@ -5553,6 +5556,9 @@ apocalypse
 apocalypse's
 apocalypses
 apocalyptic
+apocalypticism
+apocalypticism's
+apocalypticisms
 apocrine
 apocryphal
 apocryphally
@@ -10813,6 +10819,9 @@ bedfast
 bedfellow
 bedfellow's
 bedfellows
+bedframe
+bedframe's
+bedframes
 bedhead
 bedim
 bedimmed
@@ -12177,6 +12186,9 @@ bioastronomy's
 bioavailable
 biobased
 biobehavioral
+biocapacities
+biocapacity
+biocapacity's
 biocatalysis
 biocatalytic
 biocellulose
@@ -17863,6 +17875,9 @@ canning's
 cannister
 cannister's
 cannisters
+cannoli
+cannoli's
+cannolis
 cannon
 cannon's
 cannonade
@@ -22057,6 +22072,7 @@ cine's
 cinema
 cinema's
 cinemas
+cinematheque
 cinematic
 cinematics
 cinematographer
@@ -25183,6 +25199,9 @@ completion's
 completions
 completive
 complex
+complexation
+complexation's
+complexations
 complexed
 complexer
 complexes
@@ -38886,6 +38905,10 @@ dormer
 dormer's
 dormers
 dormice
+dormified
+dormifies
+dormify
+dormifying
 dormitories
 dormitory
 dormitory's
@@ -40654,6 +40677,7 @@ earths
 earthshaking
 earthward
 earthwards
+earthwise
 earthwork
 earthwork's
 earthworks
@@ -42162,6 +42186,9 @@ embosser's
 embossers
 embosses
 embossing
+embossment
+embossment's
+embossments
 embouchure
 embouchure's
 embouchures
@@ -43012,6 +43039,9 @@ enervation's
 enervations
 enervative
 enews
+enewsletter
+enewsletter's
+enewsletters
 enfeeble
 enfeebled
 enfeeblement
@@ -54726,6 +54756,9 @@ glassblowers
 glassblowing
 glassblowing's
 glassblowings
+glassboard
+glassboard's
+glassboards
 glassed
 glasses
 glassful
@@ -94748,6 +94781,9 @@ peaceableness
 peaceableness's
 peaceably
 peacebuild
+peacebuilder
+peacebuilder's
+peacebuilders
 peacebuilding
 peacebuilds
 peacebuilt
@@ -109237,6 +109273,7 @@ refuge's
 refuged
 refugee
 refugee's
+refugeeism
 refugees
 refuges
 refuging
@@ -112384,6 +112421,7 @@ revetments
 revetted
 revetting
 review
+reviewable
 reviewed
 reviewee
 reviewee's
@@ -127026,6 +127064,7 @@ storyline
 storyline's
 storylines
 storylines'
+storytell
 storyteller
 storyteller's
 storytellers
@@ -131147,6 +131186,7 @@ synodality
 synodality's
 synodic
 synodical
+synodically
 synods
 synoecious
 synonym
