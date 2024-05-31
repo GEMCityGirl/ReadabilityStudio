@@ -1154,9 +1154,7 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     else if (!wxFile::Exists(m_CustomEnglishDictionaryPath))
         {
         wxFile outputFile(m_CustomEnglishDictionaryPath, wxFile::write);
-        // put a space in the file so that it isn't zero length, that will prevent memory map
-        // exceptions later
-        outputFile.Write(L" ", wxConvUTF8);
+        outputFile.Write(wxString{}, wxConvUTF8);
         }
 
     BaseProject::known_spanish_spellings.load_words(SpanishspellingsFileText.c_str(), false, false);
@@ -1170,7 +1168,7 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     else if (!wxFile::Exists(m_CustomSpanishDictionaryPath))
         {
         wxFile outputFile(m_CustomSpanishDictionaryPath, wxFile::write);
-        outputFile.Write(L" ", wxConvUTF8);
+        outputFile.Write(wxString{}, wxConvUTF8);
         }
 
     BaseProject::known_german_spellings.load_words(GermanspellingsFileText.c_str(), false, false);
@@ -1184,7 +1182,7 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     else if (!wxFile::Exists(m_CustomGermanDictionaryPath))
         {
         wxFile outputFile(m_CustomGermanDictionaryPath, wxFile::write);
-        outputFile.Write(L" ", wxConvUTF8);
+        outputFile.Write(wxString{}, wxConvUTF8);
         }
 
     // clang-format off
