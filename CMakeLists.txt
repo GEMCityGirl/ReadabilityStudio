@@ -358,7 +358,7 @@ add_custom_command(TARGET ${PROJECT_NAME}
                    COMMAND ${CMAKE_COMMAND} -E tar "cvf" "$<TARGET_FILE_DIR:${PROJECT_NAME}>/Words.wad" --format=zip --files-from="${CMAKE_CURRENT_SOURCE_DIR}/tools/words.cmake"
                    COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE_DIR:${PROJECT_NAME}>/Words.wad" "${CMAKE_CURRENT_SOURCE_DIR}/installers/resources/"
                    COMMENT "Building word lists and copying to build and installer folders."
-                   WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/Resources/Words")
+                   WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/Resources/words")
 
 # Copy application to installer folder (if a production build)
 if(${CMAKE_BUILD_TYPE} STREQUAL "Release")

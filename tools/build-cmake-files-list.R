@@ -8,7 +8,7 @@ sourcesFile <- str_glue('{this.path::this.dir()}/files.cmake')
 imagesFolder <- str_glue('{this.path::this.dir()}/../Resources/Images')
 imagesFile <- str_glue('{this.path::this.dir()}/images.cmake')
 
-wordsFolder <- str_glue('{this.path::this.dir()}/../Resources/Words')
+wordsFolder <- str_glue('{this.path::this.dir()}/../Resources/words')
 wordsFile <- str_glue('{this.path::this.dir()}/words.cmake')
 
 # Source files for application

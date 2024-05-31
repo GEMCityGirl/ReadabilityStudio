@@ -8,7 +8,7 @@ All art assets are stored in **Resources/Images**. Images should be saved into t
 
 ### Editing Lists {-}
 
-In the **Resources/Words** folder, the following folders contain word lists used by the program. Some can be edited, others are generated. Also, all these files are meant for all languages, unless otherwise noted.
+In the **Resources/words** folder, the following folders contain word lists used by the program. Some can be edited, others are generated. Also, all these files are meant for all languages, unless otherwise noted.
 
 Please refer to the following file & folder breakdown for reference:
 

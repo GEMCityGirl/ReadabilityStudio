@@ -79,7 +79,7 @@ The following documents how to add a familiar word list (used by a test, such as
 This applies to full words lists (e.g., **Dale-Chall**), not supplements such as **Stocker's Catholic Supplement**.
 :::
 
-- Create a word list file and add to the resources (**Resources/Words/word-lists**). (This should be a single column text file.)
+- Create a word list file and add to the resources (**Resources/words/word-lists**). (This should be a single column text file.)
 - Add a `word_list` object to `BaseProject` (**src/projects/base_project.h**).
 - Load the text file into aforementioned `word_list` in `ReadabilityApp::LoadWordLists()`
 - Add a check that the list is sorted in `ReadabilityApp::VerifyWordLists()`.
