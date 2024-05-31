@@ -12177,7 +12177,12 @@ bioaccumulation
 bioaccumulation's
 bioacoustic
 bioactive
+bioarchaeological
+bioarchaeologist
+bioarchaeologist's
+bioarchaeologists
 bioarchaeology
+bioarchaeology's
 bioassay
 bioassay's
 bioassays
@@ -15133,6 +15138,7 @@ breadths
 breadwinner
 breadwinner's
 breadwinners
+breadworks
 break
 break's
 breakable
@@ -19249,7 +19255,9 @@ catesbeiana
 catesbeianus
 catfish
 catfish's
+catfished
 catfishes
+catfishing
 catgut
 catgut's
 catguts
@@ -24936,6 +24944,9 @@ communitarian's
 communities
 community
 community's
+communiversities
+communiversity
+communiversity's
 communize
 communized
 communizes
@@ -26610,6 +26621,8 @@ consonants
 consort
 consorted
 consortia
+consortial
+consortially
 consorting
 consortium
 consortium's
@@ -27711,6 +27724,9 @@ coquettes
 coquetting
 coquettish
 coquettishly
+coquillette
+coquillette's
+coquillettes
 coracle
 coracle's
 coracles
@@ -28542,6 +28558,9 @@ countersigns
 countersink
 countersinking
 countersinks
+counterspeech
+counterspeech's
+counterspeeches
 counterspies
 counterspy
 counterspy's
@@ -43282,6 +43301,8 @@ ennui
 ennui's
 ennuis
 enolase
+enology
+enology's
 enophthalmos
 enormities
 enormity
@@ -44816,6 +44837,9 @@ ethnomethodology
 ethnomusicology
 ethnoracially
 ethnoreligious
+ethnoscience
+ethnoscience's
+ethnosciences
 ethological
 ethologies
 ethologist
@@ -47511,6 +47535,7 @@ fasting
 fastness
 fastness's
 fastnesses
+fastpitch
 fasts
 fat
 fat's
@@ -50078,6 +50103,8 @@ floweriest
 floweriness
 floweriness's
 flowering
+flowering's
+flowerings
 flowerless
 flowerpot
 flowerpot's
@@ -54177,6 +54204,9 @@ geotechnics
 geothermal
 geothermally
 geothermic
+geotour
+geotour's
+geotours
 gephyrophobia
 geranium
 geranium's
@@ -58049,6 +58079,9 @@ handbarrow
 handbarrow's
 handbarrows
 handbasin
+handbell
+handbell's
+handbells
 handbill
 handbill's
 handbills
@@ -67621,6 +67654,7 @@ interconnection's
 interconnections
 interconnectivity
 interconnects
+interconsortial
 intercontinental
 interconversion
 interconversion's
@@ -67665,6 +67699,9 @@ interdictions
 interdictive
 interdicts
 interdigitate
+interdisciplinarian
+interdisciplinarian's
+interdisciplinarians
 interdisciplinarity
 interdisciplinary
 interdomain
@@ -68316,6 +68353,7 @@ intradepartmental
 intradermal
 intraductal
 intraepithelial
+intrafaith
 intrafallopian
 intrafamily
 intraforest
@@ -71213,6 +71251,8 @@ kindergartens
 kindergärtner
 kindergärtner's
 kindergärtners
+kindermusik
+kindermusik's
 kindest
 kindhearted
 kindheartedly
@@ -79685,6 +79725,8 @@ metaparadigm's
 metaparadigms
 metaperiodic
 metaphase
+metaphilosophy
+metaphilosophy's
 metaphonology
 metaphonology's
 metaphor
@@ -85078,6 +85120,9 @@ namespace
 namespace's
 namespaced
 namespaces
+nametag
+nametag's
+nametags
 naming
 naming's
 NaN
@@ -86173,6 +86218,8 @@ neuroimagined
 neuroimagines
 neuroimaging
 neuroimmune
+neuroimmunology
+neuroimmunology's
 neuroinvasive
 neuroleptic
 neurologic
@@ -93763,6 +93810,9 @@ parasuicide
 parasympathetic
 parasympathetics
 parasympathomimetic
+parataxonomist
+parataxonomist's
+parataxonomists
 parathion
 parathion's
 parathions
@@ -94743,6 +94793,9 @@ paybacks
 paycheck
 paycheck's
 paychecks
+paycode
+paycode's
+paycodes
 payday
 payday's
 paydays
@@ -97100,6 +97153,7 @@ photofinishing
 photofinishing's
 photofinishings
 photog
+photogallery
 photogate
 photogate's
 photogates
@@ -100552,6 +100606,8 @@ postmistress
 postmistress's
 postmistresses
 postmodern
+postmodernism
+postmodernism's
 postmodernist
 postmodernity
 postmortem
@@ -108280,6 +108336,9 @@ reconstructible
 reconstructing
 reconstruction
 reconstruction's
+reconstructionist
+reconstructionist's
+reconstructionists
 reconstructions
 reconstructive
 reconstructively
@@ -109260,6 +109319,8 @@ refractometer's
 refractometers
 refractometric
 refractometry
+refractor
+refractor's
 refractories
 refractoriness
 refractoriness's
@@ -109851,6 +109912,9 @@ reinvoke
 reinvoked
 reinvokes
 reinvoking
+reissuance
+reissuance's
+reissuances
 reissue
 reissued
 reissuer
@@ -117555,6 +117619,8 @@ sedimentation's
 sedimentations
 sedimented
 sedimenting
+sedimentology
+sedimentology's
 sediments
 sedition
 sedition's
@@ -120141,6 +120207,7 @@ Sibilla
 Sibley
 sibling
 sibling's
+siblinghood
 siblings
 sibship
 sibyl
@@ -120231,6 +120298,9 @@ sidedness
 sidekick
 sidekick's
 sidekicks
+sidelet
+sidelet's
+sidelets
 sidelight
 sidelight's
 sidelights
@@ -132044,6 +132114,9 @@ tapeworms
 taphephobia
 taphophobia
 taphophobia's
+taphouse
+taphouse's
+taphouses
 taping
 tapings
 tapioca
@@ -149283,6 +149356,8 @@ worksheet's
 worksheets
 workshop
 workshop's
+workshopped
+workshopping
 workshops
 worksite
 worksite's
