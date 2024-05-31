@@ -31,7 +31,7 @@ Please refer to the following file & folder breakdown for reference:
 - **Programming**:
   - **all-languages.txt**: this file is generated, **do not edit**.
   - All other files in here are keywords/function names/etc. for various programming languages. These are used by the spell checker if the user is ignoring programming words.
-- **ProperNouns**: all files in this folder are generated, **do not edit anything in here**.
+- **proper-nouns**: all files in this folder are generated, **do not edit anything in here**.
 - **stop-words**:
   - **english.txt**: common **English** words that should be excluded from most text mining operations (e.g., n-gram searching).
   - **german.txt**: common **German** words that should be excluded from most text mining operations (e.g., n-gram searching).

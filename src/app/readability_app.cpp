@@ -1077,8 +1077,8 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     // citation headers
     std::wstring citationPhraseFileText = cat.ReadTextFile(L"citation-headers/citations.txt");
     // known proper nouns
-    std::wstring properNounsFileText = cat.ReadTextFile(L"ProperNouns/All.txt");
-    std::wstring personalNounsFileText = cat.ReadTextFile(L"ProperNouns/Personal.txt");
+    std::wstring properNounsFileText = cat.ReadTextFile(L"proper-nouns/all.txt");
+    std::wstring personalNounsFileText = cat.ReadTextFile(L"proper-nouns/personal.txt");
     // stop lists
     std::wstring EnglishStopList = cat.ReadTextFile(L"stop-words/english.txt");
     std::wstring SpanishStopList = cat.ReadTextFile(L"stop-words/spanish.txt");

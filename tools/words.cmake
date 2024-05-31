@@ -17,8 +17,8 @@ Programming/Java.txt
 Programming/Python.txt
 Programming/R.txt
 Programming/VisualBasic.txt
-ProperNouns/All.txt
-ProperNouns/Personal.txt
+proper-nouns/all.txt
+proper-nouns/personal.txt
 stop-words/english.txt
 stop-words/german.txt
 stop-words/proper-nouns-stoplist.txt

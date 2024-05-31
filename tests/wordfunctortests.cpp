@@ -382,7 +382,7 @@ TEST_CASE("Word Functors", "[word]")
         CHECK(1 == std::count_if(doc.get_words().begin(),doc.get_words().end(),is_proper_noun<MYWORD>()));
         CHECK(1 == std::count_if(doc.get_words().begin(),doc.get_words().end(),is_valid_proper_noun<MYWORD>()));
         }
-    SECTION("ProperNouns")
+    SECTION("Proper Nouns")
         {
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"Chapter 1\n\nIt was a dark and stormy night on July 5, 1974.\n\nThe End of July (1974)";
@@ -391,7 +391,7 @@ TEST_CASE("Word Functors", "[word]")
         CHECK(std::count_if(doc.get_words().begin(),doc.get_words().end(),is_proper_noun<MYWORD >()) == 2);
         CHECK(std::count_if(doc.get_words().begin(),doc.get_words().end(),is_valid_proper_noun<MYWORD >()) == 1);
         }
-    SECTION("ProperNouns2")
+    SECTION("Proper Nouns 2")
         {
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"JOE LIKES THE BOOK FRANKENSTEIN! I and Joe like the book Frankenstein. I LIKE THE BOOK FRANKENSTEIN.";
@@ -422,7 +422,7 @@ TEST_CASE("Word Functors", "[word]")
         CHECK(doc.get_words().operator[](16).is_proper_noun() == true);
         CHECK(doc.get_words().operator[](16).is_acronym() == false);
         }
-    SECTION("ProperNouns3")
+    SECTION("Proper Nouns 3")
         {
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"He works for U.N., AKA NATO.  The UN is a nice place to work, as is NATO.";
@@ -452,7 +452,7 @@ TEST_CASE("Word Functors", "[word]")
         CHECK(doc.get_words().operator[](16).is_proper_noun() == true);
         CHECK(doc.get_words().operator[](16).is_acronym() == true);
         }
-    SECTION("ProperNounsConflictingCasing")
+    SECTION("Proper Nouns Conflicting Casing")
         {
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"Yes, I am here. No, let's play Yes or No. He said 'yes', and she said 'no', he said 'yes'. Micky is here, Micky is Micky!";

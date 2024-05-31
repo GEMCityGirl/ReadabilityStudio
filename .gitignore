@@ -35,9 +35,8 @@
 /Resources/Words/dictionaries/german.txt
 /Resources/Words/dictionaries/spanish.txt
 /Resources/Words/Programming/all-languages.txt
-/Resources/Words/ProperNouns/Personal.txt
-/Resources/Words/ProperNouns/Western.txt
-/Resources/Words/ProperNouns/All.txt
+/Resources/Words/proper-nouns/personal.txt
+/Resources/Words/proper-nouns/all.txt
 /docs/ReadabilityStudioDocs/_bookdown_files/
 /docs/ReadabilityStudioDocs/docs
 /docs/ReadabilityStudioDocs/01-Overviews.rmd
