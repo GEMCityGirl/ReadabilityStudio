@@ -34,7 +34,7 @@ git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
     - Uncheck **wxBUILD_SHARED** and save
   - Select **Build** > **Install wxWidgets** (builds and then copies the header, lib, and cmake files to the prefix folder)
 - Open this project's CMake file in *Visual Studio* and save it (this is equivalent to configuring CMake and will generate some necessary configuration files)
-- Open "ReadabilityStudio/docs/BuildHelpProjects.R" in *RStudio* and source the entire script
+- Open "ReadabilityStudio/docs/build-help-projects.R" in *RStudio* and source the entire script
 - Go back to *Visual Studio* and build the project
 
 ## Linux
@@ -118,5 +118,5 @@ If the documentation screenshots need updating, then:
 
 - Build the program as usual
 - Open up *Readability Studio* and open the file "ReadabilityStudio/docs/generate-screenshots.lua" in the Lua editor and run it
-- Open "ReadabilityStudio/docs/BuildHelpProjects.R" and source the entire script
+- Open "ReadabilityStudio/docs/build-help-projects.R" and source the entire script
 - Rebuild the program (this will re-package the documentation)

@@ -186,7 +186,7 @@ endif()
 add_custom_target(manuals
                 ALL
                 COMMAND "${R_SCRIPT}"
-                    "${CMAKE_CURRENT_SOURCE_DIR}/docs/BuildHelpProjects.R"
+                    "${CMAKE_CURRENT_SOURCE_DIR}/docs/build-help-projects.R"
                     "${PANDOC_ROOT_DIR}"
                 WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/docs/")
 

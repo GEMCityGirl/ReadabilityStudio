@@ -16,7 +16,7 @@ if (nchar(tinytex::tinytex_root()) == 0)
   }
 
 docFolder <- this.path::this.dir()
-source(glue("{docFolder}/BuildEnumFiles.R"))
+source(glue("{docFolder}/build-enum-files.R"))
 source(glue("{docFolder}/ReadabilityStudioDocs/R/appdown.r"))
 
 # delete previous builds

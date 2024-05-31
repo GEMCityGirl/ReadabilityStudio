@@ -44,6 +44,6 @@ After generating new screenshots, [build](#building-help) the help and review th
 
 ## Building {#building-help}
 
-From *RStudio*, run **docs/BuildHelpProjects.R** to build all help projects. This should install all needed *R* and *LaTeX* packages the first time you run it,
+From *RStudio*, run **docs/build-help-projects.R** to build all help projects. This should install all needed *R* and *LaTeX* packages the first time you run it,
 although you may need to uncomment the line `tinytex::install_tinytex()` once to install *tinytex*. If there are any errors will installing the *LaTeX* packages,
 run the script again; you may expericence connection issues to *ctan* and re-running the script will fix it.
