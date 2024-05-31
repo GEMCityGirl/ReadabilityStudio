@@ -329,7 +329,7 @@ add_custom_command(TARGET ${PROJECT_NAME}
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
-                   ${CMAKE_CURRENT_SOURCE_DIR}/Resources/Themes $<TARGET_FILE_DIR:${PROJECT_NAME}>/Themes)
+                   ${CMAKE_CURRENT_SOURCE_DIR}/Resources/themes $<TARGET_FILE_DIR:${PROJECT_NAME}>/themes)
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory

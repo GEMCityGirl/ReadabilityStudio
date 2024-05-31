@@ -3240,7 +3240,7 @@ void ToolsOptionsDlg::CreateControls()
             // load the list of themes
             wxDir dir;
             wxArrayString files;
-            const wxString themesFolder = wxGetApp().FindResourceDirectory(_DT(L"Themes"));
+            const wxString themesFolder = wxGetApp().FindResourceDirectory(_DT(L"themes"));
             dir.GetAllFiles(themesFolder, &files, wxEmptyString, wxDIR_FILES);
             for (auto& theme : files)
                 {
@@ -3276,7 +3276,7 @@ void ToolsOptionsDlg::CreateControls()
                 wxEVT_COMBOBOX,
                 [this](wxCommandEvent& evt)
                 {
-                    const wxString themePath = wxGetApp().FindResourceDirectory(_DT(L"Themes")) +
+                    const wxString themePath = wxGetApp().FindResourceDirectory(_DT(L"themes")) +
                                                wxFileName::GetPathSeparator() + evt.GetString() +
                                                L".xml";
                     if (wxFileName::FileExists(themePath))
