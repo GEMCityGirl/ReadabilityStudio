@@ -1080,13 +1080,13 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     std::wstring properNounsFileText = cat.ReadTextFile(L"ProperNouns/All.txt");
     std::wstring personalNounsFileText = cat.ReadTextFile(L"ProperNouns/Personal.txt");
     // stop lists
-    std::wstring EnglishStopList = cat.ReadTextFile(L"StopWords/English.txt");
-    std::wstring SpanishStopList = cat.ReadTextFile(L"StopWords/Spanish.txt");
-    std::wstring GermanStopList = cat.ReadTextFile(L"StopWords/German.txt");
+    std::wstring EnglishStopList = cat.ReadTextFile(L"StopWords/english.txt");
+    std::wstring SpanishStopList = cat.ReadTextFile(L"StopWords/spanish.txt");
+    std::wstring GermanStopList = cat.ReadTextFile(L"StopWords/german.txt");
     // known spellings
-    std::wstring EnglishSpellingsFileText = cat.ReadTextFile(L"Dictionaries/English.txt");
-    std::wstring SpanishspellingsFileText = cat.ReadTextFile(L"Dictionaries/Spanish.txt");
-    std::wstring GermanspellingsFileText = cat.ReadTextFile(L"Dictionaries/German.txt");
+    std::wstring EnglishSpellingsFileText = cat.ReadTextFile(L"Dictionaries/english.txt");
+    std::wstring SpanishspellingsFileText = cat.ReadTextFile(L"Dictionaries/spanish.txt");
+    std::wstring GermanspellingsFileText = cat.ReadTextFile(L"Dictionaries/german.txt");
     std::wstring ProgrammingSpellingsFileText = cat.ReadTextFile(L"Programming/all-languages.txt");
     // articles
     std::wstring aExceptionsFileText = cat.ReadTextFile(_DT(L"Articles/a-exceptions.txt"));

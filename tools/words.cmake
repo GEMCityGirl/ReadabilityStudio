@@ -4,9 +4,9 @@ Articles/a-exceptions.txt
 Articles/an-exceptions.txt
 citation-headers/citations.txt
 copyright-notices/notices.txt
-Dictionaries/English.txt
-Dictionaries/German.txt
-Dictionaries/Spanish.txt
+Dictionaries/english.txt
+Dictionaries/german.txt
+Dictionaries/spanish.txt
 PastParticiples/Exceptions.txt
 Programming/all-languages.txt
 Programming/Assembly.txt
@@ -19,10 +19,10 @@ Programming/R.txt
 Programming/VisualBasic.txt
 ProperNouns/All.txt
 ProperNouns/Personal.txt
-StopWords/English.txt
+StopWords/english.txt
 StopWords/german.txt
 StopWords/proper-nouns-stoplist.txt
-StopWords/Spanish.txt
+StopWords/spanish.txt
 WordLists/Dolch.txt
 WordLists/Harris-Jacobson.txt
 WordLists/New Dale-Chall.txt

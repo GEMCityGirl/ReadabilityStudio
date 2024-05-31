@@ -2,11 +2,11 @@ dofile(Application.GetLuaConstantsPath())
 
 -- Sort the stop lists
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/StopWords/English.txt",
-    Debug.GetScriptFolderPath().."Words/StopWords/English.txt")
+    Debug.GetScriptFolderPath().."Words/StopWords/english.txt",
+    Debug.GetScriptFolderPath().."Words/StopWords/english.txt")
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/StopWords/Spanish.txt",
-    Debug.GetScriptFolderPath().."Words/StopWords/Spanish.txt")
+    Debug.GetScriptFolderPath().."Words/StopWords/spanish.txt",
+    Debug.GetScriptFolderPath().."Words/StopWords/spanish.txt")
 Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words/StopWords/german.txt",
     Debug.GetScriptFolderPath().."Words/StopWords/german.txt")
@@ -131,7 +131,7 @@ Application.CrossReferenceWordLists(
 
 -- Merge everything into the English dictionary
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/Dictionaries/English.txt",
+    Debug.GetScriptFolderPath().."Words/Dictionaries/english.txt",
     Debug.GetScriptFolderPath().."Words/base-english-dictionary.txt",
     Debug.GetScriptFolderPath().."Words/Abbreviations/abbreviations.txt",
     Debug.GetScriptFolderPath().."Words/ProperNouns/All.txt")
