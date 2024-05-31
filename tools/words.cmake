@@ -1,5 +1,5 @@
-Abbreviations/abbreviations.txt
-Abbreviations/non-abbreviations.txt
+abbreviations/abbreviations.txt
+abbreviations/non-abbreviations.txt
 Articles/a-exceptions.txt
 Articles/an-exceptions.txt
 citation-headers/citations.txt

@@ -37,12 +37,12 @@ Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words/stop-words/proper-nouns-stoplist.txt")
 
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/Abbreviations/abbreviations.txt",
-    Debug.GetScriptFolderPath().."Words/Abbreviations/abbreviations.txt")
+    Debug.GetScriptFolderPath().."Words/abbreviations/abbreviations.txt",
+    Debug.GetScriptFolderPath().."Words/abbreviations/abbreviations.txt")
 
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/Abbreviations/non-abbreviations.txt",
-    Debug.GetScriptFolderPath().."Words/Abbreviations/non-abbreviations.txt")
+    Debug.GetScriptFolderPath().."Words/abbreviations/non-abbreviations.txt",
+    Debug.GetScriptFolderPath().."Words/abbreviations/non-abbreviations.txt")
 
 Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words/Articles/a-exceptions.txt",
@@ -133,7 +133,7 @@ Application.CrossReferenceWordLists(
 Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words/Dictionaries/english.txt",
     Debug.GetScriptFolderPath().."Words/base-english-dictionary.txt",
-    Debug.GetScriptFolderPath().."Words/Abbreviations/abbreviations.txt",
+    Debug.GetScriptFolderPath().."Words/abbreviations/abbreviations.txt",
     Debug.GetScriptFolderPath().."Words/ProperNouns/All.txt")
 
 -- Programming dictionaries (this is separate and optionally included)

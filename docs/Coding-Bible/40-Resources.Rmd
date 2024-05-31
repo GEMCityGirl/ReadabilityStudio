@@ -15,8 +15,9 @@ Please refer to the following file & folder breakdown for reference:
 - **base-english-dictionary.txt**: main English dictionary. All forms of a give words (e.g., plural, possessive) should go in here. Note that proper nouns should not go in here.
 - **base-non-personal.txt**: places (e.g., cities, countries), company names, species names, etc. should go in here.
 - **base-personal.txt**: person names should go in there.
-- **Abbreviations**:
-  - **List.txt**: list of abbreviations that the program uses to determine abbreviations. (Words in here must include their periods.)
+- **abbreviations**:
+  - **abbreviations.txt**: list of abbreviations that the program uses to determine abbreviations. (Words in here must include their periods.)
+  - **non-abbreviations.txt**: list of words that should never been seen as abbreviations. This will be long words that contain no vowels, but are still an actual word.
 - **Articles**:
   - **a-xceptions.txt**: these are words that are correct to follow an 'a' that the program word otherwise misclassify.
   - **an-exceptions.txt**: these are words that are correct to follow an 'an' that the program word otherwise misclassify.
