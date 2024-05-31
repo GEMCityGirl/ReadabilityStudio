@@ -1059,17 +1059,17 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     const size_t readSize = theFile.Read(wordyZipFileText.get(), theFile.Length());
     Wisteria::ZipCatalog cat(wordyZipFileText.get(), readSize);
     // read in the wordy items
-    std::wstring englishWordyPhraseFileText = cat.ReadTextFile(L"WordyPhrases/English.txt");
-    std::wstring spanishWordyPhraseFileText = cat.ReadTextFile(L"WordyPhrases/Spanish.txt");
-    std::wstring germanWordyPhraseFileText = cat.ReadTextFile(L"WordyPhrases/German.txt");
+    std::wstring englishWordyPhraseFileText = cat.ReadTextFile(L"WordyPhrases/english.txt");
+    std::wstring spanishWordyPhraseFileText = cat.ReadTextFile(L"WordyPhrases/spanish.txt");
+    std::wstring germanWordyPhraseFileText = cat.ReadTextFile(L"WordyPhrases/german.txt");
     std::wstring DCReplacementFileText =
-        cat.ReadTextFile(L"WordyPhrases/Dale-ChallReplacements.txt");
+        cat.ReadTextFile(L"WordyPhrases/dale-chall-replacements.txt");
     std::wstring SpacheReplacementFileText =
-        cat.ReadTextFile(L"WordyPhrases/SpacheReplacements.txt");
+        cat.ReadTextFile(L"WordyPhrases/spache-replacements.txt");
     std::wstring HarrisJacobsonReplacementFileText =
-        cat.ReadTextFile(L"WordyPhrases/Harris-JacobsonReplacements.txt");
+        cat.ReadTextFile(L"WordyPhrases/harris-jacobson-replacements.txt");
     std::wstring DifficultWordReplacementFileText =
-        cat.ReadTextFile(L"WordyPhrases/SingleWordReplacementsEnglish.txt");
+        cat.ReadTextFile(L"WordyPhrases/single-word-replacements-english.txt");
     // proper noun stop word list
     std::wstring properNounStopList = cat.ReadTextFile(L"StopWords/ProperNounsStopList.txt");
     // copyright notices
@@ -1118,11 +1118,9 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     BaseProject::dale_chall_replacement_list.load_words(DCReplacementFileText.c_str(), false);
     BaseProject::spache_replacement_list.load_words(SpacheReplacementFileText.c_str(), false);
     BaseProject::harris_jacobson_replacement_list.load_words(
-        HarrisJacobsonReplacementFileText.c_str(),
-                                                             false);
+        HarrisJacobsonReplacementFileText.c_str(), false);
     BaseProject::difficult_word_replacement_list.load_words(
-        DifficultWordReplacementFileText.c_str(),
-                                                            false);
+        DifficultWordReplacementFileText.c_str(), false);
 
     BaseProject::known_proper_nouns.load_words(properNounsFileText.c_str(), false, false);
     BaseProject::known_personal_nouns.load_words(personalNounsFileText.c_str(), false, false);
@@ -1136,8 +1134,7 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     BaseProject::m_dale_chall_plus_stocker_catholic_word_list.load_words(dcFileText.c_str(), false,
                                                                          false);
     BaseProject::m_dale_chall_plus_stocker_catholic_word_list.load_words(
-        stockerCatholicFileText.c_str(),
-                                                                         true, true);
+        stockerCatholicFileText.c_str(), true, true);
     BaseProject::m_spache_word_list.load_words(spacheFileText.c_str(), false, false);
     BaseProject::m_harris_jacobson_word_list.load_words(harrisJacobsonFileText.c_str(), false,
                                                         false);

@@ -84,34 +84,40 @@ os.remove(Debug.GetScriptFolderPath().."NonPersonalTEMP.txt")
 
 -- Sort (and reformat) phrase lists
 Application.MergePhraseLists(
-    Debug.GetScriptFolderPath().."Words/WordyPhrases/German.txt",
-    Debug.GetScriptFolderPath().."Words/WordyPhrases/German.txt")
+    Debug.GetScriptFolderPath().."Words/WordyPhrases/common-errors.txt",
+    Debug.GetScriptFolderPath().."Words/WordyPhrases/common-errors.txt")
 Application.MergePhraseLists(
-    Debug.GetScriptFolderPath().."Words/WordyPhrases/Spanish.txt",
-    Debug.GetScriptFolderPath().."Words/WordyPhrases/Spanish.txt")
+    Debug.GetScriptFolderPath().."Words/WordyPhrases/german.txt",
+    Debug.GetScriptFolderPath().."Words/WordyPhrases/common-errors.txt",
+    Debug.GetScriptFolderPath().."Words/WordyPhrases/base-german.txt")
 Application.MergePhraseLists(
-    Debug.GetScriptFolderPath().."Words/WordyPhrases/English.txt",
-    Debug.GetScriptFolderPath().."Words/WordyPhrases/English.txt")
+    Debug.GetScriptFolderPath().."Words/WordyPhrases/spanish.txt",
+    Debug.GetScriptFolderPath().."Words/WordyPhrases/common-errors.txt",
+    Debug.GetScriptFolderPath().."Words/WordyPhrases/base-spanish.txt")
+Application.MergePhraseLists(
+    Debug.GetScriptFolderPath().."Words/WordyPhrases/english.txt",
+    Debug.GetScriptFolderPath().."Words/WordyPhrases/common-errors.txt",
+    Debug.GetScriptFolderPath().."Words/WordyPhrases/base-english.txt")
 
 -- Create single word list from wordy phrase list
 Application.PhraseListToWordList(
-    Debug.GetScriptFolderPath().."Words/WordyPhrases/English.txt",
-    Debug.GetScriptFolderPath().."Words/WordyPhrases/SingleWordReplacementsEnglish.txt")
+    Debug.GetScriptFolderPath().."Words/WordyPhrases/english.txt",
+    Debug.GetScriptFolderPath().."Words/WordyPhrases/single-word-replacements-english.txt")
 
 Application.CrossReferenceWordLists(
-    Debug.GetScriptFolderPath().."Words/WordyPhrases/SingleWordReplacementsEnglish.txt",
+    Debug.GetScriptFolderPath().."Words/WordyPhrases/single-word-replacements-english.txt",
     Debug.GetScriptFolderPath().."Words/WordLists/New Dale-Chall.txt",
-    Debug.GetScriptFolderPath().."Words/WordyPhrases/Dale-ChallReplacements.txt")
+    Debug.GetScriptFolderPath().."Words/WordyPhrases/dale-chall-replacements.txt")
 
 Application.CrossReferenceWordLists(
-    Debug.GetScriptFolderPath().."Words/WordyPhrases/SingleWordReplacementsEnglish.txt",
+    Debug.GetScriptFolderPath().."Words/WordyPhrases/single-word-replacements-english.txt",
     Debug.GetScriptFolderPath().."Words/WordLists/Harris-Jacobson.txt",
-    Debug.GetScriptFolderPath().."Words/WordyPhrases/Harris-JacobsonReplacements.txt")
+    Debug.GetScriptFolderPath().."Words/WordyPhrases/harris-jacobson-replacements.txt")
 
 Application.CrossReferenceWordLists(
-    Debug.GetScriptFolderPath().."Words/WordyPhrases/SingleWordReplacementsEnglish.txt",
+    Debug.GetScriptFolderPath().."Words/WordyPhrases/single-word-replacements-english.txt",
     Debug.GetScriptFolderPath().."Words/WordLists/Revised Spache.txt",
-    Debug.GetScriptFolderPath().."Words/WordyPhrases/SpacheReplacements.txt")
+    Debug.GetScriptFolderPath().."Words/WordyPhrases/spache-replacements.txt")
 
 -- Merge everything into the English dictionary
 Application.MergeWordLists(
