@@ -18,8 +18,8 @@ Please refer to the following file & folder breakdown for reference:
 - **Abbreviations**:
   - **List.txt**: list of abbreviations that the program uses to determine abbreviations. (Words in here must include their periods.)
 - **Articles**:
-  - **AExceptions.txt**: these are words that are correct to follow an 'a' that the program word otherwise misclassify.
-  - **ANExceptions.txt**: these are words that are correct to follow an 'an' that the program word otherwise misclassify.
+  - **a-xceptions.txt**: these are words that are correct to follow an 'a' that the program word otherwise misclassify.
+  - **an-exceptions.txt**: these are words that are correct to follow an 'an' that the program word otherwise misclassify.
 - **CitationHeaders**:
  - **List.txt**: list of phrases that would mark the beginning of a citation section in a document.
 - **CopyrightNotices**:

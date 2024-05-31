@@ -45,12 +45,12 @@ Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words/Abbreviations/non-abbreviations.txt")
 
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/Articles/AExceptions.txt",
-    Debug.GetScriptFolderPath().."Words/Articles/AExceptions.txt")
+    Debug.GetScriptFolderPath().."Words/Articles/a-exceptions.txt",
+    Debug.GetScriptFolderPath().."Words/Articles/a-exceptions.txt")
 
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/Articles/AnExceptions.txt",
-    Debug.GetScriptFolderPath().."Words/Articles/AnExceptions.txt")
+    Debug.GetScriptFolderPath().."Words/Articles/an-exceptions.txt",
+    Debug.GetScriptFolderPath().."Words/Articles/an-exceptions.txt")
 
 Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words/WordLists/New Dale-Chall.txt",
