@@ -5,7 +5,7 @@ pacman::p_load(tidyverse, magrittr, stringr, this.path)
 srcFolder <- str_glue('{this.path::this.dir()}/../src')
 sourcesFile <- str_glue('{this.path::this.dir()}/files.cmake')
 
-imagesFolder <- str_glue('{this.path::this.dir()}/../Resources/Images')
+imagesFolder <- str_glue('{this.path::this.dir()}/../Resources/images')
 imagesFile <- str_glue('{this.path::this.dir()}/images.cmake')
 
 wordsFolder <- str_glue('{this.path::this.dir()}/../Resources/words')

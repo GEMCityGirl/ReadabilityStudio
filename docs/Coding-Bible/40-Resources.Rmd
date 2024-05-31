@@ -2,7 +2,7 @@
 
 ## Art Assets
 
-All art assets are stored in **Resources/Images**. Images should be saved into the appropriate folder in SVG format (except the `splash` folder, these are JPEGs). SVGs should have an aspect ratio with the same width and height.
+All art assets are stored in **Resources/images**. Images should be saved into the appropriate folder in SVG format (except the `splash` folder, these are JPEGs). SVGs should have an aspect ratio with the same width and height.
 
 ## Word Lists
 

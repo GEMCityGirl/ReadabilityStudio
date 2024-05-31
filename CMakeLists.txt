@@ -351,7 +351,7 @@ add_custom_command(TARGET ${PROJECT_NAME}
                    COMMAND ${CMAKE_COMMAND} -E tar "cvf" "$<TARGET_FILE_DIR:${PROJECT_NAME}>/res.wad" --format=zip --files-from="${CMAKE_CURRENT_SOURCE_DIR}/tools/images.cmake"
                    COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE_DIR:${PROJECT_NAME}>/res.wad" "${CMAKE_CURRENT_SOURCE_DIR}/installers/resources/"
                    COMMENT "Building resourse bundle and copying to build and installer folders."
-                   WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/Resources/Images")
+                   WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/Resources/images")
 # Word lists
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD

@@ -68,7 +68,7 @@ If wanting to edit this option from the ribbon:
 - If an index test, add its score formatting logic to `BatchProjectView::UpdateStatAndTestPanes()`.
 - Document it in the help.
   - If a graphical test, automate making a screenshot of the graph for the help.
-- Add an icon to **Resources/Images/tests** in SVG format with the same name as the test's string ID.
+- Add an icon to **Resources/images/tests** in SVG format with the same name as the test's string ID.
 
 ## Adding a New Familiar Word List
 
