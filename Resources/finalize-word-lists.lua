@@ -29,8 +29,8 @@ Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words/base-non-personal.txt")
 
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/ProperNouns/Personal.txt",
-    Debug.GetScriptFolderPath().."Words/ProperNouns/Personal.txt")
+    Debug.GetScriptFolderPath().."Words/proper-nouns/personal.txt",
+    Debug.GetScriptFolderPath().."Words/proper-nouns/personal.txt")
 
 Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words/stop-words/proper-nouns-stoplist.txt",
@@ -73,15 +73,15 @@ Application.MergeWordLists(
 --  so it gets added to the resources as a new file also.)
 Application.ExpandWordList(
     Debug.GetScriptFolderPath().."Words/base-personal.txt",
-    Debug.GetScriptFolderPath().."Words/ProperNouns/Personal.txt", "s", "'s")
+    Debug.GetScriptFolderPath().."Words/proper-nouns/personal.txt", "s", "'s")
 
 Application.ExpandWordList(
     Debug.GetScriptFolderPath().."Words/base-non-personal.txt",
     Debug.GetScriptFolderPath().."NonPersonalTEMP.txt", "s", "'s")
 
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."Words/ProperNouns/All.txt",
-    Debug.GetScriptFolderPath().."Words/ProperNouns/Personal.txt",
+    Debug.GetScriptFolderPath().."Words/proper-nouns/all.txt",
+    Debug.GetScriptFolderPath().."Words/proper-nouns/personal.txt",
     Debug.GetScriptFolderPath().."NonPersonalTEMP.txt")
 
 os.remove(Debug.GetScriptFolderPath().."NonPersonalTEMP.txt")
@@ -138,7 +138,7 @@ Application.MergeWordLists(
     Debug.GetScriptFolderPath().."Words/dictionaries/english.txt",
     Debug.GetScriptFolderPath().."Words/base-english-dictionary.txt",
     Debug.GetScriptFolderPath().."Words/abbreviations/abbreviations.txt",
-    Debug.GetScriptFolderPath().."Words/ProperNouns/All.txt")
+    Debug.GetScriptFolderPath().."Words/proper-nouns/all.txt")
 
 -- Programming dictionaries (this is separate and optionally included)
 Application.MergeWordLists(
