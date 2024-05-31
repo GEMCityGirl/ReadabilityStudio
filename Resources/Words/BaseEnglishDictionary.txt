@@ -15885,6 +15885,9 @@ brutalise
 brutalised
 brutalises
 brutalising
+brutalist
+brutalist's
+brutalists
 brutalities
 brutality
 brutality's
@@ -17941,6 +17944,10 @@ canonized
 canonizes
 canonizing
 canons
+canoodle
+canoodled
+canoodles
+canoodling
 canopied
 canopies
 canopy
@@ -33798,6 +33805,7 @@ demoniacal
 demoniacally
 demoniacs
 demonic
+demonically
 demonize
 demonized
 demonizes
@@ -40949,6 +40957,8 @@ economy
 economy's
 ecophysiology
 ecophysiology's
+ecopoetry
+ecopoetry's
 ecopreneur
 ecopreneur's
 ecopreneurs
@@ -43653,6 +43663,7 @@ entrepôt
 entrepôts
 entries
 entropic
+entropical
 entropies
 entropy
 entropy's
@@ -44178,6 +44189,8 @@ equips
 equirectangular
 equisetum
 equispaced
+equitability
+equitability's
 equitable
 equitableness
 equitableness's
@@ -49396,6 +49409,7 @@ flames
 flamethrower
 flamethrower's
 flamethrowers
+flameworking
 flaming
 flamingly
 flamingo
@@ -52972,6 +52986,9 @@ galleria
 gallerias
 galleried
 galleries
+gallerist
+gallerist's
+gallerists
 gallery
 gallery's
 gallerying
@@ -54775,9 +54792,13 @@ glassiness
 glassiness's
 glassing
 glassless
+glassmaker
+glassmaker's
+glassmakers
 glassware
 glassware's
 glasswares
+glassworks
 glasswort
 glasswort's
 glassy
@@ -61702,6 +61723,9 @@ hotsprings
 hotted
 hotter
 hottest
+hottie
+hottie's
+hotties
 hotting
 hough
 hough's
@@ -63332,6 +63356,7 @@ ideates
 ideating
 ideation
 ideation's
+ideational
 idem
 idempotence
 Idempotency
@@ -63613,6 +63638,9 @@ illus
 illusion
 illusion's
 illusionary
+illusionism
+illusionism's
+illusionisms
 illusionist
 illusionist's
 illusionistic
@@ -65439,6 +65467,7 @@ indexer
 indexer's
 indexers
 indexes
+indexicality
 indexing
 indicant
 indicant's
@@ -70879,6 +70908,9 @@ keyboarding
 keyboardist
 keyboardists
 keyboards
+keycard
+keycard's
+keycards
 keychain
 keychain's
 keychains
@@ -74000,6 +74032,9 @@ lightning's
 lightninged
 lightnings
 lightproof
+lightroom
+lightroom's
+lightrooms
 lights
 lightsaber
 lightsaber's
@@ -76258,6 +76293,7 @@ macroblocks
 macrocephaly
 macrocosm
 macrocosm's
+macrocosmic
 macrocosms
 macrocytic
 macrodynamic
@@ -79613,7 +79649,9 @@ metallurgy's
 metals
 metalsmith
 metalsmith's
+metalsmithed
 metalsmithes
+metalsmithing
 metalsmiths
 metalwork
 metalwork's
@@ -81283,6 +81321,7 @@ mirror
 mirror's
 mirrored
 mirroring
+mirrorless
 mirrors
 mirth
 mirth's
@@ -82010,6 +82049,9 @@ mixer's
 mixers
 mixes
 mixing
+mixologies
+mixology
+mixology's
 mixotroph
 mixotroph's
 mixotrophic
@@ -82810,6 +82852,10 @@ monopolizing
 monopoly
 monopoly's
 monopotassium
+monoprint
+monoprinted
+monoprinting
+monoprints
 monoprotic
 monopsonies
 monopsonist
@@ -87327,6 +87373,7 @@ nonfractional
 nonfreezing
 nonfrivolous
 nonfunctional
+nonfundable
 nongaussianity
 nongeneric
 nongenetic
@@ -98252,6 +98299,7 @@ placekicking
 placekicks
 placeless
 placelessly
+placemaking
 placemen
 placement
 placement's
@@ -100505,6 +100553,7 @@ postmistress's
 postmistresses
 postmodern
 postmodernist
+postmodernity
 postmortem
 postmortems
 postmultiplied
@@ -101765,6 +101814,9 @@ preparative
 preparative's
 preparatively
 preparatives
+preparator
+preparator's
+preparators
 preparatory
 prepare
 prepared
@@ -121085,6 +121137,7 @@ skilfully
 skilfulness
 skill
 skill's
+skillbuilding
 skilled
 skillet
 skillet's
@@ -123550,6 +123603,7 @@ soulfulness's
 soulfulnesses
 soulless
 soullessly
+soullessness
 soulmate
 soulmate's
 soulmates
@@ -126627,6 +126681,7 @@ stilettoing
 stilettos
 stiling
 still
+still-lifes
 stillbirth
 stillbirth's
 stillbirths
@@ -137010,6 +137065,7 @@ transported
 transporter
 transporters
 transporting
+transportive
 transports
 transposable
 transpose
@@ -142278,6 +142334,7 @@ unrestrictive
 unrestricts
 unrests
 unretrievable
+unreturnable
 unreturned
 unrevealed
 unrevealing

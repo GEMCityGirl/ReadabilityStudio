@@ -16,6 +16,9 @@ Appalachains	Appalachians	3
 Archimedian	Archimedean	3		
 Athenean	Athenian	3		
 Atheneans	Athenians	3		
+Austism	Autism	3		
+Austism's	Autism's	3		
+Austisms	Autisms	3		
 Begium	Belgium	3		
 Begium's	Belgium's	3		
 Beligum	Belgium	3		
@@ -148,6 +151,9 @@ kindergartners	kingergarteners	3
 kingergarten	kindergarten	3		
 kingergarten's	kindergarten's	3		
 kingergartens	kindergartens	3		
+Koeplfe	Koepfle	3		
+Koeplfe's	Koepfle's	3		
+Koeplfes	Koepfles	3		
 little-endean	little-endian	3		
 little-endeanness	little-endianness	3		
 Lotharingen	Lothringen	3		
@@ -157,6 +163,8 @@ Marriot	Marriott	3
 Marriot's	Marriott's	3		
 Marriots	Marriotts	3		
 Massachusett	Massachusetts	3		
+Massachusettes	Massachusetts	3		
+Massachusettes's	Massachusetts's	3		
 Massachussets	Massachusetts	3		
 Massachussetts	Massachusetts	3		
 Mediterainnean	Mediterranean	3		
@@ -204,6 +212,8 @@ PeopleSfoft's	PeopleSoft's	3
 Pharoah	Pharaoh	3		
 Pharoah's	Pharaoh's	3		
 Pharoahs	Pharaohs	3		
+Phildadelphia	Philadelphia	3		
+Phildadelphia's	Philadelphia's	3		
 Phillipine	Philippine	3		
 Phillipines	Philippines	3		
 Phillippines	Philippines	3		

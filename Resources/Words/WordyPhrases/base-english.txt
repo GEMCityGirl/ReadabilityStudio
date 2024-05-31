@@ -1033,9 +1033,6 @@ amputate	cut off	0
 amputated	cut off	0		
 amputates	cuts off	0		
 amputating	cutting off	0		
-Amstberg	Amtsberg	3		
-Amstberg's	Amtsberg's	3		
-Amstbergs	Amtsbergs	3		
 amung	among	3		
 amunition	ammunition	3		
 amusement	fun	0		
@@ -1193,8 +1190,6 @@ antime	anytime	3
 antipathy	dislike	0		
 antiquated	out-of-date	0		
 antithesis	opposite	0		
-Antractica	Antarctica	3		
-Antractica's	Antarctica's	3		
 anual	annual	3		
 anualization	annualization	3		
 anualize	annualize	3		
@@ -2232,8 +2227,6 @@ begin searched for	being searched for	3
 beging	beginning	3		
 begining	beginning	3		
 beginnig	beginning	3		
-Begium	Belgium	3		
-Begium's	Belgium's	3		
 behavior pattern	behavior	0		
 behavioral pattern	behavior	0		
 behaviour pattern	behaviour	0		
@@ -2326,8 +2319,6 @@ bestows	gives	0
 bet the farm	bet everything	2		
 beteen	between	3		
 beteween	between	3		
-Bethoven	Beethoven	3		
-Bethoven's	Beethoven's	3		
 betrothed	engaged	0		
 bets the farm	bets everything	2		
 betting the farm	betting everything	2		
@@ -5444,7 +5435,6 @@ drver's	driver's	3
 drvers	drivers	3		
 dubious	doubtful	0		
 ducks in a row	organized, prepared	2		
-Dudavera	Dudareva	3		
 due to the fact that	because, since, given that, due to	0		
 dum	dumb	3		
 dumbell	dumbbell	3		
@@ -7392,7 +7382,6 @@ hand over fist	quickly	2
 hand-to-mouth	living in poverty	2		
 handfull	handful	3		
 hang in the balance	has an uncertain outcome	2		
-Hangeul	Hangul	3		
 hanging in the balance	having an uncertain outcome	2		
 hangs in the balance	has an uncertain outcome	2		
 Hanguel	Hangul	3		
@@ -7711,8 +7700,6 @@ homogeneize	homogenize	3
 homogeneized	homogenized	3		
 homogeneous	similar	0		
 homogeneously	similarly	0		
-Hondurus	Honduras	3		
-Hondurus's	Honduras's	3		
 honest as the day is long	consistently reliable	2		
 honest injun	truthfully, I'm being truthful (this phrase is highly offensive and should be avoided)	2		
 honest to goodness	truthfully, I'm being truthful	2		
@@ -9890,7 +9877,6 @@ menally	mentally	3
 mendacious	lying, false	0		
 mendicant	beggar	0		
 mendicants	beggars	0		
-meninngococcal	meningococcal	3		
 ment	meant	3		
 mental telepathy	telepathy	1		
 mentality	mind	0		
@@ -9937,7 +9923,6 @@ methodology	method, design, plan	0
 methodology's	method's, design's, plan's	0		
 methodsfor	methods for	3		
 meticulous	very careful	0		
-Michagan	Michigan	3		
 micoscopy	microscopy	3		
 microcontroler	microcontroller	3		
 microcontroler's	microcontroller's	3		
@@ -10054,7 +10039,6 @@ mismach	mismatch	3
 mismached	mismatched	3		
 mismaches	mismatches	3		
 mismaching	mismatching	3		
-Misouri	Missouri	3		
 mispell	misspell	3		
 mispelled	misspelled	3		
 mispelling	misspelling	3		
@@ -10539,7 +10523,6 @@ numerated	counted	0
 numerates	counts	0		
 numerating	counting	0		
 numerous	many	0		
-Nuremburg	Nuremberg	3		
 nusance	nuisance	3		
 nutriment	food	0		
 nutritent	nutrient	3		
