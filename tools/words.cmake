@@ -28,10 +28,10 @@ WordLists/Harris-Jacobson.txt
 WordLists/New Dale-Chall.txt
 WordLists/Revised Spache.txt
 WordLists/Stocker Catholic Supplement.txt
-WordyPhrases/Dale-ChallReplacements.txt
-WordyPhrases/English.txt
-WordyPhrases/German.txt
-WordyPhrases/Harris-JacobsonReplacements.txt
-WordyPhrases/SingleWordReplacementsEnglish.txt
-WordyPhrases/SpacheReplacements.txt
-WordyPhrases/Spanish.txt
+WordyPhrases/dale-chall-replacements.txt
+WordyPhrases/english.txt
+WordyPhrases/german.txt
+WordyPhrases/harris-jacobson-replacements.txt
+WordyPhrases/single-word-replacements-english.txt
+WordyPhrases/spache-replacements.txt
+WordyPhrases/spanish.txt

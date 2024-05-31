@@ -18,7 +18,7 @@
 /tests/gui-tests/out
 *.log
 
-# Intermediate build files
+# Intermediate build or generated files
 /Catch2
 /CMakeFiles
 /resource.h
@@ -28,6 +28,9 @@
 /installers/Windows/icons.isl
 /docs/version_info.txt
 /resource.h
+/Resources/Words/WordyPhrases/english.txt
+/Resources/Words/WordyPhrases/german.txt
+/Resources/Words/WordyPhrases/spanish.txt
 /Resources/Words/Dictionaries/English.txt
 /Resources/Words/Programming/All Languages.txt
 /Resources/Words/ProperNouns/Personal.txt
