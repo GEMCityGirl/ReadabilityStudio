@@ -1228,7 +1228,7 @@ wxString ProjectReportFormat::FormatHtmlReportStart([[maybe_unused]] const wxCol
                                                     [[maybe_unused]] const wxColour textColor,
                                                     const wxString& title /*= wxString{}*/)
     {
-    wxString cssTemplatePath = wxGetApp().FindResourceDirectory(_DT(L"ReportThemes")) +
+    wxString cssTemplatePath = wxGetApp().FindResourceDirectory(_DT(L"report-themes")) +
                                wxFileName::GetPathSeparator() + L"Default.css";
     wxString styleInfo;
     if (wxFile::Exists(cssTemplatePath))

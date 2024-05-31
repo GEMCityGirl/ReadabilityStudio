@@ -3169,7 +3169,7 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
 
     // copy over the CSS file
     const wxString cssTemplatePath =
-        wxGetApp().FindResourceDirectory(_DT(L"ReportThemes")) +
+        wxGetApp().FindResourceDirectory(_DT(L"report-themes")) +
         wxFileName::GetPathSeparator() + L"Default.css";
     const wxString cssPath = filePath.GetPathWithSep() + L"style.css";
     if (wxFileName::FileExists(cssTemplatePath))

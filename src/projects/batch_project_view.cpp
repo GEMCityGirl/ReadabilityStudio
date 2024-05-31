@@ -2147,7 +2147,7 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
 
     // copy over the CSS file
     const wxString cssTemplatePath =
-        wxGetApp().FindResourceDirectory(_DT(L"ReportThemes")) +
+        wxGetApp().FindResourceDirectory(_DT(L"report-themes")) +
         wxFileName::GetPathSeparator() + L"Default.css";
     const wxString cssPath = filePath.GetPathWithSep() + L"style.css";
     if (wxFileName::FileExists(cssTemplatePath))

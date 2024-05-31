@@ -24,7 +24,7 @@ Source: ..\resources\res.wad; DestDir: {app}; Components: ProgramFiles; Flags: r
 Source: ..\resources\Words.wad; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\..\Resources\Scripting\*.api; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\..\Resources\Scripting\*.lua; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
-Source: ..\..\Resources\ReportThemes\*; DestDir: {app}\ReportThemes; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
+Source: ..\..\Resources\report-themes\*; DestDir: {app}\report-themes; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\..\Resources\Themes\*; DestDir: {app}\Themes; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\redist\license.rtf; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion
 ; help files
