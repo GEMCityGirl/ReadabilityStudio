@@ -131,8 +131,8 @@ unlink(glue("{docFolder}/ReadabilityStudioAPI/enums"), recursive=T) # rebuild th
 dir_create(glue("{docFolder}/ReadabilityStudioAPI/enums"))
 write(c("# (PART) Enumerations{-}\n\n# Enumerations\n"), file=glue("{docFolder}/ReadabilityStudioAPI/enums/01.md"))
 
-enums <- loadEnums(normalizePath(glue("{docFolder}/../Resources/scripting/RSConstants.lua")))
-writeEnumEditorFile(enums, glue("{docFolder}/../Resources/scripting/RSEnums.api"))
+enums <- loadEnums(normalizePath(glue("{docFolder}/../Resources/scripting/rs-constants.lua")))
+writeEnumEditorFile(enums, glue("{docFolder}/../Resources/scripting/rs-enums.api"))
 writeEnumTopics(enums, glue("{docFolder}/ReadabilityStudioAPI/enums/"))
 
 setwd(glue("{docFolder}/ReadabilityStudioAPI/"))

@@ -170,7 +170,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int GetLuaConstantsPath(lua_State* L)
         {
-        lua_pushstring(L, wxGetApp().FindResourceFile(L"RSConstants.lua").utf8_str());
+        lua_pushstring(L, wxGetApp().FindResourceFile(L"rs-constants.lua").utf8_str());
         return 1;
         }
 

@@ -816,7 +816,7 @@ CodeEditor* LuaEditorDlg::CreateLuaScript(wxWindow* parent)
 
         // library/enum file
         wxString libraryText;
-        wxString libFilePath = wxGetApp().FindResourceFile(L"RSClasses.api");
+        wxString libFilePath = wxGetApp().FindResourceFile(L"rs-classes.api");
         if (Wisteria::TextStream::ReadFile(libFilePath, libraryText))
             {
             apiStrings.clear();
@@ -846,7 +846,7 @@ CodeEditor* LuaEditorDlg::CreateLuaScript(wxWindow* parent)
             }
 
         apiStrings.clear();
-        libFilePath = wxGetApp().FindResourceFile(L"RSLibraries.api");
+        libFilePath = wxGetApp().FindResourceFile(L"rs-libraries.api");
         if (Wisteria::TextStream::ReadFile(libFilePath, libraryText))
             {
             // see how many lines are in the file and resize the container
@@ -874,7 +874,7 @@ CodeEditor* LuaEditorDlg::CreateLuaScript(wxWindow* parent)
             }
 
         apiStrings.clear();
-        libFilePath = wxGetApp().FindResourceFile(L"RSEnums.api");
+        libFilePath = wxGetApp().FindResourceFile(L"rs-enums.api");
         if (Wisteria::TextStream::ReadFile(libFilePath, libraryText))
             {
             // see how many lines are in the file and resize the container
