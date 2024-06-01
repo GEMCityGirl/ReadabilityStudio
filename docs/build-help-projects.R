@@ -24,15 +24,15 @@ unlink(glue("{docFolder}/coding-bible/docs"), recursive=T)
 unlink(glue("{docFolder}/shortcuts-cheatsheet/docs"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioDocs/docs"), recursive=T)
 unlink(glue("{docFolder}/readability-test-reference/docs"), recursive=T)
-unlink(glue("{docFolder}/ReadabilityStudioAPI/docs"), recursive=T)
+unlink(glue("{docFolder}/readability-studio-api/docs"), recursive=T)
 
 # delete helper files copied from the main project into others
 clearFolders <- function()
   {
-  unlink(glue("{docFolder}/ReadabilityStudioAPI/images"), recursive=T)
-  unlink(glue("{docFolder}/ReadabilityStudioAPI/latex"), recursive=T)
-  unlink(glue("{docFolder}/ReadabilityStudioAPI/css"), recursive=T)
-  unlink(glue("{docFolder}/ReadabilityStudioAPI/R"), recursive=T)
+  unlink(glue("{docFolder}/readability-studio-api/images"), recursive=T)
+  unlink(glue("{docFolder}/readability-studio-api/latex"), recursive=T)
+  unlink(glue("{docFolder}/readability-studio-api/css"), recursive=T)
+  unlink(glue("{docFolder}/readability-studio-api/R"), recursive=T)
 
   unlink(glue("{docFolder}/readability-test-reference/images"), recursive=T)
   unlink(glue("{docFolder}/readability-test-reference/latex"), recursive=T)
@@ -127,36 +127,36 @@ write(c(" "), file=glue("{docFolder}/ReadabilityStudioDocs/docs/.nojekyll"))
 ####################
 
 # build the API help topics and intellisense file
-unlink(glue("{docFolder}/ReadabilityStudioAPI/enums"), recursive=T) # rebuild this folder and keep the latest content
-dir_create(glue("{docFolder}/ReadabilityStudioAPI/enums"))
-write(c("# (PART) Enumerations{-}\n\n# Enumerations\n"), file=glue("{docFolder}/ReadabilityStudioAPI/enums/01.md"))
+unlink(glue("{docFolder}/readability-studio-api/enums"), recursive=T) # rebuild this folder and keep the latest content
+dir_create(glue("{docFolder}/readability-studio-api/enums"))
+write(c("# (PART) Enumerations{-}\n\n# Enumerations\n"), file=glue("{docFolder}/readability-studio-api/enums/01.md"))
 
 enums <- loadEnums(normalizePath(glue("{docFolder}/../resources/scripting/rs-constants.lua")))
 writeEnumEditorFile(enums, glue("{docFolder}/../resources/scripting/rs-enums.api"))
-writeEnumTopics(enums, glue("{docFolder}/ReadabilityStudioAPI/enums/"))
+writeEnumTopics(enums, glue("{docFolder}/readability-studio-api/enums/"))
 
-setwd(glue("{docFolder}/ReadabilityStudioAPI/"))
-dir_create(glue("{docFolder}/ReadabilityStudioAPI/images"))
+setwd(glue("{docFolder}/readability-studio-api/"))
+dir_create(glue("{docFolder}/readability-studio-api/images"))
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/CC_BY-NC-ND.png"),
-          glue("{docFolder}/ReadabilityStudioAPI/images/CC_BY-NC-ND.png"),
+          glue("{docFolder}/readability-studio-api/images/CC_BY-NC-ND.png"),
           TRUE)
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/cover-programming.pdf"),
-          glue("{docFolder}/ReadabilityStudioAPI/images/cover.pdf"),
+          glue("{docFolder}/readability-studio-api/images/cover.pdf"),
           TRUE)
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/cover-programming.png"),
-          glue("{docFolder}/ReadabilityStudioAPI/images/cover.png"),
+          glue("{docFolder}/readability-studio-api/images/cover.png"),
           TRUE)
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/modern-language-association.csl"),
-          glue("{docFolder}/ReadabilityStudioAPI/modern-language-association.csl"),
+          glue("{docFolder}/readability-studio-api/modern-language-association.csl"),
           TRUE)
 dir_copy(glue("{docFolder}/ReadabilityStudioDocs/latex"),
-         glue("{docFolder}/ReadabilityStudioAPI/latex"),
+         glue("{docFolder}/readability-studio-api/latex"),
          TRUE)
 dir_copy(glue("{docFolder}/ReadabilityStudioDocs/css"),
-         glue("{docFolder}/ReadabilityStudioAPI/css"),
+         glue("{docFolder}/readability-studio-api/css"),
          TRUE)
 dir_copy(glue("{docFolder}/ReadabilityStudioDocs/R"),
-         glue("{docFolder}/ReadabilityStudioAPI/R"),
+         glue("{docFolder}/readability-studio-api/R"),
          TRUE)
 
 combine_files("10-Classes.Rmd", "classes")
@@ -165,9 +165,9 @@ combine_files("30-Enums.Rmd", "enums")
 bookdown::render_book(input="index.Rmd",
                       output_format="bookdown::pdf_book",
                       output_dir="docs")
-unlink(glue("{docFolder}/ReadabilityStudioAPI/10-Classes.Rmd"))
-unlink(glue("{docFolder}/ReadabilityStudioAPI/20-Libraries.Rmd"))
-unlink(glue("{docFolder}/ReadabilityStudioAPI/30-Enums.Rmd"))
+unlink(glue("{docFolder}/readability-studio-api/10-Classes.Rmd"))
+unlink(glue("{docFolder}/readability-studio-api/20-Libraries.Rmd"))
+unlink(glue("{docFolder}/readability-studio-api/30-Enums.Rmd"))
 
 # Tests Reference Manual
 ####################

@@ -1,6 +1,6 @@
 # Output files
 /docs/coding-bible/docs
-/docs/ReadabilityStudioAPI/docs
+/docs/readability-studio-api/docs
 /docs/readability-test-reference/docs
 /docs/shortcuts-cheatsheet/docs
 /docs/doxygen/html
@@ -43,11 +43,11 @@
 /docs/ReadabilityStudioDocs/41-ScoringNotes.rmd
 /docs/ReadabilityStudioDocs/90-Glossaries.rmd
 /docs/ReadabilityStudioDocs/92-Acknowledgements.rmd
-/docs/ReadabilityStudioAPI/latex/
-/docs/ReadabilityStudioAPI/css/
-/docs/ReadabilityStudioAPI/images/
-/docs/ReadabilityStudioAPI/R/
-/docs/ReadabilityStudioAPI/modern-language-association.csl
+/docs/readability-studio-api/latex/
+/docs/readability-studio-api/css/
+/docs/readability-studio-api/images/
+/docs/readability-studio-api/R/
+/docs/readability-studio-api/modern-language-association.csl
 /docs/readability-test-reference/latex/
 /docs/readability-test-reference/css/
 /docs/readability-test-reference/images/
@@ -68,7 +68,7 @@
 
 # Configuration files
 /docs/coding-bible/.Rproj.user
-/docs/ReadabilityStudioAPI/.Rproj.user
+/docs/readability-studio-api/.Rproj.user
 /.vs
 /CMakeSettings.json
 .Rproj.user

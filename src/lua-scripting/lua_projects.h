@@ -28,7 +28,7 @@ namespace LuaScripting
 
     /// @brief Standard project interface.
     /// @private
-    /// @internal This is documented in the ReadabilityStudioAPI help.
+    /// @internal This is documented in the readability-studio-api help.
     class StandardProject
         {
         ProjectDoc* m_project{ nullptr };
@@ -272,7 +272,7 @@ namespace LuaScripting
 
     /// @brief Batch project interface.
     /// @private
-    /// @internal This is documented in the ReadabilityStudioAPI help.
+    /// @internal This is documented in the readability-studio-api help.
     class BatchProject
         {
         BatchProjectDoc* m_project{ nullptr };

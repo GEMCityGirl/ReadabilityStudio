@@ -1048,7 +1048,7 @@ EXCLUDE                = doxygen-awesome-css \
                          ../../src/OleanderStemmingLibrary \
                          ../../src/Catch2 \
                          ../../src/tinyexpr-plusplus \
-                         ../ReadabilityStudioAPI \
+                         ../readability-studio-api \
                          ../coding-bible \
                          ../../src/Wisteria-Dataviz \
                          ../../src/tinyxml2 \

@@ -509,7 +509,7 @@ LuaEditorDlg::LuaEditorDlg(
         []([[maybe_unused]] wxCommandEvent&)
         {
             const wxString helpPath =
-                wxGetApp().FindResourceFile(L"ReadabilityStudioAPI/index.html");
+                wxGetApp().FindResourceFile(L"readability-studio-api/index.html");
             if (wxFile::Exists(helpPath))
                 {
                 wxLaunchDefaultBrowser(wxFileName::FileNameToURL(helpPath));

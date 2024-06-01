@@ -24,7 +24,7 @@ enum class ProjectScreenshotCropMode
     };
 
 /// @private
-/// @internal This is documented in the ReadabilityStudioAPI help.
+/// @internal This is documented in the readability-studio-api help.
 namespace LuaScripting
     {
     int ShowScriptEditor(lua_State* L);

@@ -12,7 +12,7 @@ The following styles should be applied to all help projects:
 
 ## Editing
 
-The documentation is stored in **bookdown** projects in the **ReadabilityStudioDocs** and **ReadabilityStudioAPI** folders. The markdown files (\*.Rmd) can be edited in **RStudio**.
+The documentation is stored in **bookdown** projects in the **ReadabilityStudioDocs** and **readability-studio-api** folders. The markdown files (\*.Rmd) can be edited in **RStudio**.
 
 ## Screenshots {#creating-screenshots}
 
