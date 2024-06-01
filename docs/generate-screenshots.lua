@@ -5,7 +5,7 @@ ScreenshotLib.ShowScriptEditor(false)
 -- input
 ScreenshotProjectsFolder = Application.GetAbsoluteFilePath(
             Debug.GetScriptFolderPath(),
-            "Projects/")
+            "projects/")
 
 -- output
 ImagePath = Debug.GetScriptFolderPath().."ReadabilityStudioDocs/images/"
