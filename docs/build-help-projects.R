@@ -23,7 +23,7 @@ source(glue("{docFolder}/ReadabilityStudioDocs/R/appdown.r"))
 unlink(glue("{docFolder}/Coding-Bible/docs"), recursive=T)
 unlink(glue("{docFolder}/shortcuts-cheatsheet/docs"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioDocs/docs"), recursive=T)
-unlink(glue("{docFolder}/ReadabilityTestsReference/docs"), recursive=T)
+unlink(glue("{docFolder}/readability-test-reference/docs"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioAPI/docs"), recursive=T)
 
 # delete helper files copied from the main project into others
@@ -34,16 +34,16 @@ clearFolders <- function()
   unlink(glue("{docFolder}/ReadabilityStudioAPI/css"), recursive=T)
   unlink(glue("{docFolder}/ReadabilityStudioAPI/R"), recursive=T)
 
-  unlink(glue("{docFolder}/ReadabilityTestsReference/images"), recursive=T)
-  unlink(glue("{docFolder}/ReadabilityTestsReference/latex"), recursive=T)
-  unlink(glue("{docFolder}/ReadabilityTestsReference/css"), recursive=T)
-  unlink(glue("{docFolder}/ReadabilityTestsReference/R"), recursive=T)
-  unlink(glue("{docFolder}/ReadabilityTestsReference/data"), recursive=T)
-  unlink(glue("{docFolder}/ReadabilityTestsReference/scoring-notes"), recursive=T)
-  unlink(glue("{docFolder}/ReadabilityTestsReference/acknowledgements"), recursive=T)
-  unlink(glue("{docFolder}/ReadabilityTestsReference/english"), recursive=T)
-  unlink(glue("{docFolder}/ReadabilityTestsReference/spanish"), recursive=T)
-  unlink(glue("{docFolder}/ReadabilityTestsReference/german"), recursive=T)
+  unlink(glue("{docFolder}/readability-test-reference/images"), recursive=T)
+  unlink(glue("{docFolder}/readability-test-reference/latex"), recursive=T)
+  unlink(glue("{docFolder}/readability-test-reference/css"), recursive=T)
+  unlink(glue("{docFolder}/readability-test-reference/R"), recursive=T)
+  unlink(glue("{docFolder}/readability-test-reference/data"), recursive=T)
+  unlink(glue("{docFolder}/readability-test-reference/scoring-notes"), recursive=T)
+  unlink(glue("{docFolder}/readability-test-reference/acknowledgements"), recursive=T)
+  unlink(glue("{docFolder}/readability-test-reference/english"), recursive=T)
+  unlink(glue("{docFolder}/readability-test-reference/spanish"), recursive=T)
+  unlink(glue("{docFolder}/readability-test-reference/german"), recursive=T)
 
   unlink(glue("{docFolder}/ReadabilityStudioDocs/_bookdown_files"), recursive=T)
   unlink(glue("{docFolder}/ReadabilityStudioDocs/ReadabilityStudioManual.aux"))
@@ -173,82 +173,82 @@ unlink(glue("{docFolder}/ReadabilityStudioAPI/30-Enums.Rmd"))
 ####################
 
 UserManualMode = F
-setwd(glue("{docFolder}/ReadabilityTestsReference/"))
-dir_create(glue("{docFolder}/ReadabilityTestsReference/images"))
+setwd(glue("{docFolder}/readability-test-reference/"))
+dir_create(glue("{docFolder}/readability-test-reference/images"))
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/CC_BY-NC-ND.png"),
-          glue("{docFolder}/ReadabilityTestsReference/images/CC_BY-NC-ND.png"),
+          glue("{docFolder}/readability-test-reference/images/CC_BY-NC-ND.png"),
           TRUE)
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/cover-tests.pdf"),
-          glue("{docFolder}/ReadabilityTestsReference/images/cover.pdf"),
+          glue("{docFolder}/readability-test-reference/images/cover.pdf"),
           TRUE)
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/cover-tests.png"),
-          glue("{docFolder}/ReadabilityTestsReference/images/cover.png"),
+          glue("{docFolder}/readability-test-reference/images/cover.png"),
           TRUE)
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/FleschChart.png"),
-          glue("{docFolder}/ReadabilityTestsReference/images/FleschChart.png"),
+          glue("{docFolder}/readability-test-reference/images/FleschChart.png"),
           TRUE)
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/frygraph.png"),
-          glue("{docFolder}/ReadabilityTestsReference/images/frygraph.png"),
+          glue("{docFolder}/readability-test-reference/images/frygraph.png"),
           TRUE)
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/LixGauge.png"),
-          glue("{docFolder}/ReadabilityTestsReference/images/LixGauge.png"),
+          glue("{docFolder}/readability-test-reference/images/LixGauge.png"),
           TRUE)
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/raygorgraph.png"),
-          glue("{docFolder}/ReadabilityTestsReference/images/raygorgraph.png"),
+          glue("{docFolder}/readability-test-reference/images/raygorgraph.png"),
           TRUE)
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/CrawfordGraph.png"),
-          glue("{docFolder}/ReadabilityTestsReference/images/CrawfordGraph.png"),
+          glue("{docFolder}/readability-test-reference/images/CrawfordGraph.png"),
           TRUE)
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/FraseGraph.png"),
-          glue("{docFolder}/ReadabilityTestsReference/images/FraseGraph.png"),
+          glue("{docFolder}/readability-test-reference/images/FraseGraph.png"),
           TRUE)
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/GpmFry.png"),
-          glue("{docFolder}/ReadabilityTestsReference/images/GpmFry.png"),
+          glue("{docFolder}/readability-test-reference/images/GpmFry.png"),
           TRUE)
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/GermanLixGauge.png"),
-          glue("{docFolder}/ReadabilityTestsReference/images/GermanLixGauge.png"),
+          glue("{docFolder}/readability-test-reference/images/GermanLixGauge.png"),
           TRUE)
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/Schwartz.png"),
-          glue("{docFolder}/ReadabilityTestsReference/images/Schwartz.png"),
+          glue("{docFolder}/readability-test-reference/images/Schwartz.png"),
           TRUE)
 dir_copy(glue("{docFolder}/ReadabilityStudioDocs/english"),
-         glue("{docFolder}/ReadabilityTestsReference/english"),
+         glue("{docFolder}/readability-test-reference/english"),
          TRUE)
 dir_copy(glue("{docFolder}/ReadabilityStudioDocs/spanish"),
-         glue("{docFolder}/ReadabilityTestsReference/spanish"),
+         glue("{docFolder}/readability-test-reference/spanish"),
          TRUE)
 dir_copy(glue("{docFolder}/ReadabilityStudioDocs/german"),
-         glue("{docFolder}/ReadabilityTestsReference/german"),
+         glue("{docFolder}/readability-test-reference/german"),
          TRUE)
 dir_copy(glue("{docFolder}/ReadabilityStudioDocs/scoring-notes"),
-         glue("{docFolder}/ReadabilityTestsReference/scoring-notes"),
+         glue("{docFolder}/readability-test-reference/scoring-notes"),
          TRUE)
 dir_copy(glue("{docFolder}/ReadabilityStudioDocs/acknowledgements"),
-         glue("{docFolder}/ReadabilityTestsReference/acknowledgements"),
+         glue("{docFolder}/readability-test-reference/acknowledgements"),
          TRUE)
 dir_copy(glue("{docFolder}/ReadabilityStudioDocs/latex"),
-         glue("{docFolder}/ReadabilityTestsReference/latex"),
+         glue("{docFolder}/readability-test-reference/latex"),
          TRUE)
 dir_copy(glue("{docFolder}/ReadabilityStudioDocs/css"),
-         glue("{docFolder}/ReadabilityTestsReference/css"),
+         glue("{docFolder}/readability-test-reference/css"),
          TRUE)
 dir_copy(glue("{docFolder}/ReadabilityStudioDocs/R"),
-         glue("{docFolder}/ReadabilityTestsReference/R"),
+         glue("{docFolder}/readability-test-reference/R"),
          TRUE)
 dir_copy(glue("{docFolder}/ReadabilityStudioDocs/data"),
-         glue("{docFolder}/ReadabilityTestsReference/data"),
+         glue("{docFolder}/readability-test-reference/data"),
          TRUE)
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/overviews/01-intro.rmd"),
-          glue("{docFolder}/ReadabilityTestsReference/01-intro.rmd"),
+          glue("{docFolder}/readability-test-reference/01-intro.rmd"),
           TRUE)
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/93-Author.rmd"),
-          glue("{docFolder}/ReadabilityTestsReference/93-Author.rmd"),
+          glue("{docFolder}/readability-test-reference/93-Author.rmd"),
           TRUE)
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/modern-language-association.csl"),
-          glue("{docFolder}/ReadabilityTestsReference/modern-language-association.csl"),
+          glue("{docFolder}/readability-test-reference/modern-language-association.csl"),
           TRUE)
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/cites.bib"),
-          glue("{docFolder}/ReadabilityTestsReference/cites.bib"),
+          glue("{docFolder}/readability-test-reference/cites.bib"),
           TRUE)
 combine_files("20-ReadabilityTestsEnglish.rmd", "english")
 combine_files("21-ReadabilityTestsSpanish.rmd", "spanish")
@@ -261,15 +261,15 @@ combine_files("90-Acknowledgements.Rmd", "acknowledgements",
 bookdown::render_book(input="index.Rmd",
                       output_format="bookdown::pdf_book",
                       output_dir="docs")
-unlink(glue("{docFolder}/ReadabilityTestsReference/01-intro.Rmd"))
-unlink(glue("{docFolder}/ReadabilityTestsReference/20-ReadabilityTestsEnglish.rmd"))
-unlink(glue("{docFolder}/ReadabilityTestsReference/21-ReadabilityTestsSpanish.rmd"))
-unlink(glue("{docFolder}/ReadabilityTestsReference/22-ReadabilityTestsGerman.rmd"))
-unlink(glue("{docFolder}/ReadabilityTestsReference/41-ScoringNotes.rmd"))
-unlink(glue("{docFolder}/ReadabilityTestsReference/90-Acknowledgements.Rmd"))
-unlink(glue("{docFolder}/ReadabilityTestsReference/93-Author.Rmd"))
-unlink(glue("{docFolder}/ReadabilityTestsReference/cites.bib"))
-unlink(glue("{docFolder}/ReadabilityTestsReference/modern-language-association.csl"))
+unlink(glue("{docFolder}/readability-test-reference/01-intro.Rmd"))
+unlink(glue("{docFolder}/readability-test-reference/20-ReadabilityTestsEnglish.rmd"))
+unlink(glue("{docFolder}/readability-test-reference/21-ReadabilityTestsSpanish.rmd"))
+unlink(glue("{docFolder}/readability-test-reference/22-ReadabilityTestsGerman.rmd"))
+unlink(glue("{docFolder}/readability-test-reference/41-ScoringNotes.rmd"))
+unlink(glue("{docFolder}/readability-test-reference/90-Acknowledgements.Rmd"))
+unlink(glue("{docFolder}/readability-test-reference/93-Author.Rmd"))
+unlink(glue("{docFolder}/readability-test-reference/cites.bib"))
+unlink(glue("{docFolder}/readability-test-reference/modern-language-association.csl"))
 
 # final cleanup
 clearFolders()

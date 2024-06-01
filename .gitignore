@@ -1,7 +1,7 @@
 # Output files
 /docs/Coding-Bible/docs
 /docs/ReadabilityStudioAPI/docs
-/docs/ReadabilityTestsReference/docs
+/docs/readability-test-reference/docs
 /docs/shortcuts-cheatsheet/docs
 /docs/doxygen/html
 /docs/ReadabilityStudioDocs/docs
@@ -48,22 +48,22 @@
 /docs/ReadabilityStudioAPI/images/
 /docs/ReadabilityStudioAPI/R/
 /docs/ReadabilityStudioAPI/modern-language-association.csl
-/docs/ReadabilityTestsReference/latex/
-/docs/ReadabilityTestsReference/css/
-/docs/ReadabilityTestsReference/images/
-/docs/ReadabilityTestsReference/R/
-/docs/ReadabilityTestsReference/data/
-/docs/ReadabilityTestsReference/scoring-notes
-/docs/ReadabilityTestsReference/acknowledgements
-/docs/ReadabilityTestsReference/modern-language-association.csl
-/docs/ReadabilityTestsReference/20-ReadabilityTestsEnglish.rmd
-/docs/ReadabilityTestsReference/21-ReadabilityTestsSpanish.rmd
-/docs/ReadabilityTestsReference/23-ReadabilityTestsGerman.rmd
-/docs/ReadabilityTestsReference/91-Citations.rmd
-/docs/ReadabilityTestsReference/93-Author.rmd
-/docs/ReadabilityTestsReference/41-ScoringNotes.rmd
-/docs/ReadabilityTestsReference/92-Acknowledgements.Rmd
-/docs/ReadabilityTestsReference/01-intro.rmd
+/docs/readability-test-reference/latex/
+/docs/readability-test-reference/css/
+/docs/readability-test-reference/images/
+/docs/readability-test-reference/R/
+/docs/readability-test-reference/data/
+/docs/readability-test-reference/scoring-notes
+/docs/readability-test-reference/acknowledgements
+/docs/readability-test-reference/modern-language-association.csl
+/docs/readability-test-reference/20-ReadabilityTestsEnglish.rmd
+/docs/readability-test-reference/21-ReadabilityTestsSpanish.rmd
+/docs/readability-test-reference/23-ReadabilityTestsGerman.rmd
+/docs/readability-test-reference/91-Citations.rmd
+/docs/readability-test-reference/93-Author.rmd
+/docs/readability-test-reference/41-ScoringNotes.rmd
+/docs/readability-test-reference/92-Acknowledgements.Rmd
+/docs/readability-test-reference/01-intro.rmd
 /docs/ReadabilityStudioDocs/ReadabilityStudioManual_files
 
 # Configuration files

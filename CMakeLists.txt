@@ -170,7 +170,7 @@ endif()
 
 # make help directories if missing to avoid a build error
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs/ReadabilityStudioDocs/docs/)
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs/ReadabilityTestsReference/docs/)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-test-reference/docs/)
 
 include(cmake/modules/FindR.cmake)
 # TODO: Windows path to Pandoc currently only looks for Quarto installations.
@@ -315,7 +315,7 @@ add_custom_command(TARGET ${PROJECT_NAME}
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
-                   ${CMAKE_CURRENT_SOURCE_DIR}/docs/ReadabilityTestsReference/docs $<TARGET_FILE_DIR:${PROJECT_NAME}>/ReadabilityStudioDocs)
+                   ${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-test-reference/docs $<TARGET_FILE_DIR:${PROJECT_NAME}>/ReadabilityStudioDocs)
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
