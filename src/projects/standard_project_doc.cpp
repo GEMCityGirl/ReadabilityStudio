@@ -2433,10 +2433,12 @@ void ProjectDoc::DisplayWordCharts()
                 if (IsShowcasingComplexWords())
                     {
                     std::vector<double> complexBarPositions;
-                    complexBarPositions.reserve(
-                        syllableHistogram->GetBars().size() - firstComplexBar->GetAxisPosition());
-                    for (size_t i = firstComplexBar->GetAxisPosition(); i < syllableHistogram->GetBars().size(); ++i)
-                        { complexBarPositions.push_back(syllableHistogram->GetBars()[i].GetAxisPosition()); }
+                    complexBarPositions.reserve(syllableHistogram->GetBars().size());
+                    for (auto complexBar{ firstComplexBar };
+                         complexBar < syllableHistogram->GetBars().cend(); ++complexBar)
+                        {
+                        complexBarPositions.push_back(complexBar->GetAxisPosition());
+                        }
                     syllableHistogram->ShowcaseBars(complexBarPositions);
                     }
                 }
