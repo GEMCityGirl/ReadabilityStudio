@@ -24798,6 +24798,7 @@ commissary
 commissary's
 commission
 commission's
+commissionable
 commissionaire
 commissioned
 commissioner
@@ -27512,6 +27513,9 @@ cooks
 cookstove
 cookstove's
 cookstoves
+cooktop
+cooktop's
+cooktops
 cookware
 cookware's
 cookwares
@@ -57085,6 +57089,9 @@ guestimated
 guestimates
 guestimating
 guesting
+guestroom
+guestroom's
+guestrooms
 guests
 guevedoces
 guff
@@ -64286,6 +64293,7 @@ impermeableness
 impermeableness's
 impermeably
 impermissible
+impermissibly
 impersonal
 impersonality
 impersonality's

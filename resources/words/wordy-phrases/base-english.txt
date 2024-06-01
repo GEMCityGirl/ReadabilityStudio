@@ -4881,6 +4881,9 @@ developper	developer	3
 developpment	development	3		
 develops	makes, grows	0		
 develpment	development	3		
+develpoment	development	3		
+develpoment's	development'	3		
+develpoments	developments	3		
 develpped	developed	3		
 deveolpment	development	3		
 devestated	devastated	3		
@@ -10185,6 +10188,7 @@ moves heaven and earth	does anything, makes a monumental effort	2
 moving heaven and earth	doing anything, making a monumental effort	2		
 movment	movement	3		
 mroe	more	3		
+mssive	massive	3		
 mucuous	mucous	3		
 muddied the water	confused the matter	2		
 muddies the water	confuses the matter	2		
