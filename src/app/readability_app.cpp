@@ -3713,7 +3713,7 @@ MainFrame::MainFrame(wxDocManager* manager, wxFrame* frame,
         [this]([[maybe_unused]] wxRibbonButtonBarEvent&)
             {
             const wxString manualPath = GetHelpDirectory() + wxFileName::GetPathSeparator() +
-                _DT(L"ShortcutsCheatsheet.pdf");
+                _DT(L"shortcuts-cheatsheet.pdf");
             wxLaunchDefaultApplication(manualPath);
             },
         XRCID("ID_SHORTCUTS_CHEATSHEET"));
