@@ -3950,7 +3950,7 @@ void MainFrame::OnStartPageClick(wxCommandEvent& event)
         else if (event.GetId() == GetStartPage()->GetButtonID(4))
             {
             const wxString manualPath = GetHelpDirectory() + wxFileName::GetPathSeparator() +
-                _DT(L"ReadabilityStudioManual.pdf");
+                _DT(L"readability-studio-manual.pdf");
             wxLaunchDefaultApplication(manualPath);
             }
         else if (event.GetId() == GetStartPage()->GetButtonID(5))
@@ -5227,7 +5227,7 @@ void MainFrame::OnHelpContents([[maybe_unused]] wxCommandEvent& event)
 void MainFrame::OnHelpManual([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     const wxString manualPath =
-        GetHelpDirectory() + wxFileName::GetPathSeparator() + _DT(L"ReadabilityStudioManual.pdf");
+        GetHelpDirectory() + wxFileName::GetPathSeparator() + _DT(L"readability-studio-manual.pdf");
     wxLaunchDefaultApplication(manualPath);
     }
 
