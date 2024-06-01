@@ -12,7 +12,7 @@ In this example, we will import a document which contains short lines of text th
 First, let us view the document. From the **Help** tab on the ribbon, click the `r keys('Example Documents')` button, and select "Job Posting." Next, you will be prompted to either create a new project or view the document; select **View document**. Once the document is opened, note the text in the upper left corner. Here we have short descriptions about a job posting that we will want to preserve as separate lines when we import:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/NonGenerated/JostPostingViewDocument.png")
+knitr::include_graphics("images/non-generated/JostPostingViewDocument.png")
 ```
 
 Close this document and return to *Readability Studio*. Click the `r keys('Example Documents')` button and again select "Job Posting." Next, select **Create a new project**. When the **New Project Wizard** appears, select the **Document Structure** page and check **Line ends (i.e., hard returns) mark the start of a new paragraph**:
@@ -38,7 +38,7 @@ In this example, we will import a picture book which has unusual sentence format
 From the **Help** tab, click the `r keys("Example Documents")` button and then select *The Tale of Peter Rabbit*. When prompted about what to do with the file, select **View document**. As shown below, we can see a sentence that is partially on top of an image, and the rest of it is split across multiple lines to fit next to the image.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/NonGenerated/PeterRabbitBrowser.png")
+knitr::include_graphics("images/non-generated/PeterRabbitBrowser.png")
 ```
 
 Close this document and return the **Help** tab. Click the `r keys("Example Documents")` button and again select *The Tale of Peter Rabbit*. This time, select **Create a new project**. From the [project wizard](#creating-standard-project), select the **Document Structure** page and note the option **Sentences are split**. Selecting this will instruct the program to ignore hard returns and blank lines and combine these fragments into full sentences:
@@ -249,7 +249,7 @@ Along with policy changes to the program, they have redesigned the program's fly
 From the **Help** tab on the ribbon, click the `r keys('Example Documents')` button, and select "YA Enterprise Software Symposium." Next, you will be prompted to either create a new project or view the document; select **View document**. Once the document is opened, note how the flyer’s short text boxes have been replaced by full sentences:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/NonGenerated/YAEnterpriseSoftwareSymposium.png")
+knitr::include_graphics("images/non-generated/YAEnterpriseSoftwareSymposium.png")
 ```
 
 This means that when we import this document, we will specify that it is a narrative document and apply text exclusion. (This is in contrast to the earlier flyer, where we specified it as non-narrative, fragmented text.)

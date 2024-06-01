@@ -299,7 +299,7 @@ In this case, less than 10% of the document consists of complex words. Also, loo
 **Key Word Cloud**: In conjunction with the **Key Words** list, a key word cloud is also included to visualize the main concepts of the document(s).
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/NonGenerated/key-word-cloud.png")
+knitr::include_graphics("images/non-generated/key-word-cloud.png")
 ```
 
 A word cloud shows words from a document in a random layout with randomly assigned colors. The size of each word is based on its relative frequency within the document.

@@ -143,11 +143,11 @@ Long sentences can seem unfocused and difficult to read, and it is recommended t
 
 Now that we have found the difficult sentences, let's split them up so that they are easier to read. From the **Document** tab, click the `r keys("Edit Document")` button to open the recipes file for editing. Find one of the long sentences and review it. For example, consider this sentence:
 
-![](images/NonGenerated/sentencetoimprove.png)
+![](images/non-generated/sentencetoimprove.png)
 
 Not only is it long, but it is a little confusing. It is unclear what was mixed with the cold milk because there are so many steps in this sentence. To make it easier to follow, split this sentence into two and reword it:
 
-![](images/NonGenerated/improvedsentence.png)
+![](images/non-generated/improvedsentence.png)
 
 Continue this process for as many of the long sentences as you can. Sentences in the 20-word range are normally acceptable, but sentences over 30 words should be revised.
 
@@ -165,7 +165,7 @@ You can click on any of the other pages to view other difficult words in their o
 
 To continue simplifying this recipe, we will replace some of these difficult words. Words such as *incorporate*, *consequently*, and *gradually* could also be replaced with shorter, simpler synonyms. As illustrated below, we have replaced a few words, such as substituting *incorporate* with *add* and *gradually* with *slowly*.
 
-![](images/NonGenerated/improvedwords.png)
+![](images/non-generated/improvedwords.png)
 
 After we finish reworking the original document, we will want to analyze it again to see if it now meets our target audience.
 Because this project is already linked to the recipe document, we can reload it (rather than starting all over with a new project).
@@ -211,7 +211,7 @@ The language option is only available in the *Language Pack* and *Professional* 
 Next, open any web browser, go to the webpage, and copy its URL (i.e., address) onto the clipboard.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/NonGenerated/webbrowser.png")
+knitr::include_graphics("images/non-generated/webbrowser.png")
 ```
 
 Now, go back to the project wizard and select **Read text from a file or webpage**. Paste the URL into the file-path field, as illustrated below.
@@ -381,7 +381,7 @@ Almost all readability formulas use sentence length as a factor. Because of this
 First, let's view the document. From the **Help** tab on the ribbon, click the `r keys('Example Documents')` button, and select "Summer Code Camp." Next, you will be prompted to either create a new project or view the document; select **View document**. Once the flyer is opened, note how it mostly contains simple text boxes:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/NonGenerated/summer-code-camp-flyer.png")
+knitr::include_graphics("images/non-generated/summer-code-camp-flyer.png")
 ```
 
 Rather than excluding these and only analyzing the few remaining sentences, we will analyze everything. Also, we will only use a test that is designed to not rely on sentence lengths.

@@ -67,7 +67,7 @@ In the next example (see \@ref(external-editing)), we will edit our document fro
 Continuing\index{editing!from other programs|(} from the previous example (see \@ref(rs-as-an-editor)), we have copied the text from the editor into another program.
 (*LibreOffice* was used in this example, but any other editor will work as well.)
 
-![](images/NonGenerated/term-checklist-in-external-editor.png)
+![](images/non-generated/term-checklist-in-external-editor.png)
 
 From *LibreOffice*, save the document and move the program over to the side of the screen. Next, go back to the project in *Readability Studio*.
 From the *Home* tab on the ribbon, click the `r keys('Properties')` button. On the *Project Properties* dialog, select *Project Settings* on the sidebar.
@@ -95,7 +95,7 @@ By placing the two programs side-by-side, you can review any issues while you ed
 
 ```{r echo=F, fig.show = 'hold', out.width='50%'}
 knitr::include_graphics("images/termchecklistgrammar.png")
-knitr::include_graphics("images/NonGenerated/term-checklist-in-external-editor.png")
+knitr::include_graphics("images/non-generated/term-checklist-in-external-editor.png")
 ```
 
 The real-time update option is also available on the ribbon and can be toggled at any time:

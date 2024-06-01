@@ -135,13 +135,13 @@ writeEnumTopics(enums, glue("{docFolder}/readability-studio-api/enums/"))
 
 setwd(glue("{docFolder}/readability-studio-api/"))
 dir_create(glue("{docFolder}/readability-studio-api/images"))
-file_copy(glue("{docFolder}/readability-studio-manual/images/NonGenerated/CC_BY-NC-ND.png"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/non-generated/CC_BY-NC-ND.png"),
           glue("{docFolder}/readability-studio-api/images/CC_BY-NC-ND.png"),
           TRUE)
-file_copy(glue("{docFolder}/readability-studio-manual/images/NonGenerated/cover-programming.pdf"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/non-generated/cover-programming.pdf"),
           glue("{docFolder}/readability-studio-api/images/cover.pdf"),
           TRUE)
-file_copy(glue("{docFolder}/readability-studio-manual/images/NonGenerated/cover-programming.png"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/non-generated/cover-programming.png"),
           glue("{docFolder}/readability-studio-api/images/cover.png"),
           TRUE)
 file_copy(glue("{docFolder}/readability-studio-manual/modern-language-association.csl"),
@@ -173,13 +173,13 @@ unlink(glue("{docFolder}/readability-studio-api/30-Enums.Rmd"))
 UserManualMode = F
 setwd(glue("{docFolder}/readability-test-reference/"))
 dir_create(glue("{docFolder}/readability-test-reference/images"))
-file_copy(glue("{docFolder}/readability-studio-manual/images/NonGenerated/CC_BY-NC-ND.png"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/non-generated/CC_BY-NC-ND.png"),
           glue("{docFolder}/readability-test-reference/images/CC_BY-NC-ND.png"),
           TRUE)
-file_copy(glue("{docFolder}/readability-studio-manual/images/NonGenerated/cover-tests.pdf"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/non-generated/cover-tests.pdf"),
           glue("{docFolder}/readability-test-reference/images/cover.pdf"),
           TRUE)
-file_copy(glue("{docFolder}/readability-studio-manual/images/NonGenerated/cover-tests.png"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/non-generated/cover-tests.png"),
           glue("{docFolder}/readability-test-reference/images/cover.png"),
           TRUE)
 file_copy(glue("{docFolder}/readability-studio-manual/images/FleschChart.png"),

@@ -22,8 +22,8 @@ biblatexoptions: maxbibnames=4
 link-citations: yes
 nocite: '@*'
 csl: modern-language-association.csl
-cover-image: "images/NonGenerated/cover.png"
-pdf-cover: "images/NonGenerated/cover.pdf"
+cover-image: "images/non-generated/cover.png"
+pdf-cover: "images/non-generated/cover.pdf"
 ---
 
 ```{r, include=FALSE}
@@ -37,7 +37,7 @@ source('R/appdown.r')
      PDF output will have its own copyright page after the title.-->
 
 :::{.wrapfigure data-latex="{r}{0.5\\textwidth}" style="width: 48%;"}
-![](images/NonGenerated/cover.png){width=48%}
+![](images/non-generated/cover.png){width=48%}
 :::
 
 This book is a guide to using the software product *Readability Studio*,
@@ -47,7 +47,7 @@ refer to ch. \@ref(english-readability-tests),
 ch. \@ref(spanish-readability-tests),
 and ch. \@ref(german-readability-tests) for formula overviews.
 
-![](images/NonGenerated/CC_BY-NC-ND.png)
+![](images/non-generated/CC_BY-NC-ND.png)
 
 This book is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivs 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/).
 ```
