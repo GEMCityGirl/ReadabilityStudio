@@ -169,7 +169,7 @@ endif()
 ##############################################################
 
 # make help directories if missing to avoid a build error
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs/ReadabilityStudioDocs/docs/)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/docs/)
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-test-reference/docs/)
 
 include(cmake/modules/FindR.cmake)
@@ -307,19 +307,19 @@ message(STATUS "Copying application resources...")
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
-                   ${CMAKE_CURRENT_SOURCE_DIR}/docs/ReadabilityStudioDocs/docs $<TARGET_FILE_DIR:${PROJECT_NAME}>/ReadabilityStudioDocs)
+                   ${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/docs $<TARGET_FILE_DIR:${PROJECT_NAME}>/readability-studio-manual)
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
-                   ${CMAKE_CURRENT_SOURCE_DIR}/docs/shortcuts-cheatsheet/docs $<TARGET_FILE_DIR:${PROJECT_NAME}>/ReadabilityStudioDocs)
+                   ${CMAKE_CURRENT_SOURCE_DIR}/docs/shortcuts-cheatsheet/docs $<TARGET_FILE_DIR:${PROJECT_NAME}>/readability-studio-manual)
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
-                   ${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-test-reference/docs $<TARGET_FILE_DIR:${PROJECT_NAME}>/ReadabilityStudioDocs)
+                   ${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-test-reference/docs $<TARGET_FILE_DIR:${PROJECT_NAME}>/readability-studio-manual)
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
-                   ${CMAKE_CURRENT_SOURCE_DIR}/docs/lua-5.4/doc $<TARGET_FILE_DIR:${PROJECT_NAME}>/ReadabilityStudioDocs/lua-5.4/doc)
+                   ${CMAKE_CURRENT_SOURCE_DIR}/docs/lua-5.4/doc $<TARGET_FILE_DIR:${PROJECT_NAME}>/readability-studio-manual/lua-5.4/doc)
 
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD

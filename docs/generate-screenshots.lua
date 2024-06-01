@@ -8,7 +8,7 @@ ScreenshotProjectsFolder = Application.GetAbsoluteFilePath(
             "projects/")
 
 -- output
-ImagePath = Debug.GetScriptFolderPath().."ReadabilityStudioDocs/images/"
+ImagePath = Debug.GetScriptFolderPath().."readability-studio-manual/images/"
 FileExtension = "bmp"
 
 function wait(seconds)

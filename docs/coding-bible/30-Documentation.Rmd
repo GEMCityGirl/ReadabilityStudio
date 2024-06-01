@@ -12,7 +12,7 @@ The following styles should be applied to all help projects:
 
 ## Editing
 
-The documentation is stored in **bookdown** projects in the **ReadabilityStudioDocs** and **readability-studio-api** folders. The markdown files (\*.Rmd) can be edited in **RStudio**.
+The documentation is stored in **bookdown** projects in the **readability-studio-manual** and **readability-studio-api** folders. The markdown files (\*.Rmd) can be edited in **RStudio**.
 
 ## Screenshots {#creating-screenshots}
 
@@ -22,7 +22,7 @@ To generate screenshots, do the following:
 
 - Run the script **docs/generate-screenshots.lua** from *Readability Studio*
 
-This will generate all new screenshots in the root **docs/ReadabilityStudioDocs/images**. The subdirectory **NonGenerated** will not be effected, but does not need to be.
+This will generate all new screenshots in the root **docs/readability-studio-manual/images**. The subdirectory **NonGenerated** will not be effected, but does not need to be.
 It should not contain images effected by the program's UI changes and should not contain images with content that should be localized.
 
 ### Reviewing Screenshots {-}

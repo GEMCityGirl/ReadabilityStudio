@@ -28,11 +28,11 @@ Source: ..\..\resources\report-themes\*; DestDir: {app}\report-themes; Component
 Source: ..\..\resources\themes\*; DestDir: {app}\themes; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\redist\license.rtf; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion
 ; help files
-Source: ..\..\docs\ReadabilityStudioDocs\docs\*; DestDir: {app}\ReadabilityStudioDocs; Components: HelpFiles; Excludes: "thumbs.db,*.tex,*.log,README.md,\.git"; Flags: replacesameversion restartreplace recursesubdirs
-Source: ..\..\docs\readability-test-reference\docs\readability-test-reference.pdf; DestDir: {app}\ReadabilityStudioDocs; Components: HelpFiles; Flags: replacesameversion restartreplace recursesubdirs
-Source: ..\..\docs\shortcuts-cheatsheet\docs\shortcuts-cheatsheet.pdf; DestDir: {app}\ReadabilityStudioDocs; Components: HelpFiles; Flags: replacesameversion restartreplace recursesubdirs
+Source: ..\..\docs\readability-studio-manual\docs\*; DestDir: {app}\readability-studio-manual; Components: HelpFiles; Excludes: "thumbs.db,*.tex,*.log,README.md,\.git"; Flags: replacesameversion restartreplace recursesubdirs
+Source: ..\..\docs\readability-test-reference\docs\readability-test-reference.pdf; DestDir: {app}\readability-studio-manual; Components: HelpFiles; Flags: replacesameversion restartreplace recursesubdirs
+Source: ..\..\docs\shortcuts-cheatsheet\docs\shortcuts-cheatsheet.pdf; DestDir: {app}\readability-studio-manual; Components: HelpFiles; Flags: replacesameversion restartreplace recursesubdirs
 ;FUTURE-RELEASE Source: ..\..\docs\readability-studio-api\*; DestDir: {app}\readability-studio-api; Components: HelpFiles; Excludes: "thumbs.db,*.tex,*.log,README.md,\.git"; Flags: replacesameversion restartreplace recursesubdirs
-Source: ..\..\docs\lua-5.4\doc\*; DestDir: {app}\ReadabilityStudioDocs\lua-5.4\doc; Components: HelpFiles; Excludes: "thumbs.db"; Flags: replacesameversion restartreplace recursesubdirs
+Source: ..\..\docs\lua-5.4\doc\*; DestDir: {app}\readability-studio-manual\lua-5.4\doc; Components: HelpFiles; Excludes: "thumbs.db"; Flags: replacesameversion restartreplace recursesubdirs
 ; examples
 Source: ..\..\examples\*; DestDir: {app}\examples; Components: Examples; Excludes: "thumbs.db,README.md,\.git"; Flags: replacesameversion restartreplace recursesubdirs
 

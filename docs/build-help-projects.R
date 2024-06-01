@@ -17,12 +17,12 @@ if (nchar(tinytex::tinytex_root()) == 0)
 
 docFolder <- this.path::this.dir()
 source(glue("{docFolder}/build-enum-files.R"))
-source(glue("{docFolder}/ReadabilityStudioDocs/R/appdown.r"))
+source(glue("{docFolder}/readability-studio-manual/R/appdown.r"))
 
 # delete previous builds
 unlink(glue("{docFolder}/coding-bible/docs"), recursive=T)
 unlink(glue("{docFolder}/shortcuts-cheatsheet/docs"), recursive=T)
-unlink(glue("{docFolder}/ReadabilityStudioDocs/docs"), recursive=T)
+unlink(glue("{docFolder}/readability-studio-manual/docs"), recursive=T)
 unlink(glue("{docFolder}/readability-test-reference/docs"), recursive=T)
 unlink(glue("{docFolder}/readability-studio-api/docs"), recursive=T)
 
@@ -45,16 +45,16 @@ clearFolders <- function()
   unlink(glue("{docFolder}/readability-test-reference/spanish"), recursive=T)
   unlink(glue("{docFolder}/readability-test-reference/german"), recursive=T)
 
-  unlink(glue("{docFolder}/ReadabilityStudioDocs/_bookdown_files"), recursive=T)
-  unlink(glue("{docFolder}/ReadabilityStudioDocs/readability-studio-manual.aux"))
-  unlink(glue("{docFolder}/ReadabilityStudioDocs/readability-studio-manual.log"))
-  unlink(glue("{docFolder}/ReadabilityStudioDocs/readability-studio-manual.toc"))
-  unlink(glue("{docFolder}/ReadabilityStudioDocs/readability-studio-manual.tex"))
-  unlink(glue("{docFolder}/ReadabilityStudioDocs/readability-studio-manual.bcf"))
-  unlink(glue("{docFolder}/ReadabilityStudioDocs/readability-studio-manual.log"))
-  unlink(glue("{docFolder}/ReadabilityStudioDocs/readability-studio-manual.idx"))
-  unlink(glue("{docFolder}/ReadabilityStudioDocs/readability-studio-manual.lof"))
-  unlink(glue("{docFolder}/ReadabilityStudioDocs/readability-studio-manual.lot"))
+  unlink(glue("{docFolder}/readability-studio-manual/_bookdown_files"), recursive=T)
+  unlink(glue("{docFolder}/readability-studio-manual/readability-studio-manual.aux"))
+  unlink(glue("{docFolder}/readability-studio-manual/readability-studio-manual.log"))
+  unlink(glue("{docFolder}/readability-studio-manual/readability-studio-manual.toc"))
+  unlink(glue("{docFolder}/readability-studio-manual/readability-studio-manual.tex"))
+  unlink(glue("{docFolder}/readability-studio-manual/readability-studio-manual.bcf"))
+  unlink(glue("{docFolder}/readability-studio-manual/readability-studio-manual.log"))
+  unlink(glue("{docFolder}/readability-studio-manual/readability-studio-manual.idx"))
+  unlink(glue("{docFolder}/readability-studio-manual/readability-studio-manual.lof"))
+  unlink(glue("{docFolder}/readability-studio-manual/readability-studio-manual.lot"))
   }
 
 clearFolders()
@@ -79,10 +79,10 @@ bookdown::render_book(input="index.Rmd",
 # Shortcuts Cheatsheet
 ######################
 
-# Note that this book has its own LaTeX files (i.e., does not copy them from ReadabilityStudioDocs).
+# Note that this book has its own LaTeX files (i.e., does not copy them from readability-studio-manual).
 # This "book" doesn't have any front or back matter, so its preamble TeX file doesn't include that.
 setwd(glue("{docFolder}/shortcuts-cheatsheet/"))
-file_copy(glue("{docFolder}/ReadabilityStudioDocs/glossary/02-shortcuts.rmd"),
+file_copy(glue("{docFolder}/readability-studio-manual/glossary/02-shortcuts.rmd"),
           glue("{docFolder}/shortcuts-cheatsheet/02-shortcuts.rmd"),
           TRUE)
 bookdown::render_book(input="index.Rmd",
@@ -95,7 +95,7 @@ unlink(glue("{docFolder}/shortcuts-cheatsheet/02-shortcuts.rmd"))
 
 UserManualMode = TRUE
 IncludeLinux = FALSE
-setwd(glue("{docFolder}/ReadabilityStudioDocs/"))
+setwd(glue("{docFolder}/readability-studio-manual/"))
 combine_files("01-Overviews.Rmd", "overviews",
               ("(intro|program)"))
 combine_files("20-ReadabilityTestsEnglish.rmd", "english")
@@ -113,15 +113,13 @@ combine_files("90-Acknowledgements.Rmd", "acknowledgements")
 bookdown::render_book(input="index.Rmd",
                       output_format="bookdown::gitbook",
                       output_dir="docs")
-unlink(glue("{docFolder}/ReadabilityStudioDocs/01-Overviews.Rmd"))
-unlink(glue("{docFolder}/ReadabilityStudioDocs/20-ReadabilityTestsEnglish.rmd"))
-unlink(glue("{docFolder}/ReadabilityStudioDocs/21-ReadabilityTestsSpanish.rmd"))
-unlink(glue("{docFolder}/ReadabilityStudioDocs/22-ReadabilityTestsGerman.rmd"))
-unlink(glue("{docFolder}/ReadabilityStudioDocs/41-ScoringNotes.rmd"))
-unlink(glue("{docFolder}/ReadabilityStudioDocs/90-Acknowledgements.Rmd"))
-unlink(glue("{docFolder}/ReadabilityStudioDocs/91-Glossaries.rmd"))
-# used on github to serve the book
-write(c(" "), file=glue("{docFolder}/ReadabilityStudioDocs/docs/.nojekyll"))
+unlink(glue("{docFolder}/readability-studio-manual/01-Overviews.Rmd"))
+unlink(glue("{docFolder}/readability-studio-manual/20-ReadabilityTestsEnglish.rmd"))
+unlink(glue("{docFolder}/readability-studio-manual/21-ReadabilityTestsSpanish.rmd"))
+unlink(glue("{docFolder}/readability-studio-manual/22-ReadabilityTestsGerman.rmd"))
+unlink(glue("{docFolder}/readability-studio-manual/41-ScoringNotes.rmd"))
+unlink(glue("{docFolder}/readability-studio-manual/90-Acknowledgements.Rmd"))
+unlink(glue("{docFolder}/readability-studio-manual/91-Glossaries.rmd"))
 
 # Programming Manual
 ####################
@@ -137,25 +135,25 @@ writeEnumTopics(enums, glue("{docFolder}/readability-studio-api/enums/"))
 
 setwd(glue("{docFolder}/readability-studio-api/"))
 dir_create(glue("{docFolder}/readability-studio-api/images"))
-file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/CC_BY-NC-ND.png"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/NonGenerated/CC_BY-NC-ND.png"),
           glue("{docFolder}/readability-studio-api/images/CC_BY-NC-ND.png"),
           TRUE)
-file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/cover-programming.pdf"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/NonGenerated/cover-programming.pdf"),
           glue("{docFolder}/readability-studio-api/images/cover.pdf"),
           TRUE)
-file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/cover-programming.png"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/NonGenerated/cover-programming.png"),
           glue("{docFolder}/readability-studio-api/images/cover.png"),
           TRUE)
-file_copy(glue("{docFolder}/ReadabilityStudioDocs/modern-language-association.csl"),
+file_copy(glue("{docFolder}/readability-studio-manual/modern-language-association.csl"),
           glue("{docFolder}/readability-studio-api/modern-language-association.csl"),
           TRUE)
-dir_copy(glue("{docFolder}/ReadabilityStudioDocs/latex"),
+dir_copy(glue("{docFolder}/readability-studio-manual/latex"),
          glue("{docFolder}/readability-studio-api/latex"),
          TRUE)
-dir_copy(glue("{docFolder}/ReadabilityStudioDocs/css"),
+dir_copy(glue("{docFolder}/readability-studio-manual/css"),
          glue("{docFolder}/readability-studio-api/css"),
          TRUE)
-dir_copy(glue("{docFolder}/ReadabilityStudioDocs/R"),
+dir_copy(glue("{docFolder}/readability-studio-manual/R"),
          glue("{docFolder}/readability-studio-api/R"),
          TRUE)
 
@@ -175,79 +173,79 @@ unlink(glue("{docFolder}/readability-studio-api/30-Enums.Rmd"))
 UserManualMode = F
 setwd(glue("{docFolder}/readability-test-reference/"))
 dir_create(glue("{docFolder}/readability-test-reference/images"))
-file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/CC_BY-NC-ND.png"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/NonGenerated/CC_BY-NC-ND.png"),
           glue("{docFolder}/readability-test-reference/images/CC_BY-NC-ND.png"),
           TRUE)
-file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/cover-tests.pdf"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/NonGenerated/cover-tests.pdf"),
           glue("{docFolder}/readability-test-reference/images/cover.pdf"),
           TRUE)
-file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/NonGenerated/cover-tests.png"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/NonGenerated/cover-tests.png"),
           glue("{docFolder}/readability-test-reference/images/cover.png"),
           TRUE)
-file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/FleschChart.png"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/FleschChart.png"),
           glue("{docFolder}/readability-test-reference/images/FleschChart.png"),
           TRUE)
-file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/frygraph.png"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/frygraph.png"),
           glue("{docFolder}/readability-test-reference/images/frygraph.png"),
           TRUE)
-file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/LixGauge.png"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/LixGauge.png"),
           glue("{docFolder}/readability-test-reference/images/LixGauge.png"),
           TRUE)
-file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/raygorgraph.png"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/raygorgraph.png"),
           glue("{docFolder}/readability-test-reference/images/raygorgraph.png"),
           TRUE)
-file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/CrawfordGraph.png"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/CrawfordGraph.png"),
           glue("{docFolder}/readability-test-reference/images/CrawfordGraph.png"),
           TRUE)
-file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/FraseGraph.png"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/FraseGraph.png"),
           glue("{docFolder}/readability-test-reference/images/FraseGraph.png"),
           TRUE)
-file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/GpmFry.png"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/GpmFry.png"),
           glue("{docFolder}/readability-test-reference/images/GpmFry.png"),
           TRUE)
-file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/GermanLixGauge.png"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/GermanLixGauge.png"),
           glue("{docFolder}/readability-test-reference/images/GermanLixGauge.png"),
           TRUE)
-file_copy(glue("{docFolder}/ReadabilityStudioDocs/images/Schwartz.png"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/Schwartz.png"),
           glue("{docFolder}/readability-test-reference/images/Schwartz.png"),
           TRUE)
-dir_copy(glue("{docFolder}/ReadabilityStudioDocs/english"),
+dir_copy(glue("{docFolder}/readability-studio-manual/english"),
          glue("{docFolder}/readability-test-reference/english"),
          TRUE)
-dir_copy(glue("{docFolder}/ReadabilityStudioDocs/spanish"),
+dir_copy(glue("{docFolder}/readability-studio-manual/spanish"),
          glue("{docFolder}/readability-test-reference/spanish"),
          TRUE)
-dir_copy(glue("{docFolder}/ReadabilityStudioDocs/german"),
+dir_copy(glue("{docFolder}/readability-studio-manual/german"),
          glue("{docFolder}/readability-test-reference/german"),
          TRUE)
-dir_copy(glue("{docFolder}/ReadabilityStudioDocs/scoring-notes"),
+dir_copy(glue("{docFolder}/readability-studio-manual/scoring-notes"),
          glue("{docFolder}/readability-test-reference/scoring-notes"),
          TRUE)
-dir_copy(glue("{docFolder}/ReadabilityStudioDocs/acknowledgements"),
+dir_copy(glue("{docFolder}/readability-studio-manual/acknowledgements"),
          glue("{docFolder}/readability-test-reference/acknowledgements"),
          TRUE)
-dir_copy(glue("{docFolder}/ReadabilityStudioDocs/latex"),
+dir_copy(glue("{docFolder}/readability-studio-manual/latex"),
          glue("{docFolder}/readability-test-reference/latex"),
          TRUE)
-dir_copy(glue("{docFolder}/ReadabilityStudioDocs/css"),
+dir_copy(glue("{docFolder}/readability-studio-manual/css"),
          glue("{docFolder}/readability-test-reference/css"),
          TRUE)
-dir_copy(glue("{docFolder}/ReadabilityStudioDocs/R"),
+dir_copy(glue("{docFolder}/readability-studio-manual/R"),
          glue("{docFolder}/readability-test-reference/R"),
          TRUE)
-dir_copy(glue("{docFolder}/ReadabilityStudioDocs/data"),
+dir_copy(glue("{docFolder}/readability-studio-manual/data"),
          glue("{docFolder}/readability-test-reference/data"),
          TRUE)
-file_copy(glue("{docFolder}/ReadabilityStudioDocs/overviews/01-intro.rmd"),
+file_copy(glue("{docFolder}/readability-studio-manual/overviews/01-intro.rmd"),
           glue("{docFolder}/readability-test-reference/01-intro.rmd"),
           TRUE)
-file_copy(glue("{docFolder}/ReadabilityStudioDocs/93-Author.rmd"),
+file_copy(glue("{docFolder}/readability-studio-manual/93-Author.rmd"),
           glue("{docFolder}/readability-test-reference/93-Author.rmd"),
           TRUE)
-file_copy(glue("{docFolder}/ReadabilityStudioDocs/modern-language-association.csl"),
+file_copy(glue("{docFolder}/readability-studio-manual/modern-language-association.csl"),
           glue("{docFolder}/readability-test-reference/modern-language-association.csl"),
           TRUE)
-file_copy(glue("{docFolder}/ReadabilityStudioDocs/cites.bib"),
+file_copy(glue("{docFolder}/readability-studio-manual/cites.bib"),
           glue("{docFolder}/readability-test-reference/cites.bib"),
           TRUE)
 combine_files("20-ReadabilityTestsEnglish.rmd", "english")

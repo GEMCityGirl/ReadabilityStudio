@@ -199,4 +199,4 @@ If it is a more complex word list (with categories, like **Dolch**), then that w
 - Add a static function wrapper to the function you wish to call from the program in **src/test_helpers/readability_formula_parser.cpp** (e.g., `HardFogWordCount`).
 - Map the function (and shortcut, if applicable) in `ReadabilityFormulaParser::ReadabilityFormulaParser()`.
 - Document the function in `CustomTestDlg::Create()`.
-- Document the function in **docs/ReadabilityStudioDocs/24-CustomTestAndBundles.rmd** in the help.
+- Document the function in **docs/readability-studio-manual/24-CustomTestAndBundles.rmd** in the help.

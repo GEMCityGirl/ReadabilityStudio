@@ -4,7 +4,7 @@
 /docs/readability-test-reference/docs
 /docs/shortcuts-cheatsheet/docs
 /docs/doxygen/html
-/docs/ReadabilityStudioDocs/docs
+/docs/readability-studio-manual/docs
 /tests/bin/
 /tests/.vs/
 /tests/out/
@@ -37,12 +37,12 @@
 /resources/Words/Programming/all-languages.txt
 /resources/Words/proper-nouns/personal.txt
 /resources/Words/proper-nouns/all.txt
-/docs/ReadabilityStudioDocs/_bookdown_files/
-/docs/ReadabilityStudioDocs/docs
-/docs/ReadabilityStudioDocs/01-Overviews.rmd
-/docs/ReadabilityStudioDocs/41-ScoringNotes.rmd
-/docs/ReadabilityStudioDocs/90-Glossaries.rmd
-/docs/ReadabilityStudioDocs/92-Acknowledgements.rmd
+/docs/readability-studio-manual/_bookdown_files/
+/docs/readability-studio-manual/docs
+/docs/readability-studio-manual/01-Overviews.rmd
+/docs/readability-studio-manual/41-ScoringNotes.rmd
+/docs/readability-studio-manual/90-Glossaries.rmd
+/docs/readability-studio-manual/92-Acknowledgements.rmd
 /docs/readability-studio-api/latex/
 /docs/readability-studio-api/css/
 /docs/readability-studio-api/images/
@@ -64,7 +64,7 @@
 /docs/readability-test-reference/41-ScoringNotes.rmd
 /docs/readability-test-reference/92-Acknowledgements.Rmd
 /docs/readability-test-reference/01-intro.rmd
-/docs/ReadabilityStudioDocs/ReadabilityStudioManual_files
+/docs/readability-studio-manual/ReadabilityStudioManual_files
 
 # Configuration files
 /docs/coding-bible/.Rproj.user

@@ -938,7 +938,7 @@ bool ReadabilityApp::OnInit()
         }
 
     // set the help
-    GetMainFrame()->SetHelpDirectory(FindResourceDirectory(L"ReadabilityStudioDocs"));
+    GetMainFrame()->SetHelpDirectory(FindResourceDirectory(L"readability-studio-manual"));
     wxLogMessage(L"Documentation Location: %s", GetMainFrame()->GetHelpDirectory());
 
     // load the full set of user settings
