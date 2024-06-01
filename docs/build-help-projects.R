@@ -20,7 +20,7 @@ source(glue("{docFolder}/build-enum-files.R"))
 source(glue("{docFolder}/ReadabilityStudioDocs/R/appdown.r"))
 
 # delete previous builds
-unlink(glue("{docFolder}/Coding-Bible/docs"), recursive=T)
+unlink(glue("{docFolder}/coding-bible/docs"), recursive=T)
 unlink(glue("{docFolder}/shortcuts-cheatsheet/docs"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioDocs/docs"), recursive=T)
 unlink(glue("{docFolder}/readability-test-reference/docs"), recursive=T)
@@ -72,7 +72,7 @@ PROGRAM_NAME <- dplyr::filter(version_info, TAG == 'PROGRAM_NAME')$VALUE
 # Coding Bible
 ##############
 
-setwd(glue("{docFolder}/Coding-Bible/"))
+setwd(glue("{docFolder}/coding-bible/"))
 bookdown::render_book(input="index.Rmd",
                       output_dir="docs")
 

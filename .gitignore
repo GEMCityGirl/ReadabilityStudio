@@ -1,5 +1,5 @@
 # Output files
-/docs/Coding-Bible/docs
+/docs/coding-bible/docs
 /docs/ReadabilityStudioAPI/docs
 /docs/readability-test-reference/docs
 /docs/shortcuts-cheatsheet/docs
@@ -67,7 +67,7 @@
 /docs/ReadabilityStudioDocs/ReadabilityStudioManual_files
 
 # Configuration files
-/docs/Coding-Bible/.Rproj.user
+/docs/coding-bible/.Rproj.user
 /docs/ReadabilityStudioAPI/.Rproj.user
 /.vs
 /CMakeSettings.json

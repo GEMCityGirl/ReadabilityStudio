@@ -1049,7 +1049,7 @@ EXCLUDE                = doxygen-awesome-css \
                          ../../src/Catch2 \
                          ../../src/tinyexpr-plusplus \
                          ../ReadabilityStudioAPI \
-                         ../Coding-Bible \
+                         ../coding-bible \
                          ../../src/Wisteria-Dataviz \
                          ../../src/tinyxml2 \
                          ../../src/projects/base_project_doc.cpp \
