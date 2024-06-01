@@ -49,6 +49,8 @@ RSArtProvider::RSArtProvider()
         { wxART_GO_UP, L"ribbon/up-arrow.svg" },
         { wxART_FIND, L"ribbon/find.svg" },
         { wxART_FIND_AND_REPLACE, L"ribbon/find-replace.svg" },
+        { L"ID_NOTES", L"ribbon/paper-notes.svg" },
+        { L"ID_E_HELP", L"ribbon/electronic-help.svg" },
         { L"ID_ALIGN_LEFT", L"ribbon/align-left.svg" },
         { L"ID_ALIGN_CENTER", L"ribbon/align-center.svg" },
         { L"ID_ALIGN_RIGHT", L"ribbon/align-right.svg" },
@@ -3039,12 +3041,12 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             new wxRibbonPanel(helpPage, wxID_ANY, _(L"Documentation"), wxNullBitmap,
                               wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
         wxRibbonButtonBar* helpButtonBar = new wxRibbonButtonBar(helpPanel);
-        helpButtonBar->AddButton(wxID_HELP, _(L"Content"),
-            ReadRibbonSvgIcon(L"ribbon/web-help.svg"),
+        helpButtonBar->AddButton(wxID_HELP, _(L"Electronic Help"),
+            ReadRibbonSvgIcon(L"ribbon/electronic-help.svg"),
             _(L"Read the documentation in a browser."));
         helpButtonBar->AddButton(XRCID("ID_HELP_MANUAL"),
             _(L"Manual"),
-            ReadRibbonSvgIcon(L"ribbon/help-manual.svg"),
+            ReadRibbonSvgIcon(L"ribbon/help.svg"),
             _(L"Read the manual."));
         helpButtonBar->AddButton(XRCID("ID_TESTS_REFERENCE"),
             _(L"Tests Reference"),
@@ -3827,10 +3829,10 @@ void ReadabilityApp::InitStartPage()
         GetResourceManager().GetSVG(L"ribbon/examples.svg"),
         _(L"Read the Examples"));
     GetMainFrameEx()->GetStartPage()->AddButton(
-        GetResourceManager().GetSVG(L"ribbon/help.svg"),
+        wxArtProvider::GetBitmapBundle("ID_NOTES", wxART_BUTTON),
         _(L"Read the Notes"));
     GetMainFrameEx()->GetStartPage()->AddButton(
-        GetResourceManager().GetSVG(L"ribbon/help-manual.svg"),
+        wxArtProvider::GetBitmapBundle(wxART_HELP_BOOK, wxART_BUTTON),
         _(L"Read the Manual"));
     GetMainFrameEx()->GetStartPage()->AddButton(
         GetResourceManager().GetSVG(L"ribbon/configure.svg"),

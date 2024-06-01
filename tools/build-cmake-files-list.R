@@ -33,5 +33,5 @@ write_file(paste(files, collapse='\n'), file=imagesFile)
 ################################################
 files <- str_glue(
   "{list.files(path=wordsFolder, pattern='*[.]txt', recursive=TRUE)}")
-files <- files[!grepl("(BaseEnglishDictionary.txt|NonPersonalBase.txt|PersonalBase.txt)", files)]
+files <- files[!grepl("(base-english-dictionary.txt|base-non-personal.txt|base-personal.txt|base-english.txt|base-german.txt|base-spanish.txt|common-errors.txt|sql.txt|visual-basic.txt|programming/r.txt|python.txt|java.txt|html.txt|csharp.txt|cpp.txt|assembly.txt)", files)]
 write_file(paste(files, collapse='\n'), file=wordsFile)

@@ -9,14 +9,6 @@ dictionaries/german.txt
 dictionaries/spanish.txt
 past-participles/exceptions.txt
 programming/all-languages.txt
-programming/assembly.txt
-programming/cpp.txt
-programming/csharp.txt
-programming/html.txt
-programming/java.txt
-programming/python.txt
-programming/r.txt
-programming/visual-basic.txt
 proper-nouns/all.txt
 proper-nouns/personal.txt
 stop-words/english.txt

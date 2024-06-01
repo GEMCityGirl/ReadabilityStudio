@@ -53,6 +53,7 @@ ribbon/edit-document.svg
 ribbon/edit-report.svg
 ribbon/edit.svg
 ribbon/education.svg
+ribbon/electronic-help.svg
 ribbon/esl.svg
 ribbon/examples.svg
 ribbon/exclude-selected.svg
@@ -75,7 +76,6 @@ ribbon/grammar.svg
 ribbon/group.svg
 ribbon/heatmap.svg
 ribbon/help-button.svg
-ribbon/help-manual.svg
 ribbon/help.svg
 ribbon/highlightedwords.svg
 ribbon/highlighting.svg
@@ -90,8 +90,8 @@ ribbon/invalid-region.svg
 ribbon/justified.svg
 ribbon/keyboard-shortcuts.svg
 ribbon/left-titles.svg
-ribbon/link.svg
 ribbon/line-spacing.svg
+ribbon/link.svg
 ribbon/list.svg
 ribbon/log-book.svg
 ribbon/logo.svg
@@ -100,13 +100,14 @@ ribbon/lua.svg
 ribbon/misspellings.svg
 ribbon/number-syllabize.svg
 ribbon/opacity.svg
+ribbon/paper-notes.svg
 ribbon/paragraph-indent.svg
 ribbon/paragraph.svg
 ribbon/paste.svg
 ribbon/period-needed.svg
 ribbon/person.svg
-ribbon/photos.svg
 ribbon/photos-merge.svg
+ribbon/photos.svg
 ribbon/preview.svg
 ribbon/print-header-footer.svg
 ribbon/print-setup.svg
@@ -143,7 +144,6 @@ ribbon/view-spreadsheet-item.svg
 ribbon/warning.svg
 ribbon/watermark.svg
 ribbon/web-export.svg
-ribbon/web-help.svg
 ribbon/word-cloud.svg
 ribbon/words.svg
 ribbon/x-axis.svg
@@ -213,7 +213,7 @@ tests/wheeler-smith.svg
 wizard/centered-text.png
 wizard/hard-returns.png
 wizard/line-ends-are-new-paragraphs.png
-wizard/narrative-text.png
 wizard/narrative-illustrated.png
+wizard/narrative-text.png
 wizard/narrative-with-lines.png
 wizard/sparse-text.png
