@@ -3704,7 +3704,7 @@ MainFrame::MainFrame(wxDocManager* manager, wxFrame* frame,
         [this]([[maybe_unused]] wxRibbonButtonBarEvent&)
             {
             const wxString manualPath = GetHelpDirectory() + wxFileName::GetPathSeparator() +
-                _DT(L"ReadabilityTestReference.pdf");
+                _DT(L"readability-test-reference.pdf");
             wxLaunchDefaultApplication(manualPath);
             },
         XRCID("ID_TESTS_REFERENCE"));
