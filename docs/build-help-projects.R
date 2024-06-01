@@ -55,6 +55,11 @@ clearFolders <- function()
   unlink(glue("{docFolder}/readability-studio-manual/readability-studio-manual.idx"))
   unlink(glue("{docFolder}/readability-studio-manual/readability-studio-manual.lof"))
   unlink(glue("{docFolder}/readability-studio-manual/readability-studio-manual.lot"))
+  unlink(glue("{docFolder}/readability-studio-manual/readability-studio-manual.bbl"))
+  unlink(glue("{docFolder}/readability-studio-manual/readability-studio-manual.blg"))
+  unlink(glue("{docFolder}/readability-studio-manual/readability-studio-manual.ilg"))
+  unlink(glue("{docFolder}/readability-studio-manual/readability-studio-manual.ind"))
+  unlink(glue("{docFolder}/readability-studio-manual/readability-studio-manual.run.xml"))
   }
 
 clearFolders()
