@@ -934,22 +934,12 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
 
     wxRibbonPanel* editListButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_PANEL);
-    hideEditPanel(MainFrame::ID_EDIT_RIBBON_SUMMARY_REPORT_PANEL);
-    hideEditPanel(MainFrame::ID_EDIT_RIBBON_EXPLANATION_LIST_PANEL);
-    hideEditPanel(MainFrame::ID_EDIT_RIBBON_REPORT_PANEL);
     wxRibbonPanel* editStatsListButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_STATS_LIST_PANEL);
-    hideEditPanel(MainFrame::ID_EDIT_RIBBON_STATS_SUMMARY_REPORT_PANEL);
-    hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_PANEL);
-    hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_AND_EXCLUDE_PANEL);
-    hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_PANEL);
-    hideEditPanel(MainFrame::ID_EDIT_RIBBON_BAR_CHART_PANEL);
     wxRibbonPanel* editBoxPlotButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_BOX_PLOT_PANEL);
-    hideEditPanel(MainFrame::ID_EDIT_RIBBON_HISTOGRAM_PANEL);
     wxRibbonPanel* editHistogramBatchButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_HISTOGRAM_BATCH_PANEL);
-    hideEditPanel(MainFrame::ID_EDIT_RIBBON_PIE_CHART_PANEL);
     wxRibbonPanel* editWordCloudButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_WORDCLOUD_PANEL);
     wxRibbonPanel* editGraphButtonBarWindow =
@@ -966,6 +956,17 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_CSVSS_PANEL);
     wxRibbonPanel* editListTestScoresButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_TEST_SCORES_PANEL);
+    // hide standard project panels that we don't use here
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_STATS_SUMMARY_REPORT_PANEL);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_PANEL);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_AND_EXCLUDE_PANEL);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_PANEL);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_BAR_CHART_PANEL);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_PIE_CHART_PANEL);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_HISTOGRAM_PANEL);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_SUMMARY_REPORT_PANEL);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_EXPLANATION_LIST_PANEL);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_REPORT_PANEL);
 
     if (event.GetExtraLong() == SIDEBAR_READABILITY_SCORES_SECTION_ID)
         {

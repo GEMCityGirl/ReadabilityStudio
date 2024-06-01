@@ -2254,6 +2254,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_BOX_PLOT_PANEL);
     wxRibbonPanel* editHistogramButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_HISTOGRAM_PANEL);
+    wxRibbonPanel* editSyllableHistogramButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_SYLLABLE_HISTOGRAM_PANEL);
     wxRibbonPanel* editPieChartButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_PIE_CHART_PANEL);
     wxRibbonPanel* editWordCloudButtonBarWindow =
@@ -2265,6 +2267,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_RAYGOR_PANEL);
     wxRibbonPanel* editFrySchwartzButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_FRY_PANEL);
+    // hide batch panels that we don't use here
     hideEditPanel(MainFrame::ID_EDIT_RIBBON_FLESCH_PANEL);
     hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_CSVSS_PANEL);
     hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_TEST_SCORES_PANEL);
@@ -2474,8 +2477,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
                                 ->GetFixedObject(0, 0)) == typeid(Wisteria::Graphs::Histogram))
                     {
-                    editHistogramButtonBarWindow->Show();
-                    getEditButtonBar(editHistogramButtonBarWindow)
+                    editSyllableHistogramButtonBarWindow->Show();
+                    getEditButtonBar(editSyllableHistogramButtonBarWindow)
                         ->ToggleButton(
                             XRCID("ID_DROP_SHADOW"),
                             dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
