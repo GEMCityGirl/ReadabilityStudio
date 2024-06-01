@@ -4341,7 +4341,7 @@ void MainFrame::AddExamplesToMenu(wxMenu* exampleMenu)
         {
         wxDir dir;
         wxArrayString files;
-        const wxString exampleFolder = wxGetApp().FindResourceDirectory(_DT(L"Examples"));
+        const wxString exampleFolder = wxGetApp().FindResourceDirectory(_DT(L"examples"));
         if (!wxFileName::DirExists(exampleFolder) ||
             dir.GetAllFiles(exampleFolder, &files, wxString{}, wxDIR_FILES) == 0)
             {

@@ -34,7 +34,7 @@ Source: ..\..\docs\ShortcutsCheatsheet\docs\ShortcutsCheatsheet.pdf; DestDir: {a
 ;FUTURE-RELEASE Source: ..\..\docs\ReadabilityStudioAPI\ReadabilityStudioAPI\*; DestDir: {app}\ReadabilityStudioAPI; Components: HelpFiles; Excludes: "thumbs.db,*.tex,*.log,README.md,\.git"; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\..\docs\lua-5.4\doc\*; DestDir: {app}\ReadabilityStudioDocs\lua-5.4\doc; Components: HelpFiles; Excludes: "thumbs.db"; Flags: replacesameversion restartreplace recursesubdirs
 ; examples
-Source: ..\..\Examples\*; DestDir: {app}\examples; Components: Examples; Excludes: "thumbs.db,README.md,\.git"; Flags: replacesameversion restartreplace recursesubdirs
+Source: ..\..\examples\*; DestDir: {app}\examples; Components: Examples; Excludes: "thumbs.db,README.md,\.git"; Flags: replacesameversion restartreplace recursesubdirs
 
 [Languages]
 #include "lang.isl"

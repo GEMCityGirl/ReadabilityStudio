@@ -1188,11 +1188,11 @@ bool ProjectDoc::OnCreate(const wxString& path, long flags)
         }
     if (flags & wxDOC_NEW)
         {
-        const wxString exampleFolder = wxGetApp().FindResourceDirectory(_DT(L"Examples"));
+        const wxString exampleFolder = wxGetApp().FindResourceDirectory(_DT(L"examples"));
         if (exampleFolder.empty() || !wxFileName::DirExists(exampleFolder))
             { wxLogWarning(L"Unable to find examples folder:\n%s", exampleFolder); }
         FilePathResolver resolvePath(path, false);
-        // If a file path to a document (e.g., an RTF file) that is NOT from the Examples folder,
+        // If a file path to a document (e.g., an RTF file) that is NOT from the examples folder,
         // then bypass the wizard and just use the system defaults.
         // This is useful for scripting, where you need to create a new project from a filepath
         // and add tests and whatnot afterwards. In this case, you don't want an interactive

@@ -338,7 +338,7 @@ add_custom_command(TARGET ${PROJECT_NAME}
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
-                   ${CMAKE_CURRENT_SOURCE_DIR}/Examples $<TARGET_FILE_DIR:${PROJECT_NAME}>/Examples)
+                   ${CMAKE_CURRENT_SOURCE_DIR}/examples $<TARGET_FILE_DIR:${PROJECT_NAME}>/examples)
 # license file
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD

@@ -6127,7 +6127,7 @@ wxString ToolsOptionsDlg::ExpandPath(wxString path) const
     {
     if (path.starts_with(_DT(L"@[EXAMPLESDIR]")))
         {
-        path.Replace(_DT(L"@[EXAMPLESDIR]"), wxGetApp().FindResourceDirectory(_DT(L"Examples")));
+        path.Replace(_DT(L"@[EXAMPLESDIR]"), wxGetApp().FindResourceDirectory(_DT(L"examples")));
         }
     return path;
     }
