@@ -1049,7 +1049,7 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     {
     // load the Word & phrase files--note that these should be pre-sorted
     wxFile theFile;
-    if (!theFile.Open(FindResourceFile(L"Words.wad"), wxFile::read))
+    if (!theFile.Open(FindResourceFile(L"words.wad"), wxFile::read))
         {
         wxMessageBox(_(L"Word & phrase file missing or corrupt. Please reinstall."), _(L"Error"),
                      wxOK | wxICON_EXCLAMATION);
