@@ -620,7 +620,6 @@ class ReadabilityAppOptions
         return m_logAppendDailyLog;
         }
 
-    [[nodiscard]]
     void AppendDailyLog(const bool append) noexcept
         {
         m_logAppendDailyLog = append;
