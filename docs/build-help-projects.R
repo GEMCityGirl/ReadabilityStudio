@@ -21,7 +21,7 @@ source(glue("{docFolder}/ReadabilityStudioDocs/R/appdown.r"))
 
 # delete previous builds
 unlink(glue("{docFolder}/Coding-Bible/docs"), recursive=T)
-unlink(glue("{docFolder}/ShortcutsCheatsheet/docs"), recursive=T)
+unlink(glue("{docFolder}/shortcuts-cheatsheet/docs"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioDocs/docs"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityTestsReference/docs"), recursive=T)
 unlink(glue("{docFolder}/ReadabilityStudioAPI/docs"), recursive=T)
@@ -81,14 +81,14 @@ bookdown::render_book(input="index.Rmd",
 
 # Note that this book has its own LaTeX files (i.e., does not copy them from ReadabilityStudioDocs).
 # This "book" doesn't have any front or back matter, so its preamble TeX file doesn't include that.
-setwd(glue("{docFolder}/ShortcutsCheatsheet/"))
+setwd(glue("{docFolder}/shortcuts-cheatsheet/"))
 file_copy(glue("{docFolder}/ReadabilityStudioDocs/glossary/02-shortcuts.rmd"),
-          glue("{docFolder}/ShortcutsCheatsheet/02-shortcuts.rmd"),
+          glue("{docFolder}/shortcuts-cheatsheet/02-shortcuts.rmd"),
           TRUE)
 bookdown::render_book(input="index.Rmd",
                       output_format="bookdown::pdf_book",
                       output_dir="docs")
-unlink(glue("{docFolder}/ShortcutsCheatsheet/02-shortcuts.rmd"))
+unlink(glue("{docFolder}/shortcuts-cheatsheet/02-shortcuts.rmd"))
 
 # User Manual
 #############
