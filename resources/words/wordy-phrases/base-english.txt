@@ -778,6 +778,7 @@ all most	almost	3
 all of	all (unless proceeding a pronoun), (consider removing this)	0		them
 all of a sudden	suddenly	0		
 all of the sudden	all of a sudden	3		
+all other	all others	3		
 all over the map	not focused	2		
 all over the word	all over the world	3		
 all over with	done, complete, finished, over	0		
@@ -3195,6 +3196,7 @@ close proximity	near	0
 close scrutiny	scrutiny	1		
 close shave	narrow escape	2		
 close shaves	narrow escapes	2		
+closig	closing	3		
 cloud nine	exhilarated	2		
 cloure	closure	3		
 club manger	club manager	3		

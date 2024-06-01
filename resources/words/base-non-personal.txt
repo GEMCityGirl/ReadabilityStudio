@@ -2831,6 +2831,7 @@ Hausa
 Hauts
 Havana
 Havant
+Havasu
 Havok
 Havre
 Havre-de-Grace
@@ -4106,6 +4107,7 @@ Michelob
 Michigan
 Michigander
 Michiganite
+Michoacan
 Michoacán
 Micmac
 MicroChannel
@@ -4623,6 +4625,7 @@ Nubatone
 Nubia
 Nubian
 Nudestix
+Nuevo
 Nuface
 Nuku'alofa
 Nullarbor
@@ -5248,6 +5251,7 @@ Queensborough
 Queensbury
 Queensland
 Queenstown
+Queretaro
 Querétaro
 QuestBridge
 Quetzalcoatl
