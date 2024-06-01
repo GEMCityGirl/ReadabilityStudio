@@ -575,12 +575,7 @@ bool WebHarvester::CrawlLinks(wxString& url,
         if (currentLink != nullptr)
             {
             CrawlLink(wxString(currentLink, getHyperLinks.get_current_hyperlink_length()),
-                      formatUrl, url,
-                      // if an image (can only determine this if using the HTML parser)
-                      (getHyperLinks.get_parse_method() ==
-                       html_utilities::hyperlink_parse::hyperlink_parse_method::html) ?
-                          getHyperLinks.get_html_parser().is_current_link_an_image() :
-                          false);
+                      formatUrl, url, getHyperLinks);
             }
         else
             {
@@ -601,12 +596,18 @@ bool WebHarvester::CrawlLinks(wxString& url,
 void WebHarvester::CrawlLink(const wxString& currentLink,
                              // cppcheck-suppress constParameter
                              html_utilities::html_url_format& formatUrl, const wxString& mainUrl,
-                             const bool isImage)
+                             const html_utilities::hyperlink_parse& linkParser)
     {
     if (m_isCancelled)
         {
         return;
         }
+
+    // if an image (can only determine this if using the HTML parser)
+    const bool isImage = (linkParser.get_parse_method() ==
+                          html_utilities::hyperlink_parse::hyperlink_parse_method::html) ?
+                             linkParser.get_html_parser().is_current_link_an_image() :
+                             false;
 
     const wxString urlLabel = currentLink;
     if (!m_progressDlg->Pulse(m_hideFileNamesWhileDownloading ?
@@ -666,11 +667,20 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
         }
 
     wxString fileExt = GetExtensionOrDomain(fullUrl);
-    // If no extension, fall back to it being a regular webpage.
+    // If no extension, fall back to it being a regular webpage (or JS file)
     // Modern webpages generally don't have HTM extensions (or any extension) like in the past.
     if (fileExt.empty())
         {
-        fileExt = L"htm";
+        if ((linkParser.get_parse_method() ==
+             html_utilities::hyperlink_parse::hyperlink_parse_method::html) &&
+            linkParser.get_html_parser().is_current_link_a_javascript())
+            {
+            fileExt = L"js";
+            }
+        else
+            {
+            fileExt = L"htm";
+            }
         }
 
     /* See if the page is HTML so that we know whether to crawl it or not. Sometimes

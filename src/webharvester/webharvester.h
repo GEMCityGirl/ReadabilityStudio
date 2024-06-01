@@ -626,7 +626,7 @@ class WebHarvester
                     const html_utilities::hyperlink_parse::hyperlink_parse_method method);
     // cppcheck-suppress constParameter
     void CrawlLink(const wxString& currentLink, html_utilities::html_url_format& formatUrl,
-                   const wxString& mainUrl, const bool isImage);
+                   const wxString& mainUrl, const html_utilities::hyperlink_parse& linkParser);
 
     [[nodiscard]]
     bool HasUrlAlreadyBeenHarvested(const wxString& url) const
