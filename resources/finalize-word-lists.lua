@@ -143,7 +143,7 @@ Application.MergeWordLists(
 -- Programming dictionaries (this is separate and optionally included)
 Application.MergeWordLists(
     Debug.GetScriptFolderPath().."words/programming/assembly.txt",
-    debug.getscriptfolderpath().."words/programming/assembly.txt")
+    Debug.GetScriptFolderPath().."words/programming/assembly.txt")
 Application.MergeWordLists(
     Debug.GetScriptFolderPath().."words/programming/cpp.txt",
     Debug.GetScriptFolderPath().."words/programming/cpp.txt")
