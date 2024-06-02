@@ -1,0 +1,22 @@
+project:
+  type: default
+  output-dir: "docs"
+toc: false
+number-sections: false
+execute:
+  eval: true
+default:
+  subtitle: Shortcuts Cheatsheet
+  description: Shortcuts Cheatsheet
+  article: index.qmd
+  engine: knitr
+format:
+  pdf:
+    documentclass: scrartcl
+    template: latex/default.tex
+    include-in-header: latex/preamble.tex
+    latex-engine: xelatex
+    keep-tex: true
+    lot: false
+    code-block-bg: false
+    output-file: "shortcuts-cheatsheet"
