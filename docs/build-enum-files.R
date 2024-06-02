@@ -1,5 +1,6 @@
 library(tidyverse)
 library(stringi)
+library(magrittr)
 
 # Loads a Lua file with enumeration definitions and generates the intellisense file (for the editor)
 # and builds help topics for each enumeration.
@@ -100,10 +101,16 @@ enumToTopic <- function(enum)
 # Files will have the same name as the enumeration.
 writeEnumTopics <- function(enums, folderPath)
   {
+  overviewTopic <- tibble(VAL = "")
   for (i in 1 : length(enums))
     {
     enum <- loadEnum(enums[i])
+    overviewTopic %<>% add_row(VAL=str_glue("{{< include !enum$name!.qmd >}}",
+                              .open = "!",
+                              .close = "!",))
     topicContent <- enumToTopic(enum)
-    readr::write_file(topicContent, str_glue("{folderPath}/{enum$name}.md"))
+    readr::write_file(topicContent, str_glue("{folderPath}/{enum$name}.qmd"))
     }
+
+  readr::write_csv(overviewTopic %>% arrange(VAL), str_glue("{folderPath}/overview.qmd"), col_names=F)
   }

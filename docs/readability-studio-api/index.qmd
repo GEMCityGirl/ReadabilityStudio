@@ -1,0 +1,35 @@
+```{r, include=FALSE}
+source('../readability-studio-manual/R/appdown.r')
+knitr::opts_chunk$set(message=F, warning=F, dev='svg', eval=F, echo=T)
+```
+
+```{asis, echo=knitr::is_html_output()}
+# Preface {#cover .unnumbered}
+
+<!-- Just want this preface in the gitbook.
+     PDF output will have its own copyright page after the title.-->
+
+:::{.wrapfigure data-latex="{r}{0.5\\textwidth}" style="width: 48%;"}
+![](images/cover.png){width=48%}
+:::
+
+This is the programming manual for the software program *Readability Studio*.
+
+![](images/CC_BY-NC-ND.png)
+
+This book is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivs 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/).
+```
+
+# Overview {-}
+
+Readability Studio provides access to its functionality through a Lua API (Application Programmer Interface).
+By using this API, Lua scripts can be written and executed from within *Readability Studio* to automate various tasks.
+
+The primary interfaces to this API are:
+
+- **[Application](#application)**
+  Provides access to the current application, its full set of features, and its active projects
+- **[StandardProject](#standardproject)**
+  Standard project objects, which can analyze a document and export its results
+- **[BatchProject](#batchproject)**
+  Batch project objects, which can analyze multiple documents and export their results

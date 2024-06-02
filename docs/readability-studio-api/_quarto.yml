@@ -1,0 +1,50 @@
+project:
+  type: book
+  output-dir: "docs"
+toc: true
+toc-depth: 2
+biblio-title: References
+bibliography: cites.bib
+biblio-style: mla
+link-citations: true
+nocite: '@*'
+csl: modern-language-association.csl
+pdf-cover: "images/cover.pdf"
+number-sections: true
+crossref:
+  chapters: true
+book:
+  title: "`r PROGRAM_NAME` `r PROGRAM_VERSION`"
+  subtitle: Programming Manual
+  description: "`r PROGRAM_NAME` `r PROGRAM_VERSION` Programming Manual"
+  author: "`r PROGRAM_AUTHOR`"
+  date: today
+  date-format: long
+  output-file: "readability-studio-api"
+  language: en
+  search: false
+  cover-image: "images/cover.png"
+  image: "images/cover.png"
+  chapters:
+    - index.qmd
+    - part: "Libraries"
+      chapters:
+        - libraries/Debug/overview.qmd
+    - part: "Enumerations"
+      chapters:
+        - enums/overview.qmd
+format:
+  pdf:
+    documentclass: book
+    template: latex/default.tex
+    include-in-header: latex/preamble.tex
+    latex-engine: xelatex
+    keep-tex: true
+    citation-package: biblatex
+    lot: false
+    code-block-bg: false
+  html:
+    theme: cosmo
+    html-math-method: katex
+    css: style.css
+    smooth-scroll: true
