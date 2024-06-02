@@ -1,7 +1,7 @@
 if (!require("pacman")) install.packages("pacman")
 library(pacman)
 pacman::p_load(bookdown, glue, readr, stringr, fs, lubridate, tidyverse, kableExtra,
-               Hmisc, cowplot, beeswarm, tinytex, stringi, this.path, janitor)
+               Hmisc, cowplot, beeswarm, tinytex, stringi, this.path, janitor, quarto)
 
 # If called from RScript, pass in the path to pandoc
 if (nchar(Sys.getenv("RSTUDIO_PANDOC")) == 0)
@@ -86,14 +86,23 @@ bookdown::render_book(input="index.Rmd",
 
 # Note that this book has its own LaTeX files (i.e., does not copy them from readability-studio-manual).
 # This "book" doesn't have any front or back matter, so its preamble TeX file doesn't include that.
+knitrQuartoSingleDocHeader <- "
+```{r}
+#| eval: true
+#| include: false
+
+library(glue)
+source(glue('{getwd()}/../readability-studio-manual/R/appdown.r'))
+```\n\n"
 setwd(glue("{docFolder}/shortcuts-cheatsheet/"))
 file_copy(glue("{docFolder}/readability-studio-manual/glossary/02-shortcuts.rmd"),
-          glue("{docFolder}/shortcuts-cheatsheet/02-shortcuts.rmd"),
+          glue("{docFolder}/shortcuts-cheatsheet/index.qmd"),
           TRUE)
-bookdown::render_book(input="index.Rmd",
-                      output_format="bookdown::pdf_book",
-                      output_dir="docs")
-unlink(glue("{docFolder}/shortcuts-cheatsheet/02-shortcuts.rmd"))
+fileContents <- read_lines(glue("{docFolder}/shortcuts-cheatsheet/index.qmd"))
+cat(knitrQuartoSingleDocHeader, file = glue("{docFolder}/shortcuts-cheatsheet/index.qmd"))
+write_lines(fileContents, file = glue("{docFolder}/shortcuts-cheatsheet/index.qmd"), append = TRUE)
+quarto::quarto_render(output_format="pdf", as_job=F)
+unlink(glue("{docFolder}/shortcuts-cheatsheet/index.qmd"))
 
 # User Manual
 #############
@@ -152,6 +161,9 @@ file_copy(glue("{docFolder}/readability-studio-manual/images/non-generated/cover
 file_copy(glue("{docFolder}/readability-studio-manual/modern-language-association.csl"),
           glue("{docFolder}/readability-studio-api/modern-language-association.csl"),
           TRUE)
+file_copy(glue("{docFolder}/_variables.yml"),
+          glue("{docFolder}/readability-studio-api/_variables.yml"),
+          TRUE)
 dir_copy(glue("{docFolder}/readability-studio-manual/latex"),
          glue("{docFolder}/readability-studio-api/latex"),
          TRUE)
@@ -162,18 +174,11 @@ dir_copy(glue("{docFolder}/readability-studio-manual/R"),
          glue("{docFolder}/readability-studio-api/R"),
          TRUE)
 
-combine_files("10-Classes.Rmd", "classes")
-combine_files("20-Libraries.Rmd", "libraries")
-combine_files("30-Enums.Rmd", "enums")
-bookdown::render_book(input="index.Rmd",
-                      output_format="bookdown::pdf_book",
-                      output_dir="docs")
-unlink(glue("{docFolder}/readability-studio-api/10-Classes.Rmd"))
-unlink(glue("{docFolder}/readability-studio-api/20-Libraries.Rmd"))
-unlink(glue("{docFolder}/readability-studio-api/30-Enums.Rmd"))
+quarto::quarto_render(output_format="pdf", as_job=F)
+unlink(glue("{docFolder}/readability-studio-api/_variables.yml"))
 
 # Tests Reference Manual
-####################
+########################
 
 UserManualMode = F
 setwd(glue("{docFolder}/readability-test-reference/"))
