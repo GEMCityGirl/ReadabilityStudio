@@ -1,6 +1,7 @@
-```{r, include=FALSE}
-source('../readability-studio-manual/R/appdown.r')
-knitr::opts_chunk$set(message=F, warning=F, dev='svg', eval=F, echo=T)
+```{r}
+#| include: false
+#| eval: true
+source('R/appdown.r')
 ```
 
 ```{asis, echo=knitr::is_html_output()}

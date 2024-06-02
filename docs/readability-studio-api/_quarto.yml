@@ -14,10 +14,10 @@ number-sections: true
 crossref:
   chapters: true
 book:
-  title: "`r PROGRAM_NAME` `r PROGRAM_VERSION`"
+  title: "{{< var PROGRAM_NAME >}} {{< var VERSION >}}"
   subtitle: Programming Manual
-  description: "`r PROGRAM_NAME` `r PROGRAM_VERSION` Programming Manual"
-  author: "`r PROGRAM_AUTHOR`"
+  description: "{{< var PROGRAM_NAME >}} {{< var VERSION >}} Programming Manual"
+  author: '{{< var PROGRAM_AUTHOR >}}'
   date: today
   date-format: long
   output-file: "readability-studio-api"
