@@ -50,6 +50,8 @@
 /docs/readability-studio-api/modern-language-association.csl
 /docs/readability-studio-api/.quarto
 /docs/readability-studio-api/readability-studio-api.tex
+/docs/readability-studio-api/enums
+/docs/readability-studio-api/libraries
 /docs/readability-test-reference/latex/
 /docs/readability-test-reference/css/
 /docs/readability-test-reference/images/
@@ -79,5 +81,3 @@
 .Rhistory
 *.db
 /cpp.hint
-/docs/readability-studio-api/enums
-/docs/readability-studio-api/libraries
