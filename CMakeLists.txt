@@ -60,6 +60,8 @@ configure_file("${CMAKE_CURRENT_SOURCE_DIR}/resource.h.in"
                "${CMAKE_CURRENT_SOURCE_DIR}/resource.h")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/docs/version_info.txt.in"
                "${CMAKE_CURRENT_SOURCE_DIR}/docs/version_info.txt")
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/docs/_variables.yml.in"
+               "${CMAKE_CURRENT_SOURCE_DIR}/docs/_variables.yml")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/installers/Windows/setup.isl.in"
                "${CMAKE_CURRENT_SOURCE_DIR}/installers/Windows/setup.isl")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/installers/Windows/icons.isl.in"

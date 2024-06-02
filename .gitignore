@@ -81,3 +81,4 @@
 .Rhistory
 *.db
 /cpp.hint
+/docs/_variables.yml
