@@ -79,3 +79,5 @@
 .Rhistory
 *.db
 /cpp.hint
+/docs/readability-studio-api/enums
+/docs/readability-studio-api/libraries
