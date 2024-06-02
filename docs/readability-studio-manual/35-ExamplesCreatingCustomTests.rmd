@@ -127,7 +127,7 @@ The next step is to create a custom test and connect our word list to it. For a 
 Click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add...** from the menu. This will present the [**Add Custom Test**](#custom-test-general-settings) dialog, as shown below:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/AddCustomTest.png")
+knitr::include_graphics("images/add-custom-test.png")
 ```
 
 Because this will be a New Dale-Chall test meant for baking, we will enter the name "New Dale-Chall (Baking)":
@@ -229,7 +229,7 @@ The first step is to create a list of "buzzwords." This can be any text file whe
 The next step is to create a custom test and connect our word list to it. Click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add...** from the menu. This will present the [**Add Custom Test**](#custom-test-general-settings) dialog, as shown below:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/AddCustomTest.png")
+knitr::include_graphics("images/add-custom-test.png")
 ```
 
 Enter "Buzz Index" as the test name:

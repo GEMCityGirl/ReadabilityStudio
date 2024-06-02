@@ -6,7 +6,7 @@ Along with offering standard tests, such as [New Dale-Chall](#dale-chall-test)\i
 
 To create a custom test, go to the **Readability** tab, click the arrow beneath the `r keys("Custom Tests")` button and select **Add Test...** from the menu. At this point, the **Add Custom Test** dialog will be displayed:
 
-![](images/AddCustomTest.png)
+![](images/add-custom-test.png)
 
 In the **General Settings** section, enter a name for this test (e.g., “NDC Computer”) in the **Test name** field. This will be the name of the test as it appears in your results and on the menu.
 

@@ -288,7 +288,7 @@ Most tests use the total word count variable, although there are some that use u
 Additionally, an outer ring categorizes these subgroups into simple and complex words. (One- and two-syllable words are considered simple, while three [and higher] syllable words are complex.)
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/SyllablesPieChart.png")
+knitr::include_graphics("images/syllables-pie-chart.png")
 ```
 
 The above donut chart shows similar results to the previous histogram. With this visualization, however, it is easier to compare the overall complex- and simple-word groups.
