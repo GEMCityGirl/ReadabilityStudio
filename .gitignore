@@ -73,6 +73,10 @@
 /docs/readability-studio-manual/readability-studio-manual_files/figure-latex
 /docs/shortcuts-cheatsheet/.quarto
 /docs/shortcuts-cheatsheet/index.tex
+/docs/shortcuts-cheatsheet/docs
+/docs/release-notes/.quarto
+/docs/release-notes/index.tex
+/docs/release-notes/docs
 
 # Configuration files
 /docs/coding-bible/.Rproj.user

@@ -74,18 +74,8 @@ PROGRAM_VERSION <- dplyr::filter(version_info, TAG == 'VERSION')$VALUE
 PROGRAM_AUTHOR <- dplyr::filter(version_info, TAG == 'PROGRAM_AUTHOR')$VALUE
 PROGRAM_NAME <- dplyr::filter(version_info, TAG == 'PROGRAM_NAME')$VALUE
 
-# Coding Bible
-##############
-
-setwd(glue("{docFolder}/coding-bible/"))
-bookdown::render_book(input="index.Rmd",
-                      output_dir="docs")
-
-# Shortcuts Cheatsheet
-######################
-
-# Note that this book has its own LaTeX files (i.e., does not copy them from readability-studio-manual).
-# This "book" doesn't have any front or back matter, so its preamble TeX file doesn't include that.
+# When building a single *.qmd file as a PDF, embed this to the top of it
+# so that inline R code will evaluate.
 knitrQuartoSingleDocHeader <- "
 ```{r}
 #| eval: true
@@ -94,6 +84,32 @@ knitrQuartoSingleDocHeader <- "
 library(glue)
 source(glue('{getwd()}/../readability-studio-manual/R/appdown.r'))
 ```\n\n"
+
+# Coding Bible
+##############
+
+setwd(glue("{docFolder}/coding-bible/"))
+bookdown::render_book(input="index.Rmd",
+                      output_dir="docs")
+
+# Release Notes
+###############
+
+# Note that this book has its own LaTeX files (i.e., does not copy them from readability-studio-manual).
+# This "book" doesn't have any front or back matter, so its preamble TeX file doesn't include that.
+setwd(glue("{docFolder}/release-notes/"))
+file_copy(glue("{docFolder}/readability-studio-manual/overviews/03-new-features.rmd"),
+          glue("{docFolder}/release-notes/index.qmd"),
+          TRUE)
+fileContents <- read_lines(glue("{docFolder}/release-notes/index.qmd"))
+cat(knitrQuartoSingleDocHeader, file = glue("{docFolder}/release-notes/index.qmd"))
+write_lines(fileContents, file = glue("{docFolder}/release-notes/index.qmd"), append = TRUE)
+quarto::quarto_render(output_format="pdf", as_job=F)
+unlink(glue("{docFolder}/release-notes/index.qmd"))
+
+# Shortcuts Cheatsheet
+######################
+
 setwd(glue("{docFolder}/shortcuts-cheatsheet/"))
 file_copy(glue("{docFolder}/readability-studio-manual/glossary/02-shortcuts.rmd"),
           glue("{docFolder}/shortcuts-cheatsheet/index.qmd"),

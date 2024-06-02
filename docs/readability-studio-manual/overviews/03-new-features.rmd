@@ -1,9 +1,9 @@
-## New Features and Enhancements {#new-features}
+# New Features and Enhancements {#new-features}
 
-### Readability Studio 2024 {-}
+## Readability Studio 2024 {-}
 ***
 
-#### General Enhancements {-}
+### General Enhancements {-}
 
 - Added real-time updating to standard projects. This enables the project to update itself while you edit the original document in another program. (Refer to \@ref(external-editing) for an example.)
 - Greatly enhanced editing documents that are embedded within standard projects. (Refer to \@ref(rs-as-an-editor) for an example.)
@@ -46,7 +46,7 @@
 - Added margins to all text windows.
 - Added keyboard shortcuts for editing word and file lists.
 
-#### Graph Enhancements {-}
+### Graph Enhancements {-}
 
 - Added **Display grouped documents on syllable ruler** option to the Flesch chart.
 - Added a syllable count donut chart to standard projects, which includes a parent group showing the simple and complex words.
@@ -77,7 +77,7 @@
 - Added numerous color schemes to choose from for grouped histograms (in batch projects).
 - Sorting horizontal bars now works more intuitively.
 
-#### Analysis/Test Enhancements {-}
+### Analysis/Test Enhancements {-}
 
 - Made copyright notice exclusion more aggressive.
 - Aggressive exclusion will now exclude:
@@ -99,12 +99,12 @@
 - Expanded spell checker to include terms from higher education, healthcare, and cosmetology.
 - Updated Spanish, Russian, Italian, French, Swedish, and German stemmers to the latest Snowball 2.3 standard.
 
-#### Importing/Exporting Enhancements {-}
+### Importing/Exporting Enhancements {-}
 
 - Added Markdown importer. Standard Markdown, *RMarkdown*, and *Quarto* documents are supported.
 - Lists can now be exported as `r latex_logo(TRUE)`(in `longtable{}` environments).
 
-#### Documentation Enhancements {-}
+### Documentation Enhancements {-}
 
 - In-text citations are now linked to the bibliography.
 - Keyboard shortcuts cheat sheet is now available from the **Documentation** tab of the ribbon.
@@ -116,7 +116,7 @@
   - "Selective Colorization"
   - "A Retro Appearance"
 
-#### Bug Fixes {-}
+### Bug Fixes {-}
 
 - Fixed issue preventing the conversion of an embedded-text project to a linked-document project.
 - **Dolch** statistics will now only be shown in the summary report if Dolch Sight Words analysis is included in the project.
@@ -129,10 +129,10 @@
 - Grade scale options that were changed from a batch project's ribbon are now propagated
   to subprojects.
 
-### Readability Studio 2020/2021 {-}
+## Readability Studio 2020/2021 {-}
 ***
 
-#### General Enhancements {-}
+### General Enhancements {-}
 
 - Added **Line ends mark the start of a new paragraph** layout option to the [project wizard](#creating-standard-project).
 - Added test bundles option to the project wizard.
@@ -167,7 +167,7 @@
 - Most-recently-used file list can now be cleared on the start page.
 - Start page now shows files' paths and last access times.
 
-#### Analysis/Test Enhancements {-}
+### Analysis/Test Enhancements {-}
 
 - Added [goals](#reviewing-goals) feature to warn if a document's scores or statistics do not fall within a certain range.
 - Words can now be added to excluded word list directly from list windows.
@@ -218,7 +218,7 @@
   - Added new logical functions `NOT`, `AND`, and `OR`.
   - Added new function `CLAMP`. This is useful for constraining grade-level scores within a range.
 
-#### Importing/Exporting Enhancements {-}
+### Importing/Exporting Enhancements {-}
 
 - Loading a spreadsheet into a batch project can now import each cell as either a document or a filepath.
 - Added an option to the batch project wizard for entering individual web pages.
@@ -242,7 +242,7 @@
 - Added **Narrow full-width characters** option to [document filtering](#additional-filtering-options).
 - When exporting filtered documents from a batch project, the folder structure of the original documents will be recreated in the output folder. This will prevent files with the same name overwriting each other.
 
-#### Graph Enhancements {-}
+### Graph Enhancements {-}
 
 - Added beeswarm jittering to Danielson-Bryan 2, Flesch Reading Ease, Lix, German Lix, and box plots (in batch projects).
 - Sentence heatmap now groups sentences by paragraph.
@@ -253,7 +253,7 @@
 - Graph [watermarks](#watermark-and-logo) now support the tags `&[DATETIME]`, `&[DATE]`, and `&[TIME]`. These are expanded to their literal values at the time of rendering the graph.
 - Color fades are now included when exporting as SVG.
 
-#### Documentation Enhancements {-}
+### Documentation Enhancements {-}
 
 - Upgraded the documentation to [bookdown](https://www.bookdown.org/) format.
 - Documentation now also available as a printable PDF.
@@ -276,7 +276,7 @@
 - Expanded the glossary.
 - Updated citations to MLA 8^th^ edition format.
 
-#### Bug Fixes {-}
+### Bug Fixes {-}
 
 - If an appended document is not found when loading a project, the program will now search for it in the subfolders around the project file.
 - Labels on histogram (when bars are selected) now combine and are sorted case insensitively.
@@ -289,10 +289,10 @@
 - Fixed crash in Word 97-2003 (\*.doc) importer.
 - Fixed custom-test word lists appearing twice when reloading project.
 
-### Readability Studio 2019 {-}
+## Readability Studio 2019 {-}
 ***
 
-#### General Enhancements {-}
+### General Enhancements {-}
 
 - Added option to append an [additional document](#additional-document) to any document that you analyze.
 - Rearranged grammar results in order of importance.
@@ -319,7 +319,7 @@
 - Added `-bg` (graph background) [command line](#command-line-options) option.
 - Simplified **About** dialog.
 
-#### Analysis/Test Enhancements {-}
+### Analysis/Test Enhancements {-}
 
 - Improved article-mismatch detection when the following word is a year or time.
 - Improved article-mismatch detection for acronyms.
@@ -333,7 +333,7 @@
 - Two single quotes after a word are now seen as a double quote.
 - Expanded spell-checker to include medical terminology.
 
-#### Importing/Exporting Enhancements {-}
+### Importing/Exporting Enhancements {-}
 
 - Added support for OpenDocument Presentation files.
 - Added support for HTTPS website links (password-protected pages not supported).
@@ -347,7 +347,7 @@
 - Performance improvements to archive file importer.
 - Workaround for importing DOC documents that are actually HTML files.
 
-#### Graph Enhancements {-}
+### Graph Enhancements {-}
 
 - Selecting outliers in [sentence-length box plots](#reviewing-sentences-breakdown) will now show a preview of the sentence.
 - Removed unnecessary axis information from box plots, offering a cleaner appearance.
@@ -358,7 +358,7 @@
 - Added instruction label to blank Flesch charts.
 - Added support for multiline graph watermarks.
 
-#### Bug Fixes {-}
+### Bug Fixes {-}
 
 - Fixed crash in Word 97-2003 (\*.doc) importer.
 - Fixed error messages being blocked by the splash screen when opening certain projects.
@@ -370,10 +370,10 @@
 - PowerPoint, PHP, and macro-enabled Word files are now shown in the **File Open** dialog when **All Documents** is selected.
 - Fixed an intermittent issue on macOS where entering a new serial number in the **About** dialog would freeze the program.
 
-### Readability Studio 2015 {-}
+## Readability Studio 2015 {-}
 ***
 
-#### General Enhancements {-}
+### General Enhancements {-}
 
 - Batch projects now use as much as 77% less memory than before.
 - Added **Broadcasting** as an industry to choose from on the project wizard.
@@ -399,7 +399,7 @@
 - Changed parts of the **Options** dialog to use property grids.
 - Improved font display throughout the program.
 
-#### Analysis/Test Enhancements {-}
+### Analysis/Test Enhancements {-}
 
 - Added feature to exclude text in between specified tags (e.g., '<' and '>').
 - Added new option to not exclude the first occurrence of excluded words/phrases found in a document.
@@ -409,7 +409,7 @@
 - Table of Contents lines are now seen as separate sentences and paragraphs (and are excluded by default).
 - If a sentence contains nothing but excluded words, then that sentence will not be included in the overall sentence count.
 
-#### Importing/Exporting Enhancements {-}
+### Importing/Exporting Enhancements {-}
 
 - Projects can now be exported into a single HTML report.
 - Batch projects can now analyze cells inside of Excel 2007 (\*.xlsx) files.
@@ -425,7 +425,7 @@
 - Performance improvements to the Open-Document Text importer.
 - Improvements to the Word 2007 importer.
 
-#### Graph Enhancements {-}
+### Graph Enhancements {-}
 
 - Graph logos are now scaled down to 100x100 pixels.
 - Graphs can now show a custom color and image as its background together (color will be shown underneath the image).
@@ -434,14 +434,14 @@
 - Short/long words and sentences labels added to the [Fry graph](#fry-test).
 - Grade levels are now shown in long format on batch project histograms if there is enough space for them.
 
-#### Bug Fixes {-}
+### Bug Fixes {-}
 
 - Fixed issue where some font information was not saved properly in projects.
 
-### Readability Studio 2012 {-}
+## Readability Studio 2012 {-}
 ***
 
-#### General Enhancements {-}
+### General Enhancements {-}
 
 - *Readability Studio* now available for Mac OS X^®^ (v10.5 and above).
 - New ribbon interface.
@@ -458,7 +458,7 @@
 - Shortcuts for creating custom [New Dale-Chall](#dale-chall-test), [Spache](#spache-test), and [Harris-Jacobson](#harris-jacobson) added.
 - An overview window showing all tests and their respective factors and descriptions is now available.
 
-#### Analysis/Test Enhancements {-}
+### Analysis/Test Enhancements {-}
 
 - German project support added (*Professional* or *Language Pack* edition).
 - New tests added:
@@ -484,13 +484,13 @@
     - custom words and phrases
 - [Stocker's Catholic supplement](#stocker-catholic-supplement) now available for New Dale-Chall and custom tests.
 
-#### Importing/Exporting Enhancements {-}
+### Importing/Exporting Enhancements {-}
 
 - PowerPoint^®^ 2007 importing added.
 - IDL file importing added.
 - [Filtered document](#filtering-export) exporting added (*Professional* edition).
 
-#### Graph Enhancements {-}
+### Graph Enhancements {-}
 
 - Graph zooming added.
 - Improved appearance of graphs on larger displays. Graph fonts and lines will now scale as graphs are resized.
@@ -498,17 +498,17 @@
 - The color and opacity of graph plot areas can now be customized.
 - A box plot showing the document's sentence lengths added to standard projects.
 
-### Readability Studio 3.0/3.1/3.2 (2009–2010) {-}
+## Readability Studio 3.0/3.1/3.2 (2009–2010) {-}
 ***
 
-#### General Enhancements {-}
+### General Enhancements {-}
 
 - Added blue fade to toolbar, statusbar, tabs, and menubar.
 - Shortened names on some of the tabs to make them easier to navigate.
 - Improved appearance of **Notes** and **Warnings** in the statistics and score windows.
 - Some warnings can now be suppressed.
 
-#### Analysis/Test Enhancements {-}
+### Analysis/Test Enhancements {-}
 
 - Added ability to display different grade scales. Currently, U.S., Canadian, and U.K. grade scales are available. This affects:
     - score lists (standard project)
@@ -555,7 +555,7 @@
 - \+ is now added to maximum level test scores.
 - Text exclusion can now be adjusted to include incomplete sentences containing a specified number of words.
 
-#### Importing/Exporting Enhancements {-}
+### Importing/Exporting Enhancements {-}
 
 - **All Words** list now includes syllable and character count columns.
 - Added **unique words count** to the **Statistics** window.
@@ -576,12 +576,12 @@
 - Added stand-alone **Web Harvester** feature to **Tools** menu.
 - Web harvester can now harvest more than one root website.
 
-#### Graph Enhancements {-}
+### Graph Enhancements {-}
 
 - [Raygor](#raygor-test) graph now shows *College* and *Professor* as the labels for the last two slices.
 - Added image stippling option (i.e., custom brush) for bar charts, histograms, and box plots.
 
-#### Bug Fixes {-}
+### Bug Fixes {-}
 
 - License file is now written to *users/application data* folder for Windows XP SP3 and Vista SP1 compliance.
 - Score statistics are now only included if you have more than one test score.
@@ -593,10 +593,10 @@
 - Fixed **Long sentences** text report not appearing on Japanese systems.
 - Improved handling of smart apostrophes and ellipses.
 
-### Readability Studio 2.0 (2008) {-}
+## Readability Studio 2.0 (2008) {-}
 ***
 
-#### Bug Fixes {-}
+### Bug Fixes {-}
 
 - Fixed Windows HTML clipboard option to use UTF-8 properly (copying **Statistics** window into Excel would look corrupt).
 - Norwegian aspect of custom test wasn’t working (word list would be empty).
@@ -607,15 +607,15 @@
 - Incorrect warning about document version number on non-English locales.
 - Printing large lists would truncate excess columns.
 
-### Readability Studio 1.2 (2007) {-}
+## Readability Studio 1.2 (2007) {-}
 ***
 
-#### General Enhancements {-}
+### General Enhancements {-}
 
 - Program is now fully Unicode.
 - Fixed printing issues.
 
-### Readability Studio 1.0/1.1 (2006) {-}
+## Readability Studio 1.0/1.1 (2006) {-}
 ***
 
 Initial Windows^®^ Release.
