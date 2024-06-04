@@ -92,7 +92,7 @@
   - **Possible Misspellings** behaves the same as the **Misspellings** section did before, showing words not found in the included dictionaries.
 - **All Words (Condensed)** will now exclude more variations of common words.
 - Renamed **All Words (Condensed)** to **Key Words**.
-- **Overused Words (x Sentence)&& now:
+- **Overused Words (x Sentence)** now:
   - only looks at words containing more than three characters.
   - ignores words that are part of a common phrase (e.g., "*again* and *again*").
   - counts if the word appears at least once every fifth word.
