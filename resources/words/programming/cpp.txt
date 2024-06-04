@@ -22,6 +22,7 @@ afxmsg
 alignas
 alignof
 alloc
+alloca
 allocs
 and
 and_eq
@@ -578,6 +579,7 @@ typeindex
 typeinfo
 typelib
 typename
+ubyte
 ultoa
 undecorator
 undecorator's

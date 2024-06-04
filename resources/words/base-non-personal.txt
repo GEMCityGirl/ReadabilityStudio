@@ -527,6 +527,7 @@ Austro
 Austronesian
 Authenticode
 AutoCAD
+Autochk
 Autoconf
 Autodesk
 Automake
@@ -2726,6 +2727,7 @@ Guernsey
 Guerrero
 Guiana
 Guidewell
+Guidgen
 Guilderland
 Guinea
 Guinean
@@ -5271,6 +5273,7 @@ Quirinal
 Quito
 Quixotism
 Quiznos
+Qume
 Quora
 Qur'an
 Québec
@@ -5894,6 +5897,7 @@ SoBe
 Socratic
 Sodom
 SoFi
+Softfont
 Softgrid
 Softice
 Softstrip
@@ -5949,6 +5953,7 @@ Spantran
 Spanx
 SPARC
 SPARCstation
+Sparkfun
 Sparkhead
 Sparta
 Spartan
@@ -6331,6 +6336,7 @@ Thessalonian
 Thesycon
 Thiensville
 Thimphu
+Thinfilm
 ThinkProgress
 ThinPrep
 Thlopthlocco
@@ -6447,6 +6453,7 @@ Towson
 Toyota
 Tracefmt
 Tracepdb
+Traceview
 Traduci
 Trafalgar
 Trajan
@@ -6462,6 +6469,7 @@ Trastuzumab
 Travan
 Traver
 TRAX
+Trayxx
 Treadwell
 Treblinka
 Trekkie
@@ -6685,6 +6693,7 @@ Utica
 Utopian
 Utrecht
 Uttlesford
+Uuidgen
 Uzbek
 Uzbeki
 Uzbekistan

@@ -12738,6 +12738,7 @@ bitmapping
 bitmaps
 bitmask
 bitmask's
+bitmasked
 bitmasks
 bitmasks'
 bitness
@@ -12862,6 +12863,9 @@ blackboard's
 blackboards
 blackbodies
 blackbody
+blackbox
+blackbox's
+blackboxes
 blackbread
 blackbread's
 blackbreads
@@ -13954,6 +13958,8 @@ boisterous
 boisterously
 boisterousness
 boisterousness's
+bokeh
+bokeh's
 bola
 bola's
 bolas
@@ -43477,6 +43483,7 @@ entente
 entente's
 ententes
 enter
+enterable
 enteral
 entered
 enterer
@@ -46665,6 +46672,7 @@ extrude
 extruded
 extruder
 extruder's
+extruders
 extrudes
 extruding
 extrusion
@@ -49167,6 +49175,7 @@ fishers
 fishery
 fishery's
 fishes
+fisheye
 fishguard
 fishguard's
 fishhook
@@ -70537,6 +70546,9 @@ jumpstarting
 jumpstarts
 jumpsuit
 jumpsuits
+jumptable
+jumptable's
+jumptables
 jumpy
 junco
 junco's
@@ -78733,6 +78745,9 @@ mediative
 mediator
 mediator's
 mediators
+mediatype
+mediatype's
+mediatypes
 medic
 medic's
 medica
@@ -80457,6 +80472,9 @@ microsurgery's
 microsystem
 microsystem's
 microsystems
+microtesla
+microtesla's
+microteslas
 microtia
 microtome
 microtrauma
@@ -80862,6 +80880,9 @@ milliequivalents
 millifarad
 millifarad's
 millifarads
+milligauss
+milligauss's
+milligausses
 milligram
 milligram's
 milligrams
@@ -82056,6 +82077,9 @@ misunderstanding's
 misunderstandings
 misunderstands
 misunderstood
+misusage
+misusage's
+misusages
 misuse
 misuse's
 misused
@@ -84082,6 +84106,7 @@ multicolour's
 multicoloured
 multicolours
 multicolumn
+multicommand
 multicomponent
 multicomputer
 multicomputer's
@@ -84136,6 +84161,7 @@ multifunctioned
 multigas
 multigenerational
 multigenic
+multihome
 multihomed
 multilanguage
 multilateral
@@ -84152,6 +84178,7 @@ multilingual
 multilingualism
 multilingualisms
 multilinguals
+multilink
 multimap
 multimap's
 multimaps
@@ -84170,6 +84197,7 @@ multimillionaire's
 multimillionaires
 multimodal
 multimode
+multimonitor
 multinational
 multinationally
 multinationals
@@ -84194,6 +84222,7 @@ multipathing
 multipayer
 multipayer's
 multipayers
+multipen
 multipennate
 multiphase
 multiphasic
@@ -84304,6 +84333,7 @@ multislice
 multispecialty
 multispecies
 multispectral
+multispectrum
 multisport
 multispot
 multistage
@@ -86131,6 +86161,7 @@ Nesta
 nestable
 nested
 nesting
+nestings
 nestled
 nestler
 nestler's
@@ -87285,6 +87316,7 @@ noncontinuous
 noncontractile
 noncontributing
 noncontributory
+noncontrolling
 noncontroversial
 nonconventional
 nonconvertible
@@ -90506,6 +90538,7 @@ orderliness
 orderly
 orders
 ordinal
+ordinally
 ordinals
 ordinance
 ordinance's
@@ -102364,6 +102397,7 @@ pretrain
 pretrained
 pretraining
 pretrains
+pretransformed
 pretreated
 pretreatment
 pretreatments
@@ -111813,6 +111847,10 @@ responsively
 responsiveness
 responsiveness's
 responsivenesses
+respool
+respooled
+respooling
+respools
 respray
 resprayed
 respraying
@@ -118968,6 +119006,9 @@ señorita
 señorita's
 señoritas
 sf
+sfloppies
+sfloppy
+sfloppy's
 sforzandi
 sforzando
 sforzandos
@@ -124528,6 +124569,8 @@ spheres
 spheric
 spherical
 spherically
+sphericalness
+sphericalness's
 sphericity
 spherics
 spherics's
@@ -128129,6 +128172,9 @@ sub
 sub's
 subacromial
 subacute
+subaddress
+subaddress's
+subaddresses
 subaltern
 subaltern's
 subalterns
@@ -133011,6 +133057,7 @@ teleservice
 teleservice's
 teleservices
 telesurgery
+teletex
 teletext
 teletexts
 teletherapies
@@ -139049,6 +139096,7 @@ twilling
 twills
 twin
 twin's
+twinaxial
 twine
 twine's
 twined
@@ -140838,6 +140886,7 @@ undisguisedly
 undishonored
 undismayed
 undisorganized
+undispatched
 undisplayed
 undisputed
 undisrupted
@@ -140867,6 +140916,7 @@ undoing's
 undoings
 undomesticated
 undone
+undos
 undouble
 undoubled
 undoubles
@@ -142831,6 +142881,7 @@ unstimulated
 unstinting
 unstintingly
 unstirred
+unstitched
 unstop
 unstoppable
 unstoppably
@@ -143129,6 +143180,10 @@ unwarily
 unwariness
 unwarinesses
 unwarned
+unwarp
+unwarped
+unwarping
+unwarps
 unwarrantable
 unwarrantably
 unwarranted
@@ -144914,6 +144969,9 @@ versifying
 versing
 version
 version's
+versionabilities
+versionability
+versionability's
 versionable
 versioned
 versioning
@@ -145276,6 +145334,7 @@ videotape's
 videotaped
 videotapes
 videotaping
+videotex
 vidian
 vidovic
 vids
@@ -147376,6 +147435,7 @@ weaves
 weaving
 web
 web's
+webaccess
 webanalyzer
 webanalyzer's
 webanalyzers

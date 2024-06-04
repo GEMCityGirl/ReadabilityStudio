@@ -778,7 +778,6 @@ all most	almost	3
 all of	all (unless proceeding a pronoun), (consider removing this)	0		them
 all of a sudden	suddenly	0		
 all of the sudden	all of a sudden	3		
-all other	all others	3		
 all over the map	not focused	2		
 all over the word	all over the world	3		
 all over with	done, complete, finished, over	0		
@@ -1670,6 +1669,7 @@ asks the question	asks	1
 asleep at the wheel	not paying attention to the task at hand	2		
 aslo	also	3		
 asnychronous	asynchronous	3		
+aso	also	3		
 asociated	associated	3		
 asorbed	absorbed	3		
 aspect ration	aspect ratio	3		
@@ -2776,6 +2776,11 @@ campaign mangers	campaign managers	3
 campain	campaign	3		
 campains	campaigns	3		
 camparing	comparing	3		
+campgain	campaign	3		
+campgain's	campaign's	3		
+campgained	campaigned	3		
+campgaining	campaigning	3		
+campgains	campaigns	3		
 camreas	cameras	3		
 can effect	can affect	3		
 can goods	canned goods	3		
@@ -2808,6 +2813,7 @@ canonival	canonical	3
 canot	cannot	3		
 cant't	can't	3		
 caost	coast	3		
+capabable	capable	3		
 capabile	capable	3		
 capabilies	capabilities	3		
 capabilites	capabilities	3		
@@ -4866,6 +4872,7 @@ detroy	destroy	3
 detroyed	destroyed	3		
 detroying	destroying	3		
 detroys	destroys	3		
+deubugging	debugging	3		
 devasted	devastated	3		
 develoment	development	3		
 develoments	developments	3		
@@ -5566,6 +5573,7 @@ efficent	efficient	3
 efficently	efficiently	3		
 effulence	effluence	3		
 effusive	pouring out, gushing, overflowing	0		
+efine	define	3		
 egardless	regardless	3		
 egde	edge	3		
 egdes	edges	3		
@@ -5814,6 +5822,9 @@ enervates	weakens	0
 enervating	weakening	0		
 enforceing	enforcing	3		
 enforcement personal	enforcement personnel	3		
+enfore	enforce	3		
+enfored	enforced	3		
+enfores	enforces	3		
 engagment	engagement	3		
 engender	procreate, breed	0		
 engendered	procreated, bred	0		
@@ -6117,6 +6128,7 @@ evironments	environments	3
 evnet	event	3		
 evnet's	event's	3		
 evnets	events	3		
+exaclty	exactly	3		
 exact duplicate	duplicate	1		
 exact duplicates	duplicates	1		
 exact match	match	1		
@@ -6231,6 +6243,10 @@ exending	extending	3
 exends	extends	3		
 exension	extension	3		
 exensions	extensions	3		
+exepect	expect	3		
+exepected	expected	3		
+exepecting	expecting	3		
+exepects	expects	3		
 exept	except	3		
 exeption	exception	3		
 exeptional	exceptional	3		
@@ -6321,6 +6337,7 @@ experiances	experiences	3
 experieced	experienced	3		
 experiemental	experimental	3		
 experienc	experience	3		
+experiend	experienced	3		
 expertise	ability	0		
 expesially	especially	3		
 expession	expression	3		
@@ -6484,6 +6501,7 @@ fails to comply with	disobeys, violates	0
 failue	failure	3		
 failuer	failure	3		
 failues	failures	3		
+failured	failures, failed	3		
 fair and square	honest, fair	2		
 fair poorly	fare poorly	3		
 fair shake	an equal chance	2		
@@ -6757,6 +6775,7 @@ followed along the lines of	imitated, resembled	0
 following after	following	1	a;the	
 following along the lines of	imitating, resembling	0		
 following the	after the	0		
+followng	following	3		
 follows after	follows	1		
 follows along the lines of	imitates, resembles	0		
 follwing	following	3		
@@ -7532,6 +7551,7 @@ heated up	heated	0
 heathy	healthy	3		
 heating up	heating	0		
 heats up	heats	0		
+heavywight	heavyweight	3		
 hegiht	height	3		
 hegiht's	height's	3		
 hegihts	heights	3		
@@ -7808,6 +7828,9 @@ idaes	ideas	3
 idealic	idyllic	3		
 idealogies	ideologies	3		
 idealogy	ideology	3		
+idenfication	identification	3		
+idenfication's	identification's	3		
+idenfications	identifications	3		
 idenfies	identifies	3		
 idenfitied	identified	3		
 idenfities	identifies	3		
@@ -7996,6 +8019,9 @@ impliclicly	implicitly	3
 impliment	implement	3		
 implimented	implemented	3		
 implment	implement	3		
+implmentaiton	implementation	3		
+implmentaiton's	implementation's	3		
+implmentaitons	implementations	3		
 implmentation	implementation	3		
 implmented	implemented	3		
 implmenting	implementing	3		
@@ -8277,6 +8303,10 @@ inauspiciously	unluckily	0
 inbalance	imbalance	3		
 inbalanced	imbalanced	3		
 inbetween	between	3		
+incapsulate	encapsulate	3		
+incapsulated	encapsulated	3		
+incapsulates	encapsulates	3		
+incapsulating	encapsulating	3		
 incarcirated	incarcerated	3		
 inception	start	0		
 inception's	start's	0		
@@ -8569,6 +8599,9 @@ initialise	start	0
 initialised	started	0		
 initialises	starts	0		
 initialising	starting	0		
+initializaiton	initialization	3		
+initializaiton's	initialization's	3		
+initializaitons	initializations	3		
 initialization	start	0		
 initializations	starts	0		
 initializaton	initialization	3		
@@ -10279,6 +10312,9 @@ namepaces	namespaces	3
 namepsace	namespace	3		
 namepsace's	namespace's	3		
 namepsaces	namespaces	3		
+nansecond	nanosecond	3		
+nansecond's	nanosecond's	3		
+nanseconds	nanoseconds	3		
 napshot	snapshot	3		
 napshot's	snapshot's	3		
 napshots	snapshots	3		
@@ -10385,6 +10421,11 @@ neworked	networked	3
 neworking	networking	3		
 neworks	networks	3		
 news paper	newspaper	3		
+newtork	network	3		
+newtork's	network's	3		
+newtorked	networked	3		
+newtorking	networking	3		
+newtorks	networks	3		
 nieghbor	neighbor	3		
 nieghbour	neighbour	3		
 night manger	night manager	3		
@@ -10496,6 +10537,9 @@ noticible	noticeable	3
 notifcation	notification	3		
 notifcation's	notification's	3		
 notifcations	notifications	3		
+notificaiton	notification	3		
+notificaiton's	notification's	3		
+notificaitons	notifications	3		
 notificatio	notification	3		
 notificatio's	notification's	3		
 notification	alert, notice, message, statement, warning	0		
@@ -10851,6 +10895,8 @@ operational	working	0
 operatoin	operation	3		
 operatoin's	operation's	3		
 operatoins	operations	3		
+operatos	operator	3		
+operatosr	operators	3		
 opertaion	operation	3		
 opertaions	operations	3		
 opertation	operation	3		
@@ -12269,6 +12315,9 @@ propperly	properly	3
 proprieties	decencies	0		
 proprietory	proprietary	3		
 propriety	decency, rightness, justness, aptness, fitness	0		
+prorities	priorities	3		
+prority	priority	3		
+prority's	priority's	3		
 proscribe	outlaw, banish, censure, disapprove	0		
 proscribed	outlawed, banished, censured, disapproved	0		
 proscribes	outlaws, banishes, censures, disapproves	0		
@@ -12325,6 +12374,10 @@ provisiosn	provision	3
 provisonal	provisional	3		
 proximity	nearness	0		
 proximty	proximity	3		
+prpcess process 3
+prpcessed processed 3
+prpcesses processes 3
+prpcessing processing 3
 prufe	proof	3		
 pseudoname	pseudonym	3		
 pseudoname's	pseudonym's	3		
@@ -12411,6 +12464,10 @@ puncutations	punctuations	3
 pungent	bitter, acrid, sharp, poignant	0		
 pungently	bitterly, acridly, sharply, poignantly	0		
 puplisher	publisher	3		
+purcahse	purchase	3		
+purcahsed	purchased	3		
+purcahses	purchases	3		
+purcahsing	purchasing	3		
 purchase	buy	0		
 purchased	bought	0		
 purchaser	buyer	0		
@@ -12556,6 +12613,7 @@ queing	queuing	3
 quering	querying	3		
 querulous	fretful	0		
 querulously	fretfully	0		
+querys	query's, queries	3		
 questbook	guestbook	3		
 questbook's	guestbook's	3		
 questbooks	guestbooks	3		
@@ -12933,6 +12991,7 @@ regimen	routine, rule	0
 registerd	registered	3		
 registraration	registration	3		
 registred	registered	3		
+registy	registry	3		
 regluar	regular	3		
 regress back	regress	1		
 regressed back	regressed	1		
@@ -13385,6 +13444,7 @@ retrogress	get worse, move backward	0
 retrogressed	got worse, moved backward	0		
 retrogresses	gets worse, moves backward	0		
 retrogressing	getting worse, moving backward	0		
+retrys	retries	3		
 retuned	returned (unless tuning an instrument again)	3		
 retuns	returns	3		
 retur	return	3		
@@ -14035,6 +14095,7 @@ slow as molasses in january	very slow	2
 slowy	slowly	3		
 smae	same	3		
 smaller then	smaller than, (or a comma is needed)	3		
+smard	smart	3		
 smart as a whip	very smart, clever	2		
 smart cookie	bright, wily person	2		
 smell a rat	have some suspicions	2		
@@ -14527,6 +14588,9 @@ substantiates	proves	0
 substantiating	proving	0		
 substatial	substantial	3		
 substituded	substituted	3		
+substitue	substitute	3		
+substitue's	substitute's	3		
+substitues	substitutes	3		
 substituion	substitution	3		
 substituions	substitutions	3		
 substract	subtract	3		
@@ -14555,6 +14619,7 @@ succeding	succeeding	3
 succeds	succeeds	3		
 succeedes	succeeds	3		
 succeeeded	succeeded	3		
+succeessfully	successfully	3		
 succesful	successful	3		
 succesfully	successfully	3		
 succesion	succession	3		
@@ -14918,6 +14983,9 @@ team mangers	team managers	3
 techician	technician	3		
 techicians	technicians	3		
 techiniques	techniques	3		
+techique	technique	3		
+techique's	technique's	3		
+techiques	techniques	3		
 technicalities	details	0		
 technicality	detail	0		
 technican	technician	3		
@@ -15633,6 +15701,7 @@ tyrrany	tyranny	3
 ubiquitious	ubiquitous	3		
 Ubunutu	Ubuntu	3		
 Ubunutu's	Ubuntu's	3		
+udating	updating	3		
 ued	used	3		
 uesd	used	3		
 ugly as sin	extremely ugly, repulsive	2		
@@ -15951,6 +16020,10 @@ utliized	utilized	3
 utliizes	utilizes	3		
 utliizing	utilizing	3		
 utlity	utility	3		
+utlize	utilize	3		
+utlized	utilized	3		
+utlizes	utilizes	3		
+utlizing	utilizing	3		
 utomatically	automatically	3		
 vaccum	vacuum	3		
 vaccume	vacuum	3		
@@ -16645,6 +16718,7 @@ you herd	you heard	3
 you thing	you think	3		
 you was	you were	3		
 you yourself	you	1		
+youdo	you do	3		
 young boy	boy	1		
 young boys	boys	1		
 young colt	colt	1		
