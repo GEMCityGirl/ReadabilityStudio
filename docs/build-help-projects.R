@@ -83,6 +83,7 @@ knitrQuartoSingleDocHeader <- "
 
 library(glue)
 source(glue('{getwd()}/../readability-studio-manual/R/appdown.r'))
+UserManualMode <- FALSE
 ```\n\n"
 
 # Coding Bible
