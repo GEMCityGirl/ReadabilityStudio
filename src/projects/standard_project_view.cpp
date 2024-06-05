@@ -548,7 +548,7 @@ void ProjectView::OnHyperlinkClicked(wxHtmlLinkEvent& event)
         {
         GetSideBar()->SelectSubItem(GetSideBar()->FindSubItem(LIX_GAUGE_PAGE_ID));
         }
-    else if (event.GetLinkInfo().GetHref() == L"#GermanLixGauge")
+    else if (event.GetLinkInfo().GetHref() == L"#german-lix-gauge")
         {
         GetSideBar()->SelectSubItem(GetSideBar()->FindSubItem(LIX_GAUGE_GERMAN_PAGE_ID));
         }

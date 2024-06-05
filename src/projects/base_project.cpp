@@ -1287,7 +1287,7 @@ void BaseProject::InitializeStandardReadabilityTests()
             XRCID("ID_LIX_GERMAN_CHILDRENS_LITERATURE"),
             _(L"Lix (German children's literature)"), _(L"Lix (German children's literature)"),
             _(L"This test is a variation of Lix meant for German children's literature (specifically, grades 1-8). "
-               "A <a href=\"#GermanLixGauge\">chart</a> is also available to visualize the score."),
+               "A <a href=\"#german-lix-gauge\">chart</a> is also available to visualize the score."),
             readability::readability_test_type::index_value_and_grade_level, true,
             L"");
         test.add_document_classification(readability::document_classification::childrens_literature_document, true);
@@ -1307,7 +1307,7 @@ void BaseProject::InitializeStandardReadabilityTests()
             XRCID("ID_LIX_GERMAN_TECHNICAL"),
             _(L"Lix (German technical literature)"), _(L"Lix (German technical literature)"),
             _(L"This test is a variation of Lix meant for German technical/non-fiction literature. "
-               "A <a href=\"#GermanLixGauge\">chart</a> is also available to visualize the score."),
+               "A <a href=\"#german-lix-gauge\">chart</a> is also available to visualize the score."),
             readability::readability_test_type::index_value_and_grade_level, true,
             L"");
         test.add_document_classification(readability::document_classification::technical_document, true);
