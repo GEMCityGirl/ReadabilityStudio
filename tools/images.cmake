@@ -100,6 +100,7 @@ ribbon/lua.svg
 ribbon/misspellings.svg
 ribbon/number-syllabize.svg
 ribbon/opacity.svg
+ribbon/notepad.svg
 ribbon/paper-notes.svg
 ribbon/paragraph-indent.svg
 ribbon/paragraph.svg

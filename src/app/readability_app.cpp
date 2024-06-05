@@ -49,7 +49,7 @@ RSArtProvider::RSArtProvider()
         { wxART_GO_UP, L"ribbon/up-arrow.svg" },
         { wxART_FIND, L"ribbon/find.svg" },
         { wxART_FIND_AND_REPLACE, L"ribbon/find-replace.svg" },
-        { L"ID_NOTES", L"ribbon/paper-notes.svg" },
+        { L"ID_NOTES", L"ribbon/notepad.svg" },
         { L"ID_E_HELP", L"ribbon/electronic-help.svg" },
         { L"ID_ALIGN_LEFT", L"ribbon/align-left.svg" },
         { L"ID_ALIGN_CENTER", L"ribbon/align-center.svg" },
@@ -3094,20 +3094,19 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                               wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
         wxRibbonButtonBar* helpButtonBar = new wxRibbonButtonBar(helpPanel);
         helpButtonBar->AddButton(wxID_HELP, _(L"Electronic Help"),
-            ReadRibbonSvgIcon(L"ribbon/electronic-help.svg"),
-            _(L"Read the documentation in a browser."));
-        helpButtonBar->AddButton(XRCID("ID_HELP_MANUAL"),
-            _(L"Manual"),
-            ReadRibbonSvgIcon(L"ribbon/help.svg"),
-            _(L"Read the manual."));
-        helpButtonBar->AddButton(XRCID("ID_TESTS_REFERENCE"),
-            _(L"Tests Reference"),
-            ReadRibbonSvgIcon(L"ribbon/tests-overview.svg"),
-            _(L"Read the readability tests reference."));
-        helpButtonBar->AddButton(XRCID("ID_SHORTCUTS_CHEATSHEET"),
-            _(L"Shortcuts"),
-            ReadRibbonSvgIcon(L"ribbon/keyboard-shortcuts.svg"),
-            _(L"Display the keyboard shortcuts cheatsheet."));
+                                 ReadRibbonSvgIcon(L"ribbon/electronic-help.svg"),
+                                 _(L"Read the documentation in a browser."));
+        helpButtonBar->AddButton(XRCID("ID_HELP_MANUAL"), _(L"Manual"),
+                                 ReadRibbonSvgIcon(L"ribbon/help.svg"), _(L"Read the manual."));
+        helpButtonBar->AddButton(XRCID("ID_TESTS_REFERENCE"), _(L"Tests Reference"),
+                                 ReadRibbonSvgIcon(L"ribbon/tests-overview.svg"),
+                                 _(L"Read the readability tests reference."));
+        helpButtonBar->AddButton(XRCID("ID_SHORTCUTS_CHEATSHEET"), _(L"Shortcuts"),
+                                 ReadRibbonSvgIcon(L"ribbon/keyboard-shortcuts.svg"),
+                                 _(L"Display the keyboard shortcuts cheatsheet."));
+        helpButtonBar->AddButton(XRCID("ID_RELEASE_NOTES"), _(L"Release Notes"),
+                                 ReadRibbonSvgIcon(L"ribbon/paper-notes.svg"),
+                                 _(L"Display the release notes."));
         helpButtonBar->AddDropdownButton(XRCID("ID_EXAMPLES"),
             _(L"Example Documents"),
             ReadRibbonSvgIcon(L"ribbon/examples.svg"),
@@ -3717,6 +3716,15 @@ MainFrame::MainFrame(wxDocManager* manager, wxFrame* frame,
             wxLaunchDefaultApplication(manualPath);
             },
         XRCID("ID_SHORTCUTS_CHEATSHEET"));
+    
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED,
+        [this]([[maybe_unused]] wxRibbonButtonBarEvent&)
+            {
+            const wxString manualPath = GetHelpDirectory() + wxFileName::GetPathSeparator() +
+                _DT(L"release-notes.pdf");
+            wxLaunchDefaultApplication(manualPath);
+            },
+        XRCID("ID_RELEASE_NOTES"));
 
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &MainFrame::OnAbout, this, wxID_ABOUT);
     Bind(wxEVT_MENU,
