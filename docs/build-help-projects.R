@@ -230,8 +230,8 @@ file_copy(glue("{docFolder}/readability-studio-manual/images/FraseGraph.png"),
 file_copy(glue("{docFolder}/readability-studio-manual/images/GpmFry.png"),
           glue("{docFolder}/readability-test-reference/images/GpmFry.png"),
           TRUE)
-file_copy(glue("{docFolder}/readability-studio-manual/images/GermanLixGauge.png"),
-          glue("{docFolder}/readability-test-reference/images/GermanLixGauge.png"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/german-lix-gauge.png"),
+          glue("{docFolder}/readability-test-reference/images/german-lix-gauge.png"),
           TRUE)
 file_copy(glue("{docFolder}/readability-studio-manual/images/Schwartz.png"),
           glue("{docFolder}/readability-test-reference/images/Schwartz.png"),

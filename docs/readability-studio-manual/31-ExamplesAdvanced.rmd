@@ -261,19 +261,19 @@ Next, select **Create a new project**. When the **New Project Wizard** appears, 
 
 Next, select the **Test Selection** page and select **Manually select tests**. In the grid below, check **Flesch Reading Ease**:
 
-![](images/AddendumWizardManualTests.png)
+![](images/addendum-wizard-manual-tests.png)
 
 Finally, click the `r keys('Finish')` button to create the project. When the project appears, select **Flesch Reading Ease** under the **Scores** section in the sidebar.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/AddendumFlesch1.png")
+knitr::include_graphics("images/addendum-flesch1.png")
 ```
 
 Note that this new flyer is difficult, so let’s review it. Click **Words Breakdown** on the sidebar and then select **3+ Syllables Report**. As we scroll through this window, note the highlighted difficult words:
 
 ```{r echo=F, fig.show = 'hold', out.width='50%'}
-knitr::include_graphics("images/AddendumHighlightedText1.png")
-knitr::include_graphics("images/AddendumHighlightedText2.png")
+knitr::include_graphics("images/addendum-highlighted-text1.png")
+knitr::include_graphics("images/addendum-highlighted-text2.png")
 ```
 
 As we can see, this document could use some improving. Before we can do that, though, the new owners of our software company have also requested that a disclaimer be appended to all sign-up forms such as this.
@@ -282,7 +282,7 @@ To do this, go to the **Home** tab of the ribbon and select **Properties**. On t
 Next, under the **Append Additional Document** section, click the folder button and navigate to the *examples* folder from where *Readability Studio* is installed. Select the file "Instructional Disclaimer.odt":
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/AddendumProperties.png")
+knitr::include_graphics("images/addendum-properties.png")
 ```
 
 ::: {.tipsection data-latex=""}
@@ -292,19 +292,19 @@ You can also enter *@[EXAMPLESDIR]/Instructional Disclaimer.odt* into the **Appe
 Click `r keys('OK')` to accept. When the project finishes reloading, select **Flesch Reading Ease** under the **Scores** section again.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/AddendumFlesch2.png")
+knitr::include_graphics("images/addendum-flesch2.png")
 ```
 
 Note how the document is now very difficult. Click **Words Breakdown** on the sidebar and then select **3+ Syllables Report**. As we scroll to where our disclaimer was appended, note the numerous difficult words:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/AddendumHighlightedText3.png")
+knitr::include_graphics("images/addendum-highlighted-text3.png")
 ```
 
 Next, click **Grammar** on the sidebar and then select **Highlighted Report**. Scrolling to the disclaimer portion of the document, note the numerous, meandering sentences:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/AddendumHighlightedText4.png")
+knitr::include_graphics("images/addendum-highlighted-text4.png")
 ```
 
 At this point, we will have quite of a bit of improvements to make to both the flyer and disclaimer. (And parents may want to start looking for a different summer camp.)
@@ -319,7 +319,7 @@ At this point, we will have quite of a bit of improvements to make to both the f
 
 Enter the name "4F" into the **Bundle Name** text field. Next, select the **Standard Tests** page and check the Fry, FORCAST, Fog, and Flesch-Kincaid tests, as shown below:
 
-![](images/TestBundle4F.png)
+![](images/test-bundle-4f.png)
 
 Click the `r keys("OK")` button to accept.
 

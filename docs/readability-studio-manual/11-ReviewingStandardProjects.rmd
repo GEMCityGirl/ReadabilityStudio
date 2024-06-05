@@ -111,7 +111,7 @@ In the above chart, we can see that Lix scores can range from 0 (“very easy”
 There is also a variation of the Lix gauge\index{Lix!gauge plot (German)} that is adjusted for German materials:
 
 ```{r germanLixGauge, echo=F, fig.cap='German Lix gauge', fig.align='center', out.width='75%'}
-knitr::include_graphics("images/GermanLixGauge.png")
+knitr::include_graphics("images/german-lix-gauge.png")
 ```
 
 This version adjusts the scaling of the score, assuming that German text is inherently more difficult than other languages. It also includes additional levels of difficulty (e.g., “children and young adult”).

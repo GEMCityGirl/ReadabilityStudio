@@ -35,7 +35,7 @@ ScreenshotLib.ShowTestBundleDialog("4-F")
 ScreenshotLib.SnapScreenshot(ImagePath .. "TestBundle." .. FileExtension)
 
 ScreenshotLib.ShowTestBundleDialog("4-F", 20002, "FORCAST", "flesch-kincaid", "fry", "gunning fog")
-ScreenshotLib.SnapScreenshot(ImagePath .. "TestBundle4F." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "test-bundle-4f." .. FileExtension)
 
 ScreenshotLib.CloseTestBundleDialog()
 
@@ -306,7 +306,7 @@ bp:SelectWindow(SideBarSection.ReadabilityScores, BatchScoreResultType.Aggregate
 ScreenshotLib.SnapScreenshot(ImagePath .. "BatchGradeScoresByDocument." .. FileExtension)
 
 bp:SelectWindow(SideBarSection.ReadabilityScores, BatchScoreResultType.AggregatedClozeScoresByDocument)
-ScreenshotLib.SnapScreenshot(ImagePath .. "BatchClozeScoresByDocument." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "batch-cloze-scores-by-document." .. FileExtension)
 
 bp:SelectWindow(SideBarSection.WordsBreakdown)
 ScreenshotLib.SnapScreenshot(ImagePath .. "batchdifficultwords." .. FileExtension)
@@ -581,7 +581,7 @@ a:SetProjectLanguage(Language.German)
 a:AddTest(Tests.Schwartz)
 a:AddTest(Tests.LixGermanTechnical)
 a:ExportGraph(GraphType.Schwartz, ImagePath .. "Schwartz." .. FileExtension)
-a:ExportGraph(GraphType.GermanLix, ImagePath .. "GermanLixGauge." .. FileExtension)
+a:ExportGraph(GraphType.GermanLix, ImagePath .. "german-lix-gauge." .. FileExtension)
 a:Close()
 
 a = StandardProject(ScreenshotProjectsFolder .. "BadRaygorScore.txt")
@@ -911,27 +911,27 @@ sp:Close(false)
 -- addendum example
 -------------------
 ScreenshotLib.ShowStandardProjectWizardManualTestSelectionPage("Flesch Reading Ease")
-ScreenshotLib.SnapScreenshot(ImagePath .. "AddendumWizardManualTests." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "addendum-wizard-manual-tests." .. FileExtension)
 ScreenshotLib.CloseStandardProjectWizard()
 
 sp = StandardProject(ScreenshotProjectsFolder .. "YA Enterprise Software Symposium.odt")
 sp:SetTextExclusion(TextExclusionType.ExcludeIncompleteSentences)
 sp:AddTest(Tests.Flesch)
-sp:ExportGraph(GraphType.Flesch, ImagePath .. "AddendumFlesch1." .. FileExtension)
+sp:ExportGraph(GraphType.Flesch, ImagePath .. "addendum-flesch1." .. FileExtension)
 sp:SelectWindow(SideBarSection.WordsBreakdown, HighlightedReportType.ThreePlusSyllableHighlightedWords)
-ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "AddendumHighlightedText1." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "addendum-highlighted-text1." .. FileExtension,
     HighlightedReportType.ThreePlusSyllableHighlightedWords, false, 350, 452)
-ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "AddendumHighlightedText2." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "addendum-highlighted-text2." .. FileExtension,
     HighlightedReportType.ThreePlusSyllableHighlightedWords, false, 790, 1122)
 
 sp:SetAppendedDocumentFilePath(ScreenshotProjectsFolder .. "Instructional Disclaimer.odt")
 
-sp:ExportGraph(GraphType.Flesch, ImagePath .. "AddendumFlesch2." .. FileExtension)
+sp:ExportGraph(GraphType.Flesch, ImagePath .. "addendum-flesch2." .. FileExtension)
 sp:SelectWindow(SideBarSection.WordsBreakdown, HighlightedReportType.ThreePlusSyllableHighlightedWords)
-ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "AddendumHighlightedText3." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "addendum-highlighted-text3." .. FileExtension,
     HighlightedReportType.ThreePlusSyllableHighlightedWords, true, 3401, 4359)
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
-ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "AddendumHighlightedText4." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "addendum-highlighted-text4." .. FileExtension,
     HighlightedReportType.GrammarHighlightedIssues, true, 4434, 5218)
 
 -- show a generic set of file paths in the properties dialog and get a screenshot of that
@@ -940,7 +940,7 @@ sp:SetReviewer("Daphne")
 sp:SetDocumentFilePath("/home/dmoon/YA Enterprise Software Symposium.odt")
 sp:SetAppendedDocumentFilePath("/home/dmoon/Instructional Disclaimer.odt")
 sp:OpenProperties(OptionsPageType.ProjectSettings)
-ScreenshotLib.SnapScreenshot(ImagePath .. "AddendumProperties." .. FileExtension, 1083, 1080, 1080)
+ScreenshotLib.SnapScreenshot(ImagePath .. "addendum-properties." .. FileExtension, 1083, 1080, 1080)
 sp:CloseProperties()
 sp:Close()
 
@@ -949,7 +949,7 @@ sp:Close()
 bp = BatchProject(ScreenshotProjectsFolder .. "Statistics Manual Ch. 1.rsbp")
 bp:ShowSidebar(false)
 bp:SelectWindow(SideBarSection.ReadabilityScores, ListType.BatchRawScores)
-ScreenshotLib.SnapScreenshotOfListControl(ImagePath .. "BatchDescLabelsScores." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfListControl(ImagePath .. "batch-desc-labels-scores." .. FileExtension,
     ListType.BatchRawScores, -1, 2, -1, 2)
 bp:Close()
 

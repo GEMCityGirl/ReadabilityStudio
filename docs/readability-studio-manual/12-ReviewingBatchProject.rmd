@@ -77,7 +77,7 @@ Note that this subitem will only be available if at least one grade-level test i
 
 The **Cloze Score Summary (x Document)** subitem will display aggregated statistics for all [predicted cloze](#cloze) scores, grouped by document:
 
-![](images/BatchClozeScoresByDocument.png)
+![](images/batch-cloze-scores-by-document.png)
 
 This subitem is interpreted in the same manner as the **Grade Score Summary (x Document)** page.
 

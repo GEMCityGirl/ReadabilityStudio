@@ -105,7 +105,7 @@ Because we had selected **Use documents' descriptions** for our labeling, then t
 From there, these titles will be shown as descriptive labels next to each document in the results. Click `r keys('Finish')` to begin the analysis, and once the project appears, select **Raw Scores** under **Readability Scores**:
 
 ```{r echo=F, fig.align='center', out.width='50%'}
-knitr::include_graphics("images/BatchDescLabelsScores.png")
+knitr::include_graphics("images/batch-desc-labels-scores.png")
 ```
 
 Note how there is a **Label** column next to the **Document** column. Despite the documents all having the same name, we can use this column will help us differentiate between them.

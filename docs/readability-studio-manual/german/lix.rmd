@@ -11,7 +11,7 @@ Note that this test differs from the original Lix approach of using the same sco
 Regarding the index score, the following variation of the Lix gauge is used classify the difficulty [@{renstrom}153; @{bamberger-vanecek}65; @{schulz}53]:
 
 ```{r germanLix, echo=F, fig.cap="German Lix gauge (children's literature)", fig.align='center', out.width='75%'}
-knitr::include_graphics("images/GermanLixGauge.png")
+knitr::include_graphics("images/german-lix-gauge.png")
 ```
 
 This version adjusts the scaling of the score, assuming that German text is inherently more difficult than other languages. It also includes additional levels of difficulty (e.g., "children and young adult").
@@ -39,7 +39,7 @@ Note that this test differs from the original Lix approach of using the same sco
 Regarding the index score, the following variation of the Lix gauge is used classify the difficulty [@{renstrom}153; @{bamberger-vanecek}65; @{schulz}53]:
 
 ```{r germanLix2, echo=F, fig.cap='German Lix gauge (technical literature)', fig.align='center', out.width='75%'}
-knitr::include_graphics("images/GermanLixGauge.png")
+knitr::include_graphics("images/german-lix-gauge.png")
 ```
 
 This version adjusts the scaling of the score, assuming that German text is inherently more difficult than other languages. It also includes additional levels of difficulty (e.g., “children and young adult”).
