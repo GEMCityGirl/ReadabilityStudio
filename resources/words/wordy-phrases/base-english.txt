@@ -2351,6 +2351,7 @@ biased opinion	bias, prejudice	0
 big cheese	the boss, important person	2		
 big honcho	the boss	2		
 big shot	self-important person	2		
+big-indian	big-endian	3		
 bigger then	bigger than, (or a comma is needed)	3		
 bigining	beginning	3		
 biginning	beginning	3		
@@ -9067,7 +9068,7 @@ is resentful of	resents	0
 is resistant to	resists	0		
 is respectful toward	respects	0		
 is responsible for	handles	0		
-is several	are several (please review noun/verb agreement)	3	billion;difference;hundred;million;thousand	
+is several	are several (please review noun/verb agreement)	3	which	billion;difference;hundred;million;thousand
 is should	it should	3		
 is skeptical about	doubts, questions	0		
 is supportive of	supports	0		
@@ -9531,6 +9532,7 @@ literture	literature	3
 litterally	literally	3		
 little by little	gradually	0		
 little iota	iota	0		
+little-indian	little-endian	3		
 liturature	literature	3		
 liturature's	literature's	3		
 lituratures	literatures	3		
