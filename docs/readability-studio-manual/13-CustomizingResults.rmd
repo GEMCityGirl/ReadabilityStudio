@@ -24,7 +24,7 @@ When the **Summary Statistics** report is selected:
 
 Options for customizing its display are made available on the **Edit** section of the ribbon:
 
-![](images/RibbonEditStats.png)
+![](images/ribbon-edit-stats.png)
 
 Click the `r keys("Edit Report")` button to view the [**Properties**](#options-statistics) dialog. Here, you can specify which sections to include in your summary report.
 
@@ -36,7 +36,7 @@ When any highlighted text report is selected:
 
 Options for customizing its display are made available on the **Edit** section of the ribbon:
 
-![](images/RibbonEditTextWindow.png)
+![](images/ribbon-edit-text-window.png)
 
 **Font**: Click this button to change the font.
 

@@ -32,7 +32,7 @@ Application.SetLeftPrintFooter("Page @PAGENUM@ of @PAGESCNT@")
 Application.SetRightPrintFooter("@DATE@")
 
 ScreenshotLib.ShowTestBundleDialog("4-F")
-ScreenshotLib.SnapScreenshot(ImagePath .. "TestBundle." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "test-bundle." .. FileExtension)
 
 ScreenshotLib.ShowTestBundleDialog("4-F", 20002, "FORCAST", "flesch-kincaid", "fry", "gunning fog")
 ScreenshotLib.SnapScreenshot(ImagePath .. "test-bundle-4f." .. FileExtension)
@@ -374,17 +374,17 @@ ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "dolchwordslist." .. Fi
 sp:SortList(DolchResultType.DolchWordsList, 2, SortOrder.SortDescending)
 ScreenshotLib.SnapScreenshotOfListControl(ImagePath .. "columnheader." .. FileExtension,
     DolchResultType.DolchWordsList, -1, -1, -1, -1, 4)
-sp:ExportGraph(GraphType.DolchWordBarChart, ImagePath .. "DolchWordBreakdown." .. FileExtension)
-sp:ExportGraph(GraphType.DolchCoverageChart, ImagePath .. "DolchCoverageChart." .. FileExtension)
+sp:ExportGraph(GraphType.DolchWordBarChart, ImagePath .. "dolch-word-breakdown." .. FileExtension)
+sp:ExportGraph(GraphType.DolchCoverageChart, ImagePath .. "dolch-coverage-chart." .. FileExtension)
 
-sp:ExportGraph(GraphType.SentenceHeatmap, ImagePath .. "SentencesHeatmap." .. FileExtension)
+sp:ExportGraph(GraphType.SentenceHeatmap, ImagePath .. "sentences-heatmap." .. FileExtension)
 
 sp:Close()
 Application.RemoveAllCustomTests()
 
 sp = StandardProject(ScreenshotProjectsFolder .. "Consent.rsp")
 sp:SelectWindow(SideBarSection.ReadabilityScores, ListType.Goals)
-ScreenshotLib.SnapScreenshotOfListControl(ImagePath .. "StandardProjectGoals." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfListControl(ImagePath .. "standard-project-goals." .. FileExtension,
     ListType.Goals)
 sp:Close()
 
@@ -422,9 +422,9 @@ sp:SetBarChartBarEffect(BoxEffect.StippleImage)
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "GraphCustomBrush." .. FileExtension)
 
 sp:SetStippleShapeColor("SmokyBlack")
-sp:SetStippleShape("car")
+sp:SetStippleShape("newspaper")
 sp:SetBarChartBarEffect(BoxEffect.StippleShape)
-sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "GraphStippleShape." .. FileExtension)
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "graph-stipple-shape." .. FileExtension)
 
 sp:Close()
 Application.RemoveAllCustomTests()
@@ -536,7 +536,7 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "IgnoreBlankLines." .. FileExtension, 
 sp:CloseProperties()
 
 sp:SelectWindow(SideBarSection.WordsBreakdown, HighlightedReportType.ThreePlusSyllableHighlightedWords)
-ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "PeterRabbitChainedSentences." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "peter-rabbit-chained-sentences." .. FileExtension,
   HighlightedReportType.ThreePlusSyllableHighlightedWords, true,
   1046, 1194)
 
@@ -545,7 +545,7 @@ Application.RemoveAllCustomTests()
 
 sp = StandardProject(ScreenshotProjectsFolder .. "The Tale of Peter Rabbit(Split Sentences).rsp")
 sp:ScrollTextWindow(HighlightedReportType.ThreePlusSyllableHighlightedWords, 1200)
-ScreenshotLib.SnapScreenshot(ImagePath .. "PeterRabbitSplitSentences." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "peter-rabbit-split-sentences." .. FileExtension)
 
 sp:Close()
 Application.RemoveAllCustomTests()
@@ -558,14 +558,14 @@ Application.RemoveAllCustomTests()
 a = StandardProject(ScreenshotProjectsFolder .. "turkey brining.rsp")
 
 a:ExportGraph(GraphType.WordBarChart, ImagePath .. "barchart." .. FileExtension)
-a:ExportGraph(GraphType.SentenceBoxPlox, ImagePath .. "SentencesBoxplot." .. FileExtension)
-a:ExportGraph(GraphType.SentenceHistogram, ImagePath .. "SentencesHistogram." .. FileExtension)
+a:ExportGraph(GraphType.SentenceBoxPlox, ImagePath .. "sentences-boxplot." .. FileExtension)
+a:ExportGraph(GraphType.SentenceHistogram, ImagePath .. "sentences-histogram." .. FileExtension)
 a:SelectWindow(SideBarSection.SentencesBreakdown, GraphType.SentenceBoxPlox)
 ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "RibbonEditGraphs." .. FileExtension, 0, RibbonButtonBars.Edit)
 a:SelectWindow(SideBarSection.WordsBreakdown, GraphType.WordBarChart)
-ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "RibbonEditBarCharts." .. FileExtension, 0, RibbonButtonBars.Edit)
+ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "ribbon-edit-bar-charts." .. FileExtension, 0, RibbonButtonBars.Edit)
 
-a:ExportGraph(GraphType.SyllableHistogram, ImagePath .. "SyllableCountHistogram." .. FileExtension)
+a:ExportGraph(GraphType.SyllableHistogram, ImagePath .. "syllable-count-histogram." .. FileExtension)
 a:ExportGraph(GraphType.SyllablePieChart, ImagePath .. "syllables-pie-chart." .. FileExtension)
 a:AddTest(Tests.DanielsonBryan2)
 a:ExportGraph(GraphType.DanielsonBryan2, ImagePath .. "DB2Plot." .. FileExtension)
@@ -648,13 +648,13 @@ ScreenshotLib.CloseCustomTestDialog()
 -- Custom index Test example
 ----------------------------
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("Buzz Index")
-ScreenshotLib.SnapScreenshot(ImagePath .. "CustomIndexTestExampleName." .. FileExtension, 7000, 7000, 7001)
+ScreenshotLib.SnapScreenshot(ImagePath .. "custom-index-test-example-name." .. FileExtension, 7000, 7000, 7001)
 
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("Buzz Index", "", TestType.IndexValue)
 ScreenshotLib.SnapScreenshot(ImagePath .. "CustomIndexTestExampleTestType." .. FileExtension, 7001, 7001, 7001)
 
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("Buzz Index", "IF((FamiliarWordCount()/WordCount())*100 > 15, 3,\n  IF((FamiliarWordCount()/WordCount())*100 > 5, 2, 1) )", TestType.IndexValue)
-ScreenshotLib.SnapScreenshot(ImagePath .. "CustomIndexTestExampleFormula." .. FileExtension, 7002)
+ScreenshotLib.SnapScreenshot(ImagePath .. "custom-index-test-example-formula." .. FileExtension, 7002)
 
 ScreenshotLib.ShowCustomTestDialogFamiliarWords("C:\\Users\\Roz\\WordLists\\Buzz Words.txt")
 ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "CustomIndexTestExampleWordsLoaded." .. FileExtension,
@@ -672,7 +672,7 @@ ScreenshotLib.CloseCustomTestDialog()
 
 sp = StandardProject(ScreenshotProjectsFolder .. "Press Release.rsp")
 sp:SelectReadabilityTest(1)
-ScreenshotLib.SnapScreenshot(ImagePath .. "CustomIndexTestExampleScore." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "custom-index-test-example-score." .. FileExtension)
 sp:Close()
 
 -- Custom word example 2
@@ -684,7 +684,7 @@ ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "RibbonEditScores." .. FileExt
 
 a:SelectHighlightedWordReport(Application.GetTestId("New Dale-Chall (Baking)"))
 ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample2CustomText." .. FileExtension)
-ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "RibbonEditTextWindow." .. FileExtension, 0, RibbonButtonBars.Edit)
+ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "ribbon-edit-text-window." .. FileExtension, 0, RibbonButtonBars.Edit)
 
 a:SelectWindow(SideBarSection.WordsBreakdown, ListType.DaleChallUnfamiliarWords)
 a:SortList(ListType.DaleChallUnfamiliarWordsList,1,SortOrder.SortAscending)
@@ -695,7 +695,7 @@ a:SortList(Application.GetTestId("New Dale-Chall (Baking)"),1,SortOrder.SortAsce
 ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample2CustomWordList." .. FileExtension)
 
 a:SelectWindow(SideBarSection.Statistics, ReportType.StatisticsSummaryReport)
-ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "RibbonEditStats." .. FileExtension, 0, RibbonButtonBars.Edit)
+ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "ribbon-edit-stats." .. FileExtension, 0, RibbonButtonBars.Edit)
 
 ScreenshotLib.ShowFilteredTextPreviewDlg()
 ScreenshotLib.SnapScreenshot(ImagePath .. "FilterTextPreview." .. FileExtension)
@@ -882,7 +882,7 @@ sp:Close()
 
 sp = StandardProject(ScreenshotProjectsFolder .. "A Christmas Carol.txt")
 sp:SetParagraphsParsingMethod(ParagraphParse.EachNewLineIsAParagraph)
-sp:ExportGraph(GraphType.SentenceHeatmap, ImagePath .. "ChristmasCarolSentenceMap." .. FileExtension)
+sp:ExportGraph(GraphType.SentenceHeatmap, ImagePath .. "christmas-carol-sentencemap." .. FileExtension)
 sp:Close()
 
 -- hard returns example
@@ -900,11 +900,11 @@ sp = StandardProject(ScreenshotProjectsFolder .. "Summer Code Camp.odt")
 sp:SetTextExclusion(TextExclusionType.DoNotExcludeAnyText)
 sp:AddTest(Tests.Forcast)
 sp:SelectWindow(SideBarSection.WordsBreakdown, HighlightedReportType.ThreePlusSyllableHighlightedWords)
-ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "SummerCodeCampUpperHalf1." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "summer-code-camp-upper-half1." .. FileExtension,
     HighlightedReportType.ThreePlusSyllableHighlightedWords, true, 111, 168)
-ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "SummerCodeCampUpperHalf2." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "summer-code-camp-upper-half2." .. FileExtension,
     HighlightedReportType.ThreePlusSyllableHighlightedWords, true, 472, 525)
-ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "SummerCodeCampLowerHalf." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "summer-code-camp-lower-half." .. FileExtension,
     HighlightedReportType.ThreePlusSyllableHighlightedWords, true, 640, 893)
 sp:Close(false)
 
@@ -1021,7 +1021,7 @@ sp:DisplayBarChartLabels(false)
 sp:SetGraphCommonImage(ScreenshotProjectsFolder .. "bookstore.png")
 sp:SetBarChartBarEffect(BoxEffect.CommonImage)
 sp:Reload()
-sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleBarChartCommonImage." .. FileExtension)
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "example-barchart-common-image." .. FileExtension)
 
 -- change the background to an image
 sp:SetPlotBackgroundImage(ScreenshotProjectsFolder .. "bookstore.png")

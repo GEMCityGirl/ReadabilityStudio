@@ -38,7 +38,7 @@ In this example, we will import a picture book which has unusual sentence format
 From the **Help** tab, click the `r keys("Example Documents")` button and then select *The Tale of Peter Rabbit*. When prompted about what to do with the file, select **View document**. As shown below, we can see a sentence that is partially on top of an image, and the rest of it is split across multiple lines to fit next to the image.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/non-generated/PeterRabbitBrowser.png")
+knitr::include_graphics("images/non-generated/peter-rabbit-browser.png")
 ```
 
 Close this document and return the **Help** tab. Click the `r keys("Example Documents")` button and again select *The Tale of Peter Rabbit*. This time, select **Create a new project**. From the [project wizard](#creating-standard-project), select the **Document Structure** page and note the option **Sentences are split**. Selecting this will instruct the program to ignore hard returns and blank lines and combine these fragments into full sentences:
@@ -49,7 +49,7 @@ For this example, though, let’s leave this unchecked to see what happens. Next
 
 When the project appears, click on the **Words Breakdown** icon on the project sidebar and select **3+ Syllable Report**. Note how some sentences have been split into incomplete fragments (as it appeared in the book):
 
-![](images/PeterRabbitSplitSentences.png)
+![](images/peter-rabbit-split-sentences.png)
 
 To correct this, we will change how sentences are deduced for this project. Click the `r keys("Properties")` button on the **Home** tab and then select **Document Indexing**.
 First, ensure that **Line ends** is set to **only begin a new paragraph if following a valid sentence** (this should be the default).
@@ -62,7 +62,7 @@ knitr::include_graphics("images/IgnoreBlankLines.png")
 At this point, the project will be reanalyzed and these sentence fragments will be chained together:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/PeterRabbitChainedSentences.png")
+knitr::include_graphics("images/peter-rabbit-chained-sentences.png")
 ```
 
 \newpage
@@ -249,7 +249,7 @@ Along with policy changes to the program, they have redesigned the program's fly
 From the **Help** tab on the ribbon, click the `r keys('Example Documents')` button, and select "YA Enterprise Software Symposium." Next, you will be prompted to either create a new project or view the document; select **View document**. Once the document is opened, note how the flyer’s short text boxes have been replaced by full sentences:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/non-generated/YAEnterpriseSoftwareSymposium.png")
+knitr::include_graphics("images/non-generated/ya-enterprise-software-symposium.png")
 ```
 
 This means that when we import this document, we will specify that it is a narrative document and apply text exclusion. (This is in contrast to the earlier flyer, where we specified it as non-narrative, fragmented text.)
@@ -315,7 +315,7 @@ At this point, we will have quite of a bit of improvements to make to both the f
 
 [Test bundles](#test-bundles) are a convenient way to add multiple tests to a project at once. In this example, we will create a test bundle named "4F" which includes the [Fry](#fry-test), [FORCAST](#forcast-test), [Fog](#gunning-fog-test), and [Flesch-Kincaid](#flesch-kincaid-test) tests. The first step is to select the **Readability** tab, click the `r keys("Bundles")` button, and select **Add...** from the menu. This will open the **Add Test Bundle** dialog:
 
-![](images/TestBundle.png)
+![](images/test-bundle.png)
 
 Enter the name "4F" into the **Bundle Name** text field. Next, select the **Standard Tests** page and check the Fry, FORCAST, Fog, and Flesch-Kincaid tests, as shown below:
 

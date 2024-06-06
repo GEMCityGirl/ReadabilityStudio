@@ -129,7 +129,7 @@ knitr::include_graphics("images/GraphBarsRectangular.png")
 
 On the **Home** tab of the ribbon, click the `r keys('Bar Style')` button and select **Select stipple image...** from the menu:
 
-![](images/RibbonEditBarCharts.png)
+![](images/ribbon-edit-bar-charts.png)
 
 After selecting an image, the bars will be drawn as a repeating pattern of this image:
 
@@ -146,8 +146,8 @@ Note that images of any size can be used. If the image is larger than the bars' 
 Along with images, a set of predefined shapes are also available to choose from. To select one, click the `r keys('Bar Style')` button again and select **Select stipple shape...** from the menu.
 Select a shape from the list (e.g., **Car** or **Newspaper**), and this shape will then be used for the bar pattern:
 
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/GraphStippleShape.png")
+```{r echo=F, fig.align='center', fig.cap="Newspaper bars" out.width='75%'}
+knitr::include_graphics("images/graph-stipple-shape.png")
 ```
 
 These features can also be applied to box plots and histograms. With any of these graph types selected, perform the same operation from the ribbon to draw with a stipple.
@@ -170,7 +170,7 @@ When the image selection dialog appears, select an image and click `r keys("OK")
 Now, the bars will be filled with the image:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExampleBarChartCommonImage.png")
+knitr::include_graphics("images/example-barchart-common-image.png")
 ```
 
 Next, click the `r keys("Background")` button and select `r menu(c('Plot Image', 'Image...'))`. When the image selection dialog appears, choose the same image and click `r keys("OK")`.

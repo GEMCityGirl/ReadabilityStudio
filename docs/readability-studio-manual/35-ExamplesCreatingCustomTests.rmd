@@ -235,7 +235,7 @@ knitr::include_graphics("images/add-custom-test.png")
 Enter "Buzz Index" as the test name:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/CustomIndexTestExampleName.png")
+knitr::include_graphics("images/custom-index-test-example-name.png")
 ```
 
 Because this test will use our own special type of scoring, set **Test type** to **Index value**:
@@ -252,7 +252,7 @@ IF((FamiliarWordCount()/WordCount())*100 > 15, 3,
 ```
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/CustomIndexTestExampleFormula.png")
+knitr::include_graphics("images/custom-index-test-example-formula.png")
 ```
 
 Basically, this formula classifies a file based on its percentage of buzz words. First, it calculates this percentage in this line:
@@ -321,7 +321,7 @@ To confirm this, select the **Readability** tab on the ribbon, click **Custom Te
 Next, click the **Readability Scores** icon on the sidebar and select **Scores** underneath that. As we had feared, the document is scoring at the unacceptable level of 3:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/CustomIndexTestExampleScore.png")
+knitr::include_graphics("images/custom-index-test-example-score.png")
 ```
 
 At this point, we will ask the author to revise this document until the score is at a more acceptable level. Because we are using a familiar-word test's logic in reverse for this test, we are actually interested in lowering the number of familiar (not unfamiliar) words from the document. To show which familiar (i.e., buzzwords) are being used, select the **Highlighted Reports** icon on the sidebar and select **Buzz Index (unfamiliar)** beneath that. The words that are *not* highlighted are the buzzwords that the author will need to limit. To export this window, click the **Home** tab of the ribbon, click the `r keys("Save")` button, and select **Export Highlighted Buzz Index (unfamiliar)**. The author can then use this output to see which sections need revising in this press release.

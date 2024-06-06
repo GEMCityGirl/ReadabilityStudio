@@ -137,7 +137,7 @@ Goals are recommended score ranges that a document should fall within.
 If a project contains goals, then a **Goals** section will be available to show whether they were met. For example:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/StandardProjectGoals.png")
+knitr::include_graphics("images/standard-project-goals.png")
 ```
 
 In the above image, we can see that this project is recommending:
@@ -267,7 +267,7 @@ Lists of these words can be found by clicking on the [**Difficult Words**](#revi
 **Syllable Counts**: This is a histogram of the words, grouped by syllable count\index{syllables!reviewing in the results}.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/SyllableCountHistogram.png")
+knitr::include_graphics("images/syllable-count-histogram.png")
 ```
 
 In the above histogram, we see that most of the words are either 1 or 2 syllables. There are only 25 three-syllable words and 17 four-syllable words in the document.
@@ -343,7 +343,7 @@ Note that if there are no long sentences in your document, then this window will
 A box plot\index{box plots!sentence length} of the sentence lengths (measured by word count) is also available:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/SentencesBoxplot.png")
+knitr::include_graphics("images/sentences-boxplot.png")
 ```
 
 The first item to review is the box, which measures the percentiles range. Above, we see that this range is 4.5–19.5, meaning that half of the sentences are between 4.5–19.5 words.
@@ -357,7 +357,7 @@ Finally, any sentence lengths outside of the non-outlier range will be displayed
 A histogram is also available to visualize how the sentence lengths are distributed:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/SentencesHistogram.png")
+knitr::include_graphics("images/sentences-histogram.png")
 ```
 
 In the above graph, we can see a large portion of short sentences, with the rest falling into a normal distribution.
@@ -365,7 +365,7 @@ In the above graph, we can see a large portion of short sentences, with the rest
 A heatmap of these sentence lengths is also included:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/SentencesHeatmap.png")
+knitr::include_graphics("images/sentences-heatmap.png")
 ```
 
 This graph displays the document's sentence, going from left-to-right, top-to-bottom. Each square represents a sentence, and the square's color represents its word count. The darker a square, the higher the sentence's word count (relative to the document). Likewise, lighter squares represent the shorter sentences in the document. This is useful for visualizing the trend and density of a document's longer sentences. For example, if sections of the grid are darker than others, then the sentences are longer in these spots and should be reviewed. The example below demonstrates this:
@@ -696,7 +696,7 @@ After opening a project, click on the **Dolch Sight Words** icon on the project 
 The **Dolch Coverage** graph displays how much of each category is used in the document. Refer to \@ref(reviewing-dolch) for more information.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/DolchCoverageChart.png")
+knitr::include_graphics("images/dolch-coverage-chart.png")
 ```
 
 As we can see in the above graph, 87.5% of the Dolch prepositions are used in the document. Pronouns and adverbs are also well covered with 76.9% and 73.5%, respectively. However, less than half of the Dolch adjectives and nouns are used in the document. From this, we can see that this document may be useful for some Dolch categories, but not others.
@@ -704,7 +704,7 @@ As we can see in the above graph, 87.5% of the Dolch prepositions are used in th
 The **Words Breakdown** graph displays all the raw Dolch word counts, broken down by category. Refer to \@ref(reviewing-dolch) for more information.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/DolchWordBreakdown.png")
+knitr::include_graphics("images/dolch-word-breakdown.png")
 ```
 
 As we can see in the above graph, there are 938 total Dolch words used in this document. Unfortunately, there are also 489 non-Dolch words. Although there is a strong number of Dolch words, the high number of non-Dolch words may make this document a poor candidate for practicing Dolch sight words.

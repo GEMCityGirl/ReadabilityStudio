@@ -365,7 +365,7 @@ In the above graph, we can see that most paragraphs begin with a short intro sen
 Finally, let's view a novel. Close this project and return to the **Help** tab of the ribbon. Click the `r keys('Example Documents')` button again and select *A Christmas Carol*. Create a new project with the defaults and select the heatmap when the project opens.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ChristmasCarolSentenceMap.png")
+knitr::include_graphics("images/christmas-carol-sentencemap.png")
 ```
 
 Because this document contains more than 500 paragraphs, grouping will not be used. Instead, the sentences will appear in a single heatmap, where the all sentences are displayed left-to-right, top-to-bottom. In the above graph, we can see that the novel's sentences range from 1-19 words in length. Also, the sentence lengths are rather evenly distributed. In other words, the longer sentences are not clumping together within any particular section.
@@ -403,13 +403,13 @@ An interesting aspect of this flyer is that it has two audiences: children and t
 Select **Words Breakdown** on the sidebar and then select **3+ Syllables Report**. Here we can see some phrases that could be simplified:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/SummerCodeCampUpperHalf1.png")
+knitr::include_graphics("images/summer-code-camp-upper-half1.png")
 ```
 
 For example, we could remove *Proudly presented* or replace it with *Offered*. Scrolling down further:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/SummerCodeCampUpperHalf2.png")
+knitr::include_graphics("images/summer-code-camp-upper-half2.png")
 ```
 
 The highlighted line above could be rewritten to something like *New to programming? No Problem!*.
@@ -417,7 +417,7 @@ The highlighted line above could be rewritten to something like *New to programm
 Scrolling to the bottom, we can review the second half of this flyer. The content here is meant for parents and their children to fill out together.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/SummerCodeCampLowerHalf.png")
+knitr::include_graphics("images/summer-code-camp-lower-half.png")
 ```
 
 Although there are some longer words here, the responsible adult intended to sign this should be able to understand the content.

@@ -439,7 +439,7 @@ Select any of these bundles from the menu and all the tests within it will be ad
 
 You can also create your own bundles. To do this, select **Add...** from the **Bundles** menu to open the **Add Test Bundle** dialog:
 
-![](images/TestBundle.png)
+![](images/test-bundle.png)
 
 On the **General** page of this dialog, you will first enter a name for the bundle. (This name is how it will appear in the **Bundles** menu.) Next, you will select all the tests that you wish to include in this bundle. (Tests are available on the **Standard Tests**, **Custom Tests**, and **Vocabulary Tools** pages.)
 
