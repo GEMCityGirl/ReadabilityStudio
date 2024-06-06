@@ -14,6 +14,7 @@ if (nchar(tinytex::tinytex_root()) == 0)
   {
   tinytex::install_tinytex()
   }
+# call tinytex::reinstall_tinytex() if you get a "tlmgr: Remote repository is newer than local..." error message
 
 docFolder <- this.path::this.dir()
 source(glue("{docFolder}/build-enum-files.R"))

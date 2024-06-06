@@ -41,7 +41,7 @@ loadEnum <- function(enum)
 # Converts enumerations to a file in the format of:
 # EnumName Value1,Value2,etc.
 #
-# This loaded by the script editor for intellisense.
+# This is loaded by the script editor (in the actual program) for intellisense.
 enumToEditorString <- function(enum)
   {
   str_glue("{enum$name}\t{paste0({enum$values[[1]]$name}, collapse = ';')}")
@@ -112,5 +112,6 @@ writeEnumTopics <- function(enums, folderPath)
     readr::write_file(topicContent, str_glue("{folderPath}/{enum$name}.qmd"))
     }
 
+  # lists the enum topics in a parent topic
   readr::write_csv(overviewTopic %>% arrange(VAL), str_glue("{folderPath}/overview.qmd"), col_names=F)
   }
