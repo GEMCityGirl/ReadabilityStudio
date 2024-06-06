@@ -89,7 +89,7 @@
 - If *%*, *¢*, or *°* characters are proceeded by a number, then they will now be connected to the previous word.
 - Custom-test formulas can now contain C/C++ style comments.
   This includes multi-line (text inside of `/*` and `*/`) and single-line (`//`) comments.
-- The **Wording Errors** and **Misspellings** have been renamed to **Errors & Misspellings** and **Possible Misspellings**, respectively.
+- **Wording Errors** and **Misspellings** have been renamed to **Errors & Misspellings** and **Possible Misspellings**, respectively.
   - **Errors & Misspellings** now contains known wording errors, misspellings, and their suggested corrections.
   - **Possible Misspellings** behaves the same as the **Misspellings** section did before, showing words not found in the included dictionaries.
 - **All Words (Condensed)** will now exclude more variations of common words.
@@ -364,6 +364,8 @@
 - Brackets in Flesch chart are now color coded.
 - Added instruction label to blank Flesch charts.
 - Added support for multiline graph watermarks.
+
+\newpage
 
 ### Bug Fixes {-}
 
