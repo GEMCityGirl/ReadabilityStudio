@@ -13,7 +13,7 @@
 # doxygen-docs: builds the API documentation
 
 # Options:
-# - USE_ADDRESS_SANITIZE to use ASAN
+# USE_ADDRESS_SANITIZE to use ASAN
 
 # Declare the minimum required CMake version
 # Note that CMake 3.24 is needed for compiling wxWidgets
@@ -170,10 +170,6 @@ endif()
 # Help Files
 ##############################################################
 
-# make help directories if missing to avoid a build error
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/docs/)
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-test-reference/docs/)
-
 include(cmake/modules/FindR.cmake)
 # TODO: Windows path to Pandoc currently only looks for Quarto installations.
 include(cmake/modules/FindPandoc.cmake)
@@ -249,8 +245,8 @@ if(MSVC)
     # /MP enables multi-core build support, speeding up compilation time.
 
     # /W3 cranks up the warning level, /WX treats all warnings as error.
-    # Note that simply using /W4 causes a warning that it is overriding
-    # /W3, and then that turns into an error because of /W4. So /W3 is the
+    # Note that simply using /W4 causes a warning that it is overriding /W3,
+    # and then that turns into an error because of /W4. So /W3 is the
     # highest you can go with /WX.
 
     # /wd6211 turns off C6211 warning: leaking memory due to an exception.
@@ -306,6 +302,33 @@ endif()
 # Copy help, scripts, and resources into build folder
 ##############################################################
 message(STATUS "Copying application resources...")
+
+# make help directories if missing to avoid a build error
+if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/docs/")
+    add_custom_command(TARGET ${PROJECT_NAME}
+                   POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E make_directory
+                   "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/docs/")
+endif()
+if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-test-reference/docs/")
+    add_custom_command(TARGET ${PROJECT_NAME}
+                   POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E make_directory
+                   "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-test-reference/docs/")
+endif()
+if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/docs/shortcuts-cheatsheet/docs/")
+    add_custom_command(TARGET ${PROJECT_NAME}
+                   POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E make_directory
+                   "${CMAKE_CURRENT_SOURCE_DIR}/docs/shortcuts-cheatsheet/docs/")
+endif()
+if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/docs/release-notes/docs/")
+    add_custom_command(TARGET ${PROJECT_NAME}
+                   POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E make_directory
+                   "${CMAKE_CURRENT_SOURCE_DIR}/docs/release-notes/docs/")
+endif()
+
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
@@ -318,6 +341,10 @@ add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-test-reference/docs $<TARGET_FILE_DIR:${PROJECT_NAME}>/readability-studio-manual)
+add_custom_command(TARGET ${PROJECT_NAME}
+                   POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy_directory
+                   ${CMAKE_CURRENT_SOURCE_DIR}/docs/release-notes/docs $<TARGET_FILE_DIR:${PROJECT_NAME}>/readability-studio-manual)
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
@@ -341,7 +368,7 @@ add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
                    ${CMAKE_CURRENT_SOURCE_DIR}/examples $<TARGET_FILE_DIR:${PROJECT_NAME}>/examples)
-# license file
+# License file
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy
@@ -364,14 +391,14 @@ add_custom_command(TARGET ${PROJECT_NAME}
 
 # Copy application to installer folder (if a production build)
 if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
-    ADD_CUSTOM_COMMAND(TARGET ${PROJECT_NAME}
+    add_custom_command(TARGET ${PROJECT_NAME}
                        POST_BUILD
                        COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:${PROJECT_NAME}>" "${CMAKE_CURRENT_SOURCE_DIR}/installers/Windows/Release"
                        COMMENT "Copying binary to installer folder.")
 endif()
 
 if(APPLE)
-    SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES
+    set_target_properties(${PROJECT_NAME} PROPERTIES
         RESOURCE "app/wxmac.icns"
         MACOSX_BUNDLE_ICON_FILE wxmac.icns
         MACOSX_BUNDLE_COPYRIGHT "Copyright Blake Madden"
