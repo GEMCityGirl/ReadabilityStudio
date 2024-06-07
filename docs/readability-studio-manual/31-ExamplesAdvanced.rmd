@@ -56,7 +56,7 @@ First, ensure that **Line ends** is set to **only begin a new paragraph if follo
 Then check the options **Ignore blank lines** and **Ignore indenting** and click `r keys("OK")` to accept. (Note that we also selected **Ignore indenting** because this file contains some indented text.)
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/IgnoreBlankLines.png")
+knitr::include_graphics("images/ignore-blank-lines.png")
 ```
 
 At this point, the project will be reanalyzed and these sentence fragments will be chained together:

@@ -349,7 +349,7 @@ Let's begin by opening a mid-sized technical document. Select the **Help** tab o
 Once the project is created, select **Sentences Breakdown** on the sidebar, and click on the **Lengths (Density)** subitem. Here we will see a heatmap showing the sentences going from left-to-right, where their colors represent the length. Additionally, if the document contains 500 or less paragraphs, then the sentences will be grouped by paragraphs. In this example, the heatmap will show four columns, each containing ~25 paragraphs. These paragraphs go from top-to-bottom, then left-to-right across the columns. In each paragraph, its sentences are shown left-to-right.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/FixedWithRSentenceMap.png")
+knitr::include_graphics("images/fixed-with-r-sentencemap.png")
 ```
 
 In the above heatmap, we can see that the first half of the document contains mostly one-word sentences (most of which are medium length). In most of the second half of the document there are a few more longer sentences, although the paragraphs do remain within 1-2 sentences. In the last ten paragraphs, however, we do see longer paragraphs that also happen to contain longer sentences. In this case, we may want to review the ending section of the document.
@@ -357,7 +357,7 @@ In the above heatmap, we can see that the first half of the document contains mo
 Close this project and return to the **Help** tab of the ribbon. Click the `r keys('Example Documents')` button again and select "Instructional Disclaimer." Create a new project with the defaults and select the heatmap when the project opens.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/DisclaimerSentenceMap.png")
+knitr::include_graphics("images/disclaimer-sentencemap.png")
 ```
 
 In the above graph, we can see that most paragraphs begin with a short intro sentence, but are then followed by rather long sentences. (Some sentences being as high as 40 words.)  Also of interest is a paragraph containing ten sentences—which will be difficult to read through.
@@ -444,7 +444,7 @@ This word cloud shows the document's words, after they have been combined (via s
 The size of the words are relative to their frequencies. As an example, the words "Company" and "Customer" appear much more frequently than any other word:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExampleDifficultWordsWordCloud.png")
+knitr::include_graphics("images/example-difficult-words-wordcloud.png")
 ```
 
 From this, we can glean that this document is about a customer and company relationship. Looking further, we may notice other words such as "claims," "responsibilities," "legal," and "liable."

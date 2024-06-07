@@ -142,7 +142,7 @@ After adding your documents, click `r keys('Finish')`.
 When the project appears, select **Raw Scores** under **Readability Scores**. Here we can see a list of documents, along with their group labels next to them:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/BatchGroupLabelsScores.png")
+knitr::include_graphics("images/batch-group-labels-scores.png")
 ```
 
 Here, we can sort by group or scores and see how the groups compare. In the above example, we can see that the *Tests* group is scoring poorly.

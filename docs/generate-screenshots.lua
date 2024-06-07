@@ -303,7 +303,7 @@ bp:ExportGraph(SideBarSection.BoxPlots, Application.GetTestId("flesch-test"), Im
 
 bp:ShowSidebar(false)
 bp:SelectWindow(SideBarSection.ReadabilityScores, BatchScoreResultType.AggregatedGradeScoresByDocument)
-ScreenshotLib.SnapScreenshot(ImagePath .. "BatchGradeScoresByDocument." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "batch-grade-scores-by-document." .. FileExtension)
 
 bp:SelectWindow(SideBarSection.ReadabilityScores, BatchScoreResultType.AggregatedClozeScoresByDocument)
 ScreenshotLib.SnapScreenshot(ImagePath .. "batch-cloze-scores-by-document." .. FileExtension)
@@ -532,7 +532,7 @@ bp:Close()
 ----------------------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "The Tale of Peter Rabbit.rsp")
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
-ScreenshotLib.SnapScreenshot(ImagePath .. "IgnoreBlankLines." .. FileExtension, 1042, 1043, 1086)
+ScreenshotLib.SnapScreenshot(ImagePath .. "ignore-blank-lines." .. FileExtension, 1042, 1043, 1086)
 sp:CloseProperties()
 
 sp:SelectWindow(SideBarSection.WordsBreakdown, HighlightedReportType.ThreePlusSyllableHighlightedWords)
@@ -657,11 +657,11 @@ ScreenshotLib.ShowCustomTestDialogGeneralSettings("Buzz Index", "IF((FamiliarWor
 ScreenshotLib.SnapScreenshot(ImagePath .. "custom-index-test-example-formula." .. FileExtension, 7002)
 
 ScreenshotLib.ShowCustomTestDialogFamiliarWords("C:\\Users\\Roz\\WordLists\\Buzz Words.txt")
-ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "CustomIndexTestExampleWordsLoaded." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "custom-index-test-example-words-loaded." .. FileExtension,
     7003, "File containing familiar words", "", true)
 
 ScreenshotLib.ShowCustomTestDialogFamiliarWords("C:\\Users\\Roz\\WordLists\\Buzz Words.txt", StemmingType.English)
-ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "CustomIndexTestExampleWordSettingsFinished." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "custom-index-test-example-word-settings-finished." .. FileExtension,
     7003, "Use stemming to search for similar words", "", true)
 
 ScreenshotLib.ShowCustomTestDialogProperNounsAndNumbers(0, false)
@@ -698,7 +698,7 @@ a:SelectWindow(SideBarSection.Statistics, ReportType.StatisticsSummaryReport)
 ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "ribbon-edit-stats." .. FileExtension, 0, RibbonButtonBars.Edit)
 
 ScreenshotLib.ShowFilteredTextPreviewDlg()
-ScreenshotLib.SnapScreenshot(ImagePath .. "FilterTextPreview." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "filter-text-preview." .. FileExtension)
 ScreenshotLib.CloseFilteredTextPreviewDlg()
 
 a:Close()
@@ -872,12 +872,12 @@ sp:Close(false)
 -----------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "Importing and Exporting Fixed-Width Data with R.docx")
 sp:SetParagraphsParsingMethod(ParagraphParse.EachNewLineIsAParagraph)
-sp:ExportGraph(GraphType.SentenceHeatmap, ImagePath .. "FixedWithRSentenceMap." .. FileExtension)
+sp:ExportGraph(GraphType.SentenceHeatmap, ImagePath .. "fixed-with-r-sentencemap." .. FileExtension)
 sp:Close()
 
 sp = StandardProject(ScreenshotProjectsFolder .. "Instructional Disclaimer.odt")
 sp:SetParagraphsParsingMethod(ParagraphParse.EachNewLineIsAParagraph)
-sp:ExportGraph(GraphType.SentenceHeatmap, ImagePath .. "DisclaimerSentenceMap." .. FileExtension)
+sp:ExportGraph(GraphType.SentenceHeatmap, ImagePath .. "disclaimer-sentencemap." .. FileExtension)
 sp:Close()
 
 sp = StandardProject(ScreenshotProjectsFolder .. "A Christmas Carol.txt")
@@ -959,7 +959,7 @@ bp:ExportGraph(SideBarSection.ReadabilityScores, GraphType.Fry, ImagePath .. "Fr
 bp:ExportGraph(SideBarSection.BoxPlots, Application.GetTestId("fry-test"), ImagePath .. "boxgrouped." .. FileExtension)
 bp:SelectWindow(SideBarSection.ReadabilityScores, ListType.BatchRawScores)
 bp:SortList(ListType.BatchRawScores, 3, SortAscending)
-ScreenshotLib.SnapScreenshotOfListControl(ImagePath .. "BatchGroupLabelsScores." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfListControl(ImagePath .. "batch-group-labels-scores." .. FileExtension,
     ListType.BatchRawScores, -1, 2, -1, 4)
 bp:Close()
 
@@ -985,7 +985,7 @@ ScreenshotLib.CloseDocGroupSelectDlg()
 -- Difficult words example
 --------------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "Instructional Disclaimer.odt")
-sp:ExportGraph(GraphType.WordCloud, ImagePath .. "ExampleDifficultWordsWordCloud." .. FileExtension)
+sp:ExportGraph(GraphType.WordCloud, ImagePath .. "example-difficult-words-wordcloud." .. FileExtension)
 sp:ExportGraph(GraphType.SyllableHistogram, ImagePath .. "example-difficult-syllables-histogram." .. FileExtension)
 sp:ShowcaseComplexWords(true)
 sp:ExportGraph(GraphType.SyllableHistogram, ImagePath .. "example-difficult-syllables-histogram-showcased." .. FileExtension)
@@ -1082,7 +1082,7 @@ sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundImage
 -- add watermark
 sp:SetGraphWatermark("INTERNAL USE ONLY\nProcessed on @DATE@")
 sp:Reload()
-sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleWatermarkChanged." .. FileExtension)
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "example-watermark-changed." .. FileExtension)
 
 -- add logo
 sp:SetGraphLogoImage(ScreenshotProjectsFolder .. "CoffeeLogo.png")

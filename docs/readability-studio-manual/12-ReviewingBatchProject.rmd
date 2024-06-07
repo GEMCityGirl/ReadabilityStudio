@@ -69,7 +69,7 @@ To remove any test in this list from the project, select it and press `r keys(c(
 
 The **Grade Score Summary (x Document)** subitem will display aggregated statistics for all grade-level scores, grouped by document:
 
-![](images/BatchGradeScoresByDocument.png)
+![](images/batch-grade-scores-by-document.png)
 
 The **Valid N** column represents the number of grade-level tests that were successfully ran against each document. After this column are additional columns displaying grade-level score statistics, document-by-document. In the above example, we can see that the document *CustomWordTest.html* had 5 different grade tests ran against it, with 9.5 being the lowest score and 10.9 being the highest.
 

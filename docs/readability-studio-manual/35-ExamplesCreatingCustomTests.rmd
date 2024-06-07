@@ -279,7 +279,7 @@ Next, enter the file path to the custom-word file in the **File containing famil
 You can also click the button next to this field to select and edit your word list file:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/CustomIndexTestExampleWordsLoaded.png")
+knitr::include_graphics("images/custom-index-test-example-words-loaded.png")
 ```
 
 Once the file has been selected, the words from that file will be loaded.
@@ -291,7 +291,7 @@ The other option is to use stemming. Stemming will compare the roots of the word
 To keep our word list simple, we will use English stemming. Select **English** as the stemmer:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/CustomIndexTestExampleWordSettingsFinished.png")
+knitr::include_graphics("images/custom-index-test-example-word-settings-finished.png")
 ```
 
 We will not be using any other words for our test, so leave the other word lists unchecked.

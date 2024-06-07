@@ -226,7 +226,7 @@ To do this, click on the **Home** tab of the ribbon, click on the arrow below th
 After excluding incomplete sentences from your document, you will be presented with additional options (see below). Once you have specified your filtering options, the **Preview Filtered Document** dialog (shown on the right) will be displayed. This dialog will show a preview of the filtered document, along with listing the filtering options being used.
 
 ```{r echo=F, fig.align='center', out.width='50%'}
-knitr::include_graphics("images/FilterTextPreview.png")
+knitr::include_graphics("images/filter-text-preview.png")
 ```
 
 Finally, click `r keys("OK")` to save the file.

@@ -99,7 +99,7 @@ Enter the following into the **Watermark** dialog and click `r keys("OK")`:
 Note how this label is now lightly written across the graph:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExampleWatermarkChanged.png")
+knitr::include_graphics("images/example-watermark-changed.png")
 ```
 
 ::: {.tipsection data-latex=""}
