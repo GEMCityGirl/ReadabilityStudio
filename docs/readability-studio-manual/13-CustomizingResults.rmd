@@ -8,7 +8,7 @@ When the **Scores** section is selected:
 
 Options for customizing their display are made available on the **Edit** section of the ribbon:
 
-![](images/RibbonEditScores.png)
+![](images/ribbon-edit-scores.png)
 
 **Long format**: Click this button to toggle readability scores in long (e.g., *2^nd^ grade*) or short (e.g., *2*) format within the score grid.
 
@@ -70,7 +70,7 @@ On this dialog, you will specify which columns to sort by and their order. Going
 
 When any graph is selected, options for customizing it are made available on the **Edit** section of the ribbon:
 
-![](images/RibbonEditGraphs.png)
+![](images/ribbon-edit-graphs.png)
 
 The options made available will be dependent on the graph type. Refer to \@ref(options-graphs) for further discussions of these options.
 

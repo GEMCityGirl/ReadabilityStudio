@@ -175,7 +175,7 @@ knitr::include_graphics("images/CustomTestExample2WordSettingsFinished.png")
 The remaining logic that we must define is how to count proper\index{proper nouns!custom tests} nouns and numerals\index{numerals!custom tests}. Select the **Proper Nouns & Numerals** page:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/CustomTestTreat.png")
+knitr::include_graphics("images/custom-test-treat.png")
 ```
 
 For this example, we will treat all proper nouns and numerals as familiar. This is the default, so leave these options unchanged.
@@ -194,11 +194,11 @@ Note how the result for our custom test is lower than the standard New Dale-Chal
 
 Now that the test has been added, we can review some of its output. Click on the **Words Breakdown** icon on the project pane. As shown below, there are numerous unfamiliar New Dale-Chall words in this recipe:
 
-![](images/CustomTestExample2DCWordList.png)
+![](images/custom-test-example2-dc-word-list.png)
 
 However, because our custom test is including some extra words not on the New Dale-Chall list, our test will have less unfamiliar words. Select the **New Dale-Chall (Baking)** subitem to review the unfamiliar words from the recipe relative to our custom test:
 
-![](images/CustomTestExample2CustomWordList.png)
+![](images/custom-test-example2-custom-word-list.png)
 
 Note how there are far fewer unfamiliar New Dale-Chall (Baking) words when compared to the standard New Dale-Chall output.
 
@@ -299,7 +299,7 @@ We will not be using any other words for our test, so leave the other word lists
 The remaining logic that we must define is how to handle proper nouns\index{proper nouns!custom tests} and numerals. Select the **Proper Nouns & Numerals** page:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/CustomTestTreat.png")
+knitr::include_graphics("images/custom-test-treat.png")
 ```
 
 For this test, we are only looking for words explicitly from our list. This means that we will need to ignore proper nouns and numbers. Set **Proper Nouns/Familiarity** to **Count as unfamiliar** and uncheck **Treat numerals as familiar**:

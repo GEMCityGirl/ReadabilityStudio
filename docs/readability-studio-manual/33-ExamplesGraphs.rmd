@@ -10,7 +10,7 @@ The first step is to open the example file "Chocolate Eclairs." From the **Help*
 Once the project has finished loading, select **Words Breakdown** on the sidebar, then click **Word Counts** beneath that. A bar chart showing a breakdown of word categories will be displayed:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExampleGraphDefault.png")
+knitr::include_graphics("images/example-graph-default.png")
 ```
 
 Now we will customize the appearance of this graph. One change that we can make is to reorder the columns in this bar chart. On the **Home** tab, click the `r keys("Sort")` button under the **Edit** section.
@@ -29,7 +29,7 @@ Next, we can change the direction of the bars. Click the `r keys("Orientation")`
 Now the bars will be arranged vertically:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExampleBarChartOrientationChanged.png")
+knitr::include_graphics("images/example-barchart-orientation-changed.png")
 ```
 
 Finally, let's change how the bars are drawn. Click the `r keys("Bar Style")` button in the **Edit** section and select **Thick Watercolor**.
@@ -64,7 +64,7 @@ After selecting a color, check the option **Fade** from the same menu.
 Now, the graph will have an antique white background with a gradient effect:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExampleGraphBackgroundColorChanged.png")
+knitr::include_graphics("images/example-graph-background-color-changed.png")
 ```
 
 Next, click the `r keys("Background")` button again and select `r menu(c('Plot Image', 'Image...'))`. When the image selection dialog appears, choose an image and click `r keys("OK")`.
@@ -73,7 +73,7 @@ Next, click the `r keys("Background")` button again and select `r menu(c('Plot I
 This image will now be shown as the background for your graphs:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExampleGraphBackgroundImageChanged.png")
+knitr::include_graphics("images/example-graph-background-image-changed.png")
 ```
 :::
 

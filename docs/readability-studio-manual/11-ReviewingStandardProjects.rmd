@@ -121,7 +121,7 @@ Note that if you plot any of these graphs, its score can also be viewed in the [
 As a final note, [batch projects](#creating-batch-project) include multi-document versions of all these graphs:
 
 ```{r multifry, echo=F, fig.cap='Multiple documents on a Fry graph', fig.align='center', out.width='75%'}
-knitr::include_graphics("images/MultipleFry.png")
+knitr::include_graphics("images/multiple-fry.png")
 ```
 
 Here, we can see that an entire collection of documents are plotted onto a single Fry graph. This is useful for visualizing the grade-level layout of a group of documents. In the above example, we can see that the documents are clustering in the high-school region. We can also interpret that complex words are heavily influencing the documents' difficulty.
