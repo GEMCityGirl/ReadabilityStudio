@@ -445,7 +445,7 @@ Note that the raw counts of these words will also be included if [**Extended Inf
 
 After opening a project, click on the **Warnings** icon on the project sidebar to view any warnings issued while loading the documents:
 
-![](images/Warnings.png)
+![](images/warnings.png)
 
 Warnings that may occur are:
 

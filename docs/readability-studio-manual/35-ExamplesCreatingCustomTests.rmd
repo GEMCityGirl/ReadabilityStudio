@@ -18,7 +18,7 @@ The first step to creating a new test is to click the `r keys("Custom Tests")` b
 Because this test will use independent clauses, change the name to "Flesch (IC)":
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/CustomTestExample1TestName.png")
+knitr::include_graphics("images/custom-test-example1-test-name.png")
 ```
 
 Next, we will change the formula. The formula for Flesch is defined as:
@@ -83,7 +83,7 @@ Click the `r keys("OK")` button and our new test will be added to the system.
 
 To add this test to any project, first select the **Readability** tab. Next, click the `r keys("Custom Tests")` button and then select **Flesch (IC)** from the menu. Select the **Readability Scores** icon on the project pane and note that Flesch (IC) has been added to the project's results:
 
-![](images/CustomTestExample1Score.png)
+![](images/custom-test-example1-score.png)
 
 \index{Flesch Reading Ease!custom test!example|)}
 

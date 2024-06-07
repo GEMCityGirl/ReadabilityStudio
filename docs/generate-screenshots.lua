@@ -240,7 +240,7 @@ bp:SelectWindow(SideBarSection.WordsBreakdown)
 ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "batchdifficultwordsverbose." .. FileExtension, 1)
 
 bp:SelectWindow(SideBarSection.Warnings)
-ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "Warnings." .. FileExtension, 1)
+ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "warnings." .. FileExtension, 1)
 
 bp:SelectWindow(SideBarSection.SentencesBreakdown, ListType.LongSentences)
 bp:SortList(ListType.LongSentences, 3, SortOrder.SortDescending)
@@ -602,7 +602,7 @@ ScreenshotLib.ShowCustomTestDialogGeneralSettings("Flesch-Kincaid (unclamped)", 
 ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestFKUnclamped." .. FileExtension, 7000, 7000)
 
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("Flesch (IC)", "ROUND(206.835 - (84.6*(B/W)) - (1.015*(W/S)))", TestType.IndexValue)
-ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample1TestName." .. FileExtension, 7000, 7000)
+ScreenshotLib.SnapScreenshot(ImagePath .. "custom-test-example1-test-name." .. FileExtension, 7000, 7000)
 
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("Flesch (IC)", "ROUND(206.835 -\n(84.6*(SyllableCount()/WordCount())) -\n(1.015*(WordCount()/IndependentClauseCount())))", TestType.IndexValue)
 ScreenshotLib.SnapScreenshot(ImagePath .. "custom-test-example1-finished." .. FileExtension)
@@ -611,7 +611,7 @@ ScreenshotLib.CloseCustomTestDialog()
 
 a = StandardProject(ScreenshotProjectsFolder .. "FleschIC.rsp")
 a:SelectReadabilityTest(1)
-ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample1Score." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "custom-test-example1-score." .. FileExtension)
 a:Close()
 Application.RemoveAllCustomTests()
 
@@ -751,7 +751,7 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleAggressiveList." .. F
 
 sp:CloseProperties()
 
-ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleWhereExcluded." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-where-excluded." .. FileExtension,
 HighlightedReportType.GrammarHighlightedIssues, true, 929, 934)
 
 sp:SetIncludeIncompleteTolerance(20)
@@ -849,7 +849,7 @@ sp:Close()
 sp = StandardProject(ScreenshotProjectsFolder .. "Press Release.rtf")
 
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
-ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionTagsExampleListExcluded." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-tags-example-list-excluded." .. FileExtension,
 HighlightedReportType.GrammarHighlightedIssues, true, 1318, 1408)
 
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)

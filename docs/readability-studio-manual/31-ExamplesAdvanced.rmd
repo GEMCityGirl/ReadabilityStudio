@@ -104,7 +104,7 @@ knitr::include_graphics("images/ExclusionExampleAggressiveList.png")
 Checking this option will exclude\index{sentences!aggressively excluding} any valid sentence (containing less than 10 words) that is inside of a block of incomplete sentences. Click `r keys("OK")` and note how *Where:* is now excluded:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExclusionExampleWhereExcluded.png")
+knitr::include_graphics("images/exclusion-example-where-excluded.png")
 ```
 
 The next item to note is the sentence *Number of characters\.\.\.*. This is really an item in a table that is missing a period, so we should be excluding it. However, currently it is being included because it contains more than 15 words. To adjust this, go back to the **Document Indexing** options for this project. Change the value for **Include incomplete sentences containing more than [15] words** to a higher value (e.g., 20) and click `r keys("OK")`:
@@ -212,7 +212,7 @@ The first step is to open the example file "Press Release." From the **Help** ta
 Once the project is loaded, click **Grammar** on the project's sidebar and then click **Highlighted Report**. In this window, any text that is being excluded will be highlighted gray. For example, an indented list is being excluded, as shown below:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExclusionTagsExampleListExcluded.png")
+knitr::include_graphics("images/exclusion-tags-example-list-excluded.png")
 ```
 
 However, note that are a few placeholders in this file, such as *\<Product\>*:
