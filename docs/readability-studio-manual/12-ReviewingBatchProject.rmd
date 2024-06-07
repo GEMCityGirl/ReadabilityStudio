@@ -25,7 +25,7 @@ knitr::include_graphics("images/viewitemrawscores.png")
 The **Goals** subitem will display any [goals](#reviewing-goals) that are currently failing in the project:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/BatchProjectGoals.png")
+knitr::include_graphics("images/batch-project-goals.png")
 ```
 
 Above, we can see that most of the documents are passing the goal of having an ELF score below 12. However, most are failing to have an FRE score above 60.

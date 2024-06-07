@@ -251,7 +251,7 @@ Application.DisableAllWarnings()
 
 bp = BatchProject(ScreenshotProjectsFolder .. "Topics2008(Improved) Bundle.rsbp")
 bp:SelectWindow(SideBarSection.ReadabilityScores, ListType.Goals)
-ScreenshotLib.SnapScreenshotOfListControl(ImagePath .. "BatchProjectGoals." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfListControl(ImagePath .. "batch-project-goals." .. FileExtension,
     ListType.Goals, -1, 3)
 bp:Close()
 
@@ -603,7 +603,7 @@ ScreenshotLib.ShowCustomTestDialogGeneralSettings("Flesch (IC)", "ROUND(206.835 
 ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample1TestName." .. FileExtension, 7000, 7000)
 
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("Flesch (IC)", "ROUND(206.835 -\n(84.6*(SyllableCount()/WordCount())) -\n(1.015*(WordCount()/IndependentClauseCount())))", TestType.IndexValue)
-ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample1Finished." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "custom-test-example1-finished." .. FileExtension)
 
 ScreenshotLib.CloseCustomTestDialog()
 
@@ -665,7 +665,7 @@ ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "custom-index-
     7003, "Use stemming to search for similar words", "", true)
 
 ScreenshotLib.ShowCustomTestDialogProperNounsAndNumbers(0, false)
-ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "CustomIndexTestExampleProperAndNumeralsFinished." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "custom-index-test-example-proper-and-numerals-finished." .. FileExtension,
     7004, "Treat numerals as familiar", "", true, 200)
 
 ScreenshotLib.CloseCustomTestDialog()
@@ -851,19 +851,19 @@ ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionTagsExampleListE
 HighlightedReportType.GrammarHighlightedIssues, true, 1318, 1408)
 
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
-ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionTagsExampleNotExcluding." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-tags-example-not-excluding." .. FileExtension,
 HighlightedReportType.GrammarHighlightedIssues, true,
     865, 874, 892, 903, 1415, 1530)
 
 sp:SetBlockExclusionTags("<>")
 sp:Reload()
 
-ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionTagsExampleExcluding." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-tags-example-excluding." .. FileExtension,
 HighlightedReportType.GrammarHighlightedIssues, true,
     865, 872, 892, 901, 1414, 1526)
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
-ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionTagsExampleOptions." .. FileExtension, 1078, 1079, 1078)
+ScreenshotLib.SnapScreenshot(ImagePath .. "exclusion-tags-example-options." .. FileExtension, 1078, 1079, 1078)
 sp:CloseProperties()
 
 sp:Close(false)

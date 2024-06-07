@@ -76,7 +76,7 @@ The final step is to specify the type of test that this is. Flesch Reading Ease 
 Once finished, the dialog will look like this:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/CustomTestExample1Finished.png")
+knitr::include_graphics("images/custom-test-example1-finished.png")
 ```
 
 Click the `r keys("OK")` button and our new test will be added to the system.
@@ -305,7 +305,7 @@ knitr::include_graphics("images/CustomTestTreat.png")
 For this test, we are only looking for words explicitly from our list. This means that we will need to ignore proper nouns and numbers. Set **Proper Nouns/Familiarity** to **Count as unfamiliar** and uncheck **Treat numerals as familiar**:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/CustomIndexTestExampleProperAndNumeralsFinished.png")
+knitr::include_graphics("images/custom-index-test-example-proper-and-numerals-finished.png")
 ```
 
 Click the `r keys("OK")` button and our new test will be added to the system.
