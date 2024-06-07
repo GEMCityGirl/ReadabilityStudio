@@ -3716,7 +3716,7 @@ MainFrame::MainFrame(wxDocManager* manager, wxFrame* frame,
             wxLaunchDefaultApplication(manualPath);
             },
         XRCID("ID_SHORTCUTS_CHEATSHEET"));
-    
+
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED,
         [this]([[maybe_unused]] wxRibbonButtonBarEvent&)
             {

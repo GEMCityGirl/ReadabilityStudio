@@ -241,7 +241,7 @@ knitr::include_graphics("images/custom-index-test-example-name.png")
 Because this test will use our own special type of scoring, set **Test type** to **Index value**:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/CustomIndexTestExampleTestType.png")
+knitr::include_graphics("images/custom-index-test-example-test-type.png")
 ```
 
 Next, we will enter the formula. Enter the following into the **Formula** field:

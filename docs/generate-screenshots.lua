@@ -416,10 +416,10 @@ sp:SelectRowsInWordsBreakdownList(ListType.ThreePlusSyllableWords, 1, 3, 4, 5, 7
                                   16, 18, 19, 22, 23, 25, 26, 27, 30, 31, 32, 33, 34, 35, 36, 37, 40)
 ScreenshotLib.SnapScreenshot(ImagePath .. "difficultwords2." .. FileExtension, 500)
 
-sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "GraphBarsRectangular." .. FileExtension)
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "graph-bars-rectangular." .. FileExtension)
 sp:SetStippleImage(ScreenshotProjectsFolder .. "Book.png")
 sp:SetBarChartBarEffect(BoxEffect.StippleImage)
-sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "GraphCustomBrush." .. FileExtension)
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "graph-custom-brush." .. FileExtension)
 
 sp:SetStippleShapeColor("SmokyBlack")
 sp:SetStippleShape("newspaper")
@@ -651,7 +651,7 @@ ScreenshotLib.ShowCustomTestDialogGeneralSettings("Buzz Index")
 ScreenshotLib.SnapScreenshot(ImagePath .. "custom-index-test-example-name." .. FileExtension, 7000, 7000, 7001)
 
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("Buzz Index", "", TestType.IndexValue)
-ScreenshotLib.SnapScreenshot(ImagePath .. "CustomIndexTestExampleTestType." .. FileExtension, 7001, 7001, 7001)
+ScreenshotLib.SnapScreenshot(ImagePath .. "custom-index-test-example-test-type." .. FileExtension, 7001, 7001, 7001)
 
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("Buzz Index", "IF((FamiliarWordCount()/WordCount())*100 > 15, 3,\n  IF((FamiliarWordCount()/WordCount())*100 > 5, 2, 1) )", TestType.IndexValue)
 ScreenshotLib.SnapScreenshot(ImagePath .. "custom-index-test-example-formula." .. FileExtension, 7002)
@@ -890,7 +890,7 @@ sp:Close()
 sp = StandardProject(ScreenshotProjectsFolder .. "Job Posting.odt")
 sp:SetParagraphsParsingMethod(ParagraphParse.EachNewLineIsAParagraph)
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
-ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "JobPostingHighlightedText." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "job-posting-highlighted-text." .. FileExtension,
     HighlightedReportType.GrammarHighlightedIssues, true, 257, 399)
 sp:Close(false)
 
@@ -971,26 +971,26 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "wizardbatchselectfilessamenames." .. 
 ScreenshotLib.CloseBatchProjectWizard()
 
 ScreenshotLib.ShowDocGroupSelectDlg(1)
-ScreenshotLib.SnapScreenshot(ImagePath .. "GroupLabelDescSelected." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "group-label-descselected." .. FileExtension)
 ScreenshotLib.CloseDocGroupSelectDlg()
 
 ScreenshotLib.ShowDocGroupSelectDlg(2, "Examples")
-ScreenshotLib.SnapScreenshot(ImagePath .. "GroupLabelExamples." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "group-label-examples." .. FileExtension)
 ScreenshotLib.CloseDocGroupSelectDlg()
 
 ScreenshotLib.ShowDocGroupSelectDlg(2, "Notes")
-ScreenshotLib.SnapScreenshot(ImagePath .. "GroupLabelNotes." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "group-label-notes." .. FileExtension)
 ScreenshotLib.CloseDocGroupSelectDlg()
 
 -- Difficult words example
 --------------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "Instructional Disclaimer.odt")
 sp:ExportGraph(GraphType.WordCloud, ImagePath .. "ExampleDifficultWordsWordCloud." .. FileExtension)
-sp:ExportGraph(GraphType.SyllableHistogram, ImagePath .. "ExampleDifficultSyllablesHistogram." .. FileExtension)
+sp:ExportGraph(GraphType.SyllableHistogram, ImagePath .. "example-difficult-syllables-histogram." .. FileExtension)
 sp:ShowcaseComplexWords(true)
-sp:ExportGraph(GraphType.SyllableHistogram, ImagePath .. "ExampleDifficultSyllablesHistogramShowcased." .. FileExtension)
-sp:ExportGraph(GraphType.SyllablePieChart, ImagePath .. "ExampleDifficultSyllablesPieChart." .. FileExtension)
-sp:ExportGraph(GraphType.SentenceHeatmap, ImagePath .. "ExampleDifficultSentencesHeatmap." .. FileExtension)
+sp:ExportGraph(GraphType.SyllableHistogram, ImagePath .. "example-difficult-syllables-histogram-showcased." .. FileExtension)
+sp:ExportGraph(GraphType.SyllablePieChart, ImagePath .. "example-difficult-syllables-pie-chart." .. FileExtension)
+sp:ExportGraph(GraphType.SentenceHeatmap, ImagePath .. "example-difficult-sentences-heatmap." .. FileExtension)
 sp:Close()
 
 -- "Retro" looking graph example

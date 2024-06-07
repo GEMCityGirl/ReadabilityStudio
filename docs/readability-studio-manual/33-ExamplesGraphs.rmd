@@ -124,7 +124,7 @@ In this example, we will use stipples\index{graphs!customizing!stipples|(} for o
 First, create or open any standard project and select **Words Breakdown** on the sidebar. Next, select the **Word Counts** subitem and note how the bars will be filled rectangles:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/GraphBarsRectangular.png")
+knitr::include_graphics("images/graph-bars-rectangular.png")
 ```
 
 On the **Home** tab of the ribbon, click the `r keys('Bar Style')` button and select **Select stipple image...** from the menu:
@@ -134,7 +134,7 @@ On the **Home** tab of the ribbon, click the `r keys('Bar Style')` button and se
 After selecting an image, the bars will be drawn as a repeating pattern of this image:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/GraphCustomBrush.png")
+knitr::include_graphics("images/graph-custom-brush.png")
 ```
 
 ::: {.tipsection data-latex=""}

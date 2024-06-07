@@ -22,7 +22,7 @@ Close this document and return to *Readability Studio*. Click the `r keys('Examp
 Finally, click the `r keys('Finish')` button to create the project. When the project appears, select **Grammar** on the sidebar and select **Highlighted Report**. Note how the job descriptors at the top have been preserved as separate lines:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/JobPostingHighlightedText.png")
+knitr::include_graphics("images/job-posting-highlighted-text.png")
 ```
 
 Because these are terse, unterminated lines of text, they will also be excluded from our analyses.

@@ -454,13 +454,13 @@ Next, click **Syllable Counts** on the sidebar (the one with the histogram icon)
 Although that is the pattern we see here, it has an alarming number of complex words — approximately a third of the document.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExampleDifficultSyllablesHistogram.png")
+knitr::include_graphics("images/example-difficult-syllables-histogram")
 ```
 
 To draw attention to these groups of words, press the `r keys('Showcase Complexity')` on the ribbon. Now the cumulative bar group and labels will only be shown for these bars:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExampleDifficultSyllablesHistogramShowcased.png")
+knitr::include_graphics("images/example-difficult-syllables-histogram-showcased.png")
 ```
 
 To better visualize how much of this document is complex, click the **Syllable Counts** on the sidebar (the one with the pie icon).
@@ -468,7 +468,7 @@ Here we can see how much of the document consists of complex words by looking at
 We can further see a breakdown of these complex words in the inner ring, where almost a quarter of the document is three-syllable words:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExampleDifficultSyllablesPieChart.png")
+knitr::include_graphics("images/example-difficult-syllables-pie-chart.png")
 ```
 
 Note that because we previously pressed `r keys('Showcase Complexity')`, the simple-word slices are translucent and their labels are hidden.
@@ -479,7 +479,7 @@ For each box, its length is shown as number at its center. Also, the darker the 
 In this example, we can see that the sixth paragraph has ten sentences in it:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExampleDifficultSentencesHeatmap.png")
+knitr::include_graphics("images/example-difficult-sentences-heatmap.png")
 ```
 
 There are also a few lengthy sentences in this paragraph, judging from the numbers and dark colors across the row.

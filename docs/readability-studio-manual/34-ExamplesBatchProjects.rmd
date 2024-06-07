@@ -88,7 +88,7 @@ Sometimes documents that we receive do not have descriptive names that are easil
 In this example, we will show how to include descriptive labels next to our documents in a batch so that we can distinguish between them.
 
 :::{.wrapfigure data-latex="{r}{0.5\\textwidth}" style="width: 48%;"}
-![](images/GroupLabelDescSelected.png){width=48%}
+![](images/group-label-descselected.png){width=48%}
 :::
 
 On the **Home** tab of the ribbon, click the `r keys('New')` button. When prompted for which type of project to create, select **Batch Project**.
@@ -125,13 +125,13 @@ On this dialog, we can either specify a single label for all documents or use th
 For this example, we are wanting to group this folders’ documents together, so select **Use a grouping label**, enter a label (e.g., *Notes*) and click `r keys('OK')`.
 
 ```{r echo=F, fig.align='center', out.width='50%'}
-knitr::include_graphics("images/GroupLabelNotes.png")
+knitr::include_graphics("images/group-label-notes.png")
 ```
 
 Repeat this process with another folder, but enter a different grouping label. For example, we could select a folder of help examples and apply the label *Examples* to it:
 
 ```{r echo=F, fig.align='center', out.width='50%'}
-knitr::include_graphics("images/GroupLabelExamples.png")
+knitr::include_graphics("images/group-label-examples.png")
 ```
 
 ::: {.notesection data-latex=""}
