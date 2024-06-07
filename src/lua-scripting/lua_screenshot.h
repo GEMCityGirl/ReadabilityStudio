@@ -155,6 +155,7 @@ namespace LuaScripting
         { "CloseOptions", CloseOptions },
         { "ShowTestBundleDialog", ShowTestBundleDialog },
         { "CloseTestBundleDialog", CloseTestBundleDialog },
+        { "ShowCustomTestDialogFunctionBrowser", ShowCustomTestDialogFunctionBrowser },
         { "ShowCustomTestDialogGeneralSettings", ShowCustomTestDialogGeneralSettings },
         { "ShowCustomTestDialogProperNounsAndNumbers", ShowCustomTestDialogProperNounsAndNumbers },
         { "ShowCustomTestDialogFamiliarWords", ShowCustomTestDialogFamiliarWords },
