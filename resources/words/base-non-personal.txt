@@ -727,6 +727,7 @@ Belmopan
 Beloit
 Belorussia
 Belorussian
+Belron
 Belton
 Beltsville
 Belva
@@ -876,6 +877,7 @@ Boheme
 Bohemia
 Bohemian
 Boise
+Bokmaal
 Bokmål
 Bolingbrook
 Bolivarian
@@ -2302,6 +2304,7 @@ Finnish
 Finsbury
 Firebase
 Firebird
+FireEye
 Firefox
 FireLake
 Firelands
@@ -3299,6 +3302,7 @@ Joycean
 JP
 JPMorgan
 Jpn
+JQuery
 JScript
 Juba
 Jubilarian
@@ -4252,6 +4256,7 @@ Montrose
 Montréal
 Montserrat
 Moodle
+Mooncake
 Moondust
 Moor
 Moorestown

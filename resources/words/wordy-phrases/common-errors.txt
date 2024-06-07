@@ -141,6 +141,10 @@ Jeruselum	Jerusalem	3
 Jeruselum's	Jerusalem's	3		
 John Singer Sergeant	John Singer Sargent	3		
 John Singer Sergeant's	John Singer Sargent's	3		
+John Turkey	John Tukey	3		
+John Turkey's	John Tukey's	3		
+John Wilder Turkey	John Wilder Tukey	3		
+John Wilder Turkey's	John Wilder Tukey's	3		
 Jospeh	Joseph	3		
 Jospeh's	Joseph's	3		
 Juadaism	Judaism	3		
@@ -252,6 +256,7 @@ Sebastains	Sebastians	3
 Sweeden	Sweden	3		
 Sweeden's	Sweden's	3		
 Tolkein	Tolkien	3		
+Turkey hinges	Tukey hinges	3		
 Ukranian	Ukrainian	3		
 UnitesStates	United States	3		
 Utahns	Utahans	3		

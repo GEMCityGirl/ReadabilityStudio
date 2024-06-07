@@ -1435,6 +1435,7 @@ addle
 addled
 addles
 addling
+addons
 address
 address's
 addressability
@@ -7896,6 +7897,7 @@ audiovisual
 audiovisuals
 audit
 audit's
+auditability
 auditable
 audited
 auditing
@@ -8297,6 +8299,7 @@ automapping
 automaps
 automata
 automata's
+automatable
 automate
 automated
 automates
@@ -8380,6 +8383,9 @@ autoregulatory
 autorepeat
 autorepeating
 autorepeats
+autoreplies
+autoreply
+autoreply's
 autorequest
 autorequested
 autorequesting
@@ -13317,6 +13323,7 @@ bloc
 bloc's
 block
 block's
+blockable
 blockade
 blockade's
 blockaded
@@ -19568,6 +19575,9 @@ CD's
 CDC
 CDC's
 CDMA
+cdmlet
+cdmlet's
+cdmlets
 cDNA
 cDNA's
 cDNAs
@@ -22852,6 +22862,10 @@ clicker's
 clickers
 clickety
 clicking
+clickjack
+clickjacked
+clickjacking
+clickjacks
 clicks
 clickstream
 clickstream's
@@ -23631,6 +23645,7 @@ codegens
 codeine
 codeine's
 codeines
+codeless
 codename
 codenamed
 codepage
@@ -31091,6 +31106,8 @@ cyberhealth
 cyberinfrastructure
 cyberinfrastructure's
 cyberinfrastructures
+cyberinsurance
+cyberinsurance's
 cyberlaw
 cybernate
 cybernation
@@ -31798,12 +31815,17 @@ datafile
 datafile's
 datafiles
 dataflow
+dataflow's
+dataflows
 datagram
 datagram's
 datagrams
 datalab
 datalab's
 datalabs
+datalake
+datalake's
+datalakes
 datamart
 datamart's
 datamarts
@@ -38501,6 +38523,9 @@ documenter's
 documenters
 documenting
 documents
+documentset
+documentset's
+documentsets
 docuseries
 docx
 DOD
@@ -39691,6 +39716,7 @@ drillmaster
 drillmaster's
 drillmasters
 drills
+drillthrough
 drily
 drink
 drinkable
@@ -54201,6 +54227,7 @@ georeferencing
 georegion
 georegion's
 georegions
+geos
 geoscape
 geoscience
 geoscience's
@@ -72695,6 +72722,7 @@ laughter's
 laughters
 launce
 launch
+launchable
 launched
 launcher
 launcher's
@@ -78132,6 +78160,9 @@ matchbooks
 matchbox
 matchbox's
 matchboxes
+matchcode
+matchcode's
+matchcodes
 matched
 matcher
 matcher's
@@ -84161,6 +84192,7 @@ multifunctioned
 multigas
 multigenerational
 multigenic
+multigeo
 multihome
 multihomed
 multilanguage
@@ -84304,6 +84336,7 @@ multipurpose
 multiracial
 multiread
 multiregion
+multiregional
 multiregions
 multirequest
 multirequest's
@@ -91855,6 +91888,10 @@ overemphasizer
 overemphasizers
 overemphasizes
 overemphasizing
+overengineer
+overengineered
+overengineering
+overengineers
 overenthusiastic
 overestimate
 overestimated
@@ -102496,6 +102533,9 @@ price
 price's
 priced
 priceless
+pricelist
+pricelist's
+pricelists
 pricepoint
 pricepoint's
 pricepoints
@@ -104143,6 +104183,9 @@ provisioned
 provisioner
 provisioner's
 provisioning
+provisionment
+provisionment's
+provisionments
 provisions
 proviso
 proviso's
@@ -109854,6 +109897,10 @@ reincorporation
 reincorporations
 reindeer
 reindeer's
+reindex
+reindexed
+reindexes
+reindexing
 reindicate
 reindicated
 reindicates
@@ -110791,6 +110838,10 @@ reparation
 reparation's
 reparations
 reparative
+reparent
+reparented
+reparenting
+reparents
 reparse
 reparsed
 reparses
@@ -133466,6 +133517,9 @@ tequila
 tequila's
 tequilas
 Tera
+terabit
+terabit's
+terabits
 terabyte
 terabytes
 teragram
@@ -141090,6 +141144,10 @@ unexcited
 unexciting
 unexcused
 unexecuted
+unexempt
+unexempted
+unexempting
+unexempts
 unexpanded
 unexpected
 unexpectedly
@@ -141625,6 +141683,7 @@ unintelligibleness
 unintelligibleness's
 unintelligibly
 unintended
+unintendedly
 unintentional
 unintentionally
 uninterested
@@ -143073,8 +143132,11 @@ untowardness
 untowardness's
 untraceable
 untraced
+untrack
 untrackable
 untracked
+untracking
+untracks
 untraditional
 untrained
 untrammeled
@@ -143479,6 +143541,10 @@ upscaling
 upsell
 upselling
 upsells
+upsert
+upserted
+upserting
+upserts
 upset
 upsets
 upsetting
@@ -143539,6 +143605,7 @@ upswings
 upswung
 uptake
 uptake's
+uptaken
 uptakes
 upthrust
 upthrust's
@@ -144476,6 +144543,7 @@ vaulters
 vaulting
 vaulting's
 vaultings
+vaultive
 vaults
 vaunt
 vaunted
@@ -149500,6 +149568,9 @@ workspaces
 workstation
 workstation's
 workstations
+workstream
+workstream's
+workstreams
 workstudies
 workstudy
 workstudy's
@@ -150445,6 +150516,9 @@ zesty
 zeta
 zeta's
 zetas
+zettabyte
+zettabyte's
+zettabytes
 zeugma
 zeugma's
 zidovudine
