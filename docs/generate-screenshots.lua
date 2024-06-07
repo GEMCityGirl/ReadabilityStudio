@@ -1056,7 +1056,7 @@ sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleBarChartOrientationC
 -- change bar chart effects
 sp:SetBarChartBarEffect(BoxEffect.ThickWatercolor)
 sp:Reload()
-sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleBarChartEffectsChanged." .. FileExtension)
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "example-barchart-effects-changed." .. FileExtension)
 
 -- remove the bar labels
 sp:DisplayBarChartLabels(false)

@@ -37,7 +37,7 @@ Finally, let's change how the bars are drawn. Click the `r keys("Bar Style")` bu
 The bars will now have a watercolor paint effect, rather than the default glassy look:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExampleBarChartEffectsChanged.png")
+knitr::include_graphics("images/example-barchart-effects-changed.png")
 ```
 
 Images and shapes can also be used to draw our bars, as demonstrated in a [later example](#stipple-brush-example).
