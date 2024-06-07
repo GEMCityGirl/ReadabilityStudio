@@ -840,7 +840,17 @@ bool WebHarvester::VerifyUrlDomainCriteria(const wxString& url)
         }
     else if (m_domainRestriction == DomainRestriction::RestrictToFolder)
         {
-        if (m_fullDomainFolderPath != formatUrl.get_directory_path().c_str())
+        /// @todo simplify this with start_with() when moving to C++20
+        std::wstring targetUrlPath{ formatUrl.get_directory_path() };
+        if (targetUrlPath.length() < m_fullDomainFolderPath.length())
+            {
+            return false;
+            }
+        if (targetUrlPath.length() > m_fullDomainFolderPath.length())
+            {
+            targetUrlPath.erase(m_fullDomainFolderPath.length());
+            }
+        if (m_fullDomainFolderPath.compare(targetUrlPath.c_str()) != 0)
             {
             return false;
             }

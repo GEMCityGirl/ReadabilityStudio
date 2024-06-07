@@ -65,7 +65,8 @@ Select from this list the domain restriction that you want to use.
 
 **Restricted to external domains**: Select this option to only harvest links from domains other than the webpage that you specify.
 
-**Restricted to same folder**: Select this option to only harvest links from the same web folder as the base URL. For example, if your base webpage is *www.mybusiness.com/history/aboutus.html*, then links will only be harvested from *www.mybusiness.com/history/*.
+**Restricted to same folder**: Select this option to only harvest links from the same web folder as the base URL.
+For example, if your base webpage is *www.mybusiness.com/history/aboutus.html*, then links will only be harvested from *www.mybusiness.com/history/* (and any of its sub-directories).
 ::::
 
 **User-defined Domain(s)**: Enter all user-defined domains in this list. This option is only applicable if domain restriction is set to user-defined domains.
