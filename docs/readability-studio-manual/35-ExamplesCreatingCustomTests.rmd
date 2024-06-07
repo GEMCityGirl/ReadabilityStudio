@@ -204,7 +204,7 @@ Note how there are far fewer unfamiliar New Dale-Chall (Baking) words when compa
 
 We can also review these words in their original context. Click on the **Highlighted Reports** icon on the project pane, and then select the **New Dale-Chall (Baking)** page. Here we can see exactly where all the unfamiliar New Dale-Chall (Baking) words are in our recipe.
 
-![](images/CustomTestExample2CustomText.png)
+![](images/custom-test-example2-custom-text.png)
 
 At this point, we have a couple of options. The first is to replace some of these unfamiliar words so that our students can better understand the recipe. If the reading level of this recipe was higher, this would be recommended. However, because this recipe already has a low reading level and contains few unfamiliar words, this may not be necessary.
 

@@ -158,7 +158,7 @@ knitr::include_graphics("images/ExclusionExampleNumbersExcludedNow.png")
 Also note how proper nouns, such as *Danielson-Bryan* and *UNIVAC*, are now excluded:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExclusionExampleProperExcludedNow.png")
+knitr::include_graphics("images/exclusion-example-proper-excluded-now.png")
 ```
 
 You can also exclude specific words and phrases. From the **Document Indexing** options, click the edit button in the **Words & phrases to exclude** section:

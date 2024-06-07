@@ -131,7 +131,7 @@ ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "CustomTestTre
 ScreenshotLib.SetCustomTestDialogDocumentTypes(false,false,false,false,true)
 ScreenshotLib.SetCustomTestDialogIndustries(false,false,true,false,false,false,false)
 ScreenshotLib.ShowCustomTestDialogClassification()
-ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "CustomTestWizardSettings." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "custom-test-wizard-settings." .. FileExtension,
     7005, "", "", true)
 
 ScreenshotLib.CloseCustomTestDialog()
@@ -685,7 +685,7 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample2Score." .. FileExte
 ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "RibbonEditScores." .. FileExtension, 0, RibbonButtonBars.Edit)
 
 a:SelectHighlightedWordReport(Application.GetTestId("New Dale-Chall (Baking)"))
-ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample2CustomText." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "custom-test-example2-custom-text." .. FileExtension)
 ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "ribbon-edit-text-window." .. FileExtension, 0, RibbonButtonBars.Edit)
 
 a:SelectWindow(SideBarSection.WordsBreakdown, ListType.DaleChallUnfamiliarWords)
@@ -808,7 +808,7 @@ sp:Reload()
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleNumbersExcludedNow." .. FileExtension,
     HighlightedReportType.GrammarHighlightedIssues, true, 281, 284, 539, 543)
 
-ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleProperExcludedNow." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-proper-excluded-now." .. FileExtension,
 HighlightedReportType.GrammarHighlightedIssues, true, 262, 277, 532, 538)
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
@@ -1007,7 +1007,7 @@ sp:SetYAxisFont("MONOSPACE")
 sp:SetBarChartBarColor("Timberwolf")
 sp:SetBarChartBarEffect(BoxEffect.Solid)
 sp:Reload()
-sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphRetro." .. FileExtension)
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "example-graph-retro." .. FileExtension)
 sp:Close()
 
 -- Graph editing example (selective colorization)
@@ -1063,7 +1063,7 @@ sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "example-barchart-effects-ch
 -- remove the bar labels
 sp:DisplayBarChartLabels(false)
 sp:Reload()
-sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleBarChartNoLabelsChanged." .. FileExtension)
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "example-barchart-no-labels-changed." .. FileExtension)
 
 -- change color of background
 sp:SetGraphBackgroundColor("AntiqueWhite")

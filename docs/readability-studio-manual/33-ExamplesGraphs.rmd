@@ -47,7 +47,7 @@ Finally, let's remove the labels to simplify the graph. Click the `r keys("Label
 Now the bars will be drawn without labels above them:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExampleBarChartNoLabelsChanged.png")
+knitr::include_graphics("images/example-barchart-no-labels-changed.png")
 ```
 :::
 \index{graphs!customizing!bars|)}
@@ -220,5 +220,5 @@ Do the same for  `r menu(c('Font', 'Y Axis...'))` and `r menu(c('Font', 'Top Tit
 Once we are done, our bar chart will have a simpler, "retro" look:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExampleGraphRetro.png")
+knitr::include_graphics("images/example-graph-retro.png")
 ```

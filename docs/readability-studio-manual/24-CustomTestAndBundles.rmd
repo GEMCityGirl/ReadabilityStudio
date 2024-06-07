@@ -74,7 +74,7 @@ Finally, you can specify how this test interacts with the [**New Project**](#cre
 
 For example, select the **Children's literature** and **Children's healthcare** check boxes (as shown below) and click `r keys("OK")`.
 
-![](images/CustomTestWizardSettings.png)
+![](images/custom-test-wizard-settings.png)
 
 Now create a new project and select **Children's healthcare** as the industry type. Once the program loads the document, your custom test will be automatically included in the results.
 
