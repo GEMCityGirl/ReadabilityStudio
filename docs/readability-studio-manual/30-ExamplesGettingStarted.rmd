@@ -454,7 +454,7 @@ Next, click **Syllable Counts** on the sidebar (the one with the histogram icon)
 Although that is the pattern we see here, it has an alarming number of complex words — approximately a third of the document.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/example-difficult-syllables-histogram")
+knitr::include_graphics("images/example-difficult-syllables-histogram.png")
 ```
 
 To draw attention to these groups of words, press the `r keys('Showcase Complexity')` on the ribbon. Now the cumulative bar group and labels will only be shown for these bars:

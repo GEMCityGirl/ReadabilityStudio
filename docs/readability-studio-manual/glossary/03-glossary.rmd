@@ -76,7 +76,7 @@ Outlier values that do not fall within these areas are plotted outside of the wh
 *Readability Studio* uses the Tukey hinges method for calculating quartiles.
 ::::
 
-```{r boxplot, echo=F, fig.cap="Visual representation of a box plot's layout, adapted from DeCicco (“Exploring ggplot2 boxplots”)", fig.align='center'}
+```{r boxplot, echo=F, fig.cap="Visual of a box plot's layout, adapted from DeCicco (“Exploring ggplot2 boxplots”)", fig.align='center'}
 # translatable content
 WhiskerLabel1 <- "Largest value within 1.5 times\ninterquartile range above\n75th percentile"
 WhiskerLabel2 <- "Smallest value within 1.5 times\ninterquartile range below\n25th percentile"
