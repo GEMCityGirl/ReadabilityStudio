@@ -425,6 +425,8 @@ sp:SetStippleShapeColor("SmokyBlack")
 sp:SetStippleShape("newspaper")
 sp:SetBarChartBarEffect(BoxEffect.StippleShape)
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "graph-stipple-shape." .. FileExtension)
+sp:SetStippleShape("car")
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "graph-stipple-shape-car." .. FileExtension)
 
 sp:Close()
 Application.RemoveAllCustomTests()

@@ -146,8 +146,12 @@ Note that images of any size can be used. If the image is larger than the bars' 
 Along with images, a set of predefined shapes are also available to choose from. To select one, click the `r keys('Bar Style')` button again and select **Select stipple shape...** from the menu.
 Select a shape from the list (e.g., **Car** or **Newspaper**), and this shape will then be used for the bar pattern:
 
-```{r echo=F, fig.align='center', fig.cap="Bars made out of newspapers", out.width='75%'}
+```{r echo=F, fig.align='center', fig.cap="Newspapers used to draw bars", out.width='75%'}
 knitr::include_graphics("images/graph-stipple-shape.png")
+```
+
+```{r echo=F, fig.align='center', fig.cap="Cars (specifically, a 2006 Scion xB) used to draw bars", out.width='75%'}
+knitr::include_graphics("images/graph-stipple-shape-car.png")
 ```
 
 These features can also be applied to box plots and histograms. With any of these graph types selected, perform the same operation from the ribbon to draw with a stipple.
