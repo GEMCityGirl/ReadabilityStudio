@@ -536,7 +536,7 @@ void ProjectView::OnHyperlinkClicked(wxHtmlLinkEvent& event)
         {
         GetSideBar()->SelectSubItem(GetSideBar()->FindSubItem(FRY_PAGE_ID));
         }
-    else if (event.GetLinkInfo().GetHref() == L"#FleschChart")
+    else if (event.GetLinkInfo().GetHref() == L"#flesch-chart")
         {
         GetSideBar()->SelectSubItem(GetSideBar()->FindSubItem(FLESCH_CHART_PAGE_ID));
         }
@@ -544,7 +544,7 @@ void ProjectView::OnHyperlinkClicked(wxHtmlLinkEvent& event)
         {
         GetSideBar()->SelectSubItem(GetSideBar()->FindSubItem(DB2_PAGE_ID));
         }
-    else if (event.GetLinkInfo().GetHref() == L"#LixGauge")
+    else if (event.GetLinkInfo().GetHref() == L"#lix-gauge")
         {
         GetSideBar()->SelectSubItem(GetSideBar()->FindSubItem(LIX_GAUGE_PAGE_ID));
         }
@@ -564,7 +564,7 @@ void ProjectView::OnHyperlinkClicked(wxHtmlLinkEvent& event)
         {
         GetSideBar()->SelectSubItem(GetSideBar()->FindSubItem(FRASE_PAGE_ID));
         }
-    else if (event.GetLinkInfo().GetHref() == L"#Schwartz")
+    else if (event.GetLinkInfo().GetHref() == L"#schwartz")
         {
         GetSideBar()->SelectSubItem(GetSideBar()->FindSubItem(SCHWARTZ_PAGE_ID));
         }

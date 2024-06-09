@@ -987,7 +987,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         readability::readability_test test(ReadabilityMessages::SCHWARTZ(),
             XRCID("ID_SCHWARTZ"),
             _DT(L"Schwartz"), _DT(L"Schwartz German Readability Graph"),
-            _(L"The <a href=\"#Schwartz\">Schwartz German Readability Graph</a> "
+            _(L"The <a href=\"#schwartz\">Schwartz German Readability Graph</a> "
                "is designed for classroom instructional materials."),
             readability::readability_test_type::grade_level, true,
             L"");
@@ -1221,7 +1221,7 @@ void BaseProject::InitializeStandardReadabilityTests()
             XRCID("ID_LIX"),
             _DT(L"Lix"), _DT(L"L\U000000E4sbarhetsindex (Lix)"),
             _(L"The L\U000000E4sbarhetsindex (Lix) formula can be used on documents of any Western European language. "
-               "A <a href=\"#LixGauge\">chart</a> is also available to visualize the score."),
+               "A <a href=\"#lix-gauge\">chart</a> is also available to visualize the score."),
             readability::readability_test_type::index_value_and_grade_level, true,
             L"");
         test.add_document_classification(readability::document_classification::adult_literature_document, true);
@@ -1525,7 +1525,7 @@ void BaseProject::InitializeStandardReadabilityTests()
                "by many U.S. government agencies, including the U.S. Department of Defense. "
                "Scores range from 0-100 (the higher the score, the easier to read). "
                "Average documents should be within the range of 60-70. "
-               "A <a href=\"#FleschChart\">chart</a> is also available to visualize the score."),
+               "A <a href=\"#flesch-chart\">chart</a> is also available to visualize the score."),
             readability::readability_test_type::index_value, true,
             _DT(L"ROUND(206.835 - (84.6*(B/W)) - (1.015*(W/S)))"));
         test.add_document_classification(readability::document_classification::general_document, true);

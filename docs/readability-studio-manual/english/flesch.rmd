@@ -45,7 +45,7 @@ glue('Note that this test treats numerals\\index{numerals!Flesch Reading Ease} a
 Along with the raw score, a chart is also available to visualize the score's meaning:
 
 ```{r fleschChart, echo=F, fig.cap='Flesch chart', fig.align='center', out.width='75%'}
-knitr::include_graphics("images/FleschChart.png")
+knitr::include_graphics("images/flesch-chart.png")
 ```
 
 This chart consists of three “rulers.” The middle ruler displays the Flesch score as a red point. On both sides of this ruler are brackets showing the reading levels. The bracket that the point falls into will indicate the reading level of the document. The rulers on the left and right of the score ruler will display the factors used to calculate the score. A straight line is drawn between these points to demonstrate how the factors calculated the score.

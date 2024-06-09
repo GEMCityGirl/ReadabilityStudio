@@ -98,7 +98,7 @@ knitr::include_graphics("images/exclusion-example-partial-excluded.png")
 The first is the sentence *Where:.* Sentences that end with a semicolon and are followed by a list will normally be considered valid. In this case though, we will want to exclude this sentence too. Open the **Properties** dialog again, click **Analysis** and select **Document Indexing**. Check the option **Aggressively deduce lists**, as shown below:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExclusionExampleAggressiveList.png")
+knitr::include_graphics("images/exclusion-example-aggressive-list.png")
 ```
 
 Checking this option will exclude\index{sentences!aggressively excluding} any valid sentence (containing less than 10 words) that is inside of a block of incomplete sentences. Click `r keys("OK")` and note how *Where:* is now excluded:
@@ -116,7 +116,7 @@ knitr::include_graphics("images/ExclusionExampleIncompLengthValue.png")
 Note how the *Number of characters\.\.\.* sentence is now excluded:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExclusionExampleLongSentenceExcluded.png")
+knitr::include_graphics("images/exclusion-example-long-sentence-excluded.png")
 ```
 
 Now scroll to the bottom of the report window and note the copyright notice:
@@ -140,7 +140,7 @@ knitr::include_graphics("images/ExclusionExampleCopyrightExcludedNow.png")
 Along with incomplete sentences, specific types of words can also be excluded. For example, at the bottom of this window note the hyperlink *http://www.jstor.org/*. To exclude this, go to the **Document Indexing** options, check **Also exclude Internet and file addresses**, and click `r keys("OK")`:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExclusionExampleUrlExcluded.png")
+knitr::include_graphics("images/exclusion-example-url-excluded.png")
 ```
 
 Note how *http://www.jstor.org/* is now excluded:
@@ -152,7 +152,7 @@ knitr::include_graphics("images/exclusion-example-url-excluded-now.png")
 Other items, such as proper nouns\index{proper nouns!excluding} and numbers\index{numerals!excluding} can also be excluded. Go to the **Document Indexing** options, check **Also exclude numerals** and **Also exclude proper nouns**, and click `r keys("OK")`. Then scroll to the top of the report window. First note how numbers, such as the page citation and computer series, are now excluded:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExclusionExampleNumbersExcludedNow.png")
+knitr::include_graphics("images/exclusion-example-numbers-excluded-now.png")
 ```
 
 Also note how proper nouns, such as *Danielson-Bryan* and *UNIVAC*, are now excluded:

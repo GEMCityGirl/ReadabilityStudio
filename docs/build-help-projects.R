@@ -210,14 +210,14 @@ file_copy(glue("{docFolder}/readability-studio-manual/images/non-generated/cover
 file_copy(glue("{docFolder}/readability-studio-manual/images/non-generated/cover-tests.png"),
           glue("{docFolder}/readability-test-reference/images/cover.png"),
           TRUE)
-file_copy(glue("{docFolder}/readability-studio-manual/images/FleschChart.png"),
-          glue("{docFolder}/readability-test-reference/images/FleschChart.png"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/flesch-chart.png"),
+          glue("{docFolder}/readability-test-reference/images/flesch-chart.png"),
           TRUE)
 file_copy(glue("{docFolder}/readability-studio-manual/images/frygraph.png"),
           glue("{docFolder}/readability-test-reference/images/frygraph.png"),
           TRUE)
-file_copy(glue("{docFolder}/readability-studio-manual/images/LixGauge.png"),
-          glue("{docFolder}/readability-test-reference/images/LixGauge.png"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/lix-gauge.png"),
+          glue("{docFolder}/readability-test-reference/images/lix-gauge.png"),
           TRUE)
 file_copy(glue("{docFolder}/readability-studio-manual/images/raygorgraph.png"),
           glue("{docFolder}/readability-test-reference/images/raygorgraph.png"),
@@ -228,14 +228,14 @@ file_copy(glue("{docFolder}/readability-studio-manual/images/crawford-graph.png"
 file_copy(glue("{docFolder}/readability-studio-manual/images/frase-graph.png"),
           glue("{docFolder}/readability-test-reference/images/frase-graph.png"),
           TRUE)
-file_copy(glue("{docFolder}/readability-studio-manual/images/GpmFry.png"),
-          glue("{docFolder}/readability-test-reference/images/GpmFry.png"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/gpm-fry.png"),
+          glue("{docFolder}/readability-test-reference/images/gpm-fry.png"),
           TRUE)
 file_copy(glue("{docFolder}/readability-studio-manual/images/german-lix-gauge.png"),
           glue("{docFolder}/readability-test-reference/images/german-lix-gauge.png"),
           TRUE)
-file_copy(glue("{docFolder}/readability-studio-manual/images/Schwartz.png"),
-          glue("{docFolder}/readability-test-reference/images/Schwartz.png"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/schwartz.png"),
+          glue("{docFolder}/readability-test-reference/images/schwartz.png"),
           TRUE)
 dir_copy(glue("{docFolder}/readability-studio-manual/english"),
          glue("{docFolder}/readability-test-reference/english"),

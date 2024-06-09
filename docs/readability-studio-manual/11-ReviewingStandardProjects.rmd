@@ -57,13 +57,13 @@ The document was almost classified as 12^th^ grade level material, but its long 
 The Gilliam-Peña-Mountain\index{Gilliam-Peña-Mountain} graph is a variation of Fry designed for Spanish text. It is identical to Fry, except that its X axis begins at 175 (instead of 108). This enables this graph to plot Spanish text, which usually has a much higher syllable count than its English counterpart. Below is an example of a Gilliam-Peña-Mountain graph:
 
 ```{r gpm2, echo=F, fig.cap='Gilliam-Peña-Mountain graph', fig.align='center', out.width='75%'}
-knitr::include_graphics("images/GpmFry.png")
+knitr::include_graphics("images/gpm-fry.png")
 ```
 
 The Schwartz\index{Schwartz German Readability Graph} graph is another Fry-like graph, which is designed for German (primary and secondary-reader) text. Although similar in appearance to Fry, this graph uses its own reading-level regions mapped to the German materials it was trained on. This approach differs from Gilliam-Peña-Mountain, which uses the original Fry template and adjusts its axis ranges to accommodate Spanish text. Below is an example of a Schwartz graph:
 
 ```{r schwartz2, echo=F, fig.cap='Schwartz graph', fig.align='center', out.width='75%'}
-knitr::include_graphics("images/Schwartz.png")
+knitr::include_graphics("images/schwartz.png")
 ```
 
 The Fry\index{Fry!compared to Raygor} and Raygor\index{Raygor Estimate!compared to Fry} graphs are very similar and are both interpreted in the same manner; however, there are a few differences between them. The Fry graph classifies documents within the 1^st^ grade to doctorate level. In contrast, Raygor concentrates on the range of 3^rd^ grade to the sophomore collegiate level. It is recommended to only use Raygor graphs for secondary-age materials.
@@ -91,7 +91,7 @@ In the above graph, we can see that the intersection of the factors is 175 and 7
 The Flesch\index{Flesch Reading Ease!chart} chart plots a document's factors onto a pair of “rulers” and then connects them to determine the Flesch score. This score ranges from 0 (“very difficult”) to 100 (“very easy”). Below is an example of a Flesch chart:
 
 ```{r fleschChart2, echo=F, fig.cap='Flesch chart', fig.align='center', out.width='75%'}
-knitr::include_graphics("images/FleschChart.png")
+knitr::include_graphics("images/flesch-chart.png")
 ```
 
 Danielson-Bryan 2\index{Danielson-Bryan 2!plot}—a variation of Flesch Reading Ease— includes a similar graphic, which also includes grade-level information:
@@ -103,7 +103,7 @@ knitr::include_graphics("images/db2-plot.png")
 Similar to a Flesch chart, the Lix gauge\index{Lix!gauge plot} plots a document's Lix index score on a chart showing its difficulty level:
 
 ```{r lixGuage2, echo=F, fig.cap='Lix gauge', fig.align='center', out.width='75%'}
-knitr::include_graphics("images/LixGauge.png")
+knitr::include_graphics("images/lix-gauge.png")
 ```
 
 In the above chart, we can see that Lix scores can range from 0 (“very easy”) to 60+ (“very difficult”).

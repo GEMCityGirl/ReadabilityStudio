@@ -42,7 +42,7 @@ The final method also relies on finding the intersection of factors, but on a gr
 
 ```{r echo=F, fig.show = 'hold', out.width='50%', fig.cap='Comparison of bands vs. brackets'}
 knitr::include_graphics("images/frygraph.png")
-knitr::include_graphics("images/FleschChart.png")
+knitr::include_graphics("images/flesch-chart.png")
 ```
 
 Once the intersection of two factors is located on the plot, the band or bracket that the intersection falls into will indicate the score.
@@ -83,7 +83,7 @@ Most readability tests will return a result, even when the document being review
 It is possible, however, for certain graphical tests to not return a meaningful result. Tests such as Fry and Schwartz use plots that are divided into bands (i.e., polygonal strips) which represent different grade levels. To produce a result, these tests find the intersection of a document's statistics along the plot's axes. Once the intersection is found, the band that the point falls within will indicate the grade level of the document.
 
 ```{r echo=F, fig.align='center', fig.cap='Example of a graph with grade-level bands', out.width='75%'}
-knitr::include_graphics("images/Schwartz.png")
+knitr::include_graphics("images/schwartz.png")
 ```
 
 ```{r, results='asis', eval=T, echo=F}

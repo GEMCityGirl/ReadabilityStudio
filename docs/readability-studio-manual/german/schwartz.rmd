@@ -13,7 +13,7 @@ When designing the graph, Schwartz adjusted the syllable-count axis to take into
 Another difference from the Fry graph is that some grade bands cover two grades (whereas each band on a Fry graph represents a unique grade).
 
 ```{r echo=F, fig.show = 'hold', out.width='50%', fig.cap='Comparison of bands between Schwartz and Fry graphs, respectively'}
-knitr::include_graphics("images/Schwartz.png")
+knitr::include_graphics("images/schwartz.png")
 knitr::include_graphics("images/frygraph.png")
 ```
 

@@ -573,8 +573,8 @@ a:AddTest(Tests.DanielsonBryan2)
 a:ExportGraph(GraphType.DanielsonBryan2, ImagePath .. "db2-plot." .. FileExtension)
 a:ExportGraph(GraphType.Fry, ImagePath .. "frygraph." .. FileExtension)
 a:ExportGraph(GraphType.Raygor, ImagePath .. "raygorgraph." .. FileExtension)
-a:ExportGraph(GraphType.Flesch, ImagePath .. "FleschChart." .. FileExtension)
-a:ExportGraph(GraphType.Lix, ImagePath .. "LixGauge." .. FileExtension)
+a:ExportGraph(GraphType.Flesch, ImagePath .. "flesch-chart." .. FileExtension)
+a:ExportGraph(GraphType.Lix, ImagePath .. "lix-gauge." .. FileExtension)
 a:Close()
 
 -- German graph
@@ -582,7 +582,7 @@ a = StandardProject(ScreenshotProjectsFolder .. "turkey brining.rtf")
 a:SetProjectLanguage(Language.German)
 a:AddTest(Tests.Schwartz)
 a:AddTest(Tests.LixGermanTechnical)
-a:ExportGraph(GraphType.Schwartz, ImagePath .. "Schwartz." .. FileExtension)
+a:ExportGraph(GraphType.Schwartz, ImagePath .. "schwartz." .. FileExtension)
 a:ExportGraph(GraphType.GermanLix, ImagePath .. "german-lix-gauge." .. FileExtension)
 a:Close()
 
@@ -593,7 +593,7 @@ a:Close()
 Application.RemoveAllCustomTests()
 
 a = StandardProject(ScreenshotProjectsFolder .. "GPM graph.rsp")
-a:ExportGraph(GraphType.GpmFry, ImagePath .. "GpmFry." .. FileExtension)
+a:ExportGraph(GraphType.GpmFry, ImagePath .. "gpm-fry." .. FileExtension)
 a:Close()
 Application.RemoveAllCustomTests()
 
@@ -747,7 +747,7 @@ sp:Reload()
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 
-ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleAggressiveList." .. FileExtension, 1051, 1051, 1058)
+ScreenshotLib.SnapScreenshot(ImagePath .. "exclusion-example-aggressive-list." .. FileExtension, 1051, 1051, 1058)
 
 sp:CloseProperties()
 
@@ -764,7 +764,7 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleIncompLengthValue." .
 
 sp:CloseProperties()
 
-ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleLongSentenceExcluded." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-long-sentence-excluded." .. FileExtension,
   HighlightedReportType.GrammarHighlightedIssues, true, 989, 1123)
 
 sp:ScrollTextWindow(HighlightedReportType.GrammarHighlightedIssues, 2000)
@@ -792,7 +792,7 @@ sp:Reload()
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 
-ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleUrlExcluded." .. FileExtension, 1056, 1056, 1058)
+ScreenshotLib.SnapScreenshot(ImagePath .. "exclusion-example-url-excluded." .. FileExtension, 1056, 1056, 1058)
 
 sp:CloseProperties()
 
@@ -805,7 +805,7 @@ sp:ExcludeNumerals(true)
 
 sp:Reload()
 
-ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleNumbersExcludedNow." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-numbers-excluded-now." .. FileExtension,
     HighlightedReportType.GrammarHighlightedIssues, true, 281, 284, 539, 543)
 
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-proper-excluded-now." .. FileExtension,
