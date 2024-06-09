@@ -99,7 +99,7 @@ First, select the **Readability** tab of the ribbon. Next, click the `r keys('Cu
 Select **Flesch-Kincaid** from the list, which will create a custom test based on Flesch-Kincaid. When the **Edit Custom Test** dialog appears, enter the name "Flesch-Kincaid (unclamped)":
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/CustomTestFKUnclamped.png")
+knitr::include_graphics("images/custom-testfk-unclamped.png")
 ```
 
 We will leave the formula as-is, so click `r keys('OK')` to accept.
@@ -133,7 +133,7 @@ knitr::include_graphics("images/add-custom-test.png")
 Because this will be a New Dale-Chall test meant for baking, we will enter the name "New Dale-Chall (Baking)":
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/CustomTestExample2Name.png")
+knitr::include_graphics("images/custom-test-example2-name.png")
 ```
 
 Next, we will enter the formula. The formula for a custom New Dale-Chall test\index{CustomNewDaleChall()@\texttt{CustomNewDaleChall()}!example} is:
@@ -149,13 +149,13 @@ The next step is to specify the type of test that this is into the **Test type**
 Once finished, the dialog will look like this:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/CustomTestExample2FormulaFinished.png")
+knitr::include_graphics("images/custom-test-example2-formula-finished.png")
 ```
 
 Now we will need to define what a familiar word is, so click the **Familiar Words** icon. Because we will be appending our own words to the test, check the option **Include custom familiar word list**. Next, enter the file path to the custom-word file in the **File containing familiar words** field. You can also click the button next to this field to select and edit your word list file:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/CustomTestExample2WordLoaded.png")
+knitr::include_graphics("images/custom-test-example2-words-loaded.png")
 ```
 
 Once the file has been selected, the words from that file will be loaded.
@@ -169,7 +169,7 @@ To keep our word list simple, we will use English stemming. Select **English** a
 Next, we will define which other word lists will be included in our test. Because this is a New Dale-Chall test, check the option **Include New Dale-Chall word list**:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/CustomTestExample2WordSettingsFinished.png")
+knitr::include_graphics("images/custom-test-example2-word-settings-finished.png")
 ```
 
 The remaining logic that we must define is how to count proper\index{proper nouns!custom tests} nouns and numerals\index{numerals!custom tests}. Select the **Proper Nouns & Numerals** page:
@@ -188,7 +188,7 @@ Our new test, New Dale-Chall (Baking), has been added to the program.
 
 To add this test to any project, first select the **Readability** tab. Next, click the `r keys("Custom Tests")` button and then select **New Dale-Chall (Baking)**. Select the **Readability Scores** icon on the project pane and note that New Dale-Chall (Baking) has been added to the project's results:
 
-![](images/CustomTestExample2Score.png)
+![](images/custom-test-example2-score.png)
 
 Note how the result for our custom test is lower than the standard New Dale-Chall test. This is because our test is using an expanded list of known words and will consider fewer words unfamiliar than the New Dale-Chall test will.
 

@@ -40,7 +40,7 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "test-bundle-4f." .. FileExtension)
 ScreenshotLib.CloseTestBundleDialog()
 
 ScreenshotLib.ShowCustomTestDialogFunctionBrowser()
-ScreenshotLib.SnapScreenshot(ImagePath .. "FunctionBrowser." .. FileExtension, 7006)
+ScreenshotLib.SnapScreenshot(ImagePath .. "function-browser." .. FileExtension, 7006)
 ScreenshotLib.CloseCustomTestDialog()
 
 ScreenshotLib.ShowWebHarvesterDlg()
@@ -473,7 +473,7 @@ Application.RemoveAllCustomTests()
 
 -- Standard project (improved Cocoa Desserts)
 sp = StandardProject(ScreenshotProjectsFolder .. "Cocoa Desserts (Improved).rsp")
-ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "RibbonEditDocumentOptions." .. FileExtension, 1)
+ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "ribbon-edit-document-options." .. FileExtension, 1)
 sp:SelectReadabilityTest(2)
 ScreenshotLib.SnapScreenshot(ImagePath .. "improvedscores." .. FileExtension)
 sp:Close()
@@ -553,7 +553,7 @@ sp:Close()
 Application.RemoveAllCustomTests()
 
 sp = StandardProject(ScreenshotProjectsFolder .. "Crawford Sample.rsp")
-sp:ExportGraph(GraphType.Crawford, ImagePath .. "CrawfordGraph." .. FileExtension)
+sp:ExportGraph(GraphType.Crawford, ImagePath .. "crawford-graph." .. FileExtension)
 sp:Close()
 Application.RemoveAllCustomTests()
 
@@ -570,7 +570,7 @@ ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "ribbon-edit-bar-charts." .. F
 a:ExportGraph(GraphType.SyllableHistogram, ImagePath .. "syllable-count-histogram." .. FileExtension)
 a:ExportGraph(GraphType.SyllablePieChart, ImagePath .. "syllables-pie-chart." .. FileExtension)
 a:AddTest(Tests.DanielsonBryan2)
-a:ExportGraph(GraphType.DanielsonBryan2, ImagePath .. "DB2Plot." .. FileExtension)
+a:ExportGraph(GraphType.DanielsonBryan2, ImagePath .. "db2-plot." .. FileExtension)
 a:ExportGraph(GraphType.Fry, ImagePath .. "frygraph." .. FileExtension)
 a:ExportGraph(GraphType.Raygor, ImagePath .. "raygorgraph." .. FileExtension)
 a:ExportGraph(GraphType.Flesch, ImagePath .. "FleschChart." .. FileExtension)
@@ -599,7 +599,7 @@ Application.RemoveAllCustomTests()
 
 -- Custom test example images
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("Flesch-Kincaid (unclamped)", "(11.8*(B/W)) + (.39*(W/S)) - 15.59", TestType.GradeLevel)
-ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestFKUnclamped." .. FileExtension, 7000, 7000)
+ScreenshotLib.SnapScreenshot(ImagePath .. "custom-testfk-unclamped." .. FileExtension, 7000, 7000)
 
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("Flesch (IC)", "ROUND(206.835 - (84.6*(B/W)) - (1.015*(W/S)))", TestType.IndexValue)
 ScreenshotLib.SnapScreenshot(ImagePath .. "custom-test-example1-test-name." .. FileExtension, 7000, 7000)
@@ -632,17 +632,17 @@ Application.RemoveAllCustomTests()
 -- Custom test example 2
 ------------------------
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("New Dale-Chall (Baking)")
-ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample2Name." .. FileExtension, 7000, 7000, 7001)
+ScreenshotLib.SnapScreenshot(ImagePath .. "custom-test-example2-name." .. FileExtension, 7000, 7000, 7001)
 
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("New Dale-Chall (Baking)", "CustomNewDaleChall()")
-ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample2FormulaFinished." .. FileExtension, 7002)
+ScreenshotLib.SnapScreenshot(ImagePath .. "custom-test-example2-formula-finished." .. FileExtension, 7002)
 
 ScreenshotLib.ShowCustomTestDialogFamiliarWords("/home/Niles/CookingWords.txt")
-ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "CustomTestExample2WordLoaded." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "custom-test-example2-words-loaded." .. FileExtension,
     7003, "File containing familiar words", "", true)
 
 ScreenshotLib.ShowCustomTestDialogFamiliarWords("/home/Niles/CookingWords.txt", StemmingType.English, true)
-ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "CustomTestExample2WordSettingsFinished." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "custom-test-example2-word-settings-finished." .. FileExtension,
     7003, "Include New Dale-Chall word list", "", true)
 
 ScreenshotLib.CloseCustomTestDialog()
@@ -681,7 +681,7 @@ sp:Close()
 ------------------------
 a = StandardProject(ScreenshotProjectsFolder .. "Chocolate Eclairs.rsp")
 a:SelectReadabilityTest(2)
-ScreenshotLib.SnapScreenshot(ImagePath .. "CustomTestExample2Score." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "custom-test-example2-score." .. FileExtension)
 ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "ribbon-edit-scores." .. FileExtension, 0, RibbonButtonBars.Edit)
 
 a:SelectHighlightedWordReport(Application.GetTestId("New Dale-Chall (Baking)"))
@@ -707,7 +707,7 @@ a:Close()
 Application.RemoveAllCustomTests()
 
 a = StandardProject(ScreenshotProjectsFolder .. "Frase.rsp")
-a:ExportGraph(GraphType.Frase, ImagePath .. "FraseGraph." .. FileExtension)
+a:ExportGraph(GraphType.Frase, ImagePath .. "frase-graph." .. FileExtension)
 a:Close()
 Application.RemoveAllCustomTests()
 
@@ -732,7 +732,7 @@ sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlighted
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleHeaderExcluded." .. FileExtension,
 HighlightedReportType.GrammarHighlightedIssues, true, 229, 252)
 
-ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExamplePartialExcluded." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-partial-excluded." .. FileExtension,
 HighlightedReportType.GrammarHighlightedIssues, true, 929, 934, 999, 1133)
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
@@ -797,7 +797,7 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleUrlExcluded." .. File
 sp:CloseProperties()
 
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
-ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleUrlExcludedNow." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-url-excluded-now." .. FileExtension,
     HighlightedReportType.GrammarHighlightedIssues, true, 2162, 2183)
 
 sp:ExcludeProperNouns(true)
@@ -957,7 +957,7 @@ bp:Close()
 
 bp = BatchProject(ScreenshotProjectsFolder .. "Topics(Grouped).rsbp")
 bp:ShowSidebar(false)
-bp:ExportGraph(SideBarSection.ReadabilityScores, GraphType.Fry, ImagePath .. "FryGrouped." .. FileExtension)
+bp:ExportGraph(SideBarSection.ReadabilityScores, GraphType.Fry, ImagePath .. "fry-grouped." .. FileExtension)
 bp:ExportGraph(SideBarSection.BoxPlots, Application.GetTestId("fry-test"), ImagePath .. "boxgrouped." .. FileExtension)
 bp:SelectWindow(SideBarSection.ReadabilityScores, ListType.BatchRawScores)
 bp:SortList(ListType.BatchRawScores, 3, SortAscending)
@@ -1029,13 +1029,13 @@ sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "example-barchart-common-ima
 sp:SetPlotBackgroundImage(ScreenshotProjectsFolder .. "bookstore.png")
 sp:SetPlotBackgroundImageFit(ImageFit.CropAndCenter)
 sp:Reload()
-sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundImageForCommonImage." .. FileExtension)
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "example-graph-background-image-for-common-image." .. FileExtension)
 
 -- apply an effect to the background image
 sp:SetPlotBackgroundImageEffect(ImageEffect.Grayscale)
 sp:SetPlotBackgroundImageOpacity(100)
 sp:Reload()
-sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundImageEffectGrayscaled." .. FileExtension)
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "example-graph-background-image-effect-grayscaled." .. FileExtension)
 
 sp:Close()
 
@@ -1048,7 +1048,7 @@ sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "example-graph-default." .. 
 
 -- sort the graph
 sp:SortGraph(GraphType.WordBarChart, SortOrder.SortAscending)
-sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphSorted." .. FileExtension)
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "example-graph-sorted." .. FileExtension)
 
 -- change orientation
 sp:SetBarChartOrientation(Orientation.Vertical)
@@ -1079,7 +1079,7 @@ sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "example-graph-background-im
 -- apply an effect to the background image
 sp:SetPlotBackgroundImageEffect(ImageEffect.OilPainting)
 sp:Reload()
-sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleGraphBackgroundImageEffectChanged." .. FileExtension)
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "example-graph-background-image-effect-changed." .. FileExtension)
 
 -- add watermark
 sp:SetGraphWatermark("INTERNAL USE ONLY\nProcessed on @DATE@")
@@ -1089,7 +1089,7 @@ sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "example-watermark-changed."
 -- add logo
 sp:SetGraphLogoImage(ScreenshotProjectsFolder .. "CoffeeLogo.png")
 sp:Reload()
-sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "ExampleLogoChanged." .. FileExtension)
+sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "example-logo-changed." .. FileExtension)
 
 sp:Close()
 

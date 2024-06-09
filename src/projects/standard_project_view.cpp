@@ -552,7 +552,7 @@ void ProjectView::OnHyperlinkClicked(wxHtmlLinkEvent& event)
         {
         GetSideBar()->SelectSubItem(GetSideBar()->FindSubItem(LIX_GAUGE_GERMAN_PAGE_ID));
         }
-    else if (event.GetLinkInfo().GetHref() == L"#CrawfordGraph")
+    else if (event.GetLinkInfo().GetHref() == L"#crawford-graph")
         {
         GetSideBar()->SelectSubItem(GetSideBar()->FindSubItem(CRAWFORD_GRAPH_PAGE_ID));
         }

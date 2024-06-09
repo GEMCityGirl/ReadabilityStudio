@@ -929,7 +929,7 @@ void BaseProject::InitializeStandardReadabilityTests()
             XRCID("ID_CRAWFORD"),
             _DT(L"Crawford"), _DT(L"Crawford"),
             _(L"The Crawford test is designed for primary-age Spanish reading materials. "
-               "A <a href=\"#CrawfordGraph\">chart</a> is also available to visualize the score."),
+               "A <a href=\"#crawford-graph\">chart</a> is also available to visualize the score."),
             readability::readability_test_type::grade_level, false,
             _DT(L"(S*-.205) + (B*.049) - 3.407"));
         test.add_document_classification(readability::document_classification::childrens_literature_document, true);

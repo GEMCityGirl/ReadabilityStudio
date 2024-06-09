@@ -75,7 +75,7 @@ The other difference between the two graphs is that they are inverted from one a
 The FRASE\index{FRASE} graph is similar to Fry in terms of factors used and axis orientation. Its most influential factor (i.e., word vs. sentence difficulty) is determined in the same manner, and its Y (sentence) axis is descending. Below is an example of a FRASE graph:
 
 ```{r frase2, echo=F, fig.cap='FRASE graph', fig.align='center', out.width='75%'}
-knitr::include_graphics("images/FraseGraph.png")
+knitr::include_graphics("images/frase-graph.png")
 ```
 
 A key difference with FRASE\index{FRASE!reading levels} is its use of reading levels (rather than grade levels). In the above example, we can see that the document has been scored at the *Intermediate* level. The other difference is that it is designed for Spanish text—note how its X (syllable-count) axis begins at 182, not 108.
@@ -83,7 +83,7 @@ A key difference with FRASE\index{FRASE!reading levels} is its use of reading le
 The Crawford\index{Crawford!compared to Fry} graph is also similar to Fry in terms of factors used. However, it differs from most other graphs in that it uses the interior of the plot to find its sentence-count factor (instead of an axis). Below is an example of a Crawford graph:
 
 ```{r crawford2, echo=F, fig.cap='Crawford graph', fig.align='center', out.width='75%'}
-knitr::include_graphics("images/CrawfordGraph.png")
+knitr::include_graphics("images/crawford-graph.png")
 ```
 
 In the above graph, we can see that the intersection of the factors is 175 and 7. The number of syllables is 175 (Y axis). The number of sentences is approximately 7 (between 8.4 and 5.9 on the plot [corresponding to 175 on the Y axis]). From this intersection, the point's X axis value is 3.7. Hence, 3.7 is the grade-level score for this graph.
@@ -97,7 +97,7 @@ knitr::include_graphics("images/FleschChart.png")
 Danielson-Bryan 2\index{Danielson-Bryan 2!plot}—a variation of Flesch Reading Ease— includes a similar graphic, which also includes grade-level information:
 
 ```{r db2Plot2, echo=F, fig.cap='Danielson-Bryan 2 plot', fig.align='center', out.width='75%'}
-knitr::include_graphics("images/DB2Plot.png")
+knitr::include_graphics("images/db2-plot.png")
 ```
 
 Similar to a Flesch chart, the Lix gauge\index{Lix!gauge plot} plots a document's Lix index score on a chart showing its difficulty level:

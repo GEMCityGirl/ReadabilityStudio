@@ -222,11 +222,11 @@ file_copy(glue("{docFolder}/readability-studio-manual/images/LixGauge.png"),
 file_copy(glue("{docFolder}/readability-studio-manual/images/raygorgraph.png"),
           glue("{docFolder}/readability-test-reference/images/raygorgraph.png"),
           TRUE)
-file_copy(glue("{docFolder}/readability-studio-manual/images/CrawfordGraph.png"),
-          glue("{docFolder}/readability-test-reference/images/CrawfordGraph.png"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/crawford-graph.png"),
+          glue("{docFolder}/readability-test-reference/images/crawford-graph.png"),
           TRUE)
-file_copy(glue("{docFolder}/readability-studio-manual/images/FraseGraph.png"),
-          glue("{docFolder}/readability-test-reference/images/FraseGraph.png"),
+file_copy(glue("{docFolder}/readability-studio-manual/images/frase-graph.png"),
+          glue("{docFolder}/readability-test-reference/images/frase-graph.png"),
           TRUE)
 file_copy(glue("{docFolder}/readability-studio-manual/images/GpmFry.png"),
           glue("{docFolder}/readability-test-reference/images/GpmFry.png"),

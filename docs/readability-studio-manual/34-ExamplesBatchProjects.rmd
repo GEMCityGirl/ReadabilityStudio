@@ -150,7 +150,7 @@ Here, we can sort by group or scores and see how the groups compare. In the abov
 Grouping is also shown in the readability graphs. For example, if we included a Fry graph, then it may appear as such:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/FryGrouped.png")
+knitr::include_graphics("images/fry-grouped.png")
 ```
 
 Here, we can see the *Tests* group again scoring rather high, as much of this group’s documents are clustering in the higher grade ranges.

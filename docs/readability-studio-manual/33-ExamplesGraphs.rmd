@@ -17,7 +17,7 @@ Now we will customize the appearance of this graph. One change that we can make 
 Select **Sort Descending** from the menu and note that the bars are now shown from largest to smallest from the origin:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExampleGraphSorted.png")
+knitr::include_graphics("images/example-graph-sorted.png")
 ```
 
 ::: {.notesection data-latex=""}
@@ -81,7 +81,7 @@ To go along with the watercolor bars, we can apply an oil painting effect to the
 Click the `r keys("Background")` button and select `r menu(c('Plot Image', 'Effects', 'Oil Painting'))`.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExampleGraphBackgroundImageEffectChanged.png")
+knitr::include_graphics("images/example-graph-background-image-effect-changed.png")
 ```
 \index{graphs!customizing!backgrounds|)}
 
@@ -112,7 +112,7 @@ Now let's put a company logo on our graph. Click the `r keys("Logo")` button in 
 Now this image will be shown in the bottom right corner of the graph:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExampleLogoChanged.png")
+knitr::include_graphics("images/example-logo-changed.png")
 ```
 :::
 
@@ -185,7 +185,7 @@ Click the `r keys("Background")` button and select `r menu(c('Plot Image', 'Fit'
 This image will now be shown as the background for the graph and bars:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExampleGraphBackgroundImageForCommonImage.png")
+knitr::include_graphics("images/example-graph-background-image-for-common-image.png")
 ```
 :::
 
@@ -197,7 +197,7 @@ Next, click the `r keys("Background")` button again and select `r menu(c('Plot I
 Now, we should see a selective colorization effect on our bar chart:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExampleGraphBackgroundImageEffectGrayscaled.png")
+knitr::include_graphics("images/example-graph-background-image-effect-grayscaled.png")
 ```
 :::
 \index{graphs!customizing!backgrounds|)}

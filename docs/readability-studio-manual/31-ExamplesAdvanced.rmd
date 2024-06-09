@@ -92,7 +92,7 @@ knitr::include_graphics("images/ExclusionExampleHeaderExcluded.png")
 Scroll midway down the document and note how another header, an equation, and a table are also excluded. However, a couple of items in this block are being included that shouldn't be:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExclusionExamplePartialExcluded.png")
+knitr::include_graphics("images/exclusion-example-partial-excluded.png")
 ```
 
 The first is the sentence *Where:.* Sentences that end with a semicolon and are followed by a list will normally be considered valid. In this case though, we will want to exclude this sentence too. Open the **Properties** dialog again, click **Analysis** and select **Document Indexing**. Check the option **Aggressively deduce lists**, as shown below:
@@ -146,7 +146,7 @@ knitr::include_graphics("images/ExclusionExampleUrlExcluded.png")
 Note how *http://www.jstor.org/* is now excluded:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExclusionExampleUrlExcludedNow.png")
+knitr::include_graphics("images/exclusion-example-url-excluded-now.png")
 ```
 
 Other items, such as proper nouns\index{proper nouns!excluding} and numbers\index{numerals!excluding} can also be excluded. Go to the **Document Indexing** options, check **Also exclude numerals** and **Also exclude proper nouns**, and click `r keys("OK")`. Then scroll to the top of the report window. First note how numbers, such as the page citation and computer series, are now excluded:
