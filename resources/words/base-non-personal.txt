@@ -2214,6 +2214,7 @@ Fabrikam
 Facebooked
 Facebooking
 Facebooks
+Facepile
 FactFinder
 Faeroe
 FAFSANet
@@ -3339,6 +3340,7 @@ Kabul
 Kabuli
 Kafkaesque
 Kagoshima
+Kaizala
 Kalamazoo
 Kalashnikov
 Kalgoorlie

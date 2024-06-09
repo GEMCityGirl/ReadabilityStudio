@@ -434,6 +434,9 @@ actuated	put into action, moved	0
 actuates	puts into action, moves	0		
 actuating	putting into action, moving	0		
 actullay	actually	3		
+actvities	activities	3		
+actvity	activity	3		
+actvity's	activity's	3		
 acual	actual	3		
 acually	actually	3		
 acumulating	accumulating	3		
@@ -1744,6 +1747,7 @@ assgins	assigns	3
 asside	aside	3		
 assig	assign	3		
 assiged	assigned	3		
+assigend	assigned	3		
 assiging	assigning	3		
 assigment	assignment	3		
 assigment's	assignment's	3		
@@ -5071,6 +5075,9 @@ disableing	disabling	3
 disablesd	disabled, disabled	3		
 disagreeable	cross	0		
 disagreeed	disagreed	3		
+disambgulation	disambiguation	3		
+disambgulation's	disambiguation's	3		
+disambgulations	disambiguations	3		
 disapear	disappear	3		
 disapeared	disappeared	3		
 disapearing	disappearing	3		
@@ -5340,6 +5347,7 @@ divulge	tell	0
 divulged	told	0		
 divulges	tells	0		
 divulging	telling	0		
+dministrator	administrator	3		
 do away with	remove, cancel, end	0		
 do have as	do [you/I/we/they] have as	3		
 do not put any stock in	do not trust	2		
@@ -5515,6 +5523,8 @@ dwindle down	dwindle	1
 dwindled down	dwindled	1		
 dwindles down	dwindles	1		
 dwindling down	dwindling	1		
+dyamic	dynamic	3		
+dyamics	dynamics	3		
 dyanamic	dynamic	3		
 dyanamics	dynamics	3		
 dyanmic	dynamic	3		
@@ -6004,6 +6014,9 @@ enviromentalist	environmentalist	3
 enviromentally	environmentally	3		
 enviroments	environments	3		
 environement	environment	3		
+environemnt	environment	3		
+environemnt's	environment's	3		
+environemnts	environments	3		
 environent	environment	3		
 envolutionary	evolutionary	3		
 envrionment	environment	3		
@@ -8756,6 +8769,10 @@ instanciating	instantiating	3
 instanly	instantly	3		
 instantly	right away	0		
 instatance	instance	3		
+instatiate	instantiate	3		
+instatiated	instantiated	3		
+instatiates	instantiates	3		
+instatiating	instantiating	3		
 institue	institute	3		
 institution	office, company, school	0		
 institution of higher learning	college, university	0		
@@ -10402,6 +10419,7 @@ necessitating	causing, needing	0
 necessity	need	0		
 necesssarily	necessarily	2		
 nedded	needed	3		
+neded	needed	3		
 need to have	need	0		
 needed to have	needed	0		
 needing to have	needing	0		
@@ -11652,6 +11670,7 @@ piroities	priorities	3
 piroity	priority	3		
 piroity's	priority's	3		
 pitty	pity	3		
+pixesl	pixels	3		
 placate	soothe	0		
 placated	soothed	0		
 placates	soothes	0		
@@ -12057,6 +12076,7 @@ prevelant	prevalent	3
 preventative	preventive	0		
 preverse	perverse	3		
 previoulsy	previously	3		
+previours	previous	3		
 previous	earlier	0		
 previous accomplishment	accomplishment	0		
 previous accomplishments	accomplishments	0		
@@ -12795,6 +12815,7 @@ reactives	reactivates	3
 reactiving	reactivating	3		
 read between the lines	surmise the hidden meaning	2		
 readabilty	readability	3		
+readd	read	3		
 readding	reading	3		
 readible	readable	3		
 reading between the lines	surmising the hidden meaning	2		
@@ -13847,9 +13868,13 @@ seleccts	selects	3
 selecd	select	3		
 selectany	select any	3		
 selection	choice	0		
+selet	select	3		
+seleted	selected	3		
+seleting	selecting	3		
 seletion	selection	3		
 seletion's	selection's	3		
 seletions	selections	3		
+selets	selects	3		
 self of steam	self-esteem	3		
 sell like hotcakes	sell quickly	2		
 selling like hotcakes	selling quickly	2		
@@ -13926,6 +13951,9 @@ serie	series	3
 serivce	service	3		
 serivces	services	3		
 serpentine	twisting, snaking, sly	0		
+servcie	service	3		
+servcie's	service's	3		
+servcies	services	3		
 serve up	serve	0		
 served up	served	0		
 serveral	several	3		
@@ -14875,6 +14903,7 @@ swim with the sharks	contend with fierce competitors	2
 swiming	swimming	3		
 swimming with the sharks	contending with fierce competitors	2		
 swims with the sharks	contends with fierce competitors	2		
+switchs	switches	3		
 swoop down	swoop	1		
 swooped down	swooped	1		
 swooping down	swooping	1		
@@ -15935,6 +15964,7 @@ unrepentent	unrepentant	3
 unrepetant	unrepentant	3		
 unrepetent	unrepentant	3		
 unsed	unused	3		
+unsights	insights	3		
 unsing	using, unsung	3		
 unsinged	unsigned	3		
 unsolicated	unsolicited	3		

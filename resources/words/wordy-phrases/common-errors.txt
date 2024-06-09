@@ -80,6 +80,8 @@ Croation	Croatian	3
 Croation's	Croatian's	3		
 Croations	Croatians	3		
 Dardenelles	Dardanelles	3		
+Datavese	Dataverse	3		
+Datavese's	Dataverse's	3		
 Dicken	Dickens	3		
 Dicken's	Dickens's	3		
 Dudavera	Dudareva	3		
