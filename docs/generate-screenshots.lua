@@ -729,7 +729,7 @@ sp:ExcludeNumerals(false)
 sp:Reload()
 
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
-ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleHeaderExcluded." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-header-excluded." .. FileExtension,
 HighlightedReportType.GrammarHighlightedIssues, true, 229, 252)
 
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-partial-excluded." .. FileExtension,
@@ -737,7 +737,7 @@ HighlightedReportType.GrammarHighlightedIssues, true, 929, 934, 999, 1133)
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 
-ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleAllExcluded." .. FileExtension, 1051, 1058, 1058)
+ScreenshotLib.SnapScreenshot(ImagePath .. "exclusion-example-all-excluded." .. FileExtension, 1051, 1058, 1058)
 
 sp:CloseProperties()
 
@@ -760,7 +760,7 @@ sp:Reload()
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 
-ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleIncompLengthValue." .. FileExtension, 1076, 1077, 1077)
+ScreenshotLib.SnapScreenshot(ImagePath .. "exclusion-example-incomp-length-value." .. FileExtension, 1076, 1077, 1077)
 
 sp:CloseProperties()
 
@@ -769,7 +769,7 @@ ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-long-se
 
 sp:ScrollTextWindow(HighlightedReportType.GrammarHighlightedIssues, 2000)
 
-ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleCopyrightIncluded." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-copyright-included." .. FileExtension,
   HighlightedReportType.GrammarHighlightedIssues, true, 2195, 2240)
 
 sp:ExcludeCopyrightNotices(true)
@@ -778,12 +778,12 @@ sp:Reload()
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 
-ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleCopyrightExcluded." .. FileExtension, 1054, 1054, 1058)
+ScreenshotLib.SnapScreenshot(ImagePath .. "exclusion-example-copyright-excluded." .. FileExtension, 1054, 1054, 1058)
 
 sp:CloseProperties()
 
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
-ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleCopyrightExcludedNow." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-copyright-excluded-now." .. FileExtension,
   HighlightedReportType.GrammarHighlightedIssues, true, 2195, 2240)
 
 sp:ExcludeFileAddress(true)
@@ -813,14 +813,14 @@ HighlightedReportType.GrammarHighlightedIssues, true, 262, 277, 532, 538)
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 
-ScreenshotLib.SnapScreenshot(ImagePath .. "ExclusionExampleEditListButton." .. FileExtension, 1052, 1052, 1052)
+ScreenshotLib.SnapScreenshot(ImagePath .. "exclusion-example-edit-list-button." .. FileExtension, 1052, 1052, 1052)
 
 sp:CloseProperties()
 
 -- Exclusion word list
 ----------------------
 ScreenshotLib.ShowEditWordListDlg(ScreenshotProjectsFolder .. "ExclusionWords.txt")
-ScreenshotLib.SnapScreenshotWithAnnotation(ImagePath .. "ExclusionExampleCustomWords." .. FileExtension, "ExclusionWords.txt", 9000)
+ScreenshotLib.SnapScreenshotWithAnnotation(ImagePath .. "exclusion-example-custom-words." .. FileExtension, "ExclusionWords.txt", 9000)
 ScreenshotLib.CloseEditWordListDlg()
 
 sp:SetPhraseExclusionList(ScreenshotProjectsFolder .. "ExclusionWords.txt")
@@ -828,7 +828,7 @@ sp:SetPhraseExclusionList(ScreenshotProjectsFolder .. "ExclusionWords.txt")
 sp:Reload()
 
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
-ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleCustomWordsExcludedNow." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-custom-words-excluded-now." .. FileExtension,
     HighlightedReportType.GrammarHighlightedIssues, true, 371, 386, 619, 630)
 
 sp:ExcludeTrailingCitations(true)
@@ -836,7 +836,7 @@ sp:ExcludeTrailingCitations(true)
 sp:Reload()
 
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
-ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "ExclusionExampleCitationExcluded." .. FileExtension,
+ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-citation-excluded." .. FileExtension,
 HighlightedReportType.GrammarHighlightedIssues, true, 1926, 2090)
 
 sp:SelectWindow(SideBarSection.WordsBreakdown, ListType.ThreePlusSyllableWords)

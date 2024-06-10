@@ -80,13 +80,13 @@ For now click `r keys("Close")`; we will review this sentence later in this exam
 Once the project is loaded, on the **Home** tab click the `r keys("Properties")` button under the **Project** section. On the **Properties** dialog, click **Analysis** on the sidebar and select **Document Indexing**. Uncheck all the options shown below and click `r keys("OK")`:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExclusionExampleAllExcluded.png")
+knitr::include_graphics("images/exclusion-example-all-excluded.png")
 ```
 
 Next, click **Grammar** on the project's sidebar and then click **Highlighted Report**. In this window, any text that is being excluded will be highlighted gray. For example, note that the header *Danielson-Bryan 1 Test* is excluded, as shown below:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExclusionExampleHeaderExcluded.png")
+knitr::include_graphics("images/exclusion-example-header-excluded.png")
 ```
 
 Scroll midway down the document and note how another header, an equation, and a table are also excluded. However, a couple of items in this block are being included that shouldn't be:
@@ -110,7 +110,7 @@ knitr::include_graphics("images/exclusion-example-where-excluded.png")
 The next item to note is the sentence *Number of characters\.\.\.*. This is really an item in a table that is missing a period, so we should be excluding it. However, currently it is being included because it contains more than 15 words. To adjust this, go back to the **Document Indexing** options for this project. Change the value for **Include incomplete sentences containing more than [15] words** to a higher value (e.g., 20) and click `r keys("OK")`:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExclusionExampleIncompLengthValue.png")
+knitr::include_graphics("images/exclusion-example-incomp-length-value.png")
 ```
 
 Note how the *Number of characters\.\.\.* sentence is now excluded:
@@ -122,19 +122,19 @@ knitr::include_graphics("images/exclusion-example-long-sentence-excluded.png")
 Now scroll to the bottom of the report window and note the copyright notice:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExclusionExampleCopyrightIncluded.png")
+knitr::include_graphics("images/exclusion-example-copyright-included.png")
 ```
 
 Go to the **Document Indexing** options, check **Also exclude copyright notices**, and click `r keys("OK")`:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExclusionExampleCopyrightExcluded.png")
+knitr::include_graphics("images/exclusion-example-copyright-excluded.png")
 ```
 
 Now this copyright notice will be excluded from the analysis:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExclusionExampleCopyrightExcludedNow.png")
+knitr::include_graphics("images/exclusion-example-copyright-excluded-now.png")
 ```
 
 Along with incomplete sentences, specific types of words can also be excluded. For example, at the bottom of this window note the hyperlink *http://www.jstor.org/*. To exclude this, go to the **Document Indexing** options, check **Also exclude Internet and file addresses**, and click `r keys("OK")`:
@@ -164,19 +164,19 @@ knitr::include_graphics("images/exclusion-example-proper-excluded-now.png")
 You can also exclude specific words and phrases. From the **Document Indexing** options, click the edit button in the **Words & phrases to exclude** section:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExclusionExampleEditListButton.png")
+knitr::include_graphics("images/exclusion-example-edit-list-button.png")
 ```
 
 In the **Edit Phrase List** dialog, either double click the grid or click the add item button to begin adding words or phrases to exclude. In one line enter *punctuation*, and in another line enter *sentence length*:
 
 ```{r echo=F, fig.align='center', out.width='50%'}
-knitr::include_graphics("images/ExclusionExampleCustomWords.png")
+knitr::include_graphics("images/exclusion-example-custom-words.png")
 ```
 
 Click `r keys("OK")` and all instances of *punctuation* and *sentence length* are now excluded:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExclusionExampleCustomWordsExcludedNow.png")
+knitr::include_graphics("images/exclusion-example-custom-words-excluded-now.png")
 ```
 
 Separate instances of *sentence* and *length* will still be included, they will only be excluded if they appear together to form the phrase *sentence length*. Refer to \@ref(document-analysis) for more on how custom word/phrase exclusion works.
@@ -192,7 +192,7 @@ Note that when excluding individual words, these words are treated as if they ar
 Another section of text that could be excluded is the citation at the bottom. Go to the **Document Indexing** options, check **Also exclude trailing citations** and click `r keys("OK")`. Scroll to the bottom of the document and note how everything below the header *Citations* is now excluded:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/ExclusionExampleCitationExcluded.png")
+knitr::include_graphics("images/exclusion-example-citation-excluded.png")
 ```
 
 At this point, all that remains in the analysis is the actual prose—all "noise" from the document has been filtered out.
