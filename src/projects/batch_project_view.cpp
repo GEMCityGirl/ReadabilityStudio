@@ -967,6 +967,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     hideEditPanel(MainFrame::ID_EDIT_RIBBON_SUMMARY_REPORT_PANEL);
     hideEditPanel(MainFrame::ID_EDIT_RIBBON_EXPLANATION_LIST_PANEL);
     hideEditPanel(MainFrame::ID_EDIT_RIBBON_REPORT_PANEL);
+    hideEditPanel(MainFrame::ID_EDIT_RIBBON_SYLLABLE_HISTOGRAM_PANEL);
 
     if (event.GetExtraLong() == SIDEBAR_READABILITY_SCORES_SECTION_ID)
         {
