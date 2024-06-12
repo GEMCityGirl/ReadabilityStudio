@@ -4,11 +4,63 @@ library(magrittr)
 library(kableExtra)
 library(fontawesome)
 library(Hmisc)
+library(stringr)
 
 knitr::opts_chunk$set(message=F, warning=F)
 # prevent floating
 knitr::opts_chunk$set(fig.pos = 'H', out.extra = '')
 options(knitr.kable.NA = '')
+
+# @brief Applies a color to text (LaTeX and HTML only).
+# @details Supported named colors (e.g., 'red') and hex values (e.g., '#551A8B').
+# @param text The text to color.
+# @param color The color to use.
+colorize <- function(text, color)
+  {
+  # handle colors such as '#00FF22'
+  if (str_detect(color, "^#[a-fA-F0-9]+") && knitr::is_latex_output())
+    {
+    sprintf("\\textcolor[HTML]{%s}{%s}", str_extract(color, "^#([a-fA-F0-9]+)", group = 1), text)
+    }
+  # ...or color names like 'red'
+  else if (knitr::is_latex_output())
+    {
+    sprintf("\\textcolor{%s}{%s}", color, text)
+    }
+  else if (knitr::is_html_output())
+    {
+    sprintf("<span style='color: %s;'>%s</span>", color, text)
+    }
+  else
+    {
+    text
+    }
+  }
+
+# @brief Changes the font size for a block of text (LaTeX and HTML only).
+# @param text The text.
+# @param ptSize The point size of the font.
+# @param baseLinePtSize The point size of the baseline (only applies to LaTeX).
+font_point_size <- function(text, ptSize, baseLinePtSize)
+  {
+  if (knitr::is_latex_output())
+    {
+    # Note that this cannot be wrapped in {} because Pandoc seems to
+    # always escape these environment wrappers when font size commands are involved
+    # (whether it be point sizes or names like "tiny").
+    # To work around that, set the font size outside of an environment and then
+    # switch back to normal size font.
+    sprintf("\\fontsize{%s}{%s}\\selectfont %s \\normalsize", ptSize, baseLinePtSize, text)
+    }
+  else if (knitr::is_html_output())
+    {
+    sprintf("<span style='font-size: %spt;'>%s</span>", ptSize, text)
+    }
+  else
+    {
+    text
+    }
+  }
 
 # @brief Displays a word in drop caps (LaTeX only, prints as-is elsewhere).
 # @param word The word to put in drop caps.
@@ -17,7 +69,7 @@ drop_cap <- function(word, options = "")
   {
   if (knitr::is_latex_output())
     { knitr::asis_output(glue("\\lettrine[<options>]{<str_sub(word, 1, 1)>}{<str_sub(word, 2)>}", .open='<', .close='>')) }
-  else if (knitr::is_html_output())
+  else
     { knitr::asis_output(word) }
   }
 
@@ -193,7 +245,7 @@ checkmark <- function()
 indentation <- function()
   {
   if (knitr::is_latex_output())
-    { knitr::asis_output("\\hspace{1em}") }
+    { knitr::asis_output("\\hspace*{1em}") }
   else if (knitr::is_html_output())
     { knitr::asis_output("&nbsp;&nbsp;&nbsp;&nbsp;") }
   else
