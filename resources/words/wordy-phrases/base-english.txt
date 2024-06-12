@@ -41,7 +41,7 @@ a considerable amount of	many, numerous	0
 a countless number of	countless, endless	0		
 a decreased amount of	less	0		
 a decreased number of	fewer	0		
-a from	a form	3	vitamin	address;email
+a from	a form	3	delete;select;vitamin	address;email
 a good deal of	much, vast	0		
 a great deal of	much, vast	0		
 a great number	many	0		
@@ -1152,6 +1152,8 @@ annointing	anointing	3
 annoints	anoints	3		
 annouced	announced	3		
 annoucement	announcement	3		
+annoucement's	announcement's	3		
+annoucements	announcements	3		
 announcment	announcement	3		
 announcment's	announcement's	3		
 announcments	announcements	3		
@@ -2485,6 +2487,7 @@ bob wire	barbed wire	3
 bobwire	barbed wire	3		
 bodydbuilder	bodybuilder	3		
 bogous	bogus	3		
+boilplate	boilerplate	3		
 bombardement	bombardment	3		
 bombarment	bombardment	3		
 bona fide	in good faith	0		
@@ -3618,6 +3621,7 @@ compose	make up, create	0
 composed	made up, created, calm (adj.)	0		
 composes	makes up, creates	0		
 composing	making up, creating	0		
+composities	composites	3		
 composition	make-up	0		
 comprable	comparable	3		
 compres	compress	3		
@@ -3934,6 +3938,10 @@ constituting	being, forming	0
 constitution	form, make-up	0		
 constrainst	constraint, constraints	3		
 constrainsts	constraints	3		
+constrast	contrast	3		
+constrasted	contrasted	3		
+constrasting	contrasting	3		
+constrasts	contrasts	3		
 constraucts	constructs	3		
 constriants	constraints	3		
 construciton	construction	3		
@@ -4214,6 +4222,9 @@ corelate	correlate	3
 corelated	correlated	3		
 corelates	correlates	3		
 corelating	correlating	3		
+corelation	correlation	3		
+corelation's	correlation's	3		
+corelations	correlations	3		
 corellated	correlated	3		
 corespond	correspond	3		
 coresponded	corresponded	3		
@@ -7102,6 +7113,7 @@ gathering together	gathering	1
 gathering up	gathering	0		
 gathers together	gathers	1		
 gathers up	gathers	0		
+gathing	gathering	3		
 Gaudate	Gaudete	3		
 gaurantee	guarantee	3		
 gauranteed	guaranteed	3		
@@ -7568,7 +7580,7 @@ hazardous	risky, unsafe	0
 hazardously	unsafely	0		
 he am	he is	3		
 he are	he is	3	or	
-he be	he is	3	can;could;couldn't;might;mightn't;or;should;shouldn't;that;will;would;wouldn't	
+he be	he is, (word such as 'that' should be in front of 'he')	3	can;could;couldn't;might;mightn't;or;should;shouldn't;that;will;would;wouldn't	
 he do	he does	3	can;could;couldn't;does;might;mightn't;or;should;shouldn't;that;will;would;wouldn't	
 he herd	he heard	3		
 he is a man who	he	0		
@@ -8232,7 +8244,7 @@ in respect of	about, on	0
 in respect to	about, as for, for, in, of, on, over, respecting, to, toward, with	0		
 in response to	because of	0		
 in return for	for	0		
-in route	en route	3		mode
+in route	en route	3		mode;server;servers
 in seventh heaven	elated, very happy	2		
 in shambles	a shambles	3		
 in short order	briskly, promptly	0		
@@ -9484,6 +9496,7 @@ legitimate	valid, real, proper, normal	0
 legitimately	validly, properly, normally	0		
 legitmate	legitimate	3		
 leightweight	lightweight	3		
+lended	lent	3		
 lengh	length	3		
 lenghs	lengths	3		
 lenght	length	3		
@@ -10536,6 +10549,7 @@ no where	nowhere	3
 Noble Prize	Nobel Prize	3		
 Noble Prizes	Nobel Prizes	3		
 nomial	nominal	3		
+non-composities	non-composites	3		
 nonaged	nonpaged	3		
 nonantialiased	aliased	3		
 nondescrimination	nondiscrimination	3		
@@ -11720,6 +11734,9 @@ plan in advance	plan	1
 plan of action	plan, strategy	0		
 planation	plantation	3		
 planed	planned	3		
+planetarum	planetarium	3		
+planetarum's	planetarium's	3		
+planetarums	planetariums	3		
 planned ahead	planned	1		
 planned in advance	planned	1		
 planning ahead	planning	1		
@@ -12090,6 +12107,9 @@ previous to	before	0
 previously	before	0		
 previvous	previous	3		
 prevously	previously	3		
+prgram	program	3		
+prgram's	program's	3		
+prgrams	programs	3		
 pricipal	principal	3		
 priciple	principle	3		
 priciples	principles	3		
@@ -12266,6 +12286,8 @@ proeprties	properties	3
 proeprty	property	3		
 proeprty's	property's	3		
 profesor	professor	3		
+profesor's	professor's	3		
+profesors	professors	3		
 professer	professor	3		
 proffer	offer	0		
 proffered	offered	0		
@@ -13257,7 +13279,7 @@ reponse	response	3
 reponses	responses	3		
 reponsible	responsible	3		
 report back	report	0		
-report provide	report provides	3		
+report provide	report provides, report provided	3		
 reportadly	reportedly	3		
 reported back	reported	0		
 reporting back	reporting	0		
@@ -14005,7 +14027,7 @@ shcool's	school's	3
 shcools	schools	3		
 she am	she is	3		
 she are	she is	3	or	
-she be	she is	3	can;could;couldn't;might;mightn't;or;should;shouldn't;that;will;would;wouldn't	
+she be	she is, (word such as 'that' should be in front of 'she')	3	can;could;couldn't;might;mightn't;or;should;shouldn't;that;will;would;wouldn't	
 she do	she does	3	can;could;couldn't;does;might;mightn't;or;should;shouldn't;that;will;would;wouldn't	
 she herd	she heard	3		
 she is a woman who	she	0		
@@ -14241,7 +14263,7 @@ some how	somehow	3
 some many	so many	3		
 some one	someone	3		billion;hundred;million;thousand;trillion
 some thing	something	3		
-some times	sometimes	3		of
+some times	sometimes	3	at;during	of
 some what	somewhat	3		
 some where	somewhere	3		
 somehow or other	somehow	0		
@@ -15268,7 +15290,7 @@ then ever	than ever	3
 then then	then the, (strike one)	0		
 therafter	thereafter	3		
 therby	thereby	3		
-there exits	there exists	3		
+there exits	there exists (should be reviewed)	3		
 there is a chance of	may, might, can, could	0		
 there is a chance that	may, might, can, could	0		
 there is a need for	must, should	0		

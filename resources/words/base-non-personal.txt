@@ -296,6 +296,7 @@ Antipas
 Antirrhinum
 Antwerp
 Anycast
+AnyConnect
 Anyville
 AOL
 Aonix
@@ -532,6 +533,7 @@ Autoconf
 Autodesk
 Automake
 Automatt
+AutoML
 Autozone
 Auvergne
 Avarua
@@ -1058,7 +1060,9 @@ Bute
 Buttah
 Butterfield
 BuySAFE
+Buzzcard
 Buzzfeed
+BuzzPort
 Byelorussia
 Byronic
 Byronism
@@ -1237,6 +1241,7 @@ Celtic
 Cengage
 Cenis
 Centauri
+Centergy
 Centeron
 Centerville
 CentOS
@@ -1438,6 +1443,8 @@ Clonazepam
 Clorox
 Cloudera
 Cloudflare
+CloudFront
+CloudHub
 Cloverdale
 Cloze
 Clute
@@ -1451,6 +1458,7 @@ Coconutter
 Cocoshea
 Codabar
 Codeplex
+CodeQL
 Coeur-D-Alene
 Coeur-Dalene
 Cognac
@@ -1641,6 +1649,7 @@ Cusco
 Cuyahoga
 Cximal
 Cyberwerx
+CycleCloud
 Cygnus
 Cygwin
 Cymbalta
@@ -1690,6 +1699,7 @@ Dalmatian
 Daltonism
 Damascus
 Dandridge
+Danetsoft
 Danish
 Danube
 Danubian
@@ -1710,7 +1720,9 @@ Darwinism
 Darwinist
 Databook
 Databricks
+DataGuard
 Datamedia
+DataOps
 DataPilot
 Datastrip
 Dataverse
@@ -2121,6 +2133,7 @@ Etables-sur-Mer
 eTASFA
 Etchingham
 ETHE
+Ethereum
 Ethicon
 EthicsLine
 EthicsPoint
@@ -2200,6 +2213,7 @@ Exmore
 Expat
 Experian
 Exploratorium
+ExpressRoute
 Exton
 Exxon
 ExxonMobil
@@ -2240,6 +2254,7 @@ Falstaff
 Fanconi
 Fanzone
 Fareham
+Fargate
 Fargo
 Farmingdale
 Farmington
@@ -2422,6 +2437,7 @@ Freudian
 Fri
 Friday
 Friedland
+Friendsgiving
 Friendster
 Frigidaire
 Frisian
@@ -2613,6 +2629,7 @@ Goblinworks
 GoDaddy
 GoFundMe
 Goldendale
+GoldenGate
 Goldsboro
 Gomorrah
 Gondwana
@@ -3553,6 +3570,7 @@ La-Puente
 La-Vergne
 Labrador
 Lackawanna
+Ladytide
 Laesbarhedsindex
 Laetare
 Lagrangian
@@ -4193,6 +4211,8 @@ Mithraic
 Mithridate
 Mitsubishi
 MLA
+MLOps
+MLOpsPython
 Moab
 Moberly
 Mobil
@@ -4461,6 +4481,7 @@ Nerf
 Neshaminy
 Nestle
 Nestlé
+NetApp
 NetBIOS
 NetBSD
 Netezza
@@ -4478,6 +4499,7 @@ NetSuite
 Nettleton
 NetVUE
 Netware
+NetWeaver
 Netwoven
 Neuralink
 Neurosci
@@ -4740,6 +4762,7 @@ Opelika
 Opelousas
 OpenAL
 OpenBSD
+OpenCensus
 OpenCL
 openclipart
 OpenDocument
@@ -4748,6 +4771,7 @@ OpenGL
 OpenOffice
 OpenOffice.org
 OpenPGP
+OpenShift
 OpenSSL
 OpenStax
 OpenSuse
@@ -4757,6 +4781,8 @@ Opry
 Opteron
 Optum
 OptumRX
+OracleDB1
+OracleDB2
 Orangeburg
 OrangeTheory
 Oreck
@@ -4878,6 +4904,7 @@ Paramaguru
 Paramaribo
 Parasoft
 Parasomnia
+Parature
 Paris
 Parisian
 Parkersburg
@@ -5222,6 +5249,7 @@ Pyrenees
 Pyrex
 Pyrénées
 Pythagorean
+PyTorch
 Pyware
 Périgueux
 Q#
@@ -5372,6 +5400,7 @@ Renville
 Repairwear
 ResearchGate
 Resharper
+ResInsight
 Respironics
 Resveratrol
 RETA
@@ -5775,6 +5804,7 @@ Shelbyville
 Sheltand
 Shemini
 Shenandoah
+Shenzhen
 Shepherdstown
 Shepherdsville
 Sherwood
@@ -5853,6 +5883,7 @@ Sith
 Sjaelland
 Skechers
 Skiatook
+SkillBridge
 Skillsoft
 Skinactive
 Skincealer
@@ -6032,6 +6063,7 @@ Steubenville
 Stevenage
 Stevensville
 Stevia
+Stingerette
 Stirling
 Stivers
 Stockbridge
@@ -6056,6 +6088,7 @@ Stratos
 Streamhouse
 Streetsboro
 Strivectin
+Stromasys
 Strongsville
 Stroud
 Stroudsburg
@@ -6161,6 +6194,7 @@ Sylva
 Sylvania
 Sylvatic
 Symantec
+SynapseML
 Synopsys
 Synpase
 Syntech
@@ -6261,6 +6295,7 @@ Technotron
 Technovation
 TechRepublic
 TechStars
+TechWorks
 Tecmo
 Tecnomatix
 TEDRA
@@ -6299,6 +6334,7 @@ Tennessee
 Tenochtitlan
 Tenochtitlán
 Tenoverten
+TensorFlow
 Teotihuacan
 Terastor
 Teredo
@@ -6626,6 +6662,7 @@ Ulta
 Ulthar
 Ultima
 Ultimatte
+UltraCon
 Ultrawear
 Ultrium
 UMail
@@ -6760,12 +6797,14 @@ Venezuelan
 Venice
 Venmo
 Venn
+VentureLab
 Ventureland
 VentureWell
 Venus
 Venusian
 Veracruz
 Veradis
+Veranex
 Verdana
 Verisign
 Verizon
@@ -6954,6 +6993,7 @@ WebSockets
 WebSphere
 Websterville
 Webtoon
+WebWISE
 WeChat
 Wedgwood
 Wednesday

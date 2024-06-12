@@ -30,6 +30,9 @@ $
 4
 4th
 5
+5K
+5K's
+5Ks
 5th
 6
 64
@@ -5009,6 +5012,9 @@ anthropomorphising
 anthropomorphism
 anthropomorphism's
 anthropomorphisms
+anthropomorphize
+anthropomorphized
+anthropomorphizes
 anthropomorphizing
 anthropomorphous
 anti
@@ -16937,6 +16943,7 @@ buzzing
 buzzword
 buzzword's
 buzzwords
+buzzworthy
 buzzy
 bx
 bxs
@@ -27828,6 +27835,7 @@ core
 core's
 coreceptors
 cored
+coredemptive
 corequisite
 corequisites
 corer
@@ -28507,6 +28515,7 @@ counterespionage's
 counterespionages
 counterexample
 counterexamples
+counterfactual
 counterfeit
 counterfeited
 counterfeiter
@@ -30239,6 +30248,7 @@ cryoprobe
 cryoprotectant
 cryoscopic
 cryosphere
+cryospheric
 cryostat
 cryostat's
 cryosurgeries
@@ -30306,6 +30316,9 @@ cryptomined
 cryptomines
 cryptomining
 cryptomining's
+cryptonym
+cryptonym's
+cryptonyms
 cryptorchidism
 cryptosporidiosis
 cryptosporidium
@@ -30512,6 +30525,7 @@ culminating
 culmination
 culmination's
 culminations
+culminative
 culotte
 culottes
 culpa
@@ -32385,6 +32399,10 @@ decapsulations
 decarbonization
 decarbonization's
 decarbonizations
+decarbonize
+decarbonized
+decarbonizes
+decarbonizing
 decarboxylase
 decarboxylate
 decarboxylated
@@ -36332,6 +36350,8 @@ diminishes
 diminishing
 diminishings
 diminishment
+diminishment's
+diminishments
 diminuendo
 diminuendo's
 diminuendos
@@ -38730,6 +38750,7 @@ dolomites
 dolomitic
 dolor
 dolor's
+dolorosa
 dolorous
 dolorously
 dolors
@@ -44552,6 +44573,7 @@ escarpment
 escarpment's
 escarpments
 eschar
+eschatological
 eschatology
 eschatology's
 escherichia
@@ -45330,6 +45352,7 @@ evolutionist
 evolutionist's
 evolutionists
 evolutions
+evolvability
 evolve
 evolved
 evolves
@@ -46634,6 +46657,7 @@ extraterritorial
 extraterritorialities
 extraterritoriality
 extraterritoriality's
+extratropical
 extrauterine
 extravagance
 extravagance's
@@ -47587,6 +47611,11 @@ fastness's
 fastnesses
 fastpitch
 fasts
+fasttrack
+fasttrack's
+fasttracked
+fasttracking
+fasttracks
 fat
 fat's
 fatal
@@ -53517,6 +53546,7 @@ gaskets
 gaslight
 gaslight's
 gaslighted
+gaslighting
 gaslights
 gaslit
 gasohol
@@ -54240,6 +54270,7 @@ geosense
 geosensed
 geosenses
 geosensing
+geospace
 geospatial
 geostationary
 geostrategic
@@ -57664,6 +57695,7 @@ hacked
 hacker
 hacker's
 hackers
+hackerspace
 hackfest
 hackfest's
 hackfests
@@ -62589,6 +62621,9 @@ hydrofluoric
 hydrofoil
 hydrofoil's
 hydrofoils
+hydrogel
+hydrogel's
+hydrogels
 hydrogen
 hydrogen's
 hydrogenase
@@ -63188,6 +63223,10 @@ hypopnea
 hypoproteinemic
 hypos
 hyposecretion
+hyposensitize
+hyposensitized
+hyposensitizes
+hyposensitizing
 hyposmia
 hyposmotic
 hypospadias
@@ -63391,6 +63430,7 @@ iconoclast's
 iconoclastic
 iconoclasts
 iconographic
+iconographical
 iconographies
 iconography
 iconography's
@@ -63453,6 +63493,7 @@ idem
 idempotence
 Idempotency
 idempotent
+idempotently
 idempotents
 identic
 identical
@@ -68790,6 +68831,7 @@ inveterate
 inveterately
 inviability
 inviable
+invictus
 invidious
 invidiously
 invidiousness
@@ -72120,6 +72162,9 @@ lakebed's
 lakebeds
 laked
 lakefront
+lakehouse
+lakehouse's
+lakehouses
 laker
 laker's
 lakes
@@ -78777,6 +78822,9 @@ mediative
 mediator
 mediator's
 mediators
+mediatrix
+mediatrix's
+mediatrixes
 mediatype
 mediatype's
 mediatypes
@@ -80436,6 +80484,9 @@ micropropagation
 micropropagation's
 micropropagations
 micropyle
+microreactor
+microreactor's
+microreactors
 microRNA
 microRNA's
 microRNAs
@@ -84233,6 +84284,7 @@ multimillionaire's
 multimillionaires
 multimodal
 multimode
+multimodel
 multimonitor
 multinational
 multinationally
@@ -84411,6 +84463,8 @@ multitaxon
 multitaxon's
 multitaxons
 multitech
+multitenancy
+multitenancy's
 multitenant
 multitexture
 multitextured
@@ -84459,6 +84513,7 @@ multiway
 multiweek
 multiword
 multiyear
+multizone
 mum
 mum's
 mumble
@@ -85091,6 +85146,7 @@ mythologizes
 mythologizing
 mythology
 mythology's
+mythos
 myths
 myxedema
 myxoma
@@ -86310,6 +86366,7 @@ neuroectodermal
 neuroeffector
 neuroendocrine
 neuroendocrinology
+neuroengineering
 neuroepidemiology
 neuroepithelial
 neuroepithelium
@@ -87890,6 +87947,7 @@ nonrehearsed
 nonreinforcement
 nonreinforcement's
 nonreinforcements
+nonrelational
 nonrelative
 nonrelative's
 nonrelatives
@@ -89992,6 +90050,9 @@ onassis
 onassis's
 onboard
 onboarded
+onboarder
+onboarder's
+onboarders
 onboarding
 onboards
 onc
@@ -97669,6 +97730,9 @@ pickleballs
 pickled
 pickles
 pickling
+picklist
+picklist's
+picklists
 pickoff
 pickoffs
 pickpocket
@@ -107702,6 +107766,10 @@ reappraising
 reaps
 rear
 rear's
+rearchitect
+rearchitected
+rearchitecting
+rearchitects
 reared
 rearer
 rearer's
@@ -110828,6 +110896,7 @@ repairer
 repairer's
 repairers
 repairing
+repairingly
 repairman
 repairman's
 repairmen
@@ -110842,6 +110911,7 @@ repapering
 reparable
 reparation
 reparation's
+reparational
 reparations
 reparative
 reparent
@@ -114210,6 +114280,9 @@ rotogravure's
 rotogravures
 rotor
 rotor's
+rotorcraft
+rotorcraft's
+rotorcrafts
 rotors
 rototill
 rototiller
@@ -120590,6 +120663,9 @@ sightless
 sightlessly
 sightlier
 sightliest
+sightline
+sightline's
+sightlines
 sightliness
 sightliness's
 sightly
@@ -133046,6 +133122,7 @@ telemarketers
 telemarketing
 telemarketings
 telematic
+telematics
 telemedicine
 telemental
 telemeter
@@ -135735,6 +135812,7 @@ togglable
 toggle
 toggle's
 toggled
+toggler
 toggles
 toggling
 toging
@@ -141196,6 +141274,7 @@ unfaithful
 unfaithfully
 unfaithfulness
 unfaithfulness's
+unfallen
 unfalsifiable
 unfaltering
 unfalteringly
@@ -145527,6 +145606,9 @@ villagey
 villain
 villain's
 villainage
+villainess
+villainess's
+villainesses
 villainies
 villainous
 villainously
@@ -146863,6 +146945,9 @@ warfare
 warfare's
 warfares
 warfarin
+warfighter
+warfighter's
+warfighters
 warhead
 warhead's
 warheads
@@ -147540,6 +147625,9 @@ weber's
 webfeet
 webfoot
 webfoot's
+webform
+webform's
+webforms
 webhook
 webhook's
 webhooks
