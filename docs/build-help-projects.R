@@ -159,7 +159,6 @@ unlink(glue("{docFolder}/readability-studio-manual/91-Glossaries.rmd"))
 # build the API help topics and intellisense file
 unlink(glue("{docFolder}/readability-studio-api/enums"), recursive=T) # rebuild this folder and keep the latest content
 dir_create(glue("{docFolder}/readability-studio-api/enums"))
-write(c("# (PART) Enumerations{-}\n\n# Enumerations\n"), file=glue("{docFolder}/readability-studio-api/enums/01.md"))
 
 enums <- loadEnums(normalizePath(glue("{docFolder}/../resources/scripting/rs-constants.lua")))
 writeEnumEditorFile(enums, glue("{docFolder}/../resources/scripting/rs-enums.api"))
