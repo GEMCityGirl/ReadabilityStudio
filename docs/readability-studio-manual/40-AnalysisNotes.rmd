@@ -307,7 +307,7 @@ Sale systems.
 
 Note how *Business* and *Point-of-Sale* are split across multiple lines.
 
-When *Readability Studio* encounters a hyphenated word at the end of a line, it will perform the following steps:
+When *Readability Studio* encounters a hyphenated word at the end of a line, it will perform these steps:
 
 - Both parts of the word will be joined.
 - The hyphen(s) will be removed and if what remains is a known word, then that will be used. Otherwise,...
@@ -325,11 +325,53 @@ Consider the following:
 
 ::: {.fancyquotes data-latex=''}
 What *%* of viewers enjoyed the film *Prometheus*?
+
 From my independent survey, over *95 %* of respondents said that they did.
 :::
 
 In the above example, the first *%* will be counted as a word. The second one will be
 combined to create the word *95 %*.
+
+## Link Lists (HTML Importer)
+
+When importing HTML documents, three or more consecutive hyperlinks not separated by text will be treated as a link list.
+This will involve laying out each link on a separate line, with all them tabbed over. This will prevent what would usually
+be a footer containing links from being seen as a sentence. For example:
+
+::: {.fancyquotes data-latex=''}
+Our Products\
+\ \
+`r colorize('Readability Studio', '#0000EE')`\
+\ \
+Our Corporate Mission\
+\ \
+`r font_point_size(colorize('Inspire through software', '#0000EE'), 8, 9)` | `r font_point_size(colorize('Align clients\' global strategies', '#551A8B'), 8, 9)` |
+`r font_point_size(colorize('Make the world a better place', '#0000EE'), 8, 9)` | `r font_point_size(colorize('Elevate world consciousness', '#0000EE'), 8, 9)`
+:::
+
+Because there isn't any text in between the links at the bottom (only *|* separating them), it is assumed that each link is a separate unit and not part of a sentence.
+When the document is imported, it will be processed as such:
+
+::: {.fancyquotes data-latex=''}
+Our Products\
+\ \
+`r colorize('Readability Studio', '#0000EE')`\
+\ \
+Our Corporate Mission\
+\ \
+`r paste0(indentation(), colorize('Inspire through software', '#0000EE'))` |\
+`r paste0(indentation(), colorize('Align clients\' global strategies', '#551A8B'))` |\
+`r paste0(indentation(), colorize('Make the world a better place', '#0000EE'))` |\
+`r paste0(indentation(), colorize('Elevate world consciousness', '#0000EE'))`
+:::
+
+Note that the link list must also start from a new line. In other words, consecutive links that are proceeded by content on the same line will remain part of the text. For example:
+
+::: {.fancyquotes data-latex=''}
+The recommended tools for continuous integration are: `r colorize('ccp-check', '#551A8B')`, `r colorize('Microsoft PREFast', '#0000EE')`, `r colorize('clang-tidy', '#0000EE')`, `r colorize('GCC', '#0000EE')`.
+:::
+
+This content will be imported as it is shown above (i.e., a full sentence).
 
 ## Option Changes that Require Reanalysis
 
