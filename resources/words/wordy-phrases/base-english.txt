@@ -15312,7 +15312,7 @@ these ones	these	3
 thespecific	the specific	3		
 theworld	the world	3		
 they am	they are	3		
-they be	they are, they may/can/will/should/would/could be	3	can;could;couldn't;may;might;mightn't;or;should;shouldn't;that;will;would;wouldn't	
+they be	they are, they may/can/will/should/would/could be	3	can;could;couldn't;may;might;mightn't;or;should;shouldn't;that;whether;will;would;wouldn't	
 they has	they have	3		
 they herd	they heard	3		
 they here	they hear	3		
