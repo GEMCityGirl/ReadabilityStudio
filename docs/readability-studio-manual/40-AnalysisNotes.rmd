@@ -169,8 +169,8 @@ The option **Sentences must begin with capitalized words** controls whether sent
 The option **Ignore blank lines** is used for controlling how multi-line sentences with blank lines between them are seen. For example:
 
 ::: {.fancyquotes data-latex=''}
-Chapter 1  
-
+Chapter 1\
+\ \
 It was the best days of our lives.
 :::
 
