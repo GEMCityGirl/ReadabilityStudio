@@ -470,14 +470,17 @@ namespace grammar
                         }
                     }
                 // citation (superscripted number) after a sentence? Skip over that.
-                if (string_util::is_superscript_number(text[current_position+1]))
+                if (current_position + 1 < length &&
+                    string_util::is_superscript_number(text[current_position + 1]))
                     {
-                    auto nextNonCitationMarkChar = current_position+1;
+                    auto nextNonCitationMarkChar = current_position + 1;
                     while (nextNonCitationMarkChar < length &&
                         string_util::is_superscript_number(text[nextNonCitationMarkChar]))
-                        { ++nextNonCitationMarkChar; }
+                        {
+                        ++nextNonCitationMarkChar;
+                        }
                     // move forward to the last character in the citation
-                    current_position = nextNonCitationMarkChar-1;
+                    current_position = nextNonCitationMarkChar - 1;
                     }
                 // At the end of the text? Assume this is a sentence end.
                 if (current_position+1 >= length)
