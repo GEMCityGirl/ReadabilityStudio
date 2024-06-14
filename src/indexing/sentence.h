@@ -475,13 +475,19 @@ namespace grammar
                     {
                     auto nextNonCitationMarkChar = current_position + 1;
                     while (nextNonCitationMarkChar < length &&
-                        string_util::is_superscript_number(text[nextNonCitationMarkChar]))
+                           string_util::is_superscript_number(text[nextNonCitationMarkChar]))
                         {
                         ++nextNonCitationMarkChar;
                         }
                     // move forward to the last character in the citation
                     current_position = nextNonCitationMarkChar - 1;
                     }
+                else if (current_position + 1 < length &&
+                         string_util::is_trademark_or_registration(text[current_position + 1]))
+                    {
+                    ++current_position;
+                    }
+
                 // At the end of the text? Assume this is a sentence end.
                 if (current_position+1 >= length)
                     { return true; }

@@ -88,6 +88,7 @@
   - sentences that contain only one word that end with a colon at the end of a line.
 - Lone *%* characters (unless proceeded by a number) are now treated as whole words (rather than punctuation).
 - If *%*, *¢*, or *°* characters are proceeded by a number, then they will now be connected to the previous word.
+- Trademark (™), registration (®), service mark (℠), official mark (Ⓜ), sound recording (℗), and copyright (©, Ⓒ) symbols after a sentence are now handled properly.
 - Custom-test formulas can now contain C/C++ style comments.
   This includes multi-line (text inside of `/*` and `*/`) and single-line (`//`) comments.
 - **Wording Errors** and **Misspellings** have been renamed to **Errors & Misspellings** and **Possible Misspellings**, respectively.

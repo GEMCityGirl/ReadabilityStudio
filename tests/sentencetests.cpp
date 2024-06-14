@@ -15,7 +15,7 @@ using MYWORD = word<traits::case_insensitive_ex,
 
 extern word_list Stop_list;
 
-TEST_CASE("Ending With Dash Ending Sentence", "[sentence]")
+TEST_CASE("Ending with dash ending sentence", "[sentence]")
     {
     grammar::is_end_of_sentence sent(false);
 
@@ -41,7 +41,7 @@ TEST_CASE("Ending With Dash Ending Sentence", "[sentence]")
     CHECK_FALSE(sent(text, wcslen(text), 9, 1, 0));
     }
 
-TEST_CASE("Ending with Plus", "[sentence]")
+TEST_CASE("Ending with plus", "[sentence]")
     {
     grammar::is_end_of_sentence sent(false);
 
@@ -51,6 +51,19 @@ TEST_CASE("Ending with Plus", "[sentence]")
 
     text = L"I use C++. That is my language.";
     CHECK(sent(text, wcslen(text), 9, 6, 2));
+    }
+
+TEST_CASE("Ending with trademark", "[sentence]")
+    {
+    grammar::is_end_of_sentence sent(false);
+
+    // should break into two sentences
+    const wchar_t* text = L"This is my slogan.™ Some more text.";
+    CHECK(sent(text, wcslen(text), 17, 10, 3));
+
+    // won't split, needs a space
+    text = L"This is my slogan.™Some more text.";
+    CHECK_FALSE(sent(text, wcslen(text), 17, 10, 3));
     }
 
 TEST_CASE("Sentences", "[sentence]")
