@@ -50,6 +50,7 @@ Acworth
 Acyclovir
 Adairsville
 Adbusters
+AdChoices
 Addis
 Adelanto
 Adelphi
@@ -576,6 +577,7 @@ Aztecan
 Aztlán
 Azusa
 Babel
+Babelline
 Babyfacial
 Babylisspro
 Babylon
@@ -1827,7 +1829,9 @@ Direct2D
 Direct3D
 DirectAccess
 DirectConnect
+DirectDraw
 DirectTV
+DirectWrite
 DirectX
 Disneyland
 District
@@ -2218,6 +2222,7 @@ Exton
 Exxon
 ExxonMobil
 Eyde
+Eyestudio
 Eyjafjallajokull
 Eyjafjallajökull
 Ezcode
@@ -2229,6 +2234,7 @@ Facebooked
 Facebooking
 Facebooks
 Facepile
+Facestudio
 FactFinder
 Faeroe
 FAFSANet
@@ -2547,6 +2553,7 @@ Gazza
 GCC
 Gdansk
 GDB
+Gdiplus
 Gearflow
 Geauga
 Gedalia
@@ -3996,6 +4003,7 @@ Matarangi
 Matchup
 Mathematica
 Mathematik
+Mathworld
 Matlab
 Matplotlib
 Mattachine
@@ -4151,6 +4159,7 @@ Middlesex
 Middleton
 Middletown
 Midi
+Midl
 Midlands
 Midlothian
 Midpark
@@ -5930,6 +5939,7 @@ Smithtown
 Snapchat
 Snapcraft
 Snapple
+Snapscara
 Sneffels
 SoBe
 Socratic
@@ -6136,6 +6146,7 @@ SundanceTV
 Sundanese
 Sunday
 Sunderland
+Sunkisser
 Sunkist
 Sunland
 Sunni
@@ -6151,6 +6162,7 @@ Superdome
 Supergoop
 SuperPAC
 Supersmile
+Superstay
 Sur
 Surabaya
 SurfAid
@@ -6275,6 +6287,7 @@ Tatar
 Tatiana
 Tatiania
 Tatooine
+Tattoostudio
 Tavernier
 Taylorism
 Taylorist
@@ -6684,6 +6697,7 @@ Unionist
 Uniontown
 Unionville
 UniPlus
+Uniscribe
 UniSoft
 Unisys
 UnitedHealth

@@ -1082,6 +1082,7 @@ acmes
 acne
 acne's
 acned
+acneic
 acnes
 acoela
 acoelomate
@@ -1547,6 +1548,7 @@ adiabatically
 adieu
 adieus
 adieux
+adios
 adipocyte
 adipocytes
 adiponectin
@@ -4297,6 +4299,7 @@ anchorites
 anchoritic
 anchoritism
 anchoritism's
+anchorless
 anchorman
 anchorman's
 anchormen
@@ -8113,6 +8116,10 @@ autoapprove
 autoapproved
 autoapproves
 autoapproving
+autoarrange
+autoarranged
+autoarranges
+autoarranging
 autoassociative
 autobahn
 autobahn's
@@ -8134,6 +8141,10 @@ autoblocks
 autochanger
 autochanger's
 autochangers
+autocheck
+autochecked
+autochecking
+autochecks
 autochthonous
 autoclave
 autoclave's
@@ -8163,6 +8174,9 @@ autoconnect
 autoconnected
 autoconnecting
 autoconnects
+autocorrection
+autocorrection's
+autocorrections
 autocorrelate
 autocorrelated
 autocorrelates
@@ -12025,6 +12039,7 @@ bilges
 bilging
 biliary
 bilinear
+bilinearly
 bilingual
 bilingualism
 bilingualism's
@@ -13183,6 +13198,7 @@ blenched
 blenches
 blenching
 blend
+blendability
 blendable
 blended
 blender
@@ -15360,6 +15376,9 @@ brickbat's
 brickbats
 bricked
 bricker
+brickhouse
+brickhouse's
+brickhouses
 bricking
 bricklayer
 bricklayer's
@@ -17299,6 +17318,7 @@ cakewalk's
 cakewalked
 cakewalking
 cakewalks
+cakey
 caking
 calabash
 calabash's
@@ -25158,6 +25178,7 @@ compensations
 compensative
 compensator
 compensator's
+compensators
 compensatory
 compete
 competed
@@ -25324,6 +25345,9 @@ componentize
 componentized
 componentizes
 componentizing
+componentries
+componentry
+componentry's
 components
 comport
 comported
@@ -28596,6 +28620,9 @@ countersignature
 countersignature's
 countersignatures
 countersigned
+countersigner
+countersigner's
+countersigners
 countersigning
 countersigns
 countersink
@@ -28844,6 +28871,7 @@ coverture's
 covertures
 coves
 covet
+covetable
 coveted
 coveter
 coveter's
@@ -29931,6 +29959,9 @@ crosspiece
 crosspiece's
 crosspieces
 crosspoint
+crosspolymer
+crosspolymer's
+crosspolymers
 crossproduct
 crossproducts
 crossroad
@@ -31027,6 +31058,9 @@ cutpoint's
 cutpoints
 cutrate
 cuts
+cutscene
+cutscene's
+cutscenes
 cutter
 cutter's
 cutters
@@ -31624,6 +31658,9 @@ dance
 dance's
 danceable
 danced
+dancefloor
+dancefloor's
+dancefloors
 dancelike
 dancer
 dancer's
@@ -32470,6 +32507,7 @@ decentralize
 decentralized
 decentralizes
 decentralizing
+decentrally
 deception
 deception's
 deceptions
@@ -32835,6 +32873,9 @@ decrypter's
 decrypters
 decrypting
 decryption
+decryptor
+decryptor's
+decryptors
 decrypts
 decubitis
 decubitus
@@ -34619,6 +34660,7 @@ deriver
 deriver's
 derives
 deriving
+derm
 derma
 dermabrasion
 dermabrasion's
@@ -34638,6 +34680,7 @@ dermatoglyphics
 dermatographism
 dermatologic
 dermatological
+dermatologically
 dermatologies
 dermatologist
 dermatologist's
@@ -45227,6 +45270,7 @@ evensong's
 evensongs
 event
 event's
+evented
 eventful
 eventfully
 eventfulness
@@ -45850,6 +45894,9 @@ exhilaration
 exhilaration's
 exhilarations
 exhilarative
+exhilarator
+exhilarator's
+exhilarators
 exhort
 exhortation
 exhortation's
@@ -46632,6 +46679,9 @@ extranet's
 extranets
 extranuclear
 extraocular
+extraordinaire
+extraordinaire's
+extraordinaires
 extraordinaries
 extraordinarily
 extraordinariness
@@ -47089,6 +47139,7 @@ failles
 failover
 failover's
 failovers
+failproof
 fails
 failsafe
 failure
@@ -54707,6 +54758,7 @@ girlhood's
 girlhoods
 girlie
 girlie's
+girlies
 girlish
 girlishly
 girlishness
@@ -54943,6 +54995,7 @@ gleam's
 gleamed
 gleaming
 gleams
+gleamy
 glean
 gleaned
 gleaner
@@ -55193,6 +55246,7 @@ glower's
 glowered
 glowering
 glowers
+glowier
 glowing
 glowingly
 glows
@@ -56682,6 +56736,7 @@ grippers
 grippes
 gripping
 grippingly
+grippy
 grips
 grisaille
 griseofulvin
@@ -60360,6 +60415,8 @@ highly
 highness
 highness's
 highpoint
+highpoint's
+highpoints
 highroad
 highroad's
 highroads
@@ -60660,6 +60717,7 @@ hive's
 hived
 hives
 hiving
+hlsl
 HM
 hmm
 HMO
@@ -65244,6 +65302,7 @@ incompleteness's
 incompletes
 incompletion
 incompletion's
+incompliant
 incomprehensibilities
 incomprehensibility
 incomprehensibility's
@@ -67364,6 +67423,7 @@ instructors
 instructs
 instrument
 instrument's
+instrumentable
 instrumental
 instrumentalism
 instrumentalism's
@@ -72600,6 +72660,7 @@ lashings
 lashline
 lashline's
 lashlines
+lashy
 lasing
 lass
 lass's
@@ -75445,6 +75506,7 @@ longueurs
 longus
 longways
 longwear
+longwearing
 longwise
 longword
 longword's
@@ -80319,6 +80381,7 @@ microfinance
 microfinanced
 microfinances
 microfinancing
+microfine
 microflora
 microfluidic
 microfluidics
@@ -80782,6 +80845,8 @@ migrans
 migrant
 migrant's
 migrants
+migratability
+migratability's
 migratable
 migrate
 migrated
@@ -82577,6 +82642,8 @@ moisturizer's
 moisturizers
 moisturizes
 moisturizing
+mojo
+mojo's
 molal
 molalities
 molality
@@ -84135,6 +84202,7 @@ mullions
 mulls
 Multan
 multi
+multiarray
 multiaxial
 multiband
 multibank
@@ -84163,6 +84231,9 @@ multicarrier
 multicarrier's
 multicarriers
 multicast
+multicasted
+multicasting
+multicasts
 multicellular
 multicellularity
 multicenter
@@ -84493,6 +84564,7 @@ multiunit
 multiuse
 multiuser
 multivalent
+multivalue
 multivalued
 multivariable
 multivariate
@@ -85244,6 +85316,7 @@ nakedness's
 Nakoma
 Nalani
 naloxone
+namable
 namby
 name
 name's
@@ -87348,6 +87421,8 @@ noncombatant's
 noncombatants
 noncombustible
 noncombustibles
+noncomedic
+noncomedogenic
 noncommercial
 noncommercials
 noncommissioned
@@ -87593,6 +87668,7 @@ nonfractional
 nonfreezing
 nonfrivolous
 nonfunctional
+nonfunctioning
 nonfundable
 nongaussianity
 nongeneric
@@ -90187,6 +90263,7 @@ oohed
 oohing
 oohs
 oolitic
+oomph
 oomycete
 oomycetes
 oophorectomy
@@ -94638,6 +94715,7 @@ patchable
 patched
 patcher
 patcher's
+patchers
 patches
 patchier
 patchiest
@@ -97429,6 +97507,10 @@ photophosphorylation
 photopigment
 photopigments
 photopolymerization
+photoprint
+photoprinted
+photoprinting
+photoprints
 photopsins
 photorealism
 photorealistic
@@ -100312,6 +100394,7 @@ poppers
 poppet
 poppet's
 poppied
+poppier
 poppies
 popping
 poppy
@@ -101069,6 +101152,7 @@ pouted
 pouter
 pouter's
 pouters
+poutier
 pouting
 pouts
 pouty
@@ -104347,6 +104431,7 @@ pruner
 pruner's
 pruners
 prunes
+pruney
 pruning
 prurience
 prurience's
@@ -105590,11 +105675,13 @@ quadrennium
 quadrennium's
 quadrenniums
 quadric
+quadric's
 quadricep
 quadricep's
 quadriceps
 quadriceps's
 quadricepses
+quadrics
 quadrilateral
 quadrilaterals
 quadrille
@@ -107159,6 +107246,9 @@ rastercap's
 rastercaps
 rasterise
 rasterised
+rasteriser
+rasteriser's
+rasterisers
 rasterises
 rasterising
 rasterization
@@ -107431,6 +107521,10 @@ razz
 razzed
 razzes
 razzing
+razzle-dazzle
+razzle-dazzled
+razzle-dazzles
+razzle-dazzling
 razzmatazz
 razzmatazzes
 Rb
@@ -110464,6 +110558,10 @@ remarried
 remarries
 remarry
 remarrying
+remarshal
+remarshaled
+remarshaling
+remarshals
 remaster
 remastered
 remastering
@@ -111745,6 +111843,10 @@ resiliencies
 resiliency
 resilient
 resiliently
+resilver
+resilvered
+resilvering
+resilvers
 resin
 resin's
 resined
@@ -111784,6 +111886,7 @@ resists
 resit
 resiting
 resitting
+resizability
 resizable
 resize
 resized
@@ -118311,6 +118414,7 @@ semistranger's
 semistrangers
 semistructured
 semisweet
+semisynchronous
 semitendinosus
 semitics
 semitone
@@ -118481,6 +118585,7 @@ sensitizes
 sensitizing
 sensor
 sensor's
+sensorial
 sensorimotor
 sensorimotor's
 sensorimotors
@@ -118954,6 +119059,8 @@ session
 session's
 sessional
 sessionally
+sessionful
+sessionless
 sessions
 set
 set's
@@ -119402,6 +119509,7 @@ sharp
 sharp's
 sharped
 sharpen
+sharpenable
 sharpened
 sharpener
 sharpeners
@@ -121064,6 +121172,7 @@ singing
 singingly
 singings
 single
+singlecast
 singled
 singlehanded
 singlehandedly
@@ -121511,6 +121620,7 @@ skinnydipping
 skinnydips
 skins
 skintight
+skintone
 skip
 skip's
 skipped
@@ -122562,6 +122672,7 @@ SMSA's
 SMSAs
 SMTP
 smudge
+smudgeable
 smudged
 smudgeless
 smudger
@@ -127375,6 +127486,9 @@ storekeep
 storekeeper
 storekeeper's
 storekeepers
+storemapper
+storemapper's
+storemappers
 storer
 storeroom
 storeroom's
@@ -128729,6 +128843,9 @@ submersing
 submersion
 submersion's
 submersions
+submesh
+submesh's
+submeshes
 submicroscopic
 submicrosecond
 submicrosecond's
@@ -130873,7 +130990,9 @@ swastikas
 swat
 swatch
 swatch's
+swatched
 swatches
+swatching
 swath
 swath's
 swathe
@@ -133797,6 +133916,9 @@ tertius
 Terza
 TESL
 TESOL
+tesselator
+tesselator's
+tesselators
 tessellate
 tessellated
 tessellates
@@ -140036,7 +140158,10 @@ unbudging
 unbudgingly
 unbuffered
 unbuilt
+unbundle
 unbundled
+unbundles
+unbundling
 unburden
 unburdened
 unburdening
@@ -140057,6 +140182,7 @@ uncaches
 uncaching
 uncaged
 uncalcified
+uncalculated
 uncalculating
 uncalibrated
 uncalled
@@ -140305,6 +140431,7 @@ unconcerns
 unconditional
 unconditionally
 unconditioned
+unconfident
 unconfigurable
 unconfigured
 unconfined
@@ -140699,6 +140826,7 @@ underhandedly
 underhandedness
 underhandedness's
 underhandednesses
+underhang
 underheat
 underinflated
 underinsurance
@@ -140753,6 +140881,7 @@ undernourishment's
 undernourishments
 undernutrition
 underpaid
+underpainting
 underpants
 underpart
 underpart's
@@ -141327,6 +141456,7 @@ unfenced
 unfertile
 unfertilized
 unfetchable
+unfetched
 unfetter
 unfettered
 unfettering
@@ -142110,10 +142240,14 @@ unmarks
 unmarred
 unmarried
 unmarrieds
+unmarshal
+unmarshaled
+unmarshaling
 unmarshall
 unmarshalled
 unmarshalling
 unmarshalls
+unmarshals
 unmask
 unmasked
 unmasking
@@ -144044,6 +144178,7 @@ uxorious
 V
 V's
 v.
+va-va-voom
 vacancies
 vacancy
 vacancy's
@@ -144334,6 +144469,7 @@ vampired
 vampires
 vampiring
 vamps
+vampy
 vampyrellid
 vampyrellid's
 vampyrellids
@@ -148371,6 +148507,7 @@ whitepoint's
 whitepoints
 whiter
 whites
+whitesmoke
 whitespace
 whitespaces
 whitest
@@ -148466,6 +148603,7 @@ whooper's
 whoopers
 whooping
 whoops
+whoopsie
 whoosh
 whoosh's
 whooshed
@@ -148628,8 +148766,10 @@ wiki
 wiki's
 wikis
 wild
+wildberry
 wildcard
 wildcarded
+wildcarding
 wildcards
 wildcat
 wildcat's
@@ -149559,6 +149699,10 @@ words
 wordsmith
 wordsmith's
 wordsmiths
+wordwrap
+wordwrapped
+wordwrapping
+wordwraps
 wordy
 wore
 work
@@ -150852,6 +150996,7 @@ zymurgy
 ú
 û
 ü
+über
 ý
 þ
 ÿ

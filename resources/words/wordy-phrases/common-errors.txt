@@ -107,6 +107,8 @@ Flinstones	Flintstones	3
 Floqued	Floquet	3		
 Fransiscan	Franciscan	3		
 Fransiscans	Franciscans	3		
+fuschia	fuchsia	3		
+fuschia's	fuchsia's	3		
 Galapágos	Galápagos	3		
 Galations	Galatians	3		
 Gannt	Gantt	3		

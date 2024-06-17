@@ -12,6 +12,7 @@ const std::set<grammar::is_double_word_exception::string_type>
     grammar::is_double_word_exception::m_double_word_exceptions = {
         L"bang",                     // A gun goes bang bang
         L"bison",                    // Bison bison is American bison
+        L"Bom",                      // Bom Bom ST5 is a cosmetic product
         L"Boola",                    // "Boola Boola" is the Yale football song
         L"choo",                     // The train goes "choo choo"
         L"bye",                      // "Say bye bye to grandma."

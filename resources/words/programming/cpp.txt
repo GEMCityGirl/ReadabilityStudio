@@ -521,6 +521,7 @@ strnlen
 strptime
 strrchr
 Strsafe
+strsize
 strstr
 strstream
 strtod
@@ -547,6 +548,7 @@ synchronized
 tanh
 tccat
 tccpy
+tcsat
 tcscat
 tcscmp
 tcscoll
@@ -565,6 +567,7 @@ throw
 tmakepath
 tolower
 toupper
+towlower
 towupper
 tprintf
 transaction_safe
@@ -654,6 +657,7 @@ wsprintf
 wstring
 wstringbuf
 wstringstream
+wtoi
 wvnsprintf
 wvsprintf
 xor

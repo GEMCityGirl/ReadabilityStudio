@@ -134,11 +134,20 @@ Application.CrossReferenceWordLists(
     Debug.GetScriptFolderPath().."words/wordy-phrases/spache-replacements.txt")
 
 -- Merge everything into the English dictionary
+Application.MergePhraseLists(
+    Debug.GetScriptFolderPath().."words/common-dictionary.txt",
+    Debug.GetScriptFolderPath().."words/common-dictionary.txt")
+Application.ExpandWordList(
+    Debug.GetScriptFolderPath().."words/common-dictionary.txt",
+    Debug.GetScriptFolderPath().."CommonDictionaryTEMP.txt", "'s")
 Application.MergeWordLists(
     Debug.GetScriptFolderPath().."words/dictionaries/english.txt",
     Debug.GetScriptFolderPath().."words/base-english-dictionary.txt",
     Debug.GetScriptFolderPath().."words/abbreviations/abbreviations.txt",
-    Debug.GetScriptFolderPath().."words/proper-nouns/all.txt")
+    Debug.GetScriptFolderPath().."words/proper-nouns/all.txt",
+    Debug.GetScriptFolderPath().."CommonDictionaryTEMP.txt")
+
+os.remove(Debug.GetScriptFolderPath().."CommonDictionaryTEMP.txt")
 
 -- Programming dictionaries (this is separate and optionally included)
 Application.MergeWordLists(

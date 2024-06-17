@@ -66,6 +66,7 @@ sprintf
 SQL
 sRGB
 ssDNA
+ssh
 ssRNA
 STI
 STNA
