@@ -2177,6 +2177,7 @@ affiliation
 affiliation's
 affiliations
 affine
+affined
 affinities
 affinitize
 affinitized
@@ -9141,6 +9142,9 @@ backspins
 backstabber
 backstabber's
 backstabbing
+backstack
+backstack's
+backstacks
 backstage
 backstair
 backstairs
@@ -14267,6 +14271,7 @@ bookmaking's
 bookmakings
 bookmark
 bookmark's
+bookmarkable
 bookmarked
 bookmarker
 bookmarking
@@ -24469,6 +24474,7 @@ colourants
 colouration
 colouration's
 colourations
+colourblindness
 coloured
 coloureds
 colourer
@@ -30449,6 +30455,9 @@ cubbyholes
 cube
 cube's
 cubed
+cubemap
+cubemap's
+cubemaps
 cuber
 cuber's
 cubers
@@ -33222,6 +33231,10 @@ defogger's
 defoggers
 defogging
 defogs
+defold
+defolded
+defolding
+defolds
 defoliant
 defoliant's
 defoliants
@@ -46896,6 +46909,9 @@ eyestrains
 eyeteeth
 eyetooth
 eyetooth's
+eyetracker
+eyetracker's
+eyetrackers
 eyewash
 eyewash's
 eyewashes
@@ -46948,6 +46964,7 @@ face's
 facecloth
 facecloths
 faced
+facedown
 faceless
 facelessness
 facelift
@@ -46971,6 +46988,7 @@ facetiously
 facetiousness
 facetiousness's
 facets
+faceup
 facial
 facialist
 facialist's
@@ -50219,6 +50237,9 @@ flouting
 flouts
 flow
 flowchart
+flowcharter
+flowcharter's
+flowcharters
 flowcharting
 flowcharts
 flowed
@@ -54275,9 +54296,13 @@ geometrics
 geometries
 geometry
 geometry's
+geomorph
+geomorphed
+geomorphing
 geomorphological
 geomorphology
 geomorphology's
+geomorphs
 geomyces
 geopath
 geopath's
@@ -54343,6 +54368,10 @@ geothermic
 geotour
 geotour's
 geotours
+geovisit
+geovisited
+geovisiting
+geovisits
 gephyrophobia
 geranium
 geranium's
@@ -54611,6 +54640,8 @@ gigantism
 gigantosteologies
 gigantosteology
 gigantosteology's
+gigapixel
+gigapixels
 gigaton
 gigaton's
 gigatons
@@ -55396,6 +55427,7 @@ glyoxysome's
 glyoxysomes
 glyph
 glyph's
+glyphic
 glyphs
 gm
 GM2
@@ -65668,6 +65700,7 @@ indexing
 indicant
 indicant's
 indicants
+indicatable
 indicate
 indicated
 indicates
@@ -84479,6 +84512,9 @@ multisector
 multiselect
 multiselected
 multiselecting
+multiselection
+multiselection's
+multiselections
 multiselects
 multisensory
 multiserver
@@ -108383,6 +108419,10 @@ recliner's
 recliners
 reclines
 reclining
+reclone
+recloned
+reclones
+recloning
 recluse
 recluse's
 recluses
@@ -112394,6 +112434,10 @@ reteaching
 retell
 retelling
 retells
+retemplate
+retemplated
+retemplates
+retemplating
 retention
 retention's
 retentions
@@ -118985,6 +119029,7 @@ server
 server's
 serverless
 servers
+serverside
 serves
 service
 service's
@@ -128867,6 +128912,10 @@ submitter
 submitters
 submitting
 submix
+submixe
+submixed
+submixeds
+submixing
 submodalities
 submodality
 submode
@@ -129260,6 +129309,9 @@ subsystem's
 subsystems
 subtable
 subtables
+subtag
+subtag's
+subtags
 subtalar
 subtask
 subtask's
@@ -129294,6 +129346,9 @@ subtests
 subtext
 subtext's
 subtexts
+subtexture
+subtexture's
+subtextures
 subthalamic
 subthalamus
 subtitle
@@ -131217,6 +131272,7 @@ swinishness's
 Swink
 swipe
 swipe's
+swipeable
 swiped
 swipes
 swiping
@@ -134106,6 +134162,9 @@ textile
 textile's
 textiles
 texting
+textreader
+textreader's
+textreaders
 texts
 textual
 textually
@@ -134979,6 +135038,7 @@ throughway
 throughway's
 throughways
 throw
+throwable
 throwaway
 throwaway's
 throwaways
@@ -139656,6 +139716,7 @@ ugly
 uglying
 uh
 UHF
+ui
 ukase
 ukase's
 ukases
@@ -140325,6 +140386,7 @@ unclenched
 unclenches
 unclenching
 uncles
+unclickable
 unclimbable
 unclimbed
 uncling
@@ -144103,6 +144165,7 @@ uterus's
 UTF
 uthurusamy
 uthurusamy's
+util
 utile
 utilimometer
 utilimometer's
@@ -144131,6 +144194,7 @@ utilizer's
 utilizers
 utilizes
 utilizing
+utils
 utmost
 utmosts
 utopia
@@ -150179,7 +150243,6 @@ X
 X's
 x-ccelerated
 X.
-xaml
 xanthelasma
 xanthine
 xanthine's
@@ -150253,6 +150316,8 @@ xmits
 xmitted
 xmitting
 XML
+xmlizer
+xmlizers
 XOR
 XP
 XS

@@ -1,5 +1,6 @@
 alkyldimethylsilyl
 aloe
+ARGB
 ascorbate
 ascorbyl
 barbadensis
@@ -12,6 +13,7 @@ capric
 caprylic
 caprylyl
 chloride
+CMYK
 darutoside
 decyl
 diglyceryl
@@ -43,6 +45,7 @@ polyglyceryl
 polypropylsilsesquioxane
 polyricinoleate
 propanediol
+RGB
 sesquiisostearate
 silica
 silylate
@@ -54,4 +57,5 @@ sulfate
 tetrahexyldecyl
 triethylhexanoin
 triglyceride
+xaml
 zinc

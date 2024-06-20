@@ -1300,6 +1300,9 @@ appliances	devices	0
 applicadtion	application	3		
 applicadtion's	application's	3		
 applicadtions	applications	3		
+applicaion	application	3		
+applicaion's	application's	3		
+applicaions	applications	3		
 applicaiton	application	3		
 applicaitons	applications	3		
 applicating	application, applying	3		
@@ -1681,6 +1684,9 @@ ascertaining	finding out, learning	0
 ascertains	finds out, learns	0		
 asetic	ascetic	3		
 asfar	as far	3		
+ashboard	dashboard	3		
+ashboard's	dashboard's	3		
+ashboards	dashboards	3		
 aside effect	a side effect	3		
 asign	assign	3		
 asistance	assistance	3		
@@ -4445,6 +4451,7 @@ current status	status	0
 currently	(omit), now	0		
 currenty	currently	3		
 curretly	currently	3		
+curreynt	current	3		
 curriculem	curriculum	3		
 currrent	current	3		
 currrent's	current's	3		
@@ -5030,6 +5037,9 @@ diagonistics	diagnostics	3
 diagraming	diagramming	3		
 diamond in the rough	inexperienced/unpolished person or thing that shows promise	2		
 diamons	diamonds	3		
+diaolg	dialog	3		
+diaolg's	dialog's	3		
+diaolgs	dialogs	3		
 diaster	disaster	3		
 dichotomies	groups, branches, divisions	0		
 dichotomy	group, branch, division	0		
@@ -5477,6 +5487,7 @@ don't remember	forget	0
 donate	give	0		
 donig	doing	3		
 dont	don't	3		
+dont's	don'ts	3		
 dont't	don't	3		
 donwload	download	3		
 donwloaded	downloaded	3		
@@ -5721,6 +5732,9 @@ elects	chooses, picks	0
 elegibilities	eligibilities	3		
 elegibility	eligibility	3		
 elegibility's	eligibility's	3		
+elememt	element	3		
+elememt's	element's	3		
+elememts	elements	3		
 elementay	elementary	3		
 eleminated	eliminated	3		
 eleminating	eliminating	3		
@@ -8856,6 +8870,7 @@ instatiating	instantiating	3
 institue	institute	3		
 institution	office, company, school	0		
 institution of higher learning	college, university	0		
+instrinsics	intrinsics	3		
 instuction	instruction	3		
 instuition	institution	3		
 instuition's	institution's	3		
@@ -9416,6 +9431,9 @@ kept up with the joneses	tried to live the lifestyles of one's neighbors	2
 kernal	kernel	3		
 kernal's	kernel's	3		
 kernals	kernels	3		
+keybord	keyboard	3		
+keybord's	keyboard's	3		
+keybords	keyboards	3		
 keywoard	keyword	3		
 keywoard's	keyword's	3		
 keywoards	keywords	3		
@@ -9512,6 +9530,7 @@ last of all	last	0
 last resort	last place to turn for help	2		
 last straw	gone too far	2		
 last-ditch effort	desperate, final effort to achieve something	2		
+lastest	latest	3		
 lastr	last	3		
 later on down the line	eventually	0		
 later on down the road	eventually	0		
@@ -9926,6 +9945,9 @@ maneouvre	manoeuvre	3
 maneouvred	manoeuvred	3		
 maneouvres	manoeuvres	3		
 maneouvring	manoeuvring	3		
+manfiest	manifest	3		
+manfiest's	manifest's	3		
+manfiests	manifests	3		
 mangement	management	3		
 mangement's	management's	3		
 mangements	managements	3		
@@ -10191,6 +10213,7 @@ minimum	least, smallest	0
 mininiport	miniport	3		
 mininiport's	miniport's	3		
 mininiports	miniports	3		
+mininmal	minimal	3		
 mininum	minimum	3		
 miniscule	minuscule	3		
 ministery	ministry	3		
@@ -10591,6 +10614,9 @@ ninty	ninety	3
 nip in the bud	stop at an early stage	2		
 nip it in the butt	nip it in the bud	3		
 nipped in the bud	stopped at an early stage	2		
+nippet	snippet	3		
+nippet's	snippet's	3		
+nippets	snippets	3		
 nipping in the bud	stopping at an early stage	2		
 nips in the bud	stops at an early stage	2		
 nkow	know	3		
@@ -11026,6 +11052,7 @@ one way or the other	anyway, somehow, in any way	0
 ongoing	continuing	0		
 onlinen	online	3		
 onself	oneself	3		
+onthe	on the	3		
 onwer	owner	3		
 onwer's	owner's	3		
 onwers	owners	3		
@@ -11187,6 +11214,7 @@ other people	others	0
 other similar	similar	0		
 other then	other than	3		
 otheriwse	otherwise	3		
+othertimes	other times	3		
 otherwhise	otherwise	3		
 othwerwise	otherwise	3		
 otimization	optimization	3		
@@ -13035,6 +13063,7 @@ recogizes	recognizes	3
 recogizing	recognizing	3		
 recogniced	recognized	3		
 recognizeable	recognizable	3		
+recogntion	recognition	3		
 recomend	recommend	3		
 recomendations	recommendations	3		
 recomended	recommended	3		
@@ -14233,6 +14262,7 @@ similiarly	similarly	3
 simliar	similar	3		
 simmilar	similar	3		
 simnple	simple	3		
+simpiler	simpler	3		
 simpley	simply	3		
 simplicty	simplicity	3		
 simplier	simpler	3		
@@ -15100,6 +15130,7 @@ sytems	systems	3
 sythesis	synthesis	3		
 sytle	style	3		
 tabacco	tobacco	3		
+tabbable	tabable	3		
 tabulation	table	0		
 tabulations	tables	0		
 tahn	than	3		
@@ -15407,6 +15438,7 @@ their are	there are	3
 their from	their form	3		
 their is	there is	3		
 theives	thieves	3		
+thelist	the list	3		
 themby	them by	3		
 themselfs	themselves	3		
 themslves	themselves	3		
@@ -15679,6 +15711,10 @@ too go	to go	3
 toobox	toolbox	3		
 toobox's	toolbox's	3		
 tooboxes	toolboxes	3		
+toogle	toggle	3		
+toogled	toggled	3		
+toogles	toggles	3		
+toogling	toggling	3		
 took 5	took a break	2		
 took a listen	listened	0		
 took a shine to	began to like	2		
@@ -16462,6 +16498,7 @@ visably	visibly	3
 viscious	vicious	3		
 visciously	viciously	3		
 visible to the eye	visible	1		
+visiblility	visibility	3		
 visious	vicious	3		
 visiters	visitors	3		
 vison	vision	3		
@@ -16566,6 +16603,9 @@ walk on eggshells	proceed cautiously	2
 walked on eggshells	proceeded cautiously	2		
 walking on eggshells	proceeding cautiously	2		
 walks on eggshells	proceeds cautiously	2		
+walkthough	walkthrough	3		
+walkthough's	walkthrough's	3		
+walkthoughs	walkthroughs	3		
 wan't	want	3		
 warantee	warranty	3		
 wardobe	wardrobe	3		
@@ -16968,6 +17008,7 @@ you herd	you heard	3
 you thing	you think	3		
 you was	you were	3		
 you yourself	you	1		
+you''ll	you'll	3		
 youdo	you do	3		
 young boy	boy	1		
 young boys	boys	1		

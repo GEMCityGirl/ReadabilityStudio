@@ -568,6 +568,7 @@ Aymara
 Ayr
 Ayrshire
 Azerbaijan
+Azerbaijani
 Azeri
 AzkoNobel
 Azores
@@ -631,6 +632,7 @@ Bandar
 Bandung
 Bangalore
 Bangkok
+Bangla
 Bangladesh
 Bangladeshi
 Bangor
@@ -709,6 +711,7 @@ Beijing
 Beilul
 Beirut
 Belarus
+Belarusian
 Belem
 Belfast
 Belg
@@ -1273,6 +1276,7 @@ Chambersburg
 Champagne
 Chandigarh
 Chandipura
+Changjie
 Channelview
 Chanukah
 Chappaquiddick
@@ -1737,6 +1741,7 @@ Davidian
 Davine
 Davos
 Dawsonville
+Dayi
 Dayton
 Daytona
 Daytonian
@@ -1877,6 +1882,7 @@ Douglasville
 Dover
 Doxygen
 Dragonball
+Dragonboard
 Drakensberg
 Dramamine
 Drambuie
@@ -2019,6 +2025,7 @@ Einsteinian
 Eisa
 El-Cajon
 El-Centro
+Elanex
 Elavil
 Elba
 Elbe
@@ -3092,6 +3099,7 @@ Idaho
 Idahoan
 ideaHub
 IdeaLab
+Igbo
 Ignatian
 iHeartMedia
 Ikea
@@ -3360,6 +3368,7 @@ Jussi
 Justinian
 Jutland
 Jython
+K'iche
 Kabul
 Kabuli
 Kafkaesque
@@ -3474,6 +3483,7 @@ Kinko
 Kino
 Kinshasa
 Kinston
+Kinyarwanda
 Kippur
 Kirghistan
 Kirghizia
@@ -3512,6 +3522,7 @@ Kokomo
 Kolonia
 Komodo
 Konigstein
+Konkani
 Kool-Aid
 Koran
 Koranic
@@ -3567,6 +3578,7 @@ Ky
 Kyiv
 Kyoto
 Kyprolis
+Kyrgyz
 Kyrgyzstan
 Königsberg
 L'Oreal
@@ -3638,6 +3650,7 @@ Leanpub
 Leavenworth
 Lebanese
 Lebanon
+Leboa
 Lecompton
 Ledgewood
 Leeds
@@ -3818,6 +3831,7 @@ Luverne
 Luxembourg
 Luxembourger
 Luxembourgian
+Luxembourgish
 Luxenbourg
 Luzon
 Lyallpur
@@ -3909,6 +3923,7 @@ Maldive
 Maldives
 Maldivian
 Maldonado
+Malgun
 Mali
 Malia
 Malian
@@ -4685,6 +4700,7 @@ NWT
 NxtGEN
 NY
 NYC
+Nynorsk
 Nyquil
 NYSE
 NYSSA
@@ -4716,6 +4732,7 @@ October
 Oculus
 Odeo
 Odessa
+Odia
 Odyssean
 Ofallon
 Ogallala
@@ -4978,6 +4995,7 @@ PepsiCo
 Pepto
 Pereira
 Perfmon
+Perfview
 Periclean
 Perignon
 Permedia
@@ -5085,6 +5103,7 @@ Platonist
 Platteville
 Plattsburgh
 Plauen
+Playready
 PlayStation
 Playtex
 Pleasantville
@@ -5777,6 +5796,7 @@ Serionix
 ServiceLink
 ServiceNow
 Servox
+Sesotho
 Seton
 Setosa
 Setswana
@@ -5878,6 +5898,7 @@ Sinfonietta
 Singapore
 Singaporean
 Singhpur
+Sinhala
 Sinhalese
 Sino
 Sioux
@@ -6238,6 +6259,7 @@ Tahoma
 Taipei
 Taiwan
 Taiwanese
+Tajik
 Tajikistan
 Takata
 Taklamakan
@@ -6428,6 +6450,7 @@ Tifton
 Tigard
 Tigerpoint
 TigerTalk
+Tigrinya
 Tigris
 Tijuana
 TikTok
@@ -6616,6 +6639,7 @@ Turk
 Turkestan
 Turkic
 Turkish
+Turkmen
 Turkmenistan
 Turlock
 Turmenistan
@@ -6752,6 +6776,7 @@ Utopian
 Utrecht
 Uttlesford
 Uuidgen
+Uyghur
 Uzbek
 Uzbeki
 Uzbekistan
@@ -6763,6 +6788,7 @@ Vail
 Valais
 Vale
 Valencia
+Valencian
 Valentia
 Valeria
 Valerian
@@ -7155,6 +7181,7 @@ Wokingham
 Wolfenstein
 Wolffest
 Wolfsonian
+Wolof
 Wolverhampton
 Womaness
 Wonderbox
