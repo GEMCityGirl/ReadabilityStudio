@@ -10,14 +10,13 @@
 # Build targets:
 # readstudio: builds the main application
 # manuals: builds the manuals and HTML help
-# doxygen-docs: builds the API documentation
+# doxygen-docs: builds the API documentation (this is not included with ALL)
 
 # Options:
 # USE_ADDRESS_SANITIZE to use ASAN
 
 # Declare the minimum required CMake version
-# Note that CMake 3.24 is needed for compiling wxWidgets
-cmake_minimum_required(VERSION 3.24)
+cmake_minimum_required(VERSION 3.25)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
@@ -102,17 +101,13 @@ elseif(UNIX)
     set(wxWidgets_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../wxWidgets/wxlib/lib/cmake/wxWidgets")
 endif()
 
-message(STATUS "Adding wxWidgets CMake cofig folder: ${wxWidgets_DIR}")
+message(STATUS "Adding wxWidgets CMake config folder: ${wxWidgets_DIR}")
 if(NOT EXISTS "${wxWidgets_DIR}/wxWidgetsConfig.cmake" AND NOT EXISTS "${wxWidgets_DIR}/wxwidgets-config.cmake")
     message(WARNING "Cannot find wxWidgets CMake configuration. (Looked in ${wxWidgets_DIR}.)")
 endif()
 set(wxWidgets_USE_STATIC 1)
 find_package(wxWidgets 3.3 COMPONENTS core base xrc propgrid xml aui ribbon qa stc net richtext REQUIRED CONFIG)
 
-# Include the wxWidgets use file to initialize various settings
-if(wxWidgets_USE_FILE)
-    include(${wxWidgets_USE_FILE})
-endif()
 message(STATUS "Adding wxWidgets libraries: ${wxWidgets_LIBRARIES}")
 message(STATUS "Adding wxWidgets: ${wxPLATFORM_LIB_DIR}")
 
@@ -188,7 +183,7 @@ add_custom_target(manuals
                     "${PANDOC_ROOT_DIR}"
                 WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/docs/")
 
-# Build the documentation
+# Build the API documentation
 ########################
 find_package(Doxygen)
 if(TARGET doxygen-docs)
@@ -197,7 +192,7 @@ if(TARGET doxygen-docs)
     endif()
 endif()
 
-add_custom_target(doxygen-docs ALL
+add_custom_target(doxygen-docs
             COMMAND ${DOXYGEN_EXECUTABLE} "${CMAKE_SOURCE_DIR}/docs/doxygen/Doxyfile"
             WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/docs/doxygen"
             COMMENT "Generating API documentation with Doxygen"

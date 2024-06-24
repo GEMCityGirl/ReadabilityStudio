@@ -25,7 +25,7 @@ endif()
 # Lists subdirectories in a directory
 # https://stackoverflow.com/questions/7787823/cmake-how-to-get-the-name-of-all-subdirectories-of-a-directory
 macro(SUBDIRLIST result curdir)
-  FILE(GLOB children RELATIVE ${curdir} ${curdir}/*)
+  file(GLOB children RELATIVE ${curdir} ${curdir}/*)
   set(dirlist "")
   foreach(child ${children})
     if(IS_DIRECTORY ${curdir}/${child})
@@ -40,8 +40,8 @@ find_program(R_SCRIPT NAMES Rscript Rscript.exe)
 
 # If not found and we are on Windows, try to look for it in the default installation path
 if(WIN32 AND R_EXECUTABLE MATCHES "R_EXECUTABLE-NOTFOUND")
-  GET_FILENAME_COMPONENT(RX64PATH "C:\\Program Files\\R" REALPATH)
-  GET_FILENAME_COMPONENT(RX86PATH "C:\\Program Files (x86)\\R" REALPATH)
+  get_filename_component(RX64PATH "C:\\Program Files\\R" REALPATH)
+  get_filename_component(RX86PATH "C:\\Program Files (x86)\\R" REALPATH)
   # default 64-bit Windows installation
   if(EXISTS "${RX64PATH}")
     SUBDIRLIST(SUBDIRS "${RX64PATH}")
