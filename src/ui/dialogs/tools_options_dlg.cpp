@@ -1053,16 +1053,19 @@ bool ToolsOptionsDlg::Create(wxWindow* parent, wxWindowID id, const wxString& ca
         const ProjectView* view =
             dynamic_cast<const ProjectView*>(m_readabilityProjectDoc->GetFirstView());
         const auto selectedID = view->GetSideBar()->GetSelectedFolderId();
-        if (typeid(*view->GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
+        if (view->GetActiveProjectWindow()->IsKindOf(wxCLASSINFO(Wisteria::Canvas)))
             {
-            const auto& graphType =
-                typeid(*dynamic_cast<const Wisteria::Canvas*>(view->GetActiveProjectWindow())
-                            ->GetFixedObject(0, 0));
-            if (graphType == typeid(FleschChart) || graphType == typeid(LixGauge) ||
-                graphType == typeid(LixGaugeGerman) || graphType == typeid(CrawfordGraph) ||
-                graphType == typeid(DanielsonBryan2Plot) || graphType == typeid(FraseGraph) ||
-                graphType == typeid(FryGraph) || graphType == typeid(RaygorGraph) ||
-                graphType == typeid(SchwartzGraph))
+            const auto graph = dynamic_cast<const Wisteria::Canvas*>(view->GetActiveProjectWindow())
+                                   ->GetFixedObject(0, 0);
+            if (graph->IsKindOf(wxCLASSINFO(FleschChart)) ||
+                graph->IsKindOf(wxCLASSINFO(LixGauge)) ||
+                graph->IsKindOf(wxCLASSINFO(LixGaugeGerman)) ||
+                graph->IsKindOf(wxCLASSINFO(CrawfordGraph)) ||
+                graph->IsKindOf(wxCLASSINFO(DanielsonBryan2Plot)) ||
+                graph->IsKindOf(wxCLASSINFO(FraseGraph)) ||
+                graph->IsKindOf(wxCLASSINFO(FryGraph)) ||
+                graph->IsKindOf(wxCLASSINFO(RaygorGraph)) ||
+                graph->IsKindOf(wxCLASSINFO(SchwartzGraph)))
                 {
                 SelectPage(GRAPH_READABILITY_GRAPHS_PAGE);
                 }
@@ -1109,16 +1112,19 @@ bool ToolsOptionsDlg::Create(wxWindow* parent, wxWindowID id, const wxString& ca
         const BatchProjectView* view =
             dynamic_cast<const BatchProjectView*>(m_readabilityProjectDoc->GetFirstView());
         const auto selectedID = view->GetSideBar()->GetSelectedFolderId();
-        if (typeid(*view->GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
+        if (view->GetActiveProjectWindow()->IsKindOf(wxCLASSINFO(Wisteria::Canvas)))
             {
-            const auto& graphType =
-                typeid(*dynamic_cast<const Wisteria::Canvas*>(view->GetActiveProjectWindow())
-                            ->GetFixedObject(0, 0));
-            if (graphType == typeid(FleschChart) || graphType == typeid(LixGauge) ||
-                graphType == typeid(LixGaugeGerman) || graphType == typeid(CrawfordGraph) ||
-                graphType == typeid(DanielsonBryan2Plot) || graphType == typeid(FraseGraph) ||
-                graphType == typeid(FryGraph) || graphType == typeid(RaygorGraph) ||
-                graphType == typeid(SchwartzGraph))
+            const auto graph = dynamic_cast<const Wisteria::Canvas*>(view->GetActiveProjectWindow())
+                                   ->GetFixedObject(0, 0);
+            if (graph->IsKindOf(wxCLASSINFO(FleschChart)) ||
+                graph->IsKindOf(wxCLASSINFO(LixGauge)) ||
+                graph->IsKindOf(wxCLASSINFO(LixGaugeGerman)) ||
+                graph->IsKindOf(wxCLASSINFO(CrawfordGraph)) ||
+                graph->IsKindOf(wxCLASSINFO(DanielsonBryan2Plot)) ||
+                graph->IsKindOf(wxCLASSINFO(FraseGraph)) ||
+                graph->IsKindOf(wxCLASSINFO(FryGraph)) ||
+                graph->IsKindOf(wxCLASSINFO(RaygorGraph)) ||
+                graph->IsKindOf(wxCLASSINFO(SchwartzGraph)))
                 {
                 SelectPage(GRAPH_READABILITY_GRAPHS_PAGE);
                 }

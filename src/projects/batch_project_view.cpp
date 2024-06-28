@@ -570,17 +570,18 @@ void BatchProjectView::UpdateSideBarIcons()
     GetSideBar()->SaveState();
     GetSideBar()->DeleteAllFolders();
 
+    const auto checkGraphType = [](wxWindow* window, const wxClassInfo* className)
+    {
+        const auto canvas = dynamic_cast<Wisteria::Canvas*>(window);
+        assert(canvas && "Window is not a canvas!");
+        return (canvas != nullptr) ? canvas->GetFixedObject(0, 0)->IsKindOf(className) : false;
+    };
+
     // Note: refer to ReadabilityApp::InitProjectSidebar() for the icon indices.
     if (GetScoresView().GetWindowCount() > 0)
         {
         GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetReadabilityScoresLabel(),
                                  SIDEBAR_READABILITY_SCORES_SECTION_ID, 1);
-        const auto checkGraphType = [](wxWindow* window, const wxClassInfo* className)
-        {
-            const auto canvas = dynamic_cast<Wisteria::Canvas*>(window);
-            assert(canvas && "Window is not a canvas!");
-            return (canvas != nullptr) ? canvas->GetFixedObject(0, 0)->IsKindOf(className) : false;
-        };
 
         for (auto* window : GetScoresView().GetWindows())
             {
@@ -631,14 +632,11 @@ void BatchProjectView::UpdateSideBarIcons()
                                  SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, 13);
         for (auto* window : GetWordsBreakdownView().GetWindows())
             {
-            const bool isGraph{ typeid(*window) == typeid(Wisteria::Canvas) };
+            const bool isGraph = window->IsKindOf(wxCLASSINFO(Wisteria::Canvas));
 
             GetSideBar()->InsertSubItemById(
-                SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, window->GetName(),
-                window->GetId(),
-                (isGraph &&
-                    typeid(*dynamic_cast<Wisteria::Canvas*>(
-                        window)->GetFixedObject(0, 0)) == typeid(WordCloud)) ? 29 : 15);
+                SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, window->GetName(), window->GetId(),
+                (isGraph && checkGraphType(window, wxCLASSINFO(WordCloud))) ? 29 : 15);
             }
         }
     if (GetSentencesBreakdownView().GetWindowCount() > 0)
@@ -972,50 +970,57 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                 {
                 if (GetRibbon())
                     {
-                    const auto graphType = dynamic_cast<Wisteria::Canvas*>(
-                        GetActiveProjectWindow())->GetFixedObject(0, 0);
+                    const auto graph = dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
+                                           ->GetFixedObject(0, 0);
 
-                    if (typeid(*graphType) == typeid(LixGaugeGerman))
+                    if (graph->IsKindOf(wxCLASSINFO(LixGaugeGerman)))
                         {
                         editLixGermanButtonBarWindow->Show();
-                        getEditButtonBar(editLixGermanButtonBarWindow)->
-                            ToggleButton(XRCID("ID_DROP_SHADOW"),
-                                dynamic_cast<BatchProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
-                        getEditButtonBar(editLixGermanButtonBarWindow)->
-                            ToggleButton(XRCID("ID_USE_ENGLISH_LABELS"),
-                                dynamic_cast<BatchProjectDoc*>(GetDocument())->IsUsingEnglishLabelsForGermanLix());
+                        getEditButtonBar(editLixGermanButtonBarWindow)
+                            ->ToggleButton(XRCID("ID_DROP_SHADOW"),
+                                           dynamic_cast<BatchProjectDoc*>(GetDocument())
+                                               ->IsDisplayingDropShadows());
+                        getEditButtonBar(editLixGermanButtonBarWindow)
+                            ->ToggleButton(XRCID("ID_USE_ENGLISH_LABELS"),
+                                           dynamic_cast<BatchProjectDoc*>(GetDocument())
+                                               ->IsUsingEnglishLabelsForGermanLix());
                         }
-                    else if (typeid(*graphType) == typeid(RaygorGraph))
+                    else if (graph->IsKindOf(wxCLASSINFO(RaygorGraph)))
                         {
                         editRaygorButtonBarWindow->Show();
-                        getEditButtonBar(editRaygorButtonBarWindow)->
-                            ToggleButton(XRCID("ID_DROP_SHADOW"),
-                                dynamic_cast<BatchProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
+                        getEditButtonBar(editRaygorButtonBarWindow)
+                            ->ToggleButton(XRCID("ID_DROP_SHADOW"),
+                                           dynamic_cast<BatchProjectDoc*>(GetDocument())
+                                               ->IsDisplayingDropShadows());
                         }
-                    else if (typeid(*graphType) == typeid(FryGraph) ||
-                        typeid(*graphType) == typeid(SchwartzGraph))
+                    else if (graph->IsKindOf(wxCLASSINFO(FryGraph)) ||
+                             graph->IsKindOf(wxCLASSINFO(SchwartzGraph)))
                         {
                         editFrySchwartzButtonBarWindow->Show();
-                        getEditButtonBar(editFrySchwartzButtonBarWindow)->
-                            ToggleButton(XRCID("ID_DROP_SHADOW"),
-                                dynamic_cast<BatchProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
+                        getEditButtonBar(editFrySchwartzButtonBarWindow)
+                            ->ToggleButton(XRCID("ID_DROP_SHADOW"),
+                                           dynamic_cast<BatchProjectDoc*>(GetDocument())
+                                               ->IsDisplayingDropShadows());
                         }
-                    else if (typeid(*graphType) == typeid(FleschChart))
+                    else if (graph->IsKindOf(wxCLASSINFO(FleschChart)))
                         {
                         editFleschButtonBarWindow->Show();
-                        getEditButtonBar(editFleschButtonBarWindow)->
-                            ToggleButton(XRCID("ID_DROP_SHADOW"),
-                                dynamic_cast<BatchProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
-                        getEditButtonBar(editFleschButtonBarWindow)->
-                            ToggleButton(XRCID("ID_FLESCH_DISPLAY_LINES"),
-                                dynamic_cast<BatchProjectDoc*>(GetDocument())->IsConnectingFleschPoints());
+                        getEditButtonBar(editFleschButtonBarWindow)
+                            ->ToggleButton(XRCID("ID_DROP_SHADOW"),
+                                           dynamic_cast<BatchProjectDoc*>(GetDocument())
+                                               ->IsDisplayingDropShadows());
+                        getEditButtonBar(editFleschButtonBarWindow)
+                            ->ToggleButton(XRCID("ID_FLESCH_DISPLAY_LINES"),
+                                           dynamic_cast<BatchProjectDoc*>(GetDocument())
+                                               ->IsConnectingFleschPoints());
                         }
                     else
                         {
                         editGraphButtonBarWindow->Show();
-                        getEditButtonBar(editGraphButtonBarWindow)->
-                            ToggleButton(XRCID("ID_DROP_SHADOW"),
-                                dynamic_cast<BatchProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
+                        getEditButtonBar(editGraphButtonBarWindow)
+                            ->ToggleButton(XRCID("ID_DROP_SHADOW"),
+                                           dynamic_cast<BatchProjectDoc*>(GetDocument())
+                                               ->IsDisplayingDropShadows());
                         }
                     }
                 }
@@ -1127,14 +1132,15 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                 {
                 if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)))
                     {
-                    if (typeid(*dynamic_cast<Wisteria::Canvas*>(
-                        GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
-                        typeid(Wisteria::Graphs::WordCloud))
+                    if (dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
+                            ->GetFixedObject(0, 0)
+                            ->IsKindOf(wxCLASSINFO(Wisteria::Graphs::WordCloud)))
                         {
                         editWordCloudButtonBarWindow->Show();
-                        getEditButtonBar(editWordCloudButtonBarWindow)->
-                            ToggleButton(XRCID("ID_DROP_SHADOW"),
-                                dynamic_cast<BatchProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
+                        getEditButtonBar(editWordCloudButtonBarWindow)
+                            ->ToggleButton(XRCID("ID_DROP_SHADOW"),
+                                           dynamic_cast<BatchProjectDoc*>(GetDocument())
+                                               ->IsDisplayingDropShadows());
                         }
                     else
                         {

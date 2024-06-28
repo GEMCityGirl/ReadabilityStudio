@@ -1326,10 +1326,10 @@ void ProjectView::OnMenuCommand(wxCommandEvent& event)
         }
     else if (event.GetId() == XRCID("ID_SORT_ASCENDING") && GetActiveProjectWindow() &&
              GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)) &&
-             (typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
-                          ->GetFixedObject(0, 0)) == typeid(Wisteria::Graphs::BarChart) ||
-              typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
-                          ->GetFixedObject(0, 0)) == typeid(Wisteria::Graphs::Histogram)))
+             (dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
+                          ->GetFixedObject(0, 0)->IsKindOf(CLASSINFO(Wisteria::Graphs::BarChart)) ||
+              dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
+                          ->GetFixedObject(0, 0)->IsKindOf(CLASSINFO(Wisteria::Graphs::Histogram))))
         {
         Wisteria::Canvas* barChart = dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow());
         std::dynamic_pointer_cast<Wisteria::Graphs::BarChart>(barChart->GetFixedObject(0, 0))
@@ -1341,10 +1341,10 @@ void ProjectView::OnMenuCommand(wxCommandEvent& event)
         }
     else if (event.GetId() == XRCID("ID_SORT_DESCENDING") && GetActiveProjectWindow() &&
              GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)) &&
-             (typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
-                          ->GetFixedObject(0, 0)) == typeid(Wisteria::Graphs::BarChart) ||
-              typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
-                          ->GetFixedObject(0, 0)) == typeid(Wisteria::Graphs::Histogram)))
+             (dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
+                          ->GetFixedObject(0, 0)->IsKindOf(CLASSINFO(Wisteria::Graphs::BarChart)) ||
+              dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
+                          ->GetFixedObject(0, 0)->IsKindOf(CLASSINFO(Wisteria::Graphs::Histogram))))
         {
         Wisteria::Canvas* barChart = dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow());
         std::dynamic_pointer_cast<Wisteria::Graphs::BarChart>(barChart->GetFixedObject(0, 0))
@@ -2301,10 +2301,10 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
 
             if (GetRibbon())
                 {
-                const auto graphType =
+                const auto graph =
                     dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())->GetFixedObject(0, 0);
 
-                if (typeid(*graphType) == typeid(LixGaugeGerman))
+                if (graph->IsKindOf(CLASSINFO(LixGaugeGerman)))
                     {
                     editLixGermanButtonBarWindow->Show();
                     getEditButtonBar(editLixGermanButtonBarWindow)
@@ -2316,7 +2316,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                                        dynamic_cast<ProjectDoc*>(GetDocument())
                                            ->IsUsingEnglishLabelsForGermanLix());
                     }
-                else if (typeid(*graphType) == typeid(RaygorGraph))
+                else if (graph->IsKindOf(CLASSINFO(RaygorGraph)))
                     {
                     editRaygorButtonBarWindow->Show();
                     getEditButtonBar(editRaygorButtonBarWindow)
@@ -2324,8 +2324,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                             XRCID("ID_DROP_SHADOW"),
                             dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
                     }
-                else if (typeid(*graphType) == typeid(FryGraph) ||
-                         typeid(*graphType) == typeid(SchwartzGraph))
+                else if (graph->IsKindOf(CLASSINFO(FryGraph)) ||
+                         graph->IsKindOf(CLASSINFO(SchwartzGraph)))
                     {
                     editFrySchwartzButtonBarWindow->Show();
                     getEditButtonBar(editFrySchwartzButtonBarWindow)
@@ -2359,8 +2359,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
             if (GetRibbon())
                 {
                 if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)) &&
-                    typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
-                                ->GetFixedObject(0, 0)) == typeid(Wisteria::Graphs::BoxPlot))
+                    dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
+                                ->GetFixedObject(0, 0)->IsKindOf(wxCLASSINFO(Wisteria::Graphs::BoxPlot)))
                     {
                     editBoxPlotButtonBarWindow->Show();
                     getEditButtonBar(editBoxPlotButtonBarWindow)
@@ -2377,8 +2377,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                             dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
                     }
                 else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)) &&
-                         typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
-                                     ->GetFixedObject(0, 0)) == typeid(Wisteria::Graphs::Histogram))
+                         dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
+                                     ->GetFixedObject(0, 0)->IsKindOf(wxCLASSINFO(Wisteria::Graphs::Histogram)))
                     {
                     editHistogramButtonBarWindow->Show();
                     getEditButtonBar(editHistogramButtonBarWindow)
@@ -2448,8 +2448,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
             if (GetRibbon())
                 {
                 if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)) &&
-                    typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
-                                ->GetFixedObject(0, 0)) == typeid(Wisteria::Graphs::Histogram))
+                    dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
+                                ->GetFixedObject(0, 0)->IsKindOf(wxCLASSINFO(Wisteria::Graphs::Histogram)))
                     {
                     editSyllableHistogramButtonBarWindow->Show();
                     getEditButtonBar(editSyllableHistogramButtonBarWindow)
@@ -2458,8 +2458,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                             dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
                     }
                 else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)) &&
-                         typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
-                                     ->GetFixedObject(0, 0)) == typeid(Wisteria::Graphs::BarChart))
+                         dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
+                                     ->GetFixedObject(0, 0)->IsKindOf(wxCLASSINFO(Wisteria::Graphs::BarChart)))
                     {
                     editBarChartButtonBarWindow->Show();
                     getEditButtonBar(editBarChartButtonBarWindow)
@@ -2472,8 +2472,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                             dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingBarChartLabels());
                     }
                 else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)) &&
-                         typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
-                                     ->GetFixedObject(0, 0)) == typeid(Wisteria::Graphs::PieChart))
+                         dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
+                                     ->GetFixedObject(0, 0)->IsKindOf(wxCLASSINFO(Wisteria::Graphs::PieChart)))
                     {
                     editPieChartButtonBarWindow->Show();
                     getEditButtonBar(editPieChartButtonBarWindow)
@@ -2486,8 +2486,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                             dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
                     }
                 else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)) &&
-                         typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
-                                     ->GetFixedObject(0, 0)) == typeid(Wisteria::Graphs::WordCloud))
+                         dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
+                                     ->GetFixedObject(0, 0)->IsKindOf(wxCLASSINFO(Wisteria::Graphs::WordCloud)))
                     {
                     editWordCloudButtonBarWindow->Show();
                     getEditButtonBar(editWordCloudButtonBarWindow)
