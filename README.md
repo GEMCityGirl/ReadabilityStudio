@@ -102,6 +102,30 @@ Re-try the `cmake --build . --target all  -j 4` command a few times until these 
 This happens because numerous \*.sty files need to be installed and the installation process times out occasionally.
 Once you have these files installed, this won't be an issue when rebuilding later.
 
+### Application Icon
+
+If the application icon ("app-logo.svg") is changed, then in the project directory:
+
+- Save a copy as "app-logo.png" (1024x1024 resolution)
+- Save a copy as "app-logo.ico"
+- On macOS, run this in a terminal:
+
+```
+mkdir app-logo.iconset
+sips -z 16 16     app-logo.png --out app-logo.iconset/icon_16x16.png
+sips -z 32 32     app-logo.png --out app-logo.iconset/icon_16x16@2x.png
+sips -z 32 32     app-logo.png --out app-logo.iconset/icon_32x32.png
+sips -z 64 64     app-logo.png --out app-logo.iconset/icon_32x32@2x.png
+sips -z 128 128   app-logo.png --out app-logo.iconset/icon_128x128.png
+sips -z 256 256   app-logo.png --out app-logo.iconset/icon_128x128@2x.png
+sips -z 256 256   app-logo.png --out app-logo.iconset/icon_256x256.png
+sips -z 512 512   app-logo.png --out app-logo.iconset/icon_256x256@2x.png
+sips -z 512 512   app-logo.png --out app-logo.iconset/icon_512x512.png
+cp app-logo.png app-logo.iconset/icon_512x512@2x.png
+iconutil -c icns app-logo.iconset
+rm -R app-logo.iconset
+```
+
 ### Word Lists
 
 If any of the word lists ("ReadabilityStudio/resources/words") have changed, then:
