@@ -107,7 +107,9 @@
 
 - Added Markdown importer. Standard Markdown, *RMarkdown*, and *Quarto* documents are supported.
 - Lists can now be exported as `r latex_logo(TRUE)`(in `longtable{}` environments).
-- Improved detection of link lists in HTML documents.
+- HTML importer:
+  - Improved detection of link lists.
+  - Improved handling of malformed documents.
 
 ### Documentation Enhancements {-}
 
