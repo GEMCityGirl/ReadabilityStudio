@@ -37,6 +37,9 @@ namespace Wisteria::Graphs
             vol. 65, no. 2, 1981, pp. 141-48.*/
     class FraseGraph final : public PolygonReadabilityGraph
         {
+        wxDECLARE_DYNAMIC_CLASS(FraseGraph);
+        FraseGraph() = default;
+
       public:
         /** @brief Constructor.
             @param canvas The parent canvas to render on.

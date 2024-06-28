@@ -37,6 +37,9 @@ namespace Wisteria::Graphs
             State University of New York at Albany, Reading Department. Unpublished study.*/
     class SchwartzGraph final : public PolygonReadabilityGraph
         {
+        wxDECLARE_DYNAMIC_CLASS(SchwartzGraph);
+        SchwartzGraph() = default;
+
       public:
         /** @brief Constructor.
             @param canvas The parent canvas to render on.

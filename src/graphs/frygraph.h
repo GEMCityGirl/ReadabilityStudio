@@ -41,6 +41,9 @@ namespace Wisteria::Graphs
             *Reading Teacher*, vol. 33, 1980, pp. 426-30.*/
     class FryGraph final : public PolygonReadabilityGraph
         {
+        wxDECLARE_DYNAMIC_CLASS(FryGraph);
+        FryGraph() = default;
+
       public:
         /// @brief Which type of Fry graph.
         enum class FryGraphType

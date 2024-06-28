@@ -7,6 +7,7 @@ SET(APP_SRC_FILES
     src/document-helpers/chapter_split.cpp
     src/graphs/frasegraph.cpp
     src/graphs/frygraph.cpp
+    src/graphs/polygon_readability_graph.cpp
     src/graphs/raygorgraph.cpp
     src/graphs/schwartzgraph.cpp
     src/indexing/abbreviation.cpp

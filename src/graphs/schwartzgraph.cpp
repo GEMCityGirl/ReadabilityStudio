@@ -8,6 +8,9 @@
 
 #include "schwartzgraph.h"
 
+wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
+                          Wisteria::Graphs::PolygonReadabilityGraph);
+
 using namespace Wisteria;
 using namespace Wisteria::Graphs;
 using namespace Wisteria::GraphItems;

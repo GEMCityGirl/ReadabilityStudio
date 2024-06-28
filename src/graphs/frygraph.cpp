@@ -8,6 +8,8 @@
 
 #include "frygraph.h"
 
+wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonReadabilityGraph);
+
 using namespace Wisteria;
 using namespace Wisteria::Colors;
 using namespace Wisteria::GraphItems;

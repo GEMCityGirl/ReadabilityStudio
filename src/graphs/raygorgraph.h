@@ -36,6 +36,9 @@ namespace Wisteria::Graphs
     /// @brief Raygor readability graph.
     class RaygorGraph final : public PolygonReadabilityGraph
         {
+        wxDECLARE_DYNAMIC_CLASS(RaygorGraph);
+        RaygorGraph() = default;
+
       public:
         /** @brief Constructor.
             @param canvas The parent canvas to render on.

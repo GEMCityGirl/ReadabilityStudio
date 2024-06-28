@@ -575,46 +575,34 @@ void BatchProjectView::UpdateSideBarIcons()
         {
         GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetReadabilityScoresLabel(),
                                  SIDEBAR_READABILITY_SCORES_SECTION_ID, 1);
+        const auto checkGraphType = [](wxWindow* window, const wxClassInfo* className)
+        {
+            const auto canvas = dynamic_cast<Wisteria::Canvas*>(window);
+            assert(canvas && "Window is not a canvas!");
+            return (canvas != nullptr) ? canvas->GetFixedObject(0, 0)->IsKindOf(className) : false;
+        };
+
         for (auto* window : GetScoresView().GetWindows())
             {
-            const bool isGraph = typeid(*window) == typeid(Wisteria::Canvas);
+            const bool isGraph = window->IsKindOf(wxCLASSINFO(Wisteria::Canvas));
 
             GetSideBar()->InsertSubItemById(
-                SIDEBAR_READABILITY_SCORES_SECTION_ID, window->GetName(),
-                window->GetId(),
-                window->GetId() == ID_SCORE_LIST_PAGE_ID ? 15 :
-                window->GetId() == ID_SCORE_STATS_LIST_PAGE_ID ? 15 :
-                window->GetId() == ID_AGGREGATED_DOC_SCORES_LIST_PAGE_ID ? 15 :
-                window->GetId() == ID_AGGREGATED_CLOZE_SCORES_LIST_PAGE_ID ? 15 :
-                window->GetId() == READABILITY_GOALS_PAGE_ID ? 28 :
-                (isGraph &&
-                    typeid(*dynamic_cast<Wisteria::Canvas*>(
-                        window)->GetFixedObject(0, 0)) == typeid(FleschChart)) ? 18 :
-                (isGraph &&
-                    typeid(*dynamic_cast<Wisteria::Canvas*>(
-                        window)->GetFixedObject(0, 0)) == typeid(FraseGraph)) ? 19 :
-                (isGraph &&
-                    typeid(*dynamic_cast<Wisteria::Canvas*>(
-                        window)->GetFixedObject(0, 0)) == typeid(FryGraph)) ? 20 :
-                (isGraph &&
-                    typeid(*dynamic_cast<Wisteria::Canvas*>(
-                        window)->GetFixedObject(0, 0)) == typeid(RaygorGraph)) ? 21 :
-                (isGraph &&
-                    typeid(*dynamic_cast<Wisteria::Canvas*>(
-                        window)->GetFixedObject(0, 0)) == typeid(CrawfordGraph)) ? 22 :
-                (isGraph &&
-                    typeid(*dynamic_cast<Wisteria::Canvas*>(
-                        window)->GetFixedObject(0, 0)) == typeid(SchwartzGraph)) ? 25 :
-                (isGraph &&
-                    typeid(*dynamic_cast<Wisteria::Canvas*>(
-                        window)->GetFixedObject(0, 0)) == typeid(LixGauge)) ? 26 :
-                (isGraph &&
-                    typeid(*dynamic_cast<Wisteria::Canvas*>(
-                        window)->GetFixedObject(0, 0)) == typeid(LixGaugeGerman)) ? 26 :
-                (isGraph &&
-                    typeid(*dynamic_cast<Wisteria::Canvas*>(
-                        window)->GetFixedObject(0, 0)) == typeid(DanielsonBryan2Plot)) ? 27 :
-                    9);
+                SIDEBAR_READABILITY_SCORES_SECTION_ID, window->GetName(), window->GetId(),
+                window->GetId() == ID_SCORE_LIST_PAGE_ID                              ? 15 :
+                window->GetId() == ID_SCORE_STATS_LIST_PAGE_ID                        ? 15 :
+                window->GetId() == ID_AGGREGATED_DOC_SCORES_LIST_PAGE_ID              ? 15 :
+                window->GetId() == ID_AGGREGATED_CLOZE_SCORES_LIST_PAGE_ID            ? 15 :
+                window->GetId() == READABILITY_GOALS_PAGE_ID                          ? 28 :
+                (isGraph && checkGraphType(window, wxCLASSINFO(FleschChart)))         ? 18 :
+                (isGraph && checkGraphType(window, wxCLASSINFO(FraseGraph)))          ? 19 :
+                (isGraph && checkGraphType(window, wxCLASSINFO(FryGraph)))            ? 20 :
+                (isGraph && checkGraphType(window, wxCLASSINFO(RaygorGraph)))         ? 21 :
+                (isGraph && checkGraphType(window, wxCLASSINFO(CrawfordGraph)))       ? 22 :
+                (isGraph && checkGraphType(window, wxCLASSINFO(SchwartzGraph)))       ? 25 :
+                (isGraph && checkGraphType(window, wxCLASSINFO(LixGauge)))            ? 26 :
+                (isGraph && checkGraphType(window, wxCLASSINFO(LixGaugeGerman)))      ? 26 :
+                (isGraph && checkGraphType(window, wxCLASSINFO(DanielsonBryan2Plot))) ? 27 :
+                                                                                        9);
             }
         }
     if (GetHistogramsView().GetWindowCount() > 0)

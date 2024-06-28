@@ -21,6 +21,9 @@ namespace Wisteria::Graphs
     /** @brief Readability graph base class which uses polygons to determine a test score.*/
     class PolygonReadabilityGraph : public GroupGraph2D
         {
+        wxDECLARE_DYNAMIC_CLASS(PolygonReadabilityGraph);
+        PolygonReadabilityGraph() = default;
+
       public:
         /** @brief Constructor.
             @param canvas The parent canvas to render on.*/
