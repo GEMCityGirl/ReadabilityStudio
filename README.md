@@ -92,6 +92,26 @@ cmake --build . --target all  -j 4
 
 **...INCOMPLETE**
 
+## macOS
+
+To install home-brew:
+
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+To install CMake:
+
+```
+brew install cmake
+```
+
+If you get errors about not finding a CXX compiler, run this:
+
+```
+sudo xcode-select --reset
+```
+
 ## All Platforms
 
 ## Building
