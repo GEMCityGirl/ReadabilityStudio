@@ -11,12 +11,10 @@
 
 // Suppress warnings
 #if defined(__clang__)
-    // #pragma clang diagnostic ignored ""
+    #pragma clang diagnostic ignored "-Wpedantic"
+    #pragma clang diagnostic ignored "-Wgnu-label-as-value"
 #elif defined(__GNUC__)
-    // You need to not use -Wpedantic with GCC;
-    // currently, you can't turn that off this way.
-    // This is because 'ignored' can only ignore specific warnings,
-    // not entire classes of warning like 'all' or 'pendantic'.
+    // You need to not use -Wpedantic with GCC
     #pragma GCC diagnostic ignored "-Wpedantic"
 #elif defined(_MSC_VER)
     #pragma warning(disable : 4701 4702 4310 4244 4334 4267)
