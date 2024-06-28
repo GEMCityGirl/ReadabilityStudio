@@ -4405,7 +4405,7 @@ void MainFrame::AddExamplesToMenu(wxMenu* exampleMenu)
         if (!wxFileName::DirExists(exampleFolder) ||
             dir.GetAllFiles(exampleFolder, &files, wxString{}, wxDIR_FILES) == 0)
             {
-            wxLogWarning(L"Unable to find examples folder:\n%s", exampleFolder);
+            wxLogWarning(L"Unable to find examples folder: %s", exampleFolder);
             return;
             }
         files.Sort();

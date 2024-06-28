@@ -1190,7 +1190,7 @@ bool ProjectDoc::OnCreate(const wxString& path, long flags)
         {
         const wxString exampleFolder = wxGetApp().FindResourceDirectory(_DT(L"examples"));
         if (exampleFolder.empty() || !wxFileName::DirExists(exampleFolder))
-            { wxLogWarning(L"Unable to find examples folder:\n%s", exampleFolder); }
+            { wxLogWarning(L"Unable to find examples folder: %s", exampleFolder); }
         FilePathResolver resolvePath(path, false);
         // If a file path to a document (e.g., an RTF file) that is NOT from the examples folder,
         // then bypass the wizard and just use the system defaults.
