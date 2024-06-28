@@ -2312,7 +2312,7 @@ void BatchProjectView::OnExportStatisticsReport([[maybe_unused]] wxCommandEvent&
         else
             { currentDocName = doc->GetDocuments()[i]->GetOriginalDocumentFilePath(); }
 
-        if (!outputFile.Write(L"<a href=\"#" + wxString::Format(L"Doc%d", i) + L"\">" +
+        if (!outputFile.Write(L"<a href=\"#" + wxString::Format(L"Doc%zu", i) + L"\">" +
             currentDocName + L"</a><br />\n"))
             {
             wxMessageBox(_(L"Unable to write to output file."),
@@ -2354,7 +2354,7 @@ void BatchProjectView::OnExportStatisticsReport([[maybe_unused]] wxCommandEvent&
         if (stripLinks(formattedStats.wc_str(), formattedStats.length()))
             { formattedStats.assign(stripLinks.get_filtered_text(), stripLinks.get_filtered_text_length()); }
 
-        if (!outputFile.Write(L"<a name=\"" + wxString::Format(L"Doc%d", i) +
+        if (!outputFile.Write(L"<a name=\"" + wxString::Format(L"Doc%zu", i) +
             L"\"></a><span style='font-weight:bold;'>" + currentDocName + L"</span><hr>" +
             formattedStats + L"<br /><br />\n"))
             {
