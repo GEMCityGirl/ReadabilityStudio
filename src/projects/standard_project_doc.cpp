@@ -1501,7 +1501,7 @@ void ProjectDoc::DisplayWordsBreakdown()
             view->GetWordsBreakdownView().FindWindowPositionById(lastGraphWindow->GetId());
         }
 
-    const auto resetListView = [this](ListCtrlEx* listView)
+    const auto resetListView = [](ListCtrlEx* listView)
         {
         if (listView != nullptr &&
             listView->GetVirtualDataProvider() != nullptr &&
@@ -6423,7 +6423,7 @@ void ProjectDoc::DisplayGrammar()
 
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
 
-    const auto resetListView = [this](ListCtrlEx* listView)
+    const auto resetListView = [](ListCtrlEx* listView)
         {
         if (listView != nullptr &&
             listView->GetVirtualDataProvider() != nullptr &&
@@ -7109,7 +7109,7 @@ void ProjectDoc::DisplaySightWords()
         return;
         }
 
-    const auto resetListView = [this](ListCtrlEx* listView)
+    const auto resetListView = [](ListCtrlEx* listView)
     {
         if (listView != nullptr && listView->GetVirtualDataProvider() != nullptr &&
             listView->GetVirtualDataProvider()->GetItemCount() == 0)

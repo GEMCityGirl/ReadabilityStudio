@@ -3914,7 +3914,7 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
             scoreDataset->AddRow(Data::RowInfo().
                 Id(wxFileName(doc->GetOriginalDocumentFilePath()).GetFullName()).
                 Categoricals(
-                    { { IsShowingGroupLegends() ? foundGroupId->second : 0 } }).
+                    { IsShowingGroupLegends() ? foundGroupId->second : 0 }).
                 // do NOT change the ordering here
                 Continuous(
                     {
