@@ -510,7 +510,7 @@ void BaseProjectDoc::UpdateGraphOptions(Wisteria::Canvas* canvas)
         {
         graph->SetBrushScheme(m_graphBrushScheme);
         }
-    if (typeid(*graph) == typeid(WordCloud))
+    if (graph->IsKindOf(wxCLASSINFO(WordCloud)))
         {
         const auto foundColorScheme = std::find_if(
             wxGetApp().GetGraphColorSchemeMap().cbegin(),

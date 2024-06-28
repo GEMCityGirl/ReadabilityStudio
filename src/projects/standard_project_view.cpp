@@ -992,6 +992,13 @@ void ProjectView::UpdateSideBarIcons()
     GetSideBar()->SaveState();
     GetSideBar()->DeleteAllFolders();
 
+    const auto checkGraphType = [](wxWindow* window, const wxClassInfo* className)
+    {
+        const auto canvas = dynamic_cast<Wisteria::Canvas*>(window);
+        assert(canvas && "Window is not a canvas!");
+        return (canvas != nullptr) ? canvas->GetFixedObject(0, 0)->IsKindOf(className) : false;
+    };
+
     // readability tests
     //-----------------
     // Note: refer to ReadabilityApp::InitProjectSidebar() for the icon indices.
@@ -999,12 +1006,6 @@ void ProjectView::UpdateSideBarIcons()
         {
         GetSideBar()->InsertItem(GetSideBar()->GetFolderCount(), GetReadabilityScoresLabel(),
                                  SIDEBAR_READABILITY_SCORES_SECTION_ID, 1);
-        const auto checkGraphType = [](wxWindow* window, const wxClassInfo* className)
-        {
-            const auto canvas = dynamic_cast<Wisteria::Canvas*>(window);
-            assert(canvas && "Window is not a canvas!");
-            return (canvas != nullptr) ? canvas->GetFixedObject(0, 0)->IsKindOf(className) : false;
-        };
 
         for (auto* window : GetReadabilityResultsView().GetWindows())
             {
@@ -1050,25 +1051,17 @@ void ProjectView::UpdateSideBarIcons()
                                  SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, 13);
         for (auto* window : GetWordsBreakdownView().GetWindows())
             {
-            const bool isGraph = typeid(*window) == typeid(Wisteria::Canvas);
+            const bool isGraph = window->IsKindOf(wxCLASSINFO(Wisteria::Canvas));
 
             GetSideBar()->InsertSubItemById(
                 SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, window->GetName(), window->GetId(),
-                window->IsKindOf(CLASSINFO(FormattedTextCtrl)) ? 0 :
-                window->IsKindOf(CLASSINFO(ListCtrlEx))        ? 15 :
-                (isGraph && typeid(*dynamic_cast<Wisteria::Canvas*>(window)->GetFixedObject(
-                                0, 0)) == typeid(Wisteria::Graphs::Histogram)) ?
-                                                          6 :
-                (isGraph && typeid(*dynamic_cast<Wisteria::Canvas*>(window)->GetFixedObject(
-                                0, 0)) == typeid(Wisteria::Graphs::BarChart)) ?
-                                                          16 :
-                (isGraph && typeid(*dynamic_cast<Wisteria::Canvas*>(window)->GetFixedObject(
-                                0, 0)) == typeid(Wisteria::Graphs::WordCloud)) ?
-                                                          29 :
-                (isGraph && typeid(*dynamic_cast<Wisteria::Canvas*>(window)->GetFixedObject(
-                                0, 0)) == typeid(Wisteria::Graphs::PieChart)) ?
-                                                          30 :
-                                                          9);
+                window->IsKindOf(CLASSINFO(FormattedTextCtrl))                                ? 0 :
+                window->IsKindOf(CLASSINFO(ListCtrlEx))                                       ? 15 :
+                (isGraph && checkGraphType(window, wxCLASSINFO(Wisteria::Graphs::Histogram))) ? 6 :
+                (isGraph && checkGraphType(window, wxCLASSINFO(Wisteria::Graphs::BarChart)))  ? 16 :
+                (isGraph && checkGraphType(window, wxCLASSINFO(Wisteria::Graphs::WordCloud))) ? 29 :
+                (isGraph && checkGraphType(window, wxCLASSINFO(Wisteria::Graphs::PieChart)))  ? 30 :
+                                                                                                9);
             }
         }
 
@@ -1079,21 +1072,15 @@ void ProjectView::UpdateSideBarIcons()
                                  SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID, 14);
         for (auto* window : GetSentencesBreakdownView().GetWindows())
             {
-            const bool isGraph = typeid(*window) == typeid(Wisteria::Canvas);
+            const bool isGraph = window->IsKindOf(wxCLASSINFO(Wisteria::Canvas));
 
             GetSideBar()->InsertSubItemById(
                 SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID, window->GetName(), window->GetId(),
-                window->IsKindOf(CLASSINFO(ListCtrlEx)) ? 15 :
-                (isGraph && typeid(*dynamic_cast<Wisteria::Canvas*>(window)->GetFixedObject(
-                                0, 0)) == typeid(Wisteria::Graphs::BoxPlot)) ?
-                                                          7 :
-                (isGraph && typeid(*dynamic_cast<Wisteria::Canvas*>(window)->GetFixedObject(
-                                0, 0)) == typeid(Wisteria::Graphs::Histogram)) ?
-                                                          6 :
-                (isGraph && typeid(*dynamic_cast<Wisteria::Canvas*>(window)->GetFixedObject(
-                                0, 0)) == typeid(Wisteria::Graphs::HeatMap)) ?
-                                                          24 :
-                                                          9);
+                window->IsKindOf(CLASSINFO(ListCtrlEx))                                       ? 15 :
+                (isGraph && checkGraphType(window, wxCLASSINFO(Wisteria::Graphs::BoxPlot)))   ? 7 :
+                (isGraph && checkGraphType(window, wxCLASSINFO(Wisteria::Graphs::Histogram))) ? 6 :
+                (isGraph && checkGraphType(window, wxCLASSINFO(Wisteria::Graphs::HeatMap)))   ? 24 :
+                                                                                                9);
             }
         }
 
@@ -1119,17 +1106,15 @@ void ProjectView::UpdateSideBarIcons()
                                  SIDEBAR_DOLCH_SECTION_ID, 5);
         for (auto* window : GetDolchSightWordsView().GetWindows())
             {
-            const bool isGraph = typeid(*window) == typeid(Wisteria::Canvas);
+            const bool isGraph = window->IsKindOf(wxCLASSINFO(Wisteria::Canvas));
 
             GetSideBar()->InsertSubItemById(
                 SIDEBAR_DOLCH_SECTION_ID, window->GetName(), window->GetId(),
-                window->IsKindOf(CLASSINFO(FormattedTextCtrl)) ? 0 :
-                window->IsKindOf(CLASSINFO(HtmlTableWindow))   ? 17 :
-                (isGraph && typeid(*dynamic_cast<Wisteria::Canvas*>(window)->GetFixedObject(
-                                0, 0)) == typeid(Wisteria::Graphs::BarChart)) ?
-                                                               16 :
-                window->IsKindOf(CLASSINFO(ListCtrlEx)) ? 15 :
-                                                          9);
+                window->IsKindOf(CLASSINFO(FormattedTextCtrl))                               ? 0 :
+                window->IsKindOf(CLASSINFO(HtmlTableWindow))                                 ? 17 :
+                (isGraph && checkGraphType(window, wxCLASSINFO(Wisteria::Graphs::BarChart))) ? 16 :
+                window->IsKindOf(CLASSINFO(ListCtrlEx))                                      ? 15 :
+                                                                                               9);
             }
         }
 
@@ -1340,7 +1325,7 @@ void ProjectView::OnMenuCommand(wxCommandEvent& event)
         event.SetId(wxID_PRINT);
         }
     else if (event.GetId() == XRCID("ID_SORT_ASCENDING") && GetActiveProjectWindow() &&
-             typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
+             GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)) &&
              (typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
                           ->GetFixedObject(0, 0)) == typeid(Wisteria::Graphs::BarChart) ||
               typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
@@ -1355,7 +1340,7 @@ void ProjectView::OnMenuCommand(wxCommandEvent& event)
         return;
         }
     else if (event.GetId() == XRCID("ID_SORT_DESCENDING") && GetActiveProjectWindow() &&
-             typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
+             GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)) &&
              (typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
                           ->GetFixedObject(0, 0)) == typeid(Wisteria::Graphs::BarChart) ||
               typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
@@ -1569,7 +1554,7 @@ void ProjectView::OnMenuCommand(wxCommandEvent& event)
         elist->ProcessWindowEvent(event);
         }
     else if (GetActiveProjectWindow() &&
-             typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
+             GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)))
         {
         Wisteria::Canvas* graph = dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow());
         doc->UpdateGraphOptions(graph);
@@ -2213,7 +2198,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
     const auto resetActiveCanvasResizeDelay = [this]()
     {
         if (GetActiveProjectWindow() != nullptr &&
-            typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
+            GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)))
             {
             assert(dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow()));
             dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())->ResetResizeDelay();
@@ -2348,7 +2333,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                             XRCID("ID_DROP_SHADOW"),
                             dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
                     }
-                else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
+                else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)))
                     {
                     editGraphButtonBarWindow->Show();
                     getEditButtonBar(editGraphButtonBarWindow)
@@ -2373,7 +2358,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
 
             if (GetRibbon())
                 {
-                if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
+                if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)) &&
                     typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
                                 ->GetFixedObject(0, 0)) == typeid(Wisteria::Graphs::BoxPlot))
                     {
@@ -2391,7 +2376,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                             XRCID("ID_DROP_SHADOW"),
                             dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
                     }
-                else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
+                else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)) &&
                          typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
                                      ->GetFixedObject(0, 0)) == typeid(Wisteria::Graphs::Histogram))
                     {
@@ -2401,7 +2386,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                             XRCID("ID_DROP_SHADOW"),
                             dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
                     }
-                else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
+                else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)))
                     {
                     editGraphButtonBarWindow->Show();
                     getEditButtonBar(editGraphButtonBarWindow)
@@ -2462,7 +2447,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
 
             if (GetRibbon())
                 {
-                if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
+                if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)) &&
                     typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
                                 ->GetFixedObject(0, 0)) == typeid(Wisteria::Graphs::Histogram))
                     {
@@ -2472,7 +2457,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                             XRCID("ID_DROP_SHADOW"),
                             dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
                     }
-                else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
+                else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)) &&
                          typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
                                      ->GetFixedObject(0, 0)) == typeid(Wisteria::Graphs::BarChart))
                     {
@@ -2486,7 +2471,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                             XRCID("ID_EDIT_BAR_LABELS"),
                             dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingBarChartLabels());
                     }
-                else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
+                else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)) &&
                          typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
                                      ->GetFixedObject(0, 0)) == typeid(Wisteria::Graphs::PieChart))
                     {
@@ -2500,7 +2485,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                             XRCID("ID_DROP_SHADOW"),
                             dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
                     }
-                else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) &&
+                else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)) &&
                          typeid(*dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
                                      ->GetFixedObject(0, 0)) == typeid(Wisteria::Graphs::WordCloud))
                     {
@@ -2510,7 +2495,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                             XRCID("ID_DROP_SHADOW"),
                             dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
                     }
-                else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
+                else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)))
                     {
                     editGraphButtonBarWindow->Show();
                     getEditButtonBar(editGraphButtonBarWindow)
@@ -2613,7 +2598,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                         editSimpleListButtonBarWindow->Show();
                         }
                     }
-                else if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
+                else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)))
                     {
                     editBarChartButtonBarWindow->Show();
                     getEditButtonBar(editBarChartButtonBarWindow)
@@ -2810,7 +2795,7 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                                        wxFileName::GetPathSeparator() + list->GetLabel() + listExt,
                                    GridExportOptions());
                         }
-                    else if (typeid(*activeWindow) == typeid(Wisteria::Canvas))
+                    else if (activeWindow->IsKindOf(CLASSINFO(Wisteria::Canvas)))
                         {
                         Wisteria::Canvas* graphWindow =
                             dynamic_cast<Wisteria::Canvas*>(activeWindow);
@@ -2854,7 +2839,7 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                                        wxFileName::GetPathSeparator() + list->GetLabel() + listExt,
                                    GridExportOptions());
                         }
-                    else if (typeid(*activeWindow) == typeid(Wisteria::Canvas))
+                    else if (activeWindow->IsKindOf(CLASSINFO(Wisteria::Canvas)))
                         {
                         Wisteria::Canvas* graphWindow =
                             dynamic_cast<Wisteria::Canvas*>(activeWindow);
@@ -3019,7 +3004,7 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
                         text->Save(folder + wxFileName::GetPathSeparator() + GetDolchLabel() +
                                    wxFileName::GetPathSeparator() + text->GetTitleName() + textExt);
                         }
-                    else if (typeid(*activeWindow) == typeid(Wisteria::Canvas))
+                    else if (activeWindow->IsKindOf(CLASSINFO(Wisteria::Canvas)))
                         {
                         Wisteria::Canvas* graph = dynamic_cast<Wisteria::Canvas*>(activeWindow);
                         graph->SetLabel(
@@ -3277,7 +3262,7 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
                     formatList(dynamic_cast<ListCtrlEx*>(activeWindow), includeLeadingPageBreak);
                     includeLeadingPageBreak = true;
                     }
-                else if (typeid(*activeWindow) == typeid(Wisteria::Canvas))
+                else if (activeWindow->IsKindOf(CLASSINFO(Wisteria::Canvas)))
                     {
                     formatImageOutput(dynamic_cast<Wisteria::Canvas*>(activeWindow),
                                       includeLeadingPageBreak);
@@ -3385,7 +3370,7 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
                                      includeLeadingPageBreak);
                     includeLeadingPageBreak = true;
                     }
-                else if (typeid(*activeWindow) == typeid(Wisteria::Canvas))
+                else if (activeWindow->IsKindOf(CLASSINFO(Wisteria::Canvas)))
                     {
                     formatImageOutput(dynamic_cast<Wisteria::Canvas*>(activeWindow),
                                       includeLeadingPageBreak);

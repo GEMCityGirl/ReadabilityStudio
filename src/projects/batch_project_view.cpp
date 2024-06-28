@@ -913,7 +913,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     const auto resetActiveCanvasResizeDelay = [this]()
         {
         if (GetActiveProjectWindow() != nullptr &&
-            typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
+            GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)))
             {
             assert(dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow()));
             dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())->ResetResizeDelay();
@@ -968,7 +968,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
             GetSplitter()->GetWindow2()->Hide();
             GetSplitter()->ReplaceWindow(GetSplitter()->GetWindow2(), GetActiveProjectWindow());
             GetActiveProjectWindow()->Show();
-            if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
+            if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)))
                 {
                 if (GetRibbon())
                     {
@@ -1079,7 +1079,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
             auto graph = dynamic_cast<Wisteria::Canvas*>(
                 GetActiveProjectWindow())->GetFixedObject(0, 0);
 
-            if (typeid(*graph) == typeid(Wisteria::Graphs::BoxPlot))
+            if (graph->IsKindOf(CLASSINFO(Wisteria::Graphs::BoxPlot)))
                 {
                 editBoxPlotButtonBarWindow->Show();
                 getEditButtonBar(editBoxPlotButtonBarWindow)->
@@ -1092,7 +1092,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     ToggleButton(XRCID("ID_DROP_SHADOW"),
                     dynamic_cast<BatchProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
                 }
-            else if (typeid(*graph) == typeid(Wisteria::Graphs::Histogram))
+            else if (graph->IsKindOf(CLASSINFO(Wisteria::Graphs::Histogram)))
                 {
                 editHistogramBatchButtonBarWindow->Show();
                 getEditButtonBar(editHistogramBatchButtonBarWindow)->
@@ -1125,7 +1125,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
 
             if (GetRibbon())
                 {
-                if (typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas))
+                if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)))
                     {
                     if (typeid(*dynamic_cast<Wisteria::Canvas*>(
                         GetActiveProjectWindow())->GetFixedObject(0, 0)) ==
@@ -1620,7 +1620,7 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
                                 GridExportOptions());
                             }
                         }
-                    else if (typeid(*activeWindow) == typeid(Wisteria::Canvas))
+                    else if (activeWindow->IsKindOf(CLASSINFO(Wisteria::Canvas)))
                         {
                         Wisteria::Canvas* graphWindow = dynamic_cast<Wisteria::Canvas*>(activeWindow);
                         if (graphWindow)
@@ -1964,7 +1964,7 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
                     formatList(dynamic_cast<ListCtrlEx*>(activeWindow), includeLeadingPageBreak);
                     includeLeadingPageBreak = true;
                     }
-                else if (typeid(*activeWindow) == typeid(Wisteria::Canvas))
+                else if (activeWindow->IsKindOf(CLASSINFO(Wisteria::Canvas)))
                     {
                     formatImageOutput(dynamic_cast<Wisteria::Canvas*>(activeWindow), includeLeadingPageBreak);
                     includeLeadingPageBreak = true;
@@ -2726,7 +2726,8 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
         ParentEventBlocker blocker(GetActiveProjectWindow());
         GetActiveProjectWindow()->ProcessWindowEvent(event);
         }
-    else if (GetActiveProjectWindow() && typeid(*GetActiveProjectWindow()) == typeid(Wisteria::Canvas) )
+    else if (GetActiveProjectWindow() &&
+             GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)))
         {
         Wisteria::Canvas* activeWindow = dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow());
         if (activeWindow)

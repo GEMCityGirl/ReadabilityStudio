@@ -2838,7 +2838,7 @@ namespace LuaScripting
                 {
                 view->GetSideBar()->SelectSubItem(parentPos.value(), childPos.value());
                 wxWindow* selWindow = view->GetActiveProjectWindow();
-                if (selWindow && typeid(*selWindow) == typeid(Wisteria::Canvas))
+                if (selWindow && selWindow->IsKindOf(wxCLASSINFO(Wisteria::Canvas)))
                     { graphWindow = dynamic_cast<Wisteria::Canvas*>(selWindow); }
                 }
             if (graphWindow)
