@@ -1188,7 +1188,8 @@ bool ProjectDoc::OnCreate(const wxString& path, long flags)
         }
     if (flags & wxDOC_NEW)
         {
-        const wxString exampleFolder = wxGetApp().FindResourceDirectory(_DT(L"examples"));
+        const wxString exampleFolder =
+            wxGetApp().FindResourceDirectory(_DT(L"examples", DTExplanation::FilePath));
         if (exampleFolder.empty() || !wxFileName::DirExists(exampleFolder))
             { wxLogWarning(L"Unable to find examples folder: %s", exampleFolder); }
         FilePathResolver resolvePath(path, false);
