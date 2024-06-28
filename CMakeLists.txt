@@ -20,12 +20,15 @@ cmake_minimum_required(VERSION 3.25)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64" CACHE STRING "" FORCE)
+
 # Edit these values when bumping the release
 project(readstudio VERSION 2021.4.0.0 DESCRIPTION "Readability Studio" HOMEPAGE_URL https://www.oleandersoftware.com/)
 set(PROGRAM_NUMBERED_VERSION 8.0)
 set(PUBLISHER "Oleander Software, Ltd.")
 set(PROGRAM_AUTHOR "Blake Madden")
 set(PROGRAM_COMMENTS "Readability analysis software")
+set(PROGRAM_GUI_IDENTIFIER "com.readabilitystudio.app")
 
 # Build a displayable version string that only includes the necessary parts
 set(FULL_DISPLAY_VERSION ${readstudio_VERSION_MAJOR})
@@ -223,7 +226,7 @@ if(WIN32)
     list(APPEND APP_SRC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/../wxWidgets/include/wx/msw/wx_dpi_aware.manifest")
 elseif(APPLE)
     # Add an icon for the apple .app file
-    list(APPEND APP_SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/app/wxmac.icns)
+    list(APPEND APP_SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/app-icon.icns)
 endif()
 add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE ${APP_SRC_FILES} ../Licensing/CyoDecode.cpp ../Licensing/CyoEncode.cpp ../Licensing/LicenseAdmin.cpp ../Licensing/Rijndael.cpp)
 
@@ -262,7 +265,6 @@ elseif(MINGW OR MSYS)
     target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow -Werror
                            $<$<CONFIG:Debug>:-Og>
                            $<$<CONFIG:Release>:-O2>)
-# TODO: Experimental code for macOS
 elseif(APPLE)
     target_compile_definitions(${PROJECT_NAME} PUBLIC __WXOSX__ CRCPP_USE_CPP11 LICENSE_FILE_GENERATOR_ENABLED
         $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING> $<$<CONFIG:Release>:NDEBUG>)
@@ -394,8 +396,5 @@ endif()
 
 if(APPLE)
     set_target_properties(${PROJECT_NAME} PROPERTIES
-        RESOURCE "app/wxmac.icns"
-        MACOSX_BUNDLE_ICON_FILE wxmac.icns
-        MACOSX_BUNDLE_COPYRIGHT "Copyright Blake Madden"
-        MACOSX_BUNDLE_GUI_IDENTIFIER "org.readabilitystudio.app")
+        MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist.in
 endif()
