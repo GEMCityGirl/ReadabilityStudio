@@ -1913,7 +1913,7 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
             (includeLeadingPageBreak ? pageBreak : wxString{}),
             subFolder,
             canvas->GetLabel()+graphExt,
-            wxString::Format(_(L"Figure %d.%d: %s"), sectionCounter, figureCounter++,
+            wxString::Format(_(L"Figure %zu.%zu: %s"), sectionCounter, figureCounter++,
                 htmlEncode({ canvas->GetName().wc_str(), canvas->GetName().length() }, true).c_str()));
         };
 
