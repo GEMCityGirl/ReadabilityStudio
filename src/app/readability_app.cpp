@@ -5247,11 +5247,11 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
     wxString updatedFilePath =
         _DT(L"https://oleandersoftware.com/downloads/readabilitystudio/CurrentMacVersionReadabilityStudio.txt");
     int responseCode;
-    if (!WebHarvester::ReadWebPage(updatedFilePath, updateFileContent, contentType, statusText, responseCode, false) )
+    if (!wxGetApp().GetWebHarvester().ReadWebPage(updatedFilePath, updateFileContent, contentType, statusText, responseCode, false) )
         {
         updatedFilePath =
             _DT(L"https://oleandersoftware.com/downloads/readabilitystudio/CurrentVersionReadabilityStudio.txt");
-        if (!WebHarvester::ReadWebPage(updatedFilePath, updateFileContent, contentType, statusText,
+        if (!wxGetApp().GetWebHarvester().ReadWebPage(updatedFilePath, updateFileContent, contentType, statusText,
                                        responseCode, false))
             {
             wxMessageBox(wxString::Format(

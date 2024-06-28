@@ -2026,7 +2026,7 @@ void ToolsOptionsDlg::SaveOptions()
         if (IsStandardProjectSettings())
             {
             m_readabilityProjectDoc->SetOriginalDocumentFilePath(m_filePath);
-            m_readabilityProjectDoc->GetSourceFilesInfo().at(0).second = m_description;
+            m_readabilityProjectDoc->GetSourceFilesInfo().at(0).second = m_description.get_value();
             }
 
         // test-specific options
