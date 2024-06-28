@@ -371,7 +371,8 @@ void ExportAllDlg::CreateControls()
         exportTypeBoxSizer->Add(listLabel, 0, wxALIGN_CENTER_VERTICAL | wxALL,
                                 wxSizerFlags::GetDefaultBorder());
 
-        m_listCombo = new wxComboBox(this, ID_LIST_TYPE_COMBO, wxString{}, wxDefaultPosition,
+        m_listCombo = new wxComboBox(exportTypeStaticBoxSizer->GetStaticBox(), ID_LIST_TYPE_COMBO,
+                                     wxString{}, wxDefaultPosition,
                                      wxDefaultSize, 0, nullptr, wxCB_DROPDOWN | wxCB_READONLY);
         m_listCombo->Append(L"htm");
         m_listCombo->Append(L"txt");
