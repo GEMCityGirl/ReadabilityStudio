@@ -16,7 +16,7 @@ wordsFile <- str_glue('{this.path::this.dir()}/words.cmake')
 files <- str_glue(
   "src/{list.files(path=srcFolder, pattern='(*[.]cpp|cJSON[.]c|onelua_no_warnings[.]c)', recursive=TRUE)}")
 # remove test and sample files from submodules
-files <- files[!grepl("(demo.cpp|main.cpp|i18n-check/samples|Wisteria-Dataviz/tests|Catch2|OleanderStemmingLibrary/tests|tinyexpr-plusplus/tests|i18n-check/tests/|cpp_i18n_review.cpp|utfcpp/tests|utfcpp/samples|utfcpp/extern|cxxopts|xmltest.cpp|html5-printer.cpp)", files)]
+files <- files[!grepl("(po_file_review|rc_file_review|demo.cpp|main.cpp|i18n-check/samples|Wisteria-Dataviz/tests|Catch2|OleanderStemmingLibrary/tests|tinyexpr-plusplus/tests|i18n-check/tests/|cpp_i18n_review.cpp|utfcpp/tests|utfcpp/samples|utfcpp/extern|cxxopts|xmltest.cpp|html5-printer.cpp)", files)]
 write_file(str_glue("# Automatically generated from 'Build CMake Files List.R'
 # DO NOT MODIFY MANUALLY!
 
@@ -33,5 +33,5 @@ write_file(paste(files, collapse='\n'), file=imagesFile)
 ################################################
 files <- str_glue(
   "{list.files(path=wordsFolder, pattern='*[.]txt', recursive=TRUE)}")
-files <- files[!grepl("(base-english-dictionary.txt|base-non-personal.txt|base-personal.txt|base-english.txt|base-german.txt|base-spanish.txt|common-errors.txt|sql.txt|visual-basic.txt|programming/r.txt|python.txt|java.txt|html.txt|csharp.txt|cpp.txt|assembly.txt)", files)]
+files <- files[!grepl("(common-dictionary|base-english-dictionary.txt|base-non-personal.txt|base-personal.txt|base-english.txt|base-german.txt|base-spanish.txt|common-errors.txt|sql.txt|visual-basic.txt|programming/r.txt|python.txt|java.txt|html.txt|csharp.txt|cpp.txt|assembly.txt)", files)]
 write_file(paste(files, collapse='\n'), file=wordsFile)

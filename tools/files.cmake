@@ -109,7 +109,6 @@ SET(APP_SRC_FILES
     src/Wisteria-Dataviz/src/graphs/wordcloud.cpp
     src/Wisteria-Dataviz/src/i18n-check/src/i18n_review.cpp
     src/Wisteria-Dataviz/src/i18n-check/src/i18n_string_util.cpp
-    src/Wisteria-Dataviz/src/i18n-check/src/rc_file_review.cpp
     src/Wisteria-Dataviz/src/import/cpp_extract_text.cpp
     src/Wisteria-Dataviz/src/import/doc_extract_text.cpp
     src/Wisteria-Dataviz/src/import/docx_extract_text.cpp
