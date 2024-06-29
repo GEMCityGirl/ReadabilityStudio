@@ -505,24 +505,10 @@ void ReadabilityAppOptions::LoadThemeNode(tinyxml2::XMLElement* appearanceNode)
                 sidebarBkColorNode->ToElement()->IntAttribute(XmlFormat::GetBlue().mb_str(), 255);
             SetSideBarBackgroundColor(wxColour(red, green, blue));
             }
-        auto sidebarActiveColorNode =
-            appearanceNode->FirstChildElement(XML_SIDEBAR_ACTIVE_COLOR.data());
-        if (sidebarActiveColorNode)
-            {
-            int red = sidebarActiveColorNode->ToElement()->IntAttribute(
-                XmlFormat::GetRed().mb_str(), 255);
-            int green = sidebarActiveColorNode->ToElement()->IntAttribute(
-                XmlFormat::GetGreen().mb_str(), 255);
-            int blue = sidebarActiveColorNode->ToElement()->IntAttribute(
-                XmlFormat::GetBlue().mb_str(), 255);
-            SetSideBarActiveColor(wxColour(red, green, blue));
-            }
-        else
-            {
-            SetSideBarActiveColor(
-                Wisteria::Colors::ColorContrast::Shade(GetSideBarBackgroundColor()));
-            }
-        SetSideBarHoverColor(Wisteria::Colors::ColorContrast::Shade(GetSideBarActiveColor()));
+        SetSideBarActiveColor(
+            Wisteria::Colors::ColorContrast::ShadeOrTint(GetSideBarBackgroundColor()));
+        SetSideBarHoverColor(
+            Wisteria::Colors::ColorContrast::ShadeOrTint(GetSideBarActiveColor(), 0.4));
         SetSideBarHoverFontColor(
             Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(GetSideBarHoverColor()));
 
@@ -3576,15 +3562,6 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         sidebarBkColor->SetAttribute(XmlFormat::GetBlue().mb_str(),
                                      GetSideBarBackgroundColor().Blue());
         appearance->InsertEndChild(sidebarBkColor);
-
-        auto sidebarActiveColor = doc.NewElement(XML_SIDEBAR_ACTIVE_COLOR.data());
-        sidebarActiveColor->SetAttribute(XmlFormat::GetRed().mb_str(),
-                                         GetSideBarActiveColor().Red());
-        sidebarActiveColor->SetAttribute(XmlFormat::GetGreen().mb_str(),
-                                         GetSideBarActiveColor().Green());
-        sidebarActiveColor->SetAttribute(XmlFormat::GetBlue().mb_str(),
-                                         GetSideBarActiveColor().Blue());
-        appearance->InsertEndChild(sidebarActiveColor);
 
         auto sidebarParentColor = doc.NewElement(XML_SIDEBAR_PARENT_COLOR.data());
         sidebarParentColor->SetAttribute(XmlFormat::GetRed().mb_str(),

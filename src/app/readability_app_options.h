@@ -2991,7 +2991,6 @@ class ReadabilityAppOptions
     const std::string_view XML_THEME_NAME{ _DT("theme-name") };
     const std::string_view XML_CONTROL_BACKGROUND_COLOR{ _DT("control-background-color") };
     const std::string_view XML_SIDEBAR_BACKGROUND_COLOR{ _DT("sidebar-background-color") };
-    const std::string_view XML_SIDEBAR_ACTIVE_COLOR{ _DT("sidebar-active-color") };
     const std::string_view XML_SIDEBAR_PARENT_COLOR{ _DT("sidebar-parent-color") };
     // general options
     const std::string_view XML_APPEARANCE{ _DT("appearance") };
