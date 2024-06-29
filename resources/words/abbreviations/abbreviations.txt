@@ -453,6 +453,7 @@ sergt.
 sgd.
 sgt.
 sig.
+snr.
 sp.
 spannw.
 spec.

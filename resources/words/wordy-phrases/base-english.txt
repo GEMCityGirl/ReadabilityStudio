@@ -219,6 +219,7 @@ accellular	acellular	3
 acceptable	welcome	0		
 acceptence	acceptance	3		
 acceptible	acceptable	3		
+acces	access	3		
 acceses	accesses	3		
 accesibility	accessibility	3		
 accesing	accessing	3		
@@ -550,6 +551,8 @@ adminstrate	administrate	3
 adminstration	administration	3		
 adminstrative	administrative	3		
 adminstrator	administrator	3		
+adminstrator's	administrator's	3		
+adminstrators	administrators	3		
 admissability	admissibility	3		
 admissable	admissible	3		
 admistering	administering	3		
@@ -675,6 +678,9 @@ aggregious	egregious	3
 aggresive	aggressive	3		
 aggressive	forward, strong, attacking	0		
 aggressively	forwardly	0		
+aggretation	aggregation	3		
+aggretation's	aggregations	3		
+aggretations	aggregations	3		
 agian	again	3		
 agianst	against	3		
 agin	again	3		
@@ -1317,6 +1323,9 @@ appoint	name	0
 appointed	named	0		
 appointing	naming	0		
 appoints	names	0		
+appoitnment	appointment	3		
+appoitnment's	appointment's	3		
+appoitnments	appointments	3		
 appologies	apologies	3		
 appology	apology	3		
 appopriate	appropriate	3		
@@ -1940,6 +1949,8 @@ atrribute	attribute	3
 attache	attaché, attached, attaches	3		
 attached herewith is	here is	0		
 attachement	attachment	3		
+attachement's	attachment's	3		
+attachements	attachments	3		
 attachmment	attachment	3		
 attachmment's	attachment's	3		
 attachmments	attachments	3		
@@ -2064,6 +2075,7 @@ auxilliary	auxiliary	3
 avaiable	available	3		
 availabe	available	3		
 availabile	available	3		
+availabilible	available	3		
 availabl	available	3		
 available	offered, ready	0		
 availabled	available	3		
@@ -2315,6 +2327,11 @@ bellicose	warlike	0
 belligerant	belligerent	3		
 bellweather	bellwether	3		
 bemusemnt	bemusement	3		
+bencharmk	benchmark	3		
+bencharmk's	benchmark's	3		
+bencharmked	benchmarked	3		
+bencharmking	benchmarking	3		
+bencharmks	benchmarks	3		
 benchmkar	benchmark	3		
 bend over backwards	do everything	2		
 bending over backwards	doing everything	2		
@@ -2357,6 +2374,7 @@ beside myself	angry, upset	2
 beside the point	immaterial, irrelevant	2		
 beside themselves	angry, upset	2		
 beside yourself	angry, upset	2		
+besige	besiege, beside	3		
 besmirch	soil	0		
 besmirched	soiled	0		
 besmirches	soils	0		
@@ -3132,6 +3150,7 @@ chceks	checks	3
 cheching	checking	3		
 check to see	check, inspect, examine	0		
 check to see if	check if	0		
+checkbo	checkbox	3		
 checked to see	checked, inspected, examined	0		
 checking to see	checking, inspecting, examining	0		
 checks to see	checks, inspects, examines	0		
@@ -3605,6 +3624,7 @@ comples	compiles	3
 complete monopolies	monopolies	1		
 complete monopoly	monopoly	1		
 completedthe	completed the	3		
+completeled	completed	3		
 completelly	completely	3		
 completely and utterly	completely, utterly	1		
 completely destroyed	destroyed	1		
@@ -3804,7 +3824,10 @@ configuations	configurations	3
 configuraiton	configuration	3		
 configuraiton's	configuration's	3		
 configuraitons	configurations	3		
-configurate	configuration	3		
+configurate	configure	3		
+configurated	configured	3		
+configurates	configures	3		
+configurating	configuring	3		
 configuratoin	configuration	3		
 configureable	configurable	3		
 configury	configure	3		
@@ -4380,6 +4403,10 @@ cracefully	gracefully	3
 crazy like a fox	resourceful, smart	2		
 creaeted	created	3		
 cream of the crop	the best	2		
+crearte	create	3		
+crearted	created	3		
+creartes	creates	3		
+crearting	creating	3		
 creat	create	3		
 create	make	0		
 create a dialogue	speak, discuss, talk	0		
@@ -4461,6 +4488,7 @@ curser	cursor (if referring to a computer cursor)	3
 curser's	cursor's (if referring to a computer cursor)	3		
 cursers	cursors (if referring to a computer cursor)	3		
 cusom	custom, CUSUM (Cumulative Sum Chart)	3		
+cusotm	custom	3		
 custiomer	customer	3		
 custiomer's	customer's	3		
 custiomers	customers	3		
@@ -4522,6 +4550,9 @@ daratumamab's	daratumumab's	3
 Dardenelles	Dardanelles	3		
 dark horse	contestant/candidate that people know little about that has a good chance of winning	2		
 dark horses	contestants/candidates that people know little about that have a good chance of winning	2		
+dashbaord	dashboard	3		
+dashbaord's	dashboard's	3		
+dashbaords	dashboards	3		
 database manger	database manager	3		
 database mangers	database managers	3		
 databaset	database	3		
@@ -4620,6 +4651,9 @@ decriptions	descriptions	3
 decsriptor	descriptor	3		
 decsriptors	descriptors	3		
 dectect	detect	3		
+dectection	detection	3		
+dectection's	detection's	3		
+dectections	detections	3		
 decyption	decryption	3		
 decyption's	decryption's	3		
 decyptions	decryptions	3		
@@ -5040,6 +5074,9 @@ diamons	diamonds	3
 diaolg	dialog	3		
 diaolg's	dialog's	3		
 diaolgs	dialogs	3		
+diaolog	dialog	3		
+diaolog's	dialog's	3		
+diaologs	dialogs	3		
 diaster	disaster	3		
 dichotomies	groups, branches, divisions	0		
 dichotomy	group, branch, division	0		
@@ -5449,6 +5486,7 @@ documentaton	documentation	3
 documention	documentation	3		
 documention's	documentation's	3		
 documetation	documentation	3		
+doen't	doesn't	3		
 doens	does	3		
 doens't	doesn't	3		
 does away with	removes, cancels, ends	0		
@@ -5690,6 +5728,7 @@ effectuate	bring about	0
 effeect	effect	3		
 effervescent	bubbly, lively	0		
 effervescently	livelily	0		
+efficancy	efficiency	3		
 efficency	efficiency	3		
 efficent	efficient	3		
 efficently	efficiently	3		
@@ -6394,6 +6433,8 @@ exerience's	experience's	3
 exerienced	experienced	3		
 exeriences	experiences	3		
 exeriencing	experiencing	3		
+exernal	external	3		
+exernally	externally	3		
 exerpt	excerpt	3		
 exerpts	excerpts	3		
 exersize	exercise	3		
@@ -6477,6 +6518,11 @@ experieced	experienced	3
 experiemental	experimental	3		
 experienc	experience	3		
 experiend	experienced	3		
+experince	experience	3		
+experince's	experience's	3		
+experinced	experienced	3		
+experinces	experiences	3		
+experincing	experiencing	3		
 expertise	ability	0		
 expesially	especially	3		
 expession	expression	3		
@@ -7881,6 +7927,8 @@ honest truth	truth	1
 honory	honorary	3		
 honourary	honorary	3		
 hook or by crook	by any means necessary	2		
+horizonal	horizontal	3		
+horizonally	horizontally	3		
 horizontally	sideways	0		
 horrifing	horrifying	3		
 hors derves	hors d'oeuvres	3		
@@ -8194,6 +8242,9 @@ improvment	improvement	3
 improvments	improvements	3		
 imprudent	rash, impulsive	0		
 imprudently	impulsively	0		
+imput	input	3		
+imput's	input's	3		
+imputs	inputs	3		
 in a class by herself	unmatched, unrivaled	0		
 in a class by himself	unmatched, unrivaled	0		
 in a class by itself	unmatched, unrivaled	0		
@@ -8472,6 +8523,7 @@ inciting	rousing, stirring up	0
 inclement	harsh, severe, stormy	0		
 inclreased	increased	3		
 includ	include	3		
+includeds	includes, included	3		
 includinf	including	3		
 including everything	in all	0		
 includng	including	3		
@@ -9929,6 +9981,9 @@ mamory	memory	3
 man bites dog	newsworthy	2		
 man of principal	man of principle	3		
 managable	manageable	3		
+managaer	manager	3		
+managaer's	manager's	3		
+managaers	managers	3		
 managemen	management	3		
 managemment	management	3		
 managemment's	management's	3		
@@ -9968,6 +10023,10 @@ manufacturing	making	0
 manufature	manufacture	3		
 manufatured	manufactured	3		
 manufaturing	manufacturing	3		
+manulipate	manipulate	3		
+manulipated	manipulated	3		
+manulipates	manipulates	3		
+manulipating	manipulating	3		
 manully	manually	3		
 manuver	maneuver	3		
 many times over	often, frequently	0		
@@ -10084,6 +10143,9 @@ melancholy	sadness, depression, sad (adj.)	0
 memberd	members	3		
 membranaphone	membranophone	3		
 memeber	member	3		
+memober	member	3		
+memober's	member's	3		
+memobers	members	3		
 men's fraternities	fraternities	1		
 men's fraternity	fraternity	1		
 menally	mentally	3		
@@ -10294,7 +10356,6 @@ mmnemonic	mnemonic	3
 mniport	miniport	3		
 mniport's	miniport's	3		
 mniports	miniports	3		
-modals	models	3		
 moddem	modem	3		
 moddem's	modem's	3		
 moddems	modems	3		
@@ -10360,6 +10421,7 @@ montains	mountains	3
 montanous	mountainous	3		
 monthy	monthly	3		
 monts	months	3		
+mor	more	3		
 mordant	biting, sarcastic	0		
 more power to you	good luck, I fully encourage you	2		
 more than exceeded	exceeded	0		
@@ -11148,6 +11210,13 @@ options	choices, ways	0
 optmization	optimization	3		
 optmizations	optimizations	3		
 optomism	optimism	3		
+optomize	optimize	3		
+optomized	optimized	3		
+optomizes	optimizes	3		
+optomizing	optimizing	3		
+opton	option	3		
+opton's	option's	3		
+optons	options	3		
 opulent	rich	0		
 or alternatively	or	1		
 or way it	or was it	3		
@@ -11187,6 +11256,9 @@ orientaion's	orientation's	3
 orientaions	orientations	3		
 orientate	orient	0		
 orientatied	orientated	3		
+orientiation	orientation	3		
+orientiation's	orientation's	3		
+orientiations	orientations	3		
 orientied	oriented	3		
 orifice	opening, hole	0		
 orifices	openings, holes	0		
@@ -11721,6 +11793,9 @@ peruses	reads, reviews	0
 perusing	reading, reviewing	0		
 pervious	previous	3		
 perviously	previously	3		
+peson	person	3		
+peson's	person's	3		
+pesons	persons	3		
 peter out	fail, wear out	2		
 petered out	failed, worn out	2		
 petering out	failing, wearing out	2		
@@ -11932,6 +12007,9 @@ plenary	full	0
 plenteous	plenty	0		
 plesant	pleasant	3		
 ploting	plotting	3		
+pluguin	plugin	3		
+pluguin's	plugin's	3		
+pluguins	plugins	3		
 plummet down	plummet	1		
 plummeted down	plummeted	1		
 plummeting down	plummeting	1		
@@ -12055,6 +12133,10 @@ potrayed	portrayed	3
 poulations	populations	3		
 pound of flesh	retribution	2		
 poverful	powerful	3		
+povide	provide	3		
+povided	provided	3		
+povides	provides	3		
+poviding	providing	3		
 poweful	powerful	3		
 powerfull	powerful	3		
 powers that be	people in charge, authorities	2		
@@ -12142,6 +12224,9 @@ preferrable	preferable	3
 preferrably	preferably	3		
 prefferable	preferable	3		
 prefferably	preferably	3		
+prefrence	preference	3		
+prefrence's	preference's	3		
+prefrences	preferences	3		
 pregancies	pregnancies	3		
 preiod	period	3		
 preliferation	proliferation	3		
@@ -12322,6 +12407,10 @@ privilige's	privilege's	3
 priviliged	privileged	3		
 priviliges	privileges	3		
 privledge	privilege	3		
+privlege	privilege	3		
+privlege's	privilege's	3		
+privleged	privileged	3		
+privleges	privileges	3		
 privte	private	3		
 privtely	privately	3		
 prmultiplied	premultiplied	3		
@@ -12427,6 +12516,9 @@ proficient	expert, skilled	0
 proficiently	skillfully	0		
 profilic	prolific	3		
 profligacy	extravagance, abundance	0		
+proformance	performance	3		
+proformance's	performance's	3		
+proformances	performances	3		
 profound	deep, thoughtful	0		
 profoundly	deeply, thoughtfully	0		
 progams	programs	3		
@@ -12843,6 +12935,7 @@ quiescently	quietly	0
 quinessential	quintessential	3		
 quitted	quit	3		
 quizes	quizzes	3		
+qverage	average	3		
 rabinnical	rabbinical	3		
 racaus	raucous	3		
 rack my brain	strain to remember	2		
@@ -13390,6 +13483,10 @@ repentence	repentance	3
 repentent	repentant	3		
 repeteadly	repeatedly	3		
 repetion	repetition	3		
+rephase	rephrase	3		
+rephased	rephrased	3		
+rephases	rephrases	3		
+rephasing	rephrasing	3		
 repid	rapid	3		
 repitition	repetition	3		
 replacable	replaceable	3		
@@ -13922,6 +14019,7 @@ scholarhip	scholarship	3
 school principle	school principal	3		
 school principle's	school principal's	3		
 school principles	school principals	3		
+sciencee	science	3		
 scientfic	scientific	3		
 scientifc	scientific	3		
 scientis	scientist	3		
@@ -13944,7 +14042,14 @@ screeenshots	screenshots	3
 screen plot	scree plot	3		
 screen plot's	scree plot's	3		
 screen plots	scree plots	3		
+screentshot	screenshot	3		
+screentshot's	screenshot's	3		
+screentshots	screenshots	3		
 screenwrighter	screenwriter	3		
+screeshot	screenshot	3		
+screnshot	screenshot	3		
+screnshot's	screenshot's	3		
+screnshots	screenshots	3		
 scrollbale	scrollable	3		
 scrutinity	scrutiny	3		
 scrutinize	inspect, examine	0		
@@ -14032,6 +14137,10 @@ seleccts	selects	3
 selecd	select	3		
 selectany	select any	3		
 selection	choice	0		
+selelct	select	3		
+selelcted	selected	3		
+selelcting	selecting	3		
+selelcts	selects	3		
 selet	select	3		
 seleted	selected	3		
 seleting	selecting	3		
@@ -14125,6 +14234,7 @@ serves up	serves	0
 servic	service	3		
 service manger	service manager	3		
 service mangers	service managers	3		
+servie	service	3		
 serviece	service	3		
 serviece's	service's	3		
 servieces	services	3		
@@ -14358,6 +14468,7 @@ smoke test	validation test	2
 smoke-filled room	secret place where important decisions are (allegedly) made	2		
 smoking gun	evidence	2		
 smoooth	smooth	3		
+smplified	simplified	3		
 snake in the grass	(unexpectedly) treacherous person	2		
 sneak peak	sneak peek	3		
 sneeks	sneaks	3		
@@ -14823,6 +14934,7 @@ subresouces	subresources	3
 subseqent	subsequent	3		
 subsequent	later, next	0		
 subsequent to	after, afterward, later, next, since, then, following	0		
+subsequentlly	subsequently	3		
 subsequently	later, after	0		
 subsequest	subsequent	3		
 subservient	servile	0		
@@ -14928,6 +15040,10 @@ sum of money	sum	0
 sum total	sum, total	0		
 sumary	summary	3		
 summer season	summer	0		
+summerize	summarize	3		
+summerized	summarized	3		
+summerizes	summarizes	3		
+summerizing	summarizing	3		
 summon	send for	0		
 sumptuous	costly, rich	0		
 sums of cash	sums	0		
@@ -15034,6 +15150,9 @@ surrouding	surrounding	3
 surrounded on all sides	surrounded	0		
 surrundering	surrendering	3		
 surveilence	surveillance	3		
+survery	survey	3		
+survery's	survey's	3		
+surverys	surveys	3		
 surveyer	surveyor	3		
 surveyer's	surveyor's	3		
 surviver	survivor	3		
@@ -15081,6 +15200,10 @@ swoop down	swoop	1
 swooped down	swooped	1		
 swooping down	swooping	1		
 swoops down	swoops	1		
+swtich	switch	3		
+swtiched	switched	3		
+swtiches	switches	3		
+swtiching	switching	3		
 syas	says	3		
 sychronization	synchronization	3		
 sychronization's	synchronization's	3		
@@ -15293,6 +15416,7 @@ tendacy	tendency	3
 tendancies	tendencies	3		
 tendancy	tendency	3		
 tendancy's	tendency's	3		
+tendences	tendencies	3		
 tennnis	tennis	3		
 tennnis's	tennis's	3		
 tenuous	thin, slender, slight, trivial	0		
@@ -15440,11 +15564,13 @@ their is	there is	3
 theives	thieves	3		
 thelist	the list	3		
 themby	them by	3		
+themself	themselves	3		
 themselfs	themselves	3		
 themslves	themselves	3		
 then and only then	only then	0		
 then ever	than ever	3		
 then then	then the, (strike one)	0		
+ther	there, their	3		
 therafter	thereafter	3		
 therby	thereby	3		
 there exits	there exists (should be reviewed)	3		
@@ -16459,6 +16585,11 @@ very start	start	0
 vesion	version	3		
 vesion's	version's	3		
 vesions	versions	3		
+vew	view	3		
+vew's	view's	3		
+vewed	viewed	3		
+vewing	viewing	3		
+vews	views	3		
 veyr	very	3		
 via	in, on, by	0		
 viable	practical, workable	0		
@@ -16504,8 +16635,11 @@ visiters	visitors	3
 vison	vision	3		
 vison's	vision's	3		
 visons	visions	3		
+vist	visit	3		
+visted	visited	3		
 visting	visiting	3		
 vistors	visitors	3		
+vists	visits	3		
 visualize	picture, see	0		
 visualized	pictured, saw	0		
 visualizes	pictures, sees	0		
@@ -16868,6 +17002,9 @@ will effect	will affect	3
 willingless	willingness	3		
 win hands down	win easily	2		
 window of opportunity	opportunity, chance	0		
+windown	window	3		
+windown's	window's	3		
+windowns	windows	3		
 wing it	improvise	2		
 winged it	improvised	2		
 winging it	improvising	2		

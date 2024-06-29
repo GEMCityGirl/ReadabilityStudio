@@ -1813,6 +1813,7 @@ Dhaka
 Dhaulagiri
 Dialogtech
 Diamondhead
+Dianamics
 Dibenzoxazepine
 Diberville
 Dickensian
@@ -2599,6 +2600,7 @@ Ghibelline
 Ghidra
 Ghomrassen
 Ghostbuster
+Ghostery
 Ghostscript
 Ghraib
 Giacinta
@@ -2944,6 +2946,7 @@ Hesperia
 Hesse
 Hessen
 Hessian
+Hexion
 Heyshott
 Hezbollah
 Hialeah
@@ -3166,6 +3169,7 @@ Infiniband
 InfoBase
 Infomatics
 Informatica
+Infosec
 Infosys
 Infotron
 InfoTrust
@@ -3747,6 +3751,7 @@ Lithia
 Lithonia
 Lithuania
 Lithuanian
+Litware
 Livedo
 Livermore
 Liverpool
@@ -4341,6 +4346,7 @@ Moultrie
 Moundsville
 Moundville
 Mountville
+Moveworks
 Mozambican
 Mozambique
 Mozelle
@@ -5098,6 +5104,7 @@ Plainview
 Plainville
 Plainwell
 Plano
+Planview
 Platonism
 Platonist
 Platteville
@@ -5218,6 +5225,7 @@ Prix
 Procellarum
 Profisee
 Progeria
+Projectplace
 Prolixin
 Promethean
 Pronethalol
@@ -5417,6 +5425,7 @@ Reichstag
 Reidsville
 Reigate
 Relaxin
+Relecloud
 RemoteFX
 Remylin
 Renaissance
@@ -5933,6 +5942,7 @@ Skyland
 Skymax
 Skype
 Skyrim
+Slackbot
 Slav
 Slavic
 Slavik
@@ -6264,6 +6274,7 @@ Tajikistan
 Takata
 Taklamakan
 Takoma
+Talentsoft
 Taliban
 Talkline
 Talladega
@@ -6355,6 +6366,7 @@ TelePrompters
 Telerik
 Telescopium
 Telex
+Telstra
 Temecula
 Tempe
 Templar
@@ -6656,6 +6668,7 @@ Tuvalu
 TWA
 Tweezerman
 Twickenham
+Twilio
 Twilly
 Twinkie
 Twinsburg
@@ -6682,6 +6695,7 @@ UCHealth
 UCLA
 Udacity
 Udale
+Udemy
 Uganda
 Ugandan
 Uighur
@@ -6801,6 +6815,7 @@ Vallejo
 Valletta
 Valparaiso
 ValuJet
+VanArsdel
 Vancouver
 Vancrest
 Vandalia
@@ -7366,6 +7381,7 @@ Zanesfield
 Zanesville
 Zantac
 Zanzibar
+Zapier
 Zappos
 Zaria
 Zarla
@@ -7378,6 +7394,7 @@ Zeebrugge
 Zeeland
 ZeeMee
 Zellweger
+Zendesk
 ZeniMax
 Zennist
 Zephyrhills
