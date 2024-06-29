@@ -246,7 +246,6 @@ void ReadabilityAppOptions::SetColorsFromSystem()
                 wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE).ChangeLightness(125) :
                 wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE);
         }
-    m_startPageDetailBackgroundColor = wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW);
     }
 
 //------------------------------------------------
@@ -603,18 +602,6 @@ void ReadabilityAppOptions::LoadThemeNode(tinyxml2::XMLElement* appearanceNode)
             int blue = startPageBackStageBackgroundColorNode->ToElement()->IntAttribute(
                 XmlFormat::GetBlue().mb_str(), 255);
             SetStartPageBackstageBackgroundColor(wxColour(red, green, blue));
-            }
-        auto startPageDetailBackgroundColorNode =
-            appearanceNode->FirstChildElement(XML_STARTPAGE_DETAIL_BACKGROUND_COLOR.data());
-        if (startPageDetailBackgroundColorNode)
-            {
-            int red = startPageDetailBackgroundColorNode->ToElement()->IntAttribute(
-                XmlFormat::GetRed().mb_str(), 255);
-            int green = startPageDetailBackgroundColorNode->ToElement()->IntAttribute(
-                XmlFormat::GetGreen().mb_str(), 255);
-            int blue = startPageDetailBackgroundColorNode->ToElement()->IntAttribute(
-                XmlFormat::GetBlue().mb_str(), 255);
-            SetStartPageDetailBackgroundColor(wxColour(red, green, blue));
             }
 #endif
 
@@ -3689,15 +3676,6 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         startPageBackstageBkColor->SetAttribute(XmlFormat::GetBlue().mb_str(),
                                                 GetStartPageBackstageBackgroundColor().Blue());
         appearance->InsertEndChild(startPageBackstageBkColor);
-
-        auto startPageDetailBkColor = doc.NewElement(XML_STARTPAGE_DETAIL_BACKGROUND_COLOR.data());
-        startPageDetailBkColor->SetAttribute(XmlFormat::GetRed().mb_str(),
-                                             GetStartPageDetailBackgroundColor().Red());
-        startPageDetailBkColor->SetAttribute(XmlFormat::GetGreen().mb_str(),
-                                             GetStartPageDetailBackgroundColor().Green());
-        startPageDetailBkColor->SetAttribute(XmlFormat::GetBlue().mb_str(),
-                                             GetStartPageDetailBackgroundColor().Blue());
-        appearance->InsertEndChild(startPageDetailBkColor);
         }
     configSection->InsertEndChild(appearance);
 

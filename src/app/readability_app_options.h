@@ -1526,20 +1526,6 @@ class ReadabilityAppOptions
             }
         }
 
-    [[nodiscard]]
-    wxColour GetStartPageDetailBackgroundColor() const
-        {
-        return m_startPageDetailBackgroundColor;
-        }
-
-    void SetStartPageDetailBackgroundColor(const wxColour& color)
-        {
-        if (color.IsOk())
-            {
-            m_startPageDetailBackgroundColor = color;
-            }
-        }
-
     // last opened file locations
     [[nodiscard]]
     wxString GetImagePath() const
@@ -2661,7 +2647,6 @@ class ReadabilityAppOptions
     wxColour m_sideBarHoverFontColor{ *wxBLACK };
     // start page
     wxColour m_startPageBackstageBackgroundColor{ wxColour{ 145, 168, 208 } };
-    wxColour m_startPageDetailBackgroundColor{ *wxWHITE };
     // last opened file locations
     wxString m_imagePath;
     wxString m_projectPath;
@@ -3029,8 +3014,6 @@ class ReadabilityAppOptions
     const std::string_view XML_SIDEBAR_PARENT_COLOR{ _DT("sidebar-parent-color") };
     const std::string_view XML_STARTPAGE_BACKSTAGE_BACKGROUND_COLOR{ _DT(
         "start-page-backstage-background-color") };
-    const std::string_view XML_STARTPAGE_DETAIL_BACKGROUND_COLOR{ _DT(
-        "start-page-detail-background-color") };
     // general options
     const std::string_view XML_APPEARANCE{ _DT("appearance") };
     const std::string_view XML_WINDOW_MAXIMIZED{ _DT("app-window-maximized") };

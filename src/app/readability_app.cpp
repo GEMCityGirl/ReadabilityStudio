@@ -3842,7 +3842,7 @@ void ReadabilityApp::UpdateStartPageTheme()
     GetMainFrameEx()->GetStartPage()->SetButtonAreaBackgroundColor(
         GetAppOptions().GetStartPageBackstageBackgroundColor());
     GetMainFrameEx()->GetStartPage()->SetMRUBackgroundColor(
-        GetAppOptions().GetStartPageDetailBackgroundColor());
+        GetAppOptions().GetControlBackgroundColor());
     }
 
 //---------------------------------------------------
@@ -3850,8 +3850,8 @@ void ReadabilityApp::UpdateScriptEditorTheme()
     {
     if (GetMainFrameEx()->m_luaEditor != nullptr)
         {
-    GetMainFrameEx()->m_luaEditor->SetThemeColor(GetAppOptions().GetControlBackgroundColor());
-    }
+        GetMainFrameEx()->m_luaEditor->SetThemeColor(GetAppOptions().GetControlBackgroundColor());
+        }
     }
 
 //---------------------------------------------------
@@ -3859,8 +3859,8 @@ void ReadabilityApp::UpdateLogWindowTheme()
     {
     if (GetMainFrameEx()->m_logWindow != nullptr)
         {
-    UpdateRibbonTheme(GetMainFrameEx()->m_logWindow->GetRibbon());
-    }
+        UpdateRibbonTheme(GetMainFrameEx()->m_logWindow->GetRibbon());
+        }
     }
 
 //---------------------------------------------------

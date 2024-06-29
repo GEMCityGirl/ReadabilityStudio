@@ -8,7 +8,6 @@
             <sidebar-active-color red="77" green="77" blue="77"/>
             <sidebar-parent-color red="51" green="51" blue="51"/>
             <start-page-backstage-background-color red="25" green="25" blue="25"/>
-            <start-page-detail-background-color red="0" green="0" blue="0"/>
         </appearance>
     </configurations>
 </oleander-readability-studio-configuration>
