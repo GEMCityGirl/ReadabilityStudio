@@ -3848,13 +3848,19 @@ void ReadabilityApp::UpdateStartPageTheme()
 //---------------------------------------------------
 void ReadabilityApp::UpdateScriptEditorTheme()
     {
+    if (GetMainFrameEx()->m_luaEditor != nullptr)
+        {
     GetMainFrameEx()->m_luaEditor->SetThemeColor(GetAppOptions().GetControlBackgroundColor());
+    }
     }
 
 //---------------------------------------------------
 void ReadabilityApp::UpdateLogWindowTheme()
     {
+    if (GetMainFrameEx()->m_logWindow != nullptr)
+        {
     UpdateRibbonTheme(GetMainFrameEx()->m_logWindow->GetRibbon());
+    }
     }
 
 //---------------------------------------------------
