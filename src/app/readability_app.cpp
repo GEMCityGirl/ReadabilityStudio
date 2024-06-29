@@ -94,7 +94,7 @@ wxBitmapBundle RSArtProvider::CreateBitmapBundle(const wxArtID& id, const wxArtC
 void ReadabilityApp::EditDictionary(const readability::test_language lang)
     {
     EditWordListDlg editDlg(
-        GetMainFrame(), wxID_ANY,
+        GetParentingWindow(), wxID_ANY,
         (lang == readability::test_language::spanish_test) ? _(L"Custom Spanish Dictionary") :
         (lang == readability::test_language::german_test)  ? _(L"Custom German Dictionary") :
                                                              _(L"Custom English Dictionary"));
@@ -3376,7 +3376,7 @@ void MainFrame::OnTestsOverview([[maybe_unused]] wxRibbonButtonBarEvent& event)
                              wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y) };
     // test overview dialog
     ListDlg testsOverviewDlg(
-        this, wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
+        wxGetApp().GetParentingWindow(), wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
         wxGetApp().GetAppOptions().GetRibbonHoverColor(),
         wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
         LD_SAVE_BUTTON | LD_COPY_BUTTON | LD_PRINT_BUTTON | LD_SELECT_ALL_BUTTON |
