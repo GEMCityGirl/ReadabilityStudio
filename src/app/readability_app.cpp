@@ -1487,7 +1487,7 @@ void ReadabilityApp::EditCustomTest(CustomReadabilityTest& selectedTest)
             { return; }
         }
 
-    CustomTestDlg dlg(GetMainFrame(), wxID_ANY, selectedTest.get_name().c_str());
+    CustomTestDlg dlg(GetParentingWindow(), wxID_ANY, selectedTest.get_name().c_str());
     dlg.SetStemmingType(selectedTest.get_stemming_type());
     dlg.SetFormula(selectedTest.get_formula().c_str());
     dlg.SetTestType(static_cast<int>(selectedTest.get_test_type()));
@@ -4947,24 +4947,29 @@ void MainFrame::OnEditCustomTest([[maybe_unused]] wxCommandEvent& event)
         {
         const BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
         if (!doc->IsSafeToUpdate())
-            { return; }
+            {
+            return;
+            }
         }
     wxArrayString testNames;
-    for (CustomReadabilityTestCollection::const_iterator pos = BaseProject::m_custom_word_tests.begin();
-        pos != BaseProject::m_custom_word_tests.end();
-        ++pos)
-        { testNames.Add(pos->get_name().c_str()); }
-    wxSingleChoiceDialog selDlg(this,
-                             _(L"Select test to edit:"), _(L"Edit Test"),
-                             testNames);
+    for (const auto& cTest : BaseProject::m_custom_word_tests)
+        {
+        testNames.Add(cTest.get_name().c_str());
+        }
+    wxSingleChoiceDialog selDlg(wxGetApp().GetParentingWindow(), _(L"Select test to edit:"),
+                                _(L"Edit Test"), testNames);
     selDlg.SetSize(400, -1);
     selDlg.Center();
     if (selDlg.ShowModal() == wxID_CANCEL)
-        { return; }
+        {
+        return;
+        }
     const auto selectedTestIndex = selDlg.GetSelection();
     if (selectedTestIndex < 0 ||
         selectedTestIndex >= static_cast<int>(BaseProject::m_custom_word_tests.size()))
-        { return; }
+        {
+        return;
+        }
 
     wxGetApp().EditCustomTest(BaseProject::m_custom_word_tests[selectedTestIndex]);
     }
