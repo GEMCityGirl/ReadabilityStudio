@@ -2990,8 +2990,6 @@ class ReadabilityAppOptions
     // theming
     const std::string_view XML_THEME_NAME{ _DT("theme-name") };
     const std::string_view XML_CONTROL_BACKGROUND_COLOR{ _DT("control-background-color") };
-    const std::string_view XML_RIBBON_ACTIVE_TAB_COLOR{ _DT("ribbon-active-tab-color") };
-    const std::string_view XML_RIBBON_HOVER_COLOR{ _DT("ribbon-hover-color") };
     const std::string_view XML_SIDEBAR_BACKGROUND_COLOR{ _DT("sidebar-background-color") };
     const std::string_view XML_SIDEBAR_ACTIVE_COLOR{ _DT("sidebar-active-color") };
     const std::string_view XML_SIDEBAR_PARENT_COLOR{ _DT("sidebar-parent-color") };

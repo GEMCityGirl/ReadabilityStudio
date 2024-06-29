@@ -480,36 +480,11 @@ void ReadabilityAppOptions::LoadThemeNode(tinyxml2::XMLElement* appearanceNode)
             }
 
         // ribbon
-        auto ribbonActiveTabColorNode =
-            appearanceNode->FirstChildElement(XML_RIBBON_ACTIVE_TAB_COLOR.data());
-        if (ribbonActiveTabColorNode)
-            {
-            int red = ribbonActiveTabColorNode->ToElement()->IntAttribute(
-                XmlFormat::GetRed().mb_str(), 255);
-            int green = ribbonActiveTabColorNode->ToElement()->IntAttribute(
-                XmlFormat::GetGreen().mb_str(), 255);
-            int blue = ribbonActiveTabColorNode->ToElement()->IntAttribute(
-                XmlFormat::GetBlue().mb_str(), 255);
-            SetRibbonActiveTabColor(wxColour(red, green, blue));
-            SetRibbonInactiveTabColor(
-                Wisteria::Colors::ColorContrast::Shade(GetRibbonActiveTabColor()));
-            }
-        auto ribbonHoverColorNode =
-            appearanceNode->FirstChildElement(XML_RIBBON_HOVER_COLOR.data());
-        if (ribbonHoverColorNode)
-            {
-            int red =
-                ribbonHoverColorNode->ToElement()->IntAttribute(XmlFormat::GetRed().mb_str(), 255);
-            int green = ribbonHoverColorNode->ToElement()->IntAttribute(
-                XmlFormat::GetGreen().mb_str(), 255);
-            int blue =
-                ribbonHoverColorNode->ToElement()->IntAttribute(XmlFormat::GetBlue().mb_str(), 255);
-            SetRibbonHoverColor(wxColour(red, green, blue));
-            }
-        else
-            {
-            SetRibbonHoverColor(Wisteria::Colors::ColorContrast::Shade(GetRibbonActiveTabColor()));
-            }
+        SetRibbonActiveTabColor(
+            Wisteria::Colors::ColorContrast::ShadeOrTint(GetControlBackgroundColor()));
+        SetRibbonInactiveTabColor(
+            Wisteria::Colors::ColorContrast::ShadeOrTint(GetRibbonActiveTabColor()));
+        SetRibbonHoverColor(Wisteria::Colors::ColorContrast::Shade(GetRibbonActiveTabColor()));
         SetRibbonActiveFontColor(
             Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(GetRibbonActiveTabColor()));
         SetRibbonInactiveFontColor(
@@ -3591,22 +3566,6 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     controlBkColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetControlBackgroundColor().Blue());
     appearance->InsertEndChild(controlBkColor);
 
-        // ribbon theming
-        {
-        auto activeTabColor = doc.NewElement(XML_RIBBON_ACTIVE_TAB_COLOR.data());
-        activeTabColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetRibbonActiveTabColor().Red());
-        activeTabColor->SetAttribute(XmlFormat::GetGreen().mb_str(),
-                                     GetRibbonActiveTabColor().Green());
-        activeTabColor->SetAttribute(XmlFormat::GetBlue().mb_str(),
-                                     GetRibbonActiveTabColor().Blue());
-        appearance->InsertEndChild(activeTabColor);
-
-        auto hoverColor = doc.NewElement(XML_RIBBON_HOVER_COLOR.data());
-        hoverColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetRibbonHoverColor().Red());
-        hoverColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetRibbonHoverColor().Green());
-        hoverColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetRibbonHoverColor().Blue());
-        appearance->InsertEndChild(hoverColor);
-        }
         // sidebar theming
         {
         auto sidebarBkColor = doc.NewElement(XML_SIDEBAR_BACKGROUND_COLOR.data());

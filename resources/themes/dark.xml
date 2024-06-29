@@ -3,7 +3,6 @@
     <configurations>
         <appearance>
             <control-background-color red="0" green="0" blue="0"/>
-            <ribbon-active-tab-color red="32" green="32" blue="32"/>
             <sidebar-background-color red="25" green="25" blue="25"/>
             <sidebar-active-color red="77" green="77" blue="77"/>
             <sidebar-parent-color red="51" green="51" blue="51"/>
