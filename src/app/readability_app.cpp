@@ -3840,7 +3840,7 @@ MainFrame::MainFrame(wxDocManager* manager, wxFrame* frame,
 void ReadabilityApp::UpdateStartPageTheme()
     {
     GetMainFrameEx()->GetStartPage()->SetButtonAreaBackgroundColor(
-        GetAppOptions().GetStartPageBackstageBackgroundColor());
+        GetAppOptions().GetSideBarBackgroundColor());
     GetMainFrameEx()->GetStartPage()->SetMRUBackgroundColor(
         GetAppOptions().GetControlBackgroundColor());
     }

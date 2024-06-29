@@ -229,23 +229,6 @@ void ReadabilityAppOptions::SetColorsFromSystem()
     m_sideBarHoverColor = m_ribbonHoverColor;
     m_sideBarHoverFontColor = *wxBLACK;
     m_sideBarFontColor = wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT);
-
-    // Start page
-    // if ugly Windows default gray, then override the system with prettier colors
-    if (wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE) == wxColour(240, 240, 240))
-        {
-        m_startPageBackstageBackgroundColor = wxColour(145, 168, 208);
-        }
-    else
-        {
-        // Use dialog color of the side area.
-        // If this is really dark and the menu area is really dark, then lighten this color a bit
-        m_startPageBackstageBackgroundColor =
-            wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE).GetLuminance() < .2 &&
-                    wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW).GetLuminance() < .2 ?
-                wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE).ChangeLightness(125) :
-                wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE);
-        }
     }
 
 //------------------------------------------------
@@ -589,20 +572,6 @@ void ReadabilityAppOptions::LoadThemeNode(tinyxml2::XMLElement* appearanceNode)
             Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(GetSideBarParentColor()));
         SetSideBarActiveFontColor(
             Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(GetSideBarParentColor()));
-
-        // start page
-        auto startPageBackStageBackgroundColorNode =
-            appearanceNode->FirstChildElement(XML_STARTPAGE_BACKSTAGE_BACKGROUND_COLOR.data());
-        if (startPageBackStageBackgroundColorNode)
-            {
-            int red = startPageBackStageBackgroundColorNode->ToElement()->IntAttribute(
-                XmlFormat::GetRed().mb_str(), 255);
-            int green = startPageBackStageBackgroundColorNode->ToElement()->IntAttribute(
-                XmlFormat::GetGreen().mb_str(), 255);
-            int blue = startPageBackStageBackgroundColorNode->ToElement()->IntAttribute(
-                XmlFormat::GetBlue().mb_str(), 255);
-            SetStartPageBackstageBackgroundColor(wxColour(red, green, blue));
-            }
 #endif
 
         // see what theme is selected
@@ -3666,16 +3635,6 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         sidebarParentColor->SetAttribute(XmlFormat::GetBlue().mb_str(),
                                          GetSideBarParentColor().Blue());
         appearance->InsertEndChild(sidebarParentColor);
-
-        auto startPageBackstageBkColor =
-            doc.NewElement(XML_STARTPAGE_BACKSTAGE_BACKGROUND_COLOR.data());
-        startPageBackstageBkColor->SetAttribute(XmlFormat::GetRed().mb_str(),
-                                                GetStartPageBackstageBackgroundColor().Red());
-        startPageBackstageBkColor->SetAttribute(XmlFormat::GetGreen().mb_str(),
-                                                GetStartPageBackstageBackgroundColor().Green());
-        startPageBackstageBkColor->SetAttribute(XmlFormat::GetBlue().mb_str(),
-                                                GetStartPageBackstageBackgroundColor().Blue());
-        appearance->InsertEndChild(startPageBackstageBkColor);
         }
     configSection->InsertEndChild(appearance);
 
