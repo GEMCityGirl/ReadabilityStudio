@@ -1016,8 +1016,8 @@ bool ReadabilityApp::OnInit()
         if (warningIter != WarningManager::GetWarnings().end() &&
             warningIter->ShouldBeShown())
             {
-            wxRichMessageDialog msg(GetMainFrame(), warningIter->GetMessage(),
-                                            warningIter->GetTitle(), warningIter->GetFlags());
+            wxRichMessageDialog msg(wxGetApp().GetParentingWindow(), warningIter->GetMessage(),
+                                    warningIter->GetTitle(), warningIter->GetFlags());
             msg.ShowCheckBox(_(L"Remember my answer"));
             const int dlgResponse = msg.ShowModal();
             if (warningIter != WarningManager::GetWarnings().end() &&
@@ -3243,7 +3243,8 @@ void MainFrame::OnAbout([[maybe_unused]] wxCommandEvent& event)
             }
         }
 
-    AboutDialogEx aboutDlg(this, GetAboutDialogImage(),
+    AboutDialogEx aboutDlg(
+        wxGetApp().GetParentingWindow(), GetAboutDialogImage(),
         wxGetApp().GetAppVersion(),
         wxString::Format(_(L"Copyright \U000000A92006-%d %s. All rights reserved."),
                          buildDate.GetYear(), wxGetApp().GetVendorDisplayName()),
@@ -3267,7 +3268,7 @@ void MainFrame::OnViewProfileReport([[maybe_unused]] wxRibbonButtonBarEvent& eve
     const wxSize screenSize{ wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X),
                              wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y) };
     ListDlg profileReportDialog(
-        this, wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
+        wxGetApp().GetParentingWindow(), wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
         wxGetApp().GetAppOptions().GetRibbonHoverColor(),
         wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
         LD_SAVE_BUTTON | LD_COPY_BUTTON | LD_PRINT_BUTTON | LD_SELECT_ALL_BUTTON | LD_FIND_BUTTON |
@@ -3969,8 +3970,7 @@ void MainFrame::OnStartPageClick(wxCommandEvent& event)
             }
         else if (event.GetId() == GetStartPage()->GetButtonID(1))
             {
-            wxFileDialog dialog
-                    (this,
+            wxFileDialog dialog(wxGetApp().GetParentingWindow(),
                     _(L"Select Project to Open"),
                     wxGetApp().GetAppOptions().GetProjectPath(), wxString{},
                     wxGetApp().GetLicenseAdmin().
@@ -3996,7 +3996,7 @@ void MainFrame::OnStartPageClick(wxCommandEvent& event)
             }
         else if (event.GetId() == GetStartPage()->GetButtonID(5))
             {
-            ToolsOptionsDlg optionsDlg(this);
+            ToolsOptionsDlg optionsDlg(wxGetApp().GetParentingWindow());
             optionsDlg.SelectPage(ToolsOptionsDlg::GENERAL_SETTINGS_PAGE);
             if (optionsDlg.ShowModal() == wxID_OK)
                 { wxGetApp().GetAppOptions().SaveOptionsFile(); }
@@ -4060,7 +4060,7 @@ void MainFrame::OnDictionaryDropdown(wxRibbonButtonBarEvent& event)
 //---------------------------------------------------
 void MainFrame::OnWordList([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    WordListDlg wordListsDlg(this);
+    WordListDlg wordListsDlg(wxGetApp().GetParentingWindow());
     wordListsDlg.ShowModal();
     }
 
@@ -4085,7 +4085,7 @@ void MainFrame::OnEditEnglishDictionary([[maybe_unused]] wxCommandEvent& event)
 //---------------------------------------------------
 void MainFrame::OnEditDictionarySettings([[maybe_unused]] wxCommandEvent& event)
     {
-    ToolsOptionsDlg optionsDlg(this);
+    ToolsOptionsDlg optionsDlg(wxGetApp().GetParentingWindow());
     optionsDlg.SelectPage(ToolsOptionsDlg::GRAMMAR_PAGE);
     if (optionsDlg.ShowModal() == wxID_OK)
         { wxGetApp().GetAppOptions().SaveOptionsFile(); }
@@ -4130,7 +4130,7 @@ void MainFrame::OnOpenExample(wxCommandEvent& event)
         wxArrayString descriptions;
         descriptions.push_back(_(L"Create a new project using the example document"));
         descriptions.push_back(_(L"View the document in your system's default editor"));
-        RadioBoxDlg choiceDlg(this,
+        RadioBoxDlg choiceDlg(wxGetApp().GetParentingWindow(),
             _(L"Select how to open the example document"), wxString{}, wxString{},
             _(L"Open Example Document"), choices, descriptions);
         if (choiceDlg.ShowModal() == wxID_CANCEL)
@@ -4167,7 +4167,7 @@ void MainFrame::OnOpenExample(wxCommandEvent& event)
 //-------------------------------------------------------
 void MainFrame::OnWordListByPage(wxCommandEvent& event)
     {
-    WordListDlg wordListsDlg(this);
+    WordListDlg wordListsDlg(wxGetApp().GetParentingWindow());
     // New Dale-Chall Words
     if (event.GetId() == XRCID("ID_DC_WORD_LIST_WINDOW"))
         {
@@ -4698,7 +4698,7 @@ void MainFrame::OnRemoveCustomTest([[maybe_unused]] wxCommandEvent& event)
         pos != BaseProject::m_custom_word_tests.cend();
         ++pos)
         { testNames.Add(pos->get_name().c_str()); }
-    wxSingleChoiceDialog dlg(this,
+    wxSingleChoiceDialog dlg(wxGetApp().GetParentingWindow(),
                              _(L"Select test to remove:"), _(L"Remove Test"),
                              testNames);
     dlg.SetSize(400, -1);
@@ -4720,7 +4720,7 @@ void MainFrame::OnRemoveCustomTest([[maybe_unused]] wxCommandEvent& event)
 void MainFrame::OnAddCustomTestBundle([[maybe_unused]] wxCommandEvent& event)
     {
     TestBundle bundle(L"");
-    TestBundleDlg bundleDlg(this, bundle);
+    TestBundleDlg bundleDlg(wxGetApp().GetParentingWindow(), bundle);
     bundleDlg.SetHelpTopic(GetHelpDirectory(), L"test-bundles.html");
     if (bundleDlg.ShowModal() == wxID_OK)
         {
@@ -4736,8 +4736,9 @@ void MainFrame::OnEditCustomTestBundle([[maybe_unused]] wxCommandEvent& event)
     for (std::set<TestBundle>::const_iterator pos = BaseProject::m_testBundles.begin();
         pos != BaseProject::m_testBundles.end();
         ++pos)
-        { bundleNames.Add(pos->GetName().c_str()); }// locked bundled will be viewed as read only
-    wxSingleChoiceDialog dlg(this, _(L"Select bundle to edit:"), _(L"Edit Bundle"), bundleNames);
+        { bundleNames.Add(pos->GetName().c_str()); } // locked bundled will be viewed as read only
+    wxSingleChoiceDialog dlg(wxGetApp().GetParentingWindow(), _(L"Select bundle to edit:"),
+                             _(L"Edit Bundle"), bundleNames);
     dlg.SetSize(400, -1);
     dlg.Center();
     if (dlg.ShowModal() == wxID_CANCEL)
@@ -4745,12 +4746,14 @@ void MainFrame::OnEditCustomTestBundle([[maybe_unused]] wxCommandEvent& event)
 
     std::set<TestBundle>::iterator testBundleIter =
         BaseProject::m_testBundles.find(TestBundle(dlg.GetStringSelection().wc_str()));
-    if (testBundleIter == BaseProject::m_testBundles.end())// shouldn't happen
-        { return; }
+    if (testBundleIter == BaseProject::m_testBundles.end()) // shouldn't happen
+        {
+        return;
+        }
 
-    // set iterators cannot be edited directly. We will make a copy of the bundle and then reinsert it.
+    // We will make a copy of the bundle, edit it, and then reinsert it.
     TestBundle bundle = *testBundleIter;
-    TestBundleDlg bundleDlg(this, bundle);
+    TestBundleDlg bundleDlg(wxGetApp().GetParentingWindow(), bundle);
     bundleDlg.SetHelpTopic(GetHelpDirectory(), L"test-bundles.html");
     if (bundleDlg.ShowModal() == wxID_OK && !bundle.IsLocked())
         {
@@ -4764,25 +4767,32 @@ void MainFrame::OnRemoveCustomTestBundle([[maybe_unused]] wxCommandEvent& event)
     {
     wxArrayString bundleNames;
     for (std::set<TestBundle>::const_iterator pos = BaseProject::m_testBundles.begin();
-        pos != BaseProject::m_testBundles.end();
-        ++pos)
+         pos != BaseProject::m_testBundles.end(); ++pos)
         {
         if (!pos->IsLocked())
-            { bundleNames.Add(pos->GetName().c_str()); }
+            {
+            bundleNames.Add(pos->GetName().c_str());
+            }
         }
-    wxSingleChoiceDialog dlg(this, _(L"Select bundle to remove:"), _(L"Remove Bundle"), bundleNames);
+    wxSingleChoiceDialog dlg(wxGetApp().GetParentingWindow(), _(L"Select bundle to remove:"),
+                             _(L"Remove Bundle"), bundleNames);
     dlg.SetSize(400, -1);
     dlg.Center();
     if (dlg.ShowModal() == wxID_CANCEL)
-        { return; }
+        {
+        return;
+        }
 
     std::set<TestBundle>::iterator testBundleIter =
         BaseProject::m_testBundles.find(TestBundle(dlg.GetStringSelection().wc_str()));
-    if (testBundleIter == BaseProject::m_testBundles.end())// shouldn't happen
-        { return; }
+    if (testBundleIter == BaseProject::m_testBundles.end()) // shouldn't happen
+        {
+        return;
+        }
     BaseProject::m_testBundles.erase(testBundleIter);
 
-    dynamic_cast<MainFrame*>(wxGetApp().GetMainFrame())->RemoveTestBundleFromMenus(dlg.GetStringSelection());
+    dynamic_cast<MainFrame*>(wxGetApp().GetMainFrame())
+        ->RemoveTestBundleFromMenus(dlg.GetStringSelection());
     }
 
 //-------------------------------------------------------
@@ -4798,7 +4808,8 @@ void MainFrame::OnAddCustomTest(wxCommandEvent& event)
         }
     if (event.GetId() == XRCID("ID_ADD_CUSTOM_NEW_DALE_CHALL_TEST"))
         {
-        NewCustomWordTestSimpleDlg dlg(this,
+        NewCustomWordTestSimpleDlg dlg(
+            wxGetApp().GetParentingWindow(),
             wxID_ANY, wxString::Format(_(L"Add Custom \"%s\""), _DT(L"New Dale-Chall")) );
         dlg.SetHelpTopic(GetHelpDirectory(), _DT(L"add-custom-word-test.html"));
         if (dlg.ShowModal() == wxID_OK)
@@ -4823,7 +4834,7 @@ void MainFrame::OnAddCustomTest(wxCommandEvent& event)
         }
     else if (event.GetId() == XRCID("ID_ADD_CUSTOM_SPACHE_TEST"))
         {
-        NewCustomWordTestSimpleDlg dlg(this,
+        NewCustomWordTestSimpleDlg dlg(wxGetApp().GetParentingWindow(),
             wxID_ANY, wxString::Format(_(L"Add Custom \"%s\""), _DT(L"Spache")) );
         dlg.SetHelpTopic(GetHelpDirectory(), _DT(L"add-custom-word-test.html"));
         if (dlg.ShowModal() == wxID_OK)
@@ -4853,7 +4864,8 @@ void MainFrame::OnAddCustomTest(wxCommandEvent& event)
             if (rTest.get_formula().length())
                 { tests.push_back(rTest.get_long_name().c_str()); }
             }
-        wxSingleChoiceDialog lDlg(this,
+        wxSingleChoiceDialog lDlg(
+            wxGetApp().GetParentingWindow(),
             _(L"Select a linear-regression-based test to use as the basis for a new custom test:"),
             _(L"Select a Test"), tests);
         if (lDlg.ShowModal() == wxID_OK)
@@ -4864,7 +4876,7 @@ void MainFrame::OnAddCustomTest(wxCommandEvent& event)
                 auto [testIterator, found] = BaseProject::GetDefaultReadabilityTestsTemplate().find_test(selected);
                 if (found)
                     {
-                    CustomTestDlg dlg(this);
+                    CustomTestDlg dlg(wxGetApp().GetParentingWindow());
                     dlg.SetTestName(_(L"Custom ") + testIterator->get_long_name().c_str());
                     dlg.SetFormula(testIterator->get_formula().c_str());
                     dlg.SetTestType(static_cast<int>(testIterator->get_test_type()));
@@ -4904,7 +4916,8 @@ void MainFrame::OnAddCustomTest(wxCommandEvent& event)
         }
     else if (event.GetId() == XRCID("ID_ADD_CUSTOM_HARRIS_JACOBSON_TEST"))
         {
-        NewCustomWordTestSimpleDlg dlg(this,
+        NewCustomWordTestSimpleDlg dlg(
+            wxGetApp().GetParentingWindow(),
             wxID_ANY, wxString::Format(_(L"Add Custom \"%s\""), _DT(L"Harris-Jacobson")) );
         dlg.SetHelpTopic(GetHelpDirectory(), _DT(L"add-custom-word-test.html"));
         if (dlg.ShowModal() == wxID_OK)
@@ -4928,7 +4941,7 @@ void MainFrame::OnAddCustomTest(wxCommandEvent& event)
         }
     else
         {
-        CustomTestDlg dlg(this);
+        CustomTestDlg dlg(wxGetApp().GetParentingWindow());
         if (dlg.ShowModal() == wxID_OK)
             {
             CustomReadabilityTest cTest(dlg.GetTestName().wc_str(),
@@ -5054,10 +5067,13 @@ void MainFrame::OnPaste([[maybe_unused]] wxCommandEvent& event)
 //-------------------------------------------------------
 void MainFrame::OnPrinterHeaderFooter([[maybe_unused]] wxCommandEvent& event)
     {
-    PrinterHeaderFooterDlg dlg(this, wxGetApp().GetAppOptions().GetLeftPrinterHeader(),
-        wxGetApp().GetAppOptions().GetCenterPrinterHeader(), wxGetApp().GetAppOptions().GetRightPrinterHeader(),
-        wxGetApp().GetAppOptions().GetLeftPrinterFooter(), wxGetApp().GetAppOptions().GetCenterPrinterFooter(),
-        wxGetApp().GetAppOptions().GetRightPrinterFooter());
+    PrinterHeaderFooterDlg dlg(wxGetApp().GetParentingWindow(),
+                               wxGetApp().GetAppOptions().GetLeftPrinterHeader(),
+                               wxGetApp().GetAppOptions().GetCenterPrinterHeader(),
+                               wxGetApp().GetAppOptions().GetRightPrinterHeader(),
+                               wxGetApp().GetAppOptions().GetLeftPrinterFooter(),
+                               wxGetApp().GetAppOptions().GetCenterPrinterFooter(),
+                               wxGetApp().GetAppOptions().GetRightPrinterFooter());
     dlg.SetHelpTopic(GetHelpDirectory(), _DT(L"printing.html"));
     if (dlg.ShowModal() == wxID_OK)
         {
@@ -5095,13 +5111,10 @@ void MainFrame::OnClose(wxCloseEvent& event)
 //-------------------------------------------------------
 void MainFrame::OnOpenDocument([[maybe_unused]] wxCommandEvent& event)
     {
-    wxFileDialog dialog(
-            this,
-            _(L"Select Document to Analyze"),
-            wxString{},
-            wxString{},
-            wxGetApp().GetAppOptions().GetDocumentFilter(),
-            wxFD_OPEN|wxFD_FILE_MUST_EXIST|wxFD_PREVIEW);
+    wxFileDialog dialog(wxGetApp().GetParentingWindow(), _(L"Select Document to Analyze"),
+                        wxString{}, wxString{},
+                        wxGetApp().GetAppOptions().GetDocumentFilter(),
+                        wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
     if (dialog.ShowModal() == wxID_CANCEL)
         { return; }
     const auto& templateList = wxGetApp().GetDocManager()->GetTemplates();
@@ -5366,7 +5379,7 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
 //-------------------------------------------------------
 void MainFrame::OnToolsOptions([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    ToolsOptionsDlg optionsDlg(this);
+    ToolsOptionsDlg optionsDlg(wxGetApp().GetParentingWindow());
     if (optionsDlg.ShowModal() == wxID_OK)
         {
         wxGetApp().GetAppOptions().SaveOptionsFile();
@@ -5380,7 +5393,7 @@ void MainFrame::OnToolsOptions([[maybe_unused]] wxRibbonButtonBarEvent& event)
 //-------------------------------------------------------
 void MainFrame::OnEditWordList([[maybe_unused]] wxCommandEvent& event)
     {
-    EditWordListDlg editDlg(this, wxID_ANY, _(L"Edit Word List"));
+    EditWordListDlg editDlg(wxGetApp().GetParentingWindow(), wxID_ANY, _(L"Edit Word List"));
     editDlg.SetDefaultDir(wxGetApp().GetAppOptions().GetWordListPath());
     editDlg.SetHelpTopic(GetHelpDirectory(), _DT(L"document-analysis.html"));
     if (editDlg.ShowModal() == wxID_OK)
@@ -5392,7 +5405,7 @@ void MainFrame::OnEditWordList([[maybe_unused]] wxCommandEvent& event)
 //-------------------------------------------------------
 void MainFrame::OnEditPhraseList([[maybe_unused]] wxCommandEvent& event)
     {
-    EditWordListDlg editDlg(this, wxID_ANY, _(L"Edit Phrase List"));
+    EditWordListDlg editDlg(wxGetApp().GetParentingWindow(), wxID_ANY, _(L"Edit Phrase List"));
     editDlg.SetDefaultDir(wxGetApp().GetAppOptions().GetWordListPath());
     editDlg.SetHelpTopic(GetHelpDirectory(), _DT(L"document-analysis.html"));
     editDlg.SetPhraseFileMode(true);
@@ -5402,7 +5415,8 @@ void MainFrame::OnEditPhraseList([[maybe_unused]] wxCommandEvent& event)
 //-------------------------------------------------------
 void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    GetDirFilterDialog dirDlg(this, wxGetApp().GetAppOptions().GetDocumentFilter() + L"|" +
+    GetDirFilterDialog dirDlg(wxGetApp().GetParentingWindow(),
+                              wxGetApp().GetAppOptions().GetDocumentFilter() + L"|" +
                                         Wisteria::GraphItems::Image::GetImageFileFilter() + L"|" +
                                         _(L"All Files (*.*)|*.*"));
     if (dirDlg.ShowModal() != wxID_OK || dirDlg.GetPath().empty())
@@ -5423,8 +5437,8 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
     // get the checksums
     multi_value_aggregate_map<std::uint32_t, wxString> filesMap;
         {
-        wxProgressDialog progressDlg(
-            _(L"Duplicate Files"), _(L"Searching for duplicate files..."), files.size(), this,
+        wxProgressDialog progressDlg(_(L"Duplicate Files"), _(L"Searching for duplicate files..."),
+                                     files.size(), wxGetApp().GetParentingWindow(),
             wxPD_AUTO_HIDE | wxPD_SMOOTH | wxPD_ELAPSED_TIME | wxPD_ESTIMATED_TIME |
                 wxPD_REMAINING_TIME | wxPD_CAN_ABORT | wxPD_APP_MODAL);
         progressDlg.Centre();
@@ -5455,7 +5469,7 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
             }
         }
 
-    FileListDlg fileListDlg(this, wxID_ANY, _(L"Duplicate Files"));
+    FileListDlg fileListDlg(wxGetApp().GetParentingWindow(), wxID_ANY, _(L"Duplicate Files"));
     fileListDlg.GetListCtrl()->SetVirtualDataSize(files.size());
     size_t rowCount{ 0 };
     fileListDlg.GetListCtrl()->SetForegroundColour(*wxBLACK);
@@ -5508,7 +5522,7 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
 //-------------------------------------------------------
 void MainFrame::OnToolsChapterSplit([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    wxFileDialog dialog(this, _(L"Select File to Split"),
+    wxFileDialog dialog(wxGetApp().GetParentingWindow(), _(L"Select File to Split"),
                         wxGetApp().GetAppOptions().GetProjectPath(), wxString{},
                         wxGetApp().GetAppOptions().GetDocumentFilter(),
                         wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
@@ -5556,7 +5570,7 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
         }
 
     WebHarvesterDlg webHarvestDlg(
-        this, wxArrayString{},
+        wxGetApp().GetParentingWindow(), wxArrayString{},
         wxString::Format(_(L"Documents & Images (%s;%s)|%s;%s|"),
                          wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD.data(),
                          wxGetApp().GetAppOptions().ALL_IMAGES_WILDCARD.data(),
