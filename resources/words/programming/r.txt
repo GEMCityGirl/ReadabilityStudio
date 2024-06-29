@@ -17,6 +17,7 @@ in
 Inf
 install.packages
 is.subset
+knitr
 lubridate
 magrittr
 maxlen

@@ -479,6 +479,8 @@ adding insult to injury	is be remarkably harsh/insulting	2
 addional	additional	3		
 addionally	additionally	3		
 additinally	additionally	3		
+additioanal	additional	3		
+additioanally	additionally	3		
 additional	added, more, other, extra	0		
 additionally	added, more	0		
 additionaly	additionally	3		
@@ -3102,6 +3104,7 @@ cessations	stops, pauses	0
 chalenging	challenging	3		
 chalk full	chock-full	3		
 chalk-full	chock-full	3		
+chalkboardd	chalkboard, chalkboards	3		
 chalkfull	chock-full	3		
 challange	challenge	3		
 challanged	challenged	3		
@@ -3182,6 +3185,9 @@ chip on their shoulder	has a grudge, bitter	2
 chip on your shoulder	has a grudge, bitter	2		
 chivalrous	gallant	0		
 chivalrously	gallantly	0		
+chlakboard	chalkboard	3		
+chlakboard's	chalkboard's	3		
+chlakboards	chalkboards	3		
 chlids	children	3		
 chnage	change	3		
 chnages	changes	3		
@@ -9068,6 +9074,7 @@ intesified	intensified	3
 intesifies	intensifies	3		
 intesify	intensify	3		
 intesifying	intensifying	3		
+intesity	intensity	3		
 intested	interested	3		
 intevene	intervene	3		
 intex	index	3		

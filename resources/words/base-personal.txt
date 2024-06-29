@@ -668,6 +668,7 @@ Alkaid
 Alkhatib
 Alla
 Allah
+Allaire
 Allambee
 Allan
 Allana
@@ -2900,6 +2901,7 @@ Bosporus
 Bosse
 Bostdorff
 Bostitch
+Bostock
 Boswell
 Bosworth
 Botel
@@ -4732,6 +4734,7 @@ Coates
 Cobain
 Cobb
 Cobbie
+Cobblepot
 Cobby
 Cobden
 Coblentz
@@ -6007,6 +6010,7 @@ Derry
 Derryberry
 Derryl
 Derval
+Dervieux
 Derward
 Derwent
 Derwin
@@ -9361,6 +9365,7 @@ Griz
 Grober
 Groeber
 Groeninger
+Groff
 Grofman
 Grogan
 Grohme
@@ -10697,6 +10702,7 @@ Iduberga
 Idurre
 Ieasha
 Ieisha
+Ierusalimschy
 Iesha
 Ieshia
 Iestyn
@@ -20235,6 +20241,7 @@ Scheffé
 Scheherazade
 Scheherezade
 Scheide
+Scheidegger
 Schein
 Scheines
 Scheinker
@@ -24151,6 +24158,7 @@ Yevgenyi
 Yevtushenko
 Yi
 Yiannopoulos
+Yihui
 Yijing
 Yikrazuul
 Yingrun

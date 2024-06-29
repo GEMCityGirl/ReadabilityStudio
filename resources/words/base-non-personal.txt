@@ -432,6 +432,8 @@ Arveiron
 Aryan
 ASCI
 ASCII
+Asciidoc
+Asciidoctor
 Aseret
 Asheboro
 Asheville
@@ -789,6 +791,8 @@ BetterSleep
 Bevill
 Bhutan
 Bhutanese
+Biblatex
+Bibtex
 Bidenomics
 Bienville
 BigSun
@@ -912,6 +916,7 @@ Bookland
 Bookman
 Bookshare
 Boonville
+Bootswatch
 Borax
 Bordentown
 Borealis
@@ -1414,6 +1419,7 @@ Cinnaminson
 Cintrifuse
 Ciprofloxacin
 Circleville
+Citeproc
 Citibank
 Citicorp
 Citrix
@@ -1852,6 +1858,7 @@ Dobro
 DocFX
 Dockerfile
 DoCoMo
+Docusaurus
 Docusign
 Dodoma
 Dogpatch
@@ -2382,6 +2389,7 @@ Folkstone
 Folsom
 Folstone
 Fomalhaut
+Fontawesome
 FoodShare
 Foodsystems
 FORCAST
@@ -2737,6 +2745,7 @@ Grenville
 Grindavik
 Griptonite
 Groesbeck
+Grolemund
 Groupon
 GrubHub
 Gruetzner
@@ -3705,6 +3714,7 @@ Lhotse
 Libcurl
 Liberia
 Liberian
+Libertinus
 Libra
 LibreOffice
 Libreville
@@ -4520,6 +4530,7 @@ Netflixer
 Netherlander
 Netherlands
 Netherrealm
+Netlify
 Netmon
 NetPrint
 Netrix
@@ -5279,6 +5290,7 @@ Puritan
 Puritanism
 Putney
 PwC
+PyCharm
 PyLab
 Pyongyang
 Pyrenees
@@ -5445,6 +5457,7 @@ Retin
 Reuss
 Reuters
 Revcontent
+Revealjs
 Revlimid
 Revlon
 Rexburg
@@ -5855,6 +5868,7 @@ Shiloh
 Shinto
 Shintoism
 Shintoist
+Shinylive
 Shippensburg
 Shopify
 ShopRite
@@ -6061,6 +6075,7 @@ Springshare
 Springville
 SPSS
 Sputnik
+Spyder
 SQLite
 Squarespace
 Squaresville
