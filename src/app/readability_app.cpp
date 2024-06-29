@@ -3180,24 +3180,32 @@ void ReadabilityApp::UpdateRibbonTheme(wxRibbonBar* ribbon)
     }
 
 //---------------------------------------------------
-void ReadabilityApp::UpdateRibbonTheme()
-    { UpdateRibbonTheme(GetMainFrameEx()->GetRibbon()); }
+void ReadabilityApp::UpdateRibbonTheme() { UpdateRibbonTheme(GetMainFrameEx()->GetRibbon()); }
 
 //---------------------------------------------------
 void ReadabilityApp::RemoveAllCustomTestBundles()
     {
     std::for_each(BaseProject::m_testBundles.cbegin(), BaseProject::m_testBundles.cend(),
-        [this](const TestBundle& bundle) { if (!bundle.IsLocked())
-        { GetMainFrameEx()->RemoveTestBundleFromMenus(bundle.GetName().c_str()); } });
+                  [this](const TestBundle& bundle)
+                  {
+                      if (!bundle.IsLocked())
+                          {
+                          GetMainFrameEx()->RemoveTestBundleFromMenus(bundle.GetName().c_str());
+                          }
+                  });
 
     for (auto bundle = BaseProject::m_testBundles.begin();
          bundle != BaseProject::m_testBundles.end();
          /*in loop*/)
         {
         if (bundle->IsLocked())
-            { ++bundle; }
+            {
+            ++bundle;
+            }
         else
-            { bundle = BaseProject::m_testBundles.erase(bundle); }
+            {
+            bundle = BaseProject::m_testBundles.erase(bundle);
+            }
         }
     }
 
@@ -3663,25 +3671,30 @@ MainFrame::MainFrame(wxDocManager* manager, wxFrame* frame,
             },
         XRCID("ID_TESTS_OVERVIEW"));
 
-    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &MainFrame::OnViewLogReport, this, XRCID("ID_VIEW_LOG_REPORT"));
-    Bind(wxEVT_MENU,
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &MainFrame::OnViewLogReport, this,
+         XRCID("ID_VIEW_LOG_REPORT"));
+    Bind(
+        wxEVT_MENU,
         [this]([[maybe_unused]] wxCommandEvent&)
-            {
+        {
             wxRibbonButtonBarEvent event;
             OnViewLogReport(event);
-            },
+        },
         XRCID("ID_VIEW_LOG_REPORT"));
 
-    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &MainFrame::OnViewProfileReport, this, XRCID("ID_VIEW_PROFILE_REPORT"));
-    Bind(wxEVT_MENU,
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &MainFrame::OnViewProfileReport, this,
+         XRCID("ID_VIEW_PROFILE_REPORT"));
+    Bind(
+        wxEVT_MENU,
         [this]([[maybe_unused]] wxCommandEvent&)
-            {
+        {
             wxRibbonButtonBarEvent event;
             OnViewProfileReport(event);
-            },
+        },
         XRCID("ID_VIEW_PROFILE_REPORT"));
 
-    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &MainFrame::OnHelpCheckForUpdates, this, XRCID("ID_CHECK_FOR_UPDATES"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &MainFrame::OnHelpCheckForUpdates, this,
+         XRCID("ID_CHECK_FOR_UPDATES"));
     Bind(wxEVT_MENU,
         [this]([[maybe_unused]] wxCommandEvent&)
             {
@@ -3741,7 +3754,8 @@ MainFrame::MainFrame(wxDocManager* manager, wxFrame* frame,
          XRCID("ID_WORD_LISTS"));
     Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &MainFrame::OnBlankGraphDropdown, this,
          XRCID("ID_BLANK_GRAPHS"));
-    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &MainFrame::OnDictionaryDropdown, this, XRCID("ID_EDIT_DICTIONARY"));
+    Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &MainFrame::OnDictionaryDropdown, this,
+         XRCID("ID_EDIT_DICTIONARY"));
     Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &MainFrame::OnExampleDropdown, this,
          XRCID("ID_EXAMPLES"));
     Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &MainFrame::OnCustomTestsDropdown, this,
@@ -3801,9 +3815,11 @@ MainFrame::MainFrame(wxDocManager* manager, wxFrame* frame,
 
     // word list menu
     Bind(wxEVT_MENU, &MainFrame::OnWordListByPage, this, XRCID("ID_DC_WORD_LIST_WINDOW"));
-    Bind(wxEVT_MENU, &MainFrame::OnWordListByPage, this, XRCID("ID_STOCKER_CATHOLIC_WORD_LIST_WINDOW"));
+    Bind(wxEVT_MENU, &MainFrame::OnWordListByPage, this,
+         XRCID("ID_STOCKER_CATHOLIC_WORD_LIST_WINDOW"));
     Bind(wxEVT_MENU, &MainFrame::OnWordListByPage, this, XRCID("ID_SPACHE_WORD_LIST_WINDOW"));
-    Bind(wxEVT_MENU, &MainFrame::OnWordListByPage, this, XRCID("ID_HARRIS_JACOBSON_WORD_LIST_WINDOW"));
+    Bind(wxEVT_MENU, &MainFrame::OnWordListByPage, this,
+         XRCID("ID_HARRIS_JACOBSON_WORD_LIST_WINDOW"));
     Bind(wxEVT_MENU, &MainFrame::OnWordListByPage, this, XRCID("ID_DOLCH_WORD_LIST_WINDOW"));
     }
 
@@ -3874,29 +3890,25 @@ void ReadabilityApp::InitStartPage()
     // add start area inside mainframe
     wxArrayString mruFiles;
     for (size_t i = 0; i < GetDocManager()->GetFileHistory()->GetCount(); ++i)
-        { mruFiles.Add(GetDocManager()->GetFileHistory()->GetHistoryFile(i)); }
-    GetMainFrameEx()->m_startPage = new wxStartPage(GetMainFrameEx(), wxID_ANY, mruFiles,
-        GetResourceManager().GetSVG(L"ribbon/app-logo.svg"));
+        {
+        mruFiles.Add(GetDocManager()->GetFileHistory()->GetHistoryFile(i));
+        }
+    GetMainFrameEx()->m_startPage = new wxStartPage(
+        GetMainFrameEx(), wxID_ANY, mruFiles, GetResourceManager().GetSVG(L"ribbon/app-logo.svg"));
 
     GetMainFrameEx()->GetStartPage()->SetUserName(GetAppOptions().GetReviewer());
+    GetMainFrameEx()->GetStartPage()->AddButton(GetResourceManager().GetSVG(L"ribbon/document.svg"),
+                                                _(L"Create a New Project"));
+    GetMainFrameEx()->GetStartPage()->AddButton(wxArtProvider::GetBitmapBundle(wxART_FILE_OPEN),
+                                                _(L"Open a Project"));
+    GetMainFrameEx()->GetStartPage()->AddButton(GetResourceManager().GetSVG(L"ribbon/examples.svg"),
+                                                _(L"Read the Examples"));
     GetMainFrameEx()->GetStartPage()->AddButton(
-        GetResourceManager().GetSVG(L"ribbon/document.svg"),
-        _(L"Create a New Project"));
+        wxArtProvider::GetBitmapBundle("ID_NOTES", wxART_BUTTON), _(L"Read the Notes"));
     GetMainFrameEx()->GetStartPage()->AddButton(
-        wxArtProvider::GetBitmapBundle(wxART_FILE_OPEN),
-        _(L"Open a Project"));
+        wxArtProvider::GetBitmapBundle(wxART_HELP_BOOK, wxART_BUTTON), _(L"Read the Manual"));
     GetMainFrameEx()->GetStartPage()->AddButton(
-        GetResourceManager().GetSVG(L"ribbon/examples.svg"),
-        _(L"Read the Examples"));
-    GetMainFrameEx()->GetStartPage()->AddButton(
-        wxArtProvider::GetBitmapBundle("ID_NOTES", wxART_BUTTON),
-        _(L"Read the Notes"));
-    GetMainFrameEx()->GetStartPage()->AddButton(
-        wxArtProvider::GetBitmapBundle(wxART_HELP_BOOK, wxART_BUTTON),
-        _(L"Read the Manual"));
-    GetMainFrameEx()->GetStartPage()->AddButton(
-        GetResourceManager().GetSVG(L"ribbon/configure.svg"),
-        _(L"Review Program Options"));
+        GetResourceManager().GetSVG(L"ribbon/configure.svg"), _(L"Review Program Options"));
 
     UpdateStartPageTheme();
 
@@ -3917,8 +3929,10 @@ void ReadabilityApp::UpdateDocumentThemes()
                 {
                 UpdateRibbonTheme(view->GetRibbon());
                 UpdateSideBarTheme(view->GetSideBar());
-                view->GetQuickToolbar()->SetBackgroundColour(GetAppOptions().GetRibbonInactiveTabColor());
-                view->GetSearchPanel()->SetBackgroundColour(GetAppOptions().GetRibbonInactiveTabColor());
+                view->GetQuickToolbar()->SetBackgroundColour(
+                    GetAppOptions().GetRibbonInactiveTabColor());
+                view->GetSearchPanel()->SetBackgroundColour(
+                    GetAppOptions().GetRibbonInactiveTabColor());
                 doc->GetDocumentWindow()->Refresh();
                 }
             }
@@ -4033,15 +4047,21 @@ void MainFrame::OnWordList([[maybe_unused]] wxRibbonButtonBarEvent& event)
 
 //---------------------------------------------------
 void MainFrame::OnWordListDropdown(wxRibbonButtonBarEvent& event)
-    { event.PopupMenu(&m_wordListMenu); }
+    {
+    event.PopupMenu(&m_wordListMenu);
+    }
 
 //---------------------------------------------------
 void MainFrame::OnBlankGraphDropdown(wxRibbonButtonBarEvent& event)
-    { event.PopupMenu(&m_blankGraphMenu); }
+    {
+    event.PopupMenu(&m_blankGraphMenu);
+    }
 
 //---------------------------------------------------
 void MainFrame::OnEditEnglishDictionary([[maybe_unused]] wxCommandEvent& event)
-    { wxGetApp().EditDictionary(readability::test_language::english_test); }
+    {
+    wxGetApp().EditDictionary(readability::test_language::english_test);
+    }
 
 //---------------------------------------------------
 void MainFrame::OnEditDictionarySettings([[maybe_unused]] wxCommandEvent& event)
@@ -4194,18 +4214,19 @@ void MainFrame::AddCustomTestToMenus(const wxString& testName)
     const int menuId = CUSTOM_TEST_RANGE.GetNextId();
     if (menuId == wxNOT_FOUND)
         {
-        wxMessageBox(
-            _(L"Unable to add custom test to menu: not enough menu IDs, "
-               "please contact software vendor to remove this limitation."),
-            _(L"Error"), wxOK|wxICON_ERROR);
+        wxMessageBox(_(L"Unable to add custom test to menu: not enough menu IDs, "
+                       "please contact software vendor to remove this limitation."),
+                     _(L"Error"), wxOK | wxICON_ERROR);
         return;
         }
     m_customTestMenuIds.insert(std::make_pair(menuId, testName));
     // set a unique ID for this test for use in the sidebar (this is different from the menu ID).
-    CustomReadabilityTestCollection::iterator testIter =
-        std::find(BaseProject::m_custom_word_tests.begin(), BaseProject::m_custom_word_tests.end(), testName);
+    CustomReadabilityTestCollection::iterator testIter = std::find(
+        BaseProject::m_custom_word_tests.begin(), BaseProject::m_custom_word_tests.end(), testName);
     if (testIter != BaseProject::m_custom_word_tests.end())
-        { testIter->set_interface_id(BaseProjectView::GetCustomTestSidebarIdRange().GetNextId()); }
+        {
+        testIter->set_interface_id(BaseProjectView::GetCustomTestSidebarIdRange().GetNextId());
+        }
     // add it to any open views' menus now
     auto& docs = wxGetApp().GetDocManager()->GetDocuments();
     for (size_t i = 0; i < docs.GetCount(); ++i)
@@ -4225,10 +4246,9 @@ void MainFrame::AddTestBundleToMenus(const wxString& bundleName)
     const int menuId = TEST_BUNDLE_RANGE.GetNextId();
     if (menuId == wxNOT_FOUND)
         {
-        wxMessageBox(
-            _(L"Unable to add test bundle to menu: not enough menu IDs, "
-               "please contact software vendor to remove this limitation."),
-            _(L"Error"), wxOK|wxICON_ERROR);
+        wxMessageBox(_(L"Unable to add test bundle to menu: not enough menu IDs, "
+                       "please contact software vendor to remove this limitation."),
+                     _(L"Error"), wxOK | wxICON_ERROR);
         return;
         }
     m_testBundleMenuIds.insert(std::make_pair(menuId, bundleName));
@@ -4248,16 +4268,18 @@ void MainFrame::AddTestBundleToMenus(const wxString& bundleName)
 //-------------------------------------------------------
 void MainFrame::RemoveTestBundleFromMenus(const wxString& bundleName)
     {
-   auto menuPos = m_testBundleMenuIds.begin();
-    for (/*initialized already*/;
-        menuPos != m_testBundleMenuIds.end();
-        ++menuPos)
+    auto menuPos = m_testBundleMenuIds.begin();
+    for (/*initialized already*/; menuPos != m_testBundleMenuIds.end(); ++menuPos)
         {
         if (menuPos->second == bundleName)
-            { break; }
+            {
+            break;
+            }
         }
     if (menuPos == m_testBundleMenuIds.end())
-        { return; }
+        {
+        return;
+        }
     m_testBundleMenuIds.erase(menuPos);
 
     // remove it from any open views' menus now
@@ -4310,13 +4332,21 @@ void MainFrame::FillReadabilityMenu(wxMenu* primaryMenu, wxMenu* secondaryMenu,
         {
         // clear the menus
         while (primaryMenu->GetMenuItemCount())
-            { primaryMenu->Destroy(primaryMenu->FindItemByPosition(0)); }
+            {
+            primaryMenu->Destroy(primaryMenu->FindItemByPosition(0));
+            }
         while (secondaryMenu->GetMenuItemCount())
-            { secondaryMenu->Destroy(secondaryMenu->FindItemByPosition(0)); }
+            {
+            secondaryMenu->Destroy(secondaryMenu->FindItemByPosition(0));
+            }
         while (adultMenu->GetMenuItemCount())
-            { adultMenu->Destroy(adultMenu->FindItemByPosition(0)); }
+            {
+            adultMenu->Destroy(adultMenu->FindItemByPosition(0));
+            }
         while (secondLanguageMenu->GetMenuItemCount())
-            { secondLanguageMenu->Destroy(secondLanguageMenu->FindItemByPosition(0)); }
+            {
+            secondLanguageMenu->Destroy(secondLanguageMenu->FindItemByPosition(0));
+            }
         // add the tests
         for (const auto& rTest : project->GetReadabilityTests().get_tests())
             {
@@ -4401,7 +4431,8 @@ void MainFrame::AddExamplesToMenu(wxMenu* exampleMenu)
         {
         wxDir dir;
         wxArrayString files;
-        const wxString exampleFolder = wxGetApp().FindResourceDirectory(_DT(L"examples", DTExplanation::FilePath));
+        const wxString exampleFolder =
+            wxGetApp().FindResourceDirectory(_DT(L"examples", DTExplanation::FilePath));
         if (!wxFileName::DirExists(exampleFolder) ||
             dir.GetAllFiles(exampleFolder, &files, wxString{}, wxDIR_FILES) == 0)
             {
@@ -4415,21 +4446,28 @@ void MainFrame::AddExamplesToMenu(wxMenu* exampleMenu)
             wxFileName fName(files[i]);
             // see if we already have a menu ID for this example file; otherwise, make a new ID
             auto menuPos = m_examplesMenuIds.begin();
-            for (/*initialized already*/;
-                menuPos != m_examplesMenuIds.end();
-                ++menuPos)
+            for (/*initialized already*/; menuPos != m_examplesMenuIds.end(); ++menuPos)
                 {
                 if (menuPos->second == files[i])
-                    { break; }
+                    {
+                    break;
+                    }
                 }
-            const int menuId = (menuPos == m_examplesMenuIds.end()) ? EXAMPLE_RANGE.GetNextId() : menuPos->first;
+            const int menuId =
+                (menuPos == m_examplesMenuIds.end()) ? EXAMPLE_RANGE.GetNextId() : menuPos->first;
             // bail if we run out of menu IDs
             if (menuId == wxNOT_FOUND)
-                { break; }
+                {
+                break;
+                }
             if (menuPos == m_examplesMenuIds.end())
-                { m_examplesMenuIds.insert(std::make_pair(menuId, files[i])); }
+                {
+                m_examplesMenuIds.insert(std::make_pair(menuId, files[i]));
+                }
             if (exampleMenu->FindItem(menuId) == nullptr)
-                { exampleMenu->Append(menuId, fName.GetName(), files[i]); }
+                {
+                exampleMenu->Append(menuId, fName.GetName(), files[i]);
+                }
             }
         }
     }
