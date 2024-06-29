@@ -3835,37 +3835,37 @@ void ReadabilityApp::InitProjectSidebar()
     // Fill in the icons for the projects' sidebars.
     // Do NOT change the ordering of these (indices are used by UpdateSideBarIcons());
     // new ones always get added at the bottom.
-    imgList.emplace_back(GetResourceManager().GetSVG(L"ribbon/highlightedwords.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"tests/flesch-test.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"ribbon/stats.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"ribbon/difficult.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"ribbon/grammar.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"tests/dolch.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"ribbon/histogram.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"ribbon/boxplot.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"ribbon/warning.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"ribbon/bullet.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"ribbon/configure.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"ribbon/project-settings.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"ribbon/document-structure.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"ribbon/words.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"ribbon/sentences.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"ribbon/list.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"ribbon/bar-chart.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"ribbon/report.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"tests/flesch-test.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"tests/frase.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"tests/fry-test.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"tests/raygor-test.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG("tests/crawford.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"ribbon/scores-window.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"ribbon/heatmap.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"tests/schwartz.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"tests/lix-test.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"tests/danielson-bryan-2.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"ribbon/checklist.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"ribbon/word-cloud.svg"));
-    imgList.emplace_back(GetResourceManager().GetSVG(L"ribbon/donut-subgrouped.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"ribbon/highlightedwords.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"tests/flesch-test.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"ribbon/stats.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"ribbon/difficult.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"ribbon/grammar.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"tests/dolch.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"ribbon/histogram.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"ribbon/boxplot.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"ribbon/warning.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"ribbon/bullet.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"ribbon/configure.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"ribbon/project-settings.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"ribbon/document-structure.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"ribbon/words.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"ribbon/sentences.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"ribbon/list.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"ribbon/bar-chart.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"ribbon/report.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"tests/flesch-test.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"tests/frase.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"tests/fry-test.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"tests/raygor-test.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"tests/crawford.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"ribbon/scores-window.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"ribbon/heatmap.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"tests/schwartz.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"tests/lix-test.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"tests/danielson-bryan-2.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"ribbon/checklist.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"ribbon/word-cloud.svg"));
+    imgList.push_back(GetResourceManager().GetSVG(L"ribbon/donut-subgrouped.svg"));
     }
 
 //---------------------------------------------------
