@@ -3490,25 +3490,30 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
     BaseProject project;
     if (event.GetId() == XRCID("ID_BLANK_FRASE_GRAPH"))
         {
-        GraphDlg graphDlg(this, wxID_ANY, wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"FRASE")));
-        graphDlg.GetCanvas()->SetFixedObject(0, 0, std::make_shared<FraseGraph>(graphDlg.GetCanvas()));
+        GraphDlg graphDlg(wxGetApp().GetParentingWindow(), wxID_ANY,
+                          wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"FRASE")));
+        graphDlg.GetCanvas()->SetFixedObject(0, 0,
+                                             std::make_shared<FraseGraph>(graphDlg.GetCanvas()));
         wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
         graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
     else if (event.GetId() == XRCID("ID_BLANK_CRAWFORD_GRAPH"))
         {
-        GraphDlg graphDlg(this, wxID_ANY, wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Crawford")));
-        graphDlg.GetCanvas()->SetFixedObject(0, 0, std::make_shared<CrawfordGraph>(graphDlg.GetCanvas()));
+        GraphDlg graphDlg(wxGetApp().GetParentingWindow(), wxID_ANY,
+                          wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Crawford")));
+        graphDlg.GetCanvas()->SetFixedObject(0, 0,
+                                             std::make_shared<CrawfordGraph>(graphDlg.GetCanvas()));
         wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
         graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
     else if (event.GetId() == XRCID("ID_BLANK_FRY_GRAPH"))
         {
-        GraphDlg graphDlg(this, wxID_ANY, wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Fry")));
-        auto fryGraph = std::make_shared<FryGraph>(graphDlg.GetCanvas(),
-            FryGraph::FryGraphType::Traditional);
+        GraphDlg graphDlg(wxGetApp().GetParentingWindow(), wxID_ANY,
+                          wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Fry")));
+        auto fryGraph =
+            std::make_shared<FryGraph>(graphDlg.GetCanvas(), FryGraph::FryGraphType::Traditional);
         // update custom settings on graph
         fryGraph->SetMessageCatalog(project.GetReadabilityMessageCatalogPtr());
         fryGraph->SetInvalidAreaColor(wxGetApp().GetAppOptions().GetInvalidAreaColor());
@@ -3520,10 +3525,11 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
         }
     else if (event.GetId() == XRCID("ID_BLANK_GPM_GRAPH"))
         {
-        GraphDlg graphDlg(this, wxID_ANY, wxString::Format(_(L"Blank \"%s\" Graph"),
-                         _DT(L"Gilliam-Pe\U000000F1a-Mountain")));
-        auto gFryGraph = std::make_shared<FryGraph>(graphDlg.GetCanvas(),
-            FryGraph::FryGraphType::GPM);
+        GraphDlg graphDlg(
+            wxGetApp().GetParentingWindow(), wxID_ANY,
+            wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Gilliam-Pe\U000000F1a-Mountain")));
+        auto gFryGraph =
+            std::make_shared<FryGraph>(graphDlg.GetCanvas(), FryGraph::FryGraphType::GPM);
         // update custom settings on graph
         gFryGraph->SetMessageCatalog(project.GetReadabilityMessageCatalogPtr());
         gFryGraph->SetInvalidAreaColor(wxGetApp().GetAppOptions().GetInvalidAreaColor());
@@ -3535,7 +3541,8 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
         }
     else if (event.GetId() == XRCID("ID_BLANK_RAYGOR_GRAPH"))
         {
-        GraphDlg graphDlg(this, wxID_ANY, wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Raygor")));
+        GraphDlg graphDlg(wxGetApp().GetParentingWindow(), wxID_ANY,
+                          wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Raygor")));
         auto raygorGraph = std::make_shared<RaygorGraph>(graphDlg.GetCanvas());
         // update custom settings on graph
         raygorGraph->SetMessageCatalog(project.GetReadabilityMessageCatalogPtr());
@@ -3548,7 +3555,8 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
         }
     else if (event.GetId() == XRCID("ID_BLANK_FLESCH_GRAPH"))
         {
-        GraphDlg graphDlg(this, wxID_ANY, wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Flesch Reading Ease")));
+        GraphDlg graphDlg(wxGetApp().GetParentingWindow(), wxID_ANY,
+                          wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Flesch Reading Ease")));
         auto fleschChart = std::make_shared<FleschChart>(graphDlg.GetCanvas());
         fleschChart->ShowConnectionLine(wxGetApp().GetAppOptions().IsConnectingFleschPoints());
 
@@ -3559,16 +3567,20 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
         }
     else if (event.GetId() == XRCID("ID_BLANK_DB2_GRAPH"))
         {
-        GraphDlg graphDlg(this, wxID_ANY, wxString::Format(_(L"Blank \"%s\" Graph"), BaseProjectView::GetDB2Label()));
-        graphDlg.GetCanvas()->SetFixedObject(0, 0,std::make_shared<DanielsonBryan2Plot>(graphDlg.GetCanvas()));
+        GraphDlg graphDlg(
+            wxGetApp().GetParentingWindow(), wxID_ANY,
+            wxString::Format(_(L"Blank \"%s\" Graph"), BaseProjectView::GetDB2Label()));
+        graphDlg.GetCanvas()->SetFixedObject(
+            0, 0, std::make_shared<DanielsonBryan2Plot>(graphDlg.GetCanvas()));
         wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
         graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
     else if (event.GetId() == XRCID("ID_BLANK_SCHWARTZ_GRAPH"))
         {
-        GraphDlg graphDlg(this, wxID_ANY, wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Schwartz")));
-        auto schwartzGraph = std::make_shared < SchwartzGraph>(graphDlg.GetCanvas());
+        GraphDlg graphDlg(wxGetApp().GetParentingWindow(), wxID_ANY,
+                          wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Schwartz")));
+        auto schwartzGraph = std::make_shared<SchwartzGraph>(graphDlg.GetCanvas());
         schwartzGraph->SetMessageCatalog(project.GetReadabilityMessageCatalogPtr());
         schwartzGraph->SetInvalidAreaColor(wxGetApp().GetAppOptions().GetInvalidAreaColor());
 
@@ -3579,15 +3591,16 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
         }
     else if (event.GetId() == XRCID("ID_BLANK_LIX_GRAPH"))
         {
-        GraphDlg graphDlg(this, wxID_ANY, _(L"Blank Lix Gauge"));
-        graphDlg.GetCanvas()->SetFixedObject(0, 0, std::make_shared<LixGauge>(graphDlg.GetCanvas()));
+        GraphDlg graphDlg(wxGetApp().GetParentingWindow(), wxID_ANY, _(L"Blank Lix Gauge"));
+        graphDlg.GetCanvas()->SetFixedObject(0, 0,
+                                             std::make_shared<LixGauge>(graphDlg.GetCanvas()));
         wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
         graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
     else if (event.GetId() == XRCID("ID_BLANK_GERMAN_LIX_GRAPH"))
         {
-        GraphDlg graphDlg(this, wxID_ANY,_(L"Blank German Lix Gauge"));
+        GraphDlg graphDlg(wxGetApp().GetParentingWindow(), wxID_ANY, _(L"Blank German Lix Gauge"));
         auto lixGauge = std::make_shared<LixGaugeGerman>(graphDlg.GetCanvas());
         lixGauge->UseEnglishLabels(wxGetApp().GetAppOptions().IsUsingEnglishLabelsForGermanLix());
 
