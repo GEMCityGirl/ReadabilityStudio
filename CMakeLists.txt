@@ -21,7 +21,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 if(APPLE)
-set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64" CACHE STRING "" FORCE)
+    set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64" CACHE STRING "" FORCE)
 endif()
 
 # Edit these values when bumping the release
@@ -104,12 +104,14 @@ endif()
 
 # Setup wxWidgets (can be 1-5 folders up from here)
 ##############################################################
+include(src/Wisteria-Dataviz/cmake/folders.cmake)
 
 # Find wxWidgets (wxWidgetsConfig.cmake, specifically) and select its components
+find_directory("wxWidgets" wxWidgets_BASEDIR)
 if(WIN32)
-    set(wxWidgets_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../wxWidgets/out/install/x64-${CMAKE_BUILD_TYPE}/lib/cmake/wxWidgets")
+    set(wxWidgets_DIR "${wxWidgets_BASEDIR}/out/install/x64-${CMAKE_BUILD_TYPE}/lib/cmake/wxWidgets")
 elseif(UNIX)
-    set(wxWidgets_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../wxWidgets/wxlib/lib/cmake/wxWidgets")
+    set(wxWidgets_DIR "${wxWidgets_BASEDIR}/wxlib/lib/cmake/wxWidgets")
 endif()
 
 message(STATUS "Adding wxWidgets CMake config folder: ${wxWidgets_DIR}")
@@ -419,5 +421,6 @@ endif()
 
 if(APPLE)
     set_target_properties(${PROJECT_NAME} PROPERTIES
+        RESOURCE app-logo.icns
         MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist.in)
 endif()
