@@ -226,7 +226,7 @@ if(WIN32)
     list(APPEND APP_SRC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/../wxWidgets/include/wx/msw/wx_dpi_aware.manifest")
 elseif(APPLE)
     # Add an icon for the apple .app file
-    list(APPEND APP_SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/app-icon.icns)
+    list(APPEND APP_SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/app-logo.icns)
 endif()
 add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE ${APP_SRC_FILES} ../Licensing/CyoDecode.cpp ../Licensing/CyoEncode.cpp ../Licensing/LicenseAdmin.cpp ../Licensing/Rijndael.cpp)
 
