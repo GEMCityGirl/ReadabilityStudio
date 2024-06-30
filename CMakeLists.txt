@@ -20,7 +20,9 @@ cmake_minimum_required(VERSION 3.25)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+if(APPLE)
 set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64" CACHE STRING "" FORCE)
+endif()
 
 # Edit these values when bumping the release
 project(readstudio VERSION 2021.4.0.0 DESCRIPTION "Readability Studio" HOMEPAGE_URL https://www.oleandersoftware.com/)
@@ -94,7 +96,13 @@ if(BUILD_TESTING)
     message(STATUS "Unit test run has been requested.")
 endif()
 
-# Setup wxWidgets
+if(APPLE)
+    message(STATUS "Supported architectures: ${ARCHS_STANDARD}")
+else()
+    message( STATUS "Architecture: ${CMAKE_SYSTEM_PROCESSOR}" )
+endif()
+
+# Setup wxWidgets (can be 1-5 folders up from here)
 ##############################################################
 
 # Find wxWidgets (wxWidgetsConfig.cmake, specifically) and select its components
