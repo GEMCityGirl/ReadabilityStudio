@@ -2817,9 +2817,9 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
         else // rtype == RibbonType::MainFrameRibbon
             {
             // settings section
-            wxRibbonPanel* settingsPanel =
-                new wxRibbonPanel(homePage, wxID_ANY, _(L"Settings"), wxNullBitmap, wxDefaultPosition,
-                                  wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+            wxRibbonPanel* settingsPanel = new wxRibbonPanel(
+                homePage, wxID_ANY, _(L"Settings"), wxNullBitmap, wxDefaultPosition, wxDefaultSize,
+                wxRIBBON_PANEL_NO_AUTO_MINIMISE);
             wxRibbonButtonBar* settingsButtonBar = new wxRibbonButtonBar(settingsPanel);
             settingsButtonBar->AddDropdownButton(XRCID("ID_PRINT_OPTIONS"),
                 _(L"Printing"),
@@ -2832,9 +2832,9 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 ReadRibbonSvgIcon(L"ribbon/configure.svg"),
                 _(L"Change the program's general options."));
             // test section
-            wxRibbonPanel* readabilityTestsPanel =
-                new wxRibbonPanel(homePage, wxID_ANY, _(L"Readability Tests"), wxNullBitmap, wxDefaultPosition,
-                                  wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+            wxRibbonPanel* readabilityTestsPanel = new wxRibbonPanel(
+                homePage, wxID_ANY, _(L"Readability Tests"), wxNullBitmap, wxDefaultPosition,
+                wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
             wxRibbonButtonBar* readabilityTestsBar = new wxRibbonButtonBar(readabilityTestsPanel);
             readabilityTestsBar->AddDropdownButton(XRCID("ID_CUSTOM_TESTS"), _(L"Custom"),
                 ReadRibbonSvgIcon(L"ribbon/formula.svg"),
@@ -3279,7 +3279,8 @@ void MainFrame::OnViewProfileReport([[maybe_unused]] wxRibbonButtonBarEvent& eve
 
     wxGetApp().UpdateRibbonTheme(profileReportDialog.GetRibbon());
     profileReportDialog.GetListCtrl()->ClearAll();
-    profileReportDialog.GetListCtrl()->InsertColumn(0, _DT(L"Function", DTExplanation::DebugMessage));
+    profileReportDialog.GetListCtrl()->InsertColumn(0,
+                                                    _DT(L"Function", DTExplanation::DebugMessage));
     profileReportDialog.GetListCtrl()->InsertColumn(1, _DT(L"Times Called"));
     profileReportDialog.GetListCtrl()->InsertColumn(2, _DT(L"Total Time (Milliseconds)"));
     profileReportDialog.GetListCtrl()->InsertColumn(3, _DT(L"Total Time (%)"));
@@ -3292,19 +3293,19 @@ void MainFrame::OnViewProfileReport([[maybe_unused]] wxRibbonButtonBarEvent& eve
     wxString buffer;
     Wisteria::TextStream::ReadFile(filePath, buffer);
 
-    const lily_of_the_valley::text_column_delimited_character_parser
-                                              parser(L'\t');
+    const lily_of_the_valley::text_column_delimited_character_parser parser(L'\t');
     lily_of_the_valley::text_column<lily_of_the_valley::text_column_delimited_character_parser>
-                                    myColumn(parser, std::nullopt);
+        myColumn(parser, std::nullopt);
     lily_of_the_valley::text_row<ListCtrlExDataProvider::ListCellString> myRow(std::nullopt);
     myRow.add_column(myColumn);
     myRow.treat_consecutive_delimitors_as_one(false);
 
-    lily_of_the_valley::text_matrix<ListCtrlExDataProvider::ListCellString>
-        importer(&profileReportDialog.GetData()->GetMatrix());
+    lily_of_the_valley::text_matrix<ListCtrlExDataProvider::ListCellString> importer(
+        &profileReportDialog.GetData()->GetMatrix());
 
     // header row, which will just be skipped
-    importer.add_row_definition(lily_of_the_valley::text_row<ListCtrlExDataProvider::ListCellString>(1));
+    importer.add_row_definition(
+        lily_of_the_valley::text_row<ListCtrlExDataProvider::ListCellString>(1));
     importer.add_row_definition(myRow);
 
     // see how many lines are in the file
@@ -3621,7 +3622,8 @@ MainFrame::MainFrame(wxDocManager* manager, wxFrame* frame,
           EXAMPLE_RANGE(300),
           TEST_BUNDLE_RANGE(300)
     {
-    Bind(wxEVT_MENU, &MainFrame::OnOpenExample, this, EXAMPLE_RANGE.GetFirstId(), EXAMPLE_RANGE.GetLastId());
+    Bind(wxEVT_MENU, &MainFrame::OnOpenExample, this, EXAMPLE_RANGE.GetFirstId(),
+         EXAMPLE_RANGE.GetLastId());
     wxAcceleratorEntry accelEntries[4];
     accelEntries[0].Set(wxACCEL_NORMAL, WXK_F1, wxID_HELP);
     accelEntries[1].Set(wxACCEL_CMD, static_cast<int>(L'N'), wxID_NEW);
@@ -3631,58 +3633,68 @@ MainFrame::MainFrame(wxDocManager* manager, wxFrame* frame,
     SetAcceleratorTable(accelTable);
 
     // bind menu events to their respective ribbon button events
-    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &MainFrame::OnToolsWebHarvest, this, XRCID("ID_WEB_HARVEST"));
-    Bind(wxEVT_MENU,
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &MainFrame::OnToolsWebHarvest, this,
+         XRCID("ID_WEB_HARVEST"));
+    Bind(
+        wxEVT_MENU,
         [this]([[maybe_unused]] wxCommandEvent&)
-            {
+        {
             wxRibbonButtonBarEvent event;
             OnToolsWebHarvest(event);
-            },
+        },
         XRCID("ID_WEB_HARVEST"));
 
-    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &MainFrame::OnFindDuplicateFiles, this, XRCID("ID_FIND_DUPLICATE_FILES"));
-    Bind(wxEVT_MENU,
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &MainFrame::OnFindDuplicateFiles, this,
+         XRCID("ID_FIND_DUPLICATE_FILES"));
+    Bind(
+        wxEVT_MENU,
         [this]([[maybe_unused]] wxCommandEvent&)
-            {
+        {
             wxRibbonButtonBarEvent event;
             OnFindDuplicateFiles(event);
-            },
+        },
         XRCID("ID_FIND_DUPLICATE_FILES"));
 
-    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &MainFrame::OnToolsChapterSplit, this, XRCID("ID_CHAPTER_SPLIT"));
-    Bind(wxEVT_MENU,
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &MainFrame::OnToolsChapterSplit, this,
+         XRCID("ID_CHAPTER_SPLIT"));
+    Bind(
+        wxEVT_MENU,
         [this]([[maybe_unused]] wxCommandEvent&)
-            {
+        {
             wxRibbonButtonBarEvent event;
             OnToolsChapterSplit(event);
-            },
+        },
         XRCID("ID_CHAPTER_SPLIT"));
 
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &MainFrame::OnToolsOptions, this, wxID_PREFERENCES);
-    Bind(wxEVT_MENU,
+    Bind(
+        wxEVT_MENU,
         [this]([[maybe_unused]] wxCommandEvent&)
-            {
+        {
             wxRibbonButtonBarEvent event;
             OnToolsOptions(event);
-            },
+        },
         wxID_PREFERENCES);
 
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &MainFrame::OnWordList, this, XRCID("ID_WORD_LISTS"));
-    Bind(wxEVT_MENU,
+    Bind(
+        wxEVT_MENU,
         [this]([[maybe_unused]] wxCommandEvent&)
-            {
+        {
             wxRibbonButtonBarEvent event;
             OnWordList(event);
-            },
+        },
         XRCID("ID_WORD_LISTS"));
 
-    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &MainFrame::OnTestsOverview, this, XRCID("ID_TESTS_OVERVIEW"));
-    Bind(wxEVT_MENU,
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &MainFrame::OnTestsOverview, this,
+         XRCID("ID_TESTS_OVERVIEW"));
+    Bind(
+        wxEVT_MENU,
         [this]([[maybe_unused]] wxCommandEvent&)
-            {
+        {
             wxRibbonButtonBarEvent event;
             OnTestsOverview(event);
-            },
+        },
         XRCID("ID_TESTS_OVERVIEW"));
 
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &MainFrame::OnViewLogReport, this,
@@ -4088,15 +4100,20 @@ void MainFrame::OnEditDictionarySettings([[maybe_unused]] wxCommandEvent& event)
     ToolsOptionsDlg optionsDlg(wxGetApp().GetParentingWindow());
     optionsDlg.SelectPage(ToolsOptionsDlg::GRAMMAR_PAGE);
     if (optionsDlg.ShowModal() == wxID_OK)
-        { wxGetApp().GetAppOptions().SaveOptionsFile(); }
+        {
+        wxGetApp().GetAppOptions().SaveOptionsFile();
+        }
     }
 
 //-------------------------------------------------------
 void MainFrame::OnOpenExample(wxCommandEvent& event)
     {
-    const std::map<int, wxString>::const_iterator pos = MainFrame::GetExamplesMenuIds().find(event.GetId());
+    const std::map<int, wxString>::const_iterator pos =
+        MainFrame::GetExamplesMenuIds().find(event.GetId());
     if (pos == MainFrame::GetExamplesMenuIds().cend())
-        { return; }
+        {
+        return;
+        }
     const FilePathResolver fn(pos->second, false);
     // create a batch project from the example file
     if (FilePathResolver::IsSpreadsheet(fn.GetResolvedPath()) ||
@@ -4318,15 +4335,17 @@ void MainFrame::RemoveTestBundleFromMenus(const wxString& bundleName)
 void MainFrame::RemoveCustomTestFromMenus(const wxString& testName)
     {
     std::map<int, wxString>::iterator menuPos = m_customTestMenuIds.begin();
-    for (/*initialized already*/;
-        menuPos != m_customTestMenuIds.end();
-        ++menuPos)
+    for (/*initialized already*/; menuPos != m_customTestMenuIds.end(); ++menuPos)
         {
         if (menuPos->second == testName)
-            { break; }
+            {
+            break;
+            }
         }
     if (menuPos == m_customTestMenuIds.end())
-        { return; }
+        {
+        return;
+        }
     m_customTestMenuIds.erase(menuPos);
 
     // remove it from any open views' menus now
@@ -4572,10 +4591,12 @@ void MainFrame::FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProjec
             }
         // Add/Edit/Remove options
         if (includeDocMenuItems)
-            { testBundleMenu->AppendSeparator(); }
-        wxMenuItem* menuItem = new wxMenuItem(testBundleMenu, XRCID("ID_ADD_CUSTOM_TEST_BUNDLE"), _(L"Add..."));
-        menuItem->SetBitmap(
-            wxGetApp().GetResourceManager().GetSVG(L"ribbon/add.svg"));
+            {
+            testBundleMenu->AppendSeparator();
+            }
+        wxMenuItem* menuItem =
+            new wxMenuItem(testBundleMenu, XRCID("ID_ADD_CUSTOM_TEST_BUNDLE"), _(L"Add..."));
+        menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/add.svg"));
         testBundleMenu->Append(menuItem);
         // if there are editable bundles, then add menu items for them
         bool hasRemovableBundles{ false };
@@ -4588,12 +4609,14 @@ void MainFrame::FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProjec
                 }
             }
         // locked ones can still be viewed from the editor
-        menuItem = new wxMenuItem(testBundleMenu, XRCID("ID_EDIT_CUSTOM_TEST_BUNDLE"), _(L"Edit..."));
+        menuItem =
+            new wxMenuItem(testBundleMenu, XRCID("ID_EDIT_CUSTOM_TEST_BUNDLE"), _(L"Edit..."));
         menuItem->SetBitmap(wxArtProvider::GetBitmapBundle(L"ID_EDIT"));
         testBundleMenu->Append(menuItem);
         if (hasRemovableBundles)
             {
-            menuItem = new wxMenuItem(testBundleMenu, XRCID("ID_REMOVE_CUSTOM_TEST_BUNDLE"), _(L"Remove..."));
+            menuItem = new wxMenuItem(testBundleMenu, XRCID("ID_REMOVE_CUSTOM_TEST_BUNDLE"),
+                                      _(L"Remove..."));
             menuItem->SetBitmap(wxArtProvider::GetBitmapBundle(wxART_DELETE));
             testBundleMenu->Append(menuItem);
             }
@@ -4608,15 +4631,17 @@ void MainFrame::FillMenuWithCustomTests(wxMenu* customTestMenu, const BaseProjec
         {
         // clear the menu
         while (customTestMenu->GetMenuItemCount())
-            { customTestMenu->Destroy(customTestMenu->FindItemByPosition(0)); }
+            {
+            customTestMenu->Destroy(customTestMenu->FindItemByPosition(0));
+            }
 
         // if there are tests then add editing options and the tests themselves
         if (includeDocMenuItems && MainFrame::GetCustomTestMenuIds().size() > 0)
             {
             // add all of the global custom tests to this view's menu (if they aren't already on it)
-            for (std::map<int, wxString>::const_iterator pos = MainFrame::GetCustomTestMenuIds().begin();
-                pos != MainFrame::GetCustomTestMenuIds().end();
-                ++pos)
+            for (std::map<int, wxString>::const_iterator pos =
+                     MainFrame::GetCustomTestMenuIds().begin();
+                 pos != MainFrame::GetCustomTestMenuIds().end(); ++pos)
                 {
                 if (customTestMenu->FindItem(pos->first) == nullptr)
                     {
@@ -4625,19 +4650,23 @@ void MainFrame::FillMenuWithCustomTests(wxMenu* customTestMenu, const BaseProjec
                                   BaseProject::m_custom_word_tests.end(), pos->second);
                     if (testIter == BaseProject::m_custom_word_tests.end())
                         {
-                        wxMessageBox(
-                            _(L"Unable to add custom test to menu: internal error, please contact software vendor."),
-                            _(L"Error"), wxOK|wxICON_ERROR);
+                        wxMessageBox(_(L"Unable to add custom test to menu: "
+                                       "internal error, please contact software vendor."),
+                                     _(L"Error"), wxOK | wxICON_ERROR);
                         return;
                         }
-                    wxMenuItem* item = new wxMenuItem(customTestMenu, pos->first, testIter->get_name().c_str());
+                    wxMenuItem* item =
+                        new wxMenuItem(customTestMenu, pos->first, testIter->get_name().c_str());
                     customTestMenu->Append(item);
                     }
                 }
             }
         if (includeDocMenuItems && MainFrame::GetCustomTestMenuIds().size() > 0)
-            { customTestMenu->AppendSeparator(); }
-        wxMenuItem* menuItem = new wxMenuItem(customTestMenu, XRCID("ID_ADD_CUSTOM_TEST"), _(L"Add..."));
+            {
+            customTestMenu->AppendSeparator();
+            }
+        wxMenuItem* menuItem =
+            new wxMenuItem(customTestMenu, XRCID("ID_ADD_CUSTOM_TEST"), _(L"Add..."));
         menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/add.svg"));
         customTestMenu->Append(menuItem);
 
@@ -4645,25 +4674,24 @@ void MainFrame::FillMenuWithCustomTests(wxMenu* customTestMenu, const BaseProjec
                                   _(L"Add Custom Test Based on..."));
         menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/add.svg"));
         customTestMenu->Append(menuItem);
-        if (!project ||
-            project->GetProjectLanguage() == readability::test_language::english_test)
+        if (!project || project->GetProjectLanguage() == readability::test_language::english_test)
             {
-            menuItem = new wxMenuItem(customTestMenu, XRCID("ID_ADD_CUSTOM_NEW_DALE_CHALL_TEST"),
-                wxString::Format(_(L"Add Custom \"%s\"..."), _DT(L"New Dale-Chall")) );
+            menuItem = new wxMenuItem(
+                customTestMenu, XRCID("ID_ADD_CUSTOM_NEW_DALE_CHALL_TEST"),
+                wxString::Format(_(L"Add Custom \"%s\"..."), _DT(L"New Dale-Chall")));
             menuItem->SetBitmap(
                 wxGetApp().GetResourceManager().GetSVG(L"tests/dale-chall-test.svg"));
             customTestMenu->Append(menuItem);
 
             menuItem = new wxMenuItem(customTestMenu, XRCID("ID_ADD_CUSTOM_SPACHE_TEST"),
-                wxString::Format(_(L"Add Custom \"%s\"..."), _DT(L"Spache")) );
-            menuItem->SetBitmap(
-                wxGetApp().GetResourceManager().GetSVG(L"tests/spache-test.svg"));
+                                      wxString::Format(_(L"Add Custom \"%s\"..."), _DT(L"Spache")));
+            menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/spache-test.svg"));
             customTestMenu->Append(menuItem);
 
-            menuItem = new wxMenuItem(customTestMenu, XRCID("ID_ADD_CUSTOM_HARRIS_JACOBSON_TEST"),
-                wxString::Format(_(L"Add Custom \"%s\"..."), _DT(L"Harris-Jacobson")) );
-            menuItem->SetBitmap(
-                wxGetApp().GetResourceManager().GetSVG(L"tests/spache-test.svg"));
+            menuItem = new wxMenuItem(
+                customTestMenu, XRCID("ID_ADD_CUSTOM_HARRIS_JACOBSON_TEST"),
+                wxString::Format(_(L"Add Custom \"%s\"..."), _DT(L"Harris-Jacobson")));
+            menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/spache-test.svg"));
             customTestMenu->Append(menuItem);
             }
 
@@ -4675,7 +4703,8 @@ void MainFrame::FillMenuWithCustomTests(wxMenu* customTestMenu, const BaseProjec
             menuItem->SetBitmap(wxArtProvider::GetBitmapBundle(L"ID_EDIT"));
             customTestMenu->Append(menuItem);
 
-            menuItem = new wxMenuItem(customTestMenu, XRCID("ID_REMOVE_CUSTOM_TEST"), _(L"Remove..."));
+            menuItem =
+                new wxMenuItem(customTestMenu, XRCID("ID_REMOVE_CUSTOM_TEST"), _(L"Remove..."));
             menuItem->SetBitmap(wxArtProvider::GetBitmapBundle(wxART_DELETE));
             customTestMenu->Append(menuItem);
             }
@@ -4804,55 +4833,49 @@ void MainFrame::OnAddCustomTest(wxCommandEvent& event)
         {
         const BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
         if (!doc->IsSafeToUpdate())
-            { return; }
+            {
+            return;
+            }
         }
     if (event.GetId() == XRCID("ID_ADD_CUSTOM_NEW_DALE_CHALL_TEST"))
         {
         NewCustomWordTestSimpleDlg dlg(
-            wxGetApp().GetParentingWindow(),
-            wxID_ANY, wxString::Format(_(L"Add Custom \"%s\""), _DT(L"New Dale-Chall")) );
+            wxGetApp().GetParentingWindow(), wxID_ANY,
+            wxString::Format(_(L"Add Custom \"%s\""), _DT(L"New Dale-Chall")));
         dlg.SetHelpTopic(GetHelpDirectory(), _DT(L"add-custom-word-test.html"));
         if (dlg.ShowModal() == wxID_OK)
             {
-            CustomReadabilityTest cTest(dlg.GetTestName().wc_str(),
-                    ReadabilityFormulaParser::GetCustomNewDaleChallSignature().wc_str(),
-                    readability::readability_test_type::grade_level,
-                    dlg.GetWordListFilePath().wc_str(),
-                    stemming::stemming_type::no_stemming,
-                    true,
-                    true, &BaseProject::m_dale_chall_word_list,
-                    false, &BaseProject::m_spache_word_list,
-                    false, &BaseProject::m_harris_jacobson_word_list,
-                    wxGetApp().GetAppOptions().IsIncludingStockerCatholicSupplement(),
-                    &BaseProject::m_stocker_catholic_word_list,
-                    false,
-                    wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod(),
-                    true,
-                    false, false, false, false, false, false, false, false, false, false, false, false);
+            CustomReadabilityTest cTest(
+                dlg.GetTestName().wc_str(),
+                ReadabilityFormulaParser::GetCustomNewDaleChallSignature().wc_str(),
+                readability::readability_test_type::grade_level, dlg.GetWordListFilePath().wc_str(),
+                stemming::stemming_type::no_stemming, true, true,
+                &BaseProject::m_dale_chall_word_list, false, &BaseProject::m_spache_word_list,
+                false, &BaseProject::m_harris_jacobson_word_list,
+                wxGetApp().GetAppOptions().IsIncludingStockerCatholicSupplement(),
+                &BaseProject::m_stocker_catholic_word_list, false,
+                wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod(), true, false,
+                false, false, false, false, false, false, false, false, false, false, false);
             ProjectDoc::AddGlobalCustomReadabilityTest(cTest);
             }
         }
     else if (event.GetId() == XRCID("ID_ADD_CUSTOM_SPACHE_TEST"))
         {
-        NewCustomWordTestSimpleDlg dlg(wxGetApp().GetParentingWindow(),
-            wxID_ANY, wxString::Format(_(L"Add Custom \"%s\""), _DT(L"Spache")) );
+        NewCustomWordTestSimpleDlg dlg(wxGetApp().GetParentingWindow(), wxID_ANY,
+                                       wxString::Format(_(L"Add Custom \"%s\""), _DT(L"Spache")));
         dlg.SetHelpTopic(GetHelpDirectory(), _DT(L"add-custom-word-test.html"));
         if (dlg.ShowModal() == wxID_OK)
             {
-            CustomReadabilityTest cTest(dlg.GetTestName().wc_str(),
-                    ReadabilityFormulaParser::GetCustomSpacheSignature().wc_str(),
-                    readability::readability_test_type::grade_level,
-                    dlg.GetWordListFilePath().wc_str(),
-                    stemming::stemming_type::no_stemming,
-                    true,
-                    false, &BaseProject::m_dale_chall_word_list,
-                    true, &BaseProject::m_spache_word_list,
-                    false, &BaseProject::m_harris_jacobson_word_list,
-                    false, &BaseProject::m_stocker_catholic_word_list,
-                    false,
-                    readability::proper_noun_counting_method::all_proper_nouns_are_familiar,
-                    true,
-                    false, false, false, false, false, false, false, false, false, false, false, false);
+            CustomReadabilityTest cTest(
+                dlg.GetTestName().wc_str(),
+                ReadabilityFormulaParser::GetCustomSpacheSignature().wc_str(),
+                readability::readability_test_type::grade_level, dlg.GetWordListFilePath().wc_str(),
+                stemming::stemming_type::no_stemming, true, false,
+                &BaseProject::m_dale_chall_word_list, true, &BaseProject::m_spache_word_list, false,
+                &BaseProject::m_harris_jacobson_word_list, false,
+                &BaseProject::m_stocker_catholic_word_list, false,
+                readability::proper_noun_counting_method::all_proper_nouns_are_familiar, true,
+                false, false, false, false, false, false, false, false, false, false, false, false);
             ProjectDoc::AddGlobalCustomReadabilityTest(cTest);
             }
         }
@@ -4862,7 +4885,9 @@ void MainFrame::OnAddCustomTest(wxCommandEvent& event)
         for (const auto& rTest : BaseProject::GetDefaultReadabilityTestsTemplate().get_tests())
             {
             if (rTest.get_formula().length())
-                { tests.push_back(rTest.get_long_name().c_str()); }
+                {
+                tests.push_back(rTest.get_long_name().c_str());
+                }
             }
         wxSingleChoiceDialog lDlg(
             wxGetApp().GetParentingWindow(),
@@ -4873,7 +4898,8 @@ void MainFrame::OnAddCustomTest(wxCommandEvent& event)
             auto selected = lDlg.GetStringSelection();
             if (selected.length())
                 {
-                auto [testIterator, found] = BaseProject::GetDefaultReadabilityTestsTemplate().find_test(selected);
+                auto [testIterator, found] =
+                    BaseProject::GetDefaultReadabilityTestsTemplate().find_test(selected);
                 if (found)
                     {
                     CustomTestDlg dlg(wxGetApp().GetParentingWindow());
@@ -4882,33 +4908,33 @@ void MainFrame::OnAddCustomTest(wxCommandEvent& event)
                     dlg.SetTestType(static_cast<int>(testIterator->get_test_type()));
                     if (dlg.ShowModal() == wxID_OK)
                         {
-                        CustomReadabilityTest cTest(dlg.GetTestName().wc_str(),
-                                dlg.GetFormula().wc_str(),
-                                static_cast<readability::readability_test_type>(dlg.GetTestType()),
-                                dlg.GetWordListFilePath().wc_str(),
-                                dlg.GetStemmingType(),
-                                dlg.IsIncludingCustomWordList(),
-                                dlg.IsIncludingDaleChallList(), &BaseProject::m_dale_chall_word_list,
-                                dlg.IsIncludingSpacheList(), &BaseProject::m_spache_word_list,
-                                dlg.IsIncludingHJList(), &BaseProject::m_harris_jacobson_word_list,
-                                dlg.IsIncludingStockerList(), &BaseProject::m_stocker_catholic_word_list,
-                                dlg.IsFamiliarWordsMustBeOnEachIncludedList(),
-                                static_cast<readability::proper_noun_counting_method>(dlg.GetProperNounMethod()),
-                                dlg.IsIncludingNumeric(),
-                                dlg.IsChildrensPublishingSelected(),
-                                dlg.IsAdultPublishingSelected(), dlg.IsSecondaryLanguageSelected(),
-                                dlg.IsChildrensHealthCareTestSelected(), dlg.IsAdultHealthCareTestSelected(),
-                                dlg.IsMilitaryTestSelected(), dlg.IsBroadcastingSelected(),
-                                dlg.IsGeneralDocumentSelected(),
-                                dlg.IsTechnicalDocumentSelected(), dlg.IsNonNarrativeFormSelected(),
-                                dlg.IsYoungAdultAndAdultLiteratureSelected(),
-                                dlg.IsChildrensLiteratureSelected());
+                        CustomReadabilityTest cTest(
+                            dlg.GetTestName().wc_str(), dlg.GetFormula().wc_str(),
+                            static_cast<readability::readability_test_type>(dlg.GetTestType()),
+                            dlg.GetWordListFilePath().wc_str(), dlg.GetStemmingType(),
+                            dlg.IsIncludingCustomWordList(), dlg.IsIncludingDaleChallList(),
+                            &BaseProject::m_dale_chall_word_list, dlg.IsIncludingSpacheList(),
+                            &BaseProject::m_spache_word_list, dlg.IsIncludingHJList(),
+                            &BaseProject::m_harris_jacobson_word_list, dlg.IsIncludingStockerList(),
+                            &BaseProject::m_stocker_catholic_word_list,
+                            dlg.IsFamiliarWordsMustBeOnEachIncludedList(),
+                            static_cast<readability::proper_noun_counting_method>(
+                                dlg.GetProperNounMethod()),
+                            dlg.IsIncludingNumeric(), dlg.IsChildrensPublishingSelected(),
+                            dlg.IsAdultPublishingSelected(), dlg.IsSecondaryLanguageSelected(),
+                            dlg.IsChildrensHealthCareTestSelected(),
+                            dlg.IsAdultHealthCareTestSelected(), dlg.IsMilitaryTestSelected(),
+                            dlg.IsBroadcastingSelected(), dlg.IsGeneralDocumentSelected(),
+                            dlg.IsTechnicalDocumentSelected(), dlg.IsNonNarrativeFormSelected(),
+                            dlg.IsYoungAdultAndAdultLiteratureSelected(),
+                            dlg.IsChildrensLiteratureSelected());
                         ProjectDoc::AddGlobalCustomReadabilityTest(cTest);
                         }
                     }
                 else
                     {
-                    wxMessageBox(wxString::Format(_(L"Internal error: unable to find '%s'."), selected[0]),
+                    wxMessageBox(
+                        wxString::Format(_(L"Internal error: unable to find '%s'."), selected[0]),
                         wxGetApp().GetAppName(), wxOK | wxICON_WARNING);
                     }
                 }
@@ -4917,25 +4943,21 @@ void MainFrame::OnAddCustomTest(wxCommandEvent& event)
     else if (event.GetId() == XRCID("ID_ADD_CUSTOM_HARRIS_JACOBSON_TEST"))
         {
         NewCustomWordTestSimpleDlg dlg(
-            wxGetApp().GetParentingWindow(),
-            wxID_ANY, wxString::Format(_(L"Add Custom \"%s\""), _DT(L"Harris-Jacobson")) );
+            wxGetApp().GetParentingWindow(), wxID_ANY,
+            wxString::Format(_(L"Add Custom \"%s\""), _DT(L"Harris-Jacobson")));
         dlg.SetHelpTopic(GetHelpDirectory(), _DT(L"add-custom-word-test.html"));
         if (dlg.ShowModal() == wxID_OK)
             {
-            CustomReadabilityTest cTest(dlg.GetTestName().wc_str(),
-                    ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature().wc_str(),
-                    readability::readability_test_type::grade_level,
-                    dlg.GetWordListFilePath().wc_str(),
-                    stemming::stemming_type::no_stemming,
-                    true,
-                    false, &BaseProject::m_dale_chall_word_list,
-                    false, &BaseProject::m_spache_word_list,
-                    true, &BaseProject::m_harris_jacobson_word_list,
-                    false, &BaseProject::m_stocker_catholic_word_list,
-                    false,
-                    readability::proper_noun_counting_method::all_proper_nouns_are_familiar,
-                    true,
-                    false, false, false, false, false, false, false, false, false, false, false, false);
+            CustomReadabilityTest cTest(
+                dlg.GetTestName().wc_str(),
+                ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature().wc_str(),
+                readability::readability_test_type::grade_level, dlg.GetWordListFilePath().wc_str(),
+                stemming::stemming_type::no_stemming, true, false,
+                &BaseProject::m_dale_chall_word_list, false, &BaseProject::m_spache_word_list, true,
+                &BaseProject::m_harris_jacobson_word_list, false,
+                &BaseProject::m_stocker_catholic_word_list, false,
+                readability::proper_noun_counting_method::all_proper_nouns_are_familiar, true,
+                false, false, false, false, false, false, false, false, false, false, false, false);
             ProjectDoc::AddGlobalCustomReadabilityTest(cTest);
             }
         }
@@ -4944,27 +4966,24 @@ void MainFrame::OnAddCustomTest(wxCommandEvent& event)
         CustomTestDlg dlg(wxGetApp().GetParentingWindow());
         if (dlg.ShowModal() == wxID_OK)
             {
-            CustomReadabilityTest cTest(dlg.GetTestName().wc_str(),
-                    dlg.GetFormula().wc_str(),
-                    static_cast<readability::readability_test_type>(dlg.GetTestType()),
-                    dlg.GetWordListFilePath().wc_str(),
-                    dlg.GetStemmingType(),
-                    dlg.IsIncludingCustomWordList(),
-                    dlg.IsIncludingDaleChallList(), &BaseProject::m_dale_chall_word_list,
-                    dlg.IsIncludingSpacheList(), &BaseProject::m_spache_word_list,
-                    dlg.IsIncludingHJList(), &BaseProject::m_harris_jacobson_word_list,
-                    dlg.IsIncludingStockerList(), &BaseProject::m_stocker_catholic_word_list,
-                    dlg.IsFamiliarWordsMustBeOnEachIncludedList(),
-                    static_cast<readability::proper_noun_counting_method>(dlg.GetProperNounMethod()),
-                    dlg.IsIncludingNumeric(),
-                    dlg.IsChildrensPublishingSelected(),
-                    dlg.IsAdultPublishingSelected(), dlg.IsSecondaryLanguageSelected(),
-                    dlg.IsChildrensHealthCareTestSelected(), dlg.IsAdultHealthCareTestSelected(),
-                    dlg.IsMilitaryTestSelected(), dlg.IsBroadcastingSelected(),
-                    dlg.IsGeneralDocumentSelected(),
-                    dlg.IsTechnicalDocumentSelected(), dlg.IsNonNarrativeFormSelected(),
-                    dlg.IsYoungAdultAndAdultLiteratureSelected(),
-                    dlg.IsChildrensLiteratureSelected());
+            CustomReadabilityTest cTest(
+                dlg.GetTestName().wc_str(), dlg.GetFormula().wc_str(),
+                static_cast<readability::readability_test_type>(dlg.GetTestType()),
+                dlg.GetWordListFilePath().wc_str(), dlg.GetStemmingType(),
+                dlg.IsIncludingCustomWordList(), dlg.IsIncludingDaleChallList(),
+                &BaseProject::m_dale_chall_word_list, dlg.IsIncludingSpacheList(),
+                &BaseProject::m_spache_word_list, dlg.IsIncludingHJList(),
+                &BaseProject::m_harris_jacobson_word_list, dlg.IsIncludingStockerList(),
+                &BaseProject::m_stocker_catholic_word_list,
+                dlg.IsFamiliarWordsMustBeOnEachIncludedList(),
+                static_cast<readability::proper_noun_counting_method>(dlg.GetProperNounMethod()),
+                dlg.IsIncludingNumeric(), dlg.IsChildrensPublishingSelected(),
+                dlg.IsAdultPublishingSelected(), dlg.IsSecondaryLanguageSelected(),
+                dlg.IsChildrensHealthCareTestSelected(), dlg.IsAdultHealthCareTestSelected(),
+                dlg.IsMilitaryTestSelected(), dlg.IsBroadcastingSelected(),
+                dlg.IsGeneralDocumentSelected(), dlg.IsTechnicalDocumentSelected(),
+                dlg.IsNonNarrativeFormSelected(), dlg.IsYoungAdultAndAdultLiteratureSelected(),
+                dlg.IsChildrensLiteratureSelected());
             ProjectDoc::AddGlobalCustomReadabilityTest(cTest);
             }
         }
@@ -5019,23 +5038,26 @@ void MainFrame::Paste()
             const auto& templateList = m_docManager->GetTemplates();
             for (size_t i = 0; i < templateList.GetCount(); ++i)
                 {
-                wxDocTemplate* docTemplate = dynamic_cast<wxDocTemplate*>(templateList.Item(i)->GetData());
+                wxDocTemplate* docTemplate =
+                    dynamic_cast<wxDocTemplate*>(templateList.Item(i)->GetData());
                 if (docTemplate && docTemplate->GetDocClassInfo()->IsKindOf(CLASSINFO(ProjectDoc)))
                     {
-                    ProjectDoc* newDoc =
-                        dynamic_cast<ProjectDoc*>(docTemplate->CreateDocument(data.GetText(), wxDOC_NEW));
-                    if (newDoc && !newDoc->OnNewDocument() )
+                    ProjectDoc* newDoc = dynamic_cast<ProjectDoc*>(
+                        docTemplate->CreateDocument(data.GetText(), wxDOC_NEW));
+                    if (newDoc && !newDoc->OnNewDocument())
                         {
                         // Document is implicitly deleted by DeleteAllViews
                         newDoc->DeleteAllViews();
                         newDoc = nullptr;
                         }
-                    if (newDoc && newDoc->GetFirstView() )
+                    if (newDoc && newDoc->GetFirstView())
                         {
                         newDoc->GetFirstView()->Activate(true);
                         wxGetApp().GetDocManager()->ActivateView(newDoc->GetFirstView());
-                        if (newDoc->GetDocumentWindow() )
-                            { newDoc->GetDocumentWindow()->SetFocus(); }
+                        if (newDoc->GetDocumentWindow())
+                            {
+                            newDoc->GetDocumentWindow()->SetFocus();
+                            }
                         }
                     break;
                     }
@@ -5053,16 +5075,15 @@ void MainFrame::Paste()
             }
         else
             {
-            wxMessageBox(_(L"No text is currently on the clipboard."),
-                    wxGetApp().GetAppName(), wxOK|wxICON_INFORMATION);
+            wxMessageBox(_(L"No text is currently on the clipboard."), wxGetApp().GetAppName(),
+                         wxOK | wxICON_INFORMATION);
             }
         wxTheClipboard->Close();
         }
     }
 
 //-------------------------------------------------------
-void MainFrame::OnPaste([[maybe_unused]] wxCommandEvent& event)
-    { Paste(); }
+void MainFrame::OnPaste([[maybe_unused]] wxCommandEvent& event) { Paste(); }
 
 //-------------------------------------------------------
 void MainFrame::OnPrinterHeaderFooter([[maybe_unused]] wxCommandEvent& event)
@@ -5096,14 +5117,15 @@ void MainFrame::OnClose(wxCloseEvent& event)
         if (doc->IsProcessing())
             {
             wxMessageBox(_(L"Project still processing. Please wait before closing."),
-                wxFileName::StripExtension(doc->GetTitle()), wxOK|wxICON_EXCLAMATION);
+                         wxFileName::StripExtension(doc->GetTitle()), wxOK | wxICON_EXCLAMATION);
             event.Veto();
             }
         }
     wxGetApp().GetAppOptions().SetAppWindowMaximized(IsMaximized());
     wxGetApp().GetAppOptions().SetAppWindowWidth(GetSize().GetWidth());
     wxGetApp().GetAppOptions().SetAppWindowHeight(GetSize().GetHeight());
-    wxGetApp().GetAppOptions().SetPaperId(static_cast<int>(wxGetApp().GetPrintData()->GetPaperId()));
+    wxGetApp().GetAppOptions().SetPaperId(
+        static_cast<int>(wxGetApp().GetPrintData()->GetPaperId()));
     wxGetApp().GetAppOptions().SetPaperOrientation(wxGetApp().GetPrintData()->GetOrientation());
     event.Skip();
     }
@@ -5112,11 +5134,12 @@ void MainFrame::OnClose(wxCloseEvent& event)
 void MainFrame::OnOpenDocument([[maybe_unused]] wxCommandEvent& event)
     {
     wxFileDialog dialog(wxGetApp().GetParentingWindow(), _(L"Select Document to Analyze"),
-                        wxString{}, wxString{},
-                        wxGetApp().GetAppOptions().GetDocumentFilter(),
+                        wxString{}, wxString{}, wxGetApp().GetAppOptions().GetDocumentFilter(),
                         wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
     if (dialog.ShowModal() == wxID_CANCEL)
-        { return; }
+        {
+        return;
+        }
     const auto& templateList = wxGetApp().GetDocManager()->GetTemplates();
     for (size_t i = 0; i < templateList.GetCount(); ++i)
         {
@@ -5125,18 +5148,20 @@ void MainFrame::OnOpenDocument([[maybe_unused]] wxCommandEvent& event)
             {
             ProjectDoc* newDoc =
                 dynamic_cast<ProjectDoc*>(docTemplate->CreateDocument(dialog.GetPath(), wxDOC_NEW));
-            if (newDoc && !newDoc->OnNewDocument() )
+            if (newDoc && !newDoc->OnNewDocument())
                 {
                 // Document is implicitly deleted by DeleteAllViews
                 newDoc->DeleteAllViews();
                 newDoc = nullptr;
                 }
-            if (newDoc && newDoc->GetFirstView() )
+            if (newDoc && newDoc->GetFirstView())
                 {
                 newDoc->GetFirstView()->Activate(true);
                 wxGetApp().GetDocManager()->ActivateView(newDoc->GetFirstView());
-                if (newDoc->GetDocumentWindow() )
-                    { newDoc->GetDocumentWindow()->SetFocus(); }
+                if (newDoc->GetDocumentWindow())
+                    {
+                    newDoc->GetDocumentWindow()->SetFocus();
+                    }
                 }
             break;
             }
@@ -5149,7 +5174,9 @@ void MainFrame::OnHelpContents([[maybe_unused]] wxCommandEvent& event)
     const BaseProjectDoc* activeProject =
         dynamic_cast<const BaseProjectDoc*>(GetDocumentManager()->GetCurrentDocument());
     if (!activeProject)
-        { DisplayHelp(); }
+        {
+        DisplayHelp();
+        }
     else if (activeProject->IsKindOf(CLASSINFO(ProjectDoc)))
         {
         const ProjectView* view = dynamic_cast<const ProjectView*>(activeProject->GetFirstView());
@@ -5276,22 +5303,37 @@ void MainFrame::OnHelpContents([[maybe_unused]] wxCommandEvent& event)
         }
     else if (activeProject->IsKindOf(CLASSINFO(BatchProjectDoc)))
         {
-        const BatchProjectView* view = dynamic_cast<const BatchProjectView*>(activeProject->GetFirstView());
+        const BatchProjectView* view =
+            dynamic_cast<const BatchProjectView*>(activeProject->GetFirstView());
         const auto selectedID = view->GetSideBar()->GetSelectedFolderId();
         if (!selectedID.has_value())
-            { DisplayHelp(_DT(L"reviewing-batch-scores.html")); }
+            {
+            DisplayHelp(_DT(L"reviewing-batch-scores.html"));
+            }
         else if (selectedID == BatchProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID)
-            { DisplayHelp(_DT(L"reviewing-batch-scores.html")); }
+            {
+            DisplayHelp(_DT(L"reviewing-batch-scores.html"));
+            }
         else if (selectedID == BatchProjectView::SIDEBAR_HISTOGRAMS_SECTION_ID)
-            { DisplayHelp(_DT(L"reviewing-batch-histograms.html")); }
+            {
+            DisplayHelp(_DT(L"reviewing-batch-histograms.html"));
+            }
         else if (selectedID == BatchProjectView::SIDEBAR_BOXPLOTS_SECTION_ID)
-            { DisplayHelp(_DT(L"reviewing-batch-box-plots.html")); }
+            {
+            DisplayHelp(_DT(L"reviewing-batch-box-plots.html"));
+            }
         else if (selectedID == BatchProjectView::SIDEBAR_WORDS_BREAKDOWN_SECTION_ID)
-            { DisplayHelp(_DT(L"reviewing-batch-words.html")); }
+            {
+            DisplayHelp(_DT(L"reviewing-batch-words.html"));
+            }
         else if (selectedID == BatchProjectView::SIDEBAR_DOLCH_SECTION_ID)
-            { DisplayHelp(_DT(L"reviewing-batch-dolch.html")); }
+            {
+            DisplayHelp(_DT(L"reviewing-batch-dolch.html"));
+            }
         else if (selectedID == BatchProjectView::SIDEBAR_WARNINGS_SECTION_ID)
-            { DisplayHelp(_DT(L"reviewing-batch-warnings.html")); }
+            {
+            DisplayHelp(_DT(L"reviewing-batch-warnings.html"));
+            }
         else if (selectedID == BatchProjectView::SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID)
             {
             switch (view->GetActiveProjectWindow()->GetId())
@@ -5302,7 +5344,9 @@ void MainFrame::OnHelpContents([[maybe_unused]] wxCommandEvent& event)
                 };
             }
         else if (selectedID == BatchProjectView::SIDEBAR_GRAMMAR_SECTION_ID)
-            { DisplayHelp(_DT(L"reviewing-batch-grammar.html")); }
+            {
+            DisplayHelp(_DT(L"reviewing-batch-grammar.html"));
+            }
         }
     }
 
@@ -5322,12 +5366,13 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
     wxString updatedFilePath =
         _DT(L"https://oleandersoftware.com/downloads/readabilitystudio/CurrentMacVersionReadabilityStudio.txt");
     int responseCode;
-    if (!wxGetApp().GetWebHarvester().ReadWebPage(updatedFilePath, updateFileContent, contentType, statusText, responseCode, false) )
+    if (!wxGetApp().GetWebHarvester().ReadWebPage(updatedFilePath, updateFileContent, contentType,
+                                                  statusText, responseCode, false))
         {
-        updatedFilePath =
-            _DT(L"https://oleandersoftware.com/downloads/readabilitystudio/CurrentVersionReadabilityStudio.txt");
-        if (!wxGetApp().GetWebHarvester().ReadWebPage(updatedFilePath, updateFileContent, contentType, statusText,
-                                       responseCode, false))
+        updatedFilePath = _DT(L"https://oleandersoftware.com/downloads/readabilitystudio/"
+                              L"CurrentVersionReadabilityStudio.txt");
+        if (!wxGetApp().GetWebHarvester().ReadWebPage(updatedFilePath, updateFileContent,
+                                                      contentType, statusText, responseCode, false))
             {
             wxMessageBox(wxString::Format(
                              _(L"An error occurred while trying to connect to the website:\t%s"),
@@ -5337,11 +5382,11 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
             }
         }
 #else
-    wxString updatedFilePath =
-        _DT(L"https://oleandersoftware.com/downloads/readabilitystudio/CurrentVersionReadabilityStudio.txt");
+    wxString updatedFilePath = _DT(L"https://oleandersoftware.com/downloads/readabilitystudio/"
+                                   L"CurrentVersionReadabilityStudio.txt");
     int responseCode;
-    if (!wxGetApp().GetWebHarvester().ReadWebPage(updatedFilePath, updateFileContent,
-                                                  contentType, statusText, responseCode, false) )
+    if (!wxGetApp().GetWebHarvester().ReadWebPage(updatedFilePath, updateFileContent, contentType,
+                                                  statusText, responseCode, false))
         {
         wxMessageBox(
             wxString::Format(_(L"An error occurred while trying to connect to the website:\t%s"),
