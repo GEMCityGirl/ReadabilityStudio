@@ -290,10 +290,24 @@ set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 if(WIN32)
     target_link_libraries(${PROJECT_NAME} ${wxWidgets_LIBRARIES})
 elseif(UNIX)
-    # Add OpenMP for mutlithreading
+    # Add OpenMP for mutlithreading.
+    # TBB is required for GCC linkage sometimes, although this app is not explicitly using it,
+    # so try to link it in.
     find_package(OpenMP)
-    find_library(TBB_LIB tbb)
-    target_link_libraries(${PROJECT_NAME} ${wxWidgets_LIBRARIES} ${TBB_LIB} OpenMP::OpenMP_CXX)
+    find_package(TBB)
+    if(OpenMP_FOUND AND TBB_FOUND)
+        message(STATUS "OpenMP: ${OpenMP_VERSION}")
+        message(STATUS "Intel Threading Building Blocks: ${TBB_VERSION}")
+        target_link_libraries(${PROJECT_NAME} ${wxWidgets_LIBRARIES} TBB::tbb OpenMP::OpenMP_CXX)
+    elseif(OpenMP_FOUND)
+        message(STATUS "OpenMP: ${OpenMP_VERSION}")
+        target_link_libraries(${PROJECT_NAME} ${wxWidgets_LIBRARIES} OpenMP::OpenMP_CXX)
+    elseif(TBB_FOUND)
+        message(STATUS "Intel Threading Building Blocks: ${TBB_VERSION}")
+        target_link_libraries(${PROJECT_NAME} ${wxWidgets_LIBRARIES} TBB::tbb)
+    else()
+        target_link_libraries(${PROJECT_NAME} ${wxWidgets_LIBRARIES})
+    endif()
 endif()
 
 # Copy help, scripts, and resources into build folder
