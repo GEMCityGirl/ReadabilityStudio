@@ -10,10 +10,10 @@
 # Build targets:
 # readstudio: builds the main application
 # manuals: builds the manuals and HTML help
-# doxygen-docs: builds the API documentation (this is not included with ALL)
+# doxygen-docs: builds the API documentation
 
 # Options:
-# USE_ADDRESS_SANITIZE to use ASAN
+# USE_ADDRESS_SANITIZE to use ASAN (ignored in release build)
 
 # Declare the minimum required CMake version
 cmake_minimum_required(VERSION 3.25)
@@ -53,7 +53,7 @@ message(STATUS "Authored by: ${PROGRAM_AUTHOR}")
 message(STATUS "Published by: ${PUBLISHER}")
 message(STATUS "Homepage: ${readstudio_HOMEPAGE_URL}")
 message(STATUS "Output program file: ${CMAKE_PROJECT_NAME}")
-message(STATUS "Writing program info to build peripheral files.")
+message(STATUS "Writing program info to build peripheral files")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/src/version.h.in"
                "${CMAKE_CURRENT_SOURCE_DIR}/src/app/version.h")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/src/citations.bib.in"
@@ -196,6 +196,7 @@ if(TARGET doxygen-docs)
 endif()
 
 add_custom_target(doxygen-docs
+            ALL
             COMMAND ${DOXYGEN_EXECUTABLE} "${CMAKE_SOURCE_DIR}/docs/doxygen/Doxyfile"
             WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/docs/doxygen"
             COMMENT "Generating API documentation with Doxygen"
