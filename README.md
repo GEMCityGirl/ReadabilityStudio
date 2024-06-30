@@ -24,18 +24,17 @@ Install the following tools to build *Readability Studio*:
 - *InnoSetup*
 - *POEdit* (if editing the translations)
 
-- Open *R* and run `install.packages("pacman")`.
-- Place "wxWidgets" at the same folder level as this project, downloading it with this command:
-```
-git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
-```
-- Open wxWidgets's CMake file in *Visual Studio*
+- Open *Visual Studio* and select *Clone a Repository*
+  - Enter "https://github.com/wxWidgets/wxWidgets.git" and clone it to same level as this project
+- Once the wxWidgets folder is cloned and opened in *Visual Studio*:
   - Open **Project** > **CMake Settings for wxWidgets**
-    - Uncheck **wxBUILD_SHARED** and save
+    - Uncheck **wxBUILD_SHARED**
+    - Set **wxBUILD_OPTIMISE** to "ON"
+    - Save your changes
   - Select **Build** > **Install wxWidgets** (builds and then copies the header, lib, and cmake files to the prefix folder)
 - Open this project's CMake file in *Visual Studio* and save it (this is equivalent to configuring CMake and will generate some necessary configuration files)
-- Open "ReadabilityStudio/docs/build-help-projects.R" in *RStudio* and source the entire script
-- Go back to *Visual Studio* and build the project
+- Select **View** > **CMake Targets**
+- Build the *manuals* and *readstudio* targets
 
 ## Linux
 
@@ -71,7 +70,7 @@ R
 install.packages("pacman")
 ```
 
-Place "wxWidgets" at the same folder level as this project, downloading and building it as follows:
+Place *wxWidgets* at the same folder level as this project, downloading and building it as follows:
 
 ```
 cd ..
@@ -112,6 +111,18 @@ If you get errors about not finding a CXX compiler, run this:
 sudo xcode-select --reset
 ```
 
+Place *wxWidgets* at the same folder level as this project, downloading and building it as follows:
+
+```
+cd ..
+git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
+cd wxWidgets
+cmake . -DCMAKE_INSTALL_PREFIX=./wxlib -DwxBUILD_SHARED=OFF -D"CMAKE_OSX_ARCHITECTURES:STRING=$(ARCHS_STANDARD)" -DwxBUILD_OPTIMISE=ON -DwxBUILD_STRIPPED_RELEASE_DEFAULT=ON
+cmake --build . --target install -j 4
+cd ..
+cd ReadabilityStudio
+```
+
 ## All Platforms
 
 ## Building
@@ -124,7 +135,7 @@ Once you have these files installed, this won't be an issue when rebuilding late
 
 ### Application Icon
 
-If the application icon ("app-logo.svg") is changed, then in the project directory:
+If the application icon ("resources/images/ribbon/app-logo.svg") is changed, then in the project directory:
 
 - Save a copy as "app-logo.png" (1024x1024 resolution)
 - Save a copy as "app-logo.ico"
