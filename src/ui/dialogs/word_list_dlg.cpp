@@ -24,7 +24,6 @@ WordListDlg::WordListDlg(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
                          long style /*= wxCAPTION|wxCLOSE_BOX|wxRESIZE_BORDER*/)
     : wxDialog(parent, id, caption, pos, size, style)
     {
-    SetBackgroundColour(wxGetApp().GetAppOptions().GetControlBackgroundColor());
     CreateControls();
     Centre();
 

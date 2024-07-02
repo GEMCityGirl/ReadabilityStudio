@@ -39,6 +39,9 @@
   - A depth level of 0 can now be entered. This allows for only downloading the base webpage(s) and nothing else.
   - Performance improvements; less requests are now sent to servers while crawling them.
   - **Restricted to same folder** domain restriction will now include links from sub-directories of the specified folder.
+- Improved dark mode appearance (Windows)
+  - Dark mode is automatically enabled if color mode is set to **Dark**
+    (on Windows, select `r menu(c('Settings', 'Personalization', 'Colors', 'Choose your mode'))`).
 - Added **Minimum document word count** option to the batch project wizard.
 - Folders can now be used as grouping labels when adding documents in the batch project wizard.
 - The **Readability Graphs** page on the **Options** dialog has been moved to be under the **Graphs** section.

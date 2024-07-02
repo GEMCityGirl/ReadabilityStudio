@@ -187,9 +187,6 @@ void ReadabilityAppOptions::SetFonts()
 //------------------------------------------------
 void ReadabilityAppOptions::SetColorsFromSystem()
     {
-    m_themeName = _DT(L"System", DTExplanation::InternalKeyword);
-
-    m_controlBackgroundColor = wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW);
     // Ribbon colors
     m_ribbonActiveTabColor = wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE);
     m_ribbonInactiveTabColor = wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW);
@@ -328,8 +325,6 @@ void ReadabilityAppOptions::ResetSettings()
         ReadabilityMessages::ReadingAgeDisplay::ReadingAgeAsARange);
     // document linking information
     m_documentStorageMethod = TextStorage::NoEmbedText;
-    // theme
-    m_themeName = _DT(L"System");
     // internet
     m_userAgent = _DT(L"Mozilla/5.0 (") + wxGetOsDescription() + _DT(L") WebKit/12.0 WebLion");
     wxGetApp().GetWebHarvester().SetUserAgent(m_userAgent);
@@ -454,108 +449,6 @@ void ReadabilityAppOptions::LoadThemeNode(tinyxml2::XMLElement* appearanceNode)
         if (m_appWindowHeight < 1)
             {
             m_appWindowHeight = 700;
-            }
-
-        // macOS does its own theming, and WX aggressively applies it to its controls
-// (dark theme effects the list and text controls). Because of this, the macOS
-// version can't do custom ribbon/sidebar theming, it needs to use the system theming.
-#ifndef __WXOSX__
-        // window color
-        auto windowColorNode =
-            appearanceNode->FirstChildElement(XML_CONTROL_BACKGROUND_COLOR.data());
-        if (windowColorNode)
-            {
-            int red = windowColorNode->ToElement()->IntAttribute(XmlFormat::GetRed().mb_str(), 255);
-            int green =
-                windowColorNode->ToElement()->IntAttribute(XmlFormat::GetGreen().mb_str(), 255);
-            int blue =
-                windowColorNode->ToElement()->IntAttribute(XmlFormat::GetBlue().mb_str(), 255);
-
-            SetControlBackgroundColor(wxColour(red, green, blue));
-            }
-        else
-            {
-            SetControlBackgroundColor(
-                wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW));
-            }
-
-        // ribbon
-        SetRibbonActiveTabColor(
-            Wisteria::Colors::ColorContrast::ShadeOrTint(GetControlBackgroundColor()));
-        SetRibbonInactiveTabColor(
-            Wisteria::Colors::ColorContrast::ShadeOrTint(GetRibbonActiveTabColor()));
-        SetRibbonHoverColor(Wisteria::Colors::ColorContrast::Shade(GetRibbonActiveTabColor()));
-        SetRibbonActiveFontColor(
-            Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(GetRibbonActiveTabColor()));
-        SetRibbonInactiveFontColor(
-            Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(GetRibbonInactiveTabColor()));
-        SetRibbonHoverFontColor(
-            Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(GetRibbonHoverColor()));
-
-        // sidebar
-        auto sidebarBkColorNode =
-            appearanceNode->FirstChildElement(XML_SIDEBAR_BACKGROUND_COLOR.data());
-        if (sidebarBkColorNode)
-            {
-            int red =
-                sidebarBkColorNode->ToElement()->IntAttribute(XmlFormat::GetRed().mb_str(), 255);
-            int green =
-                sidebarBkColorNode->ToElement()->IntAttribute(XmlFormat::GetGreen().mb_str(), 255);
-            int blue =
-                sidebarBkColorNode->ToElement()->IntAttribute(XmlFormat::GetBlue().mb_str(), 255);
-            SetSideBarBackgroundColor(wxColour(red, green, blue));
-            }
-        SetSideBarActiveColor(
-            Wisteria::Colors::ColorContrast::ShadeOrTint(GetSideBarBackgroundColor()));
-        SetSideBarHoverColor(
-            Wisteria::Colors::ColorContrast::ShadeOrTint(GetSideBarActiveColor(), 0.4));
-        SetSideBarHoverFontColor(
-            Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(GetSideBarHoverColor()));
-
-        auto sidebarParentColorNode =
-            appearanceNode->FirstChildElement(XML_SIDEBAR_PARENT_COLOR.data());
-        if (sidebarParentColorNode)
-            {
-            int red = sidebarParentColorNode->ToElement()->IntAttribute(
-                XmlFormat::GetRed().mb_str(), 255);
-            int green = sidebarParentColorNode->ToElement()->IntAttribute(
-                XmlFormat::GetGreen().mb_str(), 255);
-            int blue = sidebarParentColorNode->ToElement()->IntAttribute(
-                XmlFormat::GetBlue().mb_str(), 255);
-            SetSideBarParentColor(wxColour(red, green, blue));
-            }
-        else
-            {
-            SetSideBarParentColor(
-                Wisteria::Colors::ColorContrast::Shade(GetSideBarBackgroundColor()));
-            }
-        SetSideBarFontColor(
-            Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(GetSideBarParentColor()));
-        SetSideBarActiveFontColor(
-            Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(GetSideBarParentColor()));
-#endif
-
-        // see what theme is selected
-        auto themeNode = appearanceNode->FirstChildElement(XML_THEME_NAME.data());
-        if (themeNode)
-            {
-            const char* themeString = themeNode->ToElement()->Attribute(XML_VALUE.data());
-            if (themeString)
-                {
-                const auto themeStr = Wisteria::TextStream::CharStreamToUnicode(
-                    themeString, std::strlen(themeString));
-                const wchar_t* convertedStr =
-                    filter_html(themeStr.c_str(), themeStr.length(), true, false);
-                if (convertedStr)
-                    {
-                    SetTheme(convertedStr);
-                    // reset whatever was read in here if just using the system colors
-                    if (GetTheme() == _DT(L"System"))
-                        {
-                        SetColorsFromSystem();
-                        }
-                    }
-                }
             }
         }
     }
@@ -3540,38 +3433,6 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     appearance->SetAttribute(XML_WINDOW_WIDTH.data(), GetAppWindowWidth());
     appearance->SetAttribute(XML_WINDOW_HEIGHT.data(), GetAppWindowHeight());
 
-    auto themeName = doc.NewElement(XML_THEME_NAME.data());
-    const wxString themeNameEncoded = encode({ GetTheme().wc_str() }, false).c_str();
-    themeName->SetAttribute(XML_VALUE.data(), themeNameEncoded.mb_str());
-    appearance->InsertEndChild(themeName);
-
-    auto controlBkColor = doc.NewElement(XML_CONTROL_BACKGROUND_COLOR.data());
-    controlBkColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetControlBackgroundColor().Red());
-    controlBkColor->SetAttribute(XmlFormat::GetGreen().mb_str(),
-                                 GetControlBackgroundColor().Green());
-    controlBkColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetControlBackgroundColor().Blue());
-    appearance->InsertEndChild(controlBkColor);
-
-        // sidebar theming
-        {
-        auto sidebarBkColor = doc.NewElement(XML_SIDEBAR_BACKGROUND_COLOR.data());
-        sidebarBkColor->SetAttribute(XmlFormat::GetRed().mb_str(),
-                                     GetSideBarBackgroundColor().Red());
-        sidebarBkColor->SetAttribute(XmlFormat::GetGreen().mb_str(),
-                                     GetSideBarBackgroundColor().Green());
-        sidebarBkColor->SetAttribute(XmlFormat::GetBlue().mb_str(),
-                                     GetSideBarBackgroundColor().Blue());
-        appearance->InsertEndChild(sidebarBkColor);
-
-        auto sidebarParentColor = doc.NewElement(XML_SIDEBAR_PARENT_COLOR.data());
-        sidebarParentColor->SetAttribute(XmlFormat::GetRed().mb_str(),
-                                         GetSideBarParentColor().Red());
-        sidebarParentColor->SetAttribute(XmlFormat::GetGreen().mb_str(),
-                                         GetSideBarParentColor().Green());
-        sidebarParentColor->SetAttribute(XmlFormat::GetBlue().mb_str(),
-                                         GetSideBarParentColor().Blue());
-        appearance->InsertEndChild(sidebarParentColor);
-        }
     configSection->InsertEndChild(appearance);
 
     // just set this to true for backward compatibility

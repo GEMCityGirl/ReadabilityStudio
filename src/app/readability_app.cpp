@@ -537,6 +537,7 @@ bool ReadabilityApp::OnInit()
             }
         }
 
+    MSWEnableDarkMode();
     GetAppOptions().LoadOptionsFile(AppSettingFolderPath + L"Settings.xml", true);
 
     AppendDailyLog(GetAppOptions().IsAppendingDailyLog());
@@ -3855,7 +3856,7 @@ void ReadabilityApp::UpdateStartPageTheme()
     GetMainFrameEx()->GetStartPage()->SetButtonAreaBackgroundColor(
         GetAppOptions().GetSideBarBackgroundColor());
     GetMainFrameEx()->GetStartPage()->SetMRUBackgroundColor(
-        GetAppOptions().GetControlBackgroundColor());
+        wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW));
     }
 
 //---------------------------------------------------
@@ -3863,7 +3864,8 @@ void ReadabilityApp::UpdateScriptEditorTheme()
     {
     if (GetMainFrameEx()->m_luaEditor != nullptr)
         {
-        GetMainFrameEx()->m_luaEditor->SetThemeColor(GetAppOptions().GetControlBackgroundColor());
+        GetMainFrameEx()->m_luaEditor->SetThemeColor(
+            wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW));
         }
     }
 
@@ -4239,7 +4241,7 @@ void MainFrame::OnScriptEditor([[maybe_unused]] wxCommandEvent& event)
             wxSize{ static_cast<int>(screenSize.GetWidth() * math_constants::third),
                     static_cast<int>(screenSize.GetHeight() * math_constants::three_quarters) });
         }
-    m_luaEditor->SetThemeColor(wxGetApp().GetAppOptions().GetControlBackgroundColor());
+    m_luaEditor->SetThemeColor(wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW));
     m_luaEditor->Show();
     m_luaEditor->SetFocus();
     }

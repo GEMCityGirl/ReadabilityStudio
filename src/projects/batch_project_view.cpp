@@ -1480,9 +1480,9 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
         {
         m_testExplanations->GetHtmlWindow()->SetPage(
             ProjectReportFormat::FormatHtmlReportStart(
-                wxGetApp().GetAppOptions().GetControlBackgroundColor(),
+                wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW),
                 Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
-                    wxGetApp().GetAppOptions().GetControlBackgroundColor())) + scoreTextStrippedLinks +
+                    wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW))) + scoreTextStrippedLinks +
                     ProjectReportFormat::FormatHtmlReportEnd());
         }
 
@@ -1505,9 +1505,9 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
             lily_of_the_valley::html_format::strip_hyperlinks(textStripped);
             m_statsReport->GetHtmlWindow()->SetPage(
                 ProjectReportFormat::FormatHtmlReportStart(
-                    wxGetApp().GetAppOptions().GetControlBackgroundColor(),
+                    wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW),
                     Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
-                        wxGetApp().GetAppOptions().GetControlBackgroundColor())) + textStripped +
+                        wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW))) + textStripped +
                         ProjectReportFormat::FormatHtmlReportEnd());
             break;
             }
@@ -2275,14 +2275,15 @@ void BatchProjectView::OnExportStatisticsReport([[maybe_unused]] wxCommandEvent&
         { return; }
 
     wxProgressDialog progressDlg(_(L"Exporting"), _(L"Exporting statistics..."),
-        static_cast<int>((doc->GetDocuments().size()*2)+1),
-        nullptr, wxPD_AUTO_HIDE|wxPD_SMOOTH|wxPD_ELAPSED_TIME|wxPD_CAN_ABORT|wxPD_APP_MODAL);
+                                 static_cast<int>((doc->GetDocuments().size() * 2) + 1), nullptr,
+                                 wxPD_AUTO_HIDE | wxPD_SMOOTH | wxPD_ELAPSED_TIME | wxPD_CAN_ABORT |
+                                     wxPD_APP_MODAL);
     int counter{ 1 };
 
     wxString fileHeader = ProjectReportFormat::FormatHtmlReportStart(
-        wxGetApp().GetAppOptions().GetControlBackgroundColor(),
+        wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW),
         Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
-            wxGetApp().GetAppOptions().GetControlBackgroundColor()), _(L"Summary Statistics")) +
+            wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW)), _(L"Summary Statistics")) +
         L"\n<h1><span style='text-decoration:underline;'>" +
         doc->GetTitle() + _(L": Summary Statistics") + L"</span></h1>\n<h2>" + _(L"Files:") + L"</h2>\n";
     std::wstring strippedFileHeader{ fileHeader };
@@ -2291,8 +2292,7 @@ void BatchProjectView::OnExportStatisticsReport([[maybe_unused]] wxCommandEvent&
     wxTempFile outputFile(fdialog.GetPath());
     if (!outputFile.Write(strippedFileHeader))
         {
-        wxMessageBox(_(L"Unable to write to output file."),
-            _(L"Error"), wxOK|wxICON_EXCLAMATION);
+        wxMessageBox(_(L"Unable to write to output file."), _(L"Error"), wxOK | wxICON_EXCLAMATION);
         return;
         }
 
@@ -2321,16 +2321,15 @@ void BatchProjectView::OnExportStatisticsReport([[maybe_unused]] wxCommandEvent&
         if (!outputFile.Write(L"<a href=\"#" + wxString::Format(L"Doc%zu", i) + L"\">" +
             currentDocName + L"</a><br />\n"))
             {
-            wxMessageBox(_(L"Unable to write to output file."),
-                _(L"Error"), wxOK|wxICON_EXCLAMATION);
+            wxMessageBox(_(L"Unable to write to output file."), _(L"Error"),
+                         wxOK | wxICON_EXCLAMATION);
             return;
             }
         }
 
     if (!outputFile.Write(L"<br /><br />\n"))
         {
-        wxMessageBox(_(L"Unable to write to output file."),
-            _(L"Error"), wxOK|wxICON_EXCLAMATION);
+        wxMessageBox(_(L"Unable to write to output file."), _(L"Error"), wxOK | wxICON_EXCLAMATION);
         return;
         }
 
@@ -2358,29 +2357,30 @@ void BatchProjectView::OnExportStatisticsReport([[maybe_unused]] wxCommandEvent&
                 doc->GetStatisticsReportInfo(),
                 wxSystemSettings::GetColour(wxSYS_COLOUR_HOTLIGHT), nullptr);
         if (stripLinks(formattedStats.wc_str(), formattedStats.length()))
-            { formattedStats.assign(stripLinks.get_filtered_text(), stripLinks.get_filtered_text_length()); }
+            {
+            formattedStats.assign(stripLinks.get_filtered_text(),
+                                  stripLinks.get_filtered_text_length());
+            }
 
         if (!outputFile.Write(L"<a name=\"" + wxString::Format(L"Doc%zu", i) +
             L"\"></a><span style='font-weight:bold;'>" + currentDocName + L"</span><hr>" +
             formattedStats + L"<br /><br />\n"))
             {
-            wxMessageBox(_(L"Unable to write to output file."),
-                _(L"Error"), wxOK|wxICON_EXCLAMATION);
+            wxMessageBox(_(L"Unable to write to output file."), _(L"Error"),
+                         wxOK | wxICON_EXCLAMATION);
             return;
             }
         }
 
     if (!outputFile.Write(ProjectReportFormat::FormatHtmlReportEnd()))
         {
-        wxMessageBox(_(L"Unable to write to output file."),
-            _(L"Error"), wxOK|wxICON_EXCLAMATION);
+        wxMessageBox(_(L"Unable to write to output file."), _(L"Error"), wxOK | wxICON_EXCLAMATION);
         return;
         }
 
     if (!outputFile.Commit())
         {
-        wxMessageBox(_(L"Unable to write to output file."),
-            _(L"Error"), wxOK|wxICON_EXCLAMATION);
+        wxMessageBox(_(L"Unable to write to output file."), _(L"Error"), wxOK | wxICON_EXCLAMATION);
         return;
         }
     progressDlg.Update(counter++);

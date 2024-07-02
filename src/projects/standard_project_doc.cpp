@@ -1074,8 +1074,8 @@ void ProjectDoc::DisplayReadabilityScores(const bool setFocus)
                 }
             scoresReport->SetPage(
                 ProjectReportFormat::FormatHtmlReportStart(
-                    wxGetApp().GetAppOptions().GetControlBackgroundColor(),
-                    ColorContrast::BlackOrWhiteContrast(wxGetApp().GetAppOptions().GetControlBackgroundColor())) +
+                    wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW),
+                    ColorContrast::BlackOrWhiteContrast(wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW))) +
                 text +
                 ProjectReportFormat::FormatHtmlReportEnd());
             }
@@ -3609,8 +3609,8 @@ void ProjectDoc::DisplayStatistics()
             }
 
         wxString formattedStats = ProjectReportFormat::FormatHtmlReportStart(
-                wxGetApp().GetAppOptions().GetControlBackgroundColor(),
-                ((wxGetApp().GetAppOptions().GetControlBackgroundColor().
+                wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW),
+                ((wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW).
                     GetLuminance() < .5f) ? *wxWHITE : *wxBLACK)) +
             ProjectReportFormat::FormatStatisticsInfo(this,
                 GetStatisticsReportInfo(),
@@ -3694,8 +3694,8 @@ void ProjectDoc::DisplayStatistics()
         assert(sumWindow);
         sumWindow->SetPage(
             ProjectReportFormat::FormatHtmlReportStart(
-                wxGetApp().GetAppOptions().GetControlBackgroundColor(),
-                ColorContrast::BlackOrWhiteContrast(wxGetApp().GetAppOptions().GetControlBackgroundColor()),
+                wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW),
+                ColorContrast::BlackOrWhiteContrast(wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW)),
                 _(L"Dolch Summary")) +
                 ProjectReportFormat::FormatDolchStatisticsInfo(this,
                     GetStatisticsReportInfo(), true,

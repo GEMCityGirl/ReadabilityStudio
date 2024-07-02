@@ -27,7 +27,6 @@ EditTextDlg::EditTextDlg(wxWindow* parent, BaseProjectDoc* parentDoc, wxString v
       m_usingParaSpace(wxGetApp().GetAppOptions().IsEditorShowSpaceAfterParagraph()),
       m_lineSpacing(wxGetApp().GetAppOptions().GetEditorLineSpacing()), m_parentDoc(parentDoc)
     {
-    SetBackgroundColour(wxGetApp().GetAppOptions().GetControlBackgroundColor());
     Create(parent, id,
            (m_parentDoc != nullptr) ?
                wxString::Format(L"%s (\"%s\")", caption, m_parentDoc->GetTitle()) :

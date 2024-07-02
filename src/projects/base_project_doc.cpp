@@ -355,11 +355,7 @@ wxColour BaseProjectDoc::GetTextReportBackgroundColor() const
     {
     if (m_textReportBackgroundColorFromTheme)
         {
-    #ifdef __WXOSX__
-        return wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW);
-    #else
-        return wxGetApp().GetAppOptions().GetControlBackgroundColor();
-    #endif
+        return wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW);
         }
     else
         { return *wxWHITE; }
@@ -385,15 +381,6 @@ void BaseProjectDoc::UpdateExplanationListOptions(ExplanationListCtrl* eList)
     eList->SetResources(
         wxGetApp().GetMainFrame()->GetHelpDirectory(),
         L"column-sorting.html");
-
-#ifndef __WXOSX__
-    eList->SetBackgroundColour(wxGetApp().GetAppOptions().GetControlBackgroundColor());
-    eList->SetForegroundColour(ColorContrast::BlackOrWhiteContrast(
-        wxGetApp().GetAppOptions().GetControlBackgroundColor()));
-    eList->GetResultsListCtrl()->SetBackgroundColour(wxGetApp().GetAppOptions().GetControlBackgroundColor());
-    eList->GetResultsListCtrl()->SetForegroundColour(
-        ColorContrast::BlackOrWhiteContrast(wxGetApp().GetAppOptions().GetControlBackgroundColor()));
-#endif
 
     UpdatePrinterHeaderAndFooters(eList);
     }
@@ -478,14 +465,6 @@ void BaseProjectDoc::UpdateListOptions(ListCtrlEx* list)
         wxGetApp().GetMainFrame()->GetHelpDirectory(),
         L"export-list.html");
     list->SetSortHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"column-sorting.html");
-
-#ifndef __WXOSX__
-    list->SetBackgroundColour(wxGetApp().GetAppOptions().GetControlBackgroundColor());
-    list->SetForegroundColour(ColorContrast::BlackOrWhiteContrast(
-        wxGetApp().GetAppOptions().GetControlBackgroundColor()));
-    if (list->GetAlternateRowColour().IsOk())
-        { list->EnableAlternateRowColours(); }
-#endif
 
     UpdatePrinterHeaderAndFooters(list);
     }

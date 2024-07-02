@@ -25,7 +25,6 @@ Source: ..\resources\words.wad; DestDir: {app}; Components: ProgramFiles; Flags:
 Source: ..\..\resources\scripting\*.api; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\..\resources\scripting\*.lua; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\..\resources\report-themes\*; DestDir: {app}\report-themes; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
-Source: ..\..\resources\themes\*; DestDir: {app}\themes; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\redist\license.rtf; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion
 ; help files
 Source: ..\..\docs\readability-studio-manual\docs\*; DestDir: {app}\readability-studio-manual; Components: HelpFiles; Excludes: "thumbs.db,*.tex,*.log,README.md,\.git"; Flags: replacesameversion restartreplace recursesubdirs

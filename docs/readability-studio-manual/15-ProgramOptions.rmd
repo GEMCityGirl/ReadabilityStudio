@@ -32,14 +32,6 @@ The options on this page manage the program's general settings.
 
 **Reset**: Click this button to reset the program settings to the defaults.
 
-### Themes {-}
-
-Select a theme from this list to apply custom colors to the program. Themes can affect the colors for the ribbon, sidebars, the start page, lists, and reports.
-
-::: {.notesection data-latex=""}
-This option is only available in the Windows edition. Under macOS, the system's theme will be applied.
-:::
-
 ### Internet {-}
 
 **User agent**: Enter into this field your user agent. The user agent is the name of the client program that is sent to websites when you try to read and download pages from them.

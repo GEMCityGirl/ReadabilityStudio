@@ -1305,28 +1305,6 @@ class ReadabilityAppOptions
 
     void SetAppWindowHeight(const int height) noexcept { m_appWindowHeight = height; }
 
-    void SetTheme(const wxString& theme) { m_themeName = theme; }
-
-    [[nodiscard]]
-    const wxString& GetTheme() const noexcept
-        {
-        return m_themeName;
-        }
-
-    [[nodiscard]]
-    wxColour GetControlBackgroundColor() const
-        {
-        return m_controlBackgroundColor;
-        }
-
-    void SetControlBackgroundColor(const wxColour& color)
-        {
-        if (color.IsOk())
-            {
-            m_controlBackgroundColor = color;
-            }
-        }
-
     // ribbon theming
     [[nodiscard]]
     wxColour GetRibbonActiveTabColor() const
@@ -2613,8 +2591,6 @@ class ReadabilityAppOptions
     bool m_appWindowMaximized{ true };
     int m_appWindowWidth{ 800 };
     int m_appWindowHeight{ 700 };
-    wxString m_themeName{ _DT(L"System") };
-    wxColour m_controlBackgroundColor{ *wxWHITE };
     // ribbon
     wxColour m_ribbonActiveTabColor{ wxColour{ 245, 246, 247 } };
     wxColour m_ribbonInactiveTabColor{ wxColour{ 254, 254, 254 } };
@@ -2987,11 +2963,6 @@ class ReadabilityAppOptions
     const std::string_view XML_DOLCH_ADJECTIVES_HIGHLIGHTCOLOR{ _DT("dolch-adjective-font-color") };
     const std::string_view XML_DOLCH_VERBS_HIGHLIGHTCOLOR{ _DT("dolch-verb-font-color") };
     const std::string_view XML_DOLCH_NOUNS_HIGHLIGHTCOLOR{ _DT("dolch-noun-font-color") };
-    // theming
-    const std::string_view XML_THEME_NAME{ _DT("theme-name") };
-    const std::string_view XML_CONTROL_BACKGROUND_COLOR{ _DT("control-background-color") };
-    const std::string_view XML_SIDEBAR_BACKGROUND_COLOR{ _DT("sidebar-background-color") };
-    const std::string_view XML_SIDEBAR_PARENT_COLOR{ _DT("sidebar-parent-color") };
     // general options
     const std::string_view XML_APPEARANCE{ _DT("appearance") };
     const std::string_view XML_WINDOW_MAXIMIZED{ _DT("app-window-maximized") };
