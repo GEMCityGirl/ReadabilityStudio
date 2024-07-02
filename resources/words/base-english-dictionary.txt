@@ -8472,6 +8472,10 @@ autosize
 autosized
 autosizes
 autosizing
+autoslid
+autoslide
+autoslides
+autosliding
 autosomal
 autosome
 autosome's
@@ -23686,6 +23690,9 @@ codebase
 codebase's
 codebases
 codebases'
+codeblock
+codeblock's
+codeblocks
 codebook
 codebooks
 codebreak
@@ -23712,6 +23719,9 @@ codependencies
 codependency
 codependent
 codependents
+codepoint
+codepoint's
+codepoints
 coder
 coder's
 coders
@@ -41052,6 +41062,7 @@ echolocation
 echolocation's
 echolocations
 echopraxia
+echos
 echovirus
 eclair
 eclair's
@@ -76635,6 +76646,9 @@ macrophage's
 macrophages
 macrophagic
 macrophile
+macropixel
+macropixel's
+macropixels
 macros
 macroscale
 macroscale's
@@ -83078,6 +83092,7 @@ monogamy
 monogamy's
 monogastric
 monogeneans
+monogenetic
 monogenic
 monoglyceride
 monoglycerides
@@ -84369,6 +84384,7 @@ multidetector
 multidimensional
 multidimensionality
 multidimensionally
+multidisc
 multidisciplinary
 multidisk
 multielectron
@@ -84669,6 +84685,7 @@ multiview's
 multiviews
 multivitamin
 multivitamins
+multivolume
 multiwavelength
 multiway
 multiweek
@@ -87496,6 +87513,7 @@ noncitizens
 nonclassical
 nonclerical
 nonclericals
+nonclient
 nonclinical
 nonclustered
 noncoding
@@ -100639,6 +100657,7 @@ port
 port's
 portabilities
 portability
+portabilty
 portable
 portables
 portably
@@ -106178,6 +106197,7 @@ questionnaire's
 questionnaires
 questions
 quests
+queuable
 queue
 queue's
 queued
@@ -123608,6 +123628,10 @@ solar
 solaria
 solarium
 solarium's
+solarize
+solarized
+solarizes
+solarizing
 solars
 sold
 solder
@@ -124533,6 +124557,10 @@ spatiality's
 spatialization
 spatialization's
 spatializations
+spatialize
+spatialized
+spatializes
+spatializing
 spatially
 spatio
 spats
@@ -126577,6 +126605,9 @@ stasis's
 stat
 state
 state's
+stateblock
+stateblock's
+stateblocks
 statecraft
 statecraft's
 statecrafts
@@ -129011,9 +129042,9 @@ submitter
 submitters
 submitting
 submix
-submixe
+submix's
 submixed
-submixeds
+submixes
 submixing
 submodalities
 submodality
@@ -140564,6 +140595,7 @@ uncommunicative
 uncompensated
 uncompetitive
 uncompilable
+uncompiled
 uncomplaining
 uncomplainingly
 uncompleted
@@ -141372,6 +141404,7 @@ undramatically
 undramatized
 undramatized's
 undramatizeds
+undrawn
 undreamed
 undress
 undressed
@@ -142487,6 +142520,7 @@ unmodernized
 unmodernizes
 unmodifiable
 unmodified
+unmodulated
 unmolested
 unmonitored
 unmonopolized
@@ -142620,6 +142654,7 @@ unparked
 unparliamentary
 unparodied
 unparsable
+unparseable
 unparsed
 unpartitionable
 unpartitioned
@@ -146583,6 +146618,8 @@ volcanism's
 volcano
 volcano's
 volcanoes
+volcanology
+volcanology's
 vole
 vole's
 voled

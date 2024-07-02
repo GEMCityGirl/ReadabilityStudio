@@ -49,6 +49,7 @@ ActiveX
 Acworth
 Acyclovir
 Adairsville
+Adaptec
 Adbusters
 AdChoices
 Addis
@@ -148,6 +149,7 @@ Algerian
 Algieba
 Algiers
 Algol
+Algolia
 Algonquian
 Algonquin
 Alibaba
@@ -1286,6 +1288,7 @@ Channelview
 Chanukah
 Chappaquiddick
 Chapstick
+Charco
 Chardonnay
 Charentes
 Charin
@@ -2546,6 +2549,7 @@ Ganges
 Gangtok
 Gannon
 Ganymede
+Gapminder
 GarageBand
 Garamond
 Gardasil
@@ -4036,6 +4040,7 @@ Mathematik
 Mathworld
 Matlab
 Matplotlib
+Matroska
 Mattachine
 Mattel
 Matterhorn
@@ -4300,6 +4305,7 @@ Monsanto
 Montalegre
 Montana
 Montanan
+Montaña
 Montclair
 Montebello
 Montenegrin
@@ -4433,6 +4439,7 @@ Nairobi
 Naku'alofa
 Naltrexone
 Nam
+Nambroque
 Namco
 Namibia
 Namibian
@@ -5336,6 +5343,7 @@ Queensborough
 Queensbury
 Queensland
 Queenstown
+Quemada
 Queretaro
 Querétaro
 QuestBridge
@@ -5571,6 +5579,7 @@ Roxio
 Roxxsaurus
 Royalton
 Royce
+Rscript
 RStudio
 Rubaiyat
 Rubbermaid
@@ -6286,6 +6295,7 @@ Taiwan
 Taiwanese
 Tajik
 Tajikistan
+Tajuya
 Takata
 Taklamakan
 Takoma
@@ -6387,6 +6397,7 @@ Tempe
 Templar
 Tencent
 Tenderheart
+Teneguía
 Tenesmus
 Tenia
 Tenn
@@ -6694,6 +6705,7 @@ Tyco
 Tylenol
 Tynemouth
 Tyneside
+Typst
 Tyrolean
 Tyrosinemia
 Tzeltal
@@ -6948,6 +6960,7 @@ Vladivostok
 VMWare
 Vodafone
 VoIP
+Volcán
 Volga
 Volgograd
 Volkerpsychologie

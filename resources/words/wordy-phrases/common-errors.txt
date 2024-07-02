@@ -111,6 +111,8 @@ fuschia	fuchsia	3
 fuschia's	fuchsia's	3		
 Galapágos	Galápagos	3		
 Galations	Galatians	3		
+Gampminder	Gapminder	3		
+Gampminder's	Gapminder's	3		
 Gannt	Gantt	3		
 Gannt's	Gantt's	3		
 Gannts	Gantts	3		

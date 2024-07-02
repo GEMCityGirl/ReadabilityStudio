@@ -2413,6 +2413,7 @@ Berri
 Berridge
 Berrie
 Berrien
+Berrocoso
 Berry
 Berson
 Bert
@@ -2602,6 +2603,7 @@ Biro
 Birt
 Birtle
 Bischoff
+Biscoe
 Bishkek
 Bismarck
 Bisono
@@ -5213,6 +5215,7 @@ Culp
 Culpepper
 Culver
 Culverhouse
+Cumbre
 Cummings
 Cummins
 Cunard
@@ -10639,6 +10642,7 @@ Huxtable
 Huygens
 Huynh
 Huáng
+Hvitfeldt
 Hyacinthe
 Hyakutake
 Hyatt
@@ -14718,6 +14722,7 @@ Lowery
 Lowess
 Lowinger
 Lowman
+Lowndes
 Lowrance
 Lowrie
 Lowry
@@ -17243,6 +17248,7 @@ Nenonene
 Neolin
 Neomi
 Neopolo
+Neovim
 Nepal
 Nerea
 Nerenberg
@@ -19837,6 +19843,7 @@ Rumpfkeil
 Rumsfeld
 Runa
 Runcorn
+Rundel
 Rundle
 Rune
 Runge
@@ -20297,6 +20304,7 @@ Schlueter
 Schlumberger
 Schmahl
 Schmalenbach
+Schmehl
 Schmellenkamp
 Schmid
 Schmidt
@@ -22554,6 +22562,7 @@ Torcello
 Toree
 Toren
 Torey
+Torgersen
 Tori
 Toria
 Torian
@@ -24487,5 +24496,6 @@ Zynga
 Zytka
 Ángel
 Åland
+Çetinkaya
 Émile
 Öhman

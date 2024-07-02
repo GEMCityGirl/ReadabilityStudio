@@ -1,5 +1,6 @@
 as.data.frame
 as.factor
+blogdown
 break
 col.names
 datatype
@@ -35,6 +36,7 @@ NaN
 next
 nrow
 NULL
+polyglossia
 printf
 read.delim
 read.fortran

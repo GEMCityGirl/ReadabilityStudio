@@ -634,6 +634,9 @@ afficianados	aficionados	3
 afficionado	aficionado	3		
 afficionados	aficionados	3		
 affilate	affiliate	3		
+affilication	affliction, affiliation	3		
+affilication's	affliction's, affiliation's	3		
+affilications	afflictions, affiliations	3		
 affilliate	affiliate	3		
 affix	put, stick	0		
 affixed	put, stuck	0		
@@ -1795,6 +1798,9 @@ assimilate	absorb, digest	0
 assimilated	absorbed, digested	0		
 assimilates	absorbs, digests	0		
 assimilating	absorbing, digesting	0		
+assing	assign	3		
+assinged	assigned	3		
+assinging	assigning	3		
 assingment	assignment	3		
 assingment's	assignment's	3		
 assingments	assignments	3		
@@ -1883,6 +1889,8 @@ asynchonous	asynchronous	3
 asynchonously	asynchronously	3		
 asynchornous	asynchronous	3		
 asynchornously	asynchronously	3		
+asynchrnous	asynchronous	3		
+asynchrnously	asynchronously	3		
 asynchroniously	asynchronously	3		
 asynchrounous	asynchronous	3		
 asynchrounously	asynchronously	3		
@@ -2844,6 +2852,7 @@ came as a surprise	surprised	0
 came equipped with	came with, equipped with	0		
 came furnished with	came with, furnished with	0		
 came to an agreement	agreed	0		
+camnot	cannot	3		
 camoflage	camouflage	3		
 camoflague	camouflage	3		
 campagin	campaign	3		
@@ -4556,6 +4565,9 @@ daratumamab's	daratumumab's	3
 Dardenelles	Dardanelles	3		
 dark horse	contestant/candidate that people know little about that has a good chance of winning	2		
 dark horses	contestants/candidates that people know little about that have a good chance of winning	2		
+dasboard	dashboard	3		
+dasboard's	dashboard's	3		
+dasboards	dashboards	3		
 dashbaord	dashboard	3		
 dashbaord's	dashboard's	3		
 dashbaords	dashboards	3		
@@ -5170,6 +5182,9 @@ dipslays	displays	3
 dipthong	diphthong	3		
 dipthongs	diphthongs	3		
 dire straights	dire straits	3		
+direcdtories	directories	3		
+direcdtory	directory	3		
+direcdtory's	directory's	3		
 direclty	directly	3		
 direcly	directly	3		
 directely	directly	3		
@@ -6269,6 +6284,10 @@ evalute	evaluate	3
 evaluted	evaluated	3		
 evalutes	evaluates	3		
 evaluting	evaluating	3		
+evaualte	evaluate	3		
+evaualted	evaluated	3		
+evaualtes	evaluates	3		
+evaualting	evaluating	3		
 evauluated	evaluated	3		
 even steven	evenly divided	2		
 even stevens	evenly divided	2		
@@ -6521,7 +6540,10 @@ experiance's	experience's	3
 experianced	experienced	3		
 experiances	experiences	3		
 experieced	experienced	3		
+experiement	experiment	3		
+experiement's	experiment's	3		
 experiemental	experimental	3		
+experiements	experiments	3		
 experienc	experience	3		
 experiend	experienced	3		
 experince	experience	3		
@@ -8772,6 +8794,10 @@ inializations	initializations	3
 iniative	initiative	3		
 iniative's	initiative's	3		
 iniatives	initiatives	3		
+inidvidual	individual	3		
+inidvidual's	individual's	3		
+inidvidually	individually	3		
+inidviduals	individuals	3		
 inimitable	unmatched	0		
 iniquitous	wicked	0		
 iniquitously	wickedly	0		
@@ -10120,6 +10146,9 @@ mecanism	mechanism	3
 mecanisms	mechanisms	3		
 mechandise	merchandise	3		
 mechanims	mechanism	3		
+mechanismm	mechanism	3		
+mechanismm's	mechanism's	3		
+mechanismms	mechanisms	3		
 mechansim	mechanism	3		
 mechnancism	mechanism	3		
 mechnancism's	mechanism's	3		
@@ -10560,6 +10589,7 @@ nanseconds	nanoseconds	3
 napshot	snapshot	3		
 napshot's	snapshot's	3		
 napshots	snapshots	3		
+natually	naturally	3		
 natural instinct	instinct	1		
 natural instincts	instincts	1		
 naturaly	naturally	3		
@@ -10691,6 +10721,7 @@ nips in the bud	stops at an early stage	2
 nkow	know	3		
 nkwo	know	3		
 nmae	name	3		
+nnotifies	notifies	3		
 no affect	no effect	3		
 no better	best	0		
 no body	nobody	3		element;elements;tag;tags
@@ -10771,6 +10802,9 @@ notations	notes	0
 noteable	notable	3		
 noteably	notably	3		
 noteriety	notoriety	3		
+notfication	notification	3		
+notfication's	notification's	3		
+notfications	notifications	3		
 notfied	notified	3		
 notfies	notifies	3		
 noth	north	3		
@@ -12666,7 +12700,11 @@ provacative	provocative	3
 provded	provided	3		
 provdes	provides	3		
 proven fact	fact	0		
+provice	provide	3		
+proviced	provided	3		
+provices	provides	3		
 provicial	provincial	3		
+provicing	providing	3		
 provide	give	0		
 provide a response to	respond to	0		
 provide assistance with	help, support	0		
@@ -13537,6 +13575,7 @@ represneting	representing	3
 represnets	represents	3		
 reproducable	reproducible	3		
 reprtoire	repertoire	3		
+repsective	respective	3		
 repsectively	respectively	3		
 reptition	repetition	3		
 repubic	republic	3		
@@ -13668,6 +13707,9 @@ respectivley	respectively	3
 respectivly	respectively	3		
 responce	response	3		
 respond	answer	0		
+respone	response	3		
+respone's	response's	3		
+respones	responses	3		
 responibilities	responsibilities	3		
 responisble	responsible	3		
 responnsibilty	responsibility	3		
@@ -13947,6 +13989,9 @@ saftey	safety	3
 safty	safety	3		
 sagacious	wise	0		
 sagaciously	wisely	0		
+sahder	shader	3		
+sahder's	shader's	3		
+sahders	shaders	3		
 said a mouthful	summed up the situation	2		
 salacious	lewd, vulgar	0		
 salaciously	lewdly, vulgarly	0		
@@ -15225,6 +15270,10 @@ symetry	symmetry	3
 symettric	symmetric	3		
 symmetral	symmetric	3		
 symmetricaly	symmetrically	3		
+symplified	simplified	3		
+symplifies	simplifies	3		
+symplify	simplify	3		
+symplifying	simplifying	3		
 synagouge	synagogue	3		
 synax	syntax	3		
 synchonized	synchronized	3		
@@ -17081,6 +17130,9 @@ word of mouth	spreading information informally	2
 wordlwide	worldwide	3		
 workaroung	workaround	3		
 workboos	workbooks	3		
+workfow	workflow	3		
+workfow's	workflow's	3		
+workfows	workflows	3		
 workine	working	3		
 workststion	workstation	3		
 worls	world	3		
