@@ -586,6 +586,10 @@ void ProjectWizardDlg::CreateControls()
                              wxDefaultPosition, wxDefaultSize, wxBU_NOTEXT | wxBORDER_NONE);
             moreInfoButton->SetBitmap(
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/help-button.svg"));
+            if (wxSystemSettings::GetAppearance().IsDark())
+                {
+                moreInfoButton->SetBackgroundColour(GetBackgroundColour());
+                }
             noteSizer->Add(moreInfoButton,
                            wxSizerFlags().Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
             noteSizer->SetMinSize(ScaledNoteWidth, -1);
@@ -640,6 +644,10 @@ void ProjectWizardDlg::CreateControls()
                 wxDefaultPosition, wxDefaultSize, wxBU_NOTEXT | wxBORDER_NONE);
             moreInfoButton->SetBitmap(
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/help-button.svg"));
+            if (wxSystemSettings::GetAppearance().IsDark())
+                {
+                moreInfoButton->SetBackgroundColour(GetBackgroundColour());
+                }
             noteSizer->Add(moreInfoButton,
                            wxSizerFlags().Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
 
@@ -710,6 +718,10 @@ void ProjectWizardDlg::CreateControls()
                              wxDefaultPosition, wxDefaultSize, wxBU_NOTEXT | wxBORDER_NONE);
             moreInfoButton->SetBitmap(
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/help-button.svg"));
+            if (wxSystemSettings::GetAppearance().IsDark())
+                {
+                moreInfoButton->SetBackgroundColour(GetBackgroundColour());
+                }
             noteSizer->Add(moreInfoButton, 0, wxLEFT, wxSizerFlags::GetDefaultBorder() * 3);
             noteSizer->SetMinSize(ScaledNoteWidth, -1);
 
