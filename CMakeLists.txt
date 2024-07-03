@@ -234,7 +234,7 @@ if(WIN32)
     # Include an RC file and HiDPI manifest for Windows (provided by wxWidgets)
     set(wxUSE_DPI_AWARE_MANIFEST 1)
     list(APPEND APP_SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/readstudio.rc)
-    list(APPEND APP_SRC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/../wxWidgets/include/wx/msw/wx_dpi_aware.manifest")
+    list(APPEND APP_SRC_FILES "${wxWidgets_BASEDIR}/include/wx/msw/wx_dpi_aware.manifest")
 elseif(APPLE)
     # Add an icon for the apple .app file
     list(APPEND APP_SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/app-logo.icns)
