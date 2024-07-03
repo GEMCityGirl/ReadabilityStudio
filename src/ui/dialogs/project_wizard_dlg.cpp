@@ -1577,7 +1577,7 @@ void ProjectWizardDlg::OnButtonClick(wxCommandEvent& link)
         }
     else if (link.GetId() == FRAGMENTED_LINK_ID)
         {
-        helpTopic = L"framented-text.html";
+        helpTopic = L"fragmented-text.html";
         }
     else if (link.GetId() == CENTERED_TEXT_LINK_ID)
         {
