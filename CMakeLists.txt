@@ -97,7 +97,7 @@ if(BUILD_TESTING)
 endif()
 
 if(APPLE)
-    message(STATUS "Supported architectures: ${ARCHS_STANDARD}")
+    message(STATUS "Supported architectures: ${CMAKE_OSX_ARCHITECTURES}")
 else()
     message( STATUS "Architecture: ${CMAKE_SYSTEM_PROCESSOR}" )
 endif()
