@@ -54958,6 +54958,9 @@ gladsome
 gladsomer
 gladsomest
 glam
+glamazon
+glamazon's
+glamazons
 glammed
 glamming
 glamor
@@ -67379,6 +67382,7 @@ inspirits
 inspissate
 inspo
 inst
+insta
 instabilities
 instability
 instability's
@@ -92345,6 +92349,10 @@ overlearns
 overlie
 overlier
 overlies
+overline
+overlined
+overlines
+overlining
 overload
 overloaded
 overloading
@@ -108900,6 +108908,9 @@ recrudescing
 recruit
 recruit's
 recruited
+recruitee
+recruitee's
+recruitees
 recruiter
 recruiter's
 recruiters
@@ -125494,6 +125505,9 @@ spooled
 spooler
 spooler's
 spoolers
+spoolie
+spoolie's
+spoolies
 spooling
 spools
 spoon

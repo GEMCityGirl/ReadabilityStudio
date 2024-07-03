@@ -16,6 +16,7 @@ Aboriginal
 Aborigine
 Absecon
 Abuja
+Abura
 Abyssinia
 Abyssinian
 AcademicBlue
@@ -1469,6 +1470,7 @@ CNN
 CNS
 Coahuila
 COBOL
+Cocobolo
 Coconutter
 Cocoshea
 Codabar
@@ -1645,6 +1647,7 @@ Cuda
 Cuisinart
 Cullman
 Culpeper
+Cumaru
 Cumberland
 Cumberlander
 Cumberlands
@@ -1660,6 +1663,7 @@ Curitiba
 Curlheights
 Curlsmith
 Currarino
+Curvitude
 Cusco
 Cuyahoga
 Cximal
@@ -2034,6 +2038,7 @@ Eiffel
 Eileithyia
 Einsteinian
 Eisa
+Ekki
 El-Cajon
 El-Centro
 Elanex
@@ -2516,6 +2521,7 @@ Galax
 Galbraith
 Galen
 Galenic
+Galentine
 Galesburg
 Galibi
 Galilean
@@ -2678,6 +2684,7 @@ Googletest
 Googling
 GOP
 Gordonsville
+Gorgias
 Gorham
 Gorky
 Gosport
@@ -2983,6 +2990,7 @@ Hinduism
 Hindustan
 Hindustani
 Hinesville
+Hinoki
 Hipparchus
 Hippocratic
 Hiram
@@ -3250,6 +3258,7 @@ Irishwoman
 Irishwomen
 Irix
 iRobot
+Iroko
 Ironton
 Iroquoian
 Iroquois
@@ -3304,6 +3313,7 @@ Japan
 Japanese
 Japantown
 Jarlsberg
+Jarrah
 Java
 Javadoc
 Javanese
@@ -3897,6 +3907,7 @@ Madagascar
 Madison
 Madisonville
 Madrid
+Madrone
 Magdeburg
 Magecart
 Magellanic
@@ -5562,6 +5573,7 @@ Roscommon
 Roseau
 Roseburg
 Roseglow
+Rosehip
 Rosemead
 Rosemont
 Rosetta
@@ -7105,6 +7117,7 @@ Welwitschia
 Wembley
 Wenatchee
 Wendover
+Wenge
 Wessex
 Westampton
 Westerville
