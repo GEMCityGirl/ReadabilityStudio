@@ -536,8 +536,9 @@ bool ReadabilityApp::OnInit()
             #endif
             }
         }
-
+#ifdef __WXMSW__
     MSWEnableDarkMode();
+#endif
     GetAppOptions().LoadOptionsFile(AppSettingFolderPath + L"Settings.xml", true);
 
     AppendDailyLog(GetAppOptions().IsAppendingDailyLog());
