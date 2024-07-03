@@ -1075,9 +1075,9 @@ void ProjectDoc::DisplayReadabilityScores(const bool setFocus)
             scoresReport->SetPage(
                 ProjectReportFormat::FormatHtmlReportStart(
                     wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW),
-                    ColorContrast::BlackOrWhiteContrast(wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW))) +
-                text +
-                ProjectReportFormat::FormatHtmlReportEnd());
+                    ColorContrast::BlackOrWhiteContrast(
+                        wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW))) +
+                text + ProjectReportFormat::FormatHtmlReportEnd());
             }
         else
             {
@@ -5842,7 +5842,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                         view->GetWordsBreakdownView().FindWindowPositionById(
                             pos->GetIterator()->get_interface_id(), CLASSINFO(ListCtrlEx));
                     view->GetWordsBreakdownView().InsertWindow(
-                        (buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition+1 : 0, textWindow);
+                        (buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition + 1 : 0,
+                        textWindow);
                     }
                 UpdateTextWindowOptions(textWindow);
 
@@ -6176,11 +6177,15 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 dynamic_cast<FormattedTextCtrl*>(view->GetDolchSightWordsView().FindWindowById(
                     BaseProjectView::DOLCH_WORDS_TEXT_PAGE_ID));
             textWindow = buildTextWindow(textWindow, BaseProjectView::DOLCH_WORDS_TEXT_PAGE_ID,
-                _(L"Highlighted Dolch Words"), isDolchWordThemed, textLegendsThemed.dolchWindowLegend);
+                                         _(L"Highlighted Dolch Words"), isDolchWordThemed,
+                                         textLegendsThemed.dolchWindowLegend);
             view->GetDolchSightWordsView().AddWindow(textWindow);
             }
         else
-            { view->GetDolchSightWordsView().RemoveWindowById(BaseProjectView::DOLCH_WORDS_TEXT_PAGE_ID); }
+            {
+            view->GetDolchSightWordsView().RemoveWindowById(
+                BaseProjectView::DOLCH_WORDS_TEXT_PAGE_ID);
+            }
 
         if (IsIncludingDolchSightWords())
             {
@@ -6188,18 +6193,21 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 dynamic_cast<FormattedTextCtrl*>(view->GetDolchSightWordsView().FindWindowById(
                     BaseProjectView::NON_DOLCH_WORDS_TEXT_PAGE_ID));
             textWindow = buildTextWindow(textWindow, BaseProjectView::NON_DOLCH_WORDS_TEXT_PAGE_ID,
-                _(L"Highlighted Non-Dolch Words"), isNotDolchWordThemed, textLegendsThemed.nonDolchWordsLegend);
+                                         _(L"Highlighted Non-Dolch Words"), isNotDolchWordThemed,
+                                         textLegendsThemed.nonDolchWordsLegend);
             view->GetDolchSightWordsView().AddWindow(textWindow);
             }
         else
-            { view->GetDolchSightWordsView().RemoveWindowById(BaseProjectView::NON_DOLCH_WORDS_TEXT_PAGE_ID); }
+            {
+            view->GetDolchSightWordsView().RemoveWindowById(
+                BaseProjectView::NON_DOLCH_WORDS_TEXT_PAGE_ID);
+            }
         }
     catch (...)
         {
-        wxMessageBox(
-            _(L"An internal error occurred while formatting the highlighted text. "
-               "Please contact the software vendor."), _(L"Error"),
-            wxICON_EXCLAMATION|wxOK);
+        wxMessageBox(_(L"An internal error occurred while formatting the highlighted text. "
+                       "Please contact the software vendor."),
+                     _(L"Error"), wxICON_EXCLAMATION | wxOK);
         }
     }
 
@@ -6219,8 +6227,9 @@ bool ProjectDoc::OnSaveDocument(const wxString& filename)
             }
         catch (const MemoryMappedFileShareViolationException&)
             {
-            LogMessage(_(L"Project appears to be open by another application. Cannot save project."),
-                _(L"Project Save"), wxOK|wxICON_EXCLAMATION);
+            LogMessage(
+                _(L"Project appears to be open by another application. Cannot save project."),
+                _(L"Project Save"), wxOK | wxICON_EXCLAMATION);
             return false;
             }
         // don't care about the file being empty or whatever, just if it's locked
@@ -6233,21 +6242,21 @@ bool ProjectDoc::OnSaveDocument(const wxString& filename)
     // if we opened earlier in read only mode then bail
     if (m_FileReadOnly)
         {
-        LogMessage(_(L"Project file was opened as read only. Unable to save."),
-                _(L"Project Save"), wxOK|wxICON_INFORMATION);
+        LogMessage(_(L"Project file was opened as read only. Unable to save."), _(L"Project Save"),
+                   wxOK | wxICON_INFORMATION);
         return false;
         }
 
-    if (!m_File.IsOpened() )
+    if (!m_File.IsOpened())
         {
         // If the file is already there and it is in use then fail.
         // otherwise, may be a new project needing to be created. Either way, we need to
         // truncate the file (and maybe create it), so open it for writing.
-        if (!m_File.Open(filename, wxFile::write) )
+        if (!m_File.Open(filename, wxFile::write))
             {
             m_FileReadOnly = true;
             LogMessage(_(L"File appears to be open by another application. Cannot save project."),
-                _(L"Project Save"), wxOK|wxICON_EXCLAMATION);
+                       _(L"Project Save"), wxOK | wxICON_EXCLAMATION);
             return false;
             }
         }
@@ -6304,11 +6313,13 @@ bool ProjectDoc::OnSaveDocument(const wxString& filename)
     if (!out.Commit())
         {
         LogMessage(_(L"Unable to save project file. File may be locked by another process."),
-                   _(L"Project Error"), wxOK|wxICON_EXCLAMATION);
+                   _(L"Project Error"), wxOK | wxICON_EXCLAMATION);
         return false;
         }
     if (!LockProjectFile())
-        { return false; }
+        {
+        return false;
+        }
 
     Modify(false);
     SetDocumentSaved(true);
@@ -6379,8 +6390,9 @@ void ProjectDoc::DisplayOverlyLongSentences()
             }
         else
             {
-            listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::LONG_SENTENCES_LIST_PAGE_ID,
-                wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+            listView = new ListCtrlEx(
+                view->GetSplitter(), BaseProjectView::LONG_SENTENCES_LIST_PAGE_ID,
+                wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
             listView->Hide();
             listView->SetLabel(BaseProjectView::GetLongSentencesLabel());
             listView->SetName(BaseProjectView::GetLongSentencesLabel());
@@ -6391,14 +6403,15 @@ void ProjectDoc::DisplayOverlyLongSentences()
             listView->SetVirtualDataProvider(m_overlyLongSentenceData);
             listView->SetVirtualDataSize(m_overlyLongSentenceData->GetItemCount());
             listView->DistributeColumns();
-            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+            listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU"));
             UpdateListOptions(listView);
-            // sort by length (high to low), then by index (low to high, order of appearance in the document)
-            std::vector<std::pair<size_t,Wisteria::SortDirection>> columnsToSort;
-            columnsToSort.push_back(
-                std::pair<size_t,Wisteria::SortDirection>(1, Wisteria::SortDirection::SortDescending));
-            columnsToSort.push_back(
-                std::pair<size_t,Wisteria::SortDirection>(2, Wisteria::SortDirection::SortAscending));
+            // sort by length (high to low), then by index
+            // (low to high, order of appearance in the document)
+            std::vector<std::pair<size_t, Wisteria::SortDirection>> columnsToSort;
+            columnsToSort.push_back(std::pair<size_t, Wisteria::SortDirection>(
+                1, Wisteria::SortDirection::SortDescending));
+            columnsToSort.push_back(std::pair<size_t, Wisteria::SortDirection>(
+                2, Wisteria::SortDirection::SortAscending));
             listView->SortColumns(columnsToSort);
             view->GetSentencesBreakdownView().AddWindow(listView);
             }
@@ -6420,17 +6433,20 @@ void ProjectDoc::DisplayGrammar()
     PROFILE();
     // if working with an empty project
     if (GetWords() == nullptr)
-        { return; }
+        {
+        return;
+        }
 
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
 
     const auto resetListView = [](ListCtrlEx* listView)
-        {
-        if (listView != nullptr &&
-            listView->GetVirtualDataProvider() != nullptr &&
+    {
+        if (listView != nullptr && listView->GetVirtualDataProvider() != nullptr &&
             listView->GetVirtualDataProvider()->GetItemCount() == 0)
-            { listView->SetItemCount(0); }
-        };
+            {
+            listView->SetItemCount(0);
+            }
+    };
 
     // load issues from phrase based checks
     const auto& wordyIndices = GetWords()->get_known_phrase_indices();
@@ -6447,49 +6463,59 @@ void ProjectDoc::DisplayGrammar()
     size_t wordyPhraseCount(0), redundantPhraseCount(0), wordingErrorCount(0), clicheCount(0);
     for (size_t i = 0; i < wordyIndices.size(); ++i)
         {
-        if (wordyPhrases[wordyIndices[i].second].first.get_type() == grammar::phrase_type::phrase_cliche)
+        if (wordyPhrases[wordyIndices[i].second].first.get_type() ==
+            grammar::phrase_type::phrase_cliche)
             {
             m_clichePhraseData->SetItemText(
                 clicheCount, 0, wordyPhrases[wordyIndices[i].second].first.to_string().c_str());
-            m_clichePhraseData->SetItemText(
-                clicheCount, 1, wordyPhrases[wordyIndices[i].second].second.c_str());
-            m_clichePhraseData->SetItemValue(clicheCount++, 2,
+            m_clichePhraseData->SetItemText(clicheCount, 1,
+                                            wordyPhrases[wordyIndices[i].second].second.c_str());
+            m_clichePhraseData->SetItemValue(
+                clicheCount++, 2,
                 // make 1-based index
-                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
+                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index() + 1,
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
             }
-        else if (wordyPhrases[wordyIndices[i].second].first.get_type() == grammar::phrase_type::phrase_redundant)
+        else if (wordyPhrases[wordyIndices[i].second].first.get_type() ==
+                 grammar::phrase_type::phrase_redundant)
             {
             m_redundantPhraseData->SetItemText(
-                redundantPhraseCount, 0, wordyPhrases[wordyIndices[i].second].first.to_string().c_str());
-            m_redundantPhraseData->SetItemText(
-                redundantPhraseCount, 1, wordyPhrases[wordyIndices[i].second].second.c_str());
-            m_redundantPhraseData->SetItemValue(redundantPhraseCount++, 2,
+                redundantPhraseCount, 0,
+                wordyPhrases[wordyIndices[i].second].first.to_string().c_str());
+            m_redundantPhraseData->SetItemText(redundantPhraseCount, 1,
+                                               wordyPhrases[wordyIndices[i].second].second.c_str());
+            m_redundantPhraseData->SetItemValue(
+                redundantPhraseCount++, 2,
                 // make 1-based index
-                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
+                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index() + 1,
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
             }
-        else if (wordyPhrases[wordyIndices[i].second].first.get_type() == grammar::phrase_type::phrase_error)
+        else if (wordyPhrases[wordyIndices[i].second].first.get_type() ==
+                 grammar::phrase_type::phrase_error)
             {
             m_wordingErrorData->SetItemText(
-                wordingErrorCount, 0, wordyPhrases[wordyIndices[i].second].first.to_string().c_str());
-            m_wordingErrorData->SetItemText(
-                wordingErrorCount, 1, wordyPhrases[wordyIndices[i].second].second.c_str());
-            m_wordingErrorData->SetItemValue(wordingErrorCount++, 2,
+                wordingErrorCount, 0,
+                wordyPhrases[wordyIndices[i].second].first.to_string().c_str());
+            m_wordingErrorData->SetItemText(wordingErrorCount, 1,
+                                            wordyPhrases[wordyIndices[i].second].second.c_str());
+            m_wordingErrorData->SetItemValue(
+                wordingErrorCount++, 2,
                 // make 1-based index
-                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
+                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index() + 1,
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
             }
         else
             {
             m_wordyPhraseData->SetItemText(
-                wordyPhraseCount, 0, wordyPhrases[wordyIndices[i].second].first.to_string().c_str());
-            m_wordyPhraseData->SetItemText(
-                wordyPhraseCount, 1, wordyPhrases[wordyIndices[i].second].second.c_str());
-            m_wordyPhraseData->SetItemValue(wordyPhraseCount++, 2,
+                wordyPhraseCount, 0,
+                wordyPhrases[wordyIndices[i].second].first.to_string().c_str());
+            m_wordyPhraseData->SetItemText(wordyPhraseCount, 1,
+                                           wordyPhrases[wordyIndices[i].second].second.c_str());
+            m_wordyPhraseData->SetItemValue(
+                wordyPhraseCount++, 2,
                 // make 1-based index
-                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index()+1,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
+                GetWords()->get_words()[wordyIndices[i].first].get_sentence_index() + 1,
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
             }
         }
     m_wordyPhraseData->SetSize(wordyPhraseCount);
@@ -6512,8 +6538,9 @@ void ProjectDoc::DisplayGrammar()
                 }
             else
                 {
-                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID,
-                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView = new ListCtrlEx(
+                    view->GetSplitter(), BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID,
+                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
                 listView->SetLabel(BaseProjectView::GetPhrasingErrorsTabLabel());
                 listView->SetName(BaseProjectView::GetPhrasingErrorsTabLabel());
@@ -6524,7 +6551,7 @@ void ProjectDoc::DisplayGrammar()
                 listView->SetVirtualDataProvider(m_wordingErrorData);
                 listView->SetVirtualDataSize(m_wordingErrorData->GetItemCount());
                 listView->DistributeColumns();
-                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU"));
                 UpdateListOptions(listView);
                 view->GetGrammarView().AddWindow(listView);
                 }
@@ -6542,13 +6569,14 @@ void ProjectDoc::DisplayGrammar()
         frequency_set<traits::case_insensitive_wstring_ex> misspelledWords;
         const auto& misspelledWordIndices = GetWords()->get_misspelled_words();
         for (size_t i = 0; i < misspelledWordIndices.size(); ++i)
-            { misspelledWords.insert(GetWords()->get_word(misspelledWordIndices[i]).c_str()); }
+            {
+            misspelledWords.insert(GetWords()->get_word(misspelledWordIndices[i]).c_str());
+            }
         m_misspelledWordData->DeleteAllItems();
         m_misspelledWordData->SetSize(misspelledWords.get_data().size(), 2);
         size_t uniqueMisspellingCount = 0;
         for (auto mIter = misspelledWords.get_data().cbegin();
-            mIter != misspelledWords.get_data().cend();
-            ++mIter)
+             mIter != misspelledWords.get_data().cend(); ++mIter)
             {
             m_misspelledWordData->SetItemText(uniqueMisspellingCount, 0, mIter->first.c_str());
             m_misspelledWordData->SetItemValue(uniqueMisspellingCount++, 1, mIter->second);
@@ -6619,8 +6647,9 @@ void ProjectDoc::DisplayGrammar()
                 }
             else
                 {
-                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::DUPLICATES_LIST_PAGE_ID,
-                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView = new ListCtrlEx(
+                    view->GetSplitter(), BaseProjectView::DUPLICATES_LIST_PAGE_ID,
+                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
                 listView->SetLabel(BaseProjectView::GetRepeatedWordsLabel());
                 listView->SetName(BaseProjectView::GetRepeatedWordsLabel());
@@ -6630,7 +6659,7 @@ void ProjectDoc::DisplayGrammar()
                 listView->SetVirtualDataProvider(m_dupWordData);
                 listView->SetVirtualDataSize(m_dupWordData->GetItemCount());
                 listView->DistributeColumns();
-                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU"));
                 UpdateListOptions(listView);
                 view->GetGrammarView().AddWindow(listView);
                 }
@@ -6648,17 +6677,20 @@ void ProjectDoc::DisplayGrammar()
         frequency_set<traits::case_insensitive_wstring_ex> articleMismatchesWords;
         const auto& incorectArticleIndices = GetWords()->get_incorrect_article_indices();
         for (size_t i = 0; i < incorectArticleIndices.size(); ++i)
-            { articleMismatchesWords.insert(GetWords()->get_word(incorectArticleIndices[i]).c_str() +
+            {
+            articleMismatchesWords.insert(
+                GetWords()->get_word(incorectArticleIndices[i]).c_str() +
                 traits::case_insensitive_wstring_ex(L" ") +
-                GetWords()->get_word(incorectArticleIndices[i]+1).c_str()); }
+                GetWords()->get_word(incorectArticleIndices[i] + 1).c_str());
+            }
         m_incorrectArticleData->DeleteAllItems();
         m_incorrectArticleData->SetSize(articleMismatchesWords.get_data().size(), 2);
         size_t uniqueIncorrectArticleCount = 0;
         for (auto mIter = articleMismatchesWords.get_data().cbegin();
-            mIter != articleMismatchesWords.get_data().cend();
-            ++mIter)
+             mIter != articleMismatchesWords.get_data().cend(); ++mIter)
             {
-            m_incorrectArticleData->SetItemText(uniqueIncorrectArticleCount, 0, mIter->first.c_str());
+            m_incorrectArticleData->SetItemText(uniqueIncorrectArticleCount, 0,
+                                                mIter->first.c_str());
             m_incorrectArticleData->SetItemValue(uniqueIncorrectArticleCount++, 1, mIter->second);
             }
         ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
@@ -6674,8 +6706,9 @@ void ProjectDoc::DisplayGrammar()
                 }
             else
                 {
-                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::INCORRECT_ARTICLE_PAGE_ID,
-                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView = new ListCtrlEx(
+                    view->GetSplitter(), BaseProjectView::INCORRECT_ARTICLE_PAGE_ID,
+                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
                 listView->SetLabel(BaseProjectView::GetArticleMismatchesLabel());
                 listView->SetName(BaseProjectView::GetArticleMismatchesLabel());
@@ -6685,7 +6718,7 @@ void ProjectDoc::DisplayGrammar()
                 listView->SetVirtualDataProvider(m_incorrectArticleData);
                 listView->SetVirtualDataSize(m_incorrectArticleData->GetItemCount());
                 listView->DistributeColumns();
-                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU"));
                 UpdateListOptions(listView);
                 listView->SortColumn(0, Wisteria::SortDirection::SortAscending);
                 view->GetGrammarView().AddWindow(listView);
@@ -6714,8 +6747,9 @@ void ProjectDoc::DisplayGrammar()
                 }
             else
                 {
-                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::REDUNDANT_PHRASE_LIST_PAGE_ID,
-                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView = new ListCtrlEx(
+                    view->GetSplitter(), BaseProjectView::REDUNDANT_PHRASE_LIST_PAGE_ID,
+                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
                 listView->SetLabel(BaseProjectView::GetRedundantPhrasesTabLabel());
                 listView->SetName(BaseProjectView::GetRedundantPhrasesTabLabel());
@@ -6726,7 +6760,7 @@ void ProjectDoc::DisplayGrammar()
                 listView->SetVirtualDataProvider(m_redundantPhraseData);
                 listView->SetVirtualDataSize(m_redundantPhraseData->GetItemCount());
                 listView->DistributeColumns();
-                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU"));
                 UpdateListOptions(listView);
                 view->GetGrammarView().AddWindow(listView);
                 }
@@ -6798,8 +6832,9 @@ void ProjectDoc::DisplayGrammar()
                 }
             else
                 {
-                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID,
-                                          wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView = new ListCtrlEx(
+                    view->GetSplitter(), BaseProjectView::OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID,
+                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
                 listView->SetLabel(BaseProjectView::GetOverusedWordsBySentenceLabel());
                 listView->SetName(BaseProjectView::GetOverusedWordsBySentenceLabel());
@@ -6811,14 +6846,14 @@ void ProjectDoc::DisplayGrammar()
                 listView->SetVirtualDataProvider(GetOverusedWordsBySentenceData());
                 listView->SetVirtualDataSize(GetOverusedWordsBySentenceData()->GetItemCount());
                 listView->DistributeColumns();
-                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU"));
                 UpdateListOptions(listView);
                 // sort by sentence length, then words (lowest to highest)
-                std::vector<std::pair<size_t,Wisteria::SortDirection>> columnsToSort;
-                columnsToSort.push_back(std::pair<size_t, Wisteria::SortDirection>(2,
-                    Wisteria::SortDirection::SortAscending));
-                columnsToSort.push_back(std::pair<size_t, Wisteria::SortDirection>(0,
-                    Wisteria::SortDirection::SortAscending));
+                std::vector<std::pair<size_t, Wisteria::SortDirection>> columnsToSort;
+                columnsToSort.push_back(std::pair<size_t, Wisteria::SortDirection>(
+                    2, Wisteria::SortDirection::SortAscending));
+                columnsToSort.push_back(std::pair<size_t, Wisteria::SortDirection>(
+                    0, Wisteria::SortDirection::SortAscending));
                 listView->SortColumns(columnsToSort);
 
                 view->GetGrammarView().AddWindow(listView);
@@ -6847,8 +6882,9 @@ void ProjectDoc::DisplayGrammar()
                 }
             else
                 {
-                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::WORDY_PHRASES_LIST_PAGE_ID,
-                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView = new ListCtrlEx(
+                    view->GetSplitter(), BaseProjectView::WORDY_PHRASES_LIST_PAGE_ID,
+                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
                 listView->SetLabel(BaseProjectView::GetWordyPhrasesTabLabel());
                 listView->SetName(BaseProjectView::GetWordyPhrasesTabLabel());
@@ -6859,7 +6895,7 @@ void ProjectDoc::DisplayGrammar()
                 listView->SetVirtualDataProvider(m_wordyPhraseData);
                 listView->SetVirtualDataSize(m_wordyPhraseData->GetItemCount());
                 listView->DistributeColumns();
-                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU"));
                 UpdateListOptions(listView);
                 view->GetGrammarView().AddWindow(listView);
                 }
@@ -6887,8 +6923,9 @@ void ProjectDoc::DisplayGrammar()
                 }
             else
                 {
-                listView = new ListCtrlEx(view->GetSplitter(), BaseProjectView::CLICHES_LIST_PAGE_ID,
-                    wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
+                listView = new ListCtrlEx(
+                    view->GetSplitter(), BaseProjectView::CLICHES_LIST_PAGE_ID, wxDefaultPosition,
+                    wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
                 listView->SetLabel(BaseProjectView::GetClichesTabLabel());
                 listView->SetName(BaseProjectView::GetClichesTabLabel());
@@ -6899,7 +6936,7 @@ void ProjectDoc::DisplayGrammar()
                 listView->SetVirtualDataProvider(m_clichePhraseData);
                 listView->SetVirtualDataSize(m_clichePhraseData->GetItemCount());
                 listView->DistributeColumns();
-                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+                listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU"));
                 UpdateListOptions(listView);
                 view->GetGrammarView().AddWindow(listView);
                 }
@@ -6921,11 +6958,13 @@ void ProjectDoc::DisplayGrammar()
             traits::case_insensitive_wstring_ex currentPassivePhrase;
             for (size_t wordCounter = 0; wordCounter < passiveVoiceIndices[i].second; ++wordCounter)
                 {
-                currentPassivePhrase += (wordCounter == passiveVoiceIndices[i].second-1) ?
-                    traits::case_insensitive_wstring_ex(
-                        GetWords()->get_word(passiveVoiceIndices[i].first + wordCounter)) :
-                    traits::case_insensitive_wstring_ex(
-                        GetWords()->get_word(passiveVoiceIndices[i].first + wordCounter) + L' ');
+                currentPassivePhrase +=
+                    (wordCounter == passiveVoiceIndices[i].second - 1) ?
+                        traits::case_insensitive_wstring_ex(
+                            GetWords()->get_word(passiveVoiceIndices[i].first + wordCounter)) :
+                        traits::case_insensitive_wstring_ex(
+                            GetWords()->get_word(passiveVoiceIndices[i].first + wordCounter) +
+                            L' ');
                 }
             passiveVoicePhrases.insert(currentPassivePhrase);
             }
@@ -6985,18 +7024,21 @@ void ProjectDoc::DisplayGrammar()
         // reset punctuation marker
         auto punctPos = GetWords()->get_punctuation().cbegin();
         wxString currentSentence;
-        for (std::vector<size_t>::const_iterator pos = GetWords()->get_conjunction_beginning_sentences().begin();
-            pos != GetWords()->get_conjunction_beginning_sentences().end();
-            ++pos)
+        for (std::vector<size_t>::const_iterator pos =
+                 GetWords()->get_conjunction_beginning_sentences().begin();
+             pos != GetWords()->get_conjunction_beginning_sentences().end(); ++pos)
             {
-            currentSentence = ProjectReportFormat::FormatSentence(this, GetWords()->get_sentences()[*pos],
-                punctPos, GetWords()->get_punctuation().cend());
+            currentSentence =
+                ProjectReportFormat::FormatSentence(this, GetWords()->get_sentences()[*pos],
+                                                    punctPos, GetWords()->get_punctuation().cend());
 
             m_sentenceStartingWithConjunctionsData->SetItemText(
                 sentenceStartingWithConjunctionsCount, 0, currentSentence);
-            m_sentenceStartingWithConjunctionsData->SetItemValue(sentenceStartingWithConjunctionsCount++, 1,
+            m_sentenceStartingWithConjunctionsData->SetItemValue(
+                sentenceStartingWithConjunctionsCount++, 1,
                 // add 1 to make it one-indexed
-                (*pos)+1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,0,true));
+                (*pos) + 1,
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
             }
         m_sentenceStartingWithConjunctionsData->SetSize(sentenceStartingWithConjunctionsCount);
         // display it
@@ -7047,17 +7089,21 @@ void ProjectDoc::DisplayGrammar()
         // reset punctuation marker
         auto punctPos = GetWords()->get_punctuation().cbegin();
         wxString currentSentence;
-        for (std::vector<size_t>::const_iterator pos = GetWords()->get_lowercase_beginning_sentences().begin();
-            pos != GetWords()->get_lowercase_beginning_sentences().end();
-            ++pos)
+        for (std::vector<size_t>::const_iterator pos =
+                 GetWords()->get_lowercase_beginning_sentences().begin();
+             pos != GetWords()->get_lowercase_beginning_sentences().end(); ++pos)
             {
-            currentSentence = ProjectReportFormat::FormatSentence(this, GetWords()->get_sentences()[*pos],
-                punctPos, GetWords()->get_punctuation().cend());
+            currentSentence =
+                ProjectReportFormat::FormatSentence(this, GetWords()->get_sentences()[*pos],
+                                                    punctPos, GetWords()->get_punctuation().cend());
 
-            m_sentenceStartingWithLowercaseData->SetItemText(sentenceStartingWithLowercaseCount, 0, currentSentence);
-            m_sentenceStartingWithLowercaseData->SetItemValue(sentenceStartingWithLowercaseCount++, 1,
-               // add 1 to make it one-indexed
-               (*pos)+1, NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
+            m_sentenceStartingWithLowercaseData->SetItemText(sentenceStartingWithLowercaseCount, 0,
+                                                             currentSentence);
+            m_sentenceStartingWithLowercaseData->SetItemValue(
+                sentenceStartingWithLowercaseCount++, 1,
+                // add 1 to make it one-indexed
+                (*pos) + 1,
+                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
             }
         m_sentenceStartingWithLowercaseData->SetSize(sentenceStartingWithLowercaseCount);
         // display it
