@@ -92,6 +92,14 @@ class ProjectReportFormat
                    std::vector<punctuation::punctuation_mark>::const_iterator& punctStart,
                    const std::vector<punctuation::punctuation_mark>::const_iterator& punctEnd);
 
+    /// @returns The <span> start for something in the report that should be in red.
+    [[nodiscard]]
+    static wxString GetIssueSpanStart()
+        {
+        return wxSystemSettings::GetAppearance().IsDark() ? L"<span style=\"color:#ED5C7A\">" :
+                                                            L"<span style=\"color:#FF0000\">";
+        }
+
     /// @returns The header color for a report table.
     [[nodiscard]]
     static wxColour GetReportHeaderColor()

@@ -656,7 +656,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
             {
             const wxString valueStr =
                 (totalDolchPercentage < 70) ?
-                    L"<span style=\"color:#FF0000\">" +
+                    GetIssueSpanStart() +
                         wxNumberFormatter::ToString(
                             totalDolchWords, 0,
                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -668,7 +668,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                             wxNumberFormatter::Style::Style_WithThousandsSep);
             const wxString percentStr =
                 (totalDolchPercentage < 70) ?
-                    L"<span style=\"color:#FF0000\">" +
+                    GetIssueSpanStart() +
                         wxString(L"(" +
                                  wxNumberFormatter::ToString(
                                      totalDolchPercentage, 1,
@@ -705,7 +705,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
             {
             const wxString valueStr =
                 (totalDolchExcludingNounsPercentage < 60) ?
-                    L"<span style=\"color:#FF0000\">" +
+                    GetIssueSpanStart() +
                         wxNumberFormatter::ToString(
                             totalDolchWordsExcludingNouns, 0,
                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -717,7 +717,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                             wxNumberFormatter::Style::Style_WithThousandsSep);
             const wxString percentStr =
                 (totalDolchExcludingNounsPercentage < 60) ?
-                    L"<span style=\"color:#FF0000\">" +
+                    GetIssueSpanStart() +
                         wxString(L"(" +
                                  wxNumberFormatter::ToString(
                                      totalDolchExcludingNounsPercentage, 1,
@@ -756,7 +756,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
             {
             const wxString valueStr =
                 (totalDolchPercentage < 70) ?
-                    L"<span style=\"color:#FF0000\">" +
+                    GetIssueSpanStart() +
                         wxNumberFormatter::ToString(
                             project->GetTotalWords() - totalDolchWords, 0,
                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -768,7 +768,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                             wxNumberFormatter::Style::Style_WithThousandsSep);
             const wxString percentStr =
                 (totalDolchPercentage < 70) ?
-                    L"<span style=\"color:#FF0000\">" +
+                    GetIssueSpanStart() +
                         wxString(L"(" +
                                  wxNumberFormatter::ToString(
                                      100 - totalDolchPercentage, 1,
@@ -1474,7 +1474,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
             }
         wxString currentValue =
             (overlyLongSentencePercentage >= 40) ?
-                L"<span style=\"color:#FF0000\">" +
+                GetIssueSpanStart() +
                     wxNumberFormatter::ToString(
                         project->GetTotalOverlyLongSentences(), 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -1525,7 +1525,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
         if (project->GetTotalSentences() > 0) // this should usually be the case
             {
             currentValue = (project->GetLongestSentence() >= 30) ?
-                               L"<span style=\"color:#FF0000\">" +
+                               GetIssueSpanStart() +
                                    wxNumberFormatter::ToString(
                                        project->GetLongestSentence(), 0,
                                        wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -1563,7 +1563,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
         // average sentence length
         currentValue =
             (safe_divide<double>(project->GetTotalWords(), project->GetTotalSentences()) > 20) ?
-                L"<span style=\"color:#FF0000\">" +
+                GetIssueSpanStart() +
                     wxNumberFormatter::ToString(
                         safe_divide<double>(project->GetTotalWords(), project->GetTotalSentences()),
                         1,
@@ -1624,7 +1624,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
         // exclamatory sentences
         currentValue =
             (exclamatorySentencePercentage >= 25) ?
-                L"<span style=\"color:#FF0000\">" +
+                GetIssueSpanStart() +
                     wxNumberFormatter::ToString(
                         project->GetTotalExclamatorySentences(), 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -1685,7 +1685,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
 
         wxString currentValue =
             (project->GetTotalWords() < 300) ?
-                L"<span style=\"color:#FF0000\">" +
+                GetIssueSpanStart() +
                     wxNumberFormatter::ToString(
                         project->GetTotalWords(), 0,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -1779,7 +1779,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
         // average number of characters
         currentValue =
             (averageCharacterCount >= 6) ?
-                L"<span style=\"color:#FF0000\">" +
+                GetIssueSpanStart() +
                     wxNumberFormatter::ToString(
                         averageCharacterCount, 1,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -1802,7 +1802,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
         // average number of syllables
         currentValue =
             (averageSyllableCount >= 4) ?
-                L"<span style=\"color:#FF0000\">" +
+                GetIssueSpanStart() +
                     wxNumberFormatter::ToString(
                         averageSyllableCount, 1,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
