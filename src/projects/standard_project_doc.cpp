@@ -1072,11 +1072,7 @@ void ProjectDoc::DisplayReadabilityScores(const bool setFocus)
                 scoresReport->SetRightPrinterFooter(wxGetApp().GetAppOptions().GetRightPrinterFooter());
                 view->GetReadabilityResultsView().InsertWindow(1, scoresReport);
                 }
-            scoresReport->SetPage(
-                ProjectReportFormat::FormatHtmlReportStart(
-                    wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW),
-                    ColorContrast::BlackOrWhiteContrast(
-                        wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW))) +
+            scoresReport->SetPage(ProjectReportFormat::FormatHtmlReportStart() +
                 text + ProjectReportFormat::FormatHtmlReportEnd());
             }
         else
@@ -3608,10 +3604,7 @@ void ProjectDoc::DisplayStatistics()
             summaryReportWindow->SetRightPrinterFooter(wxGetApp().GetAppOptions().GetRightPrinterFooter());
             }
 
-        wxString formattedStats = ProjectReportFormat::FormatHtmlReportStart(
-                wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW),
-                ((wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW).
-                    GetLuminance() < .5f) ? *wxWHITE : *wxBLACK)) +
+        wxString formattedStats = ProjectReportFormat::FormatHtmlReportStart() +
             ProjectReportFormat::FormatStatisticsInfo(this,
                 GetStatisticsReportInfo(),
                 wxSystemSettings::GetColour(wxSYS_COLOUR_HOTLIGHT),
@@ -3693,10 +3686,7 @@ void ProjectDoc::DisplayStatistics()
             }
         assert(sumWindow);
         sumWindow->SetPage(
-            ProjectReportFormat::FormatHtmlReportStart(
-                wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW),
-                ColorContrast::BlackOrWhiteContrast(wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW)),
-                _(L"Dolch Summary")) +
+            ProjectReportFormat::FormatHtmlReportStart() +
                 ProjectReportFormat::FormatDolchStatisticsInfo(this,
                     GetStatisticsReportInfo(), true,
                     wxSystemSettings::GetColour(wxSYS_COLOUR_HOTLIGHT), nullptr) +

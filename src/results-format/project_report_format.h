@@ -24,15 +24,10 @@ class ProjectReportFormat
     [[nodiscard]]
     static wxString TrimTrailingBreaks(const wxString& text);
     /// @returns The html/head/body start sections for a report.
-    /// @param bgColor The color for the page. (Only used for theming under Windows.)
-    /// @param textColor The text color for the entire page.
-    ///     (Only used for theming under Windows.)
     /// @param title The page's title.
     /// @note This will include various (internal) CSS styling necessary for the HTML.
     [[nodiscard]]
-    static wxString FormatHtmlReportStart([[maybe_unused]] const wxColour bgColor,
-                                          [[maybe_unused]] const wxColour textColor,
-                                          const wxString& title = wxEmptyString);
+    static wxString FormatHtmlReportStart(const wxString& title = wxEmptyString);
     /// @returns The html/head/body start sections for a report.
     [[nodiscard]]
     static wxString FormatHtmlReportEnd();

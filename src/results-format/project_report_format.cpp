@@ -1224,9 +1224,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
     }
 
 //------------------------------------------------
-wxString ProjectReportFormat::FormatHtmlReportStart([[maybe_unused]] const wxColour bgColor,
-                                                    [[maybe_unused]] const wxColour textColor,
-                                                    const wxString& title /*= wxString{}*/)
+wxString ProjectReportFormat::FormatHtmlReportStart(const wxString& title /*= wxString{}*/)
     {
     wxString cssTemplatePath = wxGetApp().FindResourceDirectory(_DT(L"report-themes")) +
                                wxFileName::GetPathSeparator() + L"default.css";
@@ -1248,12 +1246,8 @@ wxString ProjectReportFormat::FormatHtmlReportStart([[maybe_unused]] const wxCol
         "\n</head>"
         "\n<body bgcolor=%s text=%s link=%s>",
         title, styleInfo,
-#ifdef __WXOSX__
         wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW).GetAsString(wxC2S_HTML_SYNTAX),
         wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT).GetAsString(wxC2S_HTML_SYNTAX),
-#else
-        bgColor.GetAsString(wxC2S_HTML_SYNTAX), textColor.GetAsString(wxC2S_HTML_SYNTAX),
-#endif
         wxSystemSettings::GetColour(wxSYS_COLOUR_HOTLIGHT).GetAsString(wxC2S_HTML_SYNTAX));
     }
 

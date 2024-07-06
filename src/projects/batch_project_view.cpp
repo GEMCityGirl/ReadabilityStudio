@@ -1479,10 +1479,7 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
     if (m_testExplanations)
         {
         m_testExplanations->GetHtmlWindow()->SetPage(
-            ProjectReportFormat::FormatHtmlReportStart(
-                wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW),
-                Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
-                    wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW))) + scoreTextStrippedLinks +
+            ProjectReportFormat::FormatHtmlReportStart() + scoreTextStrippedLinks +
                     ProjectReportFormat::FormatHtmlReportEnd());
         }
 
@@ -1504,10 +1501,7 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
             std::wstring textStripped{ text };
             lily_of_the_valley::html_format::strip_hyperlinks(textStripped);
             m_statsReport->GetHtmlWindow()->SetPage(
-                ProjectReportFormat::FormatHtmlReportStart(
-                    wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW),
-                    Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
-                        wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW))) + textStripped +
+                ProjectReportFormat::FormatHtmlReportStart() + textStripped +
                         ProjectReportFormat::FormatHtmlReportEnd());
             break;
             }
@@ -2280,10 +2274,7 @@ void BatchProjectView::OnExportStatisticsReport([[maybe_unused]] wxCommandEvent&
                                      wxPD_APP_MODAL);
     int counter{ 1 };
 
-    wxString fileHeader = ProjectReportFormat::FormatHtmlReportStart(
-        wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW),
-        Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
-            wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW)), _(L"Summary Statistics")) +
+    wxString fileHeader = ProjectReportFormat::FormatHtmlReportStart(_(L"Summary Statistics")) +
         L"\n<h1><span style='text-decoration:underline;'>" +
         doc->GetTitle() + _(L": Summary Statistics") + L"</span></h1>\n<h2>" + _(L"Files:") + L"</h2>\n";
     std::wstring strippedFileHeader{ fileHeader };
