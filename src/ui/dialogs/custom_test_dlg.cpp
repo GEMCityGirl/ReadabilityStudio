@@ -263,7 +263,7 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
                 static_cast<int>(readability::readability_test_type::grade_level))
             {
             wxMessageBox(_(L"Custom familiar word tests must return a grade level result. "
-                           "Test type has been reset to grade level."),
+                           "Test result type has been reset to grade level."),
                          _(L"Warning"), wxOK | wxICON_EXCLAMATION);
             SetTestType(static_cast<int>(readability::readability_test_type::grade_level));
             TransferDataToWindow();

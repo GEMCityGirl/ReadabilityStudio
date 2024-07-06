@@ -327,7 +327,7 @@ class CustomTestDlg final : public wxDialog
             }
         }
 
-    /// @returns The test type.
+    /// @returns The test result type.
     [[nodiscard]]
     int GetTestType() const
         {

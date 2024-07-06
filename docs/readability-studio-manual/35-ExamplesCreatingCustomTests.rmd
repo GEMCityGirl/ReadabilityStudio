@@ -71,7 +71,9 @@ ROUND(206.835 - (84.6*(SyllableCount()/WordCount())) -
     (1.015*(WordCount()/IndependentClauseCount())), 0)
 ```
 
-The final step is to specify the type of test that this is. Flesch Reading Ease is an index test, so verify that the test type is set to **Index value**. This will instruct the program to place the result into the **Scale Value** column (see below).
+The final step is to specify the type of test that this is.
+Flesch Reading Ease is an index test, so verify that the test result type is set to **Index value**.
+This will instruct the program to place the result into the **Scale Value** column (see below).
 
 Once finished, the dialog will look like this:
 
@@ -144,7 +146,9 @@ CustomNewDaleChall()
 
 This formula will instruct the program to use the standard New Dale-Chall formula with our familiar-word criteria, which we will define later.
 
-The next step is to specify the type of test that this is into the **Test type** field. By default, new tests will be defined as grade-level tests, which means that the result will be truncated to be within the 0 (Kindergarten) to 19 (doctorate) range. New Dale-Chall is a grade-level test, so we will leave this option set to the default.
+The next step is to specify the type of test that this is into the **Test result type** field.
+By default, new tests will be defined as grade-level tests, which means that the result will be truncated to be within the 0 (Kindergarten) to 19 (doctorate) range.
+New Dale-Chall is a grade-level test, so we will leave this option set to the default.
 
 Once finished, the dialog will look like this:
 
@@ -238,7 +242,7 @@ Enter "Buzz Index" as the test name:
 knitr::include_graphics("images/custom-index-test-example-name.png")
 ```
 
-Because this test will use our own special type of scoring, set **Test type** to **Index value**:
+Because this test will use our own special type of scoring, set **Test result type** to **Index value**:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
 knitr::include_graphics("images/custom-index-test-example-test-type.png")

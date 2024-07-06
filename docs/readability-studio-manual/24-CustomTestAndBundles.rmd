@@ -37,7 +37,9 @@ Note that double clicking a function on the right side will insert it into the f
 Refer to \@ref(custom-test-functions) for a list of available functions.
 
 ::: {.minipage data-latex="{\textwidth}"}
-After entering your formula, you will need to specify what type of test this will be from the **Test type** combobox. This will determine which column the test's score will appear in the [**Readability Scores**](#reviewing-test-scores) window. The following types of tests are available:
+After entering your formula, you will need to specify what type of test this will be from the **Test result type** combobox.
+This will determine which column the test's score will appear in the [**Readability Scores**](#reviewing-test-scores) window.
+The following types of tests are available:
 
 - Grade level
 - Index value
