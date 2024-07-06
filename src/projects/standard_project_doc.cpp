@@ -2437,6 +2437,13 @@ void ProjectDoc::DisplayWordCharts()
                         complexBarPositions.push_back(complexBar->GetAxisPosition());
                         }
                     syllableHistogram->ShowcaseBars(complexBarPositions);
+                    syllableHistogram->GetLeftYAxis().Ghost(true);
+                    syllableHistogram->GetBottomXAxis().Ghost(true);
+                    }
+                else
+                    {
+                    syllableHistogram->GetLeftYAxis().Ghost(false);
+                    syllableHistogram->GetBottomXAxis().Ghost(false);
                     }
                 }
             }
