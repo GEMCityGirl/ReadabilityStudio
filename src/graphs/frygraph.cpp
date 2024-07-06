@@ -204,6 +204,11 @@ namespace Wisteria::Graphs
     //----------------------------------------------------------------
     void FryGraph::RecalcSizes(wxDC& dc)
         {
+        GetLeftYAxis().GetAxisLinePen().SetColour(
+            Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(GetPlotOrCanvasColor()));
+        GetBottomXAxis().GetAxisLinePen().SetColour(
+            Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(GetPlotOrCanvasColor()));
+
         Graph2D::RecalcSizes(dc);
 
         assert((!m_backscreen || m_backscreen->GetBoundingBox(dc).GetWidth() ==
@@ -212,6 +217,8 @@ namespace Wisteria::Graphs
         assert((!m_backscreen || m_backscreen->GetBoundingBox(dc).GetHeight() ==
                                      Canvas::GetDefaultCanvasHeightDIPs()) &&
                L"Invalid backscreen size!");
+
+        wxColour labelFontColor{ GetLeftYAxis().GetFontColor() };
 
         // long sentence danger area
         GetPhysicalCoordinates(108 + GetSyllableAxisOffset(), 2.0, m_longSentencesPoints[0]);
@@ -367,13 +374,14 @@ namespace Wisteria::Graphs
         wxPoint pt1, pt2;
         GetPhysicalCoordinates(112 + GetSyllableAxisOffset(), 5.0, pt1);
         GetPhysicalCoordinates(128 + GetSyllableAxisOffset(), 3.3, pt2);
-        auto gradeLevelLabel = std::make_unique<GraphItems::Label>(
-            GraphItemInfo(_(L"APPROXIMATE  GRADE  LEVEL"))
+        auto gradeLevelLabel =
+            std::make_unique<GraphItems::Label>(GraphItemInfo(_(L"APPROXIMATE  GRADE  LEVEL"))
                 .Pen(wxNullPen)
                 .Selectable(false)
-                .
-            // overriding scaling with a hard-coded font size returned from CalcDiagonalFontSize()
-            Scaling(1)
+                                                    .FontColor(labelFontColor)
+                                                    // overriding scaling with a hard-coded font
+                                                    // size returned from CalcDiagonalFontSize()
+                                                    .Scaling(1)
                 .DPIScaling(1)
                 .AnchorPoint(pt1)
                 .Anchoring(Anchoring::TopLeftCorner));
@@ -411,6 +419,7 @@ namespace Wisteria::Graphs
                                                                       .Scaling(GetScaling())
                                                                       .Pen(wxNullPen)
                                                                       .Font(labelFont)
+                                                                      .FontColor(labelFontColor)
                                                                       .AnchorPoint(pt));
             levelLabel->SetTextAlignment(TextAlignment::Centered);
             if (GetScores().size() == 1 && level == GetScores().front().GetScore())
@@ -599,11 +608,13 @@ namespace Wisteria::Graphs
             if (GetPhysicalCoordinates(m_results[i].m_wordStatistic,
                                        m_results[i].m_sentenceStatistic, m_results[i].m_scorePoint))
                 {
-                points->AddPoint(Point2D(GraphItemInfo(GetDataset()->GetIdColumn().GetValue(i))
+                points->AddPoint(
+                    Point2D(GraphItemInfo(GetDataset()->GetIdColumn().GetValue(i))
                                              .AnchorPoint(m_results[i].m_scorePoint)
+                                .Pen(Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
+                                    GetPlotOrCanvasColor()))
                                              .Brush(GetColorScheme()->GetColor(colorIndex)),
-                                         Settings::GetPointRadius(),
-                                         GetShapeScheme()->GetShape(colorIndex)),
+                            Settings::GetPointRadius(), GetShapeScheme()->GetShape(colorIndex)),
                                  dc);
                 }
             else
