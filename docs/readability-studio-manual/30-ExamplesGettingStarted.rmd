@@ -457,7 +457,7 @@ Although that is the pattern we see here, it has an alarming number of complex w
 knitr::include_graphics("images/example-difficult-syllables-histogram.png")
 ```
 
-To draw attention to these groups of words, press the `r keys('Showcase Complexity')` on the ribbon. Now the cumulative bar group and labels will only be shown for these bars:
+To draw attention to these groups of words, press the `r keys('Showcase')` on the ribbon. Now the cumulative bar group and labels will only be shown for these bars:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/example-difficult-syllables-histogram-showcased.png")
@@ -471,7 +471,7 @@ We can further see a breakdown of these complex words in the inner ring, where a
 knitr::include_graphics("images/example-difficult-syllables-pie-chart.png")
 ```
 
-Note that because we previously pressed `r keys('Showcase Complexity')`, the simple-word slices are translucent and their labels are hidden.
+Note that because we previously pressed `r keys('Showcase')`, the simple-word slices are translucent and their labels are hidden.
 
 Finally, let's review a visual layout of the sentence lengths. Click **Sentences Breakdown** on the sidebar and then select **Lengths (Density)**.
 Going from top-to-bottom, this graphic displays a row for each paragraph. Across each row is a box for each sentence in the respective paragraph.

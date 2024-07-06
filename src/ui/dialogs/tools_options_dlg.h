@@ -400,7 +400,7 @@ class ToolsOptionsDlg final : public wxDialog
     [[nodiscard]]
     wxString GetShowcaseComplexWordsLabel() const
         {
-        return _(L"Showcase complex words");
+        return _(L"Showcase key items");
         }
 
     [[nodiscard]]

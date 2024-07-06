@@ -2387,7 +2387,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 editButtonBar->AddToggleButton(
-                    XRCID("ID_EDIT_GRAPH_SHOWCASE_COMPLEX_WORDS"), _(L"Showcase Complexity"),
+                    XRCID("ID_EDIT_GRAPH_SHOWCASE_COMPLEX_WORDS"), _(L"Showcase"),
                     wxGetApp().ReadRibbonSvgIcon(L"ribbon/showcase.svg"),
                     _(L"Toggle whether complex word slices are being showcased."));
 
@@ -2588,7 +2588,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                     wxGetApp().ReadRibbonSvgIcon(L"ribbon/color-wheel.svg"),
                     _(L"Select the color scheme for the pie chart."));
                 editButtonBar->AddToggleButton(
-                    XRCID("ID_EDIT_GRAPH_SHOWCASE_COMPLEX_WORDS"), _(L"Showcase Complexity"),
+                    XRCID("ID_EDIT_GRAPH_SHOWCASE_COMPLEX_WORDS"), _(L"Showcase"),
                     wxGetApp().ReadRibbonSvgIcon(L"ribbon/showcase.svg"),
                     _(L"Toggle whether complex word slices are being showcased."));
 
