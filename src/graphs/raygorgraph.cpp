@@ -513,7 +513,8 @@ namespace Wisteria::Graphs
                                                               labelFont)
                     .AnchorPoint(pt));
             levelLabel->SetTextAlignment(TextAlignment::Centered);
-            if (GetScores().size() == 1 && level == GetScores().front().GetScore())
+            if (GetRaygorStyle() == RaygorStyle::Modern && GetScores().size() == 1 &&
+                level == GetScores().front().GetScore())
                 {
                 levelLabel->GetFont().SetWeight(wxFontWeight::wxFONTWEIGHT_EXTRAHEAVY);
                 levelLabel->SetFontColor(GetColorScheme()->GetColor(0));
