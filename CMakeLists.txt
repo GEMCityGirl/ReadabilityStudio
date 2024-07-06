@@ -24,6 +24,16 @@ if(APPLE)
     set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64" CACHE STRING "" FORCE)
 endif()
 
+if(APPLE AND NOT CMAKE_OSX_DEPLOYMENT_TARGET)
+    # If no deployment target has been set default to the minimum supported
+    # OS version (this has to be set before the first project() call)
+    if(CMAKE_SYSTEM_NAME STREQUAL "iOS")
+        set(CMAKE_OSX_DEPLOYMENT_TARGET 12.0 CACHE STRING "iOS Deployment Target")
+    else()
+        set(CMAKE_OSX_DEPLOYMENT_TARGET 10.10 CACHE STRING "macOS Deployment Target")
+    endif()
+endif()
+
 # Edit these values when bumping the release
 project(readstudio VERSION 2021.4.0.0 DESCRIPTION "Readability Studio" HOMEPAGE_URL https://www.oleandersoftware.com/)
 set(PROGRAM_NUMBERED_VERSION 8.0)
@@ -212,16 +222,6 @@ add_custom_target(doxygen-docs
             COMMENT "Generating API documentation with Doxygen"
             VERBATIM)
 
-if(APPLE AND NOT CMAKE_OSX_DEPLOYMENT_TARGET)
-    # If no deployment target has been set default to the minimum supported
-    # OS version (this has to be set before the first project() call)
-    if(CMAKE_SYSTEM_NAME STREQUAL "iOS")
-        set(CMAKE_OSX_DEPLOYMENT_TARGET 12.0 CACHE STRING "iOS Deployment Target")
-    else()
-        set(CMAKE_OSX_DEPLOYMENT_TARGET 10.10 CACHE STRING "macOS Deployment Target")
-    endif()
-endif()
-
 add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
 add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 
@@ -351,8 +351,16 @@ if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/docs/release-notes/docs/")
                    "${CMAKE_CURRENT_SOURCE_DIR}/docs/release-notes/docs/")
 endif()
 
-# on macOS, move the resource files up from the binary folder to the Resources folder
-set(RESOURCE_FOLDER "/../Resources")
+# On macOS, move the resource files up from the binary folder to the Resources folder
+# (note that iOS has a flat folder structure, so only do this for macOS).
+# Some of these files are compiled post build, and others are dynamic folder,
+# so that is why we copy them like this post build instead of including them
+# via RESOURCE like we do the icon.
+if(APPLE AND NOT CMAKE_SYSTEM_NAME STREQUAL "iOS")
+    set(RESOURCE_FOLDER "/../Resources")
+else()
+    set(RESOURCE_FOLDER "")
+endif()
 
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
