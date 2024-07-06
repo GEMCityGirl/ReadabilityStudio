@@ -673,7 +673,7 @@ void CustomTestDlg::CreateControls()
             wxStaticBoxSizer* nameBoxSizer = new wxStaticBoxSizer(
                 new wxStaticBox(mainPage, wxID_ANY, _(L"Test name:")), wxVERTICAL);
             editorSectionSizer->Add(nameBoxSizer, 0, wxEXPAND | wxALL,
-                                wxSizerFlags::GetDefaultBorder());
+                                    wxSizerFlags::GetDefaultBorder());
 
             m_testNameCtrl = new wxTextCtrl(nameBoxSizer->GetStaticBox(), ID_TEST_NAME_FIELD,
                                             wxString{}, wxDefaultPosition, wxDefaultSize, 0,
@@ -682,12 +682,12 @@ void CustomTestDlg::CreateControls()
                               wxSizerFlags::GetDefaultBorder());
             editorSectionSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             }
-            // test type
+            // test result type
             {
             wxBoxSizer* testTypeSizer = new wxBoxSizer(wxHORIZONTAL);
             editorSectionSizer->Add(testTypeSizer, 0, wxEXPAND | wxALL,
-                                wxSizerFlags::GetDefaultBorder());
-            testTypeSizer->Add(new wxStaticText(mainPage, wxID_STATIC, _(L"Test type:")), 0,
+                                    wxSizerFlags::GetDefaultBorder());
+            testTypeSizer->Add(new wxStaticText(mainPage, wxID_STATIC, _(L"Test result type:")), 0,
                                wxALIGN_CENTER_VERTICAL);
             testTypeSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
@@ -745,7 +745,9 @@ void CustomTestDlg::CreateControls()
                     _DT(L"ROUND(206.835 - (84.6*(SyllableCount(Default)/WordCount(Default))) -\n"
                         "(1.015*(WordCount(Default)/SentenceCount(Default))))")));
             formulaExample->SetFont(
-                wxFont(wxFontInfo().Family(wxFontFamily::wxFONTFAMILY_TELETYPE)));
+                wxFont(wxFontInfo().Family(wxFontFamily::wxFONTFAMILY_TELETYPE).Bold(true))
+                    .MakeLarger()
+                    .MakeLarger());
             formulaBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             formulaBoxSizer->Add(formulaExample, wxSizerFlags().Border(
                                                      wxLEFT, wxSizerFlags::GetDefaultBorder() * 3));
@@ -758,11 +760,13 @@ void CustomTestDlg::CreateControls()
                 new wxStaticText(formulaBoxSizer->GetStaticBox(), wxID_STATIC,
                                  ReadabilityFormulaParser::GetCustomNewDaleChallSignature());
             formulaExample->SetFont(
-                wxFont(wxFontInfo().Family(wxFontFamily::wxFONTFAMILY_TELETYPE)));
+                wxFont(wxFontInfo().Family(wxFontFamily::wxFONTFAMILY_TELETYPE).Bold(true))
+                    .MakeLarger()
+                    .MakeLarger());
             formulaBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             formulaBoxSizer->Add(formulaExample, 0, wxLEFT, wxSizerFlags::GetDefaultBorder() * 3);
             }
-        // function browser
+            // function browser
             {
             Wisteria::UI::FunctionBrowserCtrl* functionBrowser =
                 new FunctionBrowserCtrl(mainPage, m_formulaCtrl);
@@ -783,8 +787,8 @@ void CustomTestDlg::CreateControls()
 
             functionBrowser->FinalizeCategories();
 
-            mainPageSizer->Add(functionBrowser,
-                        wxSizerFlags().Expand().Border(wxALL, wxSizerFlags::GetDefaultBorder()));
+            mainPageSizer->Add(functionBrowser, wxSizerFlags().Expand().Border(
+                                                    wxALL, wxSizerFlags::GetDefaultBorder()));
             }
         }
 
