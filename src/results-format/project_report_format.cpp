@@ -1244,11 +1244,8 @@ wxString ProjectReportFormat::FormatHtmlReportStart(const wxString& title /*= wx
         "\n    %s"
         "\n    </style>"
         "\n</head>"
-        "\n<body bgcolor=%s text=%s link=%s>",
-        title, styleInfo,
-        wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW).GetAsString(wxC2S_HTML_SYNTAX),
-        wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT).GetAsString(wxC2S_HTML_SYNTAX),
-        wxSystemSettings::GetColour(wxSYS_COLOUR_HOTLIGHT).GetAsString(wxC2S_HTML_SYNTAX));
+        "\n<body>",
+        title, styleInfo);
     }
 
 //------------------------------------------------
