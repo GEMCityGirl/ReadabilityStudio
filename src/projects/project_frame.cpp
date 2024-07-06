@@ -1514,7 +1514,7 @@ void ProjectDocChildFrame::OnShowcaseComplexWords([[maybe_unused]] wxRibbonButto
     if (!doc)
         { return; }
 
-    doc->ShowcaseComplexWords(!doc->IsShowcasingComplexWords());
+    doc->ShowcaseKeyItems(!doc->IsShowcasingKeyItems());
     doc->RefreshRequired(ProjectRefresh::Minimal);
     doc->RefreshGraphs();
     }

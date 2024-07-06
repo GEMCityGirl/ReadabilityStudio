@@ -341,7 +341,7 @@ void ReadabilityAppOptions::ResetSettings()
     m_barDisplayLabels = true;
     m_useGraphBackGroundColorLinearGradient = false;
     m_displayDropShadows = false;
-    m_showcaseComplexWords = false;
+    m_showcaseKeyItems = false;
     m_plotBackGroundImagePath.clear();
     m_graphColorSchemeName = _DT(L"campfire");
     m_watermark.clear();
@@ -2129,12 +2129,12 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                     }
                 // whether to draw attention to the complex word groups in syllable graphs
                 auto showcaseComplexWordsNode =
-                    graphDefaultsNode->FirstChildElement(XML_SHOWCASE_COMPLEX_WORDS.data());
+                    graphDefaultsNode->FirstChildElement(XML_SHOWCASE_KEY_ITEMS.data());
                 if (showcaseComplexWordsNode)
                     {
-                    ShowcaseComplexWords(
+                    ShowcaseKeyItems(
                         int_to_bool(showcaseComplexWordsNode->ToElement()->IntAttribute(
-                            XML_VALUE.data(), bool_to_int(IsShowcasingComplexWords()))));
+                            XML_VALUE.data(), bool_to_int(IsShowcasingKeyItems()))));
                     }
                 // watermark
                 auto watermarkNode =
@@ -4208,9 +4208,9 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     graphDisplayDropShadow->SetAttribute(XML_VALUE.data(), bool_to_int(IsDisplayingDropShadows()));
     graphDefaultsSection->InsertEndChild(graphDisplayDropShadow);
     // whether to draw attention to the complex word groups in syllable graphs
-    auto showcaseComplexWords = doc.NewElement(XML_SHOWCASE_COMPLEX_WORDS.data());
-    showcaseComplexWords->SetAttribute(XML_VALUE.data(), bool_to_int(IsShowcasingComplexWords()));
-    graphDefaultsSection->InsertEndChild(showcaseComplexWords);
+    auto showcaseKeyItems = doc.NewElement(XML_SHOWCASE_KEY_ITEMS.data());
+    showcaseKeyItems->SetAttribute(XML_VALUE.data(), bool_to_int(IsShowcasingKeyItems()));
+    graphDefaultsSection->InsertEndChild(showcaseKeyItems);
     // watermark
     auto graphWatermarkLogo = doc.NewElement(XML_GRAPH_WATERMARK_LOGO_IMAGE_PATH.data());
     graphWatermarkLogo->SetAttribute(

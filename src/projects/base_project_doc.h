@@ -198,12 +198,12 @@ class BaseProjectDoc : public BaseProject, public wxDocument
         }
 
     // whether to draw attention to the complex word groups in syllable graphs
-    void ShowcaseComplexWords(const bool display) noexcept { m_showcaseComplexWords = display; }
+    void ShowcaseKeyItems(const bool display) noexcept { m_showcaseKeyItems = display; }
 
     [[nodiscard]]
-    bool IsShowcasingComplexWords() const noexcept
+    bool IsShowcasingKeyItems() const noexcept
         {
-        return m_showcaseComplexWords;
+        return m_showcaseKeyItems;
         }
 
     /// axis font colors
@@ -1217,7 +1217,7 @@ class BaseProjectDoc : public BaseProject, public wxDocument
     // general graph information (that can apply to both standard and batch projects)
     bool m_useGraphBackGroundImageLinearGradient{ false };
     bool m_displayDropShadows{ false };
-    bool m_showcaseComplexWords{ false };
+    bool m_showcaseKeyItems{ false };
     wxBitmapBundle m_plotBackgroundImage;
     wxBitmapBundle m_plotBackgroundImageWithEffect;
     wxBitmapBundle m_graphStippleImage;

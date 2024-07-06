@@ -186,7 +186,7 @@ namespace LuaScripting
         int SetBarChartOrientation(lua_State* L);
         int SetGraphInvalidRegionColor(lua_State* L);
         int SetStippleShapeColor(lua_State* L);
-        int ShowcaseComplexWords(lua_State* L);
+        int ShowcaseKeyItems(lua_State* L);
 
         // TEST OPTIONS
         // Adds a test to the project.
@@ -406,7 +406,7 @@ namespace LuaScripting
         int DisplayGraphDropShadows(lua_State* L);
         int SetGraphInvalidRegionColor(lua_State* L);
         int SetStippleShapeColor(lua_State* L);
-        int ShowcaseComplexWords(lua_State* L);
+        int ShowcaseKeyItems(lua_State* L);
 
         // Adds a test to the project.
         // TestName The name of the test to add to the project.

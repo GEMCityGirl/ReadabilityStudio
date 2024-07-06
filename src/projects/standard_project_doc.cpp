@@ -2417,7 +2417,7 @@ void ProjectDoc::DisplayWordCharts()
             const auto firstComplexBar =
                 std::find_if(syllableHistogram->GetBars().cbegin(), syllableHistogram->GetBars().cend(),
                     [](const auto& bar) { return bar.GetAxisPosition() >= 3; });
-            if (!IsShowcasingComplexWords() && bar1Pos == 1 && bar2Pos == 2)
+            if (!IsShowcasingKeyItems() && bar1Pos == 1 && bar2Pos == 2)
                 {
                 syllableHistogram->AddBarGroup(1, 2,
                     _(L"Simple Words"), GetHistogramBarColor());
@@ -2427,7 +2427,7 @@ void ProjectDoc::DisplayWordCharts()
                 syllableHistogram->AddBarGroup(firstComplexBar->GetAxisPosition(),
                     syllableHistogram->GetBars().back().GetAxisPosition(),
                     _(L"Complex Words"), GetHistogramBarColor());
-                if (IsShowcasingComplexWords())
+                if (IsShowcasingKeyItems())
                     {
                     std::vector<double> complexBarPositions;
                     complexBarPositions.reserve(syllableHistogram->GetBars().size());
@@ -2498,7 +2498,7 @@ void ProjectDoc::DisplayWordCharts()
             GetWordTypeGroupColumnName(),
             GetSyllableCountsColumnName());
 
-        if (IsShowcasingComplexWords())
+        if (IsShowcasingKeyItems())
             {
             auto groupCol = m_syllableCounts->GetCategoricalColumn(GetWordTypeGroupColumnName());
             assert(groupCol != m_syllableCounts->GetCategoricalColumns().cend() &&

@@ -2479,7 +2479,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     getEditButtonBar(editPieChartButtonBarWindow)
                         ->ToggleButton(
                             XRCID("ID_EDIT_GRAPH_SHOWCASE_COMPLEX_WORDS"),
-                            dynamic_cast<ProjectDoc*>(GetDocument())->IsShowcasingComplexWords());
+                            dynamic_cast<ProjectDoc*>(GetDocument())->IsShowcasingKeyItems());
                     getEditButtonBar(editPieChartButtonBarWindow)
                         ->ToggleButton(
                             XRCID("ID_DROP_SHADOW"),

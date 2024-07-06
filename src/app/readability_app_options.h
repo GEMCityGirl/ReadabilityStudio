@@ -1630,12 +1630,12 @@ class ReadabilityAppOptions
         }
 
     // whether to draw attention to the complex word groups in syllable graphs
-    void ShowcaseComplexWords(const bool display) noexcept { m_showcaseComplexWords = display; }
+    void ShowcaseKeyItems(const bool display) noexcept { m_showcaseKeyItems = display; }
 
     [[nodiscard]]
-    bool IsShowcasingComplexWords() const noexcept
+    bool IsShowcasingKeyItems() const noexcept
         {
-        return m_showcaseComplexWords;
+        return m_showcaseKeyItems;
         }
 
     // graph background image
@@ -2625,7 +2625,7 @@ class ReadabilityAppOptions
     bool m_boxConnectMiddlePoints{ true };
     bool m_useGraphBackGroundColorLinearGradient{ false };
     bool m_displayDropShadows{ false };
-    bool m_showcaseComplexWords{ false };
+    bool m_showcaseKeyItems{ false };
     wxString m_graphColorSchemeName{ _DT(L"campfire") };
     wxString m_plotBackGroundImagePath;
     wxString m_watermark;
@@ -2869,7 +2869,7 @@ class ReadabilityAppOptions
     const std::string_view XML_GRAPH_WATERMARK_LOGO_IMAGE_PATH{ _DT("watermark-logo") };
     const std::string_view XML_GRAPH_COMMON_IMAGE_PATH{ _DT("common-image") };
     const std::string_view XML_DISPLAY_DROP_SHADOW{ _DT("display-drop-shadow") };
-    const std::string_view XML_SHOWCASE_COMPLEX_WORDS{ _DT("showcase-complex-words") };
+    const std::string_view XML_SHOWCASE_KEY_ITEMS{ _DT("showcase-key-items") };
     const std::string_view XML_AXIS_SETTINGS{ _DT("axis-settings") };
     const std::string_view XML_FRY_RAYGOR_SETTINGS{ _DT("fry-raygor-settings") };
     const std::string_view XML_INVALID_AREA_COLOR{ _DT("invalid-area-color-1") };

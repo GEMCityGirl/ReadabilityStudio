@@ -34,7 +34,7 @@ BaseProjectDoc::BaseProjectDoc() :
     // graph options
     m_useGraphBackGroundImageLinearGradient(wxGetApp().GetAppOptions().GetGraphBackGroundLinearGradient()),
     m_displayDropShadows(wxGetApp().GetAppOptions().IsDisplayingDropShadows()),
-    m_showcaseComplexWords(wxGetApp().GetAppOptions().IsShowcasingComplexWords()),
+    m_showcaseKeyItems(wxGetApp().GetAppOptions().IsShowcasingKeyItems()),
     m_graphColorSchemeName(wxGetApp().GetAppOptions().GetGraphColorScheme()),
     m_plotBackGroundImagePath(wxGetApp().GetAppOptions().GetPlotBackGroundImagePath()),
     m_stippleImagePath(wxGetApp().GetAppOptions().GetStippleImagePath()),
@@ -132,7 +132,7 @@ void BaseProjectDoc::CopyDocumentLevelSettings(const BaseProjectDoc& that, const
     // graph settings
     m_useGraphBackGroundImageLinearGradient = that.m_useGraphBackGroundImageLinearGradient;
     m_displayDropShadows = that.m_displayDropShadows;
-    m_showcaseComplexWords = that.m_showcaseComplexWords;
+    m_showcaseKeyItems = that.m_showcaseKeyItems;
 
     // image effect must be set before a possible call to SetPlotBackGroundImagePath(),
     // which will apply the effect
@@ -1486,17 +1486,20 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         SetGraphCommonImagePath(XmlFormat::GetString(graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_GRAPH_COMMON_IMAGE_PATH.data()));
 
-        DisplayDropShadows(XmlFormat::GetBoolean(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_DISPLAY_DROP_SHADOW.data(),
-            wxGetApp().GetAppOptions().IsDisplayingDropShadows()));
+        DisplayDropShadows(
+            XmlFormat::GetBoolean(graphsSection, graphsSectionEnd,
+                                  wxGetApp().GetAppOptions().XML_DISPLAY_DROP_SHADOW.data(),
+                                  wxGetApp().GetAppOptions().IsDisplayingDropShadows()));
 
-        ShowcaseComplexWords(XmlFormat::GetBoolean(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_SHOWCASE_COMPLEX_WORDS.data(),
-            wxGetApp().GetAppOptions().IsShowcasingComplexWords()));
+        ShowcaseKeyItems(
+            XmlFormat::GetBoolean(graphsSection, graphsSectionEnd,
+                                  wxGetApp().GetAppOptions().XML_SHOWCASE_KEY_ITEMS.data(),
+                                  wxGetApp().GetAppOptions().IsShowcasingKeyItems()));
 
         SetWatermark(XmlFormat::GetString(graphsSection, graphsSectionEnd,
-            wxGetApp().GetAppOptions().XML_GRAPH_WATERMARK.data()));
-        SetWatermarkLogoPath(XmlFormat::GetString(graphsSection, graphsSectionEnd,
+                                          wxGetApp().GetAppOptions().XML_GRAPH_WATERMARK.data()));
+        SetWatermarkLogoPath(XmlFormat::GetString(
+            graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_GRAPH_WATERMARK_LOGO_IMAGE_PATH.data()));
 
         // Fry/Raygor settings
@@ -2607,8 +2610,8 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     fileText += sectionText;
     // whether to draw attention to the complex word groups in syllable graphs
     XmlFormat::FormatSection(sectionText,
-                             wxGetApp().GetAppOptions().XML_SHOWCASE_COMPLEX_WORDS.data(),
-                             IsShowcasingComplexWords(), 2);
+                             wxGetApp().GetAppOptions().XML_SHOWCASE_KEY_ITEMS.data(),
+                             IsShowcasingKeyItems(), 2);
     fileText += sectionText;
     // watermarks
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_GRAPH_WATERMARK.data(),

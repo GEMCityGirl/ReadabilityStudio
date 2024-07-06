@@ -398,7 +398,7 @@ class ToolsOptionsDlg final : public wxDialog
         }
 
     [[nodiscard]]
-    wxString GetShowcaseComplexWordsLabel() const
+    wxString GetShowcaseKeyItemsLabel() const
         {
         return _(L"Showcase key items");
         }
