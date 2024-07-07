@@ -2599,7 +2599,6 @@ void ProjectDoc::AddCrawfordGraph(const bool setFocus)
         auto crawfordGraph =
             std::dynamic_pointer_cast<CrawfordGraph>(crawfordGraphView->GetFixedObject(0, 0));
         crawfordGraph->SetData(scoreDataset, scoresColumnName, syllablesColumnName);
-        crawfordGraphView->CalcAllSizes(gdc);
         }
     else
         {
@@ -2621,10 +2620,10 @@ void ProjectDoc::AddCrawfordGraph(const bool setFocus)
         crawfordGraph->SetData(scoreDataset, scoresColumnName, syllablesColumnName);
         crawfordGraphView->SetFixedObject(0, 0, crawfordGraph);
 
-        crawfordGraphView->CalcAllSizes(gdc);
         view->GetReadabilityResultsView().AddWindow(crawfordGraphView);
         }
     UpdateGraphOptions(crawfordGraphView);
+    crawfordGraphView->CalcAllSizes(gdc);
 
     // if they asked to set focus to the score, then select the graph
     if (setFocus)
@@ -2657,12 +2656,11 @@ void ProjectDoc::AddDB2Plot(const bool setFocus)
     Wisteria::Canvas* db2PlotView =
         dynamic_cast<Wisteria::Canvas*>(view->GetReadabilityResultsView().
             FindWindowById(BaseProjectView::DB2_PAGE_ID));
-    if (db2PlotView)
+    if (db2PlotView != nullptr)
         {
         auto db2Plot =
             std::dynamic_pointer_cast<DanielsonBryan2Plot>(db2PlotView->GetFixedObject(0, 0));
         db2Plot->SetData(scoreDataset, scoresColumnName);
-        db2PlotView->CalcAllSizes(gdc);
         }
     else
         {
@@ -2683,10 +2681,10 @@ void ProjectDoc::AddDB2Plot(const bool setFocus)
 
         db2Plot->SetData(scoreDataset, scoresColumnName);
         db2PlotView->SetFixedObject(0, 0, db2Plot);
-        db2PlotView->CalcAllSizes(gdc);
         view->GetReadabilityResultsView().AddWindow(db2PlotView);
         }
     UpdateGraphOptions(db2PlotView);
+    db2PlotView->CalcAllSizes(gdc);
 
     // if they asked to set focus to the score then select the graph
     if (setFocus)
@@ -2724,7 +2722,6 @@ void ProjectDoc::AddLixGermanGuage(const bool setFocus)
         auto lixGauge = std::dynamic_pointer_cast<LixGaugeGerman>
             (lixGaugeView->GetFixedObject(0, 0));
         lixGauge->SetData(scoreDataset, scoresColumnName);
-        lixGaugeView->CalcAllSizes(gdc);
         }
     else
         {
@@ -2745,7 +2742,6 @@ void ProjectDoc::AddLixGermanGuage(const bool setFocus)
 
         lixGauge->SetData(scoreDataset, scoresColumnName);
         lixGaugeView->SetFixedObject(0, 0, lixGauge);
-        lixGaugeView->CalcAllSizes(gdc);
         view->GetReadabilityResultsView().AddWindow(lixGaugeView);
         }
     UpdateGraphOptions(lixGaugeView);
@@ -2789,7 +2785,6 @@ void ProjectDoc::AddLixGauge(const bool setFocus)
         {
         auto lixGauge = std::dynamic_pointer_cast<LixGauge>(lixGaugeView->GetFixedObject(0, 0));
         lixGauge->SetData(scoreDataset, scoresColumnName);
-        lixGaugeView->CalcAllSizes(gdc);
         }
     else
         {
@@ -2809,10 +2804,10 @@ void ProjectDoc::AddLixGauge(const bool setFocus)
 
         lixGauge->SetData(scoreDataset, scoresColumnName);
         lixGaugeView->SetFixedObject(0, 0, lixGauge);
-        lixGaugeView->CalcAllSizes(gdc);
         view->GetReadabilityResultsView().AddWindow(lixGaugeView);
         }
     UpdateGraphOptions(lixGaugeView);
+    lixGaugeView->CalcAllSizes(gdc);
 
     // if they asked to set focus to the score then select the graph
     if (setFocus)
@@ -2862,7 +2857,6 @@ void ProjectDoc::AddFleschChart(const bool setFocus)
         auto fleschChart =
             std::dynamic_pointer_cast<FleschChart>(fleschChartCanvas->GetFixedObject(0, 0));
         fleschChart->SetData(scoreDataset, wordsColumnName, scoresColumnName, syllablesColumnName);
-        fleschChartCanvas->CalcAllSizes(gdc);
         }
     else
         {
@@ -2883,7 +2877,6 @@ void ProjectDoc::AddFleschChart(const bool setFocus)
         fleschChart->SetData(scoreDataset, wordsColumnName, scoresColumnName, syllablesColumnName);
         fleschChartCanvas->SetFixedObject(0, 0, fleschChart);
 
-        fleschChartCanvas->CalcAllSizes(gdc);
         view->GetReadabilityResultsView().AddWindow(fleschChartCanvas);
         }
     UpdateGraphOptions(fleschChartCanvas);
@@ -2962,7 +2955,6 @@ bool ProjectDoc::AddSchwartzTest(const bool setFocus)
         assert(schwartzGraph);
         schwartzGraph->SetData(scoreDataset, wordsColumnName, syllablesColumnName,
                                sencentesColumnName);
-        schwartzGraphView->CalcAllSizes(gdc);
         }
     else
         {
@@ -2985,7 +2977,6 @@ bool ProjectDoc::AddSchwartzTest(const bool setFocus)
                                sencentesColumnName);
 
         schwartzGraphView->SetFixedObject(0, 0, schwartzGraph);
-        schwartzGraphView->CalcAllSizes(gdc);
         view->GetReadabilityResultsView().AddWindow(schwartzGraphView);
         }
     UpdateGraphOptions(schwartzGraphView);
@@ -3762,7 +3753,6 @@ bool ProjectDoc::AddGilliamPenaMountainFryTest(const bool setFocus)
         assert(gFryGraph);
         gFryGraph->SetData(scoreDataset, wordsColumnName, syllablesColumnName,
                             sencentesColumnName);
-        fryGraphView->CalcAllSizes(gdc);
         }
     else
         {
@@ -3934,7 +3924,6 @@ bool ProjectDoc::AddFryTest(const bool setFocus)
         assert(fryGraph);
         fryGraph->SetData(scoreDataset, wordsColumnName, syllablesColumnName,
                             sencentesColumnName);
-        fryGraphView->CalcAllSizes(gdc);
         }
     else
         {
