@@ -491,27 +491,23 @@ namespace Wisteria::Graphs
         // Draw the grade lines
         //---------------------
         // 3rd grade
+        wxColour gradeLineColor{ Wisteria::Colors::ColorContrast::IsDark(GetPlotOrCanvasColor()) ?
+                                     Wisteria::Colors::ColorBrewer::GetColor(
+                                         Wisteria::Colors::Color::BondiBlue) :
+                                     *wxBLUE };
+        gradeLineColor = ColorContrast::ChangeOpacity(gradeLineColor, 200);
         AddObject(std::make_unique<GraphItems::Polygon>(
-            GraphItemInfo()
-                .Pen(wxPen(ColorContrast::ChangeOpacity(*wxBLUE, 200)))
-                .Brush(*wxBLACK_BRUSH)
-                .Scaling(GetScaling()),
+            GraphItemInfo().Pen(gradeLineColor).Brush(gradeLineColor).Scaling(GetScaling()),
             &m_gradeLinePoints[3], 2));
         // the rest of the grade lines
         for (size_t i = 4, pointIter = 5; i <= 12; ++i, pointIter += 2)
             {
             AddObject(std::make_unique<GraphItems::Polygon>(
-                GraphItemInfo()
-                    .Pen(wxPen(ColorContrast::ChangeOpacity(*wxBLUE, 200)))
-                    .Brush(*wxBLACK_BRUSH)
-                    .Scaling(GetScaling()),
+                GraphItemInfo().Pen(gradeLineColor).Brush(gradeLineColor).Scaling(GetScaling()),
                 &m_gradeLinePoints[pointIter], 2));
             }
         AddObject(std::make_unique<GraphItems::Polygon>(
-            GraphItemInfo()
-                .Pen(wxPen(ColorContrast::ChangeOpacity(*wxBLUE, 200)))
-                .Brush(*wxBLACK_BRUSH)
-                .Scaling(GetScaling()),
+            GraphItemInfo().Pen(gradeLineColor).Brush(gradeLineColor).Scaling(GetScaling()),
             &m_gradeLinePoints[23], 2));
 
         const wxBrush selectionBrush =
