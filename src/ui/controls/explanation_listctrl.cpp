@@ -429,15 +429,7 @@ void ExplanationListCtrl::OnResize(wxSizeEvent& event)
 void ExplanationListCtrl::OnItemSelected(wxListEvent& event)
     {
     GetExplanationView()->SetPage(wxString::Format(
-        L"<body bgcolor=%s text=%s link=%s>%s</body>",
-#ifdef __WXOSX__
-        wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW).GetAsString(wxC2S_HTML_SYNTAX),
-        wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT).GetAsString(wxC2S_HTML_SYNTAX),
-#else
-        GetBackgroundColour().GetAsString(wxC2S_HTML_SYNTAX),
-        GetForegroundColour().GetAsString(wxC2S_HTML_SYNTAX),
-#endif
-        wxSystemSettings::GetColour(wxSYS_COLOUR_HOTLIGHT).GetAsString(wxC2S_HTML_SYNTAX),
+        L"<body>%s</body>",
         m_explanations[GetResultsListCtrl()->GetItemTextEx(event.GetIndex(), 0)]));
     }
 
@@ -471,15 +463,7 @@ void ExplanationListCtrl::UpdateExplanationDisplay()
     if (selected != wxNOT_FOUND)
         {
         GetExplanationView()->SetPage(wxString::Format(
-            L"<body bgcolor=%s text=%s link=%s>%s</body>",
-#ifdef __WXOSX__
-            wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW).GetAsString(wxC2S_HTML_SYNTAX),
-            wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT).GetAsString(wxC2S_HTML_SYNTAX),
-#else
-            GetBackgroundColour().GetAsString(wxC2S_HTML_SYNTAX),
-            GetForegroundColour().GetAsString(wxC2S_HTML_SYNTAX),
-#endif
-            wxSystemSettings::GetColour(wxSYS_COLOUR_HOTLIGHT).GetAsString(wxC2S_HTML_SYNTAX),
+            L"<body>%s</body>",
             m_explanations[GetResultsListCtrl()->GetItemTextEx(selected, 0)]));
         }
     }
