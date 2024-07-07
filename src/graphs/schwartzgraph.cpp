@@ -142,6 +142,8 @@ namespace Wisteria::Graphs
 
         Graph2D::RecalcSizes(dc);
 
+        wxColour labelFontColor{ GetLeftYAxis().GetFontColor() };
+
         assert((!m_backscreen || m_backscreen->GetBoundingBox(dc).GetWidth() ==
                                      Canvas::GetDefaultCanvasWidthDIPs()) &&
                L"Invalid backscreen size!");
@@ -397,30 +399,32 @@ namespace Wisteria::Graphs
             m_gradeOver8Polygon));
 
         // middle points on the separator line
-        const wxColour lightGray{ wxColour(0, 0, 0, 200) };
+        wxColour separatorColor{ Wisteria::Colors::ColorContrast::ChangeOpacity(*wxBLACK, 200) };
+        separatorColor = Wisteria::Colors::ColorContrast::ShadeOrTintIfClose(
+            separatorColor, GetPlotOrCanvasColor());
         auto linePoints = std::make_unique<GraphItems::Points2D>(wxNullPen);
         linePoints->SetScaling(GetScaling());
         linePoints->SetDPIScaleFactor(GetDPIScaleFactor());
         linePoints->AddPoint(
-            Point2D(GraphItemInfo().AnchorPoint(m_dividerLinePoints[1]).Brush(lightGray),
+            Point2D(GraphItemInfo().AnchorPoint(m_dividerLinePoints[1]).Brush(separatorColor),
                     Settings::GetPointRadius(), Icons::IconShape::Circle),
             dc);
         linePoints->AddPoint(
-            Point2D(GraphItemInfo().AnchorPoint(m_dividerLinePoints[2]).Brush(lightGray),
+            Point2D(GraphItemInfo().AnchorPoint(m_dividerLinePoints[2]).Brush(separatorColor),
                     Settings::GetPointRadius(), Icons::IconShape::Circle),
             dc);
         linePoints->AddPoint(
-            Point2D(GraphItemInfo().AnchorPoint(m_dividerLinePoints[3]).Brush(lightGray),
+            Point2D(GraphItemInfo().AnchorPoint(m_dividerLinePoints[3]).Brush(separatorColor),
                     Settings::GetPointRadius(), Icons::IconShape::Circle),
             dc);
         linePoints->AddPoint(
-            Point2D(GraphItemInfo().AnchorPoint(m_dividerLinePoints[4]).Brush(lightGray),
+            Point2D(GraphItemInfo().AnchorPoint(m_dividerLinePoints[4]).Brush(separatorColor),
                     Settings::GetPointRadius(), Icons::IconShape::Circle),
             dc);
         // index [5] is just added to the spline to curve it better,
         // not used for a middle point
         linePoints->AddPoint(
-            Point2D(GraphItemInfo().AnchorPoint(m_dividerLinePoints[6]).Brush(lightGray),
+            Point2D(GraphItemInfo().AnchorPoint(m_dividerLinePoints[6]).Brush(separatorColor),
                     Settings::GetPointRadius(), Icons::IconShape::Circle),
             dc);
         AddObject(std::move(linePoints));
@@ -428,8 +432,8 @@ namespace Wisteria::Graphs
         // separator line
         auto levelsSpline = std::make_unique<GraphItems::Polygon>(
             GraphItemInfo()
-                .Pen(wxPen(wxColour(0, 0, 0, 200)))
-                .Brush(wxBrush(wxColour(0, 0, 0, 200)))
+                .Pen(separatorColor)
+                .Brush(separatorColor)
                 .Scaling(GetScaling())
                 .DPIScaling(GetDPIScaleFactor()),
             &m_dividerLinePoints[1], m_dividerLinePoints.size() - 3);
@@ -507,9 +511,9 @@ namespace Wisteria::Graphs
                     .AnchorPoint(mainLabel->GetBoundingBox(measureDC).GetTopLeft() -
                                  wxPoint(0, ScaleToScreenAndCanvas(2))));
             legend->GetLegendIcons().push_back(Icons::LegendIcon(
-                Icons::IconShape::HorizontalLine, wxColour(0, 0, 0, 200), wxColour(0, 0, 0, 200)));
+                Icons::IconShape::HorizontalLine, separatorColor, separatorColor));
             legend->GetLegendIcons().push_back(Icons::LegendIcon(
-                Icons::IconShape::Circle, wxColour(0, 0, 0, 200), wxColour(0, 0, 0, 200)));
+                Icons::IconShape::Circle, separatorColor, separatorColor));
             legend->SetBoxCorners(BoxCorners::Straight);
             AddObject(std::move(legend));
             }
@@ -535,6 +539,7 @@ namespace Wisteria::Graphs
                                                         .DPIScaling(GetDPIScaleFactor())
                                                         .Pen(wxNullPen)
                                                         .Font(numberFont)
+                                                        .FontColor(labelFontColor)
                                                         .AnchorPoint(pt));
             gradeLabel->SetAnchoring(Anchoring::TopLeftCorner);
             if (GetScores().size() == 1 &&
@@ -666,12 +671,14 @@ namespace Wisteria::Graphs
             if (GetPhysicalCoordinates(m_results[i].m_wordStatistic,
                                        m_results[i].m_sentenceStatistic, m_results[i].m_scorePoint))
                 {
-                points->AddPoint(Point2D(GraphItemInfo(GetDataset()->GetIdColumn().GetValue(i))
-                                             .AnchorPoint(m_results[i].m_scorePoint)
-                                             .Brush(GetColorScheme()->GetColor(colorIndex)),
-                                         Settings::GetPointRadius(),
-                                         GetShapeScheme()->GetShape(colorIndex)),
-                                 dc);
+                points->AddPoint(
+                    Point2D(GraphItemInfo(GetDataset()->GetIdColumn().GetValue(i))
+                                .AnchorPoint(m_results[i].m_scorePoint)
+                                .Pen(Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
+                                    GetPlotOrCanvasColor()))
+                                .Brush(GetColorScheme()->GetColor(colorIndex)),
+                            Settings::GetPointRadius(), GetShapeScheme()->GetShape(colorIndex)),
+                    dc);
                 }
             else
                 {
