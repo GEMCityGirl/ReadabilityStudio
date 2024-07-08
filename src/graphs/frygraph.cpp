@@ -204,11 +204,6 @@ namespace Wisteria::Graphs
     //----------------------------------------------------------------
     void FryGraph::RecalcSizes(wxDC& dc)
         {
-        GetLeftYAxis().GetAxisLinePen().SetColour(
-            Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(GetPlotOrCanvasColor()));
-        GetBottomXAxis().GetAxisLinePen().SetColour(
-            Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(GetPlotOrCanvasColor()));
-
         Graph2D::RecalcSizes(dc);
 
         assert((!m_backscreen || m_backscreen->GetBoundingBox(dc).GetWidth() ==
