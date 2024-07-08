@@ -314,32 +314,19 @@ namespace Wisteria::Graphs
 
         const wxBrush selectionBrush =
             wxBrush(ColorContrast::ChangeOpacity(ColorBrewer::GetColor(Color::LightGray), 100));
-        const auto lightGray{ ColorContrast::ChangeOpacity(*wxBLACK, 200) };
+        wxColour separatorColor{ ColorContrast::ChangeOpacity(*wxBLACK, 200) };
+        separatorColor = Wisteria::Colors::ColorContrast::ShadeOrTintIfClose(
+            separatorColor, GetPlotOrCanvasColor());
 
         // the separator line
         auto levelsSpline = std::make_unique<GraphItems::Polygon>(
-            GraphItemInfo().Pen(wxPen(lightGray)).Brush(wxBrush(lightGray)).Scaling(GetScaling()),
+            GraphItemInfo()
+                .Pen(wxPen(separatorColor))
+                .Brush(wxBrush(separatorColor))
+                .Scaling(GetScaling()),
             &m_dividerLinePoints[0], std::size(m_dividerLinePoints) - 2);
         levelsSpline->SetShape(GraphItems::Polygon::PolygonShape::Spline);
         AddObject(std::move(levelsSpline));
-
-        // draw the grade lines
-        AddObject(std::make_unique<GraphItems::Polygon>(
-            GraphItemInfo()
-                .Pen(wxPen(ColorContrast::ChangeOpacity(*wxBLUE, 200)))
-                .Brush(*wxBLACK_BRUSH)
-                .Scaling(GetScaling()),
-            &m_gradeLinePoints[3], 2));
-        // the rest of grade region lines
-        for (size_t i = 2, pointIter = 5; i <= 16; ++i, pointIter += 2)
-            {
-            AddObject(std::make_unique<GraphItems::Polygon>(
-                GraphItemInfo()
-                    .Pen(wxPen(ColorContrast::ChangeOpacity(*wxBLUE, 200)))
-                    .Brush(*wxBLACK_BRUSH)
-                    .Scaling(GetScaling()),
-                &m_gradeLinePoints[pointIter], 2));
-            }
 
         assert(GetMessageCatalog() && L"Label manager not set in Fry Graph!");
 
@@ -366,45 +353,14 @@ namespace Wisteria::Graphs
                                                             .SelectionBrush(selectionBrush),
                                                         &m_gradeLinePoints[33], 4));
 
-        wxPoint pt1, pt2;
-        GetPhysicalCoordinates(112 + GetSyllableAxisOffset(), 5.0, pt1);
-        GetPhysicalCoordinates(128 + GetSyllableAxisOffset(), 3.3, pt2);
-        auto gradeLevelLabel =
-            std::make_unique<GraphItems::Label>(GraphItemInfo(_(L"APPROXIMATE  GRADE  LEVEL"))
-                .Pen(wxNullPen)
-                .Selectable(false)
-                                                    .FontColor(labelFontColor)
-                                                    // overriding scaling with a hard-coded font
-                                                    // size returned from CalcDiagonalFontSize()
-                                                    .Scaling(1)
-                .DPIScaling(1)
-                .AnchorPoint(pt1)
-                .Anchoring(Anchoring::TopLeftCorner));
-        gradeLevelLabel->Tilt(-45);
-        // make it fit inside of the graph
-        wxRect gradeLabelArea{ pt1, pt2 };
-        wxFont labelFont(wxFontInfo().FaceName(GetFancyFontFaceName()));
-        labelFont.SetPointSize(Label::CalcDiagonalFontSize(dc, labelFont, gradeLabelArea, 45,
-                                                           gradeLevelLabel->GetText()));
-        gradeLevelLabel->SetFont(labelFont);
-        if constexpr (Settings::IsDebugFlagEnabled(DebugSettings::DrawExtraInformation))
-            {
-            AddObject(std::make_unique<GraphItems::Polygon>(
-                GraphItemInfo().Pen(*wxRED).Brush(wxNullBrush),
-                std::vector<wxPoint>{ gradeLabelArea.GetTopLeft(), gradeLabelArea.GetTopRight(),
-                                      gradeLabelArea.GetBottomRight(),
-                                      gradeLabelArea.GetBottomLeft() }));
-            }
-
-        AddObject(std::move(gradeLevelLabel));
-
         CalculateScorePositions(dc);
 
         // add the grade labels to the regions
         // (and highlight in heavy bold and a different color the one where the score lies)
-        labelFont = wxFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize() * 1.25f,
-                           wxFONTFAMILY_DEFAULT, wxFONTSTYLE_ITALIC, wxFONTWEIGHT_NORMAL, false,
-                           GetFancyFontFaceName());
+        wxFont labelFont =
+            wxFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize() * 1.25f,
+                   wxFONTFAMILY_DEFAULT, wxFONTSTYLE_ITALIC, wxFONTWEIGHT_NORMAL, false,
+                   GetFancyFontFaceName());
         for (const auto& level : GetLevelLabels())
             {
             wxPoint pt;
@@ -417,10 +373,26 @@ namespace Wisteria::Graphs
                                                                       .FontColor(labelFontColor)
                                                                       .AnchorPoint(pt));
             levelLabel->SetTextAlignment(TextAlignment::Centered);
-            if (GetScores().size() == 1 && level == GetScores().front().GetScore())
+            if (GetScores().size() == 1)
                 {
-                levelLabel->GetFont().SetWeight(wxFontWeight::wxFONTWEIGHT_EXTRAHEAVY);
-                levelLabel->SetFontColor(GetColorScheme()->GetColor(0));
+                // ghost non-scored sections
+                if (IsShowcasingScore() && level != GetScores().front().GetScore())
+                    {
+                    levelLabel->SetFontColor(Wisteria::Colors::ColorContrast::ChangeOpacity(
+                        labelFontColor, Wisteria::Settings::GHOST_OPACITY));
+                    }
+                else
+                    {
+                    // If showcasing, then we will leave the scored section the same
+                    // (this area will be shaded)...
+                    levelLabel->GetFont().SetWeight(wxFontWeight::wxFONTWEIGHT_EXTRAHEAVY);
+                    // ...but if not showcasing and this section is scored, then make it bold and
+                    // change the color.
+                    if (!IsShowcasingScore() && level == GetScores().front().GetScore())
+                        {
+                        levelLabel->SetFontColor(GetColorScheme()->GetColor(0));
+                        }
+                    }
                 }
             AddObject(std::move(levelLabel));
             }
@@ -469,7 +441,7 @@ namespace Wisteria::Graphs
             m_results[i].ResetStatus();
 
             const auto calcScoreFromPolygons =
-                [](const std::unique_ptr<FryGraph>& graph, ScorePoint& scorePoint)
+                [this](const std::unique_ptr<FryGraph>& graph, ScorePoint& scorePoint)
             {
                 // see where the point is
                 if (!graph->GetPhysicalCoordinates(scorePoint.m_wordStatistic,
@@ -592,6 +564,183 @@ namespace Wisteria::Graphs
 
             calcScoreFromPolygons(m_backscreen, m_results[i]);
 
+            std::vector<wxPoint> highlightedGradeLinePoints;
+            const wxColour gradeLineColor{
+                Wisteria::Colors::ColorContrast::IsDark(GetPlotOrCanvasColor()) ?
+                    Wisteria::Colors::ColorBrewer::GetColor(Wisteria::Colors::Color::BondiBlue) :
+                    *wxBLUE
+            };
+            if (IsShowcasingScore() && GetScores().size() == 1)
+                {
+                if (GetScores().at(0).GetScore() == 17)
+                    {
+                    std::copy(&m_gradeLinePoints[33], &m_gradeLinePoints[36],
+                              std::back_inserter(highlightedGradeLinePoints));
+                    highlightedGradeLinePoints.push_back(m_gradeLinePoints[36]);
+                    }
+                else if (GetScores().at(0).GetScore() == 16)
+                    {
+                    std::copy(&m_gradeLinePoints[31], &m_gradeLinePoints[35],
+                              std::back_inserter(highlightedGradeLinePoints));
+                    }
+                else if (GetScores().at(0).GetScore() == 15)
+                    {
+                    std::copy(&m_gradeLinePoints[29], &m_gradeLinePoints[33],
+                              std::back_inserter(highlightedGradeLinePoints));
+                    }
+                else if (GetScores().at(0).GetScore() == 14)
+                    {
+                    std::copy(&m_gradeLinePoints[27], &m_gradeLinePoints[31],
+                              std::back_inserter(highlightedGradeLinePoints));
+                    }
+                else if (GetScores().at(0).GetScore() == 13)
+                    {
+                    std::copy(&m_gradeLinePoints[25], &m_gradeLinePoints[29],
+                              std::back_inserter(highlightedGradeLinePoints));
+                    }
+                else if (GetScores().at(0).GetScore() == 12)
+                    {
+                    std::copy(&m_gradeLinePoints[23], &m_gradeLinePoints[27],
+                              std::back_inserter(highlightedGradeLinePoints));
+                    }
+                else if (GetScores().at(0).GetScore() == 11)
+                    {
+                    std::copy(&m_gradeLinePoints[21], &m_gradeLinePoints[25],
+                              std::back_inserter(highlightedGradeLinePoints));
+                    }
+                else if (GetScores().at(0).GetScore() == 10)
+                    {
+                    std::copy(&m_gradeLinePoints[19], &m_gradeLinePoints[23],
+                              std::back_inserter(highlightedGradeLinePoints));
+                    }
+                else if (GetScores().at(0).GetScore() == 9)
+                    {
+                    std::copy(&m_gradeLinePoints[17], &m_gradeLinePoints[21],
+                              std::back_inserter(highlightedGradeLinePoints));
+                    }
+                else if (GetScores().at(0).GetScore() == 8)
+                    {
+                    std::copy(&m_gradeLinePoints[15], &m_gradeLinePoints[19],
+                              std::back_inserter(highlightedGradeLinePoints));
+                    }
+                else if (GetScores().at(0).GetScore() == 7)
+                    {
+                    std::copy(&m_gradeLinePoints[13], &m_gradeLinePoints[17],
+                              std::back_inserter(highlightedGradeLinePoints));
+                    }
+                else if (GetScores().at(0).GetScore() == 6)
+                    {
+                    std::copy(&m_gradeLinePoints[11], &m_gradeLinePoints[15],
+                              std::back_inserter(highlightedGradeLinePoints));
+                    }
+                else if (GetScores().at(0).GetScore() == 5)
+                    {
+                    std::copy(&m_gradeLinePoints[9], &m_gradeLinePoints[13],
+                              std::back_inserter(highlightedGradeLinePoints));
+                    }
+                else if (GetScores().at(0).GetScore() == 4)
+                    {
+                    std::copy(&m_gradeLinePoints[7], &m_gradeLinePoints[11],
+                              std::back_inserter(highlightedGradeLinePoints));
+                    }
+                else if (GetScores().at(0).GetScore() == 3)
+                    {
+                    std::copy(&m_gradeLinePoints[5], &m_gradeLinePoints[9],
+                              std::back_inserter(highlightedGradeLinePoints));
+                    }
+                else if (GetScores().at(0).GetScore() == 2)
+                    {
+                    std::copy(&m_gradeLinePoints[3], &m_gradeLinePoints[7],
+                              std::back_inserter(highlightedGradeLinePoints));
+                    }
+                else if (GetScores().at(0).GetScore() == 1)
+                    {
+                    std::copy(&m_gradeLinePoints[0], &m_gradeLinePoints[5],
+                              std::back_inserter(highlightedGradeLinePoints));
+                    }
+
+                if (!highlightedGradeLinePoints.empty())
+                    {
+                    AddObject(std::make_unique<GraphItems::Polygon>(
+                        GraphItemInfo()
+                            .Pen(ColorContrast::ChangeOpacity(
+                                Wisteria::Colors::ColorBrewer::GetColor(
+                                    Wisteria::Colors::Color::BondiBlue),
+                                100))
+                            .Brush(ColorContrast::ChangeOpacity(
+                                Wisteria::Colors::ColorBrewer::GetColor(
+                                    Wisteria::Colors::Color::BondiBlue),
+                                100))
+                            .Scaling(GetScaling()),
+                        highlightedGradeLinePoints));
+                    }
+                }
+
+            // draw the grade lines
+            auto foundHighlitLine =
+                std::find(highlightedGradeLinePoints.cbegin(), highlightedGradeLinePoints.cend(),
+                          m_gradeLinePoints[3]);
+            uint8_t opacityLevel = (foundHighlitLine == highlightedGradeLinePoints.cend() &&
+                                    IsShowcasingScore() && GetScores().size() == 1) ?
+                                       Wisteria::Settings::GHOST_OPACITY :
+                                       200;
+            AddObject(std::make_unique<GraphItems::Polygon>(
+                GraphItemInfo()
+                    .Pen(wxPen(ColorContrast::ChangeOpacity(gradeLineColor, opacityLevel)))
+                    .Brush(gradeLineColor)
+                    .Scaling(GetScaling()),
+                &m_gradeLinePoints[3], 2));
+            // the rest of grade region lines
+            for (size_t i = 2, pointIter = 5; i <= 16; ++i, pointIter += 2)
+                {
+                foundHighlitLine =
+                    std::find(highlightedGradeLinePoints.cbegin(),
+                              highlightedGradeLinePoints.cend(), m_gradeLinePoints[pointIter]);
+                opacityLevel = (foundHighlitLine == highlightedGradeLinePoints.cend() &&
+                                IsShowcasingScore() && GetScores().size() == 1) ?
+                                   Wisteria::Settings::GHOST_OPACITY :
+                                   200;
+                AddObject(std::make_unique<GraphItems::Polygon>(
+                    GraphItemInfo()
+                        .Pen(wxPen(ColorContrast::ChangeOpacity(gradeLineColor, opacityLevel)))
+                        .Brush(gradeLineColor)
+                        .Scaling(GetScaling()),
+                    &m_gradeLinePoints[pointIter], 2));
+                }
+
+            wxColour labelFontColor{ GetLeftYAxis().GetFontColor() };
+            wxPoint pt1, pt2;
+            GetPhysicalCoordinates(112 + GetSyllableAxisOffset(), 5.0, pt1);
+            GetPhysicalCoordinates(128 + GetSyllableAxisOffset(), 3.3, pt2);
+            auto gradeLevelLabel =
+                std::make_unique<GraphItems::Label>(GraphItemInfo(_(L"APPROXIMATE  GRADE  LEVEL"))
+                                                        .Pen(wxNullPen)
+                                                        .Selectable(false)
+                                                        .FontColor(labelFontColor)
+                                                        // overriding scaling with a hard-coded font
+                                                        // size returned from CalcDiagonalFontSize()
+                                                        .Scaling(1)
+                                                        .DPIScaling(1)
+                                                        .AnchorPoint(pt1)
+                                                        .Anchoring(Anchoring::TopLeftCorner));
+            gradeLevelLabel->Tilt(-45);
+            // make it fit inside of the graph
+            wxRect gradeLabelArea{ pt1, pt2 };
+            wxFont labelFont(wxFontInfo().FaceName(GetFancyFontFaceName()));
+            labelFont.SetPointSize(Label::CalcDiagonalFontSize(dc, labelFont, gradeLabelArea, 45,
+                                                               gradeLevelLabel->GetText()));
+            gradeLevelLabel->SetFont(labelFont);
+            if constexpr (Settings::IsDebugFlagEnabled(DebugSettings::DrawExtraInformation))
+                {
+                AddObject(std::make_unique<GraphItems::Polygon>(
+                    GraphItemInfo().Pen(*wxRED).Brush(wxNullBrush),
+                    std::vector<wxPoint>{ gradeLabelArea.GetTopLeft(), gradeLabelArea.GetTopRight(),
+                                          gradeLabelArea.GetBottomRight(),
+                                          gradeLabelArea.GetBottomLeft() }));
+                }
+
+            AddObject(std::move(gradeLevelLabel));
+
             // Convert group ID into color scheme index
             // (index is ordered by labels alphabetically).
             // Note that this will be zero if grouping is not in use.
@@ -605,12 +754,12 @@ namespace Wisteria::Graphs
                 {
                 points->AddPoint(
                     Point2D(GraphItemInfo(GetDataset()->GetIdColumn().GetValue(i))
-                                             .AnchorPoint(m_results[i].m_scorePoint)
+                                .AnchorPoint(m_results[i].m_scorePoint)
                                 .Pen(Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
                                     GetPlotOrCanvasColor()))
-                                             .Brush(GetColorScheme()->GetColor(colorIndex)),
+                                .Brush(GetColorScheme()->GetColor(colorIndex)),
                             Settings::GetPointRadius(), GetShapeScheme()->GetShape(colorIndex)),
-                                 dc);
+                    dc);
                 }
             else
                 {
