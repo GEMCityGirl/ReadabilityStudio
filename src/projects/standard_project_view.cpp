@@ -2320,6 +2320,10 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                 else if (graph->IsKindOf(CLASSINFO(FleschChart)))
                     {
                     editFleschButtonBarWindow->Show();
+                    getEditButtonBar(editFleschButtonBarWindow)
+                        ->ToggleButton(XRCID("ID_FLESCH_DISPLAY_LINES"),
+                            dynamic_cast<ProjectDoc*>(GetDocument())
+                                           ->IsConnectingFleschPoints());
                     }
                 else if (graph->IsKindOf(CLASSINFO(FryGraph)) ||
                          graph->IsKindOf(CLASSINFO(SchwartzGraph)))
