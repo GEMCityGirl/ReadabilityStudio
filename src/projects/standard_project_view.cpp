@@ -2241,8 +2241,9 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_RAYGOR_PANEL);
     wxRibbonPanel* editFrySchwartzButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_FRY_PANEL);
-    // hide batch panels that we don't use here
+    wxRibbonPanel* editFleschButtonBarWindow =
     hideEditPanel(MainFrame::ID_EDIT_RIBBON_FLESCH_PANEL);
+    // hide batch panels that we don't use here
     hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_CSVSS_PANEL);
     hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_TEST_SCORES_PANEL);
     hideEditPanel(MainFrame::ID_EDIT_RIBBON_HISTOGRAM_BATCH_PANEL);
@@ -2308,10 +2309,6 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     {
                     editLixGermanButtonBarWindow->Show();
                     getEditButtonBar(editLixGermanButtonBarWindow)
-                        ->ToggleButton(
-                            XRCID("ID_DROP_SHADOW"),
-                            dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
-                    getEditButtonBar(editLixGermanButtonBarWindow)
                         ->ToggleButton(XRCID("ID_USE_ENGLISH_LABELS"),
                                        dynamic_cast<ProjectDoc*>(GetDocument())
                                            ->IsUsingEnglishLabelsForGermanLix());
@@ -2319,19 +2316,15 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                 else if (graph->IsKindOf(CLASSINFO(RaygorGraph)))
                     {
                     editRaygorButtonBarWindow->Show();
-                    getEditButtonBar(editRaygorButtonBarWindow)
-                        ->ToggleButton(
-                            XRCID("ID_DROP_SHADOW"),
-                            dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
+                    }
+                else if (graph->IsKindOf(CLASSINFO(FleschChart)))
+                    {
+                    editFleschButtonBarWindow->Show();
                     }
                 else if (graph->IsKindOf(CLASSINFO(FryGraph)) ||
                          graph->IsKindOf(CLASSINFO(SchwartzGraph)))
                     {
                     editFrySchwartzButtonBarWindow->Show();
-                    getEditButtonBar(editFrySchwartzButtonBarWindow)
-                        ->ToggleButton(
-                            XRCID("ID_DROP_SHADOW"),
-                            dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
                     }
                 else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)))
                     {
@@ -2480,20 +2473,12 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                         ->ToggleButton(
                             XRCID("ID_EDIT_GRAPH_SHOWCASE_COMPLEX_WORDS"),
                             dynamic_cast<ProjectDoc*>(GetDocument())->IsShowcasingKeyItems());
-                    getEditButtonBar(editPieChartButtonBarWindow)
-                        ->ToggleButton(
-                            XRCID("ID_DROP_SHADOW"),
-                            dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
                     }
                 else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)) &&
                          dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
                                      ->GetFixedObject(0, 0)->IsKindOf(wxCLASSINFO(Wisteria::Graphs::WordCloud)))
                     {
                     editWordCloudButtonBarWindow->Show();
-                    getEditButtonBar(editWordCloudButtonBarWindow)
-                        ->ToggleButton(
-                            XRCID("ID_DROP_SHADOW"),
-                            dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
                     }
                 else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)))
                     {

@@ -977,10 +977,6 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         {
                         editLixGermanButtonBarWindow->Show();
                         getEditButtonBar(editLixGermanButtonBarWindow)
-                            ->ToggleButton(XRCID("ID_DROP_SHADOW"),
-                                           dynamic_cast<BatchProjectDoc*>(GetDocument())
-                                               ->IsDisplayingDropShadows());
-                        getEditButtonBar(editLixGermanButtonBarWindow)
                             ->ToggleButton(XRCID("ID_USE_ENGLISH_LABELS"),
                                            dynamic_cast<BatchProjectDoc*>(GetDocument())
                                                ->IsUsingEnglishLabelsForGermanLix());
@@ -988,27 +984,15 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                     else if (graph->IsKindOf(wxCLASSINFO(RaygorGraph)))
                         {
                         editRaygorButtonBarWindow->Show();
-                        getEditButtonBar(editRaygorButtonBarWindow)
-                            ->ToggleButton(XRCID("ID_DROP_SHADOW"),
-                                           dynamic_cast<BatchProjectDoc*>(GetDocument())
-                                               ->IsDisplayingDropShadows());
                         }
                     else if (graph->IsKindOf(wxCLASSINFO(FryGraph)) ||
                              graph->IsKindOf(wxCLASSINFO(SchwartzGraph)))
                         {
                         editFrySchwartzButtonBarWindow->Show();
-                        getEditButtonBar(editFrySchwartzButtonBarWindow)
-                            ->ToggleButton(XRCID("ID_DROP_SHADOW"),
-                                           dynamic_cast<BatchProjectDoc*>(GetDocument())
-                                               ->IsDisplayingDropShadows());
                         }
                     else if (graph->IsKindOf(wxCLASSINFO(FleschChart)))
                         {
                         editFleschButtonBarWindow->Show();
-                        getEditButtonBar(editFleschButtonBarWindow)
-                            ->ToggleButton(XRCID("ID_DROP_SHADOW"),
-                                           dynamic_cast<BatchProjectDoc*>(GetDocument())
-                                               ->IsDisplayingDropShadows());
                         getEditButtonBar(editFleschButtonBarWindow)
                             ->ToggleButton(XRCID("ID_FLESCH_DISPLAY_LINES"),
                                            dynamic_cast<BatchProjectDoc*>(GetDocument())
@@ -1137,10 +1121,6 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                             ->IsKindOf(wxCLASSINFO(Wisteria::Graphs::WordCloud)))
                         {
                         editWordCloudButtonBarWindow->Show();
-                        getEditButtonBar(editWordCloudButtonBarWindow)
-                            ->ToggleButton(XRCID("ID_DROP_SHADOW"),
-                                           dynamic_cast<BatchProjectDoc*>(GetDocument())
-                                               ->IsDisplayingDropShadows());
                         }
                     else
                         {

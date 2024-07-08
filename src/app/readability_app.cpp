@@ -2559,10 +2559,6 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                     _(L"Logo"),
                     wxGetApp().ReadRibbonSvgIcon(L"ribbon/logo.svg"),
                     _(L"Add a logo to the graph."));
-                editButtonBar->AddToggleButton(XRCID("ID_DROP_SHADOW"),
-                    _(L"Shadows"),
-                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/shadow.svg"),
-                    _(L"Display drop shadows on the graphs."));
 
                 editButtonBar->AddButton(wxID_COPY,
                     _(L"Copy"),
@@ -2608,10 +2604,6 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                     _(L"Logo"),
                     wxGetApp().ReadRibbonSvgIcon(L"ribbon/logo.svg"),
                     _(L"Add a logo to the graph."));
-                editButtonBar->AddToggleButton(XRCID("ID_DROP_SHADOW"),
-                    _(L"Shadows"),
-                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/shadow.svg"),
-                    _(L"Display drop shadows on the graphs."));
 
                 editButtonBar->AddButton(wxID_COPY,
                     _(L"Copy"),
@@ -2686,9 +2678,6 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"), _(L"Logo"),
                                             wxGetApp().ReadRibbonSvgIcon(L"ribbon/logo.svg"),
                                             _(L"Add a logo to the graph."));
-                editButtonBar->AddToggleButton(XRCID("ID_DROP_SHADOW"), _(L"Shadows"),
-                                                wxGetApp().ReadRibbonSvgIcon(L"ribbon/shadow.svg"),
-                                                _(L"Display drop shadows on the graphs."));
                 editButtonBar->AddToggleButton(XRCID("ID_USE_ENGLISH_LABELS"),
                     _(L"English Labels"),
                     wxGetApp().ReadRibbonSvgIcon(L"ribbon/german2english.svg"),
@@ -2723,9 +2712,6 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"), _(L"Logo"),
                                             wxGetApp().ReadRibbonSvgIcon(L"ribbon/logo.svg"),
                                             _(L"Add a logo to the graph."));
-                editButtonBar->AddToggleButton(XRCID("ID_DROP_SHADOW"), _(L"Shadows"),
-                                                wxGetApp().ReadRibbonSvgIcon(L"ribbon/shadow.svg"),
-                                                _(L"Display drop shadows on the graphs."));
                 editButtonBar->AddButton(XRCID("ID_INVALID_REGION_COLOR"),
                     _(L"Invalid Region"),
                     wxGetApp().ReadRibbonSvgIcon(L"ribbon/invalid-region.svg"),
@@ -2764,9 +2750,6 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"), _(L"Logo"),
                                             wxGetApp().ReadRibbonSvgIcon(L"ribbon/logo.svg"),
                                             _(L"Add a logo to the graph."));
-                editButtonBar->AddToggleButton(XRCID("ID_DROP_SHADOW"), _(L"Shadows"),
-                                                wxGetApp().ReadRibbonSvgIcon(L"ribbon/shadow.svg"),
-                                                _(L"Display drop shadows on the graphs."));
                 editButtonBar->AddButton(XRCID("ID_INVALID_REGION_COLOR"),
                     _(L"Invalid Region"),
                     wxGetApp().ReadRibbonSvgIcon(L"ribbon/invalid-region.svg"),
@@ -2801,9 +2784,6 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 editButtonBar->AddButton(XRCID("ID_EDIT_LOGO"), _(L"Logo"),
                                             wxGetApp().ReadRibbonSvgIcon(L"ribbon/logo.svg"),
                                             _(L"Add a logo to the graph."));
-                editButtonBar->AddToggleButton(XRCID("ID_DROP_SHADOW"), _(L"Shadows"),
-                                                wxGetApp().ReadRibbonSvgIcon(L"ribbon/shadow.svg"),
-                                                _(L"Display drop shadows on the graphs."));
                 editButtonBar->AddToggleButton(XRCID("ID_FLESCH_DISPLAY_LINES"),
                     _(L"Connect Points"),
                     wxGetApp().ReadRibbonSvgIcon(L"ribbon/flesch-line.svg"),
