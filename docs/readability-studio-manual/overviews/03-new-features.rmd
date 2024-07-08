@@ -103,7 +103,11 @@
   - only looks at words containing more than three characters.
   - ignores words that are part of a common phrase (e.g., "*again* and *again*").
   - counts if the word appears at least once every fifth word.
-- Expanded spell-checker to include terms from higher education, healthcare, software programming, and cosmetology.
+- Expanded spell-checker to include terms from:
+  - higher education
+  - healthcare
+  - software programming
+  - cosmetology
 - Updated Spanish, Russian, Italian, French, Swedish, and German stemmers to the latest Snowball 2.3 standard.
 
 ### Importing/Exporting Enhancements {-}
