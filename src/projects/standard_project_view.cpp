@@ -2447,6 +2447,10 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     editSyllableHistogramButtonBarWindow->Show();
                     getEditButtonBar(editSyllableHistogramButtonBarWindow)
                         ->ToggleButton(
+                            XRCID("ID_EDIT_GRAPH_SHOWCASE_KEY_ITEMS"),
+                            dynamic_cast<ProjectDoc*>(GetDocument())->IsShowcasingKeyItems());
+                    getEditButtonBar(editSyllableHistogramButtonBarWindow)
+                        ->ToggleButton(
                             XRCID("ID_DROP_SHADOW"),
                             dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
                     }
@@ -2471,7 +2475,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     editPieChartButtonBarWindow->Show();
                     getEditButtonBar(editPieChartButtonBarWindow)
                         ->ToggleButton(
-                            XRCID("ID_EDIT_GRAPH_SHOWCASE_COMPLEX_WORDS"),
+                            XRCID("ID_EDIT_GRAPH_SHOWCASE_KEY_ITEMS"),
                             dynamic_cast<ProjectDoc*>(GetDocument())->IsShowcasingKeyItems());
                     }
                 else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)) &&

@@ -84,7 +84,7 @@ class ProjectDocChildFrame : public wxDocChildFrame
 
     void OnHistoBarSelectStippleShape([[maybe_unused]] wxCommandEvent& event);
 
-    void OnShowcaseComplexWords([[maybe_unused]] wxRibbonButtonBarEvent& event);
+    void OnShowcaseKeyItems([[maybe_unused]] wxRibbonButtonBarEvent& event);
 
     void OnBarStyleSelected(wxCommandEvent& event);
 

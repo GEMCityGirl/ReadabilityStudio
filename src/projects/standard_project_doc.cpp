@@ -3203,46 +3203,80 @@ void ProjectDoc::DisplayReadabilityGraphs()
     {
     // if working with an empty project
     if (GetWords() == nullptr)
-        { return; }
+        {
+        return;
+        }
 
     try
         {
         ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
         wxGCDC gdc(view->GetDocFrame());
 
-        // remove Fry graph if test is not included (Note that this chart is added by AddFryTest, not here).
+        // remove Fry graph if test is not included (Note that this chart is added by AddFryTest,
+        // not here).
         if (!GetReadabilityTests().is_test_included(ReadabilityMessages::FRY()))
-            { view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::FRY_PAGE_ID); }
+            {
+            view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::FRY_PAGE_ID);
+            }
         // remove GPM (Spanish) Fry graph if test is not included
         // (Note that this chart is added by AddGilliamPenaMountainFryTest, not here).
         if (!GetReadabilityTests().is_test_included(ReadabilityMessages::GPM_FRY()))
-            { view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::GPM_FRY_PAGE_ID); }
-        // remove FRASE graph if test is not included (Note that this chart is added by AddFraseTest, not here).
+            {
+            view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::GPM_FRY_PAGE_ID);
+            }
+        // remove FRASE graph if test is not included (Note that this chart is added by
+        // AddFraseTest, not here).
         if (!GetReadabilityTests().is_test_included(ReadabilityMessages::FRASE()))
-            { view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::FRASE_PAGE_ID); }
-        // remove Schwartz graph if test is not included (Note that this chart is added by AddSchwartzTest, not here).
+            {
+            view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::FRASE_PAGE_ID);
+            }
+        // remove Schwartz graph if test is not included (Note that this chart is added by
+        // AddSchwartzTest, not here).
         if (!GetReadabilityTests().is_test_included(ReadabilityMessages::SCHWARTZ()))
-            { view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::SCHWARTZ_PAGE_ID); }
-        // remove Flesch Chart graph if test is not included (Note that this chart is added by AddFleschTest, not here).
+            {
+            view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::SCHWARTZ_PAGE_ID);
+            }
+        // remove Flesch Chart graph if test is not included (Note that this chart is added by
+        // AddFleschTest, not here).
         if (!GetReadabilityTests().is_test_included(ReadabilityMessages::FLESCH()))
-            { view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::FLESCH_CHART_PAGE_ID); }
-        // remove DB2 graph if test is not included (Note that this chart is added by AddDB2, not here).
+            {
+            view->GetReadabilityResultsView().RemoveWindowById(
+                BaseProjectView::FLESCH_CHART_PAGE_ID);
+            }
+        // remove DB2 graph if test is not included (Note that this chart is added by AddDB2,
+        // not here).
         if (!GetReadabilityTests().is_test_included(ReadabilityMessages::DANIELSON_BRYAN_2()))
-            { view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::DB2_PAGE_ID); }
-        // remove Lix Gauge if test is not included (Note that this chart is added by AddLixTest, not here).
+            {
+            view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::DB2_PAGE_ID);
+            }
+        // remove Lix Gauge if test is not included (Note that this chart is added by AddLixTest,
+        // not here).
         if (!GetReadabilityTests().is_test_included(ReadabilityMessages::LIX()))
-            { view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::LIX_GAUGE_PAGE_ID); }
+            {
+            view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::LIX_GAUGE_PAGE_ID);
+            }
         // remove German Lix Gauge if neither German Lix test is included
         // (Note that this chart is added by AddLixGermanXXX, not here).
-        if (!GetReadabilityTests().is_test_included(ReadabilityMessages::LIX_GERMAN_CHILDRENS_LITERATURE()) &&
+        if (!GetReadabilityTests().is_test_included(
+                ReadabilityMessages::LIX_GERMAN_CHILDRENS_LITERATURE()) &&
             !GetReadabilityTests().is_test_included(ReadabilityMessages::LIX_GERMAN_TECHNICAL()))
-            { view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::LIX_GAUGE_GERMAN_PAGE_ID); }
-        // remove Crawford graph if test is not included (Note that this chart is added by AddCrawfordTest, not here).
+            {
+            view->GetReadabilityResultsView().RemoveWindowById(
+                BaseProjectView::LIX_GAUGE_GERMAN_PAGE_ID);
+            }
+        // remove Crawford graph if test is not included (Note that this chart is added by
+        // AddCrawfordTest, not here).
         if (!GetReadabilityTests().is_test_included(ReadabilityMessages::CRAWFORD()))
-            { view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::CRAWFORD_GRAPH_PAGE_ID); }
-        // remove Raygor graph if test is not included (Note that this chart is added by AddRaygorTest, not here).
+            {
+            view->GetReadabilityResultsView().RemoveWindowById(
+                BaseProjectView::CRAWFORD_GRAPH_PAGE_ID);
+            }
+        // remove Raygor graph if test is not included (Note that this chart is added by
+        // AddRaygorTest, not here).
         if (!GetReadabilityTests().is_test_included(ReadabilityMessages::RAYGOR()))
-            { view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::RAYGOR_PAGE_ID); }
+            {
+            view->GetReadabilityResultsView().RemoveWindowById(BaseProjectView::RAYGOR_PAGE_ID);
+            }
         // need to sort the list of scores after adding the graph tests to it
         view->GetReadabilityScoresList()->GetResultsListCtrl()->SortColumn(0, Wisteria::SortDirection::SortAscending);
 
@@ -3562,8 +3596,8 @@ void ProjectDoc::DisplayReadabilityGraphs()
         }
     catch (...)
         {
-        LogMessage(_(L"An unknown error occurred. Unable to create graphs."),
-            _(L"Error"), wxOK|wxICON_EXCLAMATION);
+        LogMessage(_(L"An unknown error occurred. Unable to create graphs."), _(L"Error"),
+                   wxOK | wxICON_EXCLAMATION);
         }
     }
 

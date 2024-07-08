@@ -284,8 +284,8 @@ ProjectDocChildFrame::ProjectDocChildFrame(wxDocument *doc,
         wxID_FIND);
     Bind(wxEVT_MENU, &ProjectDocChildFrame::OnFindNext, this,
         XRCID("ID_FIND_NEXT"));
-    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnShowcaseComplexWords, this,
-        XRCID("ID_EDIT_GRAPH_SHOWCASE_COMPLEX_WORDS"));
+    Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnShowcaseKeyItems, this,
+        XRCID("ID_EDIT_GRAPH_SHOWCASE_KEY_ITEMS"));
     Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBarStyleSelected, this,
         XRCID("ID_BAR_STYLE_SOLID"));
     Bind(wxEVT_MENU, &ProjectDocChildFrame::OnBarStyleSelected, this,
@@ -1507,7 +1507,7 @@ void ProjectDocChildFrame::OnDropShadow([[maybe_unused]] wxRibbonButtonBarEvent&
     }
 
 //---------------------------------------------------
-void ProjectDocChildFrame::OnShowcaseComplexWords([[maybe_unused]] wxRibbonButtonBarEvent& event)
+void ProjectDocChildFrame::OnShowcaseKeyItems([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(doc && L"Failed to get document!");
