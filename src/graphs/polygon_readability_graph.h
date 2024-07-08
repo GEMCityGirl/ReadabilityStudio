@@ -139,6 +139,20 @@ namespace Wisteria::Graphs
             return m_levelLabels;
             }
 
+        /// @returns Whether the score is being showcases.
+        /// @sa ShowcaseScore().
+        [[nodiscard]]
+        bool IsShowcasingScore() const noexcept
+            {
+            return m_showcaseScore;
+            }
+
+        /// @brief Makes most areas of the graph translucent except for where the score is,
+        ///     drawing attention to it.
+        /// @param showcase @c true to showcase where the score is.
+        /// @note This will have no effect if multiple scores are shown.
+        void ShowcaseScore(const bool showcase) noexcept { m_showcaseScore = showcase; }
+
       protected:
         /// @brief Can be derived for custom score position calculations when laying out the plot.
         /// @param dc The measuring DC.
@@ -205,6 +219,7 @@ namespace Wisteria::Graphs
             }
 
       private:
+        bool m_showcaseScore{ false };
         std::vector<LevelLabel> m_levelLabels;
         wxColour m_graphInvalidAreaColor;
         wxString m_fancyFontFaceName;

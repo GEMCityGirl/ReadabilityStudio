@@ -2325,6 +2325,10 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                          graph->IsKindOf(CLASSINFO(SchwartzGraph)))
                     {
                     editFrySchwartzButtonBarWindow->Show();
+                    getEditButtonBar(editFrySchwartzButtonBarWindow)
+                        ->ToggleButton(
+                            XRCID("ID_EDIT_GRAPH_SHOWCASE_KEY_ITEMS"),
+                            dynamic_cast<ProjectDoc*>(GetDocument())->IsShowcasingKeyItems());
                     }
                 else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)))
                     {

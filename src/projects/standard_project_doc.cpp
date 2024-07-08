@@ -3989,6 +3989,7 @@ bool ProjectDoc::AddFryTest(const bool setFocus)
             std::dynamic_pointer_cast<FryGraph>(fryGraphView->GetFixedObject(0, 0));
 
     fryGraph->SetInvalidAreaColor(GetInvalidAreaColor());
+    fryGraph->ShowcaseScore(IsShowcasingKeyItems());
     fryGraphView->CalcAllSizes(gdc);
 
     const auto theTest = GetReadabilityTests().find_test(CURRENT_TEST_KEY);

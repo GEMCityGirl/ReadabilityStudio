@@ -197,7 +197,7 @@ class BaseProjectDoc : public BaseProject, public wxDocument
         return m_displayDropShadows;
         }
 
-    // whether to draw attention to the complex word groups in syllable graphs
+    // whether to draw attention to the complex word groups in syllable graphs, Fry score, etc.
     void ShowcaseKeyItems(const bool display) noexcept { m_showcaseKeyItems = display; }
 
     [[nodiscard]]
