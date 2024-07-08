@@ -1013,8 +1013,8 @@ void ProjectView::UpdateSideBarIcons()
 
             GetSideBar()->InsertSubItemById(
                 SIDEBAR_READABILITY_SCORES_SECTION_ID, window->GetName(), window->GetId(),
-                window->GetId() == READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID            ? 17 :
-                window->GetId() == READABILITY_SCORES_PAGE_ID                           ? 23 :
+                window->GetId() == READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID          ? 17 :
+                window->GetId() == READABILITY_SCORES_PAGE_ID                         ? 23 :
                 window->GetId() == READABILITY_GOALS_PAGE_ID                          ? 28 :
                 (isGraph && checkGraphType(window, wxCLASSINFO(FleschChart)))         ? 18 :
                 (isGraph && checkGraphType(window, wxCLASSINFO(FraseGraph)))          ? 19 :
@@ -1327,9 +1327,11 @@ void ProjectView::OnMenuCommand(wxCommandEvent& event)
     else if (event.GetId() == XRCID("ID_SORT_ASCENDING") && GetActiveProjectWindow() &&
              GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)) &&
              (dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
-                          ->GetFixedObject(0, 0)->IsKindOf(CLASSINFO(Wisteria::Graphs::BarChart)) ||
+                  ->GetFixedObject(0, 0)
+                  ->IsKindOf(CLASSINFO(Wisteria::Graphs::BarChart)) ||
               dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
-                          ->GetFixedObject(0, 0)->IsKindOf(CLASSINFO(Wisteria::Graphs::Histogram))))
+                  ->GetFixedObject(0, 0)
+                  ->IsKindOf(CLASSINFO(Wisteria::Graphs::Histogram))))
         {
         Wisteria::Canvas* barChart = dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow());
         std::dynamic_pointer_cast<Wisteria::Graphs::BarChart>(barChart->GetFixedObject(0, 0))
@@ -1342,9 +1344,11 @@ void ProjectView::OnMenuCommand(wxCommandEvent& event)
     else if (event.GetId() == XRCID("ID_SORT_DESCENDING") && GetActiveProjectWindow() &&
              GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)) &&
              (dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
-                          ->GetFixedObject(0, 0)->IsKindOf(CLASSINFO(Wisteria::Graphs::BarChart)) ||
+                  ->GetFixedObject(0, 0)
+                  ->IsKindOf(CLASSINFO(Wisteria::Graphs::BarChart)) ||
               dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
-                          ->GetFixedObject(0, 0)->IsKindOf(CLASSINFO(Wisteria::Graphs::Histogram))))
+                  ->GetFixedObject(0, 0)
+                  ->IsKindOf(CLASSINFO(Wisteria::Graphs::Histogram))))
         {
         Wisteria::Canvas* barChart = dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow());
         std::dynamic_pointer_cast<Wisteria::Graphs::BarChart>(barChart->GetFixedObject(0, 0))
@@ -2242,7 +2246,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
     wxRibbonPanel* editFrySchwartzButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_FRY_PANEL);
     wxRibbonPanel* editFleschButtonBarWindow =
-    hideEditPanel(MainFrame::ID_EDIT_RIBBON_FLESCH_PANEL);
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_FLESCH_PANEL);
     // hide batch panels that we don't use here
     hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_CSVSS_PANEL);
     hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_TEST_SCORES_PANEL);
@@ -2321,9 +2325,9 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     {
                     editFleschButtonBarWindow->Show();
                     getEditButtonBar(editFleschButtonBarWindow)
-                        ->ToggleButton(XRCID("ID_FLESCH_DISPLAY_LINES"),
-                            dynamic_cast<ProjectDoc*>(GetDocument())
-                                           ->IsConnectingFleschPoints());
+                        ->ToggleButton(
+                            XRCID("ID_FLESCH_DISPLAY_LINES"),
+                            dynamic_cast<ProjectDoc*>(GetDocument())->IsConnectingFleschPoints());
                     }
                 else if (graph->IsKindOf(CLASSINFO(FryGraph)) ||
                          graph->IsKindOf(CLASSINFO(SchwartzGraph)))
@@ -2361,7 +2365,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                 {
                 if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)) &&
                     dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
-                                ->GetFixedObject(0, 0)->IsKindOf(wxCLASSINFO(Wisteria::Graphs::BoxPlot)))
+                        ->GetFixedObject(0, 0)
+                        ->IsKindOf(wxCLASSINFO(Wisteria::Graphs::BoxPlot)))
                     {
                     editBoxPlotButtonBarWindow->Show();
                     getEditButtonBar(editBoxPlotButtonBarWindow)
@@ -2379,7 +2384,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     }
                 else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)) &&
                          dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
-                                     ->GetFixedObject(0, 0)->IsKindOf(wxCLASSINFO(Wisteria::Graphs::Histogram)))
+                             ->GetFixedObject(0, 0)
+                             ->IsKindOf(wxCLASSINFO(Wisteria::Graphs::Histogram)))
                     {
                     editHistogramButtonBarWindow->Show();
                     getEditButtonBar(editHistogramButtonBarWindow)
@@ -2450,7 +2456,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                 {
                 if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)) &&
                     dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
-                                ->GetFixedObject(0, 0)->IsKindOf(wxCLASSINFO(Wisteria::Graphs::Histogram)))
+                        ->GetFixedObject(0, 0)
+                        ->IsKindOf(wxCLASSINFO(Wisteria::Graphs::Histogram)))
                     {
                     editSyllableHistogramButtonBarWindow->Show();
                     getEditButtonBar(editSyllableHistogramButtonBarWindow)
@@ -2464,7 +2471,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     }
                 else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)) &&
                          dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
-                                     ->GetFixedObject(0, 0)->IsKindOf(wxCLASSINFO(Wisteria::Graphs::BarChart)))
+                             ->GetFixedObject(0, 0)
+                             ->IsKindOf(wxCLASSINFO(Wisteria::Graphs::BarChart)))
                     {
                     editBarChartButtonBarWindow->Show();
                     getEditButtonBar(editBarChartButtonBarWindow)
@@ -2478,7 +2486,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     }
                 else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)) &&
                          dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
-                                     ->GetFixedObject(0, 0)->IsKindOf(wxCLASSINFO(Wisteria::Graphs::PieChart)))
+                             ->GetFixedObject(0, 0)
+                             ->IsKindOf(wxCLASSINFO(Wisteria::Graphs::PieChart)))
                     {
                     editPieChartButtonBarWindow->Show();
                     getEditButtonBar(editPieChartButtonBarWindow)
@@ -2488,7 +2497,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     }
                 else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)) &&
                          dynamic_cast<Wisteria::Canvas*>(GetActiveProjectWindow())
-                                     ->GetFixedObject(0, 0)->IsKindOf(wxCLASSINFO(Wisteria::Graphs::WordCloud)))
+                             ->GetFixedObject(0, 0)
+                             ->IsKindOf(wxCLASSINFO(Wisteria::Graphs::WordCloud)))
                     {
                     editWordCloudButtonBarWindow->Show();
                     }
