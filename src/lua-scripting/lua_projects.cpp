@@ -2292,19 +2292,6 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int BatchProject::ShowcaseKeyItems(lua_State* L)
-        {
-        if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
-        if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
-
-        m_project->ShowcaseKeyItems(int_to_bool(lua_toboolean(L, 2)));
-        ReloadIfNotDelayedSimple();
-        return 0;
-        }
-
-    //-------------------------------------------------------------
     int BatchProject::SetPlotBackgroundColorOpacity(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -3097,7 +3084,6 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundColor),
       LUNA_DECLARE_METHOD(BatchProject, SetGraphInvalidRegionColor),
       LUNA_DECLARE_METHOD(BatchProject, SetStippleShapeColor),
-      LUNA_DECLARE_METHOD(BatchProject, ShowcaseKeyItems),
       LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundColorOpacity),
       LUNA_DECLARE_METHOD(BatchProject, SetStippleImage),
       LUNA_DECLARE_METHOD(BatchProject, SetStippleShape),
