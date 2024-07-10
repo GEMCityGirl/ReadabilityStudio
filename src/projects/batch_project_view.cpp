@@ -942,6 +942,8 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_CSVSS_PANEL);
     wxRibbonPanel* editListTestScoresButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_TEST_SCORES_PANEL);
+    wxRibbonPanel* editGeneralReadabilityButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_GENERAL_READABILITY_GRAPH_PANEL);
     // hide standard project panels that we don't use here
     hideEditPanel(MainFrame::ID_EDIT_RIBBON_STATS_SUMMARY_REPORT_PANEL);
     hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_PANEL);
@@ -1000,11 +1002,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         }
                     else
                         {
-                        editGraphButtonBarWindow->Show();
-                        getEditButtonBar(editGraphButtonBarWindow)
-                            ->ToggleButton(XRCID("ID_DROP_SHADOW"),
-                                           dynamic_cast<BatchProjectDoc*>(GetDocument())
-                                               ->IsDisplayingDropShadows());
+                        editGeneralReadabilityButtonBarWindow->Show();
                         }
                     }
                 }
@@ -1271,12 +1269,17 @@ wxString BatchProjectView::StripToTestName(const wxString& testName)
 void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
     {
     if (scoreListItem == wxNOT_FOUND)
-        { return; }
-    ListCtrlEx* list = dynamic_cast<ListCtrlEx*>(GetScoresView().FindWindowById(ID_SCORE_LIST_PAGE_ID));
+        {
+        return;
+        }
+    ListCtrlEx* list =
+        dynamic_cast<ListCtrlEx*>(GetScoresView().FindWindowById(ID_SCORE_LIST_PAGE_ID));
     assert(list != nullptr);
     // shouldn't happen
     if (!list)
-        { return; }
+        {
+        return;
+        }
     // If nothing is selected in the raw score list then just select this item and return--
     // selecting this item will simply fire the OnScoreItemSelected event and return here.
     // The point of selecting the item (if nothing is selected) is to prevent
@@ -1289,18 +1292,21 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
 
     m_currentlySelectedFileName = list->GetItemTextEx(scoreListItem, 0);
     wxString scoreText = L"<br /><span style='font-weight:bold;'>" +
-            list->GetItemTextFormatted(scoreListItem, 0) + L"</span><hr>";
+                         list->GetItemTextFormatted(scoreListItem, 0) + L"</span><hr>";
 
     BatchProjectDoc* doc = dynamic_cast<BatchProjectDoc*>(GetDocument());
     double score = 0;
     const auto fleschPos = doc->GetReadabilityTests().get_test(ReadabilityMessages::FLESCH());
     const auto eflawPos = doc->GetReadabilityTests().get_test(ReadabilityMessages::EFLAW());
-    const auto fjpPos = doc->GetReadabilityTests().get_test(ReadabilityMessages::FARR_JENKINS_PATERSON());
+    const auto fjpPos =
+        doc->GetReadabilityTests().get_test(ReadabilityMessages::FARR_JENKINS_PATERSON());
     const auto amstadPos = doc->GetReadabilityTests().get_test(ReadabilityMessages::AMSTAD());
-    const auto db2Pos = doc->GetReadabilityTests().get_test(ReadabilityMessages::DANIELSON_BRYAN_2());
-    const auto drpPos = doc->GetReadabilityTests().get_test(ReadabilityMessages::DEGREES_OF_READING_POWER());
+    const auto db2Pos =
+        doc->GetReadabilityTests().get_test(ReadabilityMessages::DANIELSON_BRYAN_2());
+    const auto drpPos =
+        doc->GetReadabilityTests().get_test(ReadabilityMessages::DEGREES_OF_READING_POWER());
     const auto frasePos = doc->GetReadabilityTests().get_test(ReadabilityMessages::FRASE());
-    for (long i = 2/*skip document and description column*/; i < list->GetColumnCount(); ++i)
+    for (long i = 2 /*skip document and description column*/; i < list->GetColumnCount(); ++i)
         {
         const wxString currentTestFullName = list->GetColumnName(i);
         // we will want grade level columns, but not cloze or index values
@@ -1308,104 +1314,140 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
         auto standardTestPos = doc->GetReadabilityTests().get_test(currentTest);
         if (standardTestPos.second)
             {
-            scoreText += wxString::Format(
-                L"<table style='width:100%%;'><thead><tr><td style='background:%s;'>"
-                 "<span style='font-weight:bold; color:%s;'>",
-                ProjectReportFormat::GetReportHeaderColor().GetAsString(wxC2S_HTML_SYNTAX),
-                ProjectReportFormat::GetReportHeaderFontColor().GetAsString(wxC2S_HTML_SYNTAX)) +
-            currentTestFullName + L"</span></td></tr></thead>";
+            scoreText +=
+                wxString::Format(
+                    L"<table style='width:100%%;'><thead><tr><td style='background:%s;'>"
+                    "<span style='font-weight:bold; color:%s;'>",
+                    ProjectReportFormat::GetReportHeaderColor().GetAsString(wxC2S_HTML_SYNTAX),
+                    ProjectReportFormat::GetReportHeaderFontColor().GetAsString(
+                        wxC2S_HTML_SYNTAX)) +
+                currentTestFullName + L"</span></td></tr></thead>";
 
-            // note that tests with their own scales have to be formatted differently than the grade-level tests
+            // note that tests with their own scales have to be
+            // formatted differently than the grade-level tests
             if (eflawPos.second && *eflawPos.first == readability::readability_test(currentTest))
                 {
-                if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i), score))
+                if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i),
+                                                       score))
                     {
                     scoreText += L"\n<tr><td>" +
-                        ReadabilityMessages::GetEflawDescription(readability::eflaw_index_to_difficulty(score)) +
-                        L"</td></tr>";
-                    scoreText += L"\n<tr><td>" +
-                        wxString(doc->GetReadabilityTests().get_test_description(currentTest).c_str()) +
+                                 ReadabilityMessages::GetEflawDescription(
+                                     readability::eflaw_index_to_difficulty(score)) +
+                                 L"</td></tr>";
+                    scoreText +=
+                        L"\n<tr><td>" +
+                        wxString(
+                            doc->GetReadabilityTests().get_test_description(currentTest).c_str()) +
                         L"</td></tr></table>";
                     }
                 }
-            else if ((fleschPos.second && *fleschPos.first == readability::readability_test(currentTest)) ||
-                     (fjpPos.second && *fjpPos.first == readability::readability_test(currentTest)) ||
-                     (amstadPos.second && *amstadPos.first == readability::readability_test(currentTest)))
+            else if ((fleschPos.second &&
+                      *fleschPos.first == readability::readability_test(currentTest)) ||
+                     (fjpPos.second &&
+                      *fjpPos.first == readability::readability_test(currentTest)) ||
+                     (amstadPos.second &&
+                      *amstadPos.first == readability::readability_test(currentTest)))
                 {
-                if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i), score))
+                if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i),
+                                                       score))
                     {
                     scoreText += L"\n<tr><td>" +
-                        ReadabilityMessages::GetFleschDescription(
-                            readability::flesch_score_to_difficulty_level(score)) +
-                        L"</td></tr>";
-                    scoreText += L"\n<tr><td>" +
-                        wxString(doc->GetReadabilityTests().get_test_description(currentTest).c_str()) +
+                                 ReadabilityMessages::GetFleschDescription(
+                                     readability::flesch_score_to_difficulty_level(score)) +
+                                 L"</td></tr>";
+                    scoreText +=
+                        L"\n<tr><td>" +
+                        wxString(
+                            doc->GetReadabilityTests().get_test_description(currentTest).c_str()) +
                         L"</td></tr></table>";
                     }
                 }
             else if (db2Pos.second && *db2Pos.first == readability::readability_test(currentTest))
                 {
-                if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i), score))
+                if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i),
+                                                       score))
                     {
                     scoreText += L"\n<tr><td>" +
-                        ReadabilityMessages::GetDanielsonBryan2Description(
-                            readability::flesch_score_to_difficulty_level(score)) +
-                        L"</td></tr>";
-                    scoreText += L"\n<tr><td>" +
-                        wxString(doc->GetReadabilityTests().get_test_description(currentTest).c_str()) +
+                                 ReadabilityMessages::GetDanielsonBryan2Description(
+                                     readability::flesch_score_to_difficulty_level(score)) +
+                                 L"</td></tr>";
+                    scoreText +=
+                        L"\n<tr><td>" +
+                        wxString(
+                            doc->GetReadabilityTests().get_test_description(currentTest).c_str()) +
                         L"</td></tr></table>";
                     }
                 }
             else if (drpPos.second && *drpPos.first == readability::readability_test(currentTest))
                 {
-                if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i), score))
+                if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i),
+                                                       score))
                     {
-                    scoreText += L"\n<tr><td>" + ReadabilityMessages::GetDrpUnitDescription(score) + L"</td></tr>";
-                    scoreText += L"\n<tr><td>" +
-                        wxString(doc->GetReadabilityTests().get_test_description(currentTest).c_str()) +
+                    scoreText += L"\n<tr><td>" + ReadabilityMessages::GetDrpUnitDescription(score) +
+                                 L"</td></tr>";
+                    scoreText +=
+                        L"\n<tr><td>" +
+                        wxString(
+                            doc->GetReadabilityTests().get_test_description(currentTest).c_str()) +
                         L"</td></tr></table>";
                     }
                 }
-            else if (frasePos.second && *frasePos.first == readability::readability_test(currentTest))
+            else if (frasePos.second &&
+                     *frasePos.first == readability::readability_test(currentTest))
                 {
-                if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i), score))
+                if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i),
+                                                       score))
                     {
-                    scoreText += L"\n<tr><td>" + ReadabilityMessages::GetFraseDescription(score) + L"</td></tr>";
-                    scoreText += L"\n<tr><td>" +
-                        wxString(doc->GetReadabilityTests().get_test_description(currentTest).c_str()) +
+                    scoreText += L"\n<tr><td>" + ReadabilityMessages::GetFraseDescription(score) +
+                                 L"</td></tr>";
+                    scoreText +=
+                        L"\n<tr><td>" +
+                        wxString(
+                            doc->GetReadabilityTests().get_test_description(currentTest).c_str()) +
                         L"</td></tr></table>";
                     }
                 }
             else if (standardTestPos.first->get_test().get_test_type() ==
-                    readability::readability_test_type::grade_level ||
-                standardTestPos.first->get_test().get_test_type() ==
-                    readability::readability_test_type::index_value_and_grade_level ||
-                standardTestPos.first->get_test().get_test_type() ==
-                    readability::readability_test_type::grade_level_and_predicted_cloze_score)
+                         readability::readability_test_type::grade_level ||
+                     standardTestPos.first->get_test().get_test_type() ==
+                         readability::readability_test_type::index_value_and_grade_level ||
+                     standardTestPos.first->get_test().get_test_type() ==
+                         readability::readability_test_type::grade_level_and_predicted_cloze_score)
                 {
-                if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i), score))
+                if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i),
+                                                       score))
                     {
-                    scoreText += L"\n<tr><td>" +
-                        doc->GetReadabilityMessageCatalog().GetGradeScaleDescription(score) + L"</td></tr>";
-                    scoreText += L"\n<tr><td>" +
-                        wxString(doc->GetReadabilityTests().get_test_description(currentTest).c_str()) +
+                    scoreText +=
+                        L"\n<tr><td>" +
+                        doc->GetReadabilityMessageCatalog().GetGradeScaleDescription(score) +
+                        L"</td></tr>";
+                    scoreText +=
+                        L"\n<tr><td>" +
+                        wxString(
+                            doc->GetReadabilityTests().get_test_description(currentTest).c_str()) +
                         L"</td></tr></table>";
                     }
                 // just show whatever message is in the list if we can't convert it to a value
                 else
                     {
-                    scoreText += L"\n<tr><td>" + list->GetItemTextEx(scoreListItem, i) + L"</td></tr></table>";
+                    scoreText += L"\n<tr><td>" + list->GetItemTextEx(scoreListItem, i) +
+                                 L"</td></tr></table>";
                     }
                 }
             else if (standardTestPos.first->get_test().get_test_type() ==
-                readability::readability_test_type::predicted_cloze_score)
+                     readability::readability_test_type::predicted_cloze_score)
                 {
-                if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i), score))
+                if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i),
+                                                       score))
                     {
-                    scoreText += L"\n<tr><td>" +
-                        doc->GetReadabilityMessageCatalog().GetPredictedClozeDescription(score) + L"</td></tr>";
-                    scoreText += L"\n<tr><td>" +
-                        wxString(doc->GetReadabilityTests().get_test_description(currentTest).c_str()) +
+                    scoreText +=
+                        L"\n<tr><td>" +
+                        doc->GetReadabilityMessageCatalog().GetPredictedClozeDescription(score) +
+                        L"</td></tr>";
+                    scoreText +=
+                        L"\n<tr><td>" +
+                        wxString(
+                            doc->GetReadabilityTests().get_test_description(currentTest).c_str()) +
                         L"</td></tr></table>";
                     }
                 }
@@ -1422,31 +1464,37 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
             auto customTestPos = doc->GetCustomTest(currentTestFullName)->GetIterator();
             if (customTestPos->get_test_type() == readability::readability_test_type::grade_level)
                 {
-                if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i), score))
+                if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i),
+                                                       score))
                     {
-                    scoreText += L"\n<tr><td>" +
+                    scoreText +=
+                        L"\n<tr><td>" +
                         doc->GetReadabilityMessageCatalog().GetGradeScaleDescription(score) +
                         L"</td></tr>";
                     }
                 // just show whatever message is in the list if we can't convert it to a value
                 else
                     {
-                    scoreText += L"\n<tr><td>" + list->GetItemTextEx(scoreListItem, i) + L"</td></tr></table>";
+                    scoreText += L"\n<tr><td>" + list->GetItemTextEx(scoreListItem, i) +
+                                 L"</td></tr></table>";
                     }
                 }
-            else if (customTestPos->get_test_type() == readability::readability_test_type::index_value)
+            else if (customTestPos->get_test_type() ==
+                     readability::readability_test_type::index_value)
                 {
                 // just show whatever value is in there, as we won't know what the
                 // index value for a user's custom test really means to him/her
                 scoreText += L"\n<tr><td>" + _(L"Index score: ") +
-                    list->GetItemTextEx(scoreListItem, i) +
-                    L"</td></tr></table>";
+                             list->GetItemTextEx(scoreListItem, i) + L"</td></tr></table>";
                 }
-            else if (customTestPos->get_test_type() == readability::readability_test_type::predicted_cloze_score)
+            else if (customTestPos->get_test_type() ==
+                     readability::readability_test_type::predicted_cloze_score)
                 {
-                if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i), score))
+                if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i),
+                                                       score))
                     {
-                    scoreText += L"\n<tr><td>" +
+                    scoreText +=
+                        L"\n<tr><td>" +
                         doc->GetReadabilityMessageCatalog().GetPredictedClozeDescription(score) +
                         L"</td></tr>";
                     }

@@ -231,6 +231,7 @@ class MainFrame final : public Wisteria::UI::BaseMainFrame
     constexpr static wxWindowID ID_EDIT_RIBBON_HISTOGRAM_BATCH_PANEL = wxID_HIGHEST + 30;
     constexpr static wxWindowID ID_EDIT_RIBBON_WORDCLOUD_PANEL = wxID_HIGHEST + 31;
     constexpr static wxWindowID ID_EDIT_RIBBON_SYLLABLE_HISTOGRAM_PANEL = wxID_HIGHEST + 32;
+    constexpr static wxWindowID ID_EDIT_RIBBON_GENERAL_READABILITY_GRAPH_PANEL = wxID_HIGHEST + 33;
 
     IdRangeLock CUSTOM_TEST_RANGE;
     IdRangeLock EXAMPLE_RANGE;

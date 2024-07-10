@@ -2247,6 +2247,8 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_FRY_PANEL);
     wxRibbonPanel* editFleschButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_FLESCH_PANEL);
+    wxRibbonPanel* editGeneralReadabilityButtonBarWindow =
+        hideEditPanel(MainFrame::ID_EDIT_RIBBON_GENERAL_READABILITY_GRAPH_PANEL);
     // hide batch panels that we don't use here
     hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_CSVSS_PANEL);
     hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_TEST_SCORES_PANEL);
@@ -2340,11 +2342,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     }
                 else if (GetActiveProjectWindow()->IsKindOf(CLASSINFO(Wisteria::Canvas)))
                     {
-                    editGraphButtonBarWindow->Show();
-                    getEditButtonBar(editGraphButtonBarWindow)
-                        ->ToggleButton(
-                            XRCID("ID_DROP_SHADOW"),
-                            dynamic_cast<ProjectDoc*>(GetDocument())->IsDisplayingDropShadows());
+                    editGeneralReadabilityButtonBarWindow->Show();
                     }
                 }
             }
