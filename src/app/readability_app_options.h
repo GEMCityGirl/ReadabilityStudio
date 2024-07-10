@@ -2664,13 +2664,13 @@ class ReadabilityAppOptions
     };
     wxColour m_histogramBarColor{ wxColour{ 182, 164, 204 } }; // lavender
     uint8_t m_histogramBarOpacity{ wxALPHA_OPAQUE };
-    Wisteria::BoxEffect m_histogramBarEffect{ Wisteria::BoxEffect::Glassy };
+    Wisteria::BoxEffect m_histogramBarEffect{ Wisteria::BoxEffect::Solid };
     // Bar chart options
     bool m_barDisplayLabels{ true };
     wxColour m_barChartBarColor{ wxColour{ 107, 183, 196 } }; // rain color
     Wisteria::Orientation m_barChartOrientation{ Wisteria::Orientation::Horizontal };
     uint8_t m_graphBarOpacity{ wxALPHA_OPAQUE };
-    Wisteria::BoxEffect m_graphBarEffect{ Wisteria::BoxEffect::Glassy };
+    Wisteria::BoxEffect m_graphBarEffect{ Wisteria::BoxEffect::Solid };
     wxString m_stippleImagePath;
     wxString m_commonImagePath;
     // Note that this is not stored as an icon enum because there are many shapes
@@ -2680,7 +2680,7 @@ class ReadabilityAppOptions
     wxColour m_stippleColor{ wxColour{ L"#6082B6" } };
     wxColour m_graphBoxColor{ wxColour{ 0, 128, 64 } };
     uint8_t m_graphBoxOpacity{ wxALPHA_OPAQUE };
-    Wisteria::BoxEffect m_graphBoxEffect{ Wisteria::BoxEffect::Glassy };
+    Wisteria::BoxEffect m_graphBoxEffect{ Wisteria::BoxEffect::Solid };
     // background image options
     Wisteria::ImageEffect m_plotBackgroundImageEffect{ Wisteria::ImageEffect::NoEffect };
     Wisteria::ImageFit m_plotBackgroundImageFit{ Wisteria::ImageFit::Shrink };

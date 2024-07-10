@@ -370,17 +370,17 @@ void ReadabilityAppOptions::ResetSettings()
     // rain color
     m_barChartBarColor = wxColour(107, 183, 196);
     m_histogramBarOpacity = wxALPHA_OPAQUE;
-    m_histogramBarEffect = BoxEffect::Glassy;
+    m_histogramBarEffect = BoxEffect::Solid;
     m_barChartOrientation = Wisteria::Orientation::Horizontal;
     m_graphBarOpacity = wxALPHA_OPAQUE;
-    m_graphBarEffect = BoxEffect::Glassy;
+    m_graphBarEffect = BoxEffect::Solid;
     m_stippleShape = DONTTRANSLATE(L"book");
     m_stippleColor = wxColour{ L"#6082B6" };
     m_stippleImagePath.clear();
     m_commonImagePath.clear();
     m_graphBoxColor = wxColour(0, 128, 64);
     m_graphBoxOpacity = wxALPHA_OPAQUE;
-    m_graphBoxEffect = BoxEffect::Glassy;
+    m_graphBoxEffect = BoxEffect::Solid;
     m_plotBackgroundImageEffect = Wisteria::ImageEffect::NoEffect;
     m_plotBackgroundImageFit = Wisteria::ImageFit::Shrink;
     m_varianceMethod = VarianceMethod::PopulationVariance;
