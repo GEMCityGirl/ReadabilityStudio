@@ -2986,6 +2986,7 @@ bool ProjectDoc::AddSchwartzTest(const bool setFocus)
     assert(schwartzGraph);
 
     schwartzGraph->SetInvalidAreaColor(GetInvalidAreaColor());
+    schwartzGraph->ShowcaseScore(IsShowcasingKeyItems());
     schwartzGraphView->CalcAllSizes(gdc);
 
     const auto theTest = GetReadabilityTests().find_test(CURRENT_TEST_KEY);
@@ -3817,6 +3818,7 @@ bool ProjectDoc::AddGilliamPenaMountainFryTest(const bool setFocus)
     auto gFryGraph =
         std::dynamic_pointer_cast<FryGraph>(fryGraphView->GetFixedObject(0, 0));
     gFryGraph->SetInvalidAreaColor(GetInvalidAreaColor());
+    gFryGraph->ShowcaseScore(IsShowcasingKeyItems());
     fryGraphView->CalcAllSizes(gdc);
 
     const auto theTest = GetReadabilityTests().find_test(CURRENT_TEST_KEY);
