@@ -184,12 +184,12 @@ namespace LuaScripting
         wxDocument* currentDoc =
             wxGetApp().GetMainFrame()->GetDocumentManager()->GetCurrentDocument();
 
-        if (currentDoc && (currentDoc->IsKindOf(CLASSINFO(ProjectDoc)) ||
-                           currentDoc->IsKindOf(CLASSINFO(BatchProjectDoc))))
+        if (currentDoc && (currentDoc->IsKindOf(wxCLASSINFO(ProjectDoc)) ||
+                           currentDoc->IsKindOf(wxCLASSINFO(BatchProjectDoc))))
             {
             auto project = dynamic_cast<BaseProjectDoc*>(currentDoc);
             auto firstView = project->GetFirstView();
-            if (firstView && firstView->IsKindOf(CLASSINFO(BaseProjectView)))
+            if (firstView && firstView->IsKindOf(wxCLASSINFO(BaseProjectView)))
                 {
                 auto docView = dynamic_cast<BaseProjectView*>(firstView);
                 docView->Activate(true);
@@ -474,10 +474,10 @@ namespace LuaScripting
                 wxGetApp().GetMainFrame()->GetDocumentManager()->GetCurrentDocument();
             LuaEditTextDlg =
                 new EditTextDlg(wxGetApp().GetMainFrame(),
-                                (currentDoc && currentDoc->IsKindOf(CLASSINFO(ProjectDoc))) ?
+                                (currentDoc && currentDoc->IsKindOf(wxCLASSINFO(ProjectDoc))) ?
                                     dynamic_cast<ProjectDoc*>(currentDoc) :
                                     nullptr,
-                                (currentDoc && currentDoc->IsKindOf(CLASSINFO(ProjectDoc))) ?
+                                (currentDoc && currentDoc->IsKindOf(wxCLASSINFO(ProjectDoc))) ?
                                     dynamic_cast<ProjectDoc*>(currentDoc)->GetDocumentText() :
                                     wxString{});
             if (lua_gettop(L) > 1)
@@ -582,7 +582,7 @@ namespace LuaScripting
             }
         wxDocument* currentDoc =
             wxGetApp().GetMainFrame()->GetDocumentManager()->GetCurrentDocument();
-        if (currentDoc && currentDoc->IsKindOf(CLASSINFO(ProjectDoc)))
+        if (currentDoc && currentDoc->IsKindOf(wxCLASSINFO(ProjectDoc)))
             {
             wxString filteredText;
             dynamic_cast<ProjectDoc*>(currentDoc)

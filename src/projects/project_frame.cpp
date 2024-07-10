@@ -474,8 +474,8 @@ ProjectDocChildFrame::ProjectDocChildFrame(wxDocument *doc,
         XRCID("ID_ADD_ITEM_TO_DICTIONARY"));
 
     // bind the test menu items to their handlers
-    if (doc->IsKindOf(CLASSINFO(BatchProjectDoc)) &&
-        view->IsKindOf(CLASSINFO(BatchProjectView)))
+    if (doc->IsKindOf(wxCLASSINFO(BatchProjectDoc)) &&
+        view->IsKindOf(wxCLASSINFO(BatchProjectView)))
         {
         for (const auto& rTest :
              dynamic_cast<const BatchProjectDoc*>(doc)->GetReadabilityTests().get_tests())
@@ -484,8 +484,8 @@ ProjectDocChildFrame::ProjectDocChildFrame(wxDocument *doc,
                 dynamic_cast<BatchProjectView*>(view), rTest.get_test().get_interface_id());
             }
         }
-    else if (doc->IsKindOf(CLASSINFO(ProjectDoc)) &&
-             view->IsKindOf(CLASSINFO(ProjectView)))
+    else if (doc->IsKindOf(wxCLASSINFO(ProjectDoc)) &&
+             view->IsKindOf(wxCLASSINFO(ProjectView)))
         {
         for (const auto& rTest :
              dynamic_cast<const ProjectDoc*>(doc)->GetReadabilityTests().get_tests())
@@ -571,12 +571,12 @@ void ProjectDocChildFrame::OnMenuCapture(wxCommandEvent& event)
     if (activeView == nullptr)
         { return; }
 
-    if (activeView->IsKindOf(CLASSINFO(ProjectView)))
+    if (activeView->IsKindOf(wxCLASSINFO(ProjectView)))
         {
         assert(dynamic_cast<ProjectView*>(activeView));
         dynamic_cast<ProjectView*>(activeView)->ProcessEvent(event);
         }
-    else if (activeView->IsKindOf(CLASSINFO(BatchProjectView)))
+    else if (activeView->IsKindOf(wxCLASSINFO(BatchProjectView)))
         {
         assert(dynamic_cast<BatchProjectView*>(activeView));
         dynamic_cast<BatchProjectView*>(activeView)->ProcessEvent(event);
@@ -597,7 +597,7 @@ void ProjectDocChildFrame::OnDocumentRefresh([[maybe_unused]] wxRibbonButtonBarE
     if (!activeProject || !activeProject->IsSafeToUpdate())
         { return; }
     // if a standard project with manually entered text then there is no file to link to
-    if (activeProject->IsKindOf(CLASSINFO(ProjectDoc)) &&
+    if (activeProject->IsKindOf(wxCLASSINFO(ProjectDoc)) &&
         activeProject->GetTextSource() == TextSource::EnteredText)
         {
         wxMessageBox(
@@ -616,7 +616,7 @@ void ProjectDocChildFrame::OnDocumentRefresh([[maybe_unused]] wxRibbonButtonBarE
                "Do you wish to directly link to the source document?"),
             wxGetApp().GetAppName(), wxYES_NO|wxICON_QUESTION) == wxNO)
             { return; }
-        if (activeProject->IsKindOf(CLASSINFO(ProjectDoc)))
+        if (activeProject->IsKindOf(wxCLASSINFO(ProjectDoc)))
             {
             FilePathResolver resolvePath(activeProject->GetOriginalDocumentFilePath(), true);
             if (resolvePath.IsInvalidFile() ||
@@ -792,7 +792,7 @@ void ProjectDocChildFrame::OnTestBundle(wxCommandEvent& event)
         }
 
     // Standard project
-    if (GetDocument() && GetDocument()->IsKindOf(CLASSINFO(ProjectDoc)) )
+    if (GetDocument() && GetDocument()->IsKindOf(wxCLASSINFO(ProjectDoc)) )
         {
         ProjectDoc* doc = dynamic_cast<ProjectDoc*>(GetDocument());
         if (doc && doc->IsSafeToUpdate())
@@ -840,7 +840,7 @@ void ProjectDocChildFrame::OnTestBundle(wxCommandEvent& event)
             }
         }
     // Batch project
-    if (GetDocument() && GetDocument()->IsKindOf(CLASSINFO(BatchProjectDoc)) )
+    if (GetDocument() && GetDocument()->IsKindOf(wxCLASSINFO(BatchProjectDoc)) )
         {
         BatchProjectDoc* doc = dynamic_cast<BatchProjectDoc*>(GetDocument());
         if (doc && doc->IsSafeToUpdate())
@@ -1923,7 +1923,7 @@ void ProjectDocChildFrame::OnTextExclusionOptions(wxCommandEvent& event)
     if (view != nullptr && view->GetRibbon() != nullptr)
         {
         wxWindow* exclusionButtonBar = view->GetRibbon()->FindWindow(MainFrame::ID_TEXT_EXCLUSION_RIBBON_BUTTON_BAR);
-        if (exclusionButtonBar && exclusionButtonBar->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
+        if (exclusionButtonBar && exclusionButtonBar->IsKindOf(wxCLASSINFO(wxRibbonButtonBar)))
             {
             dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->EnableButton(
                 XRCID("ID_EXCLUDE_AGGRESSIVELY"),
@@ -1948,7 +1948,7 @@ void ProjectDocChildFrame::OnTextExclusionOptions(wxCommandEvent& event)
                 (doc->GetInvalidSentenceMethod() != InvalidSentence::IncludeAsFullSentences));
             }
         wxWindow* numeralButtonBar = view->GetRibbon()->FindWindow(MainFrame::ID_NUMERALS_RIBBON_BUTTON_BAR);
-        if (numeralButtonBar && numeralButtonBar->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
+        if (numeralButtonBar && numeralButtonBar->IsKindOf(wxCLASSINFO(wxRibbonButtonBar)))
             {
             dynamic_cast<wxRibbonButtonBar*>(numeralButtonBar)->EnableButton(
                 XRCID("ID_NUMERAL_SYLLABICATION"),
@@ -2016,7 +2016,7 @@ void ProjectDocChildFrame::OnLineEndOptions(wxCommandEvent& event)
         {
         wxWindow* deductionButtonBar =
             view->GetRibbon()->FindWindow(MainFrame::ID_PARAGRAPH_DEDUCTION_RIBBON_BUTTON_BAR);
-        if (deductionButtonBar && deductionButtonBar->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
+        if (deductionButtonBar && deductionButtonBar->IsKindOf(wxCLASSINFO(wxRibbonButtonBar)))
             {
             dynamic_cast<wxRibbonButtonBar*>(deductionButtonBar)->EnableButton(
                 XRCID("ID_IGNORE_BLANK_LINES"),
@@ -2106,7 +2106,7 @@ void ProjectDocChildFrame::OnIgnoreNumerals([[maybe_unused]] wxRibbonButtonBarEv
         {
         wxWindow* numeralButtonBar =
             view->GetRibbon()->FindWindow(MainFrame::ID_NUMERALS_RIBBON_BUTTON_BAR);
-        if (numeralButtonBar && numeralButtonBar->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
+        if (numeralButtonBar && numeralButtonBar->IsKindOf(wxCLASSINFO(wxRibbonButtonBar)))
             {
             dynamic_cast<wxRibbonButtonBar*>(numeralButtonBar)->EnableButton(
                 XRCID("ID_NUMERAL_SYLLABICATION"), !theProject->IsIgnoringNumerals());
@@ -2175,7 +2175,7 @@ void ProjectDocChildFrame::OnCustomTestBundle(wxCommandEvent& event)
             {
             const bool hadDolchSightWords = doc->IsIncludingDolchSightWords();
             doc->ApplyTestBundle(pos->second);
-            if (doc->IsKindOf(CLASSINFO(ProjectDoc)))
+            if (doc->IsKindOf(wxCLASSINFO(ProjectDoc)))
                 {
                 // if Dolch was added or removed then refresh
                 if ((!hadDolchSightWords && doc->IsIncludingDolchSightWords()) ||
@@ -2185,7 +2185,7 @@ void ProjectDocChildFrame::OnCustomTestBundle(wxCommandEvent& event)
                 doc->RefreshRequired(ProjectRefresh::Minimal);
                 doc->RefreshProject();
                 }
-            else if (doc->IsKindOf(CLASSINFO(BatchProjectDoc)))
+            else if (doc->IsKindOf(wxCLASSINFO(BatchProjectDoc)))
                 {
                 doc->RefreshRequired(ProjectRefresh::Minimal);
                 doc->RefreshProject();

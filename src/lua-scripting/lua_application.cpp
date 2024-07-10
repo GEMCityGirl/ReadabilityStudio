@@ -179,7 +179,7 @@ namespace LuaScripting
         {
         wxDocument* currentDoc =
             wxGetApp().GetMainFrame()->GetDocumentManager()->GetCurrentDocument();
-        if (currentDoc && currentDoc->IsKindOf(CLASSINFO(BatchProjectDoc)))
+        if (currentDoc && currentDoc->IsKindOf(wxCLASSINFO(BatchProjectDoc)))
             {
             BatchProject* batchProject = new BatchProject(L);
             batchProject->SetProject(dynamic_cast<BatchProjectDoc*>(currentDoc));
@@ -191,7 +191,7 @@ namespace LuaScripting
             wxList docs = wxGetApp().GetDocManager()->GetDocuments();
             for (size_t i = 0; i < docs.GetCount(); ++i)
                 {
-                if (docs.Item(i)->GetData()->IsKindOf(CLASSINFO(BatchProjectDoc)))
+                if (docs.Item(i)->GetData()->IsKindOf(wxCLASSINFO(BatchProjectDoc)))
                     {
                     BatchProject* batchProject = new BatchProject(L);
                     batchProject->SetProject(
@@ -209,7 +209,7 @@ namespace LuaScripting
         {
         wxDocument* currentDoc =
             wxGetApp().GetMainFrame()->GetDocumentManager()->GetCurrentDocument();
-        if (currentDoc && currentDoc->IsKindOf(CLASSINFO(ProjectDoc)))
+        if (currentDoc && currentDoc->IsKindOf(wxCLASSINFO(ProjectDoc)))
             {
             StandardProject* standardProject = new StandardProject(L);
             standardProject->SetProject(dynamic_cast<ProjectDoc*>(currentDoc));
@@ -221,7 +221,7 @@ namespace LuaScripting
             wxList docs = wxGetApp().GetDocManager()->GetDocuments();
             for (size_t i = 0; i < docs.GetCount(); ++i)
                 {
-                if (docs.Item(i)->GetData()->IsKindOf(CLASSINFO(ProjectDoc)))
+                if (docs.Item(i)->GetData()->IsKindOf(wxCLASSINFO(ProjectDoc)))
                     {
                     StandardProject* standardProject = new StandardProject(L);
                     standardProject->SetProject(dynamic_cast<ProjectDoc*>(docs.Item(i)->GetData()));

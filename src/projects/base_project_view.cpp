@@ -846,7 +846,7 @@ void BaseProjectView::Present()
         {
         wxWindow* deductionButtonBar =
             GetRibbon()->FindWindow(MainFrame::ID_PARAGRAPH_DEDUCTION_RIBBON_BUTTON_BAR);
-        if (deductionButtonBar && deductionButtonBar->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
+        if (deductionButtonBar && deductionButtonBar->IsKindOf(wxCLASSINFO(wxRibbonButtonBar)))
             {
             dynamic_cast<wxRibbonButtonBar*>(deductionButtonBar)->ToggleButton(
                 XRCID("ID_IGNORE_BLANK_LINES"), doc->GetIgnoreBlankLinesForParagraphsParser());
@@ -864,7 +864,7 @@ void BaseProjectView::Present()
                 }
             }
         wxWindow* exclusionButtonBar = GetRibbon()->FindWindow(MainFrame::ID_TEXT_EXCLUSION_RIBBON_BUTTON_BAR);
-        if (exclusionButtonBar && exclusionButtonBar->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
+        if (exclusionButtonBar && exclusionButtonBar->IsKindOf(wxCLASSINFO(wxRibbonButtonBar)))
             {
             dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)->ToggleButton(
                 XRCID("ID_EXCLUDE_AGGRESSIVELY"), doc->IsExcludingAggressively());
@@ -905,7 +905,7 @@ void BaseProjectView::Present()
                 (doc->GetInvalidSentenceMethod() != InvalidSentence::IncludeAsFullSentences));
             }
         wxWindow* numeralButtonBar = GetRibbon()->FindWindow(MainFrame::ID_NUMERALS_RIBBON_BUTTON_BAR);
-        if (numeralButtonBar && numeralButtonBar->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
+        if (numeralButtonBar && numeralButtonBar->IsKindOf(wxCLASSINFO(wxRibbonButtonBar)))
             {
             dynamic_cast<wxRibbonButtonBar*>(numeralButtonBar)->EnableButton(
                 XRCID("ID_NUMERAL_SYLLABICATION"),
@@ -995,7 +995,7 @@ void BaseProjectView::ShowSideBar(const bool show /*= true*/)
         }
     // update the ribbon bar
     wxWindow* projectButtonBarWindow = GetRibbon()->FindWindow(MainFrame::ID_PROJECT_RIBBON_BUTTON_BAR);
-    if (projectButtonBarWindow && projectButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
+    if (projectButtonBarWindow && projectButtonBarWindow->IsKindOf(wxCLASSINFO(wxRibbonButtonBar)))
         {
         const auto projectButtonBar = dynamic_cast<wxRibbonButtonBar*>(projectButtonBarWindow);
         assert(projectButtonBar && L"Error casting project ribbon bar!");
@@ -1069,7 +1069,7 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
     // initialize ribbon menus (print menu is the same for both types of projects)
     wxGetApp().FillPrintMenu(m_frame->m_printMenu, ReadabilityApp::RibbonType::StandardProjectRibbon);
     wxGetApp().FillSaveMenu(m_frame->m_exportMenu,
-        IsKindOf(CLASSINFO(ProjectView)) ?
+        IsKindOf(wxCLASSINFO(ProjectView)) ?
         ReadabilityApp::RibbonType::StandardProjectRibbon :
         ReadabilityApp::RibbonType::BatchProjectRibbon);
     m_frame->m_fileOpenMenu.Append(wxID_OPEN, _(L"Open Project...") + L"\tCtrl+O");

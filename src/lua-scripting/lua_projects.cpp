@@ -99,7 +99,7 @@ namespace LuaScripting
                 for (size_t i = 0; i < templateList.GetCount(); ++i)
                     {
                     wxDocTemplate* docTemplate = dynamic_cast<wxDocTemplate*>(templateList.Item(i)->GetData());
-                    if (docTemplate && docTemplate->GetDocClassInfo()->IsKindOf(CLASSINFO(ProjectDoc)))
+                    if (docTemplate && docTemplate->GetDocClassInfo()->IsKindOf(wxCLASSINFO(ProjectDoc)))
                         {
                         m_project = dynamic_cast<ProjectDoc*>(docTemplate->CreateDocument(path, wxDOC_NEW));
                         if (m_project && !m_project->OnNewDocument() )
@@ -1669,7 +1669,7 @@ namespace LuaScripting
 
             wxWindow* selWindow = view->GetWordsBreakdownView().
                 FindWindowById(windowId, CLASSINFO(ListCtrlEx));
-            if (selWindow && selWindow->IsKindOf(CLASSINFO(ListCtrlEx)))
+            if (selWindow && selWindow->IsKindOf(wxCLASSINFO(ListCtrlEx)))
                 {
                 // Custom word-list tests have the same integral IDs for their highlighted-text
                 // reports and list controls, so search by label instead.
@@ -1714,7 +1714,7 @@ namespace LuaScripting
                 wxWindow* selWindow = view->GetWordsBreakdownView().FindWindowById(windowId);
                 if (selWindow == nullptr)
                     { selWindow = view->GetGrammarView().FindWindowById(windowId); }
-                if (selWindow && selWindow->IsKindOf(CLASSINFO(FormattedTextCtrl)))
+                if (selWindow && selWindow->IsKindOf(wxCLASSINFO(FormattedTextCtrl)))
                     {
                     // Custom word-list tests have the same integral IDs for their highlighted-text
                     // reports and list controls, so search by label instead.
@@ -1750,7 +1750,7 @@ namespace LuaScripting
                     wxWindow* selWindow =
                         view->GetGrammarView().FindWindowById(
                             BaseProjectView::LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID);
-                    if (selWindow && selWindow->IsKindOf(CLASSINFO(FormattedTextCtrl)))
+                    if (selWindow && selWindow->IsKindOf(wxCLASSINFO(FormattedTextCtrl)))
                         {
                         dynamic_cast<FormattedTextCtrl*>(selWindow)->ShowPosition(lua_tonumber(L, 2));
                         dynamic_cast<FormattedTextCtrl*>(selWindow)->SetSelection(lua_tonumber(L, 2),
@@ -1925,7 +1925,7 @@ namespace LuaScripting
                 for (size_t i = 0; i < templateList.GetCount(); ++i)
                     {
                     wxDocTemplate* docTemplate = dynamic_cast<wxDocTemplate*>(templateList.Item(i)->GetData());
-                    if (docTemplate && docTemplate->GetDocClassInfo()->IsKindOf(CLASSINFO(BatchProjectDoc)))
+                    if (docTemplate && docTemplate->GetDocClassInfo()->IsKindOf(wxCLASSINFO(BatchProjectDoc)))
                         {
                         m_project = dynamic_cast<BatchProjectDoc*>(docTemplate->CreateDocument(path, wxDOC_NEW));
                         if (m_project && !m_project->OnNewDocument() )
@@ -2760,7 +2760,7 @@ namespace LuaScripting
                 {
                 view->GetSideBar()->SelectSubItem(parentPos.value(), childPos.value());
                 wxWindow* selWindow = view->GetActiveProjectWindow();
-                if (selWindow && selWindow->IsKindOf(CLASSINFO(ListCtrlEx)) )
+                if (selWindow && selWindow->IsKindOf(wxCLASSINFO(ListCtrlEx)) )
                     { listWindow = dynamic_cast<ListCtrlEx*>(selWindow); }
                 }
             else
@@ -2770,7 +2770,7 @@ namespace LuaScripting
                     {
                     view->GetSideBar()->SelectFolder(index.value());
                     wxWindow* selWindow = view->GetActiveProjectWindow();
-                    if (selWindow && selWindow->IsKindOf(CLASSINFO(ListCtrlEx)) )
+                    if (selWindow && selWindow->IsKindOf(wxCLASSINFO(ListCtrlEx)) )
                         { listWindow = dynamic_cast<ListCtrlEx*>(selWindow); }
                     }
                 }
@@ -2997,7 +2997,7 @@ namespace LuaScripting
                 {
                 view->GetSideBar()->SelectSubItem(parentPos.value(), childPos.value());
                 wxWindow* selWindow = view->GetActiveProjectWindow();
-                if (selWindow && selWindow->IsKindOf(CLASSINFO(ListCtrlEx)))
+                if (selWindow && selWindow->IsKindOf(wxCLASSINFO(ListCtrlEx)))
                     { dynamic_cast<ListCtrlEx*>(selWindow)->SortColumns(columns); }
                 }
             else
@@ -3007,7 +3007,7 @@ namespace LuaScripting
                     {
                     view->GetSideBar()->SelectFolder(index.value());
                     wxWindow* selWindow = view->GetActiveProjectWindow();
-                    if (selWindow && selWindow->IsKindOf(CLASSINFO(ListCtrlEx)))
+                    if (selWindow && selWindow->IsKindOf(wxCLASSINFO(ListCtrlEx)))
                         { dynamic_cast<ListCtrlEx*>(selWindow)->SortColumns(columns); }
                     }
                 }

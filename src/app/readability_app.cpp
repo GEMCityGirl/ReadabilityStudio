@@ -353,7 +353,7 @@ void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
                         wxDocTemplate* docTemplate =
                             dynamic_cast<wxDocTemplate*>(templateList.Item(j)->GetData());
                         if (docTemplate &&
-                            docTemplate->GetDocClassInfo()->IsKindOf(CLASSINFO(ProjectDoc)))
+                            docTemplate->GetDocClassInfo()->IsKindOf(wxCLASSINFO(ProjectDoc)))
                             {
                             ProjectDoc* newDoc = dynamic_cast<ProjectDoc*>(
                                 docTemplate->CreateDocument(fn.GetFullPath(), wxDOC_NEW));
@@ -1902,7 +1902,7 @@ wxImage ReadabilityApp::ReadRibbonSvgIcon(const wxString& path)
 wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc)
     {
     const RibbonType rtype = (doc == nullptr) ? RibbonType::MainFrameRibbon :
-        doc->IsKindOf(CLASSINFO(ProjectDoc)) ? RibbonType::StandardProjectRibbon : RibbonType::BatchProjectRibbon;
+        doc->IsKindOf(wxCLASSINFO(ProjectDoc)) ? RibbonType::StandardProjectRibbon : RibbonType::BatchProjectRibbon;
     // Home tab
     wxRibbonBar* ribbon = new wxRibbonBar(frame, wxID_ANY, wxDefaultPosition, wxDefaultSize,
                                           wxRIBBON_BAR_SHOW_PAGE_ICONS|wxRIBBON_BAR_DEFAULT_STYLE);
@@ -5061,7 +5061,7 @@ void MainFrame::Paste()
                 {
                 wxDocTemplate* docTemplate =
                     dynamic_cast<wxDocTemplate*>(templateList.Item(i)->GetData());
-                if (docTemplate && docTemplate->GetDocClassInfo()->IsKindOf(CLASSINFO(ProjectDoc)))
+                if (docTemplate && docTemplate->GetDocClassInfo()->IsKindOf(wxCLASSINFO(ProjectDoc)))
                     {
                     ProjectDoc* newDoc = dynamic_cast<ProjectDoc*>(
                         docTemplate->CreateDocument(data.GetText(), wxDOC_NEW));
@@ -5165,7 +5165,7 @@ void MainFrame::OnOpenDocument([[maybe_unused]] wxCommandEvent& event)
     for (size_t i = 0; i < templateList.GetCount(); ++i)
         {
         wxDocTemplate* docTemplate = dynamic_cast<wxDocTemplate*>(templateList.Item(i)->GetData());
-        if (docTemplate && docTemplate->GetDocClassInfo()->IsKindOf(CLASSINFO(ProjectDoc)))
+        if (docTemplate && docTemplate->GetDocClassInfo()->IsKindOf(wxCLASSINFO(ProjectDoc)))
             {
             ProjectDoc* newDoc =
                 dynamic_cast<ProjectDoc*>(docTemplate->CreateDocument(dialog.GetPath(), wxDOC_NEW));
@@ -5198,7 +5198,7 @@ void MainFrame::OnHelpContents([[maybe_unused]] wxCommandEvent& event)
         {
         DisplayHelp();
         }
-    else if (activeProject->IsKindOf(CLASSINFO(ProjectDoc)))
+    else if (activeProject->IsKindOf(wxCLASSINFO(ProjectDoc)))
         {
         const ProjectView* view = dynamic_cast<const ProjectView*>(activeProject->GetFirstView());
 
@@ -5322,7 +5322,7 @@ void MainFrame::OnHelpContents([[maybe_unused]] wxCommandEvent& event)
             DisplayHelp(_DT(L"reviewing-word-breakdowns.html"));
             };
         }
-    else if (activeProject->IsKindOf(CLASSINFO(BatchProjectDoc)))
+    else if (activeProject->IsKindOf(wxCLASSINFO(BatchProjectDoc)))
         {
         const BatchProjectView* view =
             dynamic_cast<const BatchProjectView*>(activeProject->GetFirstView());
