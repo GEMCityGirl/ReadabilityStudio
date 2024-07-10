@@ -123,4 +123,8 @@ void LuaInterpreter::RunLuaCode(const wxString& code, const wxString& filePath,
         wxString::Format(_(L"Script ran for %s"), endTime.Subtract(startTime).Format()));
 
     m_isRunning = false;
+
+    // in case the script window was hidden and the script either forgot to show it again
+    // or the script failed, then show it
+    wxGetApp().GetMainFrameEx()->GetLuaEditor()->Show(true);
     }
