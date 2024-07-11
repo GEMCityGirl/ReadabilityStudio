@@ -34,7 +34,7 @@ knitr::include_graphics("images/example-barchart-orientation-changed.png")
 
 Finally, let's change how the bars are drawn. Click the `r keys("Bar Style")` button in the **Edit** section and select **Thick Watercolor**.
 
-The bars will now have a watercolor paint effect, rather than the default glassy look:
+The bars will now have a watercolor paint effect, rather than the default solid look:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/example-barchart-effects-changed.png")

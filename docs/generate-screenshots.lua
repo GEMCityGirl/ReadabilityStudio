@@ -987,12 +987,14 @@ ScreenshotLib.CloseDocGroupSelectDlg()
 -- Difficult words example
 --------------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "Instructional Disclaimer.odt")
+sp:AddTest(Tests.Fry)
 sp:ExportGraph(GraphType.WordCloud, ImagePath .. "example-difficult-words-wordcloud." .. FileExtension)
 sp:ExportGraph(GraphType.SyllableHistogram, ImagePath .. "example-difficult-syllables-histogram." .. FileExtension)
-sp:ShowcaseComplexWords(true)
+sp:ShowcaseKeyItems(true)
 sp:ExportGraph(GraphType.SyllableHistogram, ImagePath .. "example-difficult-syllables-histogram-showcased." .. FileExtension)
 sp:ExportGraph(GraphType.SyllablePieChart, ImagePath .. "example-difficult-syllables-pie-chart." .. FileExtension)
 sp:ExportGraph(GraphType.SentenceHeatmap, ImagePath .. "example-difficult-sentences-heatmap." .. FileExtension)
+sp:ExportGraph(GraphType.Fry, ImagePath .. "example-difficult-fry-showcased." .. FileExtension)
 sp:Close()
 
 -- "Retro" looking graph example

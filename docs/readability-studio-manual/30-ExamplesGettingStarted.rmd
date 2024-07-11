@@ -394,11 +394,15 @@ Close this document and return to *Readability Studio*. Click the `r keys('Examp
 Going to the **Test Selection** page, selecting **Recommended test selection based on document type**, and selecting **Non-narrative form** will have the same effect.
 :::
 
-Finally, click the `r keys('Finish')` button to create the project. When the project appears, note that only the [FORCAST](#forcast-test) test was performed because it does not use sentence lengths. Also, viewing any highlighted report will show that all text was included in the analysis.
+Finally, click the `r keys('Finish')` button to create the project.
+When the project appears, note that only the [FORCAST](#forcast-test) test was performed because it does not use sentence lengths.
+Also, viewing any highlighted report will show that all text was included in the analysis.
 
 We will have a somewhat high FORCAST score, so we will want to review the lengthy words and see if we can make any improvements.
 
-An interesting aspect of this flyer is that it has two audiences: children and their parents. The eye-catching text boxes in the upper half of the flyer is targeted for children, while the lower half requires parental involvement. With this in mind, we will review both halves of the flyer from these perspectives.
+An interesting aspect of this flyer is that it has two audiences: children and their parents.
+The eye-catching text boxes in the upper half of the flyer is targeted for children, while the lower half requires parental involvement.
+With this in mind, we will review both halves of the flyer from these perspectives.
 
 Select **Words Breakdown** on the sidebar and then select **3+ Syllables Report**. Here we can see some phrases that could be simplified:
 
@@ -447,23 +451,29 @@ The size of the words are relative to their frequencies. As an example, the word
 knitr::include_graphics("images/example-difficult-words-wordcloud.png")
 ```
 
-From this, we can glean that this document is about a customer and company relationship. Looking further, we may notice other words such as "claims," "responsibilities," "legal," and "liable."
+From this, we can glean that this document is about a customer and company relationship.
+Looking further, we may notice other words such as "claims," "responsibilities," "legal," and "liable."
 From here, we could deduce that this may be a legally-binding agreement (and a bit adversarial).
 
-Next, click **Syllable Counts** on the sidebar (the one with the histogram icon). In these histograms, we want to see a right-tailed distribution, where the bin sizes go down as you go from one-syllable words to more complex ones.
+Next, click **Syllable Counts** on the sidebar (the one with the histogram icon).
+In these histograms, we want to see a right-tailed distribution, where the bin sizes go down as you go from one-syllable words to more complex ones.
 Although that is the pattern we see here, it has an alarming number of complex words — approximately a third of the document.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/example-difficult-syllables-histogram.png")
 ```
 
-To draw attention to these groups of words, press the `r keys('Showcase')` on the ribbon. Now the cumulative bar group and labels will only be shown for these bars:
+To draw attention to these groups of words, press the `r keys('Showcase')` on the ribbon.
+Now the cumulative bar group and labels will only be shown for these bars:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/example-difficult-syllables-histogram-showcased.png")
 ```
 
-To better visualize how much of this document is complex, click the **Syllable Counts** on the sidebar (the one with the pie icon).
+If using a solid color for the bars, then the one- and two-syllable word bars will also be translucent.
+By "ghosting" these bars [@{tufte:eyes}24-25], the complex-word bars will receive the focus.
+
+For another way to visualize complexity, click the **Syllable Counts** on the sidebar (the one with the pie icon).
 Here we can see how much of the document consists of complex words by looking at the outer ring.
 We can further see a breakdown of these complex words in the inner ring, where almost a quarter of the document is three-syllable words:
 
@@ -473,9 +483,10 @@ knitr::include_graphics("images/example-difficult-syllables-pie-chart.png")
 
 Note that because we previously pressed `r keys('Showcase')`, the simple-word slices are translucent and their labels are hidden.
 
-Finally, let's review a visual layout of the sentence lengths. Click **Sentences Breakdown** on the sidebar and then select **Lengths (Density)**.
+Next, let's review a visual layout of the sentence lengths. Click **Sentences Breakdown** on the sidebar and then select **Lengths (Density)**.
 Going from top-to-bottom, this graphic displays a row for each paragraph. Across each row is a box for each sentence in the respective paragraph.
-For each box, its length is shown as number at its center. Also, the darker the box, the longer its length is compared to the rest of the sentences in the document.
+For each box, its length is shown as number at its center.
+Also, the darker the box, the longer its length is compared to the rest of the sentences in the document.
 In this example, we can see that the sixth paragraph has ten sentences in it:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
@@ -484,4 +495,21 @@ knitr::include_graphics("images/example-difficult-sentences-heatmap.png")
 
 There are also a few lengthy sentences in this paragraph, judging from the numbers and dark colors across the row.
 
-Refer to \@ref(addendum-example) for a continuation of this example. There, this document will be explored in further detail and used as an addendum to the original flyer from \@ref(reviewing-a-flyer).
+Finally, let's review how word and sentence complexity affects readability showing.
+From the **Readability** tab, click `r menu(c('Secondary','Fry'))` to add a [Fry](#fry-test) test.
+Click on the **Readability Scores** icon on the project sidebar and select **Fry Graph**.
+
+```{r echo=F, fig.align='center', out.width='75%'}
+knitr::include_graphics("images/example-difficult-fry-showcased.png")
+```
+
+Here, we can see that the document is scoring at *17+*. Long words are the main contributing factor
+for this, as the score point is pulled to the far right.
+Long sentences, however, have a much lesser effect given the vertical position of the point.
+
+Something to note is that because we enabled showcasing earlier, the section with the score will be more prominent.
+Likewise, the other areas and labels have been "ghosted," drawing attention away from them.
+If you wish to see this graph as it would normally appear, then toggle the `r keys('Showcase')` button on the ribbon.
+
+Refer to \@ref(addendum-example) for a continuation of this example.
+There, this document will be explored in further detail and used as an addendum to the original flyer from \@ref(reviewing-a-flyer).
