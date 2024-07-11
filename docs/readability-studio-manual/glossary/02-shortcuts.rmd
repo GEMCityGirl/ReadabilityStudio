@@ -106,8 +106,8 @@ Copy first column of selection          `r keys(c('Ctrl','Shift','C'))` (`r os_l
 
 &nbsp;                                  &nbsp;
 
-Copy column from selection<br>\linebreak     `r keys(c('Ctrl','Numpad 1' – 'Numpad 9'))` (`r os_logo('windows')`) or<br>\linebreak
-(column corresponds to the number)           `r keys(c('\\cmd','Numpad 1' – 'Numpad 9'))` (`r os_logo('apple')`)
+Copy column from selection<br>\linebreak     `r keys(c('Ctrl','Numpad [1â€“9]'))` (`r os_logo('windows')`) or<br>\linebreak
+(column corresponds to the number)           `r keys(c('\\cmd','Numpad [1â€“9]'))` (`r os_logo('apple')`)
 
 &nbsp;                                  &nbsp;
 
