@@ -48,6 +48,7 @@ Install the following tools to build *Readability Studio*:
 - *pandoc*
 - *pandoc-citeproc*
 - *POEdit* (if editing the translations)
+- *AppImage*, *linuxdeploy*, and *AppImageLauncher* (if building an AppImage)
 
 Install the following libraries (*and* their development files if mentioned):
 
@@ -77,7 +78,7 @@ cd ..
 git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
 cd wxWidgets
 cmake . -DCMAKE_INSTALL_PREFIX=./wxlib -DwxBUILD_SHARED=OFF -DwxBUILD_OPTIMISE=ON -DwxBUILD_STRIPPED_RELEASE_DEFAULT=ON
-cmake --build . --target install -j 4
+cmake --build . --target install -j $(nproc)
 cd ..
 cd ReadabilityStudio
 ```
@@ -86,7 +87,13 @@ Build the program as follows:
 
 ```
 cmake .
-cmake --build . --target all  -j 4
+cmake --build . --target all  -j $(nproc)
+```
+
+Build an AppImage:
+
+```
+./linuxdeploy-x86_64.AppImage --appdir installers/unix --executable installers/unix/readstudio -d installers/unix/readstudio.desktop -i installers/unix/app-logo.svg --output appimage
 ```
 
 **...INCOMPLETE**

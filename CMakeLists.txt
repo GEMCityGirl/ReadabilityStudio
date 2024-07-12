@@ -22,6 +22,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 if(APPLE)
     set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64" CACHE STRING "" FORCE)
+elseif(UNIX)
+    set(UNIX_ARCHITECTURE "x86_64" CACHE STRING "" FORCE)
 endif()
 
 if(APPLE AND NOT CMAKE_OSX_DEPLOYMENT_TARGET)
@@ -41,6 +43,7 @@ set(PUBLISHER "Oleander Software, Ltd.")
 set(PROGRAM_AUTHOR "Blake Madden")
 set(PROGRAM_COMMENTS "Readability analysis software")
 set(PROGRAM_GUI_IDENTIFIER "com.readabilitystudio.app")
+set(PROGRAM_LICENSE "BSD-3-Clause")
 
 # Build a displayable version string that only includes the necessary parts
 set(FULL_DISPLAY_VERSION ${readstudio_VERSION_MAJOR})
@@ -72,6 +75,12 @@ configure_file("${CMAKE_CURRENT_SOURCE_DIR}/src/citations.bib.in"
                "${CMAKE_CURRENT_SOURCE_DIR}/src/app/citations.bib")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/resource.h.in"
                "${CMAKE_CURRENT_SOURCE_DIR}/resource.h")
+if(UNIX AND NOT APPLE)
+    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/readstudio.desktop.in"
+                   "${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/readstudio.desktop")
+    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/usr/share/metainfo/readstudio.appdata.xml.in"
+                   "${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/usr/share/metainfo/readstudio.appdata.xml")
+endif()
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/docs/version_info.txt.in"
                "${CMAKE_CURRENT_SOURCE_DIR}/docs/version_info.txt")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/docs/_variables.yml.in"
@@ -397,6 +406,14 @@ add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
                    ${CMAKE_CURRENT_SOURCE_DIR}/examples $<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/examples)
+
+if(UNIX AND NOT APPLE)
+    # Icon used for Linux
+    add_custom_command(TARGET ${PROJECT_NAME}
+                       POST_BUILD
+                       COMMAND ${CMAKE_COMMAND} -E copy
+                       ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/ribbon/app-logo.svg ${CMAKE_CURRENT_SOURCE_DIR}/installers/unix)
+endif()
 # License file
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
@@ -418,16 +435,28 @@ add_custom_command(TARGET ${PROJECT_NAME}
                    COMMENT "Building word lists and copying to build and installer folders."
                    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/resources/words")
 
-# Copy application to installer folder (if a production build)
-if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
-    add_custom_command(TARGET ${PROJECT_NAME}
-                       POST_BUILD
-                       COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:${PROJECT_NAME}>" "${CMAKE_CURRENT_SOURCE_DIR}/installers/Windows/Release"
-                       COMMENT "Copying binary to installer folder.")
-endif()
-
 if(APPLE)
     set_target_properties(${PROJECT_NAME} PROPERTIES
         RESOURCE app-logo.icns
         MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist.in)
+endif()
+
+# Copy application (and resources) to installer folders (if a production build)
+if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
+    if(WIN32)
+        add_custom_command(TARGET ${PROJECT_NAME}
+                           POST_BUILD
+                           COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:${PROJECT_NAME}>" "${CMAKE_CURRENT_SOURCE_DIR}/installers/Windows/Release"
+                           COMMENT "Copying binary to installer folder.")
+    elseif(UNIX AND NOT APPLE)
+        add_custom_command(TARGET ${PROJECT_NAME}
+                       POST_BUILD
+                       COMMAND ${CMAKE_COMMAND} -E make_directory
+                       ${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/usr/bin)
+        add_custom_command(TARGET ${PROJECT_NAME}
+                        POST_BUILD
+                        COMMAND ${CMAKE_COMMAND} -E copy_directory
+                        $<TARGET_FILE_DIR:${PROJECT_NAME}> ${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/usr/bin
+                        COMMENT "Copying binary to installer folder.")
+    endif()
 endif()

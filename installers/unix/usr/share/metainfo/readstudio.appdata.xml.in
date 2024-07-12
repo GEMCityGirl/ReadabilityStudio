@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+	<id>${CMAKE_PROJECT_NAME}</id>
+	<metadata_license>${PROGRAM_LICENSE}</metadata_license>
+	<project_license>${PROGRAM_LICENSE}</project_license>
+	<name>${readstudio_DESCRIPTION}</name>
+	<summary>${PROGRAM_COMMENTS}</summary>
+	<description>
+		<p>${PROGRAM_COMMENTS}</p>
+	</description>
+	<launchable type="desktop-id">readstudio.desktop</launchable>
+	<url type="homepage">${readstudio_HOMEPAGE_URL}</url>
+	<screenshots>
+		<screenshot type="default">
+			<image></image>
+		</screenshot>
+	</screenshots>
+	<provides>
+		<id>readstudio.desktop</id>
+	</provides>
+</component>
