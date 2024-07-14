@@ -82,6 +82,7 @@
   - Added an option to control how this image is sized to fit within the plot area.
 - Added numerous color schemes to choose from for grouped histograms (in batch projects).
 - Sorting horizontal bars now works more intuitively.
+- Changing graph backgrounds to black will change font colors from black to white implicitly to make them visible.
 
 ### Analysis/Test Enhancements {-}
 
