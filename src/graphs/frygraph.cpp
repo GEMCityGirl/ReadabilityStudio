@@ -413,10 +413,14 @@ namespace Wisteria::Graphs
                    Canvas::GetDefaultCanvasHeightDIPs() &&
                L"Invalid backscreen size!");
 
-        auto points = std::make_unique<GraphItems::Points2D>(wxNullPen);
-        points->SetScaling(GetScaling());
-        points->SetDPIScaleFactor(GetDPIScaleFactor());
-        points->Reserve(GetDataset()->GetRowCount());
+        std::vector<wxPoint> highlightedGradeLinePoints;
+        const wxColour gradeLineColor{
+            Wisteria::Colors::ColorContrast::IsDark(GetPlotOrCanvasColor()) ?
+                Wisteria::Colors::ColorBrewer::GetColor(Wisteria::Colors::Color::BondiBlue) :
+                *wxBLUE
+        };
+
+        
         // these will all be filled with something, even if NaN
         m_results.resize(GetDataset()->GetRowCount());
         for (size_t i = 0; i < GetDataset()->GetRowCount(); ++i)
@@ -563,13 +567,7 @@ namespace Wisteria::Graphs
             };
 
             calcScoreFromPolygons(m_backscreen, m_results[i]);
-
-            std::vector<wxPoint> highlightedGradeLinePoints;
-            const wxColour gradeLineColor{
-                Wisteria::Colors::ColorContrast::IsDark(GetPlotOrCanvasColor()) ?
-                    Wisteria::Colors::ColorBrewer::GetColor(Wisteria::Colors::Color::BondiBlue) :
-                    *wxBLUE
-            };
+            
             if (IsShowcasingScore() && GetScores().size() == 1)
                 {
                 if (GetScores().at(0).GetScore() == 17)
@@ -675,72 +673,80 @@ namespace Wisteria::Graphs
                         highlightedGradeLinePoints));
                     }
                 }
+            }
 
-            // draw the grade lines
-            auto foundHighlitLine =
+        // draw the grade lines
+        auto foundHighlitLine = std::find(highlightedGradeLinePoints.cbegin(),
+                                          highlightedGradeLinePoints.cend(), m_gradeLinePoints[3]);
+        uint8_t opacityLevel = (foundHighlitLine == highlightedGradeLinePoints.cend() &&
+                                IsShowcasingScore() && GetScores().size() == 1) ?
+                                   Wisteria::Settings::GHOST_OPACITY :
+                                   200;
+        AddObject(std::make_unique<GraphItems::Polygon>(
+            GraphItemInfo()
+                .Pen(wxPen(ColorContrast::ChangeOpacity(gradeLineColor, opacityLevel)))
+                .Brush(gradeLineColor)
+                .Scaling(GetScaling()),
+            &m_gradeLinePoints[3], 2));
+        // the rest of grade region lines
+        for (size_t i = 2, pointIter = 5; i <= 16; ++i, pointIter += 2)
+            {
+            foundHighlitLine =
                 std::find(highlightedGradeLinePoints.cbegin(), highlightedGradeLinePoints.cend(),
-                          m_gradeLinePoints[3]);
-            uint8_t opacityLevel = (foundHighlitLine == highlightedGradeLinePoints.cend() &&
-                                    IsShowcasingScore() && GetScores().size() == 1) ?
-                                       Wisteria::Settings::GHOST_OPACITY :
-                                       200;
+                          m_gradeLinePoints[pointIter]);
+            opacityLevel = (foundHighlitLine == highlightedGradeLinePoints.cend() &&
+                            IsShowcasingScore() && GetScores().size() == 1) ?
+                               Wisteria::Settings::GHOST_OPACITY :
+                               200;
             AddObject(std::make_unique<GraphItems::Polygon>(
                 GraphItemInfo()
                     .Pen(wxPen(ColorContrast::ChangeOpacity(gradeLineColor, opacityLevel)))
                     .Brush(gradeLineColor)
                     .Scaling(GetScaling()),
-                &m_gradeLinePoints[3], 2));
-            // the rest of grade region lines
-            for (size_t i = 2, pointIter = 5; i <= 16; ++i, pointIter += 2)
-                {
-                foundHighlitLine =
-                    std::find(highlightedGradeLinePoints.cbegin(),
-                              highlightedGradeLinePoints.cend(), m_gradeLinePoints[pointIter]);
-                opacityLevel = (foundHighlitLine == highlightedGradeLinePoints.cend() &&
-                                IsShowcasingScore() && GetScores().size() == 1) ?
-                                   Wisteria::Settings::GHOST_OPACITY :
-                                   200;
-                AddObject(std::make_unique<GraphItems::Polygon>(
-                    GraphItemInfo()
-                        .Pen(wxPen(ColorContrast::ChangeOpacity(gradeLineColor, opacityLevel)))
-                        .Brush(gradeLineColor)
-                        .Scaling(GetScaling()),
-                    &m_gradeLinePoints[pointIter], 2));
-                }
+                &m_gradeLinePoints[pointIter], 2));
+            }
 
-            wxColour labelFontColor{ GetLeftYAxis().GetFontColor() };
-            wxPoint pt1, pt2;
-            GetPhysicalCoordinates(112 + GetSyllableAxisOffset(), 5.0, pt1);
-            GetPhysicalCoordinates(128 + GetSyllableAxisOffset(), 3.3, pt2);
-            auto gradeLevelLabel =
-                std::make_unique<GraphItems::Label>(GraphItemInfo(_(L"APPROXIMATE  GRADE  LEVEL"))
-                                                        .Pen(wxNullPen)
-                                                        .Selectable(false)
-                                                        .FontColor(labelFontColor)
-                                                        // overriding scaling with a hard-coded font
-                                                        // size returned from CalcDiagonalFontSize()
-                                                        .Scaling(1)
-                                                        .DPIScaling(1)
-                                                        .AnchorPoint(pt1)
-                                                        .Anchoring(Anchoring::TopLeftCorner));
-            gradeLevelLabel->Tilt(-45);
-            // make it fit inside of the graph
-            wxRect gradeLabelArea{ pt1, pt2 };
-            wxFont labelFont(wxFontInfo().FaceName(GetFancyFontFaceName()));
-            labelFont.SetPointSize(Label::CalcDiagonalFontSize(dc, labelFont, gradeLabelArea, 45,
-                                                               gradeLevelLabel->GetText()));
-            gradeLevelLabel->SetFont(labelFont);
-            if constexpr (Settings::IsDebugFlagEnabled(DebugSettings::DrawExtraInformation))
-                {
-                AddObject(std::make_unique<GraphItems::Polygon>(
-                    GraphItemInfo().Pen(*wxRED).Brush(wxNullBrush),
-                    std::vector<wxPoint>{ gradeLabelArea.GetTopLeft(), gradeLabelArea.GetTopRight(),
-                                          gradeLabelArea.GetBottomRight(),
-                                          gradeLabelArea.GetBottomLeft() }));
-                }
+        // draw the description label
+        wxColour labelFontColor{ GetLeftYAxis().GetFontColor() };
+        wxPoint pt1, pt2;
+        GetPhysicalCoordinates(112 + GetSyllableAxisOffset(), 5.0, pt1);
+        GetPhysicalCoordinates(128 + GetSyllableAxisOffset(), 3.3, pt2);
+        auto gradeLevelLabel =
+            std::make_unique<GraphItems::Label>(GraphItemInfo(_(L"APPROXIMATE  GRADE  LEVEL"))
+                                                    .Pen(wxNullPen)
+                                                    .Selectable(false)
+                                                    .FontColor(labelFontColor)
+                                                    // overriding scaling with a hard-coded font
+                                                    // size returned from CalcDiagonalFontSize()
+                                                    .Scaling(1)
+                                                    .DPIScaling(1)
+                                                    .AnchorPoint(pt1)
+                                                    .Anchoring(Anchoring::TopLeftCorner));
+        gradeLevelLabel->Tilt(-45);
+        // make it fit inside of the graph
+        wxRect gradeLabelArea{ pt1, pt2 };
+        wxFont labelFont(wxFontInfo().FaceName(GetFancyFontFaceName()));
+        labelFont.SetPointSize(Label::CalcDiagonalFontSize(dc, labelFont, gradeLabelArea, 45,
+                                                           gradeLevelLabel->GetText()));
+        gradeLevelLabel->SetFont(labelFont);
+        if constexpr (Settings::IsDebugFlagEnabled(DebugSettings::DrawExtraInformation))
+            {
+            AddObject(std::make_unique<GraphItems::Polygon>(
+                GraphItemInfo().Pen(*wxRED).Brush(wxNullBrush),
+                std::vector<wxPoint>{ gradeLabelArea.GetTopLeft(), gradeLabelArea.GetTopRight(),
+                                      gradeLabelArea.GetBottomRight(),
+                                      gradeLabelArea.GetBottomLeft() }));
+            }
 
-            AddObject(std::move(gradeLevelLabel));
+        AddObject(std::move(gradeLevelLabel));
 
+        // plot the scores
+        auto points = std::make_unique<GraphItems::Points2D>(wxNullPen);
+        points->SetScaling(GetScaling());
+        points->SetDPIScaleFactor(GetDPIScaleFactor());
+        points->Reserve(GetDataset()->GetRowCount());
+        for (size_t i = 0; i < GetDataset()->GetRowCount(); ++i)
+            {
             // Convert group ID into color scheme index
             // (index is ordered by labels alphabetically).
             // Note that this will be zero if grouping is not in use.

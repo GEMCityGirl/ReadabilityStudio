@@ -243,7 +243,7 @@ namespace Wisteria::Graphs
         GetPhysicalCoordinates(160.5, 20.0, m_gradeLinePoints[2]);
         GetPhysicalCoordinates(162.45, 17.1, m_gradeLinePoints[3]);
         GetPhysicalCoordinates(128.2, 7.6, m_gradeLinePoints[4]);
-        
+
         // 2th grade
         GetPhysicalCoordinates(168.5, 13.1, m_gradeLinePoints[5]);
         GetPhysicalCoordinates(135, 4, m_gradeLinePoints[6]);
@@ -486,10 +486,10 @@ namespace Wisteria::Graphs
                     .Padding(4, 4, 4, GraphItems::Label::GetMinLegendWidthDIPs())
                     .AnchorPoint(mainLabel->GetBoundingBox(measureDC).GetTopLeft() -
                                  wxPoint(0, ScaleToScreenAndCanvas(2))));
-            legend->GetLegendIcons().push_back(Icons::LegendIcon(
-                Icons::IconShape::HorizontalLine, separatorColor, separatorColor));
-            legend->GetLegendIcons().push_back(Icons::LegendIcon(
-                Icons::IconShape::Circle, separatorColor, separatorColor));
+            legend->GetLegendIcons().push_back(Icons::LegendIcon(Icons::IconShape::HorizontalLine,
+                                                                 separatorColor, separatorColor));
+            legend->GetLegendIcons().push_back(
+                Icons::LegendIcon(Icons::IconShape::Circle, separatorColor, separatorColor));
             legend->SetBoxCorners(BoxCorners::Straight);
             AddObject(std::move(legend));
             }
@@ -560,10 +560,13 @@ namespace Wisteria::Graphs
                    Canvas::GetDefaultCanvasHeightDIPs() &&
                L"Invalid backscreen size!");
 
-        auto points = std::make_unique<GraphItems::Points2D>(wxNullPen);
-        points->SetScaling(GetScaling());
-        points->SetDPIScaleFactor(GetDPIScaleFactor());
-        points->Reserve(GetDataset()->GetRowCount());
+        std::vector<wxPoint> highlightedGradeLinePoints;
+        const wxColour gradeLineColor{
+            Wisteria::Colors::ColorContrast::IsDark(GetPlotOrCanvasColor()) ?
+                Wisteria::Colors::ColorBrewer::GetColor(Wisteria::Colors::Color::BondiBlue) :
+                *wxBLUE
+        };
+
         // these will all be filled with something, even if NaN
         m_results.resize(GetDataset()->GetRowCount());
         for (size_t i = 0; i < GetDataset()->GetRowCount(); ++i)
@@ -653,12 +656,6 @@ namespace Wisteria::Graphs
 
             calcScoreFromPolygons(m_backscreen, m_results[i]);
 
-            std::vector<wxPoint> highlightedGradeLinePoints;
-            const wxColour gradeLineColor{
-                Wisteria::Colors::ColorContrast::IsDark(GetPlotOrCanvasColor()) ?
-                    Wisteria::Colors::ColorBrewer::GetColor(Wisteria::Colors::Color::BondiBlue) :
-                    *wxBLUE
-            };
             if (IsShowcasingScore() && GetScores().size() == 1)
                 {
                 if (GetScores().at(0).GetScore() == 8)
@@ -708,24 +705,32 @@ namespace Wisteria::Graphs
                         highlightedGradeLinePoints));
                     }
                 }
-            // draw the grade lines
-            for (size_t i = 3; i < std::size(m_gradeLinePoints); i += 2)
-                {
-                auto foundHighlitLine =
-                    std::find(highlightedGradeLinePoints.cbegin(),
-                              highlightedGradeLinePoints.cend(), m_gradeLinePoints[i]);
-                uint8_t opacityLevel = (foundHighlitLine == highlightedGradeLinePoints.cend() &&
-                                        IsShowcasingScore() && GetScores().size() == 1) ?
-                                           Wisteria::Settings::GHOST_OPACITY :
-                                           200;
-                AddObject(std::make_unique<GraphItems::Polygon>(
-                    GraphItemInfo()
-                        .Pen(wxPen(ColorContrast::ChangeOpacity(gradeLineColor, opacityLevel)))
-                        .Brush(gradeLineColor)
-                        .Scaling(GetScaling()),
-                    &m_gradeLinePoints[i], 2));
-                }
+            }
 
+        // draw the grade lines
+        for (size_t i = 3; i < std::size(m_gradeLinePoints); i += 2)
+            {
+            auto foundHighlitLine =
+                std::find(highlightedGradeLinePoints.cbegin(), highlightedGradeLinePoints.cend(),
+                          m_gradeLinePoints[i]);
+            uint8_t opacityLevel = (foundHighlitLine == highlightedGradeLinePoints.cend() &&
+                                    IsShowcasingScore() && GetScores().size() == 1) ?
+                                       Wisteria::Settings::GHOST_OPACITY :
+                                       200;
+            AddObject(std::make_unique<GraphItems::Polygon>(
+                GraphItemInfo()
+                    .Pen(wxPen(ColorContrast::ChangeOpacity(gradeLineColor, opacityLevel)))
+                    .Brush(gradeLineColor)
+                    .Scaling(GetScaling()),
+                &m_gradeLinePoints[i], 2));
+            }
+
+        auto points = std::make_unique<GraphItems::Points2D>(wxNullPen);
+        points->SetScaling(GetScaling());
+        points->SetDPIScaleFactor(GetDPIScaleFactor());
+        points->Reserve(GetDataset()->GetRowCount());
+        for (size_t i = 0; i < GetDataset()->GetRowCount(); ++i)
+            {
             // Convert group ID into color scheme index
             // (index is ordered by labels alphabetically).
             // Note that this will be zero if grouping is not in use.
