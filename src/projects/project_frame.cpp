@@ -603,7 +603,7 @@ void ProjectDocChildFrame::OnDocumentRefresh([[maybe_unused]] wxRibbonButtonBarE
         wxMessageBox(
             _(L"Only projects that originated from a file can be reloaded. "
                "This project had its text manually typed in and cannot be linked to a file."),
-            wxGetApp().GetAppName(), wxOK|wxICON_INFORMATION);
+            wxGetApp().GetAppName(), wxOK | wxICON_INFORMATION);
         return;
         }
     // only refresh if we are linking to an external document.
@@ -614,8 +614,10 @@ void ProjectDocChildFrame::OnDocumentRefresh([[maybe_unused]] wxRibbonButtonBarE
             _(L"Only projects linked to its source document can be reloaded. "
                "This project currently has the original document's text embedded in it. "
                "Do you wish to directly link to the source document?"),
-            wxGetApp().GetAppName(), wxYES_NO|wxICON_QUESTION) == wxNO)
-            { return; }
+            wxGetApp().GetAppName(), wxYES_NO | wxICON_QUESTION) == wxNO)
+            {
+            return;
+            }
         if (activeProject->IsKindOf(wxCLASSINFO(ProjectDoc)))
             {
             FilePathResolver resolvePath(activeProject->GetOriginalDocumentFilePath(), true);
@@ -625,7 +627,7 @@ void ProjectDocChildFrame::OnDocumentRefresh([[maybe_unused]] wxRibbonButtonBarE
                 {
                 wxMessageBox(wxString::Format(
                     _(L"%s: file not found."), activeProject->GetOriginalDocumentFilePath() ),
-                    wxGetApp().GetAppName(), wxOK|wxICON_INFORMATION);
+                    wxGetApp().GetAppName(), wxOK | wxICON_INFORMATION);
                 return;
                 }
             }
@@ -926,35 +928,69 @@ void ProjectDocChildFrame::OnEditGraphColor(wxCommandEvent& event)
     auto doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(doc && L"Invalid document when editing graph colors!");
     if (event.GetId() == XRCID("ID_EDIT_GRAPH_BKCOLOR"))
-        { data.SetColour(doc->GetBackGroundColor()); }
+        {
+        data.SetColour(doc->GetBackGroundColor());
+        }
     else if (event.GetId() == XRCID("ID_EDIT_BOX_COLOR"))
-        { data.SetColour(doc->GetGraphBoxColor()); }
+        {
+        data.SetColour(doc->GetGraphBoxColor());
+        }
     else if (event.GetId() == XRCID("ID_EDIT_HISTOGRAM_BAR_COLOR"))
-        { data.SetColour(doc->GetHistogramBarColor()); }
+        {
+        data.SetColour(doc->GetHistogramBarColor());
+        }
     else if (event.GetId() == XRCID("ID_EDIT_BAR_COLOR"))
-        { data.SetColour(doc->GetBarChartBarColor()); }
+        {
+        data.SetColour(doc->GetBarChartBarColor());
+        }
     else if (event.GetId() == XRCID("ID_INVALID_REGION_COLOR"))
-        { data.SetColour(doc->GetInvalidAreaColor()); }
+        {
+        data.SetColour(doc->GetInvalidAreaColor());
+        }
     else if (event.GetId() == XRCID("ID_EDIT_PLOT_BKCOLOR"))
-        { data.SetColour(doc->GetPlotBackGroundColor()); }
+        {
+        data.SetColour(doc->GetPlotBackGroundColor());
+        }
 
     wxColourDialog dialog(this, &data);
     if (dialog.ShowModal() == wxID_OK)
         {
         wxGetApp().GetAppOptions().CopyColourDataToCustomColours(dialog.GetColourData());
-        const auto color = dialog.GetColourData().GetColour();
+        const wxColour color = dialog.GetColourData().GetColour();
         if (event.GetId() == XRCID("ID_EDIT_GRAPH_BKCOLOR"))
-            { doc->SetBackGroundColor(color); }
+            {
+            doc->SetBackGroundColor(color);
+            }
         else if (event.GetId() == XRCID("ID_EDIT_BOX_COLOR"))
-            { doc->SetGraphBoxColor(color); }
+            {
+            doc->SetGraphBoxColor(color);
+            }
         else if (event.GetId() == XRCID("ID_EDIT_HISTOGRAM_BAR_COLOR"))
-            { doc->SetHistogramBarColor(color); }
+            {
+            doc->SetHistogramBarColor(color);
+            }
         else if (event.GetId() == XRCID("ID_EDIT_BAR_COLOR"))
-            { doc->SetBarChartBarColor(color); }
+            {
+            doc->SetBarChartBarColor(color);
+            }
         else if (event.GetId() == XRCID("ID_INVALID_REGION_COLOR"))
-            { doc->SetInvalidAreaColor(color); }
+            {
+            doc->SetInvalidAreaColor(color);
+            }
         else if (event.GetId() == XRCID("ID_EDIT_PLOT_BKCOLOR"))
-            { doc->SetPlotBackGroundColor(color); }
+            {
+            doc->SetPlotBackGroundColor(color);
+            if (doc->GetPlotBackGroundColorOpacity() == wxALPHA_TRANSPARENT)
+                {
+                if (wxMessageBox(_(L"Plot background is currently transparent; this color will "
+                                   "have no effect. Do you wish to edit the opacity?"),
+                                 wxGetApp().GetAppName(), wxYES_NO | wxICON_QUESTION) == wxYES)
+                    {
+                    wxCommandEvent evt{ wxEVT_NULL, XRCID("ID_EDIT_PLOT_BKCOLOR_OPACITY") };
+                    OnEditGraphOpacity(evt);
+                    }
+                }
+            }
 
         doc->RefreshRequired(ProjectRefresh::Minimal);
         doc->RefreshGraphs();
