@@ -8,9 +8,9 @@
 /tests/bin/
 /tests/.vs/
 /tests/out/
-/installers/Windows/Output/
-/installers/Windows/release/
-/installers/resources
+/installers/windows/Output/
+/installers/windows/release/
+/installers/windows/resources
 /out/
 /TestResults
 /tests/gui-tests/.vs
@@ -24,8 +24,8 @@
 /resource.h
 /src/app/version.h
 /src/app/citations.bib
-/installers/Windows/setup.isl
-/installers/Windows/icons.isl
+/installers/windows/setup.isl
+/installers/windows/icons.isl
 /docs/version_info.txt
 /resource.h
 /resources/Words/wordy-phrases/english.txt

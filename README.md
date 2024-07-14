@@ -93,7 +93,7 @@ cmake --build . --target all  -j $(nproc)
 Build an AppImage:
 
 ```
-./linuxdeploy-x86_64.AppImage --appdir installers/unix --executable installers/unix/readstudio -d installers/unix/readstudio.desktop -i installers/unix/app-logo.svg --output appimage
+linuxdeploy-x86_64.AppImage --appdir installers/unix/AppDir --executable installers/unix/AppDir/readstudio -d installers/unix/AppDir/readstudio.desktop -i installers/unix/AppDir/app-logo.svg --output appimage
 ```
 
 **...INCOMPLETE**

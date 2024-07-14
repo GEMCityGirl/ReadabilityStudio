@@ -20,8 +20,8 @@ AppendDefaultDirName=no
 ; program files
 Source: release\readstudio.exe; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace
 ; resource files (required part of programs)
-Source: ..\resources\res.wad; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
-Source: ..\resources\words.wad; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
+Source: resources\res.wad; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
+Source: resources\words.wad; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\..\resources\scripting\*.api; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\..\resources\scripting\*.lua; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\..\resources\report-themes\*; DestDir: {app}\report-themes; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs

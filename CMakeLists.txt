@@ -76,10 +76,10 @@ configure_file("${CMAKE_CURRENT_SOURCE_DIR}/src/citations.bib.in"
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/resource.h.in"
                "${CMAKE_CURRENT_SOURCE_DIR}/resource.h")
 if(UNIX AND NOT APPLE)
-    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/readstudio.desktop.in"
-                   "${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/readstudio.desktop")
-    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/usr/share/metainfo/readstudio.appdata.xml.in"
-                   "${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/usr/share/metainfo/readstudio.appdata.xml")
+    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/AppDir/readstudio.desktop.in"
+                   "${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/AppDir/readstudio.desktop")
+    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/AppDir/usr/share/metainfo/readstudio.appdata.xml.in"
+                   "${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/AppDir/usr/share/metainfo/readstudio.appdata.xml")
 endif()
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/docs/version_info.txt.in"
                "${CMAKE_CURRENT_SOURCE_DIR}/docs/version_info.txt")
@@ -412,12 +412,12 @@ if(UNIX AND NOT APPLE)
     add_custom_command(TARGET ${PROJECT_NAME}
                        POST_BUILD
                        COMMAND ${CMAKE_COMMAND} -E copy
-                       ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/ribbon/app-logo.svg ${CMAKE_CURRENT_SOURCE_DIR}/installers/unix)
+                       ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/ribbon/app-logo.svg ${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/AppDir)
     # Application screenshot
     add_custom_command(TARGET ${PROJECT_NAME}
                        POST_BUILD
                        COMMAND ${CMAKE_COMMAND} -E copy
-                       ${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/images/frygraph.png ${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/)
+                       ${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/images/frygraph.png ${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/AppDir)
 endif()
 # License file
 add_custom_command(TARGET ${PROJECT_NAME}
@@ -425,18 +425,18 @@ add_custom_command(TARGET ${PROJECT_NAME}
                    COMMAND ${CMAKE_COMMAND} -E copy
                    ${CMAKE_CURRENT_SOURCE_DIR}/installers/redist/license.rtf $<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER})
 # Zip up images and menu resources
-file(MAKE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/installers/resources/")
+file(MAKE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/resources/")
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E tar "cvf" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/res.wad" --format=zip --files-from="${CMAKE_CURRENT_SOURCE_DIR}/tools/images.cmake"
-                   COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/res.wad" "${CMAKE_CURRENT_SOURCE_DIR}/installers/resources/"
+                   COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/res.wad" "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/resources/"
                    COMMENT "Building resourse bundle and copying to build and installer folders."
                    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/resources/images")
 # Word lists
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E tar "cvf" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/words.wad" --format=zip --files-from="${CMAKE_CURRENT_SOURCE_DIR}/tools/words.cmake"
-                   COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/words.wad" "${CMAKE_CURRENT_SOURCE_DIR}/installers/resources/"
+                   COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/words.wad" "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/resources/"
                    COMMENT "Building word lists and copying to build and installer folders."
                    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/resources/words")
 
@@ -457,11 +457,11 @@ if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
         add_custom_command(TARGET ${PROJECT_NAME}
                        POST_BUILD
                        COMMAND ${CMAKE_COMMAND} -E make_directory
-                       ${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/usr/bin)
+                       ${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/AppDir/usr/bin)
         add_custom_command(TARGET ${PROJECT_NAME}
                         POST_BUILD
                         COMMAND ${CMAKE_COMMAND} -E copy_directory
-                        $<TARGET_FILE_DIR:${PROJECT_NAME}> ${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/usr/bin
+                        $<TARGET_FILE_DIR:${PROJECT_NAME}> ${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/AppDir/usr/bin
                         COMMENT "Copying binary to installer folder.")
     endif()
 endif()
