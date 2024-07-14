@@ -413,6 +413,11 @@ if(UNIX AND NOT APPLE)
                        POST_BUILD
                        COMMAND ${CMAKE_COMMAND} -E copy
                        ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/ribbon/app-logo.svg ${CMAKE_CURRENT_SOURCE_DIR}/installers/unix)
+    # Application screenshot
+    add_custom_command(TARGET ${PROJECT_NAME}
+                       POST_BUILD
+                       COMMAND ${CMAKE_COMMAND} -E copy
+                       ${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/images/frygraph.png ${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/)
 endif()
 # License file
 add_custom_command(TARGET ${PROJECT_NAME}
