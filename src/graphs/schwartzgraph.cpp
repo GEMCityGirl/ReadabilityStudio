@@ -658,32 +658,32 @@ namespace Wisteria::Graphs
 
             if (IsShowcasingScore() && GetScores().size() == 1)
                 {
-                if (GetScores().at(0).GetScore() == 8)
+                if (GetScores().at(0).GetScoreRange().first == 8)
                     {
                     std::copy(m_gradeOver8Polygon.cbegin(), m_gradeOver8Polygon.cend(),
                               std::back_inserter(highlightedGradeLinePoints));
                     }
-                else if (GetScores().at(0).GetScore() == 7)
+                else if (GetScores().at(0).GetScoreRange().first == 7)
                     {
                     std::copy(m_grade7to8Polygon.cbegin(), m_grade7to8Polygon.cend(),
                               std::back_inserter(highlightedGradeLinePoints));
                     }
-                else if (GetScores().at(0).GetScore() == 5)
+                else if (GetScores().at(0).GetScoreRange().first == 5)
                     {
                     std::copy(m_grade5to6Polygon.cbegin(), m_grade5to6Polygon.cend(),
                               std::back_inserter(highlightedGradeLinePoints));
                     }
-                else if (GetScores().at(0).GetScore() == 3)
+                else if (GetScores().at(0).GetScoreRange().first == 3)
                     {
                     std::copy(m_grade3to4Polygon.cbegin(), m_grade3to4Polygon.cend(),
                               std::back_inserter(highlightedGradeLinePoints));
                     }
-                else if (GetScores().at(0).GetScore() == 2)
+                else if (GetScores().at(0).GetScoreRange().first == 2)
                     {
                     std::copy(m_grade2Polygon.cbegin(), m_grade2Polygon.cend(),
                               std::back_inserter(highlightedGradeLinePoints));
                     }
-                else if (GetScores().at(0).GetScore() == 1)
+                else if (GetScores().at(0).GetScoreRange().first == 1)
                     {
                     std::copy(m_grade1Polygon.cbegin(), m_grade1Polygon.cend(),
                               std::back_inserter(highlightedGradeLinePoints));
