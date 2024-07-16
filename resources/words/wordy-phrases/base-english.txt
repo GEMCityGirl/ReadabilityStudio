@@ -7648,6 +7648,7 @@ hard as nails	tough	2
 hard fact	fact	0		
 hard facts	facts	0		
 hard to swallow	difficult to believe	2		
+hardeing	hardening	3		
 harras	harass	3		
 harrased	harassed	3		
 harrases	harasses	3		
@@ -9417,6 +9418,7 @@ it should be noted	note	0
 it this is	if this is	3		
 it would appear that	apparently	0		
 it's place	its place	3		
+it'sn't	it isn't	3		
 itialization	initialization	3		
 itialization's	initialization's	3		
 itializations	initializations	3		
@@ -10516,6 +10518,7 @@ multicriteria	criteria (criteria is already plural)	1
 multicultralism	multiculturalism	3		
 multidimensionnal	multidimensional	3		
 multingual	multilingual	3		
+multiped	multiple, multiplied	3		
 multipexer	multiplexer	3		
 multipexer's	multiplexer's	3		
 multipexers	multiplexers	3		
@@ -11284,6 +11287,9 @@ organisations	companies	0
 organization's	company's	0		
 organizations	companies	0		
 organiztion	organization	3		
+organzation	organization	3		
+organzation's	organization's	3		
+organzations	organizations	3		
 orgin	origin	3		
 orginal	original	3		
 orginally	originally	3		
@@ -12085,6 +12091,10 @@ poltergeist	ghost	0
 poltergeist's	ghost's	0		
 poltergeists	ghosts	0		
 poltical	political	3		
+polulate	populate	3		
+polulated	populated	3		
+polulates	populates	3		
+polulating	populating	3		
 polute	pollute	3		
 poluted	polluted	3		
 polutes	pollutes	3		
@@ -12102,6 +12112,10 @@ popluate	populate	3
 popluated	populated	3		
 popluates	populates	3		
 popluating	populating	3		
+poplulate	populate	3		
+poplulated	populated	3		
+poplulates	populates	3		
+poplulating	populating	3		
 poportional	proportional	3		
 popoulation	population	3		
 popularaty	popularity	3		
@@ -15842,7 +15856,6 @@ to hell in a hand basket	going very badly	2
 to late	too late	3	available;early;mid;subject	bind;charges;fees
 to make matters worse	worse yet	0		
 to no avail	unsuccessful	0		
-to provided	to provide	3		
 to put it another way	in other words, that is	0		
 to some degree	in a sense, somewhat, partly	0		
 to some extent	in a sense, somewhat, partly	0		

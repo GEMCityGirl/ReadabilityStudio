@@ -259,6 +259,8 @@ Seaars	Sears	3
 Sebastain	Sebastian	3		
 Sebastain's	Sebastian's	3		
 Sebastains	Sebastians	3		
+Solorgate	Solorigate	3		
+Solorgate's	Solorigate's	3		
 Sweeden	Sweden	3		
 Sweeden's	Sweden's	3		
 Tolkein	Tolkien	3		

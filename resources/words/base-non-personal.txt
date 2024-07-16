@@ -361,6 +361,7 @@ Arapaho
 Arapahoe
 Ararat
 Araucanian
+Aravo
 Arawak
 Arawakan
 Arbitron
@@ -433,6 +434,7 @@ ArtStreet
 Aruba
 Arveiron
 Aryan
+Ascentis
 ASCI
 ASCII
 Asciidoc
@@ -836,6 +838,7 @@ Bitcoin
 Bitdefender
 BitGiving
 Bitlocker
+Bizagi
 Bizrate
 BizStats
 BizTalk
@@ -849,6 +852,7 @@ Blanding
 Blazor
 Blendercleanser
 Blendrops
+Blinq
 Blitzkrieg
 Bloemfontein
 BlogPulse
@@ -938,6 +942,7 @@ Botswana
 Bourgogne
 Bournemouth
 Bouvet
+Boxcryptor
 Bozeman
 Boötes
 Brabham
@@ -952,6 +957,7 @@ Braintree
 Branchville
 Brandenburg
 Brandery
+Brandfolder
 Branford
 Bransford
 Brasilia
@@ -1174,11 +1180,13 @@ Cantu
 Canyonlands
 Capitola
 Capricorn
+Capriza
 Capsaicin
 Captiva
 Caracas
 Carboloy
 Carbondale
+Carbonite
 Carcassonne
 Cardenas
 Cardiff
@@ -1226,6 +1234,7 @@ Catalan
 Catalina
 Catalonia
 Catawba
+Catchpoint
 Catholicism
 Catonsville
 Catoosa
@@ -1267,6 +1276,7 @@ Centrino
 Centronics
 Cerave
 Ceremonia
+Ceridian
 CERN
 Certum
 Cervarix
@@ -1434,6 +1444,7 @@ Clackmannanshire
 Clairsville
 Clairvaux
 Clapeyron
+Clarizen
 Clarksdale
 Clarkston
 Clarksville
@@ -1461,6 +1472,7 @@ Cloudera
 Cloudflare
 CloudFront
 CloudHub
+Cloudmore
 Cloverdale
 Cloze
 Clute
@@ -1545,6 +1557,7 @@ Consolas
 Constancia
 Constantinian
 Contech
+Contentful
 Contergan
 Contoso
 Conviron
@@ -1739,7 +1752,9 @@ Darwinism
 Darwinist
 Databook
 Databricks
+Datadog
 DataGuard
+Datahug
 Datamedia
 DataOps
 DataPilot
@@ -1754,6 +1769,7 @@ Davidian
 Davine
 Davos
 Dawsonville
+Dayforce
 Dayi
 Dayton
 Daytona
@@ -1830,6 +1846,7 @@ Dianamics
 Dibenzoxazepine
 Diberville
 Dickensian
+Diffchecker
 Digicam
 Digilent
 Digimarc
@@ -2050,6 +2067,7 @@ Elbrus
 Eldin
 Eldon
 Electrolux
+Eletronico
 Eleuthera
 Elgin
 Elizabethan
@@ -2462,6 +2480,7 @@ Frenchmen
 Frenchwoman
 Frenchwomen
 Freshbooks
+Freshworks
 Fresno
 Freudian
 Fri
@@ -2994,6 +3013,7 @@ Hinoki
 Hipparchus
 Hippocratic
 Hiram
+Hirebridge
 Hirey
 Hiroshima
 Hirsutism
@@ -3207,6 +3227,7 @@ Innovu
 Innsbruck
 Inola
 InputAccel
+Insite
 Instacart
 Instacure
 Instagram
@@ -3227,6 +3248,7 @@ Interdesign
 Interfolio
 Intermec
 Intermont
+Intralinks
 Intune
 Inuit
 Investopedia
@@ -3550,6 +3572,7 @@ Kolonia
 Komodo
 Konigstein
 Konkani
+Kontiki
 Kool-Aid
 Koran
 Koranic
@@ -3584,6 +3607,7 @@ Kubeflow
 Kubernetes
 Kudoboard
 Kuiper
+Kumolus
 Kurd
 Kurdish
 Kurdistan
@@ -3674,6 +3698,7 @@ Lawrenceville
 Leadville
 Leamington
 Leanpub
+Learnster
 Leavenworth
 Lebanese
 Lebanon
@@ -3719,6 +3744,7 @@ Lewistown
 Lewisville
 Lexilla
 Lexington
+Lexion
 LexisNexis
 Lexmark
 Lexus
@@ -3775,6 +3801,7 @@ Lithia
 Lithonia
 Lithuania
 Lithuanian
+Litmos
 Litware
 Livedo
 Livermore
@@ -3836,6 +3863,7 @@ Lucia
 Lucian
 Luciana
 Lucida
+Lucidchart
 Ludhiana
 Ludington
 Lufkin
@@ -4228,6 +4256,7 @@ Miltown
 Milwaukee
 Milwaukie
 Mimas
+Mimecast
 Minden
 Minecraft
 Mineola
@@ -4624,6 +4653,7 @@ Nikkei
 Nikon
 Nile
 Nilles
+Nimblex
 NIMBY
 Nineveh
 Nintendo
@@ -4810,6 +4840,7 @@ Omnichannel
 Onalaska
 OneBlood
 OneDrive
+Oneflow
 OneNote
 Oneonta
 OneSource
@@ -4819,6 +4850,7 @@ Onley
 Onondaga
 Ontarian
 Ontario
+Onyxia
 Opelika
 Opelousas
 OpenAL
@@ -4840,6 +4872,7 @@ OpenText
 OPERS
 Opry
 Opteron
+Optimizely
 Optum
 OptumRX
 OracleDB1
@@ -5336,6 +5369,7 @@ Quaker
 Quakeress
 Quakerism
 Quakertown
+Qualaroo
 Qualcomm
 Qualtrics
 Quantico
@@ -5791,6 +5825,7 @@ Secaucus
 Secheron
 secobarbital
 Sectigo
+Seculio
 Secureworks
 Sedalia
 Sedgefield
@@ -5968,6 +6003,7 @@ Skinscent
 Skinstick
 Skintuitive
 Skittle
+Skopenow
 Skopje
 Skullgirls
 Skydance
@@ -6021,6 +6057,7 @@ Solarcentury
 Solaris
 Solawave
 Solomon
+Solorigate
 Somali
 Somalia
 Somalian
@@ -7468,6 +7505,7 @@ Zoroastrianism
 Zosma
 Zotero
 Zovirax
+Zscaler
 Zubenelgenubi
 Zubeneschamali
 Zulu
