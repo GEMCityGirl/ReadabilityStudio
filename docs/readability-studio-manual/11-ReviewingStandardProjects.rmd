@@ -42,7 +42,7 @@ Let us first review a Fry\index{Fry} graph:
 knitr::include_graphics("images/frygraph.png")
 ```
 
-To read this graph, search for the red data point–this value represents the document's score. Note that there are numbers 1 through 17+ on this chart, each partitioned into small slices. The band that the data point falls into is the grade level of this document. In the example above, the data point is inside of the 8^th^ grade slice (notice that the 8 is marked in red).
+To read this graph, search for the red data point–this value represents the document's score. Note that there are numbers 1 through 17+ on this chart, each partitioned into small slices. The band that the data point falls into is the grade level of this document. In the example above, the data point is inside of the 8^th^ grade slice (notice that the 8 is marked in blue).
 
 Running through each slice is a gray line, which is a separator to help show the most predominate cause of the document's difficulty. If the data point is above the gray line, then the strongest influence on the document's difficulty is high-syllable words. If it is below the line, then the strongest influence is long sentences. In the above example, it is above the line, implying that it is slightly more influenced by high-syllable words. However, because it is fairly close to the line, this document is well balanced between difficult words and difficult sentences.
 
