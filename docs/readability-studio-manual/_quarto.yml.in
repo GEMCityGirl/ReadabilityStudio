@@ -48,7 +48,7 @@ book:
       - embedded-programming.qmd
     - part: "Appendix"
       chapters:
-      - Appendix.qmd
+      - appendix.qmd
 format:
   pdf:
     documentclass: book
@@ -57,8 +57,8 @@ format:
     latex-engine: xelatex
     keep-tex: true
     citation-package: biblatex
-    lot: yes
-    lof: yes
+    lot: true
+    lof: true
     code-block-bg: false
   html:
     theme: cosmo
