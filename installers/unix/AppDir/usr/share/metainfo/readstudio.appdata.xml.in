@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-	<id>${CMAKE_PROJECT_NAME}</id>
+	<id>${PROGRAM_RDNS_IDENTIFIER}</id>
 	<metadata_license>${PROGRAM_LICENSE}</metadata_license>
 	<project_license>${PROGRAM_LICENSE}</project_license>
 	<name>${readstudio_DESCRIPTION}</name>
@@ -9,12 +9,7 @@
 		<p>${PROGRAM_COMMENTS}</p>
 	</description>
 	<launchable type="desktop-id">readstudio.desktop</launchable>
-	<url type="homepage">${readstudio_HOMEPAGE_URL}</url>
-	<screenshots>
-		<screenshot type="default">
-			<image>frygraph.png</image>
-		</screenshot>
-	</screenshots>
+  <url type="homepage">${readstudio_HOMEPAGE_URL}</url>
 	<provides>
 		<id>readstudio.desktop</id>
 	</provides>

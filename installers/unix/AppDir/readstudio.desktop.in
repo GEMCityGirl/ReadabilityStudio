@@ -1,13 +1,12 @@
 [Desktop Entry]
 X-AppImage-Arch=${UNIX_ARCHITECTURE}
-X-AppImage-Version=latest
+X-AppImage-Version=${readstudio_VERSION_MAJOR}.${readstudio_VERSION_MINOR}.${readstudio_VERSION_PATCH}.${readstudio_VERSION_TWEAK}
 X-AppImage-Name=${readstudio_DESCRIPTION}
 Name=${readstudio_DESCRIPTION}
 Exec=${CMAKE_PROJECT_NAME}
 Icon=app-logo
 Type=Application
 Terminal=false
-Categories=Office;Education
+Categories=Office
 Comment=${PROGRAM_COMMENTS}
-URL=${readstudio_HOMEPAGE_URL}
 Keywords=readability formulas
