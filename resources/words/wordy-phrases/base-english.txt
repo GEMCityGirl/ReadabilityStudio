@@ -4112,8 +4112,10 @@ contiguity	nearness	0
 contiguous	touching, near, next to	0		
 contiguous to	next to	0		
 contin	contain	3		
-contined	contained	3		
+contine	continue	3		
+contined	continued	3		
 continential	continental	3		
+contines	continues	3		
 contingencies	emergencies, predicaments	0		
 contingency	emergency, likelihood, predicament	0		
 continguous	contiguous	3		
@@ -12733,7 +12735,12 @@ providing assistance with	helping, supporting	0
 providing that	if	0		
 provinicial	provincial	3		
 provisiosn	provision	3		
+provison	provision	3		
+provison's	provision's	3		
 provisonal	provisional	3		
+provisoned	provisioned	3		
+provisoning	provisioning	3		
+provisons	provisions	3		
 proximity	nearness	0		
 proximty	proximity	3		
 prpcess process 3
@@ -15684,7 +15691,7 @@ thge	the	3
 thhis	this	3		
 thiat	that	3		
 thick as thieves	intimate, close	2		
-thie	the	3		
+thie	the, this, their	3		
 thier	their	3		
 thign	thing	3		
 thigns	things	3		

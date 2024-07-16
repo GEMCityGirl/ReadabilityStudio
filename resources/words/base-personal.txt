@@ -107,8 +107,6 @@ Acilino
 Ackerman
 Ackley
 Acosta
-Activision
-Acura
 Ada
 Adabaldo
 Adabella
@@ -378,7 +376,6 @@ Aintzane
 Ainu
 Airdrie
 Airiana
-Airlead
 Aisha
 Aishwarya
 Aislin
@@ -17763,6 +17760,7 @@ Olivier
 Oliviero
 Oliy
 Olkin
+Ollenburg
 Ollie
 Ollier
 Ollivier
@@ -19347,6 +19345,7 @@ Rinaldo
 Rinaudo
 Rinehart
 Ringberger
+Ringdahl
 Ringling
 Ringo
 Rinne

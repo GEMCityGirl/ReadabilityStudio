@@ -47,6 +47,9 @@ Actin
 ActionPoint
 Actiontype
 ActiveX
+Activision
+Acunetix
+Acura
 Acworth
 Acyclovir
 Adairsville
@@ -90,6 +93,7 @@ Afrocentricity
 Afrocentrism
 Afterpay
 Agerholm
+Agiloft
 Agnosia
 Agricola
 AgriTech
@@ -103,8 +107,10 @@ Airbus
 Airedale
 Aires
 Airkiss
+Airlead
 Airpods
 Airsoft
+Airstack
 Airstrait
 Airwrap
 Akamai
@@ -322,6 +328,7 @@ Apollos
 Apopain
 Apopka
 Apostille
+Appaegis
 Appalachia
 Appalachian
 Appaloosa
@@ -5291,6 +5298,7 @@ Projectplace
 Prolixin
 Promethean
 Pronethalol
+Proofpoint
 Prophetstown
 Propranolol
 ProPublica
@@ -6649,6 +6657,7 @@ Treviño
 Trevose
 Triadelphia
 Tribeca
+Tribeloo
 Tricare
 TriHealth
 Trimox
