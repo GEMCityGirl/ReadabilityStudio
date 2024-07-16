@@ -21,7 +21,7 @@
   <string>public.app-category.productivity</string>
 
 	<key>CFBundleIdentifier</key>
-	<string>${PROGRAM_GUI_IDENTIFIER}</string>
+	<string>${PROGRAM_RDNS_IDENTIFIER}</string>
 
 	<key>CFBundleLongVersionString</key>
 	<string>${readstudio_VERSION_MAJOR}.${readstudio_VERSION_MINOR}.${readstudio_VERSION_PATCH}.${readstudio_VERSION_TWEAK}, (c) 2006-${BUILD_YEAR} ${PUBLISHER}</string>

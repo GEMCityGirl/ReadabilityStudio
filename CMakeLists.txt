@@ -42,7 +42,7 @@ set(PROGRAM_NUMBERED_VERSION 8.0)
 set(PUBLISHER "Oleander Software, Ltd.")
 set(PROGRAM_AUTHOR "Blake Madden")
 set(PROGRAM_COMMENTS "Readability analysis software")
-set(PROGRAM_GUI_IDENTIFIER "com.readabilitystudio.app")
+set(PROGRAM_RDNS_IDENTIFIER "com.oleandersoftware.readabilitystudio")
 set(PROGRAM_LICENSE "BSD-3-Clause")
 
 # Build a displayable version string that only includes the necessary parts
@@ -78,8 +78,14 @@ configure_file("${CMAKE_CURRENT_SOURCE_DIR}/resource.h.in"
 if(UNIX AND NOT APPLE)
     configure_file("${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/AppDir/readstudio.desktop.in"
                    "${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/AppDir/readstudio.desktop")
-    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/AppDir/usr/share/metainfo/readstudio.appdata.xml.in"
-                   "${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/AppDir/usr/share/metainfo/readstudio.appdata.xml")
+    # AppImage tools have issues with building correct appdata.xml files, so turn this off for now
+    # configure_file("${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/AppDir/usr/share/metainfo/readstudio.appdata.xml.in"
+    #               "${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/AppDir/usr/share/metainfo/readstudio.appdata.xml")
+elseif(WIN32)
+    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/setup.isl.in"
+                   "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/setup.isl")
+    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/icons.isl.in"
+                   "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/icons.isl")
 endif()
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/docs/version_info.txt.in"
                "${CMAKE_CURRENT_SOURCE_DIR}/docs/version_info.txt")
@@ -425,7 +431,9 @@ add_custom_command(TARGET ${PROJECT_NAME}
                    COMMAND ${CMAKE_COMMAND} -E copy
                    ${CMAKE_CURRENT_SOURCE_DIR}/installers/redist/license.rtf $<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER})
 # Zip up images and menu resources
+if(WIN32)
 file(MAKE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/resources/")
+endif()
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E tar "cvf" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/res.wad" --format=zip --files-from="${CMAKE_CURRENT_SOURCE_DIR}/tools/images.cmake"
@@ -451,7 +459,7 @@ if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
     if(WIN32)
         add_custom_command(TARGET ${PROJECT_NAME}
                            POST_BUILD
-                           COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:${PROJECT_NAME}>" "${CMAKE_CURRENT_SOURCE_DIR}/installers/Windows/Release"
+                           COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:${PROJECT_NAME}>" "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/release"
                            COMMENT "Copying binary to installer folder.")
     elseif(UNIX AND NOT APPLE)
         add_custom_command(TARGET ${PROJECT_NAME}
