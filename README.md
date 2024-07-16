@@ -77,7 +77,7 @@ Place *wxWidgets* at the same folder level as this project, downloading and buil
 cd ..
 git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
 cd wxWidgets
-cmake . -DCMAKE_INSTALL_PREFIX=./wxlib -DwxBUILD_SHARED=OFF -DwxBUILD_OPTIMISE=ON -DwxBUILD_STRIPPED_RELEASE_DEFAULT=ON
+cmake . -DCMAKE_INSTALL_PREFIX=./wxlib -DwxBUILD_SHARED=OFF -DwxBUILD_OPTIMISE=ON -DwxBUILD_STRIPPED_RELEASE_DEFAULT=ON -DCMAKE_BUILD_TYPE=Release
 cmake --build . --target install -j $(nproc)
 cd ..
 cd ReadabilityStudio
@@ -124,8 +124,8 @@ Place *wxWidgets* at the same folder level as this project, downloading and buil
 cd ..
 git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
 cd wxWidgets
-cmake . -DCMAKE_INSTALL_PREFIX=./wxlib -DwxBUILD_SHARED=OFF -D"CMAKE_OSX_ARCHITECTURES:STRING=arm64;x86_64" -DwxBUILD_OPTIMISE=ON -DwxBUILD_STRIPPED_RELEASE_DEFAULT=ON
-cmake --build . --target install -j 4
+cmake . -DCMAKE_INSTALL_PREFIX=./wxlib -DwxBUILD_SHARED=OFF -D"CMAKE_OSX_ARCHITECTURES:STRING=arm64;x86_64" -DwxBUILD_OPTIMISE=ON -DwxBUILD_STRIPPED_RELEASE_DEFAULT=ON -DCMAKE_BUILD_TYPE=Release
+cmake --build . --target install -j $(nproc)
 cd ..
 cd ReadabilityStudio
 ```
@@ -135,7 +135,7 @@ cd ReadabilityStudio
 ## Building
 
 The first time that you build, you may receive LaTeX errors about missing \*.sty files during the help build phase.
-Re-try the `cmake --build . --target all  -j 4` command a few times until these go away.
+Re-try the `cmake --build . --target all  -j $(nproc)` command a few times until these go away.
 
 This happens because numerous \*.sty files need to be installed and the installation process times out occasionally.
 Once you have these files installed, this won't be an issue when rebuilding later.
