@@ -1,0 +1,67 @@
+project:
+  type: book
+  output-dir: "docs"
+toc: true
+toc-depth: 2
+links-as-notes: true
+linestretch: 1.15
+biblio-title: References
+bibliography: cites.bib
+biblio-style: mla
+biblatexoptions: maxbibnames=4
+link-citations: true
+nocite: '@*'
+csl: modern-language-association.csl
+pdf-cover: "images/non-generated/cover.pdf"
+number-sections: true
+crossref:
+  chapters: true
+book:
+  title: "${readstudio_DESCRIPTION} ${FULL_DISPLAY_VERSION}"
+  subtitle: User Manual
+  author: ${PROGRAM_AUTHOR}
+  date: today
+  date-format: long
+  output-file: "readability-studio-manual"
+  language: en
+  search: false
+  cover-image: "images/non-generated/cover.png"
+  image: "images/non-generated/cover.png"
+  chapters:
+    - index.qmd
+    - part: "User Guide"
+      chapters:
+      - end-user-usage.qmd
+      - operators.qmd
+      - functions.qmd
+      - constants.qmd
+      - comments.qmd
+    - part: "Developer Guide"
+      chapters:
+      - building.qmd
+      - usage.qmd
+      - custom-extensions.qmd
+      - unknown-symbol-resolution.qmd
+      - non-us-formulas.qmd
+      - technical-overview.qmd
+      - compile-time-options.qmd
+      - embedded-programming.qmd
+    - part: "Appendix"
+      chapters:
+      - Appendix.qmd
+format:
+  pdf:
+    documentclass: book
+    template: latex/default.tex
+    include-in-header: latex/preamble.tex
+    latex-engine: xelatex
+    keep-tex: true
+    citation-package: biblatex
+    lot: yes
+    lof: yes
+    code-block-bg: false
+  html:
+    theme: cosmo
+    html-math-method: katex
+    css: css/style.css
+    smooth-scroll: true

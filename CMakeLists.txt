@@ -91,10 +91,8 @@ configure_file("${CMAKE_CURRENT_SOURCE_DIR}/docs/version_info.txt.in"
                "${CMAKE_CURRENT_SOURCE_DIR}/docs/version_info.txt")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/docs/_variables.yml.in"
                "${CMAKE_CURRENT_SOURCE_DIR}/docs/_variables.yml")
-configure_file("${CMAKE_CURRENT_SOURCE_DIR}/installers/Windows/setup.isl.in"
-               "${CMAKE_CURRENT_SOURCE_DIR}/installers/Windows/setup.isl")
-configure_file("${CMAKE_CURRENT_SOURCE_DIR}/installers/Windows/icons.isl.in"
-               "${CMAKE_CURRENT_SOURCE_DIR}/installers/Windows/icons.isl")
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/_quarto.yml.in"
+               "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/_quarto.yml")
 
 if(NOT CMAKE_CONFIGURATION_TYPES)
     get_property(HAVE_MULTI_CONFIG_GENERATOR GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
@@ -432,7 +430,7 @@ add_custom_command(TARGET ${PROJECT_NAME}
                    ${CMAKE_CURRENT_SOURCE_DIR}/installers/redist/license.rtf $<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER})
 # Zip up images and menu resources
 if(WIN32)
-file(MAKE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/resources/")
+    file(MAKE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/resources/")
 endif()
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
