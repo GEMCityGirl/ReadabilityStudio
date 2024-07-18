@@ -450,54 +450,16 @@ namespace LuaScripting
             }
         wxString path(luaL_checkstring(L, 1), wxConvUTF8);
 
+        if (!wxFileName::DirExists(path))
+            {
+            wxMessageBox(wxString::Format(_(L"%s: Invalid folder path."), path), _(L"Script Error"),
+                         wxOK | wxICON_EXCLAMATION);
+            lua_pushboolean(L, false);
+            return 1;
+            }
+
         std::multimap<wxString, wxString> badLinks;
         std::multimap<wxString, wxString> badImageSizes;
-        std::set<traits::case_insensitive_wstring_ex> validFiles;
-
-            // get the valid files
-            {
-            wxDir dir;
-            wxArrayString files;
-            // analysis the topics
-            dir.GetAllFiles(path, &files, _DT(L"*.hhp*"));
-            wxString fileContent;
-            for (size_t i = 0; i < files.Count(); ++i)
-                {
-                wxFileName fn(files[i]);
-                const wxString rootFolder = fn.GetPath(wxPATH_GET_VOLUME | wxPATH_GET_SEPARATOR);
-
-                wxFFile file(files[i], L"r");
-                file.ReadAll(&fileContent, *wxConvCurrent);
-                file.Close();
-
-                size_t start = fileContent.find(L"[FILES]");
-                if (start == wxString::npos)
-                    {
-                    continue;
-                    }
-                start += 7;
-                size_t end = fileContent.find(L"\n[", start);
-                if (end == wxString::npos)
-                    {
-                    end = fileContent.find(L"\r[", start);
-                    if (end == wxString::npos)
-                        {
-                        continue;
-                        }
-                    }
-                fileContent = fileContent.substr(start, end - start);
-
-                wxStringTokenizer tkz(fileContent, L"\n\r");
-                while (tkz.HasMoreTokens())
-                    {
-                    wxString token = tkz.GetNextToken();
-                    if (token.length())
-                        {
-                        validFiles.insert((rootFolder + token).wc_str());
-                        }
-                    }
-                }
-            }
 
         // get the physical files in the system
         wxDir dir;
@@ -505,8 +467,6 @@ namespace LuaScripting
         dir.GetAllFiles(path, &files, _DT(L"*.htm*"));
 
         wxString fileContent;
-        files.clear();
-        dir.GetAllFiles(path, &files, _DT(L"*.htm*"));
         const bool IncludeExternalLinks = int_to_bool(lua_toboolean(L, 2));
         for (size_t i = 0; i < files.Count(); ++i)
             {
@@ -527,6 +487,16 @@ namespace LuaScripting
                 else
                     {
                     break;
+                    }
+                }
+            // read any elements' IDs that may be used as bookmarks
+            std::wstring_view htmlConent{ fileContent.wc_str(), fileContent.length() };
+            while (htmlConent.length() > 0)
+                {
+                auto nextBookmark = lily_of_the_valley::html_extract_text::find_id(htmlConent);
+                if (nextBookmark.length() > 0)
+                    {
+                    BookmarksInCurrentPage.insert(nextBookmark);
                     }
                 }
 
@@ -559,7 +529,12 @@ namespace LuaScripting
         // write out the warnings of bad links
         for (const auto& badLink : badLinks)
             {
-            wxLogError(L"%s: %s", badLink.first, badLink.second);
+            wxGetApp().GetMainFrameEx()->GetLuaEditor()->DebugOutput(
+                wxString::Format(_DT(L"Broken link in '<span style='font-weight:bold;'>%s</span>': "
+                                     "<span style='color:red; font-weight:bold;'>%s</span>",
+                                     DTExplanation::DebugMessage),
+                                 badLink.first, badLink.second));
+            wxLogError(L"Broken link in '%s': %s", badLink.first, badLink.second);
             }
         if (badLinks.size() == 0)
             {
@@ -569,7 +544,11 @@ namespace LuaScripting
         // match their size specified in a topic
         for (const auto& badImage : badImageSizes)
             {
-            wxLogError(L"%s: %s", badImage.first, badImage.second);
+            wxGetApp().GetMainFrameEx()->GetLuaEditor()->DebugOutput(wxString::Format(
+                _DT(L"Bad image size in '<span style='font-weight:bold;'>%s</span>%s</span>': "
+                    "<span style='color:red; font-weight:bold;'>%s</span>"),
+                badImage.first, badImage.second));
+            wxLogError(L"Bad image size in '%s': %s", badImage.first, badImage.second);
             }
         if (badImageSizes.size() == 0)
             {
