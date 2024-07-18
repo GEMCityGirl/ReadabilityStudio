@@ -1,4 +1,4 @@
-## Easy Listening Formula\index{Easy Listening Formula|(ii} {#easy-listening-formula}
+## Easy Listening Formula\index{Easy Listening Formula|(ii} {#sec-easy-listening-formula}
 
 The Easy Listening Formula is designed for "listenability" and is meant for radio and television broadcasts. Fang [-@{fang}65] stated that broadcasted news generally has much shorter sentences compared to print media. Therefore, he created the ELF test to focus solely on complex-word density, not using sentence length as a factor. That is, rather than looking at a sentence’s word count, the density of syllables in a sentence is used instead.
 
@@ -38,7 +38,7 @@ While the newspaper samples yielded the following:
 
 Note the stark difference between the printed and televised-material scores. This indicates a much higher complex-word density in printed news versus televised news.
 
-To further validate the test, Fang compared [Flesch Reading Ease](#flesch-test) scores against ELF and found a strong correlation of $r = 0.96$.
+To further validate the test, Fang compared [Flesch Reading Ease](#sec-flesch-test) scores against ELF and found a strong correlation of $r = 0.96$.
 
 The ELF score of a sentence is calculated by counting the number of syllables above one for each word. For example:
 

@@ -11,7 +11,7 @@ In this chapter, we will step through examples showing how to create these types
 
 In this example, we will create a custom test. Custom tests are useful for either creating an entirely new formula or a new one based on an existing formula.
 
-For this example, we will use the [Flesch](#flesch-test) formula for our basis. We will take the standard Flesch formula and substitute its sentence count factor with independent clause count. This will effectively create a formula which does not penalize documents for containing numerous compound sentences.
+For this example, we will use the [Flesch](#sec-flesch-test) formula for our basis. We will take the standard Flesch formula and substitute its sentence count factor with independent clause count. This will effectively create a formula which does not penalize documents for containing numerous compound sentences.
 
 The first step to creating a new test is to click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add Test Based on...** from the menu. This will present a dialog containing formula-based tests; select **Flesch Reading Ease** and click `r keys("OK")`.
 
@@ -120,7 +120,7 @@ If you do want to clamp a test to a given range, wrap it in a `CLAMP` function c
 
 ## Creating a Custom New Dale-Chall\index{New Dale-Chall!custom test!example|(} Test
 
-In this example, we will create a custom [New Dale-Chall](#dale-chall-test) test specifically designed for recipes for a group of young students. Although the standard New Dale-Chall list is quite extensive, we may wish to append some words that we know are familiar to our kitchen-savvy students.
+In this example, we will create a custom [New Dale-Chall](#sec-dale-chall-test) test specifically designed for recipes for a group of young students. Although the standard New Dale-Chall list is quite extensive, we may wish to append some words that we know are familiar to our kitchen-savvy students.
 
 The first step is to create a list of baking-specific words that our readers are familiar with that are not already on the standard New Dale-Chall list. This can be any text file where the words are separated by spaces, tabs, commas, or semicolons. For this example, we will use this list:
 

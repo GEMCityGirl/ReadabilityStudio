@@ -1,4 +1,4 @@
-## Fry\index{Fry|(ii} Graph {#fry-test}
+## Fry\index{Fry|(ii} Graph {#sec-fry-test}
 
 Fry [-@{fry:1968}513-16, 575-78; -@{fry:extensions:1977}242–52] is a graphical test for English documents. It calculates a document's grade level from its average number of sentences and syllables per hundred words. These averages are plotted onto a chart where their intersection determines the reading level of the content.
 

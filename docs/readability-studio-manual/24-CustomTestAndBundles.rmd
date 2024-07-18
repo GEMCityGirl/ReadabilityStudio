@@ -2,7 +2,7 @@
 
 ## Creating a Custom Test {#sec-creating-custom-test}
 
-Along with offering standard tests, such as [New Dale-Chall](#dale-chall-test)\index{New Dale-Chall!custom test} and [Spache Revised](#spache-test)\index{Spache Revised!custom test}, *Readability Studio* also includes the ability to create your own tests. Many customizable features are offered for new tests, such as being able to select your own familiar-word list and which formula to use.
+Along with offering standard tests, such as [New Dale-Chall](#sec-dale-chall-test)\index{New Dale-Chall!custom test} and [Spache Revised](#sec-spache-test)\index{Spache Revised!custom test}, *Readability Studio* also includes the ability to create your own tests. Many customizable features are offered for new tests, such as being able to select your own familiar-word list and which formula to use.
 
 To create a custom test, go to the **Readability** tab, click the arrow beneath the `r keys("Custom Tests")` button and select **Add Test...** from the menu. At this point, the **Add Custom Test** dialog will be displayed:
 
@@ -221,7 +221,7 @@ This will be either traditional sentence counting or unit counting.
 | FamiliarSpacheWordCount() | Returns the number of familiar Spache words. |
 | FamiliarWordCount() | Returns the number of familiar words (from a custom list) the document. |
 | HardFogWordCount() | Returns the number of difficult Gunning Fog words. |
-| MiniWordCount() | Returns the number of miniwords (refer to \@ref(eflaw-test)). |
+| MiniWordCount() | Returns the number of miniwords (refer to \@ref(sec-eflaw-test)). |
 | NumeralCount() | Returns the number of numerals\index{numerals}. |
 | OneSyllableWordCount() | Returns the number of monosyllabic words. |
 | ProperNounCount() | Returns the number of proper nouns.\index{proper nouns} |
@@ -345,13 +345,13 @@ If you are not stemming, then it is recommended to enter each inflected form of 
 
 #### Standard familiar word lists {-}
 
-**Include New Dale-Chall familiar word list**: Check this option to use the [New Dale-Chall](#dale-chall-test)\index{New Dale-Chall!custom test!including words with} word list (along with any other selected word lists) to determine if a word is familiar.
+**Include New Dale-Chall familiar word list**: Check this option to use the [New Dale-Chall](#sec-dale-chall-test)\index{New Dale-Chall!custom test!including words with} word list (along with any other selected word lists) to determine if a word is familiar.
 
-**Include Spache Revised familiar word list**: Check this option to use the [Spache Revised](#spache-test)\index{Spache Revised!custom test!including words with} word list (along with any other selected word lists) to determine if a word is familiar.
+**Include Spache Revised familiar word list**: Check this option to use the [Spache Revised](#sec-spache-test)\index{Spache Revised!custom test!including words with} word list (along with any other selected word lists) to determine if a word is familiar.
 
-**Include Harris-Jacobson familiar word list**: Check this option to use the [Harris-Jacobson](#harris-jacobson)\index{Harris-Jacobson Wide Range!custom test!including words with} word list (along with any other selected word lists) to determine if a word is familiar.
+**Include Harris-Jacobson familiar word list**: Check this option to use the [Harris-Jacobson](#sec-harris-jacobson)\index{Harris-Jacobson Wide Range!custom test!including words with} word list (along with any other selected word lists) to determine if a word is familiar.
 
-**Include Stocker's Catholic supplement**: Check this option to include [Stocker's supplementary word list](#stocker-catholic-supplement)\index{Stocker's Catholic Supplement!custom test!including words with} for Catholic students (along with any other selected word lists) to determine if a word is familiar.
+**Include Stocker's Catholic supplement**: Check this option to include [Stocker's supplementary word list](#sec-stocker-catholic-supplement)\index{Stocker's Catholic Supplement!custom test!including words with} for Catholic students (along with any other selected word lists) to determine if a word is familiar.
 
 #### Other {-}
 

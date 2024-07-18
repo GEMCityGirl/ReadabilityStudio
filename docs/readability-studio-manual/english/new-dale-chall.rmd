@@ -1,4 +1,4 @@
-## New Dale-Chall\index{New Dale-Chall|(ii} {#dale-chall-test}
+## New Dale-Chall\index{New Dale-Chall|(ii} {#sec-dale-chall-test}
 
 The New Dale-Chall\index{Dale-Chall!zzzzz@\igobble|seealso{New Dale-Chall}} readability test [@{chall-dale:manual:1995}1-7] calculates the grade level of a document based on sentence length and number of unfamiliar words. Words are unfamiliar if they do not appear on a list of 3,000 common words that are known to most 4^th^ grade students. The following are also considered familiar:
 

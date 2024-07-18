@@ -1,11 +1,11 @@
-## Harris-Jacobson Wide Range\index{Harris-Jacobson Wide Range|(ii} {#harris-jacobson}
+## Harris-Jacobson Wide Range\index{Harris-Jacobson Wide Range|(ii} {#sec-harris-jacobson}
 
 The Harris-Jacobson Wide Range Readability Formula readability test [-@{harris-jacobson}19–30] calculates the grade level of a document based on sentence length and number of unique unfamiliar words. Words are unfamiliar if they do not appear on a list of common words that are known to most second-grade students. The following are also considered familiar:
 
 - Regular verb forms of any common word (i.e., *ing*, *es*, *s*, *ed*, and *ies* endings). Irregular forms are not familiar.
 - Regular plural and possessive forms of any common word (i.e., *s*, *es*, and *ies* endings). Irregular forms are not familiar.
 - Adjectival or adverbial forms of common words. This includes forms with endings such as *ly*, *est*, *er*, and *ily*.
-- Hyphenated words if both parts of the word are common words. For example, *apple-tree* and *and/or* would be familiar. (Note that forward slashes (*/*) are treated like hyphens in this context.) Although this rule is not explicitly stated in *Basic Reading Vocabularies*, it is recommended because both [Spache](#spache-test) and [New Dale-Chall](#dale-chall-test) apply it.
+- Hyphenated words if both parts of the word are common words. For example, *apple-tree* and *and/or* would be familiar. (Note that forward slashes (*/*) are treated like hyphens in this context.) Although this rule is not explicitly stated in *Basic Reading Vocabularies*, it is recommended because both [Spache](#sec-spache-test) and [New Dale-Chall](#sec-dale-chall-test) apply it.
 - All proper nouns.\index{proper nouns!Harris-Jacobson}
 
 Note that numerals\index{numerals!Harris-Jacobson} are entirely excluded from this test and are considered neither familiar nor unfamiliar.

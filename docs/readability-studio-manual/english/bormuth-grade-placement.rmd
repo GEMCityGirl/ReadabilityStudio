@@ -1,4 +1,4 @@
-## Bormuth Grade Placement (GP35)\index{Bormuth Grade Placement|(ii} {#bormuth-grade-placement-35-machine-passage}
+## Bormuth Grade Placement (GP35)\index{Bormuth Grade Placement|(ii} {#sec-bormuth-grade-placement-35-machine-passage}
 
 The Bormuth Grade Placement (Machine Computation for Passage Readability) Formula [-@{bormuth:1966}79–132] calculates a grade level for a document.
 
@@ -24,7 +24,7 @@ Where:
 +-----+--------------------------------------+
 | W   | Number of words                      |
 +-----+--------------------------------------+
-| D   | Number of familiar [Dale-Chall](#dale-chall-test) words |
+| D   | Number of familiar [Dale-Chall](#sec-dale-chall-test) words |
 +-----+--------------------------------------+
 | S   | Number of sentences                  |
 +-----+--------------------------------------+

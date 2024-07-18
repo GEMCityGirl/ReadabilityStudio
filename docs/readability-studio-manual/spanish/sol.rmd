@@ -1,8 +1,8 @@
-## SOL\index{SOL|(ii} {#sol-spanish}
+## SOL\index{SOL|(ii} {#sec-sol-spanish}
 
 The SOL readability formula [@{contreras}21–29] calculates the grade level of a document based on complex-word density.
 
-SOL is a modified version of [SMOG](#smog-test)\index{SMOG!variations!SOL (Spanish)} [@{mclaughlin}639–46] that was recalibrated for Spanish text. This test calculates the SMOG score of a Spanish document, and then adjusts the score to take into account the comparably higher complex-word counts found in Spanish text. This adjustment is similar to what [Gilliam-Peña-Mountain](#gilliam-pena-mountain-fry-graph)\index{Gilliam-Peña-Mountain!compared to SOL} [@{gilliam-pena-mountain}426–30] uses for plotting Spanish text onto the [Fry graph](#fry-test)\index{Fry}.
+SOL is a modified version of [SMOG](#sec-smog-test)\index{SMOG!variations!SOL (Spanish)} [@{mclaughlin}639–46] that was recalibrated for Spanish text. This test calculates the SMOG score of a Spanish document, and then adjusts the score to take into account the comparably higher complex-word counts found in Spanish text. This adjustment is similar to what [Gilliam-Peña-Mountain](#sec-gilliam-pena-mountain-fry-graph)\index{Gilliam-Peña-Mountain!compared to SOL} [@{gilliam-pena-mountain}426–30] uses for plotting Spanish text onto the [Fry graph](#sec-fry-test)\index{Fry}.
 
 This test was trained on multiple blocks of 30-sentence samples from the following English, Spanish, and French materials:
 

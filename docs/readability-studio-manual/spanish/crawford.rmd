@@ -1,4 +1,4 @@
-## Crawford\index{Crawford|(ii} {#crawford}
+## Crawford\index{Crawford|(ii} {#sec-crawford}
 
 The Crawford test is designed for "elementary level materials in Spanish" [-@{crawford}4]. This test calculates the grade level of a document based on sentence length and syllable count.
 
@@ -32,6 +32,6 @@ Note that this differs from other graphs which use the X and Y axes to represent
 
 For example, in the above graph the number of syllables is 175. The number of sentences is approximately 7 (between 8.4 and 5.9 [on the plot, respective to 175 on the Y axis]). After finding the intersection of these factors, the point's X axis value is 3.7. Hence, 3.7 is the sample's grade-level score.
 
-This test is designed for 100-word samples and uses the same statistics as the [Fry](#fry-test)\index{Fry} test. ([Normalization](#sec-glossary) can also be used to analyze larger samples or entire documents.)\index{Crawford|)}
+This test is designed for 100-word samples and uses the same statistics as the [Fry](#sec-fry-test)\index{Fry} test. ([Normalization](#sec-glossary) can also be used to analyze larger samples or entire documents.)\index{Crawford|)}
 
 \newpage

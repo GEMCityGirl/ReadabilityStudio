@@ -1,4 +1,4 @@
-## FORCAST\index{FORCAST|(ii} {#forcast-test}
+## FORCAST\index{FORCAST|(ii} {#sec-forcast-test}
 
 The FORCAST readability formula [@{caylor-sticht-fox-ford}13–17] was devised for assessing U.S. army technical manuals and forms. It is the only test not designed for running narrative, so it is best suited for multiple-choice quizzes, applications, entrance forms, etc. This test calculates the grade level of a document based on its number of monosyllabic words.
 

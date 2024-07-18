@@ -188,7 +188,7 @@
 
 - Added [goals](#sec-reviewing-goals) feature to warn if a document's scores or statistics do not fall within a certain range.
 - Words can now be added to excluded word list directly from list windows.
-- Added [Schwartz test](#schwartz) (German projects only).
+- Added [Schwartz test](#sec-schwartz) (German projects only).
 - Added a graph to visualize Lix index scores.
 - Added a graph to visualize German Lix index scores.
 - Added a graph to visualize Danielson-Bryan 2 scores.
@@ -203,7 +203,7 @@
   - Added `GunningFog` option to `SentenceCount()` function. This will return the sentence count using the system's [Gunning Fog method](#sec-options-gunning-fog).
   - Added `MiniWordCount()` function.
   - Added `HardFogWordCount()` function.
-- [Farr-Jenkins-Paterson](#farr-jenkins-paterson) now includes floating-point precision in its results.
+- [Farr-Jenkins-Paterson](#sec-farr-jenkins-paterson) now includes floating-point precision in its results.
 - Added sentence-lengths histogram (standard projects).
 - Bins in the syllable, sentence-length, grade-level, and predicted cloze score histograms now begin at 1^st^ grade or Kindergarten.
 - Improved document indexing performance.
@@ -455,7 +455,7 @@
 - Graphs can now show a custom color and image as its background together (color will be shown underneath the image).
 - Graph background image opacity editor now shows the image with the proper aspect ratio.
 - Color of axis labels can now be changed.
-- Short/long words and sentences labels added to the [Fry graph](#fry-test).
+- Short/long words and sentences labels added to the [Fry graph](#sec-fry-test).
 - Grade levels are now shown in long format on batch project histograms if there is enough space for them.
 
 ### Bug Fixes {-}
@@ -481,24 +481,24 @@
 - Summation option added for most lists in the results.
 - Improved printing of summary report and test results windows.
 - Test bundles added, which enable you to add a specific set of tests to a project with one button click.
-- Shortcuts for creating custom [New Dale-Chall](#dale-chall-test), [Spache](#spache-test), and [Harris-Jacobson](#harris-jacobson) added.
+- Shortcuts for creating custom [New Dale-Chall](#sec-dale-chall-test), [Spache](#sec-spache-test), and [Harris-Jacobson](#sec-harris-jacobson) added.
 - An overview window showing all tests and their respective factors and descriptions is now available.
 
 ### Analysis/Test Enhancements {-}
 
 - German project support added (*Professional* or *Language Pack* edition).
 - New tests added:
-    - [Danielson-Bryan 1 & 2](#danielson-bryan-1)
-    - [Easy Listening Formula](#easy-listening-formula)
-    - [Amstad](#amstad)
-    - [Lix (German children's literature)](#lix-german-childrens-literature)
-    - [Lix (German technical literature)](#lix-german-technical)
-    - [Neue Wiener Sachtextformel 1–3](#neue-wiener-sachtextformel1)
-    - [Quadratwurzelverfahren](#qu-bamberger-vanecek)
-    - [Rix (German fiction)](#rix-german-fiction)
-    - [Rix (German non-fiction)](#rix-german-nonfiction)
-    - [SMOG (Bamberger-Vanecek)](#smog-bamberger-vanecek)
-    - [Wheeler-Smith (Bamberger-Vanecek)](#wheeler-smith-bamberger-vanecek)
+    - [Danielson-Bryan 1 & 2](#sec-danielson-bryan-1)
+    - [Easy Listening Formula](#sec-easy-listening-formula)
+    - [Amstad](#sec-amstad)
+    - [Lix (German children's literature)](#sec-lix-german-childrens-literature)
+    - [Lix (German technical literature)](#sec-lix-german-technical)
+    - [Neue Wiener Sachtextformel 1–3](#sec-neue-wiener-sachtextformel1)
+    - [Quadratwurzelverfahren](#sec-qu-bamberger-vanecek)
+    - [Rix (German fiction)](#sec-rix-german-fiction)
+    - [Rix (German non-fiction)](#sec-rix-german-nonfiction)
+    - [SMOG (Bamberger-Vanecek)](#sec-smog-bamberger-vanecek)
+    - [Wheeler-Smith (Bamberger-Vanecek)](#sec-wheeler-smith-bamberger-vanecek)
 - New grammar checking features for English projects:
     - spell checker
     - article mismatches
@@ -508,7 +508,7 @@
     - numerals
     - proper nouns
     - custom words and phrases
-- [Stocker's Catholic supplement](#stocker-catholic-supplement) now available for New Dale-Chall and custom tests.
+- [Stocker's Catholic supplement](#sec-stocker-catholic-supplement) now available for New Dale-Chall and custom tests.
 
 ### Importing/Exporting Enhancements {-}
 
@@ -546,32 +546,32 @@
     - bin labels with grade histograms
     - y axis of box plots
 - Added Spanish document analysis features. This includes specialized Spanish syllabizer and tests:
-    - Added [Gilliam-Peña-Mountain Fry Graph](#gilliam-pena-mountain-fry-graph).
-    - Added [Crawford](#crawford) test.
-    - Added [FRASE](#frase) graph.
-    - Added [SOL](#sol-spanish) test.
+    - Added [Gilliam-Peña-Mountain Fry Graph](#sec-gilliam-pena-mountain-fry-graph).
+    - Added [Crawford](#sec-crawford) test.
+    - Added [FRASE](#sec-frase) graph.
+    - Added [SOL](#sec-sol-spanish) test.
 - Added new English tests:
-    - Added [Dale-Chall (PSK)](#psk-dale-chall) test.
-    - Added [Bormuth Cloze Mean](#bormuth-cloze-mean-machine-passage) test.
-    - Added [Bormuth Grade Placement](#bormuth-grade-placement-35-machine-passage) test.
-    - Added [Gunning Fog (PSK)](#psk-fog) test.
-    - Added [Farr-Jenkins-Paterson](#farr-jenkins-paterson) test.
-    - Added [Farr-Jenkins-Paterson (PSK)](#psk-farr-jenkins-paterson) test.
-    - Added [Wheeler-Smith](#wheeler-smith) test.
-    - Added [Degrees of Reading Power](#degrees-of-reading-power) test.
-    - Added [Degrees of Reading Power](#degrees-of-reading-power-grade-equivalent) test (grade level).
-    - Added [Harris-Jacobson](#harris-jacobson) test.
-- Added high-precision option to [SMOG](#smog-test) test.
-- Added **count independent clauses as separate sentences** option to [Gunning Fog](#gunning-fog-test).
+    - Added [Dale-Chall (PSK)](#sec-psk-dale-chall) test.
+    - Added [Bormuth Cloze Mean](#sec-bormuth-cloze-mean-machine-passage) test.
+    - Added [Bormuth Grade Placement](#sec-bormuth-grade-placement-35-machine-passage) test.
+    - Added [Gunning Fog (PSK)](#sec-psk-fog) test.
+    - Added [Farr-Jenkins-Paterson](#sec-farr-jenkins-paterson) test.
+    - Added [Farr-Jenkins-Paterson (PSK)](#sec-psk-farr-jenkins-paterson) test.
+    - Added [Wheeler-Smith](#sec-wheeler-smith) test.
+    - Added [Degrees of Reading Power](#sec-degrees-of-reading-power) test.
+    - Added [Degrees of Reading Power](#sec-degrees-of-reading-power-grade-equivalent) test (grade level).
+    - Added [Harris-Jacobson](#sec-harris-jacobson) test.
+- Added high-precision option to [SMOG](#sec-smog-test) test.
+- Added **count independent clauses as separate sentences** option to [Gunning Fog](#sec-gunning-fog-test).
 - Gunning Fog now treats words made three syllables by adding *ed* or *es* as easy.
 - Added custom formula functionality to [custom tests](#sec-creating-custom-test).
 - Added ability to specify the result type of custom tests (e.g., index level or grade level).
 - Added ability for custom tests to control how proper nouns are handled (including the ability to count only the first occurrence of a proper noun as unfamiliar).
 - Custom tests no longer require custom word lists (just the standard lists can be selected).
-- Added predicted cloze score to [Coleman-Liau](#coleman-liau-test) test.
-- [New Dale-Chall](#dale-chall-test) now has custom text exclusion options to use either the recommended instructions or the system defaults.
+- Added predicted cloze score to [Coleman-Liau](#sec-coleman-liau-test) test.
+- [New Dale-Chall](#sec-dale-chall-test) now has custom text exclusion options to use either the recommended instructions or the system defaults.
 - New Dale-Chall has the ability to control how proper nouns are handled (including the ability to count only the first occurrence of a proper noun as unfamiliar).
-- [Fry](#fry-test) graph now uses updated instructions for numerals and proper nouns based on the 1977 article *Fry's Readability Graph: Clarifications, Validity, and Extension to Level 17*.
+- [Fry](#sec-fry-test) graph now uses updated instructions for numerals and proper nouns based on the 1977 article *Fry's Readability Graph: Clarifications, Validity, and Extension to Level 17*.
 - Added **ignore left alignment/tabbing** option to document analysis.
 - Random sampling percentage default changed to 15 (from 25).
 - Consolidated **end of paragraph** and **sentence deduction** options into one section.
@@ -606,7 +606,7 @@
 
 ### Graph Enhancements {-}
 
-- [Raygor](#raygor-test) graph now shows *College* and *Professor* as the labels for the last two slices.
+- [Raygor](#sec-raygor-test) graph now shows *College* and *Professor* as the labels for the last two slices.
 - Added image stippling option (i.e., custom brush) for bar charts, histograms, and box plots.
 
 ### Bug Fixes {-}

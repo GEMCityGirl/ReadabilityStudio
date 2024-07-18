@@ -70,10 +70,10 @@ All cookies will be cleared once the dialog's session is complete.
 - **Warn about documents that contain sentences split by paragraph breaks.** This warning is shown when a document being analyzed contains what appears to be sentences with paragraph breaks in them. In this situation, the sentences will not be indexed properly, and it is recommended to fix to the document.
 - **Warn about documents that contain long incomplete sentences that will be included in the analysis.** This warning is shown when a document being analyzed contains sentences that, although missing terminating punctuation, will be included in the analysis because of their length. To change this behavior, adjust the option [**Include incomplete sentences containing more than [15] words**](#sec-options-text-exclusion).
 - **Prompt if a document should switch to include sentences in the analysis.** If a document is excluding a high volume of incomplete sentences, then you will be prompted about switching to include those sentences in the analysis.
-- **Prompt if a custom NDC test's proper noun settings differ from the standard NDC test.** By default, [New Dale-Chall](#dale-chall-test) requires that the first instance of each proper noun be seen as unfamiliar. If you are creating a custom New Dale-Chall test which uses different proper-noun logic, then you will be prompted whether this is your intent.
+- **Prompt if a custom NDC test's proper noun settings differ from the standard NDC test.** By default, [New Dale-Chall](#sec-dale-chall-test) requires that the first instance of each proper noun be seen as unfamiliar. If you are creating a custom New Dale-Chall test which uses different proper-noun logic, then you will be prompted whether this is your intent.
 - **Prompt about New Dale-Chall using a different text exclusion method from the system default.** By default, New Dale-Chall uses its own method for excluding text, which may differ from the system default's method. This message will be shown to warn about this.
 - **Prompt about Harris-Jacobson using a different text exclusion method from the system default.** By default, Harris-Jacobson uses its own method for excluding text, which may differ from the system default's method. This message will be shown to warn about this.
-- **Warn when a custom test's numeral settings will be adjusted.** Some tests (e.g., [Harris-Jacobson](#harris-jacobson)) require numerals to be excluded from the analysis. This warning will be shown if a custom test needs its numeral settings adjusted to take such rules into account.
+- **Warn when a custom test's numeral settings will be adjusted.** Some tests (e.g., [Harris-Jacobson](#sec-harris-jacobson)) require numerals to be excluded from the analysis. This warning will be shown if a custom test needs its numeral settings adjusted to take such rules into account.
 - **Warn about German stemming not supporting proper noun detection.** This warning is shown when creating a custom test that uses German stemming and treats proper nouns as familiar.
 - **Warn about unique-value histograms requiring midpoint axis labels.** If you specify unique values as your histogram [bin sorting](#sec-options-histograms) method, then midpoint interval display will need to be used. Because each bin (i.e., bar) will represent only one value, the histograms will not have ranges of values for its intervals. Therefore, cutpoints will not be applicable and midpoint axis labels will be used instead. If you have cutpoints as the interval type and choose unique-value bin sorting, then this warning will be shown before adjusting the interval display.
 - **Prompt about auto-searching for missing files.** By default, projects link to the documents that they analyze. When you open a project, the document will be reanalyzed to include any recent changes. If the document cannot be found, then the program will ask if it should search for a document by the same name. This search will be relative to the project file's location. Unchecking this option will suppress this prompt and the program will automatically search for and load the document.
@@ -381,7 +381,7 @@ The options on this page customize the behavior of certain tests.
 
 #### Gunning Fog {-#sec-options-gunning-fog}
 
-**Count independent clauses**: Check this option to count independent clauses as separate sentences when calculating a [Gunning Fog](#gunning-fog-test) score. Independent clauses are detected by dashes, colons, and semicolons within a sentence.
+**Count independent clauses**: Check this option to count independent clauses as separate sentences when calculating a [Gunning Fog](#sec-gunning-fog-test) score. Independent clauses are detected by dashes, colons, and semicolons within a sentence.
 
 Although this behavior is recommended in *The Technique of Clear Writing*, it will produce lower scores than counting sentences with the [traditional method](#sec-how-sentences-are-counted). This is especially true if your document contains run-on sentences. For example, if this option is checked, then an 80-word sentence with four clauses will be counted as four smaller sentences and will not adversely affect the score. If this option is unchecked, then this same sentence will be counted as a single 80-word sentence and will adversely affect the score. If you prefer to penalize run-on sentences, then leave this option unchecked.
 
@@ -423,7 +423,7 @@ Note that these options are not applicable if [**Also exclude numerals**](#sec-o
 
 #### Dale-Chall {-#sec-options-dale-chall}
 
-**Include Catholic Supplement**: Check this option to include [Stocker's supplementary word list](#stocker-catholic-supplement)\index{Stocker's Catholic Supplement!including with New Dale-Chall} for Catholic\index{New Dale-Chall!including Catholic words} students.
+**Include Catholic Supplement**: Check this option to include [Stocker's supplementary word list](#sec-stocker-catholic-supplement)\index{Stocker's Catholic Supplement!including with New Dale-Chall} for Catholic\index{New Dale-Chall!including Catholic words} students.
 
 :::: {.optionssection data-latex=""}
 ::: {.optionssectiontitle data-latex=""}
@@ -872,7 +872,7 @@ Selects the layout style of the Raygor graph. These options include:
 
 #### Flesch Chart {-#sec-options-flesch-chart}
 
-**Connect points**: Check this to connect the factor and score points on the [Flesch](#flesch-test)\index{Flesch Reading Ease!customizing} chart.
+**Connect points**: Check this to connect the factor and score points on the [Flesch](#sec-flesch-test)\index{Flesch Reading Ease!customizing} chart.
 
 **Display grouped documents on syllable ruler**: Check this to display document names grouped along the syllable ruler.
 
@@ -882,7 +882,7 @@ This option only applies to batch projects, and only for batches containing fift
 
 #### Lix Gauge {-#sec-options-lix-gauge}
 
-**Use English translations for German Lix gauge**: Check this to display Schulz’s [-@{schulz}53] English translated bracket labels on the [German Lix](#lix-german-technical) gauge.
+**Use English translations for German Lix gauge**: Check this to display Schulz’s [-@{schulz}53] English translated bracket labels on the [German Lix](#sec-lix-german-technical) gauge.
 
 ### Bar Charts {-#sec-options-bar-charts}
 

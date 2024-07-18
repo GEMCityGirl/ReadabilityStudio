@@ -1,8 +1,8 @@
-## Degrees of Reading Power (GE)\index{Degrees of Reading Power (GE)|(ii} {#degrees-of-reading-power-grade-equivalent}
+## Degrees of Reading Power (GE)\index{Degrees of Reading Power (GE)|(ii} {#sec-degrees-of-reading-power-grade-equivalent}
 
-The Degrees of Reading Power (grade equivalent) [@{carver:1985}303–16] test calculates the difficulty level of a document by performing the [DRP](#degrees-of-reading-power) test and then converting its units score into a grade level.
+The Degrees of Reading Power (grade equivalent) [@{carver:1985}303–16] test calculates the difficulty level of a document by performing the [DRP](#sec-degrees-of-reading-power) test and then converting its units score into a grade level.
 
-This test was trained on the same 330 110-word passages used to build the [Bormuth](#bormuth-cloze-mean-machine-passage) test, along with an additional 30 samples. These additional samples were 100-word passages tested by students from the graduate library at the University of Maryland [@{carver:1985}305–06]. Using these samples (and their cloze and Rauding scores), Carver built a table to convert between DRP units and grade levels (see below). Next, he compared the DRP-GE results against DRP units, Rauding scale scores, and cloze scores. The DRP-GE (grade equivalency) results strongly correlated with these other scores:
+This test was trained on the same 330 110-word passages used to build the [Bormuth](#sec-bormuth-cloze-mean-machine-passage) test, along with an additional 30 samples. These additional samples were 100-word passages tested by students from the graduate library at the University of Maryland [@{carver:1985}305–06]. Using these samples (and their cloze and Rauding scores), Carver built a table to convert between DRP units and grade levels (see below). Next, he compared the DRP-GE results against DRP units, Rauding scale scores, and cloze scores. The DRP-GE (grade equivalency) results strongly correlated with these other scores:
 
 - DRP: $r = 0.98$
 - Rauding Scale-GE\index{Rauding scale}: $r = 0.84$

@@ -75,7 +75,7 @@ Your third option is to manually select the tests yourself. To do this, select t
 
 ![](images/wizardtests.png)
 
-The tests available on this page will depend on the project's language. For example, if you are manually selecting Spanish tests, then tests such as [Crawford](#crawford) will be available, but English tests (e.g., [Spache](#spache-test)) will not. Also, some industry and document-type options may not have tests associated with them depending on the selected language.
+The tests available on this page will depend on the project's language. For example, if you are manually selecting Spanish tests, then tests such as [Crawford](#sec-crawford) will be available, but English tests (e.g., [Spache](#sec-spache-test)) will not. Also, some industry and document-type options may not have tests associated with them depending on the selected language.
 
 Your final option is to select a [test bundle](#sec-test-bundles).
 

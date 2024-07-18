@@ -1,4 +1,4 @@
-## Spache Revised\index{Spache Revised|(ii} {#spache-test}
+## Spache Revised\index{Spache Revised|(ii} {#sec-spache-test}
 
 The Spache Revised test [-@{spache:1974}195–207] calculates the grade level of a document based on sentence length and number of unique unfamiliar words. This test uses a list of 1,041 common words that are known to younger readers (4^th^ grade and below). Any word that does not appear on this list is considered unfamiliar. The following are also considered familiar:
 
@@ -10,7 +10,7 @@ The Spache Revised test [-@{spache:1974}195–207] calculates the grade level of
 - All proper nouns.\index{proper nouns!Spache Revised}
 - All numerals\index{numerals!Spache Revised}.
 
-Spache Revised is generally used for primary age (i.e., Kindergarten to 7^th^ grade) readers to help classify school textbooks and literature. This differs from [New Dale-Chall](#dale-chall-test)\index{New Dale-Chall!compared to Spache Revised}, which is better meant for secondary age readers.
+Spache Revised is generally used for primary age (i.e., Kindergarten to 7^th^ grade) readers to help classify school textbooks and literature. This differs from [New Dale-Chall](#sec-dale-chall-test)\index{New Dale-Chall!compared to Spache Revised}, which is better meant for secondary age readers.
 
 Because this formula uses familiar words (rather than syllable or letter counts), it is often regarded as a more accurate test for younger readers.
 

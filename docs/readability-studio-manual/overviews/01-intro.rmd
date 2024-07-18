@@ -56,7 +56,7 @@ $if_else(UserManualMode, OptionsDesc, "")^', .open='$', .close='^')
 
 ## Grade-level Clamping {#sec-grade-level-clamping}
 
-A key difference between graph and table-based tests versus regression-based tests is how the former has defined upper limits for their scores. For example, graph-based tests acquire their scores by finding the intersection of certain factors (e.g., sentence length) within a set a bands. These bands represent grades, and there are a specific set of grade bands available. As an example, a [Fry](#fry-test) graph has bands ranging from 1^st^ grade to 17^th^ (i.e., college):
+A key difference between graph and table-based tests versus regression-based tests is how the former has defined upper limits for their scores. For example, graph-based tests acquire their scores by finding the intersection of certain factors (e.g., sentence length) within a set a bands. These bands represent grades, and there are a specific set of grade bands available. As an example, a [Fry](#sec-fry-test) graph has bands ranging from 1^st^ grade to 17^th^ (i.e., college):
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/frygraph.png")

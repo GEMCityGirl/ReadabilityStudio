@@ -16,7 +16,7 @@ The **Raw Scores** subitem will display the scores for each document:
 
 ![](images/batchrawscores.png)
 
-Next to each document name, all of its respective test scores are displayed. In the above example, we can see that the file *NewProject.html* has an [ARI](#ari-test)\index{Automated Readability Index} score of 12.1, a [New Dale-Chall](#dale-chall-test) score of 16+, and a [Flesch-Kincaid](#flesch-kincaid-test) score of 12. To view any document's scores in a vertical layout, double-click on it to display the **View Item** dialog:
+Next to each document name, all of its respective test scores are displayed. In the above example, we can see that the file *NewProject.html* has an [ARI](#sec-ari-test)\index{Automated Readability Index} score of 12.1, a [New Dale-Chall](#sec-dale-chall-test) score of 16+, and a [Flesch-Kincaid](#sec-flesch-kincaid-test) score of 12. To view any document's scores in a vertical layout, double-click on it to display the **View Item** dialog:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/viewitemrawscores.png")
@@ -61,9 +61,9 @@ If [**Extended Information**](#sec-options-summary-report) is enabled, then thes
 - [Upper quartile](#sec-stat-terms): the test score at the 75% percentile. This is the score separating the upper quarter of the scores from the rest of the scores.
 :::
 
-Note that when calculating these statistics, failed test scores are treated as missing observations and not included. For example, let us say that you analyze 100 documents, but 3 of them cannot calculate [Fry](#fry-test) because their average sentence length is too high. In this case, the valid 97 Fry scores will be added and divided by 97 (not 100) to get the means.
+Note that when calculating these statistics, failed test scores are treated as missing observations and not included. For example, let us say that you analyze 100 documents, but 3 of them cannot calculate [Fry](#sec-fry-test) because their average sentence length is too high. In this case, the valid 97 Fry scores will be added and divided by 97 (not 100) to get the means.
 
-Some special scores will be converted when being aggregated into these statistics. For example, grade ranges such as *5–6* (from [New Dale-Chall](#dale-chall-test)) will be converted to its own average (e.g., *5–6* will be 5.5).
+Some special scores will be converted when being aggregated into these statistics. For example, grade ranges such as *5–6* (from [New Dale-Chall](#sec-dale-chall-test)) will be converted to its own average (e.g., *5–6* will be 5.5).
 
 To remove any test in this list from the project, select it and press `r keys(c('Ctrl', 'Del'))` (`r os_logo('windows')`) or `r keys(c('\\cmd', '\\backdel'))` (`r os_logo('apple')`) on your keyboard.
 
@@ -93,7 +93,7 @@ After opening a project, click on the **Histograms** icon on the project sidebar
 
 A histogram will be created for each test. For grade level tests, the bins (i.e., bars) will represent either a grade or range of grades.
 The height of each bar will reflect the number of documents that scored within the bar's range.
-In the histogram below, we can see that 15 documents scored within the 10^th^ grade range for the [Flesch-Kincaid](#flesch-kincaid-test) test:
+In the histogram below, we can see that 15 documents scored within the 10^th^ grade range for the [Flesch-Kincaid](#sec-flesch-kincaid-test) test:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/histogrades.png")
@@ -110,7 +110,7 @@ Selecting a bar will display the first 25 documents within that bin as a tooltip
 
 Continuing on, this batch has quite a few difficult documents. There are 15 documents in the 10^th^ grade range, 10 documents in the 9^th^ grade range, etc. In contrast, there are few easy documents, with only 2 in the 6^th^–7^th^ grade ranges. From this, we can surmise that the readability of this batch needs improving.
 
-Index tests (such as [Flesch](#flesch-test)) will also have histograms, where the bins are ranges in the index. For example, in the histogram below we can see how most of the documents are in the lower range of the Flesch scale:
+Index tests (such as [Flesch](#sec-flesch-test)) will also have histograms, where the bins are ranges in the index. For example, in the histogram below we can see how most of the documents are in the lower range of the Flesch scale:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/histoindex.png")
@@ -146,7 +146,7 @@ knitr::include_graphics("images/boxgrouped.png")
 In the above example, note that the documents in the *Overviews* group mostly score in the high-school range.
 There are, however, a few outliers in this group that may need reviewing.
 
-Along with the grade-level box plots, a separate box plot for each index test will also be included. Below is a box plot of [Flesch](#flesch-test) scores from a batch:
+Along with the grade-level box plots, a separate box plot for each index test will also be included. Below is a box plot of [Flesch](#sec-flesch-test) scores from a batch:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/boxindex.png")

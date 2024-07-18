@@ -1,6 +1,6 @@
-## Flesch-Kincaid\index{Flesch-Kincaid|(ii} {#flesch-kincaid-test}
+## Flesch-Kincaid\index{Flesch-Kincaid|(ii} {#sec-flesch-kincaid-test}
 
-The Flesch-Kincaid readability formula is Kincaid et al.'s modified version of [Flesch Reading Ease](#flesch-test)[-@{kincaid-fishburne-rogers-chissom:1975}14] that was recalculated “to be more suitable for Navy use” [-@{kincaid-fishburne-rogers-chissom:1975}11]; hence, it is designed for technical documents and manuals. In addition to being a recalculation, this variation of Flesch returns a grade-level result, rather than an index score. This test calculates the grade level of a document based on sentence length and syllable count.
+The Flesch-Kincaid readability formula is Kincaid et al.'s modified version of [Flesch Reading Ease](#sec-flesch-test)[-@{kincaid-fishburne-rogers-chissom:1975}14] that was recalculated “to be more suitable for Navy use” [-@{kincaid-fishburne-rogers-chissom:1975}11]; hence, it is designed for technical documents and manuals. In addition to being a recalculation, this variation of Flesch returns a grade-level result, rather than an index score. This test calculates the grade level of a document based on sentence length and syllable count.
 
 This test was trained against reading-test results from 531 U.S. Navy personnel from four Naval technical training schools. Using these results, the following multiple regression equation was derived:
 
@@ -44,8 +44,8 @@ The simplified version of this formula uses a lower precision calculation. It wa
 
 \index{Flesch-Kincaid|)}
 
-## Flesch-Kincaid (Simplified)\index{Flesch-Kincaid!variations!Flesch-Kincaid (simplified)} {#flesch-kincaid-test-simplified}
+## Flesch-Kincaid (Simplified)\index{Flesch-Kincaid!variations!Flesch-Kincaid (simplified)} {#sec-flesch-kincaid-test-simplified}
 
-Refer to \@ref(flesch-kincaid-test).
+Refer to \@ref(sec-flesch-kincaid-test).
 
 \newpage

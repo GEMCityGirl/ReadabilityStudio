@@ -1,8 +1,8 @@
-## Modified SMOG\index{Modified SMOG|(ii} {#modified-smog}
+## Modified SMOG\index{Modified SMOG|(ii} {#sec-modified-smog}
 
 The Modified SMOG\index{SMOG!variations!Modified SMOG} test [@{lsmith}129–32] calculates the grade level of a document based on sentence length and number of difficult (i.e., 3 or more syllable) words and is designed for primary and secondary-age materials.
 
-Modified SMOG differs from [SMOG](#smog-test) in the following ways:
+Modified SMOG differs from [SMOG](#sec-smog-test) in the following ways:
 
 - It uses the unique number of difficult words (rather than the total).
 - It uses a smaller constant in its formula.

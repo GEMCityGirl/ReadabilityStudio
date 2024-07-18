@@ -1,4 +1,4 @@
-## (Powers-Sumner-Kearl) Dale-Chall\index{Powers-Sumner-Kearl!recalculated tests!Dale-Chall|(} {#psk-dale-chall}
+## (Powers-Sumner-Kearl) Dale-Chall\index{Powers-Sumner-Kearl!recalculated tests!Dale-Chall|(} {#sec-psk-dale-chall}
 
 The (Powers-Sumner-Kearl) Dale-Chall readability formula [-@{powers-sumner-kearl}99–105] calculates the grade level of a document based on sentence length and number of unfamiliar Dale-Chall words.
 
@@ -32,7 +32,7 @@ Where:
 | W   | Number of words                       |
 +-----+---------------------------------------+
 
-Although this is an update of the 1948 Dale-Chall formula, the 1995 [New Dale-Chall](#dale-chall-test)\index{New Dale-Chall!recommendation over Dale-Chall} test is recommended instead. This formula does not apply as much weight to the sentence length factor as New Dale-Chall does and comparatively yields lower results for difficult (i.e., upper-secondary education) documents.
+Although this is an update of the 1948 Dale-Chall formula, the 1995 [New Dale-Chall](#sec-dale-chall-test)\index{New Dale-Chall!recommendation over Dale-Chall} test is recommended instead. This formula does not apply as much weight to the sentence length factor as New Dale-Chall does and comparatively yields lower results for difficult (i.e., upper-secondary education) documents.
 Therefore, this test should only be used for primary and lower-secondary educational documents.
 It is also only recommended if [floating-point precision](#sec-grade-level-results) for the results is required, as New Dale-Chall uses grade ranges instead.
 

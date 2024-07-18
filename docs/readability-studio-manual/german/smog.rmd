@@ -1,6 +1,6 @@
-## SMOG (Bamberger-Vanecek)\index{SMOG!variations!Bamberger-Vanecek (German)} {#smog-bamberger-vanecek}
+## SMOG (Bamberger-Vanecek)\index{SMOG!variations!Bamberger-Vanecek (German)} {#sec-smog-bamberger-vanecek}
 
-SMOG (Bamberger-Vanecek) [-@{bamberger-vanecek}78] is a German variation of [SMOG](#smog-test) designed for secondary-age readers. This test calculates the grade level of a document based on complex-word density.
+SMOG (Bamberger-Vanecek) [-@{bamberger-vanecek}78] is a German variation of [SMOG](#sec-smog-test) designed for secondary-age readers. This test calculates the grade level of a document based on complex-word density.
 
 ```{r, results='asis', eval=T, echo=F}
 OptionsDesc <- ", so the program overrides your [numeral syllabication](#sec-numsyllable) setting when calculating it"

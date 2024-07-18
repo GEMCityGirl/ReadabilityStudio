@@ -676,7 +676,7 @@ void ProjectView::OnTestListDblClick([[maybe_unused]] wxListEvent& event)
     else if (testPos.second)
         {
         wxGetApp().GetMainFrame()->DisplayHelp(
-            wxString::Format(L"%s.html", testPos.first->get_id().c_str()));
+            wxString::Format(L"sec-%s.html", testPos.first->get_id().c_str()));
         }
     else if (selectedTest == _(L"Dolch Sight Words"))
         {

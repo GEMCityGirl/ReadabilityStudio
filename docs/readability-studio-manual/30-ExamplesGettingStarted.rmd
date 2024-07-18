@@ -166,7 +166,7 @@ To view these words in their original context, double-click on any word in this 
 
 ![](images/difficultwordselected.png)
 
-You can click on any of the other pages to view other difficult words in their original context, such as 6+ character words or unfamiliar [New Dale-Chall](#dale-chall-test) words.
+You can click on any of the other pages to view other difficult words in their original context, such as 6+ character words or unfamiliar [New Dale-Chall](#sec-dale-chall-test) words.
 
 To continue simplifying this recipe, we will replace some of these difficult words. Words such as *incorporate*, *consequently*, and *gradually* could also be replaced with shorter, simpler synonyms. As illustrated below, we have replaced a few words, such as substituting *incorporate* with *add* and *gradually* with *slowly*.
 
@@ -400,7 +400,7 @@ Going to the **Test Selection** page, selecting **Recommended test selection bas
 :::
 
 Finally, click the `r keys('Finish')` button to create the project.
-When the project appears, note that only the [FORCAST](#forcast-test) test was performed because it does not use sentence lengths.
+When the project appears, note that only the [FORCAST](#sec-forcast-test) test was performed because it does not use sentence lengths.
 Also, viewing any highlighted report will show that all text was included in the analysis.
 
 We will have a somewhat high FORCAST score, so we will want to review the lengthy words and see if we can make any improvements.
@@ -501,7 +501,7 @@ knitr::include_graphics("images/example-difficult-sentences-heatmap.png")
 There are also a few lengthy sentences in this paragraph, judging from the numbers and dark colors across the row.
 
 Finally, let's review how word and sentence complexity affects readability showing.
-From the **Readability** tab, click `r menu(c('Secondary','Fry'))` to add a [Fry](#fry-test) test.
+From the **Readability** tab, click `r menu(c('Secondary','Fry'))` to add a [Fry](#sec-fry-test) test.
 Click on the **Readability Scores** icon on the project sidebar and select **Fry Graph**.
 
 ```{r echo=F, fig.align='center', out.width='75%'}

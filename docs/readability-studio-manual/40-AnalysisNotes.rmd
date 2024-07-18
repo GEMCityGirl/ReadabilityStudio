@@ -18,7 +18,7 @@ If you are excluding incomplete sentences\index{sentences!excluding incomplete s
 
 Note that these options are also available on the [**Options**](#sec-options-overview) dialog (on the **Tools** tab) to change this behavior for all future projects.
 
-Although ignoring these items is generally recommended, there is one exception: [non-narrative](#sec-fragmented-text) (i.e., structured) forms. Files such as résumés and application forms often contain many terse and incomplete sentences and very little narrative text. In these situations, you should include incomplete sentences and use tests that do not emphasize sentence length, such as [FORCAST](#forcast-test)\index{FORCAST}. When creating a [new project](#sec-creating-standard-project), there are two ways to implicitly set these options. The first way is to select **non-narrative, fragmented text** when specifying the document structure. The other way is to select **non-narrative form** when specifying the document type. By selecting either of these, the program will use the appropriate options and tests for these types of files.
+Although ignoring these items is generally recommended, there is one exception: [non-narrative](#sec-fragmented-text) (i.e., structured) forms. Files such as résumés and application forms often contain many terse and incomplete sentences and very little narrative text. In these situations, you should include incomplete sentences and use tests that do not emphasize sentence length, such as [FORCAST](#sec-forcast-test)\index{FORCAST}. When creating a [new project](#sec-creating-standard-project), there are two ways to implicitly set these options. The first way is to select **non-narrative, fragmented text** when specifying the document structure. The other way is to select **non-narrative form** when specifying the document type. By selecting either of these, the program will use the appropriate options and tests for these types of files.
 
 ### Additional Items {-}
 
@@ -205,7 +205,7 @@ Numbers are generally syllabized using one of two approaches:
 - Sound out each digit of the number. For example, *87* would be three syllables (*eight se-ven*).
 - Count the entire number as one syllable.
 
-By default, *Readability Studio* counts numbers as monosyllabic words; however, this behavior can be toggled from the [**Document Indexing**](#sec-document-analysis) options. Note that some tests may override these settings if they require a specific method. For example, [Fry](#fry-test)\index{Fry} will always sound out each numeric digit when syllabizing.
+By default, *Readability Studio* counts numbers as monosyllabic words; however, this behavior can be toggled from the [**Document Indexing**](#sec-document-analysis) options. Note that some tests may override these settings if they require a specific method. For example, [Fry](#sec-fry-test)\index{Fry} will always sound out each numeric digit when syllabizing.
 
 ### How Symbols are Syllabized\index{syllables!symbols} {-}
 
@@ -290,7 +290,7 @@ By default, *Readability Studio* follows this advice. However, there are situati
 
 For files consisting mostly of short blocks of text (e.g., quizzes, flyers, or menus) instead of flowing narrative, this presents a problem. Sentence lengths will be abnormally short and skew most test results. Also, if [incomplete sentences](#sec-how-text-is-excluded) are being excluded, then most of the document will not even be analyzed.
 
-To avoid these issues, it is recommended to include incomplete sentences in the analysis and to only use the [FORCAST](#forcast-test)\index{FORCAST} test. When creating a [new project](#sec-creating-standard-project), there are two ways to implicitly set these options. The first way is to select **non-narrative, fragmented text** when specifying the document structure. The other way is to select **non-narrative form** when specifying the document type.
+To avoid these issues, it is recommended to include incomplete sentences in the analysis and to only use the [FORCAST](#sec-forcast-test)\index{FORCAST} test. When creating a [new project](#sec-creating-standard-project), there are two ways to implicitly set these options. The first way is to select **non-narrative, fragmented text** when specifying the document structure. The other way is to select **non-narrative form** when specifying the document type.
 
 ## Joining Hyphenated Words
 

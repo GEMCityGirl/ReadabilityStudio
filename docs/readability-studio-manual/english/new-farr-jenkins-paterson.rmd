@@ -1,8 +1,8 @@
-## New Farr-Jenkins-Paterson\index{New Farr-Jenkins-Paterson|(ii} {#new-farr-jenkins-paterson}
+## New Farr-Jenkins-Paterson\index{New Farr-Jenkins-Paterson|(ii} {#sec-new-farr-jenkins-paterson}
 
 The New Farr-Jenkins-Paterson readability formula calculates the grade level of a document based on sentence length and number of monosyllabic words.
 
-New Farr-Jenkins-Paterson is Kincaid et al.'s recalculated version of the [FJP](#farr-jenkins-paterson) test [-@{kincaid-fishburne-rogers-chissom:1975}17] that was recalculated "to be more suitable for Navy use" [@{kincaid-fishburne-rogers-chissom:1975}11]; hence, it is designed for technical documents and manuals. In addition to being a recalculation, this variation of FJP (i.e., a Flesch-like test) returns a grade-level result, rather than an index score.
+New Farr-Jenkins-Paterson is Kincaid et al.'s recalculated version of the [FJP](#sec-farr-jenkins-paterson) test [-@{kincaid-fishburne-rogers-chissom:1975}17] that was recalculated "to be more suitable for Navy use" [@{kincaid-fishburne-rogers-chissom:1975}11]; hence, it is designed for technical documents and manuals. In addition to being a recalculation, this variation of FJP (i.e., a Flesch-like test) returns a grade-level result, rather than an index score.
 
 This test was trained against reading-test results from 531 U.S. Navy personnel from four Naval technical training schools. Using these results, the following multiple regression equation was derived:
 

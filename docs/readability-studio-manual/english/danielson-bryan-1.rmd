@@ -1,8 +1,8 @@
-## Danielson-Bryan 1\index{Danielson-Bryan 1|(ii} {#danielson-bryan-1}
+## Danielson-Bryan 1\index{Danielson-Bryan 1|(ii} {#sec-danielson-bryan-1}
 
 Danielson-Bryan 1 [-@{danielson-bryan}206] is meant for student materials and calculates the grade level of a document based on sentence length and character count.
 
-DB1 was designed to be a faster method (compared to [Farr-Jenkins-Paterson](#farr-jenkins-paterson)\index{Farr-Jenkins-Paterson!compared to Danielson-Bryan}) of calculating readability scores on UNIVAC 1105 computers. Rather than counting syllables, DB1 counts characters and punctuation, which was simpler to analyze on computers of that era. This performance benefit is more of a historical reference now; modern computers can calculate syllable counts optimally.
+DB1 was designed to be a faster method (compared to [Farr-Jenkins-Paterson](#sec-farr-jenkins-paterson)\index{Farr-Jenkins-Paterson!compared to Danielson-Bryan}) of calculating readability scores on UNIVAC 1105 computers. Rather than counting syllables, DB1 counts characters and punctuation, which was simpler to analyze on computers of that era. This performance benefit is more of a historical reference now; modern computers can calculate syllable counts optimally.
 
 This test was trained against 383 selections from the 1950 edition of McCall-Crabbs *Standard Test Lessons in Reading*. For validation, the derived formula had an $r^2 = 0.575$, similar to Farr-Jenkins-Paterson's $r^2 = 0.553$. This regression equation is as follows:
 

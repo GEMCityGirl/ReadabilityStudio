@@ -1,4 +1,4 @@
-## (Powers-Sumner-Kearl) Flesch\index{Powers-Sumner-Kearl!recalculated tests!Flesch Reading Ease|(} {#psk-test}
+## (Powers-Sumner-Kearl) Flesch\index{Powers-Sumner-Kearl!recalculated tests!Flesch Reading Ease|(} {#sec-psk-test}
 
 The (Powers-Sumner-Kearl) Flesch readability formula [-@{powers-sumner-kearl}99–105] calculates the grade level of a document based on sentence length and number of syllables.
 
