@@ -5,7 +5,7 @@ For any list that displays a document name in the first column, the following fe
 
 To create a [standard project](#sec-creating-standard-project) for any document in the list, select it and click the `r keys("Subproject")` button on the **Home** tab. This is useful for reviewing a particular document in greater detail. Note that when this standard project is created, it will copy all the project settings from the batch project. (These options may differ from your [global configurations](#sec-options-overview).) \
 
-To remove any document in the list from the project, select it and press `r keys('Del')` (`r os_logo('windows')`) or `r keys('\\backdel')` (`r os_logo('apple')`) on your keyboard.
+To remove any document in the list from the project, select it and press `r keys('Del')` (`r os_logo('windows')`, `r os_logo('linux')`) or `r keys('\\backdel')` (`r os_logo('apple')`) on your keyboard.
 :::
 
 ## Test Scores {#sec-reviewing-batch-scores}
@@ -65,7 +65,7 @@ Note that when calculating these statistics, failed test scores are treated as m
 
 Some special scores will be converted when being aggregated into these statistics. For example, grade ranges such as *5–6* (from [New Dale-Chall](#sec-dale-chall-test)) will be converted to its own average (e.g., *5–6* will be 5.5).
 
-To remove any test in this list from the project, select it and press `r keys(c('Ctrl', 'Del'))` (`r os_logo('windows')`) or `r keys(c('\\cmd', '\\backdel'))` (`r os_logo('apple')`) on your keyboard.
+To remove any test in this list from the project, select it and press `r keys(c('Ctrl', 'Del'))` (`r os_logo('windows')`, `r os_logo('linux')`) or `r keys(c('\\cmd', '\\backdel'))` (`r os_logo('apple')`) on your keyboard.
 
 The **Grade Score Summary (x Document)** subitem will display aggregated statistics for all grade-level scores, grouped by document:
 

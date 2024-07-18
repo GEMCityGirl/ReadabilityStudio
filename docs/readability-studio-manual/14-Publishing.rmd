@@ -11,7 +11,7 @@ To export any window, go to the **Home** tab and click the `r keys("Save")` butt
 
 Numerous formats are available for each type of window:
 
-- [Highlighted text](#sec-text-window-export): `r glue(if_else(IncludeLinux, "HTML, RTF, and Pango (Παν語) (Pango is only available on Linux.)", "HTML and RTF"))`
+- [Highlighted text](#sec-text-window-export): HTML, RTF, and Pango (Pango is only available on Linux.)
 - Statistic summaries: HTML
 - [Test results](#sec-scores-export): HTML
 - Word, phrase, and sentence [lists](#sec-export-list): HTML, Text, and `r latex_logo(FALSE)`
@@ -42,9 +42,7 @@ When exporting\index{exporting!text reports} a text report\index{text reports!ex
 
 **RTF**: A format that can be displayed in most word-processing programs.
 
-```{r, results='asis', eval=IncludeLinux, echo=F, include=UserManualMode}
-glue('**Pango**: A format that can be rendered within libraries such as Cairo or FreeType. (This option is only available on Linux.)')
-```
+**Pango**: A format that can be rendered within libraries such as Cairo or FreeType. (This option is only available on Linux.)
 :::
 
 ::: {.tipsection data-latex=""}

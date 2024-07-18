@@ -13,7 +13,7 @@ Open the help                           `r keys('F1')`
 
 &nbsp;                                  &nbsp;
 
-Enable verbose logging                  Hold down `r keys('Shift')` (`r os_logo('windows')`) or
+Enable verbose logging                  Hold down `r keys('Shift')` (`r os_logo('windows')`, `r os_logo('linux')`) or
                                         `r keys('\\shift')` (`r os_logo('apple')`)<br>\linebreak
                                         while the program loads
 ------------------------------------------------------------------------------------------------
@@ -37,22 +37,22 @@ Reload the project                      `r keys('F5')`
 
 &nbsp;                                  &nbsp;
 
-Create a new project                    `r keys(c('Ctrl','V'))` (`r os_logo('windows')`) or<br>\linebreak
+Create a new project                    `r keys(c('Ctrl','V'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys(c('\\cmd','V'))` (`r os_logo('apple')`) 
 
 &nbsp;                                  &nbsp;
 
-Save the project                        `r keys(c('Ctrl','S'))` (`r os_logo('windows')`) or<br>\linebreak
+Save the project                        `r keys(c('Ctrl','S'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys(c('\\cmd','S'))` (`r os_logo('apple')`)
 
 &nbsp;                                  &nbsp;
 
-Print the active window                 `r keys(c('Ctrl','P'))` (`r os_logo('windows')`) or<br>\linebreak
+Print the active window                 `r keys(c('Ctrl','P'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys(c('\\cmd','P'))` (`r os_logo('apple')`)
 
 &nbsp;                                  &nbsp;
 
-Remove the selected test                `r keys(c('Ctrl', 'Del'))` (`r os_logo('windows')`) or<br>\linebreak
+Remove the selected test                `r keys(c('Ctrl', 'Del'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys(c('\\cmd','\\backdel'))` (`r os_logo('apple')`)
 ------------------------------------------------------------------------------------------------
 :::
@@ -63,12 +63,12 @@ Table: Graph Shortcuts
 ------------------------------------------------------------------------------------------------
 To do this                              Press                                               
 --------------------------------------- --------------------------------------------------------
-Print                                   `r keys(c('Ctrl','P'))` (`r os_logo('windows')`) or<br>\linebreak
+Print                                   `r keys(c('Ctrl','P'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys(c('\\cmd','P'))` (`r os_logo('apple')`)
 
 &nbsp;                                  &nbsp;
 
-Copy                                    `r keys(c('Ctrl','C'))` (`r os_logo('windows')`) or<br>\linebreak
+Copy                                    `r keys(c('Ctrl','C'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys(c('\\cmd','C'))` (`r os_logo('apple')`)
 
 &nbsp;                                  &nbsp;
@@ -91,27 +91,27 @@ Table: Lists Shortcuts
 ------------------------------------------------------------------------------------------------
 To do this                              Press                                               
 --------------------------------------- --------------------------------------------------------
-Print                                   `r keys(c('Ctrl','P'))` (`r os_logo('windows')`) or<br>\linebreak
+Print                                   `r keys(c('Ctrl','P'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys(c('\\cmd','P'))` (`r os_logo('apple')`)
 
 &nbsp;                                  &nbsp;
 
-Copy selection                          `r keys(c('Ctrl','C'))` (`r os_logo('windows')`) or<br>\linebreak
+Copy selection                          `r keys(c('Ctrl','C'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys(c('\\cmd','C'))` (`r os_logo('apple')`)
 
 &nbsp;                                  &nbsp;
 
-Copy first column of selection          `r keys(c('Ctrl','Shift','C'))` (`r os_logo('windows')`) or<br>\linebreak
+Copy first column of selection          `r keys(c('Ctrl','Shift','C'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys(c('\\cmd','Shift','C'))` (`r os_logo('apple')`)
 
 &nbsp;                                  &nbsp;
 
-Copy column from selection<br>\linebreak     `r keys(c('Ctrl','Numpad [1–9]'))` (`r os_logo('windows')`) or<br>\linebreak
+Copy column from selection<br>\linebreak     `r keys(c('Ctrl','Numpad [1–9]'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
 (column corresponds to the number)           `r keys(c('\\cmd','Numpad [1–9]'))` (`r os_logo('apple')`)
 
 &nbsp;                                  &nbsp;
 
-Find                                    `r keys(c('Ctrl','F'))` (`r os_logo('windows')`) or<br>\linebreak
+Find                                    `r keys(c('Ctrl','F'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys(c('\\cmd','F'))` (`r os_logo('apple')`)
 
 &nbsp;                                  &nbsp;
@@ -120,22 +120,22 @@ Find next                               `r keys('F3')`
 
 &nbsp;                                  &nbsp;
 
-Select all                              `r keys(c('Ctrl','A'))` (`r os_logo('windows')`) or<br>\linebreak
+Select all                              `r keys(c('Ctrl','A'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys(c('\\cmd','A'))` (`r os_logo('apple')`)
 
 &nbsp;                                  &nbsp;
 
-Go to first item                        `r keys(c('Ctrl','\\arrowkeyup'))` (`r os_logo('windows')`) or<br>\linebreak
+Go to first item                        `r keys(c('Ctrl','\\arrowkeyup'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys(c('\\cmd','\\arrowkeyup'))` (`r os_logo('apple')`)
 
 &nbsp;                                  &nbsp;
 
-Go to last item                         `r keys(c('Ctrl','\\arrowkeydown'))` (`r os_logo('windows')`) or<br>\linebreak
+Go to last item                         `r keys(c('Ctrl','\\arrowkeydown'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys(c('\\cmd','\\arrowkeydown'))` (`r os_logo('apple')`)
 
 &nbsp;                                  &nbsp;
 
-Remove selected item(s)                 `r keys('Del')` (`r os_logo('windows')`) or<br>\linebreak
+Remove selected item(s)                 `r keys('Del')` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys('\\backdel')` (`r os_logo('apple')`)
 
 &nbsp;                                  &nbsp;
@@ -152,12 +152,12 @@ Cancel editing item                     `r keys('Esc')`
 
 &nbsp;                                  &nbsp;
 
-Add an item                             `r keys(c('Ctrl','Ins'))` (`r os_logo('windows')`) or<br>\linebreak
+Add an item                             `r keys(c('Ctrl','Ins'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys(c('\\cmd','Ins'))` (`r os_logo('apple')`)
 
 &nbsp;                                  &nbsp;
 
-Group selected items<br>\linebreak      `r keys(c('Ctrl','G'))` (`r os_logo('windows')`) or<br>\linebreak
+Group selected items<br>\linebreak      `r keys(c('Ctrl','G'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
 (batch project wizard file list)        `r keys(c('\\cmd','G'))` (`r os_logo('apple')`)
 ------------------------------------------------------------------------------------------------
 :::
@@ -168,47 +168,47 @@ Table: Embedded Document Editor Shortcuts
 ------------------------------------------------------------------------------------------------
 To do this                              Press                                               
 --------------------------------------- --------------------------------------------------------
-Save back to the project                `r keys(c('Ctrl','S'))` (`r os_logo('windows')`) or<br>\linebreak
+Save back to the project                `r keys(c('Ctrl','S'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys(c('\\cmd','S'))` (`r os_logo('apple')`)
 
 &nbsp;                                  &nbsp;
 
-Cut selected text                       `r keys(c('Ctrl','X'))` (`r os_logo('windows')`) or<br>\linebreak
+Cut selected text                       `r keys(c('Ctrl','X'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys(c('\\cmd','X'))` (`r os_logo('apple')`)
 
 &nbsp;                                  &nbsp;
 
-Paste text                              `r keys(c('Ctrl','V'))` (`r os_logo('windows')`) or<br>\linebreak
+Paste text                              `r keys(c('Ctrl','V'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys(c('\\cmd','V'))` (`r os_logo('apple')`)
 
 &nbsp;                                  &nbsp;
 
-Copy selected text                      `r keys(c('Ctrl','C'))` (`r os_logo('windows')`) or<br>\linebreak
+Copy selected text                      `r keys(c('Ctrl','C'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys(c('\\cmd','C'))` (`r os_logo('apple')`)
 
 &nbsp;                                  &nbsp;
 
-Undo previous edit                      `r keys(c('Ctrl','Z'))` (`r os_logo('windows')`) or<br>\linebreak
+Undo previous edit                      `r keys(c('Ctrl','Z'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys(c('\\cmd','Z'))` (`r os_logo('apple')`)
 
 &nbsp;                                  &nbsp;
 
-Redo previous edit                      `r keys(c('Ctrl','Y'))` (`r os_logo('windows')`) or<br>\linebreak
+Redo previous edit                      `r keys(c('Ctrl','Y'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys(c('\\cmd','Y'))` (`r os_logo('apple')`)
 
 &nbsp;                                  &nbsp;
 
-Insert date                             `r keys(c('Ctrl',';'))` (`r os_logo('windows')`) or<br>\linebreak
+Insert date                             `r keys(c('Ctrl',';'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys(c('\\cmd',';'))` (`r os_logo('apple')`)
 
 &nbsp;                                  &nbsp;
 
-Insert time                             `r keys(c('Ctrl','Shift',';'))` (`r os_logo('windows')`) or<br>\linebreak
+Insert time                             `r keys(c('Ctrl','Shift',';'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys(c('\\cmd','\\shift',';'))` (`r os_logo('apple')`)
 
 &nbsp;                                  &nbsp;
 
-Find                                    `r keys(c('Ctrl','F'))` (`r os_logo('windows')`) or<br>\linebreak
+Find                                    `r keys(c('Ctrl','F'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys(c('\\cmd','F'))` (`r os_logo('apple')`)
 
 &nbsp;                                  &nbsp;
@@ -217,12 +217,12 @@ Find next                               `r keys('F3')`
 
 &nbsp;                                  &nbsp;
 
-Replace                                 `r keys(c('Ctrl','H'))` (`r os_logo('windows')`) or<br>\linebreak
+Replace                                 `r keys(c('Ctrl','H'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys(c('\\cmd','H'))` (`r os_logo('apple')`)
 
 &nbsp;                                  &nbsp;
 
-Select all                              `r keys(c('Ctrl','A'))` (`r os_logo('windows')`) or<br>\linebreak
+Select all                              `r keys(c('Ctrl','A'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys(c('\\cmd','A'))` (`r os_logo('apple')`)
 ------------------------------------------------------------------------------------------------
 :::
