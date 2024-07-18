@@ -43,7 +43,7 @@ The following types of tests are available:
 
 - Grade level
 - Index value
-- [Predicted cloze score](#cloze)\index{cloze!custom tests}
+- [Predicted cloze score](#sec-cloze)\index{cloze!custom tests}
 :::
 
 If your test is using any of the predefined familiar-word formulas (`CustomNewDaleChall()`, `CustomSpache()`, `CustomHarrisJacobson()`) or using the functions `UnfamiliarWordCount()` or `UniqueUnfamiliarWordCount()`, then you will need to define how familiar words are detected. Expand **Familiar Words** to view two sections: [**Word Lists**](#sec-custom-word-list) and [**Proper Nouns & Numerals**](#sec-custom-proper-numerals).
@@ -305,7 +305,7 @@ From the **Readability** tab, click the `r keys("Custom Test")` button and then 
 
 - Grade level
 - Index value
-- [Predicted cloze score](#cloze)
+- [Predicted cloze score](#sec-cloze)
 :::
 
 ### Formula {-}

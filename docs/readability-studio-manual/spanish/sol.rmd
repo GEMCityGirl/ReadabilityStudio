@@ -43,4 +43,4 @@ glue('Like SMOG, this test fully syllabizes numerals\\index{numerals!SOL} (i.e.,
 
 Note that this test uses the high-precision version of the SMOG formula. This is recommended by the authors to avoid any rounding issues when converting scores between Spanish and English [@{contreras}24].
 
-This test requires 3 10-sentence samples, but [normalization](#glossary) can be used to analyze larger samples or entire documents.\index{SOL|)}
+This test requires 3 10-sentence samples, but [normalization](#sec-glossary) can be used to analyze larger samples or entire documents.\index{SOL|)}

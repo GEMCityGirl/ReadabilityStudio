@@ -1,4 +1,4 @@
-## Proper Nouns\index{proper nouns!in difficult word lists} in the Difficult Word Lists {#proper-nouns-in-lists}
+## Proper Nouns\index{proper nouns!in difficult word lists} in the Difficult Word Lists {#sec-proper-nouns-in-lists}
 
 When reviewing your difficult word lists, you may notice that some proper nouns are displayed with additional information. This is to help discern how many times the given word is considered unfamiliar in the document (for certain tests).
 

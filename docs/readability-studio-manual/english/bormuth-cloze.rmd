@@ -1,6 +1,6 @@
 ## Bormuth Cloze Mean\index{Bormuth Cloze Mean|(ii} {#bormuth-cloze-mean-machine-passage}
 
-The Bormuth Cloze\index{cloze} Mean (Machine Computation for Passage Readability) Formula [-@{bormuth:1966}79–132] calculates a [predicted cloze score](#cloze) for a document.
+The Bormuth Cloze\index{cloze} Mean (Machine Computation for Passage Readability) Formula [-@{bormuth:1966}79–132] calculates a [predicted cloze score](#sec-cloze) for a document.
 
 This test is influenced by three variables (word length, sentence length, and word familiarity). Because it uses both word familiarity and syntactic complexity for its analysis, it is often recommended for student documents.
 

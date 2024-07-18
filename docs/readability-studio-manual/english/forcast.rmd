@@ -22,7 +22,7 @@ A follow-up study for U.S. Air Force regulation materials was later administered
 
 Note that FORCAST results may be slightly different from other tests because it does not take sentence length into account. If your document is structured mostly with tables and lists, then expect some variance between the FORCAST grade level and other tests' grade levels.
 
-This test is designed for a 150-word sample, but [normalization](#glossary) can be used to analyze entire documents.
+This test is designed for a 150-word sample, but [normalization](#sec-glossary) can be used to analyze entire documents.
 
 ::: {.notesection data-latex=""}
 The name FORCAST is a pseudo acronym for its authors: J. Patrick **FOR**d, John S. **CA**ylor, and Thomas G. **ST**icht.

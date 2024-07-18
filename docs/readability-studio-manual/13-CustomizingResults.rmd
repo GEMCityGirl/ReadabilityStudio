@@ -14,7 +14,7 @@ Options for customizing their display are made available on the **Edit** section
 
 **Grade scale**: Click this button to choose from a list of grade scales to display your scores in.
 
-Refer to \@ref(grade-scales) for a list of available scales.
+Refer to \@ref(sec-grade-scales) for a list of available scales.
 
 ## Summary Statistics
 
@@ -40,7 +40,7 @@ Options for customizing its display are made available on the **Edit** section o
 
 **Font**: Click this button to change the font.
 
-**Highlight**: Click this button to open the [**Properties**](#options-highlighted-reports) dialog. Here, you can customize the highlight colors and whether the background or foreground of the text should be highlighted.
+**Highlight**: Click this button to open the [**Properties**](#sec-options-highlighted-reports) dialog. Here, you can customize the highlight colors and whether the background or foreground of the text should be highlighted.
 
 ## Column Sorting {#sec-column-sorting}
 
@@ -83,5 +83,5 @@ After creating or opening a project, you can customize how the program analyzes 
 ![](images/ribbon-edit-document-options.png)
 
 ::: {.tipsection data-latex=""}
-With a standard project, you can review these changes in realtime by selecting any highlighted text report in the [**Words Breakdown**](#reviewing-word-breakdowns) or [**Grammar**](#reviewing-standard-grammar) sections. As you make changes, the program will reanalyze your document and these changes will be visible in this window. For example, changing how words are being excluded or how sentence endings are deduced will become apparent as you make changes from the ribbon.
+With a standard project, you can review these changes in realtime by selecting any highlighted text report in the [**Words Breakdown**](#sec-reviewing-word-breakdowns) or [**Grammar**](#sec-reviewing-standard-grammar) sections. As you make changes, the program will reanalyze your document and these changes will be visible in this window. For example, changing how words are being excluded or how sentence endings are deduced will become apparent as you make changes from the ribbon.
 :::

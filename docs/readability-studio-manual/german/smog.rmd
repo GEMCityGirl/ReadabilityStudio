@@ -28,7 +28,7 @@ kableExtra::kbl(smogBVData, booktabs=T, centering=T, align='l', escape=F) %>%
            escape=F, threeparttable=T)
 ```
 
-This test requires a 10-sentence sample, with 3 samples being recommended for best results. ([Normalization](#glossary) can also be used to analyze larger samples or entire documents.)
+This test requires a 10-sentence sample, with 3 samples being recommended for best results. ([Normalization](#sec-glossary) can also be used to analyze larger samples or entire documents.)
 
 ::: {.notesection data-latex=""}
 Based on the examples from Bamberger-Vanecek [-@{bamberger-vanecek}78], the grade-level score should be truncated to one-point precision, not rounded.

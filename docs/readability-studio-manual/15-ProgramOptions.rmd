@@ -151,7 +151,7 @@ Real-time update works by checking the modified time on the document every five 
 
 **Document description**: Enter into this field a description of the document. Note that for some file formats, the program will pre-fill this field with the document's subject or title information.
 
-### Append Additional Document (e.g., policies, license agreements, addendums) {-#additional-document}
+### Append Additional Document (e.g., policies, license agreements, addendums) {-#sec-additional-document}
 
 Enter into this field an additional document to append to the regular document. This document will be appended to the original document's text (or embedded text) during the project's analysis. This is useful if your project is analyzing a document, but also needs to include a generic template (e.g., license agreement). For example, you could specify a generic insurance policy in this field, and a customized entitlement as the main document. When the project analyzes the entitlement, the policy will be appended to the entitlement (in memory) and both will be analyzed as one document.
 
@@ -173,7 +173,7 @@ Considering sentences with more than 22 words to be overly long is based on rese
 
 **Outside sentence outlier range**: Select this option to consider sentences overly long if they are comparatively longer than other sentences in the document. This option is only recommended for situations where most of the sentences have an acceptable length, but a few (very) long sentences skew the average. This option is useful for finding these extreme sentences.
 
-These sentences can be viewed in the [**Grammar**](#reviewing-standard-grammar) and [**Long Sentences**](#reviewing-sentences-breakdown) windows in the **Grammar** section.
+These sentences can be viewed in the [**Grammar**](#sec-reviewing-standard-grammar) and [**Long Sentences**](#sec-reviewing-sentences-breakdown) windows in the **Grammar** section.
 
 ### Sentence/Paragraph Deduction\index{sentences!customizing!deduction} {-#sec-options-sentence-deduction}
 
@@ -502,7 +502,7 @@ The options on this page customize which results to include in the **Readability
 - The labels on the grade-level [box plot](#sec-reviewing-batch-box-plots).
 - The bin labels on the grade-level [histograms](#sec-reviewing-batch-histograms).
 
-Refer to \@ref(grade-scales) for a list of available scales.
+Refer to \@ref(sec-grade-scales) for a list of available scales.
 
 **Display scores in long format**: Check this to display readability scores in long format (e.g., *2^nd^ grade*) within the score grid.
 
@@ -521,7 +521,7 @@ Note that when calculating the reading-age aggregate statistics (e.g., the avera
 
 **Round to semester**: Select this option to calculate a reading age from a grade level by rounding the grade level. For example, a grade level score of *5.3* will be seen as the first semester of fifth grade and the starting age of most fifth graders (i.e., *10*) will be used as the reading age. As another example, a grade level score of *5.6* will be seen as the second semester of fifth grade and the graduating age of most fifth graders (i.e., *11*) will be used as the reading age.
 
-Note that reading ages do not contain floating-point precision, even if their respective grade-level scores do. This is because students' ages within the same grade can widely vary; therefore, a grade-level score's [mantissa](#grade-level-results) cannot accurately be carried over to a group's reading age. A grade-level score can homogeneously represent a group of students in the same grade; however, a reading age must be more generalized to accurately apply to the same group (whose ages differ).
+Note that reading ages do not contain floating-point precision, even if their respective grade-level scores do. This is because students' ages within the same grade can widely vary; therefore, a grade-level score's [mantissa](#sec-grade-level-results) cannot accurately be carried over to a group's reading age. A grade-level score can homogeneously represent a group of students in the same grade; however, a reading age must be more generalized to accurately apply to the same group (whose ages differ).
 ::::
 
 \newpage
@@ -564,7 +564,7 @@ The options on this page customize which statistics to include in your reports a
 
 ## Words Breakdown {#sec-options-words-breakdown}
 
-The options on this page customize which results are included in the [**Words Breakdown**](#reviewing-word-breakdowns) section.
+The options on this page customize which results are included in the [**Words Breakdown**](#sec-reviewing-word-breakdowns) section.
 
 ### Results {-}
 
@@ -592,7 +592,7 @@ The options on this page customize which results are included in the [**Words Br
 
 ## Sentences Breakdown {#sec-options-sentences-breakdown}
 
-The options on this page customize which results are included in the [**Sentences Breakdown**](#reviewing-sentences-breakdown) section.
+The options on this page customize which results are included in the [**Sentences Breakdown**](#sec-reviewing-sentences-breakdown) section.
 
 ### Results {-}
 
@@ -602,7 +602,7 @@ The options on this page customize which results are included in the [**Sentence
 
 **Lengths (Distribution)**: Check this to include a sentence-lengths histogram in the results.
 
-**Lengths (Density)**: Check this to include a sentence-lengths [heatmap](#reviewing-sentences-breakdown) in the results.
+**Lengths (Density)**: Check this to include a sentence-lengths [heatmap](#sec-reviewing-sentences-breakdown) in the results.
 
 \newpage
 
@@ -614,29 +614,29 @@ The options on this page customize grammar analysis.
 
 The options in this section customize which features are included in the grammar analysis.
 
-**Highlighted Report**: Check this to include the [highlighted grammar report](#reviewing-standard-grammar) in the results.
+**Highlighted Report**: Check this to include the [highlighted grammar report](#sec-reviewing-standard-grammar) in the results.
 
 **Wording Errors & Misspellings**: Check this to include [wording errors and known misspellings](#sec-reviewing-wording-errors) in the results.
 
-**Possible Misspellings**: Check this to include [possible misspellings](#reviewing-misspellings) in the results.
+**Possible Misspellings**: Check this to include [possible misspellings](#sec-reviewing-misspellings) in the results.
 
-**Repeated Words**: Check this to include [repeated words](#reviewing-repeated-words) in the results.
+**Repeated Words**: Check this to include [repeated words](#sec-reviewing-repeated-words) in the results.
 
-**Article Mismatches**: Check this to include [article mismatches](#reviewing-article-mismatches) in the results.
+**Article Mismatches**: Check this to include [article mismatches](#sec-reviewing-article-mismatches) in the results.
 
-**Redundant Phrases**: Check this to include [redundant phrases](#reviewing-redundant-phrases) in the results.
+**Redundant Phrases**: Check this to include [redundant phrases](#sec-reviewing-redundant-phrases) in the results.
 
-**Overused Words (by Sentence)**: Check this to include [overused words (by sentence)](#reviewing-overused-by-sentence) in the results.
+**Overused Words (by Sentence)**: Check this to include [overused words (by sentence)](#sec-reviewing-overused-by-sentence) in the results.
 
-**Wordy Items**: Check this to include [wordy phrases](#reviewing-wordy-items) in the results.
+**Wordy Items**: Check this to include [wordy phrases](#sec-reviewing-wordy-items) in the results.
 
 **Clichés**: Check this to include [clichés](#sec-reviewing-cliches) in the results.
 
 **Passive Voice**: Check this to include [passive voice](#sec-reviewing-passive-voice) in the results.
 
-**Conjunction-starting Sentences**: Check this to include [conjunction-starting sentences](#reviewing-conjunction-sentences) in the results.
+**Conjunction-starting Sentences**: Check this to include [conjunction-starting sentences](#sec-reviewing-conjunction-sentences) in the results.
 
-**Lowercased Sentences**: Check this to include [lowercased sentences](#reviewing-lowercased-sentences) in the results.
+**Lowercased Sentences**: Check this to include [lowercased sentences](#sec-reviewing-lowercased-sentences) in the results.
 
 ### Spell Checker {-#sec-options-spell-check}
 
@@ -692,7 +692,7 @@ The options on this page customize the display of the text views.
 
 **Difficult words and sentences color**: Click this button to select the color to highlight words and sentences considered difficult in the document viewing area.
 
-**Grammar errors color**: Click this button to select the color to highlight grammar errors (e.g., repeated words and misspellings). This highlighting will appear in the [**Grammar**](#reviewing-standard-grammar) document view.
+**Grammar errors color**: Click this button to select the color to highlight grammar errors (e.g., repeated words and misspellings). This highlighting will appear in the [**Grammar**](#sec-reviewing-standard-grammar) document view.
 
 **Wordy items color**: Click this button to select the color to highlight wordy phrases and difficult words. This highlighting will appear in the **Grammar** document view.
 
@@ -992,7 +992,7 @@ Also note that if data for a particular histogram contain four or less unique va
 Grade level/index value rounding
 :::
 
-This option controls how [floating-point](#grade-level-results) values are rounded when being sorted into bins. You may choose from the following options:
+This option controls how [floating-point](#sec-grade-level-results) values are rounded when being sorted into bins. You may choose from the following options:
 
 **Round**: Select this option to round grade-level scores up or down (based on their fractional part) when sorting them into the histogram's bins. Values such as 4 and 4.3 will be sorted as 4, whereas 4.5 and 4.9 will be sorted as 5.
 

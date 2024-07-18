@@ -221,8 +221,8 @@
 - Fractions (½, ¼, and ¾), superscripts (^0^-^9^), and subscripts (~0~-~9~) are now recognized by syllable counters.
 - Full-width (Ｆｕｌｌ－ｗｉｄｔｈ) English letters, numbers, and punctuation are now recognized.
 - Expanded words ignored by spell checker when **ignore programming words** is selected.
-- [Overused words (x Sentence)](#reviewing-overused-by-sentence) now excludes acronyms.
-- [All Words (Condensed)](#reviewing-word-breakdowns) now excludes common words (e.g., *the*), numerals, and filenames.
+- [Overused words (x Sentence)](#sec-reviewing-overused-by-sentence) now excludes acronyms.
+- [All Words (Condensed)](#sec-reviewing-word-breakdowns) now excludes common words (e.g., *the*), numerals, and filenames.
 - Lix and Rix are now available in the **Adult** readability tests menu.
 - Added **Ignore social media hashtags** option to spell-checker.
 - Expanded spell-checker to include government, economics, business, accounting, chemistry, biology, and psychology terminology.
@@ -314,14 +314,14 @@
 
 ### General Enhancements {-}
 
-- Added option to append an [additional document](#additional-document) to any document that you analyze.
+- Added option to append an [additional document](#sec-additional-document) to any document that you analyze.
 - Rearranged grammar results in order of importance.
-- Added new [Sentences Breakdown](#reviewing-sentences-breakdown) section to standard and batch projects. The sentence-length box plot formerly shown in the **Summary Statistics** section is now available here in standard projects. Overly-long sentence lists formerly shown in the **Grammar** section for both types of projects are now in here.
+- Added new [Sentences Breakdown](#sec-reviewing-sentences-breakdown) section to standard and batch projects. The sentence-length box plot formerly shown in the **Summary Statistics** section is now available here in standard projects. Overly-long sentence lists formerly shown in the **Grammar** section for both types of projects are now in here.
 - Highlighted-word reports are now under the new **Words Breakdown** section. Each word report is included underneath its respective word list. For example, the **3+ syllable** highlighted report will appear beneath the **3+ syllable** tabular list.
 - Added new **All Words** list to batch projects.
-- Added new [Overused Words (x Sentence)](#reviewing-overused-by-sentence) list to standard and batch projects.
-- Added new [All Words (Condensed)](#reviewing-word-breakdowns) list to standard and batch projects.
-- Added new **Sentence Length** [heatmap](#reviewing-sentences-breakdown) to standard projects.
+- Added new [Overused Words (x Sentence)](#sec-reviewing-overused-by-sentence) list to standard and batch projects.
+- Added new [All Words (Condensed)](#sec-reviewing-word-breakdowns) list to standard and batch projects.
+- Added new **Sentence Length** [heatmap](#sec-reviewing-sentences-breakdown) to standard projects.
 - Added [**Allow colloquialisms**](#sec-options-grammar) feature to the English spell checker.
 - Which results to include in the **Summary Statistics** section can now be individually toggled.
 - Which results to include in the **Grammar** section can now be individually toggled.
@@ -369,7 +369,7 @@
 
 ### Graph Enhancements {-}
 
-- Selecting outliers in [sentence-length box plots](#reviewing-sentences-breakdown) will now show a preview of the sentence.
+- Selecting outliers in [sentence-length box plots](#sec-reviewing-sentences-breakdown) will now show a preview of the sentence.
 - Removed unnecessary axis information from box plots, offering a cleaner appearance.
 - Selecting a bar in a histogram will now show its first 25 observations.
 - Selecting a point on a score chart (e.g., Fry) in a batch project will show the corresponding documents name on the point.
@@ -577,7 +577,7 @@
 - Consolidated **end of paragraph** and **sentence deduction** options into one section.
 - Reworded **incomplete sentences** section in the options to **text exclusion**.
 - Added new text exclusion method for including headers and sub-headers (as full sentences), but excluding all other incomplete sentences.
-- **Independent clause count** statistic now included in the statistics report. An independent clause is a section of text which ends with a period, exclamation mark, question mark, [interrobang](#glossary)\index{interrobangs}, colon, semicolon, or dash.
+- **Independent clause count** statistic now included in the statistics report. An independent clause is a section of text which ends with a period, exclamation mark, question mark, [interrobang](#sec-glossary)\index{interrobangs}, colon, semicolon, or dash.
 - Mode now included in Standard projects' test score statistics.
 - Batch project now includes valid n, range, standard error, skewness, and kurtosis in the aggregated statistics.
 - \+ is now added to maximum level test scores.

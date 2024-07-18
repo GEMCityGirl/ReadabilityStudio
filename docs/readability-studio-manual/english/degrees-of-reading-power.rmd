@@ -4,7 +4,7 @@ The Degrees of Reading Power [@{kibby}416–27; @{carver:1985}303-16] formula ca
 
 The DRP difficulty score of document is used to match it to a student based on their DRP ability score. DRP ability tests are manual tests administered to students to gauge their reading levels.
 
-This test is based on the [Bormuth Cloze](#bormuth-cloze-mean-machine-passage) test and uses the same criteria for its calculation. Basically, this test uses the Bormuth formula to calculate a [predicted cloze score](#cloze), converts it to percentage format, and then inverts it to arrive at the units score.
+This test is based on the [Bormuth Cloze](#bormuth-cloze-mean-machine-passage) test and uses the same criteria for its calculation. Basically, this test uses the Bormuth formula to calculate a [predicted cloze score](#sec-cloze), converts it to percentage format, and then inverts it to arrive at the units score.
 
 ```{definition, drp, name="Degrees of Reading Power formula"}
 \begin{align*}

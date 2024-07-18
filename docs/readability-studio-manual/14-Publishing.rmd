@@ -169,9 +169,9 @@ This dialog provides options for [exporting](#sec-exporting) an entire project i
 
 **Histograms/box plots**: Select this option to export all [histograms](#sec-reviewing-batch-histograms) and [box plots](#sec-reviewing-batch-box-plots). This option only applies to batch projects.
 
-**Words breakdown**: Select this option to export all the windows from the [**Words Breakdown**](#reviewing-word-breakdowns) section.
+**Words breakdown**: Select this option to export all the windows from the [**Words Breakdown**](#sec-reviewing-word-breakdowns) section.
 
-**Sentences breakdown**: Select this option to export all the windows from the [**Sentences Breakdown**](#reviewing-sentences-breakdown) section.
+**Sentences breakdown**: Select this option to export all the windows from the [**Sentences Breakdown**](#sec-reviewing-sentences-breakdown) section.
 
 **Grammar section**: Select this option to export all the windows from the **Grammar** section.
 

@@ -1,6 +1,6 @@
-# Glossary {#glossary .unnumbered}
+# Glossary {#sec-glossary .unnumbered}
 
-## Readability Terms {#readability-glossary .unnumbered}
+## Readability Terms {#sec-readability-glossary .unnumbered}
 
 :::: {.glsentry data-latex=''}
 ::: {.glsterm data-latex=''}
@@ -16,7 +16,7 @@ Average sentence length.
 cloze\index{cloze} test
 :::
 ::: {.glsdef data-latex=''}
-A [cloze](#cloze) procedure is a test given to readers to measure their comprehension ability. Refer to \@ref(cloze) for an extended explanation.
+A [cloze](#sec-cloze) procedure is a test given to readers to measure their comprehension ability. Refer to \@ref(sec-cloze) for an extended explanation.
 :::
 ::::
 
@@ -58,7 +58,7 @@ A section of text ending with a period, exclamation mark, question mark, interro
 
 \newpage
 
-## Statistical Terms {#stat-terms .unnumbered}
+## Statistical Terms {#sec-stat-terms .unnumbered}
 
 ::: {.glsterm data-latex=''}
 box plots\index{box plots}

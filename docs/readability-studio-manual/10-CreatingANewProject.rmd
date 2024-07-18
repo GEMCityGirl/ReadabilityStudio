@@ -89,7 +89,9 @@ Finally, click the `r keys("Finish")` button and the project will be created and
 
 ![](images/scores.png)
 
-From here, you can review the [readability scores](#sec-reviewing-test-scores) and [graphs](#sec-reviewing-readability-graphs), useful document [statistics](#sec-reviewing-statistics), and various lists of [difficult words](#reviewing-word-breakdowns). You can also review the document with its difficult words and [sentences](#reviewing-standard-grammar) highlighted.
+From here, you can review the [readability scores](#sec-reviewing-test-scores) and [graphs](#sec-reviewing-readability-graphs),
+useful document [statistics](#sec-reviewing-statistics), and various lists of [difficult words](#sec-reviewing-word-breakdowns).
+You can also review the document with its difficult words and [sentences](#sec-reviewing-standard-grammar) highlighted.
 
 ## Batch Projects {#sec-creating-batch-project}
 

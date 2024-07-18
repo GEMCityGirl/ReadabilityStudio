@@ -41,24 +41,24 @@ The **Score Summary** subitem will display the aggregated statistics for each te
 ::: {.minipage data-latex="{\textwidth}"}
 By default, the following statistics for each test are included:
 
-- [Valid N](#stat-terms): the number of valid scores.
-- [Minimum](#stat-terms): the lowest test score.
-- [Maximum](#stat-terms): the highest test score.
-- [Range](#stat-terms): the distance between the lowest and highest test scores.
-- [Mode(s)](#stat-terms)\index{mode}: the most frequently occurring score. In the case of a tie, all modes will be listed. Note that grade scores are rounded down when searching for the mode.
-- [Means](#stat-terms)\index{mean}: the average test score. This is calculated by adding all the scores and dividing the total by the number of scores.
+- [Valid N](#sec-stat-terms): the number of valid scores.
+- [Minimum](#sec-stat-terms): the lowest test score.
+- [Maximum](#sec-stat-terms): the highest test score.
+- [Range](#sec-stat-terms): the distance between the lowest and highest test scores.
+- [Mode(s)](#sec-stat-terms)\index{mode}: the most frequently occurring score. In the case of a tie, all modes will be listed. Note that grade scores are rounded down when searching for the mode.
+- [Means](#sec-stat-terms)\index{mean}: the average test score. This is calculated by adding all the scores and dividing the total by the number of scores.
 :::
 
 ::: {.minipage data-latex="{\textwidth}"}
 If [**Extended Information**](#sec-options-summary-report) is enabled, then these additional statistics will be included:
 
-- [Median](#stat-terms)\index{median}: the middle test score. This represents the middle point separating the lower and upper halves of the scores. This is calculated by sorting the scores and taking the score in middle if the number of scores is odd. If the number of scores is even, then the means of the two middle points is taken.
-- [Skewness](#stat-terms)\index{skewness}: the asymmetry of the scores' distribution.
-- [Kurtosis](#stat-terms)\index{kurtosis}: the peakedness of the scores' distribution.
-- [Standard Deviation](#stat-terms)\index{standard deviation}: the variability (or spread) of the scores. Note that sample std. dev. is used here because it is assumed that the batch contains a sampling of a larger document collection.
-- [Variance](#stat-terms)\index{variance}: another measurement of the scores' variability, which is std. dev. squared.
-- [Lower quartile](#stat-terms): the test score at the 25% percentile. This is the score separating the lower quarter of the scores from the rest of the scores.
-- [Upper quartile](#stat-terms): the test score at the 75% percentile. This is the score separating the upper quarter of the scores from the rest of the scores.
+- [Median](#sec-stat-terms)\index{median}: the middle test score. This represents the middle point separating the lower and upper halves of the scores. This is calculated by sorting the scores and taking the score in middle if the number of scores is odd. If the number of scores is even, then the means of the two middle points is taken.
+- [Skewness](#sec-stat-terms)\index{skewness}: the asymmetry of the scores' distribution.
+- [Kurtosis](#sec-stat-terms)\index{kurtosis}: the peakedness of the scores' distribution.
+- [Standard Deviation](#sec-stat-terms)\index{standard deviation}: the variability (or spread) of the scores. Note that sample std. dev. is used here because it is assumed that the batch contains a sampling of a larger document collection.
+- [Variance](#sec-stat-terms)\index{variance}: another measurement of the scores' variability, which is std. dev. squared.
+- [Lower quartile](#sec-stat-terms): the test score at the 25% percentile. This is the score separating the lower quarter of the scores from the rest of the scores.
+- [Upper quartile](#sec-stat-terms): the test score at the 75% percentile. This is the score separating the upper quarter of the scores from the rest of the scores.
 :::
 
 Note that when calculating these statistics, failed test scores are treated as missing observations and not included. For example, let us say that you analyze 100 documents, but 3 of them cannot calculate [Fry](#fry-test) because their average sentence length is too high. In this case, the valid 97 Fry scores will be added and divided by 97 (not 100) to get the means.
@@ -75,7 +75,7 @@ The **Valid N** column represents the number of grade-level tests that were succ
 
 Note that this subitem will only be available if at least one grade-level test is included in the project.
 
-The **Cloze Score Summary (x Document)** subitem will display aggregated statistics for all [predicted cloze](#cloze) scores, grouped by document:
+The **Cloze Score Summary (x Document)** subitem will display aggregated statistics for all [predicted cloze](#sec-cloze) scores, grouped by document:
 
 ![](images/batch-cloze-scores-by-document.png)
 
@@ -187,7 +187,7 @@ Note that test-specific word counts/percentages (e.g., Dale-Chall unfamiliar wor
 
 **Key Words**: This list is the same as **All Words**, except that it excludes filenames, numeric words, and common words, and then combines the remaining words. In regards to combining words, words with the same root will be merged into a single row. For example, *report*, *reports*, and *reporting* will be combined into one row, with the frequency counts for all three words also combined. As for excluding words, common words (e.g., *the*), numerals, and filenames are not included in this list. (If no words can be combined and there are no common words to ignore, then this list will not be shown.)
 
-**Key Word Cloud**: Refer to \@ref(reviewing-word-breakdowns).
+**Key Word Cloud**: Refer to \@ref(sec-reviewing-word-breakdowns).
 
 \newpage
 
@@ -239,7 +239,7 @@ To view a specific document's conjunction-starting sentences, double-click on it
 knitr::include_graphics("images/batchconjunctionviewitem.png")
 ```
 
-Refer to \@ref(reviewing-standard-grammar) to learn more about conjunction-starting sentences.
+Refer to \@ref(sec-reviewing-standard-grammar) to learn more about conjunction-starting sentences.
 
 ### Reviewing Lowercased Sentences {-#sec-reviewing-batch-lowercased-sentences}
 
@@ -273,7 +273,7 @@ To view a specific document's repeated words, double-click on its row in this li
 knitr::include_graphics("images/batchrepeatedviewitem.png")
 ```
 
-Refer to \@ref(reviewing-standard-grammar) and \@ref(sec-repeated-word-exceptions) to learn how repeated words are detected.
+Refer to \@ref(sec-reviewing-standard-grammar) and \@ref(sec-repeated-word-exceptions) to learn how repeated words are detected.
 
 ### Reviewing Article Mismatches {-#sec-reviewing-batch-articles}
 
@@ -347,7 +347,7 @@ To view a specific document's redundant phrases, double-click on its row in this
 knitr::include_graphics("images/batchredundantphrasesviewitem.png")
 ```
 
-Refer to \@ref(reviewing-standard-grammar) for an explanation of what redundant phrase are.
+Refer to \@ref(sec-reviewing-standard-grammar) for an explanation of what redundant phrase are.
 
 ### Reviewing Wordy Items {-#sec-reviewing-batch-wordiness}
 
@@ -365,7 +365,7 @@ To view a specific document's wordy item, double-click on its row in this list. 
 knitr::include_graphics("images/viewitemwordyphrase.png")
 ```
 
-Refer to \@ref(reviewing-standard-grammar) for an explanation about wordy phrases.
+Refer to \@ref(sec-reviewing-standard-grammar) for an explanation about wordy phrases.
 
 ### Reviewing Clichés {-#sec-reviewing-batch-cliches}
 
@@ -385,7 +385,7 @@ To view a specific document's clichés, double-click on its row in this list. A 
 knitr::include_graphics("images/batchclichesviewitem.png")
 ```
 
-Refer to \@ref(reviewing-standard-grammar) for an explanation about clichés.
+Refer to \@ref(sec-reviewing-standard-grammar) for an explanation about clichés.
 
 ### Reviewing Passive Voice {-#sec-reviewing-batch-passive-voices}
 
@@ -401,7 +401,7 @@ To view a specific document's passive phrases, right click on its row and select
 knitr::include_graphics("images/batchpassivevoiceviewitem.png")
 ```
 
-Refer to \@ref(reviewing-standard-grammar) for an explanation about passive phrases.
+Refer to \@ref(sec-reviewing-standard-grammar) for an explanation about passive phrases.
 
 ### Reviewing Overused Words (x Sentence) {-#sec-reviewing-batch-overused-words}
 
@@ -413,7 +413,7 @@ Numeric words, proper nouns, words containing less than three letters, and commo
 
 To view a specific document's overused words, right click on its row and select **View Item**. A vertical display of that document's overused words will be shown.
 
-Refer to \@ref(reviewing-standard-grammar) for an explanation about overused words.
+Refer to \@ref(sec-reviewing-standard-grammar) for an explanation about overused words.
 
 \newpage
 

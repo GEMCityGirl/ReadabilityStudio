@@ -37,6 +37,6 @@ The FRASE graph procedure is:
 - Count the number of syllables in each passage.
 - Find the intersecting point on the plot. The quadrant where the point lies indicates the reading level of the document.
 
-This test is designed for 100-word samples, with 3 samples being recommended for best results. ([Normalization](#glossary) can also be used to analyze larger samples or entire documents.)\index{FRASE|)}
+This test is designed for 100-word samples, with 3 samples being recommended for best results. ([Normalization](#sec-glossary) can also be used to analyze larger samples or entire documents.)\index{FRASE|)}
 
 \newpage

@@ -34,7 +34,7 @@ $FLOOR$ refers to rounding the result of $\sqrt{C}$ down to the closest perfect 
 The simplified version of this formula uses lower precision. It was originally offered to make manual calculations of this test easier.
 :::
 
-This test requires 3 10-sentence samples, but [normalization](#glossary) can be used to analyze entire documents.
+This test requires 3 10-sentence samples, but [normalization](#sec-glossary) can be used to analyze entire documents.
 
 ```{r, results='asis', eval=T, echo=F}
 OptionsDesc <- ", so the program overrides your [numeral syllabication](#sec-numsyllable) setting when calculating it."

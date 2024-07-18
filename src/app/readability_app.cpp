@@ -5231,7 +5231,7 @@ void MainFrame::OnHelpContents([[maybe_unused]] wxCommandEvent& event)
         case BaseProjectView::SPACHE_WORDS_TEXT_PAGE_ID:
             [[fallthrough]];
         case BaseProjectView::HARRIS_JACOBSON_WORDS_TEXT_PAGE_ID:
-            DisplayHelp(_DT(L"reviewing-word-breakdowns.html"));
+            DisplayHelp(_DT(L"sec-reviewing-word-breakdowns.html"));
             break;
         case BaseProjectView::FLESCH_CHART_PAGE_ID:
             [[fallthrough]];
@@ -5266,10 +5266,10 @@ void MainFrame::OnHelpContents([[maybe_unused]] wxCommandEvent& event)
         case BaseProjectView::LONG_SENTENCES_LIST_PAGE_ID:
             [[fallthrough]];
         case BaseProjectView::SENTENCE_HEATMAP_PAGE_ID:
-            DisplayHelp(_DT(L"reviewing-sentences-breakdown.html"));
+            DisplayHelp(_DT(L"sec-reviewing-sentences-breakdown.html"));
             break;
         case BaseProjectView::WORD_CLOUD_PAGE_ID:
-            DisplayHelp(_DT(L"reviewing-word-breakdowns.html"));
+            DisplayHelp(_DT(L"sec-reviewing-word-breakdowns.html"));
             break;
         case BaseProjectView::READABILITY_SCORES_PAGE_ID:
             [[fallthrough]];
@@ -5299,7 +5299,7 @@ void MainFrame::OnHelpContents([[maybe_unused]] wxCommandEvent& event)
         case BaseProjectView::WORDY_PHRASES_LIST_PAGE_ID:
             [[fallthrough]];
         case BaseProjectView::CLICHES_LIST_PAGE_ID:
-            DisplayHelp(_DT(L"reviewing-standard-grammar.html"));
+            DisplayHelp(_DT(L"sec-reviewing-standard-grammar.html"));
             break;
         case BaseProjectView::DOLCH_STATS_PAGE_ID:
             [[fallthrough]];
@@ -5319,7 +5319,7 @@ void MainFrame::OnHelpContents([[maybe_unused]] wxCommandEvent& event)
             DisplayHelp(_DT(L"sec-reviewing-dolch.html"));
             break;
         default:
-            DisplayHelp(_DT(L"reviewing-word-breakdowns.html"));
+            DisplayHelp(_DT(L"sec-reviewing-word-breakdowns.html"));
             };
         }
     else if (activeProject->IsKindOf(wxCLASSINFO(BatchProjectDoc)))

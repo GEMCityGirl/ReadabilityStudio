@@ -49,7 +49,7 @@ The Fry graph instructions are:
 - Repeat this process for each sample, and then average the samples.
 :::
 
-This test is designed for 100-word samples, with 3 samples being recommended for best results. ([Normalization](#glossary) can also be used to analyze larger samples or entire documents.)
+This test is designed for 100-word samples, with 3 samples being recommended for best results. ([Normalization](#sec-glossary) can also be used to analyze larger samples or entire documents.)
 
 Note that numerals\index{numerals!Fry} are fully syllabized for this test. For example, *1945* will be counted as four syllables (*one*-*nine*-*four*-*five*).\index{Fry|)}
 

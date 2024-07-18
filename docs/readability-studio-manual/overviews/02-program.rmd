@@ -121,22 +121,25 @@ Difficult words and sentences are also shown highlighted in their original conte
 Along with readability analysis, *Readability Studio* also offers basic grammar checking. The program can detect the following problems:
 
 - [wording errors and known misspellings (English only)](#sec-reviewing-wording-errors)
-- [possible misspellings (English only)](#reviewing-misspellings)
-- [repeated words](#reviewing-repeated-words)
-- [article mismatching (English only)](#reviewing-article-mismatches)
-- [redundant phrases (English only)](#reviewing-redundant-phrases)
-- [wordy items (English only)](#reviewing-wordy-items)
+- [possible misspellings (English only)](#sec-reviewing-misspellings)
+- [repeated words](#sec-reviewing-repeated-words)
+- [article mismatching (English only)](#sec-reviewing-article-mismatches)
+- [redundant phrases (English only)](#sec-reviewing-redundant-phrases)
+- [wordy items (English only)](#sec-reviewing-wordy-items)
 - [clichés (English only)](#sec-reviewing-cliches)
-- [overly-long sentences](#reviewing-sentences-breakdown)
-- [lowercased sentences](#reviewing-lowercased-sentences)
-- [sentences that begin with conjunctions](#reviewing-conjunction-sentences)
+- [overly-long sentences](#sec-reviewing-sentences-breakdown)
+- [lowercased sentences](#sec-reviewing-lowercased-sentences)
+- [sentences that begin with conjunctions](#sec-reviewing-conjunction-sentences)
 - [passive voice (English only)](#sec-reviewing-passive-voice)
 
-These issues are shown highlighted in your document for easy review. They are also aggregated into sortable lists to give a general overview of any problems and to assist in finding specific issues.
+These issues are shown highlighted in your document for easy review.
+They are also aggregated into sortable lists to give a general overview of any problems and to assist in finding specific issues.
 
 #### Dolch Sight Words {-}
 
-*Readability Studio* also includes a [Dolch](#sec-reviewing-dolch) suite of statistics and graphs, which is useful for educators and writers who work with young readers. The program provides a complete breakdown of Dolch words that you are using (and not using) in your content. This enables writers to see how they can improve their Dolch practice materials. This also enables educators to determine which materials are appropriate for Dolch practice.
+*Readability Studio* also includes a [Dolch](#sec-reviewing-dolch) suite of statistics and graphs, which is useful for educators and writers who work with young readers.
+The program provides a complete breakdown of Dolch words that you are using (and not using) in your content.
+This enables writers to see how they can improve their Dolch practice materials. This also enables educators to determine which materials are appropriate for Dolch practice.
 
 #### Numerous file formats supported {-}
 

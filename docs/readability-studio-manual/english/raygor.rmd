@@ -23,7 +23,7 @@ The Raygor Estimate instructions are:
 - Repeat this process for each sample, and then average the samples.
 :::
 
-This test is designed for 3 100-word samples, with 3 samples being recommended for best results. ([Normalization](#glossary) can also be used to analyze larger samples or entire documents.)
+This test is designed for 3 100-word samples, with 3 samples being recommended for best results. ([Normalization](#sec-glossary) can also be used to analyze larger samples or entire documents.)
 
 \index{Raygor Estimate|)}
 

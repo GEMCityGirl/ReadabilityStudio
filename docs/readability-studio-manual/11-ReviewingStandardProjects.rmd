@@ -10,7 +10,7 @@ The top area of the **Scores** window is the score grid. In here there are four 
 - **Grade Level**: the minimum grade level that the test determined the document is suitable for.
 - **Reader Age**: the minimum reader age that the test determined the document is suitable for. The reader age is determined from the test's score. It can be shown as either a [range](#sec-reading-age) for the entire grade, or be rounded to the semester that the grade score falls into.
 - **Scale Value**: the index value for tests that use special scales.
-- [**Predicted Cloze Score**](#cloze)\index{cloze}: the estimated score if the document were to be used for a cloze test. Note that cloze scores will be displayed in percentage format (i.e., 0–100) instead of floating-point format (i.e., .0–1.0) for easier reading.
+- [**Predicted Cloze Score**](#sec-cloze)\index{cloze}: the estimated score if the document were to be used for a cloze test. Note that cloze scores will be displayed in percentage format (i.e., 0–100) instead of floating-point format (i.e., .0–1.0) for easier reading.
 
 Note that most tests have just one type of result (e.g., grade level), so non-applicable columns are left blank. For example, note below that the [Gunning Fog](#gunning-fog-test) result is a grade level of 8.3. This translates to an eighth grade level reader (in his or her third month of class). Because this test only returns a grade level and age, the **Scale Value** and **Predicted Cloze Score** columns are empty. Another example is the result for the [Flesch Reading Ease](#flesch-test) test, which has a scale value of 79. This test has its own scale (instead of a grade level) so its age, grade level, and cloze columns are empty.
 
@@ -22,7 +22,7 @@ Select any test in the results grid to display an explanation of its score in th
 
 Along with an explanation of the test's results, the factors that it uses to determine difficulty are also shown. For example, if **Sentence Length** and **Word Length** have an *X* next to them, then these variables are used in the test's equation. To lower the score for a given test, try to improve its factors (e.g., lower the document's average sentence length).
 
-Finally, the averages (means)\index{mean} of your test scores and ages are displayed at the bottom of the results window. Their respective [modes](#stat-terms)\index{mode}, [medians](#stat-terms)\index{median}, and [standard deviations](#stat-terms)\index{standard deviation} are also included if [**Extended Information**](#sec-options-summary-report) is enabled. Note that scores are truncated when searching for the grade-level mode. For example, *6.7* and *6.2* will both be treated as *6*. Mode generally requires discrete data to produce meaningful results; therefore, grade-level scores are converted to their base grades for this statistic.
+Finally, the averages (means)\index{mean} of your test scores and ages are displayed at the bottom of the results window. Their respective [modes](#sec-stat-terms)\index{mode}, [medians](#sec-stat-terms)\index{median}, and [standard deviations](#sec-stat-terms)\index{standard deviation} are also included if [**Extended Information**](#sec-options-summary-report) is enabled. Note that scores are truncated when searching for the grade-level mode. For example, *6.7* and *6.2* will both be treated as *6*. Mode generally requires discrete data to produce meaningful results; therefore, grade-level scores are converted to their base grades for this statistic.
 
 When calculating these statistics, failed test scores are treated as missing observations and not included. For example, let us say that you included 5 tests, but one of them could not be calculated. In this case, the valid 4 scores will be added and divided by 4 (not 5) to acquire the means. Also, grade range scores–such as *5–6* from [New Dale-Chall](#dale-chall-test)\index{New Dale-Chall!grade-range averaging}–will be converted to its own average (e.g., *5–6* will be 5.5).
 
@@ -52,7 +52,7 @@ If the data point does not fall inside of a slice then the test will fail. For e
 knitr::include_graphics("images/raygorbadgrade.png")
 ```
 
-The document was almost classified as 12^th^ grade level material, but its long words make it too difficult to be assigned to any grade. At this point, you would want to review the document's lengthy sentences (select [**Highlighted Report**](#reviewing-standard-grammar) under the **Grammar** sidebar item) and try to shorten some of them.
+The document was almost classified as 12^th^ grade level material, but its long words make it too difficult to be assigned to any grade. At this point, you would want to review the document's lengthy sentences (select [**Highlighted Report**](#sec-reviewing-standard-grammar) under the **Grammar** sidebar item) and try to shorten some of them.
 
 The Gilliam-Peña-Mountain\index{Gilliam-Peña-Mountain} graph is a variation of Fry designed for Spanish text. It is identical to Fry, except that its X axis begins at 175 (instead of 108). This enables this graph to plot Spanish text, which usually has a much higher syllable count than its English counterpart. Below is an example of a Gilliam-Peña-Mountain graph:
 
@@ -163,7 +163,7 @@ The **Report** and **Tabular Report** windows display the document's statistics 
 - number of paragraphs and average number of sentences per paragraph
 - number of sentences and average number of words per sentence
 - number and percentage of difficult sentences
-- number of [units](#glossary)\index{sentences!units}/independent clauses\index{independent clauses|see{sentences units}} (This statistic is only available if [**Extended Information**](#sec-options-summary-report) is enabled.)
+- number of [units](#sec-glossary)\index{sentences!units}/independent clauses\index{independent clauses|see{sentences units}} (This statistic is only available if [**Extended Information**](#sec-options-summary-report) is enabled.)
 - number of interrogative sentences (questions)
 - number of exclamatory sentences
 - number of words
@@ -191,7 +191,7 @@ A **Notes** section may be included at the bottom of the formatted report if the
 
 \newpage
 
-## Words Breakdown {#reviewing-word-breakdowns}
+## Words Breakdown {#sec-reviewing-word-breakdowns}
 
 After opening a project, click on the **Words Breakdown** icon on the project sidebar to view the lists, highlighted reports, and graphs of difficult words:
 
@@ -245,7 +245,7 @@ The different types of text reports that may be shown are:
 
 **Harris-Jacobson (Unfamiliar)**: This text report contains the document with all the [Harris-Jacobson](#harris-jacobson)\index{Harris-Jacobson Wide Range!reviewing unfamiliar words} unfamiliar words highlighted. The Harris-Jacobson word list is a collection of words that are considered to be familiar to most primary-age readers. Words in the document that are not found on this list may be less familiar to younger readers and hence more difficult. This window is only available if the Harris-Jacobson test is included in the project.
 
-You can change both the font and highlighting color by opening the [**Project Properties**](#sec-options-overview) dialog and selecting [**Highlighted Reports**](#options-highlighted-reports).
+You can change both the font and highlighting color by opening the [**Project Properties**](#sec-options-overview) dialog and selecting [**Highlighted Reports**](#sec-options-highlighted-reports).
 Note that changing these options from the **Project Properties** dialog will only affect the current project. If you want to make changes to any future projects, then go to the **Options** dialog from the **Tools** tab instead.
 
 ### Reviewing Word-based Graphs {-}
@@ -260,7 +260,7 @@ knitr::include_graphics("images/barchart.png")
 ```
 
 In the above example, we can see that there are 70 unfamiliar New Dale-Chall words, but only 42 three+ syllable words. From this, we could infer that we should first concentrate on replacing these unfamiliar words.
-Lists of these words can be found by clicking on the [**Difficult Words**](#reviewing-word-breakdowns) icon on the project sidebar.
+Lists of these words can be found by clicking on the [**Difficult Words**](#sec-reviewing-word-breakdowns) icon on the project sidebar.
 :::
 
 :::: {.minipage data-latex="{\textwidth}"}
@@ -318,7 +318,7 @@ In a batch project, this word cloud will show the key words across all documents
 
 \newpage
 
-## Sentences Breakdown\index{sentences!reviewing in the results|(ii} {#reviewing-sentences-breakdown}
+## Sentences Breakdown\index{sentences!reviewing in the results|(ii} {#sec-reviewing-sentences-breakdown}
 
 After opening a project, click on the **Sentences Breakdown** icon on the project sidebar to view a breakdown of the document's sentences. This includes the following:
 
@@ -334,9 +334,9 @@ To find the longest sentence, [sort](#sec-column-sorting) the **Word Count** col
 
 ![](images/featuressentencelistsorted.png)
 
-To view any sentence in its original context, double-click on it. This will take you to the [**Highlighted Report**](#reviewing-standard-grammar) page with that sentence selected.
+To view any sentence in its original context, double-click on it. This will take you to the [**Highlighted Report**](#sec-reviewing-standard-grammar) page with that sentence selected.
 
-If the test scores are indicating that the document is too difficult for your target audience, then review the overly-long sentences. You should consider splitting these sentences into smaller ones and revising any [wordy items](#reviewing-wordy-items).
+If the test scores are indicating that the document is too difficult for your target audience, then review the overly-long sentences. You should consider splitting these sentences into smaller ones and revising any [wordy items](#sec-reviewing-wordy-items).
 
 Note that if there are no long sentences in your document, then this window will not be included.
 
@@ -348,7 +348,7 @@ knitr::include_graphics("images/sentences-boxplot.png")
 
 The first item to review is the box, which measures the percentiles range. Above, we see that this range is 4.5–19.5, meaning that half of the sentences are between 4.5–19.5 words.
 
-Next, note the line drawn across the box—this represents the [median](#stat-terms). In this case, the median is 12.5, which means that the middle sentence is 12.5 words. This median line is almost equidistant, which implies that the sentence lengths in this range are evenly distributed.
+Next, note the line drawn across the box—this represents the [median](#sec-stat-terms). In this case, the median is 12.5, which means that the middle sentence is 12.5 words. This median line is almost equidistant, which implies that the sentence lengths in this range are evenly distributed.
 
 The last items to review are the whiskers, which represent the non-outlier range. The datapoints in this range are outside of the middle half the data, but still within a reasonable limit. Above, we can see that the remaining sentences are skewed towards having longer sentences, with the largest being 33 words. Although 33 words is reasonable (compared to the box's range), you may want to review some of these longer sentences.
 
@@ -382,7 +382,7 @@ Refer to example \@ref(sec-finding-difficult-sections) for a more detailed tutor
 
 \newpage
 
-## Grammar {#reviewing-standard-grammar}
+## Grammar {#sec-reviewing-standard-grammar}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Highlighted report** subitem. This text report will display the document with its difficult sentences and wordy items highlighted.
 
@@ -390,11 +390,11 @@ After opening a project, click on the **Grammar** icon on the project sidebar an
 
 Note that each sentence is followed by its respective word count (in parentheses).
 
-You can change both the font and highlighting color by opening the [**Project Properties**](#sec-options-overview) dialog and selecting [**Highlighted Reports**](#options-highlighted-reports). Note that changing these options from the **Project Properties** dialog will only affect the current project. If you want to make configuration changes for future projects, then go to the **Options** dialog from the **Tools** tab instead.
+You can change both the font and highlighting color by opening the [**Project Properties**](#sec-options-overview) dialog and selecting [**Highlighted Reports**](#sec-options-highlighted-reports). Note that changing these options from the **Project Properties** dialog will only affect the current project. If you want to make configuration changes for future projects, then go to the **Options** dialog from the **Tools** tab instead.
 
 For documents with numerous sentences over twenty words, it is recommended to use outlier searching. Open the **Project Properties** dialog, select [**Document Indexing**](#sec-document-analysis), and select the option **Outside sentence-length outlier range**. This will make it so that only the extremely long sentences (compared to the other sentences in the document) are highlighted. This helps pinpoint the most troublesome sentences that need to be shortened.
 
-### Reviewing Lowercased Sentences\index{sentences!lowercased} {-#reviewing-lowercased-sentences}
+### Reviewing Lowercased Sentences\index{sentences!lowercased} {-#sec-reviewing-lowercased-sentences}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Lowercased Sentences** subitem. This window will display a list of all sentences that begin with lowercased words (which is usually a typo).
 
@@ -404,11 +404,11 @@ Lowercased sentence searching is applied to all sentences. [Incomplete sentences
 
 Also note that if the option [**Sentences must begin with capitalized words**](#sec-options-sentence-deduction) is enabled, then this feature will be limited to sentences that begin new paragraphs. If you want to search for any possible sentences that begin with lowercased words, then you should leave this option unchecked.
 
-To view any sentence in its original context, double-click on it. This will take you to the [**Highlighted Report**](#reviewing-standard-grammar) page with that sentence selected.
+To view any sentence in its original context, double-click on it. This will take you to the [**Highlighted Report**](#sec-reviewing-standard-grammar) page with that sentence selected.
 
 Note that if there are no lowercased sentences in your document, then this window will not be included.
 
-### Reviewing Conjunction-starting Sentences {-#reviewing-conjunction-sentences}
+### Reviewing Conjunction-starting Sentences {-#sec-reviewing-conjunction-sentences}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Conjunction-starting Sentences** subitem. This window will display a list of all sentences which begin with coordinating conjunctions.
 
@@ -435,7 +435,7 @@ To view any sentence in its original context, double-click on it. This will take
 
 Note that if there are no conjunction-starting sentences in your document, then this window will not be included.
 
-### Reviewing Repeated Words {-#reviewing-repeated-words}
+### Reviewing Repeated Words {-#sec-reviewing-repeated-words}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Repeated Words** subitem. This window will display a list of all repeated words from the document.
 
@@ -457,13 +457,13 @@ Gabi gave her sales report to *Blake. Blake* really appreciated Gabi's promptnes
 
 Repeated word searching is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
-To view any repeated word in its original context, double-click on it. This will take you to the [**Highlighted Report**](#reviewing-standard-grammar) page with that repeated word selected.
+To view any repeated word in its original context, double-click on it. This will take you to the [**Highlighted Report**](#sec-reviewing-standard-grammar) page with that repeated word selected.
 
 Note that if there are no repeated words in your document, then this window will not be included.
 
 Refer to \@ref(sec-repeated-word-exceptions) for more information on how repeated words are detected.
 
-### Reviewing Article Mismatches {-#reviewing-article-mismatches}
+### Reviewing Article Mismatches {-#sec-reviewing-article-mismatches}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Article Mismatches** subitem. This window will display a list of articles (i.e., *a* and *an*) that do not match their following noun.
 
@@ -504,11 +504,11 @@ Wording errors are bound to the sentence level. If part of a phrase ends one sen
 
 This search is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
-To view any wording error in its original context, double-click on it. This will take you to the [**Highlighted Report**](#reviewing-standard-grammar) page with that phrase selected.
+To view any wording error in its original context, double-click on it. This will take you to the [**Highlighted Report**](#sec-reviewing-standard-grammar) page with that phrase selected.
 
 Note that if there are no errors in your document, then this window will not be included.
 
-### Reviewing Possible Misspellings {-#reviewing-misspellings}
+### Reviewing Possible Misspellings {-#sec-reviewing-misspellings}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Possible Misspellings** subitem.
 This window will display a list of all possible misspellings from the document.
@@ -519,7 +519,7 @@ Options for controlling how misspellings are searched for are available in the [
 
 Misspelling searching is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
-To view any misspelling in its original context, double-click on it. This will take you to the [**Highlighted Report**](#reviewing-standard-grammar) page with that word selected.
+To view any misspelling in its original context, double-click on it. This will take you to the [**Highlighted Report**](#sec-reviewing-standard-grammar) page with that word selected.
 
 To add words to your dictionary, first select them in this list. Then, click on the **Document** tab, and click the arrow next to the `r keys("Spell Checker")` button. Then, select **Add Selected Words** and the selected words in this list will no longer be reported as misspellings.
 
@@ -529,7 +529,7 @@ To change your spell-checking options, click on the arrow next to the `r keys("S
 
 Note that if there are no misspellings in your document, then this window will not be included.
 
-### Reviewing Redundant Phrases {-#reviewing-redundant-phrases}
+### Reviewing Redundant Phrases {-#sec-reviewing-redundant-phrases}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Redundant Phrases** subitem. This window will display a list of redundant phrases (and suggested replacements) from the document.
 
@@ -551,11 +551,11 @@ Gabi and Blake need to be **brief. Summaries** are very important before present
 
 Redundant phrase searching is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
-To view any redundant phrase in its original context, double-click on it. This will take you to the [**Highlighted Report**](#reviewing-standard-grammar) page with that phrase selected.
+To view any redundant phrase in its original context, double-click on it. This will take you to the [**Highlighted Report**](#sec-reviewing-standard-grammar) page with that phrase selected.
 
 Note that if there are no redundant phrases in your document, then this window will not be included.
 
-### Reviewing Wordy Items {-#reviewing-wordy-items}
+### Reviewing Wordy Items {-#sec-reviewing-wordy-items}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Wordy Items** subitem. This window will display a list of wordy phrases and difficult words (and their suggested replacements) from the document.
 
@@ -577,7 +577,7 @@ For the party, we need **a host. Of** course he should be very funny.
 
 Wordy-item searching does not affect readability calculations, so this analysis is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
-To view any wordy item in its original context, double-click on it. This will take you to the [**Highlighted Report**](#reviewing-standard-grammar) page with that item selected.
+To view any wordy item in its original context, double-click on it. This will take you to the [**Highlighted Report**](#sec-reviewing-standard-grammar) page with that item selected.
 
 Note that if there are no wordy items in your document, then this window will not be included.
 
@@ -627,7 +627,7 @@ To view any clichés in its original context, double-click on it. This will take
 
 Note that if there are no clichés in your document, then this window will not be included.
 
-### Reviewing Overused Words (x Sentence) {-#reviewing-overused-by-sentence}
+### Reviewing Overused Words (x Sentence) {-#sec-reviewing-overused-by-sentence}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Overused Words (x Sentence)** subitem.
 This window will display a list of all sentences that use the same word multiple times. (These are more of style suggestions, rather than grammar issues.)
@@ -652,7 +652,7 @@ If the sentence is 10 words, however, it will be counted.
 
 Note that if there are no sentences with overused words in your document, then this window will not be included.
 
-To view any sentence in its original context, double-click on it. This will take you to the [**Highlighted Report**](#reviewing-standard-grammar) page with that sentence selected.
+To view any sentence in its original context, double-click on it. This will take you to the [**Highlighted Report**](#sec-reviewing-standard-grammar) page with that sentence selected.
 
 \newpage
 
@@ -667,7 +667,7 @@ If you are writing educational materials for early readers, then use as many of 
 [^DolchPronounsFootnote]: Pronouns, adjectives, adverbs, prepositions, conjunctions, and verbs.
 [^DolchNounsListFootnote]: A separate list of nouns commonly found in children's literature is also included with the Dolch collection. However, the sight words are generally the focus of most Dolch activities.
 
-### Reviewing the Dolch Statistics {-#reviewing-dolch-stats}
+### Reviewing the Dolch Statistics {-#sec-reviewing-dolch-stats}
 
 After opening a project, click on the **Dolch Sight Words** icon on the project sidebar and select the **Dolch Summary** subitem to view the document's Dolch statistics:
 
@@ -681,15 +681,15 @@ Notes will be shown at the bottom of the **Dolch Word Coverage** section to indi
 
 If a document does not provide good coverage for any of the categories and/or contains numerous non-Dolch words, then it will not be an appropriate Dolch training document. This does not necessarily mean that it is not an appropriate document for younger readers. It simply means that the document does not use enough of the Dolch words to help readers learn these words. For example, *The Tale of Peter Rabbit* has decent coverage of the Dolch conjunctions and prepositions, but it also contains a large percentage of non-Dolch words. This book's readability levels indicate that it is proper for young readers. However, its high non-Dolch words percentage will make it inappropriate for readers to use it for practicing Dolch words.
 
-To graphically view the Dolch coverage, click on the [**Coverage Chart**](#reviewing-dolch-graphs) icon. This will display a bar chart of these statistics, listed by category.
+To graphically view the Dolch coverage, click on the [**Coverage Chart**](#sec-reviewing-dolch-graphs) icon. This will display a bar chart of these statistics, listed by category.
 
 Below this is the **Dolch Words** section, which lists all the raw Dolch word counts, broken down by category. Each category includes its total and unique counts of words found in the document. For example, let us say that four unique words from the pronoun list are found in the document, each appearing twice. In this case, **Number of Pronoun Dolch words** will be eight (four words each appearing twice) and **Number of unique Pronoun Dolch words** will be four.
 
 Note that there may be a slight discrepancy between a category's coverage value and its unique word count. This will happen if your document contains variations of certain words, such as *ask* and *asked*. The program will treat morphological variations of a word the same as its root word when calculating coverage statistics. However, when calculating unique word statistics, different forms of words will be counted separately. For example, the words *asked* and *asking* will be counted as separate unique words; however, they both will be seen as “ask” when calculating the verb-list coverage.
 
-To graphically view the Dolch words breakdown, click on the [**Word Counts**](#reviewing-dolch-graphs) subitem. This will display a bar chart of these statistics, listed by category.
+To graphically view the Dolch words breakdown, click on the [**Word Counts**](#sec-reviewing-dolch-graphs) subitem. This will display a bar chart of these statistics, listed by category.
 
-### Reviewing the Dolch Graphs {-#reviewing-dolch-graphs}
+### Reviewing the Dolch Graphs {-#sec-reviewing-dolch-graphs}
 
 After opening a project, click on the **Dolch Sight Words** icon on the project sidebar. There are two graphs available for review: **Dolch Coverage** and **Word Counts**.
 
@@ -709,7 +709,7 @@ knitr::include_graphics("images/dolch-word-breakdown.png")
 
 As we can see in the above graph, there are 938 total Dolch words used in this document. Unfortunately, there are also 489 non-Dolch words. Although there is a strong number of Dolch words, the high number of non-Dolch words may make this document a poor candidate for practicing Dolch sight words.
 
-### Reviewing the Dolch Highlighted Text {-#reviewing-dolch-text}
+### Reviewing the Dolch Highlighted Text {-#sec-reviewing-dolch-text}
 
 After opening a project, click on the **Dolch Sight Words** icon on the project sidebar. There will be two types of highlighted text reports available: **Dolch Words** and **Non-Dolch Words**.
 
@@ -729,7 +729,7 @@ The **Non-Dolch Words** subitem will display the document with all the non-Dolch
 
 ![](images/dolchhighlightednonwords.png)
 
-### Reviewing the Dolch Word Lists {-#reviewing-dolch-lists}
+### Reviewing the Dolch Word Lists {-#sec-reviewing-dolch-lists}
 
 After opening a project, click on the **Dolch Sight Words** icon on the project sidebar. There will be three types of word lists available: **Dolch Words**, **Non-Dolch Words**, and **Unused Dolch Words**.
 
@@ -739,7 +739,7 @@ The **Dolch Words** subitem will display a list of the Dolch words from the docu
 
 Next to each word will be two columns. The first column is **Frequency**, which will represent the number of times the word appears in the file. The second column is **Category**, which represents the Dolch category to which the word belongs.
 
-Double-click on any word in this list to display the [**Dolch Words**](#reviewing-dolch-text) text report with the first instance of that word selected.
+Double-click on any word in this list to display the [**Dolch Words**](#sec-reviewing-dolch-text) text report with the first instance of that word selected.
 
 The **Non-Dolch Words** subitem will display a list of the words from the document that do not appear on any of the Dolch lists:
 
@@ -749,7 +749,7 @@ Next to each word will be a **Frequency** column, which will represent the numbe
 
 A high volume of non-Dolch words will adversely affect a document's ability to be a good Dolch practice tool. If the non-Dolch word count is high, consider replacing or removing words from this list that have high frequency counts.
 
-Double-click on any word in this list to display the [**Non-Dolch Words**](#reviewing-dolch-text) text report with the first instance of that word selected.
+Double-click on any word in this list to display the [**Non-Dolch Words**](#sec-reviewing-dolch-text) text report with the first instance of that word selected.
 
 The **Unused Dolch Words** subitem will display a list of the Dolch words that do not appear in the document:
 

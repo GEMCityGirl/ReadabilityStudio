@@ -31,7 +31,7 @@ source('R/appdown.r')
 ```
 
 ```{asis, echo=knitr::is_html_output()}
-# Preface {#cover .unnumbered}
+# Preface {#sec-cover .unnumbered}
 
 <!-- Just want this preface in the gitbook.
      PDF output will have its own copyright page after the title.-->

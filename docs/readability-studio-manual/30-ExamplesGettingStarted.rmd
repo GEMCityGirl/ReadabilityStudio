@@ -133,11 +133,11 @@ In this section, any statistics that may be problematic will be highlighted in r
 
 ![](images/examplestats.png)
 
-Click on the **difficult sentences** link in this section to go to the [**Long Sentences**](#reviewing-sentences-breakdown) subitem of the **Sentences Breakdown** section. This window will display a list of all the overly-long sentences in our recipes. As we can see, there are a few rather long sentences that are adversely affecting our scores.
+Click on the **difficult sentences** link in this section to go to the [**Long Sentences**](#sec-reviewing-sentences-breakdown) subitem of the **Sentences Breakdown** section. This window will display a list of all the overly-long sentences in our recipes. As we can see, there are a few rather long sentences that are adversely affecting our scores.
 
 ![](images/examplelongsentences.png)
 
-Long sentences can seem unfocused and difficult to read, and it is recommended to shorten or split them. To view any of these sentences in its original context, double-click on it in this list. The program will switch to the [**Highlighted Report**](#reviewing-standard-grammar) page with this sentence highlighted:
+Long sentences can seem unfocused and difficult to read, and it is recommended to shorten or split them. To view any of these sentences in its original context, double-click on it in this list. The program will switch to the [**Highlighted Report**](#sec-reviewing-standard-grammar) page with this sentence highlighted:
 
 ![](images/longsentenceselected.png)
 
@@ -151,7 +151,12 @@ Not only is it long, but it is a little confusing. It is unclear what was mixed 
 
 Continue this process for as many of the long sentences as you can. Sentences in the 20-word range are normally acceptable, but sentences over 30 words should be revised.
 
-Other useful tools for shortening sentences in *Readability Studio* are the other pages in the **Grammar** section. Click on the **Grammar** icon on the project sidebar. Click on the [**Repeated Words**](#reviewing-repeated-words) page and note how the phrase *and and* is in the file (obviously a typo). Next, click on the [**Redundant Phrases**](#reviewing-redundant-phrases) page. Note how the phrase *mixed together* is redundant and the program is suggesting that it be replaced with *mixed*. A [**Wordy Items**](#reviewing-wordy-items) and [**Clichés**](#sec-reviewing-cliches) page may also appear, but there do not seem to be any of these in this file. By fixing these items, we can shorten sentences and improve the overall document.
+Other useful tools for shortening sentences in *Readability Studio* are the other pages in the **Grammar** section.
+Click on the **Grammar** icon on the project sidebar. Click on the [**Repeated Words**](#sec-reviewing-repeated-words) page and note how the phrase *and and* is in the file (obviously a typo).
+Next, click on the [**Redundant Phrases**](#sec-reviewing-redundant-phrases) page.
+Note how the phrase *mixed together* is redundant and the program is suggesting that it be replaced with *mixed*.
+A [**Wordy Items**](#sec-reviewing-wordy-items) and [**Clichés**](#sec-reviewing-cliches) page may also appear, but there do not seem to be any of these in this file.
+By fixing these items, we can shorten sentences and improve the overall document.
 
 Although there are not many difficult words in this file, it may be worthwhile to at least review them. Click on the **Words Breakdown** icon on the project sidebar. This will display various lists of difficult words. Select the **3+ syllable words** page and click on the **Syllable Count** column header twice to [sort](#sec-column-sorting) the words into descending order. As illustrated below, there are a few words containing four syllables, which can be difficult for most readers.
 
@@ -291,11 +296,11 @@ This document should be an easy-to-read list of software features intended for a
 
 ![](images/featuresstats.png)
 
-As we can see, there are some very long sentences in this document and they are the biggest factor in our high scores. To view a list of these sentences, click the **difficult sentences** link. You can also click the **Sentences Breakdown** icon in the sidebar and select the [**Long Sentences**](#reviewing-sentences-breakdown) page.
+As we can see, there are some very long sentences in this document and they are the biggest factor in our high scores. To view a list of these sentences, click the **difficult sentences** link. You can also click the **Sentences Breakdown** icon in the sidebar and select the [**Long Sentences**](#sec-reviewing-sentences-breakdown) page.
 
 ![](images/featuressentencelist.png)
 
-This list can be sorted alphabetically, by word count, or by location. To view any sentence in its original context, double-click on it. This will take you to the [**Grammar**](#reviewing-standard-grammar) section. In this window, all the overly-long sentences and wordy items are highlighted and each sentence is followed by its respective word count (in parentheses).
+This list can be sorted alphabetically, by word count, or by location. To view any sentence in its original context, double-click on it. This will take you to the [**Grammar**](#sec-reviewing-standard-grammar) section. In this window, all the overly-long sentences and wordy items are highlighted and each sentence is followed by its respective word count (in parentheses).
 
 ![](images/featuressentences.png)
 

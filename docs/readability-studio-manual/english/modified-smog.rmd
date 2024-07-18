@@ -27,6 +27,6 @@ AltDesc <- "."
 glue('Note that numerals\\index{numerals!Modified SMOG} are fully syllabized (i.e., sounded out) for this test$if_else(UserManualMode, OptionsDesc, AltDesc)^', .open='$', .close='^')
 ```
 
-This test requires a 10-sentence sample, with 3 samples being recommended for best results. ([Normalization](#glossary) can also be used to analyze larger samples or entire documents.)\index{Modified SMOG|)}
+This test requires a 10-sentence sample, with 3 samples being recommended for best results. ([Normalization](#sec-glossary) can also be used to analyze larger samples or entire documents.)\index{Modified SMOG|)}
 
 \newpage

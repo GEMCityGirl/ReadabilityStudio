@@ -54,8 +54,8 @@ glue('- Count the number of syllables in each passage and subtract 67 to adjust 
 - If the sample's syllable or sentence count is too low or high for it to be plotted, then adjust that factor so that it can fit onto the chart. For example, if a sample has 261 syllables per 100 words, then this will need to be adjusted to 249.
 - Repeat this process for each sample, and then average the samples.
 
-This test is designed for 100-word samples, with 3 samples being recommended for best results. ([Normalization](#glossary) can also be used to analyze larger samples or entire documents.)
+This test is designed for 100-word samples, with 3 samples being recommended for best results. ([Normalization](#sec-glossary) can also be used to analyze larger samples or entire documents.)
 
-Note that numerals\index{numerals!Gilliam-Peña-Mountain} are fully syllabized for this test. For example, “1945” will be counted as nine syllables (“u-no”-“nu-e-ve”-“cua-tro”-“cin-co”).\index{Gilliam-Peña-Mountain|)}
+Note that numerals\index{numerals!Gilliam-Peña-Mountain} are fully syllabized for this test. For example, "1945" will be counted as nine syllables (“u-no”-“nu-e-ve”-“cua-tro”-“cin-co”).\index{Gilliam-Peña-Mountain|)}
 
 \newpage
