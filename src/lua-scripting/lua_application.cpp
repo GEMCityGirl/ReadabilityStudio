@@ -536,7 +536,7 @@ namespace LuaScripting
                                  badLink.first, badLink.second));
             wxLogError(L"Broken link in '%s': %s", badLink.first, badLink.second);
             }
-        if (badLinks.size() == 0)
+        if (badLinks.empty())
             {
             wxLogMessage(L"No bad links found in help folder.");
             }
@@ -550,7 +550,7 @@ namespace LuaScripting
                 badImage.first, badImage.second));
             wxLogError(L"Bad image size in '%s': %s", badImage.first, badImage.second);
             }
-        if (badImageSizes.size() == 0)
+        if (badImageSizes.empty())
             {
             wxLogMessage(L"No image issues found in help folder.");
             }
