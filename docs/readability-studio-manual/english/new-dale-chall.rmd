@@ -5,12 +5,12 @@ The New Dale-Chall\index{Dale-Chall!zzzzz@\igobble|seealso{New Dale-Chall}} read
 - Regular plural and possessive forms of common words (i.e., *s*, *es*, and *ies* endings). Irregular forms (e.g., *oxen*) are not familiar.
 - Adjectival and verb forms of common words with the following endings: *d*, *ed*, *ied*, *ing*, *s*, *es*, *ies*, *r*, *er*, *est*, *ier*, *iest*.
 - Compound and hyphenated words if both parts of the word are common words. For example, *long-haired* and *and/or* would be familiar. Note that forward slashes (*/*) are also treated as compound-word punctuation.
-- The [first instance of any proper noun](#options-dale-chall)—all subsequent occurrences are considered familiar.
+- The [first instance of any proper noun](#sec-options-dale-chall)—all subsequent occurrences are considered familiar.
 - All numerals.\index{numerals!New Dale-Chall}
 
 ::: {.notesection data-latex=""}
 ```{r, results='asis', eval=T, echo=F}
-OptionsDesc <- "The default [text exclusion](#sec-options-text-exclusion) method\\index{text exclusion!New Dale-Chall} will be overridden for this specific test, although this behavior can be customized from the [**Options**](#readability-test-options) dialog."
+OptionsDesc <- "The default [text exclusion](#sec-options-text-exclusion) method\\index{text exclusion!New Dale-Chall} will be overridden for this specific test, although this behavior can be customized from the [**Options**](#sec-readability-test-options) dialog."
 
 glue('This test treats headers and subheaders as full sentences, but excludes lists and tables. $if_else(UserManualMode, OptionsDesc, "")^', .open='$', .close='^')
 ```

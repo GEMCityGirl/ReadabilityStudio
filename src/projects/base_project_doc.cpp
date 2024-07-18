@@ -380,7 +380,7 @@ void BaseProjectDoc::UpdateExplanationListOptions(ExplanationListCtrl* eList)
 
     eList->SetResources(
         wxGetApp().GetMainFrame()->GetHelpDirectory(),
-        L"column-sorting.html");
+        L"sec-column-sorting.html");
 
     UpdatePrinterHeaderAndFooters(eList);
     }
@@ -464,7 +464,7 @@ void BaseProjectDoc::UpdateListOptions(ListCtrlEx* list)
     list->SetExportResources(
         wxGetApp().GetMainFrame()->GetHelpDirectory(),
         L"sec-export-list.html");
-    list->SetSortHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"column-sorting.html");
+    list->SetSortHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"sec-column-sorting.html");
 
     UpdatePrinterHeaderAndFooters(list);
     }

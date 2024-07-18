@@ -89,7 +89,7 @@ knitr::include_graphics("images/example-graph-background-image-effect-changed.pn
 
 ## Adding Watermarks and Logos {#sec-graph-watermark-example}
 
-Next, let's put a [watermark](#watermark-and-logo) across our graph. Click the `r keys("Watermark")` button in the **Edit** section.
+Next, let's put a [watermark](#sec-watermark-and-logo) across our graph. Click the `r keys("Watermark")` button in the **Edit** section.
 Enter the following into the **Watermark** dialog and click `r keys("OK")`:
 
 > INTERNAL USE ONLY
@@ -103,7 +103,7 @@ knitr::include_graphics("images/example-watermark-changed.png")
 ```
 
 ::: {.tipsection data-latex=""}
-Entering `@DATE@` in the watermark field will show the current date when the graph is rendered. Refer to \@ref(options-graphs) for other watermark options.
+Entering `@DATE@` in the watermark field will show the current date when the graph is rendered. Refer to \@ref(sec-options-graphs) for other watermark options.
 :::
 
 Now let's put a company logo on our graph. Click the `r keys("Logo")` button in the **Edit** section. Select an image and click `r keys("OK")`.

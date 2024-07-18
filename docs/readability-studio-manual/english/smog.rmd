@@ -37,7 +37,7 @@ The simplified version of this formula uses lower precision. It was originally o
 This test requires 3 10-sentence samples, but [normalization](#glossary) can be used to analyze entire documents.
 
 ```{r, results='asis', eval=T, echo=F}
-OptionsDesc <- ", so the program overrides your [numeral syllabication](#numsyllable) setting when calculating it."
+OptionsDesc <- ", so the program overrides your [numeral syllabication](#sec-numsyllable) setting when calculating it."
 
 AltDesc <- "."
 

@@ -1648,7 +1648,7 @@ bool ProjectView::OnCreate(wxDocument* doc, long flags)
     readabilityScoresView->SetRightPrinterFooter(
         wxGetApp().GetAppOptions().GetRightPrinterFooter());
     readabilityScoresView->SetResources(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                                        L"column-sorting.html");
+                                        L"sec-column-sorting.html");
     GetReadabilityResultsView().AddWindow(readabilityScoresView);
     GetSplitter()->SplitVertically(GetSideBar(), readabilityScoresView,
                                    GetSideBar()->GetMinWidth());

@@ -20,7 +20,7 @@ The steps for calculating Modified SMOG are:
 - If this square root is 4 or more, then add 1. Otherwise, the square root should remain the same. This will be the grade level score.
 
 ```{r, results='asis', eval=T, echo=F}
-OptionsDesc <- ", so the program overrides your [numeral syllabication](#numsyllable) setting when calculating it."
+OptionsDesc <- ", so the program overrides your [numeral syllabication](#sec-numsyllable) setting when calculating it."
 
 AltDesc <- "."
 

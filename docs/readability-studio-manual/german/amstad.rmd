@@ -33,7 +33,7 @@ kableExtra::kbl(read_delim("data/AmstadConversionTable.txt", "\t", escape_double
 ```
 
 ::: {.notesection data-latex=""}
-Like Flesch Reading Ease, this test treats numerals\index{numerals!Amstad} as monosyllabic words by default. This behavior can be changed from the [**Options**](#readability-test-options) dialog.
+Like Flesch Reading Ease, this test treats numerals\index{numerals!Amstad} as monosyllabic words by default. This behavior can be changed from the [**Options**](#sec-readability-test-options) dialog.
 :::
 
 \newpage

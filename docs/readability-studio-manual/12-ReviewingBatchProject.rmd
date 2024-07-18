@@ -50,7 +50,7 @@ By default, the following statistics for each test are included:
 :::
 
 ::: {.minipage data-latex="{\textwidth}"}
-If [**Extended Information**](#options-summary-report) is enabled, then these additional statistics will be included:
+If [**Extended Information**](#sec-options-summary-report) is enabled, then these additional statistics will be included:
 
 - [Median](#stat-terms)\index{median}: the middle test score. This represents the middle point separating the lower and upper halves of the scores. This is calculated by sorting the scores and taking the score in middle if the number of scores is odd. If the number of scores is even, then the means of the two middle points is taken.
 - [Skewness](#stat-terms)\index{skewness}: the asymmetry of the scores' distribution.
@@ -199,7 +199,7 @@ After opening a project, click on the **Sentences Breakdown** icon on the projec
 
 Note that if you are ignoring incomplete sentences, then this list will only include the complete sentences. If you need to review all the sentences from the documents, then select the option [**Include in analysis and treat as full sentences**](#sec-document-analysis). Refer to \@ref(sec-how-text-is-excluded) to learn more about how *Readability Studio* handles incomplete sentences.
 
-To find the longest sentence, [sort](#column-sorting) the **Longest Sentence Length** column into descending order. As we can see below, the longest sentence is now shown at the top of the list.
+To find the longest sentence, [sort](#sec-column-sorting) the **Longest Sentence Length** column into descending order. As we can see below, the longest sentence is now shown at the top of the list.
 
 ![](images/batchlongestsentence.png)
 
@@ -431,13 +431,13 @@ The **Dolch Words** subitem will display the percentages of **Dolch** words used
 
 ![](images/batchdolchwords.png)
 
-Note that the raw counts of these words will also be included if [**Extended Information**](#options-summary-report) is enabled.
+Note that the raw counts of these words will also be included if [**Extended Information**](#sec-options-summary-report) is enabled.
 
 The **Non-Dolch Words** subitem will display the percentages of words from each document that do not appear on any of the **Dolch** lists:
 
 ![](images/batchdolchnonwords.png)
 
-Note that the raw counts of these words will also be included if [**Extended Information**](#options-summary-report) is enabled.
+Note that the raw counts of these words will also be included if [**Extended Information**](#sec-options-summary-report) is enabled.
 
 \newpage
 

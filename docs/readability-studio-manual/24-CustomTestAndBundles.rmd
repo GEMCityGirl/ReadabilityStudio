@@ -208,9 +208,9 @@ Also, can't use kable here because we have index tags embedded in the text.
 
 Table: Document Statistics Functions
 
-^a^ Uses the [Dale-Chall text-exclusion](#options-dale-chall) method.\
+^a^ Uses the [Dale-Chall text-exclusion](#sec-options-dale-chall) method.\
 ^b^ Uses the [Harris-Jacobson text-exclusion method](#sec-options-harris-jacobson).\
-^c^ Uses the [Gunning Fog](#options-gunning-fog) sentence-counting method.\
+^c^ Uses the [Gunning Fog](#sec-options-gunning-fog) sentence-counting method.\
 This will be either traditional sentence counting or unit counting.
 :::
 

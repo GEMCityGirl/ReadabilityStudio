@@ -3377,7 +3377,7 @@ void MainFrame::OnViewLogReport([[maybe_unused]] wxRibbonButtonBarEvent& event)
             wxPoint{ xPos + (screenWidth - (xPos + m_logWindow->GetSize().GetWidth())), yPos });
 
         m_logWindow->SetSortHelpTopic(
-            GetHelpDirectory(), _DT(L"column-sorting.html"));
+            GetHelpDirectory(), _DT(L"sec-column-sorting.html"));
         }
     wxGetApp().UpdateRibbonTheme(m_logWindow->GetRibbon());
     m_logWindow->SetActiveLog(wxGetApp().GetLogFile());

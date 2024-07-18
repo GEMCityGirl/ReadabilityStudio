@@ -104,7 +104,7 @@ Multiple-document graphs are also provided in the *Professional* edition of *Rea
 
 #### Detailed statistics {-}
 
-Numerous sentence and word statistics are provided. This includes a full difficult-words breakdown and word & sentence-length averages. The type of statistics included is also [customizable](#options-statistics).
+Numerous sentence and word statistics are provided. This includes a full difficult-words breakdown and word & sentence-length averages. The type of statistics included is also [customizable](#sec-options-statistics).
 
 #### Lists of difficult words and sentences {-}
 

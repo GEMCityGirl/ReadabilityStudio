@@ -20,7 +20,7 @@ If you wish to change options for an individual project, then click the `r keys(
 knitr::include_graphics("images/projectproperties.png")
 ```
 
-## General Settings {#options-general-settings}
+## General Settings {#sec-options-general-settings}
 
 The options on this page manage the program's general settings.
 
@@ -326,7 +326,7 @@ _____ are fluctuations of _____ within the quantum foam that appear _____ and an
 
 This would be seen as a 13-word sentence, with all the phrases from the exclusion list removed. Note that the first instance of *fluctuations* is removed from the analysis because it is part of the phrase *Quantum Fluctuations* (which is on the exclusion list). However, the second instance of *fluctuations* will be included because it is not part of the phrase that we requested to ignore. To exclude all instances of *fluctuations*, include in the list on a separate line.
 
-This phrase list can be edited by clicking the button next to this field, which will open the [**Edit Word/Phrase List**](#edit-word-list-dialog) dialog.
+This phrase list can be edited by clicking the button next to this field, which will open the [**Edit Word/Phrase List**](#sec-edit-word-list-dialog) dialog.
 
 **Include first occurrence**: Select this option to not exclude the first occurrence of any word or phrase from your exclusion list. All remaining occurrences of these words in the document will be excluded. This is useful if you wish to only analyze the first instance of certain difficult words.
 
@@ -337,7 +337,7 @@ This phrase list can be edited by clicking the button next to this field, which 
 These options are not available if **Do not exclude any text** is selected.
 :::
 
-### Numerals\index{numerals!syllable counting} {-#numsyllable}
+### Numerals\index{numerals!syllable counting} {-#sec-numsyllable}
 
 :::: {.optionssection data-latex=""}
 ::: {.optionssectiontitle data-latex=""}
@@ -355,7 +355,7 @@ The following options control how numeric words are syllabized\index{syllables!n
 These options are not applicable if **Also exclude numerals** is checked.
 :::
 
-### Edit Word/Phrase List {-#edit-word-list-dialog}
+### Edit Word/Phrase List {-#sec-edit-word-list-dialog}
 
 This dialog can edit either a word or phrase list.
 
@@ -373,13 +373,13 @@ Buttons to add, edit, and remove items are also available above the grid.
 
 \newpage
 
-## Readability Scores {#readability-test-options}
+## Readability Scores {#sec-readability-test-options}
 
-### Test Options {-#options-test-options}
+### Test Options {-#sec-options-test-options}
 
 The options on this page customize the behavior of certain tests.
 
-#### Gunning Fog {-#options-gunning-fog}
+#### Gunning Fog {-#sec-options-gunning-fog}
 
 **Count independent clauses**: Check this option to count independent clauses as separate sentences when calculating a [Gunning Fog](#gunning-fog-test) score. Independent clauses are detected by dashes, colons, and semicolons within a sentence.
 
@@ -387,7 +387,7 @@ Although this behavior is recommended in *The Technique of Clear Writing*, it wi
 
 This option affects the Gunning Fog\index{Gunning Fog!customizing}, (PSK) Gunning Fog, and New Fog Count\index{New Fog Count!customizing} tests.
 
-#### Flesch {-#options-flesch}
+#### Flesch {-#sec-options-flesch}
 
 :::: {.optionssection data-latex=""}
 ::: {.optionssectiontitle data-latex=""}
@@ -398,14 +398,14 @@ Select one of the following options to control how numerals\index{numerals!Flesc
 
 **Count numerals as one syllable**: Select this option to consider all numerals as monosyllabic.
 
-**System default**: Select this option to use the system default [numeral syllabication](#numsyllable) method.
+**System default**: Select this option to use the system default [numeral syllabication](#sec-numsyllable) method.
 
 This option affects the Flesch, PSK Flesch, and Amstad\index{Amstad} tests.
 
 Note that these options are not applicable if [**Also exclude numerals**](#sec-options-text-exclusion) is checked.
 ::::
 
-#### Flesch-Kincaid {-#options-flesch-kincaid}
+#### Flesch-Kincaid {-#sec-options-flesch-kincaid}
 
 :::: {.optionssection data-latex=""}
 ::: {.optionssectiontitle data-latex=""}
@@ -416,12 +416,12 @@ Select from the following options to control how numerals\index{numerals!Flesch-
 
 **Sound out each digit**: Select this option to have the program sound out each digit when counting the syllables of numeric words. For example, the word *555-4778* will be considered nine syllables–read as *five-five-five-four-seven-seven-eight*.
 
-**System default**: Select this option to use the system default [numeral syllabication](#numsyllable) method.
+**System default**: Select this option to use the system default [numeral syllabication](#sec-numsyllable) method.
 
 Note that these options are not applicable if [**Also exclude numerals**](#sec-options-text-exclusion) is checked.
 ::::
 
-#### Dale-Chall {-#options-dale-chall}
+#### Dale-Chall {-#sec-options-dale-chall}
 
 **Include Catholic Supplement**: Check this option to include [Stocker's supplementary word list](#stocker-catholic-supplement)\index{Stocker's Catholic Supplement!including with New Dale-Chall} for Catholic\index{New Dale-Chall!including Catholic words} students.
 
@@ -483,15 +483,15 @@ The **text exclusion** option will affect any custom test using the following fu
 - `FamiliarHarrisJacobsonWordCount()`
 :::
 
-### Scores {-#options-scores}
+### Scores {-#sec-options-scores}
 
 The options on this page customize which results to include in the **Readability Scores** section and how grade-level scores and reading ages are displayed. Most readability tests use U.S. K-12 (+college) grade levels to represent their scores; however, *Readability Studio* can display these scores in other formats as well. For example, a score of 4 could be shown as *Key stage 2 (year 5)* if using the Key Stages grade scale.
 
-#### Results {-#options-results-options}
+#### Results {-#sec-options-results-options}
 
 **Include test-summary report**: Check this option to include a summary report of the test scores in the results.
 
-#### Grade Display {-#grade-display}
+#### Grade Display {-#sec-grade-display}
 
 **Grade scale**: Select from this list the grade scale that you wish to use. This will affect:
 
@@ -506,7 +506,7 @@ Refer to \@ref(grade-scales) for a list of available scales.
 
 **Display scores in long format**: Check this to display readability scores in long format (e.g., *2^nd^ grade*) within the score grid.
 
-#### Reading Age Display {-#reading-age}
+#### Reading Age Display {-#sec-reading-age}
 
 :::: {.optionssection data-latex=""}
 ::: {.optionssectiontitle data-latex=""}
@@ -526,7 +526,7 @@ Note that reading ages do not contain floating-point precision, even if their re
 
 \newpage
 
-## Statistics {#options-statistics}
+## Statistics {#sec-options-statistics}
 
 The options on this page customize which statistics to include in your reports and results.
 
@@ -536,7 +536,7 @@ The options on this page customize which statistics to include in your reports a
 
 **Tabular Report**: Check this to include the statistics (tabular format) in the results.
 
-### Summary Report {-#options-summary-report}
+### Summary Report {-#sec-options-summary-report}
 
 **Paragraphs**: Check this to include the paragraph statistics in the report.
 
@@ -552,7 +552,7 @@ The options on this page customize which statistics to include in your reports a
 
 **Extended Information**: Check this to include more verbose statistics and notes in the results. These additional results will appear in the summary report, the scores grid, and batch statistics.
 
-### Dolch Report {-#options-dolch-report}
+### Dolch Report {-#sec-options-dolch-report}
 
 **Coverage**: Check this to include the word coverage statistics in the report.
 
@@ -562,7 +562,7 @@ The options on this page customize which statistics to include in your reports a
 
 \newpage
 
-## Words Breakdown {#options-words-breakdown}
+## Words Breakdown {#sec-options-words-breakdown}
 
 The options on this page customize which results are included in the [**Words Breakdown**](#reviewing-word-breakdowns) section.
 
@@ -606,7 +606,7 @@ The options on this page customize which results are included in the [**Sentence
 
 \newpage
 
-## Grammar {#options-grammar}
+## Grammar {#sec-options-grammar}
 
 The options on this page customize grammar analysis.
 
@@ -638,7 +638,7 @@ The options in this section customize which features are included in the grammar
 
 **Lowercased Sentences**: Check this to include [lowercased sentences](#reviewing-lowercased-sentences) in the results.
 
-### Spell Checker {-#options-spell-check}
+### Spell Checker {-#sec-options-spell-check}
 
 The options in this section select what the spell checker should ignore.
 
@@ -676,7 +676,7 @@ Checking this option will instruct the program to not consider words such as *ta
 
 \newpage
 
-## Highlighted Reports {#options-highlighted-reports}
+## Highlighted Reports {#sec-options-highlighted-reports}
 
 ### General {-}
 
@@ -708,7 +708,7 @@ Highlight text by changing its
 
 \newpage
 
-### Dolch Sight Words {-#dolch-options}
+### Dolch Sight Words {-#sec-dolch-options}
 
 The options on this page select which categories of [Dolch](#sec-reviewing-dolch) words to highlight and how to highlight them.
 
@@ -730,7 +730,7 @@ The options on this page select which categories of [Dolch](#sec-reviewing-dolch
 
 \newpage
 
-## Graphs {#options-graphs}
+## Graphs {#sec-options-graphs}
 
 ### General {-}
 
@@ -788,7 +788,7 @@ The following options can be used to fit the image to the plot background:
 **Shrink to fit**: Shrink the image to the plot area, maintaining its aspect ratio.
 ::::
 
-#### Watermarks & Logos {-#watermark-and-logo}
+#### Watermarks & Logos {-#sec-watermark-and-logo}
 
 **Watermark**: Enter a label to be stamped across your graphs into this field. This label will be stamped diagonally across each graph, top left-hand corner to bottom right-hand corner.
 
@@ -806,9 +806,9 @@ Note that watermarks and logos will also appear when you [print](#sec-printing) 
 
 #### Effects {-}
 
-**Stipple image**: Enter into this field the file path to the image used for a stipple brush. A stipple brush can be used to draw stacked images across [bars](#options-bar-charts) and [boxes](#options-box-plots).
+**Stipple image**: Enter into this field the file path to the image used for a stipple brush. A stipple brush can be used to draw stacked images across [bars](#sec-options-bar-charts) and [boxes](#sec-options-box-plots).
 
-**Stipple shape**: Select from here which shape to use for a stipple brush. A stipple brush can be used to draw stacked shape across [bars](#options-bar-charts) and [boxes](#options-box-plots).
+**Stipple shape**: Select from here which shape to use for a stipple brush. A stipple brush can be used to draw stacked shape across [bars](#sec-options-bar-charts) and [boxes](#sec-options-box-plots).
 
 **Common image**: Enter into this field the file path to the image used for drawing underneath all the bars or boxes on the graphs.
 
@@ -848,7 +848,7 @@ The options on this page customize the title fonts of your graphs.
 
 **Right titles**: Click this button to select the font for the right title in your graphs.
 
-### Readability Graphs {-#options-readability-graphs}
+### Readability Graphs {-#sec-options-readability-graphs}
 
 The options on this page customize various readability graph settings.
 
@@ -870,7 +870,7 @@ Selects the layout style of the Raygor graph. These options include:
 **Modern**: This is a modernized version of Baldwin-Kaufman, where the labels are serif, not abbreviated, and spread out further. The axis labels and titles are also more descriptive.
 ::::
 
-#### Flesch Chart {-#options-flesch-chart}
+#### Flesch Chart {-#sec-options-flesch-chart}
 
 **Connect points**: Check this to connect the factor and score points on the [Flesch](#flesch-test)\index{Flesch Reading Ease!customizing} chart.
 
@@ -880,11 +880,11 @@ This will display brackets along the right-most ruler, divided into ranges of tw
 
 This option only applies to batch projects, and only for batches containing fifty or less documents. Also, this feature will remove the legend (if grouping is in use).
 
-#### Lix Gauge {-#options-lix-gauge}
+#### Lix Gauge {-#sec-options-lix-gauge}
 
 **Use English translations for German Lix gauge**: Check this to display Schulz’s [-@{schulz}53] English translated bracket labels on the [German Lix](#lix-german-technical) gauge.
 
-### Bar Charts {-#options-bar-charts}
+### Bar Charts {-#sec-options-bar-charts}
 
 The options on this page customize your bar charts' settings.
 
@@ -905,9 +905,9 @@ Effect
 
 **Color fade, top to bottom**: Select this option to apply a color fade across your bars (starting from the top).
 
-**Stipple image**: Select this option to draw a stack of images across your bars. The image for this brush is specified on the [**General**](#options-graphs) page.
+**Stipple image**: Select this option to draw a stack of images across your bars. The image for this brush is specified on the [**General**](#sec-options-graphs) page.
 
-**Stipple shape**: Select this option to draw a shape across your bars. The shape for this brush is specified on the [**General**](#options-graphs) page.
+**Stipple shape**: Select this option to draw a shape across your bars. The shape for this brush is specified on the [**General**](#sec-options-graphs) page.
 
 **Watercolor**: Select this option to draw a watercolor-like effect across the bars. This will appear as if bars are warped and look like they were filled in with watercolor paint (or a marker).
 
@@ -951,9 +951,9 @@ Effect
 
 **Color fade, top to bottom**: Select this option to apply a color fade across your bars (starting from the top).
 
-**Stipple image**: Select this option to draw a stack of images across your bars. The image for this brush is specified on the [General](#options-graphs) page.
+**Stipple image**: Select this option to draw a stack of images across your bars. The image for this brush is specified on the [General](#sec-options-graphs) page.
 
-**Stipple shape**: Select this option to draw a shape across your bars. The shape for this brush is specified on the [**General**](#options-graphs) page.
+**Stipple shape**: Select this option to draw a shape across your bars. The shape for this brush is specified on the [**General**](#sec-options-graphs) page.
 
 **Watercolor**: Select this option to draw a watercolor-like effect across the bars. This will appear as if bars are warped and look like they were filled in with watercolor paint (or a marker).
 
@@ -1031,7 +1031,7 @@ Labels
 **No labels**: Select this option to not display bin labels.
 ::::
 
-### Box Plots\index{box plots!customizing} {-#options-box-plots}
+### Box Plots\index{box plots!customizing} {-#sec-options-box-plots}
 
 The options on this page customize the test-score box plots included in [batch projects](#sec-creating-batch-project) and the **Sentence Lengths** box plot in [standard projects](#sec-creating-standard-project).
 
@@ -1052,9 +1052,9 @@ Effect
 
 **Color fade, right to left**: Select this option to apply a color fade across your boxes (starting from the right).
 
-**Stipple image**: Select this option to draw a stack of images across your boxes. The image for this brush is specified on the [**General**](#options-graphs) page.
+**Stipple image**: Select this option to draw a stack of images across your boxes. The image for this brush is specified on the [**General**](#sec-options-graphs) page.
 
-**Stipple shape**: Select this option to draw a shape across your boxes. The shape for this brush is specified on the [**General**](#options-graphs) page.
+**Stipple shape**: Select this option to draw a shape across your boxes. The shape for this brush is specified on the [**General**](#sec-options-graphs) page.
 
 **Watercolor**: Select this option to draw a watercolor-like effect across the boxes. This will appear as if boxes are warped and look like they were filled in with watercolor paint (or a marker).
 
@@ -1071,4 +1071,5 @@ Effect
 
 **Show all data points**: Check this to display all data points on the box and whiskers. If this is unchecked, then only outliers will be shown.
 
-**Box coefficient**: Enter the coefficient here to specify the percentiles range used for the upper and lower control limits. For example, a coefficient of 25 will use the 25^th^ and 75^th^ percentiles range (i.e., the quartiles range).
+**Box coefficient**: Enter the coefficient here to specify the percentiles range used for the upper and lower control limits.
+For example, a coefficient of 25 will use the 25^th^ and 75^th^ percentiles range (i.e., the quartiles range).

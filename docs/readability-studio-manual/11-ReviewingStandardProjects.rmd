@@ -8,7 +8,7 @@ The top area of the **Scores** window is the score grid. In here there are four 
 
 - **Test**: the name of the readability test.
 - **Grade Level**: the minimum grade level that the test determined the document is suitable for.
-- **Reader Age**: the minimum reader age that the test determined the document is suitable for. The reader age is determined from the test's score. It can be shown as either a [range](#reading-age) for the entire grade, or be rounded to the semester that the grade score falls into.
+- **Reader Age**: the minimum reader age that the test determined the document is suitable for. The reader age is determined from the test's score. It can be shown as either a [range](#sec-reading-age) for the entire grade, or be rounded to the semester that the grade score falls into.
 - **Scale Value**: the index value for tests that use special scales.
 - [**Predicted Cloze Score**](#cloze)\index{cloze}: the estimated score if the document were to be used for a cloze test. Note that cloze scores will be displayed in percentage format (i.e., 0–100) instead of floating-point format (i.e., .0–1.0) for easier reading.
 
@@ -22,7 +22,7 @@ Select any test in the results grid to display an explanation of its score in th
 
 Along with an explanation of the test's results, the factors that it uses to determine difficulty are also shown. For example, if **Sentence Length** and **Word Length** have an *X* next to them, then these variables are used in the test's equation. To lower the score for a given test, try to improve its factors (e.g., lower the document's average sentence length).
 
-Finally, the averages (means)\index{mean} of your test scores and ages are displayed at the bottom of the results window. Their respective [modes](#stat-terms)\index{mode}, [medians](#stat-terms)\index{median}, and [standard deviations](#stat-terms)\index{standard deviation} are also included if [**Extended Information**](#options-summary-report) is enabled. Note that scores are truncated when searching for the grade-level mode. For example, *6.7* and *6.2* will both be treated as *6*. Mode generally requires discrete data to produce meaningful results; therefore, grade-level scores are converted to their base grades for this statistic.
+Finally, the averages (means)\index{mean} of your test scores and ages are displayed at the bottom of the results window. Their respective [modes](#stat-terms)\index{mode}, [medians](#stat-terms)\index{median}, and [standard deviations](#stat-terms)\index{standard deviation} are also included if [**Extended Information**](#sec-options-summary-report) is enabled. Note that scores are truncated when searching for the grade-level mode. For example, *6.7* and *6.2* will both be treated as *6*. Mode generally requires discrete data to produce meaningful results; therefore, grade-level scores are converted to their base grades for this statistic.
 
 When calculating these statistics, failed test scores are treated as missing observations and not included. For example, let us say that you included 5 tests, but one of them could not be calculated. In this case, the valid 4 scores will be added and divided by 4 (not 5) to acquire the means. Also, grade range scores–such as *5–6* from [New Dale-Chall](#dale-chall-test)\index{New Dale-Chall!grade-range averaging}–will be converted to its own average (e.g., *5–6* will be 5.5).
 
@@ -163,7 +163,7 @@ The **Report** and **Tabular Report** windows display the document's statistics 
 - number of paragraphs and average number of sentences per paragraph
 - number of sentences and average number of words per sentence
 - number and percentage of difficult sentences
-- number of [units](#glossary)\index{sentences!units}/independent clauses\index{independent clauses|see{sentences units}} (This statistic is only available if [**Extended Information**](#options-summary-report) is enabled.)
+- number of [units](#glossary)\index{sentences!units}/independent clauses\index{independent clauses|see{sentences units}} (This statistic is only available if [**Extended Information**](#sec-options-summary-report) is enabled.)
 - number of interrogative sentences (questions)
 - number of exclamatory sentences
 - number of words
@@ -179,7 +179,7 @@ The **Report** and **Tabular Report** windows display the document's statistics 
 - number and percentage of total (and unique) 6+ letter words
 - number and percentage of total (and unique) unfamiliar words (This includes word lists such as [New Dale-Chall](#dale-chall-test)\index{New Dale-Chall!word statistics} and [Spache](#spache-test)\index{Spache Revised!word statistics}. These statistics are only available if the respective tests are included in the project.)
 - number of grammar errors
-- text size (the size of the text in a document, not the actual file size) (This statistic is only available if [**Extended Information**](#options-summary-report) is enabled.)
+- text size (the size of the text in a document, not the actual file size) (This statistic is only available if [**Extended Information**](#sec-options-summary-report) is enabled.)
 
 Statistics for any custom familiar-word tests will also be included in this window.
 
@@ -253,7 +253,7 @@ Note that changing these options from the **Project Properties** dialog will onl
 The different types of graphs that may be shown are:
 
 ::: {.minipage data-latex="{\textwidth}"}
-**Word Counts** [bar chart](#options-bar-charts): This graph shows the total counts of each type of word (e.g., 3+ syllable words) and how each category compares to one another. This bar chart will appear like this:
+**Word Counts** [bar chart](#sec-options-bar-charts): This graph shows the total counts of each type of word (e.g., 3+ syllable words) and how each category compares to one another. This bar chart will appear like this:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/barchart.png")
@@ -330,7 +330,7 @@ Note that if you are ignoring incomplete sentences, then this list will only inc
 If you need to review all the sentences from the document, then select the option [**Do not exclude any text**](#sec-options-text-exclusion).
 Refer to \@ref(sec-how-text-is-excluded) to learn more about how *Readability Studio* handles incomplete sentences.
 
-To find the longest sentence, [sort](#column-sorting) the **Word Count** column into descending order. As you can see below, the longest sentence is now shown at the top of the list.
+To find the longest sentence, [sort](#sec-column-sorting) the **Word Count** column into descending order. As you can see below, the longest sentence is now shown at the top of the list.
 
 ![](images/featuressentencelistsorted.png)
 
@@ -515,7 +515,7 @@ This window will display a list of all possible misspellings from the document.
 
 ![](images/misspellings.png)
 
-Options for controlling how misspellings are searched for are available in the [**Grammar**](#options-grammar) options.
+Options for controlling how misspellings are searched for are available in the [**Grammar**](#sec-options-grammar) options.
 
 Misspelling searching is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
@@ -525,7 +525,7 @@ To add words to your dictionary, first select them in this list. Then, click on 
 
 To edit your custom dictionary, click on the arrow next to the `r keys("Spell Checker")` button and select **Edit...** to show the **Edit Custom Dictionary** dialog. From here, you can add, remove, or edit the words in your custom dictionary.
 
-To change your spell-checking options, click on the arrow next to the `r keys("Spell Checker")` button and select **Settings...** to edit your [grammar](#options-grammar) settings.
+To change your spell-checking options, click on the arrow next to the `r keys("Spell Checker")` button and select **Settings...** to edit your [grammar](#sec-options-grammar) settings.
 
 Note that if there are no misspellings in your document, then this window will not be included.
 
@@ -719,7 +719,7 @@ The **Dolch Words** subitem will display the document with the Dolch words highl
 
 Each category (e.g., nouns) will be highlighted by a different color.
 
-To customize category highlighting, click the `r keys("Properties")` button on the **Home** tab to display the **Project Properties** dialog. Then select the **Highlighted Reports** icon and select the [**Dolch Sight Words**](#dolch-options) subitem.
+To customize category highlighting, click the `r keys("Properties")` button on the **Home** tab to display the **Project Properties** dialog. Then select the **Highlighted Reports** icon and select the [**Dolch Sight Words**](#sec-dolch-options) subitem.
 
 `r menu(c('Home', 'Project Properties', 'Highlighted Reports', 'Dolch Sight Words'))`
 

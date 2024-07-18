@@ -36,7 +36,7 @@ Table: Flesch Reading Ease index Table
 
 ::: {.notesection data-latex=""}
 ```{r, results='asis', eval=T, echo=F}
-OptionsDesc <- "This behavior can be changed from the [**Options**](#readability-test-options) dialog."
+OptionsDesc <- "This behavior can be changed from the [**Options**](#sec-readability-test-options) dialog."
 
 glue('Note that this test treats numerals\\index{numerals!Flesch Reading Ease} as monosyllabic words by default. $if_else(UserManualMode, OptionsDesc, "")^', .open='$', .close='^')
 ```

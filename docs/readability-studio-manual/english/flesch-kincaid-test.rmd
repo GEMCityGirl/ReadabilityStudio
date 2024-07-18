@@ -33,7 +33,7 @@ Where:
 Initially, this test was named New Reading Ease Formula [-@{kincaid-fishburne-rogers-chissom:1975}14], but was later referred to as Flesch-Kincaid [-@{kincaid-aagard-ohara:1980}19].
 
 ```{r, results='asis', eval=T, echo=F}
-OptionsDesc <- "This behavior can be adjusted from the [**Options**](#readability-test-options) dialog if you prefer a different numeral syllabizing method."
+OptionsDesc <- "This behavior can be adjusted from the [**Options**](#sec-readability-test-options) dialog if you prefer a different numeral syllabizing method."
 
 glue('Note that this test sounds out numerals\'\\index{numerals!Flesch-Kincaid} digits when syllabizing. For example, “1918” will be counted as four syllables (“one”-“nine”-“one”-“eight”). $if_else(UserManualMode, OptionsDesc, "")^', .open='$', .close='^')
 ```
