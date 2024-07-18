@@ -338,7 +338,7 @@ void CustomTestDlg::OnHelp([[maybe_unused]] wxCommandEvent& event)
     {
     wxLaunchDefaultBrowser(wxFileName::FileNameToURL(wxGetApp().GetMainFrame()->GetHelpDirectory() +
                                                      wxFileName::GetPathSeparator() +
-                                                     _DT(L"custom-test-dialog.html")));
+                                                     _DT(L"sec-custom-test-dialog.html")));
     }
 
 //------------------------------------------------------
@@ -828,7 +828,7 @@ void CustomTestDlg::CreateControls()
                 wxGetApp().GetMainFrame()->GetHelpDirectory());
             m_wordListsPropertyGrid->SetPropertyAttribute(GetFileContainingFamiliarWordsLabel(),
                                                           wxPG_TOPIC_PATH,
-                                                          _DT(L"document-analysis.html"));
+                                                          _DT(L"sec-document-analysis.html"));
             m_wordListsPropertyGrid->SetPropertyHelpString(
                 GetFileContainingFamiliarWordsLabel(),
                 _(L"Enter the path to the familiar-word list into this field. "

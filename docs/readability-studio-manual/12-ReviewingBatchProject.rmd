@@ -3,12 +3,12 @@
 ::: {.tipsection data-latex=""}
 For any list that displays a document name in the first column, the following features are available: \
 
-To create a [standard project](#creating-standard-project) for any document in the list, select it and click the `r keys("Subproject")` button on the **Home** tab. This is useful for reviewing a particular document in greater detail. Note that when this standard project is created, it will copy all the project settings from the batch project. (These options may differ from your [global configurations](#options-overview).) \
+To create a [standard project](#sec-creating-standard-project) for any document in the list, select it and click the `r keys("Subproject")` button on the **Home** tab. This is useful for reviewing a particular document in greater detail. Note that when this standard project is created, it will copy all the project settings from the batch project. (These options may differ from your [global configurations](#sec-options-overview).) \
 
 To remove any document in the list from the project, select it and press `r keys('Del')` (`r os_logo('windows')`) or `r keys('\\backdel')` (`r os_logo('apple')`) on your keyboard.
 :::
 
-## Test Scores {#reviewing-batch-scores}
+## Test Scores {#sec-reviewing-batch-scores}
 
 After opening a project, click on the **Readability Scores** icon on the project sidebar. The following lists may be available: **Raw Scores**, **Goals**, **Score Summary**, **Grade Score Summary (x Document)**, and **Cloze Score Summary (x Document)**.
 
@@ -22,7 +22,7 @@ Next to each document name, all of its respective test scores are displayed. In 
 knitr::include_graphics("images/viewitemrawscores.png")
 ```
 
-The **Goals** subitem will display any [goals](#reviewing-goals) that are currently failing in the project:
+The **Goals** subitem will display any [goals](#sec-reviewing-goals) that are currently failing in the project:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/batch-project-goals.png")
@@ -87,7 +87,7 @@ Both of these tabs will include the same statistics as the **Score Summary** pag
 
 \newpage
 
-## Histograms {#reviewing-batch-histograms}
+## Histograms {#sec-reviewing-batch-histograms}
 
 After opening a project, click on the **Histograms** icon on the project sidebar to view your documents' test scores graphically plotted as histograms.
 
@@ -101,7 +101,7 @@ knitr::include_graphics("images/histogrades.png")
 
 We interpret this first by looking at the highest bar. The label above it displays *15*, which is the number of documents in that category. Now, to see the category, we look at the x-axis labels below the bar.
 The *10* on the middle of the bar indicates the bar's range (in this case, the 10^th^ grade).
-Because we are [rounding](#options-histograms) our scores down (the default), scores such as 9.7 will be rounded down and fall into the previous bin (i.e., bar).
+Because we are [rounding](#sec-options-histograms) our scores down (the default), scores such as 9.7 will be rounded down and fall into the previous bin (i.e., bar).
 Scores between 10.0 and 10.9 will fall into this bin; therefore, this bar will represent the 10^th^ grade.
 
 ::: {.tipsection data-latex=""}
@@ -124,16 +124,16 @@ If we revise these documents and reload the project (`r keys("F5")`), then these
 knitr::include_graphics("images/histoimproved.png")
 ```
 
-The appearance of these histograms can be customized from the [**Histogram**](#options-histograms) page of either the [**Options**](#options-overview) or [**Project Properties**](#options-overview) dialog.
+The appearance of these histograms can be customized from the [**Histogram**](#sec-options-histograms) page of either the [**Options**](#sec-options-overview) or [**Project Properties**](#sec-options-overview) dialog.
 
 ::: {.notesection data-latex=""}
-The [binning](#options-histograms) method for a project is only applied to index and predicted-cloze score histograms.
+The [binning](#sec-options-histograms) method for a project is only applied to index and predicted-cloze score histograms.
 Grade-level histograms will always show one bar for each grade level, and the bar axis will start at **0** (i.e., Kindergarten).
 :::
 
 \newpage
 
-## Box Plots\index{box plots!reviewing in batch projects} {#reviewing-batch-box-plots}
+## Box Plots\index{box plots!reviewing in batch projects} {#sec-reviewing-batch-box-plots}
 
 After opening a project, click on the **Score Box Plots** icon on the project sidebar to view the documents' test scores graphically shown as box plots.
 
@@ -156,11 +156,11 @@ As we can see above, the middle half of the documents fall within a marginally a
 
 \newpage
 
-## Readability Graphs {#batch-readability-graphs}
+## Readability Graphs {#sec-batch-readability-graphs}
 
-Refer to \@ref(reviewing-readability-graphs).
+Refer to \@ref(sec-reviewing-readability-graphs).
 
-## Words Breakdown {#reviewing-batch-words}
+## Words Breakdown {#sec-reviewing-batch-words}
 
 After opening a project, click on the **Words Breakdown** icon on the project sidebar, then click any of the following subitems:
 
@@ -191,19 +191,19 @@ Note that test-specific word counts/percentages (e.g., Dale-Chall unfamiliar wor
 
 \newpage
 
-## Long Sentences {#reviewing-batch-long-sentences}
+## Long Sentences {#sec-reviewing-batch-long-sentences}
 
 After opening a project, click on the **Sentences Breakdown** icon on the project sidebar and click on the **Long Sentences** subitem. This window will display a list of the difficult sentences from your documents.
 
 ![](images/batchlongsentences.png)
 
-Note that if you are ignoring incomplete sentences, then this list will only include the complete sentences. If you need to review all the sentences from the documents, then select the option [**Include in analysis and treat as full sentences**](#document-analysis). Refer to \@ref(how-text-is-excluded) to learn more about how *Readability Studio* handles incomplete sentences.
+Note that if you are ignoring incomplete sentences, then this list will only include the complete sentences. If you need to review all the sentences from the documents, then select the option [**Include in analysis and treat as full sentences**](#sec-document-analysis). Refer to \@ref(sec-how-text-is-excluded) to learn more about how *Readability Studio* handles incomplete sentences.
 
 To find the longest sentence, [sort](#column-sorting) the **Longest Sentence Length** column into descending order. As we can see below, the longest sentence is now shown at the top of the list.
 
 ![](images/batchlongestsentence.png)
 
-If the test scores are indicating that the documents are too difficult for your target audience, then review the overly-long sentences. You should consider splitting these sentences into smaller ones and revising any [wordy items](#reviewing-batch-wordiness).
+If the test scores are indicating that the documents are too difficult for your target audience, then review the overly-long sentences. You should consider splitting these sentences into smaller ones and revising any [wordy items](#sec-reviewing-batch-wordiness).
 
 To view a specific document's longest sentence, double-click on its row in this list. A vertical display of that document's longest sentence will be shown:
 
@@ -215,19 +215,19 @@ Note that if there are no long sentences in your documents, then this window wil
 
 \newpage
 
-## Summary Statistics {#reviewing-batch-summary-stats}
+## Summary Statistics {#sec-reviewing-batch-summary-stats}
 
 To display a list containing statistics of all your documents, click on the **Summary Statistics** icon on the project sidebar. To control which statistics are included in this list, click the `r keys('Edit Statistics')` button on the **Home** tab of the ribbon.
 
-## Grammar {#reviewing-batch-grammar}
+## Grammar {#sec-reviewing-batch-grammar}
 
 Note that the following windows are only included if their respective grammar issues are detected in the documents.
 
-Also, from any of these windows you can create a [standard project](#creating-standard-project). Within a given window, select a document in its list and click the `r keys("Subproject")` button on the **Home** tab.
+Also, from any of these windows you can create a [standard project](#sec-creating-standard-project). Within a given window, select a document in its list and click the `r keys("Subproject")` button on the **Home** tab.
 
-This is useful for reviewing a particular document in greater detail. Note that when this standard project is created, it will copy all the project settings from the batch project. These options may differ from your [global configurations](#options-overview).
+This is useful for reviewing a particular document in greater detail. Note that when this standard project is created, it will copy all the project settings from the batch project. These options may differ from your [global configurations](#sec-options-overview).
 
-### Reviewing Conjunction-Starting Sentences {-#reviewing-batch-conjunction-sentences}
+### Reviewing Conjunction-Starting Sentences {-#sec-reviewing-batch-conjunction-sentences}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Conjunction-Starting Sentences** subitem. This window will display a list of all sentences that begin with coordinating conjunctions.
 
@@ -241,13 +241,13 @@ knitr::include_graphics("images/batchconjunctionviewitem.png")
 
 Refer to \@ref(reviewing-standard-grammar) to learn more about conjunction-starting sentences.
 
-### Reviewing Lowercased Sentences {-#reviewing-batch-lowercased-sentences}
+### Reviewing Lowercased Sentences {-#sec-reviewing-batch-lowercased-sentences}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Lowercased Sentences** subitem. This window will display a list of all sentences that begin with lowercased words (which is usually a typo).
 
 ![](images/batchlowersentences.png)
 
-Note that if the option [**Sentences must begin with capitalized words**](#options-sentence-deduction) is enabled, then this feature will be limited to sentences that begin new paragraphs. If you want to search for any possible sentences that begin with lowercased words, then you should leave this option unchecked.
+Note that if the option [**Sentences must begin with capitalized words**](#sec-options-sentence-deduction) is enabled, then this feature will be limited to sentences that begin new paragraphs. If you want to search for any possible sentences that begin with lowercased words, then you should leave this option unchecked.
 
 To view a specific document's lowercased sentences, double-click on its row in this list. A vertical display of that document's lowercased sentences will be shown:
 
@@ -255,7 +255,7 @@ To view a specific document's lowercased sentences, double-click on its row in t
 knitr::include_graphics("images/batchlowersentenceviewitem.png")
 ```
 
-### Reviewing Repeated Words {-#reviewing-batch-repeated-words}
+### Reviewing Repeated Words {-#sec-reviewing-batch-repeated-words}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Repeated Words** subitem. This window will display a list of all repeated words from each document.
 
@@ -273,15 +273,15 @@ To view a specific document's repeated words, double-click on its row in this li
 knitr::include_graphics("images/batchrepeatedviewitem.png")
 ```
 
-Refer to \@ref(reviewing-standard-grammar) and \@ref(repeated-word-exceptions) to learn how repeated words are detected.
+Refer to \@ref(reviewing-standard-grammar) and \@ref(sec-repeated-word-exceptions) to learn how repeated words are detected.
 
-### Reviewing Article Mismatches {-#reviewing-batch-articles}
+### Reviewing Article Mismatches {-#sec-reviewing-batch-articles}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Article Mismatches** subitem. This window will display a list of articles (i.e., *a* and *an*) that do not match their following noun.
 
 ![](images/batcharticlemismatches.png)
 
-Article mismatch searching does not affect readability calculations, so this analysis is applied to all sentences. [Incomplete sentences](#how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
+Article mismatch searching does not affect readability calculations, so this analysis is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
 If an article mismatch occurs more than once in a document, then a multiplication factor will be shown next to it. For example, if *a electronic* occurs twice in a given document, then this will be displayed as *a electronic\*2*.
 
@@ -291,16 +291,16 @@ To view a specific document's article mismatches, double-click on its row in thi
 knitr::include_graphics("images/viewitemarticlemismatch.png")
 ```
 
-Refer to \@ref(article-mismatching) to learn more.
+Refer to \@ref(sec-article-mismatching) to learn more.
 
-### Reviewing Wording Errors & Misspellings {-#reviewing-batch-wording-errors}
+### Reviewing Wording Errors & Misspellings {-#sec-reviewing-batch-wording-errors}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Errors & Misspellings** subitem.
 This window will display a list of misused phrases, grammatically incorrect wording, and known misspellings from each document.
 
 ![](images/batchwordingerrors.png)
 
-This search is applied to all sentences. [Incomplete sentences](#how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
+This search is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
 If a wording error occurs more than once in a document, then a multiplication factor will be shown next to it. For example, if *other then* occurs two separate times in a given document, then this will be displayed as *other then\*2*.
 
@@ -310,14 +310,14 @@ To view a specific document's errors, double click on its row. A vertical displa
 knitr::include_graphics("images/batchwordingerrorsviewitem.png")
 ```
 
-### Reviewing Possible Misspellings {-#reviewing-batch-misspellings}
+### Reviewing Possible Misspellings {-#sec-reviewing-batch-misspellings}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Possible Misspellings** subitem.
 This window will display a list of all possible misspellings from each document.
 
 ![](images/batchmisspellings.png)
 
-This search is applied to all sentences. [Incomplete sentences](#how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
+This search is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
 If a misspelling occurs more than once in a document, then a multiplication factor will be shown next to it. For example, if *specfy* occurs two separate times in a given document, then this will be displayed as *specfy\*2*.
 
@@ -329,13 +329,13 @@ knitr::include_graphics("images/batchmisspellingsviewitem.png")
 
 To add any document's misspellings to your dictionary, double click on its row to show the **Add to Dictionary** dialog. From here, you can add any (or all) reported misspellings to your dictionary. Afterwards, these words will no longer be reported as misspelled.
 
-### Reviewing Redundant Phrases {-#reviewing-batch-redundant-phrases}
+### Reviewing Redundant Phrases {-#sec-reviewing-batch-redundant-phrases}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Redundant Phrases** subitem. This window will display a list of redundant phrases from the documents. Suggested replacements will also be shown next to each phrase in this list.
 
 ![](images/batchredundantphrases.png)
 
-Redundant-phrase searching does not affect readability calculations, so this analysis is applied to all sentences. [Incomplete sentences](#how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
+Redundant-phrase searching does not affect readability calculations, so this analysis is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
 If a redundant phrase occurs more than once in a document, then a multiplication factor will be shown next to it. For example, if *brief summary* occurs three separate times in a given document, then this will be displayed as *brief summary\*3*:
 
@@ -349,7 +349,7 @@ knitr::include_graphics("images/batchredundantphrasesviewitem.png")
 
 Refer to \@ref(reviewing-standard-grammar) for an explanation of what redundant phrase are.
 
-### Reviewing Wordy Items {-#reviewing-batch-wordiness}
+### Reviewing Wordy Items {-#sec-reviewing-batch-wordiness}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Wordy Items** subitem. This window will display a list of wordy phrases and difficult words from the documents. Suggested replacements will also be shown next to each phrase in this list.
 
@@ -367,7 +367,7 @@ knitr::include_graphics("images/viewitemwordyphrase.png")
 
 Refer to \@ref(reviewing-standard-grammar) for an explanation about wordy phrases.
 
-### Reviewing Clichés {-#reviewing-batch-cliches}
+### Reviewing Clichés {-#sec-reviewing-batch-cliches}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Clichés** subitem. This window will display a list of clichés from the documents. Suggested replacements will be shown next to each cliché in this list.
 
@@ -387,7 +387,7 @@ knitr::include_graphics("images/batchclichesviewitem.png")
 
 Refer to \@ref(reviewing-standard-grammar) for an explanation about clichés.
 
-### Reviewing Passive Voice {-#reviewing-batch-passive-voices}
+### Reviewing Passive Voice {-#sec-reviewing-batch-passive-voices}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Passive Voice** subitem. This window will display a list of all passive phrases from each document.
 
@@ -403,7 +403,7 @@ knitr::include_graphics("images/batchpassivevoiceviewitem.png")
 
 Refer to \@ref(reviewing-standard-grammar) for an explanation about passive phrases.
 
-### Reviewing Overused Words (x Sentence) {-#reviewing-batch-overused-words}
+### Reviewing Overused Words (x Sentence) {-#sec-reviewing-batch-overused-words}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Overused Words (x Sentence)** subitem. This window will display a list of all sentences that use the same word multiple times from each document. (These are more of style suggestions, rather than grammar issues.) When reviewing these, it is recommended to change some of the repeated words to add more variety to your content.
 
@@ -417,11 +417,11 @@ Refer to \@ref(reviewing-standard-grammar) for an explanation about overused wor
 
 \newpage
 
-## Dolch Sight Words {#reviewing-batch-dolch}
+## Dolch Sight Words {#sec-reviewing-batch-dolch}
 
 After opening a project, click on the **Dolch Sight Words** icon on the project sidebar. There will be three lists available: **Dolch Word Coverage**, **Dolch Words**, and **Non-Dolch Words**.
 
-The **Dolch Word Coverage** subitem will display the **Dolch** word [coverage](#reviewing-dolch) for each document:
+The **Dolch Word Coverage** subitem will display the **Dolch** word [coverage](#sec-reviewing-dolch) for each document:
 
 ![](images/batchdolchcoverage.png)
 
@@ -441,7 +441,7 @@ Note that the raw counts of these words will also be included if [**Extended Inf
 
 \newpage
 
-## Warnings {#reviewing-batch-warnings}
+## Warnings {#sec-reviewing-batch-warnings}
 
 After opening a project, click on the **Warnings** icon on the project sidebar to view any warnings issued while loading the documents:
 

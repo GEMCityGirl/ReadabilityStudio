@@ -330,7 +330,7 @@ void ToolsOptionsDlg::OnExcludedPhrasesFileEditButtonClick([[maybe_unused]] wxCo
     {
     TransferDataFromWindow();
     EditWordListDlg editDlg(this, wxID_ANY, _(L"Edit Words/Phrases To Exclude"));
-    editDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"document-analysis.html");
+    editDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"sec-document-analysis.html");
     editDlg.SetPhraseFileMode(true);
     editDlg.SetFilePath(m_excludedPhrasesPath);
     if (editDlg.ShowModal() != wxID_OK)
@@ -5941,7 +5941,7 @@ void ToolsOptionsDlg::OnHelp([[maybe_unused]] wxCommandEvent& event)
             topic = L"options-highlighted-reports.html";
             break;
         case PROJECT_SETTINGS_PAGE:
-            topic = L"project-settings.html";
+            topic = L"sec-project-settings.html";
             break;
         case DOCUMENT_DISPLAY_DOLCH_PAGE:
             topic = L"dolch-options.html";
@@ -5952,7 +5952,7 @@ void ToolsOptionsDlg::OnHelp([[maybe_unused]] wxCommandEvent& event)
             topic = L"options-scores.html";
             break;
         case ANALYSIS_INDEXING_PAGE:
-            topic = L"document-analysis.html";
+            topic = L"sec-document-analysis.html";
             break;
         case GRAMMAR_PAGE:
             topic = L"options-grammar.html";
@@ -5974,7 +5974,7 @@ void ToolsOptionsDlg::OnHelp([[maybe_unused]] wxCommandEvent& event)
             topic = L"options-bar-charts.html";
             break;
         case GRAPH_HISTOGRAM_PAGE:
-            topic = L"options-histograms.html";
+            topic = L"sec-options-histograms.html";
             break;
         case GRAPH_BOX_PLOT_PAGE:
             topic = L"options-box-plots.html";
@@ -5983,7 +5983,7 @@ void ToolsOptionsDlg::OnHelp([[maybe_unused]] wxCommandEvent& event)
             topic = L"options-words-breakdown.html";
             break;
         case SENTENCES_BREAKDOWN_PAGE:
-            topic = L"options-sentences-breakdown.html";
+            topic = L"sec-options-sentences-breakdown.html";
             break;
         default:
             topic = L"index.html";

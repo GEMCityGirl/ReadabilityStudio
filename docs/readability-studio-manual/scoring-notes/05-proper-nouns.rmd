@@ -20,4 +20,4 @@ However, the other two instances of *examiner* are regular nouns. Because *exami
 
 If a word appears only in proper form throughout the document, then it will not appear on various unfamiliar lists (e.g., Spache). A proper noun will never appear on these lists unless there are conflicting non-proper instances of the same word.
 
-Note that this also applies to any [custom tests](#creating-custom-test) that treat proper nouns as familiar.
+Note that this also applies to any [custom tests](#sec-creating-custom-test) that treat proper nouns as familiar.

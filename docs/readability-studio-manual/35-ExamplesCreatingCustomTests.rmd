@@ -7,7 +7,7 @@ In this chapter, we will step through examples showing how to create these types
 
 \newpage
 
-## Creating a Modified Flesch\index{Flesch Reading Ease!custom test!example|(} Test {#creating-custom-flesch-test}
+## Creating a Modified Flesch\index{Flesch Reading Ease!custom test!example|(} Test {#sec-creating-custom-flesch-test}
 
 In this example, we will create a custom test. Custom tests are useful for either creating an entirely new formula or a new one based on an existing formula.
 
@@ -39,7 +39,7 @@ Where:
 | S   | Number of sentences               |
 +-----+-----------------------------------+
 
-Formulas can either be typed into the **Formula** field, or you can use the [**Function Browser**](#creating-custom-test). For example:
+Formulas can either be typed into the **Formula** field, or you can use the [**Function Browser**](#sec-creating-custom-test). For example:
 
 ```{r, eval=F, echo=T}
 206.835 - (84.6*(SyllableCount()/WordCount())) -  
@@ -52,7 +52,9 @@ There are shortcuts available for various functions, so this formula can also be
 206.835 - (84.6*(B/W)) - (1.015*(W/S))
 ```
 
-By default, all formula results will be returned with floating-point precision. For this particular formula, we will prefer to simply round the result. To do this, we will add the [`ROUND`](#custom-test-functions) function to our formula (with `0` as the precision width):
+By default, all formula results will be returned with floating-point precision.
+For this particular formula, we will prefer to simply round the result.
+To do this, we will add the [`ROUND`](#sec-custom-test-functions) function to our formula (with `0` as the precision width):
 
 ```{r, eval=F, echo=T}
 ROUND(206.835 - (84.6*(B/W)) - (1.015*(W/S)), 0)
@@ -91,9 +93,9 @@ To add this test to any project, first select the **Readability** tab. Next, cli
 
 \newpage
 
-## Creating an Unclamped Flesch-Kincaid {#custom-test-no-clamping}
+## Creating an Unclamped Flesch-Kincaid {#sec-custom-test-no-clamping}
 
-As described in \@ref(grade-level-clamping), regression-based tests are clamped to the reasonable limit of 19^th^ grade (i.e., PhD). If you wish to override this, however, you can create a copy of a test and not set an upper limit for its score.
+As described in \@ref(sec-grade-level-clamping), regression-based tests are clamped to the reasonable limit of 19^th^ grade (i.e., PhD). If you wish to override this, however, you can create a copy of a test and not set an upper limit for its score.
 
 In this example, we will create a custom Flesch-Kincaid test and leave its formula unrestricted, allowing for scores such as 27 (i.e., 27^th^ grade).
 
@@ -124,9 +126,9 @@ The first step is to create a list of baking-specific words that our readers are
 
 `beaten, custard, eclair, éclair, flaky, glaze, glace, glossy, grate, meringue, pastry, pinch, platter, prepare, recipe, saucepan, sift, skewer, teaspoon, teaspoonful, thicken, tumbler, unbeaten, vanilla, whisk, scrape, tablespoon, tablespoonful`
 
-The next step is to create a custom test and connect our word list to it. For a custom New Dale-Chall, the simplest way is to click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add Custom "New Dale-Chall"...** from the menu. This will present the [Add Custom Word Test](#add-custom-word-test) dialog. From this dialog, we would enter the name of the new test (e.g., "New Dale-Chall (Baking)") and file path to our word list, and then the program would add this test. However, for this example we will use the more advanced **Add Custom Test** dialog.
+The next step is to create a custom test and connect our word list to it. For a custom New Dale-Chall, the simplest way is to click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add Custom "New Dale-Chall"...** from the menu. This will present the [Add Custom Word Test](#sec-add-custom-word-test) dialog. From this dialog, we would enter the name of the new test (e.g., "New Dale-Chall (Baking)") and file path to our word list, and then the program would add this test. However, for this example we will use the more advanced **Add Custom Test** dialog.
 
-Click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add...** from the menu. This will present the [**Add Custom Test**](#custom-test-general-settings) dialog, as shown below:
+Click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add...** from the menu. This will present the [**Add Custom Test**](#sec-custom-test-general-settings) dialog, as shown below:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
 knitr::include_graphics("images/add-custom-test.png")
@@ -212,7 +214,7 @@ We can also review these words in their original context. Click on the **Highlig
 
 At this point, we have a couple of options. The first is to replace some of these unfamiliar words so that our students can better understand the recipe. If the reading level of this recipe was higher, this would be recommended. However, because this recipe already has a low reading level and contains few unfamiliar words, this may not be necessary.
 
-The other option is to export these unfamiliar words and use that output to review these new words with our students. Not only will this ease the students' comprehension of the recipe, but it will serve as a helpful [vocabulary-building exercise](#vocab-builder-example).
+The other option is to export these unfamiliar words and use that output to review these new words with our students. Not only will this ease the students' comprehension of the recipe, but it will serve as a helpful [vocabulary-building exercise](#sec-vocab-builder-example).
 
 ::: {.tipsection data-latex=""}
 The recipe used in this example is available from the **Example Documents** menu. From the **Help** tab, click the `r keys("Example Documents")` button, and then select "Chocolate Eclairs." When prompted about how to open the document, select **Create a new project**.
@@ -230,7 +232,7 @@ The first step is to create a list of "buzzwords." This can be any text file whe
 
 `agile, collaborate, cross-platform, disrupt, empower, enterprise, framework, game-change, groundbreaking, holistic, impact, infrastructure, innovate, integrate, lean, leverage, marketplace, next-generation, nimble, paradigm, platform, powerful, proactive, revolution, ROI, seamless, solution, startup, strategy, streamline, suite, sustainable, synergy, technology, utilize, value-add, visibility, workflow`
 
-The next step is to create a custom test and connect our word list to it. Click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add...** from the menu. This will present the [**Add Custom Test**](#custom-test-general-settings) dialog, as shown below:
+The next step is to create a custom test and connect our word list to it. Click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add...** from the menu. This will present the [**Add Custom Test**](#sec-custom-test-general-settings) dialog, as shown below:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
 knitr::include_graphics("images/add-custom-test.png")
@@ -317,7 +319,7 @@ Click the `r keys("OK")` button and our new test will be added to the system.
 To add this test to any project, first select the **Readability** tab. Next, click the `r keys("Custom Tests")` button and then select **Buzz Index**. Select the **Readability Scores** icon on the project pane and note that Buzz Index has been added to the project's results:
 
 To demonstrate this, click the **Help** tab of the ribbon. Then, click the `r keys("Examples")` button and select **Press Release** from the menu.
-Choose the defaults in the standard [**New Project**](#creating-standard-project) wizard to create a new project from this document.
+Choose the defaults in the standard [**New Project**](#sec-creating-standard-project) wizard to create a new project from this document.
 
 Once the file is processed, click the **Highlighted Reports** icon on the sidebar to view the document.
 After doing a quick reading of this press release, there may be some concern about the author's enthusiasm for marketing speak.

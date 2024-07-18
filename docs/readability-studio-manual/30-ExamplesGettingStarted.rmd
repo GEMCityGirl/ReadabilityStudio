@@ -7,7 +7,7 @@ After that, we will continue with examples showing how to analyze a webpage and 
 
 \newpage
 
-## Analyzing a Book {#book-example}
+## Analyzing a Book {#sec-book-example}
 
 In this example, we will analyze a literary novel to help determine which age group it is most appropriate for (in terms of readability, not content).
 The first step is to open the **New Project** wizard and choose the book. Click the `r keys("New")` button on the **Home** tab to open the **New Project** wizard.
@@ -49,21 +49,21 @@ Now the words will be sorted by syllable count and then by frequency. As illustr
 
 If you are an educator assigning this book to your students, you can export the more difficult words to a report. You can hand this report out to your students and ask them to define these terms before reading the book. This will help prepare them for the book and make it easier and more enjoyable to read.
 
-To do this, click the `r keys("Save")` button on the **Home** tab and use the **Save As...** dialog to save this list to either an HTML or text file. You can also do this with any of the other difficult word lists, such as the Spache unfamiliar words list. Refer to \@ref(vocab-builder-example) for an example.
+To do this, click the `r keys("Save")` button on the **Home** tab and use the **Save As...** dialog to save this list to either an HTML or text file. You can also do this with any of the other difficult word lists, such as the Spache unfamiliar words list. Refer to \@ref(sec-vocab-builder-example) for an example.
 
 \newpage
 
-## Improving Students' Vocabulary {#vocab-builder-example}
+## Improving Students' Vocabulary {#sec-vocab-builder-example}
 
 In this example, we will save a list of the more complex words from a book. If you are an educator, you can send this list to your students and ask them to define these words prior to reading the book. This can be a great way to prepare them for future readings, as well as helping them build their overall vocabulary.
 
-Continuing from the [previous example](#book-example) (see \@ref(book-example)), select the top item in the hard word list. Now scroll down to the last word that has five syllables, hold down the `r keys("Shift")` (`r os_logo('windows')`) or `r keys("\\shift")` (`r os_logo('apple')`) key, and select this word. Now you will have all the words with five or more syllables selected. If there are any words that you want to add or remove from your selection, hold down the `r keys("Ctrl")` (`r os_logo('windows')`) or `r keys("\\cmd")` (`r os_logo('apple')`) key and click on them. Your word list will look like this:
+Continuing from the [previous example](#sec-book-example) (see \@ref(sec-book-example)), select the top item in the hard word list. Now scroll down to the last word that has five syllables, hold down the `r keys("Shift")` (`r os_logo('windows')`) or `r keys("\\shift")` (`r os_logo('apple')`) key, and select this word. Now you will have all the words with five or more syllables selected. If there are any words that you want to add or remove from your selection, hold down the `r keys("Ctrl")` (`r os_logo('windows')`) or `r keys("\\cmd")` (`r os_logo('apple')`) key and click on them. Your word list will look like this:
 
 ![](images/difficultwords2.png)
 
 Now that you have selected the words that you want to save, click the `r keys("Save")` button on the **Home** tab. From the menu that appears, select **Export 3+ Syllables List\.\.\.**.
 
-First, you will be prompted to save as either HTML or text (refer to \@ref(export-list) for a discussion of these formats). After specifying the format, the **Save As** dialog will appear. Select where you want to save the file and click `r keys("Save")`.
+First, you will be prompted to save as either HTML or text (refer to \@ref(sec-export-list) for a discussion of these formats). After specifying the format, the **Save As** dialog will appear. Select where you want to save the file and click `r keys("Save")`.
 
 \newpage
 
@@ -71,7 +71,7 @@ First, you will be prompted to save as either HTML or text (refer to \@ref(expor
 ![](images/exportoptions.png){width=38%}
 :::
 
-Next, the [**List Export Options**](#export-list) dialog will appear. (By default, all the words will be exported.) To export just the words that you have highlighted, select the option **Export selected rows**. Also, because we are only interested in saving the **Word** column—not the **Syllable Count** or **Frequency Count** columns—enter 1 in the **Columns: from** and **to:** fields. Finally, uncheck the option **Include column headers** because we are only exporting one column.
+Next, the [**List Export Options**](#sec-export-list) dialog will appear. (By default, all the words will be exported.) To export just the words that you have highlighted, select the option **Export selected rows**. Also, because we are only interested in saving the **Word** column—not the **Syllable Count** or **Frequency Count** columns—enter 1 in the **Columns: from** and **to:** fields. Finally, uncheck the option **Include column headers** because we are only exporting one column.
 
 Click `r keys("OK")` to export the word list to distribute to your students to help prepare them for their reading assignments.
 
@@ -106,7 +106,7 @@ You will then return to the **Document** page. Click the `r keys("Forward >")` b
 
 ![](images/wizarddocstructure.png)
 
-On this page, we will specify how this document is formatted. The first option, **Narrative text**, is meant for documents that consist of the standard sentence and paragraph structure. The second option, [**Non-narrative, fragmented text**](#fragmented-text), is meant for documents that contain very few sentences and mostly consist of sentence fragments. This document contains narrative text, so select **Narrative text**.
+On this page, we will specify how this document is formatted. The first option, **Narrative text**, is meant for documents that consist of the standard sentence and paragraph structure. The second option, [**Non-narrative, fragmented text**](#sec-fragmented-text), is meant for documents that contain very few sentences and mostly consist of sentence fragments. This document contains narrative text, so select **Narrative text**.
 
 Our recipe file does not have any special formatting (e.g., text centering), so keep all options in the **Layout** section unchecked. Now that we have specified the structure of the document, click the `r keys("Forward >")` button to proceed to the **Test Selection** page, as shown below:
 
@@ -118,7 +118,7 @@ This file does not belong to any particular industry, but we do know that it is 
 
 Because this is an instructional document containing small narrative blocks, we will consider this to be a technical document. Select **Technical document or form** and click the `r keys("Finish")` button to begin analyzing the project.
 
-If you are excluding [incomplete sentences](#how-text-is-excluded) (the default), then a warning will be displayed.
+If you are excluding [incomplete sentences](#sec-how-text-is-excluded) (the default), then a warning will be displayed.
 Because this file contains numerous incomplete sentences, the program will ask you if excluding them is what you truly intend.
 In this case, these sentences are just list items that we should ignore, so click **Continue excluding incomplete sentences**.
 
@@ -128,7 +128,7 @@ As we can see below, it appears to be readable for at least readers in the upper
 
 ![](images/testscores.png)
 
-To help understand why this recipe may be difficult for younger readers, click on the **Summary Statistics** icon to review the [statistics](#reviewing-statistics) and see if the program has any advice for us.
+To help understand why this recipe may be difficult for younger readers, click on the **Summary Statistics** icon to review the [statistics](#sec-reviewing-statistics) and see if the program has any advice for us.
 In this section, any statistics that may be problematic will be highlighted in red, along with a warning being displayed. As we can see below, there are a lot of long sentences (with the longest being 54 words long):
 
 ![](images/examplestats.png)
@@ -151,7 +151,7 @@ Not only is it long, but it is a little confusing. It is unclear what was mixed 
 
 Continue this process for as many of the long sentences as you can. Sentences in the 20-word range are normally acceptable, but sentences over 30 words should be revised.
 
-Other useful tools for shortening sentences in *Readability Studio* are the other pages in the **Grammar** section. Click on the **Grammar** icon on the project sidebar. Click on the [**Repeated Words**](#reviewing-repeated-words) page and note how the phrase *and and* is in the file (obviously a typo). Next, click on the [**Redundant Phrases**](#reviewing-redundant-phrases) page. Note how the phrase *mixed together* is redundant and the program is suggesting that it be replaced with *mixed*. A [**Wordy Items**](#reviewing-wordy-items) and [**Clichés**](#reviewing-cliches) page may also appear, but there do not seem to be any of these in this file. By fixing these items, we can shorten sentences and improve the overall document.
+Other useful tools for shortening sentences in *Readability Studio* are the other pages in the **Grammar** section. Click on the **Grammar** icon on the project sidebar. Click on the [**Repeated Words**](#reviewing-repeated-words) page and note how the phrase *and and* is in the file (obviously a typo). Next, click on the [**Redundant Phrases**](#reviewing-redundant-phrases) page. Note how the phrase *mixed together* is redundant and the program is suggesting that it be replaced with *mixed*. A [**Wordy Items**](#reviewing-wordy-items) and [**Clichés**](#sec-reviewing-cliches) page may also appear, but there do not seem to be any of these in this file. By fixing these items, we can shorten sentences and improve the overall document.
 
 Although there are not many difficult words in this file, it may be worthwhile to at least review them. Click on the **Words Breakdown** icon on the project sidebar. This will display various lists of difficult words. Select the **3+ syllable words** page and click on the **Syllable Count** column header twice to [sort](#column-sorting) the words into descending order. As illustrated below, there are a few words containing four syllables, which can be difficult for most readers.
 
@@ -177,7 +177,7 @@ knitr::include_graphics("images/linktofile.png")
 ```
 
 Also of note is the **Real-time update** checkbox. If this is checked, then the program will automatically reload the project when the document is edited.
-This is discussed in a later example (see \@ref(external-editing)); for now, leave this unchecked.
+This is discussed in a later example (see \@ref(sec-external-editing)); for now, leave this unchecked.
 
 Close this dialog and click the `r keys("Reload")` button on the **Home** tab.
 
@@ -227,7 +227,7 @@ Next, accept the rest of the defaults on the **New Project** wizard by clicking 
 
 ![](images/incompletesentences.png)
 
-Note how some text is highlighted gray. These are [incomplete sentences](#how-text-is-excluded), and because *Readability Studio*, by default, ignores incomplete sentences, nothing highlighted gray is factored into the analysis.
+Note how some text is highlighted gray. These are [incomplete sentences](#sec-how-text-is-excluded), and because *Readability Studio*, by default, ignores incomplete sentences, nothing highlighted gray is factored into the analysis.
 That is, nothing highlighted gray here counts towards the overall sentence, paragraph, and word totals and are also not included in any readability test calculation.
 Aside from non-narrative forms, it is normally recommended to ignore incomplete sentences. This is especially true for webpages, because often HTML tables and lists are used on websites to display menus—items that are not normally part of the page's narrative.
 
@@ -238,7 +238,7 @@ Next, click the **Document Indexing** icon, and select the **Do not exclude any 
 knitr::include_graphics("images/donotexcludeincompletesentences.png")
 ```
 
-Note that this option is also available on the [**Options**](#options-overview) dialog (from the **Tools** tab) if you wish to change this behavior for all future projects.
+Note that this option is also available on the [**Options**](#sec-options-overview) dialog (from the **Tools** tab) if you wish to change this behavior for all future projects.
 
 One last item to discuss about loading a webpage is whether you want to reanalyze it later as it changes.
 By default, the project will directly link to the webpage, although you can change this to embed a snapshot of the page into the project.
@@ -249,13 +249,13 @@ Then click the **Project Settings** icon. Here, we can see that **Reload the sou
 knitr::include_graphics("images/reloadwebpage.png")
 ```
 
-By having this option selected, you will reload the page's content whenever you reopen the project (or at anytime by pressing `r keys("F5")`). If you prefer to embed the current version of this page into the project, then select **Embed the source document's original text in the project file**. Refer to \@ref(project-settings) for more information about these options.
+By having this option selected, you will reload the page's content whenever you reopen the project (or at anytime by pressing `r keys("F5")`). If you prefer to embed the current version of this page into the project, then select **Embed the source document's original text in the project file**. Refer to \@ref(sec-project-settings) for more information about these options.
 
 Note that webpages requiring authentication (i.e., requiring a user name and password) are not currently supported. To work around this, log into the webpage from any browser, save the page as a local HTML file, and then load that into a new project.
 
 \newpage
 
-## Searching for Overly Long Sentences\index{sentences!example of reviewing overly long} {#searching-long-sentences-example}
+## Searching for Overly Long Sentences\index{sentences!example of reviewing overly long} {#sec-searching-long-sentences-example}
 
 In this example, we will review a document for overly-long sentences. This example will demonstrate the available methods for defining an overly-long sentence. In addition, it will also demonstrate how to search for and review these sentences.
 
@@ -279,7 +279,7 @@ Select the **Recommend tests based on document type** and select the **Technical
 
 Click the `r keys("Finish")` button to begin analyzing the project.
 
-If you are excluding [incomplete sentences](#how-text-is-excluded) (the default), then a warning will be displayed.
+If you are excluding [incomplete sentences](#sec-how-text-is-excluded) (the default), then a warning will be displayed.
 Because this file contains numerous incomplete sentences, the program will ask you if excluding them is what you truly intend.
 In this case, these sentences are just list items that we should ignore, so click **Continue excluding incomplete sentences**.
 
@@ -287,7 +287,7 @@ Once the project is loaded, the readability scores will be presented. As we can 
 
 ![](images/featuresscores.png)
 
-This document should be an easy-to-read list of software features intended for a broad range of readers. These scores are a bit too high, so now we will explore the results to understand why it is so difficult to read. Select the **Summary Statistics** icon in the project sidebar to view the document's [statistics](#reviewing-statistics).
+This document should be an easy-to-read list of software features intended for a broad range of readers. These scores are a bit too high, so now we will explore the results to understand why it is so difficult to read. Select the **Summary Statistics** icon in the project sidebar to view the document's [statistics](#sec-reviewing-statistics).
 
 ![](images/featuresstats.png)
 
@@ -325,11 +325,11 @@ This option is only recommended for situations where most of the sentences are a
 
 \newpage
 
-## Finding Difficult Sections {#finding-difficult-sections}
+## Finding Difficult Sections {#sec-finding-difficult-sections}
 
 Along with searching for overly-long sentences, we should also review the distribution of longer sentences. If there are sections of a document where longer sentences seem to clump together, then these areas may be more difficult to read. These sections may need to be rewritten or restructured so that we don't have entire paragraphs that readers will struggle with.
 
-In a previous example (\@ref(searching-long-sentences-example)), we used a box plot to review the dispersion of sentence lengths (and to find outliers). Although this is useful, these graphs aggregate their data and do not preserve their order. In other words, they lump sentence lengths together and don't show them in the order that they appear in the document. To compare the sentences' lengths in relation to where they are in the document, we will need to use a heatmap.
+In a previous example (\@ref(sec-searching-long-sentences-example)), we used a box plot to review the dispersion of sentence lengths (and to find outliers). Although this is useful, these graphs aggregate their data and do not preserve their order. In other words, they lump sentence lengths together and don't show them in the order that they appear in the document. To compare the sentences' lengths in relation to where they are in the document, we will need to use a heatmap.
 
 A heatmap is a graph which displays items as color-filled squares, where the color represents an item's value in relation to other items. To construct a heatmap, the following is performed:
 
@@ -372,7 +372,7 @@ Because this document contains more than 500 paragraphs, grouping will not be us
 
 \newpage
 
-## Reviewing a Flyer {#reviewing-a-flyer}
+## Reviewing a Flyer {#sec-reviewing-a-flyer}
 
 In this example, we will analyze a flyer for a summer program being offered by a local software company. This flyer consists of short text boxes designed to grab the attention of young adults interested in learning computer programming. Of interest is that this document contains a few sentences, but the bulk of its content are simple text boxes.
 
@@ -426,15 +426,15 @@ knitr::include_graphics("images/summer-code-camp-lower-half.png")
 
 Although there are some longer words here, the responsible adult intended to sign this should be able to understand the content.
 
-Refer to \@ref(high-level-review-of-disclaimer) and \@ref(addendum-example) for a continuation of this example where the flyer is revised and has an addendum added to it.
+Refer to \@ref(sec-high-level-review-of-disclaimer) and \@ref(sec-addendum-example) for a continuation of this example where the flyer is revised and has an addendum added to it.
 
 \newpage
 
-## High-level Review of a Disclaimer {#high-level-review-of-disclaimer}
+## High-level Review of a Disclaimer {#sec-high-level-review-of-disclaimer}
 
 In this example, we will perform a quick review of the concepts, word complexity, and paragraph complexity of a disclaimer.
 
-Continuing from the "Reviewing a Flyer" example (refer to \@ref(reviewing-a-flyer)), our fictitious software company has been purchased by a private equity firm.
+Continuing from the "Reviewing a Flyer" example (refer to \@ref(sec-reviewing-a-flyer)), our fictitious software company has been purchased by a private equity firm.
 After the purchase, this firm has decided to make some changes to the Summer Code Camp program.
 In particular, they have created a disclaimer that parents must agree to before their children can participate.
 In a later example, we will explore in more detail the difficult aspects of this disclaimer.
@@ -511,5 +511,5 @@ Something to note is that because we enabled showcasing earlier, the section wit
 Likewise, the other areas and labels have been "ghosted," drawing attention away from them.
 If you wish to see this graph as it would normally appear, then toggle the `r keys('Showcase')` button on the ribbon.
 
-Refer to \@ref(addendum-example) for a continuation of this example.
-There, this document will be explored in further detail and used as an addendum to the original flyer from \@ref(reviewing-a-flyer).
+Refer to \@ref(sec-addendum-example) for a continuation of this example.
+There, this document will be explored in further detail and used as an addendum to the original flyer from \@ref(sec-reviewing-a-flyer).

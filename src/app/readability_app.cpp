@@ -110,7 +110,7 @@ void ReadabilityApp::EditDictionary(const readability::test_language lang)
         {
         editDlg.SetFilePath(m_CustomEnglishDictionaryPath);
         }
-    editDlg.SetHelpTopic(GetMainFrame()->GetHelpDirectory(), L"document-analysis.html");
+    editDlg.SetHelpTopic(GetMainFrame()->GetHelpDirectory(), L"sec-document-analysis.html");
     if (editDlg.ShowModal() == wxID_OK)
         {
         // custom dictionary will be written back to with edit words at this point,
@@ -4771,7 +4771,7 @@ void MainFrame::OnAddCustomTestBundle([[maybe_unused]] wxCommandEvent& event)
     {
     TestBundle bundle(L"");
     TestBundleDlg bundleDlg(wxGetApp().GetParentingWindow(), bundle);
-    bundleDlg.SetHelpTopic(GetHelpDirectory(), L"test-bundles.html");
+    bundleDlg.SetHelpTopic(GetHelpDirectory(), L"sec-test-bundles.html");
     if (bundleDlg.ShowModal() == wxID_OK)
         {
         BaseProject::m_testBundles.insert(bundle);
@@ -4804,7 +4804,7 @@ void MainFrame::OnEditCustomTestBundle([[maybe_unused]] wxCommandEvent& event)
     // We will make a copy of the bundle, edit it, and then reinsert it.
     TestBundle bundle = *testBundleIter;
     TestBundleDlg bundleDlg(wxGetApp().GetParentingWindow(), bundle);
-    bundleDlg.SetHelpTopic(GetHelpDirectory(), L"test-bundles.html");
+    bundleDlg.SetHelpTopic(GetHelpDirectory(), L"sec-test-bundles.html");
     if (bundleDlg.ShowModal() == wxID_OK && !bundle.IsLocked())
         {
         BaseProject::m_testBundles.erase(testBundleIter);
@@ -4863,7 +4863,7 @@ void MainFrame::OnAddCustomTest(wxCommandEvent& event)
         NewCustomWordTestSimpleDlg dlg(
             wxGetApp().GetParentingWindow(), wxID_ANY,
             wxString::Format(_(L"Add Custom \"%s\""), _DT(L"New Dale-Chall")));
-        dlg.SetHelpTopic(GetHelpDirectory(), _DT(L"add-custom-word-test.html"));
+        dlg.SetHelpTopic(GetHelpDirectory(), _DT(L"sec-add-custom-word-test.html"));
         if (dlg.ShowModal() == wxID_OK)
             {
             CustomReadabilityTest cTest(
@@ -4884,7 +4884,7 @@ void MainFrame::OnAddCustomTest(wxCommandEvent& event)
         {
         NewCustomWordTestSimpleDlg dlg(wxGetApp().GetParentingWindow(), wxID_ANY,
                                        wxString::Format(_(L"Add Custom \"%s\""), _DT(L"Spache")));
-        dlg.SetHelpTopic(GetHelpDirectory(), _DT(L"add-custom-word-test.html"));
+        dlg.SetHelpTopic(GetHelpDirectory(), _DT(L"sec-add-custom-word-test.html"));
         if (dlg.ShowModal() == wxID_OK)
             {
             CustomReadabilityTest cTest(
@@ -4966,7 +4966,7 @@ void MainFrame::OnAddCustomTest(wxCommandEvent& event)
         NewCustomWordTestSimpleDlg dlg(
             wxGetApp().GetParentingWindow(), wxID_ANY,
             wxString::Format(_(L"Add Custom \"%s\""), _DT(L"Harris-Jacobson")));
-        dlg.SetHelpTopic(GetHelpDirectory(), _DT(L"add-custom-word-test.html"));
+        dlg.SetHelpTopic(GetHelpDirectory(), _DT(L"sec-add-custom-word-test.html"));
         if (dlg.ShowModal() == wxID_OK)
             {
             CustomReadabilityTest cTest(
@@ -5116,7 +5116,7 @@ void MainFrame::OnPrinterHeaderFooter([[maybe_unused]] wxCommandEvent& event)
                                wxGetApp().GetAppOptions().GetLeftPrinterFooter(),
                                wxGetApp().GetAppOptions().GetCenterPrinterFooter(),
                                wxGetApp().GetAppOptions().GetRightPrinterFooter());
-    dlg.SetHelpTopic(GetHelpDirectory(), _DT(L"printing.html"));
+    dlg.SetHelpTopic(GetHelpDirectory(), _DT(L"sec-printing.html"));
     if (dlg.ShowModal() == wxID_OK)
         {
         wxGetApp().GetAppOptions().SetLeftPrinterHeader(dlg.GetLeftPrinterHeader());
@@ -5252,12 +5252,12 @@ void MainFrame::OnHelpContents([[maybe_unused]] wxCommandEvent& event)
         case BaseProjectView::LIX_GAUGE_PAGE_ID:
             [[fallthrough]];
         case BaseProjectView::LIX_GAUGE_GERMAN_PAGE_ID:
-            DisplayHelp(_DT(L"reviewing-readability-graphs.html"));
+            DisplayHelp(_DT(L"sec-reviewing-readability-graphs.html"));
             break;
         case BaseProjectView::STATS_REPORT_PAGE_ID:
             [[fallthrough]];
         case BaseProjectView::STATS_LIST_PAGE_ID:
-            DisplayHelp(_DT(L"reviewing-statistics.html"));
+            DisplayHelp(_DT(L"sec-reviewing-statistics.html"));
             break;
         case BaseProjectView::SENTENCE_BOX_PLOT_PAGE_ID:
             [[fallthrough]];
@@ -5274,7 +5274,7 @@ void MainFrame::OnHelpContents([[maybe_unused]] wxCommandEvent& event)
         case BaseProjectView::READABILITY_SCORES_PAGE_ID:
             [[fallthrough]];
         case BaseProjectView::READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID:
-            DisplayHelp(_DT(L"reviewing-test-scores.html"));
+            DisplayHelp(_DT(L"sec-reviewing-test-scores.html"));
             break;
         case BaseProjectView::LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID:
             [[fallthrough]];
@@ -5316,7 +5316,7 @@ void MainFrame::OnHelpContents([[maybe_unused]] wxCommandEvent& event)
         case BaseProjectView::NON_DOLCH_WORDS_LIST_PAGE_ID:
             [[fallthrough]];
         case BaseProjectView::DOLCH_WORDS_LIST_PAGE_ID:
-            DisplayHelp(_DT(L"reviewing-dolch.html"));
+            DisplayHelp(_DT(L"sec-reviewing-dolch.html"));
             break;
         default:
             DisplayHelp(_DT(L"reviewing-word-breakdowns.html"));
@@ -5329,44 +5329,44 @@ void MainFrame::OnHelpContents([[maybe_unused]] wxCommandEvent& event)
         const auto selectedID = view->GetSideBar()->GetSelectedFolderId();
         if (!selectedID.has_value())
             {
-            DisplayHelp(_DT(L"reviewing-batch-scores.html"));
+            DisplayHelp(_DT(L"sec-reviewing-batch-scores.html"));
             }
         else if (selectedID == BatchProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID)
             {
-            DisplayHelp(_DT(L"reviewing-batch-scores.html"));
+            DisplayHelp(_DT(L"sec-reviewing-batch-scores.html"));
             }
         else if (selectedID == BatchProjectView::SIDEBAR_HISTOGRAMS_SECTION_ID)
             {
-            DisplayHelp(_DT(L"reviewing-batch-histograms.html"));
+            DisplayHelp(_DT(L"sec-reviewing-batch-histograms.html"));
             }
         else if (selectedID == BatchProjectView::SIDEBAR_BOXPLOTS_SECTION_ID)
             {
-            DisplayHelp(_DT(L"reviewing-batch-box-plots.html"));
+            DisplayHelp(_DT(L"sec-reviewing-batch-box-plots.html"));
             }
         else if (selectedID == BatchProjectView::SIDEBAR_WORDS_BREAKDOWN_SECTION_ID)
             {
-            DisplayHelp(_DT(L"reviewing-batch-words.html"));
+            DisplayHelp(_DT(L"sec-reviewing-batch-words.html"));
             }
         else if (selectedID == BatchProjectView::SIDEBAR_DOLCH_SECTION_ID)
             {
-            DisplayHelp(_DT(L"reviewing-batch-dolch.html"));
+            DisplayHelp(_DT(L"sec-reviewing-batch-dolch.html"));
             }
         else if (selectedID == BatchProjectView::SIDEBAR_WARNINGS_SECTION_ID)
             {
-            DisplayHelp(_DT(L"reviewing-batch-warnings.html"));
+            DisplayHelp(_DT(L"sec-reviewing-batch-warnings.html"));
             }
         else if (selectedID == BatchProjectView::SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID)
             {
             switch (view->GetActiveProjectWindow()->GetId())
                 {
             case BaseProjectView::LONG_SENTENCES_LIST_PAGE_ID:
-                DisplayHelp(_DT(L"reviewing-batch-long-sentences.html"));
+                DisplayHelp(_DT(L"sec-reviewing-batch-long-sentences.html"));
                 break;
                 };
             }
         else if (selectedID == BatchProjectView::SIDEBAR_GRAMMAR_SECTION_ID)
             {
-            DisplayHelp(_DT(L"reviewing-batch-grammar.html"));
+            DisplayHelp(_DT(L"sec-reviewing-batch-grammar.html"));
             }
         }
     }
@@ -5461,7 +5461,7 @@ void MainFrame::OnEditWordList([[maybe_unused]] wxCommandEvent& event)
     {
     EditWordListDlg editDlg(wxGetApp().GetParentingWindow(), wxID_ANY, _(L"Edit Word List"));
     editDlg.SetDefaultDir(wxGetApp().GetAppOptions().GetWordListPath());
-    editDlg.SetHelpTopic(GetHelpDirectory(), _DT(L"document-analysis.html"));
+    editDlg.SetHelpTopic(GetHelpDirectory(), _DT(L"sec-document-analysis.html"));
     if (editDlg.ShowModal() == wxID_OK)
         {
         wxGetApp().GetAppOptions().SetWordListPath(wxFileName(editDlg.GetFilePath()).GetPath());
@@ -5473,7 +5473,7 @@ void MainFrame::OnEditPhraseList([[maybe_unused]] wxCommandEvent& event)
     {
     EditWordListDlg editDlg(wxGetApp().GetParentingWindow(), wxID_ANY, _(L"Edit Phrase List"));
     editDlg.SetDefaultDir(wxGetApp().GetAppOptions().GetWordListPath());
-    editDlg.SetHelpTopic(GetHelpDirectory(), _DT(L"document-analysis.html"));
+    editDlg.SetHelpTopic(GetHelpDirectory(), _DT(L"sec-document-analysis.html"));
     editDlg.SetPhraseFileMode(true);
     editDlg.ShowModal();
     }
@@ -5650,7 +5650,7 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
     webHarvestDlg.UpdateFromHarvesterSettings(wxGetApp().GetWebHarvester());
     // force downloading locally
     webHarvestDlg.DownloadFilesLocally(true);
-    webHarvestDlg.SetHelpTopic(GetHelpDirectory(), _DT(L"web-harvester.html"));
+    webHarvestDlg.SetHelpTopic(GetHelpDirectory(), _DT(L"sec-web-harvester.html"));
 
     if (webHarvestDlg.ShowModal() != wxID_OK)
         {

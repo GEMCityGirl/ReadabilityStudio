@@ -31,7 +31,7 @@ At this point, we can add tests and begin reviewing this (rather dubious) job po
 
 \newpage
 
-## Sentences Broken by Blank Lines {#chain-sentences-example}
+## Sentences Broken by Blank Lines {#sec-chain-sentences-example}
 
 In this example, we will import a picture book which has unusual sentence formatting. In the document we will be looking at, some of the sentences are broken apart by hard returns and blank lines so that they can wrap around images.
 
@@ -41,7 +41,7 @@ From the **Help** tab, click the `r keys("Example Documents")` button and then s
 knitr::include_graphics("images/non-generated/peter-rabbit-browser.png")
 ```
 
-Close this document and return the **Help** tab. Click the `r keys("Example Documents")` button and again select *The Tale of Peter Rabbit*. This time, select **Create a new project**. From the [project wizard](#creating-standard-project), select the **Document Structure** page and note the option **Sentences are split**. Selecting this will instruct the program to ignore hard returns and blank lines and combine these fragments into full sentences:
+Close this document and return the **Help** tab. Click the `r keys("Example Documents")` button and again select *The Tale of Peter Rabbit*. This time, select **Create a new project**. From the [project wizard](#sec-creating-standard-project), select the **Document Structure** page and note the option **Sentences are split**. Selecting this will instruct the program to ignore hard returns and blank lines and combine these fragments into full sentences:
 
 ![](images/wizarddocstructuresentencessplit.png)
 
@@ -67,9 +67,9 @@ knitr::include_graphics("images/peter-rabbit-chained-sentences.png")
 
 \newpage
 
-## Excluding Text\index{text exclusion!example} {#excluding-text-from-analysis}
+## Excluding Text\index{text exclusion!example} {#sec-excluding-text-from-analysis}
 
-When reviewing a document, it is usually preferable to ignore certain items, such as headers and citations (refer to \@ref(how-text-is-excluded) for more information). In this example, we will discuss the various methods for excluding these items.
+When reviewing a document, it is usually preferable to ignore certain items, such as headers and citations (refer to \@ref(sec-how-text-is-excluded) for more information). In this example, we will discuss the various methods for excluding these items.
 
 The first step is to open the example file "Danielson-Bryan." From the **Help** tab, click the `r keys("Example Documents")` button and then select "Danielson-Bryan" from the menu.
 (When prompted about how to open the document, select **Create a new project**.) When the **New Project** wizard appears, leave the defaults and click `r keys("Finish")`.
@@ -179,7 +179,7 @@ Click `r keys("OK")` and all instances of *punctuation* and *sentence length* ar
 knitr::include_graphics("images/exclusion-example-custom-words-excluded-now.png")
 ```
 
-Separate instances of *sentence* and *length* will still be included, they will only be excluded if they appear together to form the phrase *sentence length*. Refer to \@ref(document-analysis) for more on how custom word/phrase exclusion works.
+Separate instances of *sentence* and *length* will still be included, they will only be excluded if they appear together to form the phrase *sentence length*. Refer to \@ref(sec-document-analysis) for more on how custom word/phrase exclusion works.
 
 Along with editing the word list from the **Properties** dialog, you can also add words directly from the results. Select **Words Breakdown** on the sidebar and select any list under this section (e.g., **3+ Syllable List**). In this list window, select any words that you wish to exclude and click **Exclude Selected** on the **Home** tab of the ribbon:
 
@@ -203,9 +203,9 @@ All the options discussed here are also available on the **Document** tab of the
 
 \newpage
 
-## Excluding Placeholders\index{text exclusion!blocks within placeholders} and Blocks of Text {#excluding-placeholders}
+## Excluding Placeholders\index{text exclusion!blocks within placeholders} and Blocks of Text {#sec-excluding-placeholders}
 
-Continuing from the [previous example](#excluding-text-from-analysis), we will now discuss how to exclude specific blocks of text.
+Continuing from the [previous example](#sec-excluding-text-from-analysis), we will now discuss how to exclude specific blocks of text.
 
 The first step is to open the example file "Press Release." From the **Help** tab, click the `r keys("Example Documents")` button and then select "Press Release" from the menu. (When prompted about how to open the document, select **Create a new project**.) When the **New Project** wizard appears, leave the defaults and click `r keys("Finish")`.
 
@@ -221,7 +221,7 @@ However, note that are a few placeholders in this file, such as *\<Product\>*:
 knitr::include_graphics("images/exclusion-tags-example-not-excluding.png")
 ```
 
-We will want to exclude these items because they will not be in the final draft. However, because these are valid words and sentences (i.e., they are not headers, list items, etc.), then the [standard exclusion features](#options-text-exclusion) will not remove them. Also, using a list of exclusion words may be too aggressive. For example, adding *product* to an exclusion list will remove the *\<Product\>*, but it will also exclude any other instance of *product*. Also, the last paragraph is valid, but because it is just a comment we will want to exclude this also. For these situations, will we need to use tagged-block exclusion.
+We will want to exclude these items because they will not be in the final draft. However, because these are valid words and sentences (i.e., they are not headers, list items, etc.), then the [standard exclusion features](#sec-options-text-exclusion) will not remove them. Also, using a list of exclusion words may be too aggressive. For example, adding *product* to an exclusion list will remove the *\<Product\>*, but it will also exclude any other instance of *product*. Also, the last paragraph is valid, but because it is just a comment we will want to exclude this also. For these situations, will we need to use tagged-block exclusion.
 
 Open the **Properties** dialog and select **Document Indexing** (`r menu(c("Home", "Properties", "Document Indexing"))`). Set the option **Exclude text between** to **\< and \>**, as shown below:
 
@@ -241,9 +241,9 @@ All the options discussed here are also offered on the **Document** tab of the r
 
 \newpage
 
-## Including an Addendum {#addendum-example}
+## Including an Addendum {#sec-addendum-example}
 
-Continuing from the "Reviewing a Flyer" (\@ref(reviewing-a-flyer)) and "High-level Review of a Disclaimer" (\@ref(high-level-review-of-disclaimer)) examples, our fictitious private equity firm now plans to append a disclaimer to the flyer.
+Continuing from the "Reviewing a Flyer" (\@ref(sec-reviewing-a-flyer)) and "High-level Review of a Disclaimer" (\@ref(sec-high-level-review-of-disclaimer)) examples, our fictitious private equity firm now plans to append a disclaimer to the flyer.
 
 Along with policy changes to the program, they have redesigned the program's flyer to appear more professional. Let's first take a look at the updated flyer.
 From the **Help** tab on the ribbon, click the `r keys('Example Documents')` button, and select "YA Enterprise Software Symposium." Next, you will be prompted to either create a new project or view the document; select **View document**. Once the document is opened, note how the flyer’s short text boxes have been replaced by full sentences:
@@ -313,7 +313,7 @@ At this point, we will have quite of a bit of improvements to make to both the f
 
 ## Creating a Test Bundle
 
-[Test bundles](#test-bundles) are a convenient way to add multiple tests to a project at once. In this example, we will create a test bundle named "4F" which includes the [Fry](#fry-test), [FORCAST](#forcast-test), [Fog](#gunning-fog-test), and [Flesch-Kincaid](#flesch-kincaid-test) tests. The first step is to select the **Readability** tab, click the `r keys("Bundles")` button, and select **Add...** from the menu. This will open the **Add Test Bundle** dialog:
+[Test bundles](#sec-test-bundles) are a convenient way to add multiple tests to a project at once. In this example, we will create a test bundle named "4F" which includes the [Fry](#fry-test), [FORCAST](#forcast-test), [Fog](#gunning-fog-test), and [Flesch-Kincaid](#flesch-kincaid-test) tests. The first step is to select the **Readability** tab, click the `r keys("Bundles")` button, and select **Add...** from the menu. This will open the **Add Test Bundle** dialog:
 
 ![](images/test-bundle.png)
 

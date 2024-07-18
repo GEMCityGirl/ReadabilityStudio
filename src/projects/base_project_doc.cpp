@@ -463,7 +463,7 @@ void BaseProjectDoc::UpdateListOptions(ListCtrlEx* list)
 
     list->SetExportResources(
         wxGetApp().GetMainFrame()->GetHelpDirectory(),
-        L"export-list.html");
+        L"sec-export-list.html");
     list->SetSortHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"column-sorting.html");
 
     UpdatePrinterHeaderAndFooters(list);
@@ -476,7 +476,7 @@ void BaseProjectDoc::UpdateGraphOptions(Wisteria::Canvas* canvas)
         { return; }
     canvas->SetExportResources(
         wxGetApp().GetMainFrame()->GetHelpDirectory(),
-        L"image-export.html");
+        L"sec-image-export.html");
 
     UpdatePrinterHeaderAndFooters(canvas);
 

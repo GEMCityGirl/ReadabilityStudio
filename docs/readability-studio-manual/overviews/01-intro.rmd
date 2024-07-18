@@ -2,7 +2,7 @@
 
 # Technical Overviews
 
-## Introduction {-#intro}
+## Introduction {-#sec-intro}
 
 `r drop_cap('When')` writing for a target audience or classifying documents for specific age groups, readability formulas are invaluable tools.
 They help determine the minimum age group that can quickly process reading material by using an analytical approach.
@@ -54,7 +54,7 @@ glue('As a final note, there are a few hybrid tests which can be calculated via 
 $if_else(UserManualMode, OptionsDesc, "")^', .open='$', .close='^')
 ```
 
-## Grade-level Clamping {#grade-level-clamping}
+## Grade-level Clamping {#sec-grade-level-clamping}
 
 A key difference between graph and table-based tests versus regression-based tests is how the former has defined upper limits for their scores. For example, graph-based tests acquire their scores by finding the intersection of certain factors (e.g., sentence length) within a set a bands. These bands represent grades, and there are a specific set of grade bands available. As an example, a [Fry](#fry-test) graph has bands ranging from 1^st^ grade to 17^th^ (i.e., college):
 
@@ -73,12 +73,12 @@ Second, because graph and table-based tests are bound to sensical grade scales, 
 Finally, the source materials for these formulas cite example scores within 0–19. Again, it can be inferred that the authors' intention was for documents to be bound to a reasonable grade scale.
 
 ```{r, results='asis', eval=UserManualMode, echo=F, include=UserManualMode}
-glue('Although not recommended, it is possible to create a copy of any regression-based test and remove this clamping. (Refer to ch. \\@ref(custom-test-no-clamping) for an example.)')
+glue('Although not recommended, it is possible to create a copy of any regression-based test and remove this clamping. (Refer to ch. \\@ref(sec-custom-test-no-clamping) for an example.)')
 ```
 
 ## How Tests can Fail
 
-Most readability tests will return a result, even when the document being reviewed contains extreme difficulty factors. For example, with table-based tests, documents with long sentences and/or numerous unfamiliar words will fall within the top bracket of the look-up table. (Refer to table \@ref(tab:wheeler-smith-conversion-table) for an example). Likewise, plugging a document's statistics into a regression-based test will also produce a result without issue (although extreme results may need to be clamped, see \@ref(grade-level-clamping)).
+Most readability tests will return a result, even when the document being reviewed contains extreme difficulty factors. For example, with table-based tests, documents with long sentences and/or numerous unfamiliar words will fall within the top bracket of the look-up table. (Refer to table \@ref(tab:wheeler-smith-conversion-table) for an example). Likewise, plugging a document's statistics into a regression-based test will also produce a result without issue (although extreme results may need to be clamped, see \@ref(sec-grade-level-clamping)).
 
 It is possible, however, for certain graphical tests to not return a meaningful result. Tests such as Fry and Schwartz use plots that are divided into bands (i.e., polygonal strips) which represent different grade levels. To produce a result, these tests find the intersection of a document's statistics along the plot's axes. Once the intersection is found, the band that the point falls within will indicate the grade level of the document.
 

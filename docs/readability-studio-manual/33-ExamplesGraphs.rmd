@@ -54,7 +54,7 @@ knitr::include_graphics("images/example-barchart-no-labels-changed.png")
 
 \newpage
 
-## Customizing Backgrounds {#graph-background-example}
+## Customizing Backgrounds {#sec-graph-background-example}
 
 Continuing from our previous [example](#customizing-bars), let's now change the background\index{graphs!customizing!backgrounds|(} of the graph.
 On the **Home** tab, click `r menu(c('Background', 'Background Color', 'Color...'))`.
@@ -87,7 +87,7 @@ knitr::include_graphics("images/example-graph-background-image-effect-changed.pn
 
 \newpage
 
-## Adding Watermarks and Logos {#graph-watermark-example}
+## Adding Watermarks and Logos {#sec-graph-watermark-example}
 
 Next, let's put a [watermark](#watermark-and-logo) across our graph. Click the `r keys("Watermark")` button in the **Edit** section.
 Enter the following into the **Watermark** dialog and click `r keys("OK")`:
@@ -159,7 +159,7 @@ These features can also be applied to box plots and histograms. With any of thes
 
 \newpage
 
-## Selective Colorization {#graph-selective-color-example}
+## Selective Colorization {#sec-graph-selective-color-example}
 
 In this example\index{graphs!customizing!backgrounds|(}, we will create a bar chart with a selective colorization effect. This technique is where the background is black & white and various focal points (i.e., the bars) are in color.
 
@@ -202,7 +202,7 @@ knitr::include_graphics("images/example-graph-background-image-effect-grayscaled
 :::
 \index{graphs!customizing!backgrounds|)}
 
-## A Retro Appearance {#graph-retro-example}
+## A Retro Appearance {#sec-graph-retro-example}
 
 In this example, we will create a basic-looking graph, with a more "retro" appearance. We will do this by removing all adornments and effects, and by applying washed-out colors and monospace fonts.
 

@@ -1,8 +1,8 @@
-# Additional Features {#additional-features}
+# Additional Features {#sec-additional-features}
 
 This chapter discusses additional features not directly related to readability. This includes features such crawling and downloading documents from a website, as well as logging and command line options.
 
-## Web Harvester {#web-harvester}
+## Web Harvester {#sec-web-harvester}
 
 The **Web Harvester** dialog enables you to gather (and optionally download) links from a website. To access this dialog, select the **Tools** tab on the ribbon and click the `r keys('Web Harvest')` button under **Tools & Settings**.
 
@@ -40,7 +40,7 @@ This is useful if harvesting pages from the different portions of a website that
 Note that cookies will only persist for the pages currently being harvested from this dialog.
 All cookies will be cleared once this harvesting session is complete.
 
-**Log broken links**: Check this option to check for broken links while harvesting and save them to the [log report](#log-report).
+**Log broken links**: Check this option to check for broken links while harvesting and save them to the [log report](#sec-log-report).
 
 ::: {.warningsection data-latex=""}
 Checking this option will degrade performance as each web link must be connected to and verified.
@@ -73,7 +73,9 @@ For example, if your base webpage is *www.mybusiness.com/history/aboutus.html*, 
 
 #### Download {-}
 
-These options enable you to download the files from the website prior to analyzing them. Rather than analyzing the files directly from the website, the application will analyze the local files. If [file linking](#options-document) is enabled, then the project will link to these local files instead of the website.
+These options enable you to download the files from the website prior to analyzing them.
+Rather than analyzing the files directly from the website, the application will analyze the local files.
+If [file linking](#sec-options-document) is enabled, then the project will link to these local files instead of the website.
 
 This option is recommended if you need to make edits to the files before analyzing them. It may also be recommended to improve performance, as analyzing local files will be faster than reading them from a website.
 
@@ -97,15 +99,15 @@ these files.
 **Replace existing files**: Select this option to overwrite existing files as they are downloaded.
 Deselecting this option will rename files as they are downloaded (if necessary) to avoid overwriting existing files.
 
-## Command Line Options {#command-line-options}
+## Command Line Options {#sec-command-line-options}
 
 The following command line options are available for *Readability Studio*:
 
 | Command | Description |
 | :-- | :-- |
-| `"filename"` | Opens *filename*, which can be the path to a project or document. If the path supplied is a folder, then a [batch project](#creating-batch-project) will be created using all documents found recursively within the folder. |
+| `"filename"` | Opens *filename*, which can be the path to a project or document. If the path supplied is a folder, then a [batch project](#sec-creating-batch-project) will be created using all documents found recursively within the folder. |
 | `-bg` | Path to an image file to use as *filename*'s graph background. (This option only applies if a *filename* parameter is supplied.) Also, *filename* must refer to a document or folder (i.e., not a *Readability Studio* project file) that will be used to create a new project. |
-| `-loglevel=n` | This parameter specifies how much information to [log](#log-report) while the program is running, where *n* is a value between 0-2 (0 = none, 1 = standard, 2 = verbose). |
+| `-loglevel=n` | This parameter specifies how much information to [log](#sec-log-report) while the program is running, where *n* is a value between 0-2 (0 = none, 1 = standard, 2 = verbose). |
 | `-help` | Displays the help. |
 
 The following example would open the document *PatientAgreement.rtf* and use the image *Sunset.png* as the graphs' background:
@@ -122,7 +124,7 @@ This example would tell the program to log the maximum level of information whil
 
 Note that verbose logging can also be enabled from the **General** page of the **Options** dialog or the **Log Report** dialog.
 
-## Log Report {#log-report}
+## Log Report {#sec-log-report}
 
 While it is running, *Readability Studio* logs various diagnostic information. This information can provide details such as:
 
@@ -144,7 +146,7 @@ The messages in this report are displayed such that:
 
 This information can be useful if you are experiencing issues with loading a document.
 
-## Batch Importing {#batch-project-import-features}
+## Batch Importing {#sec-batch-project-import-features}
 
 ### Select Labeling
 
@@ -160,11 +162,11 @@ After selecting a group of documents, you will be presented with this dialog to 
 **Use the last common folder between files**: Select this to group documents by folder. The paths between each pair of files will be compared, and the last folder that they have in common will be their group. 
 :::
 
-Refer to \@ref(adding-labels-to-batch) and \@ref(grouping-docs-in-batch) for examples of this feature.
+Refer to \@ref(sec-adding-labels-to-batch) and \@ref(sec-grouping-docs-in-batch) for examples of this feature.
 
 ### Select Directory
 
-This dialog enables you to select a folder of documents for [batch](#creating-batch-project) analysis.
+This dialog enables you to select a folder of documents for [batch](#sec-creating-batch-project) analysis.
 
 **Folder path**: Enter the path to the folder of documents that you want to include.
 
@@ -174,7 +176,7 @@ This dialog enables you to select a folder of documents for [batch](#creating-ba
 
 ### Select Archive File
 
-This dialog enables you to select an archive file (e.g., a compressed \*.zip file) that contains your documents for [batch](#creating-batch-project) analysis.
+This dialog enables you to select an archive file (e.g., a compressed \*.zip file) that contains your documents for [batch](#sec-creating-batch-project) analysis.
 
 **Folder path**: Enter the path to the archive file that you want to include.
 

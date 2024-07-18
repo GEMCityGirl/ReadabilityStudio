@@ -1,6 +1,6 @@
 # Custom Tests & Bundles
 
-## Creating a Custom Test {#creating-custom-test}
+## Creating a Custom Test {#sec-creating-custom-test}
 
 Along with offering standard tests, such as [New Dale-Chall](#dale-chall-test)\index{New Dale-Chall!custom test} and [Spache Revised](#spache-test)\index{Spache Revised!custom test}, *Readability Studio* also includes the ability to create your own tests. Many customizable features are offered for new tests, such as being able to select your own familiar-word list and which formula to use.
 
@@ -34,11 +34,11 @@ The left side of this browser shows the function categories, while the right sid
 Beneath, a description of the selected function will be shown.
 Note that double clicking a function on the right side will insert it into the formula.
 
-Refer to \@ref(custom-test-functions) for a list of available functions.
+Refer to \@ref(sec-custom-test-functions) for a list of available functions.
 
 ::: {.minipage data-latex="{\textwidth}"}
 After entering your formula, you will need to specify what type of test this will be from the **Test result type** combobox.
-This will determine which column the test's score will appear in the [**Readability Scores**](#reviewing-test-scores) window.
+This will determine which column the test's score will appear in the [**Readability Scores**](#sec-reviewing-test-scores) window.
 The following types of tests are available:
 
 - Grade level
@@ -46,7 +46,7 @@ The following types of tests are available:
 - [Predicted cloze score](#cloze)\index{cloze!custom tests}
 :::
 
-If your test is using any of the predefined familiar-word formulas (`CustomNewDaleChall()`, `CustomSpache()`, `CustomHarrisJacobson()`) or using the functions `UnfamiliarWordCount()` or `UniqueUnfamiliarWordCount()`, then you will need to define how familiar words are detected. Expand **Familiar Words** to view two sections: [**Word Lists**](#custom-word-list) and [**Proper Nouns & Numerals**](#custom-proper-numerals).
+If your test is using any of the predefined familiar-word formulas (`CustomNewDaleChall()`, `CustomSpache()`, `CustomHarrisJacobson()`) or using the functions `UnfamiliarWordCount()` or `UniqueUnfamiliarWordCount()`, then you will need to define how familiar words are detected. Expand **Familiar Words** to view two sections: [**Word Lists**](#sec-custom-word-list) and [**Proper Nouns & Numerals**](#sec-custom-proper-numerals).
 
 If you want to include a list of your own familiar words, then check the option **Include custom familiar word list**. Next, enter the path to the familiar-word file in the **File containing familiar words** field. This file must be a text file and each word must be separated by a space, tab, comma, semicolon, or new line. An example file would look like this:
 
@@ -72,7 +72,7 @@ Standard familiar-word tests normally consider numbers and proper nouns as famil
 
 ![](images/custom-test-treat.png)
 
-Finally, you can specify how this test interacts with the [**New Project**](#creating-standard-project) wizard by associating it with document types and industries. Click the **Classification** icon to display these options. Then select all the documents and industries that this test should relate to.
+Finally, you can specify how this test interacts with the [**New Project**](#sec-creating-standard-project) wizard by associating it with document types and industries. Click the **Classification** icon to display these options. Then select all the documents and industries that this test should relate to.
 
 For example, select the **Children's literature** and **Children's healthcare** check boxes (as shown below) and click `r keys("OK")`.
 
@@ -80,9 +80,9 @@ For example, select the **Children's literature** and **Children's healthcare** 
 
 Now create a new project and select **Children's healthcare** as the industry type. Once the program loads the document, your custom test will be automatically included in the results.
 
-## Custom Test Functions {#custom-test-functions}
+## Custom Test Functions {#sec-custom-test-functions}
 
-The following functions and operators are available for use in [custom test](#creating-custom-test) formulas.
+The following functions and operators are available for use in [custom test](#sec-creating-custom-test) formulas.
 
 ::: {.minipage data-latex="{\textwidth}"}
 | Operator | Description |
@@ -209,7 +209,7 @@ Also, can't use kable here because we have index tags embedded in the text.
 Table: Document Statistics Functions
 
 ^a^ Uses the [Dale-Chall text-exclusion](#options-dale-chall) method.\
-^b^ Uses the [Harris-Jacobson text-exclusion method](#options-harris-jacobson).\
+^b^ Uses the [Harris-Jacobson text-exclusion method](#sec-options-harris-jacobson).\
 ^c^ Uses the [Gunning Fog](#options-gunning-fog) sentence-counting method.\
 This will be either traditional sentence counting or unit counting.
 :::
@@ -292,16 +292,16 @@ IF(// Review the % of buzz words in the document.
    1 /* Acceptable */) )
 ```
 
-## Custom Test Dialog {#custom-test-dialog}
+## Custom Test Dialog {#sec-custom-test-dialog}
 
-### General Settings {-#custom-test-general-settings}
+### General Settings {-#sec-custom-test-general-settings}
 
-From the **Readability** tab, click the `r keys("Custom Test")` button and then select **Add Test...** to display the **Add Custom Test** dialog. This dialog is used to edit or create a [custom test](#creating-custom-test).
+From the **Readability** tab, click the `r keys("Custom Test")` button and then select **Add Test...** to display the **Add Custom Test** dialog. This dialog is used to edit or create a [custom test](#sec-creating-custom-test).
 
 **Test name**: If creating a new test, enter its name into this field.
 
 ::: {.minipage data-latex="{\textwidth}"}
-**Test type**: Select from this list the type of result this test returns. This will determine which column the test's score will appear in the [**Readability Scores**](#reviewing-test-scores) window. The following types of tests are available:
+**Test type**: Select from this list the type of result this test returns. This will determine which column the test's score will appear in the [**Readability Scores**](#sec-reviewing-test-scores) window. The following types of tests are available:
 
 - Grade level
 - Index value
@@ -310,7 +310,7 @@ From the **Readability** tab, click the `r keys("Custom Test")` button and then 
 
 ### Formula {-}
 
-`r keys('ƒx')`  Click this button to display the **Function Browser** dialog. In this dialog, you can browse the available functions and insert them into your formula. Refer to \@ref(custom-test-functions) for a list of available functions.
+`r keys('ƒx')`  Click this button to display the **Function Browser** dialog. In this dialog, you can browse the available functions and insert them into your formula. Refer to \@ref(sec-custom-test-functions) for a list of available functions.
 
 `r keys(checkmark())`  Click this button to validate the formula. You will be alerted if your formula contains any syntax errors.
 
@@ -318,7 +318,7 @@ From the **Readability** tab, click the `r keys("Custom Test")` button and then 
 
 ### Word Lists {-}
 
-#### Custom familiar word list {-#custom-word-list}
+#### Custom familiar word list {-#sec-custom-word-list}
 
 **Include custom familiar word list**: Check this option to use your own word list to determine if a word is familiar.
 
@@ -365,7 +365,7 @@ This option is only available if you are including two or more word lists.
 This option is only recommended for when you want to find words that appear within a union of your word list and a standard list(s) (e.g., Spache).
 :::
 
-### Proper Nouns & Numerals {-#custom-proper-numerals}
+### Proper Nouns & Numerals {-#sec-custom-proper-numerals}
 
 #### Proper Nouns\index{proper nouns!custom tests} {-}
 
@@ -387,13 +387,13 @@ Familiarity
 
 ### Classification {-}
 
-**Associate with document type**: Select the document types that you want this test to be associated with when creating a [new project](#creating-standard-project). This will only take effect if the project wizard selects tests for you based on document type.
+**Associate with document type**: Select the document types that you want this test to be associated with when creating a [new project](#sec-creating-standard-project). This will only take effect if the project wizard selects tests for you based on document type.
 
 **Associate with industry**: Select the industries that you want this test to be associated with when creating a new project. This will only take effect if the project wizard selects tests for you based on industry or field.
 
-## Adding a Custom-word Test {#add-custom-word-test}
+## Adding a Custom-word Test {#sec-add-custom-word-test}
 
-From the **Readability** tab, click the `r keys("Custom Test")` button and then select **Add Custom [Test]...** to display the **Add Custom [Test]** dialog. The following tests available are: New Dale-Chall\index{New Dale-Chall!custom test}, Spache Revised\index{Spache Revised!custom test}, and Harris-Jacobson\index{Harris-Jacobson Wide Range!custom test}. This dialog is used to create a [custom word test](#creating-custom-test) and is a simplified version of the standard [**Custom Test**](#creating-custom-test) dialog.
+From the **Readability** tab, click the `r keys("Custom Test")` button and then select **Add Custom [Test]...** to display the **Add Custom [Test]** dialog. The following tests available are: New Dale-Chall\index{New Dale-Chall!custom test}, Spache Revised\index{Spache Revised!custom test}, and Harris-Jacobson\index{Harris-Jacobson Wide Range!custom test}. This dialog is used to create a [custom word test](#sec-creating-custom-test) and is a simplified version of the standard [**Custom Test**](#sec-creating-custom-test) dialog.
 
 **Test name**: Enter the name of the new test (e.g., “Harris-Jacobson (Social Studies)”) into this field.
 
@@ -412,14 +412,14 @@ or like this:
 > `program`\
 > `videogame`
 
-## Test Bundles {#test-bundles}
+## Test Bundles {#sec-test-bundles}
 
 Test bundles enable you to organize tests into collections that you can quickly add to a project. Rather than selecting numerous tests from the menus one-by-one, you can simply select a test bundle from the menu. From there, all tests within the bundle will be added to the project.
 
 To access the test bundles, select the **Readability** tab and click the `r keys("Bundles")` button. A menu will appear which contains all the available bundles, as well as options to add, edit, and remove them.
 
 ::: {.minipage data-latex="{\textwidth}"}
-By default, the industry and document-type bundles used in the [**New Project**](#creating-standard-project) wizard will be available. This includes:
+By default, the industry and document-type bundles used in the [**New Project**](#sec-creating-standard-project) wizard will be available. This includes:
 
 - General document
 - Technical document
@@ -445,7 +445,11 @@ You can also create your own bundles. To do this, select **Add...** from the **B
 
 On the **General** page of this dialog, you will first enter a name for the bundle. (This name is how it will appear in the **Bundles** menu.) Next, you will select all the tests that you wish to include in this bundle. (Tests are available on the **Standard Tests**, **Custom Tests**, and **Vocabulary Tools** pages.)
 
-Along with selecting tests, you can also specify the range of values that a document should score within for any given test. First, on the **Goals** page, click the add button to include a new goal. Next, double click in the **Test** column to select the test. Finally, click in either the **Recommended minimum score** or **Recommended maximum score** column and enter the acceptable score range. Now, when this bundle is applied to a project, the document’s pass/fail status will be displayed in the [**Goals**](#reviewing-goals) section.
+Along with selecting tests, you can also specify the range of values that a document should score within for any given test.
+First, on the **Goals** page, click the add button to include a new goal.
+Next, double click in the **Test** column to select the test.
+Finally, click in either the **Recommended minimum score** or **Recommended maximum score** column and enter the acceptable score range.
+Now, when this bundle is applied to a project, the document’s pass/fail status will be displayed in the [**Goals**](#sec-reviewing-goals) section.
 
 Beneath the test goals grid is another grid for creating statistics goals as well. For example, you can add a goal such as specifying the maximum average sentence length for the document.
 

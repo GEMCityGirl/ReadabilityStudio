@@ -1088,7 +1088,7 @@ void ProjectWizardDlg::LoadArchive(wxString archivePath /*= wxString{}*/)
     dlg.SetPath(archivePath);
     dlg.SetSelectedFileFilter(wxGetApp().GetLastSelectedDocFilter());
     dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                     L"batch-project-import-features.html");
+                     L"sec-batch-project-import-features.html");
     if (dlg.ShowModal() != wxID_OK)
         {
         return;
@@ -1099,7 +1099,7 @@ void ProjectWizardDlg::LoadArchive(wxString archivePath /*= wxString{}*/)
     bool groupByLastCommonFolder{ false };
     DocGroupSelectDlg selectLabelTypeDlg(this);
     selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                                    L"batch-project-import-features.html");
+                                    L"sec-batch-project-import-features.html");
     selectLabelTypeDlg.SetSelection(wxGetApp().GetAppOptions().GetBatchGroupMethod());
     if (selectLabelTypeDlg.ShowModal() != wxID_OK)
         {
@@ -1249,7 +1249,7 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
                 _(L"\"%s\" Preview"),
                 excelExtract.get_worksheet_names().at(workSheetSelections.Item(i)).c_str()));
         excelPreview.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                                  L"batch-project-import-features.html");
+                                  L"sec-batch-project-import-features.html");
         if (excelPreview.ShowModal() == wxID_OK)
             {
             // filter just the rows that were requested by setting unselected cells to empty
@@ -1585,11 +1585,11 @@ void ProjectWizardDlg::OnButtonClick(wxCommandEvent& link)
     wxString helpTopic;
     if (link.GetId() == NARRATIVE_WITH_ILLUSTRATIONS_LINK_ID)
         {
-        helpTopic = L"line-chaining.html";
+        helpTopic = L"sec-line-chaining.html";
         }
     else if (link.GetId() == FRAGMENTED_LINK_ID)
         {
-        helpTopic = L"fragmented-text.html";
+        helpTopic = L"sec-fragmented-text.html";
         }
     else if (link.GetId() == CENTERED_TEXT_LINK_ID)
         {
@@ -1662,7 +1662,7 @@ void ProjectWizardDlg::OnAddWebPageButtonClick([[maybe_unused]] wxCommandEvent& 
         wxString groupLabel;
         DocGroupSelectDlg selectLabelTypeDlg(this);
         selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                                        L"batch-project-import-features.html");
+                                        L"sec-batch-project-import-features.html");
         selectLabelTypeDlg.SetSelection(wxGetApp().GetAppOptions().GetBatchGroupMethod());
         if (selectLabelTypeDlg.ShowModal() != wxID_OK)
             {
@@ -1695,7 +1695,7 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
                                   wxGetApp().GetLastSelectedDocFilter(), false);
     webHarvestDlg.UpdateFromHarvesterSettings(wxGetApp().GetWebHarvester());
     webHarvestDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                               L"web-harvester.html");
+                               L"sec-web-harvester.html");
     if (webHarvestDlg.ShowModal() != wxID_OK)
         {
         return;
@@ -1706,7 +1706,7 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
     bool groupByLastCommonFolder{ false };
     DocGroupSelectDlg selectLabelTypeDlg(this);
     selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                                    L"batch-project-import-features.html");
+                                    L"sec-batch-project-import-features.html");
     selectLabelTypeDlg.SetSelection(wxGetApp().GetAppOptions().GetBatchGroupMethod());
     if (selectLabelTypeDlg.ShowModal() != wxID_OK)
         {
@@ -1793,7 +1793,7 @@ void ProjectWizardDlg::OnAddFolderButtonClick([[maybe_unused]] wxCommandEvent& e
     dirDlg.SetSelectedFileFilter(wxGetApp().GetLastSelectedDocFilter());
     dirDlg.SetPath(GetLastSelectedFolder());
     dirDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                        L"batch-project-import-features.html");
+                        L"sec-batch-project-import-features.html");
     if (dirDlg.ShowModal() != wxID_OK || dirDlg.GetPath().empty())
         {
         return;
@@ -1816,7 +1816,7 @@ void ProjectWizardDlg::OnAddFolderButtonClick([[maybe_unused]] wxCommandEvent& e
     bool groupByLastCommonFolder{ false };
     DocGroupSelectDlg selectLabelTypeDlg(this);
     selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                                    L"batch-project-import-features.html");
+                                    L"sec-batch-project-import-features.html");
     selectLabelTypeDlg.SetSelection(wxGetApp().GetAppOptions().GetBatchGroupMethod());
     if (selectLabelTypeDlg.ShowModal() != wxID_OK)
         {
@@ -1924,7 +1924,7 @@ void ProjectWizardDlg::OnAddFileButtonClick([[maybe_unused]] wxCommandEvent& eve
     bool groupByLastCommonFolder{ false };
     DocGroupSelectDlg selectLabelTypeDlg(this);
     selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                                    L"batch-project-import-features.html");
+                                    L"sec-batch-project-import-features.html");
     selectLabelTypeDlg.SetSelection(wxGetApp().GetAppOptions().GetBatchGroupMethod());
     if (selectLabelTypeDlg.ShowModal() != wxID_OK)
         {
@@ -1979,8 +1979,8 @@ void ProjectWizardDlg::OnHelp([[maybe_unused]] wxCommandEvent& event)
     {
     const wxString helpProjectPath = wxGetApp().GetMainFrame()->GetHelpDirectory();
     wxString helpTopic = (GetProjectType() == ProjectType::StandardProject) ?
-                             L"creating-standard-project.html" :
-                             L"creating-batch-project.html";
+                             L"sec-creating-standard-project.html" :
+                             L"sec-creating-batch-project.html";
     wxLaunchDefaultBrowser(
         wxFileName::FileNameToURL(helpProjectPath + wxFileName::GetPathSeparator() + helpTopic));
     }

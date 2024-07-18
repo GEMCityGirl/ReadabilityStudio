@@ -1,4 +1,4 @@
-# New Features and Enhancements {#new-features}
+# New Features and Enhancements {#sec-new-features}
 
 ## Readability Studio 2024 {-}
 ***
@@ -6,15 +6,15 @@
 ### General Enhancements {-}
 
 - Added real-time updating to standard projects. This enables the project to update itself while you edit the original document in another program.
-  (Refer to `r glue("{if_else(UserManualMode, '\\\\@ref(external-editing)', shQuote('Editing from Other Programs'))}")` for an example.)
+  (Refer to `r glue("{if_else(UserManualMode, '\\\\@ref(sec-external-editing)', shQuote('Editing from Other Programs'))}")` for an example.)
 - Greatly enhanced editing documents that are embedded within standard projects.
-  (Refer to `r glue("{if_else(UserManualMode, '\\\\@ref(rs-as-an-editor)', shQuote('Editing within Readability Studio'))}")` for an example.)
+  (Refer to `r glue("{if_else(UserManualMode, '\\\\@ref(sec-rs-as-an-editor)', shQuote('Editing within Readability Studio'))}")` for an example.)
   - Added a save button to the editor that will cause the project to analyze your changes immediately.
   - The project window can now be selected while the editor is open. This allows for changing options, adding tests, and viewing different results while the editor is active.
   - Added find &amp; replace, undo/redo, and clipboard operations to the editor.
   - Added the ability to change the font, indenting, and text alignment in the editor.
-- Added a [Summary Statistics](#reviewing-batch-summary-stats) list to batch projects.
-- Printer [headers and footers](#printing) are now more customizable.
+- Added a [Summary Statistics](#sec-reviewing-batch-summary-stats) list to batch projects.
+- Printer [headers and footers](#sec-printing) are now more customizable.
 - Sidebar improvements:
   - Clicking an expanded folder will collapse it. (Double clicking it is no longer necessary.)
   - Can now be shown/hidden with the `r keys('F2')` key or from the ribbon.
@@ -151,7 +151,7 @@
 
 ### General Enhancements {-}
 
-- Added **Line ends mark the start of a new paragraph** layout option to the [project wizard](#creating-standard-project).
+- Added **Line ends mark the start of a new paragraph** layout option to the [project wizard](#sec-creating-standard-project).
 - Added test bundles option to the project wizard.
 - Added ability to include descriptions for any document included in a batch project. (The program will fill in these descriptions automatically, based on the document's title.)
 - Added ability to apply group labels to documents in a batch project.
@@ -186,7 +186,7 @@
 
 ### Analysis/Test Enhancements {-}
 
-- Added [goals](#reviewing-goals) feature to warn if a document's scores or statistics do not fall within a certain range.
+- Added [goals](#sec-reviewing-goals) feature to warn if a document's scores or statistics do not fall within a certain range.
 - Words can now be added to excluded word list directly from list windows.
 - Added [Schwartz test](#schwartz) (German projects only).
 - Added a graph to visualize Lix index scores.
@@ -199,7 +199,7 @@
 - Instruction label now shown on all Flesch charts (not just blank ones).
 - Added custom test features:
   - Added feature to create custom tests based on any existing regression-based test.
-    (Refer to `r glue("{if_else(UserManualMode, '\\\\@ref(creating-custom-flesch-test)', shQuote('Creating a Modified Flesch Test'))}")` for an example.)
+    (Refer to `r glue("{if_else(UserManualMode, '\\\\@ref(sec-creating-custom-flesch-test)', shQuote('Creating a Modified Flesch Test'))}")` for an example.)
   - Added `GunningFog` option to `SentenceCount()` function. This will return the sentence count using the system's [Gunning Fog method](#options-gunning-fog).
   - Added `MiniWordCount()` function.
   - Added `HardFogWordCount()` function.
@@ -214,8 +214,8 @@
 - Improved detection of sentence endings when followed by a citation (e.g., *End of sentence.^17^ A new sentence.*).
 - Improved article-mismatch detection.
 - Improved English syllabizer.
-- [Trailing citation](#options-text-exclusion) exclusion is now less aggressive when a references section may be in the middle of a document.
-- The [Aggressively exclude](#options-text-exclusion) option will now override the **Include incomplete sentences containing more than [15] words** option when reviewing list items.
+- [Trailing citation](#sec-options-text-exclusion) exclusion is now less aggressive when a references section may be in the middle of a document.
+- The [Aggressively exclude](#sec-options-text-exclusion) option will now override the **Include incomplete sentences containing more than [15] words** option when reviewing list items.
 - Sentences that contain only numbers and single-letter words are now more aggressively excluded.
 - Improved detection of website URLs when indexing text.
 - Fractions (½, ¼, and ¾), superscripts (^0^-^9^), and subscripts (~0~-~9~) are now recognized by syllable counters.
@@ -257,7 +257,7 @@
 - Improvements to Word 97–2003 importer to better handle Unicode and corrupted files.
 - Improvements to RTF importer (improved Unicode and footnote support).
 - Improvements to C++ source file importer (improved handling of escaped quotes).
-- Added **Narrow full-width characters** option to [document filtering](#additional-filtering-options).
+- Added **Narrow full-width characters** option to [document filtering](#sec-additional-filtering-options).
 - When exporting filtered documents from a batch project, the folder structure of the original documents will be recreated in the output folder. This will prevent files with the same name overwriting each other.
 
 ### Graph Enhancements {-}
@@ -328,15 +328,15 @@
 - Which results to include in the **Scores** section can now be individually toggled.
 - Which results to include in the **Words Breakdown** section can now be toggled.
 - Which results to include in the **Sentences Breakdown** section can now be toggled.
-- [Reviewer](#project-settings) and **Status** information can now be added to projects.
-- Warning messages that are being suppressed will now not be included in the [Warning](#reviewing-batch-warnings) section of a batch.
+- [Reviewer](#sec-project-settings) and **Status** information can now be added to projects.
+- Warning messages that are being suppressed will now not be included in the [Warning](#sec-reviewing-batch-warnings) section of a batch.
 - While a project is open, the search bar will autocomplete items that you have already searched for.
-- [**Log Report**](#log-report) button is now always available. (This option was not available unless verbose logging was enabled in previous releases.)
+- [**Log Report**](#sec-log-report) button is now always available. (This option was not available unless verbose logging was enabled in previous releases.)
 - Added **Timestamp** and **Source** columns to **Log Report** window.
 - Most test warning messages are now shown in the infobar (instead of message boxes), making them less intrusive.
 - Improved program display when running under higher screen resolutions.
 - Added new icons to subitems in projects' sidebars.
-- Added `-bg` (graph background) [command line](#command-line-options) option.
+- Added `-bg` (graph background) [command line](#sec-command-line-options) option.
 - Simplified **About** dialog.
 
 ### Analysis/Test Enhancements {-}
@@ -514,7 +514,7 @@
 
 - PowerPoint^®^ 2007 importing added.
 - IDL file importing added.
-- [Filtered document](#filtering-export) exporting added (*Professional* edition).
+- [Filtered document](#sec-filtering-export) exporting added (*Professional* edition).
 
 ### Graph Enhancements {-}
 
@@ -564,7 +564,7 @@
 - Added high-precision option to [SMOG](#smog-test) test.
 - Added **count independent clauses as separate sentences** option to [Gunning Fog](#gunning-fog-test).
 - Gunning Fog now treats words made three syllables by adding *ed* or *es* as easy.
-- Added custom formula functionality to [custom tests](#creating-custom-test).
+- Added custom formula functionality to [custom tests](#sec-creating-custom-test).
 - Added ability to specify the result type of custom tests (e.g., index level or grade level).
 - Added ability for custom tests to control how proper nouns are handled (including the ability to count only the first occurrence of a proper noun as unfamiliar).
 - Custom tests no longer require custom word lists (just the standard lists can be selected).

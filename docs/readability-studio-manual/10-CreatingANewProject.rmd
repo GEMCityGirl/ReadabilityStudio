@@ -13,14 +13,14 @@ In this chapter, we will step through the process of creating a project, explain
 ## Project Types {-}
 
 To begin, click the `r keys("New")` button on the **Home** tab to display the **New Project** dialog.
-This dialog enables you to create either a [standard](#creating-standard-project) or [batch](#creating-batch-project) project.
+This dialog enables you to create either a [standard](#sec-creating-standard-project) or [batch](#sec-creating-batch-project) project.
 Note that batch projects are only available with **Professional Edition**.
 
 **Standard project**: Select this option to create a standard project, which can analyze a file, a webpage, or typed text.
 
 **Batch project**: Select this option to create a batch project, which can analyze a collection of documents or a website.
 
-## Standard Project {#creating-standard-project}
+## Standard Project {#sec-creating-standard-project}
 
 To determine a document's readability you will need to create a new project. First, click the `r keys("New")` button on the **Home** tab to open the **New Project** wizard.
 (If you are using the *Professional* edition, select **Standard Project** and click `r keys("OK")`).
@@ -47,9 +47,9 @@ After you have selected your file, click the `r keys("Forward >")` button to con
 
 ![](images/wizarddocstructure.png)
 
-On this page, you will specify the format that best describes your document. The compositions that you can select are either narrative text or [non-narrative/fragmented text](#fragmented-text).
-These options describe the content of your document and will help the program select the appropriate [text exclusion](#options-text-exclusion) method\index{text exclusion!specifying in project wizard}.
-The layout options are used to describe the format of the document and will help the program select the appropriate [sentence deduction](#options-sentence-deduction) method.
+On this page, you will specify the format that best describes your document. The compositions that you can select are either narrative text or [non-narrative/fragmented text](#sec-fragmented-text).
+These options describe the content of your document and will help the program select the appropriate [text exclusion](#sec-options-text-exclusion) method\index{text exclusion!specifying in project wizard}.
+The layout options are used to describe the format of the document and will help the program select the appropriate [sentence deduction](#sec-options-sentence-deduction) method.
 For example, if your document is formatted to fit a page and also wraps its text around illustrations, then it is recommended to check the first two **Layout** options.
 
 ::: {.tipsection data-latex=""}
@@ -77,11 +77,11 @@ Your third option is to manually select the tests yourself. To do this, select t
 
 The tests available on this page will depend on the project's language. For example, if you are manually selecting Spanish tests, then tests such as [Crawford](#crawford) will be available, but English tests (e.g., [Spache](#spache-test)) will not. Also, some industry and document-type options may not have tests associated with them depending on the selected language.
 
-Your final option is to select a [test bundle](#test-bundles).
+Your final option is to select a [test bundle](#sec-test-bundles).
 
 ![](images/wizardbundles.png)
 
-Along with adding tests to a project, test bundles also can include [goals](#reviewing-goals) to help with reviewing your scores.
+Along with adding tests to a project, test bundles also can include [goals](#sec-reviewing-goals) to help with reviewing your scores.
 
 Note that you can always add or remove tests from your project at any time. If you select either the document type or industry options, you are not bound to the tests that *Readability Studio* recommends.
 
@@ -89,9 +89,9 @@ Finally, click the `r keys("Finish")` button and the project will be created and
 
 ![](images/scores.png)
 
-From here, you can review the [readability scores](#reviewing-test-scores) and [graphs](#reviewing-readability-graphs), useful document [statistics](#reviewing-statistics), and various lists of [difficult words](#reviewing-word-breakdowns). You can also review the document with its difficult words and [sentences](#reviewing-standard-grammar) highlighted.
+From here, you can review the [readability scores](#sec-reviewing-test-scores) and [graphs](#sec-reviewing-readability-graphs), useful document [statistics](#sec-reviewing-statistics), and various lists of [difficult words](#reviewing-word-breakdowns). You can also review the document with its difficult words and [sentences](#reviewing-standard-grammar) highlighted.
 
-## Batch Projects {#creating-batch-project}
+## Batch Projects {#sec-creating-batch-project}
 
 To determine the readability of a document collection, you will need to create a new batch project. First, click the `r keys("New")` button on the **Home** tab to open the **Select Project Type** dialog, as shown below:
 
@@ -107,17 +107,17 @@ On the first page of this dialog, **Documents**, are options for selecting your 
 
 Now you can add files from a folder, archive file, Excel^®^ 2007 file, or website to the project.
 
-To add files from a folder, click the `r keys("Add folder")` button. You will be presented with the [**Select Directory**](#batch-project-import-features) dialog. On this dialog, you can select the document types to search for, as well as whether to search recursively within the folders.
+To add files from a folder, click the `r keys("Add folder")` button. You will be presented with the [**Select Directory**](#sec-batch-project-import-features) dialog. On this dialog, you can select the document types to search for, as well as whether to search recursively within the folders.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/selectdirectory.png")
 ```
 
-To add files from an archive (i.e., a \*.zip file), click the `r keys("Add archive")` button. You will be presented with the [**Select Archive File**](#batch-project-import-features) dialog. Like the **Select Directory** dialog, you can specify which documents to search for within the archive. (Note that the entire archive will be searched recursively for documents.)
+To add files from an archive (i.e., a \*.zip file), click the `r keys("Add archive")` button. You will be presented with the [**Select Archive File**](#sec-batch-project-import-features) dialog. Like the **Select Directory** dialog, you can specify which documents to search for within the archive. (Note that the entire archive will be searched recursively for documents.)
 
 To add documents from an *Excel* (\*.xlsx) file, click the `r keys("Add spreadsheet")` button. After selecting an *Excel* file, you will be prompted for which cells to import. After specifying these, the cells will be imported one of two ways. The first way is if a cell's content is a filepath. In this case, the document referenced by this filepath will be loaded into the project. Otherwise, if a cell is not a file path, then its content will be imported as a document itself. In this case, the cell's name (e.g., *B19*) will be used as the document's name.
 
-To search for files from a website and include them in the project, click the `r keys("Add web pages")` button. This will display the [**Web Harvester**](#web-harvester) dialog, as shown below:
+To search for files from a website and include them in the project, click the `r keys("Add web pages")` button. This will display the [**Web Harvester**](#sec-web-harvester) dialog, as shown below:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/webharvester.png")
@@ -141,10 +141,10 @@ Any document which does not meet this threshold will be ignored during import.
 
 Note that when the project is first analyzed, the documents that were not included in the sample will be removed from the project.
 
-Clicking the `r keys("Forward >")` button will move to the **Document Structure** and **Test Selection** pages. Refer to \@ref(creating-standard-project) for an explanation of these pages.
+Clicking the `r keys("Forward >")` button will move to the **Document Structure** and **Test Selection** pages. Refer to \@ref(sec-creating-standard-project) for an explanation of these pages.
 
 After you have specified your document structure and tests, click the `r keys("Finish")` button to create the project, as shown below:
 
 ![](images/batchscorestats.png)
 
-From here, you can review the [readability scores](#reviewing-batch-scores), [box plots](#reviewing-batch-box-plots), [histograms](#reviewing-batch-histograms), [readability graphs](#reviewing-readability-graphs), [Dolch statistics](#reviewing-batch-dolch), and [difficult words](#reviewing-batch-words). You may also want to review any [warnings](#reviewing-batch-warnings) that were encountered while analyzing the documents.
+From here, you can review the [readability scores](#sec-reviewing-batch-scores), [box plots](#sec-reviewing-batch-box-plots), [histograms](#sec-reviewing-batch-histograms), [readability graphs](#sec-reviewing-readability-graphs), [Dolch statistics](#sec-reviewing-batch-dolch), and [difficult words](#sec-reviewing-batch-words). You may also want to review any [warnings](#sec-reviewing-batch-warnings) that were encountered while analyzing the documents.

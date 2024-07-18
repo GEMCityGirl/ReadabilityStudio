@@ -367,7 +367,7 @@ void ProjectView::OnExportAll([[maybe_unused]] wxCommandEvent& event)
         {
         dlg.GetImageExportOptions().m_imageSize = m_activeWindow->GetClientSize();
         }
-    dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"export-all-options.html");
+    dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"sec-export-all-options.html");
     if (dlg.ShowModal() != wxID_OK || dlg.GetFolderPath().empty())
         {
         return;
@@ -427,7 +427,7 @@ void ProjectView::OnExportFilteredDocument([[maybe_unused]] wxCommandEvent& even
         }
 
     FilteredTextExportOptionsDlg optDlg(GetDocFrame());
-    optDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"filtering-export.html");
+    optDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"sec-filtering-export.html");
     if (optDlg.ShowModal() != wxID_OK)
         {
         return;
@@ -444,7 +444,7 @@ void ProjectView::OnExportFilteredDocument([[maybe_unused]] wxCommandEvent& even
                                doc->IsIgnoringTrailingCitations(), optDlg.IsReplacingCharacters(),
                                optDlg.IsRemovingEllipses(), optDlg.IsRemovingBullets(),
                                optDlg.IsRemovingFilePaths(), optDlg.IsStrippingAbbreviations());
-    dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"how-text-is-excluded.html");
+    dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"sec-how-text-is-excluded.html");
     dlg.SetFilteredValue(validDocText);
     if (dlg.ShowModal() == wxID_OK)
         {
@@ -680,7 +680,7 @@ void ProjectView::OnTestListDblClick([[maybe_unused]] wxListEvent& event)
         }
     else if (selectedTest == _(L"Dolch Sight Words"))
         {
-        wxGetApp().GetMainFrame()->DisplayHelp(L"reviewing-dolch.html.html");
+        wxGetApp().GetMainFrame()->DisplayHelp(L"sec-reviewing-dolch.html");
         }
     }
 

@@ -10,7 +10,7 @@ The New Dale-Chall\index{Dale-Chall!zzzzz@\igobble|seealso{New Dale-Chall}} read
 
 ::: {.notesection data-latex=""}
 ```{r, results='asis', eval=T, echo=F}
-OptionsDesc <- "The default [text exclusion](#options-text-exclusion) method\\index{text exclusion!New Dale-Chall} will be overridden for this specific test, although this behavior can be customized from the [**Options**](#readability-test-options) dialog."
+OptionsDesc <- "The default [text exclusion](#sec-options-text-exclusion) method\\index{text exclusion!New Dale-Chall} will be overridden for this specific test, although this behavior can be customized from the [**Options**](#readability-test-options) dialog."
 
 glue('This test treats headers and subheaders as full sentences, but excludes lists and tables. $if_else(UserManualMode, OptionsDesc, "")^', .open='$', .close='^')
 ```

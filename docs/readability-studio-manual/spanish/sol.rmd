@@ -36,7 +36,7 @@ Where:
 +-----+-----------------------------------------+
 
 ```{r, results='asis', eval=T, echo=F}
-OptionsDesc <- ", so the program overrides your [numeral syllabication](#document-analysis) setting for this test"
+OptionsDesc <- ", so the program overrides your [numeral syllabication](#sec-document-analysis) setting for this test"
 
 glue('Like SMOG, this test fully syllabizes numerals\\index{numerals!SOL} (i.e., sounds them out)$if_else(UserManualMode, OptionsDesc, "")^. It also excludes lists and tables, but includes headers and footers [@{contreras}23]. (SMOG does not explicitly follow this rule.)', .open='$', .close='^')
 ```

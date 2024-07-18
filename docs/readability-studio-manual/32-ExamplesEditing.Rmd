@@ -1,6 +1,6 @@
 # Editing
 
-## Editing within Readability Studio {#rs-as-an-editor}
+## Editing within Readability Studio {#sec-rs-as-an-editor}
 
 In this example, we will write and edit a document from within *Readability Studio* itself\index{editing!from \textit{Readability Studio}|(}. Click the `r keys("New")` button on the **Home** tab to open the **New Project** wizard.
 Next, select the **Manually enter text** option.
@@ -58,13 +58,13 @@ If the editor is not open, then double clicking a list item will search for it i
 Once you are finished editing and ready to export your document, copy it and paste it into another program.
 For example, click `r keys("Select All")` and `r keys("Copy")`, then paste into a program such as *Microsoft Word*, *Outlook*, *Pages*, *LibreOffice*, etc.
 
-In the next example (see \@ref(external-editing)), we will edit our document from another program and view the changes in *Readability Studio* in real-time.\index{editing!from \textit{Readability Studio}|)}
+In the next example (see \@ref(sec-external-editing)), we will edit our document from another program and view the changes in *Readability Studio* in real-time.\index{editing!from \textit{Readability Studio}|)}
 
 \newpage
 
-## Editing from Other Programs {#external-editing}
+## Editing from Other Programs {#sec-external-editing}
 
-Continuing\index{editing!from other programs|(} from the previous example (see \@ref(rs-as-an-editor)), we have copied the text from the editor into another program.
+Continuing\index{editing!from other programs|(} from the previous example (see \@ref(sec-rs-as-an-editor)), we have copied the text from the editor into another program.
 (*LibreOffice* was used in this example, but any other editor will work as well.)
 
 ![](images/non-generated/term-checklist-in-external-editor.png)
