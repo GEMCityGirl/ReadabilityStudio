@@ -26,7 +26,10 @@ cover-image: "images/non-generated/cover.png"
 pdf-cover: "images/non-generated/cover.pdf"
 ---
 
-```{r, include=FALSE}
+```{r}
+#| include: false
+#| eval: true
+
 source('R/appdown.r')
 ```
 

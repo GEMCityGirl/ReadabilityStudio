@@ -1,1 +1,8 @@
+```{r}
+#| include: false
+#| eval: true
+
+source('R/appdown.r')
+```
+
 # Scoring Notes

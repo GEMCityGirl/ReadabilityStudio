@@ -1,3 +1,10 @@
+```{r}
+#| include: false
+#| eval: true
+
+source('R/appdown.r')
+```
+
 # Keyboard Shortcuts {.unnumbered}
 
 <!-- no break spaces are to add blank lines between each row in the shortcuts table,

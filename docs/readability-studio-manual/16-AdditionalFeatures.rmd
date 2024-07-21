@@ -1,3 +1,10 @@
+```{r}
+#| include: false
+#| eval: true
+
+source('R/appdown.r')
+```
+
 # Additional Features {#sec-additional-features}
 
 This chapter discusses additional features not directly related to readability. This includes features such crawling and downloading documents from a website, as well as logging and command line options.
