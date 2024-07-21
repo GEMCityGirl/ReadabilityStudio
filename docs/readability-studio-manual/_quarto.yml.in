@@ -1,6 +1,6 @@
 project:
   type: book
-  output-dir: "docs"
+  output-dir: "docs-QUARTO"
 toc: true
 toc-depth: 2
 links-as-notes: true
@@ -29,25 +29,41 @@ book:
   image: "images/non-generated/cover.png"
   chapters:
     - index.qmd
-    - part: "User Guide"
+    - part: "Overviews"
       chapters:
-      - end-user-usage.qmd
-      - operators.qmd
-      - functions.qmd
-      - constants.qmd
-      - comments.qmd
-    - part: "Developer Guide"
+      - 01-Overviews.Rmd
+    - part: "Projects & Features"
       chapters:
-      - building.qmd
-      - usage.qmd
-      - custom-extensions.qmd
-      - unknown-symbol-resolution.qmd
-      - non-us-formulas.qmd
-      - technical-overview.qmd
-      - compile-time-options.qmd
-      - embedded-programming.qmd
+      - 10-CreatingANewProject.Rmd
+      - 11-ReviewingStandardProjects.rmd
+      - 12-ReviewingBatchProject.rmd
+      - 13-CustomizingResults.rmd
+      - 14-Publishing.rmd
+      - 15-ProgramOptions.rmd
+      - 16-AdditionalFeatures.rmd
+    - part: "Readability Tests"
+      chapters:
+      - 20-ReadabilityTestsEnglish.rmd
+      - 21-ReadabilityTestsSpanish.rmd
+      - 22-ReadabilityTestsGerman.rmd
+      - 24-CustomTestAndBundles.rmd
+    - part: "Examples"
+      chapters:
+      - 30-ExamplesGettingStarted.rmd
+      - 31-ExamplesAdvanced.rmd
+      - 32-ExamplesEditing.Rmd
+      - 33-ExamplesGraphs.rmd
+      - 34-ExamplesBatchProjects.rmd
+      - 35-ExamplesCreatingCustomTests.rmd
+    - part: "Notes"
+      chapters:
+      - 40-AnalysisNotes.rmd
+      - 41-ScoringNotes.rmd
     - part: "Appendix"
       chapters:
+      - 90-Acknowledgements.Rmd
+      - 93-Author.rmd
+      - 94-References.rmd
       - appendix.qmd
 format:
   pdf:
@@ -57,6 +73,7 @@ format:
     latex-engine: xelatex
     keep-tex: true
     citation-package: biblatex
+    cite-method: biblatex
     lot: true
     lof: true
     code-block-bg: false
