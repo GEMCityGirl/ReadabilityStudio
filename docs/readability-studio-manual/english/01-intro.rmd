@@ -1,5 +1,12 @@
+```{r}
+#| include: false
+#| eval: true
+
+source('R/appdown.r')
+```
+
 # (PART) Readability Tests {-}
 
-# English Readability Tests {#english-readability-tests}
+# English Readability Tests {#sec-english-readability-tests}
 
 \newpage

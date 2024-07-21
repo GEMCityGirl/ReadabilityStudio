@@ -5,4 +5,6 @@
 source('R/appdown.r')
 ```
 
+# German Readability Tests {#sec-german-readability-tests}
+
 \newpage

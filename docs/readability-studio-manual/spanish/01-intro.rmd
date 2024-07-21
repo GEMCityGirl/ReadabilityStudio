@@ -5,4 +5,6 @@
 source('R/appdown.r')
 ```
 
+# Spanish Readability Tests {#sec-spanish-readability-tests}
+
 \newpage

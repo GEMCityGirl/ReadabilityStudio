@@ -46,9 +46,9 @@ source('R/appdown.r')
 This book is a guide to using the software product *Readability Studio*,
 as well as a reference for readability formulas.
 For those interested in the formulas,
-refer to ch. \@ref(english-readability-tests),
-ch. \@ref(spanish-readability-tests),
-and ch. \@ref(german-readability-tests) for formula overviews.
+refer to ch. \@ref(sec-english-readability-tests),
+ch. \@ref(sec-spanish-readability-tests),
+and ch. \@ref(sec-german-readability-tests) for formula overviews.
 
 ![](images/non-generated/CC_BY-NC-ND.png)
 
