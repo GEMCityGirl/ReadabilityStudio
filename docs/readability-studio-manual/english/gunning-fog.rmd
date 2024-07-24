@@ -22,11 +22,11 @@ If you treat independent clauses as separate sentences, then this will be seen a
 If you count sentences by only looking for *.*, *?*, or *!*, then this will be counted as a single 44-word sentence and produce a Fog score of 19.
 To penalize run-on sentences (which is recommended), then leave the option [**Count independent clauses as separate sentences**](#sec-readability-test-options) unchecked for this test.
 
-```{definition, gunningfog, name="Gunning Fog formula"}
+Gunning Fog formula:
+
 $$
 G = .4*(W/S+((F/W)*100))
 $$
-```
 
 Where:
 

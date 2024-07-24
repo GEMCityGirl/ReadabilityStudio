@@ -13,12 +13,12 @@ The training materials used to build the regression formulas were 383 prose pass
 
 The recalculated Gunning Fog formula is as follows:
 
-```{definition, pskfog, name="(PSK) Gunning Fog formula"}
+(PSK) Gunning Fog formula:
+
 \begin{align*}
   G = & 3.0680 + (.0877*(W/S)) + \\
       & (.0984*((F/W)*100))
 \end{align*}
-```
 
 Where:
 

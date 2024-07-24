@@ -6,11 +6,11 @@ SMOG attempts to predict "full comprehension" [@{lsmith}129], whereas most other
 
 This test was trained on 390 passages from the 1961 edition of *McCall-Crabbs Standard Tests Lessons in Reading*. The following regression equation was derived with a correlation of $r = 0.985$:
 
-```{definition, smog, name="SMOG formula"}
+SMOG formula:
+
 $$
 G = 1.0430*\sqrt{C} + 3.1291
 $$
-```
 
 Where:
 
@@ -22,11 +22,9 @@ Where:
 
 A simplified variation is also available [@{mclaughlin}643]:
 
-```{definition, smogsimple, name="Simplified SMOG formula"}
 $$
 G = FLOOR(\sqrt{C}) + 3
 $$
-```
 
 $FLOOR$ refers to rounding the result of $\sqrt{C}$ down to the closest perfect square.
 

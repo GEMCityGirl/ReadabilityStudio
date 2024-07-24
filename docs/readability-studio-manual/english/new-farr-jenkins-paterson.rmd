@@ -6,11 +6,11 @@ New Farr-Jenkins-Paterson is Kincaid et al.'s recalculated version of the [FJP](
 
 This test was trained against reading-test results from 531 U.S. Navy personnel from four Naval technical training schools. Using these results, the following multiple regression equation was derived:
 
-```{definition, newfjp, name="New Farr-Jenkins-Paterson formula"}
+New Farr-Jenkins-Paterson formula:
+
 $$
 G = 22.05 + (.387*(W/S)) - (.307*((M/W)*100))
 $$
-```
 
 Where:
 

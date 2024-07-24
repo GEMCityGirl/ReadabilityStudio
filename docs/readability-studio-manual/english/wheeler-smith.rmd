@@ -24,11 +24,11 @@ For the building and validation of this formula, nine basic reading series were 
 
 Finally, the authors offered recommendations while reviewing a reported score. First, if a score appears to be higher than expected, then you should exclude proper nouns\index{proper nouns!Wheeler-Smith} and rerun the test. Second, they recommended that when assigning a book for independent reading, assign it one level below the reported score. In other words, if a book scores at the 4^th^ grade level, then it should be assigned to 3^rd^ grade readers if they are reading it independently.
 
-```{definition, wheelersmith, name="Wheeler-Smith formula"}
+Wheeler-Smith formula:
+
 $$
 I = (W/U)*(P/W)*10
 $$
-```
 
 ::: {.minipage data-latex="{\textwidth}"}
 Where:\index{sentences!units}

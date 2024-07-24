@@ -2,12 +2,12 @@
 
 Neue Wiener Sachtextformel 1 (1.nWS) [@{bamberger-vanecek}83, 187] is used for evaluating German nonfiction (specifically, 6^th^-10^th^ grade materials). This test returns a grade-level score based on word length/complexity and sentence length.
 
-```{definition, nws1, name="Neue Wiener Sachtextformel 1 formula"}
+Neue Wiener Sachtextformel 1 formula:
+
 \begin{align*}
   G = & 0.1935*((C/W)*100) + 0.1672*(W/S) + \\
       & 0.1297*((X/W)*100) - 0.0327*((M/W)*100) - 0.875
 \end{align*}
-```
 
 Where:
 

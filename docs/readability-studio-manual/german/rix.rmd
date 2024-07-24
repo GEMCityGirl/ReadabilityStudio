@@ -6,11 +6,11 @@ Refer to \@ref(sec-rix-test).
 
 This test is a German variation of [Rix](#sec-rix-test) designed for fiction books. It uses a modified index-score formula from Rix, as well as different logic for assigning a grade-level score. This test was developed by Bamberger & Vanecek [-@{bamberger-vanecek}64, 187] for use with German fiction ranging from 1^st^ to 11^th^ grade.
 
-```{definition, rixfictionde, name="Rix (German fiction) formula"}
+Rix (German fiction) formula:
+
 $$
 I = ((100*(X/W))/(U*(100/W))) * 10
 $$
-```
 
 Where:
 
@@ -42,11 +42,11 @@ kableExtra::kbl(dplyr::as_tibble(read_delim("data/RixGermanFiction.txt", "\t", e
 
 This test is a German variation of [Rix](#sec-rix-test) designed for non-fiction books. It uses a modified index-score formula from Rix, as well as different logic for assigning a grade-level score. This test was developed by Bamberger & Vanecek [-@{bamberger-vanecek}64, 187] for use with German non-fiction ranging from 4^th^ to 14^th^ grade.
 
-```{definition, rixnonfictionde, name="Rix (German non-fiction) formula"}
+Rix (German non-fiction) formula:
+
 $$
 I = ((100*(X/W))/(U*(100/W))) * 10
 $$
-```
 
 Where:
 

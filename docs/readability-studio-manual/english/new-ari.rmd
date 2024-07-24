@@ -4,11 +4,11 @@ The New Automated Readability Index\index{Automated Readability Index!variations
 
 This test was trained against reading-test results from 531 U.S. Navy personnel from four Naval technical training schools. Using these results, the following multiple regression equation was derived:
 
-```{definition, newari, name="New Automated Readability Index formula"}
+New Automated Readability Index formula:
+
 $$
 G = (5.84*(RP/W)) + (.37*(W/S)) - 26.01
 $$
-```
 
 Where:
 

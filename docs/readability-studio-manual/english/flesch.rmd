@@ -4,11 +4,11 @@ The Flesch Reading Ease readability formula calculates an index score of a docum
 
 Flesch Reading Ease [-@{flesch:1949}213; -@{flesch:1979}23] is best suited for school textbooks and technical manuals. It is a standard used by many U.S. government agencies, including the U.S. Department of Defense. Scores range from 0–100 (the higher the score, the easier to read) and average documents should be within the range of 60-70.
 
-```{definition, flesch, name="Flesch Reading Ease formula"}
+Flesch Reading Ease formula:
+
 $$
 I = 206.835 - (84.6*(B/W)) - (1.015*(W/S))
 $$
-```
 
 Where:
 
@@ -48,9 +48,9 @@ Along with the raw score, a chart is also available to visualize the score's mea
 knitr::include_graphics("images/flesch-chart.png")
 ```
 
-This chart consists of three “rulers.” The middle ruler displays the Flesch score as a red point. On both sides of this ruler are brackets showing the reading levels. The bracket that the point falls into will indicate the reading level of the document. The rulers on the left and right of the score ruler will display the factors used to calculate the score. A straight line is drawn between these points to demonstrate how the factors calculated the score.
+This chart consists of three "rulers." The middle ruler displays the Flesch score as a red point. On both sides of this ruler are brackets showing the reading levels. The bracket that the point falls into will indicate the reading level of the document. The rulers on the left and right of the score ruler will display the factors used to calculate the score. A straight line is drawn between these points to demonstrate how the factors calculated the score.
 
-In the above chart, we can see that the document's average words per sentence is 13 and its syllables per 100 words is 146. This yields a score of 71, which indicates that the document is “fairly easy” to read.
+In the above chart, we can see that the document's average words per sentence is 13 and its syllables per 100 words is 146. This yields a score of 71, which indicates that the document is "fairly easy" to read.
 \index{Flesch Reading Ease|)}
 
 \newpage

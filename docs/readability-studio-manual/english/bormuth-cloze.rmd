@@ -8,12 +8,12 @@ For this formula, a study involving 2,600 students ranging from 4^th^-12^th^ gra
 
 Of these formulas, the predicted cloze formula is as follows:
 
-```{definition, bormuthcloze, name="Bormuth Cloze Mean formula"}
+Bormuth Cloze Mean formula:
+
 \begin{align*}
   C = & .886593 - .083640*(R/W) + .161911*(D/W)^3 - \\
       & .021401*(W/S) + .000577*(W/S)^2 - .000005*(W/S)^3
 \end{align*}
-```
 
 Where:
 

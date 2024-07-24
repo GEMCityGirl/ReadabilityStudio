@@ -13,12 +13,12 @@ The training materials used to build the regression formulas were 383 prose pass
 
 The recalculated Farr-Jenkins-Paterson formula is as follows:
 
-```{definition, pskfjp, name="(PSK) Farr-Jenkins-Paterson formula"}
+(PSK) Farr-Jenkins-Paterson formula:
+
 \begin{align*}
   G = & 8.4335 + (.0923*(W/S)) - \\
       & (.0648*((M/W)*100))
 \end{align*}
-```
 
 Where:
 

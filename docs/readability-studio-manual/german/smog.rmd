@@ -8,11 +8,11 @@ OptionsDesc <- ", so the program overrides your [numeral syllabication](#sec-num
 glue('Note that numerals\\index{numerals!SMOG (Bamberger-Vanecek)} are fully syllabized (i.e., sounded out) for this test$if_else(UserManualMode, OptionsDesc, "")^.', .open='$', .close='^')
 ```
 
-```{definition, smogde, name="SMOG (Bamberger-Vanecek) formula"}
+SMOG (Bamberger-Vanecek) formula:
+
 $$
 G = \sqrt{C} - 2
 $$
-```
 
 Where:
 

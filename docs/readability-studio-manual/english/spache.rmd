@@ -18,11 +18,11 @@ Because this formula uses familiar words (rather than syllable or letter counts)
 glue('Note that *Readability Studio* uses the revised 1974 version of Spache.')
 ```
 
-```{definition, spacherevised, name="Spache Revised formula"}
+Spache Revised formula:
+
 $$
 G = (.121 * (W/S)) + (.082 * UUS) + .659
 $$
-```
 
 Where:
 

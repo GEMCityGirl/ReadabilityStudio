@@ -6,11 +6,11 @@ DB2 was designed to be a faster method (compared to [Farr-Jenkins-Paterson](#sec
 
 This test was trained against 376 passages from *McCall-Crabbs Standard Test Lessons in Reading* (1926 ed.). For validation, the derived formula had an $r^2 = 0.575$, similar to Farr-Jenkins-Paterson's $r^2 = 0.553$. This regression equation is as follows:
 
-```{definition, db2, name="Danielson-Bryan 2 formula"}
+Danielson-Bryan 2 formula:
+
 $$
 I = 131.059 - 10.364*(RP/W) - .194*(RP/S)
 $$
-```
 
 Where:
 

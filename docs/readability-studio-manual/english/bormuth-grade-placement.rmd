@@ -8,12 +8,12 @@ For this formula, a study involving 2,600 students ranging from 4^th^-12^th^ gra
 
 Of these formulas, the grade-placement formula is as follows:
 
-```{definition, bormuthgp, name="Bormuth Grade Placement formula"}
+Bormuth Grade Placement formula:
+
 \begin{align*}
   G = & 3.761864 + 1.053153*(R/W) - 2.138595*(D/W)^3 + \\
       & .152832*(W/S) - .002077*(W/S)^2
 \end{align*}
-```
 
 Where:
 
@@ -29,6 +29,6 @@ Where:
 | S   | Number of sentences                  |
 +-----+--------------------------------------+
 
-Note that this particular grade-placement test uses the regression equation that best fit the passages with cloze scores averaging ~35%. There are also 45% and 55% cloze-score fitting Bormuth equations, but as Bormuth noted “35 per cent on a close readability test tentatively seemed to represent a criterion for deciding whether or not students are able to exhibit a maximum of information gain as a consequence of reading the passage” [-@{bormuth:1969}102].\index{Bormuth Grade Placement|)}
+Note that this particular grade-placement test uses the regression equation that best fit the passages with cloze scores averaging ~35%. There are also 45% and 55% cloze-score fitting Bormuth equations, but as Bormuth noted "35 per cent on a close readability test tentatively seemed to represent a criterion for deciding whether or not students are able to exhibit a maximum of information gain as a consequence of reading the passage" [-@{bormuth:1969}102].\index{Bormuth Grade Placement|)}
 
 \newpage

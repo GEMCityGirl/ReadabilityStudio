@@ -50,11 +50,11 @@ The above sentence contains three polysyllabic\index{polysyllabic} words: any (2
 
 This process is repeated for every sentence, and then these scores are averaged. A simpler method is shown below:
 
-```{definition, elf, name="Easy Listening Formula"}
+Easy Listening Formula:
+
 $$
 G = (B-W) / S
 $$
-```
 
 Where:
 
