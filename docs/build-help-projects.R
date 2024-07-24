@@ -30,6 +30,7 @@ unlink(glue("{docFolder}/readability-studio-api/docs"), recursive=T)
 # delete helper files copied from the main project into others
 clearFolders <- function()
   {
+  unlink(glue("{docFolder}/shortcuts-cheatsheet/R"), recursive=T)
   unlink(glue("{docFolder}/readability-studio-api/images"), recursive=T)
   unlink(glue("{docFolder}/readability-studio-api/latex"), recursive=T)
   unlink(glue("{docFolder}/readability-studio-api/css"), recursive=T)
@@ -116,6 +117,9 @@ setwd(glue("{docFolder}/shortcuts-cheatsheet/"))
 file_copy(glue("{docFolder}/readability-studio-manual/glossary/02-shortcuts.rmd"),
           glue("{docFolder}/shortcuts-cheatsheet/index.qmd"),
           TRUE)
+dir_copy(glue("{docFolder}/readability-studio-manual/R"),
+         glue("{docFolder}/shortcuts-cheatsheet/R"),
+         TRUE)
 fileContents <- read_lines(glue("{docFolder}/shortcuts-cheatsheet/index.qmd"))
 cat(knitrQuartoSingleDocHeader, file = glue("{docFolder}/shortcuts-cheatsheet/index.qmd"))
 write_lines(fileContents, file = glue("{docFolder}/shortcuts-cheatsheet/index.qmd"), append = TRUE)
