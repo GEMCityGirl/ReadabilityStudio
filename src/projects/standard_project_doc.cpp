@@ -348,7 +348,9 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
     // open the project settings file
     std::wstring settingsFile = cat.ReadTextFile(ProjectSettingsFileLabel());
     if (!settingsFile.empty())
-        { LoadSettingsFile(settingsFile.c_str()); }
+        {
+        LoadSettingsFile(settingsFile.c_str());
+        }
     else
         {
         LogMessage(_(L"Settings file could not be found in the project file. "
@@ -365,7 +367,9 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
             {
             SetDocumentText(std::move(contentFile));
             try
-                { LoadDocument(); }
+                {
+                LoadDocument();
+                }
             catch (...)
                 {
                 wxMessageBox(_(L"An unknown error occurred while analyzing the document. "
@@ -376,26 +380,31 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
             }
         else
             {
-            // If text was manually entered before but empty, then it's either lost or was left empty by the user.
+            // If text was manually entered before but empty, then it's either lost or was left
+            // empty by the user.
             if (GetTextSource() == TextSource::EnteredText)
                 {
                 if (WarningManager::HasWarning(_DT(L"no-embedded-text")))
                     {
-                    WarningMessage warningMsg = *WarningManager::GetWarning(_DT(L"no-embedded-text"));
+                    WarningMessage warningMsg =
+                        *WarningManager::GetWarning(_DT(L"no-embedded-text"));
                     warningMsg.SetMessage(
                         _(L"Manually entered text could not be found in the project file.\n"
-                           "Only empty statistics will be displayed."));
+                          "Only empty statistics will be displayed."));
                     LogMessage(warningMsg);
                     }
-                // force loading empty text just so that we have an empty word collection to build statistics from
+                // force loading empty text just so that we have an empty word collection to build
+                // statistics from
                 SetDocumentText(std::move(contentFile));
                 try
-                    { LoadDocument(); }
+                    {
+                    LoadDocument();
+                    }
                 catch (...)
                     {
                     wxMessageBox(_(L"An unknown error occurred while analyzing the document. "
-                                    "Unable to create project."),
-                        _(L"Error"), wxOK|wxICON_EXCLAMATION);
+                                   "Unable to create project."),
+                                 _(L"Error"), wxOK | wxICON_EXCLAMATION);
                     return false;
                     }
                 return true;
@@ -625,10 +634,14 @@ bool ProjectDoc::OnOpenDocument(const wxString& filename)
     ShowQueuedMessages();
 
     if (WarningManager::HasWarning(_DT(L"note-project-properties")))
-        { view->ShowInfoMessage(*WarningManager::GetWarning(_DT(L"note-project-properties"))); }
+        {
+        view->ShowInfoMessage(*WarningManager::GetWarning(_DT(L"note-project-properties")));
+        }
 
     if (GetDocumentStorageMethod() == TextStorage::LoadFromExternalDocument)
-        { RestartRealtimeUpdate(); }
+        {
+        RestartRealtimeUpdate();
+        }
 
     return true;
     }
@@ -668,43 +681,44 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
     if (wizard->IsDocumentTypeSelected() )
         {
         // general documents
-        if (wizard->GetSelectedDocumentType() == readability::document_classification::general_document)
+        if (wizard->GetSelectedDocumentType() ==
+            readability::document_classification::general_document)
             {
             for (auto rTest = GetReadabilityTests().get_tests().begin();
-                rTest != GetReadabilityTests().get_tests().end();
-                ++rTest)
+                 rTest != GetReadabilityTests().get_tests().end(); ++rTest)
                 {
-                rTest->include(
-                    rTest->get_test().has_document_classification(
-                        readability::document_classification::general_document) &&
-                    rTest->get_test().has_language(GetProjectLanguage()));
+                rTest->include(rTest->get_test().has_document_classification(
+                                   readability::document_classification::general_document) &&
+                               rTest->get_test().has_language(GetProjectLanguage()));
                 }
             for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.cbegin();
-                pos != m_custom_word_tests.cend();
-                ++pos)
+                 pos != m_custom_word_tests.cend(); ++pos)
                 {
-                if (pos->has_document_classification(readability::document_classification::general_document))
-                    { AddCustomReadabilityTest(wxString(pos->get_name().c_str())); }
+                if (pos->has_document_classification(
+                        readability::document_classification::general_document))
+                    {
+                    AddCustomReadabilityTest(wxString(pos->get_name().c_str()));
+                    }
                 }
             }
         // technical manuals and documents
         else if (wizard->GetSelectedDocumentType() == readability::document_classification::technical_document)
             {
             for (auto rTest = GetReadabilityTests().get_tests().begin();
-                rTest != GetReadabilityTests().get_tests().end();
-                ++rTest)
+                 rTest != GetReadabilityTests().get_tests().end(); ++rTest)
                 {
-                rTest->include(
-                    rTest->get_test().has_document_classification(
-                        readability::document_classification::technical_document) &&
-                    rTest->get_test().has_language(GetProjectLanguage()));
+                rTest->include(rTest->get_test().has_document_classification(
+                                   readability::document_classification::technical_document) &&
+                               rTest->get_test().has_language(GetProjectLanguage()));
                 }
             for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.cbegin();
-                pos != m_custom_word_tests.cend();
-                ++pos)
+                 pos != m_custom_word_tests.cend(); ++pos)
                 {
-                if (pos->has_document_classification(readability::document_classification::technical_document))
-                    { AddCustomReadabilityTest(wxString(pos->get_name().c_str())); }
+                if (pos->has_document_classification(
+                        readability::document_classification::technical_document))
+                    {
+                    AddCustomReadabilityTest(wxString(pos->get_name().c_str()));
+                    }
                 }
             }
         // short, terse forms
@@ -714,37 +728,40 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
             SetInvalidSentenceMethod(InvalidSentence::IncludeAsFullSentences);
 
             for (auto rTest = GetReadabilityTests().get_tests().begin();
-                rTest != GetReadabilityTests().get_tests().end();
-                ++rTest)
+                 rTest != GetReadabilityTests().get_tests().end(); ++rTest)
                 {
                 rTest->include(rTest->get_test().has_document_classification(
-                    readability::document_classification::nonnarrative_document) &&
-                    rTest->get_test().has_language(GetProjectLanguage()));
+                                   readability::document_classification::nonnarrative_document) &&
+                               rTest->get_test().has_language(GetProjectLanguage()));
                 }
             for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.cbegin();
-                pos != m_custom_word_tests.cend();
-                ++pos)
+                 pos != m_custom_word_tests.cend(); ++pos)
                 {
-                if (pos->has_document_classification(readability::document_classification::nonnarrative_document))
-                    { AddCustomReadabilityTest(wxString(pos->get_name().c_str())); }
+                if (pos->has_document_classification(
+                        readability::document_classification::nonnarrative_document))
+                    {
+                    AddCustomReadabilityTest(wxString(pos->get_name().c_str()));
+                    }
                 }
             }
         else if (wizard->GetSelectedDocumentType() == readability::document_classification::adult_literature_document)
             {
             for (auto rTest = GetReadabilityTests().get_tests().begin();
-                rTest != GetReadabilityTests().get_tests().end();
-                ++rTest)
+                 rTest != GetReadabilityTests().get_tests().end(); ++rTest)
                 {
-                rTest->include(rTest->get_test().has_document_classification(
-                    readability::document_classification::adult_literature_document) &&
+                rTest->include(
+                    rTest->get_test().has_document_classification(
+                        readability::document_classification::adult_literature_document) &&
                     rTest->get_test().has_language(GetProjectLanguage()));
                 }
             for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.cbegin();
-                pos != m_custom_word_tests.cend();
-                ++pos)
+                 pos != m_custom_word_tests.cend(); ++pos)
                 {
-                if (pos->has_document_classification(readability::document_classification::adult_literature_document))
-                    { AddCustomReadabilityTest(wxString(pos->get_name().c_str())); }
+                if (pos->has_document_classification(
+                        readability::document_classification::adult_literature_document))
+                    {
+                    AddCustomReadabilityTest(wxString(pos->get_name().c_str()));
+                    }
                 }
             }
         else if (wizard->GetSelectedDocumentType() ==
@@ -1010,14 +1027,17 @@ void ProjectDoc::DisplayReadabilityScores(const bool setFocus)
     // this area can be included for an empty project, just won't show anything
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
     if (view)
-        { view->GetReadabilityScoresList()->Clear(); }
+        {
+        view->GetReadabilityScoresList()->Clear();
+        }
 
     for (auto rTest = GetReadabilityTests().get_tests().begin();
-        rTest != GetReadabilityTests().get_tests().end();
-        ++rTest)
+         rTest != GetReadabilityTests().get_tests().end(); ++rTest)
         {
         if (rTest->is_included())
-            { AddStandardReadabilityTest(rTest->get_test().get_id().c_str(), false); }
+            {
+            AddStandardReadabilityTest(rTest->get_test().get_id().c_str(), false);
+            }
         }
 
     if (IsIncludingDolchSightWords())
@@ -1026,14 +1046,14 @@ void ProjectDoc::DisplayReadabilityScores(const bool setFocus)
            just add a message to the score window.
            We don't actually show anything in the score window (Dolch isn't really a test),
            but point user in the right direction.*/
-        SetReadabilityTestResult(ReadabilityMessages::GetDolchLabel(),
-                ReadabilityMessages::GetDolchLabel(),
-                L"<tr><td>" + wxString(_(L"Refer to the <a href=\"#Dolch\">Dolch Sight Words</a> section.")) +
+        SetReadabilityTestResult(
+            ReadabilityMessages::GetDolchLabel(), ReadabilityMessages::GetDolchLabel(),
+            L"<tr><td>" +
+                wxString(_(L"Refer to the <a href=\"#Dolch\">Dolch Sight Words</a> section.")) +
                 L"</td></tr>",
-                std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxString{}),
-                wxString{},
-                std::numeric_limits<double>::quiet_NaN(),
-                std::numeric_limits<double>::quiet_NaN(), false);
+            std::make_pair(std::numeric_limits<double>::quiet_NaN(), wxString{}), wxString{},
+            std::numeric_limits<double>::quiet_NaN(), std::numeric_limits<double>::quiet_NaN(),
+            false);
         }
     AddCustomReadabilityTests();
     if (view)
