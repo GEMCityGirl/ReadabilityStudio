@@ -40,22 +40,22 @@ usaKable <- kableExtra::kbl(usaGradeScale, booktabs=T, centering=T, linesep="",
 ukKable <- kableExtra::kbl(englishKeyStages, booktabs=T, centering=T, linesep="",
                 align='l', escape=F)
 knitr::asis_output(glue_collapse(
-  c("\\begin{table}[!htb]
-    \\begin{minipage}{.5\\linewidth}
-      \\caption{United States of America}",
-        usaKable,
-    "  \\footnotetext{\\textsuperscript{a} \\url{www.ed.gov/k-12reforms}}
-       \\footnotetext{\\textsuperscript{b} \\url{www.education.ohio.gov/Topics/Learning-in-Ohio}}
-    \\hspace{1cm}
-    \\end{minipage}%
-    \\hspace{.1cm}
-    \\begin{minipage}{.5\\linewidth}
-      \\caption{England and Wales}",
-        ukKable,
-    "  \\footnotetext{\\textsuperscript{a} \\url{www.curriculum.qca.org.uk/index.aspx}}
-       \\footnotetext{\\textsuperscript{b} \\url{www.old.accac.org.uk/index.php}}
-    \\end{minipage}
-    \\end{table}")))
+  c(R"(\begin{table}[!htb]
+\begin{minipage}{.5\linewidth}
+\captionof{table}{United States of America})",
+    usaKable,
+    R"(  \footnotetext{\textsuperscript{a} \url{www.ed.gov/k-12reforms}}
+\footnotetext{\textsuperscript{b} \url{www.education.ohio.gov/Topics/Learning-in-Ohio}}
+\hspace{1cm}
+\end{minipage}%
+\hspace{.1cm}
+\begin{minipage}{.5\linewidth}
+\captionof{table}{England and Wales})",
+    ukKable,
+    R"(  \footnotetext{\textsuperscript{a} \url{www.curriculum.qca.org.uk/index.aspx}}
+\footnotetext{\textsuperscript{b} \url{www.old.accac.org.uk/index.php}}
+\end{minipage}
+\end{table})")))
 ```
 
 \newpage

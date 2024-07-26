@@ -74,18 +74,18 @@ gKAble <- kableExtra::kbl(germanTests, booktabs=T, centering=T, linesep="",
   kableExtra::column_spec(1, border_right = ncol(germanTests) > 1)
 
 knitr::asis_output(glue_collapse(
-  c("\\begin{table}[!htb]
-    \\begin{minipage}{.5\\linewidth}
-      \\caption{Spanish Tests}",
-        sKable,
-    "\\hspace{1cm}
-    \\end{minipage}%
-    \\hspace{.1cm}
-    \\begin{minipage}{.5\\linewidth}
-      \\caption{German Tests}",
-        gKAble,
-    "\\end{minipage}
-    \\end{table}")))
+  c(R"(\begin{table}[!htb]
+\begin{minipage}{.5\linewidth}
+\captionof{table}{Spanish Tests})",
+    sKable,
+    R"(\hspace{1cm}
+\end{minipage}%
+\hspace{.1cm}
+\begin{minipage}{.5\linewidth}
+\captionof{table}{German Tests})",
+    gKAble,
+    R"(\end{minipage}
+\end{table})")))
 ```
 
 ::: {.notesection data-latex=""}
