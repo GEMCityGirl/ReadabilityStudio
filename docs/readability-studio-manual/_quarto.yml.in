@@ -28,10 +28,9 @@ book:
   cover-image: "images/non-generated/cover.png"
   image: "images/non-generated/cover.png"
   chapters:
-    - index.qmd
     - part: "Overviews"
       chapters:
-      - 01-Overviews.Rmd
+      - index.qmd
     - part: "Projects & Features"
       chapters:
       - 10-CreatingANewProject.Rmd
