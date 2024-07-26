@@ -294,7 +294,7 @@ If an article mismatch occurs more than once in a document, then a multiplicatio
 
 To view a specific document's article mismatches, double-click on its row in this list. A vertical display of that item will be shown:
 
-```{r echo=F, fig.align='center', out.width='75%'}
+```{r echo=F, fig.align='center', out.width='35%'}
 knitr::include_graphics("images/viewitemarticlemismatch.png")
 ```
 
@@ -330,7 +330,7 @@ If a misspelling occurs more than once in a document, then a multiplication fact
 
 To view a specific document's misspellings, right click on its row and select **View Item**. A vertical display of that document's misspellings will be shown:
 
-```{r echo=F, fig.align='center', out.width='75%'}
+```{r echo=F, fig.align='center', out.width='50%'}
 knitr::include_graphics("images/batchmisspellingsviewitem.png")
 ```
 
@@ -368,7 +368,7 @@ If a wordy item occurs more than once in a document, then a multiplication facto
 
 To view a specific document's wordy item, double-click on its row in this list. A vertical display of that item will be shown:
 
-```{r echo=F, fig.align='center', out.width='75%'}
+```{r echo=F, fig.align='center', out.width='50%'}
 knitr::include_graphics("images/viewitemwordyphrase.png")
 ```
 
@@ -404,7 +404,7 @@ If a passive phrase occurs more than once in a document, then a multiplication f
 
 To view a specific document's passive phrases, right click on its row and select **View Item**. A vertical display of that document's passive phrases will be shown:
 
-```{r echo=F, fig.align='center', out.width='75%'}
+```{r echo=F, fig.align='center', out.width='25%'}
 knitr::include_graphics("images/batchpassivevoiceviewitem.png")
 ```
 

@@ -62,7 +62,7 @@ To view a breakdown of all the documents and their respective test scores, click
 
 To view any document's scores in a vertical layout, double-click on its row in this list to display the **View Item** dialog:
 
-```{r echo=F, fig.align='center', out.width='75%'}
+```{r echo=F, fig.align='center', out.width='45%'}
 knitr::include_graphics("images/viewitemrawscores.png")
 ```
 

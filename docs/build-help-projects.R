@@ -31,6 +31,7 @@ unlink(glue("{docFolder}/readability-studio-api/docs"), recursive=T)
 clearFolders <- function()
   {
   unlink(glue("{docFolder}/shortcuts-cheatsheet/R"), recursive=T)
+
   unlink(glue("{docFolder}/readability-studio-api/images"), recursive=T)
   unlink(glue("{docFolder}/readability-studio-api/latex"), recursive=T)
   unlink(glue("{docFolder}/readability-studio-api/css"), recursive=T)
@@ -134,6 +135,8 @@ IncludeLinux = FALSE
 setwd(glue("{docFolder}/readability-studio-manual/"))
 combine_files("01-Overviews.Rmd", "overviews",
               ("(intro|program)"))
+combine_files("index.qmd", "overviews",
+              ("(intro|program)"))
 combine_files("20-ReadabilityTestsEnglish.rmd", "english")
 combine_files("21-ReadabilityTestsSpanish.rmd", "spanish")
 combine_files("22-ReadabilityTestsGerman.rmd", "german")
@@ -149,6 +152,7 @@ combine_files("90-Acknowledgements.Rmd", "acknowledgements")
 bookdown::render_book(input="index.Rmd",
                       output_format="bookdown::gitbook",
                       output_dir="docs")
+unlink(glue("{docFolder}/readability-studio-manual/index.qmd"))
 unlink(glue("{docFolder}/readability-studio-manual/01-Overviews.Rmd"))
 unlink(glue("{docFolder}/readability-studio-manual/20-ReadabilityTestsEnglish.rmd"))
 unlink(glue("{docFolder}/readability-studio-manual/21-ReadabilityTestsSpanish.rmd"))

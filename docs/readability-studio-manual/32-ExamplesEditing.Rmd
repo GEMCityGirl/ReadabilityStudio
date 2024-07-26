@@ -43,10 +43,11 @@ The project will then analyze your changes and reload its results.
 ::: {.minipage data-latex="{\textwidth}"}
 By placing the project window and editor side-by-side, you can review any issues while you edit.
 
-```{r echo=F, fig.show = 'hold', out.width='50%'}
-knitr::include_graphics("images/termchecklistgrammar.png")
-knitr::include_graphics("images/editorwithcontent.png")
-```
+:::: {layout-ncol=2}
+![](images/termchecklistgrammar.png)
+
+![](images/editorwithcontent.png)
+::::
 :::
 
 As you edit, you can also change the parsing options or add tests.
@@ -100,10 +101,11 @@ You will need to save from your external editor before *Readability Studio* can 
 
 By placing the two programs side-by-side, you can review any issues while you edit.
 
-```{r echo=F, fig.show = 'hold', out.width='50%'}
-knitr::include_graphics("images/termchecklistgrammar.png")
-knitr::include_graphics("images/non-generated/term-checklist-in-external-editor.png")
-```
+::: {layout-ncol=2}
+![](images/termchecklistgrammar.png)
+
+![](images/non-generated/term-checklist-in-external-editor.png)
+:::
 
 The real-time update option is also available on the ribbon and can be toggled at any time:
 
