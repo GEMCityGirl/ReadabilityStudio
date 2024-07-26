@@ -76,11 +76,14 @@ First, you will be prompted to save as either HTML or text (refer to \@ref(sec-e
 
 \newpage
 
-::: {.wrapfigure data-latex="{r}{0.4\\textwidth}" style="width: 38%;"}
-![](images/exportoptions.png){width=38%}
-:::
+Next, the [**List Export Options**](#sec-export-list) dialog will appear. (By default, all the words will be exported.)
+To export just the words that you have highlighted, select the option **Export selected rows**.
+Also, because we are only interested in saving the **Word** column—not the **Syllable Count** or **Frequency Count** columns—enter 1 in the **Columns: from** and **to:** fields.
+Finally, uncheck the option **Include column headers** because we are only exporting one column.
 
-Next, the [**List Export Options**](#sec-export-list) dialog will appear. (By default, all the words will be exported.) To export just the words that you have highlighted, select the option **Export selected rows**. Also, because we are only interested in saving the **Word** column—not the **Syllable Count** or **Frequency Count** columns—enter 1 in the **Columns: from** and **to:** fields. Finally, uncheck the option **Include column headers** because we are only exporting one column.
+```{r echo=F, fig.align='center', out.width='38%'}
+knitr::include_graphics("images/exportoptions.png")
+```
 
 Click `r keys("OK")` to export the word list to distribute to your students to help prepare them for their reading assignments.
 
