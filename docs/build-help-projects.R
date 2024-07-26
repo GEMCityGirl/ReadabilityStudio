@@ -131,7 +131,6 @@ unlink(glue("{docFolder}/shortcuts-cheatsheet/index.qmd"))
 #############
 
 UserManualMode = TRUE
-IncludeLinux = FALSE
 setwd(glue("{docFolder}/readability-studio-manual/"))
 combine_files("01-Overviews.Rmd", "overviews",
               ("(intro|program)"))
