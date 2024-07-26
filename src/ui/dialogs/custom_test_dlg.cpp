@@ -745,9 +745,7 @@ void CustomTestDlg::CreateControls()
                     _DT(L"ROUND(206.835 - (84.6*(SyllableCount(Default)/WordCount(Default))) -\n"
                         "(1.015*(WordCount(Default)/SentenceCount(Default))))")));
             formulaExample->SetFont(
-                wxFont(wxFontInfo().Family(wxFontFamily::wxFONTFAMILY_TELETYPE).Bold(true))
-                    .MakeLarger()
-                    .MakeLarger());
+                wxFont(wxFontInfo().Family(wxFontFamily::wxFONTFAMILY_TELETYPE).Bold(true)));
             formulaBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             formulaBoxSizer->Add(formulaExample, wxSizerFlags().Border(
                                                      wxLEFT, wxSizerFlags::GetDefaultBorder() * 3));
@@ -760,9 +758,7 @@ void CustomTestDlg::CreateControls()
                 new wxStaticText(formulaBoxSizer->GetStaticBox(), wxID_STATIC,
                                  ReadabilityFormulaParser::GetCustomNewDaleChallSignature());
             formulaExample->SetFont(
-                wxFont(wxFontInfo().Family(wxFontFamily::wxFONTFAMILY_TELETYPE).Bold(true))
-                    .MakeLarger()
-                    .MakeLarger());
+                wxFont(wxFontInfo().Family(wxFontFamily::wxFONTFAMILY_TELETYPE).Bold(true)));
             formulaBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             formulaBoxSizer->Add(formulaExample, 0, wxLEFT, wxSizerFlags::GetDefaultBorder() * 3);
             }
