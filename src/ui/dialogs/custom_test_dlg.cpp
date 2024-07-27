@@ -858,12 +858,6 @@ void CustomTestDlg::CreateControls()
                 new WordListProperty(GetFileContainingFamiliarWordsLabel(), wxPG_LABEL));
             m_wordListsPropertyGrid->SetPropertyAttribute(GetFileContainingFamiliarWordsLabel(),
                                                           wxPG_DIALOG_TITLE, _(L"Edit Word List"));
-            m_wordListsPropertyGrid->SetPropertyAttribute(
-                GetFileContainingFamiliarWordsLabel(), wxPG_HELP_PATH,
-                wxGetApp().GetMainFrame()->GetHelpDirectory());
-            m_wordListsPropertyGrid->SetPropertyAttribute(GetFileContainingFamiliarWordsLabel(),
-                                                          wxPG_TOPIC_PATH,
-                                                          _DT(L"sec-document-analysis.html"));
             m_wordListsPropertyGrid->SetPropertyHelpString(
                 GetFileContainingFamiliarWordsLabel(),
                 _(L"Enter the path to the familiar-word list into this field. "
