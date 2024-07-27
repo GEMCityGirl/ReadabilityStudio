@@ -1,6 +1,5 @@
 project:
   type: book
-  output-dir: "docs-QUARTO"
 toc: true
 toc-depth: 2
 links-as-notes: true

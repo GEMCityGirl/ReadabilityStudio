@@ -146,11 +146,14 @@ combine_files("41-ScoringNotes.rmd", "scoring-notes")
 bookdown::render_book(input="index.Rmd",
                       output_format="bookdown::pdf_book",
                       output_dir="docs")
+quarto::quarto_render(output_format="pdf", as_job=F, profile="manual")
 combine_files("01-Overviews.Rmd", "overviews")
+combine_files("index.qmd", "overviews")
 combine_files("90-Acknowledgements.Rmd", "acknowledgements")
 bookdown::render_book(input="index.Rmd",
                       output_format="bookdown::gitbook",
                       output_dir="docs")
+quarto::quarto_render(output_format="html", as_job=F, profile="online")
 unlink(glue("{docFolder}/readability-studio-manual/index.qmd"))
 unlink(glue("{docFolder}/readability-studio-manual/01-Overviews.Rmd"))
 unlink(glue("{docFolder}/readability-studio-manual/20-ReadabilityTestsEnglish.rmd"))
