@@ -24,13 +24,6 @@ using namespace Wisteria::UI;
 wxDECLARE_APP(ReadabilityApp);
 
 //-------------------------------------------------------------
-void CustomTestDlg::OnValidateFormulaClick([[maybe_unused]] wxCommandEvent& event)
-    {
-    TransferDataFromWindow();
-    ValidateFormula(true);
-    }
-
-//-------------------------------------------------------------
 bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
     {
     TransferDataFromWindow();
@@ -637,10 +630,46 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
     Bind(wxEVT_HELP, &CustomTestDlg::OnContextHelp, this);
     Bind(wxEVT_BUTTON, &CustomTestDlg::OnHelp, this, wxID_HELP);
     Bind(wxEVT_BUTTON, &CustomTestDlg::OnOK, this, wxID_OK);
-    Bind(wxEVT_BUTTON, &CustomTestDlg::OnValidateFormulaClick, this,
-         CustomTestDlg::ID_VALIDATE_FORMULA_BUTTON);
+    Bind(
+        wxEVT_BUTTON,
+        [this]([[maybe_unused]] wxCommandEvent&)
+        {
+            TransferDataFromWindow();
+            ValidateFormula(true);
+        },
+        CustomTestDlg::ID_VALIDATE_FORMULA_BUTTON);
+    Bind(
+        wxEVT_BUTTON,
+        [this]([[maybe_unused]] wxCommandEvent&)
+        {
+            if (m_funcBrowserSizer != nullptr)
+                {
+                ShowFunctionBrowser(!m_funcBrowserSizer->IsShown(size_t{ 0 }));
+                }
+        },
+        CustomTestDlg::ID_FUNCTION_BROWSER_BUTTON);
 
     return true;
+    }
+
+//------------------------------------------------------
+void CustomTestDlg::ShowFunctionBrowser(const bool show)
+    {
+    if (m_generalPage != nullptr && m_generalPage->GetSizer() != nullptr)
+        {
+        Freeze();
+
+        m_generalPage->GetSizer()->Show(m_funcBrowserSizer, show, true);
+        m_generalPage->GetSizer()->Layout();
+        m_generalPage->GetSizer()->Fit(m_generalPage);
+        m_sideBarBook->InvalidateBestSize();
+        GetSizer()->SetMinSize(GetSizer()->CalcMin());
+        Layout();
+        Fit();
+
+        Thaw();
+        Refresh();
+        }
     }
 
 //------------------------------------------------------
@@ -659,19 +688,19 @@ void CustomTestDlg::CreateControls()
 
         // general page
         {
-        wxPanel* mainPage = new wxPanel(m_sideBarBook, ID_GENERAL_PAGE, wxDefaultPosition,
-                                        wxDefaultSize, wxTAB_TRAVERSAL);
+        m_generalPage = new wxPanel(m_sideBarBook, ID_GENERAL_PAGE, wxDefaultPosition,
+                                    wxDefaultSize, wxTAB_TRAVERSAL);
         wxBoxSizer* editorSectionSizer = new wxBoxSizer(wxVERTICAL);
         wxBoxSizer* mainPageSizer = new wxBoxSizer(wxHORIZONTAL);
         mainPageSizer->Add(editorSectionSizer, wxSizerFlags(1).Expand());
-        mainPage->SetSizer(mainPageSizer);
-        m_sideBarBook->AddPage(mainPage, _(L"General Settings"), ID_GENERAL_PAGE, true);
+        m_generalPage->SetSizer(mainPageSizer);
+        m_sideBarBook->AddPage(m_generalPage, _(L"General Settings"), ID_GENERAL_PAGE, true);
 
         // if no test name then we are in "add new test" mode
         if (m_testName.empty())
             {
             wxStaticBoxSizer* nameBoxSizer = new wxStaticBoxSizer(
-                new wxStaticBox(mainPage, wxID_ANY, _(L"Test name:")), wxVERTICAL);
+                new wxStaticBox(m_generalPage, wxID_ANY, _(L"Test name:")), wxVERTICAL);
             editorSectionSizer->Add(nameBoxSizer, 0, wxEXPAND | wxALL,
                                     wxSizerFlags::GetDefaultBorder());
 
@@ -687,12 +716,13 @@ void CustomTestDlg::CreateControls()
             wxBoxSizer* testTypeSizer = new wxBoxSizer(wxHORIZONTAL);
             editorSectionSizer->Add(testTypeSizer, 0, wxEXPAND | wxALL,
                                     wxSizerFlags::GetDefaultBorder());
-            testTypeSizer->Add(new wxStaticText(mainPage, wxID_STATIC, _(L"Test result type:")), 0,
-                               wxALIGN_CENTER_VERTICAL);
+            testTypeSizer->Add(
+                new wxStaticText(m_generalPage, wxID_STATIC, _(L"Test result type:")), 0,
+                wxALIGN_CENTER_VERTICAL);
             testTypeSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
             m_testTypeCombo =
-                new wxComboBox(mainPage, ID_TEST_TYPE_COMBO, wxEmptyString, wxDefaultPosition,
+                new wxComboBox(m_generalPage, ID_TEST_TYPE_COMBO, wxEmptyString, wxDefaultPosition,
                                wxDefaultSize, m_testTypes, wxCB_DROPDOWN | wxCB_READONLY);
             m_testTypeCombo->SetSelection(0);
             testTypeSizer->Add(m_testTypeCombo);
@@ -704,15 +734,18 @@ void CustomTestDlg::CreateControls()
                 functionControlsSizer,
                 wxSizerFlags(1).Expand().Border(wxALL, wxSizerFlags::GetDefaultBorder()));
             wxStaticBoxSizer* formulaBoxSizer = new wxStaticBoxSizer(
-                new wxStaticBox(mainPage, wxID_ANY, _(L"Formula:")), wxVERTICAL);
+                new wxStaticBox(m_generalPage, wxID_ANY, _(L"Formula:")), wxVERTICAL);
             functionControlsSizer->Add(formulaBoxSizer, wxSizerFlags(1).Expand());
 
             wxBoxSizer* formulaButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
 
-            wxBitmapButton* validateFormulaButton =
+            formulaButtonsSizer->Add(
                 new wxBitmapButton(formulaBoxSizer->GetStaticBox(), ID_VALIDATE_FORMULA_BUTTON,
-                                   wxGetApp().GetResourceManager().GetSVG(L"ribbon/check.svg"));
-            formulaButtonsSizer->Add(validateFormulaButton);
+                                   wxGetApp().GetResourceManager().GetSVG(L"ribbon/check.svg")));
+
+            formulaButtonsSizer->Add(
+                new wxBitmapButton(formulaBoxSizer->GetStaticBox(), ID_FUNCTION_BROWSER_BUTTON,
+                                   wxGetApp().GetResourceManager().GetSVG(L"ribbon/function.svg")));
 
             formulaBoxSizer->Add(formulaButtonsSizer, 0, wxLEFT | wxTOP | wxRIGHT,
                                  wxSizerFlags::GetDefaultBorder());
@@ -720,6 +753,7 @@ void CustomTestDlg::CreateControls()
 
             m_formulaCtrl = new CodeEditor(formulaBoxSizer->GetStaticBox(), ID_FORMULA_FIELD,
                                            wxDefaultPosition, FromDIP(wxSize(600, 300)));
+            m_formulaCtrl->SetMinSize(FromDIP(wxSize(600, 300)));
             m_formulaCtrl->SetLanguage(wxSTC_LEX_CPPNOCASE);
             m_formulaCtrl->SetThemeColor(
                 wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW));
@@ -765,8 +799,9 @@ void CustomTestDlg::CreateControls()
             // function browser
             {
             Wisteria::UI::FunctionBrowserCtrl* functionBrowser =
-                new FunctionBrowserCtrl(mainPage, m_formulaCtrl);
+                new FunctionBrowserCtrl(m_generalPage, m_formulaCtrl);
             wxGetApp().UpdateSideBarTheme(functionBrowser->GetSidebar());
+            functionBrowser->Hide();
             functionBrowser->SetParameterSeparator(FormulaFormat::GetListSeparator());
 
             functionBrowser->AddCategory(_(L"Operators").wc_string(), m_operators);
@@ -783,8 +818,11 @@ void CustomTestDlg::CreateControls()
 
             functionBrowser->FinalizeCategories();
 
-            mainPageSizer->Add(functionBrowser, wxSizerFlags().Expand().Border(
-                                                    wxALL, wxSizerFlags::GetDefaultBorder()));
+            m_funcBrowserSizer = new wxBoxSizer(wxHORIZONTAL);
+            m_funcBrowserSizer->Add(functionBrowser, wxSizerFlags().Expand().Border(
+                                                         wxALL, wxSizerFlags::GetDefaultBorder()));
+
+            mainPageSizer->Add(m_funcBrowserSizer, wxSizerFlags().Expand());
             }
         }
 

@@ -1184,13 +1184,21 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int ShowCustomTestDialogFunctionBrowser(lua_State*)
+    int ShowCustomTestDialogFunctionBrowser(lua_State* L)
         {
         if (LuaCustomTestDlg == nullptr)
             {
             LuaCustomTestDlg = new CustomTestDlg(wxGetApp().GetMainFrame());
             }
         LuaCustomTestDlg->SelectPage(CustomTestDlg::ID_GENERAL_PAGE);
+        if (lua_gettop(L) > 0)
+            {
+            LuaCustomTestDlg->ShowFunctionBrowser(int_to_bool(lua_toboolean(L, 1)));
+            }
+        else
+            {
+            LuaCustomTestDlg->ShowFunctionBrowser(true);
+            }
         LuaCustomTestDlg->Show();
         wxGetApp().Yield();
         return 0;

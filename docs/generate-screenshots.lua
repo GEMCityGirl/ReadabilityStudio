@@ -39,7 +39,7 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "test-bundle-4f." .. FileExtension)
 
 ScreenshotLib.CloseTestBundleDialog()
 
-ScreenshotLib.ShowCustomTestDialogFunctionBrowser()
+ScreenshotLib.ShowCustomTestDialogFunctionBrowser(true)
 ScreenshotLib.SnapScreenshot(ImagePath .. "function-browser." .. FileExtension, 7006)
 ScreenshotLib.CloseCustomTestDialog()
 

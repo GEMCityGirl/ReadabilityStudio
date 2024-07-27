@@ -552,6 +552,8 @@ class CustomTestDlg final : public wxDialog
             }
         }
 
+    void ShowFunctionBrowser(const bool show);
+
     /// @brief General page.
     constexpr static int ID_GENERAL_PAGE = wxID_HIGHEST;
     /// @brief Word list page.
@@ -572,11 +574,11 @@ class CustomTestDlg final : public wxDialog
     constexpr static int ID_PROPER_NOUN_PROPERTY_GRID = wxID_HIGHEST + 10;
     constexpr static int ID_CLASSIFICATION_PROPERTY_GRID = wxID_HIGHEST + 11;
     constexpr static int ID_FUNCTION_BROWSER = wxID_HIGHEST + 12;
+    constexpr static int ID_FUNCTION_BROWSER_BUTTON = wxID_HIGHEST + 13;
 
     void OnOK([[maybe_unused]] wxCommandEvent& event);
     void OnHelp([[maybe_unused]] wxCommandEvent& event);
     void OnContextHelp([[maybe_unused]] wxHelpEvent& event);
-    void OnValidateFormulaClick([[maybe_unused]] wxCommandEvent& event);
     void OnPropertyGridChange(wxPropertyGridEvent& event);
 
     bool ValidateFormula(const bool promptOnSuccess = false);
@@ -707,6 +709,9 @@ class CustomTestDlg final : public wxDialog
     wxArrayString m_testTypes;
     wxArrayString m_professionNames;
     wxArrayString m_documentNames;
+
+    wxPanel* m_generalPage{ nullptr };
+    wxBoxSizer* m_funcBrowserSizer{ nullptr };
 
     // data used for browser and function guide
     Wisteria::UI::FunctionBrowserCtrl::NameList m_operators;
