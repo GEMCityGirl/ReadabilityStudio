@@ -722,7 +722,7 @@ void CustomTestDlg::CreateControls()
             testTypeSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
             m_testTypeCombo =
-                new wxComboBox(m_generalPage, ID_TEST_TYPE_COMBO, wxEmptyString, wxDefaultPosition,
+                new wxComboBox(m_generalPage, ID_TEST_TYPE_COMBO, wxString{}, wxDefaultPosition,
                                wxDefaultSize, m_testTypes, wxCB_DROPDOWN | wxCB_READONLY);
             m_testTypeCombo->SetSelection(0);
             testTypeSizer->Add(m_testTypeCombo);
@@ -743,9 +743,11 @@ void CustomTestDlg::CreateControls()
                 new wxBitmapButton(formulaBoxSizer->GetStaticBox(), ID_VALIDATE_FORMULA_BUTTON,
                                    wxGetApp().GetResourceManager().GetSVG(L"ribbon/check.svg")));
 
-            formulaButtonsSizer->Add(
-                new wxBitmapButton(formulaBoxSizer->GetStaticBox(), ID_FUNCTION_BROWSER_BUTTON,
-                                   wxGetApp().GetResourceManager().GetSVG(L"ribbon/function.svg")));
+            formulaButtonsSizer->Add(new wxBitmapButton(
+                formulaBoxSizer->GetStaticBox(), ID_FUNCTION_BROWSER_BUTTON,
+                wxGetApp().GetResourceManager().GetSVG(wxSystemSettings::GetAppearance().IsDark() ?
+                                                           L"ribbon/function-light.svg" :
+                                                           L"ribbon/function.svg")));
 
             formulaBoxSizer->Add(formulaButtonsSizer, 0, wxLEFT | wxTOP | wxRIGHT,
                                  wxSizerFlags::GetDefaultBorder());
@@ -753,7 +755,6 @@ void CustomTestDlg::CreateControls()
 
             m_formulaCtrl = new CodeEditor(formulaBoxSizer->GetStaticBox(), ID_FORMULA_FIELD,
                                            wxDefaultPosition, FromDIP(wxSize(600, 300)));
-            m_formulaCtrl->SetMinSize(FromDIP(wxSize(600, 300)));
             m_formulaCtrl->SetLanguage(wxSTC_LEX_CPPNOCASE);
             m_formulaCtrl->SetThemeColor(
                 wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW));
