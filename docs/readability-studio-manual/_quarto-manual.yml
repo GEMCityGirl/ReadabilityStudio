@@ -36,4 +36,5 @@ book:
       - scoring-notes.qmd
   appendices:
     - acknowledgements/intro.qmd
-    - glossary.qmd
+    - glossary/shortcuts.qmd
+    - glossary/glossary.qmd

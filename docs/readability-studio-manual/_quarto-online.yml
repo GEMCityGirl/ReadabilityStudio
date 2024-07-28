@@ -39,5 +39,6 @@ book:
     - acknowledgements/intro.qmd
     - acknowledgements/libraries.qmd
     - acknowledgements/tools.qmd
-    - glossary.qmd
+    - glossary/shortcuts.qmd
+    - glossary/glossary.qmd
     - references.qmd
