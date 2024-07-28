@@ -126,7 +126,7 @@ If you do want to clamp a test to a given range, wrap it in a `CLAMP` function c
 
 \newpage
 
-## Creating a Custom New Dale-Chall\index{New Dale-Chall!custom test!example|(} Test {-}
+## Creating a Custom New Dale-Chall\index{New Dale-Chall!custom test!example|(} Test
 
 In this example, we will create a custom [New Dale-Chall](#sec-dale-chall-test) test specifically designed for recipes for a group of young students. Although the standard New Dale-Chall list is quite extensive, we may wish to append some words that we know are familiar to our kitchen-savvy students.
 
@@ -232,7 +232,7 @@ The recipe used in this example is available from the **Example Documents** menu
 
 \newpage
 
-## Creating a Custom Index Test {-}
+## Creating a Custom Index Test
 
 In this example, we will create a test designed for classifying a document within a custom scale. We will make a list of "buzzwords" that are commonly overused in marketing documents, then create a test to see how much a given document uses them. Also, rather than calculating the conventional grade-level or predicted [cloze](#sec-cloze) score, our test will return a value using our own scale.
 

@@ -91,7 +91,7 @@ This example book is available by going to the **Help** tab of the ribbon, click
 
 \newpage
 
-## Analyzing a Work in Progress {-}
+## Analyzing a Work in Progress
 
 In this example, we will analyze recipes that we are working on for a middle-school home economics class. Our target audience will be seventh-eighth graders and we will use *Readability Studio* to meet their reading level.
 
@@ -209,7 +209,7 @@ Finally, whenever you open this project, it will automatically reload the source
 
 \newpage
 
-## Analyzing a Webpage {-}
+## Analyzing a Webpage
 
 In this example, we will create a project that reads and analyzes a webpage. Although you can save a webpage from your web browser and load the HTML file, *Readability Studio* can also directly connect to a webpage.
 

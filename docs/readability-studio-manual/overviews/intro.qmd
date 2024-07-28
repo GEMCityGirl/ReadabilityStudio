@@ -26,7 +26,7 @@ Then you should use readability tests to determine their comprehension levels.
 
 \newpage
 
-## How Tests are Calculated {-}
+## How Tests are Calculated
 
 All readability formulas rely on factors such as sentence length, syllable counts, character counts, or word familiarity.
 Which factors are used vary from test to test, but most tests use between one to three of these factors to gauge a document's difficulty.
@@ -81,7 +81,7 @@ Finally, the source materials for these formulas cite example scores within 0–
 glue('Although not recommended, it is possible to create a copy of any regression-based test and remove this clamping. (Refer to ch. \\@ref(sec-custom-test-no-clamping) for an example.)')
 ```
 
-## How Tests can Fail {-}
+## How Tests can Fail
 
 Most readability tests will return a result, even when the document being reviewed contains extreme difficulty factors.
 For example, with table-based tests, documents with long sentences and/or numerous unfamiliar words will fall within the top bracket of the look-up table.

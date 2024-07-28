@@ -15,7 +15,7 @@ In this chapter, we will step through the process of creating a project, explain
 
 \newpage
 
-## Project Types {-}
+## Project Types
 
 To begin, click the `r keys("New")` button on the **Home** tab to display the **New Project** dialog.
 This dialog enables you to create either a [standard](#sec-creating-standard-project) or [batch](#sec-creating-batch-project) project.

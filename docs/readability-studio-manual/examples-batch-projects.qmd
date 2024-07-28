@@ -13,7 +13,7 @@ In this chapter, we will step through examples showing how to analyse batches of
 Batch projects are only available in the *Professional* edition of *Readability Studio*.
 :::
 
-## Reviewing a Collection of Documents {-}
+## Reviewing a Collection of Documents
 
 To determine the readability of a document collection, you will need to create a new batch project. First, click the `r keys("New")` button on the **Home** tab to open the **Select Project Type** dialog, as shown below:
 
