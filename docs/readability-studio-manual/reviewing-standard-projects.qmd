@@ -35,7 +35,8 @@ When calculating these statistics, failed test scores are treated as missing obs
 
 To remove any test from this list, select it and press `r keys(c('Ctrl', 'Del'))` (`r os_logo('windows')`, `r os_logo('linux')`) or `r keys(c('\\cmd', '\\backdel'))` (`r os_logo('apple')`) on your keyboard. To edit a [custom test](#sec-creating-custom-test), double click on it in this list. To view the help for a standard test, double click on it in this list.
 
-There will also be readability graphs in this section if you included their respective tests. Refer to \@ref(sec-reviewing-readability-graphs) for further information.
+There will also be readability graphs in this section if you included their respective tests.
+Refer to @sec-reviewing-readability-graphs for further information.
 
 ## Readability Graphs {#sec-reviewing-readability-graphs}
 
@@ -223,7 +224,8 @@ The types of word lists that may be shown are:
 **Key Words**: This list is the same as **All Words**, except that it excludes filenames, numeric words, and common words, and then combines the remaining words. In regards to combining words, words with the same root will be merged into a single row. For example, *report*, *reports*, and *reporting* will be combined into one row, with the frequency counts for all three words also combined. As for excluding words, common words (e.g., *the*), numerals, and filenames are not included in this list. (If no words can be combined and there are no common words to ignore, then this list will not be shown.)
 
 ::: {.notesection data-latex=""}
-If you are ignoring incomplete sentences, then these lists will only include the words from complete sentences. If you need to review all the words from the document, then select the option [**Do not exclude any text**](#sec-options-text-exclusion). Refer to \@ref(sec-how-text-is-excluded) to learn more about how *Readability Studio* handles incomplete sentences.
+If you are ignoring incomplete sentences, then these lists will only include the words from complete sentences. If you need to review all the words from the document, then select the option [**Do not exclude any text**](#sec-options-text-exclusion).
+Refer to @sec-how-text-is-excluded to learn more about how *Readability Studio* handles incomplete sentences.
 :::
 
 To find the most complex words, sort the **Syllable Count** column of the **3+ Syllables** list. You can sort any of the columns by clicking on the column header. To change the sorting order to either ascending or descending, click the column header a second time. As you can see below, the words with the most syllables are now shown at the top of the list.
@@ -335,7 +337,7 @@ A list of overly-long sentences:
 
 Note that if you are ignoring incomplete sentences, then this list will only include the complete sentences.
 If you need to review all the sentences from the document, then select the option [**Do not exclude any text**](#sec-options-text-exclusion).
-Refer to \@ref(sec-how-text-is-excluded) to learn more about how *Readability Studio* handles incomplete sentences.
+Refer to @sec-how-text-is-excluded to learn more about how *Readability Studio* handles incomplete sentences.
 
 To find the longest sentence, [sort](#sec-column-sorting) the **Word Count** column into descending order. As you can see below, the longest sentence is now shown at the top of the list.
 
@@ -383,7 +385,7 @@ Although black squares refer to the longer sentences, this may not imply that th
 
 To find the location of a sentence, click on the square and its sentence number will be shown. Also, if the sentence's length is an outlier (compared to the other sentences), then a preview of it will also be shown.
 
-Refer to example \@ref(sec-finding-difficult-sections) for a more detailed tutorial on sentence heatmaps.
+Refer to example @sec-finding-difficult-sections for a more detailed tutorial on sentence heatmaps.
 
 \index{sentences!reviewing in the results|)}
 
@@ -468,7 +470,7 @@ To view any repeated word in its original context, double-click on it. This will
 
 Note that if there are no repeated words in your document, then this window will not be included.
 
-Refer to \@ref(sec-repeated-word-exceptions) for more information on how repeated words are detected.
+Refer to @sec-repeated-word-exceptions for more information on how repeated words are detected.
 
 ### Reviewing Article Mismatches {#sec-reviewing-article-mismatches}
 
@@ -487,7 +489,7 @@ To view any item in its original context, double-click on it. This will take you
 
 Note that if there are no article mismatches in your document, then this window will not be included.
 
-Refer to \@ref(sec-article-mismatching) to learn more.
+Refer to @sec-article-mismatching to learn more.
 
 ### Reviewing Wording Errors & Misspellings {#sec-reviewing-wording-errors}
 
@@ -700,7 +702,8 @@ To graphically view the Dolch words breakdown, click on the [**Word Counts**](#s
 
 After opening a project, click on the **Dolch Sight Words** icon on the project sidebar. There are two graphs available for review: **Dolch Coverage** and **Word Counts**.
 
-The **Dolch Coverage** graph displays how much of each category is used in the document. Refer to \@ref(sec-reviewing-dolch) for more information.
+The **Dolch Coverage** graph displays how much of each category is used in the document.
+Refer to @sec-reviewing-dolch for more information.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/dolch-coverage-chart.png")
@@ -708,7 +711,8 @@ knitr::include_graphics("images/dolch-coverage-chart.png")
 
 As we can see in the above graph, 87.5% of the Dolch prepositions are used in the document. Pronouns and adverbs are also well covered with 76.9% and 73.5%, respectively. However, less than half of the Dolch adjectives and nouns are used in the document. From this, we can see that this document may be useful for some Dolch categories, but not others.
 
-The **Words Breakdown** graph displays all the raw Dolch word counts, broken down by category. Refer to \@ref(sec-reviewing-dolch) for more information.
+The **Words Breakdown** graph displays all the raw Dolch word counts, broken down by category.
+Refer to @sec-reviewing-dolch for more information.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/dolch-word-breakdown.png")
