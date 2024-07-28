@@ -102,7 +102,7 @@ bookdown::render_book(input="index.Rmd",
 # Note that this book has its own LaTeX files (i.e., does not copy them from readability-studio-manual).
 # This "book" doesn't have any front or back matter, so its preamble TeX file doesn't include that.
 setwd(glue("{docFolder}/release-notes/"))
-file_copy(glue("{docFolder}/readability-studio-manual/overviews/03-new-features.rmd"),
+file_copy(glue("{docFolder}/readability-studio-manual/overviews/new-features.qmd"),
           glue("{docFolder}/release-notes/index.qmd"),
           TRUE)
 fileContents <- read_lines(glue("{docFolder}/release-notes/index.qmd"))
@@ -132,36 +132,20 @@ unlink(glue("{docFolder}/shortcuts-cheatsheet/index.qmd"))
 
 UserManualMode = TRUE
 setwd(glue("{docFolder}/readability-studio-manual/"))
-combine_files("01-Overviews.Rmd", "overviews",
-              ("(intro|program)"))
-combine_files("index.qmd", "overviews",
-              ("(intro|program)"))
-combine_files("20-ReadabilityTestsEnglish.rmd", "english")
-combine_files("21-ReadabilityTestsSpanish.rmd", "spanish")
-combine_files("22-ReadabilityTestsGerman.rmd", "german")
-combine_files("90-Acknowledgements.Rmd", "acknowledgements",
-              ("(intro)"))
-combine_files("91-Glossaries.rmd", "glossary")
-combine_files("41-ScoringNotes.rmd", "scoring-notes")
-bookdown::render_book(input="index.Rmd",
-                      output_format="bookdown::pdf_book",
-                      output_dir="docs")
+combine_files("readability-tests-english.qmd", "english")
+combine_files("readability-tests-spanish.qmd", "spanish")
+combine_files("readability-tests-german.qmd", "german")
+combine_files("scoring-notes.qmd", "scoring-notes")
+
 quarto::quarto_render(output_format="pdf", as_job=F, profile="manual")
-combine_files("01-Overviews.Rmd", "overviews")
-combine_files("index.qmd", "overviews")
-combine_files("90-Acknowledgements.Rmd", "acknowledgements")
-bookdown::render_book(input="index.Rmd",
-                      output_format="bookdown::gitbook",
-                      output_dir="docs")
+
 quarto::quarto_render(output_format="html", as_job=F, profile="online")
-unlink(glue("{docFolder}/readability-studio-manual/index.qmd"))
-unlink(glue("{docFolder}/readability-studio-manual/01-Overviews.Rmd"))
-unlink(glue("{docFolder}/readability-studio-manual/20-ReadabilityTestsEnglish.rmd"))
-unlink(glue("{docFolder}/readability-studio-manual/21-ReadabilityTestsSpanish.rmd"))
-unlink(glue("{docFolder}/readability-studio-manual/22-ReadabilityTestsGerman.rmd"))
-unlink(glue("{docFolder}/readability-studio-manual/41-ScoringNotes.rmd"))
-unlink(glue("{docFolder}/readability-studio-manual/90-Acknowledgements.Rmd"))
-unlink(glue("{docFolder}/readability-studio-manual/91-Glossaries.rmd"))
+
+unlink(glue("{docFolder}/readability-studio-manual/readability-tests-english.qmd"))
+unlink(glue("{docFolder}/readability-studio-manual/readability-tests-spanish.qmd"))
+unlink(glue("{docFolder}/readability-studio-manual/readability-tests-german.qmd"))
+unlink(glue("{docFolder}/readability-studio-manual/scoring-notes.qmd"))
+unlink(glue("{docFolder}/readability-studio-manual/acknowledgements.qmd"))
 
 # Programming Manual
 ####################
@@ -276,8 +260,8 @@ dir_copy(glue("{docFolder}/readability-studio-manual/data"),
 file_copy(glue("{docFolder}/readability-studio-manual/overviews/01-intro.rmd"),
           glue("{docFolder}/readability-test-reference/01-intro.rmd"),
           TRUE)
-file_copy(glue("{docFolder}/readability-studio-manual/93-Author.rmd"),
-          glue("{docFolder}/readability-test-reference/93-Author.rmd"),
+file_copy(glue("{docFolder}/readability-studio-manual/author.qmd"),
+          glue("{docFolder}/readability-test-reference/author.qmd"),
           TRUE)
 file_copy(glue("{docFolder}/readability-studio-manual/modern-language-association.csl"),
           glue("{docFolder}/readability-test-reference/modern-language-association.csl"),
@@ -285,24 +269,24 @@ file_copy(glue("{docFolder}/readability-studio-manual/modern-language-associatio
 file_copy(glue("{docFolder}/readability-studio-manual/cites.bib"),
           glue("{docFolder}/readability-test-reference/cites.bib"),
           TRUE)
-combine_files("20-ReadabilityTestsEnglish.rmd", "english")
-combine_files("21-ReadabilityTestsSpanish.rmd", "spanish")
-combine_files("22-ReadabilityTestsGerman.rmd", "german")
-combine_files("41-ScoringNotes.rmd", "scoring-notes",
+combine_files("readability-tests-english.qmd", "english")
+combine_files("readability-tests-spanish.qmd", "spanish")
+combine_files("readability-tests-german.qmd", "german")
+combine_files("scoring-notes.qmd", "scoring-notes",
               "(intro|grade[-]level[-]results|cloze)")
-combine_files("90-Acknowledgements.Rmd", "acknowledgements",
+combine_files("acknowledgements.qmd", "acknowledgements",
               ("(intro)"))
 
 bookdown::render_book(input="index.Rmd",
                       output_format="bookdown::pdf_book",
                       output_dir="docs")
 unlink(glue("{docFolder}/readability-test-reference/01-intro.Rmd"))
-unlink(glue("{docFolder}/readability-test-reference/20-ReadabilityTestsEnglish.rmd"))
-unlink(glue("{docFolder}/readability-test-reference/21-ReadabilityTestsSpanish.rmd"))
-unlink(glue("{docFolder}/readability-test-reference/22-ReadabilityTestsGerman.rmd"))
-unlink(glue("{docFolder}/readability-test-reference/41-ScoringNotes.rmd"))
-unlink(glue("{docFolder}/readability-test-reference/90-Acknowledgements.Rmd"))
-unlink(glue("{docFolder}/readability-test-reference/93-Author.Rmd"))
+unlink(glue("{docFolder}/readability-test-reference/readability-tests-english.qmd"))
+unlink(glue("{docFolder}/readability-test-reference/readability-tests-spanish.qmd"))
+unlink(glue("{docFolder}/readability-test-reference/readability-tests-german.qmd"))
+unlink(glue("{docFolder}/readability-test-reference/scoring-notes.qmd"))
+unlink(glue("{docFolder}/readability-test-reference/acknowledgements.qmd"))
+unlink(glue("{docFolder}/readability-test-reference/author.qmd"))
 unlink(glue("{docFolder}/readability-test-reference/cites.bib"))
 unlink(glue("{docFolder}/readability-test-reference/modern-language-association.csl"))
 
