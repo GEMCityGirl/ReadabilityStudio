@@ -1,9 +1,9 @@
 ## Lix {#sec-lix-spanish}
 
-Refer to \@ref(sec-lix-test).
+Refer to @sec-lix-test.
 
 ## Rix {#sec-rix-spanish}
 
-Refer to \@ref(sec-rix-test).
+Refer to @sec-rix-test.
 
 \newpage

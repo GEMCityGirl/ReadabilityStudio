@@ -48,6 +48,6 @@ Note that this test is colloquially referred to as an acronym for "Simple Measur
 
 ## SMOG (Simplified)\index{SMOG!variations!SMOG (simplified))} {#sec-smog-test-simplified}
 
-Refer to \@ref(sec-smog-test).
+Refer to @sec-smog-test.
 
 \newpage

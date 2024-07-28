@@ -39,6 +39,6 @@ The simplified version of this formula uses lower precision. It was originally o
 
 ## New Automated Readability Index (Simplified) {#sec-new-ari-simplified}
 
-Refer to \@ref(sec-new-ari)\index{New Automated Readability Index!variations!New Automated Readability Index (simplified)}.
+Refer to @sec-new-ari\index{New Automated Readability Index!variations!New Automated Readability Index (simplified)}.
 
 \newpage

@@ -148,7 +148,8 @@ Any document which does not meet this threshold will be ignored during import.
 
 Note that when the project is first analyzed, the documents that were not included in the sample will be removed from the project.
 
-Clicking the `r keys("Forward >")` button will move to the **Document Structure** and **Test Selection** pages. Refer to \@ref(sec-creating-standard-project) for an explanation of these pages.
+Clicking the `r keys("Forward >")` button will move to the **Document Structure** and **Test Selection** pages.
+Refer to @sec-creating-standard-project for an explanation of these pages.
 
 After you have specified your document structure and tests, click the `r keys("Finish")` button to create the project, as shown below:
 

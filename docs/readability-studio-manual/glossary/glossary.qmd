@@ -23,7 +23,8 @@ Average sentence length.
 cloze\index{cloze} test
 :::
 ::: {.glsdef data-latex=''}
-A [cloze](#sec-cloze) procedure is a test given to readers to measure their comprehension ability. Refer to \@ref(sec-cloze) for an extended explanation.
+A [cloze](#sec-cloze) procedure is a test given to readers to measure their comprehension ability.
+Refer to @sec-cloze for an extended explanation.
 :::
 ::::
 

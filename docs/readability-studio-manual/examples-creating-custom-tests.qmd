@@ -102,7 +102,8 @@ To add this test to any project, first select the **Readability** tab. Next, cli
 
 ## Creating an Unclamped Flesch-Kincaid {#sec-custom-test-no-clamping}
 
-As described in \@ref(sec-grade-level-clamping), regression-based tests are clamped to the reasonable limit of 19^th^ grade (i.e., PhD). If you wish to override this, however, you can create a copy of a test and not set an upper limit for its score.
+As described in @sec-grade-level-clamping, regression-based tests are clamped to the reasonable limit of 19^th^ grade (i.e., PhD).
+If you wish to override this, however, you can create a copy of a test and not set an upper limit for its score.
 
 In this example, we will create a custom Flesch-Kincaid test and leave its formula unrestricted, allowing for scores such as 27 (i.e., 27^th^ grade).
 

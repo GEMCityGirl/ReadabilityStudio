@@ -83,7 +83,10 @@ glue('Although not recommended, it is possible to create a copy of any regressio
 
 ## How Tests can Fail {-}
 
-Most readability tests will return a result, even when the document being reviewed contains extreme difficulty factors. For example, with table-based tests, documents with long sentences and/or numerous unfamiliar words will fall within the top bracket of the look-up table. (Refer to table \@ref(tab:wheeler-smith-conversion-table) for an example). Likewise, plugging a document's statistics into a regression-based test will also produce a result without issue (although extreme results may need to be clamped, see \@ref(sec-grade-level-clamping)).
+Most readability tests will return a result, even when the document being reviewed contains extreme difficulty factors.
+For example, with table-based tests, documents with long sentences and/or numerous unfamiliar words will fall within the top bracket of the look-up table.
+(Refer to table \@ref(tab:wheeler-smith-conversion-table) for an example).
+Likewise, plugging a document's statistics into a regression-based test will also produce a result without issue (although extreme results may need to be clamped, see @sec-grade-level-clamping).
 
 It is possible, however, for certain graphical tests to not return a meaningful result. Tests such as Fry and Schwartz use plots that are divided into bands (i.e., polygonal strips) which represent different grade levels. To produce a result, these tests find the intersection of a document's statistics along the plot's axes. Once the intersection is found, the band that the point falls within will indicate the grade level of the document.
 

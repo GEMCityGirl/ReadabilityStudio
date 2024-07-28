@@ -74,9 +74,10 @@ knitr::include_graphics("images/peter-rabbit-chained-sentences.png")
 
 \newpage
 
-## Excluding Text\index{text exclusion!example} {-#sec-excluding-text-from-analysis}
+## Excluding Text\index{text exclusion!example} {#sec-excluding-text-from-analysis}
 
-When reviewing a document, it is usually preferable to ignore certain items, such as headers and citations (refer to \@ref(sec-how-text-is-excluded) for more information). In this example, we will discuss the various methods for excluding these items.
+When reviewing a document, it is usually preferable to ignore certain items, such as headers and citations (refer to @sec-how-text-is-excluded for more information).
+In this example, we will discuss the various methods for excluding these items.
 
 The first step is to open the example file "Danielson-Bryan." From the **Help** tab, click the `r keys("Example Documents")` button and then select "Danielson-Bryan" from the menu.
 (When prompted about how to open the document, select **Create a new project**.) When the **New Project** wizard appears, leave the defaults and click `r keys("Finish")`.
@@ -186,9 +187,12 @@ Click `r keys("OK")` and all instances of *punctuation* and *sentence length* ar
 knitr::include_graphics("images/exclusion-example-custom-words-excluded-now.png")
 ```
 
-Separate instances of *sentence* and *length* will still be included, they will only be excluded if they appear together to form the phrase *sentence length*. Refer to \@ref(sec-document-analysis) for more on how custom word/phrase exclusion works.
+Separate instances of *sentence* and *length* will still be included, they will only be excluded if they appear together to form the phrase *sentence length*.
+Refer to @sec-document-analysis for more on how custom word/phrase exclusion works.
 
-Along with editing the word list from the **Properties** dialog, you can also add words directly from the results. Select **Words Breakdown** on the sidebar and select any list under this section (e.g., **3+ Syllable List**). In this list window, select any words that you wish to exclude and click **Exclude Selected** on the **Home** tab of the ribbon:
+Along with editing the word list from the **Properties** dialog, you can also add words directly from the results.
+Select **Words Breakdown** on the sidebar and select any list under this section (e.g., **3+ Syllable List**).
+In this list window, select any words that you wish to exclude and click **Exclude Selected** on the **Home** tab of the ribbon:
 
 ![](images/ribbon-edit-list-options-with-exclude-selected.png)
 
@@ -250,7 +254,7 @@ All the options discussed here are also offered on the **Document** tab of the r
 
 ## Including an Addendum {#sec-addendum-example}
 
-Continuing from the "Reviewing a Flyer" (\@ref(sec-reviewing-a-flyer)) and "High-level Review of a Disclaimer" (\@ref(sec-high-level-review-of-disclaimer)) examples, our fictitious private equity firm now plans to append a disclaimer to the flyer.
+Continuing from the "Reviewing a Flyer" (@sec-reviewing-a-flyer) and "High-level Review of a Disclaimer" (@sec-high-level-review-of-disclaimer) examples, our fictitious private equity firm now plans to append a disclaimer to the flyer.
 
 Along with policy changes to the program, they have redesigned the program's flyer to appear more professional. Let's first take a look at the updated flyer.
 From the **Help** tab on the ribbon, click the `r keys('Example Documents')` button, and select "YA Enterprise Software Symposium." Next, you will be prompted to either create a new project or view the document; select **View document**. Once the document is opened, note how the flyer’s short text boxes have been replaced by full sentences:

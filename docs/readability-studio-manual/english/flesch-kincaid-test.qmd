@@ -45,6 +45,6 @@ The simplified version of this formula uses a lower precision calculation. It wa
 
 ## Flesch-Kincaid (Simplified)\index{Flesch-Kincaid!variations!Flesch-Kincaid (simplified)} {#sec-flesch-kincaid-test-simplified}
 
-Refer to \@ref(sec-flesch-kincaid-test).
+Refer to @sec-flesch-kincaid-test.
 
 \newpage

@@ -36,9 +36,9 @@ Although not traditionally mentioned in readability articles, other items may al
 - specific words or phrases
 :::
 
-Refer to \@ref(sec-document-analysis) for a detailed explanation of these options.
+Refer to @sec-document-analysis for a detailed explanation of these options.
 
-## How Sentences\index{sentences!counting} are Counted {-#sec-how-sentences-are-counted}
+## How Sentences\index{sentences!counting} are Counted {#sec-how-sentences-are-counted}
 
 *Readability Studio* considers periods, question marks, exclamation points, and interabangs as the end of a sentence, although there are a few exceptions.
 
@@ -183,7 +183,7 @@ If **Ignore blank lines** is unselected (the default), then the above example is
 
 There are special situations where you would need multi-line sentence fragments to be [chained](#sec-line-chaining) together.
 For example, picture books that wrap sentences around images may cause sentences to be split into fragments with blank lines between them.
-Refer to \@ref(sec-chain-sentences-example) for an example.
+Refer to @sec-chain-sentences-example for an example.
 
 ## How Syllables are Counted\index{syllables!counting} {-}
 

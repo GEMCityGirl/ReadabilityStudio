@@ -169,7 +169,7 @@ After selecting a group of documents, you will be presented with this dialog to 
 **Use the last common folder between files**: Select this to group documents by folder. The paths between each pair of files will be compared, and the last folder that they have in common will be their group. 
 :::
 
-Refer to \@ref(sec-adding-labels-to-batch) and \@ref(sec-grouping-docs-in-batch) for examples of this feature.
+Refer to @sec-adding-labels-to-batch and @sec-grouping-docs-in-batch for examples of this feature.
 
 ### Select Directory {-}
 

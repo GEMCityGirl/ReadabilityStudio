@@ -1,6 +1,6 @@
 ## Lix {#sec-lix-german}
 
-Refer to \@ref(sec-lix-test).
+Refer to @sec-lix-test.
 
 ## Lix\index{Lix!variations!German children's literature} (German children's literature) {#sec-lix-german-childrens-literature}
 
