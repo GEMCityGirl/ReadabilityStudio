@@ -1,4 +1,4 @@
-## Schwartz German Readability Graph {#sec-schwartz}
+## Schwartz German Readability Graph {-#sec-schwartz}
 
 The Schwartz German Readability Graph\index{Schwartz German Readability Graph|(ii} [-@{schwartz}1–21] is a derivative of [Fry’s](#sec-fry-test) readability graph and is designed for instructional textbooks for primary and secondary students. Like Fry, it relies on sentence length and word complexity (i.e., syllable counts) to determine a document’s difficulty.
 

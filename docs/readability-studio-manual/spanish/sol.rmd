@@ -1,4 +1,4 @@
-## SOL\index{SOL|(ii} {#sec-sol-spanish}
+## SOL\index{SOL|(ii} {-#sec-sol-spanish}
 
 The SOL readability formula [@{contreras}21–29] calculates the grade level of a document based on complex-word density.
 

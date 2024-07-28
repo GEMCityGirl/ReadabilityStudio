@@ -1,2 +1,39 @@
 project:
   output-dir: "docs-manual"
+book:
+  chapters:
+    - index.qmd
+    - part: "Overviews"
+      chapters:
+      - overviews/intro.qmd
+      - overviews/program.qmd
+    - part: "Projects & Features"
+      chapters:
+      - creating-a-new-project.qmd
+      - reviewing-standard-projects.qmd
+      - reviewing-batch-project.qmd
+      - customizing-results.qmd
+      - publishing.qmd
+      - program-options.qmd
+      - additional-features.qmd
+    - part: "Readability Tests"
+      chapters:
+      - readability-tests-english.qmd
+      - readability-tests-spanish.qmd
+      - readability-tests-german.qmd
+      - custom-tests-and-bundles.qmd
+    - part: "Examples"
+      chapters:
+      - examples-getting-started.qmd
+      - examples-advanced.qmd
+      - examples-editing.qmd
+      - examples-graphs.qmd
+      - examples-batch-projects.qmd
+      - examples-creating-custom-tests.qmd
+    - part: "Notes"
+      chapters:
+      - analysis-notes.qmd
+      - scoring-notes.qmd
+  appendices:
+    - acknowledgements/intro.qmd
+    - glossary.qmd

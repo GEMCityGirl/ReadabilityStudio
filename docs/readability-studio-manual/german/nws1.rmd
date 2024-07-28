@@ -1,4 +1,4 @@
-## Neue Wiener Sachtextformel 1\index{Neue Wiener Sachtextformel 1|ii} {#sec-neue-wiener-sachtextformel1}
+## Neue Wiener Sachtextformel 1\index{Neue Wiener Sachtextformel 1|ii} {-#sec-neue-wiener-sachtextformel1}
 
 Neue Wiener Sachtextformel 1 (1.nWS) [@{bamberger-vanecek}83, 187] is used for evaluating German nonfiction (specifically, 6^th^-10^th^ grade materials). This test returns a grade-level score based on word length/complexity and sentence length.
 

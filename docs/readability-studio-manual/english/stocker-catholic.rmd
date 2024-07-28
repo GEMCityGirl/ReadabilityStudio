@@ -1,4 +1,4 @@
-## Stocker's Catholic Supplement\index{Stocker's Catholic Supplement} {#sec-stocker-catholic-supplement}
+## Stocker's Catholic Supplement\index{Stocker's Catholic Supplement} {-#sec-stocker-catholic-supplement}
 
 Stocker's Catholic\index{Catholic words|see{Stocker's Catholic Supplement}} supplement [-@{stocker}87–89] is an extension to the [Dale-Chall](#sec-dale-chall-test) word list designed for Catholic students. Based on a 1971 study of 4^th^-grade Catholic students[^Stocker], this list represents over 200 words (not on the standard Dale-Chall\index{New Dale-Chall!including Catholic words} list) familiar to 80% of them.
 

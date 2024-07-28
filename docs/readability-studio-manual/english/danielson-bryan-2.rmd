@@ -1,4 +1,4 @@
-## Danielson-Bryan 2\index{Danielson-Bryan 2|(ii} {#sec-danielson-bryan-2}
+## Danielson-Bryan 2\index{Danielson-Bryan 2|(ii} {-#sec-danielson-bryan-2}
 
 Danielson-Bryan 2 [-@{danielson-bryan}206] calculates an index score of a document based on sentence length and character/punctuation count. It is a variant of [Flesch Reading Ease](#sec-flesch-test)\index{Flesch Reading Ease!variations!Danielson-Bryan 2}, with the difference being that it uses character and punctuation counts instead of syllable counts. Being a variant of Flesch, its scores range from 0–100 (the higher the score, the easier to read), with average documents being within 60–70.
 

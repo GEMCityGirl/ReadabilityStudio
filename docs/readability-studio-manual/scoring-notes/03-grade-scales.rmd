@@ -1,4 +1,4 @@
-## Grade Scales {#sec-grade-scales}
+## Grade Scales {-#sec-grade-scales}
 
 Grade-level scores are traditional displayed in U.S. (K–12+) format, be can be converted to other scales. The following grade scales are available to choose from:
 

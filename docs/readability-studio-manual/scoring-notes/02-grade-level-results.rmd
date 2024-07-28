@@ -1,4 +1,4 @@
-## Grade Level Results {#sec-grade-level-results}
+## Grade Level Results {-#sec-grade-level-results}
 
 Most readability tests that return a grade level include a mantissa (i.e., decimal value), which represents the month of the grade. For example, *1.6* would be the sixth month of first grade [@{carver:1985}306–07]. However, this only applies to tests that are computed from a mathematical formula (generally, a regression equation). Tests that use different methods—such as look-up tables or graphs—usually only return a grade level as an integer.
 

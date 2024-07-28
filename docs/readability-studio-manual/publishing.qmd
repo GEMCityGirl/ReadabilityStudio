@@ -26,7 +26,7 @@ Numerous formats are available for each type of window:
 
 All windows can also be exported at once by clicking the arrow beneath `r keys("Save")` and selecting [**Export All...**](#sec-export-all-options).
 
-## Scores Export Options{#sec-scores-export}
+## Scores Export Options{-#sec-scores-export}
 
 When [exporting](#sec-exporting)\index{exporting!scores} readability scores\index{scores!exporting} from a standard project, the following export options are available:
 
@@ -40,7 +40,7 @@ When [exporting](#sec-exporting)\index{exporting!scores} readability scores\inde
 **Both**: Saves the scores grid and explanations.
 :::
 
-## Text Window Export Options {#sec-text-window-export}
+## Text Window Export Options {-#sec-text-window-export}
 
 When exporting\index{exporting!text reports} a text report\index{text reports!exporting}, the following export formats\index{text reports!exporting!formats} are available:
 
@@ -56,7 +56,7 @@ When exporting\index{exporting!text reports} a text report\index{text reports!ex
 If you plan to edit this output, then **RTF** is recommended. (Most word processors support editing this format.)
 :::
 
-## Image Export Options {#sec-image-export}
+## Image Export Options {-#sec-image-export}
 
 When [exporting](#sec-exporting)\index{exporting!graphs} a graph\index{graphs!exporting|(}, you will first be prompted for an image format to export as. The following formats\index{graphs!exporting!formats} are available to choose from:
 
@@ -116,7 +116,7 @@ This option specifies the compression level of the TIFF file and includes the fo
 **Deflate**: lossless, high-compression method.\index{graphs!exporting|)}
 ::::
 
-## List Export Options {#sec-export-list}
+## List Export Options {-#sec-export-list}
 
 When [exporting](#sec-exporting)\index{exporting!lists} a list\index{lists!exporting}, you will be provided with the following formats\index{lists!exporting!formats} to export as:
 
@@ -158,7 +158,7 @@ The options here specify the range of columns and rows to export.
 
 **Columns: to**: Enter the ending column to export into this field.
 
-## Export All Options {#sec-export-all-options}
+## Export All Options {-#sec-export-all-options}
 
 Select **Export All**\index{exporting!projects} from the `r keys("Save")` button's menu to display the **Export All Options** dialog.
 
@@ -198,7 +198,7 @@ This dialog provides options for [exporting](#sec-exporting) an entire project i
 
 **Include text reports**: Select this option to include highlighted text reports in the output. It is recommended to unselect this option for larger documents. This option only applies to standard projects.
 
-## Exporting Filtered Documents {#sec-filtering-export}
+## Exporting Filtered Documents {-#sec-filtering-export}
 
 Document filtering (or "cleaning") is the removal or conversion of items from a document to assist a textual analysis. This includes items that are not meant to be analyzed, such as:
 

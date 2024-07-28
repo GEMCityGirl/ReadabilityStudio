@@ -1,4 +1,4 @@
-## Open-Source Libraries {.unnumbered}
+## Open-Source Libraries {-}
 
 The 3^rd^ party, open-source libraries included in *Readability Studio* are listed below (along with their respective licenses).
 

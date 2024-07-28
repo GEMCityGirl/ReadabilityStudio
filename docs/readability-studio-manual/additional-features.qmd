@@ -9,7 +9,7 @@ source('R/appdown.r')
 
 This chapter discusses additional features not directly related to readability. This includes features such crawling and downloading documents from a website, as well as logging and command line options.
 
-## Web Harvester {#sec-web-harvester}
+## Web Harvester {-#sec-web-harvester}
 
 The **Web Harvester** dialog enables you to gather (and optionally download) links from a website. To access this dialog, select the **Tools** tab on the ribbon and click the `r keys('Web Harvest')` button under **Tools & Settings**.
 
@@ -106,7 +106,7 @@ these files.
 **Replace existing files**: Select this option to overwrite existing files as they are downloaded.
 Deselecting this option will rename files as they are downloaded (if necessary) to avoid overwriting existing files.
 
-## Command Line Options {#sec-command-line-options}
+## Command Line Options {-#sec-command-line-options}
 
 The following command line options are available for *Readability Studio*:
 
@@ -131,7 +131,7 @@ This example would tell the program to log the maximum level of information whil
 
 Note that verbose logging can also be enabled from the **General** page of the **Options** dialog or the **Log Report** dialog.
 
-## Log Report {#sec-log-report}
+## Log Report {-#sec-log-report}
 
 While it is running, *Readability Studio* logs various diagnostic information. This information can provide details such as:
 
@@ -153,9 +153,9 @@ The messages in this report are displayed such that:
 
 This information can be useful if you are experiencing issues with loading a document.
 
-## Batch Importing {#sec-batch-project-import-features}
+## Batch Importing {-#sec-batch-project-import-features}
 
-### Select Labeling
+### Select Labeling {-}
 
 When adding documents to a batch project, you will be prompted about how to label them. Labeling is a useful way of either grouping your documents or applying a description to them.
 
@@ -171,7 +171,7 @@ After selecting a group of documents, you will be presented with this dialog to 
 
 Refer to \@ref(sec-adding-labels-to-batch) and \@ref(sec-grouping-docs-in-batch) for examples of this feature.
 
-### Select Directory
+### Select Directory {-}
 
 This dialog enables you to select a folder of documents for [batch](#sec-creating-batch-project) analysis.
 
@@ -181,7 +181,7 @@ This dialog enables you to select a folder of documents for [batch](#sec-creatin
 
 **Search directories recursively**: Check this option to include files from all subfolders inside of the selected folder.
 
-### Select Archive File
+### Select Archive File {-}
 
 This dialog enables you to select an archive file (e.g., a compressed \*.zip file) that contains your documents for [batch](#sec-creating-batch-project) analysis.
 
@@ -189,7 +189,7 @@ This dialog enables you to select an archive file (e.g., a compressed \*.zip fil
 
 **File types to include**: Select from this list the types of documents to include from the archive. All files in the archive matching these document types will be included in the analysis.
 
-### Worksheet Preview
+### Worksheet Preview {-}
 
 When importing a spreadsheet into a batch, this dialog enables you to specify which worksheets and cells to import. Note that only text cells can be imported as documents, so numeric cells will be blank here.
 

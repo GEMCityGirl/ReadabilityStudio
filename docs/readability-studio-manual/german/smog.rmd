@@ -1,4 +1,4 @@
-## SMOG (Bamberger-Vanecek)\index{SMOG!variations!Bamberger-Vanecek (German)} {#sec-smog-bamberger-vanecek}
+## SMOG (Bamberger-Vanecek)\index{SMOG!variations!Bamberger-Vanecek (German)} {-#sec-smog-bamberger-vanecek}
 
 SMOG (Bamberger-Vanecek) [-@{bamberger-vanecek}78] is a German variation of [SMOG](#sec-smog-test) designed for secondary-age readers. This test calculates the grade level of a document based on complex-word density.
 

@@ -5,8 +5,6 @@
 source('R/appdown.r')
 ```
 
-# (PART) Examples {-}
-
 # Getting Started
 
 `r drop_cap('Within')` this chapter, we will step through some examples demonstrating how to analyze, review, and improve a document.
@@ -14,7 +12,7 @@ After that, we will continue with examples showing how to analyze a webpage and 
 
 \newpage
 
-## Analyzing a Book {#sec-book-example}
+## Analyzing a Book {-#sec-book-example}
 
 In this example, we will analyze a literary novel to help determine which age group it is most appropriate for (in terms of readability, not content).
 The first step is to open the **New Project** wizard and choose the book. Click the `r keys("New")` button on the **Home** tab to open the **New Project** wizard.
@@ -60,7 +58,7 @@ To do this, click the `r keys("Save")` button on the **Home** tab and use the **
 
 \newpage
 
-## Improving Students' Vocabulary {#sec-vocab-builder-example}
+## Improving Students' Vocabulary {-#sec-vocab-builder-example}
 
 In this example, we will save a list of the more complex words from a book. If you are an educator, you can send this list to your students and ask them to define these words prior to reading the book. This can be a great way to prepare them for future readings, as well as helping them build their overall vocabulary.
 
@@ -93,7 +91,7 @@ This example book is available by going to the **Help** tab of the ribbon, click
 
 \newpage
 
-## Analyzing a Work in Progress
+## Analyzing a Work in Progress {-}
 
 In this example, we will analyze recipes that we are working on for a middle-school home economics class. Our target audience will be seventh-eighth graders and we will use *Readability Studio* to meet their reading level.
 
@@ -211,7 +209,7 @@ Finally, whenever you open this project, it will automatically reload the source
 
 \newpage
 
-## Analyzing a Webpage
+## Analyzing a Webpage {-}
 
 In this example, we will create a project that reads and analyzes a webpage. Although you can save a webpage from your web browser and load the HTML file, *Readability Studio* can also directly connect to a webpage.
 
@@ -272,7 +270,7 @@ Note that webpages requiring authentication (i.e., requiring a user name and pas
 
 \newpage
 
-## Searching for Overly Long Sentences\index{sentences!example of reviewing overly long} {#sec-searching-long-sentences-example}
+## Searching for Overly Long Sentences\index{sentences!example of reviewing overly long} {-#sec-searching-long-sentences-example}
 
 In this example, we will review a document for overly-long sentences. This example will demonstrate the available methods for defining an overly-long sentence. In addition, it will also demonstrate how to search for and review these sentences.
 
@@ -308,7 +306,8 @@ This document should be an easy-to-read list of software features intended for a
 
 ![](images/featuresstats.png)
 
-As we can see, there are some very long sentences in this document and they are the biggest factor in our high scores. To view a list of these sentences, click the **difficult sentences** link. You can also click the **Sentences Breakdown** icon in the sidebar and select the [**Long Sentences**](#sec-reviewing-sentences-breakdown) page.
+As we can see, there are some very long sentences in this document and they are the biggest factor in our high scores.
+To view a list of these sentences, click the **difficult sentences** link. You can also click the **Sentences Breakdown** icon in the sidebar and select the [**Long Sentences**](#sec-reviewing-sentences-breakdown) page.
 
 ![](images/featuressentencelist.png)
 
@@ -342,7 +341,7 @@ This option is only recommended for situations where most of the sentences are a
 
 \newpage
 
-## Finding Difficult Sections {#sec-finding-difficult-sections}
+## Finding Difficult Sections {-#sec-finding-difficult-sections}
 
 Along with searching for overly-long sentences, we should also review the distribution of longer sentences. If there are sections of a document where longer sentences seem to clump together, then these areas may be more difficult to read. These sections may need to be rewritten or restructured so that we don't have entire paragraphs that readers will struggle with.
 
@@ -389,7 +388,7 @@ Because this document contains more than 500 paragraphs, grouping will not be us
 
 \newpage
 
-## Reviewing a Flyer {#sec-reviewing-a-flyer}
+## Reviewing a Flyer {-#sec-reviewing-a-flyer}
 
 In this example, we will analyze a flyer for a summer program being offered by a local software company. This flyer consists of short text boxes designed to grab the attention of young adults interested in learning computer programming. Of interest is that this document contains a few sentences, but the bulk of its content are simple text boxes.
 
@@ -447,7 +446,7 @@ Refer to \@ref(sec-high-level-review-of-disclaimer) and \@ref(sec-addendum-examp
 
 \newpage
 
-## High-level Review of a Disclaimer {#sec-high-level-review-of-disclaimer}
+## High-level Review of a Disclaimer {-#sec-high-level-review-of-disclaimer}
 
 In this example, we will perform a quick review of the concepts, word complexity, and paragraph complexity of a disclaimer.
 

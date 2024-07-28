@@ -1,4 +1,4 @@
-## New Automated Readability Index\index{New Automated Readability Index|ii} {#sec-new-ari}
+## New Automated Readability Index\index{New Automated Readability Index|ii} {-#sec-new-ari}
 
 The New Automated Readability Index\index{Automated Readability Index!variations!New Automated Readability Index} is Kincaid et al.'s modified version of [ARI](#sec-ari-test)\index{Automated Readability Index} [-@{kincaid-fishburne-rogers-chissom:1975}14] that was recalculated "to be more suitable for Navy use" [@{kincaid-fishburne-rogers-chissom:1975}11]; hence, it is designed for technical documents and manuals. This test calculates the grade level of a document based on sentence length and character count.
 
@@ -37,7 +37,7 @@ $$
 The simplified version of this formula uses lower precision. It was originally offered to make manual calculations of this test easier. With the modern availability of computers, it is recommended to use the higher-precision formula.
 :::
 
-## New Automated Readability Index (Simplified) {#sec-new-ari-simplified}
+## New Automated Readability Index (Simplified) {-#sec-new-ari-simplified}
 
 Refer to \@ref(sec-new-ari)\index{New Automated Readability Index!variations!New Automated Readability Index (simplified)}.
 

@@ -1,4 +1,4 @@
-## New Fog Count\index{New Fog Count|ii} {#sec-new-fog-count-test}
+## New Fog Count\index{New Fog Count|ii} {-#sec-new-fog-count-test}
 
 The New Fog Count\index{Gunning Fog!variations!New Fog Count} readability formula is Kincaid et al.'s modified version of the [Gunning Fog](#sec-gunning-fog-test) Index [-@{kincaid-fishburne-rogers-chissom:1975}14] that was recalculated "to be more suitable for Navy use" [@{kincaid-fishburne-rogers-chissom:1975}11]; hence, it is designed for technical documents and manuals. This test calculates the grade level of a document based on sentence length and number of words containing three or more syllables.
 

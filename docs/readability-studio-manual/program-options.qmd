@@ -27,7 +27,7 @@ If you wish to change options for an individual project, then click the `r keys(
 knitr::include_graphics("images/projectproperties.png")
 ```
 
-## General Settings {#sec-options-general-settings}
+## General Settings {-#sec-options-general-settings}
 
 The options on this page manage the program's general settings.
 
@@ -105,7 +105,7 @@ The default behavior is to clear the log file every time the program starts.
 
 \newpage
 
-## Project {#sec-project-settings}
+## Project {-#sec-project-settings}
 
 The options on this page customize your general project settings.
 
@@ -168,7 +168,7 @@ Also note that your original document is not affected by this process. The origi
 
 \newpage
 
-## Document Indexing {#sec-document-analysis}
+## Document Indexing {-#sec-document-analysis}
 
 The options here specify how your documents should be parsed and analyzed.
 
@@ -380,7 +380,7 @@ Buttons to add, edit, and remove items are also available above the grid.
 
 \newpage
 
-## Readability Scores {#sec-readability-test-options}
+## Readability Scores {-#sec-readability-test-options}
 
 ### Test Options {-#sec-options-test-options}
 
@@ -533,7 +533,7 @@ Note that reading ages do not contain floating-point precision, even if their re
 
 \newpage
 
-## Statistics {#sec-options-statistics}
+## Statistics {-#sec-options-statistics}
 
 The options on this page customize which statistics to include in your reports and results.
 
@@ -569,7 +569,7 @@ The options on this page customize which statistics to include in your reports a
 
 \newpage
 
-## Words Breakdown {#sec-options-words-breakdown}
+## Words Breakdown {-#sec-options-words-breakdown}
 
 The options on this page customize which results are included in the [**Words Breakdown**](#sec-reviewing-word-breakdowns) section.
 
@@ -597,7 +597,7 @@ The options on this page customize which results are included in the [**Words Br
 
 \newpage
 
-## Sentences Breakdown {#sec-options-sentences-breakdown}
+## Sentences Breakdown {-#sec-options-sentences-breakdown}
 
 The options on this page customize which results are included in the [**Sentences Breakdown**](#sec-reviewing-sentences-breakdown) section.
 
@@ -613,7 +613,7 @@ The options on this page customize which results are included in the [**Sentence
 
 \newpage
 
-## Grammar {#sec-options-grammar}
+## Grammar {-#sec-options-grammar}
 
 The options on this page customize grammar analysis.
 
@@ -683,7 +683,7 @@ Checking this option will instruct the program to not consider words such as *ta
 
 \newpage
 
-## Highlighted Reports {#sec-options-highlighted-reports}
+## Highlighted Reports {-#sec-options-highlighted-reports}
 
 ### General {-}
 
@@ -737,7 +737,7 @@ The options on this page select which categories of [Dolch](#sec-reviewing-dolch
 
 \newpage
 
-## Graphs {#sec-options-graphs}
+## Graphs {-#sec-options-graphs}
 
 ### General {-}
 

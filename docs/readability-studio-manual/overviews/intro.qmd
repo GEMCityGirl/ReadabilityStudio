@@ -2,10 +2,8 @@
 #| include: false
 #| eval: true
 
-source('R/appdown.r')
+source('../R/appdown.r')
 ```
-
-# (PART) Overviews {-}
 
 # Technical Overviews
 
@@ -28,7 +26,7 @@ Then you should use readability tests to determine their comprehension levels.
 
 \newpage
 
-## How Tests are Calculated
+## How Tests are Calculated {-}
 
 All readability formulas rely on factors such as sentence length, syllable counts, character counts, or word familiarity.
 Which factors are used vary from test to test, but most tests use between one to three of these factors to gauge a document's difficulty.
@@ -48,8 +46,8 @@ Another method is lookup tables, where the intersection of factors (e.g., number
 The final method also relies on finding the intersection of factors, but on a graph instead of a table. Most of these plots are divided into bands or brackets, with each of these regions representing a grade or difficulty level. For example, Fry and Raygor use polygonal bands, while Flesch Reading Ease uses brackets along a “ruler”:
 
 ```{r echo=F, fig.show = 'hold', out.width='50%', fig.cap='Comparison of bands vs. brackets'}
-knitr::include_graphics("images/frygraph.png")
-knitr::include_graphics("images/flesch-chart.png")
+knitr::include_graphics("../images/frygraph.png")
+knitr::include_graphics("../images/flesch-chart.png")
 ```
 
 Once the intersection of two factors is located on the plot, the band or bracket that the intersection falls into will indicate the score.
@@ -61,12 +59,12 @@ glue('As a final note, there are a few hybrid tests which can be calculated via 
 $if_else(UserManualMode, OptionsDesc, "")^', .open='$', .close='^')
 ```
 
-## Grade-level Clamping {#sec-grade-level-clamping}
+## Grade-level Clamping {-#sec-grade-level-clamping}
 
 A key difference between graph and table-based tests versus regression-based tests is how the former has defined upper limits for their scores. For example, graph-based tests acquire their scores by finding the intersection of certain factors (e.g., sentence length) within a set a bands. These bands represent grades, and there are a specific set of grade bands available. As an example, a [Fry](#sec-fry-test) graph has bands ranging from 1^st^ grade to 17^th^ (i.e., college):
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/frygraph.png")
+knitr::include_graphics("../images/frygraph.png")
 ```
 
 Likewise, table-based tests take a set of factors and look up the score from a table. These tables have a specific set of grade levels and will also have an upper limit. (Refer to table \@ref(tab:wheeler-smith-conversion-table) for an example.)
@@ -83,14 +81,14 @@ Finally, the source materials for these formulas cite example scores within 0–
 glue('Although not recommended, it is possible to create a copy of any regression-based test and remove this clamping. (Refer to ch. \\@ref(sec-custom-test-no-clamping) for an example.)')
 ```
 
-## How Tests can Fail
+## How Tests can Fail {-}
 
 Most readability tests will return a result, even when the document being reviewed contains extreme difficulty factors. For example, with table-based tests, documents with long sentences and/or numerous unfamiliar words will fall within the top bracket of the look-up table. (Refer to table \@ref(tab:wheeler-smith-conversion-table) for an example). Likewise, plugging a document's statistics into a regression-based test will also produce a result without issue (although extreme results may need to be clamped, see \@ref(sec-grade-level-clamping)).
 
 It is possible, however, for certain graphical tests to not return a meaningful result. Tests such as Fry and Schwartz use plots that are divided into bands (i.e., polygonal strips) which represent different grade levels. To produce a result, these tests find the intersection of a document's statistics along the plot's axes. Once the intersection is found, the band that the point falls within will indicate the grade level of the document.
 
 ```{r echo=F, fig.align='center', fig.cap='Example of a graph with grade-level bands', out.width='75%'}
-knitr::include_graphics("images/schwartz.png")
+knitr::include_graphics("../images/schwartz.png")
 ```
 
 ```{r, results='asis', eval=T, echo=F}

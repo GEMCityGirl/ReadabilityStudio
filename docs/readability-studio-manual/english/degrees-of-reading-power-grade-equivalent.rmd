@@ -1,4 +1,4 @@
-## Degrees of Reading Power (GE)\index{Degrees of Reading Power (GE)|(ii} {#sec-degrees-of-reading-power-grade-equivalent}
+## Degrees of Reading Power (GE)\index{Degrees of Reading Power (GE)|(ii} {-#sec-degrees-of-reading-power-grade-equivalent}
 
 The Degrees of Reading Power (grade equivalent) [@{carver:1985}303–16] test calculates the difficulty level of a document by performing the [DRP](#sec-degrees-of-reading-power) test and then converting its units score into a grade level.
 

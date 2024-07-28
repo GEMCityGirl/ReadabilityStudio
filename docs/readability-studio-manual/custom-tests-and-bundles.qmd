@@ -7,7 +7,7 @@ source('R/appdown.r')
 
 # Custom Tests & Bundles
 
-## Creating a Custom Test {#sec-creating-custom-test}
+## Creating a Custom Test {-#sec-creating-custom-test}
 
 Along with offering standard tests, such as [New Dale-Chall](#sec-dale-chall-test)\index{New Dale-Chall!custom test} and [Spache Revised](#sec-spache-test)\index{Spache Revised!custom test}, *Readability Studio* also includes the ability to create your own tests. Many customizable features are offered for new tests, such as being able to select your own familiar-word list and which formula to use.
 
@@ -87,7 +87,7 @@ For example, select the **Children's literature** and **Children's healthcare** 
 
 Now create a new project and select **Children's healthcare** as the industry type. Once the program loads the document, your custom test will be automatically included in the results.
 
-## Custom Test Functions {#sec-custom-test-functions}
+## Custom Test Functions {-#sec-custom-test-functions}
 
 The following functions and operators are available for use in [custom test](#sec-creating-custom-test) formulas.
 
@@ -277,7 +277,7 @@ New Dale-Chall and Harris-Jacobson familiar word functions will take their respe
 Table: Shortcuts
 :::
 
-### Comments
+### Comments {-}
 
 Comments can be embedded within an expression to clarify its intent.
 C/C++ style comments are supported, which provide:
@@ -302,7 +302,7 @@ IF(// Review the % of buzz words in the document.
    1 /* Acceptable */) )
 ```
 
-## Custom Test Dialog {#sec-custom-test-dialog}
+## Custom Test Dialog {-#sec-custom-test-dialog}
 
 ### General Settings {-#sec-custom-test-general-settings}
 
@@ -401,7 +401,7 @@ Familiarity
 
 **Associate with industry**: Select the industries that you want this test to be associated with when creating a new project. This will only take effect if the project wizard selects tests for you based on industry or field.
 
-## Adding a Custom-word Test {#sec-add-custom-word-test}
+## Adding a Custom-word Test {-#sec-add-custom-word-test}
 
 From the **Readability** tab, click the `r keys("Custom Test")` button and then select **Add Custom [Test]...** to display the **Add Custom [Test]** dialog. The following tests available are: New Dale-Chall\index{New Dale-Chall!custom test}, Spache Revised\index{Spache Revised!custom test}, and Harris-Jacobson\index{Harris-Jacobson Wide Range!custom test}. This dialog is used to create a [custom word test](#sec-creating-custom-test) and is a simplified version of the standard [**Custom Test**](#sec-creating-custom-test) dialog.
 
@@ -422,7 +422,7 @@ or like this:
 > `program`\
 > `videogame`
 
-## Test Bundles {#sec-test-bundles}
+## Test Bundles {-#sec-test-bundles}
 
 Test bundles enable you to organize tests into collections that you can quickly add to a project. Rather than selecting numerous tests from the menus one-by-one, you can simply select a test bundle from the menu. From there, all tests within the bundle will be added to the project.
 

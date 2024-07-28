@@ -1,4 +1,4 @@
-## (Powers-Sumner-Kearl) Gunning Fog\index{Powers-Sumner-Kearl!recalculated tests!Gunning Fog|(} {#sec-psk-fog}
+## (Powers-Sumner-Kearl) Gunning Fog\index{Powers-Sumner-Kearl!recalculated tests!Gunning Fog|(} {-#sec-psk-fog}
 
 The (Powers-Sumner-Kearl) Gunning Fog readability formula [-@{powers-sumner-kearl}99–105] calculates the grade level of a document based on sentence length and number of syllables.
 

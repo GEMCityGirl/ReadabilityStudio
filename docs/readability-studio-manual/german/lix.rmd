@@ -1,8 +1,8 @@
-## Lix {#sec-lix-german}
+## Lix {-#sec-lix-german}
 
 Refer to \@ref(sec-lix-test).
 
-## Lix\index{Lix!variations!German children's literature} (German children's literature) {#sec-lix-german-childrens-literature}
+## Lix\index{Lix!variations!German children's literature} (German children's literature) {-#sec-lix-german-childrens-literature}
 
 This test is a German variation of [Läsbarhetsindex (Lix)](#sec-lix-test) designed for children's literature. It uses the same index-score formula as Lix, but uses different scales for assigning the difficulty and grade-level scores. This adjustment was developed by Renström [-@{renstrom}152–153] and Bamberger & Vanecek [-@{bamberger-vanecek}64, 187] for use with German literature ranging from 1^st^ to 8^th^ grade. (Renström developed the adjusted difficulty gauge; Bamberger & Vanecek developed the grade-level conversion.)
 
@@ -30,7 +30,7 @@ kableExtra::kbl(dplyr::as_tibble(read_delim("data/LixGermanLixChildrensLit.txt",
 
 \newpage
 
-## Lix\index{Lix!variations!German technical literature} (German technical literature) {#sec-lix-german-technical}
+## Lix\index{Lix!variations!German technical literature} (German technical literature) {-#sec-lix-german-technical}
 
 This test is a German variation of [Läsbarhetsindex (Lix)](#sec-lix-test) designed for technical literature. It uses the same index-score formula as Lix, but uses different scales for assigning the difficulty and grade-level scores. This adjustment was developed by Renström [-@{renstrom}152–153] and Bamberger & Vanecek [-@{bamberger-vanecek}64, 187] for use with German literature ranging from 3^rd^ to 15^th^ grade. (Renström developed the adjusted difficulty gauge; Bamberger & Vanecek developed the grade-level conversion.)
 

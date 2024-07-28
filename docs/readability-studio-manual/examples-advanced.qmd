@@ -12,7 +12,7 @@ After that, we will continue with showing how to create test bundles.
 
 \newpage
 
-## Preserving Hard Returns
+## Preserving Hard Returns {-}
 
 In this example, we will import a document which contains short lines of text that are separated by hard returns. These lines of text are not separated by blank lines, and are neither indented nor start with bullet points (the way list items often appear). The default for the program is to chain text lines such as this into a single sentence. In the case of this document, however, we will want to treat each line as a separate paragraph.
 
@@ -38,7 +38,7 @@ At this point, we can add tests and begin reviewing this (rather dubious) job po
 
 \newpage
 
-## Sentences Broken by Blank Lines {#sec-chain-sentences-example}
+## Sentences Broken by Blank Lines {-#sec-chain-sentences-example}
 
 In this example, we will import a picture book which has unusual sentence formatting. In the document we will be looking at, some of the sentences are broken apart by hard returns and blank lines so that they can wrap around images.
 
@@ -74,7 +74,7 @@ knitr::include_graphics("images/peter-rabbit-chained-sentences.png")
 
 \newpage
 
-## Excluding Text\index{text exclusion!example} {#sec-excluding-text-from-analysis}
+## Excluding Text\index{text exclusion!example} {-#sec-excluding-text-from-analysis}
 
 When reviewing a document, it is usually preferable to ignore certain items, such as headers and citations (refer to \@ref(sec-how-text-is-excluded) for more information). In this example, we will discuss the various methods for excluding these items.
 
@@ -210,7 +210,7 @@ All the options discussed here are also available on the **Document** tab of the
 
 \newpage
 
-## Excluding Placeholders\index{text exclusion!blocks within placeholders} and Blocks of Text {#sec-excluding-placeholders}
+## Excluding Placeholders\index{text exclusion!blocks within placeholders} and Blocks of Text {-#sec-excluding-placeholders}
 
 Continuing from the [previous example](#sec-excluding-text-from-analysis), we will now discuss how to exclude specific blocks of text.
 
@@ -248,7 +248,7 @@ All the options discussed here are also offered on the **Document** tab of the r
 
 \newpage
 
-## Including an Addendum {#sec-addendum-example}
+## Including an Addendum {-#sec-addendum-example}
 
 Continuing from the "Reviewing a Flyer" (\@ref(sec-reviewing-a-flyer)) and "High-level Review of a Disclaimer" (\@ref(sec-high-level-review-of-disclaimer)) examples, our fictitious private equity firm now plans to append a disclaimer to the flyer.
 
@@ -318,7 +318,7 @@ At this point, we will have quite of a bit of improvements to make to both the f
 
 \newpage
 
-## Creating a Test Bundle
+## Creating a Test Bundle {-}
 
 [Test bundles](#sec-test-bundles) are a convenient way to add multiple tests to a project at once. In this example, we will create a test bundle named "4F" which includes the [Fry](#sec-fry-test), [FORCAST](#sec-forcast-test), [Fog](#sec-gunning-fog-test), and [Flesch-Kincaid](#sec-flesch-kincaid-test) tests. The first step is to select the **Readability** tab, click the `r keys("Bundles")` button, and select **Add...** from the menu. This will open the **Add Test Bundle** dialog:
 

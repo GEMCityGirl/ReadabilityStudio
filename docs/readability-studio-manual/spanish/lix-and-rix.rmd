@@ -1,8 +1,8 @@
-## Lix {#sec-lix-spanish}
+## Lix {-#sec-lix-spanish}
 
 Refer to \@ref(sec-lix-test).
 
-## Rix {#sec-rix-spanish}
+## Rix {-#sec-rix-spanish}
 
 Refer to \@ref(sec-rix-test).
 

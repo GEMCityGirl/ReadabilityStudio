@@ -1,5 +1,4 @@
-<!-- PDF will include its own citations page before the index-->
+# References {-}
 
-```{r, eval=knitr::is_html_output(), results = 'asis', echo=F}
-cat('\n\n# References {.unnumbered}\n\n')
-```
+::: {#refs}
+:::

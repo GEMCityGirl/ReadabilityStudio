@@ -1,4 +1,4 @@
-## (Powers-Sumner-Kearl) Farr-Jenkins-Paterson\index{Powers-Sumner-Kearl!recalculated tests!Farr-Jenkins-Paterson|(} {#sec-psk-farr-jenkins-paterson}
+## (Powers-Sumner-Kearl) Farr-Jenkins-Paterson\index{Powers-Sumner-Kearl!recalculated tests!Farr-Jenkins-Paterson|(} {-#sec-psk-farr-jenkins-paterson}
 
 The (Powers-Sumner-Kearl) Farr-Jenkins-Paterson readability formula [-@{powers-sumner-kearl}99–105] calculates the grade level of a document based on sentence length and number of monosyllabic words.
 

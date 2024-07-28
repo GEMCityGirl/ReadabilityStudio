@@ -7,7 +7,7 @@ source('R/appdown.r')
 
 # Reviewing Standard Projects
 
-## Test Scores {#sec-reviewing-test-scores}
+## Test Scores {-#sec-reviewing-test-scores}
 
 After opening a project, click on the **Readability Scores** icon on the project sidebar, and then click on **Scores** beneath that. Here you can view all the test scores, as well as their respective explanations and recommendations.
 
@@ -37,7 +37,7 @@ To remove any test from this list, select it and press `r keys(c('Ctrl', 'Del'))
 
 There will also be readability graphs in this section if you included their respective tests. Refer to \@ref(sec-reviewing-readability-graphs) for further information.
 
-## Readability Graphs {#sec-reviewing-readability-graphs}
+## Readability Graphs {-#sec-reviewing-readability-graphs}
 
 There are numerous readability tests that are graphically plotted, including [Fry](#sec-fry-test), [Raygor](#sec-raygor-test), [Flesch](#sec-flesch-test), [Lix](#sec-lix-test), [Gilliam-Peña-Mountain](#sec-gilliam-pena-mountain-fry-graph)\index{Gilliam-Peña-Mountain}, [FRASE](#sec-frase)\index{FRASE}, [Crawford](#sec-crawford), and [Schwartz](#sec-schwartz). These graphs consist of either grade-level or reading-level regions that a document may fall within. They also include indicators for the most influential factor for the document's reported level (i.e., word difficulty vs. sentence difficulty).
 
@@ -137,7 +137,7 @@ You can also print or save a blank copy of any of these graphs. This is useful f
 
 \newpage
 
-## Goals {#sec-reviewing-goals}
+## Goals {-#sec-reviewing-goals}
 
 Goals are recommended score ranges that a document should fall within.
 
@@ -159,7 +159,7 @@ Goals can be created through a [test bundle](#sec-test-bundles). When the bundle
 
 \newpage
 
-## Statistics {#sec-reviewing-statistics}
+## Statistics {-#sec-reviewing-statistics}
 
 After opening a project, click on the **Summary Statistics** icon on the project sidebar to view the document's statistics:
 
@@ -198,7 +198,7 @@ A **Notes** section may be included at the bottom of the formatted report if the
 
 \newpage
 
-## Words Breakdown {#sec-reviewing-word-breakdowns}
+## Words Breakdown {-#sec-reviewing-word-breakdowns}
 
 After opening a project, click on the **Words Breakdown** icon on the project sidebar to view the lists, highlighted reports, and graphs of difficult words:
 
@@ -325,7 +325,7 @@ In a batch project, this word cloud will show the key words across all documents
 
 \newpage
 
-## Sentences Breakdown\index{sentences!reviewing in the results|(ii} {#sec-reviewing-sentences-breakdown}
+## Sentences Breakdown\index{sentences!reviewing in the results|(ii} {-#sec-reviewing-sentences-breakdown}
 
 After opening a project, click on the **Sentences Breakdown** icon on the project sidebar to view a breakdown of the document's sentences. This includes the following:
 
@@ -389,7 +389,7 @@ Refer to example \@ref(sec-finding-difficult-sections) for a more detailed tutor
 
 \newpage
 
-## Grammar {#sec-reviewing-standard-grammar}
+## Grammar {-#sec-reviewing-standard-grammar}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Highlighted report** subitem. This text report will display the document with its difficult sentences and wordy items highlighted.
 
@@ -663,7 +663,7 @@ To view any sentence in its original context, double-click on it. This will take
 
 \newpage
 
-## Dolch Sight Words {#sec-reviewing-dolch}
+## Dolch Sight Words {-#sec-reviewing-dolch}
 
 The Dolch Sight Words [-@{dolch}456–60] represent the most frequently occurring service words[^DolchPronounsFootnote] in most text, especially children's literature. Early readers need to learn and recognize these words to attain reading fluency. Many of these words cannot be sounded out or represented by pictures; therefore, they must be learned by sight[^DolchNounsListFootnote].
 

@@ -5,8 +5,6 @@
 source('R/appdown.r')
 ```
 
-# (PART) Readability Tests {-}
-
 # English Readability Tests {#sec-english-readability-tests}
 
 \newpage

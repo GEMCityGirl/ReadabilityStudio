@@ -1,4 +1,4 @@
-## Adding Words to Familiar-Word Tests
+## Adding Words to Familiar-Word Tests {-}
 
 Although both [Dale-Chall](#sec-dale-chall-test) and [Spache](#sec-spache-test) were updated in recent years, some may find that these tests lack contemporary words known by young readers. For example, some computer terms that 4^th^ graders are fluent in are not considered familiar by these tests. Proper nouns such as *Microsoft* and *Macbook* will be considered familiar, but some non-proper computer words (e.g., *megabyte*) will not.
 

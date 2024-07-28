@@ -1,4 +1,4 @@
-## Rix\index{Rix|(ii} {#sec-rix-test}
+## Rix\index{Rix|(ii} {-#sec-rix-test}
 
 The Rate Index (Rix)\index{Rix!compared to Lix} readability formula [@{anderson:1983}490–96] was designed for documents of any Western European language. It calculates a document's index score based on sentence length and number of long words (i.e., words containing seven or more characters). It is based on the [Lix](#sec-lix-test) readability formula [@{bjornsson:1983}480-97] and follows the same philosophy of using a unified formula for multiple languages.
 

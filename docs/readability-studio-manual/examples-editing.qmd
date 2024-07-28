@@ -7,7 +7,7 @@ source('R/appdown.r')
 
 # Editing
 
-## Editing within Readability Studio {#sec-rs-as-an-editor}
+## Editing within Readability Studio {-#sec-rs-as-an-editor}
 
 In this example, we will write and edit a document from within *Readability Studio* itself\index{editing!from \textit{Readability Studio}|(}. Click the `r keys("New")` button on the **Home** tab to open the **New Project** wizard.
 Next, select the **Manually enter text** option.
@@ -70,7 +70,7 @@ In the next example (see \@ref(sec-external-editing)), we will edit our document
 
 \newpage
 
-## Editing from Other Programs {#sec-external-editing}
+## Editing from Other Programs {-#sec-external-editing}
 
 Continuing\index{editing!from other programs|(} from the previous example (see \@ref(sec-rs-as-an-editor)), we have copied the text from the editor into another program.
 (*LibreOffice* was used in this example, but any other editor will work as well.)

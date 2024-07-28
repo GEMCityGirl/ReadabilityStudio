@@ -1,3 +1,10 @@
+```{r}
+#| include: false
+#| eval: true
+
+source('../R/appdown.r')
+```
+
 # Program Overview
 
 ## What Readability Studio Offers {-#sec-program-offering}
@@ -20,7 +27,7 @@ The following tests are available:
 
 ```{r, echo=F}
 maxTestRows <- 15
-englishTests <- split_column_into_table(read_tsv("data/EnglishTests.txt",
+englishTests <- split_column_into_table(read_tsv("../data/EnglishTests.txt",
                                         col_names=F)[[1]] %>% sort(),
                                         maxTestRows)
 
@@ -32,8 +39,8 @@ kableExtra::kbl(englishTests, booktabs=T, centering=T, linesep="",
   kableExtra::column_spec(2, border_right = ncol(englishTests) > 1)
 
 # other languages
-germanTests <- read_tsv("data/GermanTests.txt", col_names=F)[[1]] %>% sort()
-spanishTests <- read_tsv("data/SpanishTests.txt", col_names=F)[[1]] %>% sort()
+germanTests <- read_tsv("../data/GermanTests.txt", col_names=F)[[1]] %>% sort()
+spanishTests <- read_tsv("../data/SpanishTests.txt", col_names=F)[[1]] %>% sort()
 ```
 
 ```{r, echo=F, eval=knitr::is_html_output()}

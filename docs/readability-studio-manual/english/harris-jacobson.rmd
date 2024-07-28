@@ -1,4 +1,4 @@
-## Harris-Jacobson Wide Range\index{Harris-Jacobson Wide Range|(ii} {#sec-harris-jacobson}
+## Harris-Jacobson Wide Range\index{Harris-Jacobson Wide Range|(ii} {-#sec-harris-jacobson}
 
 The Harris-Jacobson Wide Range Readability Formula readability test [-@{harris-jacobson}19–30] calculates the grade level of a document based on sentence length and number of unique unfamiliar words. Words are unfamiliar if they do not appear on a list of common words that are known to most second-grade students. The following are also considered familiar:
 
