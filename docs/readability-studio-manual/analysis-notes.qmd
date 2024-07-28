@@ -5,11 +5,9 @@
 source('R/appdown.r')
 ```
 
-# (PART) Notes {-}
-
 # Analysis Notes
 
-## How Text\index{text exclusion} is Excluded\index{exclusion|see{text exclusion}} {#sec-how-text-is-excluded}
+## How Text\index{text exclusion} is Excluded\index{exclusion|see{text exclusion}} {-#sec-how-text-is-excluded}
 
 Most experts recommend ignoring items such as chapter titles, list items, and table of contents when calculating reading levels. One reason that these items should be ignored is because they falsely lower the average sentence length (ASL). For example, chapter titles are usually just a couple of words. If you treat every section and chapter title as a regular sentence, then these short “sentences” will dramatically lower the ASL. In turn, this will falsely lower most of your test scores. The other reason to ignore these items is because they are not usually part of the main content, but rather dividers or sectional markers. These items are read, but it is the narrative content that readers may struggle with. Therefore, it is the content that should be our main focus, and titles and list items should just be considered “noise.”
 
@@ -40,7 +38,7 @@ Although not traditionally mentioned in readability articles, other items may al
 
 Refer to \@ref(sec-document-analysis) for a detailed explanation of these options.
 
-## How Sentences\index{sentences!counting} are Counted {#sec-how-sentences-are-counted}
+## How Sentences\index{sentences!counting} are Counted {-#sec-how-sentences-are-counted}
 
 *Readability Studio* considers periods, question marks, exclamation points, and interabangs as the end of a sentence, although there are a few exceptions.
 
@@ -74,7 +72,7 @@ By default, lowercase words can be considered the start of a new sentence (with 
 Although it is poor grammar to not capitalize the first word of a sentence, this writing style is often found in some literature.
 This behavior can be toggled using the option [**Sentences must begin with capitalized words**](#sec-options-sentence-deduction).
 
-## Line (Sentence) Chaining\index{sentences!chaining} {#sec-line-chaining}
+## Line (Sentence) Chaining\index{sentences!chaining} {-#sec-line-chaining}
 
 Line chaining (or sentence chaining) is a sentence deduction method where lines of text are joined until a *.*, *?*, or *!* is found. In other words, multiple lines of text can be joined into a single sentence. This is normally preferred behavior when text is formatted to a specific width, such as the following:
 
@@ -165,7 +163,7 @@ Before cleaning the blade...
 
 In this case, these two lines will be erroneously joined into one sentence. To completely disable all possible line chaining, select the option [**Line ends always begin a new paragraph**](#sec-options-sentence-deduction). Note that this option is only recommended if all line ends in your document represent new paragraphs. If your document contains line ends to control the width of the text, then selecting this option will cause incorrect sentence deduction.
 
-## Controlling How Sentences are Deduced\index{sentences!controlling deduction}
+## Controlling How Sentences are Deduced\index{sentences!controlling deduction} {-}
 
 How sentences are structured can vary from document to document. Because of this, *Readability Studio* offers options to control how sentences are parsed and analyzed. These features are available under the **Sentence deduction** section of the [**Document Indexing**](#sec-document-analysis) page. To view these features, select [**Options**](#sec-options-overview) from the **Tools** tab and then click on the **Document Indexing** icon. Under the **Sentence deduction** section, there are two options: **Ignore blank lines when determining the end of a sentence** and **Sentences must begin with capitalized words**.
 
@@ -187,7 +185,7 @@ There are special situations where you would need multi-line sentence fragments 
 For example, picture books that wrap sentences around images may cause sentences to be split into fragments with blank lines between them.
 Refer to \@ref(sec-chain-sentences-example) for an example.
 
-## How Syllables are Counted\index{syllables!counting}
+## How Syllables are Counted\index{syllables!counting} {-}
 
 Most software that counts syllables employs one of two methods. The first is a dictionary-based system that includes a list of common words and their respective syllable counts. As the software counts a document's syllables, each word is looked up in a dictionary to retrieve its syllable count. The disadvantage of this method is that if a word is not found, then the program must prompt you to enter the syllable count.
 
@@ -232,7 +230,7 @@ The following symbols are syllabized as follows:
    ¾ = 2 syllables (“three fourths”) if at the end of the word
 :::
 
-## Repeated Word Exceptions {#sec-repeated-word-exceptions}
+## Repeated Word Exceptions {-#sec-repeated-word-exceptions}
 
 Generally, repeated words are a typo; however, there are a few exceptions. For example:
 
@@ -261,7 +259,7 @@ I need a list of new features. Each new *feature, feature* by feature, is requir
 
 These will not be seen as repeated words because of the comma.
 
-## Article Mismatching {#sec-article-mismatching}
+## Article Mismatching {-#sec-article-mismatching}
 
 There are two special cases for article-mismatch detection: single letters and acronyms. For single letters, *Readability Studio* will sound out the letter when determining whether the article in front of it is correct. For example:
 
@@ -287,7 +285,7 @@ Run *a FORCAST* test if your document doesn't have a regular sentence structure.
 
 Rather than treating the word *FORCAST* as if it begins with an *ef* sound, it sounds it out like *forecast*. Therefore, the article *a* is considered correct.
 
-## Non-narrative/Fragmented Text {#sec-fragmented-text}
+## Non-narrative/Fragmented Text {-#sec-fragmented-text}
 
 Most readability formulas are designed for narrative text, where a work consists of flowing sentences and paragraphs. For these formulas, the average sentence length (ASL) is an important factor.
 
@@ -299,7 +297,7 @@ For files consisting mostly of short blocks of text (e.g., quizzes, flyers, or m
 
 To avoid these issues, it is recommended to include incomplete sentences in the analysis and to only use the [FORCAST](#sec-forcast-test)\index{FORCAST} test. When creating a [new project](#sec-creating-standard-project), there are two ways to implicitly set these options. The first way is to select **non-narrative, fragmented text** when specifying the document structure. The other way is to select **non-narrative form** when specifying the document type.
 
-## Joining Hyphenated Words
+## Joining Hyphenated Words {-}
 
 Some published documents format each line of text to a specific width to fit on the page. In doing so, longer words at the end of some lines may be split and hyphenated. For example:
 
@@ -324,7 +322,7 @@ When *Readability Studio* encounters a hyphenated word at the end of a line, it 
 
 With the above example, *Bus-iness* will be recognized as *Business*. In contrast, *Point-of-Sale* will remain as a hyphenated compound word because *PointofSale* is not a known word.
 
-## Special Characters
+## Special Characters {-}
 
 When a *%* is proceeded by a space, the program will check if the character
 before the space is a number.
@@ -341,7 +339,7 @@ From my independent survey, over *95 %* of respondents said that they did.
 In the above example, the first *%* will be counted as a word. The second one will be
 combined to create the word *95 %*.
 
-## Link Lists (HTML Importer)
+## Link Lists (HTML Importer) {-}
 
 When importing HTML documents, three or more consecutive hyperlinks not separated by text will be treated as a link list.
 This will involve laying out each link on a separate line, with all them tabbed over. This will prevent what would usually
@@ -382,7 +380,7 @@ The recommended tools for continuous integration are: `r colorize('ccp-check', '
 
 This content will be imported as it is shown above (i.e., a full sentence).
 
-## Option Changes that Require Reanalysis
+## Option Changes that Require Reanalysis {-}
 
 When changing the options of a project (either from the ribbon or **Project Properties** dialog), most changes can be applied without the program needing to analyze the document again. For example, changing graph options or adding a test will process immediately, without the program needing to refresh the rest of the results. This is helpful when working with large documents or batch projects that may take some time to process.
 
