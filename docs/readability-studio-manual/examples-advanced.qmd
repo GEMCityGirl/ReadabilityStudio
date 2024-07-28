@@ -38,7 +38,7 @@ At this point, we can add tests and begin reviewing this (rather dubious) job po
 
 \newpage
 
-## Sentences Broken by Blank Lines {-#sec-chain-sentences-example}
+## Sentences Broken by Blank Lines {#sec-chain-sentences-example}
 
 In this example, we will import a picture book which has unusual sentence formatting. In the document we will be looking at, some of the sentences are broken apart by hard returns and blank lines so that they can wrap around images.
 
@@ -210,7 +210,7 @@ All the options discussed here are also available on the **Document** tab of the
 
 \newpage
 
-## Excluding Placeholders\index{text exclusion!blocks within placeholders} and Blocks of Text {-#sec-excluding-placeholders}
+## Excluding Placeholders\index{text exclusion!blocks within placeholders} and Blocks of Text {#sec-excluding-placeholders}
 
 Continuing from the [previous example](#sec-excluding-text-from-analysis), we will now discuss how to exclude specific blocks of text.
 
@@ -248,7 +248,7 @@ All the options discussed here are also offered on the **Document** tab of the r
 
 \newpage
 
-## Including an Addendum {-#sec-addendum-example}
+## Including an Addendum {#sec-addendum-example}
 
 Continuing from the "Reviewing a Flyer" (\@ref(sec-reviewing-a-flyer)) and "High-level Review of a Disclaimer" (\@ref(sec-high-level-review-of-disclaimer)) examples, our fictitious private equity firm now plans to append a disclaimer to the flyer.
 

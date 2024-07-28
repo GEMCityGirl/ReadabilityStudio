@@ -1,4 +1,4 @@
-## New Farr-Jenkins-Paterson\index{New Farr-Jenkins-Paterson|(ii} {-#sec-new-farr-jenkins-paterson}
+## New Farr-Jenkins-Paterson\index{New Farr-Jenkins-Paterson|(ii} {#sec-new-farr-jenkins-paterson}
 
 The New Farr-Jenkins-Paterson readability formula calculates the grade level of a document based on sentence length and number of monosyllabic words.
 

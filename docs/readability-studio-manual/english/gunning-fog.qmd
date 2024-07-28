@@ -1,4 +1,4 @@
-## Gunning Fog\index{Gunning Fog|(ii} {-#sec-gunning-fog-test}
+## Gunning Fog\index{Gunning Fog|(ii} {#sec-gunning-fog-test}
 
 The Gunning Fog readability formula [-@{gunning}39–41] calculates the grade level of a document based on its number of sentences and complex words.
 

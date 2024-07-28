@@ -7,7 +7,7 @@ source('R/appdown.r')
 
 # Reviewing Standard Projects
 
-## Test Scores {-#sec-reviewing-test-scores}
+## Test Scores {#sec-reviewing-test-scores}
 
 After opening a project, click on the **Readability Scores** icon on the project sidebar, and then click on **Scores** beneath that. Here you can view all the test scores, as well as their respective explanations and recommendations.
 
@@ -37,7 +37,7 @@ To remove any test from this list, select it and press `r keys(c('Ctrl', 'Del'))
 
 There will also be readability graphs in this section if you included their respective tests. Refer to \@ref(sec-reviewing-readability-graphs) for further information.
 
-## Readability Graphs {-#sec-reviewing-readability-graphs}
+## Readability Graphs {#sec-reviewing-readability-graphs}
 
 There are numerous readability tests that are graphically plotted, including [Fry](#sec-fry-test), [Raygor](#sec-raygor-test), [Flesch](#sec-flesch-test), [Lix](#sec-lix-test), [Gilliam-Peña-Mountain](#sec-gilliam-pena-mountain-fry-graph)\index{Gilliam-Peña-Mountain}, [FRASE](#sec-frase)\index{FRASE}, [Crawford](#sec-crawford), and [Schwartz](#sec-schwartz). These graphs consist of either grade-level or reading-level regions that a document may fall within. They also include indicators for the most influential factor for the document's reported level (i.e., word difficulty vs. sentence difficulty).
 
@@ -137,7 +137,7 @@ You can also print or save a blank copy of any of these graphs. This is useful f
 
 \newpage
 
-## Goals {-#sec-reviewing-goals}
+## Goals {#sec-reviewing-goals}
 
 Goals are recommended score ranges that a document should fall within.
 
@@ -159,7 +159,7 @@ Goals can be created through a [test bundle](#sec-test-bundles). When the bundle
 
 \newpage
 
-## Statistics {-#sec-reviewing-statistics}
+## Statistics {#sec-reviewing-statistics}
 
 After opening a project, click on the **Summary Statistics** icon on the project sidebar to view the document's statistics:
 
@@ -198,7 +198,7 @@ A **Notes** section may be included at the bottom of the formatted report if the
 
 \newpage
 
-## Words Breakdown {-#sec-reviewing-word-breakdowns}
+## Words Breakdown {#sec-reviewing-word-breakdowns}
 
 After opening a project, click on the **Words Breakdown** icon on the project sidebar to view the lists, highlighted reports, and graphs of difficult words:
 
@@ -325,7 +325,7 @@ In a batch project, this word cloud will show the key words across all documents
 
 \newpage
 
-## Sentences Breakdown\index{sentences!reviewing in the results|(ii} {-#sec-reviewing-sentences-breakdown}
+## Sentences Breakdown\index{sentences!reviewing in the results|(ii} {#sec-reviewing-sentences-breakdown}
 
 After opening a project, click on the **Sentences Breakdown** icon on the project sidebar to view a breakdown of the document's sentences. This includes the following:
 
@@ -389,7 +389,7 @@ Refer to example \@ref(sec-finding-difficult-sections) for a more detailed tutor
 
 \newpage
 
-## Grammar {-#sec-reviewing-standard-grammar}
+## Grammar {#sec-reviewing-standard-grammar}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Highlighted report** subitem. This text report will display the document with its difficult sentences and wordy items highlighted.
 
@@ -401,7 +401,7 @@ You can change both the font and highlighting color by opening the [**Project Pr
 
 For documents with numerous sentences over twenty words, it is recommended to use outlier searching. Open the **Project Properties** dialog, select [**Document Indexing**](#sec-document-analysis), and select the option **Outside sentence-length outlier range**. This will make it so that only the extremely long sentences (compared to the other sentences in the document) are highlighted. This helps pinpoint the most troublesome sentences that need to be shortened.
 
-### Reviewing Lowercased Sentences\index{sentences!lowercased} {-#sec-reviewing-lowercased-sentences}
+### Reviewing Lowercased Sentences\index{sentences!lowercased} {#sec-reviewing-lowercased-sentences}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Lowercased Sentences** subitem. This window will display a list of all sentences that begin with lowercased words (which is usually a typo).
 
@@ -415,7 +415,7 @@ To view any sentence in its original context, double-click on it. This will take
 
 Note that if there are no lowercased sentences in your document, then this window will not be included.
 
-### Reviewing Conjunction-starting Sentences {-#sec-reviewing-conjunction-sentences}
+### Reviewing Conjunction-starting Sentences {#sec-reviewing-conjunction-sentences}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Conjunction-starting Sentences** subitem. This window will display a list of all sentences which begin with coordinating conjunctions.
 
@@ -442,7 +442,7 @@ To view any sentence in its original context, double-click on it. This will take
 
 Note that if there are no conjunction-starting sentences in your document, then this window will not be included.
 
-### Reviewing Repeated Words {-#sec-reviewing-repeated-words}
+### Reviewing Repeated Words {#sec-reviewing-repeated-words}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Repeated Words** subitem. This window will display a list of all repeated words from the document.
 
@@ -470,7 +470,7 @@ Note that if there are no repeated words in your document, then this window will
 
 Refer to \@ref(sec-repeated-word-exceptions) for more information on how repeated words are detected.
 
-### Reviewing Article Mismatches {-#sec-reviewing-article-mismatches}
+### Reviewing Article Mismatches {#sec-reviewing-article-mismatches}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Article Mismatches** subitem. This window will display a list of articles (i.e., *a* and *an*) that do not match their following noun.
 
@@ -489,7 +489,7 @@ Note that if there are no article mismatches in your document, then this window 
 
 Refer to \@ref(sec-article-mismatching) to learn more.
 
-### Reviewing Wording Errors & Misspellings {-#sec-reviewing-wording-errors}
+### Reviewing Wording Errors & Misspellings {#sec-reviewing-wording-errors}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Errors & Misspellings** subitem.
 This window will display a list of misused phrases, grammatically incorrect wording, and known misspellings from each document.
@@ -515,7 +515,7 @@ To view any wording error in its original context, double-click on it. This will
 
 Note that if there are no errors in your document, then this window will not be included.
 
-### Reviewing Possible Misspellings {-#sec-reviewing-misspellings}
+### Reviewing Possible Misspellings {#sec-reviewing-misspellings}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Possible Misspellings** subitem.
 This window will display a list of all possible misspellings from the document.
@@ -536,7 +536,7 @@ To change your spell-checking options, click on the arrow next to the `r keys("S
 
 Note that if there are no misspellings in your document, then this window will not be included.
 
-### Reviewing Redundant Phrases {-#sec-reviewing-redundant-phrases}
+### Reviewing Redundant Phrases {#sec-reviewing-redundant-phrases}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Redundant Phrases** subitem. This window will display a list of redundant phrases (and suggested replacements) from the document.
 
@@ -562,7 +562,7 @@ To view any redundant phrase in its original context, double-click on it. This w
 
 Note that if there are no redundant phrases in your document, then this window will not be included.
 
-### Reviewing Wordy Items {-#sec-reviewing-wordy-items}
+### Reviewing Wordy Items {#sec-reviewing-wordy-items}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Wordy Items** subitem. This window will display a list of wordy phrases and difficult words (and their suggested replacements) from the document.
 
@@ -588,7 +588,7 @@ To view any wordy item in its original context, double-click on it. This will ta
 
 Note that if there are no wordy items in your document, then this window will not be included.
 
-### Reviewing Passive Voice {-#sec-reviewing-passive-voice}
+### Reviewing Passive Voice {#sec-reviewing-passive-voice}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Passive Voice** subitem. This window will display a list of passive phrases.
 
@@ -612,7 +612,7 @@ To view any item in its original context, double-click on it. This will take you
 
 Note that if there are no passive phrases in your document, then this window will not be included.
 
-### Reviewing Clichés {-#sec-reviewing-cliches}
+### Reviewing Clichés {#sec-reviewing-cliches}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Clichés** subitem. This window will display a list of clichés (and their suggested replacements) from the document.
 
@@ -634,7 +634,7 @@ To view any clichés in its original context, double-click on it. This will take
 
 Note that if there are no clichés in your document, then this window will not be included.
 
-### Reviewing Overused Words (x Sentence) {-#sec-reviewing-overused-by-sentence}
+### Reviewing Overused Words (x Sentence) {#sec-reviewing-overused-by-sentence}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Overused Words (x Sentence)** subitem.
 This window will display a list of all sentences that use the same word multiple times. (These are more of style suggestions, rather than grammar issues.)
@@ -663,7 +663,7 @@ To view any sentence in its original context, double-click on it. This will take
 
 \newpage
 
-## Dolch Sight Words {-#sec-reviewing-dolch}
+## Dolch Sight Words {#sec-reviewing-dolch}
 
 The Dolch Sight Words [-@{dolch}456–60] represent the most frequently occurring service words[^DolchPronounsFootnote] in most text, especially children's literature. Early readers need to learn and recognize these words to attain reading fluency. Many of these words cannot be sounded out or represented by pictures; therefore, they must be learned by sight[^DolchNounsListFootnote].
 
@@ -674,7 +674,7 @@ If you are writing educational materials for early readers, then use as many of 
 [^DolchPronounsFootnote]: Pronouns, adjectives, adverbs, prepositions, conjunctions, and verbs.
 [^DolchNounsListFootnote]: A separate list of nouns commonly found in children's literature is also included with the Dolch collection. However, the sight words are generally the focus of most Dolch activities.
 
-### Reviewing the Dolch Statistics {-#sec-reviewing-dolch-stats}
+### Reviewing the Dolch Statistics {#sec-reviewing-dolch-stats}
 
 After opening a project, click on the **Dolch Sight Words** icon on the project sidebar and select the **Dolch Summary** subitem to view the document's Dolch statistics:
 
@@ -696,7 +696,7 @@ Note that there may be a slight discrepancy between a category's coverage value 
 
 To graphically view the Dolch words breakdown, click on the [**Word Counts**](#sec-reviewing-dolch-graphs) subitem. This will display a bar chart of these statistics, listed by category.
 
-### Reviewing the Dolch Graphs {-#sec-reviewing-dolch-graphs}
+### Reviewing the Dolch Graphs {#sec-reviewing-dolch-graphs}
 
 After opening a project, click on the **Dolch Sight Words** icon on the project sidebar. There are two graphs available for review: **Dolch Coverage** and **Word Counts**.
 
@@ -716,7 +716,7 @@ knitr::include_graphics("images/dolch-word-breakdown.png")
 
 As we can see in the above graph, there are 938 total Dolch words used in this document. Unfortunately, there are also 489 non-Dolch words. Although there is a strong number of Dolch words, the high number of non-Dolch words may make this document a poor candidate for practicing Dolch sight words.
 
-### Reviewing the Dolch Highlighted Text {-#sec-reviewing-dolch-text}
+### Reviewing the Dolch Highlighted Text {#sec-reviewing-dolch-text}
 
 After opening a project, click on the **Dolch Sight Words** icon on the project sidebar. There will be two types of highlighted text reports available: **Dolch Words** and **Non-Dolch Words**.
 
@@ -736,7 +736,7 @@ The **Non-Dolch Words** subitem will display the document with all the non-Dolch
 
 ![](images/dolchhighlightednonwords.png)
 
-### Reviewing the Dolch Word Lists {-#sec-reviewing-dolch-lists}
+### Reviewing the Dolch Word Lists {#sec-reviewing-dolch-lists}
 
 After opening a project, click on the **Dolch Sight Words** icon on the project sidebar. There will be three types of word lists available: **Dolch Words**, **Non-Dolch Words**, and **Unused Dolch Words**.
 

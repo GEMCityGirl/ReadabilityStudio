@@ -25,7 +25,7 @@ Note that batch projects are only available with **Professional Edition**.
 
 **Batch project**: Select this option to create a batch project, which can analyze a collection of documents or a website.
 
-## Standard Project {-#sec-creating-standard-project}
+## Standard Project {#sec-creating-standard-project}
 
 To determine a document's readability you will need to create a new project. First, click the `r keys("New")` button on the **Home** tab to open the **New Project** wizard.
 (If you are using the *Professional* edition, select **Standard Project** and click `r keys("OK")`).
@@ -98,7 +98,7 @@ From here, you can review the [readability scores](#sec-reviewing-test-scores) a
 useful document [statistics](#sec-reviewing-statistics), and various lists of [difficult words](#sec-reviewing-word-breakdowns).
 You can also review the document with its difficult words and [sentences](#sec-reviewing-standard-grammar) highlighted.
 
-## Batch Projects {-#sec-creating-batch-project}
+## Batch Projects {#sec-creating-batch-project}
 
 To determine the readability of a document collection, you will need to create a new batch project. First, click the `r keys("New")` button on the **Home** tab to open the **Select Project Type** dialog, as shown below:
 

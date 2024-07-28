@@ -1,4 +1,4 @@
-## Cloze\index{cloze|(ii} Scores and Readability Formulas {-#sec-cloze}
+## Cloze\index{cloze|(ii} Scores and Readability Formulas {#sec-cloze}
 
 ::: {.minipage data-latex="{\textwidth}"}
 A cloze procedure is a test given to a student to measure their comprehension ability. This test consists of the following steps:

@@ -27,7 +27,7 @@ If you wish to change options for an individual project, then click the `r keys(
 knitr::include_graphics("images/projectproperties.png")
 ```
 
-## General Settings {-#sec-options-general-settings}
+## General Settings {#sec-options-general-settings}
 
 The options on this page manage the program's general settings.
 
@@ -105,7 +105,7 @@ The default behavior is to clear the log file every time the program starts.
 
 \newpage
 
-## Project {-#sec-project-settings}
+## Project {#sec-project-settings}
 
 The options on this page customize your general project settings.
 
@@ -127,7 +127,7 @@ The options on this page customize your general project settings.
 
 **Show the full file path**: Select this option to display the full paths of the files in all of the lists.
 
-### Document {-#sec-options-document}
+### Document {#sec-options-document}
 
 **Language**: Select from here the language of the document(s) that you will be analyzing. The language selected here will affect how syllables are counted and control which tests, word lists, and grammar features will be made available. For example, if Spanish is selected, then only Spanish tests will be available and the document will be analyzed using the Spanish syllable counter.
 
@@ -158,7 +158,7 @@ Real-time update works by checking the modified time on the document every five 
 
 **Document description**: Enter into this field a description of the document. Note that for some file formats, the program will pre-fill this field with the document's subject or title information.
 
-### Append Additional Document (e.g., policies, license agreements, addendums) {-#sec-additional-document}
+### Append Additional Document (e.g., policies, license agreements, addendums) {#sec-additional-document}
 
 Enter into this field an additional document to append to the regular document. This document will be appended to the original document's text (or embedded text) during the project's analysis. This is useful if your project is analyzing a document, but also needs to include a generic template (e.g., license agreement). For example, you could specify a generic insurance policy in this field, and a customized entitlement as the main document. When the project analyzes the entitlement, the policy will be appended to the entitlement (in memory) and both will be analyzed as one document.
 
@@ -168,7 +168,7 @@ Also note that your original document is not affected by this process. The origi
 
 \newpage
 
-## Document Indexing {-#sec-document-analysis}
+## Document Indexing {#sec-document-analysis}
 
 The options here specify how your documents should be parsed and analyzed.
 
@@ -182,7 +182,7 @@ Considering sentences with more than 22 words to be overly long is based on rese
 
 These sentences can be viewed in the [**Grammar**](#sec-reviewing-standard-grammar) and [**Long Sentences**](#sec-reviewing-sentences-breakdown) windows in the **Grammar** section.
 
-### Sentence/Paragraph Deduction\index{sentences!customizing!deduction} {-#sec-options-sentence-deduction}
+### Sentence/Paragraph Deduction\index{sentences!customizing!deduction} {#sec-options-sentence-deduction}
 
 :::: {.optionssection data-latex=""}
 ::: {.optionssectiontitle data-latex=""}
@@ -216,7 +216,7 @@ The options **Ignore blank lines** and **Ignore indenting** are disabled if **Li
 
 **Sentences must begin with capitalized words**: Select this option to have sentence deduction assume that all sentences begin with capitalized words. By default, *Readability Studio* takes into consideration writing that does not capitalize the first word of every sentence. To change this behavior, select this option and the program will be more grammatically strict when deducing sentences.
 
-### Text Exclusion\index{text exclusion!options} {-#sec-options-text-exclusion}
+### Text Exclusion\index{text exclusion!options} {#sec-options-text-exclusion}
 
 :::: {.optionssection data-latex=""}
 ::: {.optionssectiontitle data-latex=""}
@@ -344,7 +344,7 @@ This phrase list can be edited by clicking the button next to this field, which 
 These options are not available if **Do not exclude any text** is selected.
 :::
 
-### Numerals\index{numerals!syllable counting} {-#sec-numsyllable}
+### Numerals\index{numerals!syllable counting} {#sec-numsyllable}
 
 :::: {.optionssection data-latex=""}
 ::: {.optionssectiontitle data-latex=""}
@@ -362,7 +362,7 @@ The following options control how numeric words are syllabized\index{syllables!n
 These options are not applicable if **Also exclude numerals** is checked.
 :::
 
-### Edit Word/Phrase List {-#sec-edit-word-list-dialog}
+### Edit Word/Phrase List {#sec-edit-word-list-dialog}
 
 This dialog can edit either a word or phrase list.
 
@@ -380,13 +380,13 @@ Buttons to add, edit, and remove items are also available above the grid.
 
 \newpage
 
-## Readability Scores {-#sec-readability-test-options}
+## Readability Scores {#sec-readability-test-options}
 
-### Test Options {-#sec-options-test-options}
+### Test Options {#sec-options-test-options}
 
 The options on this page customize the behavior of certain tests.
 
-#### Gunning Fog {-#sec-options-gunning-fog}
+#### Gunning Fog {#sec-options-gunning-fog}
 
 **Count independent clauses**: Check this option to count independent clauses as separate sentences when calculating a [Gunning Fog](#sec-gunning-fog-test) score. Independent clauses are detected by dashes, colons, and semicolons within a sentence.
 
@@ -394,7 +394,7 @@ Although this behavior is recommended in *The Technique of Clear Writing*, it wi
 
 This option affects the Gunning Fog\index{Gunning Fog!customizing}, (PSK) Gunning Fog, and New Fog Count\index{New Fog Count!customizing} tests.
 
-#### Flesch {-#sec-options-flesch}
+#### Flesch {#sec-options-flesch}
 
 :::: {.optionssection data-latex=""}
 ::: {.optionssectiontitle data-latex=""}
@@ -412,7 +412,7 @@ This option affects the Flesch, PSK Flesch, and Amstad\index{Amstad} tests.
 Note that these options are not applicable if [**Also exclude numerals**](#sec-options-text-exclusion) is checked.
 ::::
 
-#### Flesch-Kincaid {-#sec-options-flesch-kincaid}
+#### Flesch-Kincaid {#sec-options-flesch-kincaid}
 
 :::: {.optionssection data-latex=""}
 ::: {.optionssectiontitle data-latex=""}
@@ -428,7 +428,7 @@ Select from the following options to control how numerals\index{numerals!Flesch-
 Note that these options are not applicable if [**Also exclude numerals**](#sec-options-text-exclusion) is checked.
 ::::
 
-#### Dale-Chall {-#sec-options-dale-chall}
+#### Dale-Chall {#sec-options-dale-chall}
 
 **Include Catholic Supplement**: Check this option to include [Stocker's supplementary word list](#sec-stocker-catholic-supplement)\index{Stocker's Catholic Supplement!including with New Dale-Chall} for Catholic\index{New Dale-Chall!including Catholic words} students.
 
@@ -467,7 +467,7 @@ These options affect both the New Dale-Chall and PSK Dale-Chall tests. The **Tex
 - `FamiliarDaleChallWordCount()`
 :::
 
-#### Harris-Jacobson {-#sec-options-harris-jacobson}
+#### Harris-Jacobson {#sec-options-harris-jacobson}
 
 :::: {.optionssection data-latex=""}
 ::: {.optionssectiontitle data-latex=""}
@@ -490,15 +490,15 @@ The **text exclusion** option will affect any custom test using the following fu
 - `FamiliarHarrisJacobsonWordCount()`
 :::
 
-### Scores {-#sec-options-scores}
+### Scores {#sec-options-scores}
 
 The options on this page customize which results to include in the **Readability Scores** section and how grade-level scores and reading ages are displayed. Most readability tests use U.S. K-12 (+college) grade levels to represent their scores; however, *Readability Studio* can display these scores in other formats as well. For example, a score of 4 could be shown as *Key stage 2 (year 5)* if using the Key Stages grade scale.
 
-#### Results {-#sec-options-results-options}
+#### Results {#sec-options-results-options}
 
 **Include test-summary report**: Check this option to include a summary report of the test scores in the results.
 
-#### Grade Display {-#sec-grade-display}
+#### Grade Display {#sec-grade-display}
 
 **Grade scale**: Select from this list the grade scale that you wish to use. This will affect:
 
@@ -513,7 +513,7 @@ Refer to \@ref(sec-grade-scales) for a list of available scales.
 
 **Display scores in long format**: Check this to display readability scores in long format (e.g., *2^nd^ grade*) within the score grid.
 
-#### Reading Age Display {-#sec-reading-age}
+#### Reading Age Display {#sec-reading-age}
 
 :::: {.optionssection data-latex=""}
 ::: {.optionssectiontitle data-latex=""}
@@ -533,7 +533,7 @@ Note that reading ages do not contain floating-point precision, even if their re
 
 \newpage
 
-## Statistics {-#sec-options-statistics}
+## Statistics {#sec-options-statistics}
 
 The options on this page customize which statistics to include in your reports and results.
 
@@ -543,7 +543,7 @@ The options on this page customize which statistics to include in your reports a
 
 **Tabular Report**: Check this to include the statistics (tabular format) in the results.
 
-### Summary Report {-#sec-options-summary-report}
+### Summary Report {#sec-options-summary-report}
 
 **Paragraphs**: Check this to include the paragraph statistics in the report.
 
@@ -559,7 +559,7 @@ The options on this page customize which statistics to include in your reports a
 
 **Extended Information**: Check this to include more verbose statistics and notes in the results. These additional results will appear in the summary report, the scores grid, and batch statistics.
 
-### Dolch Report {-#sec-options-dolch-report}
+### Dolch Report {#sec-options-dolch-report}
 
 **Coverage**: Check this to include the word coverage statistics in the report.
 
@@ -569,7 +569,7 @@ The options on this page customize which statistics to include in your reports a
 
 \newpage
 
-## Words Breakdown {-#sec-options-words-breakdown}
+## Words Breakdown {#sec-options-words-breakdown}
 
 The options on this page customize which results are included in the [**Words Breakdown**](#sec-reviewing-word-breakdowns) section.
 
@@ -597,7 +597,7 @@ The options on this page customize which results are included in the [**Words Br
 
 \newpage
 
-## Sentences Breakdown {-#sec-options-sentences-breakdown}
+## Sentences Breakdown {#sec-options-sentences-breakdown}
 
 The options on this page customize which results are included in the [**Sentences Breakdown**](#sec-reviewing-sentences-breakdown) section.
 
@@ -613,7 +613,7 @@ The options on this page customize which results are included in the [**Sentence
 
 \newpage
 
-## Grammar {-#sec-options-grammar}
+## Grammar {#sec-options-grammar}
 
 The options on this page customize grammar analysis.
 
@@ -645,7 +645,7 @@ The options in this section customize which features are included in the grammar
 
 **Lowercased Sentences**: Check this to include [lowercased sentences](#sec-reviewing-lowercased-sentences) in the results.
 
-### Spell Checker {-#sec-options-spell-check}
+### Spell Checker {#sec-options-spell-check}
 
 The options in this section select what the spell checker should ignore.
 
@@ -683,7 +683,7 @@ Checking this option will instruct the program to not consider words such as *ta
 
 \newpage
 
-## Highlighted Reports {-#sec-options-highlighted-reports}
+## Highlighted Reports {#sec-options-highlighted-reports}
 
 ### General {-}
 
@@ -715,7 +715,7 @@ Highlight text by changing its
 
 \newpage
 
-### Dolch Sight Words {-#sec-dolch-options}
+### Dolch Sight Words {#sec-dolch-options}
 
 The options on this page select which categories of [Dolch](#sec-reviewing-dolch) words to highlight and how to highlight them.
 
@@ -737,7 +737,7 @@ The options on this page select which categories of [Dolch](#sec-reviewing-dolch
 
 \newpage
 
-## Graphs {-#sec-options-graphs}
+## Graphs {#sec-options-graphs}
 
 ### General {-}
 
@@ -795,7 +795,7 @@ The following options can be used to fit the image to the plot background:
 **Shrink to fit**: Shrink the image to the plot area, maintaining its aspect ratio.
 ::::
 
-#### Watermarks & Logos {-#sec-watermark-and-logo}
+#### Watermarks & Logos {#sec-watermark-and-logo}
 
 **Watermark**: Enter a label to be stamped across your graphs into this field. This label will be stamped diagonally across each graph, top left-hand corner to bottom right-hand corner.
 
@@ -855,7 +855,7 @@ The options on this page customize the title fonts of your graphs.
 
 **Right titles**: Click this button to select the font for the right title in your graphs.
 
-### Readability Graphs {-#sec-options-readability-graphs}
+### Readability Graphs {#sec-options-readability-graphs}
 
 The options on this page customize various readability graph settings.
 
@@ -877,7 +877,7 @@ Selects the layout style of the Raygor graph. These options include:
 **Modern**: This is a modernized version of Baldwin-Kaufman, where the labels are serif, not abbreviated, and spread out further. The axis labels and titles are also more descriptive.
 ::::
 
-#### Flesch Chart {-#sec-options-flesch-chart}
+#### Flesch Chart {#sec-options-flesch-chart}
 
 **Connect points**: Check this to connect the factor and score points on the [Flesch](#sec-flesch-test)\index{Flesch Reading Ease!customizing} chart.
 
@@ -887,11 +887,11 @@ This will display brackets along the right-most ruler, divided into ranges of tw
 
 This option only applies to batch projects, and only for batches containing fifty or less documents. Also, this feature will remove the legend (if grouping is in use).
 
-#### Lix Gauge {-#sec-options-lix-gauge}
+#### Lix Gauge {#sec-options-lix-gauge}
 
 **Use English translations for German Lix gauge**: Check this to display Schulz’s [-@{schulz}53] English translated bracket labels on the [German Lix](#sec-lix-german-technical) gauge.
 
-### Bar Charts {-#sec-options-bar-charts}
+### Bar Charts {#sec-options-bar-charts}
 
 The options on this page customize your bar charts' settings.
 
@@ -937,7 +937,7 @@ Orientation
 
 **Display labels on bars**: Check this to display labels on the bars.
 
-### Histograms {-#sec-options-histograms}
+### Histograms {#sec-options-histograms}
 
 The options on this page customize the test score histograms included in [batch projects](#sec-creating-batch-project) and the **Syllable Counts** in [standard projects](#sec-creating-standard-project).
 
@@ -1038,7 +1038,7 @@ Labels
 **No labels**: Select this option to not display bin labels.
 ::::
 
-### Box Plots\index{box plots!customizing} {-#sec-options-box-plots}
+### Box Plots\index{box plots!customizing} {#sec-options-box-plots}
 
 The options on this page customize the test-score box plots included in [batch projects](#sec-creating-batch-project) and the **Sentence Lengths** box plot in [standard projects](#sec-creating-standard-project).
 

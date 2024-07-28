@@ -1,4 +1,4 @@
-## Spache Revised\index{Spache Revised|(ii} {-#sec-spache-test}
+## Spache Revised\index{Spache Revised|(ii} {#sec-spache-test}
 
 The Spache Revised test [-@{spache:1974}195–207] calculates the grade level of a document based on sentence length and number of unique unfamiliar words. This test uses a list of 1,041 common words that are known to younger readers (4^th^ grade and below). Any word that does not appear on this list is considered unfamiliar. The following are also considered familiar:
 

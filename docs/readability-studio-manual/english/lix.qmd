@@ -1,4 +1,4 @@
-## Lix\index{Lix|(ii} {-#sec-lix-test}
+## Lix\index{Lix|(ii} {#sec-lix-test}
 
 The Läsbarhetsindex (Lix)\index{Lix!zzzzz@\igobble|seealso{Rix}} readability formula [@{bjornsson:1983}480–97] was designed for documents of any Western European language. It calculates a document's index score based on sentence length and number of long words (i.e., words containing seven or more characters). Viewing long words as those with seven or more characters is what differentiates it from similar tests (which use six or more characters). This difference is what allows it to be a more balanced "yardstick" that can be applied to numerous languages.
 

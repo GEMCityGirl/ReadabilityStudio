@@ -7,7 +7,7 @@ source('../R/appdown.r')
 
 # Technical Overviews
 
-## Introduction {-#sec-intro}
+## Introduction {#sec-intro}
 
 `r drop_cap('When')` writing for a target audience or classifying documents for specific age groups, readability formulas are invaluable tools.
 They help determine the minimum age group that can quickly process reading material by using an analytical approach.
@@ -59,7 +59,7 @@ glue('As a final note, there are a few hybrid tests which can be calculated via 
 $if_else(UserManualMode, OptionsDesc, "")^', .open='$', .close='^')
 ```
 
-## Grade-level Clamping {-#sec-grade-level-clamping}
+## Grade-level Clamping {#sec-grade-level-clamping}
 
 A key difference between graph and table-based tests versus regression-based tests is how the former has defined upper limits for their scores. For example, graph-based tests acquire their scores by finding the intersection of certain factors (e.g., sentence length) within a set a bands. These bands represent grades, and there are a specific set of grade bands available. As an example, a [Fry](#sec-fry-test) graph has bands ranging from 1^st^ grade to 17^th^ (i.e., college):
 

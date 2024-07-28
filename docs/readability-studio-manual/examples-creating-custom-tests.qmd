@@ -14,7 +14,7 @@ In this chapter, we will step through examples showing how to create these types
 
 \newpage
 
-## Creating a Modified Flesch\index{Flesch Reading Ease!custom test!example|(} Test {-#sec-creating-custom-flesch-test}
+## Creating a Modified Flesch\index{Flesch Reading Ease!custom test!example|(} Test {#sec-creating-custom-flesch-test}
 
 In this example, we will create a custom test. Custom tests are useful for either creating an entirely new formula or a new one based on an existing formula.
 
@@ -100,7 +100,7 @@ To add this test to any project, first select the **Readability** tab. Next, cli
 
 \newpage
 
-## Creating an Unclamped Flesch-Kincaid {-#sec-custom-test-no-clamping}
+## Creating an Unclamped Flesch-Kincaid {#sec-custom-test-no-clamping}
 
 As described in \@ref(sec-grade-level-clamping), regression-based tests are clamped to the reasonable limit of 19^th^ grade (i.e., PhD). If you wish to override this, however, you can create a copy of a test and not set an upper limit for its score.
 

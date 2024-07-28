@@ -15,7 +15,7 @@ To create a [standard project](#sec-creating-standard-project) for any document 
 To remove any document in the list from the project, select it and press `r keys('Del')` (`r os_logo('windows')`, `r os_logo('linux')`) or `r keys('\\backdel')` (`r os_logo('apple')`) on your keyboard.
 :::
 
-## Test Scores {-#sec-reviewing-batch-scores}
+## Test Scores {#sec-reviewing-batch-scores}
 
 After opening a project, click on the **Readability Scores** icon on the project sidebar. The following lists may be available: **Raw Scores**, **Goals**, **Score Summary**, **Grade Score Summary (x Document)**, and **Cloze Score Summary (x Document)**.
 
@@ -94,7 +94,7 @@ Both of these tabs will include the same statistics as the **Score Summary** pag
 
 \newpage
 
-## Histograms {-#sec-reviewing-batch-histograms}
+## Histograms {#sec-reviewing-batch-histograms}
 
 After opening a project, click on the **Histograms** icon on the project sidebar to view your documents' test scores graphically plotted as histograms.
 
@@ -140,7 +140,7 @@ Grade-level histograms will always show one bar for each grade level, and the ba
 
 \newpage
 
-## Box Plots\index{box plots!reviewing in batch projects} {-#sec-reviewing-batch-box-plots}
+## Box Plots\index{box plots!reviewing in batch projects} {#sec-reviewing-batch-box-plots}
 
 After opening a project, click on the **Score Box Plots** icon on the project sidebar to view the documents' test scores graphically shown as box plots.
 
@@ -163,11 +163,11 @@ As we can see above, the middle half of the documents fall within a marginally a
 
 \newpage
 
-## Readability Graphs {-#sec-batch-readability-graphs}
+## Readability Graphs {#sec-batch-readability-graphs}
 
 Refer to \@ref(sec-reviewing-readability-graphs).
 
-## Words Breakdown {-#sec-reviewing-batch-words}
+## Words Breakdown {#sec-reviewing-batch-words}
 
 After opening a project, click on the **Words Breakdown** icon on the project sidebar, then click any of the following subitems:
 
@@ -198,7 +198,7 @@ Note that test-specific word counts/percentages (e.g., Dale-Chall unfamiliar wor
 
 \newpage
 
-## Long Sentences {-#sec-reviewing-batch-long-sentences}
+## Long Sentences {#sec-reviewing-batch-long-sentences}
 
 After opening a project, click on the **Sentences Breakdown** icon on the project sidebar and click on the **Long Sentences** subitem. This window will display a list of the difficult sentences from your documents.
 
@@ -222,11 +222,11 @@ Note that if there are no long sentences in your documents, then this window wil
 
 \newpage
 
-## Summary Statistics {-#sec-reviewing-batch-summary-stats}
+## Summary Statistics {#sec-reviewing-batch-summary-stats}
 
 To display a list containing statistics of all your documents, click on the **Summary Statistics** icon on the project sidebar. To control which statistics are included in this list, click the `r keys('Edit Statistics')` button on the **Home** tab of the ribbon.
 
-## Grammar {-#sec-reviewing-batch-grammar}
+## Grammar {#sec-reviewing-batch-grammar}
 
 Note that the following windows are only included if their respective grammar issues are detected in the documents.
 
@@ -234,7 +234,7 @@ Also, from any of these windows you can create a [standard project](#sec-creatin
 
 This is useful for reviewing a particular document in greater detail. Note that when this standard project is created, it will copy all the project settings from the batch project. These options may differ from your [global configurations](#sec-options-overview).
 
-### Reviewing Conjunction-Starting Sentences {-#sec-reviewing-batch-conjunction-sentences}
+### Reviewing Conjunction-Starting Sentences {#sec-reviewing-batch-conjunction-sentences}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Conjunction-Starting Sentences** subitem. This window will display a list of all sentences that begin with coordinating conjunctions.
 
@@ -248,7 +248,7 @@ knitr::include_graphics("images/batchconjunctionviewitem.png")
 
 Refer to \@ref(sec-reviewing-standard-grammar) to learn more about conjunction-starting sentences.
 
-### Reviewing Lowercased Sentences {-#sec-reviewing-batch-lowercased-sentences}
+### Reviewing Lowercased Sentences {#sec-reviewing-batch-lowercased-sentences}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Lowercased Sentences** subitem. This window will display a list of all sentences that begin with lowercased words (which is usually a typo).
 
@@ -262,7 +262,7 @@ To view a specific document's lowercased sentences, double-click on its row in t
 knitr::include_graphics("images/batchlowersentenceviewitem.png")
 ```
 
-### Reviewing Repeated Words {-#sec-reviewing-batch-repeated-words}
+### Reviewing Repeated Words {#sec-reviewing-batch-repeated-words}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Repeated Words** subitem. This window will display a list of all repeated words from each document.
 
@@ -282,7 +282,7 @@ knitr::include_graphics("images/batchrepeatedviewitem.png")
 
 Refer to \@ref(sec-reviewing-standard-grammar) and \@ref(sec-repeated-word-exceptions) to learn how repeated words are detected.
 
-### Reviewing Article Mismatches {-#sec-reviewing-batch-articles}
+### Reviewing Article Mismatches {#sec-reviewing-batch-articles}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Article Mismatches** subitem. This window will display a list of articles (i.e., *a* and *an*) that do not match their following noun.
 
@@ -300,7 +300,7 @@ knitr::include_graphics("images/viewitemarticlemismatch.png")
 
 Refer to \@ref(sec-article-mismatching) to learn more.
 
-### Reviewing Wording Errors & Misspellings {-#sec-reviewing-batch-wording-errors}
+### Reviewing Wording Errors & Misspellings {#sec-reviewing-batch-wording-errors}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Errors & Misspellings** subitem.
 This window will display a list of misused phrases, grammatically incorrect wording, and known misspellings from each document.
@@ -317,7 +317,7 @@ To view a specific document's errors, double click on its row. A vertical displa
 knitr::include_graphics("images/batchwordingerrorsviewitem.png")
 ```
 
-### Reviewing Possible Misspellings {-#sec-reviewing-batch-misspellings}
+### Reviewing Possible Misspellings {#sec-reviewing-batch-misspellings}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Possible Misspellings** subitem.
 This window will display a list of all possible misspellings from each document.
@@ -336,7 +336,7 @@ knitr::include_graphics("images/batchmisspellingsviewitem.png")
 
 To add any document's misspellings to your dictionary, double click on its row to show the **Add to Dictionary** dialog. From here, you can add any (or all) reported misspellings to your dictionary. Afterwards, these words will no longer be reported as misspelled.
 
-### Reviewing Redundant Phrases {-#sec-reviewing-batch-redundant-phrases}
+### Reviewing Redundant Phrases {#sec-reviewing-batch-redundant-phrases}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Redundant Phrases** subitem. This window will display a list of redundant phrases from the documents. Suggested replacements will also be shown next to each phrase in this list.
 
@@ -356,7 +356,7 @@ knitr::include_graphics("images/batchredundantphrasesviewitem.png")
 
 Refer to \@ref(sec-reviewing-standard-grammar) for an explanation of what redundant phrase are.
 
-### Reviewing Wordy Items {-#sec-reviewing-batch-wordiness}
+### Reviewing Wordy Items {#sec-reviewing-batch-wordiness}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Wordy Items** subitem. This window will display a list of wordy phrases and difficult words from the documents. Suggested replacements will also be shown next to each phrase in this list.
 
@@ -374,7 +374,7 @@ knitr::include_graphics("images/viewitemwordyphrase.png")
 
 Refer to \@ref(sec-reviewing-standard-grammar) for an explanation about wordy phrases.
 
-### Reviewing Clichés {-#sec-reviewing-batch-cliches}
+### Reviewing Clichés {#sec-reviewing-batch-cliches}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Clichés** subitem. This window will display a list of clichés from the documents. Suggested replacements will be shown next to each cliché in this list.
 
@@ -394,7 +394,7 @@ knitr::include_graphics("images/batchclichesviewitem.png")
 
 Refer to \@ref(sec-reviewing-standard-grammar) for an explanation about clichés.
 
-### Reviewing Passive Voice {-#sec-reviewing-batch-passive-voices}
+### Reviewing Passive Voice {#sec-reviewing-batch-passive-voices}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Passive Voice** subitem. This window will display a list of all passive phrases from each document.
 
@@ -410,7 +410,7 @@ knitr::include_graphics("images/batchpassivevoiceviewitem.png")
 
 Refer to \@ref(sec-reviewing-standard-grammar) for an explanation about passive phrases.
 
-### Reviewing Overused Words (x Sentence) {-#sec-reviewing-batch-overused-words}
+### Reviewing Overused Words (x Sentence) {#sec-reviewing-batch-overused-words}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Overused Words (x Sentence)** subitem. This window will display a list of all sentences that use the same word multiple times from each document. (These are more of style suggestions, rather than grammar issues.) When reviewing these, it is recommended to change some of the repeated words to add more variety to your content.
 
@@ -424,7 +424,7 @@ Refer to \@ref(sec-reviewing-standard-grammar) for an explanation about overused
 
 \newpage
 
-## Dolch Sight Words {-#sec-reviewing-batch-dolch}
+## Dolch Sight Words {#sec-reviewing-batch-dolch}
 
 After opening a project, click on the **Dolch Sight Words** icon on the project sidebar. There will be three lists available: **Dolch Word Coverage**, **Dolch Words**, and **Non-Dolch Words**.
 
@@ -448,7 +448,7 @@ Note that the raw counts of these words will also be included if [**Extended Inf
 
 \newpage
 
-## Warnings {-#sec-reviewing-batch-warnings}
+## Warnings {#sec-reviewing-batch-warnings}
 
 After opening a project, click on the **Warnings** icon on the project sidebar to view any warnings issued while loading the documents:
 

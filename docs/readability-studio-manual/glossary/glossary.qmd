@@ -5,9 +5,9 @@
 source('../R/appdown.r')
 ```
 
-# Glossary {#sec-glossary .unnumbered}
+# Glossary {#sec-glossary}
 
-## Readability Terms {#sec-readability-glossary .unnumbered}
+## Readability Terms {#sec-readability-glossary}
 
 :::: {.glsentry data-latex=''}
 ::: {.glsterm data-latex=''}
@@ -65,7 +65,7 @@ A section of text ending with a period, exclamation mark, question mark, interro
 
 \newpage
 
-## Statistical Terms {#sec-stat-terms .unnumbered}
+## Statistical Terms {#sec-stat-terms}
 
 ::: {.glsterm data-latex=''}
 box plots\index{box plots}
@@ -222,7 +222,7 @@ kurtosis\index{kurtosis}
 The peakedness of a distribution. Zero indicates a normal distribution, a negative value indicates a flat distribution, and a positive value indicates a sharp curve.  
 
 ```{r, echo=F, fig.cap='Negative and positive kurtosis', fig.align='center'}
-knitr::include_graphics("images/non-generated/kurtosis.png")
+knitr::include_graphics("../images/non-generated/kurtosis.png")
 ```
 :::
 ::::
@@ -386,7 +386,7 @@ skewness\index{skewness}
 The asymmetry of the probability distribution. A zero skew indicates a symmetrical balance in the distribution. A negative skew indicates that the left side of the distribution is longer and most of the values are concentrated on the right. A positive skew indicates that the right side of the distribution is longer and most of the values are concentrated on the left.  
 
 ```{r, echo=F, fig.cap='Negative and positive skewness', fig.align='center'}
-knitr::include_graphics("images/non-generated/skewness.png")
+knitr::include_graphics("../images/non-generated/skewness.png")
 ```
 :::
 ::::

@@ -1,4 +1,4 @@
-## Flesch Reading Ease\index{Flesch Reading Ease|(ii} {-#sec-flesch-test}
+## Flesch Reading Ease\index{Flesch Reading Ease|(ii} {#sec-flesch-test}
 
 The Flesch Reading Ease readability formula calculates an index score of a document based on sentence length and number of syllables.
 

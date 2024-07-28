@@ -1,4 +1,4 @@
-## Coleman-Liau\index{Coleman-Liau|(ii} {-#sec-coleman-liau-test}
+## Coleman-Liau\index{Coleman-Liau|(ii} {#sec-coleman-liau-test}
 
 The Coleman-Liau formula calculates the grade level and estimated cloze\index{cloze} score of a document based on sentence length and character count.
 

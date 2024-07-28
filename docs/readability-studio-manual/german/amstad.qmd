@@ -1,4 +1,4 @@
-## Amstad\index{Amstad|ii} {-#sec-amstad}
+## Amstad\index{Amstad|ii} {#sec-amstad}
 
 The Amstad test is a recalculation of [Flesch Reading Ease](#sec-flesch-test)\index{Flesch Reading Ease!variations!Amstad} for German text [-@{amstad}78-81, 50]. Its formula is adjusted from the original Flesch to take into account German's comparatively longer words. It also uses a lower weighting for the sentence-length factor, placing most of the influence on word length.
 

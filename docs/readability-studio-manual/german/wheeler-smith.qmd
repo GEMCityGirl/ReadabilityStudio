@@ -1,4 +1,4 @@
-## Wheeler-Smith (Bamberger-Vanecek)\index{Wheeler-Smith!variations!Bamberger-Vanecek (German)} {-#sec-wheeler-smith-bamberger-vanecek}
+## Wheeler-Smith (Bamberger-Vanecek)\index{Wheeler-Smith!variations!Bamberger-Vanecek (German)} {#sec-wheeler-smith-bamberger-vanecek}
 
 Wheeler-Smith (Bamberger-Vanecek) [-@{bamberger-vanecek}77, 186] is a German variation of [Wheeler-Smith](#sec-wheeler-smith) designed for both primary and secondary-age reading material. It calculates the grade level of a document based on [unit](#sec-glossary)\index{sentences!units} length and number of complex words.
 

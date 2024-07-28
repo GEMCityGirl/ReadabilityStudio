@@ -1,4 +1,4 @@
-## Farr-Jenkins-Paterson\index{Farr-Jenkins-Paterson|ii} {-#sec-farr-jenkins-paterson}
+## Farr-Jenkins-Paterson\index{Farr-Jenkins-Paterson|ii} {#sec-farr-jenkins-paterson}
 
 The Farr-Jenkins-Paterson\index{Flesch Reading Ease!variations!Farr-Jenkins-Paterson} readability formula [-@{farr-jenkins-paterson}333–37] calculates the [Flesch](#sec-flesch-test) difficulty level of a document based on sentence length and number of monosyllabic words.
 

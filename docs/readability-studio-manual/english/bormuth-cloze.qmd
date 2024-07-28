@@ -1,4 +1,4 @@
-## Bormuth Cloze Mean\index{Bormuth Cloze Mean|(ii} {-#sec-bormuth-cloze-mean-machine-passage}
+## Bormuth Cloze Mean\index{Bormuth Cloze Mean|(ii} {#sec-bormuth-cloze-mean-machine-passage}
 
 The Bormuth Cloze\index{cloze} Mean (Machine Computation for Passage Readability) Formula [-@{bormuth:1966}79–132] calculates a [predicted cloze score](#sec-cloze) for a document.
 
