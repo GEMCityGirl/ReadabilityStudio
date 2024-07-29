@@ -39,9 +39,14 @@ Where readability tests may differ is how they are calculated. Most tests are pe
 - graphs
 :::
 
-The vast majority of tests use multiple linear regressions. Basically, multiple linear regression is a statistical method for modelling the relationship between a dependent variable and two or more independent variables (i.e., predictors). In the case of readability tests, the dependent is human-judged grade levels for a set of samples, while the independents are factors such as the samples' sentence lengths and syllable counts. A multiple regression is performed to determine the strongest predictors (usually the top two), and the prediction equation created by the analysis will be the new readability formula.
+The vast majority of tests use multiple linear regressions.
+Basically, multiple linear regression is a statistical method for modelling the relationship between a dependent variable and two or more independent variables (i.e., predictors).
+In the case of readability tests, the dependent is human-judged grade levels for a set of samples, while the independents are factors such as the samples' sentence lengths and syllable counts.
+A multiple regression is performed to determine the strongest predictors (usually the top two), and the prediction equation created by the analysis will be the new readability formula.
 
-Another method is lookup tables, where the intersection of factors (e.g., number of sentences and number of syllables) are found in a table. When located, the position in the table will indicate the grade level. Examples of table-based tests include Wheeler-Smith and New Dale-Chall. (Refer to table \@ref(tab:wheeler-smith-conversion-table) for an example.)
+Another method is lookup tables, where the intersection of factors (e.g., number of sentences and number of syllables) are found in a table.
+When located, the position in the table will indicate the grade level. Examples of table-based tests include Wheeler-Smith and New Dale-Chall.
+(Refer to table \@ref(tab:wheeler-smith-conversion-table) for an example.)
 
 The final method also relies on finding the intersection of factors, but on a graph instead of a table. Most of these plots are divided into bands or brackets, with each of these regions representing a grade or difficulty level. For example, Fry and Raygor use polygonal bands, while Flesch Reading Ease uses brackets along a “ruler”:
 
@@ -61,21 +66,28 @@ $if_else(UserManualMode, OptionsDesc, "")^', .open='$', .close='^')
 
 ## Grade-level Clamping {#sec-grade-level-clamping}
 
-A key difference between graph and table-based tests versus regression-based tests is how the former has defined upper limits for their scores. For example, graph-based tests acquire their scores by finding the intersection of certain factors (e.g., sentence length) within a set a bands. These bands represent grades, and there are a specific set of grade bands available. As an example, a [Fry](#sec-fry-test) graph has bands ranging from 1^st^ grade to 17^th^ (i.e., college):
+A key difference between graph and table-based tests versus regression-based tests is how the former has defined upper limits for their scores.
+For example, graph-based tests acquire their scores by finding the intersection of certain factors (e.g., sentence length) within a set a bands. These bands represent grades, and there are a specific set of grade bands available. As an example, a [Fry](#sec-fry-test) graph has bands ranging from 1^st^ grade to 17^th^ (i.e., college):
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("../images/frygraph.png")
 ```
 
-Likewise, table-based tests take a set of factors and look up the score from a table. These tables have a specific set of grade levels and will also have an upper limit. (Refer to table \@ref(tab:wheeler-smith-conversion-table) for an example.)
+Likewise, table-based tests take a set of factors and look up the score from a table.
+These tables have a specific set of grade levels and will also have an upper limit. (Refer to table \@ref(tab:wheeler-smith-conversion-table) for an example.)
 
-In contract, tests which use regression equations do not have upper limits. In theory, a document with extreme factors (e.g., abnormally long sentences) could yield scores above grade 19 (i.e., PhD level). To keep results sensical, such scores should be clamped to 19 and be displayed as 19+. This is done for a number of reasons.
+In contract, tests which use regression equations do not have upper limits.
+In theory, a document with extreme factors (e.g., abnormally long sentences) could yield scores above grade 19 (i.e., PhD level).
+To keep results sensical, such scores should be clamped to 19 and be displayed as 19+. This is done for a number of reasons.
 
-First, scores such as 27^th^ grade do not reflect reality. To describe a document as only being understandable by a PhD is relatable. To say that a document can only be processed by someone in the 27^th^ grade, however, makes little sense. Another way to view this is that 19+ implies a document's failure to be readable—similar to an *F* on a test.
+First, scores such as 27^th^ grade do not reflect reality. To describe a document as only being understandable by a PhD is relatable.
+To say that a document can only be processed by someone in the 27^th^ grade, however, makes little sense.
+Another way to view this is that 19+ implies a document's failure to be readable—similar to an *F* on a test.
 
 Second, because graph and table-based tests are bound to sensical grade scales, it is reasonable to treat regression-based tests the same way. For example, a document scoring 16+ for New Dale-Chall should clamp tests such as Flesch-Kincaid to 19+, thus keeping their scores on a similar scale. In other words, grade and table-based tests were designed for grade scales from 0–19 (sometimes even lower). Likewise, it is reasonable to assume that was the intention of regression-based tests as well.
 
-Finally, the source materials for these formulas cite example scores within 0–19. Again, it can be inferred that the authors' intention was for documents to be bound to a reasonable grade scale.
+Finally, the source materials for these formulas cite example scores within 0–19.
+Again, it can be inferred that the authors' intention was for documents to be bound to a reasonable grade scale.
 
 ```{r, results='asis', eval=UserManualMode, echo=F, include=UserManualMode}
 glue('Although not recommended, it is possible to create a copy of any regression-based test and remove this clamping. (Refer to ch. \\@ref(sec-custom-test-no-clamping) for an example.)')
@@ -88,7 +100,8 @@ For example, with table-based tests, documents with long sentences and/or numero
 (Refer to table \@ref(tab:wheeler-smith-conversion-table) for an example).
 Likewise, plugging a document's statistics into a regression-based test will also produce a result without issue (although extreme results may need to be clamped, see @sec-grade-level-clamping).
 
-It is possible, however, for certain graphical tests to not return a meaningful result. Tests such as Fry and Schwartz use plots that are divided into bands (i.e., polygonal strips) which represent different grade levels. To produce a result, these tests find the intersection of a document's statistics along the plot's axes. Once the intersection is found, the band that the point falls within will indicate the grade level of the document.
+It is possible, however, for certain graphical tests to not return a meaningful result.
+Tests such as Fry and Schwartz use plots that are divided into bands (i.e., polygonal strips) which represent different grade levels. To produce a result, these tests find the intersection of a document's statistics along the plot's axes. Once the intersection is found, the band that the point falls within will indicate the grade level of the document.
 
 ```{r echo=F, fig.align='center', fig.cap='Example of a graph with grade-level bands', out.width='75%'}
 knitr::include_graphics("../images/schwartz.png")
