@@ -100,13 +100,9 @@ When counting the sentences and syllables in a document, Schwartz had the follow
 - Speech set off by a colon mid-sentence should be counted as a separate sentence
 :::
 
-```{r, results='asis', eval=T, echo=F}
-OptionsDesc <- "Because of this, the program uses sentence units when counting sentences. Numerals are also counted as one syllable by the program, regardless of the project\'s settings."
-
-OtherDesc <- "Because of this, sentence units should be used when counting sentences. Numerals should also be counted as one syllable."
-
-glue('Regarding the last point, it could be inferred that independent clauses set off by colons, semicolons, and em dashes should also be counted as separate sentences. $if_else(UserManualMode, OptionsDesc, OtherDesc)^', .open='$', .close='^')
-```
+Regarding the last point, it could be inferred that independent clauses set off by colons, semicolons, and em dashes should also be counted as separate sentences.
+[Because of this, the program uses sentence units when counting sentences. Numerals are also counted as one syllable by the program, regardless of the project's settings.]{.content-hidden when-profile="reference"}
+[Because of this, sentence units should be used when counting sentences. Numerals should also be counted as one syllable.]{.content-visible when-profile="reference"}
 
 Plotting and interpreting the Schwartz graph is the same as other Fry-like graphs. Once you have found the average number of syllables and sentences per 100-words, plot the intersection of these two statistics on the graph. The band that the point falls in will represent the grade-level score of the sample.\index{Schwartz German Readability Graph|)}
 

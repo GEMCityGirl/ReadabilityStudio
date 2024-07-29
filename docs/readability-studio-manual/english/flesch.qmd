@@ -35,11 +35,8 @@ Where:
 Table: Flesch Reading Ease index Table
 
 ::: {.notesection data-latex=""}
-```{r, results='asis', eval=T, echo=F}
-OptionsDesc <- "This behavior can be changed from the [**Options**](#sec-readability-test-options) dialog."
-
-glue('Note that this test treats numerals\\index{numerals!Flesch Reading Ease} as monosyllabic words by default. $if_else(UserManualMode, OptionsDesc, "")^', .open='$', .close='^')
-```
+Note that this test treats numerals\index{numerals!Flesch Reading Ease} as monosyllabic words by default.
+[This behavior can be changed from the [**Options**](#sec-readability-test-options) dialog.]{.content-hidden when-profile="reference"}
 :::
 
 Along with the raw score, a chart is also available to visualize the score's meaning:
@@ -48,9 +45,14 @@ Along with the raw score, a chart is also available to visualize the score's mea
 knitr::include_graphics("images/flesch-chart.png")
 ```
 
-This chart consists of three "rulers." The middle ruler displays the Flesch score as a red point. On both sides of this ruler are brackets showing the reading levels. The bracket that the point falls into will indicate the reading level of the document. The rulers on the left and right of the score ruler will display the factors used to calculate the score. A straight line is drawn between these points to demonstrate how the factors calculated the score.
+This chart consists of three "rulers." The middle ruler displays the Flesch score as a red point.
+On both sides of this ruler are brackets showing the reading levels.
+The bracket that the point falls into will indicate the reading level of the document.
+The rulers on the left and right of the score ruler will display the factors used to calculate the score.
+A straight line is drawn between these points to demonstrate how the factors calculated the score.
 
-In the above chart, we can see that the document's average words per sentence is 13 and its syllables per 100 words is 146. This yields a score of 71, which indicates that the document is "fairly easy" to read.
+In the above chart, we can see that the document's average words per sentence is 13 and its syllables per 100 words is 146.
+This yields a score of 71, which indicates that the document is "fairly easy" to read.
 \index{Flesch Reading Ease|)}
 
 \newpage

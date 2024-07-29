@@ -1,9 +1,10 @@
 # Output files
+/docs/doxygen/html
 /docs/coding-bible/docs
 /docs/readability-studio-api/docs
-/docs/readability-test-reference/docs-test-reference
+/docs/readability-test-reference/docs
 /docs/shortcuts-cheatsheet/docs
-/docs/doxygen/html
+/docs/release-notes/docs
 /docs/readability-studio-manual/docs
 /docs/readability-studio-manual/docs-manual
 /docs/readability-studio-manual/docs-online
@@ -56,6 +57,7 @@
 /docs/readability-studio-api/enums
 /docs/readability-studio-api/libraries
 /docs/readability-test-reference/.quarto
+/docs/readability-test-reference/readability-test-reference.tex
 /docs/readability-test-reference/latex/
 /docs/readability-test-reference/css/
 /docs/readability-test-reference/images/
@@ -84,7 +86,6 @@
 /docs/shortcuts-cheatsheet/docs
 /docs/release-notes/.quarto
 /docs/release-notes/index.tex
-/docs/release-notes/docs
 
 # Configuration files
 /docs/coding-bible/.Rproj.user

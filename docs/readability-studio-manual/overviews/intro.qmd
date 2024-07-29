@@ -57,17 +57,18 @@ knitr::include_graphics("../images/flesch-chart.png")
 
 Once the intersection of two factors is located on the plot, the band or bracket that the intersection falls into will indicate the score.
 
-```{r, results='asis', eval=T, echo=F}
-OptionsDesc <- "(Note that the program will include both forms of these tests in the results.)"
-
-glue('As a final note, there are a few hybrid tests which can be calculated via a regression equation or graph. These tests were initially constructed as regression equations, and this is the preferred method for performing them. The tests\' authors, however, would also offer a graphical version as a quicker and simpler way for performing these tests. Examples of these tests include Flesch Reading Ease and Crawford.
-$if_else(UserManualMode, OptionsDesc, "")^', .open='$', .close='^')
-```
+As a final note, there are a few hybrid tests which can be calculated via a regression equation or graph.
+These tests were initially constructed as regression equations, and this is the preferred method for performing them.
+The tests' authors, however, would also offer a graphical version as a quicker and simpler way for performing these tests.
+Examples of these tests include Flesch Reading Ease and Crawford.
+[Note that the program will include both forms of these tests in the results.]{.content-hidden when-profile="reference"}
 
 ## Grade-level Clamping {#sec-grade-level-clamping}
 
 A key difference between graph and table-based tests versus regression-based tests is how the former has defined upper limits for their scores.
-For example, graph-based tests acquire their scores by finding the intersection of certain factors (e.g., sentence length) within a set a bands. These bands represent grades, and there are a specific set of grade bands available. As an example, a [Fry](#sec-fry-test) graph has bands ranging from 1^st^ grade to 17^th^ (i.e., college):
+For example, graph-based tests acquire their scores by finding the intersection of certain factors (e.g., sentence length) within a set a bands.
+These bands represent grades, and there are a specific set of grade bands available.
+As an example, a [Fry](#sec-fry-test) graph has bands ranging from 1^st^ grade to 17^th^ (i.e., college):
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("../images/frygraph.png")
@@ -89,9 +90,10 @@ Second, because graph and table-based tests are bound to sensical grade scales, 
 Finally, the source materials for these formulas cite example scores within 0–19.
 Again, it can be inferred that the authors' intention was for documents to be bound to a reasonable grade scale.
 
-```{r, results='asis', eval=UserManualMode, echo=F, include=UserManualMode}
-glue('Although not recommended, it is possible to create a copy of any regression-based test and remove this clamping. (Refer to ch. \\@ref(sec-custom-test-no-clamping) for an example.)')
-```
+::: {.content-hidden when-profile="reference"}
+Although not recommended, it is possible to create a copy of any regression-based test and remove this clamping.
+(Refer to @sec-custom-test-no-clamping for an example.)
+:::
 
 ## How Tests can Fail
 
@@ -107,9 +109,6 @@ Tests such as Fry and Schwartz use plots that are divided into bands (i.e., poly
 knitr::include_graphics("../images/schwartz.png")
 ```
 
-```{r, results='asis', eval=T, echo=F}
-OptionsDesc <- "When this occurs, the program will indicate that the test failed and explain which factor (e.g., high syllable count) caused the failure."
-
-glue('For most documents this will yield a result, but extreme documents may fall outside of the grade-level bands. (This can happen if there are too many difficult words or lengthy sentences.)
-$if_else(UserManualMode, OptionsDesc, "")^', .open='$', .close='^')
-```
+For most documents this will yield a result, but extreme documents may fall outside of the grade-level bands.
+(This can happen if there are too many difficult words or lengthy sentences.)
+[When this occurs, the program will indicate that the test failed and explain which factor (e.g., high syllable count) caused the failure.]{.content-hidden when-profile="reference"}

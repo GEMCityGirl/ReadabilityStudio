@@ -34,13 +34,7 @@ The simplified version of this formula uses lower precision. It was originally o
 
 This test requires 3 10-sentence samples, but [normalization](#sec-glossary) can be used to analyze entire documents.
 
-```{r, results='asis', eval=T, echo=F}
-OptionsDesc <- ", so the program overrides your [numeral syllabication](#sec-numsyllable) setting when calculating it."
-
-AltDesc <- "."
-
-glue('Numerals\\index{numerals!SMOG} are fully syllabized (i.e., sounded out) for this test$if_else(UserManualMode, OptionsDesc, AltDesc)^', .open='$', .close='^')
-```
+Numerals\index{numerals!SMOG} are fully syllabized (i.e., sounded out) for this test[, so the program overrides your [numeral syllabication](#sec-numsyllable) setting when calculating it.]{.content-hidden when-profile="reference"}[.]{.content-visible when-profile="reference"}
 
 Note that this test is colloquially referred to as an acronym for "Simple Measure of Gobbledygook." The origin of its name, however, is actually a nod to Robert Gunning's [Fog](#sec-gunning-fog-test) index.
 

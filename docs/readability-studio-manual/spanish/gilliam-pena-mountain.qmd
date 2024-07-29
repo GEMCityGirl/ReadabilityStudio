@@ -45,12 +45,9 @@ The Gilliam-Peña-Mountain graph formula is:
 - Extract a 100-word passage from the selection. If the material is long, take subsamples from the beginning, middle, and end.
 - Count the number of sentences in each passage. Count a half sentence as .5.
 - Find the point on the chart.
-```{r, results='asis', eval=T, echo=F}
-OptionsDesc <- " However, note that *Readability Studio* shifts the syllable-count axis by 67, rather than adjusting the actual syllable count. This approach preserves the syllable count, while still being able to plot the score on the graph."
-AltDesc <- " An preferred alternative method is to shift the syllable-count axis by 67, rather than adjusting the actual syllable count. This approach preserves the syllable count, while still being able to plot the score on the graph."
-
-glue('- Count the number of syllables in each passage and subtract 67 to adjust for the higher syllabic nature of Spanish text.$if_else(UserManualMode, OptionsDesc, AltDesc)^', .open='$', .close='^')
-```
+- Count the number of syllables in each passage and subtract 67 to adjust for the higher syllabic nature of Spanish text.
+[ A preferred alternative method is to shift the syllable-count axis by 67, rather than adjusting the actual syllable count. This approach preserves the syllable count, while still being able to plot the score on the graph.]{.content-visible when-profile="reference"}
+[ However, note that *Readability Studio* shifts the syllable-count axis by 67, rather than adjusting the actual syllable count. This approach preserves the syllable count, while still being able to plot the score on the graph.]{.content-hidden when-profile="reference"}
 - If the sample's syllable or sentence count is too low or high for it to be plotted, then adjust that factor so that it can fit onto the chart. For example, if a sample has 261 syllables per 100 words, then this will need to be adjusted to 249.
 - Repeat this process for each sample, and then average the samples.
 

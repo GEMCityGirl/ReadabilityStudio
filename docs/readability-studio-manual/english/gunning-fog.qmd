@@ -6,11 +6,9 @@ Complex words are words that contain three or more syllables, with the exception
 
 - Proper nouns.\index{proper nouns!Gunning Fog}
 - Words made three syllables by adding *ed* or *es* (e.g., *created* or *trespasses*).
-```{r, results='asis', eval=T, echo=F}
-OptionsDesc <- "*Readability Studio* considers hyphenated words to be compound words (e.g., *horse-power* or *and/or*). "
-
-glue('- Compound words composed of simpler words. $if_else(UserManualMode, OptionsDesc, "")^Note that forward slashes (*/*) are treated like hyphens in this context.', .open='$', .close='^')
-```
+- Compound words composed of simpler words.
+[*Readability Studio* considers hyphenated words to be compound words (e.g., *horse-power* or *and/or*).]{.content-hidden when-profile="reference"}
+(Note that forward slashes (*/*) are treated like hyphens in this context.)
 
 This test can optionally count independent clauses as separate sentences, as *The Technique of Clear Writing* instructs. It should be noted, however, that this can cause misleadingly low scores for documents that contain run-on sentences. Consider the follow:
 

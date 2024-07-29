@@ -13,9 +13,9 @@ source('../R/appdown.r')
 ### General Enhancements {-}
 
 - Added real-time updating to standard projects. This enables the project to update itself while you edit the original document in another program.
-  (Refer to `r glue("{if_else(UserManualMode, '\\\\@ref(sec-external-editing)', shQuote('Editing from Other Programs'))}")` for an example.)
+  (Refer to [@sec-external-editing]{.content-visible when-profile="online"}["Editing from Other Programs"]{.content-hidden when-profile="online"} for an example.)
 - Greatly enhanced editing documents that are embedded within standard projects.
-  (Refer to `r glue("{if_else(UserManualMode, '\\\\@ref(sec-rs-as-an-editor)', shQuote('Editing within Readability Studio'))}")` for an example.)
+  (Refer to [@sec-rs-as-an-editor]{.content-visible when-profile="online"}["Editing within Readability Studio"]{.content-hidden when-profile="online"} for an example.)
   - Added a save button to the editor that will cause the project to analyze your changes immediately.
   - The project window can now be selected while the editor is open. This allows for changing options, adding tests, and viewing different results while the editor is active.
   - Added find &amp; replace, undo/redo, and clipboard operations to the editor.
@@ -206,7 +206,7 @@ source('../R/appdown.r')
 - Instruction label now shown on all Flesch charts (not just blank ones).
 - Added custom test features:
   - Added feature to create custom tests based on any existing regression-based test.
-    (Refer to `r glue("{if_else(UserManualMode, '\\\\@ref(sec-creating-custom-flesch-test)', shQuote('Creating a Modified Flesch Test'))}")` for an example.)
+    (Refer to [@sec-creating-custom-flesch-test]{.content-visible when-profile="online"}["Creating a Modified Flesch Test"]{.content-hidden when-profile="online"} for an example.)
   - Added `GunningFog` option to `SentenceCount()` function. This will return the sentence count using the system's [Gunning Fog method](#sec-options-gunning-fog).
   - Added `MiniWordCount()` function.
   - Added `HardFogWordCount()` function.

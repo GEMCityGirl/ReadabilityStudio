@@ -20,13 +20,7 @@ The steps for calculating Modified SMOG are:
 - Calculate the square root of this count and round it.
 - If this square root is 4 or more, then add 1. Otherwise, the square root should remain the same. This will be the grade level score.
 
-```{r, results='asis', eval=T, echo=F}
-OptionsDesc <- ", so the program overrides your [numeral syllabication](#sec-numsyllable) setting when calculating it."
-
-AltDesc <- "."
-
-glue('Note that numerals\\index{numerals!Modified SMOG} are fully syllabized (i.e., sounded out) for this test$if_else(UserManualMode, OptionsDesc, AltDesc)^', .open='$', .close='^')
-```
+Note that numerals\index{numerals!Modified SMOG} are fully syllabized (i.e., sounded out) for this test[, so the program overrides your [numeral syllabication](#sec-numsyllable) setting when calculating it.]{.content-hidden when-profile="reference"}[.]{.content-visible when-profile="reference"}
 
 This test requires a 10-sentence sample, with 3 samples being recommended for best results. ([Normalization](#sec-glossary) can also be used to analyze larger samples or entire documents.)\index{Modified SMOG|)}
 

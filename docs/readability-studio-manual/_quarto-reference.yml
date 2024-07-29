@@ -1,5 +1,5 @@
 project:
-  output-dir: "docs-test-reference"
+  output-dir: "docs"
 book:
   subtitle: Readability Test Reference
   output-file: "readability-test-reference"
