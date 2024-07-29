@@ -94,6 +94,7 @@ Build an AppImage:
 
 ```
 linuxdeploy-x86_64.AppImage --appdir installers/unix/AppDir --executable installers/unix/AppDir/readstudio -d installers/unix/AppDir/readstudio.desktop -i installers/unix/AppDir/app-logo.svg --output appimage
+mv Readability_Studio*.AppImage ./installers/unix
 ```
 
 **...INCOMPLETE**
