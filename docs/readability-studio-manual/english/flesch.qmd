@@ -32,7 +32,7 @@ Where:
 | 30–49 | Difficult |
 | 0–29 | Very difficult |
 
-Table: Flesch Reading Ease index Table
+: Flesch Reading Ease index Table {#tbl-fre}
 
 ::: {.notesection data-latex=""}
 Note that this test treats numerals\index{numerals!Flesch Reading Ease} as monosyllabic words by default.

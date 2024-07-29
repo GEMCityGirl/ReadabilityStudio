@@ -38,7 +38,7 @@ Where:
 | 26–29 | Mildly difficult |
 | 30+ | Very confusing |
 
-Table: McAlpine EFLAW Index Table
+: McAlpine EFLAW Index Table {#tbl-eflaw}
 
 \index{McAlpine EFLAW|)}
 

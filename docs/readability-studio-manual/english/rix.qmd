@@ -51,7 +51,7 @@ Where:\index{sentences!units}
 | .2 and above | 2   |
 | Below .2 | 1   |
 
-Table: Rix Grade-level Conversion Table\index{Rix|)}
+: Rix Grade-level Conversion Table\index{Rix|)} {#tbl-rix-grade-levels}
 :::
 
 \newpage

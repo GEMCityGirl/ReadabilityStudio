@@ -112,7 +112,7 @@ The following functions and operators are available for use in [custom test](#se
 | \| | Logical alternative (OR). |
 | ( ) | Groups sub-expressions, overriding the order of operations. |
 
-Table: Operators
+: Operators {#tbl-formula-operatprs}
 :::
 
 ::: {.minipage data-latex="{\textwidth}"}
@@ -148,7 +148,7 @@ You can override it so that the additions happen first (resulting in `15`), foll
 | NOT(Value) | Returns the logical negation of *Value.* |
 | OR(Value1, Value2, ...) | Returns true if any condition is true. |
 
-Table: Logic Functions
+: Logic Functions {#tbl-formula-logic}
 :::
 
 ::: {.minipage data-latex="{\textwidth}"}
@@ -174,7 +174,7 @@ Table: Logic Functions
 | SQRT(Number) | Square root of *Number*. |
 | TRUNC(Number) | Discards the fractional part of *Number*.<br>\linebreak `TRUNC(-3.2)` = -3<br>\linebreak `TRUNC(3.2)` = 3 |
 
-Table: Math Functions
+: Math Functions {#tbl-formula-math}
 :::
 
 ::: {.minipage data-latex="{\textwidth}"}
@@ -183,7 +183,7 @@ Table: Math Functions
 | AVERAGE(value1,value2,...) | Returns the average of a specified range of values. |
 | SUM(value1,value2,...) | Returns the sum of a specified range of values. |
 
-Table: Statistical Functions
+: Statistical Functions {#tbl-formula-stats}
 :::
 
 ::: {.minipage data-latex="{\textwidth}"}
@@ -193,7 +193,7 @@ Table: Statistical Functions
 | CustomNewDaleChall()\index{CustomNewDaleChall()@\texttt{CustomNewDaleChall()}} | Performs a New Dale-Chall test with a custom familiar word list. Note that this test will use the same text exclusion rules as New Dale-Chall (overriding your system defaults). |
 | CustomSpache()\index{CustomSpache()@\texttt{CustomSpache()}} | Performs a Spache Revised test with a custom familiar word list. |
 
-Table: Custom Familiar Word Tests Functions
+: Custom Familiar Word Tests Functions {#tbl-formula-fam-words}
 :::
 
 ::: {.minipage data-latex="{\textwidth}"}
@@ -213,7 +213,7 @@ Also, can't use kable here because we have index tags embedded in the text.
 | SentenceCount()\index{sentences!in custom tests} | Returns the number of sentences. This function takes an argument specifying which text exclusion or sentence-counting method to use: `Default`, `DaleChall`, `HarrisJacobson`, or `GunningFog`^c^. |
 | SyllableCount()\index{syllables!in custom tests} | Returns the number of syllables. This function takes an argument specifying which numeral syllabizing method to use: `Default`, `NumeralsFullySyllabized`, or `NumeralsAreOneSyllable`. |
 
-Table: Document Statistics Functions
+: Document Statistics Functions {#tbl-formula-doc-stats}
 
 ^a^ Uses the [Dale-Chall text-exclusion](#sec-options-dale-chall) method.\
 ^b^ Uses the [Harris-Jacobson text-exclusion method](#sec-options-harris-jacobson).\
@@ -249,7 +249,7 @@ This will be either traditional sentence counting or unit counting.
 | UniqueWordCount() | Returns the number of unique words. |
 | WordCount() | Returns the number of words. This function takes an argument specifying which text exclusion method to use: `Default`, `DaleChall`, or `HarrisJacobson`. |
 
-Table: Word Statistics Functions
+: Word Statistics Functions {#tbl-formula-word-stats}
 
 ::: {.notesection data-latex=""}
 New Dale-Chall and Harris-Jacobson familiar word functions will take their respective test's text exclusion options into account.
@@ -274,7 +274,7 @@ New Dale-Chall and Harris-Jacobson familiar word functions will take their respe
 | W | Shortcut for `WordCount(Default)`. |
 | X | Shortcut for `SevenCharacterPlusWordCount()`. |
 
-Table: Shortcuts
+: Shortcuts {#tbl-formula-shortcuts}
 :::
 
 ### Comments {-}

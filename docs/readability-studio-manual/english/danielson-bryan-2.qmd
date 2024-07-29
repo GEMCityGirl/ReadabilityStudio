@@ -40,7 +40,7 @@ kableExtra::kbl(db2Data, booktabs=T, centering=T, align='l', escape=F) %>%
 | 30–49 | Difficult, high school level |
 | 0–29 | Very difficult, college level |
 
-Table: Danielson-Bryan 2 (Flesch Reading Ease) Index Table
+: Danielson-Bryan 2 (Flesch Reading Ease) Index Table {#tbl-db2}
 
 \index{Danielson-Bryan 2|)}
 

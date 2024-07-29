@@ -1,8 +1,11 @@
 ## Wheeler-Smith\index{Wheeler-Smith|(ii} {#sec-wheeler-smith}
 
-The Wheeler-Smith [-@{wheeler-smith}397–99] test is designed for primary-age materials (Kindergarten to 4^th^ grade). This test calculates the grade level of a document based on [unit](#sec-glossary)\index{sentences!units} length and number of polysyllabic\index{polysyllabic} (2+ syllable) words. It should be noted that this differs from most other tests that use 3+ syllable words as a difficulty factor. The researchers selected 2+ syllable words because primary readers will have more difficulty with them than secondary and adult readers.
+The Wheeler-Smith [-@{wheeler-smith}397–99] test is designed for primary-age materials (Kindergarten to 4^th^ grade).
+This test calculates the grade level of a document based on [unit](#sec-glossary)\index{sentences!units} length and number of polysyllabic\index{polysyllabic} (2+ syllable) words.
+It should be noted that this differs from most other tests that use 3+ syllable words as a difficulty factor.
+The researchers selected 2+ syllable words because primary readers will have more difficulty with them than secondary and adult readers.
 
-Although not explicitly stated in the article, the authors' definition of “polysyllabic” as being 2+ syllable can be inferred from the example[^River] that they provided:
+Although not explicitly stated in the article, the authors' definition of "polysyllabic" as being 2+ syllable can be inferred from the example[^River] that they provided:
 
 ::: {.fancyquotes data-latex=''}
 The Woodsman saw the seven sisters come into their bedroom. He saw them put on the shoes in which they danced. He saw them put on their party dresses.  
@@ -16,13 +19,19 @@ Some of the trees had blue leaves.
 Some had glass leaves. Others had leaves of gold.
 :::
 
-The authors reported 20 polysyllabic words in the above sample. *Wonderful* is the only 3+ syllable word in this sample, whereas there are 18 2+ syllable words. It may be inferred that the authors were considering *their* as 2 syllables, which in that case would yield 20 2+ syllable (i.e., “polysyllabic”) words.
+The authors reported 20 polysyllabic words in the above sample.
+*Wonderful* is the only 3+ syllable word in this sample, whereas there are 18 2+ syllable words.
+It may be inferred that the authors were considering *their* as 2 syllables, which in that case would yield 20 2+ syllable (i.e., “polysyllabic”) words.
 
-In regards to unit\index{sentences!units} (i.e., sentence) length, the researchers noted that sentence lengths strongly correlated with the manually-rated grade levels. Because of this, sentence length was given a stronger weight in the formula (compared to previous formulas).
+In regards to unit\index{sentences!units} (i.e., sentence) length, the researchers noted that sentence lengths strongly correlated with the manually-rated grade levels.
+Because of this, sentence length was given a stronger weight in the formula (compared to previous formulas).
 
 For the building and validation of this formula, nine basic reading series were used.
 
-Finally, the authors offered recommendations while reviewing a reported score. First, if a score appears to be higher than expected, then you should exclude proper nouns\index{proper nouns!Wheeler-Smith} and rerun the test. Second, they recommended that when assigning a book for independent reading, assign it one level below the reported score. In other words, if a book scores at the 4^th^ grade level, then it should be assigned to 3^rd^ grade readers if they are reading it independently.
+Finally, the authors offered recommendations while reviewing a reported score.
+First, if a score appears to be higher than expected, then you should exclude proper nouns\index{proper nouns!Wheeler-Smith} and rerun the test.
+Second, they recommended that when assigning a book for independent reading, assign it one level below the reported score.
+In other words, if a book scores at the 4^th^ grade level, then it should be assigned to 3^rd^ grade readers if they are reading it independently.
 
 Wheeler-Smith formula:
 
@@ -61,6 +70,6 @@ Then, find the index value in the following chart to acquire the final readabili
 | 26.6–34.5   | Fourth grade          |
 +-------------+-----------------------+
 
-Table: (\#tab:wheeler-smith-conversion-table)Wheeler-Smith Grade-level Conversion Table
+: Wheeler-Smith Grade-level Conversion Table {#tbl-wheeler-smith-conversion-table}
 
 [^River]: This sample was taken from *Down Singing River*, Betts-Welch, American Book Company.\index{Wheeler-Smith|)}

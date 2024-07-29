@@ -30,7 +30,7 @@ The index score of Lix can be summarized as follows:
 | 50–59 | Difficult (technical literature) |
 | 60 and above | Very difficult |
 
-Table: Lix Index Table
+: Lix Index Table {#tbl-lix-indices}
 
 Note that Lix also includes a chart to visualize the meaning of its index score:
 
@@ -75,7 +75,7 @@ As a final note, Anderson contributed a grade-level conversion table for Lix ind
 | 10–14 | 2   |
 | Below 10 | 1   |
 
-Table: Lix Grade-level Conversion Table\index{Lix|)}
+: Lix Grade-level Conversion Table\index{Lix|)} {#tbl-lix-grade-levels}
 :::
 
 \newpage
