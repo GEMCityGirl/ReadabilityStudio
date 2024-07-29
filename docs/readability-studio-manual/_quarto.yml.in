@@ -15,12 +15,14 @@ pdf-cover: "images/non-generated/cover.pdf"
 number-sections: true
 crossref:
   chapters: true
+  sec-prefix: sec.
+  tbl-prefix: tbl.
 book:
   title: "${readstudio_DESCRIPTION} ${FULL_DISPLAY_VERSION}"
   subtitle: User Manual
   author: ${PROGRAM_AUTHOR}
   date: today
-  date-format: long
+  date-format: "YYYY"
   output-file: "readability-studio-manual"
   language: en
   search: false
