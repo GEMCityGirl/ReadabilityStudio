@@ -30,7 +30,11 @@ unlink(glue("{docFolder}/readability-studio-api/docs"), recursive=T)
 # delete helper files copied from the main project into others
 clearFolders <- function()
   {
+  unlink(glue("{docFolder}/R"), recursive=T)
+
   unlink(glue("{docFolder}/shortcuts-cheatsheet/R"), recursive=T)
+
+  unlink(glue("{docFolder}/release-notes/images"), recursive=T)
 
   unlink(glue("{docFolder}/readability-studio-api/images"), recursive=T)
   unlink(glue("{docFolder}/readability-studio-api/latex"), recursive=T)
@@ -78,18 +82,6 @@ PROGRAM_VERSION <- dplyr::filter(version_info, TAG == 'VERSION')$VALUE
 PROGRAM_AUTHOR <- dplyr::filter(version_info, TAG == 'PROGRAM_AUTHOR')$VALUE
 PROGRAM_NAME <- dplyr::filter(version_info, TAG == 'PROGRAM_NAME')$VALUE
 
-# When building a single *.qmd file as a PDF, embed this to the top of it
-# so that inline R code will evaluate.
-knitrQuartoSingleDocHeader <- "
-```{r}
-#| eval: true
-#| include: false
-
-library(glue)
-source(glue('{getwd()}/../readability-studio-manual/R/appdown.r'))
-UserManualMode <- FALSE
-```\n\n"
-
 # Coding Bible
 ##############
 
@@ -100,38 +92,40 @@ bookdown::render_book(input="index.Rmd",
 # Release Notes
 ###############
 
+# copy R script to parent so that single-chapter files can reference it
+dir_copy(glue("{docFolder}/readability-studio-manual/R"),
+         glue("{docFolder}/R"),
+         TRUE)
+
 # Note that this book has its own LaTeX files (i.e., does not copy them from readability-studio-manual).
 # This "book" doesn't have any front or back matter, so its preamble TeX file doesn't include that.
 setwd(glue("{docFolder}/release-notes/"))
 file_copy(glue("{docFolder}/readability-studio-manual/overviews/new-features.qmd"),
           glue("{docFolder}/release-notes/index.qmd"),
           TRUE)
-fileContents <- read_lines(glue("{docFolder}/release-notes/index.qmd"))
-cat(knitrQuartoSingleDocHeader, file = glue("{docFolder}/release-notes/index.qmd"))
-write_lines(fileContents, file = glue("{docFolder}/release-notes/index.qmd"), append = TRUE)
+dir_copy(glue("{docFolder}/readability-studio-manual/images"),
+         glue("{docFolder}/release-notes/images"),
+         TRUE)
+
 quarto::quarto_render(output_format="pdf", as_job=F)
+
 unlink(glue("{docFolder}/release-notes/index.qmd"))
 
 # Shortcuts Cheatsheet
 ######################
 
 setwd(glue("{docFolder}/shortcuts-cheatsheet/"))
-file_copy(glue("{docFolder}/readability-studio-manual/glossary/02-shortcuts.rmd"),
+file_copy(glue("{docFolder}/readability-studio-manual/glossary/shortcuts.qmd"),
           glue("{docFolder}/shortcuts-cheatsheet/index.qmd"),
           TRUE)
-dir_copy(glue("{docFolder}/readability-studio-manual/R"),
-         glue("{docFolder}/shortcuts-cheatsheet/R"),
-         TRUE)
-fileContents <- read_lines(glue("{docFolder}/shortcuts-cheatsheet/index.qmd"))
-cat(knitrQuartoSingleDocHeader, file = glue("{docFolder}/shortcuts-cheatsheet/index.qmd"))
-write_lines(fileContents, file = glue("{docFolder}/shortcuts-cheatsheet/index.qmd"), append = TRUE)
+
 quarto::quarto_render(output_format="pdf", as_job=F)
+
 unlink(glue("{docFolder}/shortcuts-cheatsheet/index.qmd"))
 
 # User Manual
 #############
 
-UserManualMode = TRUE
 setwd(glue("{docFolder}/readability-studio-manual/"))
 combine_files("readability-tests-english.qmd", "english")
 combine_files("readability-tests-spanish.qmd", "spanish")
@@ -139,7 +133,6 @@ combine_files("readability-tests-german.qmd", "german")
 combine_files("scoring-notes.qmd", "scoring-notes")
 
 quarto::quarto_render(output_format="pdf", as_job=F, profile="manual")
-
 quarto::quarto_render(output_format="html", as_job=F, profile="online")
 
 unlink(glue("{docFolder}/readability-studio-manual/readability-tests-english.qmd"))
@@ -187,12 +180,12 @@ dir_copy(glue("{docFolder}/readability-studio-manual/R"),
          TRUE)
 
 quarto::quarto_render(output_format="pdf", as_job=F)
+
 unlink(glue("{docFolder}/readability-studio-api/_variables.yml"))
 
 # Tests Reference Manual
 ########################
 
-UserManualMode = F
 setwd(glue("{docFolder}/readability-test-reference/"))
 dir_copy(glue("{docFolder}/readability-studio-manual/images"),
          glue("{docFolder}/readability-test-reference/images"),
