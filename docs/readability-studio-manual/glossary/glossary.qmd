@@ -215,7 +215,7 @@ plot(ggplot_box_legend())
 IRQ
 :::
 ::: {.glsdef data-latex=''}
-Interquartile range. Refer to figure @fig-boxplot.
+Interquartile range. Refer to @fig-boxplot.
 :::
 ::::
 
@@ -224,11 +224,10 @@ Interquartile range. Refer to figure @fig-boxplot.
 kurtosis\index{kurtosis}
 :::
 ::: {.glsdef data-latex=''}
-The peakedness of a distribution. Zero indicates a normal distribution, a negative value indicates a flat distribution, and a positive value indicates a sharp curve.  
+The peakedness of a distribution.
+Zero indicates a normal distribution, a negative value indicates a flat distribution, and a positive value indicates a sharp curve.  
 
-```{r, echo=F, fig.cap='Negative and positive kurtosis', fig.align='center'}
-knitr::include_graphics("../images/non-generated/kurtosis.png")
-```
+![Negative and positive kurtosis](../images/non-generated/kurtosis.png){#fig-kurtosis width=75%}
 :::
 ::::
 
@@ -324,7 +323,11 @@ overplotting
 ::: {.glsdef data-latex=''}
 When visualizing points along a single dimension (e.g., the y axis of a box plot), points with the same score will overlap each other. Because of this, it becomes difficult to fully see the distribution of the data. Considering the following box plot:
 
-```{r echo=F, fig.align='center', fig.cap="Box plot with no jittering", out.width='75%'}
+```{r}
+#| label: fig-boxplot-no-jittering
+#| fig-cap: "Box plot with no jittering"
+#| echo: false
+
 boxplot(len ~ dose, data = ToothGrowth,
               main = "Guinea Pigs' Tooth Growth",
               xlab = "Vitamin C dose mg",
@@ -336,7 +339,11 @@ Although we can interpret the quartile ranges, it is not obvious how the data cl
 
 To correct this, a technique called jittering\index{box plots!jittering} is used to adjust the x axis values of overlapping points. Traditionally, jittering\index{jittering|see{box plots,jittering}} uses randomness to adjust the points’ position around both sides of the axis, as such:
 
-```{r, echo=F, fig.cap="Box plot with random jittering", fig.align='center', out.width='75%'}
+```{r}
+#| label: fig-boxplot-random-jittering
+#| fig-cap: "Box plot with random jittering"
+#| echo: false
+
 boxplot(len ~ dose, data = ToothGrowth,
               main = "Guinea Pigs' Tooth Growth",
               xlab = "Vitamin C dose mg",
@@ -346,7 +353,11 @@ stripchart(len ~ dose, data = ToothGrowth, method='jitter', add=T, pch=20, col=2
 
 Because of this randomness, some points may still overlap. To improve this, a newer technique known as beeswarm jittering instead adjusts points the minimal distance from the axis. This ensures that each point is seen and more tightly packed (offering a more accurate view of how the data are distributed). And example of this is as follows:
 
-```{r, echo=F, fig.cap="Box plot with beeswarm jittering", fig.align='center', out.width='75%'}
+```{r}
+#| label: fig-boxplot-beeswarm-jittering
+#| fig-cap: "Box plot with beeswarm jittering"
+#| echo: false
+
 library(beeswarm)
 
 boxplot(len ~ dose, data = ToothGrowth,
@@ -388,11 +399,11 @@ The distance between the lowest and highest values in a range of data.
 skewness\index{skewness}
 :::
 ::: {.glsdef data-latex=''}
-The asymmetry of the probability distribution. A zero skew indicates a symmetrical balance in the distribution. A negative skew indicates that the left side of the distribution is longer and most of the values are concentrated on the right. A positive skew indicates that the right side of the distribution is longer and most of the values are concentrated on the left.  
+The asymmetry of the probability distribution. A zero skew indicates a symmetrical balance in the distribution.
+A negative skew indicates that the left side of the distribution is longer and most of the values are concentrated on the right.
+A positive skew indicates that the right side of the distribution is longer and most of the values are concentrated on the left.  
 
-```{r, echo=F, fig.cap='Negative and positive skewness', fig.align='center'}
-knitr::include_graphics("../images/non-generated/skewness.png")
-```
+![Negative and positive skewness](../images/non-generated/skewness.png){#fig-skewness width=75%}
 :::
 ::::
 
