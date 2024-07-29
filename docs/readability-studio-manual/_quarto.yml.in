@@ -17,6 +17,7 @@ crossref:
   chapters: true
   sec-prefix: sec.
   tbl-prefix: tbl.
+  fig-prefix: fig.
 book:
   title: "${readstudio_DESCRIPTION} ${FULL_DISPLAY_VERSION}"
   subtitle: User Manual
