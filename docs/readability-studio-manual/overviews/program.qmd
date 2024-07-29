@@ -11,7 +11,7 @@ source('../R/appdown.r')
 
 *Readability Studio* eases the task of performing these tests. The program quickly imports and analyzes your work using the most popular tests. In addition, it offers insightful explanations and suggestions for improving your documents.
 
-### Readability Studio's Unique Features {#sec-program-unique-features}
+### Readability Studio's Unique Features {-}
 
 #### Numerous insightful tests {-}
 

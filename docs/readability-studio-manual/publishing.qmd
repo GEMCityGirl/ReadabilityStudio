@@ -26,7 +26,7 @@ Numerous formats are available for each type of window:
 
 All windows can also be exported at once by clicking the arrow beneath `r keys("Save")` and selecting [**Export All...**](#sec-export-all-options).
 
-## Scores Export Options{-#sec-scores-export}
+## Scores Export Options{#sec-scores-export}
 
 When [exporting](#sec-exporting)\index{exporting!scores} readability scores\index{scores!exporting} from a standard project, the following export options are available:
 
