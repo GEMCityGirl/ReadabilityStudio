@@ -1,0 +1,18 @@
+project:
+  output-dir: "docs-test-reference"
+book:
+  subtitle: Readability Test Reference
+  output-file: "readability-test-reference"
+  chapters:
+    - index.qmd
+    - part: "Overviews"
+      chapters:
+      - overviews/intro.qmd
+    - part: "Readability Tests"
+      chapters:
+      - readability-tests-english.qmd
+      - readability-tests-spanish.qmd
+      - readability-tests-german.qmd
+      - scoring-notes.qmd
+  appendices:
+    - acknowledgements/intro.qmd

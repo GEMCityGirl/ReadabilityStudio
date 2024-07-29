@@ -42,6 +42,7 @@ clearFolders <- function()
   unlink(glue("{docFolder}/readability-test-reference/css"), recursive=T)
   unlink(glue("{docFolder}/readability-test-reference/R"), recursive=T)
   unlink(glue("{docFolder}/readability-test-reference/data"), recursive=T)
+  unlink(glue("{docFolder}/readability-test-reference/overviews"), recursive=T)
   unlink(glue("{docFolder}/readability-test-reference/scoring-notes"), recursive=T)
   unlink(glue("{docFolder}/readability-test-reference/acknowledgements"), recursive=T)
   unlink(glue("{docFolder}/readability-test-reference/english"), recursive=T)
@@ -193,42 +194,14 @@ unlink(glue("{docFolder}/readability-studio-api/_variables.yml"))
 
 UserManualMode = F
 setwd(glue("{docFolder}/readability-test-reference/"))
-dir_create(glue("{docFolder}/readability-test-reference/images"))
-file_copy(glue("{docFolder}/readability-studio-manual/images/non-generated/CC_BY-NC-ND.png"),
-          glue("{docFolder}/readability-test-reference/images/CC_BY-NC-ND.png"),
+dir_copy(glue("{docFolder}/readability-studio-manual/images"),
+         glue("{docFolder}/readability-test-reference/images"),
+         TRUE)
+file_copy(glue("{docFolder}/readability-studio-manual/_quarto.yml"),
+          glue("{docFolder}/readability-test-reference/_quarto.yml"),
           TRUE)
-file_copy(glue("{docFolder}/readability-studio-manual/images/non-generated/cover-tests.pdf"),
-          glue("{docFolder}/readability-test-reference/images/cover.pdf"),
-          TRUE)
-file_copy(glue("{docFolder}/readability-studio-manual/images/non-generated/cover-tests.png"),
-          glue("{docFolder}/readability-test-reference/images/cover.png"),
-          TRUE)
-file_copy(glue("{docFolder}/readability-studio-manual/images/flesch-chart.png"),
-          glue("{docFolder}/readability-test-reference/images/flesch-chart.png"),
-          TRUE)
-file_copy(glue("{docFolder}/readability-studio-manual/images/frygraph.png"),
-          glue("{docFolder}/readability-test-reference/images/frygraph.png"),
-          TRUE)
-file_copy(glue("{docFolder}/readability-studio-manual/images/lix-gauge.png"),
-          glue("{docFolder}/readability-test-reference/images/lix-gauge.png"),
-          TRUE)
-file_copy(glue("{docFolder}/readability-studio-manual/images/raygorgraph.png"),
-          glue("{docFolder}/readability-test-reference/images/raygorgraph.png"),
-          TRUE)
-file_copy(glue("{docFolder}/readability-studio-manual/images/crawford-graph.png"),
-          glue("{docFolder}/readability-test-reference/images/crawford-graph.png"),
-          TRUE)
-file_copy(glue("{docFolder}/readability-studio-manual/images/frase-graph.png"),
-          glue("{docFolder}/readability-test-reference/images/frase-graph.png"),
-          TRUE)
-file_copy(glue("{docFolder}/readability-studio-manual/images/gpm-fry.png"),
-          glue("{docFolder}/readability-test-reference/images/gpm-fry.png"),
-          TRUE)
-file_copy(glue("{docFolder}/readability-studio-manual/images/german-lix-gauge.png"),
-          glue("{docFolder}/readability-test-reference/images/german-lix-gauge.png"),
-          TRUE)
-file_copy(glue("{docFolder}/readability-studio-manual/images/schwartz.png"),
-          glue("{docFolder}/readability-test-reference/images/schwartz.png"),
+file_copy(glue("{docFolder}/readability-studio-manual/_quarto-reference.yml"),
+          glue("{docFolder}/readability-test-reference/_quarto-reference.yml"),
           TRUE)
 dir_copy(glue("{docFolder}/readability-studio-manual/english"),
          glue("{docFolder}/readability-test-reference/english"),
@@ -238,6 +211,9 @@ dir_copy(glue("{docFolder}/readability-studio-manual/spanish"),
          TRUE)
 dir_copy(glue("{docFolder}/readability-studio-manual/german"),
          glue("{docFolder}/readability-test-reference/german"),
+         TRUE)
+dir_copy(glue("{docFolder}/readability-studio-manual/overviews"),
+         glue("{docFolder}/readability-test-reference/overviews"),
          TRUE)
 dir_copy(glue("{docFolder}/readability-studio-manual/scoring-notes"),
          glue("{docFolder}/readability-test-reference/scoring-notes"),
@@ -257,9 +233,6 @@ dir_copy(glue("{docFolder}/readability-studio-manual/R"),
 dir_copy(glue("{docFolder}/readability-studio-manual/data"),
          glue("{docFolder}/readability-test-reference/data"),
          TRUE)
-file_copy(glue("{docFolder}/readability-studio-manual/overviews/01-intro.rmd"),
-          glue("{docFolder}/readability-test-reference/01-intro.rmd"),
-          TRUE)
 file_copy(glue("{docFolder}/readability-studio-manual/author.qmd"),
           glue("{docFolder}/readability-test-reference/author.qmd"),
           TRUE)
@@ -274,14 +247,12 @@ combine_files("readability-tests-spanish.qmd", "spanish")
 combine_files("readability-tests-german.qmd", "german")
 combine_files("scoring-notes.qmd", "scoring-notes",
               "(intro|grade[-]level[-]results|cloze)")
-combine_files("acknowledgements.qmd", "acknowledgements",
-              ("(intro)"))
 
-bookdown::render_book(input="index.Rmd",
-                      output_format="bookdown::pdf_book",
-                      output_dir="docs")
-unlink(glue("{docFolder}/readability-test-reference/01-intro.Rmd"))
+quarto::quarto_render(output_format="pdf", as_job=F, profile="reference")
+
 unlink(glue("{docFolder}/readability-test-reference/readability-tests-english.qmd"))
+unlink(glue("{docFolder}/readability-test-reference/_quarto.yml"))
+unlink(glue("{docFolder}/readability-test-reference/_quarto-reference.yml"))
 unlink(glue("{docFolder}/readability-test-reference/readability-tests-spanish.qmd"))
 unlink(glue("{docFolder}/readability-test-reference/readability-tests-german.qmd"))
 unlink(glue("{docFolder}/readability-test-reference/scoring-notes.qmd"))

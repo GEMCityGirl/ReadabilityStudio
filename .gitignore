@@ -1,7 +1,7 @@
 # Output files
 /docs/coding-bible/docs
 /docs/readability-studio-api/docs
-/docs/readability-test-reference/docs
+/docs/readability-test-reference/docs-test-reference
 /docs/shortcuts-cheatsheet/docs
 /docs/doxygen/html
 /docs/readability-studio-manual/docs
@@ -55,6 +55,7 @@
 /docs/readability-studio-api/readability-studio-api.tex
 /docs/readability-studio-api/enums
 /docs/readability-studio-api/libraries
+/docs/readability-test-reference/.quarto
 /docs/readability-test-reference/latex/
 /docs/readability-test-reference/css/
 /docs/readability-test-reference/images/

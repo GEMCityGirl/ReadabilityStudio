@@ -1,0 +1,20 @@
+```{r}
+#| include: false
+#| eval: true
+
+source('R/appdown.r')
+```
+
+```{asis, echo=knitr::is_html_output()}
+# Preface {#sec-cover .unnumbered}
+
+<!-- Just want this preface in the gitbook.
+     PDF output will have its own copyright page after the title.-->
+
+*Readability Studio* provides numerous readability tests for English, Spanish, and German documents.
+This manual is a reference for those tests, explaining their uses, origins, methodologies, and validation.
+
+![](images/non-generated/CC_BY-NC-ND.png)
+
+This book is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivs 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/).
+```
