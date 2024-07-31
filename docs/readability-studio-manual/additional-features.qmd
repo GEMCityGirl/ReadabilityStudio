@@ -82,7 +82,7 @@ For example, if your base webpage is *www.mybusiness.com/history/aboutus.html*, 
 
 These options enable you to download the files from the website prior to analyzing them.
 Rather than analyzing the files directly from the website, the application will analyze the local files.
-If [file linking](#sec-options-document) is enabled, then the project will link to these local files instead of the website.
+If [file linking](#sec-project-settings) is enabled, then the project will link to these local files instead of the website.
 
 This option is recommended if you need to make edits to the files before analyzing them. It may also be recommended to improve performance, as analyzing local files will be faster than reading them from a website.
 

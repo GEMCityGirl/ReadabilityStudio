@@ -5,7 +5,7 @@ The New Dale-Chall\index{Dale-Chall!zzzzz@\igobble|seealso{New Dale-Chall}} read
 - Regular plural and possessive forms of common words (i.e., *s*, *es*, and *ies* endings). Irregular forms (e.g., *oxen*) are not familiar.
 - Adjectival and verb forms of common words with the following endings: *d*, *ed*, *ied*, *ing*, *s*, *es*, *ies*, *r*, *er*, *est*, *ier*, *iest*.
 - Compound and hyphenated words if both parts of the word are common words. For example, *long-haired* and *and/or* would be familiar. Note that forward slashes (*/*) are also treated as compound-word punctuation.
-- The [first instance of any proper noun](#sec-options-dale-chall)—all subsequent occurrences are considered familiar.
+- The [first instance of any proper noun](#sec-readability-test-options)—all subsequent occurrences are considered familiar.
 - All numerals.\index{numerals!New Dale-Chall}
 
 ::: {.notesection data-latex=""}

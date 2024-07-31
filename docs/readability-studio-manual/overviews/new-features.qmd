@@ -207,7 +207,7 @@ source('../R/appdown.r')
 - Added custom test features:
   - Added feature to create custom tests based on any existing regression-based test.
     (Refer to [@sec-creating-custom-flesch-test]{.content-visible when-profile="online"}["Creating a Modified Flesch Test"]{.content-hidden when-profile="online"} for an example.)
-  - Added `GunningFog` option to `SentenceCount()` function. This will return the sentence count using the system's [Gunning Fog method](#sec-options-gunning-fog).
+  - Added `GunningFog` option to `SentenceCount()` function. This will return the sentence count using the system's [Gunning Fog method](#sec-readability-test-options).
   - Added `MiniWordCount()` function.
   - Added `HardFogWordCount()` function.
 - [Farr-Jenkins-Paterson](#sec-farr-jenkins-paterson) now includes floating-point precision in its results.
@@ -228,7 +228,7 @@ source('../R/appdown.r')
 - Fractions (½, ¼, and ¾), superscripts (^0^-^9^), and subscripts (~0~-~9~) are now recognized by syllable counters.
 - Full-width (Ｆｕｌｌ－ｗｉｄｔｈ) English letters, numbers, and punctuation are now recognized.
 - Expanded words ignored by spell checker when **ignore programming words** is selected.
-- [Overused words (x Sentence)](#sec-reviewing-overused-by-sentence) now excludes acronyms.
+- [Overused words (x Sentence)](#sec-reviewing-standard-grammar) now excludes acronyms.
 - [All Words (Condensed)](#sec-reviewing-word-breakdowns) now excludes common words (e.g., *the*), numerals, and filenames.
 - Lix and Rix are now available in the **Adult** readability tests menu.
 - Added **Ignore social media hashtags** option to spell-checker.
@@ -275,7 +275,7 @@ source('../R/appdown.r')
 - Custom brush now maintains the aspect ratio of its image.
 - Added option to not include labels on histograms.
 - Added option to not include labels on barcharts.
-- Graph [watermarks](#sec-watermark-and-logo) now support the tags `&[DATETIME]`, `&[DATE]`, and `&[TIME]`. These are expanded to their literal values at the time of rendering the graph.
+- Graph [watermarks](#sec-options-graphs) now support the tags `&[DATETIME]`, `&[DATE]`, and `&[TIME]`. These are expanded to their literal values at the time of rendering the graph.
 - Color fades are now included when exporting as SVG.
 
 ### Documentation Enhancements {-}
@@ -321,12 +321,12 @@ source('../R/appdown.r')
 
 ### General Enhancements {-}
 
-- Added option to append an [additional document](#sec-additional-document) to any document that you analyze.
+- Added option to append an [additional document](#sec-project-settings) to any document that you analyze.
 - Rearranged grammar results in order of importance.
 - Added new [Sentences Breakdown](#sec-reviewing-sentences-breakdown) section to standard and batch projects. The sentence-length box plot formerly shown in the **Summary Statistics** section is now available here in standard projects. Overly-long sentence lists formerly shown in the **Grammar** section for both types of projects are now in here.
 - Highlighted-word reports are now under the new **Words Breakdown** section. Each word report is included underneath its respective word list. For example, the **3+ syllable** highlighted report will appear beneath the **3+ syllable** tabular list.
 - Added new **All Words** list to batch projects.
-- Added new [Overused Words (x Sentence)](#sec-reviewing-overused-by-sentence) list to standard and batch projects.
+- Added new [Overused Words (x Sentence)](#sec-reviewing-standard-grammar) list to standard and batch projects.
 - Added new [All Words (Condensed)](#sec-reviewing-word-breakdowns) list to standard and batch projects.
 - Added new **Sentence Length** [heatmap](#sec-reviewing-sentences-breakdown) to standard projects.
 - Added [**Allow colloquialisms**](#sec-options-grammar) feature to the English spell checker.

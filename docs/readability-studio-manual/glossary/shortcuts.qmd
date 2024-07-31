@@ -5,7 +5,13 @@
 source('../R/appdown.r')
 ```
 
+::: {.content-visible when-profile="manual"}
+# Keyboard Shortcuts
+:::
+
+::: {.content-hidden when-profile="manual"}
 # Keyboard Shortcuts {.unnumbered}
+:::
 
 <!-- no break spaces are to add blank lines between each row in the shortcuts table,
      making it easier to read.-->

@@ -164,10 +164,10 @@ Not only is it long, but it is a little confusing. It is unclear what was mixed 
 Continue this process for as many of the long sentences as you can. Sentences in the 20-word range are normally acceptable, but sentences over 30 words should be revised.
 
 Other useful tools for shortening sentences in *Readability Studio* are the other pages in the **Grammar** section.
-Click on the **Grammar** icon on the project sidebar. Click on the [**Repeated Words**](#sec-reviewing-repeated-words) page and note how the phrase *and and* is in the file (obviously a typo).
-Next, click on the [**Redundant Phrases**](#sec-reviewing-redundant-phrases) page.
+Click on the **Grammar** icon on the project sidebar. Click on the [**Repeated Words**](#sec-reviewing-standard-grammar) page and note how the phrase *and and* is in the file (obviously a typo).
+Next, click on the [**Redundant Phrases**](#sec-reviewing-standard-grammar) page.
 Note how the phrase *mixed together* is redundant and the program is suggesting that it be replaced with *mixed*.
-A [**Wordy Items**](#sec-reviewing-wordy-items) and [**Clichés**](#sec-reviewing-cliches) page may also appear, but there do not seem to be any of these in this file.
+A [**Wordy Items**](#sec-reviewing-standard-grammar) and [**Clichés**](#sec-reviewing-standard-grammar) page may also appear, but there do not seem to be any of these in this file.
 By fixing these items, we can shorten sentences and improve the overall document.
 
 Although there are not many difficult words in this file, it may be worthwhile to at least review them. Click on the **Words Breakdown** icon on the project sidebar. This will display various lists of difficult words. Select the **3+ syllable words** page and click on the **Syllable Count** column header twice to [sort](#sec-column-sorting) the words into descending order. As illustrated below, there are a few words containing four syllables, which can be difficult for most readers.

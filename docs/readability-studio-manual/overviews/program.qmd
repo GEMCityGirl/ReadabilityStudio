@@ -127,17 +127,17 @@ Difficult words and sentences are also shown highlighted in their original conte
 
 Along with readability analysis, *Readability Studio* also offers basic grammar checking. The program can detect the following problems:
 
-- [wording errors and known misspellings (English only)](#sec-reviewing-wording-errors)
-- [possible misspellings (English only)](#sec-reviewing-misspellings)
-- [repeated words](#sec-reviewing-repeated-words)
-- [article mismatching (English only)](#sec-reviewing-article-mismatches)
-- [redundant phrases (English only)](#sec-reviewing-redundant-phrases)
-- [wordy items (English only)](#sec-reviewing-wordy-items)
-- [clichés (English only)](#sec-reviewing-cliches)
+- [wording errors and known misspellings (English only)](#sec-reviewing-standard-grammar)
+- [possible misspellings (English only)](#sec-reviewing-standard-grammar)
+- [repeated words](#sec-reviewing-standard-grammar)
+- [article mismatching (English only)](#sec-reviewing-standard-grammar)
+- [redundant phrases (English only)](#sec-reviewing-standard-grammar)
+- [wordy items (English only)](#sec-reviewing-standard-grammar)
+- [clichés (English only)](#sec-reviewing-standard-grammar)
 - [overly-long sentences](#sec-reviewing-sentences-breakdown)
-- [lowercased sentences](#sec-reviewing-lowercased-sentences)
-- [sentences that begin with conjunctions](#sec-reviewing-conjunction-sentences)
-- [passive voice (English only)](#sec-reviewing-passive-voice)
+- [lowercased sentences](#sec-reviewing-standard-grammar)
+- [sentences that begin with conjunctions](#sec-reviewing-standard-grammar)
+- [passive voice (English only)](#sec-reviewing-standard-grammar)
 
 These issues are shown highlighted in your document for easy review.
 They are also aggregated into sortable lists to give a general overview of any problems and to assist in finding specific issues.

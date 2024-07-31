@@ -215,9 +215,9 @@ Also, can't use kable here because we have index tags embedded in the text.
 
 : Document Statistics Functions {#tbl-formula-doc-stats}
 
-^a^ Uses the [Dale-Chall text-exclusion](#sec-options-dale-chall) method.\
-^b^ Uses the [Harris-Jacobson text-exclusion method](#sec-options-harris-jacobson).\
-^c^ Uses the [Gunning Fog](#sec-options-gunning-fog) sentence-counting method.\
+^a^ Uses the [Dale-Chall text-exclusion](#sec-readability-test-options) method.\
+^b^ Uses the [Harris-Jacobson text-exclusion method](#sec-readability-test-options).\
+^c^ Uses the [Gunning Fog](#sec-readability-test-options) sentence-counting method.\
 This will be either traditional sentence counting or unit counting.
 :::
 

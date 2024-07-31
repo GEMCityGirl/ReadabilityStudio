@@ -70,7 +70,7 @@ This is useful for when your document contains programmer code that you wish to 
 
 By default, lowercase words can be considered the start of a new sentence (with the exception mentioned above).
 Although it is poor grammar to not capitalize the first word of a sentence, this writing style is often found in some literature.
-This behavior can be toggled using the option [**Sentences must begin with capitalized words**](#sec-options-sentence-deduction).
+This behavior can be toggled using the option [**Sentences must begin with capitalized words**](#sec-document-analysis).
 
 ## Line (Sentence) Chaining\index{sentences!chaining} {#sec-line-chaining}
 
@@ -161,7 +161,10 @@ Before cleaning the blade...
 :::
 ::::
 
-In this case, these two lines will be erroneously joined into one sentence. To completely disable all possible line chaining, select the option [**Line ends always begin a new paragraph**](#sec-options-sentence-deduction). Note that this option is only recommended if all line ends in your document represent new paragraphs. If your document contains line ends to control the width of the text, then selecting this option will cause incorrect sentence deduction.
+In this case, these two lines will be erroneously joined into one sentence.
+To completely disable all possible line chaining, select the option [**Line ends always begin a new paragraph**](#sec-document-analysis).
+Note that this option is only recommended if all line ends in your document represent new paragraphs.
+If your document contains line ends to control the width of the text, then selecting this option will cause incorrect sentence deduction.
 
 ## Controlling How Sentences are Deduced\index{sentences!controlling deduction}
 

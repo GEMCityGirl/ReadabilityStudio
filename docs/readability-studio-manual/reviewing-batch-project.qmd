@@ -57,7 +57,7 @@ By default, the following statistics for each test are included:
 :::
 
 ::: {.minipage data-latex="{\textwidth}"}
-If [**Extended Information**](#sec-options-summary-report) is enabled, then these additional statistics will be included:
+If [**Extended Information**](#sec-options-statistics) is enabled, then these additional statistics will be included:
 
 - [Median](#sec-stat-terms)\index{median}: the middle test score. This represents the middle point separating the lower and upper halves of the scores. This is calculated by sorting the scores and taking the score in middle if the number of scores is odd. If the number of scores is even, then the means of the two middle points is taken.
 - [Skewness](#sec-stat-terms)\index{skewness}: the asymmetry of the scores' distribution.
@@ -108,7 +108,7 @@ knitr::include_graphics("images/histogrades.png")
 
 We interpret this first by looking at the highest bar. The label above it displays *15*, which is the number of documents in that category. Now, to see the category, we look at the x-axis labels below the bar.
 The *10* on the middle of the bar indicates the bar's range (in this case, the 10^th^ grade).
-Because we are [rounding](#sec-options-histograms) our scores down (the default), scores such as 9.7 will be rounded down and fall into the previous bin (i.e., bar).
+Because we are [rounding](#sec-options-graphs) our scores down (the default), scores such as 9.7 will be rounded down and fall into the previous bin (i.e., bar).
 Scores between 10.0 and 10.9 will fall into this bin; therefore, this bar will represent the 10^th^ grade.
 
 ::: {.tipsection data-latex=""}
@@ -131,10 +131,10 @@ If we revise these documents and reload the project (`r keys("F5")`), then these
 knitr::include_graphics("images/histoimproved.png")
 ```
 
-The appearance of these histograms can be customized from the [**Histogram**](#sec-options-histograms) page of either the [**Options**](#sec-options-overview) or [**Project Properties**](#sec-options-overview) dialog.
+The appearance of these histograms can be customized from the [**Histogram**](#sec-options-graphs) page of either the [**Options**](#sec-options-overview) or [**Project Properties**](#sec-options-overview) dialog.
 
 ::: {.notesection data-latex=""}
-The [binning](#sec-options-histograms) method for a project is only applied to index and predicted-cloze score histograms.
+The [binning](#sec-options-graphs) method for a project is only applied to index and predicted-cloze score histograms.
 Grade-level histograms will always show one bar for each grade level, and the bar axis will start at **0** (i.e., Kindergarten).
 :::
 
@@ -212,7 +212,7 @@ To find the longest sentence, [sort](#sec-column-sorting) the **Longest Sentence
 
 ![](images/batchlongestsentence.png)
 
-If the test scores are indicating that the documents are too difficult for your target audience, then review the overly-long sentences. You should consider splitting these sentences into smaller ones and revising any [wordy items](#sec-reviewing-batch-wordiness).
+If the test scores are indicating that the documents are too difficult for your target audience, then review the overly-long sentences. You should consider splitting these sentences into smaller ones and revising any [wordy items](#sec-reviewing-batch-grammar).
 
 To view a specific document's longest sentence, double-click on its row in this list. A vertical display of that document's longest sentence will be shown:
 
@@ -236,7 +236,7 @@ Also, from any of these windows you can create a [standard project](#sec-creatin
 
 This is useful for reviewing a particular document in greater detail. Note that when this standard project is created, it will copy all the project settings from the batch project. These options may differ from your [global configurations](#sec-options-overview).
 
-### Reviewing Conjunction-Starting Sentences {#sec-reviewing-batch-conjunction-sentences}
+### Reviewing Conjunction-Starting Sentences {-}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Conjunction-Starting Sentences** subitem. This window will display a list of all sentences that begin with coordinating conjunctions.
 
@@ -250,13 +250,13 @@ knitr::include_graphics("images/batchconjunctionviewitem.png")
 
 Refer to @sec-reviewing-standard-grammar to learn more about conjunction-starting sentences.
 
-### Reviewing Lowercased Sentences {#sec-reviewing-batch-lowercased-sentences}
+### Reviewing Lowercased Sentences {-}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Lowercased Sentences** subitem. This window will display a list of all sentences that begin with lowercased words (which is usually a typo).
 
 ![](images/batchlowersentences.png)
 
-Note that if the option [**Sentences must begin with capitalized words**](#sec-options-sentence-deduction) is enabled, then this feature will be limited to sentences that begin new paragraphs. If you want to search for any possible sentences that begin with lowercased words, then you should leave this option unchecked.
+Note that if the option [**Sentences must begin with capitalized words**](#sec-document-analysis) is enabled, then this feature will be limited to sentences that begin new paragraphs. If you want to search for any possible sentences that begin with lowercased words, then you should leave this option unchecked.
 
 To view a specific document's lowercased sentences, double-click on its row in this list. A vertical display of that document's lowercased sentences will be shown:
 
@@ -264,7 +264,7 @@ To view a specific document's lowercased sentences, double-click on its row in t
 knitr::include_graphics("images/batchlowersentenceviewitem.png")
 ```
 
-### Reviewing Repeated Words {#sec-reviewing-batch-repeated-words}
+### Reviewing Repeated Words {-}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Repeated Words** subitem. This window will display a list of all repeated words from each document.
 
@@ -284,7 +284,7 @@ knitr::include_graphics("images/batchrepeatedviewitem.png")
 
 Refer to @sec-reviewing-standard-grammar and @sec-repeated-word-exceptions to learn how repeated words are detected.
 
-### Reviewing Article Mismatches {#sec-reviewing-batch-articles}
+### Reviewing Article Mismatches {-}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Article Mismatches** subitem. This window will display a list of articles (i.e., *a* and *an*) that do not match their following noun.
 
@@ -302,7 +302,7 @@ knitr::include_graphics("images/viewitemarticlemismatch.png")
 
 Refer to @sec-article-mismatching to learn more.
 
-### Reviewing Wording Errors & Misspellings {#sec-reviewing-batch-wording-errors}
+### Reviewing Wording Errors & Misspellings {-}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Errors & Misspellings** subitem.
 This window will display a list of misused phrases, grammatically incorrect wording, and known misspellings from each document.
@@ -319,7 +319,7 @@ To view a specific document's errors, double click on its row. A vertical displa
 knitr::include_graphics("images/batchwordingerrorsviewitem.png")
 ```
 
-### Reviewing Possible Misspellings {#sec-reviewing-batch-misspellings}
+### Reviewing Possible Misspellings {-}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Possible Misspellings** subitem.
 This window will display a list of all possible misspellings from each document.
@@ -338,7 +338,7 @@ knitr::include_graphics("images/batchmisspellingsviewitem.png")
 
 To add any document's misspellings to your dictionary, double click on its row to show the **Add to Dictionary** dialog. From here, you can add any (or all) reported misspellings to your dictionary. Afterwards, these words will no longer be reported as misspelled.
 
-### Reviewing Redundant Phrases {#sec-reviewing-batch-redundant-phrases}
+### Reviewing Redundant Phrases {-}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Redundant Phrases** subitem. This window will display a list of redundant phrases from the documents. Suggested replacements will also be shown next to each phrase in this list.
 
@@ -358,7 +358,7 @@ knitr::include_graphics("images/batchredundantphrasesviewitem.png")
 
 Refer to @sec-reviewing-standard-grammar for an explanation of what redundant phrase are.
 
-### Reviewing Wordy Items {#sec-reviewing-batch-wordiness}
+### Reviewing Wordy Items {-}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Wordy Items** subitem. This window will display a list of wordy phrases and difficult words from the documents. Suggested replacements will also be shown next to each phrase in this list.
 
@@ -376,7 +376,7 @@ knitr::include_graphics("images/viewitemwordyphrase.png")
 
 Refer to @sec-reviewing-standard-grammar for an explanation about wordy phrases.
 
-### Reviewing Clichés {#sec-reviewing-batch-cliches}
+### Reviewing Clichés {-}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Clichés** subitem. This window will display a list of clichés from the documents. Suggested replacements will be shown next to each cliché in this list.
 
@@ -396,7 +396,7 @@ knitr::include_graphics("images/batchclichesviewitem.png")
 
 Refer to @sec-reviewing-standard-grammar for an explanation about clichés.
 
-### Reviewing Passive Voice {#sec-reviewing-batch-passive-voices}
+### Reviewing Passive Voice {-}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Passive Voice** subitem. This window will display a list of all passive phrases from each document.
 
@@ -412,7 +412,7 @@ knitr::include_graphics("images/batchpassivevoiceviewitem.png")
 
 Refer to @sec-reviewing-standard-grammar for an explanation about passive phrases.
 
-### Reviewing Overused Words (x Sentence) {#sec-reviewing-batch-overused-words}
+### Reviewing Overused Words (x Sentence) {-}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Overused Words (x Sentence)** subitem. This window will display a list of all sentences that use the same word multiple times from each document. (These are more of style suggestions, rather than grammar issues.) When reviewing these, it is recommended to change some of the repeated words to add more variety to your content.
 
@@ -428,7 +428,8 @@ Refer to @sec-reviewing-standard-grammar for an explanation about overused words
 
 ## Dolch Sight Words {#sec-reviewing-batch-dolch}
 
-After opening a project, click on the **Dolch Sight Words** icon on the project sidebar. There will be three lists available: **Dolch Word Coverage**, **Dolch Words**, and **Non-Dolch Words**.
+After opening a project, click on the **Dolch Sight Words** icon on the project sidebar.
+There will be three lists available: **Dolch Word Coverage**, **Dolch Words**, and **Non-Dolch Words**.
 
 The **Dolch Word Coverage** subitem will display the **Dolch** word [coverage](#sec-reviewing-dolch) for each document:
 
@@ -440,13 +441,13 @@ The **Dolch Words** subitem will display the percentages of **Dolch** words used
 
 ![](images/batchdolchwords.png)
 
-Note that the raw counts of these words will also be included if [**Extended Information**](#sec-options-summary-report) is enabled.
+Note that the raw counts of these words will also be included if [**Extended Information**](#sec-options-statistics) is enabled.
 
 The **Non-Dolch Words** subitem will display the percentages of words from each document that do not appear on any of the **Dolch** lists:
 
 ![](images/batchdolchnonwords.png)
 
-Note that the raw counts of these words will also be included if [**Extended Information**](#sec-options-summary-report) is enabled.
+Note that the raw counts of these words will also be included if [**Extended Information**](#sec-options-statistics) is enabled.
 
 \newpage
 
