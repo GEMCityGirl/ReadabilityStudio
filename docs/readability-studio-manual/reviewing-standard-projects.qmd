@@ -232,7 +232,7 @@ To find the most complex words, sort the **Syllable Count** column of the **3+ S
 
 ![](images/difficultwords.png)
 
-If your test scores are indicating that the document is too difficult for your target audience, then you should review overly complex or long words. You may consider seeing if any shorter synonyms could be used in their place. The same type of review can also be performed with the **6+ Characters** list by sorting the **Character Count** column.
+If your test scores indicate that the document is too difficult for your audience, then you should review overly complex or long words. You may consider seeing if any shorter synonyms could be used in their place. The same type of review can also be performed with the **6+ Characters** list by sorting the **Character Count** column.
 
 To help find the most difficult words for the New Dale-Chall list, select the **Dale-Chall (Unfamiliar)** subitem and sort the **Frequency** column. The most frequently occurring words are the ones that should be replaced with more familiar synonyms that most readers would recognize.
 
@@ -347,7 +347,7 @@ As you can see below, the longest sentence is now shown at the top of the list.
 To view any sentence in its original context, double-click on it.
 This will take you to the [**Highlighted Report**](#sec-reviewing-standard-grammar) page with that sentence selected.
 
-If the test scores are indicating that the document is too difficult for your target audience, then review the overly-long sentences.
+If the test scores indicate that the document is too difficult for your audience, then review the overly-long sentences.
 You should consider splitting these sentences into smaller ones and revising any [wordy items](#sec-reviewing-standard-grammar).
 
 Note that if there are no long sentences in your document, then this window will not be included.

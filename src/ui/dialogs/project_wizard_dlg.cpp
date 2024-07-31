@@ -435,7 +435,7 @@ void ProjectWizardDlg::CreateControls()
         wxBoxSizer* minDocSizeBoxSizer = new wxBoxSizer(wxHORIZONTAL);
 
         wxStaticText* minDocSizeLabel =
-            new wxStaticText(page, wxID_STATIC, _(L"Minimum document word count:"),
+            new wxStaticText(page, ID_MIN_WORDS_LABEL, _(L"Minimum document word count:"),
                              wxDefaultPosition, wxDefaultSize, wxALIGN_LEFT);
         minDocSizeBoxSizer->Add(minDocSizeLabel, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT,
                                 wxSizerFlags::GetDefaultBorder());
@@ -864,8 +864,8 @@ void ProjectWizardDlg::CreateControls()
         industryTypes.Add(_(L"&Military and government"));
         industryTypes.Add(_(L"&Second Language (ESL) Education"));
         industryTypes.Add(_(L"&Broadcasting"));
-        m_industryTypeRadioBox = new wxRadioBox(
-            page, wxID_ANY, _(L"Select the type of industry that this document belongs to:"),
+        m_industryTypeRadioBox = new wxRadioBox(page, ID_INDUSTRY_RADIO_BOX,
+                           _(L"Select the type of industry that this document belongs to:"),
             wxDefaultPosition, wxDefaultSize, industryTypes, 0, wxRA_SPECIFY_ROWS,
             wxGenericValidator(&m_selectedIndustryType));
         m_testTypesSizer->Add(m_industryTypeRadioBox, 0, wxLEFT, wxSizerFlags::GetDefaultBorder());
@@ -932,7 +932,7 @@ void ProjectWizardDlg::CreateControls()
             testBundles.Add(bundle.GetName().c_str());
             }
         m_testsBundlesRadioBox =
-            new wxRadioBox(page, wxID_ANY, _(L"Select the test bundle to apply:"),
+            new wxRadioBox(page, ID_TEST_BUNDLE_RADIO_BOX, _(L"Select the test bundle to apply:"),
                            wxDefaultPosition, wxDefaultSize, testBundles, 0, wxRA_SPECIFY_ROWS,
                            wxGenericValidator(&m_selectedBundle));
         SetSelectedTestBundle(wxGetApp().GetAppOptions().GetSelectedTestBundle());

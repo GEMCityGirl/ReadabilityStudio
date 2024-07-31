@@ -46,7 +46,7 @@ For example, to analyze an email, copy the text from your email program, select 
 
 To analyze a file, select the **Read text from a file or webpage** option. Then click the button next to the file path field and browse to the document:
 
-![](images/wizard1.png)
+![](images/exampleselectfile.png)
 
 After you have selected your file, click the `r keys("Forward >")` button to continue to the **Document Structure** page, as shown below:
 

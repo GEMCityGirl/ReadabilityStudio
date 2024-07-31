@@ -31,11 +31,9 @@ To create a new formula based on Lix\index{Lix} that treats 6+ character words a
 
 `SixCharacterPlusWordCount() / SentenceCount()`
 
-To view all available functions, click the **Functions** button. This will display a function browser on the right side of the dialog:
+To view all available functions, click the `r keys('ƒx')` button. This will display a function browser on the right side of the dialog:
 
-```{r echo=F, fig.align='center', out.width='50%'}
-knitr::include_graphics("images/function-browser.png")
-```
+![](images/function-browser.png)
 
 The left side of this browser shows the function categories, while the right side shows the functions from the selected category.
 Beneath, a description of the selected function will be shown.
@@ -160,7 +158,7 @@ You can override it so that the additions happen first (resulting in `15`), foll
 | EXP(Number) | Euler to the power of *Number*. |
 | FAC(Number) | Returns the factorial of *Number*. The factorial of *Number* is equal to 1\*2\*3\*...\* *Number* |
 | FACT(Number) | Alias for `FAC()` |
-| FLOOR(Number) | Returns the largest integer not greater than *Number*.<br>\linebreak FLOOR(-3.2) = -4<br>\linebreak `FLOOR(3.2)` = 3 |
+| FLOOR(Number) | Returns the largest integer not greater than *Number*.<br>\linebreak `FLOOR(-3.2)` = -4<br>\linebreak `FLOOR(3.2)` = 3 |
 | LN(Number) | Natural logarithm of *Number* (base Euler). |
 | LOG10(Number) | Common logarithm of *Number* (base 10). |
 | MIN(Value1, Value2, ...) | Returns the lowest value from a specified range of values. |
@@ -320,7 +318,7 @@ From the **Readability** tab, click the `r keys("Custom Test")` button and then 
 
 ### Formula {-}
 
-`r keys('ƒx')`  Click this button to display the **Function Browser** dialog.
+`r keys('ƒx')` Click this button to display the **Function Browser** dialog.
 In this dialog, you can browse the available functions and insert them into your formula.
 Refer to @sec-custom-test-functions for a list of available functions.
 

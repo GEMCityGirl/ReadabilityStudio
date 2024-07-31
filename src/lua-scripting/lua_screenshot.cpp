@@ -433,18 +433,18 @@ namespace LuaScripting
             }
 
         const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
-        int startWindowToHighlight = -1;
+        int propGridId = wxID_ANY;
         wxString propertyStart, propertyEnd;
         if (lua_gettop(L) > 1)
             {
             auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
             if (idPos != wxGetApp().GetDynamicIdMap().cend())
                 {
-                startWindowToHighlight = idPos->second;
+                propGridId = idPos->second;
                 }
             else
                 {
-                startWindowToHighlight = lua_tonumber(L, 2);
+                propGridId = lua_tonumber(L, 2);
                 }
             }
         if (lua_gettop(L) > 2)
@@ -457,7 +457,7 @@ namespace LuaScripting
             }
         lua_pushboolean(
             L, Screenshot::SaveScreenshotOfDialogWithPropertyGrid(
-                   path, startWindowToHighlight, propertyStart, propertyEnd,
+                   path, propGridId, propertyStart, propertyEnd,
                    std::make_pair(((lua_gettop(L) > 4) ? int_to_bool(lua_toboolean(L, 5)) : false),
                                   ((lua_gettop(L) > 5) ? lua_tonumber(L, 6) : -1))));
         return 1;

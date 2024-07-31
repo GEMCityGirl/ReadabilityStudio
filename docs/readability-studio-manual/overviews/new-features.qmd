@@ -89,7 +89,7 @@ source('../R/appdown.r')
   - Added an option to control how this image is sized to fit within the plot area.
 - Added numerous color schemes to choose from for grouped histograms (in batch projects).
 - Sorting horizontal bars now works more intuitively.
-- Changing graph backgrounds to black will change font colors from black to white implicitly to make them visible.
+- Changing graph backgrounds to black will change font colors from black to white to make them visible.
 
 ### Analysis/Test Enhancements {-}
 
@@ -160,7 +160,8 @@ source('../R/appdown.r')
 
 - Added **Line ends mark the start of a new paragraph** layout option to the [project wizard](#sec-creating-standard-project).
 - Added test bundles option to the project wizard.
-- Added ability to include descriptions for any document included in a batch project. (The program will fill in these descriptions automatically, based on the document's title.)
+- Added ability to include descriptions for any document included in a batch project.
+  (The program will fill in these descriptions automatically, based on the document's title.)
 - Added ability to apply group labels to documents in a batch project.
 - Added option to include a document description in standard projects.
 - Added dark theme support (macOS).

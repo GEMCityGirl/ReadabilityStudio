@@ -48,12 +48,17 @@ Another method is lookup tables, where the intersection of factors (e.g., number
 When located, the position in the table will indicate the grade level. Examples of table-based tests include Wheeler-Smith and New Dale-Chall.
 (Refer to @tbl-wheeler-smith-conversion-table for an example.)
 
-The final method also relies on finding the intersection of factors, but on a graph instead of a table. Most of these plots are divided into bands or brackets, with each of these regions representing a grade or difficulty level. For example, Fry and Raygor use polygonal bands, while Flesch Reading Ease uses brackets along a “ruler”:
+The final method also relies on finding the intersection of factors, but on a graph instead of a table.
+Most of these plots are divided into bands or brackets, with each of these regions representing a grade or difficulty level.
+For example, Fry and Raygor use polygonal bands, while Flesch Reading Ease uses brackets along a "ruler":
 
-```{r echo=F, fig.show = 'hold', out.width='50%', fig.cap='Comparison of bands vs. brackets'}
-knitr::include_graphics("../images/frygraph.png")
-knitr::include_graphics("../images/flesch-chart.png")
-```
+::: {#fig-schwartz layout-ncol=2}
+![](../images/frygraph.png){.lightbox}
+
+![](../images/flesch-chart.png){.lightbox}
+
+Comparison of bands vs. brackets
+:::
 
 Once the intersection of two factors is located on the plot, the band or bracket that the intersection falls into will indicate the score.
 

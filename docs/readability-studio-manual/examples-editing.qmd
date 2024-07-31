@@ -44,9 +44,9 @@ The project will then analyze your changes and reload its results.
 By placing the project window and editor side-by-side, you can review any issues while you edit.
 
 :::: {layout-ncol=2}
-![](images/termchecklistgrammar.png)
+![](images/termchecklistgrammar.png){.lightbox}
 
-![](images/editorwithcontent.png)
+![](images/editorwithcontent.png){.lightbox}
 ::::
 :::
 

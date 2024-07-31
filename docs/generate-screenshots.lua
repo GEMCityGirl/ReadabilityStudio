@@ -121,15 +121,16 @@ ScreenshotLib.ShowCustomTestDialogGeneralSettings()
 ScreenshotLib.SnapScreenshot(ImagePath .. "add-custom-test." .. FileExtension)
 
 ScreenshotLib.ShowCustomTestDialogFamiliarWords()
-ScreenshotLib.SetCustomTestDialogIncludedLists(false,true,false,true)
-ScreenshotLib.SnapScreenshot(ImagePath .. "custom-test-include-lists." .. FileExtension, 1003, 1005)
+ScreenshotLib.SetCustomTestDialogIncludedLists(false, true, false, true)
+ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "custom-test-include-lists." .. FileExtension,
+    7003, "", "", true)
 
 ScreenshotLib.ShowCustomTestDialogProperNounsAndNumbers()
 ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "custom-test-treat." .. FileExtension,
     7004, "", "", true, 200)
 
-ScreenshotLib.SetCustomTestDialogDocumentTypes(false,false,false,false,true)
-ScreenshotLib.SetCustomTestDialogIndustries(false,false,true,false,false,false,false)
+ScreenshotLib.SetCustomTestDialogDocumentTypes(false, false, false, false, true)
+ScreenshotLib.SetCustomTestDialogIndustries(false, false, true, false, false, false, false)
 ScreenshotLib.ShowCustomTestDialogClassification()
 ScreenshotLib.SnapScreenshotOfDialogWithPropertyGrid(ImagePath .. "custom-test-wizard-settings." .. FileExtension,
     7005, "", "", true)
@@ -139,14 +140,21 @@ ScreenshotLib.CloseCustomTestDialog()
 -- Standard project wizard
 ScreenshotLib.ShowStandardProjectWizardTextSourcePage(1)
 ScreenshotLib.SnapScreenshot(ImagePath .. "wizard1." .. FileExtension)
+-- crop off bottom 3/4
+info = Application.GetImageInfo(ImagePath .. "wizard1." .. FileExtension)
+ScreenshotLib.CropScreenshot(ImagePath .. "wizard1." .. FileExtension, -1, info["Height"]/4)
 
 ScreenshotLib.SetStandardProjectWizardTextFromFilePath("")
 ScreenshotLib.SnapScreenshot(ImagePath .. "exampleselectfile." .. FileExtension, 10001)
+-- crop off bottom 3/4
+info = Application.GetImageInfo(ImagePath .. "exampleselectfile." .. FileExtension)
+ScreenshotLib.CropScreenshot(ImagePath .. "exampleselectfile." .. FileExtension, -1, info["Height"]/4)
+
 ScreenshotLib.SetStandardProjectWizardTextFromFilePath("https://www.libreoffice.org/about-us/who-are-we/")
 ScreenshotLib.SnapScreenshot(ImagePath .. "webpath." .. FileExtension, 10002, 10001, 10001)
 
 ScreenshotLib.ShowStandardProjectWizardTestByDocumentTypePage(4)
-ScreenshotLib.SnapScreenshot(ImagePath .. "wizarddoctypelitselected." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "wizarddoctypelitselected." .. FileExtension, -1, -1, 10028)
 
 ScreenshotLib.ShowStandardProjectWizardDocumentStructurePage(1, false, false, true)
 ScreenshotLib.SnapScreenshot(ImagePath .. "wizarddocstructurehardreturns." .. FileExtension, 10020, 10021)
@@ -161,26 +169,29 @@ ScreenshotLib.ShowStandardProjectWizardDocumentStructurePage(2, false, false, fa
 ScreenshotLib.SnapScreenshot(ImagePath .. "wizarddocstructurenonnarrative." .. FileExtension, 10022, 10023)
 
 ScreenshotLib.ShowStandardProjectWizardTestByIndustryPage(2)
-ScreenshotLib.SnapScreenshot(ImagePath .. "wizardindustry." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "wizardindustry." .. FileExtension, -1, -1, 10031)
 
 ScreenshotLib.ShowStandardProjectWizardTextEntryPage("   ")
 ScreenshotLib.SnapScreenshot(ImagePath .. "wizardentertext." .. FileExtension)
+-- crop off bottom half
+info = Application.GetImageInfo(ImagePath .. "wizardentertext." .. FileExtension)
+ScreenshotLib.CropScreenshot(ImagePath .. "wizardentertext." .. FileExtension, -1, info["Height"]/2)
 
 ScreenshotLib.ShowStandardProjectWizardManualTestSelectionPage()
 ScreenshotLib.SnapScreenshot(ImagePath .. "wizardtests." .. FileExtension)
 
 ScreenshotLib.ShowStandardProjectWizardTestByBundlePage("Patient Consent Forms")
-ScreenshotLib.SnapScreenshot(ImagePath .. "wizardbundles." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "wizardbundles." .. FileExtension, -1, -1, 10030)
 
 ScreenshotLib.ShowStandardProjectWizardTestRecommendationPage(1)
-ScreenshotLib.SnapScreenshot(ImagePath .. "wizardreadabilitymethods." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "wizardreadabilitymethods." .. FileExtension, -1, -1, 10028)
 
 ScreenshotLib.CloseStandardProjectWizard()
 
 -- DDX is really weird with this page for some reason on Vista, so we need to get this separately
 ScreenshotLib.ShowStandardProjectWizardLanguagePage()
 ScreenshotLib.ShowStandardProjectWizardTestByDocumentTypePage(2)
-ScreenshotLib.SnapScreenshot(ImagePath .. "wizarddoctypetechselected." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "wizarddoctypetechselected." .. FileExtension, -1, -1, 10028)
 ScreenshotLib.CloseStandardProjectWizard()
 
 -- Batch project wizard
@@ -188,16 +199,16 @@ ScreenshotLib.ShowBatchProjectWizardTextSourcePage(ScreenshotProjectsFolder .. "
 ScreenshotLib.SnapScreenshot(ImagePath .. "wizardbatchselectfilesloaded." .. FileExtension)
 ScreenshotLib.BatchProjectWizardTextSourcePageSetFiles()
 ScreenshotLib.SnapScreenshot(ImagePath .. "wizardbatchselectfiles." .. FileExtension)
-ScreenshotLib.SnapScreenshot(ImagePath .. "randomsample." .. FileExtension, 10011, 10012)
+ScreenshotLib.SnapScreenshot(ImagePath .. "randomsample." .. FileExtension, 10011, 10012, 10029)
 
 ScreenshotLib.ShowBatchProjectWizardTestByDocumentTypePage(2)
-ScreenshotLib.SnapScreenshot(ImagePath .. "wizardbatchdoctype." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "wizardbatchdoctype." .. FileExtension, -1, -1, 10028)
 
 ScreenshotLib.ShowBatchProjectWizardTestByIndustryPage(2)
 ScreenshotLib.SnapScreenshot(ImagePath .. "wizardbatchindustry." .. FileExtension)
 
 ScreenshotLib.ShowBatchProjectWizardTestRecommendationPage(1)
-ScreenshotLib.SnapScreenshot(ImagePath .. "wizardbatchreadabilitymethods." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "wizardbatchreadabilitymethods." .. FileExtension, -1, -1, 10028)
 
 ScreenshotLib.ShowBatchProjectWizardManualTestSelectionPage()
 ScreenshotLib.SnapScreenshot(ImagePath .. "wizardbatchtests." .. FileExtension)
@@ -970,6 +981,9 @@ ScreenshotLib.ShowBatchProjectWizardTextSourcePage(
             Debug.GetScriptFolderPath(),
             ScreenshotProjectsFolder .. "Statistics Manual Ch. 1"))
 ScreenshotLib.SnapScreenshot(ImagePath .. "wizardbatchselectfilessamenames." .. FileExtension, 10009)
+-- crop off bottom half
+info = Application.GetImageInfo(ImagePath .. "wizardbatchselectfilessamenames." .. FileExtension)
+ScreenshotLib.CropScreenshot(ImagePath .. "wizardbatchselectfilessamenames." .. FileExtension, -1, info["Height"]/2)
 ScreenshotLib.CloseBatchProjectWizard()
 
 ScreenshotLib.ShowDocGroupSelectDlg(1)

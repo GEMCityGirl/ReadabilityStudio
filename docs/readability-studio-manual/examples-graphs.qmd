@@ -11,51 +11,48 @@ source('R/appdown.r')
 
 In this example\index{graphs!customizing!bars|(}, we will discuss the various ways to change the appearance of bars in a bar chart or histogram.
 
-The first step is to open the example file "Chocolate Eclairs." From the **Help** tab on the ribbon, click the `r keys("Example Documents")` button and then select "Chocolate Eclairs" from the menu.
-(When prompted about how to open the document, select **Create a new project**.) When the **New Project** wizard appears, leave the defaults and click `r keys("Finish")`.
+The first step is to open the example file "Chocolate Eclairs."
+From the **Help** tab on the ribbon, click the `r keys("Example Documents")` button and then select "Chocolate Eclairs" from the menu.
+(When prompted about how to open the document, select **Create a new project**.)
+When the **New Project** wizard appears, leave the defaults and click `r keys("Finish")`.
 
-Once the project has finished loading, select **Words Breakdown** on the sidebar, then click **Word Counts** beneath that. A bar chart showing a breakdown of word categories will be displayed:
+Once the project has finished loading, select **Words Breakdown** on the sidebar, then click **Word Counts** beneath that.
+A bar chart showing a breakdown of word categories will be displayed:
 
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/example-graph-default.png")
-```
+![](images/example-graph-default.png){width=75% fig-align="center"}
 
-Now we will customize the appearance of this graph. One change that we can make is to reorder the columns in this bar chart. On the **Home** tab, click the `r keys("Sort")` button under the **Edit** section.
+Now we will customize the appearance of this graph. One change that we can make is to reorder the columns in this bar chart.
+On the **Home** tab, click the `r keys("Sort")` button under the **Edit** section.
 Select **Sort Descending** from the menu and note that the bars are now shown from largest to smallest from the origin:
 
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/example-graph-sorted.png")
-```
+![](images/example-graph-sorted.png){width=75% fig-align="center"}
 
 ::: {.notesection data-latex=""}
 When changing the order of the bars, any axis brackets surrounding them will be removed.
 :::
 
-Next, we can change the direction of the bars. Click the `r keys("Orientation")` button in the **Edit** section. Select **Vertical** from the menu.
+Next, we can change the direction of the bars.
+Click the `r keys("Orientation")` button in the **Edit** section. Select **Vertical** from the menu.
 
 Now the bars will be arranged vertically:
 
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/example-barchart-orientation-changed.png")
-```
+![](images/example-barchart-orientation-changed.png){width=75% fig-align="center"}
 
-Finally, let's change how the bars are drawn. Click the `r keys("Bar Style")` button in the **Edit** section and select **Thick Watercolor**.
+Finally, let's change how the bars are drawn.
+Click the `r keys("Bar Style")` button in the **Edit** section and select **Thick Watercolor**.
 
 The bars will now have a watercolor paint effect, rather than the default solid look:
 
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/example-barchart-effects-changed.png")
-```
+![](images/example-barchart-effects-changed.png){width=75% fig-align="center"}
 
 Images and shapes can also be used to draw our bars, as demonstrated in a [later example](#stipple-brush-example).
 
 ::: {.minipage data-latex="{\textwidth}"}
-Finally, let's remove the labels to simplify the graph. Click the `r keys("Labels")` button on the ribbon so that is it unpressed.
+Finally, let's remove the labels to simplify the graph.
+Click the `r keys("Labels")` button on the ribbon so that is it unpressed.
 Now the bars will be drawn without labels above them:
 
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/example-barchart-no-labels-changed.png")
-```
+![](images/example-barchart-no-labels-changed.png){width=75% fig-align="center"}
 :::
 \index{graphs!customizing!bars|)}
 
@@ -70,26 +67,21 @@ After selecting a color, check the option **Fade** from the same menu.
 
 Now, the graph will have an antique white background with a gradient effect:
 
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/example-graph-background-color-changed.png")
-```
+![](images/example-graph-background-color-changed.png){width=75% fig-align="center"}
 
-Next, click the `r keys("Background")` button again and select `r menu(c('Plot Image', 'Image...'))`. When the image selection dialog appears, choose an image and click `r keys("OK")`.
+Next, click the `r keys("Background")` button again and select `r menu(c('Plot Image', 'Image...'))`.
+When the image selection dialog appears, choose an image and click `r keys("OK")`.
 
 ::: {.minipage data-latex="{\textwidth}"}
 This image will now be shown as the background for your graphs:
 
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/example-graph-background-image-changed.png")
-```
+![](images/example-graph-background-image-changed.png){width=75% fig-align="center"}
 :::
 
 To go along with the watercolor bars, we can apply an oil painting effect to the image.
 Click the `r keys("Background")` button and select `r menu(c('Plot Image', 'Effects', 'Oil Painting'))`.
 
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/example-graph-background-image-effect-changed.png")
-```
+![](images/example-graph-background-image-effect-changed.png){width=75% fig-align="center"}
 \index{graphs!customizing!backgrounds|)}
 
 \newpage
@@ -105,9 +97,7 @@ Enter the following into the **Watermark** dialog and click `r keys("OK")`:
 
 Note how this label is now lightly written across the graph:
 
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/example-watermark-changed.png")
-```
+![](images/example-watermark-changed.png){width=75% fig-align="center"}
 
 ::: {.tipsection data-latex=""}
 Entering `@DATE@` in the watermark field will show the current date when the graph is rendered. Refer to @sec-options-graphs for other watermark options.
@@ -118,21 +108,19 @@ Now let's put a company logo on our graph. Click the `r keys("Logo")` button in 
 ::: {.minipage data-latex="{\textwidth}"}
 Now this image will be shown in the bottom right corner of the graph:
 
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/example-logo-changed.png")
-```
+![](images/example-logo-changed.png){width=75% fig-align="center"}
 :::
 
 \newpage
 
 ## Using Stipples {#stipple-brush-example}
 
-In this example, we will use stipples\index{graphs!customizing!stipples|(} for our bar charts. Basically, a stipple enables us to use stacked images or shapes to draw our bars.
-First, create or open any standard project and select **Words Breakdown** on the sidebar. Next, select the **Word Counts** subitem and note how the bars will be filled rectangles:
+In this example, we will use stipples\index{graphs!customizing!stipples|(} for our bar charts.
+Basically, a stipple enables us to use stacked images or shapes to draw our bars.
+First, create or open any standard project and select **Words Breakdown** on the sidebar.
+Next, select the **Word Counts** subitem and note how the bars will be filled rectangles:
 
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/graph-bars-rectangular.png")
-```
+![](images/graph-bars-rectangular.png){width=75% fig-align="center"}
 
 On the **Home** tab of the ribbon, click the `r keys('Bar Style')` button and select **Select stipple image...** from the menu:
 
@@ -140,92 +128,97 @@ On the **Home** tab of the ribbon, click the `r keys('Bar Style')` button and se
 
 After selecting an image, the bars will be drawn as a repeating pattern of this image:
 
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/graph-custom-brush.png")
-```
+![](images/graph-custom-brush.png){width=75% fig-align="center"}
 
 ::: {.tipsection data-latex=""}
 Enabling the **Shadows** option on the ribbon will draw a shadow under each image.
 :::
 
-Note that images of any size can be used. If the image is larger than the bars' width, then it will be scaled downed to fit. Images that are smaller will remain their original size (rather than being upscaled) to preserve their quality.
+Note that images of any size can be used. If the image is larger than the bars' width, then it will be scaled downed to fit.
+Images that are smaller will remain their original size (rather than being upscaled) to preserve their quality.
 
-Along with images, a set of predefined shapes are also available to choose from. To select one, click the `r keys('Bar Style')` button again and select **Select stipple shape...** from the menu.
+Along with images, a set of predefined shapes are also available to choose from.
+To select one, click the `r keys('Bar Style')` button again and select **Select stipple shape...** from the menu.
 Select a shape from the list (e.g., **Car** or **Newspaper**), and this shape will then be used for the bar pattern:
 
-```{r echo=F, fig.align='center', fig.cap="Newspapers used to draw bars", out.width='75%'}
-knitr::include_graphics("images/graph-stipple-shape.png")
-```
+![Newspapers used to draw bars](images/graph-stipple-shape.png){width=75% fig-align="center"}
 
-```{r echo=F, fig.align='center', fig.cap="Cars (specifically, a 2006 Scion xB) used to draw bars", out.width='75%'}
-knitr::include_graphics("images/graph-stipple-shape-car.png")
-```
+![Cars (specifically, a 2006 Scion xB) used to draw bars](images/graph-stipple-shape-car.png){width=75% fig-align="center"}
 
-These features can also be applied to box plots and histograms. With any of these graph types selected, perform the same operation from the ribbon to draw with a stipple.
+These features can also be applied to box plots and histograms.
+With any of these graph types selected, perform the same operation from the ribbon to draw with a stipple.
 \index{graphs!customizing!stipples|)}
 
 \newpage
 
 ## Selective Colorization {#sec-graph-selective-color-example}
 
-In this example\index{graphs!customizing!backgrounds|(}, we will create a bar chart with a selective colorization effect. This technique is where the background is black & white and various focal points (i.e., the bars) are in color.
+In this example\index{graphs!customizing!backgrounds|(}, we will create a bar chart with a selective colorization effect.
+This technique is where the background is black & white and various focal points (i.e., the bars) are in color.
 
 From the **Help** tab on the ribbon, click the `r keys("Example Documents")` button and then select "Chocolate Eclairs" from the menu.
-(When prompted about how to open the document, select **Create a new project**.) When the **New Project** wizard appears, leave the defaults and click `r keys("Finish")`.
+(When prompted about how to open the document, select **Create a new project**.)
+When the **New Project** wizard appears, leave the defaults and click `r keys("Finish")`.
 
-Once the project has finished loading, select **Words Breakdown** on the sidebar, then click **Word Counts** beneath that. A bar chart showing a breakdown of word categories will be displayed.
+Once the project has finished loading, select **Words Breakdown** on the sidebar, then click **Word Counts** beneath that.
+A bar chart showing a breakdown of word categories will be displayed.
 First, let's remove the labels to simplify the graph. On the **Home** tab of the ribbon, click the `r keys("Labels")` button so that is it unpressed.
 
 Next, we will use an image to be displayed across all the bars. On the **Home** tab, click `r menu(c('Bar Style', 'Common Image'))`.
 When the image selection dialog appears, select an image and click `r keys("OK")`.
 Now, the bars will be filled with the image:
 
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/example-barchart-common-image.png")
-```
+![](images/example-barchart-common-image.png){width=75% fig-align="center"}
 
-Next, click the `r keys("Background")` button and select `r menu(c('Plot Image', 'Image...'))`. When the image selection dialog appears, choose the same image and click `r keys("OK")`.
-We will also need to adjust how this image fits into the plot area. Our goal is to have the background image line up with the same image drawn across the bars.
+Next, click the `r keys("Background")` button and select `r menu(c('Plot Image', 'Image...'))`.
+When the image selection dialog appears, choose the same image and click `r keys("OK")`.
+We will also need to adjust how this image fits into the plot area.
+Our goal is to have the background image line up with the same image drawn across the bars.
 Click the `r keys("Background")` button and select `r menu(c('Plot Image', 'Fit', 'Crop & Center'))`.
 
 ::: {.minipage data-latex="{\textwidth}"}
 This image will now be shown as the background for the graph and bars:
 
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/example-graph-background-image-for-common-image.png")
-```
+![](images/example-graph-background-image-for-common-image.png){width=75% fig-align="center"}
 :::
 
-As it is now, you can only see the bars' outlines. To make the bars pop, we will change the background to be black & white and faded.
-First, click the `r keys("Background")` button and select `r menu(c('Plot Image', 'Opacity...'))`. On the **Set Opacity** dialog, select 100 and click `r keys("OK")`.
+As it is now, you can only see the bars' outlines.
+To make the bars pop, we will change the background to be black & white and faded.
+First, click the `r keys("Background")` button and select `r menu(c('Plot Image', 'Opacity...'))`.
+On the **Set Opacity** dialog, select 100 and click `r keys("OK")`.
 Next, click the `r keys("Background")` button again and select `r menu(c('Plot Image', 'Effect', 'Grayscale'))`.
 
 ::: {.minipage data-latex="{\textwidth}"}
 Now, we should see a selective colorization effect on our bar chart:
 
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/example-graph-background-image-effect-grayscaled.png")
-```
+![](images/example-graph-background-image-effect-grayscaled.png){width=75% fig-align="center"}
 :::
 \index{graphs!customizing!backgrounds|)}
 
+\newpage
+
 ## A Retro Appearance {#sec-graph-retro-example}
 
-In this example, we will create a basic-looking graph, with a more "retro" appearance. We will do this by removing all adornments and effects, and by applying washed-out colors and monospace fonts.
+In this example, we will create a basic-looking graph, with a more "retro" appearance.
+We will do this by removing all adornments and effects, and by applying washed-out colors and monospace fonts.
 
 From the **Help** tab on the ribbon, click the `r keys("Example Documents")` button and then select "Chocolate Eclairs" from the menu.
-(When prompted about how to open the document, select **Create a new project**.) When the **New Project** wizard appears, leave the defaults and click `r keys("Finish")`.
+(When prompted about how to open the document, select **Create a new project**.)
+When the **New Project** wizard appears, leave the defaults and click `r keys("Finish")`.
 
 Once the project has finished loading, select **Words Breakdown** on the sidebar, then click **Word Counts** beneath that.
 First, let's remove the labels to simplify the graph. On the **Home** tab of the ribbon, click the `r keys("Labels")` button so that is it unpressed.
 
-Next, we will remove any visual effect from the bars. On the **Home** tab, click `r menu(c('Bar Style', 'Solid'))`. Then, click `r menu(c('Bar Style', 'Color...'))` and select a light gray.
+Next, we will remove any visual effect from the bars. On the **Home** tab, click `r menu(c('Bar Style', 'Solid'))`.
+Then, click `r menu(c('Bar Style', 'Color...'))` and select a light gray.
 
-Next, click the `r keys("Font")` button and select `r menu(c('X Axis...'))`. When the font selection dialog appears, choose a monospace font (e.g., Consolas or Courier New) and click `r keys("OK")`.
-Do the same for  `r menu(c('Font', 'Y Axis...'))` and `r menu(c('Font', 'Top Titles...'))`. Doing this will give a typewriter look to the graph's text.
+Next, click the `r keys("Font")` button and select `r menu(c('X Axis...'))`.
+When the font selection dialog appears, choose a monospace font (e.g., Consolas or Courier New) and click `r keys("OK")`.
+Do the same for  `r menu(c('Font', 'Y Axis...'))` and `r menu(c('Font', 'Top Titles...'))`.
+Doing this will give a typewriter look to the graph's text.
 
 Once we are done, our bar chart will have a simpler, "retro" look:
 
-```{r echo=F, fig.align='center', out.width='75%'}
+![](images/example-graph-retro.png){width=75% fig-align="center"}
 knitr::include_graphics("images/example-graph-retro.png")
 ```
