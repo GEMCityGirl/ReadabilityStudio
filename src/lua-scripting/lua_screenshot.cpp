@@ -92,38 +92,50 @@ namespace LuaScripting
             cutOffWindow = wxID_ANY;
         if (lua_gettop(L) > 1)
             {
-            auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
-            if (idPos != wxGetApp().GetDynamicIdMap().cend())
+            const wxWindowID wId = lua_tonumber(L, 2);
+            if (wId != wxID_ANY)
                 {
-                startWindowToHighlight = idPos->second;
-                }
-            else
-                {
-                startWindowToHighlight = lua_tonumber(L, 2);
+                auto idPos = wxGetApp().GetDynamicIdMap().find(wId);
+                if (idPos != wxGetApp().GetDynamicIdMap().cend())
+                    {
+                    startWindowToHighlight = idPos->second;
+                    }
+                else
+                    {
+                    startWindowToHighlight = lua_tonumber(L, 2);
+                    }
                 }
             }
         if (lua_gettop(L) > 2)
             {
-            auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 3));
-            if (idPos != wxGetApp().GetDynamicIdMap().cend())
+            const wxWindowID wId = lua_tonumber(L, 3);
+            if (wId != wxID_ANY)
                 {
-                endWindowToHighlight = idPos->second;
-                }
-            else
-                {
-                endWindowToHighlight = lua_tonumber(L, 3);
+                auto idPos = wxGetApp().GetDynamicIdMap().find(wId);
+                if (idPos != wxGetApp().GetDynamicIdMap().cend())
+                    {
+                    endWindowToHighlight = idPos->second;
+                    }
+                else
+                    {
+                    endWindowToHighlight = lua_tonumber(L, 3);
+                    }
                 }
             }
         if (lua_gettop(L) > 3)
             {
-            auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 4));
-            if (idPos != wxGetApp().GetDynamicIdMap().cend())
+            const wxWindowID wId = lua_tonumber(L, 4);
+            if (wId != wxID_ANY)
                 {
-                cutOffWindow = idPos->second;
-                }
-            else
-                {
-                cutOffWindow = lua_tonumber(L, 4);
+                auto idPos = wxGetApp().GetDynamicIdMap().find(wId);
+                if (idPos != wxGetApp().GetDynamicIdMap().cend())
+                    {
+                    cutOffWindow = idPos->second;
+                    }
+                else
+                    {
+                    cutOffWindow = lua_tonumber(L, 4);
+                    }
                 }
             }
         lua_pushboolean(L, Screenshot::SaveScreenshot(path, startWindowToHighlight,
