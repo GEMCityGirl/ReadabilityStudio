@@ -220,5 +220,30 @@ Doing this will give a typewriter look to the graph's text.
 Once we are done, our bar chart will have a simpler, "retro" look:
 
 ![](images/example-graph-retro.png){width=75% fig-align="center"}
-knitr::include_graphics("images/example-graph-retro.png")
-```
+
+\newpage
+
+## A Dark-mode Appearance {#sec-graph-retro-example}
+
+In this example, we will create a graph with a high-contrast, "dark mode" appearance.
+
+From the **Help** tab on the ribbon, click the `r keys("Example Documents")` button and then select "Chocolate Eclairs" from the menu.
+(When prompted about how to open the document, select **Create a new project**.)
+When the **New Project** wizard appears, leave the defaults and click `r keys("Finish")`.
+
+Once the project has finished loading, select the **Readability** tab on the ribbon.
+Click `r menu(c('Secondary', 'Raygor Estimate'))` to add a Raygor test to the project.
+Next, click **Readability Scores** on the sidebar, then click **Raygor Estimate** beneath that.
+
+By default, graph backgrounds are white and most labels are black.
+If you change the background to black, then the program will automatically change the labels to white to provide contrast.
+To do this, select the **Home** tab on the ribbon and click `r menu(c('Background', 'Background color', 'Color'))`.
+From the color picker, select pure black and click `r keys("OK")`.
+
+Now our graphs will have a dark, high-contrast appearance:
+
+![](images/example-dark-graph.png){width=75% fig-align="center"}
+
+::: {.notesection data-latex=""}
+Printing with dark backgrounds is not recommended, as it will consume a lot of ink.
+:::

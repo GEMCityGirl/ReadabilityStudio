@@ -137,6 +137,7 @@ source('../R/appdown.r')
   - "Editing from Other Programs"
   - "Selective Colorization"
   - "A Retro Appearance"
+  - "A Dark-mode Appearance"
 
 ### Bug Fixes {-}
 

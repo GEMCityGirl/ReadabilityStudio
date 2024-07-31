@@ -1026,6 +1026,15 @@ sp:Reload()
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "example-graph-retro." .. FileExtension)
 sp:Close()
 
+-- dark mode graph example
+--------------------------------
+sp = StandardProject(ScreenshotProjectsFolder .. "Chocolate Eclairs.txt")
+sp:AddTest(Tests.Raygor)
+sp:SelectWindow(SideBarSection.ReadabilityScores, GraphType.Raygor)
+sp:SetGraphBackgroundColor("black")
+sp:ExportGraph(GraphType.Raygor, ImagePath .. "example-dark-graph." .. FileExtension)
+sp:Close()
+
 -- Graph editing example (selective colorization)
 -------------------------------------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "Chocolate Eclairs.txt")
