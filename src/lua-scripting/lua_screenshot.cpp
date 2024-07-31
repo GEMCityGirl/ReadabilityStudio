@@ -254,6 +254,39 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int CropScreenshot(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
+
+        wxCoord x{ wxDefaultCoord }, y{ wxDefaultCoord };
+
+        if (lua_gettop(L) >= 1)
+            {
+            x = lua_tonumber(L, 2);
+            }
+        if (lua_gettop(L) >= 2)
+            {
+            y = lua_tonumber(L, 3);
+            }
+
+        if (Screenshot::CropScreenshot(path, x, y))
+            {
+            lua_pushboolean(L, true);
+            return 1;
+            }
+        else
+            {
+            lua_pushboolean(L, false);
+            return 1;
+            }
+        }
+
+    //-------------------------------------------------------------
     int SnapScreenshotOfTextWindow(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))

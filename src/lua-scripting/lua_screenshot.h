@@ -35,6 +35,7 @@ namespace LuaScripting
     int SnapScreenshotOfTextWindow(lua_State* L);
     int SnapScreenshotOfListControl(lua_State* L);
     int SnapScreenshotOfRibbon(lua_State* L);
+    int CropScreenshot(lua_State* L);
     int HighlightScreenshot(lua_State* L);
     int ConvertImage(lua_State* L);
     int ShowStandardProjectWizardLanguagePage(lua_State*);
@@ -171,6 +172,7 @@ namespace LuaScripting
         { "SnapScreenshotOfTextWindow", SnapScreenshotOfTextWindow },
         { "SnapScreenshotOfListControl", SnapScreenshotOfListControl },
         { "SnapScreenshotOfRibbon", SnapScreenshotOfRibbon },
+        { "CropScreenshot", CropScreenshot },
         { "HighlightScreenshot", HighlightScreenshot },
         { "ConvertImage", ConvertImage },
         { "ShowScriptEditor", ShowScriptEditor },
