@@ -5,20 +5,18 @@
 source('R/appdown.r')
 ```
 
-```{asis, echo=knitr::is_html_output()}
-# Preface {#sec-cover .unnumbered}
+# Preface {#sec-preface .unnumbered}
 
-<!-- Just want this preface in the gitbook.
-     PDF output will have its own copyright page after the title.-->
-
-This book is a guide to using the software product *Readability Studio*,
+This book is a guide to the software product *Readability Studio*,
 as well as a reference for readability formulas.
-For those interested in the formulas,
-refer to [ch. @sec-english-readability-tests],
-[ch. @sec-spanish-readability-tests],
-and [ch. @sec-german-readability-tests] for formula overviews.
+
+Chapters [-@sec-english-readability-tests], [-@sec-spanish-readability-tests],
+and [-@sec-german-readability-tests] provide overviews for English, Spanish, and German tests, respectively.
+
+::: {.content-visible when-format="html"}
+<!-- PDF output will have its own copyright page after the title.-->
 
 ![](images/non-generated/CC_BY-NC-ND.png)
 
 This book is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivs 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/).
-```
+:::
