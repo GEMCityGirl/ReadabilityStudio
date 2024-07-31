@@ -339,11 +339,17 @@ endif()
 message(STATUS "Copying application resources...")
 
 # make help directories if missing to avoid a build error
-if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/docs/")
+if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/docs-manual/")
     add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E make_directory
-                   "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/docs/")
+                   "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/docs-manual/")
+endif()
+if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/docs-online/")
+    add_custom_command(TARGET ${PROJECT_NAME}
+                   POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E make_directory
+                   "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/docs-online/")
 endif()
 if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-test-reference/docs/")
     add_custom_command(TARGET ${PROJECT_NAME}
@@ -378,7 +384,11 @@ endif()
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
-                   ${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/docs $<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/readability-studio-manual)
+                   ${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/docs-manual $<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/readability-studio-manual)
+add_custom_command(TARGET ${PROJECT_NAME}
+                   POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy_directory
+                   ${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/docs-online $<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/readability-studio-manual)
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
