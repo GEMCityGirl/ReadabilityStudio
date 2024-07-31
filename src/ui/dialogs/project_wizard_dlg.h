@@ -393,6 +393,7 @@ class ProjectWizardDlg final : public wxDialog
     constexpr static int ID_SENTENCES_SPLIT_LABEL = wxID_HIGHEST + 26;
     constexpr static int ID_GROUP_BUTTON = wxID_HIGHEST + 27;
     constexpr static int ID_RANDOM_SAMPLE_SPIN = wxID_HIGHEST + 28;
+    constexpr static int ID_DOC_TYPE_RADIO_BOX = wxID_HIGHEST + 29;
 
     void OnHelp([[maybe_unused]] wxCommandEvent& event);
     void OnContextHelp([[maybe_unused]] wxHelpEvent& event);

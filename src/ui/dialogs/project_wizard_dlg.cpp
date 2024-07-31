@@ -849,7 +849,7 @@ void ProjectWizardDlg::CreateControls()
         docTypes.Add(_(L"&Literature (young adult and adult)"));
         docTypes.Add(_(L"&Children's literature"));
         m_docTypeRadioBox = new wxRadioBox(
-            page, wxID_ANY, _(L"Select the type of document that you are analyzing:"),
+            page, ID_DOC_TYPE_RADIO_BOX, _(L"Select the type of document that you are analyzing:"),
             wxDefaultPosition, wxDefaultSize, docTypes, 0, wxRA_SPECIFY_ROWS,
             wxGenericValidator(&m_selectedDocType));
         m_testTypesSizer->Add(m_docTypeRadioBox, 0, wxLEFT, wxSizerFlags::GetDefaultBorder());

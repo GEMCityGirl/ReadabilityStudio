@@ -886,7 +886,8 @@ bool ReadabilityApp::OnInit()
         { 10024, ProjectWizardDlg::ID_NARRATIVE_RADIO_BUTTON },
         { 10025, ProjectWizardDlg::ID_NARRATIVE_LABEL },
         { 10026, ProjectWizardDlg::ID_SENTENCES_SPLIT_RADIO_BUTTON },
-        { 10027, ProjectWizardDlg::ID_SENTENCES_SPLIT_LABEL }
+        { 10027, ProjectWizardDlg::ID_SENTENCES_SPLIT_LABEL },
+        { 10028, ProjectWizardDlg::ID_DOC_TYPE_RADIO_BOX }
     };
 
     SetAppFileExtension(_DT(L"rsp"));
