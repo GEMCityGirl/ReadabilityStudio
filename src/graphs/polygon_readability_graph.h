@@ -139,7 +139,7 @@ namespace Wisteria::Graphs
             return m_levelLabels;
             }
 
-        /// @returns Whether the score is being showcases.
+        /// @returns Whether the score is being showcased.
         /// @sa ShowcaseScore().
         [[nodiscard]]
         bool IsShowcasingScore() const noexcept

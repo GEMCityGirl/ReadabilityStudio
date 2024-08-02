@@ -777,7 +777,7 @@ namespace Wisteria::Graphs
             }
         AddObject(std::move(points));
 
-        if (m_results.size() == 1 && m_results.front().IsScoreInvalid())
+        if (GetScores().size() == 1 && GetScores().front().IsScoreInvalid())
             {
             wxFont LabelFont = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);
             LabelFont.SetPointSize(12);
