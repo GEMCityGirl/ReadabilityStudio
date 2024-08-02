@@ -54,6 +54,7 @@ clearFolders <- function()
   unlink(glue("{docFolder}/readability-test-reference/german"), recursive=T)
 
   unlink(glue("{docFolder}/readability-studio-manual/_bookdown_files"), recursive=T)
+  unlink(glue("{docFolder}/readability-studio-manual/docs-manual/glossary"), recursive=T)
   unlink(glue("{docFolder}/readability-studio-manual/readability-studio-manual.aux"))
   unlink(glue("{docFolder}/readability-studio-manual/readability-studio-manual.log"))
   unlink(glue("{docFolder}/readability-studio-manual/readability-studio-manual.toc"))
