@@ -64,7 +64,7 @@ namespace LuaScripting
             return;
             }
         wxString path(filteredFileName);
-        if (path == L"./" || path == L".")
+        if (path == L"./" || path == L"." || path == L"../")
             {
             return;
             }
