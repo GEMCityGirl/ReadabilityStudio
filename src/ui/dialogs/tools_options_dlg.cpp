@@ -321,7 +321,7 @@ void ToolsOptionsDlg::OnWarningMessagesButtonClick([[maybe_unused]] wxCommandEve
     {
     WarningMessagesDlg dlg(this);
     dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                     L"sec-options-general-settings.html");
+                     L"online/projects-features/program-options.html");
     dlg.ShowModal();
     }
 
@@ -330,7 +330,8 @@ void ToolsOptionsDlg::OnExcludedPhrasesFileEditButtonClick([[maybe_unused]] wxCo
     {
     TransferDataFromWindow();
     EditWordListDlg editDlg(this, wxID_ANY, _(L"Edit Words/Phrases To Exclude"));
-    editDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"sec-document-analysis.html");
+    editDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
+                         L"online/projects-features/program-options.html");
     editDlg.SetPhraseFileMode(true);
     editDlg.SetFilePath(m_excludedPhrasesPath);
     if (editDlg.ShowModal() != wxID_OK)
@@ -5928,70 +5929,9 @@ void ToolsOptionsDlg::OnContextHelp([[maybe_unused]] wxHelpEvent& event)
 //-------------------------------------------------------------
 void ToolsOptionsDlg::OnHelp([[maybe_unused]] wxCommandEvent& event)
     {
-    wxString topic;
-    const wxWindow* page = m_sideBar->GetCurrentPage();
-    if (page)
-        {
-        switch (page->GetId())
-            {
-        case GENERAL_SETTINGS_PAGE:
-            topic = L"sec-options-general-settings.html";
-            break;
-        case DOCUMENT_DISPLAY_GENERAL_PAGE:
-            topic = L"sec-options-highlighted-reports.html";
-            break;
-        case PROJECT_SETTINGS_PAGE:
-            topic = L"sec-project-settings.html";
-            break;
-        case DOCUMENT_DISPLAY_DOLCH_PAGE:
-            topic = L"sec-dolch-options.html";
-            break;
-        case SCORES_TEST_OPTIONS_PAGE:
-            [[fallthrough]];
-        case SCORES_DISPLAY_PAGE:
-            topic = L"sec-options-scores.html";
-            break;
-        case ANALYSIS_INDEXING_PAGE:
-            topic = L"sec-document-analysis.html";
-            break;
-        case GRAMMAR_PAGE:
-            topic = L"sec-options-grammar.html";
-            break;
-        case ANALYSIS_STATISTICS_PAGE:
-            topic = L"sec-options-statistics.html";
-            break;
-        case GRAPH_TITLES_PAGE:
-            [[fallthrough]];
-        case GRAPH_AXIS_PAGE:
-            [[fallthrough]];
-        case GRAPH_GENERAL_PAGE:
-            topic = L"sec-options-graphs.html";
-            break;
-        case GRAPH_READABILITY_GRAPHS_PAGE:
-            topic = L"sec-options-readability-graphs.html";
-            break;
-        case GRAPH_BAR_CHART_PAGE:
-            topic = L"sec-options-bar-charts.html";
-            break;
-        case GRAPH_HISTOGRAM_PAGE:
-            topic = L"sec-options-histograms.html";
-            break;
-        case GRAPH_BOX_PLOT_PAGE:
-            topic = L"sec-options-box-plots.html";
-            break;
-        case WORDS_BREAKDOWN_PAGE:
-            topic = L"sec-options-words-breakdown.html";
-            break;
-        case SENTENCES_BREAKDOWN_PAGE:
-            topic = L"sec-options-sentences-breakdown.html";
-            break;
-        default:
-            topic = L"index.html";
-            };
-        wxLaunchDefaultBrowser(
-            wxFileName::FileNameToURL(wxGetApp().GetMainFrame()->GetHelpDirectory() +
-                                      wxFileName::GetPathSeparator() + topic));
-        }
+    wxLaunchDefaultBrowser(wxFileName::FileNameToURL(
+        wxGetApp().GetMainFrame()->GetHelpDirectory() + wxFileName::GetPathSeparator() +
+        L"online/projects-features/program-options.html"));
     }
 
 //-------------------------------------------------------------

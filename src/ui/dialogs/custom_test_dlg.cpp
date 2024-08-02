@@ -331,7 +331,7 @@ void CustomTestDlg::OnHelp([[maybe_unused]] wxCommandEvent& event)
     {
     wxLaunchDefaultBrowser(wxFileName::FileNameToURL(wxGetApp().GetMainFrame()->GetHelpDirectory() +
                                                      wxFileName::GetPathSeparator() +
-                                                     _DT(L"sec-custom-test-dialog.html")));
+                                                     _DT(L"online/custom-tests-and-bundles.html")));
     }
 
 //------------------------------------------------------

@@ -325,7 +325,7 @@ void BatchProjectView::OnBatchExportFilteredDocuments([[maybe_unused]] wxCommand
         { return; }
 
     FilteredTextExportOptionsDlg optDlg(GetDocFrame());
-    optDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"sec-filtering-export.html");
+    optDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"online/projects-features/publishing.html");
     if (optDlg.ShowModal() != wxID_OK)
         { return; }
 
@@ -2435,10 +2435,15 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
 
         ExportAllDlg dlg(GetDocFrame(), doc, (exportTypesDlg.GetSelection() == 0));
         if (m_activeWindow && m_activeWindow->GetClientSize().IsFullySpecified())
-            { dlg.GetImageExportOptions().m_imageSize = m_activeWindow->GetClientSize(); }
-        dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"sec-export-all-options.html");
+            {
+            dlg.GetImageExportOptions().m_imageSize = m_activeWindow->GetClientSize();
+            }
+        dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
+                         L"online/projects-features/publishing.html");
         if (dlg.ShowModal() != wxID_OK || dlg.GetFolderPath().empty())
-            { return; }
+            {
+            return;
+            }
         if (exportTypesDlg.GetSelection() == 0)
             {
             ExportAllToHtml(dlg.GetFilePath(), dlg.GetExportGraphExt(),
@@ -2535,9 +2540,12 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                     { return; }
 
                 FilteredTextExportOptionsDlg optDlg(GetDocFrame());
-                optDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"sec-filtering-export.html");
+                optDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
+                                    L"online/projects-features/publishing.html");
                 if (optDlg.ShowModal() != wxID_OK)
-                    { return; }
+                    {
+                    return;
+                    }
 
                 wxString validDocText;
                 subProject->FormatFilteredText(validDocText, optDlg.IsReplacingCharacters(),
@@ -2549,7 +2557,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                     subProject->IsIgnoringTrailingCitations(),
                     optDlg.IsReplacingCharacters(), optDlg.IsRemovingEllipses(),
                     optDlg.IsRemovingBullets(), optDlg.IsRemovingFilePaths(), optDlg.IsStrippingAbbreviations() );
-                dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"sec-how-text-is-excluded.html");
+                dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"online/analysis-notes.html");
                 dlg.SetFilteredValue(validDocText);
                 if (dlg.ShowModal() == wxID_OK)
                     {

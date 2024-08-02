@@ -380,7 +380,7 @@ void BaseProjectDoc::UpdateExplanationListOptions(ExplanationListCtrl* eList)
 
     eList->SetResources(
         wxGetApp().GetMainFrame()->GetHelpDirectory(),
-        L"sec-column-sorting.html");
+        L"online/projects-features/customizing-results.html");
 
     UpdatePrinterHeaderAndFooters(eList);
     }
@@ -459,12 +459,14 @@ void BaseProjectDoc::UpdatePrinterHeaderAndFooters(Wisteria::UI::HtmlTableWindow
 void BaseProjectDoc::UpdateListOptions(ListCtrlEx* list)
     {
     if (list == nullptr)
-        { return; }
+        {
+        return;
+        }
 
-    list->SetExportResources(
-        wxGetApp().GetMainFrame()->GetHelpDirectory(),
-        L"sec-export-list.html");
-    list->SetSortHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"sec-column-sorting.html");
+    list->SetExportResources(wxGetApp().GetMainFrame()->GetHelpDirectory(),
+                             L"online/projects-features/publishing.html");
+    list->SetSortHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
+                           L"online/projects-features/customizing-results.html");
 
     UpdatePrinterHeaderAndFooters(list);
     }
@@ -476,7 +478,7 @@ void BaseProjectDoc::UpdateGraphOptions(Wisteria::Canvas* canvas)
         { return; }
     canvas->SetExportResources(
         wxGetApp().GetMainFrame()->GetHelpDirectory(),
-        L"sec-image-export.html");
+        L"online/projects-features/publishing.html");
 
     UpdatePrinterHeaderAndFooters(canvas);
 

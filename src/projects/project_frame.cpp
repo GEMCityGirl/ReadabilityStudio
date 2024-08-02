@@ -1889,13 +1889,15 @@ void ProjectDocChildFrame::OnExcludeWordsList([[maybe_unused]] wxRibbonButtonBar
     {
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
 
-    EditWordListDlg editDlg(this,
-        wxID_ANY, _(L"Edit Words/Phrases To Exclude"));
-    editDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"sec-document-analysis.html");
+    EditWordListDlg editDlg(this, wxID_ANY, _(L"Edit Words/Phrases To Exclude"));
+    editDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
+                         L"online/projects-features/program-options.html");
     editDlg.SetPhraseFileMode(true);
     editDlg.SetFilePath(doc->GetExcludedPhrasesPath());
     if (editDlg.ShowModal() != wxID_OK)
-        { return; }
+        {
+        return;
+        }
 
     doc->SetExcludedPhrasesPath(editDlg.GetFilePath());
     doc->RefreshRequired(ProjectRefresh::FullReindexing);

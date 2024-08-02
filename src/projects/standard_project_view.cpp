@@ -367,7 +367,8 @@ void ProjectView::OnExportAll([[maybe_unused]] wxCommandEvent& event)
         {
         dlg.GetImageExportOptions().m_imageSize = m_activeWindow->GetClientSize();
         }
-    dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"sec-export-all-options.html");
+    dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
+                     L"online/projects-features/publishing.html");
     if (dlg.ShowModal() != wxID_OK || dlg.GetFolderPath().empty())
         {
         return;
@@ -427,7 +428,8 @@ void ProjectView::OnExportFilteredDocument([[maybe_unused]] wxCommandEvent& even
         }
 
     FilteredTextExportOptionsDlg optDlg(GetDocFrame());
-    optDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"sec-filtering-export.html");
+    optDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
+                        L"online/projects-features/publishing.html");
     if (optDlg.ShowModal() != wxID_OK)
         {
         return;
@@ -444,7 +446,7 @@ void ProjectView::OnExportFilteredDocument([[maybe_unused]] wxCommandEvent& even
                                doc->IsIgnoringTrailingCitations(), optDlg.IsReplacingCharacters(),
                                optDlg.IsRemovingEllipses(), optDlg.IsRemovingBullets(),
                                optDlg.IsRemovingFilePaths(), optDlg.IsStrippingAbbreviations());
-    dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"sec-how-text-is-excluded.html");
+    dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"online/analysis-notes.html");
     dlg.SetFilteredValue(validDocText);
     if (dlg.ShowModal() == wxID_OK)
         {
@@ -645,7 +647,7 @@ void ProjectView::OnHyperlinkClicked(wxHtmlLinkEvent& event)
         }
     else if (event.GetLinkInfo().GetHref() == L"#FogHelp")
         {
-        wxGetApp().GetMainFrame()->DisplayHelp(L"gunning-fog-test.html");
+        wxGetApp().GetMainFrame()->DisplayHelp(L"online/readability-tests-english.html");
         }
     else if (event.GetLinkInfo().GetHref().length() &&
              event.GetLinkInfo().GetHref().GetChar(0) == L'#')
@@ -675,12 +677,22 @@ void ProjectView::OnTestListDblClick([[maybe_unused]] wxListEvent& event)
         }
     else if (testPos.second)
         {
-        wxGetApp().GetMainFrame()->DisplayHelp(
-            wxString::Format(L"sec-%s.html", testPos.first->get_id().c_str()));
+        if (testPos.first->has_language(readability::test_language::spanish_test))
+            {
+            wxGetApp().GetMainFrame()->DisplayHelp(L"online/readability-tests-spanish.html");
+            }
+        else if (testPos.first->has_language(readability::test_language::german_test))
+            {
+            wxGetApp().GetMainFrame()->DisplayHelp(L"online/readability-tests-german.html");
+            }
+        else
+            {
+            wxGetApp().GetMainFrame()->DisplayHelp(L"online/readability-tests-english.html");
+            }
         }
     else if (selectedTest == _(L"Dolch Sight Words"))
         {
-        wxGetApp().GetMainFrame()->DisplayHelp(L"sec-reviewing-dolch.html");
+        wxGetApp().GetMainFrame()->DisplayHelp(L"online/projects-features/reviewing-standard-projects.html");
         }
     }
 
@@ -1648,7 +1660,7 @@ bool ProjectView::OnCreate(wxDocument* doc, long flags)
     readabilityScoresView->SetRightPrinterFooter(
         wxGetApp().GetAppOptions().GetRightPrinterFooter());
     readabilityScoresView->SetResources(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                                        L"sec-column-sorting.html");
+                                        L"online/projects-features/customizing-results.html");
     GetReadabilityResultsView().AddWindow(readabilityScoresView);
     GetSplitter()->SplitVertically(GetSideBar(), readabilityScoresView,
                                    GetSideBar()->GetMinWidth());

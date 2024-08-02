@@ -157,7 +157,8 @@ void ExportAllDlg::OnImageOptionsButtonClick([[maybe_unused]] wxCommandEvent& ev
     wxString ext{ (m_graphCombo ? m_graphCombo->GetValue() : wxString{ L"png" }) };
     Wisteria::UI::ImageExportDlg optDlg(this, Image::GetImageFileTypeFromExtension(ext),
                                         wxNullBitmap, m_imageExportOptions);
-    optDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"sec-image-export.html");
+    optDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
+                        L"online/projects-features/publishing.html");
     if (optDlg.ShowModal() == wxID_OK)
         {
         m_imageExportOptions = optDlg.GetOptions();
@@ -372,8 +373,8 @@ void ExportAllDlg::CreateControls()
                                 wxSizerFlags::GetDefaultBorder());
 
         m_listCombo = new wxComboBox(exportTypeStaticBoxSizer->GetStaticBox(), ID_LIST_TYPE_COMBO,
-                                     wxString{}, wxDefaultPosition,
-                                     wxDefaultSize, 0, nullptr, wxCB_DROPDOWN | wxCB_READONLY);
+                                     wxString{}, wxDefaultPosition, wxDefaultSize, 0, nullptr,
+                                     wxCB_DROPDOWN | wxCB_READONLY);
         m_listCombo->Append(L"htm");
         m_listCombo->Append(L"txt");
         m_listCombo->Append(L"tex");
