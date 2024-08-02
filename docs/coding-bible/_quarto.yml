@@ -1,0 +1,40 @@
+project:
+  type: book
+  output-dir: "docs"
+toc: true
+toc-depth: 2
+links-as-notes: true
+linestretch: 1.15
+number-sections: true
+reference-location: document
+reference-links: false
+book:
+  title: Readability Studio Coding Bible
+  author: Blake Madden
+  date: today
+  date-format: long
+  language: en
+  search: false
+  chapters:
+    - index.qmd
+    - coding-style.qmd
+    - code-instructions.qmd
+    - documentation.qmd
+    - resources.qmd
+format:
+  pdf:
+    documentclass: book
+    include-in-header: preamble.tex
+    latex-engine: xelatex
+    keep-tex: true
+    citation-package: biblatex
+    lot: false
+    lof: false
+    code-block-bg: false
+  html:
+    theme: cosmo
+    html-math-method: katex
+    css: css/style.css
+    smooth-scroll: true
+    highlight: pygments
+    reference-location: document

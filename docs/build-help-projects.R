@@ -1,6 +1,6 @@
 if (!require("pacman")) install.packages("pacman")
 library(pacman)
-pacman::p_load(bookdown, glue, readr, stringr, fs, lubridate, tidyverse, kableExtra,
+pacman::p_load(glue, readr, stringr, fs, lubridate, tidyverse, kableExtra,
                Hmisc, cowplot, beeswarm, tinytex, stringi, this.path, janitor, quarto)
 
 # If called from RScript, pass in the path to pandoc
@@ -77,8 +77,7 @@ clearFolders()
 ##############
 
 setwd(glue("{docFolder}/coding-bible/"))
-bookdown::render_book(input="index.Rmd",
-                      output_dir="docs")
+quarto::quarto_render(output_format="html", as_job=T)
 
 # Release Notes
 ###############

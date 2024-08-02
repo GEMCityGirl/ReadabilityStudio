@@ -1,13 +1,3 @@
---- 
-title: "Coding Bible"
-author: "Blake Madden"
-site: bookdown::bookdown_site
-documentclass: book
-biblio-style: apalike
-link-citations: yes
-description: "Coding Bible for Readability Studio"
----
-
 # Overview
 
 This book documents the following for **Readability Studio**:
