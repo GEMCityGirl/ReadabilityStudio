@@ -128,9 +128,11 @@ source('../R/appdown.r')
 
 ### Documentation Enhancements {-}
 
-- In-text citations are now linked to the bibliography.
-- Keyboard shortcuts cheat sheet is now available from the **Documentation** tab of the ribbon.
-- Test reference is now available from the **Documentation** tab of the ribbon.
+- Upgraded the documentation to [Quarto](https://quarto.org) format.
+- The following are now available from the **Documentation** tab of the ribbon:
+  - Keyboard shortcuts cheat sheet
+  - Test reference manual
+  - Release notes
 - Added new examples:
   - "High-level Review of a Disclaimer"
   - "Editing within Readability Studio"
@@ -138,6 +140,7 @@ source('../R/appdown.r')
   - "Selective Colorization"
   - "A Retro Appearance"
   - "A Dark-mode Appearance"
+- In-text citations are now linked to the bibliography.
 
 ### Bug Fixes {-}
 

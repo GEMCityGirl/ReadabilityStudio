@@ -5,11 +5,6 @@ The following open-source software, artwork, and example files were used to crea
 ### Documentation & Project Management Software {-}
 ***
 
-#### Bookdown {-}
-Write HTML, PDF, ePub, and Kindle books with R Markdown.
-
-[https://www.bookdown.org/](https://www.bookdown.org/)
-
 #### Doxygen {-}
 Doxygen is the de facto standard tool for generating documentation from annotated C++ sources, but it also supports other popular programming languages such as C, Objective-C, C#, PHP, Java, Python, IDL (Corba, Microsoft, and UNO/OpenOffice flavors), Fortran, VHDL and to some extent D.
 
@@ -27,6 +22,12 @@ A universal document converter.
 If you need to convert files from one markup format into another, pandoc is your swiss-army knife.
 
 [https://pandoc.org/](https://pandoc.org/)
+
+#### Quarto {-}
+
+An open-source scientific and technical publishing system.
+
+[https://quarto.org](https://quarto.org)
 
 ### Software Development, Quality Assurance & Packaging Software {-}
 ***
