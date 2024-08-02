@@ -2,7 +2,7 @@
 #| include: false
 #| eval: true
 
-source('R/appdown.r')
+source('../R/appdown.r')
 ```
 
 # Customizing Graphs
@@ -19,13 +19,13 @@ When the **New Project** wizard appears, leave the defaults and click `r keys("F
 Once the project has finished loading, select **Words Breakdown** on the sidebar, then click **Word Counts** beneath that.
 A bar chart showing a breakdown of word categories will be displayed:
 
-![](images/example-graph-default.png){width=75% fig-align="center"}
+![](../images/example-graph-default.png){width=75% fig-align="center"}
 
 Now we will customize the appearance of this graph. One change that we can make is to reorder the columns in this bar chart.
 On the **Home** tab, click the `r keys("Sort")` button under the **Edit** section.
 Select **Sort Descending** from the menu and note that the bars are now shown from largest to smallest from the origin:
 
-![](images/example-graph-sorted.png){width=75% fig-align="center"}
+![](../images/example-graph-sorted.png){width=75% fig-align="center"}
 
 ::: {.notesection data-latex=""}
 When changing the order of the bars, any axis brackets surrounding them will be removed.
@@ -36,14 +36,14 @@ Click the `r keys("Orientation")` button in the **Edit** section. Select **Verti
 
 Now the bars will be arranged vertically:
 
-![](images/example-barchart-orientation-changed.png){width=75% fig-align="center"}
+![](../images/example-barchart-orientation-changed.png){width=75% fig-align="center"}
 
 Finally, let's change how the bars are drawn.
 Click the `r keys("Bar Style")` button in the **Edit** section and select **Thick Watercolor**.
 
 The bars will now have a watercolor paint effect, rather than the default solid look:
 
-![](images/example-barchart-effects-changed.png){width=75% fig-align="center"}
+![](../images/example-barchart-effects-changed.png){width=75% fig-align="center"}
 
 Images and shapes can also be used to draw our bars, as demonstrated in a [later example](#stipple-brush-example).
 
@@ -52,7 +52,7 @@ Finally, let's remove the labels to simplify the graph.
 Click the `r keys("Labels")` button on the ribbon so that is it unpressed.
 Now the bars will be drawn without labels above them:
 
-![](images/example-barchart-no-labels-changed.png){width=75% fig-align="center"}
+![](../images/example-barchart-no-labels-changed.png){width=75% fig-align="center"}
 :::
 \index{graphs!customizing!bars|)}
 
@@ -67,7 +67,7 @@ After selecting a color, check the option **Fade** from the same menu.
 
 Now, the graph will have an antique white background with a gradient effect:
 
-![](images/example-graph-background-color-changed.png){width=75% fig-align="center"}
+![](../images/example-graph-background-color-changed.png){width=75% fig-align="center"}
 
 Next, click the `r keys("Background")` button again and select `r menu(c('Plot Image', 'Image...'))`.
 When the image selection dialog appears, choose an image and click `r keys("OK")`.
@@ -75,13 +75,13 @@ When the image selection dialog appears, choose an image and click `r keys("OK")
 ::: {.minipage data-latex="{\textwidth}"}
 This image will now be shown as the background for your graphs:
 
-![](images/example-graph-background-image-changed.png){width=75% fig-align="center"}
+![](../images/example-graph-background-image-changed.png){width=75% fig-align="center"}
 :::
 
 To go along with the watercolor bars, we can apply an oil painting effect to the image.
 Click the `r keys("Background")` button and select `r menu(c('Plot Image', 'Effects', 'Oil Painting'))`.
 
-![](images/example-graph-background-image-effect-changed.png){width=75% fig-align="center"}
+![](../images/example-graph-background-image-effect-changed.png){width=75% fig-align="center"}
 \index{graphs!customizing!backgrounds|)}
 
 \newpage
@@ -97,7 +97,7 @@ Enter the following into the **Watermark** dialog and click `r keys("OK")`:
 
 Note how this label is now lightly written across the graph:
 
-![](images/example-watermark-changed.png){width=75% fig-align="center"}
+![](../images/example-watermark-changed.png){width=75% fig-align="center"}
 
 ::: {.tipsection data-latex=""}
 Entering `@DATE@` in the watermark field will show the current date when the graph is rendered. Refer to @sec-options-graphs for other watermark options.
@@ -108,7 +108,7 @@ Now let's put a company logo on our graph. Click the `r keys("Logo")` button in 
 ::: {.minipage data-latex="{\textwidth}"}
 Now this image will be shown in the bottom right corner of the graph:
 
-![](images/example-logo-changed.png){width=75% fig-align="center"}
+![](../images/example-logo-changed.png){width=75% fig-align="center"}
 :::
 
 \newpage
@@ -120,15 +120,15 @@ Basically, a stipple enables us to use stacked images or shapes to draw our bars
 First, create or open any standard project and select **Words Breakdown** on the sidebar.
 Next, select the **Word Counts** subitem and note how the bars will be filled rectangles:
 
-![](images/graph-bars-rectangular.png){width=75% fig-align="center"}
+![](../images/graph-bars-rectangular.png){width=75% fig-align="center"}
 
 On the **Home** tab of the ribbon, click the `r keys('Bar Style')` button and select **Select stipple image...** from the menu:
 
-![](images/ribbon-edit-bar-charts.png)
+![](../images/ribbon-edit-bar-charts.png)
 
 After selecting an image, the bars will be drawn as a repeating pattern of this image:
 
-![](images/graph-custom-brush.png){width=75% fig-align="center"}
+![](../images/graph-custom-brush.png){width=75% fig-align="center"}
 
 ::: {.tipsection data-latex=""}
 Enabling the **Shadows** option on the ribbon will draw a shadow under each image.
@@ -141,9 +141,9 @@ Along with images, a set of predefined shapes are also available to choose from.
 To select one, click the `r keys('Bar Style')` button again and select **Select stipple shape...** from the menu.
 Select a shape from the list (e.g., **Car** or **Newspaper**), and this shape will then be used for the bar pattern:
 
-![Newspapers used to draw bars](images/graph-stipple-shape.png){width=75% fig-align="center"}
+![Newspapers used to draw bars](../images/graph-stipple-shape.png){width=75% fig-align="center"}
 
-![Cars (specifically, a 2006 Scion xB) used to draw bars](images/graph-stipple-shape-car.png){width=75% fig-align="center"}
+![Cars (specifically, a 2006 Scion xB) used to draw bars](../images/graph-stipple-shape-car.png){width=75% fig-align="center"}
 
 These features can also be applied to box plots and histograms.
 With any of these graph types selected, perform the same operation from the ribbon to draw with a stipple.
@@ -168,7 +168,7 @@ Next, we will use an image to be displayed across all the bars. On the **Home** 
 When the image selection dialog appears, select an image and click `r keys("OK")`.
 Now, the bars will be filled with the image:
 
-![](images/example-barchart-common-image.png){width=75% fig-align="center"}
+![](../images/example-barchart-common-image.png){width=75% fig-align="center"}
 
 Next, click the `r keys("Background")` button and select `r menu(c('Plot Image', 'Image...'))`.
 When the image selection dialog appears, choose the same image and click `r keys("OK")`.
@@ -179,7 +179,7 @@ Click the `r keys("Background")` button and select `r menu(c('Plot Image', 'Fit'
 ::: {.minipage data-latex="{\textwidth}"}
 This image will now be shown as the background for the graph and bars:
 
-![](images/example-graph-background-image-for-common-image.png){width=75% fig-align="center"}
+![](../images/example-graph-background-image-for-common-image.png){width=75% fig-align="center"}
 :::
 
 As it is now, you can only see the bars' outlines.
@@ -191,7 +191,7 @@ Next, click the `r keys("Background")` button again and select `r menu(c('Plot I
 ::: {.minipage data-latex="{\textwidth}"}
 Now, we should see a selective colorization effect on our bar chart:
 
-![](images/example-graph-background-image-effect-grayscaled.png){width=75% fig-align="center"}
+![](../images/example-graph-background-image-effect-grayscaled.png){width=75% fig-align="center"}
 :::
 \index{graphs!customizing!backgrounds|)}
 
@@ -219,7 +219,7 @@ Doing this will give a typewriter look to the graph's text.
 
 Once we are done, our bar chart will have a simpler, "retro" look:
 
-![](images/example-graph-retro.png){width=75% fig-align="center"}
+![](../images/example-graph-retro.png){width=75% fig-align="center"}
 
 \newpage
 
@@ -242,7 +242,7 @@ From the color picker, select pure black and click `r keys("OK")`.
 
 Now our graphs will have a dark, high-contrast appearance:
 
-![](images/example-dark-graph.png){width=75% fig-align="center"}
+![](../images/example-dark-graph.png){width=75% fig-align="center"}
 
 ::: {.notesection data-latex=""}
 Printing with dark backgrounds is not recommended, as it will consume a lot of ink.

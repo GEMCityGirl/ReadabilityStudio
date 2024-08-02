@@ -2,7 +2,7 @@
 #| include: false
 #| eval: true
 
-source('R/appdown.r')
+source('../R/appdown.r')
 ```
 
 # Creating Custom Tests
@@ -25,7 +25,7 @@ The first step to creating a new test is to click the `r keys("Custom Tests")` b
 Because this test will use independent clauses, change the name to "Flesch (IC)":
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/custom-test-example1-test-name.png")
+knitr::include_graphics("../images/custom-test-example1-test-name.png")
 ```
 
 Next, we will change the formula. The formula for Flesch is defined as:
@@ -87,14 +87,14 @@ This will instruct the program to place the result into the **Scale Value** colu
 Once finished, the dialog will look like this:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/custom-test-example1-finished.png")
+knitr::include_graphics("../images/custom-test-example1-finished.png")
 ```
 
 Click the `r keys("OK")` button and our new test will be added to the system.
 
 To add this test to any project, first select the **Readability** tab. Next, click the `r keys("Custom Tests")` button and then select **Flesch (IC)** from the menu. Select the **Readability Scores** icon on the project pane and note that Flesch (IC) has been added to the project's results:
 
-![](images/custom-test-example1-score.png)
+![](../images/custom-test-example1-score.png)
 
 \index{Flesch Reading Ease!custom test!example|)}
 
@@ -111,7 +111,7 @@ First, select the **Readability** tab of the ribbon. Next, click the `r keys('Cu
 Select **Flesch-Kincaid** from the list, which will create a custom test based on Flesch-Kincaid. When the **Edit Custom Test** dialog appears, enter the name "Flesch-Kincaid (unclamped)":
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/custom-testfk-unclamped.png")
+knitr::include_graphics("../images/custom-testfk-unclamped.png")
 ```
 
 We will leave the formula as-is, so click `r keys('OK')` to accept.
@@ -139,13 +139,13 @@ The next step is to create a custom test and connect our word list to it. For a 
 Click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add...** from the menu. This will present the [**Add Custom Test**](#sec-custom-test-general-settings) dialog, as shown below:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/add-custom-test.png")
+knitr::include_graphics("../images/add-custom-test.png")
 ```
 
 Because this will be a New Dale-Chall test meant for baking, we will enter the name "New Dale-Chall (Baking)":
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/custom-test-example2-name.png")
+knitr::include_graphics("../images/custom-test-example2-name.png")
 ```
 
 Next, we will enter the formula. The formula for a custom New Dale-Chall test\index{CustomNewDaleChall()@\texttt{CustomNewDaleChall()}!example} is:
@@ -163,13 +163,13 @@ New Dale-Chall is a grade-level test, so we will leave this option set to the de
 Once finished, the dialog will look like this:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/custom-test-example2-formula-finished.png")
+knitr::include_graphics("../images/custom-test-example2-formula-finished.png")
 ```
 
 Now we will need to define what a familiar word is, so click the **Familiar Words** icon. Because we will be appending our own words to the test, check the option **Include custom familiar word list**. Next, enter the file path to the custom-word file in the **File containing familiar words** field. You can also click the button next to this field to select and edit your word list file:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/custom-test-example2-words-loaded.png")
+knitr::include_graphics("../images/custom-test-example2-words-loaded.png")
 ```
 
 Once the file has been selected, the words from that file will be loaded.
@@ -183,13 +183,13 @@ To keep our word list simple, we will use English stemming. Select **English** a
 Next, we will define which other word lists will be included in our test. Because this is a New Dale-Chall test, check the option **Include New Dale-Chall word list**:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/custom-test-example2-word-settings-finished.png")
+knitr::include_graphics("../images/custom-test-example2-word-settings-finished.png")
 ```
 
 The remaining logic that we must define is how to count proper\index{proper nouns!custom tests} nouns and numerals\index{numerals!custom tests}. Select the **Proper Nouns & Numerals** page:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/custom-test-treat.png")
+knitr::include_graphics("../images/custom-test-treat.png")
 ```
 
 For this example, we will treat all proper nouns and numerals as familiar. This is the default, so leave these options unchanged.
@@ -202,23 +202,23 @@ Our new test, New Dale-Chall (Baking), has been added to the program.
 
 To add this test to any project, first select the **Readability** tab. Next, click the `r keys("Custom Tests")` button and then select **New Dale-Chall (Baking)**. Select the **Readability Scores** icon on the project pane and note that New Dale-Chall (Baking) has been added to the project's results:
 
-![](images/custom-test-example2-score.png)
+![](../images/custom-test-example2-score.png)
 
 Note how the result for our custom test is lower than the standard New Dale-Chall test. This is because our test is using an expanded list of known words and will consider fewer words unfamiliar than the New Dale-Chall test will.
 
 Now that the test has been added, we can review some of its output. Click on the **Words Breakdown** icon on the project pane. As shown below, there are numerous unfamiliar New Dale-Chall words in this recipe:
 
-![](images/custom-test-example2-dc-word-list.png)
+![](../images/custom-test-example2-dc-word-list.png)
 
 However, because our custom test is including some extra words not on the New Dale-Chall list, our test will have less unfamiliar words. Select the **New Dale-Chall (Baking)** subitem to review the unfamiliar words from the recipe relative to our custom test:
 
-![](images/custom-test-example2-custom-word-list.png)
+![](../images/custom-test-example2-custom-word-list.png)
 
 Note how there are far fewer unfamiliar New Dale-Chall (Baking) words when compared to the standard New Dale-Chall output.
 
 We can also review these words in their original context. Click on the **Highlighted Reports** icon on the project pane, and then select the **New Dale-Chall (Baking)** page. Here we can see exactly where all the unfamiliar New Dale-Chall (Baking) words are in our recipe.
 
-![](images/custom-test-example2-custom-text.png)
+![](../images/custom-test-example2-custom-text.png)
 
 At this point, we have a couple of options. The first is to replace some of these unfamiliar words so that our students can better understand the recipe. If the reading level of this recipe was higher, this would be recommended. However, because this recipe already has a low reading level and contains few unfamiliar words, this may not be necessary.
 
@@ -243,19 +243,19 @@ The first step is to create a list of "buzzwords." This can be any text file whe
 The next step is to create a custom test and connect our word list to it. Click the `r keys("Custom Tests")` button on the **Readability** tab and select **Add...** from the menu. This will present the [**Add Custom Test**](#sec-custom-test-general-settings) dialog, as shown below:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/add-custom-test.png")
+knitr::include_graphics("../images/add-custom-test.png")
 ```
 
 Enter "Buzz Index" as the test name:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/custom-index-test-example-name.png")
+knitr::include_graphics("../images/custom-index-test-example-name.png")
 ```
 
 Because this test will use our own special type of scoring, set **Test result type** to **Index value**:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/custom-index-test-example-test-type.png")
+knitr::include_graphics("../images/custom-index-test-example-test-type.png")
 ```
 
 Next, we will enter the formula. Enter the following into the **Formula** field:
@@ -266,7 +266,7 @@ IF((FamiliarWordCount()/WordCount())*100 > 15, 3,
 ```
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/custom-index-test-example-formula.png")
+knitr::include_graphics("../images/custom-index-test-example-formula.png")
 ```
 
 Basically, this formula classifies a file based on its percentage of buzz words. First, it calculates this percentage in this line:
@@ -293,7 +293,7 @@ Next, enter the file path to the custom-word file in the **File containing famil
 You can also click the button next to this field to select and edit your word list file:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/custom-index-test-example-words-loaded.png")
+knitr::include_graphics("../images/custom-index-test-example-words-loaded.png")
 ```
 
 Once the file has been selected, the words from that file will be loaded.
@@ -305,7 +305,7 @@ The other option is to use stemming. Stemming will compare the roots of the word
 To keep our word list simple, we will use English stemming. Select **English** as the stemmer:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/custom-index-test-example-word-settings-finished.png")
+knitr::include_graphics("../images/custom-index-test-example-word-settings-finished.png")
 ```
 
 We will not be using any other words for our test, so leave the other word lists unchecked.
@@ -313,13 +313,13 @@ We will not be using any other words for our test, so leave the other word lists
 The remaining logic that we must define is how to handle proper nouns\index{proper nouns!custom tests} and numerals. Select the **Proper Nouns & Numerals** page:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/custom-test-treat.png")
+knitr::include_graphics("../images/custom-test-treat.png")
 ```
 
 For this test, we are only looking for words explicitly from our list. This means that we will need to ignore proper nouns and numbers. Set **Proper Nouns/Familiarity** to **Count as unfamiliar** and uncheck **Treat numerals as familiar**:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/custom-index-test-example-proper-and-numerals-finished.png")
+knitr::include_graphics("../images/custom-index-test-example-proper-and-numerals-finished.png")
 ```
 
 Click the `r keys("OK")` button and our new test will be added to the system.
@@ -335,7 +335,7 @@ To confirm this, select the **Readability** tab on the ribbon, click **Custom Te
 Next, click the **Readability Scores** icon on the sidebar and select **Scores** underneath that. As we had feared, the document is scoring at the unacceptable level of 3:
 
 ```{r echo=F, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/custom-index-test-example-score.png")
+knitr::include_graphics("../images/custom-index-test-example-score.png")
 ```
 
 At this point, we will ask the author to revise this document until the score is at a more acceptable level. Because we are using a familiar-word test's logic in reverse for this test, we are actually interested in lowering the number of familiar (not unfamiliar) words from the document. To show which familiar (i.e., buzzwords) are being used, select the **Highlighted Reports** icon on the sidebar and select **Buzz Index (unfamiliar)** beneath that. The words that are *not* highlighted are the buzzwords that the author will need to limit. To export this window, click the **Home** tab of the ribbon, click the `r keys("Save")` button, and select **Export Highlighted Buzz Index (unfamiliar)**. The author can then use this output to see which sections need revising in this press release.

@@ -2,7 +2,7 @@
 #| include: false
 #| eval: true
 
-source('R/appdown.r')
+source('../R/appdown.r')
 ```
 
 # Editing
@@ -12,7 +12,7 @@ source('R/appdown.r')
 In this example, we will write and edit a document from within *Readability Studio* itself\index{editing!from \textit{Readability Studio}|(}. Click the `r keys("New")` button on the **Home** tab to open the **New Project** wizard.
 Next, select the **Manually enter text** option.
 
-![](images/wizardentertext.png)
+![](../images/wizardentertext.png)
 
 You can either type or paste text into this text box. In this example, we will leave it blank and edit it later.
 For brevity, we will use the defaults for document structure and test selections. (These can always be changed later from the **Document** and **Readability** tabs on the ribbon.)
@@ -21,21 +21,21 @@ Click the `r keys("Finish")` button to create the project.
 Because the project does not have any content yet, only empty scores and statistics will be shown.
 To add content, select the **Document** tab on the ribbon and click the `r keys("Edit Document")` button. This will show the **Edit Embedded Document** dialog, where we will write our document.
 
-![](images/editorwithcontent.png)
+![](../images/editorwithcontent.png)
 
 Along the ribbon of this dialog are various editing features, such as find &amp; replace, clipboard operations, and undo/redo.
 
-![](images/editorclipboardandeditribbon.png)
+![](../images/editorclipboardandeditribbon.png)
 
 In the **View** section of the ribbon are options for changing the appearance of the editor.
 
-![](images/editorviewribbon.png)
+![](../images/editorviewribbon.png)
 
 For example, we can toggle line spacing between new lines by selecting `r menu(c("Line Spacing", "Display space after hard returns"))`.
 
 As you edit the document, you can click the **Save** button on the editor:
 
-![](images/editorsaveribbon.png)
+![](../images/editorsaveribbon.png)
 
 at any time to send your edits back to the project.
 The project will then analyze your changes and reload its results.
@@ -44,9 +44,9 @@ The project will then analyze your changes and reload its results.
 By placing the project window and editor side-by-side, you can review any issues while you edit.
 
 :::: {layout-ncol=2}
-![](images/termchecklistgrammar.png){.lightbox}
+![](../images/termchecklistgrammar.png){.lightbox}
 
-![](images/editorwithcontent.png){.lightbox}
+![](../images/editorwithcontent.png){.lightbox}
 ::::
 :::
 
@@ -75,7 +75,7 @@ In the next example (see @sec-external-editing), we will edit our document from 
 Continuing\index{editing!from other programs|(} from the previous example (see @sec-rs-as-an-editor), we have copied the text from the editor into another program.
 (*LibreOffice* was used in this example, but any other editor will work as well.)
 
-![](images/non-generated/term-checklist-in-external-editor.png)
+![](../images/non-generated/term-checklist-in-external-editor.png)
 
 From *LibreOffice*, save the document and move the program over to the side of the screen. Next, go back to the project in *Readability Studio*.
 From the *Home* tab on the ribbon, click the `r keys('Properties')` button. On the *Project Properties* dialog, select *Project Settings* on the sidebar.
@@ -86,7 +86,7 @@ Under *Linking and embedding* is a text box where you enter a document path. Cli
 Also, check *Real-time update*, which will be discussed later.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/realtime-options.png")
+knitr::include_graphics("../images/realtime-options.png")
 ```
 
 Click `r keys('OK')` to accept these changes.
@@ -102,14 +102,14 @@ You will need to save from your external editor before *Readability Studio* can 
 By placing the two programs side-by-side, you can review any issues while you edit.
 
 ::: {layout-ncol=2}
-![](images/termchecklistgrammar.png)
+![](../images/termchecklistgrammar.png)
 
-![](images/non-generated/term-checklist-in-external-editor.png)
+![](../images/non-generated/term-checklist-in-external-editor.png)
 :::
 
 The real-time update option is also available on the ribbon and can be toggled at any time:
 
-![](images/termchecklist-realtime.png)
+![](../images/termchecklist-realtime.png)
 
 If this option is unpressed, then the project will only update when you explicitly click the `r keys('Reload')` button.
 
