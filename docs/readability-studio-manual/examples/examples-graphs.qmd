@@ -5,7 +5,7 @@
 source('../R/appdown.r')
 ```
 
-# Customizing Graphs
+# Customizing Graphs {#customizing-graphs}
 
 ## Customizing Bars {#customizing-bars}
 
@@ -223,7 +223,7 @@ Once we are done, our bar chart will have a simpler, "retro" look:
 
 \newpage
 
-## A Dark-mode Appearance {#sec-graph-retro-example}
+## A Dark-mode Appearance {#sec-graph-dark-mode-example}
 
 In this example, we will create a graph with a high-contrast, "dark mode" appearance.
 
