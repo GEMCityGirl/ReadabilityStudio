@@ -28,10 +28,10 @@ Source: ..\..\resources\report-themes\*; DestDir: {app}\report-themes; Component
 Source: ..\redist\license.rtf; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion
 ; help files
 Source: ..\..\docs\readability-studio-manual\docs-manual\*; DestDir: {app}\readability-studio-manual; Components: HelpFiles; Excludes: "thumbs.db,*.tex,*.log,README.md,\.git"; Flags: replacesameversion restartreplace recursesubdirs
-Source: ..\..\docs\readability-studio-manual\docs-online\*; DestDir: {app}\readability-studio-manual; Components: HelpFiles; Excludes: "thumbs.db,*.tex,*.log,README.md,\.git"; Flags: replacesameversion restartreplace recursesubdirs
+Source: ..\..\docs\readability-studio-manual\docs-online\*; DestDir: {app}\readability-studio-manual\online; Components: HelpFiles; Excludes: "thumbs.db,*.tex,*.log,README.md,\.git"; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\..\docs\readability-test-reference\docs\readability-test-reference.pdf; DestDir: {app}\readability-studio-manual; Components: HelpFiles; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\..\docs\shortcuts-cheatsheet\docs\shortcuts-cheatsheet.pdf; DestDir: {app}\readability-studio-manual; Components: HelpFiles; Flags: replacesameversion restartreplace recursesubdirs
-;FUTURE-RELEASE Source: ..\..\docs\readability-studio-api\*; DestDir: {app}\readability-studio-api; Components: HelpFiles; Excludes: "thumbs.db,*.tex,*.log,README.md,\.git"; Flags: replacesameversion restartreplace recursesubdirs
+;FUTURE-RELEASE Source: ..\..\docs\readability-studio-api\*; DestDir: {app}\readability-studio-api\api; Components: HelpFiles; Excludes: "thumbs.db,*.tex,*.log,README.md,\.git"; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\..\docs\lua-5.4\doc\*; DestDir: {app}\readability-studio-manual\lua-5.4\doc; Components: HelpFiles; Excludes: "thumbs.db"; Flags: replacesameversion restartreplace recursesubdirs
 ; examples
 Source: ..\..\examples\*; DestDir: {app}\examples; Components: Examples; Excludes: "thumbs.db,README.md,\.git"; Flags: replacesameversion restartreplace recursesubdirs
