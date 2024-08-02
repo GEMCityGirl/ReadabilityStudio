@@ -5,9 +5,9 @@
 source('../R/appdown.r')
 ```
 
-# Customizing Graphs {#customizing-graphs}
+# Customizing Graphs {#sec-customizing-graphs}
 
-## Customizing Bars {#customizing-bars}
+## Customizing Bars {#sec-customizing-bars}
 
 In this example\index{graphs!customizing!bars|(}, we will discuss the various ways to change the appearance of bars in a bar chart or histogram.
 
@@ -113,7 +113,7 @@ Now this image will be shown in the bottom right corner of the graph:
 
 \newpage
 
-## Using Stipples {#stipple-brush-example}
+## Using Stipples {#sec-stipple-brush-example}
 
 In this example, we will use stipples\index{graphs!customizing!stipples|(} for our bar charts.
 Basically, a stipple enables us to use stacked images or shapes to draw our bars.

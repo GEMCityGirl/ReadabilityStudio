@@ -81,7 +81,7 @@ When any graph is selected, options for customizing it are made available on the
 
 The options made available will be dependent on the graph type. Refer to @sec-options-graphs for further discussions of these options.
 
-Refer to @customizing-graphs for step-by-step tutorials on editing graphs.
+Refer to @sec-customizing-graphs for step-by-step tutorials on editing graphs.
 
 ## Customizing How Documents are Analyzed
 
