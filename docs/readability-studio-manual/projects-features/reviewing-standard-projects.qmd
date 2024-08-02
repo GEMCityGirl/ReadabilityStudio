@@ -2,7 +2,7 @@
 #| include: false
 #| eval: true
 
-source('R/appdown.r')
+source('../R/appdown.r')
 ```
 
 # Reviewing Standard Projects
@@ -25,7 +25,7 @@ When a grade-level test scores a document at its maximum value, a *+* will be ap
 
 Select any test in the results grid to display an explanation of its score in the window below.
 
-![](images/scores.png)
+![](../images/scores.png)
 
 Along with an explanation of the test's results, the factors that it uses to determine difficulty are also shown. For example, if **Sentence Length** and **Word Length** have an *X* next to them, then these variables are used in the test's equation. To lower the score for a given test, try to improve its factors (e.g., lower the document's average sentence length).
 
@@ -47,7 +47,7 @@ To view these graphs, click on the **Graphs** icon in a [standard project](#sec-
 Let us first review a Fry\index{Fry} graph:
 
 ```{r fryGraph2, echo=F, fig.cap='Fry graph', fig.align='center', out.width='75%'}
-knitr::include_graphics("images/frygraph.png")
+knitr::include_graphics("../images/frygraph.png")
 ```
 
 To read this graph, search for the red data point–this value represents the document's score. Note that there are numbers 1 through 17+ on this chart, each partitioned into small slices. The band that the data point falls into is the grade level of this document. In the example above, the data point is inside of the 8^th^ grade slice (notice that the 8 is marked in blue).
@@ -57,7 +57,7 @@ Running through each slice is a gray line, which is a separator to help show the
 If the data point does not fall inside of a slice then the test will fail. For example, the Raygor\index{Raygor Estimate} graph below indicates that the document's overly-long words caused the test to fail:
 
 ```{r raygorBadGrade, echo=F, fig.cap='Raygor Estimate graph', fig.align='center', out.width='75%'}
-knitr::include_graphics("images/raygorbadgrade.png")
+knitr::include_graphics("../images/raygorbadgrade.png")
 ```
 
 The document was almost classified as 12^th^ grade level material, but its long words make it too difficult to be assigned to any grade. At this point, you would want to review the document's lengthy sentences (select [**Highlighted Report**](#sec-reviewing-standard-grammar) under the **Grammar** sidebar item) and try to shorten some of them.
@@ -65,13 +65,13 @@ The document was almost classified as 12^th^ grade level material, but its long 
 The Gilliam-Peña-Mountain\index{Gilliam-Peña-Mountain} graph is a variation of Fry designed for Spanish text. It is identical to Fry, except that its X axis begins at 175 (instead of 108). This enables this graph to plot Spanish text, which usually has a much higher syllable count than its English counterpart. Below is an example of a Gilliam-Peña-Mountain graph:
 
 ```{r gpm2, echo=F, fig.cap='Gilliam-Peña-Mountain graph', fig.align='center', out.width='75%'}
-knitr::include_graphics("images/gpm-fry.png")
+knitr::include_graphics("../images/gpm-fry.png")
 ```
 
 The Schwartz\index{Schwartz German Readability Graph} graph is another Fry-like graph, which is designed for German (primary and secondary-reader) text. Although similar in appearance to Fry, this graph uses its own reading-level regions mapped to the German materials it was trained on. This approach differs from Gilliam-Peña-Mountain, which uses the original Fry template and adjusts its axis ranges to accommodate Spanish text. Below is an example of a Schwartz graph:
 
 ```{r schwartz2, echo=F, fig.cap='Schwartz graph', fig.align='center', out.width='75%'}
-knitr::include_graphics("images/schwartz.png")
+knitr::include_graphics("../images/schwartz.png")
 ```
 
 The Fry\index{Fry!compared to Raygor} and Raygor\index{Raygor Estimate!compared to Fry} graphs are very similar and are both interpreted in the same manner; however, there are a few differences between them. The Fry graph classifies documents within the 1^st^ grade to doctorate level. In contrast, Raygor concentrates on the range of 3^rd^ grade to the sophomore collegiate level. It is recommended to only use Raygor graphs for secondary-age materials.
@@ -83,7 +83,7 @@ The other difference between the two graphs is that they are inverted from one a
 The FRASE\index{FRASE} graph is similar to Fry in terms of factors used and axis orientation. Its most influential factor (i.e., word vs. sentence difficulty) is determined in the same manner, and its Y (sentence) axis is descending. Below is an example of a FRASE graph:
 
 ```{r frase2, echo=F, fig.cap='FRASE graph', fig.align='center', out.width='75%'}
-knitr::include_graphics("images/frase-graph.png")
+knitr::include_graphics("../images/frase-graph.png")
 ```
 
 A key difference with FRASE\index{FRASE!reading levels} is its use of reading levels (rather than grade levels). In the above example, we can see that the document has been scored at the *Intermediate* level. The other difference is that it is designed for Spanish text—note how its X (syllable-count) axis begins at 182, not 108.
@@ -91,7 +91,7 @@ A key difference with FRASE\index{FRASE!reading levels} is its use of reading le
 The Crawford\index{Crawford!compared to Fry} graph is also similar to Fry in terms of factors used. However, it differs from most other graphs in that it uses the interior of the plot to find its sentence-count factor (instead of an axis). Below is an example of a Crawford graph:
 
 ```{r crawford2, echo=F, fig.cap='Crawford graph', fig.align='center', out.width='75%'}
-knitr::include_graphics("images/crawford-graph.png")
+knitr::include_graphics("../images/crawford-graph.png")
 ```
 
 In the above graph, we can see that the intersection of the factors is 175 and 7. The number of syllables is 175 (Y axis). The number of sentences is approximately 7 (between 8.4 and 5.9 on the plot [corresponding to 175 on the Y axis]). From this intersection, the point's X axis value is 3.7. Hence, 3.7 is the grade-level score for this graph.
@@ -99,19 +99,19 @@ In the above graph, we can see that the intersection of the factors is 175 and 7
 The Flesch\index{Flesch Reading Ease!chart} chart plots a document's factors onto a pair of “rulers” and then connects them to determine the Flesch score. This score ranges from 0 (“very difficult”) to 100 (“very easy”). Below is an example of a Flesch chart:
 
 ```{r fleschChart2, echo=F, fig.cap='Flesch chart', fig.align='center', out.width='75%'}
-knitr::include_graphics("images/flesch-chart.png")
+knitr::include_graphics("../images/flesch-chart.png")
 ```
 
 Danielson-Bryan 2\index{Danielson-Bryan 2!plot}—a variation of Flesch Reading Ease— includes a similar graphic, which also includes grade-level information:
 
 ```{r db2Plot2, echo=F, fig.cap='Danielson-Bryan 2 plot', fig.align='center', out.width='75%'}
-knitr::include_graphics("images/db2-plot.png")
+knitr::include_graphics("../images/db2-plot.png")
 ```
 
 Similar to a Flesch chart, the Lix gauge\index{Lix!gauge plot} plots a document's Lix index score on a chart showing its difficulty level:
 
 ```{r lixGuage2, echo=F, fig.cap='Lix gauge', fig.align='center', out.width='75%'}
-knitr::include_graphics("images/lix-gauge.png")
+knitr::include_graphics("../images/lix-gauge.png")
 ```
 
 In the above chart, we can see that Lix scores can range from 0 (“very easy”) to 60+ (“very difficult”).
@@ -119,7 +119,7 @@ In the above chart, we can see that Lix scores can range from 0 (“very easy”
 There is also a variation of the Lix gauge\index{Lix!gauge plot (German)} that is adjusted for German materials:
 
 ```{r germanLixGauge, echo=F, fig.cap='German Lix gauge', fig.align='center', out.width='75%'}
-knitr::include_graphics("images/german-lix-gauge.png")
+knitr::include_graphics("../images/german-lix-gauge.png")
 ```
 
 This version adjusts the scaling of the score, assuming that German text is inherently more difficult than other languages. It also includes additional levels of difficulty (e.g., “children and young adult”).
@@ -129,7 +129,7 @@ Note that if you plot any of these graphs, its score can also be viewed in the [
 As a final note, [batch projects](#sec-creating-batch-project) include multi-document versions of all these graphs:
 
 ```{r multifry, echo=F, fig.cap='Multiple documents on a Fry graph', fig.align='center', out.width='75%'}
-knitr::include_graphics("images/multiple-fry.png")
+knitr::include_graphics("../images/multiple-fry.png")
 ```
 
 Here, we can see that an entire collection of documents are plotted onto a single Fry graph. This is useful for visualizing the grade-level layout of a group of documents. In the above example, we can see that the documents are clustering in the high-school region. We can also interpret that complex words are heavily influencing the documents' difficulty.
@@ -145,7 +145,7 @@ Goals are recommended score ranges that a document should fall within.
 If a project contains goals, then a **Goals** section will be available to show whether they were met. For example:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/standard-project-goals.png")
+knitr::include_graphics("../images/standard-project-goals.png")
 ```
 
 In the above image, we can see that this project is recommending:
@@ -164,7 +164,7 @@ Goals can be created through a [test bundle](#sec-test-bundles). When the bundle
 
 After opening a project, click on the **Summary Statistics** icon on the project sidebar to view the document's statistics:
 
-![](images/featuresstats.png)
+![](../images/featuresstats.png)
 
 The **Report** and **Tabular Report** windows display the document's statistics in two formats: a formatted report and a tabular report, respectively. Both of these reports contain the following statistics:
 
@@ -203,7 +203,7 @@ A **Notes** section may be included at the bottom of the formatted report if the
 
 After opening a project, click on the **Words Breakdown** icon on the project sidebar to view the lists, highlighted reports, and graphs of difficult words:
 
-![](images/difficultwords.png)
+![](../images/difficultwords.png)
 
 ### Reviewing Word Lists {-}
 
@@ -230,7 +230,7 @@ Refer to @sec-how-text-is-excluded to learn more about how *Readability Studio* 
 
 To find the most complex words, sort the **Syllable Count** column of the **3+ Syllables** list. You can sort any of the columns by clicking on the column header. To change the sorting order to either ascending or descending, click the column header a second time. As you can see below, the words with the most syllables are now shown at the top of the list.
 
-![](images/difficultwords.png)
+![](../images/difficultwords.png)
 
 If your test scores indicate that the document is too difficult for your audience, then you should review overly complex or long words. You may consider seeing if any shorter synonyms could be used in their place. The same type of review can also be performed with the **6+ Characters** list by sorting the **Character Count** column.
 
@@ -265,7 +265,7 @@ The different types of graphs that may be shown are:
 **Word Counts** [bar chart](#sec-options-graphs): This graph shows the total counts of each type of word (e.g., 3+ syllable words) and how each category compares to one another. This bar chart will appear like this:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/barchart.png")
+knitr::include_graphics("../images/barchart.png")
 ```
 
 In the above example, we can see that there are 70 unfamiliar New Dale-Chall words, but only 42 three+ syllable words. From this, we could infer that we should first concentrate on replacing these unfamiliar words.
@@ -276,7 +276,7 @@ Lists of these words can be found by clicking on the [**Difficult Words**](#sec-
 **Syllable Counts**: This is a histogram of the words, grouped by syllable count\index{syllables!reviewing in the results}.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/syllable-count-histogram.png")
+knitr::include_graphics("../images/syllable-count-histogram.png")
 ```
 
 In the above histogram, we see that most of the words are either 1 or 2 syllables. There are only 25 three-syllable words and 17 four-syllable words in the document.
@@ -297,7 +297,7 @@ Most tests use the total word count variable, although there are some that use u
 Additionally, an outer ring categorizes these subgroups into simple and complex words. (One- and two-syllable words are considered simple, while three [and higher] syllable words are complex.)
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/syllables-pie-chart.png")
+knitr::include_graphics("../images/syllables-pie-chart.png")
 ```
 
 The above donut chart shows similar results to the previous histogram. With this visualization, however, it is easier to compare the overall complex- and simple-word groups.
@@ -308,7 +308,7 @@ In this case, less than 10% of the document consists of complex words. Also, loo
 **Key Word Cloud**: In conjunction with the **Key Words** list, a key word cloud is also included to visualize the main concepts of the document(s).
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/non-generated/key-word-cloud.png")
+knitr::include_graphics("../images/non-generated/key-word-cloud.png")
 ```
 
 A word cloud shows words from a document in a random layout with randomly assigned colors. The size of each word is based on its relative frequency within the document.
@@ -333,7 +333,7 @@ After opening a project, click on the **Sentences Breakdown** icon on the projec
 
 A list of overly-long sentences:
 
-![](images/featuressentencelist.png)
+![](../images/featuressentencelist.png)
 
 Note that if you are ignoring incomplete sentences, then this list will only include the complete sentences.
 If you need to review all the sentences from the document, then select the option [**Do not exclude any text**](#sec-options-text-exclusion).
@@ -342,7 +342,7 @@ Refer to @sec-how-text-is-excluded to learn more about how *Readability Studio* 
 To find the longest sentence, [sort](#sec-column-sorting) the **Word Count** column into descending order.
 As you can see below, the longest sentence is now shown at the top of the list.
 
-![](images/featuressentencelistsorted.png)
+![](../images/featuressentencelistsorted.png)
 
 To view any sentence in its original context, double-click on it.
 This will take you to the [**Highlighted Report**](#sec-reviewing-standard-grammar) page with that sentence selected.
@@ -355,7 +355,7 @@ Note that if there are no long sentences in your document, then this window will
 A box plot\index{box plots!sentence length} of the sentence lengths (measured by word count) is also available:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/sentences-boxplot.png")
+knitr::include_graphics("../images/sentences-boxplot.png")
 ```
 
 The first item to review is the box, which measures the percentiles range. Above, we see that this range is 4.5–19.5, meaning that half of the sentences are between 4.5–19.5 words.
@@ -369,7 +369,7 @@ Finally, any sentence lengths outside of the non-outlier range will be displayed
 A histogram is also available to visualize how the sentence lengths are distributed:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/sentences-histogram.png")
+knitr::include_graphics("../images/sentences-histogram.png")
 ```
 
 In the above graph, we can see a large portion of short sentences, with the rest falling into a normal distribution.
@@ -377,7 +377,7 @@ In the above graph, we can see a large portion of short sentences, with the rest
 A heatmap of these sentence lengths is also included:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/sentences-heatmap.png")
+knitr::include_graphics("../images/sentences-heatmap.png")
 ```
 
 This graph displays the document's sentence, going from left-to-right, top-to-bottom. Each square represents a sentence, and the square's color represents its word count. The darker a square, the higher the sentence's word count (relative to the document). Likewise, lighter squares represent the shorter sentences in the document. This is useful for visualizing the trend and density of a document's longer sentences. For example, if sections of the grid are darker than others, then the sentences are longer in these spots and should be reviewed. The example below demonstrates this:
@@ -398,7 +398,7 @@ Refer to example @sec-finding-difficult-sections for a more detailed tutorial on
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Highlighted report** subitem. This text report will display the document with its difficult sentences and wordy items highlighted.
 
-![](images/featuressentences.png)
+![](../images/featuressentences.png)
 
 Note that each sentence is followed by its respective word count (in parentheses).
 
@@ -410,7 +410,7 @@ For documents with numerous sentences over twenty words, it is recommended to us
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Lowercased Sentences** subitem. This window will display a list of all sentences that begin with lowercased words (which is usually a typo).
 
-![](images/lowercasedsent.png)
+![](../images/lowercasedsent.png)
 
 Lowercased sentence searching is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
@@ -424,7 +424,7 @@ Note that if there are no lowercased sentences in your document, then this windo
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Conjunction-starting Sentences** subitem. This window will display a list of all sentences which begin with coordinating conjunctions.
 
-![](images/conjunctionsent.png)
+![](../images/conjunctionsent.png)
 
 Beginning sentences with conjunctions is not an issue for most writing, but should be avoided with professional publications. This feature is provided to grammatically improve professional documents.
 
@@ -451,7 +451,7 @@ Note that if there are no conjunction-starting sentences in your document, then 
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Repeated Words** subitem. This window will display a list of all repeated words from the document.
 
-![](images/repeatedwords.png)
+![](../images/repeatedwords.png)
 
 A repeated word is when the same word appears after itself (which is usually a typo). For example:
 
@@ -479,7 +479,7 @@ Refer to @sec-repeated-word-exceptions for more information on how repeated word
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Article Mismatches** subitem. This window will display a list of articles (i.e., *a* and *an*) that do not match their following noun.
 
-![](images/articlemismatches.png)
+![](../images/articlemismatches.png)
 
 For example, the following articles would be marked as mismatching:
 
@@ -499,7 +499,7 @@ Refer to @sec-article-mismatching to learn more.
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Errors & Misspellings** subitem.
 This window will display a list of misused phrases, grammatically incorrect wording, and known misspellings from each document.
 
-![](images/wordingerrors.png)
+![](../images/wordingerrors.png)
 
 For example:
 
@@ -525,7 +525,7 @@ Note that if there are no errors in your document, then this window will not be 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Possible Misspellings** subitem.
 This window will display a list of all possible misspellings from the document.
 
-![](images/misspellings.png)
+![](../images/misspellings.png)
 
 Options for controlling how misspellings are searched for are available in the [**Grammar**](#sec-options-grammar) options.
 
@@ -545,7 +545,7 @@ Note that if there are no misspellings in your document, then this window will n
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Redundant Phrases** subitem. This window will display a list of redundant phrases (and suggested replacements) from the document.
 
-![](images/redundantphrases.png)
+![](../images/redundantphrases.png)
 
 A redundant phrase is when a modifier expresses something that is already implied by the noun it is modifying. For example:
 
@@ -571,7 +571,7 @@ Note that if there are no redundant phrases in your document, then this window w
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Wordy Items** subitem. This window will display a list of wordy phrases and difficult words (and their suggested replacements) from the document.
 
-![](images/wordylist.png)
+![](../images/wordylist.png)
 
 A phrase is wordy if it contains too many words or contains complex words that could be replaced by simpler ones. For example:
 
@@ -597,7 +597,7 @@ Note that if there are no wordy items in your document, then this window will no
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Passive Voice** subitem. This window will display a list of passive phrases.
 
-![](images/passivevoice.png)
+![](../images/passivevoice.png)
 
 For example, the following would be marked as passive:
 
@@ -621,7 +621,7 @@ Note that if there are no passive phrases in your document, then this window wil
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Clichés** subitem. This window will display a list of clichés (and their suggested replacements) from the document.
 
-![](images/clichelist.png)
+![](../images/clichelist.png)
 
 A cliché is an overused phrase that should be avoided if you are writing professional documents. In the context of readability, clichés can be unfamiliar to early (young or ESL) readers. For example:
 
@@ -645,7 +645,7 @@ After opening a project, click on the **Grammar** icon on the project sidebar an
 This window will display a list of all sentences that use the same word multiple times. (These are more of style suggestions, rather than grammar issues.)
 When reviewing these, it is recommended to change some of the repeated words to add more variety to your content.
 
-![](images/overusedwordsbysentence.png)
+![](../images/overusedwordsbysentence.png)
 
 This check is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
@@ -683,7 +683,7 @@ If you are writing educational materials for early readers, then use as many of 
 
 After opening a project, click on the **Dolch Sight Words** icon on the project sidebar and select the **Dolch Summary** subitem to view the document's Dolch statistics:
 
-![](images/dolchsummary.png)
+![](../images/dolchsummary.png)
 
 There are two types of statistics included: Dolch coverage and raw Dolch word counts.
 
@@ -710,7 +710,7 @@ The **Dolch Coverage** graph displays how much of each category is used in the d
 Refer to @sec-reviewing-dolch for more information.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/dolch-coverage-chart.png")
+knitr::include_graphics("../images/dolch-coverage-chart.png")
 ```
 
 As we can see in the above graph, 87.5% of the Dolch prepositions are used in the document.
@@ -722,7 +722,7 @@ The **Words Breakdown** graph displays all the raw Dolch word counts, broken dow
 Refer to @sec-reviewing-dolch for more information.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/dolch-word-breakdown.png")
+knitr::include_graphics("../images/dolch-word-breakdown.png")
 ```
 
 As we can see in the above graph, there are 938 total Dolch words used in this document.
@@ -736,7 +736,7 @@ There will be two types of highlighted text reports available: **Dolch Words** a
 
 The **Dolch Words** subitem will display the document with the Dolch words highlighted:
 
-![](images/dolchhighlightedwords.png)
+![](../images/dolchhighlightedwords.png)
 
 Each category (e.g., nouns) will be highlighted by a different color.
 
@@ -749,7 +749,7 @@ Here you can choose which categories to highlight and select their respective hi
 
 The **Non-Dolch Words** subitem will display the document with all the non-Dolch words (words that do not appear in any of the Dolch lists) highlighted:
 
-![](images/dolchhighlightednonwords.png)
+![](../images/dolchhighlightednonwords.png)
 
 ### Reviewing the Dolch Word Lists {-}
 
@@ -758,7 +758,7 @@ There will be three types of word lists available: **Dolch Words**, **Non-Dolch 
 
 The **Dolch Words** subitem will display a list of the Dolch words from the document:
 
-![](images/dolchwordslist.png)
+![](../images/dolchwordslist.png)
 
 Next to each word will be two columns. The first column is **Frequency**, which will represent the number of times the word appears in the file.
 The second column is **Category**, which represents the Dolch category to which the word belongs.
@@ -767,7 +767,7 @@ Double-click on any word in this list to display the [**Dolch Words**](#sec-revi
 
 The **Non-Dolch Words** subitem will display a list of the words from the document that do not appear on any of the Dolch lists:
 
-![](images/dolchnonwordslist.png)
+![](../images/dolchnonwordslist.png)
 
 Next to each word will be a **Frequency** column, which will represent the number of times the word appears in the file.
 
@@ -778,7 +778,7 @@ Double-click on any word in this list to display the [**Non-Dolch Words**](#sec-
 
 The **Unused Dolch Words** subitem will display a list of the Dolch words that do not appear in the document:
 
-![](images/dolchunusedwordslist.png)
+![](../images/dolchunusedwordslist.png)
 
 Next to each word will be a **Category** column, which represents the Dolch category that the word belongs to.
 If your document has low [coverage](#sec-reviewing-dolch) of a category that you are targeting, try adding the words listed here to the document.

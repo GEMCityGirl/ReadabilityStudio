@@ -2,7 +2,7 @@
 #| include: false
 #| eval: true
 
-source('R/appdown.r')
+source('../R/appdown.r')
 ```
 
 # Reviewing Batch Projects
@@ -21,18 +21,18 @@ After opening a project, click on the **Readability Scores** icon on the project
 
 The **Raw Scores** subitem will display the scores for each document:
 
-![](images/batchrawscores.png)
+![](../images/batchrawscores.png)
 
 Next to each document name, all of its respective test scores are displayed. In the above example, we can see that the file *NewProject.html* has an [ARI](#sec-ari-test)\index{Automated Readability Index} score of 12.1, a [New Dale-Chall](#sec-dale-chall-test) score of 16+, and a [Flesch-Kincaid](#sec-flesch-kincaid-test) score of 12. To view any document's scores in a vertical layout, double-click on it to display the **View Item** dialog:
 
 ```{r echo=F, fig.align='center', out.width='45%'}
-knitr::include_graphics("images/viewitemrawscores.png")
+knitr::include_graphics("../images/viewitemrawscores.png")
 ```
 
 The **Goals** subitem will display any [goals](#sec-reviewing-goals) that are currently failing in the project:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/batch-project-goals.png")
+knitr::include_graphics("../images/batch-project-goals.png")
 ```
 
 Above, we can see that most of the documents are passing the goal of having an ELF score below 12. However, most are failing to have an FRE score above 60.
@@ -43,7 +43,7 @@ For simplicity, only goals that are failing are shown here. If all goals are pas
 
 The **Score Summary** subitem will display the aggregated statistics for each test:
 
-![](images/batchscorestats.png)
+![](../images/batchscorestats.png)
 
 ::: {.minipage data-latex="{\textwidth}"}
 By default, the following statistics for each test are included:
@@ -76,7 +76,7 @@ To remove any test in this list from the project, select it and press `r keys(c(
 
 The **Grade Score Summary (x Document)** subitem will display aggregated statistics for all grade-level scores, grouped by document:
 
-![](images/batch-grade-scores-by-document.png)
+![](../images/batch-grade-scores-by-document.png)
 
 The **Valid N** column represents the number of grade-level tests that were successfully ran against each document. After this column are additional columns displaying grade-level score statistics, document-by-document. In the above example, we can see that the document *CustomWordTest.html* had 5 different grade tests ran against it, with 9.5 being the lowest score and 10.9 being the highest.
 
@@ -84,7 +84,7 @@ Note that this subitem will only be available if at least one grade-level test i
 
 The **Cloze Score Summary (x Document)** subitem will display aggregated statistics for all [predicted cloze](#sec-cloze) scores, grouped by document:
 
-![](images/batch-cloze-scores-by-document.png)
+![](../images/batch-cloze-scores-by-document.png)
 
 This subitem is interpreted in the same manner as the **Grade Score Summary (x Document)** page.
 
@@ -103,7 +103,7 @@ The height of each bar will reflect the number of documents that scored within t
 In the histogram below, we can see that 15 documents scored within the 10^th^ grade range for the [Flesch-Kincaid](#sec-flesch-kincaid-test) test:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/histogrades.png")
+knitr::include_graphics("../images/histogrades.png")
 ```
 
 We interpret this first by looking at the highest bar. The label above it displays *15*, which is the number of documents in that category. Now, to see the category, we look at the x-axis labels below the bar.
@@ -120,7 +120,7 @@ Continuing on, this batch has quite a few difficult documents. There are 15 docu
 Index tests (such as [Flesch](#sec-flesch-test)) will also have histograms, where the bins are ranges in the index. For example, in the histogram below we can see how most of the documents are in the lower range of the Flesch scale:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/histoindex.png")
+knitr::include_graphics("../images/histoindex.png")
 ```
 
 From this histogram we can also conclude that this batch has too many difficult documents.
@@ -128,7 +128,7 @@ From this histogram we can also conclude that this batch has too many difficult 
 If we revise these documents and reload the project (`r keys("F5")`), then these graphs will show improvement:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/histoimproved.png")
+knitr::include_graphics("../images/histoimproved.png")
 ```
 
 The appearance of these histograms can be customized from the [**Histogram**](#sec-options-graphs) page of either the [**Options**](#sec-options-overview) or [**Project Properties**](#sec-options-overview) dialog.
@@ -147,7 +147,7 @@ After opening a project, click on the **Score Box Plots** icon on the project si
 If the project contains groups, then the boxes will be categorized into these groups:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/boxgrouped.png")
+knitr::include_graphics("../images/boxgrouped.png")
 ```
 
 In the above example, note that the documents in the *Overviews* group mostly score in the high-school range.
@@ -156,7 +156,7 @@ There are, however, a few outliers in this group that may need reviewing.
 Along with the grade-level box plots, a separate box plot for each index test will also be included. Below is a box plot of [Flesch](#sec-flesch-test) scores from a batch:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/boxindex.png")
+knitr::include_graphics("../images/boxindex.png")
 ```
 
 As we can see above, the middle half of the documents fall within a marginally acceptable range of 46–60.5 (60–80 is normally preferred). The upper whisker goes up to 75, meaning that there are a decent number of document in the 60.5–75 range. Unfortunately, the lower whisker extends all the way to 33—this indicates a fair amount of difficult documents. As with the grade-level plot, this graph helps us conclude that some documents in this batch should be revised to lower their scores.
@@ -173,7 +173,7 @@ After opening a project, click on the **Words Breakdown** icon on the project si
 
 **Difficult Words**: This list displays percentages of difficult words throughout the documents.
 
-![](images/batchdifficultwords.png)
+![](../images/batchdifficultwords.png)
 
 Next to each document name, the respective percentages and raw word counts of the following are displayed:
 
@@ -188,7 +188,7 @@ Next to each document name, the respective percentages and raw word counts of th
 
 Note that test-specific word counts/percentages (e.g., Dale-Chall unfamiliar words) are only included if the respective test is included in the project.
 
-![](images/batchdifficultwordsverbose.png)
+![](../images/batchdifficultwordsverbose.png)
 
 **All Words**: This list displays all the words from the documents and their respective frequency counts.
 
@@ -202,7 +202,7 @@ Note that test-specific word counts/percentages (e.g., Dale-Chall unfamiliar wor
 
 After opening a project, click on the **Sentences Breakdown** icon on the project sidebar and click on the **Long Sentences** subitem. This window will display a list of the difficult sentences from your documents.
 
-![](images/batchlongsentences.png)
+![](../images/batchlongsentences.png)
 
 Note that if you are ignoring incomplete sentences, then this will only include the complete sentences.
 If you need to review all sentences from the documents, then select the option [**Include in analysis and treat as full sentences**](#sec-document-analysis).
@@ -210,14 +210,14 @@ Refer to @sec-how-text-is-excluded to learn more about how *Readability Studio* 
 
 To find the longest sentence, [sort](#sec-column-sorting) the **Longest Sentence Length** column into descending order. As we can see below, the longest sentence is now shown at the top of the list.
 
-![](images/batchlongestsentence.png)
+![](../images/batchlongestsentence.png)
 
 If the test scores indicate that the documents are too difficult for your audience, then review the overly-long sentences.
 You should consider splitting these sentences into smaller ones and revising any [wordy items](#sec-reviewing-batch-grammar).
 
 To view a specific document's longest sentence, double-click on its row in this list. A vertical display of that document's longest sentence will be shown:
 
-![](images/batchlongestsentenceviewitem.png)
+![](../images/batchlongestsentenceviewitem.png)
 
 Note that if there are no long sentences in your documents, then this window will not be included.
 
@@ -239,12 +239,12 @@ This is useful for reviewing a particular document in greater detail. Note that 
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Conjunction-Starting Sentences** subitem. This window will display a list of all sentences that begin with coordinating conjunctions.
 
-![](images/batchconjunctionstart.png)
+![](../images/batchconjunctionstart.png)
 
 To view a specific document's conjunction-starting sentences, double-click on its row in this list. A vertical display of that document's conjunction-starting sentences will be shown:
 
 ```{r echo=F, fig.align='center', out.width='60%'}
-knitr::include_graphics("images/batchconjunctionviewitem.png")
+knitr::include_graphics("../images/batchconjunctionviewitem.png")
 ```
 
 Refer to @sec-reviewing-standard-grammar to learn more about conjunction-starting sentences.
@@ -253,32 +253,32 @@ Refer to @sec-reviewing-standard-grammar to learn more about conjunction-startin
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Lowercased Sentences** subitem. This window will display a list of all sentences that begin with lowercased words (which is usually a typo).
 
-![](images/batchlowersentences.png)
+![](../images/batchlowersentences.png)
 
 Note that if the option [**Sentences must begin with capitalized words**](#sec-document-analysis) is enabled, then this feature will be limited to sentences that begin new paragraphs. If you want to search for any possible sentences that begin with lowercased words, then you should leave this option unchecked.
 
 To view a specific document's lowercased sentences, double-click on its row in this list. A vertical display of that document's lowercased sentences will be shown:
 
 ```{r echo=F, fig.align='center', out.width='60%'}
-knitr::include_graphics("images/batchlowersentenceviewitem.png")
+knitr::include_graphics("../images/batchlowersentenceviewitem.png")
 ```
 
 ### Reviewing Repeated Words {-}
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Repeated Words** subitem. This window will display a list of all repeated words from each document.
 
-![](images/batchrepeatedwords.png)
+![](../images/batchrepeatedwords.png)
 
 If a repeated word occurs more than once in a document, then a multiplication factor will be shown next to it. For example, if *the the* occurs two separate times in a given document, then this will be displayed as *the the\*2*:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/batchrepeatedmultiple.png")
+knitr::include_graphics("../images/batchrepeatedmultiple.png")
 ```
 
 To view a specific document's repeated words, double-click on its row in this list. A vertical display of that document's repeated words will be shown:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/batchrepeatedviewitem.png")
+knitr::include_graphics("../images/batchrepeatedviewitem.png")
 ```
 
 Refer to @sec-reviewing-standard-grammar and @sec-repeated-word-exceptions to learn how repeated words are detected.
@@ -287,7 +287,7 @@ Refer to @sec-reviewing-standard-grammar and @sec-repeated-word-exceptions to le
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Article Mismatches** subitem. This window will display a list of articles (i.e., *a* and *an*) that do not match their following noun.
 
-![](images/batcharticlemismatches.png)
+![](../images/batcharticlemismatches.png)
 
 Article mismatch searching does not affect readability calculations, so this analysis is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
@@ -296,7 +296,7 @@ If an article mismatch occurs more than once in a document, then a multiplicatio
 To view a specific document's article mismatches, double-click on its row in this list. A vertical display of that item will be shown:
 
 ```{r echo=F, fig.align='center', out.width='35%'}
-knitr::include_graphics("images/viewitemarticlemismatch.png")
+knitr::include_graphics("../images/viewitemarticlemismatch.png")
 ```
 
 Refer to @sec-article-mismatching to learn more.
@@ -306,7 +306,7 @@ Refer to @sec-article-mismatching to learn more.
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Errors & Misspellings** subitem.
 This window will display a list of misused phrases, grammatically incorrect wording, and known misspellings from each document.
 
-![](images/batchwordingerrors.png)
+![](../images/batchwordingerrors.png)
 
 This search is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
@@ -315,7 +315,7 @@ If a wording error occurs more than once in a document, then a multiplication fa
 To view a specific document's errors, double click on its row. A vertical display of that document's wording errors will be shown:
 
 ```{r echo=F, fig.align='center', out.width='60%'}
-knitr::include_graphics("images/batchwordingerrorsviewitem.png")
+knitr::include_graphics("../images/batchwordingerrorsviewitem.png")
 ```
 
 ### Reviewing Possible Misspellings {-}
@@ -323,7 +323,7 @@ knitr::include_graphics("images/batchwordingerrorsviewitem.png")
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Possible Misspellings** subitem.
 This window will display a list of all possible misspellings from each document.
 
-![](images/batchmisspellings.png)
+![](../images/batchmisspellings.png)
 
 This search is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
@@ -332,7 +332,7 @@ If a misspelling occurs more than once in a document, then a multiplication fact
 To view a specific document's misspellings, right click on its row and select **View Item**. A vertical display of that document's misspellings will be shown:
 
 ```{r echo=F, fig.align='center', out.width='60%'}
-knitr::include_graphics("images/batchmisspellingsviewitem.png")
+knitr::include_graphics("../images/batchmisspellingsviewitem.png")
 ```
 
 To add any document's misspellings to your dictionary, double click on its row to show the **Add to Dictionary** dialog. From here, you can add any (or all) reported misspellings to your dictionary. Afterwards, these words will no longer be reported as misspelled.
@@ -341,18 +341,18 @@ To add any document's misspellings to your dictionary, double click on its row t
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Redundant Phrases** subitem. This window will display a list of redundant phrases from the documents. Suggested replacements will also be shown next to each phrase in this list.
 
-![](images/batchredundantphrases.png)
+![](../images/batchredundantphrases.png)
 
 Redundant-phrase searching does not affect readability calculations, so this analysis is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
 If a redundant phrase occurs more than once in a document, then a multiplication factor will be shown next to it. For example, if *brief summary* occurs three separate times in a given document, then this will be displayed as *brief summary\*3*:
 
-![](images/batchredundantphrasesmultiple.png)
+![](../images/batchredundantphrasesmultiple.png)
 
 To view a specific document's redundant phrases, double-click on its row in this list. A vertical display of that document's redundant phrases will be shown:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/batchredundantphrasesviewitem.png")
+knitr::include_graphics("../images/batchredundantphrasesviewitem.png")
 ```
 
 Refer to @sec-reviewing-standard-grammar for an explanation of what redundant phrase are.
@@ -361,16 +361,16 @@ Refer to @sec-reviewing-standard-grammar for an explanation of what redundant ph
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Wordy Items** subitem. This window will display a list of wordy phrases and difficult words from the documents. Suggested replacements will also be shown next to each phrase in this list.
 
-![](images/batchwordyphrases.png)
+![](../images/batchwordyphrases.png)
 
 If a wordy item occurs more than once in a document, then a multiplication factor will be shown next to it. For example, if *result in* occurs two separate times in a given document, then this will be displayed as *result in\*2*:
 
-![](images/batchwordyphrasesmultiple.png)
+![](../images/batchwordyphrasesmultiple.png)
 
 To view a specific document's wordy item, double-click on its row in this list. A vertical display of that item will be shown:
 
 ```{r echo=F, fig.align='center', out.width='50%'}
-knitr::include_graphics("images/viewitemwordyphrase.png")
+knitr::include_graphics("../images/viewitemwordyphrase.png")
 ```
 
 Refer to @sec-reviewing-standard-grammar for an explanation about wordy phrases.
@@ -379,18 +379,18 @@ Refer to @sec-reviewing-standard-grammar for an explanation about wordy phrases.
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Clichés** subitem. This window will display a list of clichés from the documents. Suggested replacements will be shown next to each cliché in this list.
 
-![](images/batchcliches.png)
+![](../images/batchcliches.png)
 
 If a cliché occurs more than once in a document, then a multiplication factor will be shown next to it. For example, if *off the wall* occurs four separate times in a given document, then this will be displayed as *off the wall\*4*:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/batchclichemultiple.png")
+knitr::include_graphics("../images/batchclichemultiple.png")
 ```
 
 To view a specific document's clichés, double-click on its row in this list. A vertical display of that document's clichés will be shown:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/batchclichesviewitem.png")
+knitr::include_graphics("../images/batchclichesviewitem.png")
 ```
 
 Refer to @sec-reviewing-standard-grammar for an explanation about clichés.
@@ -399,14 +399,14 @@ Refer to @sec-reviewing-standard-grammar for an explanation about clichés.
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Passive Voice** subitem. This window will display a list of all passive phrases from each document.
 
-![](images/batchpassivevoice.png)
+![](../images/batchpassivevoice.png)
 
 If a passive phrase occurs more than once in a document, then a multiplication factor will be shown next to it. For example, if *be chosen* occurs twice in a given document, then this will be displayed as *be chosen\*2*.
 
 To view a specific document's passive phrases, right click on its row and select **View Item**. A vertical display of that document's passive phrases will be shown:
 
 ```{r echo=F, fig.align='center', out.width='25%'}
-knitr::include_graphics("images/batchpassivevoiceviewitem.png")
+knitr::include_graphics("../images/batchpassivevoiceviewitem.png")
 ```
 
 Refer to @sec-reviewing-standard-grammar for an explanation about passive phrases.
@@ -415,7 +415,7 @@ Refer to @sec-reviewing-standard-grammar for an explanation about passive phrase
 
 After opening a project, click on the **Grammar** icon on the project sidebar and select the **Overused Words (x Sentence)** subitem. This window will display a list of all sentences that use the same word multiple times from each document. (These are more of style suggestions, rather than grammar issues.) When reviewing these, it is recommended to change some of the repeated words to add more variety to your content.
 
-![](images/batchoverusedwordsbysentence.png)
+![](../images/batchoverusedwordsbysentence.png)
 
 Numeric words, proper nouns, words containing less than three letters, and common words (e.g., *the*) are excluded from this review.
 
@@ -432,19 +432,19 @@ There will be three lists available: **Dolch Word Coverage**, **Dolch Words**, a
 
 The **Dolch Word Coverage** subitem will display the **Dolch** word [coverage](#sec-reviewing-dolch) for each document:
 
-![](images/batchdolchcoverage.png)
+![](../images/batchdolchcoverage.png)
 
 Next to each document name, the respective coverage percentage for each category is displayed.
 
 The **Dolch Words** subitem will display the percentages of **Dolch** words used in each document:
 
-![](images/batchdolchwords.png)
+![](../images/batchdolchwords.png)
 
 Note that the raw counts of these words will also be included if [**Extended Information**](#sec-options-statistics) is enabled.
 
 The **Non-Dolch Words** subitem will display the percentages of words from each document that do not appear on any of the **Dolch** lists:
 
-![](images/batchdolchnonwords.png)
+![](../images/batchdolchnonwords.png)
 
 Note that the raw counts of these words will also be included if [**Extended Information**](#sec-options-statistics) is enabled.
 
@@ -454,7 +454,7 @@ Note that the raw counts of these words will also be included if [**Extended Inf
 
 After opening a project, click on the **Warnings** icon on the project sidebar to view any warnings issued while loading the documents:
 
-![](images/warnings.png)
+![](../images/warnings.png)
 
 Warnings that may occur are:
 

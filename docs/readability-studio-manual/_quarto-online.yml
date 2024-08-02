@@ -10,13 +10,13 @@ book:
       - overviews/new-features.qmd
     - part: "Projects & Features"
       chapters:
-      - creating-a-new-project.qmd
-      - reviewing-standard-projects.qmd
-      - reviewing-batch-project.qmd
-      - customizing-results.qmd
-      - publishing.qmd
-      - program-options.qmd
-      - additional-features.qmd
+      - projects-features/creating-a-new-project.qmd
+      - projects-features/reviewing-standard-projects.qmd
+      - projects-features/reviewing-batch-project.qmd
+      - projects-features/customizing-results.qmd
+      - projects-features/publishing.qmd
+      - projects-features/program-options.qmd
+      - projects-features/additional-features.qmd
     - part: "Readability Tests"
       chapters:
       - readability-tests-english.qmd

@@ -2,7 +2,7 @@
 #| include: false
 #| eval: true
 
-source('R/appdown.r')
+source('../R/appdown.r')
 ```
 
 # Program & Project Options {#sec-options-overview}
@@ -18,13 +18,13 @@ These options can be configured both globally and for individual projects. Note 
 To set these options globally, click the `r keys("Options")` button on the **Tools** tab to open the **Options** dialog:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/options-dlg.png")
+knitr::include_graphics("../images/options-dlg.png")
 ```
 
 If you wish to change options for an individual project, then click the `r keys("Properties")` button on the **Home** tab to open the **Project Properties** dialog:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/projectproperties.png")
+knitr::include_graphics("../images/projectproperties.png")
 ```
 
 ## General Settings {#sec-options-general-settings}
