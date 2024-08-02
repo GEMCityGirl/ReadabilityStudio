@@ -87,8 +87,6 @@ elseif(WIN32)
     configure_file("${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/icons.isl.in"
                    "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/icons.isl")
 endif()
-configure_file("${CMAKE_CURRENT_SOURCE_DIR}/docs/version_info.txt.in"
-               "${CMAKE_CURRENT_SOURCE_DIR}/docs/version_info.txt")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/docs/_variables.yml.in"
                "${CMAKE_CURRENT_SOURCE_DIR}/docs/_variables.yml")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/_quarto.yml.in"

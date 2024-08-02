@@ -73,16 +73,6 @@ clearFolders <- function()
 
 clearFolders()
 
-# Read dynamic values for the projects
-setwd(glue("{docFolder}/"))
-version_info <- read_delim("version_info.txt", 
-                           delim = "\t", escape_double = FALSE, 
-                           trim_ws = TRUE)
-BUILD_YEAR <- dplyr::filter(version_info, TAG == 'BUILD_YEAR')$VALUE
-PROGRAM_VERSION <- dplyr::filter(version_info, TAG == 'VERSION')$VALUE
-PROGRAM_AUTHOR <- dplyr::filter(version_info, TAG == 'PROGRAM_AUTHOR')$VALUE
-PROGRAM_NAME <- dplyr::filter(version_info, TAG == 'PROGRAM_NAME')$VALUE
-
 # Coding Bible
 ##############
 
