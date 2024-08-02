@@ -262,7 +262,7 @@ Note that changing these options from the **Project Properties** dialog will onl
 The different types of graphs that may be shown are:
 
 ::: {.minipage data-latex="{\textwidth}"}
-**Word Counts** [bar chart](#sec-options-bar-charts): This graph shows the total counts of each type of word (e.g., 3+ syllable words) and how each category compares to one another. This bar chart will appear like this:
+**Word Counts** [bar chart](#sec-options-graphs): This graph shows the total counts of each type of word (e.g., 3+ syllable words) and how each category compares to one another. This bar chart will appear like this:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/barchart.png")
