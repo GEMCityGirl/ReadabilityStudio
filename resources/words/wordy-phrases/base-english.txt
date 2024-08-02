@@ -51,7 +51,7 @@ a know	a known	3
 a large number of	numerous, many	0		
 a large percentage of	numerous, many	0		
 a leg up	a promising start	2		
-a like	alike	3	in	statement
+a like	alike	3	 give; with;in	statement
 a little bit	a little, a bit	1		
 a majority of	most	0		
 a number of	some, many, a few	0		
@@ -197,6 +197,9 @@ acccepted	accepted	3
 acccepting	accepting	3		
 acccepts	accepts	3		
 acccess	access	3		
+acccount	account	3		
+acccount's	account's	3		
+acccounts	accounts	3		
 acccused	accused	3		
 accecss	access	3		
 accecssed	accessed	3		
@@ -459,7 +462,7 @@ adapts	makes fit	0
 adavanced	advanced	3		
 adbandon	abandon	3		
 add a further	add	1		
-add an additional	add	1		
+add an additional	add a/an	1		
 add insult to injury	be remarkably harsh/insulting	2		
 addd	add	3		
 addded	added	3		
@@ -3449,6 +3452,10 @@ comes as a surprise	surprises	0
 comes equipped with	comes with, equipped with	0		
 comes form	comes from	3		
 comes furnished with	comes with, furnished with	0		
+comfirm	confirm	3		
+comfirmed	confirmed	3		
+comfirming	confirming	3		
+comfirms	confirms	3		
 comformance	conformance	3		
 comforted	soothed	0		
 comforting	soothing	0		
@@ -4588,6 +4595,7 @@ de facto	real	0
 de-initialiation	de-initialization	3		
 de-initialiation's	de-initialization's	3		
 de-initialiations	de-initializations	3		
+deactive	inactive	3		
 dead presidents	money (U.S. currency)	2		
 dead to rights	irretrievably, without the ability to escape, red-handed	2		
 deafault	default	3		
@@ -7427,6 +7435,9 @@ glpyh	glyph	3
 glpyhs	glyphs	3		
 glutinous	sticky, gluey	0		
 gnawwed	gnawed	3		
+gneral	general	3		
+gneral's	general's	3		
+gnerals	generals	3		
 go along with	agree with, endorse	0		
 go around in circles	work ineffectually	2		
 go for broke	risk everything	2		
@@ -8943,6 +8954,9 @@ insomina's	insomnia's	3
 instace	instance	3		
 instade	instead	3		
 installating	installing	3		
+installtion	installation	3		
+installtion's	installation's	3		
+installtions	installations	3		
 instanciate	instantiate	3		
 instanciated	instantiated	3		
 instanciates	instantiates	3		
@@ -8979,6 +8993,10 @@ insures the security	ensures the security	3
 insuring the security	ensuring the security	3		
 insurrection	revolt, rebellion	0		
 insurrections	revolts, rebellion	0		
+intall	install	3		
+intalled	installed	3		
+intalling	installing	3		
+intalls	installs	3		
 intance	instance	3		
 intances	instances	3		
 intead	instead	3		
@@ -9034,7 +9052,7 @@ interesection	intersection	3
 interesections	intersections	3		
 interesects	intersects	3		
 interesing	interesting	3		
-interesting in	interested in (should be reviewed)	3		and of;more
+interesting in	interested in (should be reviewed)	3	anything;nothing	and of;more
 interestingly enough	(consider removing this)	0		
 interferance	interference	3		
 interfereing	interfering	3		
@@ -11103,7 +11121,7 @@ on or before	before	0
 on or more	one or more	3		
 on pins and needles	nervous, on edge	2		
 on previous occasions	earlier	0		
-on principal	on principle	3		actor;actors;investigator;investigators
+on principal	on principle	3		actor;actors;investigator;investigators;role;roles
 on prior occasions	earlier	0		
 on that particular occasion	then	0		
 on the ball	doing well, skilled, sharp, competent	2		
@@ -14073,6 +14091,7 @@ saw the light	got the idea	2
 saw the light at the end of the tunnel	saw success drawing near	2		
 saxaphone	saxophone	3		
 scaleable	scalable	3		
+scanable	scannable	3		
 scandalous	shocking	0		
 scandalously	shockingly	0		
 scaned	scanned	3		
@@ -17029,7 +17048,7 @@ when pigs fly	never	2
 whenever	when	0		
 whenver	whenever	3		
 wheras	whereas	3		
-where as	whereas	3		
+where as	whereas	3	moment;moments;time;times	
 where by	whereby	3		
 where taken	were taken	3		
 whereas	because, since	0		
@@ -17093,8 +17112,6 @@ wipes the slate clean	starts over again, retries	2
 wiping sweet from	wiping sweat from	3		
 wiping the slate clean	starting over again, retrying	2		
 wirting	writing	3		
-wistia	wisteria	3		
-wistia's	wisteria's	3		
 wistias	wisterias	3		
 with a view to	for	0		
 with bated breath	eagerly	2		
@@ -17219,7 +17236,7 @@ yesterday night	last night	3
 yor	your, yore	3		
 you am	you are	3		
 you can bet your bottom dollar	you can be sure of it	2		
-you has	you have	3	in	to
+you has	you have	3	 from;in	to
 you herd	you heard	3		
 you thing	you think	3		
 you was	you were	3		

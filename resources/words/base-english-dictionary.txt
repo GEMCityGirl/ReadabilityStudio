@@ -13363,6 +13363,9 @@ bloater's
 bloaters
 bloating
 bloats
+bloatware
+bloatware's
+bloatwares
 blob
 blob's
 blobbed
@@ -111522,6 +111525,8 @@ reprise's
 reprises
 reprising
 reprized
+repro
+repro's
 reproach
 reproachable
 reproached
@@ -111582,6 +111587,7 @@ reproof's
 reproofed
 reproofing
 reproofs
+repros
 reprotect
 reprotected
 reprotecting
@@ -119639,6 +119645,9 @@ shaper
 shaper's
 shapers
 shapes
+shapewriting
+shapewriting's
+shapewritings
 shaping
 sharable
 Sharai
@@ -120618,6 +120627,9 @@ shrubby
 shrubs
 shrug
 shrugged
+shruggie
+shruggie's
+shruggies
 shrugging
 shrugs
 shrunk
@@ -122730,6 +122742,7 @@ smiler
 smiles
 smiley
 smiley's
+smileys
 smilies
 smiling
 smilingly
@@ -124175,6 +124188,7 @@ sortied
 sortieing
 sorties
 sorting
+sortings
 sorts
 SOS
 sot
@@ -129139,6 +129153,8 @@ suborning
 suborns
 suboxone
 subpage
+subpage's
+subpages
 subpar
 subparagraph
 subparagraph's
