@@ -285,7 +285,7 @@ C/C++ style comments are supported, which provide:
 
 For example:
 
-```{cpp}
+```{Rcpp}
 #| eval: false
 #| echo: true
 
