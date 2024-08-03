@@ -23,8 +23,8 @@ source(glue("{docFolder}/readability-studio-manual/R/appdown.r"))
 # delete previous builds
 unlink(glue("{docFolder}/coding-bible/docs"), recursive=T)
 unlink(glue("{docFolder}/shortcuts-cheatsheet/docs"), recursive=T)
-unlink(glue("{docFolder}/readability-studio-manual/docs"), recursive=T)
-unlink(glue("{docFolder}/readability-test-reference/docs"), recursive=T)
+unlink(glue("{docFolder}/readability-studio-manual/docs-manual"), recursive=T)
+unlink(glue("{docFolder}/readability-test-reference/docs-online"), recursive=T)
 unlink(glue("{docFolder}/readability-studio-api/docs"), recursive=T)
 
 # delete helper files copied from the main project into others
