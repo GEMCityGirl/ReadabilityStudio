@@ -87,7 +87,9 @@ static size_t FormatWordCollectionHighlightedWords(
                     {
                     currentWord = rtfEncode(currentWord);
                     }
-                else if (!useRtfEncoding)
+                else if (!useRtfEncoding &&
+                         lily_of_the_valley::html_encode_text::needs_to_be_simple_encoded(
+                             currentWord))
                     {
                     currentWord = lily_of_the_valley::html_encode_text::simple_encode(currentWord);
                     }
@@ -99,7 +101,9 @@ static size_t FormatWordCollectionHighlightedWords(
                         {
                         punct = rtfEncode(punct);
                         }
-                    else if (!useRtfEncoding)
+                    else if (!useRtfEncoding &&
+                             lily_of_the_valley::html_encode_text::needs_to_be_simple_encoded(
+                                 punct))
                         {
                         punct = lily_of_the_valley::html_encode_text::simple_encode(punct);
                         }
@@ -178,7 +182,9 @@ static size_t FormatWordCollectionHighlightedWords(
                         {
                         punct = rtfEncode(punct);
                         }
-                    else if (!useRtfEncoding)
+                    else if (!useRtfEncoding &&
+                             lily_of_the_valley::html_encode_text::needs_to_be_simple_encoded(
+                                 punct))
                         {
                         punct = lily_of_the_valley::html_encode_text::simple_encode(punct);
                         }
@@ -201,7 +207,9 @@ static size_t FormatWordCollectionHighlightedWords(
                         {
                         endingPunctuation = rtfEncode(endingPunctuation);
                         }
-                    else if (!useRtfEncoding)
+                    else if (!useRtfEncoding &&
+                             lily_of_the_valley::html_encode_text::needs_to_be_simple_encoded(
+                                 endingPunctuation))
                         {
                         endingPunctuation =
                             lily_of_the_valley::html_encode_text::simple_encode(endingPunctuation);
@@ -323,7 +331,9 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
                         {
                         punct = rtfEncode(punct);
                         }
-                    else if (!useRtfEncoding)
+                    else if (!useRtfEncoding &&
+                             lily_of_the_valley::html_encode_text::needs_to_be_simple_encoded(
+                                 punct))
                         {
                         punct = lily_of_the_valley::html_encode_text::simple_encode(punct);
                         }
@@ -395,7 +405,9 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
                     {
                     currentWord = rtfEncode(currentWord);
                     }
-                else if (!useRtfEncoding)
+                else if (!useRtfEncoding &&
+                         lily_of_the_valley::html_encode_text::needs_to_be_simple_encoded(
+                             currentWord))
                     {
                     currentWord = lily_of_the_valley::html_encode_text::simple_encode(currentWord);
                     }
@@ -467,7 +479,9 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
                         {
                         punct = rtfEncode(punct);
                         }
-                    else if (!useRtfEncoding)
+                    else if (!useRtfEncoding &&
+                             lily_of_the_valley::html_encode_text::needs_to_be_simple_encoded(
+                                 punct))
                         {
                         punct = lily_of_the_valley::html_encode_text::simple_encode(punct);
                         }
@@ -490,7 +504,9 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
                         {
                         endingPunctuation = rtfEncode(endingPunctuation);
                         }
-                    else if (!useRtfEncoding)
+                    else if (!useRtfEncoding &&
+                             lily_of_the_valley::html_encode_text::needs_to_be_simple_encoded(
+                                 endingPunctuation))
                         {
                         endingPunctuation =
                             lily_of_the_valley::html_encode_text::simple_encode(endingPunctuation);
