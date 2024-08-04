@@ -1459,8 +1459,10 @@ bool ProjectDoc::OnNewDocument()
 
     ShowQueuedMessages();
 
-    if (GetDocumentStorageMethod() ==TextStorage::LoadFromExternalDocument)
-        { RestartRealtimeUpdate(); }
+    if (GetDocumentStorageMethod() == TextStorage::LoadFromExternalDocument)
+        {
+        RestartRealtimeUpdate();
+        }
 
     return true;
     }
@@ -5549,46 +5551,53 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
         // 3+ syllable highlighted words
             {
-            FormattedTextCtrl* textWindow =
-                dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(
-                    BaseProjectView::HARD_WORDS_TEXT_PAGE_ID));
-            // always included for any language
+            if (GetWordsBreakdownInfo().Is3PlusSyllablesEnabled() &&
+                GetTotalUnique3PlusSyllableWords() > 0)
                 {
-                textWindow = buildTextWindow(textWindow, BaseProjectView::HARD_WORDS_TEXT_PAGE_ID,
-                    BaseProjectView::GetThreeSyllableReportWordsLabel(), is3PlusSyllablesThemed,
-                        textLegendsThemed.hardWordsLegend);
-                }
-            if (GetWordsBreakdownInfo().Is3PlusSyllablesEnabled() && GetTotalUnique3PlusSyllableWords() > 0)
-                {
+                FormattedTextCtrl* textWindow =
+                    dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(
+                        BaseProjectView::HARD_WORDS_TEXT_PAGE_ID));
+                // always included for any language
+                textWindow =
+                    buildTextWindow(textWindow, BaseProjectView::HARD_WORDS_TEXT_PAGE_ID,
+                                    BaseProjectView::GetThreeSyllableReportWordsLabel(),
+                                    is3PlusSyllablesThemed, textLegendsThemed.hardWordsLegend);
                 const auto buddyWindowPosition =
-                    view->GetWordsBreakdownView().FindWindowPositionById(BaseProjectView::HARD_WORDS_LIST_PAGE_ID);
+                    view->GetWordsBreakdownView().FindWindowPositionById(
+                        BaseProjectView::HARD_WORDS_LIST_PAGE_ID);
                 view->GetWordsBreakdownView().InsertWindow(
-                    (buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition+1 : 0, textWindow);
+                    (buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition + 1 : 0, textWindow);
                 }
             else
-                { view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::HARD_WORDS_TEXT_PAGE_ID); }
+                {
+                view->GetWordsBreakdownView().RemoveWindowById(
+                    BaseProjectView::HARD_WORDS_TEXT_PAGE_ID);
+                }
             }
 
         // 6+ character highlighted words
             {
-            FormattedTextCtrl* textWindow =
-                dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(
-                    BaseProjectView::LONG_WORDS_TEXT_PAGE_ID));
-            // always included for any language
+            if (GetWordsBreakdownInfo().Is6PlusCharacterEnabled() &&
+                GetTotalUnique6CharsPlusWords() > 0)
                 {
+                FormattedTextCtrl* textWindow =
+                    dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(
+                        BaseProjectView::LONG_WORDS_TEXT_PAGE_ID));
+                // always included for any language
                 textWindow = buildTextWindow(textWindow, BaseProjectView::LONG_WORDS_TEXT_PAGE_ID,
-                    BaseProjectView::GetSixCharWordsReportLabel(),
-                        is6PlusCharsThemed, textLegendsThemed.longWordsLegend);
-                }
-            if (GetWordsBreakdownInfo().Is6PlusCharacterEnabled() && GetTotalUnique6CharsPlusWords() > 0)
-                {
+                                             BaseProjectView::GetSixCharWordsReportLabel(),
+                                             is6PlusCharsThemed, textLegendsThemed.longWordsLegend);
                 const auto buddyWindowPosition =
-                    view->GetWordsBreakdownView().FindWindowPositionById(BaseProjectView::LONG_WORDS_LIST_PAGE_ID);
+                    view->GetWordsBreakdownView().FindWindowPositionById(
+                        BaseProjectView::LONG_WORDS_LIST_PAGE_ID);
                 view->GetWordsBreakdownView().InsertWindow(
-                    (buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition+1 : 0, textWindow);
+                    (buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition + 1 : 0, textWindow);
                 }
             else
-                { view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::LONG_WORDS_TEXT_PAGE_ID); }
+                {
+                view->GetWordsBreakdownView().RemoveWindowById(
+                    BaseProjectView::LONG_WORDS_TEXT_PAGE_ID);
+                }
             }
 
         // DC highlighted words
