@@ -226,7 +226,7 @@ void BaseProject::LogMessage(wxString message, const wxString& title, const int 
     }
 
 //-------------------------------------------------------
-void BaseProject::FormatFilteredText(wxString& text, const bool romanizeText,
+void BaseProject::FormatFilteredText(std::wstring& text, const bool romanizeText,
                                      const bool removeEllipses, const bool removeBullets,
                                      const bool removeFilePaths, const bool stripAbbreviations,
                                      const bool narrowFullWithText) const
@@ -251,19 +251,17 @@ void BaseProject::FormatFilteredText(wxString& text, const bool romanizeText,
     if (!project->LoadDocumentAsSubProject(project->GetOriginalDocumentFilePath(), project->GetDocumentText(), 1) ||
         project->GetDocumentText().empty())
         { return; }
-    const size_t textLength = ((project->GetDocumentText().length()+project->GetAppendedDocumentText().length())*2);
-    FormatFilteredWordCollection(project->GetWords(),
-        wxStringBuffer(text, textLength),
-        textLength,
+    FormatFilteredWordCollection(
+        project->GetWords(), text,
         (GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences) ?
             InvalidTextFilterFormat::IncludeAllText : InvalidTextFilterFormat::IncludeOnlyValidText,
         removeFilePaths, stripAbbreviations);
-    text.Trim(false);
-    text.Trim(true);
-    text.Prepend(L"\t");
+    string_util::trim(text);
+    text.insert(0, L"\t");
 
     const text_transform::romanize Romanize;
-    text = Romanize(text.wc_str(), romanizeText, removeEllipses, removeBullets, narrowFullWithText);
+    text = Romanize(std::wstring_view{ text }, romanizeText, removeEllipses, removeBullets,
+                    narrowFullWithText);
     }
 
 //-------------------------------------------------------

@@ -630,21 +630,14 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
     return documentTextLength;
     }
 
+//------------------------------------------------
 template<typename documentT>
 static size_t FormatFilteredWordCollection(const std::shared_ptr<documentT>& theDocument,
-                                           wchar_t* text, const size_t bufferSize,
+                                           std::wstring& text,
                                            const InvalidTextFilterFormat validTextFormatting,
                                            const bool removeFilePaths,
                                            const bool stripAbbreviations)
     {
-    assert(text);
-    if (!text)
-        {
-        return 0;
-        }
-    std::wmemset(text, L' ', bufferSize);
-    size_t documentTextLength = 0;
-
     // punctuation markers
     auto punctPos = theDocument->get_punctuation().cbegin();
     auto punctEnd = theDocument->get_punctuation().cend();
@@ -654,7 +647,7 @@ static size_t FormatFilteredWordCollection(const std::shared_ptr<documentT>& the
          para_iter != theDocument->get_paragraphs().cend(); ++para_iter)
         {
         // add a tab at the beginning of the paragraph
-        text[documentTextLength++] = L'\t';
+        text += L'\t';
         // go through the current paragraph's sentences
         size_t formattedSentencesInCurrentParagraph = 0;
         for (size_t j = para_iter->get_first_sentence_index();
@@ -713,7 +706,7 @@ static size_t FormatFilteredWordCollection(const std::shared_ptr<documentT>& the
                 if (!atFirstWordInSentence)
                     {
                     // space between this and previous word
-                    ++documentTextLength;
+                    text += L' ';
                     }
                 atFirstWordInSentence = false;
                 // append any punctuation that should be in front of this word
@@ -726,14 +719,12 @@ static size_t FormatFilteredWordCollection(const std::shared_ptr<documentT>& the
                 while (punctPos != punctEnd && punctPos->get_word_position() == i)
                     {
                     std::wstring punct(1, punctPos->get_punctuation_mark());
-                    std::wcsncpy(text + documentTextLength, punct.c_str(), punct.length());
-                    documentTextLength += punct.length();
+                    text += punct;
                     ++punctPos;
                     }
 
                 // copy over the word
-                std::wcsncpy(text + documentTextLength, currentWord.c_str(), currentWord.length());
-                documentTextLength += currentWord.length();
+                text += currentWord;
 
                 // append any punctuation that should be after this word
                 while (punctPos != punctEnd && punctPos->get_word_position() == i + 1 &&
@@ -754,27 +745,18 @@ static size_t FormatFilteredWordCollection(const std::shared_ptr<documentT>& the
                         // is a quote (i.e., ". becomes .")
                         if (characters::is_character::is_quote(punctPos->get_punctuation_mark()))
                             {
-                            std::wcsncpy(text + documentTextLength, endingPunctuation.c_str(),
-                                         endingPunctuation.length());
-                            documentTextLength += endingPunctuation.length();
-                            std::wcsncpy(text + documentTextLength, punct.c_str(), punct.length());
-                            documentTextLength += punct.length();
+                            text += endingPunctuation + punct;
                             }
                         else
                             {
-                            std::wcsncpy(text + documentTextLength, punct.c_str(), punct.length());
-                            documentTextLength += punct.length();
-                            std::wcsncpy(text + documentTextLength, endingPunctuation.c_str(),
-                                         endingPunctuation.length());
-                            documentTextLength += endingPunctuation.length();
+                            text += punct + endingPunctuation;
                             }
                         sentenceTerminatorAppendedAlready = true;
                         ++punctPos;
                         break;
                         }
                     std::wstring punct(1, punctPos->get_punctuation_mark());
-                    std::wcsncpy(text + documentTextLength, punct.c_str(), punct.length());
-                    documentTextLength += punct.length();
+                    text += punct;
                     ++punctPos;
                     }
                 }
@@ -789,32 +771,25 @@ static size_t FormatFilteredWordCollection(const std::shared_ptr<documentT>& the
                     {
                     // watch out for abbreviations at end of sentence
                     std::wstring endingPunctuation(1, currentSentence.get_ending_punctuation());
-                    std::wcsncpy(text + documentTextLength, endingPunctuation.c_str(),
-                                 endingPunctuation.length());
-                    documentTextLength += endingPunctuation.length();
+                    text += endingPunctuation;
                     }
                 }
 
             // add a space at the end of the current sentence
-            documentTextLength += 2;
+            text += L"  ";
             }
-        if (formattedSentencesInCurrentParagraph > 0)
+        if (formattedSentencesInCurrentParagraph > 0 && text.length() > 2)
             {
-            documentTextLength -= 2;
+            text.erase(text.end() - 2, text.cend());
             }
         // add the paragraph line feed(s)
         for (size_t i = 0; i < para_iter->get_leading_end_of_line_count(); ++i)
             {
-            text[documentTextLength++] = L'\n';
+            text += L'\n';
             }
         }
 
-    // terminate the string
-    text[documentTextLength] = 0;
-
-    assert(documentTextLength < bufferSize);
-
-    return documentTextLength;
+    return text.length();
     }
 
 /** @}*/

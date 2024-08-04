@@ -629,7 +629,7 @@ namespace LuaScripting
             wxGetApp().GetMainFrame()->GetDocumentManager()->GetCurrentDocument();
         if (currentDoc && currentDoc->IsKindOf(wxCLASSINFO(ProjectDoc)))
             {
-            wxString filteredText;
+            std::wstring filteredText;
             dynamic_cast<ProjectDoc*>(currentDoc)
                 ->FormatFilteredText(filteredText, true, true, true, true, true, true);
             LuaFilteredTextPreviewDlg->SetFilteredValue(filteredText);

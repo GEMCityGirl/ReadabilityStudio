@@ -334,7 +334,7 @@ void BatchProjectView::OnBatchExportFilteredDocuments([[maybe_unused]] wxCommand
         nullptr, wxPD_AUTO_HIDE|wxPD_SMOOTH|wxPD_ELAPSED_TIME|wxPD_CAN_ABORT|wxPD_APP_MODAL);
     int counter{ 1 };
 
-    wxString validDocText;
+    std::wstring validDocText;
     bool errorsExport{ false };
     for (const auto subDoc : doc->GetDocuments())
         {
@@ -2547,7 +2547,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                     return;
                     }
 
-                wxString validDocText;
+                std::wstring validDocText;
                 subProject->FormatFilteredText(validDocText, optDlg.IsReplacingCharacters(),
                     optDlg.IsRemovingEllipses(), optDlg.IsRemovingBullets(), optDlg.IsRemovingFilePaths(),
                     optDlg.IsStrippingAbbreviations(), optDlg.IsNarrowingFullWidthCharacters());

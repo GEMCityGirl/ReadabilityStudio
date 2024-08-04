@@ -288,7 +288,7 @@ public:
         return *m_formulaParser;
         }
     void CopySettings(const BaseProject& that);
-    void FormatFilteredText(wxString& text, const bool romanizeText,
+    void FormatFilteredText(std::wstring& text, const bool romanizeText,
                             const bool removeEllipses, const bool removeBullets,
                             const bool removeFilePaths, const bool stripAbbreviations,
                             const bool narrowFullWithText) const;

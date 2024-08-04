@@ -1362,7 +1362,7 @@ namespace LuaScripting
         if (!VerifyParameterCount(L, 6, __func__))
             { return 0; }
 
-        wxString filteredText;
+        std::wstring filteredText;
         m_project->FormatFilteredText(filteredText, int_to_bool(lua_toboolean(L, 3)),
                                       int_to_bool(lua_toboolean(L, 4)), int_to_bool(lua_toboolean(L, 5)),
                                       int_to_bool(lua_toboolean(L, 6)), int_to_bool(lua_toboolean(L, 7)),

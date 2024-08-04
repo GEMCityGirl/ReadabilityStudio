@@ -435,7 +435,7 @@ void ProjectView::OnExportFilteredDocument([[maybe_unused]] wxCommandEvent& even
         return;
         }
 
-    wxString validDocText;
+    std::wstring validDocText;
     doc->FormatFilteredText(validDocText, optDlg.IsReplacingCharacters(),
                             optDlg.IsRemovingEllipses(), optDlg.IsRemovingBullets(),
                             optDlg.IsRemovingFilePaths(), optDlg.IsStrippingAbbreviations(),
