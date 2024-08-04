@@ -21,18 +21,19 @@
 template<typename documentT, typename highlightDeterminantT>
 static size_t FormatWordCollectionHighlightedWords(
     const std::shared_ptr<documentT>& theDocument, const highlightDeterminantT& shouldHighlight,
-    wchar_t* text, const size_t bufferSize, const wxString& headerSection,
-    const wxString& endSection, const wxString& legend, const wxString& IGNORE_HIGHLIGHT_BEGIN,
+    wchar_t* text, const size_t bufferSize, const std::wstring& headerSection,
+    const std::wstring& endSection, const std::wstring& legend,
+    const std::wstring& ignoreHighlightBegin,
     const std::wstring& ignoreHighlightEnd, const std::wstring& tabSymbol,
-    const std::wstring& newLine,
-    const bool highlightIncompleteSentences, const bool considerOnlyListItemsAsCompleteSentences,
-    const bool highlightInvalidWords, const bool useRtfEncoding)
+    const std::wstring& newLine, const bool highlightIncompleteSentences,
+    const bool considerOnlyListItemsAsCompleteSentences, const bool highlightInvalidWords,
+    const bool useRtfEncoding)
     {
     std::wmemset(text, L' ', bufferSize);
-    std::wcsncpy(text, headerSection, headerSection.length());
+    std::wcsncpy(text, headerSection.c_str(), headerSection.length());
     size_t documentTextLength = headerSection.length();
 
-    std::wcsncpy(text + documentTextLength, legend, legend.length());
+    std::wcsncpy(text + documentTextLength, legend.c_str(), legend.length());
     documentTextLength += legend.length();
 
     // punctuation markers
@@ -67,9 +68,9 @@ static size_t FormatWordCollectionHighlightedWords(
                  !currentSentence.is_valid());
             if (currentSentenceShouldBeHighlightedAsInvalid)
                 {
-                std::wcsncpy(text + documentTextLength, IGNORE_HIGHLIGHT_BEGIN,
-                             IGNORE_HIGHLIGHT_BEGIN.length());
-                documentTextLength += IGNORE_HIGHLIGHT_BEGIN.length();
+                std::wcsncpy(text + documentTextLength, ignoreHighlightBegin.c_str(),
+                             ignoreHighlightBegin.length());
+                documentTextLength += ignoreHighlightBegin.length();
                 }
             // go through the current sentence's words
             bool atFirstWordInSentence = true;
@@ -117,9 +118,9 @@ static size_t FormatWordCollectionHighlightedWords(
                 if (currentSentence.is_valid() && highlightInvalidWords &&
                     !theDocument->get_word(i).is_valid())
                     {
-                    std::wcsncpy(text + documentTextLength, IGNORE_HIGHLIGHT_BEGIN.wc_str(),
-                                 IGNORE_HIGHLIGHT_BEGIN.length());
-                    documentTextLength += IGNORE_HIGHLIGHT_BEGIN.length();
+                    std::wcsncpy(text + documentTextLength, ignoreHighlightBegin.c_str(),
+                                 ignoreHighlightBegin.length());
+                    documentTextLength += ignoreHighlightBegin.length();
                     std::wcsncpy(text + documentTextLength, currentWord.c_str(),
                                  currentWord.length());
                     documentTextLength += currentWord.length();
@@ -266,7 +267,7 @@ static size_t FormatWordCollectionHighlightedWords(
             }
         }
 
-    std::wcsncpy(text + documentTextLength, endSection, endSection.length());
+    std::wcsncpy(text + documentTextLength, endSection.c_str(), endSection.length());
     documentTextLength += endSection.length();
     // terminate the string
     text[documentTextLength] = 0;
@@ -276,23 +277,23 @@ static size_t FormatWordCollectionHighlightedWords(
     return documentTextLength;
     }
 
+//-----------------------------------------------------------
 template<typename documentT>
 static size_t FormatWordCollectionHighlightedGrammarIssues(
     const std::shared_ptr<documentT>& theDocument, const size_t longSentenceValue, wchar_t* text,
-    const size_t bufferSize, const wxString& headerSection, const wxString& endSection,
-    const wxString& legend, const wxString& HIGHLIGHT_BEGIN, const wxString& HIGHLIGHT_END,
-    const wxString& ERROR_HIGHLIGHT_BEGIN, const wxString& PHRASE_HIGHLIGHT_BEGIN,
-    const wxString& IGNORE_HIGHLIGHT_BEGIN, const std::wstring& boldBegin,
-    const std::wstring& boldEnd,
-    const std::wstring& tabSymbol, const std::wstring& newLine,
-    const bool highlightIncompleteSentences,
+    const size_t bufferSize, const std::wstring& headerSection, const std::wstring& endSection,
+    const std::wstring& legend, const std::wstring& highlightBegin,
+    const std::wstring& highlightEnd, const std::wstring& errorHighlightBegin,
+    const std::wstring& phraseHighlightBegin, const std::wstring& ignoreHighlightBegin,
+    const std::wstring& boldBegin, const std::wstring& boldEnd, const std::wstring& tabSymbol,
+    const std::wstring& newLine, const bool highlightIncompleteSentences,
     const bool highlightInvalidWords, const bool useRtfEncoding)
     {
     std::wmemset(text, L' ', bufferSize);
-    std::wcsncpy(text, headerSection, headerSection.length());
+    std::wcsncpy(text, headerSection.c_str(), headerSection.length());
     size_t documentTextLength = headerSection.length();
 
-    std::wcsncpy(text + documentTextLength, legend, legend.length());
+    std::wcsncpy(text + documentTextLength, legend.c_str(), legend.length());
     documentTextLength += legend.length();
 
     const auto& dupWordIndices = theDocument->get_duplicate_word_indices();
@@ -310,6 +311,7 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
     // temp word
     lily_of_the_valley::rtf_encode_text rtfEncode;
     std::wstring currentWord;
+    std::wstring wordCountStr; 
     for (auto para_iter = theDocument->get_paragraphs().cbegin();
          para_iter != theDocument->get_paragraphs().cend(); ++para_iter)
         {
@@ -333,17 +335,17 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
             bool currentSentenceIsOverlyLong = false;
             if (currentSentenceShouldBeHighlightedAsInvalid)
                 {
-                std::wcsncpy(text + documentTextLength, IGNORE_HIGHLIGHT_BEGIN.wc_str(),
-                             IGNORE_HIGHLIGHT_BEGIN.length());
-                documentTextLength += IGNORE_HIGHLIGHT_BEGIN.length();
+                std::wcsncpy(text + documentTextLength, ignoreHighlightBegin.c_str(),
+                             ignoreHighlightBegin.length());
+                documentTextLength += ignoreHighlightBegin.length();
                 }
             // highlight the sentence if too long
             else if (currentSentenceLength > longSentenceValue)
                 {
                 currentSentenceIsOverlyLong = true;
-                std::wcsncpy(text + documentTextLength, HIGHLIGHT_BEGIN.wc_str(),
-                             HIGHLIGHT_BEGIN.length());
-                documentTextLength += HIGHLIGHT_BEGIN.length();
+                std::wcsncpy(text + documentTextLength, highlightBegin.c_str(),
+                             highlightBegin.length());
+                documentTextLength += highlightBegin.length();
                 }
             // go through the current sentence's words
             bool atFirstWordInSentence = true;
@@ -398,15 +400,15 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
                         if (wordyPhrases[wordyIndicesIter->second].first.get_type() ==
                             grammar::phrase_type::phrase_error)
                             {
-                            std::wcsncpy(text + documentTextLength, ERROR_HIGHLIGHT_BEGIN.wc_str(),
-                                         ERROR_HIGHLIGHT_BEGIN.length());
-                            documentTextLength += ERROR_HIGHLIGHT_BEGIN.length();
+                            std::wcsncpy(text + documentTextLength, errorHighlightBegin.c_str(),
+                                         errorHighlightBegin.length());
+                            documentTextLength += errorHighlightBegin.length();
                             }
                         else
                             {
-                            std::wcsncpy(text + documentTextLength, PHRASE_HIGHLIGHT_BEGIN.wc_str(),
-                                         PHRASE_HIGHLIGHT_BEGIN.length());
-                            documentTextLength += PHRASE_HIGHLIGHT_BEGIN.length();
+                            std::wcsncpy(text + documentTextLength, phraseHighlightBegin.c_str(),
+                                         phraseHighlightBegin.length());
+                            documentTextLength += phraseHighlightBegin.length();
                             }
                         currentPhraseMode.first = true;
                         currentPhraseMode.second = static_cast<int>(
@@ -424,9 +426,9 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
                     if (passiveVoicesIter != theDocument->get_passive_voice_indices().end() &&
                         passiveVoicesIter->first == i)
                         {
-                        std::wcsncpy(text + documentTextLength, PHRASE_HIGHLIGHT_BEGIN.wc_str(),
-                                     PHRASE_HIGHLIGHT_BEGIN.length());
-                        documentTextLength += PHRASE_HIGHLIGHT_BEGIN.length();
+                        std::wcsncpy(text + documentTextLength, phraseHighlightBegin.c_str(),
+                                     phraseHighlightBegin.length());
+                        documentTextLength += phraseHighlightBegin.length();
                         currentPhraseMode.first = true;
                         currentPhraseMode.second = static_cast<int>(passiveVoicesIter->second);
                         }
@@ -441,15 +443,15 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
                 // valid sentence, but word is invalid
                 if (currentSentence.is_valid() && wordIsInvalid)
                     {
-                    std::wcsncpy(text + documentTextLength, IGNORE_HIGHLIGHT_BEGIN.wc_str(),
-                                 IGNORE_HIGHLIGHT_BEGIN.length());
-                    documentTextLength += IGNORE_HIGHLIGHT_BEGIN.length();
+                    std::wcsncpy(text + documentTextLength, ignoreHighlightBegin.c_str(),
+                                 ignoreHighlightBegin.length());
+                    documentTextLength += ignoreHighlightBegin.length();
                     }
                 else if (isErrorWord)
                     {
-                    std::wcsncpy(text + documentTextLength, ERROR_HIGHLIGHT_BEGIN.wc_str(),
-                                 ERROR_HIGHLIGHT_BEGIN.length());
-                    documentTextLength += ERROR_HIGHLIGHT_BEGIN.length();
+                    std::wcsncpy(text + documentTextLength, errorHighlightBegin.c_str(),
+                                 errorHighlightBegin.length());
+                    documentTextLength += errorHighlightBegin.length();
                     }
                 // copy over the word
                 if (useRtfEncoding && rtfEncode.needs_to_be_encoded(currentWord))
@@ -465,9 +467,9 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
                 // unhighlight grammar error/excluded word
                 if (isErrorWord || (currentSentence.is_valid() && wordIsInvalid))
                     {
-                    std::wcsncpy(text + documentTextLength, HIGHLIGHT_END.wc_str(),
-                                 HIGHLIGHT_END.length());
-                    documentTextLength += HIGHLIGHT_END.length();
+                    std::wcsncpy(text + documentTextLength, highlightEnd.c_str(),
+                                 highlightEnd.length());
+                    documentTextLength += highlightEnd.length();
                     }
                 if (currentPhraseMode.first)
                     {
@@ -476,9 +478,9 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
                         {
                         // out of phrase highlight mode now
                         currentPhraseMode.first = false;
-                        std::wcsncpy(text + documentTextLength, HIGHLIGHT_END.wc_str(),
-                                     HIGHLIGHT_END.length());
-                        documentTextLength += HIGHLIGHT_END.length();
+                        std::wcsncpy(text + documentTextLength, highlightEnd.c_str(),
+                                     highlightEnd.length());
+                        documentTextLength += highlightEnd.length();
                         }
                     }
 
@@ -576,29 +578,29 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
                     }
                 }
 
-            wxString wordCountStr =
-                wxString::Format(L" %s (%zu)%s", boldBegin.c_str(), currentSentenceLength, boldEnd.c_str());
+            wordCountStr = L" " + boldBegin + L" (" +
+                std::to_wstring(currentSentenceLength) + L")" + boldEnd;
             if (currentSentenceShouldBeHighlightedAsInvalid || currentSentenceIsOverlyLong)
                 {
                 if (currentSentenceIsOverlyLong)
                     {
-                    std::wcsncpy(text + documentTextLength, HIGHLIGHT_END.wc_str(),
-                                 HIGHLIGHT_END.length());
-                    documentTextLength += HIGHLIGHT_END.length();
-                    std::wcsncpy(text + documentTextLength, wordCountStr.wc_str(),
+                    std::wcsncpy(text + documentTextLength, highlightEnd.c_str(),
+                                 highlightEnd.length());
+                    documentTextLength += highlightEnd.length();
+                    std::wcsncpy(text + documentTextLength, wordCountStr.c_str(),
                                  wordCountStr.length());
                     documentTextLength += wordCountStr.length();
                     }
                 else
                     {
-                    std::wcsncpy(text + documentTextLength, HIGHLIGHT_END.wc_str(),
-                                 HIGHLIGHT_END.length());
-                    documentTextLength += HIGHLIGHT_END.length();
+                    std::wcsncpy(text + documentTextLength, highlightEnd.c_str(),
+                                 highlightEnd.length());
+                    documentTextLength += highlightEnd.length();
                     }
                 }
             else
                 {
-                std::wcsncpy(text + documentTextLength, wordCountStr.wc_str(),
+                std::wcsncpy(text + documentTextLength, wordCountStr.c_str(),
                              wordCountStr.length());
                 documentTextLength += wordCountStr.length();
                 }
@@ -618,7 +620,7 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
             }
         }
 
-    std::wcsncpy(text + documentTextLength, endSection, endSection.length());
+    std::wcsncpy(text + documentTextLength, endSection.c_str(), endSection.length());
     documentTextLength += endSection.length();
     // terminate the string
     text[documentTextLength] = 0;
@@ -723,8 +725,8 @@ static size_t FormatFilteredWordCollection(const std::shared_ptr<documentT>& the
                     }
                 while (punctPos != punctEnd && punctPos->get_word_position() == i)
                     {
-                    wxString punct = punctPos->get_punctuation_mark();
-                    std::wcsncpy(text + documentTextLength, punct.wc_str(), punct.length());
+                    std::wstring punct(1, punctPos->get_punctuation_mark());
+                    std::wcsncpy(text + documentTextLength, punct.c_str(), punct.length());
                     documentTextLength += punct.length();
                     ++punctPos;
                     }
