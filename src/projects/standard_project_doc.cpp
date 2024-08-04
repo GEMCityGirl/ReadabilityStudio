@@ -5416,6 +5416,13 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             isNotDolchWordPaperWhite(&m_dolch_word_list,
                 highlighterTagsPaperWhite.HIGHLIGHT_BEGIN, highlighterTagsPaperWhite.HIGHLIGHT_END);
 
+        const bool useRtfEncoding =
+#ifdef __WXGTK__
+            false;
+#else
+            true;
+#endif
+
         // get the full count of all chars (including ignored ones) and their punctuation
         const size_t fullCharWithPunctCount = std::accumulate(GetWords()->get_words().begin(),
                     GetWords()->get_words().end(), static_cast<size_t>(0),
@@ -5490,13 +5497,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 highlighterTagsThemed.HIGHLIGHT_END.wc_string(), highlighterTagsThemed.TAB_SYMBOL,
                 highlighterTagsThemed.CRLF, textBeingExcluded,
                 GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
-                textBeingExcluded,
-#ifdef __WXGTK__
-                false
-#else
-                true
-#endif
-            );
+                textBeingExcluded, useRtfEncoding);
 #ifndef __WXGTK__
             // not necessary on Linux and causes an assert
             textWindow->SetMaxLength(static_cast<unsigned long>(textLength));
@@ -5525,13 +5526,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
                 textBeingExcluded,
                 GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
-                textBeingExcluded,
-#ifdef __WXGTK__
-                false
-#else
-                true
-#endif
-            );
+                textBeingExcluded, useRtfEncoding);
             textWindow->SetUnthemedFormattedText(formattedBuffer.c_str());
 
 #ifdef DEBUG_EXPERIMENTAL_CODE
@@ -5627,13 +5622,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     highlighterTagsThemed.HIGHLIGHT_END.wc_string(),
                     highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                     // forcibly exclude lists but include headers, invalid words will also be valid
-                    true, true, false,
-#ifdef __WXGTK__
-                    false
-#else
-                    true
-#endif
-                );
+                    true, true, false, useRtfEncoding);
                 }
             else
                 {
@@ -5645,13 +5634,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     highlighterTagsThemed.HIGHLIGHT_END.wc_string(),
                     highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF, textBeingExcluded,
                     GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
-                    textBeingExcluded,
-#ifdef __WXGTK__
-                    false
-#else
-                    true
-#endif
-                );
+                    textBeingExcluded, useRtfEncoding);
                 }
 #ifndef __WXGTK__
             m_dcTextWindow->SetMaxLength(static_cast<unsigned long>(textLength));
@@ -5673,13 +5656,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     highlighterTagsPaperWhite.HIGHLIGHT_END.wc_string(),
                     highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
                     // forcibly exclude lists but include headers, invalid words will also be valid
-                    true, true, false,
-#ifdef __WXGTK__
-                    false
-#else
-                    true
-#endif
-                );
+                    true, true, false, useRtfEncoding);
                 }
             else
                 {
@@ -5693,13 +5670,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
                     textBeingExcluded,
                     GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
-                    textBeingExcluded,
-#ifdef __WXGTK__
-                    false
-#else
-                    true
-#endif
-                );
+                    textBeingExcluded, useRtfEncoding);
                 }
             m_dcTextWindow->SetUnthemedFormattedText(formattedBuffer.c_str());
             }
@@ -5765,13 +5736,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                     // HJ explicitly states what to exclude, so always show what it is
                     // excluding in this window
-                    true, true, false,
-#ifdef __WXGTK__
-                    false
-#else
-                    true
-#endif
-                );
+                    true, true, false, useRtfEncoding);
                 }
             else
                 {
@@ -5783,13 +5748,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     highlighterTagsThemed.HIGHLIGHT_END.wc_string(),
                     highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF, textBeingExcluded,
                     GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
-                    textBeingExcluded,
-#ifdef __WXGTK__
-                    false
-#else
-                    true
-#endif
-                );
+                    textBeingExcluded, useRtfEncoding);
                 }
 #ifndef __WXGTK__
             m_hjTextWindow->SetMaxLength(static_cast<unsigned long>(textLength));
@@ -5812,13 +5771,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
                     // HJ explicitly states what to exclude, so always show what it
                     // is excluding in this window
-                    true, true, false,
-#ifdef __WXGTK__
-                    false
-#else
-                    true
-#endif
-                );
+                    true, true, false, useRtfEncoding);
                 }
             else
                 {
@@ -5832,13 +5785,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
                     textBeingExcluded,
                     GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
-                    textBeingExcluded,
-#ifdef __WXGTK__
-                    false
-#else
-                    true
-#endif
-                                    );
+                    textBeingExcluded, useRtfEncoding);
                 }
             m_hjTextWindow->SetUnthemedFormattedText(formattedBuffer.c_str());
             }
@@ -5935,13 +5882,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                             highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                             // forcibly exclude lists but include headers,
                             // invalid words will also be valid
-                            true, true, false,
-#ifdef __WXGTK__
-                            false
-#else
-                            true
-#endif
-                        );
+                            true, true, false, useRtfEncoding);
                         }
                     else
                         {
@@ -5955,13 +5896,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                             highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                             // forcibly exclude lists but include headers,
                             // invalid words will also be valid
-                            true, true, false,
-#ifdef __WXGTK__
-                            false
-#else
-                            true
-#endif
-                        );
+                            true, true, false, useRtfEncoding);
                         }
                     }
                 else
@@ -5978,13 +5913,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                             highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                             textBeingExcluded,
                             GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
-                            textBeingExcluded,
-#ifdef __WXGTK__
-                            false
-#else
-                            true
-#endif
-                        );
+                            textBeingExcluded, useRtfEncoding);
                         }
                     else
                         {
@@ -5998,13 +5927,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                             highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                             textBeingExcluded,
                             GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
-                            textBeingExcluded,
-#ifdef __WXGTK__
-                            false
-#else
-                            true
-#endif
-                        );
+                            textBeingExcluded, useRtfEncoding);
                         }
                     }
 #ifndef __WXGTK__
@@ -6043,13 +5966,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                             highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
                             // forcibly exclude lists but include headers, invalid words will also
                             // be valid
-                            true, true, false,
-#ifdef __WXGTK__
-                            false
-#else
-                            true
-#endif
-                        );
+                            true, true, false, useRtfEncoding);
                         }
                     else
                         {
@@ -6063,13 +5980,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                             highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
                             // forcibly exclude lists but include headers,
                             // invalid words will also be valid
-                            true, true, false,
-#ifdef __WXGTK__
-                            false
-#else
-                            true
-#endif
-                        );
+                            true, true, false, useRtfEncoding);
                         }
                     }
                 else
@@ -6086,13 +5997,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                             highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
                             textBeingExcluded,
                             GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
-                            textBeingExcluded,
-#ifdef __WXGTK__
-                            false
-#else
-                            true
-#endif
-                        );
+                            textBeingExcluded, useRtfEncoding);
                         }
                     else
                         {
@@ -6106,13 +6011,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                             highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
                             textBeingExcluded,
                             GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
-                            textBeingExcluded,
-#ifdef __WXGTK__
-                            false
-#else
-                            true
-#endif
-                        );
+                            textBeingExcluded, useRtfEncoding);
                         }
                     }
                 textWindow->SetUnthemedFormattedText(formattedBuffer.c_str());
@@ -6155,13 +6054,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ? std::wstring{} :
                                                                   highlighterTagsThemed.BOLD_END,
                 highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF, textBeingExcluded,
-                textBeingExcluded,
-#ifdef __WXGTK__
-                false
-#else
-                true
-#endif
-                    );
+                textBeingExcluded, useRtfEncoding);
 #ifndef __WXGTK__
             textWindow->SetMaxLength(static_cast<unsigned long>(textLength));
 #endif
@@ -6172,7 +6065,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             wxFile textWindowDump(tempFilePath, wxFile::OpenMode::write);
             if (textWindowDump.IsOpened())
                 {
-                textWindowDump.Write(formattedBuffer.c_str());
+                textWindowDump.Write(formattedBuffer);
                 wxLogDebug(L"Text view written to: %s", tempFilePath);
                 }
 #endif
@@ -6194,13 +6087,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ? std::wstring{} :
                                                                   highlighterTagsThemed.BOLD_END,
                 highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
-                textBeingExcluded, textBeingExcluded,
-#ifdef __WXGTK__
-                false
-#else
-                true
-#endif
-            );
+                textBeingExcluded, textBeingExcluded, useRtfEncoding);
             textWindow->SetUnthemedFormattedText(formattedBuffer.c_str());
             }
         else
