@@ -5449,6 +5449,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             textHeaderThemed.endSection.length() + maxLegendSizeThemed + 1;
 
         auto docText = std::make_unique<wchar_t[]>(textBufferLength+1);
+        std::wstring formattedBuffer;
+        formattedBuffer.reserve(textBufferLength + 1);
 
         const bool textBeingExcluded =
             (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
@@ -6139,7 +6141,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 }
             UpdateTextWindowOptions(textWindow);
             [[maybe_unused]] const size_t textLength = FormatWordCollectionHighlightedGrammarIssues(
-                GetWords(), GetDifficultSentenceLength(), docText.get(), textBufferLength,
+                GetWords(), GetDifficultSentenceLength(), formattedBuffer,
                 textHeaderThemed.header.wc_string(), textHeaderThemed.endSection.wc_string(),
                 textLegendsThemed.wordinessWindowLegend.wc_string(),
                 highlighterTagsThemed.HIGHLIGHT_BEGIN.wc_string(),
@@ -6164,20 +6166,20 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 #ifndef __WXGTK__
             textWindow->SetMaxLength(static_cast<unsigned long>(textLength));
 #endif
-            setFormattedTextAndRestoreInsertionPoint(textWindow, docText.get());
+            setFormattedTextAndRestoreInsertionPoint(textWindow, formattedBuffer.c_str());
 
 #ifdef DEBUG_EXPERIMENTAL_CODE
             const auto tempFilePath = wxFileName::CreateTempFileName(_(L"Highlighted Report"));
             wxFile textWindowDump(tempFilePath, wxFile::OpenMode::write);
             if (textWindowDump.IsOpened())
                 {
-                textWindowDump.Write(docText.get());
+                textWindowDump.Write(formattedBuffer.c_str());
                 wxLogDebug(L"Text view written to: %s", tempFilePath);
                 }
 #endif
 
             FormatWordCollectionHighlightedGrammarIssues(
-                GetWords(), GetDifficultSentenceLength(), docText.get(), textBufferLength,
+                GetWords(), GetDifficultSentenceLength(), formattedBuffer,
                 textHeaderPaperWhite.header.wc_string(),
                 textHeaderPaperWhite.endSection.wc_string(),
                 textLegendsPaperWhite.wordinessWindowLegend.wc_string(),
@@ -6200,7 +6202,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 true
 #endif
             );
-            textWindow->SetUnthemedFormattedText(docText.get());
+            textWindow->SetUnthemedFormattedText(formattedBuffer.c_str());
             }
         else
             { view->GetGrammarView().RemoveWindowById(BaseProjectView::LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID); }

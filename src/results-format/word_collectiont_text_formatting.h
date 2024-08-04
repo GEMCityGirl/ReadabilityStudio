@@ -280,8 +280,8 @@ static size_t FormatWordCollectionHighlightedWords(
 //-----------------------------------------------------------
 template<typename documentT>
 static size_t FormatWordCollectionHighlightedGrammarIssues(
-    const std::shared_ptr<documentT>& theDocument, const size_t longSentenceValue, wchar_t* text,
-    const size_t bufferSize, const std::wstring& headerSection, const std::wstring& endSection,
+    const std::shared_ptr<documentT>& theDocument, const size_t longSentenceValue,
+    std::wstring& text, const std::wstring& headerSection, const std::wstring& endSection,
     const std::wstring& legend, const std::wstring& highlightBegin,
     const std::wstring& highlightEnd, const std::wstring& errorHighlightBegin,
     const std::wstring& phraseHighlightBegin, const std::wstring& ignoreHighlightBegin,
@@ -289,12 +289,8 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
     const std::wstring& newLine, const bool highlightIncompleteSentences,
     const bool highlightInvalidWords, const bool useRtfEncoding)
     {
-    std::wmemset(text, L' ', bufferSize);
-    std::wcsncpy(text, headerSection.c_str(), headerSection.length());
-    size_t documentTextLength = headerSection.length();
-
-    std::wcsncpy(text + documentTextLength, legend.c_str(), legend.length());
-    documentTextLength += legend.length();
+    text.clear();
+    text.append(headerSection).append(legend);
 
     const auto& dupWordIndices = theDocument->get_duplicate_word_indices();
     const auto& mismatchedArticleIndices = theDocument->get_incorrect_article_indices();
@@ -304,7 +300,7 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
     const auto& wordyPhrases = theDocument->get_known_phrases().get_phrases();
     // whether we are in phrase highlight mode and the "countdown" value
     // (0 means to close the highlighting)
-    std::pair<bool, int> currentPhraseMode(false, 0);
+    std::pair<bool, int> currentPhraseMode{ false, 0 };
     // punctuation markers
     auto punctPos = theDocument->get_punctuation().cbegin();
     auto punctEnd = theDocument->get_punctuation().cend();
@@ -316,8 +312,7 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
          para_iter != theDocument->get_paragraphs().cend(); ++para_iter)
         {
         // add a tab at the beginning of the paragraph
-        std::wcsncpy(text + documentTextLength, tabSymbol.c_str(), tabSymbol.length());
-        documentTextLength += tabSymbol.length();
+        text += tabSymbol;
         // go through the current paragraph's sentences
         for (size_t j = para_iter->get_first_sentence_index();
              j <= para_iter->get_last_sentence_index(); ++j)
@@ -335,17 +330,13 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
             bool currentSentenceIsOverlyLong = false;
             if (currentSentenceShouldBeHighlightedAsInvalid)
                 {
-                std::wcsncpy(text + documentTextLength, ignoreHighlightBegin.c_str(),
-                             ignoreHighlightBegin.length());
-                documentTextLength += ignoreHighlightBegin.length();
+                text += ignoreHighlightBegin;
                 }
             // highlight the sentence if too long
             else if (currentSentenceLength > longSentenceValue)
                 {
                 currentSentenceIsOverlyLong = true;
-                std::wcsncpy(text + documentTextLength, highlightBegin.c_str(),
-                             highlightBegin.length());
-                documentTextLength += highlightBegin.length();
+                text += highlightBegin;
                 }
             // go through the current sentence's words
             bool atFirstWordInSentence = true;
@@ -364,7 +355,7 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
                 if (!atFirstWordInSentence)
                     {
                     // space between this and previous word
-                    ++documentTextLength;
+                    text += L' ';
                     }
                 atFirstWordInSentence = false;
                 // append any punctuation that should be in front of this word
@@ -379,8 +370,7 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
                         {
                         punct = lily_of_the_valley::html_encode_text::simple_encode(punct);
                         }
-                    std::wcsncpy(text + documentTextLength, punct.c_str(), punct.length());
-                    documentTextLength += punct.length();
+                    text += punct;
                     ++punctPos;
                     }
 
@@ -400,15 +390,11 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
                         if (wordyPhrases[wordyIndicesIter->second].first.get_type() ==
                             grammar::phrase_type::phrase_error)
                             {
-                            std::wcsncpy(text + documentTextLength, errorHighlightBegin.c_str(),
-                                         errorHighlightBegin.length());
-                            documentTextLength += errorHighlightBegin.length();
+                            text += errorHighlightBegin;
                             }
                         else
                             {
-                            std::wcsncpy(text + documentTextLength, phraseHighlightBegin.c_str(),
-                                         phraseHighlightBegin.length());
-                            documentTextLength += phraseHighlightBegin.length();
+                            text += phraseHighlightBegin;
                             }
                         currentPhraseMode.first = true;
                         currentPhraseMode.second = static_cast<int>(
@@ -426,32 +412,26 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
                     if (passiveVoicesIter != theDocument->get_passive_voice_indices().end() &&
                         passiveVoicesIter->first == i)
                         {
-                        std::wcsncpy(text + documentTextLength, phraseHighlightBegin.c_str(),
-                                     phraseHighlightBegin.length());
-                        documentTextLength += phraseHighlightBegin.length();
+                        text += phraseHighlightBegin;
                         currentPhraseMode.first = true;
                         currentPhraseMode.second = static_cast<int>(passiveVoicesIter->second);
                         }
                     }
                 // highlight grammar issues
                 const bool isErrorWord =
-                    (std::binary_search(dupWordIndices.begin(), dupWordIndices.end(), i)) ||
-                    (std::binary_search(mismatchedArticleIndices.begin(),
-                                        mismatchedArticleIndices.end(), i)) ||
-                    (std::binary_search(misspelledWordIndices.begin(), misspelledWordIndices.end(),
+                    (std::binary_search(dupWordIndices.cbegin(), dupWordIndices.cend(), i)) ||
+                    (std::binary_search(mismatchedArticleIndices.cbegin(),
+                                        mismatchedArticleIndices.cend(), i)) ||
+                    (std::binary_search(misspelledWordIndices.cbegin(), misspelledWordIndices.cend(),
                                         i));
                 // valid sentence, but word is invalid
                 if (currentSentence.is_valid() && wordIsInvalid)
                     {
-                    std::wcsncpy(text + documentTextLength, ignoreHighlightBegin.c_str(),
-                                 ignoreHighlightBegin.length());
-                    documentTextLength += ignoreHighlightBegin.length();
+                    text += ignoreHighlightBegin;
                     }
                 else if (isErrorWord)
                     {
-                    std::wcsncpy(text + documentTextLength, errorHighlightBegin.c_str(),
-                                 errorHighlightBegin.length());
-                    documentTextLength += errorHighlightBegin.length();
+                    text += errorHighlightBegin;
                     }
                 // copy over the word
                 if (useRtfEncoding && rtfEncode.needs_to_be_encoded(currentWord))
@@ -462,14 +442,11 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
                     {
                     currentWord = lily_of_the_valley::html_encode_text::simple_encode(currentWord);
                     }
-                std::wcsncpy(text + documentTextLength, currentWord.c_str(), currentWord.length());
-                documentTextLength += currentWord.length();
+                text += currentWord;
                 // unhighlight grammar error/excluded word
                 if (isErrorWord || (currentSentence.is_valid() && wordIsInvalid))
                     {
-                    std::wcsncpy(text + documentTextLength, highlightEnd.c_str(),
-                                 highlightEnd.length());
-                    documentTextLength += highlightEnd.length();
+                    text += highlightEnd;
                     }
                 if (currentPhraseMode.first)
                     {
@@ -478,9 +455,7 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
                         {
                         // out of phrase highlight mode now
                         currentPhraseMode.first = false;
-                        std::wcsncpy(text + documentTextLength, highlightEnd.c_str(),
-                                     highlightEnd.length());
-                        documentTextLength += highlightEnd.length();
+                        text += highlightEnd;
                         }
                     }
 
@@ -520,19 +495,11 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
                         // is a quote (i.e., ". becomes .")
                         if (characters::is_character::is_quote(punctPos->get_punctuation_mark()))
                             {
-                            std::wcsncpy(text + documentTextLength, endingPunctuation.c_str(),
-                                         endingPunctuation.length());
-                            documentTextLength += endingPunctuation.length();
-                            std::wcsncpy(text + documentTextLength, punct.c_str(), punct.length());
-                            documentTextLength += punct.length();
+                            text.append(endingPunctuation).append(punct);
                             }
                         else
                             {
-                            std::wcsncpy(text + documentTextLength, punct.c_str(), punct.length());
-                            documentTextLength += punct.length();
-                            std::wcsncpy(text + documentTextLength, endingPunctuation.c_str(),
-                                         endingPunctuation.length());
-                            documentTextLength += endingPunctuation.length();
+                            text.append(punct).append(endingPunctuation);
                             }
                         sentenceTerminatorAppendedAlready = true;
                         ++punctPos;
@@ -547,8 +514,7 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
                         {
                         punct = lily_of_the_valley::html_encode_text::simple_encode(punct);
                         }
-                    std::wcsncpy(text + documentTextLength, punct.c_str(), punct.length());
-                    documentTextLength += punct.length();
+                    text += punct;
                     ++punctPos;
                     }
                 }
@@ -572,9 +538,7 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
                         endingPunctuation =
                             lily_of_the_valley::html_encode_text::simple_encode(endingPunctuation);
                         }
-                    std::wcsncpy(text + documentTextLength, endingPunctuation.c_str(),
-                                 endingPunctuation.length());
-                    documentTextLength += endingPunctuation.length();
+                    text += endingPunctuation;
                     }
                 }
 
@@ -584,50 +548,35 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
                 {
                 if (currentSentenceIsOverlyLong)
                     {
-                    std::wcsncpy(text + documentTextLength, highlightEnd.c_str(),
-                                 highlightEnd.length());
-                    documentTextLength += highlightEnd.length();
-                    std::wcsncpy(text + documentTextLength, wordCountStr.c_str(),
-                                 wordCountStr.length());
-                    documentTextLength += wordCountStr.length();
+                    text.append(highlightEnd).append(wordCountStr);
                     }
                 else
                     {
-                    std::wcsncpy(text + documentTextLength, highlightEnd.c_str(),
-                                 highlightEnd.length());
-                    documentTextLength += highlightEnd.length();
+                    text += highlightEnd;
                     }
                 }
             else
                 {
-                std::wcsncpy(text + documentTextLength, wordCountStr.c_str(),
-                             wordCountStr.length());
-                documentTextLength += wordCountStr.length();
+                text += wordCountStr;
                 }
 
             // add a space at the end of the current sentence
-            documentTextLength += 2;
+            text += L"  ";
             }
         if (para_iter->get_sentence_count() > 0)
             {
-            documentTextLength -= 2;
+            text.erase(text.end() - 2, text.cend());
             }
         // add the paragraph line feed
         for (size_t i = 0; i < para_iter->get_leading_end_of_line_count(); ++i)
             {
-            std::wcsncpy(text + documentTextLength, newLine.c_str(), newLine.length());
-            documentTextLength += newLine.length();
+            text += newLine;
             }
         }
 
-    std::wcsncpy(text + documentTextLength, endSection.c_str(), endSection.length());
-    documentTextLength += endSection.length();
-    // terminate the string
-    text[documentTextLength] = 0;
+    text += endSection;
 
-    assert(documentTextLength < bufferSize);
-
-    return documentTextLength;
+    return text.length();
     }
 
 //------------------------------------------------
@@ -638,6 +587,7 @@ static size_t FormatFilteredWordCollection(const std::shared_ptr<documentT>& the
                                            const bool removeFilePaths,
                                            const bool stripAbbreviations)
     {
+    text.clear();
     // punctuation markers
     auto punctPos = theDocument->get_punctuation().cbegin();
     auto punctEnd = theDocument->get_punctuation().cend();
@@ -745,11 +695,11 @@ static size_t FormatFilteredWordCollection(const std::shared_ptr<documentT>& the
                         // is a quote (i.e., ". becomes .")
                         if (characters::is_character::is_quote(punctPos->get_punctuation_mark()))
                             {
-                            text += endingPunctuation + punct;
+                            text.append(endingPunctuation).append(punct);
                             }
                         else
                             {
-                            text += punct + endingPunctuation;
+                            text.append(punct).append(endingPunctuation);
                             }
                         sentenceTerminatorAppendedAlready = true;
                         ++punctPos;
