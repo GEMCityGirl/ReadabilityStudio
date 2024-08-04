@@ -23,7 +23,8 @@ static size_t FormatWordCollectionHighlightedWords(
     const std::shared_ptr<documentT>& theDocument, const highlightDeterminantT& shouldHighlight,
     wchar_t* text, const size_t bufferSize, const wxString& headerSection,
     const wxString& endSection, const wxString& legend, const wxString& IGNORE_HIGHLIGHT_BEGIN,
-    const wxString& IGNORE_HIGHLIGHT_END, const wxString& TAB_SYMBOL, const wxString& CRLF,
+    const std::wstring& ignoreHighlightEnd, const std::wstring& tabSymbol,
+    const std::wstring& newLine,
     const bool highlightIncompleteSentences, const bool considerOnlyListItemsAsCompleteSentences,
     const bool highlightInvalidWords, const bool useRtfEncoding)
     {
@@ -47,8 +48,8 @@ static size_t FormatWordCollectionHighlightedWords(
          para_iter != theDocument->get_paragraphs().end(); ++para_iter)
         {
         // add a tab at the beginning of the paragraph
-        std::wcsncpy(text + documentTextLength, TAB_SYMBOL, TAB_SYMBOL.length());
-        documentTextLength += TAB_SYMBOL.length();
+        std::wcsncpy(text + documentTextLength, tabSymbol.c_str(), tabSymbol.length());
+        documentTextLength += tabSymbol.length();
         // go through the current paragraph's sentences
         for (size_t j = para_iter->get_first_sentence_index();
              j <= para_iter->get_last_sentence_index(); ++j)
@@ -122,9 +123,9 @@ static size_t FormatWordCollectionHighlightedWords(
                     std::wcsncpy(text + documentTextLength, currentWord.c_str(),
                                  currentWord.length());
                     documentTextLength += currentWord.length();
-                    std::wcsncpy(text + documentTextLength, IGNORE_HIGHLIGHT_END.wc_str(),
-                                 IGNORE_HIGHLIGHT_END.length());
-                    documentTextLength += IGNORE_HIGHLIGHT_END.length();
+                    std::wcsncpy(text + documentTextLength, ignoreHighlightEnd.c_str(),
+                                 ignoreHighlightEnd.length());
+                    documentTextLength += ignoreHighlightEnd.length();
                     }
                 // or highlight if this word meets our criteria for highlighting
                 else if (!currentSentenceShouldBeHighlightedAsInvalid &&
@@ -245,9 +246,9 @@ static size_t FormatWordCollectionHighlightedWords(
 
             if (currentSentenceShouldBeHighlightedAsInvalid)
                 {
-                std::wcsncpy(text + documentTextLength, IGNORE_HIGHLIGHT_END,
-                             IGNORE_HIGHLIGHT_END.length());
-                documentTextLength += IGNORE_HIGHLIGHT_END.length();
+                std::wcsncpy(text + documentTextLength, ignoreHighlightEnd.c_str(),
+                             ignoreHighlightEnd.length());
+                documentTextLength += ignoreHighlightEnd.length();
                 }
 
             // add a space at the end of the current sentence
@@ -260,8 +261,8 @@ static size_t FormatWordCollectionHighlightedWords(
         // add the paragraph line feed
         for (size_t i = 0; i < para_iter->get_leading_end_of_line_count(); ++i)
             {
-            std::wcsncpy(text + documentTextLength, CRLF, CRLF.length());
-            documentTextLength += CRLF.length();
+            std::wcsncpy(text + documentTextLength, newLine.c_str(), newLine.length());
+            documentTextLength += newLine.length();
             }
         }
 
@@ -281,8 +282,10 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
     const size_t bufferSize, const wxString& headerSection, const wxString& endSection,
     const wxString& legend, const wxString& HIGHLIGHT_BEGIN, const wxString& HIGHLIGHT_END,
     const wxString& ERROR_HIGHLIGHT_BEGIN, const wxString& PHRASE_HIGHLIGHT_BEGIN,
-    const wxString& IGNORE_HIGHLIGHT_BEGIN, const wxString& BOLD_BEGIN, const wxString& BOLD_END,
-    const wxString& TAB_SYMBOL, const wxString& CRLF, const bool highlightIncompleteSentences,
+    const wxString& IGNORE_HIGHLIGHT_BEGIN, const std::wstring& boldBegin,
+    const std::wstring& boldEnd,
+    const std::wstring& tabSymbol, const std::wstring& newLine,
+    const bool highlightIncompleteSentences,
     const bool highlightInvalidWords, const bool useRtfEncoding)
     {
     std::wmemset(text, L' ', bufferSize);
@@ -311,8 +314,8 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
          para_iter != theDocument->get_paragraphs().cend(); ++para_iter)
         {
         // add a tab at the beginning of the paragraph
-        std::wcsncpy(text + documentTextLength, TAB_SYMBOL.wc_str(), TAB_SYMBOL.length());
-        documentTextLength += TAB_SYMBOL.length();
+        std::wcsncpy(text + documentTextLength, tabSymbol.c_str(), tabSymbol.length());
+        documentTextLength += tabSymbol.length();
         // go through the current paragraph's sentences
         for (size_t j = para_iter->get_first_sentence_index();
              j <= para_iter->get_last_sentence_index(); ++j)
@@ -574,7 +577,7 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
                 }
 
             wxString wordCountStr =
-                wxString::Format(L" %s (%zu)%s", BOLD_BEGIN, currentSentenceLength, BOLD_END);
+                wxString::Format(L" %s (%zu)%s", boldBegin.c_str(), currentSentenceLength, boldEnd.c_str());
             if (currentSentenceShouldBeHighlightedAsInvalid || currentSentenceIsOverlyLong)
                 {
                 if (currentSentenceIsOverlyLong)
@@ -610,8 +613,8 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
         // add the paragraph line feed
         for (size_t i = 0; i < para_iter->get_leading_end_of_line_count(); ++i)
             {
-            std::wcsncpy(text + documentTextLength, CRLF.wc_str(), CRLF.length());
-            documentTextLength += CRLF.length();
+            std::wcsncpy(text + documentTextLength, newLine.c_str(), newLine.length());
+            documentTextLength += newLine.length();
             }
         }
 

@@ -4869,9 +4869,10 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
     [[maybe_unused]] lily_of_the_valley::rtf_encode_text rtfEncode;
     TextLegendLines legendLines;
 
+    // clang-format off
     wxString currentLegendLabel{ _(L"Excluded text") };
-    legendLines.ignoredSentencesLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-            highlighterTags.CRLF,
+    legendLines.ignoredSentencesLegendLine =
+        wxString::Format(L"%s    %s   %s  %s%s", highlighterTags.CRLF.c_str(),
             highlighterTags.IGNORE_HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
         #ifdef __WXGTK__
             lily_of_the_valley::html_encode_text::simple_encode(
@@ -4879,7 +4880,7 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
         #else
             rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #endif
-        highlighterTags.CRLF);
+        highlighterTags.CRLF.c_str());
     currentLegendLabel = _(L"3+ syllable words");
     legendLines.hardWordsLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
             highlighterTags.CRLF,
@@ -4890,10 +4891,10 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
         #else
             rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #endif
-            highlighterTags.CRLF);
+        highlighterTags.CRLF.c_str());
     currentLegendLabel = _(L"6+ character words");
-    legendLines.longWordsLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-            highlighterTags.CRLF,
+    legendLines.longWordsLegendLine =
+        wxString::Format(L"%s    %s   %s  %s%s", highlighterTags.CRLF.c_str(),
             highlighterTags.HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
         #ifdef __WXGTK__
             lily_of_the_valley::html_encode_text::simple_encode(
@@ -4901,10 +4902,10 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
         #else
             rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #endif
-            highlighterTags.CRLF);
+        highlighterTags.CRLF.c_str());
     currentLegendLabel = _(L"Unfamiliar New Dale-Chall words");
-    legendLines.unfamiliarDCWordsLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-            highlighterTags.CRLF,
+    legendLines.unfamiliarDCWordsLegendLine =
+        wxString::Format(L"%s    %s   %s  %s%s", highlighterTags.CRLF.c_str(),
             highlighterTags.HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
         #ifdef __WXGTK__
             lily_of_the_valley::html_encode_text::simple_encode(
@@ -4912,10 +4913,10 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
         #else
             rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #endif
-            highlighterTags.CRLF);
+        highlighterTags.CRLF.c_str());
     currentLegendLabel = _(L"Unfamiliar Spache Revised words");
-    legendLines.unfamiliarSpacheWordsLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-            highlighterTags.CRLF,
+    legendLines.unfamiliarSpacheWordsLegendLine =
+        wxString::Format(L"%s    %s   %s  %s%s", highlighterTags.CRLF.c_str(),
             highlighterTags.HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
         #ifdef __WXGTK__
             lily_of_the_valley::html_encode_text::simple_encode(
@@ -4923,10 +4924,10 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
         #else
             rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #endif
-            highlighterTags.CRLF);
+        highlighterTags.CRLF.c_str());
     currentLegendLabel = _(L"Unfamiliar Harris-Jacobson words");
-    legendLines.unfamiliarHarrisJacobsonWordsLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-            highlighterTags.CRLF,
+    legendLines.unfamiliarHarrisJacobsonWordsLegendLine =
+        wxString::Format(L"%s    %s   %s  %s%s", highlighterTags.CRLF.c_str(),
             highlighterTags.HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
         #ifdef __WXGTK__
             lily_of_the_valley::html_encode_text::simple_encode(
@@ -4934,10 +4935,10 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
         #else
             rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #endif
-            highlighterTags.CRLF);
+        highlighterTags.CRLF.c_str());
     currentLegendLabel = _(L"Overly-long sentences");
-    legendLines.longSentencesLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-            highlighterTags.CRLF,
+    legendLines.longSentencesLegendLine =
+        wxString::Format(L"%s    %s   %s  %s%s", highlighterTags.CRLF.c_str(),
             highlighterTags.HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
         #ifdef __WXGTK__
             lily_of_the_valley::html_encode_text::simple_encode(
@@ -4945,13 +4946,13 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
         #else
             rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #endif
-            highlighterTags.CRLF);
+        highlighterTags.CRLF.c_str());
     currentLegendLabel =
         (GetProjectLanguage() == readability::test_language::english_test) ?
         _(L"Errors (Repeated words, wording errors, mismatched articles, and misspellings)") :
         _(L"Errors (Repeated words)");
-    legendLines.grammarIssuesLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-            highlighterTags.CRLF,
+    legendLines.grammarIssuesLegendLine =
+        wxString::Format(L"%s    %s   %s  %s%s", highlighterTags.CRLF.c_str(),
             highlighterTags.DUPLICATE_HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
         #ifdef __WXGTK__
             lily_of_the_valley::html_encode_text::simple_encode(
@@ -4959,12 +4960,12 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
         #else
             rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length()}).c_str(),
         #endif
-            highlighterTags.CRLF);
+        highlighterTags.CRLF.c_str());
     currentLegendLabel =
         _(L"Style (Wordy items, redundant phrases, passive voice, and clich\351s)");
-    legendLines.writingStyleLegendLine = (GetProjectLanguage() == readability::test_language::english_test) ?
-        wxString::Format(L"%s    %s   %s  %s%s",
-            highlighterTags.CRLF,
+    legendLines.writingStyleLegendLine =
+        (GetProjectLanguage() == readability::test_language::english_test) ?
+        wxString::Format(L"%s    %s   %s  %s%s", highlighterTags.CRLF.c_str(),
             highlighterTags.PHRASE_HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
         #ifdef __WXGTK__
             lily_of_the_valley::html_encode_text::simple_encode(
@@ -4972,12 +4973,11 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
         #else
             rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #endif
-            highlighterTags.CRLF) :
+                             highlighterTags.CRLF.c_str()) :
         wxString{};
     currentLegendLabel = _(L"Dolch conjunctions");
     legendLines.dolch1WordsLegendLine = IsHighlightingDolchConjunctions() ?
-        wxString::Format(L"%s    %s   %s  %s%s",
-                highlighterTags.CRLF,
+        wxString::Format(L"%s    %s   %s  %s%s", highlighterTags.CRLF.c_str(),
                 highlighterTags.DOLCH_CONJUNCTION_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
             #ifdef __WXGTK__
                 lily_of_the_valley::html_encode_text::simple_encode(
@@ -4985,12 +4985,11 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
             #else
                 rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #endif
-                highlighterTags.CRLF) :
+                             highlighterTags.CRLF.c_str()) :
         wxString{};
     currentLegendLabel = _(L"Dolch prepositions");
     legendLines.dolch2WordsLegendLine = IsHighlightingDolchPrepositions() ?
-        wxString::Format(L"%s    %s   %s  %s%s",
-                highlighterTags.CRLF,
+        wxString::Format(L"%s    %s   %s  %s%s", highlighterTags.CRLF.c_str(),
                 highlighterTags.DOLCH_PREPOSITIONS_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
             #ifdef __WXGTK__
                 lily_of_the_valley::html_encode_text::simple_encode(
@@ -4998,12 +4997,11 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
             #else
                 rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #endif
-                highlighterTags.CRLF) :
+                             highlighterTags.CRLF.c_str()) :
         wxString{};
     currentLegendLabel = _(L"Dolch pronouns");
     legendLines.dolch3WordsLegendLine = IsHighlightingDolchPronouns() ?
-        wxString::Format(L"%s    %s   %s  %s%s",
-                highlighterTags.CRLF,
+        wxString::Format(L"%s    %s   %s  %s%s", highlighterTags.CRLF.c_str(),
                 highlighterTags.DOLCH_PRONOUN_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
             #ifdef __WXGTK__
                 lily_of_the_valley::html_encode_text::simple_encode(
@@ -5011,12 +5009,11 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
             #else
                 rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #endif
-                highlighterTags.CRLF) :
+                             highlighterTags.CRLF.c_str()) :
         wxString{};
     currentLegendLabel = _(L"Dolch adverbs");
     legendLines.dolch4WordsLegendLine = IsHighlightingDolchAdverbs() ?
-        wxString::Format(L"%s    %s   %s  %s%s",
-                highlighterTags.CRLF,
+        wxString::Format(L"%s    %s   %s  %s%s", highlighterTags.CRLF.c_str(),
                 highlighterTags.DOLCH_ADVERB_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
             #ifdef __WXGTK__
                 lily_of_the_valley::html_encode_text::simple_encode(
@@ -5024,12 +5021,11 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
             #else
                 rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #endif
-                highlighterTags.CRLF) :
+                             highlighterTags.CRLF.c_str()) :
         wxString{};
     currentLegendLabel = _(L"Dolch adjectives");
     legendLines.dolch5WordsLegendLine = IsHighlightingDolchAdjectives() ?
-        wxString::Format(L"%s    %s   %s  %s%s",
-                highlighterTags.CRLF,
+        wxString::Format(L"%s    %s   %s  %s%s", highlighterTags.CRLF.c_str(),
                 highlighterTags.DOLCH_ADJECTIVE_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
             #ifdef __WXGTK__
                 lily_of_the_valley::html_encode_text::simple_encode(
@@ -5037,12 +5033,11 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
             #else
                 rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #endif
-                highlighterTags.CRLF) :
+                             highlighterTags.CRLF.c_str()) :
         wxString{};
     currentLegendLabel = _(L"Dolch verbs");
     legendLines.dolchVerbsLegendLine = IsHighlightingDolchVerbs() ?
-        wxString::Format(L"%s    %s   %s  %s%s",
-                highlighterTags.CRLF,
+        wxString::Format(L"%s    %s   %s  %s%s", highlighterTags.CRLF.c_str(),
                 highlighterTags.DOLCH_VERB_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
             #ifdef __WXGTK__
                 lily_of_the_valley::html_encode_text::simple_encode(
@@ -5050,12 +5045,11 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
             #else
                 rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #endif
-                highlighterTags.CRLF) :
+                             highlighterTags.CRLF.c_str()) :
         wxString{};
     currentLegendLabel = _(L"Dolch nouns");
     legendLines.dolchNounsLegendLine = IsHighlightingDolchNouns() ?
-        wxString::Format(L"%s    %s   %s  %s%s",
-                highlighterTags.CRLF,
+        wxString::Format(L"%s    %s   %s  %s%s", highlighterTags.CRLF.c_str(),
                 highlighterTags.DOLCH_NOUN_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
             #ifdef __WXGTK__
                 lily_of_the_valley::html_encode_text::simple_encode(
@@ -5063,11 +5057,11 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
             #else
                 rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
             #endif
-                highlighterTags.CRLF) :
+                             highlighterTags.CRLF.c_str()) :
         wxString{};
     currentLegendLabel = _(L"Non-Dolch words");
-    legendLines.nonDolchWordsLegendLine = wxString::Format(L"%s    %s   %s  %s%s",
-            highlighterTags.CRLF,
+    legendLines.nonDolchWordsLegendLine =
+        wxString::Format(L"%s    %s   %s  %s%s", highlighterTags.CRLF.c_str(),
             highlighterTags.HIGHLIGHT_BEGIN_LEGEND, highlighterTags.HIGHLIGHT_END_LEGEND,
         #ifdef __WXGTK__
             lily_of_the_valley::html_encode_text::simple_encode(
@@ -5075,21 +5069,24 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
         #else
             rtfEncode({ currentLegendLabel.wc_str(), currentLegendLabel.length() }).c_str(),
         #endif
-            highlighterTags.CRLF);
+        highlighterTags.CRLF.c_str());
+    // clang-format on
 
-    return std::make_pair(legendLines,
-        (legendLines.ignoredSentencesLegendLine.length() + legendLines.hardWordsLegendLine.length() +
-        legendLines.longWordsLegendLine.length() + legendLines.unfamiliarDCWordsLegendLine.length() +
-        legendLines.unfamiliarHarrisJacobsonWordsLegendLine.length() +
-        legendLines.unfamiliarSpacheWordsLegendLine.length() + legendLines.longSentencesLegendLine.length() +
-        legendLines.grammarIssuesLegendLine.length() + legendLines.writingStyleLegendLine.length() +
-        legendLines.dolch1WordsLegendLine.length() +
-        legendLines.dolch2WordsLegendLine.length() + legendLines.dolch3WordsLegendLine.length() +
-        legendLines.dolch4WordsLegendLine.length() +
-        legendLines.dolch5WordsLegendLine.length() + legendLines.dolchVerbsLegendLine.length() +
-        legendLines.dolchNounsLegendLine.length() +
-        legendLines.nonDolchWordsLegendLine.length() +
-        1000/*little extra padding for anything added around the legend lines*/) );
+    return std::make_pair(
+        legendLines,
+        (legendLines.ignoredSentencesLegendLine.length() +
+         legendLines.hardWordsLegendLine.length() + legendLines.longWordsLegendLine.length() +
+         legendLines.unfamiliarDCWordsLegendLine.length() +
+         legendLines.unfamiliarHarrisJacobsonWordsLegendLine.length() +
+         legendLines.unfamiliarSpacheWordsLegendLine.length() +
+         legendLines.longSentencesLegendLine.length() +
+         legendLines.grammarIssuesLegendLine.length() +
+         legendLines.writingStyleLegendLine.length() + legendLines.dolch1WordsLegendLine.length() +
+         legendLines.dolch2WordsLegendLine.length() + legendLines.dolch3WordsLegendLine.length() +
+         legendLines.dolch4WordsLegendLine.length() + legendLines.dolch5WordsLegendLine.length() +
+         legendLines.dolchVerbsLegendLine.length() + legendLines.dolchNounsLegendLine.length() +
+         legendLines.nonDolchWordsLegendLine.length() +
+         1000 /*little extra padding for anything added around the legend lines*/));
     }
 
 //-------------------------------------------------------
@@ -5489,7 +5486,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                         docText.get(), textBufferLength,
                                         textHeaderThemed.header, textHeaderThemed.endSection, legend,
                                         highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN,
-                                        highlighterTagsThemed.HIGHLIGHT_END,
+                                        highlighterTagsThemed.HIGHLIGHT_END.wc_string(),
                                         highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                                         textBeingExcluded,
                                         GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
@@ -5518,22 +5515,21 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
             highlighter.Reset();
 
-            FormatWordCollectionHighlightedWords(GetWords(),
-                                    highlighter,
-                                    docText.get(), textBufferLength,
-                                    textHeaderPaperWhite.header, textHeaderPaperWhite.endSection, legend,
-                                    highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN,
-                                    highlighterTagsPaperWhite.HIGHLIGHT_END,
-                                    highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
-                                    textBeingExcluded,
-                                    GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
-                                    textBeingExcluded,
-                                #ifdef __WXGTK__
-                                    false
-                                #else
-                                    true
-                                #endif
-                                    );
+            FormatWordCollectionHighlightedWords(
+                GetWords(), highlighter, docText.get(), textBufferLength,
+                textHeaderPaperWhite.header, textHeaderPaperWhite.endSection, legend,
+                highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN,
+                highlighterTagsPaperWhite.HIGHLIGHT_END.wc_string(),
+                highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
+                textBeingExcluded,
+                GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
+                textBeingExcluded,
+#ifdef __WXGTK__
+                false
+#else
+                true
+#endif
+            );
             textWindow->SetUnthemedFormattedText(docText.get());
 
 #ifdef DEBUG_EXPERIMENTAL_CODE
@@ -5621,44 +5617,39 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             if (GetDaleChallTextExclusionMode() ==
                 SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
                 {
-                textLength = FormatWordCollectionHighlightedWords(GetWords(),
-                                        isNotDCWordThemed,
-                                        docText.get(), textBufferLength,
-                                        textHeaderThemed.header, textHeaderThemed.endSection,
-                                        textLegendsThemed.unfamiliarDCWordsLegend,
-                                        highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN,
-                                        highlighterTagsThemed.HIGHLIGHT_END,
-                                        highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
-                                        // forcibly exclude lists but include headers, invalid words will also be valid
-                                        true,
-                                        true,
-                                        false,
-                                    #ifdef __WXGTK__
-                                        false
-                                    #else
-                                        true
-                                    #endif
-                                        );
+                textLength = FormatWordCollectionHighlightedWords(
+                    GetWords(), isNotDCWordThemed, docText.get(), textBufferLength,
+                    textHeaderThemed.header, textHeaderThemed.endSection,
+                    textLegendsThemed.unfamiliarDCWordsLegend,
+                    highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN,
+                    highlighterTagsThemed.HIGHLIGHT_END.wc_string(),
+                    highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
+                    // forcibly exclude lists but include headers, invalid words will also be valid
+                    true, true, false,
+#ifdef __WXGTK__
+                    false
+#else
+                    true
+#endif
+                );
                 }
             else
                 {
-                textLength = FormatWordCollectionHighlightedWords(GetWords(),
-                                        isNotDCWordThemed,
-                                        docText.get(), textBufferLength,
-                                        textHeaderThemed.header, textHeaderThemed.endSection,
-                                        textLegendsThemed.unfamiliarDCWordsLegend,
-                                        highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN,
-                                        highlighterTagsThemed.HIGHLIGHT_END,
-                                        highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
-                                        textBeingExcluded,
-                                        GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
-                                        textBeingExcluded,
-                                    #ifdef __WXGTK__
-                                        false
-                                    #else
-                                        true
-                                    #endif
-                                        );
+                textLength = FormatWordCollectionHighlightedWords(
+                    GetWords(), isNotDCWordThemed, docText.get(), textBufferLength,
+                    textHeaderThemed.header, textHeaderThemed.endSection,
+                    textLegendsThemed.unfamiliarDCWordsLegend,
+                    highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN,
+                    highlighterTagsThemed.HIGHLIGHT_END.wc_string(),
+                    highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF, textBeingExcluded,
+                    GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
+                    textBeingExcluded,
+#ifdef __WXGTK__
+                    false
+#else
+                    true
+#endif
+                );
                 }
 #ifndef __WXGTK__
             m_dcTextWindow->SetMaxLength(static_cast<unsigned long>(textLength));
@@ -5671,44 +5662,40 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             if (GetDaleChallTextExclusionMode() ==
                 SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
                 {
-                FormatWordCollectionHighlightedWords(GetWords(),
-                                        isNotDCWordPaperWhite,
-                                        docText.get(), textBufferLength,
-                                        textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
-                                        textLegendsPaperWhite.unfamiliarDCWordsLegend,
-                                        highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN,
-                                        highlighterTagsPaperWhite.HIGHLIGHT_END,
-                                        highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
-                                        // forcibly exclude lists but include headers, invalid words will also be valid
-                                        true,
-                                        true,
-                                        false,
-                                    #ifdef __WXGTK__
-                                        false
-                                    #else
-                                        true
-                                    #endif
-                                        );
+                FormatWordCollectionHighlightedWords(
+                    GetWords(), isNotDCWordPaperWhite, docText.get(), textBufferLength,
+                    textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
+                    textLegendsPaperWhite.unfamiliarDCWordsLegend,
+                    highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN,
+                    highlighterTagsPaperWhite.HIGHLIGHT_END.wc_string(),
+                    highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
+                    // forcibly exclude lists but include headers, invalid words will also be valid
+                    true, true, false,
+#ifdef __WXGTK__
+                    false
+#else
+                    true
+#endif
+                );
                 }
             else
                 {
-                FormatWordCollectionHighlightedWords(GetWords(),
-                                        isNotDCWordPaperWhite,
-                                        docText.get(), textBufferLength,
-                                        textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
-                                        textLegendsPaperWhite.unfamiliarDCWordsLegend,
-                                        highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN,
-                                        highlighterTagsPaperWhite.HIGHLIGHT_END,
-                                        highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
-                                        textBeingExcluded,
-                                        GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
-                                        textBeingExcluded,
-                                    #ifdef __WXGTK__
-                                        false
-                                    #else
-                                        true
-                                    #endif
-                                        );
+                FormatWordCollectionHighlightedWords(
+                    GetWords(), isNotDCWordPaperWhite, docText.get(), textBufferLength,
+                    textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
+                    textLegendsPaperWhite.unfamiliarDCWordsLegend,
+                    highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN,
+                    highlighterTagsPaperWhite.HIGHLIGHT_END.wc_string(),
+                    highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
+                    textBeingExcluded,
+                    GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
+                    textBeingExcluded,
+#ifdef __WXGTK__
+                    false
+#else
+                    true
+#endif
+                );
                 }
             m_dcTextWindow->SetUnthemedFormattedText(docText.get());
             }
@@ -5765,43 +5752,40 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             if (GetHarrisJacobsonTextExclusionMode() ==
                 SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
                 {
-                textLength = FormatWordCollectionHighlightedWords(GetWords(),
-                                    isNotHJWordThemed,
-                                    docText.get(), textBufferLength,
-                                    textHeaderThemed.header, textHeaderThemed.endSection,
-                                    textLegendsThemed.unfamiliarHarrisJacobsonWordsLegend,
-                                    highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
-                                    highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
-                                    // HJ explicitly states what to exclude, so always show what it is
-                                    // excluding in this window
-                                    true,
-                                    true,
-                                    false,
-                                #ifdef __WXGTK__
-                                    false
-                                #else
-                                    true
-                                #endif
-                                    );
+                textLength = FormatWordCollectionHighlightedWords(
+                    GetWords(), isNotHJWordThemed, docText.get(), textBufferLength,
+                    textHeaderThemed.header, textHeaderThemed.endSection,
+                    textLegendsThemed.unfamiliarHarrisJacobsonWordsLegend,
+                    highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN,
+                    highlighterTagsThemed.HIGHLIGHT_END.wc_string(),
+                    highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
+                    // HJ explicitly states what to exclude, so always show what it is
+                    // excluding in this window
+                    true, true, false,
+#ifdef __WXGTK__
+                    false
+#else
+                    true
+#endif
+                );
                 }
             else
                 {
-                textLength = FormatWordCollectionHighlightedWords(GetWords(),
-                                    isNotHJWordThemed,
-                                    docText.get(), textBufferLength,
-                                    textHeaderThemed.header, textHeaderThemed.endSection,
-                                    textLegendsThemed.unfamiliarHarrisJacobsonWordsLegend,
-                                    highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
-                                    highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
-                                    textBeingExcluded,
-                                    GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
-                                    textBeingExcluded,
-                                #ifdef __WXGTK__
-                                    false
-                                #else
-                                    true
-                                #endif
-                                    );
+                textLength = FormatWordCollectionHighlightedWords(
+                    GetWords(), isNotHJWordThemed, docText.get(), textBufferLength,
+                    textHeaderThemed.header, textHeaderThemed.endSection,
+                    textLegendsThemed.unfamiliarHarrisJacobsonWordsLegend,
+                    highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN,
+                    highlighterTagsThemed.HIGHLIGHT_END.wc_string(),
+                    highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF, textBeingExcluded,
+                    GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
+                    textBeingExcluded,
+#ifdef __WXGTK__
+                    false
+#else
+                    true
+#endif
+                );
                 }
 #ifndef __WXGTK__
             m_hjTextWindow->SetMaxLength(static_cast<unsigned long>(textLength));
@@ -5814,44 +5798,40 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             if (GetHarrisJacobsonTextExclusionMode() ==
                 SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
                 {
-                FormatWordCollectionHighlightedWords(GetWords(),
-                                    isNotHJWordPaperWhite,
-                                    docText.get(), textBufferLength,
-                                    textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
-                                    textLegendsPaperWhite.unfamiliarHarrisJacobsonWordsLegend,
-                                    highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN,
-                                    highlighterTagsPaperWhite.HIGHLIGHT_END,
-                                    highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
-                                    // HJ explicitly states what to exclude, so always show what it
-                                    // is excluding in this window
-                                    true,
-                                    true,
-                                    false,
-                                #ifdef __WXGTK__
-                                    false
-                                #else
-                                    true
-                                #endif
-                                    );
+                FormatWordCollectionHighlightedWords(
+                    GetWords(), isNotHJWordPaperWhite, docText.get(), textBufferLength,
+                    textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
+                    textLegendsPaperWhite.unfamiliarHarrisJacobsonWordsLegend,
+                    highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN,
+                    highlighterTagsPaperWhite.HIGHLIGHT_END.wc_string(),
+                    highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
+                    // HJ explicitly states what to exclude, so always show what it
+                    // is excluding in this window
+                    true, true, false,
+#ifdef __WXGTK__
+                    false
+#else
+                    true
+#endif
+                );
                 }
             else
                 {
-                FormatWordCollectionHighlightedWords(GetWords(),
-                                    isNotHJWordPaperWhite,
-                                    docText.get(), textBufferLength,
-                                    textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
-                                    textLegendsPaperWhite.unfamiliarHarrisJacobsonWordsLegend,
-                                    highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN,
-                                    highlighterTagsPaperWhite.HIGHLIGHT_END,
-                                    highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
-                                    textBeingExcluded,
-                                    GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
-                                    textBeingExcluded,
-                                #ifdef __WXGTK__
-                                    false
-                                #else
-                                    true
-                                #endif
+                FormatWordCollectionHighlightedWords(
+                    GetWords(), isNotHJWordPaperWhite, docText.get(), textBufferLength,
+                    textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
+                    textLegendsPaperWhite.unfamiliarHarrisJacobsonWordsLegend,
+                    highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN,
+                    highlighterTagsPaperWhite.HIGHLIGHT_END.wc_string(),
+                    highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
+                    textBeingExcluded,
+                    GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
+                    textBeingExcluded,
+#ifdef __WXGTK__
+                    false
+#else
+                    true
+#endif
                                     );
                 }
             m_hjTextWindow->SetUnthemedFormattedText(docText.get());
@@ -5939,84 +5919,82 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     {
                     if (pos->IsHarrisJacobsonFormula())
                         {
-                        textLength = FormatWordCollectionHighlightedWords(GetWords(),
-                                notCustomWordExcludeNumberalsThemed,
-                                docText.get(), textBufferLength,
-                                textHeaderThemed.header, textHeaderThemed.endSection,
-                                unfamiliarWordsLegendThemed,
-                                highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
-                                highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
-                                // forcibly exclude lists but include headers, invalid words will also be valid
-                                true,
-                                true,
-                                false,
-                            #ifdef __WXGTK__
-                                false
-                            #else
-                                true
-                            #endif
-                                );
+                        textLength = FormatWordCollectionHighlightedWords(
+                            GetWords(), notCustomWordExcludeNumberalsThemed, docText.get(),
+                            textBufferLength, textHeaderThemed.header, textHeaderThemed.endSection,
+                            unfamiliarWordsLegendThemed,
+                            highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN,
+                            highlighterTagsThemed.HIGHLIGHT_END.wc_string(),
+                            highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
+                            // forcibly exclude lists but include headers,
+                            // invalid words will also be valid
+                            true, true, false,
+#ifdef __WXGTK__
+                            false
+#else
+                            true
+#endif
+                        );
                         }
                     else
                         {
-                        textLength = FormatWordCollectionHighlightedWords(GetWords(),
-                                notCustomWordThemed,
-                                docText.get(), textBufferLength,
-                                textHeaderThemed.header, textHeaderThemed.endSection,
-                                unfamiliarWordsLegendThemed,
-                                highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
-                                highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
-                                // forcibly exclude lists but include headers, invalid words will also be valid
-                                true,
-                                true,
-                                false,
-                            #ifdef __WXGTK__
-                                false
-                            #else
-                                true
-                            #endif
-                                );
+                        textLength = FormatWordCollectionHighlightedWords(
+                            GetWords(), notCustomWordThemed, docText.get(), textBufferLength,
+                            textHeaderThemed.header, textHeaderThemed.endSection,
+                            unfamiliarWordsLegendThemed,
+                            highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN,
+                            highlighterTagsThemed.HIGHLIGHT_END.wc_string(),
+                            highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
+                            // forcibly exclude lists but include headers,
+                            // invalid words will also be valid
+                            true, true, false,
+#ifdef __WXGTK__
+                            false
+#else
+                            true
+#endif
+                        );
                         }
                     }
                 else
                     {
                     if (pos->IsHarrisJacobsonFormula())
                         {
-                        textLength = FormatWordCollectionHighlightedWords(GetWords(),
-                                notCustomWordExcludeNumberalsThemed,
-                                docText.get(), textBufferLength,
-                                textHeaderThemed.header, textHeaderThemed.endSection,
-                                unfamiliarWordsLegendThemed,
-                                highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
-                                highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
-                                textBeingExcluded,
-                                GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
-                                textBeingExcluded,
-                            #ifdef __WXGTK__
-                                false
-                            #else
-                                true
-                            #endif
-                                );
+                        textLength = FormatWordCollectionHighlightedWords(
+                            GetWords(), notCustomWordExcludeNumberalsThemed, docText.get(),
+                            textBufferLength, textHeaderThemed.header, textHeaderThemed.endSection,
+                            unfamiliarWordsLegendThemed,
+                            highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN,
+                            highlighterTagsThemed.HIGHLIGHT_END.wc_string(),
+                            highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
+                            textBeingExcluded,
+                            GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
+                            textBeingExcluded,
+#ifdef __WXGTK__
+                            false
+#else
+                            true
+#endif
+                        );
                         }
                     else
                         {
-                        textLength = FormatWordCollectionHighlightedWords(GetWords(),
-                                notCustomWordThemed,
-                                docText.get(), textBufferLength,
-                                textHeaderThemed.header, textHeaderThemed.endSection,
-                                unfamiliarWordsLegendThemed,
-                                highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
-                                highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
-                                textBeingExcluded,
-                                GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
-                                textBeingExcluded,
-                            #ifdef __WXGTK__
-                                false
-                            #else
-                                true
-                            #endif
-                                );
+                        textLength = FormatWordCollectionHighlightedWords(
+                            GetWords(), notCustomWordThemed, docText.get(), textBufferLength,
+                            textHeaderThemed.header, textHeaderThemed.endSection,
+                            unfamiliarWordsLegendThemed,
+                            highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN,
+                            highlighterTagsThemed.HIGHLIGHT_END.wc_string(),
+                            highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
+                            textBeingExcluded,
+                            GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
+                            textBeingExcluded,
+#ifdef __WXGTK__
+                            false
+#else
+                            true
+#endif
+                        );
                         }
                     }
 #ifndef __WXGTK__
@@ -6051,7 +6029,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                 textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
                                 unfamiliarWordsLegendPaperWhite,
                                 highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN,
-                                highlighterTagsPaperWhite.HIGHLIGHT_END,
+                            highlighterTagsPaperWhite.HIGHLIGHT_END.wc_string(),
                                 highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
                                 // forcibly exclude lists but include headers, invalid words will also be valid
                                 true,
@@ -6066,67 +6044,63 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                         }
                     else
                         {
-                        FormatWordCollectionHighlightedWords(GetWords(),
-                                notCustomWordPaperWhite,
-                                docText.get(), textBufferLength,
-                                textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
-                                unfamiliarWordsLegendPaperWhite,
-                                highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN,
-                                highlighterTagsPaperWhite.HIGHLIGHT_END,
-                                highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
-                                // forcibly exclude lists but include headers, invalid words will also be valid
-                                true,
-                                true,
-                                false,
-                            #ifdef __WXGTK__
-                                false
-                            #else
-                                true
-                            #endif
-                                );
+                        FormatWordCollectionHighlightedWords(
+                            GetWords(), notCustomWordPaperWhite, docText.get(), textBufferLength,
+                            textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
+                            unfamiliarWordsLegendPaperWhite,
+                            highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN,
+                            highlighterTagsPaperWhite.HIGHLIGHT_END.wc_string(),
+                            highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
+                            // forcibly exclude lists but include headers,
+                            // invalid words will also be valid
+                            true, true, false,
+#ifdef __WXGTK__
+                            false
+#else
+                            true
+#endif
+                        );
                         }
                     }
                 else
                     {
                     if (pos->IsHarrisJacobsonFormula())
                         {
-                        FormatWordCollectionHighlightedWords(GetWords(),
-                                notCustomWordExcludeNumberalsPaperWhite,
-                                docText.get(), textBufferLength,
-                                textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
-                                unfamiliarWordsLegendPaperWhite,
-                                highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN,
-                                highlighterTagsPaperWhite.HIGHLIGHT_END,
-                                highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
-                                textBeingExcluded,
-                                GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
-                                textBeingExcluded,
-                            #ifdef __WXGTK__
-                                false
-                            #else
-                                true
-                            #endif
-                                );
+                        FormatWordCollectionHighlightedWords(
+                            GetWords(), notCustomWordExcludeNumberalsPaperWhite, docText.get(),
+                            textBufferLength, textHeaderPaperWhite.header,
+                            textHeaderPaperWhite.endSection, unfamiliarWordsLegendPaperWhite,
+                            highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN,
+                            highlighterTagsPaperWhite.HIGHLIGHT_END.wc_string(),
+                            highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
+                            textBeingExcluded,
+                            GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
+                            textBeingExcluded,
+#ifdef __WXGTK__
+                            false
+#else
+                            true
+#endif
+                        );
                         }
                     else
                         {
-                        FormatWordCollectionHighlightedWords(GetWords(),
-                                notCustomWordPaperWhite,
-                                docText.get(), textBufferLength,
-                                textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
-                                unfamiliarWordsLegendPaperWhite,
-                                highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN,
-                                highlighterTagsPaperWhite.HIGHLIGHT_END,
-                                highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
-                                textBeingExcluded,
-                                GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
-                                textBeingExcluded,
-                            #ifdef __WXGTK__
-                                false
-                            #else
-                                true
-                            #endif
-                                );
+                        FormatWordCollectionHighlightedWords(
+                            GetWords(), notCustomWordPaperWhite, docText.get(), textBufferLength,
+                            textHeaderPaperWhite.header, textHeaderPaperWhite.endSection,
+                            unfamiliarWordsLegendPaperWhite,
+                            highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN,
+                            highlighterTagsPaperWhite.HIGHLIGHT_END.wc_string(),
+                            highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
+                            textBeingExcluded,
+                            GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
+                            textBeingExcluded,
+#ifdef __WXGTK__
+                            false
+#else
+                            true
+#endif
+                        );
                         }
                     }
                 textWindow->SetUnthemedFormattedText(docText.get());
@@ -6165,9 +6139,9 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     // if default style is bold, then don't use bold tags internally
                     // because that will mess up the RTF
                     (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ?
-                        wxString{} : highlighterTagsThemed.BOLD_BEGIN,
+                        std::wstring{} : highlighterTagsThemed.BOLD_BEGIN,
                     (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ?
-                        wxString{} : highlighterTagsThemed.BOLD_END,
+                        std::wstring{} : highlighterTagsThemed.BOLD_END,
                     highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
                     textBeingExcluded,
                     textBeingExcluded,
@@ -6205,9 +6179,9 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                         // if default style is bold, then don't use bold tags internally because
                                         // that will mess up the RTF
                                         (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ?
-                                            wxString{} : highlighterTagsThemed.BOLD_BEGIN,
+                                            std::wstring{} : highlighterTagsThemed.BOLD_BEGIN,
                                         (textViewFont.GetWeight() == wxFONTWEIGHT_BOLD) ?
-                                            wxString{} : highlighterTagsThemed.BOLD_END,
+                                            std::wstring{} : highlighterTagsThemed.BOLD_END,
                                         highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
                                         textBeingExcluded,
                                         textBeingExcluded,

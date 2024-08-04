@@ -175,10 +175,10 @@ class ProjectDoc final : public BaseProjectDoc
         wxString DOLCH_ADJECTIVE_BEGIN_LEGEND;
         wxString DOLCH_VERB_BEGIN_LEGEND;
         wxString DOLCH_NOUN_BEGIN_LEGEND;
-        wxString BOLD_BEGIN;
-        wxString BOLD_END;
-        wxString TAB_SYMBOL;
-        wxString CRLF;
+        std::wstring BOLD_BEGIN;
+        std::wstring BOLD_END;
+        std::wstring TAB_SYMBOL;
+        std::wstring CRLF;
         };
 
     struct TextLegendLines
