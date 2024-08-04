@@ -5448,7 +5448,6 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 (highlighterTagsThemed.BOLD_BEGIN.length() + highlighterTagsThemed.BOLD_END.length()+8)) +
             textHeaderThemed.endSection.length() + maxLegendSizeThemed + 1;
 
-        auto docText = std::make_unique<wchar_t[]>(textBufferLength+1);
         std::wstring formattedBuffer;
         formattedBuffer.reserve(textBufferLength + 1);
 
@@ -5466,12 +5465,12 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             };
 
         // creates and loads text into a formatted text window
-        const auto buildTextWindow = [this, view, textBeingExcluded, textBufferLength,
-                                      &textHeaderThemed, &textHeaderPaperWhite,
-                                      &highlighterTagsThemed, &highlighterTagsPaperWhite,
-                                      &docText, &setFormattedTextAndRestoreInsertionPoint]
-                                     (FormattedTextCtrl* textWindow, const int ID, const wxString& label,
-                                      auto& highlighter, const wxString& legend)
+        const auto buildTextWindow =
+            [this, view, textBeingExcluded, textBufferLength, &textHeaderThemed,
+             &textHeaderPaperWhite, &highlighterTagsThemed, &highlighterTagsPaperWhite,
+             &formattedBuffer, &setFormattedTextAndRestoreInsertionPoint](
+                FormattedTextCtrl* textWindow, const int ID, const wxString& label,
+                auto& highlighter, const wxString& legend)
             {
             if (!textWindow)
                 {
@@ -5484,7 +5483,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 }
             UpdateTextWindowOptions(textWindow);
             [[maybe_unused]] const size_t textLength = FormatWordCollectionHighlightedWords(
-                GetWords(), highlighter, docText.get(), textBufferLength,
+                GetWords(), highlighter, formattedBuffer,
                 textHeaderThemed.header.wc_string(),
                 textHeaderThemed.endSection.wc_string(), legend.wc_string(),
                 highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
@@ -5502,14 +5501,14 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             // not necessary on Linux and causes an assert
             textWindow->SetMaxLength(static_cast<unsigned long>(textLength));
 #endif
-            setFormattedTextAndRestoreInsertionPoint(textWindow, docText.get());
+            setFormattedTextAndRestoreInsertionPoint(textWindow, formattedBuffer.c_str());
 
 #ifdef DEBUG_EXPERIMENTAL_CODE
             const auto tempFilePath = wxFileName::CreateTempFileName(label);
             wxFile textWindowDump(tempFilePath, wxFile::OpenMode::write);
             if (textWindowDump.IsOpened())
                 {
-                textWindowDump.Write(docText.get());
+                textWindowDump.Write(formattedBuffer);
                 wxLogDebug(L"Text view written to: %s", tempFilePath);
                 }
 #endif
@@ -5517,7 +5516,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             highlighter.Reset();
 
             FormatWordCollectionHighlightedWords(
-                GetWords(), highlighter, docText.get(), textBufferLength,
+                GetWords(), highlighter, formattedBuffer,
                 textHeaderPaperWhite.header.wc_string(),
                 textHeaderPaperWhite.endSection.wc_string(),
                 legend.wc_string(),
@@ -5533,14 +5532,14 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 true
 #endif
             );
-            textWindow->SetUnthemedFormattedText(docText.get());
+            textWindow->SetUnthemedFormattedText(formattedBuffer.c_str());
 
 #ifdef DEBUG_EXPERIMENTAL_CODE
             const auto tempFilePathPaper = wxFileName::CreateTempFileName(label + L" Paper White");
             wxFile textWindowDumpPaper(tempFilePathPaper, wxFile::OpenMode::write);
             if (textWindowDumpPaper.IsOpened())
                 {
-                textWindowDumpPaper.Write(docText.get());
+                textWindowDumpPaper.Write(formattedBuffer);
                 wxLogDebug(L"Text view written to: %s", tempFilePathPaper);
                 }
 #endif
@@ -5621,7 +5620,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
                 {
                 textLength = FormatWordCollectionHighlightedWords(
-                    GetWords(), isNotDCWordThemed, docText.get(), textBufferLength,
+                    GetWords(), isNotDCWordThemed, formattedBuffer,
                     textHeaderThemed.header.wc_string(), textHeaderThemed.endSection.wc_string(),
                     textLegendsThemed.unfamiliarDCWordsLegend.wc_string(),
                     highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
@@ -5639,7 +5638,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             else
                 {
                 textLength = FormatWordCollectionHighlightedWords(
-                    GetWords(), isNotDCWordThemed, docText.get(), textBufferLength,
+                    GetWords(), isNotDCWordThemed, formattedBuffer,
                     textHeaderThemed.header.wc_string(), textHeaderThemed.endSection.wc_string(),
                     textLegendsThemed.unfamiliarDCWordsLegend.wc_string(),
                     highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
@@ -5657,7 +5656,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 #ifndef __WXGTK__
             m_dcTextWindow->SetMaxLength(static_cast<unsigned long>(textLength));
 #endif
-            setFormattedTextAndRestoreInsertionPoint(m_dcTextWindow, docText.get());
+            setFormattedTextAndRestoreInsertionPoint(m_dcTextWindow, formattedBuffer.c_str());
 
             isNotDCWordThemed.Reset();
             isNotDCWordPaperWhite.Reset();
@@ -5666,7 +5665,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
                 {
                 FormatWordCollectionHighlightedWords(
-                    GetWords(), isNotDCWordPaperWhite, docText.get(), textBufferLength,
+                    GetWords(), isNotDCWordPaperWhite, formattedBuffer,
                     textHeaderPaperWhite.header.wc_string(),
                     textHeaderPaperWhite.endSection.wc_string(),
                     textLegendsPaperWhite.unfamiliarDCWordsLegend.wc_string(),
@@ -5685,7 +5684,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             else
                 {
                 FormatWordCollectionHighlightedWords(
-                    GetWords(), isNotDCWordPaperWhite, docText.get(), textBufferLength,
+                    GetWords(), isNotDCWordPaperWhite, formattedBuffer,
                     textHeaderPaperWhite.header.wc_string(),
                     textHeaderPaperWhite.endSection.wc_string(),
                     textLegendsPaperWhite.unfamiliarDCWordsLegend.wc_string(),
@@ -5702,7 +5701,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 #endif
                 );
                 }
-            m_dcTextWindow->SetUnthemedFormattedText(docText.get());
+            m_dcTextWindow->SetUnthemedFormattedText(formattedBuffer.c_str());
             }
         if (GetWordsBreakdownInfo().IsDCUnfamiliarEnabled() && IsDaleChallLikeTestIncluded() )
             {
@@ -5758,7 +5757,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
                 {
                 textLength = FormatWordCollectionHighlightedWords(
-                    GetWords(), isNotHJWordThemed, docText.get(), textBufferLength,
+                    GetWords(), isNotHJWordThemed, formattedBuffer,
                     textHeaderThemed.header.wc_string(), textHeaderThemed.endSection.wc_string(),
                     textLegendsThemed.unfamiliarHarrisJacobsonWordsLegend.wc_string(),
                     highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
@@ -5777,7 +5776,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             else
                 {
                 textLength = FormatWordCollectionHighlightedWords(
-                    GetWords(), isNotHJWordThemed, docText.get(), textBufferLength,
+                    GetWords(), isNotHJWordThemed, formattedBuffer,
                     textHeaderThemed.header.wc_string(), textHeaderThemed.endSection.wc_string(),
                     textLegendsThemed.unfamiliarHarrisJacobsonWordsLegend.wc_string(),
                     highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
@@ -5795,7 +5794,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 #ifndef __WXGTK__
             m_hjTextWindow->SetMaxLength(static_cast<unsigned long>(textLength));
 #endif
-            setFormattedTextAndRestoreInsertionPoint(m_hjTextWindow, docText.get());
+            setFormattedTextAndRestoreInsertionPoint(m_hjTextWindow, formattedBuffer.c_str());
 
             isNotHJWordThemed.Reset();
             isNotHJWordPaperWhite.Reset();
@@ -5804,7 +5803,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
                 {
                 FormatWordCollectionHighlightedWords(
-                    GetWords(), isNotHJWordPaperWhite, docText.get(), textBufferLength,
+                    GetWords(), isNotHJWordPaperWhite, formattedBuffer,
                     textHeaderPaperWhite.header.wc_string(),
                     textHeaderPaperWhite.endSection.wc_string(),
                     textLegendsPaperWhite.unfamiliarHarrisJacobsonWordsLegend.wc_string(),
@@ -5824,7 +5823,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             else
                 {
                 FormatWordCollectionHighlightedWords(
-                    GetWords(), isNotHJWordPaperWhite, docText.get(), textBufferLength,
+                    GetWords(), isNotHJWordPaperWhite, formattedBuffer,
                     textHeaderPaperWhite.header.wc_string(),
                     textHeaderPaperWhite.endSection.wc_string(),
                     textLegendsPaperWhite.unfamiliarHarrisJacobsonWordsLegend.wc_string(),
@@ -5841,7 +5840,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 #endif
                                     );
                 }
-            m_hjTextWindow->SetUnthemedFormattedText(docText.get());
+            m_hjTextWindow->SetUnthemedFormattedText(formattedBuffer.c_str());
             }
         if (GetWordsBreakdownInfo().IsHarrisJacobsonUnfamiliarEnabled() &&
             GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()) )
@@ -5927,8 +5926,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     if (pos->IsHarrisJacobsonFormula())
                         {
                         textLength = FormatWordCollectionHighlightedWords(
-                            GetWords(), notCustomWordExcludeNumberalsThemed, docText.get(),
-                            textBufferLength, textHeaderThemed.header.wc_string(),
+                            GetWords(), notCustomWordExcludeNumberalsThemed, formattedBuffer,
+                            textHeaderThemed.header.wc_string(),
                             textHeaderThemed.endSection.wc_string(),
                             unfamiliarWordsLegendThemed.wc_string(),
                             highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
@@ -5947,7 +5946,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     else
                         {
                         textLength = FormatWordCollectionHighlightedWords(
-                            GetWords(), notCustomWordThemed, docText.get(), textBufferLength,
+                            GetWords(), notCustomWordThemed, formattedBuffer,
                             textHeaderThemed.header.wc_string(),
                             textHeaderThemed.endSection.wc_string(),
                             unfamiliarWordsLegendThemed.wc_string(),
@@ -5970,8 +5969,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     if (pos->IsHarrisJacobsonFormula())
                         {
                         textLength = FormatWordCollectionHighlightedWords(
-                            GetWords(), notCustomWordExcludeNumberalsThemed, docText.get(),
-                            textBufferLength, textHeaderThemed.header.wc_string(),
+                            GetWords(), notCustomWordExcludeNumberalsThemed, formattedBuffer,
+                            textHeaderThemed.header.wc_string(),
                             textHeaderThemed.endSection.wc_string(),
                             unfamiliarWordsLegendThemed.wc_string(),
                             highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
@@ -5990,7 +5989,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     else
                         {
                         textLength = FormatWordCollectionHighlightedWords(
-                            GetWords(), notCustomWordThemed, docText.get(), textBufferLength,
+                            GetWords(), notCustomWordThemed, formattedBuffer,
                             textHeaderThemed.header.wc_string(),
                             textHeaderThemed.endSection.wc_string(),
                             unfamiliarWordsLegendThemed.wc_string(),
@@ -6011,7 +6010,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 #ifndef __WXGTK__
                 textWindow->SetMaxLength(static_cast<unsigned long>(textLength));
 #endif
-                setFormattedTextAndRestoreInsertionPoint(textWindow, docText.get());
+                setFormattedTextAndRestoreInsertionPoint(textWindow, formattedBuffer.c_str());
 
                 notCustomWordThemed.Reset();
                 notCustomWordExcludeNumberalsThemed.Reset();
@@ -6035,8 +6034,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     if (pos->IsHarrisJacobsonFormula())
                         {
                         FormatWordCollectionHighlightedWords(
-                            GetWords(), notCustomWordExcludeNumberalsPaperWhite, docText.get(),
-                            textBufferLength, textHeaderPaperWhite.header.wc_string(),
+                            GetWords(), notCustomWordExcludeNumberalsPaperWhite, formattedBuffer,
+                            textHeaderPaperWhite.header.wc_string(),
                             textHeaderPaperWhite.endSection.wc_string(),
                             unfamiliarWordsLegendPaperWhite.wc_string(),
                             highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
@@ -6055,7 +6054,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     else
                         {
                         FormatWordCollectionHighlightedWords(
-                            GetWords(), notCustomWordPaperWhite, docText.get(), textBufferLength,
+                            GetWords(), notCustomWordPaperWhite, formattedBuffer,
                             textHeaderPaperWhite.header.wc_string(),
                             textHeaderPaperWhite.endSection.wc_string(),
                             unfamiliarWordsLegendPaperWhite.wc_string(),
@@ -6078,8 +6077,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     if (pos->IsHarrisJacobsonFormula())
                         {
                         FormatWordCollectionHighlightedWords(
-                            GetWords(), notCustomWordExcludeNumberalsPaperWhite, docText.get(),
-                            textBufferLength, textHeaderPaperWhite.header.wc_string(),
+                            GetWords(), notCustomWordExcludeNumberalsPaperWhite, formattedBuffer,
+                            textHeaderPaperWhite.header.wc_string(),
                             textHeaderPaperWhite.endSection.wc_string(),
                             unfamiliarWordsLegendPaperWhite.wc_string(),
                             highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
@@ -6098,7 +6097,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     else
                         {
                         FormatWordCollectionHighlightedWords(
-                            GetWords(), notCustomWordPaperWhite, docText.get(), textBufferLength,
+                            GetWords(), notCustomWordPaperWhite, formattedBuffer,
                             textHeaderPaperWhite.header.wc_string(),
                             textHeaderPaperWhite.endSection.wc_string(),
                             unfamiliarWordsLegendPaperWhite.wc_string(),
@@ -6116,7 +6115,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                         );
                         }
                     }
-                textWindow->SetUnthemedFormattedText(docText.get());
+                textWindow->SetUnthemedFormattedText(formattedBuffer.c_str());
                 }
             else
                 { view->GetWordsBreakdownView().RemoveWindowById(pos->GetIterator()->get_interface_id()); }
