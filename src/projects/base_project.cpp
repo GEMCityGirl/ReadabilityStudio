@@ -233,9 +233,9 @@ void BaseProject::FormatFilteredText(std::wstring& text, const bool romanizeText
     {
     if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
         {
-        wxMessageBox(
-            _(L"Filtered document exporting is only available in the Professional Edition of Readability Studio."),
-            _(L"Feature Not Licensed"), wxOK|wxICON_INFORMATION);
+        wxMessageBox(_(L"Filtered document exporting is only available in the "
+                       "Professional Edition of Readability Studio."),
+                     _(L"Feature Not Licensed"), wxOK | wxICON_INFORMATION);
         return;
         }
 
@@ -247,14 +247,21 @@ void BaseProject::FormatFilteredText(std::wstring& text, const bool romanizeText
     project->SetOriginalDocumentFilePath(GetOriginalDocumentFilePath());
 
     if (project->GetDocumentStorageMethod() == TextStorage::NoEmbedText)
-        { project->FreeDocumentText(); }
-    if (!project->LoadDocumentAsSubProject(project->GetOriginalDocumentFilePath(), project->GetDocumentText(), 1) ||
+        {
+        project->FreeDocumentText();
+        }
+    if (!project->LoadDocumentAsSubProject(project->GetOriginalDocumentFilePath(),
+                                           project->GetDocumentText(), 1) ||
         project->GetDocumentText().empty())
-        { return; }
+        {
+        return;
+        }
+    text.reserve(GetDocumentText().length());
     FormatFilteredWordCollection(
         project->GetWords(), text,
         (GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences) ?
-            InvalidTextFilterFormat::IncludeAllText : InvalidTextFilterFormat::IncludeOnlyValidText,
+            InvalidTextFilterFormat::IncludeAllText :
+            InvalidTextFilterFormat::IncludeOnlyValidText,
         removeFilePaths, stripAbbreviations);
     string_util::trim(text);
     text.insert(0, L"\t");
