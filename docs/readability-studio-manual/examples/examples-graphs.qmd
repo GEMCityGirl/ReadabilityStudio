@@ -45,7 +45,7 @@ The bars will now have a watercolor paint effect, rather than the default solid 
 
 ![](../images/example-barchart-effects-changed.png){width=75% fig-align="center"}
 
-Images and shapes can also be used to draw our bars, as demonstrated in a [later example](#stipple-brush-example).
+Images and shapes can also be used to draw our bars, as demonstrated in a [later example](#sec-stipple-brush-example).
 
 ::: {.minipage data-latex="{\textwidth}"}
 Finally, let's remove the labels to simplify the graph.
@@ -60,7 +60,7 @@ Now the bars will be drawn without labels above them:
 
 ## Customizing Backgrounds {#sec-graph-background-example}
 
-Continuing from our previous [example](#customizing-bars), let's now change the background\index{graphs!customizing!backgrounds|(} of the graph.
+Continuing from our previous [example](#sec-customizing-bars), let's now change the background\index{graphs!customizing!backgrounds|(} of the graph.
 On the **Home** tab, click `r menu(c('Background', 'Background Color', 'Color...'))`.
 When the color selection dialog appears, select a new color (e.g., antique white) and click `r keys("OK")`.
 After selecting a color, check the option **Fade** from the same menu.
