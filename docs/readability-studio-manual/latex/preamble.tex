@@ -124,6 +124,22 @@
 \end{tikzpicture}%
 }
 
+% add the title page decoration to each part page,
+% and add a message on the blank page after it
+\makeatletter
+\def\@endpart{\titlepagedecoration\vfil\newpage\if@twoside \if@openright
+\mbox{}
+\vspace*{\fill}
+\begin{center}
+This page intentionally left blank.
+\end{center}
+\vspace{\fill}
+\thispagestyle{empty}
+\newpage\fi\fi
+\if@tempswa\twocolumn\fi}
+\makeatother
+
+% color box that displays a quote in fancy format
 % https://tex.stackexchange.com/questions/16964/block-quote-with-big-quotation-marks
 \usetikzlibrary{backgrounds}
 \makeatletter
