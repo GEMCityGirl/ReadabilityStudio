@@ -4947,7 +4947,7 @@ void ReadabilityAppOptions::UpdateGraphOptions(Wisteria::Canvas* graphCanvas)
         }
 
     graphCanvas->SetExportResources(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                                    L"online/projects-features/publishing.html");
+                                    L"online/projects/publishing.html");
     graphCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
     graphCanvas->SetLeftPrinterHeader(ReadabilityAppOptions::GetLeftPrinterHeader());
     graphCanvas->SetCenterPrinterHeader(ReadabilityAppOptions::GetCenterPrinterHeader());

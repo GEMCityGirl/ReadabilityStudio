@@ -321,7 +321,7 @@ void ToolsOptionsDlg::OnWarningMessagesButtonClick([[maybe_unused]] wxCommandEve
     {
     WarningMessagesDlg dlg(this);
     dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                     L"online/projects-features/program-options.html");
+                     L"online/options/program-options.html");
     dlg.ShowModal();
     }
 
@@ -331,7 +331,7 @@ void ToolsOptionsDlg::OnExcludedPhrasesFileEditButtonClick([[maybe_unused]] wxCo
     TransferDataFromWindow();
     EditWordListDlg editDlg(this, wxID_ANY, _(L"Edit Words/Phrases To Exclude"));
     editDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                         L"online/projects-features/program-options.html");
+                         L"online/options/program-options.html");
     editDlg.SetPhraseFileMode(true);
     editDlg.SetFilePath(m_excludedPhrasesPath);
     if (editDlg.ShowModal() != wxID_OK)
@@ -5931,7 +5931,7 @@ void ToolsOptionsDlg::OnHelp([[maybe_unused]] wxCommandEvent& event)
     {
     wxLaunchDefaultBrowser(wxFileName::FileNameToURL(
         wxGetApp().GetMainFrame()->GetHelpDirectory() + wxFileName::GetPathSeparator() +
-        L"online/projects-features/program-options.html"));
+        L"online/options/program-options.html"));
     }
 
 //-------------------------------------------------------------

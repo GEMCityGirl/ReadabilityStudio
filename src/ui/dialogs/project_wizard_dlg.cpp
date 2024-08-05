@@ -1088,7 +1088,7 @@ void ProjectWizardDlg::LoadArchive(wxString archivePath /*= wxString{}*/)
     dlg.SetPath(archivePath);
     dlg.SetSelectedFileFilter(wxGetApp().GetLastSelectedDocFilter());
     dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                     L"online/projects-features/additional-features.html");
+                     L"online/options/additional-features.html");
     if (dlg.ShowModal() != wxID_OK)
         {
         return;
@@ -1099,7 +1099,7 @@ void ProjectWizardDlg::LoadArchive(wxString archivePath /*= wxString{}*/)
     bool groupByLastCommonFolder{ false };
     DocGroupSelectDlg selectLabelTypeDlg(this);
     selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                                    L"online/projects-features/additional-features.html");
+                                    L"online/options/additional-features.html");
     selectLabelTypeDlg.SetSelection(wxGetApp().GetAppOptions().GetBatchGroupMethod());
     if (selectLabelTypeDlg.ShowModal() != wxID_OK)
         {
@@ -1249,7 +1249,7 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
                 _(L"\"%s\" Preview"),
                 excelExtract.get_worksheet_names().at(workSheetSelections.Item(i)).c_str()));
         excelPreview.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                                  L"online/projects-features/additional-features.html");
+                                  L"online/options/additional-features.html");
         if (excelPreview.ShowModal() == wxID_OK)
             {
             // filter just the rows that were requested by setting unselected cells to empty
@@ -1650,7 +1650,7 @@ void ProjectWizardDlg::OnAddWebPageButtonClick([[maybe_unused]] wxCommandEvent& 
         wxString groupLabel;
         DocGroupSelectDlg selectLabelTypeDlg(this);
         selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                                        L"online/projects-features/additional-features.html");
+                                        L"online/options/additional-features.html");
         selectLabelTypeDlg.SetSelection(wxGetApp().GetAppOptions().GetBatchGroupMethod());
         if (selectLabelTypeDlg.ShowModal() != wxID_OK)
             {
@@ -1683,7 +1683,7 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
                                   wxGetApp().GetLastSelectedDocFilter(), false);
     webHarvestDlg.UpdateFromHarvesterSettings(wxGetApp().GetWebHarvester());
     webHarvestDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                               L"online/projects-features/additional-features.html");
+                               L"online/options/additional-features.html");
     if (webHarvestDlg.ShowModal() != wxID_OK)
         {
         return;
@@ -1694,7 +1694,7 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
     bool groupByLastCommonFolder{ false };
     DocGroupSelectDlg selectLabelTypeDlg(this);
     selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                                    L"online/projects-features/additional-features.html");
+                                    L"online/options/additional-features.html");
     selectLabelTypeDlg.SetSelection(wxGetApp().GetAppOptions().GetBatchGroupMethod());
     if (selectLabelTypeDlg.ShowModal() != wxID_OK)
         {
@@ -1781,7 +1781,7 @@ void ProjectWizardDlg::OnAddFolderButtonClick([[maybe_unused]] wxCommandEvent& e
     dirDlg.SetSelectedFileFilter(wxGetApp().GetLastSelectedDocFilter());
     dirDlg.SetPath(GetLastSelectedFolder());
     dirDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                        L"online/projects-features/additional-features.html");
+                        L"online/options/additional-features.html");
     if (dirDlg.ShowModal() != wxID_OK || dirDlg.GetPath().empty())
         {
         return;
@@ -1804,7 +1804,7 @@ void ProjectWizardDlg::OnAddFolderButtonClick([[maybe_unused]] wxCommandEvent& e
     bool groupByLastCommonFolder{ false };
     DocGroupSelectDlg selectLabelTypeDlg(this);
     selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                                    L"online/projects-features/additional-features.html");
+                                    L"online/options/additional-features.html");
     selectLabelTypeDlg.SetSelection(wxGetApp().GetAppOptions().GetBatchGroupMethod());
     if (selectLabelTypeDlg.ShowModal() != wxID_OK)
         {
@@ -1912,7 +1912,7 @@ void ProjectWizardDlg::OnAddFileButtonClick([[maybe_unused]] wxCommandEvent& eve
     bool groupByLastCommonFolder{ false };
     DocGroupSelectDlg selectLabelTypeDlg(this);
     selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                                    L"online/projects-features/additional-features.html");
+                                    L"online/options/additional-features.html");
     selectLabelTypeDlg.SetSelection(wxGetApp().GetAppOptions().GetBatchGroupMethod());
     if (selectLabelTypeDlg.ShowModal() != wxID_OK)
         {
@@ -1967,5 +1967,5 @@ void ProjectWizardDlg::OnHelp([[maybe_unused]] wxCommandEvent& event)
     {
     wxLaunchDefaultBrowser(wxFileName::FileNameToURL(
         wxGetApp().GetMainFrame()->GetHelpDirectory() + wxFileName::GetPathSeparator() +
-        L"online/projects-features/creating-a-new-project.html"));
+        L"online/projects/creating-a-new-project.html"));
     }

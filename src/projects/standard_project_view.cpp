@@ -368,7 +368,7 @@ void ProjectView::OnExportAll([[maybe_unused]] wxCommandEvent& event)
         dlg.GetImageExportOptions().m_imageSize = m_activeWindow->GetClientSize();
         }
     dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                     L"online/projects-features/publishing.html");
+                     L"online/projects/publishing.html");
     if (dlg.ShowModal() != wxID_OK || dlg.GetFolderPath().empty())
         {
         return;
@@ -429,7 +429,7 @@ void ProjectView::OnExportFilteredDocument([[maybe_unused]] wxCommandEvent& even
 
     FilteredTextExportOptionsDlg optDlg(GetDocFrame());
     optDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                        L"online/projects-features/publishing.html");
+                        L"online/projects/publishing.html");
     if (optDlg.ShowModal() != wxID_OK)
         {
         return;
@@ -692,7 +692,7 @@ void ProjectView::OnTestListDblClick([[maybe_unused]] wxListEvent& event)
         }
     else if (selectedTest == _(L"Dolch Sight Words"))
         {
-        wxGetApp().GetMainFrame()->DisplayHelp(L"online/projects-features/reviewing-standard-projects.html");
+        wxGetApp().GetMainFrame()->DisplayHelp(L"online/projects/reviewing-standard-projects.html");
         }
     }
 
@@ -1660,7 +1660,7 @@ bool ProjectView::OnCreate(wxDocument* doc, long flags)
     readabilityScoresView->SetRightPrinterFooter(
         wxGetApp().GetAppOptions().GetRightPrinterFooter());
     readabilityScoresView->SetResources(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                                        L"online/projects-features/customizing-results.html");
+                                        L"online/projects/customizing-results.html");
     GetReadabilityResultsView().AddWindow(readabilityScoresView);
     GetSplitter()->SplitVertically(GetSideBar(), readabilityScoresView,
                                    GetSideBar()->GetMinWidth());

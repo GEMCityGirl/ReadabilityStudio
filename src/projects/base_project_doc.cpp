@@ -380,7 +380,7 @@ void BaseProjectDoc::UpdateExplanationListOptions(ExplanationListCtrl* eList)
 
     eList->SetResources(
         wxGetApp().GetMainFrame()->GetHelpDirectory(),
-        L"online/projects-features/customizing-results.html");
+        L"online/projects/customizing-results.html");
 
     UpdatePrinterHeaderAndFooters(eList);
     }
@@ -464,9 +464,9 @@ void BaseProjectDoc::UpdateListOptions(ListCtrlEx* list)
         }
 
     list->SetExportResources(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                             L"online/projects-features/publishing.html");
+                             L"online/projects/publishing.html");
     list->SetSortHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                           L"online/projects-features/customizing-results.html");
+                           L"online/projects/customizing-results.html");
 
     UpdatePrinterHeaderAndFooters(list);
     }
@@ -478,7 +478,7 @@ void BaseProjectDoc::UpdateGraphOptions(Wisteria::Canvas* canvas)
         { return; }
     canvas->SetExportResources(
         wxGetApp().GetMainFrame()->GetHelpDirectory(),
-        L"online/projects-features/publishing.html");
+        L"online/projects/publishing.html");
 
     UpdatePrinterHeaderAndFooters(canvas);
 

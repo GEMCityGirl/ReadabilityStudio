@@ -8,15 +8,17 @@ book:
       - overviews/intro.qmd
       - overviews/program.qmd
       - overviews/new-features.qmd
-    - part: "Projects & Features"
+    - part: "Projects"
       chapters:
-      - projects-features/creating-a-new-project.qmd
-      - projects-features/reviewing-standard-projects.qmd
-      - projects-features/reviewing-batch-project.qmd
-      - projects-features/customizing-results.qmd
-      - projects-features/publishing.qmd
-      - projects-features/program-options.qmd
-      - projects-features/additional-features.qmd
+      - projects/creating-a-new-project.qmd
+      - projects/reviewing-standard-projects.qmd
+      - projects/reviewing-batch-project.qmd
+      - projects/customizing-results.qmd
+      - projects/publishing.qmd
+    - part: "Options & Features"
+      chapters:
+      - options/program-options.qmd
+      - options/additional-features.qmd
     - part: "Readability Tests"
       chapters:
       - readability-tests-english.qmd

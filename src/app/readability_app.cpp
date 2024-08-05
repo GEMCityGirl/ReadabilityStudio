@@ -111,7 +111,7 @@ void ReadabilityApp::EditDictionary(const readability::test_language lang)
         editDlg.SetFilePath(m_CustomEnglishDictionaryPath);
         }
     editDlg.SetHelpTopic(GetMainFrame()->GetHelpDirectory(),
-                         L"online/projects-features/program-options.html");
+                         L"online/options/program-options.html");
     if (editDlg.ShowModal() == wxID_OK)
         {
         // custom dictionary will be written back to with edit words at this point,
@@ -3382,7 +3382,7 @@ void MainFrame::OnViewLogReport([[maybe_unused]] wxRibbonButtonBarEvent& event)
             wxPoint{ xPos + (screenWidth - (xPos + m_logWindow->GetSize().GetWidth())), yPos });
 
         m_logWindow->SetSortHelpTopic(GetHelpDirectory(),
-                                      _DT(L"online/projects-features/customizing-results.html"));
+                                      _DT(L"online/projects/customizing-results.html"));
         }
     wxGetApp().UpdateRibbonTheme(m_logWindow->GetRibbon());
     m_logWindow->SetActiveLog(wxGetApp().GetLogFile());
@@ -5122,7 +5122,7 @@ void MainFrame::OnPrinterHeaderFooter([[maybe_unused]] wxCommandEvent& event)
                                wxGetApp().GetAppOptions().GetLeftPrinterFooter(),
                                wxGetApp().GetAppOptions().GetCenterPrinterFooter(),
                                wxGetApp().GetAppOptions().GetRightPrinterFooter());
-    dlg.SetHelpTopic(GetHelpDirectory(), _DT(L"online/projects-features/publishing.html"));
+    dlg.SetHelpTopic(GetHelpDirectory(), _DT(L"online/projects/publishing.html"));
     if (dlg.ShowModal() == wxID_OK)
         {
         wxGetApp().GetAppOptions().SetLeftPrinterHeader(dlg.GetLeftPrinterHeader());
@@ -5206,11 +5206,11 @@ void MainFrame::OnHelpContents([[maybe_unused]] wxCommandEvent& event)
         }
     else if (activeProject->IsKindOf(wxCLASSINFO(ProjectDoc)))
         {
-        DisplayHelp(_DT(L"online/projects-features/reviewing-standard-projects.html"));
+        DisplayHelp(_DT(L"online/projects/reviewing-standard-projects.html"));
         }
     else if (activeProject->IsKindOf(wxCLASSINFO(BatchProjectDoc)))
         {
-        DisplayHelp(_DT(L"online/projects-features/reviewing-batch-project.html"));
+        DisplayHelp(_DT(L"online/projects/reviewing-batch-project.html"));
         }
     }
 
@@ -5304,7 +5304,7 @@ void MainFrame::OnEditWordList([[maybe_unused]] wxCommandEvent& event)
     {
     EditWordListDlg editDlg(wxGetApp().GetParentingWindow(), wxID_ANY, _(L"Edit Word List"));
     editDlg.SetDefaultDir(wxGetApp().GetAppOptions().GetWordListPath());
-    editDlg.SetHelpTopic(GetHelpDirectory(), _DT(L"online/projects-features/program-options.html"));
+    editDlg.SetHelpTopic(GetHelpDirectory(), _DT(L"online/options/program-options.html"));
     if (editDlg.ShowModal() == wxID_OK)
         {
         wxGetApp().GetAppOptions().SetWordListPath(wxFileName(editDlg.GetFilePath()).GetPath());
@@ -5316,7 +5316,7 @@ void MainFrame::OnEditPhraseList([[maybe_unused]] wxCommandEvent& event)
     {
     EditWordListDlg editDlg(wxGetApp().GetParentingWindow(), wxID_ANY, _(L"Edit Phrase List"));
     editDlg.SetDefaultDir(wxGetApp().GetAppOptions().GetWordListPath());
-    editDlg.SetHelpTopic(GetHelpDirectory(), _DT(L"online/projects-features/program-options.html"));
+    editDlg.SetHelpTopic(GetHelpDirectory(), _DT(L"online/options/program-options.html"));
     editDlg.SetPhraseFileMode(true);
     editDlg.ShowModal();
     }
@@ -5494,7 +5494,7 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
     // force downloading locally
     webHarvestDlg.DownloadFilesLocally(true);
     webHarvestDlg.SetHelpTopic(GetHelpDirectory(),
-                               _DT(L"online/projects-features/additional-features.html"));
+                               _DT(L"online/options/additional-features.html"));
 
     if (webHarvestDlg.ShowModal() != wxID_OK)
         {
