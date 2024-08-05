@@ -611,12 +611,21 @@ Application.RemoveAllCustomTests()
 -- Custom test example images
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("Flesch-Kincaid (unclamped)", "(11.8*(B/W)) + (.39*(W/S)) - 15.59", TestType.GradeLevel)
 ScreenshotLib.SnapScreenshot(ImagePath .. "custom-testfk-unclamped." .. FileExtension, 7000, 7000)
+-- crop off bottom half
+info = Application.GetImageInfo(ImagePath .. "custom-testfk-unclamped." .. FileExtension)
+ScreenshotLib.CropScreenshot(ImagePath .. "custom-testfk-unclamped." .. FileExtension, -1, info["Height"]/2)
 
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("Flesch (IC)", "ROUND(206.835 - (84.6*(B/W)) - (1.015*(W/S)))", TestType.IndexValue)
 ScreenshotLib.SnapScreenshot(ImagePath .. "custom-test-example1-test-name." .. FileExtension, 7000, 7000)
+-- crop off bottom half
+info = Application.GetImageInfo(ImagePath .. "custom-test-example1-test-name." .. FileExtension)
+ScreenshotLib.CropScreenshot(ImagePath .. "custom-test-example1-test-name." .. FileExtension, -1, info["Height"]/2)
 
 ScreenshotLib.ShowCustomTestDialogGeneralSettings("Flesch (IC)", "ROUND(206.835 -\n(84.6*(SyllableCount()/WordCount())) -\n(1.015*(WordCount()/IndependentClauseCount())))", TestType.IndexValue)
 ScreenshotLib.SnapScreenshot(ImagePath .. "custom-test-example1-finished." .. FileExtension)
+-- crop off bottom half
+info = Application.GetImageInfo(ImagePath .. "custom-test-example1-finished." .. FileExtension)
+ScreenshotLib.CropScreenshot(ImagePath .. "custom-test-example1-finished." .. FileExtension, -1, info["Height"]/2)
 
 ScreenshotLib.CloseCustomTestDialog()
 
