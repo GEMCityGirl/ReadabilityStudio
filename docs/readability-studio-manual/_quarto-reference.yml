@@ -1,5 +1,6 @@
 project:
   output-dir: "docs"
+pdf-cover: "images/non-generated/cover-tests.pdf"
 book:
   subtitle: Readability Test Reference
   output-file: "readability-test-reference"
