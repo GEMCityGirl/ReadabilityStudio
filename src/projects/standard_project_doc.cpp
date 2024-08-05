@@ -5306,7 +5306,9 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
     {
     PROFILE();
     if (GetWords() == nullptr)
-        { return; }
+        {
+        return;
+        }
 
     try
         {
@@ -5423,385 +5425,314 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             true;
 #endif
 
-        // get the full count of all chars (including ignored ones) and their punctuation
-        const size_t fullCharWithPunctCount = std::accumulate(GetWords()->get_words().begin(),
-                    GetWords()->get_words().end(), static_cast<size_t>(0),
-                    add_word_size<word_case_insensitive_no_stem>() );
-        size_t paragraphLeadingLines = 0;
-        for (const auto& para : GetWords()->get_paragraphs())
-            { paragraphLeadingLines += para.get_leading_end_of_line_count(); }
-        /* Set the size of the buffers for the worst case scenario that every word is highlighted.
-           Note that for encoding, the worst case scenario is a char to be expanded to 7 chars. In RTF,
-           a unicode value will be "\u0000?", so assume the worst that every character and punctuation
-           may be expanded into that.*/
-        // some characters have to be encoded for RTF or Pango
-        const size_t textBufferLength = fullCharWithPunctCount*7 +
-            textHeaderThemed.header.length() + textHeaderThemed.colorTable.length() +
-            textHeaderThemed.mainFontHeader.length() +
-            // two spaces after each sentence, and ending punctuations
-            (GetWords()->get_sentence_count()*3) +
-            (GetWords()->get_paragraph_count() *
-                (highlighterTagsThemed.CRLF.length() + highlighterTagsThemed.TAB_SYMBOL.length())) +
-            (paragraphLeadingLines*(highlighterTagsThemed.CRLF.length() +
-                highlighterTagsThemed.TAB_SYMBOL.length())) +
-            // some punctuation has to be escaped or encoded for RTF or Pango
-            (GetWords()->get_punctuation().size()*7) +
-            // gets the spaces between each word too
-            (GetWords()->get_word_count() *
-                (highlighterTagsThemed.HIGHLIGHT_BEGIN.length() +
-                    highlighterTagsThemed.HIGHLIGHT_END.length()+2)) +
-            /* 3 spaces, 2 parenthesis, and 3 spots for the number */
-            (GetWords()->get_sentence_count() *
-                (highlighterTagsThemed.BOLD_BEGIN.length() + highlighterTagsThemed.BOLD_END.length()+8)) +
-            textHeaderThemed.endSection.length() + maxLegendSizeThemed + 1;
-
-        std::wstring formattedBuffer;
-        formattedBuffer.reserve(textBufferLength + 1);
+        // initial buffers should be a bit bigger than the
+        // original text since we are adding encoding to it
+        const size_t textBufferLength{ GetTextSize() * 3 };
 
         const bool textBeingExcluded =
             (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
              GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings);
 
-        const auto setFormattedTextAndRestoreInsertionPoint =
-            [](FormattedTextCtrl* textWindow, const wchar_t* formattedText)
-            {
-            const auto cursorPos = textWindow->GetInsertionPoint();
-            textWindow->SetFormattedText(formattedText);
-            textWindow->SetInsertionPoint(cursorPos);
-            textWindow->ShowPosition(cursorPos);
-            };
-
-        // creates and loads text into a formatted text window
-        const auto buildTextWindow =
+        // loads text buffers for text window
+        const auto loadTextBuffer =
             [this, view, textBeingExcluded, textBufferLength, &textHeaderThemed,
-             &textHeaderPaperWhite, &highlighterTagsThemed, &highlighterTagsPaperWhite,
-             &formattedBuffer, &setFormattedTextAndRestoreInsertionPoint](
-                FormattedTextCtrl* textWindow, const int ID, const wxString& label,
-                auto& highlighter, const wxString& legend)
-            {
-            if (!textWindow)
-                {
-                textWindow =
-                    new FormattedTextCtrl(view->GetSplitter(), ID, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
-                textWindow->Hide();
-                textWindow->SetMargins(10, 10);
-                textWindow->SetLabel(label);
-                textWindow->SetName(label);
-                }
-            UpdateTextWindowOptions(textWindow);
-            [[maybe_unused]] const size_t textLength = FormatWordCollectionHighlightedWords(
-                GetWords(), highlighter, formattedBuffer,
-                textHeaderThemed.header.wc_string(),
+             &highlighterTagsThemed](auto& highlighter, const wxString& legend,
+                                     std::wstring& mainBuffer)
+        {
+            highlighter.Reset();
+
+            FormatWordCollectionHighlightedWords(
+                GetWords(), highlighter, mainBuffer, textHeaderThemed.header.wc_string(),
                 textHeaderThemed.endSection.wc_string(), legend.wc_string(),
                 highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
                 highlighterTagsThemed.HIGHLIGHT_END.wc_string(), highlighterTagsThemed.TAB_SYMBOL,
                 highlighterTagsThemed.CRLF, textBeingExcluded,
                 GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
                 textBeingExcluded, useRtfEncoding);
-#ifndef __WXGTK__
-            // not necessary on Linux and causes an assert
-            textWindow->SetMaxLength(static_cast<unsigned long>(textLength));
-#endif
-            setFormattedTextAndRestoreInsertionPoint(textWindow, formattedBuffer.c_str());
+        };
 
-#ifdef DEBUG_EXPERIMENTAL_CODE
-            const auto tempFilePath = wxFileName::CreateTempFileName(label);
-            wxFile textWindowDump(tempFilePath, wxFile::OpenMode::write);
-            if (textWindowDump.IsOpened())
-                {
-                textWindowDump.Write(formattedBuffer);
-                wxLogDebug(L"Text view written to: %s", tempFilePath);
-                }
-#endif
-
+        const auto loadPaperTextBuffer =
+            [this, view, textBeingExcluded, textBufferLength, &textHeaderPaperWhite,
+             &highlighterTagsPaperWhite](auto& highlighter, const wxString& legend,
+                                         std::wstring& paperBuffer)
+        {
             highlighter.Reset();
 
             FormatWordCollectionHighlightedWords(
-                GetWords(), highlighter, formattedBuffer,
-                textHeaderPaperWhite.header.wc_string(),
-                textHeaderPaperWhite.endSection.wc_string(),
-                legend.wc_string(),
+                GetWords(), highlighter, paperBuffer, textHeaderPaperWhite.header.wc_string(),
+                textHeaderPaperWhite.endSection.wc_string(), legend.wc_string(),
                 highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
                 highlighterTagsPaperWhite.HIGHLIGHT_END.wc_string(),
                 highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
                 textBeingExcluded,
                 GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
                 textBeingExcluded, useRtfEncoding);
-            textWindow->SetUnthemedFormattedText(formattedBuffer.c_str());
+        };
 
-#ifdef DEBUG_EXPERIMENTAL_CODE
-            const auto tempFilePathPaper = wxFileName::CreateTempFileName(label + L" Paper White");
-            wxFile textWindowDumpPaper(tempFilePathPaper, wxFile::OpenMode::write);
-            if (textWindowDumpPaper.IsOpened())
-                {
-                textWindowDumpPaper.Write(formattedBuffer);
-                wxLogDebug(L"Text view written to: %s", tempFilePathPaper);
-                }
-#endif
+        std::wstring formattedBuffer;
+        formattedBuffer.reserve(textBufferLength);
 
-            return textWindow;
-            };
+        std::wstring dcBuffer;
+        dcBuffer.reserve(textBufferLength);
 
-        // 3+ syllable highlighted words
+        std::wstring dcPaperBuffer;
+        dcPaperBuffer.reserve(textBufferLength);
+
+        std::wstring hjBuffer;
+        hjBuffer.reserve(textBufferLength);
+
+        std::wstring hjPaperBuffer;
+        hjPaperBuffer.reserve(textBufferLength);
+
+        std::wstring spacheBuffer;
+        spacheBuffer.reserve(textBufferLength);
+
+        std::wstring spachePaperBuffer;
+        spachePaperBuffer.reserve(textBufferLength);
+
+        std::wstring threeSyllBuffer;
+        threeSyllBuffer.reserve(textBufferLength);
+
+        std::wstring threeSyllPaperBuffer;
+        threeSyllPaperBuffer.reserve(textBufferLength);
+
+        std::wstring sixCharsBuffer;
+        sixCharsBuffer.reserve(textBufferLength);
+
+        std::wstring sixCharsPaperBuffer;
+        sixCharsPaperBuffer.reserve(textBufferLength);
+
+        std::wstring dolchBuffer;
+        dolchBuffer.reserve(textBufferLength);
+
+        std::wstring dolchPaperBuffer;
+        dolchPaperBuffer.reserve(textBufferLength);
+
+        std::wstring nonDolchBuffer;
+        nonDolchBuffer.reserve(textBufferLength);
+
+        std::wstring nonDolchPaperBuffer;
+        nonDolchPaperBuffer.reserve(textBufferLength);
+
+        // clang-format off
+        // load the formatted text into buffers
+        #pragma omp parallel sections
             {
-            if (GetWordsBreakdownInfo().Is3PlusSyllablesEnabled() &&
-                GetTotalUnique3PlusSyllableWords() > 0)
+            // DC buffers
+            #pragma omp section
                 {
-                FormattedTextCtrl* textWindow =
-                    dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(
-                        BaseProjectView::HARD_WORDS_TEXT_PAGE_ID));
-                // always included for any language
-                textWindow =
-                    buildTextWindow(textWindow, BaseProjectView::HARD_WORDS_TEXT_PAGE_ID,
-                                    BaseProjectView::GetThreeSyllableReportWordsLabel(),
-                                    is3PlusSyllablesThemed, textLegendsThemed.hardWordsLegend);
-                const auto buddyWindowPosition =
-                    view->GetWordsBreakdownView().FindWindowPositionById(
-                        BaseProjectView::HARD_WORDS_LIST_PAGE_ID);
-                view->GetWordsBreakdownView().InsertWindow(
-                    (buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition + 1 : 0, textWindow);
+                // main buffer
+                if (GetProjectLanguage() == readability::test_language::english_test)
+                    {
+                    if (GetDaleChallTextExclusionMode() ==
+                        SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
+                        {
+                        FormatWordCollectionHighlightedWords(
+                            GetWords(), isNotDCWordThemed, dcBuffer,
+                            textHeaderThemed.header.wc_string(),
+                            textHeaderThemed.endSection.wc_string(),
+                            textLegendsThemed.unfamiliarDCWordsLegend.wc_string(),
+                            highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
+                            highlighterTagsThemed.HIGHLIGHT_END.wc_string(),
+                            highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
+                            // forcibly exclude lists but include headers,
+                            // invalid words will also be valid
+                            true, true, false, useRtfEncoding);
+                        }
+                    else
+                        {
+                        FormatWordCollectionHighlightedWords(
+                            GetWords(), isNotDCWordThemed, dcBuffer,
+                            textHeaderThemed.header.wc_string(),
+                            textHeaderThemed.endSection.wc_string(),
+                            textLegendsThemed.unfamiliarDCWordsLegend.wc_string(),
+                            highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
+                            highlighterTagsThemed.HIGHLIGHT_END.wc_string(),
+                            highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
+                            textBeingExcluded,
+                            GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
+                            textBeingExcluded, useRtfEncoding);
+                        }
+                    }
+
+                // paper (printable) buffer
+                if (GetDaleChallTextExclusionMode() ==
+                    SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
+                    {
+                    FormatWordCollectionHighlightedWords(
+                        GetWords(), isNotDCWordPaperWhite, dcPaperBuffer,
+                        textHeaderPaperWhite.header.wc_string(),
+                        textHeaderPaperWhite.endSection.wc_string(),
+                        textLegendsPaperWhite.unfamiliarDCWordsLegend.wc_string(),
+                        highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
+                        highlighterTagsPaperWhite.HIGHLIGHT_END.wc_string(),
+                        highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
+                        // forcibly exclude lists but include headers,
+                        // invalid words will also be valid
+                        true, true, false, useRtfEncoding);
+                    }
+                else
+                    {
+                    FormatWordCollectionHighlightedWords(
+                        GetWords(), isNotDCWordPaperWhite, dcPaperBuffer,
+                        textHeaderPaperWhite.header.wc_string(),
+                        textHeaderPaperWhite.endSection.wc_string(),
+                        textLegendsPaperWhite.unfamiliarDCWordsLegend.wc_string(),
+                        highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
+                        highlighterTagsPaperWhite.HIGHLIGHT_END.wc_string(),
+                        highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
+                        textBeingExcluded,
+                        GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
+                        textBeingExcluded, useRtfEncoding);
+                    }
                 }
-            else
+            // HJ buffers
+            #pragma omp section
                 {
-                view->GetWordsBreakdownView().RemoveWindowById(
-                    BaseProjectView::HARD_WORDS_TEXT_PAGE_ID);
+                if (GetProjectLanguage() == readability::test_language::english_test)
+                    {
+                    if (GetHarrisJacobsonTextExclusionMode() ==
+                        SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
+                        {
+                        FormatWordCollectionHighlightedWords(
+                            GetWords(), isNotHJWordThemed, hjBuffer,
+                            textHeaderThemed.header.wc_string(),
+                            textHeaderThemed.endSection.wc_string(),
+                            textLegendsThemed.unfamiliarHarrisJacobsonWordsLegend.wc_string(),
+                            highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
+                            highlighterTagsThemed.HIGHLIGHT_END.wc_string(),
+                            highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
+                            // HJ explicitly states what to exclude, so always show what it is
+                            // excluding in this window
+                            true, true, false, useRtfEncoding);
+                        }
+                    else
+                        {
+                        FormatWordCollectionHighlightedWords(
+                            GetWords(), isNotHJWordThemed, hjBuffer,
+                            textHeaderThemed.header.wc_string(),
+                            textHeaderThemed.endSection.wc_string(),
+                            textLegendsThemed.unfamiliarHarrisJacobsonWordsLegend.wc_string(),
+                            highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
+                            highlighterTagsThemed.HIGHLIGHT_END.wc_string(),
+                            highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
+                            textBeingExcluded,
+                            GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
+                            textBeingExcluded, useRtfEncoding);
+                        }
+
+                    // paper
+                    if (GetHarrisJacobsonTextExclusionMode() ==
+                        SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
+                        {
+                        FormatWordCollectionHighlightedWords(
+                            GetWords(), isNotHJWordPaperWhite, hjPaperBuffer,
+                            textHeaderPaperWhite.header.wc_string(),
+                            textHeaderPaperWhite.endSection.wc_string(),
+                            textLegendsPaperWhite.unfamiliarHarrisJacobsonWordsLegend.wc_string(),
+                            highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
+                            highlighterTagsPaperWhite.HIGHLIGHT_END.wc_string(),
+                            highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
+                            // HJ explicitly states what to exclude, so always show what it
+                            // is excluding in this window
+                            true, true, false, useRtfEncoding);
+                        }
+                    else
+                        {
+                        FormatWordCollectionHighlightedWords(
+                            GetWords(), isNotHJWordPaperWhite, hjPaperBuffer,
+                            textHeaderPaperWhite.header.wc_string(),
+                            textHeaderPaperWhite.endSection.wc_string(),
+                            textLegendsPaperWhite.unfamiliarHarrisJacobsonWordsLegend.wc_string(),
+                            highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
+                            highlighterTagsPaperWhite.HIGHLIGHT_END.wc_string(),
+                            highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
+                            textBeingExcluded,
+                            GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
+                            textBeingExcluded, useRtfEncoding);
+                        }
+                    }
+                }
+            // Spache
+            #pragma omp section
+                {
+                if (GetProjectLanguage() == readability::test_language::english_test)
+                    {
+                    loadTextBuffer(isNotSpacheWordThemed,
+                                   textLegendsThemed.unfamiliarSpacheWordsLegend,
+                                   spacheBuffer);
+                    loadPaperTextBuffer(isNotSpacheWordThemed,
+                                        textLegendsThemed.unfamiliarSpacheWordsLegend,
+                                        spachePaperBuffer);
+                    }
+                }
+            // 3+ syllable words
+            #pragma omp section
+                {
+                if (GetWordsBreakdownInfo().Is3PlusSyllablesEnabled() &&
+                    GetTotalUnique3PlusSyllableWords() > 0)
+                    {
+                    loadTextBuffer(is3PlusSyllablesThemed,
+                                   textLegendsThemed.hardWordsLegend,
+                                   threeSyllBuffer);
+                    loadPaperTextBuffer(is3PlusSyllablesThemed,
+                                        textLegendsThemed.hardWordsLegend,
+                                        threeSyllPaperBuffer);
+                    }
+                }
+            // 6+ char words
+            #pragma omp section
+                {
+                if (GetWordsBreakdownInfo().Is6PlusCharacterEnabled() &&
+                    GetTotalUnique6CharsPlusWords() > 0)
+                    {
+                    loadTextBuffer(is6PlusCharsThemed,
+                                   textLegendsThemed.longWordsLegend,
+                                   sixCharsBuffer);
+                    loadPaperTextBuffer(is6PlusCharsThemed,
+                                        textLegendsThemed.longWordsLegend,
+                                        sixCharsPaperBuffer);
+                    }
+                }
+            // Dolch
+            #pragma omp section
+                {
+                if (IsIncludingDolchSightWords())
+                    {
+                    loadTextBuffer(isDolchWordThemed,
+                                   textLegendsThemed.dolchWindowLegend,
+                                   dolchBuffer);
+                    loadPaperTextBuffer(isDolchWordThemed,
+                                        textLegendsThemed.dolchWindowLegend,
+                                        dolchPaperBuffer);
+                    }
+                }
+            // Non-Dolch
+            #pragma omp section
+                {
+                if (IsIncludingDolchSightWords())
+                    {
+                    loadTextBuffer(isNotDolchWordThemed,
+                                   textLegendsThemed.nonDolchWordsLegend,
+                                   nonDolchBuffer);
+                    loadPaperTextBuffer(isNotDolchWordThemed,
+                                        textLegendsThemed.nonDolchWordsLegend,
+                                        nonDolchPaperBuffer);
+                    }
                 }
             }
+        // clang-format on
 
-        // 6+ character highlighted words
-            {
-            if (GetWordsBreakdownInfo().Is6PlusCharacterEnabled() &&
-                GetTotalUnique6CharsPlusWords() > 0)
-                {
-                FormattedTextCtrl* textWindow =
-                    dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(
-                        BaseProjectView::LONG_WORDS_TEXT_PAGE_ID));
-                // always included for any language
-                textWindow = buildTextWindow(textWindow, BaseProjectView::LONG_WORDS_TEXT_PAGE_ID,
-                                             BaseProjectView::GetSixCharWordsReportLabel(),
-                                             is6PlusCharsThemed, textLegendsThemed.longWordsLegend);
-                const auto buddyWindowPosition =
-                    view->GetWordsBreakdownView().FindWindowPositionById(
-                        BaseProjectView::LONG_WORDS_LIST_PAGE_ID);
-                view->GetWordsBreakdownView().InsertWindow(
-                    (buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition + 1 : 0, textWindow);
-                }
-            else
-                {
-                view->GetWordsBreakdownView().RemoveWindowById(
-                    BaseProjectView::LONG_WORDS_TEXT_PAGE_ID);
-                }
-            }
-
-        // DC highlighted words
-        m_dcTextWindow = dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(
-            BaseProjectView::DC_WORDS_TEXT_PAGE_ID));
-        // We will always format this for an English project, even if test is not included.
-        // That way, if the test is included later we just have to show it.
-        if (GetProjectLanguage() == readability::test_language::english_test)
-            {
-            if (!m_dcTextWindow)
-                {
-                m_dcTextWindow = new FormattedTextCtrl(view->GetSplitter(),
-                    BaseProjectView::DC_WORDS_TEXT_PAGE_ID, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
-                m_dcTextWindow->Hide();
-                m_dcTextWindow->SetMargins(10, 10);
-                m_dcTextWindow->SetLabel(_(L"Dale-Chall (Unfamiliar) Report"));
-                m_dcTextWindow->SetName(_(L"Dale-Chall (Unfamiliar) Report"));
-                }
-            UpdateTextWindowOptions(m_dcTextWindow);
-            [[maybe_unused]] size_t textLength{ 0 };
-            if (GetDaleChallTextExclusionMode() ==
-                SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
-                {
-                textLength = FormatWordCollectionHighlightedWords(
-                    GetWords(), isNotDCWordThemed, formattedBuffer,
-                    textHeaderThemed.header.wc_string(), textHeaderThemed.endSection.wc_string(),
-                    textLegendsThemed.unfamiliarDCWordsLegend.wc_string(),
-                    highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
-                    highlighterTagsThemed.HIGHLIGHT_END.wc_string(),
-                    highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
-                    // forcibly exclude lists but include headers, invalid words will also be valid
-                    true, true, false, useRtfEncoding);
-                }
-            else
-                {
-                textLength = FormatWordCollectionHighlightedWords(
-                    GetWords(), isNotDCWordThemed, formattedBuffer,
-                    textHeaderThemed.header.wc_string(), textHeaderThemed.endSection.wc_string(),
-                    textLegendsThemed.unfamiliarDCWordsLegend.wc_string(),
-                    highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
-                    highlighterTagsThemed.HIGHLIGHT_END.wc_string(),
-                    highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF, textBeingExcluded,
-                    GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
-                    textBeingExcluded, useRtfEncoding);
-                }
-#ifndef __WXGTK__
-            m_dcTextWindow->SetMaxLength(static_cast<unsigned long>(textLength));
-#endif
-            setFormattedTextAndRestoreInsertionPoint(m_dcTextWindow, formattedBuffer.c_str());
-
-            isNotDCWordThemed.Reset();
-            isNotDCWordPaperWhite.Reset();
-
-            if (GetDaleChallTextExclusionMode() ==
-                SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
-                {
-                FormatWordCollectionHighlightedWords(
-                    GetWords(), isNotDCWordPaperWhite, formattedBuffer,
-                    textHeaderPaperWhite.header.wc_string(),
-                    textHeaderPaperWhite.endSection.wc_string(),
-                    textLegendsPaperWhite.unfamiliarDCWordsLegend.wc_string(),
-                    highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
-                    highlighterTagsPaperWhite.HIGHLIGHT_END.wc_string(),
-                    highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
-                    // forcibly exclude lists but include headers, invalid words will also be valid
-                    true, true, false, useRtfEncoding);
-                }
-            else
-                {
-                FormatWordCollectionHighlightedWords(
-                    GetWords(), isNotDCWordPaperWhite, formattedBuffer,
-                    textHeaderPaperWhite.header.wc_string(),
-                    textHeaderPaperWhite.endSection.wc_string(),
-                    textLegendsPaperWhite.unfamiliarDCWordsLegend.wc_string(),
-                    highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
-                    highlighterTagsPaperWhite.HIGHLIGHT_END.wc_string(),
-                    highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
-                    textBeingExcluded,
-                    GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
-                    textBeingExcluded, useRtfEncoding);
-                }
-            m_dcTextWindow->SetUnthemedFormattedText(formattedBuffer.c_str());
-            }
-        if (GetWordsBreakdownInfo().IsDCUnfamiliarEnabled() && IsDaleChallLikeTestIncluded() )
-            {
-            const auto buddyWindowPosition = view->GetWordsBreakdownView().FindWindowPositionById(
-                BaseProjectView::DC_WORDS_LIST_PAGE_ID);
-            view->GetWordsBreakdownView().InsertWindow((buddyWindowPosition != wxNOT_FOUND) ?
-                buddyWindowPosition+1 : 0, m_dcTextWindow);
-            }
-        else
-            { view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::DC_WORDS_TEXT_PAGE_ID); }
-
-        // Spache highlighted words
-        m_spacheTextWindow = dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(
-            BaseProjectView::SPACHE_WORDS_TEXT_PAGE_ID));
-        // We will always format this for an English project, even if test is not included.
-        // That way, if the test is included later we just have to show it.
-        if (GetProjectLanguage() == readability::test_language::english_test)
-            {
-            m_spacheTextWindow = buildTextWindow(m_spacheTextWindow, BaseProjectView::SPACHE_WORDS_TEXT_PAGE_ID,
-                _(L"Spache (Unfamiliar) Report"), isNotSpacheWordThemed, textLegendsThemed.unfamiliarSpacheWordsLegend);
-            }
-        if (GetWordsBreakdownInfo().IsSpacheUnfamiliarEnabled() &&
-            GetReadabilityTests().is_test_included(ReadabilityMessages::SPACHE()) )
-            {
-            const auto buddyWindowPosition = view->GetWordsBreakdownView().FindWindowPositionById(
-                BaseProjectView::SPACHE_WORDS_LIST_PAGE_ID);
-            view->GetWordsBreakdownView().InsertWindow((buddyWindowPosition != wxNOT_FOUND) ?
-                buddyWindowPosition+1 : 0, m_spacheTextWindow);
-            }
-        else
-            { view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::SPACHE_WORDS_TEXT_PAGE_ID); }
-
-        // HJ highlighted words
-        m_hjTextWindow = dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(
-            BaseProjectView::HARRIS_JACOBSON_WORDS_TEXT_PAGE_ID));
-        // We will always format this for an English project, even if test is not included.
-        // That way, if the test is included later we just have to show it.
-        if (GetProjectLanguage() == readability::test_language::english_test)
-            {
-            if (!m_hjTextWindow)
-                {
-                m_hjTextWindow = new FormattedTextCtrl(view->GetSplitter(),
-                    BaseProjectView::HARRIS_JACOBSON_WORDS_TEXT_PAGE_ID, wxDefaultPosition,
-                    wxDefaultSize, wxTE_READONLY);
-                m_hjTextWindow->Hide();
-                m_hjTextWindow->SetMargins(10, 10);
-                m_hjTextWindow->SetLabel(_(L"Harris-Jacobson (Unfamiliar) Report"));
-                m_hjTextWindow->SetName(_(L"Harris-Jacobson (Unfamiliar) Report"));
-                }
-            UpdateTextWindowOptions(m_hjTextWindow);
-            [[maybe_unused]] size_t textLength = 0;
-            if (GetHarrisJacobsonTextExclusionMode() ==
-                SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
-                {
-                textLength = FormatWordCollectionHighlightedWords(
-                    GetWords(), isNotHJWordThemed, formattedBuffer,
-                    textHeaderThemed.header.wc_string(), textHeaderThemed.endSection.wc_string(),
-                    textLegendsThemed.unfamiliarHarrisJacobsonWordsLegend.wc_string(),
-                    highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
-                    highlighterTagsThemed.HIGHLIGHT_END.wc_string(),
-                    highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF,
-                    // HJ explicitly states what to exclude, so always show what it is
-                    // excluding in this window
-                    true, true, false, useRtfEncoding);
-                }
-            else
-                {
-                textLength = FormatWordCollectionHighlightedWords(
-                    GetWords(), isNotHJWordThemed, formattedBuffer,
-                    textHeaderThemed.header.wc_string(), textHeaderThemed.endSection.wc_string(),
-                    textLegendsThemed.unfamiliarHarrisJacobsonWordsLegend.wc_string(),
-                    highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
-                    highlighterTagsThemed.HIGHLIGHT_END.wc_string(),
-                    highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF, textBeingExcluded,
-                    GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
-                    textBeingExcluded, useRtfEncoding);
-                }
-#ifndef __WXGTK__
-            m_hjTextWindow->SetMaxLength(static_cast<unsigned long>(textLength));
-#endif
-            setFormattedTextAndRestoreInsertionPoint(m_hjTextWindow, formattedBuffer.c_str());
-
-            isNotHJWordThemed.Reset();
-            isNotHJWordPaperWhite.Reset();
-
-            if (GetHarrisJacobsonTextExclusionMode() ==
-                SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
-                {
-                FormatWordCollectionHighlightedWords(
-                    GetWords(), isNotHJWordPaperWhite, formattedBuffer,
-                    textHeaderPaperWhite.header.wc_string(),
-                    textHeaderPaperWhite.endSection.wc_string(),
-                    textLegendsPaperWhite.unfamiliarHarrisJacobsonWordsLegend.wc_string(),
-                    highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
-                    highlighterTagsPaperWhite.HIGHLIGHT_END.wc_string(),
-                    highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
-                    // HJ explicitly states what to exclude, so always show what it
-                    // is excluding in this window
-                    true, true, false, useRtfEncoding);
-                }
-            else
-                {
-                FormatWordCollectionHighlightedWords(
-                    GetWords(), isNotHJWordPaperWhite, formattedBuffer,
-                    textHeaderPaperWhite.header.wc_string(),
-                    textHeaderPaperWhite.endSection.wc_string(),
-                    textLegendsPaperWhite.unfamiliarHarrisJacobsonWordsLegend.wc_string(),
-                    highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
-                    highlighterTagsPaperWhite.HIGHLIGHT_END.wc_string(),
-                    highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
-                    textBeingExcluded,
-                    GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings,
-                    textBeingExcluded, useRtfEncoding);
-                }
-            m_hjTextWindow->SetUnthemedFormattedText(formattedBuffer.c_str());
-            }
-        if (GetWordsBreakdownInfo().IsHarrisJacobsonUnfamiliarEnabled() &&
-            GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()) )
-            {
-            const auto buddyWindowPosition = view->GetWordsBreakdownView().FindWindowPositionById(
-                BaseProjectView::HARRIS_JACOBSON_WORDS_LIST_PAGE_ID);
-            view->GetWordsBreakdownView().InsertWindow((buddyWindowPosition != wxNOT_FOUND) ?
-                buddyWindowPosition+1 : 0, m_hjTextWindow);
-            }
-        else
-            { view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::HARRIS_JACOBSON_WORDS_TEXT_PAGE_ID); }
+        // Load the buffers into the windows
+        // ---------------------------------
+        LoadDCTextWindow(dcBuffer, dcPaperBuffer);
+        LoadHJTextWindow(hjBuffer, hjPaperBuffer);
+        LoadSpacheTextWindow(spacheBuffer, spachePaperBuffer);
+        LoadThreeSyllTextWindow(threeSyllBuffer, threeSyllPaperBuffer);
+        LoadSixCharsTextWindow(sixCharsBuffer, sixCharsPaperBuffer);
 
         // go through the custom readability tests
-        for(std::vector<CustomReadabilityTestInterface>::iterator pos = GetCustTestsInUse().begin();
+        for(auto pos = GetCustTestsInUse().begin();
             pos != GetCustTestsInUse().end();
             ++pos)
             {
@@ -5847,7 +5778,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                         highlighterTagsThemed.HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
                         highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END);
 
-                IsNotCustomFamiliarWordWithHighlighting<std::vector<CustomReadabilityTestInterface>::iterator>
+                IsNotCustomFamiliarWordWithHighlighting<
+                    std::vector<CustomReadabilityTestInterface>::iterator>
                     notCustomWordPaperWhite(pos,
                         highlighterTagsPaperWhite.HIGHLIGHT_BEGIN, highlighterTagsPaperWhite.HIGHLIGHT_END);
                 IsNotCustomFamiliarWordExcludeNumeralsWithHighlighting<
@@ -5861,7 +5793,6 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 notCustomWordThemed.Reset();
                 notCustomWordExcludeNumberalsThemed.Reset();
 
-                [[maybe_unused]] size_t textLength = 0;
                 // special text exclusion logic is used for Custom HJ and DC tests
                 if ((pos->IsHarrisJacobsonFormula() &&
                      GetHarrisJacobsonTextExclusionMode() ==
@@ -5872,7 +5803,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     {
                     if (pos->IsHarrisJacobsonFormula())
                         {
-                        textLength = FormatWordCollectionHighlightedWords(
+                        FormatWordCollectionHighlightedWords(
                             GetWords(), notCustomWordExcludeNumberalsThemed, formattedBuffer,
                             textHeaderThemed.header.wc_string(),
                             textHeaderThemed.endSection.wc_string(),
@@ -5886,7 +5817,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                         }
                     else
                         {
-                        textLength = FormatWordCollectionHighlightedWords(
+                        FormatWordCollectionHighlightedWords(
                             GetWords(), notCustomWordThemed, formattedBuffer,
                             textHeaderThemed.header.wc_string(),
                             textHeaderThemed.endSection.wc_string(),
@@ -5903,7 +5834,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     {
                     if (pos->IsHarrisJacobsonFormula())
                         {
-                        textLength = FormatWordCollectionHighlightedWords(
+                        FormatWordCollectionHighlightedWords(
                             GetWords(), notCustomWordExcludeNumberalsThemed, formattedBuffer,
                             textHeaderThemed.header.wc_string(),
                             textHeaderThemed.endSection.wc_string(),
@@ -5917,7 +5848,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                         }
                     else
                         {
-                        textLength = FormatWordCollectionHighlightedWords(
+                        FormatWordCollectionHighlightedWords(
                             GetWords(), notCustomWordThemed, formattedBuffer,
                             textHeaderThemed.header.wc_string(),
                             textHeaderThemed.endSection.wc_string(),
@@ -5931,9 +5862,9 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                         }
                     }
 #ifndef __WXGTK__
-                textWindow->SetMaxLength(static_cast<unsigned long>(textLength));
+                textWindow->SetMaxLength(static_cast<unsigned long>(formattedBuffer.length()));
 #endif
-                setFormattedTextAndRestoreInsertionPoint(textWindow, formattedBuffer.c_str());
+                SetFormattedTextAndRestoreInsertionPoint(textWindow, formattedBuffer.c_str());
 
                 notCustomWordThemed.Reset();
                 notCustomWordExcludeNumberalsThemed.Reset();
@@ -5964,8 +5895,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                             highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN.wc_string(),
                             highlighterTagsPaperWhite.HIGHLIGHT_END.wc_string(),
                             highlighterTagsPaperWhite.TAB_SYMBOL, highlighterTagsPaperWhite.CRLF,
-                            // forcibly exclude lists but include headers, invalid words will also
-                            // be valid
+                            // forcibly exclude lists but include headers,
+                            // invalid words will also be valid
                             true, true, false, useRtfEncoding);
                         }
                     else
@@ -6017,7 +5948,10 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 textWindow->SetUnthemedFormattedText(formattedBuffer.c_str());
                 }
             else
-                { view->GetWordsBreakdownView().RemoveWindowById(pos->GetIterator()->get_interface_id()); }
+                {
+                view->GetWordsBreakdownView().RemoveWindowById(
+                    pos->GetIterator()->get_interface_id());
+                }
             }
 
         // grammar issues highlighted
@@ -6038,7 +5972,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 view->GetGrammarView().InsertWindow(0, textWindow);
                 }
             UpdateTextWindowOptions(textWindow);
-            [[maybe_unused]] const size_t textLength = FormatWordCollectionHighlightedGrammarIssues(
+            FormatWordCollectionHighlightedGrammarIssues(
                 GetWords(), GetDifficultSentenceLength(), formattedBuffer,
                 textHeaderThemed.header.wc_string(), textHeaderThemed.endSection.wc_string(),
                 textLegendsThemed.wordinessWindowLegend.wc_string(),
@@ -6056,9 +5990,9 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 highlighterTagsThemed.TAB_SYMBOL, highlighterTagsThemed.CRLF, textBeingExcluded,
                 textBeingExcluded, useRtfEncoding);
 #ifndef __WXGTK__
-            textWindow->SetMaxLength(static_cast<unsigned long>(textLength));
+            textWindow->SetMaxLength(static_cast<unsigned long>(formattedBuffer.length()));
 #endif
-            setFormattedTextAndRestoreInsertionPoint(textWindow, formattedBuffer.c_str());
+            SetFormattedTextAndRestoreInsertionPoint(textWindow, formattedBuffer.c_str());
 
 #ifdef DEBUG_EXPERIMENTAL_CODE
             const auto tempFilePath = wxFileName::CreateTempFileName(_(L"Highlighted Report"));
@@ -6091,37 +6025,37 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             textWindow->SetUnthemedFormattedText(formattedBuffer.c_str());
             }
         else
-            { view->GetGrammarView().RemoveWindowById(BaseProjectView::LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID); }
+            {
+            view->GetGrammarView().RemoveWindowById(
+                BaseProjectView::LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID);
+            }
 
         // Dolch sight words
         if (IsIncludingDolchSightWords())
             {
-            FormattedTextCtrl* textWindow =
-                dynamic_cast<FormattedTextCtrl*>(view->GetDolchSightWordsView().FindWindowById(
-                    BaseProjectView::DOLCH_WORDS_TEXT_PAGE_ID));
-            textWindow = buildTextWindow(textWindow, BaseProjectView::DOLCH_WORDS_TEXT_PAGE_ID,
-                                         _(L"Highlighted Dolch Words"), isDolchWordThemed,
-                                         textLegendsThemed.dolchWindowLegend);
-            view->GetDolchSightWordsView().AddWindow(textWindow);
+                {
+                FormattedTextCtrl* textWindow =
+                    dynamic_cast<FormattedTextCtrl*>(view->GetDolchSightWordsView().FindWindowById(
+                        BaseProjectView::DOLCH_WORDS_TEXT_PAGE_ID));
+                textWindow =
+                    LoadTextWindow(textWindow, BaseProjectView::DOLCH_WORDS_TEXT_PAGE_ID,
+                                   _(L"Highlighted Dolch Words"), dolchBuffer, dolchPaperBuffer);
+                view->GetDolchSightWordsView().AddWindow(textWindow);
+                }
+                {
+                FormattedTextCtrl* textWindow =
+                    dynamic_cast<FormattedTextCtrl*>(view->GetDolchSightWordsView().FindWindowById(
+                        BaseProjectView::NON_DOLCH_WORDS_TEXT_PAGE_ID));
+                textWindow = LoadTextWindow(
+                    textWindow, BaseProjectView::NON_DOLCH_WORDS_TEXT_PAGE_ID,
+                    _(L"Highlighted Non-Dolch Words"), nonDolchBuffer, nonDolchPaperBuffer);
+                view->GetDolchSightWordsView().AddWindow(textWindow);
+                }
             }
         else
             {
             view->GetDolchSightWordsView().RemoveWindowById(
                 BaseProjectView::DOLCH_WORDS_TEXT_PAGE_ID);
-            }
-
-        if (IsIncludingDolchSightWords())
-            {
-            FormattedTextCtrl* textWindow =
-                dynamic_cast<FormattedTextCtrl*>(view->GetDolchSightWordsView().FindWindowById(
-                    BaseProjectView::NON_DOLCH_WORDS_TEXT_PAGE_ID));
-            textWindow = buildTextWindow(textWindow, BaseProjectView::NON_DOLCH_WORDS_TEXT_PAGE_ID,
-                                         _(L"Highlighted Non-Dolch Words"), isNotDolchWordThemed,
-                                         textLegendsThemed.nonDolchWordsLegend);
-            view->GetDolchSightWordsView().AddWindow(textWindow);
-            }
-        else
-            {
             view->GetDolchSightWordsView().RemoveWindowById(
                 BaseProjectView::NON_DOLCH_WORDS_TEXT_PAGE_ID);
             }
@@ -6131,6 +6065,230 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         wxMessageBox(_(L"An internal error occurred while formatting the highlighted text. "
                        "Please contact the software vendor."),
                      _(L"Error"), wxICON_EXCLAMATION | wxOK);
+        }
+    }
+
+//-------------------------------------------------------
+Wisteria::UI::FormattedTextCtrl*
+ProjectDoc::LoadTextWindow(Wisteria::UI::FormattedTextCtrl* textWindow, const int ID,
+                           const wxString& label, const std::wstring& mainBuffer,
+                           const std::wstring& paperBuffer)
+    {
+    ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
+
+    if (textWindow == nullptr)
+        {
+        textWindow = new FormattedTextCtrl(view->GetSplitter(), ID, wxDefaultPosition,
+                                           wxDefaultSize, wxTE_READONLY);
+        textWindow->Hide();
+        textWindow->SetMargins(10, 10);
+        textWindow->SetLabel(label);
+        textWindow->SetName(label);
+        }
+    UpdateTextWindowOptions(textWindow);
+#ifndef __WXGTK__
+    // not necessary on Linux and causes an assert
+    textWindow->SetMaxLength(static_cast<unsigned long>(mainBuffer.length()));
+#endif
+    SetFormattedTextAndRestoreInsertionPoint(textWindow, mainBuffer.c_str());
+
+#ifdef DEBUG_EXPERIMENTAL_CODE
+    const auto tempFilePath = wxFileName::CreateTempFileName(label);
+    wxFile textWindowDump(tempFilePath, wxFile::OpenMode::write);
+    if (textWindowDump.IsOpened())
+        {
+        textWindowDump.Write(mainBuffer);
+        wxLogDebug(L"Text view written to: %s", tempFilePath);
+        }
+#endif
+
+    textWindow->SetUnthemedFormattedText(paperBuffer.c_str());
+
+#ifdef DEBUG_EXPERIMENTAL_CODE
+    const auto tempFilePathPaper = wxFileName::CreateTempFileName(label + L" Paper White");
+    wxFile textWindowDumpPaper(tempFilePathPaper, wxFile::OpenMode::write);
+    if (textWindowDumpPaper.IsOpened())
+        {
+        textWindowDumpPaper.Write(paperBuffer);
+        wxLogDebug(L"Text view written to: %s", tempFilePathPaper);
+        }
+#endif
+
+    return textWindow;
+    }
+
+//-------------------------------------------------------
+void ProjectDoc::LoadThreeSyllTextWindow(const std::wstring& mainBuffer,
+                                         const std::wstring& paperBuffer)
+    {
+    ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
+
+    if (GetWordsBreakdownInfo().Is3PlusSyllablesEnabled() && GetTotalUnique3PlusSyllableWords() > 0)
+        {
+        FormattedTextCtrl* textWindow = dynamic_cast<FormattedTextCtrl*>(
+            view->GetWordsBreakdownView().FindWindowById(BaseProjectView::HARD_WORDS_TEXT_PAGE_ID));
+        // always included for any language
+        textWindow = LoadTextWindow(textWindow, BaseProjectView::HARD_WORDS_TEXT_PAGE_ID,
+                                    BaseProjectView::GetThreeSyllableReportWordsLabel(), mainBuffer,
+                                    paperBuffer);
+        const auto buddyWindowPosition = view->GetWordsBreakdownView().FindWindowPositionById(
+            BaseProjectView::HARD_WORDS_LIST_PAGE_ID);
+        view->GetWordsBreakdownView().InsertWindow(
+            (buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition + 1 : 0, textWindow);
+        }
+    else
+        {
+        view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::HARD_WORDS_TEXT_PAGE_ID);
+        }
+    }
+
+//-------------------------------------------------------
+void ProjectDoc::LoadSixCharsTextWindow(const std::wstring& mainBuffer,
+                                        const std::wstring& paperBuffer)
+    {
+    ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
+
+    if (GetWordsBreakdownInfo().Is6PlusCharacterEnabled() && GetTotalUnique6CharsPlusWords() > 0)
+        {
+        FormattedTextCtrl* textWindow = dynamic_cast<FormattedTextCtrl*>(
+            view->GetWordsBreakdownView().FindWindowById(BaseProjectView::LONG_WORDS_TEXT_PAGE_ID));
+        // always included for any language
+        textWindow =
+            LoadTextWindow(textWindow, BaseProjectView::LONG_WORDS_TEXT_PAGE_ID,
+                           BaseProjectView::GetSixCharWordsReportLabel(), mainBuffer, paperBuffer);
+        const auto buddyWindowPosition = view->GetWordsBreakdownView().FindWindowPositionById(
+            BaseProjectView::LONG_WORDS_LIST_PAGE_ID);
+        view->GetWordsBreakdownView().InsertWindow(
+            (buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition + 1 : 0, textWindow);
+        }
+    else
+        {
+        view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::LONG_WORDS_TEXT_PAGE_ID);
+        }
+    }
+
+//-------------------------------------------------------
+void ProjectDoc::LoadSpacheTextWindow(const std::wstring& mainBuffer,
+                                      const std::wstring& paperBuffer)
+    {
+    ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
+
+    m_spacheTextWindow = dynamic_cast<FormattedTextCtrl*>(
+        view->GetWordsBreakdownView().FindWindowById(BaseProjectView::SPACHE_WORDS_TEXT_PAGE_ID));
+    // We will always format this for an English project, even if test is not included.
+    // That way, if the test is included later we just have to show it.
+    if (GetProjectLanguage() == readability::test_language::english_test)
+        {
+        m_spacheTextWindow =
+            LoadTextWindow(m_spacheTextWindow, BaseProjectView::SPACHE_WORDS_TEXT_PAGE_ID,
+                           _(L"Spache (Unfamiliar) Report"), mainBuffer, paperBuffer);
+        }
+    if (GetProjectLanguage() == readability::test_language::english_test &&
+        GetWordsBreakdownInfo().IsSpacheUnfamiliarEnabled() &&
+        GetReadabilityTests().is_test_included(ReadabilityMessages::SPACHE()))
+        {
+        const auto buddyWindowPosition = view->GetWordsBreakdownView().FindWindowPositionById(
+            BaseProjectView::SPACHE_WORDS_LIST_PAGE_ID);
+        view->GetWordsBreakdownView().InsertWindow(
+            (buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition + 1 : 0, m_spacheTextWindow);
+        }
+    else
+        {
+        view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::SPACHE_WORDS_TEXT_PAGE_ID);
+        }
+    }
+
+//-------------------------------------------------------
+void ProjectDoc::LoadHJTextWindow(const std::wstring& mainBuffer, const std::wstring& paperBuffer)
+    {
+    ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
+
+    m_hjTextWindow = dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(
+        BaseProjectView::HARRIS_JACOBSON_WORDS_TEXT_PAGE_ID));
+
+    // We will always format this for an English project, even if test is not included.
+    // That way, if the test is included later we just have to show it.
+    if (GetProjectLanguage() == readability::test_language::english_test)
+        {
+        if (m_hjTextWindow == nullptr)
+            {
+            m_hjTextWindow = new FormattedTextCtrl(
+                view->GetSplitter(), BaseProjectView::HARRIS_JACOBSON_WORDS_TEXT_PAGE_ID,
+                wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
+            m_hjTextWindow->Hide();
+            m_hjTextWindow->SetMargins(10, 10);
+            m_hjTextWindow->SetLabel(_(L"Harris-Jacobson (Unfamiliar) Report"));
+            m_hjTextWindow->SetName(_(L"Harris-Jacobson (Unfamiliar) Report"));
+            }
+        UpdateTextWindowOptions(m_hjTextWindow);
+
+#ifndef __WXGTK__
+        m_hjTextWindow->SetMaxLength(static_cast<unsigned long>(mainBuffer.length()));
+#endif
+        SetFormattedTextAndRestoreInsertionPoint(m_hjTextWindow, mainBuffer.c_str());
+
+        m_hjTextWindow->SetUnthemedFormattedText(paperBuffer.c_str());
+        }
+
+    if (GetProjectLanguage() == readability::test_language::english_test &&
+        GetWordsBreakdownInfo().IsHarrisJacobsonUnfamiliarEnabled() &&
+        GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()))
+        {
+        const auto buddyWindowPosition = view->GetWordsBreakdownView().FindWindowPositionById(
+            BaseProjectView::HARRIS_JACOBSON_WORDS_LIST_PAGE_ID);
+        view->GetWordsBreakdownView().InsertWindow(
+            (buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition + 1 : 0, m_hjTextWindow);
+        }
+    else
+        {
+        view->GetWordsBreakdownView().RemoveWindowById(
+            BaseProjectView::HARRIS_JACOBSON_WORDS_TEXT_PAGE_ID);
+        }
+    }
+
+//-------------------------------------------------------
+void ProjectDoc::LoadDCTextWindow(const std::wstring& mainBuffer, const std::wstring& paperBuffer)
+    {
+    ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
+
+    m_dcTextWindow = dynamic_cast<FormattedTextCtrl*>(
+        view->GetWordsBreakdownView().FindWindowById(BaseProjectView::DC_WORDS_TEXT_PAGE_ID));
+    // We will always format this for an English project, even if test is not included.
+    // That way, if the test is included later we just have to show it.
+    if (GetProjectLanguage() == readability::test_language::english_test)
+        {
+        // load the content into the window
+        if (m_dcTextWindow == nullptr)
+            {
+            m_dcTextWindow =
+                new FormattedTextCtrl(view->GetSplitter(), BaseProjectView::DC_WORDS_TEXT_PAGE_ID,
+                                      wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
+            m_dcTextWindow->Hide();
+            m_dcTextWindow->SetMargins(10, 10);
+            m_dcTextWindow->SetLabel(_(L"Dale-Chall (Unfamiliar) Report"));
+            m_dcTextWindow->SetName(_(L"Dale-Chall (Unfamiliar) Report"));
+            }
+        UpdateTextWindowOptions(m_dcTextWindow);
+
+#ifndef __WXGTK__
+        m_dcTextWindow->SetMaxLength(static_cast<unsigned long>(mainBuffer.length()));
+#endif
+        SetFormattedTextAndRestoreInsertionPoint(m_dcTextWindow, mainBuffer.c_str());
+
+        m_dcTextWindow->SetUnthemedFormattedText(paperBuffer.c_str());
+        }
+
+    if (GetProjectLanguage() == readability::test_language::english_test &&
+        GetWordsBreakdownInfo().IsDCUnfamiliarEnabled() && IsDaleChallLikeTestIncluded())
+        {
+        const auto buddyWindowPosition = view->GetWordsBreakdownView().FindWindowPositionById(
+            BaseProjectView::DC_WORDS_LIST_PAGE_ID);
+        view->GetWordsBreakdownView().InsertWindow(
+            (buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition + 1 : 0, m_dcTextWindow);
+        }
+    else
+        {
+        view->GetWordsBreakdownView().RemoveWindowById(BaseProjectView::DC_WORDS_TEXT_PAGE_ID);
         }
     }
 

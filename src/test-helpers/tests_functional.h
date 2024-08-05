@@ -287,7 +287,7 @@ class IsDolchWordWithLevelHighlighting final : public readability::is_dolch_word
     const wxString& GetHightlightBegin() const
         {
         if (readability::is_dolch_word<word_typeT>::get_last_search_result() !=
-            readability::is_dolch_word<word_typeT>::get_word_list()->get_words().end())
+            readability::is_dolch_word<word_typeT>::get_word_list()->get_words().cend())
             {
             switch (readability::is_dolch_word<word_typeT>::get_last_search_result()->get_type())
                 {

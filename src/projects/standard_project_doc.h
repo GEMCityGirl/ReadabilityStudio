@@ -260,6 +260,24 @@ class ProjectDoc final : public BaseProjectDoc
                            [[maybe_unused]] const HighlighterColors& highlighterColors,
                            const wxFont& textViewFont);
 
+    void SetFormattedTextAndRestoreInsertionPoint(Wisteria::UI::FormattedTextCtrl* textWindow,
+                                                  const wchar_t* formattedText)
+        {
+        const auto cursorPos = textWindow->GetInsertionPoint();
+        textWindow->SetFormattedText(formattedText);
+        textWindow->SetInsertionPoint(cursorPos);
+        textWindow->ShowPosition(cursorPos);
+        }
+    void LoadDCTextWindow(const std::wstring& mainBuffer, const std::wstring& paperBuffer);
+    void LoadHJTextWindow(const std::wstring& mainBuffer, const std::wstring& paperBuffer);
+    void LoadSpacheTextWindow(const std::wstring& mainBuffer, const std::wstring& paperBuffer);
+    void LoadSixCharsTextWindow(const std::wstring& mainBuffer, const std::wstring& paperBuffer);
+    void LoadThreeSyllTextWindow(const std::wstring& mainBuffer, const std::wstring& paperBuffer);
+    Wisteria::UI::FormattedTextCtrl* LoadTextWindow(Wisteria::UI::FormattedTextCtrl* textWindow,
+                                                    const int ID, const wxString& label,
+                                                    const std::wstring& mainBuffer,
+                                                    const std::wstring& paperBuffer);
+
     bool OnCreate(const wxString& path, long flags) final;
 
     void UpdateSourceFileModifiedTime();
