@@ -5436,7 +5436,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         // loads text buffers for text window
         const auto loadTextBuffer =
             [this, view, textBeingExcluded, textBufferLength, &textHeaderThemed,
-             &highlighterTagsThemed](auto& highlighter, const wxString& legend,
+             &highlighterTagsThemed,
+             useRtfEncoding](auto& highlighter, const wxString& legend,
                                      std::wstring& mainBuffer)
         {
             highlighter.Reset();
@@ -5453,7 +5454,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
         const auto loadPaperTextBuffer =
             [this, view, textBeingExcluded, textBufferLength, &textHeaderPaperWhite,
-             &highlighterTagsPaperWhite](auto& highlighter, const wxString& legend,
+             &highlighterTagsPaperWhite,
+             useRtfEncoding](auto& highlighter, const wxString& legend,
                                          std::wstring& paperBuffer)
         {
             highlighter.Reset();
