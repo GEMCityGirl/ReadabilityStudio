@@ -98,7 +98,7 @@ tex_logo <- function(withTrailingSpace)
     {
     if (withTrailingSpace)
       { knitr::asis_output(R"(<span style="letter-spacing:-2px;">T</span><sub style="font-size: inherit; letter-spacing:-1px;">E</sub>X&nbsp;)") }
-  else
+    else
       { knitr::asis_output(R"(<span style="letter-spacing:-2px;">T</span><sub style="font-size: inherit; letter-spacing:-1px;">E</sub>X)") }
     }
   else
@@ -125,7 +125,7 @@ latex_logo <- function(withTrailingSpace)
     {
     if (withTrailingSpace)
       { knitr::asis_output(R"(<span style="letter-spacing:-3px;">L</span><sup style="font-size: inherit; letter-spacing:-1px;">A</sup><span style="letter-spacing:-2px;">T</span><sub style="font-size: inherit; letter-spacing:-1px;">E</sub>X&nbsp;)") }
-  else
+    else
       { knitr::asis_output(R"(<span style="letter-spacing:-3px;">L</span><sup style="font-size: inherit; letter-spacing:-1px;">A</sup><span style="letter-spacing:-2px;">T</span><sub style="font-size: inherit; letter-spacing:-1px;">E</sub>X)") }
     }
   else
@@ -371,7 +371,7 @@ verbatim_latex <- function(text, enclosure='|')
     }
   }
 
-# Converts Markdown text to LaTeX (or leaves it as-is for HTML builds) for kable cells.
+# Converts Markdown text to LaTeX or HTML for kable cells.
 # Supports bold, italic, inline code, superscripts, and newlines.
 markdown_to_kable_cell <- function(text)
   {
@@ -389,6 +389,22 @@ markdown_to_kable_cell <- function(text)
                # inline code
                stringr::str_replace_all("`([\\w (),-[.]]{1,})`",
                                         "\\\\texttt{\\1}")
+    knitr::asis_output(text)
+    }
+  else if (knitr::is_html_output())
+    {
+              # convert markdown bold tags
+    text %<>% stringr::str_replace_all("\\*\\*([\\w (),-[.]]{1,})\\*\\*",
+                                       R"(<span style='font-weight: bold;'>\1</span>)") %>%
+              # italics
+              stringr::str_replace_all("\\*([\\w (),-[.]]{1,})\\*",
+                                       R"(<span style='font-style: italic;'>\1</span>)") %>%
+              # superscript
+              stringr::str_replace_all("\\^([\\w (),-[.]]{1,})\\^",
+                                       R"(<sup>\1</sup>)") %>%
+              # inline code
+              stringr::str_replace_all("`([\\w (),-[.]]{1,})`",
+                                       R"(<tt>\1</tt>)")
     knitr::asis_output(text)
     }
   else
@@ -415,6 +431,24 @@ markdown_to_kable_footnote <- function(text)
                                         "\\\\\\\\texttt{\\1}") %>%
                # newlines
                stringr::str_replace_all("\n", "\\\\\\\\newline ")
+    knitr::asis_output(text)
+    }
+  else if (knitr::is_html_output())
+    {
+              # convert markdown bold tags
+    text %<>% stringr::str_replace_all("\\*\\*([\\w (),-[.]]{1,})\\*\\*",
+                                       R"(<span style='font-weight: bold;'>\1</span>)") %>%
+              # italics
+              stringr::str_replace_all("\\*([\\w (),-[.]]{1,})\\*",
+                                       R"(<span style='font-style: italic;'>\1</span>)") %>%
+              # superscript
+              stringr::str_replace_all("\\^([\\w (),-[.]]{1,})\\^",
+                                       R"(<sup>\1</sup>)") %>%
+              # inline code
+              stringr::str_replace_all("`([\\w (),-[.]]{1,})`",
+                                       R"(<tt>\1</tt>)") %>%
+              # newlines
+              stringr::str_replace_all("\n", "<br />")
     knitr::asis_output(text)
     }
   else
