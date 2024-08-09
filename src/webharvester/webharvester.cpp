@@ -952,14 +952,14 @@ wxString WebHarvester::GetCharsetFromContentType(const wxString& contentType)
     else
         {
         const wxString encoding = wxLocale::GetSystemEncodingName().MakeLower();
-        return (encoding.find(L"utf") != wxString::npos) ? L"windows-1252" : encoding;
+        return (encoding.find(L"utf") != wxString::npos) ? wxString{ L"windows-1252" } : encoding;
         }
     }
 
 //----------------------------------
 wxString WebHarvester::GetCharsetFromPageContent(std::string_view pageContent)
     {
-    std::string charSet = lily_of_the_valley::html_extract_text::parse_charset(
+    wxString charSet = lily_of_the_valley::html_extract_text::parse_charset(
         pageContent.data(), pageContent.length());
     if (charSet.empty())
         {
@@ -969,16 +969,16 @@ wxString WebHarvester::GetCharsetFromPageContent(std::string_view pageContent)
         // Legacy pages missing encoding info is probably ANSI, so fall back to Windows-1252
         // if our plaform is using a Unicode encoding that we can't use.
         const wxString encoding = wxLocale::GetSystemEncodingName().MakeLower();
-        return (encoding.find(L"utf") != wxString::npos) ? L"windows-1252" : encoding;
+        return (encoding.find(L"utf") != wxString::npos) ? wxString{ L"windows-1252" } : encoding;
         }
     else
         {
         // The HTML 5 specification requires that documents advertised as
         // ISO-8859-1 actually be parsed with the Windows-1252 encoding.
-        if (string_util::stricmp(charSet.c_str(), "iso-8859-1") == 0)
+        if (charSet.CmpNoCase("iso-8859-1") == 0)
             {
             charSet = "windows-1252";
             }
-        return wxString{ charSet };
+        return charSet;
         }
     }
