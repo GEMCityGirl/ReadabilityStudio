@@ -397,6 +397,8 @@ class ProjectWizardDlg final : public wxDialog
     constexpr static int ID_MIN_WORDS_LABEL = wxID_HIGHEST + 30;
     constexpr static int ID_TEST_BUNDLE_RADIO_BOX = wxID_HIGHEST + 31;
     constexpr static int ID_INDUSTRY_RADIO_BOX = wxID_HIGHEST + 32;
+    constexpr static int ID_COMPOSITION_BOX = wxID_HIGHEST + 33;
+    constexpr static int ID_LAYOUT_BOX = wxID_HIGHEST + 34;
 
     void OnHelp([[maybe_unused]] wxCommandEvent&);
     void OnContextHelp([[maybe_unused]] wxHelpEvent&);

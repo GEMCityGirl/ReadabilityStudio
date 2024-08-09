@@ -777,6 +777,7 @@ bool ReadabilityApp::OnInit()
         { 1086, ToolsOptionsDlg::ID_SENTENCES_MUST_BE_CAP_BUTTON },
         { 1087, ToolsOptionsDlg::ID_FILE_BROWSE_BUTTON },
         { 1088, ToolsOptionsDlg::ID_DOCUMENT_DESCRIPTION_FIELD },
+        { 1089, ToolsOptionsDlg::ID_NUMBER_SYLLABIZE_METHOD },
         { 20002, TestBundleDlg::ID_STANDARD_TEST_PAGE },
         { 7000, CustomTestDlg::ID_TEST_NAME_FIELD },
         { 7001, CustomTestDlg::ID_TEST_TYPE_COMBO },
@@ -891,7 +892,9 @@ bool ReadabilityApp::OnInit()
         { 10028, ProjectWizardDlg::ID_DOC_TYPE_RADIO_BOX },
         { 10029, ProjectWizardDlg::ID_MIN_WORDS_LABEL },
         { 10030, ProjectWizardDlg::ID_TEST_BUNDLE_RADIO_BOX },
-        { 10031, ProjectWizardDlg::ID_INDUSTRY_RADIO_BOX }
+        { 10031, ProjectWizardDlg::ID_INDUSTRY_RADIO_BOX },
+        { 10032, ProjectWizardDlg::ID_COMPOSITION_BOX },
+        { 10033, ProjectWizardDlg::ID_LAYOUT_BOX },
     };
 
     SetAppFileExtension(_DT(L"rsp"));

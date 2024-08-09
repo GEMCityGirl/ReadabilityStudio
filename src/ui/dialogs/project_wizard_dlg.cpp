@@ -513,7 +513,9 @@ void ProjectWizardDlg::CreateControls()
         optionsSizer->Add(banner, 0, wxEXPAND | wxBOTTOM, wxSizerFlags::GetDefaultBorder());
 
         wxStaticBoxSizer* docTypeSizer = new wxStaticBoxSizer(wxVERTICAL, page, _(L"Composition"));
+        docTypeSizer->GetStaticBox()->SetId(ID_COMPOSITION_BOX);
         wxStaticBoxSizer* docLayoutSizer = new wxStaticBoxSizer(wxVERTICAL, page, _(L"Layout"));
+        docLayoutSizer->GetStaticBox()->SetId(ID_LAYOUT_BOX);
         optionsSizer->Add(docTypeSizer, 0, wxEXPAND | wxLEFT | wxRIGHT,
                           wxSizerFlags::GetDefaultBorder());
         optionsSizer->Add(docLayoutSizer, 0, wxEXPAND | wxLEFT | wxRIGHT,

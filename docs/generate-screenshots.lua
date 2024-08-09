@@ -100,7 +100,7 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "batchwordingerrorsviewitem." .. FileE
 ScreenshotLib.CloseListViewItemDlg()
 
 ScreenshotLib.OpenOptions(OptionsPageType.AnalysisDocumentIndexing)
-ScreenshotLib.SnapScreenshot(ImagePath .. "options-dlg." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "options-dlg." .. FileExtension, -1, -1, 1089)
 ScreenshotLib.CloseOptions()
 
 ScreenshotLib.ShowListViewItemDlg("Document", "C:\\Program Files\\Readability Studio\\examples\\The Frog Prince.txt", "Count", "16", "Conjunctions", "\"And\" * 4, \"But\" * 9, \"So\" * 3")
@@ -140,9 +140,9 @@ ScreenshotLib.CloseCustomTestDialog()
 -- Standard project wizard
 ScreenshotLib.ShowStandardProjectWizardTextSourcePage(1)
 ScreenshotLib.SnapScreenshot(ImagePath .. "wizard1." .. FileExtension)
--- crop off bottom 3/4
+-- crop off bottom half
 info = Application.GetImageInfo(ImagePath .. "wizard1." .. FileExtension)
-ScreenshotLib.CropScreenshot(ImagePath .. "wizard1." .. FileExtension, -1, info["Height"]/4)
+ScreenshotLib.CropScreenshot(ImagePath .. "wizard1." .. FileExtension, -1, info["Height"]/2)
 
 ScreenshotLib.SetStandardProjectWizardTextFromFilePath("")
 ScreenshotLib.SnapScreenshot(ImagePath .. "exampleselectfile." .. FileExtension, 10001)
@@ -157,16 +157,16 @@ ScreenshotLib.ShowStandardProjectWizardTestByDocumentTypePage(4)
 ScreenshotLib.SnapScreenshot(ImagePath .. "wizarddoctypelitselected." .. FileExtension, -1, -1, 10028)
 
 ScreenshotLib.ShowStandardProjectWizardDocumentStructurePage(1, false, false, true)
-ScreenshotLib.SnapScreenshot(ImagePath .. "wizarddocstructurehardreturns." .. FileExtension, 10020, 10021)
+ScreenshotLib.SnapScreenshot(ImagePath .. "wizarddocstructurehardreturns." .. FileExtension, 10020, 10021, 10032)
 
 ScreenshotLib.ShowStandardProjectWizardDocumentStructurePage(1, false, false, false)
 ScreenshotLib.SnapScreenshot(ImagePath .. "wizarddocstructure." .. FileExtension)
-ScreenshotLib.SnapScreenshot(ImagePath .. "wizarddocstructurenarrativeselected." .. FileExtension, 10024, 10025)
+ScreenshotLib.SnapScreenshot(ImagePath .. "wizarddocstructurenarrativeselected." .. FileExtension, 10024, 10025, 10032)
 -- option highlighted (but not selected) for example
-ScreenshotLib.SnapScreenshot(ImagePath .. "wizarddocstructuresentencessplit." .. FileExtension, 10026, 10027)
+ScreenshotLib.SnapScreenshot(ImagePath .. "wizarddocstructuresentencessplit." .. FileExtension, 10026, 10027, 10032)
 
 ScreenshotLib.ShowStandardProjectWizardDocumentStructurePage(2, false, false, false)
-ScreenshotLib.SnapScreenshot(ImagePath .. "wizarddocstructurenonnarrative." .. FileExtension, 10022, 10023)
+ScreenshotLib.SnapScreenshot(ImagePath .. "wizarddocstructurenonnarrative." .. FileExtension, 10022, 10023, 10032)
 
 ScreenshotLib.ShowStandardProjectWizardTestByIndustryPage(2)
 ScreenshotLib.SnapScreenshot(ImagePath .. "wizardindustry." .. FileExtension, -1, -1, 10031)
@@ -205,7 +205,7 @@ ScreenshotLib.ShowBatchProjectWizardTestByDocumentTypePage(2)
 ScreenshotLib.SnapScreenshot(ImagePath .. "wizardbatchdoctype." .. FileExtension, -1, -1, 10028)
 
 ScreenshotLib.ShowBatchProjectWizardTestByIndustryPage(2)
-ScreenshotLib.SnapScreenshot(ImagePath .. "wizardbatchindustry." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "wizardbatchindustry." .. FileExtension, -1, -1, 10031)
 
 ScreenshotLib.ShowBatchProjectWizardTestRecommendationPage(1)
 ScreenshotLib.SnapScreenshot(ImagePath .. "wizardbatchreadabilitymethods." .. FileExtension, -1, -1, 10028)
@@ -352,7 +352,7 @@ sp:DelayReloading(true)
 sp:SetDocumentFilePath("/home/mcrane/Cocoa Desserts.rtf") -- use generic filepath
 sp:SetReviewer("Maris")
 sp:OpenProperties(OptionsPageType.ProjectSettings)
-ScreenshotLib.SnapScreenshot(ImagePath .. "projectproperties." .. FileExtension)
+ScreenshotLib.SnapScreenshot(ImagePath .. "projectproperties." .. FileExtension, -1, -1, 1083)
 ScreenshotLib.SnapScreenshot(ImagePath .. "linktofile." .. FileExtension, 1085, -1, 1083)
 sp:CloseProperties()
 
