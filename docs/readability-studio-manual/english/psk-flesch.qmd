@@ -14,11 +14,13 @@ For validation, the formulas were tested against 113 samples from "various publi
 
 The recalculated Flesch formula is as follows:
 
-(PSK) Flesch formula:
+::: {.callout-note icon=false}
+## (PSK) Flesch formula
 
 $$
 G = (ASL * .0778) + (SY * .0455) - 2.2029
 $$
+:::
 
 Where:
 

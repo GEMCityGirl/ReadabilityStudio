@@ -4,11 +4,13 @@ The New Fog Count\index{Gunning Fog!variations!New Fog Count} readability formul
 
 This test was trained against reading-test results from 531 U.S. Navy personnel from four Naval technical training schools. Using these results, the following multiple regression equation was derived:
 
-New Fog Count formula:
+::: {.callout-note icon=false}
+## New Fog Count formula
 
 $$
 G = (((Z + (3*F)) / S ) - 3) / 2
 $$
+:::
 
 Where:
 

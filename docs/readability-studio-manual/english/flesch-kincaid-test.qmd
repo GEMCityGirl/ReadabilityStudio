@@ -4,17 +4,21 @@ The Flesch-Kincaid readability formula is Kincaid et al.'s modified version of [
 
 This test was trained against reading-test results from 531 U.S. Navy personnel from four Naval technical training schools. Using these results, the following multiple regression equation was derived:
 
-Flesch-Kincaid formula:
+::: {.callout-note icon=false}
+## Flesch-Kincaid formula
 
 $$
 G = (11.8*(B/W)) + (.39*(W/S)) - 15.59
 $$
+:::
 
 A simplified variation was also provided:
 
+::: {.callout-note icon=false appearance="simple" title=""}
 $$
 G = (12*(B/W)) + (.4*(W/S)) - 16
 $$
+:::
 
 Where:
 

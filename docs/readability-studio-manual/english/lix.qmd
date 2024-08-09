@@ -38,11 +38,13 @@ Note that Lix also includes a chart to visualize the meaning of its index score:
 knitr::include_graphics("images/lix-gauge.png")
 ```
 
-Lix formula:
+::: {.callout-note icon=false}
+## Lix formula
 
 $$
 I = W/S + 100*(X/W)
 $$
+:::
 
 Where:
 

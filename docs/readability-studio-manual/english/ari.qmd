@@ -10,11 +10,13 @@ Kincaid et al. [-@{kincaid:1972}3, 6–15] also used this test for evaluating pe
 
 They noted that for the high school study, the materials with lower ARI scores yielded better comprehension rates "as reflected in cloze scores" [-@{kincaid:1972}3]. The graduate students and trainees from the other studies stated that the materials may not be appropriate for remedial high school readers [-@{kincaid:1972}13, 15], but did agree that the stories were "authentic" and "interesting."
 
-ARI formula:
+::: {.callout-note icon=false}
+## ARI formula
 
 $$
 G = (4.71 * (RP/W)) + (0.5 * (W/S)) - 21.43
 $$
+:::
 
 Where:
 

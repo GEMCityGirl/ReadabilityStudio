@@ -4,11 +4,13 @@ The FORCAST readability formula [@{caylor-sticht-fox-ford}13–17] was devised f
 
 This formula was trained against U.S. Army "job reading material" [@{caylor-sticht-fox-ford}13], using the criterion of cloze\index{cloze} passages where readers scored around 35% comprehension. (Most other tests usually use the 50% criterion.) The researchers initially tested regression equations using 15 variables for their new formula, but noted the single factor of monosyllabic words yielded a "sufficiently high" [@{caylor-sticht-fox-ford}15] correlation of $r = 0.86$ against the mean cloze scores. Based on this, the following formula was derived:
 
-FORCAST formula:
+::: {.callout-note icon=false}
+## FORCAST formula
 
 $$
 G = 20-(M/10)
 $$
+:::
 
 Where:
 

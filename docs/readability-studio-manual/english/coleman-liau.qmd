@@ -6,17 +6,21 @@ Coleman and Liau noted the difficulties of using computers to count syllables [-
 
 Coleman-Liau calculates the [predicted cloze](#sec-cloze) percentage with the following formula:
 
-Coleman-Liau formula:
+::: {.callout-note icon=false}
+## Coleman-Liau formula
 
 $$
 E = (141.8401 - (.214590*R)) + (1.079812*S)
 $$
+:::
 
 Then convert the cloze percentage into a grade level with the following formula:
 
+::: {.callout-note icon=false appearance="simple" title=""}
 $$
 G = (-27.4004*(E/100)) + 23.06395
 $$
+:::
 
 Where:
 

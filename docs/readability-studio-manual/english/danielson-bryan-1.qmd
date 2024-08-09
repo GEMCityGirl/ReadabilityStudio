@@ -6,11 +6,13 @@ DB1 was designed to be a faster method (compared to [Farr-Jenkins-Paterson](#sec
 
 This test was trained against 383 selections from the 1950 edition of McCall-Crabbs *Standard Test Lessons in Reading*. For validation, the derived formula had an $r^2 = 0.575$, similar to Farr-Jenkins-Paterson's $r^2 = 0.553$. This regression equation is as follows:
 
-Danielson-Bryan 1 formula:
+::: {.callout-note icon=false}
+## Danielson-Bryan 1 formula
 
 $$
 G = 1.0364*(RP/W) + .0194*(RP/S) - .6059
 $$
+:::
 
 Where:
 

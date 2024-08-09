@@ -2,12 +2,14 @@
 
 Neue Wiener Sachtextformel 2 (2.nWS) was developed by Bamberger & Vanecek for evaluating German nonfiction (specifically, very light materials up to 5^th^ grade) [-@{bamberger-vanecek}84, 187]. This test returns a grade-level score based on word length/complexity and sentence length.
 
-Neue Wiener Sachtextformel 2 formula:
+::: {.callout-note icon=false}
+## Neue Wiener Sachtextformel 2 formula
 
 \begin{align*}
   G = & 0.2007*((C/W)*100) + 0.1682*(W/S) + \\
       & 0.1373*((X/W)*100) - 2.779
 \end{align*}
+:::
 
 Where:
 

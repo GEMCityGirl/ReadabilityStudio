@@ -6,9 +6,11 @@ The factors used for this test are syllables per word ("*Silben pro Wort*") and 
 
 Amstad is best suited for school textbooks and technical manuals. Scores range from 0–100 (the higher the score, the easier to read) and average documents should be within the range of 60–70.
 
-Amstad formula:
+::: {.callout-note icon=false}
+## Amstad formula
 
 $$I = 180 - (W/S) - (58.5*(B/W))$$
+:::
 
 Where:
 

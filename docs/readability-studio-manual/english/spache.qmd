@@ -18,11 +18,13 @@ Because this formula uses familiar words (rather than syllable or letter counts)
 Note that *Readability Studio* uses the revised 1974 version of Spache.
 :::
 
-Spache Revised formula:
+::: {.callout-note icon=false}
+## Spache Revised formula
 
 $$
 G = (.121 * (W/S)) + (.082 * UUS) + .659
 $$
+:::
 
 Where:
 

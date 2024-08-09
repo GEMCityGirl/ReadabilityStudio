@@ -33,11 +33,13 @@ First, if a score appears to be higher than expected, then you should exclude pr
 Second, they recommended that when assigning a book for independent reading, assign it one level below the reported score.
 In other words, if a book scores at the 4^th^ grade level, then it should be assigned to 3^rd^ grade readers if they are reading it independently.
 
-Wheeler-Smith formula:
+::: {.callout-note icon=false}
+## Wheeler-Smith formula
 
 $$
 I = (W/U)*(P/W)*10
 $$
+:::
 
 ::: {.minipage data-latex="{\textwidth}"}
 Where:\index{sentences!units}

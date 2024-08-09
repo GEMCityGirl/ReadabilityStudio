@@ -18,11 +18,13 @@ After validating Lix, Anderson created Rix and compared the two tests' results. 
 
 \newpage
 
-Rix formula:
+::: {.callout-note icon=false}
+## Rix formula
 
 $$
 I = X/U
 $$
+:::
 
 Where:\index{sentences!units}
 

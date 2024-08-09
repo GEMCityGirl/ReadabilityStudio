@@ -13,11 +13,13 @@ To improve a score, McAlpine recommends lowering the use of miniwords and shorte
 - abstract nouns (e.g., "peace," "tension")
 - use of pronouns that may be unclear (e.g., "Gabi visited her mother after *she* was released from the hospital.")
 
-McAlpine EFLAW formula:
+::: {.callout-note icon=false}
+## McAlpine EFLAW formula
 
 $$
 I = (W + T) / S
 $$
+:::
 
 Where:
 

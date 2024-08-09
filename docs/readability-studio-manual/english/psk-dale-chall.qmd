@@ -13,12 +13,14 @@ The training materials used to build the regression formulas were 383 prose pass
 
 The recalculated Dale-Chall formula is as follows:
 
-(PSK) Dale-Chall formula:
+::: {.callout-note icon=false}
+## (PSK) Dale-Chall formula
 
 \begin{align*}
   G = & 3.2672 + (.0596*(W/S)) + \\
       & (.1155*((UDC/W)*100))
 \end{align*}
+:::
 
 Where:
 

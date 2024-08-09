@@ -4,11 +4,13 @@ The Flesch Reading Ease readability formula calculates an index score of a docum
 
 Flesch Reading Ease [-@{flesch:1949}213; -@{flesch:1979}23] is best suited for school textbooks and technical manuals. It is a standard used by many U.S. government agencies, including the U.S. Department of Defense. Scores range from 0–100 (the higher the score, the easier to read) and average documents should be within the range of 60-70.
 
-Flesch Reading Ease formula:
+::: {.callout-note icon=false}
+## Flesch Reading Ease formula
 
 $$
 I = 206.835 - (84.6*(B/W)) - (1.015*(W/S))
 $$
+:::
 
 Where:
 

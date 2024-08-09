@@ -25,11 +25,13 @@ Next, the scores between each language for every set of material were then corre
 The researchers found significantly higher SMOG scores for French compared to English, and higher SMOG scores for Spanish compared to French.
 To adjust for these differences, the following regression equation was built to convert a Spanish SMOG calculation to English ($r^2 = 0.60$):
 
-SOL formula:
+::: {.callout-note icon=false}
+## SOL formula
 
 $$
 G = (1.0430*\sqrt{C} + 3.1291)*.74 - 2.51
 $$
+:::
 
 Where:
 

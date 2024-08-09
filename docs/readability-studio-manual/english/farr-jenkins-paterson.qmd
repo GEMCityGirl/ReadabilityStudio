@@ -6,11 +6,13 @@ Farr-Jenkins-Paterson was designed as a simpler way to calculate a Flesch score 
 
 This test was trained on 360 100-word samples, producing the following equation:
 
-Farr-Jenkins-Paterson formula:
+::: {.callout-note icon=false}
+## Farr-Jenkins-Paterson formula
 
 $$
 I = -31.517 - (1.015*(W/S)) + (1.599*((M/W)*100))
 $$
+:::
 
 Where:
 
