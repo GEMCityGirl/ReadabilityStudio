@@ -12,6 +12,7 @@ link-citations: true
 nocite: '@*'
 csl: modern-language-association.csl
 pdf-cover: "images/non-generated/cover.pdf"
+watermark: "${DOCS_WATERMARK}"
 number-sections: true
 crossref:
   chapters: true

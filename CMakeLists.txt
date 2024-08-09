@@ -20,6 +20,17 @@ cmake_minimum_required(VERSION 3.25)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+# https://blog.kitware.com/cmake-and-the-default-build-type/
+if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+    set(default_build_type "Debug")
+    message(STATUS "Setting build type to '${default_build_type}' as none was specified.")
+    set(CMAKE_BUILD_TYPE "${default_build_type}" CACHE STRING "Choose the type of build." FORCE)
+    # Set the possible values of build type for cmake-gui
+    set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release")
+endif()
+
+message(STATUS "Build: ${CMAKE_BUILD_TYPE}")
+
 if(APPLE)
     set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64" CACHE STRING "" FORCE)
 elseif(UNIX)
@@ -57,6 +68,13 @@ if(NOT ${readstudio_VERSION_TWEAK} EQUAL 0)
     string(APPEND FULL_DISPLAY_VERSION ".${readstudio_VERSION_TWEAK}")
 endif()
 string(TIMESTAMP BUILD_YEAR "%Y")
+
+# Draw a "DRAFT" watermark on the help if debug mode
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    set(DOCS_WATERMARK "DRAFT")
+else()
+    set(DOCS_WATERMARK "")
+endif()
 
 message(STATUS "${readstudio_DESCRIPTION}")
 message(STATUS "${PROGRAM_COMMENTS}")
@@ -100,16 +118,6 @@ if(NOT CMAKE_CONFIGURATION_TYPES)
     endif()
 endif()
 
-# https://blog.kitware.com/cmake-and-the-default-build-type/
-if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
-    set(default_build_type "Debug")
-    message(STATUS "Setting build type to '${default_build_type}' as none was specified.")
-    set(CMAKE_BUILD_TYPE "${default_build_type}" CACHE STRING "Choose the type of build." FORCE)
-    # Set the possible values of build type for cmake-gui
-    set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release")
-endif()
-
-message(STATUS "Build: ${CMAKE_BUILD_TYPE}")
 if(TARGET manuals)
     message(STATUS "Help build has been requested.")
 endif()

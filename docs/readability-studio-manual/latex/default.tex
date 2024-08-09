@@ -459,6 +459,11 @@ $endif$
 \def\thesubtitle{$for(subtitle)$$subtitle$$endfor$}
 \def\authorbio{$for(authorbio)$$authorbio$$endfor$}
 
+% Optional watermark (e.g., "DRAFT" stamped across the pages)
+$if(watermark)$
+\usepackage[text=$watermark$]{draftwatermark}
+$endif$
+
 \begin{document}
 
 $if(pdf-cover)$
