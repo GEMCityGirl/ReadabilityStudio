@@ -143,7 +143,7 @@ Select a shape from the list (e.g., **Car** or **Newspaper**), and this shape wi
 
 ![Newspapers used to draw bars](../images/graph-stipple-shape.png){width=75% fig-align="center"}
 
-![Cars (specifically, a 2006 Scion xB) used to draw bars](../images/graph-stipple-shape-car.png){width=75% fig-align="center"}
+![Cars (specifically, a 2006 Scion xB) used to draw bars](../images/graph-stipple-shape-car.png){width=75% fig-align="center" fig-scap="Cars used to draw bars"}
 
 These features can also be applied to box plots and histograms.
 With any of these graph types selected, perform the same operation from the ribbon to draw with a stipple.

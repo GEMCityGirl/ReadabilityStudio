@@ -86,7 +86,9 @@ Outlier values that do not fall within these areas are plotted outside of the wh
 
 ```{r}
 #| label: fig-boxplot
-#| fig-cap: "Visual of a box plot's layout, adapted from DeCicco (“Exploring ggplot2 boxplots”)"
+#| fig-cap: "Visual of a box plot's layout"
+#| fig-subcap: "Adapted from DeCicco (“Exploring ggplot2 boxplots”)"
+#| fig-keep: false
 #| echo: false
 
 # translatable content
@@ -326,6 +328,7 @@ When visualizing points along a single dimension (e.g., the y axis of a box plot
 ```{r}
 #| label: fig-boxplot-no-jittering
 #| fig-cap: "Box plot with no jittering"
+#| fig-keep: false
 #| echo: false
 
 boxplot(len ~ dose, data = ToothGrowth,
@@ -342,6 +345,7 @@ To correct this, a technique called jittering\index{box plots!jittering} is used
 ```{r}
 #| label: fig-boxplot-random-jittering
 #| fig-cap: "Box plot with random jittering"
+#| fig-keep: false
 #| echo: false
 
 boxplot(len ~ dose, data = ToothGrowth,
@@ -356,6 +360,7 @@ Because of this randomness, some points may still overlap. To improve this, a ne
 ```{r}
 #| label: fig-boxplot-beeswarm-jittering
 #| fig-cap: "Box plot with beeswarm jittering"
+#| fig-keep: false
 #| echo: false
 
 library(beeswarm)
