@@ -69,13 +69,6 @@ if(NOT ${readstudio_VERSION_TWEAK} EQUAL 0)
 endif()
 string(TIMESTAMP BUILD_YEAR "%Y")
 
-# Draw a "DRAFT" watermark on the help if debug mode
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    set(DOCS_WATERMARK "DRAFT")
-else()
-    set(DOCS_WATERMARK "")
-endif()
-
 message(STATUS "${readstudio_DESCRIPTION}")
 message(STATUS "${PROGRAM_COMMENTS}")
 message(STATUS "Full version: ${readstudio_VERSION_MAJOR}.${readstudio_VERSION_MINOR}.${readstudio_VERSION_PATCH}.${readstudio_VERSION_TWEAK}")
