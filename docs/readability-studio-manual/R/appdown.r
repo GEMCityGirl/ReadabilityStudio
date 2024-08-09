@@ -94,6 +94,13 @@ tex_logo <- function(withTrailingSpace)
     else
       { knitr::asis_output("\\TeX") }
     }
+  else if (knitr::is_html_output())
+    {
+    if (withTrailingSpace)
+      { knitr::asis_output(R"(<span style="letter-spacing:-2px;">T</span><sub style="font-size: inherit; letter-spacing:-1px;">E</sub>X&nbsp;)") }
+  else
+      { knitr::asis_output(R"(<span style="letter-spacing:-2px;">T</span><sub style="font-size: inherit; letter-spacing:-1px;">E</sub>X)") }
+    }
   else
     {
     if (withTrailingSpace)
@@ -113,6 +120,13 @@ latex_logo <- function(withTrailingSpace)
       { knitr::asis_output("\\LaTeX\\ ") }
     else
       { knitr::asis_output("\\LaTeX") }
+    }
+  else if (knitr::is_html_output())
+    {
+    if (withTrailingSpace)
+      { knitr::asis_output(R"(<span style="letter-spacing:-3px;">L</span><sup style="font-size: inherit; letter-spacing:-1px;">A</sup><span style="letter-spacing:-2px;">T</span><sub style="font-size: inherit; letter-spacing:-1px;">E</sub>X&nbsp;)") }
+  else
+      { knitr::asis_output(R"(<span style="letter-spacing:-3px;">L</span><sup style="font-size: inherit; letter-spacing:-1px;">A</sup><span style="letter-spacing:-2px;">T</span><sub style="font-size: inherit; letter-spacing:-1px;">E</sub>X)") }
     }
   else
     {
