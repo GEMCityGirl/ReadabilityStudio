@@ -401,8 +401,32 @@ namespace Wisteria::Graphs
     //----------------------------------------------------------------
     void FryGraph::CalculateScorePositions(wxDC& dc)
         {
+        const wxColour gradeLineColor{
+            Wisteria::Colors::ColorContrast::IsDark(GetPlotOrCanvasColor()) ?
+                Wisteria::Colors::ColorBrewer::GetColor(Wisteria::Colors::Color::BondiBlue) :
+                *wxBLUE
+        };
+
         if (GetDataset() == nullptr)
             {
+            // draw regular grade lines and return since there are no points to plot
+            const uint8_t opacityLevel{ 200 };
+            AddObject(std::make_unique<GraphItems::Polygon>(
+                GraphItemInfo()
+                    .Pen(wxPen(ColorContrast::ChangeOpacity(gradeLineColor, opacityLevel)))
+                    .Brush(gradeLineColor)
+                    .Scaling(GetScaling()),
+                &m_gradeLinePoints[3], 2));
+            // the rest of grade region lines
+            for (size_t i = 2, pointIter = 5; i <= 16; ++i, pointIter += 2)
+                {
+                AddObject(std::make_unique<GraphItems::Polygon>(
+                    GraphItemInfo()
+                        .Pen(wxPen(ColorContrast::ChangeOpacity(gradeLineColor, opacityLevel)))
+                        .Brush(gradeLineColor)
+                        .Scaling(GetScaling()),
+                    &m_gradeLinePoints[pointIter], 2));
+                }
             return;
             }
 
@@ -414,12 +438,6 @@ namespace Wisteria::Graphs
                L"Invalid backscreen size!");
 
         std::vector<wxPoint> highlightedGradeLinePoints;
-        const wxColour gradeLineColor{
-            Wisteria::Colors::ColorContrast::IsDark(GetPlotOrCanvasColor()) ?
-                Wisteria::Colors::ColorBrewer::GetColor(Wisteria::Colors::Color::BondiBlue) :
-                *wxBLUE
-        };
-
         
         // these will all be filled with something, even if NaN
         m_results.resize(GetDataset()->GetRowCount());

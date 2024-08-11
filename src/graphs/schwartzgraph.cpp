@@ -548,8 +548,24 @@ namespace Wisteria::Graphs
     //----------------------------------------------------------------
     void SchwartzGraph::CalculateScorePositions(wxDC& dc)
         {
+        const wxColour gradeLineColor{
+            Wisteria::Colors::ColorContrast::IsDark(GetPlotOrCanvasColor()) ?
+                Wisteria::Colors::ColorBrewer::GetColor(Wisteria::Colors::Color::BondiBlue) :
+                *wxBLUE
+        };
+
         if (GetDataset() == nullptr)
             {
+            // draw regular grade lines and return since there are no points to plot
+            for (size_t i = 3; i < std::size(m_gradeLinePoints); i += 2)
+                {
+                AddObject(std::make_unique<GraphItems::Polygon>(
+                    GraphItemInfo()
+                        .Pen(wxPen(ColorContrast::ChangeOpacity(gradeLineColor, 200)))
+                        .Brush(gradeLineColor)
+                        .Scaling(GetScaling()),
+                    &m_gradeLinePoints[i], 2));
+                }
             return;
             }
 
@@ -561,11 +577,6 @@ namespace Wisteria::Graphs
                L"Invalid backscreen size!");
 
         std::vector<wxPoint> highlightedGradeLinePoints;
-        const wxColour gradeLineColor{
-            Wisteria::Colors::ColorContrast::IsDark(GetPlotOrCanvasColor()) ?
-                Wisteria::Colors::ColorBrewer::GetColor(Wisteria::Colors::Color::BondiBlue) :
-                *wxBLUE
-        };
 
         // these will all be filled with something, even if NaN
         m_results.resize(GetDataset()->GetRowCount());
@@ -713,7 +724,7 @@ namespace Wisteria::Graphs
             auto foundHighlitLine =
                 std::find(highlightedGradeLinePoints.cbegin(), highlightedGradeLinePoints.cend(),
                           m_gradeLinePoints[i]);
-            uint8_t opacityLevel = (foundHighlitLine == highlightedGradeLinePoints.cend() &&
+            const uint8_t opacityLevel = (foundHighlitLine == highlightedGradeLinePoints.cend() &&
                                     IsShowcasingScore() && GetScores().size() == 1) ?
                                        Wisteria::Settings::GHOST_OPACITY :
                                        200;
