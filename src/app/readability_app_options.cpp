@@ -3420,9 +3420,15 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     for (int i = 0; static_cast<size_t>(i) < GetCustomColours().size(); ++i)
         {
         auto customColor = doc.NewElement(wxString::Format(_DT(L"color%d"), i).mb_str());
-        customColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetCustomColours().at(i).Red());
-        customColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetCustomColours().at(i).Green());
-        customColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetCustomColours().at(i).Blue());
+        customColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetCustomColours().at(i).IsOk() ?
+                                                                    GetCustomColours().at(i).Red() :
+                                                                    255);
+        customColor->SetAttribute(
+            XmlFormat::GetGreen().mb_str(),
+            GetCustomColours().at(i).IsOk() ? GetCustomColours().at(i).Green() : 255);
+        customColor->SetAttribute(
+            XmlFormat::GetBlue().mb_str(),
+            GetCustomColours().at(i).IsOk() ? GetCustomColours().at(i).Blue() : 255);
         customColours->InsertEndChild(customColor);
         }
     configSection->InsertEndChild(customColours);
