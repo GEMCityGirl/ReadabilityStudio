@@ -5518,11 +5518,9 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
         // clang-format off
         // load the formatted text into buffers
-        #pragma omp parallel sections
             {
             // DC buffers
-            #pragma omp section
-                {
+                  {
                 // main buffer
                 if (GetProjectLanguage() == readability::test_language::english_test)
                     {
@@ -5589,7 +5587,6 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     }
                 }
             // HJ buffers
-            #pragma omp section
                 {
                 if (GetProjectLanguage() == readability::test_language::english_test)
                     {
@@ -5656,7 +5653,6 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     }
                 }
             // Spache
-            #pragma omp section
                 {
                 if (GetProjectLanguage() == readability::test_language::english_test)
                     {
@@ -5669,7 +5665,6 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     }
                 }
             // 3+ syllable words
-            #pragma omp section
                 {
                 if (GetWordsBreakdownInfo().Is3PlusSyllablesEnabled() &&
                     GetTotalUnique3PlusSyllableWords() > 0)
@@ -5683,7 +5678,6 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     }
                 }
             // 6+ char words
-            #pragma omp section
                 {
                 if (GetWordsBreakdownInfo().Is6PlusCharacterEnabled() &&
                     GetTotalUnique6CharsPlusWords() > 0)
@@ -5697,7 +5691,6 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     }
                 }
             // Dolch
-            #pragma omp section
                 {
                 if (IsIncludingDolchSightWords())
                     {
@@ -5710,7 +5703,6 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     }
                 }
             // Non-Dolch
-            #pragma omp section
                 {
                 if (IsIncludingDolchSightWords())
                     {
