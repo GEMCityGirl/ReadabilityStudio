@@ -1,4 +1,4 @@
-## SMOG\index{SMOG|(ii} {#sec-smog-test}
+## SMOG\index{SMOG|(idxit} {#sec-smog-test}
 
 The SMOG readability formula [@{mclaughlin}639–46] calculates the grade level of a document based on complex (i.e., 3 or more syllable) word density and is designed for secondary-age readers.
 

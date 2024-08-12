@@ -1,4 +1,4 @@
-## Wheeler-Smith\index{Wheeler-Smith|(ii} {#sec-wheeler-smith}
+## Wheeler-Smith\index{Wheeler-Smith|(idxit} {#sec-wheeler-smith}
 
 The Wheeler-Smith [-@{wheeler-smith}397–99] test is designed for primary-age materials (Kindergarten to 4^th^ grade).
 This test calculates the grade level of a document based on [unit](#sec-glossary)\index{sentences!units} length and number of polysyllabic\index{polysyllabic} (2+ syllable) words.

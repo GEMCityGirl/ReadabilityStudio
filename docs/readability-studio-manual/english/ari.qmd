@@ -1,4 +1,4 @@
-## Automated Readability Index\index{Automated Readability Index|(ii} {#sec-ari-test}
+## Automated Readability Index\index{Automated Readability Index|(idxit} {#sec-ari-test}
 
 The Automated Readability Index–also called "ARI" or "auto"–[@{esmith}] was originally created for U.S. Air Force materials. As such, it was designed for technical reports and manuals. This test calculates the grade level of a document based on sentence length and character count.
 

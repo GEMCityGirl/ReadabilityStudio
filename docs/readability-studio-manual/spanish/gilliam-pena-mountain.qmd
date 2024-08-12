@@ -1,4 +1,4 @@
-## Gilliam-Peña-Mountain\index{Gilliam-Peña-Mountain|(ii} Graph {#sec-gilliam-pena-mountain-fry-graph}
+## Gilliam-Peña-Mountain\index{Gilliam-Peña-Mountain|(idxit} Graph {#sec-gilliam-pena-mountain-fry-graph}
 
 Gilliam-Peña-Mountain\index{Fry!variations!Gilliam-Peña-Mountain} [-@{gilliam-pena-mountain}426–30] is a graphical test for Spanish text based on the [Fry](#sec-fry-test)\index{Fry} graph [-@{fry:extensions:1977}242–52]. It is identical to the Fry graph, except that its X (syllable-count) axis begins at 175 (instead of 108). This is necessary to account for Spanish text having a much higher syllable count than its English counterpart. As the authors stated, “Spanish syllable counts, however, were so high that they threw many of the samples outside the bands or off the graph entirely” [-@{gilliam-pena-mountain}427].
 

@@ -1,4 +1,4 @@
-## FRASE\index{FRASE|(ii} Graph {#sec-frase}
+## FRASE\index{FRASE|(idxit} Graph {#sec-frase}
 
 FRASE (Fry Readability Adaptation for Spanish Evaluation)\index{Fry!derivatives!FRASE} [@{vari-cartier}141–48] is a graphical test for Spanish text. This test calculates a document's language level from its average number of sentences and syllables per hundred words. These averages are plotted onto a chart where their intersection determines the reading level of the content.
 

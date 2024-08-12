@@ -1,4 +1,4 @@
-## Crawford\index{Crawford|(ii} {#sec-crawford}
+## Crawford\index{Crawford|(idxit} {#sec-crawford}
 
 The Crawford test is designed for "elementary level materials in Spanish" [-@{crawford}4]. This test calculates the grade level of a document based on sentence length and syllable count.
 

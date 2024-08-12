@@ -327,7 +327,7 @@ In a batch project, this word cloud will show the key words across all documents
 
 \newpage
 
-## Sentences Breakdown\index{sentences!reviewing in the results|(ii} {#sec-reviewing-sentences-breakdown}
+## Sentences Breakdown\index{sentences!reviewing in the results|(idxit} {#sec-reviewing-sentences-breakdown}
 
 After opening a project, click on the **Sentences Breakdown** icon on the project sidebar to view a breakdown of the document's sentences. This includes the following:
 
