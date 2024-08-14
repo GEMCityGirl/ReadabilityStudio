@@ -86,16 +86,15 @@ Outlier values that do not fall within these areas are plotted outside of the wh
 
 ```{r}
 #| label: fig-boxplot
-#| fig-cap: "Visual of a box plot's layout"
+#| fig-cap: "Box plot layout"
 #| fig-subcap: "Adapted from DeCicco (“Exploring ggplot2 boxplots”)"
-#| fig-keep: false
 #| echo: false
 
 # translatable content
 WhiskerLabel1 <- "Largest value within 1.5 times\ninterquartile range above\n75th percentile"
 WhiskerLabel2 <- "Smallest value within 1.5 times\ninterquartile range below\n25th percentile"
 Outlier <- "Outlier value"
-QuartileLabels <- c("25th percentile", "50th percentile\n(median)", "75th percentile")
+QuartileLabels <- c("25th percentile", "50th percentile", "75th percentile")
 IQRLabel <- "Interquartile\nrange"
 # end translatable content
 
@@ -323,12 +322,13 @@ An extreme (high or low) value that is numerically distant from the rest of the 
 overplotting
 :::
 ::: {.glsdef data-latex=''}
-When visualizing points along a single dimension (e.g., the y axis of a box plot), points with the same score will overlap each other. Because of this, it becomes difficult to fully see the distribution of the data. Considering the following box plot:
+When visualizing points along a single dimension (e.g., the y axis of a box plot), points with the same score will overlap each other.
+Because of this, it becomes difficult to fully see the distribution of the data.
+Considering the following box plot:
 
 ```{r}
 #| label: fig-boxplot-no-jittering
 #| fig-cap: "Box plot with no jittering"
-#| fig-keep: false
 #| echo: false
 
 boxplot(len ~ dose, data = ToothGrowth,
@@ -340,12 +340,12 @@ stripchart(len ~ dose, data = ToothGrowth, method='overplot', add=T, pch=20, col
 
 Although we can interpret the quartile ranges, it is not obvious how the data clumps together overall.
 
-To correct this, a technique called jittering\index{box plots!jittering} is used to adjust the x axis values of overlapping points. Traditionally, jittering\index{jittering|see{box plots,jittering}} uses randomness to adjust the points’ position around both sides of the axis, as such:
+To correct this, a technique called jittering\index{box plots!jittering} is used to adjust the x axis values of overlapping points.
+Traditionally, jittering\index{jittering|see{box plots,jittering}} uses randomness to adjust the points' position around both sides of the axis, as such:
 
 ```{r}
 #| label: fig-boxplot-random-jittering
 #| fig-cap: "Box plot with random jittering"
-#| fig-keep: false
 #| echo: false
 
 boxplot(len ~ dose, data = ToothGrowth,
@@ -355,12 +355,14 @@ boxplot(len ~ dose, data = ToothGrowth,
 stripchart(len ~ dose, data = ToothGrowth, method='jitter', add=T, pch=20, col=2, vertical=T)
 ```
 
-Because of this randomness, some points may still overlap. To improve this, a newer technique known as beeswarm jittering instead adjusts points the minimal distance from the axis. This ensures that each point is seen and more tightly packed (offering a more accurate view of how the data are distributed). And example of this is as follows:
+Because of this randomness, some points may still overlap.
+To improve this, a newer technique known as beeswarm jittering instead adjusts points the minimal distance from the axis.
+This ensures that each point is seen and more tightly packed (offering a more accurate view of how the data are distributed).
+And example of this is as follows:
 
 ```{r}
 #| label: fig-boxplot-beeswarm-jittering
 #| fig-cap: "Box plot with beeswarm jittering"
-#| fig-keep: false
 #| echo: false
 
 library(beeswarm)
