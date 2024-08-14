@@ -67,8 +67,6 @@ public :
 
     virtual wxString GetStringValue() const wxOVERRIDE ;
     virtual void SetStringValue( const wxString &str) wxOVERRIDE ;
-    virtual wxString GetRtfValue() const override { return GetStringValue(); };
-    virtual void SetRtfValue( const wxString &str) override { SetStringValue(str); };
     virtual void Copy() wxOVERRIDE ;
     virtual void Cut() wxOVERRIDE ;
     virtual void Paste() wxOVERRIDE ;
@@ -114,10 +112,9 @@ public:
     
     virtual wxString GetStringValue() const wxOVERRIDE ;
     virtual void SetStringValue( const wxString &str) wxOVERRIDE ;
-    virtual wxString GetRtfValue() const wxOVERRIDE ;
-    virtual void SetRtfValue( const wxString &str) wxOVERRIDE ;
+    void Print(const wxSize paperSize, const int orientation, const wxString& header,
+               const wxString& footer) const wxOVERRIDE;
     virtual long Find( const wxString &str, const bool caseSensitive, const bool searchForward, const bool wholeWord) const wxOVERRIDE ;
-    void Print( const wxSize paperSize, const int orientation, const wxString& header, const wxString& footer ) const wxOVERRIDE;
     virtual void Copy() wxOVERRIDE ;
     virtual void Cut() wxOVERRIDE ;
     virtual void Paste() wxOVERRIDE ;

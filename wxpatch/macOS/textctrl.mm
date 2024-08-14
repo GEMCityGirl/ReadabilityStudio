@@ -863,31 +863,53 @@ void wxNSTextViewControl::SetStringValue( const wxString &str)
     }
 }
 
-wxString wxNSTextViewControl::GetRtfValue() const
+void wxNSTextViewControl::Print(const wxSize paperSize, const int orientation, const wxString& header, const wxString& footer) const
 {
     if (m_textView)
     {
-        NSData* rtfData = [m_textView RTFFromRange:NSMakeRange(0, [[m_textView textStorage] length])];
-        NSMutableString* rtfString = [[NSMutableString alloc] initWithData:rtfData encoding:NSASCIIStringEncoding];
-        wxString result = wxMacConvertNewlines13To10(wxCFStringRef::AsString(rtfString, m_wxPeer->GetFont().GetEncoding()));
-        [rtfString release];
-        return result;
+        NSPrintInfo *printInfo;
+        NSPrintInfo *sharedInfo;
+        NSPrintOperation *printOp;
+        NSMutableDictionary *printInfoDict;
+        NSMutableDictionary *sharedDict;
+        
+        sharedInfo = [NSPrintInfo sharedPrintInfo];
+        sharedDict = [sharedInfo dictionary];
+        printInfoDict = [NSMutableDictionary dictionaryWithDictionary:sharedDict];
+        //active header and footer functionality
+        [printInfoDict setValue:[NSNumber numberWithBool:YES] forKey:NSPrintHeaderAndFooter];
+        printInfo = [[NSPrintInfo alloc] initWithDictionary: printInfoDict];
+        
+        //margins
+        [printInfo setTopMargin: 36];
+        [printInfo setBottomMargin: 36];
+        [printInfo setLeftMargin: 36];
+        [printInfo setRightMargin: 36];
+        
+        //paper info
+        NSSize nspaperSize = { static_cast<CGFloat>(paperSize.GetWidth()), static_cast<CGFloat>(paperSize.GetHeight()) };
+        [printInfo setPaperSize:nspaperSize];
+        [printInfo setHorizontalPagination: NSFitPagination];
+        [printInfo setVerticalPagination: NSAutoPagination];
+        [printInfo setOrientation: (orientation == wxPORTRAIT) ? NSPaperOrientationPortrait : NSPaperOrientationLandscape];
+        [printInfo setVerticallyCentered:NO];
+        
+        // create new view just for printing
+        NSTextViewWithHeadersAndFooters *printView = [[NSTextViewWithHeadersAndFooters alloc]initWithFrame:
+                                                      NSMakeRect(0.0, 0.0, nspaperSize.width, nspaperSize.height)];
+        // copy the textview into the printview
+        NSRange textViewRange = NSMakeRange(0, [[m_textView textStorage] length]);
+        NSRange printViewRange = NSMakeRange(0, [[printView textStorage] length]);
+        //headers and footers
+        printView->m_pageHeader = [[[NSMutableAttributedString alloc] initWithString: wxCFStringRef( header , m_wxPeer->GetFont().GetEncoding() ).AsNSString()] autorelease];
+        printView->m_pageFooter = [[[NSMutableAttributedString alloc] initWithString: wxCFStringRef( footer , m_wxPeer->GetFont().GetEncoding() ).AsNSString()] autorelease];
+        
+        [printView replaceCharactersInRange: printViewRange
+                                    withRTF:[m_textView RTFFromRange: textViewRange]];
+        
+        printOp = [NSPrintOperation printOperationWithView:printView printInfo:printInfo];
+        [printOp runOperation];
     }
-    return wxEmptyString;
-}
-void wxNSTextViewControl::SetRtfValue( const wxString &str)
-{
-    wxString st = wxMacConvertNewlines10To13(str);
-    wxMacEditHelper helper(m_textView);
-    
-    if (m_textView)
-    {
-        [m_textView setString: wxCFStringRef( wxEmptyString , m_wxPeer->GetFont().GetEncoding() ).AsNSString()];
-        NSData* rtfData=[wxCFStringRef( st , m_wxPeer->GetFont().GetEncoding() ).AsNSString() dataUsingEncoding:NSASCIIStringEncoding];
-        [m_textView replaceCharactersInRange:NSMakeRange(0,0) withRTF:rtfData];
-    }
-    // Some text styles have to be updated manually.
-    DoUpdateTextStyle();
 }
 
 long wxNSTextViewControl::Find( const wxString &str, const bool caseSensitive, const bool searchForward, const bool wholeWord) const
@@ -954,55 +976,6 @@ long wxNSTextViewControl::Find( const wxString &str, const bool caseSensitive, c
     else
     {
         return wxNOT_FOUND;
-    }
-}
-
-void wxNSTextViewControl::Print(const wxSize paperSize, const int orientation, const wxString& header, const wxString& footer) const
-{
-    if (m_textView)
-    {
-        NSPrintInfo *printInfo;
-        NSPrintInfo *sharedInfo;
-        NSPrintOperation *printOp;
-        NSMutableDictionary *printInfoDict;
-        NSMutableDictionary *sharedDict;
-        
-        sharedInfo = [NSPrintInfo sharedPrintInfo];
-        sharedDict = [sharedInfo dictionary];
-        printInfoDict = [NSMutableDictionary dictionaryWithDictionary:sharedDict];
-        //active header and footer functionality
-        [printInfoDict setValue:[NSNumber numberWithBool:YES] forKey:NSPrintHeaderAndFooter];
-        printInfo = [[NSPrintInfo alloc] initWithDictionary: printInfoDict];
-        
-        //margins
-        [printInfo setTopMargin: 36];
-        [printInfo setBottomMargin: 36];
-        [printInfo setLeftMargin: 36];
-        [printInfo setRightMargin: 36];
-        
-        //paper info
-        NSSize nspaperSize = { static_cast<CGFloat>(paperSize.GetWidth()), static_cast<CGFloat>(paperSize.GetHeight()) };
-        [printInfo setPaperSize:nspaperSize];
-        [printInfo setHorizontalPagination: NSFitPagination];
-        [printInfo setVerticalPagination: NSAutoPagination];
-        [printInfo setOrientation: (orientation == wxPORTRAIT) ? NSPaperOrientationPortrait : NSPaperOrientationLandscape];
-        [printInfo setVerticallyCentered:NO];
-        
-        // create new view just for printing
-        NSTextViewWithHeadersAndFooters *printView = [[NSTextViewWithHeadersAndFooters alloc]initWithFrame:
-                                                      NSMakeRect(0.0, 0.0, nspaperSize.width, nspaperSize.height)];
-        // copy the textview into the printview
-        NSRange textViewRange = NSMakeRange(0, [[m_textView textStorage] length]);
-        NSRange printViewRange = NSMakeRange(0, [[printView textStorage] length]);
-        //headers and footers
-        printView->m_pageHeader = [[[NSMutableAttributedString alloc] initWithString: wxCFStringRef( header , m_wxPeer->GetFont().GetEncoding() ).AsNSString()] autorelease];
-        printView->m_pageFooter = [[[NSMutableAttributedString alloc] initWithString: wxCFStringRef( footer , m_wxPeer->GetFont().GetEncoding() ).AsNSString()] autorelease];
-        
-        [printView replaceCharactersInRange: printViewRange
-                                    withRTF:[m_textView RTFFromRange: textViewRange]];
-        
-        printOp = [NSPrintOperation printOperationWithView:printView printInfo:printInfo];
-        [printOp runOperation];
     }
 }
 

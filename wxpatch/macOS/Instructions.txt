@@ -1,8 +1,8 @@
 wx/include/wx/osx/core/private.h
-    copy the definitions for GetRtfValue to Find()
+    copy the definitions for Print to Find()
 
 wx/include/wx/osx/cocoa/private/textimpl.h
-    copy the definitions for GetRtfValue to Print(), and also NSTextViewWithHeadersAndFooters declaration up top.
+    copy the definitions for Print to Find(), and also NSTextViewWithHeadersAndFooters declaration up top.
 
 wx/src/osx/cocoa/textctrl.mm
-    copy the bodies for GetRtfValue to Print(), and also NSTextViewWithHeadersAndFooters implementation up top.
+    copy the bodies for Print to Find(), and also NSTextViewWithHeadersAndFooters implementation up top.
