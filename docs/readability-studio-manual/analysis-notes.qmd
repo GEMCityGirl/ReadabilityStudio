@@ -296,13 +296,17 @@ Items\index{sentences!excluding incomplete sentences} such as headers and list i
 
 By default, *Readability Studio* follows this advice. However, there are situations where this rule does not apply.
 
-For files consisting mostly of short blocks of text (e.g., quizzes, flyers, or menus) instead of flowing narrative, this presents a problem. Sentence lengths will be abnormally short and skew most test results. Also, if [incomplete sentences](#sec-how-text-is-excluded) are being excluded, then most of the document will not even be analyzed.
+For files consisting mostly of short blocks of text (e.g., quizzes, flyers, or menus) instead of flowing narrative, this presents a problem.
+Sentence lengths will be abnormally short and skew most test results.
+Also, if [incomplete sentences](#sec-how-text-is-excluded) are being excluded, then most of the document will not even be analyzed.
 
-To avoid these issues, it is recommended to include incomplete sentences in the analysis and to only use the [FORCAST](#sec-forcast-test)\index{FORCAST} test. When creating a [new project](#sec-creating-standard-project), there are two ways to implicitly set these options. The first way is to select **non-narrative, fragmented text** when specifying the document structure. The other way is to select **non-narrative form** when specifying the document type.
+To avoid these issues, it is recommended to include incomplete sentences in the analysis and to only use the [FORCAST](#sec-forcast-test)\index{FORCAST} test.
+When creating a [new project](#sec-creating-standard-project), there are two ways to implicitly set these options. The first way is to select **non-narrative, fragmented text** when specifying the document structure. The other way is to select **non-narrative form** when specifying the document type.
 
 ## Joining Hyphenated Words
 
-Some published documents format each line of text to a specific width to fit on the page. In doing so, longer words at the end of some lines may be split and hyphenated. For example:
+Some published documents format each line of text to a specific width to fit on the page.
+In doing so, longer words at the end of some lines may be split and hyphenated. For example:
 
 :::: {.fancyquotes data-latex=''}
 ::: {.FlushLeft data-latex=''}
@@ -319,11 +323,14 @@ Note how *Business* and *Point-of-Sale* are split across multiple lines.
 
 When *Readability Studio* encounters a hyphenated word at the end of a line, it will perform these steps:
 
+::: {.minipage data-latex="{\textwidth}"}
 - Both parts of the word will be joined.
 - The hyphen(s) will be removed and if what remains is a known word, then that will be used. Otherwise,...
 - The hyphen(s) will be kept as part of the word.
+:::
 
-With the above example, *Bus-iness* will be recognized as *Business*. In contrast, *Point-of-Sale* will remain as a hyphenated compound word because *PointofSale* is not a known word.
+With the above example, *Bus-iness* will be recognized as *Business*.
+In contrast, *Point-of-Sale* will remain as a hyphenated compound word because *PointofSale* is not a known word.
 
 ## Special Characters
 
