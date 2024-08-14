@@ -2,16 +2,27 @@
 
 The following open-source software, artwork, and example files were used to create *Readability Studio*.
 
-### Documentation & Project Management Software {-}
+### Documentation Software & Templates {-}
 ***
 
 #### Doxygen {-}
-Doxygen is the de facto standard tool for generating documentation from annotated C++ sources, but it also supports other popular programming languages such as C, Objective-C, C#, PHP, Java, Python, IDL (Corba, Microsoft, and UNO/OpenOffice flavors), Fortran, VHDL and to some extent D.
 
-[http://doxygen.nl/](http://doxygen.nl/)
+Doxygen is the de facto standard tool for generating documentation from annotated C++ sources,
+but it also supports other popular programming languages such as C, Objective-C, C#, PHP, Java, Python,
+IDL (Corba, Microsoft, and UNO/OpenOffice flavors), Fortran, VHDL and to some extent D.
+
+[https://doxygen.nl/](https://doxygen.nl/)
+
+### Legrand Orange Book {-}
+
+Highly themable `r latex_logo(TRUE)`book template.
+
+[https://www.latextemplates.com/template/the-legrand-orange-book](https://www.latextemplates.com/template/the-legrand-orange-book)
 
 #### LibreOffice {-}
-LibreOffice is a free and powerful office suite, and a successor to OpenOffice.org (commonly known as OpenOffice). Its clean interface and feature-rich tools help you unleash your creativity and enhance your productivity.
+
+LibreOffice is a free and powerful office suite, and a successor to OpenOffice.org (commonly known as OpenOffice).
+Its clean interface and feature-rich tools help you unleash your creativity and enhance your productivity.
 
 [https://www.libreoffice.org/](https://www.libreoffice.org/)
 
@@ -33,6 +44,7 @@ An open-source scientific and technical publishing system.
 ***
 
 #### Catch2 {-}
+
 Catch2 is mainly a unit testing framework for C++, but it also provides basic micro-benchmarking features, and simple BDD macros.
 
 [https://github.com/catchorg/Catch2](https://github.com/catchorg/Catch2)
@@ -55,19 +67,25 @@ CMake is an open-source, cross-platform family of tools designed to build, test 
 [https://cmake.org/](https://cmake.org/)
 
 #### GCC, the GNU Compiler Collection {-}
-The GNU Compiler Collection includes front ends for C, C++, Objective-C, Fortran, Ada, Go, and D, as well as libraries for these languages (libstdc++,...). GCC was originally written as the compiler for the GNU operating system. The GNU system was developed to be 100% free software, free in the sense that it respects the user's freedom.  
+
+The GNU Compiler Collection includes front ends for C, C++, Objective-C, Fortran, Ada, Go, and D, as well as libraries for these languages (libstdc++,...).
+GCC was originally written as the compiler for the GNU operating system.
+The GNU system was developed to be 100% free software, free in the sense that it respects the user's freedom.  
 
 R is a free software environment for statistical computing and graphics. It compiles and runs on a wide variety of UNIX platforms, Windows and MacOS.
 
 [https://www.gnu.org/](https://www.gnu.org/)
 
 #### git {-}
+
 Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
 
 [https://git-scm.com/](https://git-scm.com/)
 
 #### Inno Setup {-}
-Inno Setup is a free installer for Windows programs by Jordan Russell and Martijn Laan. First introduced in 1997, Inno Setup today rivals and even surpasses many commercial installers in feature set and stability.
+
+Inno Setup is a free installer for Windows programs by Jordan Russell and Martijn Laan.
+First introduced in 1997, Inno Setup today rivals and even surpasses many commercial installers in feature set and stability.
 
 [https://jrsoftware.org](https://jrsoftware.org)
 
@@ -103,7 +121,10 @@ Open source and enterprise-ready professional software for data science.
 
 #### Project Gutenberg {-}
 
-Project Gutenberg is a library of over 60,000 free eBooks. Choose among free epub and Kindle eBooks, download them or read them online. You will find the world's great literature here, with focus on older works for which U.S. copyright has expired. Thousands of volunteers digitized and diligently proofread the eBooks, for enjoyment and education.
+Project Gutenberg is a library of over 60,000 free eBooks.
+Choose among free epub and Kindle eBooks, download them or read them online.
+You will find the world's great literature here, with focus on older works for which U.S. copyright has expired.
+Thousands of volunteers digitized and diligently proofread the eBooks, for enjoyment and education.
 
 [https://www.gutenberg.org/](https://www.gutenberg.org/)
 

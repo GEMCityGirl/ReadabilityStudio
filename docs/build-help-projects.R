@@ -33,6 +33,7 @@ clearFolders <- function()
   unlink(glue("{docFolder}/readability-studio-api/latex"), recursive=T)
   unlink(glue("{docFolder}/readability-studio-api/css"), recursive=T)
   unlink(glue("{docFolder}/readability-studio-api/R"), recursive=T)
+  unlink(glue("{docFolder}/readability-studio-api/index.ptc"))
 
   unlink(glue("{docFolder}/readability-test-reference/images"), recursive=T)
   unlink(glue("{docFolder}/readability-test-reference/latex"), recursive=T)
@@ -45,6 +46,7 @@ clearFolders <- function()
   unlink(glue("{docFolder}/readability-test-reference/english"), recursive=T)
   unlink(glue("{docFolder}/readability-test-reference/spanish"), recursive=T)
   unlink(glue("{docFolder}/readability-test-reference/german"), recursive=T)
+  unlink(glue("{docFolder}/readability-test-reference/index.ptc"))
 
   unlink(glue("{docFolder}/readability-studio-manual/_bookdown_files"), recursive=T)
   unlink(glue("{docFolder}/readability-studio-manual/docs-manual/glossary"), recursive=T)
@@ -62,6 +64,7 @@ clearFolders <- function()
   unlink(glue("{docFolder}/readability-studio-manual/readability-studio-manual.ilg"))
   unlink(glue("{docFolder}/readability-studio-manual/readability-studio-manual.ind"))
   unlink(glue("{docFolder}/readability-studio-manual/readability-studio-manual.run.xml"))
+  unlink(glue("{docFolder}/readability-studio-manual/index.ptc"))
   }
 
 clearFolders()
@@ -136,18 +139,14 @@ writeEnumEditorFile(enums, glue("{docFolder}/../resources/scripting/rs-enums.api
 writeEnumTopics(enums, glue("{docFolder}/readability-studio-api/enums/"))
 
 setwd(glue("{docFolder}/readability-studio-api/"))
-dir_create(glue("{docFolder}/readability-studio-api/images"))
-file_copy(glue("{docFolder}/readability-studio-manual/images/non-generated/CC_BY-NC-ND.png"),
-          glue("{docFolder}/readability-studio-api/images/CC_BY-NC-ND.png"),
-          TRUE)
-file_copy(glue("{docFolder}/readability-studio-manual/images/non-generated/cover-programming.pdf"),
-          glue("{docFolder}/readability-studio-api/images/cover.pdf"),
-          TRUE)
-file_copy(glue("{docFolder}/readability-studio-manual/images/non-generated/cover-programming.png"),
-          glue("{docFolder}/readability-studio-api/images/cover.png"),
-          TRUE)
+dir_copy(glue("{docFolder}/readability-studio-manual/images"),
+         glue("{docFolder}/readability-studio-api/images"),
+         TRUE)
 file_copy(glue("{docFolder}/readability-studio-manual/modern-language-association.csl"),
           glue("{docFolder}/readability-studio-api/modern-language-association.csl"),
+          TRUE)
+file_copy(glue("{docFolder}/readability-studio-manual/LegrandOrangeBook.cls"),
+          glue("{docFolder}/readability-studio-api/LegrandOrangeBook.cls"),
           TRUE)
 file_copy(glue("{docFolder}/_variables.yml"),
           glue("{docFolder}/readability-studio-api/_variables.yml"),
@@ -165,6 +164,8 @@ dir_copy(glue("{docFolder}/readability-studio-manual/R"),
 quarto::quarto_render(output_format="pdf", as_job=F)
 
 unlink(glue("{docFolder}/readability-studio-api/_variables.yml"))
+unlink(glue("{docFolder}/readability-studio-api/modern-language-association.csl"))
+unlink(glue("{docFolder}/readability-studio-api/LegrandOrangeBook.cls"))
 
 # Tests Reference Manual
 ########################
@@ -215,6 +216,9 @@ file_copy(glue("{docFolder}/readability-studio-manual/author.qmd"),
 file_copy(glue("{docFolder}/readability-studio-manual/modern-language-association.csl"),
           glue("{docFolder}/readability-test-reference/modern-language-association.csl"),
           TRUE)
+file_copy(glue("{docFolder}/readability-studio-manual/LegrandOrangeBook.cls"),
+          glue("{docFolder}/readability-test-reference/LegrandOrangeBook.cls"),
+          TRUE)
 file_copy(glue("{docFolder}/readability-studio-manual/cites.bib"),
           glue("{docFolder}/readability-test-reference/cites.bib"),
           TRUE)
@@ -236,6 +240,7 @@ unlink(glue("{docFolder}/readability-test-reference/acknowledgements.qmd"))
 unlink(glue("{docFolder}/readability-test-reference/author.qmd"))
 unlink(glue("{docFolder}/readability-test-reference/cites.bib"))
 unlink(glue("{docFolder}/readability-test-reference/modern-language-association.csl"))
+unlink(glue("{docFolder}/readability-test-reference/LegrandOrangeBook.cls"))
 
 # final cleanup
 clearFolders()

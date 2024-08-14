@@ -32,7 +32,7 @@ book:
   image: "images/non-generated/cover.png"
 format:
   pdf:
-    documentclass: book
+    documentclass: LegrandOrangeBook
     template: latex/default.tex
     include-in-header: latex/preamble.tex
     latex-engine: xelatex
@@ -42,6 +42,8 @@ format:
     lot: true
     lof: true
     code-block-bg: false
+    linkcolor: black
+    citecolor: black
   html:
     theme: cosmo
     html-math-method: katex
