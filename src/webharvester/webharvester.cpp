@@ -967,7 +967,7 @@ wxString WebHarvester::GetCharsetFromPageContent(std::string_view pageContent)
         // We determine if content is UTF-8/16 elsewhere, so returning that here will could
         // cause UTF-8 conversion on a file that isn't really UTF-8.
         // Legacy pages missing encoding info is probably ANSI, so fall back to Windows-1252
-        // if our plaform is using a Unicode encoding that we can't use.
+        // if our platform is using a Unicode encoding that we can't use.
         const wxString encoding = wxLocale::GetSystemEncodingName().MakeLower();
         return (encoding.find(L"utf") != wxString::npos) ? wxString{ L"windows-1252" } : encoding;
         }

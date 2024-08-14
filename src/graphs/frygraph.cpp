@@ -438,7 +438,7 @@ namespace Wisteria::Graphs
                L"Invalid backscreen size!");
 
         std::vector<wxPoint> highlightedGradeLinePoints;
-        
+
         // these will all be filled with something, even if NaN
         m_results.resize(GetDataset()->GetRowCount());
         for (size_t i = 0; i < GetDataset()->GetRowCount(); ++i)
@@ -585,7 +585,7 @@ namespace Wisteria::Graphs
             };
 
             calcScoreFromPolygons(m_backscreen, m_results[i]);
-            
+
             if (IsShowcasingScore() && GetScores().size() == 1)
                 {
                 if (GetScores().at(0).GetScore() == 17)

@@ -272,7 +272,7 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
     // temp word
     lily_of_the_valley::rtf_encode_text rtfEncode;
     std::wstring currentWord;
-    std::wstring wordCountStr; 
+    std::wstring wordCountStr;
     for (auto para_iter = theDocument->get_paragraphs().cbegin();
          para_iter != theDocument->get_paragraphs().cend(); ++para_iter)
         {
