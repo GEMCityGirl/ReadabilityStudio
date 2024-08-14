@@ -146,7 +146,7 @@ Once you have these files installed, this won't be an issue when rebuilding late
 If the application icon ("resources/images/ribbon/app-logo.svg") is changed, then in the project directory:
 
 - Save a copy as "app-logo.png" (1024x1024 resolution)
-- Save a copy as "app-logo.ico"
+- Save a copy as "app-logo.ico" (512x512 resolution)
 - On macOS, run this in a terminal:
 
 ```
