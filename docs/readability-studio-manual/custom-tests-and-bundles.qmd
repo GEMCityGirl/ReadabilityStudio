@@ -281,7 +281,7 @@ Comments can be embedded within an expression to clarify its intent.
 C/C++ style comments are supported, which provide:
 
 - multi-line comments (text within a pair of `/*` and `*/`).
-- single line comments (everything after a `//` until the end of the current line).
+- single-line comments (everything after a `//` until the end of the current line).
 
 For example:
 
@@ -290,15 +290,18 @@ For example:
 #| echo: true
 
 /* Returns a value between 1-3, representing the usage
-   of buzz words in the document.*/
+   of buzz words in the document.*/                                   // <1>
 IF(// Review the % of buzz words in the document.
-   // Over 15% is unacceptable
+   // Over 15% is unacceptable                                        // <2>
    (FamiliarWordCount()/WordCount())*100 > 15, 3 /* Unacceptable */,
    // Over 5% should be reviewed
    IF((FamiliarWordCount()/WordCount())*100 > 5, 2,
    // 5% or less is acceptable
    1 /* Acceptable */) )
 ```
+
+1. Multi-line comment
+2. Single-line comment
 
 ## Custom Test Dialog {#sec-custom-test-dialog}
 
