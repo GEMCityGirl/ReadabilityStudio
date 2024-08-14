@@ -3135,20 +3135,19 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
         helpButtonBar->AddButton(XRCID("ID_RELEASE_NOTES"), _(L"Release Notes"),
                                  ReadRibbonSvgIcon(L"ribbon/paper-notes.svg"),
                                  _(L"Display the release notes."));
-        helpButtonBar->AddDropdownButton(XRCID("ID_EXAMPLES"),
-            _(L"Example Documents"),
-            ReadRibbonSvgIcon(L"ribbon/examples.svg"),
-            _(L"Analyze example documents from the help."));
+        helpButtonBar->AddDropdownButton(XRCID("ID_EXAMPLES"), _(L"Example Documents"),
+                                         ReadRibbonSvgIcon(L"ribbon/examples.svg"),
+                                         _(L"Analyze example documents from the help."));
 
-        wxRibbonPanel* supportPanel = new wxRibbonPanel(helpPage, wxID_ANY, _(L"Support"), wxNullBitmap);
+        wxRibbonPanel* supportPanel =
+            new wxRibbonPanel(helpPage, wxID_ANY, _(L"Support"), wxNullBitmap);
         wxRibbonButtonBar* supportButtonBar = new wxRibbonButtonBar(supportPanel);
-        supportButtonBar->AddButton(XRCID("ID_CHECK_FOR_UPDATES"),
-            _(L"Updates"),
-            ReadRibbonSvgIcon(L"ribbon/updates.svg"),
-            _(L"Check for updates."));
+        supportButtonBar->AddButton(XRCID("ID_CHECK_FOR_UPDATES"), _(L"Updates"),
+                                    ReadRibbonSvgIcon(L"ribbon/updates.svg"),
+                                    _(L"Check for updates."));
         supportButtonBar->AddButton(wxID_ABOUT, _(L"About"),
-            ReadRibbonSvgIcon(L"ribbon/app-logo.svg"),
-            _(L"Learn more about the program."));
+                                    ReadRibbonSvgIcon(L"ribbon/app-logo.svg"),
+                                    _(L"Learn more about the program."));
         }
     ribbon->SetArtProvider(new RibbonMetroArtProvider);
     UpdateRibbonTheme(ribbon);
@@ -3165,45 +3164,34 @@ void ReadabilityApp::UpdateRibbonTheme(wxRibbonBar* ribbon)
     if (ribbon != nullptr)
         {
         ribbon->GetArtProvider()->SetColourScheme(GetAppOptions().GetRibbonActiveTabColor(),
-            GetAppOptions().GetRibbonInactiveTabColor(),
-            GetAppOptions().GetRibbonHoverColor());
+                                                  GetAppOptions().GetRibbonInactiveTabColor(),
+                                                  GetAppOptions().GetRibbonHoverColor());
 
-        ribbon->GetArtProvider()->SetColour(
-            wxRIBBON_ART_BUTTON_BAR_LABEL_COLOUR,
-            GetAppOptions().GetRibbonActiveFontColor());
-        ribbon->GetArtProvider()->SetColour(
-            wxRIBBON_ART_BUTTON_BAR_LABEL_DISABLED_COLOUR,
-            GetAppOptions().GetRibbonInactiveFontColor());
-        ribbon->GetArtProvider()->SetColour(
-            wxRIBBON_ART_BUTTON_BAR_LABEL_HIGHLIGHT_TOP_COLOUR,
-            GetAppOptions().GetRibbonActiveFontColor());
+        ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_COLOUR,
+                                            GetAppOptions().GetRibbonActiveFontColor());
+        ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_DISABLED_COLOUR,
+                                            GetAppOptions().GetRibbonInactiveFontColor());
+        ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_HIGHLIGHT_TOP_COLOUR,
+                                            GetAppOptions().GetRibbonActiveFontColor());
         ribbon->GetArtProvider()->SetColour(
             wxRIBBON_ART_BUTTON_BAR_LABEL_HIGHLIGHT_GRADIENT_TOP_COLOUR,
             GetAppOptions().GetRibbonActiveFontColor());
-        ribbon->GetArtProvider()->SetColour(
-            wxRIBBON_ART_BUTTON_BAR_LABEL_HIGHLIGHT_COLOUR,
-            GetAppOptions().GetRibbonHoverFontColor());
-        ribbon->GetArtProvider()->SetColour(
-            wxRIBBON_ART_BUTTON_BAR_LABEL_HIGHLIGHT_GRADIENT_COLOUR,
-            GetAppOptions().GetRibbonActiveFontColor());
-        ribbon->GetArtProvider()->SetColour(
-            wxRIBBON_ART_TAB_ACTIVE_LABEL_COLOUR,
-            GetAppOptions().GetRibbonActiveFontColor());
-        ribbon->GetArtProvider()->SetColour(
-            wxRIBBON_ART_PANEL_LABEL_COLOUR,
-            GetAppOptions().GetRibbonActiveFontColor());
-        ribbon->GetArtProvider()->SetColour(
-            wxRIBBON_ART_PANEL_MINIMISED_LABEL_COLOUR,
-            GetAppOptions().GetRibbonActiveFontColor());
-        ribbon->GetArtProvider()->SetColour(
-            wxRIBBON_ART_PANEL_HOVER_LABEL_COLOUR,
-            GetAppOptions().GetRibbonHoverFontColor());
-        ribbon->GetArtProvider()->SetColour(
-            wxRIBBON_ART_TAB_LABEL_COLOUR,
-            GetAppOptions().GetRibbonInactiveFontColor());
-        ribbon->GetArtProvider()->SetColour(
-            wxRIBBON_ART_TAB_HOVER_LABEL_COLOUR,
-            GetAppOptions().GetRibbonHoverFontColor());
+        ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_HIGHLIGHT_COLOUR,
+                                            GetAppOptions().GetRibbonHoverFontColor());
+        ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_HIGHLIGHT_GRADIENT_COLOUR,
+                                            GetAppOptions().GetRibbonActiveFontColor());
+        ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_TAB_ACTIVE_LABEL_COLOUR,
+                                            GetAppOptions().GetRibbonActiveFontColor());
+        ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_PANEL_LABEL_COLOUR,
+                                            GetAppOptions().GetRibbonActiveFontColor());
+        ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_PANEL_MINIMISED_LABEL_COLOUR,
+                                            GetAppOptions().GetRibbonActiveFontColor());
+        ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_PANEL_HOVER_LABEL_COLOUR,
+                                            GetAppOptions().GetRibbonHoverFontColor());
+        ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_TAB_LABEL_COLOUR,
+                                            GetAppOptions().GetRibbonInactiveFontColor());
+        ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_TAB_HOVER_LABEL_COLOUR,
+                                            GetAppOptions().GetRibbonHoverFontColor());
         }
     }
 
@@ -3272,8 +3260,7 @@ void MainFrame::OnAbout([[maybe_unused]] wxCommandEvent& event)
         }
 
     AboutDialogEx aboutDlg(
-        wxGetApp().GetParentingWindow(), GetAboutDialogImage(),
-        wxGetApp().GetAppVersion(),
+        wxGetApp().GetParentingWindow(), GetAboutDialogImage(), wxGetApp().GetAppVersion(),
         wxString::Format(_(L"Copyright \U000000A92006-%d %s. All rights reserved."),
                          buildDate.GetYear(), wxGetApp().GetVendorDisplayName()),
         &wxGetApp().GetLicenseAdmin(), eula);
@@ -3459,54 +3446,66 @@ void MainFrame::OnTestsOverview([[maybe_unused]] wxRibbonButtonBarEvent& event)
         // language
         wxString languages;
         if (testPos->has_language(readability::test_language::english_test))
-            { languages += _(L"English") + _DT(L"/"); }
+            {
+            languages += _(L"English") + _DT(L"/");
+            }
         if (testPos->has_language(readability::test_language::spanish_test))
-            { languages += _(L"Spanish") + _DT(L"/"); }
+            {
+            languages += _(L"Spanish") + _DT(L"/");
+            }
         if (testPos->has_language(readability::test_language::german_test))
-            { languages += _(L"German") + _DT(L"/"); }
+            {
+            languages += _(L"German") + _DT(L"/");
+            }
         if (languages.length())
-            { languages.RemoveLast(); }
+            {
+            languages.RemoveLast();
+            }
         testsOverviewDlg.GetListCtrl()->SetItemText(i, 2, languages);
         // word complexity
         const wxString wordComplexity =
             testPos->has_factor(readability::test_factor::word_complexity_2_plus_syllables) ?
-            _(L" X (2 or more syllables)") :
-                testPos->has_factor(readability::test_factor::word_complexity_3_plus_syllables) ?
-            _(L" X (3 or more syllables)") :
-                testPos->has_factor(readability::test_factor::word_complexity_density) ?
-            _(L" X (syllable density)") :
-                testPos->has_factor(readability::test_factor::word_complexity) ?
-            wxString(_DT(L" X ")) : wxString{};
+                _(L" X (2 or more syllables)") :
+            testPos->has_factor(readability::test_factor::word_complexity_3_plus_syllables) ?
+                _(L" X (3 or more syllables)") :
+            testPos->has_factor(readability::test_factor::word_complexity_density) ?
+                _(L" X (syllable density)") :
+            testPos->has_factor(readability::test_factor::word_complexity) ? wxString(_DT(L" X ")) :
+                                                                             wxString{};
         testsOverviewDlg.GetListCtrl()->SetItemText(i, 3, wordComplexity);
         // word length
         const wxString wordLength =
             testPos->has_factor(readability::test_factor::word_length_3_less) ?
-            _(L" X (3 or less characters)") :
-                testPos->has_factor(readability::test_factor::word_length_6_plus) ?
-            _(L" X (6 or more characters)") :
-                testPos->has_factor(readability::test_factor::word_length_7_plus) ?
-            _(L" X (7 or more characters)") :
-                testPos->has_factor(readability::test_factor::word_length) ?
-            wxString(_DT(L" X ")) : wxString{};
+                _(L" X (3 or less characters)") :
+            testPos->has_factor(readability::test_factor::word_length_6_plus) ?
+                _(L" X (6 or more characters)") :
+            testPos->has_factor(readability::test_factor::word_length_7_plus) ?
+                _(L" X (7 or more characters)") :
+            testPos->has_factor(readability::test_factor::word_length) ? wxString(_DT(L" X ")) :
+                                                                         wxString{};
         testsOverviewDlg.GetListCtrl()->SetItemText(i, 4, wordLength);
         // word familiarity
         const wxString wordFamiliarity =
             testPos->has_factor(readability::test_factor::word_familiarity_spache) ?
-            _(L" X (Spache rules)") :
-                testPos->has_factor(readability::test_factor::word_familiarity_dale_chall) ?
-            _(L" X (Dale-Chall rules)") :
-                testPos->has_factor(readability::test_factor::word_familiarity_harris_jacobson) ?
-            _(L" X (Harris-Jacobson rules)") : wxString{};
+                _(L" X (Spache rules)") :
+            testPos->has_factor(readability::test_factor::word_familiarity_dale_chall) ?
+                _(L" X (Dale-Chall rules)") :
+            testPos->has_factor(readability::test_factor::word_familiarity_harris_jacobson) ?
+                _(L" X (Harris-Jacobson rules)") :
+                wxString{};
         testsOverviewDlg.GetListCtrl()->SetItemText(i, 5, wordFamiliarity);
         // sentence length
-        testsOverviewDlg.GetListCtrl()->SetItemText(i, 6,
+        testsOverviewDlg.GetListCtrl()->SetItemText(
+            i, 6,
             testPos->has_factor(readability::test_factor::sentence_length) ?
-            wxString{ _DT(L" X ") } : wxString{});
+                wxString{ _DT(L" X ") } :
+                wxString{});
         // description
         lily_of_the_valley::html_extract_text filter_html;
-        testsOverviewDlg.GetListCtrl()->SetItemText(i, 7,
+        testsOverviewDlg.GetListCtrl()->SetItemText(
+            i, 7,
             wxString(filter_html(testPos->get_description().c_str(),
-            testPos->get_description().length(), true, false)) );
+                                 testPos->get_description().length(), true, false)));
         }
     // fit the columns
     testsOverviewDlg.GetListCtrl()->DistributeColumns(-1);
