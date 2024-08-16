@@ -369,13 +369,13 @@ if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/docs/release-notes/docs/")
                    "${CMAKE_CURRENT_SOURCE_DIR}/docs/release-notes/docs/")
 endif()
 
-# On macOS, move the resource files up from the binary folder to the Resources folder
+# On macOS, move the resource files up from the binary folder to the resources folder
 # (note that iOS has a flat folder structure, so only do this for macOS).
-# Some of these files are compiled post build, and others are dynamic folder,
+# Some of these files are compiled post build, and others are dynamic folders,
 # so that is why we copy them like this post build instead of including them
 # via RESOURCE like we do the icon.
 if(APPLE AND NOT CMAKE_SYSTEM_NAME STREQUAL "iOS")
-    set(RESOURCE_FOLDER "/../Resources")
+    set(RESOURCE_FOLDER "/../resources")
 else()
     set(RESOURCE_FOLDER "")
 endif()
