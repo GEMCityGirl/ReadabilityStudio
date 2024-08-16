@@ -7,8 +7,6 @@ source('../R/appdown.r')
 
 # Technical Overviews
 
-## Introduction {#sec-intro}
-
 `r drop_cap('When')` writing for a target audience or classifying documents for specific age groups, readability formulas are invaluable tools.
 They help determine the minimum age group that can quickly process reading material by using an analytical approach.
 This approach uses factors such as sentence length, word difficulty, and word familiarity.
@@ -21,7 +19,8 @@ These are not qualities appropriate for something meant to be read quickly by mo
 
 Note that these tests only determine the reading level of material based on how easy it is to process.
 They do not consider the content or themes of a given work. The age level reported by a test score only reflects the age group that can comprehend a document.
-It does not reflect whether the topics covered in the material are meant for that age group. If you are classifying books into age groups, you should first review them for any mature topics.
+It does not reflect whether the topics covered in the material are meant for that age group.
+If you are classifying books into age groups, you should first review them for any mature topics.
 Then you should use readability tests to determine their comprehension levels.
 
 \newpage
@@ -75,9 +74,7 @@ For example, graph-based tests acquire their scores by finding the intersection 
 These bands represent grades, and there are a specific set of grade bands available.
 As an example, a [Fry](#sec-fry-test) graph has bands ranging from 1^st^ grade to 17^th^ (i.e., college):
 
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/frygraph.png")
-```
+![](../images/frygraph.png){width=75% fig-align="center"}
 
 Likewise, table-based tests take a set of factors and look up the score from a table.
 These tables have a specific set of grade levels and will also have an upper limit.
@@ -91,7 +88,10 @@ First, scores such as 27^th^ grade do not reflect reality. To describe a documen
 To say that a document can only be processed by someone in the 27^th^ grade, however, makes little sense.
 Another way to view this is that 19+ implies a document's failure to be readable—similar to an *F* on a test.
 
-Second, because graph and table-based tests are bound to sensical grade scales, it is reasonable to treat regression-based tests the same way. For example, a document scoring 16+ for New Dale-Chall should clamp tests such as Flesch-Kincaid to 19+, thus keeping their scores on a similar scale. In other words, grade and table-based tests were designed for grade scales from 0–19 (sometimes even lower). Likewise, it is reasonable to assume that was the intention of regression-based tests as well.
+Second, because graph and table-based tests are bound to sensical grade scales, it is reasonable to treat regression-based tests the same way.
+For example, a document scoring 16+ for New Dale-Chall should clamp tests such as Flesch-Kincaid to 19+, thus keeping their scores on a similar scale.
+In other words, grade and table-based tests were designed for grade scales from 0–19 (sometimes even lower).
+Likewise, it is reasonable to assume that was the intention of regression-based tests as well.
 
 Finally, the source materials for these formulas cite example scores within 0–19.
 Again, it can be inferred that the authors' intention was for documents to be bound to a reasonable grade scale.
@@ -111,9 +111,7 @@ Likewise, plugging a document's statistics into a regression-based test will als
 It is possible, however, for certain graphical tests to not return a meaningful result.
 Tests such as Fry and Schwartz use plots that are divided into bands (i.e., polygonal strips) which represent different grade levels. To produce a result, these tests find the intersection of a document's statistics along the plot's axes. Once the intersection is found, the band that the point falls within will indicate the grade level of the document.
 
-```{r echo=F, fig.align='center', fig.cap='Example of a graph with grade-level bands', out.width='75%'}
-knitr::include_graphics("../images/schwartz.png")
-```
+![](../images/schwartz.png){width=75% fig-align="center" fig.cap='Example of a graph with grade-level bands' fig.scap='Graph with grade-level bands'}
 
 For most documents this will yield a result, but extreme documents may fall outside of the grade-level bands.
 (This can happen if there are too many difficult words or lengthy sentences.)

@@ -15,9 +15,7 @@ These items, by default, are ignored for all newly created projects. That is, an
 
 To toggle this behavior for an existing project, click the `r keys("Properties")` button the **Home** tab to display the **Project Properties** dialog. Next, click the **Document Indexing** icon. Here you can select either **Do not exclude any text**, **Exclude all incomplete sentences**, or **Exclude all incomplete sentences, except headings**, as illustrated below.
 
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("images/excludeincompletesentences.png")
-```
+![](images/excludeincompletesentences.png){width=75% fig-align="center"}
 
 If you are excluding incomplete sentences\index{sentences!excluding incomplete sentences}, note that any non-terminated sentence longer than 15 words will still be counted as a regular sentence. If a sentence is longer than a certain length and is missing its terminating punctuation, then the missing period is likely just a mistake. To accommodate for these errors, the program will consider these sentences valid. To customize this behavior, enter a different minimum sentence length in the **Include incomplete sentences containing more than [15] words** option (pictured above).
 

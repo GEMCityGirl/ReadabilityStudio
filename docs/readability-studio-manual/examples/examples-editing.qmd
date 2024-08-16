@@ -85,9 +85,7 @@ Because we created this project with entered text, it is not linked to a documen
 Under *Linking and embedding* is a text box where you enter a document path. Click the button next to this box and select the file that you just saved from *LibreOffice*.
 Also, check *Real-time update*, which will be discussed later.
 
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/realtime-options.png")
-```
+![](../images/realtime-options.png){width=75% fig-align="center"}
 
 Click `r keys('OK')` to accept these changes.
 

@@ -116,9 +116,7 @@ Now you can add files from a folder, archive file, Excel^®^ 2007 file, or websi
 
 To add files from a folder, click the `r keys("Add folder")` button. You will be presented with the [**Select Directory**](#sec-batch-project-import-features) dialog. On this dialog, you can select the document types to search for, as well as whether to search recursively within the folders.
 
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/selectdirectory.png")
-```
+![](../images/selectdirectory.png){width=75% fig-align="center"}
 
 To add files from an archive (i.e., a \*.zip file), click the `r keys("Add archive")` button. You will be presented with the [**Select Archive File**](#sec-batch-project-import-features) dialog. Like the **Select Directory** dialog, you can specify which documents to search for within the archive. (Note that the entire archive will be searched recursively for documents.)
 
@@ -126,22 +124,23 @@ To add documents from an *Excel* (\*.xlsx) file, click the `r keys("Add spreadsh
 
 To search for files from a website and include them in the project, click the `r keys("Add web pages")` button. This will display the [**Web Harvester**](#sec-web-harvester) dialog, as shown below:
 
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/webharvester.png")
-```
+![](../images/webharvester.png){width=75% fig-align="center"}
 
 To add an individual web page to the project, click the `r keys("Add web page")` button. This will display a text box where you can enter the web page's path.
 
 You can also select local files to include in the project. Click the `r keys("Add file(s)")` button and then select the file(s) that you want to include.
 
-As you add files to the project, you can also include a helpful description next to any file. Double click in the **Description** column next to any filename, and then type a description to be attached to that file.
-When the batch project is loaded, this description will appear in any results window that displays filenames. (Note that for some file formats, the program will fill this field with the document's subject or title information if you leave it blank.)
+As you add files to the project, you can also include a helpful description next to any file.
+Double click in the **Description** column next to any filename, and then type a description to be attached to that file.
+When the batch project is loaded, this description will appear in any results window that displays filenames.
+(Note that for some file formats, the program will fill this field with the document's subject or title information if you leave it blank.)
 
 After you have selected your files, you can randomly sample a subset of these documents for your project.
 Normally, you will want to analyze all the documents that you have selected and ignore this feature. However, some research projects may require random sampling.
 For these situations, check the **Randomly sample** option and enter the percentage of documents to analyze.
 
-You can also filter documents based on content size. Enter into the field **Minimum document word count** the minimum number of words a document must have to be included in the batch.
+You can also filter documents based on content size.
+Enter into the field **Minimum document word count** the minimum number of words a document must have to be included in the batch.
 Any document which does not meet this threshold will be ignored during import.
 
 ![](../images/randomsample.png)
@@ -155,4 +154,5 @@ After you have specified your document structure and tests, click the `r keys("F
 
 ![](../images/batchscorestats.png)
 
-From here, you can review the [readability scores](#sec-reviewing-batch-scores), [box plots](#sec-reviewing-batch-box-plots), [histograms](#sec-reviewing-batch-histograms), [readability graphs](#sec-reviewing-readability-graphs), [Dolch statistics](#sec-reviewing-batch-dolch), and [difficult words](#sec-reviewing-batch-words). You may also want to review any [warnings](#sec-reviewing-batch-warnings) that were encountered while analyzing the documents.
+From here, you can review the [readability scores](#sec-reviewing-batch-scores), [box plots](#sec-reviewing-batch-box-plots), [histograms](#sec-reviewing-batch-histograms), [readability graphs](#sec-reviewing-readability-graphs), [Dolch statistics](#sec-reviewing-batch-dolch), and [difficult words](#sec-reviewing-batch-words).
+You may also want to review any [warnings](#sec-reviewing-batch-warnings) that were encountered while analyzing the documents.

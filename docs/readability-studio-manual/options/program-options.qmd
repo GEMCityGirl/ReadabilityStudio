@@ -13,19 +13,16 @@ source('../R/appdown.r')
 - How results (e.g., statistics and graphs) are displayed.
 - How projects connect to the documents they are analyzing.
 
-These options can be configured both globally and for individual projects. Note that changing options globally will affect all future projects, but will not affect currently existing projects.
+These options can be configured both globally and for individual projects.
+Note that changing options globally will affect all future projects, but will not affect currently existing projects.
 
 To set these options globally, click the `r keys("Options")` button on the **Tools** tab to open the **Options** dialog:
 
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/options-dlg.png")
-```
+![](../images/options-dlg.png){width=75% fig-align="center"}
 
 If you wish to change options for an individual project, then click the `r keys("Properties")` button on the **Home** tab to open the **Project Properties** dialog:
 
-```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/projectproperties.png")
-```
+![](../images/projectproperties.png){width=75% fig-align="center"}
 
 ## General Settings {#sec-options-general-settings}
 
@@ -35,7 +32,8 @@ The options on this page manage the program's general settings.
 
 **Import**: Click this button to import program settings and defaults from a file.
 
-**Export**: Click this button to export the current program settings to a file. This includes all your settings on the [**Options**](#sec-options-overview) dialog, your defaults for the [**New Project**](#sec-creating-standard-project) wizard, and your printer headers & footers.
+**Export**: Click this button to export the current program settings to a file.
+This includes all your settings on the [**Options**](#sec-options-overview) dialog, your defaults for the [**New Project**](#sec-creating-standard-project) wizard, and your printer headers & footers.
 
 **Reset**: Click this button to reset the program settings to the defaults.
 
@@ -113,11 +111,13 @@ The options on this page customize your general project settings.
 
 **Reviewer**: Enter in this field your name as it should appear in exported reports.
 
-**Status**: Enter in this field the status of the document(s) that this project is reviewing (e.g., *DRAFT*). This information will appear in reports when you [export all](#sec-export-all-options).
+**Status**: Enter in this field the status of the document(s) that this project is reviewing (e.g., *DRAFT*).
+This information will appear in reports when you [export all](#sec-export-all-options).
 
 **Batch options**
 
-**Minimum document word count**: Enter in this field the minimum number of words a document must have to be included in a batch. Any document which does not meet this threshold will be removed from a batch during the analysis.
+**Minimum document word count**: Enter in this field the minimum number of words a document must have to be included in a batch.
+Any document which does not meet this threshold will be removed from a batch during the analysis.
 
 **File path display**:
 
@@ -129,7 +129,9 @@ The options on this page customize your general project settings.
 
 ### Document {-}
 
-**Language**: Select from here the language of the document(s) that you will be analyzing. The language selected here will affect how syllables are counted and control which tests, word lists, and grammar features will be made available. For example, if Spanish is selected, then only Spanish tests will be available and the document will be analyzed using the Spanish syllable counter.
+**Language**: Select from here the language of the document(s) that you will be analyzing.
+The language selected here will affect how syllables are counted and control which tests, word lists, and grammar features will be made available.
+For example, if Spanish is selected, then only Spanish tests will be available and the document will be analyzed using the Spanish syllable counter.
 
 ::: {.notesection data-latex=""}
 This feature is only available if either *Professional* or *Language Pack* features are licensed.
@@ -140,11 +142,18 @@ This feature is only available if either *Professional* or *Language Pack* featu
 Linking and embedding
 :::
 
-**Embed the document's text into the project**: Select this option to save the source document's text directly into the project. When you open this project, it will not reanalyze your document. If your document has been edited, then those changes will not be reflected in this project.
+**Embed the document's text into the project**: Select this option to save the source document's text directly into the project.
+When you open this project, it will not reanalyze your document.
+If your document has been edited, then those changes will not be reflected in this project.
 
-This is useful for analyzing a snapshot of your work. For example, you could analyze an early draft of your work and have it embedded in the project. As you edit your work, opening this project will still show the results from the original draft. From here, you can create a new project for your revised work and compare its results against your early draft.
+This is useful for analyzing a snapshot of your work.
+For example, you could analyze an early draft of your work and have it embedded in the project.
+As you edit your work, opening this project will still show the results from the original draft.
+From here, you can create a new project for your revised work and compare its results against your early draft.
 
-**Reload the document when opening project**: Select this option to reload and reanalyze the source document the next time you open the project. Note that the source document's content will not be stored in the project. If the document cannot be found, then only the results from the previous analysis will be shown.
+**Reload the document when opening project**: Select this option to reload and reanalyze the source document the next time you open the project.
+Note that the source document's content will not be stored in the project.
+If the document cannot be found, then only the results from the previous analysis will be shown.
 ::::
 
 **Real-time update**: Select this option to automatically reload the project as the source document is edited externally.
@@ -156,15 +165,21 @@ The changes will take effect in *Readability Studio* only after you save the doc
 Real-time update works by checking the modified time on the document every five seconds; if the document's timestamp has changed, then it will be reloaded.
 :::
 
-**Document description**: Enter into this field a description of the document. Note that for some file formats, the program will pre-fill this field with the document's subject or title information.
+**Document description**: Enter into this field a description of the document.
+Note that for some file formats, the program will pre-fill this field with the document's subject or title information.
 
 ### Append Additional Document (e.g., policies, license agreements, addendums) {-}
 
-Enter into this field an additional document to append to the regular document. This document will be appended to the original document's text (or embedded text) during the project's analysis. This is useful if your project is analyzing a document, but also needs to include a generic template (e.g., license agreement). For example, you could specify a generic insurance policy in this field, and a customized entitlement as the main document. When the project analyzes the entitlement, the policy will be appended to the entitlement (in memory) and both will be analyzed as one document.
+Enter into this field an additional document to append to the regular document.
+This document will be appended to the original document's text (or embedded text) during the project's analysis.
+This is useful if your project is analyzing a document, but also needs to include a generic template (e.g., license agreement).
+For example, you could specify a generic insurance policy in this field, and a customized entitlement as the main document.
+When the project analyzes the entitlement, the policy will be appended to the entitlement (in memory) and both will be analyzed as one document.
 
 Note that for batch projects, this document will be appended to each document in the batch.
 
-Also note that your original document is not affected by this process. The original and additional documents are only combined within *Readability Studio* while it analyzes them.
+Also note that your original document is not affected by this process.
+The original and additional documents are only combined within *Readability Studio* while it analyzes them.
 
 \newpage
 
@@ -174,11 +189,14 @@ The options here specify how your documents should be parsed and analyzed.
 
 ### Consider Sentences Overly Long If\index{sentences!customizing!overly long detection} {-}
 
-**Longer than [22] words**: Select this option to consider sentences overly long if they exceed the word count specified in this field. The default word count is 22, but can be changed as needed.
+**Longer than [22] words**: Select this option to consider sentences overly long if they exceed the word count specified in this field.
+The default word count is 22, but can be changed as needed.
 
 Considering sentences with more than 22 words to be overly long is based on research from Kincaid (*Development*, 19).
 
-**Outside sentence outlier range**: Select this option to consider sentences overly long if they are comparatively longer than other sentences in the document. This option is only recommended for situations where most of the sentences have an acceptable length, but a few (very) long sentences skew the average. This option is useful for finding these extreme sentences.
+**Outside sentence outlier range**: Select this option to consider sentences overly long if they are comparatively longer than other sentences in the document.
+This option is only recommended for situations where most of the sentences have an acceptable length, but a few (very) long sentences skew the average.
+This option is useful for finding these extreme sentences.
 
 These sentences can be viewed in the [**Grammar**](#sec-reviewing-standard-grammar) and [**Long Sentences**](#sec-reviewing-sentences-breakdown) windows in the **Grammar** section.
 
