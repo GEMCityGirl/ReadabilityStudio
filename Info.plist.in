@@ -17,6 +17,50 @@
 	<key>CFBundleIconFile</key>
 	<string>app-logo.icns</string>
 
+  <key>CFBundleDocumentTypes</key>
+  <array>
+    <dict>
+      <key>CFBundleTypeExtensions</key>
+      <array>
+        <string>rsp</string>
+      </array>
+      <key>CFBundleTypeIconFile</key>
+      <string>app-logo.icns</string>
+      <key>CFBundleTypeMIMETypes</key>
+      <array>
+        <string>application/zip</string>
+      </array>
+      <key>CFBundleTypeName</key>
+      <string>Readabilit Studio Project</string>
+      <key>CFBundleTypeRole</key>
+      <string>Editor</string>
+      <key>LSTypeIsPackage</key>
+      <true/>
+      <key>NSPersistentStoreTypeKey</key>
+      <string>Binary</string>
+    </dict>
+    <dict>
+      <key>CFBundleTypeExtensions</key>
+      <array>
+        <string>rsbp</string>
+      </array>
+      <key>CFBundleTypeIconFile</key>
+      <string>app-logo.icns</string>
+      <key>CFBundleTypeMIMETypes</key>
+      <array>
+        <string>application/zip</string>
+      </array>
+      <key>CFBundleTypeName</key>
+      <string>Readabilit Studio Batch Project</string>
+      <key>CFBundleTypeRole</key>
+      <string>Editor</string>
+      <key>LSTypeIsPackage</key>
+      <true/>
+      <key>NSPersistentStoreTypeKey</key>
+      <string>Binary</string>
+    </dict>
+  </array>
+
   <key>LSApplicationCategoryType</key>
   <string>public.app-category.productivity</string>
 
