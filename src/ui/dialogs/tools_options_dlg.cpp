@@ -3190,9 +3190,13 @@ void ToolsOptionsDlg::CreateControls()
     if (GetSectionsBeingShown() == TextSection ||
         GetSectionsBeingShown() == GraphsSection ||
         GetSectionsBeingShown() == Statistics)
-        { mainSizer->SetMinSize(FromDIP(wxSize(500, 700))); }
+        {
+        mainSizer->SetMinSize(FromDIP(wxSize{ 500, 700 }));
+        }
     else
-        { mainSizer->SetMinSize(FromDIP(wxSize(650, 700))); }
+        {
+        mainSizer->SetMinSize(FromDIP(wxSize{ 650, 700 }));
+        }
 
     const int OPTION_INDENT_SIZE = wxSizerFlags::GetDefaultBorder()*3;
 

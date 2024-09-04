@@ -5488,10 +5488,10 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
         std::wstring sixCharsBuffer;
         std::wstring sixCharsPaperBuffer;
-        
+
         std::wstring dolchBuffer;
         std::wstring dolchPaperBuffer;
-        
+
         std::wstring nonDolchBuffer;
         std::wstring nonDolchPaperBuffer;
 
@@ -5964,7 +5964,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             SetFormattedTextAndRestoreInsertionPoint(textWindow, formattedBuffer.c_str());
 
 #ifdef DEBUG_EXPERIMENTAL_CODE
-            const auto tempFilePath = wxFileName::CreateTempFileName(_(L"Highlighted Report"));
+            const auto tempFilePath = wxFileName::CreateTempFileName(L"Highlighted Report");
             wxFile textWindowDump(tempFilePath, wxFile::OpenMode::write);
             if (textWindowDump.IsOpened())
                 {

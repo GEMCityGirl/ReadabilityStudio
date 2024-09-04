@@ -424,7 +424,7 @@ LuaEditorDlg::LuaEditorDlg(
                     // the same indent as the line it's attached to.
                     // Also, add 3; this is just a hack to account for the width of the box, there
                     // doesn't seem to be any way to get it directly from Scintilla.
-                    int indent = editor->GetLineIndentation(lineNumber) + FromDIP(3);
+                    const int indent = editor->GetLineIndentation(lineNumber) + FromDIP(3);
 
                     const int widthAnn = editor->TextWidth(editor->ERROR_ANNOTATION_STYLE,
                                                            errorMessage + wxString(indent, L' '));

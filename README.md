@@ -87,7 +87,7 @@ Build the program as follows:
 
 ```
 cmake .
-cmake --build . --target all  -j $(nproc)
+cmake --build . --target all -j $(nproc)
 ```
 
 Build an AppImage:
