@@ -3201,7 +3201,7 @@ void ToolsOptionsDlg::CreateControls()
     const int OPTION_INDENT_SIZE = wxSizerFlags::GetDefaultBorder()*3;
 
     m_sideBar = new SideBarBook(this, wxID_ANY);
-    mainSizer->Add(m_sideBar, 1, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(m_sideBar, wxSizerFlags{ 1 }.Expand().Border());
 
     wxGetApp().UpdateSideBarTheme(m_sideBar->GetSideBar());
 
