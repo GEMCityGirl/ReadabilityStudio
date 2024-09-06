@@ -12,6 +12,8 @@ ShowLanguageDialog=yes
 LanguageDetectionMethod=locale
 AppID={{FBFBEAB6-622A-4E16-893D-216C25FF6A69}
 AppendDefaultDirName=no
+ArchitecturesAllowed=x64
+ArchitecturesInstallIn64BitMode=x64
 ; Windows 7 SP2 required, but don't use MinVersion because some
 ; customized Windows systems have their OS version messed up and InnoSetup can't
 ; determine the version.
@@ -31,6 +33,7 @@ Source: ..\..\docs\readability-studio-manual\docs-manual\*; DestDir: {app}\reada
 Source: ..\..\docs\readability-studio-manual\docs-online\*; DestDir: {app}\readability-studio-manual\online; Components: HelpFiles; Excludes: "thumbs.db,*.tex,*.log,README.md,\.git"; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\..\docs\readability-test-reference\docs\readability-test-reference.pdf; DestDir: {app}\readability-studio-manual; Components: HelpFiles; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\..\docs\shortcuts-cheatsheet\docs\shortcuts-cheatsheet.pdf; DestDir: {app}\readability-studio-manual; Components: HelpFiles; Flags: replacesameversion restartreplace recursesubdirs
+Source: ..\..\docs\release-notes\docs\release-notes.pdf; DestDir: {app}\readability-studio-manual; Components: HelpFiles; Flags: replacesameversion restartreplace recursesubdirs
 ;FUTURE-RELEASE Source: ..\..\docs\readability-studio-api\*; DestDir: {app}\readability-studio-api\api; Components: HelpFiles; Excludes: "thumbs.db,*.tex,*.log,README.md,\.git"; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\..\docs\lua-5.4\doc\*; DestDir: {app}\readability-studio-manual\lua-5.4\doc; Components: HelpFiles; Excludes: "thumbs.db"; Flags: replacesameversion restartreplace recursesubdirs
 ; examples
