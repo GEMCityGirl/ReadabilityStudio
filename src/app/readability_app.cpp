@@ -5230,13 +5230,13 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
     wxString updateFileContent, contentType, statusText;
 #ifdef __WXOSX__
     wxString updatedFilePath =
-        _DT(L"https://oleandersoftware.com/downloads/readabilitystudio/CurrentMacVersionReadabilityStudio.txt");
+        _DT(L"https://readabilitystudio.com/downloads/readabilitystudio/CurrentMacVersionReadabilityStudio.txt");
     int responseCode;
     if (!wxGetApp().GetWebHarvester().ReadWebPage(updatedFilePath, updateFileContent, contentType,
                                                   statusText, responseCode, false))
         {
-        updatedFilePath = _DT(L"https://oleandersoftware.com/downloads/readabilitystudio/"
-                              L"CurrentVersionReadabilityStudio.txt");
+        updatedFilePath =
+            _DT(L"https://readabilitystudio.com/downloads/readabilitystudio/CurrentVersionReadabilityStudio.txt");
         if (!wxGetApp().GetWebHarvester().ReadWebPage(updatedFilePath, updateFileContent,
                                                       contentType, statusText, responseCode, false))
             {
@@ -5248,8 +5248,8 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
             }
         }
 #else
-    wxString updatedFilePath = _DT(L"https://oleandersoftware.com/downloads/readabilitystudio/"
-                                   L"CurrentVersionReadabilityStudio.txt");
+    wxString updatedFilePath =
+        _DT(L"https://readabilitystudio.com/downloads/readabilitystudio/CurrentVersionReadabilityStudio.txt");
     int responseCode;
     if (!wxGetApp().GetWebHarvester().ReadWebPage(updatedFilePath, updateFileContent, contentType,
                                                   statusText, responseCode, false))
@@ -5272,7 +5272,7 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
                          wxGetApp().GetAppName(), wxYES_NO | wxICON_QUESTION) == wxYES)
             {
             if (!::wxLaunchDefaultBrowser(
-                    _DT(L"https://oleandersoftware.com/readabilitystudioupdate.html")))
+                    _DT(L"https://readabilitystudio.com/readabilitystudioupdate.html")))
                 {
                 wxMessageBox(_(L"Unable to open default browser. Please make sure that you have an "
                                "Internet browser installed and are connected to the Internet."),
