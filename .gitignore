@@ -99,3 +99,4 @@
 *.db
 /cpp.hint
 /docs/_variables.yml
+/docs/readability-studio-api/_variables.yml
