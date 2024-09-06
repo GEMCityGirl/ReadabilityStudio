@@ -5679,11 +5679,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             loadTextBuffer(isDolchWordThemed, textLegendsThemed.dolchWindowLegend, dolchBuffer);
             loadPaperTextBuffer(isDolchWordThemed, textLegendsThemed.dolchWindowLegend,
                                 dolchPaperBuffer);
-            }
 
-        // Non-Dolch
-        if (IsIncludingDolchSightWords())
-            {
+            // Non-Dolch
             nonDolchBuffer.reserve(textBufferLength);
             nonDolchPaperBuffer.reserve(textBufferLength);
             loadTextBuffer(isNotDolchWordThemed, textLegendsThemed.nonDolchWordsLegend,
