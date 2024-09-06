@@ -368,6 +368,12 @@ if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/docs/release-notes/docs/")
                    COMMAND ${CMAKE_COMMAND} -E make_directory
                    "${CMAKE_CURRENT_SOURCE_DIR}/docs/release-notes/docs/")
 endif()
+if(WIN32 AND NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/release/")
+    add_custom_command(TARGET ${PROJECT_NAME}
+                   POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E make_directory
+                   "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/release/")
+endif()
 
 # On macOS, move the resource files up from the binary folder to the resources folder
 # (note that iOS has a flat folder structure, so only do this for macOS).
@@ -466,7 +472,7 @@ if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
     if(WIN32)
         add_custom_command(TARGET ${PROJECT_NAME}
                            POST_BUILD
-                           COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:${PROJECT_NAME}>" "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/release"
+                           COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:${PROJECT_NAME}>" "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/release/"
                            COMMENT "Copying binary to installer folder.")
     elseif(UNIX AND NOT APPLE)
         add_custom_command(TARGET ${PROJECT_NAME}
