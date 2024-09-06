@@ -29,10 +29,6 @@ Application.MergeWordLists(
     Debug.GetScriptFolderPath().."words/base-non-personal.txt")
 
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."words/proper-nouns/personal.txt",
-    Debug.GetScriptFolderPath().."words/proper-nouns/personal.txt")
-
-Application.MergeWordLists(
     Debug.GetScriptFolderPath().."words/stop-words/proper-nouns-stoplist.txt",
     Debug.GetScriptFolderPath().."words/stop-words/proper-nouns-stoplist.txt")
 
