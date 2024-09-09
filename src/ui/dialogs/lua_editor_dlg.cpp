@@ -412,7 +412,10 @@ LuaEditorDlg::LuaEditorDlg(
                         {
                         errorMessage.replace(0, foundPos, _("Error"));
                         }
-                    editor->GotoLine(lineNumber);
+                    // if scrolling up, then step back up an extra line so that we can see it
+                    // after adding the annotation beneath it
+                    editor->GotoLine((editor->GetFirstVisibleLine() < lineNumber) ? lineNumber :
+                                                                                    lineNumber - 1);
                     editor->AnnotationSetText(lineNumber, errorMessage);
                     editor->AnnotationSetStyle(lineNumber, editor->ERROR_ANNOTATION_STYLE);
 
