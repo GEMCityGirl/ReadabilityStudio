@@ -1,3 +1,10 @@
+```{r}
+#| include: false
+#| eval: true
+
+source('../R/appdown.r')
+```
+
 ## Open-Source Tools & Content {.unnumbered}
 
 The following open-source software, artwork, and example files were used to create *Readability Studio*.
