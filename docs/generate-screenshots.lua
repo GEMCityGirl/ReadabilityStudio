@@ -499,7 +499,7 @@ Application.RemoveAllCustomTests()
 
 -- Standard project (for misspellings)
 sp = StandardProject(ScreenshotProjectsFolder .. "WebHarvester.rsp")
-sp:SelectWindow(SideBarSection.Grammar, ListType.MisspelledWords)
+sp:SelectWindow(SideBarSection.Grammar, ListType.WordingErrors)
 ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "misspellings." .. FileExtension, 1)
 sp:Close()
 Application.RemoveAllCustomTests()
