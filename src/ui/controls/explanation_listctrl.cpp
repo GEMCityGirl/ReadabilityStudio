@@ -14,8 +14,6 @@ wxIMPLEMENT_DYNAMIC_CLASS(ExplanationListCtrl, wxSplitterWindow);
 
 ExplanationListExportOptions ExplanationListCtrl::m_lastCopyOption =
     ExplanationListExportOptions::ExportGrid;
-ExplanationListExportOptions ExplanationListCtrl::m_lastPrintOption =
-    ExplanationListExportOptions::ExportGrid;
 ExplanationListExportOptions ExplanationListCtrl::m_lastSaveOption =
     ExplanationListExportOptions::ExportBoth;
 
@@ -62,232 +60,57 @@ void ExplanationListCtrl::OnMenuCommand(wxCommandEvent& event)
 //------------------------------------------------------
 void ExplanationListCtrl::OnPreview([[maybe_unused]] wxCommandEvent& event)
     {
-    wxArrayString choices, descriptions;
-    choices.Add(_(L"Grid"));
-    choices.Add(_(L"Explanations"));
-    descriptions.Add(_(L"Print the grid."));
-    descriptions.Add(
-        _(L"Print a report of the explanations associated with the items in the grid."));
-    RadioBoxDlg choiceDlg(this, _(L"Print Preview"), wxString{},
-                          _(L"Select which section to print preview:"), _(L"Print Preview"),
-                          choices, descriptions);
-    choiceDlg.SetSelection(static_cast<int>(m_lastPrintOption));
-    if (choiceDlg.ShowModal() != wxID_OK)
-        {
-        return;
-        }
-    PrintPreview(static_cast<ExplanationListExportOptions>(choiceDlg.GetSelection()));
-    m_lastPrintOption = static_cast<ExplanationListExportOptions>(choiceDlg.GetSelection());
+    PrintPreview();
     }
 
 //------------------------------------------------------
 void ExplanationListCtrl::OnPrint([[maybe_unused]] wxCommandEvent& event)
     {
-    wxArrayString choices, descriptions;
-    choices.Add(_(L"Grid"));
-    choices.Add(_(L"Explanations"));
-    choices.Add(_(L"Both"));
-    descriptions.Add(_(L"Print the grid."));
-    descriptions.Add(
-        _(L"Print a report of the explanations associated with the items in the grid."));
-    descriptions.Add(_(L"Print the grid and explanations."));
-    RadioBoxDlg choiceDlg(this, _(L"Print List"), wxString{}, _(L"Select which section to print:"),
-                          _(L"Print"), choices, descriptions);
-    choiceDlg.SetSelection(static_cast<int>(m_lastPrintOption));
-    if (choiceDlg.ShowModal() != wxID_OK)
-        {
-        return;
-        }
-    Print(static_cast<ExplanationListExportOptions>(choiceDlg.GetSelection()));
-    m_lastPrintOption = static_cast<ExplanationListExportOptions>(choiceDlg.GetSelection());
+    Print();
     }
 
 //------------------------------------------------------
-void ExplanationListCtrl::PrintPreview(
-    [[maybe_unused]] const ExplanationListExportOptions exportOptions /*= ExportBoth*/)
+void ExplanationListCtrl::PrintPreview()
     {
 #if defined(__WXMSW__)
-    if (exportOptions == ExplanationListExportOptions::ExportGrid)
+    if (m_printData)
         {
-        if (m_printData)
-            {
-            GetResultsListCtrl()->SetPrinterSettings(m_printData);
-            }
-        GetResultsListCtrl()->SetLabel(GetLabel());
-        GetResultsListCtrl()->SetLeftPrinterHeader(GetLeftPrinterHeader());
-        GetResultsListCtrl()->SetCenterPrinterHeader(GetCenterPrinterHeader());
-        GetResultsListCtrl()->SetRightPrinterHeader(GetRightPrinterHeader());
-        GetResultsListCtrl()->SetLeftPrinterFooter(GetLeftPrinterFooter());
-        GetResultsListCtrl()->SetCenterPrinterFooter(GetCenterPrinterFooter());
-        GetResultsListCtrl()->SetRightPrinterFooter(GetRightPrinterFooter());
-        GetResultsListCtrl()->SetWatermark(GetWatermark());
-
-        wxCommandEvent gridPreviewEvent(wxEVT_MENU, wxID_PREVIEW);
-        GetResultsListCtrl()->ProcessWindowEvent(gridPreviewEvent);
+        GetResultsListCtrl()->SetPrinterSettings(m_printData);
         }
-    else if (exportOptions == ExplanationListExportOptions::ExportExplanations)
-        {
-        HtmlTablePrintout* printOut = new HtmlTablePrintout(GetLabel());
-        printOut->SetLeftPrinterHeader(GetLeftPrinterHeader());
-        printOut->SetCenterPrinterHeader(GetCenterPrinterHeader());
-        printOut->SetRightPrinterHeader(GetRightPrinterHeader());
-        printOut->SetLeftPrinterFooter(GetLeftPrinterFooter());
-        printOut->SetCenterPrinterFooter(GetCenterPrinterFooter());
-        printOut->SetRightPrinterFooter(GetRightPrinterFooter());
-        printOut->SetWatermark(GetWatermark());
+    GetResultsListCtrl()->SetLabel(GetLabel());
+    GetResultsListCtrl()->SetLeftPrinterHeader(GetLeftPrinterHeader());
+    GetResultsListCtrl()->SetCenterPrinterHeader(GetCenterPrinterHeader());
+    GetResultsListCtrl()->SetRightPrinterHeader(GetRightPrinterHeader());
+    GetResultsListCtrl()->SetLeftPrinterFooter(GetLeftPrinterFooter());
+    GetResultsListCtrl()->SetCenterPrinterFooter(GetCenterPrinterFooter());
+    GetResultsListCtrl()->SetRightPrinterFooter(GetRightPrinterFooter());
+    GetResultsListCtrl()->SetWatermark(GetWatermark());
 
-        HtmlTablePrintout* printOutForPrinting = new HtmlTablePrintout(GetLabel());
-        printOutForPrinting->SetLeftPrinterHeader(GetLeftPrinterHeader());
-        printOutForPrinting->SetCenterPrinterHeader(GetCenterPrinterHeader());
-        printOutForPrinting->SetRightPrinterHeader(GetRightPrinterHeader());
-        printOutForPrinting->SetLeftPrinterFooter(GetLeftPrinterFooter());
-        printOutForPrinting->SetCenterPrinterFooter(GetCenterPrinterFooter());
-        printOutForPrinting->SetRightPrinterFooter(GetRightPrinterFooter());
-        printOutForPrinting->SetWatermark(GetWatermark());
-
-        for (long i = 0; i < GetResultsListCtrl()->GetItemCount(); ++i)
-            {
-            auto pos = m_explanations.find(GetResultsListCtrl()->GetItemTextEx(i, 0));
-            if (pos != m_explanations.end())
-                {
-                printOut->AddTable(pos->second);
-                printOutForPrinting->AddTable(pos->second);
-                }
-            }
-
-        wxPrinterDC* dc = nullptr;
-        wxPrinterDC* dc2 = nullptr;
-        if (m_printData)
-            {
-            dc = new wxPrinterDC(*m_printData);
-            dc2 = new wxPrinterDC(*m_printData);
-            }
-        else
-            {
-            wxPrintData pd;
-            dc = new wxPrinterDC(pd);
-            dc2 = new wxPrinterDC(pd);
-            }
-        printOut->SetDC(dc);
-        printOutForPrinting->SetDC(dc2);
-
-        wxPrintPreview* preview = new wxPrintPreview(printOut, printOutForPrinting, m_printData);
-        if (!preview->IsOk())
-            {
-            wxDELETE(preview);
-            wxDELETE(dc);
-            wxDELETE(dc2);
-            wxMessageBox(_(L"An error occurred while previewing.\n"
-                           "Your default printer may not be set correctly."),
-                         _(L"Print Preview"), wxOK | wxICON_QUESTION);
-            return;
-            }
-        int x, y, width, height;
-        wxClientDisplayRect(&x, &y, &width, &height);
-        wxPreviewFrame* frame = new wxPreviewFrame(preview, this, _(L"Print Preview"),
-                                                   wxDefaultPosition, wxSize(width, height));
-
-        frame->Centre(wxBOTH);
-        frame->Initialize();
-        frame->Show(true);
-
-        delete dc;
-        delete dc2;
-        }
+    wxCommandEvent gridPreviewEvent(wxEVT_MENU, wxID_PREVIEW);
+    GetResultsListCtrl()->ProcessWindowEvent(gridPreviewEvent);
 #else
     wxFAIL_MSG(L"Print preview is Windows only!");
 #endif
     }
 
 //------------------------------------------------------
-void ExplanationListCtrl::Print(const ExplanationListExportOptions exportOptions /*= ExportBoth*/)
+void ExplanationListCtrl::Print()
     {
-    if (exportOptions == ExplanationListExportOptions::ExportGrid ||
-        exportOptions == ExplanationListExportOptions::ExportBoth)
+    if (m_printData)
         {
-        if (m_printData)
-            {
-            GetResultsListCtrl()->SetPrinterSettings(m_printData);
-            }
-        GetResultsListCtrl()->SetLabel(GetLabel());
-        GetResultsListCtrl()->SetLeftPrinterHeader(GetLeftPrinterHeader());
-        GetResultsListCtrl()->SetCenterPrinterHeader(GetCenterPrinterHeader());
-        GetResultsListCtrl()->SetRightPrinterHeader(GetRightPrinterHeader());
-        GetResultsListCtrl()->SetLeftPrinterFooter(GetLeftPrinterFooter());
-        GetResultsListCtrl()->SetCenterPrinterFooter(GetCenterPrinterFooter());
-        GetResultsListCtrl()->SetRightPrinterFooter(GetRightPrinterFooter());
-        GetResultsListCtrl()->SetWatermark(GetWatermark());
-
-        wxCommandEvent gridPreviewEvent(wxEVT_MENU, wxID_PRINT);
-        GetResultsListCtrl()->ProcessWindowEvent(gridPreviewEvent);
+        GetResultsListCtrl()->SetPrinterSettings(m_printData);
         }
-    if (exportOptions == ExplanationListExportOptions::ExportExplanations ||
-        exportOptions == ExplanationListExportOptions::ExportBoth)
-        {
-        HtmlTablePrintout* printOut = new HtmlTablePrintout(GetLabel());
-        printOut->SetLeftPrinterHeader(GetLeftPrinterHeader());
-        printOut->SetCenterPrinterHeader(GetCenterPrinterHeader());
-        printOut->SetRightPrinterHeader(GetRightPrinterHeader());
-        printOut->SetLeftPrinterFooter(GetLeftPrinterFooter());
-        printOut->SetCenterPrinterFooter(GetCenterPrinterFooter());
-        printOut->SetRightPrinterFooter(GetRightPrinterFooter());
-        printOut->SetWatermark(GetWatermark());
+    GetResultsListCtrl()->SetLabel(GetLabel());
+    GetResultsListCtrl()->SetLeftPrinterHeader(GetLeftPrinterHeader());
+    GetResultsListCtrl()->SetCenterPrinterHeader(GetCenterPrinterHeader());
+    GetResultsListCtrl()->SetRightPrinterHeader(GetRightPrinterHeader());
+    GetResultsListCtrl()->SetLeftPrinterFooter(GetLeftPrinterFooter());
+    GetResultsListCtrl()->SetCenterPrinterFooter(GetCenterPrinterFooter());
+    GetResultsListCtrl()->SetRightPrinterFooter(GetRightPrinterFooter());
+    GetResultsListCtrl()->SetWatermark(GetWatermark());
 
-        for (long i = 0; i < GetResultsListCtrl()->GetItemCount(); ++i)
-            {
-            auto pos = m_explanations.find(GetResultsListCtrl()->GetItemTextEx(i, 0));
-            if (pos != m_explanations.end())
-                {
-                printOut->AddTable(pos->second);
-                }
-            }
-
-#if defined(__WXMSW__) || defined(__WXOSX__)
-        wxPrinterDC* dc = nullptr;
-#else
-        wxPostScriptDC* dc = nullptr;
-#endif
-        if (m_printData)
-            {
-#if defined(__WXMSW__) || defined(__WXOSX__)
-            dc = new wxPrinterDC(*m_printData);
-#else
-            dc = new wxPostScriptDC(*m_printData);
-#endif
-            }
-        else
-            {
-            wxPrintData pd;
-#if defined(__WXMSW__) || defined(__WXOSX__)
-            dc = new wxPrinterDC(pd);
-#else
-            dc = new wxPostScriptDC(pd);
-#endif
-            }
-        printOut->SetDC(dc);
-
-        wxPrinter printer;
-        if (m_printData)
-            {
-            printer.GetPrintDialogData().SetPrintData(*m_printData);
-            }
-        if (!printer.Print(this, printOut, true))
-            {
-            // Just show a message if a real error occurred. They may have just cancelled.
-            if (printer.GetLastError() == wxPRINTER_ERROR)
-                {
-                wxMessageBox(_(L"An error occurred while printing.\n"
-                               "Your default printer may not be set correctly."),
-                             _(L"Print"), wxOK | wxICON_QUESTION);
-                }
-            }
-        if (m_printData)
-            {
-            *m_printData = printer.GetPrintDialogData().GetPrintData();
-            }
-        wxDELETE(printOut);
-        wxDELETE(dc);
-        }
+    wxCommandEvent gridPreviewEvent(wxEVT_MENU, wxID_PRINT);
+    GetResultsListCtrl()->ProcessWindowEvent(gridPreviewEvent);
     }
 
 //------------------------------------------------------

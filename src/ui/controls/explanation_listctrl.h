@@ -64,14 +64,10 @@ class ExplanationListCtrl final : public wxSplitterWindow
         @param exportOptions Options for how to format the output.*/
     bool Save(const wxFileName& filePath, const ExplanationListExportOptions exportOptions =
                                               ExplanationListExportOptions::ExportBoth) const;
-    /** @brief Prints the control.
-        @param exportOptions Options for how to format the output.*/
-    void Print(const ExplanationListExportOptions exportOptions =
-                   ExplanationListExportOptions::ExportBoth);
-    /** @brief Print previews the control.
-        @param exportOptions Options for how to format the output.*/
-    void PrintPreview([[maybe_unused]] const ExplanationListExportOptions exportOptions =
-                          ExplanationListExportOptions::ExportBoth);
+    /** @brief Prints the grid area of the control.*/
+    void Print();
+    /** @brief Print previews the grid area of the control.*/
+    void PrintPreview();
 
     /** @brief Sets the printer settings.
         @param printData A pointer to the printer settings to use.*/
@@ -256,7 +252,6 @@ class ExplanationListCtrl final : public wxSplitterWindow
 
     // state information
     static ExplanationListExportOptions m_lastCopyOption;
-    static ExplanationListExportOptions m_lastPrintOption;
     static ExplanationListExportOptions m_lastSaveOption;
 
     wxDECLARE_DYNAMIC_CLASS(ExplanationListCtrl);
