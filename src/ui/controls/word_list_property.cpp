@@ -1,6 +1,6 @@
 #include "word_list_property.h"
 
-wxIMPLEMENT_DYNAMIC_CLASS(WordListProperty, wxLongStringProperty);
+wxIMPLEMENT_DYNAMIC_CLASS(WordListProperty, wxLongStringProperty)
 
 //------------------------------------------------------
 WordListProperty::WordListProperty(const wxString& label /*= wxPG_LABEL*/,

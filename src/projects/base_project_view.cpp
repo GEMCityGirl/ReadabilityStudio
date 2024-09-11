@@ -9,7 +9,7 @@
 
 wxDECLARE_APP(ReadabilityApp);
 
-wxIMPLEMENT_DYNAMIC_CLASS(BaseProjectView, wxView);
+wxIMPLEMENT_DYNAMIC_CLASS(BaseProjectView, wxView)
 
 IdRange BaseProjectView::m_customTestSidebarIdRange(SIDEBAR_CUSTOM_TESTS_START_ID, 1000);
 

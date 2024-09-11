@@ -8,7 +8,7 @@
 
 #include "raygorgraph.h"
 
-wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::PolygonReadabilityGraph);
+wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::PolygonReadabilityGraph)
 
 using namespace Wisteria;
 using namespace Wisteria::Colors;

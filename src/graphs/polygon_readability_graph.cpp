@@ -9,4 +9,4 @@
 #include "polygon_readability_graph.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::PolygonReadabilityGraph,
-                          Wisteria::Graphs::GroupGraph2D);
+                          Wisteria::Graphs::GroupGraph2D)

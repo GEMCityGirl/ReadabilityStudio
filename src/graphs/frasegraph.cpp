@@ -8,7 +8,7 @@
 
 #include "frasegraph.h"
 
-wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::PolygonReadabilityGraph);
+wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::PolygonReadabilityGraph)
 
 using namespace Wisteria;
 using namespace Wisteria::Colors;

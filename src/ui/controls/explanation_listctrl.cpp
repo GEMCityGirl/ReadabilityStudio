@@ -10,7 +10,7 @@
 
 using namespace Wisteria::UI;
 
-wxIMPLEMENT_DYNAMIC_CLASS(ExplanationListCtrl, wxSplitterWindow);
+wxIMPLEMENT_DYNAMIC_CLASS(ExplanationListCtrl, wxSplitterWindow)
 
 ExplanationListExportOptions ExplanationListCtrl::m_lastCopyOption =
     ExplanationListExportOptions::ExportGrid;
