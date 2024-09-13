@@ -252,7 +252,7 @@ void ProjectWizardDlg::CreateControls()
             new wxTextCtrl(page, wxID_ANY, wxString{}, wxDefaultPosition, wxDefaultSize,
                            wxTE_RICH2 | wxBORDER_THEME, wxGenericValidator(&m_filePath));
         m_filePathEdit->AutoCompleteFileNames();
-        fileBrowseBoxSizer->Add(m_filePathEdit, 1, wxEXPAND);
+        fileBrowseBoxSizer->Add(m_filePathEdit, wxSizerFlags{ 1 }.Expand());
 
         m_fileBrowseButton =
             new wxBitmapButton(page, ID_FILE_BROWSE_BUTTON,
@@ -944,7 +944,7 @@ void ProjectWizardDlg::CreateControls()
         UpdateTestsUI();
         UpdateTestSelectionMethodUI();
         optionsSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-        optionsSizer->Add(m_testTypesSizer, 1, wxEXPAND);
+        optionsSizer->Add(m_testTypesSizer, wxSizerFlags{ 1 }.Expand());
 
         pageSizer->Add(optionsSizer, 1, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
         }

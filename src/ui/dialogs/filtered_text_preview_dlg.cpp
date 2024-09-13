@@ -20,18 +20,18 @@ void FilteredTextPreviewDlg::CreateControls()
                                            FromDIP(wxSize(500, 300)),
                                            wxTE_MULTILINE | wxTE_RICH2 | wxTE_READONLY,
                                            wxGenericValidator(&m_filteredValue)),
-                            1, wxEXPAND);
+                            wxSizerFlags{ 1 }.Expand());
 
     previewWindowSizer->AddSpacer(wxSizerFlags::GetDefaultBorder() * 2);
 
     m_collpane = new wxCollapsiblePane(this, wxID_ANY, _(L"Details:"));
-    previewWindowSizer->Add(m_collpane, 0, wxEXPAND);
+    previewWindowSizer->Add(m_collpane, wxSizerFlags{}.Expand());
 
     wxBoxSizer* filteredOutSizer = new wxBoxSizer(wxVERTICAL);
     filteredOutSizer->Add(new wxStaticText(m_collpane->GetPane(), wxID_STATIC,
                                            _(L"The following are being filtered:")));
     wxStaticText* infoLabel = new wxStaticText(m_collpane->GetPane(), wxID_STATIC, m_infoLabel);
-    filteredOutSizer->Add(infoLabel, 0, wxEXPAND);
+    filteredOutSizer->Add(infoLabel, wxSizerFlags{}.Expand());
     m_collpane->GetPane()->SetSizer(filteredOutSizer);
     m_collpane->Expand();
     filteredOutSizer->SetSizeHints(m_collpane->GetPane());

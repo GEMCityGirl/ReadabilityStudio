@@ -681,7 +681,7 @@ void CustomTestDlg::CreateControls()
 
     wxGetApp().UpdateSideBarTheme(m_sideBarBook->GetSideBar());
 
-    mainSizer->Add(m_sideBarBook, 1, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(m_sideBarBook, wxSizerFlags{ 1 }.Expand().Border());
 
     m_sideBarBook->GetImageList().push_back(
         wxGetApp().GetResourceManager().GetSVG(L"ribbon/bullet.svg"));
@@ -692,7 +692,7 @@ void CustomTestDlg::CreateControls()
                                     wxDefaultSize, wxTAB_TRAVERSAL);
         wxBoxSizer* editorSectionSizer = new wxBoxSizer(wxVERTICAL);
         wxBoxSizer* mainPageSizer = new wxBoxSizer(wxHORIZONTAL);
-        mainPageSizer->Add(editorSectionSizer, wxSizerFlags(1).Expand());
+        mainPageSizer->Add(editorSectionSizer, wxSizerFlags{ 1 }.Expand());
         m_generalPage->SetSizer(mainPageSizer);
         m_sideBarBook->AddPage(m_generalPage, _(L"General Settings"), ID_GENERAL_PAGE, true);
 
@@ -701,14 +701,12 @@ void CustomTestDlg::CreateControls()
             {
             wxStaticBoxSizer* nameBoxSizer = new wxStaticBoxSizer(
                 new wxStaticBox(m_generalPage, wxID_ANY, _(L"Test name:")), wxVERTICAL);
-            editorSectionSizer->Add(nameBoxSizer, 0, wxEXPAND | wxALL,
-                                    wxSizerFlags::GetDefaultBorder());
+            editorSectionSizer->Add(nameBoxSizer, wxSizerFlags{}.Expand().Border());
 
             m_testNameCtrl = new wxTextCtrl(nameBoxSizer->GetStaticBox(), ID_TEST_NAME_FIELD,
                                             wxString{}, wxDefaultPosition, wxDefaultSize, 0,
                                             wxTextValidator(wxFILTER_NONE, &m_testName));
-            nameBoxSizer->Add(m_testNameCtrl, 1, wxEXPAND | wxALL,
-                              wxSizerFlags::GetDefaultBorder());
+            nameBoxSizer->Add(m_testNameCtrl, wxSizerFlags{ 1 }.Expand().Border());
             editorSectionSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             }
             // test result type
@@ -941,7 +939,7 @@ void CustomTestDlg::CreateControls()
             Connect(pgMan->GetId(), wxEVT_PG_CHANGED,
                     wxPropertyGridEventHandler(CustomTestDlg::OnPropertyGridChange));
 
-            panelSizer->Add(pgMan, 1, wxEXPAND);
+            panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
             }
             // proper nouns and numbers
             {
@@ -979,7 +977,7 @@ void CustomTestDlg::CreateControls()
 
             pgMan->SelectProperty(GetProperNounsLabel());
 
-            panelSizer->Add(pgMan, 1, wxEXPAND);
+            panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
             }
         }
 
@@ -1010,7 +1008,7 @@ void CustomTestDlg::CreateControls()
                                                             wxPG_BOOL_USE_CHECKBOX, true);
             }
 
-        wizardPageSizer->Add(m_associationPropertyGrid, 1, wxEXPAND);
+        wizardPageSizer->Add(m_associationPropertyGrid, wxSizerFlags{ 1 }.Expand());
         }
 
     mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL | wxHELP), 0, wxEXPAND | wxALL,

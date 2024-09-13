@@ -150,7 +150,7 @@ void WordListDlg::AddSingleColumnPage(Wisteria::UI::SideBarBook* sideBar, const 
     list->DistributeColumns();
     BaseProjectDoc::UpdateListOptions(list);
 
-    panelSizer->Add(list, 1, wxEXPAND);
+    panelSizer->Add(list, wxSizerFlags{ 1 }.Expand());
     }
 
 //---------------------------------------------
@@ -230,7 +230,7 @@ void WordListDlg::CreateControls()
         wxGetApp().GetResourceManager().GetSVG(L"tests/spache-test.svg"));
     m_sideBar->GetImageList().push_back(wxGetApp().GetResourceManager().GetSVG(L"tests/dolch.svg"));
     m_sideBar->GetSideBar()->Realize();
-    mainSizer->Add(m_sideBar, 1, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(m_sideBar, wxSizerFlags{ 1 }.Expand().Border());
 
         // Dolch
         {
@@ -285,7 +285,7 @@ void WordListDlg::CreateControls()
         list->DistributeColumns();
         BaseProjectDoc::UpdateListOptions(list);
 
-        panelSizer->Add(list, 1, wxEXPAND);
+        panelSizer->Add(list, wxSizerFlags{ 1 }.Expand());
         }
 
     AddSingleColumnPage(m_sideBar, HARRIS_JACOBSON_PAGE_ID, HARRIS_JACOBSON_LIST_ID,

@@ -197,7 +197,7 @@ void AboutDialogEx::CreateControls()
         updateSerialNumberSizer->Add(new wxTextCtrl(mainPage, wxID_ANY, wxEmptyString,
                                                     wxDefaultPosition, wxDefaultSize, 0,
                                                     wxGenericValidator(&m_serialNumber)),
-                                     1, wxEXPAND);
+                                     wxSizerFlags{ 1 }.Expand());
         updateSerialNumberSizer->Add(new wxButton(mainPage, ID_UPDATE_LICENSE, _(L"Update")));
         mainPanelSizer->Add(updateSerialNumberSizer,
                             wxSizerFlags().Expand().Border(wxLEFT | wxRIGHT));

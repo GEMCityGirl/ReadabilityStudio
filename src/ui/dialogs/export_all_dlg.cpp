@@ -209,17 +209,16 @@ void ExportAllDlg::CreateControls()
     wxStaticBox* pathBox = new wxStaticBox(
         this, wxID_ANY, m_fileMode ? _(L"File to export to:") : _(L"Folder to export to:"));
     wxStaticBoxSizer* pathBoxBoxSizer = new wxStaticBoxSizer(pathBox, wxVERTICAL);
-    itemsBoxSizer->Add(pathBoxBoxSizer, 1, wxEXPAND);
+    itemsBoxSizer->Add(pathBoxBoxSizer, wxSizerFlags{ 1 }.Expand());
 
     wxBoxSizer* folderBrowseBoxSizer = new wxBoxSizer(wxHORIZONTAL);
-    pathBoxBoxSizer->Add(folderBrowseBoxSizer, 0, wxEXPAND | wxALL,
-                         wxSizerFlags::GetDefaultBorder());
+    pathBoxBoxSizer->Add(folderBrowseBoxSizer, wxSizerFlags{}.Expand().Border());
 
     wxTextCtrl* folderPathEdit = new wxTextCtrl(
         pathBoxBoxSizer->GetStaticBox(), wxID_ANY, wxString{}, wxDefaultPosition, wxDefaultSize,
         wxBORDER_THEME,
         m_fileMode ? wxGenericValidator(&m_filePath) : wxGenericValidator(&m_folderPath));
-    folderBrowseBoxSizer->Add(folderPathEdit, 1, wxEXPAND);
+    folderBrowseBoxSizer->Add(folderPathEdit, wxSizerFlags{ 1 }.Expand());
 
     m_folderBrowseButton =
         new wxBitmapButton(pathBoxBoxSizer->GetStaticBox(), ID_FOLDER_BROWSE_BUTTON,

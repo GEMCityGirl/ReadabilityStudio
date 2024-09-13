@@ -243,7 +243,7 @@ void WebHarvesterDlg::CreateControls()
         m_urlList = new Wisteria::UI::ListCtrlEx(
             urlSizer->GetStaticBox(), wxID_ANY, wxDefaultPosition, FromDIP(wxSize{ 600, 200 }),
             wxLC_VIRTUAL | wxLC_EDIT_LABELS | wxLC_REPORT | wxLC_ALIGN_LEFT);
-        urlSizer->Add(m_urlList, 1, wxEXPAND);
+        urlSizer->Add(m_urlList, wxSizerFlags{ 1 }.Expand());
         m_urlList->EnableGridLines();
         m_urlList->EnableItemAdd();
         m_urlList->EnableLabelEditing();

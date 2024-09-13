@@ -3343,7 +3343,7 @@ void ToolsOptionsDlg::CreateControls()
         wxTextCtrl* reviewerEdit =
             new wxTextCtrl(projectSettingsPage, wxID_ANY, wxEmptyString, wxDefaultPosition,
                            wxDefaultSize, wxBORDER_THEME, wxGenericValidator(&m_reviewer));
-        projectExtraInfoSizer->Add(reviewerEdit, 1, wxEXPAND);
+        projectExtraInfoSizer->Add(reviewerEdit, wxSizerFlags{ 1 }.Expand());
 
         if (!IsGeneralSettings())
             {
@@ -3353,7 +3353,7 @@ void ToolsOptionsDlg::CreateControls()
             wxTextCtrl* statusEdit =
                 new wxTextCtrl(projectSettingsPage, wxID_ANY, wxEmptyString, wxDefaultPosition,
                                wxDefaultSize, wxBORDER_THEME, wxGenericValidator(&m_status));
-            projectExtraInfoSizer->Add(statusEdit, 1, wxEXPAND);
+            projectExtraInfoSizer->Add(statusEdit, wxSizerFlags{ 1 }.Expand());
             }
 
         panelSizer->Add(projectExtraInfoSizer, 0, wxEXPAND | wxLEFT, OPTION_INDENT_SIZE);
@@ -3473,7 +3473,7 @@ void ToolsOptionsDlg::CreateControls()
                                             wxEmptyString, wxDefaultPosition, wxDefaultSize,
                                             wxBORDER_THEME, wxGenericValidator(&m_filePath));
             m_filePathEdit->AutoCompleteFileNames();
-            fileBrowseBoxSizer->Add(m_filePathEdit, 1, wxEXPAND);
+            fileBrowseBoxSizer->Add(m_filePathEdit, wxSizerFlags{ 1 }.Expand());
 
             m_fileBrowseButton =
                 new wxBitmapButton(projectSettingsPage, ID_FILE_BROWSE_BUTTON, openImage);
@@ -3556,7 +3556,7 @@ void ToolsOptionsDlg::CreateControls()
                                static_cast<int>(TextStorage::NoEmbedText));
             filesSizer->Add(m_fileList, 1, wxEXPAND | wxLEFT, OPTION_INDENT_SIZE);
 
-            panelSizer->Add(filesSizer, 1, wxEXPAND);
+            panelSizer->Add(filesSizer, wxSizerFlags{ 1 }.Expand());
             }
 
         panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
@@ -3575,7 +3575,7 @@ void ToolsOptionsDlg::CreateControls()
                 projectSettingsPage, ID_ADDITIONAL_FILE_FIELD, wxEmptyString, wxDefaultPosition,
                 wxDefaultSize, wxBORDER_THEME, wxGenericValidator(&m_appendedDocumentFilePath));
             filePathEdit->AutoCompleteFileNames();
-            fileBrowseBoxSizer->Add(filePathEdit, 1, wxEXPAND);
+            fileBrowseBoxSizer->Add(filePathEdit, wxSizerFlags{ 1 }.Expand());
 
             fileBrowseBoxSizer->Add(new wxBitmapButton(projectSettingsPage,
                                                        ID_ADDITIONAL_FILE_BROWSE_BUTTON, openImage),
@@ -3790,14 +3790,14 @@ void ToolsOptionsDlg::CreateControls()
             wxVERTICAL, AnalysisIndexingPage, _(L"Words && phrases to exclude:"));
 
         wxBoxSizer* excludePathSizer = new wxBoxSizer(wxHORIZONTAL);
-        excludedPhrasesFileBrowseBoxSizer->Add(excludePathSizer, 1, wxEXPAND);
+        excludedPhrasesFileBrowseBoxSizer->Add(excludePathSizer, wxSizerFlags{ 1 }.Expand());
 
         m_excludedPhrasesPathFilePathEdit =
             new wxTextCtrl(excludedPhrasesFileBrowseBoxSizer->GetStaticBox(), wxID_ANY,
                            wxEmptyString, wxDefaultPosition, wxDefaultSize, wxBORDER_THEME,
                            wxGenericValidator(&m_excludedPhrasesPath));
         m_excludedPhrasesPathFilePathEdit->AutoCompleteFileNames();
-        excludePathSizer->Add(m_excludedPhrasesPathFilePathEdit, 1, wxEXPAND);
+        excludePathSizer->Add(m_excludedPhrasesPathFilePathEdit, wxSizerFlags{ 1 }.Expand());
 
         m_excludedPhrasesEditBrowseButton = new wxBitmapButton(
             excludedPhrasesFileBrowseBoxSizer->GetStaticBox(), ID_EXCLUDED_PHRASES_FILE_EDIT_BUTTON,
@@ -4053,7 +4053,7 @@ void ToolsOptionsDlg::CreateControls()
                 GetHJCTextExclusionLabel(), _(L"Controls how text is excluded in Harris-Jacobson."));
 
             pgMan->SelectProperty(_DT(L"Gunning Fog"));
-            panelSizer->Add(pgMan, 1, wxEXPAND);
+            panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
 
             const int ScaledNoteWidth = FromDIP(wxSize(400,400)).GetWidth();
 
@@ -4199,7 +4199,7 @@ void ToolsOptionsDlg::CreateControls()
 
             pgMan->SelectProperty(GetGradeLabel());
 
-            panelSizer->Add(pgMan, 1, wxEXPAND);
+            panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
             }
         }
 
@@ -4354,7 +4354,7 @@ void ToolsOptionsDlg::CreateControls()
 
         pgMan->SelectProperty(GetStatisticsReportLabel());
 
-        panelSizer->Add(pgMan, 1, wxEXPAND);
+        panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
         }
 
     // words breakdown page (these options only apply to general options and standard projects)
@@ -4505,9 +4505,9 @@ void ToolsOptionsDlg::CreateControls()
                "combined into one row."));
 
         pgMan->SelectProperty(GetResultsLabel());
-        pgMan->SetDescBoxHeight(FromDIP(wxSize(200,200)).GetHeight());
+        pgMan->SetDescBoxHeight(FromDIP(wxSize{ 200, 200 }).GetHeight());
 
-        panelSizer->Add(pgMan, 1, wxEXPAND);
+        panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
         }
 
     // sentences breakdown page (these options only apply to general options and standard projects)
@@ -4579,9 +4579,9 @@ void ToolsOptionsDlg::CreateControls()
             _(L"Check this to include the sentence-lengths heatmap in the results."));
 
         pgMan->SelectProperty(GetResultsLabel());
-        pgMan->SetDescBoxHeight(FromDIP(wxSize(200, 200)).GetHeight());
+        pgMan->SetDescBoxHeight(FromDIP(wxSize{ 200, 200 }).GetHeight());
 
-        panelSizer->Add(pgMan, 1, wxEXPAND);
+        panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
         }
 
     // Grammar page
@@ -4828,7 +4828,7 @@ void ToolsOptionsDlg::CreateControls()
         pgMan->SelectProperty(GetSpellCheckerLabel());
         pgMan->SetDescBoxHeight(FromDIP(wxSize(200, 200)).GetHeight());
 
-        panelSizer->Add(pgMan, 1, wxEXPAND);
+        panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
         }
 
     // text window options page (these options only apply to general options and standard projects)
@@ -5417,7 +5417,7 @@ void ToolsOptionsDlg::CreateGraphSection()
 
             pgMan->SelectProperty(GetGraphBackgroundLabel());
 
-            panelSizer->Add(pgMan, 1, wxEXPAND);
+            panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
             }
 
         // Axes tab
@@ -5562,7 +5562,7 @@ void ToolsOptionsDlg::CreateGraphSection()
 
             pgMan->SelectProperty(GetFryLikeLabel());
 
-            panelSizer->Add(pgMan, 1, wxEXPAND);
+            panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
             }
 
         // Bar Chart tab
@@ -5656,7 +5656,7 @@ void ToolsOptionsDlg::CreateGraphSection()
 
             pgMan->SelectProperty(GetBarAppearanceLabel());
 
-            panelSizer->Add(pgMan, 1, wxEXPAND);
+            panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
             }
 
         // Histogram tab
@@ -5806,7 +5806,7 @@ void ToolsOptionsDlg::CreateGraphSection()
 
             pgMan->SelectProperty(GetBarAppearanceLabel());
 
-            panelSizer->Add(pgMan, 1, wxEXPAND);
+            panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
             }
 
         // Box Plot tab
@@ -5918,7 +5918,7 @@ void ToolsOptionsDlg::CreateGraphSection()
 
             pgMan->SelectProperty(GetBoxAppearanceLabel());
 
-            panelSizer->Add(pgMan, 1, wxEXPAND);
+            panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
             }
         }
     }

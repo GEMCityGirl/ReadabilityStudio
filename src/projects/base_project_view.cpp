@@ -1038,7 +1038,7 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
     auto toolbarArt = new Wisteria::UI::ThemedAuiToolbarArt();
     toolbarArt->SetThemeColor(wxGetApp().GetAppOptions().GetRibbonInactiveTabColor());
     GetQuickToolbar()->SetArtProvider(toolbarArt);
-    quickAccessToolbarSizer->Add(GetQuickToolbar(), 1, wxEXPAND);
+    quickAccessToolbarSizer->Add(GetQuickToolbar(), wxSizerFlags{ 1 }.Expand());
     // save
     GetQuickToolbar()->AddTool(wxID_SAVE, _(L"Save the project"),
         wxArtProvider::GetBitmapBundle(wxART_FILE_SAVE, wxART_BUTTON));
@@ -1053,10 +1053,10 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
     m_searchCtrl = new SearchPanel(m_frame, wxID_ANY);
     GetSearchPanel()->SetBackgroundColour(wxGetApp().GetAppOptions().GetRibbonInactiveTabColor());
     quickAccessToolbarSizer->Add(GetSearchPanel());
-    mainSizer->Add(quickAccessToolbarSizer, 0, wxEXPAND);
+    mainSizer->Add(quickAccessToolbarSizer, wxSizerFlags{}.Expand());
 
     m_ribbon = wxGetApp().CreateRibbon(m_frame, doc);
-    mainSizer->Add(m_ribbon, 0, wxEXPAND);
+    mainSizer->Add(m_ribbon, wxSizerFlags{}.Expand());
 
     m_infoBar = new InfoBarEx(m_frame);
     GetInfoBar()->Connect(wxID_CLOSE, wxEVT_BUTTON,
@@ -1064,7 +1064,7 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
                           nullptr, this);
     GetInfoBar()->SetEffectDuration(250);
     GetInfoBar()->SetShowHideEffects(wxSHOW_EFFECT_SLIDE_TO_BOTTOM, wxSHOW_EFFECT_SLIDE_TO_TOP);
-    mainSizer->Add(GetInfoBar(),0,wxEXPAND);
+    mainSizer->Add(GetInfoBar(), wxSizerFlags{}.Expand());
 
     // initialize ribbon menus (print menu is the same for both types of projects)
     wxGetApp().FillPrintMenu(m_frame->m_printMenu, ReadabilityApp::RibbonType::StandardProjectRibbon);
@@ -1077,9 +1077,9 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
     if (m_frame->m_fileOpenMenu.FindItem(wxID_FILE1) == nullptr)
         { wxGetApp().GetDocManager()->FileHistoryAddFilesToMenu(&m_frame->m_fileOpenMenu); }
     m_workSpaceSizer = new wxBoxSizer(wxHORIZONTAL);
-    m_workSpaceSizer->Add(m_splitter,1,wxEXPAND);
+    m_workSpaceSizer->Add(m_splitter, wxSizerFlags{ 1 }.Expand());
 
-    mainSizer->Add(m_workSpaceSizer,1,wxEXPAND);
+    mainSizer->Add(m_workSpaceSizer, wxSizerFlags{ 1 }.Expand());
 
     m_frame->SetSizer(mainSizer);
 

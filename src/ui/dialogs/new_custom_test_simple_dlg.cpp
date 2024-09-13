@@ -75,14 +75,14 @@ void NewCustomWordTestSimpleDlg::CreateControls()
     wxTextCtrl* testNameEdit =
         new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, FromDIP(wxSize(400, 25)),
                        wxBORDER_THEME, wxGenericValidator(&m_testName));
-    testNameBoxSizer->Add(testNameEdit, 1, wxEXPAND);
+    testNameBoxSizer->Add(testNameEdit, wxSizerFlags{ 1 }.Expand());
 
     wxTextCtrl* filePathEdit =
         new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition,
                        wxSize(FromDIP(wxSize(400, 400)).GetWidth(), -1), wxBORDER_THEME,
                        wxGenericValidator(&m_wordListFilePath));
     filePathEdit->AutoCompleteFileNames();
-    fileBrowseBoxSizer->Add(filePathEdit, 1, wxEXPAND);
+    fileBrowseBoxSizer->Add(filePathEdit, wxSizerFlags{ 1 }.Expand());
 
     wxBitmapButton* fileBrowseButton =
         new wxBitmapButton(this, ID_FOLDER_BROWSE_BUTTON,

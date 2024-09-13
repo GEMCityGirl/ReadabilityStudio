@@ -3972,7 +3972,7 @@ void ReadabilityApp::InitStartPage()
 
     UpdateStartPageTheme();
 
-    GetMainFrameEx()->GetSizer()->Add(GetMainFrameEx()->GetStartPage(), 1, wxEXPAND);
+    GetMainFrameEx()->GetSizer()->Add(GetMainFrameEx()->GetStartPage(), wxSizerFlags{ 1 }.Expand());
     }
 
 //---------------------------------------------------
