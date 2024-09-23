@@ -252,7 +252,7 @@ class BaseProjectView : public wxView
     [[nodiscard]]
     static wxString GetClichesTabLabel()
         {
-        return _(L"Clich\351s");
+        return _(L"Clich\u00E9s");
         }
 
     [[nodiscard]]

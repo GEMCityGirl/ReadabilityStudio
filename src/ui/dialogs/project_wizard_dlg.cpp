@@ -844,7 +844,7 @@ void ProjectWizardDlg::CreateControls()
         // document types
         wxArrayString docTypes;
         docTypes.Add(_(L"&General document (textbook, report, correspondence)"));
-        docTypes.Add(_(L"&Technical document or form (application, r\351sum\351/CV, instructions, "
+        docTypes.Add(_(L"&Technical document or form (application, r\u00E9sum\u00E9/CV, instructions, "
                        "manual, detailed report)"));
         docTypes.Add(_(L"Non-narrative &form with fragmented text (brochure, menu, quiz). "
                        "NOTE: this option will disable text exclusion."));

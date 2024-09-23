@@ -4702,7 +4702,7 @@ void ToolsOptionsDlg::CreateControls()
         m_grammarPropertyGrid->SetPropertyAttribute(
             BaseProjectView::GetClichesTabLabel(), wxPG_BOOL_USE_CHECKBOX, true);
         m_grammarPropertyGrid->SetPropertyHelpString(
-            BaseProjectView::GetClichesTabLabel(), _(L"Check this to include clich\351s in the results."));
+            BaseProjectView::GetClichesTabLabel(), _(L"Check this to include clich\u00E9s in the results."));
 
         m_grammarPropertyGrid->Append(
             new wxBoolProperty(BaseProjectView::GetPassiveLabel(), wxPG_LABEL,

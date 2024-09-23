@@ -4962,7 +4962,7 @@ ProjectDoc::BuildLegendLines(const HighlighterTags& highlighterTags) const
         #endif
         highlighterTags.CRLF.c_str());
     currentLegendLabel =
-        _(L"Style (Wordy items, redundant phrases, passive voice, and clich\351s)");
+        _(L"Style (Wordy items, redundant phrases, passive voice, and clich\u00E9s)");
     legendLines.writingStyleLegendLine =
         (GetProjectLanguage() == readability::test_language::english_test) ?
         wxString::Format(L"%s    %s   %s  %s%s", highlighterTags.CRLF.c_str(),

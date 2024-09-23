@@ -2863,7 +2863,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
 
                 if (listData)
                     {
-                    listData->SetItemText(listDataItemCount, 0, _(L"Number of Clich\351s"));
+                    listData->SetItemText(listDataItemCount, 0, _(L"Number of Clich\u00E9s"));
                     listData->SetItemText(
                         listDataItemCount++, 1,
                         wxNumberFormatter::ToString(
