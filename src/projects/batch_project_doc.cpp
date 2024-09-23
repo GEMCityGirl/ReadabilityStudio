@@ -1051,6 +1051,7 @@ void BatchProjectDoc::LoadSummaryStatsSection()
         }
     m_summaryStatsData->SetSize(m_docs.size(), m_summaryStatsColumnNames.size());
 
+    // i18n-check-suppress-begin
     size_t rowCount{ 0 };
     for (const auto& doc : m_docs)
         {
@@ -1295,7 +1296,7 @@ void BatchProjectDoc::LoadSummaryStatsSection()
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetOverusedWordsBySentenceCount());
             assert(m_summaryStatsColumnNames[columnCount] == _(L"Number of wordy items"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetWordyPhraseCount());
-            assert(m_summaryStatsColumnNames[columnCount] == _(L"Number of Clich\351s"));
+            assert(m_summaryStatsColumnNames[columnCount] == _(L"Number of Clich\u00E9s"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetClicheCount());
             assert(m_summaryStatsColumnNames[columnCount] == _(L"Number of passive voices"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetPassiveVoicesCount());
@@ -1319,6 +1320,7 @@ void BatchProjectDoc::LoadSummaryStatsSection()
 
         ++rowCount;
         }
+    // i18n-check-suppress-end
 
     m_summaryStatsData->SetSize(rowCount);
     }
