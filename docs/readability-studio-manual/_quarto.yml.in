@@ -12,6 +12,9 @@ link-citations: true
 nocite: '@*'
 csl: modern-language-association.csl
 pdf-cover: "images/non-generated/cover.pdf"
+pdf-cover-author-color: "255, 255, 255"
+pdf-cover-font-color: "255, 255, 255"
+pdf-cover-color: "111, 144, 132"
 watermark: "${DOCS_WATERMARK}"
 number-sections: true
 crossref:
@@ -22,6 +25,7 @@ crossref:
 book:
   title: "${readstudio_DESCRIPTION} ${FULL_DISPLAY_VERSION}"
   subtitle: User Manual
+  description: "${PROGRAM_COMMENTS}"
   author: ${PROGRAM_AUTHOR}
   date: today
   date-format: "YYYY"

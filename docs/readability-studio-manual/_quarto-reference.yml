@@ -1,6 +1,6 @@
 project:
   output-dir: "docs"
-pdf-cover: "images/non-generated/cover-tests.pdf"
+pdf-cover-color: "201, 160, 220"
 book:
   subtitle: Readability Test Reference
   output-file: "readability-test-reference"
