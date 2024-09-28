@@ -85,12 +85,12 @@ enumToTopic <- function(enum)
     }
 
   topicContent <- str_glue(
-    "## <enum$name> {-}\n\n<enum$description>\n\n| **Value** | **Description** |\n| :-- | :-- |\n",
+    "## `<enum$name>` {-}\n\n<enum$description>\n\n| **Value** | **Description** |\n| :-- | :-- |\n",
     .open="<", .close=">")
   for (i in 1 : nrow(df))
     {
     topicContent <- str_glue(
-      "<topicContent>\n| <df$VALUES[i]> | <df$DETAILS[i]> |",
+      "<topicContent>\n| `<df$VALUES[i]>` | <df$DETAILS[i]> |",
       .open="<", .close=">")
     }
 
@@ -101,17 +101,15 @@ enumToTopic <- function(enum)
 # Files will have the same name as the enumeration.
 writeEnumTopics <- function(enums, folderPath)
   {
-  overviewTopic <- tibble(VAL = "")
+  overviewTopic <- "# Enumerations\nThis chapter discusses the enumeration types available throughout the program.\n\\newpage"
+
   for (i in 1 : length(enums))
     {
     enum <- loadEnum(enums[i])
-    overviewTopic %<>% add_row(VAL=str_glue("{{< include !enum$name!.qmd >}}",
-                              .open = "!",
-                              .close = "!",))
     topicContent <- enumToTopic(enum)
     readr::write_file(topicContent, str_glue("{folderPath}/{enum$name}.qmd"))
     }
 
-  # lists the enum topics in a parent topic
-  readr::write_csv(overviewTopic %>% arrange(VAL), str_glue("{folderPath}/overview.qmd"), col_names=F)
+  # parent overview
+  readr::write_file(overviewTopic, str_glue("{folderPath}/_overview.qmd"))
   }

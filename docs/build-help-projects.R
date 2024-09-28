@@ -161,8 +161,11 @@ dir_copy(glue("{docFolder}/readability-studio-manual/R"),
          glue("{docFolder}/readability-studio-api/R"),
          TRUE)
 
+combine_files("enums.qmd", "enums")
+
 quarto::quarto_render(output_format="pdf", as_job=F)
 
+unlink(glue("{docFolder}/readability-studio-api/enums.qmd"))
 unlink(glue("{docFolder}/readability-studio-api/_variables.yml"))
 unlink(glue("{docFolder}/readability-studio-api/modern-language-association.csl"))
 unlink(glue("{docFolder}/readability-studio-api/LegrandOrangeBook.cls"))

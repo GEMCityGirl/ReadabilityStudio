@@ -9,14 +9,17 @@ biblio-style: mla
 link-citations: true
 nocite: '@*'
 csl: modern-language-association.csl
-pdf-cover: "images/non-generated/cover-programming.pdf"
+pdf-cover: "images/non-generated/cover.pdf"
+pdf-cover-author-color: "255, 255, 255"
+pdf-cover-font-color: "255, 255, 255"
+pdf-cover-color: "80, 0, 0"
 number-sections: true
 crossref:
   chapters: true
 book:
   title: "{{< var PROGRAM_NAME >}} {{< var VERSION >}}"
   subtitle: Programming Manual
-  description: "{{< var PROGRAM_NAME >}} {{< var VERSION >}} Programming Manual"
+  description: "{{< var PROGRAM_DESCRIPTION >}}"
   author: '{{< var PROGRAM_AUTHOR >}}'
   date: today
   date-format: long
@@ -27,12 +30,8 @@ book:
   image: "images/cover.png"
   chapters:
     - index.qmd
-    - part: "Libraries"
-      chapters:
-        - libraries/Debug/overview.qmd
-    - part: "Enumerations"
-      chapters:
-        - enums/overview.qmd
+    - libraries/debug-overview.qmd
+    - enums.qmd
 format:
   pdf:
     documentclass: LegrandOrangeBook
