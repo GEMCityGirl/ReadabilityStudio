@@ -1,11 +1,10 @@
-::: {.minipage data-latex="{\textwidth}"}
-## SetTextExclusion {-}
+## `SetTextExclusion`
 
 Specifies how text should be excluded.
 
 ### Syntax {-}
 
-```{sql}
+``` {.lua}
 SetTextExclusion(TextExclusionType textExclusionType)
 ```
 
@@ -17,10 +16,9 @@ textExclusionType | How text should be [excluded](#textexclusiontype).
 
 ### Example {-}
 
-```{sql}
+``` {.lua}
 -- don't exclude any text for all future projects
 Application.SetTextExclusion(TextExclusionType.DoNotExcludeAnyText)
 ```
-:::
 
-***
+{{< pagebreak >}}

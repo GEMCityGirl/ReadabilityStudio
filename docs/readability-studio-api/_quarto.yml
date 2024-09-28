@@ -2,7 +2,7 @@ project:
   type: book
   output-dir: "docs"
 toc: true
-toc-depth: 2
+toc-depth: 3
 biblio-title: References
 bibliography: cites.bib
 biblio-style: mla
@@ -30,11 +30,17 @@ book:
   image: "images/cover.png"
   chapters:
     - index.qmd
+    - part: "Classes"
+      chapters:
+      - standard-project.qmd
+      - batch-project.qmd
     - part: "Libraries"
       chapters:
+      - libapp.qmd
       - libdebug.qmd
-  appendices:
-    - enums.qmd
+    - part: "Support Types"
+      chapters:
+      - enums.qmd
 format:
   pdf:
     documentclass: LegrandOrangeBook

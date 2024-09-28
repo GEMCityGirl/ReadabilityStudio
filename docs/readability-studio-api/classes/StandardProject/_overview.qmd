@@ -1,4 +1,4 @@
-# StandardProject {#standard-project}
+# `StandardProject` {#standard-project}
 
 Provides the functionality of a standard project. Standard projects analyze a single document and provides numerous results related to readability and other style metrics.
 
@@ -14,7 +14,7 @@ This is done by:
 
 For example:
 
-```{sql}
+``` {.lua}
 -- Opens a document from user's "Documents" folder
 -- and changes a few options.
 consentForm = StandardProject(Application.GetDocumentsPath() ..
@@ -31,3 +31,5 @@ consentForm:Reload()
 -- assuming we have a custom test by this name.
 consentForm:AddTest("Patient Consent Formula")
 ```
+
+{{< pagebreak >}}

@@ -1,11 +1,10 @@
-::: {.minipage data-latex="{\textwidth}"}
-## Close {#standard-close .unnumbered}
+## `Close` {#standard-close .unnumbered}
 
 Closes the project.
 
 ### Syntax {-}
 
-```{sql}
+``` {.lua}
 Close(boolean saveChanges)
 ```
 
@@ -17,7 +16,7 @@ saveChanges | Specifies whether to save any changes made to the project. The def
 
 ### Example {-}
 
-```{sql}
+``` {.lua}
 -- Open a project from the user's "Documents" folder and save its scores summary
 consentForm = StandardProject(Application.GetDocumentsPath() ..
                               "Consent Form.rsp")
@@ -26,6 +25,5 @@ consentForm:ExportReport(ReportType.ReadabilityScoresTabularReport,
 -- Close, don't bother saving.
 consentForm:Close(false)
 ```
-:::
 
-***
+{{< pagebreak >}}

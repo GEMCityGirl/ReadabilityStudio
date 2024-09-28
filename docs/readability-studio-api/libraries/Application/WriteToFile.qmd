@@ -1,11 +1,10 @@
-::: {.minipage data-latex="{\textwidth}"}
-## WriteToFile {-}
+## `WriteToFile`
 
 Writes a string to the specified file path.
 
 ### Syntax {-}
 
-```{sql}
+``` {.lua}
 boolean WriteToFile(string filePath,
                     string message)
 ```
@@ -22,4 +21,5 @@ message | The text to write to the file.
 Type: `boolean` \
 
 Returns `true` if output was successfully written to the file.
-:::
+
+{{< pagebreak >}}

@@ -1,11 +1,10 @@
-::: {.minipage data-latex="{\textwidth}"}
-## SetWindowSize {-}
+## `SetWindowSize`
 
 Resizes the program's window size\index{User interface!window size} to the specified width and height.
 
 ### Syntax {-}
 
-```{sql}
+``` {.lua}
 SetWindowSize(number width,
               number height)
 ```
@@ -16,6 +15,5 @@ SetWindowSize(number width,
 | :-- | :-- |
 width | The program window width.
 height | The program window height.
-:::
 
-***
+{{< pagebreak >}}

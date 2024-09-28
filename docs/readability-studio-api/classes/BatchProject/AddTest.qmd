@@ -1,9 +1,8 @@
-::: {.minipage data-latex="{\textwidth}"}
-## AddTest {#batch-addtest .unnumbered}
+## `AddTest` {#batch-addtest}
 
 Adds a test to the project.
 
-```{sql}
+``` {.lua}
 boolean AddTest(Test/string test)
 ```
 
@@ -18,6 +17,5 @@ test | **[Test](#tests)** or The ID of the test to add. (For a custom test, use 
 Type: `boolean`
 
 `true` if the test was successfully added; otherwise, `false`.
-:::
 
-***
+{{< pagebreak >}}

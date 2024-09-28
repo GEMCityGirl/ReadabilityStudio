@@ -1,9 +1,8 @@
-::: {.minipage data-latex="{\textwidth}"}
-## AggressivelyExclude {#batch-aggressivelyexclude .unnumbered}
+## `AggressivelyExclude` {#batch-aggressivelyexclude}
 
 Specifies whether to use aggressive list deduction.
 
-```{sql}
+``` {.lua}
 AggressivelyExclude(boolean beAggressive)
 ```
 
@@ -12,6 +11,5 @@ AggressivelyExclude(boolean beAggressive)
 **Parameter** | **Description**
 | :-- | :-- |
 beAggressive | Set to `true` to use aggressive text exclusion.
-:::
 
-***
+{{< pagebreak >}}

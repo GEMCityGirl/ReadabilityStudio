@@ -1,11 +1,10 @@
-::: {.minipage data-latex="{\textwidth}"}
-## AddTest {-}
+## `AddTest` {-}
 
 Adds a test to the project.
 
 ### Syntax {-}
 
-```{sql}
+``` {.lua}
 boolean AddTest(Test (or string) test)
 ```
 
@@ -13,7 +12,7 @@ boolean AddTest(Test (or string) test)
 
 **Parameter** | **Description**
 | :-- | :-- |
-test | **[Test](#tests)** or The ID of the test to add. (For a custom test, use the name of the test.)
+test | **[Test](#tests)** or the ID of the test to add. (For a custom test, use the name of the test.)
 
 ### Return value {-}
 
@@ -23,7 +22,7 @@ Type: `boolean` \
 
 ### Example {-}
 
-```{sql}
+``` {.lua}
 -- Opens a document from user's "Documents" folder
 -- and adds some tests.
 consentForm = StandardProject(Application.GetDocumentsPath() ..
@@ -34,6 +33,5 @@ consentForm:AddTest(Tests.DanielsonBryan2)
 -- assuming we have a custom test by this name.
 consentForm:AddTest("Patient Consent Formula")
 ```
-:::
 
-***
+{{< pagebreak >}}

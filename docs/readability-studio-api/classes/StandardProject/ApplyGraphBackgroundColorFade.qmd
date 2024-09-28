@@ -1,11 +1,10 @@
-::: {.minipage data-latex="{\textwidth}"}
-## ApplyGraphBackgroundColorFade {#standard-applygraphbackgroundcolorfade .unnumbered}
+## `ApplyGraphBackgroundColorFade` {#standard-applygraphbackgroundcolorfade .unnumbered}
 
 Specifies whether to use a color fade across graph backgrounds.
 
 ### Syntax {-}
 
-```{sql}
+``` {.lua}
 ApplyGraphBackgroundColorFade(boolean useColorFade)
 ```
 
@@ -14,6 +13,5 @@ ApplyGraphBackgroundColorFade(boolean useColorFade)
 **Parameter** | **Description**
 | :-- | :-- |
 useColorFade | `true` to use a color fade across graph backgrounds.
-:::
 
-***
+{{< pagebreak >}}
