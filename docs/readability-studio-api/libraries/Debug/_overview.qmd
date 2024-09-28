@@ -1,0 +1,6 @@
+# `Debug`
+
+The `Debug` library provides functionality related to the editor.
+This includes functions such as printing information to the editor's debug window and retrieving the running script's file path.
+
+{{< pagebreak >}}

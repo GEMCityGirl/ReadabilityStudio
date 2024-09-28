@@ -30,7 +30,10 @@ book:
   image: "images/cover.png"
   chapters:
     - index.qmd
-    - libraries/debug-overview.qmd
+    - part: "Libraries"
+      chapters:
+      - libdebug.qmd
+  appendices:
     - enums.qmd
 format:
   pdf:

@@ -1,11 +1,10 @@
-:::: {.minipage data-latex="{\textwidth}"}
-## Print {-}
+## `Print`
 
 Prints\index{Debugger!printing message to} a message to the script editor's debug window.
 
 ### Syntax {-}
 
-```{sql}
+``` {.lua}
 Print(string message)
 ```
 
@@ -21,13 +20,15 @@ message | The message to print.
 
 ### Example {-}
 
-```{sql}
+``` {.lua}
 info = Application.GetImageInfo("C:\\images\\GraphLogo.png")
 
 -- print information about an image
 for i,v in pairs(info)
 do
-    Debug.Print("<b>"..i.."</b>: "..v)
+    Debug.Print("<b>"..i.."</b>: "..v) -- <1>
 end
 ```
-::::
+1. The HTML tags `<b>` and `</b>` can be used to bold the message.
+
+{{< pagebreak >}}

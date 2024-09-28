@@ -1,11 +1,10 @@
-:::: {.minipage data-latex="{\textwidth}"}
-## GetScriptFolderPath {-}
+## `GetScriptFolderPath`
 
 Returns the folder path of the currently running script.
 
 ### Syntax {-}
 
-```{sql}
+``` {.lua}
 string GetScriptFolderPath()
 ```
 
@@ -19,6 +18,5 @@ The folder path of the currently running script.
 This will return an empty string if the current script has not been saved yet.
 A warning explaining this will also appear in the editor's debug window.
 :::
-::::
 
-***
+{{< pagebreak >}}
