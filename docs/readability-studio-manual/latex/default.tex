@@ -36,6 +36,25 @@ $for(classoption)$
   $classoption$$sep$,
 $endfor$
 ]{$documentclass$}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Settings for Legrand Orange Book document class
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+$if(theme-color)$
+  \definecolor{ocre}{RGB}{$theme-color$}
+%$else$
+  \definecolor{ocre}{RGB}{243, 102, 25} % Define the color used for highlighting throughout the book
+$endif$
+
+$if(chapter-image)$
+  \chapterimage{$chapter-image$} % Chapter heading image
+$endif$
+\chapterspaceabove{6.5cm} % Default whitespace from the top of the page to the chapter title on chapter pages
+\chapterspacebelow{6.75cm} % Default amount of vertical whitespace from the top margin to the start of the text on chapter pages
+
 $if(beamer)$
 $if(background-image)$
 \usebackgroundtemplate{%
