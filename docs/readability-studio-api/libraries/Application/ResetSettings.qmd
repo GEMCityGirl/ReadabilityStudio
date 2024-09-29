@@ -1,0 +1,13 @@
+## `ResetSettings`
+
+Resets the program's settings.
+
+### Syntax {-}
+
+``` {.lua}
+ResetSettings()
+```
+
+{{< pagebreak >}}
+
+

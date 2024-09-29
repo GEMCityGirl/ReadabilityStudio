@@ -1,0 +1,17 @@
+## `ExcludeFileAddress` {#batch-excludefileaddress}
+
+Specifies whether to exclude filepaths and URLs.
+
+### Syntax {-}
+
+``` {.lua}
+ExcludeFileAddress(Exclude)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+Exclude | `true` to exclude filepaths and URLs.
+
+{{< pagebreak >}}

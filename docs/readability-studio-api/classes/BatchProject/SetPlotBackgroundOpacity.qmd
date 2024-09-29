@@ -1,0 +1,17 @@
+## `SetPlotBackgroundOpacity` {#batch-setplotbackgroundopacity}
+
+Sets the opacity of graph plot areas.
+
+### Syntax {-}
+
+``` {.lua}
+SetPlotBackgroundOpacity(OpacityLevel)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+OpacityLevel | The opacity of graph backgrounds. 0 is fully transparent, and 255 is opaque.
+
+{{< pagebreak >}}

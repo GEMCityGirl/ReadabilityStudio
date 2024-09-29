@@ -1,0 +1,19 @@
+## `ExcludeTrailingCitations`
+
+Specifies whether to exclude trailing citations from the document analysis.
+
+### Syntax {-}
+
+``` {.lua}
+ExcludeTrailingCitations(boolean exclude)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+exclude | `true` to exclude trailing citations, `false` to include them.
+
+{{< pagebreak >}}
+
+

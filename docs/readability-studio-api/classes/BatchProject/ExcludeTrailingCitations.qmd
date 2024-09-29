@@ -1,0 +1,17 @@
+## `ExcludeTrailingCitations` {#batch-excludetrailingcitations}
+
+Specifies whether to exclude trailing citations.
+
+### Syntax {-}
+
+``` {.lua}
+ExcludeTrailingCitations(Exclude)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+Exclude | `true` to exclude trailing citations.
+
+{{< pagebreak >}}

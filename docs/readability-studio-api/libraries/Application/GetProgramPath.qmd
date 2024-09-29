@@ -1,0 +1,19 @@
+## `GetProgramPath`
+
+Returns the folder path to the application.
+
+### Syntax {-}
+
+``` {.lua}
+string GetProgramPath() 
+```
+
+### Return value {-}
+
+Type: `string` \
+
+The folder path to the application.
+
+{{< pagebreak >}}
+
+

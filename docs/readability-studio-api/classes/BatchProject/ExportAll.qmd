@@ -1,0 +1,17 @@
+## `ExportAll` {#batch-exportall}
+
+Exports the project's results to the specified folder.
+
+### Syntax {-}
+
+``` {.lua}
+ExportAll(OutputFolder)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+OutputFolder | The folder to save the project's results.
+
+{{< pagebreak >}}

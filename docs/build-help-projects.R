@@ -161,14 +161,16 @@ dir_copy(glue("{docFolder}/readability-studio-manual/R"),
          glue("{docFolder}/readability-studio-api/R"),
          TRUE)
 
-combine_files("standard-project.qmd", "classes/StandardProject", ".qmd$")
-combine_files("libapp.qmd", "libraries/Application", ".qmd$")
+combine_files("standard-project.qmd", "classes/StandardProject")
+combine_files("batch-project.qmd", "classes/BatchProject")
+combine_files("libapp.qmd", "libraries/Application")
 combine_files("libdebug.qmd", "libraries/Debug")
 combine_files("enums.qmd", "enums")
 
 quarto::quarto_render(output_format="pdf", as_job=F)
 
 unlink(glue("{docFolder}/readability-studio-api/standard-project.qmd"))
+unlink(glue("{docFolder}/readability-studio-api/batch-project.qmd"))
 unlink(glue("{docFolder}/readability-studio-api/libapp.qmd"))
 unlink(glue("{docFolder}/readability-studio-api/libdebug.qmd"))
 unlink(glue("{docFolder}/readability-studio-api/enums.qmd"))

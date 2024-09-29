@@ -1,0 +1,17 @@
+## `ExcludeProperNouns` {#batch-excludepropernouns}
+
+Specifies whether to exclude proper nouns.
+
+### Syntax {-}
+
+``` {.lua}
+ExcludeProperNouns(Exclude)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+Exclude | `true` to exclude proper nouns.
+
+{{< pagebreak >}}

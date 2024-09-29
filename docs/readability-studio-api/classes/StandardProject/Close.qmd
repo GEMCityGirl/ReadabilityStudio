@@ -1,4 +1,4 @@
-## `Close` {#standard-close .unnumbered}
+## `Close` {#standard-close}
 
 Closes the project.
 

@@ -1,0 +1,19 @@
+## `GetDocumentStorageMethod`
+
+Returns whether projects embed their documents or link to them.
+
+### Syntax {-}
+
+``` {.lua}
+TextStorage GetDocumentStorageMethod()
+```
+
+### Return value {-}
+
+Type: [TextStorage](#textstorage) \
+
+How projects are embedding or linking to their source.
+
+{{< pagebreak >}}
+
+

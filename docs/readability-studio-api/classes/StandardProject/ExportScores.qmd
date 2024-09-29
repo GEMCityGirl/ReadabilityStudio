@@ -1,0 +1,19 @@
+## `ExportScores` {#standard-exportscores}
+
+Saves the project's test scores to *OutputFilePath*.
+
+### Syntax {-}
+
+``` {.lua}
+ExportScores(string outputFilePath)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+outputFilePath | The folder to save the scores.
+
+{{< pagebreak >}}
+
+

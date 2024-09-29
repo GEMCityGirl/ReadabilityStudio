@@ -1,0 +1,17 @@
+## `SetAppendedDocumentFilePath` {#batch-setappendeddocumentfilepath}
+
+Specifies the file path to the document being appended for analysis.
+
+### Syntax {-}
+
+``` {.lua}
+SetAppendedDocumentFilePath(FilePath)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+FilePath | The file path to the document being appended for analysis.
+
+{{< pagebreak >}}

@@ -1,0 +1,19 @@
+## `GetParagraphsParsingMethod`
+
+Returns how hard returns help determine how paragraphs and sentences are detected.
+
+### Syntax {-}
+
+``` {.lua}
+ParagraphParse GetParagraphsParsingMethod()
+```
+
+### Return value {-}
+
+Type: [ParagraphParse](#paragraphparse) \
+
+The paragraph parsing method.
+
+{{< pagebreak >}}
+
+

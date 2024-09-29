@@ -1,0 +1,19 @@
+## `ExcludeNumerals`
+
+Specifies whether to exclude numerals from the document analysis.
+
+### Syntax {-}
+
+``` {.lua}
+ExcludeNumerals(boolean exclude)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+exclude | `true` to exclude numerals, `false` to include them.
+
+{{< pagebreak >}}
+
+

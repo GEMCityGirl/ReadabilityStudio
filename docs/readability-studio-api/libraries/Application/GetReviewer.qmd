@@ -1,0 +1,19 @@
+## `GetReviewer`
+
+Returns the user name for the software.
+
+### Syntax {-}
+
+``` {.lua}
+string GetReviewer()
+```
+
+### Return value {-}
+
+Type: `string` \
+
+The user name for the software.
+
+{{< pagebreak >}}
+
+

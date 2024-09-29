@@ -1,0 +1,19 @@
+## `LogError`
+
+Sends an error message to program's logging system.
+
+### Syntax {-}
+
+``` {.lua}
+LogError(string errorMessage)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+errorMessage | The error message to log.
+
+{{< pagebreak >}}
+
+

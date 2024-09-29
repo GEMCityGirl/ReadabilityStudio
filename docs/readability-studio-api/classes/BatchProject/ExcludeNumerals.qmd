@@ -1,0 +1,17 @@
+## `ExcludeNumerals` {#batch-excludenumerals}
+
+Specifies whether to exclude numerals.
+
+### Syntax {-}
+
+``` {.lua}
+ExcludeNumerals(Exclude)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+Exclude | `true` to exclude numerals.
+
+{{< pagebreak >}}

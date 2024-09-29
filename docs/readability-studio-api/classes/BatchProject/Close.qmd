@@ -1,0 +1,17 @@
+## `Close` {#batch-close}
+
+Closes the project.
+
+### Syntax {-}
+
+``` {.lua}
+Close(boolean saveChanges)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+saveChanges | Specifies whether to save any changes made to the project. (The default is `false`.)
+
+{{< pagebreak >}}

@@ -1,0 +1,19 @@
+## `Get3SyllablePlusWordCount` {#standard-get3syllablepluswordcount}
+
+Returns the number of words consisting of three or more syllables from the document.
+
+### Syntax {-}
+
+``` {.lua}
+integer Get3SyllablePlusWordCount()
+```
+
+### Return value {-}
+
+Type: `integer` \
+
+The number of words consisting of three or more syllables from the document.
+
+{{< pagebreak >}}
+
+

@@ -1,0 +1,25 @@
+## `FindFiles`
+
+Searches the specified folder (recursively) for files matching the given file filter (e.g., "*.docx") and returns the retrieved filepaths.
+
+### Syntax {-}
+
+``` {.lua}
+table FindFiles(string folderPath,
+                string fileFilter)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+folderPath | The folder to search in.
+fileFilter | The file pattern to search for.
+
+### Return value {-}
+
+Type: `table` \
+
+A table listing the files.
+
+{{< pagebreak >}}

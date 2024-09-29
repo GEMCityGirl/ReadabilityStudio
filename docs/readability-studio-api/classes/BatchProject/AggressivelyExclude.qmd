@@ -2,6 +2,8 @@
 
 Specifies whether to use aggressive list deduction.
 
+### Syntax {-}
+
 ``` {.lua}
 AggressivelyExclude(boolean beAggressive)
 ```

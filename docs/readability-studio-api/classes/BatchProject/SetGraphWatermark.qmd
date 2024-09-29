@@ -1,0 +1,17 @@
+## `SetGraphWatermark` {#batch-setgraphwatermark}
+
+Sets the watermark to be written across graphs.
+
+### Syntax {-}
+
+``` {.lua}
+SetGraphWatermark(Label)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+Label | The watermark to be written across graphs.
+
+{{< pagebreak >}}

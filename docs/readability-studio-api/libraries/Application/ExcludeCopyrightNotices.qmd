@@ -1,0 +1,19 @@
+## `ExcludeCopyrightNotices`
+
+Specifies whether to exclude copyright notices from the document analysis.
+
+### Syntax {-}
+
+``` {.lua}
+ExcludeCopyrightNotices(boolean exclude)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+exclude | `true` to exclude copyright notices, `false` to include them.
+
+{{< pagebreak >}}
+
+

@@ -1,0 +1,19 @@
+## `GetFilePathDisplayMode`
+
+Returns how filepaths are displayed in batch projects.
+
+### Syntax {-}
+
+``` {.lua}
+FilePathDisplayMode GetFilePathDisplayMode()
+```
+
+### Return value {-}
+
+Type: [FilePathDisplayMode](#filepathdisplaymode) \
+
+How filepaths are being displayed.
+
+{{< pagebreak >}}
+
+

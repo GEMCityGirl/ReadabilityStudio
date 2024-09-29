@@ -1,0 +1,46 @@
+## `SortList` {#standard-sortlist}
+
+Sorts\index{Lists!sorting} the specified list using a series of columns and sorting orders.
+
+### Syntax {-}
+
+``` {.lua}
+SortList(ListType list,
+         number columnToSort,
+         SortOrder order,
+         ...) 
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+list | The [list](#listtype) to sort.
+columnToSort | The column to sort by.
+order | The [sorting direction](#sortorder) to use.
+... | Any additional pairs of columns and sort orders to use.
+
+### Example {-}
+
+``` {.lua}
+-- Open a project from the user's "Documents" folder
+consentForm = StandardProject(Application.GetDocumentsPath() ..
+                              "Consent Form.rsp")
+-- Sort the "All Words" list.
+-- Will sort by the third column (Z-A sorting), and in case of a tie, then sort
+-- by the second then the first column.
+consentForm:SortList(ListType.AllWords,
+            3, SortOrder.SortDescending,
+            2, SortOrder.SortDescending,
+            1, SortOrder.SortDescending)
+-- export the list after sorting it
+consentForm:ExportList(ListType.AllWords,
+              Application.GetDocumentsPath() ..
+              "ExportList/ChristmasCarolAllWordsListSortedDesc.htm")
+
+consentForm:Close()
+```
+
+{{< pagebreak >}}
+
+

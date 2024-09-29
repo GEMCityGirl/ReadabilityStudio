@@ -2,6 +2,8 @@
 
 Adds a test to the project.
 
+### Syntax {-}
+
 ``` {.lua}
 boolean AddTest(Test/string test)
 ```
@@ -10,7 +12,7 @@ boolean AddTest(Test/string test)
 
 **Parameter** | **Description**
 | :-- | :-- |
-test | **[Test](#tests)** or The ID of the test to add. (For a custom test, use the name of the test.)
+test | **[Test](#tests)** or the ID of the test to add. (For a custom test, use the name of the test.)
 
 ### Return value {-}
 

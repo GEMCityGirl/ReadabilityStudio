@@ -1,4 +1,4 @@
-## `ApplyGraphBackgroundColorFade` {#standard-applygraphbackgroundcolorfade .unnumbered}
+## `ApplyGraphBackgroundColorFade` {#standard-applygraphbackgroundcolorfade}
 
 Specifies whether to use a color fade across graph backgrounds.
 

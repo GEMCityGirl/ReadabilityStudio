@@ -1,0 +1,11 @@
+## `Close`
+
+Closes the program.
+
+### Syntax {-}
+
+``` {.lua}
+Close()
+```
+
+{{< pagebreak >}}

@@ -1,0 +1,15 @@
+## `Reload` {#batch-reload}
+
+Reanalyzes the project's documents.
+
+### Syntax {-}
+
+``` {.lua}
+Reload()
+```
+
+### See also {-}
+
+[DelayReloading()](#batch-delayreloading)
+
+{{< pagebreak >}}

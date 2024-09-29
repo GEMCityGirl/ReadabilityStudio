@@ -1,0 +1,19 @@
+## `SetBarChartOrientation`
+
+Sets the bar charts' orientation.
+
+### Syntax {-}
+
+``` {.lua}
+SetBarChartOrientation(Orientation orientation)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+orientation | The bar charts' [orientation](#orientation).
+
+{{< pagebreak >}}
+
+

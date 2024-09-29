@@ -1,0 +1,18 @@
+## `GetActiveStandardProject`
+
+Returns the active standard project.
+
+### Syntax {-}
+
+``` {.lua}
+StandardProject GetActiveStandardProject()
+```
+
+### Return value {-}
+
+Type: [StandardProject](#standardproject) \
+
+The active standard project.
+
+{{< pagebreak >}}
+

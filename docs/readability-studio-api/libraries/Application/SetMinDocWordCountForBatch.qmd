@@ -1,0 +1,19 @@
+## `SetMinDocWordCountForBatch`
+
+Sets the minimum number of words that a document must have to be included in batch projects.
+
+### Syntax {-}
+
+``` {.lua}
+SetMinDocWordCountForBatch(number count)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+count | The minimum number of words that a document must have to be included in batch projects.
+
+{{< pagebreak >}}
+
+

@@ -1,0 +1,13 @@
+## `EnableAllWarnings`
+
+Enables\index{Warnings!enabling} all warnings and prompts throughout the program.
+
+### Syntax {-}
+
+``` {.lua}
+EnableAllWarnings()
+```
+
+{{< pagebreak >}}
+
+

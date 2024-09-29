@@ -1,0 +1,20 @@
+## `DelayReloading` {#batch-delayreloading}
+
+Prevents a project from updating while settings are being changed.
+This will require an explicit call to [Reload()](#batch-reload) for the changes to take affect.
+This is more efficient for when multiple settings are being altered at one time.
+
+### Syntax {-}
+
+``` {.lua}
+DelayReloading(Delay)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+
+Delay | Specifies whether to delay reloading the project.
+
+{{< pagebreak >}}

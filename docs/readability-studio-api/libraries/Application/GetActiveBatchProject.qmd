@@ -1,0 +1,19 @@
+## `GetActiveBatchProject`
+
+Returns the active batch project.
+
+### Syntax {-}
+
+``` {.lua}
+BatchProject GetActiveBatchProject()
+```
+
+### Return value {-}
+
+Type: [BatchProject](#batchproject) \
+
+The active batch project.
+
+{{< pagebreak >}}
+
+

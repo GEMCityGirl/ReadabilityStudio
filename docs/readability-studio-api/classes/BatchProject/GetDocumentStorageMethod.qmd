@@ -1,0 +1,15 @@
+## `GetDocumentStorageMethod` {#batch-getdocumentstoragemethod}
+
+Returns whether the project embeds its documents or links to them.
+
+### Syntax {-}
+
+``` {.lua}
+TextStorage GetDocumentStorageMethod()
+```
+
+### Return value {-}
+
+The text storage method being used by the project as a [TextStorage](#textstorage) value.
+
+{{< pagebreak >}}

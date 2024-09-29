@@ -1,0 +1,21 @@
+## `DownloadFile`
+
+Downloads a file into the specified folder.
+
+### Syntax {-}
+
+``` {.lua}
+DownloadFile(string fileToDownload,
+             string folderToDownloadTo)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+fileToDownload | The file to download.
+folderToDownloadTo | The folder to download the file into.
+
+{{< pagebreak >}}
+
+

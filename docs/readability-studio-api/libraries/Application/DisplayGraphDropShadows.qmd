@@ -1,0 +1,19 @@
+## `DisplayGraphDropShadows`
+
+Specifies whether to use shadows underneath items (such as bars) on all the graphs.
+
+### Syntax {-}
+
+``` {.lua}
+DisplayGraphDropShadows(boolean useShadows)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+useShadows | Whether to use shadows underneath items (such as bars) on all the graphs.
+
+{{< pagebreak >}}
+
+

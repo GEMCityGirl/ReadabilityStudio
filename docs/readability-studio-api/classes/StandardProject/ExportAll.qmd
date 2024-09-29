@@ -1,0 +1,19 @@
+## `ExportAll` {#standard-exportall}
+
+Exports the project's results to the specified folder.
+
+### Syntax {-}
+
+``` {.lua}
+ExportAll(string outputFolder)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+outputFolder | The folder to save the project's results.
+
+{{< pagebreak >}}
+
+

@@ -1,4 +1,4 @@
-## `AggressivelyExclude` {#standard-aggressivelyexclude .unnumbered}
+## `AggressivelyExclude` {#standard-aggressivelyexclude}
 
 Specifies whether to use aggressive text exclusion.
 

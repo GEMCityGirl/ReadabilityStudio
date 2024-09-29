@@ -1,4 +1,4 @@
-## `AddTest` {-}
+## `AddTest`
 
 Adds a test to the project.
 

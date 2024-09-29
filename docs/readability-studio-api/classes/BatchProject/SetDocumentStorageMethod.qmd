@@ -1,0 +1,17 @@
+## `SetDocumentStorageMethod` {#batch-setdocumentstoragemethod}
+
+Sets whether the project embeds its documents or links to them.
+
+### Syntax {-}
+
+``` {.lua}
+SetDocumentStorageMethod(TextStorage)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+TextStorage | The [text storage method](#textstorage) to use for the project.
+
+{{< pagebreak >}}

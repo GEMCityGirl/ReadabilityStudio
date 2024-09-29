@@ -1,0 +1,13 @@
+## `RemoveAllCustomTests`
+
+Removes all custom tests from the program.
+
+### Syntax {-}
+
+``` {.lua}
+RemoveAllCustomTests()
+```
+
+{{< pagebreak >}}
+
+

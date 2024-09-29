@@ -1,0 +1,47 @@
+## `EnableWarning`
+
+Enables\index{Warnings!enabling} the specified warning.
+
+### Syntax {-}
+
+``` {.lua}
+EnableWarning(string warningId)
+```
+
+**Parameter** | **Description**
+| :-- | :-- |
+warningId | The warning's string ID.
+
+The following warning IDs are available:
+
+**ID** | **Description**
+| :-- | :-- |
+project-open-as-read-only  |  Warn about projects being opened as read-only.
+remove-test-from-project  |  Prompt when removing a test from a project.
+delete-document-from-batch  |  Prompt when removing a document from a batch project.
+document-less-than-20-words |  Prompt about documents containing less than 20 words.
+document-less-than-100-words  | Warn about documents containing less than 100 words.
+sentences-split-by-paragraph-breaks  |  Warn about documents that contain sentences split by paragraph breaks.
+incomplete-sentences-valid-from-length  |  Warn about documents that contain long incomplete sentences that will be included in the analysis.
+high-count-sentences-being-ignored  |  Prompt if a document should switch to include sentences in the analysis.
+ndc-proper-noun-conflict  |  Prompt if a custom NDC test's proper noun settings differ from the standard NDC test.
+new-dale-chall-text-exclusion-differs-note  |  Prompt about New Dale-Chall using a different text exclusion method from the system default.
+harris-jacobson-text-exclusion-differs-note  |  Prompt about Harris-Jacobson using a different text exclusion method from the system default.
+custom-test-numeral-settings-adjustment-required  |  Warn when a custom test's numeral settings will be adjusted.
+german-no-proper-noun-support  |  Warn about German stemming not supporting proper noun detection.
+histogram-unique-values-midpoints-required  |  Warn about unique-value histograms requiring midpoint axis labels.
+file-autosearch-from-project-directory  |  Prompt about auto-searching for missing files.
+linked-document-is-embedded  |  Prompt about re-linking to a document that has been embedded.
+no-embedded-text  | Prompt about failing to load a project that is missing its embedded text.
+clear-type-turned-off  |  Check to see if ClearType is turned on (Windows only).
+note-export-from-save  |  Prompt about how windows can be exported from the Save button.
+click-test-to-view  | Prompt about how double-clicking a test can show its help.
+bkimage-zoomin-noupscale  |  Prompt about how background images will not be upscaled beyond their original size when zooming into a graph.
+note-project-properties  |  Prompt about how settings are embedded in projects and how to edit them.
+batch-goals  |  Prompt about how the Goals window works in a batch project.
+prompt-for-batch-label  |  Prompt for labels when adding documents to a batch project.
+
+{{< pagebreak >}}
+
+
+

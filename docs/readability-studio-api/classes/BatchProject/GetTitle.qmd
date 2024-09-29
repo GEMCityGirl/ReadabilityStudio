@@ -1,0 +1,15 @@
+## `GetTitle` {#batch-gettitle}
+
+Returns the title of the project.
+
+### Syntax {-}
+
+``` {.lua}
+string GetTitle()
+```
+
+### Return value {-}
+
+The title of the project.
+
+{{< pagebreak >}}

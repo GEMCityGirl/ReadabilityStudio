@@ -1,0 +1,17 @@
+## `SetFilePathDisplayMode` {#batch-setfilepathdisplaymode}
+
+Sets how filepaths are displayed in the lists.
+
+### Syntax {-}
+
+``` {.lua}
+SetFilePathDisplayMode(FilePathDisplayMode)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+FilePathDisplayMode | The [filepath display](#filepathdisplaymode) to use for the project's lists.
+
+{{< pagebreak >}}

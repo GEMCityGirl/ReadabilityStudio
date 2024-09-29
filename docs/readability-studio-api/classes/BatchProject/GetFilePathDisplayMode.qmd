@@ -1,0 +1,15 @@
+## `GetFilePathDisplayMode` {#batch-getfilepathdisplaymode}
+
+Returns how filepaths are displayed in the lists.
+
+### Syntax {-}
+
+``` {.lua}
+FilePathDisplayMode GetFilePathDisplayMode()
+```
+
+### Return value {-}
+
+The filepaths display of the lists as a [FilePathDisplayMode](#filepathdisplaymode) value.
+
+{{< pagebreak >}}

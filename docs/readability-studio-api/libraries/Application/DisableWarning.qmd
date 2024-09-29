@@ -1,0 +1,19 @@
+## `DisableWarning`
+
+Disables\index{Warnings!disabling} the specified warning.
+
+### Syntax {-}
+
+``` {.lua}
+DisableWarning(string WarningId)
+```
+
+**Parameter** | **Description**
+| :-- | :-- |
+WarningId | The warning's string ID.
+
+Refer to **[EnableWarning()](#enablewarning)** for a list of warning IDs.
+
+{{< pagebreak >}}
+
+
