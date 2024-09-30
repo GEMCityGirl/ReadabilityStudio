@@ -9,9 +9,10 @@
 #include "lua_interface.h"
 #include "../app/readability_app.h"
 #include "lua_application.h"
+#include "lua_batch_project.h"
 #include "lua_debug.h"
-#include "lua_projects.h"
 #include "lua_screenshot.h"
+#include "lua_standard_project.h"
 
 wxDECLARE_APP(ReadabilityApp);
 

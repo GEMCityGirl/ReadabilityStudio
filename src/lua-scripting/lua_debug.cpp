@@ -7,12 +7,71 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "lua_debug.h"
+#include "../Wisteria-Dataviz/src/base/reportbuilder.h"
 #include "../app/readability_app.h"
 
 wxDECLARE_APP(ReadabilityApp);
 
 namespace LuaScripting
     {
+    //-------------------------------------------------------------
+    wxColour LoadColor(wxString colorStr)
+        {
+        wxColour color{ colorStr.MakeLower() };
+        if (!color.IsOk())
+            {
+            auto foundColor = Wisteria::ReportBuilder::GetColorMap().find(colorStr.wc_str());
+            if (foundColor != Wisteria::ReportBuilder::GetColorMap().cend())
+                {
+                color = Wisteria::Colors::ColorBrewer::GetColor(foundColor->second);
+                }
+            }
+        return color;
+        }
+
+    //-------------------------------------------------------------
+    void LoadFontAttributes(lua_State* L, wxFont& font, wxColour& fontColor, bool calledFromObject)
+        {
+        int paramIndex = (calledFromObject ? 2 : 1);
+        // name, point size, weight, color (as a string)
+        wxString fontName{ luaL_checkstring(L, paramIndex++), wxConvUTF8 };
+        if (fontName.CmpNoCase(_DT(L"MONOSPACE")) == 0)
+            {
+            fontName = Wisteria::GraphItems::Label::GetFirstAvailableMonospaceFont();
+            }
+        else if (fontName.CmpNoCase(_DT(L"CURSIVE")) == 0)
+            {
+            fontName = Wisteria::GraphItems::Label::GetFirstAvailableCursiveFont();
+            }
+        if (!fontName.empty())
+            {
+            font.SetFaceName(fontName);
+            }
+
+        if (lua_gettop(L) >= paramIndex)
+            {
+            const double pointSize{ lua_tonumber(L, paramIndex++) };
+            if (pointSize > 0)
+                {
+                font.SetFractionalPointSize(pointSize);
+                }
+            }
+
+        if (lua_gettop(L) >= paramIndex)
+            {
+            const int fontWeight{ static_cast<int>(lua_tonumber(L, paramIndex++)) };
+            if (fontWeight > 0)
+                {
+                font.SetWeight(static_cast<wxFontWeight>(fontWeight));
+                }
+            }
+
+        if (lua_gettop(L) >= paramIndex)
+            {
+            fontColor = LoadColor(wxString{ luaL_checkstring(L, paramIndex++), wxConvUTF8 });
+            }
+        }
+
     //-------------------------------------------------------------
     bool VerifyParameterCount(lua_State* L, const int minParemeterCount,
                               const wxString& functionName)

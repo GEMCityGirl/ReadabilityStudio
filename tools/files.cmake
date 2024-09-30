@@ -22,10 +22,11 @@ SET(APP_SRC_FILES
     src/indexing/stop_lists.cpp
     src/indexing/syllable.cpp
     src/lua-scripting/lua_application.cpp
+    src/lua-scripting/lua_batch_project.cpp
     src/lua-scripting/lua_debug.cpp
     src/lua-scripting/lua_interface.cpp
-    src/lua-scripting/lua_projects.cpp
     src/lua-scripting/lua_screenshot.cpp
+    src/lua-scripting/lua_standard_project.cpp
     src/lua-scripting/onelua_no_warnings.c
     src/projects/base_project.cpp
     src/projects/base_project_doc.cpp

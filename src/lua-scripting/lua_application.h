@@ -14,8 +14,9 @@
 
 #include "../Wisteria-Dataviz/src/i18n-check/src/donttranslate.h"
 #include "lua.hpp"
+#include "lua_batch_project.h"
 #include "lua_debug.h"
-#include "lua_projects.h"
+#include "lua_standard_project.h"
 #include <map>
 #include <wx/wx.h>
 

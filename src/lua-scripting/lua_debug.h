@@ -30,9 +30,9 @@ namespace LuaScripting
         @param str The message to print.*/
     void DebugPrint(const wxString& str);
 
-    int Print(lua_State*);
-    int Clear(lua_State*);
-    int GetScriptFolderPath(lua_State*);
+    /// @brief Helper function to load font attributes for a project.
+    void LoadFontAttributes(lua_State* L, wxFont& font, wxColour& fontColor, bool calledFromObject);
+    wxColour LoadColor(wxString colorStr);
 
     static const luaL_Reg DebugLib[] = { { "Print", Print },
                                          { "Clear", Clear },
