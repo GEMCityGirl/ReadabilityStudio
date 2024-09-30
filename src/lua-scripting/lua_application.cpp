@@ -1317,9 +1317,9 @@ namespace LuaScripting
             return 0;
             }
         const wxString exclusionTags(luaL_checkstring(L, 1), wxConvUTF8);
-        wxGetApp().GetAppOptions().GetExclusionBlockTags().clear();
         if (exclusionTags.length() >= 2)
             {
+            wxGetApp().GetAppOptions().GetExclusionBlockTags().clear();
             wxGetApp().GetAppOptions().GetExclusionBlockTags().push_back(
                 std::make_pair(exclusionTags[0], exclusionTags[1]));
             }
