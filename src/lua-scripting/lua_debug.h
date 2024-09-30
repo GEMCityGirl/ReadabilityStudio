@@ -34,6 +34,12 @@ namespace LuaScripting
     void LoadFontAttributes(lua_State* L, wxFont& font, wxColour& fontColor, bool calledFromObject);
     wxColour LoadColor(wxString colorStr);
 
+    // clang-format off
+    int Print(lua_State* /*string message*/); // Prints a message to the script editor's debug window.
+    int Clear(lua_State*); // Clears the log window.
+    int /*string*/ GetScriptFolderPath(lua_State*); // Returns the folder path of the currently running script.
+    // clang-format on
+
     static const luaL_Reg DebugLib[] = { { "Print", Print },
                                          { "Clear", Clear },
                                          { "GetScriptFolderPath", GetScriptFolderPath },
