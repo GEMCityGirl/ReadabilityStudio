@@ -2,6 +2,19 @@ library(tidyverse)
 library(stringi)
 library(magrittr)
 
+# Loads Lua API function signatures from a header file.
+# The format should be:
+#
+# int /*actual return type*/ FuncName(/*parameteres*/)
+#
+# Parameter and return types are optional.
+loadClassInfo <- function(filePath)
+  {
+  signatureRE <- R'([[:space:]]*int[[:space:]]*(\/\*([[:space:]_[:alnum:]]*)\*\/)?[[:space:]]*([_[:alnum:]]+)[(]lua_State[*]( L)?[[:space:]]*(\/\*([[:space:]_[:alnum:]]*)\*\/)?[)][;])'
+  classText <- read_file(filePath)
+  return(stringr::str_replace(stringr::str_extract_all(classText, signatureRE)[[1]], signatureRE, '\\3(\\6)->\\2'))
+  }
+
 # Loads a Lua file with enumeration definitions and generates the intellisense file (for the editor)
 # and builds help topics for each enumeration.
 #
