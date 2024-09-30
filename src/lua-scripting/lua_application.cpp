@@ -726,10 +726,10 @@ namespace LuaScripting
 
         wxFileName(outputPath).SetPermissions(wxS_DEFAULT);
         wxFile outputFile(outputPath, wxFile::write);
-        outputFile.Write(outputStr, wxConvUTF8);
+        lua_pushboolean(L, outputFile.Write(outputStr, wxConvUTF8));
 
         wxGetApp().Yield();
-        return 0;
+        return 1;
         }
 
     //-------------------------------------------------------------
@@ -774,10 +774,10 @@ namespace LuaScripting
 
         wxFileName(outputPath).SetPermissions(wxS_DEFAULT);
         wxFile outputFile(outputPath, wxFile::write);
-        outputFile.Write(outputStr, wxConvUTF8);
+        lua_pushboolean(L, outputFile.Write(outputStr, wxConvUTF8));
 
         wxGetApp().Yield();
-        return 0;
+        return 1;
         }
 
     //-------------------------------------------------------------
@@ -862,10 +862,10 @@ namespace LuaScripting
 
         wxFileName(outputPath).SetPermissions(wxS_DEFAULT);
         wxFile outputFile(outputPath, wxFile::write);
-        outputFile.Write(outputStr, wxConvUTF8);
+        lua_pushboolean(L, outputFile.Write(outputStr, wxConvUTF8));
 
         wxGetApp().Yield();
-        return 0;
+        return 1;
         }
 
     //-------------------------------------------------------------
