@@ -12,7 +12,7 @@ Print(string message)
 
 **Parameter** | **Description**
 | :-- | :-- |
-message | The message to print.
+`string` message | The message to print.
 
 ::: {.tipsection data-latex=""}
 *message* can be HTML-formatted text.

@@ -14,7 +14,6 @@ DelayReloading(Delay)
 
 **Parameter** | **Description**
 | :-- | :-- |
-
 Delay | Specifies whether to delay reloading the project.
 
 {{< pagebreak >}}

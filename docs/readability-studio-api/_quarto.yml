@@ -22,7 +22,7 @@ book:
   description: "{{< var PROGRAM_DESCRIPTION >}}"
   author: '{{< var PROGRAM_AUTHOR >}}'
   date: today
-  date-format: long
+  date-format: "YYYY"
   output-file: "readability-studio-api"
   language: en
   search: false
