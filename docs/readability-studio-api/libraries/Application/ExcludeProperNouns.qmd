@@ -12,8 +12,6 @@ ExcludeProperNouns(boolean exclude)
 
 **Parameter** | **Description**
 | :-- | :-- |
-exclude | `true` to exclude proper nouns, `false` to include them.
+`boolean` exclude | `true` to exclude proper nouns, `false` to include them.
 
 {{< pagebreak >}}
-
-

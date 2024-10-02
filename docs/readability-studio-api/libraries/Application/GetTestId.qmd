@@ -13,7 +13,7 @@ integer GetTestId(string testName)
 
 **Parameter** | **Description**
 | :-- | :-- |
-testName | The name of the test.
+`string` testName | The name of the test.
 
 ### Return value {-}
 
@@ -22,5 +22,3 @@ Type: `number` \
 The numeric ID of the test. Will be `-1` if test was not found.
 
 {{< pagebreak >}}
-
-

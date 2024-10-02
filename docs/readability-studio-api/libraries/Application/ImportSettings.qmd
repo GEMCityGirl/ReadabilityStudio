@@ -12,7 +12,7 @@ boolean ImportSettings(string settingsFileToImport)
 
 **Parameter** | **Description**
 | :-- | :-- |
-settingsFileToImport | The filepath to import the program's settings from.
+`string` settingsFileToImport | The filepath to import the program's settings from.
 
 ### Return value {-}
 
@@ -21,5 +21,3 @@ Type: `boolean` \
 Returns `true` if settings were successfully imported.
 
 {{< pagebreak >}}
-
-

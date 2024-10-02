@@ -12,8 +12,6 @@ SetPhraseExclusionListFilePath(string filePath)
 
 **Parameter** | **Description**
 | :-- | :-- |
-filePath | The filepath to the list of phrases and words that should be excluded from analysis.
+`string` filePath | The filepath to the list of phrases and words that should be excluded from analysis.
 
 {{< pagebreak >}}
-
-

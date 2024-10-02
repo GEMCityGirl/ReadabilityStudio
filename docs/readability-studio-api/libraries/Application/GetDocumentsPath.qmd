@@ -15,5 +15,3 @@ Type: `string` \
 The path to the user's documents folder.
 
 {{< pagebreak >}}
-
-

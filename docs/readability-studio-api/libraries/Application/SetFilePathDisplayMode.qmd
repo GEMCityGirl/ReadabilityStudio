@@ -12,8 +12,6 @@ SetFilePathDisplayMode(FilePathDisplayMode filePathDisplayMode)
 
 **Parameter** | **Description**
 | :-- | :-- |
-filePathDisplayMode | How filepaths should be [displayed](#filepathdisplaymode).
+[`FilePathDisplayMode`](#filepathdisplaymode) filePathDisplayMode | How filepaths should be displayed.
 
 {{< pagebreak >}}
-
-

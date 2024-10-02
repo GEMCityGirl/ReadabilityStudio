@@ -12,8 +12,6 @@ SetGraphWatermark(string label)
 
 **Parameter** | **Description**
 | :-- | :-- |
-label | The text to draw across the graphs.
+`string` label | The text to draw across the graphs.
 
 {{< pagebreak >}}
-
-

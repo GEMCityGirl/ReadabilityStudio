@@ -12,8 +12,6 @@ LogError(string errorMessage)
 
 **Parameter** | **Description**
 | :-- | :-- |
-errorMessage | The error message to log.
+`string` errorMessage | The error message to log.
 
 {{< pagebreak >}}
-
-

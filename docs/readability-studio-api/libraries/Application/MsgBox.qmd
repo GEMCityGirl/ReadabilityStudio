@@ -13,9 +13,7 @@ MsgBox(string message,
 
 **Parameter** | **Description**
 | :-- | :-- |
-message | The message to show.
-title | (Optional) The title of the message box.
+`string` message | The message to show.
+`string` title | (Optional) The title of the message box.
 
 {{< pagebreak >}}
-
-

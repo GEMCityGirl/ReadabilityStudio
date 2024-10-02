@@ -12,7 +12,7 @@ boolean ExportSettings(string settingsFileToExport)
 
 **Parameter** | **Description**
 | :-- | :-- |
-settingsFileToExport | The filepath to save the program's settings to.
+`string` settingsFileToExport | The filepath to save the program's settings to.
 
 ### Return value {-}
 

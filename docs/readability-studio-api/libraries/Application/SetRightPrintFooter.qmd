@@ -12,7 +12,7 @@ SetRightPrintFooter(string label)
 
 **Parameter** | **Description**
 | :-- | :-- |
-label | The label to appear in the bottom right corner of printouts.
+`string` label | The label to appear in the bottom right corner of printouts.
 
 ### Example {-}
 

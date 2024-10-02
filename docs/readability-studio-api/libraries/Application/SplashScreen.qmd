@@ -11,6 +11,6 @@ SplashScreen(number index)
 
 **Parameter** | **Description**
 | :-- | :-- |
-index | Index of which image from the list of splashscreens to display.
+`number` index | Index of which image from the list of splashscreens to display.
 
 {{< pagebreak >}}

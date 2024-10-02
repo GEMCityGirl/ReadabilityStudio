@@ -14,8 +14,8 @@ string GetAbsoluteFilePath(string basePath
 
 **Parameter** | **Description**
 | :-- | :-- |
-basePath | The full base path.
-relativePath | The path of the file that is relative to the base path.
+`string` basePath | The full base path.
+`string` relativePath | The path of the file that is relative to the base path.
 
 ### Return value {-}
 
@@ -37,4 +37,3 @@ Debug.Print(
 ```
 
 {{< pagebreak >}}
-

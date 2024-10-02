@@ -15,5 +15,3 @@ Type: [TextStorage](#textstorage) \
 How projects are embedding or linking to their source.
 
 {{< pagebreak >}}
-
-

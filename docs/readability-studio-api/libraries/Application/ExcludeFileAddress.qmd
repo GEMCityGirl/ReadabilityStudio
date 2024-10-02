@@ -12,8 +12,6 @@ ExcludeFileAddress(boolean exclude)
 
 **Parameter** | **Description**
 | :-- | :-- |
-exclude | `true` to exclude filepaths and URLs, `false` to include them.
+`boolean` exclude | `true` to exclude filepaths and URLs, `false` to include them.
 
 {{< pagebreak >}}
-
-

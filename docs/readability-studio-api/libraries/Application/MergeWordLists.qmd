@@ -15,8 +15,8 @@ boolean MergeWordLists(string outputFilePath,
 
 **Parameter** | **Description**
 | :-- | :-- |
-outputFilePath | The output filepaths to merge the files into.
-input1,input2,... | A list of files to be merged into *outputFilePath*.
+`string` outputFilePath | The output filepaths to merge the files into.
+`string` input1,input2,... | A list of files to be merged into *outputFilePath*.
 
 ### Return value {-}
 
@@ -25,4 +25,3 @@ Type: `boolean` \
 Returns `true` if files were successfully merged.
 
 {{< pagebreak >}}
-

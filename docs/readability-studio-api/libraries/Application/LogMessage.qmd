@@ -12,8 +12,6 @@ LogMessage(string message)
 
 **Parameter** | **Description**
 | :-- | :-- |
-message | The message to log.
+`string` message | The message to log.
 
 {{< pagebreak >}}
-
-

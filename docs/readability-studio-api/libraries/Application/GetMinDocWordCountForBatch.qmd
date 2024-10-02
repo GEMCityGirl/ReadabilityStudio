@@ -6,7 +6,7 @@ Returns the minimum number of words that a document must have to be included in 
 
 
 ``` {.lua}
-integer GetMinDocWordCountForBatch()
+number GetMinDocWordCountForBatch()
 ```
 
 ### Return value {-}
@@ -16,5 +16,3 @@ Type: `number` \
 The minimum number of words that a document must have to be included in batch projects.
 
 {{< pagebreak >}}
-
-

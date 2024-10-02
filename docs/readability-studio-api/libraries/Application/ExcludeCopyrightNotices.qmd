@@ -12,8 +12,6 @@ ExcludeCopyrightNotices(boolean exclude)
 
 **Parameter** | **Description**
 | :-- | :-- |
-exclude | `true` to exclude copyright notices, `false` to include them.
+`boolean` exclude | `true` to exclude copyright notices, `false` to include them.
 
 {{< pagebreak >}}
-
-

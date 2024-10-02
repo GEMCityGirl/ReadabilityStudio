@@ -15,5 +15,3 @@ Type: [ParagraphParse](#paragraphparse) \
 The paragraph parsing method.
 
 {{< pagebreak >}}
-
-

@@ -15,10 +15,8 @@ SetBarChartBarColor(number red,
 
 **Parameter** | **Description**
 | :-- | :-- |
-red | The red channel of the color.
-green | The green channel of the color.
-blue | The blue channel of the color.
+`number` red | The red channel of the color.
+`number` green | The green channel of the color.
+`number` blue | The blue channel of the color.
 
 {{< pagebreak >}}
-
-

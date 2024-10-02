@@ -12,8 +12,6 @@ SetMinDocWordCountForBatch(number count)
 
 **Parameter** | **Description**
 | :-- | :-- |
-count | The minimum number of words that a document must have to be included in batch projects.
+`number` count | The minimum number of words that a document must have to be included in batch projects.
 
 {{< pagebreak >}}
-
-

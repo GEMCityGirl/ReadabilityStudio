@@ -1,7 +1,7 @@
 ## `SetBarChartBarOpacity`
 
 Sets the opacity of bar chart bars. **0** is fully transparent, and **255** is opaque.
-(Values should be between **0** - **255**.)
+(Values should be between **0** -- **255**.)
 
 ### Syntax {-}
 
@@ -13,8 +13,6 @@ SetBarChartBarOpacity(number opacityLevel)
 
 **Parameter** | **Description**
 | :-- | :-- |
-opacityLevel | The opacity of bar chart bars.
+`number` opacityLevel | The opacity of bar chart bars.
 
 {{< pagebreak >}}
-
-

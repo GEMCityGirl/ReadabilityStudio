@@ -12,8 +12,6 @@ SetPlotBackgroundOpacity(number opacityLevel)
 
 **Parameter** | **Description**
 | :-- | :-- |
-opacityLevel | The opacity of graph plot areas.
+`number` opacityLevel | The opacity of graph plot areas.
 
 {{< pagebreak >}}
-
-

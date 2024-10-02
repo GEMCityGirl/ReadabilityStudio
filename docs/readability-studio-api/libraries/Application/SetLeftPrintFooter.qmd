@@ -12,7 +12,7 @@ SetLeftPrintFooter(string label)
 
 **Parameter** | **Description**
 | :-- | :-- |
-label | The label to appear in the bottom left corner of printouts.
+`string` label | The label to appear in the bottom left corner of printouts.
 
 ### Example {-}
 
@@ -28,5 +28,3 @@ Application.SetRightPrintFooter("Printed on @DATE@")
 ```
 
 {{< pagebreak >}}
-
-

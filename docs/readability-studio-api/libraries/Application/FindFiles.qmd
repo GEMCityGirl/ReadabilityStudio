@@ -13,8 +13,8 @@ table FindFiles(string folderPath,
 
 **Parameter** | **Description**
 | :-- | :-- |
-folderPath | The folder to search in.
-fileFilter | The file pattern to search for.
+`string` folderPath | The folder to search in.
+`string` fileFilter | The file pattern to search for.
 
 ### Return value {-}
 

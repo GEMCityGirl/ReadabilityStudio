@@ -13,7 +13,7 @@ SetReviewer(string name)
 
 **Parameter** | **Description**
 | :-- | :-- |
-name | The user name for the software.
+`string` name | The user name for the software.
 
 ### Example {-}
 

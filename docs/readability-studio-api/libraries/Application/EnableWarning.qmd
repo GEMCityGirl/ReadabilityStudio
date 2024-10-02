@@ -10,7 +10,7 @@ EnableWarning(string warningId)
 
 **Parameter** | **Description**
 | :-- | :-- |
-warningId | The warning's string ID.
+`string` warningId | The warning's string ID.
 
 The following warning IDs are available:
 
@@ -42,6 +42,3 @@ batch-goals  |  Prompt about how the Goals window works in a batch project.
 prompt-for-batch-label  |  Prompt for labels when adding documents to a batch project.
 
 {{< pagebreak >}}
-
-
-

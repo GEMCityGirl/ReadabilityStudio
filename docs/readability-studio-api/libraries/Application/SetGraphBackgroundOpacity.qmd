@@ -12,8 +12,6 @@ SetGraphBackgroundOpacity(number opacityLevel)
 
 **Parameter** | **Description**
 | :-- | :-- |
-opacityLevel | The opacity of graph backgrounds.
+`number` opacityLevel | The opacity of graph backgrounds.
 
 {{< pagebreak >}}
-
-

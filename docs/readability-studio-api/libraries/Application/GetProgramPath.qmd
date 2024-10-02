@@ -15,5 +15,3 @@ Type: `string` \
 The folder path to the application.
 
 {{< pagebreak >}}
-
-

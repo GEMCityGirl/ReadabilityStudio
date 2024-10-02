@@ -12,8 +12,6 @@ SetDocumentStorageMethod(TextStorage textStorage)
 
 **Parameter** | **Description**
 | :-- | :-- |
-textStorage | How projects should [embed or link](#textstorage) to their documents.
+[`TextStorage`](#textstorage) textStorage | How projects should embed or link to their documents.
 
 {{< pagebreak >}}
-
-

@@ -13,8 +13,8 @@ boolean WriteToFile(string filePath,
 
 **Parameter** | **Description**
 | :-- | :-- |
-filePath | The file to write to (will be overwritten if file exists).
-message | The text to write to the file.
+`string` filePath | The file to write to (will be overwritten if file exists).
+`string` message | The text to write to the file.
 
 ### Return value {-}
 

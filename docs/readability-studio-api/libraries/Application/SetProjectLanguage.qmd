@@ -12,8 +12,6 @@ SetProjectLanguage(Language lang)
 
 **Parameter** | **Description**
 | :-- | :-- |
-lang | Which [language](#language) to set as the default language for new projects.
+[`Language`](#language) lang | Which language to set as the default language for new projects.
 
 {{< pagebreak >}}
-
-

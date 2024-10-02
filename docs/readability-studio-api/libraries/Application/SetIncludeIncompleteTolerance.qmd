@@ -12,8 +12,6 @@ SetIncludeIncompleteTolerance(number wordCount)
 
 **Parameter** | **Description**
 | :-- | :-- |
-wordCount | The minimum number of words that will make a sentence missing terminating punctuation be considered complete.
+`number` wordCount | The minimum number of words that will make a sentence missing terminating punctuation be considered complete.
 
 {{< pagebreak >}}
-
-

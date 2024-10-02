@@ -12,7 +12,7 @@ SetTextExclusion(TextExclusionType textExclusionType)
 
 **Parameter** | **Description**
 | :-- | :-- |
-textExclusionType | How text should be [excluded](#textexclusiontype).
+[`TextExclusionType`](#textexclusiontype) textExclusionType | How text should be excluded.
 
 ### Example {-}
 

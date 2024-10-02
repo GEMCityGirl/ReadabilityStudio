@@ -12,7 +12,7 @@ table GetImageInfo(string imagePath)
 
 **Parameter** | **Description**
 | :-- | :-- |
-imagePath | The file path of the image.
+`string` imagePath | The file path of the image.
 
 ### Return value {-}
 
@@ -33,4 +33,3 @@ end
 ```
 
 {{< pagebreak >}}
-

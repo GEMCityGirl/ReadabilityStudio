@@ -15,5 +15,3 @@ Type: [FilePathDisplayMode](#filepathdisplaymode) \
 How filepaths are being displayed.
 
 {{< pagebreak >}}
-
-

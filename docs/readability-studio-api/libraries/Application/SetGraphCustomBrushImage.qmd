@@ -12,8 +12,6 @@ SetGraphCustomBrushImage(string imageFilePath)
 
 **Parameter** | **Description**
 | :-- | :-- |
-imageFilePath | The filepath to the image to use for custom brushes.
+`string` imageFilePath | The filepath to the image to use for custom brushes.
 
 {{< pagebreak >}}
-
-

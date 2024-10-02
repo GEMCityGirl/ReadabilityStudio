@@ -1,7 +1,7 @@
 ## `SetGraphBackgroundColor`
 
 Sets the background color for all graphs. The color is created by specifying the red, blue, and green channels of the color.
-(Values should be between **0** - **255**.)
+(Values should be between **0** -- **255**.)
 
 ### Syntax {-}
 
@@ -15,10 +15,8 @@ SetGraphBackgroundColor(number red,
 
 **Parameter** | **Description**
 | :-- | :-- |
-red | The red channel of the color.
-green | The green channel of the color.
-blue | The blue channel of the color.
+`number` red | The red channel of the color.
+`number` green | The green channel of the color.
+`number` blue | The blue channel of the color.
 
 {{< pagebreak >}}
-
-

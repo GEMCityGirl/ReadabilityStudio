@@ -12,7 +12,7 @@ SetBlockExclusionTags(string tags)
 
 **Parameter** | **Description**
 | :-- | :-- |
-tags | A two-character string containing a pair of exclusion tags.
+`string` tags | A two-character string containing a pair of exclusion tags.
 
 ::: {.notesection data-latex=""}
 Pass in an empty string to turn off this option.
