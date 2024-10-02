@@ -7,6 +7,17 @@ source('../R/appdown.r')
 
 # New Features and Enhancements {#sec-new-features}
 
+## Readability Studio 2024.1 {-}
+***
+
+### Importing/Exporting Enhancements {-}
+
+- C++ file importer now analyzes comments, not just *gettext* strings.
+
+### Bug Fixes {-}
+
+- Fixed intermittent graph blinking issue under HiDPI settings.
+
 ## Readability Studio 2024 {-}
 ***
 

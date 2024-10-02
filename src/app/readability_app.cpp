@@ -584,7 +584,6 @@ bool ReadabilityApp::OnInit()
         {
         wxLog::SetVerbose(true);
         wxLog::SetLogLevel(wxLOG_Max);
-        m_advancedImport = true;
         }
 
     // load map of graph icons to human readable strings

@@ -3902,8 +3902,7 @@ std::pair<bool, std::wstring> BaseProject::ExtractRawText(std::string_view sourc
         {
         SpellCheckIgnoreProgrammerCode(true);
         lily_of_the_valley::cpp_extract_text filter_cpp;
-        if (wxGetApp().IsUsingAdvancedImport())
-            { filter_cpp.include_all_comments(true); }
+        filter_cpp.include_all_comments(true);
         const std::wstring unicodeStr =
             Wisteria::TextStream::CharStreamToUnicode(sourceFileText.data(), sourceFileText.length());
         SetOriginalDocumentDescription(

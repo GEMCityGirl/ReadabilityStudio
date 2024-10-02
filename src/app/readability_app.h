@@ -409,13 +409,6 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
     /// are properly presorted.
     bool VerifyWordLists();
 
-    /// @returns @c true if parsers should import extra content (dependent on parser).
-    [[nodiscard]]
-    bool IsUsingAdvancedImport() const noexcept
-        {
-        return m_advancedImport;
-        }
-
     void RemoveAllCustomTestBundles();
 
     /// @returns The DPI scaling factor (e.g., can be 2 on HiDPI displays).
@@ -502,7 +495,6 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
     wxString m_CustomEnglishDictionaryPath;
     wxString m_CustomSpanishDictionaryPath;
     wxString m_CustomGermanDictionaryPath;
-    bool m_advancedImport{ false };
     double m_dpiScaleFactor{ 1.0 };
     wxArrayString m_splashscreenImagePaths;
     WebHarvester m_webHarvester;
