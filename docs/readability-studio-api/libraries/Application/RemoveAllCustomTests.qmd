@@ -1,6 +1,6 @@
 ## `RemoveAllCustomTests`
 
-Removes all custom tests from the program.
+Clears all custom tests from the program.
 
 ### Syntax {-}
 
@@ -9,5 +9,3 @@ RemoveAllCustomTests()
 ```
 
 {{< pagebreak >}}
-
-

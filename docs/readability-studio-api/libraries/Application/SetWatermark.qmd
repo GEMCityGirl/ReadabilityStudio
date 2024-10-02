@@ -1,0 +1,19 @@
+## `SetWatermark`
+
+Sets the watermark drawn on graphs for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+SetWatermark(string watermark)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`string` watermark |      |
+
+
+{{< pagebreak >}}

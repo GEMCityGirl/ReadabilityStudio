@@ -19,7 +19,7 @@ string GetAbsoluteFilePath(string basePath
 
 ### Return value {-}
 
-Type: `string` \
+Type: `string`
 
 The full file path.
 

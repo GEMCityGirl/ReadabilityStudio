@@ -1,0 +1,19 @@
+## `SetPhraseExclusionList`
+
+Sets the filepath to the phrase exclusion list for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+SetPhraseExclusionList(string exclusionListPath)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`string` exclusionListPath |      |
+
+
+{{< pagebreak >}}

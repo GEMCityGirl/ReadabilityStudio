@@ -1,0 +1,19 @@
+## `SetStippleImage`
+
+Sets the stipple image used to draw bars in graphs for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+SetStippleImage(string imagePath)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`string` imagePath |      |
+
+
+{{< pagebreak >}}

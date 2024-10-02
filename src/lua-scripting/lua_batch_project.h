@@ -147,7 +147,7 @@ namespace LuaScripting
         int SetPlotBackgroundImageOpacity(lua_State* L);
         int SetPlotBackgroundColor(lua_State* L);
         int SetPlotBackgroundColorOpacity(lua_State* L);
-        int SetGraphWatermark(lua_State* L);
+        int SetWatermark(lua_State* L);
         int SetGraphLogoImage(lua_State* L);
         int SetStippleImage(lua_State* L);
         int SetStippleShape(lua_State* L);
@@ -191,9 +191,10 @@ namespace LuaScripting
         ColumnToSort The column in the list to sort.
         Order The order to sort.*/
         int SortList(lua_State* L);
+
         // hidden functions just used for screenshots
-        int OpenProperties(lua_State* L);
-        int CloseProperties(lua_State*);
+        int /*INTERNAL!!!*/ OpenProperties(lua_State* L);
+        int /*INTERNAL!!!*/ CloseProperties(lua_State*);
         };
     } // namespace LuaScripting
 

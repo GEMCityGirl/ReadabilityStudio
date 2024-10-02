@@ -1398,7 +1398,7 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int SetGraphWatermark(lua_State* L)
+    int SetWatermark(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))
             {

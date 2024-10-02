@@ -17,7 +17,7 @@ integer GetTestId(string testName)
 
 ### Return value {-}
 
-Type: `number` \
+Type: `number`
 
 The numeric ID of the test. Will be `-1` if test was not found.
 

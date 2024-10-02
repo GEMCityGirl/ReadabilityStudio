@@ -1,6 +1,6 @@
 ## `RemoveAllCustomTestBundles`
 
-Removes all custom test bundles from the program.
+Clears all custom test bundles from the program.
 
 ### Syntax {-}
 
@@ -9,5 +9,3 @@ RemoveAllCustomTestBundles()
 ```
 
 {{< pagebreak >}}
-
-

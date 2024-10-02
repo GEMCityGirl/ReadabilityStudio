@@ -1,0 +1,10 @@
+## `Clear`
+
+Clears the log window.
+
+### Syntax {-}
+
+``` {.lua}
+Clear()
+
+```{{< pagebreak >}}

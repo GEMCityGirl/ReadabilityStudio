@@ -1,0 +1,19 @@
+## `SetStippleShape`
+
+Sets the stipple shape used to draw bars in graphs for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+SetStippleShape(string shapeId)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`string` shapeId |      |
+
+
+{{< pagebreak >}}

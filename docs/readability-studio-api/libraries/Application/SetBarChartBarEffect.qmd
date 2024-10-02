@@ -1,19 +1,17 @@
 ## `SetBarChartBarEffect`
 
-Sets the effect used to display bars in bar charts.
+Sets bar appearance (in bar charts) for new projects.
 
 ### Syntax {-}
 
 ``` {.lua}
-SetBarChartBarEffect(BarEffect effect)
+SetBarChartBarEffect(BoxEffect barEffect)
 ```
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-effect | The [effect](#bareffect) used to display bars in bar charts.
+|[`BoxEffect`](#boxeffect) barEffect | The used to display bars in bar charts.     |
+
 
 {{< pagebreak >}}
-
-

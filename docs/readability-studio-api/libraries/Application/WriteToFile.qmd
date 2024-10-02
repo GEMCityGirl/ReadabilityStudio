@@ -18,7 +18,7 @@ boolean WriteToFile(string filePath,
 
 ### Return value {-}
 
-Type: `boolean` \
+Type: `boolean`
 
 Returns `true` if output was successfully written to the file.
 

@@ -20,7 +20,7 @@ boolean MergeWordLists(string outputFilePath,
 
 ### Return value {-}
 
-Type: `boolean` \
+Type: `boolean`
 
 Returns `true` if files were successfully merged.
 

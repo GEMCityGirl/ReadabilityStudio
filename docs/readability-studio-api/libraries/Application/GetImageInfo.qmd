@@ -16,7 +16,7 @@ table GetImageInfo(string imagePath)
 
 ### Return value {-}
 
-Type: `table` \
+Type: `table`
 
 A two-column table of the image's information.
 

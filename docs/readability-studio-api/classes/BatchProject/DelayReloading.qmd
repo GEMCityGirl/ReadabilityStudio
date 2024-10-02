@@ -7,13 +7,13 @@ This is more efficient for when multiple settings are being altered at one time.
 ### Syntax {-}
 
 ``` {.lua}
-DelayReloading(Delay)
+DelayReloading(boolean delay)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-Delay | Specifies whether to delay reloading the project.
+`boolean` delay | Specifies whether to delay reloading the project.
 
 {{< pagebreak >}}

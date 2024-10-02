@@ -434,7 +434,7 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int BatchProject::SetGraphWatermark(lua_State *L)
+    int BatchProject::SetWatermark(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__func__))
             { return 0; }
@@ -1208,7 +1208,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundImageEffect),
       LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundImageFit),
       LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundImageOpacity),
-      LUNA_DECLARE_METHOD(BatchProject, SetGraphWatermark),
+      LUNA_DECLARE_METHOD(BatchProject, SetWatermark),
       LUNA_DECLARE_METHOD(BatchProject, SetGraphLogoImage),
       LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundColor),
       LUNA_DECLARE_METHOD(BatchProject, SetGraphInvalidRegionColor),

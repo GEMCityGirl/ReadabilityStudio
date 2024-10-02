@@ -1,0 +1,19 @@
+## `SetPlotBackgroundImageOpacity`
+
+Sets the graph background (plot area) image opacity for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+SetPlotBackgroundImageOpacity(number opacity)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`number` opacity |      |
+
+
+{{< pagebreak >}}

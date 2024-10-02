@@ -1116,7 +1116,7 @@ sp:Reload()
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "example-graph-background-image-effect-changed." .. FileExtension)
 
 -- add watermark
-sp:SetGraphWatermark("INTERNAL USE ONLY\nProcessed on @DATE@")
+sp:SetWatermark("INTERNAL USE ONLY\nProcessed on @DATE@")
 sp:Reload()
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "example-watermark-changed." .. FileExtension)
 

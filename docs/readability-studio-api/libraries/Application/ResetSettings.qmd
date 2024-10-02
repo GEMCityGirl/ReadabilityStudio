@@ -1,6 +1,6 @@
 ## `ResetSettings`
 
-Resets the program's settings.
+Resets the program's settings to the factory default.
 
 ### Syntax {-}
 
@@ -9,5 +9,3 @@ ResetSettings()
 ```
 
 {{< pagebreak >}}
-
-

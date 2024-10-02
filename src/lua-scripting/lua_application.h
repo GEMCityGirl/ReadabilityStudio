@@ -27,109 +27,101 @@ namespace LuaScripting
                     std::multimap<wxString, wxString>& badImageSizes,
                     const bool IncludeExternalLinks);
     // clang-format off
+    // NOTE: these must all be single-line for the build script to properly create new topics from these.
+
     // Helper functions
-    int MsgBox(lua_State* L /*string message*/);
-    int /*string*/ GetLuaConstantsPath(lua_State* L);
-    int /*string*/ GetProgramPath(lua_State* L);
-    int /*string*/ GetDocumentsPath(lua_State* L);
-    int /*string*/ GetAbsoluteFilePath(lua_State* L);
-    int /*string*/ DownloadFile(lua_State* L /*string Url, string downloadPath*/);
-    int /*table*/ FindFiles(lua_State* L /*string directory, string filePattern*/);
-    int Close(lua_State*);
-    int LogMessage(lua_State* L /*string message*/);
-    int LogError(lua_State* L /*string errorMessage*/);
-    int /*boolean*/ WriteToFile(lua_State* L /*string outputFilePath, string content*/);
-    int RemoveAllCustomTests(lua_State*);
-    int RemoveAllCustomTestBundles(lua_State*);
-    int /*boolean*/ MergeWordLists(lua_State* L /*string outputFile, ... inputFiles*/);
-    int /*boolean*/ MergePhraseLists(lua_State* L /*string outputFile, ... inputFiles*/);
+    int MsgBox(lua_State* L /*string message*/); // Displays a message dialog.
+    int /*string*/ GetLuaConstantsPath(lua_State* L); // Returns the path of the file containing the Lua data types used by the program.
+    int /*string*/ GetProgramPath(lua_State* L); // Returns the program's filepath.
+    int /*string*/ GetDocumentsPath(lua_State* L); // Returns the path of the user's documents folder.
+    int /*string*/ GetAbsoluteFilePath(lua_State* L /*string filePath, string baseFilePath*/); // Returns the absolute filepath for the first path, relative to the second.
+    int /*string*/ DownloadFile(lua_State* L /*string Url, string downloadPath*/); // Downloads a webpage to the provided local path.
+    int /*table*/ FindFiles(lua_State* L /*string directory, string filePattern*/); // Returns a list of all files from a folder matching the provided file pattern.
+    int Close(lua_State*); // Closes the program.
+    int LogMessage(lua_State* L /*string message*/); // Sends a message to the program's log report.
+    int LogError(lua_State* L /*string errorMessage*/); // Sends a warning message to the program's log report.
+    int /*boolean*/ WriteToFile(lua_State* L /*string outputFilePath, string content*/); // Writes a string to a file.
+    int RemoveAllCustomTests(lua_State*); // Clears all custom tests from the program.
+    int RemoveAllCustomTestBundles(lua_State*); // Clears all custom test bundles from the program.
+    int /*boolean*/ MergeWordLists(lua_State* L /*string outputFile, ... inputFiles*/); // Creates a new word list file from a list of other word list files.
+    int /*boolean*/ MergePhraseLists(lua_State* L /*string outputFile, ... inputFiles*/); // Creates a new phrase list file from a list of other phrase list files.
     // Append given suffixes to words in a list.
     // Note that this is an internal function used for expanding our proper noun list.
-    int /*boolean*/ ExpandWordList(lua_State* L /*string inputWordList, string outputFile, ... suffixesToAddToEachWord*/);
-    int /*boolean*/ PhraseListToWordList(lua_State* L /*string inputPhraseList, string outputFile*/);
-    int /*boolean*/ CrossReferenceWordLists(lua_State* L /*string wordList, string otherWordList, string outputFile*/);
-    int SetWindowSize(lua_State* L /*number width, number height*/);
-    int /*number*/ GetTestId(lua_State* L /*string testName*/);
-    int /*boolean*/ SplashScreen(lua_State* L /*number imageIndex*/);
-    int /*boolean*/ CheckHtmlLinks(lua_State* L /*string path, boolean includeExternalLinks*/);
+    int /*boolean*/ /*INTERNAL!!!*/ ExpandWordList(lua_State* L /*string inputWordList, string outputFile, ... suffixesToAddToEachWord*/); // INTERNAL FUNCTION!!! SHOULD NOT BE DOCUMENTED.
+    int /*boolean*/ /*INTERNAL!!!*/ PhraseListToWordList(lua_State* L /*string inputPhraseList, string outputFile*/); // INTERNAL FUNCTION!!! SHOULD NOT BE DOCUMENTED.
+    int /*boolean*/ CrossReferenceWordLists(lua_State* L /*string wordList, string otherWordList, string outputFile*/); // Compares two word lists and creates a new one that contains only the words that appear in both of them.
+    int SetWindowSize(lua_State* L /*number width, number height*/); // Sets the size of the program's main window.
+    int /*number*/ GetTestId(lua_State* L /*string testName*/); // Converts a test name (a string) into it's enumeration equivalent.
+    int /*boolean*/ SplashScreen(lua_State* L /*number imageIndex*/); // Displays the splashscreen, based on the provided splashscreen's index.
+    int /*boolean*/ CheckHtmlLinks(lua_State* L /*string path, boolean includeExternalLinks*/); // Checks for broken links in folder of HTML documents. (All broken links will be sent to the log report.)
     // Internal testing functions
-    int /*boolean*/ QAVerify /*INTERNAL*/ (lua_State* L);
-    int /*number*/ GetFileCheckSum /*INTERNAL*/ (lua_State* L /*string filePath*/);
-    int Crash /*INTERNAL*/ (lua_State*);
+    int /*boolean*/ QAVerify /*INTERNAL!!!*/ (lua_State* L); // INTERNAL FUNCTION!!! SHOULD NOT BE DOCUMENTED.
+    int /*number*/ GetFileCheckSum /*INTERNAL!!!*/ (lua_State* L /*string filePath*/); // INTERNAL FUNCTION!!! SHOULD NOT BE DOCUMENTED.
+    int Crash /*INTERNAL!!!*/ (lua_State*); // INTERNAL FUNCTION!!! SHOULD NOT BE DOCUMENTED.
     // Setting functions
-    int /*boolean*/ ImportSettings(lua_State* L /*string filePath*/);
-    int /*boolean*/ ExportSettings(lua_State* L /*string outputFilePath*/);
-    int ResetSettings(lua_State*);
-    int DisableAllWarnings(lua_State*);
-    int EnableAllWarnings(lua_State*);
-    int EnableWarning(lua_State* L /*string messageId*/);
-    int DisableWarning(lua_State* L /*string messageId*/);
-    int SetSpellCheckerOptions(lua_State* L /*boolean ignoreProperNouns, boolean ignoreUppercased, boolean ignoreNumerals, boolean ignoreFileAddresses, boolean ignoreProgrammerCode, boolean ignoreSocialMediaTags, boolean allowColloquialisms*/);
+    int /*boolean*/ ImportSettings(lua_State* L /*string filePath*/); // Loads the program's settings from a configuration file.
+    int /*boolean*/ ExportSettings(lua_State* L /*string outputFilePath*/); // Saves the program's settings to a configuration file.
+    int ResetSettings(lua_State*); // Resets the program's settings to the factory default.
+    int DisableAllWarnings(lua_State*); // Suppresses all warnings that can appear in the program.
+    int EnableAllWarnings(lua_State*); // Enables all warnings that can appear in the program.
+    int EnableWarning(lua_State* L /*string warningId*/); // Enables a specific warning that can appear in the program.
+    int DisableWarning(lua_State* L /*string warningId*/); // Disables a specific warning that can appear in the program.
+    int SetSpellCheckerOptions(lua_State* L /*boolean ignoreProperNouns, boolean ignoreUppercased, boolean ignoreNumerals, boolean ignoreFileAddresses, boolean ignoreProgrammerCode, boolean ignoreSocialMediaTags, boolean allowColloquialisms*/); // Sets spell-checker options for new projects.
     // PROJECT SETTINGS
-    int SetReviewer(lua_State* L /*string reviewer*/);
-    int /*string*/ GetReviewer(lua_State* L);
-    int SetProjectLanguage(lua_State* L /*Language lang*/);
-    int /*Language*/ GetProjectLanguage(lua_State* L);
-    int /*TextStorage*/ GetDocumentStorageMethod(lua_State* L);
-    int SetDocumentStorageMethod(lua_State* L /*TextStorage storageMethod*/);
-    int /*ParagraphParse*/ GetParagraphsParsingMethod(lua_State* L);
-    int SetParagraphsParsingMethod(lua_State* L /*ParagraphParse parseMethod*/);
-    int SetMinDocWordCountForBatch(lua_State* L /*number minWordCount*/);
-    int /*number*/ GetMinDocWordCountForBatch(lua_State* L);
-    int SetFilePathDisplayMode(lua_State* L /*FilePathDisplayMode displayMode*/);
-    int /*FilePathDisplayMode*/ GetFilePathDisplayMode(lua_State* L);
+    int SetReviewer(lua_State* L /*string reviewer*/); // Sets the reviewer's name for new projects.
+    int /*string*/ GetReviewer(lua_State* L); // Returns the reviewer's name.
+    int SetProjectLanguage(lua_State* L /*Language lang*/); // Sets the default language for new projects.
+    int /*Language*/ GetProjectLanguage(lua_State* L); // Returns the default language for new projects.
+    int /*TextStorage*/ GetDocumentStorageMethod(lua_State* L); // Returns the default method for how documents are stored for new projects.
+    int SetDocumentStorageMethod(lua_State* L /*TextStorage storageMethod*/); // Sets the default method for how documents are stored for new projects.
+    int /*ParagraphParse*/ GetParagraphsParsingMethod(lua_State* L); // Returns the default method for how paragraphs are parsed for new projects.
+    int SetParagraphsParsingMethod(lua_State* L /*ParagraphParse parseMethod*/); // Sets the default method for how paragraphs are parsed for new projects.
+    int SetMinDocWordCountForBatch(lua_State* L /*number minWordCount*/); // Sets the minimum number of words a document must have for new batch projects.
+    int /*number*/ GetMinDocWordCountForBatch(lua_State* L); // Returns the minimum number of words a document must have for new batch projects.
+    int SetFilePathDisplayMode(lua_State* L /*FilePathDisplayMode displayMode*/); // Sets how filepaths are displayed for new batch projects.
+    int /*FilePathDisplayMode*/ GetFilePathDisplayMode(lua_State* L); // Returns how filepaths are displayed for new batch projects.
     // TEXT EXCLUSION OPTIONS
-    int SetTextExclusion(lua_State* L /*TextExclusionType exclusionType*/);
-    // Specifies the minimum number of words that will make a
-    // sentence missing terminating punctuation be considered complete.
-    int SetIncludeIncompleteTolerance(lua_State* L /*number minWordsForCompleteSentence*/);
-    // Specifies whether or not to aggressively exclude.
-    int AggressivelyExclude(lua_State* L /*boolean beAggressive*/);
-    // Specifies whether or not to exclude copyright notices.
-    int ExcludeCopyrightNotices(lua_State* L /*boolean exclude*/);
-    // Specifies whether or not to exclude trailing citations.
-    int ExcludeTrailingCitations(lua_State* L /*boolean exclude*/);
-    // Specifies whether or not to exclude file addresses.
-    int ExcludeFileAddress(lua_State* L /*boolean exclude*/);
-    // Specifies whether or not to exclude numerals.
-    int ExcludeNumerals(lua_State* L );
-    // Specifies whether or not to exclude proper nouns.
-    int ExcludeProperNouns(lua_State* L /*boolean exclude*/);
-    // Sets the filepath to the phrase exclusion list
-    // filePath Path to phrase exclusion list
-    int SetPhraseExclusionList(lua_State* L /*string exclusionListPath*/);
+    int SetTextExclusion(lua_State* L /*TextExclusionType exclusionType*/); // Sets how text should be excluded for new projects.
+    int SetIncludeIncompleteTolerance(lua_State* L /*number minWordsForCompleteSentence*/); // Sets the incomplete-sentence tolerance for new projects. This is the minimum number of words that will make a sentence missing terminating punctuation be considered complete.
+    int AggressivelyExclude(lua_State* L /*boolean beAggressive*/); // Sets whether to aggressively exclude for new projects.
+    int ExcludeCopyrightNotices(lua_State* L /*boolean exclude*/); // Sets whether to exclude copyright notices for new projects.
+    int ExcludeTrailingCitations(lua_State* L /*boolean exclude*/); // Sets whether to exclude trailing citations for new projects.
+    int ExcludeFileAddress(lua_State* L /*boolean exclude*/); // Sets whether to exclude file addresses for new projects.
+    int ExcludeNumerals(lua_State* L ); // Sets whether to exclude numerals for new projects.
+    int ExcludeProperNouns(lua_State* L /*boolean exclude*/); // Sets whether to exclude proper nouns for new projects.
+    int SetPhraseExclusionList(lua_State* L /*string exclusionListPath*/); // Sets the filepath to the phrase exclusion list for new projects.
     // Sets the tags to exclude blocks of text.
-    int SetBlockExclusionTags(lua_State* L /*string tagString*/);
+    int SetBlockExclusionTags(lua_State* L /*string tagString*/); // Sets the text exclusion tags for new projects. This should be a two-character string containing a pair of exclusion tags.
     // GRAPH OPTIONS
-    int SetGraphBackgroundColor(lua_State* L /*number red, number green, number blue*/);
-    int ApplyGraphBackgroundFade(lua_State* L /*bool applyFade*/);
-    int SetPlotBackgroundImage(lua_State* L /*string imagePath*/);
-    int SetPlotBackgroundImageOpacity(lua_State* L /*number opacity*/);
-    int SetPlotBackgroundColor(lua_State* L /*number red, number green, number blue*/);
-    int SetPlotBackgroundOpacity(lua_State* L /*number opacity*/);
-    int SetGraphWatermark(lua_State* L /*string watermark*/);
-    int SetGraphLogoImage(lua_State* L /*string imagePath*/);
-    int SetStippleImage(lua_State* L /*string imagePath*/);
-    int SetStippleShape(lua_State* L /*string shapeId*/);
-    int DisplayGraphDropShadows(lua_State* L /*bool displayShadows*/);
-    int SetBarChartBarColor(lua_State* L /*number red, number green, number blue*/);
-    int SetBarChartBarOpacity(lua_State* L /*number opacity*/);
-    int SetBarChartBarEffect(lua_State* L /*BoxEffect barEffect*/);
-    int SetBarChartOrientation(lua_State* L /*Orientation barOriention*/);
+    int SetGraphBackgroundColor(lua_State* L /*number red, number green, number blue*/); // Sets the graph background color for new projects.
+    int ApplyGraphBackgroundFade(lua_State* L /*bool applyFade*/); // Sets whether to apply a fade to graph background colors for new projects.
+    int SetPlotBackgroundImage(lua_State* L /*string imagePath*/); // Sets the graph background (plot area) image for new projects.
+    int SetPlotBackgroundImageOpacity(lua_State* L /*number opacity*/); // Sets the graph background (plot area) image opacity for new projects.
+    int SetPlotBackgroundColor(lua_State* L /*number red, number green, number blue*/); // Sets the graph background (plot area) color for new projects.
+    int SetPlotBackgroundOpacity(lua_State* L /*number opacity*/); // Sets the graph background (plot area) color opacity for new projects.
+    int SetWatermark(lua_State* L /*string watermark*/); // Sets the watermark drawn on graphs for new projects.
+    int SetGraphLogoImage(lua_State* L /*string imagePath*/); // Sets the logo image for new projects.
+    int SetStippleImage(lua_State* L /*string imagePath*/);// Sets the stipple image used to draw bars in graphs for new projects.
+    int SetStippleShape(lua_State* L /*string shapeId*/); // Sets the stipple shape used to draw bars in graphs for new projects.
+    int DisplayGraphDropShadows(lua_State* L /*bool displayShadows*/); // Sets whether to display shadows on graphs for new projects.
+    int SetBarChartBarColor(lua_State* L /*number red, number green, number blue*/); // Sets bar color (in bar charts) for new projects.
+    int SetBarChartBarOpacity(lua_State* L /*number opacity*/); // Sets bar opacity (in bar charts) for new projects.
+    int SetBarChartBarEffect(lua_State* L /*BoxEffect barEffect*/); // Sets bar appearance (in bar charts) for new projects.
+    int SetBarChartOrientation(lua_State* L /*Orientation barOrientation*/); // Sets the orientation for bars for new projects.
 
-    int /*table*/ GetImageInfo(lua_State* /*string imagePath*/);
+    int /*table*/ GetImageInfo(lua_State* /*string imagePath*/); // Returns width and height for an image.
 
     // Gets the active projects
-    int /*StandardProject*/ GetActiveStandardProject(lua_State* L);
-    int /*BatchProject*/ GetActiveBatchProject(lua_State* L);
+    int /*StandardProject*/ GetActiveStandardProject(lua_State* L); // Returns the active standard project.
+    int /*BatchProject*/ GetActiveBatchProject(lua_State* L); // Returns the active batch project.
 
     // printing
-    int SetLeftPrintHeader(lua_State* L /*string label*/);
-    int SetCenterPrintHeader(lua_State* L /*string label*/);
-    int SetRightPrintHeader(lua_State* L /*string label*/);
-    int SetLeftPrintFooter(lua_State* L /*string label*/);
-    int SetCenterPrintFooter(lua_State* L /*string label*/);
-    int SetRightPrintFooter(lua_State* L /*string label*/);
+    int SetLeftPrintHeader(lua_State* L /*string label*/); // Sets the left print header.
+    int SetCenterPrintHeader(lua_State* L /*string label*/); // Sets the center print header.
+    int SetRightPrintHeader(lua_State* L /*string label*/); // Sets the right print header.
+    int SetLeftPrintFooter(lua_State* L /*string label*/); // Sets the left print footer.
+    int SetCenterPrintFooter(lua_State* L /*string label*/); // Sets the center print footer.
+    int SetRightPrintFooter(lua_State* L /*string label*/); // Sets the right print footer.
     // clang-format on
 
     static const luaL_Reg ApplicationLib[] = {
@@ -182,7 +174,7 @@ namespace LuaScripting
         { "SetPlotBackgroundImageOpacity", SetPlotBackgroundImageOpacity },
         { "SetPlotBackgroundColor", SetPlotBackgroundColor },
         { "SetPlotBackgroundOpacity", SetPlotBackgroundOpacity },
-        { "SetGraphWatermark", SetGraphWatermark },
+        { "SetWatermark", SetWatermark },
         { "SetGraphLogoImage", SetGraphLogoImage },
         { "SetStippleImage", SetStippleImage },
         { "SetStippleShape", SetStippleShape },

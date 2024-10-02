@@ -12,6 +12,6 @@ SetParagraphsParsingMethod(ParagraphParse paragraphParse)
 
 **Parameter** | **Description**
 | :-- | :-- |
-[`ParagraphParse`](#paragraphparse) [paragraphParse] | The paragraph parsing method.
+[`ParagraphParse`](#paragraphparse) paragraphParse | The paragraph parsing method.
 
 {{< pagebreak >}}

@@ -57,8 +57,8 @@ functionToTopic <- function(functionInfo)
       }
     }
 
-  fileFooter <- "{{< pagebreak >}}"
-  return(str_glue("{topicContent}{returnType}{params}{fileFooter}"))
+  fileFooter <- "\n\n{{< pagebreak >}}"
+  return(str_glue("{topicContent}\n\n{returnType}{params}{fileFooter}"))
   }
 
 # Builds function topics for a class (or library), but only if the file doesn't already exist.

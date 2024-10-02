@@ -167,7 +167,7 @@ namespace LuaScripting
         int SetPlotBackgroundImageOpacity(lua_State* L);
         int SetPlotBackgroundColor(lua_State* L);
         int SetPlotBackgroundColorOpacity(lua_State* L);
-        int SetGraphWatermark(lua_State* L);
+        int SetWatermark(lua_State* L);
         int SetGraphLogoImage(lua_State* L);
         int SetStippleImage(lua_State* L);
         int SetStippleShape(lua_State* L);
@@ -241,29 +241,29 @@ namespace LuaScripting
         int ShowSidebar(lua_State* L);
 
         // HIDDEN interfaces for testing and screenshots
-        /*Selects and sorts a list in the Words Breakdown section.
+        /* Selects and sorts a list in the Words Breakdown section.
         WindowToSelect The list window to select items in. Refer to ListType enumeration.
         RowsToSelect Rows to select.*/
-        int SelectRowsInWordsBreakdownList(lua_State* L);
-        /*Selects a range of text in a text window.
+        int /*INTERNAL!!!*/ SelectRowsInWordsBreakdownList(lua_State* L);
+        /* Selects a range of text in a text window.
         WindowToSelect The text window to select. Refer to HighlightedReportType enumeration.
         StartPosition Character position to begin selection.
         EndPosition Character position to end selection.*/
-        int SelectHighlightedWordReport(lua_State* L);
-        /*Selects a range of text in the text window in the Grammar section.
+        int /*INTERNAL!!!*/ SelectHighlightedWordReport(lua_State* L);
+        /* Selects a range of text in the text window in the Grammar section.
         StartPosition Character position to begin selection.
         EndPosition Character position to end selection.*/
-        int SelectTextGrammarWindow(lua_State* L);
-        /*Selects and scrolls down a text window.
+        int /*INTERNAL!!!*/ SelectTextGrammarWindow(lua_State* L);
+        /* Selects and scrolls down a text window.
         WindowToSelect The text window to select. Refer to HighlightedReportType enumeration.
         Position Character position to scroll into view.*/
-        int ScrollTextWindow(lua_State* L);
-        /*Selects the Readability Results section of the project and highlights a test by index.
+        int /*INTERNAL!!!*/ ScrollTextWindow(lua_State* L);
+        /* Selects the Readability Results section of the project and highlights a test by index.
         TestToSelect The test to select, based on position in the list.*/
-        int SelectReadabilityTest(lua_State* L);
+        int /*INTERNAL!!!*/ SelectReadabilityTest(lua_State* L);
         // Opens the properties dialog and the specified page
-        int OpenProperties(lua_State* L);
-        int CloseProperties(lua_State*);
+        int /*INTERNAL!!!*/ OpenProperties(lua_State* L);
+        int /*INTERNAL!!!*/ CloseProperties(lua_State*);
         };
     } // namespace LuaScripting
 
