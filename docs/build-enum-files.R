@@ -24,19 +24,37 @@ functionToTopic <- function(functionInfo)
   {
   xformedSignatureRE <- R"(([_[:alnum:]]+)[(]([[:alnum:],_ ]+)?[)]->([_[:alnum:]]+)?[|]([ _[:alnum:][:punct:]]+)?)"
   topicContent <- stringr::str_replace(stringr::str_extract(functionInfo, xformedSignatureRE)[[1]], xformedSignatureRE, '## `\\1`\n\n\\4\n\n### Syntax {-}\n\n``` {.lua}\n\\3 \\1(\\2)\n```')
-  topicContent %<>% stringr::str_replace("\n\n ", "\n\n")
+  topicContent <- str_replace(topicContent, "\n ", "\n")
+  syntax <- str_match(topicContent, R"(```[[:space:]]*\{\.lua\}[[:space:]]*([[:alnum:], \(\)]+))")[[2]]
+  funcNameLength <- str_length(str_match(syntax, "^[[:alnum:], ]+[(]"))
+  syntaxTab <- str_pad(",\n", funcNameLength + 1, "right") # add one because the newline takes away from funcNameLength
+  multiLineSyntax <- str_replace_all(syntax, ", ", syntaxTab)
+  topicContent <- str_replace(topicContent, syntax %>% str_replace_all("([(]|[)])", "[\\1]"), multiLineSyntax)
 
+  # format the parameters table (if there are any)
   params <- stringr::str_replace(stringr::str_extract_all(functionInfo, xformedSignatureRE)[[1]], xformedSignatureRE, '\\2')
   if (str_length(params))
     {
-    params <- str_replace_all(str_replace_all(params, "([[:alnum:]_]+) ([[:alnum:]_]+)", "|`\\1` \\2 |      |"), ", ", " \n")
+    params <- str_replace_all(params, "([[:alnum:]_]+) ([[:alnum:]_]+)", "|`\\1` \\2 |      |")
+    # link param type if an uppercased type (which would usually be a custom type)
+    params <- str_replace(params, "[|]`([A-Z][[:alnum:]]+)`", "|[`\\1`](#\\1)")
+    params <- str_replace(params, "#[A-Z][[:alnum:]]+", str_to_lower) # lowercase the reference
+    params <- str_replace_all(params, ", ", " \n")
     params <- str_glue("\n\n### Parameters {-}\n\n**Parameter** | **Description**\n| :-- | :-- |\n<params>\n\n", .open="<", .close=">");
     }
 
   returnType <- stringr::str_replace(stringr::str_extract_all(functionInfo, xformedSignatureRE)[[1]], xformedSignatureRE, '\\3')
   if (str_length(returnType))
     {
-    returnType <- str_glue("\n\n### Return value {-}\n\nType: `<returnType>`\n\n", .open="<", .close=">");
+    # if uppercased type, then it is most likely an object or enum; link to that
+    if (str_detect(returnType, '^[A-Z]'))
+      {
+      returnType <- str_glue("\n\n### Return value {-}\n\nType: [`<returnType>`](#<str_to_lower(returnType)>)\n\n", .open="<", .close=">");
+      }
+    else
+      {
+      returnType <- str_glue("\n\n### Return value {-}\n\nType: `<returnType>`\n\n", .open="<", .close=">");
+      }
     }
 
   fileFooter <- "{{< pagebreak >}}"
