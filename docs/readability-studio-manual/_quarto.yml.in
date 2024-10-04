@@ -11,10 +11,8 @@ biblatexoptions: maxbibnames=4
 link-citations: true
 nocite: '@*'
 csl: modern-language-association.csl
-pdf-cover: "images/non-generated/cover.pdf"
-pdf-cover-author-color: "255, 255, 255"
+pdf-cover: "images/non-generated/cover.png"
 pdf-cover-font-color: "255, 255, 255"
-pdf-cover-color: "111, 144, 132"
 chapter-image: "non-generated/green.jpg"
 theme-color: "111, 144, 132"
 watermark: "${DOCS_WATERMARK}"
@@ -34,8 +32,6 @@ book:
   output-file: "readability-studio-manual"
   language: en
   search: false
-  cover-image: "images/non-generated/cover.png"
-  image: "images/non-generated/cover.png"
 format:
   pdf:
     documentclass: LegrandOrangeBook
