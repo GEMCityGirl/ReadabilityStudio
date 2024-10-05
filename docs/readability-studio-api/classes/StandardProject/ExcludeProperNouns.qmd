@@ -12,7 +12,7 @@ ExcludeProperNouns(boolean exclude)
 
 **Parameter** | **Description**
 | :-- | :-- |
-exclude | `true` to exclude proper nouns.
+`boolean` exclude | `true` to exclude proper nouns.
 
 ### Example {-}
 
@@ -40,4 +40,3 @@ This can be optimized by placing it in between calls to **[DelayReloading()](#st
 :::
 
 {{< pagebreak >}}
-

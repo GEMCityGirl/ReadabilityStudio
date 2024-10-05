@@ -5,15 +5,13 @@ Returns the number of words consisting of six or more characters from the docume
 ### Syntax {-}
 
 ``` {.lua}
-integer Get6CharacterPlusWordCount()
+number Get6CharacterPlusWordCount()
 ```
 
 ### Return value {-}
 
-Type: `integer`
+Type: `number`
 
 The number of words consisting of six or more characters from the document.
 
 {{< pagebreak >}}
-
-

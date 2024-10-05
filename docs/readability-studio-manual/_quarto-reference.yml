@@ -1,6 +1,5 @@
 project:
   output-dir: "docs"
-theme-color: "201, 160, 220"
 book:
   subtitle: Readability Test Reference
   output-file: "readability-test-reference"

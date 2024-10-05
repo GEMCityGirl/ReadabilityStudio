@@ -12,7 +12,7 @@ SetAppendedDocumentFilePath(string filePath)
 
 **Parameter** | **Description**
 | :-- | :-- |
-string flePath | The file path to the document being appended for analysis.
+`string` filePath | The file path to the document being appended for analysis.
 
 ### Example {-}
 
@@ -34,5 +34,3 @@ This can be optimized by placing it in between calls to **[DelayReloading()](#st
 :::
 
 {{< pagebreak >}}
-
-

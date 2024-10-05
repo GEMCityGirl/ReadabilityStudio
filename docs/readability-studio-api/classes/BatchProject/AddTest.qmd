@@ -5,14 +5,16 @@ Adds a test to the project.
 ### Syntax {-}
 
 ``` {.lua}
-boolean AddTest(Test/string test)
+boolean AddTest(Test test)
+
+boolean AddTest(string test)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-test | **[Test](#tests)** or the ID of the test to add. (For a custom test, use the name of the test.)
+[`Test`](#test)/`string` test | test to add. (For a custom test, use the name of the test.)
 
 ### Return value {-}
 

@@ -5,13 +5,13 @@ Specifies whether to exclude numerals.
 ### Syntax {-}
 
 ``` {.lua}
-ExcludeNumerals(Exclude)
+ExcludeNumerals(boolean exclude)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-Exclude | `true` to exclude numerals.
+`boolean` exclude | `true` to exclude numerals.
 
 {{< pagebreak >}}

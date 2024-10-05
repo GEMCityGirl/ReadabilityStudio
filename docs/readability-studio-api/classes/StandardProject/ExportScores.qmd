@@ -1,6 +1,6 @@
 ## `ExportScores` {#standard-exportscores}
 
-Saves the project's test scores to *OutputFilePath*.
+Saves the project's test scores to *outputFilePath*.
 
 ### Syntax {-}
 
@@ -12,8 +12,6 @@ ExportScores(string outputFilePath)
 
 **Parameter** | **Description**
 | :-- | :-- |
-outputFilePath | The folder to save the scores.
+`string` outputFilePath | The file to save the scores.
 
 {{< pagebreak >}}
-
-

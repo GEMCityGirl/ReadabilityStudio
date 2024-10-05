@@ -10,8 +10,8 @@ link-citations: true
 nocite: '@*'
 csl: modern-language-association.csl
 pdf-cover: "images/non-generated/cover.png"
-pdf-cover-author-color: "255, 255, 255"
 pdf-cover-font-color: "255, 255, 255"
+theme-color: "201, 160, 220"
 chapter-image: "non-generated/green.jpg"
 number-sections: true
 crossref:

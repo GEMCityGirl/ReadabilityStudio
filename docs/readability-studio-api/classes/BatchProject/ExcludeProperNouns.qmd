@@ -5,13 +5,13 @@ Specifies whether to exclude proper nouns.
 ### Syntax {-}
 
 ``` {.lua}
-ExcludeProperNouns(Exclude)
+ExcludeProperNouns(boolean exclude)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-Exclude | `true` to exclude proper nouns.
+`boolean` exclude | `true` to exclude proper nouns.
 
 {{< pagebreak >}}

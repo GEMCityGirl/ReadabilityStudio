@@ -15,9 +15,9 @@ SortList(ListType list,
 
 **Parameter** | **Description**
 | :-- | :-- |
-list | The [list](#listtype) to sort.
-columnToSort | The column to sort by.
-order | The [sorting direction](#sortorder) to use.
+[`ListType`](#listtype) list | The list to sort.
+`number` columnToSort | The column to sort by.
+[`SortOrder`](#sortorder) order | The sorting direction to use.
 ... | Any additional pairs of columns and sort orders to use.
 
 ### Example {-}
@@ -42,5 +42,3 @@ consentForm:Close()
 ```
 
 {{< pagebreak >}}
-
-

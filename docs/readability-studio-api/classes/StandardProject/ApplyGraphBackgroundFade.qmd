@@ -1,0 +1,17 @@
+## `ApplyGraphBackgroundFade` {#standard-applygraphbackgroundcolorfade}
+
+Specifies whether to use a color fade across graph backgrounds.
+
+### Syntax {-}
+
+``` {.lua}
+ApplyGraphBackgroundFade(boolean useColorFade)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+`boolean` useColorFade | `true` to use a color fade across graph backgrounds.
+
+{{< pagebreak >}}

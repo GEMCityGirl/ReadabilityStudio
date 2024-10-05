@@ -5,13 +5,13 @@ Specifies whether to exclude copyright notices.
 ### Syntax {-}
 
 ``` {.lua}
-ExcludeCopyrightNotices(Exclude)
+ExcludeCopyrightNotices(boolean exclude)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-Exclude | `true` to exclude copyright notices.
+`boolean` exclude | `true` to exclude copyright notices.
 
 {{< pagebreak >}}

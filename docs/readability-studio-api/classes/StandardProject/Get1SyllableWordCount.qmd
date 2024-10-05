@@ -5,15 +5,13 @@ Returns the number of monosyllabic words from the document.
 ### Syntax {-}
 
 ``` {.lua}
-integer Get1SyllableWordCount()
+number Get1SyllableWordCount()
 ```
 
 ### Return value {-}
 
-Type: `integer`
+Type: `number`
 
 The number of monosyllabic words from the document.
 
 {{< pagebreak >}}
-
-

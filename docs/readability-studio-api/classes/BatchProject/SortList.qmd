@@ -1,23 +1,23 @@
 ## `SortList` {#batch-sortlist}
 
-Sorts the specified list using a series of columns and sorting orders.
+Sorts\index{Lists!sorting} the specified list using a series of columns and sorting orders.
 
 ### Syntax {-}
 
 ``` {.lua}
-SortList(ListType,
-         ColumnToSort,
-         SortOrder,
+SortList(ListType list,
+         number columnToSort,
+         SortOrder order,
          ...) 
 ```
 
 ### Parameters {-}
 
-| **Parameter** | **Description**
+**Parameter** | **Description**
 | :-- | :-- |
-| ListType | The [list](#listtype) to sort.
-| ColumnToSort | The column to sort by.
-| SortOrder | The [sorting direction](#sortorder) to use.
-| ... | Any additional sets of columns and sort orders to use.
+[`ListType`](#listtype) list | The list to sort.
+`number` columnToSort | The column to sort by.
+[`SortOrder`](#sortorder) order | The sorting direction to use.
+... | Any additional pairs of columns and sort orders to use.
 
 {{< pagebreak >}}

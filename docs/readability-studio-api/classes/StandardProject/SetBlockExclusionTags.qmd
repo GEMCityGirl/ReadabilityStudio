@@ -12,7 +12,7 @@ SetBlockExclusionTags(string tags)
 
 **Parameter** | **Description**
 | :-- | :-- |
-tags | String containing a pair of tags that will have all text between them excluded.
+`string` tags | String containing a pair of tags that will have all text between them excluded.
 
 ::: {.notesection data-latex=""}
 Pass in an empty string to turn off this option.
@@ -23,5 +23,3 @@ This can be optimized by placing it in between calls to **[DelayReloading()](#st
 :::
 
 {{< pagebreak >}}
-
-

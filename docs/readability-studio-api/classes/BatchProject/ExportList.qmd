@@ -1,31 +1,31 @@
 ## `ExportList` {#batch-exportlist}
 
-Saves the specified list as a HTML or text file to **OutputFilePath**.
+Saves\index{Lists!exporting} the specified list as an HTML, text, or LaTeX file to *OutputFilePath*.
 
 ### Syntax {-}
 
 ``` {.lua}
-ExportList(ListType,
-           OutputFilePath,
-           FromRow,
-           ToRow,
-           FromColumn,
-           ToColumn,
-           IncludeHeaders,
-           IncludePageBreaks)
+ExportList(ListType type,
+           string outputFilePath,
+           number fromRow,
+           number toRow,
+           number fromColumn,
+           number toColumn,
+           boolean includeHeaders,
+           boolean IncludePageBreaks)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-ListType | The [list](#listtype) to export.
-OutputFilePath | The folder to save the list.
-FromRow | (Optional) Specifies the row to begin from. The default is the first row.
-ToRow | (Optional) Specifies the last row. Enter -1 to specify the last row in the list.
-FromColumn | (Optional) Specifies the row to column from. The default is the first column.
-ToColumn | (Optional) Specifies the last column. Enter -1 to specify the last column in the list.
-IncludeHeaders | (Optional) Specifies whether to include the column headers.
-IncludePageBreaks | (Optional) Specifies whether to insert page breaks. Note that this is only applicable if exporting as HTML.
+[`ListType`](#listtype) type | The list to export.
+`string` string outputFilePath | The folder to save the list.
+`number` fromRow | (Optional) Specifies the row to begin from. The default is the first row.
+`number` toRow | (Optional) Specifies the last row. Enter `-1` to specify the last row in the list.
+`number` fromColumn | (Optional) Specifies the row to column from. The default is the first column.
+`number` toColumn | (Optional) Specifies the last column. Enter `-1` to specify the last column in the list.
+`boolean` includeHeaders | (Optional) Specifies whether to include the column headers.
+`boolean` includePageBreaks | (Optional) Specifies whether to insert page breaks. Note that this is only applicable if exporting as HTML.
 
 {{< pagebreak >}}

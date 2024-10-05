@@ -5,13 +5,13 @@ Specifies whether to exclude filepaths and URLs.
 ### Syntax {-}
 
 ``` {.lua}
-ExcludeFileAddress(Exclude)
+ExcludeFileAddress(boolean exclude)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-Exclude | `true` to exclude filepaths and URLs.
+`boolean` exclude | `true` to exclude filepaths and URLs.
 
 {{< pagebreak >}}

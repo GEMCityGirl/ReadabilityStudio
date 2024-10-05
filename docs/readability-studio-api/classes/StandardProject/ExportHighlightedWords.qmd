@@ -13,8 +13,8 @@ ExportHighlightedWords(HighlightedWordReportType type,
 
 **Parameter** | **Description**
 | :-- | :-- |
-type | The [highlighted text window](#highlightedreporttype) to save.
-outputFilePath | The folder to save the scores.
+[`HighlightedWordReportType`](#highlightedreporttype) type | The highlighted text window to save.
+`string` outputFilePath | The folder to save the scores.
 
 ::: {.notesection data-latex=""}
 Use [Application.GetTestId()](#gettestid) to export the highlighted-words report for a custom test (see example below).
@@ -39,5 +39,3 @@ consentForm:Close()
 ```
 
 {{< pagebreak >}}
-
-

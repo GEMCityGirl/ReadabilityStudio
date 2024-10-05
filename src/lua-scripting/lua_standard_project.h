@@ -85,29 +85,29 @@ namespace LuaScripting
         static Luna<StandardProject>::FunctionType methods[];
         static Luna<StandardProject>::PropertyType properties[];
 
-        int DelayReloading(lua_State* L);
+        int DelayReloading(lua_State* L /*boolean delay*/); // Prevents a project from updating while settings are being changed. 
         // Opens a project file.
         // FilePath File path to the project to open.
         explicit StandardProject(lua_State* L);
         int GetTitle(lua_State* L);
         int SetWindowSize(lua_State* L);
         // Stats functions
-        int GetSentenceCount(lua_State* L);
-        int GetIndependentClauseCount(lua_State* L);
-        int GetNumeralCount(lua_State* L);
-        int GetProperNounCount(lua_State* L);
-        int GetUniqueWordCount(lua_State* L);
-        int GetWordCount(lua_State* L);
+        int /*number*/ GetSentenceCount(lua_State* L); // Returns the number of sentences from the document.
+        int /*number*/ GetIndependentClauseCount(lua_State* L); // Returns the number of independent clauses from the document.
+        int /*number*/ GetNumeralCount(lua_State* L); // Returns the number of numeric words from the document.
+        int /*number*/ GetProperNounCount(lua_State* L); // Returns the number of proper nouns from the document.
+        int /*number*/ GetUniqueWordCount(lua_State* L); // Returns the number of unique words from the document.
+        int /*number*/ GetWordCount(lua_State* L); // Returns the total number of words from the document.
         int GetCharacterAndPunctuationCount(lua_State* L);
         int GetCharacterCount(lua_State* L);
         int GetSyllableCount(lua_State* L);
         int GetUnique3SyllablePlusWordCount(lua_State* L);
-        int Get3SyllablePlusWordCount(lua_State* L);
-        int GetUnique1SyllableWordCount(lua_State* L);
-        int Get1SyllableWordCount(lua_State* L);
-        int Get7CharacterPlusWordCount(lua_State* L);
-        int GetUnique6CharPlusWordCount(lua_State* L);
-        int Get6CharacterPlusWordCount(lua_State* L);
+        int /*number*/ Get3SyllablePlusWordCount(lua_State* L); // Returns the number of words consisting of three or more syllables from the document.
+        int /*number*/ GetUnique1SyllableWordCount(lua_State* L); // Returns the number of unique words consisting of three or more syllables from the document.
+        int /*number*/ Get1SyllableWordCount(lua_State* L); // Returns the number of monosyllabic words from the document.
+        int /*number*/ Get7CharacterPlusWordCount(lua_State* L); // Returns the number of words consisting of seven or more characters from the document.
+        int /*number*/ GetUnique6CharPlusWordCount(lua_State* L); // Returns the number of unique words consisting of six or more characters from the document.
+        int /*number*/ Get6CharacterPlusWordCount(lua_State* L); // Returns the number of words consisting of six or more characters from the document.
         int GetUnfamSpacheWordCount(lua_State* L);
         int GetUnfamDCWordCount(lua_State* L);
         int GetUnfamHJWordCount(lua_State* L);
@@ -117,49 +117,39 @@ namespace LuaScripting
         // PROJECT SETTINGS
         int SetProjectLanguage(lua_State* L);
         // cppcheck-suppress functionConst
-        int GetProjectLanguage(lua_State* L);
-        int SetReviewer(lua_State* L);
+        int /*Language*/ GetProjectLanguage(lua_State* L); // Returns the project's language.
+        int SetReviewer(lua_State* L /*string reviewer*/); // Sets the user name for the software.
         // cppcheck-suppress functionConst
-        int GetReviewer(lua_State* L);
+        int /*string*/ GetReviewer(lua_State* L); // Returns the reviewer's name.
         // cppcheck-suppress functionConst
         int SetStatus(lua_State* L);
         // cppcheck-suppress functionConst
-        int GetDocumentStorageMethod(lua_State* L);
-        int SetDocumentStorageMethod(lua_State* L);
+        int /*TextStorage*/ GetDocumentStorageMethod(lua_State* L); // Returns the default method for how documents are stored for new projects.
+        int SetDocumentStorageMethod(lua_State* L /*TextStorage storageMethod*/); // Sets the default method for how documents are stored for new projects.
         int SetParagraphsParsingMethod(lua_State* L);
         int SetDocumentFilePath(lua_State* L);
         // cppcheck-suppress functionConst
         int GetParagraphsParsingMethod(lua_State* L);
         // TEXT EXCLUSION OPTIONS
-        /// Specifies how text should be excluded.
-        int SetTextExclusion(lua_State* L);
+        int SetTextExclusion(lua_State* L /*TextExclusionType exclusionType*/); // Specifies how text should be excluded while parsing the source document.
         /// Specifies the minimum number of words that will make a sentence
         /// missing terminating punctuation be considered complete.
         int SetIncludeIncompleteTolerance(lua_State* L);
-        /// Specifies whether or not to aggressively exclude.
-        int AggressivelyExclude(lua_State* L);
-        /// Specifies whether or not to exclude copyright notices.
-        int ExcludeCopyrightNotices(lua_State* L);
-        /// Specifies whether or not to exclude trailing citations.
-        int ExcludeTrailingCitations(lua_State* L);
-        /// Specifies whether or not to exclude file addresses.
-        int ExcludeFileAddress(lua_State* L);
-        /// Specifies whether or not to exclude numerals.
-        int ExcludeNumerals(lua_State* L);
-        /// Specifies whether or not to exclude proper nouns.
-        int ExcludeProperNouns(lua_State* L);
+        int AggressivelyExclude(lua_State* L /*boolean beAggressive*/); // Specifies whether to use aggressive text exclusion.
+        int ExcludeCopyrightNotices(lua_State* L /*boolean exclude*/); // Specifies whether or not to exclude copyright notices.
+        int ExcludeTrailingCitations(lua_State* L /*boolean exclude*/); // Specifies whether or not to exclude trailing citations.
+        int ExcludeFileAddress(lua_State* L /*boolean exclude*/); // Specifies whether or not to exclude file addresses.
+        int ExcludeNumerals(lua_State* L /*boolean exclude*/); // Specifies whether or not to exclude numerals.
+        int ExcludeProperNouns(lua_State* L /*boolean exclude*/); // Specifies whether or not to exclude proper nouns.
         /// Sets the filepath to the phrase exclusion list
         /// filePath Path to phrase exclusion list.
         int SetPhraseExclusionList(lua_State* L);
-        /// Sets the tags to exclude blocks of text.
-        int SetBlockExclusionTags(lua_State* L);
-
-        /// Sets the file path to the document being appended for analysis.
-        int SetAppendedDocumentFilePath(lua_State* L);
+        int SetBlockExclusionTags(lua_State* L /*string tagString*/); // Sets the text exclusion tags for new projects. This should be a two-character string containing a pair of exclusion tags.
+        int SetAppendedDocumentFilePath(lua_State* L /*string filePath*/); // Sets the file path to the document being appended for analysis.
 
         // GRAPH OPTIONS
         int SetGraphBackgroundColor(lua_State* L);
-        int ApplyGraphBackgroundFade(lua_State* L);
+        int ApplyGraphBackgroundFade(lua_State* L /*boolean useColorFade*/); // Sets whether to apply a fade to graph background colors.
         int SetGraphCommonImage(lua_State* L);
         int SetPlotBackgroundImage(lua_State* L);
         int SetPlotBackgroundImageEffect(lua_State* L);
@@ -175,7 +165,7 @@ namespace LuaScripting
         int SetYAxisFont(lua_State* L);
         int SetGraphTopTitleFont(lua_State* L);
         int DisplayBarChartLabels(lua_State* L);
-        int DisplayGraphDropShadows(lua_State* L);
+        int DisplayGraphDropShadows(lua_State* L /*bool displayShadows*/); // Sets whether to display shadows on graphs
         int SetBarChartBarColor(lua_State* L);
         int SetBarChartBarOpacity(lua_State* L);
         int SetBarChartBarEffect(lua_State* L);
@@ -185,51 +175,22 @@ namespace LuaScripting
         int ShowcaseKeyItems(lua_State* L);
 
         // TEST OPTIONS
-        // Adds a test to the project.
-        // TestName The name of the test to add to the project.
-        int AddTest(lua_State* L);
-        // Reanalyzes the documents.
-        int Reload(lua_State*);
-        // Closes the project.
-        // SaveChanges Specifies whether to save any changes made to the project before closing it.
-        // Default is to not save any changes.
-        int Close(lua_State* L);
-        // Exports all of the results from the project into a folder.
-        // FolderPath The folder to save the project's results.
-        int ExportAll(lua_State* L);
-        // Saves a graph from the project as an image.
-        // GraphType Which graph to save. Available types are: GraphsTypes.WordBarChart,
-        // GraphsTypes.Fry, GraphsTypes.GpmFry, GraphsTypes.FRASE, GraphsTypes.Raygor,
-        // GraphsTypes.DolchCoverageChart, GraphsTypes.DolchWordBarChart, GraphsTypes.Flesch.
-        // FilePath The file path to save the graph.
-        // GrayScale Whether to save the image in black & white.
-        // Width The width of the output image.
-        // Height The height of the output image.
-        int ExportGraph(lua_State* L);
-        // Saves the scores to an HTML file.
-        // FilePath The file path to save the scores.
-        int ExportScores(lua_State* L);
-        // Saves a highlighted words report from the project.
-        // HighlightedReportType Which report to save.
-        // FilePath The file path to save the report.
-        int ExportHighlightedWords(lua_State* L);
-        // Saves a summary report from the project.
-        // ReportType Which report to save.
-        // FilePath The file path to save the report.
-        int ExportReport(lua_State* L);
+        int AddTest(lua_State* L /*Test test*/); // Adds a test to the project.
+        int Reload(lua_State*); // Reanalyzes the project's document.
+        int Close(lua_State* L /*boolean saveChanges*/); // Closes the project.
+
+        int ExportAll(lua_State* L /*string outputFolder*/); // Exports all of the results from the project into a folder.
+        int ExportGraph(lua_State* L/*GraphType type, string outputFilePath,boolean grayScale, number width, number height*/); // Saves the specified graph as an image.
+        int ExportScores(lua_State* L /*string outputFilePath*/); // Saves the project's test scores to *outputFilePath*.
+        int ExportHighlightedWords(lua_State* L /*HighlightedWordReportType type, string outputFilePath*/); // Saves the specified highlighted words as an RTF or HTML report.
+        int ExportReport(lua_State* L /*ReportType type, string outputFilePath*/); // Saves the specified report.
         // Saves a list from the project.
         // ListType Which list to save.
         // FilePath The file path to save the list.
         int ExportList(lua_State* L);
-        // Saves a copy of the project's document with excluded text
-        // (and other optional items) filtered out.
         // cppcheck-suppress functionConst
-        int ExportFilteredText(lua_State* L);
-        /*Sorts a list.
-        ListToSort The list window to sort. Refer to ListTypes enumeration.
-        ColumnToSort The column in the list to sort.
-        Order The order to sort.*/
-        int SortList(lua_State* L);
+        int ExportFilteredText(lua_State* L /*string outputFilePath, boolean romanizeText, boolean removeEllipses, boolean removeBullets, boolean removeFilePaths, boolean stripAbbreviations*/); // Saves a copy of the project's document with excluded text (and other optional items) filtered out. Returns true if successful.
+        int SortList(lua_State* L /*ListType list, number columnToSort, SortOrder order, ...*/); // Sorts the specified list using a series of columns and sorting orders.
         /*Sorts a graph.
         GraphToSort The graph window to sort. Refer to GraphTypes enumeration.
         Order The order to sort.*/
@@ -238,28 +199,28 @@ namespace LuaScripting
         Section The section to select.
         Window The subwindow in the section to select.*/
         int SelectWindow(lua_State* L);
-        int ShowSidebar(lua_State* L);
+        int ShowSidebar(lua_State* L /*boolean show*/); // Show or hides the project's sidebar.
 
         // HIDDEN interfaces for testing and screenshots
         /* Selects and sorts a list in the Words Breakdown section.
-        WindowToSelect The list window to select items in. Refer to ListType enumeration.
-        RowsToSelect Rows to select.*/
+           WindowToSelect The list window to select items in. Refer to ListType enumeration.
+           RowsToSelect Rows to select.*/
         int /*INTERNAL!!!*/ SelectRowsInWordsBreakdownList(lua_State* L);
         /* Selects a range of text in a text window.
-        WindowToSelect The text window to select. Refer to HighlightedReportType enumeration.
-        StartPosition Character position to begin selection.
-        EndPosition Character position to end selection.*/
+           WindowToSelect The text window to select. Refer to HighlightedReportType enumeration.
+           StartPosition Character position to begin selection.
+           EndPosition Character position to end selection.*/
         int /*INTERNAL!!!*/ SelectHighlightedWordReport(lua_State* L);
         /* Selects a range of text in the text window in the Grammar section.
-        StartPosition Character position to begin selection.
-        EndPosition Character position to end selection.*/
+           StartPosition Character position to begin selection.
+           EndPosition Character position to end selection.*/
         int /*INTERNAL!!!*/ SelectTextGrammarWindow(lua_State* L);
         /* Selects and scrolls down a text window.
-        WindowToSelect The text window to select. Refer to HighlightedReportType enumeration.
-        Position Character position to scroll into view.*/
+           WindowToSelect The text window to select. Refer to HighlightedReportType enumeration.
+           Position Character position to scroll into view.*/
         int /*INTERNAL!!!*/ ScrollTextWindow(lua_State* L);
         /* Selects the Readability Results section of the project and highlights a test by index.
-        TestToSelect The test to select, based on position in the list.*/
+           TestToSelect The test to select, based on position in the list.*/
         int /*INTERNAL!!!*/ SelectReadabilityTest(lua_State* L);
         // Opens the properties dialog and the specified page
         int /*INTERNAL!!!*/ OpenProperties(lua_State* L);

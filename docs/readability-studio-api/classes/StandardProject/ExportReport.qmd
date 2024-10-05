@@ -13,8 +13,8 @@ ExportReport(ReportType type,
 
 **Parameter** | **Description**
 | :-- | :-- |
-type | The [report](#reporttype) to save.
-outputFilePath | The folder to save the scores.
+[ReportType](#reporttype) type | The report to save.
+`string` outputFilePath | The folder to save the scores.
 
 ### Example {-}
 
@@ -29,5 +29,3 @@ consentForm:Close(false)
 ```
 
 {{< pagebreak >}}
-
-

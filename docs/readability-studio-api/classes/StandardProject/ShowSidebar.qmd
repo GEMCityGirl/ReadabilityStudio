@@ -12,8 +12,6 @@ ShowSidebar(boolean show)
 
 **Parameter** | **Description**
 | :-- | :-- |
-show | `true` to show the sidebar, `false` to hide it.
+`boolean` show | `true` to show the sidebar, `false` to hide it.
 
 {{< pagebreak >}}
-
-

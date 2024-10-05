@@ -12,7 +12,7 @@ ExcludeFileAddress(boolean exclude)
 
 **Parameter** | **Description**
 | :-- | :-- |
-exclude | `true` to exclude filepaths and URLs.
+`boolean` exclude | `true` to exclude filepaths and URLs.
 
 ### Example {-}
 
@@ -41,4 +41,3 @@ This can be optimized by placing it in between calls to **[DelayReloading()](#st
 :::
 
 {{< pagebreak >}}
-

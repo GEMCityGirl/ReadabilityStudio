@@ -12,8 +12,6 @@ ExportAll(string outputFolder)
 
 **Parameter** | **Description**
 | :-- | :-- |
-outputFolder | The folder to save the project's results.
+`string` outputFolder | The folder to save the project's results.
 
 {{< pagebreak >}}
-
-
