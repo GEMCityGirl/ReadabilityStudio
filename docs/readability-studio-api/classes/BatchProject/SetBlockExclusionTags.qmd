@@ -19,7 +19,7 @@ Pass in an empty string to turn off this option.
 :::
 
 ::: {.tipsection data-latex=""}
-This can be optimized by placing it in between calls to **[DelayReloading()](#standard-delayreloading)** and **[Reload()](#standard-reload)**.
+This can be optimized by placing it in between calls to [`DelayReloading()`](#batch-delayreloading)** and [`Reload()`](#batch-reload).
 :::
 
 {{< pagebreak >}}

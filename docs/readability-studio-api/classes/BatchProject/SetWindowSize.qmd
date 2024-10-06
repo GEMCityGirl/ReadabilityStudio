@@ -5,14 +5,15 @@ Resizes the project's window size to the specified width and height.
 ### Syntax {-}
 
 ``` {.lua}
-SetWindowSize(Width,Height)
+SetWindowSize(number width,
+              number height)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :--  | :-- |
-Width  | The project window width.
-Height | The project window height.
+`number` width  | The project window width.
+`number` height | The project window height.
 
 {{< pagebreak >}}

@@ -1,0 +1,17 @@
+## `GetUniqueWordCount`
+
+Returns the number of unique words from the document.
+
+### Syntax {-}
+
+``` {.lua}
+number GetUniqueWordCount()
+```
+
+
+### Return value {-}
+
+Type: `number`
+
+
+{{< pagebreak >}}

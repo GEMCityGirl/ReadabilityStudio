@@ -1,4 +1,4 @@
-## `ExportHighlightedWords` {#standard-exporthighlightedwords}
+## `ExportHighlightedWords`
 
 Saves\index{Highlighted reports!exporting} the specified highlighted words as an RTF or HTML report.
 
@@ -31,7 +31,8 @@ consentForm:ExportHighlightedWords(Application.GetTestId("Patient Test"),
                           Application.GetDocumentsPath() ..
                           "Review/ConsentUnfamiliarWords.htm")
 -- as well as a highlighted report of 3+ syllable words
-consentForm:ExportHighlightedWords(HighlightedReportType.ThreePlusSyllableHighlightedWords,
+consentForm:ExportHighlightedWords(
+                          HighlightedReportType.ThreePlusSyllableHighlightedWords,
                           Application.GetDocumentsPath() ..
                           "Review/ConsentLongWords.htm")
 

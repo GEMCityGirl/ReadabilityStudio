@@ -1,0 +1,17 @@
+## `GetIndependentClauseCount`
+
+Returns the number of independent clauses from the document.
+
+### Syntax {-}
+
+``` {.lua}
+number GetIndependentClauseCount()
+```
+
+
+### Return value {-}
+
+Type: `number`
+
+
+{{< pagebreak >}}

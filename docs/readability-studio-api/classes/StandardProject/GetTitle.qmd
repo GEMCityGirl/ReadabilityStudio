@@ -1,0 +1,17 @@
+## `GetTitle`
+
+Returns the title of the project.
+
+### Syntax {-}
+
+``` {.lua}
+string GetTitle()
+```
+
+
+### Return value {-}
+
+Type: `string`
+
+
+{{< pagebreak >}}

@@ -1,0 +1,17 @@
+## `GetSentenceCount`
+
+Returns the number of sentences from the document.
+
+### Syntax {-}
+
+``` {.lua}
+number GetSentenceCount()
+```
+
+
+### Return value {-}
+
+Type: `number`
+
+
+{{< pagebreak >}}

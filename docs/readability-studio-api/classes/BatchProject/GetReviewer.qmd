@@ -1,0 +1,17 @@
+## `GetReviewer`
+
+Returns the reviewer's name.
+
+### Syntax {-}
+
+``` {.lua}
+string GetReviewer()
+```
+
+
+### Return value {-}
+
+Type: `string`
+
+
+{{< pagebreak >}}

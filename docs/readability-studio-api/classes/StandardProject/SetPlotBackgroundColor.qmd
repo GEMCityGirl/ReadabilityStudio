@@ -1,0 +1,22 @@
+## `SetPlotBackgroundColor` {#standard-setplotbackgroundcolor}
+
+Sets the plot area color for all graphs. The color is created by specifying the red, blue, and green channels of the color.
+(Values should be between **0** -- **255**.)
+
+### Syntax {-}
+
+``` {.lua}
+SetPlotBackgroundColor(number red,
+                       number green,
+                       number blue)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+`number` red | The red channel of the color.
+`number` green | The green channel of the color.
+`number` blue | The blue channel of the color.
+
+{{< pagebreak >}}

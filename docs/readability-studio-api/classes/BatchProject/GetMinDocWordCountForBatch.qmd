@@ -1,15 +1,17 @@
-## `GetMinDocWordCountForBatch` {#batch-getmindocwordcountforbatch}
+## `GetMinDocWordCountForBatch`
 
-Returns the minimum number of words that a document must have to be included in the project.
+Returns the minimum number of words a document must have to be included in the project.
 
 ### Syntax {-}
 
 ``` {.lua}
-integer GetMinDocWordCountForBatch()
+number GetMinDocWordCountForBatch()
 ```
+
 
 ### Return value {-}
 
-The minimum number of words that a document must have to be included in the project.
+Type: `number`
+
 
 {{< pagebreak >}}

@@ -14,7 +14,7 @@ boolean AddTest(string test)
 
 **Parameter** | **Description**
 | :-- | :-- |
-[`Test`](#test)/`string` test | test to add. (For a custom test, use the name of the test.)
+[`Test`](#test)/`string` test | The test to add. (For a custom test, use the name of the test.)
 
 ### Return value {-}
 

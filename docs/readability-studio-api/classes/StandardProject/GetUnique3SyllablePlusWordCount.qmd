@@ -1,0 +1,17 @@
+## `GetUnique3SyllablePlusWordCount`
+
+Returns the number of unique words consisting of three or more syllables from the document.
+
+### Syntax {-}
+
+``` {.lua}
+number GetUnique3SyllablePlusWordCount()
+```
+
+
+### Return value {-}
+
+Type: `number`
+
+
+{{< pagebreak >}}

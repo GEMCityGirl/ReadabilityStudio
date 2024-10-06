@@ -31,6 +31,6 @@ consentForm:AddTest("Patient Consent Formula")
 
 ### See also {-}
 
-[DelayReloading()](#standard-delayreloading)
+[`DelayReloading()`](#standard-delayreloading)
 
 {{< pagebreak >}}

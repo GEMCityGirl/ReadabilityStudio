@@ -1,0 +1,17 @@
+## `SetWatermark`
+
+Sets the watermark to be written across graphs.
+
+### Syntax {-}
+
+``` {.lua}
+SetWatermark(string watermark)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+`string` watermark | The watermark to be written across graphs.
+
+{{< pagebreak >}}

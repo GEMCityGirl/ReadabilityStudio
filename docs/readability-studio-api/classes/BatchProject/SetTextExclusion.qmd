@@ -15,7 +15,7 @@ SetTextExclusion(TextExclusionType exclusionType)
 [`TextExclusionType`](#textexclusiontype) exclusionType | Which text exclusion method to use for the project.
 
 ::: {.tipsection data-latex=""}
-This can be optimized by placing it in between calls to **[DelayReloading()](#standard-delayreloading)** and **[Reload()](#standard-reload)**.
+This can be optimized by placing it in between calls to [`DelayReloading()`](#batch-delayreloading)** and [`Reload()`](#batch-reload).
 :::
 
 {{< pagebreak >}}

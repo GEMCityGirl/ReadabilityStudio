@@ -1,0 +1,17 @@
+## `Get6CharacterPlusWordCount`
+
+Returns the number of words consisting of six or more characters from the document.
+
+### Syntax {-}
+
+``` {.lua}
+number Get6CharacterPlusWordCount()
+```
+
+
+### Return value {-}
+
+Type: `number`
+
+
+{{< pagebreak >}}

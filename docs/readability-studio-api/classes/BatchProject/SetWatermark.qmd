@@ -1,17 +1,17 @@
-## `SetGraphWatermark` {#batch-setgraphwatermark}
+## `SetWatermark`
 
 Sets the watermark to be written across graphs.
 
 ### Syntax {-}
 
 ``` {.lua}
-SetGraphWatermark(Label)
+SetWatermark(string watermark)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-Label | The watermark to be written across graphs.
+`string` watermark | The watermark to be written across graphs.
 
 {{< pagebreak >}}

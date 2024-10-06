@@ -5,13 +5,13 @@ Sets the image to be used for custom brushes.
 ### Syntax {-}
 
 ``` {.lua}
-SetStippleImage(ImageFilePath)
+SetStippleImage(string imagePath)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-ImageFilePath | The filepath to the image to be used for custom brushes.
+`string` imagePath | The filepath to the image to be used for custom brushes.
 
 {{< pagebreak >}}

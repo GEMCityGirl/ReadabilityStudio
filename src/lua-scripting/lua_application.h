@@ -70,12 +70,12 @@ namespace LuaScripting
     // PROJECT SETTINGS
     int SetReviewer(lua_State* L /*string reviewer*/); // Sets the reviewer's name for new projects.
     int /*string*/ GetReviewer(lua_State* L); // Returns the reviewer's name.
-    int SetProjectLanguage(lua_State* L /*Language lang*/); // Sets the default language for new projects.
+    int SetProjectLanguage(lua_State* L /*Language lang*/); // Sets the default language for new projects. This will affect syllable counting and also which tests are available.
     int /*Language*/ GetProjectLanguage(lua_State* L); // Returns the default language for new projects.
-    int /*TextStorage*/ GetDocumentStorageMethod(lua_State* L); // Returns the default method for how documents are stored for new projects.
-    int SetDocumentStorageMethod(lua_State* L /*TextStorage storageMethod*/); // Sets the default method for how documents are stored for new projects.
+    int /*TextStorage*/ GetDocumentStorageMethod(lua_State* L); // Returns whether the project embeds its documents or links to them for new projects.
+    int SetDocumentStorageMethod(lua_State* L /*TextStorage storageMethod*/); // Sets whether new projects embed their documents or link to them.
     int /*ParagraphParse*/ GetParagraphsParsingMethod(lua_State* L); // Returns the default method for how paragraphs are parsed for new projects.
-    int SetParagraphsParsingMethod(lua_State* L /*ParagraphParse parseMethod*/); // Sets the default method for how paragraphs are parsed for new projects.
+    int SetParagraphsParsingMethod(lua_State* L /*ParagraphParse parseMethod*/); // Sets how hard returns help determine how paragraphs and sentences are detected for new projects.
     int SetMinDocWordCountForBatch(lua_State* L /*number minWordCount*/); // Sets the minimum number of words a document must have for new batch projects.
     int /*number*/ GetMinDocWordCountForBatch(lua_State* L); // Returns the minimum number of words a document must have for new batch projects.
     int SetFilePathDisplayMode(lua_State* L /*FilePathDisplayMode displayMode*/); // Sets how filepaths are displayed for new batch projects.

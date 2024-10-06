@@ -1,6 +1,6 @@
-## `GetFilePathDisplayMode` {#batch-getfilepathdisplaymode}
+## `GetFilePathDisplayMode`
 
-Returns how filepaths are displayed in the lists.
+Returns how filepaths are displayed for new batch projects.
 
 ### Syntax {-}
 
@@ -8,8 +8,10 @@ Returns how filepaths are displayed in the lists.
 FilePathDisplayMode GetFilePathDisplayMode()
 ```
 
+
 ### Return value {-}
 
-The filepaths display of the lists as a [FilePathDisplayMode](#filepathdisplaymode) value.
+Type: [`FilePathDisplayMode`](#filepathdisplaymode)
+
 
 {{< pagebreak >}}

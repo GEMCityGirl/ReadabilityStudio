@@ -5,13 +5,13 @@ Changes the language for project. This will affect syllable counting and also wh
 ### Syntax {-}
 
 ``` {.lua}
-SetProjectLanguage(Language)
+SetProjectLanguage(Language lang)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-Language | The [Language](#language) to set the project to.
+[`Language`](#language) lang | The language to set the project to.
 
 {{< pagebreak >}}

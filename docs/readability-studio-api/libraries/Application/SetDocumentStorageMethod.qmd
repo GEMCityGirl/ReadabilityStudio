@@ -1,6 +1,6 @@
 ## `SetDocumentStorageMethod`
 
-Sets whether projects embed their source documents or link to them.
+Sets whether new projects embed their documents or link to them.
 
 ### Syntax {-}
 

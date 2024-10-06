@@ -1,0 +1,17 @@
+## `GetUnfamDCWordCount`
+
+Returns the number of words unfamiliar to the Dale-Chall test from the document.
+
+### Syntax {-}
+
+``` {.lua}
+number GetUnfamDCWordCount()
+```
+
+
+### Return value {-}
+
+Type: `number`
+
+
+{{< pagebreak >}}

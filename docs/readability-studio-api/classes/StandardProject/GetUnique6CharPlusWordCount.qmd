@@ -1,0 +1,17 @@
+## `GetUnique6CharPlusWordCount`
+
+Returns the number of unique words consisting of six or more characters from the document.
+
+### Syntax {-}
+
+``` {.lua}
+number GetUnique6CharPlusWordCount()
+```
+
+
+### Return value {-}
+
+Type: `number`
+
+
+{{< pagebreak >}}

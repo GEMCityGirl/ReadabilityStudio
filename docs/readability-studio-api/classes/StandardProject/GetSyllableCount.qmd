@@ -1,0 +1,17 @@
+## `GetSyllableCount`
+
+Returns the total number of syllables from the document.
+
+### Syntax {-}
+
+``` {.lua}
+number GetSyllableCount()
+```
+
+
+### Return value {-}
+
+Type: `number`
+
+
+{{< pagebreak >}}

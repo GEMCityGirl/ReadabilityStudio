@@ -1,0 +1,17 @@
+## `GetWordCount`
+
+Returns the total number of words from the document.
+
+### Syntax {-}
+
+``` {.lua}
+number GetWordCount()
+```
+
+
+### Return value {-}
+
+Type: `number`
+
+
+{{< pagebreak >}}

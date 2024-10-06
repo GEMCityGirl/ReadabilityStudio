@@ -1,0 +1,17 @@
+## `GetCharacterAndPunctuationCount`
+
+Returns the total number of letters, numbers, and punctuation from the document.
+
+### Syntax {-}
+
+``` {.lua}
+number GetCharacterAndPunctuationCount()
+```
+
+
+### Return value {-}
+
+Type: `number`
+
+
+{{< pagebreak >}}

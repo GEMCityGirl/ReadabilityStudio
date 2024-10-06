@@ -1,0 +1,17 @@
+## `GetNumeralCount`
+
+Returns the number of numeric words from the document.
+
+### Syntax {-}
+
+``` {.lua}
+number GetNumeralCount()
+```
+
+
+### Return value {-}
+
+Type: `number`
+
+
+{{< pagebreak >}}

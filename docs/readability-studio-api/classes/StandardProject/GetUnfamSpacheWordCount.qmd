@@ -1,0 +1,17 @@
+## `GetUnfamSpacheWordCount`
+
+Returns the number of words unfamiliar to the Spache test from the document.
+
+### Syntax {-}
+
+``` {.lua}
+number GetUnfamSpacheWordCount()
+```
+
+
+### Return value {-}
+
+Type: `number`
+
+
+{{< pagebreak >}}

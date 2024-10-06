@@ -1,0 +1,17 @@
+## `Get7CharacterPlusWordCount`
+
+Returns the number of words consisting of seven or more characters from the document.
+
+### Syntax {-}
+
+``` {.lua}
+number Get7CharacterPlusWordCount()
+```
+
+
+### Return value {-}
+
+Type: `number`
+
+
+{{< pagebreak >}}

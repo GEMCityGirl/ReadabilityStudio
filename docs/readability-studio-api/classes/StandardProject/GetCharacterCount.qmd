@@ -1,0 +1,17 @@
+## `GetCharacterCount`
+
+Returns the total number of characters (letters and numbers) from the document.
+
+### Syntax {-}
+
+``` {.lua}
+number GetCharacterCount()
+```
+
+
+### Return value {-}
+
+Type: `number`
+
+
+{{< pagebreak >}}

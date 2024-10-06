@@ -5,23 +5,25 @@ Sets which items the spell checker should ignore.
 ### Syntax {-}
 
 ``` {.lua}
-SetSpellCheckerOptions(IgnoreProperNouns,
-                       IgnoreUppercased,
-                       IgnoreNumerals,
-                       IgnoreFileAddresses,
-                       IgnoreProgrammerCode,
-                       AllowColloquialisms)
+SetSpellCheckerOptions(boolean ignoreProperNouns,
+                       boolean ignoreUppercased,
+                       boolean ignoreNumerals,
+                       boolean ignoreFileAddresses,
+                       boolean ignoreProgrammerCode,
+                       boolean ignoreSocialMediaTags
+                       boolean ignoreColloquialisms)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-IgnoreProperNouns | Set to `true` to ignore proper nouns.
-IgnoreUppercased | Set to `true` to ignore words that are in all caps.
-IgnoreNumerals | Set to `true` to ignore numeric words.
-IgnoreFileAddresses | Set to `true` to ignore words that are filepaths.
-IgnoreProgrammerCode | Set to `true` to ignore words appear to be programming code.
-AllowColloquialisms | Set to `true` to ignore colloquialisms.
+`boolean` ignoreProperNouns | `true` to ignore proper nouns.
+`boolean` ignoreUppercased | `true` to ignore uppercased words.
+`boolean` ignoreNumerals | `true` to ignore numerals.
+`boolean` ignoreFileAddresses | `true` to ignore filepaths and URLs.
+`boolean` ignoreProgrammerCode | `true` to ignore programmer code.
+`boolean` ignoreSocialMediaTags | `true` to ignore social media tags (e.g., *#goreadabilityformulas*).
+`boolean` ignoreColloquialisms | `true` to ignore social colloquialisms (e.g., *rockin'*).
 
 {{< pagebreak >}}

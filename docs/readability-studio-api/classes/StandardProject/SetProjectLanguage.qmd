@@ -1,0 +1,17 @@
+## `SetProjectLanguage` {#standard-setprojectlanguage}
+
+Changes the language for project. This will affect syllable counting and also which tests are available.
+
+### Syntax {-}
+
+``` {.lua}
+SetProjectLanguage(Language lang)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+[`Language`](#language) lang | The language to set the project to.
+
+{{< pagebreak >}}
