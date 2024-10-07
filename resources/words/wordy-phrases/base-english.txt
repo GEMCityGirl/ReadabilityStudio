@@ -51,7 +51,7 @@ a know	a known	3
 a large number of	numerous, many	0		
 a large percentage of	numerous, many	0		
 a leg up	a promising start	2		
-a like	alike	3	 give; with;in	statement
+a like	alike	3	 with;give;in	statement
 a little bit	a little, a bit	1		
 a majority of	most	0		
 a number of	some, many, a few	0		
@@ -5181,6 +5181,9 @@ diosese	diocese	3
 diphtong	diphthong	3		
 diphtongs	diphthongs	3		
 diplay	display	3		
+diplayed	displayed	3		
+diplaying	displaying	3		
+diplays	displays	3		
 diplomacy	tact	0		
 diplomancy	diplomacy	3		
 diplomatic	tactful	0		
@@ -17236,7 +17239,7 @@ yesterday night	last night	3
 yor	your, yore	3		
 you am	you are	3		
 you can bet your bottom dollar	you can be sure of it	2		
-you has	you have	3	 from;in	to
+you has	you have	3	from;in	to
 you herd	you heard	3		
 you thing	you think	3		
 you was	you were	3		
