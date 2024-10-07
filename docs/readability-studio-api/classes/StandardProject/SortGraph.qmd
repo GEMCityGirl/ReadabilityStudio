@@ -1,0 +1,20 @@
+## `SortGraph`
+
+Sorts the bars in the specified bar chart.
+
+### Syntax {-}
+
+``` {.lua}
+SortGraph(GraphType graphType,
+          SortOrder order)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|[`GraphType`](#graphtype) graphType | The bar chart to sort. | 
+|[`SortOrder`](#sortorder) order | How the bars should be sorted. |
+
+{{< pagebreak >}}

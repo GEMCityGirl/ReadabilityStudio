@@ -126,12 +126,12 @@ namespace LuaScripting
         // cppcheck-suppress functionConst
         int /*string*/ GetReviewer(lua_State* L); // Returns the reviewer's name.
         // cppcheck-suppress functionConst
-        int SetStatus(lua_State* L);
+        int SetStatus(lua_State* L /*string status*/); // Sets the status of a project. This can be freeform text.
         // cppcheck-suppress functionConst
         int /*TextStorage*/ GetDocumentStorageMethod(lua_State* L); // Returns whether the project embeds its documents or links to them.
         int SetDocumentStorageMethod(lua_State* L /*TextStorage storageMethod*/); // Sets whether the project embeds its documents or links to them.
         int SetParagraphsParsingMethod(lua_State* L /*ParagraphParse parseMethod*/); // Sets how hard returns help determine how paragraphs and sentences are detected.
-        int SetDocumentFilePath(lua_State* L);
+        int SetDocumentFilePath(lua_State* L /*string docPath*/); // Sets the path of the document being analyzed by the project.
         // cppcheck-suppress functionConst
         int /*ParagraphParse*/ GetParagraphsParsingMethod(lua_State* L); // Returns the method for how paragraphs are parsed.
         // TEXT EXCLUSION OPTIONS
@@ -150,29 +150,29 @@ namespace LuaScripting
         // GRAPH OPTIONS
         int SetGraphBackgroundColor(lua_State* L /*number red, number green, number blue*/); // Sets the graph background color.
         int ApplyGraphBackgroundFade(lua_State* L /*boolean useColorFade*/); // Sets whether to apply a fade to graph background colors.
-        int SetGraphCommonImage(lua_State* L);
+        int SetGraphCommonImage(lua_State* L /*string imagePath*/); // Sets the common image drawn across all bars.
         int SetPlotBackgroundImage(lua_State* L /*string imagePath*/); // Sets the graph background (plot area) image.
-        int SetPlotBackgroundImageEffect(lua_State* L);
-        int SetPlotBackgroundImageFit(lua_State* L);
+        int SetPlotBackgroundImageEffect(lua_State* L /*ImageEffect imageEffect*/); // Sets the effect applied to an image when drawn as a graph's background.
+        int SetPlotBackgroundImageFit(lua_State* L /*ImageFit fitType*/); // Specifies how to adjust an image to fit within a graph's background.
         int SetPlotBackgroundImageOpacity(lua_State* L /*number opacity*/); // Sets the graph background (plot area) image opacity.
         int SetPlotBackgroundColor(lua_State* L /*number red, number green, number blue*/); // Sets the graph background (plot area) color.
-        int SetPlotBackgroundColorOpacity(lua_State* L);
+        int SetPlotBackgroundColorOpacity(lua_State* L /*number opacity*/); // Sets the graph background color opacity.
         int SetWatermark(lua_State* L /*string watermark*/); // Sets the watermark drawn on graphs.
         int SetGraphLogoImage(lua_State* L /*string imagePath*/); // Sets the logo image, shown in the bottom left corner.
         int SetStippleImage(lua_State* L /*string imagePath*/);// Sets the stipple image used to draw bars in graphs.
         int SetStippleShape(lua_State* L /*string shapeId*/); // Sets the stipple shape used to draw bars in graphs.
-        int SetXAxisFont(lua_State* L);
-        int SetYAxisFont(lua_State* L);
-        int SetGraphTopTitleFont(lua_State* L);
-        int DisplayBarChartLabels(lua_State* L);
+        int SetXAxisFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' X axes.
+        int SetYAxisFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' Y axes.
+        int SetGraphTopTitleFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' top titles.
+        int DisplayBarChartLabels(lua_State* L /*boolean display*/); // Specifies whether to dislay labels above each bar in a bar chart.
         int DisplayGraphDropShadows(lua_State* L /*bool displayShadows*/); // Sets whether to display shadows on graphs
-        int SetBarChartBarColor(lua_State* L);
-        int SetBarChartBarOpacity(lua_State* L);
-        int SetBarChartBarEffect(lua_State* L);
-        int SetBarChartOrientation(lua_State* L);
-        int SetGraphInvalidRegionColor(lua_State* L);
-        int SetStippleShapeColor(lua_State* L);
-        int ShowcaseKeyItems(lua_State* L);
+        int SetBarChartBarColor(lua_State* L /*number red, number green, number blue*/); // If the bar charts' effect is to use a single color, sets the color to draw the bars with.
+        int SetBarChartBarOpacity(lua_State* L /*number opacity*/); // Sets the opacity of the bars within the various bar charts.
+        int SetBarChartBarEffect(lua_State* L /*BoxEffect effect*/); // Sets how bars should be drawn within the various bar charts.
+        int SetBarChartOrientation(lua_State* L /*Orientation orientation*/); // Sets whether the bar charts should be drawn vertically or horizontally.
+        int SetGraphInvalidRegionColor(lua_State* L /*number red, number green, number blue*/); // Sets the color for the invalid score regions for Fry-like graphs.
+        int SetStippleShapeColor(lua_State* L /*number red, number green, number blue*/); // If using stipple shapes for bars, sets the color for certain shapes.
+        int ShowcaseKeyItems(lua_State* L /*boolean showcase*/); // Specifies whether important parts of certain graphs should be highlighted.
 
         // TEST OPTIONS
         int AddTest(lua_State* L /*Test test*/); // Adds a test to the project.
@@ -191,10 +191,7 @@ namespace LuaScripting
         // cppcheck-suppress functionConst
         int ExportFilteredText(lua_State* L /*string outputFilePath, boolean romanizeText, boolean removeEllipses, boolean removeBullets, boolean removeFilePaths, boolean stripAbbreviations*/); // Saves a copy of the project's document with excluded text (and other optional items) filtered out. Returns true if successful.
         int SortList(lua_State* L /*ListType list, number columnToSort, SortOrder order, ...*/); // Sorts the specified list using a series of columns and sorting orders.
-        /*Sorts a graph.
-        GraphToSort The graph window to sort. Refer to GraphTypes enumeration.
-        Order The order to sort.*/
-        int SortGraph(lua_State* L);
+        int SortGraph(lua_State* L /*GraphType graphType, SortOrder order*/); // Sorts the bars in the specified bar chart.
         int SelectWindow(lua_State* L /*SideBarSection section, number windowId*/); // Selects a window in the project.
         int ShowSidebar(lua_State* L /*boolean show*/); // Show or hides the project's sidebar.
 

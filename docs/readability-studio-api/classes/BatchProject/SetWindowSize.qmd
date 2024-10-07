@@ -13,7 +13,7 @@ SetWindowSize(number width,
 
 **Parameter** | **Description**
 | :--  | :-- |
-`number` width  | The project window width.
-`number` height | The project window height.
+`number` width  | The project window width (in pixels).
+`number` height | The project window height (in pixels).
 
 {{< pagebreak >}}

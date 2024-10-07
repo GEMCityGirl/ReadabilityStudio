@@ -1,0 +1,19 @@
+## `SetPlotBackgroundImage`
+
+Sets the graph background (plot area) image.
+
+### Syntax {-}
+
+``` {.lua}
+SetPlotBackgroundImage(string imagePath)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`string` imagePath | The path to the image. |
+
+
+{{< pagebreak >}}

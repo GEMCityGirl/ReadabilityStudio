@@ -1,0 +1,19 @@
+## `SetGraphCommonImage`
+
+Sets the common image drawn across all bars.
+
+### Syntax {-}
+
+``` {.lua}
+SetGraphCommonImage(string imagePath)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`string` imagePath | The path to the image. |
+
+
+{{< pagebreak >}}

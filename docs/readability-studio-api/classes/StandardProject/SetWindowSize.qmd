@@ -1,0 +1,21 @@
+## `SetWindowSize`
+
+Sets the size of the project window.
+
+### Syntax {-}
+
+``` {.lua}
+SetWindowSize(number width,
+              number height)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`number` width | The width of the window (in pixels). | 
+|`number` height | The height of the window (in pixels). |
+
+
+{{< pagebreak >}}

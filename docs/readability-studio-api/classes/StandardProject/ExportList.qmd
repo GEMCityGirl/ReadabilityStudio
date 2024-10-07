@@ -1,6 +1,13 @@
+```{r}
+#| include: false
+#| eval: true
+
+source('R/appdown.r')
+```
+
 ## `ExportList` {#standard-exportlist}
 
-Saves\index{Lists!exporting} the specified list as an HTML, text, or LaTeX file to *OutputFilePath*.
+Saves\index{Lists!exporting} the specified list as an HTML, text, or `r latex_logo(TRUE)`file to *outputFilePath*.
 
 ### Syntax {-}
 

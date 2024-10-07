@@ -200,3 +200,18 @@ If it is a more complex word list (with categories, like **Dolch**), then that w
 - Map the function (and shortcut, if applicable) in `ReadabilityFormulaParser::ReadabilityFormulaParser()`.
 - Document the function in `CustomTestDlg::Create()`.
 - Document the function in **docs/readability-studio-manual/24-CustomTestAndBundles.rmd** in the help.
+
+## Adding a New Stipple Shape
+
+When a new stipple shape is added to the **Wisteria-Dataviz** submodule, it can be included in this program.
+
+- Add a mapping of the displayable name and internal *Wisteria* key in `m_shapeMap` in **src/app/readability_app.cpp*.
+- In the API manual (**readability-studio-api**), mention the new shape in the various **SetStippleShape.qmd** topics.\
+  This will need to be the internal keys, not the displayable name.
+
+## Adding a New Color Scheme
+
+When a new color scheme is added to the **Wisteria-Dataviz** submodule, it can be included in this program.
+
+- Add a mapping of the displayable name and internal *Wisteria* key in `m_colorSchemeMap` in **src/app/readability_app.cpp*.\
+  This will need to be the internal keys, not the displayable name.

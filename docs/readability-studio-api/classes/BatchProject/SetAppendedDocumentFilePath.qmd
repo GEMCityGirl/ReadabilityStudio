@@ -15,7 +15,7 @@ SetAppendedDocumentFilePath(string filePath)
 `string` filePath | The file path to the document being appended for analysis.
 
 ::: {.tipsection data-latex=""}
-This can be optimized by placing it in between calls to [`DelayReloading()`](#batch-delayreloading)** and [`Reload()`](#batch-reload).
+This can be optimized by placing it in between calls to [`DelayReloading()`](#batch-delayreloading) and [`Reload()`](#batch-reload).
 :::
 
 {{< pagebreak >}}

@@ -1,14 +1,15 @@
-## `SetGraphBackgroundColor`
+## `SetBarChartBarColor`
 
-Sets the background color for all graphs.
+If the bar charts' effect is to use a single color, sets the color to draw the bars with.
 
 ### Syntax {-}
 
 ``` {.lua}
-SetGraphBackgroundColor(number red,
-                        number green,
-                        number blue)
+SetBarChartBarColor(number red,
+                    number green,
+                    number blue)
 ```
+
 
 ### Parameters {-}
 
@@ -17,5 +18,6 @@ SetGraphBackgroundColor(number red,
 |`number` red | The red channel (should be between 0--255). | 
 |`number` green | The green channel (should be between 0--255). | 
 |`number` blue | The blue channel (should be between 0--255). |
+
 
 {{< pagebreak >}}

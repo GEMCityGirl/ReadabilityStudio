@@ -1,0 +1,21 @@
+## `SelectWindow`
+
+Selects a window in the project.
+
+### Syntax {-}
+
+``` {.lua}
+SelectWindow(SideBarSection section,
+             number windowId)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|[`SideBarSection`](#sidebarsection) section | The section (along the sidebar) where the window is in. | 
+|`number` windowId | The window's ID. |
+
+
+{{< pagebreak >}}

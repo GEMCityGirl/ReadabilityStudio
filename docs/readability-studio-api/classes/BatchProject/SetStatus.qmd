@@ -1,0 +1,19 @@
+## `SetStatus`
+
+Sets the status of a project. This can be freeform text.
+
+### Syntax {-}
+
+``` {.lua}
+SetStatus(string status)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`string` status | The status of the project. |
+
+
+{{< pagebreak >}}

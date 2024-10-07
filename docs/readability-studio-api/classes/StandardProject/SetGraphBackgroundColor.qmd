@@ -14,8 +14,8 @@ SetGraphBackgroundColor(number red,
 
 **Parameter** | **Description**
 | :-- | :-- |
-`number` red | The red channel of the color.
-`number` green | The green channel of the color.
-`number` blue | The blue channel of the color.
+|`number` red | The red channel (should be between 0--255). | 
+|`number` green | The green channel (should be between 0--255). | 
+|`number` blue | The blue channel (should be between 0--255). |
 
 {{< pagebreak >}}

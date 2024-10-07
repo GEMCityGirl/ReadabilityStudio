@@ -1,0 +1,19 @@
+## `SetDocumentFilePath`
+
+Sets the path of the document being analyzed by the project.
+
+### Syntax {-}
+
+``` {.lua}
+SetDocumentFilePath(string docPath)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`string` docPath | The path of the document. |
+
+
+{{< pagebreak >}}

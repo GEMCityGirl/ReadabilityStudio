@@ -100,7 +100,7 @@ namespace LuaScripting
         int SetReviewer(lua_State* L /*string reviewer*/); // Sets the user name for the software.
         int /*string*/ GetReviewer(lua_State* L); // Returns the reviewer's name.
         // cppcheck-suppress functionConst
-        int SetStatus(lua_State* L);
+        int SetStatus(lua_State* L /*string status*/); // Sets the status of a project. This can be freeform text.
         // cppcheck-suppress functionConst
         int /*TextStorage*/ GetDocumentStorageMethod(lua_State* L); // Returns whether the project embeds its documents or links to them.
         int SetDocumentStorageMethod(lua_State* L /*TextStorage storageMethod*/); // Sets whether the project embeds its documents or links to them.
@@ -129,24 +129,24 @@ namespace LuaScripting
         // GRAPH OPTIONS
         int SetGraphBackgroundColor(lua_State* L /*number red, number green, number blue*/); // Sets the graph background color.
         int ApplyGraphBackgroundFade(lua_State* L/*boolean useColorFade*/); // Sets whether to apply a fade to graph background colors.
-        int SetGraphCommonImage(lua_State* L);
+        int SetGraphCommonImage(lua_State* L /*string imagePath*/); // Sets the common image drawn across all bars.
         int SetPlotBackgroundImage(lua_State* L /*string imagePath*/); // Sets the graph background (plot area) image.
-        int SetPlotBackgroundImageEffect(lua_State* L);
-        int SetPlotBackgroundImageFit(lua_State* L);
+        int SetPlotBackgroundImageEffect(lua_State* L /*ImageEffect imageEffect*/); // Sets the effect applied to an image when drawn as a graph's background.
+        int SetPlotBackgroundImageFit(lua_State* L /*ImageFit fitType*/); // Specifies how to adjust an image to fit within a graph's background.
         int SetPlotBackgroundImageOpacity(lua_State* L /*number opacity*/); // Sets the graph background (plot area) image opacity.
         int SetPlotBackgroundColor(lua_State* L /*number red, number green, number blue*/); // Sets the graph background (plot area) color.
-        int SetPlotBackgroundColorOpacity(lua_State* L);
+        int SetPlotBackgroundColorOpacity(lua_State* L /*number opacity*/); // Sets the graph background color opacity.
         int SetWatermark(lua_State* L /*string watermark*/); // Sets the watermark drawn on graphs.
         int SetGraphLogoImage(lua_State* L /*string imagePath*/); // Sets the logo image, shown in the bottom left corner.
         int SetStippleImage(lua_State* L /*string imagePath*/);// Sets the stipple image used to draw bars in graphs.
         int SetStippleShape(lua_State* L /*string shapeId*/); // Sets the stipple shape used to draw bars in graphs.
-        int SetXAxisFont(lua_State* L);
-        int SetYAxisFont(lua_State* L);
-        int SetGraphTopTitleFont(lua_State* L);
-        int DisplayBarChartLabels(lua_State* L);
+        int SetXAxisFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' X axes.
+        int SetYAxisFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' Y axes.
+        int SetGraphTopTitleFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' top titles.
+        int DisplayBarChartLabels(lua_State* L /*boolean display*/); // Specifies whether to dislay labels above each bar in a bar chart.
         int DisplayGraphDropShadows(lua_State* L /*bool displayShadows*/); // Sets whether to display shadows on graphs.
-        int SetGraphInvalidRegionColor(lua_State* L);
-        int SetStippleShapeColor(lua_State* L);
+        int SetGraphInvalidRegionColor(lua_State* L /*number red, number green, number blue*/); // Sets the color for the invalid score regions for Fry-like graphs.
+        int SetStippleShapeColor(lua_State* L /*number red, number green, number blue*/); // If using stipple shapes for bars, sets the color for certain shapes.
 
         int AddTest(lua_State* L/*Test test*/); // Adds a test to the project.
         int Reload(lua_State*); // Reanalyzes the project's document.

@@ -1,0 +1,19 @@
+## `DisplayBarChartLabels`
+
+Specifies whether to dislay labels above each bar in a bar chart.
+
+### Syntax {-}
+
+``` {.lua}
+DisplayBarChartLabels(boolean display)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`boolean` display | `true` to display the labels. |
+
+
+{{< pagebreak >}}

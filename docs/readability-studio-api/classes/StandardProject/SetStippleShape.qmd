@@ -1,0 +1,24 @@
+## `SetStippleShape`
+
+Sets the stipple shape used to draw bars in graphs.
+
+### Syntax {-}
+
+``` {.lua}
+SetStippleShape(string shapeId)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`string` shapeId | The name of the shape. |
+
+::: {.tipsection data-latex=""}
+Available named shapes are: `"sun"`, `"book"`, `"fall-leaf"`, `"man"`, `"woman"`, `"business-woman"`, `"tire"`, `"flower"`,
+`"warning-road-sign"`, `"location-marker"`, `"graduation-cap"`, `"car"`, `"newspaper"`,
+`"snowflake"`, `"blackboard"`, `"clock"`, and `"ruler"`.
+:::
+
+{{< pagebreak >}}

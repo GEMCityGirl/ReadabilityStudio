@@ -9,10 +9,12 @@ The following styles should be applied to all help projects:
 - File names and paths should be bolded.
 - Data types (programming docs) should be in typewriter font.
 - Parameters to functions (programming docs) should be italicized.
+- Values in programming docs should be in typewriter font.
+- Values elsewhere (e.g., example text) should be quoted.
 
 ## Editing
 
-The documentation is stored in **bookdown** projects in the **readability-studio-manual** and **readability-studio-api** folders. The markdown files (\*.Rmd) can be edited in **RStudio**.
+The documentation is stored in **quarto** projects in the **readability-studio-manual** and **readability-studio-api** folders. The quarto files (\*.qmd) can be edited in **RStudio**.
 
 ## Screenshots {#creating-screenshots}
 
@@ -44,6 +46,6 @@ After generating new screenshots, [build](#building-help) the help and review th
 
 ## Building {#building-help}
 
-From *RStudio*, run **docs/build-help-projects.R** to build all help projects. This should install all needed *R* and *LaTeX* packages the first time you run it,
-although you may need to uncomment the line `tinytex::install_tinytex()` once to install *tinytex*. If there are any errors will installing the *LaTeX* packages,
+From *RStudio*, run **docs/build-help-projects.R** to build all help projects. This should install all needed *R* and *LaTeX* packages the first time you run it.
+If there are any errors will installing the *LaTeX* packages,
 run the script again; you may expericence connection issues to *ctan* and re-running the script will fix it.
