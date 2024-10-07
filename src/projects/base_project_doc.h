@@ -72,7 +72,7 @@ class BaseProjectDoc : public BaseProject, public wxDocument
 
     void SetGraphCommonImagePath(const wxString& filePath);
 
-    void SetStippleShape(wxString shape) { m_stippleShape = std::move(shape); }
+    void SetStippleShape(const wxString& shape) { m_stippleShape = shape; }
 
     [[nodiscard]]
     wxString GetStippleShape() const
