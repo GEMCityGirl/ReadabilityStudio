@@ -224,7 +224,7 @@ Orientation =
   }
 
 -- The following tests are available.
-Tests =
+Test =
   {
   Ari = "ari-test",                                                       -- Automated Readability Index
   ColemanLiau = "coleman-liau-test",                                      -- Coleman-Liau
@@ -325,7 +325,7 @@ FontWeight =
   ExtraHeavy = 1000  -- Extra heavy.
   }
 
-RibbonButtonBars =
+RibbonButtonBar =
   {
   Edit = 30001,
   Proofing = 30002,
@@ -376,10 +376,10 @@ ProductType = protect_enum(ProductType)
 TextExclusionType = protect_enum(TextExclusionType)
 OptionsPageType = protect_enum(OptionsPageType)
 ProductType = protect_enum(ProductType)
-Tests = protect_enum(Tests)
+Test = protect_enum(Test)
 Language = protect_enum(Language)
 TextStorage = protect_enum(TextStorage)
 ParagraphParse = protect_enum(ParagraphParse)
 FilePathDisplayMode = protect_enum(FilePathDisplayMode)
-RibbonButtonBars = protect_enum(RibbonButtonBars)
+RibbonButtonBar = protect_enum(RibbonButtonBar)
 FontWeight = protect_enum(FontWeight)

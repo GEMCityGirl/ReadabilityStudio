@@ -574,13 +574,13 @@ a:ExportGraph(GraphType.WordBarChart, ImagePath .. "barchart." .. FileExtension)
 a:ExportGraph(GraphType.SentenceBoxPlox, ImagePath .. "sentences-boxplot." .. FileExtension)
 a:ExportGraph(GraphType.SentenceHistogram, ImagePath .. "sentences-histogram." .. FileExtension)
 a:SelectWindow(SideBarSection.SentencesBreakdown, GraphType.SentenceBoxPlox)
-ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "ribbon-edit-graphs." .. FileExtension, 0, RibbonButtonBars.Edit)
+ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "ribbon-edit-graphs." .. FileExtension, 0, RibbonButtonBar.Edit)
 a:SelectWindow(SideBarSection.WordsBreakdown, GraphType.WordBarChart)
-ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "ribbon-edit-bar-charts." .. FileExtension, 0, RibbonButtonBars.Edit)
+ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "ribbon-edit-bar-charts." .. FileExtension, 0, RibbonButtonBar.Edit)
 
 a:ExportGraph(GraphType.SyllableHistogram, ImagePath .. "syllable-count-histogram." .. FileExtension)
 a:ExportGraph(GraphType.SyllablePieChart, ImagePath .. "syllables-pie-chart." .. FileExtension)
-a:AddTest(Tests.DanielsonBryan2)
+a:AddTest(Test.DanielsonBryan2)
 a:ExportGraph(GraphType.DanielsonBryan2, ImagePath .. "db2-plot." .. FileExtension)
 a:ExportGraph(GraphType.Fry, ImagePath .. "frygraph." .. FileExtension)
 a:ExportGraph(GraphType.Raygor, ImagePath .. "raygorgraph." .. FileExtension)
@@ -591,8 +591,8 @@ a:Close()
 -- German graph
 a = StandardProject(ScreenshotProjectsFolder .. "turkey brining.rtf")
 a:SetProjectLanguage(Language.German)
-a:AddTest(Tests.Schwartz)
-a:AddTest(Tests.LixGermanTechnical)
+a:AddTest(Test.Schwartz)
+a:AddTest(Test.LixGermanTechnical)
 a:ExportGraph(GraphType.Schwartz, ImagePath .. "schwartz." .. FileExtension)
 a:ExportGraph(GraphType.GermanLix, ImagePath .. "german-lix-gauge." .. FileExtension)
 a:Close()
@@ -702,11 +702,11 @@ sp:Close()
 a = StandardProject(ScreenshotProjectsFolder .. "Chocolate Eclairs.rsp")
 a:SelectReadabilityTest(2)
 ScreenshotLib.SnapScreenshot(ImagePath .. "custom-test-example2-score." .. FileExtension)
-ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "ribbon-edit-scores." .. FileExtension, 0, RibbonButtonBars.Edit)
+ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "ribbon-edit-scores." .. FileExtension, 0, RibbonButtonBar.Edit)
 
 a:SelectHighlightedWordReport(Application.GetTestId("New Dale-Chall (Baking)"))
 ScreenshotLib.SnapScreenshot(ImagePath .. "custom-test-example2-custom-text." .. FileExtension)
-ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "ribbon-edit-text-window." .. FileExtension, 0, RibbonButtonBars.Edit)
+ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "ribbon-edit-text-window." .. FileExtension, 0, RibbonButtonBar.Edit)
 
 a:SelectWindow(SideBarSection.WordsBreakdown, ListType.DaleChallUnfamiliarWords)
 a:SortList(ListType.DaleChallUnfamiliarWordsList,1,SortOrder.SortAscending)
@@ -717,7 +717,7 @@ a:SortList(Application.GetTestId("New Dale-Chall (Baking)"),1,SortOrder.SortAsce
 ScreenshotLib.SnapScreenshot(ImagePath .. "custom-test-example2-custom-word-list." .. FileExtension)
 
 a:SelectWindow(SideBarSection.Statistics, ReportType.StatisticsSummaryReport)
-ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "ribbon-edit-stats." .. FileExtension, 0, RibbonButtonBars.Edit)
+ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "ribbon-edit-stats." .. FileExtension, 0, RibbonButtonBar.Edit)
 
 ScreenshotLib.ShowFilteredTextPreviewDlg()
 ScreenshotLib.SnapScreenshot(ImagePath .. "filter-text-preview." .. FileExtension)
@@ -860,7 +860,7 @@ ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-citatio
 HighlightedReportType.GrammarHighlightedIssues, true, 1926, 2090)
 
 sp:SelectWindow(SideBarSection.WordsBreakdown, ListType.ThreePlusSyllableWords)
-ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "ribbon-edit-list-options-with-exclude-selected." .. FileExtension, 0, RibbonButtonBars.Edit)
+ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "ribbon-edit-list-options-with-exclude-selected." .. FileExtension, 0, RibbonButtonBar.Edit)
 
 sp:Close()
 
@@ -920,7 +920,7 @@ sp:Close(false)
 ----------------
 sp = StandardProject(ScreenshotProjectsFolder .. "Summer Code Camp.odt")
 sp:SetTextExclusion(TextExclusionType.DoNotExcludeAnyText)
-sp:AddTest(Tests.Forcast)
+sp:AddTest(Test.Forcast)
 sp:SelectWindow(SideBarSection.WordsBreakdown, HighlightedReportType.ThreePlusSyllableHighlightedWords)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "summer-code-camp-upper-half1." .. FileExtension,
     HighlightedReportType.ThreePlusSyllableHighlightedWords, true, 111, 168)
@@ -938,7 +938,7 @@ ScreenshotLib.CloseStandardProjectWizard()
 
 sp = StandardProject(ScreenshotProjectsFolder .. "YA Enterprise Software Symposium.odt")
 sp:SetTextExclusion(TextExclusionType.ExcludeIncompleteSentences)
-sp:AddTest(Tests.Flesch)
+sp:AddTest(Test.Flesch)
 sp:ExportGraph(GraphType.Flesch, ImagePath .. "addendum-flesch1." .. FileExtension)
 sp:SelectWindow(SideBarSection.WordsBreakdown, HighlightedReportType.ThreePlusSyllableHighlightedWords)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "addendum-highlighted-text1." .. FileExtension,
@@ -1010,7 +1010,7 @@ ScreenshotLib.CloseDocGroupSelectDlg()
 -- Difficult words example
 --------------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "Instructional Disclaimer.odt")
-sp:AddTest(Tests.Fry)
+sp:AddTest(Test.Fry)
 sp:ExportGraph(GraphType.WordCloud, ImagePath .. "example-difficult-words-wordcloud." .. FileExtension)
 sp:ExportGraph(GraphType.SyllableHistogram, ImagePath .. "example-difficult-syllables-histogram." .. FileExtension)
 sp:ShowcaseKeyItems(true)
@@ -1038,7 +1038,7 @@ sp:Close()
 -- dark mode graph example
 --------------------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "Chocolate Eclairs.txt")
-sp:AddTest(Tests.Raygor)
+sp:AddTest(Test.Raygor)
 sp:SelectWindow(SideBarSection.ReadabilityScores, GraphType.Raygor)
 sp:SetGraphBackgroundColor("black")
 sp:ExportGraph(GraphType.Raygor, ImagePath .. "example-dark-graph." .. FileExtension)
@@ -1134,13 +1134,13 @@ sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlighted
 ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "termchecklistgrammar." .. FileExtension)
 ScreenshotLib.ShowEditorTextDlg(1000, 300)
 ScreenshotLib.SnapScreenshot(ImagePath .. "editorwithcontent." .. FileExtension)
-ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "editorsaveribbon." .. FileExtension, 0, RibbonButtonBars.Document)
-ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "editorviewribbon." .. FileExtension, 0, RibbonButtonBars.View)
-ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "editorclipboardandeditribbon." .. FileExtension, 0, RibbonButtonBars.Clipboard, RibbonButtonBars.Edit)
+ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "editorsaveribbon." .. FileExtension, 0, RibbonButtonBar.Document)
+ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "editorviewribbon." .. FileExtension, 0, RibbonButtonBar.View)
+ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "editorclipboardandeditribbon." .. FileExtension, 0, RibbonButtonBar.Clipboard, RibbonButtonBar.Edit)
 ScreenshotLib.CloseEditorTextDlg()
 
 sp:SetDocumentStorageMethod(TextStorage.NoEmbedText)
-ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "termchecklist-realtime." .. FileExtension, 0, RibbonButtonBars.Project)
+ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "termchecklist-realtime." .. FileExtension, 0, RibbonButtonBar.Project)
 
 sp:DelayReloading(true)
 sp:SetDocumentFilePath("/home/LSternin/Termination Checklist.odt") -- use generic filepath
