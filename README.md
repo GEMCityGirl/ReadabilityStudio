@@ -125,7 +125,10 @@ Place *wxWidgets* at the same folder level as this project, downloading and buil
 cd ..
 git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
 cd wxWidgets
-cmake . -DCMAKE_INSTALL_PREFIX=./wxlib -DwxBUILD_SHARED=OFF -D"CMAKE_OSX_ARCHITECTURES:STRING=arm64;x86_64" -DwxBUILD_OPTIMISE=ON -DwxBUILD_STRIPPED_RELEASE_DEFAULT=ON -DCMAKE_BUILD_TYPE=Release
+cmake . -DCMAKE_INSTALL_PREFIX=./wxlib -DwxBUILD_SHARED=OFF \
+-D"CMAKE_OSX_ARCHITECTURES:STRING=arm64;x86_64" \
+-DCMAKE_OSX_DEPLOYMENT_TARGET=10.13 \
+-DwxBUILD_OPTIMISE=ON -DwxBUILD_STRIPPED_RELEASE_DEFAULT=ON -DCMAKE_BUILD_TYPE=Release
 cmake --build . --target install -j $(nproc)
 cd ..
 cd ReadabilityStudio

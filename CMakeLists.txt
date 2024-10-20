@@ -43,7 +43,7 @@ if(APPLE AND NOT CMAKE_OSX_DEPLOYMENT_TARGET)
     if(CMAKE_SYSTEM_NAME STREQUAL "iOS")
         set(CMAKE_OSX_DEPLOYMENT_TARGET 12.0 CACHE STRING "iOS Deployment Target")
     else()
-        set(CMAKE_OSX_DEPLOYMENT_TARGET 10.10 CACHE STRING "macOS Deployment Target")
+        set(CMAKE_OSX_DEPLOYMENT_TARGET 10.13 CACHE STRING "macOS Deployment Target")
     endif()
 endif()
 
