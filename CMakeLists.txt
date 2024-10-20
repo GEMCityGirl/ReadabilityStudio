@@ -201,13 +201,9 @@ endif()
 ##############################################################
 
 include(cmake/modules/FindR.cmake)
-# TODO: Windows path to Pandoc currently only looks for Quarto installations.
-include(cmake/modules/FindPandoc.cmake)
 if(TARGET manuals)
     if(NOT R_FOUND)
-        message(FATAL_ERROR "R not found. Help cannot be built.")
-    elseif(NOT PANDOC_FOUND)
-        message(FATAL_ERROR "Pandoc not found. Help cannot be built.")
+        message(FATAL_ERROR "R not found. Help manuals cannot be built.")
     endif()
 endif()
 
@@ -215,7 +211,6 @@ add_custom_target(manuals
                 ALL
                 COMMAND "${R_SCRIPT}"
                     "${CMAKE_CURRENT_SOURCE_DIR}/docs/build-help-projects.R"
-                    "${PANDOC_ROOT_DIR}"
                 WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/docs/")
 
 # Build the API documentation
