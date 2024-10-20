@@ -90,6 +90,7 @@ namespace LuaScripting
         // FilePath File path to the project to open.
         explicit StandardProject(lua_State* L);
 
+        // i18n-check-suppress-begin
         // clang-format off
         // NOTE: these must all be single-line for the build script to properly create new topics from these.
 
@@ -220,6 +221,7 @@ namespace LuaScripting
         int /*INTERNAL!!!*/ OpenProperties(lua_State* L);
         int /*INTERNAL!!!*/ CloseProperties(lua_State*);
         // clang-format on
+        // i18n-check-suppress-end
         };
     } // namespace LuaScripting
 
