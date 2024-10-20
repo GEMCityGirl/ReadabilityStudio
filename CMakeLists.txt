@@ -138,7 +138,7 @@ endif()
 
 message(STATUS "Adding wxWidgets CMake config folder: ${wxWidgets_DIR}")
 if(NOT EXISTS "${wxWidgets_DIR}/wxWidgetsConfig.cmake" AND NOT EXISTS "${wxWidgets_DIR}/wxwidgets-config.cmake")
-    message(WARNING "Cannot find wxWidgets CMake configuration. (Looked in ${wxWidgets_DIR}.)")
+    message(FATAL_ERROR "Cannot find wxWidgets CMake configuration. (Looked in ${wxWidgets_DIR}.)")
 endif()
 set(wxWidgets_USE_STATIC 1)
 find_package(wxWidgets 3.3 COMPONENTS core base xrc propgrid xml aui ribbon qa stc net richtext REQUIRED CONFIG)
