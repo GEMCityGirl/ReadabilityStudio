@@ -1395,7 +1395,6 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                             XML_VALUE.data(), bool_to_int(m_sentenceStartMustBeUppercased)));
                     }
                 // file path to phrases to exclude from analysis
-                wxString filePath;
                 auto excludedPhrasesFilePath =
                     documentAnalysisNode->FirstChildElement(XML_EXCLUDED_PHRASES_PATH.data());
                 if (excludedPhrasesFilePath)

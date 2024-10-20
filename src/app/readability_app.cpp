@@ -32,51 +32,49 @@ std::map<wxWindowID, wxWindowID> ReadabilityApp::m_dynamicIdMap;
 RSArtProvider::RSArtProvider()
     {
     // cppcheck-suppress useInitializationList
-    m_idFileMap = {
-        { wxART_FILE_OPEN, L"ribbon/file-open.svg" },
-        { wxART_FILE_SAVE, L"ribbon/file-save.svg" },
-        { wxART_NEW, L"ribbon/document.svg" },
-        { wxART_PRINT, L"ribbon/print.svg" },
-        { wxART_CLOSE, L"ribbon/delete.svg" },
-        { wxART_DELETE, L"ribbon/delete.svg" },
-        { wxART_COPY, L"ribbon/copy.svg" },
-        { wxART_CUT, L"ribbon/cut.svg" },
-        { wxART_PASTE, L"ribbon/paste.svg" },
-        { wxART_UNDO, L"ribbon/undo.svg" },
-        { wxART_REDO, L"ribbon/redo.svg" },
-        { wxART_HELP_BOOK, L"ribbon/help.svg" },
-        { wxART_GO_DOWN, L"ribbon/down-arrow.svg" },
-        { wxART_GO_UP, L"ribbon/up-arrow.svg" },
-        { wxART_FIND, L"ribbon/find.svg" },
-        { wxART_FIND_AND_REPLACE, L"ribbon/find-replace.svg" },
-        { L"ID_NOTES", L"ribbon/notepad.svg" },
-        { L"ID_E_HELP", L"ribbon/electronic-help.svg" },
-        { L"ID_ALIGN_LEFT", L"ribbon/align-left.svg" },
-        { L"ID_ALIGN_CENTER", L"ribbon/align-center.svg" },
-        { L"ID_ALIGN_RIGHT", L"ribbon/align-right.svg" },
-        { L"ID_ALIGN_JUSTIFIED", L"ribbon/justified.svg" },
-        { L"ID_PARAGRAPH_INDENT", L"ribbon/paragraph-indent.svg" },
-        { L"ID_LINE_SPACING", L"ribbon/line-spacing.svg" },
-        { L"ID_LIST_SORT", L"ribbon/sort.svg" },
-        { L"ID_ADD", L"ribbon/add.svg" },
-        { L"ID_GROUP", L"ribbon/group.svg" },
-        { L"ID_RUN", L"ribbon/run.svg" },
-        { L"ID_CLEAR", L"ribbon/clear.svg" },
-        { L"ID_DOCUMENT", L"ribbon/document.svg" },
-        { L"ID_DOCUMENTS", L"ribbon/documents.svg" },
-        { L"ID_EDIT_DOCUMENT", L"ribbon/edit-document.svg" },
-        { L"ID_FUNCTION", L"ribbon/function.svg" },
-        { L"ID_SPREADSHEET", L"ribbon/spreadsheet.svg" },
-        { L"ID_ARCHIVE", L"ribbon/archive.svg" },
-        { L"ID_GEARS", L"ribbon/gears.svg" },
-        { L"ID_WEB_EXPORT", L"ribbon/web-export.svg" },
-        { L"ID_EDIT", L"ribbon/edit.svg" },
-        { L"ID_FONT", L"ribbon/font.svg" },
-        { L"ID_SELECT_ALL", L"ribbon/select-all.svg" },
-        { L"ID_REFRESH", L"ribbon/reload.svg" },
-        { L"ID_REALTIME_UPDATE", L"ribbon/realtime.svg" },
-        { L"ID_LINK", L"ribbon/link.svg" }
-    };
+    m_idFileMap = { { wxART_FILE_OPEN, L"ribbon/file-open.svg" },
+                    { wxART_FILE_SAVE, L"ribbon/file-save.svg" },
+                    { wxART_NEW, L"ribbon/document.svg" },
+                    { wxART_PRINT, L"ribbon/print.svg" },
+                    { wxART_CLOSE, L"ribbon/delete.svg" },
+                    { wxART_DELETE, L"ribbon/delete.svg" },
+                    { wxART_COPY, L"ribbon/copy.svg" },
+                    { wxART_CUT, L"ribbon/cut.svg" },
+                    { wxART_PASTE, L"ribbon/paste.svg" },
+                    { wxART_UNDO, L"ribbon/undo.svg" },
+                    { wxART_REDO, L"ribbon/redo.svg" },
+                    { wxART_HELP_BOOK, L"ribbon/help.svg" },
+                    { wxART_GO_DOWN, L"ribbon/down-arrow.svg" },
+                    { wxART_GO_UP, L"ribbon/up-arrow.svg" },
+                    { wxART_FIND, L"ribbon/find.svg" },
+                    { wxART_FIND_AND_REPLACE, L"ribbon/find-replace.svg" },
+                    { L"ID_NOTES", L"ribbon/notepad.svg" },
+                    { L"ID_E_HELP", L"ribbon/electronic-help.svg" },
+                    { L"ID_ALIGN_LEFT", L"ribbon/align-left.svg" },
+                    { L"ID_ALIGN_CENTER", L"ribbon/align-center.svg" },
+                    { L"ID_ALIGN_RIGHT", L"ribbon/align-right.svg" },
+                    { L"ID_ALIGN_JUSTIFIED", L"ribbon/justified.svg" },
+                    { L"ID_PARAGRAPH_INDENT", L"ribbon/paragraph-indent.svg" },
+                    { L"ID_LINE_SPACING", L"ribbon/line-spacing.svg" },
+                    { L"ID_LIST_SORT", L"ribbon/sort.svg" },
+                    { L"ID_ADD", L"ribbon/add.svg" },
+                    { L"ID_GROUP", L"ribbon/group.svg" },
+                    { L"ID_RUN", L"ribbon/run.svg" },
+                    { L"ID_CLEAR", L"ribbon/clear.svg" },
+                    { L"ID_DOCUMENT", L"ribbon/document.svg" },
+                    { L"ID_DOCUMENTS", L"ribbon/documents.svg" },
+                    { L"ID_EDIT_DOCUMENT", L"ribbon/edit-document.svg" },
+                    { L"ID_FUNCTION", L"ribbon/function.svg" },
+                    { L"ID_SPREADSHEET", L"ribbon/spreadsheet.svg" },
+                    { L"ID_ARCHIVE", L"ribbon/archive.svg" },
+                    { L"ID_GEARS", L"ribbon/gears.svg" },
+                    { L"ID_WEB_EXPORT", L"ribbon/web-export.svg" },
+                    { L"ID_EDIT", L"ribbon/edit.svg" },
+                    { L"ID_FONT", L"ribbon/font.svg" },
+                    { L"ID_SELECT_ALL", L"ribbon/select-all.svg" },
+                    { L"ID_REFRESH", L"ribbon/reload.svg" },
+                    { L"ID_REALTIME_UPDATE", L"ribbon/realtime.svg" },
+                    { L"ID_LINK", L"ribbon/link.svg" } };
     }
 
 //-------------------------------------------
@@ -4747,27 +4745,33 @@ void MainFrame::OnRemoveCustomTest([[maybe_unused]] wxCommandEvent& event)
         {
         const BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
         if (!doc->IsSafeToUpdate())
-            { return; }
+            {
+            return;
+            }
         }
     wxArrayString testNames;
-    for (CustomReadabilityTestCollection::const_iterator pos = BaseProject::m_custom_word_tests.cbegin();
-        pos != BaseProject::m_custom_word_tests.cend();
-        ++pos)
-        { testNames.Add(pos->get_name().c_str()); }
-    wxSingleChoiceDialog dlg(wxGetApp().GetParentingWindow(),
-                             _(L"Select test to remove:"), _(L"Remove Test"),
-                             testNames);
-    dlg.SetSize(400, -1);
+    for (CustomReadabilityTestCollection::const_iterator pos =
+             BaseProject::m_custom_word_tests.cbegin();
+         pos != BaseProject::m_custom_word_tests.cend(); ++pos)
+        {
+        testNames.Add(pos->get_name().c_str());
+        }
+    wxSingleChoiceDialog dlg(wxGetApp().GetParentingWindow(), _(L"Select test to remove:"),
+                             _(L"Remove Test"), testNames);
+    dlg.SetSize(FromDIP(400), -1);
     dlg.Center();
     if (dlg.ShowModal() == wxID_CANCEL)
-        { return; }
+        {
+        return;
+        }
     const auto selectedTestIndex = dlg.GetSelection();
     if (selectedTestIndex < 0 ||
         selectedTestIndex >= static_cast<int>(BaseProject::m_custom_word_tests.size()))
-        { return; }
+        {
+        return;
+        }
 
-    CustomReadabilityTest selectedTest =
-        BaseProject::m_custom_word_tests[selectedTestIndex];
+    CustomReadabilityTest selectedTest = BaseProject::m_custom_word_tests[selectedTestIndex];
 
     BaseProjectDoc::RemoveGlobalCustomReadabilityTest(selectedTest.get_name().c_str());
     }
@@ -4791,15 +4795,18 @@ void MainFrame::OnEditCustomTestBundle([[maybe_unused]] wxCommandEvent& event)
     {
     wxArrayString bundleNames;
     for (std::set<TestBundle>::const_iterator pos = BaseProject::m_testBundles.begin();
-        pos != BaseProject::m_testBundles.end();
-        ++pos)
-        { bundleNames.Add(pos->GetName().c_str()); } // locked bundled will be viewed as read only
+         pos != BaseProject::m_testBundles.end(); ++pos)
+        {
+        bundleNames.Add(pos->GetName().c_str());
+        } // locked bundled will be viewed as read only
     wxSingleChoiceDialog dlg(wxGetApp().GetParentingWindow(), _(L"Select bundle to edit:"),
                              _(L"Edit Bundle"), bundleNames);
-    dlg.SetSize(400, -1);
+    dlg.SetSize(FromDIP(400), -1);
     dlg.Center();
     if (dlg.ShowModal() == wxID_CANCEL)
-        { return; }
+        {
+        return;
+        }
 
     std::set<TestBundle>::iterator testBundleIter =
         BaseProject::m_testBundles.find(TestBundle(dlg.GetStringSelection().wc_str()));
@@ -4833,7 +4840,7 @@ void MainFrame::OnRemoveCustomTestBundle([[maybe_unused]] wxCommandEvent& event)
         }
     wxSingleChoiceDialog dlg(wxGetApp().GetParentingWindow(), _(L"Select bundle to remove:"),
                              _(L"Remove Bundle"), bundleNames);
-    dlg.SetSize(400, -1);
+    dlg.SetSize(FromDIP(400), -1);
     dlg.Center();
     if (dlg.ShowModal() == wxID_CANCEL)
         {
@@ -5037,7 +5044,7 @@ void MainFrame::OnEditCustomTest([[maybe_unused]] wxCommandEvent& event)
         }
     wxSingleChoiceDialog selDlg(wxGetApp().GetParentingWindow(), _(L"Select test to edit:"),
                                 _(L"Edit Test"), testNames);
-    selDlg.SetSize(400, -1);
+    selDlg.SetSize(FromDIP(400), -1);
     selDlg.Center();
     if (selDlg.ShowModal() == wxID_CANCEL)
         {
@@ -5327,8 +5334,8 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
     {
     GetDirFilterDialog dirDlg(wxGetApp().GetParentingWindow(),
                               wxGetApp().GetAppOptions().GetDocumentFilter() + L"|" +
-                                        Wisteria::GraphItems::Image::GetImageFileFilter() + L"|" +
-                                        _(L"All Files (*.*)|*.*"));
+                                  Wisteria::GraphItems::Image::GetImageFileFilter() + L"|" +
+                                  _(L"All Files (*.*)|*.*"));
     if (dirDlg.ShowModal() != wxID_OK || dirDlg.GetPath().empty())
         {
         return;
@@ -5349,8 +5356,9 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
         {
         wxProgressDialog progressDlg(_(L"Duplicate Files"), _(L"Searching for duplicate files..."),
                                      files.size(), wxGetApp().GetParentingWindow(),
-            wxPD_AUTO_HIDE | wxPD_SMOOTH | wxPD_ELAPSED_TIME | wxPD_ESTIMATED_TIME |
-                wxPD_REMAINING_TIME | wxPD_CAN_ABORT | wxPD_APP_MODAL);
+                                     wxPD_AUTO_HIDE | wxPD_SMOOTH | wxPD_ELAPSED_TIME |
+                                         wxPD_ESTIMATED_TIME | wxPD_REMAINING_TIME |
+                                         wxPD_CAN_ABORT | wxPD_APP_MODAL);
         progressDlg.Centre();
 
         int counter{ 1 };
@@ -5494,8 +5502,7 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
     webHarvestDlg.UpdateFromHarvesterSettings(wxGetApp().GetWebHarvester());
     // force downloading locally
     webHarvestDlg.DownloadFilesLocally(true);
-    webHarvestDlg.SetHelpTopic(GetHelpDirectory(),
-                               _DT(L"online/options/additional-features.html"));
+    webHarvestDlg.SetHelpTopic(GetHelpDirectory(), _DT(L"online/options/additional-features.html"));
 
     if (webHarvestDlg.ShowModal() != wxID_OK)
         {
@@ -5546,7 +5553,8 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
     // update global internet options that mirror the same options from the dialog
     wxGetApp().GetAppOptions().DisablePeerVerify(webHarvestDlg.IsPeerVerifyDisabled());
     wxGetApp().GetAppOptions().UseJavaScriptCookies(webHarvestDlg.IsUsingJavaScriptCookies());
-    wxGetApp().GetAppOptions().PersistJavaScriptCookies(webHarvestDlg.IsPersistingJavaScriptCookies());
+    wxGetApp().GetAppOptions().PersistJavaScriptCookies(
+        webHarvestDlg.IsPersistingJavaScriptCookies());
     wxGetApp().GetAppOptions().SetUserAgent(webHarvestDlg.GetUserAgent());
 
     wxMessageBox(_(L"Web crawl complete."), _(L"Web Harvester"), wxOK | wxICON_INFORMATION);
