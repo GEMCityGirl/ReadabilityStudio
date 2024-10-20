@@ -218,7 +218,9 @@ add_custom_target(manuals
 find_package(Doxygen)
 if(TARGET doxygen-docs)
     if(NOT DOXYGEN_FOUND)
-        message("Doxygen not found. API documentation cannot be generated.")
+        # Just warning about API docs not being built when requested.
+        # It is included with ALL, but not necessary for end users.
+        message(WARNING "Doxygen not found. API documentation cannot be built.")
     endif()
 endif()
 
