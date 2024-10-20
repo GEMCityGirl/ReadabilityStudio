@@ -164,7 +164,7 @@ namespace LuaScripting
         int SetXAxisFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' X axes.
         int SetYAxisFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' Y axes.
         int SetGraphTopTitleFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' top titles.
-        int DisplayBarChartLabels(lua_State* L /*boolean display*/); // Specifies whether to dislay labels above each bar in a bar chart.
+        int DisplayBarChartLabels(lua_State* L /*boolean display*/); // Specifies whether to display labels above each bar in a bar chart.
         int DisplayGraphDropShadows(lua_State* L /*bool displayShadows*/); // Sets whether to display shadows on graphs
         int SetBarChartBarColor(lua_State* L /*number red, number green, number blue*/); // If the bar charts' effect is to use a single color, sets the color to draw the bars with.
         int SetBarChartBarOpacity(lua_State* L /*number opacity*/); // Sets the opacity of the bars within the various bar charts.
