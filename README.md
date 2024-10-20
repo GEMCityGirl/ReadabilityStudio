@@ -77,7 +77,8 @@ Place *wxWidgets* at the same folder level as this project, downloading and buil
 cd ..
 git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
 cd wxWidgets
-cmake . -DCMAKE_INSTALL_PREFIX=./wxlib -DwxBUILD_SHARED=OFF -DwxBUILD_OPTIMISE=ON -DwxBUILD_STRIPPED_RELEASE_DEFAULT=ON -DCMAKE_BUILD_TYPE=Release
+cmake . -DCMAKE_INSTALL_PREFIX=./wxlib -DwxBUILD_SHARED=OFF \
+-DwxBUILD_OPTIMISE=ON -DwxBUILD_STRIPPED_RELEASE_DEFAULT=ON -DCMAKE_BUILD_TYPE=Release
 cmake --build . --target install -j $(nproc)
 cd ..
 cd ReadabilityStudio
@@ -87,13 +88,17 @@ Build the program as follows:
 
 ```
 cmake .
-cmake --build . --target all -j $(nproc)
+cmake --build . -DCMAKE_BUILD_TYPE=Release --target all -j $(nproc)
 ```
 
 Build an AppImage:
 
 ```
-linuxdeploy-x86_64.AppImage --appdir installers/unix/AppDir --executable installers/unix/AppDir/readstudio -d installers/unix/AppDir/readstudio.desktop -i installers/unix/AppDir/app-logo.svg --output appimage
+linuxdeploy-x86_64.AppImage --appdir installers/unix/AppDir \
+--executable installers/unix/AppDir/readstudio \
+-d installers/unix/AppDir/readstudio.desktop \
+-i installers/unix/AppDir/app-logo.svg \
+--output appimage
 mv Readability_Studio*.AppImage ./installers/unix
 ```
 
@@ -132,6 +137,20 @@ cmake . -DCMAKE_INSTALL_PREFIX=./wxlib -DwxBUILD_SHARED=OFF \
 cmake --build . --target install -j $(nproc)
 cd ..
 cd ReadabilityStudio
+```
+
+Build the program as follows:
+
+```
+cmake .
+cmake --build . -DCMAKE_BUILD_TYPE=Release --target all -j $(nproc)
+```
+
+Code sign the app bundle ("???" should be your Apple Developer organizational ID):
+
+```
+cd build
+codesign --force --verbose=2 --sign "???" ./readstudio.app
 ```
 
 ## All Platforms
