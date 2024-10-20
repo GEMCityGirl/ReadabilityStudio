@@ -14,7 +14,7 @@ void FilteredTextPreviewDlg::CreateControls()
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
 
     wxBoxSizer* previewWindowSizer = new wxBoxSizer(wxVERTICAL);
-    mainSizer->Add(previewWindowSizer, 1, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(previewWindowSizer, wxSizerFlags{ 1 }.Expand().Border());
 
     previewWindowSizer->Add(new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition,
                                            FromDIP(wxSize(500, 300)),
@@ -36,8 +36,8 @@ void FilteredTextPreviewDlg::CreateControls()
     m_collpane->Expand();
     filteredOutSizer->SetSizeHints(m_collpane->GetPane());
 
-    mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL | wxHELP), 0, wxEXPAND | wxALL,
-                   wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL | wxHELP),
+                   wxSizerFlags{}.Expand().Border());
 
     SetSizerAndFit(mainSizer);
     }

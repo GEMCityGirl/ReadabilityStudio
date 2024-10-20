@@ -194,7 +194,7 @@ void ProjectWizardDlg::CreateControls()
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
     m_sideBarBook = new SideBarBook(this, wxID_ANY);
     wxGetApp().UpdateSideBarTheme(m_sideBarBook->GetSideBar());
-    mainSizer->Add(m_sideBarBook, 1, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(m_sideBarBook, wxSizerFlags{ 1 }.Expand().Border());
 
     m_sideBarBook->GetImageList().push_back(wxArtProvider::GetBitmapBundle(L"ID_DOCUMENT"));
     m_sideBarBook->GetImageList().push_back(
@@ -296,7 +296,7 @@ void ProjectWizardDlg::CreateControls()
             optionsSizer->Add(noteLabel, 0, wxALIGN_LEFT | wxALL, wxSizerFlags::GetDefaultBorder());
             }
 
-        pageSizer->Add(optionsSizer, 1, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
+        pageSizer->Add(optionsSizer, wxSizerFlags{ 1 }.Expand().Border());
         }
     else // Batch project
         {
@@ -465,7 +465,7 @@ void ProjectWizardDlg::CreateControls()
             new wxStaticText(page, ID_RANDOM_SAMPLE_LABEL, _(L"% of the documents.")), 0,
             wxALIGN_CENTER_VERTICAL, 0);
 
-        pageSizer->Add(optionsSizer, 1, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
+        pageSizer->Add(optionsSizer, wxSizerFlags{ 1 }.Expand().Border());
         pageSizer->Add(minDocSizeBoxSizer, 0, wxALIGN_LEFT | wxEXPAND | wxLEFT,
                        wxSizerFlags::GetDefaultBorder());
         pageSizer->Add(randomOptionsSizer, 0, wxALIGN_LEFT | wxEXPAND | wxALL,
@@ -811,7 +811,7 @@ void ProjectWizardDlg::CreateControls()
             docLayoutSizer->Add(wrappedSizer, 0, wxALL | wxEXPAND,
                                 wxSizerFlags::GetDefaultBorder());
             }
-        pageSizer->Add(optionsSizer, 1, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
+        pageSizer->Add(optionsSizer, wxSizerFlags{ 1 }.Expand().Border());
         }
         // test selection
         {
@@ -884,7 +884,7 @@ void ProjectWizardDlg::CreateControls()
             page, wxID_STATIC,
             BaseProject::m_custom_word_tests.size() ? _(L"Custom tests:") : wxString{}));
         m_testsSizer->AddGrowableRow(1, 1);
-        m_testsSizer->Add(m_testsCheckListBox, 0, wxEXPAND);
+        m_testsSizer->Add(m_testsCheckListBox, wxSizerFlags{}.Expand());
         // custom test
         if (BaseProject::m_custom_word_tests.size())
             {
@@ -912,7 +912,7 @@ void ProjectWizardDlg::CreateControls()
                 page, wxID_ANY, wxDefaultPosition, wxSize(FromDIP(wxSize(250, 250)).GetWidth(), -1),
                 customTestNames, wxLB_EXTENDED | wxLB_NEEDED_SB | wxLB_HSCROLL | wxBORDER_THEME,
                 wxGenericValidator(&m_selectedCustomTests));
-            m_testsSizer->Add(m_customTestsCheckListBox, 0, wxEXPAND);
+            m_testsSizer->Add(m_customTestsCheckListBox, wxSizerFlags{}.Expand());
             }
         else
             {
@@ -946,23 +946,23 @@ void ProjectWizardDlg::CreateControls()
         optionsSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
         optionsSizer->Add(m_testTypesSizer, wxSizerFlags{ 1 }.Expand());
 
-        pageSizer->Add(optionsSizer, 1, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
+        pageSizer->Add(optionsSizer, wxSizerFlags{ 1 }.Expand().Border());
         }
     wxBoxSizer* buttonsSizer = new wxBoxSizer(wxHORIZONTAL);
     buttonsSizer->AddStretchSpacer();
     wxButton* backButton = new wxButton(this, wxID_BACKWARD, _(L"< Back"));
-    buttonsSizer->Add(backButton, 0, wxEXPAND);
-    buttonsSizer->Add(new wxButton(this, wxID_FORWARD, _(L"Forward >")), 0, wxEXPAND);
-    buttonsSizer->Add(new wxButton(this, wxID_OK, _(L"Finish")), 0, wxEXPAND);
+    buttonsSizer->Add(backButton, wxSizerFlags{}.Expand());
+    buttonsSizer->Add(new wxButton(this, wxID_FORWARD, _(L"Forward >")), wxSizerFlags{}.Expand());
+    buttonsSizer->Add(new wxButton(this, wxID_OK, _(L"Finish")), wxSizerFlags{}.Expand());
     buttonsSizer->AddSpacer(wxSizerFlags::GetDefaultBorder() * 2);
     wxButton* cancelButton = new wxButton(this, wxID_CANCEL);
-    buttonsSizer->Add(cancelButton, 0, wxEXPAND);
+    buttonsSizer->Add(cancelButton, wxSizerFlags{}.Expand());
     wxButton* helpButton = new wxButton(this, wxID_HELP);
-    buttonsSizer->Add(helpButton, 0, wxEXPAND);
+    buttonsSizer->Add(helpButton, wxSizerFlags{}.Expand());
 
     backButton->Enable(false);
 
-    mainSizer->Add(buttonsSizer, 0, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(buttonsSizer, wxSizerFlags{}.Expand().Border());
     SetSizerAndFit(mainSizer);
 
     if (GetFileList())

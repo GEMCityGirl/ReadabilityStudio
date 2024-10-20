@@ -490,11 +490,11 @@ void WebHarvesterDlg::CreateControls()
             new wxCheckBox(Panel, wxID_ANY, _(L"Replace existing files"), wxDefaultPosition,
                            wxDefaultSize, 0, wxGenericValidator(&m_replaceExistingFiles));
         m_replaceExistingFilesCheckBox->Enable(m_downloadFilesLocally);
-        panelSizer->Add(m_replaceExistingFilesCheckBox, 0, wxALL, wxSizerFlags::GetDefaultBorder());
+        panelSizer->Add(m_replaceExistingFilesCheckBox, wxSizerFlags{}.Border());
         }
 
-    mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL | wxHELP), 0, wxEXPAND | wxALL,
-                   wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL | wxHELP),
+                   wxSizerFlags{}.Expand().Border());
 
     SetSizerAndFit(mainSizer);
     }

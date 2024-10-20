@@ -712,8 +712,7 @@ void CustomTestDlg::CreateControls()
             // test result type
             {
             wxBoxSizer* testTypeSizer = new wxBoxSizer(wxHORIZONTAL);
-            editorSectionSizer->Add(testTypeSizer, 0, wxEXPAND | wxALL,
-                                    wxSizerFlags::GetDefaultBorder());
+            editorSectionSizer->Add(testTypeSizer, wxSizerFlags{}.Expand().Border());
             testTypeSizer->Add(
                 new wxStaticText(m_generalPage, wxID_STATIC, _(L"Test result type:")), 0,
                 wxALIGN_CENTER_VERTICAL);
@@ -1011,8 +1010,8 @@ void CustomTestDlg::CreateControls()
         wizardPageSizer->Add(m_associationPropertyGrid, wxSizerFlags{ 1 }.Expand());
         }
 
-    mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL | wxHELP), 0, wxEXPAND | wxALL,
-                   wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL | wxHELP),
+                   wxSizerFlags{}.Expand().Border());
 
     SetSizerAndFit(mainSizer);
 

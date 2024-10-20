@@ -62,7 +62,7 @@ void TestBundleDlg::CreateControls()
 
     wxGetApp().UpdateSideBarTheme(m_sideBarBook->GetSideBar());
 
-    mainSizer->Add(m_sideBarBook, 1, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(m_sideBarBook, wxSizerFlags{ 1 }.Expand().Border());
 
     wxArrayString availableTestNames;
 
@@ -86,8 +86,7 @@ void TestBundleDlg::CreateControls()
             nameBoxSizer->Add(m_bundleNameCtrl, 1, wxEXPAND | wxALL,
                               wxSizerFlags::GetDefaultBorder());
 
-            mainPanelSizer->Add(nameBoxSizer, 0, wxEXPAND | wxALL,
-                                wxSizerFlags::GetDefaultBorder());
+            mainPanelSizer->Add(nameBoxSizer, wxSizerFlags{}.Expand().Border());
             }
 
             // description
@@ -129,8 +128,7 @@ void TestBundleDlg::CreateControls()
         lily_of_the_valley::html_extract_text stripHtml;
         auto readabilityStandardTestSizer = new wxGridBagSizer(
             wxSizerFlags::GetDefaultBorder(), wxSizerFlags::GetDefaultBorder() / 2);
-        mainPanelSizer->Add(readabilityStandardTestSizer, 0, wxEXPAND | wxALL,
-                            wxSizerFlags::GetDefaultBorder());
+        mainPanelSizer->Add(readabilityStandardTestSizer, wxSizerFlags{}.Expand().Border());
         // add the standard tests
         size_t currentRow{ 0 }, currentCol{ 0 };
         const size_t rowCount = (m_standardTests.get_tests().size() / maxColumns) + 1;
@@ -202,8 +200,7 @@ void TestBundleDlg::CreateControls()
 
         auto readabilityCustomTestSizer = new wxGridBagSizer(wxSizerFlags::GetDefaultBorder(),
                                                              wxSizerFlags::GetDefaultBorder() / 2);
-        mainPanelSizer->Add(readabilityCustomTestSizer, 0, wxEXPAND | wxALL,
-                            wxSizerFlags::GetDefaultBorder());
+        mainPanelSizer->Add(readabilityCustomTestSizer, wxSizerFlags{}.Expand().Border());
 
         size_t currentRow{ 0 }, currentCol{ 0 };
         const size_t rowCount = (BaseProject::m_custom_word_tests.size() > 10) ?

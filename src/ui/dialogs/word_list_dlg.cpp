@@ -212,7 +212,7 @@ void WordListDlg::CreateControls()
         ribbon->SetArtProvider(new Wisteria::UI::RibbonMetroArtProvider);
         wxGetApp().UpdateRibbonTheme(ribbon);
 
-        mainSizer->Add(ribbon, 0, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
+        mainSizer->Add(ribbon, wxSizerFlags{}.Expand().Border());
         ribbon->Realise();
         }
 
@@ -299,8 +299,7 @@ void WordListDlg::CreateControls()
                         _(L"Stocker's Catholic Supplement"), 1, m_StockerData,
                         BaseProject::m_stocker_catholic_word_list);
 
-    mainSizer->Add(CreateButtonSizer(wxCLOSE), 0, wxEXPAND | wxALL,
-                   wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(CreateButtonSizer(wxCLOSE), wxSizerFlags{}.Expand().Border());
 
     SetSizerAndFit(mainSizer);
     }

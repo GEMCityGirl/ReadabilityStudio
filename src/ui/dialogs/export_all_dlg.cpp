@@ -238,22 +238,19 @@ void ExportAllDlg::CreateControls()
         wxCheckBox* testResultsCheck = new wxCheckBox(
             inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY, _(L"Test scores"),
             wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportTestResults));
-        inclusionSectionBoxSizer->Add(testResultsCheck, 0, wxEXPAND | wxALL,
-                                      wxSizerFlags::GetDefaultBorder());
+        inclusionSectionBoxSizer->Add(testResultsCheck, wxSizerFlags{}.Expand().Border());
 
         wxCheckBox* statisticsCheck = new wxCheckBox(
             inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY, _(L"Summary statistics"),
             wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportStatistics));
-        inclusionSectionBoxSizer->Add(statisticsCheck, 0, wxEXPAND | wxALL,
-                                      wxSizerFlags::GetDefaultBorder());
+        inclusionSectionBoxSizer->Add(statisticsCheck, wxSizerFlags{}.Expand().Border());
 
         if (view->GetWordsBreakdownView().GetWindowCount() > 0)
             {
             wxCheckBox* listCheck = new wxCheckBox(
                 inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY, _(L"Words breakdown"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportHardWordLists));
-            inclusionSectionBoxSizer->Add(listCheck, 0, wxEXPAND | wxALL,
-                                          wxSizerFlags::GetDefaultBorder());
+            inclusionSectionBoxSizer->Add(listCheck, wxSizerFlags{}.Expand().Border());
             }
 
         if (view->GetSentencesBreakdownView().GetWindowCount() > 0)
@@ -262,8 +259,7 @@ void ExportAllDlg::CreateControls()
                 new wxCheckBox(inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY,
                                _(L"Sentences breakdown"), wxDefaultPosition, wxDefaultSize, 0,
                                wxGenericValidator(&m_exportSentencesBreakdown));
-            inclusionSectionBoxSizer->Add(listCheck, 0, wxEXPAND | wxALL,
-                                          wxSizerFlags::GetDefaultBorder());
+            inclusionSectionBoxSizer->Add(listCheck, wxSizerFlags{}.Expand().Border());
             }
 
         if (view->GetGrammarView().GetWindowCount() > 0)
@@ -271,8 +267,7 @@ void ExportAllDlg::CreateControls()
             wxCheckBox* wordinessCheck = new wxCheckBox(
                 inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY, _(L"Grammar section"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportWordiness));
-            inclusionSectionBoxSizer->Add(wordinessCheck, 0, wxEXPAND | wxALL,
-                                          wxSizerFlags::GetDefaultBorder());
+            inclusionSectionBoxSizer->Add(wordinessCheck, wxSizerFlags{}.Expand().Border());
             }
 
         if (view->GetDolchSightWordsView().GetWindowCount() > 0)
@@ -280,8 +275,7 @@ void ExportAllDlg::CreateControls()
             wxCheckBox* sightWordsCheck = new wxCheckBox(
                 inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY, _(L"Dolch sight words section"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportSightWords));
-            inclusionSectionBoxSizer->Add(sightWordsCheck, 0, wxEXPAND | wxALL,
-                                          wxSizerFlags::GetDefaultBorder());
+            inclusionSectionBoxSizer->Add(sightWordsCheck, wxSizerFlags{}.Expand().Border());
             }
         }
     else
@@ -292,28 +286,24 @@ void ExportAllDlg::CreateControls()
         wxCheckBox* testResultsCheck = new wxCheckBox(
             inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY, _(L"Test scores"),
             wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportTestResults));
-        inclusionSectionBoxSizer->Add(testResultsCheck, 0, wxEXPAND | wxALL,
-                                      wxSizerFlags::GetDefaultBorder());
+        inclusionSectionBoxSizer->Add(testResultsCheck, wxSizerFlags{}.Expand().Border());
 
         wxCheckBox* statisticsCheck = new wxCheckBox(
             inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY, _(L"Summary statistics"),
             wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportStatistics));
-        inclusionSectionBoxSizer->Add(statisticsCheck, 0, wxEXPAND | wxALL,
-                                      wxSizerFlags::GetDefaultBorder());
+        inclusionSectionBoxSizer->Add(statisticsCheck, wxSizerFlags{}.Expand().Border());
 
         wxCheckBox* graphCheck = new wxCheckBox(
             inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY, _(L"Histograms/box plots"),
             wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportGraphs));
-        inclusionSectionBoxSizer->Add(graphCheck, 0, wxEXPAND | wxALL,
-                                      wxSizerFlags::GetDefaultBorder());
+        inclusionSectionBoxSizer->Add(graphCheck, wxSizerFlags{}.Expand().Border());
 
         if (view->GetWordsBreakdownView().GetWindowCount() > 0)
             {
             wxCheckBox* listCheck = new wxCheckBox(
                 inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY, _(L"Words breakdown"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportHardWordLists));
-            inclusionSectionBoxSizer->Add(listCheck, 0, wxEXPAND | wxALL,
-                                          wxSizerFlags::GetDefaultBorder());
+            inclusionSectionBoxSizer->Add(listCheck, wxSizerFlags{}.Expand().Border());
             }
 
         if (view->GetSentencesBreakdownView().GetWindowCount() > 0)
@@ -322,8 +312,7 @@ void ExportAllDlg::CreateControls()
                 new wxCheckBox(inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY,
                                _(L"Sentences breakdown"), wxDefaultPosition, wxDefaultSize, 0,
                                wxGenericValidator(&m_exportSentencesBreakdown));
-            inclusionSectionBoxSizer->Add(listCheck, 0, wxEXPAND | wxALL,
-                                          wxSizerFlags::GetDefaultBorder());
+            inclusionSectionBoxSizer->Add(listCheck, wxSizerFlags{}.Expand().Border());
             }
 
         if (view->GetGrammarView().GetWindowCount() > 0)
@@ -331,8 +320,7 @@ void ExportAllDlg::CreateControls()
             wxCheckBox* grammarCheck = new wxCheckBox(
                 inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY, _(L"Grammar section"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportWordiness));
-            inclusionSectionBoxSizer->Add(grammarCheck, 0, wxEXPAND | wxALL,
-                                          wxSizerFlags::GetDefaultBorder());
+            inclusionSectionBoxSizer->Add(grammarCheck, wxSizerFlags{}.Expand().Border());
             }
 
         if (view->GetDolchSightWordsView().GetWindowCount() > 0)
@@ -340,8 +328,7 @@ void ExportAllDlg::CreateControls()
             wxCheckBox* sightWordsCheck = new wxCheckBox(
                 inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY, _(L"Dolch sight word section"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportSightWords));
-            inclusionSectionBoxSizer->Add(sightWordsCheck, 0, wxEXPAND | wxALL,
-                                          wxSizerFlags::GetDefaultBorder());
+            inclusionSectionBoxSizer->Add(sightWordsCheck, wxSizerFlags{}.Expand().Border());
             }
 
         if (view->GetWarningsView()->GetItemCount() > 0)
@@ -349,8 +336,7 @@ void ExportAllDlg::CreateControls()
             wxCheckBox* warningsCheck = new wxCheckBox(
                 inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY, _(L"Warnings section"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportWarnings));
-            inclusionSectionBoxSizer->Add(warningsCheck, 0, wxEXPAND | wxALL,
-                                          wxSizerFlags::GetDefaultBorder());
+            inclusionSectionBoxSizer->Add(warningsCheck, wxSizerFlags{}.Expand().Border());
             }
         }
 
@@ -438,16 +424,16 @@ void ExportAllDlg::CreateControls()
         mainSizer->Add(new wxCheckBox(this, ID_INCLUDE_LIST_CHECKBOX, _(L"Include lists"),
                                       wxDefaultPosition, wxDefaultSize, 0,
                                       wxGenericValidator(&m_exportingLists)),
-                       0, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
+                       wxSizerFlags{}.Expand().Border());
 
         mainSizer->Add(new wxCheckBox(this, ID_INCLUDE_TEXT_CHECKBOX, _(L"Include text reports"),
                                       wxDefaultPosition, wxDefaultSize, 0,
                                       wxGenericValidator(&m_exportingTextReports)),
-                       0, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
+                       wxSizerFlags{}.Expand().Border());
         }
 
-    mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL | wxHELP), 0, wxEXPAND | wxALL,
-                   wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL | wxHELP),
+                   wxSizerFlags{}.Expand().Border());
     }
 
 //---------------------------------------------

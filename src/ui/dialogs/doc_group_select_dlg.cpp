@@ -30,15 +30,15 @@ void DocGroupSelectDlg::CreateControls()
         new wxTextCtrl(this, wxID_ANY, wxString{}, wxDefaultPosition, wxDefaultSize,
                        wxBORDER_THEME, wxGenericValidator(&m_groupingLabel));
     labelSizer->Add(m_groupingLabelText, 0, wxALIGN_CENTER_VERTICAL);
-    labelSizer->Add(m_groupingLabelEntry, 1, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
+    labelSizer->Add(m_groupingLabelEntry, wxSizerFlags{ 1 }.Expand().Border());
 
     m_groupingLabelText->Enable(m_selected == 1);
     m_groupingLabelEntry->Enable(m_selected == 1);
 
-    mainSizer->Add(labelSizer, 1, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(labelSizer, wxSizerFlags{ 1 }.Expand().Border());
 
-    mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL | wxHELP), 0, wxEXPAND | wxALL,
-                   wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL | wxHELP),
+                   wxSizerFlags{}.Expand().Border());
 
     SetSizerAndFit(mainSizer);
 

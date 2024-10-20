@@ -151,7 +151,7 @@ void EditTextDlg::CreateControls()
 
     wxBoxSizer* searchSizer = new wxBoxSizer(wxHORIZONTAL);
     searchSizer->AddStretchSpacer(1);
-    mainSizer->Add(searchSizer, 0, wxEXPAND);
+    mainSizer->Add(searchSizer, wxSizerFlags{}.Expand());
 
         {
         m_ribbon = new wxRibbonBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
@@ -298,7 +298,7 @@ void EditTextDlg::CreateControls()
         m_ribbon->SetArtProvider(new Wisteria::UI::RibbonMetroArtProvider);
         wxGetApp().UpdateRibbonTheme(m_ribbon);
 
-        mainSizer->Add(m_ribbon, 0, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
+        mainSizer->Add(m_ribbon, wxSizerFlags{}.Expand().Border());
         m_ribbon->Realise();
         }
 
@@ -386,8 +386,8 @@ void EditTextDlg::CreateControls()
     // batch uses this in modal mode
     if (m_parentDoc && m_parentDoc->IsKindOf(CLASSINFO(BatchProjectDoc)))
         {
-        mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL), 0, wxEXPAND | wxALL,
-                       wxSizerFlags::GetDefaultBorder());
+        mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL),
+                       wxSizerFlags{}.Expand().Border());
         }
 
     SetSizerAndFit(mainSizer);

@@ -261,8 +261,8 @@ void EditWordListDlg::CreateControls()
     m_wordsList->Refresh();
     wordListSizer->Add(m_wordsList, 1, wxEXPAND);
 
-    mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL | wxHELP), 0, wxEXPAND | wxALL,
-                   wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL | wxHELP),
+                   wxSizerFlags{}.Expand().Border());
 
     SetSizerAndFit(mainSizer);
     }

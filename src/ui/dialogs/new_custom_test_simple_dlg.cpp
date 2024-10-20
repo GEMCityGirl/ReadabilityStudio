@@ -69,8 +69,8 @@ void NewCustomWordTestSimpleDlg::CreateControls()
         new wxStaticBoxSizer(new wxStaticBox(this, wxID_ANY, _(L"Test name:")), wxVERTICAL);
     wxStaticBoxSizer* fileBrowseBoxSizer = new wxStaticBoxSizer(
         new wxStaticBox(this, wxID_ANY, _(L"Custom familiar word list:")), wxHORIZONTAL);
-    mainSizer->Add(testNameBoxSizer, 0, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
-    mainSizer->Add(fileBrowseBoxSizer, 0, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(testNameBoxSizer, wxSizerFlags{}.Expand().Border());
+    mainSizer->Add(fileBrowseBoxSizer, wxSizerFlags{}.Expand().Border());
 
     wxTextCtrl* testNameEdit =
         new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, FromDIP(wxSize(400, 25)),
@@ -89,8 +89,8 @@ void NewCustomWordTestSimpleDlg::CreateControls()
                            wxArtProvider::GetBitmapBundle(wxART_FILE_OPEN, wxART_BUTTON));
     fileBrowseBoxSizer->Add(fileBrowseButton, 0, wxALIGN_CENTER_VERTICAL);
 
-    mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL | wxHELP), 0, wxEXPAND | wxALL,
-                   wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL | wxHELP),
+                   wxSizerFlags{}.Expand().Border());
 
     SetSizerAndFit(mainSizer);
 

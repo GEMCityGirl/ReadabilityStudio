@@ -520,8 +520,8 @@ bool BatchProjectView::OnCreate(wxDocument* doc, long flags)
     m_statsReport->Hide();
     m_statsReport->GetHtmlWindow()->SetLabel(_(L"Summary Statistics"));
 
-    GetWorkSpaceSizer()->Add(m_testExplanations, 0, wxEXPAND);
-    GetWorkSpaceSizer()->Add(m_statsReport, 0, wxEXPAND);
+    GetWorkSpaceSizer()->Add(m_testExplanations, wxSizerFlags{}.Expand());
+    GetWorkSpaceSizer()->Add(m_statsReport, wxSizerFlags{}.Expand());
 
     m_warningsView = new ListCtrlEx(GetSplitter(), ID_WARNING_LIST_PAGE_ID, wxDefaultPosition,
                                     wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxLC_ALIGN_LEFT);
