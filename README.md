@@ -22,7 +22,6 @@ Install the following tools to build *Readability Studio*:
 - *R*
 - *Quarto*
 - *InnoSetup*
-- *POEdit* (if editing the translations)
 
 - Open *Visual Studio* and select *Clone a Repository*
   - Enter "https://github.com/wxWidgets/wxWidgets.git" and clone it to same level as this project
@@ -30,13 +29,19 @@ Install the following tools to build *Readability Studio*:
   - Open **Project** > **CMake Settings for wxWidgets**
     - Uncheck **wxBUILD_SHARED**
     - Set **wxBUILD_OPTIMISE** to "ON"
+    - Set the configuration type to "Release"
     - Save your changes
   - Select **Build** > **Install wxWidgets** (builds and then copies the header, lib, and cmake files to the prefix folder)
-- Open this project's CMake file in *Visual Studio* and save it (this is equivalent to configuring CMake and will generate some necessary configuration files)
+- Open this project's CMake file in *Visual Studio*:
+  - Open **Project** > **CMake Settings for readstudio**
+    - Set the configuration type to "Release" (or create a new release configuration)
+    - Save your changes
 - Select **View** > **CMake Targets**
 - Build the *manuals* and *readstudio* targets
 
 ## Linux
+
+**...INCOMPLETE, needs to document adding a GPG signature**
 
 Install the following tools to build *Readability Studio*:
 
@@ -47,10 +52,9 @@ Install the following tools to build *Readability Studio*:
 - *Quarto*
 - *pandoc*
 - *pandoc-citeproc*
-- *POEdit* (if editing the translations)
 - *AppImage*, *linuxdeploy*, and *AppImageLauncher* (if building an AppImage)
 
-Install the following libraries (*and* their development files if mentioned):
+Install the following libraries (*and* their development files, if mentioned):
 
 - *GTK+ 3*, *gtk3-devel*/*libgtk3-dev*
 - *libCURL*, *libcurl-devel*/*libcurl-dev*
@@ -102,8 +106,6 @@ linuxdeploy-x86_64.AppImage --appdir installers/unix/AppDir \
 mv Readability_Studio*.AppImage ./installers/unix
 ```
 
-**...INCOMPLETE**
-
 ## macOS
 
 To install home-brew:
@@ -143,10 +145,12 @@ Place *wxWidgets* at the same folder level as this project, downloading and buil
 cd ..
 git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
 cd wxWidgets
+
 cmake . -DCMAKE_INSTALL_PREFIX=./wxlib -DwxBUILD_SHARED=OFF \
 -D"CMAKE_OSX_ARCHITECTURES:STRING=arm64;x86_64" \
 -DCMAKE_OSX_DEPLOYMENT_TARGET=10.13 \
 -DwxBUILD_OPTIMISE=ON -DwxBUILD_STRIPPED_RELEASE_DEFAULT=ON -DCMAKE_BUILD_TYPE=Release
+
 cmake --build . --target install
 cd ..
 cd ReadabilityStudio
@@ -156,7 +160,10 @@ Build the program as follows:
 
 ```
 cmake . -DCMAKE_BUILD_TYPE=Release -G Xcode
-cmake --build . --target all --config Release
+# XCode will not understand an "all" target,
+# so the binary and manuals must be built separately
+cmake --build . --target readstudio --config Release
+cmake --build . --target manuals
 ```
 
 Code sign the app bundle.
@@ -167,8 +174,12 @@ ORG_ID=
 KEYCHAIN_PROFILE=
 
 cd installers/macos/release
-codesign --force --verbose=2 --options runtime --timestamp --sign ${ORG_ID} ./"Readability Studio.app"
+
+codesign --force --verbose=2 --options runtime \
+--timestamp --sign ${ORG_ID} ./"Readability Studio.app"
+
 codesign --verify --verbose=2 ./"Readability Studio.app"
+
 cd ..
 ```
 
@@ -202,7 +213,8 @@ xcrun notarytool submit ./ReadabilityStudio.dmg \
 
 xcrun stapler staple ./ReadabilityStudio.dmg
 
-xcrun spctl --assess --type open --context context:primary-signature --ignore-cache --verbose=2 ./ReadabilityStudio.dmg
+xcrun spctl --assess --type open --context context:primary-signature \
+--ignore-cache --verbose=2 ./ReadabilityStudio.dmg
 ```
 
 If you get a notarization error, run the following
