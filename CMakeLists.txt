@@ -303,7 +303,7 @@ elseif(UNIX)
     target_compile_definitions(${PROJECT_NAME} PUBLIC __WXGTK__ CRCPP_USE_CPP11 LICENSE_FILE_GENERATOR_ENABLED
         $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING> $<$<CONFIG:Release>:NDEBUG>)
     # TODO: don't include -Werror for now, but eventually add it
-    target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow
+    target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow -fopenmp
                            $<$<CONFIG:Debug>:-Og -g3>
                            $<$<CONFIG:Release>:-O2>)
 endif()
@@ -314,7 +314,11 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 # Link required libraries to the executable
-if(WIN32)
+if(WIN32 OR APPLE)
+    # AppleClang dropped support for OpenMP
+    # Including TBB is not necessary for macOS and actually breaks hardened runtime
+    # because that library is not included by default with the OS (XCode installs it)
+    # and it is not signed.
     target_link_libraries(${PROJECT_NAME} ${wxWidgets_LIBRARIES})
 elseif(UNIX)
     # Add OpenMP for mutlithreading.
