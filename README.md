@@ -87,8 +87,8 @@ cd ReadabilityStudio
 Build the program as follows:
 
 ```
-cmake .
-cmake --build . -DCMAKE_BUILD_TYPE=Release --target all -j $(nproc)
+cmake . -DCMAKE_BUILD_TYPE=Release
+cmake --build . -DCMAKE_BUILD_TYPE=Release --target all -j $(nproc) --config Release
 ```
 
 Build an AppImage:
@@ -112,10 +112,11 @@ To install home-brew:
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-To install CMake:
+To install *CMake* and *create-dmg*:
 
 ```
 brew install cmake
+brew install create-dmg
 ```
 
 If you get errors about not finding a CXX compiler, run this:
@@ -123,6 +124,18 @@ If you get errors about not finding a CXX compiler, run this:
 ```
 sudo xcode-select --reset
 ```
+
+Add a notarization keychain to your system that you can use for code signing and notarization
+(`APPLE_ID` should be set to your Apple account, usually your email address).
+This only needs to be done once:
+
+```
+APPLE_ID=
+xcrun notarytool store-credentials --apple-id ${APPLE_ID}
+```
+
+When prompted, set the keychain profile to a meaningful name and enter your 10-digit organization ID as the team ID.
+Then enter your app-specific password. (You can get that from Apple's developer website.)
 
 Place *wxWidgets* at the same folder level as this project, downloading and building it as follows:
 
@@ -134,7 +147,7 @@ cmake . -DCMAKE_INSTALL_PREFIX=./wxlib -DwxBUILD_SHARED=OFF \
 -D"CMAKE_OSX_ARCHITECTURES:STRING=arm64;x86_64" \
 -DCMAKE_OSX_DEPLOYMENT_TARGET=10.13 \
 -DwxBUILD_OPTIMISE=ON -DwxBUILD_STRIPPED_RELEASE_DEFAULT=ON -DCMAKE_BUILD_TYPE=Release
-cmake --build . --target install -j $(nproc)
+cmake --build . --target install
 cd ..
 cd ReadabilityStudio
 ```
@@ -142,15 +155,61 @@ cd ReadabilityStudio
 Build the program as follows:
 
 ```
-cmake .
-cmake --build . -DCMAKE_BUILD_TYPE=Release --target all -j $(nproc)
+cmake . -DCMAKE_BUILD_TYPE=Release -G Xcode
+cmake --build . --target all --config Release
 ```
 
-Code sign the app bundle ("???" should be your Apple Developer organizational ID):
+Code sign the app bundle.
+(`ORG_ID` should be set to your 10-digit Apple developer organization ID and `KEYCHAIN_PROFILE` should be the keychain profile connected to your Apple ID):
 
 ```
-cd build
-codesign --force --verbose=2 --sign "???" ./readstudio.app
+ORG_ID=
+KEYCHAIN_PROFILE=
+
+cd installers/macos/release
+codesign --force --verbose=2 --options runtime --timestamp --sign ${ORG_ID} ./"Readability Studio.app"
+codesign --verify --verbose=2 ./"Readability Studio.app"
+cd ..
+```
+
+Build the DMG image and sign it:
+
+```
+test -f ReadabilityStudio.dmg && rm ReadabilityStudio.dmg
+create-dmg \
+  --volname "Readability Studio Installer" \
+  --volicon "../../app-logo.icns" \
+  --background "../../app-logo.png" \
+  --window-pos 200 120 \
+  --window-size 800 400 \
+  --icon-size 100 \
+  --icon "readstudio.app" 200 190 \
+  --hide-extension "readstudio.app" \
+  --app-drop-link 600 185 \
+  "ReadabilityStudio.dmg" \
+  "release/"
+codesign --force --verbose=2 --sign ${ORG_ID} ./ReadabilityStudio.dmg
+codesign --verify --verbose=2 ./ReadabilityStudio.dmg
+hdiutil verify ./ReadabilityStudio.dmg
+```
+
+Notarize, staple, and verify the app bundle:
+
+```
+xcrun notarytool submit ./ReadabilityStudio.dmg \
+  --keychain-profile ${KEYCHAIN_PROFILE} \
+  --wait
+
+xcrun stapler staple ./ReadabilityStudio.dmg
+
+xcrun spctl --assess --type open --context context:primary-signature --ignore-cache --verbose=2 ./ReadabilityStudio.dmg
+```
+
+If you get a notarization error, run the following
+(`GUID` will be the unique ID that the submission process just displayed):
+
+```
+xcrun notarytool log ${GUID} --keychain-profile ${KEYCHAIN_PROFILE}
 ```
 
 ## All Platforms
