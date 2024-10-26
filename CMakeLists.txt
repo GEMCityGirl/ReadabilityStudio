@@ -30,9 +30,15 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
 endif()
 
 message(STATUS "Build: ${CMAKE_BUILD_TYPE}")
+message(STATUS "Generator: ${CMAKE_GENERATOR}")
 
 if(APPLE)
     set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64" CACHE STRING "" FORCE)
+    # Enable hardened runtime:
+	# https://developer.apple.com/documentation/security/hardened_runtime
+    # Note that this will need to be set via codesign later because we are not
+    # codesigning via CMake. This here is more for bookkeeping.
+    set(CMAKE_XCODE_ATTRIBUTE_ENABLE_HARDENED_RUNTIME YES)
 elseif(UNIX)
     set(UNIX_ARCHITECTURE "x86_64" CACHE STRING "" FORCE)
 endif()
@@ -45,6 +51,7 @@ if(APPLE AND NOT CMAKE_OSX_DEPLOYMENT_TARGET)
     else()
         set(CMAKE_OSX_DEPLOYMENT_TARGET 10.13 CACHE STRING "macOS Deployment Target")
     endif()
+    message(STATUS "macOS deployment target: ${CMAKE_OSX_DEPLOYMENT_TARGET}")
 endif()
 
 # Edit these values when bumping the release
@@ -371,6 +378,12 @@ if(WIN32 AND NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/release/
                    COMMAND ${CMAKE_COMMAND} -E make_directory
                    "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/release/")
 endif()
+if(APPLE AND NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/installers/macos/release/")
+    add_custom_command(TARGET ${PROJECT_NAME}
+                   POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E make_directory
+                   "${CMAKE_CURRENT_SOURCE_DIR}/installers/macos/release/")
+endif()
 
 # On macOS, move the resource files up from the binary folder to the resources folder
 # (note that iOS has a flat folder structure, so only do this for macOS).
@@ -461,6 +474,8 @@ add_custom_command(TARGET ${PROJECT_NAME}
 if(APPLE)
     set_target_properties(${PROJECT_NAME} PROPERTIES
         RESOURCE app-logo.icns
+        OUTPUT_NAME ${readstudio_DESCRIPTION}
+        XCODE_ATTRIBUTE_EXECUTABLE_NAME ${PROJECT_NAME} 
         MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist.in)
 endif()
 
@@ -481,5 +496,10 @@ if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
                         COMMAND ${CMAKE_COMMAND} -E copy_directory
                         $<TARGET_FILE_DIR:${PROJECT_NAME}> ${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/AppDir/usr/bin
                         COMMENT "Copying binary to installer folder.")
+    elseif(APPLE)
+        add_custom_command(TARGET ${PROJECT_NAME}
+                           POST_BUILD
+                           COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE_DIR:${PROJECT_NAME}>/${OUTPUT_NAME}.app" "${CMAKE_CURRENT_SOURCE_DIR}/installers/macos/release/"
+                           COMMENT "Copying binary to installer folder.")
     endif()
 endif()
