@@ -345,7 +345,7 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
     ico.CopyFromBitmap(wxGetApp()
                            .GetResourceManager()
                            .GetSVG(L"ribbon/formula.svg")
-                           .GetBitmap(FromDIP(wxSize(16, 16))));
+                           .GetBitmap(FromDIP(wxSize{ 16, 16 })));
     SetIcon(ico);
 
     m_operators = { wxString(_DT(L"*\t") + _(L"Multiplication.")).wc_string(),
@@ -728,11 +728,10 @@ void CustomTestDlg::CreateControls()
             {
             wxBoxSizer* functionControlsSizer = new wxBoxSizer(wxHORIZONTAL);
             editorSectionSizer->Add(
-                functionControlsSizer,
-                wxSizerFlags(1).Expand().Border(wxALL, wxSizerFlags::GetDefaultBorder()));
+                functionControlsSizer, wxSizerFlags{ 1 }.Expand().Border());
             wxStaticBoxSizer* formulaBoxSizer = new wxStaticBoxSizer(
                 new wxStaticBox(m_generalPage, wxID_ANY, _(L"Formula:")), wxVERTICAL);
-            functionControlsSizer->Add(formulaBoxSizer, wxSizerFlags(1).Expand());
+            functionControlsSizer->Add(formulaBoxSizer, wxSizerFlags{ 1 }.Expand());
 
             wxBoxSizer* formulaButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
 
@@ -765,8 +764,7 @@ void CustomTestDlg::CreateControls()
             m_formulaCtrl->AddFunctionsOrClasses(m_sentenceFunctions);
             m_formulaCtrl->AddFunctionsOrClasses(m_shortcuts);
             m_formulaCtrl->Finalize();
-            formulaBoxSizer->Add(m_formulaCtrl, wxSizerFlags(1).Expand().Border(
-                                                    wxALL, wxSizerFlags::GetDefaultBorder()));
+            formulaBoxSizer->Add(m_formulaCtrl, wxSizerFlags{ 1 }.Expand().Border());
 
             // examples labels
             formulaBoxSizer->Add(new wxStaticText(formulaBoxSizer->GetStaticBox(), wxID_STATIC,
@@ -779,7 +777,7 @@ void CustomTestDlg::CreateControls()
             formulaExample->SetFont(
                 wxFont(wxFontInfo().Family(wxFontFamily::wxFONTFAMILY_TELETYPE).Bold(true)));
             formulaBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-            formulaBoxSizer->Add(formulaExample, wxSizerFlags().Border(
+            formulaBoxSizer->Add(formulaExample, wxSizerFlags{}.Border(
                                                      wxLEFT, wxSizerFlags::GetDefaultBorder() * 3));
             formulaBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
@@ -817,10 +815,9 @@ void CustomTestDlg::CreateControls()
             functionBrowser->FinalizeCategories();
 
             m_funcBrowserSizer = new wxBoxSizer(wxHORIZONTAL);
-            m_funcBrowserSizer->Add(functionBrowser, wxSizerFlags().Expand().Border(
-                                                         wxALL, wxSizerFlags::GetDefaultBorder()));
+            m_funcBrowserSizer->Add(functionBrowser, wxSizerFlags{}.Expand().Border());
 
-            mainPageSizer->Add(m_funcBrowserSizer, wxSizerFlags().Expand());
+            mainPageSizer->Add(m_funcBrowserSizer, wxSizerFlags{}.Expand());
             }
         }
 

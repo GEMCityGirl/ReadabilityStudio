@@ -22,47 +22,45 @@ void FilteredTextExportOptionsDlg::CreateControls()
                                      _(L"Romanize (replace special characters)"), wxDefaultPosition,
                                      wxDefaultSize, wxCHK_2STATE,
                                      wxGenericValidator(&m_replaceCharacters)),
-                      wxSizerFlags().Expand().Border(wxBOTTOM, wxSizerFlags::GetDefaultBorder()));
+                      wxSizerFlags{}.Expand().Border(wxBOTTOM, wxSizerFlags::GetDefaultBorder()));
     itemBoxSizer->Add(new wxCheckBox(itemBoxSizer->GetStaticBox(), wxID_ANY, _(L"Remove ellipses"),
                                      wxDefaultPosition, wxDefaultSize, wxCHK_2STATE,
                                      wxGenericValidator(&m_removeEllipses)),
-                      wxSizerFlags().Expand().Border(wxBOTTOM, wxSizerFlags::GetDefaultBorder()));
+                      wxSizerFlags{}.Expand().Border(wxBOTTOM, wxSizerFlags::GetDefaultBorder()));
     itemBoxSizer->Add(new wxCheckBox(itemBoxSizer->GetStaticBox(), wxID_ANY,
                                      _(L"Remove bullets and list-item numbering"),
                                      wxDefaultPosition, wxDefaultSize, wxCHK_2STATE,
                                      wxGenericValidator(&m_removeBullets)),
-                      wxSizerFlags().Expand().Border(wxBOTTOM, wxSizerFlags::GetDefaultBorder()));
+                      wxSizerFlags{}.Expand().Border(wxBOTTOM, wxSizerFlags::GetDefaultBorder()));
     itemBoxSizer->Add(new wxCheckBox(itemBoxSizer->GetStaticBox(), wxID_ANY,
                                      _(L"Remove Internet and file addresses"), wxDefaultPosition,
                                      wxDefaultSize, wxCHK_2STATE,
                                      wxGenericValidator(&m_removeFilePaths)),
-                      wxSizerFlags().Expand().Border(wxBOTTOM, wxSizerFlags::GetDefaultBorder()));
+                      wxSizerFlags{}.Expand().Border(wxBOTTOM, wxSizerFlags::GetDefaultBorder()));
     itemBoxSizer->Add(new wxCheckBox(itemBoxSizer->GetStaticBox(), wxID_ANY,
                                      _(L"Remove trailing periods from abbreviations and acronyms"),
                                      wxDefaultPosition, wxDefaultSize, wxCHK_2STATE,
                                      wxGenericValidator(&m_stripAbbreviationPeriods)),
-                      wxSizerFlags().Expand().Border(wxBOTTOM, wxSizerFlags::GetDefaultBorder()));
+                      wxSizerFlags{}.Expand().Border(wxBOTTOM, wxSizerFlags::GetDefaultBorder()));
     itemBoxSizer->Add(new wxCheckBox(itemBoxSizer->GetStaticBox(), wxID_ANY,
                                      _(L"Narrow full-width characters"), wxDefaultPosition,
                                      wxDefaultSize, wxCHK_2STATE,
                                      wxGenericValidator(&m_narrowFullWidthCharacters)),
-                      wxSizerFlags().Expand().Border(wxBOTTOM, wxSizerFlags::GetDefaultBorder()));
+                      wxSizerFlags{}.Expand().Border(wxBOTTOM, wxSizerFlags::GetDefaultBorder()));
 
     // OK, Cancel, Help buttons
     mainSizer->Add(
-        new wxStaticLine(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL), 1,
-        wxEXPAND | wxLEFT | wxRIGHT, wxSizerFlags::GetDefaultBorder());
+        new wxStaticLine(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL),
+        wxSizerFlags{ 1 }.Expand().Border(wxLEFT | wxRIGHT));
     wxSizer* OkCancelSizer = CreateButtonSizer(wxOK | wxCANCEL | wxHELP);
     wxStaticText* infoText = new wxStaticText(
         this, wxID_ANY,
         _(L"Note: these options will be used along with your project's text-exclusion settings."),
         wxDefaultPosition, wxDefaultSize, wxALIGN_LEFT);
-    infoText->Wrap(FromDIP(wxSize(200, 200).GetWidth()));
-    OkCancelSizer->Insert(0, infoText, 0, wxALIGN_LEFT | wxALIGN_TOP | wxRIGHT | wxEXPAND,
-                          wxSizerFlags::GetDefaultBorder());
+    infoText->Wrap(FromDIP(wxSize{ 200, 200 }.GetWidth()));
+    OkCancelSizer->Insert(0, infoText, wxSizerFlags{}.Expand().Border(wxRIGHT));
 
-    mainSizer->Add(OkCancelSizer,
-                   wxSizerFlags().Expand().Border(wxALL, wxSizerFlags::GetDefaultBorder()));
+    mainSizer->Add(OkCancelSizer, wxSizerFlags{}.Expand().Border());
 
     SetSizerAndFit(mainSizer);
     }

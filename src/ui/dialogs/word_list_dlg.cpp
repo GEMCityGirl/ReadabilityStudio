@@ -164,7 +164,7 @@ void WordListDlg::CreateControls()
     auto searcher = new Wisteria::UI::SearchPanel(this, wxID_ANY);
     searcher->SetBackgroundColour(GetBackgroundColour());
     searchSizer->Add(searcher);
-    mainSizer->Add(searchSizer, 0, wxEXPAND);
+    mainSizer->Add(searchSizer, wxSizerFlags{}.Expand());
 
         {
         wxRibbonBar* ribbon = new wxRibbonBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
@@ -178,12 +178,12 @@ void WordListDlg::CreateControls()
             wxRibbonButtonBar* buttonBar = new wxRibbonButtonBar(exportPage);
             buttonBar->AddButton(
                 wxID_SAVE, _(L"Save"),
-                wxArtProvider::GetBitmap(wxART_FILE_SAVE, wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                wxArtProvider::GetBitmap(wxART_FILE_SAVE, wxART_BUTTON, FromDIP(wxSize{ 32, 32 }))
                     .ConvertToImage(),
                 _(L"Save the list."));
             buttonBar->AddButton(
                 wxID_PRINT, _(L"Print"),
-                wxArtProvider::GetBitmap(wxART_PRINT, wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                wxArtProvider::GetBitmap(wxART_PRINT, wxART_BUTTON, FromDIP(wxSize{ 32, 32 }))
                     .ConvertToImage(),
                 _(L"Print the list."));
             }
@@ -195,17 +195,17 @@ void WordListDlg::CreateControls()
             wxRibbonButtonBar* buttonBar = new wxRibbonButtonBar(editPage);
             buttonBar->AddButton(
                 wxID_COPY, _(L"Copy Selection"),
-                wxArtProvider::GetBitmap(wxART_COPY, wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                wxArtProvider::GetBitmap(wxART_COPY, wxART_BUTTON, FromDIP(wxSize{ 32, 32 }))
                     .ConvertToImage(),
                 _(L"Copy the selected items."));
             buttonBar->AddButton(
                 wxID_SELECTALL, _(L"Select All"),
-                wxArtProvider::GetBitmap(L"ID_SELECT_ALL", wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                wxArtProvider::GetBitmap(L"ID_SELECT_ALL", wxART_BUTTON, FromDIP(wxSize{ 32, 32 }))
                     .ConvertToImage(),
                 _(L"Select the entire list."));
             buttonBar->AddButton(
                 XRCID("ID_LIST_SORT"), _(L"Sort"),
-                wxArtProvider::GetBitmap(L"ID_LIST_SORT", wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                wxArtProvider::GetBitmap(L"ID_LIST_SORT", wxART_BUTTON, FromDIP(wxSize{ 32, 32 }))
                     .ConvertToImage(),
                 _(L"Sort the list."));
             }
@@ -219,7 +219,7 @@ void WordListDlg::CreateControls()
     m_sideBar = new Wisteria::UI::SideBarBook(this, wxID_ANY);
     wxGetApp().UpdateSideBarTheme(m_sideBar->GetSideBar());
 
-    m_sideBar->SetIconSize(wxSize(32, 32));
+    m_sideBar->SetIconSize(wxSize{ 32, 32 });
     m_sideBar->GetImageList().push_back(
         wxGetApp().GetResourceManager().GetSVG(L"tests/dale-chall-test.svg"));
     m_sideBar->GetImageList().push_back(

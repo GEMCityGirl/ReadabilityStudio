@@ -138,7 +138,7 @@ bool EditWordListDlg::Save(const wxString& filePath)
         wxMessageBox(
             wxString::Format(
                 _(L"Unable to save \"%s\".\n"
-                   "Verify that you have write access to this file or that it is not in use."),
+                  "Verify that you have write access to this file or that it is not in use."),
                 filePath),
             _(L"Error"), wxOK | wxICON_ERROR);
         return false;
@@ -209,47 +209,45 @@ void EditWordListDlg::CreateControls()
 
     wxStaticBox* wordFilePathBox = new wxStaticBox(this, wxID_ANY, _(L"File containing list:"));
     wxStaticBoxSizer* wordFilePathSizer = new wxStaticBoxSizer(wordFilePathBox, wxHORIZONTAL);
-    mainSizer->Add(wordFilePathSizer, 0, wxEXPAND | wxTOP | wxLEFT | wxRIGHT,
-                   wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(wordFilePathSizer, wxSizerFlags{}.Expand().Border(wxTOP | wxLEFT | wxRIGHT));
 
     m_wordListFilePathCtrl = new wxTextCtrl(
         wordFilePathSizer->GetStaticBox(), ID_FILE_PATH_FIELD, wxString{}, wxDefaultPosition,
         wxDefaultSize, wxBORDER_THEME, wxTextValidator(wxFILTER_NONE, &m_wordListFilePath));
     m_wordListFilePathCtrl->AutoCompleteFileNames();
-    wordFilePathSizer->Add(m_wordListFilePathCtrl, 1, wxEXPAND | wxLEFT | wxTOP | wxBOTTOM,
-                           wxSizerFlags::GetDefaultBorder());
+    wordFilePathSizer->Add(m_wordListFilePathCtrl,
+                           wxSizerFlags{ 1 }.Expand().Border(wxLEFT | wxTOP | wxBOTTOM));
 
     wordFilePathSizer->Add(
         new wxBitmapButton(
             wordFilePathSizer->GetStaticBox(), ID_BROWSE_FOR_FILE,
-            wxArtProvider::GetBitmap(wxART_FILE_OPEN, wxART_BUTTON, FromDIP(wxSize(16, 16)))),
-        0, wxALIGN_CENTER_VERTICAL | wxRIGHT | wxTOP | wxBOTTOM, wxSizerFlags::GetDefaultBorder());
+            wxArtProvider::GetBitmap(wxART_FILE_OPEN, wxART_BUTTON, FromDIP(wxSize{ 16, 16 }))),
+        wxSizerFlags{}.CenterVertical().Border(wxRIGHT | wxTOP | wxBOTTOM));
 
     wxBoxSizer* wordListSizer = new wxBoxSizer(wxVERTICAL);
-    mainSizer->Add(wordListSizer, 1, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(wordListSizer, wxSizerFlags{ 1 }.Expand().Border());
     wxBoxSizer* toolbarSizer = new wxBoxSizer(wxHORIZONTAL);
     wxBitmapButton* listButton = new wxBitmapButton(
         this, ID_ADD_ITEM,
-        wxArtProvider::GetBitmap(L"ID_ADD", wxART_BUTTON, FromDIP(wxSize(16, 16))));
+        wxArtProvider::GetBitmap(L"ID_ADD", wxART_BUTTON, FromDIP(wxSize{ 16, 16 })));
     listButton->SetToolTip(_(L"Add a new item"));
     toolbarSizer->Add(listButton);
     listButton = new wxBitmapButton(
         this, ID_EDIT_ITEM,
-        wxArtProvider::GetBitmap(L"ID_EDIT", wxART_BUTTON, FromDIP(wxSize(16, 16))));
+        wxArtProvider::GetBitmap(L"ID_EDIT", wxART_BUTTON, FromDIP(wxSize{ 16, 16 })));
     listButton->SetToolTip(_(L"Edit selected item"));
     toolbarSizer->Add(listButton);
     listButton = new wxBitmapButton(
         this, ID_DELETE_ITEM,
-        wxArtProvider::GetBitmap(wxART_DELETE, wxART_BUTTON, FromDIP(wxSize(16, 16))));
+        wxArtProvider::GetBitmap(wxART_DELETE, wxART_BUTTON, FromDIP(wxSize{ 16, 16 })));
     listButton->SetToolTip(_(L"Remove selected items"));
     toolbarSizer->Add(listButton);
     wordListSizer->Add(toolbarSizer, 0, wxALIGN_RIGHT);
 
     // the word list
     m_wordsList = new Wisteria::UI::ListCtrlEx(
-        this, wxID_ANY, wxDefaultPosition, FromDIP(wxSize(400, 300)),
-                                 wxLC_VIRTUAL | wxLC_EDIT_LABELS | wxLC_REPORT | wxLC_ALIGN_LEFT |
-                                     wxBORDER_THEME);
+        this, wxID_ANY, wxDefaultPosition, FromDIP(wxSize{ 400, 300 }),
+        wxLC_VIRTUAL | wxLC_EDIT_LABELS | wxLC_REPORT | wxLC_ALIGN_LEFT | wxBORDER_THEME);
     m_wordsList->EnableGridLines();
     m_wordsList->InsertColumn(0, wxString{});
     m_wordsList->SetColumnEditable(0);
@@ -259,7 +257,7 @@ void EditWordListDlg::CreateControls()
     m_wordsList->SetVirtualDataProvider(m_wordData);
     m_wordsList->SetVirtualDataSize(1, 1);
     m_wordsList->Refresh();
-    wordListSizer->Add(m_wordsList, 1, wxEXPAND);
+    wordListSizer->Add(m_wordsList, wxSizerFlags{ 1 }.Expand());
 
     mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL | wxHELP),
                    wxSizerFlags{}.Expand().Border());
@@ -307,8 +305,7 @@ void EditWordListDlg::OnFilePathChanged(wxCommandEvent& event)
             row.add_column(tabbedColumn);
 
             lily_of_the_valley::text_matrix<Wisteria::UI::ListCtrlExDataProvider::ListCellString>
-                importer(
-                &m_wordData->GetMatrix());
+                importer(&m_wordData->GetMatrix());
             importer.add_row_definition(row);
 
             // see how many lines (which will be individual phrases) are in the file

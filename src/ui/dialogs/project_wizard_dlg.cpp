@@ -37,7 +37,7 @@ class Banner : public wxWindow
         wxCoord textWidth, textHeight;
         dc.GetTextExtent(m_label, &textWidth, &textHeight);
 
-        wxBitmap logo = m_logo.GetBitmap(FromDIP(wxSize(32, 32))).ConvertToImage();
+        wxBitmap logo = m_logo.GetBitmap(FromDIP(wxSize{ 32, 32 })).ConvertToImage();
 
         const wxCoord leftBorder =
             (GetClientSize().GetWidth() / 2) - ((logo.GetWidth() / 2) + (textWidth / 2) + 3);
@@ -216,9 +216,9 @@ void ProjectWizardDlg::CreateControls()
 
         Banner* banner = new Banner(
             page, wxID_ANY,
-            wxArtProvider::GetBitmap(L"ID_DOCUMENT", wxART_BUTTON, FromDIP(wxSize(32, 32))),
+            wxArtProvider::GetBitmap(L"ID_DOCUMENT", wxART_BUTTON, FromDIP(wxSize{ 32, 32 })),
             _(L"Select Document"));
-        optionsSizer->Add(banner, 0, wxEXPAND | wxBOTTOM, wxSizerFlags::GetDefaultBorder());
+        optionsSizer->Add(banner, wxSizerFlags{}.Expand().Border(wxBOTTOM));
 
         // select the language
         if (wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) ||
@@ -245,7 +245,7 @@ void ProjectWizardDlg::CreateControls()
         optionsSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
         wxBoxSizer* fileBrowseBoxSizer = new wxBoxSizer(wxHORIZONTAL);
-        optionsSizer->Add(fileBrowseBoxSizer, wxSizerFlags().Expand().Border(
+        optionsSizer->Add(fileBrowseBoxSizer, wxSizerFlags{}.Expand().Border(
                                                   wxLEFT, wxSizerFlags::GetDefaultBorder() * 3));
 
         m_filePathEdit =
@@ -259,7 +259,7 @@ void ProjectWizardDlg::CreateControls()
                                wxArtProvider::GetBitmapBundle(wxART_FILE_OPEN, wxART_BUTTON));
         m_fileBrowseButton->SetHelpText(
             _(L"Click this button to browse for the file that you want to analyze."));
-        fileBrowseBoxSizer->Add(m_fileBrowseButton, 0, wxRIGHT, wxSizerFlags::GetDefaultBorder());
+        fileBrowseBoxSizer->Add(m_fileBrowseButton, wxSizerFlags{}.Border(wxRIGHT));
         optionsSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
         // Manual text entry
@@ -272,9 +272,9 @@ void ProjectWizardDlg::CreateControls()
                            wxTE_MULTILINE | wxTE_RICH2, wxGenericValidator(&m_enteredText));
         optionsSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
         wxBoxSizer* editBoxSizer = new wxBoxSizer(wxHORIZONTAL);
-        editBoxSizer->Add(m_textEntryEdit, wxSizerFlags().Proportion(1).Expand().Border(
+        editBoxSizer->Add(m_textEntryEdit, wxSizerFlags{ 1 }.Expand().Border(
                                                wxLEFT, wxSizerFlags::GetDefaultBorder() * 3));
-        optionsSizer->Add(editBoxSizer, 1, wxEXPAND | wxRIGHT, wxSizerFlags::GetDefaultBorder());
+        optionsSizer->Add(editBoxSizer, wxSizerFlags{ 1 }.Expand().Border(wxRIGHT));
 
         if (m_fromFileSelected)
             {
@@ -311,9 +311,9 @@ void ProjectWizardDlg::CreateControls()
 
         Banner* banner = new Banner(
             page, wxID_ANY,
-            wxArtProvider::GetBitmap(L"ID_DOCUMENT", wxART_BUTTON, FromDIP(wxSize(32, 32))),
+            wxArtProvider::GetBitmap(L"ID_DOCUMENT", wxART_BUTTON, FromDIP(wxSize{ 32, 32 })),
             _(L"Select Documents"));
-        optionsSizer->Add(banner, 0, wxEXPAND | wxBOTTOM, wxSizerFlags::GetDefaultBorder());
+        optionsSizer->Add(banner, wxSizerFlags{}.Expand().Border(wxBOTTOM));
 
         // select the language
         if (wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) ||
@@ -337,27 +337,27 @@ void ProjectWizardDlg::CreateControls()
 
         wxButton* button = new wxButton(page, ID_BATCH_FOLDER_BROWSE_BUTTON, _(L"&Add folder..."));
         button->SetBitmap(wxArtProvider::GetBitmapBundle(wxART_FILE_OPEN, wxART_BUTTON));
-        buttonsSizer->Add(button, wxSizerFlags().Align(wxALIGN_LEFT).Expand());
+        buttonsSizer->Add(button, wxSizerFlags{}.Align(wxALIGN_LEFT).Expand());
 
         button = new wxButton(page, ID_BATCH_FILE_BROWSE_BUTTON, _(L"&Add file(s)..."));
         button->SetBitmap(wxArtProvider::GetBitmapBundle(L"ID_DOCUMENTS", wxART_BUTTON));
-        buttonsSizer->Add(button, wxSizerFlags().Align(wxALIGN_LEFT).Expand());
+        buttonsSizer->Add(button, wxSizerFlags{}.Align(wxALIGN_LEFT).Expand());
 
         button = new wxButton(page, ID_ARCHIVE_FILE_BROWSE_BUTTON, _(L"&Add archive..."));
         button->SetBitmap(wxArtProvider::GetBitmapBundle(L"ID_ARCHIVE", wxART_BUTTON));
-        buttonsSizer->Add(button, wxSizerFlags().Align(wxALIGN_LEFT).Expand());
+        buttonsSizer->Add(button, wxSizerFlags{}.Align(wxALIGN_LEFT).Expand());
 
         button = new wxButton(page, ID_SPREADSHEET_FILE_BROWSE_BUTTON, _(L"&Add spreadsheet..."));
         button->SetBitmap(wxArtProvider::GetBitmapBundle(L"ID_SPREADSHEET", wxART_BUTTON));
-        buttonsSizer->Add(button, wxSizerFlags().Align(wxALIGN_LEFT).Expand());
+        buttonsSizer->Add(button, wxSizerFlags{}.Align(wxALIGN_LEFT).Expand());
 
         button = new wxButton(page, ID_WEB_PAGES_BROWSE_BUTTON, _(L"&Add web pages..."));
         button->SetBitmap(wxArtProvider::GetBitmapBundle(L"ID_WEB_EXPORT", wxART_BUTTON));
-        buttonsSizer->Add(button, wxSizerFlags().Align(wxALIGN_LEFT).Expand());
+        buttonsSizer->Add(button, wxSizerFlags{}.Align(wxALIGN_LEFT).Expand());
 
         button = new wxButton(page, ID_WEB_PAGE_BROWSE_BUTTON, _(L"&Add web page..."));
         button->SetBitmap(wxArtProvider::GetBitmapBundle(L"ID_WEB_EXPORT", wxART_BUTTON));
-        buttonsSizer->Add(button, wxSizerFlags().Align(wxALIGN_LEFT).Expand());
+        buttonsSizer->Add(button, wxSizerFlags{}.Align(wxALIGN_LEFT).Expand());
 
         optionsSizer->Add(buttonsSizer);
 
@@ -379,7 +379,7 @@ void ProjectWizardDlg::CreateControls()
         groupButton->SetToolTip(_(L"Group selected documents"));
         filesButtonsSizer->Add(groupButton);
 
-        optionsSizer->Add(filesButtonsSizer, 0, wxALIGN_RIGHT);
+        optionsSizer->Add(filesButtonsSizer, wxSizerFlags{}.Right());
 
         if (GetFilePath().length())
             {
@@ -417,7 +417,7 @@ void ProjectWizardDlg::CreateControls()
             m_fileData->SetSize(0, 2);
             }
         m_fileList =
-            new ListCtrlEx(page, wxID_ANY, wxDefaultPosition, FromDIP(wxSize(200, 150)),
+            new ListCtrlEx(page, wxID_ANY, wxDefaultPosition, FromDIP(wxSize{ 200, 150 }),
                            wxLC_VIRTUAL | wxLC_EDIT_LABELS | wxLC_REPORT | wxLC_ALIGN_LEFT);
         m_fileList->EnableGridLines();
         m_fileList->EnableItemDeletion();
@@ -428,8 +428,7 @@ void ProjectWizardDlg::CreateControls()
         m_fileList->SetColumnFilePathTruncationMode(0, m_fileListTruncationMode);
         m_fileList->SetVirtualDataProvider(m_fileData);
         m_fileList->SetVirtualDataSize(m_fileData->GetItemCount());
-        optionsSizer->Add(m_fileList, 2, wxALIGN_LEFT | wxEXPAND | wxALL,
-                          wxSizerFlags::GetDefaultBorder());
+        optionsSizer->Add(m_fileList, wxSizerFlags{ 2 }.Expand().Border(wxLEFT | wxBOTTOM));
 
         // min word count
         wxBoxSizer* minDocSizeBoxSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -437,16 +436,15 @@ void ProjectWizardDlg::CreateControls()
         wxStaticText* minDocSizeLabel =
             new wxStaticText(page, ID_MIN_WORDS_LABEL, _(L"Minimum document word count:"),
                              wxDefaultPosition, wxDefaultSize, wxALIGN_LEFT);
-        minDocSizeBoxSizer->Add(minDocSizeLabel, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT,
-                                wxSizerFlags::GetDefaultBorder());
+        minDocSizeBoxSizer->Add(minDocSizeLabel, wxSizerFlags{}.CenterVertical().Border(wxRIGHT));
 
         wxSpinCtrl* minDocWordCountForBatchSpinCtrl = new wxSpinCtrl(
             page, wxID_ANY, std::to_wstring(m_minDocWordCountForBatch), wxDefaultPosition,
             wxDefaultSize, wxSP_ARROW_KEYS, 1, std::numeric_limits<int>::max(), 0);
         minDocWordCountForBatchSpinCtrl->SetValidator(
             wxGenericValidator(&m_minDocWordCountForBatch));
-        minDocSizeBoxSizer->Add(minDocWordCountForBatchSpinCtrl, 0, wxALIGN_CENTER_VERTICAL | wxALL,
-                                0);
+        minDocSizeBoxSizer->Add(minDocWordCountForBatchSpinCtrl,
+                                wxSizerFlags{}.CenterVertical().Border());
 
         // random sampling
         wxBoxSizer* randomOptionsSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -459,17 +457,15 @@ void ProjectWizardDlg::CreateControls()
         m_randPercentageCtrl->SetRange(1, 100);
         m_randPercentageCtrl->Enable(false);
 
-        randomOptionsSizer->Add(m_isRandomSampling, 0, wxALIGN_LEFT | wxEXPAND, 0);
-        randomOptionsSizer->Add(m_randPercentageCtrl, 0, wxALIGN_LEFT | wxEXPAND, 0);
+        randomOptionsSizer->Add(m_isRandomSampling);
+        randomOptionsSizer->Add(m_randPercentageCtrl);
         randomOptionsSizer->Add(
-            new wxStaticText(page, ID_RANDOM_SAMPLE_LABEL, _(L"% of the documents.")), 0,
-            wxALIGN_CENTER_VERTICAL, 0);
+            new wxStaticText(page, ID_RANDOM_SAMPLE_LABEL, _(L"% of the documents.")),
+            wxSizerFlags{}.CentreVertical());
 
         pageSizer->Add(optionsSizer, wxSizerFlags{ 1 }.Expand().Border());
-        pageSizer->Add(minDocSizeBoxSizer, 0, wxALIGN_LEFT | wxEXPAND | wxLEFT,
-                       wxSizerFlags::GetDefaultBorder());
-        pageSizer->Add(randomOptionsSizer, 0, wxALIGN_LEFT | wxEXPAND | wxALL,
-                       wxSizerFlags::GetDefaultBorder());
+        pageSizer->Add(minDocSizeBoxSizer, wxSizerFlags{}.Expand().Border(wxLEFT));
+        pageSizer->Add(randomOptionsSizer, wxSizerFlags{}.Expand().Border());
         }
         // document structure
         {
@@ -510,16 +506,14 @@ void ProjectWizardDlg::CreateControls()
             new Banner(page, wxID_ANY,
                        wxGetApp().GetResourceManager().GetSVG(L"ribbon/document-structure.svg"),
                        _(L"Specify Document Structure"));
-        optionsSizer->Add(banner, 0, wxEXPAND | wxBOTTOM, wxSizerFlags::GetDefaultBorder());
+        optionsSizer->Add(banner, wxSizerFlags{}.Expand().Border(wxBOTTOM));
 
         wxStaticBoxSizer* docTypeSizer = new wxStaticBoxSizer(wxVERTICAL, page, _(L"Composition"));
         docTypeSizer->GetStaticBox()->SetId(ID_COMPOSITION_BOX);
         wxStaticBoxSizer* docLayoutSizer = new wxStaticBoxSizer(wxVERTICAL, page, _(L"Layout"));
         docLayoutSizer->GetStaticBox()->SetId(ID_LAYOUT_BOX);
-        optionsSizer->Add(docTypeSizer, 0, wxEXPAND | wxLEFT | wxRIGHT,
-                          wxSizerFlags::GetDefaultBorder());
-        optionsSizer->Add(docLayoutSizer, 0, wxEXPAND | wxLEFT | wxRIGHT,
-                          wxSizerFlags::GetDefaultBorder());
+        optionsSizer->Add(docTypeSizer, wxSizerFlags{}.Expand().Border(wxLEFT | wxRIGHT));
+        optionsSizer->Add(docLayoutSizer, wxSizerFlags{}.Expand().Border(wxLEFT | wxRIGHT));
 
             // narrative text
             {
@@ -540,7 +534,7 @@ void ProjectWizardDlg::CreateControls()
             narrativeLablesSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             narrativeLablesSizer->Add(noteLabel, 1, wxLEFT, wxSizerFlags::GetDefaultBorder() * 3);
             narrativeLablesSizer->SetMinSize(ScaledNoteWidth, -1);
-            narrativeSizer->Add(narrativeLablesSizer, 0, wxALIGN_CENTER);
+            narrativeSizer->Add(narrativeLablesSizer, wxSizerFlags{}.Center());
 
             narrativeSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             wxBitmap previewImage = wxGetApp().GetScaledImage(
@@ -561,8 +555,7 @@ void ProjectWizardDlg::CreateControls()
             memDc.SelectObject(wxNullBitmap);
             narrativeSizer->AddStretchSpacer();
             narrativeSizer->Add(new Thumbnail(docTypeSizer->GetStaticBox(), previewImage));
-            docTypeSizer->Add(narrativeSizer, 0, wxALL | wxEXPAND,
-                              wxSizerFlags::GetDefaultBorder());
+            docTypeSizer->Add(narrativeSizer, wxSizerFlags{}.Expand().Border());
             }
             // non-narrative text
             {
@@ -592,13 +585,12 @@ void ProjectWizardDlg::CreateControls()
                 {
                 moreInfoButton->SetBackgroundColour(GetBackgroundColour());
                 }
-            noteSizer->Add(moreInfoButton,
-                           wxSizerFlags().Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+            noteSizer->Add(moreInfoButton, wxSizerFlags{}.Border(wxLEFT));
             noteSizer->SetMinSize(ScaledNoteWidth, -1);
 
             sparseLablesSizer->Add(noteSizer);
 
-            sparseSizer->Add(sparseLablesSizer, 0, wxALIGN_CENTER);
+            sparseSizer->Add(sparseLablesSizer, wxSizerFlags{}.Center());
 
             sparseSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             wxBitmap previewImage = wxGetApp().GetScaledImage(
@@ -618,7 +610,7 @@ void ProjectWizardDlg::CreateControls()
             memDc.SelectObject(wxNullBitmap);
             sparseSizer->AddStretchSpacer();
             sparseSizer->Add(new Thumbnail(docTypeSizer->GetStaticBox(), previewImage));
-            docTypeSizer->Add(sparseSizer, 0, wxALL | wxEXPAND, wxSizerFlags::GetDefaultBorder());
+            docTypeSizer->Add(sparseSizer, wxSizerFlags{}.Expand().Border());
             }
             // text with "broken lines"
             {
@@ -650,12 +642,11 @@ void ProjectWizardDlg::CreateControls()
                 {
                 moreInfoButton->SetBackgroundColour(GetBackgroundColour());
                 }
-            noteSizer->Add(moreInfoButton,
-                           wxSizerFlags().Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+            noteSizer->Add(moreInfoButton, wxSizerFlags{}.Border(wxLEFT));
 
             narrativeLablesSizer->Add(noteSizer);
 
-            narrativeSizer->Add(narrativeLablesSizer, 0, wxALIGN_CENTER);
+            narrativeSizer->Add(narrativeLablesSizer, wxSizerFlags{}.Center());
 
             narrativeSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             wxBitmap previewImage = wxGetApp().GetScaledImage(
@@ -693,8 +684,7 @@ void ProjectWizardDlg::CreateControls()
             imageLabel.Draw(memDc2);
             memDc2.SelectObject(wxNullBitmap);
             narrativeSizer->Add(new Thumbnail(docLayoutSizer->GetStaticBox(), previewImage));
-            docLayoutSizer->Add(narrativeSizer, 0, wxALL | wxEXPAND,
-                                wxSizerFlags::GetDefaultBorder());
+            docLayoutSizer->Add(narrativeSizer, wxSizerFlags{}.Expand().Border());
             }
             // centered text
             {
@@ -727,9 +717,9 @@ void ProjectWizardDlg::CreateControls()
             noteSizer->Add(moreInfoButton, 0, wxLEFT, wxSizerFlags::GetDefaultBorder() * 3);
             noteSizer->SetMinSize(ScaledNoteWidth, -1);
 
-            centeredLablesSizer->Add(noteSizer, 0, wxALIGN_CENTER);
+            centeredLablesSizer->Add(noteSizer, wxSizerFlags{}.Center());
 
-            centeredSizer->Add(centeredLablesSizer, 0, wxALIGN_CENTER);
+            centeredSizer->Add(centeredLablesSizer, wxSizerFlags{}.Center());
 
             wxBitmap previewImage = wxGetApp().GetScaledImage(
                 L"wizard/centered-text.png", wxBITMAP_TYPE_PNG,
@@ -745,8 +735,7 @@ void ProjectWizardDlg::CreateControls()
             memDc.SelectObject(wxNullBitmap);
             centeredSizer->AddStretchSpacer();
             centeredSizer->Add(new Thumbnail(docLayoutSizer->GetStaticBox(), previewImage));
-            docLayoutSizer->Add(centeredSizer, 0, wxALL | wxEXPAND,
-                                wxSizerFlags::GetDefaultBorder());
+            docLayoutSizer->Add(centeredSizer, wxSizerFlags{}.Expand().Border());
             }
             // new lines are always new paragraphs (overrides center text option above)
             {
@@ -762,14 +751,14 @@ void ProjectWizardDlg::CreateControls()
                 docLayoutSizer->GetStaticBox(), ID_HARD_RETURN_LABEL,
                 _(L"Hard returns in the text always force the start of a new paragraph. "
                   "Selecting this option will instruct the program to treat all line ends as the "
-                  "end of the "
-                  "sentence and paragraph, regardless of whether it ends with a period."),
+                  "end of the sentence and paragraph, "
+                  "regardless of whether it ends with a period."),
                 wxDefaultPosition, wxDefaultSize, 0);
             noteLabel->Wrap(ScaledNoteWidth);
             wrappedLablesSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             wrappedLablesSizer->Add(noteLabel, 1, wxLEFT, wxSizerFlags::GetDefaultBorder() * 3);
             wrappedLablesSizer->SetMinSize(ScaledNoteWidth, -1);
-            wrappedSizer->Add(wrappedLablesSizer, 0, wxALIGN_CENTER);
+            wrappedSizer->Add(wrappedLablesSizer, wxSizerFlags{}.Center());
 
             wrappedSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
@@ -808,8 +797,7 @@ void ProjectWizardDlg::CreateControls()
             imageLabel.Draw(memDc2);
             memDc2.SelectObject(wxNullBitmap);
             wrappedSizer->Add(new Thumbnail(docLayoutSizer->GetStaticBox(), previewImage));
-            docLayoutSizer->Add(wrappedSizer, 0, wxALL | wxEXPAND,
-                                wxSizerFlags::GetDefaultBorder());
+            docLayoutSizer->Add(wrappedSizer, wxSizerFlags{}.Expand().Border());
             }
         pageSizer->Add(optionsSizer, wxSizerFlags{ 1 }.Expand().Border());
         }
@@ -827,7 +815,7 @@ void ProjectWizardDlg::CreateControls()
         Banner* banner = new Banner(
             page, wxID_ANY, wxGetApp().GetResourceManager().GetSVG(L"tests/flesch-test.svg"),
             _(L"Select Readability Tests"));
-        optionsSizer->Add(banner, 0, wxEXPAND | wxBOTTOM, wxSizerFlags::GetDefaultBorder());
+        optionsSizer->Add(banner, wxSizerFlags{}.Expand().Border(wxBOTTOM));
 
         wxArrayString options;
         options.Add(_(L"Recommend tests based on &document type"));
@@ -838,14 +826,15 @@ void ProjectWizardDlg::CreateControls()
                                          _(L"Choose how to select tests:"), wxDefaultPosition,
                                          wxDefaultSize, options, 0, wxRA_SPECIFY_ROWS,
                                          wxGenericValidator(&m_testSelectionMethod)),
-                          0, wxLEFT, wxSizerFlags::GetDefaultBorder());
+                          wxSizerFlags{}.Border(wxLEFT));
 
         m_testTypesSizer = new wxBoxSizer(wxVERTICAL);
         // document types
         wxArrayString docTypes;
         docTypes.Add(_(L"&General document (textbook, report, correspondence)"));
-        docTypes.Add(_(L"&Technical document or form (application, r\u00E9sum\u00E9/CV, instructions, "
-                       "manual, detailed report)"));
+        docTypes.Add(
+            _(L"&Technical document or form (application, r\u00E9sum\u00E9/CV, instructions, "
+              "manual, detailed report)"));
         docTypes.Add(_(L"Non-narrative &form with fragmented text (brochure, menu, quiz). "
                        "NOTE: this option will disable text exclusion."));
         docTypes.Add(_(L"&Literature (young adult and adult)"));
@@ -854,7 +843,7 @@ void ProjectWizardDlg::CreateControls()
             page, ID_DOC_TYPE_RADIO_BOX, _(L"Select the type of document that you are analyzing:"),
             wxDefaultPosition, wxDefaultSize, docTypes, 0, wxRA_SPECIFY_ROWS,
             wxGenericValidator(&m_selectedDocType));
-        m_testTypesSizer->Add(m_docTypeRadioBox, 0, wxLEFT, wxSizerFlags::GetDefaultBorder());
+        m_testTypesSizer->Add(m_docTypeRadioBox, wxSizerFlags{}.Border(wxLEFT));
 
         // industry type
         wxArrayString industryTypes;
@@ -866,11 +855,12 @@ void ProjectWizardDlg::CreateControls()
         industryTypes.Add(_(L"&Military and government"));
         industryTypes.Add(_(L"&Second Language (ESL) Education"));
         industryTypes.Add(_(L"&Broadcasting"));
-        m_industryTypeRadioBox = new wxRadioBox(page, ID_INDUSTRY_RADIO_BOX,
+        m_industryTypeRadioBox =
+            new wxRadioBox(page, ID_INDUSTRY_RADIO_BOX,
                            _(L"Select the type of industry that this document belongs to:"),
-            wxDefaultPosition, wxDefaultSize, industryTypes, 0, wxRA_SPECIFY_ROWS,
-            wxGenericValidator(&m_selectedIndustryType));
-        m_testTypesSizer->Add(m_industryTypeRadioBox, 0, wxLEFT, wxSizerFlags::GetDefaultBorder());
+                           wxDefaultPosition, wxDefaultSize, industryTypes, 0, wxRA_SPECIFY_ROWS,
+                           wxGenericValidator(&m_selectedIndustryType));
+        m_testTypesSizer->Add(m_industryTypeRadioBox, wxSizerFlags{}.Border(wxLEFT));
 
         // standard tests
         m_testsCheckListBox =
@@ -925,7 +915,7 @@ void ProjectWizardDlg::CreateControls()
                                wxDefaultSize, 0, wxGenericValidator(&m_includeDolchSightWords));
             m_testsSizer->Add(m_DolchCheckBox);
             }
-        m_testTypesSizer->Add(m_testsSizer, 1, wxLEFT | wxEXPAND, wxSizerFlags::GetDefaultBorder());
+        m_testTypesSizer->Add(m_testsSizer, wxSizerFlags{ 1 }.Expand().Border(wxLEFT));
 
         // test bundles
         wxArrayString testBundles;
@@ -938,7 +928,7 @@ void ProjectWizardDlg::CreateControls()
                            wxDefaultPosition, wxDefaultSize, testBundles, 0, wxRA_SPECIFY_ROWS,
                            wxGenericValidator(&m_selectedBundle));
         SetSelectedTestBundle(wxGetApp().GetAppOptions().GetSelectedTestBundle());
-        m_testTypesSizer->Add(m_testsBundlesRadioBox, 0, wxLEFT, wxSizerFlags::GetDefaultBorder());
+        m_testTypesSizer->Add(m_testsBundlesRadioBox, wxSizerFlags{}.Border(wxLEFT));
 
         TransferDataToWindow();
         UpdateTestsUI();
@@ -1179,7 +1169,7 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
     // descriptions and there aren't any folders to pull a group from
     wxString groupLabel;
     wxTextEntryDialog dlg(this, _(L"Enter a group label for the selected documents"),
-                            _(L"Group Label"));
+                          _(L"Group Label"));
     if (dlg.ShowModal() == wxID_OK)
         {
         groupLabel = dlg.GetValue();

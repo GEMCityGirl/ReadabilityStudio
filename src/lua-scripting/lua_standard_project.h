@@ -85,7 +85,6 @@ namespace LuaScripting
         static Luna<StandardProject>::FunctionType methods[];
         static Luna<StandardProject>::PropertyType properties[];
 
-        int DelayReloading(lua_State* L /*boolean delay*/); // Prevents a project from updating while settings are being changed. 
         // Opens a project file.
         // FilePath File path to the project to open.
         explicit StandardProject(lua_State* L);
@@ -94,6 +93,7 @@ namespace LuaScripting
         // clang-format off
         // NOTE: these must all be single-line for the build script to properly create new topics from these.
 
+        int DelayReloading(lua_State* L /*boolean delay*/); // Prevents a project from updating while settings are being changed. 
         int /*string*/ GetTitle(lua_State* L); // Returns the title of the project.
         int SetWindowSize(lua_State* L /*number width, number height*/); // Sets the size of the project window.
         // Stats functions

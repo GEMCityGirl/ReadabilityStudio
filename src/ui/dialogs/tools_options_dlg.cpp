@@ -283,8 +283,8 @@ void ToolsOptionsDlg::OnIncompleteSentencesChange([[maybe_unused]] wxCommandEven
         {
         if (m_textExclusionLabel)
             {
-            m_textExclusionLabel->SetLabel(
-                _(L"** Text exclusion system default: exclude all incomplete sentences, except headings."));
+            m_textExclusionLabel->SetLabel(_(L"** Text exclusion system default: exclude all "
+                                             "incomplete sentences, except headings."));
             }
         }
     else if (m_textExclusionMethod == static_cast<int>(InvalidSentence::IncludeAsFullSentences))
@@ -3187,8 +3187,7 @@ void ToolsOptionsDlg::OnResetSettings([[maybe_unused]] wxCommandEvent& event)
 void ToolsOptionsDlg::CreateControls()
     {
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
-    if (GetSectionsBeingShown() == TextSection ||
-        GetSectionsBeingShown() == GraphsSection ||
+    if (GetSectionsBeingShown() == TextSection || GetSectionsBeingShown() == GraphsSection ||
         GetSectionsBeingShown() == Statistics)
         {
         mainSizer->SetMinSize(FromDIP(wxSize{ 500, 700 }));
@@ -3198,7 +3197,7 @@ void ToolsOptionsDlg::CreateControls()
         mainSizer->SetMinSize(FromDIP(wxSize{ 650, 700 }));
         }
 
-    const int OPTION_INDENT_SIZE = wxSizerFlags::GetDefaultBorder()*3;
+    const int OPTION_INDENT_SIZE = wxSizerFlags::GetDefaultBorder() * 3;
 
     m_sideBar = new SideBarBook(this, wxID_ANY);
     mainSizer->Add(m_sideBar, wxSizerFlags{ 1 }.Expand().Border());
@@ -3224,7 +3223,7 @@ void ToolsOptionsDlg::CreateControls()
 
             wxSizer* optionsSizer = new wxBoxSizer(wxVERTICAL);
             docpanelSizer->Add(optionsSizer,
-                               wxSizerFlags().Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
+                               wxSizerFlags{}.Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 
             wxButton* loadSettingsButton =
                 new wxButton(generalSettingsPage, ID_LOAD_SETTINGS_BUTTON, _(L"Import..."));
@@ -3245,45 +3244,34 @@ void ToolsOptionsDlg::CreateControls()
 
             optionsSizer = new wxBoxSizer(wxVERTICAL);
             docpanelSizer->Add(optionsSizer,
-                               wxSizerFlags().Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
+                               wxSizerFlags{}.Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 
             wxBoxSizer* userAgentSizer = new wxBoxSizer(wxHORIZONTAL);
-            optionsSizer->Add(userAgentSizer, wxSizerFlags().Expand());
+            optionsSizer->Add(userAgentSizer, wxSizerFlags{}.Expand());
 
             userAgentSizer->Add(
-                new wxStaticText(generalSettingsPage, wxID_STATIC, _(L"User agent:")), 0,
-                wxALIGN_CENTER_VERTICAL);
+                new wxStaticText(generalSettingsPage, wxID_STATIC, _(L"User agent:")),
+                wxSizerFlags{}.CenterVertical());
             wxTextCtrl* userAgentEdit =
                 new wxTextCtrl(generalSettingsPage, wxID_ANY, wxString{}, wxDefaultPosition,
                                wxDefaultSize, wxBORDER_THEME, wxGenericValidator(&m_userAgent));
-            userAgentSizer->Add(userAgentEdit, wxSizerFlags(1).Expand().Border(
-                                                   wxLEFT, wxSizerFlags::GetDefaultBorder()));
+            userAgentSizer->Add(userAgentEdit, wxSizerFlags{ 1 }.Expand().Border(wxLEFT));
 
             optionsSizer->Add(new wxCheckBox(generalSettingsPage, wxID_ANY,
                                              _(L"Disable SSL certificate verification"),
                                              wxDefaultPosition, wxDefaultSize, 0,
                                              wxGenericValidator(&m_disablePeerVerify)),
-                              wxSizerFlags()
-                                  .Expand()
-                                  .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
-                                  .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
+                              wxSizerFlags{}.Expand().Border(wxTOP));
 
             optionsSizer->Add(new wxCheckBox(generalSettingsPage, ID_JS_COOKIES_CHECKBOX,
                                              _(L"Use JavaScript cookies"), wxDefaultPosition,
                                              wxDefaultSize, 0, wxGenericValidator(&m_useJsCookies)),
-                              wxSizerFlags()
-                                  .Expand()
-                                  .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
-                                  .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
+                              wxSizerFlags{}.Expand().Border(wxTOP));
 
             m_persistCookiesCheck = new wxCheckBox(
                 generalSettingsPage, wxID_ANY, _(L"Persist cookies during each harvest"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_persistJsCookies));
-            optionsSizer->Add(m_persistCookiesCheck,
-                              wxSizerFlags()
-                                  .Expand()
-                                  .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
-                                  .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
+            optionsSizer->Add(m_persistCookiesCheck, wxSizerFlags{}.Expand().Border(wxTOP));
             m_persistCookiesCheck->Enable(m_useJsCookies);
 
             optionsSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
@@ -3292,7 +3280,7 @@ void ToolsOptionsDlg::CreateControls()
 
             optionsSizer = new wxBoxSizer(wxVERTICAL);
             docpanelSizer->Add(optionsSizer,
-                               wxSizerFlags().Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
+                               wxSizerFlags{}.Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 
             wxButton* warningsButton =
                 new wxButton(generalSettingsPage, ID_WARNING_MESSAGES_BUTTON, _(L"Customize..."));
@@ -3303,23 +3291,17 @@ void ToolsOptionsDlg::CreateControls()
 
             optionsSizer = new wxBoxSizer(wxVERTICAL);
             docpanelSizer->Add(optionsSizer,
-                               wxSizerFlags().Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
+                               wxSizerFlags{}.Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 
             optionsSizer->Add(new wxCheckBox(generalSettingsPage, wxID_ANY, _(L"Verbose logging"),
                                              wxDefaultPosition, wxDefaultSize, 0,
                                              wxGenericValidator(&m_logVerbose)),
-                              wxSizerFlags()
-                                  .Expand()
-                                  .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
-                                  .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
+                              wxSizerFlags{}.Expand().Border(wxTOP));
 
             optionsSizer->Add(new wxCheckBox(generalSettingsPage, wxID_ANY, _(L"Append daily log"),
                                              wxDefaultPosition, wxDefaultSize, 0,
                                              wxGenericValidator(&m_logAppendDailyLog)),
-                              wxSizerFlags()
-                                  .Expand()
-                                  .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
-                                  .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
+                              wxSizerFlags{}.Expand().Border(wxTOP));
             }
         }
 
@@ -3338,8 +3320,8 @@ void ToolsOptionsDlg::CreateControls()
 
         wxFlexGridSizer* projectExtraInfoSizer = new wxFlexGridSizer(2, 5, 5);
         projectExtraInfoSizer->Add(
-            new wxStaticText(projectSettingsPage, wxID_STATIC, _(L"Reviewer:")), 0,
-            wxALIGN_CENTER_VERTICAL);
+            new wxStaticText(projectSettingsPage, wxID_STATIC, _(L"Reviewer:")),
+            wxSizerFlags{}.CenterVertical());
         wxTextCtrl* reviewerEdit =
             new wxTextCtrl(projectSettingsPage, wxID_ANY, wxEmptyString, wxDefaultPosition,
                            wxDefaultSize, wxBORDER_THEME, wxGenericValidator(&m_reviewer));
@@ -3348,15 +3330,16 @@ void ToolsOptionsDlg::CreateControls()
         if (!IsGeneralSettings())
             {
             projectExtraInfoSizer->Add(
-                new wxStaticText(projectSettingsPage, wxID_STATIC, _(L"Status:")), 0,
-                wxALIGN_CENTER_VERTICAL);
+                new wxStaticText(projectSettingsPage, wxID_STATIC, _(L"Status:")),
+                wxSizerFlags{}.CenterVertical());
             wxTextCtrl* statusEdit =
                 new wxTextCtrl(projectSettingsPage, wxID_ANY, wxEmptyString, wxDefaultPosition,
                                wxDefaultSize, wxBORDER_THEME, wxGenericValidator(&m_status));
             projectExtraInfoSizer->Add(statusEdit, wxSizerFlags{ 1 }.Expand());
             }
 
-        panelSizer->Add(projectExtraInfoSizer, 0, wxEXPAND | wxLEFT, OPTION_INDENT_SIZE);
+        panelSizer->Add(projectExtraInfoSizer,
+                        wxSizerFlags{}.Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 
         panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
@@ -3370,14 +3353,13 @@ void ToolsOptionsDlg::CreateControls()
                 new wxStaticBoxSizer(wxVERTICAL, projectSettingsPage, _(L"Batch options"));
 
             wxBoxSizer* minDocSizeBoxSizer = new wxBoxSizer(wxHORIZONTAL);
-            batchOptionsBox->Add(minDocSizeBoxSizer, 0, wxEXPAND | wxLEFT,
-                                 wxSizerFlags::GetDefaultBorder());
+            batchOptionsBox->Add(minDocSizeBoxSizer, wxSizerFlags{}.Expand().Border(wxLEFT));
 
             wxStaticText* minDocSizeLabel = new wxStaticText(
                 batchOptionsBox->GetStaticBox(), wxID_STATIC, _(L"Minimum document word count:"),
                 wxDefaultPosition, wxDefaultSize, wxALIGN_LEFT);
-            minDocSizeBoxSizer->Add(minDocSizeLabel, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT,
-                                    wxSizerFlags::GetDefaultBorder());
+            minDocSizeBoxSizer->Add(minDocSizeLabel,
+                                    wxSizerFlags{}.Border(wxRIGHT).CenterVertical());
 
             wxSpinCtrl* minDocWordCountForBatchSpinCtrl = new wxSpinCtrl(
                 batchOptionsBox->GetStaticBox(), wxID_ANY,
@@ -3385,14 +3367,13 @@ void ToolsOptionsDlg::CreateControls()
                 wxDefaultSize, wxSP_ARROW_KEYS, 1, std::numeric_limits<int>::max(), 0);
             minDocWordCountForBatchSpinCtrl->SetValidator(
                 wxGenericValidator(&m_minDocWordCountForBatch));
-            minDocSizeBoxSizer->Add(minDocWordCountForBatchSpinCtrl, 0,
-                                    wxALIGN_CENTER_VERTICAL | wxALL, 0);
+            minDocSizeBoxSizer->Add(minDocWordCountForBatchSpinCtrl,
+                                    wxSizerFlags{}.CenterVertical());
 
             wxBoxSizer* fileTruncSizer = new wxBoxSizer(wxHORIZONTAL);
             fileTruncSizer->Add(new wxStaticText(batchOptionsBox->GetStaticBox(), wxID_STATIC,
                                                  _(L"File path display:")),
-                                0, wxALIGN_CENTER_VERTICAL | wxRIGHT,
-                                wxSizerFlags::GetDefaultBorder());
+                                wxSizerFlags{}.Border(wxRIGHT).CenterVertical());
 
             wxArrayString truncModes;
             truncModes.Add(_(L"Partially truncate the file path"));
@@ -3401,13 +3382,11 @@ void ToolsOptionsDlg::CreateControls()
             wxChoice* fileTruncCombo = new wxChoice(batchOptionsBox->GetStaticBox(), wxID_ANY,
                                                     wxDefaultPosition, wxDefaultSize, truncModes, 0,
                                                     wxGenericValidator(&m_filePathTruncationMode));
-            fileTruncSizer->Add(fileTruncCombo, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT,
-                                wxSizerFlags::GetDefaultBorder());
+            fileTruncSizer->Add(fileTruncCombo, wxSizerFlags{}.Border(wxRIGHT).CenterVertical());
             batchOptionsBox->AddSpacer(wxSizerFlags::GetDefaultBorder());
-            batchOptionsBox->Add(fileTruncSizer, 0, wxEXPAND | wxLEFT,
-                                 wxSizerFlags::GetDefaultBorder());
+            batchOptionsBox->Add(fileTruncSizer, wxSizerFlags{}.Expand().Border(wxLEFT));
 
-            panelSizer->Add(batchOptionsBox, 0, wxLEFT, OPTION_INDENT_SIZE);
+            panelSizer->Add(batchOptionsBox, wxSizerFlags{}.Border(wxLEFT, OPTION_INDENT_SIZE));
             }
 
         panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
@@ -3426,12 +3405,12 @@ void ToolsOptionsDlg::CreateControls()
             wxStaticText* langLabel =
                 new wxStaticText(projectSettingsPage, wxID_STATIC, _(L"Language:"),
                                  wxDefaultPosition, wxDefaultSize, wxALIGN_LEFT);
-            langSizer->Add(langLabel, 0, wxALIGN_CENTER_VERTICAL | wxALIGN_LEFT);
+            langSizer->Add(langLabel, wxSizerFlags{}.CenterVertical().Left());
             langSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             langSizer->Add(new wxChoice(projectSettingsPage, wxID_ANY, wxDefaultPosition,
                                         wxDefaultSize, languages, 0,
                                         wxGenericValidator(&m_projectLanguage)));
-            panelSizer->Add(langSizer, 0, wxEXPAND | wxLEFT, OPTION_INDENT_SIZE);
+            panelSizer->Add(langSizer, wxSizerFlags{}.Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
             panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             }
 
@@ -3445,7 +3424,8 @@ void ToolsOptionsDlg::CreateControls()
                 projectSettingsPage, ID_DOCUMENT_STORAGE_RADIO_BOX, _(L"Linking and embedding"),
                 wxDefaultPosition, wxDefaultSize, docLinking, 0, wxRA_SPECIFY_ROWS,
                 wxGenericValidator(&m_documentStorageMethod));
-            panelSizer->Add(m_docStorageRadioBox, 0, wxLEFT, OPTION_INDENT_SIZE);
+            panelSizer->Add(m_docStorageRadioBox,
+                            wxSizerFlags{}.Border(wxLEFT, OPTION_INDENT_SIZE));
 
             // not relevant with batch projects
             if (IsGeneralSettings() || IsStandardProjectSettings())
@@ -3458,7 +3438,8 @@ void ToolsOptionsDlg::CreateControls()
                 m_realTimeUpdateCheckBox->Enable(
                     static_cast<TextStorage>(m_documentStorageMethod.get_value()) ==
                     TextStorage::NoEmbedText);
-                panelSizer->Add(m_realTimeUpdateCheckBox, 0, wxLEFT, OPTION_INDENT_SIZE);
+                panelSizer->Add(m_realTimeUpdateCheckBox,
+                                wxSizerFlags{}.Border(wxLEFT, OPTION_INDENT_SIZE));
                 }
 
             panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
@@ -3467,7 +3448,8 @@ void ToolsOptionsDlg::CreateControls()
         if (IsStandardProjectSettings())
             {
             wxBoxSizer* fileBrowseBoxSizer = new wxBoxSizer(wxHORIZONTAL);
-            panelSizer->Add(fileBrowseBoxSizer, 0, wxEXPAND | wxLEFT, OPTION_INDENT_SIZE);
+            panelSizer->Add(fileBrowseBoxSizer,
+                            wxSizerFlags{}.Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 
             m_filePathEdit = new wxTextCtrl(projectSettingsPage, ID_DOCUMENT_PATH_FIELD,
                                             wxEmptyString, wxDefaultPosition, wxDefaultSize,
@@ -3477,7 +3459,7 @@ void ToolsOptionsDlg::CreateControls()
 
             m_fileBrowseButton =
                 new wxBitmapButton(projectSettingsPage, ID_FILE_BROWSE_BUTTON, openImage);
-            fileBrowseBoxSizer->Add(m_fileBrowseButton, 0, wxALIGN_CENTER_VERTICAL);
+            fileBrowseBoxSizer->Add(m_fileBrowseButton, wxSizerFlags{}.CenterVertical());
             // only enable these if document linking is selected
             m_filePathEdit->Enable(m_documentStorageMethod ==
                                    static_cast<int>(TextStorage::NoEmbedText));
@@ -3488,18 +3470,16 @@ void ToolsOptionsDlg::CreateControls()
 
             wxBoxSizer* docDescriptionSizer = new wxBoxSizer(wxHORIZONTAL);
             panelSizer->Add(docDescriptionSizer,
-                            wxSizerFlags().Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
+                            wxSizerFlags{}.Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 
             docDescriptionSizer->Add(
-                new wxStaticText(projectSettingsPage, wxID_STATIC, _(L"Document description:")), 0,
-                wxALIGN_CENTER_VERTICAL);
+                new wxStaticText(projectSettingsPage, wxID_STATIC, _(L"Document description:")),
+                wxSizerFlags{}.CenterVertical());
             wxTextCtrl* descriptionEdit =
                 new wxTextCtrl(projectSettingsPage, ID_DOCUMENT_DESCRIPTION_FIELD, wxEmptyString,
                                wxDefaultPosition, wxDefaultSize, wxBORDER_THEME,
                                wxGenericValidator(&m_description));
-            docDescriptionSizer->Add(
-                descriptionEdit,
-                wxSizerFlags(1).Expand().Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+            docDescriptionSizer->Add(descriptionEdit, wxSizerFlags{ 1 }.Expand().Border(wxLEFT));
             }
         else if (IsBatchProjectSettings())
             {
@@ -3554,7 +3534,8 @@ void ToolsOptionsDlg::CreateControls()
             m_fileList->SetVirtualDataSize(m_fileData->GetItemCount());
             m_fileList->Enable(m_documentStorageMethod ==
                                static_cast<int>(TextStorage::NoEmbedText));
-            filesSizer->Add(m_fileList, 1, wxEXPAND | wxLEFT, OPTION_INDENT_SIZE);
+            filesSizer->Add(m_fileList,
+                            wxSizerFlags{ 1 }.Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 
             panelSizer->Add(filesSizer, wxSizerFlags{ 1 }.Expand());
             }
@@ -3569,7 +3550,8 @@ void ToolsOptionsDlg::CreateControls()
                 true);
 
             wxBoxSizer* fileBrowseBoxSizer = new wxBoxSizer(wxHORIZONTAL);
-            panelSizer->Add(fileBrowseBoxSizer, 0, wxEXPAND | wxLEFT, OPTION_INDENT_SIZE);
+            panelSizer->Add(fileBrowseBoxSizer,
+                            wxSizerFlags{}.Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 
             wxTextCtrl* filePathEdit = new wxTextCtrl(
                 projectSettingsPage, ID_ADDITIONAL_FILE_FIELD, wxEmptyString, wxDefaultPosition,
@@ -3579,7 +3561,7 @@ void ToolsOptionsDlg::CreateControls()
 
             fileBrowseBoxSizer->Add(new wxBitmapButton(projectSettingsPage,
                                                        ID_ADDITIONAL_FILE_BROWSE_BUTTON, openImage),
-                                    0, wxALIGN_CENTER_VERTICAL);
+                                    wxSizerFlags{}.CenterVertical());
             }
 
         projectSettingsPage->SetSizer(panelSizer);
@@ -3603,45 +3585,46 @@ void ToolsOptionsDlg::CreateControls()
                           _(L"Consider Sentences Overly Long If:"), true);
 
         wxBoxSizer* optionsIndentSizer = new wxBoxSizer(wxVERTICAL);
-        panelSizer->Add(optionsIndentSizer, 0, wxEXPAND | wxLEFT | wxRIGHT, OPTION_INDENT_SIZE);
+        panelSizer->Add(optionsIndentSizer,
+                        wxSizerFlags{}.Expand().Border(wxLEFT | wxRIGHT, OPTION_INDENT_SIZE));
         wxBoxSizer* longerThanWordSizer = new wxBoxSizer(wxHORIZONTAL);
-        optionsIndentSizer->Add(longerThanWordSizer, 0, wxTOP | wxBOTTOM,
-                                wxSizerFlags::GetDefaultBorder());
+        optionsIndentSizer->Add(longerThanWordSizer, wxSizerFlags{}.Border(wxBOTTOM));
         radioButton =
             new wxRadioButton(AnalysisIndexingPage, ID_SENTENCE_LONGER_THAN_BUTTON,
                               _(L"&Longer than"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP,
                               wxGenericValidator(&m_longSentencesNumberOfWords));
-        longerThanWordSizer->Add(radioButton, 0, wxALIGN_CENTER_VERTICAL, 0);
+        longerThanWordSizer->Add(radioButton, wxSizerFlags{}.CenterVertical());
         // the spin control for the number of words
         wxSpinCtrl* wordsPerLongSentenceSpinCtrl =
             new wxSpinCtrl(AnalysisIndexingPage, wxID_ANY,
                            std::to_wstring(m_sentenceLength.get_value()), wxDefaultPosition,
                            wxDefaultSize, wxSP_ARROW_KEYS, 0, std::numeric_limits<int>::max(), 0);
         wordsPerLongSentenceSpinCtrl->SetValidator(wxGenericValidator(&m_sentenceLength));
-        longerThanWordSizer->Add(wordsPerLongSentenceSpinCtrl, 0, wxALIGN_CENTER_VERTICAL | wxALL,
-                                 0);
-        //"words" after it
+        longerThanWordSizer->Add(wordsPerLongSentenceSpinCtrl,
+                                 wxSizerFlags{}.CenterVertical().Border());
+        // "words" after it
         wxStaticText* wordsLabel = new wxStaticText(AnalysisIndexingPage, wxID_STATIC, _(L"words"),
                                                     wxDefaultPosition, wxDefaultSize, 0);
-        longerThanWordSizer->Add(wordsLabel, 0, wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT,
-                                 wxSizerFlags::GetDefaultBorder());
+        longerThanWordSizer->Add(wordsLabel,
+                                 wxSizerFlags{}.CenterVertical().Border(wxLEFT | wxRIGHT));
 
         radioButton =
             new wxRadioButton(AnalysisIndexingPage, ID_SENTENCE_OUTLIER_LENGTH_BUTTON,
                               _(L"Out&side sentence-length outlier range"), wxDefaultPosition,
                               wxDefaultSize, 0, wxGenericValidator(&m_longSentencesOutliers));
-        optionsIndentSizer->Add(radioButton, 0, wxEXPAND, wxSizerFlags::GetDefaultBorder());
+        optionsIndentSizer->Add(radioButton, wxSizerFlags{}.Expand().Border(wxBOTTOM));
         panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
         // sentence/paragraph deduction
         CreateLabelHeader(AnalysisIndexingPage, panelSizer, _(L"Sentence/Paragraph Deduction:"),
                           true);
         optionsIndentSizer = new wxBoxSizer(wxVERTICAL);
-        panelSizer->Add(optionsIndentSizer, 0, wxEXPAND | wxLEFT, OPTION_INDENT_SIZE);
+        panelSizer->Add(optionsIndentSizer,
+                        wxSizerFlags{}.Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 
         wxBoxSizer* lineEndsSizer = new wxBoxSizer(wxHORIZONTAL);
-        lineEndsSizer->Add(new wxStaticText(AnalysisIndexingPage, wxID_STATIC, _(L"Line ends:")), 0,
-                           wxALIGN_CENTER_VERTICAL | wxRIGHT, wxSizerFlags::GetDefaultBorder());
+        lineEndsSizer->Add(new wxStaticText(AnalysisIndexingPage, wxID_STATIC, _(L"Line ends:")),
+                           wxSizerFlags{}.CenterVertical().Border(wxRIGHT));
 
         wxArrayString paragraphParseOptions;
         paragraphParseOptions.Add(_(L"only begin a new paragraph if following a valid sentence"));
@@ -3649,10 +3632,8 @@ void ToolsOptionsDlg::CreateControls()
         wxChoice* paragraphParseCombo =
             new wxChoice(AnalysisIndexingPage, ID_PARAGRAPH_PARSE, wxDefaultPosition, wxDefaultSize,
                          paragraphParseOptions, 0, wxGenericValidator(&m_paragraphParsingMethod));
-        lineEndsSizer->Add(paragraphParseCombo, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT,
-                           wxSizerFlags::GetDefaultBorder());
-        optionsIndentSizer->Add(lineEndsSizer, 0, wxEXPAND | wxBOTTOM,
-                                wxSizerFlags::GetDefaultBorder());
+        lineEndsSizer->Add(paragraphParseCombo, wxSizerFlags{}.CenterVertical().Border(wxRIGHT));
+        optionsIndentSizer->Add(lineEndsSizer, wxSizerFlags{}.Expand().Border(wxBOTTOM));
 
         m_ignoreBlankLinesCheckBox =
             new wxCheckBox(AnalysisIndexingPage, ID_IGNORE_BLANK_LINES_BUTTON,
@@ -3661,8 +3642,8 @@ void ToolsOptionsDlg::CreateControls()
         m_ignoreBlankLinesCheckBox->Enable(
             static_cast<ParagraphParse>(m_paragraphParsingMethod.get_value()) ==
             ParagraphParse::OnlySentenceTerminatedNewLinesAreParagraphs);
-        optionsIndentSizer->Add(m_ignoreBlankLinesCheckBox, 0, wxEXPAND | wxBOTTOM,
-                                wxSizerFlags::GetDefaultBorder());
+        optionsIndentSizer->Add(m_ignoreBlankLinesCheckBox,
+                                wxSizerFlags{}.Expand().Border(wxBOTTOM));
 
         m_ignoreIndentingCheckBox =
             new wxCheckBox(AnalysisIndexingPage, ID_IGNORE_INDENTING_BUTTON,
@@ -3671,25 +3652,26 @@ void ToolsOptionsDlg::CreateControls()
         m_ignoreIndentingCheckBox->Enable(
             static_cast<ParagraphParse>(m_paragraphParsingMethod.get_value()) ==
             ParagraphParse::OnlySentenceTerminatedNewLinesAreParagraphs);
-        optionsIndentSizer->Add(m_ignoreIndentingCheckBox, 0, wxEXPAND | wxBOTTOM,
-                                wxSizerFlags::GetDefaultBorder());
+        optionsIndentSizer->Add(m_ignoreIndentingCheckBox,
+                                wxSizerFlags{}.Expand().Border(wxBOTTOM));
 
         wxCheckBox* sentenceStartMustBeUppercasedCheckBox =
             new wxCheckBox(AnalysisIndexingPage, ID_SENTENCES_MUST_BE_CAP_BUTTON,
                            _(L"Sentences must begin with capitalized words"), wxDefaultPosition,
                            wxDefaultSize, 0, wxGenericValidator(&m_sentenceStartMustBeUppercased));
-        optionsIndentSizer->Add(sentenceStartMustBeUppercasedCheckBox, 0, wxEXPAND,
-                                wxSizerFlags::GetDefaultBorder());
+        optionsIndentSizer->Add(sentenceStartMustBeUppercasedCheckBox,
+                                wxSizerFlags{}.Expand().Border(wxBOTTOM));
         panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
         // incomplete sentence logic
         CreateLabelHeader(AnalysisIndexingPage, panelSizer, _(L"Text Exclusion:"), true);
         optionsIndentSizer = new wxBoxSizer(wxVERTICAL);
-        panelSizer->Add(optionsIndentSizer, 0, wxEXPAND | wxLEFT, OPTION_INDENT_SIZE);
+        panelSizer->Add(optionsIndentSizer,
+                        wxSizerFlags{}.Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 
         wxBoxSizer* exclusionSizer = new wxBoxSizer(wxHORIZONTAL);
         exclusionSizer->Add(new wxStaticText(AnalysisIndexingPage, wxID_STATIC, _(L"Exclusion:")),
-                            0, wxALIGN_CENTER_VERTICAL | wxRIGHT, wxSizerFlags::GetDefaultBorder());
+                            wxSizerFlags{}.CenterVertical().Border(wxRIGHT));
 
         wxArrayString exclusionOptions;
         exclusionOptions.Add(_(L"Exclude all incomplete sentences"));
@@ -3698,20 +3680,17 @@ void ToolsOptionsDlg::CreateControls()
         wxChoice* exclusionCombo = new wxChoice(AnalysisIndexingPage, ID_TEXT_EXCLUDE_METHOD,
                                                 wxDefaultPosition, wxDefaultSize, exclusionOptions,
                                                 0, wxGenericValidator(&m_textExclusionMethod));
-        exclusionSizer->Add(exclusionCombo, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT,
-                            wxSizerFlags::GetDefaultBorder());
-        optionsIndentSizer->Add(exclusionSizer, 0, wxEXPAND | wxBOTTOM,
-                                wxSizerFlags::GetDefaultBorder());
+        exclusionSizer->Add(exclusionCombo, wxSizerFlags{}.CenterVertical().Border(wxRIGHT));
+        optionsIndentSizer->Add(exclusionSizer, wxSizerFlags{}.Expand().Border(wxBOTTOM));
 
         wxBoxSizer* includeIncompleteSentSizeSizer = new wxBoxSizer(wxHORIZONTAL);
-        optionsIndentSizer->Add(includeIncompleteSentSizeSizer, 0, wxBOTTOM,
-                                wxSizerFlags::GetDefaultBorder());
+        optionsIndentSizer->Add(includeIncompleteSentSizeSizer, wxSizerFlags{}.Border(wxBOTTOM));
         m_includeIncompleteSentSizeincludeIncompleteLabel =
             new wxStaticText(AnalysisIndexingPage, ID_INCOMPLETE_SENTENCE_VALID_LABEL_START,
                              _(L"Include incomplete sentences containing more than"),
                              wxDefaultPosition, wxDefaultSize, 0);
-        includeIncompleteSentSizeSizer->Add(m_includeIncompleteSentSizeincludeIncompleteLabel, 0,
-                                            wxALIGN_CENTER_VERTICAL);
+        includeIncompleteSentSizeSizer->Add(m_includeIncompleteSentSizeincludeIncompleteLabel,
+                                            wxSizerFlags{}.CenterVertical());
         // the spin control for the number of words
         wxSpinCtrl* includeIncompleteSentencesIfLongerThanSpinCtrl =
             new wxSpinCtrl(AnalysisIndexingPage, ID_INCOMPLETE_SENTENCE_VALID_VALUE_BOX,
@@ -3720,19 +3699,18 @@ void ToolsOptionsDlg::CreateControls()
                            std::numeric_limits<int>::max(), 0);
         includeIncompleteSentencesIfLongerThanSpinCtrl->SetValidator(
             wxGenericValidator(&m_includeIncompleteSentencesIfLongerThan));
-        includeIncompleteSentSizeSizer->Add(includeIncompleteSentencesIfLongerThanSpinCtrl, 0,
-                                            wxLEFT | wxRIGHT, wxSizerFlags::GetDefaultBorder());
-        //"words" after it
+        includeIncompleteSentSizeSizer->Add(includeIncompleteSentencesIfLongerThanSpinCtrl,
+                                            wxSizerFlags{}.Border(wxLEFT | wxRIGHT));
+        // "words" after it
         m_includeIncompleteSentSizeWordsLabel =
             new wxStaticText(AnalysisIndexingPage, ID_INCOMPLETE_SENTENCE_VALID_LABEL_END,
                              _(L"words"), wxDefaultPosition, wxDefaultSize, 0);
-        includeIncompleteSentSizeSizer->Add(m_includeIncompleteSentSizeWordsLabel, 0,
-                                            wxALIGN_CENTER_VERTICAL);
+        includeIncompleteSentSizeSizer->Add(m_includeIncompleteSentSizeWordsLabel,
+                                            wxSizerFlags{}.CenterVertical());
 
         wxFlexGridSizer* ignoreOptionsGrid = new wxFlexGridSizer(
             2, wxSize(wxSizerFlags::GetDefaultBorder(), wxSizerFlags::GetDefaultBorder()));
-        optionsIndentSizer->Add(ignoreOptionsGrid, wxSizerFlags().Expand().Border(
-                                                       wxBOTTOM, wxSizerFlags::GetDefaultBorder()));
+        optionsIndentSizer->Add(ignoreOptionsGrid, wxSizerFlags{}.Expand().Border(wxBOTTOM));
 
         m_aggressiveExclusionCheckBox = new wxCheckBox(
             AnalysisIndexingPage, ID_AGGRESSIVE_LIST_DEDUCTION_CHECKBOX, _(L"Aggressive exclusion"),
@@ -3802,16 +3780,15 @@ void ToolsOptionsDlg::CreateControls()
         m_excludedPhrasesEditBrowseButton = new wxBitmapButton(
             excludedPhrasesFileBrowseBoxSizer->GetStaticBox(), ID_EXCLUDED_PHRASES_FILE_EDIT_BUTTON,
             wxArtProvider::GetBitmapBundle(L"ID_EDIT", wxART_BUTTON));
-        excludePathSizer->Add(m_excludedPhrasesEditBrowseButton, 0,
-                              wxALIGN_CENTER_VERTICAL | wxRIGHT, wxSizerFlags::GetDefaultBorder());
+        excludePathSizer->Add(m_excludedPhrasesEditBrowseButton);
 
         m_includeExcludedPhraseFirstOccurrenceCheckBox =
             new wxCheckBox(excludedPhrasesFileBrowseBoxSizer->GetStaticBox(),
                            ID_INCLUDE_FIRST_OCCURRENCE_EXCLUDE_CHECKBOX,
                            _(L"Include first occurrence"), wxDefaultPosition, wxDefaultSize, 0,
                            wxGenericValidator(&m_includeExcludedPhraseFirstOccurrence));
-        excludedPhrasesFileBrowseBoxSizer->Add(m_includeExcludedPhraseFirstOccurrenceCheckBox, 0,
-                                               wxEXPAND | wxTOP, wxSizerFlags::GetDefaultBorder());
+        excludedPhrasesFileBrowseBoxSizer->Add(m_includeExcludedPhraseFirstOccurrenceCheckBox,
+                                               wxSizerFlags{}.Expand().Border(wxTOP));
 
         m_excludedPhrasesPathFilePathEdit->Enable(
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeFromAnalysis)) ||
@@ -3823,8 +3800,8 @@ void ToolsOptionsDlg::CreateControls()
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeFromAnalysis)) ||
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeExceptForHeadings)));
 
-        optionsIndentSizer->Add(excludedPhrasesFileBrowseBoxSizer, 0, wxEXPAND,
-                                wxSizerFlags::GetDefaultBorder());
+        optionsIndentSizer->Add(excludedPhrasesFileBrowseBoxSizer,
+                                wxSizerFlags{}.Expand().Border(wxBOTTOM | wxRIGHT));
         panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
         // tag block exclusion
@@ -3864,9 +3841,8 @@ void ToolsOptionsDlg::CreateControls()
         m_exclusionBlockTagsLabel->Enable(
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeFromAnalysis)) ||
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeExceptForHeadings)));
-        exclusionBlockTagsSizer->Add(m_exclusionBlockTagsLabel, 0,
-                                     wxALIGN_CENTER_VERTICAL | wxRIGHT,
-                                     wxSizerFlags::GetDefaultBorder());
+        exclusionBlockTagsSizer->Add(m_exclusionBlockTagsLabel,
+                                     wxSizerFlags{}.Border(wxRIGHT).CenterVertical());
         wxArrayString exclusionBlockTagsOptions;
         exclusionBlockTagsOptions.Add(_(L"Not enabled"));
         exclusionBlockTagsOptions.Add(_(L"^ and ^"));
@@ -3881,16 +3857,14 @@ void ToolsOptionsDlg::CreateControls()
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeFromAnalysis)) ||
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeExceptForHeadings)));
         exclusionBlockTagsSizer->Add(m_exclusionBlockTagsCombo);
-        optionsIndentSizer->Add(exclusionBlockTagsSizer, 0, wxEXPAND | wxTOP,
-                                wxSizerFlags::GetDefaultBorder());
+        optionsIndentSizer->Add(exclusionBlockTagsSizer, wxSizerFlags{ 1 }.Expand().Border(wxTOP));
 
         // syllabication
         CreateLabelHeader(AnalysisIndexingPage, panelSizer, _(L"Numerals:"), true);
 
         wxBoxSizer* syllableSizer = new wxBoxSizer(wxHORIZONTAL);
         m_syllableLabel = new wxStaticText(AnalysisIndexingPage, wxID_STATIC, _(L"Syllabication:"));
-        syllableSizer->Add(m_syllableLabel, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT,
-                           wxSizerFlags::GetDefaultBorder());
+        syllableSizer->Add(m_syllableLabel, wxSizerFlags{}.Border(wxRIGHT).CenterVertical());
 
         wxArrayString syllableOptions;
         syllableOptions.Add(_(L"Numerals are one syllable"));
@@ -3904,20 +3878,19 @@ void ToolsOptionsDlg::CreateControls()
         m_syllableLabel->Enable(
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::IncludeAsFullSentences)) ||
             !m_ignoreNumerals);
-        syllableSizer->Add(m_syllableCombo, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT,
-                           wxSizerFlags::GetDefaultBorder());
-        panelSizer->Add(syllableSizer, 0, wxEXPAND | wxLEFT, OPTION_INDENT_SIZE);
+        syllableSizer->Add(m_syllableCombo, wxSizerFlags{}.Border(wxRIGHT).CenterVertical());
+        panelSizer->Add(syllableSizer, wxSizerFlags{}.Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
         }
 
     // readability settings
     if (GetSectionsBeingShown() & ScoresSection)
         {
-        wxPanel* ScoreTestOptionsPage =
-            new wxPanel(m_sideBar, SCORES_TEST_OPTIONS_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-        m_sideBar->AddPage(ScoreTestOptionsPage, GetReadabilityScoresLabel(), SCORES_TEST_OPTIONS_PAGE,
-            // if the only section being shown, then show this page
-            (GetSectionsBeingShown() == ScoresSection),
-            1);
+        wxPanel* ScoreTestOptionsPage = new wxPanel(
+            m_sideBar, SCORES_TEST_OPTIONS_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+        m_sideBar->AddPage(ScoreTestOptionsPage, GetReadabilityScoresLabel(),
+                           SCORES_TEST_OPTIONS_PAGE,
+                           // if the only section being shown, then show this page
+                           (GetSectionsBeingShown() == ScoresSection), 1);
 
         // test options tab
         if (IsGeneralSettings() ||
@@ -3925,57 +3898,57 @@ void ToolsOptionsDlg::CreateControls()
             {
             wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
             ScoreTestOptionsPage->SetSizer(panelSizer);
-            m_sideBar->AddSubPage(ScoreTestOptionsPage, GetTestOptionsLabel(), SCORES_TEST_OPTIONS_PAGE, false, 9);
+            m_sideBar->AddSubPage(ScoreTestOptionsPage, GetTestOptionsLabel(),
+                                  SCORES_TEST_OPTIONS_PAGE, false, 9);
 
-            wxPropertyGridManager* pgMan =
-                new wxPropertyGridManager(ScoreTestOptionsPage, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-                                          wxPG_BOLD_MODIFIED|wxPG_DESCRIPTION|wxPGMAN_DEFAULT_STYLE);
+            wxPropertyGridManager* pgMan = new wxPropertyGridManager(
+                ScoreTestOptionsPage, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
             m_readabilityTestsPropertyGrid = pgMan->AddPage();
             // Fog
-            m_readabilityTestsPropertyGrid->Append(new wxPropertyCategory(_DT(L"Gunning Fog")) );
+            m_readabilityTestsPropertyGrid->Append(new wxPropertyCategory(_DT(L"Gunning Fog")));
             m_readabilityTestsPropertyGrid->SetPropertyHelpString(
-                _DT(L"Gunning Fog"),
-                _(L"The options in this section customize how Gunning Fog "
-                   "related tests are calculated."));
+                _DT(L"Gunning Fog"), _(L"The options in this section customize how Gunning Fog "
+                                       "related tests are calculated."));
 
-            m_readabilityTestsPropertyGrid->Append(
-                new wxBoolProperty(GetCountIndependentClausesLabel(),wxPG_LABEL,
-                    (m_readabilityProjectDoc ?
-                        m_readabilityProjectDoc->FogUseSentenceUnits() :
-                        wxGetApp().GetAppOptions().FogUseSentenceUnits())));
-            m_readabilityTestsPropertyGrid->SetPropertyAttribute(
-                GetCountIndependentClausesLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+            m_readabilityTestsPropertyGrid->Append(new wxBoolProperty(
+                GetCountIndependentClausesLabel(), wxPG_LABEL,
+                (m_readabilityProjectDoc ? m_readabilityProjectDoc->FogUseSentenceUnits() :
+                                           wxGetApp().GetAppOptions().FogUseSentenceUnits())));
+            m_readabilityTestsPropertyGrid->SetPropertyAttribute(GetCountIndependentClausesLabel(),
+                                                                 wxPG_BOOL_USE_CHECKBOX, true);
             m_readabilityTestsPropertyGrid->SetPropertyHelpString(
                 GetCountIndependentClausesLabel(),
                 _(L"Check this option to count independent clauses as separate "
-                   "sentences when calculating a Gunning Fog score. Independent clauses "
-                   "are detected by dashes, colons, and semicolons "
-                   "within a sentence."));
+                  "sentences when calculating a Gunning Fog score. Independent clauses "
+                  "are detected by dashes, colons, and semicolons "
+                  "within a sentence."));
             // Flesch
-            m_readabilityTestsPropertyGrid->Append(new wxPropertyCategory(_DT(L"Flesch")) );
+            m_readabilityTestsPropertyGrid->Append(new wxPropertyCategory(_DT(L"Flesch")));
             m_readabilityTestsPropertyGrid->SetPropertyHelpString(
-                _DT(L"Flesch"),
-                _(L"The options in this section customize how Flesch "
-                   "related tests are calculated."));
+                _DT(L"Flesch"), _(L"The options in this section customize how Flesch "
+                                  "related tests are calculated."));
 
             wxPGChoices fleschNumeralMethods;
             fleschNumeralMethods.Add(_(L"Count numerals as one syllable"));
             fleschNumeralMethods.Add(_(L"System default*"));
-            m_readabilityTestsPropertyGrid->Append(
-                new wxEnumProperty(GetNumeralSyllabicationLabel(),
-                    GetFleschNumeralSyllabicationLabel(), fleschNumeralMethods,
+            m_readabilityTestsPropertyGrid->Append(new wxEnumProperty(
+                GetNumeralSyllabicationLabel(), GetFleschNumeralSyllabicationLabel(),
+                fleschNumeralMethods,
                 (m_readabilityProjectDoc ?
-                    static_cast<int>(m_readabilityProjectDoc->GetFleschNumeralSyllabizeMethod()) :
-                    static_cast<int>(wxGetApp().GetAppOptions().GetFleschNumeralSyllabizeMethod()))) );
+                     static_cast<int>(m_readabilityProjectDoc->GetFleschNumeralSyllabizeMethod()) :
+                     static_cast<int>(
+                         wxGetApp().GetAppOptions().GetFleschNumeralSyllabizeMethod()))));
             m_readabilityTestsPropertyGrid->SetPropertyHelpString(
                 GetFleschNumeralSyllabicationLabel(),
                 _(L"Controls how numerals are syllabized for Flesch related tests."));
             m_readabilityTestsPropertyGrid->EnableProperty(
                 GetFleschNumeralSyllabicationLabel(),
-                (m_textExclusionMethod == static_cast<int>(InvalidSentence::IncludeAsFullSentences)) ||
-                !m_ignoreNumerals);
+                (m_textExclusionMethod ==
+                 static_cast<int>(InvalidSentence::IncludeAsFullSentences)) ||
+                    !m_ignoreNumerals);
             // Flesch-Kincaid
-            m_readabilityTestsPropertyGrid->Append(new wxPropertyCategory(_DT(L"Flesch-Kincaid")) );
+            m_readabilityTestsPropertyGrid->Append(new wxPropertyCategory(_DT(L"Flesch-Kincaid")));
             m_readabilityTestsPropertyGrid->SetPropertyHelpString(
                 _DT(L"Flesch-Kincaid"),
                 _(L"The options in this section customize how Flesch-Kincaid is calculated."));
@@ -3983,47 +3956,51 @@ void ToolsOptionsDlg::CreateControls()
             wxPGChoices fleschKincaidNumeralMethods;
             fleschKincaidNumeralMethods.Add(_(L"Sound out each digit"));
             fleschKincaidNumeralMethods.Add(_(L"System default*"));
-            m_readabilityTestsPropertyGrid->Append(
-                new wxEnumProperty(GetNumeralSyllabicationLabel(),
-                    GetFleschKincaidNumeralSyllabicationLabel(), fleschKincaidNumeralMethods,
+            m_readabilityTestsPropertyGrid->Append(new wxEnumProperty(
+                GetNumeralSyllabicationLabel(), GetFleschKincaidNumeralSyllabicationLabel(),
+                fleschKincaidNumeralMethods,
                 (m_readabilityProjectDoc ?
-                    static_cast<int>(m_readabilityProjectDoc->GetFleschKincaidNumeralSyllabizeMethod()) :
-                    static_cast<int>(wxGetApp().GetAppOptions().GetFleschKincaidNumeralSyllabizeMethod()))) );
+                     static_cast<int>(
+                         m_readabilityProjectDoc->GetFleschKincaidNumeralSyllabizeMethod()) :
+                     static_cast<int>(
+                         wxGetApp().GetAppOptions().GetFleschKincaidNumeralSyllabizeMethod()))));
             m_readabilityTestsPropertyGrid->SetPropertyHelpString(
                 GetFleschKincaidNumeralSyllabicationLabel(),
                 _(L"Controls how numerals are syllabized for Flesch-Kincaid."));
             m_readabilityTestsPropertyGrid->EnableProperty(
                 GetFleschKincaidNumeralSyllabicationLabel(),
-                (m_textExclusionMethod == static_cast<int>(InvalidSentence::IncludeAsFullSentences)) ||
-                 !m_ignoreNumerals);
+                (m_textExclusionMethod ==
+                 static_cast<int>(InvalidSentence::IncludeAsFullSentences)) ||
+                    !m_ignoreNumerals);
             // DC options
-            m_readabilityTestsPropertyGrid->Append(new wxPropertyCategory(_DT(L"Dale-Chall")) );
+            m_readabilityTestsPropertyGrid->Append(new wxPropertyCategory(_DT(L"Dale-Chall")));
             m_readabilityTestsPropertyGrid->SetPropertyHelpString(
-                _DT(L"Dale-Chall"),
-                _(L"The options in this section customize how Dale-Chall "
-                   "related tests are calculated."));
+                _DT(L"Dale-Chall"), _(L"The options in this section customize how Dale-Chall "
+                                      "related tests are calculated."));
 
-            m_readabilityTestsPropertyGrid->Append(
-                new wxBoolProperty(GetIncludeStockerLabel(),wxPG_LABEL,
-                    (m_readabilityProjectDoc ?
-                        m_readabilityProjectDoc->IsIncludingStockerCatholicSupplement() :
-                        wxGetApp().GetAppOptions().IsIncludingStockerCatholicSupplement())));
-            m_readabilityTestsPropertyGrid->SetPropertyAttribute(
-                GetIncludeStockerLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+            m_readabilityTestsPropertyGrid->Append(new wxBoolProperty(
+                GetIncludeStockerLabel(), wxPG_LABEL,
+                (m_readabilityProjectDoc ?
+                     m_readabilityProjectDoc->IsIncludingStockerCatholicSupplement() :
+                     wxGetApp().GetAppOptions().IsIncludingStockerCatholicSupplement())));
+            m_readabilityTestsPropertyGrid->SetPropertyAttribute(GetIncludeStockerLabel(),
+                                                                 wxPG_BOOL_USE_CHECKBOX, true);
             m_readabilityTestsPropertyGrid->SetPropertyHelpString(
                 GetIncludeStockerLabel(),
                 _(L"Check this option to include Stocker's supplementary word "
-                   "list for Catholic students."));
+                  "list for Catholic students."));
 
             wxPGChoices properNounMethods;
             properNounMethods.Add(_(L"Count as unfamiliar"));
             properNounMethods.Add(_(L"Count as familiar"));
             properNounMethods.Add(_(L"First occurrence of each is unfamiliar"));
-            m_readabilityTestsPropertyGrid->Append(
-                new wxEnumProperty(GetProperNounsLabel(), wxPG_LABEL, properNounMethods,
+            m_readabilityTestsPropertyGrid->Append(new wxEnumProperty(
+                GetProperNounsLabel(), wxPG_LABEL, properNounMethods,
                 (m_readabilityProjectDoc ?
-                    static_cast<int>(m_readabilityProjectDoc->GetDaleChallProperNounCountingMethod()) :
-                    static_cast<int>(wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod()))) );
+                     static_cast<int>(
+                         m_readabilityProjectDoc->GetDaleChallProperNounCountingMethod()) :
+                     static_cast<int>(
+                         wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod()))));
             m_readabilityTestsPropertyGrid->SetPropertyHelpString(
                 GetProperNounsLabel(),
                 _(L"Controls how proper nouns are treated by Dale-Chall related tests"));
@@ -4031,56 +4008,68 @@ void ToolsOptionsDlg::CreateControls()
             wxPGChoices textExclusionMethods;
             textExclusionMethods.Add(_(L"Exclude incomplete sentences, except headings"));
             textExclusionMethods.Add(_(L"System default**"));
-            m_readabilityTestsPropertyGrid->Append(
-                new wxEnumProperty(GetTextExclusionLabel(), GetDCTextExclusionLabel(), textExclusionMethods,
+            m_readabilityTestsPropertyGrid->Append(new wxEnumProperty(
+                GetTextExclusionLabel(), GetDCTextExclusionLabel(), textExclusionMethods,
                 (m_readabilityProjectDoc ?
-                    static_cast<int>(m_readabilityProjectDoc->GetDaleChallTextExclusionMode()) :
-                    static_cast<int>(wxGetApp().GetAppOptions().GetDaleChallTextExclusionMode()))) );
-            m_readabilityTestsPropertyGrid->SetPropertyHelpString(GetDCTextExclusionLabel(),
+                     static_cast<int>(m_readabilityProjectDoc->GetDaleChallTextExclusionMode()) :
+                     static_cast<int>(
+                         wxGetApp().GetAppOptions().GetDaleChallTextExclusionMode()))));
+            m_readabilityTestsPropertyGrid->SetPropertyHelpString(
+                GetDCTextExclusionLabel(),
                 _(L"Controls how text is excluded in Dale-Chall related tests."));
             // HJ options
-            m_readabilityTestsPropertyGrid->Append(new wxPropertyCategory(_DT(L"Harris-Jacobson")) );
+            m_readabilityTestsPropertyGrid->Append(new wxPropertyCategory(_DT(L"Harris-Jacobson")));
             m_readabilityTestsPropertyGrid->SetPropertyHelpString(
                 _DT(L"Harris-Jacobson"),
                 _(L"The options in this section customize how Harris-Jacobson is calculated."));
 
-            m_readabilityTestsPropertyGrid->Append(
-                new wxEnumProperty(GetTextExclusionLabel(), GetHJCTextExclusionLabel(), textExclusionMethods,
+            m_readabilityTestsPropertyGrid->Append(new wxEnumProperty(
+                GetTextExclusionLabel(), GetHJCTextExclusionLabel(), textExclusionMethods,
                 (m_readabilityProjectDoc ?
-                    static_cast<int>(m_readabilityProjectDoc->GetHarrisJacobsonTextExclusionMode()) :
-                    static_cast<int>(wxGetApp().GetAppOptions().GetHarrisJacobsonTextExclusionMode()))) );
+                     static_cast<int>(
+                         m_readabilityProjectDoc->GetHarrisJacobsonTextExclusionMode()) :
+                     static_cast<int>(
+                         wxGetApp().GetAppOptions().GetHarrisJacobsonTextExclusionMode()))));
             m_readabilityTestsPropertyGrid->SetPropertyHelpString(
-                GetHJCTextExclusionLabel(), _(L"Controls how text is excluded in Harris-Jacobson."));
+                GetHJCTextExclusionLabel(),
+                _(L"Controls how text is excluded in Harris-Jacobson."));
 
             pgMan->SelectProperty(_DT(L"Gunning Fog"));
             panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
 
-            const int ScaledNoteWidth = FromDIP(wxSize(400,400)).GetWidth();
+            const int ScaledNoteWidth = FromDIP(wxSize(400, 400)).GetWidth();
 
-            m_readTestsSyllableLabel = new wxStaticText(ScoreTestOptionsPage, wxID_STATIC,
-                (m_syllabicationMethod == static_cast<int>(NumeralSyllabize::WholeWordIsOneSyllable)) ?
-                _(L"* Numeral syllabication system default: numerals are one syllable.") :
-                _(L"* Numeral syllabication system default: sound out each digit."),
+            m_readTestsSyllableLabel = new wxStaticText(
+                ScoreTestOptionsPage, wxID_STATIC,
+                (m_syllabicationMethod ==
+                 static_cast<int>(NumeralSyllabize::WholeWordIsOneSyllable)) ?
+                    _(L"* Numeral syllabication system default: numerals are one syllable.") :
+                    _(L"* Numeral syllabication system default: sound out each digit."),
                 wxDefaultPosition, wxDefaultSize, 0);
             m_readTestsSyllableLabel->Wrap(ScaledNoteWidth);
             m_readTestsSyllableLabel->Enable(
-                (m_textExclusionMethod == static_cast<int>(InvalidSentence::IncludeAsFullSentences)) ||
-                 !m_ignoreNumerals);
-            panelSizer->Add(m_readTestsSyllableLabel, 0, wxLEFT|wxRIGHT, wxSizerFlags::GetDefaultBorder());
+                (m_textExclusionMethod ==
+                 static_cast<int>(InvalidSentence::IncludeAsFullSentences)) ||
+                !m_ignoreNumerals);
+            panelSizer->Add(m_readTestsSyllableLabel, 0, wxLEFT | wxRIGHT,
+                            wxSizerFlags::GetDefaultBorder());
 
-            m_textExclusionLabel = new wxStaticText(ScoreTestOptionsPage, wxID_STATIC,
-                (m_textExclusionMethod == static_cast<int>(InvalidSentence::IncludeAsFullSentences)) ?
+            m_textExclusionLabel = new wxStaticText(
+                ScoreTestOptionsPage, wxID_STATIC,
+                (m_textExclusionMethod ==
+                 static_cast<int>(InvalidSentence::IncludeAsFullSentences)) ?
                     _(L"** Text exclusion system default: do not exclude any text.") :
                 (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeFromAnalysis)) ?
                     _(L"** Text exclusion system default: exclude all incomplete sentences.") :
                     _(L"** Text exclusion system default: "
-                       "exclude all incomplete sentences, except headings."),
+                      "exclude all incomplete sentences, except headings."),
                 wxDefaultPosition, wxDefaultSize, 0);
             m_textExclusionLabel->Wrap(ScaledNoteWidth);
-            panelSizer->Add(m_textExclusionLabel, 0, wxLEFT|wxRIGHT, wxSizerFlags::GetDefaultBorder());
+            panelSizer->Add(m_textExclusionLabel, 0, wxLEFT | wxRIGHT,
+                            wxSizerFlags::GetDefaultBorder());
             }
 
-        // grade level tab
+            // grade level tab
             {
             wxPanel* Panel = new wxPanel(m_sideBar, SCORES_DISPLAY_PAGE, wxDefaultPosition,
                                          wxDefaultSize, wxTAB_TRAVERSAL);
@@ -4088,32 +4077,31 @@ void ToolsOptionsDlg::CreateControls()
             Panel->SetSizer(panelSizer);
             m_sideBar->AddSubPage(Panel, GetScoreDisplayLabel(), SCORES_DISPLAY_PAGE, false, 9);
 
-            wxPropertyGridManager* pgMan =
-                new wxPropertyGridManager(Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-                                          wxPG_BOLD_MODIFIED|wxPG_DESCRIPTION|wxPGMAN_DEFAULT_STYLE);
+            wxPropertyGridManager* pgMan = new wxPropertyGridManager(
+                Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
             m_gradeLevelPropertyGrid = pgMan->AddPage();
 
             // Results
-            m_gradeLevelPropertyGrid->Append(new wxPropertyCategory(GetScoreResultsLabel()) );
+            m_gradeLevelPropertyGrid->Append(new wxPropertyCategory(GetScoreResultsLabel()));
             m_gradeLevelPropertyGrid->SetPropertyHelpString(
-                GetScoreResultsLabel(),
-                _(L"The options in this section customize which results to "
-                   "display in the Scores section."));
+                GetScoreResultsLabel(), _(L"The options in this section customize which results to "
+                                          "display in the Scores section."));
 
-            m_gradeLevelPropertyGrid->Append(
-                new wxBoolProperty(GetIncludeScoreSummaryLabel(),wxPG_LABEL,
+            m_gradeLevelPropertyGrid->Append(new wxBoolProperty(
+                GetIncludeScoreSummaryLabel(), wxPG_LABEL,
                 (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->IsIncludingScoreSummaryReport() :
-                    wxGetApp().GetAppOptions().IsIncludingScoreSummaryReport())));
-            m_gradeLevelPropertyGrid->SetPropertyAttribute(
-                GetIncludeScoreSummaryLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                     m_readabilityProjectDoc->IsIncludingScoreSummaryReport() :
+                     wxGetApp().GetAppOptions().IsIncludingScoreSummaryReport())));
+            m_gradeLevelPropertyGrid->SetPropertyAttribute(GetIncludeScoreSummaryLabel(),
+                                                           wxPG_BOOL_USE_CHECKBOX, true);
             m_gradeLevelPropertyGrid->SetPropertyHelpString(
                 GetIncludeScoreSummaryLabel(),
                 _(L"Check this option to include a summary report of the "
-                   "test scores in the results."));
+                  "test scores in the results."));
 
             // grade display
-            m_gradeLevelPropertyGrid->Append(new wxPropertyCategory(GetGradeLabel()) );
+            m_gradeLevelPropertyGrid->Append(new wxPropertyCategory(GetGradeLabel()));
             m_gradeLevelPropertyGrid->SetPropertyHelpString(
                 GetGradeLabel(),
                 _(L"The options in this section customize how the grade scores are displayed."));
@@ -4128,59 +4116,60 @@ void ToolsOptionsDlg::CreateControls()
             gradeLevelOption.Add(
                 _(L"K-12+ (British Columbia/Yukon)"),
                 static_cast<int>(readability::grade_scale::k12_plus_british_columbia));
-            gradeLevelOption.Add(
-                _(L"K-12+ (New Brunswick)"),
-                static_cast<int>(readability::grade_scale::k12_plus_newbrunswick));
-            gradeLevelOption.Add(
-                _(L"K-12+ (Nova Scotia)"),
-                static_cast<int>(readability::grade_scale::k12_plus_nova_scotia));
-            gradeLevelOption.Add(
-                _(L"K-12+ (Ontario)"),
-                static_cast<int>(readability::grade_scale::k12_plus_ontario));
-            gradeLevelOption.Add(
-                _(L"K-12+ (Saskatchewan)"),
-                static_cast<int>(readability::grade_scale::k12_plus_saskatchewan));
+            gradeLevelOption.Add(_(L"K-12+ (New Brunswick)"),
+                                 static_cast<int>(readability::grade_scale::k12_plus_newbrunswick));
+            gradeLevelOption.Add(_(L"K-12+ (Nova Scotia)"),
+                                 static_cast<int>(readability::grade_scale::k12_plus_nova_scotia));
+            gradeLevelOption.Add(_(L"K-12+ (Ontario)"),
+                                 static_cast<int>(readability::grade_scale::k12_plus_ontario));
+            gradeLevelOption.Add(_(L"K-12+ (Saskatchewan)"),
+                                 static_cast<int>(readability::grade_scale::k12_plus_saskatchewan));
             gradeLevelOption.Add(
                 _(L"K-12+ (Prince Edward Island)"),
                 static_cast<int>(readability::grade_scale::k12_plus_prince_edward_island));
-            gradeLevelOption.Add(
-                _(L"K-12+ (Manitoba)"),
-                static_cast<int>(readability::grade_scale::k12_plus_manitoba));
+            gradeLevelOption.Add(_(L"K-12+ (Manitoba)"),
+                                 static_cast<int>(readability::grade_scale::k12_plus_manitoba));
             gradeLevelOption.Add(
                 _(L"K-12+ (Northwest Territories)"),
                 static_cast<int>(readability::grade_scale::k12_plus_northwest_territories));
-            gradeLevelOption.Add(
-                _(L"K-12+ (Alberta)"),
-                static_cast<int>(readability::grade_scale::k12_plus_alberta));
-            gradeLevelOption.Add(
-                _(L"K-12+ (Nunavut)"),
-                static_cast<int>(readability::grade_scale::k12_plus_nunavut));
-            gradeLevelOption.Add(
-                _DT(L"Quebec"),
-                static_cast<int>(readability::grade_scale::quebec));
+            gradeLevelOption.Add(_(L"K-12+ (Alberta)"),
+                                 static_cast<int>(readability::grade_scale::k12_plus_alberta));
+            gradeLevelOption.Add(_(L"K-12+ (Nunavut)"),
+                                 static_cast<int>(readability::grade_scale::k12_plus_nunavut));
+            gradeLevelOption.Add(_DT(L"Quebec"),
+                                 static_cast<int>(readability::grade_scale::quebec));
             gradeLevelOption.Add(
                 _(L"Key stages (England & Wales)"),
                 static_cast<int>(readability::grade_scale::key_stages_england_wales));
-            m_gradeLevelPropertyGrid->Append(new wxEnumProperty(GetGradeScaleLabel(), wxPG_LABEL, gradeLevelOption,
+            m_gradeLevelPropertyGrid->Append(new wxEnumProperty(
+                GetGradeScaleLabel(), wxPG_LABEL, gradeLevelOption,
                 (m_readabilityProjectDoc ?
-                    static_cast<int>(m_readabilityProjectDoc->GetReadabilityMessageCatalog().GetGradeScale()) :
-                    static_cast<int>(wxGetApp().GetAppOptions().GetReadabilityMessageCatalog().GetGradeScale()))) );
+                     static_cast<int>(
+                         m_readabilityProjectDoc->GetReadabilityMessageCatalog().GetGradeScale()) :
+                     static_cast<int>(wxGetApp()
+                                          .GetAppOptions()
+                                          .GetReadabilityMessageCatalog()
+                                          .GetGradeScale()))));
             m_gradeLevelPropertyGrid->SetPropertyHelpString(
                 GetGradeScaleLabel(),
                 _(L"Select from this list the grade scale that you wish to use."));
 
-            m_gradeLevelPropertyGrid->Append(
-                new wxBoolProperty(GetGradesLongFormatLabel(), wxPG_LABEL,
-                (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat() :
-                    wxGetApp().GetAppOptions().GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat())));
-            m_gradeLevelPropertyGrid->SetPropertyAttribute(GetGradesLongFormatLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+            m_gradeLevelPropertyGrid->Append(new wxBoolProperty(
+                GetGradesLongFormatLabel(), wxPG_LABEL,
+                (m_readabilityProjectDoc ? m_readabilityProjectDoc->GetReadabilityMessageCatalog()
+                                               .IsUsingLongGradeScaleFormat() :
+                                           wxGetApp()
+                                               .GetAppOptions()
+                                               .GetReadabilityMessageCatalog()
+                                               .IsUsingLongGradeScaleFormat())));
+            m_gradeLevelPropertyGrid->SetPropertyAttribute(GetGradesLongFormatLabel(),
+                                                           wxPG_BOOL_USE_CHECKBOX, true);
             m_gradeLevelPropertyGrid->SetPropertyHelpString(
                 GetGradesLongFormatLabel(),
                 _(L"Check this to display readability scores in long format "
-                   "(e.g., \"2nd grade\") within the score grid."));
+                  "(e.g., \"2nd grade\") within the score grid."));
 
-            m_gradeLevelPropertyGrid->Append(new wxPropertyCategory(GetReadingAgeLabel()) );
+            m_gradeLevelPropertyGrid->Append(new wxPropertyCategory(GetReadingAgeLabel()));
             m_gradeLevelPropertyGrid->SetPropertyHelpString(
                 GetReadingAgeLabel(),
                 _(L"The options in this section customize how reading ages are displayed."));
@@ -4188,11 +4177,15 @@ void ToolsOptionsDlg::CreateControls()
             wxPGChoices readingAgeDisplay;
             readingAgeDisplay.Add(_(L"School-year range"));
             readingAgeDisplay.Add(_(L"Round to semester"));
-            m_gradeLevelPropertyGrid->Append(new wxEnumProperty(GetCalculationLabel(), wxPG_LABEL, readingAgeDisplay,
+            m_gradeLevelPropertyGrid->Append(new wxEnumProperty(
+                GetCalculationLabel(), wxPG_LABEL, readingAgeDisplay,
                 (m_readabilityProjectDoc ?
-                    static_cast<int>(m_readabilityProjectDoc->GetReadabilityMessageCatalog().GetReadingAgeDisplay()) :
-                    static_cast<int>(wxGetApp().GetAppOptions().GetReadabilityMessageCatalog().
-                        GetReadingAgeDisplay()))) );
+                     static_cast<int>(m_readabilityProjectDoc->GetReadabilityMessageCatalog()
+                                          .GetReadingAgeDisplay()) :
+                     static_cast<int>(wxGetApp()
+                                          .GetAppOptions()
+                                          .GetReadabilityMessageCatalog()
+                                          .GetReadingAgeDisplay()))));
             m_gradeLevelPropertyGrid->SetPropertyHelpString(
                 GetCalculationLabel(),
                 _(L"Selects how reading ages should be calculated from grade scores."));
@@ -4206,147 +4199,162 @@ void ToolsOptionsDlg::CreateControls()
     // Statistics page
     if (GetSectionsBeingShown() & Statistics)
         {
-        wxPanel* Panel = new wxPanel(m_sideBar, ANALYSIS_STATISTICS_PAGE, wxDefaultPosition, wxDefaultSize,
-                                     wxTAB_TRAVERSAL);
+        wxPanel* Panel = new wxPanel(m_sideBar, ANALYSIS_STATISTICS_PAGE, wxDefaultPosition,
+                                     wxDefaultSize, wxTAB_TRAVERSAL);
         wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
         Panel->SetSizer(panelSizer);
-        m_sideBar->AddPage(Panel, BaseProjectView::GetSummaryStatisticsLabel(), ANALYSIS_STATISTICS_PAGE,
-            // if the only section being shown, then show this page
-            (GetSectionsBeingShown() == Statistics),
-            2);
+        m_sideBar->AddPage(Panel, BaseProjectView::GetSummaryStatisticsLabel(),
+                           ANALYSIS_STATISTICS_PAGE,
+                           // if the only section being shown, then show this page
+                           (GetSectionsBeingShown() == Statistics), 2);
 
-        wxPropertyGridManager* pgMan =
-            new wxPropertyGridManager(Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-                                      wxPG_BOLD_MODIFIED|wxPG_DESCRIPTION|wxPGMAN_DEFAULT_STYLE);
+        wxPropertyGridManager* pgMan = new wxPropertyGridManager(
+            Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+            wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
         m_statisticsPropertyGrid = pgMan->AddPage();
         // Results
-        m_statisticsPropertyGrid->Append(new wxPropertyCategory(GetResultsLabel()) );
+        m_statisticsPropertyGrid->Append(new wxPropertyCategory(GetResultsLabel()));
         m_statisticsPropertyGrid->SetPropertyHelpString(
-            GetResultsLabel(),
-            _(L"The options in this section customize which results to include "
-               "in the Summary Statistics."));
-        m_statisticsPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetFormattedReportLabel(), wxPG_LABEL,
+            GetResultsLabel(), _(L"The options in this section customize which results to include "
+                                 "in the Summary Statistics."));
+        m_statisticsPropertyGrid->Append(new wxBoolProperty(
+            BaseProjectView::GetFormattedReportLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetStatisticsInfo().IsReportEnabled() :
-                wxGetApp().GetAppOptions().GetStatisticsInfo().IsReportEnabled())) );
-        m_statisticsPropertyGrid->SetPropertyAttribute(
-            BaseProjectView::GetFormattedReportLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                 m_readabilityProjectDoc->GetStatisticsInfo().IsReportEnabled() :
+                 wxGetApp().GetAppOptions().GetStatisticsInfo().IsReportEnabled())));
+        m_statisticsPropertyGrid->SetPropertyAttribute(BaseProjectView::GetFormattedReportLabel(),
+                                                       wxPG_BOOL_USE_CHECKBOX, true);
         m_statisticsPropertyGrid->SetPropertyHelpString(
             BaseProjectView::GetFormattedReportLabel(),
             _(L"Check this to include the statistics report in the results."));
-        m_statisticsPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetTabularReportLabel(), wxPG_LABEL,
+        m_statisticsPropertyGrid->Append(new wxBoolProperty(
+            BaseProjectView::GetTabularReportLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetStatisticsInfo().IsTableEnabled() :
-                wxGetApp().GetAppOptions().GetStatisticsInfo().IsTableEnabled())) );
-        m_statisticsPropertyGrid->SetPropertyAttribute(
-            BaseProjectView::GetTabularReportLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                 m_readabilityProjectDoc->GetStatisticsInfo().IsTableEnabled() :
+                 wxGetApp().GetAppOptions().GetStatisticsInfo().IsTableEnabled())));
+        m_statisticsPropertyGrid->SetPropertyAttribute(BaseProjectView::GetTabularReportLabel(),
+                                                       wxPG_BOOL_USE_CHECKBOX, true);
         m_statisticsPropertyGrid->SetPropertyHelpString(
             BaseProjectView::GetTabularReportLabel(),
             _(L"Check this to include the statistics (tabular format) in the results."));
         // Report
-        m_statisticsPropertyGrid->Append(
-            new wxPropertyCategory(GetStatisticsReportLabel()) );
+        m_statisticsPropertyGrid->Append(new wxPropertyCategory(GetStatisticsReportLabel()));
         m_statisticsPropertyGrid->SetPropertyHelpString(
             GetStatisticsReportLabel(),
             _(L"The options in this section customize which statistics are "
-               "included in the report and results."));
-        m_statisticsPropertyGrid->Append(
-            new wxBoolProperty(GetParagraphsLabel(), wxPG_LABEL,
+              "included in the report and results."));
+        m_statisticsPropertyGrid->Append(new wxBoolProperty(
+            GetParagraphsLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetStatisticsReportInfo().IsParagraphEnabled() :
-                wxGetApp().GetAppOptions().GetStatisticsReportInfo().IsParagraphEnabled())) );
-        m_statisticsPropertyGrid->SetPropertyAttribute(GetParagraphsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                 m_readabilityProjectDoc->GetStatisticsReportInfo().IsParagraphEnabled() :
+                 wxGetApp().GetAppOptions().GetStatisticsReportInfo().IsParagraphEnabled())));
+        m_statisticsPropertyGrid->SetPropertyAttribute(GetParagraphsLabel(), wxPG_BOOL_USE_CHECKBOX,
+                                                       true);
         m_statisticsPropertyGrid->SetPropertyHelpString(
             GetParagraphsLabel(),
             _(L"Check this to include the paragraph statistics in the report."));
-        m_statisticsPropertyGrid->Append(
-            new wxBoolProperty(GetSentencesLabel(), wxPG_LABEL,
+        m_statisticsPropertyGrid->Append(new wxBoolProperty(
+            GetSentencesLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetStatisticsReportInfo().IsSentencesEnabled() :
-                wxGetApp().GetAppOptions().GetStatisticsReportInfo().IsSentencesEnabled())) );
-        m_statisticsPropertyGrid->SetPropertyAttribute(GetSentencesLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                 m_readabilityProjectDoc->GetStatisticsReportInfo().IsSentencesEnabled() :
+                 wxGetApp().GetAppOptions().GetStatisticsReportInfo().IsSentencesEnabled())));
+        m_statisticsPropertyGrid->SetPropertyAttribute(GetSentencesLabel(), wxPG_BOOL_USE_CHECKBOX,
+                                                       true);
         m_statisticsPropertyGrid->SetPropertyHelpString(
             GetSentencesLabel(),
             _(L"Check this to include the sentence statistics in the report."));
-        m_statisticsPropertyGrid->Append(
-            new wxBoolProperty(GetWordsLabel(), wxPG_LABEL,
+        m_statisticsPropertyGrid->Append(new wxBoolProperty(
+            GetWordsLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetStatisticsReportInfo().IsWordsEnabled() :
-                wxGetApp().GetAppOptions().GetStatisticsReportInfo().IsWordsEnabled())) );
-        m_statisticsPropertyGrid->SetPropertyAttribute(GetWordsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                 m_readabilityProjectDoc->GetStatisticsReportInfo().IsWordsEnabled() :
+                 wxGetApp().GetAppOptions().GetStatisticsReportInfo().IsWordsEnabled())));
+        m_statisticsPropertyGrid->SetPropertyAttribute(GetWordsLabel(), wxPG_BOOL_USE_CHECKBOX,
+                                                       true);
         m_statisticsPropertyGrid->SetPropertyHelpString(
-            GetWordsLabel(),
-            _(L"Check this to include the word statistics in the report."));
-        m_statisticsPropertyGrid->Append(
-            new wxBoolProperty(GetExtendedWordsLabel(), wxPG_LABEL,
+            GetWordsLabel(), _(L"Check this to include the word statistics in the report."));
+        m_statisticsPropertyGrid->Append(new wxBoolProperty(
+            GetExtendedWordsLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetStatisticsReportInfo().IsExtendedWordsEnabled() :
-                wxGetApp().GetAppOptions().GetStatisticsReportInfo().IsExtendedWordsEnabled())) );
-        m_statisticsPropertyGrid->SetPropertyAttribute(GetExtendedWordsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                 m_readabilityProjectDoc->GetStatisticsReportInfo().IsExtendedWordsEnabled() :
+                 wxGetApp().GetAppOptions().GetStatisticsReportInfo().IsExtendedWordsEnabled())));
+        m_statisticsPropertyGrid->SetPropertyAttribute(GetExtendedWordsLabel(),
+                                                       wxPG_BOOL_USE_CHECKBOX, true);
         m_statisticsPropertyGrid->SetPropertyHelpString(
             GetExtendedWordsLabel(),
             _(L"Check this to include extended word statistics (e.g., numerals) in the report."));
-        m_statisticsPropertyGrid->Append(
-            new wxBoolProperty(GetGrammarLabel(), wxPG_LABEL,
+        m_statisticsPropertyGrid->Append(new wxBoolProperty(
+            GetGrammarLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetStatisticsReportInfo().IsGrammarEnabled() :
-                wxGetApp().GetAppOptions().GetStatisticsReportInfo().IsGrammarEnabled())) );
-        m_statisticsPropertyGrid->SetPropertyAttribute(GetGrammarLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                 m_readabilityProjectDoc->GetStatisticsReportInfo().IsGrammarEnabled() :
+                 wxGetApp().GetAppOptions().GetStatisticsReportInfo().IsGrammarEnabled())));
+        m_statisticsPropertyGrid->SetPropertyAttribute(GetGrammarLabel(), wxPG_BOOL_USE_CHECKBOX,
+                                                       true);
         m_statisticsPropertyGrid->SetPropertyHelpString(
-            GetGrammarLabel(),
-            _(L"Check this to include grammar statistics in the report."));
-        m_statisticsPropertyGrid->Append(
-            new wxBoolProperty(GetNotesLabel(), wxPG_LABEL,
+            GetGrammarLabel(), _(L"Check this to include grammar statistics in the report."));
+        m_statisticsPropertyGrid->Append(new wxBoolProperty(
+            GetNotesLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetStatisticsReportInfo().IsNotesEnabled() :
-                wxGetApp().GetAppOptions().GetStatisticsReportInfo().IsNotesEnabled())) );
-        m_statisticsPropertyGrid->SetPropertyAttribute(GetNotesLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                 m_readabilityProjectDoc->GetStatisticsReportInfo().IsNotesEnabled() :
+                 wxGetApp().GetAppOptions().GetStatisticsReportInfo().IsNotesEnabled())));
+        m_statisticsPropertyGrid->SetPropertyAttribute(GetNotesLabel(), wxPG_BOOL_USE_CHECKBOX,
+                                                       true);
         m_statisticsPropertyGrid->SetPropertyHelpString(
-            GetNotesLabel(),
-            _(L"Check this to include the notes in the report."));
-        m_statisticsPropertyGrid->Append(
-            new wxBoolProperty(GetExtendedInformationLabel(), wxPG_LABEL,
+            GetNotesLabel(), _(L"Check this to include the notes in the report."));
+        m_statisticsPropertyGrid->Append(new wxBoolProperty(
+            GetExtendedInformationLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetStatisticsReportInfo().IsExtendedInformationEnabled() :
-                wxGetApp().GetAppOptions().GetStatisticsReportInfo().IsExtendedInformationEnabled())) );
-        m_statisticsPropertyGrid->SetPropertyAttribute(GetExtendedInformationLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                 m_readabilityProjectDoc->GetStatisticsReportInfo().IsExtendedInformationEnabled() :
+                 wxGetApp()
+                     .GetAppOptions()
+                     .GetStatisticsReportInfo()
+                     .IsExtendedInformationEnabled())));
+        m_statisticsPropertyGrid->SetPropertyAttribute(GetExtendedInformationLabel(),
+                                                       wxPG_BOOL_USE_CHECKBOX, true);
         m_statisticsPropertyGrid->SetPropertyHelpString(
             GetExtendedInformationLabel(),
             _(L"Check this to include more verbose statistics and notes in the results."));
         // Dolch report options
         if (m_projectLanguage == static_cast<int>(readability::test_language::english_test))
             {
-            m_statisticsPropertyGrid->Append(new wxPropertyCategory(GetDolchStatisticsReportLabel()) );
+            m_statisticsPropertyGrid->Append(
+                new wxPropertyCategory(GetDolchStatisticsReportLabel()));
             m_statisticsPropertyGrid->SetPropertyHelpString(
                 GetDolchStatisticsReportLabel(),
                 _(L"The options in this section customize which statistics "
-                   "are included in the Dolch report."));
-            m_statisticsPropertyGrid->Append(
-                new wxBoolProperty(GetCoverageLabel(), wxPG_LABEL,
+                  "are included in the Dolch report."));
+            m_statisticsPropertyGrid->Append(new wxBoolProperty(
+                GetCoverageLabel(), wxPG_LABEL,
                 (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->GetStatisticsReportInfo().IsDolchCoverageEnabled() :
-                    wxGetApp().GetAppOptions().GetStatisticsReportInfo().IsDolchCoverageEnabled())) );
-            m_statisticsPropertyGrid->SetPropertyAttribute(GetCoverageLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                     m_readabilityProjectDoc->GetStatisticsReportInfo().IsDolchCoverageEnabled() :
+                     wxGetApp()
+                         .GetAppOptions()
+                         .GetStatisticsReportInfo()
+                         .IsDolchCoverageEnabled())));
+            m_statisticsPropertyGrid->SetPropertyAttribute(GetCoverageLabel(),
+                                                           wxPG_BOOL_USE_CHECKBOX, true);
             m_statisticsPropertyGrid->SetPropertyHelpString(
                 GetCoverageLabel(),
                 _(L"Check this to include the word coverage statistics in the report."));
-            m_statisticsPropertyGrid->Append(
-                new wxBoolProperty(GetWordsLabel(), GetDolchWordsLabel(),
+            m_statisticsPropertyGrid->Append(new wxBoolProperty(
+                GetWordsLabel(), GetDolchWordsLabel(),
                 (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->GetStatisticsReportInfo().IsDolchWordsEnabled() :
-                    wxGetApp().GetAppOptions().GetStatisticsReportInfo().IsDolchWordsEnabled())) );
-            m_statisticsPropertyGrid->SetPropertyAttribute(GetDolchWordsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                     m_readabilityProjectDoc->GetStatisticsReportInfo().IsDolchWordsEnabled() :
+                     wxGetApp().GetAppOptions().GetStatisticsReportInfo().IsDolchWordsEnabled())));
+            m_statisticsPropertyGrid->SetPropertyAttribute(GetDolchWordsLabel(),
+                                                           wxPG_BOOL_USE_CHECKBOX, true);
             m_statisticsPropertyGrid->SetPropertyHelpString(
                 GetDolchWordsLabel(),
                 _(L"Check this to include the word statistics in the report."));
-            m_statisticsPropertyGrid->Append(
-                new wxBoolProperty(GetDolchExplanationLabel(), wxPG_LABEL,
-                (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->GetStatisticsReportInfo().IsDolchExplanationEnabled() :
-                    wxGetApp().GetAppOptions().GetStatisticsReportInfo().IsDolchExplanationEnabled())) );
-            m_statisticsPropertyGrid->SetPropertyAttribute(GetDolchExplanationLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+            m_statisticsPropertyGrid->Append(new wxBoolProperty(
+                GetDolchExplanationLabel(), wxPG_LABEL,
+                (m_readabilityProjectDoc ? m_readabilityProjectDoc->GetStatisticsReportInfo()
+                                               .IsDolchExplanationEnabled() :
+                                           wxGetApp()
+                                               .GetAppOptions()
+                                               .GetStatisticsReportInfo()
+                                               .IsDolchExplanationEnabled())));
+            m_statisticsPropertyGrid->SetPropertyAttribute(GetDolchExplanationLabel(),
+                                                           wxPG_BOOL_USE_CHECKBOX, true);
             m_statisticsPropertyGrid->SetPropertyHelpString(
                 GetDolchExplanationLabel(),
                 _(L"Check this to include the Dolch explanation in the report."));
@@ -4360,149 +4368,156 @@ void ToolsOptionsDlg::CreateControls()
     // words breakdown page (these options only apply to general options and standard projects)
     if ((GetSectionsBeingShown() & WordsBreakdown) && !IsBatchProjectSettings())
         {
-        wxPanel* Panel = new wxPanel(m_sideBar, WORDS_BREAKDOWN_PAGE, wxDefaultPosition, wxDefaultSize,
-                                     wxTAB_TRAVERSAL);
+        wxPanel* Panel = new wxPanel(m_sideBar, WORDS_BREAKDOWN_PAGE, wxDefaultPosition,
+                                     wxDefaultSize, wxTAB_TRAVERSAL);
         wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
         Panel->SetSizer(panelSizer);
         m_sideBar->AddPage(Panel, BaseProjectView::GetWordsBreakdownLabel(), WORDS_BREAKDOWN_PAGE,
-            // if the only section being shown, then show this page
-            (GetSectionsBeingShown() == WordsBreakdown),
-            13);
+                           // if the only section being shown, then show this page
+                           (GetSectionsBeingShown() == WordsBreakdown), 13);
 
-        wxPropertyGridManager* pgMan =
-            new wxPropertyGridManager(Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-                                      wxPG_BOLD_MODIFIED|wxPG_DESCRIPTION|wxPGMAN_DEFAULT_STYLE);
+        wxPropertyGridManager* pgMan = new wxPropertyGridManager(
+            Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+            wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
         m_wordsBreakdownPropertyGrid = pgMan->AddPage();
 
         // which features to include
-        m_wordsBreakdownPropertyGrid->Append(new wxPropertyCategory(GetResultsLabel()) );
+        m_wordsBreakdownPropertyGrid->Append(new wxPropertyCategory(GetResultsLabel()));
         m_wordsBreakdownPropertyGrid->SetPropertyHelpString(
-            GetResultsLabel(),
-            _(L"The options on this page customize which results are "
-               "included in the Words Breakdown section"));
+            GetResultsLabel(), _(L"The options on this page customize which results are "
+                                 "included in the Words Breakdown section"));
 
-        m_wordsBreakdownPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetWordCountsLabel(), wxPG_LABEL,
+        m_wordsBreakdownPropertyGrid->Append(new wxBoolProperty(
+            BaseProjectView::GetWordCountsLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetWordsBreakdownInfo().IsWordBarchartEnabled() :
-                wxGetApp().GetAppOptions().GetWordsBreakdownInfo().IsWordBarchartEnabled())) );
-        m_wordsBreakdownPropertyGrid->SetPropertyAttribute(
-            BaseProjectView::GetWordCountsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                 m_readabilityProjectDoc->GetWordsBreakdownInfo().IsWordBarchartEnabled() :
+                 wxGetApp().GetAppOptions().GetWordsBreakdownInfo().IsWordBarchartEnabled())));
+        m_wordsBreakdownPropertyGrid->SetPropertyAttribute(BaseProjectView::GetWordCountsLabel(),
+                                                           wxPG_BOOL_USE_CHECKBOX, true);
         m_wordsBreakdownPropertyGrid->SetPropertyHelpString(
             BaseProjectView::GetWordCountsLabel(),
             _(L"Check this to include the word barchart in the results."));
 
-        m_wordsBreakdownPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetSyllableCountsLabel(), wxPG_LABEL,
+        m_wordsBreakdownPropertyGrid->Append(new wxBoolProperty(
+            BaseProjectView::GetSyllableCountsLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetWordsBreakdownInfo().IsSyllableGraphsEnabled() :
-                wxGetApp().GetAppOptions().GetWordsBreakdownInfo().IsSyllableGraphsEnabled())) );
-        m_wordsBreakdownPropertyGrid->SetPropertyAttribute(BaseProjectView::GetSyllableCountsLabel(),
-                                                           wxPG_BOOL_USE_CHECKBOX, true);
-        m_wordsBreakdownPropertyGrid->SetPropertyHelpString(BaseProjectView::GetSyllableCountsLabel(),
+                 m_readabilityProjectDoc->GetWordsBreakdownInfo().IsSyllableGraphsEnabled() :
+                 wxGetApp().GetAppOptions().GetWordsBreakdownInfo().IsSyllableGraphsEnabled())));
+        m_wordsBreakdownPropertyGrid->SetPropertyAttribute(
+            BaseProjectView::GetSyllableCountsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+        m_wordsBreakdownPropertyGrid->SetPropertyHelpString(
+            BaseProjectView::GetSyllableCountsLabel(),
             _(L"Check this to include the syllable histogram and pie chart in the results."));
 
-        m_wordsBreakdownPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetThreeSyllableWordsLabel(), wxPG_LABEL,
+        m_wordsBreakdownPropertyGrid->Append(new wxBoolProperty(
+            BaseProjectView::GetThreeSyllableWordsLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetWordsBreakdownInfo().Is3PlusSyllablesEnabled() :
-                wxGetApp().GetAppOptions().GetWordsBreakdownInfo().Is3PlusSyllablesEnabled())) );
-        m_wordsBreakdownPropertyGrid->SetPropertyAttribute(BaseProjectView::GetThreeSyllableWordsLabel(),
-                                                           wxPG_BOOL_USE_CHECKBOX, true);
-        m_wordsBreakdownPropertyGrid->SetPropertyHelpString(BaseProjectView::GetThreeSyllableWordsLabel(),
+                 m_readabilityProjectDoc->GetWordsBreakdownInfo().Is3PlusSyllablesEnabled() :
+                 wxGetApp().GetAppOptions().GetWordsBreakdownInfo().Is3PlusSyllablesEnabled())));
+        m_wordsBreakdownPropertyGrid->SetPropertyAttribute(
+            BaseProjectView::GetThreeSyllableWordsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+        m_wordsBreakdownPropertyGrid->SetPropertyHelpString(
+            BaseProjectView::GetThreeSyllableWordsLabel(),
             _(L"Check this to include the 3+ syllable words list in the results."));
 
-        m_wordsBreakdownPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetSixCharWordsLabel(), wxPG_LABEL,
+        m_wordsBreakdownPropertyGrid->Append(new wxBoolProperty(
+            BaseProjectView::GetSixCharWordsLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetWordsBreakdownInfo().Is6PlusCharacterEnabled() :
-                wxGetApp().GetAppOptions().GetWordsBreakdownInfo().Is6PlusCharacterEnabled())) );
+                 m_readabilityProjectDoc->GetWordsBreakdownInfo().Is6PlusCharacterEnabled() :
+                 wxGetApp().GetAppOptions().GetWordsBreakdownInfo().Is6PlusCharacterEnabled())));
         m_wordsBreakdownPropertyGrid->SetPropertyAttribute(BaseProjectView::GetSixCharWordsLabel(),
                                                            wxPG_BOOL_USE_CHECKBOX, true);
-        m_wordsBreakdownPropertyGrid->SetPropertyHelpString(BaseProjectView::GetSixCharWordsLabel(),
+        m_wordsBreakdownPropertyGrid->SetPropertyHelpString(
+            BaseProjectView::GetSixCharWordsLabel(),
             _(L"Check this to include the 6+ character words in the results."));
 
-        m_wordsBreakdownPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetWordCloudLabel(), wxPG_LABEL,
+        m_wordsBreakdownPropertyGrid->Append(new wxBoolProperty(
+            BaseProjectView::GetWordCloudLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetWordsBreakdownInfo().IsWordCloudEnabled() :
-                wxGetApp().GetAppOptions().GetWordsBreakdownInfo().IsWordCloudEnabled())) );
+                 m_readabilityProjectDoc->GetWordsBreakdownInfo().IsWordCloudEnabled() :
+                 wxGetApp().GetAppOptions().GetWordsBreakdownInfo().IsWordCloudEnabled())));
         m_wordsBreakdownPropertyGrid->SetPropertyAttribute(BaseProjectView::GetWordCloudLabel(),
                                                            wxPG_BOOL_USE_CHECKBOX, true);
         m_wordsBreakdownPropertyGrid->SetPropertyHelpString(
             BaseProjectView::GetWordCloudLabel(),
             _(L"Check this to include the key word cloud in the results."));
 
-        m_wordsBreakdownPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetDaleChallLabel(), wxPG_LABEL,
+        m_wordsBreakdownPropertyGrid->Append(new wxBoolProperty(
+            BaseProjectView::GetDaleChallLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetWordsBreakdownInfo().IsDCUnfamiliarEnabled() :
-                wxGetApp().GetAppOptions().GetWordsBreakdownInfo().IsDCUnfamiliarEnabled())) );
-        m_wordsBreakdownPropertyGrid->SetPropertyAttribute(
-            BaseProjectView::GetDaleChallLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                 m_readabilityProjectDoc->GetWordsBreakdownInfo().IsDCUnfamiliarEnabled() :
+                 wxGetApp().GetAppOptions().GetWordsBreakdownInfo().IsDCUnfamiliarEnabled())));
+        m_wordsBreakdownPropertyGrid->SetPropertyAttribute(BaseProjectView::GetDaleChallLabel(),
+                                                           wxPG_BOOL_USE_CHECKBOX, true);
         m_wordsBreakdownPropertyGrid->SetPropertyHelpString(
             BaseProjectView::GetDaleChallLabel(),
             _(L"Check this to include the Dale-Chall unfamiliar words list in the results. "
-               "(If a Dale-Chall test is included in the project)."));
+              "(If a Dale-Chall test is included in the project)."));
 
-        m_wordsBreakdownPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetSpacheLabel(), wxPG_LABEL,
+        m_wordsBreakdownPropertyGrid->Append(new wxBoolProperty(
+            BaseProjectView::GetSpacheLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetWordsBreakdownInfo().IsSpacheUnfamiliarEnabled() :
-                wxGetApp().GetAppOptions().GetWordsBreakdownInfo().IsSpacheUnfamiliarEnabled())) );
-        m_wordsBreakdownPropertyGrid->SetPropertyAttribute(
-            BaseProjectView::GetSpacheLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                 m_readabilityProjectDoc->GetWordsBreakdownInfo().IsSpacheUnfamiliarEnabled() :
+                 wxGetApp().GetAppOptions().GetWordsBreakdownInfo().IsSpacheUnfamiliarEnabled())));
+        m_wordsBreakdownPropertyGrid->SetPropertyAttribute(BaseProjectView::GetSpacheLabel(),
+                                                           wxPG_BOOL_USE_CHECKBOX, true);
         m_wordsBreakdownPropertyGrid->SetPropertyHelpString(
             BaseProjectView::GetSpacheLabel(),
             _(L"Check this to include the Spache unfamiliar words list in the results. "
-               "(If Spache is included in the project)."));
+              "(If Spache is included in the project)."));
 
-        m_wordsBreakdownPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetHarrisJacobsonLabel(), wxPG_LABEL,
-            (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetWordsBreakdownInfo().IsHarrisJacobsonUnfamiliarEnabled() :
-                wxGetApp().GetAppOptions().GetWordsBreakdownInfo().IsHarrisJacobsonUnfamiliarEnabled())) );
+        m_wordsBreakdownPropertyGrid->Append(new wxBoolProperty(
+            BaseProjectView::GetHarrisJacobsonLabel(), wxPG_LABEL,
+            (m_readabilityProjectDoc ? m_readabilityProjectDoc->GetWordsBreakdownInfo()
+                                           .IsHarrisJacobsonUnfamiliarEnabled() :
+                                       wxGetApp()
+                                           .GetAppOptions()
+                                           .GetWordsBreakdownInfo()
+                                           .IsHarrisJacobsonUnfamiliarEnabled())));
         m_wordsBreakdownPropertyGrid->SetPropertyAttribute(
             BaseProjectView::GetHarrisJacobsonLabel(), wxPG_BOOL_USE_CHECKBOX, true);
         m_wordsBreakdownPropertyGrid->SetPropertyHelpString(
             BaseProjectView::GetHarrisJacobsonLabel(),
             _(L"Check this to include the Harris-Jacobson unfamiliar words list in the results. "
-               "(If Harris-Jacobson is included in the project)."));
+              "(If Harris-Jacobson is included in the project)."));
 
-        m_wordsBreakdownPropertyGrid->Append(
-            new wxBoolProperty(GetCustomTestsLabel(), wxPG_LABEL,
+        m_wordsBreakdownPropertyGrid->Append(new wxBoolProperty(
+            GetCustomTestsLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetWordsBreakdownInfo().IsCustomTestsUnfamiliarEnabled() :
-                wxGetApp().GetAppOptions().GetWordsBreakdownInfo().IsCustomTestsUnfamiliarEnabled())) );
-        m_wordsBreakdownPropertyGrid->SetPropertyAttribute(
-            GetCustomTestsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                 m_readabilityProjectDoc->GetWordsBreakdownInfo().IsCustomTestsUnfamiliarEnabled() :
+                 wxGetApp()
+                     .GetAppOptions()
+                     .GetWordsBreakdownInfo()
+                     .IsCustomTestsUnfamiliarEnabled())));
+        m_wordsBreakdownPropertyGrid->SetPropertyAttribute(GetCustomTestsLabel(),
+                                                           wxPG_BOOL_USE_CHECKBOX, true);
         m_wordsBreakdownPropertyGrid->SetPropertyHelpString(
             GetCustomTestsLabel(),
             _(L"Check this to include any custom tests' unfamiliar words lists in the results."));
 
-        m_wordsBreakdownPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetAllWordsLabel(), wxPG_LABEL,
+        m_wordsBreakdownPropertyGrid->Append(new wxBoolProperty(
+            BaseProjectView::GetAllWordsLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetWordsBreakdownInfo().IsAllWordsEnabled() :
-                wxGetApp().GetAppOptions().GetWordsBreakdownInfo().IsAllWordsEnabled())) );
-        m_wordsBreakdownPropertyGrid->SetPropertyAttribute(
-            BaseProjectView::GetAllWordsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                 m_readabilityProjectDoc->GetWordsBreakdownInfo().IsAllWordsEnabled() :
+                 wxGetApp().GetAppOptions().GetWordsBreakdownInfo().IsAllWordsEnabled())));
+        m_wordsBreakdownPropertyGrid->SetPropertyAttribute(BaseProjectView::GetAllWordsLabel(),
+                                                           wxPG_BOOL_USE_CHECKBOX, true);
         m_wordsBreakdownPropertyGrid->SetPropertyHelpString(
             BaseProjectView::GetAllWordsLabel(),
             _(L"Check this to include a list of all words in the results."));
 
-        m_wordsBreakdownPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetKeyWordsLabel(), wxPG_LABEL,
+        m_wordsBreakdownPropertyGrid->Append(new wxBoolProperty(
+            BaseProjectView::GetKeyWordsLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetWordsBreakdownInfo().IsKeyWordsEnabled() :
-                wxGetApp().GetAppOptions().GetWordsBreakdownInfo().IsKeyWordsEnabled())) );
-        m_wordsBreakdownPropertyGrid->SetPropertyAttribute(
-            BaseProjectView::GetKeyWordsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                 m_readabilityProjectDoc->GetWordsBreakdownInfo().IsKeyWordsEnabled() :
+                 wxGetApp().GetAppOptions().GetWordsBreakdownInfo().IsKeyWordsEnabled())));
+        m_wordsBreakdownPropertyGrid->SetPropertyAttribute(BaseProjectView::GetKeyWordsLabel(),
+                                                           wxPG_BOOL_USE_CHECKBOX, true);
         m_wordsBreakdownPropertyGrid->SetPropertyHelpString(
             BaseProjectView::GetKeyWordsLabel(),
             _(L"Check this to include a list of all words (in condensed form) in the results. "
-               "Words with the same root (e.g., \"run\" and \"running\") will be "
-               "combined into one row."));
+              "Words with the same root (e.g., \"run\" and \"running\") will be "
+              "combined into one row."));
 
         pgMan->SelectProperty(GetResultsLabel());
         pgMan->SetDescBoxHeight(FromDIP(wxSize{ 200, 200 }).GetHeight());
@@ -4517,61 +4532,69 @@ void ToolsOptionsDlg::CreateControls()
                                      wxDefaultSize, wxTAB_TRAVERSAL);
         wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
         Panel->SetSizer(panelSizer);
-        m_sideBar->AddPage(Panel, BaseProjectView::GetSentencesBreakdownLabel(), SENTENCES_BREAKDOWN_PAGE,
-            // if the only section being shown, then show this page
-            (GetSectionsBeingShown() == SentencesBreakdown),
-            14);
+        m_sideBar->AddPage(Panel, BaseProjectView::GetSentencesBreakdownLabel(),
+                           SENTENCES_BREAKDOWN_PAGE,
+                           // if the only section being shown, then show this page
+                           (GetSectionsBeingShown() == SentencesBreakdown), 14);
 
-        wxPropertyGridManager* pgMan =
-            new wxPropertyGridManager(Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-                                      wxPG_BOLD_MODIFIED|wxPG_DESCRIPTION|wxPGMAN_DEFAULT_STYLE);
+        wxPropertyGridManager* pgMan = new wxPropertyGridManager(
+            Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+            wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
         m_sentencesBreakdownPropertyGrid = pgMan->AddPage();
 
         // which features to include
-        m_sentencesBreakdownPropertyGrid->Append(new wxPropertyCategory(GetResultsLabel()) );
+        m_sentencesBreakdownPropertyGrid->Append(new wxPropertyCategory(GetResultsLabel()));
         m_sentencesBreakdownPropertyGrid->SetPropertyHelpString(
-            GetResultsLabel(),
-            _(L"The options on this page customize which results are included "
-               "in the Sentences Breakdown section"));
+            GetResultsLabel(), _(L"The options on this page customize which results are included "
+                                 "in the Sentences Breakdown section"));
 
-        m_sentencesBreakdownPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetLongSentencesLabel(), wxPG_LABEL,
+        m_sentencesBreakdownPropertyGrid->Append(new wxBoolProperty(
+            BaseProjectView::GetLongSentencesLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetSentencesBreakdownInfo().IsLongSentencesEnabled() :
-                wxGetApp().GetAppOptions().GetSentencesBreakdownInfo().IsLongSentencesEnabled())) );
+                 m_readabilityProjectDoc->GetSentencesBreakdownInfo().IsLongSentencesEnabled() :
+                 wxGetApp().GetAppOptions().GetSentencesBreakdownInfo().IsLongSentencesEnabled())));
         m_sentencesBreakdownPropertyGrid->SetPropertyAttribute(
             BaseProjectView::GetLongSentencesLabel(), wxPG_BOOL_USE_CHECKBOX, true);
         m_sentencesBreakdownPropertyGrid->SetPropertyHelpString(
             BaseProjectView::GetLongSentencesLabel(),
             _(L"Check this to include the overly-long sentences list in the results."));
 
-        m_sentencesBreakdownPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetSentenceLengthBoxPlotLabel(), wxPG_LABEL,
+        m_sentencesBreakdownPropertyGrid->Append(new wxBoolProperty(
+            BaseProjectView::GetSentenceLengthBoxPlotLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetSentencesBreakdownInfo().IsLengthsBoxPlotEnabled() :
-                wxGetApp().GetAppOptions().GetSentencesBreakdownInfo().IsLengthsBoxPlotEnabled())) );
+                 m_readabilityProjectDoc->GetSentencesBreakdownInfo().IsLengthsBoxPlotEnabled() :
+                 wxGetApp()
+                     .GetAppOptions()
+                     .GetSentencesBreakdownInfo()
+                     .IsLengthsBoxPlotEnabled())));
         m_sentencesBreakdownPropertyGrid->SetPropertyAttribute(
             BaseProjectView::GetSentenceLengthBoxPlotLabel(), wxPG_BOOL_USE_CHECKBOX, true);
         m_sentencesBreakdownPropertyGrid->SetPropertyHelpString(
             BaseProjectView::GetSentenceLengthBoxPlotLabel(),
             _(L"Check this to include the sentence-lengths box plot in the results."));
 
-        m_sentencesBreakdownPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetSentenceLengthHistogramLabel(), wxPG_LABEL,
+        m_sentencesBreakdownPropertyGrid->Append(new wxBoolProperty(
+            BaseProjectView::GetSentenceLengthHistogramLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetSentencesBreakdownInfo().IsLengthsHistogramEnabled() :
-                wxGetApp().GetAppOptions().GetSentencesBreakdownInfo().IsLengthsHistogramEnabled())) );
+                 m_readabilityProjectDoc->GetSentencesBreakdownInfo().IsLengthsHistogramEnabled() :
+                 wxGetApp()
+                     .GetAppOptions()
+                     .GetSentencesBreakdownInfo()
+                     .IsLengthsHistogramEnabled())));
         m_sentencesBreakdownPropertyGrid->SetPropertyAttribute(
             BaseProjectView::GetSentenceLengthHistogramLabel(), wxPG_BOOL_USE_CHECKBOX, true);
         m_sentencesBreakdownPropertyGrid->SetPropertyHelpString(
             BaseProjectView::GetSentenceLengthHistogramLabel(),
             _(L"Check this to include the sentence-lengths histogram in the results."));
 
-        m_sentencesBreakdownPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetSentenceLengthHeatmapLabel(), wxPG_LABEL,
+        m_sentencesBreakdownPropertyGrid->Append(new wxBoolProperty(
+            BaseProjectView::GetSentenceLengthHeatmapLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetSentencesBreakdownInfo().IsLengthsHeatmapEnabled() :
-                wxGetApp().GetAppOptions().GetSentencesBreakdownInfo().IsLengthsHeatmapEnabled())) );
+                 m_readabilityProjectDoc->GetSentencesBreakdownInfo().IsLengthsHeatmapEnabled() :
+                 wxGetApp()
+                     .GetAppOptions()
+                     .GetSentencesBreakdownInfo()
+                     .IsLengthsHeatmapEnabled())));
         m_sentencesBreakdownPropertyGrid->SetPropertyAttribute(
             BaseProjectView::GetSentenceLengthHeatmapLabel(), wxPG_BOOL_USE_CHECKBOX, true);
         m_sentencesBreakdownPropertyGrid->SetPropertyHelpString(
@@ -4587,33 +4610,32 @@ void ToolsOptionsDlg::CreateControls()
     // Grammar page
     if (GetSectionsBeingShown() & Grammar)
         {
-        wxPanel* Panel = new wxPanel(m_sideBar, GRAMMAR_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+        wxPanel* Panel =
+            new wxPanel(m_sideBar, GRAMMAR_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
         wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
         Panel->SetSizer(panelSizer);
         m_sideBar->AddPage(Panel, BaseProjectView::GetGrammarLabel(), GRAMMAR_PAGE,
-            // if the only section being shown, then show this page
-            (GetSectionsBeingShown() == Grammar),
-            4);
+                           // if the only section being shown, then show this page
+                           (GetSectionsBeingShown() == Grammar), 4);
 
-        wxPropertyGridManager* pgMan =
-            new wxPropertyGridManager(Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-                                      wxPG_BOLD_MODIFIED|wxPG_DESCRIPTION|wxPGMAN_DEFAULT_STYLE);
+        wxPropertyGridManager* pgMan = new wxPropertyGridManager(
+            Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+            wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
         m_grammarPropertyGrid = pgMan->AddPage();
 
         // which grammar features to include
-        m_grammarPropertyGrid->Append(new wxPropertyCategory(GetResultsLabel()) );
+        m_grammarPropertyGrid->Append(new wxPropertyCategory(GetResultsLabel()));
         m_grammarPropertyGrid->SetPropertyHelpString(
-            GetResultsLabel(),
-            _(L"The options in this section customize which features are "
-               "included in the grammar analysis."));
+            GetResultsLabel(), _(L"The options in this section customize which features are "
+                                 "included in the grammar analysis."));
 
-        m_grammarPropertyGrid->Append(
-            new wxBoolProperty(GetGrammarHighlightedReportLabel(), wxPG_LABEL,
+        m_grammarPropertyGrid->Append(new wxBoolProperty(
+            GetGrammarHighlightedReportLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetGrammarInfo().IsHighlightedReportEnabled() :
-                wxGetApp().GetAppOptions().GetGrammarInfo().IsHighlightedReportEnabled())) );
-        m_grammarPropertyGrid->SetPropertyAttribute(
-            GetGrammarHighlightedReportLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                 m_readabilityProjectDoc->GetGrammarInfo().IsHighlightedReportEnabled() :
+                 wxGetApp().GetAppOptions().GetGrammarInfo().IsHighlightedReportEnabled())));
+        m_grammarPropertyGrid->SetPropertyAttribute(GetGrammarHighlightedReportLabel(),
+                                                    wxPG_BOOL_USE_CHECKBOX, true);
         m_grammarPropertyGrid->SetPropertyHelpString(
             GetGrammarHighlightedReportLabel(),
             _(L"Check this to include the highlighted grammar report in the results."));
@@ -4629,198 +4651,203 @@ void ToolsOptionsDlg::CreateControls()
             BaseProjectView::GetPhrasingErrorsTabLabel(),
             _(L"Check this to include wording errors and known misspellings in the results."));
 
-        m_grammarPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetMisspellingsLabel(), wxPG_LABEL,
+        m_grammarPropertyGrid->Append(new wxBoolProperty(
+            BaseProjectView::GetMisspellingsLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetGrammarInfo().IsMisspellingsEnabled() :
-                wxGetApp().GetAppOptions().GetGrammarInfo().IsMisspellingsEnabled())) );
-        m_grammarPropertyGrid->SetPropertyAttribute(
-            BaseProjectView::GetMisspellingsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                 m_readabilityProjectDoc->GetGrammarInfo().IsMisspellingsEnabled() :
+                 wxGetApp().GetAppOptions().GetGrammarInfo().IsMisspellingsEnabled())));
+        m_grammarPropertyGrid->SetPropertyAttribute(BaseProjectView::GetMisspellingsLabel(),
+                                                    wxPG_BOOL_USE_CHECKBOX, true);
         m_grammarPropertyGrid->SetPropertyHelpString(
             BaseProjectView::GetMisspellingsLabel(),
             _(L"Check this to include possible misspellings in the results."));
 
-        m_grammarPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetRepeatedWordsLabel(), wxPG_LABEL,
+        m_grammarPropertyGrid->Append(new wxBoolProperty(
+            BaseProjectView::GetRepeatedWordsLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetGrammarInfo().IsRepeatedWordsEnabled() :
-                wxGetApp().GetAppOptions().GetGrammarInfo().IsRepeatedWordsEnabled())) );
-        m_grammarPropertyGrid->SetPropertyAttribute(
-            BaseProjectView::GetRepeatedWordsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                 m_readabilityProjectDoc->GetGrammarInfo().IsRepeatedWordsEnabled() :
+                 wxGetApp().GetAppOptions().GetGrammarInfo().IsRepeatedWordsEnabled())));
+        m_grammarPropertyGrid->SetPropertyAttribute(BaseProjectView::GetRepeatedWordsLabel(),
+                                                    wxPG_BOOL_USE_CHECKBOX, true);
         m_grammarPropertyGrid->SetPropertyHelpString(
             BaseProjectView::GetRepeatedWordsLabel(),
             _(L"Check this to include repeated words in the results."));
 
-        m_grammarPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetArticleMismatchesLabel(), wxPG_LABEL,
+        m_grammarPropertyGrid->Append(new wxBoolProperty(
+            BaseProjectView::GetArticleMismatchesLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetGrammarInfo().IsArticleMismatchesEnabled() :
-                wxGetApp().GetAppOptions().GetGrammarInfo().IsArticleMismatchesEnabled())) );
-        m_grammarPropertyGrid->SetPropertyAttribute(
-            BaseProjectView::GetArticleMismatchesLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                 m_readabilityProjectDoc->GetGrammarInfo().IsArticleMismatchesEnabled() :
+                 wxGetApp().GetAppOptions().GetGrammarInfo().IsArticleMismatchesEnabled())));
+        m_grammarPropertyGrid->SetPropertyAttribute(BaseProjectView::GetArticleMismatchesLabel(),
+                                                    wxPG_BOOL_USE_CHECKBOX, true);
         m_grammarPropertyGrid->SetPropertyHelpString(
             BaseProjectView::GetArticleMismatchesLabel(),
             _(L"Check this to include article mismatches in the results."));
 
-        m_grammarPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetRedundantPhrasesTabLabel(), wxPG_LABEL,
+        m_grammarPropertyGrid->Append(new wxBoolProperty(
+            BaseProjectView::GetRedundantPhrasesTabLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetGrammarInfo().IsRedundantPhrasesEnabled() :
-                wxGetApp().GetAppOptions().GetGrammarInfo().IsRedundantPhrasesEnabled())) );
-        m_grammarPropertyGrid->SetPropertyAttribute(
-            BaseProjectView::GetRedundantPhrasesTabLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                 m_readabilityProjectDoc->GetGrammarInfo().IsRedundantPhrasesEnabled() :
+                 wxGetApp().GetAppOptions().GetGrammarInfo().IsRedundantPhrasesEnabled())));
+        m_grammarPropertyGrid->SetPropertyAttribute(BaseProjectView::GetRedundantPhrasesTabLabel(),
+                                                    wxPG_BOOL_USE_CHECKBOX, true);
         m_grammarPropertyGrid->SetPropertyHelpString(
             BaseProjectView::GetRedundantPhrasesTabLabel(),
             _(L"Check this to include redundant phrases in the results."));
 
-        m_grammarPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetOverusedWordsBySentenceLabel(), wxPG_LABEL,
+        m_grammarPropertyGrid->Append(new wxBoolProperty(
+            BaseProjectView::GetOverusedWordsBySentenceLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetGrammarInfo().IsOverUsedWordsBySentenceEnabled() :
-                wxGetApp().GetAppOptions().GetGrammarInfo().IsOverUsedWordsBySentenceEnabled())) );
+                 m_readabilityProjectDoc->GetGrammarInfo().IsOverUsedWordsBySentenceEnabled() :
+                 wxGetApp().GetAppOptions().GetGrammarInfo().IsOverUsedWordsBySentenceEnabled())));
         m_grammarPropertyGrid->SetPropertyAttribute(
             BaseProjectView::GetOverusedWordsBySentenceLabel(), wxPG_BOOL_USE_CHECKBOX, true);
         m_grammarPropertyGrid->SetPropertyHelpString(
             BaseProjectView::GetOverusedWordsBySentenceLabel(),
             _(L"Check this to include overused words (by sentence) in the results."));
 
-        m_grammarPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetWordyPhrasesTabLabel(), wxPG_LABEL,
+        m_grammarPropertyGrid->Append(new wxBoolProperty(
+            BaseProjectView::GetWordyPhrasesTabLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetGrammarInfo().IsWordyPhrasesEnabled() :
-                wxGetApp().GetAppOptions().GetGrammarInfo().IsWordyPhrasesEnabled())) );
-        m_grammarPropertyGrid->SetPropertyAttribute(
-            BaseProjectView::GetWordyPhrasesTabLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                 m_readabilityProjectDoc->GetGrammarInfo().IsWordyPhrasesEnabled() :
+                 wxGetApp().GetAppOptions().GetGrammarInfo().IsWordyPhrasesEnabled())));
+        m_grammarPropertyGrid->SetPropertyAttribute(BaseProjectView::GetWordyPhrasesTabLabel(),
+                                                    wxPG_BOOL_USE_CHECKBOX, true);
         m_grammarPropertyGrid->SetPropertyHelpString(
-            BaseProjectView::GetWordyPhrasesTabLabel(), _(L"Check this to include wordy phrases in the results."));
+            BaseProjectView::GetWordyPhrasesTabLabel(),
+            _(L"Check this to include wordy phrases in the results."));
 
-        m_grammarPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetClichesTabLabel(), wxPG_LABEL,
+        m_grammarPropertyGrid->Append(new wxBoolProperty(
+            BaseProjectView::GetClichesTabLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetGrammarInfo().IsClichesEnabled() :
-                wxGetApp().GetAppOptions().GetGrammarInfo().IsClichesEnabled())) );
-        m_grammarPropertyGrid->SetPropertyAttribute(
-            BaseProjectView::GetClichesTabLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                 m_readabilityProjectDoc->GetGrammarInfo().IsClichesEnabled() :
+                 wxGetApp().GetAppOptions().GetGrammarInfo().IsClichesEnabled())));
+        m_grammarPropertyGrid->SetPropertyAttribute(BaseProjectView::GetClichesTabLabel(),
+                                                    wxPG_BOOL_USE_CHECKBOX, true);
         m_grammarPropertyGrid->SetPropertyHelpString(
-            BaseProjectView::GetClichesTabLabel(), _(L"Check this to include clich\u00E9s in the results."));
+            BaseProjectView::GetClichesTabLabel(),
+            _(L"Check this to include clich\u00E9s in the results."));
 
-        m_grammarPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetPassiveLabel(), wxPG_LABEL,
+        m_grammarPropertyGrid->Append(new wxBoolProperty(
+            BaseProjectView::GetPassiveLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetGrammarInfo().IsPassiveVoiceEnabled() :
-                wxGetApp().GetAppOptions().GetGrammarInfo().IsPassiveVoiceEnabled())) );
-        m_grammarPropertyGrid->SetPropertyAttribute(
-            BaseProjectView::GetPassiveLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                 m_readabilityProjectDoc->GetGrammarInfo().IsPassiveVoiceEnabled() :
+                 wxGetApp().GetAppOptions().GetGrammarInfo().IsPassiveVoiceEnabled())));
+        m_grammarPropertyGrid->SetPropertyAttribute(BaseProjectView::GetPassiveLabel(),
+                                                    wxPG_BOOL_USE_CHECKBOX, true);
         m_grammarPropertyGrid->SetPropertyHelpString(
-            BaseProjectView::GetPassiveLabel(), _(L"Check this to include passive voice in the results."));
+            BaseProjectView::GetPassiveLabel(),
+            _(L"Check this to include passive voice in the results."));
 
-        m_grammarPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetSentenceStartingWithConjunctionsTabLabel(), wxPG_LABEL,
+        m_grammarPropertyGrid->Append(new wxBoolProperty(
+            BaseProjectView::GetSentenceStartingWithConjunctionsTabLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetGrammarInfo().IsConjunctionStartingSentencesEnabled() :
-                wxGetApp().GetAppOptions().GetGrammarInfo().IsConjunctionStartingSentencesEnabled())) );
+                 m_readabilityProjectDoc->GetGrammarInfo().IsConjunctionStartingSentencesEnabled() :
+                 wxGetApp()
+                     .GetAppOptions()
+                     .GetGrammarInfo()
+                     .IsConjunctionStartingSentencesEnabled())));
         m_grammarPropertyGrid->SetPropertyAttribute(
-            BaseProjectView::GetSentenceStartingWithConjunctionsTabLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+            BaseProjectView::GetSentenceStartingWithConjunctionsTabLabel(), wxPG_BOOL_USE_CHECKBOX,
+            true);
         m_grammarPropertyGrid->SetPropertyHelpString(
             BaseProjectView::GetSentenceStartingWithConjunctionsTabLabel(),
             _(L"Check this to include conjunction-starting sentences in the results."));
 
-        m_grammarPropertyGrid->Append(
-            new wxBoolProperty(BaseProjectView::GetSentenceStartingWithLowercaseTabLabel(), wxPG_LABEL,
+        m_grammarPropertyGrid->Append(new wxBoolProperty(
+            BaseProjectView::GetSentenceStartingWithLowercaseTabLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetGrammarInfo().IsLowercaseSentencesEnabled() :
-                wxGetApp().GetAppOptions().GetGrammarInfo().IsLowercaseSentencesEnabled())) );
+                 m_readabilityProjectDoc->GetGrammarInfo().IsLowercaseSentencesEnabled() :
+                 wxGetApp().GetAppOptions().GetGrammarInfo().IsLowercaseSentencesEnabled())));
         m_grammarPropertyGrid->SetPropertyAttribute(
-            BaseProjectView::GetSentenceStartingWithLowercaseTabLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+            BaseProjectView::GetSentenceStartingWithLowercaseTabLabel(), wxPG_BOOL_USE_CHECKBOX,
+            true);
         m_grammarPropertyGrid->SetPropertyHelpString(
             BaseProjectView::GetSentenceStartingWithLowercaseTabLabel(),
             _(L"Check this to include lowercased sentences in the results."));
 
         // spell checker section
-        m_grammarPropertyGrid->Append(new wxPropertyCategory(GetSpellCheckerLabel()) );
+        m_grammarPropertyGrid->Append(new wxPropertyCategory(GetSpellCheckerLabel()));
         m_grammarPropertyGrid->SetPropertyHelpString(
             GetSpellCheckerLabel(),
             _(L"The options in this section select what the spell checker should ignore."));
 
         m_grammarPropertyGrid->Append(
             new wxBoolProperty(GetIgnoreProperNounsLabel(), wxPG_LABEL,
-            (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->SpellCheckIsIgnoringProperNouns() :
-                wxGetApp().GetAppOptions().SpellCheckIsIgnoringProperNouns())));
-        m_grammarPropertyGrid->SetPropertyAttribute(
-            GetIgnoreProperNounsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                               (m_readabilityProjectDoc ?
+                                    m_readabilityProjectDoc->SpellCheckIsIgnoringProperNouns() :
+                                    wxGetApp().GetAppOptions().SpellCheckIsIgnoringProperNouns())));
+        m_grammarPropertyGrid->SetPropertyAttribute(GetIgnoreProperNounsLabel(),
+                                                    wxPG_BOOL_USE_CHECKBOX, true);
         m_grammarPropertyGrid->SetPropertyHelpString(
             GetIgnoreProperNounsLabel(),
             _(L"Check this to not spell check proper nouns. This is useful for excluding names "
-               "and places that the spell checker may not recognize."));
+              "and places that the spell checker may not recognize."));
 
         m_grammarPropertyGrid->Append(
             new wxBoolProperty(GetIgnoreUppercasedWordsLabel(), wxPG_LABEL,
-            (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->SpellCheckIsIgnoringUppercased() :
-                wxGetApp().GetAppOptions().SpellCheckIsIgnoringUppercased())));
-        m_grammarPropertyGrid->SetPropertyAttribute(
-            GetIgnoreUppercasedWordsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                               (m_readabilityProjectDoc ?
+                                    m_readabilityProjectDoc->SpellCheckIsIgnoringUppercased() :
+                                    wxGetApp().GetAppOptions().SpellCheckIsIgnoringUppercased())));
+        m_grammarPropertyGrid->SetPropertyAttribute(GetIgnoreUppercasedWordsLabel(),
+                                                    wxPG_BOOL_USE_CHECKBOX, true);
         m_grammarPropertyGrid->SetPropertyHelpString(
-            GetIgnoreUppercasedWordsLabel(),
-            _(L"Check this to not spell check uppercased words "
-               "(e.g., \"FORTRAN\" or \"S.C.U.B.A.\")."));
+            GetIgnoreUppercasedWordsLabel(), _(L"Check this to not spell check uppercased words "
+                                               "(e.g., \"FORTRAN\" or \"S.C.U.B.A.\")."));
 
-        m_grammarPropertyGrid->Append(
-            new wxBoolProperty(GetIgnoreNumeralsLabel(), wxPG_LABEL,
-            (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->SpellCheckIsIgnoringNumerals() :
-                wxGetApp().GetAppOptions().SpellCheckIsIgnoringNumerals())));
-        m_grammarPropertyGrid->SetPropertyAttribute(
-            GetIgnoreNumeralsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+        m_grammarPropertyGrid->Append(new wxBoolProperty(
+            GetIgnoreNumeralsLabel(), wxPG_LABEL,
+            (m_readabilityProjectDoc ? m_readabilityProjectDoc->SpellCheckIsIgnoringNumerals() :
+                                       wxGetApp().GetAppOptions().SpellCheckIsIgnoringNumerals())));
+        m_grammarPropertyGrid->SetPropertyAttribute(GetIgnoreNumeralsLabel(),
+                                                    wxPG_BOOL_USE_CHECKBOX, true);
         m_grammarPropertyGrid->SetPropertyHelpString(
             GetIgnoreNumeralsLabel(),
             _(L"Check this to not spell check numerals. "
-               "Numerals are words that consist of 50% (or more) numbers."));
+              "Numerals are words that consist of 50% (or more) numbers."));
 
-        m_grammarPropertyGrid->Append(
-            new wxBoolProperty(GetIgnoreFileAddressesLabel(), wxPG_LABEL,
+        m_grammarPropertyGrid->Append(new wxBoolProperty(
+            GetIgnoreFileAddressesLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->SpellCheckIsIgnoringFileAddresses() :
-                wxGetApp().GetAppOptions().SpellCheckIsIgnoringFileAddresses())));
-        m_grammarPropertyGrid->SetPropertyAttribute(
-            GetIgnoreFileAddressesLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                 m_readabilityProjectDoc->SpellCheckIsIgnoringFileAddresses() :
+                 wxGetApp().GetAppOptions().SpellCheckIsIgnoringFileAddresses())));
+        m_grammarPropertyGrid->SetPropertyAttribute(GetIgnoreFileAddressesLabel(),
+                                                    wxPG_BOOL_USE_CHECKBOX, true);
         m_grammarPropertyGrid->SetPropertyHelpString(
             GetIgnoreFileAddressesLabel(),
             _(L"Check this to not spell check file paths and website addresses."));
 
-        m_grammarPropertyGrid->Append(
-            new wxBoolProperty(GetIgnoreProgrammerCodeLabel(), wxPG_LABEL,
+        m_grammarPropertyGrid->Append(new wxBoolProperty(
+            GetIgnoreProgrammerCodeLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->SpellCheckIsIgnoringProgrammerCode() :
-                wxGetApp().GetAppOptions().SpellCheckIsIgnoringProgrammerCode())));
-        m_grammarPropertyGrid->SetPropertyAttribute(
-            GetIgnoreProgrammerCodeLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                 m_readabilityProjectDoc->SpellCheckIsIgnoringProgrammerCode() :
+                 wxGetApp().GetAppOptions().SpellCheckIsIgnoringProgrammerCode())));
+        m_grammarPropertyGrid->SetPropertyAttribute(GetIgnoreProgrammerCodeLabel(),
+                                                    wxPG_BOOL_USE_CHECKBOX, true);
         m_grammarPropertyGrid->SetPropertyHelpString(
             GetIgnoreProgrammerCodeLabel(),
             _(L"Check this to not spell check words with mixed upper and lower case words. "
-               "This is useful for excluding programming syntax which may appear "
-               "in computer-related documents."));
+              "This is useful for excluding programming syntax which may appear "
+              "in computer-related documents."));
 
-        m_grammarPropertyGrid->Append(
-            new wxBoolProperty(GetAllowColloquialismsLabel(), wxPG_LABEL,
+        m_grammarPropertyGrid->Append(new wxBoolProperty(
+            GetAllowColloquialismsLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->SpellCheckIsAllowingColloquialisms() :
-                wxGetApp().GetAppOptions().SpellCheckIsAllowingColloquialisms())));
-        m_grammarPropertyGrid->SetPropertyAttribute(
-            GetAllowColloquialismsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                 m_readabilityProjectDoc->SpellCheckIsAllowingColloquialisms() :
+                 wxGetApp().GetAppOptions().SpellCheckIsAllowingColloquialisms())));
+        m_grammarPropertyGrid->SetPropertyAttribute(GetAllowColloquialismsLabel(),
+                                                    wxPG_BOOL_USE_CHECKBOX, true);
         m_grammarPropertyGrid->SetPropertyHelpString(
-            GetAllowColloquialismsLabel(),
-            _(L"Check this to allow colloquialisms, such as \"ing\" "
-               "at the end of a word being replaced with \"in'\"."));
+            GetAllowColloquialismsLabel(), _(L"Check this to allow colloquialisms, such as \"ing\" "
+                                             "at the end of a word being replaced with \"in'\"."));
 
-        m_grammarPropertyGrid->Append(
-            new wxBoolProperty(GetIgnoreSocialMediaLabel(), wxPG_LABEL,
+        m_grammarPropertyGrid->Append(new wxBoolProperty(
+            GetIgnoreSocialMediaLabel(), wxPG_LABEL,
             (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->SpellCheckIsIgnoringSocialMediaTags() :
-                wxGetApp().GetAppOptions().SpellCheckIsIgnoringSocialMediaTags())));
-        m_grammarPropertyGrid->SetPropertyAttribute(
-            GetIgnoreSocialMediaLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                 m_readabilityProjectDoc->SpellCheckIsIgnoringSocialMediaTags() :
+                 wxGetApp().GetAppOptions().SpellCheckIsIgnoringSocialMediaTags())));
+        m_grammarPropertyGrid->SetPropertyAttribute(GetIgnoreSocialMediaLabel(),
+                                                    wxPG_BOOL_USE_CHECKBOX, true);
         m_grammarPropertyGrid->SetPropertyHelpString(
             GetIgnoreSocialMediaLabel(),
             _(L"Check this to ignore hashtags, such as #ReadabilityFormulasRock."));
@@ -4834,13 +4861,13 @@ void ToolsOptionsDlg::CreateControls()
     // text window options page (these options only apply to general options and standard projects)
     if ((GetSectionsBeingShown() & TextSection) && !IsBatchProjectSettings())
         {
-        wxPanel* Panel = new wxPanel(m_sideBar, DOCUMENT_DISPLAY_GENERAL_PAGE, wxDefaultPosition, wxDefaultSize,
-                                     wxTAB_TRAVERSAL);
+        wxPanel* Panel = new wxPanel(m_sideBar, DOCUMENT_DISPLAY_GENERAL_PAGE, wxDefaultPosition,
+                                     wxDefaultSize, wxTAB_TRAVERSAL);
 
-        m_sideBar->AddPage(Panel, BaseProjectView::GetHighlightedReportsLabel(), DOCUMENT_DISPLAY_GENERAL_PAGE,
-            // if the only section being shown, then show this page
-            (GetSectionsBeingShown() == TextSection),
-            0);
+        m_sideBar->AddPage(Panel, BaseProjectView::GetHighlightedReportsLabel(),
+                           DOCUMENT_DISPLAY_GENERAL_PAGE,
+                           // if the only section being shown, then show this page
+                           (GetSectionsBeingShown() == TextSection), 0);
 
         wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
         Panel->SetSizer(panelSizer);
@@ -4864,67 +4891,70 @@ void ToolsOptionsDlg::CreateControls()
         wxBoxSizer* optionsIndentSizer = new wxBoxSizer(wxVERTICAL);
         panelSizer->Add(optionsIndentSizer, 0, wxLEFT, OPTION_INDENT_SIZE);
 
-        // highlight color for excluded text
+            // highlight color for excluded text
             {
             m_excludedHighlightColorButton =
                 new wxButton(Panel, ID_EXCLUDED_HIGHLIGHT_COLOR_BUTTON, _(L"Excluded text color"));
-            m_excludedHighlightColorButton->SetBitmap(ResourceManager::CreateColorIcon(m_excludedTextHighlightColor));
+            m_excludedHighlightColorButton->SetBitmap(
+                ResourceManager::CreateColorIcon(m_excludedTextHighlightColor));
             optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-            optionsIndentSizer->Add(m_excludedHighlightColorButton, 0, wxEXPAND);
+            optionsIndentSizer->Add(m_excludedHighlightColorButton, wxSizerFlags{}.Expand());
             }
 
-        // highlight color
+            // highlight color
             {
-            m_highlightColorButton =
-                new wxButton(Panel, ID_HIGHLIGHT_COLOR_BUTTON, _(L"Difficult words and sentences color"));
+            m_highlightColorButton = new wxButton(Panel, ID_HIGHLIGHT_COLOR_BUTTON,
+                                                  _(L"Difficult words and sentences color"));
             m_highlightColorButton->SetBitmap(ResourceManager::CreateColorIcon(m_highlightedColor));
             optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-            optionsIndentSizer->Add(m_highlightColorButton, 0, wxEXPAND);
+            optionsIndentSizer->Add(m_highlightColorButton, wxSizerFlags{}.Expand());
             }
 
-        // highlight color for grammar errors
+            // highlight color for grammar errors
             {
             m_duplicateWordHighlightColorButton =
                 new wxButton(Panel, ID_DUP_WORD_COLOR_BUTTON, _(L"Grammar errors color"));
             m_duplicateWordHighlightColorButton->SetBitmap(
                 ResourceManager::CreateColorIcon(m_duplicateWordHighlightColor));
             optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-            optionsIndentSizer->Add(m_duplicateWordHighlightColorButton, 0, wxEXPAND);
+            optionsIndentSizer->Add(m_duplicateWordHighlightColorButton, wxSizerFlags{}.Expand());
             }
 
-        // highlight color for wordy items
+            // highlight color for wordy items
             {
             m_wordyPhraseHighlightColorButton =
                 new wxButton(Panel, ID_WORDY_PHRASE_COLOR_BUTTON, _(L"Wordy items color"));
             m_wordyPhraseHighlightColorButton->SetBitmap(
                 ResourceManager::CreateColorIcon(m_wordyPhraseHighlightColor));
             optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-            optionsIndentSizer->Add(m_wordyPhraseHighlightColorButton, 0, wxEXPAND);
+            optionsIndentSizer->Add(m_wordyPhraseHighlightColorButton, wxSizerFlags{}.Expand());
             }
 
         wxBoxSizer* highlightSizer = new wxBoxSizer(wxHORIZONTAL);
         highlightSizer->Add(
-            new wxStaticText(Panel, wxID_STATIC, _(L"Highlight text by changing its:")), 0,
-                             wxALIGN_CENTER_VERTICAL|wxRIGHT, wxSizerFlags::GetDefaultBorder());
+            new wxStaticText(Panel, wxID_STATIC, _(L"Highlight text by changing its:")),
+            wxSizerFlags{}.Border(wxRIGHT).CenterVertical());
 
         wxArrayString highlightOptions;
         highlightOptions.Add(_(L"Background color"));
         highlightOptions.Add(_(L"Font color"));
-        wxChoice* highlightCombo = new wxChoice(Panel, ID_PARAGRAPH_PARSE,
-                                            wxDefaultPosition, wxDefaultSize, highlightOptions,
-                                            0, wxGenericValidator(&m_textHighlightMethod));
-        highlightSizer->Add(highlightCombo, 0, wxALIGN_CENTER_VERTICAL|wxRIGHT, wxSizerFlags::GetDefaultBorder());
+        wxChoice* highlightCombo =
+            new wxChoice(Panel, ID_PARAGRAPH_PARSE, wxDefaultPosition, wxDefaultSize,
+                         highlightOptions, 0, wxGenericValidator(&m_textHighlightMethod));
+        highlightSizer->Add(highlightCombo, wxSizerFlags{}.Border(wxRIGHT).CenterVertical());
         panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-        panelSizer->Add(highlightSizer, wxSizerFlags().Border(wxLEFT, OPTION_INDENT_SIZE));
+        panelSizer->Add(highlightSizer, wxSizerFlags{}.Border(wxLEFT, OPTION_INDENT_SIZE));
 
         // dolch tab
-        if (IsGeneralSettings() || m_projectLanguage == static_cast<int>(readability::test_language::english_test))
+        if (IsGeneralSettings() ||
+            m_projectLanguage == static_cast<int>(readability::test_language::english_test))
             {
-            Panel = new wxPanel(m_sideBar, DOCUMENT_DISPLAY_DOLCH_PAGE,
-                                wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+            Panel = new wxPanel(m_sideBar, DOCUMENT_DISPLAY_DOLCH_PAGE, wxDefaultPosition,
+                                wxDefaultSize, wxTAB_TRAVERSAL);
             panelSizer = new wxBoxSizer(wxVERTICAL);
             Panel->SetSizer(panelSizer);
-            m_sideBar->AddSubPage(Panel, GetDolchSightWordsLabel(), DOCUMENT_DISPLAY_DOLCH_PAGE, false, 9);
+            m_sideBar->AddSubPage(Panel, GetDolchSightWordsLabel(), DOCUMENT_DISPLAY_DOLCH_PAGE,
+                                  false, 9);
 
             CreateLabelHeader(Panel, panelSizer, _(L"Highlighting"), true);
             panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
@@ -4933,117 +4963,123 @@ void ToolsOptionsDlg::CreateControls()
             optionsIndentSizer = new wxBoxSizer(wxVERTICAL);
             panelSizer->Add(optionsIndentSizer, 0, wxLEFT, OPTION_INDENT_SIZE);
 
-            // Conjunctions color
+                // Conjunctions color
                 {
                 wxBoxSizer* rowSizer = new wxBoxSizer(wxHORIZONTAL);
                 optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-                optionsIndentSizer->Add(rowSizer, 0, wxEXPAND);
+                optionsIndentSizer->Add(rowSizer, wxSizerFlags{}.Expand());
 
                 m_DolchConjunctionsColorButton =
                     new wxBitmapButton(Panel, ID_DOLCH_CONJUNCTIONS_COLOR_BUTTON,
-                        ResourceManager::CreateColorIcon(m_dolchConjunctionsColor));
+                                       ResourceManager::CreateColorIcon(m_dolchConjunctionsColor));
                 // add them to the sizer
                 rowSizer->Add(new wxCheckBox(Panel, wxID_ANY, _(L"Dolch conjunctions color:"),
-                        wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_highlightDolchConjunctions) ),
-                    1, wxALIGN_CENTER_VERTICAL);
+                                             wxDefaultPosition, wxDefaultSize, 0,
+                                             wxGenericValidator(&m_highlightDolchConjunctions)),
+                              wxSizerFlags{ 1 }.CenterVertical());
                 rowSizer->Add(m_DolchConjunctionsColorButton,
-                    wxSizerFlags(0).Align(wxRight).Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+                              wxSizerFlags{}.Align(wxRight).Border(wxLEFT));
                 }
-            // Prepositions color
+                // Prepositions color
                 {
                 wxBoxSizer* rowSizer = new wxBoxSizer(wxHORIZONTAL);
                 optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-                optionsIndentSizer->Add(rowSizer, 0, wxEXPAND);
+                optionsIndentSizer->Add(rowSizer, wxSizerFlags{}.Expand());
 
                 m_DolchPrepositionsColorButton =
                     new wxBitmapButton(Panel, ID_DOLCH_PREPOSITIONS_COLOR_BUTTON,
-                        ResourceManager::CreateColorIcon(m_dolchPrepositionsColor));
+                                       ResourceManager::CreateColorIcon(m_dolchPrepositionsColor));
                 // add them to the sizer
                 rowSizer->Add(new wxCheckBox(Panel, wxID_ANY, _(L"Dolch prepositions color:"),
-                        wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_highlightDolchPrepositions) ),
-                    1, wxALIGN_CENTER_VERTICAL);
+                                             wxDefaultPosition, wxDefaultSize, 0,
+                                             wxGenericValidator(&m_highlightDolchPrepositions)),
+                              wxSizerFlags{ 1 }.CenterVertical());
                 rowSizer->Add(m_DolchPrepositionsColorButton,
-                    wxSizerFlags(0).Align(wxRight).Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+                              wxSizerFlags{}.Align(wxRight).Border(wxLEFT));
                 }
-            // pronouns
+                // pronouns
                 {
                 wxBoxSizer* rowSizer = new wxBoxSizer(wxHORIZONTAL);
                 optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-                optionsIndentSizer->Add(rowSizer, 0, wxEXPAND);
+                optionsIndentSizer->Add(rowSizer, wxSizerFlags{}.Expand());
 
                 m_DolchPronounsColorButton =
                     new wxBitmapButton(Panel, ID_DOLCH_PRONOUNS_COLOR_BUTTON,
-                        ResourceManager::CreateColorIcon(m_dolchPronounsColor));
+                                       ResourceManager::CreateColorIcon(m_dolchPronounsColor));
                 // add them to the sizer
                 rowSizer->Add(new wxCheckBox(Panel, wxID_ANY, _(L"Dolch pronouns color:"),
-                    wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_highlightDolchPronouns) ),
-                    1, wxALIGN_CENTER_VERTICAL);
+                                             wxDefaultPosition, wxDefaultSize, 0,
+                                             wxGenericValidator(&m_highlightDolchPronouns)),
+                              wxSizerFlags{ 1 }.CenterVertical());
                 rowSizer->Add(m_DolchPronounsColorButton,
-                    wxSizerFlags(0).Align(wxRight).Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+                              wxSizerFlags{}.Align(wxRight).Border(wxLEFT));
                 }
-            // adverbs
+                // adverbs
                 {
                 wxBoxSizer* rowSizer = new wxBoxSizer(wxHORIZONTAL);
                 optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-                optionsIndentSizer->Add(rowSizer, 0, wxEXPAND);
+                optionsIndentSizer->Add(rowSizer, wxSizerFlags{}.Expand());
 
                 m_DolchAdverbsColorButton =
                     new wxBitmapButton(Panel, ID_DOLCH_ADVERBS_COLOR_BUTTON,
-                        ResourceManager::CreateColorIcon(m_dolchAdverbsColor));
+                                       ResourceManager::CreateColorIcon(m_dolchAdverbsColor));
                 // add them to the sizer
                 rowSizer->Add(new wxCheckBox(Panel, wxID_ANY, _(L"Dolch adverbs color:"),
-                    wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_highlightDolchAdverbs) ),
-                    1, wxALIGN_CENTER_VERTICAL);
+                                             wxDefaultPosition, wxDefaultSize, 0,
+                                             wxGenericValidator(&m_highlightDolchAdverbs)),
+                              wxSizerFlags{ 1 }.CenterVertical());
                 rowSizer->Add(m_DolchAdverbsColorButton,
-                    wxSizerFlags(0).Align(wxRight).Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+                              wxSizerFlags{}.Align(wxRight).Border(wxLEFT));
                 }
-            // adjectives
+                // adjectives
                 {
                 wxBoxSizer* rowSizer = new wxBoxSizer(wxHORIZONTAL);
                 optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-                optionsIndentSizer->Add(rowSizer, 0, wxEXPAND);
+                optionsIndentSizer->Add(rowSizer, wxSizerFlags{}.Expand());
 
                 m_DolchAdjectivesColorButton =
                     new wxBitmapButton(Panel, ID_DOLCH_ADJECTIVES_COLOR_BUTTON,
-                        ResourceManager::CreateColorIcon(m_dolchAdjectivesColor));
+                                       ResourceManager::CreateColorIcon(m_dolchAdjectivesColor));
                 // add them to the sizer
                 rowSizer->Add(new wxCheckBox(Panel, wxID_ANY, _(L"Dolch adjectives color:"),
-                    wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_highlightDolchAdjectives) ),
-                    1, wxALIGN_CENTER_VERTICAL);
+                                             wxDefaultPosition, wxDefaultSize, 0,
+                                             wxGenericValidator(&m_highlightDolchAdjectives)),
+                              wxSizerFlags{ 1 }.CenterVertical());
                 rowSizer->Add(m_DolchAdjectivesColorButton,
-                    wxSizerFlags(0).Align(wxRight).Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+                              wxSizerFlags{}.Align(wxRight).Border(wxLEFT));
                 }
-            // verbs
+                // verbs
                 {
                 wxBoxSizer* rowSizer = new wxBoxSizer(wxHORIZONTAL);
                 optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-                optionsIndentSizer->Add(rowSizer, 0, wxEXPAND);
+                optionsIndentSizer->Add(rowSizer, wxSizerFlags{}.Expand());
 
                 m_DolchVerbsColorButton =
                     new wxBitmapButton(Panel, ID_DOLCH_VERBS_COLOR_BUTTON,
-                        ResourceManager::CreateColorIcon(m_dolchVerbsColor));
+                                       ResourceManager::CreateColorIcon(m_dolchVerbsColor));
                 // add them to the sizer
                 rowSizer->Add(new wxCheckBox(Panel, wxID_ANY, _(L"Dolch verbs color:"),
-                    wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_highlightDolchVerbs) ),
-                    1, wxALIGN_CENTER_VERTICAL);
+                                             wxDefaultPosition, wxDefaultSize, 0,
+                                             wxGenericValidator(&m_highlightDolchVerbs)),
+                              wxSizerFlags{ 1 }.CenterVertical());
                 rowSizer->Add(m_DolchVerbsColorButton,
-                    wxSizerFlags(0).Align(wxRight).Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+                              wxSizerFlags{}.Align(wxRight).Border(wxLEFT));
                 }
-            // noun color
+                // noun color
                 {
                 wxBoxSizer* rowSizer = new wxBoxSizer(wxHORIZONTAL);
                 optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-                optionsIndentSizer->Add(rowSizer, 0, wxEXPAND);
+                optionsIndentSizer->Add(rowSizer, wxSizerFlags{}.Expand());
 
                 m_DolchNounColorButton =
                     new wxBitmapButton(Panel, ID_DOLCH_NOUN_COLOR_BUTTON,
-                        ResourceManager::CreateColorIcon(m_dolchNounColor));
+                                       ResourceManager::CreateColorIcon(m_dolchNounColor));
                 // add them to the sizer
                 rowSizer->Add(new wxCheckBox(Panel, wxID_ANY, _(L"Dolch nouns color:"),
-                    wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_highlightDolchNouns) ),
-                    1, wxALIGN_CENTER_VERTICAL);
-                rowSizer->Add(m_DolchNounColorButton,
-                    wxSizerFlags(0).Align(wxRight).Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+                                             wxDefaultPosition, wxDefaultSize, 0,
+                                             wxGenericValidator(&m_highlightDolchNouns)),
+                              wxSizerFlags{ 1 }.CenterVertical());
+                rowSizer->Add(m_DolchNounColorButton, wxSizerFlags{}.Align(wxRight).Border(wxLEFT));
                 }
             }
         }
@@ -5051,35 +5087,39 @@ void ToolsOptionsDlg::CreateControls()
     // graphs options page
     CreateGraphSection();
 
-    mainSizer->Add(CreateButtonSizer(wxOK|wxCANCEL|wxHELP), 0, wxEXPAND|wxALL, wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(CreateButtonSizer(wxOK | wxCANCEL | wxHELP), wxSizerFlags{}.Expand().Border());
 
     if (IsGeneralSettings())
         {
         auto banner = new wxBannerWindow(this, wxTOP);
         banner->SetText(wxString::Format(_(L"%s Options"), wxGetApp().GetAppDisplayName()),
-            _(L"These options will only affect new projects.\n"
-               "To change an existing project, click \"Properties\" on the Home tab."));
-        banner->SetGradient(banner->GetBackgroundColour(), ColorContrast::ShadeOrTint(banner->GetBackgroundColour()));
+                        _(L"These options will only affect new projects.\n"
+                          "To change an existing project, click \"Properties\" on the Home tab."));
+        banner->SetGradient(banner->GetBackgroundColour(),
+                            ColorContrast::ShadeOrTint(banner->GetBackgroundColour()));
 
-        mainSizer->Insert(0, banner, wxSizerFlags().Expand());
+        mainSizer->Insert(0, banner, wxSizerFlags{}.Expand());
         }
     else
         {
-        wxString displayableProjectName = m_readabilityProjectDoc ?
-            m_readabilityProjectDoc->GetTitle() : wxString{};
+        wxString displayableProjectName =
+            m_readabilityProjectDoc ? m_readabilityProjectDoc->GetTitle() : wxString{};
         if (displayableProjectName.length() >= 50)
-            { displayableProjectName.Truncate(49).Append(static_cast<wchar_t>(8230)); }
+            {
+            displayableProjectName.Truncate(49).Append(static_cast<wchar_t>(8230));
+            }
 
         auto banner = new wxBannerWindow(this, wxTOP);
-        banner->SetText(_(L"Project Properties"),
-            wxString::Format(
-                _(L"These options only affect the current project (\"%s\").\n"
-                   "To change options for future projects, click "
-                   "\"Options\" on the \"Tools\" tab."),
-                displayableProjectName));
-        banner->SetGradient(banner->GetBackgroundColour(), ColorContrast::ShadeOrTint(banner->GetBackgroundColour()));
+        banner->SetText(
+            _(L"Project Properties"),
+            wxString::Format(_(L"These options only affect the current project (\"%s\").\n"
+                               "To change options for future projects, click "
+                               "\"Options\" on the \"Tools\" tab."),
+                             displayableProjectName));
+        banner->SetGradient(banner->GetBackgroundColour(),
+                            ColorContrast::ShadeOrTint(banner->GetBackgroundColour()));
 
-        mainSizer->Insert(0, banner, wxSizerFlags().Expand());
+        mainSizer->Insert(0, banner, wxSizerFlags{}.Expand());
         }
 
     SetSizerAndFit(mainSizer);
@@ -5087,32 +5127,54 @@ void ToolsOptionsDlg::CreateControls()
     // need to fit these columns after everything else was resized
     if (IsBatchProjectSettings() && GetFileList())
         {
-        GetFileList()->SetColumnWidth(0, GetFileList()->GetClientSize().GetWidth()*.75);
-        GetFileList()->SetColumnWidth(1, GetFileList()->GetClientSize().GetWidth()*.25);
+        GetFileList()->SetColumnWidth(0, GetFileList()->GetClientSize().GetWidth() * .75);
+        GetFileList()->SetColumnWidth(1, GetFileList()->GetClientSize().GetWidth() * .25);
         }
 
     if (m_readabilityTestsPropertyGrid)
-        { m_readabilityTestsPropertyGrid->FitColumns(); }
+        {
+        m_readabilityTestsPropertyGrid->FitColumns();
+        }
     if (m_gradeLevelPropertyGrid)
-        { m_gradeLevelPropertyGrid->FitColumns(); }
+        {
+        m_gradeLevelPropertyGrid->FitColumns();
+        }
     if (m_grammarPropertyGrid)
-        { m_grammarPropertyGrid->FitColumns(); }
+        {
+        m_grammarPropertyGrid->FitColumns();
+        }
     if (m_wordsBreakdownPropertyGrid)
-        { m_wordsBreakdownPropertyGrid->FitColumns(); }
+        {
+        m_wordsBreakdownPropertyGrid->FitColumns();
+        }
     if (m_sentencesBreakdownPropertyGrid)
-        { m_sentencesBreakdownPropertyGrid->FitColumns(); }
+        {
+        m_sentencesBreakdownPropertyGrid->FitColumns();
+        }
     if (m_statisticsPropertyGrid)
-        { m_statisticsPropertyGrid->FitColumns(); }
+        {
+        m_statisticsPropertyGrid->FitColumns();
+        }
     if (m_generalGraphPropertyGrid)
-        { m_generalGraphPropertyGrid->FitColumns(); }
+        {
+        m_generalGraphPropertyGrid->FitColumns();
+        }
     if (m_readabilityGraphPropertyGrid)
-        { m_readabilityGraphPropertyGrid->FitColumns(); }
+        {
+        m_readabilityGraphPropertyGrid->FitColumns();
+        }
     if (m_barChartPropertyGrid)
-        { m_barChartPropertyGrid->FitColumns(); }
+        {
+        m_barChartPropertyGrid->FitColumns();
+        }
     if (m_histogramPropertyGrid)
-        { m_histogramPropertyGrid->FitColumns(); }
+        {
+        m_histogramPropertyGrid->FitColumns();
+        }
     if (m_boxPlotsPropertyGrid)
-        { m_boxPlotsPropertyGrid->FitColumns(); }
+        {
+        m_boxPlotsPropertyGrid->FitColumns();
+        }
     }
 
 //-------------------------------------------------------------
@@ -5120,34 +5182,35 @@ void ToolsOptionsDlg::CreateGraphSection()
     {
     if (GetSectionsBeingShown() & GraphsSection)
         {
-        wxPanel* GraphGeneralPage =
-            new wxPanel(m_sideBar, GRAPH_GENERAL_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+        wxPanel* GraphGeneralPage = new wxPanel(m_sideBar, GRAPH_GENERAL_PAGE, wxDefaultPosition,
+                                                wxDefaultSize, wxTAB_TRAVERSAL);
         m_sideBar->AddPage(GraphGeneralPage, GetGraphsLabel(), GRAPH_GENERAL_PAGE,
-            // if the only section being shown, then show this page
-            (GetSectionsBeingShown() == GraphsSection),
-            7);
+                           // if the only section being shown, then show this page
+                           (GetSectionsBeingShown() == GraphsSection), 7);
 
-        // General tab
-        //-----------
+            // General tab
+            //-----------
             {
             wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
             GraphGeneralPage->SetSizer(panelSizer);
-            m_sideBar->AddSubPage(GraphGeneralPage, GetGeneralLabel(), GRAPH_GENERAL_PAGE, false, 9);
+            m_sideBar->AddSubPage(GraphGeneralPage, GetGeneralLabel(), GRAPH_GENERAL_PAGE, false,
+                                  9);
 
-            wxPropertyGridManager* pgMan =
-                new wxPropertyGridManager(GraphGeneralPage, ID_GRAPH_OPTIONS_PROPERTYGRID,
-                                          wxDefaultPosition, wxDefaultSize,
-                                          wxPG_BOLD_MODIFIED|wxPG_DESCRIPTION|wxPGMAN_DEFAULT_STYLE);
+            wxPropertyGridManager* pgMan = new wxPropertyGridManager(
+                GraphGeneralPage, ID_GRAPH_OPTIONS_PROPERTYGRID, wxDefaultPosition, wxDefaultSize,
+                wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
             m_generalGraphPropertyGrid = pgMan->AddPage();
 
             wxPGChoices graphColorSchemes;
             for (const auto& colorScheme : wxGetApp().GetGraphColorSchemeMap())
-                { graphColorSchemes.Add(colorScheme.first); }
+                {
+                graphColorSchemes.Add(colorScheme.first);
+                }
             // do a reverse lookup to map internal "coffeeshop" to UI's "Coffee Shop"
             wxString defaultColorSchemeValue{ _("Campfire") };
-            const wxString systemColorSchemeValue = (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetGraphColorScheme() :
-                wxGetApp().GetAppOptions().GetGraphColorScheme());
+            const wxString systemColorSchemeValue =
+                (m_readabilityProjectDoc ? m_readabilityProjectDoc->GetGraphColorScheme() :
+                                           wxGetApp().GetAppOptions().GetGraphColorScheme());
             for (const auto& theme : wxGetApp().GetGraphColorSchemeMap())
                 {
                 if (systemColorSchemeValue.CmpNoCase(theme.second) == 0)
@@ -5161,69 +5224,70 @@ void ToolsOptionsDlg::CreateGraphSection()
             colorSchemeProp->SetValue(defaultColorSchemeValue);
             colorSchemeProp->SetHelpString(
                 _(L"Select from here the color scheme to apply to pie charts, "
-                   "word clouds, and grouped histograms."));
+                  "word clouds, and grouped histograms."));
 
-            m_generalGraphPropertyGrid->Append(new wxPropertyCategory(GetGraphBackgroundLabel()) );
+            m_generalGraphPropertyGrid->Append(new wxPropertyCategory(GetGraphBackgroundLabel()));
             m_generalGraphPropertyGrid->SetPropertyHelpString(
                 GetGraphBackgroundLabel(),
                 _(L"The options in this section customize the backgrounds of the graphs."));
             // color
-            auto backgroundColorProp = m_generalGraphPropertyGrid->Append(
-                new wxColourProperty(GetColorLabel(), GetBackgroundColorLabel(),
-                    (m_readabilityProjectDoc ?
-                        m_readabilityProjectDoc->GetBackGroundColor() :
-                        wxGetApp().GetAppOptions().GetBackGroundColor())));
+            auto backgroundColorProp = m_generalGraphPropertyGrid->Append(new wxColourProperty(
+                GetColorLabel(), GetBackgroundColorLabel(),
+                (m_readabilityProjectDoc ? m_readabilityProjectDoc->GetBackGroundColor() :
+                                           wxGetApp().GetAppOptions().GetBackGroundColor())));
             backgroundColorProp->SetHelpString(
                 _(L"Selects the color for the graphs' background. "
-                   "Note that if you are displaying an image, then the image will be "
-                   "shown on top of this color."));
+                  "Note that if you are displaying an image, then the image will be "
+                  "shown on top of this color."));
             // color fade
-            auto colorFadeProp = backgroundColorProp->AppendChild(
-                new wxBoolProperty(GetApplyFadeLabel(), wxPG_LABEL,
+            auto colorFadeProp = backgroundColorProp->AppendChild(new wxBoolProperty(
+                GetApplyFadeLabel(), wxPG_LABEL,
                 (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->GetGraphBackGroundLinearGradient() :
-                    wxGetApp().GetAppOptions().GetGraphBackGroundLinearGradient())));
+                     m_readabilityProjectDoc->GetGraphBackGroundLinearGradient() :
+                     wxGetApp().GetAppOptions().GetGraphBackGroundLinearGradient())));
             colorFadeProp->SetAttribute(wxPG_BOOL_USE_CHECKBOX, true);
             colorFadeProp->SetHelpString(
                 _(L"Check this to apply a downward fade to the background color of your graphs. "
-                   "The background of your graphs will fade (top-to-bottom) starting with the "
-                   "color that you have selected into white."));
+                  "The background of your graphs will fade (top-to-bottom) starting with the "
+                  "color that you have selected into white."));
 
             // plot area
-            m_generalGraphPropertyGrid->Append(new wxPropertyCategory(GetPlotAreaBackgroundLabel()) );
+            m_generalGraphPropertyGrid->Append(
+                new wxPropertyCategory(GetPlotAreaBackgroundLabel()));
             m_generalGraphPropertyGrid->SetPropertyHelpString(
                 GetPlotAreaBackgroundLabel(),
                 _(L"The options in this section customize the plot area "
-                   "backgrounds of the graphs."));
+                  "backgrounds of the graphs."));
 
             // color
-            auto plotColor = new wxColourProperty(GetColorLabel(), wxPG_LABEL,
-                (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->GetPlotBackGroundColor() :
-                    wxGetApp().GetAppOptions().GetPlotBackGroundColor()));
+            auto plotColor = new wxColourProperty(
+                GetColorLabel(), wxPG_LABEL,
+                (m_readabilityProjectDoc ? m_readabilityProjectDoc->GetPlotBackGroundColor() :
+                                           wxGetApp().GetAppOptions().GetPlotBackGroundColor()));
             plotColor->SetHelpString(
                 _(L"Selects the color for the plot area background of the graphs."));
             // opacity
-            auto plotColorOpacity = plotColor->AppendChild(new wxIntProperty(GetOpacityLabel(), wxPG_LABEL,
+            auto plotColorOpacity = plotColor->AppendChild(new wxIntProperty(
+                GetOpacityLabel(), wxPG_LABEL,
                 (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->GetPlotBackGroundColorOpacity() :
-                    wxGetApp().GetAppOptions().GetPlotBackGroundColorOpacity())) );
+                     m_readabilityProjectDoc->GetPlotBackGroundColorOpacity() :
+                     wxGetApp().GetAppOptions().GetPlotBackGroundColorOpacity())));
             plotColorOpacity->SetEditor(wxPGEditor_SpinCtrl);
             plotColorOpacity->SetAttribute(wxPG_ATTR_MIN, wxALPHA_TRANSPARENT);
             plotColorOpacity->SetAttribute(wxPG_ATTR_MAX, wxALPHA_OPAQUE);
             plotColorOpacity->SetHelpString(
                 _(L"Sets the transparency of the plot background color. "
-                   "A value of 255 will set the background to be fully opaque, "
-                   "whereas 0 will set the background to be transparent."));
+                  "A value of 255 will set the background to be fully opaque, "
+                  "whereas 0 will set the background to be transparent."));
 
             m_generalGraphPropertyGrid->Append(plotColor);
 
             // image
-            wxImageFileProperty* backgroundImage =
-                new wxImageFileProperty(GetImageLabel(), wxPG_LABEL,
+            wxImageFileProperty* backgroundImage = new wxImageFileProperty(
+                GetImageLabel(), wxPG_LABEL,
                 (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->GetPlotBackGroundImagePath() :
-                    wxGetApp().GetAppOptions().GetPlotBackGroundImagePath()));
+                     m_readabilityProjectDoc->GetPlotBackGroundImagePath() :
+                     wxGetApp().GetAppOptions().GetPlotBackGroundImagePath()));
             backgroundImage->SetAttribute(wxPG_FILE_WILDCARD,
                                           Wisteria::GraphItems::Image::GetImageFileFilter());
             backgroundImage->SetAttribute(wxPG_DIALOG_TITLE, _(L"Select Plot Background Image"));
@@ -5239,93 +5303,93 @@ void ToolsOptionsDlg::CreateGraphSection()
             imgEffects.Add(_(L"Sepia"));
             imgEffects.Add(_(L"Frosted glass"));
             imgEffects.Add(_(L"Oil painting"));
-            auto imgEffectProp = backgroundImage->AppendChild(
-                new wxEnumProperty(GetEffectLabel(), wxPG_LABEL, imgEffects,
-                    (m_readabilityProjectDoc ?
-                        static_cast<int>(m_readabilityProjectDoc->GetPlotBackGroundImageEffect()) :
-                        static_cast<int>(wxGetApp().GetAppOptions().GetPlotBackGroundImageEffect()))));
-            imgEffectProp->SetHelpString(
-                _(L"Applies an effect to the plot background image."));
+            auto imgEffectProp = backgroundImage->AppendChild(new wxEnumProperty(
+                GetEffectLabel(), wxPG_LABEL, imgEffects,
+                (m_readabilityProjectDoc ?
+                     static_cast<int>(m_readabilityProjectDoc->GetPlotBackGroundImageEffect()) :
+                     static_cast<int>(wxGetApp().GetAppOptions().GetPlotBackGroundImageEffect()))));
+            imgEffectProp->SetHelpString(_(L"Applies an effect to the plot background image."));
 
             // image opacity
-            auto imgOpacityProp = backgroundImage->AppendChild(
-                new wxIntProperty(GetOpacityLabel(), wxPG_LABEL,
+            auto imgOpacityProp = backgroundImage->AppendChild(new wxIntProperty(
+                GetOpacityLabel(), wxPG_LABEL,
                 (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->GetPlotBackGroundImageOpacity() :
-                    wxGetApp().GetAppOptions().GetPlotBackGroundImageOpacity())) );
+                     m_readabilityProjectDoc->GetPlotBackGroundImageOpacity() :
+                     wxGetApp().GetAppOptions().GetPlotBackGroundImageOpacity())));
             imgOpacityProp->SetEditor(wxPGEditor_SpinCtrl);
             imgOpacityProp->SetAttribute(wxPG_ATTR_MIN, wxALPHA_TRANSPARENT);
             imgOpacityProp->SetAttribute(wxPG_ATTR_MAX, wxALPHA_OPAQUE);
             imgOpacityProp->SetHelpString(
                 _(L"Sets the transparency of the plot background image. "
-                   "A value of 255 will set the image to be fully opaque, whereas 0 will set "
-                   "the image to be transparent."));
+                  "A value of 255 will set the image to be fully opaque, whereas 0 will set "
+                  "the image to be transparent."));
 
             // image fit
             wxPGChoices imgFits;
             imgFits.Add(_(L"Crop & center"));
             imgFits.Add(_(L"Shrink to fit"));
-            auto imgFitProp = backgroundImage->AppendChild(
-                new wxEnumProperty(GetFitLabel(), wxPG_LABEL, imgFits,
-                    (m_readabilityProjectDoc ?
-                        static_cast<int>(m_readabilityProjectDoc->GetPlotBackGroundImageFit()) :
-                        static_cast<int>(wxGetApp().GetAppOptions().GetPlotBackGroundImageFit()))));
-            imgFitProp->SetHelpString(
-                _(L"How to fit the image within the plot background."));
+            auto imgFitProp = backgroundImage->AppendChild(new wxEnumProperty(
+                GetFitLabel(), wxPG_LABEL, imgFits,
+                (m_readabilityProjectDoc ?
+                     static_cast<int>(m_readabilityProjectDoc->GetPlotBackGroundImageFit()) :
+                     static_cast<int>(wxGetApp().GetAppOptions().GetPlotBackGroundImageFit()))));
+            imgFitProp->SetHelpString(_(L"How to fit the image within the plot background."));
 
             m_generalGraphPropertyGrid->Append(backgroundImage);
             // set the default folder to the global image folder if no image provided
             if (m_generalGraphPropertyGrid->GetPropertyValueAsString(GetImageLabel()).empty())
                 {
-                backgroundImage->SetAttribute(wxPG_FILE_INITIAL_PATH, wxGetApp().GetAppOptions().GetImagePath());
+                backgroundImage->SetAttribute(wxPG_FILE_INITIAL_PATH,
+                                              wxGetApp().GetAppOptions().GetImagePath());
                 }
 
-            m_generalGraphPropertyGrid->Append(new wxPropertyCategory(GetWatermarksLogosLabel()) );
+            m_generalGraphPropertyGrid->Append(new wxPropertyCategory(GetWatermarksLogosLabel()));
             m_generalGraphPropertyGrid->SetPropertyHelpString(
                 GetWatermarksLogosLabel(),
                 _(L"The options in this section customize the watermarks and "
-                   "logo images of the graphs."));
+                  "logo images of the graphs."));
             // watermark
-            m_generalGraphPropertyGrid->Append(new wxStringProperty(GetWatermarkLabel(), wxPG_LABEL,
-                (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->GetWatermark() :
-                    wxGetApp().GetAppOptions().GetWatermark())));
-            m_generalGraphPropertyGrid->SetPropertyAttribute(GetWatermarkLabel(), wxPG_ATTR_HINT, _(L"Enter text"));
+            m_generalGraphPropertyGrid->Append(new wxStringProperty(
+                GetWatermarkLabel(), wxPG_LABEL,
+                (m_readabilityProjectDoc ? m_readabilityProjectDoc->GetWatermark() :
+                                           wxGetApp().GetAppOptions().GetWatermark())));
+            m_generalGraphPropertyGrid->SetPropertyAttribute(GetWatermarkLabel(), wxPG_ATTR_HINT,
+                                                             _(L"Enter text"));
             m_generalGraphPropertyGrid->SetPropertyHelpString(
                 GetWatermarkLabel(),
                 _(L"Enter a label to be stamped across your graphs into this field. "
-                   "This label will be stamped diagonally, top left-hand corner to "
-                   "bottom right-hand corner."));
+                  "This label will be stamped diagonally, top left-hand corner to "
+                  "bottom right-hand corner."));
             // logo
-            wxImageFileProperty* graphLogo = new wxImageFileProperty(GetLogoImageLabel(), wxPG_LABEL,
-                (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->GetWatermarkLogoPath() :
-                    wxGetApp().GetAppOptions().GetWatermarkLogo()));
+            wxImageFileProperty* graphLogo = new wxImageFileProperty(
+                GetLogoImageLabel(), wxPG_LABEL,
+                (m_readabilityProjectDoc ? m_readabilityProjectDoc->GetWatermarkLogoPath() :
+                                           wxGetApp().GetAppOptions().GetWatermarkLogo()));
             graphLogo->SetAttribute(wxPG_FILE_WILDCARD,
                                     Wisteria::GraphItems::Image::GetImageFileFilter());
-            graphLogo->SetAttribute(wxPG_DIALOG_TITLE,_(L"Select Logo Image"));
+            graphLogo->SetAttribute(wxPG_DIALOG_TITLE, _(L"Select Logo Image"));
             graphLogo->SetAttribute(wxPG_ATTR_HINT, _(L"Select an image"));
             m_generalGraphPropertyGrid->Append(graphLogo);
             // set the default folder to the global image folder if no image provided
             if (m_generalGraphPropertyGrid->GetPropertyValueAsString(GetLogoImageLabel()).empty())
                 {
-                graphLogo->SetAttribute(wxPG_FILE_INITIAL_PATH, wxGetApp().GetAppOptions().GetImagePath());
+                graphLogo->SetAttribute(wxPG_FILE_INITIAL_PATH,
+                                        wxGetApp().GetAppOptions().GetImagePath());
                 }
             m_generalGraphPropertyGrid->SetPropertyHelpString(
                 GetLogoImageLabel(),
                 _(L"Enter the path to the image file used as your graphs' logo into this field. "
-                   "The logo will be displayed in the lower right-hand corner of each graph."));
+                  "The logo will be displayed in the lower right-hand corner of each graph."));
 
-            m_generalGraphPropertyGrid->Append(new wxPropertyCategory(GetEffectsLabel()) );
+            m_generalGraphPropertyGrid->Append(new wxPropertyCategory(GetEffectsLabel()));
             m_generalGraphPropertyGrid->SetPropertyHelpString(
                 GetEffectsLabel(),
                 _(L"The options in this section customize various visual effects of the graphs."));
             // stipple image
-            wxImageFileProperty* customBrushProp =
-                new wxImageFileProperty(GetStippleImageLabel(), wxPG_LABEL,
-                (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->GetStippleImagePath() :
-                    wxGetApp().GetAppOptions().GetStippleImagePath()));
+            wxImageFileProperty* customBrushProp = new wxImageFileProperty(
+                GetStippleImageLabel(), wxPG_LABEL,
+                (m_readabilityProjectDoc ? m_readabilityProjectDoc->GetStippleImagePath() :
+                                           wxGetApp().GetAppOptions().GetStippleImagePath()));
             customBrushProp->SetAttribute(wxPG_FILE_WILDCARD,
                                           Wisteria::GraphItems::Image::GetImageFileFilter());
             customBrushProp->SetAttribute(wxPG_DIALOG_TITLE, _(L"Select Stipple Image"));
@@ -5334,21 +5398,25 @@ void ToolsOptionsDlg::CreateGraphSection()
             m_generalGraphPropertyGrid->SetPropertyHelpString(
                 GetStippleImageLabel(),
                 _(L"Enter into this field the file path to the image used for a stipple brush. "
-                   "A stipple brush can be used to draw stacked images across bars and boxes"));
+                  "A stipple brush can be used to draw stacked images across bars and boxes"));
             // set the default folder to the global image folder if no image is provided
-            if (m_generalGraphPropertyGrid->GetPropertyValueAsString(GetStippleImageLabel()).empty())
+            if (m_generalGraphPropertyGrid->GetPropertyValueAsString(GetStippleImageLabel())
+                    .empty())
                 {
-                customBrushProp->SetAttribute(wxPG_FILE_INITIAL_PATH, wxGetApp().GetAppOptions().GetImagePath());
+                customBrushProp->SetAttribute(wxPG_FILE_INITIAL_PATH,
+                                              wxGetApp().GetAppOptions().GetImagePath());
                 }
 
             wxPGChoices shapes;
             for (const auto& sh : wxGetApp().GetShapeMap())
-                { shapes.Add(sh.first); }
+                {
+                shapes.Add(sh.first);
+                }
             // do a reverse lookup to map internal "fall-leaf" to UI's "Fall leaf"
             wxString defaultValue{ _("Book") };
-            const wxString systemValue = (m_readabilityProjectDoc ?
-                m_readabilityProjectDoc->GetStippleShape() :
-                wxGetApp().GetAppOptions().GetStippleShape());
+            const wxString systemValue =
+                (m_readabilityProjectDoc ? m_readabilityProjectDoc->GetStippleShape() :
+                                           wxGetApp().GetAppOptions().GetStippleShape());
             for (const auto& sh : wxGetApp().GetShapeMap())
                 {
                 if (systemValue.CmpNoCase(sh.second) == 0)
@@ -5362,66 +5430,63 @@ void ToolsOptionsDlg::CreateGraphSection()
             shapesProp->SetValue(defaultValue);
             shapesProp->SetHelpString(
                 _(L"Select from here which shape to use for a stipple brush. "
-                   "A stipple brush can be used to draw stacked shape across bars and boxes"));
+                  "A stipple brush can be used to draw stacked shape across bars and boxes"));
 
-            auto shapeColorProp = shapesProp->AppendChild(
-                new wxColourProperty(GetColorLabel(), wxPG_LABEL,
-                    (m_readabilityProjectDoc ?
-                        m_readabilityProjectDoc->GetStippleShapeColor() :
-                        wxGetApp().GetAppOptions().GetStippleShapeColor())));
+            auto shapeColorProp = shapesProp->AppendChild(new wxColourProperty(
+                GetColorLabel(), wxPG_LABEL,
+                (m_readabilityProjectDoc ? m_readabilityProjectDoc->GetStippleShapeColor() :
+                                           wxGetApp().GetAppOptions().GetStippleShapeColor())));
             shapeColorProp->SetHelpString(_(L"Selects the color used for certain stipple shapes."));
 
             // common image
-            wxImageFileProperty* commonImageProp =
-                new wxImageFileProperty(GetCommonImageLabel(), wxPG_LABEL,
-                (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->GetGraphCommonImagePath() :
-                    wxGetApp().GetAppOptions().GetGraphCommonImagePath()));
+            wxImageFileProperty* commonImageProp = new wxImageFileProperty(
+                GetCommonImageLabel(), wxPG_LABEL,
+                (m_readabilityProjectDoc ? m_readabilityProjectDoc->GetGraphCommonImagePath() :
+                                           wxGetApp().GetAppOptions().GetGraphCommonImagePath()));
             commonImageProp->SetAttribute(wxPG_FILE_WILDCARD,
                                           Wisteria::GraphItems::Image::GetImageFileFilter());
             commonImageProp->SetAttribute(wxPG_DIALOG_TITLE, _(L"Select Common Image"));
             commonImageProp->SetAttribute(wxPG_ATTR_HINT, _(L"Select an image"));
             m_generalGraphPropertyGrid->Append(commonImageProp);
             m_generalGraphPropertyGrid->SetPropertyHelpString(
-                GetCommonImageLabel(),
-                _(L"Enter into this field the file path to the common image "
-                   "used used to draw across all bars/boxes."));
+                GetCommonImageLabel(), _(L"Enter into this field the file path to the common image "
+                                         "used used to draw across all bars/boxes."));
             // set the default folder to the global image folder if no image is provided
             if (m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCommonImageLabel()).empty())
                 {
-                commonImageProp->SetAttribute(wxPG_FILE_INITIAL_PATH, wxGetApp().GetAppOptions().GetImagePath());
+                commonImageProp->SetAttribute(wxPG_FILE_INITIAL_PATH,
+                                              wxGetApp().GetAppOptions().GetImagePath());
                 }
 
             // drop shadows
-            m_generalGraphPropertyGrid->Append(
-                new wxBoolProperty(GetDisplayDropShadowsLabel(), wxPG_LABEL,
-                (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->IsDisplayingDropShadows() :
-                    wxGetApp().GetAppOptions().IsDisplayingDropShadows())));
-            m_generalGraphPropertyGrid->SetPropertyAttribute(
-                GetDisplayDropShadowsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+            m_generalGraphPropertyGrid->Append(new wxBoolProperty(
+                GetDisplayDropShadowsLabel(), wxPG_LABEL,
+                (m_readabilityProjectDoc ? m_readabilityProjectDoc->IsDisplayingDropShadows() :
+                                           wxGetApp().GetAppOptions().IsDisplayingDropShadows())));
+            m_generalGraphPropertyGrid->SetPropertyAttribute(GetDisplayDropShadowsLabel(),
+                                                             wxPG_BOOL_USE_CHECKBOX, true);
             m_generalGraphPropertyGrid->SetPropertyHelpString(
                 GetDisplayDropShadowsLabel(),
                 _(L"Check this to include shadows underneath items such as boxes, bars, "
-                   "and labels. Unchecking this option will give your graphs a more \"flat\" look."));
+                  "and labels. Unchecking this option will give your graphs a more \"flat\" "
+                  "look."));
 
-            auto showcaseOption = m_generalGraphPropertyGrid->Append(
-                new wxBoolProperty(GetShowcaseKeyItemsLabel(), wxPG_LABEL,
-                (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->IsShowcasingKeyItems() :
+            auto showcaseOption = m_generalGraphPropertyGrid->Append(new wxBoolProperty(
+                GetShowcaseKeyItemsLabel(), wxPG_LABEL,
+                (m_readabilityProjectDoc ? m_readabilityProjectDoc->IsShowcasingKeyItems() :
                                            wxGetApp().GetAppOptions().IsShowcasingKeyItems())));
             showcaseOption->SetAttribute(wxPG_BOOL_USE_CHECKBOX, true);
             showcaseOption->SetHelpString(
                 _(L"Check this to draw attention to the complex (i.e., 3+ syllable) word groups "
-                   "on syllable histograms and pie charts (standard projects)."));
+                  "on syllable histograms and pie charts (standard projects)."));
 
             pgMan->SelectProperty(GetGraphBackgroundLabel());
 
             panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
             }
 
-        // Axes tab
-        //-----------
+            // Axes tab
+            //-----------
             {
             wxPanel* Panel = new wxPanel(m_sideBar, GRAPH_AXIS_PAGE, wxDefaultPosition,
                                          wxDefaultSize, wxTAB_TRAVERSAL);
@@ -5432,18 +5497,20 @@ void ToolsOptionsDlg::CreateGraphSection()
 
             CreateLabelHeader(Panel, panelSizer, _(L"Fonts:"), true);
             m_xAxisFontButton = new wxButton(Panel, ID_X_AXIS_FONT_BUTTON, _(L"X axis"));
-            m_xAxisFontButton->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/x-axis.svg"));
-            optionsSizer->Add(m_xAxisFontButton, 0, wxLEFT|wxEXPAND, wxSizerFlags::GetDefaultBorder()*2);
+            m_xAxisFontButton->SetBitmap(
+                wxGetApp().GetResourceManager().GetSVG(L"ribbon/x-axis.svg"));
+            optionsSizer->Add(m_xAxisFontButton, wxSizerFlags{}.Expand().DoubleBorder(wxLEFT));
 
             m_yAxisFontButton = new wxButton(Panel, ID_Y_AXIS_FONT_BUTTON, _(L"Y axis"));
-            m_yAxisFontButton->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/y-axis.svg"));
-            optionsSizer->Add(m_yAxisFontButton, 0, wxLEFT|wxEXPAND, wxSizerFlags::GetDefaultBorder()*2);
+            m_yAxisFontButton->SetBitmap(
+                wxGetApp().GetResourceManager().GetSVG(L"ribbon/y-axis.svg"));
+            optionsSizer->Add(m_yAxisFontButton, wxSizerFlags{}.Expand().DoubleBorder(wxLEFT));
 
             panelSizer->Add(optionsSizer);
             }
 
-        // Titles tab
-        //-----------
+            // Titles tab
+            //-----------
             {
             wxPanel* Panel = new wxPanel(m_sideBar, GRAPH_TITLES_PAGE, wxDefaultPosition,
                                          wxDefaultSize, wxTAB_TRAVERSAL);
@@ -5453,53 +5520,65 @@ void ToolsOptionsDlg::CreateGraphSection()
             m_sideBar->AddSubPage(Panel, GetTitlesLabel(), GRAPH_TITLES_PAGE, false, 9);
 
             CreateLabelHeader(Panel, panelSizer, _(L"Fonts:"), true);
-            m_graphTopTitleFontButton = new wxButton(Panel, ID_GRAPH_TOP_TITLE_FONT_BUTTON, _(L"Top titles"));
+            m_graphTopTitleFontButton =
+                new wxButton(Panel, ID_GRAPH_TOP_TITLE_FONT_BUTTON, _(L"Top titles"));
             m_graphTopTitleFontButton->SetBitmap(
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/top-titles.svg"));
-            optionsSizer->Add(m_graphTopTitleFontButton, 0, wxLEFT|wxEXPAND, wxSizerFlags::GetDefaultBorder()*2);
+            optionsSizer->Add(
+                m_graphTopTitleFontButton,
+                wxSizerFlags{}.Expand().DoubleBorder(wxLEFT));
 
-            m_graphBottomTitleFontButton = new wxButton(Panel, ID_GRAPH_BOTTOM_TITLE_FONT_BUTTON, _(L"Bottom titles"));
+            m_graphBottomTitleFontButton =
+                new wxButton(Panel, ID_GRAPH_BOTTOM_TITLE_FONT_BUTTON, _(L"Bottom titles"));
             m_graphBottomTitleFontButton->SetBitmap(
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/bottom-titles.svg"));
-            optionsSizer->Add(m_graphBottomTitleFontButton, 0, wxLEFT|wxEXPAND, wxSizerFlags::GetDefaultBorder()*2);
+            optionsSizer->Add(
+                m_graphBottomTitleFontButton,
+                wxSizerFlags{}.Expand().DoubleBorder(wxLEFT));
 
-            m_graphLeftTitleFontButton = new wxButton(Panel, ID_GRAPH_LEFT_TITLE_FONT_BUTTON, _(L"Left titles"));
+            m_graphLeftTitleFontButton =
+                new wxButton(Panel, ID_GRAPH_LEFT_TITLE_FONT_BUTTON, _(L"Left titles"));
             m_graphLeftTitleFontButton->SetBitmap(
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/left-titles.svg"));
-            optionsSizer->Add(m_graphLeftTitleFontButton, 0, wxLEFT|wxEXPAND, wxSizerFlags::GetDefaultBorder()*2);
+            optionsSizer->Add(
+                m_graphLeftTitleFontButton,
+                wxSizerFlags{}.Expand().DoubleBorder(wxLEFT));
 
-            m_graphRightTitleFontButton = new wxButton(Panel, ID_GRAPH_RIGHT_TITLE_FONT_BUTTON, _(L"Right titles"));
+            m_graphRightTitleFontButton =
+                new wxButton(Panel, ID_GRAPH_RIGHT_TITLE_FONT_BUTTON, _(L"Right titles"));
             m_graphRightTitleFontButton->SetBitmap(
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/right-titles.svg"));
-            optionsSizer->Add(m_graphRightTitleFontButton, 0, wxLEFT|wxEXPAND, wxSizerFlags::GetDefaultBorder()*2);
+            optionsSizer->Add(
+                m_graphRightTitleFontButton,
+                wxSizerFlags{}.Expand().DoubleBorder(wxLEFT));
 
             panelSizer->Add(optionsSizer);
             }
 
-        // Readability Graphs tab
-        //-----------
+            // Readability Graphs tab
+            //-----------
             {
-            wxPanel* Panel = new wxPanel(m_sideBar, GRAPH_READABILITY_GRAPHS_PAGE, wxDefaultPosition,
-                                         wxDefaultSize, wxTAB_TRAVERSAL);
+            wxPanel* Panel = new wxPanel(m_sideBar, GRAPH_READABILITY_GRAPHS_PAGE,
+                                         wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
             wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
             Panel->SetSizer(panelSizer);
-            m_sideBar->AddSubPage(Panel, GetReadabilityGraphLabel(), GRAPH_READABILITY_GRAPHS_PAGE, false, 9);
+            m_sideBar->AddSubPage(Panel, GetReadabilityGraphLabel(), GRAPH_READABILITY_GRAPHS_PAGE,
+                                  false, 9);
 
             // Fry-like graphs
-            wxPropertyGridManager* pgMan =
-                new wxPropertyGridManager(Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-                                          wxPG_BOLD_MODIFIED|wxPG_DESCRIPTION|wxPGMAN_DEFAULT_STYLE);
+            wxPropertyGridManager* pgMan = new wxPropertyGridManager(
+                Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
             m_readabilityGraphPropertyGrid = pgMan->AddPage();
-            m_readabilityGraphPropertyGrid->Append(new wxPropertyCategory(GetFryLikeLabel()) );
+            m_readabilityGraphPropertyGrid->Append(new wxPropertyCategory(GetFryLikeLabel()));
             m_readabilityGraphPropertyGrid->SetPropertyHelpString(
                 GetFryLikeLabel(),
                 _(L"The options in this section customize the Fry, Gilliam-Pe\U000000F1a-Mountain, "
-                   "Raygor, and Schwartz graphs."));
-            m_readabilityGraphPropertyGrid->Append(
-                new wxColourProperty(GetInvalidRegionsColorLabel(), wxPG_LABEL,
-                (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->GetInvalidAreaColor() :
-                    wxGetApp().GetAppOptions().GetInvalidAreaColor())));
+                  "Raygor, and Schwartz graphs."));
+            m_readabilityGraphPropertyGrid->Append(new wxColourProperty(
+                GetInvalidRegionsColorLabel(), wxPG_LABEL,
+                (m_readabilityProjectDoc ? m_readabilityProjectDoc->GetInvalidAreaColor() :
+                                           wxGetApp().GetAppOptions().GetInvalidAreaColor())));
             m_readabilityGraphPropertyGrid->SetPropertyHelpString(
                 GetInvalidRegionsColorLabel(),
                 _(L"Selects the color for the invalid sentence/word regions."));
@@ -5508,36 +5587,33 @@ void ToolsOptionsDlg::CreateGraphSection()
             raygorStyles.Add(_(L"Original"));
             raygorStyles.Add(_DT(L"Baldwin-Kaufman"));
             raygorStyles.Add(_(L"Modern"));
-            m_readabilityGraphPropertyGrid->Append(
-                new wxEnumProperty(GetRaygorStyleLabel(), wxPG_LABEL, raygorStyles,
+            m_readabilityGraphPropertyGrid->Append(new wxEnumProperty(
+                GetRaygorStyleLabel(), wxPG_LABEL, raygorStyles,
                 (m_readabilityProjectDoc ?
-                    static_cast<int>(m_readabilityProjectDoc->GetRaygorStyle()) :
-                    static_cast<int>(wxGetApp().GetAppOptions().GetRaygorStyle()))) );
+                     static_cast<int>(m_readabilityProjectDoc->GetRaygorStyle()) :
+                     static_cast<int>(wxGetApp().GetAppOptions().GetRaygorStyle()))));
             m_readabilityGraphPropertyGrid->SetPropertyHelpString(
-                GetRaygorStyleLabel(),
-                _(L"Selects the layout style of the Raygor graph."));
+                GetRaygorStyleLabel(), _(L"Selects the layout style of the Raygor graph."));
             // flesch
-            m_readabilityGraphPropertyGrid->Append(
-                new wxPropertyCategory(GetFleschChartLabel()) );
+            m_readabilityGraphPropertyGrid->Append(new wxPropertyCategory(GetFleschChartLabel()));
             m_readabilityGraphPropertyGrid->SetPropertyHelpString(
                 GetFleschChartLabel(),
                 _(L"The options in this section customize the Flesch chart."));
-            m_readabilityGraphPropertyGrid->Append(
-                new wxBoolProperty(GetFleschChartConnectPointsLabel(), wxPG_LABEL,
-                (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->IsConnectingFleschPoints() :
-                    wxGetApp().GetAppOptions().IsConnectingFleschPoints())));
-            m_readabilityGraphPropertyGrid->SetPropertyAttribute(
-                GetFleschChartConnectPointsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+            m_readabilityGraphPropertyGrid->Append(new wxBoolProperty(
+                GetFleschChartConnectPointsLabel(), wxPG_LABEL,
+                (m_readabilityProjectDoc ? m_readabilityProjectDoc->IsConnectingFleschPoints() :
+                                           wxGetApp().GetAppOptions().IsConnectingFleschPoints())));
+            m_readabilityGraphPropertyGrid->SetPropertyAttribute(GetFleschChartConnectPointsLabel(),
+                                                                 wxPG_BOOL_USE_CHECKBOX, true);
             m_readabilityGraphPropertyGrid->SetPropertyHelpString(
                 GetFleschChartConnectPointsLabel(),
                 _(L"Check this to connect the factor and score points."));
 
-            m_readabilityGraphPropertyGrid->Append(
-                new wxBoolProperty(GetFleschSyllableRulerDocGroupsLabel(), wxPG_LABEL,
+            m_readabilityGraphPropertyGrid->Append(new wxBoolProperty(
+                GetFleschSyllableRulerDocGroupsLabel(), wxPG_LABEL,
                 (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->IsIncludingFleschRulerDocGroups() :
-                    wxGetApp().GetAppOptions().IsIncludingFleschRulerDocGroups())));
+                     m_readabilityProjectDoc->IsIncludingFleschRulerDocGroups() :
+                     wxGetApp().GetAppOptions().IsIncludingFleschRulerDocGroups())));
             m_readabilityGraphPropertyGrid->SetPropertyAttribute(
                 GetFleschSyllableRulerDocGroupsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
             m_readabilityGraphPropertyGrid->SetPropertyHelpString(
@@ -5545,20 +5621,20 @@ void ToolsOptionsDlg::CreateGraphSection()
                 _(L"Check this to display document names grouped along the syllable ruler."));
 
             // Lix gauge
-            m_readabilityGraphPropertyGrid->Append(new wxPropertyCategory(GetLixGaugeLabel()) );
+            m_readabilityGraphPropertyGrid->Append(new wxPropertyCategory(GetLixGaugeLabel()));
             m_readabilityGraphPropertyGrid->SetPropertyHelpString(
                 GetLixGaugeLabel(), _(L"The options in this section customize the Lix Gauge."));
-            m_readabilityGraphPropertyGrid->Append(
-                new wxBoolProperty(GetUseEnglishLabelsForGermanLixLabel(), wxPG_LABEL,
+            m_readabilityGraphPropertyGrid->Append(new wxBoolProperty(
+                GetUseEnglishLabelsForGermanLixLabel(), wxPG_LABEL,
                 (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->IsUsingEnglishLabelsForGermanLix() :
-                    wxGetApp().GetAppOptions().IsUsingEnglishLabelsForGermanLix())));
+                     m_readabilityProjectDoc->IsUsingEnglishLabelsForGermanLix() :
+                     wxGetApp().GetAppOptions().IsUsingEnglishLabelsForGermanLix())));
             m_readabilityGraphPropertyGrid->SetPropertyAttribute(
                 GetUseEnglishLabelsForGermanLixLabel(), wxPG_BOOL_USE_CHECKBOX, true);
             m_readabilityGraphPropertyGrid->SetPropertyHelpString(
                 GetUseEnglishLabelsForGermanLixLabel(),
                 _(L"Check this to display the English translated bracket labels "
-                   "on the German Lix gauge."));
+                  "on the German Lix gauge."));
 
             pgMan->SelectProperty(GetFryLikeLabel());
 
@@ -5575,71 +5651,75 @@ void ToolsOptionsDlg::CreateGraphSection()
             Panel->SetSizer(panelSizer);
             m_sideBar->AddSubPage(Panel, GetBarChartLabel(), GRAPH_BAR_CHART_PAGE, false, 9);
 
-            wxPropertyGridManager* pgMan =
-                new wxPropertyGridManager(Panel, ID_BARCHART_OPTIONS_PROPERTYGRID, wxDefaultPosition, wxDefaultSize,
-                                          wxPG_BOLD_MODIFIED|wxPG_DESCRIPTION|wxPGMAN_DEFAULT_STYLE);
+            wxPropertyGridManager* pgMan = new wxPropertyGridManager(
+                Panel, ID_BARCHART_OPTIONS_PROPERTYGRID, wxDefaultPosition, wxDefaultSize,
+                wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
             m_barChartPropertyGrid = pgMan->AddPage();
-            m_barChartPropertyGrid->Append(new wxPropertyCategory(GetBarAppearanceLabel()) );
+            m_barChartPropertyGrid->Append(new wxPropertyCategory(GetBarAppearanceLabel()));
             m_barChartPropertyGrid->SetPropertyHelpString(
                 GetBarAppearanceLabel(),
                 _(L"The options in this section customize the display of the bars."));
 
             // color for bars
-            m_barChartPropertyGrid->Append(
-                new wxColourProperty(GetColorLabel(), wxPG_LABEL,
-                (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->GetBarChartBarColor() :
-                    wxGetApp().GetAppOptions().GetBarChartBarColor())));
+            m_barChartPropertyGrid->Append(new wxColourProperty(
+                GetColorLabel(), wxPG_LABEL,
+                (m_readabilityProjectDoc ? m_readabilityProjectDoc->GetBarChartBarColor() :
+                                           wxGetApp().GetAppOptions().GetBarChartBarColor())));
             m_barChartPropertyGrid->SetPropertyHelpString(
                 GetColorLabel(), _(L"Selects the color used for the bars."));
             // effects
             wxPGChoices boxEffects;
-            boxEffects.Add(_(L"Solid"), wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-solid.svg"));
-            boxEffects.Add(_(L"Glass effect"), wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-glass.svg"));
+            boxEffects.Add(_(L"Solid"),
+                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-solid.svg"));
+            boxEffects.Add(_(L"Glass effect"),
+                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-glass.svg"));
             boxEffects.Add(_(L"Color fade, bottom to top"),
-                wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-bottom-to-top.svg"));
+                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-bottom-to-top.svg"));
             boxEffects.Add(_(L"Color fade, top to bottom"),
-                wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
+                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
             boxEffects.Add(_(L"Stipple image"),
-                wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
+                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
             boxEffects.Add(_(L"Stipple shape"),
-                wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
+                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
             boxEffects.Add(_(L"Watercolor"),
-                wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
+                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
             boxEffects.Add(_(L"Thick watercolor"),
-                wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
+                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
             boxEffects.Add(_(L"Common image"),
-                wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
-            m_barChartPropertyGrid->Append(
-                new wxEnumProperty(GetEffectLabel(), wxPG_LABEL, boxEffects,
+                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
+            m_barChartPropertyGrid->Append(new wxEnumProperty(
+                GetEffectLabel(), wxPG_LABEL, boxEffects,
                 (m_readabilityProjectDoc ?
-                    static_cast<int>(m_readabilityProjectDoc->GetGraphBarEffect()) :
-                    static_cast<int>(wxGetApp().GetAppOptions().GetGraphBarEffect()))) );
+                     static_cast<int>(m_readabilityProjectDoc->GetGraphBarEffect()) :
+                     static_cast<int>(wxGetApp().GetAppOptions().GetGraphBarEffect()))));
             m_barChartPropertyGrid->SetPropertyHelpString(
-                GetEffectLabel(),
-                _(L"Selects which effect to apply to the bars."));
+                GetEffectLabel(), _(L"Selects which effect to apply to the bars."));
             // bar opacity
-            m_barChartPropertyGrid->Append(
-                new wxIntProperty(GetOpacityLabel(), wxPG_LABEL,
+            m_barChartPropertyGrid->Append(new wxIntProperty(
+                GetOpacityLabel(), wxPG_LABEL,
                 (m_readabilityProjectDoc ?
-                    static_cast<int>(m_readabilityProjectDoc->GetGraphBarOpacity()) :
-                    static_cast<int>(wxGetApp().GetAppOptions().GetGraphBarOpacity()))) );
+                     static_cast<int>(m_readabilityProjectDoc->GetGraphBarOpacity()) :
+                     static_cast<int>(wxGetApp().GetAppOptions().GetGraphBarOpacity()))));
             m_barChartPropertyGrid->SetPropertyEditor(GetOpacityLabel(), wxPGEditor_SpinCtrl);
-            m_barChartPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MIN, wxALPHA_TRANSPARENT);
-            m_barChartPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MAX, wxALPHA_OPAQUE);
+            m_barChartPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MIN,
+                                                         wxALPHA_TRANSPARENT);
+            m_barChartPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MAX,
+                                                         wxALPHA_OPAQUE);
             m_barChartPropertyGrid->SetPropertyHelpString(
                 GetOpacityLabel(),
                 _(L"Sets the transparency of the bars. A value of 255 will set the box "
-                   "to be fully opaque, whereas 0 will set the bars to be transparent."));
+                  "to be fully opaque, whereas 0 will set the bars to be transparent."));
             // orientation
             wxPGChoices orientation;
-            orientation.Add(_(L"Horizontal"), wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-chart.svg"));
-            orientation.Add(_(L"Vertical"), wxGetApp().GetResourceManager().GetSVG(L"ribbon/histogram.svg"));
-            m_barChartPropertyGrid->Append(
-                new wxEnumProperty(GeOrientationLabel(), wxPG_LABEL, orientation,
+            orientation.Add(_(L"Horizontal"),
+                            wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-chart.svg"));
+            orientation.Add(_(L"Vertical"),
+                            wxGetApp().GetResourceManager().GetSVG(L"ribbon/histogram.svg"));
+            m_barChartPropertyGrid->Append(new wxEnumProperty(
+                GeOrientationLabel(), wxPG_LABEL, orientation,
                 (m_readabilityProjectDoc ?
-                    static_cast<int>(m_readabilityProjectDoc->GetBarChartOrientation()) :
-                    static_cast<int>(wxGetApp().GetAppOptions().GetBarChartOrientation()))) );
+                     static_cast<int>(m_readabilityProjectDoc->GetBarChartOrientation()) :
+                     static_cast<int>(wxGetApp().GetAppOptions().GetBarChartOrientation()))));
             m_barChartPropertyGrid->SetPropertyHelpString(
                 GeOrientationLabel(),
                 _(L"Selects whether to display the bars horizontally or vertically."));
@@ -5647,10 +5727,11 @@ void ToolsOptionsDlg::CreateGraphSection()
             // labels
             m_barChartPropertyGrid->Append(
                 new wxBoolProperty(GetLabelsOnBarsLabel(), wxPG_LABEL,
-                (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->IsDisplayingBarChartLabels() :
-                    wxGetApp().GetAppOptions().IsDisplayingBarChartLabels())));
-            m_barChartPropertyGrid->SetPropertyAttribute(GetLabelsOnBarsLabel(), wxPG_BOOL_USE_CHECKBOX, true);
+                                   (m_readabilityProjectDoc ?
+                                        m_readabilityProjectDoc->IsDisplayingBarChartLabels() :
+                                        wxGetApp().GetAppOptions().IsDisplayingBarChartLabels())));
+            m_barChartPropertyGrid->SetPropertyAttribute(GetLabelsOnBarsLabel(),
+                                                         wxPG_BOOL_USE_CHECKBOX, true);
             m_barChartPropertyGrid->SetPropertyHelpString(
                 GetLabelsOnBarsLabel(), _(L"Check this to display labels on the bars."));
 
@@ -5659,8 +5740,8 @@ void ToolsOptionsDlg::CreateGraphSection()
             panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
             }
 
-        // Histogram tab
-        //-----------
+            // Histogram tab
+            //-----------
             {
             wxPanel* Panel = new wxPanel(m_sideBar, GRAPH_HISTOGRAM_PAGE, wxDefaultPosition,
                                          wxDefaultSize, wxTAB_TRAVERSAL);
@@ -5668,64 +5749,62 @@ void ToolsOptionsDlg::CreateGraphSection()
             Panel->SetSizer(panelSizer);
             m_sideBar->AddSubPage(Panel, GetHistogramsLabel(), GRAPH_HISTOGRAM_PAGE, false, 9);
 
-            wxPropertyGridManager* pgMan =
-                new wxPropertyGridManager(Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-                                          wxPG_BOLD_MODIFIED|wxPG_DESCRIPTION|wxPGMAN_DEFAULT_STYLE);
+            wxPropertyGridManager* pgMan = new wxPropertyGridManager(
+                Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
             m_histogramPropertyGrid = pgMan->AddPage();
-            m_histogramPropertyGrid->Append(new wxPropertyCategory(GetBarAppearanceLabel()) );
+            m_histogramPropertyGrid->Append(new wxPropertyCategory(GetBarAppearanceLabel()));
             m_histogramPropertyGrid->SetPropertyHelpString(
-                GetBarAppearanceLabel(), _(L"The options in this section customize the display of the bars."));
+                GetBarAppearanceLabel(),
+                _(L"The options in this section customize the display of the bars."));
             // color for bars
-            m_histogramPropertyGrid->Append(
-                new wxColourProperty(GetColorLabel(), wxPG_LABEL,
-                (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->GetHistogramBarColor() :
-                    wxGetApp().GetAppOptions().GetHistogramBarColor())));
+            m_histogramPropertyGrid->Append(new wxColourProperty(
+                GetColorLabel(), wxPG_LABEL,
+                (m_readabilityProjectDoc ? m_readabilityProjectDoc->GetHistogramBarColor() :
+                                           wxGetApp().GetAppOptions().GetHistogramBarColor())));
             m_histogramPropertyGrid->SetPropertyHelpString(
                 GetColorLabel(), _(L"Selects the color used for the bars."));
             // effects
             wxPGChoices boxEffects;
-            boxEffects.Add(
-                _(L"Solid"),
-                wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-solid.svg"));
-            boxEffects.Add(
-                _(L"Glass effect"), wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-glass.svg"));
-            boxEffects.Add(
-                _(L"Color fade, bottom to top"),
-                wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-bottom-to-top.svg"));
-            boxEffects.Add(
-                _(L"Color fade, top to bottom"),
-                wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
+            boxEffects.Add(_(L"Solid"),
+                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-solid.svg"));
+            boxEffects.Add(_(L"Glass effect"),
+                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-glass.svg"));
+            boxEffects.Add(_(L"Color fade, bottom to top"),
+                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-bottom-to-top.svg"));
+            boxEffects.Add(_(L"Color fade, top to bottom"),
+                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/bar-top-to-bottom.svg"));
             boxEffects.Add(_(L"Stipple image"),
-                wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
+                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
             boxEffects.Add(_(L"Stipple shape"),
-                wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
+                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/apple.svg"));
             boxEffects.Add(_(L"Watercolor"),
-                wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
+                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
             boxEffects.Add(_(L"Thick watercolor"),
-                wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
+                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/brush.svg"));
             boxEffects.Add(_(L"Common image"),
-                wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
-            m_histogramPropertyGrid->Append(
-                new wxEnumProperty(GetEffectLabel(), wxPG_LABEL, boxEffects,
+                           wxGetApp().GetResourceManager().GetSVG(L"ribbon/image.svg"));
+            m_histogramPropertyGrid->Append(new wxEnumProperty(
+                GetEffectLabel(), wxPG_LABEL, boxEffects,
                 (m_readabilityProjectDoc ?
-                    static_cast<int>(m_readabilityProjectDoc->GetHistogramBarEffect()) :
-                    static_cast<int>(wxGetApp().GetAppOptions().GetHistogramBarEffect()))) );
+                     static_cast<int>(m_readabilityProjectDoc->GetHistogramBarEffect()) :
+                     static_cast<int>(wxGetApp().GetAppOptions().GetHistogramBarEffect()))));
             m_histogramPropertyGrid->SetPropertyHelpString(
                 GetEffectLabel(), _(L"Selects which effect to apply to the bars."));
             // bar opacity
-            m_histogramPropertyGrid->Append(
-                new wxIntProperty(GetOpacityLabel(), wxPG_LABEL,
-                (m_readabilityProjectDoc ?
-                    m_readabilityProjectDoc->GetHistogramBarOpacity() :
-                    wxGetApp().GetAppOptions().GetHistogramBarOpacity())) );
+            m_histogramPropertyGrid->Append(new wxIntProperty(
+                GetOpacityLabel(), wxPG_LABEL,
+                (m_readabilityProjectDoc ? m_readabilityProjectDoc->GetHistogramBarOpacity() :
+                                           wxGetApp().GetAppOptions().GetHistogramBarOpacity())));
             m_histogramPropertyGrid->SetPropertyEditor(GetOpacityLabel(), wxPGEditor_SpinCtrl);
-            m_histogramPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MIN, wxALPHA_TRANSPARENT);
-            m_histogramPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MAX, wxALPHA_OPAQUE);
+            m_histogramPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MIN,
+                                                          wxALPHA_TRANSPARENT);
+            m_histogramPropertyGrid->SetPropertyAttribute(GetOpacityLabel(), wxPG_ATTR_MAX,
+                                                          wxALPHA_OPAQUE);
             m_histogramPropertyGrid->SetPropertyHelpString(
                 GetOpacityLabel(),
                 _(L"Sets the transparency of the bars. A value of 255 will set the box to "
-                   "be fully opaque, whereas 0 will set the bars to be transparent."));
+                  "be fully opaque, whereas 0 will set the bars to be transparent."));
 
             if (IsBatchProjectSettings() || IsGeneralSettings())
                 {
@@ -5741,17 +5820,18 @@ void ToolsOptionsDlg::CreateGraphSection()
                 categories.Add(_(L"Sort by interval"));
                 categories.Add(_(L"Sort by neat interval"));
                 sortChoices.Add(categories);
-                m_histogramPropertyGrid->Append(
-                    new wxEnumProperty(GetBinSortingLabel(), wxPG_LABEL, sortChoices,
+                m_histogramPropertyGrid->Append(new wxEnumProperty(
+                    GetBinSortingLabel(), wxPG_LABEL, sortChoices,
                     (m_readabilityProjectDoc ?
-                        static_cast<int>(m_readabilityProjectDoc->GetHistorgramBinningMethod()) :
-                        static_cast<int>(wxGetApp().GetAppOptions().GetHistorgramBinningMethod()))) );
+                         static_cast<int>(m_readabilityProjectDoc->GetHistorgramBinningMethod()) :
+                         static_cast<int>(
+                             wxGetApp().GetAppOptions().GetHistorgramBinningMethod()))));
                 m_histogramPropertyGrid->SetPropertyHelpString(
                     GetBinSortingLabel(),
                     _(L"Bin sorting refers to how values (e.g., index and grade scores) are "
-                       "categorized into separate classes. Each class (or bin) is displayed "
-                       "on a histogram as a bar. The options listed here control how these "
-                       "bins are created and how your data are sorted into them."));
+                      "categorized into separate classes. Each class (or bin) is displayed "
+                      "on a histogram as a bar. The options listed here control how these "
+                      "bins are created and how your data are sorted into them."));
 
                 // rounding
                 wxPGChoices roundingChoices;
@@ -5759,32 +5839,34 @@ void ToolsOptionsDlg::CreateGraphSection()
                 roundingChoices.Add(_(L"Round down"));
                 roundingChoices.Add(_(L"Round up"));
                 roundingChoices.Add(_(L"Do not round"));
-                m_histogramPropertyGrid->Append(
-                    new wxEnumProperty(GetGradeLevelRoundingLabel(), wxPG_LABEL, roundingChoices,
+                m_histogramPropertyGrid->Append(new wxEnumProperty(
+                    GetGradeLevelRoundingLabel(), wxPG_LABEL, roundingChoices,
                     (m_readabilityProjectDoc ?
-                        static_cast<int>(m_readabilityProjectDoc->GetHistogramRoundingMethod()) :
-                        static_cast<int>(wxGetApp().GetAppOptions().GetHistogramRoundingMethod()))) );
+                         static_cast<int>(m_readabilityProjectDoc->GetHistogramRoundingMethod()) :
+                         static_cast<int>(
+                             wxGetApp().GetAppOptions().GetHistogramRoundingMethod()))));
                 m_histogramPropertyGrid->SetPropertyHelpString(
                     GetGradeLevelRoundingLabel(),
                     _(L"This option controls how floating-point values are "
-                       "rounded when being sorted into bins."));
+                      "rounded when being sorted into bins."));
                 }
 
-            m_histogramPropertyGrid->Append(new wxPropertyCategory(GetBinDisplayLabel()) );
+            m_histogramPropertyGrid->Append(new wxPropertyCategory(GetBinDisplayLabel()));
             m_histogramPropertyGrid->SetPropertyHelpString(
                 GetBinDisplayLabel(),
                 _(L"The options in this section control how the bars are labeled."));
 
             if (IsBatchProjectSettings() || IsGeneralSettings())
                 {
-                   wxPGChoices intervalTypes;
+                wxPGChoices intervalTypes;
                 intervalTypes.Add(_(L"Cutpoints"));
                 intervalTypes.Add(_(L"Midpoints"));
-                m_histogramPropertyGrid->Append(
-                    new wxEnumProperty(GetIntervalDisplayLabel(), wxPG_LABEL, intervalTypes,
+                m_histogramPropertyGrid->Append(new wxEnumProperty(
+                    GetIntervalDisplayLabel(), wxPG_LABEL, intervalTypes,
                     (m_readabilityProjectDoc ?
-                        static_cast<int>(m_readabilityProjectDoc->GetHistogramIntervalDisplay()) :
-                        static_cast<int>(wxGetApp().GetAppOptions().GetHistogramIntervalDisplay()))) );
+                         static_cast<int>(m_readabilityProjectDoc->GetHistogramIntervalDisplay()) :
+                         static_cast<int>(
+                             wxGetApp().GetAppOptions().GetHistogramIntervalDisplay()))));
                 m_histogramPropertyGrid->SetPropertyHelpString(
                     GetIntervalDisplayLabel(),
                     _(L"Specifies how to display the bars' values range on the axis."));
@@ -5795,22 +5877,21 @@ void ToolsOptionsDlg::CreateGraphSection()
             catLabelTypes.Add(_(L"Percentages"));
             catLabelTypes.Add(_(L"Counts & percentages"));
             catLabelTypes.Add(_(L"No labels"));
-            m_histogramPropertyGrid->Append(
-                new wxEnumProperty(GetBinLabelsLabel(), wxPG_LABEL, catLabelTypes,
+            m_histogramPropertyGrid->Append(new wxEnumProperty(
+                GetBinLabelsLabel(), wxPG_LABEL, catLabelTypes,
                 (m_readabilityProjectDoc ?
-                    static_cast<int>(m_readabilityProjectDoc->GetHistrogramBinLabelDisplay()) :
-                    static_cast<int>(wxGetApp().GetAppOptions().GetHistrogramBinLabelDisplay()))) );
+                     static_cast<int>(m_readabilityProjectDoc->GetHistrogramBinLabelDisplay()) :
+                     static_cast<int>(wxGetApp().GetAppOptions().GetHistrogramBinLabelDisplay()))));
             m_histogramPropertyGrid->SetPropertyHelpString(
-                GetBinLabelsLabel(),
-                _(L"Specifies what to display on the bars' labels."));
+                GetBinLabelsLabel(), _(L"Specifies what to display on the bars' labels."));
 
             pgMan->SelectProperty(GetBarAppearanceLabel());
 
             panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
             }
 
-        // Box Plot tab
-        //-----------
+            // Box Plot tab
+            //-----------
             {
             wxPanel* Panel = new wxPanel(m_sideBar, GRAPH_BOX_PLOT_PAGE, wxDefaultPosition,
                                          wxDefaultSize, wxTAB_TRAVERSAL);
@@ -5873,7 +5954,7 @@ void ToolsOptionsDlg::CreateGraphSection()
             m_boxPlotsPropertyGrid->SetPropertyHelpString(
                 GetOpacityLabel(),
                 _(L"Sets the transparency of the box. A value of 255 will set the box "
-                   "to be fully opaque, whereas 0 will set the box to be transparent."));
+                  "to be fully opaque, whereas 0 will set the box to be transparent."));
 
             m_boxPlotsPropertyGrid->Append(new wxPropertyCategory(GetBoxOptionsLabel()));
             m_boxPlotsPropertyGrid->SetPropertyHelpString(
@@ -5888,9 +5969,8 @@ void ToolsOptionsDlg::CreateGraphSection()
             m_boxPlotsPropertyGrid->SetPropertyAttribute(GetLabelsOnBoxesLabel(),
                                                          wxPG_BOOL_USE_CHECKBOX, true);
             m_boxPlotsPropertyGrid->SetPropertyHelpString(
-                GetLabelsOnBoxesLabel(),
-                _(L"Check this to display labels on the middle points, "
-                   "upper/lower control limits, and whiskers."));
+                GetLabelsOnBoxesLabel(), _(L"Check this to display labels on the middle points, "
+                                           "upper/lower control limits, and whiskers."));
 
             m_boxPlotsPropertyGrid->Append(new wxBoolProperty(
                 GetConnectBoxesLabel(), wxPG_LABEL,
@@ -5933,9 +6013,9 @@ void ToolsOptionsDlg::OnContextHelp([[maybe_unused]] wxHelpEvent& event)
 //-------------------------------------------------------------
 void ToolsOptionsDlg::OnHelp([[maybe_unused]] wxCommandEvent& event)
     {
-    wxLaunchDefaultBrowser(wxFileName::FileNameToURL(
-        wxGetApp().GetMainFrame()->GetHelpDirectory() + wxFileName::GetPathSeparator() +
-        L"online/options/program-options.html"));
+    wxLaunchDefaultBrowser(wxFileName::FileNameToURL(wxGetApp().GetMainFrame()->GetHelpDirectory() +
+                                                     wxFileName::GetPathSeparator() +
+                                                     L"online/options/program-options.html"));
     }
 
 //-------------------------------------------------------------
@@ -5956,16 +6036,15 @@ void ToolsOptionsDlg::CreateLabelHeader(wxWindow* parent, wxSizer* parentSizer,
     titleSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
     // The static line
     titleSizer->Add(
-        new wxStaticLine(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL), 1,
-        wxALIGN_CENTER_VERTICAL);
+        new wxStaticLine(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL),
+        wxSizerFlags{ 1 }.CenterVertical());
     if (addSidePadding)
         {
-        parentSizer->Add(titleSizer, 0, wxEXPAND | wxLEFT | wxRIGHT,
-                         wxSizerFlags::GetDefaultBorder());
+        parentSizer->Add(titleSizer, wxSizerFlags{}.Expand().Border(wxLEFT | wxRIGHT));
         }
     else
         {
-        parentSizer->Add(titleSizer, 0, wxEXPAND);
+        parentSizer->Add(titleSizer, wxSizerFlags{}.Expand());
         }
     parentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
     }

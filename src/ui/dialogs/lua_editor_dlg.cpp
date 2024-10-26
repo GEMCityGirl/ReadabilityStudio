@@ -366,7 +366,7 @@ LuaEditorDlg::LuaEditorDlg(
     ico.CopyFromBitmap(wxGetApp()
                            .GetResourceManager()
                            .GetSVG(L"ribbon/lua.svg")
-                           .GetBitmap(FromDIP(wxSize(32, 32))));
+                           .GetBitmap(FromDIP(wxSize{ 32, 32 })));
     SetIcon(ico);
 
     CreateControls();
@@ -915,7 +915,7 @@ CodeEditor* LuaEditorDlg::CreateLuaScript(wxWindow* parent)
 void LuaEditorDlg::CreateControls()
     {
     m_toolbar = new wxAuiToolBar(this, wxID_ANY);
-    m_toolbar->SetToolBitmapSize(FromDIP(wxSize(16, 16)));
+    m_toolbar->SetToolBitmapSize(FromDIP(wxSize{ 16, 16 }));
     // wxID_NEW and such trigger parent events
     m_toolbar->AddTool(XRCID("ID_NEW"), _(L"New"),
                        wxArtProvider::GetBitmapBundle(wxART_NEW, wxART_BUTTON),

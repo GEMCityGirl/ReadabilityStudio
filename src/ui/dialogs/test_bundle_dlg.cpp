@@ -28,7 +28,7 @@ TestBundleDlg::TestBundleDlg(wxWindow* parent, TestBundle& testBundle)
     ico.CopyFromBitmap(wxGetApp()
                            .GetResourceManager()
                            .GetSVG(L"ribbon/bundles.svg")
-                           .GetBitmap(FromDIP(wxSize(16, 16))));
+                           .GetBitmap(FromDIP(wxSize{ 16, 16 })));
     SetIcon(ico);
 
     Bind(
@@ -83,8 +83,7 @@ void TestBundleDlg::CreateControls()
             m_bundleNameCtrl = new wxTextCtrl(nameBoxSizer->GetStaticBox(), wxID_ANY, wxString{},
                                               wxDefaultPosition, wxDefaultSize, 0,
                                               wxTextValidator(wxFILTER_NONE, &m_bundleName));
-            nameBoxSizer->Add(m_bundleNameCtrl, 1, wxEXPAND | wxALL,
-                              wxSizerFlags::GetDefaultBorder());
+            nameBoxSizer->Add(m_bundleNameCtrl, wxSizerFlags{ 1 }.Expand().Border());
 
             mainPanelSizer->Add(nameBoxSizer, wxSizerFlags{}.Expand().Border());
             }
@@ -98,11 +97,9 @@ void TestBundleDlg::CreateControls()
             m_bundleDescriptionCtrl = new wxTextCtrl(
                 descriptionBoxSizer->GetStaticBox(), wxID_ANY, wxString{}, wxDefaultPosition,
                 wxDefaultSize, style, wxTextValidator(wxFILTER_NONE, &m_descriptionName));
-            descriptionBoxSizer->Add(m_bundleDescriptionCtrl, 1, wxEXPAND | wxALL,
-                                     wxSizerFlags::GetDefaultBorder());
+            descriptionBoxSizer->Add(m_bundleDescriptionCtrl, wxSizerFlags{ 1 }.Expand().Border());
 
-            mainPanelSizer->Add(descriptionBoxSizer, 1, wxEXPAND | wxALL,
-                                wxSizerFlags::GetDefaultBorder());
+            mainPanelSizer->Add(descriptionBoxSizer, wxSizerFlags{ 1 }.Expand().Border());
             }
 
         mainPanelSizer->Add(
@@ -259,8 +256,7 @@ void TestBundleDlg::CreateControls()
             {
             DolchCheckBox->Disable();
             }
-        mainPanelSizer->Add(
-            DolchCheckBox, wxSizerFlags().Expand().Border(wxALL, wxSizerFlags::GetDefaultBorder()));
+        mainPanelSizer->Add(DolchCheckBox, wxSizerFlags{}.Expand().Border());
         }
 
     // goals (only show if editable or there are goals)
@@ -304,8 +300,8 @@ void TestBundleDlg::CreateControls()
                     [this](wxCommandEvent&) { m_testGoalsListCtrl->DeleteSelectedItems(); },
                     ID_DELETE_TEST_GOALS_BUTTON);
 
-                mainPanelSizer->Add(editButtonsSizer, wxSizerFlags().Right().Border(
-                                                          wxALL, wxSizerFlags::GetDefaultBorder()));
+                mainPanelSizer->Add(editButtonsSizer,
+                                    wxSizerFlags{}.Right().Border(wxTOP | wxRIGHT));
                 }
 
             // prepare the control
@@ -379,9 +375,9 @@ void TestBundleDlg::CreateControls()
                     }
                 }
             m_testGoalsListCtrl->DistributeColumns();
-            m_testGoalsListCtrl->SetColumnWidth(0, FromDIP(wxSize(200, 200).GetWidth()));
-            mainPanelSizer->Add(m_testGoalsListCtrl, wxSizerFlags(1).Expand().Border(
-                                                         wxALL, wxSizerFlags::GetDefaultBorder()));
+            m_testGoalsListCtrl->SetColumnWidth(0, FromDIP(wxSize{ 200, 200 }.GetWidth()));
+            mainPanelSizer->Add(m_testGoalsListCtrl,
+                                wxSizerFlags{ 1 }.Expand().Border(wxLEFT | wxRIGHT | wxBOTTOM));
             }
 
             // Stat goals
@@ -413,8 +409,8 @@ void TestBundleDlg::CreateControls()
                     [this](wxCommandEvent&) { m_statGoalsListCtrl->DeleteSelectedItems(); },
                     ID_DELETE_STAT_GOALS_BUTTON);
 
-                mainPanelSizer->Add(editButtonsSizer, wxSizerFlags().Right().Border(
-                                                          wxALL, wxSizerFlags::GetDefaultBorder()));
+                mainPanelSizer->Add(editButtonsSizer,
+                                    wxSizerFlags{}.Right().Border(wxTOP | wxRIGHT));
                 }
 
             // prepare the control
@@ -469,9 +465,9 @@ void TestBundleDlg::CreateControls()
                     }
                 }
             m_statGoalsListCtrl->DistributeColumns();
-            m_statGoalsListCtrl->SetColumnWidth(0, FromDIP(wxSize(200, 200).GetWidth()));
-            mainPanelSizer->Add(m_statGoalsListCtrl, wxSizerFlags(1).Expand().Border(
-                                                         wxALL, wxSizerFlags::GetDefaultBorder()));
+            m_statGoalsListCtrl->SetColumnWidth(0, FromDIP(wxSize{ 200, 200 }.GetWidth()));
+            mainPanelSizer->Add(m_statGoalsListCtrl,
+                                wxSizerFlags{ 1 }.Expand().Border(wxLEFT | wxRIGHT | wxBOTTOM));
             }
 
         mainPanelSizer->Add(
@@ -484,7 +480,7 @@ void TestBundleDlg::CreateControls()
         }
 
     mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL | wxHELP),
-                   wxSizerFlags().Expand().Border(wxALL, wxSizerFlags::GetDefaultBorder()));
+                   wxSizerFlags{}.Expand().Border());
 
     SetSizerAndFit(mainSizer);
 

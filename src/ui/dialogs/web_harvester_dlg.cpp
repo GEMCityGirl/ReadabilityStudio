@@ -206,7 +206,7 @@ void WebHarvesterDlg::CreateControls()
     m_sideBarBook = new Wisteria::UI::SideBarBook(this, wxID_ANY);
     wxGetApp().UpdateSideBarTheme(m_sideBarBook->GetSideBar());
 
-    mainSizer->Add(m_sideBarBook, 1, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(m_sideBarBook, wxSizerFlags{ 1 }.Expand().Border());
 
         // website page
         {
@@ -237,7 +237,7 @@ void WebHarvesterDlg::CreateControls()
             wxArtProvider::GetBitmap(L"ID_LINK", wxART_BUTTON, FromDIP(wxSize{ 16, 16 })));
         loadUrlsButton->SetToolTip(_(L"Load links from HTML content"));
         urlButtonsSizer->Add(loadUrlsButton);
-        urlSizer->Add(urlButtonsSizer, 0, wxALIGN_RIGHT);
+        urlSizer->Add(urlButtonsSizer, wxSizerFlags{}.Right());
 
         m_urlData->SetValues(m_urls);
         m_urlList = new Wisteria::UI::ListCtrlEx(
@@ -253,26 +253,25 @@ void WebHarvesterDlg::CreateControls()
         m_urlList->SetVirtualDataProvider(m_urlData);
         m_urlList->SetVirtualDataSize(m_urlData->GetItemCount(), 1);
 
-        panelSizer->Add(urlSizer, 1, wxALL | wxEXPAND, wxSizerFlags::GetDefaultBorder());
+        panelSizer->Add(urlSizer, wxSizerFlags{ 1 }.Expand().Border());
 
         // depth level
         wxBoxSizer* depthLevelSizer = new wxBoxSizer(wxHORIZONTAL);
-        depthLevelSizer->Add(new wxStaticText(Panel, wxID_ANY, _(L"Depth level:")), 0,
-                             wxALIGN_CENTER_VERTICAL);
+        depthLevelSizer->Add(new wxStaticText(Panel, wxID_ANY, _(L"Depth level:")),
+                             wxSizerFlags{}.CenterVertical());
         depthLevelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
         m_depthLevelCtrl = new wxSpinCtrl(Panel);
         m_depthLevelCtrl->SetRange(0, 10);
         m_depthLevelCtrl->SetValidator(wxGenericValidator(&m_depthLevel));
-        depthLevelSizer->Add(m_depthLevelCtrl, 0, wxALIGN_CENTER_VERTICAL);
-        panelSizer->Add(depthLevelSizer, 0, wxLEFT, wxSizerFlags::GetDefaultBorder());
-        panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+        depthLevelSizer->Add(m_depthLevelCtrl, wxSizerFlags{}.CenterVertical());
+        panelSizer->Add(depthLevelSizer, wxSizerFlags{}.Border(wxLEFT | wxBOTTOM));
 
         // file filters
         wxBoxSizer* fileTypeSizer = new wxBoxSizer(wxHORIZONTAL);
-        panelSizer->Add(fileTypeSizer, 0, wxEXPAND);
-        fileTypeSizer->Add(new wxStaticText(Panel, wxID_STATIC, _(L"File types to include:")), 0,
-                           wxALIGN_CENTER_VERTICAL | wxLEFT, wxSizerFlags::GetDefaultBorder());
+        panelSizer->Add(fileTypeSizer, wxSizerFlags{}.Expand());
+        fileTypeSizer->Add(new wxStaticText(Panel, wxID_STATIC, _(L"File types to include:")),
+                           wxSizerFlags{}.Border(wxLEFT).CenterVertical());
         wxArrayString choiceStrings;
         wxStringTokenizer tkz(m_fullDocFilter, L"|", wxTOKEN_STRTOK);
         while (tkz.HasMoreTokens())
@@ -295,68 +294,45 @@ void WebHarvesterDlg::CreateControls()
             wxGetMouseState().ShiftDown() ? wxCB_DROPDOWN : wxCB_DROPDOWN | wxCB_READONLY);
         m_docFilterCombo->SetValue(m_selectedDocFilter);
         fileTypeSizer->Add(m_docFilterCombo,
-                           wxSizerFlags(1)
-                               .Expand()
-                               .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
-                               .Border(wxRIGHT, wxSizerFlags::GetDefaultBorder()));
-        panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+                           wxSizerFlags{ 1 }.Expand().Border(wxLEFT | wxRIGHT | wxBOTTOM));
 
         // user agent
         wxBoxSizer* userAgentSizer = new wxBoxSizer(wxHORIZONTAL);
-        panelSizer->Add(userAgentSizer,
-                        wxSizerFlags().Expand().Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+        panelSizer->Add(userAgentSizer, wxSizerFlags{}.Expand().Border(wxLEFT));
 
-        userAgentSizer->Add(new wxStaticText(Panel, wxID_STATIC, _(L"User agent:")), 0,
-                            wxALIGN_CENTER_VERTICAL);
+        userAgentSizer->Add(new wxStaticText(Panel, wxID_STATIC, _(L"User agent:")),
+                            wxSizerFlags{}.CenterVertical());
         wxTextCtrl* userAgentEdit =
             new wxTextCtrl(Panel, wxID_ANY, wxString{}, wxDefaultPosition, wxDefaultSize,
                            wxBORDER_THEME, wxGenericValidator(&m_userAgent));
-        userAgentSizer->Add(userAgentEdit, wxSizerFlags(1)
-                                               .Expand()
-                                               .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
-                                               .Border(wxRIGHT, wxSizerFlags::GetDefaultBorder()));
+        userAgentSizer->Add(userAgentEdit, wxSizerFlags{ 1 }.Expand().Border(wxLEFT | wxRIGHT));
 
         wxBoxSizer* extendedOpsSizer = new wxBoxSizer(wxVERTICAL);
-        panelSizer->Add(extendedOpsSizer,
-                        wxSizerFlags().Expand().Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+        panelSizer->Add(extendedOpsSizer, wxSizerFlags{}.Expand().Border(wxLEFT));
         // disable SSL
         extendedOpsSizer->Add(new wxCheckBox(Panel, wxID_ANY,
                                              _(L"Disable SSL certificate verification"),
                                              wxDefaultPosition, wxDefaultSize, 0,
                                              wxGenericValidator(&m_disablePeerVerify)),
-                              wxSizerFlags()
-                                  .Expand()
-                                  .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
-                                  .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
+                              wxSizerFlags{}.Expand().Border(wxTOP));
 
         // JS cookies
         extendedOpsSizer->Add(new wxCheckBox(Panel, ID_JS_COOKIES_CHECKBOX,
                                              _(L"Use JavaScript cookies"), wxDefaultPosition,
                                              wxDefaultSize, 0, wxGenericValidator(&m_useJsCookies)),
-                              wxSizerFlags()
-                                  .Expand()
-                                  .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
-                                  .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
+                              wxSizerFlags{}.Expand().Border(wxTOP));
 
         m_persistCookiesCheck = new wxCheckBox(
             Panel, wxID_ANY, _(L"Persist cookies for current sites"), wxDefaultPosition,
             wxDefaultSize, 0, wxGenericValidator(&m_persistJsCookies));
-        extendedOpsSizer->Add(m_persistCookiesCheck,
-                              wxSizerFlags()
-                                  .Expand()
-                                  .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
-                                  .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
+        extendedOpsSizer->Add(m_persistCookiesCheck, wxSizerFlags{}.Expand().Border(wxTOP));
         m_persistCookiesCheck->Enable(m_useJsCookies);
 
         // check links
         extendedOpsSizer->Add(new wxCheckBox(Panel, wxID_ANY, _(L"&Log broken links"),
                                              wxDefaultPosition, wxDefaultSize, 0,
                                              wxGenericValidator(&m_logBrokenLinks)),
-                              wxSizerFlags()
-                                  .Expand()
-                                  .Border(wxLEFT, wxSizerFlags::GetDefaultBorder())
-                                  .Border(wxTOP, wxSizerFlags::GetDefaultBorder()));
-        panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+                              wxSizerFlags{}.Expand().Border(wxTOP | wxBOTTOM));
         }
 
         // domain restriction page
@@ -369,7 +345,7 @@ void WebHarvesterDlg::CreateControls()
 
         wxStaticBoxSizer* domainBoxSizer = new wxStaticBoxSizer(
             new wxStaticBox(Panel, wxID_ANY, _(L"Domain Restriction")), wxVERTICAL);
-        panelSizer->Add(domainBoxSizer, 1, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
+        panelSizer->Add(domainBoxSizer, wxSizerFlags{ 1 }.Expand().Border());
 
         wxArrayString choiceStrings;
         choiceStrings.Add(_(L"Not restricted to any domain"));
@@ -382,8 +358,7 @@ void WebHarvesterDlg::CreateControls()
                                        wxDefaultPosition, wxDefaultSize, choiceStrings,
                                        wxCB_DROPDOWN | wxCB_READONLY);
         m_domainCombo->SetValidator(wxGenericValidator(&m_selectedDomainRestriction));
-        domainBoxSizer->Add(m_domainCombo, 0, wxEXPAND);
-        domainBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+        domainBoxSizer->Add(m_domainCombo, wxSizerFlags{}.Expand().Border());
 
         wxBoxSizer* domainButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
         m_addDomainButton = new wxBitmapButton(
@@ -399,14 +374,15 @@ void WebHarvesterDlg::CreateControls()
         m_deleteDomainButton->SetToolTip(_(L"Delete selected domain"));
         m_deleteDomainButton->Enable(m_domainCombo->GetValue() == GetUserSpecifiedDomainsLabel());
         domainButtonsSizer->Add(m_deleteDomainButton);
-        domainBoxSizer->Add(domainButtonsSizer, 0, wxALIGN_RIGHT);
+        domainBoxSizer->Add(domainButtonsSizer, wxSizerFlags{}.Right().Border(wxRIGHT | wxTOP));
 
         m_domainData->SetValues(m_domains);
         m_domainList = new Wisteria::UI::ListCtrlEx(domainBoxSizer->GetStaticBox(), wxID_ANY,
                                                     wxDefaultPosition, FromDIP(wxSize{ 600, 200 }),
                                                     wxLC_VIRTUAL | wxLC_EDIT_LABELS | wxLC_REPORT |
                                                         wxLC_ALIGN_LEFT);
-        domainBoxSizer->Add(m_domainList, 1, wxEXPAND | wxALL);
+        domainBoxSizer->Add(m_domainList,
+                            wxSizerFlags{ 1 }.Expand().Border(wxLEFT | wxRIGHT | wxBOTTOM));
         m_domainList->EnableGridLines();
         m_domainList->EnableItemAdd();
         m_domainList->EnableLabelEditing();
@@ -432,14 +408,13 @@ void WebHarvesterDlg::CreateControls()
             wxCheckBox* downloadCheckBox = new wxCheckBox(
                 Panel, ID_DOWNLOAD_CHECKBOX, _(L"&Download files locally"), wxDefaultPosition,
                 wxDefaultSize, 0, wxGenericValidator(&m_downloadFilesLocally));
-            panelSizer->Add(downloadCheckBox, 0, wxALL, wxSizerFlags::GetDefaultBorder());
+            panelSizer->Add(downloadCheckBox, wxSizerFlags{}.Border());
             }
 
         m_localFolderLabel = new wxStaticText(Panel, wxID_ANY, _(L"Folder to download files to:"),
                                               wxDefaultPosition, wxDefaultSize, 0);
         m_localFolderLabel->Enable(m_downloadFilesLocally);
-        panelSizer->Add(m_localFolderLabel, 0, wxLEFT | wxBOTTOM | wxRIGHT,
-                        wxSizerFlags::GetDefaultBorder());
+        panelSizer->Add(m_localFolderLabel, wxSizerFlags{}.Border(wxLEFT | wxBOTTOM | wxRIGHT));
 
         wxBoxSizer* downloadFolderPathSizer = new wxBoxSizer(wxHORIZONTAL);
         m_localFolderEdit =
@@ -447,27 +422,24 @@ void WebHarvesterDlg::CreateControls()
                            wxBORDER_THEME, wxGenericValidator(&m_downloadFolder));
         m_localFolderEdit->AutoCompleteFileNames();
         m_localFolderEdit->Enable(m_downloadFilesLocally);
-        downloadFolderPathSizer->Add(m_localFolderEdit, 1, wxRIGHT | wxEXPAND, 2);
+        downloadFolderPathSizer->Add(m_localFolderEdit, wxSizerFlags{ 1 }.Expand());
 
         m_folderBrowseButton = new wxBitmapButton(
             Panel, ID_DOWNLOAD_FOLDER_BROWSE_BUTTON,
             wxArtProvider::GetBitmap(wxART_FILE_OPEN, wxART_BUTTON, FromDIP(wxSize{ 16, 16 })));
         m_folderBrowseButton->Enable(m_downloadFilesLocally);
-        downloadFolderPathSizer->Add(m_folderBrowseButton, 0, wxRIGHT,
-                                     wxSizerFlags::GetDefaultBorder());
-        panelSizer->Add(downloadFolderPathSizer, 0, wxLEFT | wxEXPAND,
-                        wxSizerFlags::GetDefaultBorder());
+        downloadFolderPathSizer->Add(m_folderBrowseButton, wxSizerFlags{}.Expand().Border(wxRIGHT));
+        panelSizer->Add(downloadFolderPathSizer, wxSizerFlags{}.Border(wxLEFT).Expand());
         panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
         // min file size
         wxBoxSizer* minFileSizeSizer = new wxBoxSizer(wxHORIZONTAL);
-        panelSizer->Add(minFileSizeSizer,
-                        wxSizerFlags().Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+        panelSizer->Add(minFileSizeSizer, wxSizerFlags{}.Border(wxLEFT));
 
         m_minFileSizeLabel =
             new wxStaticText(Panel, wxID_STATIC, _(L"Minimum file size to download (in Kbs.):"));
         m_minFileSizeLabel->Enable(m_downloadFilesLocally);
-        minFileSizeSizer->Add(m_minFileSizeLabel, 0, wxALIGN_CENTER_VERTICAL);
+        minFileSizeSizer->Add(m_minFileSizeLabel, wxSizerFlags{}.CenterVertical().Border(wxRIGHT));
 
         m_minFileSizeCtrl =
             new wxSpinCtrl(Panel, wxID_ANY, std::to_wstring(m_minFileSizeInKiloBytes));
@@ -482,8 +454,7 @@ void WebHarvesterDlg::CreateControls()
             Panel, wxID_ANY, _(L"&Use website's folder structure"), wxDefaultPosition,
             wxDefaultSize, 0, wxGenericValidator(&m_keepWebPathWhenDownloading));
         m_retainWebsiteFolderStuctureCheckBox->Enable(m_downloadFilesLocally);
-        panelSizer->Add(m_retainWebsiteFolderStuctureCheckBox, 0, wxALL,
-                        wxSizerFlags::GetDefaultBorder());
+        panelSizer->Add(m_retainWebsiteFolderStuctureCheckBox, wxSizerFlags{}.Border());
 
         // existing files
         m_replaceExistingFilesCheckBox =

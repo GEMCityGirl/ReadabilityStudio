@@ -431,7 +431,7 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
             This function will scale this according to the system's DPI.*/
     [[nodiscard]]
     wxBitmap GetScaledImage(const wxString& image, const wxBitmapType type = wxBITMAP_TYPE_PNG,
-                            const wxSize imageSize = wxSize(32, 32))
+                            const wxSize imageSize = wxSize{ 32, 32 })
         {
         assert(GetMainFrame());
         const wxSize scaledSize = GetMainFrame()->FromDIP(imageSize);

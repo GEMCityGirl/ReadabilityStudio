@@ -104,9 +104,8 @@ void AboutDialogEx::FillLicenseGrid()
 
 //------------------------------------------------------
 AboutDialogEx::AboutDialogEx(wxWindow* parent, const wxBitmap& logo, wxString appVersion,
-                             wxString copyright, LicenseAdmin* licenseAdmin,
-                             wxString eula, wxWindowID id,
-                             const wxPoint& pos, const wxSize& size, long style)
+                             wxString copyright, LicenseAdmin* licenseAdmin, wxString eula,
+                             wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
     : m_licenseAdmin(licenseAdmin), m_logo(logo), m_appVersion(std::move(appVersion)),
       m_copyright(std::move(copyright)), m_eula(std::move(eula))
     {
@@ -134,7 +133,7 @@ void AboutDialogEx::CreateControls()
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
 
     m_sideBarBook = new Wisteria::UI::SideBarBook(this, wxID_ANY);
-    mainSizer->Add(m_sideBarBook, 1, wxEXPAND | wxALL, wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(m_sideBarBook, wxSizerFlags{ 1 }.Expand().Border());
 
         // version info page
         {
@@ -174,12 +173,11 @@ void AboutDialogEx::CreateControls()
                              ));
 
         // put it all together
-        mainPanelSizer->Add(new wxStaticText(mainPage, wxID_ANY, wxTheApp->GetAppName()), 0,
-                            wxALIGN_LEFT | wxLEFT, wxSizerFlags::GetDefaultBorder());
-        mainPanelSizer->Add(productInfoGrid, 0, wxALIGN_LEFT | wxLEFT,
-                            wxSizerFlags::GetDefaultBorder());
+        mainPanelSizer->Add(new wxStaticText(mainPage, wxID_ANY, wxTheApp->GetAppName()),
+                            wxSizerFlags{}.Left().Border(wxLEFT));
+        mainPanelSizer->Add(productInfoGrid, wxSizerFlags{}.Left().Border(wxLEFT));
         mainPanelSizer->Add(new wxStaticText(mainPage, wxID_ANY, m_copyright),
-                            wxSizerFlags().Left().Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+                            wxSizerFlags{}.Left().Border(wxLEFT));
         mainPanelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
         }
 
@@ -200,7 +198,7 @@ void AboutDialogEx::CreateControls()
                                      wxSizerFlags{ 1 }.Expand());
         updateSerialNumberSizer->Add(new wxButton(mainPage, ID_UPDATE_LICENSE, _(L"Update")));
         mainPanelSizer->Add(updateSerialNumberSizer,
-                            wxSizerFlags().Expand().Border(wxLEFT | wxRIGHT));
+                            wxSizerFlags{}.Expand().Border(wxLEFT | wxRIGHT));
 
         // user and license info
         auto userInfoGrid = new wxFlexGridSizer(2, wxSize(wxSizerFlags::GetDefaultBorder(), 0));
@@ -220,12 +218,12 @@ void AboutDialogEx::CreateControls()
         userInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"License:")));
         userInfoGrid->Add(
             new wxStaticText(mainPage, wxID_ANY, m_licenseAdmin->GetProductDescription()));
-        mainPanelSizer->Add(userInfoGrid, wxSizerFlags().Border(wxALL).Align(wxALIGN_LEFT));
+        mainPanelSizer->Add(userInfoGrid, wxSizerFlags{}.Border(wxALL).Align(wxALIGN_LEFT));
 
         // license grid
         m_licenseGrid =
             new Wisteria::UI::ListCtrlEx(mainPage, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-                                       wxLC_SINGLE_SEL | wxLC_REPORT | wxBORDER_SUNKEN);
+                                         wxLC_SINGLE_SEL | wxLC_REPORT | wxBORDER_SUNKEN);
         m_licenseGrid->EnableGridLines();
         m_licenseGrid->InsertColumn(0, _(L"Product Feature"), wxLIST_FORMAT_LEFT,
                                     wxLIST_AUTOSIZE_USEHEADER);
@@ -234,8 +232,7 @@ void AboutDialogEx::CreateControls()
         m_licenseGrid->InsertColumn(2, _(L"Days Remaining"), wxLIST_FORMAT_LEFT,
                                     wxLIST_AUTOSIZE_USEHEADER);
         FillLicenseGrid();
-        mainPanelSizer->Add(m_licenseGrid, 1, wxALIGN_LEFT | wxEXPAND | wxALL,
-                            wxSizerFlags::GetDefaultBorder());
+        mainPanelSizer->Add(m_licenseGrid, wxSizerFlags{ 1 }.Left().Expand().Border());
         m_licenseGrid->SetColumnWidth(0, m_licenseGrid->EstimateColumnWidth(0));
         m_licenseGrid->SetColumnWidth(1, wxLIST_AUTOSIZE_USEHEADER);
         m_licenseGrid->SetColumnWidth(2, wxLIST_AUTOSIZE_USEHEADER);
@@ -251,12 +248,10 @@ void AboutDialogEx::CreateControls()
 
         wxHtmlWindow* eulaWindow{ new wxHtmlWindow(eulaPage) };
         eulaWindow->SetPage(m_eula);
-        mainPanelSizer->Add(eulaWindow,
-            wxSizerFlags(1).Expand().Border(wxALL, wxSizerFlags::GetDefaultBorder()));
+        mainPanelSizer->Add(eulaWindow, wxSizerFlags{ 1 }.Expand().Border());
         }
 
-    mainSizer->Add(CreateSeparatedButtonSizer(wxCLOSE), 0, wxALL | wxEXPAND,
-                   wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(CreateSeparatedButtonSizer(wxCLOSE), wxSizerFlags{}.Expand().Border());
 
     SetSizerAndFit(mainSizer);
     }

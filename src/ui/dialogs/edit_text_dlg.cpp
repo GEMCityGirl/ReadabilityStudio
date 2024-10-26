@@ -167,7 +167,7 @@ void EditTextDlg::CreateControls()
                 new wxRibbonButtonBar(exportPage, MainFrame::ID_DOCUMENT_RIBBON_BUTTON_BAR);
             buttonBar->AddButton(
                 wxID_SAVE, _(L"Save"),
-                wxArtProvider::GetBitmap(wxART_FILE_SAVE, wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                wxArtProvider::GetBitmap(wxART_FILE_SAVE, wxART_BUTTON, FromDIP(wxSize{ 32, 32 }))
                     .ConvertToImage(),
                 _(L"Save the document."));
             }
@@ -180,17 +180,17 @@ void EditTextDlg::CreateControls()
                 new wxRibbonButtonBar(clipboardPage, MainFrame::ID_CLIPBOARD_RIBBON_BUTTON_BAR);
             buttonBar->AddButton(
                 wxID_PASTE, _(L"Paste"),
-                wxArtProvider::GetBitmap(wxART_PASTE, wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                wxArtProvider::GetBitmap(wxART_PASTE, wxART_BUTTON, FromDIP(wxSize{ 32, 32 }))
                     .ConvertToImage(),
                 _(L"Pastes the clipboard's content into the document."));
             buttonBar->AddButton(
                 wxID_CUT, _(L"Cut"),
-                wxArtProvider::GetBitmap(wxART_CUT, wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                wxArtProvider::GetBitmap(wxART_CUT, wxART_BUTTON, FromDIP(wxSize{ 32, 32 }))
                     .ConvertToImage(),
                 _(L"Cuts the selection."));
             buttonBar->AddButton(
                 wxID_COPY, _(L"Copy"),
-                wxArtProvider::GetBitmap(wxART_COPY, wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                wxArtProvider::GetBitmap(wxART_COPY, wxART_BUTTON, FromDIP(wxSize{ 32, 32 }))
                     .ConvertToImage(),
                 _(L"Copy the selection."));
             }
@@ -203,29 +203,29 @@ void EditTextDlg::CreateControls()
                 new wxRibbonButtonBar(editPage, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
             buttonBar->AddButton(
                 wxID_UNDO, _(L"Undo"),
-                wxArtProvider::GetBitmap(wxART_UNDO, wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                wxArtProvider::GetBitmap(wxART_UNDO, wxART_BUTTON, FromDIP(wxSize{ 32, 32 }))
                     .ConvertToImage(),
                 _(L"Undoes the last operation."));
             buttonBar->AddButton(
                 wxID_REDO, _(L"Redo"),
-                wxArtProvider::GetBitmap(wxART_REDO, wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                wxArtProvider::GetBitmap(wxART_REDO, wxART_BUTTON, FromDIP(wxSize{ 32, 32 }))
                     .ConvertToImage(),
                 _(L"Repeats the last operation."));
 
             buttonBar->AddButton(
                 wxID_FIND, _(L"Find"),
-                wxArtProvider::GetBitmap(wxART_FIND, wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                wxArtProvider::GetBitmap(wxART_FIND, wxART_BUTTON, FromDIP(wxSize{ 32, 32 }))
                     .ConvertToImage(),
                 _(L"Search for text."));
             buttonBar->AddButton(wxID_REPLACE, _(L"Replace"),
                                  wxArtProvider::GetBitmap(wxART_FIND_AND_REPLACE, wxART_BUTTON,
-                                                          FromDIP(wxSize(32, 32)))
+                                                          FromDIP(wxSize{ 32, 32 }))
                                      .ConvertToImage(),
                                  _(L"Replace text."));
 
             buttonBar->AddButton(
                 wxID_SELECTALL, _(L"Select All"),
-                wxArtProvider::GetBitmap(L"ID_SELECT_ALL", wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                wxArtProvider::GetBitmap(L"ID_SELECT_ALL", wxART_BUTTON, FromDIP(wxSize{ 32, 32 }))
                     .ConvertToImage(),
                 _(L"Select all text."));
 
@@ -242,41 +242,41 @@ void EditTextDlg::CreateControls()
 
             buttonBar->AddButton(
                 wxID_SELECT_FONT, _(L"Font"),
-                wxArtProvider::GetBitmap(L"ID_FONT", wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                wxArtProvider::GetBitmap(L"ID_FONT", wxART_BUTTON, FromDIP(wxSize{ 32, 32 }))
                     .ConvertToImage(),
                 _(L"Changes the document's font."));
 
             buttonBar->AddToggleButton(wxID_INDENT, _(L"Indent"),
                                        wxArtProvider::GetBitmap(L"ID_PARAGRAPH_INDENT",
                                                                 wxART_BUTTON,
-                                                                FromDIP(wxSize(32, 32)))
+                                                                FromDIP(wxSize{ 32, 32 }))
                                            .ConvertToImage(),
                                        _(L"Indents the first line of each paragraph."));
 
             buttonBar->AddToggleButton(
                 wxID_JUSTIFY_LEFT, _(L"Left"),
-                wxArtProvider::GetBitmap(L"ID_ALIGN_LEFT", wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                wxArtProvider::GetBitmap(L"ID_ALIGN_LEFT", wxART_BUTTON, FromDIP(wxSize{ 32, 32 }))
                     .ConvertToImage(),
                 _(L"Left aligns the text."));
             buttonBar->AddToggleButton(
                 wxID_JUSTIFY_CENTER, _(L"Center"),
-                wxArtProvider::GetBitmap(L"ID_ALIGN_CENTER", wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                wxArtProvider::GetBitmap(L"ID_ALIGN_CENTER", wxART_BUTTON, FromDIP(wxSize{ 32, 32 }))
                     .ConvertToImage(),
                 _(L"Centers the text."));
             buttonBar->AddToggleButton(
                 wxID_JUSTIFY_RIGHT, _(L"Right"),
-                wxArtProvider::GetBitmap(L"ID_ALIGN_RIGHT", wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                wxArtProvider::GetBitmap(L"ID_ALIGN_RIGHT", wxART_BUTTON, FromDIP(wxSize{ 32, 32 }))
                     .ConvertToImage(),
                 _(L"Right aligns the text."));
             buttonBar->AddToggleButton(wxID_JUSTIFY_FILL, _(L"Justified"),
                                        wxArtProvider::GetBitmap(L"ID_ALIGN_JUSTIFIED", wxART_BUTTON,
-                                                                FromDIP(wxSize(32, 32)))
+                                                                FromDIP(wxSize{ 32, 32 }))
                                            .ConvertToImage(),
                                        _(L"Justifies the text."));
 
             buttonBar->AddDropdownButton(
                 XRCID("ID_LINE_SPACING"), _(L"Line Spacing"),
-                wxArtProvider::GetBitmap(L"ID_LINE_SPACING", wxART_BUTTON, FromDIP(wxSize(32, 32)))
+                wxArtProvider::GetBitmap(L"ID_LINE_SPACING", wxART_BUTTON, FromDIP(wxSize{ 32, 32 }))
                     .ConvertToImage(),
                 _(L"Adjusts the spacing between lines."));
 
@@ -374,13 +374,13 @@ void EditTextDlg::CreateControls()
     EnableSaveButton(false);
     UpdateButtons();
 
-    mainSizer->Add(m_textEntry, wxSizerFlags(1).Expand());
+    mainSizer->Add(m_textEntry, wxSizerFlags{ 1 }.Expand());
 
     if (m_description.length())
         {
         mainSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
         wxStaticText* label = new wxStaticText(this, wxID_ANY, m_description);
-        mainSizer->Add(label, wxSizerFlags().Border(wxLEFT, wxSizerFlags::GetDefaultBorder()));
+        mainSizer->Add(label, wxSizerFlags{}.Border(wxLEFT));
         }
 
     // batch uses this in modal mode

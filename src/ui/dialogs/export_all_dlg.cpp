@@ -202,8 +202,7 @@ void ExportAllDlg::CreateControls()
     SetSizer(mainSizer);
 
     wxBoxSizer* itemsBoxSizer = new wxBoxSizer(wxVERTICAL);
-    mainSizer->Add(itemsBoxSizer, 0, wxEXPAND | wxALIGN_TOP | wxALL,
-                   wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(itemsBoxSizer, wxSizerFlags{}.Expand().Border().Top());
 
     // export path
     wxStaticBox* pathBox = new wxStaticBox(
@@ -354,8 +353,7 @@ void ExportAllDlg::CreateControls()
             new wxStaticText(exportTypeStaticBoxSizer->GetStaticBox(), ID_LIST_TYPE_LABEL,
                              _(L"Export lists as:"), wxDefaultPosition, wxDefaultSize, 0);
         listLabel->Enable(m_exportingLists);
-        exportTypeBoxSizer->Add(listLabel, 0, wxALIGN_CENTER_VERTICAL | wxALL,
-                                wxSizerFlags::GetDefaultBorder());
+        exportTypeBoxSizer->Add(listLabel, wxSizerFlags{}.Border().CenterVertical());
 
         m_listCombo = new wxComboBox(exportTypeStaticBoxSizer->GetStaticBox(), ID_LIST_TYPE_COMBO,
                                      wxString{}, wxDefaultPosition, wxDefaultSize, 0, nullptr,
@@ -365,8 +363,7 @@ void ExportAllDlg::CreateControls()
         m_listCombo->Append(L"tex");
         m_listCombo->SetStringSelection(m_listExt);
         m_listCombo->Enable(m_exportingLists);
-        exportTypeBoxSizer->Add(m_listCombo, 0, wxALIGN_LEFT | wxALL,
-                                wxSizerFlags::GetDefaultBorder());
+        exportTypeBoxSizer->Add(m_listCombo, wxSizerFlags{}.Border().Left());
         exportTypeBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
         // text view section
@@ -376,8 +373,7 @@ void ExportAllDlg::CreateControls()
                 exportTypeStaticBoxSizer->GetStaticBox(), ID_TEXT_TYPE_LABEL,
                 _(L"Export text reports as:"), wxDefaultPosition, wxDefaultSize, 0);
             textViewLabel->Enable(m_exportingTextReports);
-            exportTypeBoxSizer->Add(textViewLabel, 0, wxALIGN_CENTER_VERTICAL | wxALL,
-                                    wxSizerFlags::GetDefaultBorder());
+            exportTypeBoxSizer->Add(textViewLabel, wxSizerFlags{}.Border().CenterVertical());
 
             m_textViewCombo = new wxComboBox(
                 exportTypeStaticBoxSizer->GetStaticBox(), ID_TEXT_TYPE_COMBO, wxString{},
@@ -386,8 +382,7 @@ void ExportAllDlg::CreateControls()
             m_textViewCombo->Append(L"rtf");
             m_textViewCombo->SetStringSelection(m_textViewExt);
             m_textViewCombo->Enable(m_exportingTextReports);
-            exportTypeBoxSizer->Add(m_textViewCombo, 0, wxALIGN_LEFT | wxALL,
-                                    wxSizerFlags::GetDefaultBorder());
+            exportTypeBoxSizer->Add(m_textViewCombo, wxSizerFlags{}.Border().Left());
             exportTypeBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             }
         }
@@ -396,8 +391,7 @@ void ExportAllDlg::CreateControls()
     wxStaticText* graphLabel =
         new wxStaticText(exportTypeStaticBoxSizer->GetStaticBox(), wxID_STATIC,
                          _(L"Export graphs as:"), wxDefaultPosition, wxDefaultSize, 0);
-    exportTypeBoxSizer->Add(graphLabel, 0, wxALIGN_CENTER_VERTICAL | wxALL,
-                            wxSizerFlags::GetDefaultBorder());
+    exportTypeBoxSizer->Add(graphLabel, wxSizerFlags{}.Border().CenterVertical());
 
     m_graphCombo =
         new wxComboBox(exportTypeStaticBoxSizer->GetStaticBox(), wxID_ANY, wxString{},
@@ -410,14 +404,12 @@ void ExportAllDlg::CreateControls()
     m_graphCombo->Append(L"gif");
     m_graphCombo->Append(L"svg");
     m_graphCombo->SetStringSelection(m_graphExt);
-    exportTypeBoxSizer->Add(m_graphCombo, 0, wxALIGN_CENTER_VERTICAL | wxALL,
-                            wxSizerFlags::GetDefaultBorder());
+    exportTypeBoxSizer->Add(m_graphCombo, wxSizerFlags{}.Border().CenterVertical());
 
     auto imageButton = new wxButton(exportTypeStaticBoxSizer->GetStaticBox(),
                                     ID_IMAGE_OPTIONS_BUTTON, _(L"Image options"));
     imageButton->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/boxplot.svg"));
-    exportTypeBoxSizer->Add(imageButton, 0, wxALIGN_CENTER_VERTICAL | wxALL,
-                            wxSizerFlags::GetDefaultBorder());
+    exportTypeBoxSizer->Add(imageButton, wxSizerFlags{}.Border().CenterVertical());
 
     if (IsStandardProject())
         {
