@@ -3227,18 +3227,15 @@ void ToolsOptionsDlg::CreateControls()
 
             wxButton* loadSettingsButton =
                 new wxButton(generalSettingsPage, ID_LOAD_SETTINGS_BUTTON, _(L"Import..."));
-            optionsSizer->Add(loadSettingsButton, 0, wxALIGN_LEFT | wxTOP | wxBOTTOM,
-                              wxSizerFlags::GetDefaultBorder());
+            optionsSizer->Add(loadSettingsButton, wxSizerFlags{}.Border(wxTOP | wxBOTTOM));
 
             wxButton* exportSettingsButton =
                 new wxButton(generalSettingsPage, ID_EXPORT_SETTINGS_BUTTON, _(L"Export..."));
-            optionsSizer->Add(exportSettingsButton, 0, wxALIGN_LEFT | wxTOP | wxBOTTOM,
-                              wxSizerFlags::GetDefaultBorder());
+            optionsSizer->Add(exportSettingsButton, wxSizerFlags{}.Border(wxTOP | wxBOTTOM));
 
             wxButton* resetSettingsButton =
                 new wxButton(generalSettingsPage, ID_RESET_SETTINGS_BUTTON, _(L"Reset"));
-            optionsSizer->Add(resetSettingsButton, 0, wxALIGN_LEFT | wxTOP | wxBOTTOM,
-                              wxSizerFlags::GetDefaultBorder());
+            optionsSizer->Add(resetSettingsButton, wxSizerFlags{}.Border(wxTOP | wxBOTTOM));
 
             CreateLabelHeader(generalSettingsPage, docpanelSizer, _(L"Internet:"), true);
 
@@ -3255,7 +3252,7 @@ void ToolsOptionsDlg::CreateControls()
             wxTextCtrl* userAgentEdit =
                 new wxTextCtrl(generalSettingsPage, wxID_ANY, wxString{}, wxDefaultPosition,
                                wxDefaultSize, wxBORDER_THEME, wxGenericValidator(&m_userAgent));
-            userAgentSizer->Add(userAgentEdit, wxSizerFlags{ 1 }.Expand().Border(wxLEFT));
+            userAgentSizer->Add(userAgentEdit, wxSizerFlags{ 1 }.Expand().Border(wxLEFT | wxRIGHT));
 
             optionsSizer->Add(new wxCheckBox(generalSettingsPage, wxID_ANY,
                                              _(L"Disable SSL certificate verification"),
@@ -3284,8 +3281,7 @@ void ToolsOptionsDlg::CreateControls()
 
             wxButton* warningsButton =
                 new wxButton(generalSettingsPage, ID_WARNING_MESSAGES_BUTTON, _(L"Customize..."));
-            optionsSizer->Add(warningsButton, 0, wxALIGN_LEFT | wxTOP | wxBOTTOM,
-                              wxSizerFlags::GetDefaultBorder());
+            optionsSizer->Add(warningsButton, wxSizerFlags{}.Border(wxTOP | wxBOTTOM));
 
             CreateLabelHeader(generalSettingsPage, docpanelSizer, _(L"Log:"), true);
 
@@ -4037,7 +4033,7 @@ void ToolsOptionsDlg::CreateControls()
             pgMan->SelectProperty(_DT(L"Gunning Fog"));
             panelSizer->Add(pgMan, wxSizerFlags{ 1 }.Expand());
 
-            const int ScaledNoteWidth = FromDIP(wxSize(400, 400)).GetWidth();
+            const int ScaledNoteWidth = FromDIP(wxSize{ 400, 400 }).GetWidth();
 
             m_readTestsSyllableLabel = new wxStaticText(
                 ScoreTestOptionsPage, wxID_STATIC,
@@ -4051,8 +4047,7 @@ void ToolsOptionsDlg::CreateControls()
                 (m_textExclusionMethod ==
                  static_cast<int>(InvalidSentence::IncludeAsFullSentences)) ||
                 !m_ignoreNumerals);
-            panelSizer->Add(m_readTestsSyllableLabel, 0, wxLEFT | wxRIGHT,
-                            wxSizerFlags::GetDefaultBorder());
+            panelSizer->Add(m_readTestsSyllableLabel, wxSizerFlags{}.Border(wxLEFT | wxRIGHT));
 
             m_textExclusionLabel = new wxStaticText(
                 ScoreTestOptionsPage, wxID_STATIC,
@@ -4065,8 +4060,7 @@ void ToolsOptionsDlg::CreateControls()
                       "exclude all incomplete sentences, except headings."),
                 wxDefaultPosition, wxDefaultSize, 0);
             m_textExclusionLabel->Wrap(ScaledNoteWidth);
-            panelSizer->Add(m_textExclusionLabel, 0, wxLEFT | wxRIGHT,
-                            wxSizerFlags::GetDefaultBorder());
+            panelSizer->Add(m_textExclusionLabel, wxSizerFlags{}.Border(wxLEFT | wxRIGHT));
             }
 
             // grade level tab
@@ -5524,33 +5518,29 @@ void ToolsOptionsDlg::CreateGraphSection()
                 new wxButton(Panel, ID_GRAPH_TOP_TITLE_FONT_BUTTON, _(L"Top titles"));
             m_graphTopTitleFontButton->SetBitmap(
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/top-titles.svg"));
-            optionsSizer->Add(
-                m_graphTopTitleFontButton,
-                wxSizerFlags{}.Expand().DoubleBorder(wxLEFT));
+            optionsSizer->Add(m_graphTopTitleFontButton,
+                              wxSizerFlags{}.Expand().DoubleBorder(wxLEFT));
 
             m_graphBottomTitleFontButton =
                 new wxButton(Panel, ID_GRAPH_BOTTOM_TITLE_FONT_BUTTON, _(L"Bottom titles"));
             m_graphBottomTitleFontButton->SetBitmap(
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/bottom-titles.svg"));
-            optionsSizer->Add(
-                m_graphBottomTitleFontButton,
-                wxSizerFlags{}.Expand().DoubleBorder(wxLEFT));
+            optionsSizer->Add(m_graphBottomTitleFontButton,
+                              wxSizerFlags{}.Expand().DoubleBorder(wxLEFT));
 
             m_graphLeftTitleFontButton =
                 new wxButton(Panel, ID_GRAPH_LEFT_TITLE_FONT_BUTTON, _(L"Left titles"));
             m_graphLeftTitleFontButton->SetBitmap(
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/left-titles.svg"));
-            optionsSizer->Add(
-                m_graphLeftTitleFontButton,
-                wxSizerFlags{}.Expand().DoubleBorder(wxLEFT));
+            optionsSizer->Add(m_graphLeftTitleFontButton,
+                              wxSizerFlags{}.Expand().DoubleBorder(wxLEFT));
 
             m_graphRightTitleFontButton =
                 new wxButton(Panel, ID_GRAPH_RIGHT_TITLE_FONT_BUTTON, _(L"Right titles"));
             m_graphRightTitleFontButton->SetBitmap(
                 wxGetApp().GetResourceManager().GetSVG(L"ribbon/right-titles.svg"));
-            optionsSizer->Add(
-                m_graphRightTitleFontButton,
-                wxSizerFlags{}.Expand().DoubleBorder(wxLEFT));
+            optionsSizer->Add(m_graphRightTitleFontButton,
+                              wxSizerFlags{}.Expand().DoubleBorder(wxLEFT));
 
             panelSizer->Add(optionsSizer);
             }

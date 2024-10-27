@@ -727,8 +727,7 @@ void CustomTestDlg::CreateControls()
             // formula editor
             {
             wxBoxSizer* functionControlsSizer = new wxBoxSizer(wxHORIZONTAL);
-            editorSectionSizer->Add(
-                functionControlsSizer, wxSizerFlags{ 1 }.Expand().Border());
+            editorSectionSizer->Add(functionControlsSizer, wxSizerFlags{ 1 }.Expand().Border());
             wxStaticBoxSizer* formulaBoxSizer = new wxStaticBoxSizer(
                 new wxStaticBox(m_generalPage, wxID_ANY, _(L"Formula:")), wxVERTICAL);
             functionControlsSizer->Add(formulaBoxSizer, wxSizerFlags{ 1 }.Expand());
@@ -745,12 +744,11 @@ void CustomTestDlg::CreateControls()
                                                            L"ribbon/function-light.svg" :
                                                            L"ribbon/function.svg")));
 
-            formulaBoxSizer->Add(formulaButtonsSizer, 0, wxLEFT | wxTOP | wxRIGHT,
-                                 wxSizerFlags::GetDefaultBorder());
+            formulaBoxSizer->Add(formulaButtonsSizer, wxSizerFlags{}.Border(wxLEFT | wxTOP | wxRIGHT));
             formulaBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
             m_formulaCtrl = new CodeEditor(formulaBoxSizer->GetStaticBox(), ID_FORMULA_FIELD,
-                                           wxDefaultPosition, FromDIP(wxSize(600, 300)));
+                                           wxDefaultPosition, FromDIP(wxSize{ 600, 300 }));
             m_formulaCtrl->SetLanguage(wxSTC_LEX_CPPNOCASE);
             m_formulaCtrl->SetThemeColor(
                 wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW));
@@ -777,8 +775,7 @@ void CustomTestDlg::CreateControls()
             formulaExample->SetFont(
                 wxFont(wxFontInfo().Family(wxFontFamily::wxFONTFAMILY_TELETYPE).Bold(true)));
             formulaBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-            formulaBoxSizer->Add(formulaExample, wxSizerFlags{}.Border(
-                                                     wxLEFT, wxSizerFlags::GetDefaultBorder() * 3));
+            formulaBoxSizer->Add(formulaExample, wxSizerFlags{}.DoubleBorder(wxLEFT));
             formulaBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
             formulaBoxSizer->Add(
@@ -790,7 +787,7 @@ void CustomTestDlg::CreateControls()
             formulaExample->SetFont(
                 wxFont(wxFontInfo().Family(wxFontFamily::wxFONTFAMILY_TELETYPE).Bold(true)));
             formulaBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-            formulaBoxSizer->Add(formulaExample, 0, wxLEFT, wxSizerFlags::GetDefaultBorder() * 3);
+            formulaBoxSizer->Add(formulaExample, wxSizerFlags{}.DoubleBorder(wxLEFT));
             }
             // function browser
             {

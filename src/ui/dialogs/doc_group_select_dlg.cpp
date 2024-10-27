@@ -21,7 +21,7 @@ void DocGroupSelectDlg::CreateControls()
         this, wxID_ANY, _(L"Select how to label the document(s):"), wxDefaultPosition,
         wxDefaultSize, choices, 0, wxRA_SPECIFY_ROWS, wxGenericValidator(&m_selected));
 
-    mainSizer->Add(radioBox, 0, wxALIGN_LEFT | wxALL, wxSizerFlags::GetDefaultBorder());
+    mainSizer->Add(radioBox, wxSizerFlags{}.Border());
 
     // label box
     wxBoxSizer* labelSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -29,7 +29,7 @@ void DocGroupSelectDlg::CreateControls()
     m_groupingLabelEntry =
         new wxTextCtrl(this, wxID_ANY, wxString{}, wxDefaultPosition, wxDefaultSize,
                        wxBORDER_THEME, wxGenericValidator(&m_groupingLabel));
-    labelSizer->Add(m_groupingLabelText, 0, wxALIGN_CENTER_VERTICAL);
+    labelSizer->Add(m_groupingLabelText, wxSizerFlags{}.CenterVertical());
     labelSizer->Add(m_groupingLabelEntry, wxSizerFlags{ 1 }.Expand().Border());
 
     m_groupingLabelText->Enable(m_selected == 1);
