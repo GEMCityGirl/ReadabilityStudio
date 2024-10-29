@@ -92,7 +92,7 @@ class ProjectReportFormat
                    std::vector<punctuation::punctuation_mark>::const_iterator& punctStart,
                    const std::vector<punctuation::punctuation_mark>::const_iterator& punctEnd);
 
-    /// @returns The <span> start for something in the report that should be in red.
+    /// @returns The `<span>` start for something in the report that should be in red.
     [[nodiscard]]
     static wxString GetIssueSpanStart()
         {
