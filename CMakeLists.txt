@@ -65,10 +65,10 @@ set(PROGRAM_LICENSE "BSD-3-Clause")
 
 # Build a displayable version string that only includes the necessary parts
 set(FULL_DISPLAY_VERSION ${readstudio_VERSION_MAJOR})
-if(NOT ${readstudio_VERSION_MINOR} EQUAL 0)
+if(NOT ${readstudio_VERSION_MINOR} EQUAL 0 OR NOT ${readstudio_VERSION_PATCH} EQUAL 0 OR NOT ${readstudio_VERSION_TWEAK} EQUAL 0)
     string(APPEND FULL_DISPLAY_VERSION ".${readstudio_VERSION_MINOR}")
 endif()
-if(NOT ${readstudio_VERSION_PATCH} EQUAL 0)
+if(NOT ${readstudio_VERSION_PATCH} EQUAL 0 OR NOT ${readstudio_VERSION_TWEAK} EQUAL 0)
     string(APPEND FULL_DISPLAY_VERSION ".${readstudio_VERSION_PATCH}")
 endif()
 if(NOT ${readstudio_VERSION_TWEAK} EQUAL 0)
