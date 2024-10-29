@@ -17,6 +17,7 @@ source('../R/appdown.r')
 ### Bug Fixes {-}
 
 - Fixed intermittent graph blinking issue under HiDPI settings.
+- Fixed text being too light when printing statistics report under dark mode.
 
 ## Readability Studio 2024 {-}
 ***
