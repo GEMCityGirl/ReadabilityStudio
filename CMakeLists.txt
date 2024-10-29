@@ -85,7 +85,7 @@ message(STATUS "Built in: ${BUILD_YEAR}")
 message(STATUS "Authored by: ${PROGRAM_AUTHOR}")
 message(STATUS "Published by: ${PUBLISHER}")
 message(STATUS "Homepage: ${readstudio_HOMEPAGE_URL}")
-message(STATUS "Output program file: ${CMAKE_PROJECT_NAME}")
+message(STATUS "Output binary: ${CMAKE_PROJECT_NAME}")
 message(STATUS "Writing program info to build peripheral files")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/src/version.h.in"
                "${CMAKE_CURRENT_SOURCE_DIR}/src/app/version.h")
@@ -481,6 +481,8 @@ if(APPLE)
         OUTPUT_NAME ${readstudio_DESCRIPTION}
         XCODE_ATTRIBUTE_EXECUTABLE_NAME ${PROJECT_NAME} 
         MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist.in)
+
+        messagemessage(STATUS "App Bundle: ${OUTPUT_NAME}")
 endif()
 
 # Copy application (and resources) to installer folders (if a production build)
