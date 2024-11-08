@@ -7,7 +7,7 @@ source('../R/appdown.r')
 
 # New Features and Enhancements {#sec-new-features}
 
-## Readability Studio 2024.1 {-}
+## Readability Studio 2024.0.1 {-}
 ***
 
 ### Importing/Exporting Enhancements {-}
