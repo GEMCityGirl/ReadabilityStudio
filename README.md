@@ -83,7 +83,7 @@ git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
 cd wxWidgets
 cmake . -DCMAKE_INSTALL_PREFIX=./wxlib -DwxBUILD_SHARED=OFF \
 -DwxBUILD_OPTIMISE=ON -DwxBUILD_STRIPPED_RELEASE_DEFAULT=ON -DCMAKE_BUILD_TYPE=Release
-cmake --build . --target install -j $(nproc)
+cmake --build . --target install -j $(nproc) --config Release
 cd ..
 cd ReadabilityStudio
 ```
@@ -151,7 +151,7 @@ cmake . -DCMAKE_INSTALL_PREFIX=./wxlib -DwxBUILD_SHARED=OFF \
 -DCMAKE_OSX_DEPLOYMENT_TARGET=10.13 \
 -DwxBUILD_OPTIMISE=ON -DwxBUILD_STRIPPED_RELEASE_DEFAULT=ON -DCMAKE_BUILD_TYPE=Release
 
-cmake --build . --target install
+cmake --build . --target install --config Release
 cd ..
 cd ReadabilityStudio
 ```
