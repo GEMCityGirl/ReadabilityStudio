@@ -1051,7 +1051,7 @@ void BatchProjectDoc::LoadSummaryStatsSection()
         }
     m_summaryStatsData->SetSize(m_docs.size(), m_summaryStatsColumnNames.size());
 
-    // i18n-check-suppress-begin
+    // cuneiform-suppress-begin
     size_t rowCount{ 0 };
     for (const auto& doc : m_docs)
         {
@@ -1320,7 +1320,7 @@ void BatchProjectDoc::LoadSummaryStatsSection()
 
         ++rowCount;
         }
-    // i18n-check-suppress-end
+    // cuneiform-suppress-end
 
     m_summaryStatsData->SetSize(rowCount);
     }
