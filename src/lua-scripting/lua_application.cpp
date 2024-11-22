@@ -905,7 +905,7 @@ namespace LuaScripting
             if (phrase.first.to_string() == phrase.second)
                 {
                 wxMessageBox(wxString::Format(_(L"%s: Phrase '%s' and suggested replacement are "
-                                                L"the same.\nPlease review your phrase file."),
+                                                "the same.\nPlease review your phrase file."),
                                               inputFile, phrase.first.to_string().c_str()),
                              _(L"Warning"), wxOK | wxICON_EXCLAMATION);
                 }

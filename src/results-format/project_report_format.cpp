@@ -3011,7 +3011,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                                   safe_divide<double>(project->GetTextSize(), 1024), 2,
                                   wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                       wxNumberFormatter::Style::Style_WithThousandsSep) +
-                                  _(L" Kbs.")) +
+                                  _(L"Kbs.")) +
                     L"\n</table>";
 
         if (listData)
@@ -3022,7 +3022,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 wxNumberFormatter::ToString(safe_divide<double>(project->GetTextSize(), 1024), 2,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep) +
-                    _(L" Kbs."));
+                    _(L"Kbs."));
             }
         }
 

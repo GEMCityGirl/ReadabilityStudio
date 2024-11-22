@@ -398,7 +398,7 @@ LuaEditorDlg::LuaEditorDlg(
 
             if (errorMessage.length())
                 {
-                wxMessageBox(_(L"Line ") + errorMessage, _(L"Script Error"),
+                wxMessageBox(_(L"Line #") + errorMessage, _(L"Script Error"),
                              wxOK | wxICON_EXCLAMATION);
 
                 long lineNumber{ 0 };

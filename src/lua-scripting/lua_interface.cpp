@@ -72,9 +72,9 @@ void LuaInterpreter::RunLuaFile(const wxString& filePath)
             {
             errorMessage.erase(0, EndOfErrorHeader + 2);
             }
-        wxMessageBox(_(L"Line ") + errorMessage, _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
+        wxMessageBox(_(L"Line #") + errorMessage, _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
         LuaScripting::DebugPrint(
-            _(L"<span style='color:red; font-weight:bold;'>Error</span>: Line ") + errorMessage);
+            _(L"<span style='color:red; font-weight:bold;'>Error</span>: Line #") + errorMessage);
         }
     const wxDateTime endTime(wxDateTime::Now());
     LuaScripting::DebugPrint(
@@ -117,7 +117,7 @@ void LuaInterpreter::RunLuaCode(const wxString& code, const wxString& filePath,
             errorMessage.erase(0, EndOfErrorHeader + 2);
             }
         LuaScripting::DebugPrint(
-            _(L"<span style='color:red; font-weight:bold;'>Error</span>: Line ") + errorMessage);
+            _(L"<span style='color:red; font-weight:bold;'>Error</span>: Line #") + errorMessage);
         }
     const wxDateTime endTime(wxDateTime::Now());
     LuaScripting::DebugPrint(
