@@ -901,8 +901,8 @@ void wxNSTextViewControl::Print(const wxSize paperSize, const int orientation, c
         NSRange textViewRange = NSMakeRange(0, [[m_textView textStorage] length]);
         NSRange printViewRange = NSMakeRange(0, [[printView textStorage] length]);
         //headers and footers
-        printView->m_pageHeader = [[[NSMutableAttributedString alloc] initWithString: wxCFStringRef( header , m_wxPeer->GetFont().GetEncoding() ).AsNSString()] autorelease];
-        printView->m_pageFooter = [[[NSMutableAttributedString alloc] initWithString: wxCFStringRef( footer , m_wxPeer->GetFont().GetEncoding() ).AsNSString()] autorelease];
+        printView->m_pageHeader = [[[NSMutableAttributedString alloc] initWithString: wxCFStringRef( header ).AsNSString()] autorelease];
+        printView->m_pageFooter = [[[NSMutableAttributedString alloc] initWithString: wxCFStringRef( footer ).AsNSString()] autorelease];
         
         [printView replaceCharactersInRange: printViewRange
                                     withRTF:[m_textView RTFFromRange: textViewRange]];
@@ -937,7 +937,7 @@ long wxNSTextViewControl::Find( const wxString &str, const bool caseSensitive, c
             area.length = from;
         }
         
-        NSString* textContent = [[[NSString alloc] initWithString: wxCFStringRef( str , m_wxPeer->GetFont().GetEncoding() ).AsNSString()] autorelease];
+        NSString* textContent = [[[NSString alloc] initWithString: wxCFStringRef( str ).AsNSString()] autorelease];
         
         while (true)
         {
