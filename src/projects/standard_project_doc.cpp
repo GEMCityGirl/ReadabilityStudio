@@ -1234,12 +1234,17 @@ bool ProjectDoc::OnCreate(const wxString& path, long flags)
 //-------------------------------------------------------
 bool ProjectDoc::OnNewDocument()
     {
-    if (!wxDocument::OnNewDocument() )
-        { return false; }
+    if (!wxDocument::OnNewDocument())
+        {
+        return false;
+        }
 
     wxBusyCursor bc;
 
     BaseProjectProcessingLock processingLock(this);
+
+    ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
+    wxASSERT_MSG(view->GetFrame(), L"Invalid frame for newly created document!");
 
     LoadExcludePhrases();
 
@@ -1249,14 +1254,21 @@ bool ProjectDoc::OnNewDocument()
     // load the document
     if (GetTextSource() == TextSource::FromFile)
         {
-        // there is embedded text (that may have been passed from a batch project), so load that here.
+        // there is embedded text (that may have been passed from a batch project), so load that
+        // here.
         if (GetDocumentStorageMethod() == TextStorage::EmbedText && GetDocumentText().length())
-            { LoadDocument(); }
-        else if (!LoadExternalDocument() )
-            { return false; }
+            {
+            LoadDocument();
+            }
+        else if (!LoadExternalDocument())
+            {
+            return false;
+            }
 
         if (GetDocumentStorageMethod() == TextStorage::LoadFromExternalDocument)
-            { UpdateSourceFileModifiedTime(); }
+            {
+            UpdateSourceFileModifiedTime();
+            }
         SetTitle(ParseTitleFromFileName(GetOriginalDocumentFilePath()));
         SetFilename(ParseTitleFromFileName(GetOriginalDocumentFilePath()), true);
         }
@@ -1298,12 +1310,13 @@ bool ProjectDoc::OnNewDocument()
                 (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
                  GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings))
                 {
-                auto warningIter = WarningManager::GetWarning(_DT(L"high-count-sentences-being-ignored"));
+                auto warningIter =
+                    WarningManager::GetWarning(_DT(L"high-count-sentences-being-ignored"));
                 if (warningIter != WarningManager::GetWarnings().end() &&
                     warningIter->ShouldBeShown())
                     {
-                    wxRichMessageDialog msg(wxGetApp().GetMainFrame(), warningIter->GetMessage(),
-                                                    warningIter->GetTitle(), warningIter->GetFlags());
+                    wxRichMessageDialog msg(view->GetFrame(), warningIter->GetMessage(),
+                                            warningIter->GetTitle(), warningIter->GetFlags());
                     msg.SetEscapeId(wxID_NO);
                     msg.ShowCheckBox(_(L"Remember my answer"));
                     msg.SetYesNoLabels(_(L"Include incomplete sentences"),
@@ -1316,73 +1329,90 @@ bool ProjectDoc::OnNewDocument()
                         warningIter->SetPreviousResponse(dlgResponse);
                         }
                     if (dlgResponse == wxID_YES)
-                        { SetInvalidSentenceMethod(InvalidSentence::IncludeAsFullSentences); }
+                        {
+                        SetInvalidSentenceMethod(InvalidSentence::IncludeAsFullSentences);
+                        }
                     }
                 else if (warningIter->GetPreviousResponse() == wxID_YES)
-                    { SetInvalidSentenceMethod(InvalidSentence::IncludeAsFullSentences); }
+                    {
+                    SetInvalidSentenceMethod(InvalidSentence::IncludeAsFullSentences);
+                    }
                 }
             }
         }
 
     if (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
         GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings)
-        { CalculateStatisticsIgnoringInvalidSentences(); }
+        {
+        CalculateStatisticsIgnoringInvalidSentences();
+        }
     else if (GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences)
-        { CalculateStatistics(); }
+        {
+        CalculateStatistics();
+        }
     CalculateGraphData();
 
-    wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Loading project...")));
+    // make the busy message go out of scope before queued messages appear
+        {
+        wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Loading project...")));
 
-    // load the images now
-    SetPlotBackGroundImagePath(GetPlotBackGroundImagePath());
-    SetStippleImagePath(GetStippleImagePath());
-    SetWatermarkLogoPath(GetWatermarkLogoPath());
-    SetGraphCommonImagePath(GetGraphCommonImagePath());
+        // load the images now
+        SetPlotBackGroundImagePath(GetPlotBackGroundImagePath());
+        SetStippleImagePath(GetStippleImagePath());
+        SetWatermarkLogoPath(GetWatermarkLogoPath());
+        SetGraphCommonImagePath(GetGraphCommonImagePath());
 
-    LoadHardWords();
+        LoadHardWords();
 
-    DisplayStatistics();
-    DisplayReadabilityScores(false);
-    DisplayReadabilityGraphs();
-    DisplayWordsBreakdown();
-    DisplayHighlightedText(GetTextHighlightColor(), GetTextViewFont());
-    DisplaySentencesBreakdown();
-    DisplayGrammar();
-    DisplaySightWords();
+        DisplayStatistics();
+        DisplayReadabilityScores(false);
+        DisplayReadabilityGraphs();
+        DisplayWordsBreakdown();
+        DisplayHighlightedText(GetTextHighlightColor(), GetTextViewFont());
+        DisplaySentencesBreakdown();
+        DisplayGrammar();
+        DisplaySightWords();
 
-    DeleteUniqueWordMap();
+        DeleteUniqueWordMap();
 
-    Modify(true);
+        Modify(true);
 
-    ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
-    view->UpdateSideBarIcons();
-    view->UpdateRibbonState();
-    view->Present();
-    UpdateAllViews();
+        view->UpdateSideBarIcons();
+        view->UpdateRibbonState();
+        view->Present();
+        UpdateAllViews();
+        }
 
-    const auto selectedIndex = view->GetSideBar()->FindFolder(BaseProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID);
+    const auto selectedIndex =
+        view->GetSideBar()->FindFolder(BaseProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID);
     view->GetSideBar()->SelectFolder(selectedIndex.value_or(0), true);
 
     if (GetTotalWords() == 0)
         {
         if (WarningManager::HasWarning(_DT(L"document-no-words")))
-            { LogMessage(*WarningManager::GetWarning(_DT(L"document-no-words")), true); }
+            {
+            LogMessage(*WarningManager::GetWarning(_DT(L"document-no-words")), true);
+            }
         }
     else if (GetTotalWords() < 20)
         {
         if (WarningManager::HasWarning(_DT(L"document-less-than-20-words")))
-            { LogMessage(*WarningManager::GetWarning(_DT(L"document-less-than-20-words")), true); }
+            {
+            LogMessage(*WarningManager::GetWarning(_DT(L"document-less-than-20-words")), true);
+            }
         }
     else if (GetTotalWords() < 100)
         {
         if (WarningManager::HasWarning(_DT(L"document-less-than-100-words")))
-            { LogMessage(*WarningManager::GetWarning(_DT(L"document-less-than-100-words")), true); }
+            {
+            LogMessage(*WarningManager::GetWarning(_DT(L"document-less-than-100-words")), true);
+            }
         }
 
     // Check for sentences that got broken up by paragraph breaks and warn if there are lot of them,
     // this indicates a messed up file.
     // We do this here so not to interrupt the creation of the project too much.
-    size_t paragraphBrokenSentences = 0;
+    size_t paragraphBrokenSentences{ 0 };
     for (std::vector<size_t>::const_iterator pos = GetWords()->get_lowercase_beginning_sentences().begin();
         pos != GetWords()->get_lowercase_beginning_sentences().end();
         ++pos)
@@ -1412,20 +1442,19 @@ bool ProjectDoc::OnNewDocument()
 
     // Go through the sentences and see if any are not complete but considered valid because of their length.
     // If any are found, then mention it to the user.
-    size_t sentencesMissingEndingPunctionsConsideredCompleteBecauseOfLength = 0;
+    size_t sentencesMissingEndingPunctionsConsideredCompleteBecauseOfLength{ 0 };
     std::vector<punctuation::punctuation_mark>::const_iterator punctPos = GetWords()->get_punctuation().cbegin();
     wxArrayString longIncompleteSentences;
-    for (std::vector<grammar::sentence_info>::const_iterator sentPos = GetWords()->get_sentences().begin();
-         sentPos != GetWords()->get_sentences().end();
-         ++sentPos)
+    for (const auto& sent : GetWords()->get_sentences())
         {
         // note our special case for list item lines ending with semicolons will be ignored here
-        if (sentPos->is_valid() && !sentPos->ends_with_valid_punctuation() &&
-            sentPos->get_ending_punctuation() != common_lang_constants::SEMICOLON &&
-            sentPos->get_word_count() > GetIncludeIncompleteSentencesIfLongerThanValue())
+        if (sent.is_valid() && !sent.ends_with_valid_punctuation() &&
+            sent.get_ending_punctuation() != common_lang_constants::SEMICOLON &&
+            sent.get_word_count() > GetIncludeIncompleteSentencesIfLongerThanValue())
             {
             ++sentencesMissingEndingPunctionsConsideredCompleteBecauseOfLength;
-            longIncompleteSentences.Add(ProjectReportFormat::FormatSentence(this, *sentPos, punctPos,
+            longIncompleteSentences.Add(ProjectReportFormat::FormatSentence(
+                this, sent, punctPos,
                 GetWords()->get_punctuation().cend()));
             }
         }
@@ -1435,18 +1464,19 @@ bool ProjectDoc::OnNewDocument()
         if (warningIter != WarningManager::GetWarnings().end() &&
             warningIter->ShouldBeShown())
             {
-            ListDlg listDlg(wxGetApp().GetMainFrame(), longIncompleteSentences, false,
+            ListDlg listDlg(
+                view->GetFrame(), longIncompleteSentences, false,
                 wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
                 wxGetApp().GetAppOptions().GetRibbonHoverColor(),
                 wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
-                LD_CLOSE_BUTTON|LD_DONT_SHOW_AGAIN, wxID_ANY,
-                warningIter->GetTitle(), wxString::Format(
-                _(L"This document contains %zu incomplete sentence(s) longer than %zu words which will be "
-                   "included in the analysis.\n\nTo change this, increase the "
-                   "\"Include incomplete sentences containing more than...\" option under "
-                   "Project Properties->Document Indexing."),
-                sentencesMissingEndingPunctionsConsideredCompleteBecauseOfLength,
-                GetIncludeIncompleteSentencesIfLongerThanValue()));
+                LD_CLOSE_BUTTON | LD_DONT_SHOW_AGAIN, wxID_ANY, warningIter->GetTitle(),
+                wxString::Format(
+                    _(L"This document contains %zu incomplete sentence(s) longer than %zu words "
+                      "which will be included in the analysis.\n\nTo change this, increase the "
+                      "\"Include incomplete sentences containing more than...\" option under "
+                      "Project Properties->Document Indexing."),
+                    sentencesMissingEndingPunctionsConsideredCompleteBecauseOfLength,
+                    GetIncludeIncompleteSentencesIfLongerThanValue()));
             const int dlgResponse = listDlg.ShowModal();
             // save the checkbox status
             if (listDlg.IsCheckBoxChecked())
@@ -1472,11 +1502,12 @@ void ProjectDoc::UpdateSourceFileModifiedTime()
     {
     FilePathResolver resolvePath;
     resolvePath.ResolvePath(GetOriginalDocumentFilePath(), false);
-    if ((resolvePath.IsLocalOrNetworkFile() ||
-         resolvePath.IsArchivedFile() ||
+    if ((resolvePath.IsLocalOrNetworkFile() || resolvePath.IsArchivedFile() ||
          resolvePath.IsExcelCell()) &&
         wxFileName::FileExists(resolvePath.GetResolvedPath()))
-        { m_sourceFileLastModified = wxFileName(resolvePath.GetResolvedPath()).GetModificationTime(); }
+        {
+        m_sourceFileLastModified = wxFileName(resolvePath.GetResolvedPath()).GetModificationTime();
+        }
     }
 
 //-------------------------------------------------------

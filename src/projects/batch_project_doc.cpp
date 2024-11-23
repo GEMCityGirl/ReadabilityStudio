@@ -368,16 +368,19 @@ void BatchProjectDoc::LoadGroupingLabelsFromDocumentsInfo()
 bool BatchProjectDoc::CheckForFailedDocuments()
     {
     wxArrayString failedDocs;
-    for (std::vector<BaseProject*>::iterator pos = m_docs.begin();
-        pos != m_docs.end();
-        ++pos)
+    for (std::vector<BaseProject*>::iterator pos = m_docs.begin(); pos != m_docs.end(); ++pos)
         {
         if (!(*pos)->LoadingOriginalTextSucceeded())
-            { failedDocs.Add((*pos)->GetOriginalDocumentFilePath()); }
+            {
+            failedDocs.Add((*pos)->GetOriginalDocumentFilePath());
+            }
         }
+
+    BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
+    wxASSERT_MSG(view->GetFrame(), L"Invalid frame for newly created document!");
     // show the names of the failed documents somehow so the user can review it before removing them
     Wisteria::UI::ListDlg listDlg(
-        wxGetApp().GetMainFrame(), failedDocs, false,
+        view->GetFrame(), failedDocs, false,
         wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
         wxGetApp().GetAppOptions().GetRibbonHoverColor(),
         wxGetApp().GetAppOptions().GetRibbonActiveFontColor(), Wisteria::UI::LD_YES_NO_BUTTONS,
@@ -426,11 +429,15 @@ void BatchProjectDoc::RemoveFailedDocuments()
 void BatchProjectDoc::RefreshStatisticsReports()
     {
     if (!IsSafeToUpdate())
-        { return; }
+        {
+        return;
+        }
 
     // if refresh is not necessary then return
     if (IsRefreshRequired() == false)
-        { return; }
+        {
+        return;
+        }
 
     BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
     const wxString currentlySelectedFile = view->GetCurrentlySelectedFileName();
@@ -487,12 +494,16 @@ void BatchProjectDoc::RefreshGraphs()
 void BatchProjectDoc::RefreshProject()
     {
     if (!IsSafeToUpdate())
-        { return; }
+        {
+        return;
+        }
     wxBusyCursor wait;
 
     // if refresh is not necessary then return
     if (IsRefreshRequired() == false)
-        { return; }
+        {
+        return;
+        }
     BaseProjectProcessingLock processingLock(this);
     wxWindowUpdateLocker noUpdates(GetDocumentWindow());
 
@@ -506,7 +517,7 @@ void BatchProjectDoc::RefreshProject()
     wxProgressDialog progressDlg(wxString::Format(_(L"Reloading \"%s\""), GetTitle()),
         _(L"Analyzing documents..."),
         IsDocumentReindexingRequired() ? static_cast<int>(GetSourceFilesInfo().size()+13) : 13,
-        wxGetApp().GetMainFrame(), wxPD_AUTO_HIDE|wxPD_SMOOTH|wxPD_ELAPSED_TIME|wxPD_APP_MODAL);
+        view->GetFrame(), wxPD_AUTO_HIDE | wxPD_SMOOTH | wxPD_ELAPSED_TIME | wxPD_APP_MODAL);
     progressDlg.Centre();
     int counter{ 1 };
 
