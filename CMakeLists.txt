@@ -475,6 +475,13 @@ add_custom_command(TARGET ${PROJECT_NAME}
                    COMMENT "Building word lists and copying to build and installer folders."
                    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/resources/words")
 
+if(UNIX)
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+        CXX_VISIBILITY_PRESET hidden
+        C_VISIBILITY_PRESET hidden
+        VISIBILITY_INLINES_HIDDEN TRUE)
+endif()
+
 if(APPLE)
     set_target_properties(${PROJECT_NAME} PROPERTIES
         RESOURCE app-logo.icns
@@ -482,7 +489,7 @@ if(APPLE)
         XCODE_ATTRIBUTE_EXECUTABLE_NAME ${PROJECT_NAME} 
         MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist.in)
 
-        messagemessage(STATUS "App Bundle: ${OUTPUT_NAME}")
+        message(STATUS "App Bundle: ${OUTPUT_NAME}")
 endif()
 
 # Copy application (and resources) to installer folders (if a production build)
