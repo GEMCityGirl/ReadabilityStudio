@@ -10,7 +10,7 @@
 
 wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::PolygonReadabilityGraph)
 
-using namespace Wisteria;
+    using namespace Wisteria;
 using namespace Wisteria::Colors;
 using namespace Wisteria::Graphs;
 using namespace Wisteria::GraphItems;
@@ -164,8 +164,13 @@ namespace Wisteria::Graphs
             AddLevelLabel(LevelLabel(30.75, 5, L"10", 10, 10));
             AddLevelLabel(LevelLabel(32.5, 4.825, L"11", 11, 11));
             AddLevelLabel(LevelLabel(34.5, 4.65, L"12", 12, 12));
-            AddLevelLabel(LevelLabel(37, 4.45, _(L"COL"), 13, 16));
-            AddLevelLabel(LevelLabel(42, 4.2, _(L"PROF"), 17, 17));
+            AddLevelLabel(LevelLabel(37, 4.45,
+                                     /* TRANSLATORS: Abbreviation for 'College' level of reading */
+                                     _(L"COL"), 13, 16));
+            AddLevelLabel(LevelLabel(42, 4.2,
+                                     /* TRANSLATORS: Abbreviation for 'Professor', referring to post
+                                        college level of reading */
+                                     _(L"PROF"), 17, 17));
             }
         }
 

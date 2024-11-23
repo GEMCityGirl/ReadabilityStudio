@@ -118,8 +118,10 @@ AboutDialogEx::AboutDialogEx(wxWindow* parent, const wxBitmap& logo, wxString ap
 bool AboutDialogEx::Create(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size,
                            long style)
     {
-    wxDialog::Create(parent, id, wxString::Format(_(L"About %s"), wxTheApp->GetAppName()), pos,
-                     size, style);
+    wxDialog::Create(parent, id,
+                     wxString::Format(/* TRANSLATORS: %s is the application name */ _(L"About %s"),
+                                      wxTheApp->GetAppName()),
+                     pos, size, style);
 
     CreateControls();
     Centre();
@@ -244,7 +246,8 @@ void AboutDialogEx::CreateControls()
         wxPanel* eulaPage = new wxPanel(m_sideBarBook);
         wxBoxSizer* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
         eulaPage->SetSizer(mainPanelSizer);
-        m_sideBarBook->AddPage(eulaPage, _(L"EULA"), ID_EULA_PAGE, false);
+        m_sideBarBook->AddPage(eulaPage, /* TRANSLATORS: End User License Agreement */ _(L"EULA"),
+                               ID_EULA_PAGE, false);
 
         wxHtmlWindow* eulaWindow{ new wxHtmlWindow(eulaPage) };
         eulaWindow->SetPage(m_eula);
