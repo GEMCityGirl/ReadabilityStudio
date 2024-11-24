@@ -2,7 +2,7 @@
 #| include: false
 #| eval: true
 
-source('../R/appdown.r')
+source('R/appdown.r')
 ```
 
 # Getting Started
@@ -18,7 +18,7 @@ In this example, we will analyze a literary novel to help determine which age gr
 The first step is to open the **New Project** wizard and choose the book. Click the `r keys("New")` button on the **Home** tab to open the **New Project** wizard.
 First, select **English** as the document language (if this option is available). Then, select the option **Read text from a file or webpage**. Click the button next to the file path field to browse for it:
 
-![](../images/exampleselectfile.png)
+![](images/exampleselectfile.png)
 
 ::: {.notesection data-latex=""}
 The language option is only available in the *Language Pack* and *Professional* editions of *Readability Studio*.
@@ -30,7 +30,7 @@ You will then return to the **Document** page. Click the `r keys("Forward >")` b
 
 Because this is a literary work, select the **Recommend tests based on document type**. Then select the **Literature (young adult and adult)** option (because we believe that this book is meant for older children), as shown below:
 
-![](../images/wizarddoctypelitselected.png)
+![](images/wizarddoctypelitselected.png)
 
 Finally, click the `r keys("Finish")` button to begin analyzing the project.
 
@@ -38,7 +38,7 @@ At this point we can review the test scores of the book to help determine its re
 As we can see below, this book (Charles Dickens's *A Christmas Carol*) appears to be readable for at least readers in the 10–13 age (or above) range.
 This implies that it may be too difficult for younger readers due to longer sentences and/or difficult words.
 
-![](../images/scores.png)
+![](images/scores.png)
 
 To help understand why this book may be difficult for younger readers, click on the **Words Breakdown** icon on the project sidebar to display various lists of difficult words.
 Select the **3+ syllable words** subitem to view the list of complex words.
@@ -50,7 +50,7 @@ Click `r keys("OK")` to sort the list.
 
 Now the words will be sorted by syllable count and then by frequency. As illustrated below, there are many words containing five or more syllables, which can be very difficult for most readers of any age.
 
-![](../images/difficultwords.png)
+![](images/difficultwords.png)
 
 If you are an educator assigning this book to your students, you can export the more difficult words to a report. You can hand this report out to your students and ask them to define these terms before reading the book. This will help prepare them for the book and make it easier and more enjoyable to read.
 
@@ -68,7 +68,7 @@ Continuing from the [previous example](#sec-book-example) (see @sec-book-example
 Now scroll down to the last word that has five syllables, hold down the `r keys("Shift")` (`r os_logo('windows')`, `r os_logo('linux')`) or `r keys("\\shift")` (`r os_logo('apple')`) key, and select this word.
 Now you will have all the words with five or more syllables selected. If there are any words that you want to add or remove from your selection, hold down the `r keys("Ctrl")` (`r os_logo('windows')`, `r os_logo('linux')`) or `r keys("\\cmd")` (`r os_logo('apple')`) key and click on them. Your word list will look like this:
 
-![](../images/difficultwords2.png)
+![](images/difficultwords2.png)
 
 Now that you have selected the words that you want to save, click the `r keys("Save")` button on the **Home** tab. From the menu that appears, select **Export 3+ Syllables List\.\.\.**.
 
@@ -82,7 +82,7 @@ Also, because we are only interested in saving the **Word** column—not the **S
 Finally, uncheck the option **Include column headers** because we are only exporting one column.
 
 ```{r echo=F, fig.align='center', out.width='38%'}
-knitr::include_graphics("../images/exportoptions.png")
+knitr::include_graphics("images/exportoptions.png")
 ```
 
 Click `r keys("OK")` to export the word list to distribute to your students to help prepare them for their reading assignments.
@@ -100,7 +100,7 @@ In this example, we will analyze recipes that we are working on for a middle-sch
 The first step is to open the **New Project** wizard and select the recipe file. Click the `r keys("New")` button on the **Home** tab to open the **New Project** wizard.
 Next, select **English** as the document language (if this option is available). Then, select the option **Read text from a file or webpage**. Click the button next to the file path field to browse for it:
 
-![](../images/exampleselectfile.png)
+![](images/exampleselectfile.png)
 
 ::: {.notesection data-latex=""}
 The language option is only available in the *Language Pack* and *Professional* editions of *Readability Studio*.
@@ -116,17 +116,17 @@ When prompted about how to open the document, select **Create a new project**.
 
 You will then return to the **Document** page. Click the `r keys("Forward >")` button to proceed to the **Document Structure** page, as shown below:
 
-![](../images/wizarddocstructure.png)
+![](images/wizarddocstructure.png)
 
 On this page, we will specify how this document is formatted. The first option, **Narrative text**, is meant for documents that consist of the standard sentence and paragraph structure. The second option, [**Non-narrative, fragmented text**](#sec-fragmented-text), is meant for documents that contain very few sentences and mostly consist of sentence fragments. This document contains narrative text, so select **Narrative text**.
 
 Our recipe file does not have any special formatting (e.g., text centering), so keep all options in the **Layout** section unchecked. Now that we have specified the structure of the document, click the `r keys("Forward >")` button to proceed to the **Test Selection** page, as shown below:
 
-![](../images/wizardreadabilitymethods.png)
+![](images/wizardreadabilitymethods.png)
 
 This file does not belong to any particular industry, but we do know that it is an instructional document. Select the **Recommend tests based on document type**:
 
-![](../images/wizarddoctypetechselected.png)
+![](images/wizarddoctypetechselected.png)
 
 Because this is an instructional document containing small narrative blocks, we will consider this to be a technical document. Select **Technical document or form** and click the `r keys("Finish")` button to begin analyzing the project.
 
@@ -138,28 +138,28 @@ At this point, we can review the test scores of the recipe to determine which re
 Click on the **Readability Scores** icon on the project sidebar to display the scores.
 As we can see below, it appears to be readable for at least readers in the upper eighth grade. This is higher than our target audience and we may need to make some improvements to this recipe to make it easier to read.
 
-![](../images/testscores.png)
+![](images/testscores.png)
 
 To help understand why this recipe may be difficult for younger readers, click on the **Summary Statistics** icon to review the [statistics](#sec-reviewing-statistics) and see if the program has any advice for us.
 In this section, any statistics that may be problematic will be highlighted in red, along with a warning being displayed. As we can see below, there are a lot of long sentences (with the longest being 54 words long):
 
-![](../images/examplestats.png)
+![](images/examplestats.png)
 
 Click on the **difficult sentences** link in this section to go to the [**Long Sentences**](#sec-reviewing-sentences-breakdown) subitem of the **Sentences Breakdown** section. This window will display a list of all the overly-long sentences in our recipes. As we can see, there are a few rather long sentences that are adversely affecting our scores.
 
-![](../images/examplelongsentences.png)
+![](images/examplelongsentences.png)
 
 Long sentences can seem unfocused and difficult to read, and it is recommended to shorten or split them. To view any of these sentences in its original context, double-click on it in this list. The program will switch to the [**Highlighted Report**](#sec-reviewing-standard-grammar) page with this sentence highlighted:
 
-![](../images/longsentenceselected.png)
+![](images/longsentenceselected.png)
 
 Now that we have found the difficult sentences, let's split them up so that they are easier to read. From the **Document** tab, click the `r keys("Edit Document")` button to open the recipes file for editing. Find one of the long sentences and review it. For example, consider this sentence:
 
-![](../images/non-generated/sentencetoimprove.png)
+![](images/non-generated/sentencetoimprove.png)
 
 Not only is it long, but it is a little confusing. It is unclear what was mixed with the cold milk because there are so many steps in this sentence. To make it easier to follow, split this sentence into two and reword it:
 
-![](../images/non-generated/improvedsentence.png)
+![](images/non-generated/improvedsentence.png)
 
 Continue this process for as many of the long sentences as you can. Sentences in the 20-word range are normally acceptable, but sentences over 30 words should be revised.
 
@@ -172,17 +172,17 @@ By fixing these items, we can shorten sentences and improve the overall document
 
 Although there are not many difficult words in this file, it may be worthwhile to at least review them. Click on the **Words Breakdown** icon on the project sidebar. This will display various lists of difficult words. Select the **3+ syllable words** page and click on the **Syllable Count** column header twice to [sort](#sec-column-sorting) the words into descending order. As illustrated below, there are a few words containing four syllables, which can be difficult for most readers.
 
-![](../images/exampledifficultwords.png)
+![](images/exampledifficultwords.png)
 
 To view these words in their original context, double-click on any word in this list. The program will switch to the **3+ syllable words** page, as illustrated below:
 
-![](../images/difficultwordselected.png)
+![](images/difficultwordselected.png)
 
 You can click on any of the other pages to view other difficult words in their original context, such as 6+ character words or unfamiliar [New Dale-Chall](#sec-dale-chall-test) words.
 
 To continue simplifying this recipe, we will replace some of these difficult words. Words such as *incorporate*, *consequently*, and *gradually* could also be replaced with shorter, simpler synonyms. As illustrated below, we have replaced a few words, such as substituting *incorporate* with *add* and *gradually* with *slowly*.
 
-![](../images/non-generated/improvedwords.png)
+![](images/non-generated/improvedwords.png)
 
 After we finish reworking the original document, we will want to analyze it again to see if it now meets our target audience.
 Because this project is already linked to the recipe document, we can reload it (rather than starting all over with a new project).
@@ -190,7 +190,7 @@ To view this connection, click the `r keys("Properties")` button on the **Home**
 Select the **Project Settings** icon and note the option **Reload the source document when opening project**:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/linktofile.png")
+knitr::include_graphics("images/linktofile.png")
 ```
 
 Also of note is the **Real-time update** checkbox. If this is checked, then the program will automatically reload the project when the document is edited.
@@ -201,7 +201,7 @@ Close this dialog and click the `r keys("Reload")` button on the **Home** tab.
 The program will now reload the recipe document, meaning that all the improvements that we just made will be imported into the project.
 As we can see below, our grade level scores now meet our target audience and this recipe will be easier and more enjoyable to read for our home economics class.
 
-![](../images/improvedscores.png)
+![](images/improvedscores.png)
 
 ::: {.tipsection data-latex=""}
 You can click the `r keys("Reload")` button at anytime to reanalyze the source document as you edit it externally.
@@ -217,7 +217,7 @@ In this example, we will create a project that reads and analyzes a webpage. Alt
 
 First, click on the `r keys("New")` button (on the **Home** tab). The **New Project** wizard dialog will appear, as shown below:
 
-![](../images/wizard1.png)
+![](images/wizard1.png)
 
 First, select **English** as the document language.
 
@@ -228,21 +228,21 @@ The language option is only available in the *Language Pack* and *Professional* 
 Next, open any web browser, go to the webpage, and copy its URL (i.e., address) onto the clipboard.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/non-generated/webbrowser.png")
+knitr::include_graphics("images/non-generated/webbrowser.png")
 ```
 
 Now, go back to the project wizard and select **Read text from a file or webpage**. Paste the URL into the file-path field, as illustrated below.
 
-![](../images/webpath.png)
+![](images/webpath.png)
 
 After specifying the URL, choose to analyze the page by document type and then select **Technical document**. Most webpages would fall under the category of either general or technical document.
 Because this page discusses office software, we will select technical.
 
-![](../images/wizarddoctypetechselected.png)
+![](images/wizarddoctypetechselected.png)
 
 Next, accept the rest of the defaults on the **New Project** wizard by clicking the `r keys("Finish")` button. Once the project is finished loading, click on the **Words Breakdown** icon on the sidebar and select **3+ Syllable Words**.
 
-![](../images/incompletesentences.png)
+![](images/incompletesentences.png)
 
 Note how some text is highlighted gray. These are [incomplete sentences](#sec-how-text-is-excluded), and because *Readability Studio*, by default, ignores incomplete sentences, nothing highlighted gray is factored into the analysis.
 That is, nothing highlighted gray here counts towards the overall sentence, paragraph, and word totals and are also not included in any readability test calculation.
@@ -252,7 +252,7 @@ If you wish to include incomplete sentences in the analysis, click the `r keys("
 Next, click the **Document Indexing** icon, and select the **Do not exclude any text** option.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/donotexcludeincompletesentences.png")
+knitr::include_graphics("images/donotexcludeincompletesentences.png")
 ```
 
 Note that this option is also available on the [**Options**](#sec-options-overview) dialog (from the **Tools** tab) if you wish to change this behavior for all future projects.
@@ -263,7 +263,7 @@ To toggle this behavior, click the `r keys("Properties")` button on the **Home**
 Then click the **Project Settings** icon. Here, we can see that **Reload the source document when opening project** is selected.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/reloadwebpage.png")
+knitr::include_graphics("images/reloadwebpage.png")
 ```
 
 By having this option selected, you will reload the page's content whenever you reopen the project (or at anytime by pressing `r keys("F5")`).
@@ -282,11 +282,11 @@ The first step is to open the example file "Features." From the **Help** tab, cl
 
 You will then be presented with the **New Project** wizard dialog, as shown below:
 
-![](../images/wizard1.png)
+![](images/wizard1.png)
 
 Select **English** as the document language (if this option is available) and click the `r keys("Forward >")` button until you reach the **Test Selection** page, as shown below:
 
-![](../images/wizardreadabilitymethods.png)
+![](images/wizardreadabilitymethods.png)
 
 ::: {.notesection data-latex=""}
 The language option is only available in the *Language Pack* and *Professional* editions of *Readability Studio*.
@@ -294,7 +294,7 @@ The language option is only available in the *Language Pack* and *Professional* 
 
 Select the **Recommend tests based on document type** and select the **Technical document** option, as shown below:
 
-![](../images/wizarddoctypetechselected.png)
+![](images/wizarddoctypetechselected.png)
 
 Click the `r keys("Finish")` button to begin analyzing the project.
 
@@ -304,42 +304,42 @@ In this case, these sentences are just list items that we should ignore, so clic
 
 Once the project is loaded, the readability scores will be presented. As we can see below, this document scores high within the collegiate range.
 
-![](../images/featuresscores.png)
+![](images/featuresscores.png)
 
 This document should be an easy-to-read list of software features intended for a broad range of readers. These scores are a bit too high, so now we will explore the results to understand why it is so difficult to read. Select the **Summary Statistics** icon in the project sidebar to view the document's [statistics](#sec-reviewing-statistics).
 
-![](../images/featuresstats.png)
+![](images/featuresstats.png)
 
 As we can see, there are some very long sentences in this document and they are the biggest factor in our high scores.
 To view a list of these sentences, click the **difficult sentences** link. You can also click the **Sentences Breakdown** icon in the sidebar and select the [**Long Sentences**](#sec-reviewing-sentences-breakdown) page.
 
-![](../images/featuressentencelist.png)
+![](images/featuressentencelist.png)
 
 This list can be sorted alphabetically, by word count, or by location. To view any sentence in its original context, double-click on it. This will take you to the [**Grammar**](#sec-reviewing-standard-grammar) section. In this window, all the overly-long sentences and wordy items are highlighted and each sentence is followed by its respective word count (in parentheses).
 
-![](../images/featuressentences.png)
+![](images/featuressentences.png)
 
 By default, the program considers sentences overly long if they contain more than 22 words. As we can see, there are a few sentences that are barely over 22 words that are not problematic. However, there are a few clustered sentences which exceed 40 words. At this point, we will want to temporarily filter out the smaller of these long sentences and search for the "worst offenders." From the **Home** tab, click the `r keys("Properties")` button and then select **Analysis**. As shown below, we have a couple of different ways to determine if a sentence is overly long:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/featuressentoptions.png")
+knitr::include_graphics("images/featuressentoptions.png")
 ```
 
 The first option is to define a specific word count as the long sentence boundary. Enter *25* where it says **Longer than [22] words** and click the `r keys("OK")` button. The program will now reanalyze the file, classifying any sentences longer than 25 (instead of 22) as overly long. As shown below, sentences that are between 23–25 words are no longer being considered overly long:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/featuressentences25.png")
+knitr::include_graphics("images/featuressentences25.png")
 ```
 
 The second option is to consider sentences overly long if they are comparatively longer than the other sentences in the document. From the **Home** tab, click the `r keys("Properties")` button and then select **Analysis**. Select the option **Outside sentence-length outlier range** and click the `r keys("OK")` button. At this point, the boundary for overly-long sentences will be calculated based on the outlier range of the sentence lengths. After reanalyzing the file, note how there are only two highlighted sentences. One sentence contains 45 words and the other 48 words. These are the two "worst offenders" and should be either reworded or split into small sentences.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/featuressentencesoutliers.png")
+knitr::include_graphics("images/featuressentencesoutliers.png")
 ```
 
 To see what the outlier range is, click on the **Summary Statistics** icon in the project sidebar. Here we can see that any sentence more than 43 words is considered overly long.
 
-![](../images/featuressentences43.png)
+![](images/featuressentences43.png)
 
 This option is only recommended for situations where most of the sentences are an acceptable length, but a few (very) long sentences skew the average. This option is useful for finding these extreme sentences.
 
@@ -364,12 +364,12 @@ For our purpose, sentences will be shown in the order that they appear in the do
 
 Let's begin by opening a mid-sized technical document. Select the **Help** tab of the ribbon, click the `r keys('Example Documents')` button, and select "Importing and Exporting Fixed-Width Data with R" from the menu. On the following prompt, tell the program to create a new project. When the **New Project Wizard** appears, select the **Document Structure** page. This example document contains lines of programming of code separated by hard returns. Because of this, we will want to force each of these lines to be a new paragraph. (Doing so will help with excluding them.) Check the option **Line ends** and click `r keys('Finish')`:
 
-![](../images/wizarddocstructurehardreturns.png)
+![](images/wizarddocstructurehardreturns.png)
 
 Once the project is created, select **Sentences Breakdown** on the sidebar, and click on the **Lengths (Density)** subitem. Here we will see a heatmap showing the sentences going from left-to-right, where their colors represent the length. Additionally, if the document contains 500 or less paragraphs, then the sentences will be grouped by paragraphs. In this example, the heatmap will show four columns, each containing ~25 paragraphs. These paragraphs go from top-to-bottom, then left-to-right across the columns. In each paragraph, its sentences are shown left-to-right.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/fixed-with-r-sentencemap.png")
+knitr::include_graphics("images/fixed-with-r-sentencemap.png")
 ```
 
 In the above heatmap, we can see that the first half of the document contains mostly one-word sentences (most of which are medium length). In most of the second half of the document there are a few more longer sentences, although the paragraphs do remain within 1-2 sentences. In the last ten paragraphs, however, we do see longer paragraphs that also happen to contain longer sentences. In this case, we may want to review the ending section of the document.
@@ -377,7 +377,7 @@ In the above heatmap, we can see that the first half of the document contains mo
 Close this project and return to the **Help** tab of the ribbon. Click the `r keys('Example Documents')` button again and select "Instructional Disclaimer." Create a new project with the defaults and select the heatmap when the project opens.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/disclaimer-sentencemap.png")
+knitr::include_graphics("images/disclaimer-sentencemap.png")
 ```
 
 In the above graph, we can see that most paragraphs begin with a short intro sentence, but are then followed by rather long sentences. (Some sentences being as high as 40 words.)  Also of interest is a paragraph containing ten sentences—which will be difficult to read through.
@@ -385,7 +385,7 @@ In the above graph, we can see that most paragraphs begin with a short intro sen
 Finally, let's view a novel. Close this project and return to the **Help** tab of the ribbon. Click the `r keys('Example Documents')` button again and select *A Christmas Carol*. Create a new project with the defaults and select the heatmap when the project opens.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/christmas-carol-sentencemap.png")
+knitr::include_graphics("images/christmas-carol-sentencemap.png")
 ```
 
 Because this document contains more than 500 paragraphs, grouping will not be used. Instead, the sentences will appear in a single heatmap, where the all sentences are displayed left-to-right, top-to-bottom. In the above graph, we can see that the novel's sentences range from 1-19 words in length. Also, the sentence lengths are rather evenly distributed. In other words, the longer sentences are not clumping together within any particular section.
@@ -401,14 +401,14 @@ Almost all readability formulas use sentence length as a factor. Because of this
 First, let's view the document. From the **Help** tab on the ribbon, click the `r keys('Example Documents')` button, and select "Summer Code Camp." Next, you will be prompted to either create a new project or view the document; select **View document**. Once the flyer is opened, note how it mostly contains simple text boxes:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/non-generated/summer-code-camp-flyer.png")
+knitr::include_graphics("images/non-generated/summer-code-camp-flyer.png")
 ```
 
 Rather than excluding these and only analyzing the few remaining sentences, we will analyze everything. Also, we will only use a test that is designed to not rely on sentence lengths.
 
 Close this document and return to *Readability Studio*. Click the `r keys('Example Documents')` button and again select "Summer Code Camp." Next, select **Create a new project**. When the **New Project Wizard** appears, select the **Document Structure** page and select **Non-narrative, fragmented text**:
 
-![](../images/wizarddocstructurenonnarrative.png)
+![](images/wizarddocstructurenonnarrative.png)
 
 ::: {.notesection data-latex=""}
 Going to the **Test Selection** page, selecting **Recommended test selection based on document type**, and selecting **Non-narrative form** will have the same effect.
@@ -427,13 +427,13 @@ With this in mind, we will review both halves of the flyer from these perspectiv
 Select **Words Breakdown** on the sidebar and then select **3+ Syllables Report**. Here we can see some phrases that could be simplified:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/summer-code-camp-upper-half1.png")
+knitr::include_graphics("images/summer-code-camp-upper-half1.png")
 ```
 
 For example, we could remove *Proudly presented* or replace it with *Offered*. Scrolling down further:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/summer-code-camp-upper-half2.png")
+knitr::include_graphics("images/summer-code-camp-upper-half2.png")
 ```
 
 The highlighted line above could be rewritten to something like *New to programming? No Problem!*.
@@ -441,7 +441,7 @@ The highlighted line above could be rewritten to something like *New to programm
 Scrolling to the bottom, we can review the second half of this flyer. The content here is meant for parents and their children to fill out together.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/summer-code-camp-lower-half.png")
+knitr::include_graphics("images/summer-code-camp-lower-half.png")
 ```
 
 Although there are some longer words here, the responsible adult intended to sign this should be able to understand the content.
@@ -468,7 +468,7 @@ This word cloud shows the document's words, after they have been combined (via s
 The size of the words are relative to their frequencies. As an example, the words "Company" and "Customer" appear much more frequently than any other word:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/example-difficult-words-wordcloud.png")
+knitr::include_graphics("images/example-difficult-words-wordcloud.png")
 ```
 
 From this, we can glean that this document is about a customer and company relationship.
@@ -480,14 +480,14 @@ In these histograms, we want to see a right-tailed distribution, where the bin s
 Although that is the pattern we see here, it has an alarming number of complex words — approximately a third of the document.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/example-difficult-syllables-histogram.png")
+knitr::include_graphics("images/example-difficult-syllables-histogram.png")
 ```
 
 To draw attention to these groups of words, press the `r keys('Showcase')` on the ribbon.
 Now the cumulative bar group and labels will only be shown for these bars:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/example-difficult-syllables-histogram-showcased.png")
+knitr::include_graphics("images/example-difficult-syllables-histogram-showcased.png")
 ```
 
 If using a solid color for the bars, then the one- and two-syllable word bars will also be translucent.
@@ -498,7 +498,7 @@ Here we can see how much of the document consists of complex words by looking at
 We can further see a breakdown of these complex words in the inner ring, where almost a quarter of the document is three-syllable words:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/example-difficult-syllables-pie-chart.png")
+knitr::include_graphics("images/example-difficult-syllables-pie-chart.png")
 ```
 
 Note that because we previously pressed `r keys('Showcase')`, the simple-word slices are translucent and their labels are hidden.
@@ -510,7 +510,7 @@ Also, the darker the box, the longer its length is compared to the rest of the s
 In this example, we can see that the sixth paragraph has ten sentences in it:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/example-difficult-sentences-heatmap.png")
+knitr::include_graphics("images/example-difficult-sentences-heatmap.png")
 ```
 
 There are also a few lengthy sentences in this paragraph, judging from the numbers and dark colors across the row.
@@ -520,7 +520,7 @@ From the **Readability** tab, click `r menu(c('Secondary','Fry'))` to add a [Fry
 Click on the **Readability Scores** icon on the project sidebar and select **Fry Graph**.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/example-difficult-fry-showcased.png")
+knitr::include_graphics("images/example-difficult-fry-showcased.png")
 ```
 
 Here, we can see that the document is scoring at *17+*. Long words are the main contributing factor

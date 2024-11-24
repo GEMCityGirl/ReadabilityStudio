@@ -2,7 +2,7 @@
 #| include: false
 #| eval: true
 
-source('../R/appdown.r')
+source('R/appdown.r')
 ```
 
 # Program & Project Options {#sec-options-overview}
@@ -18,11 +18,11 @@ Note that changing options globally will affect all future projects, but will no
 
 To set these options globally, click the `r keys("Options")` button on the **Tools** tab to open the **Options** dialog:
 
-![](../images/options-dlg.png){width=75% fig-align="center"}
+![](images/options-dlg.png){width=75% fig-align="center"}
 
 If you wish to change options for an individual project, then click the `r keys("Properties")` button on the **Home** tab to open the **Project Properties** dialog:
 
-![](../images/projectproperties.png){width=75% fig-align="center"}
+![](images/projectproperties.png){width=75% fig-align="center"}
 
 ## General Settings {#sec-options-general-settings}
 

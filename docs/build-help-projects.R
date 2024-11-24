@@ -117,6 +117,12 @@ combine_files("readability-tests-english.qmd", "english")
 combine_files("readability-tests-spanish.qmd", "spanish")
 combine_files("readability-tests-german.qmd", "german")
 combine_files("scoring-notes.qmd", "scoring-notes")
+# Note that we are combining some folders into a single file simply because of issues
+# with Safari loading HTML files from a subfolder not picking up the image and css paths correctly.
+# So we need to combine the subfolders into separate topics one level up so that when the HTML
+# help is launched from the program under macOS, the css and images get loaded.
+combine_files("projects.qmd", "projects")
+combine_files("examples.qmd", "examples")
 
 quarto::quarto_render(output_format="pdf", as_job=F, profile="manual")
 quarto::quarto_render(output_format="html", as_job=F, profile="online")
@@ -125,6 +131,8 @@ unlink(glue("{docFolder}/readability-studio-manual/readability-tests-english.qmd
 unlink(glue("{docFolder}/readability-studio-manual/readability-tests-spanish.qmd"))
 unlink(glue("{docFolder}/readability-studio-manual/readability-tests-german.qmd"))
 unlink(glue("{docFolder}/readability-studio-manual/scoring-notes.qmd"))
+unlink(glue("{docFolder}/readability-studio-manual/projects.qmd"))
+unlink(glue("{docFolder}/readability-studio-manual/examples.qmd"))
 unlink(glue("{docFolder}/readability-studio-manual/acknowledgements.qmd"))
 
 # Programming Manual

@@ -9,15 +9,11 @@ book:
       - overviews/program.qmd
     - part: "Projects"
       chapters:
-      - projects/creating-a-new-project.qmd
-      - projects/reviewing-standard-projects.qmd
-      - projects/reviewing-batch-project.qmd
-      - projects/customizing-results.qmd
-      - projects/publishing.qmd
+      - projects.qmd
     - part: "Options & Features"
       chapters:
-      - options/program-options.qmd
-      - options/additional-features.qmd
+      - program-options.qmd
+      - additional-features.qmd
     - part: "Readability Tests"
       chapters:
       - readability-tests-english.qmd
@@ -26,12 +22,7 @@ book:
       - custom-tests-and-bundles.qmd
     - part: "Examples"
       chapters:
-      - examples/examples-getting-started.qmd
-      - examples/examples-advanced.qmd
-      - examples/examples-editing.qmd
-      - examples/examples-graphs.qmd
-      - examples/examples-batch-projects.qmd
-      - examples/examples-creating-custom-tests.qmd
+      - examples.qmd
     - part: "Notes"
       chapters:
       - analysis-notes.qmd

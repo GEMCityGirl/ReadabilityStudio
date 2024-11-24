@@ -109,7 +109,7 @@ void ReadabilityApp::EditDictionary(const readability::test_language lang)
         editDlg.SetFilePath(m_CustomEnglishDictionaryPath);
         }
     editDlg.SetHelpTopic(GetMainFrame()->GetHelpDirectory(),
-                         L"online/options/program-options.html");
+                         L"online/program-options.html");
     if (editDlg.ShowModal() == wxID_OK)
         {
         // custom dictionary will be written back to with edit words at this point,
@@ -4014,7 +4014,7 @@ void MainFrame::OnStartPageClick(wxCommandEvent& event)
                 }
             }
         else if (event.GetId() == GetStartPage()->GetButtonID(2))
-            { DisplayHelp(_DT(L"online/examples/examples-getting-started.html")); }
+            { DisplayHelp(_DT(L"online/examples.html")); }
         else if (event.GetId() == GetStartPage()->GetButtonID(3))
             { DisplayHelp(_DT(L"online/analysis-notes.html")); }
         else if (event.GetId() == GetStartPage()->GetButtonID(4))
@@ -5324,7 +5324,7 @@ void MainFrame::OnEditWordList([[maybe_unused]] wxCommandEvent& event)
     {
     EditWordListDlg editDlg(wxGetApp().GetParentingWindow(), wxID_ANY, _(L"Edit Word List"));
     editDlg.SetDefaultDir(wxGetApp().GetAppOptions().GetWordListPath());
-    editDlg.SetHelpTopic(GetHelpDirectory(), _DT(L"online/options/program-options.html"));
+    editDlg.SetHelpTopic(GetHelpDirectory(), _DT(L"online/program-options.html"));
     if (editDlg.ShowModal() == wxID_OK)
         {
         wxGetApp().GetAppOptions().SetWordListPath(wxFileName(editDlg.GetFilePath()).GetPath());
@@ -5336,7 +5336,7 @@ void MainFrame::OnEditPhraseList([[maybe_unused]] wxCommandEvent& event)
     {
     EditWordListDlg editDlg(wxGetApp().GetParentingWindow(), wxID_ANY, _(L"Edit Phrase List"));
     editDlg.SetDefaultDir(wxGetApp().GetAppOptions().GetWordListPath());
-    editDlg.SetHelpTopic(GetHelpDirectory(), _DT(L"online/options/program-options.html"));
+    editDlg.SetHelpTopic(GetHelpDirectory(), _DT(L"online/program-options.html"));
     editDlg.SetPhraseFileMode(true);
     editDlg.ShowModal();
     }
@@ -5514,7 +5514,7 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
     webHarvestDlg.UpdateFromHarvesterSettings(wxGetApp().GetWebHarvester());
     // force downloading locally
     webHarvestDlg.DownloadFilesLocally(true);
-    webHarvestDlg.SetHelpTopic(GetHelpDirectory(), _DT(L"online/options/additional-features.html"));
+    webHarvestDlg.SetHelpTopic(GetHelpDirectory(), _DT(L"online/additional-features.html"));
 
     if (webHarvestDlg.ShowModal() != wxID_OK)
         {

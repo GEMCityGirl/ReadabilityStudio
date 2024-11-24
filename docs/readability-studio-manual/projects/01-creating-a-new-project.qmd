@@ -2,7 +2,7 @@
 #| include: false
 #| eval: true
 
-source('../R/appdown.r')
+source('R/appdown.r')
 ```
 
 # Creating a New Project
@@ -31,7 +31,7 @@ To determine a document's readability you will need to create a new project. Fir
 (If you are using the *Professional* edition, select **Standard Project** and click `r keys("OK")`).
 On the first page of the wizard, the options for specifying the document and its language will be shown:
 
-![](../images/wizard1.png)
+![](images/wizard1.png)
 
 ::: {.notesection data-latex=""}
 The language option is only available in the *Language Pack* and *Professional* editions of *Readability Studio*.
@@ -46,11 +46,11 @@ For example, to analyze an email, copy the text from your email program, select 
 
 To analyze a file, select the **Read text from a file or webpage** option. Then click the button next to the file path field and browse to the document:
 
-![](../images/exampleselectfile.png)
+![](images/exampleselectfile.png)
 
 After you have selected your file, click the `r keys("Forward >")` button to continue to the **Document Structure** page, as shown below:
 
-![](../images/wizarddocstructure.png)
+![](images/wizarddocstructure.png)
 
 On this page, you will specify the format that best describes your document. The compositions that you can select are either narrative text or [non-narrative/fragmented text](#sec-fragmented-text).
 These options describe the content of your document and will help the program select the appropriate [text exclusion](#sec-options-text-exclusion) method\index{text exclusion!specifying in project wizard}.
@@ -63,28 +63,28 @@ Previews of these document formats are shown next to each option. To view the fu
 
 After specifying your document structure, click the `r keys("Forward >")` button to continue to the **Test Selection** page, as shown below:
 
-![](../images/wizardreadabilitymethods.png)
+![](images/wizardreadabilitymethods.png)
 
 On this page, you will select how you want *Readability Studio* to choose the readability tests to perform.
 Your first option is to tell the program which type of document you are analyzing and it will select the most appropriate tests based on that.
 To do this, select the **Recommend tests based on document type** option.
 You will then be presented with the **Select the type of document...** options, where you can select which type of document best describes your file (e.g., a literary work or technical form), as shown below:
 
-![](../images/wizarddoctypetechselected.png)
+![](images/wizarddoctypetechselected.png)
 
 Your second option is to tell *Readability Studio* which type of industry your document relates to and it will select the most appropriate tests based on that. To do this, select the **Recommend tests based on industry or field** option. You will then be presented with the **Select the type of industry...** options, where you can select which field your file relates to (e.g., magazine publishing or the military), as shown below:
 
-![](../images/wizardindustry.png)
+![](images/wizardindustry.png)
 
 Your third option is to manually select the tests yourself. To do this, select the **Manually select tests** option. You will then be presented with the **Standard tests** options, where you can select any of the tests that *Readability Studio* has to offer, as shown below:
 
-![](../images/wizardtests.png)
+![](images/wizardtests.png)
 
 The tests available on this page will depend on the project's language. For example, if you are manually selecting Spanish tests, then tests such as [Crawford](#sec-crawford) will be available, but English tests (e.g., [Spache](#sec-spache-test)) will not. Also, some industry and document-type options may not have tests associated with them depending on the selected language.
 
 Your final option is to select a [test bundle](#sec-test-bundles).
 
-![](../images/wizardbundles.png)
+![](images/wizardbundles.png)
 
 Along with adding tests to a project, test bundles also can include [goals](#sec-reviewing-goals) to help with reviewing your scores.
 
@@ -92,7 +92,7 @@ Note that you can always add or remove tests from your project at any time. If y
 
 Finally, click the `r keys("Finish")` button and the project will be created and will appear like this:
 
-![](../images/scores.png)
+![](images/scores.png)
 
 From here, you can review the [readability scores](#sec-reviewing-test-scores) and [graphs](#sec-reviewing-readability-graphs),
 useful document [statistics](#sec-reviewing-statistics), and various lists of [difficult words](#sec-reviewing-word-breakdowns).
@@ -103,12 +103,12 @@ You can also review the document with its difficult words and [sentences](#sec-r
 To determine the readability of a document collection, you will need to create a new batch project. First, click the `r keys("New")` button on the **Home** tab to open the **Select Project Type** dialog, as shown below:
 
 ```{r echo=F, fig.align='center', out.width='50%'}
-knitr::include_graphics("../images/selectprojecttype.png")
+knitr::include_graphics("images/selectprojecttype.png")
 ```
 
 Select **Batch Project** and click the `r keys("OK")` button to proceed to the **New Project** wizard dialog, as shown below:
 
-![](../images/wizardbatchselectfiles.png)
+![](images/wizardbatchselectfiles.png)
 
 On the first page of this dialog, **Documents**, are options for selecting your documents and how to specify their language. The language option will control how the documents are analyzed (e.g., syllable counting). This will also affect which tests, word lists, and grammar features will be available. For example, if we select **Spanish**, then only Spanish tests will be included, and features related to English word lists (e.g., New Dale-Chall) will not be available. For this example, select **English**.
 
@@ -116,7 +116,7 @@ Now you can add files from a folder, archive file, Excel^®^ 2007 file, or websi
 
 To add files from a folder, click the `r keys("Add folder")` button. You will be presented with the [**Select Directory**](#sec-batch-project-import-features) dialog. On this dialog, you can select the document types to search for, as well as whether to search recursively within the folders.
 
-![](../images/selectdirectory.png){width=75% fig-align="center"}
+![](images/selectdirectory.png){width=75% fig-align="center"}
 
 To add files from an archive (i.e., a \*.zip file), click the `r keys("Add archive")` button. You will be presented with the [**Select Archive File**](#sec-batch-project-import-features) dialog. Like the **Select Directory** dialog, you can specify which documents to search for within the archive. (Note that the entire archive will be searched recursively for documents.)
 
@@ -124,7 +124,7 @@ To add documents from an *Excel* (\*.xlsx) file, click the `r keys("Add spreadsh
 
 To search for files from a website and include them in the project, click the `r keys("Add web pages")` button. This will display the [**Web Harvester**](#sec-web-harvester) dialog, as shown below:
 
-![](../images/webharvester.png){width=75% fig-align="center"}
+![](images/webharvester.png){width=75% fig-align="center"}
 
 To add an individual web page to the project, click the `r keys("Add web page")` button. This will display a text box where you can enter the web page's path.
 
@@ -143,7 +143,7 @@ You can also filter documents based on content size.
 Enter into the field **Minimum document word count** the minimum number of words a document must have to be included in the batch.
 Any document which does not meet this threshold will be ignored during import.
 
-![](../images/randomsample.png)
+![](images/randomsample.png)
 
 Note that when the project is first analyzed, the documents that were not included in the sample will be removed from the project.
 
@@ -152,7 +152,7 @@ Refer to @sec-creating-standard-project for an explanation of these pages.
 
 After you have specified your document structure and tests, click the `r keys("Finish")` button to create the project, as shown below:
 
-![](../images/batchscorestats.png)
+![](images/batchscorestats.png)
 
 From here, you can review the [readability scores](#sec-reviewing-batch-scores), [box plots](#sec-reviewing-batch-box-plots), [histograms](#sec-reviewing-batch-histograms), [readability graphs](#sec-reviewing-readability-graphs), [Dolch statistics](#sec-reviewing-batch-dolch), and [difficult words](#sec-reviewing-batch-words).
 You may also want to review any [warnings](#sec-reviewing-batch-warnings) that were encountered while analyzing the documents.

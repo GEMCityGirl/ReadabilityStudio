@@ -2,7 +2,7 @@
 #| include: false
 #| eval: true
 
-source('../R/appdown.r')
+source('R/appdown.r')
 ```
 
 # Additional Features {#sec-additional-features}

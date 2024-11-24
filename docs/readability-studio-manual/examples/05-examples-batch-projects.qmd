@@ -2,7 +2,7 @@
 #| include: false
 #| eval: true
 
-source('../R/appdown.r')
+source('R/appdown.r')
 ```
 
 # Batch Projects
@@ -23,12 +23,12 @@ To determine the readability of a document collection, you will need to create a
 First, click the `r keys("New")` button on the **Home** tab to open the **Select Project Type** dialog, as shown below:
 
 ```{r echo=F, fig.align='center', out.width='50%'}
-knitr::include_graphics("../images/selectprojecttype.png")
+knitr::include_graphics("images/selectprojecttype.png")
 ```
 
 Select **Batch Project** and click the `r keys("OK")` button to proceed to the **New Project** wizard dialog:
 
-![](../images/wizardbatchselectfiles.png)
+![](images/wizardbatchselectfiles.png)
 
 Select **English** as the document language.
 Next, you can add files from a folder, website, spreadsheet, or archive to the project.
@@ -36,7 +36,7 @@ We will be reviewing files from a folder, so click the `r keys("Add folder...")`
 You will be presented with the [**Select Directory**](#sec-batch-project-import-features) dialog:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/selectdirectory.png")
+knitr::include_graphics("images/selectdirectory.png")
 ```
 
 Enter the path to your document folder in the top field.
@@ -46,30 +46,30 @@ Leave the defaults and click `r keys("OK")` and the program will begin its file 
 After the program is finished searching for documents, you will return to the **New Project Wizard**.
 Note how all the files that were found are now included in the file list:
 
-![](../images/wizardbatchselectfilesloaded.png)
+![](images/wizardbatchselectfilesloaded.png)
 
 To add more files from other folders, repeat the previous step.
 
 We will analyze all of the documents in this collection, so just ignore the **Randomly sample** option.
 Click the `r keys("Forward >")` button to continue to the **Document Structure** page, as shown below:
 
-![](../images/wizarddocstructurenarrativeselected.png)
+![](images/wizarddocstructurenarrativeselected.png)
 
 In this dialog, you will specify the format that best describes your documents.
 We are analyzing standard, narrative documents, so select **Narrative text**.
 After selecting your document structure, click the `r keys("Forward >")` button to continue to the **Test Selection** page, as shown below:
 
-![](../images/wizardbatchreadabilitymethods.png)
+![](images/wizardbatchreadabilitymethods.png)
 
 On this page, you will select how you want *Readability Studio* to choose the readability tests to perform.
 Select the **Recommend tests based on document type**:
 
-![](../images/wizardbatchdoctype.png)
+![](images/wizardbatchdoctype.png)
 
 We will be analyzing technical documents in this example, so select **Technical document or form**.
 Click the `r keys("Finish")` button and the project will be created and will appear like this:
 
-![](../images/batchscorestats.png)
+![](images/batchscorestats.png)
 
 The first items presented to us are the aggregated [statistics](#sec-reviewing-batch-scores) for the test scores.
 This will give us a general overview of the collection's readability level.
@@ -82,12 +82,12 @@ From this, we can summarize that this collection is a little too difficult to re
 To view a breakdown of all the documents and their respective test scores, click on the **Raw Scores** subitem.
 Here we can [sort](#sec-column-sorting) any of the test columns to see which documents scored the highest.
 
-![](../images/batchrawscores.png)
+![](images/batchrawscores.png)
 
 To view any document's scores in a vertical layout, double-click on its row in this list to display the **View Item** dialog:
 
 ```{r echo=F, fig.align='center', out.width='45%'}
-knitr::include_graphics("../images/viewitemrawscores.png")
+knitr::include_graphics("images/viewitemrawscores.png")
 ```
 
 The distribution of these raw scores can also be graphically viewed.
@@ -96,7 +96,7 @@ Box plots show the spread of each test's scores, whereas histograms show a test'
 For example, below is a histogram showing the Flesch-Kincaid scores:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/histogrades.png")
+knitr::include_graphics("images/histogrades.png")
 ```
 
 Judging from this graph, we have quite a few difficult documents in this batch.
@@ -108,7 +108,7 @@ The next step is to review any grammar issues that may be contributing to overly
 Click on the **Grammar** icon to display any grammar issues detected in the documents.
 First select the **Long Sentences** subitem, as shown below:
 
-![](../images/batchlongsentences.png)
+![](images/batchlongsentences.png)
 
 Here we can see which documents have the most overly-long sentences, as well as where the longest sentences are.
 Once we have found a document of interest, we may want to review it in greater detail.
@@ -126,7 +126,7 @@ As we can see in this updated Flesch-Kincaid histogram, there is already some im
 There are no longer any documents scoring above the 12^th^ grade, and only 10 documents remain in the 10–12 grade range.
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/histoimproved.png")
+knitr::include_graphics("images/histoimproved.png")
 ```
 
 \newpage
@@ -138,7 +138,7 @@ An example of this are downloaded webpages that may have names such as "index.ht
 In this example, we will show how to include descriptive labels next to our documents in a batch so that we can distinguish between them.
 
 :::{.wrapfigure data-latex="{r}{0.5\\textwidth}" style="width: 48%;"}
-![](../images/group-label-descselected.png){width=48%}
+![](images/group-label-descselected.png){width=48%}
 :::
 
 On the **Home** tab of the ribbon, click the `r keys('New')` button. When prompted for which type of project to create, select **Batch Project**.
@@ -151,14 +151,14 @@ For this example, we are wanting to include unique, descriptive labels for each 
 
 Now, the program will load the files from the folder that we had selected. For example, below is a list of files where each one has the same name:
 
-![](../images/wizardbatchselectfilessamenames.png)
+![](images/wizardbatchselectfilessamenames.png)
 
 Because we had selected **Use documents' descriptions** for our labeling, then the titles from the documents will be extracted when the analysis begins.
 From there, these titles will be shown as descriptive labels next to each document in the results.
 Click `r keys('Finish')` to begin the analysis, and once the project appears, select **Raw Scores** under **Readability Scores**:
 
 ```{r echo=F, fig.align='center', out.width='50%'}
-knitr::include_graphics("../images/batch-desc-labels-scores.png")
+knitr::include_graphics("images/batch-desc-labels-scores.png")
 ```
 
 Note how there is a **Label** column next to the **Document** column.
@@ -182,14 +182,14 @@ On this dialog, we can either specify a single label for all documents or use th
 For this example, we are wanting to group this folders’ documents together, so select **Use a grouping label**, enter a label (e.g., *Notes*) and click `r keys('OK')`.
 
 ```{r echo=F, fig.align='center', out.width='50%'}
-knitr::include_graphics("../images/group-label-notes.png")
+knitr::include_graphics("images/group-label-notes.png")
 ```
 
 Repeat this process with another folder, but enter a different grouping label.
 For example, we could select a folder of help examples and apply the label *Examples* to it:
 
 ```{r echo=F, fig.align='center', out.width='50%'}
-knitr::include_graphics("../images/group-label-examples.png")
+knitr::include_graphics("images/group-label-examples.png")
 ```
 
 ::: {.notesection data-latex=""}
@@ -201,7 +201,7 @@ When the project appears, select **Raw Scores** under **Readability Scores**.
 Here we can see a list of documents, along with their group labels next to them:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/batch-group-labels-scores.png")
+knitr::include_graphics("images/batch-group-labels-scores.png")
 ```
 
 Here, we can sort by group or scores and see how the groups compare. In the above example, we can see that the *Tests* group is scoring poorly.
@@ -209,7 +209,7 @@ Here, we can sort by group or scores and see how the groups compare. In the abov
 Grouping is also shown in the readability graphs. For example, if we included a Fry graph, then it may appear as such:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
-knitr::include_graphics("../images/fry-grouped.png")
+knitr::include_graphics("images/fry-grouped.png")
 ```
 
 Here, we can see the *Tests* group again scoring rather high, as much of this group’s documents are clustering in the higher grade ranges.
