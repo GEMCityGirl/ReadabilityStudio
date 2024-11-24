@@ -22,6 +22,7 @@ source('../R/appdown.r')
 
 - Fixed intermittent graph blinking issue under HiDPI settings.
 - Fixed text being too light when printing statistics report under dark mode.
+- Fixed empty dialog intermittently appearing under macOS.
 
 ## Readability Studio 2024 {-}
 ***
