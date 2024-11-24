@@ -10,6 +10,10 @@ source('../R/appdown.r')
 ## Readability Studio 2024.0.1 {-}
 ***
 
+### General Enhancements {-}
+
+- macOS version now runs natively under Apple Silicon (i.e., ARM64 processors).
+
 ### Importing/Exporting Enhancements {-}
 
 - C++ file importer now analyzes comments, not just *gettext* strings.
