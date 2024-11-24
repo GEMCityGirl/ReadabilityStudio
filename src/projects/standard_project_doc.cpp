@@ -653,7 +653,8 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
     FreeDocumentText();
 
     // Run through the project wizard
-    ProjectWizardDlg* wizard = new ProjectWizardDlg(wxGetApp().GetMainFrame(), ProjectType::StandardProject, path);
+    ProjectWizardDlg* wizard =
+        new ProjectWizardDlg(GetParentWindowForDialogs(), ProjectType::StandardProject, path);
     if (wizard->ShowModal() != wxID_OK)
         {
         wizard->Destroy();

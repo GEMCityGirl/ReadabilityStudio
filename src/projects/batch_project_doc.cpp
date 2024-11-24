@@ -4946,7 +4946,8 @@ void BatchProjectDoc::DisplayHistogram(const wxString& name, const wxWindowID Id
 bool BatchProjectDoc::RunProjectWizard(const wxString& path)
     {
     // Run through the project wizard
-    ProjectWizardDlg* wizard = new ProjectWizardDlg(wxGetApp().GetMainFrame(), ProjectType::BatchProject, path);
+    ProjectWizardDlg* wizard =
+        new ProjectWizardDlg(GetParentWindowForDialogs(), ProjectType::BatchProject, path);
     if (wizard->ShowModal() != wxID_OK)
         {
         wizard->Destroy();

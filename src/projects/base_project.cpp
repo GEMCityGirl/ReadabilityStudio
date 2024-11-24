@@ -192,22 +192,23 @@ void BaseProject::LogMessage(wxString message, const wxString& title, const int 
                              const bool queue /*= false*/)
     {
     // skip warning if it was asked to be suppressed already
-    std::vector<WarningMessage>::iterator warningIter =
-        WarningManager::GetWarning(messageId);
-    if (warningIter != WarningManager::GetWarnings().end() &&
-        warningIter->ShouldBeShown() == false)
-        { return; }
+    std::vector<WarningMessage>::iterator warningIter = WarningManager::GetWarning(messageId);
+    if (warningIter != WarningManager::GetWarnings().end() && warningIter->ShouldBeShown() == false)
+        {
+        return;
+        }
 
     if (queue)
-        { AddQueuedMessage(WarningMessage(messageId,message,title,wxString{},icon)); }
+        {
+        AddQueuedMessage(WarningMessage(messageId, message, title, wxString{}, icon));
+        }
     else if (HasUI())
         {
-        wxRichMessageDialog msg(wxGetApp().GetMainFrame(), message,
-            (title.length() ? title : wxGetApp().GetAppDisplayName()), icon);
+        wxRichMessageDialog msg(wxGetApp().GetParentWindowForDialogs(), message,
+                                (title.length() ? title : wxGetApp().GetAppDisplayName()), icon);
         msg.ShowCheckBox(messageId.length() ? _(L"Do not show this again") : wxString{});
         const int dlgResponse = msg.ShowModal();
-        if (dlgResponse != wxID_NO &&
-            warningIter != WarningManager::GetWarnings().end() &&
+        if (dlgResponse != wxID_NO && warningIter != WarningManager::GetWarnings().end() &&
             msg.IsCheckBoxChecked())
             {
             warningIter->Show(false);
@@ -215,14 +216,22 @@ void BaseProject::LogMessage(wxString message, const wxString& title, const int 
             }
         }
     else
-        { AddQuietSubProjectMessage(message,icon); }
+        {
+        AddQuietSubProjectMessage(message, icon);
+        }
     message.Replace(L"\n", L" ", true);
     if (icon & wxICON_ERROR)
-        { wxLogError(L"%s", message); }
+        {
+        wxLogError(L"%s", message);
+        }
     else if (icon & wxICON_EXCLAMATION)
-        { wxLogWarning(L"%s", message); }
+        {
+        wxLogWarning(L"%s", message);
+        }
     else
-        { wxLogVerbose(L"%s", message); }
+        {
+        wxLogVerbose(L"%s", message);
+        }
     }
 
 //-------------------------------------------------------
@@ -7931,10 +7940,11 @@ bool BaseProject::FindMissingFile(const wxString& filePath, wxString& fileBySame
         if (warningIter != WarningManager::GetWarnings().end() &&
             warningIter->ShouldBeShown())
             {
-            wxRichMessageDialog msg(wxGetApp().GetMainFrame(),
+            wxRichMessageDialog msg(
+                wxGetApp().GetParentWindowForDialogs(),
                 wxString::Format(
-                    _(L"%s:\n\nFile could not be located. However, a file by the same name was found at:"
-                       "\n\n%s\n\nDo you wish to use this file instead?"),
+                    _(L"%s:\n\nFile could not be located. However, a file by the same name "
+                      "was found at:\n\n%s\n\nDo you wish to use this file instead?"),
                     filePath, fileBySameNameInProjectDirectory),
                 warningIter->GetTitle(), warningIter->GetFlags());
             msg.ShowCheckBox(_(L"Remember my answer"));

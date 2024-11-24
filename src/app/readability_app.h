@@ -290,6 +290,13 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
         return dynamic_cast<MainFrame*>(GetMainFrame());
         }
 
+    /// @returns A visible window to use as a parent for dialogs.
+    /// @details Using the top-level mainframe will make it visible when it's not being shown,
+    ///     so this will return the active project window (if one exists) if the mainframe is
+    ///     currently hidden.
+    [[nodiscard]]
+    wxWindow* GetParentWindowForDialogs();
+
     [[nodiscard]]
     wxString GetAppVersion() const
         {

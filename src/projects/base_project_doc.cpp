@@ -320,6 +320,21 @@ void BaseProjectDoc::SetWatermarkLogoPath(const wxString& filePath)
     }
 
 //------------------------------------------------------
+wxWindow* BaseProjectDoc::GetParentWindowForDialogs()
+    {
+    wxWindow* docWin = GetDocumentWindow();
+    if (docWin == nullptr || !docWin->IsShown())
+        {
+        auto* view = wxGetApp().GetDocManager()->GetCurrentView();
+        if (view != nullptr && view->GetFrame() != nullptr && view->GetFrame()->IsShown())
+            {
+            return view->GetFrame();
+            }
+        }
+    return (docWin == nullptr) ? wxGetApp().GetMainFrame() : docWin;
+    }
+
+//------------------------------------------------------
 void BaseProjectDoc::LoadImageAndPath(wxString& filePath, wxBitmapBundle& img)
     {
     if (filePath.empty())
@@ -710,38 +725,46 @@ CustomReadabilityTest::string_type BaseProjectDoc::UpdateCustumReadabilityTest(
 bool BaseProjectDoc::AddGlobalCustomReadabilityTest(CustomReadabilityTest& customTest)
     {
     customTest.set_formula(UpdateCustumReadabilityTest(customTest.get_formula()));
-    // see if there is a test include already (globally) with the same name
+    // see if there is a test included already (globally) with the same name
     if (std::find(m_custom_word_tests.begin(), m_custom_word_tests.end(), customTest.get_name()) !=
         m_custom_word_tests.end())
         {
         // ..if so, then see if it is the exact same test (simply return if that is the case)
-        if (std::find(m_custom_word_tests.begin(), m_custom_word_tests.end(), customTest) != m_custom_word_tests.end())
-            { return true; }
+        if (std::find(m_custom_word_tests.begin(), m_custom_word_tests.end(), customTest) !=
+            m_custom_word_tests.end())
+            {
+            return true;
+            }
         // we encountered a test name conflict and the test settings are different, so we will
         // need to rename this test to something else before adding it to the system
         wxString name = customTest.get_name().c_str();
         while (true)
             {
-            if (std::find(m_custom_word_tests.begin(), m_custom_word_tests.end(), name) != m_custom_word_tests.end())
+            if (std::find(m_custom_word_tests.begin(), m_custom_word_tests.end(), name) !=
+                m_custom_word_tests.end())
                 {
-                wxMessageDialog msDlg(wxGetApp().GetMainFrame(),
+                wxMessageDialog msDlg(
+                    wxGetApp().GetParentWindowForDialogs(),
                     wxString::Format(
-                    _(L"This project or settings file contains a custom test named \"%s\" that conflicts "
-                       "with an existing test of the same name."), name),
-                    _(L"Warning"), wxYES_NO|wxICON_QUESTION);
+                        _(L"This project or settings file contains a custom test named "
+                          "\"%s\" that conflicts with an existing test of the same name."),
+                        name),
+                    _(L"Warning"), wxYES_NO | wxICON_QUESTION);
                 msDlg.SetYesNoLabels(wxString::Format(_(L"Use existing version of \"%s\""), name),
-                    _(L"Rename test being imported"));
+                                     _(L"Rename test being imported"));
                 if (msDlg.ShowModal() == wxID_YES)
                     {
                     // just replace the test in the project with the global one
                     return true;
                     }
-                name = wxGetTextFromUser(
-                    _(L"Please specify a different name:"),
-                    _(L"Enter New Test Name"), name, wxGetApp().GetMainFrame());
+                name = wxGetTextFromUser(_(L"Please specify a different name:"),
+                                         _(L"Enter New Test Name"), name,
+                                         wxGetApp().GetParentWindowForDialogs());
                 // Cancel was pressed
                 if (name.empty())
-                    { return false; }
+                    {
+                    return false;
+                    }
                 continue;
                 }
             // name is unique now, so stop prompting for a new name and change the name in the test

@@ -1074,6 +1074,20 @@ bool ReadabilityApp::OnInit()
     return true;
     }
 
+//-------------------------------------------
+wxWindow* ReadabilityApp::GetParentWindowForDialogs()
+    {
+    if (GetMainFrame() == nullptr || !GetMainFrame()->IsShown())
+        {
+        auto* view = GetDocManager()->GetCurrentView();
+        if (view != nullptr && view->GetFrame() != nullptr && view->GetFrame()->IsShown())
+            {
+            return view->GetFrame();
+            }
+        }
+    return GetMainFrame();
+    }
+
 //-----------------------------------
 bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     {

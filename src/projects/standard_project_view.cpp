@@ -1426,7 +1426,7 @@ void ProjectView::OnMenuCommand(wxCommandEvent& event)
                     if (warningIter != WarningManager::GetWarnings().end() &&
                         warningIter->ShouldBeShown())
                         {
-                        wxRichMessageDialog msg(wxGetApp().GetMainFrame(),
+                        wxRichMessageDialog msg(GetFrame(),
                                                 warningIter->GetMessage(), warningIter->GetTitle(),
                                                 warningIter->GetFlags());
                         msg.ShowCheckBox(_(L"Remember my answer"));
