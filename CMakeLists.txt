@@ -506,13 +506,12 @@ if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
                        ${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/AppDir/usr/bin)
         add_custom_command(TARGET ${PROJECT_NAME}
                         POST_BUILD
-                        COMMAND ${CMAKE_COMMAND} -E copy_directory
-                        $<TARGET_FILE_DIR:${PROJECT_NAME}> ${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/AppDir/usr/bin
+                        COMMAND ${CMAKE_COMMAND} -E copy_directory "$<TARGET_FILE_DIR:${PROJECT_NAME}>" "${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/AppDir/usr/bin"
                         COMMENT "Copying binary to installer folder.")
     elseif(APPLE)
         add_custom_command(TARGET ${PROJECT_NAME}
                            POST_BUILD
-                           COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE_DIR:${PROJECT_NAME}>/${OUTPUT_NAME}.app" "${CMAKE_CURRENT_SOURCE_DIR}/installers/macos/release/"
+                           COMMAND ${CMAKE_COMMAND} -E copy_directory "$<TARGET_FILE_DIR:${PROJECT_NAME}>" "${CMAKE_CURRENT_SOURCE_DIR}/installers/macos/release/"
                            COMMENT "Copying binary to installer folder.")
     endif()
 endif()
