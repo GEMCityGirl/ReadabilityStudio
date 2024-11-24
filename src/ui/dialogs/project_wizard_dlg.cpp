@@ -1959,5 +1959,5 @@ void ProjectWizardDlg::OnHelp([[maybe_unused]] wxCommandEvent&)
     {
     wxLaunchDefaultBrowser(wxFileName::FileNameToURL(
         wxGetApp().GetMainFrame()->GetHelpDirectory() + wxFileName::GetPathSeparator() +
-        L"online/projects.html"));
+        L"online/creating-a-new-project.html"));
     }

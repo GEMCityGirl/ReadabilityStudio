@@ -158,7 +158,7 @@ void ExportAllDlg::OnImageOptionsButtonClick([[maybe_unused]] wxCommandEvent& ev
     Wisteria::UI::ImageExportDlg optDlg(this, Image::GetImageFileTypeFromExtension(ext),
                                         wxNullBitmap, m_imageExportOptions);
     optDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                        L"online/projects/publishing.html");
+                        L"online/publishing.html");
     if (optDlg.ShowModal() == wxID_OK)
         {
         m_imageExportOptions = optDlg.GetOptions();

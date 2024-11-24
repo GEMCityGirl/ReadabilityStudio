@@ -10,7 +10,11 @@ book:
       - overviews/new-features.qmd
     - part: "Projects"
       chapters:
-      - projects.qmd
+      - creating-a-new-project.qmd
+      - reviewing-standard-projects.qmd
+      - reviewing-batch-project.qmd
+      - customizing-results.qmd
+      - publishing.qmd
     - part: "Options & Features"
       chapters:
       - program-options.qmd
@@ -23,7 +27,12 @@ book:
       - custom-tests-and-bundles.qmd
     - part: "Examples"
       chapters:
-      - examples.qmd
+      - examples-getting-started.qmd
+      - examples-advanced.qmd
+      - examples-editing.qmd
+      - examples-graphs.qmd
+      - examples-batch-projects.qmd
+      - examples-creating-custom-tests.qmd
     - part: "Notes"
       chapters:
       - analysis-notes.qmd

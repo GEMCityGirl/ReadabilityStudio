@@ -3377,7 +3377,7 @@ void MainFrame::OnViewLogReport([[maybe_unused]] wxRibbonButtonBarEvent& event)
             wxPoint{ xPos + (screenWidth - (xPos + m_logWindow->GetSize().GetWidth())), yPos });
 
         m_logWindow->SetSortHelpTopic(GetHelpDirectory(),
-                                      _DT(L"online/projects/customizing-results.html"));
+                                      _DT(L"online/customizing-results.html"));
         }
     wxGetApp().UpdateRibbonTheme(m_logWindow->GetRibbon());
     m_logWindow->SetActiveLog(wxGetApp().GetLogFile());
@@ -4028,9 +4028,13 @@ void MainFrame::OnStartPageClick(wxCommandEvent& event)
                 }
             }
         else if (event.GetId() == GetStartPage()->GetButtonID(2))
-            { DisplayHelp(_DT(L"online/examples.html")); }
+            {
+            DisplayHelp(_DT(L"online/examples-getting-started.html"));
+            }
         else if (event.GetId() == GetStartPage()->GetButtonID(3))
-            { DisplayHelp(_DT(L"online/analysis-notes.html")); }
+            {
+            DisplayHelp(_DT(L"online/analysis-notes.html"));
+            }
         else if (event.GetId() == GetStartPage()->GetButtonID(4))
             {
             const wxString manualPath = GetHelpDirectory() + wxFileName::GetPathSeparator() +
@@ -4042,7 +4046,9 @@ void MainFrame::OnStartPageClick(wxCommandEvent& event)
             ToolsOptionsDlg optionsDlg(wxGetApp().GetParentingWindow());
             optionsDlg.SelectPage(ToolsOptionsDlg::GENERAL_SETTINGS_PAGE);
             if (optionsDlg.ShowModal() == wxID_OK)
-                { wxGetApp().GetAppOptions().SaveOptionsFile(); }
+                {
+                wxGetApp().GetAppOptions().SaveOptionsFile();
+                }
             }
         }
     else if (GetStartPage()->IsFileId(event.GetId()))
@@ -5156,7 +5162,7 @@ void MainFrame::OnPrinterHeaderFooter([[maybe_unused]] wxCommandEvent& event)
                                wxGetApp().GetAppOptions().GetLeftPrinterFooter(),
                                wxGetApp().GetAppOptions().GetCenterPrinterFooter(),
                                wxGetApp().GetAppOptions().GetRightPrinterFooter());
-    dlg.SetHelpTopic(GetHelpDirectory(), _DT(L"online/projects/publishing.html"));
+    dlg.SetHelpTopic(GetHelpDirectory(), _DT(L"online/publishing.html"));
     if (dlg.ShowModal() == wxID_OK)
         {
         wxGetApp().GetAppOptions().SetLeftPrinterHeader(dlg.GetLeftPrinterHeader());
@@ -5240,11 +5246,11 @@ void MainFrame::OnHelpContents([[maybe_unused]] wxCommandEvent& event)
         }
     else if (activeProject->IsKindOf(wxCLASSINFO(ProjectDoc)))
         {
-        DisplayHelp(_DT(L"online/projects/reviewing-standard-projects.html"));
+        DisplayHelp(_DT(L"online/reviewing-standard-projects.html"));
         }
     else if (activeProject->IsKindOf(wxCLASSINFO(BatchProjectDoc)))
         {
-        DisplayHelp(_DT(L"online/projects/reviewing-batch-project.html"));
+        DisplayHelp(_DT(L"online/reviewing-batch-project.html"));
         }
     }
 

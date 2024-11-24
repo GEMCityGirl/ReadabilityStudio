@@ -325,7 +325,7 @@ void BatchProjectView::OnBatchExportFilteredDocuments([[maybe_unused]] wxCommand
         { return; }
 
     FilteredTextExportOptionsDlg optDlg(GetDocFrame());
-    optDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"online/projects/publishing.html");
+    optDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"online/publishing.html");
     if (optDlg.ShowModal() != wxID_OK)
         { return; }
 
@@ -2439,7 +2439,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
             dlg.GetImageExportOptions().m_imageSize = m_activeWindow->GetClientSize();
             }
         dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                         L"online/projects/publishing.html");
+                         L"online/publishing.html");
         if (dlg.ShowModal() != wxID_OK || dlg.GetFolderPath().empty())
             {
             return;
@@ -2541,7 +2541,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
 
                 FilteredTextExportOptionsDlg optDlg(GetDocFrame());
                 optDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                                    L"online/projects/publishing.html");
+                                    L"online/publishing.html");
                 if (optDlg.ShowModal() != wxID_OK)
                     {
                     return;
