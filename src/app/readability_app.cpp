@@ -1074,20 +1074,6 @@ bool ReadabilityApp::OnInit()
     return true;
     }
 
-//-------------------------------------------
-wxWindow* ReadabilityApp::GetParentWindowForDialogs()
-    {
-    if (GetMainFrame() == nullptr || !GetMainFrame()->IsShown())
-        {
-        auto* view = GetDocManager()->GetCurrentView();
-        if (view != nullptr && view->GetFrame() != nullptr && view->GetFrame()->IsShown())
-            {
-            return view->GetFrame();
-            }
-        }
-    return GetMainFrame();
-    }
-
 //-----------------------------------
 bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     {
@@ -4038,7 +4024,7 @@ void MainFrame::OnStartPageClick(wxCommandEvent& event)
         else if (event.GetId() == GetStartPage()->GetButtonID(4))
             {
             const wxString manualPath = GetHelpDirectory() + wxFileName::GetPathSeparator() +
-                _DT(L"readability-studio-manual.pdf");
+                                        _DT(L"readability-studio-manual.pdf");
             wxLaunchDefaultApplication(manualPath);
             }
         else if (event.GetId() == GetStartPage()->GetButtonID(5))

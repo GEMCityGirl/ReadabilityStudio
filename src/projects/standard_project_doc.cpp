@@ -654,7 +654,7 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
 
     // Run through the project wizard
     ProjectWizardDlg* wizard =
-        new ProjectWizardDlg(GetParentWindowForDialogs(), ProjectType::StandardProject, path);
+        new ProjectWizardDlg(wxGetApp().GetParentingWindow(), ProjectType::StandardProject, path);
     if (wizard->ShowModal() != wxID_OK)
         {
         wizard->Destroy();

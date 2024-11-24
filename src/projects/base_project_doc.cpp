@@ -320,21 +320,6 @@ void BaseProjectDoc::SetWatermarkLogoPath(const wxString& filePath)
     }
 
 //------------------------------------------------------
-wxWindow* BaseProjectDoc::GetParentWindowForDialogs()
-    {
-    wxWindow* docWin = GetDocumentWindow();
-    if (docWin == nullptr || !docWin->IsShown())
-        {
-        auto* view = wxGetApp().GetDocManager()->GetCurrentView();
-        if (view != nullptr && view->GetFrame() != nullptr && view->GetFrame()->IsShown())
-            {
-            return view->GetFrame();
-            }
-        }
-    return (docWin == nullptr) ? wxGetApp().GetMainFrame() : docWin;
-    }
-
-//------------------------------------------------------
 void BaseProjectDoc::LoadImageAndPath(wxString& filePath, wxBitmapBundle& img)
     {
     if (filePath.empty())
@@ -744,7 +729,7 @@ bool BaseProjectDoc::AddGlobalCustomReadabilityTest(CustomReadabilityTest& custo
                 m_custom_word_tests.end())
                 {
                 wxMessageDialog msDlg(
-                    wxGetApp().GetParentWindowForDialogs(),
+                    wxGetApp().GetParentingWindow(),
                     wxString::Format(
                         _(L"This project or settings file contains a custom test named "
                           "\"%s\" that conflicts with an existing test of the same name."),
@@ -759,7 +744,7 @@ bool BaseProjectDoc::AddGlobalCustomReadabilityTest(CustomReadabilityTest& custo
                     }
                 name = wxGetTextFromUser(_(L"Please specify a different name:"),
                                          _(L"Enter New Test Name"), name,
-                                         wxGetApp().GetParentWindowForDialogs());
+                                         wxGetApp().GetParentingWindow());
                 // Cancel was pressed
                 if (name.empty())
                     {

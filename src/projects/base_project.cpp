@@ -204,7 +204,7 @@ void BaseProject::LogMessage(wxString message, const wxString& title, const int 
         }
     else if (HasUI())
         {
-        wxRichMessageDialog msg(wxGetApp().GetParentWindowForDialogs(), message,
+        wxRichMessageDialog msg(wxGetApp().GetParentingWindow(), message,
                                 (title.length() ? title : wxGetApp().GetAppDisplayName()), icon);
         msg.ShowCheckBox(messageId.length() ? _(L"Do not show this again") : wxString{});
         const int dlgResponse = msg.ShowModal();
@@ -7941,7 +7941,7 @@ bool BaseProject::FindMissingFile(const wxString& filePath, wxString& fileBySame
             warningIter->ShouldBeShown())
             {
             wxRichMessageDialog msg(
-                wxGetApp().GetParentWindowForDialogs(),
+                wxGetApp().GetParentingWindow(),
                 wxString::Format(
                     _(L"%s:\n\nFile could not be located. However, a file by the same name "
                       "was found at:\n\n%s\n\nDo you wish to use this file instead?"),

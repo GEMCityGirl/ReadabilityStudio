@@ -4947,7 +4947,7 @@ bool BatchProjectDoc::RunProjectWizard(const wxString& path)
     {
     // Run through the project wizard
     ProjectWizardDlg* wizard =
-        new ProjectWizardDlg(GetParentWindowForDialogs(), ProjectType::BatchProject, path);
+        new ProjectWizardDlg(wxGetApp().GetParentingWindow(), ProjectType::BatchProject, path);
     if (wizard->ShowModal() != wxID_OK)
         {
         wizard->Destroy();

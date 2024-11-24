@@ -1155,13 +1155,6 @@ class BaseProjectDoc : public BaseProject, public wxDocument
 
   protected:
 
-    /// @returns A visible window to use as a parent for doc-related dialogs.
-    /// @details Using the top-level mainframe will make it visible when it's not being shown,
-    ///     so this will return the active project window (if one exists) if the mainframe is
-    ///     currently hidden.
-    [[nodiscard]]
-    wxWindow* GetParentWindowForDialogs();
-
     /// @returns The goal values of a test goal (if specified in the project).
     std::tuple<double, double> GetGoalsForTest(const wxString& testName) const
         {
