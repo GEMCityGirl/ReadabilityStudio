@@ -300,6 +300,7 @@ elseif(APPLE)
                            $<$<CONFIG:Debug>:-Og>
                            $<$<CONFIG:Release>:-O2>)
 elseif(UNIX)
+    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -s")
     target_compile_definitions(${PROJECT_NAME} PUBLIC __WXGTK__ CRCPP_USE_CPP11 LICENSE_FILE_GENERATOR_ENABLED
         $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING> $<$<CONFIG:Release>:NDEBUG>)
     # TODO: don't include -Werror for now, but eventually add it
