@@ -113,8 +113,7 @@ public:
     virtual wxString GetStringValue() const wxOVERRIDE ;
     virtual void SetStringValue( const wxString &str) wxOVERRIDE ;
     void Print(const wxSize paperSize, const int orientation, const wxString& header,
-               const wxString& footer) const wxOVERRIDE;
-    virtual long Find( const wxString &str, const bool caseSensitive, const bool searchForward, const bool wholeWord) const wxOVERRIDE ;
+               const wxString& footer) const override;
     virtual void Copy() wxOVERRIDE ;
     virtual void Cut() wxOVERRIDE ;
     virtual void Paste() wxOVERRIDE ;

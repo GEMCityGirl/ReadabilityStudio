@@ -655,7 +655,6 @@ public :
     virtual wxString GetStringValue() const = 0 ;
     virtual void SetStringValue( const wxString &val ) = 0 ;
     virtual void Print( const wxSize WXUNUSED(paperSize), const int WXUNUSED(orientation), const wxString& WXUNUSED(header), const wxString& WXUNUSED(footer) ) const {}
-    virtual long Find( const wxString& WXUNUSED(str), const bool WXUNUSED(caseSensitive), const bool WXUNUSED(searchForward), const bool WXUNUSED(wholeWord)) const { return wxNOT_FOUND; }
     virtual void SetSelection( long from, long to ) = 0 ;
     virtual void GetSelection( long* from, long* to ) const = 0 ;
     virtual void WriteText( const wxString& str ) = 0 ;
