@@ -13,7 +13,7 @@
 #define __ENGLISH_SYLLABLE_H__
 
 #include "../OleanderStemmingLibrary/src/common_lang_constants.h"
-#include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
+#include "../Wisteria-Dataviz/src/util/string_util.h"
 #include "character_traits.h"
 #include "characters.h"
 #include <set>

@@ -12,9 +12,9 @@
 #ifndef __WORD_LIST_H__
 #define __WORD_LIST_H__
 
-#include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
 #include "../Wisteria-Dataviz/src/import/text_matrix.h"
 #include "../Wisteria-Dataviz/src/import/text_preview.h"
+#include "../Wisteria-Dataviz/src/util/string_util.h"
 #include "character_traits.h"
 #include <algorithm>
 #include <map>
@@ -86,8 +86,7 @@ class word_list
     [[nodiscard]]
     bool contains(std::wstring_view theWord) const
         {
-        return std::binary_search(get_words().cbegin(),
-                                  get_words().cend(),
+        return std::binary_search(get_words().cbegin(), get_words().cend(),
                                   word_type(theWord.data(), theWord.length()));
         }
 

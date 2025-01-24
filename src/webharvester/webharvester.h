@@ -12,9 +12,9 @@
 #ifndef __WEBHARVESTER_H__
 #define __WEBHARVESTER_H__
 
-#include "../Wisteria-Dataviz/src/i18n-check/src/char_traits.h"
-#include "../Wisteria-Dataviz/src/i18n-check/src/donttranslate.h"
 #include "../Wisteria-Dataviz/src/import/html_extract_text.h"
+#include "../Wisteria-Dataviz/src/util/char_traits.h"
+#include "../Wisteria-Dataviz/src/util/donttranslate.h"
 #include "../Wisteria-Dataviz/src/util/downloadfile.h"
 #include "../Wisteria-Dataviz/src/util/fileutil.h"
 #include "../Wisteria-Dataviz/src/util/textstream.h"
@@ -41,8 +41,7 @@ class wxStringLessWebPath
     {
   public:
     [[nodiscard]]
-    bool
-    operator()(const wxString& first, const wxString& second) const;
+    bool operator()(const wxString& first, const wxString& second) const;
     };
 
 /// @brief List of known web file extensions.
@@ -52,8 +51,7 @@ class WebPageExtension
     /** @returns @c true if @c extension is a known web file extension.
         @param extension The file extension to review.*/
     [[nodiscard]]
-    bool
-    operator()(const wxString& extension) const
+    bool operator()(const wxString& extension) const
         {
         if (m_knownWebPageExtensions.find(extension.wc_str()) != m_knownWebPageExtensions.cend() ||
             m_knownWebPageExtensions.find(GetExtensionOrDomain(extension).wc_str()) !=
@@ -99,8 +97,7 @@ class NonWebPageFileExtension
     /** @returns @c true if @c extension is a known file extension.
         @param extension The file extension to review.*/
     [[nodiscard]]
-    inline bool
-    operator()(std::wstring_view extension) const
+    inline bool operator()(std::wstring_view extension) const
         {
         return (m_nonWebPageFileExtensions.find(extension.data()) !=
                 m_nonWebPageFileExtensions.cend());
@@ -135,8 +132,7 @@ class ScriptFileExtension
     /** @returns @c true if @c extension is a web script file extension.
         @param extension The file extension to review.*/
     [[nodiscard]]
-    inline bool
-    operator()(std::wstring_view extension) const
+    inline bool operator()(std::wstring_view extension) const
         {
         return (m_scriptFileExtensions.find(extension.data()) != m_scriptFileExtensions.cend());
         }
@@ -650,8 +646,7 @@ class WebHarvester
         {
       public:
         [[nodiscard]]
-        inline bool
-        operator()(const wxString& first, const wxString& second) const
+        inline bool operator()(const wxString& first, const wxString& second) const
             {
             return (first.CmpNoCase(second) < 0);
             }

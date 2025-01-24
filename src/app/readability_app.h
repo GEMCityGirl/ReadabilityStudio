@@ -2,7 +2,6 @@
 #define __MAIN_APP_H__
 
 #include "../../../Licensing/LicenseAdmin.h"
-#include "../Wisteria-Dataviz/src/i18n-check/src/donttranslate.h"
 #include "../Wisteria-Dataviz/src/math/mathematics.h"
 #include "../Wisteria-Dataviz/src/ui/app.h"
 #include "../Wisteria-Dataviz/src/ui/controls/codeeditor.h"
@@ -11,6 +10,7 @@
 #include "../Wisteria-Dataviz/src/ui/dialogs/listdlg.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/printerheaderfooterdlg.h"
 #include "../Wisteria-Dataviz/src/ui/mainframe.h"
+#include "../Wisteria-Dataviz/src/util/donttranslate.h"
 #include "../Wisteria-Dataviz/src/util/formulaformat.h"
 #include "../Wisteria-Dataviz/src/util/idhelpers.h"
 #include "../Wisteria-Dataviz/src/util/logfile.h"

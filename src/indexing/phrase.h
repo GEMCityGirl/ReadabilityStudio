@@ -12,10 +12,10 @@
 #ifndef __PHRASE_H__
 #define __PHRASE_H__
 
-#include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
 #include "../Wisteria-Dataviz/src/import/text_matrix.h"
 #include "../Wisteria-Dataviz/src/import/text_preview.h"
 #include "../Wisteria-Dataviz/src/math/mathematics.h"
+#include "../Wisteria-Dataviz/src/util/string_util.h"
 #include "character_traits.h"
 #include <cstdarg>
 #include <vector>
@@ -118,8 +118,7 @@ namespace grammar
             @returns @c true if less than other phrase, @c false if equal
                 to or greater than the other phrase.*/
         [[nodiscard]]
-        bool
-        operator<(const phrase& that) const
+        bool operator<(const phrase& that) const
             {
             size_t i = 0;
             for (i = 0; i < get_word_count(); ++i)
@@ -148,8 +147,7 @@ namespace grammar
 
         /** @returns @c true if all the words between the two phrases are the same.*/
         [[nodiscard]]
-        bool
-        operator==(const phrase& that) const
+        bool operator==(const phrase& that) const
             {
             if (get_word_count() != that.get_word_count())
                 {
@@ -359,9 +357,8 @@ namespace grammar
                 or @c npos if no match is found.*/
         template<typename Tword_iter>
         [[nodiscard]]
-        size_t
-        operator()(const Tword_iter& words, const size_t position, const size_t max_word_count,
-                   const bool allow_one_word_phrase) const
+        size_t operator()(const Tword_iter& words, const size_t position,
+                          const size_t max_word_count, const bool allow_one_word_phrase) const
             {
             if (max_word_count < 1)
                 {

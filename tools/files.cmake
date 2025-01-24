@@ -21,6 +21,7 @@ SET(APP_SRC_FILES
     src/indexing/romanize.cpp
     src/indexing/stop_lists.cpp
     src/indexing/syllable.cpp
+    src/indexing/word_functional.cpp
     src/lua-scripting/lua_application.cpp
     src/lua-scripting/lua_batch_project.cpp
     src/lua-scripting/lua_debug.cpp
@@ -109,8 +110,6 @@ SET(APP_SRC_FILES
     src/Wisteria-Dataviz/src/graphs/table.cpp
     src/Wisteria-Dataviz/src/graphs/wcurveplot.cpp
     src/Wisteria-Dataviz/src/graphs/wordcloud.cpp
-    src/Wisteria-Dataviz/src/i18n-check/src/i18n_review.cpp
-    src/Wisteria-Dataviz/src/i18n-check/src/i18n_string_util.cpp
     src/Wisteria-Dataviz/src/import/cpp_extract_text.cpp
     src/Wisteria-Dataviz/src/import/doc_extract_text.cpp
     src/Wisteria-Dataviz/src/import/docx_extract_text.cpp
@@ -155,6 +154,7 @@ SET(APP_SRC_FILES
     src/Wisteria-Dataviz/src/util/downloadfile.cpp
     src/Wisteria-Dataviz/src/util/fileutil.cpp
     src/Wisteria-Dataviz/src/util/formulaformat.cpp
+    src/Wisteria-Dataviz/src/util/i18n_string_util.cpp
     src/Wisteria-Dataviz/src/util/idhelpers.cpp
     src/Wisteria-Dataviz/src/util/logfile.cpp
     src/Wisteria-Dataviz/src/util/memorymappedfile.cpp

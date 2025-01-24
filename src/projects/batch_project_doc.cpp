@@ -1,7 +1,7 @@
 #include "batch_project_doc.h"
 #include "../Wisteria-Dataviz/src/base/reportenumconvert.h"
 #include "../Wisteria-Dataviz/src/graphs/wordcloud.h"
-#include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
+#include "../Wisteria-Dataviz/src/util/string_util.h"
 #include "../app/readability_app.h"
 #include "../indexing/character_traits.h"
 #include "../results-format/project_report_format.h"

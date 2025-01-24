@@ -12,12 +12,12 @@
 #ifndef __DOLCH_H__
 #define __DOLCH_H__
 
-#include <functional>
-#include <algorithm>
-#include <set>
-#include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
 #include "../Wisteria-Dataviz/src/import/text_matrix.h"
+#include "../Wisteria-Dataviz/src/util/string_util.h"
 #include "../indexing/character_traits.h"
+#include <algorithm>
+#include <functional>
+#include <set>
 
 namespace readability
     {
@@ -43,35 +43,50 @@ namespace readability
     /// @brief A word that an early reader can recognize by sight.
     class sight_word
         {
-    public:
+      public:
         /// @brief The string type for the word.
         using word_type = traits::case_insensitive_wstring_ex;
+
         /// @brief Constructor.
         /// @param sightword The string to assign.
-        explicit sight_word(const word_type& sightword) :
-            m_word(sightword), m_sight_word_type(sight_word_type::noun)
-            {}
+        explicit sight_word(const word_type& sightword)
+            : m_word(sightword), m_sight_word_type(sight_word_type::noun)
+            {
+            }
+
         /// @brief Constructor.
         /// @param sightword The string to assign.
         /// @param wordType The word's part of speech.
-        sight_word(const word_type& sightword, const sight_word_type wordType) :
-            m_word(sightword), m_sight_word_type(wordType)
-            {}
+        sight_word(const word_type& sightword, const sight_word_type wordType)
+            : m_word(sightword), m_sight_word_type(wordType)
+            {
+            }
+
         /// @private
         sight_word() = delete;
+
         /// @private
         [[nodiscard]]
         bool operator<(const sight_word& that) const noexcept
-            { return m_word < that.m_word; }
+            {
+            return m_word < that.m_word;
+            }
+
         /// @private
         [[nodiscard]]
         const word_type& get_word() const noexcept
-            { return m_word; }
+            {
+            return m_word;
+            }
+
         /// @private
         [[nodiscard]]
         sight_word_type get_type() const noexcept
-            { return m_sight_word_type; }
-    private:
+            {
+            return m_sight_word_type;
+            }
+
+      private:
         word_type m_word;
         sight_word_type m_sight_word_type{ sight_word_type::noun };
         };
@@ -79,9 +94,10 @@ namespace readability
     /// @brief The list of Dolch's Sight Words.
     class dolch_word_list
         {
-    public:
+      public:
         /// @brief The list's string type.
         using word_type = sight_word::word_type;
+
         /** @brief Loads a block of text as a word list.
             @param text The text to load.
             @details The text should be a two-column, tab-delimited block of text.\n
@@ -97,11 +113,13 @@ namespace readability
         void load_words(const wchar_t* text)
             {
             if (!text)
-                { return; }
+                {
+                return;
+                }
             // the word and classification
             std::vector<sight_word::word_type> rowStrings(2);
-            lily_of_the_valley::standard_delimited_character_column
-                tabbedColumn(lily_of_the_valley::text_column_delimited_character_parser{ L'\t' }, 2);
+            lily_of_the_valley::standard_delimited_character_column tabbedColumn(
+                lily_of_the_valley::text_column_delimited_character_parser{ L'\t' }, 2);
             lily_of_the_valley::text_row<sight_word::word_type> row(std::nullopt);
             row.add_column(tabbedColumn);
             row.set_values(&rowStrings);
@@ -112,39 +130,65 @@ namespace readability
                 {
                 text = row.read(text);
                 if (row.get_number_of_columns_last_read() < 2)
-                    { continue; }
+                    {
+                    continue;
+                    }
 
                 sight_word_type sightWord = sight_word_type::noun;
                 if (string_util::stricmp(rowStrings[1].c_str(), L"CONJUNCTION") == 0)
-                    { sightWord = sight_word_type::conjunction; }
+                    {
+                    sightWord = sight_word_type::conjunction;
+                    }
                 else if (string_util::stricmp(rowStrings[1].c_str(), L"PREPOSITION") == 0)
-                    { sightWord = sight_word_type::preposition; }
+                    {
+                    sightWord = sight_word_type::preposition;
+                    }
                 else if (string_util::stricmp(rowStrings[1].c_str(), L"PRONOUN") == 0)
-                    { sightWord = sight_word_type::pronoun; }
+                    {
+                    sightWord = sight_word_type::pronoun;
+                    }
                 else if (string_util::stricmp(rowStrings[1].c_str(), L"ADVERB") == 0)
-                    { sightWord = sight_word_type::adverb; }
+                    {
+                    sightWord = sight_word_type::adverb;
+                    }
                 else if (string_util::stricmp(rowStrings[1].c_str(), L"ADJECTIVE") == 0)
-                    { sightWord = sight_word_type::adjective; }
+                    {
+                    sightWord = sight_word_type::adjective;
+                    }
                 else if (string_util::stricmp(rowStrings[1].c_str(), L"VERB") == 0)
-                    { sightWord = sight_word_type::verb; }
+                    {
+                    sightWord = sight_word_type::verb;
+                    }
                 else
-                    { sightWord = sight_word_type::noun; }
+                    {
+                    sightWord = sight_word_type::noun;
+                    }
                 m_sight_words.insert(sight_word(rowStrings[0], sightWord));
                 } while (text);
             }
+
         /// @private
         [[nodiscard]]
         std::set<sight_word>::const_iterator operator()(const wchar_t* s_word) const
-            { return m_sight_words.find(sight_word(s_word, sight_word_type::noun)); }
+            {
+            return m_sight_words.find(sight_word(s_word, sight_word_type::noun));
+            }
+
         /// @private
         [[nodiscard]]
         const std::set<sight_word>& get_words() const noexcept
-            { return m_sight_words; }
+            {
+            return m_sight_words;
+            }
+
         /// @private
         [[nodiscard]]
         size_t get_list_size() const noexcept
-            { return m_sight_words.size(); }
-    private:
+            {
+            return m_sight_words.size();
+            }
+
+      private:
         std::set<sight_word> m_sight_words;
         };
 
@@ -153,13 +197,11 @@ namespace readability
     template<typename word_typeT>
     class is_dolch_word
         {
-    public:
+      public:
         /// @brief Constructor.
         /// @param wlist The Dolch word list to use.
         /// @note This functor will **not** take ownership of this.
-        explicit is_dolch_word(const readability::dolch_word_list* wlist) :
-            m_wordlist(wlist)
-            {}
+        explicit is_dolch_word(const readability::dolch_word_list* wlist) : m_wordlist(wlist) {}
 
         /** @brief Interface to search for a word on the list.
             @param the_word The word to search for.
@@ -171,24 +213,31 @@ namespace readability
             m_currentFoundPos = m_wordlist->operator()(the_word.c_str());
             return (m_currentFoundPos != m_wordlist->get_words().end());
             }
+
         /// @returns An iterator to the last searched for word.
         [[nodiscard]]
         std::set<readability::sight_word>::const_iterator get_last_search_result() const noexcept
-            { return m_currentFoundPos; }
+            {
+            return m_currentFoundPos;
+            }
+
         /// @returns The internal word list.
         [[nodiscard]]
         const readability::dolch_word_list* get_word_list() const noexcept
-            { return m_wordlist; }
+            {
+            return m_wordlist;
+            }
+
         /// @brief Sets the internal word list to compare other words against.
         /// @param wlist The word list to use.
         /// @note This functor will **not** take ownership of this.
-        void set_word_list(const readability::dolch_word_list* wlist)
-            { m_wordlist = wlist; }
-    private:
+        void set_word_list(const readability::dolch_word_list* wlist) { m_wordlist = wlist; }
+
+      private:
         const readability::dolch_word_list* m_wordlist{ nullptr };
         mutable std::set<readability::sight_word>::const_iterator m_currentFoundPos;
         };
-    }
+    } // namespace readability
 
 /** @} */
 

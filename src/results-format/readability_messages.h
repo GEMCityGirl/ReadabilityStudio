@@ -12,10 +12,10 @@
 #ifndef __READABILITY_MESSAGES_H__
 #define __READABILITY_MESSAGES_H__
 
-#include "../Wisteria-Dataviz/src/i18n-check/src/donttranslate.h"
-#include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
+#include "../Wisteria-Dataviz/src/util/donttranslate.h"
 #include "../Wisteria-Dataviz/src/util/formulaformat.h"
 #include "../Wisteria-Dataviz/src/util/numberformat.h"
+#include "../Wisteria-Dataviz/src/util/string_util.h"
 #include "../readability/english_readability.h"
 #include "../readability/german_readability.h"
 #include <cmath>

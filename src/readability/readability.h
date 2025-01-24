@@ -19,7 +19,7 @@
 #include <set>
 #include <vector>
 #include "../Wisteria-Dataviz/src/math/mathematics.h"
-#include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
+#include "../Wisteria-Dataviz/src/util/string_util.h"
 #include "../OleanderStemmingLibrary/src/stemming.h"
 #include "readability_enums.h"
 #include "grade_scales.h"

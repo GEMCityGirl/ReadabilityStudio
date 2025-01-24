@@ -13,7 +13,7 @@
 #define __ABBREVIATION_H__
 
 #include "../OleanderStemmingLibrary/src/common_lang_constants.h"
-#include "../Wisteria-Dataviz/src/i18n-check/src/string_util.h"
+#include "../Wisteria-Dataviz/src/util/string_util.h"
 #include "character_traits.h"
 #include "characters.h"
 #include "word_list.h"
@@ -35,8 +35,7 @@ namespace grammar
             @note The length of the text block to analyze should be
                 the start of the text block up to the period.*/
         [[nodiscard]]
-        bool
-        operator()(const std::wstring_view text) const;
+        bool operator()(const std::wstring_view text) const;
 
         /** @returns The list of abbreviations.
                 This is where you can specify what is considered an abbreviation.
@@ -68,8 +67,7 @@ namespace grammar
         /** @returns @c true if more than half of the letters are uppercased.
             @param text The text stream to analyze.*/
         [[nodiscard]]
-        bool
-        operator()(const std::wstring_view text) const noexcept;
+        bool operator()(const std::wstring_view text) const noexcept;
 
         /** @returns The number of periods counted from the last call to operator().*/
         [[nodiscard]]

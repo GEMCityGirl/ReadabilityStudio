@@ -12,7 +12,7 @@
 #ifndef __LUAAPPLICATION_H__
 #define __LUAAPPLICATION_H__
 
-#include "../Wisteria-Dataviz/src/i18n-check/src/donttranslate.h"
+#include "../Wisteria-Dataviz/src/util/donttranslate.h"
 #include "lua.hpp"
 #include "lua_batch_project.h"
 #include "lua_debug.h"

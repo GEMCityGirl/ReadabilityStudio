@@ -13,7 +13,7 @@
 
 #include "../OleanderStemmingLibrary/src/common_lang_constants.h"
 #include "../Wisteria-Dataviz/src/debug/debug_profile.h"
-#include "../Wisteria-Dataviz/src/i18n-check/src/i18n_string_util.h"
+#include "../Wisteria-Dataviz/src/util/i18n_string_util.h"
 #include "abbreviation.h"
 #include "characters.h"
 #include "punctuation.h"
