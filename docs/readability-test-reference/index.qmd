@@ -14,7 +14,7 @@ source('R/appdown.r')
 *Readability Studio* provides numerous readability tests for English, Spanish, and German documents.
 This manual is a reference for those tests, explaining their uses, origins, methodologies, and validation.
 
-![](images/non-generated/CC_BY-NC-ND.png)
+![](images/non-generated/by-sa.png)
 
-This book is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivs 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/).
+This book is licensed under the [Creative Commons Attribution-Sharealike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
 ```

@@ -16,9 +16,9 @@ source('R/appdown.r')
 
 This is the programming manual for the software program *Readability Studio*.
 
-![](images/CC_BY-NC-ND.png)
+![](images/by-sa.png)
 
-This book is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivs 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/).
+This book is licensed under the [Creative Commons Attribution-Sharealike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
 ```
 
 # Overview {-}
