@@ -65,7 +65,7 @@ namespace punctuation
             return std::count_if(text.cbegin(), text.cend(),
                                  characters::is_character::is_punctuation);
             }
-        /// @brief Punctuations marks can be full words by themselves.
+        /// @brief Punctuation marks can be full words by themselves.
         inline static const std::wstring_view m_whole_word_punctuation{ L"&#@%" };
         };
 

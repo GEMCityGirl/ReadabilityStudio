@@ -331,7 +331,7 @@ namespace tokenize
                     // character that can be in a word (more than likely a space), then fall
                     // through to let the punctuation indexer pick it up.
                     if (isPunctuation(m_current_char[0]) &&
-                        // a few punctuations marks can be full words by themselves
+                        // a few punctuation marks can be full words by themselves
                         !string_util::is_one_of(
                             string_util::full_width_to_narrow(m_current_char[0]),
                             punctuation::punctuation_count::m_whole_word_punctuation.data()) &&
