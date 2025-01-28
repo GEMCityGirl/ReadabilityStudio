@@ -3095,9 +3095,19 @@ void BatchProjectDoc::DisplayScores()
 
             // only include min or max goal columns if there is an actual goal for it.
             if (!std::isnan(goal.GetMinGoal()))
-                { goalsList->InsertColumn(goalsList->GetColumnCount(), wxString::Format(_(L"%s Min"), testName)); }
+                {
+                goalsList->InsertColumn(goalsList->GetColumnCount(),
+                                        wxString::Format(
+                                            // TRANSLATORS: %s is test name
+                                            _(L"%s Min"), testName));
+                }
             if (!std::isnan(goal.GetMaxGoal()))
-                { goalsList->InsertColumn(goalsList->GetColumnCount(), wxString::Format(_(L"%s Max"), testName)); }
+                {
+                goalsList->InsertColumn(goalsList->GetColumnCount(),
+                                        wxString::Format(
+                                            // TRANSLATORS: %s is test name
+                                            _(L"%s Max"), testName));
+                }
             }
         for (const auto& goal : GetStatGoals())
             {
@@ -3109,9 +3119,19 @@ void BatchProjectDoc::DisplayScores()
 
             // only include min or max goal columns if there is an actual goal for it.
             if (!std::isnan(goal.GetMinGoal()))
-                { goalsList->InsertColumn(goalsList->GetColumnCount(), wxString::Format(_(L"%s Min"), goalName)); }
+                {
+                goalsList->InsertColumn(goalsList->GetColumnCount(),
+                    wxString::Format(
+                        // TRANSLATORS: %s is goal name
+                        _(L"%s Min"), goalName));
+                }
             if (!std::isnan(goal.GetMaxGoal()))
-                { goalsList->InsertColumn(goalsList->GetColumnCount(), wxString::Format(_(L"%s Max"), goalName)); }
+                {
+                goalsList->InsertColumn(goalsList->GetColumnCount(),
+                    wxString::Format(
+                        // TRANSLATORS: %s is goal name
+                        _(L"%s Max"), goalName));
+                }
             }
         m_goalsData->DeleteAllItems();
         m_goalsData->SetSize(m_docs.size(), goalsList->GetColumnCount());
@@ -3310,7 +3330,7 @@ void BatchProjectDoc::DisplayScoreStatisticsWindow(
     listView->InsertColumn(currentColumnCount++, _(L"Minimum"));
     listView->InsertColumn(currentColumnCount++, _(L"Maximum"));
     listView->InsertColumn(currentColumnCount++, _(L"Range"));
-    listView->InsertColumn(currentColumnCount++, _(L"Mode(s)"));
+    listView->InsertColumn(currentColumnCount++, _(L"Modes"));
     listView->InsertColumn(currentColumnCount++, _(L"Means"));
     // if verbose, then add the extra columns
     if (GetStatisticsReportInfo().IsExtendedInformationEnabled())

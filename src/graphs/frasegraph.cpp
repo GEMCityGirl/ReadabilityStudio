@@ -10,7 +10,7 @@
 
 wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::PolygonReadabilityGraph)
 
-using namespace Wisteria;
+    using namespace Wisteria;
 using namespace Wisteria::Colors;
 using namespace Wisteria::GraphItems;
 
@@ -57,7 +57,9 @@ namespace Wisteria::Graphs
         // add the labels for the grades
         AddLevelLabel(LevelLabel(204, 13, _(L"BEGINNING\nLEVEL\nI"), 1, 1));
         AddLevelLabel(LevelLabel(215.5, 10, _(L"INTERMEDIATE\nLEVEL\nII"), 2, 2));
-        AddLevelLabel(LevelLabel(223.5, 8, _(L"ADVANCED\nINTERMEDIATE\nLEVEL\nIII"), 3, 3));
+        AddLevelLabel(LevelLabel(223.5, 8,
+                                 // TRANSLATORS: Uppercasing is just for display
+                                 _(L"ADVANCED\nINTERMEDIATE\nLEVEL\nIII"), 3, 3));
         AddLevelLabel(LevelLabel(230, 6, _(L"ADVANCED\nLEVEL\nIV"), 4, 4));
         }
 

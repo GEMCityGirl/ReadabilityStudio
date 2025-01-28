@@ -47,6 +47,7 @@ namespace Wisteria::Graphs
 
         GetLeftYAxis().GetTitle().SetText((GetRaygorStyle() == RaygorStyle::Modern) ?
                                               _(L"SENTENCES\n(per 100 words)") :
+                                              // TRANSLATORS: Uppercasing is just for display
                                               _(L"SENTENCES"));
         GetLeftYAxis().GetTitle().SetTextAlignment(TextAlignment::Centered);
         GetBottomXAxis().GetTitle().SetText((GetRaygorStyle() == RaygorStyle::Modern) ?
@@ -350,12 +351,13 @@ namespace Wisteria::Graphs
             // draw the "Long Words" area label
             {
             GetPhysicalCoordinates(31, 14.5, topCorner);
-            auto invalidLabel = std::make_unique<GraphItems::Label>(GraphItemInfo(_(L"INVALID"))
-                                                                        .Scaling(GetScaling())
-                                                                        .Pen(wxNullPen)
-                                                                        .Font(dangerAreaFont)
-                                                                        .FontColor(labelFontColor)
-                                                                        .AnchorPoint(topCorner));
+            auto invalidLabel = std::make_unique<GraphItems::Label>(
+                GraphItemInfo(/* TRANSLATORS: Uppercasing is just for display */ _(L"INVALID"))
+                    .Scaling(GetScaling())
+                    .Pen(wxNullPen)
+                    .Font(dangerAreaFont)
+                    .FontColor(labelFontColor)
+                    .AnchorPoint(topCorner));
             invalidLabel->SetAnchoring(Wisteria::Anchoring::TopLeftCorner);
             AddObject(std::move(invalidLabel));
             }
@@ -363,12 +365,13 @@ namespace Wisteria::Graphs
             // draw the "Long Sentences" area label
             {
             GetPhysicalCoordinates(7, 3.5, topCorner);
-            auto invalidLabel = std::make_unique<GraphItems::Label>(GraphItemInfo(_(L"INVALID"))
-                                                                        .Scaling(GetScaling())
-                                                                        .Pen(wxNullPen)
-                                                                        .Font(dangerAreaFont)
-                                                                        .FontColor(labelFontColor)
-                                                                        .AnchorPoint(topCorner));
+            auto invalidLabel = std::make_unique<GraphItems::Label>(
+                GraphItemInfo(/* TRANSLATORS: Uppercasing is just for display */ _(L"INVALID"))
+                    .Scaling(GetScaling())
+                    .Pen(wxNullPen)
+                    .Font(dangerAreaFont)
+                    .FontColor(labelFontColor)
+                    .AnchorPoint(topCorner));
             invalidLabel->SetAnchoring(Wisteria::Anchoring::TopLeftCorner);
             AddObject(std::move(invalidLabel));
             }

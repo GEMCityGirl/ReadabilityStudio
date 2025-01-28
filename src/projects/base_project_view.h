@@ -363,7 +363,7 @@ class BaseProjectView : public wxView
     [[nodiscard]]
     static wxString GetModeLabel()
         {
-        return _(L"Mode(s)");
+        return _(L"Modes");
         }
 
     [[nodiscard]]

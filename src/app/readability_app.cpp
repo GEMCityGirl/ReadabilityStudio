@@ -2046,7 +2046,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
 
                 editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
                                                wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
-                                               _(L"Copy the selected row(s)."));
+                                               _(L"Copy the selected rows."));
                 editButtonBar->AddButton(wxID_SELECTALL, _(L"Select All"),
                                          wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
                                          _(L"Select All"));
@@ -2078,7 +2078,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                     _(L"Change the grade scale display of the scores."));
                 editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
                                                wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
-                                               _(L"Copy the selected row(s)."));
+                                               _(L"Copy the selected rows."));
                 editButtonBar->AddButton(wxID_SELECTALL, _(L"Select All"),
                                          wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
                                          _(L"Select All"));
@@ -2101,7 +2101,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
 
                 editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
                                                wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
-                                               _(L"Copy the selected row(s)."));
+                                               _(L"Copy the selected rows."));
                 editButtonBar->AddButton(wxID_SELECTALL, _(L"Select All"),
                                          wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
                                          _(L"Select All"));
@@ -2180,7 +2180,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 editButtonBar->AddButton(
                     XRCID("ID_EXCLUDE_SELECTED"), _(L"Exclude Selected"),
                     wxGetApp().ReadRibbonSvgIcon(L"ribbon/exclude-selected.svg"),
-                    _(L"Exclude selected word(s)."));
+                    _(L"Exclude selected words."));
                 editButtonBar->AddButton(XRCID("ID_SUMMATION"), _(L"Sum"),
                                          wxGetApp().ReadRibbonSvgIcon(L"ribbon/sum.svg"),
                                          _(L"Total the values from the selected column."));
@@ -2219,7 +2219,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                     _(L"Change the grade scale display of the scores."));
                 editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
                                          wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
-                                         _(L"Copy the selected row(s)."));
+                                         _(L"Copy the selected rows."));
                 editButtonBar->AddButton(XRCID("ID_LIST_SORT"), _(L"Sort"),
                                          wxGetApp().ReadRibbonSvgIcon(L"ribbon/sort.svg"),
                                          _(L"Sort the list."));
@@ -2260,7 +2260,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                                          _(L"Select which statistics to include in the report."));
                 editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
                                                wxGetApp().ReadRibbonSvgIcon(L"ribbon/copy.svg"),
-                                               _(L"Copy the selected row(s)."));
+                                               _(L"Copy the selected rows."));
                 editButtonBar->AddButton(wxID_SELECTALL, _(L"Select All"),
                                          wxGetApp().ReadRibbonSvgIcon(L"ribbon/select-all.svg"),
                                          _(L"Select All"));
@@ -3397,7 +3397,7 @@ void MainFrame::OnTestsOverview([[maybe_unused]] wxRibbonButtonBarEvent& event)
     testsOverviewDlg.GetListCtrl()->ClearAll();
     testsOverviewDlg.GetListCtrl()->InsertColumn(0, _(L"Name"));
     testsOverviewDlg.GetListCtrl()->InsertColumn(1, _(L"Score Type"));
-    testsOverviewDlg.GetListCtrl()->InsertColumn(2, _(L"Language(s)"));
+    testsOverviewDlg.GetListCtrl()->InsertColumn(2, _(L"Languages"));
     testsOverviewDlg.GetListCtrl()->InsertColumn(3, _(L"Word Complexity"));
     testsOverviewDlg.GetListCtrl()->InsertColumn(4, _(L"Word Length"));
     testsOverviewDlg.GetListCtrl()->InsertColumn(5, _(L"Word Familiarity"));
@@ -5505,9 +5505,10 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
         return;
         }
 
-    WebHarvesterDlg webHarvestDlg(
-        wxGetApp().GetParentingWindow(), wxArrayString{},
-        wxString::Format(_(L"Documents & Images (%s;%s)|%s;%s|"),
+    WebHarvesterDlg webHarvestDlg(wxGetApp().GetParentingWindow(), wxArrayString{},
+                                  wxString::Format(
+                                      // TRANSLATORS: %s are file filters
+                                      _(L"Documents & Images (%s;%s)|%s;%s|"),
                          wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD.data(),
                          wxGetApp().GetAppOptions().ALL_IMAGES_WILDCARD.data(),
                          wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD.data(),

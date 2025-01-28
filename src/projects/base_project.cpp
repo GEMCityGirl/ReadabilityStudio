@@ -2374,6 +2374,7 @@ void BaseProject::LoadHardWords()
                     GetHarrisJacobsonHardWordDataData()->SetItemText(
                         GetTotalUniqueHarrisJacobsonHardWords(), 1,
                         wxString::Format(
+                            // TRANSLATORS: %zu are word total placeholders
                             _(L"%zu (%zu total occurrences, %zu proper and familiar, %zu non-proper and unfamiliar)"),
                             nonProperCount, wordPos->second.first,
                             (wordPos->second.first-nonProperCount), nonProperCount),
@@ -2409,6 +2410,7 @@ void BaseProject::LoadHardWords()
                         {
                         GetDaleChallHardWordData()->SetItemText(GetTotalUniqueDCHardWords(), 1,
                             wxString::Format(
+                                // TRANSLATORS: %zu are word total placeholders
                                 _(L"%zu (%zu total occurrences, %zu proper and familiar, "
                                    "%zu non-proper and unfamiliar)"),
                                 nonProperCount, wordPos->second.first,
@@ -2467,6 +2469,7 @@ void BaseProject::LoadHardWords()
                         GetDaleChallHardWordData()->SetItemText(
                             GetTotalUniqueDCHardWords(), 1,
                             wxString::Format(
+                                // TRANSLATORS: %zu are word total placeholders
                                 _(L"%zu (%zu total occurrences. First proper occurrence unfamiliar, "
                                    "%zu non-proper and unfamiliar)"),
                                 nonProperCount+1, wordPos->second.first, nonProperCount),
@@ -2498,6 +2501,7 @@ void BaseProject::LoadHardWords()
                     GetSpacheHardWordData()->SetItemText(
                         GetTotalUniqueHardWordsSpache(), 1,
                         wxString::Format(
+                            // TRANSLATORS: %zu are word total placeholders
                             _(L"%zu (%zu total occurrences, %zu proper and familiar, %zu non-proper and unfamiliar)"),
                             nonProperCount, wordPos->second.first,
                             (wordPos->second.first-nonProperCount), nonProperCount),
@@ -2552,6 +2556,7 @@ void BaseProject::LoadHardWords()
                             pos->GetListViewData()->SetItemText(
                                 pos->GetUniqueUnfamiliarWordCount(), 1,
                                 wxString::Format(
+                                    // TRANSLATORS: %zu are word total placeholders
                                     _(L"%zu (%zu total occurrences, %zu proper and familiar, "
                                        "%zu non-proper and unfamiliar)"),
                                     nonProperCount, wordPos->second.first,
@@ -2599,6 +2604,7 @@ void BaseProject::LoadHardWords()
                             {
                             pos->GetListViewData()->SetItemText(pos->GetUniqueUnfamiliarWordCount(), 1,
                                 wxString::Format(
+                                    // TRANSLATORS: %zu are word total placeholders
                                     _(L"%zu (%zu total occurrences. "
                                        "First proper occurrence unfamiliar, %zu non-proper and unfamiliar)"),
                                     nonProperCount+1, wordPos->second.first, nonProperCount),
@@ -2795,6 +2801,7 @@ void BaseProject::LoadHardWords()
                     GetHarrisJacobsonHardWordDataData()->SetItemText(
                         GetTotalUniqueHarrisJacobsonHardWords(), 1,
                         wxString::Format(
+                            // TRANSLATORS: %zu are word total placeholders
                             _(L"%zu (%zu total occurrences, %zu proper and familiar, "
                                "%zu non-proper and unfamiliar)"),
                             nonProperCount, wordPos->second.first,
@@ -2835,6 +2842,7 @@ void BaseProject::LoadHardWords()
                         GetDaleChallHardWordData()->SetItemText(
                             GetTotalUniqueDCHardWords(), 1,
                             wxString::Format(
+                                // TRANSLATORS: %zu are word total placeholders
                                 _(L"%zu (%zu total occurrences, %zu proper and familiar, "
                                    "%zu non-proper and unfamiliar)"),
                                 nonProperCount, wordPos->second.first,
@@ -2886,6 +2894,7 @@ void BaseProject::LoadHardWords()
                         {
                         GetDaleChallHardWordData()->SetItemText(GetTotalUniqueDCHardWords(), 1,
                             wxString::Format(
+                                // TRANSLATORS: %zu are word total placeholders
                                 _(L"1 (%zu total occurrences, only first occurrence unfamiliar)"),
                                 wordPos->second.first),
                             NumberFormatInfo::NumberFormatType::StandardFormatting, 1);
@@ -2894,6 +2903,7 @@ void BaseProject::LoadHardWords()
                         {
                         GetDaleChallHardWordData()->SetItemText(GetTotalUniqueDCHardWords(), 1,
                             wxString::Format(
+                                // TRANSLATORS: %zu are word total placeholders
                                 _(L"%zu (%zu total occurrences. "
                                    "First proper occurrence unfamiliar, %zu non-proper and unfamiliar)"),
                                 nonProperCount+1, wordPos->second.first, nonProperCount),
@@ -2953,6 +2963,7 @@ void BaseProject::LoadHardWords()
                                 {
                                 pos->GetListViewData()->SetItemText(pos->GetUniqueUnfamiliarWordCount(), 1,
                                     wxString::Format(
+                                        // TRANSLATORS: %zu are word total placeholders
                                         _(L"%zu (%zu total occurrences, %zu proper and familiar, "
                                            "%zu non-proper and unfamiliar)"),
                                     nonProperCount, wordPos->second.first,
@@ -2992,7 +3003,9 @@ void BaseProject::LoadHardWords()
                             else if (nonProperCount == 0)
                                 {
                                 pos->GetListViewData()->SetItemText(pos->GetUniqueUnfamiliarWordCount(), 1,
-                                    wxString::Format(_(L"1 (%zu total occurrences, only first occurrence unfamiliar)"),
+                                    wxString::Format(
+                                        // TRANSLATORS: %zu are word total placeholders
+                                        _(L"1 (%zu total occurrences, only first occurrence unfamiliar)"),
                                     wordPos->second.first), NumberFormatInfo::NumberFormatType::StandardFormatting, 1);
                                 }
                             else

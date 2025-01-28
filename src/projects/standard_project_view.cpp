@@ -1881,8 +1881,8 @@ void ProjectView::UpdateStatistics()
             explanationString += L"</span></td></tr></thead>\n\t<tr><td>";
             explanationString +=
                 wxString::Format(
-                    _(L"<p>Grade level mode(s): %s<br />Reading age mode(s): %s<br />"
-                      "Predicted cloze score mode(s): %s</p><p>The mode is the most frequently "
+                    _(L"<p>Grade level modes: %s<br />Reading age modes: %s<br />"
+                      "Predicted cloze score modes: %s</p><p>The mode is the most frequently "
                       "occurring value in a range of data. Note that grade-level scores are "
                       "rounded down when searching for the mode.</p><p>Note that a mode of the "
                       "scale values is not applicable because the scales used between "

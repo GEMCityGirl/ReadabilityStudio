@@ -4902,12 +4902,14 @@ wxString ReadabilityAppOptions::GetDocumentFilter()
     const wxString IdlFilter = _DT(L"*.idl");
     const wxString CppFilter = _DT(L"*.cpp;*.c;*.h");
     const wxString AllDocumentsFilter = wxString::Format(
+        // TRANSLATORS: %s are file filters
         _(L"Documents (%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s)|%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s"),
         TextFilter, HtmlFiles, WordFilter, PowerPointFilter, OpenDocPrezFilter, OpenDocFilter,
         RtfFilter, MarkdownFilter, PsFilter, IdlFilter, CppFilter, TextFilter, HtmlFiles,
         WordFilter, PowerPointFilter, OpenDocPrezFilter, OpenDocFilter, RtfFilter, MarkdownFilter,
         PsFilter, IdlFilter, CppFilter);
     return wxString::Format(
+        // TRANSLATORS: %s are file filters
         _(L"%s|Text files (%s)|%s|HTML files (%s)|%s|Word files (%s)|%s|"
           "PowerPoint files (%s)|%s|OpenDocument Presentation files (%s)|%s|"
           "OpenDocument files (%s)|%s|Rich Text files (%s)|%s|"
