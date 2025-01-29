@@ -50,7 +50,7 @@ Note how all the files that were found are now included in the file list:
 
 To add more files from other folders, repeat the previous step.
 
-We will analyze all of the documents in this collection, so just ignore the **Randomly sample** option.
+We will analyze all the documents in this collection, so just ignore the **% of documents to randomly sample** option.
 Click the `r keys("Forward >")` button to continue to the **Document Structure** page, as shown below:
 
 ![](images/wizarddocstructurenarrativeselected.png)

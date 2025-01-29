@@ -1003,6 +1003,8 @@ wxString ReadabilityMessages::GetGradeScaleDescription(double value) const
     split_k12_plus_grade_score(value, grade, month);
 
     return wxString::Format(
+        // TRANSLATORS: "%s%s, %s%s" is opening highlight tag, grade, month,
+        // and closing highlight tag
         _(L"This document is at least suitable for a reader at the %s%s, %s%s level."),
         GetHighlightBegin(), GetGradeScaleLongLabel(grade), GetMonthLabel(month),
         GetHighlightEnd());
@@ -1015,6 +1017,8 @@ wxString ReadabilityMessages::GetGradeScaleDescription(size_t value) const
     value = truncate_k12_plus_grade(value);
 
     return wxString::Format(
+        // TRANSLATORS: "%s%s%s" is opening highlight tag, grade level description,
+        // and closing highlight tag
         _(L"This document is at least suitable for a reader at the %s%s%s level."),
         GetHighlightBegin(), GetGradeScaleLongLabel(value), GetHighlightEnd());
     }
@@ -1027,6 +1031,8 @@ wxString ReadabilityMessages::GetGradeScaleDescription(size_t firstGrade, size_t
     secondGrade = truncate_k12_plus_grade(secondGrade);
 
     return wxString::Format(
+        // TRANSLATORS: "%s%s%s" is opening highlight tag, grade level description,
+        // and closing highlight tag
         _(L"This document is at least suitable for a reader between the %s%s%s to %s%s%s level."),
         GetHighlightBegin(), GetGradeScaleLongLabel(firstGrade), GetHighlightEnd(),
         GetHighlightBegin(), GetGradeScaleLongLabel(secondGrade), GetHighlightEnd());

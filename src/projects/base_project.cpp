@@ -3012,6 +3012,7 @@ void BaseProject::LoadHardWords()
                                 {
                                 pos->GetListViewData()->SetItemText(pos->GetUniqueUnfamiliarWordCount(), 1,
                                     wxString::Format(
+                                        // TRANSLATORS: %zu are word total placeholders
                                         _(L"%zu (%zu total occurrences. "
                                            "First proper occurrence unfamiliar, %zu non-proper and unfamiliar)"),
                                     nonProperCount+1, wordPos->second.first, nonProperCount),
@@ -4452,15 +4453,16 @@ bool BaseProject::LoadDocumentAsSubProject(const wxString& path, const std::wstr
         {
         if (WarningManager::HasWarning(_DT(L"incomplete-sentences-valid-from-length")))
             {
-            WarningMessage warningMsg = *WarningManager::GetWarning(_DT(L"incomplete-sentences-valid-from-length"));
+            WarningMessage warningMsg =
+                *WarningManager::GetWarning(_DT(L"incomplete-sentences-valid-from-length"));
             warningMsg.SetMessage(wxString::Format(
-                _(L"This document contains %zu incomplete sentences longer than %zu words which will be "
-                   "included in the analysis.\n\nTo change this, increase the "
-                   "\"Include incomplete sentences containing more than...\" "
-                   "option under \"Project Properties\"%s\"Document Indexing\"."),
+                // TRANSLATORS: %s is an arrow character and should not be moved
+                _(L"This document contains %zu incomplete sentences longer than %zu words which "
+                  "will be included in the analysis.\n\nTo change this, increase the "
+                  "\"Include incomplete sentences containing more than...\" "
+                  "option under \"Project Properties\"%s\"Document Indexing\"."),
                 sentencesMissingEndingPunctionsConsideredCompleteBecauseOfLength,
-                GetIncludeIncompleteSentencesIfLongerThanValue(),
-                L" \x00BB "));
+                GetIncludeIncompleteSentencesIfLongerThanValue(), L" \x00BB "));
             LogMessage(warningMsg);
             }
         }

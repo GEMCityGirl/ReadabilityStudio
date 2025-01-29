@@ -339,7 +339,7 @@ void ProjectWizardDlg::CreateControls()
         button->SetBitmap(wxArtProvider::GetBitmapBundle(wxART_FILE_OPEN, wxART_BUTTON));
         buttonsSizer->Add(button, wxSizerFlags{}.Align(wxALIGN_LEFT).Expand());
 
-        button = new wxButton(page, ID_BATCH_FILE_BROWSE_BUTTON, _(L"&Add file(s)..."));
+        button = new wxButton(page, ID_BATCH_FILE_BROWSE_BUTTON, _(L"&Add files..."));
         button->SetBitmap(wxArtProvider::GetBitmapBundle(L"ID_DOCUMENTS", wxART_BUTTON));
         buttonsSizer->Add(button, wxSizerFlags{}.Align(wxALIGN_LEFT).Expand());
 
@@ -448,7 +448,8 @@ void ProjectWizardDlg::CreateControls()
 
         // random sampling
         wxBoxSizer* randomOptionsSizer = new wxBoxSizer(wxHORIZONTAL);
-        m_isRandomSampling = new wxCheckBox(page, ID_RANDOM_SAMPLE_CHECK, _(L"Randomly sample "));
+        m_isRandomSampling =
+            new wxCheckBox(page, ID_RANDOM_SAMPLE_CHECK, _(L"% of documents to randomly sample:"));
         m_isRandomSampling->SetValue(false);
 
         m_randPercentageCtrl = new wxSpinCtrl(
@@ -457,11 +458,9 @@ void ProjectWizardDlg::CreateControls()
         m_randPercentageCtrl->SetRange(1, 100);
         m_randPercentageCtrl->Enable(false);
 
-        randomOptionsSizer->Add(m_isRandomSampling);
+        randomOptionsSizer->Add(m_isRandomSampling,
+                                wxSizerFlags{}.Border(wxRIGHT).CenterVertical());
         randomOptionsSizer->Add(m_randPercentageCtrl);
-        randomOptionsSizer->Add(
-            new wxStaticText(page, ID_RANDOM_SAMPLE_LABEL, _(L"% of the documents.")),
-            wxSizerFlags{}.CentreVertical());
 
         pageSizer->Add(optionsSizer, wxSizerFlags{ 1 }.Expand().Border());
         pageSizer->Add(minDocSizeBoxSizer, wxSizerFlags{}.Expand().Border(wxLEFT));
@@ -1208,7 +1207,7 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
     // only ask for which worksheets to select if there is more than one in the workbook
     if (worksheets.size() > 1)
         {
-        wxMultiChoiceDialog chooseWorksheetsDlg(this, _(L"Select the worksheet(s) to import:"),
+        wxMultiChoiceDialog chooseWorksheetsDlg(this, _(L"Select the worksheets to import:"),
                                                 _(L"Excel Import"), worksheets);
         chooseWorksheetsDlg.SetSelections(workSheetSelections);
         if (chooseWorksheetsDlg.ShowModal() != wxID_OK)
@@ -1716,7 +1715,8 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
 
         // if cancelled, we still will want what was harvested up to that point,
         // so it's OK to ignore the user response here
-        [[maybe_unused]] auto crawlResult = wxGetApp().GetWebHarvester().CrawlLinks();
+        [[maybe_unused]]
+        auto crawlResult = wxGetApp().GetWebHarvester().CrawlLinks();
 
         // add the new links to the list
         const size_t currentFileCount = m_fileData->GetItemCount();
@@ -1882,7 +1882,7 @@ void ProjectWizardDlg::OnAddArchiveFileButtonClick([[maybe_unused]] wxCommandEve
 //-------------------------------------------------------------
 void ProjectWizardDlg::OnAddFileButtonClick([[maybe_unused]] wxCommandEvent&)
     {
-    wxFileDialog dialog(this, _(L"Select Document(s) to Analyze"), wxString{}, wxString{},
+    wxFileDialog dialog(this, _(L"Select Documents to Analyze"), wxString{}, wxString{},
                         wxGetApp().GetAppOptions().GetDocumentFilter(),
                         wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW | wxFD_MULTIPLE);
 
@@ -1957,7 +1957,7 @@ void ProjectWizardDlg::OnContextHelp([[maybe_unused]] wxHelpEvent&)
 //-------------------------------------------------------------
 void ProjectWizardDlg::OnHelp([[maybe_unused]] wxCommandEvent&)
     {
-    wxLaunchDefaultBrowser(wxFileName::FileNameToURL(
-        wxGetApp().GetMainFrame()->GetHelpDirectory() + wxFileName::GetPathSeparator() +
-        L"online/creating-a-new-project.html"));
+    wxLaunchDefaultBrowser(wxFileName::FileNameToURL(wxGetApp().GetMainFrame()->GetHelpDirectory() +
+                                                     wxFileName::GetPathSeparator() +
+                                                     L"online/creating-a-new-project.html"));
     }

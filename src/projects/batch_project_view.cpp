@@ -2202,7 +2202,9 @@ void BatchProjectView::OnExportScoresAndStatistics([[maybe_unused]] wxCommandEve
     wxFileDialog fdialog(GetDocFrame(),
             _(L"Export Scores & Statistics"),
             wxString{},
-            doc->GetTitle() + _(L" Scores & Statistics"),
+            wxString::Format(
+                // TRANSLATORS: %s is document title
+                _(L"%s Scores & Statistics"), doc->GetTitle()),
             _(L"HTML Files (*.htm;*.html)|*.htm;*.html"),
             wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
     if (fdialog.ShowModal() != wxID_OK)
@@ -2266,10 +2268,12 @@ void BatchProjectView::OnExportScoresAndStatistics([[maybe_unused]] wxCommandEve
                 }
             if (doc->GetStatisticsReportInfo().IsExtendedInformationEnabled())
                 {
-                HTMLText += wxString::Format(_(L"<td>%s Kbs.</td>"),
+                HTMLText += L"<td>" + wxString::Format(
+                    // TRANSLATORS: %s is number of kilobytes in a file
+                    _(L"%s Kbs."),
                     wxNumberFormatter::ToString(safe_divide<double>(subDoc->GetTextSize(),1024), 2,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes|
-                        wxNumberFormatter::Style::Style_WithThousandsSep));
+                        wxNumberFormatter::Style::Style_WithThousandsSep)) + L"</td>";
                 }
             }
         HTMLText += L"</tr>";
@@ -2290,7 +2294,9 @@ void BatchProjectView::OnExportStatisticsReport([[maybe_unused]] wxCommandEvent&
     wxFileDialog fdialog(GetDocFrame(),
             _(L"Export Statistics Report"),
             wxString{},
-            doc->GetTitle() + _(L" Summary Statistics Report"),
+            wxString::Format(
+                // TRANSLATORS: %s is document title
+                _(L"%s Summary Statistics Report"), doc->GetTitle()),
             _(L"HTML Files (*.htm;*.html)|*.htm;*.html"),
             wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
     if (fdialog.ShowModal() != wxID_OK)

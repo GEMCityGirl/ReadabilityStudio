@@ -115,7 +115,8 @@ namespace LuaScripting
         wxFileName fn(path);
         if (fn.IsRelative())
             {
-            [[maybe_unused]] auto absRes = fn.MakeAbsolute(wxFileName(currentFile).GetPath());
+            [[maybe_unused]]
+            auto absRes = fn.MakeAbsolute(wxFileName(currentFile).GetPath());
             }
         // if an image, then check its dimensions
         if (isImage)
@@ -144,10 +145,12 @@ namespace LuaScripting
                     else if (!is_within<long>(img.GetHeight(), height - 5, height + 5) ||
                              !is_within<long>(img.GetWidth(), width - 5, width + 5))
                         {
-                        badImageSizes.insert(std::make_pair(
-                            currentFile,
-                            wxString::Format(_(L"%s (%ld x %ld vs. %d x %d))"), fn.GetFullPath(),
-                                             width, height, img.GetWidth(), img.GetHeight())));
+                        badImageSizes.insert(
+                            std::make_pair(currentFile,
+                                           wxString::Format( // TRANSLATORS: Placeholders are a file
+                                                             // name and an image's dimensions
+                                               _(L"%s (%ld x %ld vs. %d x %d))"), fn.GetFullPath(),
+                                               width, height, img.GetWidth(), img.GetHeight())));
                         }
                     }
                 }
@@ -425,7 +428,8 @@ namespace LuaScripting
                                                    wxGetApp().GetAppSubName(),
                                                    wxGetApp().GetVendorName(), true);
 
-            [[maybe_unused]] wxSplashScreen* splash =
+            [[maybe_unused]]
+            wxSplashScreen* splash =
                 new wxSplashScreen(bitmap, wxSPLASH_CENTRE_ON_SCREEN | wxSPLASH_TIMEOUT, 60000,
                                    nullptr, -1, wxDefaultPosition, wxDefaultSize,
                                    wxFRAME_NO_TASKBAR | wxSTAY_ON_TOP | wxSPLASH_NO_TIMEOUT);
@@ -604,9 +608,11 @@ namespace LuaScripting
             }
         else
             {
-            DebugPrint(wxString::Format(_(L"%sWarning%s: unable to make %s path absolute."),
-                                        L"<span style='color:blue; font-weight:bold;'>", L"</span>",
-                                        wxString(luaL_checkstring(L, 2), wxConvUTF8)));
+            DebugPrint(wxString::Format( // TRANSLATORS: %s are formatting tags and
+                                         // should stay wrapped around "Warning"
+                _(L"%sWarning%s: unable to make %s path absolute."),
+                L"<span style='color:blue; font-weight:bold;'>", L"</span>",
+                wxString(luaL_checkstring(L, 2), wxConvUTF8)));
             lua_pushstring(L, wxString(luaL_checkstring(L, 2), wxConvUTF8));
             }
 

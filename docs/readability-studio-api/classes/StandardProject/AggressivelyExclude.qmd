@@ -15,7 +15,7 @@ AggressivelyExclude(boolean beAggressive)
 `boolean` beAggressive | Set to `true` to use aggressive text exclusion.
 
 ::: {.tipsection data-latex=""}
-This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading)** and **[`Reload()`](#standard-reload)**.
+This can be optimized by placing it in between calls to **[`DelayReloading()`](#standard-delayreloading)** and **[`Reload()`](#standard-reload)**.
 :::
 
 {{< pagebreak >}}

@@ -137,7 +137,7 @@ When the batch project is loaded, this description will appear in any results wi
 
 After you have selected your files, you can randomly sample a subset of these documents for your project.
 Normally, you will want to analyze all the documents that you have selected and ignore this feature. However, some research projects may require random sampling.
-For these situations, check the **Randomly sample** option and enter the percentage of documents to analyze.
+For these situations, check the **% of documents to randomly sample** option and enter the percentage of documents to analyze.
 
 You can also filter documents based on content size.
 Enter into the field **Minimum document word count** the minimum number of words a document must have to be included in the batch.

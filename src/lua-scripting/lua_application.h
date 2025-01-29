@@ -27,7 +27,7 @@ namespace LuaScripting
                     std::multimap<wxString, wxString>& badImageSizes,
                     const bool IncludeExternalLinks);
 
-    // i18n-check-suppress-begin
+    // quneiform-suppress-begin
     // clang-format off
     // NOTE: these must all be single-line for the build script to properly create new topics from these.
 
@@ -125,7 +125,7 @@ namespace LuaScripting
     int SetCenterPrintFooter(lua_State* L /*string label*/); // Sets the center print footer.
     int SetRightPrintFooter(lua_State* L /*string label*/); // Sets the right print footer.
     // clang-format on
-    // i18n-check-suppress-end
+    // quneiform-suppress-end
 
     static const luaL_Reg ApplicationLib[] = {
         { _DT("Close"), Close },

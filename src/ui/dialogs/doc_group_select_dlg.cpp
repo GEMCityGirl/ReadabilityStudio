@@ -18,7 +18,7 @@ void DocGroupSelectDlg::CreateControls()
                               _(L"Use the last common folder between files") };
 
     wxRadioBox* radioBox = new wxRadioBox(
-        this, wxID_ANY, _(L"Select how to label the document(s):"), wxDefaultPosition,
+        this, wxID_ANY, _(L"Select how to label the documents:"), wxDefaultPosition,
         wxDefaultSize, choices, 0, wxRA_SPECIFY_ROWS, wxGenericValidator(&m_selected));
 
     mainSizer->Add(radioBox, wxSizerFlags{}.Border());

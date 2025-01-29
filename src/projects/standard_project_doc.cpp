@@ -1472,10 +1472,16 @@ bool ProjectDoc::OnNewDocument()
                 wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
                 LD_CLOSE_BUTTON | LD_DONT_SHOW_AGAIN, wxID_ANY, warningIter->GetTitle(),
                 wxString::Format(
-                    _(L"This document contains %zu incomplete sentence(s) longer than %zu words "
-                      "which will be included in the analysis.\n\nTo change this, increase the "
-                      "\"Include incomplete sentences containing more than...\" option under "
-                      "Project Properties->Document Indexing."),
+                    wxPLURAL(
+                      L"This document contains %zu incomplete sentence longer than %zu words "
+                       "which will be included in the analysis.\n\nTo change this, increase the "
+                       "\"Include incomplete sentences containing more than...\" option under "
+                       "Project Properties->Document Indexing.",
+                      L"This document contains %zu incomplete sentences longer than %zu words "
+                       "which will be included in the analysis.\n\nTo change this, increase the "
+                       "\"Include incomplete sentences containing more than...\" option under "
+                       "Project Properties->Document Indexing.",
+                      sentencesMissingEndingPunctionsConsideredCompleteBecauseOfLength),
                     sentencesMissingEndingPunctionsConsideredCompleteBecauseOfLength,
                     GetIncludeIncompleteSentencesIfLongerThanValue()));
             const int dlgResponse = listDlg.ShowModal();
@@ -2281,19 +2287,23 @@ void ProjectDoc::DisplayWordCharts()
         // Do not change the order of these bars, brackets are built based on this order (see below)
         size_t currentBar{ 0 };
         // go through the custom (familiar word) tests
-        for(const auto& cText : GetCustTestsInUse())
+        for (const auto& cText : GetCustTestsInUse())
             {
             if (!cText.GetIterator()->is_using_familiar_words())
-                { continue; }
-            wordBarChart->AddBar(BarChart::Bar(++currentBar,
                 {
-                    { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(cText.GetUnfamiliarWordCount())).
-                        Brush(GetBarChartBarColor())) }
-                },
+                continue;
+                }
+            wordBarChart->AddBar(BarChart::Bar(
+                ++currentBar,
+                { { BarChart::BarBlock(
+                    BarChart::BarBlockInfo(static_cast<double>(cText.GetUnfamiliarWordCount()))
+                        .Brush(GetBarChartBarColor())) } },
                 wxNumberFormatter::ToString(cText.GetUnfamiliarWordCount(), 0,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep),
-                GraphItems::Label((cText.GetIterator()->get_name().c_str()) + _(L" (unfamiliar)")),
-                                                  GetGraphBarEffect(), GetGraphBarOpacity()));
+                                            wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                                wxNumberFormatter::Style::Style_WithThousandsSep),
+                GraphItems::Label(wxString::Format( // TRANSLATORS: %s is a custom test name
+                    _(L"%s (unfamiliar)"), cText.GetIterator()->get_name().c_str())),
+                GetGraphBarEffect(), GetGraphBarOpacity()));
             }
 
         if (IsDaleChallLikeTestIncluded())

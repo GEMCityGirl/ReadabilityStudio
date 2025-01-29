@@ -61,6 +61,7 @@ namespace LuaScripting
                 {
                 wxMessageBox(
                     wxString::Format(
+                        // TRANSLATORS: %s is a function name that failed from a script
                         _(L"%s: Invalid number of arguments.\n\n%d expected, %d provided."),
                         functionName, minParemeterCount, (lua_gettop(L) - 1)),
                     _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
@@ -89,7 +90,7 @@ namespace LuaScripting
         // FilePath File path to the project to open.
         explicit StandardProject(lua_State* L);
 
-        // i18n-check-suppress-begin
+        // quneiform-suppress-begin
         // clang-format off
         // NOTE: these must all be single-line for the build script to properly create new topics from these.
 
@@ -221,7 +222,7 @@ namespace LuaScripting
         int /*INTERNAL!!!*/ OpenProperties(lua_State* L);
         int /*INTERNAL!!!*/ CloseProperties(lua_State*);
         // clang-format on
-        // i18n-check-suppress-end
+        // quneiform-suppress-end
         };
     } // namespace LuaScripting
 

@@ -403,8 +403,8 @@ bool WebHarvester::CrawlLinks()
     {
     m_hideFileNamesWhileDownloading = wxGetMouseState().ShiftDown();
     wxStringTokenizer tkz(m_url, L"\n\r", wxTOKEN_STRTOK);
-    const wxString urlLabel =
-        m_hideFileNamesWhileDownloading ? wxString{ L"..." } : L" \"" + tkz.GetNextToken() + L"\"";
+    const wxString urlLabel = m_hideFileNamesWhileDownloading ? wxString{ _(L"...") } :
+                                                                L" \"" + tkz.GetNextToken() + L"\"";
     m_progressDlg =
         new wxProgressDialog(_(L"Web Harvester"), wxString::Format(_(L"Harvesting %s"), urlLabel),
                              5, nullptr, wxPD_SMOOTH | wxPD_ELAPSED_TIME | wxPD_CAN_ABORT);
@@ -959,8 +959,8 @@ wxString WebHarvester::GetCharsetFromContentType(const wxString& contentType)
 //----------------------------------
 wxString WebHarvester::GetCharsetFromPageContent(std::string_view pageContent)
     {
-    wxString charSet = lily_of_the_valley::html_extract_text::parse_charset(
-        pageContent.data(), pageContent.length());
+    wxString charSet = lily_of_the_valley::html_extract_text::parse_charset(pageContent.data(),
+                                                                            pageContent.length());
     if (charSet.empty())
         {
         // If system encoding is UTF (8, 16, etc.), then we don't want to convert from that.

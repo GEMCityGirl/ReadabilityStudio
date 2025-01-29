@@ -23,9 +23,10 @@ void BatchProjectDoc::ShowQueuedMessages()
     {
     BaseProjectView* view = dynamic_cast<BaseProjectView*>(GetFirstView());
     for (auto queuedMsgIter = GetQueuedMessages().cbegin();
-        queuedMsgIter != GetQueuedMessages().cend();
-        ++queuedMsgIter)
-        { view->ShowInfoMessage(*queuedMsgIter); }
+         queuedMsgIter != GetQueuedMessages().cend(); ++queuedMsgIter)
+        {
+        view->ShowInfoMessage(*queuedMsgIter);
+        }
     }
 
 //-------------------------------------------------------
@@ -45,32 +46,35 @@ void BatchProjectDoc::RemoveMisspellings(const wxArrayString& misspellingsToRemo
             size_t index = reportStr.find(searchStr);
             if (index != wxString::npos)
                 {
-                size_t endIndex = reportStr.find(L",", index+searchStr.length());
+                size_t endIndex = reportStr.find(L",", index + searchStr.length());
                 if (endIndex != wxString::npos)
                     {
-                    size_t multFactorIndex = reportStr.find(L"*", index+searchStr.length());
+                    size_t multFactorIndex = reportStr.find(L"*", index + searchStr.length());
                     if (multFactorIndex != wxString::npos && multFactorIndex < endIndex)
                         {
                         // skip "* "
                         multFactorIndex += 2;
-                        multFactorValue = reportStr.substr(multFactorIndex, endIndex-multFactorIndex).c_str();
+                        multFactorValue =
+                            reportStr.substr(multFactorIndex, endIndex - multFactorIndex).c_str();
                         double val{ 0 };
                         if (multFactorValue.ToDouble(&val))
                             {
                             assert(val > 0);
-                            totalCount -= (val-1/* we will subtract 1 later*/);
+                            totalCount -= (val - 1 /* we will subtract 1 later*/);
                             }
                         }
                     // skip trailing ", "
                     endIndex += 2;
-                    reportStr.erase(index, endIndex-index);
+                    reportStr.erase(index, endIndex - index);
                     }
                 else
                     {
                     // we will need to strip the trailing ", " after removing this word at the end
                     if (index >= 2)
-                        { index -= 2; }
-                    size_t multFactorIndex = reportStr.find(L"*", index+searchStr.length());
+                        {
+                        index -= 2;
+                        }
+                    size_t multFactorIndex = reportStr.find(L"*", index + searchStr.length());
                     if (multFactorIndex != wxString::npos)
                         {
                         // skip "* "
@@ -80,7 +84,7 @@ void BatchProjectDoc::RemoveMisspellings(const wxArrayString& misspellingsToRemo
                         if (multFactorValue.ToDouble(&val))
                             {
                             assert(val > 0);
-                            totalCount -= (val-1/* we will subtract 1 later*/);
+                            totalCount -= (val - 1 /* we will subtract 1 later*/);
                             }
                         }
                     reportStr.erase(index);
@@ -102,16 +106,17 @@ void BatchProjectDoc::RemoveMisspellings(const wxArrayString& misspellingsToRemo
             assert(GetMisspelledWordData()->GetItemValue(i, 3) == 0);
             // cppcheck-suppress assertWithSideEffect
             wxASSERT_LEVEL_2_MSG(GetMisspelledWordData()->GetItemText(i, 4).empty(),
-                GetMisspelledWordData()->GetItemText(i, 4));
+                                 GetMisspelledWordData()->GetItemText(i, 4));
             GetMisspelledWordData()->DeleteItem(i);
             }
         else
-            { ++i; }
+            {
+            ++i;
+            }
         }
     BatchProjectView* view = dynamic_cast<BatchProjectView*>(GetFirstView());
     Wisteria::UI::ListCtrlEx* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
-        view->GetGrammarView().FindWindowById(
-            BaseProjectView::MISSPELLED_WORD_LIST_PAGE_ID));
+        view->GetGrammarView().FindWindowById(BaseProjectView::MISSPELLED_WORD_LIST_PAGE_ID));
     if (listView)
         {
         if (GetMisspelledWordData()->GetItemCount() == 0)
@@ -124,9 +129,13 @@ void BatchProjectDoc::RemoveMisspellings(const wxArrayString& misspellingsToRemo
             {
             listView->SetVirtualDataSize(GetMisspelledWordData()->GetItemCount());
             if (listView->GetSortedColumn() == -1)
-                { listView->SortColumn(0, Wisteria::SortDirection::SortAscending); }
+                {
+                listView->SortColumn(0, Wisteria::SortDirection::SortAscending);
+                }
             else
-                { listView->Resort(); }
+                {
+                listView->Resort();
+                }
             }
         }
     }
@@ -137,18 +146,16 @@ bool BatchProjectDoc::OnCreate(const wxString& path, long flags)
     // see if anything is even licensed first
     if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
         {
-        LogMessage(_(L"You are not currently licensed to create a new batch project."),
-            _(L"Error"), wxOK|wxICON_ERROR);
+        LogMessage(_(L"You are not currently licensed to create a new batch project."), _(L"Error"),
+                   wxOK | wxICON_ERROR);
         return false;
         }
     if (flags & wxDOC_NEW)
         {
-        // if passed a single, "regular" file (i.e., not an archive or spreadsheet), then just load it with the
-        // defaults and bypass the wizard.
-        if (path.length() &&
-            FilePathResolver(path,false).IsLocalOrNetworkFile() &&
-            !FilePathResolver::IsSpreadsheet(path) &&
-            !FilePathResolver::IsArchive(path))
+        // if passed a single, "regular" file (i.e., not an archive or spreadsheet), then just load
+        // it with the defaults and bypass the wizard.
+        if (path.length() && FilePathResolver(path, false).IsLocalOrNetworkFile() &&
+            !FilePathResolver::IsSpreadsheet(path) && !FilePathResolver::IsArchive(path))
             {
             GetSourceFilesInfo().clear();
             GetSourceFilesInfo().push_back(comparable_first_pair(path, wxString{}));
@@ -157,8 +164,10 @@ bool BatchProjectDoc::OnCreate(const wxString& path, long flags)
             ProjectWizardDlg::SetLastSelectedFolder(folders.size() ? folders.back() : wxString{});
             return wxDocument::OnCreate(path, flags);
             }
-        else if (!RunProjectWizard(path) )
-            { return false; }
+        else if (!RunProjectWizard(path))
+            {
+            return false;
+            }
         }
     return wxDocument::OnCreate(path, flags);
     }

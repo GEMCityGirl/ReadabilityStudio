@@ -65,4 +65,4 @@ Please refer to the following file & folder breakdown for reference:
 
 ### Finalizing Lists {-}
 
-Run the script **resources/Finalize Word Lists.lua** from *Readability Studio* to sort, merge, remove duplicates, and generate supplemental word lists.
+Run the script **resources/finalize-word-lists.lua** from *Readability Studio* to sort, merge, remove duplicates, and generate supplemental word lists.

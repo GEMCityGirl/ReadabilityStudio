@@ -81,6 +81,7 @@ namespace LuaScripting
         if (lua_gettop(L) < minParemeterCount)
             {
             wxMessageBox(wxString::Format(
+                             // TRANSLATORS: %s is a function name that failed from a script
                              _(L"%s: Invalid number of arguments.\n\n%d expected, %d provided."),
                              functionName, minParemeterCount, lua_gettop(L)),
                          _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
@@ -104,10 +105,11 @@ namespace LuaScripting
         {
         if (wxGetApp().GetLuaRunner().GetScriptFilePath().empty())
             {
-            DebugPrint(wxString::Format(_(L"%sError%s: call to %s returned empty because "
-                                          "the script has not been saved yet."),
-                                        L"<span style='color:red; font-weight:bold;'>", L"</span>",
-                                        __func__));
+            DebugPrint(wxString::Format( // TRANSLATORS: %s are highlighting tags and
+                                         // should stay wrapped around "Error"
+                _(L"%sError%s: call to %s returned empty because "
+                  "the script has not been saved yet."),
+                L"<span style='color:red; font-weight:bold;'>", L"</span>", __func__));
             lua_pushstring(L, "");
             return 1;
             }

@@ -375,7 +375,6 @@ class ProjectWizardDlg final : public wxDialog
     constexpr static int ID_BATCH_FOLDER_BROWSE_BUTTON = wxID_HIGHEST + 8;
     constexpr static int ID_BATCH_FILE_BROWSE_BUTTON = wxID_HIGHEST + 9;
     constexpr static int ID_RANDOM_SAMPLE_CHECK = wxID_HIGHEST + 10;
-    constexpr static int ID_RANDOM_SAMPLE_LABEL = wxID_HIGHEST + 11;
     constexpr static int ID_WEB_PAGES_BROWSE_BUTTON = wxID_HIGHEST + 12;
     constexpr static int ID_ARCHIVE_FILE_BROWSE_BUTTON = wxID_HIGHEST + 13;
     constexpr static int ID_SPREADSHEET_FILE_BROWSE_BUTTON = wxID_HIGHEST + 14;

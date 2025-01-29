@@ -102,7 +102,7 @@ class FlatTabArt : public wxAuiGenericTabArt
         for (size_t i = 0; i < text.length(); ++i)
             {
             wxString s = text.Left(i);
-            s += L"...";
+            s += _(L"...");
 
             dc.GetTextExtent(s, &x, &y);
             if (x > max_size)
@@ -114,7 +114,7 @@ class FlatTabArt : public wxAuiGenericTabArt
             }
 
         wxString ret = text.Left(last_good_length);
-        ret += L"...";
+        ret += _(L"...");
         return ret;
         }
 

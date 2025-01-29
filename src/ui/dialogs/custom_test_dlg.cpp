@@ -348,6 +348,12 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
                            .GetBitmap(FromDIP(wxSize{ 16, 16 })));
     SetIcon(ico);
 
+    const auto formatCodeExample = [](const wxString& example)
+    {
+        return FormulaFormat::FormatMathExpressionFromUS(L"<br /><br /><tt><b>" + example +
+                                                         L"</b></tt>");
+    };
+
     m_operators = { wxString(_DT(L"*\t") + _(L"Multiplication.")).wc_string(),
                     wxString(_DT(L"/\t") + _(L"Division.")).wc_string(),
                     wxString(_DT(L"%\t") +
@@ -389,28 +395,25 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
         wxString(_DT(L"LOG10(x)\t") + _(L"Common logarithm of x (base 10).")).wc_string(),
         wxString(_DT(L"SQRT(x)\t") + _(L"Square root of x.")).wc_string(),
         wxString(_DT(L"ABS(x)\t") + _(L"Absolute value of x.")).wc_string(),
-        wxString(_DT(L"SIGN(x)\t") + _(L"Returns the sign of x. For example, ") +
-                 _DT(L"\'x<0\' = -1, \'x=0\' = 0, \'x>0\' = 1"))
+        wxString(_DT(L"SIGN(x)\t") + _(L"Returns the sign of x. For example:") +
+                 formatCodeExample(_DT(L"\'x&lt;0\' = -1<br />\'x=0\' = 0<br />\'x&gt;0\' = 1")))
             .wc_string(),
-        wxString(
-            _DT(L"TRUNC(x)\t") + _(L"Discards the fractional part of a number. For example, ") +
-            FormulaFormat::FormatMathExpressionFromUS(_DT(L" TRUNC(-3.2) = -3, TRUNC(3.2) = 3")))
+        wxString(_DT(L"TRUNC(x)\t") + _(L"Discards the fractional part of a number. For example:") +
+                 formatCodeExample(_DT(L" TRUNC(-3.2) = -3<br />TRUNC(3.2) = 3")))
             .wc_string(),
         wxString(_DT(L"CEIL(x)\t") +
-                 _(L"Returns the smallest integer not less than x. For example, ") +
-                 FormulaFormat::FormatMathExpressionFromUS(_DT(L"CEIL(-3.2) = -3, CEIL(3.2) = 4")))
+                 _(L"Returns the smallest integer not less than x. For example:") +
+                 formatCodeExample(_DT(L"CEIL(-3.2) = -3<br />CEIL(3.2) = 4")))
             .wc_string(),
-        wxString(
-            _DT(L"FLOOR(x)\t") +
-            _(L"Returns the largest integer not greater than x. For example, ") +
-            FormulaFormat::FormatMathExpressionFromUS(_DT(L"FLOOR(-3.2) = -4, FLOOR(3.2) = 3")))
+        wxString(_DT(L"FLOOR(x)\t") +
+                 _(L"Returns the largest integer not greater than x. For example:") +
+                 formatCodeExample(_DT(L"FLOOR(-3.2) = -4<br />FLOOR(3.2) = 3")))
             .wc_string(),
         wxString(FormulaFormat::FormatMathExpressionFromUS(_DT(L"ROUND(x,n)\t")) +
                  _(L"Returns the number x rounded to n decimal places. "
-                   "(n is optional and defaults to zero.) For example, ") +
-                 FormulaFormat::FormatMathExpressionFromUS(
-                     _DT(L"ROUND(-11.6, 0) = 12, ROUND(-11.6) = 12, ROUND(1.5, 0) = 2, "
-                         "ROUND(1.55, 1) = 1.6, ROUND(3.1415, 3) = 3.142")))
+                   "(n is optional and defaults to zero.) For example:") +
+                 formatCodeExample(_DT(L"ROUND(-11.6) = 12<br />ROUND(1.5, 0) = 2<br />"
+                                       "ROUND(1.55, 1) = 1.6<br />ROUND(3.1415, 3) = 3.142")))
             .wc_string(),
         wxString(_DT(L"RAND()\t") +
                  _(L"Generates a random floating point number within the range of 0 and 1."))
@@ -744,7 +747,8 @@ void CustomTestDlg::CreateControls()
                                                            L"ribbon/function-light.svg" :
                                                            L"ribbon/function.svg")));
 
-            formulaBoxSizer->Add(formulaButtonsSizer, wxSizerFlags{}.Border(wxLEFT | wxTOP | wxRIGHT));
+            formulaBoxSizer->Add(formulaButtonsSizer,
+                                 wxSizerFlags{}.Border(wxLEFT | wxTOP | wxRIGHT));
             formulaBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
             m_formulaCtrl = new CodeEditor(formulaBoxSizer->GetStaticBox(), ID_FORMULA_FIELD,
@@ -923,7 +927,7 @@ void CustomTestDlg::CreateControls()
                   "custom list and other selected lists.\n\n"
                   "This option is only recommended for special situations where you only want "
                   "to find words that appear within a union "
-                  "of your word list and another list(s) (e.g., Spache)."));
+                  "of your word list and another list (e.g., Spache)."));
 
             pgMan->SetDescBoxHeight(FromDIP(wxSize(125, 125)).GetHeight());
 

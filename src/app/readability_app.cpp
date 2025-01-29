@@ -886,7 +886,7 @@ bool ReadabilityApp::OnInit()
         { 10009, ProjectWizardDlg::ID_BATCH_FOLDER_BROWSE_BUTTON },
         { 10010, ProjectWizardDlg::ID_BATCH_FILE_BROWSE_BUTTON },
         { 10011, ProjectWizardDlg::ID_RANDOM_SAMPLE_CHECK },
-        { 10012, ProjectWizardDlg::ID_RANDOM_SAMPLE_LABEL },
+        { 10012, ProjectWizardDlg::ID_RANDOM_SAMPLE_SPIN },
         { 10013, ProjectWizardDlg::ID_WEB_PAGES_BROWSE_BUTTON },
         { 10014, ProjectWizardDlg::ID_ARCHIVE_FILE_BROWSE_BUTTON },
         { 10015, ProjectWizardDlg::ID_SPREADSHEET_FILE_BROWSE_BUTTON },
@@ -4956,7 +4956,10 @@ void MainFrame::OnAddCustomTest(wxCommandEvent& event)
                 if (found)
                     {
                     CustomTestDlg dlg(wxGetApp().GetParentingWindow());
-                    dlg.SetTestName(_(L"Custom ") + testIterator->get_long_name().c_str());
+                    dlg.SetTestName(
+                        wxString::Format(
+                        // TRANSLATORS: %s is a readability test name
+                        _(L"Custom %s"), testIterator->get_long_name().c_str()));
                     dlg.SetFormula(testIterator->get_formula().c_str());
                     dlg.SetTestType(static_cast<int>(testIterator->get_test_type()));
                     if (dlg.ShowModal() == wxID_OK)
@@ -5509,14 +5512,14 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
                                   wxString::Format(
                                       // TRANSLATORS: %s are file filters
                                       _(L"Documents & Images (%s;%s)|%s;%s|"),
-                         wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD.data(),
-                         wxGetApp().GetAppOptions().ALL_IMAGES_WILDCARD.data(),
-                         wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD.data(),
-                         wxGetApp().GetAppOptions().ALL_IMAGES_WILDCARD.data()) +
-            wxGetApp().GetAppOptions().GetDocumentFilter() + L"|" +
-            Wisteria::GraphItems::Image::GetImageFileFilter(),
-        wxGetApp().GetLastSelectedDocFilter(),
-        // hide the option that disables local file downloading
+                                      wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD.data(),
+                                      wxGetApp().GetAppOptions().ALL_IMAGES_WILDCARD.data(),
+                                      wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD.data(),
+                                      wxGetApp().GetAppOptions().ALL_IMAGES_WILDCARD.data()) +
+                                      wxGetApp().GetAppOptions().GetDocumentFilter() + L"|" +
+                                      Wisteria::GraphItems::Image::GetImageFileFilter(),
+                                  wxGetApp().GetLastSelectedDocFilter(),
+                                  // hide the option that disables local file downloading
         true);
     webHarvestDlg.UpdateFromHarvesterSettings(wxGetApp().GetWebHarvester());
     // force downloading locally

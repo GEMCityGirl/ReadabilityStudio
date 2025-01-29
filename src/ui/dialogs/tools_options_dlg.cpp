@@ -120,7 +120,7 @@ void ToolsOptionsDlg::OnAddFileClick([[maybe_unused]] wxCommandEvent& event)
 //-------------------------------------------------------------
 void ToolsOptionsDlg::OnAddFilesClick([[maybe_unused]] wxCommandEvent& event)
     {
-    wxFileDialog dialog(this, _(L"Add Document(s) to Project"), wxEmptyString, wxEmptyString,
+    wxFileDialog dialog(this, _(L"Add Documents to Project"), wxEmptyString, wxEmptyString,
                         wxGetApp().GetAppOptions().GetDocumentFilter(),
                         wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW | wxFD_MULTIPLE);
 
@@ -320,8 +320,7 @@ void ToolsOptionsDlg::OnParagraphParseChange([[maybe_unused]] wxCommandEvent& ev
 void ToolsOptionsDlg::OnWarningMessagesButtonClick([[maybe_unused]] wxCommandEvent& event)
     {
     WarningMessagesDlg dlg(this);
-    dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                     L"online/program-options.html");
+    dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"online/program-options.html");
     dlg.ShowModal();
     }
 
@@ -910,7 +909,8 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
 
     Bind(
         wxEVT_CHECKBOX,
-        [this]([[maybe_unused]] wxCommandEvent& event)
+        [this]([[maybe_unused]]
+               wxCommandEvent& event)
         {
             TransferDataFromWindow();
             m_persistCookiesCheck->Enable(m_useJsCookies);
@@ -922,7 +922,8 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
     // those new documents can be reloaded.
     Bind(
         wxEVT_LISTCTRLEX_EDITED,
-        [this]([[maybe_unused]] wxCommandEvent& event)
+        [this]([[maybe_unused]]
+               wxCommandEvent& event)
         {
             if (m_docStorageRadioBox && m_fileList && m_fileList->HasItemBeenEditedByUser())
                 {
@@ -935,7 +936,8 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
     // changes in this dialog and then re-open it to embed the new document.
     Bind(
         wxEVT_TEXT,
-        [this]([[maybe_unused]] wxCommandEvent& event)
+        [this]([[maybe_unused]]
+               wxCommandEvent& event)
         {
             TransferDataFromWindow();
             if (m_filePath.has_changed() && m_docStorageRadioBox)
@@ -3485,7 +3487,7 @@ void ToolsOptionsDlg::CreateControls()
             m_addFilesButton =
                 new wxBitmapButton(projectSettingsPage, ID_ADD_FILES_BUTTON,
                                    wxArtProvider::GetBitmapBundle(L"ID_DOCUMENTS", wxART_BUTTON));
-            m_addFilesButton->SetToolTip(_(L"Browse for document(s) to add"));
+            m_addFilesButton->SetToolTip(_(L"Browse for documents to add"));
             m_addFilesButton->Enable(m_documentStorageMethod ==
                                      static_cast<int>(TextStorage::NoEmbedText));
             filesButtonsSizer->Add(m_addFilesButton);

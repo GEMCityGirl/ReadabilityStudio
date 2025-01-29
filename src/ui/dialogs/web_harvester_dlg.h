@@ -189,7 +189,7 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
     [[nodiscard]]
     wxString GetUserSpecifiedDomainsLabel() const
         {
-        return _(L"Restricted to user-defined domain(s)");
+        return _(L"Restricted to user-defined domains");
         }
 
     /// Creation

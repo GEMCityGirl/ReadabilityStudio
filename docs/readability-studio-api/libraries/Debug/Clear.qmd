@@ -6,5 +6,6 @@ Clears the log window.
 
 ``` {.lua}
 Clear()
+```
 
-```{{< pagebreak >}}
+{{< pagebreak >}}
