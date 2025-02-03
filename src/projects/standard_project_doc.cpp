@@ -3090,7 +3090,7 @@ bool ProjectDoc::AddSchwartzTest(const bool setFocus)
             }
         else
             {
-            displayableGradeLevel = wxString::Format(L"%zu", gradeValues.first);
+            displayableGradeLevel = std::to_wstring(gradeValues.first);
             if (gradeValues.first == 8)
                 { displayableGradeLevel = wxString::Format(_(L"(Advanced) %s+"), displayableGradeLevel); }
             description = ProjectReportFormat::FormatTestResult(
@@ -3393,11 +3393,15 @@ void ProjectDoc::DisplayReadabilityGraphs()
                 {
                     { BarChart::BarBlock(BarChart::BarBlockInfo(dolchNounPercentage).Brush(GetDolchNounColor())) }
                 },
-                wxNumberFormatter::ToString(dolchNounPercentage, 1,
-                wxNumberFormatter::Style::Style_NoTrailingZeroes|
-                    wxNumberFormatter::Style::Style_WithThousandsSep) +
-                L"%", GraphItems::Label(_(L"Nouns")),
-                GetGraphBarEffect(), GetGraphBarOpacity()), false);
+                    wxString::Format(/* TRANSLATORS: Percentage value (%s) and % symbol (%%).
+                                        '%%' can be changed and/or moved elsewhere in the string. */
+                                     _("%s%%"),
+                                     wxNumberFormatter::ToString(
+                                         dolchNounPercentage, 1,
+                                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                             wxNumberFormatter::Style::Style_WithThousandsSep)),
+                    GraphItems::Label(_(L"Nouns")), GetGraphBarEffect(), GetGraphBarOpacity()),
+                false);
 
             const double dolchVerbsPercentage =
                 safe_divide<double>((ProjectReportFormat::MAX_DOLCH_VERBS - GetUnusedDolchVerbs()),
@@ -3406,11 +3410,15 @@ void ProjectDoc::DisplayReadabilityGraphs()
                 {
                     { BarChart::BarBlock(BarChart::BarBlockInfo(dolchVerbsPercentage).Brush(GetDolchVerbsColor())) }
                 },
-                wxNumberFormatter::ToString(dolchVerbsPercentage, 1,
-                wxNumberFormatter::Style::Style_NoTrailingZeroes|
-                    wxNumberFormatter::Style::Style_WithThousandsSep) +
-                L"%", GraphItems::Label(_(L"Verbs")),
-                GetGraphBarEffect(), GetGraphBarOpacity()), false);
+                    wxString::Format(/* TRANSLATORS: Percentage value (%s) and % symbol (%%).
+                                        '%%' can be changed and/or moved elsewhere in the string. */
+                                     _("%s%%"),
+                                     wxNumberFormatter::ToString(
+                                         dolchVerbsPercentage, 1,
+                                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                             wxNumberFormatter::Style::Style_WithThousandsSep)),
+                    GraphItems::Label(_(L"Verbs")), GetGraphBarEffect(), GetGraphBarOpacity()),
+                false);
 
             const double dolchAdjectivesPercentage =
                 safe_divide<double>((ProjectReportFormat::MAX_DOLCH_ADJECTIVE_WORDS - GetUnusedDolchAdjectives()),
@@ -3418,11 +3426,15 @@ void ProjectDoc::DisplayReadabilityGraphs()
             coverageBarChart->AddBar(BarChart::Bar(++currentBar,
                 { { BarChart::BarBlock(BarChart::BarBlockInfo(dolchAdjectivesPercentage).
                     Brush(GetDolchAdjectivesColor())) } },
-                wxNumberFormatter::ToString(dolchAdjectivesPercentage, 1,
-                wxNumberFormatter::Style::Style_NoTrailingZeroes|
-                    wxNumberFormatter::Style::Style_WithThousandsSep) +
-                L"%", GraphItems::Label(_(L"Adjectives")),
-                GetGraphBarEffect(), GetGraphBarOpacity()), false);
+                    wxString::Format(/* TRANSLATORS: Percentage value (%s) and % symbol (%%).
+                                        '%%' can be changed and/or moved elsewhere in the string. */
+                                     _("%s%%"),
+                                     wxNumberFormatter::ToString(
+                                         dolchAdjectivesPercentage, 1,
+                                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                             wxNumberFormatter::Style::Style_WithThousandsSep)),
+                    GraphItems::Label(_(L"Adjectives")), GetGraphBarEffect(), GetGraphBarOpacity()),
+                false);
 
             const double dolchAdverbsPercentage =
                 safe_divide<double>((ProjectReportFormat::MAX_DOLCH_ADVERB_WORDS-GetUnusedDolchAdverbs()),
@@ -3432,11 +3444,15 @@ void ProjectDoc::DisplayReadabilityGraphs()
                     { BarChart::BarBlock(
                         BarChart::BarBlockInfo(dolchAdverbsPercentage).Brush(GetDolchAdverbsColor())) }
                 },
-                wxNumberFormatter::ToString(dolchAdverbsPercentage, 1,
-                wxNumberFormatter::Style::Style_NoTrailingZeroes|
-                    wxNumberFormatter::Style::Style_WithThousandsSep) +
-                L"%", GraphItems::Label(_(L"Adverbs")),
-                GetGraphBarEffect(), GetGraphBarOpacity()), false);
+                    wxString::Format(/* TRANSLATORS: Percentage value (%s) and % symbol (%%).
+                                        '%%' can be changed and/or moved elsewhere in the string. */
+                                     _("%s%%"),
+                                     wxNumberFormatter::ToString(
+                                         dolchAdverbsPercentage, 1,
+                                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                             wxNumberFormatter::Style::Style_WithThousandsSep)),
+                    GraphItems::Label(_(L"Adverbs")), GetGraphBarEffect(), GetGraphBarOpacity()),
+                false);
 
             const double dolchPronounsPercentage =
                 safe_divide<double>((ProjectReportFormat::MAX_DOLCH_PRONOUN_WORDS-GetUnusedDolchPronouns()),
@@ -3446,10 +3462,15 @@ void ProjectDoc::DisplayReadabilityGraphs()
                     { BarChart::BarBlock(
                         BarChart::BarBlockInfo(dolchPronounsPercentage).Brush(GetDolchPronounsColor())) }
                 },
-                wxNumberFormatter::ToString(dolchPronounsPercentage, 1,
-                wxNumberFormatter::Style::Style_NoTrailingZeroes|wxNumberFormatter::Style::Style_WithThousandsSep) +
-                L"%", GraphItems::Label(_(L"Pronouns")),
-                GetGraphBarEffect(), GetGraphBarOpacity()), false);
+                    wxString::Format(/* TRANSLATORS: Percentage value (%s) and % symbol (%%).
+                                        '%%' can be changed and/or moved elsewhere in the string. */
+                                     _("%s%%"),
+                                     wxNumberFormatter::ToString(
+                                         dolchPronounsPercentage, 1,
+                                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                             wxNumberFormatter::Style::Style_WithThousandsSep)),
+                    GraphItems::Label(_(L"Pronouns")), GetGraphBarEffect(), GetGraphBarOpacity()),
+                false);
 
             const double dolchPrepositionsPercentage =
                 safe_divide<double>(
@@ -3460,10 +3481,16 @@ void ProjectDoc::DisplayReadabilityGraphs()
                     { BarChart::BarBlock(
                         BarChart::BarBlockInfo(dolchPrepositionsPercentage).Brush(GetDolchPrepositionsColor())) }
                 },
-                wxNumberFormatter::ToString(dolchPrepositionsPercentage, 1,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
-                    wxNumberFormatter::Style::Style_WithThousandsSep) + L"%", GraphItems::Label(_(L"Prepositions")),
-                GetGraphBarEffect(), GetGraphBarOpacity()), false);
+                    wxString::Format(/* TRANSLATORS: Percentage value (%s) and % symbol (%%).
+                                        '%%' can be changed and/or moved elsewhere in the string. */
+                                     _("%s%%"),
+                                     wxNumberFormatter::ToString(
+                                         dolchPrepositionsPercentage, 1,
+                                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                             wxNumberFormatter::Style::Style_WithThousandsSep)),
+                    GraphItems::Label(_(L"Prepositions")), GetGraphBarEffect(),
+                    GetGraphBarOpacity()),
+                false);
 
             const double dolchConjunctionsPercentage =
                 safe_divide<double>(
@@ -3474,11 +3501,16 @@ void ProjectDoc::DisplayReadabilityGraphs()
                     { BarChart::BarBlock(
                         BarChart::BarBlockInfo(dolchConjunctionsPercentage).Brush(GetDolchConjunctionsColor())) }
                 },
-                wxNumberFormatter::ToString(dolchConjunctionsPercentage, 1,
-                    wxNumberFormatter::Style::Style_NoTrailingZeroes|
-                    wxNumberFormatter::Style::Style_WithThousandsSep) +
-                L"%", GraphItems::Label(_(L"Conjunctions")),
-                GetGraphBarEffect(), GetGraphBarOpacity()), false);
+                    wxString::Format(/* TRANSLATORS: Percentage value (%s) and % symbol (%%).
+                                        '%%' can be changed and/or moved elsewhere in the string. */
+                                     _("%s%%"),
+                                     wxNumberFormatter::ToString(
+                                         dolchConjunctionsPercentage, 1,
+                                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                             wxNumberFormatter::Style::Style_WithThousandsSep)),
+                    GraphItems::Label(_(L"Conjunctions")), GetGraphBarEffect(),
+                    GetGraphBarOpacity()),
+                false);
 
             // update the bar labels
             coverageBarChart->SetBinLabelDisplay(IsDisplayingBarChartLabels() ?

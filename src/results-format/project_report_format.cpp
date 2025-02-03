@@ -3006,23 +3006,25 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                                   project->GetAppendedDocumentFilePath());
             }
         // text size
-        HTMLText += formatRow(_(L"Text size:"), wxString{},
-                              wxNumberFormatter::ToString(
-                                  safe_divide<double>(project->GetTextSize(), 1024), 2,
-                                  wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                                      wxNumberFormatter::Style::Style_WithThousandsSep) +
-                                  _(L"Kbs.")) +
-                    L"\n</table>";
+        HTMLText +=
+            formatRow(_(L"Text size:"), wxString{},
+                      wxString::Format(_(L"%s Kbs."),
+                                       wxNumberFormatter::ToString(
+                                           safe_divide<double>(project->GetTextSize(), 1024), 2,
+                                           wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                               wxNumberFormatter::Style::Style_WithThousandsSep))) +
+            L"\n</table>";
 
         if (listData)
             {
             listData->SetItemText(listDataItemCount, 0, _(L"Text size"));
             listData->SetItemText(
                 listDataItemCount++, 1,
-                wxNumberFormatter::ToString(safe_divide<double>(project->GetTextSize(), 1024), 2,
-                                            wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                                                wxNumberFormatter::Style::Style_WithThousandsSep) +
-                    _(L"Kbs."));
+                wxString::Format(_(L"%s Kbs."),
+                                 wxNumberFormatter::ToString(
+                                     safe_divide<double>(project->GetTextSize(), 1024), 2,
+                                     wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                         wxNumberFormatter::Style::Style_WithThousandsSep)));
             }
         }
 
