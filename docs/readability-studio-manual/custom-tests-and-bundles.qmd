@@ -142,6 +142,7 @@ You can override it so that the additions happen first (resulting in `15`), foll
 | Function | Description |
 | :-- | :-- |
 | AND(Value1, Value2, ...) | Returns true if all conditions are true. |
+| IFS(Condition1, Value1, Condition2, Value2, ...) | Checks up to twelve conditions, returning the value corresponding to the first met condition.<br>\linebreak This is shorthand for multiple nested `IF` commands, providing better readability. Will accept 1–12 condition/value pairs.<br>\linebreak NaN will be returned if all conditions are false. |
 | IF(Condition, ValueIfTrue, ValueIfFalse) | If *Condition* is true (non-zero), then *ValueIfTrue* is returned; otherwise, *ValueIfFalse* is returned. |
 | NOT(Value) | Returns the logical negation of *Value.* |
 | OR(Value1, Value2, ...) | Returns true if any condition is true. |
