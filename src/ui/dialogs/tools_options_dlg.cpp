@@ -1576,15 +1576,14 @@ bool ToolsOptionsDlg::ValidateOptions()
                                       m_generalGraphPropertyGrid->GetPropertyValueAsString(
                                           GetStippleImageLabel())),
                      wxGetApp().GetAppName(), wxOK | wxICON_EXCLAMATION);
-        wxFileDialog fd(this, _(L"Select Stipple Image"), wxGetApp().GetAppOptions().GetImagePath(),
-                        wxEmptyString, Wisteria::GraphItems::Image::GetImageFileFilter(),
+        wxFileDialog fd(this, _(L"Select Stipple Image"), wxString{}, wxString{},
+                        Wisteria::GraphItems::Image::GetImageFileFilter(),
                         wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
         if (fd.ShowModal() != wxID_OK)
             {
             return false;
             }
-        wxGetApp().GetAppOptions().SetImagePath(wxFileName(fd.GetPath()).GetPath());
-        m_generalGraphPropertyGrid->SetPropertyValue(GetStippleImageLabel(), fd.GetPath());
+        m_generalGraphPropertyGrid->ChangePropertyValue(GetStippleImageLabel(), fd.GetPath());
         }
     if (((IsPropertyAvailable(m_generalGraphPropertyGrid, GetCommonImageLabel()) &&
           m_generalGraphPropertyGrid->GetPropertyValueAsString(GetCommonImageLabel()).length()) ||
@@ -1604,15 +1603,14 @@ bool ToolsOptionsDlg::ValidateOptions()
                                       m_generalGraphPropertyGrid->GetPropertyValueAsString(
                                           GetCommonImageLabel())),
                      wxGetApp().GetAppName(), wxOK | wxICON_EXCLAMATION);
-        wxFileDialog fd(this, _(L"Select Common Image"), wxGetApp().GetAppOptions().GetImagePath(),
-                        wxEmptyString, Wisteria::GraphItems::Image::GetImageFileFilter(),
+        wxFileDialog fd(this, _(L"Select Common Image"), wxString{}, wxString{},
+                        Wisteria::GraphItems::Image::GetImageFileFilter(),
                         wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
         if (fd.ShowModal() != wxID_OK)
             {
             return false;
             }
-        wxGetApp().GetAppOptions().SetImagePath(wxFileName(fd.GetPath()).GetPath());
-        m_generalGraphPropertyGrid->SetPropertyValue(GetCommonImageLabel(), fd.GetPath());
+        m_generalGraphPropertyGrid->ChangePropertyValue(GetCommonImageLabel(), fd.GetPath());
         }
     if (IsPropertyAvailable(m_generalGraphPropertyGrid, GetImageLabel()) &&
         !m_generalGraphPropertyGrid->GetPropertyValueAsString(GetImageLabel()).empty() &&
@@ -1622,16 +1620,14 @@ bool ToolsOptionsDlg::ValidateOptions()
             wxString::Format(_(L"\"%s\": graph background image file not found."),
                              m_generalGraphPropertyGrid->GetPropertyValueAsString(GetImageLabel())),
             wxGetApp().GetAppName(), wxOK | wxICON_EXCLAMATION);
-        wxFileDialog fd(this, _(L"Select Background Image"),
-                        wxGetApp().GetAppOptions().GetImagePath(), wxEmptyString,
+        wxFileDialog fd(this, _(L"Select Background Image"), wxString{}, wxString{},
                         Wisteria::GraphItems::Image::GetImageFileFilter(),
                         wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
         if (fd.ShowModal() != wxID_OK)
             {
             return false;
             }
-        wxGetApp().GetAppOptions().SetImagePath(wxFileName(fd.GetPath()).GetPath());
-        m_generalGraphPropertyGrid->SetPropertyValue(GetImageLabel(), fd.GetPath());
+        m_generalGraphPropertyGrid->ChangePropertyValue(GetImageLabel(), fd.GetPath());
         }
     if ((IsPropertyAvailable(m_generalGraphPropertyGrid, GetLogoImageLabel()) &&
          m_generalGraphPropertyGrid->GetPropertyValueAsString(GetLogoImageLabel()).length()) &&
@@ -1641,15 +1637,14 @@ bool ToolsOptionsDlg::ValidateOptions()
                          _(L"\"%s\": graph logo image file not found."),
                          m_generalGraphPropertyGrid->GetPropertyValueAsString(GetLogoImageLabel())),
                      wxGetApp().GetAppName(), wxOK | wxICON_EXCLAMATION);
-        wxFileDialog fd(this, _(L"Select Logo Image"), wxGetApp().GetAppOptions().GetImagePath(),
-                        wxEmptyString, Wisteria::GraphItems::Image::GetImageFileFilter(),
+        wxFileDialog fd(this, _(L"Select Logo Image"), wxString{}, wxString{},
+                        Wisteria::GraphItems::Image::GetImageFileFilter(),
                         wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
         if (fd.ShowModal() != wxID_OK)
             {
             return false;
             }
-        wxGetApp().GetAppOptions().SetImagePath(wxFileName(fd.GetPath()).GetPath());
-        m_generalGraphPropertyGrid->SetPropertyValue(GetLogoImageLabel(), fd.GetPath());
+        m_generalGraphPropertyGrid->ChangePropertyValue(GetLogoImageLabel(), fd.GetPath());
         }
     if (!IsStandardProjectSettings() &&
         IsPropertyAvailable(m_histogramPropertyGrid, GetBinSortingLabel()) &&
@@ -1664,7 +1659,7 @@ bool ToolsOptionsDlg::ValidateOptions()
             wxMessageBox(warningIter->GetMessage(), wxGetApp().GetAppName(),
                          warningIter->GetFlags(), this);
             }
-        m_histogramPropertyGrid->SetPropertyValue(GetIntervalDisplayLabel(), 1);
+        m_histogramPropertyGrid->ChangePropertyValue(GetIntervalDisplayLabel(), 1);
         }
     if (m_excludedPhrasesPath.get_value().length() &&
         !wxFile::Exists(m_excludedPhrasesPath.get_value()))
