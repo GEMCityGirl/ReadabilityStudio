@@ -1018,7 +1018,7 @@ namespace LuaScripting
             if (scoresWindow)
                 {
                 const ProjectDoc* doc = dynamic_cast<ProjectDoc*>(view->GetDocument());
-                const wxString originalLabel = scoresWindow->GetLabel();
+                const wxString originalLabel = scoresWindow->GetName();
                 scoresWindow->SetLabel(originalLabel + wxString::Format(L" [%s]",
                                        wxFileName::StripExtension(doc->GetTitle())));
                 lua_pushboolean(L, scoresWindow->Save(wxString(luaL_checklstring(L, 2, nullptr), wxConvUTF8)) );
@@ -1090,7 +1090,7 @@ namespace LuaScripting
             if (graphWindow)
                 {
                 const ProjectDoc* doc = dynamic_cast<ProjectDoc*>(view->GetDocument());
-                const wxString originalLabel = graphWindow->GetLabel();
+                const wxString originalLabel = graphWindow->GetName();
                 graphWindow->SetLabel(originalLabel + wxString::Format(L" [%s]",
                     wxFileName::StripExtension(doc->GetTitle())));
                 Wisteria::UI::ImageExportOptions opt;
@@ -1154,11 +1154,10 @@ namespace LuaScripting
             if (textWindow)
                 {
                 const ProjectDoc* doc = dynamic_cast<ProjectDoc*>(view->GetDocument());
-                const wxString originalLabel = textWindow->GetLabel();
+                const wxString originalLabel = textWindow->GetName();
                 textWindow->SetTitleName(originalLabel + wxString::Format(L" [%s]",
                                          wxFileName::StripExtension(doc->GetTitle())));
                 lua_pushboolean(L, textWindow->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8)) );
-                textWindow->SetTitleName(originalLabel);
                 }
             else
                 {
@@ -1197,7 +1196,7 @@ namespace LuaScripting
                         view->GetSummaryView().FindWindowById(windowId) );
                 if (window)
                     {
-                    const wxString originalLabel = window->GetLabel();
+                    const wxString originalLabel = window->GetName();
                     window->SetLabel(originalLabel + wxString::Format(L" [%s]",
                                      wxFileName::StripExtension(doc->GetTitle())));
                     lua_pushboolean(L, window->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8)));
@@ -1211,7 +1210,7 @@ namespace LuaScripting
                         view->GetReadabilityResultsView().FindWindowById(windowId));
                 if (window)
                     {
-                    const wxString originalLabel = window->GetLabel();
+                    const wxString originalLabel = window->GetName();
                     window->SetLabel(originalLabel + wxString::Format(L" [%s]",
                                      wxFileName::StripExtension(doc->GetTitle())));
                     lua_pushboolean(L, window->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8)));
@@ -1225,7 +1224,7 @@ namespace LuaScripting
                         view->GetReadabilityResultsView().FindWindowById(windowId));
                 if (window)
                     {
-                    const wxString originalLabel = window->GetLabel();
+                    const wxString originalLabel = window->GetName();
                     window->SetLabel(originalLabel + wxString::Format(L" [%s]",
                                     wxFileName::StripExtension(doc->GetTitle())));
                     lua_pushboolean(L, window->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8)));
@@ -1282,7 +1281,7 @@ namespace LuaScripting
             if (listWindow)
                 {
                 const ProjectDoc* doc = dynamic_cast<ProjectDoc*>(view->GetDocument());
-                const wxString originalLabel = listWindow->GetLabel();
+                const wxString originalLabel = listWindow->GetName();
                 listWindow->SetLabel(originalLabel + wxString::Format(L" [%s]",
                                      wxFileName::StripExtension(doc->GetTitle())));
                 GridExportOptions exportOptions;

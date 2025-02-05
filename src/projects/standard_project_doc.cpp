@@ -5791,7 +5791,6 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                               wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
                     textWindow->Hide();
                     textWindow->SetMargins(10, 10);
-                    textWindow->SetLabel(windowLabel);
                     textWindow->SetName(windowLabel);
                     // find respective list and add it beneath that
                     auto buddyWindowPosition =
@@ -6007,7 +6006,6 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     wxDefaultSize, wxTE_READONLY);
                 textWindow->Hide();
                 textWindow->SetMargins(10, 10);
-                textWindow->SetLabel(_(L"Highlighted Report"));
                 textWindow->SetName(_(L"Highlighted Report"));
                 view->GetGrammarView().InsertWindow(0, textWindow);
                 }
@@ -6122,7 +6120,6 @@ ProjectDoc::LoadTextWindow(Wisteria::UI::FormattedTextCtrl* textWindow, const in
                                            wxDefaultSize, wxTE_READONLY);
         textWindow->Hide();
         textWindow->SetMargins(10, 10);
-        textWindow->SetLabel(label);
         textWindow->SetName(label);
         }
     UpdateTextWindowOptions(textWindow);
@@ -6253,7 +6250,6 @@ void ProjectDoc::LoadHJTextWindow(const std::wstring& mainBuffer, const std::wst
                 wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
             m_hjTextWindow->Hide();
             m_hjTextWindow->SetMargins(10, 10);
-            m_hjTextWindow->SetLabel(_(L"Harris-Jacobson (Unfamiliar) Report"));
             m_hjTextWindow->SetName(_(L"Harris-Jacobson (Unfamiliar) Report"));
             }
         UpdateTextWindowOptions(m_hjTextWindow);
@@ -6294,7 +6290,6 @@ void ProjectDoc::LoadDCTextWindow(const std::wstring& mainBuffer, const std::wst
                                       wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
             m_dcTextWindow->Hide();
             m_dcTextWindow->SetMargins(10, 10);
-            m_dcTextWindow->SetLabel(_(L"Dale-Chall (Unfamiliar) Report"));
             m_dcTextWindow->SetName(_(L"Dale-Chall (Unfamiliar) Report"));
             }
         UpdateTextWindowOptions(m_dcTextWindow);
