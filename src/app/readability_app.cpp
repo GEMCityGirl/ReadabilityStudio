@@ -3453,36 +3453,37 @@ void MainFrame::OnTestsOverview([[maybe_unused]] wxRibbonButtonBarEvent& event)
             languages.RemoveLast();
             }
         testsOverviewDlg.GetListCtrl()->SetItemText(i, 2, languages);
+        const auto padCell = [](const auto& cellValue) { return L" " + cellValue; };
         // word complexity
         const wxString wordComplexity =
             testPos->has_factor(readability::test_factor::word_complexity_2_plus_syllables) ?
-                _(L" X (2 or more syllables)") :
+                padCell(_(L"X (2 or more syllables)")) :
             testPos->has_factor(readability::test_factor::word_complexity_3_plus_syllables) ?
-                _(L" X (3 or more syllables)") :
+                padCell(_(L"X (3 or more syllables)")) :
             testPos->has_factor(readability::test_factor::word_complexity_density) ?
-                _(L" X (syllable density)") :
+                padCell(_(L"X (syllable density)")) :
             testPos->has_factor(readability::test_factor::word_complexity) ? wxString(_DT(L" X ")) :
                                                                              wxString{};
         testsOverviewDlg.GetListCtrl()->SetItemText(i, 3, wordComplexity);
         // word length
         const wxString wordLength =
             testPos->has_factor(readability::test_factor::word_length_3_less) ?
-                _(L" X (3 or less characters)") :
+                padCell(_(L"X (3 or less characters)")) :
             testPos->has_factor(readability::test_factor::word_length_6_plus) ?
-                _(L" X (6 or more characters)") :
+                padCell(_(L"X (6 or more characters)")) :
             testPos->has_factor(readability::test_factor::word_length_7_plus) ?
-                _(L" X (7 or more characters)") :
+                padCell(_(L"X (7 or more characters)")) :
             testPos->has_factor(readability::test_factor::word_length) ? wxString(_DT(L" X ")) :
                                                                          wxString{};
         testsOverviewDlg.GetListCtrl()->SetItemText(i, 4, wordLength);
         // word familiarity
         const wxString wordFamiliarity =
             testPos->has_factor(readability::test_factor::word_familiarity_spache) ?
-                _(L" X (Spache rules)") :
+                padCell(_(L"X (Spache rules)")) :
             testPos->has_factor(readability::test_factor::word_familiarity_dale_chall) ?
-                _(L" X (Dale-Chall rules)") :
+                padCell(_(L"X (Dale-Chall rules)")) :
             testPos->has_factor(readability::test_factor::word_familiarity_harris_jacobson) ?
-                _(L" X (Harris-Jacobson rules)") :
+                padCell(_(L"X (Harris-Jacobson rules)")) :
                 wxString{};
         testsOverviewDlg.GetListCtrl()->SetItemText(i, 5, wordFamiliarity);
         // sentence length

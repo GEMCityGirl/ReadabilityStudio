@@ -107,7 +107,7 @@ namespace LuaScripting
                 }
             }
         // ignore mail links
-        if (path.StartsWith(_(L"mailto")))
+        if (path.StartsWith(L"mailto"))
             {
             return;
             }

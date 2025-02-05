@@ -1981,6 +1981,7 @@ void ProjectView::UpdateStatistics()
             explanationString += L"</span></td></tr></thead>\n    <tr><td>";
             explanationString +=
                 wxString::Format(
+                    // TRANSLATORS: %s are formatted numbers
                     _(L"<p>Grade level std. dev.: %s<br />Reading age std. dev.: %s<br />"
                       "Predicted cloze score std. dev.: %s</p><p>"
                       "Standard deviation is the measurement of how far values in a range "

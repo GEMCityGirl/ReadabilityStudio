@@ -635,9 +635,10 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
             useDescription += L".";
             if (containsHighPercentageOfNonDochWords)
                 {
-                useDescription +=
-                    _(L" However, this document contains a high percentage of non-Dolch words "
-                      "and may not be appropriate for using as a Dolch test aid.");
+                useDescription.append(L" ").append(
+                    _(L"However, this document contains a high percentage of "
+                      "non-Dolch words and may not be appropriate for using as a "
+                      "Dolch test aid."));
                 }
             useDescription += L"<br /><br />";
             }
@@ -2742,7 +2743,8 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
 
                 if (listData)
                     {
-                    listData->SetItemText(listDataItemCount, 0, _(L"Number of wording errors & misspellings"));
+                    listData->SetItemText(listDataItemCount, 0,
+                                          _(L"Number of wording errors & misspellings"));
                     listData->SetItemText(
                         listDataItemCount++, 1,
                         wxNumberFormatter::ToString(
@@ -3006,25 +3008,25 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                                   project->GetAppendedDocumentFilePath());
             }
         // text size
-        HTMLText +=
-            formatRow(_(L"Text size:"), wxString{},
-                      wxString::Format(_(L"%s Kbs."),
-                                       wxNumberFormatter::ToString(
-                                           safe_divide<double>(project->GetTextSize(), 1024), 2,
-                                           wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                                               wxNumberFormatter::Style::Style_WithThousandsSep))) +
-            L"\n</table>";
+        HTMLText += formatRow(_(L"Text size:"), wxString{},
+                              wxString::Format( // TRANSLATORS: %s is a file size
+                                  _(L"%s Kbs."),
+                                  wxNumberFormatter::ToString(
+                                      safe_divide<double>(project->GetTextSize(), 1024), 2,
+                                      wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                          wxNumberFormatter::Style::Style_WithThousandsSep))) +
+                    L"\n</table>";
 
         if (listData)
             {
             listData->SetItemText(listDataItemCount, 0, _(L"Text size"));
             listData->SetItemText(
                 listDataItemCount++, 1,
-                wxString::Format(_(L"%s Kbs."),
-                                 wxNumberFormatter::ToString(
-                                     safe_divide<double>(project->GetTextSize(), 1024), 2,
-                                     wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                                         wxNumberFormatter::Style::Style_WithThousandsSep)));
+                wxString::Format( // TRANSLATORS: %s is a file size
+                    _(L"%s Kbs."), wxNumberFormatter::ToString(
+                                       safe_divide<double>(project->GetTextSize(), 1024), 2,
+                                       wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                           wxNumberFormatter::Style::Style_WithThousandsSep)));
             }
         }
 
@@ -3240,7 +3242,9 @@ wxString ProjectReportFormat::FormatHtmlWarningSection(const wxString& note)
                             "<th style='text-align:left; background:yellow;'><span "
                             "style='color:black;'>%s</span></th></tr>\n"
                             "<tr><td style='text-align:left'>%s</td></tr></table>\n",
-                            wxString(BaseProjectView::GetWarningEmoji() + _(L" Warning")), note);
+                            wxString::Format( // TRANSLATORS: %s is a warning emoji (icon)
+                                _(L"%s Warning"), BaseProjectView::GetWarningEmoji()),
+                            note);
     }
 
 //------------------------------------------------

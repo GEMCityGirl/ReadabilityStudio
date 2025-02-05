@@ -2454,12 +2454,11 @@ void BatchProjectDoc::LoadScoresSection()
                         }
                     else if (fryGraph->GetScores().at(i).IsScoreOutOfGradeRange())
                         {
-                        wxString TOO_DIFFICULT_DESCRIPTION =
-                            _(L"Text is too difficult to be classified to a specific grade level because "
-                               "it contains too many ");
-                        TOO_DIFFICULT_DESCRIPTION += fryGraph->GetScores().at(i).IsWordsHard() ?
-                                                    _(L"high syllable words.") :
-                                                    _(L"long sentences.");
+                        const wxString TOO_DIFFICULT_DESCRIPTION = fryGraph->GetScores().at(i).IsWordsHard() ?
+                            _(L"Text is too difficult to be classified to a specific grade "
+                               "level because it contains too many high syllable words.") :
+                            _(L"Text is too difficult to be classified to a specific grade "
+                               "level because it contains too many long sentences.");
                         m_scoreRawData->SetItemText(i, currentColumn++, TOO_DIFFICULT_DESCRIPTION);
                         (*pos)->ReviewTestGoal(ReadabilityMessages::FRY(),
                             std::numeric_limits<double>::quiet_NaN());
@@ -2499,15 +2498,16 @@ void BatchProjectDoc::LoadScoresSection()
                         }
                     else if (fryGraph->GetScores().at(i).IsScoreOutOfGradeRange())
                         {
-                        wxString TOO_DIFFICULT_DESCRIPTION =
-                            _(L"Text is too difficult to be classified to a specific grade level "
-                              "because it contains too many ");
-                        TOO_DIFFICULT_DESCRIPTION += fryGraph->GetScores().at(i).IsWordsHard() ?
-                                                    _(L"high syllable words.") :
-                                                    _(L"long sentences.");
+                        const wxString TOO_DIFFICULT_DESCRIPTION =
+                            fryGraph->GetScores().at(i).IsWordsHard() ?
+                                _(L"Text is too difficult to be classified to a specific "
+                                  "grade level because it contains too many high syllable words.") :
+                                _(L"Text is too difficult to be classified to a specific "
+                                  "grade level because it contains too many long sentences.");
+
                         m_scoreRawData->SetItemText(i, currentColumn++, TOO_DIFFICULT_DESCRIPTION);
                         (*pos)->ReviewTestGoal(ReadabilityMessages::GPM_FRY(),
-                            std::numeric_limits<double>::quiet_NaN());
+                                               std::numeric_limits<double>::quiet_NaN());
                         }
                     else
                         {
@@ -2547,17 +2547,15 @@ void BatchProjectDoc::LoadScoresSection()
                         }
                     else if (schwartzGraph->GetScores().at(i).IsScoreOutOfGradeRange())
                         {
-                        wxString TOO_DIFFICULT_DESCRIPTION =
-                            _(L"Text is too difficult to be classified to a specific grade "
-                              "level because it contains too many ");
-                        TOO_DIFFICULT_DESCRIPTION +=
+                        const wxString TOO_DIFFICULT_DESCRIPTION =
                             schwartzGraph->GetScores().at(i).IsWordsHard() ?
-                                _(L"high syllable words.") :
-                                _(L"long sentences.");
-                        m_scoreRawData->SetItemText(i, currentColumn++,
-                            TOO_DIFFICULT_DESCRIPTION);
+                                _(L"Text is too difficult to be classified to a specific grade "
+                                  "level because it contains too many high syllable words.") :
+                                _(L"Text is too difficult to be classified to a specific grade "
+                                  "level because it contains too many long sentences.");
+                        m_scoreRawData->SetItemText(i, currentColumn++, TOO_DIFFICULT_DESCRIPTION);
                         (*pos)->ReviewTestGoal(ReadabilityMessages::SCHWARTZ(),
-                            std::numeric_limits<double>::quiet_NaN());
+                                               std::numeric_limits<double>::quiet_NaN());
                         }
                     else
                         {
@@ -2595,15 +2593,16 @@ void BatchProjectDoc::LoadScoresSection()
                         }
                     else if (raygorGraph->GetScores().at(i).IsScoreOutOfGradeRange())
                         {
-                        wxString TOO_DIFFICULT_DESCRIPTION =
-                            _(L"Text is too difficult to be classified to a specific grade level "
-                              "because it contains too many ");
-                        TOO_DIFFICULT_DESCRIPTION += raygorGraph->GetScores().at(i).IsWordsHard() ?
-                                                    _(L"6+ character words.") :
-                                                    _(L"long sentences.");
+                        const wxString TOO_DIFFICULT_DESCRIPTION =
+                            raygorGraph->GetScores().at(i).IsWordsHard() ?
+                                _(L"Text is too difficult to be classified to a specific "
+                                  "grade level because it contains too many 6+ character words.") :
+                                _(L"Text is too difficult to be classified to a specific "
+                                  "grade level because it contains too many long sentences.");
+
                         m_scoreRawData->SetItemText(i, currentColumn++, TOO_DIFFICULT_DESCRIPTION);
                         (*pos)->ReviewTestGoal(ReadabilityMessages::RAYGOR(),
-                            std::numeric_limits<double>::quiet_NaN());
+                                               std::numeric_limits<double>::quiet_NaN());
                         }
                     else
                         {

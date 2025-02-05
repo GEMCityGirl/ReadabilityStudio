@@ -1842,7 +1842,8 @@ void ProjectDoc::DisplayWordsBreakdown()
                     wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN);
                 listView->Hide();
                 listView->SetLabel(pos->GetIterator()->get_name().c_str());
-                listView->SetName(wxString(pos->GetIterator()->get_name().c_str()) + _(L" (Unfamiliar) List"));
+                listView->SetName(wxString::Format(_(L"%s (Unfamiliar) List"),
+                                                   pos->GetIterator()->get_name().c_str()));
                 listView->EnableGridLines();
                 listView->InsertColumn(0, _(L"Unfamiliar Word"));
                 listView->InsertColumn(1, _(L"Frequency"));
@@ -3937,20 +3938,20 @@ bool ProjectDoc::AddGilliamPenaMountainFryTest(const bool setFocus)
         }
     else if (gFryGraph->GetScores().front().IsScoreOutOfGradeRange())
         {
-        wxString TOO_DIFFICULT_DESCRIPTION =
-            _(L"Text is too difficult to be classified to a specific grade level because "
-              "it contains too many ");
-        TOO_DIFFICULT_DESCRIPTION += gFryGraph->GetScores().front().IsWordsHard() ?
-                                    _(L"high syllable words.") :
-                                    _(L"long sentences.");
+        const wxString TOO_DIFFICULT_DESCRIPTION =
+            gFryGraph->GetScores().front().IsWordsHard() ?
+                _(L"Text is too difficult to be classified to a specific "
+                  "grade level because it contains too many high syllable words.") :
+                _(L"Text is too difficult to be classified to a specific "
+                  "grade level because it contains too many long sentences.");
+
         const wxString description = L"<tr><td>" + TOO_DIFFICULT_DESCRIPTION + L"</td></tr>";
 
-        SetReadabilityTestResult(CURRENT_TEST_KEY,
-            theTest.first->get_test().get_long_name().c_str(), description,
-            std::make_pair(
-                std::numeric_limits<double>::quiet_NaN(), BaseProjectView::GetFailedLabel()),
-            BaseProjectView::GetFailedLabel(),
-            std::numeric_limits<double>::quiet_NaN(),
+        SetReadabilityTestResult(
+            CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(), description,
+            std::make_pair(std::numeric_limits<double>::quiet_NaN(),
+                           BaseProjectView::GetFailedLabel()),
+            BaseProjectView::GetFailedLabel(), std::numeric_limits<double>::quiet_NaN(),
             std::numeric_limits<double>::quiet_NaN(), setFocus);
         }
     else
@@ -4110,20 +4111,20 @@ bool ProjectDoc::AddFryTest(const bool setFocus)
         }
     else if (fryGraph->GetScores().front().IsScoreOutOfGradeRange())
         {
-        wxString TOO_DIFFICULT_DESCRIPTION =
-            _(L"Text is too difficult to be classified to a specific grade level because "
-              "it contains too many ");
-        TOO_DIFFICULT_DESCRIPTION += fryGraph->GetScores().front().IsWordsHard() ?
-                                    _(L"high syllable words.") :
-                                    _(L"long sentences.");
+        const wxString TOO_DIFFICULT_DESCRIPTION =
+            fryGraph->GetScores().front().IsWordsHard() ?
+                _(L"Text is too difficult to be classified to a specific "
+                  "grade level because it contains too many high syllable words.") :
+                _(L"Text is too difficult to be classified to a specific "
+                  "grade level because it contains too many long sentences.");
+
         wxString description = L"<tr><td>" + TOO_DIFFICULT_DESCRIPTION + L"</td></tr>";
 
-        SetReadabilityTestResult(CURRENT_TEST_KEY,
-            theTest.first->get_test().get_long_name().c_str(), description,
-            std::make_pair(
-                std::numeric_limits<double>::quiet_NaN(), BaseProjectView::GetFailedLabel()),
-            BaseProjectView::GetFailedLabel(),
-            std::numeric_limits<double>::quiet_NaN(),
+        SetReadabilityTestResult(
+            CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(), description,
+            std::make_pair(std::numeric_limits<double>::quiet_NaN(),
+                           BaseProjectView::GetFailedLabel()),
+            BaseProjectView::GetFailedLabel(), std::numeric_limits<double>::quiet_NaN(),
             std::numeric_limits<double>::quiet_NaN(), setFocus);
         }
     else
@@ -4278,17 +4279,19 @@ bool ProjectDoc::AddRaygorTest(const bool setFocus)
         }
     else if (raygorGraph->GetScores().at(0).IsScoreOutOfGradeRange())
         {
-        wxString TOO_DIFFICULT_DESCRIPTION =
-            _(L"Text is too difficult to be classified to a specific grade level "
-              "because it contains too many ");
-        TOO_DIFFICULT_DESCRIPTION += raygorGraph->GetScores().at(0).IsWordsHard() ?
-                                    _(L"6+ character words.") :
-                                    _(L"long sentences.");
-        SetReadabilityTestResult(CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
+        const wxString TOO_DIFFICULT_DESCRIPTION =
+            raygorGraph->GetScores().at(0).IsWordsHard() ?
+                _(L"Text is too difficult to be classified to a specific "
+                  "grade level because it contains too many 6+ character words.") :
+                _(L"Text is too difficult to be classified to a specific "
+                  "grade level because it contains too many long sentences.");
+
+        SetReadabilityTestResult(
+            CURRENT_TEST_KEY, theTest.first->get_test().get_long_name().c_str(),
             L"<tr><td>" + TOO_DIFFICULT_DESCRIPTION + L"</td></tr>",
-            std::make_pair(std::numeric_limits<double>::quiet_NaN(), BaseProjectView::GetFailedLabel()),
-            BaseProjectView::GetFailedLabel(),
-            std::numeric_limits<double>::quiet_NaN(),
+            std::make_pair(std::numeric_limits<double>::quiet_NaN(),
+                           BaseProjectView::GetFailedLabel()),
+            BaseProjectView::GetFailedLabel(), std::numeric_limits<double>::quiet_NaN(),
             std::numeric_limits<double>::quiet_NaN(), setFocus);
         }
     else
