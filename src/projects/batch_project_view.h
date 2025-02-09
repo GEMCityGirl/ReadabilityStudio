@@ -338,20 +338,38 @@ class BatchProjectView final : public BaseProjectView
                          const bool includeWarnings, const bool includeSummaryStats,
                          const Wisteria::UI::ImageExportOptions& graphOptions);
 
+    [[nodiscard]]
+    static wxString GetPredClozeScoresSuffix()
+        {
+        return _(L"(pred. cloze scores)");
+        }
+
+    [[nodiscard]]
+    static wxString GetIndexValuesSuffix()
+        {
+        return _(L"(index values)");
+        }
+
+    [[nodiscard]]
+    static wxString GetGradeLevelsSuffix()
+        {
+        return _(L"(grade levels)");
+        }
+
     // label functions
     [[nodiscard]]
     static wxString FormatClozeValuesLabel(const wxString& testName)
         {
-        return testName + _(L" (pred. cloze scores)");
+        return testName + L" " + GetPredClozeScoresSuffix();
         }
 
     [[nodiscard]]
     static wxString StripClozeValuesLabel(const wxString& testName)
         {
         wxString begin;
-        if (testName.EndsWith(_(L" (pred. cloze scores)"), &begin))
+        if (testName.EndsWith(GetPredClozeScoresSuffix(), &begin))
             {
-            begin.Trim();
+            begin.Trim(true).Trim(false);
             return begin;
             }
         else
@@ -363,16 +381,16 @@ class BatchProjectView final : public BaseProjectView
     [[nodiscard]]
     static wxString FormatIndexValuesLabel(const wxString& testName)
         {
-        return testName + _(L" (index values)");
+        return testName + L" " + GetIndexValuesSuffix();
         }
 
     [[nodiscard]]
     static wxString StripIndexValuesLabel(const wxString& testName)
         {
         wxString begin;
-        if (testName.EndsWith(_(L" (index values)"), &begin))
+        if (testName.EndsWith(GetIndexValuesSuffix(), &begin))
             {
-            begin.Trim();
+            begin.Trim(true).Trim(false);
             return begin;
             }
         else
@@ -384,16 +402,16 @@ class BatchProjectView final : public BaseProjectView
     [[nodiscard]]
     static wxString FormatGradeLevelsLabel(const wxString& testName)
         {
-        return testName + _(L" (grade levels)");
+        return testName + L" " + GetGradeLevelsSuffix();
         }
 
     [[nodiscard]]
     static wxString StripGradeLevelsLabel(const wxString& testName)
         {
         wxString begin;
-        if (testName.EndsWith(_(L" (grade levels)"), &begin))
+        if (testName.EndsWith(GetGradeLevelsSuffix(), &begin))
             {
-            begin.Trim();
+            begin.Trim(true).Trim(false);
             return begin;
             }
         else

@@ -690,7 +690,7 @@ void ProjectView::OnTestListDblClick([[maybe_unused]] wxListEvent& event)
             wxGetApp().GetMainFrame()->DisplayHelp(L"online/readability-tests-english.html");
             }
         }
-    else if (selectedTest == _(L"Dolch Sight Words"))
+    else if (selectedTest == ReadabilityMessages::GetDolchLabel())
         {
         wxGetApp().GetMainFrame()->DisplayHelp(L"online/reviewing-standard-projects.html");
         }
