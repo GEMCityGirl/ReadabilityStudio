@@ -1005,7 +1005,7 @@ wxString ReadabilityMessages::GetGradeScaleDescription(double value) const
     return wxString::Format(
         // TRANSLATORS: "%s%s, %s%s" is opening highlight tag, grade, month,
         // and closing highlight tag
-        _(L"This document is at least suitable for a reader at the %s%s, %s%s level."),
+        _(L"This document is at least suitable for a reader at the level: %s%s, %s%s."),
         GetHighlightBegin(), GetGradeScaleLongLabel(grade), GetMonthLabel(month),
         GetHighlightEnd());
     }
@@ -1019,7 +1019,7 @@ wxString ReadabilityMessages::GetGradeScaleDescription(size_t value) const
     return wxString::Format(
         // TRANSLATORS: "%s%s%s" is opening highlight tag, grade level description,
         // and closing highlight tag
-        _(L"This document is at least suitable for a reader at the %s%s%s level."),
+        _(L"This document is at least suitable for a reader at the level: %s%s%s."),
         GetHighlightBegin(), GetGradeScaleLongLabel(value), GetHighlightEnd());
     }
 
@@ -1033,7 +1033,7 @@ wxString ReadabilityMessages::GetGradeScaleDescription(size_t firstGrade, size_t
     return wxString::Format(
         // TRANSLATORS: "%s%s%s" is opening highlight tag, grade level description,
         // and closing highlight tag
-        _(L"This document is at least suitable for a reader between the %s%s%s to %s%s%s level."),
+        _(L"This document is at least suitable for a reader between the levels: %s%s%s to %s%s%s."),
         GetHighlightBegin(), GetGradeScaleLongLabel(firstGrade), GetHighlightEnd(),
         GetHighlightBegin(), GetGradeScaleLongLabel(secondGrade), GetHighlightEnd());
     }
