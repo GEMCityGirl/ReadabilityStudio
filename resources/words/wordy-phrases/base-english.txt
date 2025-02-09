@@ -51,7 +51,7 @@ a know	a known	3
 a large number of	numerous, many	0		
 a large percentage of	numerous, many	0		
 a leg up	a promising start	2		
-a like	alike	3	 with;give;in	statement
+a like	alike	3	give;in;with	statement
 a little bit	a little, a bit	1		
 a majority of	most	0		
 a number of	some, many, a few	0		
