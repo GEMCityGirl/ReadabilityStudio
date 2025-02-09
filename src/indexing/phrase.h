@@ -600,6 +600,52 @@ namespace grammar
                 }
             }
 
+        /// @returns The phrases, formatted as an exportable text file.
+        [[nodiscard]]
+        std::wstring to_string() const
+            {
+            std::wstring outputStr;
+            std::wstring expStr;
+            for (const auto& phrase : get_phrases())
+                {
+                outputStr += phrase.first.to_string().c_str();
+                // don't bother exporting blank columns
+                if (phrase.second.length() || phrase.first.get_proceeding_exceptions().size() ||
+                    phrase.first.get_trailing_exceptions().size())
+                    {
+                    outputStr += L'\t';
+                    outputStr += phrase.second.c_str();
+                    outputStr += L'\t';
+                    outputStr += std::to_wstring(static_cast<int>(phrase.first.get_type()));
+                    outputStr += L'\t';
+                    expStr.clear();
+                    for (const auto& exp : phrase.first.get_proceeding_exceptions())
+                        {
+                        expStr.append(exp.c_str()).append(L";");
+                        }
+                    if (expStr.ends_with(L";"))
+                        {
+                        expStr.pop_back();
+                        }
+                    outputStr += expStr;
+                    outputStr += L'\t';
+
+                    expStr.clear();
+                    for (const auto& exp : phrase.first.get_trailing_exceptions())
+                        {
+                        expStr.append(exp.c_str()).append(L";");
+                        }
+                    if (expStr.ends_with(L";"))
+                        {
+                        expStr.pop_back();
+                        }
+                    outputStr += expStr;
+                    }
+                outputStr += L"\r\n";
+                }
+            return outputStr;
+            }
+
         /** @brief Sorts the phrases.
             @details If loading multiple lists (from load_phrases()), this it is usually
                 optimal to not sort while loading them, but instead sort them afterwards.*/

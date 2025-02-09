@@ -917,53 +917,13 @@ namespace LuaScripting
                 }
             }
 
-        wxString outputStr;
-        wxString expStr;
-        for (const auto& phrase : phrases.get_phrases())
-            {
-            outputStr += phrase.first.to_string().c_str();
-            // don't bother exporting blank columns
-            if (phrase.second.length() || phrase.first.get_proceeding_exceptions().size() ||
-                phrase.first.get_trailing_exceptions().size())
-                {
-                outputStr += L'\t';
-                outputStr += phrase.second.c_str();
-                outputStr += L'\t';
-                outputStr += wxString::Format(L"%d", static_cast<int>(phrase.first.get_type()));
-                outputStr += L'\t';
-                expStr.clear();
-                for (const auto& exp : phrase.first.get_proceeding_exceptions())
-                    {
-                    expStr.append(exp.c_str()).append(L";");
-                    }
-                if (expStr.ends_with(L";"))
-                    {
-                    expStr.RemoveLast(1);
-                    }
-                outputStr += expStr;
-                outputStr += L'\t';
-
-                expStr.clear();
-                for (const auto& exp : phrase.first.get_trailing_exceptions())
-                    {
-                    expStr.append(exp.c_str()).append(L";");
-                    }
-                if (expStr.ends_with(L";"))
-                    {
-                    expStr.RemoveLast(1);
-                    }
-                outputStr += expStr;
-                }
-            outputStr += L"\r\n";
-            }
-
         // create the folder to the filepath, if necessary
         wxString path(luaL_checkstring(L, 1), wxConvUTF8);
         wxFileName::Mkdir(wxFileName(path).GetPath(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
 
         wxFileName(path).SetPermissions(wxS_DEFAULT);
         wxFile outputFile(path, wxFile::write);
-        lua_pushboolean(L, outputFile.Write(outputStr, wxConvUTF8));
+        lua_pushboolean(L, outputFile.Write(phrases.to_string(), wxConvUTF8));
 
         wxGetApp().Yield();
         return 1;

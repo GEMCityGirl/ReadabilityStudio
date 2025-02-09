@@ -77,7 +77,7 @@ bool EditWordListDlg::Save(const wxString& filePath)
         outputStr.reserve(outputWords.size() * 5);
         for (size_t i = 0; i < outputWords.size(); ++i)
             {
-            outputStr += outputWords[i].c_str() + wxString(L"\r\n");
+            outputStr.append(outputWords[i].c_str()).append(L"\r\n");
             }
         }
     else
@@ -88,49 +88,10 @@ bool EditWordListDlg::Save(const wxString& filePath)
         grammar::phrase_collection phrases;
         phrases.load_phrases(outputStr, true, false);
         phrases.remove_duplicates();
-        outputStr.clear();
-        wxString expStr;
-        for (const auto& phrase : phrases.get_phrases())
-            {
-            outputStr += phrase.first.to_string().c_str();
-            // don't bother exporting blank columns
-            if (phrase.second.length() || phrase.first.get_proceeding_exceptions().size() ||
-                phrase.first.get_trailing_exceptions().size())
-                {
-                outputStr += L'\t';
-                outputStr += phrase.second.c_str();
-                outputStr += L'\t';
-                outputStr += wxString::Format(L"%d", static_cast<int>(phrase.first.get_type()));
-                outputStr += L'\t';
-                expStr.clear();
-                for (const auto& exp : phrase.first.get_proceeding_exceptions())
-                    {
-                    expStr.append(exp.c_str()).append(L";");
-                    }
-                if (expStr.ends_with(L";"))
-                    {
-                    expStr.RemoveLast(1);
-                    }
-                outputStr += expStr;
-                outputStr += L'\t';
 
-                expStr.clear();
-                for (const auto& exp : phrase.first.get_trailing_exceptions())
-                    {
-                    expStr.append(exp.c_str()).append(L";");
-                    }
-                if (expStr.ends_with(L";"))
-                    {
-                    expStr.RemoveLast(1);
-                    }
-                outputStr += expStr;
-                }
-            outputStr += L"\r\n";
-            }
+        outputStr = phrases.to_string();
         }
 
-    outputStr.Trim(true);
-    outputStr.Trim(false);
     wxFileName(filePath).SetPermissions(wxS_DEFAULT);
     wxFile outputFile(filePath, wxFile::write);
     if (!outputFile.IsOpened())

@@ -1470,49 +1470,6 @@ void ProjectView::OnMenuCommand(wxCommandEvent& event)
             phrases.load_phrases(selectedStrings, true, true);
             phrases.remove_duplicates();
 
-            wxString outputStr;
-            wxString expStr;
-            /// @todo with c++20's format library, move this save code into phrase_collection
-            for (const auto& phrase : phrases.get_phrases())
-                {
-                outputStr += phrase.first.to_string().c_str();
-                // don't bother exporting blank columns
-                if (phrase.second.length() || phrase.first.get_proceeding_exceptions().size() ||
-                    phrase.first.get_trailing_exceptions().size())
-                    {
-                    outputStr += L'\t';
-                    outputStr += phrase.second.c_str();
-                    outputStr += L'\t';
-                    outputStr += wxString::Format(L"%d", static_cast<int>(phrase.first.get_type()));
-                    outputStr += L'\t';
-                    expStr.clear();
-                    for (const auto& exp : phrase.first.get_proceeding_exceptions())
-                        {
-                        expStr.append(exp.c_str()).append(L";");
-                        }
-                    if (expStr.ends_with(L";"))
-                        {
-                        expStr.RemoveLast(1);
-                        }
-                    outputStr += expStr;
-                    outputStr += L'\t';
-
-                    expStr.clear();
-                    for (const auto& exp : phrase.first.get_trailing_exceptions())
-                        {
-                        expStr.append(exp.c_str()).append(L";");
-                        }
-                    if (expStr.ends_with(L";"))
-                        {
-                        expStr.RemoveLast(1);
-                        }
-                    outputStr += expStr;
-                    }
-                outputStr += L"\r\n";
-                }
-
-            outputStr.Trim(true);
-            outputStr.Trim(false);
             wxFileName(filePath).SetPermissions(wxS_DEFAULT);
             wxFile outputFile(filePath, wxFile::write);
             if (!outputFile.IsOpened())
@@ -1525,7 +1482,7 @@ void ProjectView::OnMenuCommand(wxCommandEvent& event)
                 }
             else
                 {
-                outputFile.Write(outputStr, wxConvUTF8);
+                outputFile.Write(phrases.to_string(), wxConvUTF8);
                 doc->SetExcludedPhrasesPath(filePath);
                 }
 
