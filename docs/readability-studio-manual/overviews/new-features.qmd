@@ -10,6 +10,10 @@ source('../R/appdown.r')
 ## Readability Studio 2025 {-}
 ***
 
+### Graph Enhancements {-}
+
+- Added new icon shapes for stipple brushes.
+
 ### Analysis/Test Enhancements {-}
 
 - Custom test formulas:

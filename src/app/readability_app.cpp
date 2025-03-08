@@ -617,7 +617,20 @@ bool ReadabilityApp::OnInit()
                    std::make_pair(_(L"Snowflake"), DONTTRANSLATE(L"snowflake")),
                    std::make_pair(_(L"Blackboard"), DONTTRANSLATE(L"blackboard")),
                    std::make_pair(_(L"Clock"), DONTTRANSLATE(L"clock")),
-                   std::make_pair(_(L"Ruler"), DONTTRANSLATE(L"ruler")) };
+                   std::make_pair(_(L"Ruler"), DONTTRANSLATE(L"ruler")),
+                   std::make_pair(_(L"IV bag"), DONTTRANSLATE(L"ivbag")),
+                   std::make_pair(_(L"Thermometer (cold)"), DONTTRANSLATE(L"cold-thermometer")),
+                   std::make_pair(_(L"Thermometer (hot)"), DONTTRANSLATE(L"hot-thermometer")),
+                   std::make_pair(_(L"Apple (red)"), DONTTRANSLATE(L"apple")),
+                   std::make_pair(_(L"Apple (Granny Smith)"), DONTTRANSLATE(L"granny-smith-apple")),
+                   std::make_pair(_(L"Heart"), DONTTRANSLATE(L"heart")),
+                   std::make_pair(_(L"Immaculate Heart"), DONTTRANSLATE(L"immaculate-heart")),
+                   std::make_pair(_(L"Flame"), DONTTRANSLATE(L"flame")),
+                   std::make_pair(_(L"Office"), DONTTRANSLATE(L"office")),
+                   std::make_pair(_(L"Factory"), DONTTRANSLATE(L"factory")),
+                   std::make_pair(_(L"House"), DONTTRANSLATE(L"house")),
+                   std::make_pair(_(L"Barn"), DONTTRANSLATE(L"barn")),
+                   std::make_pair(_(L"Farm"), DONTTRANSLATE(L"farm")) };
 
     // do the same for the color schemes (for the graphs)
     m_colorSchemeMap = { std::make_pair(_(L"Dusk"), DONTTRANSLATE(L"dusk")),
