@@ -20,6 +20,10 @@ source('../R/appdown.r')
     - New function `IFS`.
     - The functions `MIN, `MAX`, `SUM`, `AVERAGE`, `OR`, and `AND` now support 24 arguments. (These were limited to 7 arguments previously.)
 
+### Bug Fixes {-}
+
+- Printing text windows now supports more paper sizes.
+
 ## Readability Studio 2024.0.1 {-}
 ***
 
