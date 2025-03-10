@@ -82,7 +82,7 @@ class ProjectReportFormat
         @param[out] punctStart The current position of the punctuation info for the document.
             This is updated (i.e., moved) by this function so that in the next call it can
             start off from the same place. This prevents having to scan through the entire
-            collection of punctuations to "catch up" to the current sentence every time
+            collection of punctuation to "catch up" to the current sentence every time
             this function needs to be called.
         @param punctEnd The end of the punctuation info.
         @returns The formatted sentence.*/

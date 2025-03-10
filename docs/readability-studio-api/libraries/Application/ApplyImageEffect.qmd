@@ -1,0 +1,27 @@
+## `ApplyImageEffect`
+
+Applies an effect to an image and saves the result to another image file. Returns `true` if image successfully saved.
+
+### Syntax {-}
+
+``` {.lua}
+boolean ApplyImageEffect(string inputImagePath,
+                         string outputImagePath,
+                         ImageEffect effect)
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`string` inputImagePath | Path to the input image. | 
+|`string` outputImagePath | Where to save the altered image. | 
+|[`ImageEffect`](#imageeffect) effect | The effect to apply to the image. |
+
+
+{{< pagebreak >}}

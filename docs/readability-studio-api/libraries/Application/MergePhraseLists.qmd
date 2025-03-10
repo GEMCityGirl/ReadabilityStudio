@@ -1,0 +1,26 @@
+## `MergePhraseLists`
+
+Creates a new phrase list file from a list of other phrase list files.
+
+### Syntax {-}
+
+``` {.lua}
+boolean MergePhraseLists(string outputFile,
+                         string inputFiles)
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`string` outputFile | Where to save the combined list of phrases. | 
+|`string` inputFile1 | The first input file. |
+|... | Any additional files to merge with `inputFile1`. |
+
+
+{{< pagebreak >}}

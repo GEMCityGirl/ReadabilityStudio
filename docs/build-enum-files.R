@@ -98,7 +98,7 @@ loadEnums <- function(filePath)
   {
   enumText <- read_file(filePath)
   return(stringr::str_extract_all(enumText,
-                                  '[-]{2,}[ [:alnum:][:punct:]]+(\r\n|\r|\n)+[ [:alnum:][:punct:]]+[=][ ]*(\r\n|\r|\n)+[[:space:][:alnum:]["][\'][+][=][#][*][(][)][.][,][-][{][=]]+[}]')[[1]])
+                                  '[-]{2,}[ [:alnum:][:punct:]]+(\r\n|\r|\n)+[ [:alnum:][:punct:]]+[=][ ]*(\r\n|\r|\n)+[[:space:][:alnum:][&]["][\'][+][=][#][*][(][)][.][,][-][{][=]]+[}]')[[1]])
   }
 
 # Loads an enumeration, its description (single line comment above it), and values (and their respective descriptions).
@@ -107,8 +107,8 @@ loadEnum <- function(enum)
   description <- stringr::str_extract(enum, "[-]{1,}[ ]*([[:alnum:] [:punct:]]+)", group = 1)
   name <- stringr::str_extract(enum, "[-]{2,}[ ]*([[:alnum:] [:punct:]]+)[[:space:]]*([:alnum:]+)", group = 2)
   
-  values <- stringr::str_extract(enum, '[{]([[:space:][:alnum:]["][\'][+][=][#][*][(][)][.][,][-][{][=]]+)[}]', group = 1)
-  values <- stringr::str_extract_all(values, '[:space:]*([ [:alnum:]["][\'][+][=][#][*][(][)][.][,][-][{][=]]+)')
+  values <- stringr::str_extract(enum, '[{]([[:space:][:alnum:][&]["][\'][+][=][#][*][(][)][.][,][-][{][=]]+)[}]', group = 1)
+  values <- stringr::str_extract_all(values, '[:space:]*([ [:alnum:][&]["][\'][+][=][#][*][(][)][.][,][-][{][=]]+)')
   values <- lapply(values, loadEnumValue)
   
   return(list(description=description, name=name, values=values))

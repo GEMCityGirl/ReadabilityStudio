@@ -336,6 +336,108 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int StitchImagesVertically(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 3, __func__))
+            {
+            return 0;
+            }
+
+        std::vector<wxImage> images;
+        for (int i = 2; i <= lua_gettop(L); ++i)
+            {
+            wxString inputFile(luaL_checkstring(L, i), wxConvUTF8);
+            if (wxFile::Exists(inputFile))
+                {
+                images.push_back(Wisteria::GraphItems::Image::LoadFile(inputFile));
+                }
+            else
+                {
+                wxMessageBox(wxString::Format(_(L"%s: File not found."), inputFile),
+                             _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
+                lua_pushboolean(L, false);
+                return 1;
+                }
+            }
+
+        // create the folder to the filepath, if necessary
+        wxString path(luaL_checkstring(L, 1), wxConvUTF8);
+        wxFileName::Mkdir(wxFileName(path).GetPath(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
+
+        const wxImage img = Wisteria::GraphItems::Image::StitchVertically(images);
+
+        lua_pushboolean(L, img.SaveFile(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }));
+
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StitchImagesHorizontally(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 3, __func__))
+            {
+            return 0;
+            }
+
+        std::vector<wxImage> images;
+        for (int i = 2; i <= lua_gettop(L); ++i)
+            {
+            wxString inputFile(luaL_checkstring(L, i), wxConvUTF8);
+            if (wxFile::Exists(inputFile))
+                {
+                images.push_back(Wisteria::GraphItems::Image::LoadFile(inputFile));
+                }
+            else
+                {
+                wxMessageBox(wxString::Format(_(L"%s: File not found."), inputFile),
+                             _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
+                lua_pushboolean(L, false);
+                return 1;
+                }
+            }
+
+        // create the folder to the filepath, if necessary
+        wxString path(luaL_checkstring(L, 1), wxConvUTF8);
+        wxFileName::Mkdir(wxFileName(path).GetPath(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
+
+        const wxImage img = Wisteria::GraphItems::Image::StitchHorizontally(images);
+
+        lua_pushboolean(L, img.SaveFile(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }));
+
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int ApplyImageEffect(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+        const wxString inPath(luaL_checkstring(L, 1), wxConvUTF8);
+        if (!wxFile::Exists(inPath))
+            {
+            wxMessageBox(wxString::Format(_(L"%s: Invalid image file path."), inPath),
+                         _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
+            lua_pushboolean(L, false);
+            return 1;
+            }
+
+        // create the folder to the filepath, if necessary
+        wxString path(luaL_checkstring(L, 2), wxConvUTF8);
+        wxFileName::Mkdir(wxFileName(path).GetPath(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
+
+        const wxImage img = Wisteria::GraphItems::Image::ApplyEffect(
+            static_cast<Wisteria::ImageEffect>(lua_tonumber(L, 3)),
+            Wisteria::GraphItems::Image::LoadFile(inPath));
+
+        lua_pushboolean(L, img.SaveFile(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int GetImageInfo(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))
@@ -350,7 +452,7 @@ namespace LuaScripting
             lua_pushboolean(L, false);
             return 1;
             }
-        const wxImage img(path);
+        const wxImage img = Wisteria::GraphItems::Image::LoadFile(path);
         if (!img.IsOk())
             {
             wxMessageBox(wxString::Format(_(L"%s: Unable to load image."), path),
