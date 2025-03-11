@@ -10,6 +10,10 @@ source('../R/appdown.r')
 ## Readability Studio 2025 {-}
 ***
 
+### General Enhancements {-}
+
+- Added document's last modified time to the summary statistics (standard projects).
+
 ### Graph Enhancements {-}
 
 - Added new icon shapes for stipple brushes.

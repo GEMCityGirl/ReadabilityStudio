@@ -2864,7 +2864,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
 
                 if (listData)
                     {
-                    listData->SetItemText(listDataItemCount, 0, _(L"Number of Clich\u00E9s"));
+                    listData->SetItemText(listDataItemCount, 0, _(L"Number of clich\u00E9s"));
                     listData->SetItemText(
                         listDataItemCount++, 1,
                         wxNumberFormatter::ToString(
@@ -2992,29 +2992,61 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
     if (statsInfo.IsExtendedInformationEnabled())
         {
         // file/text stream info section
-        HTMLText += tableStart + formatHeader((project->GetOriginalDocumentFilePath().length() ?
+        HTMLText += tableStart + formatHeader((!project->GetOriginalDocumentFilePath().empty() ?
                                                    _(L"File Information") :
                                                    _(L"Text Information")));
 
+        wxString fileModDate;
+
         // file path (if not manually entered text)
-        if (project->GetOriginalDocumentFilePath().length())
+        if (!project->GetOriginalDocumentFilePath().empty())
             {
             HTMLText += formatRow(_(L"Path:"), wxString{}, project->GetOriginalDocumentFilePath());
+
+            // get modified time also if a local file
+            FilePathResolver resolvePath;
+            resolvePath.ResolvePath(project->GetOriginalDocumentFilePath(), false);
+            if (resolvePath.IsLocalOrNetworkFile() &&
+                wxFileName::FileExists(resolvePath.GetResolvedPath()))
+                {
+                const auto modDate =
+                    wxFileName{ resolvePath.GetResolvedPath() }.GetModificationTime();
+                // wxDateTime::Format doesn't appear to handle %X, so do it manually
+                wxString am, pm, timeStr;
+                wxDateTime::GetAmPmStrings(&am, &pm);
+                if (am.length() && pm.length())
+                    {
+                    timeStr = modDate.Format(L"%I:%M %p").MakeUpper();
+                    }
+                else
+                    {
+                    timeStr = modDate.Format(L"%H:%M");
+                    }
+
+                // the default locale formatting is cryptic looking, so format
+                // it in a more readable way that most locales would still understand
+                fileModDate = wxString::Format(// TRANSLATORS: placeholders are date and time
+                    _(L"%s at %s"), modDate.Format(L"%B %d, %Y"), timeStr);
+                }
             }
-        if (project->GetAppendedDocumentFilePath().length())
+        if (!project->GetAppendedDocumentFilePath().empty())
             {
             HTMLText += formatRow(_(L"Additional document path:"), wxString{},
                                   project->GetAppendedDocumentFilePath());
             }
         // text size
-        HTMLText += formatRow(_(L"Text size:"), wxString{},
-                              wxString::Format( // TRANSLATORS: %s is a file size
-                                  _(L"%s Kbs."),
-                                  wxNumberFormatter::ToString(
-                                      safe_divide<double>(project->GetTextSize(), 1024), 2,
-                                      wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                                          wxNumberFormatter::Style::Style_WithThousandsSep))) +
-                    L"\n</table>";
+        HTMLText += formatRow(
+            _(L"Text size:"), wxString{},
+            wxString::Format( // TRANSLATORS: %s is a file size
+                _(L"%s Kbs."),
+                wxNumberFormatter::ToString(safe_divide<double>(project->GetTextSize(), 1024), 2,
+                                            wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                                wxNumberFormatter::Style::Style_WithThousandsSep)));
+        if (!fileModDate.empty())
+            {
+            HTMLText += formatRow(_(L"Last modified:"), wxString{}, fileModDate);
+            }
+        HTMLText += L"\n</table>";
 
         if (listData)
             {
@@ -3026,6 +3058,12 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                                        safe_divide<double>(project->GetTextSize(), 1024), 2,
                                        wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                            wxNumberFormatter::Style::Style_WithThousandsSep)));
+
+            if (!fileModDate.empty())
+                {
+                listData->SetItemText(listDataItemCount, 0, _(L"Last modified"));
+                listData->SetItemText(listDataItemCount++, 1, fileModDate);
+                }
             }
         }
 
