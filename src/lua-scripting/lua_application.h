@@ -45,8 +45,8 @@ namespace LuaScripting
     int /*boolean*/ WriteToFile(lua_State* L /*string outputFilePath, string content*/); // Writes a string to a file.
     int RemoveAllCustomTests(lua_State*); // Clears all custom tests from the program.
     int RemoveAllCustomTestBundles(lua_State*); // Clears all custom test bundles from the program.
-    int /*boolean*/ MergeWordLists(lua_State* L /*string outputFile, string inputFiles*/); // Creates a new word list file from a list of other word list files.
-    int /*boolean*/ MergePhraseLists(lua_State* L /*string outputFile, string inputFiles*/); // Creates a new phrase list file from a list of other phrase list files.
+    int /*boolean*/ MergeWordLists(lua_State* L /*string outputFile, string inputFile1, string inputFile2, ...*/); // Creates a new word list file from a list of other word list files.
+    int /*boolean*/ MergePhraseLists(lua_State* L /*string outputFile, string inputFile1, string inputFile2, ...*/); // Creates a new phrase list file from a list of other phrase list files.
     // Append given suffixes to words in a list.
     // Note that this is an internal function used for expanding our proper noun list.
     int /*boolean*/ /*INTERNAL!!!*/ ExpandWordList(lua_State* L /*string inputWordList, string outputFile, ... suffixesToAddToEachWord*/); // INTERNAL FUNCTION!!! SHOULD NOT BE DOCUMENTED.
@@ -113,8 +113,7 @@ namespace LuaScripting
 
     int /*table*/ GetImageInfo(lua_State* /*string imagePath*/); // Returns width and height for an image.
     int /*boolean*/ ApplyImageEffect(lua_State* /*string inputImagePath, string outputImagePath, ImageEffect effect*/); // Applies an effect to an image and saves the result to another image file. Returns true if image successfully saved.
-    int /*boolean*/ StitchImagesVertically(lua_State* /*string outputImagePath, string inputImages*/); // Combines a list of images vertically. Returns true if image successfully saved.
-    int /*boolean*/ StitchImagesHorizontally(lua_State* /*string outputImagePath, string inputImages*/); // Combines a list of images horizontally. Returns true if image successfully saved.
+    int /*boolean*/ StitchImages(lua_State* /*string outputImagePath, Orientation direction, string inputImage1, string inputImage2, ...*/); // Combines a list of images vertically or horizontally. Returns true if image successfully saved.
 
     // Gets the active projects
     int /*StandardProject*/ GetActiveStandardProject(lua_State* L); // Returns the active standard project.
@@ -214,8 +213,7 @@ namespace LuaScripting
         { "SetRightPrintFooter", SetRightPrintFooter },
         { "GetImageInfo", GetImageInfo },
         { "ApplyImageEffect", ApplyImageEffect },
-        { "StitchImagesVertically", StitchImagesVertically },
-        { "StitchImagesHorizontally", StitchImagesHorizontally },
+        { "StitchImages", StitchImages },
         { nullptr, nullptr }
     };
     } // namespace LuaScripting

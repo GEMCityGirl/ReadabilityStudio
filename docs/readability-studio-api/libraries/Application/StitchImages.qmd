@@ -1,0 +1,31 @@
+## `StitchImages`
+
+Combines a list of images vertically or horizontally. Returns `true` if image successfully saved.
+
+### Syntax {-}
+
+``` {.lua}
+boolean StitchImages(string outputImagePath,
+                     Orientation direction,
+                     string inputImage1,
+                     string inputImage2,
+                     ...)
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`string` outputImagePath | Where to save the combined images. | 
+|[`Orientation`](#orientation) direction | The direction to combine the images. | 
+|`string` inputImage1 | The path of the first image to combine. | 
+|`string` inputImage2 | The path of the second image to combine. | 
+| ... | A variable list of image paths to combine. |
+
+
+{{< pagebreak >}}

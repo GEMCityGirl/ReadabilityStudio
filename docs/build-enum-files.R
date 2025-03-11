@@ -10,7 +10,7 @@ library(magrittr)
 # Parameter and return types are optional.
 loadClassInfo <- function(filePath, includeDescription = F)
   {
-  classInfoSignatureRE <- R'([[:space:]]*int[[:space:]]*(\/\*([[:space:]_[:alnum:]]*)\*\/)?[[:space:]]*([_[:alnum:]]+)[(]lua_State[*]( L)?[[:space:]]*(\/\*([[:space:]_\,[:alnum:]]*)\*\/)?[)][;]([ ]?\/\/[ ]?([ _[:alnum:][:punct:]]+))?)'
+  classInfoSignatureRE <- R'([[:space:]]*int[[:space:]]*(\/\*([[:space:]_[:alnum:]]*)\*\/)?[[:space:]]*([_[:alnum:]]+)[(]lua_State[*]( L)?[[:space:]]*(\/\*([[:space:]_\,\.[:alnum:]]*)\*\/)?[)][;]([ ]?\/\/[ ]?([ _[:alnum:][:punct:]]+))?)'
   classText <- read_file(filePath)
   if (includeDescription)
     return(stringr::str_replace(stringr::str_extract_all(classText, classInfoSignatureRE)[[1]], classInfoSignatureRE, '\\3(\\6)->\\2|\\8'))
@@ -22,7 +22,7 @@ loadClassInfo <- function(filePath, includeDescription = F)
 # This is compatible with the signatures returned from loadClassInfo().
 functionToTopic <- function(functionInfo)
   {
-  xformedSignatureRE <- R"(([_[:alnum:]]+)[(]([[:alnum:],_ ]+)?[)]->([_[:alnum:]]+)?[|]([ _[:alnum:][:punct:]]+)?)"
+  xformedSignatureRE <- R"(([_[:alnum:]]+)[(]([[:alnum:],\._ ]+)?[)]->([_[:alnum:]]+)?[|]([ _[:alnum:][:punct:]]+)?)"
   topicContent <- stringr::str_replace(stringr::str_extract(functionInfo, xformedSignatureRE)[[1]], xformedSignatureRE, '## `\\1`\n\n\\4\n\n### Syntax {-}\n\n``` {.lua}\n\\3 \\1(\\2)\n```')
   topicContent <- str_replace(topicContent, "\n ", "\n")
   syntax <- str_match(topicContent, R"(```[[:space:]]*\{\.lua\}[[:space:]]*([[:alnum:], \(\)]+))")[[2]]

@@ -336,15 +336,15 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StitchImagesVertically(lua_State* L)
+    int StitchImages(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 3, __func__))
+        if (!VerifyParameterCount(L, 4, __func__))
             {
             return 0;
             }
 
         std::vector<wxImage> images;
-        for (int i = 2; i <= lua_gettop(L); ++i)
+        for (int i = 3; i <= lua_gettop(L); ++i)
             {
             wxString inputFile(luaL_checkstring(L, i), wxConvUTF8);
             if (wxFile::Exists(inputFile))
@@ -364,44 +364,10 @@ namespace LuaScripting
         wxString path(luaL_checkstring(L, 1), wxConvUTF8);
         wxFileName::Mkdir(wxFileName(path).GetPath(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
 
-        const wxImage img = Wisteria::GraphItems::Image::StitchVertically(images);
-
-        lua_pushboolean(L, img.SaveFile(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }));
-
-        wxGetApp().Yield();
-        return 1;
-        }
-
-    //-------------------------------------------------------------
-    int StitchImagesHorizontally(lua_State* L)
-        {
-        if (!VerifyParameterCount(L, 3, __func__))
-            {
-            return 0;
-            }
-
-        std::vector<wxImage> images;
-        for (int i = 2; i <= lua_gettop(L); ++i)
-            {
-            wxString inputFile(luaL_checkstring(L, i), wxConvUTF8);
-            if (wxFile::Exists(inputFile))
-                {
-                images.push_back(Wisteria::GraphItems::Image::LoadFile(inputFile));
-                }
-            else
-                {
-                wxMessageBox(wxString::Format(_(L"%s: File not found."), inputFile),
-                             _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
-                lua_pushboolean(L, false);
-                return 1;
-                }
-            }
-
-        // create the folder to the filepath, if necessary
-        wxString path(luaL_checkstring(L, 1), wxConvUTF8);
-        wxFileName::Mkdir(wxFileName(path).GetPath(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
-
-        const wxImage img = Wisteria::GraphItems::Image::StitchHorizontally(images);
+        const wxImage img = (static_cast<Wisteria::Orientation>(lua_tonumber(L, 3)) ==
+                             Wisteria::Orientation::Vertical) ?
+                                Wisteria::GraphItems::Image::StitchVertically(images) :
+                                Wisteria::GraphItems::Image::StitchHorizontally(images);
 
         lua_pushboolean(L, img.SaveFile(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }));
 
