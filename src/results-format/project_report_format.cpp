@@ -1266,12 +1266,11 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
     wxString currentLabel;
     lily_of_the_valley::html_encode_text htmlEncode;
     lily_of_the_valley::html_extract_text htmlStrip;
-    size_t listDataItemCount = 0;
-    if (listData)
+    size_t listDataItemCount{ 0 };
+    if (listData != nullptr)
         {
         listData->DeleteAllItems();
-        listDataItemCount = listData->GetItemCount();
-        listData->SetSize(listDataItemCount + MAX_SUMMARY_STAT_ROWS, 3);
+        listData->SetSize(MAX_SUMMARY_STAT_ROWS, 3);
         }
 
     wxString HTMLText;
