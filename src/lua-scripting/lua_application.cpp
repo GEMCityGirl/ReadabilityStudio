@@ -631,17 +631,6 @@ namespace LuaScripting
         return 1;
         }
 
-    //-------------------------------------------------------------
-    int Crash(lua_State*)
-        {
-#ifndef NDEBUG
-        wxString* bogus{ nullptr };
-        // cppcheck-suppress ignoredReturnValue
-        bogus->length();
-#endif
-        return 0;
-        }
-
     // Closes the application
     //-------------------------------------------------------------
     int Close(lua_State*)

@@ -59,7 +59,6 @@ namespace LuaScripting
     // Internal testing functions
     int /*boolean*/ QAVerify /*INTERNAL!!!*/ (lua_State* L); // INTERNAL FUNCTION!!! SHOULD NOT BE DOCUMENTED.
     int /*number*/ GetFileCheckSum /*INTERNAL!!!*/ (lua_State* L /*string filePath*/); // INTERNAL FUNCTION!!! SHOULD NOT BE DOCUMENTED.
-    int Crash /*INTERNAL!!!*/ (lua_State*); // INTERNAL FUNCTION!!! SHOULD NOT BE DOCUMENTED.
     // Setting functions
     int /*boolean*/ ImportSettings(lua_State* L /*string filePath*/); // Loads the program's settings from a configuration file.
     int /*boolean*/ ExportSettings(lua_State* L /*string outputFilePath*/); // Saves the program's settings to a configuration file.
@@ -201,10 +200,6 @@ namespace LuaScripting
         { "MergePhraseLists", MergePhraseLists },
         { "QAVerify", QAVerify },
         { "CheckHtmlLinks", CheckHtmlLinks },
-#ifndef NDEBUG
-        // just used in debug builds for testing crash reporter
-        { _DT("Crash"), Crash },
-#endif
         { "SetLeftPrintHeader", SetLeftPrintHeader },
         { "SetCenterPrintHeader", SetCenterPrintHeader },
         { "SetRightPrintHeader", SetRightPrintHeader },
