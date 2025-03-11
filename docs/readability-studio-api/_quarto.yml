@@ -11,6 +11,9 @@ nocite: '@*'
 csl: modern-language-association.csl
 pdf-cover: "images/non-generated/cover.png"
 pdf-cover-font-color: "255, 255, 255"
+pdf-cover-author-color: "0, 0, 0"
+pdf-cover-color: "201, 160, 220"
+pdf-logo: "images/non-generated/app-logo.png"
 theme-color: "201, 160, 220"
 chapter-image: "non-generated/green.jpg"
 number-sections: true
