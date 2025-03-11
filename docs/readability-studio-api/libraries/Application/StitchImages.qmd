@@ -1,6 +1,6 @@
 ## `StitchImages`
 
-Combines a list of images vertically or horizontally. Returns `true` if image successfully saved.
+Combines a list of images vertically or horizontally. Returns `true` if image was successfully saved.
 
 ### Syntax {-}
 

@@ -20,10 +20,11 @@ ExportReport(ReportType type,
 
 ``` {.lua}
 -- Open a project from the user's "Documents" folder and save its scores summary
-consentForm = StandardProject(Application.GetDocumentsPath() ..
+consentForm = StandardProject(Application.GetUserPath(UserPath.Documents) ..
                               "Consent Form.rsp")
 consentForm:ExportReport(ReportType.ReadabilityScoresTabularReport,
-                Application.GetDocumentsPath() .. "Review/ConsentScoresSummary.htm")
+                Application.GetUserPath(UserPath.Documents) ..
+                "Review/ConsentScoresSummary.htm")
 -- Close, don't bother saving.
 consentForm:Close(false)
 ```

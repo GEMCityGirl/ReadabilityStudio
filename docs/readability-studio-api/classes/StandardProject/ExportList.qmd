@@ -39,7 +39,7 @@ ExportList(ListType type,
 
 ``` {.lua}
 -- Open a project from the user's "Documents" folder
-consentForm = StandardProject(Application.GetDocumentsPath() ..
+consentForm = StandardProject(Application.GetUserPath(UserPath.Documents) ..
                               "Consent Form.rsp")
 -- Sort the "All Words" list.
 -- Will sort by the third column (Z-A sorting), and in case of a tie, then sort
@@ -50,7 +50,7 @@ consentForm:SortList(ListType.AllWords,
             1, SortOrder.SortDescending)
 -- export the list after sorting it
 consentForm:ExportList(ListType.AllWords,
-              Application.GetDocumentsPath() ..
+              Application.GetUserPath(UserPath.Documents) ..
               "ExportList/ConsentFormAllWordsListSortedDesc.htm")
 
 consentForm:Close()

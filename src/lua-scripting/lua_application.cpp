@@ -643,9 +643,17 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int GetDocumentsPath(lua_State* L)
+    int GetUserPath(lua_State* L)
         {
-        lua_pushstring(L, wxStandardPaths::Get().GetDocumentsDir().mb_str());
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        lua_pushstring(L, wxString{ wxStandardPaths::Get().GetUserDir(
+                                        static_cast<wxStandardPaths::Dir>(lua_tonumber(L, 1))) +
+                                    wxFileName::GetPathSeparator() }
+                              .mb_str());
         return 1;
         }
 

@@ -20,7 +20,7 @@ ExcludeNumerals(boolean exclude)
 ``` {.lua}
 -- Opens a document from user's "Documents" folder
 -- and changes a few options.
-consentForm = StandardProject(Application.GetDocumentsPath() ..
+consentForm = StandardProject(Application.GetUserPath(UserPath.Documents) ..
                               "Consent Form.docx")
 
 -- Delay reloading.

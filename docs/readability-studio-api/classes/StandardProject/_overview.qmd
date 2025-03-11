@@ -1,6 +1,7 @@
 # `StandardProject`
 
-Provides the functionality of a standard project. Standard projects analyze a single document and provides numerous results related to readability and other style metrics.
+Provides the functionality of a standard project.
+Standard projects analyze a single document and provides numerous results related to readability and other style metrics.
 
 Note that changing various features of a project once
 it has been loaded will cause it to re-analyze its
@@ -17,7 +18,7 @@ For example:
 ``` {.lua}
 -- Opens a document from user's "Documents" folder
 -- and changes a few options.
-consentForm = StandardProject(Application.GetDocumentsPath() ..
+consentForm = StandardProject(Application.GetUserPath(UserPath.Documents) ..
                               "Consent Form.docx")
 
 -- Delay reloading.

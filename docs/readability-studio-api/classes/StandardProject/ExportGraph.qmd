@@ -27,18 +27,22 @@ ExportGraph(GraphType type,
 ``` {.lua}
 -- Opens a document from user's "Documents" folder,
 -- exports 3 of its graphs, then closes the project.
-recipe = StandardProject(Application.GetDocumentsPath() .. "Turkey Brining.docx")
+recipe = StandardProject(Application.GetUserPath(UserPath.Documents) ..
+                         "Turkey Brining.docx")
 
 recipe:ExportGraph(GraphType.SentenceBoxPlox,
-               Application.GetDocumentsPath() .. "Review/RecipeSentBoxPlot.png")
+               Application.GetUserPath(UserPath.Documents) ..
+               "Review/RecipeSentBoxPlot.png")
 
 recipe:ExportGraph(GraphType.WordBarChart,
-               Application.GetDocumentsPath() .. "Review/RecipeWordBarChart.png",
+               Application.GetUserPath(UserPath.Documents) ..
+                "Review/RecipeWordBarChart.png",
                -- save it as black & white
                true)
 
 recipe:ExportGraph(GraphType.SyllableHistogram,
-               Application.GetDocumentsPath() .. "Review/RecipeSyllableHistogram.png",
+               Application.GetUserPath(UserPath.Documents) ..
+                "Review/RecipeSyllableHistogram.png",
                -- color image
                false,
                -- 500 pixels wide

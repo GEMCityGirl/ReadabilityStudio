@@ -1,0 +1,23 @@
+## `GetUserPath`
+
+Returns the path of a given folder in the user's directory.
+
+### Syntax {-}
+
+``` {.lua}
+string GetUserPath(UserPath path)
+```
+
+
+### Return value {-}
+
+Type: `string`
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|[`UserPath`](#userpath) path |      |
+
+
+{{< pagebreak >}}

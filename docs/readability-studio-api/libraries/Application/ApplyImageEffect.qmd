@@ -1,6 +1,6 @@
 ## `ApplyImageEffect`
 
-Applies an effect to an image and saves the result to another image file. Returns `true` if image successfully saved.
+Applies an effect to an image and saves the result to another image file. Returns `true` if image was successfully saved.
 
 ### Syntax {-}
 

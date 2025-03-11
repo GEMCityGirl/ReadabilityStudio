@@ -21,3 +21,4 @@ TextStorage	EmbedText;NoEmbedText
 ParagraphParse	OnlySentenceTerminatedNewLinesAreParagraphs;EachNewLineIsAParagraph
 FilePathDisplayMode	TruncatePaths;OnlyShowFileNames;NoTruncation
 FontWeight	Thin;ExtraLight;Light;Normal;Medium;SemiBold;Bold;ExtraBold;Heavy;ExtraHeavy
+UserPath	Documents;Desktop;Downloads;Music;Pictures;Videos

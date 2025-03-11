@@ -27,7 +27,7 @@ Type: `boolean`
 ``` {.lua}
 -- Opens a document from user's "Documents" folder
 -- and adds some tests.
-consentForm = StandardProject(Application.GetDocumentsPath() ..
+consentForm = StandardProject(Application.GetUserPath(UserPath.Documents) ..
                               "Consent Form.docx")
 
 consentForm:AddTest(Tests.DanielsonBryan1)

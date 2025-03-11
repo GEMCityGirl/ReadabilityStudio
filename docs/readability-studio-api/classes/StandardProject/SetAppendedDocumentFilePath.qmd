@@ -18,12 +18,12 @@ SetAppendedDocumentFilePath(string filePath)
 
 ``` {.lua}
 -- Open a project from the user's "Documents" folder
-consentForm = StandardProject(Application.GetDocumentsPath() ..
+consentForm = StandardProject(Application.GetUserPath(UserPath.Documents) ..
                               "Consent Form.docx")
 
 -- Add an addendum to the document.
 consentForm:SetAppendedDocumentFilePath(
-    Application.GetDocumentsPath() ..
+    Application.GetUserPath(UserPath.Documents) ..
     "Addendum.docx")
 
 consentForm:Close(false)

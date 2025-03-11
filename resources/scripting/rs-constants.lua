@@ -325,6 +325,17 @@ FontWeight =
   ExtraHeavy = 1000  -- Extra heavy.
   }
 
+-- Paths to use with Application.GetUserPath().
+UserPath =
+  {
+  Documents = 2, -- User's Documents folder.
+  Desktop = 3,   -- User's Desktop folder.
+  Downloads = 4, -- User's Downloads folder.
+  Music = 5,     -- User's Music folder.
+  Pictures = 6,  -- User's Pictures folder.
+  Videos = 7     -- User's Videos folder.
+  }
+
 RibbonButtonBar =
   {
   Edit = 30001,
@@ -381,5 +392,6 @@ Language = protect_enum(Language)
 TextStorage = protect_enum(TextStorage)
 ParagraphParse = protect_enum(ParagraphParse)
 FilePathDisplayMode = protect_enum(FilePathDisplayMode)
+UserPath = protect_enum(UserPath)
 RibbonButtonBar = protect_enum(RibbonButtonBar)
 FontWeight = protect_enum(FontWeight)

@@ -35,7 +35,7 @@ namespace LuaScripting
     int MsgBox(lua_State* L /*string message*/); // Displays a message dialog.
     int /*string*/ GetLuaConstantsPath(lua_State* L); // Returns the path of the file containing the Lua data types used by the program.
     int /*string*/ GetProgramPath(lua_State* L); // Returns the program's filepath.
-    int /*string*/ GetDocumentsPath(lua_State* L); // Returns the path of the user's documents folder.
+    int /*string*/ GetUserPath(lua_State* L /*UserPath path*/); // Returns the path of a given folder in the user's directory.
     int /*string*/ GetAbsoluteFilePath(lua_State* L /*string filePath, string baseFilePath*/); // Returns the absolute filepath for the first path, relative to the second.
     int /*string*/ DownloadFile(lua_State* L /*string Url, string downloadPath*/); // Downloads a webpage to the provided local path.
     int /*table*/ FindFiles(lua_State* L /*string directory, string filePattern*/); // Returns a list of all files from a folder matching the provided file pattern.
@@ -111,8 +111,8 @@ namespace LuaScripting
     int SetBarChartOrientation(lua_State* L /*Orientation barOrientation*/); // Sets the orientation for bars for new projects.
 
     int /*table*/ GetImageInfo(lua_State* /*string imagePath*/); // Returns width and height for an image.
-    int /*boolean*/ ApplyImageEffect(lua_State* /*string inputImagePath, string outputImagePath, ImageEffect effect*/); // Applies an effect to an image and saves the result to another image file. Returns true if image successfully saved.
-    int /*boolean*/ StitchImages(lua_State* /*string outputImagePath, Orientation direction, string inputImage1, string inputImage2, ...*/); // Combines a list of images vertically or horizontally. Returns true if image successfully saved.
+    int /*boolean*/ ApplyImageEffect(lua_State* /*string inputImagePath, string outputImagePath, ImageEffect effect*/); // Applies an effect to an image and saves the result to another image file. Returns true if image was successfully saved.
+    int /*boolean*/ StitchImages(lua_State* /*string outputImagePath, Orientation direction, string inputImage1, string inputImage2, ...*/); // Combines a list of images vertically or horizontally. Returns true if image was successfully saved.
 
     // Gets the active projects
     int /*StandardProject*/ GetActiveStandardProject(lua_State* L); // Returns the active standard project.
@@ -132,7 +132,7 @@ namespace LuaScripting
         { _DT("Close"), Close },
         { "GetLuaConstantsPath", GetLuaConstantsPath },
         { "GetProgramPath", GetProgramPath },
-        { "GetDocumentsPath", GetDocumentsPath },
+        { "GetUserPath", GetUserPath },
         { "GetAbsoluteFilePath", GetAbsoluteFilePath },
         { "GetActiveStandardProject", GetActiveStandardProject },
         { "GetActiveBatchProject", GetActiveBatchProject },
