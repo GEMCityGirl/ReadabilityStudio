@@ -105,6 +105,10 @@ file_copy(glue("{docFolder}/readability-studio-manual/glossary/shortcuts.qmd"),
           glue("{docFolder}/shortcuts-cheatsheet/index.qmd"),
           TRUE)
 
+readLines(glue("{docFolder}/shortcuts-cheatsheet/index.qmd")) |>
+  str_replace("# Keyboard Shortcuts", "# *Readability Studio* Keyboard Shortcuts") |>
+  writeLines(glue("{docFolder}/shortcuts-cheatsheet/index.qmd"))
+
 quarto::quarto_render(output_format="pdf", as_job=F)
 
 unlink(glue("{docFolder}/shortcuts-cheatsheet/index.qmd"))
