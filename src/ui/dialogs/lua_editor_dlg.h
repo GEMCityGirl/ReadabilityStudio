@@ -58,6 +58,16 @@ class LuaEditorDlg final : public wxFrame
     /// @brief Clears the debug output window.
     void DebugClear();
 
+    /// @returns A serialization string to store the toolbar layout
+    [[nodiscard]]
+    wxString GetLayout()
+        {
+        return m_mgr.SavePerspective();
+        }
+
+    /// @brief Loads the layout of the toolbar.
+    void LoadLayout(const wxString& layout) { m_mgr.LoadPerspective(layout); }
+
   private:
     void CreateControls();
     void OnClose([[maybe_unused]] wxCloseEvent& event);

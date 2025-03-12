@@ -249,6 +249,7 @@ void ReadabilityAppOptions::ResetSettings()
     BaseProjectDoc::ExportTextReports(true);
 
     m_appWindowMaximized = true;
+    m_scriptEditorLayout.clear();
     // theme settings
     SetColorsFromSystem();
 
@@ -450,6 +451,8 @@ void ReadabilityAppOptions::LoadThemeNode(tinyxml2::XMLElement* appearanceNode)
             {
             m_appWindowHeight = 700;
             }
+        m_scriptEditorLayout =
+            appearanceNode->ToElement()->Attribute(XML_SCRIPT_EDITOR_LAYOUT.data());
         }
     }
 
@@ -616,8 +619,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                 downloadMinFileSizeNode->ToElement()->IntAttribute(XML_VALUE.data(), 0));
             }
 
-        auto useJsCookiesNode =
-            configRootNode->FirstChildElement(XML_USE_JS_COOKIES.data());
+        auto useJsCookiesNode = configRootNode->FirstChildElement(XML_USE_JS_COOKIES.data());
         if (useJsCookiesNode != nullptr)
             {
             const int value = useJsCookiesNode->ToElement()->IntAttribute(XML_VALUE.data(), 0);
@@ -1659,8 +1661,8 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                             {
                             auto filePathStr = Wisteria::TextStream::CharStreamToUnicode(
                                 filePathData, std::strlen(filePathData));
-                            filteredText = filter_html(filePathStr.c_str(), filePathStr.length(),
-                                                       true, false);
+                            filteredText =
+                                filter_html(filePathStr.c_str(), filePathStr.length(), true, false);
                             if (filteredText)
                                 {
                                 filePath = filteredText;
@@ -2561,11 +2563,10 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                                 XmlFormat::GetFontFaceName().mb_str());
                             if (faceName)
                                 {
-                                const auto faceNameStr =
-                                    Wisteria::TextStream::CharStreamToUnicode(
-                                        faceName, std::strlen(faceName));
-                                const wchar_t* filteredText =
-                                    filter_html(faceNameStr.c_str(), faceNameStr.length(), true, false);
+                                const auto faceNameStr = Wisteria::TextStream::CharStreamToUnicode(
+                                    faceName, std::strlen(faceName));
+                                const wchar_t* filteredText = filter_html(
+                                    faceNameStr.c_str(), faceNameStr.length(), true, false);
                                 if (filteredText && wxFontEnumerator::IsValidFacename(filteredText))
                                     {
                                     m_yAxisFont.SetFaceName(wxString(filteredText));
@@ -2624,11 +2625,10 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                                 XmlFormat::GetFontFaceName().mb_str());
                             if (faceName)
                                 {
-                                const auto faceNameStr =
-                                    Wisteria::TextStream::CharStreamToUnicode(
-                                        faceName, std::strlen(faceName));
-                                const wchar_t* filteredText =
-                                    filter_html(faceNameStr.c_str(), faceNameStr.length(), true, false);
+                                const auto faceNameStr = Wisteria::TextStream::CharStreamToUnicode(
+                                    faceName, std::strlen(faceName));
+                                const wchar_t* filteredText = filter_html(
+                                    faceNameStr.c_str(), faceNameStr.length(), true, false);
                                 if (filteredText && wxFontEnumerator::IsValidFacename(filteredText))
                                     {
                                     m_topTitleFont.SetFaceName(wxString(filteredText));
@@ -2874,7 +2874,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                 if (batchGrouping != nullptr)
                     {
                     m_batchGroupDefault = batchGrouping->ToElement()->IntAttribute(
-                            XML_METHOD.data(), m_batchGroupDefault);
+                        XML_METHOD.data(), m_batchGroupDefault);
                     }
                 // Text Source
                 auto textSource = wizardPageDefaultsNode->FirstChildElement(XML_TEXT_SOURCE.data());
@@ -3437,6 +3437,8 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     appearance->SetAttribute(XML_WINDOW_MAXIMIZED.data(), bool_to_int(IsAppWindowMaximized()));
     appearance->SetAttribute(XML_WINDOW_WIDTH.data(), GetAppWindowWidth());
     appearance->SetAttribute(XML_WINDOW_HEIGHT.data(), GetAppWindowHeight());
+    appearance->SetAttribute(XML_SCRIPT_EDITOR_LAYOUT.data(),
+                             wxString{ encode({ GetScriptEditorLayout().wc_str() }, false) });
 
     configSection->InsertEndChild(appearance);
 

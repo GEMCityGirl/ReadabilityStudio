@@ -754,9 +754,14 @@ bool ReadabilityApp::OnInit()
     LoadInterfaceLicensableFeatures();
 
     m_dynamicIdMap = {
-        // These are the IDs that this constants map to in "resources/scripting/rs-constants.lua";
-        // When adding a new constant (e.g., enum value) to rs-constants.lua, that numeric ID from
-        // there to the respective window ID here.
+         /* This maps internal (dynamic) IDs to constants in "resources/scripting/rs-constants.lua".
+            When adding a new constant to "rs-constants.lua", map that numeric ID
+            from there to the respective window ID here.
+
+            This is mostly used for screenshot generation via scripting.
+
+            Note that the key number isn't special, it just needs to be unique from the rest of the
+            keys in this map. */
         { 30001, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR },
         { 30002, MainFrame::ID_PROOFING_RIBBON_BUTTON_BAR },
         { 30003, MainFrame::ID_PARAGRAPH_DEDUCTION_RIBBON_BUTTON_BAR },
@@ -2971,7 +2976,8 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             _(L"Control whether indenting should affect how paragraph breaks are detected."));
         deductionButtonBar->AddToggleButton(XRCID("ID_SENTENCES_CAPITALIZED"), _(L"Strict Capitalization"),
             ReadRibbonSvgIcon(L"ribbon/capital-letter.svg"),
-            _(L"Change whether sentences must begin with capital letters when determining sentence breaks."));
+            _(L"Change whether sentences must begin with capital letters "
+               "when determining sentence breaks."));
         // text exclusion
         wxRibbonPanel* exclusionPanel =
             new wxRibbonPanel(documentPage, wxID_ANY, _(L"Text Exclusion"), wxNullBitmap, wxDefaultPosition,
@@ -2983,10 +2989,12 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             _(L"Select how text should be excluded from the analysis."));
         exclusionButtonBar->AddButton(XRCID("ID_INCOMPLETE_THRESHOLD"), _(L"Incomplete Threshold"),
             ReadRibbonSvgIcon(L"ribbon/period-needed.svg"),
-            _(L"Specify the minimum length of an incomplete sentence that should be considered valid."));
+            _(L"Specify the minimum length of an incomplete sentence "
+               "that should be considered valid."));
         exclusionButtonBar->AddToggleButton(XRCID("ID_EXCLUDE_AGGRESSIVELY"), _(L"Aggressive"),
             ReadRibbonSvgIcon(L"ribbon/aggressive-list.svg"),
-            _(L"Aggressively excludes list items, citations, and copyright notices (if applicable)."));
+            _(L"Aggressively excludes list items, citations, "
+               "and copyright notices (if applicable)."));
         exclusionButtonBar->AddToggleButton(XRCID("ID_EXCLUDE_COPYRIGHT_NOTICES"), _(L"Copyrights"),
             ReadRibbonSvgIcon(L"ribbon/ignore-copyright.svg"),
             _(L"Exclude trailing copyright statements from the analysis."));
@@ -3891,9 +3899,9 @@ void ReadabilityApp::UpdateStartPageTheme()
 //---------------------------------------------------
 void ReadabilityApp::UpdateScriptEditorTheme()
     {
-    if (GetMainFrameEx()->m_luaEditor != nullptr)
+    if (GetMainFrameEx()->GetLuaEditor() != nullptr)
         {
-        GetMainFrameEx()->m_luaEditor->SetThemeColor(
+        GetMainFrameEx()->GetLuaEditor()->SetThemeColor(
             wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW));
         }
     }
@@ -4266,13 +4274,13 @@ void MainFrame::OnScriptEditor([[maybe_unused]] wxCommandEvent& event)
         return;
         }
 
-    if (m_luaEditor != nullptr && m_luaEditor->IsShown())
+    if (GetLuaEditor() != nullptr && GetLuaEditor()->IsShown())
         {
-        m_luaEditor->Hide();
+        GetLuaEditor()->Hide();
         return;
         }
 
-    if (m_luaEditor == nullptr)
+    if (GetLuaEditor() == nullptr)
         {
         const wxSize screenSize{ wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X),
                                  wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y) };
@@ -4280,10 +4288,14 @@ void MainFrame::OnScriptEditor([[maybe_unused]] wxCommandEvent& event)
             nullptr, wxID_ANY, _(L"Lua Script"), wxDefaultPosition,
             wxSize{ static_cast<int>(screenSize.GetWidth() * math_constants::third),
                     static_cast<int>(screenSize.GetHeight() * math_constants::three_quarters) });
+        if (!wxGetApp().GetAppOptions().GetScriptEditorLayout().empty())
+            {
+            GetLuaEditor()->LoadLayout(wxGetApp().GetAppOptions().GetScriptEditorLayout());
+            }
         }
-    m_luaEditor->SetThemeColor(wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW));
-    m_luaEditor->Show();
-    m_luaEditor->SetFocus();
+    GetLuaEditor()->SetThemeColor(wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW));
+    GetLuaEditor()->Show();
+    GetLuaEditor()->SetFocus();
     }
 
 //-------------------------------------------------------
@@ -5194,6 +5206,10 @@ void MainFrame::OnClose(wxCloseEvent& event)
     wxGetApp().GetAppOptions().SetAppWindowMaximized(IsMaximized());
     wxGetApp().GetAppOptions().SetAppWindowWidth(GetSize().GetWidth());
     wxGetApp().GetAppOptions().SetAppWindowHeight(GetSize().GetHeight());
+    if (GetLuaEditor() != nullptr)
+        {
+        wxGetApp().GetAppOptions().SetScriptEditorLayout(GetLuaEditor()->GetLayout());
+        }
     wxGetApp().GetAppOptions().SetPaperId(
         static_cast<int>(wxGetApp().GetPrintData()->GetPaperId()));
     wxGetApp().GetAppOptions().SetPaperOrientation(wxGetApp().GetPrintData()->GetOrientation());
@@ -5534,7 +5550,7 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
                                       Wisteria::GraphItems::Image::GetImageFileFilter(),
                                   wxGetApp().GetLastSelectedDocFilter(),
                                   // hide the option that disables local file downloading
-        true);
+                                  true);
     webHarvestDlg.UpdateFromHarvesterSettings(wxGetApp().GetWebHarvester());
     // force downloading locally
     webHarvestDlg.DownloadFilesLocally(true);
