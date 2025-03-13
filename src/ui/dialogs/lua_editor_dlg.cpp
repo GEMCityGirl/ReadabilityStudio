@@ -290,7 +290,7 @@ class FlatTabArt : public wxAuiGenericTabArt
                         offsetY + (tab_height / 2) - (bmp.GetHeight() / 2), bmp.GetWidth(),
                         tab_height);
 
-            IndentPressedBitmap(wnd->FromDIP(wxSize(1, 1)), &rect, close_button_state);
+            IndentPressedBitmap(wnd->FromDIP(wxSize{ 1, 1 }), &rect, close_button_state);
             dc.DrawBitmap(bmp, rect.x, rect.y, true);
 
             *out_button_rect = rect;
@@ -371,11 +371,6 @@ LuaEditorDlg::LuaEditorDlg(
 
     CreateControls();
     Center();
-    // move over to the right side of the screen
-    const int screenWidth{ wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X) };
-    int xPos{ 0 }, yPos{ 0 };
-    GetScreenPosition(&xPos, &yPos);
-    Move(wxPoint{ xPos + (screenWidth - (xPos + GetSize().GetWidth())), yPos });
 
     Bind(wxEVT_CLOSE_WINDOW, &LuaEditorDlg::OnClose, this);
 
@@ -391,8 +386,12 @@ LuaEditorDlg::LuaEditorDlg(
             m_toolbar->EnableTool(XRCID("ID_RUN"), false);
 
             // run the script
-            wxGetApp().GetLuaRunner().RunLuaCode(editor->GetValue(), editor->GetScriptFilePath(),
-                                                 errorMessage);
+            wxGetApp().GetLuaRunner().RunLuaCode(
+                // run either selected text or the whole script
+                (editor->GetSelectionStart() == editor->GetSelectionEnd()) ?
+                    editor->GetValue() :
+                    editor->GetSelectedText(),
+                editor->GetScriptFilePath(), errorMessage);
 
             m_toolbar->EnableTool(XRCID("ID_RUN"), true);
 
@@ -498,14 +497,14 @@ LuaEditorDlg::LuaEditorDlg(
 
                 m_notebook->AddPage(scriptCtrl, wxFileName(filePath).GetName(), true,
                                     wxGetApp().GetResourceManager().GetSVG(L"ribbon/lua.svg"));
+                scriptCtrl->SetFocus();
                 }
         },
         XRCID("ID_OPEN"));
 
     Bind(wxEVT_TOOL, &LuaEditorDlg::OnSave, this, XRCID("ID_SAVE"));
 
-    Bind(
-        wxEVT_TOOL, [this]([[maybe_unused]] wxCommandEvent&) { DebugClear(); }, XRCID("ID_CLEAR"));
+    Bind(wxEVT_TOOL, [this]([[maybe_unused]] wxCommandEvent&) { DebugClear(); }, XRCID("ID_CLEAR"));
 
     Bind(
         wxEVT_TOOL,
@@ -554,24 +553,26 @@ LuaEditorDlg::LuaEditorDlg(
         wxEVT_CHAR_HOOK,
         [this](wxKeyEvent& event)
         {
-            if (event.ControlDown() && event.GetKeyCode() == L'S')
+            if (event.GetKeyCode() == WXK_F3)
                 {
-                wxCommandEvent dummyEvt;
-                OnSave(dummyEvt);
-                }
-            else if (event.ControlDown() && event.GetKeyCode() == L'F')
-                {
-                wxFindDialogEvent dummyEvt;
-                LuaEditorDlg::OnShowFindDialog(dummyEvt);
-                }
-            else if (event.ControlDown() && event.GetKeyCode() == L'H')
-                {
-                wxFindDialogEvent dummyEvt;
-                LuaEditorDlg::OnShowReplaceDialog(dummyEvt);
+                wxFindDialogEvent evt{ wxEVT_FIND_NEXT };
+                evt.SetFindString(m_findData.GetFindString());
+                evt.SetFlags(m_findData.GetFlags());
+                OnFindDialog(evt);
                 }
             event.Skip(true);
         },
         wxID_ANY);
+
+    wxAcceleratorEntry accelEntries[6];
+    accelEntries[0].Set(wxACCEL_CMD, static_cast<int>(L'N'), XRCID("ID_NEW"));
+    accelEntries[1].Set(wxACCEL_CMD, static_cast<int>(L'O'), XRCID("ID_OPEN"));
+    accelEntries[2].Set(wxACCEL_CMD, static_cast<int>(L'S'), XRCID("ID_SAVE"));
+    accelEntries[3].Set(wxACCEL_CMD, static_cast<int>(L'F'), wxID_FIND);
+    accelEntries[4].Set(wxACCEL_CMD, static_cast<int>(L'H'), wxID_REPLACE);
+    accelEntries[5].Set(wxACCEL_NORMAL, WXK_F5, XRCID("ID_RUN"));
+    wxAcceleratorTable accelTable(std::size(accelEntries), accelEntries);
+    SetAcceleratorTable(accelTable);
     }
 
 //------------------------------------------------------
@@ -721,7 +722,7 @@ void LuaEditorDlg::SetThemeColor(const wxColour& color)
 
     m_mgr.GetArtProvider()->SetColour(wxAUI_DOCKART_BACKGROUND_COLOUR, color);
 
-    ThemedAuiToolbarArt* toolbarArt = new ThemedAuiToolbarArt();
+    ThemedAuiToolbarArt* toolbarArt = new ThemedAuiToolbarArt;
     toolbarArt->SetThemeColor(color);
     m_toolbar->SetArtProvider(toolbarArt);
 
@@ -956,7 +957,7 @@ void LuaEditorDlg::CreateControls()
                                  .CloseButton(false)
                                  .Fixed());
 
-    m_notebook = new wxAuiNotebook(this, wxID_ANY, wxPoint(0, 0), FromDIP(wxSize(400, 200)),
+    m_notebook = new wxAuiNotebook(this, wxID_ANY, wxPoint{ 0, 0 }, FromDIP(wxSize{ 400, 200 }),
                                    wxAUI_NB_TOP | wxAUI_NB_TAB_SPLIT | wxAUI_NB_TAB_MOVE |
                                        wxAUI_NB_SCROLL_BUTTONS | wxAUI_NB_CLOSE_ON_ALL_TABS |
                                        wxAUI_NB_MIDDLE_CLICK_CLOSE | wxAUI_NB_TAB_EXTERNAL_MOVE |
@@ -974,12 +975,12 @@ void LuaEditorDlg::CreateControls()
                                             .MinimizeButton(true)
                                             .MaximizeButton(true)
                                             .Caption(_(L"Debug Output"))
-                                            .FloatingSize(FromDIP(wxSize(800, 200)))
-                                            .BestSize(FromDIP(wxSize(800, 100)))
+                                            .FloatingSize(FromDIP(wxSize{ 800, 200 }))
+                                            .BestSize(FromDIP(wxSize{ 800, 100 }))
                                             .PinButton(true)
                                             .CloseButton(false));
 
-    SetSize(FromDIP(wxSize(1200, 1200)));
+    SetSize(FromDIP(wxSize{ 1200, 1200 }));
 
     m_mgr.Update();
     }
@@ -997,12 +998,12 @@ void LuaEditorDlg::OnClose([[maybe_unused]] wxCloseEvent& event)
             {
             if (codeEditor->Save())
                 {
-                m_notebook->SetPageText(i, wxFileName(codeEditor->GetScriptFilePath()).GetName());
+                m_notebook->SetPageText(i, wxFileName{ codeEditor->GetScriptFilePath() }.GetName());
                 }
             }
         }
 
     // this frame is meant to be modeless, so just hide it when closing and let
     // the parent app clean it up on app exit
-    Hide();
+    HideAllWindows();
     }

@@ -17,7 +17,7 @@ source('../R/appdown.r')
      making it easier to read.-->
 
 ::: {.minipage data-latex="{\textwidth}"}
-Table: Application Shortcuts
+Table: Application
 
 ------------------------------------------------------------------------------------------------
 To do this                              Press                                               
@@ -33,7 +33,7 @@ Enable verbose logging                  Hold down `r keys('Shift')` (`r os_logo(
 :::
 
 ::: {.minipage data-latex="{\textwidth}"}
-Table: Project Shortcuts
+Table: Projects
 
 ------------------------------------------------------------------------------------------------
 To do this                              Press                                               
@@ -71,7 +71,7 @@ Remove the selected test                `r keys(c('Ctrl', 'Del'))` (`r os_logo('
 :::
 
 ::: {.minipage data-latex="{\textwidth}"}
-Table: Graph Shortcuts
+Table: Graphs
 
 ------------------------------------------------------------------------------------------------
 To do this                              Press                                               
@@ -99,7 +99,7 @@ Reset zoom                              `r keys('*')`
 :::
 
 ::: {.minipage data-latex="{\textwidth}"}
-Table: Lists Shortcuts
+Table: Lists
 
 ------------------------------------------------------------------------------------------------
 To do this                              Press                                               
@@ -176,7 +176,77 @@ Group selected items<br>\linebreak      `r keys(c('Ctrl','G'))` (`r os_logo('win
 :::
 
 ::: {.minipage data-latex="{\textwidth}"}
-Table: Embedded Document Editor Shortcuts
+Table: Script Editor
+
+------------------------------------------------------------------------------------------------
+To do this                              Press                                               
+--------------------------------------- --------------------------------------------------------
+Create a new script                     `r keys(c('Ctrl','N'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
+                                        `r keys(c('\\cmd','N'))` (`r os_logo('apple')`)
+
+&nbsp;                                  &nbsp;
+
+Open a script                           `r keys(c('Ctrl','O'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
+                                        `r keys(c('\\cmd','O'))` (`r os_logo('apple')`)
+
+&nbsp;                                  &nbsp;
+
+Save the script                         `r keys(c('Ctrl','S'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
+                                        `r keys(c('\\cmd','S'))` (`r os_logo('apple')`)
+
+&nbsp;                                  &nbsp;
+
+Run selection<br>\linebreak             `r keys('F5')`
+(or full script if no selection)
+
+&nbsp;                                  &nbsp;
+
+Cut selected text                       `r keys(c('Ctrl','X'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
+                                        `r keys(c('\\cmd','X'))` (`r os_logo('apple')`)
+
+&nbsp;                                  &nbsp;
+
+Paste text                              `r keys(c('Ctrl','V'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
+                                        `r keys(c('\\cmd','V'))` (`r os_logo('apple')`)
+
+&nbsp;                                  &nbsp;
+
+Copy selected text                      `r keys(c('Ctrl','C'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
+                                        `r keys(c('\\cmd','C'))` (`r os_logo('apple')`)
+
+&nbsp;                                  &nbsp;
+
+Undo previous edit                      `r keys(c('Ctrl','Z'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
+                                        `r keys(c('\\cmd','Z'))` (`r os_logo('apple')`)
+
+&nbsp;                                  &nbsp;
+
+Redo previous edit                      `r keys(c('Ctrl','Y'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
+                                        `r keys(c('\\cmd','Y'))` (`r os_logo('apple')`)
+
+&nbsp;                                  &nbsp;
+
+Find                                    `r keys(c('Ctrl','F'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
+                                        `r keys(c('\\cmd','F'))` (`r os_logo('apple')`)
+
+&nbsp;                                  &nbsp;
+
+Find next                               `r keys('F3')`
+
+&nbsp;                                  &nbsp;
+
+Replace                                 `r keys(c('Ctrl','H'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
+                                        `r keys(c('\\cmd','H'))` (`r os_logo('apple')`)
+
+&nbsp;                                  &nbsp;
+
+Select all                              `r keys(c('Ctrl','A'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
+                                        `r keys(c('\\cmd','A'))` (`r os_logo('apple')`)
+------------------------------------------------------------------------------------------------
+:::
+
+::: {.minipage data-latex="{\textwidth}"}
+Table: Embedded Document Editor
 
 ------------------------------------------------------------------------------------------------
 To do this                              Press                                               
@@ -241,7 +311,7 @@ Select all                              `r keys(c('Ctrl','A'))` (`r os_logo('win
 :::
 
 ::: {.minipage data-latex="{\textwidth}"}
-Table: Web Harvester Shortcuts
+Table: Web Harvester
 
 ------------------------------------------------------------------------------------------------
 To do this                              Press                                               

@@ -92,7 +92,8 @@ EditTextDlg::EditTextDlg(wxWindow* parent, BaseProjectDoc* parentDoc, wxString v
 
     Bind(
         wxEVT_RIBBONBUTTONBAR_CLICKED,
-        [this]([[maybe_unused]] wxRibbonButtonBarEvent& event)
+        [this]([[maybe_unused]]
+               wxRibbonButtonBarEvent& event)
         {
             wxFontData data;
             data.SetInitialFont(m_style.GetFont());
@@ -129,9 +130,8 @@ EditTextDlg::EditTextDlg(wxWindow* parent, BaseProjectDoc* parentDoc, wxString v
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnEditButtons, this, wxID_JUSTIFY_RIGHT);
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &EditTextDlg::OnEditButtons, this, wxID_JUSTIFY_FILL);
     Bind(
-        wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED,
-        [this](wxRibbonButtonBarEvent& event) { event.PopupMenu(&m_lineSpacingMenu); },
-        XRCID("ID_LINE_SPACING"));
+        wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, [this](wxRibbonButtonBarEvent& event)
+        { event.PopupMenu(&m_lineSpacingMenu); }, XRCID("ID_LINE_SPACING"));
     Bind(wxEVT_MENU, &EditTextDlg::OnLineSpaceSelected, this, XRCID("ID_LINE_SINGLE"));
     Bind(wxEVT_MENU, &EditTextDlg::OnLineSpaceSelected, this, XRCID("ID_LINE_ONE_AND_HALF"));
     Bind(wxEVT_MENU, &EditTextDlg::OnLineSpaceSelected, this, XRCID("ID_LINE_DOUBLE"));
@@ -258,11 +258,11 @@ void EditTextDlg::CreateControls()
                 wxArtProvider::GetBitmap(L"ID_ALIGN_LEFT", wxART_BUTTON, FromDIP(wxSize{ 32, 32 }))
                     .ConvertToImage(),
                 _(L"Left aligns the text."));
-            buttonBar->AddToggleButton(
-                wxID_JUSTIFY_CENTER, _(L"Center"),
-                wxArtProvider::GetBitmap(L"ID_ALIGN_CENTER", wxART_BUTTON, FromDIP(wxSize{ 32, 32 }))
-                    .ConvertToImage(),
-                _(L"Centers the text."));
+            buttonBar->AddToggleButton(wxID_JUSTIFY_CENTER, _(L"Center"),
+                                       wxArtProvider::GetBitmap(L"ID_ALIGN_CENTER", wxART_BUTTON,
+                                                                FromDIP(wxSize{ 32, 32 }))
+                                           .ConvertToImage(),
+                                       _(L"Centers the text."));
             buttonBar->AddToggleButton(
                 wxID_JUSTIFY_RIGHT, _(L"Right"),
                 wxArtProvider::GetBitmap(L"ID_ALIGN_RIGHT", wxART_BUTTON, FromDIP(wxSize{ 32, 32 }))
@@ -274,11 +274,11 @@ void EditTextDlg::CreateControls()
                                            .ConvertToImage(),
                                        _(L"Justifies the text."));
 
-            buttonBar->AddDropdownButton(
-                XRCID("ID_LINE_SPACING"), _(L"Line Spacing"),
-                wxArtProvider::GetBitmap(L"ID_LINE_SPACING", wxART_BUTTON, FromDIP(wxSize{ 32, 32 }))
-                    .ConvertToImage(),
-                _(L"Adjusts the spacing between lines."));
+            buttonBar->AddDropdownButton(XRCID("ID_LINE_SPACING"), _(L"Line Spacing"),
+                                         wxArtProvider::GetBitmap(L"ID_LINE_SPACING", wxART_BUTTON,
+                                                                  FromDIP(wxSize{ 32, 32 }))
+                                             .ConvertToImage(),
+                                         _(L"Adjusts the spacing between lines."));
 
 #ifdef __WXMSW__
             m_lineSpacingMenu.Append(new wxMenuItem(&m_lineSpacingMenu, XRCID("ID_LINE_SINGLE"),

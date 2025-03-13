@@ -4276,7 +4276,7 @@ void MainFrame::OnScriptEditor([[maybe_unused]] wxCommandEvent& event)
 
     if (GetLuaEditor() != nullptr && GetLuaEditor()->IsShown())
         {
-        GetLuaEditor()->Hide();
+        GetLuaEditor()->HideAllWindows();
         return;
         }
 
@@ -4294,7 +4294,7 @@ void MainFrame::OnScriptEditor([[maybe_unused]] wxCommandEvent& event)
             }
         }
     GetLuaEditor()->SetThemeColor(wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW));
-    GetLuaEditor()->Show();
+    GetLuaEditor()->ShowAllWindows();
     GetLuaEditor()->SetFocus();
     }
 

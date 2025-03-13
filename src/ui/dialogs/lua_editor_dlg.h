@@ -68,6 +68,30 @@ class LuaEditorDlg final : public wxFrame
     /// @brief Loads the layout of the toolbar.
     void LoadLayout(const wxString& layout) { m_mgr.LoadPerspective(layout); }
 
+    /// @brief Ensures that all windows are shown, even if some are floating subwindows.
+    void ShowAllWindows()
+        {
+        Show();
+        for (auto& pn : m_mgr.GetAllPanes())
+            {
+            pn.Show();
+            }
+
+        m_mgr.Update();
+        }
+
+    /// @brief Ensures that all windows are hidden, even if some are floating subwindows.
+    void HideAllWindows()
+        {
+        Hide();
+        for (auto& pn : m_mgr.GetAllPanes())
+            {
+            pn.Hide();
+            }
+
+        m_mgr.Update();
+        }
+
   private:
     void CreateControls();
     void OnClose([[maybe_unused]] wxCloseEvent& event);
