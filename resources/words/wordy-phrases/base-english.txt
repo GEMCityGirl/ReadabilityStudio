@@ -1824,6 +1824,8 @@ assisting	aiding, helping	0
 assists	aids, helps	0		
 assit	assist	3		
 assitant	assistant	3		
+assitant's	assistant's	3		
+assitants	assistants	3		
 assment	assessment	3		
 assment's	assessment's	3		
 assments	assessments	3		
@@ -3846,10 +3848,6 @@ configuations	configurations	3
 configuraiton	configuration	3		
 configuraiton's	configuration's	3		
 configuraitons	configurations	3		
-configurate	configure	3		
-configurated	configured	3		
-configurates	configures	3		
-configurating	configuring	3		
 configuratoin	configuration	3		
 configureable	configurable	3		
 configury	configure	3		
@@ -4368,6 +4366,10 @@ corroborate	confirm	0
 corroborated	confirmed	0		
 corroborates	confirms	0		
 corroborating	confirming	0		
+corrospond	correspond	3		
+corrosponded	corresponded	3		
+corrosponding	corresponding	3		
+corrosponds	corresponds	3		
 corrresponding	corresponding	3		
 corrugate	wrinkle, bend	0		
 corrugated	wrinkled, bent	0		
@@ -4728,6 +4730,7 @@ definate	definite	3
 definately	definitely	3		
 definatly	definitely	3		
 definetly	definitely	3		
+definied	defined	3		
 definining	defining	3		
 definit	definite	3		
 definitive	final	0		
@@ -4866,6 +4869,9 @@ deplete	empty	0
 depleted	emptied, empty (adj.)	0		
 depletes	empties	0		
 depleting	emptying	0		
+deployement	deployment	3		
+deployement's	deployment's	3		
+deployements	deployments	3		
 depreacte	deprecate	3		
 depreacted	deprecated	3		
 depreciate	lessen	0		
@@ -5888,6 +5894,7 @@ embarrasment	embarrassment	3
 embarrassment of riches	too much wealth. too much of a good thing	2		
 embeddeding	embedding	3		
 embeded	embedded	3		
+embeding	embedding	3		
 embellish	adorn, exaggerate	0		
 embellished	adorned, exaggerated	0		
 embellishes	adorns, exaggerates	0		
@@ -6301,6 +6308,9 @@ evaualte	evaluate	3
 evaualted	evaluated	3		
 evaualtes	evaluates	3		
 evaualting	evaluating	3		
+evaulation	evaluation	3		
+evaulation's	evaluation's	3		
+evaulations	evaluations	3		
 evauluated	evaluated	3		
 even steven	evenly divided	2		
 even stevens	evenly divided	2		
@@ -6573,6 +6583,7 @@ expierence	experience	3
 expilicitely	explicitly	3		
 expiration	end	0		
 explain	show, tell	0		
+explainabiltiy	explainability	3		
 explaination	explanation	3		
 explainations	explanations	3		
 explained	showed, told	0		
@@ -6596,6 +6607,7 @@ explit	explicit	3
 explitly	explicitly	3		
 exploititive	exploitative	3		
 explotation	exploitation	3		
+expoilt	exploit	3		
 exponentialy	exponentially	3		
 expound	make clear	0		
 expounded	made clear	0		
@@ -6627,6 +6639,7 @@ expunged	wiped out, cleared	0
 expunges	wipes out, clears	0		
 expunging	wiping out, clearing	0		
 exressed	expressed	3		
+exsits	exists, exits	3		
 extaction	extraction	3		
 exteded	extended	3		
 extemely	extremely	3		
@@ -7042,6 +7055,7 @@ forbad	forbade	3
 forbearance	patience	0		
 forbidden fruit	forbidden item, restricted	2		
 forbiden	forbidden	3		
+forcasting	forecasting	3		
 forebiden	forbidden	3		
 foregroud	foreground	3		
 foregroud's	foreground's	3		
@@ -7518,6 +7532,7 @@ governmnet	government	3
 govorment	government	3		
 govormental	governmental	3		
 govornment	government	3		
+grabage	garbage	3		
 grabing	grabbing	3		
 gracefull	graceful	3		
 gradudate	graduate	3		
@@ -7842,6 +7857,7 @@ hhare	share	3
 hhared	shared	3		
 hhares	shares	3		
 hharing	sharing	3		
+hiearchical	hierarchical	3		
 hiearchies	hierarchies	3		
 hiearchy	hierarchy	3		
 hieght	height	3		
@@ -8079,6 +8095,9 @@ idenfitying	identifying	3
 idenitifer	identifier	3		
 idenitifer's	identifier's	3		
 idenitifers	identifiers	3		
+identfier	identifier	3		
+identfier's	identifier's	3		
+identfiers	identifiers	3		
 identical	same	0		
 identical to	the same as	0		
 identicalness	sameness	0		
@@ -8684,6 +8703,9 @@ indiciate	indicate	3
 indiciated	indicated	3		
 indiciates	indicates	3		
 indiciating	indicating	3		
+indiciator	indicator	3		
+indiciator's	indicator's	3		
+indiciators	indicators	3		
 indicies	indices	3		
 indictate	indicate	3		
 indictated	indicated	3		
@@ -8921,6 +8943,7 @@ inprisonment	imprisonment	3
 inproper	improper	3		
 inproperly	improperly	3		
 inproving	improving	3		
+inqueries	inquiries	3		
 inquire	ask	0		
 inquired	asked	0		
 inquires	asks	0		
@@ -12344,6 +12367,8 @@ preriod	period	3
 presance	presence	3		
 prescience	foresight	0		
 prescribed	set	0		
+prescried	prescribed	3		
+prescries	prescribes	3		
 presedential	presidential	3		
 presend	present	3		
 presense	presence	3		
@@ -12374,6 +12399,8 @@ prevaricating	lying, evading, shifting	0
 prevelant	prevalent	3		
 preventative	preventive	0		
 preverse	perverse	3		
+previoius	previous	3		
+previoiusly	previously	3		
 previoulsy	previously	3		
 previours	previous	3		
 previous	earlier	0		
@@ -13830,6 +13857,7 @@ retaining	keeping, holding	0
 retains	keeps, , holds	0		
 retalitated	retaliated	3		
 retalitation	retaliation	3		
+retension	retention	3		
 retention	keeping, holding	0		
 retermines	determines	3		
 reticent	silent	0		
@@ -14137,6 +14165,9 @@ screeenshots	screenshots	3
 screen plot	scree plot	3		
 screen plot's	scree plot's	3		
 screen plots	scree plots	3		
+screenshoot	screenshot	3		
+screenshoot's	screenshot's	3		
+screenshoots	screenshots	3		
 screentshot	screenshot	3		
 screentshot's	screenshot's	3		
 screentshots	screenshots	3		
@@ -14732,6 +14763,7 @@ spilt the beans	revealed a secret	2
 spit and image	exact likeness	2		
 spitting image	spit and image	3		
 split hairs	argue over trifle	2		
+spliting	splitting	3		
 splits hairs	argues over trifle	2		
 splitted	split	3		
 splitting hairs	arguing over trifle	2		
@@ -15754,6 +15786,7 @@ thorn in your side	annoyance	2
 thoroughfare	road	0		
 thoroughfare's	road's	0		
 thoroughfares	roads	0		
+thorugh	through	3		
 those ones	those	3		
 thoughout	throughout	3		
 thoughput	throughput	3		
@@ -17245,6 +17278,7 @@ you thing	you think	3
 you was	you were	3		
 you yourself	you	1		
 you''ll	you'll	3		
+you'ree	you're	3		
 youdo	you do	3		
 young boy	boy	1		
 young boys	boys	1		

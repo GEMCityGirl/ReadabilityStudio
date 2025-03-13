@@ -198,6 +198,7 @@ Altamonte
 Altavista
 Altiplano
 Altoona
+Altoura
 Altra
 Altran
 Altus
@@ -1560,6 +1561,7 @@ Conoco
 ConocoPhillips
 Conrail
 Conroe
+Conseil
 Consolas
 Constancia
 Constantinian
@@ -1721,6 +1723,7 @@ Dade
 Dael
 Dagenham
 Dahlonega
+Dailymotion
 DaimlerChrysler
 Dakar
 Dakota
@@ -2973,6 +2976,7 @@ Hellenize
 Hellenized
 Hellenizes
 Hellenizing
+HelloHolo
 Helsinki
 Helvetian
 Hemet
@@ -2994,6 +2998,7 @@ Hesperia
 Hesse
 Hessen
 Hessian
+Hevolus
 Hexion
 Heyshott
 Hezbollah
@@ -3046,7 +3051,10 @@ Hollander
 Hollerith
 Holliswood
 Hollywood
+Holocase
 Hololens
+Holomedicine
+Holosuite
 Holstein
 Holyhead
 Holyoke
@@ -3070,6 +3078,7 @@ Hopkinsville
 Hoquiam
 Hormuz
 Hornell
+Horovod
 Horrorland
 Hortonworks
 Hostgator
@@ -3334,6 +3343,7 @@ Jakarta
 Jalisco
 Jamaica
 Jamaican
+Jamba
 Jamboard
 Jamestown
 Jan
@@ -3576,6 +3586,7 @@ Kochava
 Kodachrome
 Kodak
 Koenigsberg
+Kognitiv
 Kokomo
 Kolonia
 Komodo
@@ -4140,6 +4151,7 @@ Medigold
 Medina
 Meditech
 Mediterranean
+Medivis
 MEDLINEplus
 Medpace
 Medway
@@ -4862,6 +4874,7 @@ Ontario
 Onyxia
 Opelika
 Opelousas
+OpenAI
 OpenAL
 OpenBSD
 OpenCensus
@@ -5979,6 +5992,7 @@ SimCity
 Simmonsville
 Simpsonville
 SimQuest
+Simsun
 SIMULA
 Sinaloa
 Sindh
@@ -6321,6 +6335,7 @@ Sylvania
 Sylvatic
 Symantec
 SynapseML
+Synergiz
 Synopsys
 Synpase
 Syntech

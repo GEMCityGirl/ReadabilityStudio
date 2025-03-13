@@ -6832,6 +6832,7 @@ artier
 artiest
 artifact
 artifact's
+artifactory
 artifacts
 artifice
 artifice's
@@ -8149,6 +8150,7 @@ autoblock
 autoblocked
 autoblocking
 autoblocks
+autocalibration
 autochanger
 autochanger's
 autochangers
@@ -8267,6 +8269,10 @@ autoflipping
 autoflips
 autofluorescence
 autofocus
+autoformat
+autoformats
+autoformatted
+autoformatting
 autoforward
 autoforwarded
 autoforwarding
@@ -8322,6 +8328,8 @@ autolog
 autologged
 autologger
 autologging
+autologoff
+autologon
 autologous
 autologs
 autolysis
@@ -8420,6 +8428,10 @@ autoradiography
 autoregressive
 autoregulation
 autoregulatory
+autorenew
+autorenewal
+autorenewal's
+autorenewals
 autorepeat
 autorepeating
 autorepeats
@@ -12007,6 +12019,9 @@ bigotries
 bigotry
 bigotry's
 bigots
+bigram
+bigram's
+bigrams
 bigs
 bigwig
 bigwig's
@@ -23411,6 +23426,9 @@ coachmen
 coachmen's
 coachwork
 coachwork's
+coactivation
+coactivation's
+coactivations
 coadaptation
 coadjutor
 coadjutor's
@@ -31930,6 +31948,9 @@ datacenter
 datacenter's
 datacenters
 datacentric
+datafeed
+datafeed's
+datafeeds
 datafield
 datafield's
 datafields
@@ -31939,6 +31960,9 @@ datafiles
 dataflow
 dataflow's
 dataflows
+dataframe
+dataframe's
+dataframes
 datagram
 datagram's
 datagrams
@@ -34784,6 +34808,9 @@ dermises
 dermoid
 dermopathy
 dermos
+dermoscopies
+dermoscopy
+dermoscopy's
 derogate
 derogated
 derogates
@@ -35888,6 +35915,9 @@ diaries
 diarist
 diarist's
 diarists
+diarization
+diarization's
+diarizations
 diarrhea
 diarrhea's
 diarrheal
@@ -37427,6 +37457,7 @@ disfigurement's
 disfigurements
 disfigures
 disfiguring
+disfluency
 disfranchise
 disfranchised
 disfranchisement
@@ -44397,6 +44428,7 @@ equipotentiality's
 equipotentials
 equipped
 equipping
+equiprobable
 equiproportional
 equiproportionality
 equiproportionally
@@ -45027,6 +45059,9 @@ ethnologies
 ethnologist
 ethnologist's
 ethnologists
+ethnologue
+ethnologue's
+ethnologues
 ethnology
 ethnology's
 ethnomethodology
@@ -46326,6 +46361,7 @@ expiring
 expiry
 expiry's
 explain
+explainability
 explainable
 explained
 explainer
@@ -52476,9 +52512,12 @@ frown
 frowned
 frowner
 frowner's
+frownies
 frowning
 frowningly
 frowns
+frowny
+frowny's
 frowzier
 frowziest
 frowzily
@@ -57002,6 +57041,7 @@ groundbreakers
 groundbreaking
 groundbreakings
 grounded
+groundedness
 grounder
 grounder's
 grounders
@@ -60756,6 +60796,9 @@ histology's
 histolytica
 histone
 histones
+histopathologies
+histopathology
+histopathology's
 histoplasma
 histoplasmosis
 historian
@@ -68351,6 +68394,7 @@ interprocessor
 interprofessional
 interpulmonary
 interpunctella
+interpupillary
 interquartile
 interracial
 interred
@@ -71249,6 +71293,7 @@ keyhole
 keyhole's
 keyholes
 keying
+keyless
 keylog
 keylogged
 keylogger
@@ -76361,6 +76406,9 @@ luxation
 luxe
 luxe's
 luxes
+luxmeter
+luxmeter's
+luxmeters
 luxuriance
 luxuriance's
 luxuriances
@@ -80587,6 +80635,9 @@ micrometres
 micromole
 micromole's
 micromoles
+micromovement
+micromovement's
+micromovements
 micron
 micron's
 micronation
@@ -81326,6 +81377,9 @@ Mindoro
 minds
 mindset
 mindsets
+mindshare
+mindshare's
+mindshares
 mindshift
 mindshifts
 mine
@@ -81567,6 +81621,7 @@ minotaur's
 minotaurs
 minoxidil
 minoxidils
+mins
 Minsky
 minster
 minster's
@@ -84363,6 +84418,7 @@ multichrome's
 multichromes
 multichromosomal
 multicircuit
+multiclass
 multicloud
 multicnty
 multicollinearity
@@ -84599,6 +84655,7 @@ multiselections
 multiselects
 multisensory
 multiserver
+multiservice
 multisession
 multiset
 multiset's
@@ -86870,6 +86927,9 @@ nexus's
 nexuses
 Neysa
 nez
+ngram
+ngram's
+ngrams
 Ni
 niacin
 niacin's
@@ -87413,6 +87473,7 @@ nonaddict
 nonaddictive
 nonaddicts
 nonadditive
+nonadherence
 nonadhesive
 nonadjacent
 nonadjustable
@@ -87590,6 +87651,7 @@ nonconfrontive
 nonconjugate
 nonconscious
 nonconsecutive
+nonconsensual
 nonconservative
 nonconstant
 nonconstruction
@@ -87696,6 +87758,7 @@ nondrying
 nondurable
 none
 noneconomic
+noneditable
 noneducational
 noneffective
 noneffectives
@@ -94456,6 +94519,7 @@ parquetry's
 parquets
 Parr
 parrakeet's
+parrallelism
 parred
 parricidal
 parricide
@@ -98696,6 +98760,9 @@ pixelate
 pixelated
 pixelates
 pixelating
+pixelation
+pixelation's
+pixelations
 pixelization
 pixelization's
 pixelizations
@@ -98939,6 +99006,9 @@ planners
 planning
 planoconcave
 planoconvex
+planogram
+planogram's
+planograms
 planospiral
 plans
 plant
@@ -102082,6 +102152,10 @@ prehistory
 prehistory's
 prehuman
 prehypertension
+preidentified
+preidentifies
+preidentify
+preidentifying
 preincrement
 preincremented
 preincrementing
@@ -106836,6 +106910,7 @@ radium's
 radiums
 radius
 radius's
+radiuses
 radix
 radix's
 radixes
@@ -111581,7 +111656,10 @@ reprogrammer's
 reprogrammers
 reprogramming
 reprograms
+reproject
 reprojected
+reprojecting
+reprojects
 reproof
 reproof's
 reproofed
@@ -119335,6 +119413,7 @@ severing
 severities
 severity
 severity's
+severless
 Severn
 severs
 Severus
@@ -124491,6 +124570,7 @@ spammer
 spammer's
 spammers
 spamming
+spammy
 span
 span's
 spandex
@@ -126260,6 +126340,9 @@ stager's
 stagers
 stages
 stagestruck
+stageview
+stageview's
+stageviews
 stagflation
 stagflation's
 stagflations
@@ -132357,6 +132440,9 @@ Takayasu
 take
 takeaway
 takeaways
+takedown
+takedown's
+takedowns
 taken
 takeoff
 takeoff's
@@ -136843,6 +136929,7 @@ touchinesses
 touching
 touchingly
 touchings
+touchless
 touchline
 touchline's
 touchpad
@@ -137377,6 +137464,7 @@ tranquilness
 tranquilness's
 trans
 transact
+transactable
 transacted
 transacting
 transaction
@@ -140093,6 +140181,7 @@ unacquire
 unacquired
 unacquires
 unacquiring
+unactionable
 unactivated
 unadaptable
 unadapted
@@ -141553,6 +141642,9 @@ unenlightening
 unenroll
 unenrolled
 unenrolling
+unenrollment
+unenrollment's
+unenrollments
 unenrolls
 unentangle
 unentangled
@@ -142064,6 +142156,9 @@ unignore
 unignored
 unignores
 unignoring
+unigram
+unigram's
+unigrams
 unilateral
 unilateralism
 unilateralism's
@@ -142739,6 +142834,7 @@ unperturbed
 unperturbedly
 unphilosophized
 unphilosophizes
+unphishable
 unphosphorylated
 unphysical
 unpick
@@ -143127,6 +143223,7 @@ unsalable
 unsaleable
 unsalted
 unsalvageable
+unsampled
 unsanction
 unsanctioned
 unsanctioning
@@ -146159,6 +146256,9 @@ virago's
 viragoes
 viragos
 viral
+viralities
+virality
+virality's
 virally
 Viremia
 vireo
@@ -148071,6 +148171,8 @@ webscraper
 webscraper's
 webscrapers
 webscraping
+websearch
+websearches
 webserver
 webserver's
 webservers
@@ -148080,6 +148182,9 @@ webservices
 webshell
 webshell's
 webshells
+webshop
+webshop's
+webshops
 website
 website's
 websites
@@ -149535,7 +149640,10 @@ witchcrafts
 witchdoctor
 witchdoctors
 witched
+witcher
+witcher's
 witcheries
+witchers
 witchery
 witchery's
 witches
