@@ -58,14 +58,14 @@ class LuaEditorDlg final : public wxFrame
     /// @brief Clears the debug output window.
     void DebugClear();
 
-    /// @returns A serialization string to store the toolbar layout
+    /// @returns A serialization string to store the interface layout.
     [[nodiscard]]
     wxString GetLayout()
         {
         return m_mgr.SavePerspective();
         }
 
-    /// @brief Loads the layout of the toolbar.
+    /// @brief Loads the layout of the interface.
     void LoadLayout(const wxString& layout) { m_mgr.LoadPerspective(layout); }
 
     /// @brief Ensures that all windows are shown, even if some are floating subwindows.

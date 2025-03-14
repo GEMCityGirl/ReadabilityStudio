@@ -67,10 +67,10 @@ void LuaInterpreter::RunLuaFile(const wxString& filePath)
         // script and also just shows the line number without saying "line" in front of it,
         // so reformat this message to make it more readable.
         wxString errorMessage(luaL_checkstring(m_L, -1), wxConvUTF8);
-        const auto EndOfErrorHeader = errorMessage.find(L"]:");
-        if (EndOfErrorHeader != wxString::npos)
+        const auto endOfErrorHeader = errorMessage.find(L"]:");
+        if (endOfErrorHeader != wxString::npos)
             {
-            errorMessage.erase(0, EndOfErrorHeader + 2);
+            errorMessage.erase(0, endOfErrorHeader + 2);
             }
         wxMessageBox(_(L"Line #") + errorMessage, _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
         LuaScripting::DebugPrint(wxString::Format(
@@ -114,15 +114,15 @@ void LuaInterpreter::RunLuaCode(const wxString& code, const wxString& filePath,
         // script and also just shows the line number without saying "line" in front of it,
         // so reformat this message to make it more readable.
         errorMessage = wxString{ luaL_checkstring(m_L, -1), wxConvUTF8 };
-        const auto EndOfErrorHeader = errorMessage.find(L"]:");
-        if (EndOfErrorHeader != wxString::npos)
+        const auto endOfErrorHeader = errorMessage.find(L"]:");
+        if (endOfErrorHeader != wxString::npos)
             {
-            errorMessage.erase(0, EndOfErrorHeader + 2);
+            errorMessage.erase(0, endOfErrorHeader + 2);
             }
         LuaScripting::DebugPrint(wxString::Format( // TRANSLATORS: %s around "Error" are highlight
                                                    // tags. The last one is a line number.
-            _(L"%sError%s: Line #%s"), L"<span style='color:red; font-weight:bold;'>", L"</span>",
-            errorMessage));
+            _(L"%sError%s: Chunk line #%s"), L"<span style='color:red; font-weight:bold;'>",
+            L"</span>", errorMessage));
         }
     const wxDateTime endTime(wxDateTime::Now());
     LuaScripting::DebugPrint(

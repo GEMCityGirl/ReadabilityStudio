@@ -397,20 +397,32 @@ LuaEditorDlg::LuaEditorDlg(
 
             if (errorMessage.length())
                 {
-                wxMessageBox(_(L"Line #") + errorMessage, _(L"Script Error"),
-                             wxOK | wxICON_EXCLAMATION);
+                const int lineOffset = (editor->GetSelectionStart() == editor->GetSelectionEnd()) ?
+                                           0 :
+                                           editor->LineFromPosition(editor->GetSelectionStart());
 
                 long lineNumber{ 0 };
-                if (errorMessage.ToLong(&lineNumber))
+                errorMessage.ToLong(&lineNumber);
+                // make it zero indexed
+                --lineNumber;
+                // and offset if we are running a selection instead of the whole script
+                lineNumber += lineOffset;
+
+                // strip the number from the message
+                if (const auto foundPos = errorMessage.find(L':'); foundPos != wxString::npos)
                     {
-                    --lineNumber;
+                    errorMessage.erase(0, foundPos + 1);
                     }
+
+                wxMessageBox(wxString::Format(
+                                 // TRANSLATORS: placeholders are a line number and error message
+                                 // from a script
+                                 _(L"Line #%s: %s"), std::to_wstring(lineNumber + 1), errorMessage),
+                             _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
+
                 if (lineNumber >= 0)
                     {
-                    if (const auto foundPos = errorMessage.find(L':'); foundPos != wxString::npos)
-                        {
-                        errorMessage.replace(0, foundPos, _("Error"));
-                        }
+                    errorMessage.insert(0, _(L"Error:"));
                     // if scrolling up, then step back up an extra line so that we can see it
                     // after adding the annotation beneath it
                     editor->GotoLine((editor->GetFirstVisibleLine() < lineNumber) ? lineNumber :
