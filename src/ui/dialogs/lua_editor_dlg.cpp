@@ -378,6 +378,11 @@ LuaEditorDlg::LuaEditorDlg(
         wxEVT_TOOL,
         [this]([[maybe_unused]] wxCommandEvent&)
         {
+            if (m_notebook->GetPageCount() == 0)
+                {
+                return;
+                }
+
             auto editor = dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage());
             editor->AnnotationClearAll();
             wxString errorMessage;
@@ -455,6 +460,11 @@ LuaEditorDlg::LuaEditorDlg(
     Bind(wxEVT_AUINOTEBOOK_PAGE_CLOSE,
          [this]([[maybe_unused]] wxCommandEvent&)
          {
+             if (m_notebook->GetPageCount() == 0)
+                 {
+                 return;
+                 }
+
              auto codeEditor = dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage());
              if (codeEditor && codeEditor->GetModify())
                  {
@@ -590,6 +600,11 @@ LuaEditorDlg::LuaEditorDlg(
 //------------------------------------------------------
 void LuaEditorDlg::OnSave([[maybe_unused]] wxCommandEvent& event)
     {
+    if (m_notebook->GetPageCount() == 0)
+        {
+        return;
+        }
+
     if (dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage())->Save())
         {
         m_notebook->SetPageText(
@@ -637,6 +652,11 @@ void LuaEditorDlg::OnShowFindDialog([[maybe_unused]] wxCommandEvent& event)
 //------------------------------------------------------
 void LuaEditorDlg::OnFindDialog(wxFindDialogEvent& event)
     {
+    if (m_notebook->GetPageCount() == 0)
+        {
+        return;
+        }
+
     auto currentScript = dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage());
     if (currentScript == nullptr)
         {
@@ -919,6 +939,7 @@ CodeEditor* LuaEditorDlg::CreateLuaScript(wxWindow* parent)
         }
 
     codeEditor->Finalize();
+    codeEditor->SetSelection(codeEditor->GetTextLength(), codeEditor->GetTextLength());
     codeEditor->Show();
 
     return codeEditor;
