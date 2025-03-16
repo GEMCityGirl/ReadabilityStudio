@@ -12,6 +12,48 @@
 wxDECLARE_APP(ReadabilityApp);
 
 //-------------------------------------------------------------
+LinkDialog::LinkDialog(wxWindow* parent, const wxString& message, const wxString& caption)
+    {
+    SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
+    wxDialog::Create(parent, wxID_ANY, caption, wxDefaultPosition, wxDefaultSize,
+                     wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
+
+    wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
+
+    mainSizer->Add(new wxStaticText(this, wxID_STATIC, message), wxSizerFlags{}.Border());
+
+    m_codeWindow = new Wisteria::UI::CodeEditor(this, wxID_ANY, wxDefaultPosition,
+                                                FromDIP(wxSize{ 1000, 900 }));
+    m_codeWindow->SetLanguage(wxSTC_LEX_HTML);
+    m_codeWindow->SetModified(false);
+    mainSizer->Add(m_codeWindow, wxSizerFlags{ 1 }.Expand().Border());
+
+    mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL), wxSizerFlags{}.Expand().Border());
+
+    m_codeWindow->SetFocus();
+
+    SetSizerAndFit(mainSizer);
+    Center();
+
+    Bind(wxEVT_BUTTON, &LinkDialog::OnOK, this, wxID_OK);
+    }
+
+//-------------------------------------------------------------
+void LinkDialog::OnOK([[maybe_unused]] wxCommandEvent& event)
+    {
+    TransferDataFromWindow();
+    if (IsModal())
+        {
+        EndModal(wxID_OK);
+        }
+    else
+        {
+        SetReturnCode(wxID_OK);
+        Show(false);
+        }
+    }
+
+//-------------------------------------------------------------
 void WebHarvesterDlg::OnDomainComboSelect([[maybe_unused]] wxCommandEvent& event)
     {
     m_domainList->Enable(m_domainCombo->GetValue() == GetUserSpecifiedDomainsLabel());
@@ -143,15 +185,14 @@ void WebHarvesterDlg::OnLoadUrlsClick([[maybe_unused]] wxCommandEvent& event)
     {
     if (m_urlList != nullptr)
         {
-        wxTextEntryDialog textDlg(
-            this, _(L"Enter a block of HTML content to extract website links from."),
-            _(L"Load URLs"), wxString{}, wxTextEntryDialogStyle | wxTE_MULTILINE, wxDefaultPosition,
-            FromDIP(wxSize{ 500, 600 }));
-        if (textDlg.ShowModal() == wxID_OK)
+        LinkDialog linksDlg(this,
+                            _(L"Enter a block of HTML content to extract website links from."),
+                            _(L"Load URLs"));
+        if (linksDlg.ShowModal() == wxID_OK)
             {
             // case sensitive is fine since Linux servers use case-sensitive page links
             std::set<wxString> gatheredLinks;
-            wxString content{ textDlg.GetValue() };
+            wxString content{ linksDlg.GetValue() };
             html_utilities::hyperlink_parse getHyperLinks(
                 content.wc_str(), content.length(),
                 html_utilities::hyperlink_parse::hyperlink_parse_method::html);
@@ -583,7 +624,8 @@ bool WebHarvesterDlg::Create(wxWindow* parent, wxWindowID id /*= wxID_ANY*/,
          WebHarvesterDlg::ID_DOWNLOAD_CHECKBOX);
     Bind(
         wxEVT_CHECKBOX,
-        [this]([[maybe_unused]] wxCommandEvent& event)
+        [this]([[maybe_unused]]
+               wxCommandEvent& event)
         {
             TransferDataFromWindow();
             m_persistCookiesCheck->Enable(m_useJsCookies);

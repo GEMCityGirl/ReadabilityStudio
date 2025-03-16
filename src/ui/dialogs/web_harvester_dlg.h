@@ -12,6 +12,7 @@
 #ifndef __WEB_HARVESTER_DIALOG_H__
 #define __WEB_HARVESTER_DIALOG_H__
 
+#include "../../Wisteria-Dataviz/src/ui/controls/codeeditor.h"
 #include "../../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
 #include "../../Wisteria-Dataviz/src/ui/controls/sidebarbook.h"
 #include "../../Wisteria-Dataviz/src/ui/dialogs/dialogwithhelp.h"
@@ -26,6 +27,27 @@
 #include <wx/valgen.h>
 #include <wx/wx.h>
 
+/// @private
+/// @internal Dialog for prompting a user for a block of HTML code to extract links from.
+class LinkDialog final : public wxDialog
+    {
+  public:
+    LinkDialog(wxWindow* parent, const wxString& message, const wxString& caption);
+    LinkDialog(LinkDialog&) = delete;
+    LinkDialog& operator=(const LinkDialog&) = delete;
+
+    [[nodiscard]] wxString GetValue() const
+        {
+        return (m_codeWindow != nullptr) ? m_codeWindow->GetValue() : wxString{};
+        }
+
+    void OnOK([[maybe_unused]] wxCommandEvent& event);
+
+  protected:
+    Wisteria::UI::CodeEditor* m_codeWindow{ nullptr };
+    };
+
+/// @brief Dialog for harvester webpages.
 class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
     {
   public:
