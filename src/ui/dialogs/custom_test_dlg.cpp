@@ -751,11 +751,9 @@ void CustomTestDlg::CreateControls()
                                  wxSizerFlags{}.Border(wxLEFT | wxTOP | wxRIGHT));
             formulaBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
-            m_formulaCtrl = new CodeEditor(formulaBoxSizer->GetStaticBox(), ID_FORMULA_FIELD,
-                                           wxDefaultPosition, FromDIP(wxSize{ 600, 300 }));
-            m_formulaCtrl->SetLanguage(wxSTC_LEX_CPPNOCASE);
-            m_formulaCtrl->SetThemeColor(
-                wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW));
+            m_formulaCtrl =
+                new CodeEditor(formulaBoxSizer->GetStaticBox(), wxSTC_LEX_CPPNOCASE,
+                               ID_FORMULA_FIELD, wxDefaultPosition, FromDIP(wxSize{ 600, 300 }));
 
             m_formulaCtrl->AddFunctionsOrClasses(m_math);
             m_formulaCtrl->AddFunctionsOrClasses(m_logic);

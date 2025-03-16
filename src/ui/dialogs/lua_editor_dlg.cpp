@@ -763,16 +763,6 @@ void LuaEditorDlg::SetThemeColor(const wxColour& color)
     notebookArt->SetColour(color);
     m_notebook->SetArtProvider(notebookArt);
 
-    for (size_t i = 0; i < m_notebook->GetPageCount(); ++i)
-        {
-        auto codeEditor = dynamic_cast<CodeEditor*>(m_notebook->GetPage(i));
-        if (codeEditor)
-            {
-            codeEditor->SetThemeColor(
-                m_mgr.GetArtProvider()->GetColour(wxAUI_DOCKART_BACKGROUND_COLOUR));
-            }
-        }
-
     const wxString htmlText = *(m_debugMessageWindow->GetParser()->GetSource());
     const auto debugReportBody =
         wxString::Format(
@@ -819,15 +809,15 @@ void LuaEditorDlg::DebugClear()
 //-------------------------------------------------------
 CodeEditor* LuaEditorDlg::CreateLuaScript(wxWindow* parent)
     {
-    auto codeEditor = new CodeEditor(parent, wxID_ANY);
+    auto codeEditor = new CodeEditor(parent, wxSTC_LEX_LUA);
     codeEditor->Show(false);
-    codeEditor->SetLanguage(wxSTC_LEX_LUA);
     codeEditor->IncludeNumberMargin(true);
     codeEditor->IncludeFoldingMargin(true);
-    codeEditor->SetDefaultHeader(L"dofile(Application.GetLuaConstantsPath())\n\n");
+    codeEditor->SetDefaultHeader(
+        wxString::Format(_(L"-- Imports %s specific enumerations"), wxGetApp().GetAppDisplayName()) +
+        L"\ndofile(Application.GetLuaConstantsPath())\n\n");
     codeEditor->SetText(codeEditor->GetDefaultHeader());
     codeEditor->SetModified(false);
-    codeEditor->SetThemeColor(m_mgr.GetArtProvider()->GetColour(wxAUI_DOCKART_BACKGROUND_COLOUR));
 
         // import API info
         {

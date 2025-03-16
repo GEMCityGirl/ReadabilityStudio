@@ -22,9 +22,8 @@ LinkDialog::LinkDialog(wxWindow* parent, const wxString& message, const wxString
 
     mainSizer->Add(new wxStaticText(this, wxID_STATIC, message), wxSizerFlags{}.Border());
 
-    m_codeWindow = new Wisteria::UI::CodeEditor(this, wxID_ANY, wxDefaultPosition,
+    m_codeWindow = new Wisteria::UI::CodeEditor(this, wxSTC_LEX_HTML, wxID_ANY, wxDefaultPosition,
                                                 FromDIP(wxSize{ 1000, 900 }));
-    m_codeWindow->SetLanguage(wxSTC_LEX_HTML);
     m_codeWindow->SetModified(false);
     mainSizer->Add(m_codeWindow, wxSizerFlags{ 1 }.Expand().Border());
 
