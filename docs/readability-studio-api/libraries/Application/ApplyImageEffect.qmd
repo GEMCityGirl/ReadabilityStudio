@@ -1,6 +1,6 @@
 ## `ApplyImageEffect`
 
-Applies an effect to an image and saves the result to another image file. Returns `true` if image was successfully saved.
+Applies\index{Images!editing} an effect to an image and saves the result to another image file.
 
 ### Syntax {-}
 
@@ -14,6 +14,8 @@ boolean ApplyImageEffect(string inputImagePath,
 ### Return value {-}
 
 Type: `boolean`
+
+Returns `true` if image was successfully saved.
 
 ### Parameters {-}
 

@@ -8,12 +8,10 @@ Sets how bars should be drawn within the various bar charts.
 SetBarChartBarEffect(BoxEffect effect)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
 |[`BoxEffect`](#boxeffect) effect | The effect to apply to the bars. |
-
 
 {{< pagebreak >}}

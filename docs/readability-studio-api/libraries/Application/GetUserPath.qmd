@@ -1,13 +1,12 @@
 ## `GetUserPath`
 
-Returns the path of a given folder in the user's directory.
+Returns the path of a given folder\index{Filepaths!user folders} in the user's directory.
 
 ### Syntax {-}
 
 ``` {.lua}
 string GetUserPath(UserPath path)
 ```
-
 
 ### Return value {-}
 
@@ -17,7 +16,6 @@ Type: `string`
 
 **Parameter** | **Description**
 | :-- | :-- |
-|[`UserPath`](#userpath) path |      |
-
+|[`UserPath`](#userpath) path | The type of user folder to find. |
 
 {{< pagebreak >}}

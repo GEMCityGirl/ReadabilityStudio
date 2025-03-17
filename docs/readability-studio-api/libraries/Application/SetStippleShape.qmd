@@ -1,4 +1,4 @@
-## `SetStippleShape`
+## `SetStippleShape` {#app-setstippleshape}
 
 Sets the stipple shape used to draw bars in graphs for new projects.
 
@@ -8,12 +8,22 @@ Sets the stipple shape used to draw bars in graphs for new projects.
 SetStippleShape(string shapeId)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`string` shapeId |      |
+|`string` shapeId | The shape ID to use. |
 
+::: {.tipsection data-latex=""}
+Available named shapes are: `"sun"`, `"book"`, `"fall-leaf"`, `"man"`, `"woman"`, `"business-woman"`, `"tire"`, `"flower"`,
+`"warning-road-sign"`, `"location-marker"`, `"graduation-cap"`, `"car"`, `"newspaper"`,
+`"snowflake"`, `"blackboard"`, `"clock"`, `"ruler"`, `"ivbag"`, `"cold-thermometer"`, `"hot-thermometer"`,
+`"apple"`, `"granny-smith-apple"`, `"heart"`, `"immaculate-heart"`, `"flame"`, `"office"`, `"factory"`,
+`"house"`, `"barn"`, and `"farm"`.
+:::
+
+::: {.callout-note}
+The [`BoxEffect.StippleShape`](#boxeffect) effect will need to be enabled for either box plots or bar charts for this to have any effect.
+:::
 
 {{< pagebreak >}}

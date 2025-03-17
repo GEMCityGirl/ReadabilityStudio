@@ -14,4 +14,8 @@ LogError(string errorMessage)
 | :-- | :-- |
 `string` errorMessage | The error message to log.
 
+### See also {-}
+
+[`Debug.Print()`](#print)
+
 {{< pagebreak >}}

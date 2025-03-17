@@ -1,6 +1,6 @@
 ## `ExportGraph` {#standard-exportgraph}
 
-Saves\index{Graphs!exporting} the specified graph as an image.
+Saves\index{Graphs!exporting} the specified graph as an image\index{Images!saving graphs as}.
 
 ### Syntax {-}
 

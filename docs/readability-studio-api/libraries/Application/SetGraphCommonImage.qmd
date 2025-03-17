@@ -1,6 +1,6 @@
 ## `SetGraphCommonImage`
 
-Sets the common image\index{Images!bar backgrounds} drawn across all bars.
+Sets the common image\index{Images!bar backgrounds} drawn across all bars for new projects.
 
 ### Syntax {-}
 

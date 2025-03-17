@@ -1,31 +1,39 @@
 ## `StitchImages`
 
-Combines a list of images vertically or horizontally. Returns `true` if image was successfully saved.
+Combines\index{Images!editing} a list of images vertically or horizontally.
 
 ### Syntax {-}
 
 ``` {.lua}
-boolean StitchImages(string outputImagePath,
-                     Orientation direction,
-                     string inputImage1,
-                     string inputImage2,
-                     ...)
+boolean StitchImages(string inputImage1,
+                     ...,
+                     string outputImagePath,
+                     Orientation direction)
 ```
-
 
 ### Return value {-}
 
 Type: `boolean`
 
+Returns `true` if image was successfully saved.
+
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
+|`string` inputImage1 | The path of the first image to combine. | 
+| ... | Additional image paths to combine with `inputImage1`. |
 |`string` outputImagePath | Where to save the combined images. | 
 |[`Orientation`](#orientation) direction | The direction to combine the images. | 
-|`string` inputImage1 | The path of the first image to combine. | 
-|`string` inputImage2 | The path of the second image to combine. | 
-| ... | A variable list of image paths to combine. |
 
+### Example {-}
+
+``` {.lua}
+Application.StitchImages(
+    Application.GetUserPath(UserPath.Pictures) .. "IMG_0059.JPG",
+    Application.GetUserPath(UserPath.Pictures) .. "IMG_0072.JPG",
+    Application.GetUserPath(UserPath.Pictures) .. "CombinedImg.jpg",
+    Orientation.Horizontal)
+```
 
 {{< pagebreak >}}

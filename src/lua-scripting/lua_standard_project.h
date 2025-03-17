@@ -114,9 +114,9 @@ namespace LuaScripting
         int /*number*/ Get7CharacterPlusWordCount(lua_State* L); // Returns the number of words consisting of seven or more characters from the document.
         int /*number*/ GetUnique6CharPlusWordCount(lua_State* L); // Returns the number of unique words consisting of six or more characters from the document.
         int /*number*/ Get6CharacterPlusWordCount(lua_State* L); // Returns the number of words consisting of six or more characters from the document.
-        int /*number*/ GetUnfamSpacheWordCount(lua_State* L); // Returns the number of words unfamiliar to the Spache test from the document.
-        int /*number*/ GetUnfamDCWordCount(lua_State* L); // Returns the number of words unfamiliar to the Dale-Chall test from the document.
-        int /*number*/ GetUnfamHJWordCount(lua_State* L); // Returns the number of words unfamiliar to the Harris-Jacobson test from the document.
+        int /*number*/ GetUnfamiliarSpacheWordCount(lua_State* L); // Returns the number of words unfamiliar to the Spache test from the document.
+        int /*number*/ GetUnfamiliarDCWordCount(lua_State* L); // Returns the number of words unfamiliar to the Dale-Chall test from the document.
+        int /*number*/ GetUnfamiliarHJWordCount(lua_State* L); // Returns the number of words unfamiliar to the Harris-Jacobson test from the document.
         // OPTIONS
         int SetSpellCheckerOptions(lua_State* L /*boolean ignoreProperNouns, boolean ignoreUppercased, boolean ignoreNumerals, boolean ignoreFileAddresses, boolean ignoreProgrammerCode, boolean ignoreSocialMediaTags, boolean allowColloquialisms*/); // Sets spell-checker options.
 

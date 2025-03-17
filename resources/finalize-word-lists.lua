@@ -76,9 +76,9 @@ Application.ExpandWordList(
     Debug.GetScriptFolderPath().."NonPersonalTEMP.txt", "s", "'s")
 
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."words/proper-nouns/all.txt",
     Debug.GetScriptFolderPath().."words/proper-nouns/personal.txt",
-    Debug.GetScriptFolderPath().."NonPersonalTEMP.txt")
+    Debug.GetScriptFolderPath().."NonPersonalTEMP.txt",
+    Debug.GetScriptFolderPath().."words/proper-nouns/all.txt")
 
 os.remove(Debug.GetScriptFolderPath().."NonPersonalTEMP.txt")
 
@@ -97,34 +97,34 @@ Application.MergePhraseLists(
     Debug.GetScriptFolderPath().."words/wordy-phrases/base-spanish.txt")
 
 Application.MergePhraseLists(
-    Debug.GetScriptFolderPath().."words/wordy-phrases/german.txt",
     Debug.GetScriptFolderPath().."words/wordy-phrases/common-errors.txt",
-    Debug.GetScriptFolderPath().."words/wordy-phrases/base-german.txt")
+    Debug.GetScriptFolderPath().."words/wordy-phrases/base-german.txt",
+    Debug.GetScriptFolderPath().."words/wordy-phrases/german.txt")
 Application.MergePhraseLists(
-    Debug.GetScriptFolderPath().."words/wordy-phrases/spanish.txt",
     Debug.GetScriptFolderPath().."words/wordy-phrases/common-errors.txt",
-    Debug.GetScriptFolderPath().."words/wordy-phrases/base-spanish.txt")
+    Debug.GetScriptFolderPath().."words/wordy-phrases/base-spanish.txt",
+    Debug.GetScriptFolderPath().."words/wordy-phrases/spanish.txt")
 Application.MergePhraseLists(
-    Debug.GetScriptFolderPath().."words/wordy-phrases/english.txt",
     Debug.GetScriptFolderPath().."words/wordy-phrases/common-errors.txt",
-    Debug.GetScriptFolderPath().."words/wordy-phrases/base-english.txt")
+    Debug.GetScriptFolderPath().."words/wordy-phrases/base-english.txt",
+    Debug.GetScriptFolderPath().."words/wordy-phrases/english.txt")
 
 -- Create single word list from wordy phrase list
 Application.PhraseListToWordList(
     Debug.GetScriptFolderPath().."words/wordy-phrases/english.txt",
     Debug.GetScriptFolderPath().."words/wordy-phrases/single-word-replacements-english.txt")
 
-Application.CrossReferenceWordLists(
+Application.CrossReferencePhraseLists(
     Debug.GetScriptFolderPath().."words/wordy-phrases/single-word-replacements-english.txt",
     Debug.GetScriptFolderPath().."words/word-lists/new-dale-chall.txt",
     Debug.GetScriptFolderPath().."words/wordy-phrases/dale-chall-replacements.txt")
 
-Application.CrossReferenceWordLists(
+Application.CrossReferencePhraseLists(
     Debug.GetScriptFolderPath().."words/wordy-phrases/single-word-replacements-english.txt",
     Debug.GetScriptFolderPath().."words/word-lists/harris-jacobson.txt",
     Debug.GetScriptFolderPath().."words/wordy-phrases/harris-jacobson-replacements.txt")
 
-Application.CrossReferenceWordLists(
+Application.CrossReferencePhraseLists(
     Debug.GetScriptFolderPath().."words/wordy-phrases/single-word-replacements-english.txt",
     Debug.GetScriptFolderPath().."words/word-lists/revised-spache.txt",
     Debug.GetScriptFolderPath().."words/wordy-phrases/spache-replacements.txt")
@@ -137,11 +137,11 @@ Application.ExpandWordList(
     Debug.GetScriptFolderPath().."words/common-dictionary.txt",
     Debug.GetScriptFolderPath().."CommonDictionaryTEMP.txt", "'s")
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."words/dictionaries/english.txt",
     Debug.GetScriptFolderPath().."words/base-english-dictionary.txt",
     Debug.GetScriptFolderPath().."words/abbreviations/abbreviations.txt",
     Debug.GetScriptFolderPath().."words/proper-nouns/all.txt",
-    Debug.GetScriptFolderPath().."CommonDictionaryTEMP.txt")
+    Debug.GetScriptFolderPath().."CommonDictionaryTEMP.txt",
+    Debug.GetScriptFolderPath().."words/dictionaries/english.txt")
 
 os.remove(Debug.GetScriptFolderPath().."CommonDictionaryTEMP.txt")
 
@@ -174,7 +174,6 @@ Application.MergeWordLists(
     Debug.GetScriptFolderPath().."words/programming/sql.txt",
     Debug.GetScriptFolderPath().."words/programming/sql.txt")
 Application.MergeWordLists(
-    Debug.GetScriptFolderPath().."words/programming/all-languages.txt",
     Debug.GetScriptFolderPath().."words/programming/assembly.txt",
     Debug.GetScriptFolderPath().."words/programming/cpp.txt",
     Debug.GetScriptFolderPath().."words/programming/csharp.txt",
@@ -183,4 +182,5 @@ Application.MergeWordLists(
     Debug.GetScriptFolderPath().."words/programming/python.txt",
     Debug.GetScriptFolderPath().."words/programming/visual-basic.txt",
     Debug.GetScriptFolderPath().."words/programming/sql.txt",
-    Debug.GetScriptFolderPath().."words/programming/r.txt")
+    Debug.GetScriptFolderPath().."words/programming/r.txt",
+    Debug.GetScriptFolderPath().."words/programming/all-languages.txt")

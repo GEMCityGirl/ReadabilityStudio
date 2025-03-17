@@ -14,4 +14,8 @@ LogMessage(string message)
 | :-- | :-- |
 `string` message | The message to log.
 
+### See also {-}
+
+[`Debug.Print()`](#print)
+
 {{< pagebreak >}}

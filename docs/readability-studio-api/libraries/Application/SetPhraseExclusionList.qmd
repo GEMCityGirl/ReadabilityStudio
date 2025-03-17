@@ -1,6 +1,6 @@
 ## `SetPhraseExclusionList`
 
-Sets the filepath to the phrase exclusion list for new projects.
+Sets the filepath to the list of phrases and words that should be excluded from analysis for new projects.
 
 ### Syntax {-}
 
@@ -8,12 +8,10 @@ Sets the filepath to the phrase exclusion list for new projects.
 SetPhraseExclusionList(string exclusionListPath)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`string` exclusionListPath |      |
-
+|`string` exclusionListPath | The filepath to the list of phrases and words that should be excluded from analysis. |
 
 {{< pagebreak >}}

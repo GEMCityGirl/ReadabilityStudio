@@ -313,17 +313,19 @@ namespace LuaScripting
     int FindFiles(lua_State* L)
         {
         // should be passed a folder to search and the file filter to use
-        if (!VerifyParameterCount(L, 2, __func__))
+        if (!VerifyParameterCount(L, 3, __func__))
             {
             return 0;
             }
         lua_newtable(L);
 
         wxDir dir;
+        const int flags =
+            int_to_bool(lua_toboolean(L, 3)) ? (wxDIR_FILES | wxDIR_DIRS) : wxDIR_FILES;
         wxArrayString files;
         const size_t fileCount =
             dir.GetAllFiles(wxString(luaL_checkstring(L, 1), wxConvUTF8), &files,
-                            wxString(luaL_checkstring(L, 2), wxConvUTF8), wxDIR_FILES | wxDIR_DIRS);
+                            wxString(luaL_checkstring(L, 2), wxConvUTF8), flags);
 
         for (size_t i = 1; i <= fileCount; ++i)
             {
@@ -344,9 +346,9 @@ namespace LuaScripting
             }
 
         std::vector<wxImage> images;
-        for (int i = 3; i <= lua_gettop(L); ++i)
+        for (int i = 1; i <= lua_gettop(L) - 2; ++i)
             {
-            wxString inputFile(luaL_checkstring(L, i), wxConvUTF8);
+            const wxString inputFile(luaL_checkstring(L, i), wxConvUTF8);
             if (wxFile::Exists(inputFile))
                 {
                 images.push_back(Wisteria::GraphItems::Image::LoadFile(inputFile));
@@ -361,15 +363,15 @@ namespace LuaScripting
             }
 
         // create the folder to the filepath, if necessary
-        wxString path(luaL_checkstring(L, 1), wxConvUTF8);
-        wxFileName::Mkdir(wxFileName(path).GetPath(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
+        wxString outPath(luaL_checkstring(L, lua_gettop(L) - 1), wxConvUTF8);
+        wxFileName::Mkdir(wxFileName(outPath).GetPath(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
 
-        const wxImage img = (static_cast<Wisteria::Orientation>(lua_tonumber(L, 3)) ==
+        const wxImage img = (static_cast<Wisteria::Orientation>(lua_tonumber(L, lua_gettop(L))) ==
                              Wisteria::Orientation::Vertical) ?
                                 Wisteria::GraphItems::Image::StitchVertically(images) :
                                 Wisteria::GraphItems::Image::StitchHorizontally(images);
 
-        lua_pushboolean(L, img.SaveFile(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }));
+        lua_pushboolean(L, img.SaveFile(outPath));
 
         wxGetApp().Yield();
         return 1;
@@ -731,7 +733,7 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int CrossReferenceWordLists(lua_State* L)
+    int CrossReferencePhraseLists(lua_State* L)
         {
         if (!VerifyParameterCount(L, 3, __func__))
             {
@@ -949,9 +951,9 @@ namespace LuaScripting
 
         grammar::phrase_collection phrases;
         wxString inputFile;
-        for (int i = 2; i <= lua_gettop(L); ++i)
+        for (int i = 1; i <= lua_gettop(L) - 1; ++i)
             {
-            inputFile = wxString(luaL_checkstring(L, i), wxConvUTF8);
+            inputFile = wxString{ luaL_checkstring(L, i), wxConvUTF8 };
             if (wxFile::Exists(inputFile))
                 {
                 wxString inputFileBuffer;
@@ -983,11 +985,11 @@ namespace LuaScripting
             }
 
         // create the folder to the filepath, if necessary
-        wxString path(luaL_checkstring(L, 1), wxConvUTF8);
-        wxFileName::Mkdir(wxFileName(path).GetPath(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
+        wxString path{ luaL_checkstring(L, lua_gettop(L)), wxConvUTF8 };
+        wxFileName::Mkdir(wxFileName{ path }.GetPath(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
 
-        wxFileName(path).SetPermissions(wxS_DEFAULT);
-        wxFile outputFile(path, wxFile::write);
+        wxFileName{ path }.SetPermissions(wxS_DEFAULT);
+        wxFile outputFile{ path, wxFile::write };
         lua_pushboolean(L, outputFile.Write(phrases.to_string(), wxConvUTF8));
 
         wxGetApp().Yield();
@@ -1003,9 +1005,9 @@ namespace LuaScripting
             }
         word_list wordList;
         wxString inputFileBuffer;
-        for (int i = 2; i <= lua_gettop(L); ++i)
+        for (int i = 1; i <= lua_gettop(L) - 1; ++i)
             {
-            wxString inputFile(luaL_checkstring(L, i), wxConvUTF8);
+            wxString inputFile{ luaL_checkstring(L, i), wxConvUTF8 };
             if (wxFile::Exists(inputFile))
                 {
                 if (Wisteria::TextStream::ReadFile(inputFile, inputFileBuffer))
@@ -1034,11 +1036,11 @@ namespace LuaScripting
         outputStr.Trim(false);
 
         // create the folder to the filepath, if necessary
-        wxString path(luaL_checkstring(L, 1), wxConvUTF8);
-        wxFileName::Mkdir(wxFileName(path).GetPath(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
+        wxString path{ luaL_checkstring(L, lua_gettop(L)), wxConvUTF8 };
+        wxFileName::Mkdir(wxFileName{ path }.GetPath(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
 
-        wxFileName(path).SetPermissions(wxS_DEFAULT);
-        wxFile outputFile(path, wxFile::write);
+        wxFileName{ path }.SetPermissions(wxS_DEFAULT);
+        wxFile outputFile{ path, wxFile::write };
         lua_pushboolean(L, outputFile.Write(outputStr, wxConvUTF8));
 
         wxGetApp().Yield();
@@ -1379,6 +1381,18 @@ namespace LuaScripting
             }
         wxGetApp().GetAppOptions().SetGraphBackGroundLinearGradient(
             int_to_bool(lua_toboolean(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int SetGraphCommonImage(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+        wxGetApp().GetAppOptions().SetGraphCommonImagePath(
+            wxString(luaL_checkstring(L, 1), wxConvUTF8));
         return 0;
         }
 

@@ -1,26 +1,34 @@
 ## `MergePhraseLists`
 
-Creates a new phrase list file from a list of other phrase list files.
+Merges multiple phrase lists into a new file.
+
+Newlines are used as delimiters when extracting phrases from the files.
+In other words, each line will be a separate phrase.
 
 ### Syntax {-}
 
 ``` {.lua}
-boolean MergePhraseLists(string outputFile,
-                         string inputFiles)
+boolean MergePhraseLists(string inputFile1,
+                         ...,
+                         string outputFile)
 ```
-
 
 ### Return value {-}
 
 Type: `boolean`
 
+Returns `true` if files were successfully merged.
+
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`string` outputFile | Where to save the combined list of phrases. | 
 |`string` inputFile1 | The first input file. |
 |... | Any additional files to merge with `inputFile1`. |
+|`string` outputFile | Where to save the combined list of phrases. | 
 
+::: {.callout-note}
+The output file will also be sorted and have any duplicate entries removed.
+:::
 
 {{< pagebreak >}}

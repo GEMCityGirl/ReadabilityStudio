@@ -1,6 +1,6 @@
 ## `SetPlotBackgroundImageOpacity`
 
-Sets the graph background (plot area) image opacity for new projects.
+Sets the graph background\index{Images!graph backgrounds} (plot area) image opacity for new projects.
 
 ### Syntax {-}
 
@@ -8,12 +8,10 @@ Sets the graph background (plot area) image opacity for new projects.
 SetPlotBackgroundImageOpacity(number opacity)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`number` opacity |      |
-
+|`number` opacity | The opacity level to apply to the image. |
 
 {{< pagebreak >}}

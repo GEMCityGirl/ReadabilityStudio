@@ -38,20 +38,20 @@ namespace LuaScripting
     int /*string*/ GetUserPath(lua_State* L /*UserPath path*/); // Returns the path of a given folder in the user's directory.
     int /*string*/ GetAbsoluteFilePath(lua_State* L /*string filePath, string baseFilePath*/); // Returns the absolute filepath for the first path, relative to the second.
     int /*string*/ DownloadFile(lua_State* L /*string Url, string downloadPath*/); // Downloads a webpage to the provided local path.
-    int /*table*/ FindFiles(lua_State* L /*string directory, string filePattern*/); // Returns a list of all files from a folder matching the provided file pattern.
+    int /*table*/ FindFiles(lua_State* L /*string directory, string filePattern, boolean recursive*/); // Returns a list of all files from a folder matching the provided file pattern.
     int Close(lua_State*); // Closes the program.
     int LogMessage(lua_State* L /*string message*/); // Sends a message to the program's log report.
     int LogError(lua_State* L /*string errorMessage*/); // Sends a warning message to the program's log report.
     int /*boolean*/ WriteToFile(lua_State* L /*string outputFilePath, string content*/); // Writes a string to a file.
     int RemoveAllCustomTests(lua_State*); // Clears all custom tests from the program.
     int RemoveAllCustomTestBundles(lua_State*); // Clears all custom test bundles from the program.
-    int /*boolean*/ MergeWordLists(lua_State* L /*string outputFile, string inputFile1, string inputFile2, ...*/); // Creates a new word list file from a list of other word list files.
-    int /*boolean*/ MergePhraseLists(lua_State* L /*string outputFile, string inputFile1, string inputFile2, ...*/); // Creates a new phrase list file from a list of other phrase list files.
+    int /*boolean*/ MergeWordLists(lua_State* L /*string inputFile1, string inputFile2, ..., string outputFile*/); // Creates a new word list file from a list of other word list files.
+    int /*boolean*/ MergePhraseLists(lua_State* L /*string inputFile1, string inputFile2, ..., string outputFile*/); // Creates a new phrase list file from a list of other phrase list files.
     // Append given suffixes to words in a list.
-    // Note that this is an internal function used for expanding our proper noun list.
+    // Note that these are internal functions used for expanding our proper noun list.
     int /*boolean*/ /*INTERNAL!!!*/ ExpandWordList(lua_State* L /*string inputWordList, string outputFile, ... suffixesToAddToEachWord*/); // INTERNAL FUNCTION!!! SHOULD NOT BE DOCUMENTED.
     int /*boolean*/ /*INTERNAL!!!*/ PhraseListToWordList(lua_State* L /*string inputPhraseList, string outputFile*/); // INTERNAL FUNCTION!!! SHOULD NOT BE DOCUMENTED.
-    int /*boolean*/ CrossReferenceWordLists(lua_State* L /*string wordList, string otherWordList, string outputFile*/); // Compares two word lists and creates a new one that contains only the words that appear in both of them.
+    int /*boolean*/ CrossReferencePhraseLists(lua_State* L /*string phraseList, string otherPhraseList, string outputFile*/); // Compares two phrase lists and creates a new one that contains only the words that appear in both of them.
     int SetWindowSize(lua_State* L /*number width, number height*/); // Sets the size of the program's main window.
     int /*number*/ GetTestId(lua_State* L /*string testName*/); // Converts a test name (a string) into it's enumeration equivalent.
     int /*boolean*/ SplashScreen(lua_State* L /*number imageIndex*/); // Displays the splashscreen, based on the provided splashscreen's index.
@@ -96,6 +96,7 @@ namespace LuaScripting
     // GRAPH OPTIONS
     int SetGraphBackgroundColor(lua_State* L /*number red, number green, number blue*/); // Sets the graph background color for new projects.
     int ApplyGraphBackgroundFade(lua_State* L /*bool applyFade*/); // Sets whether to apply a fade to graph background colors for new projects.
+    int SetGraphCommonImage(lua_State* L /*string imagePath*/); // Sets the common image drawn across all bars.
     int SetPlotBackgroundImage(lua_State* L /*string imagePath*/); // Sets the graph background (plot area) image for new projects.
     int SetPlotBackgroundImageOpacity(lua_State* L /*number opacity*/); // Sets the graph background (plot area) image opacity for new projects.
     int SetPlotBackgroundColor(lua_State* L /*number red, number green, number blue*/); // Sets the graph background (plot area) color for new projects.
@@ -112,7 +113,7 @@ namespace LuaScripting
 
     int /*table*/ GetImageInfo(lua_State* /*string imagePath*/); // Returns width and height for an image.
     int /*boolean*/ ApplyImageEffect(lua_State* /*string inputImagePath, string outputImagePath, ImageEffect effect*/); // Applies an effect to an image and saves the result to another image file. Returns true if image was successfully saved.
-    int /*boolean*/ StitchImages(lua_State* /*string outputImagePath, Orientation direction, string inputImage1, string inputImage2, ...*/); // Combines a list of images vertically or horizontally. Returns true if image was successfully saved.
+    int /*boolean*/ StitchImages(lua_State* /*string inputImage1, ..., string outputImagePath, Orientation direction*/); // Combines a list of images vertically or horizontally. Returns true if image was successfully saved.
 
     // Gets the active projects
     int /*StandardProject*/ GetActiveStandardProject(lua_State* L); // Returns the active standard project.
@@ -174,6 +175,7 @@ namespace LuaScripting
         { "SetBlockExclusionTags", SetBlockExclusionTags },
         { "SetGraphBackgroundColor", SetGraphBackgroundColor },
         { "ApplyGraphBackgroundFade", ApplyGraphBackgroundFade },
+        { "SetGraphCommonImage", SetGraphCommonImage },
         { "SetPlotBackgroundImage", SetPlotBackgroundImage },
         { "SetPlotBackgroundImageOpacity", SetPlotBackgroundImageOpacity },
         { "SetPlotBackgroundColor", SetPlotBackgroundColor },
@@ -194,7 +196,7 @@ namespace LuaScripting
         { "WriteToFile", WriteToFile },
         { "ExpandWordList", ExpandWordList },
         { "PhraseListToWordList", PhraseListToWordList },
-        { "CrossReferenceWordLists", CrossReferenceWordLists },
+        { "CrossReferencePhraseLists", CrossReferencePhraseLists },
         { "SplashScreen", SplashScreen },
         { "MergeWordLists", MergeWordLists },
         { "MergePhraseLists", MergePhraseLists },

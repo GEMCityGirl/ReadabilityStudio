@@ -1,6 +1,6 @@
 ## `SetGraphLogoImage`
 
-Sets the logo image, shown in the bottom left corner.
+Sets the logo image\index{Images!logos}, shown in the bottom right corner.
 
 ### Syntax {-}
 
@@ -12,6 +12,6 @@ SetGraphLogoImage(string imagePath)
 
 **Parameter** | **Description**
 | :-- | :-- |
-`string` imagePath | The filepath to the image to be used for a logo on all graphs.
+| `string` imagePath | The filepath to the image to be used for a logo on all graphs. |
 
 {{< pagebreak >}}

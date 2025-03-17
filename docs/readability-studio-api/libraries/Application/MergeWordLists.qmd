@@ -1,27 +1,51 @@
 ## `MergeWordLists`
 
-Merges multiple word lists into an output file.
+Merges multiple word lists into a new file.
+
+All white space characters (i.e., space, tabs, newlines) are used as delimiters when extracting words from the files.
+To preserve phrases (i.e., words separated by spaces), use [`MergePhraseLists()`](#mergephraselists) instead.
 
 ### Syntax {-}
 
 ``` {.lua}
-boolean MergeWordLists(string outputFilePath,
-                       string input1,
-                       string input2,
-                       ...)
+boolean MergeWordLists(string input1,
+                       ...,
+                       string outputFilePath)
 ```
-
-### Parameters {-}
-
-**Parameter** | **Description**
-| :-- | :-- |
-`string` outputFilePath | The output filepaths to merge the files into.
-`string` input1,input2,... | A list of files to be merged into *outputFilePath*.
 
 ### Return value {-}
 
 Type: `boolean`
 
 Returns `true` if files were successfully merged.
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`string` inputFile1 | The first input file. |
+|... | Any additional files to merge with `inputFile1`. |
+|`string` outputFile | Where to save the combined list of words. | 
+
+### Example {-}
+
+``` {.lua}
+Application.MergeWordLists(
+    Application.GetUserPath(UserPath.Documents) .. "programming/assembly.txt",
+    Application.GetUserPath(UserPath.Documents) .. "programming/cpp.txt",
+    Application.GetUserPath(UserPath.Documents) .. "programming/csharp.txt",
+    Application.GetUserPath(UserPath.Documents) .. "programming/html.txt",
+    Application.GetUserPath(UserPath.Documents) .. "programming/java.txt",
+    Application.GetUserPath(UserPath.Documents) .. "programming/python.txt",
+    Application.GetUserPath(UserPath.Documents) .. "programming/visual-basic.txt",
+    Application.GetUserPath(UserPath.Documents) .. "programming/sql.txt",
+    Application.GetUserPath(UserPath.Documents) .. "programming/r.txt",
+    -- all proceeding files will be combined into "all-languages.txt"
+    Application.GetUserPath(UserPath.Documents) .. "programming/all-languages.txt")
+```
+
+::: {.callout-note}
+The output file will also be sorted and have any duplicate entries removed.
+:::
 
 {{< pagebreak >}}

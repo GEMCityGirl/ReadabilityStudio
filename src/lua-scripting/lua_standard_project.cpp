@@ -237,19 +237,19 @@ namespace LuaScripting
         return 1;
         }
 
-    int StandardProject::GetUnfamSpacheWordCount(lua_State* L)
+    int StandardProject::GetUnfamiliarSpacheWordCount(lua_State* L)
         {
         lua_pushinteger(L, m_project ? m_project->GetTotalHardWordsSpache() : 0);
         return 1;
         }
 
-    int StandardProject::GetUnfamDCWordCount(lua_State* L)
+    int StandardProject::GetUnfamiliarDCWordCount(lua_State* L)
         {
         lua_pushinteger(L, m_project ? m_project->GetTotalHardWordsDaleChall() : 0);
         return 1;
         }
 
-    int StandardProject::GetUnfamHJWordCount(lua_State* L)
+    int StandardProject::GetUnfamiliarHJWordCount(lua_State* L)
         {
         lua_pushinteger(L, m_project ? m_project->GetTotalHardWordsHarrisJacobson() : 0);
         return 1;
@@ -1780,9 +1780,9 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(StandardProject, Get7CharacterPlusWordCount),
       LUNA_DECLARE_METHOD(StandardProject, GetUnique6CharPlusWordCount),
       LUNA_DECLARE_METHOD(StandardProject, Get6CharacterPlusWordCount),
-      LUNA_DECLARE_METHOD(StandardProject, GetUnfamSpacheWordCount),
-      LUNA_DECLARE_METHOD(StandardProject, GetUnfamDCWordCount),
-      LUNA_DECLARE_METHOD(StandardProject, GetUnfamHJWordCount),
+      LUNA_DECLARE_METHOD(StandardProject, GetUnfamiliarSpacheWordCount),
+      LUNA_DECLARE_METHOD(StandardProject, GetUnfamiliarDCWordCount),
+      LUNA_DECLARE_METHOD(StandardProject, GetUnfamiliarHJWordCount),
       LUNA_DECLARE_METHOD(StandardProject, SetPhraseExclusionList),
       LUNA_DECLARE_METHOD(StandardProject, SetBlockExclusionTags),
       LUNA_DECLARE_METHOD(StandardProject, SetAppendedDocumentFilePath),

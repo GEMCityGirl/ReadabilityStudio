@@ -17,5 +17,13 @@ SelectWindow(SideBarSection section,
 |[`SideBarSection`](#sidebarsection) section | The section (along the sidebar) where the window is in. | 
 |`number` windowId | The window's ID. |
 
+### Example {-}
+
+``` {.lua}
+Application.GetActiveStandardProject():SelectWindow(
+    SideBarSection.WordsBreakdown,
+    -- select list of unfamiliar words for custom test "Consent"
+    Application.GetTestId("Consent"))
+```
 
 {{< pagebreak >}}

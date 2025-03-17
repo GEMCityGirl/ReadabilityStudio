@@ -1,6 +1,6 @@
 ## `SetGraphCommonImage`
 
-Sets the common image drawn across all bars.
+Sets the common image\index{Images!bar backgrounds} drawn across all bars.
 
 ### Syntax {-}
 
@@ -8,12 +8,24 @@ Sets the common image drawn across all bars.
 SetGraphCommonImage(string imagePath)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
 |`string` imagePath | The path to the image. |
 
+::: {.callout-note}
+The [`BoxEffect.CommonImage`](#boxeffect) effect will need to be enabled for either box plots or bar charts for this to have any effect.
+:::
+
+### Example {-}
+
+``` {.lua}
+codeProject = StandardProject(Application.GetUserPath(UserPath.Documents) ..
+                              "Coding Guidelins.docx")
+codeProject:SetGraphCommonImage(Application.GetUserPath(UserPath.Pictures) ..
+                                "IMG_0131.JPG")
+codeProject:SetBarChartBarEffect(BoxEffect.CommonImage)
+```
 
 {{< pagebreak >}}

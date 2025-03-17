@@ -1,0 +1,29 @@
+## `CrossReferencePhraseLists`
+
+Compares two phrase lists and creates a new one that contains only the phrases that appear in both of them.
+
+These files will be delimited by newlines, so that each line will be parsed as a phrase.
+
+### Syntax {-}
+
+``` {.lua}
+boolean CrossReferenceWordLists(string phraseList,
+                                string otherPhraseList,
+                                string outputFile)
+```
+
+### Return value {-}
+
+Type: `boolean`
+
+Returns `true` if cross reference file was successfully saved.
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`string` wordList | The first phrase list. | 
+|`string` otherWordList | The second phrase list. | 
+|`string` outputFile | The output containing only phrase found in both files. |
+
+{{< pagebreak >}}

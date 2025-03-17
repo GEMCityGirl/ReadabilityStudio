@@ -8,17 +8,16 @@ Sets the stipple shape used to draw bars in graphs.
 SetStippleShape(string shapeId)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`string` shapeId | The name of the shape. |
+|`string` shapeId | The shape ID to use. |
 
-::: {.tipsection data-latex=""}
-Available named shapes are: `"sun"`, `"book"`, `"fall-leaf"`, `"man"`, `"woman"`, `"business-woman"`, `"tire"`, `"flower"`,
-`"warning-road-sign"`, `"location-marker"`, `"graduation-cap"`, `"car"`, `"newspaper"`,
-`"snowflake"`, `"blackboard"`, `"clock"`, and `"ruler"`.
+Refer to [`Application.SetStippleShape()`](#app-setstippleshape) for a list of available IDs.
+
+::: {.callout-note}
+The [`BoxEffect.StippleShape`](#boxeffect) effect will need to be enabled for either box plots or bar charts for this to have any effect.
 :::
 
 {{< pagebreak >}}

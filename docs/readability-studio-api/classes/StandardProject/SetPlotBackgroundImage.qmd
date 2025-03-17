@@ -1,6 +1,6 @@
 ## `SetPlotBackgroundImage`
 
-Sets the graph background (plot area) image.
+Sets the graph background\index{Images!graph backgrounds} (plot area) image.
 
 ### Syntax {-}
 
@@ -8,12 +8,10 @@ Sets the graph background (plot area) image.
 SetPlotBackgroundImage(string imagePath)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
 |`string` imagePath | The path to the image. |
-
 
 {{< pagebreak >}}

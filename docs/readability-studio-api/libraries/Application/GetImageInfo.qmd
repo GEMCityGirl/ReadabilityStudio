@@ -1,6 +1,6 @@
 ## `GetImageInfo`
 
-Returns the details of a given file.
+Returns\index{Images!getting information about} the details of a given file.
 
 ### Syntax {-}
 

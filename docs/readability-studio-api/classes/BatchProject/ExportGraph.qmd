@@ -1,6 +1,6 @@
 ## `ExportGraph` {#batch-exportgraph}
 
-Saves the specified graph as an image.
+Saves\index{Graphs!exporting} the specified graph as an image\index{Images!saving graphs as}.
 
 ### Syntax {-}
 

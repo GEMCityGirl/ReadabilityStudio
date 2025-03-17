@@ -12,7 +12,7 @@ Print(string message)
 
 **Parameter** | **Description**
 | :-- | :-- |
-`string` message | The message to print.
+| `string` message | The message to print. |
 
 ::: {.tipsection data-latex=""}
 *message* can be HTML-formatted text.
@@ -30,5 +30,9 @@ do
 end
 ```
 1. The HTML tags `<b>` and `</b>` can be used to bold the message.
+
+### See also {-}
+
+[`Application.LogMessage()`](#logmessage), [`Application.LogError()`](#logerror)
 
 {{< pagebreak >}}

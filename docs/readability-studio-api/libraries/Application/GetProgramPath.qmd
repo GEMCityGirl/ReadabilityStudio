@@ -1,6 +1,6 @@
 ## `GetProgramPath`
 
-Returns the folder path to the application.
+Returns the folder path\index{Filepaths!application folder} to the application.
 
 ### Syntax {-}
 

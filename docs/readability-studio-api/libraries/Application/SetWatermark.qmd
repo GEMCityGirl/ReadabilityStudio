@@ -8,12 +8,10 @@ Sets the watermark drawn on graphs for new projects.
 SetWatermark(string watermark)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`string` watermark |      |
-
+|`string` watermark | The string to write across graphs. |
 
 {{< pagebreak >}}

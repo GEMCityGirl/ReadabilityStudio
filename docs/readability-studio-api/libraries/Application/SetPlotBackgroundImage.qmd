@@ -1,6 +1,6 @@
 ## `SetPlotBackgroundImage`
 
-Sets the graph background (plot area) image for new projects.
+Sets the graph background\index{Images!graph backgrounds} (plot area) image for new projects.
 
 ### Syntax {-}
 
@@ -8,12 +8,10 @@ Sets the graph background (plot area) image for new projects.
 SetPlotBackgroundImage(string imagePath)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`string` imagePath |      |
-
+|`string` imagePath | The filepath to the image to use. |
 
 {{< pagebreak >}}

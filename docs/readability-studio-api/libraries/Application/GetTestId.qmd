@@ -6,7 +6,7 @@ This function can be used to find a custom test's window.
 ### Syntax {-}
 
 ``` {.lua}
-integer GetTestId(string testName)
+number GetTestId(string testName)
 ```
 
 ### Parameters {-}
@@ -20,5 +20,16 @@ integer GetTestId(string testName)
 Type: `number`
 
 The numeric ID of the test. Will be `-1` if test was not found.
+
+### Example {-}
+
+``` {.lua}
+-- Export the report of highlighted unfamiliar words for the
+-- custom test "Home Choice"
+Application.GetActiveStandardProject():ExportHighlightedWords(
+    Application.GetTestId("Home Choice"), 
+    Application.GetUserPath(UserPath.Documents) ..
+        "Home Choice Unfamiliar Words.rtf")
+```
 
 {{< pagebreak >}}

@@ -1,7 +1,7 @@
 
 ## `GetAbsoluteFilePath`
 
-Combines a base path with a relative path and returns the full file path.
+Combines a base path\index{Filepaths!getting absolute path} with a relative path and returns the full file path.
 
 ### Syntax {-}
 
@@ -14,8 +14,8 @@ string GetAbsoluteFilePath(string basePath
 
 **Parameter** | **Description**
 | :-- | :-- |
-`string` basePath | The full base path.
-`string` relativePath | The path of the file that is relative to the base path.
+| `string` basePath | The full base path. |
+| `string` relativePath | The path of the file that is relative to the base path. |
 
 ### Return value {-}
 
