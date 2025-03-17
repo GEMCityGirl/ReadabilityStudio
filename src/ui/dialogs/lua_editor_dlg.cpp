@@ -492,7 +492,7 @@ LuaEditorDlg::LuaEditorDlg(
         [this]([[maybe_unused]] wxCommandEvent&)
         {
             wxFileDialog dialogOpen(this, _(L"Select Script to Open"), wxEmptyString, wxEmptyString,
-                                    _(L"Lua Script (*.lua)|*.lua"),
+                                    _(L"Lua Scripts (*.lua)|*.lua"),
                                     wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
             if (dialogOpen.ShowModal() != wxID_OK)
                 {
@@ -952,7 +952,7 @@ void LuaEditorDlg::CreateControls()
                        _(L"Save the script."));
     m_toolbar->AddTool(XRCID("ID_RUN"), _(L"Run"),
                        wxArtProvider::GetBitmapBundle(L"ID_RUN", wxART_BUTTON),
-                       _(L"Execute the script."));
+                       _(L"Execute the script (or selection)."));
     m_toolbar->AddSeparator();
     m_toolbar->AddTool(wxID_FIND, _(L"Find"),
                        wxArtProvider::GetBitmapBundle(wxART_FIND, wxART_BUTTON), _(L"Find text."));
