@@ -92,7 +92,7 @@ Build the program as follows:
 
 ```
 cmake . -DCMAKE_BUILD_TYPE=Release
-cmake --build . -DCMAKE_BUILD_TYPE=Release --target all -j $(nproc) --config Release
+cmake --build . --target all -j $(nproc) --config Release
 ```
 
 Build an AppImage:
