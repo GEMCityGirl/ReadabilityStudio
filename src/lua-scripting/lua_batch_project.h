@@ -81,7 +81,12 @@ namespace LuaScripting
         static Luna<BatchProject>::FunctionType methods[];
         static Luna<BatchProject>::PropertyType properties[];
 
+        BatchProject() = default;
+        // Opens a project file.
+        // File path to the project to open.
         explicit BatchProject(lua_State* L);
+        BatchProject(const BatchProject&) = delete;
+        BatchProject& operator=(const BatchProject&) = delete;
 
         void SetProject(BatchProjectDoc* doc) noexcept { m_project = doc; }
 
@@ -115,6 +120,7 @@ namespace LuaScripting
         int SetFilePathDisplayMode(lua_State* L /*FilePathDisplayMode displayMode*/); // Sets how filepaths are displayed.
         // cppcheck-suppress functionConst
         int /*FilePathDisplayMode*/ GetFilePathDisplayMode(lua_State* L); // Returns how filepaths are displayed for new batch projects.
+
         // TEXT EXCLUSION OPTIONS
         int SetTextExclusion(lua_State* L/*TextExclusionType exclusionType*/); // Specifies how text should be excluded while parsing the source document.
         int SetIncludeIncompleteTolerance(lua_State* L /*number minWordsForCompleteSentence*/); // Sets the incomplete-sentence tolerance. This is the minimum number of words that will make a sentence missing terminating punctuation be considered complete.

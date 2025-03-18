@@ -1,0 +1,17 @@
+## `GetCenterPrintHeader`
+
+Returns the center print header.
+
+### Syntax {-}
+
+``` {.lua}
+string GetCenterPrintHeader()
+```
+
+
+### Return value {-}
+
+Type: `string`
+
+
+{{< pagebreak >}}

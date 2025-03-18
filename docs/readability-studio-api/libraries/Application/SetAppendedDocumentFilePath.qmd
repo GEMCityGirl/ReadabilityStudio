@@ -1,0 +1,19 @@
+## `SetAppendedDocumentFilePath`
+
+Sets the file path to the document being appended for analysis.
+
+### Syntax {-}
+
+``` {.lua}
+SetAppendedDocumentFilePath(string filePath)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+| `string` filePath | The file path to the document being appended for analysis. |
+
+
+{{< pagebreak >}}

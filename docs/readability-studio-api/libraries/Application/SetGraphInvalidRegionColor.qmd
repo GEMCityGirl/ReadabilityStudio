@@ -1,0 +1,23 @@
+## `SetGraphInvalidRegionColor`
+
+Sets the color for the invalid score regions for Fry-like graphs for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+SetGraphInvalidRegionColor(number red,
+                           number green,
+                           number blue)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`number` red | The red channel (should be between 0--255). | 
+|`number` green | The green channel (should be between 0--255). | 
+|`number` blue | The blue channel (should be between 0--255). |
+
+
+{{< pagebreak >}}

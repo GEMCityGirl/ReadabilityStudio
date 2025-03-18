@@ -68,6 +68,7 @@ namespace LuaScripting
     int EnableWarning(lua_State* L /*string warningId*/); // Enables a specific warning that can appear in the program.
     int DisableWarning(lua_State* L /*string warningId*/); // Disables a specific warning that can appear in the program.
     int SetSpellCheckerOptions(lua_State* L /*boolean ignoreProperNouns, boolean ignoreUppercased, boolean ignoreNumerals, boolean ignoreFileAddresses, boolean ignoreProgrammerCode, boolean ignoreSocialMediaTags, boolean allowColloquialisms*/); // Sets spell-checker options for new projects.
+
     // PROJECT SETTINGS
     int SetReviewer(lua_State* L /*string reviewer*/); // Sets the reviewer's name for new projects.
     int /*string*/ GetReviewer(lua_State* L); // Returns the reviewer's name.
@@ -81,6 +82,7 @@ namespace LuaScripting
     int /*number*/ GetMinDocWordCountForBatch(lua_State* L); // Returns the minimum number of words a document must have for new batch projects.
     int SetFilePathDisplayMode(lua_State* L /*FilePathDisplayMode displayMode*/); // Sets how filepaths are displayed for new batch projects.
     int /*FilePathDisplayMode*/ GetFilePathDisplayMode(lua_State* L); // Returns how filepaths are displayed for new batch projects.
+
     // TEXT EXCLUSION OPTIONS
     int SetTextExclusion(lua_State* L /*TextExclusionType exclusionType*/); // Sets how text should be excluded for new projects.
     int SetIncludeIncompleteTolerance(lua_State* L /*number minWordsForCompleteSentence*/); // Sets the incomplete-sentence tolerance for new projects. This is the minimum number of words that will make a sentence missing terminating punctuation be considered complete.
@@ -93,11 +95,15 @@ namespace LuaScripting
     int SetPhraseExclusionList(lua_State* L /*string exclusionListPath*/); // Sets the filepath to the phrase exclusion list for new projects.
     // Sets the tags to exclude blocks of text.
     int SetBlockExclusionTags(lua_State* L /*string tagString*/); // Sets the text exclusion tags for new projects. This should be a two-character string containing a pair of exclusion tags.
+    int SetAppendedDocumentFilePath(lua_State* L /*string filePath*/); // Sets the file path to the document being appended for analysis.
+
     // GRAPH OPTIONS
     int SetGraphBackgroundColor(lua_State* L /*number red, number green, number blue*/); // Sets the graph background color for new projects.
     int ApplyGraphBackgroundFade(lua_State* L /*bool applyFade*/); // Sets whether to apply a fade to graph background colors for new projects.
     int SetGraphCommonImage(lua_State* L /*string imagePath*/); // Sets the common image drawn across all bars.
     int SetPlotBackgroundImage(lua_State* L /*string imagePath*/); // Sets the graph background (plot area) image for new projects.
+    int SetPlotBackgroundImageEffect(lua_State* L /*ImageEffect imageEffect*/); // Sets the effect applied to an image when drawn as a graph's background for new projects.
+    int SetPlotBackgroundImageFit(lua_State* L /*ImageFit fitType*/); // Specifies how to adjust an image to fit within a graph's background for new projects.
     int SetPlotBackgroundImageOpacity(lua_State* L /*number opacity*/); // Sets the graph background (plot area) image opacity for new projects.
     int SetPlotBackgroundColor(lua_State* L /*number red, number green, number blue*/); // Sets the graph background (plot area) color for new projects.
     int SetPlotBackgroundOpacity(lua_State* L /*number opacity*/); // Sets the graph background (plot area) color opacity for new projects.
@@ -105,11 +111,18 @@ namespace LuaScripting
     int SetGraphLogoImage(lua_State* L /*string imagePath*/); // Sets the logo image for new projects.
     int SetStippleImage(lua_State* L /*string imagePath*/);// Sets the stipple image used to draw bars in graphs for new projects.
     int SetStippleShape(lua_State* L /*string shapeId*/); // Sets the stipple shape used to draw bars in graphs for new projects.
+    int SetXAxisFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' X axes for new projects.
+    int SetYAxisFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' Y axes for new projects.
+    int SetGraphTopTitleFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' top titles for new projects.
+    int DisplayBarChartLabels(lua_State* L /*boolean display*/); // Specifies whether to display labels above each bar in a bar chart for new projects.
     int DisplayGraphDropShadows(lua_State* L /*bool displayShadows*/); // Sets whether to display shadows on graphs for new projects.
     int SetBarChartBarColor(lua_State* L /*number red, number green, number blue*/); // Sets bar color (in bar charts) for new projects.
     int SetBarChartBarOpacity(lua_State* L /*number opacity*/); // Sets bar opacity (in bar charts) for new projects.
     int SetBarChartBarEffect(lua_State* L /*BoxEffect barEffect*/); // Sets bar appearance (in bar charts) for new projects.
     int SetBarChartOrientation(lua_State* L /*Orientation barOrientation*/); // Sets the orientation for bars for new projects.
+    int SetGraphInvalidRegionColor(lua_State* L /*number red, number green, number blue*/); // Sets the color for the invalid score regions for Fry-like graphs for new projects.
+    int SetStippleShapeColor(lua_State* L /*number red, number green, number blue*/); // If using stipple shapes for bars, sets the color for certain shapes for new projects.
+    int ShowcaseKeyItems(lua_State* L /*boolean showcase*/); // Specifies whether important parts of certain graphs should be highlighted for new projects.
 
     int /*table*/ GetImageInfo(lua_State* /*string imagePath*/); // Returns width and height for an image.
     int /*boolean*/ ApplyImageEffect(lua_State* /*string inputImagePath, string outputImagePath, ImageEffect effect*/); // Applies an effect to an image and saves the result to another image file. Returns true if image was successfully saved.
@@ -126,6 +139,12 @@ namespace LuaScripting
     int SetLeftPrintFooter(lua_State* L /*string label*/); // Sets the left print footer.
     int SetCenterPrintFooter(lua_State* L /*string label*/); // Sets the center print footer.
     int SetRightPrintFooter(lua_State* L /*string label*/); // Sets the right print footer.
+    int /*string*/ GetLeftPrintHeader(lua_State* L); // Returns the left print header.
+    int /*string*/ GetCenterPrintHeader(lua_State* L); // Returns the center print header.
+    int /*string*/ GetRightPrintHeader(lua_State* L); // Returns the right print header.
+    int /*string*/ GetLeftPrintFooter(lua_State* L); // Returns the left print footer.
+    int /*string*/ GetCenterPrintFooter(lua_State* L); // Returns the center print footer.
+    int /*string*/ GetRightPrintFooter(lua_State* L); // Returns the right print footer.
     // clang-format on
     // quneiform-suppress-end
 
@@ -173,10 +192,13 @@ namespace LuaScripting
         { "ExcludeProperNouns", ExcludeProperNouns },
         { "SetPhraseExclusionList", SetPhraseExclusionList },
         { "SetBlockExclusionTags", SetBlockExclusionTags },
+        { "SetAppendedDocumentFilePath", SetAppendedDocumentFilePath },
         { "SetGraphBackgroundColor", SetGraphBackgroundColor },
         { "ApplyGraphBackgroundFade", ApplyGraphBackgroundFade },
         { "SetGraphCommonImage", SetGraphCommonImage },
         { "SetPlotBackgroundImage", SetPlotBackgroundImage },
+        { "SetPlotBackgroundImageEffect", SetPlotBackgroundImageEffect },
+        { "SetPlotBackgroundImageFit", SetPlotBackgroundImageFit },
         { "SetPlotBackgroundImageOpacity", SetPlotBackgroundImageOpacity },
         { "SetPlotBackgroundColor", SetPlotBackgroundColor },
         { "SetPlotBackgroundOpacity", SetPlotBackgroundOpacity },
@@ -184,11 +206,18 @@ namespace LuaScripting
         { "SetGraphLogoImage", SetGraphLogoImage },
         { "SetStippleImage", SetStippleImage },
         { "SetStippleShape", SetStippleShape },
+        { "SetXAxisFont", SetXAxisFont },
+        { "SetYAxisFont", SetYAxisFont },
+        { "SetGraphTopTitleFont", SetGraphTopTitleFont },
+        { "DisplayBarChartLabels", DisplayBarChartLabels },
         { "DisplayGraphDropShadows", DisplayGraphDropShadows },
         { "SetBarChartBarColor", SetBarChartBarColor },
         { "SetBarChartBarOpacity", SetBarChartBarOpacity },
         { "SetBarChartBarEffect", SetBarChartBarEffect },
         { "SetBarChartOrientation", SetBarChartOrientation },
+        { "SetGraphInvalidRegionColor", SetGraphInvalidRegionColor },
+        { "SetStippleShapeColor", SetStippleShapeColor },
+        { "ShowcaseKeyItems", ShowcaseKeyItems },
         { "SetSpellCheckerOptions", SetSpellCheckerOptions },
         { "SetWindowSize", SetWindowSize },
         { "RemoveAllCustomTests", RemoveAllCustomTests },
@@ -208,6 +237,12 @@ namespace LuaScripting
         { "SetLeftPrintFooter", SetLeftPrintFooter },
         { "SetCenterPrintFooter", SetCenterPrintFooter },
         { "SetRightPrintFooter", SetRightPrintFooter },
+        { "GetLeftPrintHeader", GetLeftPrintHeader },
+        { "GetCenterPrintHeader", GetCenterPrintHeader },
+        { "GetRightPrintHeader", GetRightPrintHeader },
+        { "GetLeftPrintFooter", GetLeftPrintFooter },
+        { "GetCenterPrintFooter", GetCenterPrintFooter },
+        { "GetRightPrintFooter", GetRightPrintFooter },
         { "GetImageInfo", GetImageInfo },
         { "ApplyImageEffect", ApplyImageEffect },
         { "StitchImages", StitchImages },

@@ -1,0 +1,25 @@
+## `SetYAxisFont`
+
+Sets the font for the graphs' Y axes for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+SetYAxisFont(string fontName,
+             number pointSize,
+             number fontWeight,
+             string color)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`string` fontName | The name of the font. (The values `"CURSIVE"` and `"MONOSPACE"` can also be used.) | 
+|`number` pointSize | The point size of the font. | 
+|`number` fontWeight | The weight of the font (higher numbers make it more bold). | 
+|`string` color | The name of the color. |
+
+
+{{< pagebreak >}}

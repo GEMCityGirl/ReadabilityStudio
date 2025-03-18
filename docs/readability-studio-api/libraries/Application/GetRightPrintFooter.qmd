@@ -1,0 +1,17 @@
+## `GetRightPrintFooter`
+
+Returns the right print footer.
+
+### Syntax {-}
+
+``` {.lua}
+string GetRightPrintFooter()
+```
+
+
+### Return value {-}
+
+Type: `string`
+
+
+{{< pagebreak >}}

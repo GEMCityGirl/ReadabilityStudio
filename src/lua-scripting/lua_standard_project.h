@@ -79,16 +79,17 @@ namespace LuaScripting
 
       public:
         StandardProject() = default;
+        // Opens a project file.
+        // File path to the project to open.
+        explicit StandardProject(lua_State* L);
+        StandardProject(const StandardProject&) = delete;
+        StandardProject& operator=(const StandardProject&) = delete;
 
         void SetProject(ProjectDoc* doc) noexcept { m_project = doc; }
 
         static const char className[];
         static Luna<StandardProject>::FunctionType methods[];
         static Luna<StandardProject>::PropertyType properties[];
-
-        // Opens a project file.
-        // FilePath File path to the project to open.
-        explicit StandardProject(lua_State* L);
 
         // quneiform-suppress-begin
         // clang-format off

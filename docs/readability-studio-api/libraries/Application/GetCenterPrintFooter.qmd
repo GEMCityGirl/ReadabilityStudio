@@ -1,0 +1,17 @@
+## `GetCenterPrintFooter`
+
+Returns the center print footer.
+
+### Syntax {-}
+
+``` {.lua}
+string GetCenterPrintFooter()
+```
+
+
+### Return value {-}
+
+Type: `string`
+
+
+{{< pagebreak >}}

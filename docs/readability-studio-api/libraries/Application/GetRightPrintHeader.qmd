@@ -1,0 +1,17 @@
+## `GetRightPrintHeader`
+
+Returns the right print header.
+
+### Syntax {-}
+
+``` {.lua}
+string GetRightPrintHeader()
+```
+
+
+### Return value {-}
+
+Type: `string`
+
+
+{{< pagebreak >}}

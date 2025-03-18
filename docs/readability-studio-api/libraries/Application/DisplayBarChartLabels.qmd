@@ -1,0 +1,19 @@
+## `DisplayBarChartLabels`
+
+Specifies whether to display labels above each bar in a bar chart for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+DisplayBarChartLabels(boolean display)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`boolean` display | `true` to display the labels. |
+
+
+{{< pagebreak >}}

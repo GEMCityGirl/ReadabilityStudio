@@ -1,0 +1,19 @@
+## `SetPlotBackgroundImageEffect`
+
+Sets the effect applied to an image when drawn as a graph's background for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+SetPlotBackgroundImageEffect(ImageEffect imageEffect)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|[`ImageEffect`](#imageeffect) imageEffect | The effect to render with. |
+
+
+{{< pagebreak >}}

@@ -1,0 +1,19 @@
+## `ShowcaseKeyItems`
+
+Specifies whether important parts of certain graphs should be highlighted for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+ShowcaseKeyItems(boolean showcase)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`boolean` showcase | `true` to enable showcasing. |
+
+
+{{< pagebreak >}}
