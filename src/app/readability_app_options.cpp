@@ -3437,8 +3437,9 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     appearance->SetAttribute(XML_WINDOW_MAXIMIZED.data(), bool_to_int(IsAppWindowMaximized()));
     appearance->SetAttribute(XML_WINDOW_WIDTH.data(), GetAppWindowWidth());
     appearance->SetAttribute(XML_WINDOW_HEIGHT.data(), GetAppWindowHeight());
-    appearance->SetAttribute(XML_SCRIPT_EDITOR_LAYOUT.data(),
-                             wxString{ encode({ GetScriptEditorLayout().wc_str() }, false) });
+    appearance->SetAttribute(
+        XML_SCRIPT_EDITOR_LAYOUT.data(),
+        wxString{ encode({ GetScriptEditorLayout().wc_str() }, false) }.mb_str());
 
     configSection->InsertEndChild(appearance);
 

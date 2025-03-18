@@ -270,7 +270,7 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
                                             .Prepend(_(L"Calculated value: "))
                                             .Prepend(L"\n\n");
             wxMessageBox(
-                _(L"Formula is valid; no syntax errors were detected." + calculatedValueMsg),
+                _(L"Formula is valid; no syntax errors were detected.") + calculatedValueMsg,
                 _(L"Formula Validated"), wxOK | wxICON_INFORMATION);
             }
         }
