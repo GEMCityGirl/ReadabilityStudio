@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-// Name:        webharvesterdlg.cpp
+// Name:        web_harvester_dlg.cpp
 // Author:      Blake Madden
 // Copyright:   (c) 2005-2023 Blake Madden
 // Licence:     3-Clause BSD licence
@@ -25,6 +25,11 @@ LinkDialog::LinkDialog(wxWindow* parent, const wxString& message, const wxString
     m_codeWindow = new Wisteria::UI::CodeEditor(this, wxSTC_LEX_HTML, wxID_ANY, wxDefaultPosition,
                                                 FromDIP(wxSize{ 1000, 900 }));
     m_codeWindow->SetModified(false);
+    const wxFont font{ wxFontInfo().Family(wxFONTFAMILY_SWISS) };
+    for (auto i = 0; i < wxSTC_STYLE_LASTPREDEFINED; ++i)
+        {
+        m_codeWindow->StyleSetFont(i, font);
+        }
     mainSizer->Add(m_codeWindow, wxSizerFlags{ 1 }.Expand().Border());
 
     mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL), wxSizerFlags{}.Expand().Border());
