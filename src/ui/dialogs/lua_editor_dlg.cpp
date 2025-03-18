@@ -617,6 +617,12 @@ void LuaEditorDlg::OnSave([[maybe_unused]] wxCommandEvent& event)
 //------------------------------------------------------
 void LuaEditorDlg::OnShowReplaceDialog([[maybe_unused]] wxCommandEvent& event)
     {
+    auto currentScript = dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage());
+    if (currentScript != nullptr && m_findData.GetFindString().empty())
+        {
+        m_findData.SetFindString(currentScript->GetSelectedText());
+        }
+
     // get rid of Find dialog (if it was opened)
     if (m_dlgFind)
         {
@@ -635,6 +641,12 @@ void LuaEditorDlg::OnShowReplaceDialog([[maybe_unused]] wxCommandEvent& event)
 //------------------------------------------------------
 void LuaEditorDlg::OnShowFindDialog([[maybe_unused]] wxCommandEvent& event)
     {
+    auto currentScript = dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage());
+    if (currentScript != nullptr && m_findData.GetFindString().empty())
+        {
+        m_findData.SetFindString(currentScript->GetSelectedText());
+        }
+
     // get rid of Replace dialog (if it was opened)
     if (m_dlgReplace)
         {
