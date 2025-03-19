@@ -401,7 +401,6 @@ void WebHarvester::DownloadFiles()
 //----------------------------------
 bool WebHarvester::CrawlLinks()
     {
-    m_hideFileNamesWhileDownloading = wxGetMouseState().ShiftDown();
     wxStringTokenizer tkz(m_url, L"\n\r", wxTOKEN_STRTOK);
     const wxString urlLabel = m_hideFileNamesWhileDownloading ? wxString{ _(L"...") } :
                                                                 L" \"" + tkz.GetNextToken() + L"\"";

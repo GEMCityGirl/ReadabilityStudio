@@ -588,6 +588,16 @@ class WebHarvester
     [[nodiscard]]
     static wxString GetCharsetFromPageContent(std::string_view pageContent);
 
+    /// @brief Shows the file names while crawling.
+    /// @param show @c true to show the names; @c false to just show dots.
+    /// @details By default, the names will be shown on the progress bar, which may cause the
+    ///     the dialog to constantly resize itself. Setting this to @c false will show a
+    ///     simpler "Downloading..." label that may be less jarring.
+    void ShowFileNames(const bool show)
+        {
+        m_hideFileNamesWhileDownloading = !show;
+        }
+
   private:
     /// @returns An URL with spaces encoded to '%20', '\/' converted to '/', and trimmed.
     /// @param url The URL to normalize.

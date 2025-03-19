@@ -5566,6 +5566,10 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
     wxGetApp().SetLastSelectedDocFilter(webHarvestDlg.GetSelectedDocFilter());
     webHarvestDlg.UpdateHarvesterSettings(wxGetApp().GetWebHarvester());
 
+    // Holding down SHIFT will use a progress bar with a generic label on it that won't
+    // resize itself to fit a different filename label.
+    wxGetApp().GetWebHarvester().ShowFileNames(!wxGetMouseState().ShiftDown());
+
     wxString failedCrawls;
     for (size_t i = 0; i < webHarvestDlg.GetUrls().GetCount(); ++i)
         {
