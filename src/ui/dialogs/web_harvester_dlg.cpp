@@ -70,13 +70,7 @@ void WebHarvesterDlg::OnDownloadCheck([[maybe_unused]] wxCommandEvent& event)
     {
     TransferDataFromWindow();
 
-    m_localFolderLabel->Enable(m_downloadFilesLocally);
-    m_localFolderEdit->Enable(m_downloadFilesLocally);
-    m_retainWebsiteFolderStuctureCheckBox->Enable(m_downloadFilesLocally);
-    m_replaceExistingFilesCheckBox->Enable(m_downloadFilesLocally);
-    m_minFileSizeLabel->Enable(m_downloadFilesLocally);
-    m_minFileSizeCtrl->Enable(m_downloadFilesLocally);
-    m_folderBrowseButton->Enable(m_downloadFilesLocally);
+    UpdateDownloadOptions();
     }
 
 //-------------------------------------------------------------
@@ -589,6 +583,7 @@ void WebHarvesterDlg::UpdateFromHarvesterSettings(const WebHarvester& harvester)
     m_minFileSizeInKiloBytes = harvester.GetMinimumDownloadFileSizeInKilobytes().value_or(5);
 
     m_persistCookiesCheck->Enable(m_useJsCookies);
+    UpdateDownloadOptions();
 
     TransferDataToWindow();
     }

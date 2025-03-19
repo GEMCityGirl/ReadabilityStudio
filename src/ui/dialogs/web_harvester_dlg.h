@@ -141,6 +141,8 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
         {
         m_downloadFilesLocally = download;
         TransferDataToWindow();
+
+        UpdateDownloadOptions();
         }
 
     [[nodiscard]]
@@ -216,6 +218,17 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
     void OnAddDomainClick([[maybe_unused]] wxCommandEvent& event);
     void OnLoadUrlsClick([[maybe_unused]] wxCommandEvent& event);
     void OnDeleteDomainClick([[maybe_unused]] wxCommandEvent& event);
+
+    void UpdateDownloadOptions()
+        {
+        m_localFolderLabel->Enable(m_downloadFilesLocally);
+        m_localFolderEdit->Enable(m_downloadFilesLocally);
+        m_retainWebsiteFolderStuctureCheckBox->Enable(m_downloadFilesLocally);
+        m_replaceExistingFilesCheckBox->Enable(m_downloadFilesLocally);
+        m_minFileSizeLabel->Enable(m_downloadFilesLocally);
+        m_minFileSizeCtrl->Enable(m_downloadFilesLocally);
+        m_folderBrowseButton->Enable(m_downloadFilesLocally);
+        }
 
     [[nodiscard]]
     wxString GetUserSpecifiedDomainsLabel() const
