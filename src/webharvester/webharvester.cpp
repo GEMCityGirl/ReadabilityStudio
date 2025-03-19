@@ -882,25 +882,33 @@ bool WebHarvester::HarvestLink(wxString& url, const wxString& fileExtension)
                     {
                     wxLogVerbose(
                         L"'%s': image is really HTML; will attempt to download actual image", url);
-                    std::set<wxString, wxStringLessWebPath> queuedDownloads;
-                    const wxString jpgName{ wxFileName{ downloadPath }.GetFullName() };
                     wxString fileText;
                     if (Wisteria::TextStream::ReadFile(downloadPath, fileText))
                         {
+                        std::set<wxString, wxStringLessWebPath> queuedDownloads;
+                        const wxString jpgName{ wxFileName{ downloadPath }.GetFullName() };
+
                         html_utilities::hyperlink_parse getHyperLinks(
                             fileText.wc_str(), fileText.length(),
                             html_utilities::hyperlink_parse::hyperlink_parse_method::html);
                         // gather its hyperlinks
-                        const wchar_t* currentLink = getHyperLinks();
-                        if (currentLink != nullptr)
+                        while (true)
                             {
-                            const wxString cLink{ currentLink,
-                                                  getHyperLinks.get_current_hyperlink_length() };
-                            const wxFileName fn(cLink);
-                            if (fn.GetFullName().CmpNoCase(jpgName) == 0 &&
-                                html_utilities::html_url_format::is_absolute_url(cLink.wc_str()))
+                            const wchar_t* currentLink = getHyperLinks();
+                            if (currentLink != nullptr)
                                 {
-                                queuedDownloads.insert(cLink);
+                                const wxString cLink{ currentLink,
+                                                    getHyperLinks.get_current_hyperlink_length() };
+                                const wxFileName fn(cLink);
+                                if (fn.GetFullName().CmpNoCase(jpgName) == 0 &&
+                                    html_utilities::html_url_format::is_absolute_url(cLink.wc_str()))
+                                    {
+                                    queuedDownloads.insert(cLink);
+                                    }
+                                }
+                            else
+                                {
+                                break;
                                 }
                             }
                         for (wxString link : queuedDownloads)
