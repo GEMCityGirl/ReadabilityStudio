@@ -24,6 +24,7 @@ LinkDialog::LinkDialog(wxWindow* parent, const wxString& message, const wxString
 
     m_codeWindow = new Wisteria::UI::CodeEditor(this, wxSTC_LEX_HTML, wxID_ANY, wxDefaultPosition,
                                                 FromDIP(wxSize{ 1000, 900 }));
+    m_codeWindow->SetWrapMode(wxSTC_WRAP_WHITESPACE);
     m_codeWindow->SetModified(false);
     const wxFont font{ wxFontInfo().Family(wxFONTFAMILY_SWISS) };
     for (auto i = 0; i < wxSTC_STYLE_LASTPREDEFINED; ++i)
