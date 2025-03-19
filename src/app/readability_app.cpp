@@ -2915,16 +2915,9 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             toolButtonBar->AddButton(XRCID("ID_VIEW_LOG_REPORT"),
                     _(L"Log Report"),
                      ReadRibbonSvgIcon(L"ribbon/log-book.svg"));
-            if (wxGetMouseState().ShiftDown()
-                #ifndef NDEBUG
-                    || true
-                #endif
-                )
-                {
-                toolButtonBar->AddButton(XRCID("ID_SCRIPT_WINDOW"),
-                    _(L"Lua Script"),
-                    ReadRibbonSvgIcon(L"ribbon/lua.svg"));
-                }
+            toolButtonBar->AddButton(XRCID("ID_SCRIPT_WINDOW"),
+                _(L"Lua Script"),
+                ReadRibbonSvgIcon(L"ribbon/lua.svg"));
             #ifndef NDEBUG
                 #ifdef ENABLE_PROFILING
                     toolButtonBar->AddButton(XRCID("ID_VIEW_PROFILE_REPORT"),

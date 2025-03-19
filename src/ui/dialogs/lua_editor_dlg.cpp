@@ -532,11 +532,12 @@ LuaEditorDlg::LuaEditorDlg(
         wxEVT_TOOL,
         []([[maybe_unused]] wxCommandEvent&)
         {
-            const wxString helpPath =
-                wxGetApp().FindResourceFile(L"online/readability-studio-api/api/index.html");
-            if (wxFile::Exists(helpPath))
+            const wxString manualPath = wxGetApp().GetMainFrameEx()->GetHelpDirectory() +
+                                        wxFileName::GetPathSeparator() +
+                                        _DT(L"readability-studio-manual.pdf");
+            if (wxFile::Exists(manualPath))
                 {
-                wxLaunchDefaultBrowser(wxFileName::FileNameToURL(helpPath));
+                wxLaunchDefaultApplication(manualPath);
                 }
         },
         wxID_HELP);
@@ -545,7 +546,8 @@ LuaEditorDlg::LuaEditorDlg(
         wxEVT_TOOL,
         []([[maybe_unused]] wxCommandEvent&)
         {
-            const wxString helpPath = wxGetApp().FindResourceFile(L"lua-5.4/doc/contents.html");
+            const wxString helpPath = wxGetApp().GetMainFrameEx()->GetHelpDirectory() +
+                                      _DT(L"/lua-5.4/doc/contents.html");
             if (wxFile::Exists(helpPath))
                 {
                 wxLaunchDefaultBrowser(wxFileName::FileNameToURL(helpPath));
@@ -825,9 +827,9 @@ CodeEditor* LuaEditorDlg::CreateLuaScript(wxWindow* parent)
     codeEditor->Show(false);
     codeEditor->IncludeNumberMargin(true);
     codeEditor->IncludeFoldingMargin(true);
-    codeEditor->SetDefaultHeader(
-        wxString::Format(_(L"-- Imports %s specific enumerations"), wxGetApp().GetAppDisplayName()) +
-        L"\ndofile(Application.GetLuaConstantsPath())\n\n");
+    codeEditor->SetDefaultHeader(wxString::Format(_(L"-- Imports %s specific enumerations"),
+                                                  wxGetApp().GetAppDisplayName()) +
+                                 L"\ndofile(Application.GetLuaConstantsPath())\n\n");
     codeEditor->SetText(codeEditor->GetDefaultHeader());
     codeEditor->SetModified(false);
 
