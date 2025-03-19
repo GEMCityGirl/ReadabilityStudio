@@ -1673,6 +1673,7 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
                                   wxGetApp().GetAppOptions().GetDocumentFilter(),
                                   wxGetApp().GetLastSelectedDocFilter(), false);
     webHarvestDlg.UpdateFromHarvesterSettings(wxGetApp().GetWebHarvester());
+    webHarvestDlg.SetDownloadFolder(wxGetApp().GetAppOptions().GetDownloadsPath());
     webHarvestDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
                                L"online/additional-features.html");
     if (webHarvestDlg.ShowModal() != wxID_OK)
@@ -1755,6 +1756,19 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
                 }
             }
         }
+
+    // In case JS cookies are being reused, clear them from the current session
+    // (we are treating crawling multiple sites from here as one session, that restarts
+    //  when the dialog is opened up again).
+    wxGetApp().GetWebHarvester().ClearCookies();
+
+    // update global internet options that mirror the same options from the dialog
+    wxGetApp().GetAppOptions().DisablePeerVerify(webHarvestDlg.IsPeerVerifyDisabled());
+    wxGetApp().GetAppOptions().UseJavaScriptCookies(webHarvestDlg.IsUsingJavaScriptCookies());
+    wxGetApp().GetAppOptions().PersistJavaScriptCookies(
+        webHarvestDlg.IsPersistingJavaScriptCookies());
+    wxGetApp().GetAppOptions().SetUserAgent(webHarvestDlg.GetUserAgent());
+    wxGetApp().GetAppOptions().SetDownloadsPath(webHarvestDlg.GetDownloadFolder());
 
     if (groupByLastCommonFolder && files.size() > 0)
         {

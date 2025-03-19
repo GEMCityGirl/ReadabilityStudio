@@ -5554,6 +5554,7 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
     webHarvestDlg.UpdateFromHarvesterSettings(wxGetApp().GetWebHarvester());
     // force downloading locally
     webHarvestDlg.DownloadFilesLocally(true);
+    webHarvestDlg.SetDownloadFolder(wxGetApp().GetAppOptions().GetDownloadsPath());
     webHarvestDlg.SetHelpTopic(GetHelpDirectory(), _DT(L"online/additional-features.html"));
 
     if (webHarvestDlg.ShowModal() != wxID_OK)
@@ -5608,6 +5609,7 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
     wxGetApp().GetAppOptions().PersistJavaScriptCookies(
         webHarvestDlg.IsPersistingJavaScriptCookies());
     wxGetApp().GetAppOptions().SetUserAgent(webHarvestDlg.GetUserAgent());
+    wxGetApp().GetAppOptions().SetDownloadsPath(webHarvestDlg.GetDownloadFolder());
 
     wxMessageBox(_(L"Web crawl complete."), _(L"Web Harvester"), wxOK | wxICON_INFORMATION);
     }

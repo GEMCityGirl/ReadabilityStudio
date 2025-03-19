@@ -517,6 +517,29 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
 
     lily_of_the_valley::html_extract_text filter_html;
 
+    const auto readString = [&filter_html, this](const tinyxml2::XMLElement* node,
+                                                 const std::string_view xmlId,
+                                                 const wxString& fallbackValue)
+    {
+        auto childNode = node->FirstChildElement(xmlId.data());
+        if (childNode != nullptr)
+            {
+            const char* stringVal = childNode->ToElement()->Attribute(XML_VALUE.data());
+            if (stringVal != nullptr)
+                {
+                const auto streamedText =
+                    Wisteria::TextStream::CharStreamToUnicode(stringVal, std::strlen(stringVal));
+                const wchar_t* convertedStr =
+                    filter_html(streamedText.c_str(), streamedText.length(), true, false);
+                if (convertedStr != nullptr)
+                    {
+                    return wxString{ convertedStr };
+                    }
+                }
+            }
+        return fallbackValue;
+    };
+
     tinyxml2::XMLDocument doc;
     doc.LoadFile(optionsFile.mb_str());
     if (doc.Error())
@@ -683,23 +706,12 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         }
                     }
                 }
-            auto imagePathNode = filePathsNode->FirstChildElement(XML_FILE_OPEN_IMAGE_PATH.data());
-            if (imagePathNode)
-                {
-                const char* imagePathString =
-                    imagePathNode->ToElement()->Attribute(XML_VALUE.data());
-                if (imagePathString)
-                    {
-                    const auto imagePathStr = Wisteria::TextStream::CharStreamToUnicode(
-                        imagePathString, std::strlen(imagePathString));
-                    const wchar_t* convertedStr =
-                        filter_html(imagePathStr.c_str(), imagePathStr.length(), true, false);
-                    if (convertedStr)
-                        {
-                        SetImagePath(convertedStr);
-                        }
-                    }
-                }
+            SetImagePath(
+                readString(filePathsNode, XML_FILE_OPEN_IMAGE_PATH,
+                           wxStandardPaths::Get().GetUserDir(wxStandardPaths::Dir_Pictures)));
+            SetDownloadsPath(
+                readString(filePathsNode, XML_DOWNLOADS_PATH,
+                           wxStandardPaths::Get().GetUserDir(wxStandardPaths::Dir_Downloads)));
             }
         // log report settings
         auto logSettingsNode = configRootNode->FirstChildElement(XML_LOG_SETTINGS.data());
@@ -3494,6 +3506,12 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     imagePath->SetAttribute(XML_VALUE.data(),
                             wxString(encode({ GetImagePath().wc_str() }, false).c_str()).mb_str());
     filePaths->InsertEndChild(imagePath);
+    // downloads path
+    auto downloadsPath = doc.NewElement(XML_DOWNLOADS_PATH.data());
+    downloadsPath->SetAttribute(
+        XML_VALUE.data(),
+        wxString(encode({ GetDownloadsPath().wc_str() }, false).c_str()).mb_str());
+    filePaths->InsertEndChild(downloadsPath);
     // word list path
     auto wordlistPath = doc.NewElement(XML_FILE_OPEN_WORDLIST_PATH.data());
     wordlistPath->SetAttribute(

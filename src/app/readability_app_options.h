@@ -1502,6 +1502,14 @@ class ReadabilityAppOptions
         }
 
     void SetImagePath(const wxString& path) { m_imagePath = path; }
+    
+    [[nodiscard]]
+    wxString GetDownloadsPath() const
+        {
+        return m_downloadsPath;
+        }
+
+    void SetDownloadsPath(const wxString& path) { m_downloadsPath = path; }
 
     [[nodiscard]]
     wxString GetProjectPath() const
@@ -2616,6 +2624,7 @@ class ReadabilityAppOptions
     wxString m_imagePath;
     wxString m_projectPath;
     wxString m_wordlistPath;
+    wxString m_downloadsPath;
     // internet features
     // Note that we call this a "WebLion". Using words like "harvester," "crawler,"
     // "scraper," and even "browser" will result in a forbidden response from some sites,
@@ -3025,6 +3034,7 @@ class ReadabilityAppOptions
     // last opened file locations
     const std::string_view XML_FILE_OPEN_PATHS{ _DT("file-open-paths") };
     const std::string_view XML_FILE_OPEN_IMAGE_PATH{ _DT("image-path") };
+    const std::string_view XML_DOWNLOADS_PATH{ _DT("downloads") };
     const std::string_view XML_FILE_OPEN_PROJECT_PATH{ _DT("project-path") };
     const std::string_view XML_FILE_OPEN_WORDLIST_PATH{ _DT("wordlist-path") };
     // grammar

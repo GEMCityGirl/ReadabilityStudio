@@ -167,6 +167,15 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
         return m_downloadFolder;
         }
 
+    void SetDownloadFolder(const wxString& dir) noexcept
+        {
+        if (wxFileName::DirExists(dir))
+            {
+            m_downloadFolder = dir;
+            }
+        TransferDataToWindow();
+        }
+
     void SetMinimumDownloadFileSizeInKilobytes(const int minKbs) noexcept
         {
         m_minFileSizeInKiloBytes = minKbs;
