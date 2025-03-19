@@ -83,6 +83,24 @@ class LuaEditorDlg final : public wxFrame
     /// @brief Ensures that all windows are hidden, even if some are floating subwindows.
     void HideAllWindows()
         {
+        // close any call tip and auto-completion windows
+        if (m_notebook->GetPageCount() > 0)
+            {
+            auto codeEditor =
+                dynamic_cast<Wisteria::UI::CodeEditor*>(m_notebook->GetCurrentPage());
+            if (codeEditor != nullptr)
+                {
+                if (codeEditor->CallTipActive())
+                    {
+                    codeEditor->CallTipCancel();
+                    }
+                if (codeEditor->AutoCompActive())
+                    {
+                    codeEditor->AutoCompCancel();
+                    }
+                }
+            }
+
         Hide();
         for (auto& pn : m_mgr.GetAllPanes())
             {
