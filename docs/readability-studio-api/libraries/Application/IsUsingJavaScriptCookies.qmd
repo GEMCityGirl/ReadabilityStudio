@@ -1,0 +1,17 @@
+## `IsUsingJavaScriptCookies`
+
+Returns whether the web harvester parses JavaScript for cookies needed by the website.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsUsingJavaScriptCookies()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

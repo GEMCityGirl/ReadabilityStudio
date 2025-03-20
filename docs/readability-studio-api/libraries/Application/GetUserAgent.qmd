@@ -1,0 +1,17 @@
+## `GetUserAgent`
+
+Returns the user agent used when reading or downloading content from websites.
+
+### Syntax {-}
+
+``` {.lua}
+string GetUserAgent()
+```
+
+
+### Return value {-}
+
+Type: `string`
+
+
+{{< pagebreak >}}

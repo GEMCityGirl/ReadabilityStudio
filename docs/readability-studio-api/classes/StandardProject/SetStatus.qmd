@@ -1,6 +1,6 @@
 ## `SetStatus`
 
-Sets the status of a project. This can be freeform text.
+Sets the status of the project. This can be freeform text.
 
 ### Syntax {-}
 

@@ -1,0 +1,19 @@
+## `PersistCookies`
+
+Toggles whether the web harvester uses keeps cookies read from JavaScript between harvests.
+
+### Syntax {-}
+
+``` {.lua}
+PersistCookies(bool keepCookies)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`bool` keepCookies | `true` to keep cookies between harvesting sessions. |
+
+
+{{< pagebreak >}}

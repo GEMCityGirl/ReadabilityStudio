@@ -1,0 +1,19 @@
+## `SetUserAgent`
+
+Sets the user agent used when reading or downloading content from websites.
+
+### Syntax {-}
+
+``` {.lua}
+SetUserAgent(string userAgent)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`string` userAgent | The user agent to send to servers when connecting to websites. |
+
+
+{{< pagebreak >}}

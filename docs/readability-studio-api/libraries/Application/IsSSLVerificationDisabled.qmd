@@ -1,0 +1,17 @@
+## `IsSSLVerificationDisabled`
+
+Returns whether SSL verification used by the web harvester is disabled.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsSSLVerificationDisabled()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

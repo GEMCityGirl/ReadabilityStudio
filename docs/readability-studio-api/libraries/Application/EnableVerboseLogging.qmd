@@ -1,0 +1,19 @@
+## `EnableVerboseLogging`
+
+Toggles whether verbose logging is enabled.
+
+### Syntax {-}
+
+``` {.lua}
+EnableVerboseLogging(bool enable)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`bool` enable | `true` to use verbose logging. |
+
+
+{{< pagebreak >}}

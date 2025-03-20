@@ -1,0 +1,19 @@
+## `AppendDailyLog`
+
+Toggles whether the current log file should be appended when the program restarts.
+
+### Syntax {-}
+
+``` {.lua}
+AppendDailyLog(bool append)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`bool` append | `true` to use append mode. |
+
+
+{{< pagebreak >}}

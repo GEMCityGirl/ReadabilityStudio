@@ -1240,6 +1240,129 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int EnableVerboseLogging(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+        if (wxGetApp().GetLogFile() != nullptr)
+            {
+            wxGetApp().GetLogFile()->SetVerbose(int_to_bool(lua_toboolean(L, 1)));
+            }
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsLoggingVerbose(lua_State* L)
+        {
+        if (wxGetApp().GetLogFile() != nullptr)
+            {
+            lua_pushboolean(L, wxGetApp().GetLogFile()->GetVerbose());
+            }
+        else
+            {
+            lua_pushboolean(L, false);
+            }
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int AppendDailyLog(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+        if (wxGetApp().GetLogFile() != nullptr)
+            {
+            wxGetApp().AppendDailyLog(int_to_bool(lua_toboolean(L, 1)));
+            }
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsAppendingDailyLog(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().IsAppendingDailyLog());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int SetUserAgent(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetWebHarvester().SetUserAgent(wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
+
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int GetUserAgent(lua_State* L)
+        {
+        lua_pushstring(L, wxGetApp().GetWebHarvester().GetUserAgent().utf8_str());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int DisableSSLVerification(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+        wxGetApp().GetWebHarvester().DisablePeerVerify(int_to_bool(lua_toboolean(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsSSLVerificationDisabled(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetWebHarvester().IsPeerVerifyDisabled());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int UseJavaScriptCookies(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+        wxGetApp().GetWebHarvester().UseJavaScriptCookies(int_to_bool(lua_toboolean(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsUsingJavaScriptCookies(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetWebHarvester().IsUsingJavaScriptCookies());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int PersistCookies(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+        wxGetApp().GetWebHarvester().PersistJavaScriptCookies(int_to_bool(lua_toboolean(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsPersistingCookies(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetWebHarvester().IsPersistingJavaScriptCookies());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int SetTextExclusion(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))
@@ -1360,15 +1483,24 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------
-    int SetAppendedDocumentFilePath(lua_State *L)
+    int GetAppendedDocumentFilePath(lua_State* L)
+        {
+        lua_pushstring(L, wxGetApp().GetAppOptions().GetAppendedDocumentFilePath().utf8_str());
+        return 1;
+        }
+
+    //-------------------------------------------------
+    int SetAppendedDocumentFilePath(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         wxGetApp().GetAppOptions().SetAppendedDocumentFilePath(
             wxString{ luaL_checkstring(L, 2), wxConvUTF8 });
         return 0;
-        };
+        }
 
     // GRAPH OPTIONS
     //-------------------------------------------------------------
@@ -1420,35 +1552,41 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int SetPlotBackgroundImageEffect(lua_State *L)
+    int SetPlotBackgroundImageEffect(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         wxGetApp().GetAppOptions().SetPlotBackGroundImageEffect(
-            static_cast<Wisteria::ImageEffect>(static_cast<int>(lua_tonumber(L, 2))) );
+            static_cast<Wisteria::ImageEffect>(static_cast<int>(lua_tonumber(L, 2))));
         return 0;
         }
 
     //-------------------------------------------------------------
-    int SetPlotBackgroundImageFit(lua_State *L)
+    int SetPlotBackgroundImageFit(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         wxGetApp().GetAppOptions().SetPlotBackGroundImageFit(
-            static_cast<Wisteria::ImageFit>(static_cast<int>(lua_tonumber(L, 2))) );
+            static_cast<Wisteria::ImageFit>(static_cast<int>(lua_tonumber(L, 2))));
         return 0;
         }
 
     //-------------------------------------------------------------
-    int SetXAxisFont(lua_State *L)
+    int SetXAxisFont(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         auto fontInfo = wxGetApp().GetAppOptions().GetXAxisFont();
-        auto fontColor= wxGetApp().GetAppOptions().GetXAxisFontColor();
+        auto fontColor = wxGetApp().GetAppOptions().GetXAxisFontColor();
         LoadFontAttributes(L, fontInfo, fontColor, true);
 
         wxGetApp().GetAppOptions().SetXAxisFont(fontInfo);
@@ -1457,10 +1595,12 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int SetYAxisFont(lua_State *L)
+    int SetYAxisFont(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         auto fontInfo = wxGetApp().GetAppOptions().GetYAxisFont();
         auto fontColor = wxGetApp().GetAppOptions().GetYAxisFontColor();
@@ -1472,10 +1612,12 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int SetGraphTopTitleFont(lua_State *L)
+    int SetGraphTopTitleFont(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         auto fontInfo = wxGetApp().GetAppOptions().GetGraphTopTitleFont();
         auto fontColor = wxGetApp().GetAppOptions().GetGraphTopTitleFontColor();
@@ -1487,20 +1629,24 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int DisplayBarChartLabels(lua_State *L)
+    int DisplayBarChartLabels(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         wxGetApp().GetAppOptions().DisplayBarChartLabels(int_to_bool(lua_toboolean(L, 2)));
         return 0;
         }
 
     //-------------------------------------------------------------
-    int SetGraphInvalidRegionColor(lua_State *L)
+    int SetGraphInvalidRegionColor(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         wxGetApp().GetAppOptions().SetInvalidAreaColor(
             LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
@@ -1508,10 +1654,12 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int SetStippleShapeColor(lua_State *L)
+    int SetStippleShapeColor(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         wxGetApp().GetAppOptions().SetStippleShapeColor(
             LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
@@ -1522,7 +1670,9 @@ namespace LuaScripting
     int ShowcaseKeyItems(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         wxGetApp().GetAppOptions().ShowcaseKeyItems(int_to_bool(lua_toboolean(L, 2)));
         return 0;
@@ -1795,48 +1945,42 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int GetLeftPrintHeader(lua_State* L)
         {
-        lua_pushstring(L,
-            wxGetApp().GetAppOptions().GetLeftPrinterHeader().utf8_str());
+        lua_pushstring(L, wxGetApp().GetAppOptions().GetLeftPrinterHeader().utf8_str());
         return 1;
         }
 
     //-------------------------------------------------------------
     int GetCenterPrintHeader(lua_State* L)
         {
-        lua_pushstring(L,
-            wxGetApp().GetAppOptions().GetCenterPrinterHeader().utf8_str());
+        lua_pushstring(L, wxGetApp().GetAppOptions().GetCenterPrinterHeader().utf8_str());
         return 1;
         }
 
     //-------------------------------------------------------------
     int GetRightPrintHeader(lua_State* L)
         {
-        lua_pushstring(L,
-            wxGetApp().GetAppOptions().GetRightPrinterHeader().utf8_str());
+        lua_pushstring(L, wxGetApp().GetAppOptions().GetRightPrinterHeader().utf8_str());
         return 1;
         }
 
     //-------------------------------------------------------------
     int GetLeftPrintFooter(lua_State* L)
         {
-        lua_pushstring(L,
-            wxGetApp().GetAppOptions().GetLeftPrinterFooter().utf8_str());
+        lua_pushstring(L, wxGetApp().GetAppOptions().GetLeftPrinterFooter().utf8_str());
         return 1;
         }
 
     //-------------------------------------------------------------
     int GetCenterPrintFooter(lua_State* L)
         {
-        lua_pushstring(L,
-            wxGetApp().GetAppOptions().GetCenterPrinterFooter().utf8_str());
+        lua_pushstring(L, wxGetApp().GetAppOptions().GetCenterPrinterFooter().utf8_str());
         return 1;
         }
 
     //-------------------------------------------------------------
     int GetRightPrintFooter(lua_State* L)
         {
-        lua_pushstring(L,
-            wxGetApp().GetAppOptions().GetRightPrinterFooter().utf8_str());
+        lua_pushstring(L, wxGetApp().GetAppOptions().GetRightPrinterFooter().utf8_str());
         return 1;
         }
     } // namespace LuaScripting

@@ -279,14 +279,30 @@ namespace LuaScripting
     int BatchProject::SetAppendedDocumentFilePath(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->SetAppendedDocumentFilePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayed();
         return 0;
         };
+
+    //-------------------------------------------------
+    int BatchProject::GetAppendedDocumentFilePath(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushstring(L, m_project->GetAppendedDocumentFilePath().utf8_str());
+        return 1;
+        }
 
     //-------------------------------------------------------------
     int BatchProject::SetGraphBackgroundColor(lua_State *L)
@@ -623,6 +639,18 @@ namespace LuaScripting
         m_project->SetStatus(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayed();
         return 0;
+        }
+
+    //-------------------------------------------------
+    int BatchProject::GetStatus(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushstring(L, m_project->GetStatus().utf8_str());
+        return 1;
         }
 
     //-------------------------------------------------------------
@@ -1182,6 +1210,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(BatchProject, SetReviewer),
       LUNA_DECLARE_METHOD(BatchProject, GetReviewer),
       LUNA_DECLARE_METHOD(BatchProject, SetStatus),
+      LUNA_DECLARE_METHOD(BatchProject, GetStatus),
       LUNA_DECLARE_METHOD(BatchProject, SetDocumentStorageMethod),
       LUNA_DECLARE_METHOD(BatchProject, SetParagraphsParsingMethod),
       LUNA_DECLARE_METHOD(BatchProject, GetParagraphsParsingMethod),
@@ -1193,6 +1222,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(BatchProject, SetPhraseExclusionList),
       LUNA_DECLARE_METHOD(BatchProject, SetBlockExclusionTags),
       LUNA_DECLARE_METHOD(BatchProject, SetAppendedDocumentFilePath),
+      LUNA_DECLARE_METHOD(BatchProject, GetAppendedDocumentFilePath),
       LUNA_DECLARE_METHOD(BatchProject, AggressivelyExclude),
       LUNA_DECLARE_METHOD(BatchProject, SetTextExclusion),
       LUNA_DECLARE_METHOD(BatchProject, SetIncludeIncompleteTolerance),

@@ -1,0 +1,17 @@
+## `IsAppendingDailyLog`
+
+Returns whether the current log file is being appended when the program restarts.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsAppendingDailyLog()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

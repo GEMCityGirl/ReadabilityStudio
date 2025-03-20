@@ -59,7 +59,8 @@ namespace LuaScripting
     // Internal testing functions
     int /*boolean*/ QAVerify /*INTERNAL!!!*/ (lua_State* L); // INTERNAL FUNCTION!!! SHOULD NOT BE DOCUMENTED.
     int /*number*/ GetFileCheckSum /*INTERNAL!!!*/ (lua_State* L /*string filePath*/); // INTERNAL FUNCTION!!! SHOULD NOT BE DOCUMENTED.
-    // Setting functions
+
+    // GENERAL SETTINGS
     int /*boolean*/ ImportSettings(lua_State* L /*string filePath*/); // Loads the program's settings from a configuration file.
     int /*boolean*/ ExportSettings(lua_State* L /*string outputFilePath*/); // Saves the program's settings to a configuration file.
     int ResetSettings(lua_State*); // Resets the program's settings to the factory default.
@@ -67,7 +68,18 @@ namespace LuaScripting
     int EnableAllWarnings(lua_State*); // Enables all warnings that can appear in the program.
     int EnableWarning(lua_State* L /*string warningId*/); // Enables a specific warning that can appear in the program.
     int DisableWarning(lua_State* L /*string warningId*/); // Disables a specific warning that can appear in the program.
-    int SetSpellCheckerOptions(lua_State* L /*boolean ignoreProperNouns, boolean ignoreUppercased, boolean ignoreNumerals, boolean ignoreFileAddresses, boolean ignoreProgrammerCode, boolean ignoreSocialMediaTags, boolean allowColloquialisms*/); // Sets spell-checker options for new projects.
+    int SetUserAgent(lua_State* L /*string userAgent*/); // Sets the user agent used by the web harvester.
+    int /*string*/ GetUserAgent(lua_State* L); // Returns the user agent used by the web harvester.
+    int DisableSSLVerification(lua_State* L /*bool disable*/); // Toggles whether SSL verification used by the web harvester is disabled.
+    int /*boolean*/ IsSSLVerificationDisabled(lua_State* L); // Returns whether SSL verification used by the web harvester is disabled.
+    int UseJavaScriptCookies(lua_State* L /*bool useJSCookies*/); // Toggles whether the web harvester parses JavaScript for cookies needed by the website.
+    int /*boolean*/ IsUsingJavaScriptCookies(lua_State* L); // Returns whether the web harvester parses JavaScript for cookies needed by the website.
+    int PersistCookies(lua_State* L /*bool keepCookies*/); // Toggles whether the web harvester uses keeps cookies read from JavaScript between harvests.
+    int /*boolean*/ IsPersistingCookies(lua_State* L); // Returns whether the web harvester uses keeps cookies read from JavaScript between harvests.
+    int EnableVerboseLogging(lua_State* L /*bool enable*/); // Toggles whether verbose logging is enabled.
+    int /*boolean*/ IsLoggingVerbose(lua_State* L); // Returns whether verbose logging is enabled.
+    int AppendDailyLog(lua_State* L /*bool append*/); // Toggles whether the current log file should be appended when the program restarts.
+    int /*boolean*/ IsAppendingDailyLog(lua_State* L); // Returns whether the current log file is being appended when the program restarts.
 
     // PROJECT SETTINGS
     int SetReviewer(lua_State* L /*string reviewer*/); // Sets the reviewer's name for new projects.
@@ -76,12 +88,12 @@ namespace LuaScripting
     int /*Language*/ GetProjectLanguage(lua_State* L); // Returns the default language for new projects.
     int /*TextStorage*/ GetDocumentStorageMethod(lua_State* L); // Returns whether the project embeds its documents or links to them for new projects.
     int SetDocumentStorageMethod(lua_State* L /*TextStorage storageMethod*/); // Sets whether new projects embed their documents or link to them.
-    int /*ParagraphParse*/ GetParagraphsParsingMethod(lua_State* L); // Returns the default method for how paragraphs are parsed for new projects.
-    int SetParagraphsParsingMethod(lua_State* L /*ParagraphParse parseMethod*/); // Sets how hard returns help determine how paragraphs and sentences are detected for new projects.
     int SetMinDocWordCountForBatch(lua_State* L /*number minWordCount*/); // Sets the minimum number of words a document must have for new batch projects.
     int /*number*/ GetMinDocWordCountForBatch(lua_State* L); // Returns the minimum number of words a document must have for new batch projects.
     int SetFilePathDisplayMode(lua_State* L /*FilePathDisplayMode displayMode*/); // Sets how filepaths are displayed for new batch projects.
     int /*FilePathDisplayMode*/ GetFilePathDisplayMode(lua_State* L); // Returns how filepaths are displayed for new batch projects.
+    int SetAppendedDocumentFilePath(lua_State* L /*string filePath*/); // Sets the file path to the document being appended for analysis.
+    int /*string*/ GetAppendedDocumentFilePath(lua_State* L); // Returns the file path to the document being appended for analysis.
 
     // TEXT EXCLUSION OPTIONS
     int SetTextExclusion(lua_State* L /*TextExclusionType exclusionType*/); // Sets how text should be excluded for new projects.
@@ -93,9 +105,13 @@ namespace LuaScripting
     int ExcludeNumerals(lua_State* L ); // Sets whether to exclude numerals for new projects.
     int ExcludeProperNouns(lua_State* L /*boolean exclude*/); // Sets whether to exclude proper nouns for new projects.
     int SetPhraseExclusionList(lua_State* L /*string exclusionListPath*/); // Sets the filepath to the phrase exclusion list for new projects.
+    int /*ParagraphParse*/ GetParagraphsParsingMethod(lua_State* L); // Returns the default method for how paragraphs are parsed for new projects.
+    int SetParagraphsParsingMethod(lua_State* L /*ParagraphParse parseMethod*/); // Sets how hard returns help determine how paragraphs and sentences are detected for new projects.
     // Sets the tags to exclude blocks of text.
     int SetBlockExclusionTags(lua_State* L /*string tagString*/); // Sets the text exclusion tags for new projects. This should be a two-character string containing a pair of exclusion tags.
-    int SetAppendedDocumentFilePath(lua_State* L /*string filePath*/); // Sets the file path to the document being appended for analysis.
+
+    // GRAMMAR
+    int SetSpellCheckerOptions(lua_State* L /*boolean ignoreProperNouns, boolean ignoreUppercased, boolean ignoreNumerals, boolean ignoreFileAddresses, boolean ignoreProgrammerCode, boolean ignoreSocialMediaTags, boolean allowColloquialisms*/); // Sets spell-checker options for new projects.
 
     // GRAPH OPTIONS
     int SetGraphBackgroundColor(lua_State* L /*number red, number green, number blue*/); // Sets the graph background color for new projects.
@@ -182,6 +198,18 @@ namespace LuaScripting
         { "EnableAllWarnings", EnableAllWarnings },
         { "EnableWarning", EnableWarning },
         { "DisableWarning", DisableWarning },
+        { "SetUserAgent", SetUserAgent },
+        { "GetUserAgent", GetUserAgent },
+        { "DisableSSLVerification", DisableSSLVerification },
+        { "IsSSLVerificationDisabled", IsSSLVerificationDisabled },
+        { "UseJavaScriptCookies", UseJavaScriptCookies },
+        { "IsUsingJavaScriptCookies", IsUsingJavaScriptCookies },
+        { "PersistCookies", PersistCookies },
+        { "IsPersistingCookies", IsPersistingCookies },
+        { "EnableVerboseLogging", EnableVerboseLogging },
+        { "IsLoggingVerbose", IsLoggingVerbose },
+        { "AppendDailyLog", AppendDailyLog },
+        { "IsAppendingDailyLog", IsAppendingDailyLog },
         { "SetTextExclusion", SetTextExclusion },
         { "SetIncludeIncompleteTolerance", SetIncludeIncompleteTolerance },
         { "AggressivelyExclude", AggressivelyExclude },
@@ -193,6 +221,7 @@ namespace LuaScripting
         { "SetPhraseExclusionList", SetPhraseExclusionList },
         { "SetBlockExclusionTags", SetBlockExclusionTags },
         { "SetAppendedDocumentFilePath", SetAppendedDocumentFilePath },
+        { "GetAppendedDocumentFilePath", GetAppendedDocumentFilePath },
         { "SetGraphBackgroundColor", SetGraphBackgroundColor },
         { "ApplyGraphBackgroundFade", ApplyGraphBackgroundFade },
         { "SetGraphCommonImage", SetGraphCommonImage },

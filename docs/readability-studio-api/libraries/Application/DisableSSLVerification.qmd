@@ -1,0 +1,19 @@
+## `DisableSSLVerification`
+
+Toggles whether SSL verification used by the web harvester is disabled.
+
+### Syntax {-}
+
+``` {.lua}
+DisableSSLVerification(bool disable)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`bool` disable | `true` to not use SSL verification. |
+
+
+{{< pagebreak >}}

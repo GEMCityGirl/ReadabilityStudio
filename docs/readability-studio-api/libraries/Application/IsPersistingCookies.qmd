@@ -1,0 +1,17 @@
+## `IsPersistingCookies`
+
+Returns whether the web harvester uses keeps cookies read from JavaScript between harvests.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsPersistingCookies()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

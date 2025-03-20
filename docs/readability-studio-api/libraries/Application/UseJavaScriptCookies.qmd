@@ -1,0 +1,19 @@
+## `UseJavaScriptCookies`
+
+Toggles whether the web harvester parses JavaScript for cookies needed by the website.
+
+### Syntax {-}
+
+``` {.lua}
+UseJavaScriptCookies(bool useJSCookies)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`bool` useJSCookies | `true` to use cookies parsed from JavaScript when connecting to webpages. |
+
+
+{{< pagebreak >}}

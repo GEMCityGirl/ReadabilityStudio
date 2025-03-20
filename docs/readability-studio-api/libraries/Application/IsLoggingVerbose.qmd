@@ -1,0 +1,17 @@
+## `IsLoggingVerbose`
+
+Returns whether verbose logging is enabled.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsLoggingVerbose()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

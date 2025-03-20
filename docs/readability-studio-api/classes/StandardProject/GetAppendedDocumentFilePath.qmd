@@ -1,0 +1,17 @@
+## `GetAppendedDocumentFilePath`
+
+Returns the file path to the document being appended for analysis.
+
+### Syntax {-}
+
+``` {.lua}
+string GetAppendedDocumentFilePath()
+```
+
+
+### Return value {-}
+
+Type: `string`
+
+
+{{< pagebreak >}}

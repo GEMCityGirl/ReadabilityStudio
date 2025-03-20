@@ -1,0 +1,17 @@
+## `GetStatus`
+
+Returns the status of the project.
+
+### Syntax {-}
+
+``` {.lua}
+string GetStatus()
+```
+
+
+### Return value {-}
+
+Type: `string`
+
+
+{{< pagebreak >}}

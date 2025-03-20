@@ -129,7 +129,8 @@ namespace LuaScripting
         // cppcheck-suppress functionConst
         int /*string*/ GetReviewer(lua_State* L); // Returns the reviewer's name.
         // cppcheck-suppress functionConst
-        int SetStatus(lua_State* L /*string status*/); // Sets the status of a project. This can be freeform text.
+        int SetStatus(lua_State* L /*string status*/); // Sets the status of the project. This can be freeform text.
+        int /*string*/ GetStatus(lua_State* L); // Returns the status of the project.
         // cppcheck-suppress functionConst
         int /*TextStorage*/ GetDocumentStorageMethod(lua_State* L); // Returns whether the project embeds its documents or links to them.
         int SetDocumentStorageMethod(lua_State* L /*TextStorage storageMethod*/); // Sets whether the project embeds its documents or links to them.
@@ -137,6 +138,9 @@ namespace LuaScripting
         int SetDocumentFilePath(lua_State* L /*string docPath*/); // Sets the path of the document being analyzed by the project.
         // cppcheck-suppress functionConst
         int /*ParagraphParse*/ GetParagraphsParsingMethod(lua_State* L); // Returns the method for how paragraphs are parsed.
+        int SetAppendedDocumentFilePath(lua_State* L /*string filePath*/); // Sets the file path to the document being appended for analysis.
+        int /*string*/ GetAppendedDocumentFilePath(lua_State* L); // Returns the file path to the document being appended for analysis.
+
         // TEXT EXCLUSION OPTIONS
         int SetTextExclusion(lua_State* L /*TextExclusionType exclusionType*/); // Specifies how text should be excluded while parsing the source document.
         int SetIncludeIncompleteTolerance(lua_State* L /*number minWordsForCompleteSentence*/); // Sets the incomplete-sentence tolerance. This is the minimum number of words that will make a sentence missing terminating punctuation be considered complete.
@@ -148,7 +152,6 @@ namespace LuaScripting
         int ExcludeProperNouns(lua_State* L /*boolean exclude*/); // Specifies whether or not to exclude proper nouns.
         int SetPhraseExclusionList(lua_State* L /*string exclusionListPath*/); // Sets the filepath to the phrase exclusion list.
         int SetBlockExclusionTags(lua_State* L /*string tagString*/); // Sets the text exclusion tags. This should be a two-character string containing a pair of exclusion tags.
-        int SetAppendedDocumentFilePath(lua_State* L /*string filePath*/); // Sets the file path to the document being appended for analysis.
 
         // GRAPH OPTIONS
         int SetGraphBackgroundColor(lua_State* L /*number red, number green, number blue*/); // Sets the graph background color.

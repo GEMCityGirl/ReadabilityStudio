@@ -395,6 +395,18 @@ namespace LuaScripting
         };
 
     //-------------------------------------------------
+    int StandardProject::GetAppendedDocumentFilePath(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushstring(L, m_project->GetAppendedDocumentFilePath().utf8_str());
+        return 1;
+        }
+
+    //-------------------------------------------------
     int StandardProject::SetDocumentFilePath(lua_State *L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -802,6 +814,18 @@ namespace LuaScripting
         m_project->SetStatus(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayed();
         return 0;
+        }
+
+    //-------------------------------------------------
+    int StandardProject::GetStatus(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushstring(L, m_project->GetStatus().utf8_str());
+        return 1;
         }
 
     int StandardProject::SetDocumentStorageMethod(lua_State *L)
@@ -1786,6 +1810,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(StandardProject, SetPhraseExclusionList),
       LUNA_DECLARE_METHOD(StandardProject, SetBlockExclusionTags),
       LUNA_DECLARE_METHOD(StandardProject, SetAppendedDocumentFilePath),
+      LUNA_DECLARE_METHOD(StandardProject, GetAppendedDocumentFilePath),
       LUNA_DECLARE_METHOD(StandardProject, SetDocumentFilePath),
       LUNA_DECLARE_METHOD(StandardProject, AggressivelyExclude),
       LUNA_DECLARE_METHOD(StandardProject, SetTextExclusion),
@@ -1800,6 +1825,7 @@ namespace LuaScripting
       LUNA_DECLARE_METHOD(StandardProject, SetReviewer),
       LUNA_DECLARE_METHOD(StandardProject, GetReviewer),
       LUNA_DECLARE_METHOD(StandardProject, SetStatus),
+      LUNA_DECLARE_METHOD(StandardProject, GetStatus),
       LUNA_DECLARE_METHOD(StandardProject, SetDocumentStorageMethod),
       LUNA_DECLARE_METHOD(StandardProject, SetParagraphsParsingMethod),
       LUNA_DECLARE_METHOD(StandardProject, GetParagraphsParsingMethod),
