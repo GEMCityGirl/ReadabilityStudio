@@ -7,13 +7,13 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "lua_standard_project.h"
-#include "../app/readability_app.h"
-#include "../projects/standard_project_doc.h"
-#include "../projects/batch_project_doc.h"
-#include "../projects/batch_project_view.h"
-#include "../ui/dialogs/tools_options_dlg.h"
 #include "../Wisteria-Dataviz/src/base/label.h"
 #include "../Wisteria-Dataviz/src/base/reportbuilder.h"
+#include "../app/readability_app.h"
+#include "../projects/batch_project_doc.h"
+#include "../projects/batch_project_view.h"
+#include "../projects/standard_project_doc.h"
+#include "../ui/dialogs/tools_options_dlg.h"
 
 using namespace Wisteria;
 using namespace Wisteria::Graphs;
@@ -23,20 +23,21 @@ using namespace Wisteria::UI;
 wxDECLARE_APP(ReadabilityApp);
 
 /* Note: with Luna, an extra boolean argument is passed into class functions at the front,
-   this should be skipped over. It seems to be an indicator of the function being successfully called,
-   but not sure about that.*/
+   this should be skipped over. It seems to be an indicator of the function being successfully
+   called, but not sure about that.*/
 
 namespace LuaScripting
     {
     const char StandardProject::className[] = "StandardProject";
 
-    StandardProject::StandardProject(lua_State *L)
+    StandardProject::StandardProject(lua_State* L)
         {
         if (lua_gettop(L) > 1) // see if a path was passed in
             {
             wxString path(luaL_checkstring(L, 2), wxConvUTF8);
             wxFileName fn(path);
-            fn.Normalize(wxPATH_NORM_LONG|wxPATH_NORM_DOTS|wxPATH_NORM_TILDE|wxPATH_NORM_ABSOLUTE);
+            fn.Normalize(wxPATH_NORM_LONG | wxPATH_NORM_DOTS | wxPATH_NORM_TILDE |
+                         wxPATH_NORM_ABSOLUTE);
             if (fn.GetExt().CmpNoCase(_DT(L"rsp")) == 0)
                 {
                 m_project = dynamic_cast<ProjectDoc*>(wxGetApp().GetMainFrame()->OpenFile(path));
@@ -45,20 +46,24 @@ namespace LuaScripting
                 {
                 m_project = nullptr;
                 wxMessageBox(_(L"A standard project cannot open a batch project file."),
-                             _(L"Project File Mismatch"), wxOK|wxICON_EXCLAMATION);
+                             _(L"Project File Mismatch"), wxOK | wxICON_EXCLAMATION);
                 return;
                 }
             else
                 {
                 // create a standard project and dump the text into it
-                const wxList& templateList = wxGetApp().GetMainFrame()->GetDocumentManager()->GetTemplates();
+                const wxList& templateList =
+                    wxGetApp().GetMainFrame()->GetDocumentManager()->GetTemplates();
                 for (size_t i = 0; i < templateList.GetCount(); ++i)
                     {
-                    wxDocTemplate* docTemplate = dynamic_cast<wxDocTemplate*>(templateList.Item(i)->GetData());
-                    if (docTemplate && docTemplate->GetDocClassInfo()->IsKindOf(wxCLASSINFO(ProjectDoc)))
+                    wxDocTemplate* docTemplate =
+                        dynamic_cast<wxDocTemplate*>(templateList.Item(i)->GetData());
+                    if (docTemplate &&
+                        docTemplate->GetDocClassInfo()->IsKindOf(wxCLASSINFO(ProjectDoc)))
                         {
-                        m_project = dynamic_cast<ProjectDoc*>(docTemplate->CreateDocument(path, wxDOC_NEW));
-                        if (m_project && !m_project->OnNewDocument() )
+                        m_project =
+                            dynamic_cast<ProjectDoc*>(docTemplate->CreateDocument(path, wxDOC_NEW));
+                        if (m_project && !m_project->OnNewDocument())
                             {
                             // Document is implicitly deleted by DeleteAllViews
                             m_project->DeleteAllViews();
@@ -76,7 +81,9 @@ namespace LuaScripting
     bool StandardProject::ReloadIfNotDelayed()
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         if (!m_delayReloading)
             {
@@ -90,7 +97,9 @@ namespace LuaScripting
     bool StandardProject::ReloadIfNotDelayedSimple()
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         if (!m_delayReloading)
             {
@@ -104,9 +113,13 @@ namespace LuaScripting
     int StandardProject::DelayReloading(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_delayReloading = int_to_bool(lua_toboolean(L, 2));
         return 0;
@@ -121,9 +134,13 @@ namespace LuaScripting
     int StandardProject::SetWindowSize(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 2, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         if (m_project->GetFirstView() && m_project->GetFirstView()->GetFrame())
             {
@@ -157,7 +174,7 @@ namespace LuaScripting
         if (m_project && m_project->GetProjectLanguage() == readability::test_language::german_test)
             {
             wxMessageBox(_(L"ProperNounCount() not supported for German projects."),
-                _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                         _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
             lua_pushinteger(L, 0);
             return 1;
             }
@@ -255,144 +272,192 @@ namespace LuaScripting
         return 1;
         }
 
-    int StandardProject::SetTextExclusion(lua_State *L)
+    int StandardProject::SetTextExclusion(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
-        m_project->SetInvalidSentenceMethod(static_cast<InvalidSentence>(static_cast<int>(lua_tonumber(L, 2))));
+        m_project->SetInvalidSentenceMethod(
+            static_cast<InvalidSentence>(static_cast<int>(lua_tonumber(L, 2))));
         ReloadIfNotDelayed();
         return 0;
-        };
+        }
 
-    int StandardProject::SetIncludeIncompleteTolerance(lua_State *L)
+    int StandardProject::SetIncludeIncompleteTolerance(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->SetIncludeIncompleteSentencesIfLongerThanValue(lua_tonumber(L, 2));
         return 0;
-        };
+        }
 
-    int StandardProject::AggressivelyExclude(lua_State *L)
+    int StandardProject::AggressivelyExclude(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->AggressiveExclusion(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayed();
         return 0;
-        };
+        }
 
-    int StandardProject::ExcludeCopyrightNotices(lua_State *L)
+    int StandardProject::ExcludeCopyrightNotices(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->IgnoreTrailingCopyrightNoticeParagraphs(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayed();
         return 0;
-        };
+        }
 
-    int StandardProject::ExcludeTrailingCitations(lua_State *L)
+    int StandardProject::ExcludeTrailingCitations(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->IgnoreTrailingCitations(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayed();
         return 0;
-        };
+        }
 
-    int StandardProject::ExcludeFileAddress(lua_State *L)
+    int StandardProject::ExcludeFileAddress(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->IgnoreFileAddresses(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayed();
         return 0;
-        };
+        }
 
-    int StandardProject::ExcludeNumerals(lua_State *L)
+    int StandardProject::ExcludeNumerals(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->IgnoreNumerals(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayed();
         return 0;
-        };
+        }
 
-    int StandardProject::ExcludeProperNouns(lua_State *L)
+    int StandardProject::ExcludeProperNouns(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->IgnoreProperNouns(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayed();
         return 0;
-        };
+        }
 
     // Sets the filepath to the phrase exclusion list
     // filePath Path to phrase exclusion list
-    int StandardProject::SetPhraseExclusionList(lua_State *L)
+    int StandardProject::SetPhraseExclusionList(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->SetExcludedPhrasesPath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         m_project->LoadExcludePhrases();
         ReloadIfNotDelayed();
         return 0;
-        };
+        }
 
     // Sets the tags to exclude blocks of text.
-    int StandardProject::SetBlockExclusionTags(lua_State *L)
+    int StandardProject::SetBlockExclusionTags(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         const wxString exclusionTags(luaL_checkstring(L, 2), wxConvUTF8);
         m_project->GetExclusionBlockTags().clear();
         if (exclusionTags.length() >= 2)
-            { m_project->GetExclusionBlockTags().push_back(std::make_pair(exclusionTags[0],exclusionTags[1])); }
+            {
+            m_project->GetExclusionBlockTags().push_back(
+                std::make_pair(exclusionTags[0], exclusionTags[1]));
+            }
         ReloadIfNotDelayed();
         return 0;
-        };
+        }
 
     //-------------------------------------------------
-    int StandardProject::SetAppendedDocumentFilePath(lua_State *L)
+    int StandardProject::SetAppendedDocumentFilePath(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->SetAppendedDocumentFilePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayed();
         return 0;
-        };
+        }
 
     //-------------------------------------------------
     int StandardProject::GetAppendedDocumentFilePath(lua_State* L)
@@ -407,25 +472,33 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------
-    int StandardProject::SetDocumentFilePath(lua_State *L)
+    int StandardProject::SetDocumentFilePath(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->SetOriginalDocumentFilePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayed();
         return 0;
-        };
+        }
 
     // GRAPH OPTIONS
-    int StandardProject::SetGraphBackgroundColor(lua_State *L)
+    int StandardProject::SetGraphBackgroundColor(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->SetBackGroundColor(LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
         ReloadIfNotDelayedSimple();
@@ -433,12 +506,16 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StandardProject::ApplyGraphBackgroundFade(lua_State *L)
+    int StandardProject::ApplyGraphBackgroundFade(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->SetGraphBackGroundLinearGradient(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayedSimple();
@@ -446,12 +523,16 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StandardProject::SetPlotBackgroundImage(lua_State *L)
+    int StandardProject::SetPlotBackgroundImage(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->SetPlotBackGroundImagePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayedSimple();
@@ -459,12 +540,16 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StandardProject::SetGraphCommonImage(lua_State *L)
+    int StandardProject::SetGraphCommonImage(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->SetGraphCommonImagePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayedSimple();
@@ -472,40 +557,52 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StandardProject::SetPlotBackgroundImageEffect(lua_State *L)
+    int StandardProject::SetPlotBackgroundImageEffect(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->SetPlotBackGroundImageEffect(
-            static_cast<Wisteria::ImageEffect>(static_cast<int>(lua_tonumber(L, 2))) );
+            static_cast<Wisteria::ImageEffect>(static_cast<int>(lua_tonumber(L, 2))));
         ReloadIfNotDelayedSimple();
         return 0;
         }
 
     //-------------------------------------------------------------
-    int StandardProject::SetPlotBackgroundImageFit(lua_State *L)
+    int StandardProject::SetPlotBackgroundImageFit(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->SetPlotBackGroundImageFit(
-            static_cast<Wisteria::ImageFit>(static_cast<int>(lua_tonumber(L, 2))) );
+            static_cast<Wisteria::ImageFit>(static_cast<int>(lua_tonumber(L, 2))));
         ReloadIfNotDelayedSimple();
         return 0;
         }
 
     //-------------------------------------------------------------
-    int StandardProject::SetPlotBackgroundImageOpacity(lua_State *L)
+    int StandardProject::SetPlotBackgroundImageOpacity(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->SetPlotBackGroundImageOpacity(lua_tonumber(L, 2));
         ReloadIfNotDelayedSimple();
@@ -513,25 +610,34 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StandardProject::SetPlotBackgroundColor(lua_State *L)
+    int StandardProject::SetPlotBackgroundColor(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
-        m_project->SetPlotBackGroundColor(LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+        m_project->SetPlotBackGroundColor(
+            LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
         ReloadIfNotDelayedSimple();
         return 0;
         }
 
     //-------------------------------------------------------------
-    int StandardProject::SetGraphInvalidRegionColor(lua_State *L)
+    int StandardProject::SetGraphInvalidRegionColor(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->SetInvalidAreaColor(LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
         ReloadIfNotDelayedSimple();
@@ -539,12 +645,16 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StandardProject::SetStippleShapeColor(lua_State *L)
+    int StandardProject::SetStippleShapeColor(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->SetStippleShapeColor(LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
         ReloadIfNotDelayedSimple();
@@ -555,9 +665,13 @@ namespace LuaScripting
     int StandardProject::ShowcaseKeyItems(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->ShowcaseKeyItems(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayedSimple();
@@ -565,12 +679,16 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StandardProject::SetPlotBackgroundColorOpacity(lua_State *L)
+    int StandardProject::SetPlotBackgroundColorOpacity(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->SetPlotBackGroundColorOpacity(lua_tonumber(L, 2));
         ReloadIfNotDelayedSimple();
@@ -578,12 +696,16 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StandardProject::SetWatermark(lua_State *L)
+    int StandardProject::SetWatermark(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->SetWatermark(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayedSimple();
@@ -591,12 +713,16 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StandardProject::SetGraphLogoImage(lua_State *L)
+    int StandardProject::SetGraphLogoImage(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->SetWatermarkLogoPath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayedSimple();
@@ -604,12 +730,16 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StandardProject::SetStippleImage(lua_State *L)
+    int StandardProject::SetStippleImage(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->SetStippleImagePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayedSimple();
@@ -617,12 +747,16 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StandardProject::SetStippleShape(lua_State *L)
+    int StandardProject::SetStippleShape(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->SetStippleShape(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayedSimple();
@@ -630,15 +764,19 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StandardProject::SetXAxisFont(lua_State *L)
+    int StandardProject::SetXAxisFont(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         auto fontInfo = m_project->GetXAxisFont();
-        auto fontColor= m_project->GetXAxisFontColor();
+        auto fontColor = m_project->GetXAxisFontColor();
         LoadFontAttributes(L, fontInfo, fontColor, true);
 
         m_project->SetXAxisFont(fontInfo);
@@ -648,12 +786,16 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StandardProject::SetYAxisFont(lua_State *L)
+    int StandardProject::SetYAxisFont(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         auto fontInfo = m_project->GetYAxisFont();
         auto fontColor = m_project->GetYAxisFontColor();
@@ -666,12 +808,16 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StandardProject::SetGraphTopTitleFont(lua_State *L)
+    int StandardProject::SetGraphTopTitleFont(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         auto fontInfo = m_project->GetGraphTopTitleFont();
         auto fontColor = m_project->GetGraphTopTitleFontColor();
@@ -684,12 +830,16 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StandardProject::DisplayBarChartLabels(lua_State *L)
+    int StandardProject::DisplayBarChartLabels(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->DisplayBarChartLabels(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayedSimple();
@@ -697,12 +847,16 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StandardProject::DisplayGraphDropShadows(lua_State *L)
+    int StandardProject::DisplayGraphDropShadows(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->DisplayDropShadows(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayedSimple();
@@ -710,12 +864,16 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StandardProject::SetBarChartBarColor(lua_State *L)
+    int StandardProject::SetBarChartBarColor(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->SetBarChartBarColor(LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
         ReloadIfNotDelayedSimple();
@@ -723,12 +881,16 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StandardProject::SetBarChartBarOpacity(lua_State *L)
+    int StandardProject::SetBarChartBarOpacity(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->SetGraphBarOpacity(lua_tonumber(L, 2));
         ReloadIfNotDelayedSimple();
@@ -736,12 +898,16 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StandardProject::SetBarChartBarEffect(lua_State *L)
+    int StandardProject::SetBarChartBarEffect(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->SetGraphBarEffect(static_cast<BoxEffect>(static_cast<int>(lua_tonumber(L, 2))));
         ReloadIfNotDelayedSimple();
@@ -749,67 +915,89 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StandardProject::SetBarChartOrientation(lua_State *L)
+    int StandardProject::SetBarChartOrientation(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
-        m_project->SetBarChartOrientation(static_cast<Wisteria::Orientation>(static_cast<int>(lua_tonumber(L, 2))));
+        m_project->SetBarChartOrientation(
+            static_cast<Wisteria::Orientation>(static_cast<int>(lua_tonumber(L, 2))));
         ReloadIfNotDelayedSimple();
         return 0;
         }
 
     // PROJECT SETTINGS
-    int StandardProject::SetProjectLanguage(lua_State *L)
+    int StandardProject::SetProjectLanguage(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
-        m_project->SetProjectLanguage(static_cast<readability::test_language>(static_cast<int>(lua_tonumber(L, 2))));
+        m_project->SetProjectLanguage(
+            static_cast<readability::test_language>(static_cast<int>(lua_tonumber(L, 2))));
         ReloadIfNotDelayed();
         return 0;
         }
 
-    int StandardProject::GetProjectLanguage(lua_State *L)
+    int StandardProject::GetProjectLanguage(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
-        lua_pushnumber(L,static_cast<int>(m_project->GetProjectLanguage()));
+        lua_pushnumber(L, static_cast<int>(m_project->GetProjectLanguage()));
         return 1;
         }
 
-    int StandardProject::SetReviewer(lua_State *L)
+    int StandardProject::SetReviewer(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->SetReviewer(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayed();
         return 0;
         }
 
-    int StandardProject::GetReviewer(lua_State *L)
+    int StandardProject::GetReviewer(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         lua_pushstring(L, m_project->GetReviewer().utf8_str());
         return 1;
         }
 
-    int StandardProject::SetStatus(lua_State *L)
+    int StandardProject::SetStatus(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         m_project->SetStatus(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayed();
@@ -828,72 +1016,102 @@ namespace LuaScripting
         return 1;
         }
 
-    int StandardProject::SetDocumentStorageMethod(lua_State *L)
+    int StandardProject::SetDocumentStorageMethod(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
-        m_project->SetDocumentStorageMethod(static_cast<TextStorage>(static_cast<int>(lua_tonumber(L, 2))));
+        m_project->SetDocumentStorageMethod(
+            static_cast<TextStorage>(static_cast<int>(lua_tonumber(L, 2))));
         ReloadIfNotDelayed();
         return 0;
-        };
+        }
 
-    int StandardProject::GetDocumentStorageMethod(lua_State *L)
+    int StandardProject::GetDocumentStorageMethod(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
-        lua_pushnumber(L,static_cast<int>(m_project->GetDocumentStorageMethod()));
+        lua_pushnumber(L, static_cast<int>(m_project->GetDocumentStorageMethod()));
         return 1;
-        };
+        }
 
-    int StandardProject::SetParagraphsParsingMethod(lua_State *L)
+    int StandardProject::SetParagraphsParsingMethod(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
-        m_project->SetParagraphsParsingMethod(static_cast<ParagraphParse>(static_cast<int>(lua_tonumber(L, 2))));
+        m_project->SetParagraphsParsingMethod(
+            static_cast<ParagraphParse>(static_cast<int>(lua_tonumber(L, 2))));
         ReloadIfNotDelayed();
         return 0;
-        };
+        }
 
-    int StandardProject::GetParagraphsParsingMethod(lua_State *L)
+    int StandardProject::GetParagraphsParsingMethod(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
-        lua_pushnumber(L,static_cast<int>(m_project->GetParagraphsParsingMethod()));
+        lua_pushnumber(L, static_cast<int>(m_project->GetParagraphsParsingMethod()));
         return 1;
-        };
+        }
 
-    int StandardProject::SetSpellCheckerOptions(lua_State *L)
+    int StandardProject::SetSpellCheckerOptions(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         if (lua_gettop(L) >= 2)
-            { m_project->SpellCheckIgnoreProperNouns(int_to_bool(lua_toboolean(L, 2))); }
+            {
+            m_project->SpellCheckIgnoreProperNouns(int_to_bool(lua_toboolean(L, 2)));
+            }
         if (lua_gettop(L) >= 3)
-            { m_project->SpellCheckIgnoreUppercased(int_to_bool(lua_toboolean(L, 3))); }
+            {
+            m_project->SpellCheckIgnoreUppercased(int_to_bool(lua_toboolean(L, 3)));
+            }
         if (lua_gettop(L) >= 4)
-            { m_project->SpellCheckIgnoreNumerals(int_to_bool(lua_toboolean(L, 4))); }
+            {
+            m_project->SpellCheckIgnoreNumerals(int_to_bool(lua_toboolean(L, 4)));
+            }
         if (lua_gettop(L) >= 5)
-            { m_project->SpellCheckIgnoreFileAddresses(int_to_bool(lua_toboolean(L, 5))); }
+            {
+            m_project->SpellCheckIgnoreFileAddresses(int_to_bool(lua_toboolean(L, 5)));
+            }
         if (lua_gettop(L) >= 6)
-            { m_project->SpellCheckIgnoreProgrammerCode(int_to_bool(lua_toboolean(L, 6))); }
+            {
+            m_project->SpellCheckIgnoreProgrammerCode(int_to_bool(lua_toboolean(L, 6)));
+            }
         if (lua_gettop(L) >= 7)
-            { m_project->SpellCheckAllowColloquialisms(int_to_bool(lua_toboolean(L, 7))); }
+            {
+            m_project->SpellCheckAllowColloquialisms(int_to_bool(lua_toboolean(L, 7)));
+            }
         ReloadIfNotDelayed();
         return 0;
-        };
+        }
 
-    int StandardProject::AddTest(lua_State *L)
+    int StandardProject::AddTest(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
             {
@@ -912,8 +1130,7 @@ namespace LuaScripting
             const wxString testName(luaL_checkstring(L, 2), wxConvUTF8);
             if (m_project->GetReadabilityTests().has_test(testName))
                 {
-                const auto result =
-                    m_project->GetReadabilityTests().find_test(testName);
+                const auto result = m_project->GetReadabilityTests().find_test(testName);
                 wxCommandEvent cmd(wxEVT_NULL, result.first->get_test().get_interface_id());
                 view->OnAddTest(cmd);
                 }
@@ -926,11 +1143,12 @@ namespace LuaScripting
                 {
                 std::map<int, wxString>::const_iterator pos;
                 for (pos = MainFrame::GetCustomTestMenuIds().cbegin();
-                    pos != MainFrame::GetCustomTestMenuIds().cend();
-                    ++pos)
+                     pos != MainFrame::GetCustomTestMenuIds().cend(); ++pos)
                     {
                     if (pos->second.CmpNoCase(testName) == 0)
-                        { break; }
+                        {
+                        break;
+                        }
                     }
                 if (pos != MainFrame::GetCustomTestMenuIds().end())
                     {
@@ -953,8 +1171,9 @@ namespace LuaScripting
                     }
                 else
                     {
-                    wxMessageBox(wxString::Format(_(L"%s: unknown test could not be added."), testName),
-                        _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                    wxMessageBox(
+                        wxString::Format(_(L"%s: unknown test could not be added."), testName),
+                        _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
                     lua_pushboolean(L, false);
                     return 1;
                     }
@@ -971,7 +1190,9 @@ namespace LuaScripting
     int StandardProject::Reload(lua_State*)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         m_project->RefreshRequired(ProjectRefresh::FullReindexing);
         m_project->RefreshProject();
         wxGetApp().Yield();
@@ -979,12 +1200,14 @@ namespace LuaScripting
         }
 
     /// Closes the project.
-    /// @SaveChanges Specifies whether to save any changes made to the project before closing it. 
+    /// @SaveChanges Specifies whether to save any changes made to the project before closing it.
     /// Default is to not save any changes.
-    int StandardProject::Close(lua_State *L)
+    int StandardProject::Close(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         wxGetApp().Yield();
 
@@ -994,10 +1217,14 @@ namespace LuaScripting
             if (lua_gettop(L) > 1 && int_to_bool(lua_toboolean(L, 2)) == true)
                 {
                 if (!m_project->Save())
-                    { return 0; }
+                    {
+                    return 0;
+                    }
                 }
             else
-                { m_project->Modify(false); }
+                {
+                m_project->Modify(false);
+                }
             }
 
         m_project->GetDocumentManager()->CloseDocument(m_project, true);
@@ -1009,49 +1236,58 @@ namespace LuaScripting
 
     // Exports all of the results from the project into a folder.
     // FolderPath The folder to save the project's results.
-    int StandardProject::ExportAll(lua_State *L)
+    int StandardProject::ExportAll(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         wxString outputPath(luaL_checkstring(L, 2), wxConvUTF8);
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
             {
             view->ExportAll(outputPath, BaseProjectDoc::GetExportListExt(),
-                            BaseProjectDoc::GetExportTextViewExt(), BaseProjectDoc::GetExportGraphExt(),
-                            true, true, true, true, true, true, true, true, Wisteria::UI::ImageExportOptions());
+                            BaseProjectDoc::GetExportTextViewExt(),
+                            BaseProjectDoc::GetExportGraphExt(), true, true, true, true, true, true,
+                            true, true, Wisteria::UI::ImageExportOptions());
             }
         return 0;
         }
 
     // Saves the scores to an HTML file.
     // FilePath The file path to save the scores.
-    int StandardProject::ExportScores(lua_State *L)
+    int StandardProject::ExportScores(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
             {
             ExplanationListCtrl* scoresWindow =
                 dynamic_cast<ExplanationListCtrl*>(view->GetReadabilityResultsView().FindWindowById(
-                    BaseProjectView::READABILITY_SCORES_PAGE_ID) );
+                    BaseProjectView::READABILITY_SCORES_PAGE_ID));
             if (scoresWindow)
                 {
                 const ProjectDoc* doc = dynamic_cast<ProjectDoc*>(view->GetDocument());
                 const wxString originalLabel = scoresWindow->GetName();
-                scoresWindow->SetLabel(originalLabel + wxString::Format(L" [%s]",
-                                       wxFileName::StripExtension(doc->GetTitle())));
-                lua_pushboolean(L, scoresWindow->Save(wxString(luaL_checklstring(L, 2, nullptr), wxConvUTF8)) );
+                scoresWindow->SetLabel(
+                    originalLabel +
+                    wxString::Format(L" [%s]", wxFileName::StripExtension(doc->GetTitle())));
+                lua_pushboolean(
+                    L, scoresWindow->Save(wxString(luaL_checklstring(L, 2, nullptr), wxConvUTF8)));
                 scoresWindow->SetLabel(originalLabel);
                 }
             else
                 {
-                wxMessageBox(_(L"Unable to find the scores in the project."),
-                     _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                wxMessageBox(_(L"Unable to find the scores in the project."), _(L"Script Error"),
+                             wxOK | wxICON_EXCLAMATION);
                 return 0;
                 }
             }
@@ -1066,12 +1302,16 @@ namespace LuaScripting
     // GrayScale Whether to save the image in black & white.
     // Width The width of the output image.
     // Height The height of the output image.
-    int StandardProject::ExportGraph(lua_State *L)
+    int StandardProject::ExportGraph(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 2, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
@@ -1079,63 +1319,70 @@ namespace LuaScripting
             const auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
             if (idPos == wxGetApp().GetDynamicIdMap().cend())
                 {
-                wxMessageBox(wxString::Format(
-                    _(L"Unable to find the specified graph (%d) in the project."),
-                        static_cast<int>(lua_tonumber(L, 2))),
-                    _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                wxMessageBox(
+                    wxString::Format(_(L"Unable to find the specified graph (%d) in the project."),
+                                     static_cast<int>(lua_tonumber(L, 2))),
+                    _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
                 return 0;
                 }
-            Wisteria::Canvas* graphWindow =
-                dynamic_cast<Wisteria::Canvas*>(view->GetReadabilityResultsView().FindWindowById(idPos->second) );
+            Wisteria::Canvas* graphWindow = dynamic_cast<Wisteria::Canvas*>(
+                view->GetReadabilityResultsView().FindWindowById(idPos->second));
             // look in stats summary section if not in the readability section
             if (!graphWindow)
                 {
-                graphWindow =
-                    dynamic_cast<Wisteria::Canvas*>(view->GetSummaryView().FindWindowById(idPos->second) );
+                graphWindow = dynamic_cast<Wisteria::Canvas*>(
+                    view->GetSummaryView().FindWindowById(idPos->second));
                 }
             // look in word section if not in the stats section
             if (!graphWindow)
                 {
-                graphWindow =
-                    dynamic_cast<Wisteria::Canvas*>(view->GetWordsBreakdownView().FindWindowById(idPos->second) );
+                graphWindow = dynamic_cast<Wisteria::Canvas*>(
+                    view->GetWordsBreakdownView().FindWindowById(idPos->second));
                 }
             // look in sentence section if not in the words section
             if (!graphWindow)
                 {
-                graphWindow =
-                    dynamic_cast<Wisteria::Canvas*>(view->GetSentencesBreakdownView().FindWindowById(idPos->second) );
+                graphWindow = dynamic_cast<Wisteria::Canvas*>(
+                    view->GetSentencesBreakdownView().FindWindowById(idPos->second));
                 }
             // look in Dolch section if not in the stats summary section
             if (!graphWindow)
                 {
-                graphWindow =
-                    dynamic_cast<Wisteria::Canvas*>(view->GetDolchSightWordsView().FindWindowById(idPos->second) );
+                graphWindow = dynamic_cast<Wisteria::Canvas*>(
+                    view->GetDolchSightWordsView().FindWindowById(idPos->second));
                 }
             if (graphWindow)
                 {
                 const ProjectDoc* doc = dynamic_cast<ProjectDoc*>(view->GetDocument());
                 const wxString originalLabel = graphWindow->GetName();
-                graphWindow->SetLabel(originalLabel + wxString::Format(L" [%s]",
-                    wxFileName::StripExtension(doc->GetTitle())));
+                graphWindow->SetLabel(
+                    originalLabel +
+                    wxString::Format(L" [%s]", wxFileName::StripExtension(doc->GetTitle())));
                 Wisteria::UI::ImageExportOptions opt;
                 if (lua_gettop(L) >= 4 && lua_toboolean(L, 4))
                     {
-                    opt.m_mode =
-                        static_cast<decltype(opt.m_mode)>(Wisteria::UI::ImageExportOptions::ColorMode::Greyscale);
+                    opt.m_mode = static_cast<decltype(opt.m_mode)>(
+                        Wisteria::UI::ImageExportOptions::ColorMode::Greyscale);
                     }
                 if (lua_gettop(L) >= 5)
-                    { opt.m_imageSize.SetWidth(lua_tonumber(L, 5)); }
+                    {
+                    opt.m_imageSize.SetWidth(lua_tonumber(L, 5));
+                    }
                 if (lua_gettop(L) >= 6)
-                    { opt.m_imageSize.SetHeight(lua_tonumber(L, 6)); }
-                lua_pushboolean(L, graphWindow->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8), opt) );
+                    {
+                    opt.m_imageSize.SetHeight(lua_tonumber(L, 6));
+                    }
+                lua_pushboolean(
+                    L,
+                    graphWindow->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8), opt));
                 graphWindow->SetLabel(originalLabel);
                 }
             else
                 {
-                wxMessageBox(wxString::Format(
-                    _(L"Unable to find the specified graph (%d) in the project."),
-                        static_cast<int>(lua_tonumber(L, 2))),
-                    _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                wxMessageBox(
+                    wxString::Format(_(L"Unable to find the specified graph (%d) in the project."),
+                                     static_cast<int>(lua_tonumber(L, 2))),
+                    _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
                 return 0;
                 }
             }
@@ -1145,50 +1392,58 @@ namespace LuaScripting
     // Saves a highlighted words report from the project.
     // ReportType Which report to save.
     // FilePath The file path to save the report.
-    int StandardProject::ExportHighlightedWords(lua_State *L)
+    int StandardProject::ExportHighlightedWords(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 2, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
             {
-            wxWindowID windowId= lua_tonumber(L, 2);
+            wxWindowID windowId = lua_tonumber(L, 2);
             if (const auto windowMappedId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
                 windowMappedId != wxGetApp().GetDynamicIdMap().cend())
-                { windowId = windowMappedId->second; }
+                {
+                windowId = windowMappedId->second;
+                }
             FormattedTextCtrl* textWindow =
                 dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(
-                    windowId, CLASSINFO(FormattedTextCtrl)) );
+                    windowId, CLASSINFO(FormattedTextCtrl)));
             // look in grammar section if not in the highlighted words section
             if (!textWindow)
                 {
-                textWindow =
-                    dynamic_cast<FormattedTextCtrl*>(view->GetGrammarView().FindWindowById(windowId) );
+                textWindow = dynamic_cast<FormattedTextCtrl*>(
+                    view->GetGrammarView().FindWindowById(windowId));
                 }
             // look in Dolch section if not in the grammar section
             if (!textWindow)
                 {
-                textWindow =
-                    dynamic_cast<FormattedTextCtrl*>(view->GetDolchSightWordsView().FindWindowById(
-                        windowId) );
+                textWindow = dynamic_cast<FormattedTextCtrl*>(
+                    view->GetDolchSightWordsView().FindWindowById(windowId));
                 }
             if (textWindow)
                 {
                 const ProjectDoc* doc = dynamic_cast<ProjectDoc*>(view->GetDocument());
                 const wxString originalLabel = textWindow->GetName();
-                textWindow->SetTitleName(originalLabel + wxString::Format(L" [%s]",
-                                         wxFileName::StripExtension(doc->GetTitle())));
-                lua_pushboolean(L, textWindow->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8)) );
+                textWindow->SetTitleName(
+                    originalLabel +
+                    wxString::Format(L" [%s]", wxFileName::StripExtension(doc->GetTitle())));
+                lua_pushboolean(
+                    L, textWindow->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8)));
                 }
             else
                 {
-                wxMessageBox(wxString::Format(
-                    _(L"Unable to find the specified highlighted words (%d) in the project."),
+                wxMessageBox(
+                    wxString::Format(
+                        _(L"Unable to find the specified highlighted words (%d) in the project."),
                         static_cast<int>(lua_tonumber(L, 2))),
-                    _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                    _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
                 return 0;
                 }
             }
@@ -1198,69 +1453,78 @@ namespace LuaScripting
     // Saves a summary report from the project.
     // ReportType Which report to save.
     // FilePath The file path to save the report.
-    int StandardProject::ExportReport(lua_State *L)
+    int StandardProject::ExportReport(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 2, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
             {
             const ProjectDoc* doc = dynamic_cast<ProjectDoc*>(view->GetDocument());
-            wxWindowID windowId= lua_tonumber(L, 2);
+            wxWindowID windowId = lua_tonumber(L, 2);
             if (const auto windowMappedId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
                 windowMappedId != wxGetApp().GetDynamicIdMap().cend())
-                { windowId = windowMappedId->second; }
+                {
+                windowId = windowMappedId->second;
+                }
             if (windowId == BaseProjectView::STATS_REPORT_PAGE_ID)
                 {
                 HtmlTableWindow* window =
-                    dynamic_cast<HtmlTableWindow*>(
-                        view->GetSummaryView().FindWindowById(windowId) );
+                    dynamic_cast<HtmlTableWindow*>(view->GetSummaryView().FindWindowById(windowId));
                 if (window)
                     {
                     const wxString originalLabel = window->GetName();
-                    window->SetLabel(originalLabel + wxString::Format(L" [%s]",
-                                     wxFileName::StripExtension(doc->GetTitle())));
-                    lua_pushboolean(L, window->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8)));
+                    window->SetLabel(
+                        originalLabel +
+                        wxString::Format(L" [%s]", wxFileName::StripExtension(doc->GetTitle())));
+                    lua_pushboolean(
+                        L, window->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8)));
                     window->SetLabel(originalLabel);
                     }
                 }
             else if (windowId == BaseProjectView::READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID)
                 {
-                HtmlTableWindow* window =
-                    dynamic_cast<HtmlTableWindow*>(
-                        view->GetReadabilityResultsView().FindWindowById(windowId));
+                HtmlTableWindow* window = dynamic_cast<HtmlTableWindow*>(
+                    view->GetReadabilityResultsView().FindWindowById(windowId));
                 if (window)
                     {
                     const wxString originalLabel = window->GetName();
-                    window->SetLabel(originalLabel + wxString::Format(L" [%s]",
-                                     wxFileName::StripExtension(doc->GetTitle())));
-                    lua_pushboolean(L, window->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8)));
+                    window->SetLabel(
+                        originalLabel +
+                        wxString::Format(L" [%s]", wxFileName::StripExtension(doc->GetTitle())));
+                    lua_pushboolean(
+                        L, window->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8)));
                     window->SetLabel(originalLabel);
                     }
                 }
             else if (windowId == BaseProjectView::READABILITY_SCORES_PAGE_ID)
                 {
-                ExplanationListCtrl* window =
-                    dynamic_cast<ExplanationListCtrl*>(
-                        view->GetReadabilityResultsView().FindWindowById(windowId));
+                ExplanationListCtrl* window = dynamic_cast<ExplanationListCtrl*>(
+                    view->GetReadabilityResultsView().FindWindowById(windowId));
                 if (window)
                     {
                     const wxString originalLabel = window->GetName();
-                    window->SetLabel(originalLabel + wxString::Format(L" [%s]",
-                                    wxFileName::StripExtension(doc->GetTitle())));
-                    lua_pushboolean(L, window->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8)));
+                    window->SetLabel(
+                        originalLabel +
+                        wxString::Format(L" [%s]", wxFileName::StripExtension(doc->GetTitle())));
+                    lua_pushboolean(
+                        L, window->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8)));
                     window->SetLabel(originalLabel);
                     }
                 }
             else
                 {
-                wxMessageBox(wxString::Format(
-                    _(L"Unable to find the specified report (%d) in the project."),
-                        static_cast<int>(lua_tonumber(L, 2))),
-                    _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                wxMessageBox(
+                    wxString::Format(_(L"Unable to find the specified report (%d) in the project."),
+                                     static_cast<int>(lua_tonumber(L, 2))),
+                    _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
                 return 0;
                 }
             }
@@ -1270,44 +1534,55 @@ namespace LuaScripting
     // Saves a list from the project.
     // ListType Which list to save.
     // FilePath The file path to save the list.
-    int StandardProject::ExportList(lua_State *L)
+    int StandardProject::ExportList(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 2, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
             {
-            wxWindowID windowId= lua_tonumber(L, 2);
+            wxWindowID windowId = lua_tonumber(L, 2);
             if (const auto windowMappedId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
                 windowMappedId != wxGetApp().GetDynamicIdMap().cend())
-                { windowId = windowMappedId->second; }
+                {
+                windowId = windowMappedId->second;
+                }
             ListCtrlEx* listWindow =
-                dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(windowId) );
-            if (!listWindow)// look in grammar section if not in the highlighted words section
+                dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(windowId));
+            if (!listWindow) // look in grammar section if not in the highlighted words section
                 {
-                listWindow = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(windowId) );
+                listWindow =
+                    dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(windowId));
                 }
-            if (!listWindow)// look in sentences section if not in the grammar section
+            if (!listWindow) // look in sentences section if not in the grammar section
                 {
-                listWindow = dynamic_cast<ListCtrlEx*>(view->GetSentencesBreakdownView().FindWindowById(windowId) );
+                listWindow = dynamic_cast<ListCtrlEx*>(
+                    view->GetSentencesBreakdownView().FindWindowById(windowId));
                 }
-            if (!listWindow)// look in Dolch section if not in the sentences section
+            if (!listWindow) // look in Dolch section if not in the sentences section
                 {
-                listWindow = dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(windowId) );
+                listWindow = dynamic_cast<ListCtrlEx*>(
+                    view->GetDolchSightWordsView().FindWindowById(windowId));
                 }
-            if (!listWindow)// look in stats section if not in the Dolch section
+            if (!listWindow) // look in stats section if not in the Dolch section
                 {
-                listWindow = dynamic_cast<ListCtrlEx*>(view->GetSummaryView().FindWindowById(windowId) );
+                listWindow =
+                    dynamic_cast<ListCtrlEx*>(view->GetSummaryView().FindWindowById(windowId));
                 }
             if (listWindow)
                 {
                 const ProjectDoc* doc = dynamic_cast<ProjectDoc*>(view->GetDocument());
                 const wxString originalLabel = listWindow->GetName();
-                listWindow->SetLabel(originalLabel + wxString::Format(L" [%s]",
-                                     wxFileName::StripExtension(doc->GetTitle())));
+                listWindow->SetLabel(
+                    originalLabel +
+                    wxString::Format(L" [%s]", wxFileName::StripExtension(doc->GetTitle())));
                 GridExportOptions exportOptions;
                 exportOptions.m_fromRow = (lua_gettop(L) > 3) ? lua_tonumber(L, 4) : 1;
                 exportOptions.m_toRow = (lua_gettop(L) > 4) ? lua_tonumber(L, 5) : -1;
@@ -1317,35 +1592,41 @@ namespace LuaScripting
                     (lua_gettop(L) > 7) ? int_to_bool(lua_toboolean(L, 8)) : true;
                 exportOptions.m_pageUsingPrinterSettings =
                     (lua_gettop(L) > 8) ? int_to_bool(lua_toboolean(L, 9)) : false;
-                lua_pushboolean(L, listWindow->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8),
-                                exportOptions));
+                lua_pushboolean(
+                    L, listWindow->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8),
+                                        exportOptions));
                 listWindow->SetLabel(originalLabel);
                 }
             else
                 {
-                wxMessageBox(wxString::Format(
-                    _(L"Unable to find the specified list (%d) in the project."),
-                        static_cast<int>(lua_tonumber(L, 2))),
-                    _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                wxMessageBox(
+                    wxString::Format(_(L"Unable to find the specified list (%d) in the project."),
+                                     static_cast<int>(lua_tonumber(L, 2))),
+                    _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
                 return 0;
                 }
             }
         return 0;
         }
 
-    // Saves a copy of the project's document with excluded text (and other optional items) filtered out.
-    int StandardProject::ExportFilteredText(lua_State *L)
+    // Saves a copy of the project's document with excluded text
+    // (and other optional items) filtered out.
+    int StandardProject::ExportFilteredText(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 6, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         std::wstring filteredText;
-        m_project->FormatFilteredText(filteredText, int_to_bool(lua_toboolean(L, 3)),
-                                      int_to_bool(lua_toboolean(L, 4)), int_to_bool(lua_toboolean(L, 5)),
-                                      int_to_bool(lua_toboolean(L, 6)), int_to_bool(lua_toboolean(L, 7)),
-                                      int_to_bool(lua_toboolean(L, 8)));
+        m_project->FormatFilteredText(
+            filteredText, int_to_bool(lua_toboolean(L, 3)), int_to_bool(lua_toboolean(L, 4)),
+            int_to_bool(lua_toboolean(L, 5)), int_to_bool(lua_toboolean(L, 6)),
+            int_to_bool(lua_toboolean(L, 7)), int_to_bool(lua_toboolean(L, 8)));
 
         const wxString exportFilePath = wxString(luaL_checklstring(L, 2, nullptr), wxConvUTF8);
         wxFileName::Mkdir(wxFileName(exportFilePath).GetPath(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
@@ -1366,12 +1647,16 @@ namespace LuaScripting
        WindowToSelect The text window to select.
        StartPosition Character position to begin selection.
        EndPosition Character position to end selection.*/
-    int StandardProject::SelectHighlightedWordReport(lua_State *L)
+    int StandardProject::SelectHighlightedWordReport(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
@@ -1379,17 +1664,20 @@ namespace LuaScripting
             wxWindowID windowId = lua_tonumber(L, 2);
             if (const auto windowMappedId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
                 windowMappedId != wxGetApp().GetDynamicIdMap().cend())
-                { windowId = windowMappedId->second; }
+                {
+                windowId = windowMappedId->second;
+                }
 
             view->GetSideBar()->CollapseAll();
 
-            wxWindow* selWindow = view->GetWordsBreakdownView().
-                    FindWindowById(windowId, wxCLASSINFO(FormattedTextCtrl));
+            wxWindow* selWindow = view->GetWordsBreakdownView().FindWindowById(
+                windowId, wxCLASSINFO(FormattedTextCtrl));
             if (selWindow && selWindow->IsKindOf(wxCLASSINFO(FormattedTextCtrl)))
                 {
                 // Custom word-list tests have the same integral IDs for their highlighted-text
                 // reports and list controls, so search by label instead.
-                view->GetSideBar()->SelectSubItem(view->GetSideBar()->FindSubItem(selWindow->GetLabel()));
+                view->GetSideBar()->SelectSubItem(
+                    view->GetSideBar()->FindSubItem(selWindow->GetLabel()));
                 if (lua_gettop(L) >= 4)
                     {
                     dynamic_cast<FormattedTextCtrl*>(selWindow)->ShowPosition(lua_tonumber(L, 3));
@@ -1405,16 +1693,22 @@ namespace LuaScripting
         }
 
     // Shows or hides the sidebar
-    int StandardProject::ShowSidebar(lua_State *L)
+    int StandardProject::ShowSidebar(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         auto view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
-            { view->ShowSideBar(int_to_bool(lua_toboolean(L, 2))); }
+            {
+            view->ShowSideBar(int_to_bool(lua_toboolean(L, 2)));
+            }
 
         return 0;
         }
@@ -1422,12 +1716,16 @@ namespace LuaScripting
     /* Selects the specified section and subwindow.
        Section The section to select.
        Window The subwindow in the section to select.*/
-    int StandardProject::SelectWindow(lua_State *L)
+    int StandardProject::SelectWindow(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
@@ -1436,9 +1734,9 @@ namespace LuaScripting
             if (sectionId == wxGetApp().GetDynamicIdMap().cend())
                 {
                 wxMessageBox(wxString::Format(
-                    _(L"Unable to find the specified section (%d) in the project."),
-                        static_cast<int>(lua_tonumber(L, 2))),
-                    _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                                 _(L"Unable to find the specified section (%d) in the project."),
+                                 static_cast<int>(lua_tonumber(L, 2))),
+                             _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
                 return 0;
                 }
             std::optional<wxWindowID> windowId{ std::nullopt };
@@ -1452,13 +1750,14 @@ namespace LuaScripting
                 wxWindowID userWindowId = lua_tonumber(L, 3);
                 if (const auto windowMappedId = wxGetApp().GetDynamicIdMap().find(userWindowId);
                     windowMappedId != wxGetApp().GetDynamicIdMap().cend())
-                    { userWindowId = windowMappedId->second; }
+                    {
+                    userWindowId = windowMappedId->second;
+                    }
                 windowId = userWindowId;
                 }
             const auto [parentPos, childPos] =
-                windowId ?
-                view->GetSideBar()->FindSubItem(sectionId->second, windowId.value()) :
-                view->GetSideBar()->FindSubItem(sectionId->second);
+                windowId ? view->GetSideBar()->FindSubItem(sectionId->second, windowId.value()) :
+                           view->GetSideBar()->FindSubItem(sectionId->second);
             if (parentPos.has_value() && childPos.has_value())
                 {
                 view->GetSideBar()->CollapseAll();
@@ -1484,21 +1783,24 @@ namespace LuaScripting
 
     /* Selects the Readability Results section of the project and highlights a test by index.
        TestToSelect The test to select, based on position in the list.*/
-    int StandardProject::SelectReadabilityTest(lua_State *L)
+    int StandardProject::SelectReadabilityTest(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
             {
-            const auto index = view->GetSideBar()->FindFolder(BaseProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID);
+            const auto index = view->GetSideBar()->FindFolder(
+                BaseProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID);
             if (index.has_value())
                 {
                 view->GetSideBar()->CollapseAll();
                 view->GetSideBar()->SelectFolder(index.value());
-                view->GetReadabilityScoresList()->GetResultsListCtrl()->
-                    Select(lua_tonumber(L, 2)-1/* make it zero-indexed*/);
+                view->GetReadabilityScoresList()->GetResultsListCtrl()->Select(
+                    lua_tonumber(L, 2) - 1 /* make it zero-indexed*/);
                 }
             }
         wxGetApp().Yield();
@@ -1509,12 +1811,16 @@ namespace LuaScripting
        ListToSort The list window to sort. Refer to ListTypes enumeration.
        ColumnToSort The column in the list to sort.
        Order The order to sort.*/
-    int StandardProject::SortList(lua_State *L)
+    int StandardProject::SortList(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 2, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
@@ -1522,42 +1828,45 @@ namespace LuaScripting
             wxWindowID windowId = lua_tonumber(L, 2);
             if (const auto windowMappedId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
                 windowMappedId != wxGetApp().GetDynamicIdMap().cend())
-                { windowId = windowMappedId->second; }
+                {
+                windowId = windowMappedId->second;
+                }
             // look in the words section
             ListCtrlEx* listWindow =
-                dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(windowId) );
+                dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(windowId));
             // look in grammar section if not in the highlighted words section
             if (!listWindow)
                 {
                 listWindow =
-                    dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(windowId) );
+                    dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(windowId));
                 }
             // look in Dolch section if not in the grammar section
             if (!listWindow)
                 {
-                listWindow =
-                    dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(windowId) );
+                listWindow = dynamic_cast<ListCtrlEx*>(
+                    view->GetDolchSightWordsView().FindWindowById(windowId));
                 }
             // look in stats section if not in the Dolch section
             if (!listWindow)
                 {
                 listWindow =
-                    dynamic_cast<ListCtrlEx*>(view->GetSummaryView().FindWindowById(windowId) );
+                    dynamic_cast<ListCtrlEx*>(view->GetSummaryView().FindWindowById(windowId));
                 }
             // look in stats section if not in the sentences section
             if (!listWindow)
                 {
-                listWindow =
-                    dynamic_cast<ListCtrlEx*>(view->GetSentencesBreakdownView().FindWindowById(windowId) );
+                listWindow = dynamic_cast<ListCtrlEx*>(
+                    view->GetSentencesBreakdownView().FindWindowById(windowId));
                 }
             if (listWindow)
                 {
-                std::vector<std::pair<size_t,Wisteria::SortDirection>> columns;
-                for (int i = 3; i <= lua_gettop(L); i+=2)
+                std::vector<std::pair<size_t, Wisteria::SortDirection>> columns;
+                for (int i = 3; i <= lua_gettop(L); i += 2)
                     {
-                    columns.push_back(
-                        std::pair<size_t,Wisteria::SortDirection>(lua_tonumber(L, i) -1 /* make it zero-indexed*/,
-                                 static_cast<Wisteria::SortDirection>(static_cast<int>(lua_tonumber(L, i + 1)))));
+                    columns.push_back(std::pair<size_t, Wisteria::SortDirection>(
+                        lua_tonumber(L, i) - 1 /* make it zero-indexed*/,
+                        static_cast<Wisteria::SortDirection>(
+                            static_cast<int>(lua_tonumber(L, i + 1)))));
                     }
                 listWindow->SortColumns(columns);
                 }
@@ -1569,12 +1878,16 @@ namespace LuaScripting
     /* Sorts a graph.
        GraphToSort The graph window to sort. Refer to GraphTypes enumeration.
        Order The order to sort.*/
-    int StandardProject::SortGraph(lua_State *L)
+    int StandardProject::SortGraph(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 2, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
@@ -1582,41 +1895,42 @@ namespace LuaScripting
             const auto graphID = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
             if (graphID == wxGetApp().GetDynamicIdMap().cend())
                 {
-                wxMessageBox(wxString::Format(
-                    _(L"Unable to find the specified graph (%d) in the project."),
-                        static_cast<int>(lua_tonumber(L, 2))),
-                    _(L"Script Error"), wxOK|wxICON_EXCLAMATION);
+                wxMessageBox(
+                    wxString::Format(_(L"Unable to find the specified graph (%d) in the project."),
+                                     static_cast<int>(lua_tonumber(L, 2))),
+                    _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
                 return 0;
                 }
-            Wisteria::Canvas* graphWindow =
-                dynamic_cast<Wisteria::Canvas*>(view->GetSummaryView().FindWindowById(graphID->second) );
+            Wisteria::Canvas* graphWindow = dynamic_cast<Wisteria::Canvas*>(
+                view->GetSummaryView().FindWindowById(graphID->second));
             // look in Dolch section if not in the summary section
             if (!graphWindow)
                 {
-                graphWindow =
-                    dynamic_cast<Wisteria::Canvas*>(view->GetDolchSightWordsView().FindWindowById(graphID->second));
+                graphWindow = dynamic_cast<Wisteria::Canvas*>(
+                    view->GetDolchSightWordsView().FindWindowById(graphID->second));
                 }
             // look in words section
             if (!graphWindow)
                 {
-                graphWindow =
-                    dynamic_cast<Wisteria::Canvas*>(view->GetWordsBreakdownView().FindWindowById(graphID->second));
+                graphWindow = dynamic_cast<Wisteria::Canvas*>(
+                    view->GetWordsBreakdownView().FindWindowById(graphID->second));
                 }
             // look in sentences section
             if (!graphWindow)
                 {
-                graphWindow =
-                dynamic_cast<Wisteria::Canvas*>(view->GetSentencesBreakdownView().FindWindowById(graphID->second));
+                graphWindow = dynamic_cast<Wisteria::Canvas*>(
+                    view->GetSentencesBreakdownView().FindWindowById(graphID->second));
                 }
             // look in grammar section
             if (!graphWindow)
-                { graphWindow =
-                dynamic_cast<Wisteria::Canvas*>(view->GetGrammarView().FindWindowById(graphID->second));
+                {
+                graphWindow = dynamic_cast<Wisteria::Canvas*>(
+                    view->GetGrammarView().FindWindowById(graphID->second));
                 }
             if (graphWindow)
                 {
-                std::dynamic_pointer_cast<BarChart>(
-                    graphWindow->GetFixedObject(0, 0))->SortBars(
+                std::dynamic_pointer_cast<BarChart>(graphWindow->GetFixedObject(0, 0))
+                    ->SortBars(
                         BarChart::BarSortComparison::SortByBarLength,
                         static_cast<Wisteria::SortDirection>(static_cast<int>(lua_tonumber(L, 3))));
                 }
@@ -1629,12 +1943,16 @@ namespace LuaScripting
     /* Selects a set of rows in a list in the Words Breakdown section.
        WindowToSelect The list window to select items in.
        RowsToSelect Rows to select. This can be a variable number of arguments.*/
-    int StandardProject::SelectRowsInWordsBreakdownList(lua_State *L)
+    int StandardProject::SelectRowsInWordsBreakdownList(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
@@ -1642,20 +1960,24 @@ namespace LuaScripting
             wxWindowID windowId = lua_tonumber(L, 2);
             if (const auto windowMappedId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
                 windowMappedId != wxGetApp().GetDynamicIdMap().cend())
-                { windowId = windowMappedId->second; }
+                {
+                windowId = windowMappedId->second;
+                }
 
             view->GetSideBar()->CollapseAll();
 
-            wxWindow* selWindow = view->GetWordsBreakdownView().
-                FindWindowById(windowId, CLASSINFO(ListCtrlEx));
+            wxWindow* selWindow =
+                view->GetWordsBreakdownView().FindWindowById(windowId, CLASSINFO(ListCtrlEx));
             if (selWindow && selWindow->IsKindOf(wxCLASSINFO(ListCtrlEx)))
                 {
                 // Custom word-list tests have the same integral IDs for their highlighted-text
                 // reports and list controls, so search by label instead.
-                view->GetSideBar()->SelectSubItem(view->GetSideBar()->FindSubItem(selWindow->GetLabel()));
+                view->GetSideBar()->SelectSubItem(
+                    view->GetSideBar()->FindSubItem(selWindow->GetLabel()));
                 for (int i = 3; i <= lua_gettop(L); ++i)
                     {
-                    dynamic_cast<ListCtrlEx*>(selWindow)->Select(lua_tonumber(L, i)-1/*make it zero-indexed*/);
+                    dynamic_cast<ListCtrlEx*>(selWindow)->Select(lua_tonumber(L, i) -
+                                                                 1 /*make it zero-indexed*/);
                     }
                 selWindow->SetFocus();
                 }
@@ -1667,12 +1989,16 @@ namespace LuaScripting
     /* Selects and scrolls down a text window.
        WindowToSelect The text window to select.
        Position Character position to scroll into view.*/
-    int StandardProject::ScrollTextWindow(lua_State *L)
+    int StandardProject::ScrollTextWindow(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 2, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
@@ -1680,19 +2006,25 @@ namespace LuaScripting
             wxWindowID windowId = lua_tonumber(L, 2);
             if (const auto windowMappedId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
                 windowMappedId != wxGetApp().GetDynamicIdMap().cend())
-                { windowId = windowMappedId->second; }
+                {
+                windowId = windowMappedId->second;
+                }
             auto item = view->GetSideBar()->FindSubItem(
                 BaseProjectView::SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, windowId);
             if (!item.second.has_value())
-                { item = view->GetSideBar()->FindSubItem(
-                    BaseProjectView::SIDEBAR_GRAMMAR_SECTION_ID, windowId); }
+                {
+                item = view->GetSideBar()->FindSubItem(BaseProjectView::SIDEBAR_GRAMMAR_SECTION_ID,
+                                                       windowId);
+                }
             if (item.second.has_value())
                 {
                 view->GetSideBar()->CollapseAll();
 
                 wxWindow* selWindow = view->GetWordsBreakdownView().FindWindowById(windowId);
                 if (selWindow == nullptr)
-                    { selWindow = view->GetGrammarView().FindWindowById(windowId); }
+                    {
+                    selWindow = view->GetGrammarView().FindWindowById(windowId);
+                    }
                 if (selWindow && selWindow->IsKindOf(wxCLASSINFO(FormattedTextCtrl)))
                     {
                     // Custom word-list tests have the same integral IDs for their highlighted-text
@@ -1707,33 +2039,36 @@ namespace LuaScripting
         wxGetApp().Yield();
         return 0;
         }
+
     /* Select the text window in the Grammar section. Also can optionally select a range of text.
        StartPosition Character position to begin selection.
        EndPosition Character position to end selection.*/
 
-    int StandardProject::SelectTextGrammarWindow(lua_State *L)
+    int StandardProject::SelectTextGrammarWindow(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view)
             {
-            const auto [parentPos, childPos] =
-                view->GetSideBar()->FindSubItem(BaseProjectView::SIDEBAR_GRAMMAR_SECTION_ID,
-                                                BaseProjectView::LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID);
+            const auto [parentPos, childPos] = view->GetSideBar()->FindSubItem(
+                BaseProjectView::SIDEBAR_GRAMMAR_SECTION_ID,
+                BaseProjectView::LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID);
             if (parentPos.has_value() && childPos.has_value())
                 {
                 if (lua_gettop(L) >= 2)
                     {
-                    wxWindow* selWindow =
-                        view->GetGrammarView().FindWindowById(
-                            BaseProjectView::LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID);
+                    wxWindow* selWindow = view->GetGrammarView().FindWindowById(
+                        BaseProjectView::LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID);
                     if (selWindow && selWindow->IsKindOf(wxCLASSINFO(FormattedTextCtrl)))
                         {
-                        dynamic_cast<FormattedTextCtrl*>(selWindow)->ShowPosition(lua_tonumber(L, 2));
-                        dynamic_cast<FormattedTextCtrl*>(selWindow)->SetSelection(lua_tonumber(L, 2),
-                                                                                  lua_tonumber(L, 3));
+                        dynamic_cast<FormattedTextCtrl*>(selWindow)->ShowPosition(
+                            lua_tonumber(L, 2));
+                        dynamic_cast<FormattedTextCtrl*>(selWindow)->SetSelection(
+                            lua_tonumber(L, 2), lua_tonumber(L, 3));
                         selWindow->SetFocus();
                         }
                     }
@@ -1747,21 +2082,31 @@ namespace LuaScripting
 
     // HIDDEN interfaces for testing and screenshots
     // Opens the properties dialog and the specified page
-    int StandardProject::OpenProperties(lua_State *L)
+    int StandardProject::OpenProperties(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
-            { return 0; }
+            {
+            return 0;
+            }
         if (!VerifyParameterCount(L, 1, __func__))
-            { return 0; }
+            {
+            return 0;
+            }
 
         if (m_settingsDlg == nullptr)
-            { m_settingsDlg = new ToolsOptionsDlg(wxGetApp().GetMainFrame(), m_project); }
+            {
+            m_settingsDlg = new ToolsOptionsDlg(wxGetApp().GetMainFrame(), m_project);
+            }
 
         const auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
         if (idPos != wxGetApp().GetDynamicIdMap().cend())
-            { m_settingsDlg->SelectPage(idPos->second); }
+            {
+            m_settingsDlg->SelectPage(idPos->second);
+            }
         else
-            { m_settingsDlg->SelectPage(lua_tonumber(L, 2)); }
+            {
+            m_settingsDlg->SelectPage(lua_tonumber(L, 2));
+            }
         m_settingsDlg->Show();
         wxGetApp().Yield();
         return 0;
@@ -1778,105 +2123,103 @@ namespace LuaScripting
         return 0;
         }
 
-    Luna<StandardProject>::PropertyType StandardProject::properties[] =
-        {
-            { nullptr, nullptr, nullptr }
-        };
+    Luna<StandardProject>::PropertyType StandardProject::properties[] = { { nullptr, nullptr,
+                                                                            nullptr } };
 
     Luna<StandardProject>::FunctionType StandardProject::methods[] = {
-      LUNA_DECLARE_METHOD(StandardProject, Close),
-      LUNA_DECLARE_METHOD(StandardProject, DelayReloading),
-      LUNA_DECLARE_METHOD(StandardProject, GetTitle),
-      LUNA_DECLARE_METHOD(StandardProject, SetWindowSize),
-      LUNA_DECLARE_METHOD(StandardProject, GetSentenceCount),
-      LUNA_DECLARE_METHOD(StandardProject, GetIndependentClauseCount),
-      LUNA_DECLARE_METHOD(StandardProject, GetNumeralCount),
-      LUNA_DECLARE_METHOD(StandardProject, GetProperNounCount),
-      LUNA_DECLARE_METHOD(StandardProject, GetUniqueWordCount),
-      LUNA_DECLARE_METHOD(StandardProject, GetWordCount),
-      LUNA_DECLARE_METHOD(StandardProject, GetCharacterAndPunctuationCount),
-      LUNA_DECLARE_METHOD(StandardProject, GetCharacterCount),
-      LUNA_DECLARE_METHOD(StandardProject, GetSyllableCount),
-      LUNA_DECLARE_METHOD(StandardProject, GetUnique3SyllablePlusWordCount),
-      LUNA_DECLARE_METHOD(StandardProject, Get3SyllablePlusWordCount),
-      LUNA_DECLARE_METHOD(StandardProject, GetUnique1SyllableWordCount),
-      LUNA_DECLARE_METHOD(StandardProject, Get1SyllableWordCount),
-      LUNA_DECLARE_METHOD(StandardProject, Get7CharacterPlusWordCount),
-      LUNA_DECLARE_METHOD(StandardProject, GetUnique6CharPlusWordCount),
-      LUNA_DECLARE_METHOD(StandardProject, Get6CharacterPlusWordCount),
-      LUNA_DECLARE_METHOD(StandardProject, GetUnfamiliarSpacheWordCount),
-      LUNA_DECLARE_METHOD(StandardProject, GetUnfamiliarDCWordCount),
-      LUNA_DECLARE_METHOD(StandardProject, GetUnfamiliarHJWordCount),
-      LUNA_DECLARE_METHOD(StandardProject, SetPhraseExclusionList),
-      LUNA_DECLARE_METHOD(StandardProject, SetBlockExclusionTags),
-      LUNA_DECLARE_METHOD(StandardProject, SetAppendedDocumentFilePath),
-      LUNA_DECLARE_METHOD(StandardProject, GetAppendedDocumentFilePath),
-      LUNA_DECLARE_METHOD(StandardProject, SetDocumentFilePath),
-      LUNA_DECLARE_METHOD(StandardProject, AggressivelyExclude),
-      LUNA_DECLARE_METHOD(StandardProject, SetTextExclusion),
-      LUNA_DECLARE_METHOD(StandardProject, SetIncludeIncompleteTolerance),
-      LUNA_DECLARE_METHOD(StandardProject, ExcludeCopyrightNotices),
-      LUNA_DECLARE_METHOD(StandardProject, ExcludeTrailingCitations),
-      LUNA_DECLARE_METHOD(StandardProject, ExcludeFileAddress),
-      LUNA_DECLARE_METHOD(StandardProject, ExcludeNumerals),
-      LUNA_DECLARE_METHOD(StandardProject, ExcludeProperNouns),
-      LUNA_DECLARE_METHOD(StandardProject, SetProjectLanguage),
-      LUNA_DECLARE_METHOD(StandardProject, GetProjectLanguage),
-      LUNA_DECLARE_METHOD(StandardProject, SetReviewer),
-      LUNA_DECLARE_METHOD(StandardProject, GetReviewer),
-      LUNA_DECLARE_METHOD(StandardProject, SetStatus),
-      LUNA_DECLARE_METHOD(StandardProject, GetStatus),
-      LUNA_DECLARE_METHOD(StandardProject, SetDocumentStorageMethod),
-      LUNA_DECLARE_METHOD(StandardProject, SetParagraphsParsingMethod),
-      LUNA_DECLARE_METHOD(StandardProject, GetParagraphsParsingMethod),
-      LUNA_DECLARE_METHOD(StandardProject, GetDocumentStorageMethod),
-      LUNA_DECLARE_METHOD(StandardProject, SetSpellCheckerOptions),
-      LUNA_DECLARE_METHOD(StandardProject, SetGraphBackgroundColor),
-      LUNA_DECLARE_METHOD(StandardProject, ApplyGraphBackgroundFade),
-      LUNA_DECLARE_METHOD(StandardProject, SetGraphCommonImage),
-      LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundImage),
-      LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundImageEffect),
-      LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundImageFit),
-      LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundImageOpacity),
-      LUNA_DECLARE_METHOD(StandardProject, SetWatermark),
-      LUNA_DECLARE_METHOD(StandardProject, SetGraphLogoImage),
-      LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundColor),
-      LUNA_DECLARE_METHOD(StandardProject, SetGraphInvalidRegionColor),
-      LUNA_DECLARE_METHOD(StandardProject, SetStippleShapeColor),
-      LUNA_DECLARE_METHOD(StandardProject, ShowcaseKeyItems),
-      LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundColorOpacity),
-      LUNA_DECLARE_METHOD(StandardProject, SetStippleImage),
-      LUNA_DECLARE_METHOD(StandardProject, SetStippleShape),
-      LUNA_DECLARE_METHOD(StandardProject, SetXAxisFont),
-      LUNA_DECLARE_METHOD(StandardProject, SetYAxisFont),
-      LUNA_DECLARE_METHOD(StandardProject, SetGraphTopTitleFont),
-      LUNA_DECLARE_METHOD(StandardProject, DisplayBarChartLabels),
-      LUNA_DECLARE_METHOD(StandardProject, DisplayGraphDropShadows),
-      LUNA_DECLARE_METHOD(StandardProject, SetBarChartBarColor),
-      LUNA_DECLARE_METHOD(StandardProject, SetBarChartBarOpacity),
-      LUNA_DECLARE_METHOD(StandardProject, SetBarChartBarEffect),
-      LUNA_DECLARE_METHOD(StandardProject, SetBarChartOrientation),
-      LUNA_DECLARE_METHOD(StandardProject, ExcludeFileAddress),
-      LUNA_DECLARE_METHOD(StandardProject, AddTest),
-      LUNA_DECLARE_METHOD(StandardProject, Reload),
-      LUNA_DECLARE_METHOD(StandardProject, ExportAll),
-      LUNA_DECLARE_METHOD(StandardProject, ExportScores),
-      LUNA_DECLARE_METHOD(StandardProject, ExportGraph),
-      LUNA_DECLARE_METHOD(StandardProject, ExportHighlightedWords),
-      LUNA_DECLARE_METHOD(StandardProject, ExportReport),
-      LUNA_DECLARE_METHOD(StandardProject, ExportList),
-      LUNA_DECLARE_METHOD(StandardProject, ExportFilteredText),
-      LUNA_DECLARE_METHOD(StandardProject, OpenProperties),
-      LUNA_DECLARE_METHOD(StandardProject, CloseProperties),
-      LUNA_DECLARE_METHOD(StandardProject, SelectHighlightedWordReport),
-      LUNA_DECLARE_METHOD(StandardProject, SelectWindow),
-      LUNA_DECLARE_METHOD(StandardProject, ShowSidebar),
-      LUNA_DECLARE_METHOD(StandardProject, SelectReadabilityTest),
-      LUNA_DECLARE_METHOD(StandardProject, SortList),
-      LUNA_DECLARE_METHOD(StandardProject, SortGraph),
-      LUNA_DECLARE_METHOD(StandardProject, SelectRowsInWordsBreakdownList),
-      LUNA_DECLARE_METHOD(StandardProject, ScrollTextWindow),
-      LUNA_DECLARE_METHOD(StandardProject, SelectTextGrammarWindow),
-      { nullptr, nullptr }
+        LUNA_DECLARE_METHOD(StandardProject, Close),
+        LUNA_DECLARE_METHOD(StandardProject, DelayReloading),
+        LUNA_DECLARE_METHOD(StandardProject, GetTitle),
+        LUNA_DECLARE_METHOD(StandardProject, SetWindowSize),
+        LUNA_DECLARE_METHOD(StandardProject, GetSentenceCount),
+        LUNA_DECLARE_METHOD(StandardProject, GetIndependentClauseCount),
+        LUNA_DECLARE_METHOD(StandardProject, GetNumeralCount),
+        LUNA_DECLARE_METHOD(StandardProject, GetProperNounCount),
+        LUNA_DECLARE_METHOD(StandardProject, GetUniqueWordCount),
+        LUNA_DECLARE_METHOD(StandardProject, GetWordCount),
+        LUNA_DECLARE_METHOD(StandardProject, GetCharacterAndPunctuationCount),
+        LUNA_DECLARE_METHOD(StandardProject, GetCharacterCount),
+        LUNA_DECLARE_METHOD(StandardProject, GetSyllableCount),
+        LUNA_DECLARE_METHOD(StandardProject, GetUnique3SyllablePlusWordCount),
+        LUNA_DECLARE_METHOD(StandardProject, Get3SyllablePlusWordCount),
+        LUNA_DECLARE_METHOD(StandardProject, GetUnique1SyllableWordCount),
+        LUNA_DECLARE_METHOD(StandardProject, Get1SyllableWordCount),
+        LUNA_DECLARE_METHOD(StandardProject, Get7CharacterPlusWordCount),
+        LUNA_DECLARE_METHOD(StandardProject, GetUnique6CharPlusWordCount),
+        LUNA_DECLARE_METHOD(StandardProject, Get6CharacterPlusWordCount),
+        LUNA_DECLARE_METHOD(StandardProject, GetUnfamiliarSpacheWordCount),
+        LUNA_DECLARE_METHOD(StandardProject, GetUnfamiliarDCWordCount),
+        LUNA_DECLARE_METHOD(StandardProject, GetUnfamiliarHJWordCount),
+        LUNA_DECLARE_METHOD(StandardProject, SetPhraseExclusionList),
+        LUNA_DECLARE_METHOD(StandardProject, SetBlockExclusionTags),
+        LUNA_DECLARE_METHOD(StandardProject, SetAppendedDocumentFilePath),
+        LUNA_DECLARE_METHOD(StandardProject, GetAppendedDocumentFilePath),
+        LUNA_DECLARE_METHOD(StandardProject, SetDocumentFilePath),
+        LUNA_DECLARE_METHOD(StandardProject, AggressivelyExclude),
+        LUNA_DECLARE_METHOD(StandardProject, SetTextExclusion),
+        LUNA_DECLARE_METHOD(StandardProject, SetIncludeIncompleteTolerance),
+        LUNA_DECLARE_METHOD(StandardProject, ExcludeCopyrightNotices),
+        LUNA_DECLARE_METHOD(StandardProject, ExcludeTrailingCitations),
+        LUNA_DECLARE_METHOD(StandardProject, ExcludeFileAddress),
+        LUNA_DECLARE_METHOD(StandardProject, ExcludeNumerals),
+        LUNA_DECLARE_METHOD(StandardProject, ExcludeProperNouns),
+        LUNA_DECLARE_METHOD(StandardProject, SetProjectLanguage),
+        LUNA_DECLARE_METHOD(StandardProject, GetProjectLanguage),
+        LUNA_DECLARE_METHOD(StandardProject, SetReviewer),
+        LUNA_DECLARE_METHOD(StandardProject, GetReviewer),
+        LUNA_DECLARE_METHOD(StandardProject, SetStatus),
+        LUNA_DECLARE_METHOD(StandardProject, GetStatus),
+        LUNA_DECLARE_METHOD(StandardProject, SetDocumentStorageMethod),
+        LUNA_DECLARE_METHOD(StandardProject, SetParagraphsParsingMethod),
+        LUNA_DECLARE_METHOD(StandardProject, GetParagraphsParsingMethod),
+        LUNA_DECLARE_METHOD(StandardProject, GetDocumentStorageMethod),
+        LUNA_DECLARE_METHOD(StandardProject, SetSpellCheckerOptions),
+        LUNA_DECLARE_METHOD(StandardProject, SetGraphBackgroundColor),
+        LUNA_DECLARE_METHOD(StandardProject, ApplyGraphBackgroundFade),
+        LUNA_DECLARE_METHOD(StandardProject, SetGraphCommonImage),
+        LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundImage),
+        LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundImageEffect),
+        LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundImageFit),
+        LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundImageOpacity),
+        LUNA_DECLARE_METHOD(StandardProject, SetWatermark),
+        LUNA_DECLARE_METHOD(StandardProject, SetGraphLogoImage),
+        LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundColor),
+        LUNA_DECLARE_METHOD(StandardProject, SetGraphInvalidRegionColor),
+        LUNA_DECLARE_METHOD(StandardProject, SetStippleShapeColor),
+        LUNA_DECLARE_METHOD(StandardProject, ShowcaseKeyItems),
+        LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundColorOpacity),
+        LUNA_DECLARE_METHOD(StandardProject, SetStippleImage),
+        LUNA_DECLARE_METHOD(StandardProject, SetStippleShape),
+        LUNA_DECLARE_METHOD(StandardProject, SetXAxisFont),
+        LUNA_DECLARE_METHOD(StandardProject, SetYAxisFont),
+        LUNA_DECLARE_METHOD(StandardProject, SetGraphTopTitleFont),
+        LUNA_DECLARE_METHOD(StandardProject, DisplayBarChartLabels),
+        LUNA_DECLARE_METHOD(StandardProject, DisplayGraphDropShadows),
+        LUNA_DECLARE_METHOD(StandardProject, SetBarChartBarColor),
+        LUNA_DECLARE_METHOD(StandardProject, SetBarChartBarOpacity),
+        LUNA_DECLARE_METHOD(StandardProject, SetBarChartBarEffect),
+        LUNA_DECLARE_METHOD(StandardProject, SetBarChartOrientation),
+        LUNA_DECLARE_METHOD(StandardProject, ExcludeFileAddress),
+        LUNA_DECLARE_METHOD(StandardProject, AddTest),
+        LUNA_DECLARE_METHOD(StandardProject, Reload),
+        LUNA_DECLARE_METHOD(StandardProject, ExportAll),
+        LUNA_DECLARE_METHOD(StandardProject, ExportScores),
+        LUNA_DECLARE_METHOD(StandardProject, ExportGraph),
+        LUNA_DECLARE_METHOD(StandardProject, ExportHighlightedWords),
+        LUNA_DECLARE_METHOD(StandardProject, ExportReport),
+        LUNA_DECLARE_METHOD(StandardProject, ExportList),
+        LUNA_DECLARE_METHOD(StandardProject, ExportFilteredText),
+        LUNA_DECLARE_METHOD(StandardProject, OpenProperties),
+        LUNA_DECLARE_METHOD(StandardProject, CloseProperties),
+        LUNA_DECLARE_METHOD(StandardProject, SelectHighlightedWordReport),
+        LUNA_DECLARE_METHOD(StandardProject, SelectWindow),
+        LUNA_DECLARE_METHOD(StandardProject, ShowSidebar),
+        LUNA_DECLARE_METHOD(StandardProject, SelectReadabilityTest),
+        LUNA_DECLARE_METHOD(StandardProject, SortList),
+        LUNA_DECLARE_METHOD(StandardProject, SortGraph),
+        LUNA_DECLARE_METHOD(StandardProject, SelectRowsInWordsBreakdownList),
+        LUNA_DECLARE_METHOD(StandardProject, ScrollTextWindow),
+        LUNA_DECLARE_METHOD(StandardProject, SelectTextGrammarWindow),
+        { nullptr, nullptr }
     };
-    }
+    } // namespace LuaScripting

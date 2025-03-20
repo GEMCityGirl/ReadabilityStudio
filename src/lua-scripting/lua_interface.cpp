@@ -140,10 +140,11 @@ void LuaInterpreter::RunLuaCode(const wxString& code, const wxString& filePath,
                 {
                 errorMessage.erase(0, endOfErrorHeader + 2);
                 }
-            LuaScripting::DebugPrint(wxString::Format(// TRANSLATORS: %s around "Error" are highlight
-                                                      // tags. The last one is a line number.
-                _(L"%sError%s: Chunk line #%s"), L"<span style='color:red; font-weight:bold;'>",
-                L"</span>", errorMessage));
+            LuaScripting::DebugPrint(
+                wxString::Format( // TRANSLATORS: %s around "Error" are highlight
+                                  // tags. The last one is a line number.
+                    _(L"%sError%s: Chunk line #%s"), L"<span style='color:red; font-weight:bold;'>",
+                    L"</span>", errorMessage));
             }
         }
     const wxDateTime endTime(wxDateTime::Now());
@@ -159,7 +160,7 @@ void LuaInterpreter::RunLuaCode(const wxString& code, const wxString& filePath,
     }
 
 //------------------------------------------------------
-void LuaInterpreter::LineHookCallback(lua_State *L, lua_Debug *ar)
+void LuaInterpreter::LineHookCallback(lua_State* L, lua_Debug* ar)
     {
     if (m_quitRequested)
         {
