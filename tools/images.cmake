@@ -135,6 +135,7 @@ ribbon/showcase.svg
 ribbon/sort.svg
 ribbon/spreadsheet.svg
 ribbon/stats.svg
+ribbon/stop.svg
 ribbon/sum.svg
 ribbon/tests-overview.svg
 ribbon/toggle-sidebar.svg
@@ -159,6 +160,7 @@ splash/splashscreen3.jpg
 splash/splashscreen4.jpg
 splash/splashscreen5.jpg
 splash/splashscreen6.jpg
+splash/splashscreen7.jpg
 tests/amstad.svg
 tests/ari-test.svg
 tests/bormuth-cloze-mean-machine-passage.svg

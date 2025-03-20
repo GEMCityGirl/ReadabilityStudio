@@ -389,6 +389,7 @@ LuaEditorDlg::LuaEditorDlg(
 
             // disable (and later re-enable) the Run button while the script runs
             m_toolbar->EnableTool(XRCID("ID_RUN"), false);
+            m_toolbar->EnableTool(XRCID("ID_STOP"), true);
 
             // run the script
             wxGetApp().GetLuaRunner().RunLuaCode(
@@ -399,6 +400,7 @@ LuaEditorDlg::LuaEditorDlg(
                 editor->GetScriptFilePath(), errorMessage);
 
             m_toolbar->EnableTool(XRCID("ID_RUN"), true);
+            m_toolbar->EnableTool(XRCID("ID_STOP"), false);
 
             if (errorMessage.length())
                 {
@@ -420,11 +422,10 @@ LuaEditorDlg::LuaEditorDlg(
                     }
 
                 wxMessageBox(wxString::Format(
-                                 // TRANSLATORS: placeholders are a line number and error message
-                                 // from a script
-                                 _(L"Line #%s: %s"), std::to_wstring(lineNumber + 1), errorMessage),
-                             _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
-
+                                // TRANSLATORS: placeholders are a line number and error message
+                                // from a script
+                                _(L"Line #%s: %s"), std::to_wstring(lineNumber + 1), errorMessage),
+                            _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
                 if (lineNumber >= 0)
                     {
                     errorMessage.insert(0, _(L"Error:"));
@@ -446,7 +447,7 @@ LuaEditorDlg::LuaEditorDlg(
                     const int indent = editor->GetLineIndentation(lineNumber) + FromDIP(3);
 
                     const int widthAnn = editor->TextWidth(editor->ERROR_ANNOTATION_STYLE,
-                                                           errorMessage + wxString(indent, L' '));
+                                                        errorMessage + wxString(indent, L' '));
 
                     if (widthAnn > width)
                         {
@@ -456,6 +457,16 @@ LuaEditorDlg::LuaEditorDlg(
                 }
         },
         XRCID("ID_RUN"));
+
+    Bind(
+        wxEVT_TOOL,
+        [this]([[maybe_unused]] wxCommandEvent&)
+        {
+            m_toolbar->EnableTool(XRCID("ID_RUN"), true);
+            m_toolbar->EnableTool(XRCID("ID_STOP"), false);
+            wxGetApp().GetLuaRunner().Quit();
+        },
+        XRCID("ID_STOP"));
 
     Bind(wxEVT_AUINOTEBOOK_PAGE_CLOSE,
          [this]([[maybe_unused]] wxCommandEvent&)
@@ -967,6 +978,10 @@ void LuaEditorDlg::CreateControls()
     m_toolbar->AddTool(XRCID("ID_RUN"), _(L"Run"),
                        wxArtProvider::GetBitmapBundle(L"ID_RUN", wxART_BUTTON),
                        _(L"Execute the script (or selection)."));
+    m_toolbar->AddTool(XRCID("ID_STOP"), _(L"Stop"),
+                       wxArtProvider::GetBitmapBundle(wxART_QUIT, wxART_BUTTON),
+                       _(L"Stop the currently running script."));
+    m_toolbar->EnableTool(XRCID("ID_STOP"), false);
     m_toolbar->AddSeparator();
     m_toolbar->AddTool(wxID_FIND, _(L"Find"),
                        wxArtProvider::GetBitmapBundle(wxART_FIND, wxART_BUTTON), _(L"Find text."));
@@ -979,10 +994,10 @@ void LuaEditorDlg::CreateControls()
                        _(L"Clear the log window."));
     m_toolbar->AddSeparator();
     m_toolbar->AddTool(wxID_HELP, _(L"Content"),
-                       wxArtProvider::GetBitmapBundle(wxART_HELP, wxART_BUTTON),
+                       wxArtProvider::GetBitmapBundle(wxART_HELP_BOOK, wxART_BUTTON),
                        _(L"View the documentation."));
     m_toolbar->AddTool(XRCID("LUA_REFERENCE"), _(L"Lua Reference"),
-                       wxArtProvider::GetBitmapBundle(wxART_HELP_BOOK, wxART_BUTTON),
+                       wxArtProvider::GetBitmapBundle(L"ID_E_HELP", wxART_BUTTON),
                        _(L"View the Lua Reference Manual."));
 
     m_toolbar->Realize();

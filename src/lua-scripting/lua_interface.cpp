@@ -17,6 +17,7 @@
 wxDECLARE_APP(ReadabilityApp);
 
 bool LuaInterpreter::m_isRunning = false;
+bool LuaInterpreter::m_quitRequested = false;
 wxString LuaInterpreter::m_scriptFilePath;
 
 //------------------------------------------------------
@@ -57,9 +58,11 @@ void LuaInterpreter::RunLuaFile(const wxString& filePath)
                      _(L"Lua Script"), wxOK | wxICON_INFORMATION);
         return;
         }
+    m_quitRequested = false;
     m_isRunning = true;
     SetScriptFilePath(filePath);
 
+    lua_sethook(m_L, &LuaInterpreter::LineHookCallback, LUA_MASKLINE, 0);
     const wxDateTime startTime(wxDateTime::Now());
     if (luaL_dofile(m_L, filePath.utf8_str()) != 0)
         {
@@ -83,6 +86,7 @@ void LuaInterpreter::RunLuaFile(const wxString& filePath)
     LuaScripting::DebugPrint(
         wxString::Format(_(L"Script ran for %s"), endTime.Subtract(startTime).Format()));
 
+    m_quitRequested = false;
     m_isRunning = false;
     }
 
@@ -104,33 +108,61 @@ void LuaInterpreter::RunLuaCode(const wxString& code, const wxString& filePath,
         return;
         }
     errorMessage.clear();
+    m_quitRequested = false;
     m_isRunning = true;
     SetScriptFilePath(filePath);
 
+    lua_sethook(m_L, &LuaInterpreter::LineHookCallback, LUA_MASKLINE, 0);
     const wxDateTime startTime(wxDateTime::Now());
     if (luaL_dostring(m_L, code.utf8_str()) != 0)
         {
-        // error message from Lua has cryptic section in front of it showing the first line of the
-        // script and also just shows the line number without saying "line" in front of it,
-        // so reformat this message to make it more readable.
+        std::wstring_view BREAK_LINE{ L"BREAK_LINE:" };
         errorMessage = wxString{ luaL_checkstring(m_L, -1), wxConvUTF8 };
-        const auto endOfErrorHeader = errorMessage.find(L"]:");
-        if (endOfErrorHeader != wxString::npos)
+
+        // user stopped the script
+        if (errorMessage.starts_with(BREAK_LINE.data()))
             {
-            errorMessage.erase(0, endOfErrorHeader + 2);
+            errorMessage.erase(0, BREAK_LINE.length());
+            long lineNumber{ 0 };
+            errorMessage.ToLong(&lineNumber);
+            LuaScripting::DebugPrint(
+                wxString::Format(_(L"Script stopped by user at chunk line #%ld"), lineNumber));
+            errorMessage.clear();
             }
-        LuaScripting::DebugPrint(wxString::Format( // TRANSLATORS: %s around "Error" are highlight
-                                                   // tags. The last one is a line number.
-            _(L"%sError%s: Chunk line #%s"), L"<span style='color:red; font-weight:bold;'>",
-            L"</span>", errorMessage));
+        // an actual error
+        else
+            {
+            // error message from Lua has cryptic section in front of it showing the first line of
+            // the script and also just shows the line number without saying "line" in front of it,
+            // so reformat this message to make it more readable.
+            const auto endOfErrorHeader = errorMessage.find(L"]:");
+            if (endOfErrorHeader != wxString::npos)
+                {
+                errorMessage.erase(0, endOfErrorHeader + 2);
+                }
+            LuaScripting::DebugPrint(wxString::Format(// TRANSLATORS: %s around "Error" are highlight
+                                                      // tags. The last one is a line number.
+                _(L"%sError%s: Chunk line #%s"), L"<span style='color:red; font-weight:bold;'>",
+                L"</span>", errorMessage));
+            }
         }
     const wxDateTime endTime(wxDateTime::Now());
     LuaScripting::DebugPrint(
         wxString::Format(_(L"Script ran for %s"), endTime.Subtract(startTime).Format()));
 
+    m_quitRequested = false;
     m_isRunning = false;
 
     // in case the script window was hidden and the script either forgot to show it again
     // or the script failed, then show it
     wxGetApp().GetMainFrameEx()->GetLuaEditor()->Show(true);
+    }
+
+//------------------------------------------------------
+void LuaInterpreter::LineHookCallback(lua_State *L, lua_Debug *ar)
+    {
+    if (m_quitRequested)
+        {
+        luaL_error(L, "BREAK_LINE:%d", ar->currentline);
+        }
     }

@@ -48,6 +48,7 @@ RSArtProvider::RSArtProvider()
                     { wxART_GO_UP, L"ribbon/up-arrow.svg" },
                     { wxART_FIND, L"ribbon/find.svg" },
                     { wxART_FIND_AND_REPLACE, L"ribbon/find-replace.svg" },
+                    { wxART_QUIT, L"ribbon/stop.svg" },
                     { L"ID_NOTES", L"ribbon/notepad.svg" },
                     { L"ID_E_HELP", L"ribbon/electronic-help.svg" },
                     { L"ID_ALIGN_LEFT", L"ribbon/align-left.svg" },

@@ -50,6 +50,12 @@ class LuaInterpreter
         return m_isRunning;
         }
 
+    /// @brief Stop running the current script.
+    static void Quit()
+        {
+        m_quitRequested = true;
+        }
+
     /// @returns The file path of the currently running script
     ///     (may be empty if RunLuaCode() was called with no defined file path).
     [[nodiscard]]
@@ -63,8 +69,11 @@ class LuaInterpreter
     static void SetScriptFilePath(const wxString& path) { m_scriptFilePath = path; }
 
   private:
+    static void LineHookCallback(lua_State *L, lua_Debug *ar);
+
     lua_State* m_L{ nullptr };
     static bool m_isRunning;
+    static bool m_quitRequested;
     static wxString m_scriptFilePath;
     };
 
