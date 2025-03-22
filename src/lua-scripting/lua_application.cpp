@@ -1946,6 +1946,78 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int SetGrammarResultsOptions(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        if (lua_gettop(L) >= 1)
+            {
+            wxGetApp().GetAppOptions().GetGrammarInfo().EnableHighlightedReport(
+                int_to_bool(lua_toboolean(L, 1)));
+            }
+        if (lua_gettop(L) >= 2)
+            {
+            wxGetApp().GetAppOptions().GetGrammarInfo().EnableWordingErrors(
+                int_to_bool(lua_toboolean(L, 2)));
+            }
+        if (lua_gettop(L) >= 3)
+            {
+            wxGetApp().GetAppOptions().GetGrammarInfo().EnableMisspellings(
+                int_to_bool(lua_toboolean(L, 3)));
+            }
+        if (lua_gettop(L) >= 4)
+            {
+            wxGetApp().GetAppOptions().GetGrammarInfo().EnableRepeatedWords(
+                int_to_bool(lua_toboolean(L, 4)));
+            }
+        if (lua_gettop(L) >= 5)
+            {
+            wxGetApp().GetAppOptions().GetGrammarInfo().EnableArticleMismatches(
+                int_to_bool(lua_toboolean(L, 5)));
+            }
+        if (lua_gettop(L) >= 6)
+            {
+            wxGetApp().GetAppOptions().GetGrammarInfo().EnableRedundantPhrases(
+                int_to_bool(lua_toboolean(L, 6)));
+            }
+        if (lua_gettop(L) >= 7)
+            {
+            wxGetApp().GetAppOptions().GetGrammarInfo().EnableOverUsedWordsBySentence(
+                int_to_bool(lua_toboolean(L, 7)));
+            }
+        if (lua_gettop(L) >= 8)
+            {
+            wxGetApp().GetAppOptions().GetGrammarInfo().EnableWordyPhrases(
+                int_to_bool(lua_toboolean(L, 8)));
+            }
+        if (lua_gettop(L) >= 9)
+            {
+            wxGetApp().GetAppOptions().GetGrammarInfo().EnableCliches(
+                int_to_bool(lua_toboolean(L, 9)));
+            }
+        if (lua_gettop(L) >= 10)
+            {
+            wxGetApp().GetAppOptions().GetGrammarInfo().EnablePassiveVoice(
+                int_to_bool(lua_toboolean(L, 10)));
+            }
+        if (lua_gettop(L) >= 11)
+            {
+            wxGetApp().GetAppOptions().GetGrammarInfo().EnableConjunctionStartingSentences(
+                int_to_bool(lua_toboolean(L, 11)));
+            }
+        if (lua_gettop(L) >= 12)
+            {
+            wxGetApp().GetAppOptions().GetGrammarInfo().EnableLowercaseSentences(
+                int_to_bool(lua_toboolean(L, 12)));
+            }
+
+        return 0;
+        }
+
+    //-------------------------------------------------------------
     int SetWindowSize(lua_State* L)
         {
         if (!VerifyParameterCount(L, 2, __func__))

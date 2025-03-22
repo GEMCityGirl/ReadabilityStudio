@@ -1235,6 +1235,72 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
+    int StandardProject::SetGrammarResultsOptions(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        if (lua_gettop(L) >= 2)
+            {
+            m_project->GetGrammarInfo().EnableHighlightedReport(int_to_bool(lua_toboolean(L, 2)));
+            }
+        if (lua_gettop(L) >= 3)
+            {
+            m_project->GetGrammarInfo().EnableWordingErrors(int_to_bool(lua_toboolean(L, 3)));
+            }
+        if (lua_gettop(L) >= 4)
+            {
+            m_project->GetGrammarInfo().EnableMisspellings(int_to_bool(lua_toboolean(L, 4)));
+            }
+        if (lua_gettop(L) >= 5)
+            {
+            m_project->GetGrammarInfo().EnableRepeatedWords(int_to_bool(lua_toboolean(L, 5)));
+            }
+        if (lua_gettop(L) >= 6)
+            {
+            m_project->GetGrammarInfo().EnableArticleMismatches(int_to_bool(lua_toboolean(L, 6)));
+            }
+        if (lua_gettop(L) >= 7)
+            {
+            m_project->GetGrammarInfo().EnableRedundantPhrases(int_to_bool(lua_toboolean(L, 7)));
+            }
+        if (lua_gettop(L) >= 8)
+            {
+            m_project->GetGrammarInfo().EnableOverUsedWordsBySentence(
+                int_to_bool(lua_toboolean(L, 8)));
+            }
+        if (lua_gettop(L) >= 9)
+            {
+            m_project->GetGrammarInfo().EnableWordyPhrases(int_to_bool(lua_toboolean(L, 9)));
+            }
+        if (lua_gettop(L) >= 10)
+            {
+            m_project->GetGrammarInfo().EnableCliches(int_to_bool(lua_toboolean(L, 10)));
+            }
+        if (lua_gettop(L) >= 11)
+            {
+            m_project->GetGrammarInfo().EnablePassiveVoice(int_to_bool(lua_toboolean(L, 11)));
+            }
+        if (lua_gettop(L) >= 12)
+            {
+            m_project->GetGrammarInfo().EnableConjunctionStartingSentences(
+                int_to_bool(lua_toboolean(L, 12)));
+            }
+        if (lua_gettop(L) >= 13)
+            {
+            m_project->GetGrammarInfo().EnableLowercaseSentences(int_to_bool(lua_toboolean(L, 13)));
+            }
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
     int StandardProject::AddTest(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -2331,6 +2397,7 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, GetParagraphsParsingMethod),
         LUNA_DECLARE_METHOD(StandardProject, GetDocumentStorageMethod),
         LUNA_DECLARE_METHOD(StandardProject, SetSpellCheckerOptions),
+        LUNA_DECLARE_METHOD(StandardProject, SetGrammarResultsOptions),
         LUNA_DECLARE_METHOD(StandardProject, SetGraphColorScheme),
         LUNA_DECLARE_METHOD(StandardProject, GetGraphColorScheme),
         LUNA_DECLARE_METHOD(StandardProject, SetGraphBackgroundColor),

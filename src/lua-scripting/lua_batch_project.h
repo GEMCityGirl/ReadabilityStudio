@@ -96,9 +96,11 @@ namespace LuaScripting
 
         int /*string*/ GetTitle(lua_State* L); // Returns the title of the project.
         int SetWindowSize(lua_State* L /*number width, number height*/); // Sets the size of the project window.
-        int DelayReloading(lua_State* L /*boolean delay*/); // Prevents a project from updating while settings are being changed. 
-        // OPTIONS
+        int DelayReloading(lua_State* L /*boolean delay*/); // Prevents a project from updating while settings are being changed.
+
+        // GRAMMAR
         int SetSpellCheckerOptions(lua_State* L /*boolean ignoreProperNouns, boolean ignoreUppercased, boolean ignoreNumerals, boolean ignoreFileAddresses, boolean ignoreProgrammerCode, boolean ignoreSocialMediaTags, boolean allowColloquialisms*/); // Sets spell-checker options.
+        int SetGrammarResultsOptions(lua_State* L /*boolean includeHighlightedReport, boolean includeErrors, boolean includePossibleMisspellings, boolean includeRepeatedWords, boolean includeArticleMismatches, boolean includeRedundantPhrases, boolean includeOverusedWords, boolean includeWordiness, boolean includeCliches, boolean includePassiveVoice, boolean includeConjunctionStartingSentences, boolean includeLowercasedSentences*/); // Sets which grammar results should be included.
 
         // PROJECT SETTINGS
         int SetProjectLanguage(lua_State* L /*Language lang*/); // Sets the project language. This will affect syllable counting and also which tests are available.

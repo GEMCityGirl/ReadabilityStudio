@@ -114,6 +114,7 @@ namespace LuaScripting
 
     // GRAMMAR
     int SetSpellCheckerOptions(lua_State* L /*boolean ignoreProperNouns, boolean ignoreUppercased, boolean ignoreNumerals, boolean ignoreFileAddresses, boolean ignoreProgrammerCode, boolean ignoreSocialMediaTags, boolean allowColloquialisms*/); // Sets spell-checker options for new projects.
+    int SetGrammarResultsOptions(lua_State* L /*boolean includeHighlightedReport, boolean includeErrors, boolean includePossibleMisspellings, boolean includeRepeatedWords, boolean includeArticleMismatches, boolean includeRedundantPhrases, boolean includeOverusedWords, boolean includeWordiness, boolean includeCliches, boolean includePassiveVoice, boolean includeConjunctionStartingSentences, boolean includeLowercasedSentences*/); // Sets which grammar results should be included for new projects.
 
     // GRAPH OPTIONS
     int SetGraphColorScheme(lua_State* L /*string colorScheme*/); // Sets the graph color scheme for new projects.
@@ -262,6 +263,7 @@ namespace LuaScripting
         { "SetStippleShapeColor", SetStippleShapeColor },
         { "ShowcaseKeyItems", ShowcaseKeyItems },
         { "SetSpellCheckerOptions", SetSpellCheckerOptions },
+        { "SetGrammarResultsOptions", SetGrammarResultsOptions },
         { "SetWindowSize", SetWindowSize },
         { "RemoveAllCustomTests", RemoveAllCustomTests },
         { "RemoveAllCustomTestBundles", RemoveAllCustomTestBundles },
