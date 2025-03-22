@@ -545,7 +545,7 @@ LuaEditorDlg::LuaEditorDlg(
         {
             const wxString manualPath = wxGetApp().GetMainFrameEx()->GetHelpDirectory() +
                                         wxFileName::GetPathSeparator() +
-                                        _DT(L"readability-studio-manual.pdf");
+                                        _DT(L"readability-studio-api.pdf");
             if (wxFile::Exists(manualPath))
                 {
                 wxLaunchDefaultApplication(manualPath);
