@@ -380,7 +380,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int ApplyImageEffect(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __func__))
+        if (!VerifyParameterCount(L, 3, __func__))
             {
             return 0;
             }
@@ -1560,7 +1560,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetPlotBackGroundImageEffect(
-            static_cast<Wisteria::ImageEffect>(static_cast<int>(lua_tonumber(L, 2))));
+            static_cast<Wisteria::ImageEffect>(static_cast<int>(lua_tonumber(L, 1))));
         return 0;
         }
 
@@ -1573,7 +1573,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetPlotBackGroundImageFit(
-            static_cast<Wisteria::ImageFit>(static_cast<int>(lua_tonumber(L, 2))));
+            static_cast<Wisteria::ImageFit>(static_cast<int>(lua_tonumber(L, 1))));
         return 0;
         }
 
@@ -1636,7 +1636,7 @@ namespace LuaScripting
             return 0;
             }
 
-        wxGetApp().GetAppOptions().DisplayBarChartLabels(int_to_bool(lua_toboolean(L, 2)));
+        wxGetApp().GetAppOptions().DisplayBarChartLabels(int_to_bool(lua_toboolean(L, 1)));
         return 0;
         }
 
@@ -1649,7 +1649,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetInvalidAreaColor(
-            LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+            LoadColor(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }));
         return 0;
         }
 
@@ -1662,7 +1662,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetStippleShapeColor(
-            LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+            LoadColor(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }));
         return 0;
         }
 
@@ -1674,7 +1674,7 @@ namespace LuaScripting
             return 0;
             }
 
-        wxGetApp().GetAppOptions().ShowcaseKeyItems(int_to_bool(lua_toboolean(L, 2)));
+        wxGetApp().GetAppOptions().ShowcaseKeyItems(int_to_bool(lua_toboolean(L, 1)));
         return 0;
         }
 
