@@ -1606,7 +1606,7 @@ namespace LuaScripting
 
         auto fontInfo = wxGetApp().GetAppOptions().GetXAxisFont();
         auto fontColor = wxGetApp().GetAppOptions().GetXAxisFontColor();
-        LoadFontAttributes(L, fontInfo, fontColor, true);
+        LoadFontAttributes(L, fontInfo, fontColor, false);
 
         wxGetApp().GetAppOptions().SetXAxisFont(fontInfo);
         wxGetApp().GetAppOptions().SetXAxisFontColor(fontColor);
@@ -1623,7 +1623,7 @@ namespace LuaScripting
 
         auto fontInfo = wxGetApp().GetAppOptions().GetYAxisFont();
         auto fontColor = wxGetApp().GetAppOptions().GetYAxisFontColor();
-        LoadFontAttributes(L, fontInfo, fontColor, true);
+        LoadFontAttributes(L, fontInfo, fontColor, false);
 
         wxGetApp().GetAppOptions().SetYAxisFont(fontInfo);
         wxGetApp().GetAppOptions().SetYAxisFontColor(fontColor);
@@ -1640,7 +1640,7 @@ namespace LuaScripting
 
         auto fontInfo = wxGetApp().GetAppOptions().GetGraphTopTitleFont();
         auto fontColor = wxGetApp().GetAppOptions().GetGraphTopTitleFontColor();
-        LoadFontAttributes(L, fontInfo, fontColor, true);
+        LoadFontAttributes(L, fontInfo, fontColor, false);
 
         wxGetApp().GetAppOptions().SetGraphTopTitleFont(fontInfo);
         wxGetApp().GetAppOptions().SetGraphTopTitleFontColor(fontColor);
@@ -1657,7 +1657,7 @@ namespace LuaScripting
 
         auto fontInfo = wxGetApp().GetAppOptions().GetGraphBottomTitleFont();
         auto fontColor = wxGetApp().GetAppOptions().GetGraphBottomTitleFontColor();
-        LoadFontAttributes(L, fontInfo, fontColor, true);
+        LoadFontAttributes(L, fontInfo, fontColor, false);
 
         wxGetApp().GetAppOptions().SetGraphBottomTitleFont(fontInfo);
         wxGetApp().GetAppOptions().SetGraphBottomTitleFontColor(fontColor);
@@ -1674,7 +1674,7 @@ namespace LuaScripting
 
         auto fontInfo = wxGetApp().GetAppOptions().GetGraphRightTitleFont();
         auto fontColor = wxGetApp().GetAppOptions().GetGraphRightTitleFontColor();
-        LoadFontAttributes(L, fontInfo, fontColor, true);
+        LoadFontAttributes(L, fontInfo, fontColor, false);
 
         wxGetApp().GetAppOptions().SetGraphRightTitleFont(fontInfo);
         wxGetApp().GetAppOptions().SetGraphRightTitleFontColor(fontColor);
@@ -1691,7 +1691,7 @@ namespace LuaScripting
 
         auto fontInfo = wxGetApp().GetAppOptions().GetGraphLeftTitleFont();
         auto fontColor = wxGetApp().GetAppOptions().GetGraphLeftTitleFontColor();
-        LoadFontAttributes(L, fontInfo, fontColor, true);
+        LoadFontAttributes(L, fontInfo, fontColor, false);
 
         wxGetApp().GetAppOptions().SetGraphLeftTitleFont(fontInfo);
         wxGetApp().GetAppOptions().SetGraphLeftTitleFontColor(fontColor);
