@@ -1534,7 +1534,7 @@ class ReadabilityAppOptions
         return m_userAgent;
         }
 
-    void SetUserAgent(wxString path) { m_userAgent = std::move(path); }
+    void SetUserAgent(const wxString& path) { m_userAgent = path; }
 
     /** @brief Disable SSL certificate verification.
         @details This can be used to connect to self-signed servers or
@@ -1669,9 +1669,9 @@ class ReadabilityAppOptions
         return m_graphColorSchemeName;
         }
 
-    void SetGraphColorScheme(wxString colorScheme)
+    void SetGraphColorScheme(const wxString& colorScheme)
         {
-        m_graphColorSchemeName = std::move(colorScheme);
+        m_graphColorSchemeName = colorScheme;
         }
 
     [[nodiscard]]
