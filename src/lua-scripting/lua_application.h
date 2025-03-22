@@ -34,7 +34,8 @@ namespace LuaScripting
     // Helper functions
     int MsgBox(lua_State* L /*string message*/); // Displays a message dialog.
     int /*string*/ GetLuaConstantsPath(lua_State* L); // Returns the path of the file containing the Lua data types used by the program.
-    int /*string*/ GetProgramPath(lua_State* L); // Returns the program's filepath.
+    int /*string*/ GetProgramPath(lua_State* L); // Returns the program's folder path.
+    int /*string*/ GetExamplesPath(lua_State* L); // Returns the program's example documents' folder path.
     int /*string*/ GetUserPath(lua_State* L /*UserPath path*/); // Returns the path of a given folder in the user's directory.
     int /*string*/ GetAbsoluteFilePath(lua_State* L /*string filePath, string baseFilePath*/); // Returns the absolute filepath for the first path, relative to the second.
     int /*string*/ DownloadFile(lua_State* L /*string Url, string downloadPath*/); // Downloads a webpage to the provided local path.
@@ -176,6 +177,7 @@ namespace LuaScripting
         { _DT("Close"), Close },
         { "GetLuaConstantsPath", GetLuaConstantsPath },
         { "GetProgramPath", GetProgramPath },
+        { "GetExamplesPath", GetExamplesPath },
         { "GetUserPath", GetUserPath },
         { "GetAbsoluteFilePath", GetAbsoluteFilePath },
         { "GetActiveStandardProject", GetActiveStandardProject },

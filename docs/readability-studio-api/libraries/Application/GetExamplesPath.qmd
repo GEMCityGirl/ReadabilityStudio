@@ -1,0 +1,15 @@
+## `GetExamplesPath`
+
+Returns the program's example documents' folder path.
+
+### Syntax {-}
+
+``` {.lua}
+string GetExamplesPath()
+```
+
+### Return value {-}
+
+Type: `string`
+
+{{< pagebreak >}}

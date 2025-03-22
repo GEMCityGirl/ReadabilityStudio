@@ -171,6 +171,14 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int GetExamplesPath(lua_State* L)
+        {
+        lua_pushstring(L, wxString{ wxGetApp().FindResourceDirectory(_DT(L"examples")) +
+                                    wxFileName::GetPathSeparator() }.utf8_str());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int GetLuaConstantsPath(lua_State* L)
         {
         lua_pushstring(L, wxGetApp().FindResourceFile(L"rs-constants.lua").utf8_str());
