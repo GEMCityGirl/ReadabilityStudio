@@ -659,18 +659,18 @@ void ProjectDocChildFrame::OnEditGraphFont(wxCommandEvent& event)
         }
     else if (event.GetId() == XRCID("ID_EDIT_BOTTOM_TITLES_FONT"))
         {
-        data.SetInitialFont(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetBottomTitleGraphFont());
-        data.SetColour(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetBottomTitleGraphFontColor());
+        data.SetInitialFont(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetGraphBottomTitleFont());
+        data.SetColour(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetGraphBottomTitleFontColor());
         }
     else if (event.GetId() == XRCID("ID_EDIT_LEFT_TITLES_FONT"))
         {
-        data.SetInitialFont(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetLeftTitleGraphFont());
-        data.SetColour(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetLeftTitleGraphFontColor());
+        data.SetInitialFont(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetGraphLeftTitleFont());
+        data.SetColour(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetGraphLeftTitleFontColor());
         }
     else if (event.GetId() == XRCID("ID_EDIT_RIGHT_TITLES_FONT"))
         {
-        data.SetInitialFont(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetRightTitleGraphFont());
-        data.SetColour(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetRightTitleGraphFontColor());
+        data.SetInitialFont(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetGraphRightTitleFont());
+        data.SetColour(dynamic_cast<BaseProjectDoc*>(GetDocument())->GetGraphRightTitleFontColor());
         }
 
     wxFontDialog dialog(this, data);
@@ -699,23 +699,23 @@ void ProjectDocChildFrame::OnEditGraphFont(wxCommandEvent& event)
             }
         else if (event.GetId() == XRCID("ID_EDIT_BOTTOM_TITLES_FONT"))
             {
-            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetBottomTitleGraphFont(
+            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphBottomTitleFont(
                 dialog.GetFontData().GetChosenFont());
-            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetBottomTitleGraphFontColor(
+            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphBottomTitleFontColor(
                 dialog.GetFontData().GetColour());
             }
         else if (event.GetId() == XRCID("ID_EDIT_LEFT_TITLES_FONT"))
             {
-            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetLeftTitleGraphFont(
+            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphLeftTitleFont(
                 dialog.GetFontData().GetChosenFont());
-            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetLeftTitleGraphFontColor(
+            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphLeftTitleFontColor(
                 dialog.GetFontData().GetColour());
             }
         else if (event.GetId() == XRCID("ID_EDIT_RIGHT_TITLES_FONT"))
             {
-            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetRightTitleGraphFont(
+            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphRightTitleFont(
                 dialog.GetFontData().GetChosenFont());
-            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetRightTitleGraphFontColor(
+            dynamic_cast<BaseProjectDoc*>(GetDocument())->SetGraphRightTitleFontColor(
                 dialog.GetFontData().GetColour());
             }
         dynamic_cast<BaseProjectDoc*>(GetDocument())->RefreshRequired(ProjectRefresh::Minimal);

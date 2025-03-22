@@ -140,6 +140,8 @@ namespace LuaScripting
         int /*ParagraphParse*/ GetParagraphsParsingMethod(lua_State* L); // Returns the method for how paragraphs are parsed.
         int SetAppendedDocumentFilePath(lua_State* L /*string filePath*/); // Sets the file path to the document being appended for analysis.
         int /*string*/ GetAppendedDocumentFilePath(lua_State* L); // Returns the file path to the document being appended for analysis.
+        int UseRealTimeUpdate(lua_State* L /*bool use*/); // Toggles whether documents are being re-analyzed as they change.
+        int /*boolean*/ IsRealTimeUpdating(lua_State* L); // Returns whether documents are being re-analyzed as they change.
 
         // TEXT EXCLUSION OPTIONS
         int SetTextExclusion(lua_State* L /*TextExclusionType exclusionType*/); // Specifies how text should be excluded while parsing the source document.
@@ -154,6 +156,8 @@ namespace LuaScripting
         int SetBlockExclusionTags(lua_State* L /*string tagString*/); // Sets the text exclusion tags. This should be a two-character string containing a pair of exclusion tags.
 
         // GRAPH OPTIONS
+        int SetGraphColorScheme(lua_State* L /*string colorScheme*/); // Sets the graph color scheme.
+        int /*string*/ GetGraphColorScheme(lua_State* L); // Returns the graph color scheme.
         int SetGraphBackgroundColor(lua_State* L /*number red, number green, number blue*/); // Sets the graph background color.
         int ApplyGraphBackgroundFade(lua_State* L /*boolean useColorFade*/); // Sets whether to apply a fade to graph background colors.
         int SetGraphCommonImage(lua_State* L /*string imagePath*/); // Sets the common image drawn across all bars.
@@ -170,6 +174,9 @@ namespace LuaScripting
         int SetXAxisFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' X axes.
         int SetYAxisFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' Y axes.
         int SetGraphTopTitleFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' top titles.
+        int SetGraphBottomTitleFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' bottom titles.
+        int SetGraphLeftTitleFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' left titles.
+        int SetGraphRightTitleFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' right titles.
         int DisplayBarChartLabels(lua_State* L /*boolean display*/); // Specifies whether to display labels above each bar in a bar chart.
         int DisplayGraphDropShadows(lua_State* L /*bool displayShadows*/); // Sets whether to display shadows on graphs
         int SetBarChartBarColor(lua_State* L /*number red, number green, number blue*/); // If the bar charts' effect is to use a single color, sets the color to draw the bars with.

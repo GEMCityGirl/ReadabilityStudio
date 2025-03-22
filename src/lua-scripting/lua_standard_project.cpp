@@ -471,6 +471,35 @@ namespace LuaScripting
         return 1;
         }
 
+    //-------------------------------------------------------------
+    int StandardProject::IsRealTimeUpdating(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L, m_project->IsRealTimeUpdating());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::UseRealTimeUpdate(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->UseRealTimeUpdate(int_to_bool(lua_toboolean(L, 2)));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
     //-------------------------------------------------
     int StandardProject::SetDocumentFilePath(lua_State* L)
         {
@@ -696,6 +725,35 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int StandardProject::SetGraphColorScheme(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetGraphColorScheme(wxString(luaL_checkstring(L, 2), wxConvUTF8));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::GetGraphColorScheme(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushstring(L, m_project->GetGraphColorScheme().utf8_str());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int StandardProject::SetWatermark(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -825,6 +883,72 @@ namespace LuaScripting
 
         m_project->SetGraphTopTitleFont(fontInfo);
         m_project->SetGraphTopTitleFontColor(fontColor);
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetGraphBottomTitleFont(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        auto fontInfo = m_project->GetGraphBottomTitleFont();
+        auto fontColor = m_project->GetGraphBottomTitleFontColor();
+        LoadFontAttributes(L, fontInfo, fontColor, true);
+
+        m_project->SetGraphBottomTitleFont(fontInfo);
+        m_project->SetGraphBottomTitleFontColor(fontColor);
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetGraphLeftTitleFont(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        auto fontInfo = m_project->GetGraphLeftTitleFont();
+        auto fontColor = m_project->GetGraphLeftTitleFontColor();
+        LoadFontAttributes(L, fontInfo, fontColor, true);
+
+        m_project->SetGraphLeftTitleFont(fontInfo);
+        m_project->SetGraphLeftTitleFontColor(fontColor);
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetGraphRightTitleFont(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        auto fontInfo = m_project->GetGraphRightTitleFont();
+        auto fontColor = m_project->GetGraphRightTitleFontColor();
+        LoadFontAttributes(L, fontInfo, fontColor, true);
+
+        m_project->SetGraphRightTitleFont(fontInfo);
+        m_project->SetGraphRightTitleFontColor(fontColor);
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -2185,6 +2309,8 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, SetBlockExclusionTags),
         LUNA_DECLARE_METHOD(StandardProject, SetAppendedDocumentFilePath),
         LUNA_DECLARE_METHOD(StandardProject, GetAppendedDocumentFilePath),
+        LUNA_DECLARE_METHOD(StandardProject, UseRealTimeUpdate),
+        LUNA_DECLARE_METHOD(StandardProject, IsRealTimeUpdating),
         LUNA_DECLARE_METHOD(StandardProject, SetDocumentFilePath),
         LUNA_DECLARE_METHOD(StandardProject, AggressivelyExclude),
         LUNA_DECLARE_METHOD(StandardProject, SetTextExclusion),
@@ -2205,6 +2331,8 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, GetParagraphsParsingMethod),
         LUNA_DECLARE_METHOD(StandardProject, GetDocumentStorageMethod),
         LUNA_DECLARE_METHOD(StandardProject, SetSpellCheckerOptions),
+        LUNA_DECLARE_METHOD(StandardProject, SetGraphColorScheme),
+        LUNA_DECLARE_METHOD(StandardProject, GetGraphColorScheme),
         LUNA_DECLARE_METHOD(StandardProject, SetGraphBackgroundColor),
         LUNA_DECLARE_METHOD(StandardProject, ApplyGraphBackgroundFade),
         LUNA_DECLARE_METHOD(StandardProject, SetGraphCommonImage),
@@ -2224,6 +2352,9 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, SetXAxisFont),
         LUNA_DECLARE_METHOD(StandardProject, SetYAxisFont),
         LUNA_DECLARE_METHOD(StandardProject, SetGraphTopTitleFont),
+        LUNA_DECLARE_METHOD(StandardProject, SetGraphBottomTitleFont),
+        LUNA_DECLARE_METHOD(StandardProject, SetGraphLeftTitleFont),
+        LUNA_DECLARE_METHOD(StandardProject, SetGraphRightTitleFont),
         LUNA_DECLARE_METHOD(StandardProject, DisplayBarChartLabels),
         LUNA_DECLARE_METHOD(StandardProject, DisplayGraphDropShadows),
         LUNA_DECLARE_METHOD(StandardProject, SetBarChartBarColor),

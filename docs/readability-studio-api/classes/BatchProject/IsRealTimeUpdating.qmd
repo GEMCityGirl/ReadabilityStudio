@@ -1,0 +1,17 @@
+## `IsRealTimeUpdating`
+
+Returns whether documents are being re-analyzed as they change.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsRealTimeUpdating()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

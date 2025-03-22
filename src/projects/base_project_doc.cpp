@@ -53,12 +53,12 @@ BaseProjectDoc::BaseProjectDoc() :
     m_yAxisFont(wxGetApp().GetAppOptions().GetYAxisFont()),
     m_topTitleFontColor(wxGetApp().GetAppOptions().GetGraphTopTitleFontColor()),
     m_topTitleFont(wxGetApp().GetAppOptions().GetGraphTopTitleFont()),
-    m_bottomTitleFontColor(wxGetApp().GetAppOptions().GetBottomTitleGraphFontColor()),
-    m_bottomTitleFont(wxGetApp().GetAppOptions().GetBottomTitleGraphFont()),
-    m_leftTitleFontColor(wxGetApp().GetAppOptions().GetLeftTitleGraphFontColor()),
-    m_leftTitleFont(wxGetApp().GetAppOptions().GetLeftTitleGraphFont()),
-    m_rightTitleFontColor(wxGetApp().GetAppOptions().GetRightTitleGraphFontColor()),
-    m_rightTitleFont(wxGetApp().GetAppOptions().GetRightTitleGraphFont()),
+    m_bottomTitleFontColor(wxGetApp().GetAppOptions().GetGraphBottomTitleFontColor()),
+    m_bottomTitleFont(wxGetApp().GetAppOptions().GetGraphBottomTitleFont()),
+    m_leftTitleFontColor(wxGetApp().GetAppOptions().GetGraphLeftTitleFontColor()),
+    m_leftTitleFont(wxGetApp().GetAppOptions().GetGraphLeftTitleFont()),
+    m_rightTitleFontColor(wxGetApp().GetAppOptions().GetGraphRightTitleFontColor()),
+    m_rightTitleFont(wxGetApp().GetAppOptions().GetGraphRightTitleFont()),
     m_graphInvalidAreaColor(wxGetApp().GetAppOptions().GetInvalidAreaColor()),
     m_raygorStyle(wxGetApp().GetAppOptions().GetRaygorStyle()),
     m_fleschChartConnectPoints(wxGetApp().GetAppOptions().IsConnectingFleschPoints()),
@@ -553,18 +553,18 @@ void BaseProjectDoc::UpdateGraphOptions(Wisteria::Canvas* canvas)
         }
     for (size_t i = 0; i < canvas->GetBottomTitles().size(); ++i)
         {
-        canvas->GetBottomTitles().at(i).GetFont() = GetBottomTitleGraphFont();
-        canvas->GetBottomTitles().at(i).SetFontColor(GetBottomTitleGraphFontColor());
+        canvas->GetBottomTitles().at(i).GetFont() = GetGraphBottomTitleFont();
+        canvas->GetBottomTitles().at(i).SetFontColor(GetGraphBottomTitleFontColor());
         }
     for (size_t i = 0; i < canvas->GetLeftTitles().size(); ++i)
         {
-        canvas->GetLeftTitles().at(i).GetFont() = GetLeftTitleGraphFont();
-        canvas->GetLeftTitles().at(i).SetFontColor(GetLeftTitleGraphFontColor());
+        canvas->GetLeftTitles().at(i).GetFont() = GetGraphLeftTitleFont();
+        canvas->GetLeftTitles().at(i).SetFontColor(GetGraphLeftTitleFontColor());
         }
     for (size_t i = 0; i < canvas->GetRightTitles().size(); ++i)
         {
-        canvas->GetRightTitles().at(i).GetFont() = GetRightTitleGraphFont();
-        canvas->GetRightTitles().at(i).SetFontColor(GetRightTitleGraphFontColor());
+        canvas->GetRightTitles().at(i).GetFont() = GetGraphRightTitleFont();
+        canvas->GetRightTitles().at(i).SetFontColor(GetGraphRightTitleFontColor());
         }
     }
 
@@ -1780,14 +1780,14 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             if (bottomTitleSection && bottomTitleSectionEnd &&
                 (bottomTitleSection < bottomTitleSectionEnd) )
                 {
-                SetBottomTitleGraphFontColor(
+                SetGraphBottomTitleFontColor(
                     XmlFormat::GetColor(bottomTitleSection, bottomTitleSectionEnd,
                         wxGetApp().GetAppOptions().XML_FONT_COLOR.data(),
-                        wxGetApp().GetAppOptions().GetBottomTitleGraphFontColor()));
-                SetBottomTitleGraphFont(
+                        wxGetApp().GetAppOptions().GetGraphBottomTitleFontColor()));
+                SetGraphBottomTitleFont(
                     XmlFormat::GetFont(bottomTitleSection, bottomTitleSectionEnd,
                         wxGetApp().GetAppOptions().XML_FONT.data(),
-                        wxGetApp().GetAppOptions().GetBottomTitleGraphFont()));
+                        wxGetApp().GetAppOptions().GetGraphBottomTitleFont()));
                 }
 
             // left title
@@ -1800,14 +1800,14 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             if (leftTitleSection && leftTitleSectionEnd &&
                 (leftTitleSection < leftTitleSectionEnd) )
                 {
-                SetLeftTitleGraphFontColor(
+                SetGraphLeftTitleFontColor(
                     XmlFormat::GetColor(leftTitleSection, leftTitleSectionEnd,
                         wxGetApp().GetAppOptions().XML_FONT_COLOR.data(),
-                        wxGetApp().GetAppOptions().GetLeftTitleGraphFontColor()));
-                SetLeftTitleGraphFont(
+                        wxGetApp().GetAppOptions().GetGraphLeftTitleFontColor()));
+                SetGraphLeftTitleFont(
                     XmlFormat::GetFont(leftTitleSection, leftTitleSectionEnd,
                         wxGetApp().GetAppOptions().XML_FONT.data(),
-                        wxGetApp().GetAppOptions().GetLeftTitleGraphFont()));
+                        wxGetApp().GetAppOptions().GetGraphLeftTitleFont()));
                 }
 
             // right title
@@ -1820,14 +1820,14 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             if (rightTitleSection && rightTitleSectionEnd &&
                 (rightTitleSection < rightTitleSectionEnd) )
                 {
-                SetRightTitleGraphFontColor(
+                SetGraphRightTitleFontColor(
                     XmlFormat::GetColor(rightTitleSection, rightTitleSectionEnd,
                         wxGetApp().GetAppOptions().XML_FONT_COLOR.data(),
-                        wxGetApp().GetAppOptions().GetRightTitleGraphFontColor()));
-                SetRightTitleGraphFont(
+                        wxGetApp().GetAppOptions().GetGraphRightTitleFontColor()));
+                SetGraphRightTitleFont(
                     XmlFormat::GetFont(rightTitleSection, rightTitleSectionEnd,
                         wxGetApp().GetAppOptions().XML_FONT.data(),
-                        wxGetApp().GetAppOptions().GetRightTitleGraphFont()));
+                        wxGetApp().GetAppOptions().GetGraphRightTitleFont()));
                 }
             }
         }
@@ -2826,11 +2826,11 @@ wxString BaseProjectDoc::FormatProjectSettings() const
         .append(L">\n");
     // font color
     fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT_COLOR.data());
-    fileText += XmlFormat::FormatColorAttributes(GetBottomTitleGraphFontColor());
+    fileText += XmlFormat::FormatColorAttributes(GetGraphBottomTitleFontColor());
     fileText.append(L"/>\n");
     // font information
     fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT.data());
-    fileText += XmlFormat::FormatFontAttributes(GetBottomTitleGraphFont());
+    fileText += XmlFormat::FormatFontAttributes(GetGraphBottomTitleFont());
     fileText.append(L"/>\n");
     fileText.append(L"\t\t\t</")
         .append(wxGetApp().GetAppOptions().XML_BOTTOM_TITLE.data())
@@ -2841,11 +2841,11 @@ wxString BaseProjectDoc::FormatProjectSettings() const
         .append(L">\n");
     // font color
     fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT_COLOR.data());
-    fileText += XmlFormat::FormatColorAttributes(GetLeftTitleGraphFontColor());
+    fileText += XmlFormat::FormatColorAttributes(GetGraphLeftTitleFontColor());
     fileText.append(L"/>\n");
     // font information
     fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT.data());
-    fileText += XmlFormat::FormatFontAttributes(GetLeftTitleGraphFont());
+    fileText += XmlFormat::FormatFontAttributes(GetGraphLeftTitleFont());
     fileText.append(L"/>\n");
     fileText.append(L"\t\t\t</")
         .append(wxGetApp().GetAppOptions().XML_LEFT_TITLE.data())
@@ -2856,11 +2856,11 @@ wxString BaseProjectDoc::FormatProjectSettings() const
         .append(L">\n");
     // font color
     fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT_COLOR.data());
-    fileText += XmlFormat::FormatColorAttributes(GetRightTitleGraphFontColor());
+    fileText += XmlFormat::FormatColorAttributes(GetGraphRightTitleFontColor());
     fileText.append(L"/>\n");
     // font information
     fileText.append(L"\t\t\t\t<").append(wxGetApp().GetAppOptions().XML_FONT.data());
-    fileText += XmlFormat::FormatFontAttributes(GetRightTitleGraphFont());
+    fileText += XmlFormat::FormatFontAttributes(GetGraphRightTitleFont());
     fileText.append(L"/>\n");
     fileText.append(L"\t\t\t</")
         .append(wxGetApp().GetAppOptions().XML_RIGHT_TITLE.data())

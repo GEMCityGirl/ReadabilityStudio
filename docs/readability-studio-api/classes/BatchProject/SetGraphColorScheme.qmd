@@ -1,0 +1,20 @@
+## `SetGraphColorScheme`
+
+Sets the graph color scheme.
+
+### Syntax {-}
+
+``` {.lua}
+SetGraphColorScheme(string colorScheme)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`string` colorScheme | The color scheme ID. |
+
+Refer to [`Application.SetGraphColorScheme()`](#app-setstippleshape) for a list of available IDs.
+
+{{< pagebreak >}}

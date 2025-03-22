@@ -2657,14 +2657,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         if (colorNodeBottomTitle)
                             {
                             int red = colorNodeBottomTitle->ToElement()->IntAttribute(
-                                XmlFormat::GetRed().mb_str(), GetBottomTitleGraphFontColor().Red());
+                                XmlFormat::GetRed().mb_str(), GetGraphBottomTitleFontColor().Red());
                             int green = colorNodeBottomTitle->ToElement()->IntAttribute(
                                 XmlFormat::GetGreen().mb_str(),
-                                GetBottomTitleGraphFontColor().Green());
+                                GetGraphBottomTitleFontColor().Green());
                             int blue = colorNodeBottomTitle->ToElement()->IntAttribute(
                                 XmlFormat::GetBlue().mb_str(),
-                                GetBottomTitleGraphFontColor().Blue());
-                            SetBottomTitleGraphFontColor(wxColour(red, green, blue));
+                                GetGraphBottomTitleFontColor().Blue());
+                            SetGraphBottomTitleFontColor(wxColour(red, green, blue));
                             }
                         // font
                         auto fontNode = bottomTitleNode->FirstChildElement(XML_FONT.data());
@@ -2715,13 +2715,13 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         if (colorNodeLeftTitle)
                             {
                             int red = colorNodeLeftTitle->ToElement()->IntAttribute(
-                                XmlFormat::GetRed().mb_str(), GetLeftTitleGraphFontColor().Red());
+                                XmlFormat::GetRed().mb_str(), GetGraphLeftTitleFontColor().Red());
                             int green = colorNodeLeftTitle->ToElement()->IntAttribute(
                                 XmlFormat::GetGreen().mb_str(),
-                                GetLeftTitleGraphFontColor().Green());
+                                GetGraphLeftTitleFontColor().Green());
                             int blue = colorNodeLeftTitle->ToElement()->IntAttribute(
-                                XmlFormat::GetBlue().mb_str(), GetLeftTitleGraphFontColor().Blue());
-                            SetLeftTitleGraphFontColor(wxColour(red, green, blue));
+                                XmlFormat::GetBlue().mb_str(), GetGraphLeftTitleFontColor().Blue());
+                            SetGraphLeftTitleFontColor(wxColour(red, green, blue));
                             }
                         // font
                         auto fontNode = leftTitleNode->FirstChildElement(XML_FONT.data());
@@ -2772,14 +2772,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         if (colorNodeRightTitle)
                             {
                             int red = colorNodeRightTitle->ToElement()->IntAttribute(
-                                XmlFormat::GetRed().mb_str(), GetRightTitleGraphFontColor().Red());
+                                XmlFormat::GetRed().mb_str(), GetGraphRightTitleFontColor().Red());
                             int green = colorNodeRightTitle->ToElement()->IntAttribute(
                                 XmlFormat::GetGreen().mb_str(),
-                                GetRightTitleGraphFontColor().Green());
+                                GetGraphRightTitleFontColor().Green());
                             int blue = colorNodeRightTitle->ToElement()->IntAttribute(
                                 XmlFormat::GetBlue().mb_str(),
-                                GetRightTitleGraphFontColor().Blue());
-                            SetRightTitleGraphFontColor(wxColour(red, green, blue));
+                                GetGraphRightTitleFontColor().Blue());
+                            SetGraphRightTitleFontColor(wxColour(red, green, blue));
                             }
                         // font
                         auto fontNode = rightTitleNode->FirstChildElement(XML_FONT.data());
@@ -4464,24 +4464,24 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     // bottom title font color
     auto bottomTitleFontColor = doc.NewElement(XML_FONT_COLOR.data());
     bottomTitleFontColor->SetAttribute(XmlFormat::GetRed().mb_str(),
-                                       GetBottomTitleGraphFontColor().Red());
+                                       GetGraphBottomTitleFontColor().Red());
     bottomTitleFontColor->SetAttribute(XmlFormat::GetGreen().mb_str(),
-                                       GetBottomTitleGraphFontColor().Green());
+                                       GetGraphBottomTitleFontColor().Green());
     bottomTitleFontColor->SetAttribute(XmlFormat::GetBlue().mb_str(),
-                                       GetBottomTitleGraphFontColor().Blue());
+                                       GetGraphBottomTitleFontColor().Blue());
     // bottom title font
     auto bottomTitleFont = doc.NewElement(XML_FONT.data());
     bottomTitleFont->SetAttribute(XmlFormat::GetFontPointSize().mb_str(),
-                                  GetBottomTitleGraphFont().GetPointSize());
+                                  GetGraphBottomTitleFont().GetPointSize());
     bottomTitleFont->SetAttribute(XmlFormat::GetFontStyle().mb_str(),
-                                  static_cast<int>(GetBottomTitleGraphFont().GetStyle()));
+                                  static_cast<int>(GetGraphBottomTitleFont().GetStyle()));
     bottomTitleFont->SetAttribute(XmlFormat::GetFontWeight().mb_str(),
-                                  static_cast<int>(GetBottomTitleGraphFont().GetWeight()));
+                                  static_cast<int>(GetGraphBottomTitleFont().GetWeight()));
     bottomTitleFont->SetAttribute(XmlFormat::GetFontUnderline().mb_str(),
-                                  bool_to_int(GetBottomTitleGraphFont().GetUnderlined()));
+                                  bool_to_int(GetGraphBottomTitleFont().GetUnderlined()));
     bottomTitleFont->SetAttribute(
         XmlFormat::GetFontFaceName().mb_str(),
-        wxString(encode({ GetBottomTitleGraphFont().GetFaceName().wc_str() }, false).c_str())
+        wxString(encode({ GetGraphBottomTitleFont().GetFaceName().wc_str() }, false).c_str())
             .mb_str());
     // put it all together
     bottomTitle->InsertEndChild(bottomTitleFontColor);
@@ -4492,24 +4492,24 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     // left title font color
     auto leftTitleFontColor = doc.NewElement(XML_FONT_COLOR.data());
     leftTitleFontColor->SetAttribute(XmlFormat::GetRed().mb_str(),
-                                     GetLeftTitleGraphFontColor().Red());
+                                     GetGraphLeftTitleFontColor().Red());
     leftTitleFontColor->SetAttribute(XmlFormat::GetGreen().mb_str(),
-                                     GetLeftTitleGraphFontColor().Green());
+                                     GetGraphLeftTitleFontColor().Green());
     leftTitleFontColor->SetAttribute(XmlFormat::GetBlue().mb_str(),
-                                     GetLeftTitleGraphFontColor().Blue());
+                                     GetGraphLeftTitleFontColor().Blue());
     // left title font
     auto leftTitleFont = doc.NewElement(XML_FONT.data());
     leftTitleFont->SetAttribute(XmlFormat::GetFontPointSize().mb_str(),
-                                GetLeftTitleGraphFont().GetPointSize());
+                                GetGraphLeftTitleFont().GetPointSize());
     leftTitleFont->SetAttribute(XmlFormat::GetFontStyle().mb_str(),
-                                static_cast<int>(GetLeftTitleGraphFont().GetStyle()));
+                                static_cast<int>(GetGraphLeftTitleFont().GetStyle()));
     leftTitleFont->SetAttribute(XmlFormat::GetFontWeight().mb_str(),
-                                static_cast<int>(GetLeftTitleGraphFont().GetWeight()));
+                                static_cast<int>(GetGraphLeftTitleFont().GetWeight()));
     leftTitleFont->SetAttribute(XmlFormat::GetFontUnderline().mb_str(),
-                                bool_to_int(GetLeftTitleGraphFont().GetUnderlined()));
+                                bool_to_int(GetGraphLeftTitleFont().GetUnderlined()));
     leftTitleFont->SetAttribute(
         XmlFormat::GetFontFaceName().mb_str(),
-        wxString(encode({ GetLeftTitleGraphFont().GetFaceName().wc_str() }, false).c_str())
+        wxString(encode({ GetGraphLeftTitleFont().GetFaceName().wc_str() }, false).c_str())
             .mb_str());
     // put it all together
     leftTitle->InsertEndChild(leftTitleFontColor);
@@ -4520,24 +4520,24 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     // right title font color
     auto rightTitleFontColor = doc.NewElement(XML_FONT_COLOR.data());
     rightTitleFontColor->SetAttribute(XmlFormat::GetRed().mb_str(),
-                                      GetRightTitleGraphFontColor().Red());
+                                      GetGraphRightTitleFontColor().Red());
     rightTitleFontColor->SetAttribute(XmlFormat::GetGreen().mb_str(),
-                                      GetRightTitleGraphFontColor().Green());
+                                      GetGraphRightTitleFontColor().Green());
     rightTitleFontColor->SetAttribute(XmlFormat::GetBlue().mb_str(),
-                                      GetRightTitleGraphFontColor().Blue());
+                                      GetGraphRightTitleFontColor().Blue());
     // right title font
     auto rightTitleFont = doc.NewElement(XML_FONT.data());
     rightTitleFont->SetAttribute(XmlFormat::GetFontPointSize().mb_str(),
-                                 GetRightTitleGraphFont().GetPointSize());
+                                 GetGraphRightTitleFont().GetPointSize());
     rightTitleFont->SetAttribute(XmlFormat::GetFontStyle().mb_str(),
-                                 static_cast<int>(GetRightTitleGraphFont().GetStyle()));
+                                 static_cast<int>(GetGraphRightTitleFont().GetStyle()));
     rightTitleFont->SetAttribute(XmlFormat::GetFontWeight().mb_str(),
-                                 static_cast<int>(GetRightTitleGraphFont().GetWeight()));
+                                 static_cast<int>(GetGraphRightTitleFont().GetWeight()));
     rightTitleFont->SetAttribute(XmlFormat::GetFontUnderline().mb_str(),
-                                 bool_to_int(GetRightTitleGraphFont().GetUnderlined()));
+                                 bool_to_int(GetGraphRightTitleFont().GetUnderlined()));
     rightTitleFont->SetAttribute(
         XmlFormat::GetFontFaceName().mb_str(),
-        wxString(encode({ GetRightTitleGraphFont().GetFaceName().wc_str() }, false).c_str())
+        wxString(encode({ GetGraphRightTitleFont().GetFaceName().wc_str() }, false).c_str())
             .mb_str());
     // put it all together
     rightTitle->InsertEndChild(rightTitleFontColor);
@@ -5011,17 +5011,17 @@ void ReadabilityAppOptions::UpdateGraphOptions(Wisteria::Canvas* graphCanvas)
         }
     for (size_t i = 0; i < graphCanvas->GetBottomTitles().size(); ++i)
         {
-        graphCanvas->GetBottomTitles().at(i).GetFont() = GetBottomTitleGraphFont();
-        graphCanvas->GetBottomTitles().at(i).SetFontColor(GetBottomTitleGraphFontColor());
+        graphCanvas->GetBottomTitles().at(i).GetFont() = GetGraphBottomTitleFont();
+        graphCanvas->GetBottomTitles().at(i).SetFontColor(GetGraphBottomTitleFontColor());
         }
     for (size_t i = 0; i < graphCanvas->GetLeftTitles().size(); ++i)
         {
-        graphCanvas->GetLeftTitles().at(i).GetFont() = GetLeftTitleGraphFont();
-        graphCanvas->GetLeftTitles().at(i).SetFontColor(GetLeftTitleGraphFontColor());
+        graphCanvas->GetLeftTitles().at(i).GetFont() = GetGraphLeftTitleFont();
+        graphCanvas->GetLeftTitles().at(i).SetFontColor(GetGraphLeftTitleFontColor());
         }
     for (size_t i = 0; i < graphCanvas->GetRightTitles().size(); ++i)
         {
-        graphCanvas->GetRightTitles().at(i).GetFont() = GetRightTitleGraphFont();
-        graphCanvas->GetRightTitles().at(i).SetFontColor(GetRightTitleGraphFontColor());
+        graphCanvas->GetRightTitles().at(i).GetFont() = GetGraphRightTitleFont();
+        graphCanvas->GetRightTitles().at(i).SetFontColor(GetGraphRightTitleFontColor());
         }
     }

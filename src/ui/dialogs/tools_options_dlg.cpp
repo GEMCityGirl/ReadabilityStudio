@@ -876,18 +876,18 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
                                     wxGetApp().GetAppOptions().GetGraphTopTitleFontColor()),
       m_topTitleFont(project ? project->GetGraphTopTitleFont() :
                                wxGetApp().GetAppOptions().GetGraphTopTitleFont()),
-      m_bottomTitleFontColor(project ? project->GetBottomTitleGraphFontColor() :
-                                       wxGetApp().GetAppOptions().GetBottomTitleGraphFontColor()),
-      m_bottomTitleFont(project ? project->GetBottomTitleGraphFont() :
-                                  wxGetApp().GetAppOptions().GetBottomTitleGraphFont()),
-      m_leftTitleFontColor(project ? project->GetLeftTitleGraphFontColor() :
-                                     wxGetApp().GetAppOptions().GetLeftTitleGraphFontColor()),
-      m_leftTitleFont(project ? project->GetLeftTitleGraphFont() :
-                                wxGetApp().GetAppOptions().GetLeftTitleGraphFont()),
-      m_rightTitleFontColor(project ? project->GetRightTitleGraphFontColor() :
-                                      wxGetApp().GetAppOptions().GetRightTitleGraphFontColor()),
-      m_rightTitleFont(project ? project->GetRightTitleGraphFont() :
-                                 wxGetApp().GetAppOptions().GetRightTitleGraphFont())
+      m_bottomTitleFontColor(project ? project->GetGraphBottomTitleFontColor() :
+                                       wxGetApp().GetAppOptions().GetGraphBottomTitleFontColor()),
+      m_bottomTitleFont(project ? project->GetGraphBottomTitleFont() :
+                                  wxGetApp().GetAppOptions().GetGraphBottomTitleFont()),
+      m_leftTitleFontColor(project ? project->GetGraphLeftTitleFontColor() :
+                                     wxGetApp().GetAppOptions().GetGraphLeftTitleFontColor()),
+      m_leftTitleFont(project ? project->GetGraphLeftTitleFont() :
+                                wxGetApp().GetAppOptions().GetGraphLeftTitleFont()),
+      m_rightTitleFontColor(project ? project->GetGraphRightTitleFontColor() :
+                                      wxGetApp().GetAppOptions().GetGraphRightTitleFontColor()),
+      m_rightTitleFont(project ? project->GetGraphRightTitleFont() :
+                                 wxGetApp().GetAppOptions().GetGraphRightTitleFont())
     {
     wxString displayableProjectName =
         m_readabilityProjectDoc ? m_readabilityProjectDoc->GetTitle() : wxString{};
@@ -2704,12 +2704,12 @@ void ToolsOptionsDlg::SaveOptions()
         wxGetApp().GetAppOptions().SetYAxisFontColor(m_yAxisFontColor);
         wxGetApp().GetAppOptions().SetGraphTopTitleFont(m_topTitleFont);
         wxGetApp().GetAppOptions().SetGraphTopTitleFontColor(m_topTitleFontColor);
-        wxGetApp().GetAppOptions().SetBottomTitleGraphFont(m_bottomTitleFont);
-        wxGetApp().GetAppOptions().SetBottomTitleGraphFontColor(m_bottomTitleFontColor);
-        wxGetApp().GetAppOptions().SetLeftTitleGraphFont(m_leftTitleFont);
-        wxGetApp().GetAppOptions().SetLeftTitleGraphFontColor(m_leftTitleFontColor);
-        wxGetApp().GetAppOptions().SetRightTitleGraphFont(m_rightTitleFont);
-        wxGetApp().GetAppOptions().SetRightTitleGraphFontColor(m_rightTitleFontColor);
+        wxGetApp().GetAppOptions().SetGraphBottomTitleFont(m_bottomTitleFont);
+        wxGetApp().GetAppOptions().SetGraphBottomTitleFontColor(m_bottomTitleFontColor);
+        wxGetApp().GetAppOptions().SetGraphLeftTitleFont(m_leftTitleFont);
+        wxGetApp().GetAppOptions().SetGraphLeftTitleFontColor(m_leftTitleFontColor);
+        wxGetApp().GetAppOptions().SetGraphRightTitleFont(m_rightTitleFont);
+        wxGetApp().GetAppOptions().SetGraphRightTitleFontColor(m_rightTitleFontColor);
         if (IsPropertyAvailable(m_readabilityGraphPropertyGrid, GetInvalidRegionsColorLabel()))
             {
             wxGetApp().GetAppOptions().SetInvalidAreaColor(
@@ -3058,12 +3058,12 @@ void ToolsOptionsDlg::SaveProjectGraphOptions()
         m_readabilityProjectDoc->SetYAxisFontColor(m_yAxisFontColor);
         m_readabilityProjectDoc->SetGraphTopTitleFont(m_topTitleFont);
         m_readabilityProjectDoc->SetGraphTopTitleFontColor(m_topTitleFontColor);
-        m_readabilityProjectDoc->SetBottomTitleGraphFont(m_bottomTitleFont);
-        m_readabilityProjectDoc->SetBottomTitleGraphFontColor(m_bottomTitleFontColor);
-        m_readabilityProjectDoc->SetLeftTitleGraphFont(m_leftTitleFont);
-        m_readabilityProjectDoc->SetLeftTitleGraphFontColor(m_leftTitleFontColor);
-        m_readabilityProjectDoc->SetRightTitleGraphFont(m_rightTitleFont);
-        m_readabilityProjectDoc->SetRightTitleGraphFontColor(m_rightTitleFontColor);
+        m_readabilityProjectDoc->SetGraphBottomTitleFont(m_bottomTitleFont);
+        m_readabilityProjectDoc->SetGraphBottomTitleFontColor(m_bottomTitleFontColor);
+        m_readabilityProjectDoc->SetGraphLeftTitleFont(m_leftTitleFont);
+        m_readabilityProjectDoc->SetGraphLeftTitleFontColor(m_leftTitleFontColor);
+        m_readabilityProjectDoc->SetGraphRightTitleFont(m_rightTitleFont);
+        m_readabilityProjectDoc->SetGraphRightTitleFontColor(m_rightTitleFontColor);
         if (IsPropertyAvailable(m_readabilityGraphPropertyGrid, GetInvalidRegionsColorLabel()))
             {
             m_readabilityProjectDoc->SetInvalidAreaColor(

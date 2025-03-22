@@ -1,0 +1,19 @@
+## `UseRealTimeUpdate`
+
+Toggles whether documents are being re-analyzed as they change.
+
+### Syntax {-}
+
+``` {.lua}
+UseRealTimeUpdate(bool use)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`bool` use | `true` to enable real-time updating. |
+
+
+{{< pagebreak >}}

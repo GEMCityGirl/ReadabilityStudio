@@ -1498,7 +1498,26 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetAppendedDocumentFilePath(
-            wxString{ luaL_checkstring(L, 2), wxConvUTF8 });
+            wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsRealTimeUpdating(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetAppOptions().IsRealTimeUpdating());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int UseRealTimeUpdate(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().UseRealTimeUpdate(int_to_bool(lua_toboolean(L, 1)));
         return 0;
         }
 
@@ -1629,6 +1648,57 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int SetGraphBottomTitleFont(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        auto fontInfo = wxGetApp().GetAppOptions().GetGraphBottomTitleFont();
+        auto fontColor = wxGetApp().GetAppOptions().GetGraphBottomTitleFontColor();
+        LoadFontAttributes(L, fontInfo, fontColor, true);
+
+        wxGetApp().GetAppOptions().SetGraphBottomTitleFont(fontInfo);
+        wxGetApp().GetAppOptions().SetGraphBottomTitleFontColor(fontColor);
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int SetGraphRightTitleFont(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        auto fontInfo = wxGetApp().GetAppOptions().GetGraphRightTitleFont();
+        auto fontColor = wxGetApp().GetAppOptions().GetGraphRightTitleFontColor();
+        LoadFontAttributes(L, fontInfo, fontColor, true);
+
+        wxGetApp().GetAppOptions().SetGraphRightTitleFont(fontInfo);
+        wxGetApp().GetAppOptions().SetGraphRightTitleFontColor(fontColor);
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int SetGraphLeftTitleFont(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        auto fontInfo = wxGetApp().GetAppOptions().GetGraphLeftTitleFont();
+        auto fontColor = wxGetApp().GetAppOptions().GetGraphLeftTitleFontColor();
+        LoadFontAttributes(L, fontInfo, fontColor, true);
+
+        wxGetApp().GetAppOptions().SetGraphLeftTitleFont(fontInfo);
+        wxGetApp().GetAppOptions().SetGraphLeftTitleFontColor(fontColor);
+        return 0;
+        }
+
+    //-------------------------------------------------------------
     int DisplayBarChartLabels(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))
@@ -1710,6 +1780,26 @@ namespace LuaScripting
             }
         wxGetApp().GetAppOptions().SetPlotBackGroundColorOpacity(lua_tonumber(L, 1));
         return 0;
+        }
+
+    //-------------------------------------------------------------
+    int SetGraphColorScheme(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().SetGraphColorScheme(
+            wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int GetGraphColorScheme(lua_State* L)
+        {
+        lua_pushstring(L, wxGetApp().GetAppOptions().GetGraphColorScheme().utf8_str());
+        return 1;
         }
 
     //-------------------------------------------------------------

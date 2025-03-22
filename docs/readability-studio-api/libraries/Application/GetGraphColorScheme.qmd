@@ -1,0 +1,17 @@
+## `GetGraphColorScheme`
+
+Returns the graph color scheme for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+string GetGraphColorScheme()
+```
+
+
+### Return value {-}
+
+Type: `string`
+
+
+{{< pagebreak >}}

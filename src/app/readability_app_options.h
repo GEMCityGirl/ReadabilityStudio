@@ -2043,12 +2043,12 @@ class ReadabilityAppOptions
         }
 
     [[nodiscard]]
-    wxColour GetBottomTitleGraphFontColor() const
+    wxColour GetGraphBottomTitleFontColor() const
         {
         return m_bottomTitleFontColor;
         }
 
-    void SetBottomTitleGraphFontColor(const wxColour& color)
+    void SetGraphBottomTitleFontColor(const wxColour& color)
         {
         if (color.IsOk())
             {
@@ -2057,12 +2057,12 @@ class ReadabilityAppOptions
         }
 
     [[nodiscard]]
-    wxFont GetBottomTitleGraphFont() const
+    wxFont GetGraphBottomTitleFont() const
         {
         return m_bottomTitleFont;
         }
 
-    void SetBottomTitleGraphFont(const wxFont& font)
+    void SetGraphBottomTitleFont(const wxFont& font)
         {
         if (font.IsOk())
             {
@@ -2071,12 +2071,12 @@ class ReadabilityAppOptions
         }
 
     [[nodiscard]]
-    wxColour GetLeftTitleGraphFontColor() const
+    wxColour GetGraphLeftTitleFontColor() const
         {
         return m_leftTitleFontColor;
         }
 
-    void SetLeftTitleGraphFontColor(const wxColour& color)
+    void SetGraphLeftTitleFontColor(const wxColour& color)
         {
         if (color.IsOk())
             {
@@ -2085,12 +2085,12 @@ class ReadabilityAppOptions
         }
 
     [[nodiscard]]
-    wxFont GetLeftTitleGraphFont() const
+    wxFont GetGraphLeftTitleFont() const
         {
         return m_leftTitleFont;
         }
 
-    void SetLeftTitleGraphFont(const wxFont& font)
+    void SetGraphLeftTitleFont(const wxFont& font)
         {
         if (font.IsOk())
             {
@@ -2099,12 +2099,12 @@ class ReadabilityAppOptions
         }
 
     [[nodiscard]]
-    wxColour GetRightTitleGraphFontColor() const
+    wxColour GetGraphRightTitleFontColor() const
         {
         return m_rightTitleFontColor;
         }
 
-    void SetRightTitleGraphFontColor(const wxColour& color)
+    void SetGraphRightTitleFontColor(const wxColour& color)
         {
         if (color.IsOk())
             {
@@ -2113,12 +2113,12 @@ class ReadabilityAppOptions
         }
 
     [[nodiscard]]
-    wxFont GetRightTitleGraphFont() const
+    wxFont GetGraphRightTitleFont() const
         {
         return m_rightTitleFont;
         }
 
-    void SetRightTitleGraphFont(const wxFont& font)
+    void SetGraphRightTitleFont(const wxFont& font)
         {
         if (font.IsOk())
             {
