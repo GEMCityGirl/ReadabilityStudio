@@ -896,7 +896,7 @@ namespace LuaScripting
             }
 
         lua_pushnumber(L, static_cast<int>(m_project->GetMinDocWordCountForBatch()));
-        return 0;
+        return 1;
         }
 
     //-------------------------------------------------------------
@@ -1153,10 +1153,13 @@ namespace LuaScripting
                                         exportOptions));
                 listWindow->SetLabel(originalLabel);
                 listWindow->SetFocus();
+                wxGetApp().Yield();
+                return 1;
                 }
             }
         wxGetApp().Yield();
-        return 0;
+        lua_pushboolean(L, false);
+        return 1;
         }
 
     // Saves a graph from the project as an image.
@@ -1236,6 +1239,8 @@ namespace LuaScripting
                     L,
                     graphWindow->Save(wxString(luaL_checklstring(L, 4, nullptr), wxConvUTF8), opt));
                 graphWindow->SetLabel(originalLabel);
+                wxGetApp().Yield();
+                return 1;
                 }
             else
                 {
@@ -1243,11 +1248,13 @@ namespace LuaScripting
                     wxString::Format(_(L"Unable to find the specified graph (%d) in the project."),
                                      static_cast<int>(lua_tonumber(L, 3))),
                     _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
-                return 0;
+                lua_pushboolean(L, false);
+                return 1;
                 }
             }
         wxGetApp().Yield();
-        return 0;
+        lua_pushboolean(L, false);
+        return 1;
         }
 
     // Exports all of the results from the project into a folder.

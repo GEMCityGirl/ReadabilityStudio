@@ -1283,15 +1283,20 @@ namespace LuaScripting
                 lua_pushboolean(
                     L, scoresWindow->Save(wxString(luaL_checklstring(L, 2, nullptr), wxConvUTF8)));
                 scoresWindow->SetLabel(originalLabel);
+                wxGetApp().Yield();
+                return 1;
                 }
             else
                 {
                 wxMessageBox(_(L"Unable to find the scores in the project."), _(L"Script Error"),
                              wxOK | wxICON_EXCLAMATION);
-                return 0;
+                lua_pushboolean(L, false);
+                return 1;
                 }
             }
-        return 0;
+        wxGetApp().Yield();
+        lua_pushboolean(L, false);
+        return 1;
         }
 
     // Saves a graph from the project as an image.
@@ -1376,6 +1381,8 @@ namespace LuaScripting
                     L,
                     graphWindow->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8), opt));
                 graphWindow->SetLabel(originalLabel);
+                wxGetApp().Yield();
+                return 1;
                 }
             else
                 {
@@ -1383,10 +1390,13 @@ namespace LuaScripting
                     wxString::Format(_(L"Unable to find the specified graph (%d) in the project."),
                                      static_cast<int>(lua_tonumber(L, 2))),
                     _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
-                return 0;
+                lua_pushboolean(L, false);
+                return 1;
                 }
             }
-        return 0;
+        wxGetApp().Yield();
+        lua_pushboolean(L, false);
+        return 1;
         }
 
     // Saves a highlighted words report from the project.
@@ -1436,6 +1446,8 @@ namespace LuaScripting
                     wxString::Format(L" [%s]", wxFileName::StripExtension(doc->GetTitle())));
                 lua_pushboolean(
                     L, textWindow->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8)));
+                wxGetApp().Yield();
+                return 1;
                 }
             else
                 {
@@ -1444,10 +1456,13 @@ namespace LuaScripting
                         _(L"Unable to find the specified highlighted words (%d) in the project."),
                         static_cast<int>(lua_tonumber(L, 2))),
                     _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
-                return 0;
+                lua_pushboolean(L, false);
+                return 1;
                 }
             }
-        return 0;
+        wxGetApp().Yield();
+        lua_pushboolean(L, false);
+        return 1;
         }
 
     // Saves a summary report from the project.
@@ -1487,6 +1502,8 @@ namespace LuaScripting
                     lua_pushboolean(
                         L, window->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8)));
                     window->SetLabel(originalLabel);
+                    wxGetApp().Yield();
+                    return 1;
                     }
                 }
             else if (windowId == BaseProjectView::READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID)
@@ -1502,6 +1519,8 @@ namespace LuaScripting
                     lua_pushboolean(
                         L, window->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8)));
                     window->SetLabel(originalLabel);
+                    wxGetApp().Yield();
+                    return 1;
                     }
                 }
             else if (windowId == BaseProjectView::READABILITY_SCORES_PAGE_ID)
@@ -1517,6 +1536,8 @@ namespace LuaScripting
                     lua_pushboolean(
                         L, window->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8)));
                     window->SetLabel(originalLabel);
+                    wxGetApp().Yield();
+                    return 1;
                     }
                 }
             else
@@ -1525,10 +1546,14 @@ namespace LuaScripting
                     wxString::Format(_(L"Unable to find the specified report (%d) in the project."),
                                      static_cast<int>(lua_tonumber(L, 2))),
                     _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
-                return 0;
+                wxGetApp().Yield();
+                lua_pushboolean(L, false);
+                return 1;
                 }
             }
-        return 0;
+        wxGetApp().Yield();
+        lua_pushboolean(L, false);
+        return 1;
         }
 
     // Saves a list from the project.
@@ -1596,6 +1621,8 @@ namespace LuaScripting
                     L, listWindow->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8),
                                         exportOptions));
                 listWindow->SetLabel(originalLabel);
+                wxGetApp().Yield();
+                return 1;
                 }
             else
                 {
@@ -1603,10 +1630,14 @@ namespace LuaScripting
                     wxString::Format(_(L"Unable to find the specified list (%d) in the project."),
                                      static_cast<int>(lua_tonumber(L, 2))),
                     _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
-                return 0;
+                wxGetApp().Yield();
+                lua_pushboolean(L, false);
+                return 1;
                 }
             }
-        return 0;
+        wxGetApp().Yield();
+        lua_pushboolean(L, false);
+        return 1;
         }
 
     // Saves a copy of the project's document with excluded text
