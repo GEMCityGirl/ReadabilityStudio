@@ -111,6 +111,7 @@ class LuaEditorDlg final : public wxFrame
         }
 
   private:
+    void ImportAPI();
     void CreateControls();
     void OnClose([[maybe_unused]] wxCloseEvent& event);
     void OnSave([[maybe_unused]] wxCommandEvent& event);
@@ -130,6 +131,11 @@ class LuaEditorDlg final : public wxFrame
 
     wxFindReplaceDialog* m_dlgFind{ nullptr };
     wxFindReplaceDialog* m_dlgReplace{ nullptr };
+
+    using LibnameAndEntries = std::pair<std::wstring, Wisteria::UI::CodeEditor::NameList>;
+    std::vector<LibnameAndEntries> m_classes;
+    std::vector<LibnameAndEntries> m_libraries;
+    std::vector<LibnameAndEntries> m_enums;
     };
 
     /** @}*/

@@ -360,6 +360,8 @@ LuaEditorDlg::LuaEditorDlg(
               ((parent == nullptr) ? style | wxDIALOG_NO_PARENT : style)),
       m_debugMessageWindow(nullptr)
     {
+    ImportAPI();
+
     m_mgr.SetManagedWindow(this);
 
     wxIcon ico;
@@ -422,10 +424,10 @@ LuaEditorDlg::LuaEditorDlg(
                     }
 
                 wxMessageBox(wxString::Format(
-                                // TRANSLATORS: placeholders are a line number and error message
-                                // from a script
-                                _(L"Line #%s: %s"), std::to_wstring(lineNumber + 1), errorMessage),
-                            _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
+                                 // TRANSLATORS: placeholders are a line number and error message
+                                 // from a script
+                                 _(L"Line #%s: %s"), std::to_wstring(lineNumber + 1), errorMessage),
+                             _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
                 if (lineNumber >= 0)
                     {
                     errorMessage.insert(0, _(L"Error:"));
@@ -447,7 +449,7 @@ LuaEditorDlg::LuaEditorDlg(
                     const int indent = editor->GetLineIndentation(lineNumber) + FromDIP(3);
 
                     const int widthAnn = editor->TextWidth(editor->ERROR_ANNOTATION_STYLE,
-                                                        errorMessage + wxString(indent, L' '));
+                                                           errorMessage + wxString(indent, L' '));
 
                     if (widthAnn > width)
                         {
@@ -608,6 +610,117 @@ LuaEditorDlg::LuaEditorDlg(
     accelEntries[5].Set(wxACCEL_NORMAL, WXK_F5, XRCID("ID_RUN"));
     wxAcceleratorTable accelTable(std::size(accelEntries), accelEntries);
     SetAcceleratorTable(accelTable);
+    }
+
+//------------------------------------------------------
+void LuaEditorDlg::ImportAPI()
+    {
+    // import API info
+    std::vector<std::vector<std::wstring>> apiStrings;
+
+    lily_of_the_valley::standard_delimited_character_column tabbedColumn(
+        lily_of_the_valley::text_column_delimited_character_parser{ L'\t' }, 1);
+    lily_of_the_valley::standard_delimited_character_column semiColonColumn(
+        lily_of_the_valley::text_column_delimited_character_parser{ L';' }, std::nullopt);
+    lily_of_the_valley::text_row<std::wstring> row(std::nullopt);
+    row.treat_consecutive_delimitors_as_one(true); // skip consecutive semicolons
+    row.add_column(tabbedColumn);
+    row.add_column(semiColonColumn);
+    row.allow_column_resizing(true);
+
+    lily_of_the_valley::text_matrix<std::wstring> importer(&apiStrings);
+    importer.add_row_definition(
+        lily_of_the_valley::text_row<std::wstring>(1)); // skip warning in first line
+    importer.add_row_definition(row);
+
+    lily_of_the_valley::text_preview preview;
+
+    // library/enum file
+    wxString libraryText;
+    wxString libFilePath = wxGetApp().FindResourceFile(L"rs-classes.api");
+    if (Wisteria::TextStream::ReadFile(libFilePath, libraryText))
+        {
+        apiStrings.clear();
+
+        // see how many lines are in the file and resize the container
+        const size_t rowCount = preview(libraryText, L'\t', true, false);
+        if (rowCount > 0)
+            {
+            apiStrings.resize(rowCount);
+            importer.read(libraryText, rowCount, 2, true);
+
+            for (auto& lib : apiStrings)
+                {
+                if (lib.size())
+                    {
+                    std::wstring libName = lib.front();
+                    lib.erase(lib.begin(), lib.begin() + 1);
+                    CodeEditor::NameList nl;
+                    for (const auto& className : lib)
+                        {
+                        nl.insert(className);
+                        }
+                    m_classes.push_back({ libName, nl });
+                    }
+                }
+            }
+        }
+
+    apiStrings.clear();
+    libFilePath = wxGetApp().FindResourceFile(L"rs-libraries.api");
+    if (Wisteria::TextStream::ReadFile(libFilePath, libraryText))
+        {
+        // see how many lines are in the file and resize the container
+        const size_t rowCount = preview(libraryText, L'\t', true, false);
+        if (rowCount > 0)
+            {
+            apiStrings.resize(rowCount);
+            importer.read(libraryText, rowCount, 2, true);
+
+            for (auto& lib : apiStrings)
+                {
+                if (lib.size())
+                    {
+                    std::wstring libName = lib.front();
+                    lib.erase(lib.begin(), lib.begin() + 1);
+                    CodeEditor::NameList nl;
+                    for (const auto& lName : lib)
+                        {
+                        nl.insert(lName);
+                        }
+                    m_libraries.push_back({ libName, nl });
+                    }
+                }
+            }
+        }
+
+    apiStrings.clear();
+    libFilePath = wxGetApp().FindResourceFile(L"rs-enums.api");
+    if (Wisteria::TextStream::ReadFile(libFilePath, libraryText))
+        {
+        // see how many lines are in the file and resize the container
+        const size_t rowCount = preview(libraryText, L'\t', true, false);
+        if (rowCount > 0)
+            {
+            apiStrings.resize(rowCount);
+            importer.read(libraryText, rowCount, 2, true);
+
+            for (auto& lib : apiStrings)
+                {
+                if (lib.size())
+                    {
+                    std::wstring libName = lib.front();
+                    lib.erase(lib.begin(), lib.begin() + 1);
+                    CodeEditor::NameList nl;
+                    for (const auto& lName : lib)
+                        {
+                        nl.insert(lName);
+                        }
+                    m_enums.push_back({ libName, nl });
+                    }
+                }
+            }
+        }
     }
 
 //------------------------------------------------------
@@ -844,116 +957,21 @@ CodeEditor* LuaEditorDlg::CreateLuaScript(wxWindow* parent)
     codeEditor->SetText(codeEditor->GetDefaultHeader());
     codeEditor->SetModified(false);
 
-        // import API info
+    for (const auto& theClass : m_classes)
         {
-        std::vector<std::vector<std::wstring>> apiStrings;
-
-        lily_of_the_valley::standard_delimited_character_column tabbedColumn(
-            lily_of_the_valley::text_column_delimited_character_parser{ L'\t' }, 1);
-        lily_of_the_valley::standard_delimited_character_column semiColonColumn(
-            lily_of_the_valley::text_column_delimited_character_parser{ L';' }, std::nullopt);
-        lily_of_the_valley::text_row<std::wstring> row(std::nullopt);
-        row.treat_consecutive_delimitors_as_one(true); // skip consecutive semicolons
-        row.add_column(tabbedColumn);
-        row.add_column(semiColonColumn);
-        row.allow_column_resizing(true);
-
-        lily_of_the_valley::text_matrix<std::wstring> importer(&apiStrings);
-        importer.add_row_definition(
-            lily_of_the_valley::text_row<std::wstring>(1)); // skip warning in first line
-        importer.add_row_definition(row);
-
-        lily_of_the_valley::text_preview preview;
-
-        // library/enum file
-        wxString libraryText;
-        wxString libFilePath = wxGetApp().FindResourceFile(L"rs-classes.api");
-        if (Wisteria::TextStream::ReadFile(libFilePath, libraryText))
-            {
-            apiStrings.clear();
-
-            // see how many lines are in the file and resize the container
-            const size_t rowCount = preview(libraryText, L'\t', true, false);
-            if (rowCount > 0)
-                {
-                apiStrings.resize(rowCount);
-                importer.read(libraryText, rowCount, 2, true);
-
-                for (auto& lib : apiStrings)
-                    {
-                    if (lib.size())
-                        {
-                        const std::wstring libName = lib.front();
-                        lib.erase(lib.begin(), lib.begin() + 1);
-                        CodeEditor::NameList nl;
-                        for (const auto& className : lib)
-                            {
-                            nl.insert(className);
-                            }
-                        codeEditor->AddClass(libName, nl);
-                        }
-                    }
-                }
-            }
-
-        apiStrings.clear();
-        libFilePath = wxGetApp().FindResourceFile(L"rs-libraries.api");
-        if (Wisteria::TextStream::ReadFile(libFilePath, libraryText))
-            {
-            // see how many lines are in the file and resize the container
-            const size_t rowCount = preview(libraryText, L'\t', true, false);
-            if (rowCount > 0)
-                {
-                apiStrings.resize(rowCount);
-                importer.read(libraryText, rowCount, 2, true);
-
-                for (auto& lib : apiStrings)
-                    {
-                    if (lib.size())
-                        {
-                        const std::wstring libName = lib.front();
-                        lib.erase(lib.begin(), lib.begin() + 1);
-                        CodeEditor::NameList nl;
-                        for (const auto& lName : lib)
-                            {
-                            nl.insert(lName);
-                            }
-                        codeEditor->AddLibrary(libName, nl);
-                        }
-                    }
-                }
-            }
-
-        apiStrings.clear();
-        libFilePath = wxGetApp().FindResourceFile(L"rs-enums.api");
-        if (Wisteria::TextStream::ReadFile(libFilePath, libraryText))
-            {
-            // see how many lines are in the file and resize the container
-            const size_t rowCount = preview(libraryText, L'\t', true, false);
-            if (rowCount > 0)
-                {
-                apiStrings.resize(rowCount);
-                importer.read(libraryText, rowCount, 2, true);
-
-                for (auto& lib : apiStrings)
-                    {
-                    if (lib.size())
-                        {
-                        const std::wstring libName = lib.front();
-                        lib.erase(lib.begin(), lib.begin() + 1);
-                        CodeEditor::NameList nl;
-                        for (const auto& lName : lib)
-                            {
-                            nl.insert(lName);
-                            }
-                        codeEditor->AddLibrary(libName, nl);
-                        }
-                    }
-                }
-            }
+        codeEditor->AddClass(theClass.first, theClass.second);
+        }
+    for (const auto& theLib : m_libraries)
+        {
+        codeEditor->AddLibrary(theLib.first, theLib.second);
+        }
+    for (const auto& theLib : m_enums)
+        {
+        codeEditor->AddLibrary(theLib.first, theLib.second);
         }
 
     codeEditor->Finalize();
+
     codeEditor->SetSelection(codeEditor->GetTextLength(), codeEditor->GetTextLength());
     codeEditor->Show();
 
