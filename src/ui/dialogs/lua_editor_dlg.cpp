@@ -539,6 +539,15 @@ LuaEditorDlg::LuaEditorDlg(
 
     Bind(wxEVT_TOOL, &LuaEditorDlg::OnSave, this, XRCID("ID_SAVE"));
 
+    Bind(
+        wxEVT_TOOL,
+        [this]([[maybe_unused]] wxCommandEvent&)
+        {
+            m_mgr.GetPane(L"funcbrowser").Show(!m_mgr.GetPane(L"funcbrowser").IsShown());
+            m_mgr.Update();
+        },
+        XRCID("ID_FUNCTION_BROWSER"));
+
     Bind(wxEVT_TOOL, [this]([[maybe_unused]] wxCommandEvent&) { DebugClear(); }, XRCID("ID_CLEAR"));
 
     Bind(
@@ -1011,6 +1020,9 @@ void LuaEditorDlg::CreateControls()
                        wxArtProvider::GetBitmapBundle(L"ID_CLEAR", wxART_BUTTON),
                        _(L"Clear the log window."));
     m_toolbar->AddSeparator();
+    m_toolbar->AddTool(XRCID("ID_FUNCTION_BROWSER"), _(L"Function Browser"),
+                       wxArtProvider::GetBitmapBundle(L"ID_FUNCTION", wxART_BUTTON),
+                       _(L"View the function browser."));
     m_toolbar->AddTool(wxID_HELP, _(L"Content"),
                        wxArtProvider::GetBitmapBundle(wxART_HELP_BOOK, wxART_BUTTON),
                        _(L"View the documentation."));
@@ -1038,6 +1050,35 @@ void LuaEditorDlg::CreateControls()
 
     m_mgr.AddPane(m_notebook, wxAuiPaneInfo().Name(L"auinotebook").CenterPane().PaneBorder(false));
 
+    m_functionBrowser = new FunctionBrowserCtrl(this, this);
+    m_functionBrowser->AddCategory(L"Libraries", 1000);
+    m_functionBrowser->AddCategory(L"Classes", 1001);
+    m_functionBrowser->AddCategory(L"Enumerations", 1002);
+    for (const auto& theClass : m_classes)
+        {
+        m_functionBrowser->AddCategory(theClass.first, theClass.second, 1001);
+        }
+    for (const auto& theLib : m_libraries)
+        {
+        m_functionBrowser->AddCategory(theLib.first, theLib.second, 1000);
+        }
+    for (const auto& theLib : m_enums)
+        {
+        m_functionBrowser->AddCategory(theLib.first, theLib.second, 1002);
+        }
+    m_functionBrowser->FinalizeCategories();
+    m_mgr.AddPane(m_functionBrowser, wxAuiPaneInfo()
+                                         .Name(L"funcbrowser")
+                                         .Right()
+                                         .MinimizeButton(true)
+                                         .MaximizeButton(true)
+                                         .Caption(_(L"Function Browser"))
+                                         .FloatingSize(FromDIP(wxSize{ 800, 1000 }))
+                                         .BestSize(FromDIP(wxSize{ 800, 1000 }))
+                                         .PinButton(true)
+                                         .CloseButton(true)
+                                         .Hide());
+
     m_debugMessageWindow = new wxHtmlWindow(this);
     m_mgr.AddPane(m_debugMessageWindow, wxAuiPaneInfo()
                                             .Name(L"auidebug")
@@ -1050,7 +1091,7 @@ void LuaEditorDlg::CreateControls()
                                             .PinButton(true)
                                             .CloseButton(false));
 
-    SetSize(FromDIP(wxSize{ 1200, 1200 }));
+    SetSize(FromDIP(wxSize{ 1600, 1200 }));
 
     m_mgr.Update();
     }

@@ -13,6 +13,7 @@
 #define __LUA_EDITOR_DIALOG_H__
 
 #include "../../Wisteria-Dataviz/src/ui/controls/codeeditor.h"
+#include "../../Wisteria-Dataviz/src/ui/dialogs/functionbrowserdlg.h"
 #include <wx/aui/aui.h>
 #include <wx/dialog.h>
 #include <wx/fdrepdlg.h>
@@ -74,6 +75,10 @@ class LuaEditorDlg final : public wxFrame
         Show();
         for (auto& pn : m_mgr.GetAllPanes())
             {
+            if (pn.name == L"funcbrowser" && !m_isFunctionBrowserShown)
+                {
+                continue;
+                }
             pn.Show();
             }
 
@@ -86,8 +91,7 @@ class LuaEditorDlg final : public wxFrame
         // close any call tip and auto-completion windows
         if (m_notebook->GetPageCount() > 0)
             {
-            auto codeEditor =
-                dynamic_cast<Wisteria::UI::CodeEditor*>(m_notebook->GetCurrentPage());
+            auto codeEditor = dynamic_cast<Wisteria::UI::CodeEditor*>(m_notebook->GetCurrentPage());
             if (codeEditor != nullptr)
                 {
                 if (codeEditor->CallTipActive())
@@ -104,6 +108,10 @@ class LuaEditorDlg final : public wxFrame
         Hide();
         for (auto& pn : m_mgr.GetAllPanes())
             {
+            if (pn.name == L"funcbrowser")
+                {
+                m_isFunctionBrowserShown = pn.IsShown();
+                }
             pn.Hide();
             }
 
@@ -125,7 +133,9 @@ class LuaEditorDlg final : public wxFrame
     wxAuiNotebook* m_notebook{ nullptr };
     wxAuiToolBar* m_toolbar{ nullptr };
     wxHtmlWindow* m_debugMessageWindow{ nullptr };
+    Wisteria::UI::FunctionBrowserCtrl* m_functionBrowser{ nullptr };
     wxAuiManager m_mgr;
+    bool m_isFunctionBrowserShown{ false };
 
     wxFindReplaceData m_findData{ wxFR_DOWN };
 
