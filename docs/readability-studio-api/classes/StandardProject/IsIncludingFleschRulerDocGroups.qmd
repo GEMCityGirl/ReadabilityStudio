@@ -1,0 +1,17 @@
+## `IsIncludingFleschRulerDocGroups`
+
+Returns document group labels are drawn next to the syllable ruler on Flesch charts.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsIncludingFleschRulerDocGroups()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

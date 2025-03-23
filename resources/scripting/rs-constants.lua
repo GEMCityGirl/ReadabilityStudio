@@ -205,7 +205,7 @@ ImageEffect =
   BlurHorizontal = 2, -- A horizontal blur across the image.
   BlurVertical = 3,   -- A vertical blur across the image.
   Sepia = 4,          -- A sepia (i.e., faded photograph) effect.
-  FrostedGlass = 5,   -- A frosted glass window effect to an image.
+  FrostedGlass = 5,   -- A frosted glass window effect.
   OilPainting = 6     -- An oil painting effect.
   }
 
@@ -286,6 +286,14 @@ Language =
   English = 0, -- English.
   Spanish = 1, -- Spanish.
   German = 2   -- German.
+  }
+
+-- The following visual styles for Raygor graphs are available.
+RaygorStyle =
+  {
+  Original = 0,       -- Blocky font, abbreviated labels, no invalid region polygons.
+  BaldwinKaufman = 1, -- Same as Original, except includes invalid region polygons.
+  Modern = 2          -- Same as Baldwin-Kaufman, but includes expanded plot and axis labels.
   }
 
 -- The following document connection methods are available.
@@ -389,6 +397,7 @@ OptionsPageType = protect_enum(OptionsPageType)
 ProductType = protect_enum(ProductType)
 Test = protect_enum(Test)
 Language = protect_enum(Language)
+RaygorStyle = protect_enum(RaygorStyle)
 TextStorage = protect_enum(TextStorage)
 ParagraphParse = protect_enum(ParagraphParse)
 FilePathDisplayMode = protect_enum(FilePathDisplayMode)

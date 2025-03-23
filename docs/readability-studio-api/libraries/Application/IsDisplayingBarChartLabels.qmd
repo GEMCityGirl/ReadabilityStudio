@@ -1,0 +1,17 @@
+## `IsDisplayingBarChartLabels`
+
+Returns whether to display labels above each bar in a bar chart for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsDisplayingBarChartLabels()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

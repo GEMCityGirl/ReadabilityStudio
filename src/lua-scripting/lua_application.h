@@ -122,33 +122,49 @@ namespace LuaScripting
     int /*string*/ GetGraphColorScheme(lua_State* L); // Returns the graph color scheme for new projects.
     int SetGraphBackgroundColor(lua_State* L /*number red, number green, number blue*/); // Sets the graph background color for new projects.
     int ApplyGraphBackgroundFade(lua_State* L /*bool applyFade*/); // Sets whether to apply a fade to graph background colors for new projects.
-    int SetGraphCommonImage(lua_State* L /*string imagePath*/); // Sets the common image drawn across all bars.
-    int SetPlotBackgroundImage(lua_State* L /*string imagePath*/); // Sets the graph background (plot area) image for new projects.
-    int SetPlotBackgroundImageEffect(lua_State* L /*ImageEffect imageEffect*/); // Sets the effect applied to an image when drawn as a graph's background for new projects.
-    int SetPlotBackgroundImageFit(lua_State* L /*ImageFit fitType*/); // Specifies how to adjust an image to fit within a graph's background for new projects.
-    int SetPlotBackgroundImageOpacity(lua_State* L /*number opacity*/); // Sets the graph background (plot area) image opacity for new projects.
     int SetPlotBackgroundColor(lua_State* L /*number red, number green, number blue*/); // Sets the graph background (plot area) color for new projects.
     int SetPlotBackgroundOpacity(lua_State* L /*number opacity*/); // Sets the graph background (plot area) color opacity for new projects.
+    int SetPlotBackgroundImage(lua_State* L /*string imagePath*/); // Sets the graph background (plot area) image for new projects.
+    int SetPlotBackgroundImageEffect(lua_State* L /*ImageEffect imageEffect*/); // Sets the effect applied to an image when drawn as a graph's background for new projects.
+    int SetPlotBackgroundImageOpacity(lua_State* L /*number opacity*/); // Sets the graph background (plot area) image opacity for new projects.
+    int SetPlotBackgroundImageFit(lua_State* L /*ImageFit fitType*/); // Specifies how to adjust an image to fit within a graph's background for new projects.
     int SetWatermark(lua_State* L /*string watermark*/); // Sets the watermark drawn on graphs for new projects.
     int SetGraphLogoImage(lua_State* L /*string imagePath*/); // Sets the logo image for new projects.
     int SetStippleImage(lua_State* L /*string imagePath*/);// Sets the stipple image used to draw bars in graphs for new projects.
     int SetStippleShape(lua_State* L /*string shapeId*/); // Sets the stipple shape used to draw bars in graphs for new projects.
-    int SetXAxisFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' X axes for new projects.
-    int SetYAxisFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' Y axes for new projects.
-    int SetGraphTopTitleFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' top titles for new projects.
-    int SetGraphBottomTitleFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' bottom titles.
-    int SetGraphLeftTitleFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' left titles.
-    int SetGraphRightTitleFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' right titles.
-    int DisplayBarChartLabels(lua_State* L /*boolean display*/); // Specifies whether to display labels above each bar in a bar chart for new projects.
-    int DisplayGraphDropShadows(lua_State* L /*bool displayShadows*/); // Sets whether to display shadows on graphs for new projects.
-    int SetBarChartBarColor(lua_State* L /*number red, number green, number blue*/); // Sets bar color (in bar charts) for new projects.
-    int SetBarChartBarOpacity(lua_State* L /*number opacity*/); // Sets bar opacity (in bar charts) for new projects.
-    int SetBarChartBarEffect(lua_State* L /*BoxEffect barEffect*/); // Sets bar appearance (in bar charts) for new projects.
-    int SetBarChartOrientation(lua_State* L /*Orientation barOrientation*/); // Sets the orientation for bars for new projects.
-    int SetGraphInvalidRegionColor(lua_State* L /*number red, number green, number blue*/); // Sets the color for the invalid score regions for Fry-like graphs for new projects.
     int SetStippleShapeColor(lua_State* L /*number red, number green, number blue*/); // If using stipple shapes for bars, sets the color for certain shapes for new projects.
+    int SetGraphCommonImage(lua_State* L /*string imagePath*/); // Sets the common image drawn across all bars.
+    int DisplayGraphDropShadows(lua_State* L /*bool displayShadows*/); // Sets whether to display shadows on graphs for new projects.
     int ShowcaseKeyItems(lua_State* L /*boolean showcase*/); // Specifies whether important parts of certain graphs should be highlighted for new projects.
 
+    int SetXAxisFont(lua_State* L /*string fontName, number pointSize, FontWeight weight, string color*/); // Sets the font for the graphs' X axes for new projects.
+    int SetYAxisFont(lua_State* L /*string fontName, number pointSize, FontWeight weight, string color*/); // Sets the font for the graphs' Y axes for new projects.
+
+    int SetGraphTopTitleFont(lua_State* L /*string fontName, number pointSize, FontWeight weight, string color*/); // Sets the font for the graphs' top titles for new projects.
+    int SetGraphBottomTitleFont(lua_State* L /*string fontName, number pointSize, FontWeight weight, string color*/); // Sets the font for the graphs' bottom titles.
+    int SetGraphLeftTitleFont(lua_State* L /*string fontName, number pointSize, FontWeight weight, string color*/); // Sets the font for the graphs' left titles.
+    int SetGraphRightTitleFont(lua_State* L /*string fontName, number pointSize, FontWeight weight, string color*/); // Sets the font for the graphs' right titles.
+
+    int SetGraphInvalidRegionColor(lua_State* L /*number red, number green, number blue*/); // Sets the color for the invalid score regions for Fry-like graphs for new projects.
+    int SetRaygorStyle(lua_State* L /*RaygorStyle style*/); // Sets the visual style for Raygor graphs for new projects.
+    int /*RaygorStyle*/ GetRaygorStyle(lua_State* L); // Returns the visual style for Raygor graphs for new projects.
+    int ConnectFleschPoints(lua_State* L /*boolean connect*/); // Sets whether connection lines should be drawn between the three rules in Flesch charts for new projects.
+    int /*boolean*/ IsConnectingFleschPoints(lua_State* L); // Returns whether connection lines should be drawn between the three rules in Flesch charts for new projects.
+    int IncludeFleschRulerDocGroups(lua_State* L /*boolean include*/); // Sets whether document group labels are drawn next to the syllable ruler on Flesch charts for new projects.
+    int /*boolean*/ IsIncludingFleschRulerDocGroups(lua_State* L); // Returns whether document group labels are drawn next to the syllable ruler on Flesch charts for new projects.
+    int UseEnglishLabelsForGermanLix(lua_State* L /*boolean useEnglish*/); // Sets whether English labels are being used for the brackets on German Lix gauges for new projects.
+    int /*boolean*/ IsUsingEnglishLabelsForGermanLix(lua_State* L); // Returns whether English labels are being used for the brackets on German Lix gauges for new projects.
+
+    int SetBarChartBarColor(lua_State* L /*number red, number green, number blue*/); // Sets bar color (in bar charts) for new projects.
+    int SetBarChartBarEffect(lua_State* L /*BoxEffect barEffect*/); // Sets bar appearance (in bar charts) for new projects.
+    int /*BoxEffect*/ GetBarChartBarEffect(lua_State* L); // Returns how bars should be drawn within the various bar charts for new projects.
+    int SetBarChartBarOpacity(lua_State* L /*number opacity*/); // Sets bar opacity (in bar charts) for new projects.
+    int /*number*/ GetBarChartBarOpacity(lua_State* L); // Returns the opacity of the bars within the various bar charts for new projects.
+    int SetBarChartOrientation(lua_State* L /*Orientation barOrientation*/); // Sets the orientation for bars for new projects.
+    int /*Orientation*/ GetBarChartOrientation(lua_State* L); // Returns whether the bar charts should be drawn vertically or horizontally for new projects.
+    int DisplayBarChartLabels(lua_State* L /*boolean display*/); // Specifies whether to display labels above each bar in a bar chart for new projects.
+    int /*boolean*/ IsDisplayingBarChartLabels(lua_State* L); // Returns whether to display labels above each bar in a bar chart for new projects.
+     
     int /*table*/ GetImageInfo(lua_State* /*string imagePath*/); // Returns width and height for an image.
     int /*boolean*/ ApplyImageEffect(lua_State* /*string inputImagePath, string outputImagePath, ImageEffect effect*/); // Applies an effect to an image and saves the result to another image file. Returns true if image was successfully saved.
     int /*boolean*/ StitchImages(lua_State* /*string inputImage1, ..., string outputImagePath, Orientation direction*/); // Combines a list of images vertically or horizontally. Returns true if image was successfully saved.
@@ -260,8 +276,20 @@ namespace LuaScripting
         { "SetBarChartBarColor", SetBarChartBarColor },
         { "SetBarChartBarOpacity", SetBarChartBarOpacity },
         { "SetBarChartBarEffect", SetBarChartBarEffect },
+        { "GetBarChartBarEffect", GetBarChartBarEffect },
+        { "GetBarChartBarOpacity", GetBarChartBarOpacity },
+        { "GetBarChartOrientation", GetBarChartOrientation },
+        { "IsDisplayingBarChartLabels", IsDisplayingBarChartLabels },
         { "SetBarChartOrientation", SetBarChartOrientation },
         { "SetGraphInvalidRegionColor", SetGraphInvalidRegionColor },
+        { "SetRaygorStyle", SetRaygorStyle },
+        { "GetRaygorStyle", GetRaygorStyle },
+        { "ConnectFleschPoints", ConnectFleschPoints },
+        { "IsConnectingFleschPoints", IsConnectingFleschPoints },
+        { "IncludeFleschRulerDocGroups", IncludeFleschRulerDocGroups },
+        { "IsIncludingFleschRulerDocGroups", IsIncludingFleschRulerDocGroups },
+        { "UseEnglishLabelsForGermanLix", UseEnglishLabelsForGermanLix },
+        { "IsUsingEnglishLabelsForGermanLix", IsUsingEnglishLabelsForGermanLix },
         { "SetStippleShapeColor", SetStippleShapeColor },
         { "ShowcaseKeyItems", ShowcaseKeyItems },
         { "SetSpellCheckerOptions", SetSpellCheckerOptions },

@@ -1,0 +1,19 @@
+## `ConnectFleschPoints`
+
+Sets whether connection lines should be drawn between the three rules in Flesch charts for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+ConnectFleschPoints(boolean connect)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`boolean` connect | `true` to connect the points between the rulers. |
+
+
+{{< pagebreak >}}

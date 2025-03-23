@@ -1,0 +1,17 @@
+## `IsUsingEnglishLabelsForGermanLix`
+
+Returns whether English labels are being used for the brackets on German Lix gauges.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsUsingEnglishLabelsForGermanLix()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

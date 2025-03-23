@@ -1,0 +1,17 @@
+## `GetBarChartBarOpacity`
+
+Returns the opacity of the bars within the various bar charts for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+number GetBarChartBarOpacity()
+```
+
+
+### Return value {-}
+
+Type: `number`
+
+
+{{< pagebreak >}}

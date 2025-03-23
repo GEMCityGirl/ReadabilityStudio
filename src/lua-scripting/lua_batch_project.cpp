@@ -550,6 +550,118 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int BatchProject::SetRaygorStyle(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetRaygorStyle(static_cast<Wisteria::Graphs::RaygorStyle>(lua_tonumber(L, 2)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::GetRaygorStyle(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetRaygorStyle()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::ConnectFleschPoints(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->ConnectFleschPoints(int_to_bool(lua_toboolean(L, 2)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::IsConnectingFleschPoints(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->IsConnectingFleschPoints()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::IncludeFleschRulerDocGroups(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->IncludeFleschRulerDocGroups(int_to_bool(lua_toboolean(L, 2)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::IsIncludingFleschRulerDocGroups(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->IsIncludingFleschRulerDocGroups()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::UseEnglishLabelsForGermanLix(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->UseEnglishLabelsForGermanLix(int_to_bool(lua_toboolean(L, 2)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::IsUsingEnglishLabelsForGermanLix(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->IsUsingEnglishLabelsForGermanLix()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int BatchProject::SetStippleShapeColor(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -808,6 +920,127 @@ namespace LuaScripting
 
         m_project->SetGraphRightTitleFont(fontInfo);
         m_project->SetGraphRightTitleFontColor(fontColor);
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::SetBarChartBarColor(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetBarChartBarColor(LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::SetBarChartBarOpacity(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetGraphBarOpacity(lua_tonumber(L, 2));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::SetBarChartBarEffect(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetGraphBarEffect(static_cast<BoxEffect>(static_cast<int>(lua_tonumber(L, 2))));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::GetBarChartBarEffect(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetGraphBarEffect()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::GetBarChartOrientation(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetBarChartOrientation()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::GetBarChartBarOpacity(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetGraphBarOpacity()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::IsDisplayingBarChartLabels(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L, m_project->IsDisplayingBarChartLabels());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::SetBarChartOrientation(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetBarChartOrientation(
+            static_cast<Wisteria::Orientation>(static_cast<int>(lua_tonumber(L, 2))));
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -1705,6 +1938,14 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(BatchProject, SetGraphLogoImage),
         LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundColor),
         LUNA_DECLARE_METHOD(BatchProject, SetGraphInvalidRegionColor),
+        LUNA_DECLARE_METHOD(BatchProject, SetRaygorStyle),
+        LUNA_DECLARE_METHOD(BatchProject, GetRaygorStyle),
+        LUNA_DECLARE_METHOD(BatchProject, ConnectFleschPoints),
+        LUNA_DECLARE_METHOD(BatchProject, IsConnectingFleschPoints),
+        LUNA_DECLARE_METHOD(BatchProject, IncludeFleschRulerDocGroups),
+        LUNA_DECLARE_METHOD(BatchProject, IsIncludingFleschRulerDocGroups),
+        LUNA_DECLARE_METHOD(BatchProject, UseEnglishLabelsForGermanLix),
+        LUNA_DECLARE_METHOD(BatchProject, IsUsingEnglishLabelsForGermanLix),
         LUNA_DECLARE_METHOD(BatchProject, SetStippleShapeColor),
         LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundColorOpacity),
         LUNA_DECLARE_METHOD(BatchProject, SetStippleImage),
@@ -1716,6 +1957,14 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(BatchProject, SetGraphLeftTitleFont),
         LUNA_DECLARE_METHOD(BatchProject, SetGraphRightTitleFont),
         LUNA_DECLARE_METHOD(BatchProject, DisplayBarChartLabels),
+        LUNA_DECLARE_METHOD(BatchProject, SetBarChartBarColor),
+        LUNA_DECLARE_METHOD(BatchProject, SetBarChartBarOpacity),
+        LUNA_DECLARE_METHOD(BatchProject, SetBarChartBarEffect),
+        LUNA_DECLARE_METHOD(BatchProject, GetBarChartBarEffect),
+        LUNA_DECLARE_METHOD(BatchProject, GetBarChartBarOpacity),
+        LUNA_DECLARE_METHOD(BatchProject, GetBarChartOrientation),
+        LUNA_DECLARE_METHOD(BatchProject, IsDisplayingBarChartLabels),
+        LUNA_DECLARE_METHOD(BatchProject, SetBarChartOrientation),
         LUNA_DECLARE_METHOD(BatchProject, DisplayGraphDropShadows),
         LUNA_DECLARE_METHOD(BatchProject, AddTest),
         LUNA_DECLARE_METHOD(BatchProject, Reload),

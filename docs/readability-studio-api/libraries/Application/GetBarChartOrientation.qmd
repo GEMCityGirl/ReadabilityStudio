@@ -1,0 +1,17 @@
+## `GetBarChartOrientation`
+
+Returns whether the bar charts should be drawn vertically or horizontally for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+Orientation GetBarChartOrientation()
+```
+
+
+### Return value {-}
+
+Type: [`Orientation`](#orientation)
+
+
+{{< pagebreak >}}

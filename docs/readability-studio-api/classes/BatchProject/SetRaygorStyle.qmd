@@ -1,0 +1,19 @@
+## `SetRaygorStyle`
+
+Sets the visual style for Raygor graphs.
+
+### Syntax {-}
+
+``` {.lua}
+SetRaygorStyle(RaygorStyle style)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|[`RaygorStyle`](#raygorstyle) style | The visual style to apply. |
+
+
+{{< pagebreak >}}

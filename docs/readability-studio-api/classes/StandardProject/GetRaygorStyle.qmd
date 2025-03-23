@@ -1,0 +1,17 @@
+## `GetRaygorStyle`
+
+Returns the visual style for Raygor graphs.
+
+### Syntax {-}
+
+``` {.lua}
+RaygorStyle GetRaygorStyle()
+```
+
+
+### Return value {-}
+
+Type: [`RaygorStyle`](#raygorstyle)
+
+
+{{< pagebreak >}}

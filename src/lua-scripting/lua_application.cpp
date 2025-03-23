@@ -174,7 +174,8 @@ namespace LuaScripting
     int GetExamplesPath(lua_State* L)
         {
         lua_pushstring(L, wxString{ wxGetApp().FindResourceDirectory(_DT(L"examples")) +
-                                    wxFileName::GetPathSeparator() }.utf8_str());
+                                    wxFileName::GetPathSeparator() }
+                              .utf8_str());
         return 1;
         }
 
@@ -1732,6 +1733,85 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int SetRaygorStyle(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().SetRaygorStyle(
+            static_cast<Wisteria::Graphs::RaygorStyle>(lua_tonumber(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int GetRaygorStyle(lua_State* L)
+        {
+        lua_pushnumber(L, static_cast<int>(wxGetApp().GetAppOptions().GetRaygorStyle()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int ConnectFleschPoints(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().ConnectFleschPoints(int_to_bool(lua_toboolean(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsConnectingFleschPoints(lua_State* L)
+        {
+        lua_pushnumber(L, static_cast<int>(wxGetApp().GetAppOptions().IsConnectingFleschPoints()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int IncludeFleschRulerDocGroups(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().IncludeFleschRulerDocGroups(int_to_bool(lua_toboolean(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsIncludingFleschRulerDocGroups(lua_State* L)
+        {
+        lua_pushnumber(
+            L, static_cast<int>(wxGetApp().GetAppOptions().IsIncludingFleschRulerDocGroups()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int UseEnglishLabelsForGermanLix(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().UseEnglishLabelsForGermanLix(int_to_bool(lua_toboolean(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsUsingEnglishLabelsForGermanLix(lua_State* L)
+        {
+        lua_pushnumber(
+            L, static_cast<int>(wxGetApp().GetAppOptions().IsUsingEnglishLabelsForGermanLix()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int SetStippleShapeColor(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))
@@ -1899,6 +1979,38 @@ namespace LuaScripting
         wxGetApp().GetAppOptions().SetGraphBarEffect(
             static_cast<BoxEffect>(static_cast<int>(lua_tonumber(L, 1))));
         return 0;
+        }
+
+    //-------------------------------------------------------------
+    int GetBarChartBarEffect(lua_State* L)
+        {
+        lua_pushnumber(L, static_cast<int>(wxGetApp().GetAppOptions().GetGraphBarEffect()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int GetBarChartOrientation(lua_State* L)
+        {
+        lua_pushnumber(L, static_cast<int>(wxGetApp().GetAppOptions().GetBarChartOrientation()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int GetBarChartBarOpacity(lua_State* L)
+        {
+        lua_pushnumber(L, static_cast<int>(wxGetApp().GetAppOptions().GetGraphBarOpacity()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int IsDisplayingBarChartLabels(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetAppOptions().IsDisplayingBarChartLabels());
+        wxGetApp().Yield();
+        return 1;
         }
 
     //-------------------------------------------------------------

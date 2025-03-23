@@ -162,32 +162,48 @@ namespace LuaScripting
         int /*string*/ GetGraphColorScheme(lua_State* L); // Returns the graph color scheme.
         int SetGraphBackgroundColor(lua_State* L /*number red, number green, number blue*/); // Sets the graph background color.
         int ApplyGraphBackgroundFade(lua_State* L /*boolean useColorFade*/); // Sets whether to apply a fade to graph background colors.
-        int SetGraphCommonImage(lua_State* L /*string imagePath*/); // Sets the common image drawn across all bars.
+        int SetPlotBackgroundColor(lua_State* L /*number red, number green, number blue*/); // Sets the graph background (plot area) color.
+        int SetPlotBackgroundColorOpacity(lua_State* L /*number opacity*/); // Sets the graph background color opacity.
         int SetPlotBackgroundImage(lua_State* L /*string imagePath*/); // Sets the graph background (plot area) image.
         int SetPlotBackgroundImageEffect(lua_State* L /*ImageEffect imageEffect*/); // Sets the effect applied to an image when drawn as a graph's background.
         int SetPlotBackgroundImageFit(lua_State* L /*ImageFit fitType*/); // Specifies how to adjust an image to fit within a graph's background.
         int SetPlotBackgroundImageOpacity(lua_State* L /*number opacity*/); // Sets the graph background (plot area) image opacity.
-        int SetPlotBackgroundColor(lua_State* L /*number red, number green, number blue*/); // Sets the graph background (plot area) color.
-        int SetPlotBackgroundColorOpacity(lua_State* L /*number opacity*/); // Sets the graph background color opacity.
         int SetWatermark(lua_State* L /*string watermark*/); // Sets the watermark drawn on graphs.
         int SetGraphLogoImage(lua_State* L /*string imagePath*/); // Sets the logo image, shown in the bottom left corner.
         int SetStippleImage(lua_State* L /*string imagePath*/);// Sets the stipple image used to draw bars in graphs.
         int SetStippleShape(lua_State* L /*string shapeId*/); // Sets the stipple shape used to draw bars in graphs.
-        int SetXAxisFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' X axes.
-        int SetYAxisFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' Y axes.
-        int SetGraphTopTitleFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' top titles.
-        int SetGraphBottomTitleFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' bottom titles.
-        int SetGraphLeftTitleFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' left titles.
-        int SetGraphRightTitleFont(lua_State* L /*string fontName, number pointSize, number fontWeight, string color*/); // Sets the font for the graphs' right titles.
-        int DisplayBarChartLabels(lua_State* L /*boolean display*/); // Specifies whether to display labels above each bar in a bar chart.
-        int DisplayGraphDropShadows(lua_State* L /*bool displayShadows*/); // Sets whether to display shadows on graphs
-        int SetBarChartBarColor(lua_State* L /*number red, number green, number blue*/); // If the bar charts' effect is to use a single color, sets the color to draw the bars with.
-        int SetBarChartBarOpacity(lua_State* L /*number opacity*/); // Sets the opacity of the bars within the various bar charts.
-        int SetBarChartBarEffect(lua_State* L /*BoxEffect effect*/); // Sets how bars should be drawn within the various bar charts.
-        int SetBarChartOrientation(lua_State* L /*Orientation orientation*/); // Sets whether the bar charts should be drawn vertically or horizontally.
-        int SetGraphInvalidRegionColor(lua_State* L /*number red, number green, number blue*/); // Sets the color for the invalid score regions for Fry-like graphs.
         int SetStippleShapeColor(lua_State* L /*number red, number green, number blue*/); // If using stipple shapes for bars, sets the color for certain shapes.
+        int SetGraphCommonImage(lua_State* L /*string imagePath*/); // Sets the common image drawn across all bars.
+        int DisplayGraphDropShadows(lua_State* L /*bool displayShadows*/); // Sets whether to display shadows on graphs
         int ShowcaseKeyItems(lua_State* L /*boolean showcase*/); // Specifies whether important parts of certain graphs should be highlighted.
+
+        int SetXAxisFont(lua_State* L /*string fontName, number pointSize, FontWeight weight, string color*/); // Sets the font for the graphs' X axes.
+        int SetYAxisFont(lua_State* L /*string fontName, number pointSize, FontWeight weight, string color*/); // Sets the font for the graphs' Y axes.
+
+        int SetGraphTopTitleFont(lua_State* L /*string fontName, number pointSize, FontWeight weight, string color*/); // Sets the font for the graphs' top titles.
+        int SetGraphBottomTitleFont(lua_State* L /*string fontName, number pointSize, FontWeight weight, string color*/); // Sets the font for the graphs' bottom titles.
+        int SetGraphLeftTitleFont(lua_State* L /*string fontName, number pointSize, FontWeight weight, string color*/); // Sets the font for the graphs' left titles.
+        int SetGraphRightTitleFont(lua_State* L /*string fontName, number pointSize, FontWeight weight, string color*/); // Sets the font for the graphs' right titles.
+
+        int SetGraphInvalidRegionColor(lua_State* L /*number red, number green, number blue*/); // Sets the color for the invalid score regions for Fry-like graphs.
+        int SetRaygorStyle(lua_State* L /*RaygorStyle style*/); // Sets the visual style for Raygor graphs.
+        int /*RaygorStyle*/ GetRaygorStyle(lua_State* L); // Returns the visual style for Raygor graphs.
+        int ConnectFleschPoints(lua_State* L /*boolean connect*/); // Sets whether connection lines should be drawn between the three rules in Flesch charts.
+        int /*boolean*/ IsConnectingFleschPoints(lua_State* L); // Returns whether connection lines should be drawn between the three rules in Flesch charts.
+        int IncludeFleschRulerDocGroups(lua_State* L /*boolean include*/); // Sets whether document group labels are drawn next to the syllable ruler on Flesch charts.
+        int /*boolean*/ IsIncludingFleschRulerDocGroups(lua_State* L); // Returns document group labels are drawn next to the syllable ruler on Flesch charts.
+        int UseEnglishLabelsForGermanLix(lua_State* L /*boolean useEnglish*/); // Sets whether English labels are being used for the brackets on German Lix gauges.
+        int /*boolean*/ IsUsingEnglishLabelsForGermanLix(lua_State* L); // Returns whether English labels are being used for the brackets on German Lix gauges.
+
+        int SetBarChartBarColor(lua_State* L /*number red, number green, number blue*/); // If the bar charts' effect is to use a single color, sets the color to draw the bars with.
+        int SetBarChartBarEffect(lua_State* L /*BoxEffect effect*/); // Sets how bars should be drawn within the various bar charts.
+        int /*BoxEffect*/ GetBarChartBarEffect(lua_State* L); // Returns how bars should be drawn within the various bar charts.
+        int SetBarChartBarOpacity(lua_State* L /*number opacity*/); // Sets the opacity of the bars within the various bar charts.
+        int /*number*/ GetBarChartBarOpacity(lua_State* L); // Returns the opacity of the bars within the various bar charts.
+        int SetBarChartOrientation(lua_State* L /*Orientation orientation*/); // Sets whether the bar charts should be drawn vertically or horizontally.
+        int /*Orientation*/ GetBarChartOrientation(lua_State* L); // Returns whether the bar charts should be drawn vertically or horizontally.
+        int DisplayBarChartLabels(lua_State* L /*boolean display*/); // Specifies whether to display labels above each bar in a bar chart.
+        int /*boolean*/ IsDisplayingBarChartLabels(lua_State* L); // Returns whether to display labels above each bar in a bar chart.
 
         // TEST OPTIONS
         int AddTest(lua_State* L /*Test test*/); // Adds a test to the project.

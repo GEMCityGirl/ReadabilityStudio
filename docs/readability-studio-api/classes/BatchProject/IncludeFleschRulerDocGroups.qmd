@@ -1,0 +1,19 @@
+## `IncludeFleschRulerDocGroups`
+
+Sets whether document group labels are drawn next to the syllable ruler on Flesch charts.
+
+### Syntax {-}
+
+``` {.lua}
+IncludeFleschRulerDocGroups(boolean include)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`boolean` include | `true` to display the labels. |
+
+
+{{< pagebreak >}}

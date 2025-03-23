@@ -1,0 +1,17 @@
+## `IsConnectingFleschPoints`
+
+Returns whether connection lines should be drawn between the three rules in Flesch charts.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsConnectingFleschPoints()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

@@ -150,7 +150,7 @@ enumToTopic <- function(enum)
   colnames(mat) <- c("VALUES", "DETAILS")
   df <- as_tibble(mat, .name_repair = "unique")
   # sort most of the enums by values' names, except for a few where their order shows a rank of some sort
-  if (!(enum$name %in% c("FontWeight")))
+  if (!(enum$name %in% c("FontWeight", "RaygorStyle")))
     { df %<>% dplyr::arrange(VALUES) }
 
   dupes <- df %>% janitor::get_dupes(VALUES)

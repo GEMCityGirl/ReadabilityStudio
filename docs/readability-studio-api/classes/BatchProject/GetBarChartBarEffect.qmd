@@ -1,0 +1,17 @@
+## `GetBarChartBarEffect`
+
+Returns how bars should be drawn within the various bar charts.
+
+### Syntax {-}
+
+``` {.lua}
+BoxEffect GetBarChartBarEffect()
+```
+
+
+### Return value {-}
+
+Type: [`BoxEffect`](#boxeffect)
+
+
+{{< pagebreak >}}
