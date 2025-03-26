@@ -1197,10 +1197,11 @@ void ProjectDoc::DisplayReadabilityScores(const bool setFocus)
 bool ProjectDoc::OnCreate(const wxString& path, long flags)
     {
     // see if anything is even licensed first
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureEnglishReadabilityTestsCode()))
+    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
+            wxGetApp().FeatureEnglishReadabilityTestsCode()))
         {
-        LogMessage(_(L"You are not currently licensed to create a new project."),
-            _(L"Error"), wxOK|wxICON_ERROR);
+        LogMessage(_(L"You are not currently licensed to create a new project."), _(L"Error"),
+                   wxOK | wxICON_ERROR);
         return false;
         }
     if (flags & wxDOC_NEW)
@@ -1208,15 +1209,19 @@ bool ProjectDoc::OnCreate(const wxString& path, long flags)
         const wxString exampleFolder =
             wxGetApp().FindResourceDirectory(_DT(L"examples", DTExplanation::FilePath));
         if (exampleFolder.empty() || !wxFileName::DirExists(exampleFolder))
-            { wxLogWarning(L"Unable to find examples folder: %s", exampleFolder); }
+            {
+            wxLogWarning(L"Unable to find examples folder: %s", exampleFolder);
+            }
         FilePathResolver resolvePath(path, false);
         // If a file path to a document (e.g., an RTF file) that is NOT from the examples folder,
         // then bypass the wizard and just use the system defaults.
+        // Also bypass the wizard if we are running a Lua script.
         // This is useful for scripting, where you need to create a new project from a filepath
         // and add tests and whatnot afterwards. In this case, you don't want an interactive
-        // wizard appearing.
+        // wizard appearing. Same for where you drag-n-drop a file into the interface.
         if (!resolvePath.IsInvalidFile() &&
-            wxFileName(path).GetPath().CmpNoCase(exampleFolder) != 0)
+            (wxFileName(path).GetPath().CmpNoCase(exampleFolder) != 0 ||
+             LuaInterpreter::IsRunning()))
             {
             SetOriginalDocumentFilePath(path);
             SetTextSource(TextSource::FromFile);
@@ -1225,8 +1230,10 @@ bool ProjectDoc::OnCreate(const wxString& path, long flags)
         // otherwise, use the wizard if raw text (or no text, or examples file path) was passed in
         else
             {
-            if (!RunProjectWizard(path) )
-                { return false; }
+            if (!RunProjectWizard(path))
+                {
+                return false;
+                }
             }
         }
     return wxDocument::OnCreate(path, flags);
