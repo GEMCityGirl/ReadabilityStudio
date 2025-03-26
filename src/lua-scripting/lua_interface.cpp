@@ -18,7 +18,6 @@ wxDECLARE_APP(ReadabilityApp);
 
 bool LuaInterpreter::m_isRunning = false;
 bool LuaInterpreter::m_quitRequested = false;
-wxString LuaInterpreter::m_scriptFilePath;
 
 //------------------------------------------------------
 LuaInterpreter::LuaInterpreter()
