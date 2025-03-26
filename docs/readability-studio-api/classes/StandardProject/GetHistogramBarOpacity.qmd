@@ -1,0 +1,17 @@
+## `GetHistogramBarOpacity`
+
+Returns the opacity of the bars within the various histograms.
+
+### Syntax {-}
+
+``` {.lua}
+number GetHistogramBarOpacity()
+```
+
+
+### Return value {-}
+
+Type: `number`
+
+
+{{< pagebreak >}}

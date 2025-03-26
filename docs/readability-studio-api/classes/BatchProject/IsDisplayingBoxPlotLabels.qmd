@@ -1,0 +1,17 @@
+## `IsDisplayingBoxPlotLabels`
+
+Returns whether to display labels on box plots.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsDisplayingBoxPlotLabels()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

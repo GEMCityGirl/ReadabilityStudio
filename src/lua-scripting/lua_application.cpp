@@ -339,7 +339,7 @@ namespace LuaScripting
         for (size_t i = 1; i <= fileCount; ++i)
             {
             lua_pushnumber(L, i);
-            lua_pushstring(L, files[i - 1].mb_str());
+            lua_pushstring(L, files[i - 1].utf8_str());
             lua_settable(L, -3);
             }
 
@@ -664,7 +664,7 @@ namespace LuaScripting
         lua_pushstring(L, wxString{ wxStandardPaths::Get().GetUserDir(
                                         static_cast<wxStandardPaths::Dir>(lua_tonumber(L, 1))) +
                                     wxFileName::GetPathSeparator() }
-                              .mb_str());
+                              .utf8_str());
         return 1;
         }
 
@@ -680,7 +680,7 @@ namespace LuaScripting
         wxFileName fn(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         if (fn.MakeAbsolute(wxString(luaL_checkstring(L, 1), wxConvUTF8)))
             {
-            lua_pushstring(L, fn.GetFullPath().mb_str().data());
+            lua_pushstring(L, fn.GetFullPath().utf8_str());
             }
         else
             {
@@ -1556,6 +1556,13 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int IsApplyingGraphBackgroundFade(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetAppOptions().GetGraphBackGroundLinearGradient());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int SetGraphCommonImage(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))
@@ -1860,7 +1867,7 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int SetPlotBackgroundOpacity(lua_State* L)
+    int SetPlotBackgroundColorOpacity(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))
             {
@@ -1868,6 +1875,13 @@ namespace LuaScripting
             }
         wxGetApp().GetAppOptions().SetPlotBackGroundColorOpacity(lua_tonumber(L, 1));
         return 0;
+        }
+
+    //-------------------------------------------------------------
+    int GetPlotBackgroundColorOpacity(lua_State* L)
+        {
+        lua_pushnumber(L, wxGetApp().GetAppOptions().GetPlotBackGroundColorOpacity());
+        return 1;
         }
 
     //-------------------------------------------------------------
@@ -2026,6 +2040,174 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int SetHistogramBarColor(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().SetHistogramBarColor(
+            LoadColor(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int SetHistogramBarOpacity(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().SetHistogramBarOpacity(lua_tonumber(L, 1));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int SetHistogramBarEffect(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().SetHistogramBarEffect(
+            static_cast<BoxEffect>(static_cast<int>(lua_tonumber(L, 1))));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int GetHistogramBarEffect(lua_State* L)
+        {
+        lua_pushnumber(L, static_cast<int>(wxGetApp().GetAppOptions().GetHistogramBarEffect()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int GetHistogramBarOpacity(lua_State* L)
+        {
+        lua_pushnumber(L, static_cast<int>(wxGetApp().GetAppOptions().GetHistogramBarOpacity()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int SetBoxPlotColor(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().SetGraphBoxColor(
+            LoadColor(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int SetBoxPlotOpacity(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().SetGraphBoxOpacity(lua_tonumber(L, 1));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int SetBoxPlotEffect(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().SetGraphBoxEffect(
+            static_cast<BoxEffect>(static_cast<int>(lua_tonumber(L, 1))));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int GetBoxPlotEffect(lua_State* L)
+        {
+        lua_pushnumber(L, static_cast<int>(wxGetApp().GetAppOptions().GetGraphBoxEffect()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int GetBoxPlotOpacity(lua_State* L)
+        {
+        lua_pushnumber(L, static_cast<int>(wxGetApp().GetAppOptions().GetGraphBoxOpacity()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int DisplayBoxPlotLabels(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().DisplayBoxPlotLabels(int_to_bool(lua_toboolean(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsDisplayingBoxPlotLabels(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetAppOptions().IsDisplayingBoxPlotLabels());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int ConnectBoxPlotMiddlePoints(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().ConnectBoxPlotMiddlePoints(int_to_bool(lua_toboolean(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsConnectingBoxPlotMiddlePoints(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetAppOptions().IsConnectingBoxPlotMiddlePoints());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int DisplayAllBoxPlotPoints(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().ShowAllBoxPlotPoints(int_to_bool(lua_toboolean(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsDisplayingAllBoxPlotPoints(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetAppOptions().IsShowingAllBoxPlotPoints());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int SetSpellCheckerOptions(lua_State* L)
         {
         if (lua_gettop(L) >= 1)
@@ -2062,6 +2244,105 @@ namespace LuaScripting
                 int_to_bool(lua_toboolean(L, 7)));
             }
         wxGetApp().Yield();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int SetWordsBreakdownResultsOptions(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        if (lua_gettop(L) >= 1)
+            {
+            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableWordBarchart(
+                int_to_bool(lua_toboolean(L, 1)));
+            }
+        if (lua_gettop(L) >= 2)
+            {
+            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableSyllableHistogram(
+                int_to_bool(lua_toboolean(L, 2)));
+            }
+        if (lua_gettop(L) >= 3)
+            {
+            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().Enable6PlusCharacter(
+                int_to_bool(lua_toboolean(L, 3)));
+            }
+        if (lua_gettop(L) >= 4)
+            {
+            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().Enable6PlusCharacter(
+                int_to_bool(lua_toboolean(L, 4)));
+            }
+        if (lua_gettop(L) >= 5)
+            {
+            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableWordCloud(
+                int_to_bool(lua_toboolean(L, 5)));
+            }
+        if (lua_gettop(L) >= 6)
+            {
+            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableDCUnfamiliar(
+                int_to_bool(lua_toboolean(L, 6)));
+            }
+        if (lua_gettop(L) >= 7)
+            {
+            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableSpacheUnfamiliar(
+                int_to_bool(lua_toboolean(L, 7)));
+            }
+        if (lua_gettop(L) >= 8)
+            {
+            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableHarrisJacobsonUnfamiliar(
+                int_to_bool(lua_toboolean(L, 8)));
+            }
+        if (lua_gettop(L) >= 9)
+            {
+            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableCustomTestsUnfamiliar(
+                int_to_bool(lua_toboolean(L, 9)));
+            }
+        if (lua_gettop(L) >= 10)
+            {
+            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableAllWords(
+                int_to_bool(lua_toboolean(L, 10)));
+            }
+        if (lua_gettop(L) >= 11)
+            {
+            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().EnableKeyWords(
+                int_to_bool(lua_toboolean(L, 11)));
+            }
+
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int SetSentenceBreakdownResultsOptions(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        if (lua_gettop(L) >= 1)
+            {
+            wxGetApp().GetAppOptions().GetSentencesBreakdownInfo().EnableLongSentences(
+                int_to_bool(lua_toboolean(L, 1)));
+            }
+        if (lua_gettop(L) >= 2)
+            {
+            wxGetApp().GetAppOptions().GetSentencesBreakdownInfo().EnableLengthsBoxPlot(
+                int_to_bool(lua_toboolean(L, 2)));
+            }
+        if (lua_gettop(L) >= 3)
+            {
+            wxGetApp().GetAppOptions().GetSentencesBreakdownInfo().EnableLengthsHistogram(
+                int_to_bool(lua_toboolean(L, 3)));
+            }
+        if (lua_gettop(L) >= 4)
+            {
+            wxGetApp().GetAppOptions().GetSentencesBreakdownInfo().EnableLengthsHeatmap(
+                int_to_bool(lua_toboolean(L, 4)));
+            }
+
         return 0;
         }
 

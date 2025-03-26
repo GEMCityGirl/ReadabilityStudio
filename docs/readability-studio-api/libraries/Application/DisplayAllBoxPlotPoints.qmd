@@ -1,0 +1,19 @@
+## `DisplayAllBoxPlotPoints`
+
+Specifies whether to display all points (not just outliers) on box plots for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+DisplayAllBoxPlotPoints(boolean display)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`boolean` display | `true` to diplay all points. |
+
+
+{{< pagebreak >}}

@@ -1,0 +1,37 @@
+## `SetWordsBreakdownResultsOptions`
+
+Sets which results in the words breakdown section should be included for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+SetWordsBreakdownResultsOptions(boolean includeWordCounts,
+                                boolean includeSyllableCounts,
+                                boolean include3PlusSyllables,
+                                boolean include6PlusChars,
+                                boolean includeKeyWordCloud,
+                                boolean includeDC,
+                                boolean includeSpache,
+                                boolean includeHJ,
+                                boolean includeCustomTests,
+                                boolean includeAllWords,
+                                boolean includeKeyWords)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`boolean` includeWordCounts | `true` to include the word counts bar chart. | 
+|`boolean` includeSyllableCounts | `true` to include the syllable counts histogram. | 
+|`boolean` include3PlusSyllables | `true` to include the report and list of complex words. | 
+|`boolean` include6PlusChars | `true` to include the report and list of long words. | 
+|`boolean` includeKeyWordCloud | `true` to include the word cloud. | 
+|`boolean` includeDC | `true` to include the Dale-Chall unfamiliar word report and list. | 
+|`boolean` includeSpache | `true` to include the Spache unfamiliar word report and list. | 
+|`boolean` includeHJ | `true` to include the Harris-Jacobson unfamiliar word report and list. | 
+|`boolean` includeCustomTests | `true` to include the custom test reports and lists. | 
+|`boolean` includeAllWords | `true` to include the list of all words. | 
+|`boolean` includeKeyWords | `true` to include the list of key words. |
+
+{{< pagebreak >}}

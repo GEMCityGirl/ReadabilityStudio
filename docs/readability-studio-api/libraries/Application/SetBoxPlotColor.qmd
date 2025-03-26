@@ -1,0 +1,23 @@
+## `SetBoxPlotColor`
+
+Sets box color (in box plots) for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+SetBoxPlotColor(number red,
+                number green,
+                number blue)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`number` red | The red channel (should be between 0--255). | 
+|`number` green | The green channel (should be between 0--255). | 
+|`number` blue | The blue channel (should be between 0--255). |
+
+
+{{< pagebreak >}}

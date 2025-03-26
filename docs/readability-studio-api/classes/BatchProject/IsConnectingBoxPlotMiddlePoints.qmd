@@ -1,0 +1,17 @@
+## `IsConnectingBoxPlotMiddlePoints`
+
+Returns whether to connect the medians between box plots.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsConnectingBoxPlotMiddlePoints()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

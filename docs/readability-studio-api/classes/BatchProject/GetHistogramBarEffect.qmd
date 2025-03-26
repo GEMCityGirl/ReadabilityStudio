@@ -1,0 +1,17 @@
+## `GetHistogramBarEffect`
+
+Returns how bars should be drawn within the various histograms.
+
+### Syntax {-}
+
+``` {.lua}
+BoxEffect GetHistogramBarEffect()
+```
+
+
+### Return value {-}
+
+Type: [`BoxEffect`](#boxeffect)
+
+
+{{< pagebreak >}}

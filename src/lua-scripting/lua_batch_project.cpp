@@ -428,6 +428,18 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int BatchProject::IsApplyingGraphBackgroundFade(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L, m_project->GetGraphBackGroundLinearGradient());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int BatchProject::SetGraphCommonImage(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -693,6 +705,18 @@ namespace LuaScripting
         m_project->SetPlotBackGroundColorOpacity(lua_tonumber(L, 2));
         ReloadIfNotDelayedSimple();
         return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::GetPlotBackgroundColorOpacity(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, m_project->GetPlotBackGroundColorOpacity());
+        return 1;
         }
 
     //-------------------------------------------------------------
@@ -989,19 +1013,6 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int BatchProject::GetBarChartOrientation(lua_State* L)
-        {
-        if (!VerifyProjectIsOpen(__func__))
-            {
-            return 0;
-            }
-
-        lua_pushnumber(L, static_cast<int>(m_project->GetBarChartOrientation()));
-        wxGetApp().Yield();
-        return 1;
-        }
-
-    //-------------------------------------------------------------
     int BatchProject::GetBarChartBarOpacity(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -1010,6 +1021,19 @@ namespace LuaScripting
             }
 
         lua_pushnumber(L, static_cast<int>(m_project->GetGraphBarOpacity()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::GetBarChartOrientation(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetBarChartOrientation()));
         wxGetApp().Yield();
         return 1;
         }
@@ -1060,6 +1084,251 @@ namespace LuaScripting
         m_project->DisplayBarChartLabels(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayedSimple();
         return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::SetHistogramBarColor(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetHistogramBarColor(LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::SetHistogramBarOpacity(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetHistogramBarOpacity(lua_tonumber(L, 2));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::SetHistogramBarEffect(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetHistogramBarEffect(
+            static_cast<BoxEffect>(static_cast<int>(lua_tonumber(L, 2))));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::GetHistogramBarEffect(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetHistogramBarEffect()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::GetHistogramBarOpacity(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetHistogramBarOpacity()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::SetBoxPlotColor(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetGraphBoxColor(LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::SetBoxPlotOpacity(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetGraphBoxOpacity(lua_tonumber(L, 2));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::SetBoxPlotEffect(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetGraphBoxEffect(static_cast<BoxEffect>(static_cast<int>(lua_tonumber(L, 2))));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::GetBoxPlotEffect(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetGraphBoxEffect()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::GetBoxPlotOpacity(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetGraphBoxOpacity()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::DisplayBoxPlotLabels(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->DisplayBoxPlotLabels(int_to_bool(lua_toboolean(L, 2)));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::IsDisplayingBoxPlotLabels(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L, m_project->IsDisplayingBoxPlotLabels());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::ConnectBoxPlotMiddlePoints(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->ConnectBoxPlotMiddlePoints(int_to_bool(lua_toboolean(L, 2)));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::IsConnectingBoxPlotMiddlePoints(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L, m_project->IsConnectingBoxPlotMiddlePoints());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::DisplayAllBoxPlotPoints(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->ShowAllBoxPlotPoints(int_to_bool(lua_toboolean(L, 2)));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::IsDisplayingAllBoxPlotPoints(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L, m_project->IsShowingAllBoxPlotPoints());
+        wxGetApp().Yield();
+        return 1;
         }
 
     //-------------------------------------------------------------
@@ -1322,6 +1591,105 @@ namespace LuaScripting
         if (lua_gettop(L) >= 7)
             {
             m_project->SpellCheckAllowColloquialisms(int_to_bool(lua_toboolean(L, 7)));
+            }
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::SetWordsBreakdownResultsOptions(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        if (lua_gettop(L) >= 2)
+            {
+            m_project->GetWordsBreakdownInfo().EnableWordBarchart(int_to_bool(lua_toboolean(L, 2)));
+            }
+        if (lua_gettop(L) >= 3)
+            {
+            m_project->GetWordsBreakdownInfo().EnableSyllableHistogram(int_to_bool(lua_toboolean(L, 3)));
+            }
+        if (lua_gettop(L) >= 4)
+            {
+            m_project->GetWordsBreakdownInfo().Enable6PlusCharacter(
+                int_to_bool(lua_toboolean(L, 4)));
+            }
+        if (lua_gettop(L) >= 5)
+            {
+            m_project->GetWordsBreakdownInfo().Enable6PlusCharacter(int_to_bool(lua_toboolean(L, 5)));
+            }
+        if (lua_gettop(L) >= 6)
+            {
+            m_project->GetWordsBreakdownInfo().EnableWordCloud(int_to_bool(lua_toboolean(L, 6)));
+            }
+        if (lua_gettop(L) >= 7)
+            {
+            m_project->GetWordsBreakdownInfo().EnableDCUnfamiliar(int_to_bool(lua_toboolean(L, 7)));
+            }
+        if (lua_gettop(L) >= 8)
+            {
+            m_project->GetWordsBreakdownInfo().EnableSpacheUnfamiliar(
+                int_to_bool(lua_toboolean(L, 8)));
+            }
+        if (lua_gettop(L) >= 9)
+            {
+            m_project->GetWordsBreakdownInfo().EnableHarrisJacobsonUnfamiliar(int_to_bool(lua_toboolean(L, 9)));
+            }
+        if (lua_gettop(L) >= 10)
+            {
+            m_project->GetWordsBreakdownInfo().EnableCustomTestsUnfamiliar(int_to_bool(lua_toboolean(L, 10)));
+            }
+        if (lua_gettop(L) >= 11)
+            {
+            m_project->GetWordsBreakdownInfo().EnableAllWords(int_to_bool(lua_toboolean(L, 11)));
+            }
+        if (lua_gettop(L) >= 12)
+            {
+            m_project->GetWordsBreakdownInfo().EnableKeyWords(
+                int_to_bool(lua_toboolean(L, 12)));
+            }
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::SetSentenceBreakdownResultsOptions(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        if (lua_gettop(L) >= 2)
+            {
+            m_project->GetSentencesBreakdownInfo().EnableLongSentences(
+                int_to_bool(lua_toboolean(L, 2)));
+            }
+        if (lua_gettop(L) >= 3)
+            {
+            m_project->GetSentencesBreakdownInfo().EnableLengthsBoxPlot(
+                int_to_bool(lua_toboolean(L, 3)));
+            }
+        if (lua_gettop(L) >= 4)
+            {
+            m_project->GetSentencesBreakdownInfo().EnableLengthsHistogram(
+                int_to_bool(lua_toboolean(L, 4)));
+            }
+        if (lua_gettop(L) >= 5)
+            {
+            m_project->GetSentencesBreakdownInfo().EnableLengthsHeatmap(
+                int_to_bool(lua_toboolean(L, 5)));
             }
         ReloadIfNotDelayed();
         return 0;
@@ -1909,6 +2277,8 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(BatchProject, SetMinDocWordCountForBatch),
         LUNA_DECLARE_METHOD(BatchProject, GetMinDocWordCountForBatch),
         LUNA_DECLARE_METHOD(BatchProject, SetSpellCheckerOptions),
+        LUNA_DECLARE_METHOD(BatchProject, SetWordsBreakdownResultsOptions),
+        LUNA_DECLARE_METHOD(BatchProject, SetSentenceBreakdownResultsOptions),
         LUNA_DECLARE_METHOD(BatchProject, SetGrammarResultsOptions),
         LUNA_DECLARE_METHOD(BatchProject, ExcludeFileAddress),
         LUNA_DECLARE_METHOD(BatchProject, SetPhraseExclusionList),
@@ -1929,6 +2299,7 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(BatchProject, GetGraphColorScheme),
         LUNA_DECLARE_METHOD(BatchProject, SetGraphBackgroundColor),
         LUNA_DECLARE_METHOD(BatchProject, ApplyGraphBackgroundFade),
+        LUNA_DECLARE_METHOD(BatchProject, IsApplyingGraphBackgroundFade),
         LUNA_DECLARE_METHOD(BatchProject, SetGraphCommonImage),
         LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundImage),
         LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundImageEffect),
@@ -1948,6 +2319,7 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(BatchProject, IsUsingEnglishLabelsForGermanLix),
         LUNA_DECLARE_METHOD(BatchProject, SetStippleShapeColor),
         LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundColorOpacity),
+        LUNA_DECLARE_METHOD(BatchProject, GetPlotBackgroundColorOpacity),
         LUNA_DECLARE_METHOD(BatchProject, SetStippleImage),
         LUNA_DECLARE_METHOD(BatchProject, SetStippleShape),
         LUNA_DECLARE_METHOD(BatchProject, SetXAxisFont),
@@ -1965,6 +2337,22 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(BatchProject, GetBarChartOrientation),
         LUNA_DECLARE_METHOD(BatchProject, IsDisplayingBarChartLabels),
         LUNA_DECLARE_METHOD(BatchProject, SetBarChartOrientation),
+        LUNA_DECLARE_METHOD(BatchProject, SetHistogramBarColor),
+        LUNA_DECLARE_METHOD(BatchProject, SetHistogramBarEffect),
+        LUNA_DECLARE_METHOD(BatchProject, GetHistogramBarEffect),
+        LUNA_DECLARE_METHOD(BatchProject, SetHistogramBarOpacity),
+        LUNA_DECLARE_METHOD(BatchProject, GetHistogramBarOpacity),
+        LUNA_DECLARE_METHOD(BatchProject, SetBoxPlotColor),
+        LUNA_DECLARE_METHOD(BatchProject, SetBoxPlotEffect),
+        LUNA_DECLARE_METHOD(BatchProject, GetBoxPlotEffect),
+        LUNA_DECLARE_METHOD(BatchProject, SetBoxPlotOpacity),
+        LUNA_DECLARE_METHOD(BatchProject, GetBoxPlotOpacity),
+        LUNA_DECLARE_METHOD(BatchProject, DisplayBoxPlotLabels),
+        LUNA_DECLARE_METHOD(BatchProject, IsDisplayingBoxPlotLabels),
+        LUNA_DECLARE_METHOD(BatchProject, DisplayAllBoxPlotPoints),
+        LUNA_DECLARE_METHOD(BatchProject, IsDisplayingAllBoxPlotPoints),
+        LUNA_DECLARE_METHOD(BatchProject, ConnectBoxPlotMiddlePoints),
+        LUNA_DECLARE_METHOD(BatchProject, IsConnectingBoxPlotMiddlePoints),
         LUNA_DECLARE_METHOD(BatchProject, DisplayGraphDropShadows),
         LUNA_DECLARE_METHOD(BatchProject, AddTest),
         LUNA_DECLARE_METHOD(BatchProject, Reload),

@@ -1,0 +1,17 @@
+## `IsApplyingGraphBackgroundFade`
+
+Returns whether to apply a fade to graph background colors for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsApplyingGraphBackgroundFade()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

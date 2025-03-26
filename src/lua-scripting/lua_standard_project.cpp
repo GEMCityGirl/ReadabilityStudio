@@ -552,6 +552,18 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int StandardProject::IsApplyingGraphBackgroundFade(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L, m_project->GetGraphBackGroundLinearGradient());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int StandardProject::SetPlotBackgroundImage(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -834,6 +846,18 @@ namespace LuaScripting
         m_project->SetPlotBackGroundColorOpacity(lua_tonumber(L, 2));
         ReloadIfNotDelayedSimple();
         return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::GetPlotBackgroundColorOpacity(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, m_project->GetPlotBackGroundColorOpacity());
+        return 1;
         }
 
     //-------------------------------------------------------------
@@ -1220,6 +1244,251 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
+    int StandardProject::SetHistogramBarColor(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetHistogramBarColor(LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetHistogramBarOpacity(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetHistogramBarOpacity(lua_tonumber(L, 2));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetHistogramBarEffect(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetHistogramBarEffect(
+            static_cast<BoxEffect>(static_cast<int>(lua_tonumber(L, 2))));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::GetHistogramBarEffect(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetHistogramBarEffect()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::GetHistogramBarOpacity(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetHistogramBarOpacity()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetBoxPlotColor(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetGraphBoxColor(LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetBoxPlotOpacity(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetGraphBoxOpacity(lua_tonumber(L, 2));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetBoxPlotEffect(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetGraphBoxEffect(static_cast<BoxEffect>(static_cast<int>(lua_tonumber(L, 2))));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::GetBoxPlotEffect(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetGraphBoxEffect()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::GetBoxPlotOpacity(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetGraphBoxOpacity()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::DisplayBoxPlotLabels(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->DisplayBoxPlotLabels(int_to_bool(lua_toboolean(L, 2)));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::IsDisplayingBoxPlotLabels(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L, m_project->IsDisplayingBoxPlotLabels());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::ConnectBoxPlotMiddlePoints(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->ConnectBoxPlotMiddlePoints(int_to_bool(lua_toboolean(L, 2)));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::IsConnectingBoxPlotMiddlePoints(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L, m_project->IsConnectingBoxPlotMiddlePoints());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::DisplayAllBoxPlotPoints(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->ShowAllBoxPlotPoints(int_to_bool(lua_toboolean(L, 2)));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::IsDisplayingAllBoxPlotPoints(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L, m_project->IsShowingAllBoxPlotPoints());
+        wxGetApp().Yield();
+        return 1;
+        }
+
     // PROJECT SETTINGS
     int StandardProject::SetProjectLanguage(lua_State* L)
         {
@@ -1394,6 +1663,108 @@ namespace LuaScripting
         if (lua_gettop(L) >= 7)
             {
             m_project->SpellCheckAllowColloquialisms(int_to_bool(lua_toboolean(L, 7)));
+            }
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetWordsBreakdownResultsOptions(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        if (lua_gettop(L) >= 2)
+            {
+            m_project->GetWordsBreakdownInfo().EnableWordBarchart(int_to_bool(lua_toboolean(L, 2)));
+            }
+        if (lua_gettop(L) >= 3)
+            {
+            m_project->GetWordsBreakdownInfo().EnableSyllableHistogram(
+                int_to_bool(lua_toboolean(L, 3)));
+            }
+        if (lua_gettop(L) >= 4)
+            {
+            m_project->GetWordsBreakdownInfo().Enable6PlusCharacter(
+                int_to_bool(lua_toboolean(L, 4)));
+            }
+        if (lua_gettop(L) >= 5)
+            {
+            m_project->GetWordsBreakdownInfo().Enable6PlusCharacter(
+                int_to_bool(lua_toboolean(L, 5)));
+            }
+        if (lua_gettop(L) >= 6)
+            {
+            m_project->GetWordsBreakdownInfo().EnableWordCloud(int_to_bool(lua_toboolean(L, 6)));
+            }
+        if (lua_gettop(L) >= 7)
+            {
+            m_project->GetWordsBreakdownInfo().EnableDCUnfamiliar(int_to_bool(lua_toboolean(L, 7)));
+            }
+        if (lua_gettop(L) >= 8)
+            {
+            m_project->GetWordsBreakdownInfo().EnableSpacheUnfamiliar(
+                int_to_bool(lua_toboolean(L, 8)));
+            }
+        if (lua_gettop(L) >= 9)
+            {
+            m_project->GetWordsBreakdownInfo().EnableHarrisJacobsonUnfamiliar(
+                int_to_bool(lua_toboolean(L, 9)));
+            }
+        if (lua_gettop(L) >= 10)
+            {
+            m_project->GetWordsBreakdownInfo().EnableCustomTestsUnfamiliar(
+                int_to_bool(lua_toboolean(L, 10)));
+            }
+        if (lua_gettop(L) >= 11)
+            {
+            m_project->GetWordsBreakdownInfo().EnableAllWords(int_to_bool(lua_toboolean(L, 11)));
+            }
+        if (lua_gettop(L) >= 12)
+            {
+            m_project->GetWordsBreakdownInfo().EnableKeyWords(int_to_bool(lua_toboolean(L, 12)));
+            }
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetSentenceBreakdownResultsOptions(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        if (lua_gettop(L) >= 2)
+            {
+            m_project->GetSentencesBreakdownInfo().EnableLongSentences(
+                int_to_bool(lua_toboolean(L, 2)));
+            }
+        if (lua_gettop(L) >= 3)
+            {
+            m_project->GetSentencesBreakdownInfo().EnableLengthsBoxPlot(
+                int_to_bool(lua_toboolean(L, 3)));
+            }
+        if (lua_gettop(L) >= 4)
+            {
+            m_project->GetSentencesBreakdownInfo().EnableLengthsHistogram(
+                int_to_bool(lua_toboolean(L, 4)));
+            }
+        if (lua_gettop(L) >= 5)
+            {
+            m_project->GetSentencesBreakdownInfo().EnableLengthsHeatmap(
+                int_to_bool(lua_toboolean(L, 5)));
             }
         ReloadIfNotDelayed();
         return 0;
@@ -2561,11 +2932,14 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, GetParagraphsParsingMethod),
         LUNA_DECLARE_METHOD(StandardProject, GetDocumentStorageMethod),
         LUNA_DECLARE_METHOD(StandardProject, SetSpellCheckerOptions),
+        LUNA_DECLARE_METHOD(StandardProject, SetWordsBreakdownResultsOptions),
+        LUNA_DECLARE_METHOD(StandardProject, SetSentenceBreakdownResultsOptions),
         LUNA_DECLARE_METHOD(StandardProject, SetGrammarResultsOptions),
         LUNA_DECLARE_METHOD(StandardProject, SetGraphColorScheme),
         LUNA_DECLARE_METHOD(StandardProject, GetGraphColorScheme),
         LUNA_DECLARE_METHOD(StandardProject, SetGraphBackgroundColor),
         LUNA_DECLARE_METHOD(StandardProject, ApplyGraphBackgroundFade),
+        LUNA_DECLARE_METHOD(StandardProject, IsApplyingGraphBackgroundFade),
         LUNA_DECLARE_METHOD(StandardProject, SetGraphCommonImage),
         LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundImage),
         LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundImageEffect),
@@ -2586,6 +2960,7 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, SetStippleShapeColor),
         LUNA_DECLARE_METHOD(StandardProject, ShowcaseKeyItems),
         LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundColorOpacity),
+        LUNA_DECLARE_METHOD(StandardProject, GetPlotBackgroundColorOpacity),
         LUNA_DECLARE_METHOD(StandardProject, SetStippleImage),
         LUNA_DECLARE_METHOD(StandardProject, SetStippleShape),
         LUNA_DECLARE_METHOD(StandardProject, SetXAxisFont),
@@ -2603,7 +2978,23 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, GetBarChartBarOpacity),
         LUNA_DECLARE_METHOD(StandardProject, GetBarChartOrientation),
         LUNA_DECLARE_METHOD(StandardProject, IsDisplayingBarChartLabels),
+        LUNA_DECLARE_METHOD(StandardProject, SetHistogramBarColor),
+        LUNA_DECLARE_METHOD(StandardProject, SetHistogramBarEffect),
+        LUNA_DECLARE_METHOD(StandardProject, GetHistogramBarEffect),
+        LUNA_DECLARE_METHOD(StandardProject, SetHistogramBarOpacity),
+        LUNA_DECLARE_METHOD(StandardProject, GetHistogramBarOpacity),
         LUNA_DECLARE_METHOD(StandardProject, SetBarChartOrientation),
+        LUNA_DECLARE_METHOD(StandardProject, SetBoxPlotColor),
+        LUNA_DECLARE_METHOD(StandardProject, SetBoxPlotEffect),
+        LUNA_DECLARE_METHOD(StandardProject, GetBoxPlotEffect),
+        LUNA_DECLARE_METHOD(StandardProject, SetBoxPlotOpacity),
+        LUNA_DECLARE_METHOD(StandardProject, GetBoxPlotOpacity),
+        LUNA_DECLARE_METHOD(StandardProject, DisplayBoxPlotLabels),
+        LUNA_DECLARE_METHOD(StandardProject, IsDisplayingBoxPlotLabels),
+        LUNA_DECLARE_METHOD(StandardProject, DisplayAllBoxPlotPoints),
+        LUNA_DECLARE_METHOD(StandardProject, IsDisplayingAllBoxPlotPoints),
+        LUNA_DECLARE_METHOD(StandardProject, ConnectBoxPlotMiddlePoints),
+        LUNA_DECLARE_METHOD(StandardProject, IsConnectingBoxPlotMiddlePoints),
         LUNA_DECLARE_METHOD(StandardProject, ExcludeFileAddress),
         LUNA_DECLARE_METHOD(StandardProject, AddTest),
         LUNA_DECLARE_METHOD(StandardProject, Reload),

@@ -1,0 +1,17 @@
+## `GetBoxPlotOpacity`
+
+Returns the opacity of the boxes within the various box plots for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+number GetBoxPlotOpacity()
+```
+
+
+### Return value {-}
+
+Type: `number`
+
+
+{{< pagebreak >}}

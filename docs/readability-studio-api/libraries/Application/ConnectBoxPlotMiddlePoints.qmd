@@ -1,0 +1,19 @@
+## `ConnectBoxPlotMiddlePoints`
+
+Specifies whether to connect the medians between box plots for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+ConnectBoxPlotMiddlePoints(boolean display)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`boolean` display | `true` to connect the medians. |
+
+
+{{< pagebreak >}}

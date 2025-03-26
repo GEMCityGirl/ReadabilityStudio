@@ -1,0 +1,17 @@
+## `IsDisplayingAllBoxPlotPoints`
+
+Returns whether to display all points (not just outliers) on box plots for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsDisplayingAllBoxPlotPoints()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

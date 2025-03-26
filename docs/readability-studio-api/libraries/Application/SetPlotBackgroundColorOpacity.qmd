@@ -5,12 +5,13 @@ Sets the graph background color opacity.
 ### Syntax {-}
 
 ``` {.lua}
-SetPlotBackgroundColorOpacity(number opacity)
+SetPlotBackgroundColorOpacity(number opacityLevel)
 ```
+
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`number` opacity | The opacity level (should be between 0--255) |
+| `number` opacityLevel | The opacity level (should be between 0--255) |
 
 {{< pagebreak >}}

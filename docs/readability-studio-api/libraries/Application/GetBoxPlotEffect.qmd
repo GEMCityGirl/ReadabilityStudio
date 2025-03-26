@@ -1,0 +1,17 @@
+## `GetBoxPlotEffect`
+
+Returns how boxes should be drawn within the various box plots for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+BoxEffect GetBoxPlotEffect()
+```
+
+
+### Return value {-}
+
+Type: [`BoxEffect`](#boxeffect)
+
+
+{{< pagebreak >}}

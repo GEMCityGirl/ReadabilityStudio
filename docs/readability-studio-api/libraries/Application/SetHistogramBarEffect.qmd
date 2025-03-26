@@ -1,0 +1,19 @@
+## `SetHistogramBarEffect`
+
+Sets bar appearance (in histograms) for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+SetHistogramBarEffect(BoxEffect barEffect)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|[`BoxEffect`](#boxeffect) effect | The effect to apply to the bars. |
+
+
+{{< pagebreak >}}
