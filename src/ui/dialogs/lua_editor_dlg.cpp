@@ -528,6 +528,7 @@ LuaEditorDlg::LuaEditorDlg(
                         }
                     }
                 scriptCtrl->LoadFile(filePath);
+                scriptCtrl->SetSelection(scriptCtrl->GetTextLength(), scriptCtrl->GetTextLength());
                 scriptCtrl->SetScriptFilePath(filePath);
 
                 m_notebook->AddPage(scriptCtrl, wxFileName(filePath).GetName(), true,
