@@ -13,7 +13,7 @@ Complex words are words that contain three or more syllables, with the exception
 This test can optionally count independent clauses as separate sentences, as *The Technique of Clear Writing* instructs. It should be noted, however, that this can cause misleadingly low scores for documents that contain run-on sentences. Consider the follow:
 
 ::: {.fancyquotes data-latex=''}
-The Meldorf^®^ statistical library is available in C++ source code–a low-level programming language–and in the form of a COM library–a Microsoft^®^ technology for inter-program communication; the COM library can be called from numerous languages, such as: Visual Basic, C#, and Delphi.
+The Meldorf^®^ statistical library is available in C^++^ source code–a low-level programming language–and in the form of a COM library–a Microsoft^®^ technology for inter-program communication; the COM library can be called from numerous languages, such as: Visual Basic, C#, and Delphi.
 :::
 
 If you treat independent clauses as separate sentences, then this will be seen as six small sentences and produce a Fog score of 10.2.

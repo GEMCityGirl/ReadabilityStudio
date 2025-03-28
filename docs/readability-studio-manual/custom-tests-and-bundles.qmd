@@ -279,7 +279,7 @@ New Dale-Chall and Harris-Jacobson familiar word functions will take their respe
 ### Comments {-}
 
 Comments can be embedded within an expression to clarify its intent.
-C/C++ style comments are supported, which provide:
+C/C^++^ style comments are supported, which provide:
 
 - multi-line comments (text within a pair of `/*` and `*/`).
 - single-line comments (everything after a `//` until the end of the current line).

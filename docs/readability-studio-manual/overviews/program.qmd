@@ -182,7 +182,7 @@ This also enables educators to determine which materials are appropriate for Dol
 - Postscript (\*.ps)
 - ZIP (documents within can be batch analyzed)
 - Interface Definition Language (\*.idl)
-- (Doxygen style) C++ source (\*.cpp and \*.h)
+- (Doxygen style) C^++^ source (\*.cpp and \*.h)
 
 You do not need the native application for these file formats. *Readability Studio* is capable of importing these files without any additional programs.
 

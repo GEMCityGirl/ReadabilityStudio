@@ -41,7 +41,7 @@ source('../R/appdown.r')
 
 ### Importing/Exporting Enhancements {-}
 
-- C++ file importer now analyzes comments, not just *gettext* strings.
+- C^++^ file importer now analyzes comments, not just *gettext* strings.
 
 ### Bug Fixes {-}
 
@@ -143,7 +143,7 @@ source('../R/appdown.r')
 - Lone *%* characters (unless proceeded by a number) are now treated as whole words (rather than punctuation).
 - If *%*, *¢*, or *°* characters are proceeded by a number, then they will now be connected to the previous word.
 - Trademark (™), registration (®), service mark (℠), official mark (Ⓜ), sound recording (℗), and copyright (©, Ⓒ) symbols after a sentence are now handled properly.
-- Custom-test formulas can now contain C/C++ style comments.
+- Custom-test formulas can now contain C/C^++^ style comments.
   This includes multi-line (text inside of `/*` and `*/`) and single-line (`//`) comments.
 - **Wording Errors** and **Misspellings** have been renamed to **Errors & Misspellings** and **Possible Misspellings**, respectively.
   - **Errors & Misspellings** now contains known wording errors, misspellings, and their suggested corrections.
@@ -312,7 +312,7 @@ source('../R/appdown.r')
   - `${}` Javascript placeholders are now removed from the text.
 - Improvements to Word 97–2003 importer to better handle Unicode and corrupted files.
 - Improvements to RTF importer (improved Unicode and footnote support).
-- Improvements to C++ source file importer (improved handling of escaped quotes).
+- Improvements to C^++^ source file importer (improved handling of escaped quotes).
 - Added **Narrow full-width characters** option to [document filtering](#sec-additional-filtering-options).
 - When exporting filtered documents from a batch project, the folder structure of the original documents will be recreated in the output folder. This will prevent files with the same name overwriting each other.
 
@@ -496,7 +496,7 @@ source('../R/appdown.r')
 - Batch projects can now analyze documents inside of archive (\*.zip) files.
 - Added the ability to save a spreadsheet of scores and (high-level) statistics from a batch.
 - Statistics report of all documents in a batch project can now be exported.
-- C/C++ source files can now be analyzed (Doxygen comments and GETTEXT strings).
+- C/C^++^ source files can now be analyzed (Doxygen comments and GETTEXT strings).
 - Added GIF and TGA to **Export All** options.
 - When changing the width or height of a graph when exporting it as an image, the program will now automatically adjust the size to maintain the aspect ratio.
 - Icons are now included when exporting reports as HTML.
