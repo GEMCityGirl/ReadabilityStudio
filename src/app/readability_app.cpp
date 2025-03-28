@@ -5213,7 +5213,7 @@ void MainFrame::OnClose(wxCloseEvent& event)
 void MainFrame::OnOpenDocument([[maybe_unused]] wxCommandEvent& event)
     {
     wxFileDialog dialog(wxGetApp().GetParentingWindow(), _(L"Select Document to Analyze"),
-                        wxString{}, wxString{}, wxGetApp().GetAppOptions().GetDocumentFilter(),
+                        wxString{}, wxString{}, ReadabilityAppOptions::GetDocumentFilter(),
                         wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
     if (dialog.ShowModal() == wxID_CANCEL)
         {
@@ -5377,7 +5377,7 @@ void MainFrame::OnEditPhraseList([[maybe_unused]] wxCommandEvent& event)
 void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     GetDirFilterDialog dirDlg(wxGetApp().GetParentingWindow(),
-                              wxGetApp().GetAppOptions().GetDocumentFilter() + L"|" +
+                              ReadabilityAppOptions::GetDocumentFilter() + L"|" +
                                   Wisteria::GraphItems::Image::GetImageFileFilter() + L"|" +
                                   _(L"All Files (*.*)|*.*"));
     if (dirDlg.ShowModal() != wxID_OK || dirDlg.GetPath().empty())
@@ -5486,7 +5486,7 @@ void MainFrame::OnToolsChapterSplit([[maybe_unused]] wxRibbonButtonBarEvent& eve
     {
     wxFileDialog dialog(wxGetApp().GetParentingWindow(), _(L"Select File to Split"),
                         wxGetApp().GetAppOptions().GetProjectPath(), wxString{},
-                        wxGetApp().GetAppOptions().GetDocumentFilter(),
+                        ReadabilityAppOptions::GetDocumentFilter(),
                         wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
 
     if (dialog.ShowModal() == wxID_OK)
@@ -5539,7 +5539,7 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
                                       wxGetApp().GetAppOptions().ALL_IMAGES_WILDCARD.data(),
                                       wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD.data(),
                                       wxGetApp().GetAppOptions().ALL_IMAGES_WILDCARD.data()) +
-                                      wxGetApp().GetAppOptions().GetDocumentFilter() + L"|" +
+                                      ReadabilityAppOptions::GetDocumentFilter() + L"|" +
                                       Wisteria::GraphItems::Image::GetImageFileFilter(),
                                   wxGetApp().GetLastSelectedDocFilter(),
                                   // hide the option that disables local file downloading

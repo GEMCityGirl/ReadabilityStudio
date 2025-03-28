@@ -1075,7 +1075,7 @@ void ProjectWizardDlg::UpdateTestsUI()
 //-------------------------------------------------------------
 void ProjectWizardDlg::LoadArchive(wxString archivePath /*= wxString{}*/)
     {
-    ArchiveDlg dlg(this, wxGetApp().GetAppOptions().GetDocumentFilter());
+    ArchiveDlg dlg(this, ReadabilityAppOptions::GetDocumentFilter());
     dlg.SetPath(archivePath);
     dlg.SetSelectedFileFilter(wxGetApp().GetLastSelectedDocFilter());
     dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
@@ -1598,7 +1598,7 @@ void ProjectWizardDlg::OnFileBrowseButtonClick([[maybe_unused]] wxCommandEvent&)
     {
     TransferDataFromWindow();
     wxFileDialog dialog(this, _(L"Select Document to Analyze"), wxString{}, wxString{},
-                        wxGetApp().GetAppOptions().GetDocumentFilter(),
+                        ReadabilityAppOptions::GetDocumentFilter(),
                         wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
 
     if (dialog.ShowModal() != wxID_OK)
@@ -1670,7 +1670,7 @@ void ProjectWizardDlg::OnAddWebPageButtonClick([[maybe_unused]] wxCommandEvent&)
 void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&)
     {
     WebHarvesterDlg webHarvestDlg(this, wxGetApp().GetLastSelectedWebPages(),
-                                  wxGetApp().GetAppOptions().GetDocumentFilter(),
+                                  ReadabilityAppOptions::GetDocumentFilter(),
                                   wxGetApp().GetLastSelectedDocFilter(), false);
     webHarvestDlg.UpdateFromHarvesterSettings(wxGetApp().GetWebHarvester());
     webHarvestDlg.SetDownloadFolder(wxGetApp().GetAppOptions().GetDownloadsPath());
@@ -1783,7 +1783,7 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
 //-------------------------------------------------------------
 void ProjectWizardDlg::OnAddFolderButtonClick([[maybe_unused]] wxCommandEvent&)
     {
-    GetDirFilterDialog dirDlg(this, wxGetApp().GetAppOptions().GetDocumentFilter());
+    GetDirFilterDialog dirDlg(this, ReadabilityAppOptions::GetDocumentFilter());
     dirDlg.SetSelectedFileFilter(wxGetApp().GetLastSelectedDocFilter());
     dirDlg.SetPath(GetLastSelectedFolder());
     dirDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
@@ -1897,7 +1897,7 @@ void ProjectWizardDlg::OnAddArchiveFileButtonClick([[maybe_unused]] wxCommandEve
 void ProjectWizardDlg::OnAddFileButtonClick([[maybe_unused]] wxCommandEvent&)
     {
     wxFileDialog dialog(this, _(L"Select Documents to Analyze"), wxString{}, wxString{},
-                        wxGetApp().GetAppOptions().GetDocumentFilter(),
+                        ReadabilityAppOptions::GetDocumentFilter(),
                         wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW | wxFD_MULTIPLE);
 
     if (dialog.ShowModal() != wxID_OK)

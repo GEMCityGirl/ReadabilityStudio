@@ -1548,7 +1548,7 @@ namespace LuaScripting
         if (LuaGetArchiveDlg == nullptr)
             {
             LuaGetArchiveDlg = new ArchiveDlg(wxGetApp().GetMainFrame(),
-                                              wxGetApp().GetAppOptions().GetDocumentFilter());
+                                              ReadabilityAppOptions::GetDocumentFilter());
             }
         LuaGetArchiveDlg->SetPath(wxString(luaL_checkstring(L, 1), wxConvUTF8));
         LuaGetArchiveDlg->Show();
@@ -1574,7 +1574,7 @@ namespace LuaScripting
         if (LuaGetDirDlg == nullptr)
             {
             LuaGetDirDlg = new GetDirFilterDialog(wxGetApp().GetMainFrame(),
-                                                  wxGetApp().GetAppOptions().GetDocumentFilter());
+                                                  ReadabilityAppOptions::GetDocumentFilter());
             }
         LuaGetDirDlg->SetPath(wxString(luaL_checkstring(L, 1), wxConvUTF8));
         LuaGetDirDlg->Show();
@@ -1632,7 +1632,7 @@ namespace LuaScripting
             {
             LuaWebHarvesterDlg =
                 new WebHarvesterDlg(wxGetApp().GetMainFrame(), wxGetApp().GetLastSelectedWebPages(),
-                                    wxGetApp().GetAppOptions().GetDocumentFilter(),
+                                    ReadabilityAppOptions::GetDocumentFilter(),
                                     wxGetApp().GetLastSelectedDocFilter(), false);
             }
         LuaWebHarvesterDlg->Show();

@@ -121,7 +121,7 @@ void ToolsOptionsDlg::OnAddFileClick([[maybe_unused]] wxCommandEvent& event)
 void ToolsOptionsDlg::OnAddFilesClick([[maybe_unused]] wxCommandEvent& event)
     {
     wxFileDialog dialog(this, _(L"Add Documents to Project"), wxEmptyString, wxEmptyString,
-                        wxGetApp().GetAppOptions().GetDocumentFilter(),
+                        ReadabilityAppOptions::GetDocumentFilter(),
                         wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW | wxFD_MULTIPLE);
 
     if (dialog.ShowModal() != wxID_OK)
@@ -382,7 +382,7 @@ void ToolsOptionsDlg::OnAdditionalDocumentFileBrowseButtonClick(
     TransferDataFromWindow();
     wxFileName fn(m_appendedDocumentFilePath);
     wxFileDialog dialog(this, _(L"Select Document to Append"), fn.GetPath(), fn.GetFullName(),
-                        wxGetApp().GetAppOptions().GetDocumentFilter(),
+                        ReadabilityAppOptions::GetDocumentFilter(),
                         wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
     if (dialog.ShowModal() != wxID_OK)
         {
@@ -400,7 +400,7 @@ void ToolsOptionsDlg::OnFileBrowseButtonClick([[maybe_unused]] wxCommandEvent& e
     TransferDataFromWindow();
     wxFileName fn(m_filePath);
     wxFileDialog dialog(this, _(L"Select Document to Analyze"), fn.GetPath(), fn.GetFullName(),
-                        wxGetApp().GetAppOptions().GetDocumentFilter(),
+                        ReadabilityAppOptions::GetDocumentFilter(),
                         wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
     if (dialog.ShowModal() != wxID_OK)
         {
