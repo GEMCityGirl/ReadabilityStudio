@@ -65,7 +65,7 @@ BaseProjectDoc::BaseProjectDoc() :
     m_fleschChartSyllableRulerDocGroups(wxGetApp().GetAppOptions().IsIncludingFleschRulerDocGroups()),
     m_useEnglishLabelsGermanLix(wxGetApp().GetAppOptions().IsUsingEnglishLabelsForGermanLix()),
     // histogram options
-    m_histogramBinningMethod(wxGetApp().GetAppOptions().GetHistorgramBinningMethod()),
+    m_histogramBinningMethod(wxGetApp().GetAppOptions().GetHistogramBinningMethod()),
     m_histrogramBinLabelDisplayMethod(wxGetApp().GetAppOptions().GetHistrogramBinLabelDisplay()),
     m_histrogramRoundingMethod(wxGetApp().GetAppOptions().GetHistogramRoundingMethod()),
     m_histrogramIntervalDisplay(wxGetApp().GetAppOptions().GetHistogramIntervalDisplay()),
@@ -103,7 +103,7 @@ BaseProjectDoc::BaseProjectDoc() :
     m_dolchAdverbsColor(wxGetApp().GetAppOptions().GetDolchAdverbsColor()),
     m_dolchAdjectivesColor(wxGetApp().GetAppOptions().GetDolchAdjectivesColor()),
     m_dolchVerbsColor(wxGetApp().GetAppOptions().GetDolchVerbsColor()),
-    m_dolchNounColor(wxGetApp().GetAppOptions().GetDolchNounColor()),
+    m_dolchNounColor(wxGetApp().GetAppOptions().GetDolchNounsColor()),
 
     m_highlightDolchConjunctions(wxGetApp().GetAppOptions().IsHighlightingDolchConjunctions()),
     m_highlightDolchPrepositions(wxGetApp().GetAppOptions().IsHighlightingDolchPrepositions()),
@@ -1152,34 +1152,34 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             wxGetApp().GetAppOptions().XML_EXCLUDED_PHRASES_INCLUDE_FIRST_OCCURRENCE.data(),
             wxGetApp().GetAppOptions().IsIncludingExcludedPhraseFirstOccurrence()));
         // whether to ignore proper nouns
-        IgnoreProperNouns(
+        ExcludeProperNouns(
             XmlFormat::GetBoolean(parsingSection, parsingSectionEnd,
                                   wxGetApp().GetAppOptions().XML_IGNORE_PROPER_NOUNS.data(),
-                                  wxGetApp().GetAppOptions().IsIgnoringProperNouns()));
+                                  wxGetApp().GetAppOptions().IsExcludingProperNouns()));
         // whether to ignore numerals
-        IgnoreNumerals(XmlFormat::GetBoolean(parsingSection, parsingSectionEnd,
+        ExcludeNumerals(XmlFormat::GetBoolean(parsingSection, parsingSectionEnd,
                                              wxGetApp().GetAppOptions().XML_IGNORE_NUMERALS.data(),
-                                             wxGetApp().GetAppOptions().IsIgnoringNumerals()));
+                                              wxGetApp().GetAppOptions().IsExcludingNumerals()));
         // whether to ignore file addresses
-        IgnoreFileAddresses(
+        ExcludeFileAddresses(
             XmlFormat::GetBoolean(parsingSection, parsingSectionEnd,
                                   wxGetApp().GetAppOptions().XML_IGNORE_FILE_ADDRESSES.data(),
-                                  wxGetApp().GetAppOptions().IsIgnoringFileAddresses()));
+                                  wxGetApp().GetAppOptions().IsExcludingFileAddresses()));
         // whether to ignore trailing citations
-        IgnoreTrailingCitations(
+        ExcludeTrailingCitations(
             XmlFormat::GetBoolean(parsingSection, parsingSectionEnd,
                                   wxGetApp().GetAppOptions().XML_IGNORE_CITATIONS.data(),
-                                  wxGetApp().GetAppOptions().IsIgnoringTrailingCitations()));
+                                  wxGetApp().GetAppOptions().IsExcludingTrailingCitations()));
         // whether to use aggressive list deduction
         AggressiveExclusion(
             XmlFormat::GetBoolean(parsingSection, parsingSectionEnd,
                                   wxGetApp().GetAppOptions().XML_AGGRESSIVE_EXCLUSION.data(),
                                   wxGetApp().GetAppOptions().IsExcludingAggressively()));
         // whether to ignore trailing copyright notices
-        IgnoreTrailingCopyrightNoticeParagraphs(XmlFormat::GetBoolean(
+        ExcludeTrailingCopyrightNoticeParagraphs(XmlFormat::GetBoolean(
             parsingSection, parsingSectionEnd,
             wxGetApp().GetAppOptions().XML_IGNORE_COPYRIGHT_NOTICES.data(),
-            wxGetApp().GetAppOptions().IsIgnoringTrailingCopyrightNoticeParagraphs()));
+            wxGetApp().GetAppOptions().IsExcludingTrailingCopyrightNoticeParagraphs()));
         // get the method for parsing paragraphs
         SetParagraphsParsingMethod(static_cast<ParagraphParse>(XmlFormat::GetLong(
             parsingSection, parsingSectionEnd,
@@ -1620,11 +1620,11 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             // how values are binned
             long catMethod = XmlFormat::GetLong(histoSection, histoSectionEnd,
                 wxGetApp().GetAppOptions().XML_GRAPH_BINNING_METHOD.data(),
-                static_cast<long>(wxGetApp().GetAppOptions().GetHistorgramBinningMethod()));
+                static_cast<long>(wxGetApp().GetAppOptions().GetHistogramBinningMethod()));
             if (catMethod < 0 ||
                 catMethod >= static_cast<decltype(catMethod)>(Histogram::BinningMethod::BINNING_METHOD_COUNT))
-                { catMethod = static_cast<long>(wxGetApp().GetAppOptions().GetHistorgramBinningMethod()); }
-            SetHistorgramBinningMethod(static_cast<Histogram::BinningMethod>(catMethod));
+                { catMethod = static_cast<long>(wxGetApp().GetAppOptions().GetHistogramBinningMethod()); }
+            SetHistogramBinningMethod(static_cast<Histogram::BinningMethod>(catMethod));
             // how values are rounded
             long roundMethod = XmlFormat::GetLong(histoSection, histoSectionEnd,
                 wxGetApp().GetAppOptions().XML_GRAPH_ROUNDING_METHOD.data(),
@@ -2084,15 +2084,15 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             wxGetApp().GetAppOptions().IsHighlightingDolchVerbs() );
         m_dolchNounColor = XmlFormat::GetColorWithInclusionTag(textViewsSection, textViewsSectionEnd,
             wxGetApp().GetAppOptions().XML_DOLCH_NOUNS_HIGHLIGHTCOLOR.data(), m_highlightDolchNouns,
-            wxGetApp().GetAppOptions().GetDolchNounColor(),
+            wxGetApp().GetAppOptions().GetDolchNounsColor(),
             wxGetApp().GetAppOptions().IsHighlightingDolchNouns() );
         }
     else
         {
-        LogMessage(wxString::Format(
-            _(L"Warning: \"%s\" section not found in project file. No highlighted text views will be displayed."),
-            currentStartTag),
-            _(L"Error"), wxOK|wxICON_ERROR);
+        LogMessage(wxString::Format(_(L"Warning: \"%s\" section not found in project file. "
+                                      "No highlighted text views will be displayed."),
+                                    currentStartTag),
+                   _(L"Error"), wxOK | wxICON_ERROR);
         }
 
     // fix any issues with items loaded from this file
@@ -2326,20 +2326,20 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     fileText += sectionText;
     // whether to ignore proper nouns
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_IGNORE_PROPER_NOUNS.data(),
-                             IsIgnoringProperNouns(), 2);
+                             IsExcludingProperNouns(), 2);
     fileText += sectionText;
     // whether to ignore numerals
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_IGNORE_NUMERALS.data(),
-                             IsIgnoringNumerals(), 2);
+                             IsExcludingNumerals(), 2);
     fileText += sectionText;
     // whether to ignore file addresses
     XmlFormat::FormatSection(sectionText,
                              wxGetApp().GetAppOptions().XML_IGNORE_FILE_ADDRESSES.data(),
-                             IsIgnoringFileAddresses(), 2);
+                             IsExcludingFileAddresses(), 2);
     fileText += sectionText;
     // whether to ignore trailing citations
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_IGNORE_CITATIONS.data(),
-                             IsIgnoringTrailingCitations(), 2);
+                             IsExcludingTrailingCitations(), 2);
     fileText += sectionText;
     // whether to use aggressive list deduction
     XmlFormat::FormatSection(sectionText,
@@ -2349,7 +2349,7 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     // whether to ignore trailing copyright notices
     XmlFormat::FormatSection(sectionText,
                              wxGetApp().GetAppOptions().XML_IGNORE_COPYRIGHT_NOTICES.data(),
-                             IsIgnoringTrailingCopyrightNoticeParagraphs(), 2);
+                             IsExcludingTrailingCopyrightNoticeParagraphs(), 2);
     fileText += sectionText;
     // paragraph parsing
     XmlFormat::FormatSection(sectionText,
@@ -2672,7 +2672,7 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     // categorization method
     XmlFormat::FormatSection(sectionText,
                              wxGetApp().GetAppOptions().XML_GRAPH_BINNING_METHOD.data(),
-                             static_cast<int>(GetHistorgramBinningMethod()), 3);
+                             static_cast<int>(GetHistogramBinningMethod()), 3);
     fileText += sectionText;
     // interval display method
     XmlFormat::FormatSection(sectionText,

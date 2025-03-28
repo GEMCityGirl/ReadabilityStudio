@@ -484,7 +484,7 @@ namespace LuaScripting
             return 0;
             }
 
-        m_project->IgnoreTrailingCopyrightNoticeParagraphs(int_to_bool(lua_toboolean(L, 2)));
+        m_project->ExcludeTrailingCopyrightNoticeParagraphs(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayed();
         return 0;
         }
@@ -501,7 +501,7 @@ namespace LuaScripting
             return 0;
             }
 
-        m_project->IgnoreTrailingCitations(int_to_bool(lua_toboolean(L, 2)));
+        m_project->ExcludeTrailingCitations(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayed();
         return 0;
         }
@@ -518,7 +518,7 @@ namespace LuaScripting
             return 0;
             }
 
-        m_project->IgnoreFileAddresses(int_to_bool(lua_toboolean(L, 2)));
+        m_project->ExcludeFileAddresses(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayed();
         return 0;
         }
@@ -535,7 +535,7 @@ namespace LuaScripting
             return 0;
             }
 
-        m_project->IgnoreNumerals(int_to_bool(lua_toboolean(L, 2)));
+        m_project->ExcludeNumerals(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayed();
         return 0;
         }
@@ -552,7 +552,7 @@ namespace LuaScripting
             return 0;
             }
 
-        m_project->IgnoreProperNouns(int_to_bool(lua_toboolean(L, 2)));
+        m_project->ExcludeProperNouns(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayed();
         return 0;
         }
@@ -578,7 +578,7 @@ namespace LuaScripting
             return 0;
             }
 
-        lua_pushboolean(L, m_project->IsIgnoringTrailingCopyrightNoticeParagraphs());
+        lua_pushboolean(L, m_project->IsExcludingTrailingCopyrightNoticeParagraphs());
         wxGetApp().Yield();
         return 1;
         }
@@ -591,7 +591,7 @@ namespace LuaScripting
             return 0;
             }
 
-        lua_pushboolean(L, m_project->IsIgnoringTrailingCitations());
+        lua_pushboolean(L, m_project->IsExcludingTrailingCitations());
         wxGetApp().Yield();
         return 1;
         }
@@ -604,7 +604,7 @@ namespace LuaScripting
             return 0;
             }
 
-        lua_pushboolean(L, m_project->IsIgnoringFileAddresses());
+        lua_pushboolean(L, m_project->IsExcludingFileAddresses());
         wxGetApp().Yield();
         return 1;
         }
@@ -617,7 +617,7 @@ namespace LuaScripting
             return 0;
             }
 
-        lua_pushboolean(L, m_project->IsIgnoringNumerals());
+        lua_pushboolean(L, m_project->IsExcludingNumerals());
         wxGetApp().Yield();
         return 1;
         }
@@ -630,7 +630,7 @@ namespace LuaScripting
             return 0;
             }
 
-        lua_pushboolean(L, m_project->IsIgnoringProperNouns());
+        lua_pushboolean(L, m_project->IsExcludingProperNouns());
         wxGetApp().Yield();
         return 1;
         }
@@ -1744,7 +1744,7 @@ namespace LuaScripting
             return 0;
             }
 
-        m_project->SetHistorgramBinningMethod(
+        m_project->SetHistogramBinningMethod(
             static_cast<Wisteria::Graphs::Histogram::BinningMethod>(lua_tonumber(L, 2)));
         ReloadIfNotDelayedSimple();
         return 0;
@@ -1758,7 +1758,7 @@ namespace LuaScripting
             return 0;
             }
 
-        lua_pushnumber(L, static_cast<int>(m_project->GetHistorgramBinningMethod()));
+        lua_pushnumber(L, static_cast<int>(m_project->GetHistogramBinningMethod()));
         wxGetApp().Yield();
         return 1;
         }

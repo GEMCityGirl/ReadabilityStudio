@@ -442,8 +442,8 @@ void ProjectView::OnExportFilteredDocument([[maybe_unused]] wxCommandEvent& even
                             optDlg.IsNarrowingFullWidthCharacters());
 
     FilteredTextPreviewDlg dlg(GetDocFrame(), doc->GetInvalidSentenceMethod(),
-                               doc->IsIgnoringTrailingCopyrightNoticeParagraphs(),
-                               doc->IsIgnoringTrailingCitations(), optDlg.IsReplacingCharacters(),
+                               doc->IsExcludingTrailingCopyrightNoticeParagraphs(),
+                               doc->IsExcludingTrailingCitations(), optDlg.IsReplacingCharacters(),
                                optDlg.IsRemovingEllipses(), optDlg.IsRemovingBullets(),
                                optDlg.IsRemovingFilePaths(), optDlg.IsStrippingAbbreviations());
     dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"online/analysis-notes.html");

@@ -176,26 +176,26 @@ void ToolsOptionsDlg::OnIncompleteSentencesChange([[maybe_unused]] wxCommandEven
         {
         m_syllableLabel->Enable(
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::IncludeAsFullSentences)) ||
-            !m_ignoreNumerals);
+            !m_excludeNumerals);
         }
     if (m_syllableCombo)
         {
         m_syllableCombo->Enable(
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::IncludeAsFullSentences)) ||
-            !m_ignoreNumerals);
+            !m_excludeNumerals);
         }
     if (m_readTestsSyllableLabel)
         {
         m_readTestsSyllableLabel->Enable(
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::IncludeAsFullSentences)) ||
-            !m_ignoreNumerals);
+            !m_excludeNumerals);
         }
     if (IsPropertyAvailable(m_readabilityTestsPropertyGrid, GetFleschNumeralSyllabicationLabel()))
         {
         m_readabilityTestsPropertyGrid->EnableProperty(
             GetFleschNumeralSyllabicationLabel(),
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::IncludeAsFullSentences)) ||
-                !m_ignoreNumerals);
+                !m_excludeNumerals);
         }
     if (IsPropertyAvailable(m_readabilityTestsPropertyGrid,
                             GetFleschKincaidNumeralSyllabicationLabel()))
@@ -203,7 +203,7 @@ void ToolsOptionsDlg::OnIncompleteSentencesChange([[maybe_unused]] wxCommandEven
         m_readabilityTestsPropertyGrid->EnableProperty(
             GetFleschKincaidNumeralSyllabicationLabel(),
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::IncludeAsFullSentences)) ||
-                !m_ignoreNumerals);
+                !m_excludeNumerals);
         }
     if (m_ignoreCopyrightsCheckBox)
         {
@@ -702,20 +702,20 @@ void ToolsOptionsDlg::OnDolchHighlightColorSelect(wxCommandEvent& event)
 //-------------------------------------------------------------
 void ToolsOptionsDlg::OnDolchNounHighlightColorSelect([[maybe_unused]] wxCommandEvent& event)
     {
-    if (m_DolchNounColorButton == nullptr)
+    if (m_DolchNounsColorButton == nullptr)
         {
         return;
         }
     wxColourData data;
     wxGetApp().GetAppOptions().CopyCustomColoursToColourData(data);
     data.SetChooseFull(true);
-    data.SetColour(m_dolchNounColor);
+    data.SetColour(m_dolchNounsColor);
 
     wxColourDialog dialog(this, &data);
     if (dialog.ShowModal() == wxID_OK)
         {
-        m_dolchNounColor = dialog.GetColourData().GetColour();
-        m_DolchNounColorButton->SetBitmapLabel(ResourceManager::CreateColorIcon(m_dolchNounColor));
+        m_dolchNounsColor = dialog.GetColourData().GetColour();
+        m_DolchNounsColorButton->SetBitmapLabel(ResourceManager::CreateColorIcon(m_dolchNounsColor));
         wxGetApp().GetAppOptions().CopyColourDataToCustomColours(dialog.GetColourData());
         }
     }
@@ -783,8 +783,8 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
                                        wxGetApp().GetAppOptions().GetDolchAdjectivesColor()),
       m_dolchVerbsColor(project ? project->GetDolchVerbsColor() :
                                   wxGetApp().GetAppOptions().GetDolchVerbsColor()),
-      m_dolchNounColor(project ? project->GetDolchNounColor() :
-                                 wxGetApp().GetAppOptions().GetDolchNounColor()),
+      m_dolchNounsColor(project ? project->GetDolchNounColor() :
+                                 wxGetApp().GetAppOptions().GetDolchNounsColor()),
       m_highlightDolchConjunctions(
           project ? project->IsHighlightingDolchConjunctions() :
                     wxGetApp().GetAppOptions().IsHighlightingDolchConjunctions()),
@@ -838,17 +838,18 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
                     wxGetApp().GetAppOptions().GetSentenceStartMustBeUppercased()),
       m_aggressiveExclusion(project ? project->IsExcludingAggressively() :
                                       wxGetApp().GetAppOptions().IsExcludingAggressively()),
-      m_ignoreTrailingCopyrightNoticeParagraphs(
-          project ? project->IsIgnoringTrailingCopyrightNoticeParagraphs() :
-                    wxGetApp().GetAppOptions().IsIgnoringTrailingCopyrightNoticeParagraphs()),
-      m_ignoreTrailingCitations(project ? project->IsIgnoringTrailingCitations() :
-                                          wxGetApp().GetAppOptions().IsIgnoringTrailingCitations()),
-      m_ignoreFileAddresses(project ? project->IsIgnoringFileAddresses() :
-                                      wxGetApp().GetAppOptions().IsIgnoringFileAddresses()),
-      m_ignoreNumerals(project ? project->IsIgnoringNumerals() :
-                                 wxGetApp().GetAppOptions().IsIgnoringNumerals()),
-      m_ignoreProperNouns(project ? project->IsIgnoringProperNouns() :
-                                    wxGetApp().GetAppOptions().IsIgnoringProperNouns()),
+      m_excludeTrailingCopyrightNoticeParagraphs(
+          project ? project->IsExcludingTrailingCopyrightNoticeParagraphs() :
+                    wxGetApp().GetAppOptions().IsExcludingTrailingCopyrightNoticeParagraphs()),
+      m_excludeTrailingCitations(project ?
+                                     project->IsExcludingTrailingCitations() :
+                                     wxGetApp().GetAppOptions().IsExcludingTrailingCitations()),
+      m_excludeFileAddresses(project ? project->IsExcludingFileAddresses() :
+                                       wxGetApp().GetAppOptions().IsExcludingFileAddresses()),
+      m_excludeNumerals(project ? project->IsExcludingNumerals() :
+                                  wxGetApp().GetAppOptions().IsExcludingNumerals()),
+      m_excludeProperNouns(project ? project->IsExcludingProperNouns() :
+                                    wxGetApp().GetAppOptions().IsExcludingProperNouns()),
       m_excludedPhrasesPath(project ? project->GetExcludedPhrasesPath() :
                                       wxGetApp().GetAppOptions().GetExcludedPhrasesPath()),
       // used to track whether user edited this list from this dialog
@@ -1184,9 +1185,9 @@ bool ToolsOptionsDlg::HaveDocumentOptionsChanged() const
            m_ignoreBlankLinesForParagraphsParser.has_changed() ||
            m_ignoreIndentingForParagraphsParser.has_changed() ||
            m_sentenceStartMustBeUppercased.has_changed() || m_aggressiveExclusion.has_changed() ||
-           m_ignoreTrailingCopyrightNoticeParagraphs.has_changed() ||
-           m_ignoreTrailingCitations.has_changed() || m_ignoreFileAddresses.has_changed() ||
-           m_ignoreNumerals.has_changed() || m_ignoreProperNouns.has_changed() ||
+           m_excludeTrailingCopyrightNoticeParagraphs.has_changed() ||
+           m_excludeTrailingCitations.has_changed() || m_excludeFileAddresses.has_changed() ||
+           m_excludeNumerals.has_changed() || m_excludeProperNouns.has_changed() ||
            m_excludedPhrasesPath.has_changed() ||
            // simple boolean flag set if user had edited this list from this dialog
            m_excludedPhrasesEdited || m_includeExcludedPhraseFirstOccurrence.has_changed() ||
@@ -1416,7 +1417,7 @@ bool ToolsOptionsDlg::HaveTextViewOptionsChanged() const noexcept
            m_fontColor.has_changed() || m_dolchConjunctionsColor.has_changed() ||
            m_dolchPrepositionsColor.has_changed() || m_dolchPronounsColor.has_changed() ||
            m_dolchAdverbsColor.has_changed() || m_dolchAdjectivesColor.has_changed() ||
-           m_dolchVerbsColor.has_changed() || m_dolchNounColor.has_changed() ||
+           m_dolchVerbsColor.has_changed() || m_dolchNounsColor.has_changed() ||
            m_highlightDolchConjunctions.has_changed() ||
            m_highlightDolchPrepositions.has_changed() || m_highlightDolchPronouns.has_changed() ||
            m_highlightDolchAdverbs.has_changed() || m_highlightDolchAdjectives.has_changed() ||
@@ -2000,12 +2001,12 @@ void ToolsOptionsDlg::SaveOptions()
             m_ignoreIndentingForParagraphsParser);
         m_readabilityProjectDoc->SetSentenceStartMustBeUppercased(m_sentenceStartMustBeUppercased);
         m_readabilityProjectDoc->AggressiveExclusion(m_aggressiveExclusion);
-        m_readabilityProjectDoc->IgnoreTrailingCopyrightNoticeParagraphs(
-            m_ignoreTrailingCopyrightNoticeParagraphs);
-        m_readabilityProjectDoc->IgnoreTrailingCitations(m_ignoreTrailingCitations);
-        m_readabilityProjectDoc->IgnoreFileAddresses(m_ignoreFileAddresses);
-        m_readabilityProjectDoc->IgnoreNumerals(m_ignoreNumerals);
-        m_readabilityProjectDoc->IgnoreProperNouns(m_ignoreProperNouns);
+        m_readabilityProjectDoc->ExcludeTrailingCopyrightNoticeParagraphs(
+            m_excludeTrailingCopyrightNoticeParagraphs);
+        m_readabilityProjectDoc->ExcludeTrailingCitations(m_excludeTrailingCitations);
+        m_readabilityProjectDoc->ExcludeFileAddresses(m_excludeFileAddresses);
+        m_readabilityProjectDoc->ExcludeNumerals(m_excludeNumerals);
+        m_readabilityProjectDoc->ExcludeProperNouns(m_excludeProperNouns);
         m_readabilityProjectDoc->SetExcludedPhrasesPath(m_excludedPhrasesPath);
         m_readabilityProjectDoc->IncludeExcludedPhraseFirstOccurrence(
             m_includeExcludedPhraseFirstOccurrence);
@@ -2104,7 +2105,7 @@ void ToolsOptionsDlg::SaveOptions()
         wxGetApp().GetAppOptions().SetDolchAdverbsColor(m_dolchAdverbsColor);
         wxGetApp().GetAppOptions().SetDolchAdjectivesColor(m_dolchAdjectivesColor);
         wxGetApp().GetAppOptions().SetDolchVerbsColor(m_dolchVerbsColor);
-        wxGetApp().GetAppOptions().SetDolchNounColor(m_dolchNounColor);
+        wxGetApp().GetAppOptions().SetDolchNounsColor(m_dolchNounsColor);
         wxGetApp().GetAppOptions().HighlightDolchConjunctions(m_highlightDolchConjunctions);
         wxGetApp().GetAppOptions().HighlightDolchPrepositions(m_highlightDolchPrepositions);
         wxGetApp().GetAppOptions().HighlightDolchPronouns(m_highlightDolchPronouns);
@@ -2425,12 +2426,12 @@ void ToolsOptionsDlg::SaveOptions()
         wxGetApp().GetAppOptions().SetSentenceStartMustBeUppercased(
             m_sentenceStartMustBeUppercased);
         wxGetApp().GetAppOptions().AggressiveExclusion(m_aggressiveExclusion);
-        wxGetApp().GetAppOptions().IgnoreTrailingCopyrightNoticeParagraphs(
-            m_ignoreTrailingCopyrightNoticeParagraphs);
-        wxGetApp().GetAppOptions().IgnoreTrailingCitations(m_ignoreTrailingCitations);
-        wxGetApp().GetAppOptions().IgnoreFileAddresses(m_ignoreFileAddresses);
-        wxGetApp().GetAppOptions().IgnoreNumerals(m_ignoreNumerals);
-        wxGetApp().GetAppOptions().IgnoreProperNouns(m_ignoreProperNouns);
+        wxGetApp().GetAppOptions().ExcludeTrailingCopyrightNoticeParagraphs(
+            m_excludeTrailingCopyrightNoticeParagraphs);
+        wxGetApp().GetAppOptions().ExcludeTrailingCitations(m_excludeTrailingCitations);
+        wxGetApp().GetAppOptions().ExcludeFileAddresses(m_excludeFileAddresses);
+        wxGetApp().GetAppOptions().ExcludeNumerals(m_excludeNumerals);
+        wxGetApp().GetAppOptions().ExcludeProperNouns(m_excludeProperNouns);
         wxGetApp().GetAppOptions().IncludeExcludedPhraseFirstOccurrence(
             m_includeExcludedPhraseFirstOccurrence);
         wxGetApp().GetAppOptions().SetExcludedPhrasesPath(m_excludedPhrasesPath);
@@ -2629,7 +2630,7 @@ void ToolsOptionsDlg::SaveOptions()
 
         if (IsPropertyAvailable(m_histogramPropertyGrid, GetBinSortingLabel()))
             {
-            wxGetApp().GetAppOptions().SetHistorgramBinningMethod(
+            wxGetApp().GetAppOptions().SetHistogramBinningMethod(
                 static_cast<Histogram::BinningMethod>(
                     m_histogramPropertyGrid->GetPropertyValueAsInt(GetBinSortingLabel())));
             }
@@ -2837,7 +2838,7 @@ void ToolsOptionsDlg::SaveTextWindowOptions()
         m_readabilityProjectDoc->SetDolchAdverbsColor(m_dolchAdverbsColor);
         m_readabilityProjectDoc->SetDolchAdjectivesColor(m_dolchAdjectivesColor);
         m_readabilityProjectDoc->SetDolchVerbsColor(m_dolchVerbsColor);
-        m_readabilityProjectDoc->SetDolchNounColor(m_dolchNounColor);
+        m_readabilityProjectDoc->SetDolchNounColor(m_dolchNounsColor);
         m_readabilityProjectDoc->HighlightDolchConjunctions(m_highlightDolchConjunctions);
         m_readabilityProjectDoc->HighlightDolchPrepositions(m_highlightDolchPrepositions);
         m_readabilityProjectDoc->HighlightDolchPronouns(m_highlightDolchPronouns);
@@ -2983,7 +2984,7 @@ void ToolsOptionsDlg::SaveProjectGraphOptions()
 
         if (IsPropertyAvailable(m_histogramPropertyGrid, GetBinSortingLabel()))
             {
-            m_readabilityProjectDoc->SetHistorgramBinningMethod(
+            m_readabilityProjectDoc->SetHistogramBinningMethod(
                 static_cast<Histogram::BinningMethod>(
                     m_histogramPropertyGrid->GetPropertyValueAsInt(GetBinSortingLabel())));
             }
@@ -3716,7 +3717,7 @@ void ToolsOptionsDlg::CreateControls()
         m_ignoreFileAddressesCheckBox =
             new wxCheckBox(AnalysisIndexingPage, ID_EXCLUDE_FILE_ADDRESS_CHECKBOX,
                            _(L"Also exclude Internet and file addresses"), wxDefaultPosition,
-                           wxDefaultSize, 0, wxGenericValidator(&m_ignoreFileAddresses));
+                           wxDefaultSize, 0, wxGenericValidator(&m_excludeFileAddresses));
         m_ignoreFileAddressesCheckBox->Enable(
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeFromAnalysis)) ||
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeExceptForHeadings)));
@@ -3725,7 +3726,7 @@ void ToolsOptionsDlg::CreateControls()
         m_ignoreCopyrightsCheckBox =
             new wxCheckBox(AnalysisIndexingPage, ID_EXCLUDE_COPYRIGHT_CHECKBOX,
                            _(L"Also exclude &copyright notices"), wxDefaultPosition, wxDefaultSize,
-                           0, wxGenericValidator(&m_ignoreTrailingCopyrightNoticeParagraphs));
+                           0, wxGenericValidator(&m_excludeTrailingCopyrightNoticeParagraphs));
         m_ignoreCopyrightsCheckBox->Enable(
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeFromAnalysis)) ||
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeExceptForHeadings)));
@@ -3733,7 +3734,7 @@ void ToolsOptionsDlg::CreateControls()
 
         m_ignoreNumeralsCheckBox = new wxCheckBox(
             AnalysisIndexingPage, ID_EXCLUDE_NUMERALS_CHECKBOX, _(L"Also exclude numerals"),
-            wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_ignoreNumerals));
+            wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_excludeNumerals));
         m_ignoreNumeralsCheckBox->Enable(
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeFromAnalysis)) ||
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeExceptForHeadings)));
@@ -3742,7 +3743,7 @@ void ToolsOptionsDlg::CreateControls()
         m_ignoreCitationsCheckBox =
             new wxCheckBox(AnalysisIndexingPage, ID_EXCLUDE_CITATIONS_CHECKBOX,
                            _(L"Also exclude trailing citations"), wxDefaultPosition, wxDefaultSize,
-                           0, wxGenericValidator(&m_ignoreTrailingCitations));
+                           0, wxGenericValidator(&m_excludeTrailingCitations));
         m_ignoreCitationsCheckBox->Enable(
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeFromAnalysis)) ||
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeExceptForHeadings)));
@@ -3750,7 +3751,7 @@ void ToolsOptionsDlg::CreateControls()
 
         m_ignoreProperNounsCheckBox = new wxCheckBox(
             AnalysisIndexingPage, ID_EXCLUDE_PROPER_NOUNS_CHECKBOX, _(L"Also exclude proper nouns"),
-            wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_ignoreProperNouns));
+            wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_excludeProperNouns));
         m_ignoreProperNounsCheckBox->Enable(
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeFromAnalysis)) ||
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeExceptForHeadings)));
@@ -3867,10 +3868,10 @@ void ToolsOptionsDlg::CreateControls()
                                        wxGenericValidator(&m_syllabicationMethod));
         m_syllableCombo->Enable(
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::IncludeAsFullSentences)) ||
-            !m_ignoreNumerals);
+            !m_excludeNumerals);
         m_syllableLabel->Enable(
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::IncludeAsFullSentences)) ||
-            !m_ignoreNumerals);
+            !m_excludeNumerals);
         syllableSizer->Add(m_syllableCombo, wxSizerFlags{}.Border(wxRIGHT).CenterVertical());
         panelSizer->Add(syllableSizer, wxSizerFlags{}.Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
         }
@@ -3939,7 +3940,7 @@ void ToolsOptionsDlg::CreateControls()
                 GetFleschNumeralSyllabicationLabel(),
                 (m_textExclusionMethod ==
                  static_cast<int>(InvalidSentence::IncludeAsFullSentences)) ||
-                    !m_ignoreNumerals);
+                    !m_excludeNumerals);
             // Flesch-Kincaid
             m_readabilityTestsPropertyGrid->Append(new wxPropertyCategory(_DT(L"Flesch-Kincaid")));
             m_readabilityTestsPropertyGrid->SetPropertyHelpString(
@@ -3964,7 +3965,7 @@ void ToolsOptionsDlg::CreateControls()
                 GetFleschKincaidNumeralSyllabicationLabel(),
                 (m_textExclusionMethod ==
                  static_cast<int>(InvalidSentence::IncludeAsFullSentences)) ||
-                    !m_ignoreNumerals);
+                    !m_excludeNumerals);
             // DC options
             m_readabilityTestsPropertyGrid->Append(new wxPropertyCategory(_DT(L"Dale-Chall")));
             m_readabilityTestsPropertyGrid->SetPropertyHelpString(
@@ -4043,7 +4044,7 @@ void ToolsOptionsDlg::CreateControls()
             m_readTestsSyllableLabel->Enable(
                 (m_textExclusionMethod ==
                  static_cast<int>(InvalidSentence::IncludeAsFullSentences)) ||
-                !m_ignoreNumerals);
+                !m_excludeNumerals);
             panelSizer->Add(m_readTestsSyllableLabel, wxSizerFlags{}.Border(wxLEFT | wxRIGHT));
 
             m_textExclusionLabel = new wxStaticText(
@@ -5062,15 +5063,15 @@ void ToolsOptionsDlg::CreateControls()
                 optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
                 optionsIndentSizer->Add(rowSizer, wxSizerFlags{}.Expand());
 
-                m_DolchNounColorButton =
+                m_DolchNounsColorButton =
                     new wxBitmapButton(Panel, ID_DOLCH_NOUN_COLOR_BUTTON,
-                                       ResourceManager::CreateColorIcon(m_dolchNounColor));
+                                       ResourceManager::CreateColorIcon(m_dolchNounsColor));
                 // add them to the sizer
                 rowSizer->Add(new wxCheckBox(Panel, wxID_ANY, _(L"Dolch nouns color:"),
                                              wxDefaultPosition, wxDefaultSize, 0,
                                              wxGenericValidator(&m_highlightDolchNouns)),
                               wxSizerFlags{ 1 }.CenterVertical());
-                rowSizer->Add(m_DolchNounColorButton, wxSizerFlags{}.Align(wxRight).Border(wxLEFT));
+                rowSizer->Add(m_DolchNounsColorButton, wxSizerFlags{}.Align(wxRight).Border(wxLEFT));
                 }
             }
         }
@@ -5810,9 +5811,9 @@ void ToolsOptionsDlg::CreateGraphSection()
                 m_histogramPropertyGrid->Append(new wxEnumProperty(
                     GetBinSortingLabel(), wxPG_LABEL, sortChoices,
                     (m_readabilityProjectDoc ?
-                         static_cast<int>(m_readabilityProjectDoc->GetHistorgramBinningMethod()) :
+                         static_cast<int>(m_readabilityProjectDoc->GetHistogramBinningMethod()) :
                          static_cast<int>(
-                             wxGetApp().GetAppOptions().GetHistorgramBinningMethod()))));
+                             wxGetApp().GetAppOptions().GetHistogramBinningMethod()))));
                 m_histogramPropertyGrid->SetPropertyHelpString(
                     GetBinSortingLabel(),
                     _(L"Bin sorting refers to how values (e.g., index and grade scores) are "

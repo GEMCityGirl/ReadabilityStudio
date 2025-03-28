@@ -2559,8 +2559,8 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                     optDlg.IsStrippingAbbreviations(), optDlg.IsNarrowingFullWidthCharacters());
 
                 FilteredTextPreviewDlg dlg(GetDocFrame(), subProject->GetInvalidSentenceMethod(),
-                    subProject->IsIgnoringTrailingCopyrightNoticeParagraphs(),
-                    subProject->IsIgnoringTrailingCitations(),
+                    subProject->IsExcludingTrailingCopyrightNoticeParagraphs(),
+                    subProject->IsExcludingTrailingCitations(),
                     optDlg.IsReplacingCharacters(), optDlg.IsRemovingEllipses(),
                     optDlg.IsRemovingBullets(), optDlg.IsRemovingFilePaths(), optDlg.IsStrippingAbbreviations() );
                 dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"online/analysis-notes.html");

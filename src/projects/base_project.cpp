@@ -111,8 +111,9 @@ void BaseProject::UpdateDocumentSettings()
     assert(GetWords() != nullptr && L"Invalid word collection when updating document settings!");
     GetWords()->set_allowable_incomplete_sentence_size(GetIncludeIncompleteSentencesIfLongerThanValue());
     GetWords()->set_aggressive_exclusion(IsExcludingAggressively());
-    GetWords()->ignore_trailing_copyright_notice_paragraphs(IsIgnoringTrailingCopyrightNoticeParagraphs());
-    GetWords()->ignore_citation_sections(IsIgnoringTrailingCitations());
+    GetWords()->ignore_trailing_copyright_notice_paragraphs(
+        IsExcludingTrailingCopyrightNoticeParagraphs());
+    GetWords()->ignore_citation_sections(IsExcludingTrailingCitations());
     GetWords()->treat_header_words_as_valid(GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings);
     GetWords()->treat_eol_as_eos(m_paragraphsParsingMethod == ParagraphParse::EachNewLineIsAParagraph);
     GetWords()->ignore_blank_lines_when_determing_paragraph_split(GetIgnoreBlankLinesForParagraphsParser());
@@ -130,9 +131,9 @@ void BaseProject::UpdateDocumentSettings()
     GetWords()->get_spell_checker().ignore_programmer_code(SpellCheckIsIgnoringProgrammerCode());
     GetWords()->get_spell_checker().allow_colloquialisms(SpellCheckIsAllowingColloquialisms());
     GetWords()->get_spell_checker().ignore_social_media_tags(SpellCheckIsIgnoringSocialMediaTags());
-    GetWords()->exclude_file_addresses(IsIgnoringFileAddresses());
-    GetWords()->exclude_numerals(IsIgnoringNumerals());
-    GetWords()->exclude_proper_nouns(IsIgnoringProperNouns());
+    GetWords()->exclude_file_addresses(IsExcludingFileAddresses());
+    GetWords()->exclude_numerals(IsExcludingNumerals());
+    GetWords()->exclude_proper_nouns(IsExcludingProperNouns());
     GetWords()->set_excluded_phrase_function(m_excluded_phrases);
     GetWords()->include_excluded_phrase_first_occurrence(IsIncludingExcludedPhraseFirstOccurrence());
     GetWords()->clear_exclusion_block_tags();
@@ -365,16 +366,21 @@ BaseProject::BaseProject() :
     m_spellcheck_ignore_social_media_tags(wxGetApp().GetAppOptions().SpellCheckIsIgnoringSocialMediaTags()),
 
     // analysis
-    m_ignoreBlankLinesForParagraphsParser(wxGetApp().GetAppOptions().GetIgnoreBlankLinesForParagraphsParser()),
-    m_ignoreIndentingForParagraphsParser(wxGetApp().GetAppOptions().GetIgnoreIndentingForParagraphsParser()),
-    m_sentenceStartMustBeUppercased(wxGetApp().GetAppOptions().GetSentenceStartMustBeUppercased()),
+    m_ignoreBlankLinesForParagraphsParser(
+        wxGetApp().GetAppOptions().GetIgnoreBlankLinesForParagraphsParser()),
+    m_ignoreIndentingForParagraphsParser(
+        wxGetApp().GetAppOptions().GetIgnoreIndentingForParagraphsParser()),
+    m_sentenceStartMustBeUppercased(
+        wxGetApp().GetAppOptions().GetSentenceStartMustBeUppercased()),
     m_aggressiveExclusion(wxGetApp().GetAppOptions().IsExcludingAggressively()),
-    m_ignoreTrailingCopyrightNoticeParagraphs(wxGetApp().GetAppOptions().IsIgnoringTrailingCopyrightNoticeParagraphs()),
-    m_ignoreTrailingCitations(wxGetApp().GetAppOptions().IsIgnoringTrailingCitations()),
-    m_ignoreFileAddresses(wxGetApp().GetAppOptions().IsIgnoringFileAddresses()),
-    m_ignoreNumerals(wxGetApp().GetAppOptions().IsIgnoringNumerals()),
-    m_ignoreProperNouns(wxGetApp().GetAppOptions().IsIgnoringProperNouns()),
-    m_includeExcludedPhraseFirstOccurrence(wxGetApp().GetAppOptions().IsIncludingExcludedPhraseFirstOccurrence()),
+    m_excludeTrailingCopyrightNoticeParagraphs(
+        wxGetApp().GetAppOptions().IsExcludingTrailingCopyrightNoticeParagraphs()),
+    m_excludeTrailingCitations(wxGetApp().GetAppOptions().IsExcludingTrailingCitations()),
+    m_excludeFileAddresses(wxGetApp().GetAppOptions().IsExcludingFileAddresses()),
+    m_excludeNumerals(wxGetApp().GetAppOptions().IsExcludingNumerals()),
+    m_excludeProperNouns(wxGetApp().GetAppOptions().IsExcludingProperNouns()),
+    m_includeExcludedPhraseFirstOccurrence(
+        wxGetApp().GetAppOptions().IsIncludingExcludedPhraseFirstOccurrence()),
 
     m_fogUseSentenceUnits(wxGetApp().GetAppOptions().FogUseSentenceUnits()),
     m_includeStockerCatholicDCSupplement(wxGetApp().GetAppOptions().IsIncludingStockerCatholicSupplement()),
@@ -8030,11 +8036,11 @@ void BaseProject::CopySettings(const BaseProject& that)
     m_ignoreIndentingForParagraphsParser = that.GetIgnoreIndentingForParagraphsParser();
     m_sentenceStartMustBeUppercased = that.GetSentenceStartMustBeUppercased();
     m_aggressiveExclusion = that.IsExcludingAggressively();
-    m_ignoreTrailingCopyrightNoticeParagraphs = that.IsIgnoringTrailingCopyrightNoticeParagraphs();
-    m_ignoreTrailingCitations = that.IsIgnoringTrailingCitations();
-    m_ignoreFileAddresses = that.IsIgnoringFileAddresses();
-    m_ignoreNumerals = that.IsIgnoringNumerals();
-    m_ignoreProperNouns = that.IsIgnoringProperNouns();
+    m_excludeTrailingCopyrightNoticeParagraphs = that.IsExcludingTrailingCopyrightNoticeParagraphs();
+    m_excludeTrailingCitations = that.IsExcludingTrailingCitations();
+    m_excludeFileAddresses = that.IsExcludingFileAddresses();
+    m_excludeNumerals = that.IsExcludingNumerals();
+    m_excludeProperNouns = that.IsExcludingProperNouns();
     m_includeExcludedPhraseFirstOccurrence = that.IsIncludingExcludedPhraseFirstOccurrence();
     m_paragraphsParsingMethod = that.GetParagraphsParsingMethod();
     m_invalidSentenceMethod = that.GetInvalidSentenceMethod();

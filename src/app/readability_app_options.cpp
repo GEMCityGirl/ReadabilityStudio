@@ -271,8 +271,8 @@ void ReadabilityAppOptions::ResetSettings()
     m_dolchPronounsColor = wxColour(198, 226, 255);
     m_dolchAdverbsColor = wxColour(0, 250, 154);
     m_dolchAdjectivesColor = wxColour(221, 160, 221);
-    m_dolchVerbColor = wxColour(254, 208, 112);
-    m_dolchNounColor = wxColour(255, 182, 193);
+    m_dolchVerbsColor = wxColour(254, 208, 112);
+    m_dolchNounsColor = wxColour(255, 182, 193);
     m_highlightDolchConjunctions = true;
     m_highlightDolchPrepositions = true;
     m_highlightDolchPronouns = true;
@@ -296,11 +296,11 @@ void ReadabilityAppOptions::ResetSettings()
     m_ignoreIndentingForParagraphsParser = false;
     m_sentenceStartMustBeUppercased = false;
     m_aggressiveExclusion = false;
-    m_ignoreTrailingCopyrightNoticeParagraphs = true;
-    m_ignoreTrailingCitations = true;
-    m_ignoreFileAddresses = false;
-    m_ignoreNumerals = false;
-    m_ignoreProperNouns = false;
+    m_excludeTrailingCopyrightNoticeParagraphs = true;
+    m_excludeTrailingCitations = true;
+    m_excludeFileAddresses = false;
+    m_excludeNumerals = false;
+    m_excludeProperNouns = false;
     m_excludedPhrasesPath.clear();
     m_exclusionBlockTags.clear();
     m_invalidSentenceMethod = InvalidSentence::ExcludeFromAnalysis;
@@ -1461,34 +1461,34 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                     documentAnalysisNode->FirstChildElement(XML_IGNORE_PROPER_NOUNS.data());
                 if (ignoreProperNouns)
                     {
-                    m_ignoreProperNouns = int_to_bool(ignoreProperNouns->ToElement()->IntAttribute(
-                        XML_VALUE.data(), bool_to_int(m_ignoreProperNouns)));
+                    m_excludeProperNouns = int_to_bool(ignoreProperNouns->ToElement()->IntAttribute(
+                        XML_VALUE.data(), bool_to_int(m_excludeProperNouns)));
                     }
                 // whether to ignore numerals
                 auto ignoreNumerals =
                     documentAnalysisNode->FirstChildElement(XML_IGNORE_NUMERALS.data());
                 if (ignoreNumerals)
                     {
-                    m_ignoreNumerals = int_to_bool(ignoreNumerals->ToElement()->IntAttribute(
-                        XML_VALUE.data(), bool_to_int(m_ignoreNumerals)));
+                    m_excludeNumerals = int_to_bool(ignoreNumerals->ToElement()->IntAttribute(
+                        XML_VALUE.data(), bool_to_int(m_excludeNumerals)));
                     }
                 // whether to ignore file address
                 auto ignoreFileAddresses =
                     documentAnalysisNode->FirstChildElement(XML_IGNORE_FILE_ADDRESSES.data());
                 if (ignoreFileAddresses)
                     {
-                    m_ignoreFileAddresses =
+                    m_excludeFileAddresses =
                         int_to_bool(ignoreFileAddresses->ToElement()->IntAttribute(
-                            XML_VALUE.data(), bool_to_int(m_ignoreFileAddresses)));
+                            XML_VALUE.data(), bool_to_int(m_excludeFileAddresses)));
                     }
                 // whether to ignore citations
                 auto ignoreCitations =
                     documentAnalysisNode->FirstChildElement(XML_IGNORE_CITATIONS.data());
                 if (ignoreCitations)
                     {
-                    m_ignoreTrailingCitations =
+                    m_excludeTrailingCitations =
                         int_to_bool(ignoreCitations->ToElement()->IntAttribute(
-                            XML_VALUE.data(), bool_to_int(m_ignoreTrailingCitations)));
+                            XML_VALUE.data(), bool_to_int(m_excludeTrailingCitations)));
                     }
                 // whether to aggressively exclude
                 auto aggressivelyDeducingLists =
@@ -1504,10 +1504,10 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                     documentAnalysisNode->FirstChildElement(XML_IGNORE_COPYRIGHT_NOTICES.data());
                 if (ignoreCopyrightNotices)
                     {
-                    m_ignoreTrailingCopyrightNoticeParagraphs =
+                    m_excludeTrailingCopyrightNoticeParagraphs =
                         int_to_bool(ignoreCopyrightNotices->ToElement()->IntAttribute(
                             XML_VALUE.data(),
-                            bool_to_int(m_ignoreTrailingCopyrightNoticeParagraphs)));
+                            bool_to_int(m_excludeTrailingCopyrightNoticeParagraphs)));
                     }
                 // determinant for how to text is parsed into paragraphs
                 auto paraParsingNode =
@@ -2194,7 +2194,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                     if (catNode)
                         {
                         int value = catNode->ToElement()->IntAttribute(
-                            XML_VALUE.data(), static_cast<int>(GetHistorgramBinningMethod()));
+                            XML_VALUE.data(), static_cast<int>(GetHistogramBinningMethod()));
                         if (value < 0 ||
                             value >= static_cast<decltype(value)>(
                                          Histogram::BinningMethod::BINNING_METHOD_COUNT))
@@ -2202,7 +2202,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                             value = static_cast<decltype(value)>(
                                 Histogram::BinningMethod::BinByIntegerRange);
                             }
-                        SetHistorgramBinningMethod(static_cast<Histogram::BinningMethod>(value));
+                        SetHistogramBinningMethod(static_cast<Histogram::BinningMethod>(value));
                         }
                     auto roundNode =
                         histogramNode->FirstChildElement(XML_GRAPH_ROUNDING_METHOD.data());
@@ -3295,12 +3295,12 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                 if (dolchNounColorNode)
                     {
                     int red = dolchNounColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetRed().mb_str(), GetDolchNounColor().Red());
+                        XmlFormat::GetRed().mb_str(), GetDolchNounsColor().Red());
                     int green = dolchNounColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetGreen().mb_str(), GetDolchNounColor().Green());
+                        XmlFormat::GetGreen().mb_str(), GetDolchNounsColor().Green());
                     int blue = dolchNounColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetBlue().mb_str(), GetDolchNounColor().Blue());
-                    SetDolchNounColor(wxColour(red, green, blue));
+                        XmlFormat::GetBlue().mb_str(), GetDolchNounsColor().Blue());
+                    SetDolchNounsColor(wxColour(red, green, blue));
                     m_highlightDolchNouns =
                         int_to_bool(dolchNounColorNode->ToElement()->IntAttribute(
                             XML_INCLUDE.data(), bool_to_int(m_highlightDolchNouns)));
@@ -3858,22 +3858,22 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
 
     // whether to ignore Proper Nouns
     auto ignoreProperNouns = doc.NewElement(XML_IGNORE_PROPER_NOUNS.data());
-    ignoreProperNouns->SetAttribute(XML_VALUE.data(), bool_to_int(IsIgnoringProperNouns()));
+    ignoreProperNouns->SetAttribute(XML_VALUE.data(), bool_to_int(IsExcludingProperNouns()));
     documentAnalysisSection->InsertEndChild(ignoreProperNouns);
 
     // whether to ignore numerals
     auto ignoreNumerals = doc.NewElement(XML_IGNORE_NUMERALS.data());
-    ignoreNumerals->SetAttribute(XML_VALUE.data(), bool_to_int(IsIgnoringNumerals()));
+    ignoreNumerals->SetAttribute(XML_VALUE.data(), bool_to_int(IsExcludingNumerals()));
     documentAnalysisSection->InsertEndChild(ignoreNumerals);
 
     // whether to ignore file addresses
     auto ignoreFileAddress = doc.NewElement(XML_IGNORE_FILE_ADDRESSES.data());
-    ignoreFileAddress->SetAttribute(XML_VALUE.data(), bool_to_int(IsIgnoringFileAddresses()));
+    ignoreFileAddress->SetAttribute(XML_VALUE.data(), bool_to_int(IsExcludingFileAddresses()));
     documentAnalysisSection->InsertEndChild(ignoreFileAddress);
 
     // whether to ignore citations
     auto ignoreCitations = doc.NewElement(XML_IGNORE_CITATIONS.data());
-    ignoreCitations->SetAttribute(XML_VALUE.data(), bool_to_int(IsIgnoringTrailingCitations()));
+    ignoreCitations->SetAttribute(XML_VALUE.data(), bool_to_int(IsExcludingTrailingCitations()));
     documentAnalysisSection->InsertEndChild(ignoreCitations);
 
     // whether to aggressively exclude
@@ -3884,7 +3884,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     // whether to ignore copyright notices
     auto ignoreCopyrightNotices = doc.NewElement(XML_IGNORE_COPYRIGHT_NOTICES.data());
     ignoreCopyrightNotices->SetAttribute(
-        XML_VALUE.data(), bool_to_int(IsIgnoringTrailingCopyrightNoticeParagraphs()));
+        XML_VALUE.data(), bool_to_int(IsExcludingTrailingCopyrightNoticeParagraphs()));
     documentAnalysisSection->InsertEndChild(ignoreCopyrightNotices);
 
     // paragraph parsing
@@ -4253,7 +4253,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto histogramSettings = doc.NewElement(XML_HISTOGRAM_SETTINGS.data());
     // categorization method
     auto hCatMode = doc.NewElement(XML_GRAPH_BINNING_METHOD.data());
-    hCatMode->SetAttribute(XML_VALUE.data(), static_cast<int>(GetHistorgramBinningMethod()));
+    hCatMode->SetAttribute(XML_VALUE.data(), static_cast<int>(GetHistogramBinningMethod()));
     histogramSettings->InsertEndChild(hCatMode);
     // rounding method
     auto hRoundMode = doc.NewElement(XML_GRAPH_ROUNDING_METHOD.data());
@@ -4792,9 +4792,9 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     textViewsSection->InsertEndChild(dolchVerbHighlight);
 
     auto dolchNounHighlight = doc.NewElement(XML_DOLCH_NOUNS_HIGHLIGHTCOLOR.data());
-    dolchNounHighlight->SetAttribute(XmlFormat::GetRed().mb_str(), GetDolchNounColor().Red());
-    dolchNounHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(), GetDolchNounColor().Green());
-    dolchNounHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(), GetDolchNounColor().Blue());
+    dolchNounHighlight->SetAttribute(XmlFormat::GetRed().mb_str(), GetDolchNounsColor().Red());
+    dolchNounHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(), GetDolchNounsColor().Green());
+    dolchNounHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(), GetDolchNounsColor().Blue());
     dolchNounHighlight->SetAttribute(XML_INCLUDE.data(), bool_to_int(IsHighlightingDolchNouns()));
     textViewsSection->InsertEndChild(dolchNounHighlight);
 

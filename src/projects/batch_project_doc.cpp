@@ -4879,7 +4879,7 @@ void BatchProjectDoc::DisplayHistogram(const wxString& name, const wxWindowID Id
         histogram->SetData(data,
             GetScoreColumnName(),
             (IsShowingGroupLegends() ? std::optional<wxString>(GetGroupColumnName()) : std::nullopt),
-            (isTestGradeLevel ? Histogram::BinningMethod::BinUniqueValues : GetHistorgramBinningMethod()),
+            (isTestGradeLevel ? Histogram::BinningMethod::BinUniqueValues : GetHistogramBinningMethod()),
             GetHistogramRoundingMethod(),
             GetHistogramIntervalDisplay(), GetHistrogramBinLabelDisplay(),
             true, (isTestGradeLevel ? 0 : startAtOne ? 1 : std::numeric_limits<double>::quiet_NaN()));

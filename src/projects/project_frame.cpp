@@ -1991,7 +1991,8 @@ void ProjectDocChildFrame::OnTextExclusionOptions(wxCommandEvent& event)
             dynamic_cast<wxRibbonButtonBar*>(numeralButtonBar)->EnableButton(
                 XRCID("ID_NUMERAL_SYLLABICATION"),
                 (doc->GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences) ?
-                    true : !doc->IsIgnoringNumerals());
+                        true :
+                        !doc->IsExcludingNumerals());
             }
         }
     doc->RefreshRequired(ProjectRefresh::FullReindexing);
@@ -2110,7 +2111,8 @@ void ProjectDocChildFrame::OnAggressivelyExclude([[maybe_unused]] wxRibbonButton
 void ProjectDocChildFrame::OnIgnoreCopyrights([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     BaseProjectDoc* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    theProject->IgnoreTrailingCopyrightNoticeParagraphs(!theProject->IsIgnoringTrailingCopyrightNoticeParagraphs());
+    theProject->ExcludeTrailingCopyrightNoticeParagraphs(
+        !theProject->IsExcludingTrailingCopyrightNoticeParagraphs());
     theProject->RefreshRequired(ProjectRefresh::FullReindexing);
     theProject->RefreshProject();
     }
@@ -2119,7 +2121,7 @@ void ProjectDocChildFrame::OnIgnoreCopyrights([[maybe_unused]] wxRibbonButtonBar
 void ProjectDocChildFrame::OnIgnoreCitations([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     BaseProjectDoc* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    theProject->IgnoreTrailingCitations(!theProject->IsIgnoringTrailingCitations());
+    theProject->ExcludeTrailingCitations(!theProject->IsExcludingTrailingCitations());
     theProject->RefreshRequired(ProjectRefresh::FullReindexing);
     theProject->RefreshProject();
     }
@@ -2128,7 +2130,7 @@ void ProjectDocChildFrame::OnIgnoreCitations([[maybe_unused]] wxRibbonButtonBarE
 void ProjectDocChildFrame::OnIgnoreFileAddresses([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     BaseProjectDoc* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    theProject->IgnoreFileAddresses(!theProject->IsIgnoringFileAddresses());
+    theProject->ExcludeFileAddresses(!theProject->IsExcludingFileAddresses());
     theProject->RefreshRequired(ProjectRefresh::FullReindexing);
     theProject->RefreshProject();
     }
@@ -2137,7 +2139,7 @@ void ProjectDocChildFrame::OnIgnoreFileAddresses([[maybe_unused]] wxRibbonButton
 void ProjectDocChildFrame::OnIgnoreNumerals([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     BaseProjectDoc* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    theProject->IgnoreNumerals(!theProject->IsIgnoringNumerals());
+    theProject->ExcludeNumerals(!theProject->IsExcludingNumerals());
     auto* view = dynamic_cast<BaseProjectView*>(GetView());
     assert(view);
     if (view != nullptr && view->GetRibbon() != nullptr)
@@ -2146,8 +2148,8 @@ void ProjectDocChildFrame::OnIgnoreNumerals([[maybe_unused]] wxRibbonButtonBarEv
             view->GetRibbon()->FindWindow(MainFrame::ID_NUMERALS_RIBBON_BUTTON_BAR);
         if (numeralButtonBar && numeralButtonBar->IsKindOf(wxCLASSINFO(wxRibbonButtonBar)))
             {
-            dynamic_cast<wxRibbonButtonBar*>(numeralButtonBar)->EnableButton(
-                XRCID("ID_NUMERAL_SYLLABICATION"), !theProject->IsIgnoringNumerals());
+            dynamic_cast<wxRibbonButtonBar*>(numeralButtonBar)->EnableButton(XRCID("ID_NUMERAL_SYLLABICATION"),
+                               !theProject->IsExcludingNumerals());
             }
         }
     theProject->RefreshRequired(ProjectRefresh::FullReindexing);
@@ -2158,7 +2160,7 @@ void ProjectDocChildFrame::OnIgnoreNumerals([[maybe_unused]] wxRibbonButtonBarEv
 void ProjectDocChildFrame::OnIgnoreProperNouns([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     BaseProjectDoc* theProject = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    theProject->IgnoreProperNouns(!theProject->IsIgnoringProperNouns());
+    theProject->ExcludeProperNouns(!theProject->IsExcludingProperNouns());
     theProject->RefreshRequired(ProjectRefresh::FullReindexing);
     theProject->RefreshProject();
     }

@@ -1418,7 +1418,7 @@ namespace LuaScripting
             {
             return 0;
             }
-        wxGetApp().GetAppOptions().IgnoreTrailingCopyrightNoticeParagraphs(
+        wxGetApp().GetAppOptions().ExcludeTrailingCopyrightNoticeParagraphs(
             int_to_bool(lua_toboolean(L, 1)));
         return 0;
         }
@@ -1430,7 +1430,7 @@ namespace LuaScripting
             {
             return 0;
             }
-        wxGetApp().GetAppOptions().IgnoreTrailingCitations(int_to_bool(lua_toboolean(L, 1)));
+        wxGetApp().GetAppOptions().ExcludeTrailingCitations(int_to_bool(lua_toboolean(L, 1)));
         return 0;
         }
 
@@ -1441,7 +1441,7 @@ namespace LuaScripting
             {
             return 0;
             }
-        wxGetApp().GetAppOptions().IgnoreFileAddresses(int_to_bool(lua_toboolean(L, 1)));
+        wxGetApp().GetAppOptions().ExcludeFileAddresses(int_to_bool(lua_toboolean(L, 1)));
         return 0;
         }
 
@@ -1452,7 +1452,7 @@ namespace LuaScripting
             {
             return 0;
             }
-        wxGetApp().GetAppOptions().IgnoreNumerals(int_to_bool(lua_toboolean(L, 1)));
+        wxGetApp().GetAppOptions().ExcludeNumerals(int_to_bool(lua_toboolean(L, 1)));
         return 0;
         }
 
@@ -1463,7 +1463,7 @@ namespace LuaScripting
             {
             return 0;
             }
-        wxGetApp().GetAppOptions().IgnoreProperNouns(int_to_bool(lua_toboolean(L, 1)));
+        wxGetApp().GetAppOptions().ExcludeProperNouns(int_to_bool(lua_toboolean(L, 1)));
         return 0;
         }
 
@@ -1479,7 +1479,7 @@ namespace LuaScripting
     int IsExcludingCopyrightNotices(lua_State* L)
         {
         lua_pushboolean(L,
-                        wxGetApp().GetAppOptions().IsIgnoringTrailingCopyrightNoticeParagraphs());
+                        wxGetApp().GetAppOptions().IsExcludingTrailingCopyrightNoticeParagraphs());
         wxGetApp().Yield();
         return 1;
         }
@@ -1487,7 +1487,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int IsExcludingTrailingCitations(lua_State* L)
         {
-        lua_pushboolean(L, wxGetApp().GetAppOptions().IsIgnoringTrailingCitations());
+        lua_pushboolean(L, wxGetApp().GetAppOptions().IsExcludingTrailingCitations());
         wxGetApp().Yield();
         return 1;
         }
@@ -1495,7 +1495,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int IsExcludingFileAddresses(lua_State* L)
         {
-        lua_pushboolean(L, wxGetApp().GetAppOptions().IsIgnoringFileAddresses());
+        lua_pushboolean(L, wxGetApp().GetAppOptions().IsExcludingFileAddresses());
         wxGetApp().Yield();
         return 1;
         }
@@ -1503,7 +1503,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int IsExcludingNumerals(lua_State* L)
         {
-        lua_pushboolean(L, wxGetApp().GetAppOptions().IsIgnoringNumerals());
+        lua_pushboolean(L, wxGetApp().GetAppOptions().IsExcludingNumerals());
         wxGetApp().Yield();
         return 1;
         }
@@ -1511,7 +1511,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int IsExcludingProperNouns(lua_State* L)
         {
-        lua_pushboolean(L, wxGetApp().GetAppOptions().IsIgnoringProperNouns());
+        lua_pushboolean(L, wxGetApp().GetAppOptions().IsExcludingProperNouns());
         wxGetApp().Yield();
         return 1;
         }
@@ -2269,7 +2269,7 @@ namespace LuaScripting
             return 0;
             }
 
-        wxGetApp().GetAppOptions().SetHistorgramBinningMethod(
+        wxGetApp().GetAppOptions().SetHistogramBinningMethod(
             static_cast<Wisteria::Graphs::Histogram::BinningMethod>(lua_tonumber(L, 1)));
         return 0;
         }
@@ -2278,7 +2278,7 @@ namespace LuaScripting
     int GetHistogramBinning(lua_State* L)
         {
         lua_pushnumber(L,
-                       static_cast<int>(wxGetApp().GetAppOptions().GetHistorgramBinningMethod()));
+                       static_cast<int>(wxGetApp().GetAppOptions().GetHistogramBinningMethod()));
         wxGetApp().Yield();
         return 1;
         }
@@ -2946,7 +2946,7 @@ namespace LuaScripting
             return 0;
             }
 
-        wxGetApp().GetAppOptions().SetDolchNounColor(
+        wxGetApp().GetAppOptions().SetDolchNounsColor(
             LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
         return 0;
         }

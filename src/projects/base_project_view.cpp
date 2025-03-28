@@ -919,16 +919,16 @@ void BaseProjectView::Present()
                 ->ToggleButton(XRCID("ID_EXCLUDE_AGGRESSIVELY"), doc->IsExcludingAggressively());
             dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)
                 ->ToggleButton(XRCID("ID_EXCLUDE_COPYRIGHT_NOTICES"),
-                               doc->IsIgnoringTrailingCopyrightNoticeParagraphs());
+                               doc->IsExcludingTrailingCopyrightNoticeParagraphs());
             dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)
                 ->ToggleButton(XRCID("ID_EXCLUDE_TRAILING_CITATIONS"),
-                               doc->IsIgnoringTrailingCitations());
+                               doc->IsExcludingTrailingCitations());
             dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)
-                ->ToggleButton(XRCID("ID_EXCLUDE_FILE_ADDRESSES"), doc->IsIgnoringFileAddresses());
+                ->ToggleButton(XRCID("ID_EXCLUDE_FILE_ADDRESSES"), doc->IsExcludingFileAddresses());
             dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)
-                ->ToggleButton(XRCID("ID_EXCLUDE_NUMERALS"), doc->IsIgnoringNumerals());
+                ->ToggleButton(XRCID("ID_EXCLUDE_NUMERALS"), doc->IsExcludingNumerals());
             dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)
-                ->ToggleButton(XRCID("ID_EXCLUDE_PROPER_NOUNS"), doc->IsIgnoringProperNouns());
+                ->ToggleButton(XRCID("ID_EXCLUDE_PROPER_NOUNS"), doc->IsExcludingProperNouns());
             // disable exclusion buttons
             dynamic_cast<wxRibbonButtonBar*>(exclusionButtonBar)
                 ->EnableButton(
@@ -972,7 +972,7 @@ void BaseProjectView::Present()
                     XRCID("ID_NUMERAL_SYLLABICATION"),
                     (doc->GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences) ?
                         true :
-                        !doc->IsIgnoringNumerals());
+                        !doc->IsExcludingNumerals());
             }
         }
 

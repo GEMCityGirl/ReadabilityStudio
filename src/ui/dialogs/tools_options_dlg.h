@@ -945,7 +945,7 @@ class ToolsOptionsDlg final : public wxDialog
     wxBitmapButton* m_DolchAdverbsColorButton{ nullptr };
     wxBitmapButton* m_DolchAdjectivesColorButton{ nullptr };
     wxBitmapButton* m_DolchVerbsColorButton{ nullptr };
-    wxBitmapButton* m_DolchNounColorButton{ nullptr };
+    wxBitmapButton* m_DolchNounsColorButton{ nullptr };
 
     // property grid controls
     wxPropertyGridPage* m_readabilityTestsPropertyGrid{ nullptr };
@@ -1010,7 +1010,7 @@ class ToolsOptionsDlg final : public wxDialog
     BackupVariable<wxColour> m_dolchAdverbsColor;
     BackupVariable<wxColour> m_dolchAdjectivesColor;
     BackupVariable<wxColour> m_dolchVerbsColor;
-    BackupVariable<wxColour> m_dolchNounColor;
+    BackupVariable<wxColour> m_dolchNounsColor;
 
     BackupVariable<bool> m_highlightDolchConjunctions;
     BackupVariable<bool> m_highlightDolchPrepositions;
@@ -1033,11 +1033,11 @@ class ToolsOptionsDlg final : public wxDialog
     BackupVariable<bool> m_ignoreIndentingForParagraphsParser;
     BackupVariable<bool> m_sentenceStartMustBeUppercased;
     BackupVariable<bool> m_aggressiveExclusion;
-    BackupVariable<bool> m_ignoreTrailingCopyrightNoticeParagraphs;
-    BackupVariable<bool> m_ignoreTrailingCitations;
-    BackupVariable<bool> m_ignoreFileAddresses;
-    BackupVariable<bool> m_ignoreNumerals;
-    BackupVariable<bool> m_ignoreProperNouns;
+    BackupVariable<bool> m_excludeTrailingCopyrightNoticeParagraphs;
+    BackupVariable<bool> m_excludeTrailingCitations;
+    BackupVariable<bool> m_excludeFileAddresses;
+    BackupVariable<bool> m_excludeNumerals;
+    BackupVariable<bool> m_excludeProperNouns;
     BackupVariable<wxString> m_excludedPhrasesPath;
     bool m_excludedPhrasesEdited{ false };
     BackupVariable<bool> m_includeExcludedPhraseFirstOccurrence;

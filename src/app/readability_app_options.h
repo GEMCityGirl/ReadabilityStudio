@@ -790,28 +790,28 @@ class ReadabilityAppOptions
     [[nodiscard]]
     wxColour GetDolchVerbsColor() const
         {
-        return m_dolchVerbColor;
+        return m_dolchVerbsColor;
         }
 
     void SetDolchVerbsColor(const wxColour& color)
         {
         if (color.IsOk())
             {
-            m_dolchVerbColor = color;
+            m_dolchVerbsColor = color;
             }
         }
 
     [[nodiscard]]
-    wxColour GetDolchNounColor() const
+    wxColour GetDolchNounsColor() const
         {
-        return m_dolchNounColor;
+        return m_dolchNounsColor;
         }
 
-    void SetDolchNounColor(const wxColour& color)
+    void SetDolchNounsColor(const wxColour& color)
         {
         if (color.IsOk())
             {
-            m_dolchNounColor = color;
+            m_dolchNounsColor = color;
             }
         }
 
@@ -977,54 +977,57 @@ class ReadabilityAppOptions
 
     // whether trailing copyright/trademark paragraphs are getting ignored
     [[nodiscard]]
-    bool IsIgnoringTrailingCopyrightNoticeParagraphs() const noexcept
+    bool IsExcludingTrailingCopyrightNoticeParagraphs() const noexcept
         {
-        return m_ignoreTrailingCopyrightNoticeParagraphs;
+        return m_excludeTrailingCopyrightNoticeParagraphs;
         }
 
-    void IgnoreTrailingCopyrightNoticeParagraphs(const bool ignore = true) noexcept
+    void ExcludeTrailingCopyrightNoticeParagraphs(const bool ignore = true) noexcept
         {
-        m_ignoreTrailingCopyrightNoticeParagraphs = ignore;
+        m_excludeTrailingCopyrightNoticeParagraphs = ignore;
         }
 
     // whether trailing citation paragraphs are getting ignored
     [[nodiscard]]
-    bool IsIgnoringTrailingCitations() const noexcept
+    bool IsExcludingTrailingCitations() const noexcept
         {
-        return m_ignoreTrailingCitations;
+        return m_excludeTrailingCitations;
         }
 
-    void IgnoreTrailingCitations(const bool ignore = true) noexcept
+    void ExcludeTrailingCitations(const bool ignore = true) noexcept
         {
-        m_ignoreTrailingCitations = ignore;
+        m_excludeTrailingCitations = ignore;
         }
 
     // whether file addresses are getting ignored
     [[nodiscard]]
-    bool IsIgnoringFileAddresses() const noexcept
+    bool IsExcludingFileAddresses() const noexcept
         {
-        return m_ignoreFileAddresses;
+        return m_excludeFileAddresses;
         }
 
-    void IgnoreFileAddresses(const bool ignore = true) noexcept { m_ignoreFileAddresses = ignore; }
+    void ExcludeFileAddresses(const bool ignore = true) noexcept
+        {
+        m_excludeFileAddresses = ignore;
+        }
 
     // whether numerals are getting ignored
     [[nodiscard]]
-    bool IsIgnoringNumerals() const noexcept
+    bool IsExcludingNumerals() const noexcept
         {
-        return m_ignoreNumerals;
+        return m_excludeNumerals;
         }
 
-    void IgnoreNumerals(const bool ignore = true) noexcept { m_ignoreNumerals = ignore; }
+    void ExcludeNumerals(const bool ignore = true) noexcept { m_excludeNumerals = ignore; }
 
     // whether Proper Nouns are getting ignored
     [[nodiscard]]
-    bool IsIgnoringProperNouns() const noexcept
+    bool IsExcludingProperNouns() const noexcept
         {
-        return m_ignoreProperNouns;
+        return m_excludeProperNouns;
         }
 
-    void IgnoreProperNouns(const bool ignore = true) noexcept { m_ignoreProperNouns = ignore; }
+    void ExcludeProperNouns(const bool ignore = true) noexcept { m_excludeProperNouns = ignore; }
 
     // file path to phrases to exclude from analysis
     [[nodiscard]]
@@ -1502,7 +1505,7 @@ class ReadabilityAppOptions
         }
 
     void SetImagePath(const wxString& path) { m_imagePath = path; }
-    
+
     [[nodiscard]]
     wxString GetDownloadsPath() const
         {
@@ -1669,10 +1672,7 @@ class ReadabilityAppOptions
         return m_graphColorSchemeName;
         }
 
-    void SetGraphColorScheme(const wxString& colorScheme)
-        {
-        m_graphColorSchemeName = colorScheme;
-        }
+    void SetGraphColorScheme(const wxString& colorScheme) { m_graphColorSchemeName = colorScheme; }
 
     [[nodiscard]]
     wxColour GetBackGroundColor() const
@@ -1743,13 +1743,12 @@ class ReadabilityAppOptions
 
     /// Histogram options
     [[nodiscard]]
-    Wisteria::Graphs::Histogram::BinningMethod GetHistorgramBinningMethod() const noexcept
+    Wisteria::Graphs::Histogram::BinningMethod GetHistogramBinningMethod() const noexcept
         {
         return m_histogramBinningMethod;
         }
 
-    void
-    SetHistorgramBinningMethod(const Wisteria::Graphs::Histogram::BinningMethod method) noexcept
+    void SetHistogramBinningMethod(const Wisteria::Graphs::Histogram::BinningMethod method) noexcept
         {
         m_histogramBinningMethod = method;
         }
@@ -2523,8 +2522,8 @@ class ReadabilityAppOptions
     wxColour m_dolchPronounsColor{ wxColour{ 198, 226, 255 } };
     wxColour m_dolchAdverbsColor{ wxColour{ 0, 250, 154 } };
     wxColour m_dolchAdjectivesColor{ wxColour{ 221, 160, 221 } };
-    wxColour m_dolchVerbColor{ wxColour{ 254, 208, 112 } };
-    wxColour m_dolchNounColor{ wxColour{ 255, 182, 193 } };
+    wxColour m_dolchVerbsColor{ wxColour{ 254, 208, 112 } };
+    wxColour m_dolchNounsColor{ wxColour{ 255, 182, 193 } };
     bool m_highlightDolchConjunctions{ true };
     bool m_highlightDolchPrepositions{ true };
     bool m_highlightDolchPronouns{ true };
@@ -2557,11 +2556,11 @@ class ReadabilityAppOptions
     bool m_ignoreIndentingForParagraphsParser{ false };
     bool m_sentenceStartMustBeUppercased{ false };
     bool m_aggressiveExclusion{ false };
-    bool m_ignoreTrailingCopyrightNoticeParagraphs{ true };
-    bool m_ignoreTrailingCitations{ true };
-    bool m_ignoreFileAddresses{ false };
-    bool m_ignoreNumerals{ false };
-    bool m_ignoreProperNouns{ false };
+    bool m_excludeTrailingCopyrightNoticeParagraphs{ true };
+    bool m_excludeTrailingCitations{ true };
+    bool m_excludeFileAddresses{ false };
+    bool m_excludeNumerals{ false };
+    bool m_excludeProperNouns{ false };
     bool m_includeExcludedPhraseFirstOccurrence{ false };
     wxString m_excludedPhrasesPath;
     std::vector<std::pair<wchar_t, wchar_t>> m_exclusionBlockTags;

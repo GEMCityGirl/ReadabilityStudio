@@ -441,13 +441,13 @@ class BaseProjectDoc : public BaseProject, public wxDocument
 
     /// Histogram options
     [[nodiscard]]
-    Wisteria::Graphs::Histogram::BinningMethod GetHistorgramBinningMethod() const noexcept
+    Wisteria::Graphs::Histogram::BinningMethod GetHistogramBinningMethod() const noexcept
         {
         return m_histogramBinningMethod;
         }
 
     void
-    SetHistorgramBinningMethod(const Wisteria::Graphs::Histogram::BinningMethod method) noexcept
+    SetHistogramBinningMethod(const Wisteria::Graphs::Histogram::BinningMethod method) noexcept
         {
         m_histogramBinningMethod = method;
         }

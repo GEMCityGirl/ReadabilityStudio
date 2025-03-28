@@ -472,45 +472,81 @@ public:
     /// whether the first word of a sentence must be capitalized
     [[nodiscard]]
     bool GetSentenceStartMustBeUppercased() const noexcept
-        { return m_sentenceStartMustBeUppercased; }
+        {
+        return m_sentenceStartMustBeUppercased;
+        }
+
     void SetSentenceStartMustBeUppercased(const bool uppercased) noexcept
-        { m_sentenceStartMustBeUppercased = uppercased; }
+        {
+        m_sentenceStartMustBeUppercased = uppercased;
+        }
+
     /// whether trailing citation paragraphs are getting ignored
     [[nodiscard]]
-    bool IsIgnoringTrailingCitations() const noexcept
-        { return m_ignoreTrailingCitations; }
-    void IgnoreTrailingCitations(const bool ignore = true) noexcept
-        { m_ignoreTrailingCitations = ignore; }
+    bool IsExcludingTrailingCitations() const noexcept
+        {
+        return m_excludeTrailingCitations;
+        }
+
+    void ExcludeTrailingCitations(const bool ignore = true) noexcept
+        {
+        m_excludeTrailingCitations = ignore;
+        }
+
     /// whether numerals are getting ignored
     [[nodiscard]]
-    bool IsIgnoringNumerals() const noexcept
-        { return m_ignoreNumerals; }
-    void IgnoreNumerals(const bool ignore = true) noexcept
-        { m_ignoreNumerals = ignore; }
+    bool IsExcludingNumerals() const noexcept
+        {
+        return m_excludeNumerals;
+        }
+
+    void ExcludeNumerals(const bool ignore = true) noexcept { m_excludeNumerals = ignore; }
+
     /// whether Proper Nouns are getting ignored
     [[nodiscard]]
-    bool IsIgnoringProperNouns() const noexcept
-        { return m_ignoreProperNouns; }
-    void IgnoreProperNouns(const bool ignore = true) noexcept
-        { m_ignoreProperNouns = ignore; }
+    bool IsExcludingProperNouns() const noexcept
+        {
+        return m_excludeProperNouns;
+        }
+
+    void ExcludeProperNouns(const bool ignore = true) noexcept { m_excludeProperNouns = ignore; }
+
     /// whether file addresses are getting ignored
     [[nodiscard]]
-    bool IsIgnoringFileAddresses() const noexcept
-        { return m_ignoreFileAddresses; }
-    void IgnoreFileAddresses(const bool ignore = true) noexcept
-        { m_ignoreFileAddresses = ignore; }
+    bool IsExcludingFileAddresses() const noexcept
+        {
+        return m_excludeFileAddresses;
+        }
+
+    void ExcludeFileAddresses(const bool ignore = true) noexcept
+        {
+        m_excludeFileAddresses = ignore;
+        }
+
     /// whether to use aggressive list deduction
     [[nodiscard]]
     bool IsExcludingAggressively() const noexcept
-        { return m_aggressiveExclusion; }
+        {
+        return m_aggressiveExclusion;
+        }
+
     void AggressiveExclusion(const bool aggressive = true) noexcept
-        { m_aggressiveExclusion = aggressive; }
+        {
+        m_aggressiveExclusion = aggressive;
+        }
+
     /// whether trailing copyright/trademark paragraphs are getting ignored
     [[nodiscard]]
-    bool IsIgnoringTrailingCopyrightNoticeParagraphs() const noexcept
-        { return m_ignoreTrailingCopyrightNoticeParagraphs; }
-    void IgnoreTrailingCopyrightNoticeParagraphs(const bool ignore = true) noexcept
-        { m_ignoreTrailingCopyrightNoticeParagraphs = ignore; }
+    bool IsExcludingTrailingCopyrightNoticeParagraphs() const noexcept
+        {
+        return m_excludeTrailingCopyrightNoticeParagraphs;
+        }
+
+    void ExcludeTrailingCopyrightNoticeParagraphs(const bool ignore = true) noexcept
+        {
+        m_excludeTrailingCopyrightNoticeParagraphs = ignore;
+        }
+
     /// paragraph parsing
     [[nodiscard]]
     ParagraphParse GetParagraphsParsingMethod() const noexcept
@@ -1841,11 +1877,11 @@ private:
     bool m_ignoreIndentingForParagraphsParser{ false };
     bool m_sentenceStartMustBeUppercased{ false };
     bool m_aggressiveExclusion{ false };
-    bool m_ignoreTrailingCopyrightNoticeParagraphs{ false };
-    bool m_ignoreTrailingCitations{ false };
-    bool m_ignoreFileAddresses{ false };
-    bool m_ignoreNumerals{ false };
-    bool m_ignoreProperNouns{ false };
+    bool m_excludeTrailingCopyrightNoticeParagraphs{ false };
+    bool m_excludeTrailingCitations{ false };
+    bool m_excludeFileAddresses{ false };
+    bool m_excludeNumerals{ false };
+    bool m_excludeProperNouns{ false };
     bool m_includeExcludedPhraseFirstOccurrence{ false };
 
     // flag indicating that loading the original text failed or succeeded when opening the project
