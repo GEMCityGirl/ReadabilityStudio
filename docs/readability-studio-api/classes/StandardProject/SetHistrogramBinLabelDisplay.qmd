@@ -1,0 +1,17 @@
+## `SetHistrogramBinLabelDisplay`
+
+Sets how bar labels are displayed on histograms.
+
+### Syntax {-}
+
+``` {.lua}
+SetHistrogramBinLabelDisplay(BinLabelDisplay display)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|[`BinLabelDisplay`](#binlabeldisplay) display | Which type of label to display above the bars. |
+
+{{< pagebreak >}}

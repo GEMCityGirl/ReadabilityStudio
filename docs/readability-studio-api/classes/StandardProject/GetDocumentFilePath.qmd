@@ -1,0 +1,17 @@
+## `GetDocumentFilePath`
+
+Returns the path of the document being analyzed by the project.
+
+### Syntax {-}
+
+``` {.lua}
+string GetDocumentFilePath()
+```
+
+
+### Return value {-}
+
+Type: `string`
+
+
+{{< pagebreak >}}

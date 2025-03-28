@@ -1,0 +1,17 @@
+## `GetTextHighlighting`
+
+Returns how to highlight content in formatted reports for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+TextHighlight GetTextHighlighting()
+```
+
+
+### Return value {-}
+
+Type: [`TextHighlight`](#texthighlight)
+
+
+{{< pagebreak >}}

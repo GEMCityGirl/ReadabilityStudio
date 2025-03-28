@@ -113,6 +113,11 @@ namespace LuaScripting
     // Sets the tags to exclude blocks of text.
     int SetBlockExclusionTags(lua_State* L /*string tagString*/); // Sets the text exclusion tags for new projects. This should be a two-character string containing a pair of exclusion tags.
 
+    // SUMMARY STATS
+    int SetSummaryStatsResultsOptions(lua_State* L /*boolean includeFormattedReport, boolean TabularReport*/); // Sets which results in the summary statistics section should be included for new projects.
+    int SetSummaryStatsReportOptions(lua_State* L /*boolean includeParagraphs, boolean includeSentences, boolean includeWords, boolean includeExtendedWords, boolean includeGrammar, boolean includeNotes, boolean includeExtendedInfo*/); // Sets which results in the summary statistics reports should be included for new projects.
+    int SetSummaryStatsDolchReportOptions(lua_State* L /*boolean includeCoverage, boolean includeWords, boolean includeExplanation*/); // Sets which results in the Dolch summary report should be included for new projects.
+
     // WORDS BREAKDOWN
     int SetWordsBreakdownResultsOptions(lua_State* L /*boolean includeWordCounts, boolean includeSyllableCounts, boolean include3PlusSyllables, boolean include6PlusChars, boolean includeKeyWordCloud, boolean includeDC, boolean includeSpache, boolean includeHJ, boolean includeCustomTests, boolean includeAllWords, boolean includeKeyWords*/); // Sets which results in the words breakdown section should be included for new projects.
 
@@ -122,6 +127,15 @@ namespace LuaScripting
     // GRAMMAR
     int SetSpellCheckerOptions(lua_State* L /*boolean ignoreProperNouns, boolean ignoreUppercased, boolean ignoreNumerals, boolean ignoreFileAddresses, boolean ignoreProgrammerCode, boolean ignoreSocialMediaTags, boolean allowColloquialisms*/); // Sets spell-checker options for new projects.
     int SetGrammarResultsOptions(lua_State* L /*boolean includeHighlightedReport, boolean includeErrors, boolean includePossibleMisspellings, boolean includeRepeatedWords, boolean includeArticleMismatches, boolean includeRedundantPhrases, boolean includeOverusedWords, boolean includeWordiness, boolean includeCliches, boolean includePassiveVoice, boolean includeConjunctionStartingSentences, boolean includeLowercasedSentences*/); // Sets which grammar results should be included for new projects.
+
+    // HIGHLIGHTED REPORTS
+    int SetReportFont(lua_State* L /*string fontName, number pointSize, FontWeight weight, string color*/); // Sets the font for highlighted reports for new projects.
+    int SetExcludedTextHighlightColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for excluded text in formatted reports for new projects.
+    int SetDifficultTextHighlightColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for difficult text in formatted reports for new projects.
+    int SetGrammarIssuesHighlightColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for grammar issues in formatted reports for new projects.
+    int SetWordyTextHighlightColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for wordy content in formatted reports for new projects.
+    int SetTextHighlighting(lua_State* L /*TextHighlight highlighting*/); // Sets how to highlight content in formatted reports for new projects.
+    int /*TextHighlight*/ GetTextHighlighting(lua_State* L); // Returns how to highlight content in formatted reports for new projects.
 
     // GRAPH OPTIONS
     int SetGraphColorScheme(lua_State* L /*string colorScheme*/); // Sets the graph color scheme for new projects.
@@ -133,17 +147,28 @@ namespace LuaScripting
     int SetPlotBackgroundColorOpacity(lua_State* L /*number opacity*/); // Sets the graph background (plot area) color opacity for new projects.
     int /*number*/ GetPlotBackgroundColorOpacity(lua_State* L); // Returns the graph background (plot area) color opacity for new projects.
     int SetPlotBackgroundImage(lua_State* L /*string imagePath*/); // Sets the graph background (plot area) image for new projects.
+    int /*string*/ GetPlotBackgroundImage(lua_State* L); // Returns the graph background (plot area) image for new projects.
     int SetPlotBackgroundImageEffect(lua_State* L /*ImageEffect imageEffect*/); // Sets the effect applied to an image when drawn as a graph's background for new projects.
+    int /*ImageEffect*/ GetPlotBackgroundImageEffect(lua_State* L); // Returns the effect applied to an image when drawn as a graph's background for new projects.
     int SetPlotBackgroundImageOpacity(lua_State* L /*number opacity*/); // Sets the graph background (plot area) image opacity for new projects.
+    int /*number*/ GetPlotBackgroundImageOpacity(lua_State* L); // Returns the graph background (plot area) image opacity for new projects.
     int SetPlotBackgroundImageFit(lua_State* L /*ImageFit fitType*/); // Specifies how to adjust an image to fit within a graph's background for new projects.
+    int /*ImageFit*/ GetPlotBackgroundImageFit(lua_State* L); // Returns how to adjust an image to fit within a graph's background for new projects.
     int SetWatermark(lua_State* L /*string watermark*/); // Sets the watermark drawn on graphs for new projects.
-    int SetGraphLogoImage(lua_State* L /*string imagePath*/); // Sets the logo image for new projects.
-    int SetStippleImage(lua_State* L /*string imagePath*/);// Sets the stipple image used to draw bars in graphs for new projects.
+    int /*string*/ GetWatermark(lua_State* L); // Returns the watermark drawn on graphs for new projects.
+    int SetGraphLogoImage(lua_State* L /*string imagePath*/); // Sets the logo image filepath for new projects.
+    int /*string*/ GetGraphLogoImage(lua_State* L); // Returns the logo image filepath for new projects.
+    int SetStippleImage(lua_State* L /*string imagePath*/);// Sets the stipple image filepath used to draw bars in graphs for new projects.
+    int /*string*/ GetStippleImage(lua_State* L);// Returns the stipple image filepath used to draw bars in graphs for new projects.
     int SetStippleShape(lua_State* L /*string shapeId*/); // Sets the stipple shape used to draw bars in graphs for new projects.
+    int /*string*/ GetStippleShape(lua_State* L); // Returns the stipple shape used to draw bars in graphs for new projects.
     int SetStippleShapeColor(lua_State* L /*number red, number green, number blue*/); // If using stipple shapes for bars, sets the color for certain shapes for new projects.
-    int SetGraphCommonImage(lua_State* L /*string imagePath*/); // Sets the common image drawn across all bars.
+    int SetGraphCommonImage(lua_State* L /*string imagePath*/); // Sets the common image drawn across all bars for new projects.
+    int /*string*/ GetGraphCommonImage(lua_State* L); // Returns the common image drawn across all bars for new projects.
     int DisplayGraphDropShadows(lua_State* L /*bool displayShadows*/); // Sets whether to display shadows on graphs for new projects.
+    int /*bool*/ IsDisplayingGraphDropShadows(lua_State* L); // Returns whether to display shadows on graphs for new projects.
     int ShowcaseKeyItems(lua_State* L /*boolean showcase*/); // Specifies whether important parts of certain graphs should be highlighted for new projects.
+    int /*boolean*/ IsShowcasingKeyItems(lua_State* L); // Returns whether important parts of certain graphs should be highlighted for new projects.
 
     int SetXAxisFont(lua_State* L /*string fontName, number pointSize, FontWeight weight, string color*/); // Sets the font for the graphs' X axes for new projects.
     int SetYAxisFont(lua_State* L /*string fontName, number pointSize, FontWeight weight, string color*/); // Sets the font for the graphs' Y axes for new projects.
@@ -178,6 +203,14 @@ namespace LuaScripting
     int /*BoxEffect*/ GetHistogramBarEffect(lua_State* L); // Returns how bars should be drawn within the various histograms for new projects.
     int SetHistogramBarOpacity(lua_State* L /*number opacity*/); // Sets bar opacity (in histograms) for new projects.
     int /*number*/ GetHistogramBarOpacity(lua_State* L); // Returns the opacity of the bars within the various histograms for new projects.
+    int SetHistogramBinning(lua_State* L /*BinningMethod method*/); // Sets how data are binned in histograms for new projects.
+    int /*BinningMethod*/ GetHistogramBinning(lua_State* L); // Returns how data are binned in histograms for new projects.
+    int SetHistogramRounding(lua_State* L /*Rounding method*/); // Sets how data are rounded (during binning) in histograms for new projects.
+    int /*Rounding*/ GetHistogramRounding(lua_State* L); // Returns how data are rounded (during binning) in histograms for new projects.
+    int SetHistogramIntervalDisplay(lua_State* L /*IntervalDisplay display*/); // Sets how bin (axis) labels are displayed on histograms for new projects.
+    int /*IntervalDisplay*/ GetHistogramIntervalDisplay(lua_State* L); // Returns how bin (axis) labels are displayed on histograms for new projects.
+    int SetHistrogramBinLabelDisplay(lua_State* L /*BinLabelDisplay display*/); // Sets how bar labels are displayed on histograms for new projects.
+    int /*BinLabelDisplay*/ GetHistrogramBinLabelDisplay(lua_State* L); // Returns how bar labels are displayed on histograms for new projects.
 
     int SetBoxPlotColor(lua_State* L /*number red, number green, number blue*/); // Sets box color (in box plots) for new projects.
     int SetBoxPlotEffect(lua_State* L /*BoxEffect barEffect*/); // Sets box appearance (in box plots) for new projects.
@@ -282,17 +315,26 @@ namespace LuaScripting
         { "ApplyGraphBackgroundFade", ApplyGraphBackgroundFade },
         { "IsApplyingGraphBackgroundFade", IsApplyingGraphBackgroundFade },
         { "SetGraphCommonImage", SetGraphCommonImage },
+        { "GetGraphCommonImage", GetGraphCommonImage },
         { "SetPlotBackgroundImage", SetPlotBackgroundImage },
+        { "GetPlotBackgroundImage", GetPlotBackgroundImage },
         { "SetPlotBackgroundImageEffect", SetPlotBackgroundImageEffect },
+        { "GetPlotBackgroundImageEffect", GetPlotBackgroundImageEffect },
         { "SetPlotBackgroundImageFit", SetPlotBackgroundImageFit },
+        { "GetPlotBackgroundImageFit", GetPlotBackgroundImageFit },
         { "SetPlotBackgroundImageOpacity", SetPlotBackgroundImageOpacity },
+        { "GetPlotBackgroundImageOpacity", GetPlotBackgroundImageOpacity },
         { "SetPlotBackgroundColor", SetPlotBackgroundColor },
         { "SetPlotBackgroundColorOpacity", SetPlotBackgroundColorOpacity },
         { "GetPlotBackgroundColorOpacity", GetPlotBackgroundColorOpacity },
         { "SetWatermark", SetWatermark },
+        { "GetWatermark", GetWatermark },
         { "SetGraphLogoImage", SetGraphLogoImage },
+        { "GetGraphLogoImage", GetGraphLogoImage },
         { "SetStippleImage", SetStippleImage },
+        { "GetStippleImage", GetStippleImage },
         { "SetStippleShape", SetStippleShape },
+        { "GetStippleShape", GetStippleShape },
         { "SetXAxisFont", SetXAxisFont },
         { "SetYAxisFont", SetYAxisFont },
         { "SetGraphTopTitleFont", SetGraphTopTitleFont },
@@ -301,6 +343,7 @@ namespace LuaScripting
         { "SetGraphRightTitleFont", SetGraphRightTitleFont },
         { "DisplayBarChartLabels", DisplayBarChartLabels },
         { "DisplayGraphDropShadows", DisplayGraphDropShadows },
+        { "IsDisplayingGraphDropShadows", IsDisplayingGraphDropShadows },
         { "SetBarChartBarColor", SetBarChartBarColor },
         { "SetBarChartBarOpacity", SetBarChartBarOpacity },
         { "SetBarChartBarEffect", SetBarChartBarEffect },
@@ -314,6 +357,14 @@ namespace LuaScripting
         { "GetHistogramBarEffect", GetHistogramBarEffect },
         { "SetHistogramBarOpacity", SetHistogramBarOpacity },
         { "GetHistogramBarOpacity", GetHistogramBarOpacity },
+        { "SetHistogramBinning", SetHistogramBinning },
+        { "GetHistogramBinning", GetHistogramBinning },
+        { "SetHistogramRounding", SetHistogramRounding },
+        { "GetHistogramRounding", GetHistogramRounding },
+        { "SetHistogramIntervalDisplay", SetHistogramIntervalDisplay },
+        { "GetHistogramIntervalDisplay", GetHistogramIntervalDisplay },
+        { "SetHistrogramBinLabelDisplay", SetHistrogramBinLabelDisplay },
+        { "GetHistrogramBinLabelDisplay", GetHistrogramBinLabelDisplay },
         { "SetBoxPlotColor", SetBoxPlotColor },
         { "SetBoxPlotEffect", SetBoxPlotEffect },
         { "GetBoxPlotEffect", GetBoxPlotEffect },
@@ -336,10 +387,21 @@ namespace LuaScripting
         { "IsUsingEnglishLabelsForGermanLix", IsUsingEnglishLabelsForGermanLix },
         { "SetStippleShapeColor", SetStippleShapeColor },
         { "ShowcaseKeyItems", ShowcaseKeyItems },
+        { "IsShowcasingKeyItems", IsShowcasingKeyItems },
         { "SetSpellCheckerOptions", SetSpellCheckerOptions },
+        { "SetSummaryStatsResultsOptions", SetSummaryStatsResultsOptions },
+        { "SetSummaryStatsReportOptions", SetSummaryStatsReportOptions },
         { "SetWordsBreakdownResultsOptions", SetWordsBreakdownResultsOptions },
+        { "SetSummaryStatsDolchReportOptions", SetSummaryStatsDolchReportOptions },
         { "SetSentenceBreakdownResultsOptions", SetSentenceBreakdownResultsOptions },
         { "SetGrammarResultsOptions", SetGrammarResultsOptions },
+        { "SetReportFont", SetReportFont },
+        { "SetExcludedTextHighlightColor", SetExcludedTextHighlightColor },
+        { "SetDifficultTextHighlightColor", SetDifficultTextHighlightColor },
+        { "SetGrammarIssuesHighlightColor", SetGrammarIssuesHighlightColor },
+        { "SetWordyTextHighlightColor", SetWordyTextHighlightColor },
+        { "SetTextHighlighting", SetTextHighlighting },
+        { "GetTextHighlighting", SetTextHighlighting },
         { "SetWindowSize", SetWindowSize },
         { "RemoveAllCustomTests", RemoveAllCustomTests },
         { "RemoveAllCustomTestBundles", RemoveAllCustomTestBundles },

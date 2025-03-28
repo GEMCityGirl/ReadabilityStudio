@@ -1,0 +1,17 @@
+## `GetPlotBackgroundImageEffect`
+
+Returns the effect applied to an image when drawn as a graph's background for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+ImageEffect GetPlotBackgroundImageEffect()
+```
+
+
+### Return value {-}
+
+Type: [`ImageEffect`](#imageeffect)
+
+
+{{< pagebreak >}}

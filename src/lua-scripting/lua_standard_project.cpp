@@ -517,7 +517,20 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------
+    int StandardProject::GetDocumentFilePath(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushstring(L, m_project->GetOriginalDocumentFilePath().utf8_str());
+        return 1;
+        }
+
     // GRAPH OPTIONS
+    //-------------------------------------------------
     int StandardProject::SetGraphBackgroundColor(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -581,6 +594,18 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int StandardProject::GetPlotBackgroundImage(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushstring(L, m_project->GetPlotBackGroundImagePath().utf8_str());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int StandardProject::SetGraphCommonImage(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -595,6 +620,18 @@ namespace LuaScripting
         m_project->SetGraphCommonImagePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayedSimple();
         return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::GetGraphCommonImage(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushstring(L, m_project->GetGraphCommonImagePath().utf8_str());
+        return 1;
         }
 
     //-------------------------------------------------------------
@@ -616,6 +653,18 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int StandardProject::GetPlotBackgroundImageEffect(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetPlotBackGroundImageEffect()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int StandardProject::SetPlotBackgroundImageFit(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -634,6 +683,18 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int StandardProject::GetPlotBackgroundImageFit(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetPlotBackGroundImageFit()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int StandardProject::SetPlotBackgroundImageOpacity(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -648,6 +709,18 @@ namespace LuaScripting
         m_project->SetPlotBackGroundImageOpacity(lua_tonumber(L, 2));
         ReloadIfNotDelayedSimple();
         return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::GetPlotBackgroundImageOpacity(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, m_project->GetPlotBackGroundImageOpacity());
+        return 1;
         }
 
     //-------------------------------------------------------------
@@ -832,6 +905,18 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int StandardProject::IsShowcasingKeyItems(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L, m_project->IsShowcasingKeyItems());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int StandardProject::SetPlotBackgroundColorOpacity(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -907,6 +992,18 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int StandardProject::GetWatermark(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushstring(L, m_project->GetWatermark().utf8_str());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int StandardProject::SetGraphLogoImage(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -921,6 +1018,18 @@ namespace LuaScripting
         m_project->SetWatermarkLogoPath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayedSimple();
         return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::GetGraphLogoImage(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushstring(L, m_project->GetWatermarkLogoPath().utf8_str());
+        return 1;
         }
 
     //-------------------------------------------------------------
@@ -941,6 +1050,18 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int StandardProject::GetStippleImage(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushstring(L, m_project->GetStippleImagePath().utf8_str());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int StandardProject::SetStippleShape(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -955,6 +1076,18 @@ namespace LuaScripting
         m_project->SetStippleShape(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayedSimple();
         return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::GetStippleShape(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushstring(L, m_project->GetStippleShape().utf8_str());
+        return 1;
         }
 
     //-------------------------------------------------------------
@@ -1121,6 +1254,18 @@ namespace LuaScripting
         m_project->DisplayDropShadows(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayedSimple();
         return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::IsDisplayingGraphDropShadows(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L, m_project->IsDisplayingDropShadows());
+        return 1;
         }
 
     //-------------------------------------------------------------
@@ -1323,6 +1468,130 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int StandardProject::SetHistogramBinning(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetHistorgramBinningMethod(
+            static_cast<Wisteria::Graphs::Histogram::BinningMethod>(lua_tonumber(L, 2)));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::GetHistogramBinning(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetHistorgramBinningMethod()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetHistogramIntervalDisplay(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetHistogramIntervalDisplay(
+            static_cast<Wisteria::Graphs::Histogram::IntervalDisplay>(lua_tonumber(L, 2)));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::GetHistogramIntervalDisplay(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetHistogramIntervalDisplay()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetHistogramRounding(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetHistogramRoundingMethod(
+            static_cast<Wisteria::RoundingMethod>(lua_tonumber(L, 2)));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::GetHistogramRounding(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetHistogramRoundingMethod()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetHistrogramBinLabelDisplay(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetHistrogramBinLabelDisplay(
+            static_cast<Wisteria::BinLabelDisplay>(lua_tonumber(L, 2)));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::GetHistrogramBinLabelDisplay(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetHistrogramBinLabelDisplay()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int StandardProject::SetBoxPlotColor(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -1490,6 +1759,7 @@ namespace LuaScripting
         }
 
     // PROJECT SETTINGS
+    //-------------------------------------------------------------
     int StandardProject::SetProjectLanguage(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -1507,6 +1777,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::GetProjectLanguage(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -1518,6 +1789,7 @@ namespace LuaScripting
         return 1;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::SetReviewer(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -1534,6 +1806,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::GetReviewer(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -1545,6 +1818,7 @@ namespace LuaScripting
         return 1;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::SetStatus(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -1561,7 +1835,7 @@ namespace LuaScripting
         return 0;
         }
 
-    //-------------------------------------------------
+    //-------------------------------------------------------------
     int StandardProject::GetStatus(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -1573,6 +1847,7 @@ namespace LuaScripting
         return 1;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::SetDocumentStorageMethod(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -1590,6 +1865,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::GetDocumentStorageMethod(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -1601,6 +1877,7 @@ namespace LuaScripting
         return 1;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::SetParagraphsParsingMethod(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -1618,6 +1895,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::GetParagraphsParsingMethod(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -1629,6 +1907,7 @@ namespace LuaScripting
         return 1;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::SetSpellCheckerOptions(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -1663,6 +1942,106 @@ namespace LuaScripting
         if (lua_gettop(L) >= 7)
             {
             m_project->SpellCheckAllowColloquialisms(int_to_bool(lua_toboolean(L, 7)));
+            }
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetSummaryStatsResultsOptions(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        if (lua_gettop(L) >= 2)
+            {
+            m_project->GetStatisticsInfo().EnableReport(int_to_bool(lua_toboolean(L, 2)));
+            }
+        if (lua_gettop(L) >= 3)
+            {
+            m_project->GetStatisticsInfo().EnableTable(int_to_bool(lua_toboolean(L, 3)));
+            }
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetSummaryStatsReportOptions(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        if (lua_gettop(L) >= 2)
+            {
+            m_project->GetStatisticsReportInfo().EnableParagraph(int_to_bool(lua_toboolean(L, 2)));
+            }
+        if (lua_gettop(L) >= 3)
+            {
+            m_project->GetStatisticsReportInfo().EnableWords(int_to_bool(lua_toboolean(L, 3)));
+            }
+        if (lua_gettop(L) >= 4)
+            {
+            m_project->GetStatisticsReportInfo().EnableSentences(int_to_bool(lua_toboolean(L, 4)));
+            }
+        if (lua_gettop(L) >= 5)
+            {
+            m_project->GetStatisticsReportInfo().EnableExtendedWords(
+                int_to_bool(lua_toboolean(L, 5)));
+            }
+        if (lua_gettop(L) >= 6)
+            {
+            m_project->GetStatisticsReportInfo().EnableGrammar(int_to_bool(lua_toboolean(L, 6)));
+            }
+        if (lua_gettop(L) >= 7)
+            {
+            m_project->GetStatisticsReportInfo().EnableNotes(int_to_bool(lua_toboolean(L, 7)));
+            }
+        if (lua_gettop(L) >= 8)
+            {
+            m_project->GetStatisticsReportInfo().EnableExtendedInformation(
+                int_to_bool(lua_toboolean(L, 8)));
+            }
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetSummaryStatsDolchReportOptions(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        if (lua_gettop(L) >= 2)
+            {
+            m_project->GetStatisticsReportInfo().EnableDolchCoverage(
+                int_to_bool(lua_toboolean(L, 2)));
+            }
+        if (lua_gettop(L) >= 3)
+            {
+            m_project->GetStatisticsReportInfo().EnableDolchWords(int_to_bool(lua_toboolean(L, 3)));
+            }
+        if (lua_gettop(L) >= 4)
+            {
+            m_project->GetStatisticsReportInfo().EnableDolchExplanation(
+                int_to_bool(lua_toboolean(L, 4)));
             }
         ReloadIfNotDelayed();
         return 0;
@@ -1836,6 +2215,130 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
+    int StandardProject::SetReportFont(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        auto fontInfo = m_project->GetXAxisFont();
+        auto fontColor = m_project->GetXAxisFontColor();
+        LoadFontAttributes(L, fontInfo, fontColor, true);
+
+        m_project->SetTextViewFont(fontInfo);
+        m_project->SetTextFontColor(fontColor);
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetExcludedTextHighlightColor(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetExcludedTextHighlightColor(
+            LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetDifficultTextHighlightColor(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetTextHighlightColor(LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetGrammarIssuesHighlightColor(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetDuplicateWordHighlightColor(
+            LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetWordyTextHighlightColor(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetWordyPhraseHighlightColor(
+            LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetTextHighlighting(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetTextHighlightMethod(static_cast<TextHighlight>(lua_tonumber(L, 2)));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::GetTextHighlighting(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetTextHighlightMethod()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int StandardProject::AddTest(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -1911,7 +2414,7 @@ namespace LuaScripting
         return 1;
         }
 
-    // Reanalyzes the documents.
+    //-------------------------------------------------------------
     int StandardProject::Reload(lua_State*)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -1924,9 +2427,7 @@ namespace LuaScripting
         return 0;
         }
 
-    /// Closes the project.
-    /// @SaveChanges Specifies whether to save any changes made to the project before closing it.
-    /// Default is to not save any changes.
+    //-------------------------------------------------------------
     int StandardProject::Close(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -1959,8 +2460,7 @@ namespace LuaScripting
         return 0;
         }
 
-    // Exports all of the results from the project into a folder.
-    // FolderPath The folder to save the project's results.
+    //-------------------------------------------------------------
     int StandardProject::ExportAll(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -1979,8 +2479,7 @@ namespace LuaScripting
         return 0;
         }
 
-    // Saves the scores to an HTML file.
-    // FilePath The file path to save the scores.
+    //-------------------------------------------------------------
     int StandardProject::ExportScores(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -2024,14 +2523,7 @@ namespace LuaScripting
         return 1;
         }
 
-    // Saves a graph from the project as an image.
-    // GraphType Which graph to save. Available types are: GraphsTypes.WordBarChart,
-    // GraphsTypes.Fry, GraphsTypes.GpmFry, GraphsTypes.FRASE, GraphsTypes.Raygor,
-    // GraphsTypes.DolchCoverageChart, GraphsTypes.DolchWordBarChart, GraphsTypes.Flesch.
-    // FilePath The file path to save the graph.
-    // GrayScale Whether to save the image in black & white.
-    // Width The width of the output image.
-    // Height The height of the output image.
+    //-------------------------------------------------------------
     int StandardProject::ExportGraph(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -2124,9 +2616,7 @@ namespace LuaScripting
         return 1;
         }
 
-    // Saves a highlighted words report from the project.
-    // ReportType Which report to save.
-    // FilePath The file path to save the report.
+    //-------------------------------------------------------------
     int StandardProject::ExportHighlightedWords(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -2190,9 +2680,7 @@ namespace LuaScripting
         return 1;
         }
 
-    // Saves a summary report from the project.
-    // ReportType Which report to save.
-    // FilePath The file path to save the report.
+    //-------------------------------------------------------------
     int StandardProject::ExportReport(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -2281,9 +2769,7 @@ namespace LuaScripting
         return 1;
         }
 
-    // Saves a list from the project.
-    // ListType Which list to save.
-    // FilePath The file path to save the list.
+    //-------------------------------------------------------------
     int StandardProject::ExportList(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -2365,8 +2851,7 @@ namespace LuaScripting
         return 1;
         }
 
-    // Saves a copy of the project's document with excluded text
-    // (and other optional items) filtered out.
+    //-------------------------------------------------------------
     int StandardProject::ExportFilteredText(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -2398,11 +2883,7 @@ namespace LuaScripting
         return 1;
         }
 
-    /* Selects a text window in the Highlighted Reports section.
-       Also optionally selects a range of text in that window.
-       WindowToSelect The text window to select.
-       StartPosition Character position to begin selection.
-       EndPosition Character position to end selection.*/
+    //-------------------------------------------------------------
     int StandardProject::SelectHighlightedWordReport(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -2448,7 +2929,7 @@ namespace LuaScripting
         return 0;
         }
 
-    // Shows or hides the sidebar
+    //-------------------------------------------------------------
     int StandardProject::ShowSidebar(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -2469,9 +2950,7 @@ namespace LuaScripting
         return 0;
         }
 
-    /* Selects the specified section and subwindow.
-       Section The section to select.
-       Window The subwindow in the section to select.*/
+    //-------------------------------------------------------------
     int StandardProject::SelectWindow(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -2537,8 +3016,7 @@ namespace LuaScripting
         return 0;
         }
 
-    /* Selects the Readability Results section of the project and highlights a test by index.
-       TestToSelect The test to select, based on position in the list.*/
+    //-------------------------------------------------------------
     int StandardProject::SelectReadabilityTest(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -2563,10 +3041,7 @@ namespace LuaScripting
         return 0;
         }
 
-    /* Sorts a list.
-       ListToSort The list window to sort. Refer to ListTypes enumeration.
-       ColumnToSort The column in the list to sort.
-       Order The order to sort.*/
+    //-------------------------------------------------------------
     int StandardProject::SortList(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -2631,9 +3106,7 @@ namespace LuaScripting
         return 0;
         }
 
-    /* Sorts a graph.
-       GraphToSort The graph window to sort. Refer to GraphTypes enumeration.
-       Order The order to sort.*/
+    //-------------------------------------------------------------
     int StandardProject::SortGraph(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -2696,9 +3169,7 @@ namespace LuaScripting
         return 0;
         }
 
-    /* Selects a set of rows in a list in the Words Breakdown section.
-       WindowToSelect The list window to select items in.
-       RowsToSelect Rows to select. This can be a variable number of arguments.*/
+    //-------------------------------------------------------------
     int StandardProject::SelectRowsInWordsBreakdownList(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -2742,9 +3213,7 @@ namespace LuaScripting
         return 0;
         }
 
-    /* Selects and scrolls down a text window.
-       WindowToSelect The text window to select.
-       Position Character position to scroll into view.*/
+    //-------------------------------------------------------------
     int StandardProject::ScrollTextWindow(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -2796,10 +3265,7 @@ namespace LuaScripting
         return 0;
         }
 
-    /* Select the text window in the Grammar section. Also can optionally select a range of text.
-       StartPosition Character position to begin selection.
-       EndPosition Character position to end selection.*/
-
+    //-------------------------------------------------------------
     int StandardProject::SelectTextGrammarWindow(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -2837,7 +3303,7 @@ namespace LuaScripting
         }
 
     // HIDDEN interfaces for testing and screenshots
-    // Opens the properties dialog and the specified page
+    //-------------------------------------------------------------
     int StandardProject::OpenProperties(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -2913,6 +3379,7 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, UseRealTimeUpdate),
         LUNA_DECLARE_METHOD(StandardProject, IsRealTimeUpdating),
         LUNA_DECLARE_METHOD(StandardProject, SetDocumentFilePath),
+        LUNA_DECLARE_METHOD(StandardProject, GetDocumentFilePath),
         LUNA_DECLARE_METHOD(StandardProject, AggressivelyExclude),
         LUNA_DECLARE_METHOD(StandardProject, SetTextExclusion),
         LUNA_DECLARE_METHOD(StandardProject, SetIncludeIncompleteTolerance),
@@ -2932,21 +3399,38 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, GetParagraphsParsingMethod),
         LUNA_DECLARE_METHOD(StandardProject, GetDocumentStorageMethod),
         LUNA_DECLARE_METHOD(StandardProject, SetSpellCheckerOptions),
+        LUNA_DECLARE_METHOD(StandardProject, SetSummaryStatsResultsOptions),
+        LUNA_DECLARE_METHOD(StandardProject, SetSummaryStatsReportOptions),
+        LUNA_DECLARE_METHOD(StandardProject, SetSummaryStatsDolchReportOptions),
         LUNA_DECLARE_METHOD(StandardProject, SetWordsBreakdownResultsOptions),
         LUNA_DECLARE_METHOD(StandardProject, SetSentenceBreakdownResultsOptions),
         LUNA_DECLARE_METHOD(StandardProject, SetGrammarResultsOptions),
+        LUNA_DECLARE_METHOD(StandardProject, SetReportFont),
+        LUNA_DECLARE_METHOD(StandardProject, SetExcludedTextHighlightColor),
+        LUNA_DECLARE_METHOD(StandardProject, SetDifficultTextHighlightColor),
+        LUNA_DECLARE_METHOD(StandardProject, SetGrammarIssuesHighlightColor),
+        LUNA_DECLARE_METHOD(StandardProject, SetWordyTextHighlightColor),
+        LUNA_DECLARE_METHOD(StandardProject, SetTextHighlighting),
+        LUNA_DECLARE_METHOD(StandardProject, GetTextHighlighting),
         LUNA_DECLARE_METHOD(StandardProject, SetGraphColorScheme),
         LUNA_DECLARE_METHOD(StandardProject, GetGraphColorScheme),
         LUNA_DECLARE_METHOD(StandardProject, SetGraphBackgroundColor),
         LUNA_DECLARE_METHOD(StandardProject, ApplyGraphBackgroundFade),
         LUNA_DECLARE_METHOD(StandardProject, IsApplyingGraphBackgroundFade),
         LUNA_DECLARE_METHOD(StandardProject, SetGraphCommonImage),
+        LUNA_DECLARE_METHOD(StandardProject, GetGraphCommonImage),
         LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundImage),
+        LUNA_DECLARE_METHOD(StandardProject, GetPlotBackgroundImage),
         LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundImageEffect),
+        LUNA_DECLARE_METHOD(StandardProject, GetPlotBackgroundImageEffect),
         LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundImageFit),
+        LUNA_DECLARE_METHOD(StandardProject, GetPlotBackgroundImageFit),
         LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundImageOpacity),
+        LUNA_DECLARE_METHOD(StandardProject, GetPlotBackgroundImageOpacity),
         LUNA_DECLARE_METHOD(StandardProject, SetWatermark),
+        LUNA_DECLARE_METHOD(StandardProject, GetWatermark),
         LUNA_DECLARE_METHOD(StandardProject, SetGraphLogoImage),
+        LUNA_DECLARE_METHOD(StandardProject, GetGraphLogoImage),
         LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundColor),
         LUNA_DECLARE_METHOD(StandardProject, SetGraphInvalidRegionColor),
         LUNA_DECLARE_METHOD(StandardProject, SetRaygorStyle),
@@ -2959,10 +3443,13 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, IsUsingEnglishLabelsForGermanLix),
         LUNA_DECLARE_METHOD(StandardProject, SetStippleShapeColor),
         LUNA_DECLARE_METHOD(StandardProject, ShowcaseKeyItems),
+        LUNA_DECLARE_METHOD(StandardProject, IsShowcasingKeyItems),
         LUNA_DECLARE_METHOD(StandardProject, SetPlotBackgroundColorOpacity),
         LUNA_DECLARE_METHOD(StandardProject, GetPlotBackgroundColorOpacity),
         LUNA_DECLARE_METHOD(StandardProject, SetStippleImage),
+        LUNA_DECLARE_METHOD(StandardProject, GetStippleImage),
         LUNA_DECLARE_METHOD(StandardProject, SetStippleShape),
+        LUNA_DECLARE_METHOD(StandardProject, GetStippleShape),
         LUNA_DECLARE_METHOD(StandardProject, SetXAxisFont),
         LUNA_DECLARE_METHOD(StandardProject, SetYAxisFont),
         LUNA_DECLARE_METHOD(StandardProject, SetGraphTopTitleFont),
@@ -2971,6 +3458,7 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, SetGraphRightTitleFont),
         LUNA_DECLARE_METHOD(StandardProject, DisplayBarChartLabels),
         LUNA_DECLARE_METHOD(StandardProject, DisplayGraphDropShadows),
+        LUNA_DECLARE_METHOD(StandardProject, IsDisplayingGraphDropShadows),
         LUNA_DECLARE_METHOD(StandardProject, SetBarChartBarColor),
         LUNA_DECLARE_METHOD(StandardProject, SetBarChartBarOpacity),
         LUNA_DECLARE_METHOD(StandardProject, SetBarChartBarEffect),
@@ -2983,6 +3471,14 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, GetHistogramBarEffect),
         LUNA_DECLARE_METHOD(StandardProject, SetHistogramBarOpacity),
         LUNA_DECLARE_METHOD(StandardProject, GetHistogramBarOpacity),
+        LUNA_DECLARE_METHOD(StandardProject, SetHistogramBinning),
+        LUNA_DECLARE_METHOD(StandardProject, GetHistogramBinning),
+        LUNA_DECLARE_METHOD(StandardProject, SetHistogramRounding),
+        LUNA_DECLARE_METHOD(StandardProject, GetHistogramRounding),
+        LUNA_DECLARE_METHOD(StandardProject, SetHistogramIntervalDisplay),
+        LUNA_DECLARE_METHOD(StandardProject, GetHistogramIntervalDisplay),
+        LUNA_DECLARE_METHOD(StandardProject, SetHistrogramBinLabelDisplay),
+        LUNA_DECLARE_METHOD(StandardProject, GetHistrogramBinLabelDisplay),
         LUNA_DECLARE_METHOD(StandardProject, SetBarChartOrientation),
         LUNA_DECLARE_METHOD(StandardProject, SetBoxPlotColor),
         LUNA_DECLARE_METHOD(StandardProject, SetBoxPlotEffect),

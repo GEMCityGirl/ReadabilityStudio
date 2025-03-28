@@ -119,8 +119,13 @@ namespace LuaScripting
         int /*number*/ GetUnfamiliarDCWordCount(lua_State* L); // Returns the number of words unfamiliar to the Dale-Chall test from the document.
         int /*number*/ GetUnfamiliarHJWordCount(lua_State* L); // Returns the number of words unfamiliar to the Harris-Jacobson test from the document.
 
+        // SUMMARY STATS
+        int SetSummaryStatsResultsOptions(lua_State* L /*boolean includeFormattedReport, boolean TabularReport*/); // Sets which results in the summary statistics section should be included.
+        int SetSummaryStatsReportOptions(lua_State* L /*boolean includeParagraphs, boolean includeSentences, boolean includeWords, boolean includeExtendedWords, boolean includeGrammar, boolean includeNotes, boolean includeExtendedInfo*/); // Sets which results in the summary statistics reports should be included.
+        int SetSummaryStatsDolchReportOptions(lua_State* L /*boolean includeCoverage, boolean includeWords, boolean includeExplanation*/); // Sets which results in the Dolch summary report should be included.
+
         // WORDS BREAKDOWN
-        int SetWordsBreakdownResultsOptions(lua_State* L /*boolean includeWordCounts, boolean includeSyllableCounts, boolean include3PlusSyllables, boolean include6PlusChars, boolean includeKeyWordCloud, boolean includeDC, boolean includeSpache, boolean includeHJ, boolean includeCustomTests, boolean includeAllWords, boolean includeKeyWords*/); // Sets which results in the words breakdown section should be included for new projects.
+        int SetWordsBreakdownResultsOptions(lua_State* L /*boolean includeWordCounts, boolean includeSyllableCounts, boolean include3PlusSyllables, boolean include6PlusChars, boolean includeKeyWordCloud, boolean includeDC, boolean includeSpache, boolean includeHJ, boolean includeCustomTests, boolean includeAllWords, boolean includeKeyWords*/); // Sets which results in the words breakdown section should be included.
 
         // SENTENCES BREAKDOWN
         int SetSentenceBreakdownResultsOptions(lua_State* L /*boolean includeLongSentences, boolean includeLengthsSpread, boolean includeLengthsDistribution, boolean includeLengthsDensity*/); // Sets which results in the sentences breakdown section should be included.
@@ -128,6 +133,15 @@ namespace LuaScripting
         // GRAMMAR
         int SetSpellCheckerOptions(lua_State* L /*boolean ignoreProperNouns, boolean ignoreUppercased, boolean ignoreNumerals, boolean ignoreFileAddresses, boolean ignoreProgrammerCode, boolean ignoreSocialMediaTags, boolean allowColloquialisms*/); // Sets spell-checker options.
         int SetGrammarResultsOptions(lua_State* L /*boolean includeHighlightedReport, boolean includeErrors, boolean includePossibleMisspellings, boolean includeRepeatedWords, boolean includeArticleMismatches, boolean includeRedundantPhrases, boolean includeOverusedWords, boolean includeWordiness, boolean includeCliches, boolean includePassiveVoice, boolean includeConjunctionStartingSentences, boolean includeLowercasedSentences*/); // Sets which grammar results should be included.
+
+        // HIGHLIGHTED REPORTS
+        int SetReportFont(lua_State* L /*string fontName, number pointSize, FontWeight weight, string color*/); // Sets the font for highlighted reports.
+        int SetExcludedTextHighlightColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for excluded text in formatted reports.
+        int SetDifficultTextHighlightColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for difficult text in formatted reports.
+        int SetGrammarIssuesHighlightColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for grammar issues in formatted reports.
+        int SetWordyTextHighlightColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for wordy content in formatted reports.
+        int SetTextHighlighting(lua_State* L /*TextHighlight highlighting*/); // Sets how to highlight content in formatted reports.
+        int /*TextHighlight*/ GetTextHighlighting(lua_State* L); // Returns how to highlight content in formatted reports.
 
         // PROJECT SETTINGS
         int SetProjectLanguage(lua_State* L /*Language lang*/); // Sets the project language. This will affect syllable counting and also which tests are available.
@@ -143,9 +157,10 @@ namespace LuaScripting
         int /*TextStorage*/ GetDocumentStorageMethod(lua_State* L); // Returns whether the project embeds its documents or links to them.
         int SetDocumentStorageMethod(lua_State* L /*TextStorage storageMethod*/); // Sets whether the project embeds its documents or links to them.
         int SetParagraphsParsingMethod(lua_State* L /*ParagraphParse parseMethod*/); // Sets how hard returns help determine how paragraphs and sentences are detected.
-        int SetDocumentFilePath(lua_State* L /*string docPath*/); // Sets the path of the document being analyzed by the project.
         // cppcheck-suppress functionConst
         int /*ParagraphParse*/ GetParagraphsParsingMethod(lua_State* L); // Returns the method for how paragraphs are parsed.
+        int SetDocumentFilePath(lua_State* L /*string docPath*/); // Sets the path of the document being analyzed by the project.
+        int /*string*/ GetDocumentFilePath(lua_State* L); // Returns the path of the document being analyzed by the project.
         int SetAppendedDocumentFilePath(lua_State* L /*string filePath*/); // Sets the file path to the document being appended for analysis.
         int /*string*/ GetAppendedDocumentFilePath(lua_State* L); // Returns the file path to the document being appended for analysis.
         int UseRealTimeUpdate(lua_State* L /*bool use*/); // Toggles whether documents are being re-analyzed as they change.
@@ -173,17 +188,28 @@ namespace LuaScripting
         int SetPlotBackgroundColorOpacity(lua_State* L /*number opacity*/); // Sets the graph background color opacity.
         int /*number*/ GetPlotBackgroundColorOpacity(lua_State* L); // Returns the graph background (plot area) color opacity.
         int SetPlotBackgroundImage(lua_State* L /*string imagePath*/); // Sets the graph background (plot area) image.
+        int /*string*/ GetPlotBackgroundImage(lua_State* L); // Returns the graph background (plot area) image.
         int SetPlotBackgroundImageEffect(lua_State* L /*ImageEffect imageEffect*/); // Sets the effect applied to an image when drawn as a graph's background.
+        int /*ImageEffect*/ GetPlotBackgroundImageEffect(lua_State* L); // Returns the effect applied to an image when drawn as a graph's background.
         int SetPlotBackgroundImageFit(lua_State* L /*ImageFit fitType*/); // Specifies how to adjust an image to fit within a graph's background.
+        int /*ImageFit*/ GetPlotBackgroundImageFit(lua_State* L); // Returns how to adjust an image to fit within a graph's background.
         int SetPlotBackgroundImageOpacity(lua_State* L /*number opacity*/); // Sets the graph background (plot area) image opacity.
+        int /*number*/ GetPlotBackgroundImageOpacity(lua_State* L); // Returns the graph background (plot area) image opacity.
         int SetWatermark(lua_State* L /*string watermark*/); // Sets the watermark drawn on graphs.
-        int SetGraphLogoImage(lua_State* L /*string imagePath*/); // Sets the logo image, shown in the bottom left corner.
+        int /*string*/ GetWatermark(lua_State* L); // Returns the watermark drawn on graphs for.
+        int SetGraphLogoImage(lua_State* L /*string imagePath*/); // Sets the logo image filepath, shown in the bottom left corner.
+        int /*string*/ GetGraphLogoImage(lua_State* L); // Returns the logo image filepath.
         int SetStippleImage(lua_State* L /*string imagePath*/);// Sets the stipple image used to draw bars in graphs.
+        int /*string*/ GetStippleImage(lua_State* L);// Returns the stipple image filepath used to draw bars in graphs.
         int SetStippleShape(lua_State* L /*string shapeId*/); // Sets the stipple shape used to draw bars in graphs.
+        int /*string*/ GetStippleShape(lua_State* L); // Returns the stipple shape used to draw bars in graphs.
         int SetStippleShapeColor(lua_State* L /*number red, number green, number blue*/); // If using stipple shapes for bars, sets the color for certain shapes.
         int SetGraphCommonImage(lua_State* L /*string imagePath*/); // Sets the common image drawn across all bars.
-        int DisplayGraphDropShadows(lua_State* L /*bool displayShadows*/); // Sets whether to display shadows on graphs
+        int /*string*/ GetGraphCommonImage(lua_State* L); // Returns the common image drawn across all bars.
+        int DisplayGraphDropShadows(lua_State* L /*bool displayShadows*/); // Sets whether to display shadows on graphs.
+        int /*bool*/ IsDisplayingGraphDropShadows(lua_State* L); // Returns whether to display shadows on graphs.
         int ShowcaseKeyItems(lua_State* L /*boolean showcase*/); // Specifies whether important parts of certain graphs should be highlighted.
+        int /*boolean*/ IsShowcasingKeyItems(lua_State* L); // Returns whether important parts of certain graphs should be highlighted.
 
         int SetXAxisFont(lua_State* L /*string fontName, number pointSize, FontWeight weight, string color*/); // Sets the font for the graphs' X axes.
         int SetYAxisFont(lua_State* L /*string fontName, number pointSize, FontWeight weight, string color*/); // Sets the font for the graphs' Y axes.
@@ -218,6 +244,14 @@ namespace LuaScripting
         int /*BoxEffect*/ GetHistogramBarEffect(lua_State* L); // Returns how bars should be drawn within the various histograms.
         int SetHistogramBarOpacity(lua_State* L /*number opacity*/); // Sets bar opacity (in histograms).
         int /*number*/ GetHistogramBarOpacity(lua_State* L); // Returns the opacity of the bars within the various histograms.
+        int SetHistogramBinning(lua_State* L /*BinningMethod method*/); // Sets how data are binned in histograms.
+        int /*BinningMethod*/ GetHistogramBinning(lua_State* L); // Returns how data are binned in histograms.
+        int SetHistogramRounding(lua_State* L /*Rounding method*/); // Sets how data are rounded (during binning) in histograms.
+        int /*Rounding*/ GetHistogramRounding(lua_State* L); // Returns how data are rounded (during binning) in histograms.
+        int SetHistogramIntervalDisplay(lua_State* L /*IntervalDisplay display*/); // Sets how bin (axis) labels are displayed on histograms.
+        int /*IntervalDisplay*/ GetHistogramIntervalDisplay(lua_State* L); // Returns how bin (axis) labels are displayed on histograms.
+        int SetHistrogramBinLabelDisplay(lua_State* L /*BinLabelDisplay display*/); // Sets how bar labels are displayed on histograms.
+        int /*BinLabelDisplay*/ GetHistrogramBinLabelDisplay(lua_State* L); // Returns how bar labels are displayed on histograms.
 
         int SetBoxPlotColor(lua_State* L /*number red, number green, number blue*/); // Sets box color (in box plots).
         int SetBoxPlotEffect(lua_State* L /*BoxEffect barEffect*/); // Sets box appearance (in box plots).

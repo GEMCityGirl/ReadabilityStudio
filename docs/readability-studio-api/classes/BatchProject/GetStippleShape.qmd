@@ -1,0 +1,17 @@
+## `GetStippleShape`
+
+Returns the stipple shape used to draw bars in graphs.
+
+### Syntax {-}
+
+``` {.lua}
+string GetStippleShape()
+```
+
+
+### Return value {-}
+
+Type: `string`
+
+
+{{< pagebreak >}}

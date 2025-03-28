@@ -1,0 +1,17 @@
+## `GetWatermark`
+
+Returns the watermark drawn on graphs.
+
+### Syntax {-}
+
+``` {.lua}
+string GetWatermark()
+```
+
+
+### Return value {-}
+
+Type: `string`
+
+
+{{< pagebreak >}}

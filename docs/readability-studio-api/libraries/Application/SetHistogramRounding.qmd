@@ -1,0 +1,17 @@
+## `SetHistogramRounding`
+
+Sets how data are rounded (during binning) in histograms for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+SetHistogramRounding(Rounding method)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|[`Rounding`](#rounding) method | How to round values when sorting them into bins. |
+
+{{< pagebreak >}}

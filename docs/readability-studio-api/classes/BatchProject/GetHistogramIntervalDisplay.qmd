@@ -1,0 +1,17 @@
+## `GetHistogramIntervalDisplay`
+
+Returns how bin (axis) labels are displayed on histograms.
+
+### Syntax {-}
+
+``` {.lua}
+IntervalDisplay GetHistogramIntervalDisplay()
+```
+
+
+### Return value {-}
+
+Type: [`IntervalDisplay`](#intervaldisplay)
+
+
+{{< pagebreak >}}

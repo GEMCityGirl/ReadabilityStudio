@@ -1,0 +1,17 @@
+## `SetHistogramBinning`
+
+Sets how data are binned in histograms.
+
+### Syntax {-}
+
+``` {.lua}
+SetHistogramBinning(BinningMethod method)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|[`BinningMethod`](#binningmethod) method | How to bin the data. |
+
+{{< pagebreak >}}

@@ -1,0 +1,17 @@
+## `GetStippleImage`
+
+Returns the stipple image filepath used to draw bars in graphs for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+string GetStippleImage()
+```
+
+
+### Return value {-}
+
+Type: `string`
+
+
+{{< pagebreak >}}

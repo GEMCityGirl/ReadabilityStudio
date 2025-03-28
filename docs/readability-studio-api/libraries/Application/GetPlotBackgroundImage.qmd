@@ -1,0 +1,17 @@
+## `GetPlotBackgroundImage`
+
+Returns the graph background (plot area) image for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+string GetPlotBackgroundImage()
+```
+
+
+### Return value {-}
+
+Type: `string`
+
+
+{{< pagebreak >}}

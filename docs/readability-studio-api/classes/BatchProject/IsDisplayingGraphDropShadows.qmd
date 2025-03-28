@@ -1,0 +1,17 @@
+## `IsDisplayingGraphDropShadows`
+
+Returns whether to display shadows on graphs.
+
+### Syntax {-}
+
+``` {.lua}
+bool IsDisplayingGraphDropShadows()
+```
+
+
+### Return value {-}
+
+Type: `bool`
+
+
+{{< pagebreak >}}

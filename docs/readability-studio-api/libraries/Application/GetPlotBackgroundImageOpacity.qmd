@@ -1,0 +1,17 @@
+## `GetPlotBackgroundImageOpacity`
+
+Returns the graph background (plot area) image opacity for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+number GetPlotBackgroundImageOpacity()
+```
+
+
+### Return value {-}
+
+Type: `number`
+
+
+{{< pagebreak >}}

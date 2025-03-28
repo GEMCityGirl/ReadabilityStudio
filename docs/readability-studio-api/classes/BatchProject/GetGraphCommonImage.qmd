@@ -1,0 +1,17 @@
+## `GetGraphCommonImage`
+
+Returns the common image drawn across all bars.
+
+### Syntax {-}
+
+``` {.lua}
+string GetGraphCommonImage()
+```
+
+
+### Return value {-}
+
+Type: `string`
+
+
+{{< pagebreak >}}

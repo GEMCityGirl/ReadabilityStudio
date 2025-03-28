@@ -1,0 +1,19 @@
+## `SetSummaryStatsResultsOptions`
+
+Sets which results in the summary statistics section should be included.
+
+### Syntax {-}
+
+``` {.lua}
+SetSummaryStatsResultsOptions(boolean includeFormattedReport,
+                              boolean TabularReport)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`boolean` includeFormattedReport | `true` to include a formatted report of the statistics. | 
+|`boolean` TabularReport | `true` to include the statistics in a list. |
+
+{{< pagebreak >}}

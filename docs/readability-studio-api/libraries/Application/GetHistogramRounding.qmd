@@ -1,0 +1,17 @@
+## `GetHistogramRounding`
+
+Returns how data are rounded (during binning) in histograms for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+Rounding GetHistogramRounding()
+```
+
+
+### Return value {-}
+
+Type: [`Rounding`](#rounding)
+
+
+{{< pagebreak >}}

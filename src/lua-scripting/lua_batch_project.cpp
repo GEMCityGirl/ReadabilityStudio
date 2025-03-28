@@ -293,8 +293,7 @@ namespace LuaScripting
         return 0;
         }
 
-    // Sets the filepath to the phrase exclusion list
-    // filePath Path to phrase exclusion list
+    //-------------------------------------------------------------
     int BatchProject::SetPhraseExclusionList(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -312,7 +311,7 @@ namespace LuaScripting
         return 0;
         }
 
-    // Sets the tags to exclude blocks of text.
+    //-------------------------------------------------------------
     int BatchProject::SetBlockExclusionTags(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -457,6 +456,18 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int BatchProject::GetGraphCommonImage(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushstring(L, m_project->GetGraphCommonImagePath().utf8_str());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int BatchProject::SetPlotBackgroundImage(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -471,6 +482,18 @@ namespace LuaScripting
         m_project->SetPlotBackGroundImagePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayedSimple();
         return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::GetPlotBackgroundImage(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushstring(L, m_project->GetPlotBackGroundImagePath().utf8_str());
+        return 1;
         }
 
     //-------------------------------------------------------------
@@ -492,6 +515,18 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int BatchProject::GetPlotBackgroundImageEffect(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetPlotBackGroundImageEffect()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int BatchProject::SetPlotBackgroundImageFit(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -510,6 +545,18 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int BatchProject::GetPlotBackgroundImageFit(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetPlotBackGroundImageFit()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int BatchProject::SetPlotBackgroundImageOpacity(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -524,6 +571,18 @@ namespace LuaScripting
         m_project->SetPlotBackGroundImageOpacity(lua_tonumber(L, 2));
         ReloadIfNotDelayedSimple();
         return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::GetPlotBackgroundImageOpacity(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, m_project->GetPlotBackGroundImageOpacity());
+        return 1;
         }
 
     //-------------------------------------------------------------
@@ -766,6 +825,18 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int BatchProject::GetWatermark(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushstring(L, m_project->GetWatermark().utf8_str());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int BatchProject::SetGraphLogoImage(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -780,6 +851,18 @@ namespace LuaScripting
         m_project->SetWatermarkLogoPath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayedSimple();
         return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::GetGraphLogoImage(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushstring(L, m_project->GetWatermarkLogoPath().utf8_str());
+        return 1;
         }
 
     //-------------------------------------------------------------
@@ -800,6 +883,18 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int BatchProject::GetStippleImage(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushstring(L, m_project->GetStippleImagePath().utf8_str());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int BatchProject::SetStippleShape(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -814,6 +909,18 @@ namespace LuaScripting
         m_project->SetStippleShape(wxString(luaL_checkstring(L, 2), wxConvUTF8));
         ReloadIfNotDelayedSimple();
         return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::GetStippleShape(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushstring(L, m_project->GetStippleShape().utf8_str());
+        return 1;
         }
 
     //-------------------------------------------------------------
@@ -1165,6 +1272,130 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int BatchProject::SetHistogramBinning(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetHistorgramBinningMethod(
+            static_cast<Wisteria::Graphs::Histogram::BinningMethod>(lua_tonumber(L, 2)));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::GetHistogramBinning(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetHistorgramBinningMethod()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::SetHistogramIntervalDisplay(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetHistogramIntervalDisplay(
+            static_cast<Wisteria::Graphs::Histogram::IntervalDisplay>(lua_tonumber(L, 2)));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::GetHistogramIntervalDisplay(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetHistogramIntervalDisplay()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::SetHistogramRounding(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetHistogramRoundingMethod(
+            static_cast<Wisteria::RoundingMethod>(lua_tonumber(L, 2)));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::GetHistogramRounding(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetHistogramRoundingMethod()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::SetHistrogramBinLabelDisplay(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetHistrogramBinLabelDisplay(
+            static_cast<Wisteria::BinLabelDisplay>(lua_tonumber(L, 2)));
+        ReloadIfNotDelayedSimple();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::GetHistrogramBinLabelDisplay(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetHistrogramBinLabelDisplay()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int BatchProject::SetBoxPlotColor(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -1346,6 +1577,18 @@ namespace LuaScripting
         m_project->DisplayDropShadows(int_to_bool(lua_toboolean(L, 2)));
         ReloadIfNotDelayedSimple();
         return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::IsDisplayingGraphDropShadows(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L, m_project->IsDisplayingDropShadows());
+        return 1;
         }
 
     //-------------------------------------------------------------
@@ -1597,6 +1840,104 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int BatchProject::SetSummaryStatsResultsOptions(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        if (lua_gettop(L) >= 2)
+            {
+            m_project->GetStatisticsInfo().EnableReport(int_to_bool(lua_toboolean(L, 2)));
+            }
+        if (lua_gettop(L) >= 3)
+            {
+            m_project->GetStatisticsInfo().EnableTable(int_to_bool(lua_toboolean(L, 3)));
+            }
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::SetSummaryStatsReportOptions(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        if (lua_gettop(L) >= 2)
+            {
+            m_project->GetStatisticsReportInfo().EnableParagraph(int_to_bool(lua_toboolean(L, 2)));
+            }
+        if (lua_gettop(L) >= 3)
+            {
+            m_project->GetStatisticsReportInfo().EnableWords(int_to_bool(lua_toboolean(L, 3)));
+            }
+        if (lua_gettop(L) >= 4)
+            {
+            m_project->GetStatisticsReportInfo().EnableSentences(int_to_bool(lua_toboolean(L, 4)));
+            }
+        if (lua_gettop(L) >= 5)
+            {
+            m_project->GetStatisticsReportInfo().EnableExtendedWords(int_to_bool(lua_toboolean(L, 5)));
+            }
+        if (lua_gettop(L) >= 6)
+            {
+            m_project->GetStatisticsReportInfo().EnableGrammar(int_to_bool(lua_toboolean(L, 6)));
+            }
+        if (lua_gettop(L) >= 7)
+            {
+            m_project->GetStatisticsReportInfo().EnableNotes(int_to_bool(lua_toboolean(L, 7)));
+            }
+        if (lua_gettop(L) >= 8)
+            {
+            m_project->GetStatisticsReportInfo().EnableExtendedInformation(int_to_bool(lua_toboolean(L, 8)));
+            }
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::SetSummaryStatsDolchReportOptions(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        if (lua_gettop(L) >= 2)
+            {
+            m_project->GetStatisticsReportInfo().EnableDolchCoverage(
+                int_to_bool(lua_toboolean(L, 2)));
+            }
+        if (lua_gettop(L) >= 3)
+            {
+            m_project->GetStatisticsReportInfo().EnableDolchWords(int_to_bool(lua_toboolean(L, 3)));
+            }
+        if (lua_gettop(L) >= 4)
+            {
+            m_project->GetStatisticsReportInfo().EnableDolchExplanation(
+                int_to_bool(lua_toboolean(L, 4)));
+            }
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
     int BatchProject::SetWordsBreakdownResultsOptions(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -1761,8 +2102,7 @@ namespace LuaScripting
         return 0;
         }
 
-    // Adds a test to the project.
-    // TestName The name of the test to add to the project.
+    //-------------------------------------------------------------
     int BatchProject::AddTest(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -1824,7 +2164,7 @@ namespace LuaScripting
         return 1;
         }
 
-    // Reanalyzes the documents.
+    //-------------------------------------------------------------
     int BatchProject::Reload(lua_State*)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -1838,9 +2178,7 @@ namespace LuaScripting
         return 0;
         }
 
-    /// Closes the project.
-    /// @SaveChanges Specifies whether to save any changes made to the project before closing it.
-    ///     Default is to not save any changes.
+    //-------------------------------------------------------------
     int BatchProject::Close(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -1873,9 +2211,7 @@ namespace LuaScripting
         return 0;
         }
 
-    // Saves a list from the project.
-    // ListType Which list to save.
-    // FilePath The file path to save the list.
+    //-------------------------------------------------------------
     int BatchProject::ExportList(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -1953,13 +2289,7 @@ namespace LuaScripting
         return 1;
         }
 
-    // Saves a graph from the project as an image.
-    // SideBarSection The section that the graph is in.
-    // GraphId Which graph to save.
-    // FilePath The file path to save the graph.
-    // GrayScale Whether to save the image in black & white.
-    // Width The width of the output image.
-    // Height The height of the output image.
+    //-------------------------------------------------------------
     int BatchProject::ExportGraph(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -2048,8 +2378,7 @@ namespace LuaScripting
         return 1;
         }
 
-    // Exports all of the results from the project into a folder.
-    // FolderPath The folder to save the project's results.
+    //-------------------------------------------------------------
     int BatchProject::ExportAll(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -2068,7 +2397,7 @@ namespace LuaScripting
         return 0;
         }
 
-    // Shows or hides the sidebar
+    //-------------------------------------------------------------
     int BatchProject::ShowSidebar(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -2089,9 +2418,7 @@ namespace LuaScripting
         return 0;
         }
 
-    /* Selects the specified section and subwindow.
-       Section The section to select.
-       Window The subwindow in the section to select.*/
+    //-------------------------------------------------------------
     int BatchProject::SelectWindow(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -2149,10 +2476,7 @@ namespace LuaScripting
         return 0;
         }
 
-    /*Selects and sorts a list.
-    ListToSort The list window to sort. Refer to ListTypes enumeration.
-    ColumnToSort The column in the list to sort.
-    Order The order to sort.*/
+    //-------------------------------------------------------------
     int BatchProject::SortList(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -2277,6 +2601,9 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(BatchProject, SetMinDocWordCountForBatch),
         LUNA_DECLARE_METHOD(BatchProject, GetMinDocWordCountForBatch),
         LUNA_DECLARE_METHOD(BatchProject, SetSpellCheckerOptions),
+        LUNA_DECLARE_METHOD(BatchProject, SetSummaryStatsResultsOptions),
+        LUNA_DECLARE_METHOD(BatchProject, SetSummaryStatsReportOptions),
+        LUNA_DECLARE_METHOD(BatchProject, SetSummaryStatsDolchReportOptions),
         LUNA_DECLARE_METHOD(BatchProject, SetWordsBreakdownResultsOptions),
         LUNA_DECLARE_METHOD(BatchProject, SetSentenceBreakdownResultsOptions),
         LUNA_DECLARE_METHOD(BatchProject, SetGrammarResultsOptions),
@@ -2301,12 +2628,19 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(BatchProject, ApplyGraphBackgroundFade),
         LUNA_DECLARE_METHOD(BatchProject, IsApplyingGraphBackgroundFade),
         LUNA_DECLARE_METHOD(BatchProject, SetGraphCommonImage),
+        LUNA_DECLARE_METHOD(BatchProject, GetGraphCommonImage),
         LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundImage),
+        LUNA_DECLARE_METHOD(BatchProject, GetPlotBackgroundImage),
         LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundImageEffect),
+        LUNA_DECLARE_METHOD(BatchProject, GetPlotBackgroundImageEffect),
         LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundImageFit),
+        LUNA_DECLARE_METHOD(BatchProject, GetPlotBackgroundImageFit),
         LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundImageOpacity),
+        LUNA_DECLARE_METHOD(BatchProject, GetPlotBackgroundImageOpacity),
         LUNA_DECLARE_METHOD(BatchProject, SetWatermark),
+        LUNA_DECLARE_METHOD(BatchProject, GetWatermark),
         LUNA_DECLARE_METHOD(BatchProject, SetGraphLogoImage),
+        LUNA_DECLARE_METHOD(BatchProject, GetGraphLogoImage),
         LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundColor),
         LUNA_DECLARE_METHOD(BatchProject, SetGraphInvalidRegionColor),
         LUNA_DECLARE_METHOD(BatchProject, SetRaygorStyle),
@@ -2321,7 +2655,9 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(BatchProject, SetPlotBackgroundColorOpacity),
         LUNA_DECLARE_METHOD(BatchProject, GetPlotBackgroundColorOpacity),
         LUNA_DECLARE_METHOD(BatchProject, SetStippleImage),
+        LUNA_DECLARE_METHOD(BatchProject, GetStippleImage),
         LUNA_DECLARE_METHOD(BatchProject, SetStippleShape),
+        LUNA_DECLARE_METHOD(BatchProject, GetStippleShape),
         LUNA_DECLARE_METHOD(BatchProject, SetXAxisFont),
         LUNA_DECLARE_METHOD(BatchProject, SetYAxisFont),
         LUNA_DECLARE_METHOD(BatchProject, SetGraphTopTitleFont),
@@ -2342,6 +2678,14 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(BatchProject, GetHistogramBarEffect),
         LUNA_DECLARE_METHOD(BatchProject, SetHistogramBarOpacity),
         LUNA_DECLARE_METHOD(BatchProject, GetHistogramBarOpacity),
+        LUNA_DECLARE_METHOD(BatchProject, SetHistogramBinning),
+        LUNA_DECLARE_METHOD(BatchProject, GetHistogramBinning),
+        LUNA_DECLARE_METHOD(BatchProject, SetHistogramRounding),
+        LUNA_DECLARE_METHOD(BatchProject, GetHistogramRounding),
+        LUNA_DECLARE_METHOD(BatchProject, SetHistogramIntervalDisplay),
+        LUNA_DECLARE_METHOD(BatchProject, GetHistogramIntervalDisplay),
+        LUNA_DECLARE_METHOD(BatchProject, SetHistrogramBinLabelDisplay),
+        LUNA_DECLARE_METHOD(BatchProject, GetHistrogramBinLabelDisplay),
         LUNA_DECLARE_METHOD(BatchProject, SetBoxPlotColor),
         LUNA_DECLARE_METHOD(BatchProject, SetBoxPlotEffect),
         LUNA_DECLARE_METHOD(BatchProject, GetBoxPlotEffect),
@@ -2354,6 +2698,7 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(BatchProject, ConnectBoxPlotMiddlePoints),
         LUNA_DECLARE_METHOD(BatchProject, IsConnectingBoxPlotMiddlePoints),
         LUNA_DECLARE_METHOD(BatchProject, DisplayGraphDropShadows),
+        LUNA_DECLARE_METHOD(BatchProject, IsDisplayingGraphDropShadows),
         LUNA_DECLARE_METHOD(BatchProject, AddTest),
         LUNA_DECLARE_METHOD(BatchProject, Reload),
         LUNA_DECLARE_METHOD(BatchProject, ExportAll),

@@ -1,13 +1,13 @@
-## `SetPlotBackgroundColor`
+## `SetGrammarIssuesHighlightColor`
 
-Sets the plot area color for all graphs. The color is created by specifying the red, blue, and green channels of the color.
+Sets the font color for grammar issues in formatted reports.
 
 ### Syntax {-}
 
 ``` {.lua}
-SetPlotBackgroundColor(number red,
-                       number green,
-                       number blue)
+SetGrammarIssuesHighlightColor(number red,
+                               number green,
+                               number blue)
 ```
 
 ### Parameters {-}

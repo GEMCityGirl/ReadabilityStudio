@@ -39,6 +39,13 @@ ReportType =
   ReadabilityScoresSummaryReport = 8058  -- The readability-scores summary report.
   }
 
+-- The following ways to highlight text in a report are available.
+TextHighlight =
+  {
+  HighlightBackground = 0, -- Change the color of the background for highligthed text.
+  HighlightForeground = 1  -- Change the color of the font for highligthed text.
+  }
+
 -- The following graph types are available.
 GraphType =
   {
@@ -61,6 +68,42 @@ GraphType =
   GermanLix = 8028,          -- German variation of Lix.
   DanielsonBryan2 = 8029,    -- **Danielson Bryan 2** readability graph (a variation of **Flesch Reading Ease**).
   WordCloud = 8039           -- Word cloud of key words.
+  }
+
+-- The following options for sorting data into bins are available.
+Binning =
+  {
+  BinUniqueValues = 0,   -- Each unique value gets its own bin.
+  BinByRange = 1,        -- Values are categorized into ranges (this is the norm for histograms, expect this method retains the values' floating-point precision when creating the bin size and range).
+  BinByIntegerRange = 2  -- Values are categorized into ranges, where the bin size and range are integral. This is usually the norm, classifying data by floating-point precision categories isn't common.
+  }
+
+-- The following rounding options are available.
+Rounding =
+  {
+  Round = 0,     -- Round up or down.
+  RoundDown = 1, -- Round down (ceiling).
+  RoundUp = 2,   -- Round up (floor).
+  NoRounding = 3 -- Do not round.
+  }
+
+-- The following ways to display a label on a bin (i.e., a bar, pie slice, etc.) are available.
+BinLabelDisplay =
+  {
+  BinValue = 0,              -- The number of items in (or aggregated value of) each bin.
+  BinPercentage = 1,         -- The percentage of items in (or aggregated value of) each bin.
+  BinValueAndPercentage = 2, -- Both the percentage and number of items in (or aggregated value of) each bin.
+  NoDisplay = 3,             -- Don't display labels on the bins.
+  BinName = 4,               -- The name of the bin (e.g., the group name).
+  BinNameAndValue = 5,       -- The name of the bin (e.g., the group name) and the value.
+  BinNameAndPercentage = 6   -- The name of the bin (e.g., the group name) and the percentage of items in (or aggregated value of) each bin.
+  }
+
+-- The following options for how to position bars on an axis are available.
+IntervalDisplay =
+  {
+  Cutpoints = 0, -- In range mode, places the bars in between axis lines so that the range of the bins are shown on the sides of the bars.
+  Midpoints = 1  -- Places the bars on top of the axis lines so that a custom bin range label (for integer range mode) or a midpoint label (non-integer mode) is shown at the bottom of the bar.
   }
 
 -- The following Dolch result windows are available.
@@ -376,12 +419,16 @@ OptionsPageType =
   GraphsBoxPlot = 6006
   }
 
--- make the table into a constant enumeration
+-- make the tables into constant enumerations
 Orientation = protect_enum(Orientation)
 BoxEffect = protect_enum(BoxEffect)
 ImageEffect = protect_enum(ImageEffect)
 ImageFit = protect_enum(ImageFit)
 SortOrder = protect_enum(SortOrder)
+Rounding = protect_enum(Rounding)
+Binning = protect_enum(Binning)
+BinLabelDisplay = protect_enum(BinLabelDisplay)
+IntervalDisplay = protect_enum(IntervalDisplay)
 ReportType = protect_enum(ReportType)
 SideBarSection = protect_enum(SideBarSection)
 GraphType = protect_enum(GraphType)
@@ -404,3 +451,4 @@ FilePathDisplayMode = protect_enum(FilePathDisplayMode)
 UserPath = protect_enum(UserPath)
 RibbonButtonBar = protect_enum(RibbonButtonBar)
 FontWeight = protect_enum(FontWeight)
+TextHighlight = protect_enum(TextHighlight)

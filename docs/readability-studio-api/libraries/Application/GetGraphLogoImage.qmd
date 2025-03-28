@@ -1,0 +1,17 @@
+## `GetGraphLogoImage`
+
+Returns the logo image filepath for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+string GetGraphLogoImage()
+```
+
+
+### Return value {-}
+
+Type: `string`
+
+
+{{< pagebreak >}}

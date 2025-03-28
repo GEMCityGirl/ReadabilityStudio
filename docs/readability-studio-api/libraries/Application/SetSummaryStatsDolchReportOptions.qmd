@@ -1,0 +1,21 @@
+## `SetSummaryStatsDolchReportOptions`
+
+Sets which results in the Dolch summary report should be included for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+SetSummaryStatsDolchReportOptions(boolean includeCoverage,
+                                  boolean includeWords,
+                                  boolean includeExplanation)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`boolean` includeCoverage | `true` to include the Dolch coverarage statistics. | 
+|`boolean` includeWords | `true` to include the Dolch word statistics. | 
+|`boolean` includeExplanation | `true` to include an explanation about the results. |
+
+{{< pagebreak >}}

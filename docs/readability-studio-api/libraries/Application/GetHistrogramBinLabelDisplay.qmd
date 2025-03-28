@@ -1,0 +1,17 @@
+## `GetHistrogramBinLabelDisplay`
+
+Returns how bar labels are displayed on histograms for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+BinLabelDisplay GetHistrogramBinLabelDisplay()
+```
+
+
+### Return value {-}
+
+Type: [`BinLabelDisplay`](#binlabeldisplay)
+
+
+{{< pagebreak >}}

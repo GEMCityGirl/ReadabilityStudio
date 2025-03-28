@@ -1,0 +1,17 @@
+## `GetHistogramBinning`
+
+Returns how data are binned in histograms.
+
+### Syntax {-}
+
+``` {.lua}
+BinningMethod GetHistogramBinning()
+```
+
+
+### Return value {-}
+
+Type: [`BinningMethod`](#binningmethod)
+
+
+{{< pagebreak >}}

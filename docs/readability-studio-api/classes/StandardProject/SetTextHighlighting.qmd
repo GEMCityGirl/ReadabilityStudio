@@ -1,0 +1,17 @@
+## `SetTextHighlighting`
+
+Sets how to highlight content in formatted reports.
+
+### Syntax {-}
+
+``` {.lua}
+SetTextHighlighting(TextHighlight highlighting)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|[`TextHighlight`](#texthighlight) highlighting | How to highlight content. |
+
+{{< pagebreak >}}

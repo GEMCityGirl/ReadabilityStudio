@@ -1,0 +1,17 @@
+## `SetHistogramIntervalDisplay`
+
+Sets how bin (axis) labels are displayed on histograms for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+SetHistogramIntervalDisplay(IntervalDisplay display)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|[`IntervalDisplay`](#intervaldisplay) display | How to display bin (axis) labels. |
+
+{{< pagebreak >}}
