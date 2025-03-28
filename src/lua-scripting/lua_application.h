@@ -98,20 +98,30 @@ namespace LuaScripting
     int UseRealTimeUpdate(lua_State* L /*bool use*/); // Toggles whether documents are being re-analyzed as they change.
     int /*boolean*/ IsRealTimeUpdating(lua_State* L); // Returns whether documents are being re-analyzed as they change.
 
-    // TEXT EXCLUSION OPTIONS
-    int SetTextExclusion(lua_State* L /*TextExclusionType exclusionType*/); // Sets how text should be excluded for new projects.
-    int SetIncludeIncompleteTolerance(lua_State* L /*number minWordsForCompleteSentence*/); // Sets the incomplete-sentence tolerance for new projects. This is the minimum number of words that will make a sentence missing terminating punctuation be considered complete.
-    int AggressivelyExclude(lua_State* L /*boolean beAggressive*/); // Sets whether to aggressively exclude for new projects.
-    int ExcludeCopyrightNotices(lua_State* L /*boolean exclude*/); // Sets whether to exclude copyright notices for new projects.
-    int ExcludeTrailingCitations(lua_State* L /*boolean exclude*/); // Sets whether to exclude trailing citations for new projects.
-    int ExcludeFileAddress(lua_State* L /*boolean exclude*/); // Sets whether to exclude file addresses for new projects.
-    int ExcludeNumerals(lua_State* L ); // Sets whether to exclude numerals for new projects.
-    int ExcludeProperNouns(lua_State* L /*boolean exclude*/); // Sets whether to exclude proper nouns for new projects.
-    int SetPhraseExclusionList(lua_State* L /*string exclusionListPath*/); // Sets the filepath to the phrase exclusion list for new projects.
+    // DOCUMENT INDEXING
     int /*ParagraphParse*/ GetParagraphsParsingMethod(lua_State* L); // Returns the default method for how paragraphs are parsed for new projects.
     int SetParagraphsParsingMethod(lua_State* L /*ParagraphParse parseMethod*/); // Sets how hard returns help determine how paragraphs and sentences are detected for new projects.
-    // Sets the tags to exclude blocks of text.
+
+    int SetTextExclusion(lua_State* L /*TextExclusionType exclusionType*/); // Sets how text should be excluded for new projects.
+    int /*TextExclusionType*/ GetTextExclusion(lua_State* L); // Returns how text should be excluded for new projects.
+    int SetIncludeIncompleteTolerance(lua_State* L /*number minWordsForCompleteSentence*/); // Sets the incomplete-sentence tolerance for new projects. This is the minimum number of words that will make a sentence missing terminating punctuation be considered complete.
+    int /*number*/ GetIncludeIncompleteTolerance(lua_State* L); // Sets the incomplete-sentence tolerance for new projects. This is the minimum number of words that will make a sentence missing terminating punctuation be considered complete.
+    int AggressivelyExclude(lua_State* L /*boolean beAggressive*/); // Sets whether to aggressively exclude for new projects.
+    int /*boolean*/ IsExcludingAggressively(lua_State* L); // Returns whether to aggressively exclude for new projects.
+    int ExcludeCopyrightNotices(lua_State* L /*boolean exclude*/); // Sets whether to exclude copyright notices for new projects.
+    int /*boolean*/ IsExcludingCopyrightNotices(lua_State* L); // Returns whether to exclude copyright notices for new projects.
+    int ExcludeTrailingCitations(lua_State* L /*boolean exclude*/); // Sets whether to exclude trailing citations for new projects.
+    int /*boolean*/ IsExcludingTrailingCitations(lua_State* L); // Returns whether to exclude trailing citations for new projects.
+    int ExcludeFileAddress(lua_State* L /*boolean exclude*/); // Sets whether to exclude file addresses for new projects.
+    int /*boolean*/ IsExcludingFileAddresses(lua_State* L); // Returns whether to exclude file addresses for new projects.
+    int ExcludeNumerals(lua_State* L /*boolean exclude*/); // Sets whether to exclude numerals for new projects.
+    int /*boolean*/ IsExcludingNumerals(lua_State* L); // Returns whether to exclude numerals for new projects.
+    int ExcludeProperNouns(lua_State* L /*boolean exclude*/); // Sets whether to exclude proper nouns for new projects.
+    int /*boolean*/ IsExcludingProperNouns(lua_State* L); // Returns whether to exclude proper nouns for new projects.
+    int SetPhraseExclusionList(lua_State* L /*string exclusionListPath*/); // Sets the filepath to the phrase exclusion list for new projects.
+    int /*string*/ GetPhraseExclusionList(lua_State* L); // Returns the filepath to the phrase exclusion list for new projects.
     int SetBlockExclusionTags(lua_State* L /*string tagString*/); // Sets the text exclusion tags for new projects. This should be a two-character string containing a pair of exclusion tags.
+    int /*string*/ GetBlockExclusionTags(lua_State* L); // Returns the text exclusion tags for new projects.
 
     // SUMMARY STATS
     int SetSummaryStatsResultsOptions(lua_State* L /*boolean includeFormattedReport, boolean TabularReport*/); // Sets which results in the summary statistics section should be included for new projects.
@@ -136,6 +146,13 @@ namespace LuaScripting
     int SetWordyTextHighlightColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for wordy content in formatted reports for new projects.
     int SetTextHighlighting(lua_State* L /*TextHighlight highlighting*/); // Sets how to highlight content in formatted reports for new projects.
     int /*TextHighlight*/ GetTextHighlighting(lua_State* L); // Returns how to highlight content in formatted reports for new projects.
+    int SetDolchConjunctionsColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for Dolch conjunctions in the formatted Dolch report for new projects.
+    int SetDolchPrepositionsColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for Dolch prepositions in the formatted Dolch report for new projects.
+    int SetDolchPronounsColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for Dolch pronouns in the formatted Dolch report for new projects.
+    int SetDolchAdverbsColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for Dolch adverbs in the formatted Dolch report for new projects.
+    int SetDolchAdjectivesColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for Dolch adjectives in the formatted Dolch report for new projects.
+    int SetDolchVerbsColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for Dolch verbs in the formatted Dolch report for new projects.
+    int SetDolchNounsColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for Dolch nouns in the formatted Dolch report for new projects.
 
     // GRAPH OPTIONS
     int SetGraphColorScheme(lua_State* L /*string colorScheme*/); // Sets the graph color scheme for new projects.
@@ -296,15 +313,25 @@ namespace LuaScripting
         { "AppendDailyLog", AppendDailyLog },
         { "IsAppendingDailyLog", IsAppendingDailyLog },
         { "SetTextExclusion", SetTextExclusion },
+        { "GetTextExclusion", GetTextExclusion },
         { "SetIncludeIncompleteTolerance", SetIncludeIncompleteTolerance },
+        { "GetIncludeIncompleteTolerance", GetIncludeIncompleteTolerance },
         { "AggressivelyExclude", AggressivelyExclude },
         { "ExcludeCopyrightNotices", ExcludeCopyrightNotices },
         { "ExcludeTrailingCitations", ExcludeTrailingCitations },
         { "ExcludeFileAddress", ExcludeFileAddress },
         { "ExcludeNumerals", ExcludeNumerals },
         { "ExcludeProperNouns", ExcludeProperNouns },
+        { "IsExcludingAggressively", IsExcludingAggressively },
+        { "IsExcludingCopyrightNotices", IsExcludingCopyrightNotices },
+        { "IsExcludingTrailingCitations", IsExcludingTrailingCitations },
+        { "IsExcludingFileAddresses", IsExcludingFileAddresses },
+        { "IsExcludingNumerals", IsExcludingNumerals },
+        { "IsExcludingProperNouns", IsExcludingProperNouns },
         { "SetPhraseExclusionList", SetPhraseExclusionList },
+        { "GetPhraseExclusionList", GetPhraseExclusionList },
         { "SetBlockExclusionTags", SetBlockExclusionTags },
+        { "GetBlockExclusionTags", GetBlockExclusionTags },
         { "SetAppendedDocumentFilePath", SetAppendedDocumentFilePath },
         { "GetAppendedDocumentFilePath", GetAppendedDocumentFilePath },
         { "UseRealTimeUpdate", UseRealTimeUpdate },
@@ -401,7 +428,14 @@ namespace LuaScripting
         { "SetGrammarIssuesHighlightColor", SetGrammarIssuesHighlightColor },
         { "SetWordyTextHighlightColor", SetWordyTextHighlightColor },
         { "SetTextHighlighting", SetTextHighlighting },
-        { "GetTextHighlighting", SetTextHighlighting },
+        { "GetTextHighlighting", GetTextHighlighting },
+        { "SetDolchConjunctionsColor", SetDolchConjunctionsColor },
+        { "SetDolchPrepositionsColor", SetDolchPrepositionsColor },
+        { "SetDolchPronounsColor", SetDolchPronounsColor },
+        { "SetDolchAdverbsColor", SetDolchAdverbsColor },
+        { "SetDolchAdjectivesColor", SetDolchAdjectivesColor },
+        { "SetDolchVerbsColor", SetDolchVerbsColor },
+        { "SetDolchNounsColor", SetDolchNounsColor },
         { "SetWindowSize", SetWindowSize },
         { "RemoveAllCustomTests", RemoveAllCustomTests },
         { "RemoveAllCustomTestBundles", RemoveAllCustomTestBundles },

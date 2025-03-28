@@ -1,0 +1,17 @@
+## `IsExcludingCopyrightNotices`
+
+Returns whether to exclude copyright notices.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsExcludingCopyrightNotices()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

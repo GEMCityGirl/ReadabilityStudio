@@ -35,4 +35,22 @@ SetGrammarResultsOptions(boolean includeHighlightedReport,
 |`boolean` includeConjunctionStartingSentences | `true` to include sentences that start with conjunctions. | 
 |`boolean` includeLowercasedSentences | `true` to include sentences that start with lowercase letters. |
 
+### Example {-}
+
+``` {.lua}
+cocoaDoc = StandardProject(Application.GetExamplesPath() ..
+                           "Cocoa Desserts.rtf")
+cocoaDoc:DelayReloading(true)
+cocoaDoc:AddTest(Test.HarrisJacobson)
+-- show only the test results and the stats summary report,
+-- remove all other results
+cocoaDoc:SetSummaryStatsResultsOptions(true, false)
+cocoaDoc:SetGrammarResultsOptions(false, false, false, false, false, false, false,
+                                  false, false, false)
+cocoaDoc:SetSentenceBreakdownResultsOptions(false, false, false, false)
+cocoaDoc:SetWordsBreakdownResultsOptions(false, false, false, false, false, false,
+                                         false, false, false, false, false)
+cocoaDoc:Reload()
+```
+
 {{< pagebreak >}}

@@ -1,0 +1,17 @@
+## `GetTextExclusion`
+
+Returns how text should be excluded.
+
+### Syntax {-}
+
+``` {.lua}
+TextExclusionType GetTextExclusion()
+```
+
+
+### Return value {-}
+
+Type: [`TextExclusionType`](#textexclusiontype)
+
+
+{{< pagebreak >}}

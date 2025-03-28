@@ -1374,6 +1374,13 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int GetTextExclusion(lua_State* L)
+        {
+        lua_pushinteger(L, static_cast<int>(wxGetApp().GetAppOptions().GetInvalidSentenceMethod()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int SetIncludeIncompleteTolerance(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))
@@ -1383,6 +1390,14 @@ namespace LuaScripting
         wxGetApp().GetAppOptions().SetIncludeIncompleteSentencesIfLongerThanValue(
             lua_tonumber(L, 1));
         return 0;
+        }
+
+    //-------------------------------------------------------------
+    int GetIncludeIncompleteTolerance(lua_State* L)
+        {
+        lua_pushnumber(L,
+                       wxGetApp().GetAppOptions().GetIncludeIncompleteSentencesIfLongerThanValue());
+        return 1;
         }
 
     //-------------------------------------------------------------
@@ -1453,6 +1468,55 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int IsExcludingAggressively(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetAppOptions().IsExcludingAggressively());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int IsExcludingCopyrightNotices(lua_State* L)
+        {
+        lua_pushboolean(L,
+                        wxGetApp().GetAppOptions().IsIgnoringTrailingCopyrightNoticeParagraphs());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int IsExcludingTrailingCitations(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetAppOptions().IsIgnoringTrailingCitations());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int IsExcludingFileAddresses(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetAppOptions().IsIgnoringFileAddresses());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int IsExcludingNumerals(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetAppOptions().IsIgnoringNumerals());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int IsExcludingProperNouns(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetAppOptions().IsIgnoringProperNouns());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int SetPhraseExclusionList(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))
@@ -1462,6 +1526,14 @@ namespace LuaScripting
         wxGetApp().GetAppOptions().SetExcludedPhrasesPath(
             wxString(luaL_checkstring(L, 1), wxConvUTF8));
         return 0;
+        }
+
+    //-------------------------------------------------------------
+    int GetPhraseExclusionList(lua_State* L)
+        {
+        lua_pushstring(L, wxGetApp().GetAppOptions().GetExcludedPhrasesPath().utf8_str());
+        wxGetApp().Yield();
+        return 1;
         }
 
     //-------------------------------------------------------------
@@ -1479,6 +1551,22 @@ namespace LuaScripting
                 std::make_pair(exclusionTags[0], exclusionTags[1]));
             }
         return 0;
+        }
+
+    //-------------------------------------------------------------
+    int GetBlockExclusionTags(lua_State* L)
+        {
+        lua_pushstring(
+            L,
+            wxGetApp().GetAppOptions().GetExclusionBlockTags().empty() ?
+                "" :
+                wxString{ std::to_wstring(
+                              wxGetApp().GetAppOptions().GetExclusionBlockTags().front().first) +
+                          std::to_wstring(
+                              wxGetApp().GetAppOptions().GetExclusionBlockTags().front().second) }
+                    .utf8_str());
+        wxGetApp().Yield();
+        return 1;
         }
 
     //-------------------------------------------------
@@ -2435,7 +2523,7 @@ namespace LuaScripting
             }
         if (lua_gettop(L) >= 3)
             {
-            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().Enable6PlusCharacter(
+            wxGetApp().GetAppOptions().GetWordsBreakdownInfo().Enable3PlusSyllables(
                 int_to_bool(lua_toboolean(L, 3)));
             }
         if (lua_gettop(L) >= 4)
@@ -2770,6 +2858,97 @@ namespace LuaScripting
         lua_pushnumber(L, static_cast<int>(wxGetApp().GetAppOptions().GetTextHighlightMethod()));
         wxGetApp().Yield();
         return 1;
+        }
+
+    //-------------------------------------------------------------
+    int SetDolchConjunctionsColor(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().SetDolchConjunctionsColor(
+            LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int SetDolchPrepositionsColor(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().SetDolchPrepositionsColor(
+            LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int SetDolchPronounsColor(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().SetDolchPronounsColor(
+            LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int SetDolchAdverbsColor(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().SetDolchAdverbsColor(
+            LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int SetDolchAdjectivesColor(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().SetDolchAdjectivesColor(
+            LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int SetDolchVerbsColor(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().SetDolchVerbsColor(
+            LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int SetDolchNounsColor(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().SetDolchNounColor(
+            LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+        return 0;
         }
 
     //-------------------------------------------------------------

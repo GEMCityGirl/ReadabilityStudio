@@ -1,0 +1,17 @@
+## `GetBlockExclusionTags`
+
+Returns the text exclusion tags for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+string GetBlockExclusionTags()
+```
+
+
+### Return value {-}
+
+Type: `string`
+
+
+{{< pagebreak >}}

@@ -1,0 +1,17 @@
+## `IsExcludingNumerals`
+
+Returns whether to exclude numerals.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsExcludingNumerals()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

@@ -32,7 +32,7 @@ namespace LuaScripting
 
         bool VerifyProjectIsOpen(const wxString& functionName) const
             {
-            if (!m_project)
+            if (m_project == nullptr)
                 {
                 wxMessageBox(wxString::Format(_(L"%s: Accessing project that is already closed."),
                                               functionName),
@@ -125,9 +125,6 @@ namespace LuaScripting
         // cppcheck-suppress functionConst
         int /*TextStorage*/ GetDocumentStorageMethod(lua_State* L); // Returns whether the project embeds its documents or links to them.
         int SetDocumentStorageMethod(lua_State* L /*TextStorage storageMethod*/); // Sets whether the project embeds its documents or links to them.
-        int SetParagraphsParsingMethod(lua_State* L /*ParagraphParse parseMethod*/); // Sets how hard returns help determine how paragraphs and sentences are detected.
-        // cppcheck-suppress functionConst
-        int /*ParagraphParse*/ GetParagraphsParsingMethod(lua_State* L); // Returns the method for how paragraphs are parsed.
         int SetMinDocWordCountForBatch(lua_State* L /*number wordCount*/); // Sets the minimum number of words a document must have to be included in the project.
         // cppcheck-suppress functionConst
         int /*number*/ GetMinDocWordCountForBatch(lua_State* L); // Returns the minimum number of words a document must have to be included in the project.
@@ -139,17 +136,31 @@ namespace LuaScripting
         int UseRealTimeUpdate(lua_State* L /*bool use*/); // Toggles whether documents are being re-analyzed as they change.
         int /*boolean*/ IsRealTimeUpdating(lua_State* L); // Returns whether documents are being re-analyzed as they change.
 
-        // TEXT EXCLUSION OPTIONS
+        // DOCUMENT INDEXING
+        // cppcheck-suppress functionConst
+        int /*ParagraphParse*/ GetParagraphsParsingMethod(lua_State* L); // Returns the method for how paragraphs are parsed.
+        int SetParagraphsParsingMethod(lua_State* L /*ParagraphParse parseMethod*/); // Sets how hard returns help determine how paragraphs and sentences are detected.
+
         int SetTextExclusion(lua_State* L/*TextExclusionType exclusionType*/); // Specifies how text should be excluded while parsing the source document.
+        int /*TextExclusionType*/ GetTextExclusion(lua_State* L); // Returns how text should be excluded.
         int SetIncludeIncompleteTolerance(lua_State* L /*number minWordsForCompleteSentence*/); // Sets the incomplete-sentence tolerance. This is the minimum number of words that will make a sentence missing terminating punctuation be considered complete.
+        int /*number*/ GetIncludeIncompleteTolerance(lua_State* L); // Sets the incomplete-sentence tolerance. This is the minimum number of words that will make a sentence missing terminating punctuation be considered complete.
         int AggressivelyExclude(lua_State* L/*boolean beAggressive*/); // Specifies whether to use aggressive text exclusion.
         int ExcludeCopyrightNotices(lua_State* L/*boolean exclude*/); // Specifies whether or not to exclude copyright notices.
         int ExcludeTrailingCitations(lua_State* L/*boolean exclude*/); // Specifies whether or not to exclude trailing citations.
         int ExcludeFileAddress(lua_State* L/*boolean exclude*/); // Specifies whether or not to exclude file addresses.
         int ExcludeNumerals(lua_State* L/*boolean exclude*/); // Specifies whether or not to exclude numerals.
         int ExcludeProperNouns(lua_State* L/*boolean exclude*/); // Specifies whether or not to exclude proper nouns.
+        int /*boolean*/ IsExcludingAggressively(lua_State* L); // Returns whether to aggressively exclude.
+        int /*boolean*/ IsExcludingCopyrightNotices(lua_State* L); // Returns whether to exclude copyright notices.
+        int /*boolean*/ IsExcludingTrailingCitations(lua_State* L); // Returns whether to exclude trailing citations.
+        int /*boolean*/ IsExcludingFileAddresses(lua_State* L); // Returns whether to exclude file addresses.
+        int /*boolean*/ IsExcludingNumerals(lua_State* L); // Returns whether to exclude numerals.
+        int /*boolean*/ IsExcludingProperNouns(lua_State* L); // Returns whether to exclude proper nouns.
         int SetPhraseExclusionList(lua_State* L /*string exclusionListPath*/); // Sets the filepath to the phrase exclusion list.
+        int /*string*/ GetPhraseExclusionList(lua_State* L); // Returns the filepath to the phrase exclusion list.
         int SetBlockExclusionTags(lua_State* L /*string tagString*/); // Sets the text exclusion tags. This should be a two-character string containing a pair of exclusion tags.
+        int /*string*/ GetBlockExclusionTags(lua_State* L); // Returns the text exclusion tags.
 
         // GRAPH OPTIONS
         int SetGraphColorScheme(lua_State* L /*string colorScheme*/); // Sets the graph color scheme.

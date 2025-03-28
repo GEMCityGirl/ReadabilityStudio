@@ -1,0 +1,21 @@
+## `SetDolchPronounsColor`
+
+Sets the font color for Dolch pronouns in the formatted Dolch report.
+
+### Syntax {-}
+
+``` {.lua}
+SetDolchPronounsColor(number red,
+                      number green,
+                      number blue)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+| `number` red | The red channel of the color (should be between 0--255). |
+| `number` green | The green channel of the color (should be between 0--255). |
+| `number` blue | The blue channel of the color (should be between 0--255). |
+
+{{< pagebreak >}}

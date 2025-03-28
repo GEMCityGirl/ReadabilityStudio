@@ -1,0 +1,17 @@
+## `IsExcludingTrailingCitations`
+
+Returns whether to exclude trailing citations for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsExcludingTrailingCitations()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

@@ -1,0 +1,17 @@
+## `IsExcludingFileAddresses`
+
+Returns whether to exclude file addresses.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsExcludingFileAddresses()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

@@ -1,0 +1,17 @@
+## `GetIncludeIncompleteTolerance`
+
+Sets the incomplete-sentence tolerance. This is the minimum number of words that will make a sentence missing terminating punctuation be considered complete.
+
+### Syntax {-}
+
+``` {.lua}
+number GetIncludeIncompleteTolerance()
+```
+
+
+### Return value {-}
+
+Type: `number`
+
+
+{{< pagebreak >}}

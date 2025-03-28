@@ -1,0 +1,21 @@
+## `SetDolchConjunctionsColor`
+
+Sets the font color for Dolch conjunctions in the formatted Dolch report for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+SetDolchConjunctionsColor(number red,
+                          number green,
+                          number blue)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+| `number` red | The red channel of the color (should be between 0--255). |
+| `number` green | The green channel of the color (should be between 0--255). |
+| `number` blue | The blue channel of the color (should be between 0--255). |
+
+{{< pagebreak >}}

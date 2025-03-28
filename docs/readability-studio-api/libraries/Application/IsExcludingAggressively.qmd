@@ -1,0 +1,17 @@
+## `IsExcludingAggressively`
+
+Returns whether to aggressively exclude for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsExcludingAggressively()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

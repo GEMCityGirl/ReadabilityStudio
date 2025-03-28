@@ -30,6 +30,7 @@ namespace LuaScripting
     {
     const char StandardProject::className[] = "StandardProject";
 
+    //-------------------------------------------------------------
     StandardProject::StandardProject(lua_State* L)
         {
         if (lua_gettop(L) > 1) // see if a path was passed in
@@ -78,6 +79,7 @@ namespace LuaScripting
         wxGetApp().Yield();
         }
 
+    //-------------------------------------------------------------
     bool StandardProject::ReloadIfNotDelayed()
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -94,6 +96,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     bool StandardProject::ReloadIfNotDelayedSimple()
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -110,6 +113,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::DelayReloading(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -125,12 +129,19 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::GetTitle(lua_State* L)
         {
-        lua_pushstring(L, m_project ? m_project->GetTitle() : wxString{});
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushstring(L, m_project->GetTitle().utf8_str());
         return 1;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::SetWindowSize(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -151,127 +162,242 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::GetSentenceCount(lua_State* L)
         {
-        lua_pushinteger(L, m_project ? m_project->GetTotalSentences() : 0);
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushinteger(L, m_project->GetTotalSentences());
         return 1;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::GetIndependentClauseCount(lua_State* L)
         {
-        lua_pushinteger(L, m_project ? m_project->GetTotalSentenceUnits() : 0);
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushinteger(L, m_project->GetTotalSentenceUnits());
         return 1;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::GetNumeralCount(lua_State* L)
         {
-        lua_pushinteger(L, m_project ? m_project->GetTotalNumerals() : 0);
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushinteger(L, m_project->GetTotalNumerals());
         return 1;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::GetProperNounCount(lua_State* L)
         {
-        if (m_project && m_project->GetProjectLanguage() == readability::test_language::german_test)
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (m_project->GetProjectLanguage() == readability::test_language::german_test)
             {
             wxMessageBox(_(L"ProperNounCount() not supported for German projects."),
                          _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
             lua_pushinteger(L, 0);
             return 1;
             }
-        lua_pushinteger(L, m_project ? m_project->GetTotalProperNouns() : 0);
+
+        lua_pushinteger(L, m_project->GetTotalProperNouns());
         return 1;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::GetUniqueWordCount(lua_State* L)
         {
-        lua_pushinteger(L, m_project ? m_project->GetTotalUniqueWords() : 0);
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushinteger(L, m_project->GetTotalUniqueWords());
         return 1;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::GetWordCount(lua_State* L)
         {
-        lua_pushinteger(L, m_project ? m_project->GetTotalWords() : 0);
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushinteger(L, m_project->GetTotalWords());
         return 1;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::GetCharacterAndPunctuationCount(lua_State* L)
         {
-        lua_pushinteger(L, m_project ? m_project->GetTotalCharactersPlusPunctuation() : 0);
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushinteger(L, m_project->GetTotalCharactersPlusPunctuation());
         return 1;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::GetCharacterCount(lua_State* L)
         {
-        lua_pushinteger(L, m_project ? m_project->GetTotalCharacters() : 0);
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushinteger(L, m_project->GetTotalCharacters());
         return 1;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::GetSyllableCount(lua_State* L)
         {
-        lua_pushinteger(L, m_project ? m_project->GetTotalSyllables() : 0);
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushinteger(L, m_project->GetTotalSyllables());
         return 1;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::GetUnique3SyllablePlusWordCount(lua_State* L)
         {
-        lua_pushinteger(L, m_project ? m_project->GetTotalUnique3PlusSyllableWords() : 0);
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushinteger(L, m_project->GetTotalUnique3PlusSyllableWords());
         return 1;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::Get3SyllablePlusWordCount(lua_State* L)
         {
-        lua_pushinteger(L, m_project ? m_project->GetTotal3PlusSyllabicWords() : 0);
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushinteger(L, m_project->GetTotal3PlusSyllabicWords());
         return 1;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::GetUnique1SyllableWordCount(lua_State* L)
         {
-        lua_pushinteger(L, m_project ? m_project->GetTotalUniqueMonoSyllablicWords() : 0);
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushinteger(L, m_project->GetTotalUniqueMonoSyllablicWords());
         return 1;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::Get1SyllableWordCount(lua_State* L)
         {
-        lua_pushinteger(L, m_project ? m_project->GetTotalMonoSyllabicWords() : 0);
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushinteger(L, m_project->GetTotalMonoSyllabicWords());
         return 1;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::Get7CharacterPlusWordCount(lua_State* L)
         {
-        lua_pushinteger(L, m_project ? m_project->GetTotalHardLixRixWords() : 0);
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushinteger(L, m_project->GetTotalHardLixRixWords());
         return 1;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::GetUnique6CharPlusWordCount(lua_State* L)
         {
-        lua_pushinteger(L, m_project ? m_project->GetTotalUnique6CharsPlusWords() : 0);
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushinteger(L, m_project->GetTotalUnique6CharsPlusWords());
         return 1;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::Get6CharacterPlusWordCount(lua_State* L)
         {
-        lua_pushinteger(L, m_project ? m_project->GetTotalLongWords() : 0);
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushinteger(L, m_project->GetTotalLongWords());
         return 1;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::GetUnfamiliarSpacheWordCount(lua_State* L)
         {
-        lua_pushinteger(L, m_project ? m_project->GetTotalHardWordsSpache() : 0);
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushinteger(L, m_project->GetTotalHardWordsSpache());
         return 1;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::GetUnfamiliarDCWordCount(lua_State* L)
         {
-        lua_pushinteger(L, m_project ? m_project->GetTotalHardWordsDaleChall() : 0);
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushinteger(L, m_project->GetTotalHardWordsDaleChall());
         return 1;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::GetUnfamiliarHJWordCount(lua_State* L)
         {
-        lua_pushinteger(L, m_project ? m_project->GetTotalHardWordsHarrisJacobson() : 0);
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushinteger(L, m_project->GetTotalHardWordsHarrisJacobson());
         return 1;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::SetTextExclusion(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -289,6 +415,19 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
+    int StandardProject::GetTextExclusion(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushinteger(L, static_cast<int>(m_project->GetInvalidSentenceMethod()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int StandardProject::SetIncludeIncompleteTolerance(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -304,6 +443,19 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
+    int StandardProject::GetIncludeIncompleteTolerance(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, m_project->GetIncludeIncompleteSentencesIfLongerThanValue());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int StandardProject::AggressivelyExclude(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -320,6 +472,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::ExcludeCopyrightNotices(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -336,6 +489,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::ExcludeTrailingCitations(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -352,6 +506,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::ExcludeFileAddress(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -368,6 +523,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::ExcludeNumerals(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -384,6 +540,7 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
     int StandardProject::ExcludeProperNouns(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -400,8 +557,85 @@ namespace LuaScripting
         return 0;
         }
 
-    // Sets the filepath to the phrase exclusion list
-    // filePath Path to phrase exclusion list
+    //-------------------------------------------------------------
+    int StandardProject::IsExcludingAggressively(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L, m_project->IsExcludingAggressively());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::IsExcludingCopyrightNotices(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L, m_project->IsIgnoringTrailingCopyrightNoticeParagraphs());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::IsExcludingTrailingCitations(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L, m_project->IsIgnoringTrailingCitations());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::IsExcludingFileAddresses(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L, m_project->IsIgnoringFileAddresses());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::IsExcludingNumerals(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L, m_project->IsIgnoringNumerals());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::IsExcludingProperNouns(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L, m_project->IsIgnoringProperNouns());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int StandardProject::SetPhraseExclusionList(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -419,7 +653,20 @@ namespace LuaScripting
         return 0;
         }
 
-    // Sets the tags to exclude blocks of text.
+    //-------------------------------------------------------------
+    int StandardProject::GetPhraseExclusionList(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushstring(L, m_project->GetExcludedPhrasesPath().utf8_str());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int StandardProject::SetBlockExclusionTags(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -440,6 +687,24 @@ namespace LuaScripting
             }
         ReloadIfNotDelayed();
         return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::GetBlockExclusionTags(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushstring(
+            L, m_project->GetExclusionBlockTags().empty() ?
+                   "" :
+                   wxString{ std::to_wstring(m_project->GetExclusionBlockTags().front().first) +
+                             std::to_wstring(m_project->GetExclusionBlockTags().front().second) }
+                       .utf8_str());
+        wxGetApp().Yield();
+        return 1;
         }
 
     //-------------------------------------------------
@@ -2070,7 +2335,7 @@ namespace LuaScripting
             }
         if (lua_gettop(L) >= 4)
             {
-            m_project->GetWordsBreakdownInfo().Enable6PlusCharacter(
+            m_project->GetWordsBreakdownInfo().Enable3PlusSyllables(
                 int_to_bool(lua_toboolean(L, 4)));
             }
         if (lua_gettop(L) >= 5)
@@ -2336,6 +2601,128 @@ namespace LuaScripting
         lua_pushnumber(L, static_cast<int>(m_project->GetTextHighlightMethod()));
         wxGetApp().Yield();
         return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetDolchConjunctionsColor(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetDolchConjunctionsColor(
+            LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetDolchPrepositionsColor(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetDolchPrepositionsColor(
+            LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetDolchPronounsColor(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetDolchPronounsColor(LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetDolchAdverbsColor(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetDolchAdverbsColor(LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetDolchAdjectivesColor(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetDolchAdjectivesColor(
+            LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetDolchVerbsColor(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetDolchVerbsColor(LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetDolchNounsColor(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetDolchNounColor(LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+        ReloadIfNotDelayed();
+        return 0;
         }
 
     //-------------------------------------------------------------
@@ -3374,7 +3761,9 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, GetUnfamiliarDCWordCount),
         LUNA_DECLARE_METHOD(StandardProject, GetUnfamiliarHJWordCount),
         LUNA_DECLARE_METHOD(StandardProject, SetPhraseExclusionList),
+        LUNA_DECLARE_METHOD(StandardProject, GetPhraseExclusionList),
         LUNA_DECLARE_METHOD(StandardProject, SetBlockExclusionTags),
+        LUNA_DECLARE_METHOD(StandardProject, GetBlockExclusionTags),
         LUNA_DECLARE_METHOD(StandardProject, SetAppendedDocumentFilePath),
         LUNA_DECLARE_METHOD(StandardProject, GetAppendedDocumentFilePath),
         LUNA_DECLARE_METHOD(StandardProject, UseRealTimeUpdate),
@@ -3383,12 +3772,20 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, GetDocumentFilePath),
         LUNA_DECLARE_METHOD(StandardProject, AggressivelyExclude),
         LUNA_DECLARE_METHOD(StandardProject, SetTextExclusion),
+        LUNA_DECLARE_METHOD(StandardProject, GetTextExclusion),
         LUNA_DECLARE_METHOD(StandardProject, SetIncludeIncompleteTolerance),
+        LUNA_DECLARE_METHOD(StandardProject, GetIncludeIncompleteTolerance),
         LUNA_DECLARE_METHOD(StandardProject, ExcludeCopyrightNotices),
         LUNA_DECLARE_METHOD(StandardProject, ExcludeTrailingCitations),
         LUNA_DECLARE_METHOD(StandardProject, ExcludeFileAddress),
         LUNA_DECLARE_METHOD(StandardProject, ExcludeNumerals),
         LUNA_DECLARE_METHOD(StandardProject, ExcludeProperNouns),
+        LUNA_DECLARE_METHOD(StandardProject, IsExcludingAggressively),
+        LUNA_DECLARE_METHOD(StandardProject, IsExcludingCopyrightNotices),
+        LUNA_DECLARE_METHOD(StandardProject, IsExcludingTrailingCitations),
+        LUNA_DECLARE_METHOD(StandardProject, IsExcludingFileAddresses),
+        LUNA_DECLARE_METHOD(StandardProject, IsExcludingNumerals),
+        LUNA_DECLARE_METHOD(StandardProject, IsExcludingProperNouns),
         LUNA_DECLARE_METHOD(StandardProject, SetProjectLanguage),
         LUNA_DECLARE_METHOD(StandardProject, GetProjectLanguage),
         LUNA_DECLARE_METHOD(StandardProject, SetReviewer),
@@ -3413,6 +3810,13 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, SetWordyTextHighlightColor),
         LUNA_DECLARE_METHOD(StandardProject, SetTextHighlighting),
         LUNA_DECLARE_METHOD(StandardProject, GetTextHighlighting),
+        LUNA_DECLARE_METHOD(StandardProject, SetDolchConjunctionsColor),
+        LUNA_DECLARE_METHOD(StandardProject, SetDolchPrepositionsColor),
+        LUNA_DECLARE_METHOD(StandardProject, SetDolchPronounsColor),
+        LUNA_DECLARE_METHOD(StandardProject, SetDolchAdverbsColor),
+        LUNA_DECLARE_METHOD(StandardProject, SetDolchAdjectivesColor),
+        LUNA_DECLARE_METHOD(StandardProject, SetDolchVerbsColor),
+        LUNA_DECLARE_METHOD(StandardProject, SetDolchNounsColor),
         LUNA_DECLARE_METHOD(StandardProject, SetGraphColorScheme),
         LUNA_DECLARE_METHOD(StandardProject, GetGraphColorScheme),
         LUNA_DECLARE_METHOD(StandardProject, SetGraphBackgroundColor),

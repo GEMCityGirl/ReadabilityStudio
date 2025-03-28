@@ -1,0 +1,17 @@
+## `IsExcludingProperNouns`
+
+Returns whether to exclude proper nouns.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsExcludingProperNouns()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}
