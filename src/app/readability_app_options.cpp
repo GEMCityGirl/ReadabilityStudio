@@ -3582,7 +3582,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     // log settings
     auto* logSection = doc.NewElement(XML_LOG_SETTINGS.data());
     auto* logVerbose = doc.NewElement(XML_LOG_VERBOSE.data());
-    logVerbose->SetAttribute(XML_VALUE.data(), bool_to_int(wxGetApp().GetLogFile()->GetVerbose()));
+    logVerbose->SetAttribute(XML_VALUE.data(), bool_to_int(wxLog::GetVerbose()));
     logSection->InsertEndChild(logVerbose);
 
     auto* logAppend = doc.NewElement(XML_LOG_APPEND_DAILY.data());

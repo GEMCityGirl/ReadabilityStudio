@@ -595,9 +595,8 @@ bool ReadabilityApp::OnInit()
 
     m_webHarvester.SetEventHandler(this);
 
-    if (GetLogFile() != nullptr && GetLogFile()->GetVerbose())
+    if (wxLog::GetVerbose())
         {
-        wxLog::SetVerbose(true);
         wxLog::SetLogLevel(wxLOG_Max);
         }
 
@@ -5346,9 +5345,9 @@ void MainFrame::OnToolsOptions([[maybe_unused]] wxRibbonButtonBarEvent& event)
         {
         wxGetApp().GetAppOptions().SaveOptionsFile();
         }
-    if (m_logWindow != nullptr && wxGetApp().GetLogFile() != nullptr)
+    if (m_logWindow != nullptr)
         {
-        m_logWindow->EnableVerboseLogging(wxGetApp().GetLogFile()->GetVerbose());
+        m_logWindow->EnableVerboseLogging(wxLog::GetVerbose());
         }
     }
 

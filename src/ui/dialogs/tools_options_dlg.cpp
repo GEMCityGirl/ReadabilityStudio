@@ -728,7 +728,7 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
       m_useJsCookies(wxGetApp().GetAppOptions().IsUsingJavaScriptCookies()),
       m_persistJsCookies(wxGetApp().GetAppOptions().IsPersistingJavaScriptCookies()),
       // log options
-      m_logVerbose(wxGetApp().GetLogFile() != nullptr ? wxGetApp().GetLogFile()->GetVerbose() :
+      m_logVerbose(wxGetApp().GetLogFile() != nullptr ? wxLog::GetVerbose() :
                                                         false),
       m_logAppendDailyLog(wxGetApp().GetAppOptions().IsAppendingDailyLog()),
       // project settings
