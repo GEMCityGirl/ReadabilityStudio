@@ -2423,6 +2423,7 @@ namespace LuaScripting
             }
         m_project->RefreshRequired(ProjectRefresh::FullReindexing);
         m_project->RefreshProject();
+        m_delayReloading = false;
         wxGetApp().Yield();
         return 0;
         }

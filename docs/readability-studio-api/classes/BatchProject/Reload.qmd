@@ -12,4 +12,8 @@ Reload()
 
 [`DelayReloading()`](#batch-delayreloading)
 
+::: {.callout-note}
+After this function is called, delayed reloading will be reset.
+:::
+
 {{< pagebreak >}}

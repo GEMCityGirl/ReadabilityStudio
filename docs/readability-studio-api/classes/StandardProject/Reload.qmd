@@ -33,4 +33,8 @@ consentForm:AddTest("Patient Consent Formula")
 
 [`DelayReloading()`](#standard-delayreloading)
 
+::: {.callout-note}
+After this function is called, delayed reloading will be reset.
+:::
+
 {{< pagebreak >}}
