@@ -5,9 +5,7 @@ Sets the color for the invalid score regions for Fry-like graphs.
 ### Syntax {-}
 
 ``` {.lua}
-SetGraphInvalidRegionColor(number red,
-                           number green,
-                           number blue)
+SetGraphInvalidRegionColor(string colorName)
 ```
 
 
@@ -15,9 +13,6 @@ SetGraphInvalidRegionColor(number red,
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`number` red | The red channel (should be between 0--255). | 
-|`number` green | The green channel (should be between 0--255). | 
-|`number` blue | The blue channel (should be between 0--255). |
-
+|`string` colorName | The name of the color to use. |
 
 {{< pagebreak >}}

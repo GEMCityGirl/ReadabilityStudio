@@ -141,26 +141,26 @@ namespace LuaScripting
     // HIGHLIGHTED REPORTS
     int SetReportFont(lua_State* L /*string fontName, number pointSize, FontWeight weight, string color*/); // Sets the font for highlighted reports for new projects.
     int SetExcludedTextHighlightColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for excluded text in formatted reports for new projects.
-    int SetDifficultTextHighlightColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for difficult text in formatted reports for new projects.
-    int SetGrammarIssuesHighlightColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for grammar issues in formatted reports for new projects.
-    int SetWordyTextHighlightColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for wordy content in formatted reports for new projects.
+    int SetDifficultTextHighlightColor(lua_State* L /*string colorName*/); // Sets the font color for difficult text in formatted reports for new projects.
+    int SetGrammarIssuesHighlightColor(lua_State* L /*string colorName*/); // Sets the font color for grammar issues in formatted reports for new projects.
+    int SetWordyTextHighlightColor(lua_State* L /*string colorName*/); // Sets the font color for wordy content in formatted reports for new projects.
     int SetTextHighlighting(lua_State* L /*TextHighlight highlighting*/); // Sets how to highlight content in formatted reports for new projects.
     int /*TextHighlight*/ GetTextHighlighting(lua_State* L); // Returns how to highlight content in formatted reports for new projects.
-    int SetDolchConjunctionsColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for Dolch conjunctions in the formatted Dolch report for new projects.
-    int SetDolchPrepositionsColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for Dolch prepositions in the formatted Dolch report for new projects.
-    int SetDolchPronounsColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for Dolch pronouns in the formatted Dolch report for new projects.
-    int SetDolchAdverbsColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for Dolch adverbs in the formatted Dolch report for new projects.
-    int SetDolchAdjectivesColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for Dolch adjectives in the formatted Dolch report for new projects.
-    int SetDolchVerbsColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for Dolch verbs in the formatted Dolch report for new projects.
-    int SetDolchNounsColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for Dolch nouns in the formatted Dolch report for new projects.
+    int SetDolchConjunctionsColor(lua_State* L /*string colorName*/); // Sets the font color for Dolch conjunctions in the formatted Dolch report for new projects.
+    int SetDolchPrepositionsColor(lua_State* L /*string colorName*/); // Sets the font color for Dolch prepositions in the formatted Dolch report for new projects.
+    int SetDolchPronounsColor(lua_State* L /*string colorName*/); // Sets the font color for Dolch pronouns in the formatted Dolch report for new projects.
+    int SetDolchAdverbsColor(lua_State* L /*string colorName*/); // Sets the font color for Dolch adverbs in the formatted Dolch report for new projects.
+    int SetDolchAdjectivesColor(lua_State* L /*string colorName*/); // Sets the font color for Dolch adjectives in the formatted Dolch report for new projects.
+    int SetDolchVerbsColor(lua_State* L /*string colorName*/); // Sets the font color for Dolch verbs in the formatted Dolch report for new projects.
+    int SetDolchNounsColor(lua_State* L /*string colorName*/); // Sets the font color for Dolch nouns in the formatted Dolch report for new projects.
 
     // GRAPH OPTIONS
     int SetGraphColorScheme(lua_State* L /*string colorScheme*/); // Sets the graph color scheme for new projects.
     int /*string*/ GetGraphColorScheme(lua_State* L); // Returns the graph color scheme for new projects.
-    int SetGraphBackgroundColor(lua_State* L /*number red, number green, number blue*/); // Sets the graph background color for new projects.
+    int SetGraphBackgroundColor(lua_State* L /*string colorName*/); // Sets the graph background color for new projects.
     int ApplyGraphBackgroundFade(lua_State* L /*boolean applyFade*/); // Sets whether to apply a fade to graph background colors for new projects.
     int /*boolean*/ IsApplyingGraphBackgroundFade(lua_State* L); // Returns whether to apply a fade to graph background colors for new projects.
-    int SetPlotBackgroundColor(lua_State* L /*number red, number green, number blue*/); // Sets the graph background (plot area) color for new projects.
+    int SetPlotBackgroundColor(lua_State* L /*string colorName*/); // Sets the graph background (plot area) color for new projects.
     int SetPlotBackgroundColorOpacity(lua_State* L /*number opacity*/); // Sets the graph background (plot area) color opacity for new projects.
     int /*number*/ GetPlotBackgroundColorOpacity(lua_State* L); // Returns the graph background (plot area) color opacity for new projects.
     int SetPlotBackgroundImage(lua_State* L /*string imagePath*/); // Sets the graph background (plot area) image for new projects.
@@ -179,7 +179,7 @@ namespace LuaScripting
     int /*string*/ GetStippleImage(lua_State* L);// Returns the stipple image filepath used to draw bars in graphs for new projects.
     int SetStippleShape(lua_State* L /*string shapeId*/); // Sets the stipple shape used to draw bars in graphs for new projects.
     int /*string*/ GetStippleShape(lua_State* L); // Returns the stipple shape used to draw bars in graphs for new projects.
-    int SetStippleShapeColor(lua_State* L /*number red, number green, number blue*/); // If using stipple shapes for bars, sets the color for certain shapes for new projects.
+    int SetStippleShapeColor(lua_State* L /*string colorName*/); // If using stipple shapes for bars, sets the color for certain shapes for new projects.
     int SetGraphCommonImage(lua_State* L /*string imagePath*/); // Sets the common image drawn across all bars for new projects.
     int /*string*/ GetGraphCommonImage(lua_State* L); // Returns the common image drawn across all bars for new projects.
     int DisplayGraphDropShadows(lua_State* L /*bool displayShadows*/); // Sets whether to display shadows on graphs for new projects.
@@ -195,7 +195,7 @@ namespace LuaScripting
     int SetGraphLeftTitleFont(lua_State* L /*string fontName, number pointSize, FontWeight weight, string color*/); // Sets the font for the graphs' left titles.
     int SetGraphRightTitleFont(lua_State* L /*string fontName, number pointSize, FontWeight weight, string color*/); // Sets the font for the graphs' right titles.
 
-    int SetGraphInvalidRegionColor(lua_State* L /*number red, number green, number blue*/); // Sets the color for the invalid score regions for Fry-like graphs for new projects.
+    int SetGraphInvalidRegionColor(lua_State* L /*string colorName*/); // Sets the color for the invalid score regions for Fry-like graphs for new projects.
     int SetRaygorStyle(lua_State* L /*RaygorStyle style*/); // Sets the visual style for Raygor graphs for new projects.
     int /*RaygorStyle*/ GetRaygorStyle(lua_State* L); // Returns the visual style for Raygor graphs for new projects.
     int ConnectFleschPoints(lua_State* L /*boolean connect*/); // Sets whether connection lines should be drawn between the three rules in Flesch charts for new projects.
@@ -205,7 +205,7 @@ namespace LuaScripting
     int UseEnglishLabelsForGermanLix(lua_State* L /*boolean useEnglish*/); // Sets whether English labels are being used for the brackets on German Lix gauges for new projects.
     int /*boolean*/ IsUsingEnglishLabelsForGermanLix(lua_State* L); // Returns whether English labels are being used for the brackets on German Lix gauges for new projects.
 
-    int SetBarChartBarColor(lua_State* L /*number red, number green, number blue*/); // Sets bar color (in bar charts) for new projects.
+    int SetBarChartBarColor(lua_State* L /*string colorName*/); // Sets bar color (in bar charts) for new projects.
     int SetBarChartBarEffect(lua_State* L /*BoxEffect barEffect*/); // Sets bar appearance (in bar charts) for new projects.
     int /*BoxEffect*/ GetBarChartBarEffect(lua_State* L); // Returns how bars should be drawn within the various bar charts for new projects.
     int SetBarChartBarOpacity(lua_State* L /*number opacity*/); // Sets bar opacity (in bar charts) for new projects.
@@ -215,7 +215,7 @@ namespace LuaScripting
     int DisplayBarChartLabels(lua_State* L /*boolean display*/); // Specifies whether to display labels above each bar in a bar chart for new projects.
     int /*boolean*/ IsDisplayingBarChartLabels(lua_State* L); // Returns whether to display labels above each bar in a bar chart for new projects.
 
-    int SetHistogramBarColor(lua_State* L /*number red, number green, number blue*/); // Sets bar color (in histograms) for new projects.
+    int SetHistogramBarColor(lua_State* L /*string colorName*/); // Sets bar color (in histograms) for new projects.
     int SetHistogramBarEffect(lua_State* L /*BoxEffect barEffect*/); // Sets bar appearance (in histograms) for new projects.
     int /*BoxEffect*/ GetHistogramBarEffect(lua_State* L); // Returns how bars should be drawn within the various histograms for new projects.
     int SetHistogramBarOpacity(lua_State* L /*number opacity*/); // Sets bar opacity (in histograms) for new projects.
@@ -229,7 +229,7 @@ namespace LuaScripting
     int SetHistrogramBinLabelDisplay(lua_State* L /*BinLabelDisplay display*/); // Sets how bar labels are displayed on histograms for new projects.
     int /*BinLabelDisplay*/ GetHistrogramBinLabelDisplay(lua_State* L); // Returns how bar labels are displayed on histograms for new projects.
 
-    int SetBoxPlotColor(lua_State* L /*number red, number green, number blue*/); // Sets box color (in box plots) for new projects.
+    int SetBoxPlotColor(lua_State* L /*string colorName*/); // Sets box color (in box plots) for new projects.
     int SetBoxPlotEffect(lua_State* L /*BoxEffect barEffect*/); // Sets box appearance (in box plots) for new projects.
     int /*BoxEffect*/ GetBoxPlotEffect(lua_State* L); // Returns how boxes should be drawn within the various box plots for new projects.
     int SetBoxPlotOpacity(lua_State* L /*number opacity*/); // Sets box opacity (in box plots) for new projects.

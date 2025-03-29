@@ -136,19 +136,19 @@ namespace LuaScripting
 
         // HIGHLIGHTED REPORTS
         int SetReportFont(lua_State* L /*string fontName, number pointSize, FontWeight weight, string color*/); // Sets the font for highlighted reports.
-        int SetExcludedTextHighlightColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for excluded text in formatted reports.
-        int SetDifficultTextHighlightColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for difficult text in formatted reports.
-        int SetGrammarIssuesHighlightColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for grammar issues in formatted reports.
-        int SetWordyTextHighlightColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for wordy content in formatted reports.
+        int SetExcludedTextHighlightColor(lua_State* L /*string colorName*/); // Sets the font color for excluded text in formatted reports.
+        int SetDifficultTextHighlightColor(lua_State* L /*string colorName*/); // Sets the font color for difficult text in formatted reports.
+        int SetGrammarIssuesHighlightColor(lua_State* L /*string colorName*/); // Sets the font color for grammar issues in formatted reports.
+        int SetWordyTextHighlightColor(lua_State* L /*string colorName*/); // Sets the font color for wordy content in formatted reports.
         int SetTextHighlighting(lua_State* L /*TextHighlight highlighting*/); // Sets how to highlight content in formatted reports.
         int /*TextHighlight*/ GetTextHighlighting(lua_State* L); // Returns how to highlight content in formatted reports.
-        int SetDolchConjunctionsColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for Dolch conjunctions in the formatted Dolch report.
-        int SetDolchPrepositionsColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for Dolch prepositions in the formatted Dolch report.
-        int SetDolchPronounsColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for Dolch pronouns in the formatted Dolch report.
-        int SetDolchAdverbsColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for Dolch adverbs in the formatted Dolch report.
-        int SetDolchAdjectivesColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for Dolch adjectives in the formatted Dolch report.
-        int SetDolchVerbsColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for Dolch verbs in the formatted Dolch report.
-        int SetDolchNounsColor(lua_State* L /*number red, number green, number blue*/); // Sets the font color for Dolch nouns in the formatted Dolch report.
+        int SetDolchConjunctionsColor(lua_State* L /*string colorName*/); // Sets the font color for Dolch conjunctions in the formatted Dolch report.
+        int SetDolchPrepositionsColor(lua_State* L /*string colorName*/); // Sets the font color for Dolch prepositions in the formatted Dolch report.
+        int SetDolchPronounsColor(lua_State* L /*string colorName*/); // Sets the font color for Dolch pronouns in the formatted Dolch report.
+        int SetDolchAdverbsColor(lua_State* L /*string colorName*/); // Sets the font color for Dolch adverbs in the formatted Dolch report.
+        int SetDolchAdjectivesColor(lua_State* L /*string colorName*/); // Sets the font color for Dolch adjectives in the formatted Dolch report.
+        int SetDolchVerbsColor(lua_State* L /*string colorName*/); // Sets the font color for Dolch verbs in the formatted Dolch report.
+        int SetDolchNounsColor(lua_State* L /*string colorName*/); // Sets the font color for Dolch nouns in the formatted Dolch report.
 
         // PROJECT SETTINGS
         int SetProjectLanguage(lua_State* L /*Language lang*/); // Sets the project language. This will affect syllable counting and also which tests are available.
@@ -199,10 +199,10 @@ namespace LuaScripting
         // GRAPH OPTIONS
         int SetGraphColorScheme(lua_State* L /*string colorScheme*/); // Sets the graph color scheme.
         int /*string*/ GetGraphColorScheme(lua_State* L); // Returns the graph color scheme.
-        int SetGraphBackgroundColor(lua_State* L /*number red, number green, number blue*/); // Sets the graph background color.
+        int SetGraphBackgroundColor(lua_State* L /*string colorName*/); // Sets the graph background color.
         int ApplyGraphBackgroundFade(lua_State* L /*boolean useColorFade*/); // Sets whether to apply a fade to graph background colors.
         int /*boolean*/ IsApplyingGraphBackgroundFade(lua_State* L); // Returns whether to apply a fade to graph background colors.
-        int SetPlotBackgroundColor(lua_State* L /*number red, number green, number blue*/); // Sets the graph background (plot area) color.
+        int SetPlotBackgroundColor(lua_State* L /*string colorName*/); // Sets the graph background (plot area) color.
         int SetPlotBackgroundColorOpacity(lua_State* L /*number opacity*/); // Sets the graph background color opacity.
         int /*number*/ GetPlotBackgroundColorOpacity(lua_State* L); // Returns the graph background (plot area) color opacity.
         int SetPlotBackgroundImage(lua_State* L /*string imagePath*/); // Sets the graph background (plot area) image.
@@ -221,7 +221,7 @@ namespace LuaScripting
         int /*string*/ GetStippleImage(lua_State* L);// Returns the stipple image filepath used to draw bars in graphs.
         int SetStippleShape(lua_State* L /*string shapeId*/); // Sets the stipple shape used to draw bars in graphs.
         int /*string*/ GetStippleShape(lua_State* L); // Returns the stipple shape used to draw bars in graphs.
-        int SetStippleShapeColor(lua_State* L /*number red, number green, number blue*/); // If using stipple shapes for bars, sets the color for certain shapes.
+        int SetStippleShapeColor(lua_State* L /*string colorName*/); // If using stipple shapes for bars, sets the color for certain shapes.
         int SetGraphCommonImage(lua_State* L /*string imagePath*/); // Sets the common image drawn across all bars.
         int /*string*/ GetGraphCommonImage(lua_State* L); // Returns the common image drawn across all bars.
         int DisplayGraphDropShadows(lua_State* L /*bool displayShadows*/); // Sets whether to display shadows on graphs.
@@ -237,7 +237,7 @@ namespace LuaScripting
         int SetGraphLeftTitleFont(lua_State* L /*string fontName, number pointSize, FontWeight weight, string color*/); // Sets the font for the graphs' left titles.
         int SetGraphRightTitleFont(lua_State* L /*string fontName, number pointSize, FontWeight weight, string color*/); // Sets the font for the graphs' right titles.
 
-        int SetGraphInvalidRegionColor(lua_State* L /*number red, number green, number blue*/); // Sets the color for the invalid score regions for Fry-like graphs.
+        int SetGraphInvalidRegionColor(lua_State* L /*string colorName*/); // Sets the color for the invalid score regions for Fry-like graphs.
         int SetRaygorStyle(lua_State* L /*RaygorStyle style*/); // Sets the visual style for Raygor graphs.
         int /*RaygorStyle*/ GetRaygorStyle(lua_State* L); // Returns the visual style for Raygor graphs.
         int ConnectFleschPoints(lua_State* L /*boolean connect*/); // Sets whether connection lines should be drawn between the three rules in Flesch charts.
@@ -247,7 +247,7 @@ namespace LuaScripting
         int UseEnglishLabelsForGermanLix(lua_State* L /*boolean useEnglish*/); // Sets whether English labels are being used for the brackets on German Lix gauges.
         int /*boolean*/ IsUsingEnglishLabelsForGermanLix(lua_State* L); // Returns whether English labels are being used for the brackets on German Lix gauges.
 
-        int SetBarChartBarColor(lua_State* L /*number red, number green, number blue*/); // If the bar charts' effect is to use a single color, sets the color to draw the bars with.
+        int SetBarChartBarColor(lua_State* L /*string colorName*/); // If the bar charts' effect is to use a single color, sets the color to draw the bars with.
         int SetBarChartBarEffect(lua_State* L /*BoxEffect effect*/); // Sets how bars should be drawn within the various bar charts.
         int /*BoxEffect*/ GetBarChartBarEffect(lua_State* L); // Returns how bars should be drawn within the various bar charts.
         int SetBarChartBarOpacity(lua_State* L /*number opacity*/); // Sets the opacity of the bars within the various bar charts.
@@ -257,7 +257,7 @@ namespace LuaScripting
         int DisplayBarChartLabels(lua_State* L /*boolean display*/); // Specifies whether to display labels above each bar in a bar chart.
         int /*boolean*/ IsDisplayingBarChartLabels(lua_State* L); // Returns whether to display labels above each bar in a bar chart.
 
-        int SetHistogramBarColor(lua_State* L /*number red, number green, number blue*/); // Sets bar color (in histograms).
+        int SetHistogramBarColor(lua_State* L /*string colorName*/); // Sets bar color (in histograms).
         int SetHistogramBarEffect(lua_State* L /*BoxEffect barEffect*/); // Sets bar appearance (in histograms).
         int /*BoxEffect*/ GetHistogramBarEffect(lua_State* L); // Returns how bars should be drawn within the various histograms.
         int SetHistogramBarOpacity(lua_State* L /*number opacity*/); // Sets bar opacity (in histograms).
@@ -271,7 +271,7 @@ namespace LuaScripting
         int SetHistrogramBinLabelDisplay(lua_State* L /*BinLabelDisplay display*/); // Sets how bar labels are displayed on histograms.
         int /*BinLabelDisplay*/ GetHistrogramBinLabelDisplay(lua_State* L); // Returns how bar labels are displayed on histograms.
 
-        int SetBoxPlotColor(lua_State* L /*number red, number green, number blue*/); // Sets box color (in box plots).
+        int SetBoxPlotColor(lua_State* L /*string colorName*/); // Sets box color (in box plots).
         int SetBoxPlotEffect(lua_State* L /*BoxEffect barEffect*/); // Sets box appearance (in box plots).
         int /*BoxEffect*/ GetBoxPlotEffect(lua_State* L); // Returns how boxes should be drawn within the various box plots.
         int SetBoxPlotOpacity(lua_State* L /*number opacity*/); // Sets box opacity (in box plots).

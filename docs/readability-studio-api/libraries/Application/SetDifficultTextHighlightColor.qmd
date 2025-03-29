@@ -5,17 +5,13 @@ Sets the font color for difficult text in formatted reports for new projects.
 ### Syntax {-}
 
 ``` {.lua}
-SetDifficultTextHighlightColor(number red,
-                               number green,
-                               number blue)
+SetDifficultTextHighlightColor(string colorName)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-| `number` red | The red channel of the color (should be between 0--255). |
-| `number` green | The green channel of the color (should be between 0--255). |
-| `number` blue | The blue channel of the color (should be between 0--255). |
+|`string` colorName | The name of the color to use. |
 
 {{< pagebreak >}}

@@ -5,17 +5,13 @@ Sets the plot area color for all graphs. The color is created by specifying the 
 ### Syntax {-}
 
 ``` {.lua}
-SetPlotBackgroundColor(number red,
-                       number green,
-                       number blue)
+SetPlotBackgroundColor(string colorName)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`number` red | The red channel (should be between 0--255). | 
-|`number` green | The green channel (should be between 0--255). | 
-|`number` blue | The blue channel (should be between 0--255). |
+|`string` colorName | The name of the color to use. |
 
 {{< pagebreak >}}

@@ -5,17 +5,13 @@ Sets the bar color for bar charts. The color is created by specifying the red, b
 ### Syntax {-}
 
 ``` {.lua}
-SetBarChartBarColor(number red,
-                    number green,
-                    number blue)
+SetBarChartBarColor(string colorName)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-`number` red | The red channel of the color (should be between 0--255).
-`number` green | The green channel of the color (should be between 0--255).
-`number` blue | The blue channel of the color (should be between 0--255).
+|`string` colorName | The name of the color to use. |
 
 {{< pagebreak >}}

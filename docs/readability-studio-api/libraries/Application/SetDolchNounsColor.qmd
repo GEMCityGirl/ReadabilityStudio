@@ -5,9 +5,7 @@ Sets the font color for Dolch nouns in the formatted Dolch report for new projec
 ### Syntax {-}
 
 ``` {.lua}
-SetDolchNounsColor(number red,
-                   number green,
-                   number blue)
+SetDolchNounsColor(string colorName)
 ```
 
 
@@ -15,8 +13,6 @@ SetDolchNounsColor(number red,
 
 **Parameter** | **Description**
 | :-- | :-- |
-| `number` red | The red channel of the color (should be between 0--255). |
-| `number` green | The green channel of the color (should be between 0--255). |
-| `number` blue | The blue channel of the color (should be between 0--255). |
+|`string` colorName | The name of the color to use. |
 
 {{< pagebreak >}}
