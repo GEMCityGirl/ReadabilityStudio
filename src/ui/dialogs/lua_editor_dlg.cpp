@@ -1052,6 +1052,8 @@ void LuaEditorDlg::CreateControls()
     m_mgr.AddPane(m_notebook, wxAuiPaneInfo().Name(L"auinotebook").CenterPane().PaneBorder(false));
 
     m_functionBrowser = new FunctionBrowserCtrl(this, this);
+    wxGetApp().UpdateSideBarTheme(m_functionBrowser->GetSidebar());
+    m_functionBrowser->SetParameterSeparator(FormulaFormat::GetListSeparator());
     m_functionBrowser->AddCategory(L"Libraries", 1000);
     m_functionBrowser->AddCategory(L"Classes", 1001);
     m_functionBrowser->AddCategory(L"Enumerations", 1002);
