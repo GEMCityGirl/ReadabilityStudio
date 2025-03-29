@@ -152,17 +152,39 @@ bool BatchProjectDoc::OnCreate(const wxString& path, long flags)
         }
     if (flags & wxDOC_NEW)
         {
+        // if a folder, load the all supported document types recursively
+        if (!path.empty() && wxFileName{ path }.IsDir() && wxFileName::DirExists(path))
+            {
+            wxArrayString files;
+                {
+                wxWindowDisabler disableAll;
+                wxBusyInfo wait(_(L"Retrieving files..."));
+                wxDir::GetAllFiles(path, &files, wxString{},
+                                   wxDIR_FILES | wxDIR_DIRS);
+                files = FilterFiles(files,
+                    ExtractExtensionsFromFileFilter(ReadabilityAppOptions::GetDocumentFilter()));
+                }
+            GetSourceFilesInfo().clear();
+            GetSourceFilesInfo().reserve(files.size());
+            for (const auto& fl : files)
+                {
+                wxLogMessage(fl);
+                GetSourceFilesInfo().push_back(comparable_first_pair{ fl, wxString{} });
+                }
+            ProjectWizardDlg::SetLastSelectedFolder(path);
+            return wxDocument::OnCreate(wxString{}, flags);
+            }
         // if passed a single, "regular" file (i.e., not an archive or spreadsheet), then just load
         // it with the defaults and bypass the wizard.
-        if (path.length() && FilePathResolver(path, false).IsLocalOrNetworkFile() &&
+        else if (!path.empty() && FilePathResolver(path, false).IsLocalOrNetworkFile() &&
             !FilePathResolver::IsSpreadsheet(path) && !FilePathResolver::IsArchive(path))
             {
             GetSourceFilesInfo().clear();
-            GetSourceFilesInfo().push_back(comparable_first_pair(path, wxString{}));
-            // set the default name of the project to the last folder of the file selected here.
+            GetSourceFilesInfo().push_back(comparable_first_pair{ path, wxString{} });
+
             const wxArrayString folders = wxFileName(wxFileName(path).GetPathWithSep()).GetDirs();
             ProjectWizardDlg::SetLastSelectedFolder(folders.size() ? folders.back() : wxString{});
-            return wxDocument::OnCreate(path, flags);
+            return wxDocument::OnCreate(wxString{}, flags);
             }
         else if (!RunProjectWizard(path))
             {
