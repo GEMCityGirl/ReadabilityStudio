@@ -22,6 +22,7 @@ SetGrammarResultsOptions(boolean includeHighlightedReport,
 ### Parameters {-}
 
 **Parameter** | **Description**
+| :-- | :-- |
 |`boolean` includeHighlightedReport | `true` to include the highlighted grammar report. | 
 |`boolean` includeErrors | `true` to include wording errors and known misspellings. | 
 |`boolean` includePossibleMisspellings | `true` to include possible misspellings. | 
