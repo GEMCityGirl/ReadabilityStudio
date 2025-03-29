@@ -689,21 +689,6 @@ bool ReadabilityApp::OnInit()
                 { break; }
             }
 
-    // set the user name and company info
-    #ifdef __WXMSW__
-        {
-        // get this info from our Windows installer
-        wxLogNull logNo;
-        wxRegKey key(wxRegKey::HKLM,
-            L"Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{FBFBEAB6-622A-4E16-893D-216C25FF6A69}_is1");
-        key.Open(wxRegKey::Read);
-        wxString value;
-        if (key.QueryValue(_DT(L"Inno Setup: User Info: Organization"), value))
-            { GetLicenseAdmin().SetUserOrganization(value); }
-        if (key.QueryValue(_DT(L"Inno Setup: User Info: Name"), value))
-            { GetLicenseAdmin().SetUserName(value); }
-        }
-    #endif
         if (GetLicenseAdmin().GetUserName().empty())
             { GetLicenseAdmin().SetUserName(wxGetUserName()); }
 
