@@ -19,7 +19,7 @@ ArchitecturesInstallIn64BitMode=x64
 
 [Files]
 ; program files
-Source: release\readstudio.exe; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace
+Source: release\${CMAKE_PROJECT_NAME}.exe; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace
 ; resource files (required part of programs)
 Source: resources\res.wad; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
 Source: resources\words.wad; DestDir: {app}; Components: ProgramFiles; Flags: replacesameversion restartreplace recursesubdirs
@@ -46,17 +46,17 @@ Source: ..\..\examples\*; DestDir: {app}\examples; Components: Examples; Exclude
 
 [Registry]
 ; Make is so that you can run the program from the command line
-Root: HKLM; Subkey: SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\readstudio.exe; ValueType: string; ValueName: ; ValueData: {app}\readstudio.exe; Flags: uninsdeletekey
+Root: HKLM; Subkey: SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\${CMAKE_PROJECT_NAME}.exe; ValueType: string; ValueName: ; ValueData: {app}\${CMAKE_PROJECT_NAME}.exe; Flags: uninsdeletekey
 ; Set file association (standard project)
 Root: HKCR; Subkey: .rsp; ValueType: string; ValueData: ReadStudioProject; Flags: uninsdeletekey
-Root: HKCR; Subkey: ReadStudioProject; ValueType: string; ValueName: ; ValueData: Readability Studio Project; Flags: uninsdeletekey
-Root: HKCR; Subkey: ReadStudioProject\DefaultIcon; ValueType: string; ValueData: {app}\readstudio.EXE,0; Flags: uninsdeletekey
-Root: HKCR; Subkey: ReadStudioProject\shell\open\command; ValueType: string; ValueData: """{app}\readstudio.EXE"" ""%1"""; Flags: uninsdeletekey
+Root: HKCR; Subkey: ReadStudioProject; ValueType: string; ValueName: ; ValueData: ${readstudio_DESCRIPTION} Project; Flags: uninsdeletekey
+Root: HKCR; Subkey: ReadStudioProject\DefaultIcon; ValueType: string; ValueData: {app}\${CMAKE_PROJECT_NAME}.EXE,0; Flags: uninsdeletekey
+Root: HKCR; Subkey: ReadStudioProject\shell\open\command; ValueType: string; ValueData: """{app}\${CMAKE_PROJECT_NAME}.EXE"" ""%1"""; Flags: uninsdeletekey
 ; Set file association (batch project)
 Root: HKCR; Subkey: .rsbp; ValueType: string; ValueData: ReadStudioBatchProject; Flags: uninsdeletekey
-Root: HKCR; Subkey: ReadStudioBatchProject; ValueType: string; ValueName: ; ValueData: Readability Studio Project; Flags: uninsdeletekey
-Root: HKCR; Subkey: ReadStudioBatchProject\DefaultIcon; ValueType: string; ValueData: {app}\readstudio.EXE,0; Flags: uninsdeletekey
-Root: HKCR; Subkey: ReadStudioBatchProject\shell\open\command; ValueType: string; ValueData: """{app}\readstudio.EXE"" ""%1"""; Flags: uninsdeletekey
+Root: HKCR; Subkey: ReadStudioBatchProject; ValueType: string; ValueName: ; ValueData: ${readstudio_DESCRIPTION} Project; Flags: uninsdeletekey
+Root: HKCR; Subkey: ReadStudioBatchProject\DefaultIcon; ValueType: string; ValueData: {app}\${CMAKE_PROJECT_NAME}.EXE,0; Flags: uninsdeletekey
+Root: HKCR; Subkey: ReadStudioBatchProject\shell\open\command; ValueType: string; ValueData: """{app}\${CMAKE_PROJECT_NAME}.EXE"" ""%1"""; Flags: uninsdeletekey
 
 [Components]
 Name: ProgramFiles; Description: {cm:ProgramFiles}; Flags: fixed; Types: Typical Custom
@@ -69,7 +69,7 @@ Name: Custom; Description: {cm:Custom}; Flags: iscustom
 
 [InstallDelete]
 ; Delete any old start menu icons
-Type: filesandordirs ; Name:"{commonprograms}\Readability Studio"
+Type: filesandordirs ; Name:"{commonprograms}\${readstudio_DESCRIPTION}"
 
 [UninstallDelete]
 Type: files; Name: {app}\rs.xml
@@ -88,7 +88,7 @@ var
 begin
   // next, see if this is an upgrade installation
   if RegQueryStringValue(HKLM,
-    'Software\Microsoft\Windows\CurrentVersion\Uninstall\{FBFBEAB6-622A-4E16-893D-216C25FF6A69}_is1',
+    'Software\Microsoft\Windows\CurrentVersion\Uninstall\${INNOSETUP_GUID}_is1',
     'Inno Setup: User Info: Name', userName) then
     begin
       Upgrade := true
@@ -119,7 +119,7 @@ begin
         begin
           // first, see if there is an installation folder already
           if RegQueryStringValue(HKLM,
-              'Software\Microsoft\Windows\CurrentVersion\Uninstall\{FBFBEAB6-622A-4E16-893D-216C25FF6A69}_is1',
+              'Software\Microsoft\Windows\CurrentVersion\Uninstall\${INNOSETUP_GUID}_is1',
               'Inno Setup: App Path', installDir) then
             Result := true
           // no path found, so prompt for it
@@ -136,7 +136,7 @@ begin
         begin
           // first, see if there is a menu group already
           if RegQueryStringValue(HKLM,
-              'Software\Microsoft\Windows\CurrentVersion\Uninstall\{FBFBEAB6-622A-4E16-893D-216C25FF6A69}_is1',
+              'Software\Microsoft\Windows\CurrentVersion\Uninstall\${INNOSETUP_GUID}_is1',
               'Inno Setup: Icon Group', iconGroup) then
             Result := true
           // no menu group found, so prompt for it

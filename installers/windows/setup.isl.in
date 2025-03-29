@@ -11,3 +11,4 @@ AppCopyright=Copyright © ${BUILD_YEAR} ${PUBLISHER}
 DefaultDirName={commonpf}\${readstudio_DESCRIPTION}
 DefaultGroupName=${readstudio_DESCRIPTION}
 UninstallDisplayIcon={app}\${CMAKE_PROJECT_NAME}.exe
+AppID={${INNOSETUP_GUID}

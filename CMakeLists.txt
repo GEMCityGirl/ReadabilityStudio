@@ -61,6 +61,7 @@ set(PUBLISHER "Oleander Software, Ltd.")
 set(PROGRAM_AUTHOR "Blake Madden")
 set(PROGRAM_COMMENTS "Readability analysis software")
 set(PROGRAM_RDNS_IDENTIFIER "com.oleandersoftware.readabilitystudio")
+set(INNOSETUP_GUID "{FBFBEAB6-622A-4E16-893D-216C25FF6A69}")
 set(PROGRAM_LICENSE "BSD-3-Clause")
 
 # Build a displayable version string that only includes the necessary parts
@@ -104,6 +105,8 @@ elseif(WIN32)
                    "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/setup.isl")
     configure_file("${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/icons.isl.in"
                    "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/icons.isl")
+    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/readstudio.iss.in"
+                   "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/readstudio.iss")
 endif()
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/docs/_variables.yml.in"
                "${CMAKE_CURRENT_SOURCE_DIR}/docs/_variables.yml")
