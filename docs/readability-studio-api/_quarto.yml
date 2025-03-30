@@ -2,7 +2,7 @@ project:
   type: book
   output-dir: "docs"
 toc: true
-toc-depth: 3
+toc-depth: 2
 biblio-title: References
 bibliography: cites.bib
 biblio-style: mla
@@ -12,9 +12,9 @@ csl: modern-language-association.csl
 pdf-cover: "images/non-generated/cover.png"
 pdf-cover-font-color: "255, 255, 255"
 pdf-cover-author-color: "0, 0, 0"
-pdf-cover-color: "201, 160, 220"
+pdf-cover-color: "103, 59, 161"
 pdf-logo: "images/non-generated/app-logo.png"
-theme-color: "201, 160, 220"
+theme-color: "103, 59, 161"
 chapter-image: "non-generated/banner.jpg"
 number-sections: true
 crossref:
@@ -29,8 +29,6 @@ book:
   output-file: "readability-studio-api"
   language: en
   search: false
-  cover-image: "images/cover.png"
-  image: "images/cover.png"
   chapters:
     - index.qmd
     - part: "Classes"

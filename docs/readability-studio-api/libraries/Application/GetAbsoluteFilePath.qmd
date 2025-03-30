@@ -23,7 +23,7 @@ Type: `string`
 
 The full file path.
 
-### Example {-}
+### Example\index{Examples!getting file paths} {-}
 
 ``` {.lua}
 -- Assuming that there is a file "ProfileReport.txt"

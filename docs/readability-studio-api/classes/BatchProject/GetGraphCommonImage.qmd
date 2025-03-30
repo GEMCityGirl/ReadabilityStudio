@@ -1,6 +1,6 @@
 ## `GetGraphCommonImage`
 
-Returns the common image drawn across all bars.
+Returns the common image\index{Images!bar backgrounds} drawn across all bars.
 
 ### Syntax {-}
 

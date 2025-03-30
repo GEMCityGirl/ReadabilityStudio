@@ -1,6 +1,6 @@
 ## `GetPlotBackgroundImageEffect`
 
-Returns the effect applied to an image when drawn as a graph's background.
+Returns the effect applied to an image\index{Images!effects} when drawn as a graph's background.
 
 ### Syntax {-}
 

@@ -23,7 +23,7 @@ A table listing the files.
 | `string` fileFilter | The file pattern to search for. |
 | `boolean` recursive | `true` to search the folder recursively. |
 
-### Example {-}
+### Example\index{Examples!finding files} {-}
 
 ``` {.lua}
 files = Application.FindFiles(

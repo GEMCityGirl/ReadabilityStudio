@@ -23,7 +23,7 @@ A two-column table of the image's information.
 ### Example {-}
 
 ``` {.lua}
-info = Application.GetImageInfo("C:\\images\\GraphLogo.png")
+info = Application.GetImageInfo("C:\\users\\Martin\\images\\GraphLogo.png")
 
 -- print information about an image
 for i,v in pairs(info)

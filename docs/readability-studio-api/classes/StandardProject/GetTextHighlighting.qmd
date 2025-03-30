@@ -1,6 +1,6 @@
 ## `GetTextHighlighting`
 
-Returns how to highlight content in formatted reports.
+Returns how to highlight content\index{Highlighted reports!how to highlight} in formatted reports.
 
 ### Syntax {-}
 
@@ -8,10 +8,8 @@ Returns how to highlight content in formatted reports.
 TextHighlight GetTextHighlighting()
 ```
 
-
 ### Return value {-}
 
 Type: [`TextHighlight`](#texthighlight)
-
 
 {{< pagebreak >}}

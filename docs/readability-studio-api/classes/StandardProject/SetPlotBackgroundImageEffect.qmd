@@ -1,6 +1,6 @@
 ## `SetPlotBackgroundImageEffect`
 
-Sets the effect applied to an image when drawn as a graph's (plot area) background.
+Sets the effect applied to an image\index{Images!effects} when drawn as a graph's (plot area) background.
 
 ### Syntax {-}
 
@@ -15,5 +15,19 @@ SetPlotBackgroundImageEffect(ImageEffect imageEffect)
 | :-- | :-- |
 |[`ImageEffect`](#imageeffect) imageEffect | The effect to render with. |
 
+### Example {-}
+
+``` {.lua}
+symposium = StandardProject(Application.GetExamplesPath() ..
+                            "YA Enterprise Software Symposium.odt")
+symposium:SetPlotBackgroundImage(Application.GetUserPath(UserPath.Pictures) ..
+                                 "Skating at Kettering.jpg")
+symposium:SetPlotBackgroundImageOpacity(100)
+symposium:SetPlotBackgroundImageEffect(ImageEffect.Sepia)
+symposium:SetPlotBackgroundImageFit(ImageFit.CropAndCenter)
+symposium:SetBarChartBarColor("lavender")
+symposium:SetBarChartBarEffect(BoxEffect.ThickWatercolor)
+symposium:SelectWindow(SideBarSection.WordsBreakdown, -1)
+```
 
 {{< pagebreak >}}

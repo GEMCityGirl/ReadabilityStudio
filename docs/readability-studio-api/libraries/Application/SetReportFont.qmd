@@ -1,6 +1,6 @@
 ## `SetReportFont`
 
-Sets the font for highlighted reports for new projects.
+Sets the font for highlighted reports\index{Highlighted reports!fonts} for new projects.
 
 ### Syntax {-}
 
@@ -10,7 +10,6 @@ SetReportFont(string fontName,
               FontWeight weight,
               string color)
 ```
-
 
 ### Parameters {-}
 

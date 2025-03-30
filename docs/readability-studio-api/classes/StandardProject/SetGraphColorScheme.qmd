@@ -17,4 +17,17 @@ SetGraphColorScheme(string colorScheme)
 
 Refer to [`Application.SetGraphColorScheme()`](#app-setstippleshape) for a list of available IDs.
 
+### Example {-}
+
+``` {.lua}
+cocoa = StandardProject(Application.GetExamplesPath() ..
+                        "Cocoa Desserts.rtf")
+cocoa:SetGraphCommonImage(Application.GetUserPath(UserPath.Pictures) ..
+                          "sunset.jpg")
+cocoa:SetBarChartBarEffect(BoxEffect.CommonImage)
+cocoa:SetHistogramBarEffect(BoxEffect.CommonImage)
+cocoa:SetGraphColorScheme("coffeeshop")
+cocoa:SelectWindow(SideBarSection.WordsBreakdown, -1)
+```
+
 {{< pagebreak >}}

@@ -21,18 +21,19 @@ Returns `true` if image was successfully saved.
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`string` inputImage1 | The path of the first image to combine. | 
+| `string` inputImage1 | The path of the first image to combine. | 
 | ... | Additional image paths to combine with `inputImage1`. |
-|`string` outputImagePath | Where to save the combined images. | 
-|[`Orientation`](#orientation) direction | The direction to combine the images. | 
+| `string` outputImagePath | Where to save the combined images. | 
+| [`Orientation`](#orientation) direction | The direction to combine the images. | 
 
-### Example {-}
+### Example\index{Examples!editing images} {-}
 
 ``` {.lua}
 Application.StitchImages(
-    Application.GetUserPath(UserPath.Pictures) .. "IMG_0059.JPG",
-    Application.GetUserPath(UserPath.Pictures) .. "IMG_0072.JPG",
-    Application.GetUserPath(UserPath.Pictures) .. "CombinedImg.jpg",
+    Application.GetUserPath(UserPath.Pictures) .. "Charleston Falls Sunrise.JPG",
+    Application.GetUserPath(UserPath.Pictures) .. "Charleston Falls Sunset.png",
+    -- output can be saved in a different format
+    Application.GetUserPath(UserPath.Pictures) .. "CombinedImg.bmp",
     Orientation.Horizontal)
 ```
 

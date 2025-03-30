@@ -21,11 +21,14 @@ The [`BoxEffect.CommonImage`](#boxeffect) effect will need to be enabled for eit
 ### Example {-}
 
 ``` {.lua}
-codeProject = StandardProject(Application.GetUserPath(UserPath.Documents) ..
-                              "Coding Guidelins.docx")
-codeProject:SetGraphCommonImage(Application.GetUserPath(UserPath.Pictures) ..
-                                "IMG_0131.JPG")
-codeProject:SetBarChartBarEffect(BoxEffect.CommonImage)
+cocoa = StandardProject(Application.GetExamplesPath() ..
+                        "Cocoa Desserts.rtf")
+cocoa:SetGraphCommonImage(Application.GetUserPath(UserPath.Pictures) ..
+                          "sunset.jpg")
+cocoa:SetBarChartBarEffect(BoxEffect.CommonImage)
+cocoa:SetHistogramBarEffect(BoxEffect.CommonImage)
+cocoa:SetGraphColorScheme("coffeeshop")
+cocoa:SelectWindow(SideBarSection.WordsBreakdown, -1)
 ```
 
 {{< pagebreak >}}

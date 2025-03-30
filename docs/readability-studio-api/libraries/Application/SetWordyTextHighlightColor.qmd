@@ -1,6 +1,6 @@
 ## `SetWordyTextHighlightColor`
 
-Sets the font color for wordy content in formatted reports for new projects.
+Sets the font color for wordy content in formatted reports\index{Highlighted reports!fonts} for new projects.
 
 ### Syntax {-}
 

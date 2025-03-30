@@ -20,7 +20,7 @@ ExportHighlightedWords(HighlightedWordReportType type,
 Use [`Application.GetTestId()`](#gettestid) to export the highlighted-words report for a custom test (see example below).
 :::
 
-### Example {-}
+### Example\index{Examples!exporting reports} {-}
 
 ``` {.lua}
 -- Open a project from the user's "Documents" folder

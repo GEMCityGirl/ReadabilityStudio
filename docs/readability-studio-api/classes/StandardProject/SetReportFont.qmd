@@ -1,6 +1,6 @@
 ## `SetReportFont`
 
-Sets the font for highlighted reports.
+Sets the font for highlighted reports\index{Highlighted reports!fonts}.
 
 ### Syntax {-}
 

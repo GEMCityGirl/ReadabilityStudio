@@ -1,6 +1,6 @@
 ## `SetSpellCheckerOptions`
 
-Sets which items the spell checker should ignore.
+Sets which items the spell checker\index{Spell checker} should ignore.
 
 ### Syntax {-}
 

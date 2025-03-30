@@ -1,6 +1,6 @@
 ## `SetPlotBackgroundImageEffect`
 
-Sets the effect applied to an image when drawn as a graph's background for new projects.
+Sets the effect applied to an image\index{Images!effects} when drawn as a graph's background for new projects.
 
 ### Syntax {-}
 

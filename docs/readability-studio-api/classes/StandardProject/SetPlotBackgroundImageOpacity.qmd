@@ -1,6 +1,6 @@
 ## `SetPlotBackgroundImageOpacity`
 
-Sets the graph background (plot area) image opacity.
+Sets the graph background (plot area) image opacity\index{Images!opacity}.
 
 ### Syntax {-}
 
@@ -15,5 +15,19 @@ SetPlotBackgroundImageOpacity(number opacity)
 | :-- | :-- |
 |`number` opacity | The opacity level (should be between 0--255) |
 
+### Example {-}
+
+``` {.lua}
+symposium = StandardProject(Application.GetExamplesPath() ..
+                            "YA Enterprise Software Symposium.odt")
+symposium:SetPlotBackgroundImage(Application.GetUserPath(UserPath.Pictures) ..
+                                 "Skating at Kettering.jpg")
+symposium:SetPlotBackgroundImageOpacity(100)
+symposium:SetPlotBackgroundImageEffect(ImageEffect.Sepia)
+symposium:SetPlotBackgroundImageFit(ImageFit.CropAndCenter)
+symposium:SetBarChartBarColor("lavender")
+symposium:SetBarChartBarEffect(BoxEffect.ThickWatercolor)
+symposium:SelectWindow(SideBarSection.WordsBreakdown, -1)
+```
 
 {{< pagebreak >}}

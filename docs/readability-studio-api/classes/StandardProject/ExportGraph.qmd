@@ -22,7 +22,7 @@ ExportGraph(GraphType type,
 `number` width | (Optional) Specifies the width of the image.
 `number` height | (Optional) Specifies the height of the image.
 
-### Example {-}
+### Example\index{Examples!exporting graphs} {-}
 
 ``` {.lua}
 -- Opens a document from user's "Documents" folder,

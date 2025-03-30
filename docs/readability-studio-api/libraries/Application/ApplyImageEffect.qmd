@@ -21,9 +21,19 @@ Returns `true` if image was successfully saved.
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`string` inputImagePath | Path to the input image. | 
-|`string` outputImagePath | Where to save the altered image. | 
-|[`ImageEffect`](#imageeffect) effect | The effect to apply to the image. |
+| `string` inputImagePath | Path to the input image. | 
+| `string` outputImagePath | Where to save the altered image. | 
+| [`ImageEffect`](#imageeffect) effect | The effect to apply to the image. |
 
+### Example\index{Examples!editing images} {-}
+
+``` {.lua}
+Application.ApplyImageEffect(
+    Application.GetUserPath(UserPath.Pictures) .. "Skating at Kettering.JPG",
+    -- output can be saved in a different format
+    Application.GetUserPath(UserPath.Pictures) .. "Skating Oil Painting.png",
+    -- apply an oil painting look to the new image
+    ImageEffect.OilPainting)
+```
 
 {{< pagebreak >}}

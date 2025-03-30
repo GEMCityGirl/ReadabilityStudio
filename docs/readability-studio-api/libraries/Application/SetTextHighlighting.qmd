@@ -1,6 +1,6 @@
 ## `SetTextHighlighting`
 
-Sets how to highlight content in formatted reports for new projects.
+Sets how to highlight content in formatted reports\index{Highlighted reports!how to highlight} for new projects.
 
 ### Syntax {-}
 
