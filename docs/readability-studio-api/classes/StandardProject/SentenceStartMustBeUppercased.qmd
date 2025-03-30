@@ -1,0 +1,17 @@
+## `SentenceStartMustBeUppercased`
+
+Returns whether the first word of a sentence must be capitalized.
+
+### Syntax {-}
+
+``` {.lua}
+boolean SentenceStartMustBeUppercased()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

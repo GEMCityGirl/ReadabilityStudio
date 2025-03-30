@@ -99,8 +99,19 @@ namespace LuaScripting
     int /*boolean*/ IsRealTimeUpdating(lua_State* L); // Returns whether documents are being re-analyzed as they change.
 
     // DOCUMENT INDEXING
+    int /*LongSentence*/ GetLongSentenceMethod(lua_State* L); // Returns the method to determine what a long sentence is for new projects.
+    int SetLongSentenceMethod(lua_State* L /*LongSentence method*/); // Sets the method to determine what a long sentence is for new projects.
+    int /*number*/ GetDifficultSentenceLength(lua_State* L); // Returns the threshold for determining an overly-long sentence for new projects.
+    int SetDifficultSentenceLength(lua_State* L /*number length*/); // Sets the threshold for determining an overly-long sentence for new projects.
+
     int /*ParagraphParse*/ GetParagraphsParsingMethod(lua_State* L); // Returns the default method for how paragraphs are parsed for new projects.
     int SetParagraphsParsingMethod(lua_State* L /*ParagraphParse parseMethod*/); // Sets how hard returns help determine how paragraphs and sentences are detected for new projects.
+    int IgnoreBlankLines(lua_State* L /*boolean ignore*/); // Sets whether to ignore blank lines when figuring out if we are at the end of a paragraph for new projects.
+    int /*boolean*/ IsIgnoringBlankLines(lua_State* L); // Returns whether to ignore blank lines when figuring out if we are at the end of a paragraph for new projects.
+    int IgnoreIndenting(lua_State* L /*boolean ignore*/); // Sets whether to ignore indenting when parsing paragraphs for new projects.
+    int /*boolean*/ IsIgnoringIndenting(lua_State* L); // Returns whether to ignore indenting when parsing paragraphs for new projects.
+    int SetSentenceStartMustBeUppercased(lua_State* L /*boolean caps*/); // Sets whether the first word of a sentence must be capitalized for new projects.
+    int /*boolean*/ SentenceStartMustBeUppercased(lua_State*); // Returns whether the first word of a sentence must be capitalized for new projects.
 
     int SetTextExclusion(lua_State* L /*TextExclusionType exclusionType*/); // Sets how text should be excluded for new projects.
     int /*TextExclusionType*/ GetTextExclusion(lua_State* L); // Returns how text should be excluded for new projects.
@@ -120,8 +131,13 @@ namespace LuaScripting
     int /*boolean*/ IsExcludingProperNouns(lua_State* L); // Returns whether to exclude proper nouns for new projects.
     int SetPhraseExclusionList(lua_State* L /*string exclusionListPath*/); // Sets the filepath to the phrase exclusion list for new projects.
     int /*string*/ GetPhraseExclusionList(lua_State* L); // Returns the filepath to the phrase exclusion list for new projects.
+    int IncludeExcludedPhraseFirstOccurrence(lua_State* L /*boolean includeFirstOccurrent*/ ); // Sets whether the first occurrence of an excluded phrase should be included for new projects.
+    int /*boolean*/ IsIncludingExcludedPhraseFirstOccurrence(lua_State* L); // Returns whether the first occurrence of an excluded phrase should be included for new projects.
     int SetBlockExclusionTags(lua_State* L /*string tagString*/); // Sets the text exclusion tags for new projects. This should be a two-character string containing a pair of exclusion tags.
     int /*string*/ GetBlockExclusionTags(lua_State* L); // Returns the text exclusion tags for new projects.
+
+    int SetNumeralSyllabication(lua_State* L /*NumeralSyllabize method*/); // Sets the method to determine how to syllabize numerals for new projects.
+    int /*NumeralSyllabize*/ GetNumeralSyllabication(lua_State* L); // Returns method to determine how to syllabize numerals for new projects.
 
     // SUMMARY STATS
     int SetSummaryStatsResultsOptions(lua_State* L /*boolean includeFormattedReport, boolean TabularReport*/); // Sets which results in the summary statistics section should be included for new projects.
@@ -289,6 +305,16 @@ namespace LuaScripting
         { "SetDocumentStorageMethod", SetDocumentStorageMethod },
         { "GetParagraphsParsingMethod", GetParagraphsParsingMethod },
         { "SetParagraphsParsingMethod", SetParagraphsParsingMethod },
+        { "GetLongSentenceMethod", GetLongSentenceMethod },
+        { "SetLongSentenceMethod", SetLongSentenceMethod },
+        { "GetDifficultSentenceLength", GetDifficultSentenceLength },
+        { "SetDifficultSentenceLength", SetDifficultSentenceLength },
+        { "IgnoreBlankLines", IgnoreBlankLines },
+        { "IsIgnoringBlankLines", IsIgnoringBlankLines },
+        { "IgnoreIndenting", IgnoreIndenting },
+        { "IsIgnoringIndenting", IsIgnoringIndenting },
+        { "SetSentenceStartMustBeUppercased", SetSentenceStartMustBeUppercased },
+        { "SentenceStartMustBeUppercased", SentenceStartMustBeUppercased },
         { "SetMinDocWordCountForBatch", SetMinDocWordCountForBatch },
         { "GetMinDocWordCountForBatch", GetMinDocWordCountForBatch },
         { "SetFilePathDisplayMode", SetFilePathDisplayMode },
@@ -332,6 +358,10 @@ namespace LuaScripting
         { "GetPhraseExclusionList", GetPhraseExclusionList },
         { "SetBlockExclusionTags", SetBlockExclusionTags },
         { "GetBlockExclusionTags", GetBlockExclusionTags },
+        { "GetNumeralSyllabication", GetNumeralSyllabication },
+        { "SetNumeralSyllabication", SetNumeralSyllabication },
+        { "IncludeExcludedPhraseFirstOccurrence", IncludeExcludedPhraseFirstOccurrence },
+        { "IsIncludingExcludedPhraseFirstOccurrence", IsIncludingExcludedPhraseFirstOccurrence },
         { "SetAppendedDocumentFilePath", SetAppendedDocumentFilePath },
         { "GetAppendedDocumentFilePath", GetAppendedDocumentFilePath },
         { "UseRealTimeUpdate", UseRealTimeUpdate },

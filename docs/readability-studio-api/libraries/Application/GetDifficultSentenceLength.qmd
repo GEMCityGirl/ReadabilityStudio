@@ -1,0 +1,17 @@
+## `GetDifficultSentenceLength`
+
+Returns the threshold for determining an overly-long sentence for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+number GetDifficultSentenceLength()
+```
+
+
+### Return value {-}
+
+Type: `number`
+
+
+{{< pagebreak >}}

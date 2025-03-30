@@ -1,0 +1,17 @@
+## `IsIgnoringIndenting`
+
+Returns whether to ignore indenting when parsing paragraphs.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsIgnoringIndenting()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

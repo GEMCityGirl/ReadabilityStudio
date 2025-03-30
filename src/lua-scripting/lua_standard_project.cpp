@@ -667,6 +667,36 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int StandardProject::IncludeExcludedPhraseFirstOccurrence(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->IncludeExcludedPhraseFirstOccurrence(int_to_bool(lua_toboolean(L, 2)));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::IsIncludingExcludedPhraseFirstOccurrence(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L, m_project->IsIncludingExcludedPhraseFirstOccurrence());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int StandardProject::SetBlockExclusionTags(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -703,6 +733,37 @@ namespace LuaScripting
                    wxString{ std::to_wstring(m_project->GetExclusionBlockTags().front().first) +
                              std::to_wstring(m_project->GetExclusionBlockTags().front().second) }
                        .utf8_str());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetNumeralSyllabication(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetNumeralSyllabicationMethod(
+            static_cast<NumeralSyllabize>(static_cast<int>(lua_tonumber(L, 2))));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::GetNumeralSyllabication(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetNumeralSyllabicationMethod()));
         wxGetApp().Yield();
         return 1;
         }
@@ -2143,6 +2204,65 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int StandardProject::SetLongSentenceMethod(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetLongSentenceMethod(
+            static_cast<LongSentence>(static_cast<int>(lua_tonumber(L, 2))));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::GetLongSentenceMethod(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetLongSentenceMethod()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetDifficultSentenceLength(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetDifficultSentenceLength(static_cast<int>(lua_tonumber(L, 2)));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::GetDifficultSentenceLength(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetDifficultSentenceLength()));
+        return 1;
+        }
+    
+    //-------------------------------------------------------------
     int StandardProject::SetParagraphsParsingMethod(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -2169,6 +2289,96 @@ namespace LuaScripting
             }
 
         lua_pushnumber(L, static_cast<int>(m_project->GetParagraphsParsingMethod()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::IgnoreBlankLines(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetIgnoreBlankLinesForParagraphsParser(int_to_bool(lua_toboolean(L, 2)));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::IsIgnoringBlankLines(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L, m_project->GetIgnoreBlankLinesForParagraphsParser());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::IgnoreIndenting(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetIgnoreIndentingForParagraphsParser(int_to_bool(lua_toboolean(L, 2)));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::IsIgnoringIndenting(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L, m_project->GetIgnoreIndentingForParagraphsParser());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetSentenceStartMustBeUppercased(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetSentenceStartMustBeUppercased(int_to_bool(lua_toboolean(L, 2)));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SentenceStartMustBeUppercased(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L, m_project->GetSentenceStartMustBeUppercased());
+        wxGetApp().Yield();
         return 1;
         }
 
@@ -3764,6 +3974,10 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, GetPhraseExclusionList),
         LUNA_DECLARE_METHOD(StandardProject, SetBlockExclusionTags),
         LUNA_DECLARE_METHOD(StandardProject, GetBlockExclusionTags),
+        LUNA_DECLARE_METHOD(StandardProject, GetNumeralSyllabication),
+        LUNA_DECLARE_METHOD(StandardProject, SetNumeralSyllabication),
+        LUNA_DECLARE_METHOD(StandardProject, IncludeExcludedPhraseFirstOccurrence),
+        LUNA_DECLARE_METHOD(StandardProject, IsIncludingExcludedPhraseFirstOccurrence),
         LUNA_DECLARE_METHOD(StandardProject, SetAppendedDocumentFilePath),
         LUNA_DECLARE_METHOD(StandardProject, GetAppendedDocumentFilePath),
         LUNA_DECLARE_METHOD(StandardProject, UseRealTimeUpdate),
@@ -3795,6 +4009,16 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, SetDocumentStorageMethod),
         LUNA_DECLARE_METHOD(StandardProject, SetParagraphsParsingMethod),
         LUNA_DECLARE_METHOD(StandardProject, GetParagraphsParsingMethod),
+        LUNA_DECLARE_METHOD(StandardProject, GetLongSentenceMethod),
+        LUNA_DECLARE_METHOD(StandardProject, SetLongSentenceMethod),
+        LUNA_DECLARE_METHOD(StandardProject, GetDifficultSentenceLength),
+        LUNA_DECLARE_METHOD(StandardProject, SetDifficultSentenceLength),
+        LUNA_DECLARE_METHOD(StandardProject, IgnoreBlankLines),
+        LUNA_DECLARE_METHOD(StandardProject, IsIgnoringBlankLines),
+        LUNA_DECLARE_METHOD(StandardProject, IgnoreIndenting),
+        LUNA_DECLARE_METHOD(StandardProject, IsIgnoringIndenting),
+        LUNA_DECLARE_METHOD(StandardProject, SetSentenceStartMustBeUppercased),
+        LUNA_DECLARE_METHOD(StandardProject, SentenceStartMustBeUppercased),
         LUNA_DECLARE_METHOD(StandardProject, GetDocumentStorageMethod),
         LUNA_DECLARE_METHOD(StandardProject, SetSpellCheckerOptions),
         LUNA_DECLARE_METHOD(StandardProject, SetSummaryStatsResultsOptions),

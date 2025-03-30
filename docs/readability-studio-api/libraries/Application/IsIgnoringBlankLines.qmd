@@ -1,0 +1,17 @@
+## `IsIgnoringBlankLines`
+
+Returns whether to ignore blank lines when figuring out if we are at the end of a paragraph for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsIgnoringBlankLines()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

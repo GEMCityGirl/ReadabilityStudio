@@ -1,0 +1,17 @@
+## `GetNumeralSyllabication`
+
+Returns method to determine how to syllabize numerals for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+NumeralSyllabize GetNumeralSyllabication()
+```
+
+
+### Return value {-}
+
+Type: [`NumeralSyllabize`](#numeralsyllabize)
+
+
+{{< pagebreak >}}

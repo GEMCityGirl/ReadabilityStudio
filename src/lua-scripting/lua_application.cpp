@@ -1130,10 +1130,113 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int SetLongSentenceMethod(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().SetLongSentenceMethod(
+            static_cast<LongSentence>(static_cast<int>(lua_tonumber(L, 1))));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int GetLongSentenceMethod(lua_State* L)
+        {
+        lua_pushnumber(L, static_cast<int>(wxGetApp().GetAppOptions().GetLongSentenceMethod()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int SetDifficultSentenceLength(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().SetDifficultSentenceLength(static_cast<int>(lua_tonumber(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int GetDifficultSentenceLength(lua_State* L)
+        {
+        lua_pushnumber(L,
+                       static_cast<int>(wxGetApp().GetAppOptions().GetDifficultSentenceLength()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int GetParagraphsParsingMethod(lua_State* L)
         {
         lua_pushnumber(L,
                        static_cast<int>(wxGetApp().GetAppOptions().GetParagraphsParsingMethod()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int IgnoreBlankLines(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().SetIgnoreBlankLinesForParagraphsParser(
+            int_to_bool(lua_toboolean(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsIgnoringBlankLines(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetAppOptions().GetIgnoreBlankLinesForParagraphsParser());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int IgnoreIndenting(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().SetIgnoreIndentingForParagraphsParser(
+            int_to_bool(lua_toboolean(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsIgnoringIndenting(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetAppOptions().GetIgnoreIndentingForParagraphsParser());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int SetSentenceStartMustBeUppercased(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().SetSentenceStartMustBeUppercased(
+            int_to_bool(lua_toboolean(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int SentenceStartMustBeUppercased(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetAppOptions().GetSentenceStartMustBeUppercased());
+        wxGetApp().Yield();
         return 1;
         }
 
@@ -1537,6 +1640,27 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int IncludeExcludedPhraseFirstOccurrence(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().IncludeExcludedPhraseFirstOccurrence(
+            int_to_bool(lua_toboolean(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsIncludingExcludedPhraseFirstOccurrence(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetAppOptions().IsIncludingExcludedPhraseFirstOccurrence());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int SetBlockExclusionTags(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))
@@ -1565,6 +1689,28 @@ namespace LuaScripting
                           std::to_wstring(
                               wxGetApp().GetAppOptions().GetExclusionBlockTags().front().second) }
                     .utf8_str());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int SetNumeralSyllabication(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().SetNumeralSyllabicationMethod(
+            static_cast<NumeralSyllabize>(static_cast<int>(lua_tonumber(L, 1))));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int GetNumeralSyllabication(lua_State* L)
+        {
+        lua_pushnumber(
+            L, static_cast<int>(wxGetApp().GetAppOptions().GetNumeralSyllabicationMethod()));
         wxGetApp().Yield();
         return 1;
         }
@@ -2277,8 +2423,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int GetHistogramBinning(lua_State* L)
         {
-        lua_pushnumber(L,
-                       static_cast<int>(wxGetApp().GetAppOptions().GetHistogramBinningMethod()));
+        lua_pushnumber(L, static_cast<int>(wxGetApp().GetAppOptions().GetHistogramBinningMethod()));
         wxGetApp().Yield();
         return 1;
         }

@@ -1,0 +1,17 @@
+## `IsIncludingExcludedPhraseFirstOccurrence`
+
+Returns whether the first occurrence of an excluded phrase should be included.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsIncludingExcludedPhraseFirstOccurrence()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

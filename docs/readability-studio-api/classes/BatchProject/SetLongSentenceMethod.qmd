@@ -1,0 +1,17 @@
+## `SetLongSentenceMethod`
+
+Sets the method to determine what a long sentence is.
+
+### Syntax {-}
+
+``` {.lua}
+SetLongSentenceMethod(LongSentence method)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|[`LongSentence`](#longsentence) method | How to determine if a sentence is overly long. |
+
+{{< pagebreak >}}

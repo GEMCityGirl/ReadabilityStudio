@@ -1,0 +1,17 @@
+## `GetLongSentenceMethod`
+
+Returns the method to determine what a long sentence is.
+
+### Syntax {-}
+
+``` {.lua}
+LongSentence GetLongSentenceMethod()
+```
+
+
+### Return value {-}
+
+Type: [`LongSentence`](#longsentence)
+
+
+{{< pagebreak >}}

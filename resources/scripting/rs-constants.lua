@@ -353,6 +353,20 @@ ParagraphParse =
   EachNewLineIsAParagraph = 1                      -- Each hard return marks the start of a new paragraph.
   }
 
+-- How a sentence is determined to be overly long.
+LongSentence =
+  {
+  LongerThanSpecifiedLength = 0, -- Sentence is long if more than a provided length.
+  OutlierLength = 1              -- Sentence is long if outside of the outlier range of other sentences' lengths.
+  }
+
+-- How numerals' syllables are counted.
+NumeralSyllabize =
+  {
+  WholeWordIsOneSyllable = 0, -- Entire word is one syllable.
+  SoundOutEachDigit = 1       -- Each digit in the number is sounded out and counted.
+  }
+
 -- The following values are available for controlling how filepaths in batch project lists are displayed.
 FilePathDisplayMode =
   {
@@ -447,6 +461,8 @@ Language = protect_enum(Language)
 RaygorStyle = protect_enum(RaygorStyle)
 TextStorage = protect_enum(TextStorage)
 ParagraphParse = protect_enum(ParagraphParse)
+NumeralSyllabize = protect_enum(NumeralSyllabize)
+LongSentence = protect_enum(LongSentence)
 FilePathDisplayMode = protect_enum(FilePathDisplayMode)
 UserPath = protect_enum(UserPath)
 RibbonButtonBar = protect_enum(RibbonButtonBar)

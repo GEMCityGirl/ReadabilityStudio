@@ -1,0 +1,17 @@
+## `SetNumeralSyllabication`
+
+Sets the method to determine how to syllabize numerals for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+SetNumeralSyllabication(NumeralSyllabize method)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|[`NumeralSyllabize`](#numeralsyllabize) method | How numerals are syllabized. |
+
+{{< pagebreak >}}

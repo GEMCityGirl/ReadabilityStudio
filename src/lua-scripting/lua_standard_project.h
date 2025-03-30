@@ -171,9 +171,20 @@ namespace LuaScripting
         int /*boolean*/ IsRealTimeUpdating(lua_State* L); // Returns whether documents are being re-analyzed as they change.
 
         // DOCUMENT INDEXING
+        int /*LongSentence*/ GetLongSentenceMethod(lua_State* L); // Returns the method to determine what a long sentence is.
+        int SetLongSentenceMethod(lua_State* L /*LongSentence method*/); // Sets the method to determine what a long sentence is.
+        int /*number*/ GetDifficultSentenceLength(lua_State* L); // Returns the threshold for determining an overly-long sentence.
+        int SetDifficultSentenceLength(lua_State* L /*number length*/); // Sets the threshold for determining an overly-long sentence.
+
         int SetParagraphsParsingMethod(lua_State* L /*ParagraphParse parseMethod*/); // Sets how hard returns help determine how paragraphs and sentences are detected.
         // cppcheck-suppress functionConst
         int /*ParagraphParse*/ GetParagraphsParsingMethod(lua_State* L); // Returns the method for how paragraphs are parsed.
+        int IgnoreBlankLines(lua_State* L /*boolean ignore*/); // Sets whether to ignore blank lines when figuring out if we are at the end of a paragraph.
+        int /*boolean*/ IsIgnoringBlankLines(lua_State* L); // Returns whether to ignore blank lines when figuring out if we are at the end of a paragraph.
+        int IgnoreIndenting(lua_State* L /*boolean ignore*/); // Sets whether to ignore indenting when parsing paragraphs.
+        int /*boolean*/ IsIgnoringIndenting(lua_State* L); // Returns whether to ignore indenting when parsing paragraphs.
+        int SetSentenceStartMustBeUppercased(lua_State* L /*boolean caps*/); // Sets whether the first word of a sentence must be capitalized.
+        int /*boolean*/ SentenceStartMustBeUppercased(lua_State* L); // Returns whether the first word of a sentence must be capitalized.
 
         int SetTextExclusion(lua_State* L /*TextExclusionType exclusionType*/); // Specifies how text should be excluded while parsing the source document.
         int /*TextExclusionType*/ GetTextExclusion(lua_State* L); // Returns how text should be excluded.
@@ -193,8 +204,13 @@ namespace LuaScripting
         int /*boolean*/ IsExcludingProperNouns(lua_State* L); // Returns whether to exclude proper nouns.
         int SetPhraseExclusionList(lua_State* L /*string exclusionListPath*/); // Sets the filepath to the phrase exclusion list.
         int /*string*/ GetPhraseExclusionList(lua_State* L); // Returns the filepath to the phrase exclusion list.
+        int IncludeExcludedPhraseFirstOccurrence(lua_State* L /*boolean includeFirstOccurrent*/ ); // Sets whether the first occurrence of an excluded phrase should be included.
+        int /*boolean*/ IsIncludingExcludedPhraseFirstOccurrence(lua_State* L); // Returns whether the first occurrence of an excluded phrase should be included.
         int SetBlockExclusionTags(lua_State* L /*string tagString*/); // Sets the text exclusion tags. This should be a two-character string containing a pair of exclusion tags.
         int /*string*/ GetBlockExclusionTags(lua_State* L); // Returns the text exclusion tags.
+
+        int SetNumeralSyllabication(lua_State* L /*NumeralSyllabize method*/); // Sets the method to determine how to syllabize numerals.
+        int /*NumeralSyllabize*/ GetNumeralSyllabication(lua_State* L); // Returns method to determine how to syllabize numerals.
 
         // GRAPH OPTIONS
         int SetGraphColorScheme(lua_State* L /*string colorScheme*/); // Sets the graph color scheme.

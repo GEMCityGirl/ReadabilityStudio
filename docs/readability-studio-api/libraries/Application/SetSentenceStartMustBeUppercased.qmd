@@ -1,0 +1,17 @@
+## `SetSentenceStartMustBeUppercased`
+
+Sets whether the first word of a sentence must be capitalized for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+SetSentenceStartMustBeUppercased(boolean caps)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`boolean` caps | `true` if it is expected for sentences to start with a capital letter. |
+
+{{< pagebreak >}}
