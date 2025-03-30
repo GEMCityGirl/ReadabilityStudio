@@ -3125,10 +3125,13 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                                  _(L"Read the readability tests reference."));
         helpButtonBar->AddButton(XRCID("ID_SHORTCUTS_CHEATSHEET"), _(L"Shortcuts"),
                                  ReadRibbonSvgIcon(L"ribbon/keyboard-shortcuts.svg"),
-                                 _(L"Display the keyboard shortcuts cheatsheet."));
+                                 _(L"Read the keyboard shortcuts cheatsheet."));
         helpButtonBar->AddButton(XRCID("ID_RELEASE_NOTES"), _(L"Release Notes"),
                                  ReadRibbonSvgIcon(L"ribbon/paper-notes.svg"),
-                                 _(L"Display the release notes."));
+                                 _(L"Read the release notes."));
+        helpButtonBar->AddButton(XRCID("ID_PROGRAMMING_MANUAL"), _(L"Programming Manual"),
+                                 ReadRibbonSvgIcon(L"ribbon/lua.svg"),
+                                 _(L"Read the Lua programming manual."));
         helpButtonBar->AddDropdownButton(XRCID("ID_EXAMPLES"), _(L"Example Documents"),
                                          ReadRibbonSvgIcon(L"ribbon/examples.svg"),
                                          _(L"Analyze example documents from the help."));
@@ -3788,6 +3791,16 @@ MainFrame::MainFrame(wxDocManager* manager, wxFrame* frame,
             wxLaunchDefaultApplication(manualPath);
         },
         XRCID("ID_RELEASE_NOTES"));
+
+    Bind(
+        wxEVT_RIBBONBUTTONBAR_CLICKED,
+        [this]([[maybe_unused]] wxRibbonButtonBarEvent&)
+        {
+            const wxString manualPath = GetHelpDirectory() + wxFileName::GetPathSeparator() +
+                                        _DT(L"readability-studio-api.pdf");
+            wxLaunchDefaultApplication(manualPath);
+        },
+        XRCID("ID_PROGRAMMING_MANUAL"));
 
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &MainFrame::OnAbout, this, wxID_ABOUT);
     Bind(
