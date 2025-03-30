@@ -1,0 +1,17 @@
+## `IsHighlightingDolchAdverbs`
+
+Returns whether Dolch adverbs are being highlighted in the formatted Dolch report.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsHighlightingDolchAdverbs()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

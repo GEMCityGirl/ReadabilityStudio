@@ -1,0 +1,17 @@
+## `HighlightDolchAdverbs`
+
+Sets whether to highlight Dolch adverbs in the formatted Dolch report.
+
+### Syntax {-}
+
+``` {.lua}
+HighlightDolchAdverbs(boolean highlight)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`boolean` highlight | `true` to highlight Dolch adverbs. |
+
+{{< pagebreak >}}

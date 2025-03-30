@@ -2936,6 +2936,209 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int StandardProject::HighlightDolchConjunctions(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->HighlightDolchConjunctions(int_to_bool(lua_toboolean(L, 2)));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::IsHighlightingDolchConjunctions(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L,m_project->IsHighlightingDolchConjunctions());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::HighlightDolchPrepositions(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->HighlightDolchPrepositions(int_to_bool(lua_toboolean(L, 2)));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::IsHighlightingDolchPrepositions(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L,m_project->IsHighlightingDolchPrepositions());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::HighlightDolchPronouns(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->HighlightDolchPronouns(int_to_bool(lua_toboolean(L, 2)));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::IsHighlightingDolchPronouns(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L,m_project->IsHighlightingDolchPronouns());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::HighlightDolchAdverbs(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->HighlightDolchAdverbs(int_to_bool(lua_toboolean(L, 2)));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::IsHighlightingDolchAdverbs(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L,m_project->IsHighlightingDolchAdverbs());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::HighlightDolchAdjectives(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->HighlightDolchAdjectives(int_to_bool(lua_toboolean(L, 2)));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::IsHighlightingDolchAdjectives(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L,m_project->IsHighlightingDolchAdjectives());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::HighlightDolchVerbs(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->HighlightDolchVerbs(int_to_bool(lua_toboolean(L, 2)));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::IsHighlightingDolchVerbs(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L,m_project->IsHighlightingDolchVerbs());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::HighlightDolchNouns(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->HighlightDolchNouns(int_to_bool(lua_toboolean(L, 2)));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::IsHighlightingDolchNouns(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L,m_project->IsHighlightingDolchNouns());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int StandardProject::AddTest(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -4041,6 +4244,20 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, SetDolchAdjectivesColor),
         LUNA_DECLARE_METHOD(StandardProject, SetDolchVerbsColor),
         LUNA_DECLARE_METHOD(StandardProject, SetDolchNounsColor),
+        LUNA_DECLARE_METHOD(StandardProject, HighlightDolchConjunctions),
+        LUNA_DECLARE_METHOD(StandardProject, IsHighlightingDolchConjunctions),
+        LUNA_DECLARE_METHOD(StandardProject, HighlightDolchPrepositions),
+        LUNA_DECLARE_METHOD(StandardProject, IsHighlightingDolchPrepositions),
+        LUNA_DECLARE_METHOD(StandardProject, HighlightDolchPronouns),
+        LUNA_DECLARE_METHOD(StandardProject, IsHighlightingDolchPronouns),
+        LUNA_DECLARE_METHOD(StandardProject, HighlightDolchAdverbs),
+        LUNA_DECLARE_METHOD(StandardProject, IsHighlightingDolchAdverbs),
+        LUNA_DECLARE_METHOD(StandardProject, HighlightDolchAdjectives),
+        LUNA_DECLARE_METHOD(StandardProject, IsHighlightingDolchAdjectives),
+        LUNA_DECLARE_METHOD(StandardProject, HighlightDolchVerbs),
+        LUNA_DECLARE_METHOD(StandardProject, IsHighlightingDolchVerbs),
+        LUNA_DECLARE_METHOD(StandardProject, HighlightDolchNouns),
+        LUNA_DECLARE_METHOD(StandardProject, IsHighlightingDolchNouns),
         LUNA_DECLARE_METHOD(StandardProject, SetGraphColorScheme),
         LUNA_DECLARE_METHOD(StandardProject, GetGraphColorScheme),
         LUNA_DECLARE_METHOD(StandardProject, SetGraphBackgroundColor),

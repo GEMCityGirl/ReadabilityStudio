@@ -169,6 +169,20 @@ namespace LuaScripting
     int SetDolchAdjectivesColor(lua_State* L /*string colorName*/); // Sets the font color for Dolch adjectives in the formatted Dolch report for new projects.
     int SetDolchVerbsColor(lua_State* L /*string colorName*/); // Sets the font color for Dolch verbs in the formatted Dolch report for new projects.
     int SetDolchNounsColor(lua_State* L /*string colorName*/); // Sets the font color for Dolch nouns in the formatted Dolch report for new projects.
+    int HighlightDolchConjunctions(lua_State* L /*boolean highlight*/); // Sets whether to highlight Dolch conjunctions in the formatted Dolch report for new projects.
+    int /*boolean*/ IsHighlightingDolchConjunctions(lua_State* L); // Returns whether Dolch conjunctions are being highlighted in the formatted Dolch report for new projects.
+    int HighlightDolchPrepositions(lua_State* L /*boolean highlight*/); // Sets whether to highlight Dolch prepositions in the formatted Dolch report for new projects.
+    int /*boolean*/ IsHighlightingDolchPrepositions(lua_State* L); // Returns whether Dolch prepositions are being highlighted in the formatted Dolch report for new projects.
+    int HighlightDolchPronouns(lua_State* L /*boolean highlight*/); // Sets whether to highlight Dolch pronouns in the formatted Dolch report for new projects.
+    int /*boolean*/ IsHighlightingDolchPronouns(lua_State* L); // Returns whether Dolch pronouns are being highlighted in the formatted Dolch report for new projects.
+    int HighlightDolchAdverbs(lua_State* L /*boolean highlight*/); // Sets whether to highlight Dolch adverbs in the formatted Dolch report for new projects.
+    int /*boolean*/ IsHighlightingDolchAdverbs(lua_State* L); // Returns whether Dolch adverbs are being highlighted in the formatted Dolch report for new projects.
+    int HighlightDolchAdjectives(lua_State* L /*boolean highlight*/); // Sets whether to highlight Dolch adjectives in the formatted Dolch report for new projects.
+    int /*boolean*/ IsHighlightingDolchAdjectives(lua_State* L); // Returns whether Dolch adjectives are being highlighted in the formatted Dolch report for new projects.
+    int HighlightDolchVerbs(lua_State* L /*boolean highlight*/); // Sets whether to highlight Dolch verbs in the formatted Dolch report for new projects.
+    int /*boolean*/ IsHighlightingDolchVerbs(lua_State* L); // Returns whether Dolch verbs are being highlighted in the formatted Dolch report for new projects.
+    int HighlightDolchNouns(lua_State* L /*boolean highlight*/); // Sets whether to highlight Dolch nouns in the formatted Dolch report for new projects.
+    int /*boolean*/ IsHighlightingDolchNouns(lua_State* L); // Returns whether Dolch nouns are being highlighted in the formatted Dolch report for new projects.
 
     // GRAPH OPTIONS
     int SetGraphColorScheme(lua_State* L /*string colorScheme*/); // Sets the graph color scheme for new projects.
@@ -466,6 +480,20 @@ namespace LuaScripting
         { "SetDolchAdjectivesColor", SetDolchAdjectivesColor },
         { "SetDolchVerbsColor", SetDolchVerbsColor },
         { "SetDolchNounsColor", SetDolchNounsColor },
+        { "HighlightDolchConjunctions", HighlightDolchConjunctions },
+        { "IsHighlightingDolchConjunctions", IsHighlightingDolchConjunctions },
+        { "HighlightDolchPrepositions", HighlightDolchPrepositions },
+        { "IsHighlightingDolchPrepositions", IsHighlightingDolchPrepositions },
+        { "HighlightDolchPronouns", HighlightDolchPronouns },
+        { "IsHighlightingDolchPronouns", IsHighlightingDolchPronouns },
+        { "HighlightDolchAdverbs", HighlightDolchAdverbs },
+        { "IsHighlightingDolchAdverbs", IsHighlightingDolchAdverbs },
+        { "HighlightDolchAdjectives", HighlightDolchAdjectives },
+        { "IsHighlightingDolchAdjectives", IsHighlightingDolchAdjectives },
+        { "HighlightDolchVerbs", HighlightDolchVerbs },
+        { "IsHighlightingDolchVerbs", IsHighlightingDolchVerbs },
+        { "HighlightDolchNouns", HighlightDolchNouns },
+        { "IsHighlightingDolchNouns", IsHighlightingDolchNouns },
         { "SetWindowSize", SetWindowSize },
         { "RemoveAllCustomTests", RemoveAllCustomTests },
         { "RemoveAllCustomTestBundles", RemoveAllCustomTestBundles },

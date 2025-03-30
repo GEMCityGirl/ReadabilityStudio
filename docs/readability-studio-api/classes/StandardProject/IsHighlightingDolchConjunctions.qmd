@@ -1,0 +1,17 @@
+## `IsHighlightingDolchConjunctions`
+
+Returns whether Dolch conjunctions are being highlighted in the formatted Dolch report.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsHighlightingDolchConjunctions()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

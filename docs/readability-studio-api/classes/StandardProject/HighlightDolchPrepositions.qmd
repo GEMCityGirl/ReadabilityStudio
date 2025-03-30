@@ -1,0 +1,17 @@
+## `HighlightDolchPrepositions`
+
+Sets whether to highlight Dolch prepositions in the formatted Dolch report.
+
+### Syntax {-}
+
+``` {.lua}
+HighlightDolchPrepositions(boolean highlight)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`boolean` highlight | `true` to highlight Dolch prepositions. |
+
+{{< pagebreak >}}

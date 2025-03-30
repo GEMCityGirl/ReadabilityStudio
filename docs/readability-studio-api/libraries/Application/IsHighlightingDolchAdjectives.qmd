@@ -1,0 +1,17 @@
+## `IsHighlightingDolchAdjectives`
+
+Returns whether Dolch adjectives are being highlighted in the formatted Dolch report for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsHighlightingDolchAdjectives()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

@@ -3097,6 +3097,132 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int HighlightDolchConjunctions(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+        wxGetApp().GetAppOptions().HighlightDolchConjunctions(int_to_bool(lua_toboolean(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsHighlightingDolchConjunctions(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetAppOptions().IsHighlightingDolchConjunctions());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int HighlightDolchPrepositions(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+        wxGetApp().GetAppOptions().HighlightDolchPrepositions(int_to_bool(lua_toboolean(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsHighlightingDolchPrepositions(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetAppOptions().IsHighlightingDolchPrepositions());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int HighlightDolchPronouns(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+        wxGetApp().GetAppOptions().HighlightDolchPronouns(int_to_bool(lua_toboolean(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsHighlightingDolchPronouns(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetAppOptions().IsHighlightingDolchPronouns());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int HighlightDolchAdverbs(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+        wxGetApp().GetAppOptions().HighlightDolchAdverbs(int_to_bool(lua_toboolean(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsHighlightingDolchAdverbs(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetAppOptions().IsHighlightingDolchAdverbs());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int HighlightDolchAdjectives(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+        wxGetApp().GetAppOptions().HighlightDolchAdjectives(int_to_bool(lua_toboolean(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsHighlightingDolchAdjectives(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetAppOptions().IsHighlightingDolchAdjectives());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int HighlightDolchVerbs(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+        wxGetApp().GetAppOptions().HighlightDolchVerbs(int_to_bool(lua_toboolean(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsHighlightingDolchVerbs(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetAppOptions().IsHighlightingDolchVerbs());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int HighlightDolchNouns(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+        wxGetApp().GetAppOptions().HighlightDolchNouns(int_to_bool(lua_toboolean(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsHighlightingDolchNouns(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetAppOptions().IsHighlightingDolchNouns());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int SetWindowSize(lua_State* L)
         {
         if (!VerifyParameterCount(L, 2, __func__))

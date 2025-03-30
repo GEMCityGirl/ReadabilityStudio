@@ -1,0 +1,17 @@
+## `IsHighlightingDolchVerbs`
+
+Returns whether Dolch verbs are being highlighted in the formatted Dolch report for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsHighlightingDolchVerbs()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

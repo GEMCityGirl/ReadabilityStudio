@@ -1,0 +1,17 @@
+## `HighlightDolchConjunctions`
+
+Sets whether to highlight Dolch conjunctions in the formatted Dolch report for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+HighlightDolchConjunctions(boolean highlight)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`boolean` highlight | `true` to highlight Dolch conjunctions. |
+
+{{< pagebreak >}}

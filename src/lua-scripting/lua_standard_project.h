@@ -149,6 +149,20 @@ namespace LuaScripting
         int SetDolchAdjectivesColor(lua_State* L /*string colorName*/); // Sets the font color for Dolch adjectives in the formatted Dolch report.
         int SetDolchVerbsColor(lua_State* L /*string colorName*/); // Sets the font color for Dolch verbs in the formatted Dolch report.
         int SetDolchNounsColor(lua_State* L /*string colorName*/); // Sets the font color for Dolch nouns in the formatted Dolch report.
+        int HighlightDolchConjunctions(lua_State* L /*boolean highlight*/); // Sets whether to highlight Dolch conjunctions in the formatted Dolch report.
+        int /*boolean*/ IsHighlightingDolchConjunctions(lua_State* L); // Returns whether Dolch conjunctions are being highlighted in the formatted Dolch report.
+        int HighlightDolchPrepositions(lua_State* L /*boolean highlight*/); // Sets whether to highlight Dolch prepositions in the formatted Dolch report.
+        int /*boolean*/ IsHighlightingDolchPrepositions(lua_State* L); // Returns whether Dolch prepositions are being highlighted in the formatted Dolch report.
+        int HighlightDolchPronouns(lua_State* L /*boolean highlight*/); // Sets whether to highlight Dolch pronouns in the formatted Dolch report.
+        int /*boolean*/ IsHighlightingDolchPronouns(lua_State* L); // Returns whether Dolch pronouns are being highlighted in the formatted Dolch report.
+        int HighlightDolchAdverbs(lua_State* L /*boolean highlight*/); // Sets whether to highlight Dolch adverbs in the formatted Dolch report.
+        int /*boolean*/ IsHighlightingDolchAdverbs(lua_State* L); // Returns whether Dolch adverbs are being highlighted in the formatted Dolch report.
+        int HighlightDolchAdjectives(lua_State* L /*boolean highlight*/); // Sets whether to highlight Dolch adjectives in the formatted Dolch report.
+        int /*boolean*/ IsHighlightingDolchAdjectives(lua_State* L); // Returns whether Dolch adjectives are being highlighted in the formatted Dolch report.
+        int HighlightDolchVerbs(lua_State* L /*boolean highlight*/); // Sets whether to highlight Dolch verbs in the formatted Dolch report.
+        int /*boolean*/ IsHighlightingDolchVerbs(lua_State* L); // Returns whether Dolch verbs are being highlighted in the formatted Dolch report.
+        int HighlightDolchNouns(lua_State* L /*boolean highlight*/); // Sets whether to highlight Dolch nouns in the formatted Dolch report.
+        int /*boolean*/ IsHighlightingDolchNouns(lua_State* L); // Returns whether Dolch nouns are being highlighted in the formatted Dolch report.
 
         // PROJECT SETTINGS
         int SetProjectLanguage(lua_State* L /*Language lang*/); // Sets the project language. This will affect syllable counting and also which tests are available.

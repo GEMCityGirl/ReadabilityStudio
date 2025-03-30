@@ -1,0 +1,18 @@
+## `HighlightDolchPronouns`
+
+Sets whether to highlight Dolch pronouns in the formatted Dolch report.
+
+### Syntax {-}
+
+``` {.lua}
+HighlightDolchPronouns(boolean highlight)
+```
+
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`boolean` highlight | `true` to highlight Dolch pronouns. |
+
+{{< pagebreak >}}

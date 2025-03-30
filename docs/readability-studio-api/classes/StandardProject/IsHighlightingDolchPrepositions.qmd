@@ -1,0 +1,17 @@
+## `IsHighlightingDolchPrepositions`
+
+Returns whether Dolch prepositions are being highlighted in the formatted Dolch report.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsHighlightingDolchPrepositions()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

@@ -1,0 +1,17 @@
+## `HighlightDolchVerbs`
+
+Sets whether to highlight Dolch verbs in the formatted Dolch report for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+HighlightDolchVerbs(boolean highlight)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`boolean` highlight | `true` to highlight Dolch verbs. |
+
+{{< pagebreak >}}
