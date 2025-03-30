@@ -1,6 +1,6 @@
 ## `FindFiles`
 
-Searches the specified folder for files\index{Filepaths!searching} matching the given file filter (e.g., "\*.docx" or "\*patient\*") and returns the retrieved filepaths.
+Searches the specified folder for files\index{File paths!searching} matching the given file filter (e.g., "\*.docx" or "\*patient\*") and returns the retrieved filepaths.
 
 ### Syntax {-}
 

@@ -22,7 +22,7 @@ Type: `boolean`
 
 `true` if the test was successfully added; otherwise, `false`.
 
-### Example\index{Examples!adding a test} {-}
+### Example\index{Examples!adding tests} {-}
 
 ``` {.lua}
 -- Opens a document from user's "Documents" folder

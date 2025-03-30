@@ -1,6 +1,6 @@
 ## `GetUserPath`
 
-Returns the path of a given folder\index{Filepaths!user folders} in the user's directory.
+Returns the path of a given folder\index{File paths!user folders} in the user's directory.
 
 ### Syntax {-}
 

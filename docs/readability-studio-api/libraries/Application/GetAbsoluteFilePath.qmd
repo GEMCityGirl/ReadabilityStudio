@@ -1,7 +1,7 @@
 
 ## `GetAbsoluteFilePath`
 
-Combines a base path\index{Filepaths!getting absolute path} with a relative path and returns the full file path.
+Combines a base path\index{File paths!getting absolute path} with a relative path and returns the full file path.
 
 ### Syntax {-}
 

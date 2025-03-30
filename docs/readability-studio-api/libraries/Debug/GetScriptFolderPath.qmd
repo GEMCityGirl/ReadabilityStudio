@@ -1,6 +1,6 @@
 ## `GetScriptFolderPath`
 
-Returns the folder path\index{Filepaths!active script's path} of the currently running script.
+Returns the folder path\index{File paths!active script's path} of the currently running script.
 
 ### Syntax {-}
 
