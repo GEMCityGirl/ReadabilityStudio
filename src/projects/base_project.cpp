@@ -116,8 +116,10 @@ void BaseProject::UpdateDocumentSettings()
     GetWords()->ignore_citation_sections(IsExcludingTrailingCitations());
     GetWords()->treat_header_words_as_valid(GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings);
     GetWords()->treat_eol_as_eos(m_paragraphsParsingMethod == ParagraphParse::EachNewLineIsAParagraph);
-    GetWords()->ignore_blank_lines_when_determing_paragraph_split(GetIgnoreBlankLinesForParagraphsParser());
-    GetWords()->ignore_indenting_when_determing_paragraph_split(GetIgnoreIndentingForParagraphsParser());
+    GetWords()->ignore_blank_lines_when_determing_paragraph_split(
+        IsIgnoringBlankLinesForParagraphsParser());
+    GetWords()->ignore_indenting_when_determing_paragraph_split(
+        IsIgnoringIndentingForParagraphsParser());
     GetWords()->sentence_start_must_be_uppercased(GetSentenceStartMustBeUppercased());
     GetWords()->set_copyright_phrase_function(&copyright_notice_phrases);
     GetWords()->set_citation_phrase_function(&citation_phrases);
@@ -367,9 +369,9 @@ BaseProject::BaseProject() :
 
     // analysis
     m_ignoreBlankLinesForParagraphsParser(
-        wxGetApp().GetAppOptions().GetIgnoreBlankLinesForParagraphsParser()),
+          wxGetApp().GetAppOptions().IsIgnoringBlankLinesForParagraphsParser()),
     m_ignoreIndentingForParagraphsParser(
-        wxGetApp().GetAppOptions().GetIgnoreIndentingForParagraphsParser()),
+          wxGetApp().GetAppOptions().IsIgnoringIndentingForParagraphsParser()),
     m_sentenceStartMustBeUppercased(
         wxGetApp().GetAppOptions().GetSentenceStartMustBeUppercased()),
     m_aggressiveExclusion(wxGetApp().GetAppOptions().IsExcludingAggressively()),
@@ -8032,8 +8034,8 @@ void BaseProject::CopySettings(const BaseProject& that)
     m_difficultSentenceLength = that.GetDifficultSentenceLength();
     m_longSentenceMethod = that.GetLongSentenceMethod();
     m_numeralSyllabicationMethod = that.GetNumeralSyllabicationMethod();
-    m_ignoreBlankLinesForParagraphsParser = that.GetIgnoreBlankLinesForParagraphsParser();
-    m_ignoreIndentingForParagraphsParser = that.GetIgnoreIndentingForParagraphsParser();
+    m_ignoreBlankLinesForParagraphsParser = that.IsIgnoringBlankLinesForParagraphsParser();
+    m_ignoreIndentingForParagraphsParser = that.IsIgnoringIndentingForParagraphsParser();
     m_sentenceStartMustBeUppercased = that.GetSentenceStartMustBeUppercased();
     m_aggressiveExclusion = that.IsExcludingAggressively();
     m_excludeTrailingCopyrightNoticeParagraphs = that.IsExcludingTrailingCopyrightNoticeParagraphs();

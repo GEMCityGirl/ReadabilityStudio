@@ -1185,7 +1185,7 @@ namespace LuaScripting
             return 0;
             }
 
-        wxGetApp().GetAppOptions().SetIgnoreBlankLinesForParagraphsParser(
+        wxGetApp().GetAppOptions().IgnoreBlankLinesForParagraphsParser(
             int_to_bool(lua_toboolean(L, 1)));
         return 0;
         }
@@ -1193,7 +1193,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int IsIgnoringBlankLines(lua_State* L)
         {
-        lua_pushboolean(L, wxGetApp().GetAppOptions().GetIgnoreBlankLinesForParagraphsParser());
+        lua_pushboolean(L, wxGetApp().GetAppOptions().IsIgnoringBlankLinesForParagraphsParser());
         wxGetApp().Yield();
         return 1;
         }
@@ -1206,7 +1206,7 @@ namespace LuaScripting
             return 0;
             }
 
-        wxGetApp().GetAppOptions().SetIgnoreIndentingForParagraphsParser(
+        wxGetApp().GetAppOptions().IgnoreIndentingForParagraphsParser(
             int_to_bool(lua_toboolean(L, 1)));
         return 0;
         }
@@ -1214,7 +1214,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int IsIgnoringIndenting(lua_State* L)
         {
-        lua_pushboolean(L, wxGetApp().GetAppOptions().GetIgnoreIndentingForParagraphsParser());
+        lua_pushboolean(L, wxGetApp().GetAppOptions().IsIgnoringIndentingForParagraphsParser());
         wxGetApp().Yield();
         return 1;
         }

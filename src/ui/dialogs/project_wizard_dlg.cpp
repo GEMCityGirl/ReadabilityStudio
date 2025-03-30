@@ -115,11 +115,11 @@ ProjectWizardDlg::ProjectWizardDlg(wxWindow* parent, const ProjectType projectTy
         {
         SetNarrativeSelected();
         }
-    SetSplitLinesSelected(wxGetApp().GetAppOptions().GetIgnoreBlankLinesForParagraphsParser());
+    SetSplitLinesSelected(wxGetApp().GetAppOptions().IsIgnoringBlankLinesForParagraphsParser());
     // ignoring indenting doesn't make sense if each line should start a new paragraph
     SetCenteredTextSelected(wxGetApp().GetAppOptions().GetParagraphsParsingMethod() !=
                                 ParagraphParse::EachNewLineIsAParagraph &&
-                            wxGetApp().GetAppOptions().GetIgnoreIndentingForParagraphsParser());
+                            wxGetApp().GetAppOptions().IsIgnoringIndentingForParagraphsParser());
     SetNewLinesAlwaysNewParagraphsSelected(
         wxGetApp().GetAppOptions().GetParagraphsParsingMethod() ==
         ParagraphParse::EachNewLineIsAParagraph);
@@ -489,8 +489,9 @@ void ProjectWizardDlg::CreateControls()
             {
             SetNarrativeSelected();
             }
-        SetSplitLinesSelected(wxGetApp().GetAppOptions().GetIgnoreBlankLinesForParagraphsParser());
-        SetCenteredTextSelected(wxGetApp().GetAppOptions().GetIgnoreIndentingForParagraphsParser());
+        SetSplitLinesSelected(wxGetApp().GetAppOptions().IsIgnoringBlankLinesForParagraphsParser());
+        SetCenteredTextSelected(
+            wxGetApp().GetAppOptions().IsIgnoringIndentingForParagraphsParser());
 
         wxPanel* page =
             new wxPanel(m_sideBarBook, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);

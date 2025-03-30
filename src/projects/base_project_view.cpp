@@ -895,10 +895,10 @@ void BaseProjectView::Present()
             {
             dynamic_cast<wxRibbonButtonBar*>(deductionButtonBar)
                 ->ToggleButton(XRCID("ID_IGNORE_BLANK_LINES"),
-                               doc->GetIgnoreBlankLinesForParagraphsParser());
+                               doc->IsIgnoringBlankLinesForParagraphsParser());
             dynamic_cast<wxRibbonButtonBar*>(deductionButtonBar)
                 ->ToggleButton(XRCID("ID_IGNORE_INDENTING"),
-                               doc->GetIgnoreIndentingForParagraphsParser());
+                               doc->IsIgnoringIndentingForParagraphsParser());
             dynamic_cast<wxRibbonButtonBar*>(deductionButtonBar)
                 ->ToggleButton(XRCID("ID_SENTENCES_CAPITALIZED"),
                                doc->GetSentenceStartMustBeUppercased());

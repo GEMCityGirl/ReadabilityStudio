@@ -90,7 +90,7 @@ Also, check *Real-time update*, which will be discussed later.
 Click `r keys('OK')` to accept these changes.
 
 The project will link to the external document and analyze that, rather than the embedded text that we were editing before.
-Also, because we selected *Real-time update*, the project will reanalyze the document as we edit it in *LibreOffice*.
+Also, because we selected *Real-time update*\index{real-time updating}, the project will reanalyze the document as we edit it in *LibreOffice*.
 The program will check every few seconds to see if the document's modified time has changed; if it has, then the project will reload.
 
 ::: {.notesection data-latex=""}

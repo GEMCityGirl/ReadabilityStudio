@@ -1,6 +1,6 @@
 ## `IsRealTimeUpdating`
 
-Returns whether documents are being re-analyzed as they change.
+Returns whether documents are being re-analyzed as they change\index{real-time updating}.
 
 ### Syntax {-}
 
@@ -8,10 +8,8 @@ Returns whether documents are being re-analyzed as they change.
 boolean IsRealTimeUpdating()
 ```
 
-
 ### Return value {-}
 
 Type: `boolean`
-
 
 {{< pagebreak >}}

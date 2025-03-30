@@ -974,8 +974,8 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
         wxGetApp().GetAppOptions().SetSelectedTestBundle(wizard->GetSelectedTestBundle());
         }
     // set parsing options based on how the user defined the structure of the document
-    SetIgnoreBlankLinesForParagraphsParser(wizard->IsSplitLinesSelected());
-    SetIgnoreIndentingForParagraphsParser(wizard->IsCenteredTextSelected());
+    IgnoreBlankLinesForParagraphsParser(wizard->IsSplitLinesSelected());
+    IgnoreIndentingForParagraphsParser(wizard->IsCenteredTextSelected());
     if ((wizard->IsSplitLinesSelected() ||
          wizard->IsCenteredTextSelected()) &&
          !wizard->IsNewLinesAlwaysNewParagraphsSelected())

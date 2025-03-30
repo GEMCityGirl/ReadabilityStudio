@@ -828,11 +828,11 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
           project ? static_cast<int>(project->GetParagraphsParsingMethod()) :
                     static_cast<int>(wxGetApp().GetAppOptions().GetParagraphsParsingMethod())),
       m_ignoreBlankLinesForParagraphsParser(
-          project ? project->GetIgnoreBlankLinesForParagraphsParser() :
-                    wxGetApp().GetAppOptions().GetIgnoreBlankLinesForParagraphsParser()),
+          project ? project->IsIgnoringBlankLinesForParagraphsParser() :
+                    wxGetApp().GetAppOptions().IsIgnoringBlankLinesForParagraphsParser()),
       m_ignoreIndentingForParagraphsParser(
-          project ? project->GetIgnoreIndentingForParagraphsParser() :
-                    wxGetApp().GetAppOptions().GetIgnoreIndentingForParagraphsParser()),
+          project ? project->IsIgnoringIndentingForParagraphsParser() :
+                    wxGetApp().GetAppOptions().IsIgnoringIndentingForParagraphsParser()),
       m_sentenceStartMustBeUppercased(
           project ? project->GetSentenceStartMustBeUppercased() :
                     wxGetApp().GetAppOptions().GetSentenceStartMustBeUppercased()),
@@ -1995,9 +1995,9 @@ void ToolsOptionsDlg::SaveOptions()
             static_cast<NumeralSyllabize>(m_syllabicationMethod.get_value()));
         m_readabilityProjectDoc->SetParagraphsParsingMethod(
             static_cast<ParagraphParse>(m_paragraphParsingMethod.get_value()));
-        m_readabilityProjectDoc->SetIgnoreBlankLinesForParagraphsParser(
+        m_readabilityProjectDoc->IgnoreBlankLinesForParagraphsParser(
             m_ignoreBlankLinesForParagraphsParser);
-        m_readabilityProjectDoc->SetIgnoreIndentingForParagraphsParser(
+        m_readabilityProjectDoc->IgnoreIndentingForParagraphsParser(
             m_ignoreIndentingForParagraphsParser);
         m_readabilityProjectDoc->SetSentenceStartMustBeUppercased(m_sentenceStartMustBeUppercased);
         m_readabilityProjectDoc->AggressiveExclusion(m_aggressiveExclusion);
@@ -2419,9 +2419,9 @@ void ToolsOptionsDlg::SaveOptions()
             static_cast<NumeralSyllabize>(m_syllabicationMethod.get_value()));
         wxGetApp().GetAppOptions().SetParagraphsParsingMethod(
             static_cast<ParagraphParse>(m_paragraphParsingMethod.get_value()));
-        wxGetApp().GetAppOptions().SetIgnoreBlankLinesForParagraphsParser(
+        wxGetApp().GetAppOptions().IgnoreBlankLinesForParagraphsParser(
             m_ignoreBlankLinesForParagraphsParser);
-        wxGetApp().GetAppOptions().SetIgnoreIndentingForParagraphsParser(
+        wxGetApp().GetAppOptions().IgnoreIndentingForParagraphsParser(
             m_ignoreIndentingForParagraphsParser);
         wxGetApp().GetAppOptions().SetSentenceStartMustBeUppercased(
             m_sentenceStartMustBeUppercased);

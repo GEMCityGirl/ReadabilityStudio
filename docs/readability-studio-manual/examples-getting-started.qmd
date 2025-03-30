@@ -193,7 +193,8 @@ Select the **Project Settings** icon and note the option **Reload the source doc
 knitr::include_graphics("images/linktofile.png")
 ```
 
-Also of note is the **Real-time update** checkbox. If this is checked, then the program will automatically reload the project when the document is edited.
+Also of note is the **Real-time update** checkbox\index{real-time updating}.
+If this is checked, then the program will automatically reload the project when the document is edited.
 This is discussed in a later example (see @sec-external-editing); for now, leave this unchecked.
 
 Close this dialog and click the `r keys("Reload")` button on the **Home** tab.

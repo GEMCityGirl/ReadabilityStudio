@@ -156,7 +156,7 @@ Note that the source document's content will not be stored in the project.
 If the document cannot be found, then only the results from the previous analysis will be shown.
 ::::
 
-**Real-time update**: Select this option to automatically reload the project as the source document is edited externally.
+**Real-time update**\index{real-time updating}: Select this option to automatically reload the project as the source document is edited externally.
 This allows for editing the document in another program (e.g., *Word*) and having the results update in *Readability Studio* in real time.
 (This is only relevant for standard projects and for when the project is linked to a local document.)
 

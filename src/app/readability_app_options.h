@@ -929,24 +929,24 @@ class ReadabilityAppOptions
 
     // whether to ignore blank lines when figuring out if we are at the end of a paragraph
     [[nodiscard]]
-    bool GetIgnoreBlankLinesForParagraphsParser() const noexcept
+    bool IsIgnoringBlankLinesForParagraphsParser() const noexcept
         {
         return m_ignoreBlankLinesForParagraphsParser;
         }
 
-    void SetIgnoreBlankLinesForParagraphsParser(const bool ignore) noexcept
+    void IgnoreBlankLinesForParagraphsParser(const bool ignore) noexcept
         {
         m_ignoreBlankLinesForParagraphsParser = ignore;
         }
 
     // whether we should ignore indenting when parsing paragraphs
     [[nodiscard]]
-    bool GetIgnoreIndentingForParagraphsParser() const noexcept
+    bool IsIgnoringIndentingForParagraphsParser() const noexcept
         {
         return m_ignoreIndentingForParagraphsParser;
         }
 
-    void SetIgnoreIndentingForParagraphsParser(const bool ignore) noexcept
+    void IgnoreIndentingForParagraphsParser(const bool ignore) noexcept
         {
         m_ignoreIndentingForParagraphsParser = ignore;
         }
