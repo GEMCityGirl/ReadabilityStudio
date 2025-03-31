@@ -1,6 +1,6 @@
 ## `SetPlotBackgroundImageOpacity`
 
-Sets the graph background (plot area) image opacity\index{Images!opacity}.
+Sets the graph background (plot area) image opacity\index{images!opacity}.
 
 ### Syntax {-}
 

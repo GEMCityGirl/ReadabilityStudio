@@ -1,6 +1,6 @@
 ## `SetSpellCheckerOptions` {#batch-setspellcheckeroptions}
 
-Sets which items the spell checker\index{Spell checker} should ignore.
+Sets which items the spell checker\index{spell checker} should ignore.
 
 ### Syntax {-}
 

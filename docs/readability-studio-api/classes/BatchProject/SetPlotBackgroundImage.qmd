@@ -1,6 +1,6 @@
 ## `SetPlotBackgroundImage`
 
-Sets the graph background\index{Images!graph backgrounds} (plot area) image.
+Sets the graph background\index{images!graph backgrounds} (plot area) image.
 
 ### Syntax {-}
 

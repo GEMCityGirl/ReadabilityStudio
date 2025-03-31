@@ -1,6 +1,6 @@
 ## `ShowSidebar` {#batch-showsidebar}
 
-Show or hides the project's sidebar\index{User interface!project sidebar}.
+Show or hides the project's sidebar\index{user interface!project sidebar}.
 
 ### Syntax {-}
 

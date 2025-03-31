@@ -1,6 +1,6 @@
 ## `SortList` {#standard-sortlist}
 
-Sorts\index{Lists!sorting} the specified list using a series of columns and sorting orders.
+Sorts\index{lists!sorting} the specified list using a series of columns and sorting orders.
 
 ### Syntax {-}
 
@@ -20,7 +20,7 @@ SortList(ListType list,
 | [`SortOrder`](#sortorder) order | The sorting direction to use. |
 | ... | Any additional pairs of columns and sort orders to use. |
 
-### Example\index{Examples!sorting lists} {-}
+### Example\index{examples!sorting lists} {-}
 
 ``` {.lua}
 -- Open a project from the user's "Documents" folder

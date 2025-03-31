@@ -7,7 +7,7 @@ source('R/appdown.r')
 
 ## `ExportList` {#batch-exportlist}
 
-Saves\index{Lists!exporting} the specified list as an HTML, text, or `r latex_logo(TRUE)`file to *outputFilePath*.
+Saves\index{lists!exporting} the specified list as an HTML, text, or `r latex_logo(TRUE)`file to *outputFilePath*.
 
 ### Syntax {-}
 

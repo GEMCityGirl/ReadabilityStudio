@@ -1,6 +1,6 @@
 ## `SetWindowSize`
 
-Resizes the program's window size\index{User interface!window size} to the specified width and height.
+Resizes the program's window size\index{user interface!window size} to the specified width and height.
 
 ### Syntax {-}
 

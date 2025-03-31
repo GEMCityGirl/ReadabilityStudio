@@ -1,6 +1,6 @@
 ## `ExportReport` {#standard-exportreport}
 
-Saves\index{Reports!exporting} the specified report.
+Saves\index{reports!exporting} the specified report.
 
 ### Syntax {-}
 
@@ -16,7 +16,7 @@ ExportReport(ReportType type,
 [ReportType](#reporttype) type | The report to save.
 `string` outputFilePath | The folder to save the scores.
 
-### Example\index{Examples!exporting statistics reports} {-}
+### Example\index{examples!exporting statistics reports} {-}
 
 ``` {.lua}
 -- Open a project from the user's "Documents" folder and save its scores summary

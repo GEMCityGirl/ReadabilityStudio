@@ -1,6 +1,6 @@
 ## `SetCenterPrintFooter`
 
-Sets the label to appear in the center bottom of printouts\index{Printing!headers \& footers}.
+Sets the label to appear in the center bottom of printouts\index{printing!headers \& footers}.
 
 ### Syntax {-}
 
@@ -12,7 +12,7 @@ SetCenterPrintFooter(string label)
 
 **Parameter** | **Description**
 | :-- | :-- |
-`string` label | The label to appear in the center bottom of printouts.
+| `string` label | The label to appear in the center bottom of printouts. |
 
 ### Example {-}
 

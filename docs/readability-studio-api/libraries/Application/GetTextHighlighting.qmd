@@ -1,6 +1,6 @@
 ## `GetTextHighlighting`
 
-Returns how to highlight content in formatted reports\index{Highlighted reports!how to highlight} for new projects.
+Returns how to highlight content in formatted reports\index{highlighted reports!how to highlight} for new projects.
 
 ### Syntax {-}
 

@@ -1,6 +1,6 @@
 ## `SetPlotBackgroundColorOpacity`
 
-Sets the graph background color opacity\index{Images!opacity}.
+Sets the graph background color opacity\index{images!opacity}.
 
 ### Syntax {-}
 

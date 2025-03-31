@@ -1,6 +1,6 @@
 ## `GetStippleImage`
 
-Returns the stipple image\index{Images!stippling} filepath used to draw bars in graphs.
+Returns the stipple image\index{images!stippling} filepath used to draw bars in graphs.
 
 ### Syntax {-}
 

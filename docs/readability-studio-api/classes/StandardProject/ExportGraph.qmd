@@ -1,6 +1,6 @@
 ## `ExportGraph` {#standard-exportgraph}
 
-Saves\index{Graphs!exporting} the specified graph as an image\index{Images!saving graphs as}.
+Saves\index{graphs!exporting} the specified graph as an image\index{images!saving graphs as}.
 
 ### Syntax {-}
 
@@ -22,7 +22,7 @@ ExportGraph(GraphType type,
 `number` width | (Optional) Specifies the width of the image.
 `number` height | (Optional) Specifies the height of the image.
 
-### Example\index{Examples!exporting graphs} {-}
+### Example\index{examples!exporting graphs} {-}
 
 ``` {.lua}
 -- Opens a document from user's "Documents" folder,

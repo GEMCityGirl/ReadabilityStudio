@@ -1,6 +1,6 @@
 ## `GetExamplesPath`
 
-Returns the program's example documents' folder path\index{File paths!examples folder}.
+Returns the program's example documents' folder path\index{file paths!examples folder}.
 
 ### Syntax {-}
 
@@ -12,7 +12,7 @@ string GetExamplesPath()
 
 Type: `string`
 
-### Example\index{Examples!getting file paths} {-}
+### Example\index{examples!getting file paths} {-}
 
 ``` {.lua}
 cocoa = StandardProject(Application.GetExamplesPath() ..

@@ -8,7 +8,7 @@ Reanalyzes the project's document.
 Reload()
 ```
 
-### Example\index{Examples!adding tests} {-}
+### Example\index{examples!adding tests} {-}
 
 ``` {.lua}
 -- Opens a document from user's "Documents" folder

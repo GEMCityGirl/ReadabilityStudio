@@ -1,6 +1,6 @@
 ## `SetStippleImage`
 
-Sets the stipple image\index{Images!stippling} used to draw bars in graphs for new projects.
+Sets the stipple image\index{images!stippling} used to draw bars in graphs for new projects.
 
 ### Syntax {-}
 

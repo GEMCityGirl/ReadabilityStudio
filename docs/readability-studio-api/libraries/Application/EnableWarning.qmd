@@ -1,6 +1,6 @@
 ## `EnableWarning`
 
-Enables\index{Warnings!enabling} the specified warning.
+Enables\index{warnings!enabling} the specified warning.
 
 ### Syntax {-}
 

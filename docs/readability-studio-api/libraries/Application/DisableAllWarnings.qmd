@@ -1,6 +1,6 @@
 ## `DisableAllWarnings`
 
-Suppresses\index{Warnings!disabling} most warnings and prompts throughout the program.
+Suppresses\index{warnings!disabling} most warnings and prompts throughout the program.
 
 ### Syntax {-}
 

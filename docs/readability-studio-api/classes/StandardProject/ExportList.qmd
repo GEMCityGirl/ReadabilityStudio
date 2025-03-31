@@ -7,7 +7,7 @@ source('R/appdown.r')
 
 ## `ExportList` {#standard-exportlist}
 
-Saves\index{Lists!exporting} the specified list as an HTML, text, or `r latex_logo(TRUE)`file to *outputFilePath*.
+Saves\index{lists!exporting} the specified list as an HTML, text, or `r latex_logo(TRUE)`file to *outputFilePath*.
 
 ### Syntax {-}
 
@@ -35,7 +35,7 @@ ExportList(ListType type,
 `boolean` includeHeaders | (Optional) Specifies whether to include the column headers.
 `boolean` includePageBreaks | (Optional) Specifies whether to insert page breaks. Note that this is only applicable if exporting as HTML.
 
-### Example\index{Examples!exporting lists} {-}
+### Example\index{examples!exporting lists} {-}
 
 ``` {.lua}
 -- Open a project from the user's "Documents" folder

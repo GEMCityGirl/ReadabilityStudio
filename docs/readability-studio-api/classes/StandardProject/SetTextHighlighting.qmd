@@ -1,6 +1,6 @@
 ## `SetTextHighlighting`
 
-Sets how to highlight content in formatted reports\index{Highlighted reports!how to highlight}.
+Sets how to highlight content in formatted reports\index{highlighted reports!how to highlight}.
 
 ### Syntax {-}
 

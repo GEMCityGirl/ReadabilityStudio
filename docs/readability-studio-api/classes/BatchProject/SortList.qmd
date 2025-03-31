@@ -1,6 +1,6 @@
 ## `SortList` {#batch-sortlist}
 
-Sorts\index{Lists!sorting} the specified list using a series of columns and sorting orders.
+Sorts\index{lists!sorting} the specified list using a series of columns and sorting orders.
 
 ### Syntax {-}
 

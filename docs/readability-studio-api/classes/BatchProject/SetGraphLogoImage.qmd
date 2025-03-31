@@ -1,6 +1,6 @@
 ## `SetGraphLogoImage`
 
-Sets the logo image\index{Images!logos}, shown in the bottom right corner.
+Sets the logo image\index{images!logos}, shown in the bottom right corner.
 
 ### Syntax {-}
 

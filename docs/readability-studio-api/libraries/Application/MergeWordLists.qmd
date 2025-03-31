@@ -27,7 +27,7 @@ Returns `true` if files were successfully merged.
 |... | Any additional files to merge with `inputFile1`. |
 |`string` outputFile | Where to save the combined list of words. | 
 
-### Example\index{Examples!merging word lists} {-}
+### Example\index{examples!merging word lists} {-}
 
 ``` {.lua}
 Application.MergeWordLists(

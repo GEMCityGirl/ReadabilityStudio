@@ -1,6 +1,6 @@
 ## `FindFiles`
 
-Searches the specified folder for files\index{File paths!searching} matching the given file filter (e.g., "\*.docx" or "\*patient\*") and returns the retrieved filepaths.
+Searches the specified folder for files\index{file paths!searching} matching the given file filter (e.g., "\*.docx" or "\*patient\*") and returns the retrieved filepaths.
 
 ### Syntax {-}
 
@@ -23,7 +23,7 @@ A table listing the files.
 | `string` fileFilter | The file pattern to search for. |
 | `boolean` recursive | `true` to search the folder recursively. |
 
-### Example\index{Examples!finding files} {-}
+### Example\index{examples!finding files} {-}
 
 ``` {.lua}
 files = Application.FindFiles(

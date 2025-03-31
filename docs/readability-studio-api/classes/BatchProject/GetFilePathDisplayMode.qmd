@@ -1,6 +1,6 @@
 ## `GetFilePathDisplayMode`
 
-Returns how filepaths\index{File paths!display in batch projects} are displayed in the project.
+Returns how filepaths\index{file paths!display in batch projects} are displayed in the project.
 
 ### Syntax {-}
 

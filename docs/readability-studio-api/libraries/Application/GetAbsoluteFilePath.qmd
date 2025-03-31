@@ -1,7 +1,7 @@
 
 ## `GetAbsoluteFilePath`
 
-Combines a base path\index{File paths!getting absolute path} with a relative path and returns the full file path.
+Combines a base path\index{file paths!getting absolute path} with a relative path and returns the full file path.
 
 ### Syntax {-}
 
@@ -23,7 +23,7 @@ Type: `string`
 
 The full file path.
 
-### Example\index{Examples!getting file paths} {-}
+### Example\index{examples!getting file paths} {-}
 
 ``` {.lua}
 -- Assuming that there is a file "ProfileReport.txt"

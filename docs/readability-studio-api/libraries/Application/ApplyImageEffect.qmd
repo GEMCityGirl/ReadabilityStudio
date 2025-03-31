@@ -1,6 +1,6 @@
 ## `ApplyImageEffect`
 
-Applies\index{Images!editing} an effect to an image and saves the result to another image file.
+Applies\index{images!editing} an effect to an image and saves the result to another image file.
 
 ### Syntax {-}
 
@@ -25,7 +25,7 @@ Returns `true` if image was successfully saved.
 | `string` outputImagePath | Where to save the altered image. | 
 | [`ImageEffect`](#imageeffect) effect | The effect to apply to the image. |
 
-### Example\index{Examples!editing images} {-}
+### Example\index{examples!editing images} {-}
 
 ``` {.lua}
 Application.ApplyImageEffect(

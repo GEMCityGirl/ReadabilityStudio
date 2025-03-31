@@ -1,6 +1,6 @@
 ## `ExportHighlightedWords`
 
-Saves\index{Highlighted reports!exporting} the specified highlighted words as an RTF or HTML report.
+Saves\index{highlighted reports!exporting} the specified highlighted words as an RTF or HTML report.
 
 ### Syntax {-}
 
@@ -20,7 +20,7 @@ ExportHighlightedWords(HighlightedWordReportType type,
 Use [`Application.GetTestId()`](#gettestid) to export the highlighted-words report for a custom test (see example below).
 :::
 
-### Example\index{Examples!exporting reports} {-}
+### Example\index{examples!exporting reports} {-}
 
 ``` {.lua}
 -- Open a project from the user's "Documents" folder

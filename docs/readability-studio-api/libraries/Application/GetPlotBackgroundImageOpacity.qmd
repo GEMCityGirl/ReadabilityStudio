@@ -1,6 +1,6 @@
 ## `GetPlotBackgroundImageOpacity`
 
-Returns the graph background (plot area) image opacity\index{Images!opacity} for new projects.
+Returns the graph background (plot area) image opacity\index{images!opacity} for new projects.
 
 ### Syntax {-}
 

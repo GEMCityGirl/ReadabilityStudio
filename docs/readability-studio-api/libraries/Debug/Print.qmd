@@ -1,6 +1,6 @@
 ## `Print`
 
-Prints\index{Debugger!printing message to} a message to the script editor's debug window.
+Prints\index{debugger!printing message to} a message to the script editor's debug window.
 
 ### Syntax {-}
 
@@ -18,7 +18,7 @@ Print(string message)
 *message* can be HTML-formatted text.
 :::
 
-### Example\index{Examples!printing to the debugger} {-}
+### Example\index{examples!printing to the debugger} {-}
 
 ``` {.lua}
 info = Application.GetImageInfo("C:\\users\\Martin\\images\\GraphLogo.png")
