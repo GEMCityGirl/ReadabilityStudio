@@ -1,0 +1,17 @@
+## `IsIncludingStockerCatholicSupplement`
+
+Returns whether additional Catholic words are being included with the Dale-Chall test for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsIncludingStockerCatholicSupplement()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

@@ -139,9 +139,11 @@ namespace LuaScripting
     int SetNumeralSyllabication(lua_State* L /*NumeralSyllabize method*/); // Sets the method to determine how to syllabize numerals for new projects.
     int /*NumeralSyllabize*/ GetNumeralSyllabication(lua_State* L); // Returns method to determine how to syllabize numerals for new projects.
 
-    // READABILITY SCORE
+    // READABILITY SCORES
     int /*boolean*/ IsFogUsingSentenceUnits(lua_State* L); // Returns whether to count independent clauses when calculating Gunning Fog for new projects.
     int FogUseSentenceUnits(lua_State* L /*boolean use*/); // Sets whether independent clauses are being counted when calculating Gunning Fog for new projects.
+    int IncludeStockerCatholicSupplement(lua_State* L /*boolean include*/); // Sets whether to include additional Catholic words with the Dale-Chall test for new projects.
+    int /*boolean*/ IsIncludingStockerCatholicSupplement(lua_State* L); // Returns whether additional Catholic words are being included with the Dale-Chall test for new projects.
 
     // SUMMARY STATS
     int SetSummaryStatsResultsOptions(lua_State* L /*boolean includeFormattedReport, boolean TabularReport*/); // Sets which results in the summary statistics section should be included for new projects.
@@ -284,6 +286,8 @@ namespace LuaScripting
     int /*BatchProject*/ GetActiveBatchProject(lua_State* L); // Returns the active batch project.
 
     // printing
+    int SetPaperOrientation(lua_State* L /*Orientation orient*/); // Sets the printer paper orientation. Orientation:Vertical is portrait and Orientation:Horizontal is landscape.
+    int /*Orientation*/ GetPaperOrientation(lua_State* L); // Returns the printer paper orientation.
     int SetLeftPrintHeader(lua_State* L /*string label*/); // Sets the left print header.
     int SetCenterPrintHeader(lua_State* L /*string label*/); // Sets the center print header.
     int SetRightPrintHeader(lua_State* L /*string label*/); // Sets the right print header.
@@ -380,6 +384,8 @@ namespace LuaScripting
         { "SetNumeralSyllabication", SetNumeralSyllabication },
         { "IsFogUsingSentenceUnits", IsFogUsingSentenceUnits },
         { "FogUseSentenceUnits", FogUseSentenceUnits },
+        { "IncludeStockerCatholicSupplement", IncludeStockerCatholicSupplement },
+        { "IsIncludingStockerCatholicSupplement", IsIncludingStockerCatholicSupplement },
         { "IncludeExcludedPhraseFirstOccurrence", IncludeExcludedPhraseFirstOccurrence },
         { "IsIncludingExcludedPhraseFirstOccurrence", IsIncludingExcludedPhraseFirstOccurrence },
         { "SetAppendedDocumentFilePath", SetAppendedDocumentFilePath },
@@ -512,7 +518,9 @@ namespace LuaScripting
         { "MergePhraseLists", MergePhraseLists },
         { "QAVerify", QAVerify },
         { "CheckHtmlLinks", CheckHtmlLinks },
-        { "SetLeftPrintHeader", SetLeftPrintHeader },
+        { "SetPaperOrientation", SetPaperOrientation },
+        { "SetPaperOrientation", SetPaperOrientation },
+        { "GetLeftPrintHeader", GetLeftPrintHeader },
         { "SetCenterPrintHeader", SetCenterPrintHeader },
         { "SetRightPrintHeader", SetRightPrintHeader },
         { "SetLeftPrintFooter", SetLeftPrintFooter },

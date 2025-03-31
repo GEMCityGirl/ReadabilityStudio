@@ -5228,8 +5228,7 @@ void MainFrame::OnClose(wxCloseEvent& event)
         {
         wxGetApp().GetAppOptions().SetScriptEditorLayout(GetLuaEditor()->GetLayout());
         }
-    wxGetApp().GetAppOptions().SetPaperId(
-        static_cast<int>(wxGetApp().GetPrintData()->GetPaperId()));
+    wxGetApp().GetAppOptions().SetPaperId(wxGetApp().GetPrintData()->GetPaperId());
     wxGetApp().GetAppOptions().SetPaperOrientation(wxGetApp().GetPrintData()->GetOrientation());
     event.Skip();
     }

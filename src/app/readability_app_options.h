@@ -2272,10 +2272,10 @@ class ReadabilityAppOptions
 
     // printer settings
     // page setup
-    void SetPaperId(const int Id) noexcept { m_paperId = Id; }
+    void SetPaperId(const wxPaperSize Id) noexcept { m_paperId = Id; }
 
     [[nodiscard]]
-    int GetPaperId() const noexcept
+    wxPaperSize GetPaperId() const noexcept
         {
         return m_paperId;
         }
@@ -2711,7 +2711,7 @@ class ReadabilityAppOptions
     bool m_realTimeUpdate{ false };
     // printing settings
     // page setup
-    int m_paperId{ wxPAPER_LETTER };
+    wxPaperSize m_paperId{ wxPAPER_LETTER };
     wxPrintOrientation m_paperOrientation{ wxLANDSCAPE };
     // headers
     wxString m_leftPrinterHeader;

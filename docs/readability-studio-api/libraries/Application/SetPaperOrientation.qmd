@@ -1,18 +1,19 @@
-## `SetRightPrintHeader`
+## `SetPaperOrientation`
 
-Sets the label to appear in the top right corner of printouts\index{printing!headers \& footers}.
+Sets the printer paper orientation\index{printing!paper orientation}.
+`Orientation:Vertical` is portrait and `Orientation:Horizontal` is landscape.
 
 ### Syntax {-}
 
 ``` {.lua}
-SetRightPrintHeader(string label)
+SetPaperOrientation(Orientation orient)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-| `string` label | The label to appear in the top right corner of printouts. |
+| [`Orientation`](#orientation) orient | The orientation of the paper when printing. |
 
 ### Example {-}
 

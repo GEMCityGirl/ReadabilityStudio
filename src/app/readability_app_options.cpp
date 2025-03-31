@@ -739,7 +739,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
             if (printerNode)
                 {
                 value = printerNode->ToElement()->IntAttribute(XML_VALUE.data(), value);
-                SetPaperId(value);
+                SetPaperId(static_cast<wxPaperSize>(value));
                 }
             value = 0;
             printerNode = printerSettingsNode->FirstChildElement(XML_PRINTER_ORIENTATION.data());
@@ -3595,7 +3595,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto printerSection = doc.NewElement(XML_PRINTER_SETTINGS.data());
     // page setup
     auto paperId = doc.NewElement(XML_PRINTER_ID.data());
-    paperId->SetAttribute(XML_VALUE.data(), GetPaperId());
+    paperId->SetAttribute(XML_VALUE.data(), static_cast<int>(GetPaperId()));
     printerSection->InsertEndChild(paperId);
     auto paperOrientation = doc.NewElement(XML_PRINTER_ORIENTATION.data());
     paperOrientation->SetAttribute(XML_VALUE.data(), static_cast<int>(GetPaperOrientation()));

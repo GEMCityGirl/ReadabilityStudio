@@ -797,6 +797,35 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
+    int StandardProject::IncludeStockerCatholicSupplement(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->IncludeStockerCatholicSupplement(int_to_bool(lua_toboolean(L, 2)));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::IsIncludingStockerCatholicSupplement(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L, m_project->IsIncludingStockerCatholicSupplement());
+        return 1;
+        }
+
     //-------------------------------------------------
     int StandardProject::SetAppendedDocumentFilePath(lua_State* L)
         {
@@ -4210,6 +4239,8 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, SetNumeralSyllabication),
         LUNA_DECLARE_METHOD(StandardProject, IsFogUsingSentenceUnits),
         LUNA_DECLARE_METHOD(StandardProject, FogUseSentenceUnits),
+        LUNA_DECLARE_METHOD(StandardProject, IncludeStockerCatholicSupplement),
+        LUNA_DECLARE_METHOD(StandardProject, IsIncludingStockerCatholicSupplement),
         LUNA_DECLARE_METHOD(StandardProject, IncludeExcludedPhraseFirstOccurrence),
         LUNA_DECLARE_METHOD(StandardProject, IsIncludingExcludedPhraseFirstOccurrence),
         LUNA_DECLARE_METHOD(StandardProject, SetAppendedDocumentFilePath),

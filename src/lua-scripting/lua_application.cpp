@@ -1734,6 +1734,26 @@ namespace LuaScripting
         return 0;
         }
 
+    //-------------------------------------------------------------
+    int IncludeStockerCatholicSupplement(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().IncludeStockerCatholicSupplement(
+            int_to_bool(lua_toboolean(L, 2)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsIncludingStockerCatholicSupplement(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetAppOptions().IsIncludingStockerCatholicSupplement());
+        return 1;
+        }
+
     //-------------------------------------------------
     int GetAppendedDocumentFilePath(lua_State* L)
         {
@@ -3254,6 +3274,31 @@ namespace LuaScripting
         wxGetApp().GetMainFrame()->Center();
         wxGetApp().Yield();
         return 0;
+        }
+
+    //-------------------------------------------------------------
+    int SetPaperOrientation(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        const auto orient = static_cast<Wisteria::Orientation>(lua_tonumber(L, 1));
+        wxGetApp().GetAppOptions().SetPaperOrientation(
+            (orient == Wisteria::Orientation::Horizontal) ? wxPrintOrientation::wxLANDSCAPE :
+                                                            wxPrintOrientation::wxPORTRAIT);
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int GetPaperOrientation(lua_State* L)
+        {
+        const auto orient = wxGetApp().GetAppOptions().GetPaperOrientation();
+        lua_pushnumber(L, static_cast<int>((orient == wxPrintOrientation::wxLANDSCAPE) ?
+                                               Wisteria::Orientation::Horizontal :
+                                               Wisteria::Orientation::Vertical));
+        return 1;
         }
 
     //-------------------------------------------------------------

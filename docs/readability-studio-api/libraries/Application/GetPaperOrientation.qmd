@@ -1,0 +1,17 @@
+## `GetPaperOrientation`
+
+Returns the printer paper orientation.
+
+### Syntax {-}
+
+``` {.lua}
+Orientation GetPaperOrientation()
+```
+
+
+### Return value {-}
+
+Type: [`Orientation`](#orientation)
+
+
+{{< pagebreak >}}

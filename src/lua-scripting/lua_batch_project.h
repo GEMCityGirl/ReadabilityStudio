@@ -178,9 +178,11 @@ namespace LuaScripting
         int SetNumeralSyllabication(lua_State* L /*NumeralSyllabize method*/); // Sets the method to determine how to syllabize numerals.
         int /*NumeralSyllabize*/ GetNumeralSyllabication(lua_State* L); // Returns method to determine how to syllabize numerals.
 
-        // READABILITY SCORE
+        // READABILITY SCORES
         int /*boolean*/ IsFogUsingSentenceUnits(lua_State* L); // Returns whether to count independent clauses when calculating Gunning Fog.
         int FogUseSentenceUnits(lua_State* L /*boolean use*/); // Sets whether independent clauses are being counted when calculating Gunning Fog.
+        int IncludeStockerCatholicSupplement(lua_State* L /*boolean include*/); // Sets whether to include additional Catholic words with the Dale-Chall test for new projects.
+        int /*boolean*/ IsIncludingStockerCatholicSupplement(lua_State* L); // Returns whether additional Catholic words are being included with the Dale-Chall test for new projects.
 
         // GRAPH OPTIONS
         int SetGraphColorScheme(lua_State* L /*string colorScheme*/); // Sets the graph color scheme.
