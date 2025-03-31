@@ -27,7 +27,7 @@ ExportList(ListType type,
 **Parameter** | **Description**
 | :-- | :-- |
 [`ListType`](#listtype) type | The list to export.
-`string` string outputFilePath | The folder to save the list.
+`string` outputFilePath | The folder to save the list.
 `number` fromRow | (Optional) Specifies the row to begin from. The default is the first row.
 `number` toRow | (Optional) Specifies the last row. Enter `-1` to specify the last row in the list.
 `number` fromColumn | (Optional) Specifies the row to column from. The default is the first column.

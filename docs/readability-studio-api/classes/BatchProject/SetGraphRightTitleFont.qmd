@@ -7,7 +7,7 @@ Sets the font for the graphs' right titles.
 ``` {.lua}
 SetGraphRightTitleFont(string fontName,
                        number pointSize,
-                       FontWeight fontWeight,
+                       FontWeight weight,
                        string color)
 ```
 

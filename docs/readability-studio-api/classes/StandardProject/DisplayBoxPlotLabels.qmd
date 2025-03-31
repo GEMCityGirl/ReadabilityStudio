@@ -12,6 +12,6 @@ DisplayBoxPlotLabels(boolean display)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` display | `true` to diplay the labels. |
+|`boolean` display | `true` to display the labels. |
 
 {{< pagebreak >}}

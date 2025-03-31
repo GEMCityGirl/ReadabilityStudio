@@ -13,7 +13,7 @@ DisplayAllBoxPlotPoints(boolean display)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` display | `true` to diplay all points. |
+|`boolean` display | `true` to display all points. |
 
 
 {{< pagebreak >}}

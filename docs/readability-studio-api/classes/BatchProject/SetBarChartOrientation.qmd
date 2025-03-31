@@ -5,15 +5,13 @@ Sets whether the bar charts should be drawn vertically or horizontally.
 ### Syntax {-}
 
 ``` {.lua}
-SetBarChartOrientation(Orientation orientation)
+SetBarChartOrientation(Orientation orient)
 ```
-
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|[`Orientation`](#orientation) orientation | How the bars should be oriented. |
-
+| [`Orientation`](#orientation) orient | How the bars should be oriented. |
 
 {{< pagebreak >}}

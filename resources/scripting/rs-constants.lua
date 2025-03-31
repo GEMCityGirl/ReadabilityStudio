@@ -42,8 +42,8 @@ ReportType =
 -- The following ways to highlight text in a report are available.
 TextHighlight =
   {
-  HighlightBackground = 0, -- Change the color of the background for highligthed text.
-  HighlightForeground = 1  -- Change the color of the font for highligthed text.
+  HighlightBackground = 0, -- Change the color of the background for highlighted text.
+  HighlightForeground = 1  -- Change the color of the font for highlighted text.
   }
 
 -- The following graph types are available.

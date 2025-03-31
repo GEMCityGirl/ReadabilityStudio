@@ -7,7 +7,7 @@ Sets the font for the graphs' X axes for new projects.
 ``` {.lua}
 SetXAxisFont(string fontName,
              number pointSize,
-             FontWeight fontWeight,
+             FontWeight weight,
              string color)
 ```
 

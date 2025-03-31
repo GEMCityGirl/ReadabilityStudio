@@ -5,14 +5,14 @@ Specifies how text should be excluded.
 ### Syntax {-}
 
 ``` {.lua}
-SetTextExclusion(TextExclusionType textExclusionType)
+SetTextExclusion(TextExclusionType type)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-[`TextExclusionType`](#textexclusiontype) textExclusionType | How text should be excluded.
+[`TextExclusionType`](#textexclusiontype) type | How text should be excluded.
 
 ### Example {-}
 

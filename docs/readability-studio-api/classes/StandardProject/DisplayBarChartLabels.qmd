@@ -1,6 +1,6 @@
 ## `DisplayBarChartLabels`
 
-Specifies whether to dislay labels above each bar in a bar chart.
+Specifies whether to display labels above each bar in a bar chart.
 
 ### Syntax {-}
 

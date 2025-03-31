@@ -5,13 +5,13 @@ Sets whether new projects embed their documents or link to them.
 ### Syntax {-}
 
 ``` {.lua}
-SetDocumentStorageMethod(TextStorage textStorage)
+SetDocumentStorageMethod(TextStorage storage)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-[`TextStorage`](#textstorage) textStorage | How projects should embed or link to their documents.
+| [`TextStorage`](#textstorage) storage | How projects should embed or link to their documents. |
 
 {{< pagebreak >}}

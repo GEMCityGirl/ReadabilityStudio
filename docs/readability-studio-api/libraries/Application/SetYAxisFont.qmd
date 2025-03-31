@@ -7,7 +7,7 @@ Sets the font for the graphs' Y axes for new projects.
 ``` {.lua}
 SetYAxisFont(string fontName,
              number pointSize,
-             FontWeight fontWeight,
+             FontWeight weight,
              string color)
 ```
 

@@ -5,7 +5,7 @@ Sets the effect applied to an image\index{Images!effects} when drawn as a graph'
 ### Syntax {-}
 
 ``` {.lua}
-SetPlotBackgroundImageEffect(ImageEffect imageEffect)
+SetPlotBackgroundImageEffect(ImageEffect effect)
 ```
 
 
@@ -13,7 +13,7 @@ SetPlotBackgroundImageEffect(ImageEffect imageEffect)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|[`ImageEffect`](#imageeffect) imageEffect | The effect to render with. |
+|[`ImageEffect`](#imageeffect) effect | The effect to render with. |
 
 
 {{< pagebreak >}}

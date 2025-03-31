@@ -5,13 +5,13 @@ Sets how hard returns help determine how paragraphs and sentences are detected.
 ### Syntax {-}
 
 ``` {.lua}
-SetParagraphsParsingMethod(ParagraphParse paragraphParse)
+SetParagraphsParsingMethod(ParagraphParse parseMethod)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-[`ParagraphParse`](#paragraphparse) paragraphParse | The paragraph parsing method.
+[`ParagraphParse`](#paragraphparse) parseMethod | The paragraph parsing method.
 
 {{< pagebreak >}}

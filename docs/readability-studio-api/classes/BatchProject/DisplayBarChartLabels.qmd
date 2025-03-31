@@ -1,6 +1,6 @@
 ## `DisplayBarChartLabels`
 
-Specifies whether to dislay labels above each bar in a bar chart.
+Specifies whether to display labels above each bar in a bar chart.
 
 ### Syntax {-}
 
@@ -8,12 +8,10 @@ Specifies whether to dislay labels above each bar in a bar chart.
 DisplayBarChartLabels(boolean display)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` display | `true` to display the labels. |
-
+| `boolean` display | `true` to display the labels. |
 
 {{< pagebreak >}}

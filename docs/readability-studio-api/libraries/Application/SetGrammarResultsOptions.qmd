@@ -26,7 +26,7 @@ SetGrammarResultsOptions(boolean includeHighlightedReport,
 |`boolean` includeHighlightedReport | `true` to include the highlighted grammar report. | 
 |`boolean` includeErrors | `true` to include wording errors and known misspellings. | 
 |`boolean` includePossibleMisspellings | `true` to include possible misspellings. | 
-|`boolean` boolean includeRepeatedWords | `true` to include repeated words. | 
+|`boolean` includeRepeatedWords | `true` to include repeated words. | 
 |`boolean` includeArticleMismatches | `true` to include article mismatches. | 
 |`boolean` includeRedundantPhrases | `true` to include redundant phrases. | 
 |`boolean` includeOverusedWords | `true` to include overused words. | 

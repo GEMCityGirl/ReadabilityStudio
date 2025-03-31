@@ -195,7 +195,7 @@ namespace LuaScripting
     int /*number*/ GetPlotBackgroundColorOpacity(lua_State* L); // Returns the graph background (plot area) color opacity for new projects.
     int SetPlotBackgroundImage(lua_State* L /*string imagePath*/); // Sets the graph background (plot area) image for new projects.
     int /*string*/ GetPlotBackgroundImage(lua_State* L); // Returns the graph background (plot area) image for new projects.
-    int SetPlotBackgroundImageEffect(lua_State* L /*ImageEffect imageEffect*/); // Sets the effect applied to an image when drawn as a graph's background for new projects.
+    int SetPlotBackgroundImageEffect(lua_State* L /*ImageEffect effect*/); // Sets the effect applied to an image when drawn as a graph's background for new projects.
     int /*ImageEffect*/ GetPlotBackgroundImageEffect(lua_State* L); // Returns the effect applied to an image when drawn as a graph's background for new projects.
     int SetPlotBackgroundImageOpacity(lua_State* L /*number opacity*/); // Sets the graph background (plot area) image opacity for new projects.
     int /*number*/ GetPlotBackgroundImageOpacity(lua_State* L); // Returns the graph background (plot area) image opacity for new projects.

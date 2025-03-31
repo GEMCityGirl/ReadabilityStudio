@@ -1,17 +1,17 @@
 ## `SetFilePathDisplayMode`
 
-Sets how filepaths are displayed in the lists for batch projects.
+Sets how file paths are displayed in the lists for batch projects.
 
 ### Syntax {-}
 
 ``` {.lua}
-SetFilePathDisplayMode(FilePathDisplayMode filePathDisplayMode)
+SetFilePathDisplayMode(FilePathDisplayMode mode)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-[`FilePathDisplayMode`](#filepathdisplaymode) filePathDisplayMode | How filepaths should be displayed.
+| [`FilePathDisplayMode`](#filepathdisplaymode) mode | How file paths should be displayed. |
 
 {{< pagebreak >}}

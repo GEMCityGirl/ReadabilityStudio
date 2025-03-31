@@ -15,10 +15,10 @@ SortList(ListType list,
 
 **Parameter** | **Description**
 | :-- | :-- |
-[`ListType`](#listtype) list | The list to sort.
-`number` columnToSort | The column to sort by.
-[`SortOrder`](#sortorder) order | The sorting direction to use.
-... | Any additional pairs of columns and sort orders to use.
+| [`ListType`](#listtype) list | The list to sort. |
+| `number` columnToSort | The column to sort by. |
+| [`SortOrder`](#sortorder) order | The sorting direction to use. |
+| ... | Any additional pairs of columns and sort orders to use. |
 
 ### Example\index{Examples!sorting lists} {-}
 

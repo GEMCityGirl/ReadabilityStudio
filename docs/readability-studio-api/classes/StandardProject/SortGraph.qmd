@@ -5,7 +5,7 @@ Sorts the bars in the specified bar chart.
 ### Syntax {-}
 
 ``` {.lua}
-SortGraph(GraphType graphType,
+SortGraph(GraphType type,
           SortOrder order)
 ```
 
@@ -14,7 +14,7 @@ SortGraph(GraphType graphType,
 
 **Parameter** | **Description**
 | :-- | :-- |
-|[`GraphType`](#graphtype) graphType | The bar chart to sort. | 
-|[`SortOrder`](#sortorder) order | How the bars should be sorted. |
+| [`GraphType`](#graphtype) type | The bar chart to sort. | 
+| [`SortOrder`](#sortorder) order | How the bars should be sorted. |
 
 {{< pagebreak >}}
