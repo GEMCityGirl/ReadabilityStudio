@@ -139,6 +139,10 @@ namespace LuaScripting
     int SetNumeralSyllabication(lua_State* L /*NumeralSyllabize method*/); // Sets the method to determine how to syllabize numerals for new projects.
     int /*NumeralSyllabize*/ GetNumeralSyllabication(lua_State* L); // Returns method to determine how to syllabize numerals for new projects.
 
+    // READABILITY SCORE
+    int /*boolean*/ IsFogUsingSentenceUnits(lua_State* L); // Returns whether to count independent clauses when calculating Gunning Fog for new projects.
+    int FogUseSentenceUnits(lua_State* L /*boolean use*/); // Sets whether independent clauses are being counted when calculating Gunning Fog for new projects.
+
     // SUMMARY STATS
     int SetSummaryStatsResultsOptions(lua_State* L /*boolean includeFormattedReport, boolean TabularReport*/); // Sets which results in the summary statistics section should be included for new projects.
     int SetSummaryStatsReportOptions(lua_State* L /*boolean includeParagraphs, boolean includeSentences, boolean includeWords, boolean includeExtendedWords, boolean includeGrammar, boolean includeNotes, boolean includeExtendedInfo*/); // Sets which results in the summary statistics reports should be included for new projects.
@@ -374,6 +378,8 @@ namespace LuaScripting
         { "GetBlockExclusionTags", GetBlockExclusionTags },
         { "GetNumeralSyllabication", GetNumeralSyllabication },
         { "SetNumeralSyllabication", SetNumeralSyllabication },
+        { "IsFogUsingSentenceUnits", IsFogUsingSentenceUnits },
+        { "FogUseSentenceUnits", FogUseSentenceUnits },
         { "IncludeExcludedPhraseFirstOccurrence", IncludeExcludedPhraseFirstOccurrence },
         { "IsIncludingExcludedPhraseFirstOccurrence", IsIncludingExcludedPhraseFirstOccurrence },
         { "SetAppendedDocumentFilePath", SetAppendedDocumentFilePath },

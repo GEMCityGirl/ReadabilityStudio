@@ -1715,6 +1715,25 @@ namespace LuaScripting
         return 1;
         }
 
+    //-------------------------------------------------------------
+    int IsFogUsingSentenceUnits(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetAppOptions().IsFogUsingSentenceUnits());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int FogUseSentenceUnits(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().FogUseSentenceUnits(int_to_bool(lua_toboolean(L, 2)));
+        return 0;
+        }
+
     //-------------------------------------------------
     int GetAppendedDocumentFilePath(lua_State* L)
         {

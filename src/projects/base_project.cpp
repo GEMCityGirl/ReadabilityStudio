@@ -384,7 +384,7 @@ BaseProject::BaseProject() :
     m_includeExcludedPhraseFirstOccurrence(
         wxGetApp().GetAppOptions().IsIncludingExcludedPhraseFirstOccurrence()),
 
-    m_fogUseSentenceUnits(wxGetApp().GetAppOptions().FogUseSentenceUnits()),
+    m_fogUseSentenceUnits(wxGetApp().GetAppOptions().IsFogUsingSentenceUnits()),
     m_includeStockerCatholicDCSupplement(wxGetApp().GetAppOptions().IsIncludingStockerCatholicSupplement()),
 
     m_statsInfo(wxGetApp().GetAppOptions().GetStatisticsInfo()),
@@ -5983,7 +5983,7 @@ bool BaseProject::AddNewFogCountTest(const bool setFocus)
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
-    if ((FogUseSentenceUnits() && GetTotalSentenceUnits() == 0) ||
+    if ((IsFogUsingSentenceUnits() && GetTotalSentenceUnits() == 0) ||
         GetTotalSentences() == 0)
         {
         LogMessage(wxString::Format(
@@ -5996,13 +5996,15 @@ bool BaseProject::AddNewFogCountTest(const bool setFocus)
 
     try
         {
-        const double gradeValue = readability::new_fog_count(GetTotalWords(),
-                        GetTotalHardWordsFog(),
-                        FogUseSentenceUnits() ? GetTotalSentenceUnits() : GetTotalSentences());
+        const double gradeValue = readability::new_fog_count(
+            GetTotalWords(), GetTotalHardWordsFog(),
+            IsFogUsingSentenceUnits() ? GetTotalSentenceUnits() : GetTotalSentences());
 
         const auto theTest = GetReadabilityTests().find_test(CURRENT_TEST_KEY);
         if (!VerifyTestBeforeAdding(theTest))
-            { return false; }
+            {
+            return false;
+            }
 
         const wxString numeralLabel = (GetTotalNumerals() > 0 || GetTotalProperNouns() > 0) ?
             _(L"All numerals and proper nouns are treated as easy words for this test.") :
@@ -6052,7 +6054,7 @@ bool BaseProject::AddPskFogTest(const bool setFocus)
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
-    if ((FogUseSentenceUnits() && GetTotalSentenceUnits() == 0) ||
+    if ((IsFogUsingSentenceUnits() && GetTotalSentenceUnits() == 0) ||
         GetTotalSentences() == 0)
         {
         LogMessage(wxString::Format(
@@ -6065,13 +6067,15 @@ bool BaseProject::AddPskFogTest(const bool setFocus)
 
     try
         {
-        const double gradeValue = readability::psk_gunning_fog(GetTotalWords(),
-                        GetTotalHardWordsFog(),
-                        FogUseSentenceUnits() ? GetTotalSentenceUnits() : GetTotalSentences());
+        const double gradeValue = readability::psk_gunning_fog(
+            GetTotalWords(), GetTotalHardWordsFog(),
+            IsFogUsingSentenceUnits() ? GetTotalSentenceUnits() : GetTotalSentences());
 
         const auto theTest = GetReadabilityTests().find_test(CURRENT_TEST_KEY);
         if (!VerifyTestBeforeAdding(theTest))
-            { return false; }
+            {
+            return false;
+            }
 
         const wxString numeralLabel = (GetTotalNumerals() > 0 || GetTotalProperNouns() > 0) ?
             _(L"All numerals and proper nouns are treated as easy words for this test.") :
@@ -6122,7 +6126,7 @@ bool BaseProject::AddFogTest(const bool setFocus)
         GetReadabilityTests().include_test(CURRENT_TEST_KEY, false);
         return false;
         }
-    if ((FogUseSentenceUnits() && GetTotalSentenceUnits() == 0) ||
+    if ((IsFogUsingSentenceUnits() && GetTotalSentenceUnits() == 0) ||
         GetTotalSentences() == 0)
         {
         LogMessage(wxString::Format(
@@ -6135,13 +6139,15 @@ bool BaseProject::AddFogTest(const bool setFocus)
 
     try
         {
-        const double gradeValue = readability::gunning_fog(GetTotalWords(),
-                        GetTotalHardWordsFog(),
-                        FogUseSentenceUnits() ? GetTotalSentenceUnits() : GetTotalSentences());
+        const double gradeValue = readability::gunning_fog(
+            GetTotalWords(), GetTotalHardWordsFog(),
+            IsFogUsingSentenceUnits() ? GetTotalSentenceUnits() : GetTotalSentences());
 
         const auto theTest = GetReadabilityTests().find_test(CURRENT_TEST_KEY);
         if (!VerifyTestBeforeAdding(theTest))
-            { return false; }
+            {
+            return false;
+            }
 
         const wxString numeralLabel = (GetTotalNumerals() > 0 || GetTotalProperNouns() > 0) ?
             _(L"All numerals and proper nouns are treated as easy words for this test.") :

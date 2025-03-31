@@ -768,6 +768,35 @@ namespace LuaScripting
         return 1;
         }
 
+    //-------------------------------------------------------------
+    int StandardProject::IsFogUsingSentenceUnits(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L, m_project->IsFogUsingSentenceUnits());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::FogUseSentenceUnits(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->FogUseSentenceUnits(int_to_bool(lua_toboolean(L, 2)));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
     //-------------------------------------------------
     int StandardProject::SetAppendedDocumentFilePath(lua_State* L)
         {
@@ -4179,6 +4208,8 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, GetBlockExclusionTags),
         LUNA_DECLARE_METHOD(StandardProject, GetNumeralSyllabication),
         LUNA_DECLARE_METHOD(StandardProject, SetNumeralSyllabication),
+        LUNA_DECLARE_METHOD(StandardProject, IsFogUsingSentenceUnits),
+        LUNA_DECLARE_METHOD(StandardProject, FogUseSentenceUnits),
         LUNA_DECLARE_METHOD(StandardProject, IncludeExcludedPhraseFirstOccurrence),
         LUNA_DECLARE_METHOD(StandardProject, IsIncludingExcludedPhraseFirstOccurrence),
         LUNA_DECLARE_METHOD(StandardProject, SetAppendedDocumentFilePath),

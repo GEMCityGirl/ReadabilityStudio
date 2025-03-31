@@ -2150,10 +2150,10 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                                 nullptr;
         if (fogOptionsSection && fogOptionsSectionEnd)
             {
-            SetFogUseSentenceUnits(
+            FogUseSentenceUnits(
                 XmlFormat::GetBoolean(fogOptionsSection, fogOptionsSectionEnd,
                                       wxGetApp().GetAppOptions().XML_USE_SENTENCE_UNITS.data(),
-                                      wxGetApp().GetAppOptions().FogUseSentenceUnits()));
+                                      wxGetApp().GetAppOptions().IsFogUsingSentenceUnits()));
             }
 
         const wchar_t* hjOptionsSection = html_extract_text::find_element(
@@ -3168,7 +3168,7 @@ wxString BaseProjectDoc::FormatProjectSettings() const
         .append(wxGetApp().GetAppOptions().XML_GUNNING_FOG_OPTIONS.data())
         .append(L">\n");
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_USE_SENTENCE_UNITS.data(),
-                             FogUseSentenceUnits(), 3);
+                             IsFogUsingSentenceUnits(), 3);
     fileText += sectionText;
     fileText.append(L"\t\t</")
         .append(wxGetApp().GetAppOptions().XML_GUNNING_FOG_OPTIONS.data())

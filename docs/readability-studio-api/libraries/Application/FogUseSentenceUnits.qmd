@@ -1,0 +1,17 @@
+## `FogUseSentenceUnits`
+
+Sets whether independent clauses are being counted when calculating Gunning Fog for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+FogUseSentenceUnits(boolean use)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`boolean` use | `true` to count independent clauses when calculating Gunning Fog. |
+
+{{< pagebreak >}}

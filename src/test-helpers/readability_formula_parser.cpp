@@ -588,7 +588,7 @@ static double SentenceCount(const te_expr* context, const double wordType)
     else if (wordType == 3 /*GunningFog*/)
         {
         const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
-        return project->FogUseSentenceUnits() ? project->GetTotalSentenceUnits() :
+        return project->IsFogUsingSentenceUnits() ? project->GetTotalSentenceUnits() :
                                                 project->GetTotalSentences();
         }
     else

@@ -2388,12 +2388,12 @@ class ReadabilityAppOptions
         }
 
     [[nodiscard]]
-    bool FogUseSentenceUnits() const noexcept
+    bool IsFogUsingSentenceUnits() const noexcept
         {
         return m_fogUseSentenceUnits;
         }
 
-    void SetFogUseSentenceUnits(const bool useUnits) noexcept { m_fogUseSentenceUnits = useUnits; }
+    void FogUseSentenceUnits(const bool useUnits) noexcept { m_fogUseSentenceUnits = useUnits; }
 
     [[nodiscard]]
     FleschNumeralSyllabize GetFleschNumeralSyllabizeMethod() const noexcept

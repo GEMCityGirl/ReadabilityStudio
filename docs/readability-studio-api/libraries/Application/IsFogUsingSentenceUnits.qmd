@@ -1,0 +1,17 @@
+## `IsFogUsingSentenceUnits`
+
+Returns whether to count independent clauses when calculating Gunning Fog for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsFogUsingSentenceUnits()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

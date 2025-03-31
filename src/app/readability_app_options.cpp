@@ -3052,8 +3052,8 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         fogOptionsNode->FirstChildElement(XML_USE_SENTENCE_UNITS.data());
                     if (useUnits)
                         {
-                        SetFogUseSentenceUnits(int_to_bool(useUnits->ToElement()->IntAttribute(
-                            XML_VALUE.data(), bool_to_int(FogUseSentenceUnits()))));
+                        FogUseSentenceUnits(int_to_bool(useUnits->ToElement()->IntAttribute(
+                            XML_VALUE.data(), bool_to_int(IsFogUsingSentenceUnits()))));
                         }
                     }
 
@@ -4642,7 +4642,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     // Gunning fog options
     auto fogOptions = doc.NewElement(XML_GUNNING_FOG_OPTIONS.data());
     auto useUnits = doc.NewElement(XML_USE_SENTENCE_UNITS.data());
-    useUnits->SetAttribute(XML_VALUE.data(), bool_to_int(FogUseSentenceUnits()));
+    useUnits->SetAttribute(XML_VALUE.data(), bool_to_int(IsFogUsingSentenceUnits()));
     fogOptions->InsertEndChild(useUnits);
     readabilityTestSection->InsertEndChild(fogOptions);
     // HJ options

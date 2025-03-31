@@ -2062,7 +2062,7 @@ void ToolsOptionsDlg::SaveOptions()
             }
         if (IsPropertyAvailable(m_readabilityTestsPropertyGrid, GetCountIndependentClausesLabel()))
             {
-            m_readabilityProjectDoc->SetFogUseSentenceUnits(
+            m_readabilityProjectDoc->FogUseSentenceUnits(
                 m_readabilityTestsPropertyGrid->GetPropertyValueAsBool(
                     GetCountIndependentClausesLabel()));
             }
@@ -2482,7 +2482,7 @@ void ToolsOptionsDlg::SaveOptions()
             }
         if (IsPropertyAvailable(m_readabilityTestsPropertyGrid, GetCountIndependentClausesLabel()))
             {
-            wxGetApp().GetAppOptions().SetFogUseSentenceUnits(
+            wxGetApp().GetAppOptions().FogUseSentenceUnits(
                 m_readabilityTestsPropertyGrid->GetPropertyValueAsBool(
                     GetCountIndependentClausesLabel()));
             }
@@ -3907,8 +3907,8 @@ void ToolsOptionsDlg::CreateControls()
 
             m_readabilityTestsPropertyGrid->Append(new wxBoolProperty(
                 GetCountIndependentClausesLabel(), wxPG_LABEL,
-                (m_readabilityProjectDoc ? m_readabilityProjectDoc->FogUseSentenceUnits() :
-                                           wxGetApp().GetAppOptions().FogUseSentenceUnits())));
+                (m_readabilityProjectDoc ? m_readabilityProjectDoc->IsFogUsingSentenceUnits() :
+                                           wxGetApp().GetAppOptions().IsFogUsingSentenceUnits())));
             m_readabilityTestsPropertyGrid->SetPropertyAttribute(GetCountIndependentClausesLabel(),
                                                                  wxPG_BOOL_USE_CHECKBOX, true);
             m_readabilityTestsPropertyGrid->SetPropertyHelpString(

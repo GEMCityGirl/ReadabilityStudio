@@ -4421,6 +4421,8 @@ couse's	course's	3
 couses	courses	3		
 coutner	counter	3		
 coutners	counters	3		
+coverarage	coverage	3		
+coverarage's	coverage's	3		
 coverd	covered	3		
 coverted	converted	3		
 cozen	cheat	0		
@@ -5324,6 +5326,11 @@ disinvesting	divesting	3
 disinvests	divests	3		
 disiplined	disciplined	3		
 disk overs	disk over, discovers	3		
+dislay	display	3		
+dislay's	display's	3		
+dislayed	displayed	3		
+dislaying	displaying	3		
+dislays	displays	3		
 dismember	take apart	0		
 dismembered	took apart	0		
 dismembering	taking apart	0		
@@ -7907,6 +7914,10 @@ highligher's	highlighter's	3
 highlighers	highlighters	3		
 highlighing	highlighting	3		
 highlightning	highlighting	3		
+highligth	highlight	3		
+highligthed	highlighted	3		
+highligthing	highlighting	3		
+highligths	highlights	3		
 highrer	higher	3		
 highway robbery	absurdly expensive	2		
 higlight	highlight	3		
