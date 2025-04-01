@@ -2,21 +2,6 @@
 
 The 3^rd^ party, open-source libraries included in *Readability Studio* are listed below (along with their respective licenses).
 
-### CyoEncode {-}
-
-Base16, Base32, and Base64 encoding/decoding library.
-
-> Developed by Graham Bull for Cyotec Systems Limited.
->
-> http://www.cyotec.com
->
-> Copyright (c) 2004 by Cyotec Systems Limited. All Rights Reserved.
-> This source code may be used, modified, compiled, duplicated, and/or
-> distributed without restriction provided this copyright notice remains intact.
-> Cyotec Systems Limited and/or its employees cannot be held responsible for any
-> direct or indirect damage or loss of any kind that may result from using this
-> code, and provides no warranty, guarantee, or support.
-
 ### CRC++ {-}
 
 Easy to use and fast C++ CRC library.
@@ -82,30 +67,32 @@ A simple ISO C++ library to parse basic EXIF information from a JPEG file.
 > NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 > EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-### libCurl {-}
+### libexpat {-}
 
-A free and easy-to-use client-side URL transfer library, supporting DICT, FILE, FTP, FTPS, Gopher, HTTP, HTTPS, IMAP, IMAPS, LDAP, LDAPS, POP3, POP3S, RTMP, RTSP, SCP, SFTP, SMTP, SMTPS, Telnet and TFTP.
+This is Expat, a C99 library for parsing XML 1.0 Fourth Edition, started by James Clark in 1997.
+Expat is a stream-oriented XML parser.
 
-> COPYRIGHT AND PERMISSION NOTICE
+> Copyright (c) 1998-2000 Thai Open Source Software Center Ltd and Clark Cooper
+> Copyright (c) 2001-2025 Expat maintainers
 >
-> Copyright (c) 1996 - 2017, Daniel Stenberg, daniel@haxx.se, and many contributors.
+> Permission is hereby granted, free of charge, to any person obtaining
+> a copy of this software and associated documentation files (the
+> "Software"), to deal in the Software without restriction, including
+> without limitation the rights to use, copy, modify, merge, publish,
+> distribute, sublicense, and/or sell copies of the Software, and to
+> permit persons to whom the Software is furnished to do so, subject to
+> the following conditions:
 >
-> All rights reserved.
+> The above copyright notice and this permission notice shall be included
+> in all copies or substantial portions of the Software.
 >
-> Permission to use, copy, modify, and distribute this software for any purpose
-> with or without fee is hereby granted, provided that the above copyright
-> notice and this permission notice appear in all copies.
->
-> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-> INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
-> PARTICULAR PURPOSE AND NONINFRINGEMENT OF THIRD PARTY RIGHTS. IN NO EVENT SHALL
-> THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-> WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-> CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
->
-> Except as contained in this notice, the name of a copyright holder shall not
-> be used in advertising or otherwise to promote the sale, use or other dealings
-> in this Software without prior written authorization of the copyright holder.
+> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+> EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+> MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+> IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+> CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+> TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+> SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ### libjpeg {-}
 
@@ -433,45 +420,6 @@ A set of C functions (a library) that support the manipulation of TIFF image fil
 > LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE 
 > OF THIS SOFTWARE.
 
-### Lily of the Valley {-}
-
-Library for converting various file formats to plain text.
-
-> Copyright (c) 2020, Oleander Software, Ltd.
->
-> All rights reserved.
->
-> Redistribution and use in source and binary forms, with
-> or without modification, are permitted provided that the
-> following conditions are met:
->
-> - Redistributions of source code must retain the above
->   copyright notice, this list of conditions and the
->   following disclaimer.
->
-> - Redistributions in binary form must reproduce th
->   above copyright notice, this list of conditions
->   and the following disclaimer in the documentation
->   and/or other materials provided with the distribution.
->
-> - Neither the name of Oleander Software nor the names
->   of its contributors may be used to endorse or promote
->   products derived from this software without specific
->   prior written permission.
->
-> THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
-> CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
-> INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-> MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
-> IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
-> FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-> CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-> SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
-> OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
-> WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-> (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
-> USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
 ### Lua {-}
 
 A powerful, efficient, lightweight, embeddable scripting language.
@@ -521,6 +469,28 @@ Correct commonly misspelled English words... quickly.
 > OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 > SOFTWARE.
 
+### nanosvg {-}
+
+NanoSVG is a simple stupid single-header-file SVG parse. The output of the parser is a list of cubic bezier shapes.
+
+> Copyright (c) 2013-14 Mikko Mononen memon@inside.org
+>
+> This software is provided 'as-is', without any express or implied
+> warranty.  In no event will the authors be held liable for any damages
+> arising from the use of this software.
+>
+> Permission is granted to anyone to use this software for any purpose,
+> including commercial applications, and to alter it and redistribute it
+> freely, subject to the following restrictions:
+>
+> 1. The origin of this software must not be misrepresented; you must not
+> claim that you wrote the original software. If you use this software
+> in a product, an acknowledgment in the product documentation would be
+> appreciated but is not required.
+> 2. Altered source versions must be plainly marked as such, and must not be
+> misrepresented as being the original software.
+> 3. This notice may not be removed or altered from any source distribution.
+
 ### Oleander Stemming Library {-}
 
 Library for stemming words down to their root words.
@@ -560,6 +530,36 @@ Library for stemming words down to their root words.
 > (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
 > USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+### PCRE2 {-}
+
+PCRE2 is a library of functions to support regular expressions whose syntax and semantics
+are as close as possible to those of the Perl 5 language.
+
+> THE "BSD" LICENCE
+
+> Redistribution and use in source and binary forms, with or without modification,
+> are permitted provided that the following conditions are met:
+>
+>   Redistributions of source code must retain the above copyright notices, this list of
+>   conditions and the following disclaimer.
+>
+>   Redistributions in binary form must reproduce the above copyright notices, this list of
+>   conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+>
+>   Neither the name of the University of Cambridge nor the names of any contributors may be used to endorse
+>   or promote products derived from this software without specific prior written permission.
+>
+> THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+> INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+> IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
+> OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+> OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+> (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+> EXEMPTION FOR BINARY LIBRARY-LIKE PACKAGES
+> The second condition in the BSD licence (covering binary redistributions) does not apply all the way down a chain of software.
+> If binary package A includes PCRE2, it must respect the condition, but if package B is software that includes package A,
+> the condition is not imposed on package B unless it uses PCRE2 independently.
+
 ### Scintilla {-}
 
 A free source code editing component.
@@ -583,7 +583,7 @@ A free source code editing component.
 > TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE 
 > OR PERFORMANCE OF THIS SOFTWARE. 
 
-### TINYEXPR {-}
+### TinyExpr {-}
 
 Tiny recursive descent parser and evaluation engine in C.
 
@@ -607,11 +607,11 @@ Tiny recursive descent parser and evaluation engine in C.
 > misrepresented as being the original software.
 > 3. This notice may not be removed or altered from any source distribution.
 
-### TINYEXPR++ {-}
+### TinyExpr++ {-}
 
-Tiny recursive descent parser and evaluation engine in C++ (based on TINYEXPR).
+Tiny recursive descent parser and evaluation engine in C++ (based on TinyExpr).
 
-> Copyright (c) 2020 Blake Madden
+> Copyright (c) 2020-2025 Blake Madden
 > 
 > This software is provided 'as-is', without any express or implied
 > warranty. In no event will the authors be held liable for any damages
@@ -1241,6 +1241,45 @@ A stable and powerful open source framework for developing native cross-platform
 >   Ty Coon, President of Vice
 >
 > That's all there is to it!
+
+### Wisteria-Dataviz {-}
+
+Wisteria Dataviz is data visualization library based on wxWidgets.
+
+> Copyright (c) 2025, Blake Madden.
+>
+> All rights reserved.
+>
+> Redistribution and use in source and binary forms, with
+> or without modification, are permitted provided that the
+> following conditions are met:
+>
+>  - Redistributions of source code must retain the above
+>    copyright notice, this list of conditions and the
+>    following disclaimer.
+>
+>  - Redistributions in binary form must reproduce th
+>    above copyright notice, this list of conditions
+>    and the following disclaimer in the documentation
+>    and/or other materials provided with the distribution.
+>
+>  - Neither Blake Madden nor the names
+>    of its contributors may be used to endorse or promote
+>    products derived from this software without specific
+>    prior written permission.
+>
+> THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+> CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+> INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+> MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+> IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
+> FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+> CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+> SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+> OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+> WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+> (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
+> USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ### zlib {-}
 

@@ -3,8 +3,8 @@
 # Purpose:     Build script for Readability Studio
 # Author:      Blake Madden
 # Created:     2023-07-31
-# Copyright:   (c) 2006-2024 Blake Madden
-# License:     3-Clause BSD license
+# Copyright:   (c) 2025 Blake Madden
+# License:     Eclipse Public License 2.0
 #############################################################################
 
 # Build targets:

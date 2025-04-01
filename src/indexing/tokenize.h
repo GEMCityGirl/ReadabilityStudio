@@ -1,13 +1,16 @@
-/** @addtogroup Indexing
-    @brief Classes for parsing and indexing text.
-    @date 2005-2023
-    @copyright Oleander Software, Ltd.
-    @author Blake Madden
-    @details This program is free software; you can redistribute it and/or modify
-     it under the terms of the 3-Clause BSD License.
+/********************************************************************************
+ * Copyright (c) 2005-2025 Blake Madden
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *   Blake Madden - initial implementation
+ ********************************************************************************/
 
-     SPDX-License-Identifier: BSD-3-Clause
-* @{*/
 #ifndef __TOKENIZE_H__
 #define __TOKENIZE_H__
 
@@ -933,7 +936,5 @@ namespace tokenize
         const word_list* m_known_spellings{ nullptr };
         };
     }
-
-/** @}*/
 
 #endif //__TOKENIZE_H__

@@ -1,13 +1,15 @@
-/** @addtogroup Readability
-    @brief Classes for readability tests.
-    @date 2005-2023
-    @copyright Oleander Software, Ltd.
-    @author Blake Madden
-    @details This program is free software; you can redistribute it and/or modify
-     it under the terms of the 3-Clause BSD License.
-
-     SPDX-License-Identifier: BSD-3-Clause
-* @{*/
+/********************************************************************************
+ * Copyright (c) 2005-2025 Blake Madden
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *   Blake Madden - initial implementation
+ ********************************************************************************/
 
 #ifndef __READABILITY_PROJECT_TEST_H__
 #define __READABILITY_PROJECT_TEST_H__
@@ -25,7 +27,8 @@ namespace readability
     ///     so that numerous copies of a test can point to a constant readability_test;
     ///     this way the same strings inside of readability_test objects don't get
     ///     copied thousand of times.
-    template <typename datasetT> class readability_project_test
+    template<typename datasetT>
+    class readability_project_test
         {
       public:
         /// @private
@@ -52,16 +55,14 @@ namespace readability
 
         /// @private
         [[nodiscard]]
-        bool
-        operator<(const readability_test& that) const noexcept
+        bool operator<(const readability_test& that) const noexcept
             {
             return (get_test() < that);
             }
 
         /// @private
         [[nodiscard]]
-        bool
-        operator<(const readability_project_test& that) const noexcept
+        bool operator<(const readability_project_test& that) const noexcept
             {
             return (get_test() < that.get_test());
             }
@@ -69,16 +70,14 @@ namespace readability
         /// @brief Compares (case insensitively) a string value to the test's ID,
         ///     short name, and long name.
         [[nodiscard]]
-        bool
-        operator==(const readability_test& that) const noexcept
+        bool operator==(const readability_test& that) const noexcept
             {
             return (get_test() == that);
             }
 
         /// @private
         [[nodiscard]]
-        bool
-        operator==(const readability_project_test& that) const noexcept
+        bool operator==(const readability_project_test& that) const noexcept
             {
             return (get_test() == that.get_test());
             }
@@ -154,7 +153,5 @@ namespace readability
         std::shared_ptr<datasetT> m_cloze_scores{ nullptr };
         };
     } // namespace readability
-
-/** @} */
 
 #endif // __READABILITY_PROJECT_TEST_H__

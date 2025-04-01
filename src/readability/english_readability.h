@@ -1,13 +1,15 @@
-/** @addtogroup Readability
-    @brief Classes for readability tests.
-    @date 2005-2023
-    @copyright Oleander Software, Ltd.
-    @author Blake Madden
-    @details This program is free software; you can redistribute it and/or modify
-     it under the terms of the 3-Clause BSD License.
-
-     SPDX-License-Identifier: BSD-3-Clause
-* @{*/
+/********************************************************************************
+ * Copyright (c) 2005-2025 Blake Madden
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *   Blake Madden - initial implementation
+ ********************************************************************************/
 
 #ifndef __ENGLISH_READABILITY_H__
 #define __ENGLISH_READABILITY_H__
@@ -18,13 +20,13 @@
 /** Readability Analysis
 
     General U.S. Grade level information:
-    - 18+ Reading level of a Ph.D. (federal tax returns, insurance policies, legal documents) 
-    - 16 Bachelor's Degree (technical writing for industry, military, or research) 
-    - 13+ First year of college (usually ignored and/or misunderstood by most adults) 
-    - 12 High School graduates (Harper's Magazine, The Atlantic Monthly) 
-    - 11 High School Juniors (Time, The Wall Street Journal) 
-    - 10 High School Sophomores (Reader's Digest, Saturday Evening Post) 
-    - 7 Seventh grade (most of the Bible) 
+    - 18+ Reading level of a Ph.D. (federal tax returns, insurance policies, legal documents)
+    - 16 Bachelor's Degree (technical writing for industry, military, or research)
+    - 13+ First year of college (usually ignored and/or misunderstood by most adults)
+    - 12 High School graduates (Harper's Magazine, The Atlantic Monthly)
+    - 11 High School Juniors (Time, The Wall Street Journal)
+    - 10 High School Sophomores (Reader's Digest, Saturday Evening Post)
+    - 7 Seventh grade (most of the Bible)
     - 6 Sixth grade (too simple to hold the interest of most adults)*/
 namespace readability
     {
@@ -76,22 +78,25 @@ namespace readability
         (words of one to three letters, excluding punctuation).
         @param[out] difficulty_level The calculated difficulty level.
         @param number_of_words The number of words in the sample.
-        @param number_of_mini_words The number of miniwords (words containing 1, 2, or 3 characters).
+        @param number_of_mini_words The number of miniwords
+            (words containing 1, 2, or 3 characters).
         @param number_of_sentences The number of sentences.
         @returns The calculated index.*/
     [[nodiscard]]
-    inline size_t eflaw(eflaw_difficulty& difficulty_level,
-                        const uint32_t number_of_words,
-                        const uint32_t number_of_mini_words,
-                        const uint32_t number_of_sentences)
+    inline size_t eflaw(eflaw_difficulty& difficulty_level, const uint32_t number_of_words,
+                        const uint32_t number_of_mini_words, const uint32_t number_of_sentences)
         {
         NON_UNIT_TEST_ASSERT(number_of_mini_words <= number_of_words);
         if (number_of_sentences == 0)
-            { throw std::domain_error("invalid sentence count."); }
-        size_t result = static_cast<size_t>(round_to_integer(
-            safe_divide<double>((static_cast<double>(number_of_words)+number_of_mini_words), number_of_sentences)) );
+            {
+            throw std::domain_error("invalid sentence count.");
+            }
+        size_t result = static_cast<size_t>(round_to_integer(safe_divide<double>(
+            (static_cast<double>(number_of_words) + number_of_mini_words), number_of_sentences)));
         if (result == 0)
-            { result = 1; }
+            {
+            result = 1;
+            }
 
         difficulty_level = eflaw_index_to_difficulty(result);
 
@@ -100,16 +105,19 @@ namespace readability
 
     /** Danielson Bryan #1, which is a grade scale test.
         It seems that this test's purpose was nothing more than a chance to demonstrate
-        a faster (non-syllable counting) and word parsing algorithm for UNIVAC computers. 
+        a faster (non-syllable counting) and word parsing algorithm for UNIVAC computers.
         In the original article, the statistic of "number of spaces between words" is suggested,
-        rather than explicitly saying "number of words". Logically, this should be the number of words minus 1.
-        However, in the article's example, number of spaces between words is the same as number of words
-        (even when there are dashes connecting words). It is therefore assumed that the authors' intention
+        rather than explicitly saying "number of words". Logically, this should be the
+        number of words minus 1.
+        However, in the article's example, number of spaces between words is the same as
+        number of words (even when there are dashes connecting words).
+        It is therefore assumed that the authors' intention
         was to count the number of words using the following logic:
             1. Count the number of spaces.
             2. Treat dashes connecting words as spaces.
             3. Add 1, to take into account how there would be one less space than words.
-        For this reason, the "number of words" statistic is a more accurate description of what the authors intended.
+        For this reason, the "number of words" statistic is a more accurate description
+        of what the authors intended.
         @param number_of_spaces The number of spaces between words (i.e., number of words).
         @param number_of_characters_and_punctuation The number of characters and punctuation.
         @param number_of_sentences The number of sentences.
@@ -120,10 +128,14 @@ namespace readability
                                     const uint32_t number_of_sentences)
         {
         if (number_of_spaces == 0 || number_of_sentences == 0)
-            { throw std::domain_error("invalid word/sentence count."); }
-        const double CPSp = safe_divide<double>(number_of_characters_and_punctuation, number_of_spaces);
-        const double CPSt = safe_divide<double>(number_of_characters_and_punctuation, number_of_sentences);
-        return truncate_k12_plus_grade(1.0364*CPSp + .0194*CPSt - .6059);
+            {
+            throw std::domain_error("invalid word/sentence count.");
+            }
+        const double CPSp =
+            safe_divide<double>(number_of_characters_and_punctuation, number_of_spaces);
+        const double CPSt =
+            safe_divide<double>(number_of_characters_and_punctuation, number_of_sentences);
+        return truncate_k12_plus_grade(1.0364 * CPSp + .0194 * CPSt - .6059);
         }
 
     /** Danielson Bryan #2, which is a Flesch Reading Ease derivative.
@@ -138,15 +150,20 @@ namespace readability
                                     const uint32_t number_of_sentences)
         {
         if (number_of_spaces == 0 || number_of_sentences == 0)
-            { throw std::domain_error("invalid word/sentence count."); }
-        const double CPSp = safe_divide<double>(number_of_characters_and_punctuation, number_of_spaces);
-        const double CPSt = safe_divide<double>(number_of_characters_and_punctuation, number_of_sentences);
-        return std::clamp<double>(131.059-10.364*CPSp-.194*CPSt, 0, 100);
+            {
+            throw std::domain_error("invalid word/sentence count.");
+            }
+        const double CPSp =
+            safe_divide<double>(number_of_characters_and_punctuation, number_of_spaces);
+        const double CPSt =
+            safe_divide<double>(number_of_characters_and_punctuation, number_of_sentences);
+        return std::clamp<double>(131.059 - 10.364 * CPSp - .194 * CPSt, 0, 100);
         }
 
     /** Easy Listening Formula, or ELF.
         This test is designed for "listenability" and is meant for radio and television broadcasts.
-        Rather than penalizing for long sentences, it penalizes high concentrations of complex words.
+        Rather than penalizing for long sentences, it penalizes high concentrations
+            of complex words.
         @param number_of_words The number of words in the sample.
         @param number_of_syllables The number of syllables.
         @param number_of_sentences The number of sentences.
@@ -155,17 +172,19 @@ namespace readability
          ELF scores (tally the number of syllables over one for each word) and then get the average
          of all the sentences' ELFs.
          A shorthand way to do this is simply to subtract the total number of words from
-         the total number of syllables (which is basically the same as subtracting one syllable from each word),
-         and then divide by the number of sentences.*/
+         the total number of syllables (which is basically the same as subtracting one syllable
+         from each word), and then divide by the number of sentences.*/
     [[nodiscard]]
     inline double easy_listening_formula(const uint32_t number_of_words,
                                          const uint32_t number_of_syllables,
                                          const uint32_t number_of_sentences)
         {
         if (number_of_sentences == 0)
-            { throw std::domain_error("invalid sentence count."); }
+            {
+            throw std::domain_error("invalid sentence count.");
+            }
         return truncate_k12_plus_grade(
-            safe_divide<double>((number_of_syllables-number_of_words),number_of_sentences));
+            safe_divide<double>((number_of_syllables - number_of_words), number_of_sentences));
         }
 
     /** Automated Readability Index test, also known as "ARI" or "auto."
@@ -184,10 +203,12 @@ namespace readability
                                               const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
-            { throw std::domain_error("invalid word/sentence count."); }
+            {
+            throw std::domain_error("invalid word/sentence count.");
+            }
         return truncate_k12_plus_grade(
-            (4.71*(safe_divide<double>(number_of_characters, number_of_words)))+
-            (0.5*(safe_divide<double>(number_of_words, number_of_sentences))) - 21.43);
+            (4.71 * (safe_divide<double>(number_of_characters, number_of_words))) +
+            (0.5 * (safe_divide<double>(number_of_words, number_of_sentences))) - 21.43);
         }
 
     /** New Automated Readability Index test.
@@ -202,11 +223,12 @@ namespace readability
                                                   const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
-            { throw std::domain_error("invalid word/sentence count."); }
+            {
+            throw std::domain_error("invalid word/sentence count.");
+            }
         return truncate_k12_plus_grade(
             (5.84 * safe_divide<double>(number_of_characters, number_of_words)) +
-            (0.37 * safe_divide<double>(number_of_words, number_of_sentences)) -
-            26.01);
+            (0.37 * safe_divide<double>(number_of_words, number_of_sentences)) - 26.01);
         }
 
     /** New Automated Readability Index (Simplified) test.
@@ -221,11 +243,12 @@ namespace readability
                                                          const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
-            { throw std::domain_error("invalid word/sentence count."); }
+            {
+            throw std::domain_error("invalid word/sentence count.");
+            }
         return truncate_k12_plus_grade(
             (6 * safe_divide<double>(number_of_characters, number_of_words)) +
-            (0.4 * safe_divide<double>(number_of_words, number_of_sentences)) -
-            27.4);
+            (0.4 * safe_divide<double>(number_of_words, number_of_sentences)) - 27.4);
         }
 
     /** PSK variation of original Dale-Chall formula created in 1958.
@@ -240,10 +263,13 @@ namespace readability
                                                  const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
-            { throw std::domain_error("Not enough sentences in formula."); }
+            {
+            throw std::domain_error("Not enough sentences in formula.");
+            }
         const double ASL = safe_divide<double>(number_of_words, number_of_sentences);
-        const double percentOfNonDCWords = safe_divide<double>(number_of_unfamiliar_words, number_of_words)*100;
-        return truncate_k12_plus_grade((3.2672 + (.0596*ASL) + (.1155*percentOfNonDCWords)) );
+        const double percentOfNonDCWords =
+            safe_divide<double>(number_of_unfamiliar_words, number_of_words) * 100;
+        return truncate_k12_plus_grade((3.2672 + (.0596 * ASL) + (.1155 * percentOfNonDCWords)));
         }
 
     /** @brief Dale-Chall table look-up function from the 1995 book.
@@ -253,20 +279,22 @@ namespace readability
         @param number_of_unfamiliar_words The number of unfamiliar words.
         @param number_of_sentences The number of sentences.
         @todo Add predicted Cloze score to the results.*/
-    inline void new_dale_chall(size_t& grade_range_begin,
-                               size_t& grade_range_end,
-                               size_t number_of_words,
-                               size_t number_of_unfamiliar_words,
+    inline void new_dale_chall(size_t& grade_range_begin, size_t& grade_range_end,
+                               size_t number_of_words, size_t number_of_unfamiliar_words,
                                size_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
-            { throw std::domain_error("Not enough sentences or words in formula."); }
+            {
+            throw std::domain_error("Not enough sentences or words in formula.");
+            }
 
         // sample is valid and reasonable, so see what the grade levels are
         const double sampleSizeNormalizationFactor =
-            DALE_CHALL_SAMPLE_SIZE_COEFFICIENT/static_cast<double>(number_of_words);
-        number_of_sentences = static_cast<size_t>(number_of_sentences*sampleSizeNormalizationFactor);
-        number_of_unfamiliar_words = static_cast<size_t>(number_of_unfamiliar_words*sampleSizeNormalizationFactor);
+            DALE_CHALL_SAMPLE_SIZE_COEFFICIENT / static_cast<double>(number_of_words);
+        number_of_sentences =
+            static_cast<size_t>(number_of_sentences * sampleSizeNormalizationFactor);
+        number_of_unfamiliar_words =
+            static_cast<size_t>(number_of_unfamiliar_words * sampleSizeNormalizationFactor);
 
         /* even after normalization, the text may have too many sentences or
            unfamiliar words--in that case consider it to be very high level reading*/
@@ -282,704 +310,1489 @@ namespace readability
             grade_range_begin = grade_range_end = 16;
             break;
         case 2:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 2) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 3, 8) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 9, 15) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 2))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 3, 8))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 9, 15))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16; }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 3:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 2) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 3, 8) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 9, 14) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 15, 21) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 22, 27) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 2))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 3, 8))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 9, 14))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 15, 21))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 22, 27))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16; }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 4:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 2) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 3, 8) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 9, 14) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 15, 20) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 21, 27) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 28, 33) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 2))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 3, 8))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 9, 14))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 15, 20))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 21, 27))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 28, 33))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16; }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 5:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 1) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 2, 6) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 7, 11) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 12, 18) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 19, 24) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 25, 30) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 31, 37) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 1))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 2, 6))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 7, 11))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 12, 18))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 19, 24))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 25, 30))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 31, 37))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 6:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 3) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 4, 8) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 9, 14) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 15, 20) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 21, 26) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 27, 33) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 34, 39) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 3))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 4, 8))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 9, 14))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 15, 20))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 21, 26))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 27, 33))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 34, 39))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 7:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 1) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 2, 5) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 6, 10) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 11, 15) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 16, 22) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 23, 28) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 29, 34) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 35, 41) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 1))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 2, 5))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 6, 10))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 11, 15))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 16, 22))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 23, 28))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 29, 34))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 35, 41))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 8:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 2) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 3, 6) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 7, 11) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 12, 17) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 18, 23) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 24, 29) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 30, 36) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 37, 42) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 2))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 3, 6))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 7, 11))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 12, 17))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 18, 23))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 24, 29))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 30, 36))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 37, 42))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 9:
             if (number_of_unfamiliar_words == 0)
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 1, 3) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 4, 7) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 8, 12) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 13, 18) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 19, 24) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 25, 30) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 31, 37) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 38, 43) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 1, 3))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 4, 7))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 8, 12))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 13, 18))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 19, 24))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 25, 30))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 31, 37))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 38, 43))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 10:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 1) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 2, 4) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 5, 8) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 9, 13) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 14, 19) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 20, 25) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 26, 31) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 32, 37) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 38, 44) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 1))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 2, 4))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 5, 8))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 9, 13))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 14, 19))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 20, 25))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 26, 31))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 32, 37))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 38, 44))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 11:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 1) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 2, 4) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 5, 9) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 10, 14) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 15, 19) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 20, 26) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 27, 32) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 33, 38) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 39, 44) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 1))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 2, 4))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 5, 9))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 10, 14))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 15, 19))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 20, 26))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 27, 32))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 33, 38))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 39, 44))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 12:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 2) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 3, 5) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 6, 9) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 10, 14) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 15, 20) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 21, 26) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 27, 32) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 33, 39) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 40, 44) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 2))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 3, 5))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 6, 9))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 10, 14))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 15, 20))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 21, 26))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 27, 32))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 33, 39))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 40, 44))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 13:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 2) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 3, 5) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 6, 10) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 11, 15) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 16, 20) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 21, 27) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 28, 33) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 34, 39) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 40, 45) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 2))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 3, 5))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 6, 10))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 11, 15))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 16, 20))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 21, 27))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 28, 33))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 34, 39))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 40, 45))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 14:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 3) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 4, 6) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 7, 10) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 11, 15) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 16, 21) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 22, 27) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 28, 33) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 34, 40) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 41, 46) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 3))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 4, 6))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 7, 10))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 11, 15))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 16, 21))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 22, 27))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 28, 33))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 34, 40))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 41, 46))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 15:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 3) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 4, 6) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 7, 10) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 11, 16) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 17, 21) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 22, 27) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 28, 34) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 35, 40) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 41, 46) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 3))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 4, 6))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 7, 10))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 11, 16))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 17, 21))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 22, 27))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 28, 34))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 35, 40))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 41, 46))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 16:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 3) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 4, 7) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 8, 11) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 12, 16) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 17, 21) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 22, 28) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 29, 34) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 35, 40) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 41, 47) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 3))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 4, 7))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 8, 11))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 12, 16))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 17, 21))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 22, 28))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 29, 34))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 35, 40))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 41, 47))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 17:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 4) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 5, 7) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 8, 11) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 12, 16) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 17, 22) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 23, 28) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 29, 34) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 35, 40) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 41, 47) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 4))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 5, 7))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 8, 11))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 12, 16))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 17, 22))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 23, 28))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 29, 34))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 35, 40))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 41, 47))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 18:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 4) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 5, 7) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 8, 11) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 12, 17) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 18, 22) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 23, 28) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 29, 34) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 35, 41) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 42, 47) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 4))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 5, 7))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 8, 11))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 12, 17))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 18, 22))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 23, 28))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 29, 34))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 35, 41))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 42, 47))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 19:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 4) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 5, 7) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 8, 11) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 12, 17) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 18, 22) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 23, 28) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 29, 35) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 36, 41) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 42, 47) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 4))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 5, 7))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 8, 11))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 12, 17))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 18, 22))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 23, 28))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 29, 35))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 36, 41))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 42, 47))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 20:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 4) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 5, 7) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 8, 12) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 13, 17) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 18, 22) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 23, 28) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 29, 35) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 36, 41) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 42, 47) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 4))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 5, 7))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 8, 12))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 13, 17))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 18, 22))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 23, 28))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 29, 35))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 36, 41))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 42, 47))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 21:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 4) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 5, 8) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 9, 12) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 13, 17) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 18, 22) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 23, 29) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 30, 35) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 36, 41) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 42, 48) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 4))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 5, 8))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 9, 12))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 13, 17))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 18, 22))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 23, 29))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 30, 35))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 36, 41))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 42, 48))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 22:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 5) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 6, 8) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 9, 12) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 13, 17) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 18, 23) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 24, 29) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 30, 35) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 36, 41) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 42, 48) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 5))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 6, 8))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 9, 12))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 13, 17))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 18, 23))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 24, 29))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 30, 35))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 36, 41))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 42, 48))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 23:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 5) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 6, 8) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 9, 12) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 13, 17) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 18, 23) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 24, 29) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 30, 35) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 36, 42) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 43, 48) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 5))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 6, 8))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 9, 12))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 13, 17))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 18, 23))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 24, 29))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 30, 35))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 36, 42))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 43, 48))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16; }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 24:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 5) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 6, 8) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 9, 12) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 13, 18) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 19, 23) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 24, 29) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 30, 35) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 36, 42) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 43, 48) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 5))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 6, 8))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 9, 12))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 13, 18))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 19, 23))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 24, 29))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 30, 35))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 36, 42))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 43, 48))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 25:
             [[fallthrough]];
         case 26:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 5) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 6, 8) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 9, 12) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 13, 18) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 19, 23) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 24, 29) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 30, 36) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 37, 42) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 43, 48) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 5))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 6, 8))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 9, 12))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 13, 18))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 19, 23))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 24, 29))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 30, 36))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 37, 42))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 43, 48))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 27:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 5) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 6, 8) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 9, 13) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 14, 18) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 19, 23) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 24, 29) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 30, 36) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 37, 42) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 43, 48) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 5))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 6, 8))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 9, 13))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 14, 18))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 19, 23))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 24, 29))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 30, 36))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 37, 42))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 43, 48))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 28:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 5) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 6, 8) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 9, 13) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 14, 18) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 19, 23) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 24, 30) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 31, 36) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 37, 42) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 43, 48) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 5))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 6, 8))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 9, 13))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 14, 18))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 19, 23))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 24, 30))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 31, 36))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 37, 42))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 43, 48))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 29:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 5) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 6, 9) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 10, 13) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 14, 18) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 19, 23) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 24, 30) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 31, 36) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 37, 42) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 43, 49) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 5))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 6, 9))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 10, 13))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 14, 18))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 19, 23))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 24, 30))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 31, 36))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 37, 42))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 43, 49))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 30:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 5) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 6, 9) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 10, 13) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 14, 18) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 19, 23) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 24, 30) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 31, 36) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 37, 42) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 43, 49) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 5))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 6, 9))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 10, 13))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 14, 18))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 19, 23))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 24, 30))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 31, 36))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 37, 42))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 43, 49))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 31:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 6) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 7, 9) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 10, 13) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 14, 18) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 19, 23) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 24, 30) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 31, 36) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 37, 42) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 43, 49) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 6))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 7, 9))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 10, 13))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 14, 18))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 19, 23))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 24, 30))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 31, 36))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 37, 42))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 43, 49))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 32:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 6) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 7, 9) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 10, 13) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 14, 18) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 19, 24) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 25, 30) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 31, 36) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 37, 42) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 43, 49) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 6))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 7, 9))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 10, 13))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 14, 18))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 19, 24))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 25, 30))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 31, 36))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 37, 42))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 43, 49))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 33:
             [[fallthrough]];
         case 34:
             [[fallthrough]];
         case 35:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 6) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 7, 9) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 10, 13) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 14, 18) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 19, 24) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 25, 30) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 31, 36) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 37, 43) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 44, 49) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 6))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 7, 9))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 10, 13))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 14, 18))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 19, 24))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 25, 30))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 31, 36))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 37, 43))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 44, 49))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 36:
             [[fallthrough]];
         case 37:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 6) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 7, 9) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 10, 13) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 14, 19) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 20, 24) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 25, 30) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 31, 36) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 37, 43) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 44, 49) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 6))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 7, 9))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 10, 13))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 14, 19))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 20, 24))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 25, 30))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 31, 36))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 37, 43))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 44, 49))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 38:
             [[fallthrough]];
         case 39:
             [[fallthrough]];
         case 40:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 6) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 7, 9) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 10, 13) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 14, 19) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 20, 24) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 25, 30) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 31, 37) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 38, 43) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 44, 49) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 6))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 7, 9))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 10, 13))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 14, 19))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 20, 24))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 25, 30))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 31, 37))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 38, 43))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 44, 49))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 41:
             [[fallthrough]];
@@ -988,50 +1801,100 @@ namespace readability
         case 43:
             [[fallthrough]];
         case 44:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 6) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 7, 9) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 10, 14) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 15, 19) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 20, 24) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 25, 30) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 31, 37) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 38, 43) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 44, 49) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 6))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 7, 9))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 10, 14))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 15, 19))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 20, 24))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 25, 30))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 31, 37))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 38, 43))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 44, 49))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 45:
             [[fallthrough]];
         case 46:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 6) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 7, 9) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 10, 14) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 15, 19) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 20, 24) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 25, 31) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 32, 37) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 38, 43) )
-                { grade_range_begin = 11; grade_range_end = 12; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 44, 49) )
-                { grade_range_begin = 13; grade_range_end = 15; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 6))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 7, 9))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 10, 14))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 15, 19))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 20, 24))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 25, 31))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 32, 37))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 38, 43))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 44, 49))
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             else
-                { grade_range_begin = grade_range_end = 16;    }
+                {
+                grade_range_begin = grade_range_end = 16;
+                }
             break;
         case 47:
             [[fallthrough]];
@@ -1042,53 +1905,81 @@ namespace readability
         case 50:
             [[fallthrough]];
         default:
-            if (is_within<size_t>(number_of_unfamiliar_words, 0, 6) )
-                { grade_range_begin = grade_range_end = 1; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 7, 10) )
-                { grade_range_begin = grade_range_end = 2; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 11, 14) )
-                { grade_range_begin = grade_range_end = 3; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 15, 19) )
-                { grade_range_begin = grade_range_end = 4; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 20, 24) )
-                { grade_range_begin = 5; grade_range_end = 6; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 25, 31) )
-                { grade_range_begin = 7; grade_range_end = 8; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 32, 37) )
-                { grade_range_begin = 9; grade_range_end = 10; }
-            else if (is_within<size_t>(number_of_unfamiliar_words, 38, 43) )
-                { grade_range_begin = 11; grade_range_end = 12; }
+            if (is_within<size_t>(number_of_unfamiliar_words, 0, 6))
+                {
+                grade_range_begin = grade_range_end = 1;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 7, 10))
+                {
+                grade_range_begin = grade_range_end = 2;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 11, 14))
+                {
+                grade_range_begin = grade_range_end = 3;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 15, 19))
+                {
+                grade_range_begin = grade_range_end = 4;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 20, 24))
+                {
+                grade_range_begin = 5;
+                grade_range_end = 6;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 25, 31))
+                {
+                grade_range_begin = 7;
+                grade_range_end = 8;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 32, 37))
+                {
+                grade_range_begin = 9;
+                grade_range_end = 10;
+                }
+            else if (is_within<size_t>(number_of_unfamiliar_words, 38, 43))
+                {
+                grade_range_begin = 11;
+                grade_range_end = 12;
+                }
             else
-                { grade_range_begin = 13; grade_range_end = 15; }
+                {
+                grade_range_begin = 13;
+                grade_range_end = 15;
+                }
             break;
             };
         }
 
-    /** @brief Spache (Revised, 1974) test. Designed for primary-age materials (based on 2nd grade material).
+    /** @brief Spache (Revised, 1974) test. Designed for primary-age materials
+            (based on 2nd grade material).
         @param number_of_words The number of words in the sample.
         @param number_of_unfamiliar_words The number of words not on the Spache familiar word list.
         @param number_of_sentences The number of sentences.
         @returns The calculated grade level.
         @note Spache recommends not counting the same unfamiliar word twice if they occur
-         in subsequent 100-word samples. Based on this, it's recommended to pass in a unique count
-         of unfamiliar words, instead of a raw count.*/
+            in subsequent 100-word samples. Based on this, it's recommended to pass in a unique
+            count of unfamiliar words, instead of a raw count.*/
     [[nodiscard]]
-    inline double spache(const uint32_t number_of_words,
-                         const uint32_t number_of_unfamiliar_words,
+    inline double spache(const uint32_t number_of_words, const uint32_t number_of_unfamiliar_words,
                          const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
-            { throw std::domain_error("Not enough sentences in formula."); }
-        const double sampleSizeNormalizationFactor = safe_divide<double>(100,number_of_words);
+            {
+            throw std::domain_error("Not enough sentences in formula.");
+            }
+        const double sampleSizeNormalizationFactor = safe_divide<double>(100, number_of_words);
 
-        const double ASL = safe_divide<double>(number_of_words,number_of_sentences);
-        const double gradeLevel = (.121*ASL)+(.082*(number_of_unfamiliar_words*sampleSizeNormalizationFactor))+.659;
+        const double ASL = safe_divide<double>(number_of_words, number_of_sentences);
+        const double gradeLevel =
+            (.121 * ASL) + (.082 * (number_of_unfamiliar_words * sampleSizeNormalizationFactor)) +
+            .659;
         return truncate_k12_plus_grade(gradeLevel);
         }
 
-    /** @brief U.S. grade level and predicted close score test, meant for secondary ages (4th grade) to college level.
-        @details The Coleman-Liau formula is based on text ranging from .4 to 16.3. This formula usually
-            yields the lowest grade when applied to technical documents.
+    /** @brief U.S. grade level and predicted close score test,
+            meant for secondary ages (4th grade) to college level.
+        @details The Coleman-Liau formula is based on text ranging from .4 to 16.3.
+            This formula usually yields the lowest grade when applied to technical documents.
             This test is historically applied to 100 word samplings.
         @param number_of_words The number of words in the sample.
         @param number_of_letters The number of letters.
@@ -1097,30 +1988,34 @@ namespace readability
             (in fractional format, multiply by 100 to get the cloze %).
         @returns The calculated grade level.*/
     [[nodiscard]]
-    inline double coleman_liau(const size_t number_of_words,
-                               const size_t number_of_letters,
-                               const size_t number_of_sentences,
-                               double& predicted_cloze_score)
+    inline double coleman_liau(const size_t number_of_words, const size_t number_of_letters,
+                               const size_t number_of_sentences, double& predicted_cloze_score)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
-            { throw std::domain_error("invalid word/sentence count."); }
+            {
+            throw std::domain_error("invalid word/sentence count.");
+            }
 
-        const double sampleSizeCoefficient = COLEMAN_LIAU_WORD_COEFFICIENT/static_cast<double>(number_of_words);
+        const double sampleSizeCoefficient =
+            COLEMAN_LIAU_WORD_COEFFICIENT / static_cast<double>(number_of_words);
 
-        double normalizedLettersVal = number_of_letters*sampleSizeCoefficient;
-        double normalizedSentenceVal = number_of_sentences*sampleSizeCoefficient;
+        double normalizedLettersVal = number_of_letters * sampleSizeCoefficient;
+        double normalizedSentenceVal = number_of_sentences * sampleSizeCoefficient;
 
-        predicted_cloze_score = (141.8401 - (.214590*normalizedLettersVal)) + (1.079812*normalizedSentenceVal);
+        predicted_cloze_score =
+            (141.8401 - (.214590 * normalizedLettersVal)) + (1.079812 * normalizedSentenceVal);
         // convert to fractional percentage
         predicted_cloze_score =
             std::clamp<double>(safe_divide<double>(predicted_cloze_score, 100), -1.0, 1.0);
-        const double gradeLevel = (-27.4004*predicted_cloze_score) + 23.06395;
+        const double gradeLevel = (-27.4004 * predicted_cloze_score) + 23.06395;
 
         return truncate_k12_plus_grade(gradeLevel);
         }
 
-    /** @brief Bormuth Grade Placement (35) Machine Computation Formula for Estimating Passage Readability.
-         This formula uses the test passages that had ~35% cloze scores as its training data.
+    /** @brief Bormuth Grade Placement (35) Machine Computation Formula for
+            Estimating Passage Readability.
+        @details This formula uses the test passages that had ~35% cloze scores
+            as its training data.
         @param number_of_words The number of words in the sample.
         @param number_of_familiar_dale_chall_words The number of familiar DC words.
         @param number_of_sentences The number of sentences.
@@ -1133,12 +2028,16 @@ namespace readability
                                              const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
-            { throw std::domain_error("invalid word or sentence count"); }
+            {
+            throw std::domain_error("invalid word or sentence count");
+            }
         return truncate_k12_plus_grade(
-            3.761864 + (1.053153*(safe_divide<double>(number_of_characters,number_of_words))) -
-            2.138595*std::pow(safe_divide<double>(number_of_familiar_dale_chall_words,number_of_words),3) +
-            .152832*(safe_divide<double>(number_of_words,number_of_sentences)) -
-            .002077*std::pow(safe_divide<double>(number_of_words,number_of_sentences),2) );
+            3.761864 + (1.053153 * (safe_divide<double>(number_of_characters, number_of_words))) -
+            2.138595 *
+                std::pow(safe_divide<double>(number_of_familiar_dale_chall_words, number_of_words),
+                         3) +
+            .152832 * (safe_divide<double>(number_of_words, number_of_sentences)) -
+            .002077 * std::pow(safe_divide<double>(number_of_words, number_of_sentences), 2));
         }
 
     /** @brief Bormuth Cloze Mean Machine Computation Formula for Estimating Passage Readability.
@@ -1154,14 +2053,17 @@ namespace readability
                                      const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
-            { throw std::domain_error("invalid word or sentence count"); }
+            {
+            throw std::domain_error("invalid word or sentence count");
+            }
         return std::clamp<double>(
-            .886593 -
-            .083640*(safe_divide<double>(number_of_characters,number_of_words)) +
-            .161911*std::pow(safe_divide<double>(number_of_familiar_dale_chall_words,number_of_words), 3) -
-            .021401*(safe_divide<double>(number_of_words,number_of_sentences)) +
-            .000577*std::pow(safe_divide<double>(number_of_words,number_of_sentences), 2) -
-            .000005*std::pow(safe_divide<double>(number_of_words,number_of_sentences), 3),
+            .886593 - .083640 * (safe_divide<double>(number_of_characters, number_of_words)) +
+                .161911 * std::pow(safe_divide<double>(number_of_familiar_dale_chall_words,
+                                                       number_of_words),
+                                   3) -
+                .021401 * (safe_divide<double>(number_of_words, number_of_sentences)) +
+                .000577 * std::pow(safe_divide<double>(number_of_words, number_of_sentences), 2) -
+                .000005 * std::pow(safe_divide<double>(number_of_words, number_of_sentences), 3),
             -1.0, 1.0);
         }
 
@@ -1173,15 +2075,19 @@ namespace readability
         @returns The difficulty level (0 = easy, 100 = very difficult).*/
     [[nodiscard]]
     inline double degrees_of_reading_power(const uint32_t number_of_words,
-                                const uint32_t number_of_familiar_dale_chall_words,
-                                const uint32_t number_of_characters,
-                                const uint32_t number_of_sentences)
+                                           const uint32_t number_of_familiar_dale_chall_words,
+                                           const uint32_t number_of_characters,
+                                           const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
-            { throw std::domain_error("invalid word or sentence count"); }
-        const double clozeScore = bormuth_cloze_mean(number_of_words, number_of_familiar_dale_chall_words,
-            number_of_characters, number_of_sentences) * 100;
-        return std::clamp<double>(100-clozeScore, 0, 100);
+            {
+            throw std::domain_error("invalid word or sentence count");
+            }
+        const double clozeScore =
+            bormuth_cloze_mean(number_of_words, number_of_familiar_dale_chall_words,
+                               number_of_characters, number_of_sentences) *
+            100;
+        return std::clamp<double>(100 - clozeScore, 0, 100);
         }
 
     /** @brief Helper function for converting DRP to grade (Carver)
@@ -1192,89 +2098,170 @@ namespace readability
         {
         double gradeLevel = 0;
         if (dprScore <= 39)
-            { gradeLevel = 1.5; }
+            {
+            gradeLevel = 1.5;
+            }
         else if (dprScore == 40)
-            { gradeLevel = 1.6; }
+            {
+            gradeLevel = 1.6;
+            }
         else if (dprScore == 41)
-            { gradeLevel = 1.7; }
+            {
+            gradeLevel = 1.7;
+            }
         else if (dprScore == 42)
-            { gradeLevel = 1.7; }
+            {
+            gradeLevel = 1.7;
+            }
         else if (dprScore == 43)
-            { gradeLevel = 1.8; }
+            {
+            gradeLevel = 1.8;
+            }
         else if (dprScore == 44)
-            { gradeLevel = 2.0; }
+            {
+            gradeLevel = 2.0;
+            }
         else if (dprScore == 45)
-            { gradeLevel = 2.1; }
+            {
+            gradeLevel = 2.1;
+            }
         else if (dprScore == 46)
-            { gradeLevel = 2.3; }
+            {
+            gradeLevel = 2.3;
+            }
         else if (dprScore == 47)
-            { gradeLevel = 2.5; }
+            {
+            gradeLevel = 2.5;
+            }
         else if (dprScore == 48)
-            { gradeLevel = 2.8; }
+            {
+            gradeLevel = 2.8;
+            }
         else if (dprScore == 49)
-            { gradeLevel = 3.0; }
+            {
+            gradeLevel = 3.0;
+            }
         else if (dprScore == 50)
-            { gradeLevel = 3.3; }
+            {
+            gradeLevel = 3.3;
+            }
         else if (dprScore == 51)
-            { gradeLevel = 3.6; }
+            {
+            gradeLevel = 3.6;
+            }
         else if (dprScore == 52)
-            { gradeLevel = 3.9; }
+            {
+            gradeLevel = 3.9;
+            }
         else if (dprScore == 53)
-            { gradeLevel = 4.3; }
+            {
+            gradeLevel = 4.3;
+            }
         else if (dprScore == 54)
-            { gradeLevel = 4.7; }
+            {
+            gradeLevel = 4.7;
+            }
         else if (dprScore == 55)
-            { gradeLevel = 5.1; }
+            {
+            gradeLevel = 5.1;
+            }
         else if (dprScore == 56)
-            { gradeLevel = 5.5; }
+            {
+            gradeLevel = 5.5;
+            }
         else if (dprScore == 57)
-            { gradeLevel = 5.9; }
+            {
+            gradeLevel = 5.9;
+            }
         else if (dprScore == 58)
-            { gradeLevel = 6.3; }
+            {
+            gradeLevel = 6.3;
+            }
         else if (dprScore == 59)
-            { gradeLevel = 6.8; }
+            {
+            gradeLevel = 6.8;
+            }
         else if (dprScore == 60)
-            { gradeLevel = 7.3; }
+            {
+            gradeLevel = 7.3;
+            }
         else if (dprScore == 61)
-            { gradeLevel = 7.8; }
+            {
+            gradeLevel = 7.8;
+            }
         else if (dprScore == 62)
-            { gradeLevel = 8.3; }
+            {
+            gradeLevel = 8.3;
+            }
         else if (dprScore == 63)
-            { gradeLevel = 8.8; }
+            {
+            gradeLevel = 8.8;
+            }
         else if (dprScore == 64)
-            { gradeLevel = 9.4; }
+            {
+            gradeLevel = 9.4;
+            }
         else if (dprScore == 65)
-            { gradeLevel = 10.0; }
+            {
+            gradeLevel = 10.0;
+            }
         else if (dprScore == 66)
-            { gradeLevel = 10.6; }
+            {
+            gradeLevel = 10.6;
+            }
         else if (dprScore == 67)
-            { gradeLevel = 11.2; }
+            {
+            gradeLevel = 11.2;
+            }
         else if (dprScore == 68)
-            { gradeLevel = 11.8; }
+            {
+            gradeLevel = 11.8;
+            }
         else if (dprScore == 69)
-            { gradeLevel = 12.5; }
+            {
+            gradeLevel = 12.5;
+            }
         else if (dprScore == 70)
-            { gradeLevel = 13.1; }
+            {
+            gradeLevel = 13.1;
+            }
         else if (dprScore == 71)
-            { gradeLevel = 13.7; }
+            {
+            gradeLevel = 13.7;
+            }
         else if (dprScore == 72)
-            { gradeLevel = 14.4; }
+            {
+            gradeLevel = 14.4;
+            }
         else if (dprScore == 73)
-            { gradeLevel = 15.0; }
+            {
+            gradeLevel = 15.0;
+            }
         else if (dprScore == 74)
-            { gradeLevel = 15.7; }
+            {
+            gradeLevel = 15.7;
+            }
         else if (dprScore == 75)
-            { gradeLevel = 16.4; }
+            {
+            gradeLevel = 16.4;
+            }
         else if (dprScore == 76)
-            { gradeLevel = 17.1; }
+            {
+            gradeLevel = 17.1;
+            }
         else if (dprScore == 77)
-            { gradeLevel = 17.9; }
+            {
+            gradeLevel = 17.9;
+            }
         else if (dprScore >= 78)
-            { gradeLevel = 18.0; }
+            {
+            gradeLevel = 18.0;
+            }
         return gradeLevel;
         }
 
-    /** @brief Degrees of Reading Power GE, Carver's grade level conversion for DPR difficulty scores.
+    /** @brief Degrees of Reading Power GE, Carver's grade level conversion
+            for DPR difficulty scores.
         @param number_of_words The number of words in the sample.
         @param number_of_familiar_dale_chall_words The number of familiar DC words.
         @param number_of_characters The number of characters.
@@ -1287,17 +2274,19 @@ namespace readability
                                               const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
-            { throw std::domain_error("invalid word or sentence count"); }
-        const size_t dprScore =
-            static_cast<size_t>(
-                round_to_integer(degrees_of_reading_power(number_of_words, number_of_familiar_dale_chall_words,
-            number_of_characters, number_of_sentences)));
+            {
+            throw std::domain_error("invalid word or sentence count");
+            }
+        const size_t dprScore = static_cast<size_t>(round_to_integer(
+            degrees_of_reading_power(number_of_words, number_of_familiar_dale_chall_words,
+                                     number_of_characters, number_of_sentences)));
         return std::clamp<double>(degrees_of_reading_power_to_ge(dprScore), 0, 18);
         }
 
-    /** SMOG modified to use a lower comprehension rate and to work better with primary-age materials.
-        This test differs from the original SMOG:
-            * It uses the UNIQUE count of hard words ("one should count a polysyllabic word only once").
+    /** SMOG modified to use a lower comprehension rate and to work better with primary-age
+            materials. This test differs from the original SMOG:
+            * It uses the UNIQUE count of hard words
+                ("one should count a polysyllabic word only once").
             * It uses a smaller constant, and that constant is only added to higher scores.
             * The score is rounded, rather than floored.
         The test's article doesn't specify how to handle numbers, so it is best to do what
@@ -1310,12 +2299,13 @@ namespace readability
                                 const uint32_t number_of_sentences)
         {
         if (number_of_sentences == 0)
-            { throw std::domain_error("invalid sentence count."); }
+            {
+            throw std::domain_error("invalid sentence count.");
+            }
         const double sentenceNormalizationFactor = safe_divide<double>(30, number_of_sentences);
         const double score = std::clamp<double>(
-            round_to_integer(std::sqrt(number_of_big_words*sentenceNormalizationFactor)),
-            1, 13);
-        return (score <= 3) ? score : score+1;
+            round_to_integer(std::sqrt(number_of_big_words * sentenceNormalizationFactor)), 1, 13);
+        return (score <= 3) ? score : score + 1;
         }
 
     /** Simple Measure of Gobbledygook (McLaughlin), which returns the U.S. grade level.
@@ -1334,43 +2324,50 @@ namespace readability
                                   const uint32_t number_of_sentences)
         {
         if (number_of_sentences == 0)
-            { throw std::domain_error("invalid sentence count."); }
+            {
+            throw std::domain_error("invalid sentence count.");
+            }
         const double sentenceNormalizationFactor = safe_divide<double>(30, number_of_sentences);
         return truncate_k12_plus_grade(
-            std::floor(std::sqrt(number_of_big_words*sentenceNormalizationFactor))+3.0);
+            std::floor(std::sqrt(number_of_big_words * sentenceNormalizationFactor)) + 3.0);
         }
 
-    /** More precise variation of SMOG, which generally returns slightly higher (within one grade level) scores.
+    /** @brief More precise variation of SMOG, which generally returns slightly higher
+            (within one grade level) scores.
         @param number_of_big_words Number of 3+ syllable words from the sample.
         @param number_of_sentences Number of sentences in the sample.
-        @param truncate_score_to_range Whether or not score should be boxed into the 0-19 range. The SOL
-            formula can calculate high (e.g., 25) scores with Spanish
-            (that have to been be converted to the English scale),
+        @param truncate_score_to_range Whether or not score should be boxed into
+            the 0-19 range. The SOL formula can calculate high (e.g., 25) scores
+            with Spanish (that have to been be converted to the English scale),
             so pass in false for situations like that.
         @return U.S. K-12 grade scale value of the document.*/
     [[nodiscard]]
-    inline double smog(const uint32_t number_of_big_words,
-                       const uint32_t number_of_sentences,
+    inline double smog(const uint32_t number_of_big_words, const uint32_t number_of_sentences,
                        const bool truncate_score_to_range = true)
         {
         if (number_of_sentences == 0)
-            { throw std::domain_error("invalid sentence count."); }
+            {
+            throw std::domain_error("invalid sentence count.");
+            }
         const double sentenceNormalizationFactor = safe_divide<double>(30, number_of_sentences);
-        const double score = (1.0430*std::sqrt(number_of_big_words*sentenceNormalizationFactor)) + 3.1291;
+        const double score =
+            (1.0430 * std::sqrt(number_of_big_words * sentenceNormalizationFactor)) + 3.1291;
         return truncate_score_to_range ? truncate_k12_plus_grade(score) : score;
         }
 
     /** @brief Harris-Jacobson Wide Range Readability Formula.
         This test may be used for materials ranging from 1st through
             eighth-reader levels (although is extrapolated to 11th grade).
-        @param number_of_words Total number of words from the sample. Note that numbers and words from
-            tables and lists are excluded. Words from headers and subheaders are included, which differs from
-            the recommendation for other tests.
-        @param number_of_hard_words Number of difficult words, which are words not found on the HJ familiar
-            word list. Proper nouns are considered familiar also. Numbers are simply ignored (neither familiar
-            or unfamiliar) because they are pulled from the overall word count.
-        @param number_of_sentences Number of sentences from the document (excluding tables and lists). Note that
-            headers and subheaders are treated as separate sentences.
+        @param number_of_words Total number of words from the sample. Note that numbers and words
+            from tables and lists are excluded. Words from headers and subheaders are included,
+            which differs from the recommendation for other tests.
+        @param number_of_hard_words Number of difficult words, which are words not found on the
+            HJ familiar word list. Proper nouns are considered familiar also.
+            Numbers are simply ignored (neither familiar or unfamiliar) because they are pulled
+            from the overall word count.
+        @param number_of_sentences Number of sentences from the document
+            (excluding tables and lists).
+            Note that headers and subheaders are treated as separate sentences.
         @returns U.S. K-12 grade scale value of the document.
         @note The grade range for this test is between 1 - 13.3.*/
     [[nodiscard]]
@@ -1379,7 +2376,9 @@ namespace readability
                                   const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
-            { throw std::domain_error("invalid word or sentence count"); }
+            {
+            throw std::domain_error("invalid word or sentence count");
+            }
         // step 1
         double V1 = safe_divide<double>(number_of_hard_words, number_of_words) * 100;
         // step 2
@@ -1391,9 +2390,8 @@ namespace readability
         // step 5
         double predictedRawScore = V1 + V2 + .642;
         // step 6
-        predictedRawScore = std::clamp<double>(
-            round_decimal_place(predictedRawScore, 10),
-            1.1, 8.0);
+        predictedRawScore =
+            std::clamp<double>(round_decimal_place(predictedRawScore, 10), 1.1, 8.0);
         // step 7
         predictedRawScore *= 10; // just so we can switch on this value
         switch (static_cast<int>(predictedRawScore))
@@ -1559,10 +2557,13 @@ namespace readability
                           const uint32_t number_of_single_syllable_words)
         {
         if (number_of_words == 0)
-            { throw std::domain_error("invalid word count."); }
-        const double normalizationFactor = safe_divide<double>(FORCAST_WORD_COEFFICIENT, number_of_words);
-        return truncate_k12_plus_grade(
-            (20 - safe_divide<double>((number_of_single_syllable_words*normalizationFactor), 10)) );
+            {
+            throw std::domain_error("invalid word count.");
+            }
+        const double normalizationFactor =
+            safe_divide<double>(FORCAST_WORD_COEFFICIENT, number_of_words);
+        return truncate_k12_plus_grade((
+            20 - safe_divide<double>((number_of_single_syllable_words * normalizationFactor), 10)));
         }
 
     /** @brief Helper function to determine if a words is "easy" according to Gunning Fog.
@@ -1571,18 +2572,19 @@ namespace readability
         @param syllable_count The number of syllables in the word.
         @returns @c true if words is easy.*/
     [[nodiscard]]
-    inline bool is_easy_gunning_fog_word(const wchar_t* fog_word,
-                                         const size_t length,
+    inline bool is_easy_gunning_fog_word(const wchar_t* fog_word, const size_t length,
                                          const size_t syllable_count)
         {
         assert(fog_word);
         assert(fog_word && std::wcslen(fog_word) >= length);
         if (!fog_word)
-            { return false; }
+            {
+            return false;
+            }
         if (syllable_count >= 3)
             {
-            const wchar_t* dashPos = string_util::strcspn_pointer(fog_word,
-                common_lang_constants::COMPOUND_WORD_SEPARATORS.c_str(),
+            const wchar_t* dashPos = string_util::strcspn_pointer(
+                fog_word, common_lang_constants::COMPOUND_WORD_SEPARATORS.c_str(),
                 common_lang_constants::COMPOUND_WORD_SEPARATORS.length());
             if (dashPos)
                 {
@@ -1590,45 +2592,55 @@ namespace readability
                 const wchar_t* lastPos = fog_word;
                 while (dashPos)
                     {
-                    size_t syllableCount = syllabize(lastPos, dashPos-lastPos);
+                    size_t syllableCount = syllabize(lastPos, dashPos - lastPos);
                     if (syllableCount >= 3)
-                        { return false; }
+                        {
+                        return false;
+                        }
                     lastPos = ++dashPos;
-                    dashPos = string_util::strcspn_pointer(lastPos,
-                        common_lang_constants::COMPOUND_WORD_SEPARATORS.c_str(),
+                    dashPos = string_util::strcspn_pointer(
+                        lastPos, common_lang_constants::COMPOUND_WORD_SEPARATORS.c_str(),
                         common_lang_constants::COMPOUND_WORD_SEPARATORS.length());
                     if (dashPos == nullptr)
                         {
                         // we are at the word after the last hyphen
-                        syllableCount = syllabize(lastPos, (fog_word+length)-lastPos);
+                        syllableCount = syllabize(lastPos, (fog_word + length) - lastPos);
                         if (syllableCount >= 3)
-                            { return false; }
+                            {
+                            return false;
+                            }
                         }
                     }
                 // all parts are less than 3 syllables
                 return true;
                 }
             else if (syllable_count == 3 &&
-                //"ed"
-                (string_util::has_suffix(fog_word, length, L"ded", 3) ||
-                string_util::has_suffix(fog_word, length, L"ted", 3) ||
-                //"es"
-                string_util::has_suffix(fog_word, length, L"shes", 4) ||
-                string_util::has_suffix(fog_word, length, L"ces", 3) ||
-                string_util::has_suffix(fog_word, length, L"ges", 3) ||
-                string_util::has_suffix(fog_word, length, L"xes", 3) ||
-                string_util::has_suffix(fog_word, length, L"zes", 3) ||
-                string_util::has_suffix(fog_word, length, L"ses", 3))  )
-                { return true; }
+                     //"ed"
+                     (string_util::has_suffix(fog_word, length, L"ded", 3) ||
+                      string_util::has_suffix(fog_word, length, L"ted", 3) ||
+                      //"es"
+                      string_util::has_suffix(fog_word, length, L"shes", 4) ||
+                      string_util::has_suffix(fog_word, length, L"ces", 3) ||
+                      string_util::has_suffix(fog_word, length, L"ges", 3) ||
+                      string_util::has_suffix(fog_word, length, L"xes", 3) ||
+                      string_util::has_suffix(fog_word, length, L"zes", 3) ||
+                      string_util::has_suffix(fog_word, length, L"ses", 3)))
+                {
+                return true;
+                }
             else
-                { return false; }
+                {
+                return false;
+                }
             }
         else // syllable count < 3
-            { return true; }
+            {
+            return true;
+            }
         }
 
     /** @brief U.S. grade level test, designed for business publications.
-        (hard words are defined as having 3 or more syllables).
+            (hard words are defined as having 3 or more syllables).
         @code
         GF = .4*(W/S+((SYW/W)*100))
         @endcode
@@ -1637,17 +2649,18 @@ namespace readability
         @param number_of_sentences The number of sentences.
         @returns The calculated grade level.*/
     [[nodiscard]]
-    inline double gunning_fog(const uint32_t number_of_words,
-                              const uint32_t number_of_hard_words,
+    inline double gunning_fog(const uint32_t number_of_words, const uint32_t number_of_hard_words,
                               const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
-            { throw std::domain_error("invalid word or sentence count."); }
+            {
+            throw std::domain_error("invalid word or sentence count.");
+            }
         return truncate_k12_plus_grade(
-                (safe_divide<double>(number_of_words, number_of_sentences) +
-                /* '*100' is to convert to percentage value*/
-                (safe_divide<double>(number_of_hard_words, number_of_words)*100)) *
-                .4);
+            (safe_divide<double>(number_of_words, number_of_sentences) +
+             /* '*100' is to convert to percentage value*/
+             (safe_divide<double>(number_of_hard_words, number_of_words) * 100)) *
+            .4);
         }
 
     /** @brief PSK variation of Fog index.
@@ -1661,35 +2674,38 @@ namespace readability
                                   const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
-            { throw std::domain_error("invalid word or sentence count."); }
-        const double hardWordPercentage = safe_divide<double>(number_of_hard_words,number_of_words)*100;
-        const double ASL = safe_divide<double>(number_of_words,number_of_sentences);
-        const double result = 3.0680 + .0877*ASL + .0984*hardWordPercentage;
+            {
+            throw std::domain_error("invalid word or sentence count.");
+            }
+        const double hardWordPercentage =
+            safe_divide<double>(number_of_hard_words, number_of_words) * 100;
+        const double ASL = safe_divide<double>(number_of_words, number_of_sentences);
+        const double result = 3.0680 + .0877 * ASL + .0984 * hardWordPercentage;
         return truncate_k12_plus_grade(result);
         }
 
-    /** U.S. grade level test, designed for the Navy's technical documents.
-        Part of the Navy Readability Indices.
-        (hard words are defined as having 3 or more syllables).
+    /** @brief U.S. grade level test, designed for the Navy's technical documents.
+        @details Part of the Navy Readability Indices.
+            (hard words are defined as having 3 or more syllables).
         @param number_of_words The number of words in the sample.
         @param number_of_hard_words The number of hard words in the sample.
         @param number_of_sentences The number of sentences in the sample.
         @returns The calculated grade-level scores.*/
     [[nodiscard]]
-    inline double new_fog_count(const uint32_t number_of_words,
-                                const uint32_t number_of_hard_words,
+    inline double new_fog_count(const uint32_t number_of_words, const uint32_t number_of_hard_words,
                                 const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
-            { throw std::domain_error("invalid word count."); }
+            {
+            throw std::domain_error("invalid word count.");
+            }
         // (((easy words + (3 * hard words)) / sentences ) - 3) / 2
         const size_t numberOfEasyWords = number_of_words - number_of_hard_words;
-        return truncate_k12_plus_grade(
-            safe_divide<double>(
-                safe_divide<double>(static_cast<double>(numberOfEasyWords) +
-                    (3*number_of_hard_words), number_of_sentences) - 3,
-                2)
-            );
+        return truncate_k12_plus_grade(safe_divide<double>(
+            safe_divide<double>(static_cast<double>(numberOfEasyWords) + (3 * number_of_hard_words),
+                                number_of_sentences) -
+                3,
+            2));
         }
 
     /** Ease of readability, best meant for school text.
@@ -1704,26 +2720,26 @@ namespace readability
         @param[out] difficulty_level The resulting difficulty level.
         @returns The Flesch Reading Ease index value (0-100).*/
     [[nodiscard]]
-    inline size_t flesch_reading_ease(
-                        const uint32_t number_of_words,
-                        const uint32_t number_of_syllables,
-                        const uint32_t number_of_sentences,
-                        flesch_difficulty& difficulty_level)
+    inline size_t
+    flesch_reading_ease(const uint32_t number_of_words, const uint32_t number_of_syllables,
+                        const uint32_t number_of_sentences, flesch_difficulty& difficulty_level)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
-            { throw std::domain_error("invalid word/sentence count."); }
-        const size_t result = static_cast<size_t>(round_to_integer(
-            std::clamp<double>(
-            206.835 - (1.015 * (safe_divide<double>(number_of_words,number_of_sentences)))
-                - (84.6 * (safe_divide<double>(number_of_syllables,number_of_words))),
-            0,100)) );
+            {
+            throw std::domain_error("invalid word/sentence count.");
+            }
+        const size_t result = static_cast<size_t>(round_to_integer(std::clamp<double>(
+            206.835 - (1.015 * (safe_divide<double>(number_of_words, number_of_sentences))) -
+                (84.6 * (safe_divide<double>(number_of_syllables, number_of_words))),
+            0, 100)));
 
         difficulty_level = flesch_score_to_difficulty_level(result);
 
         return result;
         }
 
-    /** @brief Farr-Jenkins-Paterson test, which is just a simplified version of Flesch Reading Ease.
+    /** @brief Farr-Jenkins-Paterson test, which is just a simplified version of
+            Flesch Reading Ease.
         @param number_of_words The number of words in the sample.
         @param number_of_monosyllabic_words The number of 1-syllable words in the sample.
         @param number_of_sentences The number of sentences in the sample.
@@ -1736,16 +2752,17 @@ namespace readability
                                         flesch_difficulty& difficulty_level)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
-            { throw std::domain_error("invalid word or sentence count."); }
+            {
+            throw std::domain_error("invalid word or sentence count.");
+            }
 
         const double monoSyllabicWordPercentage =
-            safe_divide<double>(number_of_monosyllabic_words,number_of_words)*100;
-        const double ASL = safe_divide<double>(number_of_words,number_of_sentences);
+            safe_divide<double>(number_of_monosyllabic_words, number_of_words) * 100;
+        const double ASL = safe_divide<double>(number_of_words, number_of_sentences);
 
-        const auto result =
-            static_cast<size_t>(std::clamp<double>(
-                round_to_integer(-31.517 - (1.015*ASL) + (1.599*monoSyllabicWordPercentage)),
-                0,100));
+        const auto result = static_cast<size_t>(std::clamp<double>(
+            round_to_integer(-31.517 - (1.015 * ASL) + (1.599 * monoSyllabicWordPercentage)), 0,
+            100));
         difficulty_level = flesch_score_to_difficulty_level(result);
 
         return result;
@@ -1762,12 +2779,14 @@ namespace readability
                                             const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
-            { throw std::domain_error("invalid word or sentence count."); }
+            {
+            throw std::domain_error("invalid word or sentence count.");
+            }
         const double monoSyllabicWordPercentage =
-            safe_divide<double>(number_of_monosyllabic_words,number_of_words)*100;
-        const double ASL = safe_divide<double>(number_of_words,number_of_sentences);
+            safe_divide<double>(number_of_monosyllabic_words, number_of_words) * 100;
+        const double ASL = safe_divide<double>(number_of_words, number_of_sentences);
 
-        return truncate_k12_plus_grade(22.05 + (.387*ASL) - (.307*monoSyllabicWordPercentage));
+        return truncate_k12_plus_grade(22.05 + (.387 * ASL) - (.307 * monoSyllabicWordPercentage));
         }
 
     /** @brief PSK variation of FJP.
@@ -1776,22 +2795,27 @@ namespace readability
         @param number_of_sentences The number of sentences in the sample.
         @returns The calculated grade-level score.*/
     [[nodiscard]]
-    inline double powers_sumner_kearl_farr_jenkins_paterson(const uint32_t number_of_words,
-                                                            const uint32_t number_of_monosyllabic_words,
-                                                            const uint32_t number_of_sentences)
+    inline double
+    powers_sumner_kearl_farr_jenkins_paterson(const uint32_t number_of_words,
+                                              const uint32_t number_of_monosyllabic_words,
+                                              const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
-            { throw std::domain_error("invalid word or sentence count."); }
+            {
+            throw std::domain_error("invalid word or sentence count.");
+            }
         const double monoSyllabicWordPercentage =
-            safe_divide<double>(number_of_monosyllabic_words,number_of_words)*100;
-        const double ASL = safe_divide<double>(number_of_words,number_of_sentences);
+            safe_divide<double>(number_of_monosyllabic_words, number_of_words) * 100;
+        const double ASL = safe_divide<double>(number_of_words, number_of_sentences);
 
-        return truncate_k12_plus_grade(8.4335 + (.0923*ASL) - (.0648*monoSyllabicWordPercentage));
+        return truncate_k12_plus_grade(8.4335 + (.0923 * ASL) -
+                                       (.0648 * monoSyllabicWordPercentage));
         }
 
-    /** @brief Wheeler-Smith is meant for primary-age reading materials and its scores range from Primer-4th grade.
-        @note this test uses polysyllabic words (2+ syllables), rather than 3+ like most other tests.
-         This test also uses units instead of sentences.
+    /** @brief Wheeler-Smith is meant for primary-age reading materials and its scores range
+            from Primer-4th grade.
+        @note this test uses polysyllabic words (2+ syllables), rather than 3+
+            like most other tests. This test also uses units instead of sentences.
         @param number_of_words The number of words in the sample.
         @param number_of_polysyllabic_words The number of 1-syllable words in the sample.
         @param number_of_units The number of units (i.e., sentences) in the sample.
@@ -1800,29 +2824,41 @@ namespace readability
     [[nodiscard]]
     inline size_t wheeler_smith(const uint32_t number_of_words,
                                 const uint32_t number_of_polysyllabic_words,
-                                const uint32_t number_of_units,
-                                double& index_score)
+                                const uint32_t number_of_units, double& index_score)
         {
         if (number_of_words == 0 || number_of_units == 0)
-            { throw std::domain_error("invalid word or unit count."); }
-        const double AUL = safe_divide<double>(number_of_words,number_of_units);
+            {
+            throw std::domain_error("invalid word or unit count.");
+            }
+        const double AUL = safe_divide<double>(number_of_words, number_of_units);
         // should remain in fractal format
-        const double PSP = safe_divide<double>(number_of_polysyllabic_words,number_of_words);
-        index_score = round_decimal_place(std::clamp(AUL*PSP*10, 4.0, 34.5), 10);
+        const double PSP = safe_divide<double>(number_of_polysyllabic_words, number_of_words);
+        index_score = round_decimal_place(std::clamp(AUL * PSP * 10, 4.0, 34.5), 10);
         if (index_score <= 8.0)
-            { return 0; }
+            {
+            return 0;
+            }
         else if (index_score > 8.0 && index_score <= 11.5)
-            { return 1; }
+            {
+            return 1;
+            }
         else if (index_score > 11.5 && index_score <= 19)
-            { return 2; }
+            {
+            return 2;
+            }
         else if (index_score > 19 && index_score <= 26.5)
-            { return 3; }
+            {
+            return 3;
+            }
         else
-            { return 4; }
+            {
+            return 4;
+            }
         }
 
     /** U.S. grade level test, designed for technical documents (e.g., adult training manuals).
-        The Kincaid formula is based on navy training manuals ranging from 5.5 to 16.3 in grade level.
+        The Kincaid formula is based on navy training manuals ranging from
+        5.5 to 16.3 in grade level.
         The score reported by the formula tends to be in the mid-range of the four formulae.
         Because it is based on adult training manuals rather than schoolbook text,
         this formula is most applicable to technical documents.
@@ -1835,39 +2871,39 @@ namespace readability
         @param number_of_sentences The number of sentences in the sample.
         @returns The calculated grade-level score.*/
     [[nodiscard]]
-    inline double flesch_kincaid(
-                        const uint32_t number_of_words,
-                        const uint32_t number_of_syllables,
-                        const uint32_t number_of_sentences)
+    inline double flesch_kincaid(const uint32_t number_of_words, const uint32_t number_of_syllables,
+                                 const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
-            { throw std::domain_error("invalid word/sentence count."); }
+            {
+            throw std::domain_error("invalid word/sentence count.");
+            }
         return truncate_k12_plus_grade(
-              (.39 * safe_divide<double>(number_of_words, number_of_sentences)) +
-              (11.8 * safe_divide<double>(number_of_syllables, number_of_words)) -
-               15.59);
+            (.39 * safe_divide<double>(number_of_words, number_of_sentences)) +
+            (11.8 * safe_divide<double>(number_of_syllables, number_of_words)) - 15.59);
         }
 
-    /** Same as Flesch-Kincaid, but used integers (instead of floating-point numbers) in its equation.
+    /** @brief Same as Flesch-Kincaid, but used integers (instead of floating-point numbers)
+            in its equation.
         @param number_of_words The number of words in the sample.
         @param number_of_syllables The number of syllables in the sample.
         @param number_of_sentences The number of sentences in the sample.
         @returns The calculated grade-level score.*/
     [[nodiscard]]
-    inline double flesch_kincaid_simplified(
-                        const uint32_t number_of_words,
-                        const uint32_t number_of_syllables,
-                        const uint32_t number_of_sentences)
+    inline double flesch_kincaid_simplified(const uint32_t number_of_words,
+                                            const uint32_t number_of_syllables,
+                                            const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
-            { throw std::domain_error("invalid word/sentence count."); }
+            {
+            throw std::domain_error("invalid word/sentence count.");
+            }
         return truncate_k12_plus_grade(
-              (.4 * safe_divide<double>(number_of_words, number_of_sentences)) +
-              (12 * safe_divide<double>(number_of_syllables, number_of_words)) -
-               16);
+            (.4 * safe_divide<double>(number_of_words, number_of_sentences)) +
+            (12 * safe_divide<double>(number_of_syllables, number_of_words)) - 16);
         }
 
-    /** PSK version of Flesch test, which yields a grade level instead of an index.
+    /** @brief PSK version of Flesch test, which yields a grade level instead of an index.
         @param number_of_words The number of words in the sample.
         @param number_of_syllables The number of syllables.
         @param number_of_sentences The number of sentences.
@@ -1878,14 +2914,16 @@ namespace readability
                                              const uint32_t number_of_sentences)
         {
         if (number_of_words == 0 || number_of_sentences == 0)
-            { throw std::domain_error("invalid word/sentence count."); }
-        const double normalizationFactor = safe_divide<double>(PSK_WORD_COEFFICIENT, number_of_words);
+            {
+            throw std::domain_error("invalid word/sentence count.");
+            }
+        const double normalizationFactor =
+            safe_divide<double>(PSK_WORD_COEFFICIENT, number_of_words);
         const double ASL = safe_divide<double>(number_of_words, number_of_sentences);
-        const double psk = (ASL*.0778) + (normalizationFactor*number_of_syllables*.0455) - 2.2029;
+        const double psk =
+            (ASL * .0778) + (normalizationFactor * number_of_syllables * .0455) - 2.2029;
         return truncate_k12_plus_grade(psk);
         }
-    }
-
-/** @} */
+    } // namespace readability
 
 #endif //__ENGLISH_READABILITY_H__

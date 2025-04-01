@@ -1,13 +1,15 @@
-/** @addtogroup Readability
-    @brief Classes for readability tests.
-    @date 2005-2023
-    @copyright Oleander Software, Ltd.
-    @author Blake Madden
-    @details This program is free software; you can redistribute it and/or modify
-     it under the terms of the 3-Clause BSD License.
-
-     SPDX-License-Identifier: BSD-3-Clause
-* @{*/
+/********************************************************************************
+ * Copyright (c) 2005-2025 Blake Madden
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *   Blake Madden - initial implementation
+ ********************************************************************************/
 
 #ifndef __READABILITY_TEST_H__
 #define __READABILITY_TEST_H__
@@ -543,7 +545,5 @@ namespace readability
         std::vector<test_typeT> m_tests;
         };
     }
-
-/** @} */
 
 #endif //__READABILITY_TEST_H__

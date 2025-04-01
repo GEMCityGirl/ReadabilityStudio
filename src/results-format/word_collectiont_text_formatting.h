@@ -1,13 +1,15 @@
-/** @addtogroup Formatting
-    @brief Classes for parsing and formatting results output.
-    @date 2005-2023
-    @copyright Oleander Software, Ltd.
-    @author Blake Madden
-    @details This program is free software; you can redistribute it and/or modify
-     it under the terms of the 3-Clause BSD License.
-
-     SPDX-License-Identifier: BSD-3-Clause
-* @{*/
+/********************************************************************************
+ * Copyright (c) 2005-2025 Blake Madden
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *   Blake Madden - initial implementation
+ ********************************************************************************/
 
 #ifndef __WORD_COLLECTION_TEXT_FORMATTING_H__
 #define __WORD_COLLECTION_TEXT_FORMATTING_H__
@@ -714,7 +716,5 @@ static size_t FormatFilteredWordCollection(const std::shared_ptr<documentT>& the
 
     return text.length();
     }
-
-/** @}*/
 
 #endif // __WORD_COLLECTION_TEXT_FORMATTING_H__

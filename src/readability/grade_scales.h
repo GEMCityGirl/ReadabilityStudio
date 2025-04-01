@@ -1,13 +1,15 @@
-/** @addtogroup Readability
-    @brief Classes for readability tests.
-    @date 2005-2023
-    @copyright Oleander Software, Ltd.
-    @author Blake Madden
-    @details This program is free software; you can redistribute it and/or modify
-     it under the terms of the 3-Clause BSD License.
-
-     SPDX-License-Identifier: BSD-3-Clause
-* @{*/
+/********************************************************************************
+ * Copyright (c) 2005-2025 Blake Madden
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *   Blake Madden - initial implementation
+ ********************************************************************************/
 
 #ifndef __GRADE_SCALES_H__
 #define __GRADE_SCALES_H__
@@ -29,7 +31,8 @@ namespace readability
             - Senior High (Grade 10-12)*/
         k12_plus_alberta,
         /** https://www.bced.gov.bc.ca/reporting/glossary.php#G.\n
-            Yukon has the same curriculum as BC (https://www.education.gov.yk.ca/psb/curriculum.html)
+            Yukon has the same curriculum as BC
+           (https://www.education.gov.yk.ca/psb/curriculum.html)
             - Elementary (Kindergarten-Grade 7)
             - Junior Secondary (Grade 8-10)
             - Senior Secondary (Grade 11-12)*/
@@ -106,21 +109,25 @@ namespace readability
             - Standard college after that.*/
         key_stages_england_wales
         };
+
     /// @brief Bounds checks a K-12 grade within 0-19.
     /// @param value The value to clamp to a K-12 grade level.
     /// @returns @c value, clamped to a K-12 grade level.
     [[nodiscard]]
     constexpr inline double truncate_k12_plus_grade(const double value) noexcept
-        { return std::clamp<double>(value, 0, 19); }
+        {
+        return std::clamp<double>(value, 0, 19);
+        }
+
     /** @brief Splits a K-12 grade score into grade and month.
         @param USGradeScore The grade score to split.
         @param[out] grade The grade from \c USGradeScore.
         @param[out] month The month from \c USGradeScore.*/
-    inline void split_k12_plus_grade_score(double USGradeScore,
-                                           size_t& grade, size_t& month) noexcept
+    inline void split_k12_plus_grade_score(double USGradeScore, size_t& grade,
+                                           size_t& month) noexcept
         {
         // round the value to the nearest single decimal place
-        USGradeScore = safe_divide<double>(round_to_integer(USGradeScore*10), 10);
+        USGradeScore = safe_divide<double>(round_to_integer(USGradeScore * 10), 10);
         // make sure that reasonable values were entered
         USGradeScore = truncate_k12_plus_grade(USGradeScore);
         // split up the number
@@ -129,10 +136,10 @@ namespace readability
         grade = static_cast<size_t>(intpart);
         month = static_cast<size_t>(round_to_integer(fractpart * 10));
         if (month > 9)
-            { month = 9; }
+            {
+            month = 9;
+            }
         }
-    }
-
-/** @} */
+    } // namespace readability
 
 #endif //__GRADE_SCALES_H__

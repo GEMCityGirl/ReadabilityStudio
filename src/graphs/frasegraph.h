@@ -1,13 +1,15 @@
-/** @addtogroup Graphics
-    @brief Graphing classes.
-    @date 2005-2023
-    @copyright Blake Madden
-    @author Blake Madden
-    @details This program is free software; you can redistribute it and/or modify
-     it under the terms of the 3-Clause BSD License.
-
-     SPDX-License-Identifier: BSD-3-Clause
-@{*/
+/********************************************************************************
+ * Copyright (c) 2005-2025 Blake Madden
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *   Blake Madden - initial implementation
+ ********************************************************************************/
 
 #ifndef __FRASE_GRAPH_H__
 #define __FRASE_GRAPH_H__
@@ -98,7 +100,5 @@ namespace Wisteria::Graphs
         std::unique_ptr<FraseGraph> m_backscreen{ nullptr };
         };
     } // namespace Wisteria::Graphs
-
-/** @}*/
 
 #endif //__FRASE_GRAPH_H__

@@ -1,13 +1,15 @@
-/** @addtogroup Web Harvesting
-    @brief Classes for the web scraping and downloading.
-    @date 2005-2023
-    @copyright Oleander Software, Ltd.
-    @author Blake Madden
-    @details This program is free software; you can redistribute it and/or modify
-     it under the terms of the 3-Clause BSD License.
-
-     SPDX-License-Identifier: BSD-3-Clause
-* @{*/
+/********************************************************************************
+ * Copyright (c) 2005-2025 Blake Madden
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *   Blake Madden - initial implementation
+ ********************************************************************************/
 
 #ifndef __FILEPATH_RESOLVER__
 #define __FILEPATH_RESOLVER__
@@ -61,7 +63,5 @@ class FilePathResolver final : public FilePathResolverBase
     ResolvePath(const wxString& path, const bool attemptToConnect,
                 std::initializer_list<wxString> pathsToSearch = std::initializer_list<wxString>{});
     };
-
-    /** @}*/
 
 #endif // __FILEPATH_RESOLVER__

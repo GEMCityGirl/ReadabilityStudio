@@ -1,11 +1,15 @@
-/** @addtogroup Graphics
-    @brief Graphing classes.
-    @date 2005-2020
-    @copyright Oleander Software, Ltd.
-    @author Blake Madden
-    @details This program is free software; you can redistribute it and/or modify
-    it under the terms of the BSD License.
-* @{*/
+/********************************************************************************
+ * Copyright (c) 2005-2025 Blake Madden
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *   Blake Madden - initial implementation
+ ********************************************************************************/
 
 #ifndef __READABILITY_GRAPH_H__
 #define __READABILITY_GRAPH_H__
@@ -226,7 +230,5 @@ namespace Wisteria::Graphs
         const ReadabilityMessages* m_readMessages{ nullptr };
         };
     } // namespace Wisteria::Graphs
-
-/** @}*/
 
 #endif //__READABILITY_GRAPH_H__
