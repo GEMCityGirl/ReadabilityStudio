@@ -158,7 +158,7 @@ bool BatchProjectDoc::OnCreate(const wxString& path, long flags)
             wxArrayString files;
                 {
                 wxWindowDisabler disableAll;
-                wxBusyInfo wait(_(L"Retrieving files..."));
+                wxBusyInfo wait(_(L"Retrieving files..."), GetDocumentWindow());
                 wxDir::GetAllFiles(path, &files, wxString{},
                                    wxDIR_FILES | wxDIR_DIRS);
                 files = FilterFiles(files,

@@ -5428,7 +5428,7 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
     // get the list of files
     wxArrayString files;
         {
-        wxBusyInfo wait(_(L"Retrieving files..."));
+        wxBusyInfo wait(_(L"Retrieving files..."), this);
         wxDir::GetAllFiles(dirDlg.GetPath(), &files, wxString{},
                            dirDlg.IsRecursive() ? wxDIR_FILES | wxDIR_DIRS : wxDIR_FILES);
         files = FilterFiles(files, ExtractExtensionsFromFileFilter(dirDlg.GetSelectedFileFilter()));
@@ -5476,7 +5476,7 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
     fileListDlg.GetListCtrl()->SetForegroundColour(*wxBLACK);
         // catalogue duplicates
         {
-        wxBusyInfo wait(_(L"Loading duplicates..."));
+        wxBusyInfo wait(_(L"Loading duplicates..."), this);
         unsigned long groupId{ 1 };
         bool alternatingColor{ true };
         for (const auto& mapVal : filesMap.get_data())

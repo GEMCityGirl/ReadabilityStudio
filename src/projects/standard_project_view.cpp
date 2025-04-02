@@ -2661,7 +2661,7 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
     BaseProjectProcessingLock processingLock(dynamic_cast<ProjectDoc*>(GetDocument()));
 
     wxBusyCursor bc;
-    wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Exporting project...")));
+    wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Exporting project...")).Parent(GetDocFrame()));
 
     // the results window
     if (includeTestScores)
@@ -3033,7 +3033,7 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
     BaseProjectProcessingLock processingLock(dynamic_cast<ProjectDoc*>(GetDocument()));
 
     wxBusyCursor bc;
-    wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Exporting project...")));
+    wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Exporting project...")).Parent(GetDocFrame()));
 
     lily_of_the_valley::html_encode_text htmlEncode;
     wxString outputText, textWindowStyleSection;

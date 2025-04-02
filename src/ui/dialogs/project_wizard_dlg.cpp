@@ -1113,7 +1113,7 @@ void ProjectWizardDlg::LoadArchive(wxString archivePath /*= wxString{}*/)
     wxGetApp().GetAppOptions().SetBatchGroupMethod(selectLabelTypeDlg.GetSelection());
 
     wxWindowDisabler disableAll;
-    wxBusyInfo wait(_(L"Retrieving files..."));
+    wxBusyInfo wait(_(L"Retrieving files..."), this);
     wxGetApp().SetLastSelectedDocFilter(dlg.GetSelectedFileFilter());
 
     Wisteria::ZipCatalog archive(dlg.GetPath());
@@ -1191,7 +1191,7 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
     lily_of_the_valley::xlsx_extract_text excelExtract{ false };
         {
         wxWindowDisabler disableAll;
-        wxBusyInfo wait(_(L"Loading Excel file..."));
+        wxBusyInfo wait(_(L"Loading Excel file..."), this);
         const std::wstring workbookFileText = archive.ReadTextFile(L"xl/workbook.xml");
         excelExtract.read_worksheet_names(workbookFileText.c_str(), workbookFileText.length());
         // read the string table
@@ -1227,7 +1227,7 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
         lily_of_the_valley::xlsx_extract_text::worksheet wrk;
             {
             wxWindowDisabler disableAll;
-            wxBusyInfo wait(_(L"Loading worksheet..."));
+            wxBusyInfo wait(_(L"Loading worksheet..."), this);
             const std::wstring sheetFile = archive.ReadTextFile(
                 wxString::Format(L"xl/worksheets/sheet%d.xml", workSheetSelections.Item(i) + 1));
             if (sheetFile.length())
@@ -1288,7 +1288,7 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
     if (workSheets.size())
         {
         wxWindowDisabler disableAll;
-        wxBusyInfo wait(_(L"Updating file list..."));
+        wxBusyInfo wait(_(L"Updating file list..."), this);
         // list the cells in the grid
         const size_t currentFileCount = m_fileData->GetItemCount();
         size_t cellCount = 0;
@@ -1802,7 +1802,7 @@ void ProjectWizardDlg::OnAddFolderButtonClick([[maybe_unused]] wxCommandEvent&)
     wxArrayString files;
         {
         wxWindowDisabler disableAll;
-        wxBusyInfo wait(_(L"Retrieving files..."));
+        wxBusyInfo wait(_(L"Retrieving files..."), this);
         SetLastSelectedFolder(dirDlg.GetPath());
         wxGetApp().SetLastSelectedDocFilter(dirDlg.GetSelectedFileFilter());
         wxDir::GetAllFiles(dirDlg.GetPath(), &files, wxString{},

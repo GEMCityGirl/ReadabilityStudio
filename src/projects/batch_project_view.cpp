@@ -1894,19 +1894,26 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
 
     if (!wxFileName::DirExists(filePath.GetPathWithSep() + _DT(L"images")))
         {
-        if (!wxFileName::Mkdir(filePath.GetPathWithSep() + _DT(L"images"), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL) )
-            { return false; }
+        if (!wxFileName::Mkdir(filePath.GetPathWithSep() + _DT(L"images"), wxS_DIR_DEFAULT,
+                               wxPATH_MKDIR_FULL))
+            {
+            return false;
+            }
         }
     // validate the extension
     if (graphExt.empty())
-        { graphExt = L".png"; }
+        {
+        graphExt = L".png";
+        }
     else if (graphExt[0] != L'.')
-        { graphExt.insert(0, L"."); }
+        {
+        graphExt.insert(0, L".");
+        }
 
     BaseProjectProcessingLock processingLock(dynamic_cast<BatchProjectDoc*>(GetDocument()));
 
     wxBusyCursor bc;
-    wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Exporting project...")));
+    wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Exporting project...")).Parent(GetDocFrame()));
 
     lily_of_the_valley::html_encode_text htmlEncode;
     wxString outputText;
