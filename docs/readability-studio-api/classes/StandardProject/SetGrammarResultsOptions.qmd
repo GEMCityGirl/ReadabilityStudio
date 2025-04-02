@@ -45,6 +45,7 @@ cocoaDoc:DelayReloading(true)
 cocoaDoc:AddTest(Test.HarrisJacobson)
 -- show only the test results and the stats summary report,
 -- remove all other results
+cocoaDoc:IncludeScoreSummaryReport(false)
 cocoaDoc:SetSummaryStatsResultsOptions(true, false)
 cocoaDoc:SetGrammarResultsOptions(false, false, false, false, false, false, false,
                                   false, false, false)

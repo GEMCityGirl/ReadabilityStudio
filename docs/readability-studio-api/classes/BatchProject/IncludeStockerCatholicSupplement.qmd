@@ -1,6 +1,6 @@
 ## `IncludeStockerCatholicSupplement`
 
-Sets whether to include additional Catholic words with the Dale-Chall test for new projects.
+Sets whether to include additional Catholic words with the Dale-Chall test.
 
 ### Syntax {-}
 

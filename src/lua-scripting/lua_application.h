@@ -146,6 +146,8 @@ namespace LuaScripting
     int FogUseSentenceUnits(lua_State* L /*boolean use*/); // Sets whether independent clauses are being counted when calculating Gunning Fog for new projects.
     int IncludeStockerCatholicSupplement(lua_State* L /*boolean include*/); // Sets whether to include additional Catholic words with the Dale-Chall test for new projects.
     int /*boolean*/ IsIncludingStockerCatholicSupplement(lua_State* L); // Returns whether additional Catholic words are being included with the Dale-Chall test for new projects.
+    int IncludeScoreSummaryReport(lua_State* L /*boolean include*/); // Sets whether to include the test score summary report for new projects.
+    int /*boolean*/ IsIncludingScoreSummaryReport(lua_State* L); // Returns whether the test score summary report is being included for new projects.
 
     // SUMMARY STATS
     int SetSummaryStatsResultsOptions(lua_State* L /*boolean includeFormattedReport, boolean TabularReport*/); // Sets which results in the summary statistics section should be included for new projects.
@@ -388,6 +390,8 @@ namespace LuaScripting
         { "FogUseSentenceUnits", FogUseSentenceUnits },
         { "IncludeStockerCatholicSupplement", IncludeStockerCatholicSupplement },
         { "IsIncludingStockerCatholicSupplement", IsIncludingStockerCatholicSupplement },
+        { "IncludeScoreSummaryReport", IncludeScoreSummaryReport },
+        { "IsIncludingScoreSummaryReport", IsIncludingScoreSummaryReport },
         { "IncludeExcludedPhraseFirstOccurrence", IncludeExcludedPhraseFirstOccurrence },
         { "IsIncludingExcludedPhraseFirstOccurrence", IsIncludingExcludedPhraseFirstOccurrence },
         { "SetAppendedDocumentFilePath", SetAppendedDocumentFilePath },

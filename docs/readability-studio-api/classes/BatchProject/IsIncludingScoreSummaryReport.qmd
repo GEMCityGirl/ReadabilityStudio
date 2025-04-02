@@ -1,0 +1,17 @@
+## `IsIncludingScoreSummaryReport`
+
+Returns whether the test score summary report is being included.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsIncludingScoreSummaryReport()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

@@ -1,0 +1,17 @@
+## `IncludeScoreSummaryReport`
+
+Sets whether to include the test score summary report for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+IncludeScoreSummaryReport(boolean include)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+| `boolean` include | `true` to include the test score summary report. |
+
+{{< pagebreak >}}

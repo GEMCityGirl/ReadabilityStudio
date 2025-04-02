@@ -1,6 +1,6 @@
 ## `IsIncludingStockerCatholicSupplement`
 
-Returns whether additional Catholic words are being included with the Dale-Chall test for new projects.
+Returns whether additional Catholic words are being included with the Dale-Chall test.
 
 ### Syntax {-}
 

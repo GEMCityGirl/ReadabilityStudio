@@ -1735,7 +1735,7 @@ namespace LuaScripting
             return 0;
             }
 
-        wxGetApp().GetAppOptions().FogUseSentenceUnits(int_to_bool(lua_toboolean(L, 2)));
+        wxGetApp().GetAppOptions().FogUseSentenceUnits(int_to_bool(lua_toboolean(L, 1)));
         return 0;
         }
 
@@ -1748,7 +1748,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().IncludeStockerCatholicSupplement(
-            int_to_bool(lua_toboolean(L, 2)));
+            int_to_bool(lua_toboolean(L, 1)));
         return 0;
         }
 
@@ -1756,6 +1756,25 @@ namespace LuaScripting
     int IsIncludingStockerCatholicSupplement(lua_State* L)
         {
         lua_pushboolean(L, wxGetApp().GetAppOptions().IsIncludingStockerCatholicSupplement());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int IncludeScoreSummaryReport(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().IncludeScoreSummaryReport(int_to_bool(lua_toboolean(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsIncludingScoreSummaryReport(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetAppOptions().IsIncludingScoreSummaryReport());
         return 1;
         }
 
