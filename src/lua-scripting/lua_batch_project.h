@@ -187,6 +187,10 @@ namespace LuaScripting
         int /*boolean*/ IsIncludingStockerCatholicSupplement(lua_State* L); // Returns whether additional Catholic words are being included with the Dale-Chall test.
         int IncludeScoreSummaryReport(lua_State* L /*boolean include*/); // Sets whether to include the test score summary report.
         int /*boolean*/ IsIncludingScoreSummaryReport(lua_State* L); // Returns whether the test score summary report is being included.
+        int SetLongGradeScaleFormat(lua_State* L /*boolean longFormat*/); // Sets whether to display test scores in long format.
+        int /*boolean*/ IsUsingLongGradeScaleFormat(lua_State* L); // Returns whether test scores are being shown in long format.
+        int /*ReadingAgeDisplay*/ GetReadingAgeDisplay(lua_State* L); // Returns the age display for test scores to display.
+        int SetReadingAgeDisplay(lua_State* L /*ReadingAgeDisplay ageFormat*/); // Sets the age display for test scores to display.
 
         // GRAPH OPTIONS
         int SetGraphColorScheme(lua_State* L /*string colorScheme*/); // Sets the graph color scheme.

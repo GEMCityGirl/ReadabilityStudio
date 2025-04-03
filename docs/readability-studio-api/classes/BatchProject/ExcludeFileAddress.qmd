@@ -1,6 +1,6 @@
 ## `ExcludeFileAddress` {#batch-excludefileaddress}
 
-Specifies whether to exclude filepaths and URLs.
+Specifies whether to exclude file paths\index{file paths!excluding} and URLs.
 
 ### Syntax {-}
 
@@ -12,6 +12,6 @@ ExcludeFileAddress(boolean exclude)
 
 **Parameter** | **Description**
 | :-- | :-- |
-`boolean` exclude | `true` to exclude filepaths and URLs.
+| `boolean` exclude | `true` to exclude filepaths and URLs. |
 
 {{< pagebreak >}}

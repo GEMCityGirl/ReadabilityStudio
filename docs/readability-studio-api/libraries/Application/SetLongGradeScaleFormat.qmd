@@ -1,0 +1,17 @@
+## `SetLongGradeScaleFormat`
+
+Sets whether to display test scores in long format for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+SetLongGradeScaleFormat(boolean longFormat)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+|`boolean` longFormat | `true` to display test scores in long format. |
+
+{{< pagebreak >}}

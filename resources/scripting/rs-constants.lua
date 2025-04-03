@@ -367,6 +367,13 @@ NumeralSyllabize =
   SoundOutEachDigit = 1       -- Each digit in the number is sounded out and counted.
   }
 
+-- How to display a reading age.
+ReadingAgeDisplay =
+  {
+  ReadingAgeAsARange = 0,       -- Convert a grade level like 5.6 to "10-11".
+  ReadingAgeRoundToSemester = 1 -- Convert a grade level like 5.6 to "11".
+  }
+
 -- The following values are available for controlling how filepaths in batch project lists are displayed.
 FilePathDisplayMode =
   {

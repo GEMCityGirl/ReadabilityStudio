@@ -1,6 +1,6 @@
 ## `GetActiveStandardProject`
 
-Returns the active standard project.
+Returns the active standard project\index{projects!getting active}.
 
 ### Syntax {-}
 
@@ -15,4 +15,3 @@ Type: [`StandardProject`](#standardproject)
 The active standard project.
 
 {{< pagebreak >}}
-

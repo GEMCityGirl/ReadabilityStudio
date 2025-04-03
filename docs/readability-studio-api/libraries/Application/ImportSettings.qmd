@@ -1,6 +1,6 @@
 ## `ImportSettings`
 
-Imports the specified settings file, which will configure the general options of the program.
+Imports\index{settings!importing} the specified settings file, which will configure the general options of the program.
 
 ### Syntax {-}
 
@@ -12,7 +12,7 @@ boolean ImportSettings(string settingsFileToImport)
 
 **Parameter** | **Description**
 | :-- | :-- |
-`string` settingsFileToImport | The filepath to import the program's settings from.
+| `string` settingsFileToImport | The filepath to import the program's settings from. |
 
 ### Return value {-}
 

@@ -13,7 +13,7 @@ number GetTestId(string testName)
 
 **Parameter** | **Description**
 | :-- | :-- |
-`string` testName | The name of the test.
+| `string` testName | The name of the test. |
 
 ### Return value {-}
 
@@ -21,7 +21,7 @@ Type: `number`
 
 The numeric ID of the test. Will be `-1` if test was not found.
 
-### Example {-}
+### Example\index{examples!retrieving custom test IDs} {-}
 
 ``` {.lua}
 -- Export the report of highlighted unfamiliar words for the

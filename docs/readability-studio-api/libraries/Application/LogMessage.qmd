@@ -1,6 +1,6 @@
 ## `LogMessage`
 
-Sends a message to program's logging system.
+Sends a message\index{log report!sending messages to} to program's logging system.
 
 ### Syntax {-}
 

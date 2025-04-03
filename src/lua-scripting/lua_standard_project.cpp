@@ -860,6 +860,67 @@ namespace LuaScripting
         return 1;
         }
 
+    //-------------------------------------------------------------
+    int StandardProject::SetLongGradeScaleFormat(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->GetReadabilityMessageCatalog().SetLongGradeScaleFormat(
+            int_to_bool(lua_toboolean(L, 2)));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::IsUsingLongGradeScaleFormat(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L, m_project->GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetReadingAgeDisplay(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->GetReadabilityMessageCatalog().SetReadingAgeDisplay(
+            static_cast<ReadabilityMessages::ReadingAgeDisplay>(lua_tonumber(L, 2)));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::GetReadingAgeDisplay(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(
+            L, static_cast<int>(m_project->GetReadabilityMessageCatalog().GetReadingAgeDisplay()));
+        return 1;
+        }
+
     //-------------------------------------------------
     int StandardProject::SetAppendedDocumentFilePath(lua_State* L)
         {
@@ -2353,7 +2414,7 @@ namespace LuaScripting
         lua_pushnumber(L, static_cast<int>(m_project->GetDifficultSentenceLength()));
         return 1;
         }
-    
+
     //-------------------------------------------------------------
     int StandardProject::SetParagraphsParsingMethod(lua_State* L)
         {
@@ -3052,7 +3113,7 @@ namespace LuaScripting
             return 0;
             }
 
-        lua_pushboolean(L,m_project->IsHighlightingDolchConjunctions());
+        lua_pushboolean(L, m_project->IsHighlightingDolchConjunctions());
         return 1;
         }
 
@@ -3081,7 +3142,7 @@ namespace LuaScripting
             return 0;
             }
 
-        lua_pushboolean(L,m_project->IsHighlightingDolchPrepositions());
+        lua_pushboolean(L, m_project->IsHighlightingDolchPrepositions());
         return 1;
         }
 
@@ -3110,7 +3171,7 @@ namespace LuaScripting
             return 0;
             }
 
-        lua_pushboolean(L,m_project->IsHighlightingDolchPronouns());
+        lua_pushboolean(L, m_project->IsHighlightingDolchPronouns());
         return 1;
         }
 
@@ -3139,7 +3200,7 @@ namespace LuaScripting
             return 0;
             }
 
-        lua_pushboolean(L,m_project->IsHighlightingDolchAdverbs());
+        lua_pushboolean(L, m_project->IsHighlightingDolchAdverbs());
         return 1;
         }
 
@@ -3168,7 +3229,7 @@ namespace LuaScripting
             return 0;
             }
 
-        lua_pushboolean(L,m_project->IsHighlightingDolchAdjectives());
+        lua_pushboolean(L, m_project->IsHighlightingDolchAdjectives());
         return 1;
         }
 
@@ -3197,7 +3258,7 @@ namespace LuaScripting
             return 0;
             }
 
-        lua_pushboolean(L,m_project->IsHighlightingDolchVerbs());
+        lua_pushboolean(L, m_project->IsHighlightingDolchVerbs());
         return 1;
         }
 
@@ -3226,7 +3287,7 @@ namespace LuaScripting
             return 0;
             }
 
-        lua_pushboolean(L,m_project->IsHighlightingDolchNouns());
+        lua_pushboolean(L, m_project->IsHighlightingDolchNouns());
         return 1;
         }
 
@@ -4277,6 +4338,10 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, IsIncludingStockerCatholicSupplement),
         LUNA_DECLARE_METHOD(StandardProject, IncludeScoreSummaryReport),
         LUNA_DECLARE_METHOD(StandardProject, IsIncludingScoreSummaryReport),
+        LUNA_DECLARE_METHOD(StandardProject, SetLongGradeScaleFormat),
+        LUNA_DECLARE_METHOD(StandardProject, IsUsingLongGradeScaleFormat),
+        LUNA_DECLARE_METHOD(StandardProject, GetReadingAgeDisplay),
+        LUNA_DECLARE_METHOD(StandardProject, SetReadingAgeDisplay),
         LUNA_DECLARE_METHOD(StandardProject, IncludeExcludedPhraseFirstOccurrence),
         LUNA_DECLARE_METHOD(StandardProject, IsIncludingExcludedPhraseFirstOccurrence),
         LUNA_DECLARE_METHOD(StandardProject, SetAppendedDocumentFilePath),

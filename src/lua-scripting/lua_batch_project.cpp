@@ -626,6 +626,67 @@ namespace LuaScripting
         return 1;
         }
 
+    //-------------------------------------------------------------
+    int BatchProject::SetLongGradeScaleFormat(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->GetReadabilityMessageCatalog().SetLongGradeScaleFormat(
+            int_to_bool(lua_toboolean(L, 2)));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::IsUsingLongGradeScaleFormat(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushboolean(L, m_project->GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::SetReadingAgeDisplay(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->GetReadabilityMessageCatalog().SetReadingAgeDisplay(
+            static_cast<ReadabilityMessages::ReadingAgeDisplay>(lua_tonumber(L, 2)));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::GetReadingAgeDisplay(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(
+            L, static_cast<int>(m_project->GetReadabilityMessageCatalog().GetReadingAgeDisplay()));
+        return 1;
+        }
+
     //-------------------------------------------------
     int BatchProject::SetAppendedDocumentFilePath(lua_State* L)
         {
@@ -3077,6 +3138,10 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(BatchProject, IsIncludingStockerCatholicSupplement),
         LUNA_DECLARE_METHOD(BatchProject, IncludeScoreSummaryReport),
         LUNA_DECLARE_METHOD(BatchProject, IsIncludingScoreSummaryReport),
+        LUNA_DECLARE_METHOD(BatchProject, SetLongGradeScaleFormat),
+        LUNA_DECLARE_METHOD(BatchProject, IsUsingLongGradeScaleFormat),
+        LUNA_DECLARE_METHOD(BatchProject, GetReadingAgeDisplay),
+        LUNA_DECLARE_METHOD(BatchProject, SetReadingAgeDisplay),
         LUNA_DECLARE_METHOD(BatchProject, IncludeExcludedPhraseFirstOccurrence),
         LUNA_DECLARE_METHOD(BatchProject, IsIncludingExcludedPhraseFirstOccurrence),
         LUNA_DECLARE_METHOD(BatchProject, SetAppendedDocumentFilePath),

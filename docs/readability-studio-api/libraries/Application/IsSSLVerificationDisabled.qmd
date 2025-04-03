@@ -1,6 +1,6 @@
 ## `IsSSLVerificationDisabled`
 
-Returns whether SSL verification used by the web harvester is disabled.
+Returns whether SSL verification\index{web harvester!peer verification} used by the web harvester is disabled.
 
 ### Syntax {-}
 
@@ -8,10 +8,8 @@ Returns whether SSL verification used by the web harvester is disabled.
 boolean IsSSLVerificationDisabled()
 ```
 
-
 ### Return value {-}
 
 Type: `boolean`
-
 
 {{< pagebreak >}}

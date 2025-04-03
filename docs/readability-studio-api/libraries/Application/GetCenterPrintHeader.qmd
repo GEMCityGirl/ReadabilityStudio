@@ -1,6 +1,6 @@
 ## `GetCenterPrintHeader`
 
-Returns the center print header.
+Returns the center print header\index{printing!headers \& footers}.
 
 ### Syntax {-}
 
@@ -8,10 +8,8 @@ Returns the center print header.
 string GetCenterPrintHeader()
 ```
 
-
 ### Return value {-}
 
 Type: `string`
-
 
 {{< pagebreak >}}

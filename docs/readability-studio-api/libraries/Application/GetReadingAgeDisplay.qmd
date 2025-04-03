@@ -1,0 +1,17 @@
+## `GetReadingAgeDisplay`
+
+Returns the age display for test scores to display for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+ReadingAgeDisplay GetReadingAgeDisplay()
+```
+
+
+### Return value {-}
+
+Type: [`ReadingAgeDisplay`](#readingagedisplay)
+
+
+{{< pagebreak >}}

@@ -1,6 +1,6 @@
 ## `DisableSSLVerification`
 
-Toggles whether SSL verification used by the web harvester is disabled.
+Toggles whether SSL verification\index{web harvester!peer verification} used by the web harvester is disabled.
 
 ### Syntax {-}
 
@@ -8,12 +8,10 @@ Toggles whether SSL verification used by the web harvester is disabled.
 DisableSSLVerification(bool disable)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`bool` disable | `true` to not use SSL verification. |
-
+| `bool` disable | `true` to not use SSL verification. |
 
 {{< pagebreak >}}

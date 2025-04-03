@@ -1,6 +1,6 @@
 ## `GetCenterPrintFooter`
 
-Returns the center print footer.
+Returns the center print footer\index{printing!headers \& footers}.
 
 ### Syntax {-}
 
@@ -8,10 +8,8 @@ Returns the center print footer.
 string GetCenterPrintFooter()
 ```
 
-
 ### Return value {-}
 
 Type: `string`
-
 
 {{< pagebreak >}}

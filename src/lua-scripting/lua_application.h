@@ -148,6 +148,10 @@ namespace LuaScripting
     int /*boolean*/ IsIncludingStockerCatholicSupplement(lua_State* L); // Returns whether additional Catholic words are being included with the Dale-Chall test for new projects.
     int IncludeScoreSummaryReport(lua_State* L /*boolean include*/); // Sets whether to include the test score summary report for new projects.
     int /*boolean*/ IsIncludingScoreSummaryReport(lua_State* L); // Returns whether the test score summary report is being included for new projects.
+    int SetLongGradeScaleFormat(lua_State* L /*boolean longFormat*/); // Sets whether to display test scores in long format for new projects.
+    int /*boolean*/ IsUsingLongGradeScaleFormat(lua_State* L); // Returns whether test scores are being shown in long format for new projects.
+    int /*ReadingAgeDisplay*/ GetReadingAgeDisplay(lua_State* L); // Returns the age display for test scores to display for new projects.
+    int SetReadingAgeDisplay(lua_State* L /*ReadingAgeDisplay ageFormat*/); // Sets the age display for test scores to display for new projects.
 
     // SUMMARY STATS
     int SetSummaryStatsResultsOptions(lua_State* L /*boolean includeFormattedReport, boolean TabularReport*/); // Sets which results in the summary statistics section should be included for new projects.
@@ -392,6 +396,10 @@ namespace LuaScripting
         { "IsIncludingStockerCatholicSupplement", IsIncludingStockerCatholicSupplement },
         { "IncludeScoreSummaryReport", IncludeScoreSummaryReport },
         { "IsIncludingScoreSummaryReport", IsIncludingScoreSummaryReport },
+        { "SetLongGradeScaleFormat", SetLongGradeScaleFormat },
+        { "IsUsingLongGradeScaleFormat", IsUsingLongGradeScaleFormat },
+        { "GetReadingAgeDisplay", GetReadingAgeDisplay },
+        { "SetReadingAgeDisplay", SetReadingAgeDisplay },
         { "IncludeExcludedPhraseFirstOccurrence", IncludeExcludedPhraseFirstOccurrence },
         { "IsIncludingExcludedPhraseFirstOccurrence", IsIncludingExcludedPhraseFirstOccurrence },
         { "SetAppendedDocumentFilePath", SetAppendedDocumentFilePath },

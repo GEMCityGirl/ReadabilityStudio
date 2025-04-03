@@ -1,6 +1,6 @@
 ## `GetPaperOrientation`
 
-Returns the printer paper orientation.
+Returns the printer paper orientation\index{printing!paper orientation}.
 
 ### Syntax {-}
 
@@ -8,10 +8,8 @@ Returns the printer paper orientation.
 Orientation GetPaperOrientation()
 ```
 
-
 ### Return value {-}
 
 Type: [`Orientation`](#orientation)
-
 
 {{< pagebreak >}}

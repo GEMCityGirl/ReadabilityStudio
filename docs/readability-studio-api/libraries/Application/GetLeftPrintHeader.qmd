@@ -1,6 +1,6 @@
 ## `GetLeftPrintHeader`
 
-Returns the left print header.
+Returns the left print header\index{printing!headers \& footers}.
 
 ### Syntax {-}
 

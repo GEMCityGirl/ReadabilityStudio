@@ -1,0 +1,17 @@
+## `IsUsingLongGradeScaleFormat`
+
+Returns whether test scores are being shown in long format.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsUsingLongGradeScaleFormat()
+```
+
+
+### Return value {-}
+
+Type: `boolean`
+
+
+{{< pagebreak >}}

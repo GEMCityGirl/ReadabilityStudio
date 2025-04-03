@@ -1778,6 +1778,52 @@ namespace LuaScripting
         return 1;
         }
 
+    //-------------------------------------------------------------
+    int SetLongGradeScaleFormat(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().GetReadabilityMessageCatalog().SetLongGradeScaleFormat(
+            int_to_bool(lua_toboolean(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsUsingLongGradeScaleFormat(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp()
+                               .GetAppOptions()
+                               .GetReadabilityMessageCatalog()
+                               .IsUsingLongGradeScaleFormat());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int SetReadingAgeDisplay(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().GetReadabilityMessageCatalog().SetReadingAgeDisplay(
+            static_cast<ReadabilityMessages::ReadingAgeDisplay>(lua_tonumber(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int GetReadingAgeDisplay(lua_State* L)
+        {
+         lua_pushnumber(
+            L,
+            static_cast<int>(
+                wxGetApp().GetAppOptions().GetReadabilityMessageCatalog().GetReadingAgeDisplay()));
+        return 1;
+        }
+
     //-------------------------------------------------
     int GetAppendedDocumentFilePath(lua_State* L)
         {

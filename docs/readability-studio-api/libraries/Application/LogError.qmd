@@ -1,6 +1,6 @@
 ## `LogError`
 
-Sends an error message to program's logging system.
+Sends an error message\index{log report!sending messages to} to program's logging system.
 
 ### Syntax {-}
 
@@ -12,7 +12,7 @@ LogError(string errorMessage)
 
 **Parameter** | **Description**
 | :-- | :-- |
-`string` errorMessage | The error message to log.
+| `string` errorMessage | The error message to log. |
 
 ### See also {-}
 

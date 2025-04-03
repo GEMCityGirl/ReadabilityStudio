@@ -1,6 +1,6 @@
 ## `GetRightPrintHeader`
 
-Returns the right print header.
+Returns the right print header\index{printing!headers \& footers}.
 
 ### Syntax {-}
 
@@ -8,10 +8,8 @@ Returns the right print header.
 string GetRightPrintHeader()
 ```
 
-
 ### Return value {-}
 
 Type: `string`
-
 
 {{< pagebreak >}}

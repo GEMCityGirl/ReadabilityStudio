@@ -1,6 +1,6 @@
 ## `GetLeftPrintFooter`
 
-Returns the left print footer.
+Returns the left print footer\index{printing!headers \& footers}.
 
 ### Syntax {-}
 
@@ -8,10 +8,8 @@ Returns the left print footer.
 string GetLeftPrintFooter()
 ```
 
-
 ### Return value {-}
 
 Type: `string`
-
 
 {{< pagebreak >}}

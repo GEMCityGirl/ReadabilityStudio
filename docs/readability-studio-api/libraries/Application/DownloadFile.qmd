@@ -1,6 +1,6 @@
 ## `DownloadFile`
 
-Downloads a file into the specified folder.
+Downloads a file\index{web harvester!downloading files} into the specified folder.
 
 ### Syntax {-}
 
@@ -13,7 +13,7 @@ DownloadFile(string fileToDownload,
 
 **Parameter** | **Description**
 | :-- | :-- |
-`string` fileToDownload | The file to download.
-`string` folderToDownloadTo | The folder to download the file into.
+| `string` fileToDownload | The file to download. |
+| `string` folderToDownloadTo | The folder to download the file into. |
 
 {{< pagebreak >}}

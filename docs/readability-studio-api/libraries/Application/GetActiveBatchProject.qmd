@@ -1,6 +1,6 @@
 ## `GetActiveBatchProject`
 
-Returns the active batch project.
+Returns the active batch project\index{projects!getting active}.
 
 ### Syntax {-}
 
@@ -15,5 +15,3 @@ Type: [`BatchProject`](#batchproject)
 The active batch project.
 
 {{< pagebreak >}}
-
-

@@ -1,6 +1,6 @@
 ## `IsUsingJavaScriptCookies`
 
-Returns whether the web harvester parses JavaScript for cookies needed by the website.
+Returns whether the web harvester parses JavaScript\index{web harvester!managing cookies} for cookies needed by the website.
 
 ### Syntax {-}
 
@@ -8,10 +8,8 @@ Returns whether the web harvester parses JavaScript for cookies needed by the we
 boolean IsUsingJavaScriptCookies()
 ```
 
-
 ### Return value {-}
 
 Type: `boolean`
-
 
 {{< pagebreak >}}

@@ -1,6 +1,6 @@
 ## `SetUserAgent`
 
-Sets the user agent used when reading or downloading content from websites.
+Sets the user agent\index{web harvester!user agent} used when reading or downloading content from websites.
 
 ### Syntax {-}
 
@@ -8,12 +8,10 @@ Sets the user agent used when reading or downloading content from websites.
 SetUserAgent(string userAgent)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`string` userAgent | The user agent to send to servers when connecting to websites. |
-
+| `string` userAgent | The user agent to send to servers when connecting to websites. |
 
 {{< pagebreak >}}

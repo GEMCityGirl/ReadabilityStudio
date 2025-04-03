@@ -1,6 +1,6 @@
 ## `ExportSettings`
 
-Exports the program's general settings to the specified file.
+Exports\index{settings!exporting} the program's general settings to the specified file.
 
 ### Syntax {-}
 

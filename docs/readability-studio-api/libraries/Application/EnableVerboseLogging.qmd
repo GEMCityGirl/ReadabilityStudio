@@ -1,6 +1,6 @@
 ## `EnableVerboseLogging`
 
-Toggles whether verbose logging is enabled.
+Toggles whether verbose\index{log report!settings} logging is enabled.
 
 ### Syntax {-}
 
@@ -8,12 +8,10 @@ Toggles whether verbose logging is enabled.
 EnableVerboseLogging(bool enable)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`bool` enable | `true` to use verbose logging. |
-
+| `bool` enable | `true` to use verbose logging. |
 
 {{< pagebreak >}}

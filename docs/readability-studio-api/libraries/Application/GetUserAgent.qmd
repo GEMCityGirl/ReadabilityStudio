@@ -1,6 +1,6 @@
 ## `GetUserAgent`
 
-Returns the user agent used when reading or downloading content from websites.
+Returns the user agent\index{web harvester!user agent} used when reading or downloading content from websites.
 
 ### Syntax {-}
 
@@ -8,10 +8,8 @@ Returns the user agent used when reading or downloading content from websites.
 string GetUserAgent()
 ```
 
-
 ### Return value {-}
 
 Type: `string`
-
 
 {{< pagebreak >}}
