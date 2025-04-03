@@ -408,6 +408,7 @@ LuaEditorDlg::LuaEditorDlg(
 
             m_toolbar->EnableTool(XRCID("ID_RUN"), true);
             m_toolbar->EnableTool(XRCID("ID_STOP"), false);
+            m_toolbar->Refresh();
 
             if (errorMessage.length())
                 {
@@ -471,6 +472,7 @@ LuaEditorDlg::LuaEditorDlg(
         {
             m_toolbar->EnableTool(XRCID("ID_RUN"), true);
             m_toolbar->EnableTool(XRCID("ID_STOP"), false);
+            m_toolbar->Refresh();
             LuaInterpreter::Quit();
         },
         XRCID("ID_STOP"));
