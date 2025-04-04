@@ -1,6 +1,6 @@
 ## `IsExcludingNumerals`
 
-Returns whether to exclude numerals.
+Returns whether numerals are being excluded.
 
 ### Syntax {-}
 
@@ -8,10 +8,8 @@ Returns whether to exclude numerals.
 boolean IsExcludingNumerals()
 ```
 
-
 ### Return value {-}
 
 Type: `boolean`
-
 
 {{< pagebreak >}}

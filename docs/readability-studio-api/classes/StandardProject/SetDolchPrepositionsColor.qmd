@@ -12,6 +12,10 @@ SetDolchPrepositionsColor(string colorName)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`string` colorName | The name of the color to use. |
+| `string` colorName | The name of the color to use. |
+
+::: {.tipsection data-latex=""}
+This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading) and [`Reload()`](#standard-reload).
+:::
 
 {{< pagebreak >}}

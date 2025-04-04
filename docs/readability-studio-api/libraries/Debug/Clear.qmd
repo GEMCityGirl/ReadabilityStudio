@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `Clear`
 
 Clears the log window.
@@ -7,5 +8,4 @@ Clears the log window.
 ``` {.lua}
 Clear()
 ```
-
-{{< pagebreak >}}
+:::

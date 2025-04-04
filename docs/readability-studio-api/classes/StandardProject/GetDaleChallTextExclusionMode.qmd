@@ -1,0 +1,17 @@
+## `GetDaleChallTextExclusionMode`
+
+Returns how text is excluded for the Dale-Chall test.
+
+### Syntax {-}
+
+``` {.lua}
+SpecializedTestTextExclusion GetDaleChallTextExclusionMode()
+```
+
+
+### Return value {-}
+
+Type: [`SpecializedTestTextExclusion`](#specializedtesttextexclusion)
+
+
+{{< pagebreak >}}

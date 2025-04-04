@@ -135,7 +135,7 @@ namespace LuaScripting
         int /*FilePathDisplayMode*/ GetFilePathDisplayMode(lua_State* L); // Returns how filepaths are displayed for new batch projects.
         int SetAppendedDocumentFilePath(lua_State* L/*string filePath*/); // Sets the file path to the document being appended for analysis.
         int /*string*/ GetAppendedDocumentFilePath(lua_State* L); // Returns the file path to the document being appended for analysis.
-        int UseRealTimeUpdate(lua_State* L /*bool use*/); // Toggles whether documents are being re-analyzed as they change.
+        int UseRealTimeUpdate(lua_State* L /*boolean use*/); // Toggles whether documents are being re-analyzed as they change.
         int /*boolean*/ IsRealTimeUpdating(lua_State* L); // Returns whether documents are being re-analyzed as they change.
 
         // DOCUMENT INDEXING
@@ -191,6 +191,18 @@ namespace LuaScripting
         int /*boolean*/ IsUsingLongGradeScaleFormat(lua_State* L); // Returns whether test scores are being shown in long format.
         int /*ReadingAgeDisplay*/ GetReadingAgeDisplay(lua_State* L); // Returns the age display for test scores to display.
         int SetReadingAgeDisplay(lua_State* L /*ReadingAgeDisplay ageFormat*/); // Sets the age display for test scores to display.
+        int /*GradeScale*/ GetGradeScale(lua_State* L); // Returns the grade scales used to display test scores.
+        int SetGradeScale(lua_State* L /*GradeScale scale*/); // Sets the grade scales used to display test scores.
+        int /*FleschNumeralSyllabize*/ GetFleschNumeralSyllabizeMethod(lua_State* L); // Returns how numerals' syllables are counted for the Flesch Reading Ease test.
+        int SetFleschNumeralSyllabizeMethod(lua_State* L /*FleschNumeralSyllabize method*/); // Sets how numerals' syllables are counted for the Flesch Reading Ease test.
+        int /*FleschKincaidNumeralSyllabize*/ GetFleschKincaidNumeralSyllabizeMethod(lua_State* L); // Returns how numerals' syllables are counted for the Flesch-Kincaid test.
+        int SetFleschKincaidNumeralSyllabizeMethod(lua_State* L /*FleschKincaidNumeralSyllabize method*/); // Sets how numerals' syllables are counted for the Flesch-Kincaid test.
+        int /*SpecializedTestTextExclusion*/ GetHarrisJacobsonTextExclusionMode(lua_State* L); // Returns how text is excluded for the Harris-Jacobson test.
+        int SetHarrisJacobsonTextExclusionMode(lua_State* L /*SpecializedTestTextExclusion method*/); // Sets how text is excluded for the Harris-Jacobson test.
+        int /*SpecializedTestTextExclusion*/ GetDaleChallTextExclusionMode(lua_State* L); // Returns how text is excluded for the Dale-Chall test.
+        int SetDaleChallTextExclusionMode(lua_State* L /*SpecializedTestTextExclusion method*/); // Sets how text is excluded for the Dale-Chall test.
+        int /*ProperNounCountingMethod*/ GetDaleChallProperNounCountingMethod(lua_State* L); // Returns how Dale-Chall counts proper nouns.
+        int SetDaleChallProperNounCountingMethod(lua_State* L /*ProperNounCountingMethod method*/); // Sets how Dale-Chall counts proper nouns.
 
         // GRAPH OPTIONS
         int SetGraphColorScheme(lua_State* L /*string colorScheme*/); // Sets the graph color scheme.
@@ -218,8 +230,8 @@ namespace LuaScripting
         int SetStippleShape(lua_State* L /*string shapeId*/); // Sets the stipple shape used to draw bars in graphs.
         int /*string*/ GetStippleShape(lua_State* L); // Returns the stipple shape used to draw bars in graphs.
         int SetStippleShapeColor(lua_State* L /*string colorName*/); // If using stipple shapes for bars, sets the color for certain shapes.
-        int DisplayGraphDropShadows(lua_State* L /*bool displayShadows*/); // Sets whether to display shadows on graphs.
-        int /*bool*/ IsDisplayingGraphDropShadows(lua_State* L); // Returns whether to display shadows on graphs.
+        int DisplayGraphDropShadows(lua_State* L /*boolean displayShadows*/); // Sets whether to display shadows on graphs.
+        int /*boolean*/ IsDisplayingGraphDropShadows(lua_State* L); // Returns whether to display shadows on graphs.
         int SetGraphCommonImage(lua_State* L /*string imagePath*/); // Sets the common image drawn across all bars.
         int /*string*/ GetGraphCommonImage(lua_State* L); // Returns the common image drawn across all bars.
 

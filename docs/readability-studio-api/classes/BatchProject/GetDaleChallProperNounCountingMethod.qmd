@@ -1,0 +1,17 @@
+## `GetDaleChallProperNounCountingMethod`
+
+Returns how Dale-Chall counts proper nouns.
+
+### Syntax {-}
+
+``` {.lua}
+ProperNounCountingMethod GetDaleChallProperNounCountingMethod()
+```
+
+
+### Return value {-}
+
+Type: [`ProperNounCountingMethod`](#propernouncountingmethod)
+
+
+{{< pagebreak >}}

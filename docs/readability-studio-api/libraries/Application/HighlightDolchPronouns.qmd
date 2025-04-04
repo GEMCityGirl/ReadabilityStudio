@@ -12,6 +12,6 @@ HighlightDolchPronouns(boolean highlight)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` highlight | `true` to highlight Dolch pronouns. |
+| `boolean` highlight | `true` to highlight Dolch pronouns. |
 
 {{< pagebreak >}}

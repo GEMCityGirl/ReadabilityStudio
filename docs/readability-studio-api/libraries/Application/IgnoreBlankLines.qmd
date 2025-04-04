@@ -12,6 +12,6 @@ IgnoreBlankLines(boolean ignore)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` ignore | `true` to ignore blank lines. |
+| `boolean` ignore | `true` to ignore blank lines. |
 
 {{< pagebreak >}}

@@ -13,6 +13,10 @@ SetIncludeIncompleteTolerance(number minWordsForCompleteSentence)
 
 **Parameter** | **Description**
 | :-- | :-- |
-`number` minWordsForCompleteSentence | The minimum number of words that will make a sentence missing terminating punctuation be considered complete.
+| `number` minWordsForCompleteSentence | The minimum number of words that will make a sentence missing terminating punctuation be considered complete. |
+
+::: {.tipsection data-latex=""}
+This can be optimized by placing it in between calls to [`DelayReloading()`](#batch-delayreloading) and [`Reload()`](#batch-reload).
+:::
 
 {{< pagebreak >}}

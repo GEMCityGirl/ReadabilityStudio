@@ -12,6 +12,10 @@ FogUseSentenceUnits(boolean use)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` use | `true` to count independent clauses when calculating Gunning Fog. |
+| `boolean` use | `true` to count independent clauses when calculating Gunning Fog. |
+
+::: {.tipsection data-latex=""}
+This can be optimized by placing it in between calls to [`DelayReloading()`](#batch-delayreloading) and [`Reload()`](#batch-reload).
+:::
 
 {{< pagebreak >}}

@@ -8,12 +8,10 @@ Specifies whether to connect the medians between box plots.
 ConnectBoxPlotMiddlePoints(boolean display)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` display | `true` to connect the medians. |
-
+| `boolean` display | `true` to connect the medians. |
 
 {{< pagebreak >}}

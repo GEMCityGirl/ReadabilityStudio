@@ -1,0 +1,17 @@
+## `SetFleschNumeralSyllabizeMethod`
+
+Sets how numerals' syllables are counted for the Flesch Reading Ease test for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+SetFleschNumeralSyllabizeMethod(FleschNumeralSyllabize method)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+| [`FleschNumeralSyllabize`](#fleschnumeralsyllabize) method | How to syllabize numerals. |
+
+{{< pagebreak >}}

@@ -12,6 +12,10 @@ SetDifficultSentenceLength(number length)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`number` length | The most number of words a sentence can contain before being seen as overly long. |
+| `number` length | The most number of words a sentence can contain before being seen as overly long. |
+
+::: {.tipsection data-latex=""}
+This can be optimized by placing it in between calls to [`DelayReloading()`](#batch-delayreloading) and [`Reload()`](#batch-reload).
+:::
 
 {{< pagebreak >}}

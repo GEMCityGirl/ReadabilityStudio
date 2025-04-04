@@ -1,0 +1,15 @@
+## `GetGradeScale`
+
+Returns the grade scales\index{grade scales} used to display test scores.
+
+### Syntax {-}
+
+``` {.lua}
+GradeScale GetGradeScale()
+```
+
+### Return value {-}
+
+Type: [`GradeScale`](#gradescale)
+
+{{< pagebreak >}}

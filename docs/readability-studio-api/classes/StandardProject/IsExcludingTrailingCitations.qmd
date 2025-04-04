@@ -1,6 +1,6 @@
 ## `IsExcludingTrailingCitations`
 
-Returns whether to exclude trailing citations.
+Returns whether trailing citations are being excluded.
 
 ### Syntax {-}
 
@@ -8,10 +8,8 @@ Returns whether to exclude trailing citations.
 boolean IsExcludingTrailingCitations()
 ```
 
-
 ### Return value {-}
 
 Type: `boolean`
-
 
 {{< pagebreak >}}

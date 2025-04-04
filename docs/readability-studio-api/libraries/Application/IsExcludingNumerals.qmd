@@ -1,6 +1,6 @@
 ## `IsExcludingNumerals`
 
-Returns whether to exclude numerals for new projects.
+Returns whether numerals are being excluded for new projects.
 
 ### Syntax {-}
 

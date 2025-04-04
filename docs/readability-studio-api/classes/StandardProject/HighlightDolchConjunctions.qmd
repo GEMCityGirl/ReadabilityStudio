@@ -12,6 +12,10 @@ HighlightDolchConjunctions(boolean highlight)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` highlight | `true` to highlight Dolch conjunctions. |
+| `boolean` highlight | `true` to highlight Dolch conjunctions. |
+
+::: {.tipsection data-latex=""}
+This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading) and [`Reload()`](#standard-reload).
+:::
 
 {{< pagebreak >}}

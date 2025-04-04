@@ -1,6 +1,6 @@
 ## `IsIgnoringIndenting`
 
-Returns whether to ignore indenting when parsing paragraphs.
+Returns whether indenting is being ignored when parsing paragraphs.
 
 ### Syntax {-}
 
@@ -8,10 +8,8 @@ Returns whether to ignore indenting when parsing paragraphs.
 boolean IsIgnoringIndenting()
 ```
 
-
 ### Return value {-}
 
 Type: `boolean`
-
 
 {{< pagebreak >}}

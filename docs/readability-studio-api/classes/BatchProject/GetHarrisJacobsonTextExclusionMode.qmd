@@ -1,0 +1,17 @@
+## `GetHarrisJacobsonTextExclusionMode`
+
+Returns how text is excluded for the Harris-Jacobson test.
+
+### Syntax {-}
+
+``` {.lua}
+SpecializedTestTextExclusion GetHarrisJacobsonTextExclusionMode()
+```
+
+
+### Return value {-}
+
+Type: [`SpecializedTestTextExclusion`](#specializedtesttextexclusion)
+
+
+{{< pagebreak >}}

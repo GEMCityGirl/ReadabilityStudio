@@ -73,15 +73,15 @@ namespace LuaScripting
     int DisableWarning(lua_State* L /*string warningId*/); // Disables a specific warning that can appear in the program.
     int SetUserAgent(lua_State* L /*string userAgent*/); // Sets the user agent used by the web harvester.
     int /*string*/ GetUserAgent(lua_State* L); // Returns the user agent used by the web harvester.
-    int DisableSSLVerification(lua_State* L /*bool disable*/); // Toggles whether SSL verification used by the web harvester is disabled.
+    int DisableSSLVerification(lua_State* L /*boolean disable*/); // Toggles whether SSL verification used by the web harvester is disabled.
     int /*boolean*/ IsSSLVerificationDisabled(lua_State* L); // Returns whether SSL verification used by the web harvester is disabled.
-    int UseJavaScriptCookies(lua_State* L /*bool useJSCookies*/); // Toggles whether the web harvester parses JavaScript for cookies needed by the website.
+    int UseJavaScriptCookies(lua_State* L /*boolean useJSCookies*/); // Toggles whether the web harvester parses JavaScript for cookies needed by the website.
     int /*boolean*/ IsUsingJavaScriptCookies(lua_State* L); // Returns whether the web harvester parses JavaScript for cookies needed by the website.
-    int PersistCookies(lua_State* L /*bool keepCookies*/); // Toggles whether the web harvester uses keeps cookies read from JavaScript between harvests.
+    int PersistCookies(lua_State* L /*boolean keepCookies*/); // Toggles whether the web harvester uses keeps cookies read from JavaScript between harvests.
     int /*boolean*/ IsPersistingCookies(lua_State* L); // Returns whether the web harvester uses keeps cookies read from JavaScript between harvests.
-    int EnableVerboseLogging(lua_State* L /*bool enable*/); // Toggles whether verbose logging is enabled.
+    int EnableVerboseLogging(lua_State* L /*boolean enable*/); // Toggles whether verbose logging is enabled.
     int /*boolean*/ IsLoggingVerbose(lua_State* L); // Returns whether verbose logging is enabled.
-    int AppendDailyLog(lua_State* L /*bool append*/); // Toggles whether the current log file should be appended when the program restarts.
+    int AppendDailyLog(lua_State* L /*boolean append*/); // Toggles whether the current log file should be appended when the program restarts.
     int /*boolean*/ IsAppendingDailyLog(lua_State* L); // Returns whether the current log file is being appended when the program restarts.
 
     // PROJECT SETTINGS
@@ -97,7 +97,7 @@ namespace LuaScripting
     int /*FilePathDisplayMode*/ GetFilePathDisplayMode(lua_State* L); // Returns how filepaths are displayed for new batch projects.
     int SetAppendedDocumentFilePath(lua_State* L /*string filePath*/); // Sets the file path to the document being appended for analysis.
     int /*string*/ GetAppendedDocumentFilePath(lua_State* L); // Returns the file path to the document being appended for analysis.
-    int UseRealTimeUpdate(lua_State* L /*bool use*/); // Toggles whether documents are being re-analyzed as they change.
+    int UseRealTimeUpdate(lua_State* L /*boolean use*/); // Toggles whether documents are being re-analyzed as they change.
     int /*boolean*/ IsRealTimeUpdating(lua_State* L); // Returns whether documents are being re-analyzed as they change.
 
     // DOCUMENT INDEXING
@@ -152,6 +152,18 @@ namespace LuaScripting
     int /*boolean*/ IsUsingLongGradeScaleFormat(lua_State* L); // Returns whether test scores are being shown in long format for new projects.
     int /*ReadingAgeDisplay*/ GetReadingAgeDisplay(lua_State* L); // Returns the age display for test scores to display for new projects.
     int SetReadingAgeDisplay(lua_State* L /*ReadingAgeDisplay ageFormat*/); // Sets the age display for test scores to display for new projects.
+    int /*GradeScale*/ GetGradeScale(lua_State* L); // Returns the grade scales used to display test scores for new projects.
+    int SetGradeScale(lua_State* L /*GradeScale scale*/); // Sets the grade scales used to display test scores for new projects.
+    int /*FleschNumeralSyllabize*/ GetFleschNumeralSyllabizeMethod(lua_State* L); // Returns how numerals' syllables are counted for the Flesch Reading Ease test for new projects.
+    int SetFleschNumeralSyllabizeMethod(lua_State* L /*FleschNumeralSyllabize method*/); // Sets how numerals' syllables are counted for the Flesch Reading Ease test for new projects.
+    int /*FleschKincaidNumeralSyllabize*/ GetFleschKincaidNumeralSyllabizeMethod(lua_State* L); // Returns how numerals' syllables are counted for the Flesch-Kincaid test for new projects.
+    int SetFleschKincaidNumeralSyllabizeMethod(lua_State* L /*FleschKincaidNumeralSyllabize method*/); // Sets how numerals' syllables are counted for the Flesch-Kincaid test for new projects.
+    int /*SpecializedTestTextExclusion*/ GetHarrisJacobsonTextExclusionMode(lua_State* L); // Returns how text is excluded for the Harris-Jacobson test for new projects.
+    int SetHarrisJacobsonTextExclusionMode(lua_State* L /*SpecializedTestTextExclusion method*/); // Sets how text is excluded for the Harris-Jacobson test for new projects.
+    int /*SpecializedTestTextExclusion*/ GetDaleChallTextExclusionMode(lua_State* L); // Returns how text is excluded for the Dale-Chall test for new projects.
+    int SetDaleChallTextExclusionMode(lua_State* L /*SpecializedTestTextExclusion method*/); // Sets how text is excluded for the Dale-Chall test for new projects.
+    int /*ProperNounCountingMethod*/ GetDaleChallProperNounCountingMethod(lua_State* L); // Returns how Dale-Chall counts proper nouns for new projects.
+    int SetDaleChallProperNounCountingMethod(lua_State* L /*ProperNounCountingMethod method*/); // Sets how Dale-Chall counts proper nouns for new projects.
 
     // SUMMARY STATS
     int SetSummaryStatsResultsOptions(lua_State* L /*boolean includeFormattedReport, boolean TabularReport*/); // Sets which results in the summary statistics section should be included for new projects.
@@ -226,8 +238,8 @@ namespace LuaScripting
     int SetStippleShapeColor(lua_State* L /*string colorName*/); // If using stipple shapes for bars, sets the color for certain shapes for new projects.
     int SetGraphCommonImage(lua_State* L /*string imagePath*/); // Sets the common image drawn across all bars for new projects.
     int /*string*/ GetGraphCommonImage(lua_State* L); // Returns the common image drawn across all bars for new projects.
-    int DisplayGraphDropShadows(lua_State* L /*bool displayShadows*/); // Sets whether to display shadows on graphs for new projects.
-    int /*bool*/ IsDisplayingGraphDropShadows(lua_State* L); // Returns whether to display shadows on graphs for new projects.
+    int DisplayGraphDropShadows(lua_State* L /*boolean displayShadows*/); // Sets whether to display shadows on graphs for new projects.
+    int /*boolean*/ IsDisplayingGraphDropShadows(lua_State* L); // Returns whether to display shadows on graphs for new projects.
     int ShowcaseKeyItems(lua_State* L /*boolean showcase*/); // Specifies whether important parts of certain graphs should be highlighted for new projects.
     int /*boolean*/ IsShowcasingKeyItems(lua_State* L); // Returns whether important parts of certain graphs should be highlighted for new projects.
 
@@ -400,6 +412,18 @@ namespace LuaScripting
         { "IsUsingLongGradeScaleFormat", IsUsingLongGradeScaleFormat },
         { "GetReadingAgeDisplay", GetReadingAgeDisplay },
         { "SetReadingAgeDisplay", SetReadingAgeDisplay },
+        { "GetGradeScale", GetGradeScale },
+        { "SetGradeScale", SetGradeScale },
+        { "GetFleschNumeralSyllabizeMethod", GetFleschNumeralSyllabizeMethod },
+        { "SetFleschNumeralSyllabizeMethod", SetFleschNumeralSyllabizeMethod },
+        { "GetFleschKincaidNumeralSyllabizeMethod", GetFleschKincaidNumeralSyllabizeMethod },
+        { "SetFleschKincaidNumeralSyllabizeMethod", SetFleschKincaidNumeralSyllabizeMethod },
+        { "GetHarrisJacobsonTextExclusionMode", GetHarrisJacobsonTextExclusionMode },
+        { "SetHarrisJacobsonTextExclusionMode", SetHarrisJacobsonTextExclusionMode },
+        { "GetDaleChallTextExclusionMode", GetDaleChallTextExclusionMode },
+        { "SetDaleChallTextExclusionMode", SetDaleChallTextExclusionMode },
+        { "GetDaleChallProperNounCountingMethod", GetDaleChallProperNounCountingMethod },
+        { "SetDaleChallProperNounCountingMethod", SetDaleChallProperNounCountingMethod },
         { "IncludeExcludedPhraseFirstOccurrence", IncludeExcludedPhraseFirstOccurrence },
         { "IsIncludingExcludedPhraseFirstOccurrence", IsIncludingExcludedPhraseFirstOccurrence },
         { "SetAppendedDocumentFilePath", SetAppendedDocumentFilePath },

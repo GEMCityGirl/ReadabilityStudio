@@ -5,13 +5,13 @@ Toggles whether the web harvester parses JavaScript\index{web harvester!managing
 ### Syntax {-}
 
 ``` {.lua}
-UseJavaScriptCookies(bool useJSCookies)
+UseJavaScriptCookies(boolean useJSCookies)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-| `bool` useJSCookies | `true` to use cookies parsed from JavaScript when connecting to webpages. |
+| `boolean` useJSCookies | `true` to use cookies parsed from JavaScript when connecting to webpages. |
 
 {{< pagebreak >}}

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `ExportScores` {#standard-exportscores}
 
 Saves the project's test scores to *outputFilePath*.
@@ -12,6 +13,5 @@ ExportScores(string outputFilePath)
 
 **Parameter** | **Description**
 | :-- | :-- |
-`string` outputFilePath | The file to save the scores.
-
-{{< pagebreak >}}
+| `string` outputFilePath | The file to save the scores. |
+:::

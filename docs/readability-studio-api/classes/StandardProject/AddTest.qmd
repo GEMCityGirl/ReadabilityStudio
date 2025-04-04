@@ -32,7 +32,7 @@ consentForm = StandardProject(Application.GetUserPath(UserPath.Documents) ..
 
 consentForm:AddTest(Tests.DanielsonBryan1)
 consentForm:AddTest(Tests.DanielsonBryan2)
--- assuming we have a custom test by this name.
+-- Assuming we have a custom test by this name, add it.
 consentForm:AddTest("Patient Consent Formula")
 ```
 

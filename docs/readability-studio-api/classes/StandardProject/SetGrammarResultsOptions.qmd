@@ -23,18 +23,18 @@ SetGrammarResultsOptions(boolean includeHighlightedReport,
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` includeHighlightedReport | `true` to include the highlighted grammar report. | 
-|`boolean` includeErrors | `true` to include wording errors and known misspellings. | 
-|`boolean` includePossibleMisspellings | `true` to include possible misspellings. | 
-|`boolean` includeRepeatedWords | `true` to include repeated words. | 
-|`boolean` includeArticleMismatches | `true` to include article mismatches. | 
-|`boolean` includeRedundantPhrases | `true` to include redundant phrases. | 
-|`boolean` includeOverusedWords | `true` to include overused words. | 
-|`boolean` includeWordiness | `true` to include wordiness. | 
-|`boolean` includeCliches | `true` to include cliches. | 
-|`boolean` includePassiveVoice | `true` to include passive voice. | 
-|`boolean` includeConjunctionStartingSentences | `true` to include sentences that start with conjunctions. | 
-|`boolean` includeLowercasedSentences | `true` to include sentences that start with lowercase letters. |
+| `boolean` includeHighlightedReport | `true` to include the highlighted grammar report. | 
+| `boolean` includeErrors | `true` to include wording errors and known misspellings. | 
+| `boolean` includePossibleMisspellings | `true` to include possible misspellings. | 
+| `boolean` includeRepeatedWords | `true` to include repeated words. | 
+| `boolean` includeArticleMismatches | `true` to include article mismatches. | 
+| `boolean` includeRedundantPhrases | `true` to include redundant phrases. | 
+| `boolean` includeOverusedWords | `true` to include overused words. | 
+| `boolean` includeWordiness | `true` to include wordiness. | 
+| `boolean` includeCliches | `true` to include cliches. | 
+| `boolean` includePassiveVoice | `true` to include passive voice. | 
+| `boolean` includeConjunctionStartingSentences | `true` to include sentences that start with conjunctions. | 
+| `boolean` includeLowercasedSentences | `true` to include sentences that start with lowercase letters. |
 
 ### Example {-}
 
@@ -54,5 +54,9 @@ cocoaDoc:SetWordsBreakdownResultsOptions(false, false, false, false, false, fals
                                          false, false, false, false, false)
 cocoaDoc:Reload()
 ```
+
+::: {.tipsection data-latex=""}
+This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading) and [`Reload()`](#standard-reload).
+:::
 
 {{< pagebreak >}}

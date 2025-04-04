@@ -1,0 +1,17 @@
+## `SetGradeScale`
+
+Sets the grade scales\index{grade scales} used to display test scores for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+SetGradeScale(GradeScale scale)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+| [`GradeScale`](#gradescale) scale | The grade scale to use. |
+
+{{< pagebreak >}}

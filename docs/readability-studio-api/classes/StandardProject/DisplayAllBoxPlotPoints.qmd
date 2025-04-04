@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `DisplayAllBoxPlotPoints`
 
 Specifies whether to display all points (not just outliers) on box plots.
@@ -8,12 +9,9 @@ Specifies whether to display all points (not just outliers) on box plots.
 DisplayAllBoxPlotPoints(boolean display)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` display | `true` to display all points. |
-
-
-{{< pagebreak >}}
+| `boolean` display | `true` to display all points. |
+:::

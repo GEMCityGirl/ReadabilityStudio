@@ -1,0 +1,17 @@
+## `SetDaleChallTextExclusionMode`
+
+Sets how text is excluded for the Dale-Chall test for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+SetDaleChallTextExclusionMode(SpecializedTestTextExclusion method)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+| [`SpecializedTestTextExclusion`](#specializedtesttextexclusion) method | How to exclude text. |
+
+{{< pagebreak >}}

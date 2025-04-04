@@ -8,11 +8,10 @@ Sets box color (in box plots) for new projects.
 SetBoxPlotColor(string colorName)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`string` colorName | The name of the color to use. |
+| `string` colorName | The name of the color to use. |
 
 {{< pagebreak >}}

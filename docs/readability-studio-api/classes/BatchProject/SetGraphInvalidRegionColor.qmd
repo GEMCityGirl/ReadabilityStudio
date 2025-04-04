@@ -8,11 +8,10 @@ Sets the color for the invalid score regions for Fry-like graphs.
 SetGraphInvalidRegionColor(string colorName)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`string` colorName | The name of the color to use. |
+| `string` colorName | The name of the color to use. |
 
 {{< pagebreak >}}

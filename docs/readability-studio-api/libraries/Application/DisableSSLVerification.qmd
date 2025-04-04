@@ -5,13 +5,13 @@ Toggles whether SSL verification\index{web harvester!peer verification} used by 
 ### Syntax {-}
 
 ``` {.lua}
-DisableSSLVerification(bool disable)
+DisableSSLVerification(boolean disable)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-| `bool` disable | `true` to not use SSL verification. |
+| `boolean` disable | `true` to not use SSL verification. |
 
 {{< pagebreak >}}

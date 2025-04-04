@@ -23,9 +23,9 @@ Returns `true` if files were successfully merged.
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`string` inputFile1 | The first input file. |
-|... | Any additional files to merge with `inputFile1`. |
-|`string` outputFile | Where to save the combined list of words. | 
+| `string` inputFile1 | The first input file. |
+| ... | Any additional files to merge with `inputFile1`. |
+| `string` outputFile | Where to save the combined list of words. | 
 
 ### Example\index{examples!merging word lists} {-}
 

@@ -8,12 +8,10 @@ Sets bar opacity (in histograms) for new projects.
 SetHistogramBarOpacity(number opacity)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`number` opacity | The opacity level (should be between 0--255) |
-
+| `number` opacity | The opacity level (should be between 0--255) |
 
 {{< pagebreak >}}

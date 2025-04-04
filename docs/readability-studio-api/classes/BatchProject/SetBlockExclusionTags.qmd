@@ -12,7 +12,7 @@ SetBlockExclusionTags(string tagString)
 
 **Parameter** | **Description**
 | :-- | :-- |
-`string` tagString | The pair of tags that will exclude all text between them.
+| `string` tagString | The pair of tags that will exclude all text between them. |
 
 ::: {.notesection data-latex=""}
 Pass in an empty string to turn off this option.

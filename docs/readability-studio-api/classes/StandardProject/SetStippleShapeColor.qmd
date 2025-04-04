@@ -8,11 +8,10 @@ If using stipple shapes for bars, sets the color for certain shapes.
 SetStippleShapeColor(string colorName)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`string` colorName | The name of the color to use. |
+| `string` colorName | The name of the color to use. |
 
 {{< pagebreak >}}

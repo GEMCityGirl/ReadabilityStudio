@@ -12,6 +12,6 @@ HighlightDolchNouns(boolean highlight)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` highlight | `true` to highlight Dolch nouns. |
+| `boolean` highlight | `true` to highlight Dolch nouns. |
 
 {{< pagebreak >}}

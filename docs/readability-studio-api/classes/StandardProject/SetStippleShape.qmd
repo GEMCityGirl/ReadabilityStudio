@@ -12,7 +12,7 @@ SetStippleShape(string shapeId)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`string` shapeId | The shape ID to use. |
+| `string` shapeId | The shape ID to use. |
 
 Refer to [`Application.SetStippleShape()`](#app-setstippleshape) for a list of available IDs.
 

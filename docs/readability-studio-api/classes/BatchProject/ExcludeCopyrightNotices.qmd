@@ -12,6 +12,10 @@ ExcludeCopyrightNotices(boolean exclude)
 
 **Parameter** | **Description**
 | :-- | :-- |
-`boolean` exclude | `true` to exclude copyright notices.
+| `boolean` exclude | `true` to exclude copyright notices. |
+
+::: {.tipsection data-latex=""}
+This can be optimized by placing it in between calls to [`DelayReloading()`](#batch-delayreloading) and [`Reload()`](#batch-reload).
+:::
 
 {{< pagebreak >}}

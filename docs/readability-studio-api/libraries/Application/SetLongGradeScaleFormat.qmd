@@ -12,6 +12,6 @@ SetLongGradeScaleFormat(boolean longFormat)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` longFormat | `true` to display test scores in long format. |
+| `boolean` longFormat | `true` to display test scores in long format. |
 
 {{< pagebreak >}}

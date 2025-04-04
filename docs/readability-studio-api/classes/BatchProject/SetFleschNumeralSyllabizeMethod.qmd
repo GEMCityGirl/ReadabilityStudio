@@ -1,0 +1,21 @@
+## `SetFleschNumeralSyllabizeMethod`
+
+Sets how numerals' syllables are counted for the Flesch Reading Ease test.
+
+### Syntax {-}
+
+``` {.lua}
+SetFleschNumeralSyllabizeMethod(FleschNumeralSyllabize method)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+| [`FleschNumeralSyllabize`](#fleschnumeralsyllabize) method | How to syllabize numerals. |
+
+::: {.tipsection data-latex=""}
+This can be optimized by placing it in between calls to [`DelayReloading()`](#batch-delayreloading) and [`Reload()`](#batch-reload).
+:::
+
+{{< pagebreak >}}

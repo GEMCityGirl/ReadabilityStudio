@@ -8,12 +8,10 @@ Specifies whether important parts of certain graphs should be highlighted for ne
 ShowcaseKeyItems(boolean showcase)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` showcase | `true` to enable showcasing. |
-
+| `boolean` showcase | `true` to enable showcasing. |
 
 {{< pagebreak >}}

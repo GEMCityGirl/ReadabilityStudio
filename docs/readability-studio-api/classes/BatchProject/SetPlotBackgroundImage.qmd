@@ -12,6 +12,6 @@ SetPlotBackgroundImage(string imagePath)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`string` imagePath | The path to the image. |
+| `string` imagePath | The path to the image. |
 
 {{< pagebreak >}}

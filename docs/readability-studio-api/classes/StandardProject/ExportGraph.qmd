@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `ExportGraph` {#standard-exportgraph}
 
 Saves\index{graphs!exporting} the specified graph as an image\index{images!saving graphs as}.
@@ -16,11 +17,11 @@ ExportGraph(GraphType type,
 
 **Parameter** | **Description**
 | :-- | :-- |
-[`GraphType`](#graphtype) type | The graph to export.
-`string` outputFilePath | The folder to save the graph.
-`boolean` grayScale | (Optional) Set to `true` to save the image as black &amp; white.
-`number` width | (Optional) Specifies the width of the image.
-`number` height | (Optional) Specifies the height of the image.
+| [`GraphType`](#graphtype) type | The graph to export. |
+| `string` outputFilePath | The folder to save the graph. |
+| `boolean` grayScale | (Optional) Set to `true` to save the image as black &amp; white. |
+| `number` width | (Optional) Specifies the width of the image. |
+| `number` height | (Optional) Specifies the height of the image. |
 
 ### Example\index{examples!exporting graphs} {-}
 
@@ -51,5 +52,4 @@ recipe:ExportGraph(GraphType.SyllableHistogram,
 
 recipe:Close()
 ```
-
-{{< pagebreak >}}
+:::

@@ -367,11 +367,59 @@ NumeralSyllabize =
   SoundOutEachDigit = 1       -- Each digit in the number is sounded out and counted.
   }
 
+-- How numerals' syllables are counted for the Flesch Reading Ease test.
+FleschNumeralSyllabize =
+  {
+  NumeralIsOneSyllable = 0,   -- Entire word is one syllable.
+  NumeralUseSystemDefault = 1 -- Use the system default.
+  }
+
+-- How numerals' syllables are counted for the Flesch-Kincaid test.
+FleschKincaidNumeralSyllabize =
+  {
+  FleschKincaidNumeralSoundOutEachDigit = 0, -- Each digit in the number is sounded out and counted.
+  FleschKincaidNumeralUseSystemDefault = 1   -- Use the system default.
+  }
+
+-- How to exclude text for specific tests.
+SpecializedTestTextExclusion =
+  {
+  ExcludeIncompleteSentencesExceptHeadings = 0, -- Excluded sentences without terminal characters, except for headers.
+  UseSystemDefault = 1                          -- Use the system default.
+  }
+
+-- How familiar-word analyses handle proper nouns.
+ProperNounCountingMethod =
+  {
+  AllProperNounsAreUnfamiliar = 0,                    -- Proper nouns are always be unfamiliar (unless explicitly on a familiar word list)
+  AllProperNounsAreFamiliar = 1,                      -- Proper nouns are always familiar.
+  OnlyCountFirstInstanceOfProperNounAsUnfamiliar = 2  -- Only the first instance of a proper noun is unfamiliar (if not on a familiar word list). All subsequent instances of this word will be familiar.
+  }
+
 -- How to display a reading age.
 ReadingAgeDisplay =
   {
   ReadingAgeAsARange = 0,       -- Convert a grade level like 5.6 to "10-11".
   ReadingAgeRoundToSemester = 1 -- Convert a grade level like 5.6 to "11".
+  }
+
+-- Grade scales from across the globe.
+GradeScale =
+  {
+  K12PlusUnitedStates = 0,            -- United States K-12.
+  K12PlusAlberta = 1,                 -- Alberta K-12.
+  K12PlusBritishColumbia = 2,         -- British Columbia K-12.
+  K12PlusManitoba = 3,                -- Manitoba K-12.
+  K12PlusNewbrunswick = 4,            -- Newbrunswick K-12.
+  K12PlusNewfoundlandAndLabrador = 5, -- Newfoundland & Labrador K-12.
+  K12PlusNorthwestTerritories = 6,    -- Northwest Territories K-12.
+  K12PlusNovaScotia = 7,              -- Nova Scotia K-12.
+  K12PlusOntario = 8,                 -- Ontario K-12.
+  K12PlusPrinceEdwardIsland = 9,      -- Prince Edward Island K-12.
+  K12PlusSaskatchewan = 10,           -- Saskatchewan K-12.
+  K12PlusNunavut = 11,                -- Nunavut K-12.
+  Quebec = 12,                        -- Quebec K-12.
+  KeyStagesEnglandWales = 13          -- Key Stages.
   }
 
 -- The following values are available for controlling how filepaths in batch project lists are displayed.
@@ -469,9 +517,15 @@ RaygorStyle = protect_enum(RaygorStyle)
 TextStorage = protect_enum(TextStorage)
 ParagraphParse = protect_enum(ParagraphParse)
 NumeralSyllabize = protect_enum(NumeralSyllabize)
+ReadingAgeDisplay = protect_enum(ReadingAgeDisplay)
+SpecializedTestTextExclusion = protect_enum(SpecializedTestTextExclusion)
+ProperNounCountingMethod = protect_enum(ProperNounCountingMethod)
+GradeScale = protect_enum(GradeScale)
 LongSentence = protect_enum(LongSentence)
 FilePathDisplayMode = protect_enum(FilePathDisplayMode)
 UserPath = protect_enum(UserPath)
 RibbonButtonBar = protect_enum(RibbonButtonBar)
 FontWeight = protect_enum(FontWeight)
 TextHighlight = protect_enum(TextHighlight)
+FleschNumeralSyllabize = protect_enum(FleschNumeralSyllabize)
+FleschKincaidNumeralSyllabize = protect_enum(FleschKincaidNumeralSyllabize)

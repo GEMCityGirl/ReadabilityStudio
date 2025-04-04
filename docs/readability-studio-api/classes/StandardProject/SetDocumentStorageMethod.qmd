@@ -12,6 +12,10 @@ SetDocumentStorageMethod(TextStorage storageMethod)
 
 **Parameter** | **Description**
 | :-- | :-- |
-[`TextStorage`](#textstorage) storageMethod | The text storage method to use for the project.
+| [`TextStorage`](#textstorage) storageMethod | The text storage method to use for the project. |
+
+::: {.tipsection data-latex=""}
+This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading) and [`Reload()`](#standard-reload).
+:::
 
 {{< pagebreak >}}

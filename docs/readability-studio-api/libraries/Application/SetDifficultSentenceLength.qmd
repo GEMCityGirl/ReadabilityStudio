@@ -12,6 +12,6 @@ SetDifficultSentenceLength(number length)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`number` length | The most number of words a sentence can contain before being seen as overly long. |
+| `number` length | The most number of words a sentence can contain before being seen as overly long. |
 
 {{< pagebreak >}}

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `ExportAll` {#standard-exportall}
 
 Exports the project's results to the specified folder.
@@ -12,6 +13,5 @@ ExportAll(string outputFolder)
 
 **Parameter** | **Description**
 | :-- | :-- |
-`string` outputFolder | The folder to save the project's results.
-
-{{< pagebreak >}}
+| `string` outputFolder | The folder to save the project's results. |
+:::

@@ -1,6 +1,6 @@
 ## `IsExcludingCopyrightNotices`
 
-Returns whether to exclude copyright notices.
+Returns whether copyright notices are being excluded.
 
 ### Syntax {-}
 

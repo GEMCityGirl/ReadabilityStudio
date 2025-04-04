@@ -5,13 +5,11 @@ Returns whether to display shadows on graphs for new projects.
 ### Syntax {-}
 
 ``` {.lua}
-bool IsDisplayingGraphDropShadows()
+boolean IsDisplayingGraphDropShadows()
 ```
-
 
 ### Return value {-}
 
-Type: `bool`
-
+Type: `boolean`
 
 {{< pagebreak >}}

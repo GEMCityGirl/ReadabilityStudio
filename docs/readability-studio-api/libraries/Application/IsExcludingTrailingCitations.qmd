@@ -1,6 +1,6 @@
 ## `IsExcludingTrailingCitations`
 
-Returns whether to exclude trailing citations for new projects.
+Returns whether trailing citations are being excluded for new projects.
 
 ### Syntax {-}
 
@@ -8,10 +8,8 @@ Returns whether to exclude trailing citations for new projects.
 boolean IsExcludingTrailingCitations()
 ```
 
-
 ### Return value {-}
 
 Type: `boolean`
-
 
 {{< pagebreak >}}

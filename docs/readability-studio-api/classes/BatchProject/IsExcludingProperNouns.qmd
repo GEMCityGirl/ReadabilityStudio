@@ -1,6 +1,6 @@
 ## `IsExcludingProperNouns`
 
-Returns whether to exclude proper nouns.
+Returns whether proper nouns are being excluded.
 
 ### Syntax {-}
 
@@ -8,10 +8,8 @@ Returns whether to exclude proper nouns.
 boolean IsExcludingProperNouns()
 ```
 
-
 ### Return value {-}
 
 Type: `boolean`
-
 
 {{< pagebreak >}}

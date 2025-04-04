@@ -5,13 +5,13 @@ Toggles whether the current log file should be appended\index{log report!setting
 ### Syntax {-}
 
 ``` {.lua}
-AppendDailyLog(bool append)
+AppendDailyLog(boolean append)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-| `bool` append | `true` to use append mode. |
+| `boolean` append | `true` to use append mode. |
 
 {{< pagebreak >}}

@@ -12,6 +12,6 @@ HighlightDolchConjunctions(boolean highlight)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` highlight | `true` to highlight Dolch conjunctions. |
+| `boolean` highlight | `true` to highlight Dolch conjunctions. |
 
 {{< pagebreak >}}

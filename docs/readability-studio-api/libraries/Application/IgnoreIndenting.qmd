@@ -12,6 +12,6 @@ IgnoreIndenting(boolean ignore)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` ignore | `true` to ignore indenting. |
+| `boolean` ignore | `true` to ignore indenting. |
 
 {{< pagebreak >}}

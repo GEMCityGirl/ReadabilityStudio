@@ -12,7 +12,7 @@ SetGraphColorScheme(string colorScheme)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`string` colorScheme | The color scheme ID. |
+| `string` colorScheme | The color scheme ID. |
 
 ::: {.tipsection data-latex=""}
 Available named color schemes are: `"dusk"`, `"earthtones"`, `"decade1920s"`, , `"decade1940s"`, `"decade1950s"`,

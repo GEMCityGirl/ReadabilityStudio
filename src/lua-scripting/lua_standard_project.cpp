@@ -921,6 +921,187 @@ namespace LuaScripting
         return 1;
         }
 
+    //-------------------------------------------------------------
+    int StandardProject::SetGradeScale(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->GetReadabilityMessageCatalog().SetGradeScale(
+            static_cast<readability::grade_scale>(lua_tonumber(L, 2)));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::GetGradeScale(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L,
+                       static_cast<int>(m_project->GetReadabilityMessageCatalog().GetGradeScale()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetFleschNumeralSyllabizeMethod(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetFleschNumeralSyllabizeMethod(
+            static_cast<FleschNumeralSyllabize>(lua_tonumber(L, 2)));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::GetFleschNumeralSyllabizeMethod(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetFleschNumeralSyllabizeMethod()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetFleschKincaidNumeralSyllabizeMethod(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetFleschKincaidNumeralSyllabizeMethod(
+            static_cast<FleschKincaidNumeralSyllabize>(lua_tonumber(L, 2)));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetHarrisJacobsonTextExclusionMode(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetHarrisJacobsonTextExclusionMode(
+            static_cast<SpecializedTestTextExclusion>(lua_tonumber(L, 2)));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::GetHarrisJacobsonTextExclusionMode(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetHarrisJacobsonTextExclusionMode()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetDaleChallTextExclusionMode(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetDaleChallTextExclusionMode(
+            static_cast<SpecializedTestTextExclusion>(lua_tonumber(L, 2)));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::GetDaleChallTextExclusionMode(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetDaleChallTextExclusionMode()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetDaleChallProperNounCountingMethod(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetDaleChallProperNounCountingMethod(
+            static_cast<readability::proper_noun_counting_method>(lua_tonumber(L, 2)));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::GetDaleChallProperNounCountingMethod(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetDaleChallProperNounCountingMethod()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::GetFleschKincaidNumeralSyllabizeMethod(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetFleschKincaidNumeralSyllabizeMethod()));
+        return 1;
+        }
+
     //-------------------------------------------------
     int StandardProject::SetAppendedDocumentFilePath(lua_State* L)
         {
@@ -4342,6 +4523,18 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, IsUsingLongGradeScaleFormat),
         LUNA_DECLARE_METHOD(StandardProject, GetReadingAgeDisplay),
         LUNA_DECLARE_METHOD(StandardProject, SetReadingAgeDisplay),
+        LUNA_DECLARE_METHOD(StandardProject, GetGradeScale),
+        LUNA_DECLARE_METHOD(StandardProject, SetGradeScale),
+        LUNA_DECLARE_METHOD(StandardProject, GetFleschNumeralSyllabizeMethod),
+        LUNA_DECLARE_METHOD(StandardProject, SetFleschNumeralSyllabizeMethod),
+        LUNA_DECLARE_METHOD(StandardProject, GetFleschKincaidNumeralSyllabizeMethod),
+        LUNA_DECLARE_METHOD(StandardProject, SetFleschKincaidNumeralSyllabizeMethod),
+        LUNA_DECLARE_METHOD(StandardProject, GetHarrisJacobsonTextExclusionMode),
+        LUNA_DECLARE_METHOD(StandardProject, SetHarrisJacobsonTextExclusionMode),
+        LUNA_DECLARE_METHOD(StandardProject, GetDaleChallTextExclusionMode),
+        LUNA_DECLARE_METHOD(StandardProject, SetDaleChallTextExclusionMode),
+        LUNA_DECLARE_METHOD(StandardProject, GetDaleChallProperNounCountingMethod),
+        LUNA_DECLARE_METHOD(StandardProject, SetDaleChallProperNounCountingMethod),
         LUNA_DECLARE_METHOD(StandardProject, IncludeExcludedPhraseFirstOccurrence),
         LUNA_DECLARE_METHOD(StandardProject, IsIncludingExcludedPhraseFirstOccurrence),
         LUNA_DECLARE_METHOD(StandardProject, SetAppendedDocumentFilePath),

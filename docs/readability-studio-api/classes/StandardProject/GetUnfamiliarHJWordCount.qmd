@@ -1,11 +1,11 @@
-## `GetUnfamHJWordCount`
+## `GetUnfamiliarHJWordCount`
 
 Returns the number of words unfamiliar to the Harris-Jacobson test from the document.
 
 ### Syntax {-}
 
 ``` {.lua}
-number GetUnfamHJWordCount()
+number GetUnfamiliarHJWordCount()
 ```
 
 

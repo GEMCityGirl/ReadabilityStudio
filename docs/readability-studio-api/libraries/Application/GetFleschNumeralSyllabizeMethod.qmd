@@ -1,0 +1,17 @@
+## `GetFleschNumeralSyllabizeMethod`
+
+Returns how numerals' syllables are counted for the Flesch Reading Ease test for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+FleschNumeralSyllabize GetFleschNumeralSyllabizeMethod()
+```
+
+
+### Return value {-}
+
+Type: [`FleschNumeralSyllabize`](#fleschnumeralsyllabize)
+
+
+{{< pagebreak >}}

@@ -8,12 +8,10 @@ Sets whether English labels are being used for the brackets on German Lix gauges
 UseEnglishLabelsForGermanLix(boolean useEnglish)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` useEnglish | `true` to display English translations for the labels. |
-
+| `boolean` useEnglish | `true` to display English translations for the labels. |
 
 {{< pagebreak >}}

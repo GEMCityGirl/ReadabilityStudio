@@ -5,13 +5,13 @@ Toggles whether verbose\index{log report!settings} logging is enabled.
 ### Syntax {-}
 
 ``` {.lua}
-EnableVerboseLogging(bool enable)
+EnableVerboseLogging(boolean enable)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-| `bool` enable | `true` to use verbose logging. |
+| `boolean` enable | `true` to use verbose logging. |
 
 {{< pagebreak >}}

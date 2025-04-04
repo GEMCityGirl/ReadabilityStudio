@@ -1817,10 +1817,137 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int GetReadingAgeDisplay(lua_State* L)
         {
-         lua_pushnumber(
+        lua_pushnumber(
             L,
             static_cast<int>(
                 wxGetApp().GetAppOptions().GetReadabilityMessageCatalog().GetReadingAgeDisplay()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int SetGradeScale(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().GetReadabilityMessageCatalog().SetGradeScale(
+            static_cast<readability::grade_scale>(lua_tonumber(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int GetGradeScale(lua_State* L)
+        {
+        lua_pushnumber(
+            L, static_cast<int>(
+                   wxGetApp().GetAppOptions().GetReadabilityMessageCatalog().GetGradeScale()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int SetFleschNumeralSyllabizeMethod(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().SetFleschNumeralSyllabizeMethod(
+            static_cast<FleschNumeralSyllabize>(lua_tonumber(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int GetFleschNumeralSyllabizeMethod(lua_State* L)
+        {
+        lua_pushnumber(
+            L, static_cast<int>(wxGetApp().GetAppOptions().GetFleschNumeralSyllabizeMethod()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int SetFleschKincaidNumeralSyllabizeMethod(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().SetFleschKincaidNumeralSyllabizeMethod(
+            static_cast<FleschKincaidNumeralSyllabize>(lua_tonumber(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int GetFleschKincaidNumeralSyllabizeMethod(lua_State* L)
+        {
+        lua_pushnumber(L, static_cast<int>(
+                              wxGetApp().GetAppOptions().GetFleschKincaidNumeralSyllabizeMethod()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int SetHarrisJacobsonTextExclusionMode(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().SetHarrisJacobsonTextExclusionMode(
+            static_cast<SpecializedTestTextExclusion>(lua_tonumber(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int GetHarrisJacobsonTextExclusionMode(lua_State* L)
+        {
+        lua_pushnumber(
+            L, static_cast<int>(wxGetApp().GetAppOptions().GetHarrisJacobsonTextExclusionMode()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int SetDaleChallTextExclusionMode(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().SetDaleChallTextExclusionMode(
+            static_cast<SpecializedTestTextExclusion>(lua_tonumber(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int GetDaleChallTextExclusionMode(lua_State* L)
+        {
+        lua_pushnumber(
+            L, static_cast<int>(wxGetApp().GetAppOptions().GetDaleChallTextExclusionMode()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int SetDaleChallProperNounCountingMethod(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetAppOptions().SetDaleChallProperNounCountingMethod(
+            static_cast<readability::proper_noun_counting_method>(lua_tonumber(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int GetDaleChallProperNounCountingMethod(lua_State* L)
+        {
+        lua_pushnumber(
+            L, static_cast<int>(wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod()));
         return 1;
         }
 
@@ -1872,7 +1999,7 @@ namespace LuaScripting
             return 0;
             }
         wxGetApp().GetAppOptions().SetBackGroundColor(
-            wxColour(lua_tonumber(L, 1), lua_tonumber(L, 2), lua_tonumber(L, 3)));
+            LoadColor(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }));
         return 0;
         }
 
@@ -2240,7 +2367,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetPlotBackGroundColor(
-            wxColour(lua_tonumber(L, 1), lua_tonumber(L, 2), lua_tonumber(L, 3)));
+            LoadColor(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }));
         return 0;
         }
 
@@ -2388,7 +2515,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetBarChartBarColor(
-            wxColour(lua_tonumber(L, 1), lua_tonumber(L, 2), lua_tonumber(L, 3)));
+            LoadColor(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }));
         return 0;
         }
 
@@ -3050,7 +3177,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetExcludedTextHighlightColor(
-            LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+            LoadColor(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }));
         return 0;
         }
 
@@ -3063,7 +3190,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetTextHighlightColor(
-            LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+            LoadColor(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }));
         return 0;
         }
 
@@ -3076,7 +3203,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetDuplicateWordHighlightColor(
-            LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+            LoadColor(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }));
         return 0;
         }
 
@@ -3089,7 +3216,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetWordyPhraseHighlightColor(
-            LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+            LoadColor(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }));
         return 0;
         }
 
@@ -3123,7 +3250,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetDolchConjunctionsColor(
-            LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+            LoadColor(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }));
         return 0;
         }
 
@@ -3136,7 +3263,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetDolchPrepositionsColor(
-            LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+            LoadColor(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }));
         return 0;
         }
 
@@ -3149,7 +3276,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetDolchPronounsColor(
-            LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+            LoadColor(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }));
         return 0;
         }
 
@@ -3162,7 +3289,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetDolchAdverbsColor(
-            LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+            LoadColor(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }));
         return 0;
         }
 
@@ -3175,7 +3302,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetDolchAdjectivesColor(
-            LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+            LoadColor(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }));
         return 0;
         }
 
@@ -3188,7 +3315,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetDolchVerbsColor(
-            LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+            LoadColor(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }));
         return 0;
         }
 
@@ -3201,7 +3328,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetDolchNounsColor(
-            LoadColor(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+            LoadColor(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }));
         return 0;
         }
 

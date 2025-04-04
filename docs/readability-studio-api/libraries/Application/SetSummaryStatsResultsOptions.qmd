@@ -13,7 +13,7 @@ SetSummaryStatsResultsOptions(boolean includeFormattedReport,
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` includeFormattedReport | `true` to include a formatted report of the statistics. | 
-|`boolean` TabularReport | `true` to include the statistics in a list. |
+| `boolean` includeFormattedReport | `true` to include a formatted report of the statistics. | 
+| `boolean` TabularReport | `true` to include the statistics in a list. |
 
 {{< pagebreak >}}

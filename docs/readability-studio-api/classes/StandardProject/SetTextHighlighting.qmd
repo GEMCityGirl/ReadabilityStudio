@@ -12,6 +12,10 @@ SetTextHighlighting(TextHighlight highlighting)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|[`TextHighlight`](#texthighlight) highlighting | How to highlight content. |
+| [`TextHighlight`](#texthighlight) highlighting | How to highlight content. |
+
+::: {.tipsection data-latex=""}
+This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading) and [`Reload()`](#standard-reload).
+:::
 
 {{< pagebreak >}}

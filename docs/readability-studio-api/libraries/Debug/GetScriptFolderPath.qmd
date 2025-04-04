@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetScriptFolderPath`
 
 Returns the folder path\index{file paths!active script's path} of the currently running script.
@@ -14,9 +15,8 @@ Type: `string`
 
 The folder path of the currently running script.
 
-::: {.warningsection data-latex=""}
+:::: {.warningsection data-latex=""}
 This will return an empty string if the current script has not been saved yet.
 A warning explaining this will also appear in the editor's debug window.
+::::
 :::
-
-{{< pagebreak >}}

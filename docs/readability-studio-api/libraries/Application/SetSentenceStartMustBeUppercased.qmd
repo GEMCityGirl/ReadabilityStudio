@@ -12,6 +12,6 @@ SetSentenceStartMustBeUppercased(boolean caps)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` caps | `true` if it is expected for sentences to start with a capital letter. |
+| `boolean` caps | `true` if it is expected for sentences to start with a capital letter. |
 
 {{< pagebreak >}}

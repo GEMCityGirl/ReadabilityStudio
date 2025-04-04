@@ -8,12 +8,10 @@ Sets the status of the project. This can be freeform text.
 SetStatus(string status)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`string` status | The status of the project. |
-
+| `string` status | The status of the project. |
 
 {{< pagebreak >}}

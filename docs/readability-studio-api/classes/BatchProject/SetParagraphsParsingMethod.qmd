@@ -12,6 +12,10 @@ SetParagraphsParsingMethod(ParagraphParse parseMethod)
 
 **Parameter** | **Description**
 | :-- | :-- |
-[`ParagraphParse`](#paragraphparse) parseMethod | The paragraph parsing method.
+| [`ParagraphParse`](#paragraphparse) parseMethod | The paragraph parsing method. |
+
+::: {.tipsection data-latex=""}
+This can be optimized by placing it in between calls to [`DelayReloading()`](#batch-delayreloading) and [`Reload()`](#batch-reload).
+:::
 
 {{< pagebreak >}}

@@ -12,6 +12,6 @@ HighlightDolchAdjectives(boolean highlight)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` highlight | `true` to highlight Dolch adjectives. |
+| `boolean` highlight | `true` to highlight Dolch adjectives. |
 
 {{< pagebreak >}}

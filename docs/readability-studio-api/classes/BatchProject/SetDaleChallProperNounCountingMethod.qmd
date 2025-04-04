@@ -1,0 +1,21 @@
+## `SetDaleChallProperNounCountingMethod`
+
+Sets how Dale-Chall counts proper nouns.
+
+### Syntax {-}
+
+``` {.lua}
+SetDaleChallProperNounCountingMethod(ProperNounCountingMethod method)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+| [`ProperNounCountingMethod`](#propernouncountingmethod) method | How to count proper nouns. |
+
+::: {.tipsection data-latex=""}
+This can be optimized by placing it in between calls to [`DelayReloading()`](#batch-delayreloading) and [`Reload()`](#batch-reload).
+:::
+
+{{< pagebreak >}}

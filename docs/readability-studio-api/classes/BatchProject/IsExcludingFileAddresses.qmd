@@ -1,6 +1,6 @@
 ## `IsExcludingFileAddresses`
 
-Returns whether to exclude file addresses.
+Returns whether file addresses are being excluded.
 
 ### Syntax {-}
 
@@ -8,10 +8,8 @@ Returns whether to exclude file addresses.
 boolean IsExcludingFileAddresses()
 ```
 
-
 ### Return value {-}
 
 Type: `boolean`
-
 
 {{< pagebreak >}}

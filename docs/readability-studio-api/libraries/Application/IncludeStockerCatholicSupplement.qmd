@@ -12,6 +12,6 @@ IncludeStockerCatholicSupplement(boolean include)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` include | `true` to include Stocker's Catholic supplement to Dale-Chall. |
+| `boolean` include | `true` to include Stocker's Catholic supplement to Dale-Chall. |
 
 {{< pagebreak >}}

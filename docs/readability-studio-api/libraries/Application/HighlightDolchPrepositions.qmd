@@ -12,6 +12,6 @@ HighlightDolchPrepositions(boolean highlight)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` highlight | `true` to highlight Dolch prepositions. |
+| `boolean` highlight | `true` to highlight Dolch prepositions. |
 
 {{< pagebreak >}}

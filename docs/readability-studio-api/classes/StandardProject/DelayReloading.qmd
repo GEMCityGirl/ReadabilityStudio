@@ -1,7 +1,8 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `DelayReloading` {#standard-delayreloading}
 
 Prevents a project from updating while settings are being changed. 
-This will require an explicit call to **[Reload()](#standard-reload)** for the changes to take affect.
+This will require an explicit call to [`Reload()`](#standard-reload) for the changes to take affect.
 This is efficient for when multiple settings are being altered at once.
 
 ### Syntax {-}
@@ -14,7 +15,7 @@ DelayReloading(boolean delay)
 
 **Parameter** | **Description**
 | :-- | :-- |
-`boolean` delay | Specifies whether to delay reloading the project.
+| `boolean` delay | Specifies whether to delay reloading the project. |
 
 ### Example {-}
 
@@ -33,8 +34,7 @@ consentForm:ExcludeNumerals(true)
 -- Reindex the document so that the changes take effect.
 consentForm:Reload()
 
--- assuming we have a custom test by this name.
+-- Assuming we have a custom test by this name, add it.
 consentForm:AddTest("Patient Consent Formula")
 ```
-
-{{< pagebreak >}}
+:::

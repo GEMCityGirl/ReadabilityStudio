@@ -8,12 +8,10 @@ Specifies whether to display all points (not just outliers) on box plots.
 DisplayAllBoxPlotPoints(boolean display)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` display | `true` to display all points. |
-
+| `boolean` display | `true` to display all points. |
 
 {{< pagebreak >}}

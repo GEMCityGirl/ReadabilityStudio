@@ -8,6 +8,6 @@ Provides access to the program's functionality. This includes features such as:
 - [Data validation](#checkhtmllinks)
 - [File management](#mergewordlists)
 - [Image editing](#applyimageeffect)
-- [Logging system](#logerror)
+- [Log report](#logerror)
 
 {{< pagebreak >}}

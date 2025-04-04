@@ -5,13 +5,17 @@ Toggles whether documents are being re-analyzed as they change\index{real-time u
 ### Syntax {-}
 
 ``` {.lua}
-UseRealTimeUpdate(bool use)
+UseRealTimeUpdate(boolean use)
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-| `bool` use | `true` to enable real-time updating. |
+| `boolean` use | `true` to enable real-time updating. |
+
+::: {.tipsection data-latex=""}
+This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading) and [`Reload()`](#standard-reload).
+:::
 
 {{< pagebreak >}}

@@ -12,6 +12,6 @@ HighlightDolchVerbs(boolean highlight)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` highlight | `true` to highlight Dolch verbs. |
+| `boolean` highlight | `true` to highlight Dolch verbs. |
 
 {{< pagebreak >}}

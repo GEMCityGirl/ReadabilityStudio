@@ -12,6 +12,10 @@ IncludeStockerCatholicSupplement(boolean include)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` include | `true` to include Stocker's Catholic supplement to Dale-Chall. |
+| `boolean` include | `true` to include Stocker's Catholic supplement to Dale-Chall. |
+
+::: {.tipsection data-latex=""}
+This can be optimized by placing it in between calls to [`DelayReloading()`](#batch-delayreloading) and [`Reload()`](#batch-reload).
+:::
 
 {{< pagebreak >}}

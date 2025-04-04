@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `ExcludeFileAddress` {#standard-excludefileaddress}
 
 Specifies whether to exclude file paths\index{file paths!excluding} and URLs.
@@ -17,8 +18,7 @@ ExcludeFileAddress(boolean exclude)
 ### Example {-}
 
 ``` {.lua}
--- Opens a document from user's "Documents" folder
--- and changes a few options.
+-- Open a document from user's "Documents" folder.
 consentForm = StandardProject(Application.GetUserPath(UserPath.Documents) ..
                               "Consent Form.docx")
 
@@ -32,12 +32,11 @@ consentForm:ExcludeFileAddress(true)
 -- Reindex the document so that the changes take effect.
 consentForm:Reload()
 
--- assuming we have a custom test by this name.
+-- Assuming we have a custom test by this name, add it.
 consentForm:AddTest("Patient Consent Formula")
 ```
 
-::: {.tipsection data-latex=""}
+:::: {.tipsection data-latex=""}
 This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading) and [`Reload()`](#standard-reload).
+::::
 :::
-
-{{< pagebreak >}}

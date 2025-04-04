@@ -1,6 +1,6 @@
 ## `IsExcludingCopyrightNotices`
 
-Returns whether to exclude copyright notices for new projects.
+Returns whether copyright notices are being excluded for new projects.
 
 ### Syntax {-}
 
@@ -8,10 +8,8 @@ Returns whether to exclude copyright notices for new projects.
 boolean IsExcludingCopyrightNotices()
 ```
 
-
 ### Return value {-}
 
 Type: `boolean`
-
 
 {{< pagebreak >}}

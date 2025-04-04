@@ -12,6 +12,10 @@ SetFilePathDisplayMode(FilePathDisplayMode displayMode)
 
 **Parameter** | **Description**
 | :-- | :-- |
-[`FilePathDisplayMode`](#filepathdisplaymode) displayMode | The filepath display to use for the project's lists.
+| [`FilePathDisplayMode`](#filepathdisplaymode) displayMode | The filepath display to use for the project's lists. |
+
+::: {.tipsection data-latex=""}
+This can be optimized by placing it in between calls to [`DelayReloading()`](#batch-delayreloading) and [`Reload()`](#batch-reload).
+:::
 
 {{< pagebreak >}}

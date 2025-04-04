@@ -12,6 +12,10 @@ IgnoreBlankLines(boolean ignore)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` ignore | `true` to ignore blank lines. |
+| `boolean` ignore | `true` to ignore blank lines. |
+
+::: {.tipsection data-latex=""}
+This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading) and [`Reload()`](#standard-reload).
+:::
 
 {{< pagebreak >}}

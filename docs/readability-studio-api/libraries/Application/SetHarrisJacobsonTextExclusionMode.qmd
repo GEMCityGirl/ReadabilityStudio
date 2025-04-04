@@ -1,0 +1,17 @@
+## `SetHarrisJacobsonTextExclusionMode`
+
+Sets how text is excluded for the Harris-Jacobson test for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+SetHarrisJacobsonTextExclusionMode(SpecializedTestTextExclusion method)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+| [`SpecializedTestTextExclusion`](#specializedtesttextexclusion) method | How to exclude text. |
+
+{{< pagebreak >}}

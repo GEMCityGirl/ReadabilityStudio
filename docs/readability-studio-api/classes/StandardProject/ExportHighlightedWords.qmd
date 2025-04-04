@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `ExportHighlightedWords`
 
 Saves\index{highlighted reports!exporting} the specified highlighted words as an RTF or HTML report.
@@ -13,12 +14,12 @@ ExportHighlightedWords(HighlightedWordReportType type,
 
 **Parameter** | **Description**
 | :-- | :-- |
-[`HighlightedWordReportType`](#highlightedreporttype) type | The highlighted text window to save.
-`string` outputFilePath | The folder to save the scores.
+| [`HighlightedWordReportType`](#highlightedreporttype) type | The highlighted text window to save. |
+| `string` outputFilePath | The folder to save the scores. |
 
-::: {.notesection data-latex=""}
+:::: {.notesection data-latex=""}
 Use [`Application.GetTestId()`](#gettestid) to export the highlighted-words report for a custom test (see example below).
-:::
+::::
 
 ### Example\index{examples!exporting reports} {-}
 
@@ -39,5 +40,4 @@ consentForm:ExportHighlightedWords(
 
 consentForm:Close()
 ```
-
-{{< pagebreak >}}
+:::

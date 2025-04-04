@@ -1,0 +1,17 @@
+## `SetFleschKincaidNumeralSyllabizeMethod`
+
+Sets how numerals' syllables are counted for the Flesch-Kincaid test for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+SetFleschKincaidNumeralSyllabizeMethod(FleschKincaidNumeralSyllabize method)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+| [`FleschKincaidNumeralSyllabize`](#fleschkincaidnumeralsyllabize) method | How to syllablize numerals. |
+
+{{< pagebreak >}}

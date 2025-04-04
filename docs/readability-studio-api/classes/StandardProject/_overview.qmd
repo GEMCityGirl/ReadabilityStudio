@@ -3,34 +3,34 @@
 Provides the functionality of a standard project.
 Standard projects analyze a single document and provides numerous results related to readability and other style metrics.
 
-Note that changing various features of a project once
-it has been loaded will cause it to re-analyze its
-document. As an optimization, this analysis can be
-delayed until all these features have been changed.
+Note that changing various features of a project once it has been loaded will cause it to re-analyze its document.
+As an optimization, this analysis can be delayed until all these features have been changed.
 This is done by:
 
-- calling **[DelayReloading()](#standard-delayreloading)**
+- calling [`DelayReloading()`](#standard-delayreloading)
 - calling any functions that require a re-analysis
-- and finally calling **[Reload()](#standard-reload)**
+- and finally calling [`Reload()`](#standard-reload)
 
-For example:
+For\index{examples!creating a standard project} example\index{projects!creating from a document}:
 
 ``` {.lua}
--- Opens a document from user's "Documents" folder
--- and changes a few options.
+-- Open a document from user's "Documents" folder.
 consentForm = StandardProject(Application.GetUserPath(UserPath.Documents) ..
                               "Consent Form.docx")
 
--- Delay reloading.
+-- Delay reloading while we change a few options.
 consentForm:DelayReloading(true)
--- Change a few options.
 consentForm:AggressivelyExclude(true)
 consentForm:ExcludeTrailingCitations(true)
 -- Reindex the document so that the changes take effect.
 consentForm:Reload()
 
--- assuming we have a custom test by this name.
+-- Assuming we have a custom test by this name, add it.
 consentForm:AddTest("Patient Consent Formula")
+-- Select list of unfamiliar words for the custom test.
+consentForm:SelectWindow(
+    SideBarSection.WordsBreakdown,
+    Application.GetTestId("Patient Consent Formula"))
 ```
 
 {{< pagebreak >}}

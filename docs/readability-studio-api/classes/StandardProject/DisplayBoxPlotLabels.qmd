@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `DisplayBoxPlotLabels`
 
 Specifies whether to display labels on box plots.
@@ -12,6 +13,5 @@ DisplayBoxPlotLabels(boolean display)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` display | `true` to display the labels. |
-
-{{< pagebreak >}}
+| `boolean` display | `true` to display the labels. |
+:::

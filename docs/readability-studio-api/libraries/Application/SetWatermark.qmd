@@ -12,6 +12,6 @@ SetWatermark(string watermark)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`string` watermark | The string to write across graphs. |
+| `string` watermark | The string to write across graphs. |
 
 {{< pagebreak >}}

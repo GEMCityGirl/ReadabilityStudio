@@ -1,0 +1,17 @@
+## `SetDaleChallProperNounCountingMethod`
+
+Sets how Dale-Chall counts proper nouns for new projects.
+
+### Syntax {-}
+
+``` {.lua}
+SetDaleChallProperNounCountingMethod(ProperNounCountingMethod method)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+| [`ProperNounCountingMethod`](#propernouncountingmethod) method | How to count proper nouns. |
+
+{{< pagebreak >}}

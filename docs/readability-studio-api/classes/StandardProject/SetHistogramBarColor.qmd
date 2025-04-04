@@ -8,11 +8,10 @@ Sets bar color (in histograms).
 SetHistogramBarColor(string colorName)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`string` colorName | The name of the color to use. |
+| `string` colorName | The name of the color to use. |
 
 {{< pagebreak >}}

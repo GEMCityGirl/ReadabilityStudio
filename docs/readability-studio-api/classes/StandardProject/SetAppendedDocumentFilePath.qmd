@@ -17,7 +17,7 @@ SetAppendedDocumentFilePath(string filePath)
 ### Example {-}
 
 ``` {.lua}
--- Open a project from the user's "Documents" folder
+-- Open a project from the user's "Documents" folder.
 consentForm = StandardProject(Application.GetUserPath(UserPath.Documents) ..
                               "Consent Form.docx")
 

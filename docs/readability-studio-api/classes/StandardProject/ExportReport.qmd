@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `ExportReport` {#standard-exportreport}
 
 Saves\index{reports!exporting} the specified report.
@@ -13,8 +14,8 @@ ExportReport(ReportType type,
 
 **Parameter** | **Description**
 | :-- | :-- |
-[ReportType](#reporttype) type | The report to save.
-`string` outputFilePath | The folder to save the scores.
+| [`ReportType`](#reporttype) type | The report to save. |
+| `string` outputFilePath | The folder to save the scores. |
 
 ### Example\index{examples!exporting statistics reports} {-}
 
@@ -28,5 +29,4 @@ consentForm:ExportReport(ReportType.ReadabilityScoresTabularReport,
 -- Close, don't bother saving.
 consentForm:Close(false)
 ```
-
-{{< pagebreak >}}
+:::

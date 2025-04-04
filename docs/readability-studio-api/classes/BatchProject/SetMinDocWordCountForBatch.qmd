@@ -12,6 +12,10 @@ SetMinDocWordCountForBatch(number wordCount)
 
 **Parameter** | **Description**
 | :-- | :-- |
-`number` wordCount | The minimum number of words that a document must have to be included in the project.
+| `number` wordCount | The minimum number of words that a document must have to be included in the project. |
+
+::: {.tipsection data-latex=""}
+This can be optimized by placing it in between calls to [`DelayReloading()`](#batch-delayreloading) and [`Reload()`](#batch-reload).
+:::
 
 {{< pagebreak >}}

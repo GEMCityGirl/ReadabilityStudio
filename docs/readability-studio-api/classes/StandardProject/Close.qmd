@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `Close` {#standard-close}
 
 Closes the project.
@@ -12,7 +13,7 @@ Close(boolean saveChanges)
 
 **Parameter** | **Description**
 | :-- | :-- |
-`boolean` saveChanges | Specifies whether to save any changes made to the project. The default is `false`.
+| `boolean` saveChanges | Specifies whether to save any changes made to the project. The default is `false`. |
 
 ### Example {-}
 
@@ -26,5 +27,4 @@ consentForm:ExportReport(ReportType.ReadabilityScoresTabularReport,
 -- Close, don't bother saving.
 consentForm:Close(false)
 ```
-
-{{< pagebreak >}}
+:::

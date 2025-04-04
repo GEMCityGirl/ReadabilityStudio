@@ -8,12 +8,10 @@ Specifies whether to display labels on box plots for new projects.
 DisplayBoxPlotLabels(boolean display)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` display | `true` to display the labels. |
-
+| `boolean` display | `true` to display the labels. |
 
 {{< pagebreak >}}

@@ -18,13 +18,13 @@ SetSummaryStatsReportOptions(boolean includeParagraphs,
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`boolean` includeParagraphs | `true` to include paragraph statistics. | 
-|`boolean` includeSentences | `true` to include sentence statistics. |  
-|`boolean` includeWords | `true` to include words statistics. | 
-|`boolean` includeExtendedWords | `true` to include extended word statistics. |  
-|`boolean` includeGrammar | `true` to include grammar statistics. | 
-|`boolean` includeNotes | `true` to include notes. |  
-|`boolean` includeExtendedInfo | `true` to include extended information, such as file information. |
+| `boolean` includeParagraphs | `true` to include paragraph statistics. | 
+| `boolean` includeSentences | `true` to include sentence statistics. |  
+| `boolean` includeWords | `true` to include words statistics. | 
+| `boolean` includeExtendedWords | `true` to include extended word statistics. |  
+| `boolean` includeGrammar | `true` to include grammar statistics. | 
+| `boolean` includeNotes | `true` to include notes. |  
+| `boolean` includeExtendedInfo | `true` to include extended information, such as file information. |
 
 ### Example {-}
 

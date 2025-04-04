@@ -1,6 +1,6 @@
 ## `IsIgnoringIndenting`
 
-Returns whether to ignore indenting when parsing paragraphs for new projects.
+Returns whether indenting is being ignored when parsing paragraphs for new projects.
 
 ### Syntax {-}
 

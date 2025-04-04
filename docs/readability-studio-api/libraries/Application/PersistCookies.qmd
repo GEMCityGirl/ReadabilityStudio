@@ -5,15 +5,13 @@ Toggles whether the web harvester uses keeps cookies read from JavaScript betwee
 ### Syntax {-}
 
 ``` {.lua}
-PersistCookies(bool keepCookies)
+PersistCookies(boolean keepCookies)
 ```
-
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|`bool` keepCookies | `true` to keep cookies between harvesting sessions. |
-
+| `boolean` keepCookies | `true` to keep cookies between harvesting sessions. |
 
 {{< pagebreak >}}

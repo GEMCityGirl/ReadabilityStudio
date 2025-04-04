@@ -1,0 +1,21 @@
+## `SetDaleChallTextExclusionMode`
+
+Sets how text is excluded for the Dale-Chall test.
+
+### Syntax {-}
+
+``` {.lua}
+SetDaleChallTextExclusionMode(SpecializedTestTextExclusion method)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+| [`SpecializedTestTextExclusion`](#specializedtesttextexclusion) method | How to exclude text. |
+
+::: {.tipsection data-latex=""}
+This can be optimized by placing it in between calls to [`DelayReloading()`](#batch-delayreloading) and [`Reload()`](#batch-reload).
+:::
+
+{{< pagebreak >}}
