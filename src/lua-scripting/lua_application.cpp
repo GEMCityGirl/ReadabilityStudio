@@ -176,7 +176,7 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int GetExamplesPath(lua_State* L)
+    int GetExamplesFolder(lua_State* L)
         {
         lua_pushstring(L, wxString{ wxGetApp().FindResourceDirectory(_DT(L"examples")) +
                                     wxFileName::GetPathSeparator() }
@@ -352,7 +352,7 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StitchImages(lua_State* L)
+    int MergeImages(lua_State* L)
         {
         if (!VerifyParameterCount(L, 4, __func__))
             {
@@ -442,15 +442,16 @@ namespace LuaScripting
             lua_pushboolean(L, false);
             return 1;
             }
-        lua_newtable(L);
+        lua_createtable(L, 0, 3);
 
-        lua_pushstring(L, _DT("Width"));
         lua_pushinteger(L, img.GetSize().GetWidth());
-        lua_settable(L, -3);
+        lua_setfield(L, -2, _DT("Width"));
 
-        lua_pushstring(L, _DT("Height"));
         lua_pushinteger(L, img.GetSize().GetHeight());
-        lua_settable(L, -3);
+        lua_setfield(L, -2, _DT("Height"));
+
+        lua_pushstring(L, wxFileName{ path }.GetName().utf8_str());
+        lua_setfield(L, -2, _DT("Name"));
 
         return 1;
         }
@@ -477,6 +478,27 @@ namespace LuaScripting
             }
 
         lua_pushnumber(L, crc);
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int ExportLogReport(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__) ||
+            wxGetApp().GetLogFile() == nullptr)
+            {
+            return 0;
+            }
+        const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
+
+        // create the folder to the filepath, if necessary
+        wxFileName::Mkdir(wxFileName(path).GetPath(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
+
+        wxFileName(path).SetPermissions(wxS_DEFAULT);
+        wxFile outputFile(path, wxFile::write);
+        lua_pushboolean(L, outputFile.Write(wxGetApp().GetLogFile()->Read(), wxConvUTF8));
+
+        wxGetApp().Yield();
         return 1;
         }
 

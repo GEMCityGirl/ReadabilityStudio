@@ -1,0 +1,21 @@
+::: {.minipage data-latex="{\textwidth}"}
+## `ExportLogReport`
+
+Saves\index{log report!exporting} the program's log report to a tab-delimited text file.
+
+### Syntax {-}
+
+``` {.lua}
+boolean ExportLogReport(string outPath)
+```
+
+### Return value {-}
+
+Type: `boolean`
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+| `string` outPath | The path to save a copy of the log file to. |
+:::
