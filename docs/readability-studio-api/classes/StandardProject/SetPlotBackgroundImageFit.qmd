@@ -13,7 +13,7 @@ SetPlotBackgroundImageFit(ImageFit fitType)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|[`ImageFit`](#imagefit) fitType | How to fit the image. |
+| [`ImageFit`](#imagefit) fitType | How to fit the image. |
 
 ### Example {-}
 

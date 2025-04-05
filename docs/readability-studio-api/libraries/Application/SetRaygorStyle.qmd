@@ -13,5 +13,5 @@ SetRaygorStyle(RaygorStyle style)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|[`RaygorStyle`](#raygorstyle) style | The visual style to apply. |
+| [`RaygorStyle`](#raygorstyle) style | The visual style to apply. |
 :::

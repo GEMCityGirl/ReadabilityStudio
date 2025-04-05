@@ -13,7 +13,7 @@ SetBarChartBarEffect(BoxEffect effect)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|[`BoxEffect`](#boxeffect) effect | The effect to apply to the bars. |
+| [`BoxEffect`](#boxeffect) effect | The effect to apply to the bars. |
 
 ### Example {-}
 
