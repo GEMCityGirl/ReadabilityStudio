@@ -4649,6 +4649,9 @@ decieved	deceived	3
 decieves	deceives	3		
 decieving	deceiving	3		
 decison	decision	3		
+decistion	decision	3		
+decistion's	decision's	3		
+decistions	decisions	3		
 declaratinos	declarations	3		
 declartion	declaration	3		
 declation	declaration	3		
@@ -10223,7 +10226,11 @@ medevial	medieval	3
 medevil	medieval	3		
 media annual	median annual	3		
 media hourly	median hourly	3		
+media income	median income	3		
+media incomes	median incomes	3		
 media monthly	median monthly	3		
+media salaries	median salaries	3		
+media salary	median salary	3		
 media weekly	median weekly	3		
 medievel	medieval	3		
 meet her waterloo	suffered a major defeat	2		
@@ -11025,6 +11032,9 @@ occassionaly	occasionally	3
 occassioned	occasioned	3		
 occassions	occasions	3		
 occationally	occasionally	3		
+occcur	occur	3		
+occcured	occurred	3		
+occcurs	occurs	3		
 occour	occur	3		
 occoured	occurred	3		
 occours	occurs	3		
@@ -11567,6 +11577,7 @@ parliment	parliament	3
 parlous	shrewd	0		
 parralel	parallel	3		
 parrallel	parallel	3		
+parrallelism	parallelism	3		
 parrallell	parallel	3		
 parsimonious	stingy	0		
 parsimoniously	stingily	0		
@@ -14430,7 +14441,7 @@ shell I	shall I	3
 shell she	shall she	3		
 shell they	shall they	3		
 shell we	shall we	3		
-shell you	shall you	3	a;interactive;the	
+shell you	shall you	3	a;interactive;the	can
 sherif	sheriff	3		
 shineing	shining	3		
 ship has come in	success has been achieved	2		
@@ -16483,6 +16494,10 @@ up to par	meets the standard	2
 up to snuff	meets the standard	2		
 up to the hilt	all the way	2		
 up until	until	0		
+upadate	update	3		
+upadated	updated	3		
+upadates	updates	3		
+upadating	updating	3		
 upate	update	3		
 upated	updated	3		
 upates	updates	3		
@@ -16638,6 +16653,9 @@ variation	change, difference	0
 variations	changes, differences	0		
 varibale	variable	3		
 varibales	variables	3		
+varible	variable	3		
+varible's	variable's	3		
+varibles	variables	3		
 varied reason	varied reasons	3		
 varient	variant	3		
 varieties of different	varieties of	1		
@@ -17096,7 +17114,7 @@ whenever	when	0
 whenver	whenever	3		
 wheras	whereas	3		
 where as	whereas	3	moment;moments;time;times	
-where by	whereby	3		
+where by	whereby, comma needed after 'where'	3		
 where taken	were taken	3		
 whereas	because, since	0		
 wherease	whereas	3		

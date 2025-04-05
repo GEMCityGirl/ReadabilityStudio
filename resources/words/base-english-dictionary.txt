@@ -8318,7 +8318,9 @@ autoinitializes
 autoinitializing
 autoionization
 autolabel
+autolabeled
 autolabeling
+autolabels
 autoload
 autoloaded
 autoloader
@@ -8506,6 +8508,8 @@ autosum
 autosummed
 autosumming
 autosums
+autotag
+autotags
 autotoxicities
 autotoxicity
 autotoxicity's
@@ -15965,6 +15969,9 @@ brushing
 brushlike
 brushoff
 brushoffs
+brushstroke
+brushstroke's
+brushstrokes
 brushwood
 brushwood's
 brushwoods
@@ -28613,6 +28620,8 @@ counterespionages
 counterexample
 counterexamples
 counterfactual
+counterfactual's
+counterfactuals
 counterfeit
 counterfeited
 counterfeiter
@@ -46634,6 +46643,9 @@ extensive
 extensively
 extensiveness
 extensiveness's
+extensivities
+extensivity
+extensivity's
 extensometer
 extensometer's
 extensometers
@@ -49154,6 +49166,10 @@ finessed
 finesses
 finessing
 finest
+finetune
+finetuned
+finetunes
+finetuning
 finfish
 finfish's
 finfishes
@@ -49331,6 +49347,7 @@ firewalker
 firewalker's
 firewalkers
 firewall
+firewalling
 firewalls
 firewater
 firewater's
@@ -57083,6 +57100,9 @@ groundwork's
 groundworks
 group
 group's
+groupchat
+groupchat's
+groupchats
 grouped
 grouper
 grouper's
@@ -71318,6 +71338,8 @@ keypads
 keyphrase
 keyphrase's
 keyphrases
+keypress
+keypresses
 keypunch
 keypunched
 keypuncher
@@ -82206,6 +82228,9 @@ misreader's
 misreading
 misreadings
 misreads
+misrecognition
+misrecognition's
+misrecognitions
 misrecord
 misrecorded
 misrecording
@@ -87570,6 +87595,7 @@ noncarbohydrate's
 noncaring
 noncash
 noncatalyzed
+noncategorical
 nonce
 nonce's
 noncellular
@@ -101672,6 +101698,10 @@ prebuild
 prebuilding
 prebuilds
 prebuilt
+precache
+precached
+precaches
+precaching
 precalculate
 precalculated
 precalculates
@@ -102849,6 +102879,9 @@ prevalences
 prevalent
 prevalently
 prevalents
+prevalidation
+prevalidation's
+prevalidations
 prevaricate
 prevaricated
 prevaricates
@@ -113125,6 +113158,7 @@ revetted
 revetting
 review
 reviewable
+reviewal
 reviewed
 reviewee
 reviewee's
@@ -128904,6 +128938,9 @@ subelements
 subenclosure
 subenclosure's
 subenclosures
+subentities
+subentity
+subentity's
 subentries
 subenvironment
 subenvironment's
@@ -129212,6 +129249,7 @@ suboperation
 suboperation's
 suboperations
 suboptimal
+suboptimally
 suborbital
 suborder
 suborder's

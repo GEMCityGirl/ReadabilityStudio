@@ -50,6 +50,7 @@ isostearate
 isostearic
 isostearyl
 isotridecyl
+kaomoji
 lavandula
 lecithin
 lentiscus

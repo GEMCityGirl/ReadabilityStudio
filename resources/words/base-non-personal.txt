@@ -2791,6 +2791,7 @@ Grolemund
 Groupon
 GrubHub
 Gruetzner
+GStreamer
 Guadalajara
 Guadalcanal
 Guadalquivir
@@ -3065,6 +3066,7 @@ Honda
 Hondo
 Honduran
 Honduras
+Honeycrisp
 Hong
 Honiara
 Honolulu
@@ -3428,6 +3430,7 @@ Junja
 Juno
 Jupiter
 Jupyter
+JupyterLab
 Jura
 Jurassic
 Jurua
@@ -3592,6 +3595,7 @@ Kolonia
 Komodo
 Konigstein
 Konkani
+Konsole
 Kontiki
 Kool-Aid
 Koran
@@ -3835,6 +3839,7 @@ LLVM
 Lockean
 Lockian
 Lockport
+Locstudio
 Lodi
 Logansport
 Logitech
@@ -4484,6 +4489,7 @@ México
 München
 Münchhausen
 N'Djamena
+N'ko
 NAACP
 Nabble
 Nabisco
@@ -4805,6 +4811,7 @@ Oaxaca
 Obamacare
 Oberlin
 Obetz
+ObjectiveC
 Ocala
 Occator
 Occident
@@ -4890,6 +4897,7 @@ OpenShift
 OpenSSL
 OpenStax
 OpenSuse
+OpenTelemetry
 OpenText
 OPERS
 Opry
@@ -4923,6 +4931,7 @@ Oshawa
 Oshkosh
 Oskaloosa
 Oslo
+Osmanya
 Osseo
 Ossipee
 Ostrander
@@ -5228,6 +5237,7 @@ Polynesian
 Polyuria
 Pomalyst
 Pomerania
+Pomeranian
 Pomodoro
 Pomona
 Pompe
@@ -5370,6 +5380,7 @@ Pyongyang
 Pyrenees
 Pyrex
 Pyrénées
+PySpark
 Pythagorean
 PyTorch
 Pyware
@@ -6165,6 +6176,7 @@ Squibb
 Squintum
 Sri
 Srinagar
+StackOverflow
 Staffordshire
 Stairmaster
 Stalingrad
@@ -6558,6 +6570,7 @@ Tiebold
 Tienanmen
 Tientsin
 Tiffin
+Tifinagh
 Tifton
 Tigard
 Tigerpoint
