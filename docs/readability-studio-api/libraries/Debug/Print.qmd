@@ -15,9 +15,9 @@ Print(string message)
 | :-- | :-- |
 | `string` message | The message to print. |
 
-::: {.tipsection data-latex=""}
+:::: {.tipsection data-latex=""}
 *message* can be HTML-formatted text.
-:::
+::::
 
 ### Example\index{examples!printing to the debugger} {-}
 
@@ -35,4 +35,4 @@ end
 ### See also {-}
 
 [`Application.LogMessage()`](#logmessage), [`Application.LogError()`](#logerror)
-::
+:::
