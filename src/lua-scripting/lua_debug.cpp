@@ -101,7 +101,7 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int GetScriptFolderPath(lua_State* L)
+    int GetScriptFolder(lua_State* L)
         {
         if (wxGetApp().GetLuaRunner().GetScriptFilePath().empty())
             {
@@ -113,8 +113,8 @@ namespace LuaScripting
             lua_pushstring(L, "");
             return 1;
             }
-        lua_pushstring(L,
-                       wxFileName(wxGetApp().GetLuaRunner().GetScriptFilePath()).GetPathWithSep());
+        lua_pushstring(
+            L, wxFileName{ wxGetApp().GetLuaRunner().GetScriptFilePath() }.GetPathWithSep());
         return 1;
         }
 

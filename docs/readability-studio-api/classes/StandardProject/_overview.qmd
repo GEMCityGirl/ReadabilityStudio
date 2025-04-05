@@ -15,7 +15,7 @@ For\index{examples!creating a standard project} example\index{projects!creating 
 
 ``` {.lua}
 -- Open a document from user's "Documents" folder.
-consentForm = StandardProject(Application.GetUserPath(UserPath.Documents) ..
+consentForm = StandardProject(Application.GetUserFolder(UserPath.Documents) ..
                               "Consent Form.docx")
 
 -- Delay reloading while we change a few options.

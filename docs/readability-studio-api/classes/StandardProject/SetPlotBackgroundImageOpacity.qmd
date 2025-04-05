@@ -20,7 +20,7 @@ SetPlotBackgroundImageOpacity(number opacity)
 ``` {.lua}
 symposium = StandardProject(Application.GetExamplesFolder() ..
                             "YA Enterprise Software Symposium.odt")
-symposium:SetPlotBackgroundImage(Application.GetUserPath(UserPath.Pictures) ..
+symposium:SetPlotBackgroundImage(Application.GetUserFolder(UserPath.Pictures) ..
                                  "Skating at Kettering.jpg")
 symposium:SetPlotBackgroundImageOpacity(100)
 symposium:SetPlotBackgroundImageEffect(ImageEffect.Sepia)

@@ -681,7 +681,7 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int GetUserPath(lua_State* L)
+    int GetUserFolder(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))
             {

@@ -445,7 +445,7 @@ FontWeight =
   ExtraHeavy = 1000  -- Extra heavy.
   }
 
--- Paths to use with Application.GetUserPath().
+-- Paths to use with Application.GetUserFolder().
 UserPath =
   {
   Documents = 2, -- User's Documents folder.

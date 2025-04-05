@@ -28,7 +28,7 @@ A table listing the files.
 
 ``` {.lua}
 files = Application.FindFiles(
-    Application.GetUserPath(UserPath.Pictures), "*.png", true)
+    Application.GetUserFolder(UserPath.Pictures), "*.png", true)
 
 -- print the file paths that were found
 for i,val in ipairs(files)

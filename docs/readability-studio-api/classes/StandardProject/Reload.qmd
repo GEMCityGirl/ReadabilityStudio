@@ -13,7 +13,7 @@ Reload()
 
 ``` {.lua}
 -- Open a document from user's "Documents" folder.
-consentForm = StandardProject(Application.GetUserPath(UserPath.Documents) ..
+consentForm = StandardProject(Application.GetUserFolder(UserPath.Documents) ..
                               "Consent Form.docx")
 
 -- Delay reloading.

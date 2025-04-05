@@ -31,10 +31,10 @@ Returns `true` if image was successfully saved.
 
 ``` {.lua}
 Application.MergeImages(
-    Application.GetUserPath(UserPath.Pictures) .. "Charleston Falls Sunrise.JPG",
-    Application.GetUserPath(UserPath.Pictures) .. "Charleston Falls Sunset.png",
+    Application.GetUserFolder(UserPath.Pictures) .. "Charleston Falls Sunrise.JPG",
+    Application.GetUserFolder(UserPath.Pictures) .. "Charleston Falls Sunset.png",
     -- output can be saved in a different format
-    Application.GetUserPath(UserPath.Pictures) .. "CombinedImg.bmp",
+    Application.GetUserFolder(UserPath.Pictures) .. "CombinedImg.bmp",
     Orientation.Horizontal)
 ```
 :::

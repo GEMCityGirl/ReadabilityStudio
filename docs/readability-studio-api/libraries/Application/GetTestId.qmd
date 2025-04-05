@@ -29,7 +29,7 @@ The numeric ID of the test. Will be `-1` if test was not found.
 -- custom test "Home Choice"
 Application.GetActiveStandardProject():ExportHighlightedWords(
     Application.GetTestId("Home Choice"), 
-    Application.GetUserPath(UserPath.Documents) ..
+    Application.GetUserFolder(UserPath.Documents) ..
         "Home Choice Unfamiliar Words.rtf")
 ```
 :::

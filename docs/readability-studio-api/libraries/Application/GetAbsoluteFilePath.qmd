@@ -32,7 +32,7 @@ The full file path.
 -- the full path of where "ProfileReport.txt" is at.
 Debug.Print(
     Application.GetAbsoluteFilePath(
-    Debug.GetScriptFolderPath(),
+    Debug.GetScriptFolder(),
     "../../Mizzie/Documents/ProfileReport.txt"))
 ```
 :::

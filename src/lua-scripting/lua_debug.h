@@ -39,13 +39,13 @@ namespace LuaScripting
     // NOTE: these must all be single-line for the build script to properly create new topics from these.
     int Print(lua_State* /*string message*/); // Prints a message to the script editor's debug window.
     int Clear(lua_State*); // Clears the log window.
-    int /*string*/ GetScriptFolderPath(lua_State*); // Returns the folder path of the currently running script.
+    int /*string*/ GetScriptFolder(lua_State*); // Returns the folder path of the currently running script.
     // clang-format on
     // quneiform-suppress-end
 
     static const luaL_Reg DebugLib[] = { { "Print", Print },
                                          { "Clear", Clear },
-                                         { "GetScriptFolderPath", GetScriptFolderPath },
+                                         { "GetScriptFolder", GetScriptFolder },
                                          { nullptr, nullptr } };
     } // namespace LuaScripting
 

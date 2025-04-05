@@ -1,12 +1,12 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetScriptFolderPath`
+## `GetScriptFolder`
 
 Returns the folder path\index{file paths!active script's path} of the currently running script.
 
 ### Syntax {-}
 
 ``` {.lua}
-string GetScriptFolderPath()
+string GetScriptFolder()
 ```
 
 ### Return value {-}

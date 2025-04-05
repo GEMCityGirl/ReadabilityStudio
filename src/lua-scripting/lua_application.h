@@ -38,7 +38,7 @@ namespace LuaScripting
     int /*string*/ GetLuaConstantsPath(lua_State* L); // Returns the path of the file containing the Lua data types used by the program.
     int /*string*/ GetProgramPath(lua_State* L); // Returns the program's folder path.
     int /*string*/ GetExamplesFolder(lua_State* L); // Returns the program's example documents' folder path.
-    int /*string*/ GetUserPath(lua_State* L /*UserPath path*/); // Returns the path of a given folder in the user's directory.
+    int /*string*/ GetUserFolder(lua_State* L /*UserPath path*/); // Returns the path of a given folder in the user's directory.
     int /*string*/ GetAbsoluteFilePath(lua_State* L /*string filePath, string baseFilePath*/); // Returns the absolute filepath for the first path, relative to the second.
     int /*string*/ DownloadFile(lua_State* L /*string Url, string downloadPath*/); // Downloads a webpage to the provided local path.
     int /*table*/ FindFiles(lua_State* L /*string directory, string filePattern, boolean recursive*/); // Returns a list of all files from a folder matching the provided file pattern.
@@ -329,7 +329,7 @@ namespace LuaScripting
         { "GetLuaConstantsPath", GetLuaConstantsPath },
         { "GetProgramPath", GetProgramPath },
         { "GetExamplesFolder", GetExamplesFolder },
-        { "GetUserPath", GetUserPath },
+        { "GetUserFolder", GetUserFolder },
         { "GetAbsoluteFilePath", GetAbsoluteFilePath },
         { "GetActiveStandardProject", GetActiveStandardProject },
         { "GetActiveBatchProject", GetActiveBatchProject },

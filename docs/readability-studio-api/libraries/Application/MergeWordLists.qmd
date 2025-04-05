@@ -32,17 +32,17 @@ Returns `true` if files were successfully merged.
 
 ``` {.lua}
 Application.MergeWordLists(
-    Application.GetUserPath(UserPath.Documents) .. "programming/assembly.txt",
-    Application.GetUserPath(UserPath.Documents) .. "programming/cpp.txt",
-    Application.GetUserPath(UserPath.Documents) .. "programming/csharp.txt",
-    Application.GetUserPath(UserPath.Documents) .. "programming/html.txt",
-    Application.GetUserPath(UserPath.Documents) .. "programming/java.txt",
-    Application.GetUserPath(UserPath.Documents) .. "programming/python.txt",
-    Application.GetUserPath(UserPath.Documents) .. "programming/visual-basic.txt",
-    Application.GetUserPath(UserPath.Documents) .. "programming/sql.txt",
-    Application.GetUserPath(UserPath.Documents) .. "programming/r.txt",
+    Application.GetUserFolder(UserPath.Documents) .. "programming/assembly.txt",
+    Application.GetUserFolder(UserPath.Documents) .. "programming/cpp.txt",
+    Application.GetUserFolder(UserPath.Documents) .. "programming/csharp.txt",
+    Application.GetUserFolder(UserPath.Documents) .. "programming/html.txt",
+    Application.GetUserFolder(UserPath.Documents) .. "programming/java.txt",
+    Application.GetUserFolder(UserPath.Documents) .. "programming/python.txt",
+    Application.GetUserFolder(UserPath.Documents) .. "programming/visual-basic.txt",
+    Application.GetUserFolder(UserPath.Documents) .. "programming/sql.txt",
+    Application.GetUserFolder(UserPath.Documents) .. "programming/r.txt",
     -- all proceeding files will be combined into "all-languages.txt"
-    Application.GetUserPath(UserPath.Documents) .. "programming/all-languages.txt")
+    Application.GetUserFolder(UserPath.Documents) .. "programming/all-languages.txt")
 ```
 
 :::: {.callout-note}

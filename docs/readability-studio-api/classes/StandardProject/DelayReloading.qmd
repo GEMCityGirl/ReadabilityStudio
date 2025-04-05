@@ -22,7 +22,7 @@ DelayReloading(boolean delay)
 ``` {.lua}
 -- Opens a document from user's "Documents" folder
 -- and changes a few options.
-consentForm = StandardProject(Application.GetUserPath(UserPath.Documents) ..
+consentForm = StandardProject(Application.GetUserFolder(UserPath.Documents) ..
                               "Consent Form.docx")
 
 -- Delay reloading.
