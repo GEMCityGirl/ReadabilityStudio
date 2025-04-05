@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IsAppendingDailyLog`
 
 Returns whether the current log file is being appended when the program restarts.
@@ -8,10 +9,7 @@ Returns whether the current log file is being appended when the program restarts
 boolean IsAppendingDailyLog()
 ```
 
-
 ### Return value {-}
 
 Type: `boolean`
-
-
-{{< pagebreak >}}
+:::

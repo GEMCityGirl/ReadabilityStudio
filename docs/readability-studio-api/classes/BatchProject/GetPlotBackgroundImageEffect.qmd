@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetPlotBackgroundImageEffect`
 
 Returns the effect applied to an image\index{images!effects} when drawn as a graph's background.
@@ -8,10 +9,7 @@ Returns the effect applied to an image\index{images!effects} when drawn as a gra
 ImageEffect GetPlotBackgroundImageEffect()
 ```
 
-
 ### Return value {-}
 
 Type: [`ImageEffect`](#imageeffect)
-
-
-{{< pagebreak >}}
+:::

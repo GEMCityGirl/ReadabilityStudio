@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetGraphBackgroundColor`
 
 Sets the background color for all graphs.
@@ -13,5 +14,4 @@ SetGraphBackgroundColor(string colorName)
 **Parameter** | **Description**
 | :-- | :-- |
 | `string` colorName | The name of the color to use. |
-
-{{< pagebreak >}}
+:::

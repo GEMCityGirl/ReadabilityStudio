@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetParagraphsParsingMethod`
 
 Returns the method for how paragraphs are parsed.
@@ -11,5 +12,4 @@ ParagraphParse GetParagraphsParsingMethod()
 ### Return value {-}
 
 Type: [`ParagraphParse`](#paragraphparse)
-
-{{< pagebreak >}}
+:::

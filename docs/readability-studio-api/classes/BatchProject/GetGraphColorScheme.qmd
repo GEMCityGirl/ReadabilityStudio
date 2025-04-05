@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetGraphColorScheme`
 
 Returns the graph color scheme.
@@ -8,10 +9,7 @@ Returns the graph color scheme.
 string GetGraphColorScheme()
 ```
 
-
 ### Return value {-}
 
 Type: `string`
-
-
-{{< pagebreak >}}
+:::

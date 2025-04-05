@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetPhraseExclusionList`
 
 Sets the filepath to the list of phrases and words that should be excluded from analysis for new projects.
@@ -13,5 +14,4 @@ SetPhraseExclusionList(string exclusionListPath)
 **Parameter** | **Description**
 | :-- | :-- |
 | `string` exclusionListPath | The filepath to the list of phrases and words that should be excluded from analysis. |
-
-{{< pagebreak >}}
+:::

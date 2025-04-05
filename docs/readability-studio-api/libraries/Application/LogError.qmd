@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `LogError`
 
 Sends an error message\index{log report!sending messages to} to program's logging system.
@@ -17,5 +18,4 @@ LogError(string errorMessage)
 ### See also {-}
 
 [`Debug.Print()`](#print)
-
-{{< pagebreak >}}
+:::

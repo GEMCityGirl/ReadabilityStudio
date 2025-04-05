@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `ExcludeCopyrightNotices`
 
 Specifies whether to exclude copyright notices from the document analysis.
@@ -12,6 +13,5 @@ ExcludeCopyrightNotices(boolean exclude)
 
 **Parameter** | **Description**
 | :-- | :-- |
-`boolean` exclude | `true` to exclude copyright notices, `false` to include them.
-
-{{< pagebreak >}}
+| `boolean` exclude | `true` to exclude copyright notices, `false` to include them. |
+:::

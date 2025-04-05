@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetSyllableCount`
 
 Returns the total number of syllables from the document.
@@ -8,10 +9,7 @@ Returns the total number of syllables from the document.
 number GetSyllableCount()
 ```
 
-
 ### Return value {-}
 
 Type: `number`
-
-
-{{< pagebreak >}}
+:::

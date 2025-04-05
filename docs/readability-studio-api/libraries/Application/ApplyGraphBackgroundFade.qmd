@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `ApplyGraphBackgroundFade`
 
 Specifies whether to use a color fade on graph backgrounds.
@@ -13,5 +14,4 @@ ApplyGraphBackgroundFade(boolean useColorFade)
 **Parameter** | **Description**
 | :-- | :-- |
 `boolean` useColorFade | Whether to use a color fade on graph backgrounds.
-
-{{< pagebreak >}}
+:::

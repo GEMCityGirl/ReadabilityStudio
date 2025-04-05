@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IsExcludingAggressively`
 
 Returns whether to aggressively exclude.
@@ -8,10 +9,7 @@ Returns whether to aggressively exclude.
 boolean IsExcludingAggressively()
 ```
 
-
 ### Return value {-}
 
 Type: `boolean`
-
-
-{{< pagebreak >}}
+:::

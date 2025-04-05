@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IsSSLVerificationDisabled`
 
 Returns whether SSL verification\index{web harvester!peer verification} used by the web harvester is disabled.
@@ -11,5 +12,4 @@ boolean IsSSLVerificationDisabled()
 ### Return value {-}
 
 Type: `boolean`
-
-{{< pagebreak >}}
+:::

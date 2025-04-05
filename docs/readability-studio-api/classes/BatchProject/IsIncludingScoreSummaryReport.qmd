@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IsIncludingScoreSummaryReport`
 
 Returns whether the test score summary report is being included.
@@ -8,10 +9,7 @@ Returns whether the test score summary report is being included.
 boolean IsIncludingScoreSummaryReport()
 ```
 
-
 ### Return value {-}
 
 Type: `boolean`
-
-
-{{< pagebreak >}}
+:::

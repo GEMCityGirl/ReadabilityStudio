@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IsExcludingProperNouns`
 
 Returns whether proper nouns are being excluded for new projects.
@@ -11,5 +12,4 @@ boolean IsExcludingProperNouns()
 ### Return value {-}
 
 Type: `boolean`
-
-{{< pagebreak >}}
+:::

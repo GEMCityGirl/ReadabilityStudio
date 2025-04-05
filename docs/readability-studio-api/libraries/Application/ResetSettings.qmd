@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `ResetSettings`
 
 Resets the program's settings to the factory default.
@@ -7,5 +8,4 @@ Resets the program's settings to the factory default.
 ``` {.lua}
 ResetSettings()
 ```
-
-{{< pagebreak >}}
+:::

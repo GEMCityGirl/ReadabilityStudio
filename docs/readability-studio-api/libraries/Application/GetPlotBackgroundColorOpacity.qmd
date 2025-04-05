@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetPlotBackgroundColorOpacity`
 
 Returns the graph background (plot area) color opacity for new projects.
@@ -8,10 +9,7 @@ Returns the graph background (plot area) color opacity for new projects.
 number GetPlotBackgroundColorOpacity()
 ```
 
-
 ### Return value {-}
 
 Type: `number`
-
-
-{{< pagebreak >}}
+:::

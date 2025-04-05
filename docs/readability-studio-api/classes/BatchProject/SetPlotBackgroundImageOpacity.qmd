@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetPlotBackgroundImageOpacity`
 
 Sets the graph background (plot area) image opacity\index{images!opacity}.
@@ -13,5 +14,4 @@ SetPlotBackgroundImageOpacity(number opacity)
 **Parameter** | **Description**
 | :-- | :-- |
 | `number` opacity | The opacity level (should be between 0--255) |
-
-{{< pagebreak >}}
+:::

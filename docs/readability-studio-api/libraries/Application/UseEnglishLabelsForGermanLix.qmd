@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `UseEnglishLabelsForGermanLix`
 
 Sets whether English labels are being used for the brackets on German Lix gauges for new projects.
@@ -13,5 +14,4 @@ UseEnglishLabelsForGermanLix(boolean useEnglish)
 **Parameter** | **Description**
 | :-- | :-- |
 | `boolean` useEnglish | `true` to display English translations for the labels. |
-
-{{< pagebreak >}}
+:::

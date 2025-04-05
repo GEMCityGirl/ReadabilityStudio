@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetWordsBreakdownResultsOptions`
 
 Sets which results in the words breakdown section should be included.
@@ -37,7 +38,7 @@ SetWordsBreakdownResultsOptions(boolean includeWordCounts,
 ### Example {-}
 
 ``` {.lua}
-cocoaDoc = StandardProject(Application.GetExamplesPath() ..
+cocoaDoc = StandardProject(Application.GetExamplesFolder() ..
                            "Cocoa Desserts.rtf")
 cocoaDoc:DelayReloading(true)
 cocoaDoc:AddTest(Test.HarrisJacobson)
@@ -52,5 +53,4 @@ cocoaDoc:SetWordsBreakdownResultsOptions(false, false, false, false, false, fals
                                          false, false, false, false, false)
 cocoaDoc:Reload()
 ```
-
-{{< pagebreak >}}
+:::

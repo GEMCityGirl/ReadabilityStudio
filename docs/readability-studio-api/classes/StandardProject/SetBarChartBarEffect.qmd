@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetBarChartBarEffect`
 
 Sets how bars should be drawn within the various bar charts.
@@ -17,7 +18,7 @@ SetBarChartBarEffect(BoxEffect effect)
 ### Example {-}
 
 ``` {.lua}
-cocoa = StandardProject(Application.GetExamplesPath() ..
+cocoa = StandardProject(Application.GetExamplesFolder() ..
                         "Cocoa Desserts.rtf")
 cocoa:SetGraphCommonImage(Application.GetUserPath(UserPath.Pictures) ..
                           "sunset.jpg")
@@ -26,5 +27,4 @@ cocoa:SetHistogramBarEffect(BoxEffect.CommonImage)
 cocoa:SetGraphColorScheme("coffeeshop")
 cocoa:SelectWindow(SideBarSection.WordsBreakdown, -1)
 ```
-
-{{< pagebreak >}}
+:::

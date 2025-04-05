@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetLeftPrintHeader`
 
 Returns the left print header\index{printing!headers \& footers}.
@@ -8,10 +9,7 @@ Returns the left print header\index{printing!headers \& footers}.
 string GetLeftPrintHeader()
 ```
 
-
 ### Return value {-}
 
 Type: `string`
-
-
-{{< pagebreak >}}
+:::

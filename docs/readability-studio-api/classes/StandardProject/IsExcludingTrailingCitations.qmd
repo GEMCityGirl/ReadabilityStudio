@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IsExcludingTrailingCitations`
 
 Returns whether trailing citations are being excluded.
@@ -11,5 +12,4 @@ boolean IsExcludingTrailingCitations()
 ### Return value {-}
 
 Type: `boolean`
-
-{{< pagebreak >}}
+:::

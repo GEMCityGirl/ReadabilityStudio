@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetRaygorStyle`
 
 Returns the visual style for Raygor graphs.
@@ -8,10 +9,7 @@ Returns the visual style for Raygor graphs.
 RaygorStyle GetRaygorStyle()
 ```
 
-
 ### Return value {-}
 
 Type: [`RaygorStyle`](#raygorstyle)
-
-
-{{< pagebreak >}}
+:::

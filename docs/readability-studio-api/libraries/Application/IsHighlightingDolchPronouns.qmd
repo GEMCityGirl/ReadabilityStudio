@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IsHighlightingDolchPronouns`
 
 Returns whether Dolch pronouns are being highlighted in the formatted Dolch report for new projects.
@@ -8,10 +9,7 @@ Returns whether Dolch pronouns are being highlighted in the formatted Dolch repo
 boolean IsHighlightingDolchPronouns()
 ```
 
-
 ### Return value {-}
 
 Type: `boolean`
-
-
-{{< pagebreak >}}
+:::

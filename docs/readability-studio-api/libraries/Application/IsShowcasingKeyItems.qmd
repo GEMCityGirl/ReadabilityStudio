@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IsShowcasingKeyItems`
 
 Returns whether important parts of certain graphs should be highlighted for new projects.
@@ -8,10 +9,7 @@ Returns whether important parts of certain graphs should be highlighted for new 
 boolean IsShowcasingKeyItems()
 ```
 
-
 ### Return value {-}
 
 Type: `boolean`
-
-
-{{< pagebreak >}}
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetRaygorStyle`
 
 Sets the visual style for Raygor graphs for new projects.
@@ -8,12 +9,9 @@ Sets the visual style for Raygor graphs for new projects.
 SetRaygorStyle(RaygorStyle style)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
 |[`RaygorStyle`](#raygorstyle) style | The visual style to apply. |
-
-
-{{< pagebreak >}}
+:::

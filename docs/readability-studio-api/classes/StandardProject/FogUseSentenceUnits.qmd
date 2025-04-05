@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `FogUseSentenceUnits`
 
 Sets whether independent clauses are being counted when calculating Gunning Fog.
@@ -14,8 +15,7 @@ FogUseSentenceUnits(boolean use)
 | :-- | :-- |
 | `boolean` use | `true` to count independent clauses when calculating Gunning Fog. |
 
-::: {.tipsection data-latex=""}
+:::: {.tipsection data-latex=""}
 This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading) and [`Reload()`](#standard-reload).
+::::
 :::
-
-{{< pagebreak >}}

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetGrammarResultsOptions`
 
 Sets which grammar results should be included.
@@ -36,8 +37,7 @@ SetGrammarResultsOptions(boolean includeHighlightedReport,
 | `boolean` includeConjunctionStartingSentences | `true` to include sentences that start with conjunctions. | 
 | `boolean` includeLowercasedSentences | `true` to include sentences that start with lowercase letters. |
 
-::: {.tipsection data-latex=""}
+:::: {.tipsection data-latex=""}
 This can be optimized by placing it in between calls to [`DelayReloading()`](#batch-delayreloading) and [`Reload()`](#batch-reload).
+::::
 :::
-
-{{< pagebreak >}}

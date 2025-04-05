@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetTitle` {#batch-gettitle}
 
 Returns the title of the project.
@@ -11,5 +12,4 @@ string GetTitle()
 ### Return value {-}
 
 The title of the project.
-
-{{< pagebreak >}}
+:::

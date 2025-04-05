@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetHistrogramBinLabelDisplay`
 
 Sets how bar labels are displayed on histograms.
@@ -12,6 +13,5 @@ SetHistrogramBinLabelDisplay(BinLabelDisplay display)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|[`BinLabelDisplay`](#binlabeldisplay) display | Which type of label to display above the bars. |
-
-{{< pagebreak >}}
+| [`BinLabelDisplay`](#binlabeldisplay) display | Which type of label to display above the bars. |
+:::

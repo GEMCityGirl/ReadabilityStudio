@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetGraphColorScheme`
 
 Sets the graph color scheme for new projects.
@@ -14,13 +15,12 @@ SetGraphColorScheme(string colorScheme)
 | :-- | :-- |
 | `string` colorScheme | The color scheme ID. |
 
-::: {.tipsection data-latex=""}
+:::: {.tipsection data-latex=""}
 Available named color schemes are: `"dusk"`, `"earthtones"`, `"decade1920s"`, , `"decade1940s"`, `"decade1950s"`,
 `"decade1960s"`, `"decade1970s"`, `"decade1980s"`,`"decade1990s"`, `"decade2000s"`, `"october"`,
 `"slytherin"`, `"campfire"`, `"coffeeshop"`,`"arcticchill"`,`"backtoschool"`, `"boxofchocolates"`,
 `"cosmopolitan"`,`"dayandnight"`, `"freshflowers"`,`"icecream"`, `"urbanoasis"`, `"typewriter"`,
 `"tastywaves"`, `"spring"`, `"shabbychic"`, `"rollingthunder"`, `"producesection"`,
 `"nautical"`, `"semesters"`, `"seasons"`, and `"meadowsunset"`.
+::::
 :::
-
-{{< pagebreak >}}

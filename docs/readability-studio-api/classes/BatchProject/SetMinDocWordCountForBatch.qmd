@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetMinDocWordCountForBatch`
 
 Sets the minimum number of words that a document must have to be included in the project.
@@ -14,8 +15,7 @@ SetMinDocWordCountForBatch(number wordCount)
 | :-- | :-- |
 | `number` wordCount | The minimum number of words that a document must have to be included in the project. |
 
-::: {.tipsection data-latex=""}
+:::: {.tipsection data-latex=""}
 This can be optimized by placing it in between calls to [`DelayReloading()`](#batch-delayreloading) and [`Reload()`](#batch-reload).
+::::
 :::
-
-{{< pagebreak >}}

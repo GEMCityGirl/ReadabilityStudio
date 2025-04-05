@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetPlotBackgroundImageOpacity`
 
 Sets the graph background (plot area) image opacity\index{images!opacity}.
@@ -17,7 +18,7 @@ SetPlotBackgroundImageOpacity(number opacity)
 ### Example {-}
 
 ``` {.lua}
-symposium = StandardProject(Application.GetExamplesPath() ..
+symposium = StandardProject(Application.GetExamplesFolder() ..
                             "YA Enterprise Software Symposium.odt")
 symposium:SetPlotBackgroundImage(Application.GetUserPath(UserPath.Pictures) ..
                                  "Skating at Kettering.jpg")
@@ -28,5 +29,4 @@ symposium:SetBarChartBarColor("lavender")
 symposium:SetBarChartBarEffect(BoxEffect.ThickWatercolor)
 symposium:SelectWindow(SideBarSection.WordsBreakdown, -1)
 ```
-
-{{< pagebreak >}}
+:::

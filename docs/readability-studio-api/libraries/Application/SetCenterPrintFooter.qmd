@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetCenterPrintFooter`
 
 Sets the label to appear in the center bottom of printouts\index{printing!headers \& footers}.
@@ -29,5 +30,4 @@ Application.SetRightPrintFooter("Printed on @DATE@")
 -- Set the paper orientation to landscape.
 Application.SetPaperOrientation(Orientation:Horizontal);
 ```
-
-{{< pagebreak >}}
+:::

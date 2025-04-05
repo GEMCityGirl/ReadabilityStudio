@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetBarChartBarColor`
 
 Sets the bar color for bar charts. The color is created by specifying the red, blue, and green channels of the color.
@@ -13,5 +14,4 @@ SetBarChartBarColor(string colorName)
 **Parameter** | **Description**
 | :-- | :-- |
 | `string` colorName | The name of the color to use. |
-
-{{< pagebreak >}}
+:::

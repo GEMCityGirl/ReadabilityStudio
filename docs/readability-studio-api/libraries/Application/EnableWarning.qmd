@@ -10,7 +10,7 @@ EnableWarning(string warningId)
 
 **Parameter** | **Description**
 | :-- | :-- |
-`string` warningId | The warning's string ID.
+| `string` warningId | The warning's string ID. |
 
 The following warning IDs are available:
 

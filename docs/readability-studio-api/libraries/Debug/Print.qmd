@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `Print`
 
 Prints\index{debugger!printing message to} a message to the script editor's debug window.
@@ -34,5 +35,4 @@ end
 ### See also {-}
 
 [`Application.LogMessage()`](#logmessage), [`Application.LogError()`](#logerror)
-
-{{< pagebreak >}}
+::

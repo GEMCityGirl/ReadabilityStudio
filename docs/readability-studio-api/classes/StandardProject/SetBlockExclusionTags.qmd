@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetBlockExclusionTags` {#standard-setblockexclusiontags}
 
 Specifies a pair of tags that will exclude all text between them.
@@ -12,14 +13,13 @@ SetBlockExclusionTags(string tags)
 
 **Parameter** | **Description**
 | :-- | :-- |
-`string` tags | String containing a pair of tags that will have all text between them excluded.
+| `string` tags | String containing a pair of tags that will have all text between them excluded. |
 
-::: {.notesection data-latex=""}
+:::: {.notesection data-latex=""}
 Pass in an empty string to turn off this option.
-:::
+::::
 
-::: {.tipsection data-latex=""}
+:::: {.tipsection data-latex=""}
 This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading) and [`Reload()`](#standard-reload).
+::::
 :::
-
-{{< pagebreak >}}

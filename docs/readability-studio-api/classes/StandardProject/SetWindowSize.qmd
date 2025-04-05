@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetWindowSize`
 
 Sets the size of the project window.
@@ -15,5 +16,4 @@ SetWindowSize(number width,
 | :-- | :-- |
 | `number` width | The width of the window (in pixels). | 
 | `number` height | The height of the window (in pixels). |
-
-{{< pagebreak >}}
+:::

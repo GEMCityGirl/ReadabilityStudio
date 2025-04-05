@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetGradeScale`
 
 Sets the grade scales\index{grade scales} used to display test scores for new projects.
@@ -13,5 +14,4 @@ SetGradeScale(GradeScale scale)
 **Parameter** | **Description**
 | :-- | :-- |
 | [`GradeScale`](#gradescale) scale | The grade scale to use. |
-
-{{< pagebreak >}}
+:::

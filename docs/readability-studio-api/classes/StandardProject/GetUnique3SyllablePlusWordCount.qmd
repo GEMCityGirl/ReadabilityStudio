@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetUnique3SyllablePlusWordCount`
 
 Returns the number of unique words consisting of three or more syllables from the document.
@@ -8,10 +9,7 @@ Returns the number of unique words consisting of three or more syllables from th
 number GetUnique3SyllablePlusWordCount()
 ```
 
-
 ### Return value {-}
 
 Type: `number`
-
-
-{{< pagebreak >}}
+:::

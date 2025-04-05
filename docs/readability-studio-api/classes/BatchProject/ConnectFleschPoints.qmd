@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `ConnectFleschPoints`
 
 Sets whether connection lines should be drawn between the three rules in Flesch charts.
@@ -13,5 +14,4 @@ ConnectFleschPoints(boolean connect)
 **Parameter** | **Description**
 | :-- | :-- |
 | `boolean` connect | `true` to connect the points between the rulers. |
-
-{{< pagebreak >}}
+:::

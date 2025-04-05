@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetCharacterAndPunctuationCount`
 
 Returns the total number of letters, numbers, and punctuation from the document.
@@ -8,10 +9,7 @@ Returns the total number of letters, numbers, and punctuation from the document.
 number GetCharacterAndPunctuationCount()
 ```
 
-
 ### Return value {-}
 
 Type: `number`
-
-
-{{< pagebreak >}}
+:::

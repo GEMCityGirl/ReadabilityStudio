@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SelectWindow` {#batch-selectwindow}
 
 Selects a window in the project.
@@ -13,7 +14,6 @@ SelectWindow(SideBarSection section,
 
 **Parameter** | **Description**
 | :-- | :-- |
-[`SideBarSection`](#sidebarsection) section | The section of the project that the window is in.
-`number` windowId | The ID of the window to select.
-
-{{< pagebreak >}}
+| [`SideBarSection`](#sidebarsection) section | The section of the project that the window is in. |
+| `number` windowId | The ID of the window to select. |
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetGrammarResultsOptions`
 
 Sets which grammar results should be included.
@@ -39,12 +40,11 @@ SetGrammarResultsOptions(boolean includeHighlightedReport,
 ### Example {-}
 
 ``` {.lua}
-cocoaDoc = StandardProject(Application.GetExamplesPath() ..
+cocoaDoc = StandardProject(Application.GetExamplesFolder() ..
                            "Cocoa Desserts.rtf")
 cocoaDoc:DelayReloading(true)
 cocoaDoc:AddTest(Test.HarrisJacobson)
--- show only the test results and the stats summary report,
--- remove all other results
+-- show only the test results and the stats summary report, remove all other results
 cocoaDoc:IncludeScoreSummaryReport(false)
 cocoaDoc:SetSummaryStatsResultsOptions(true, false)
 cocoaDoc:SetGrammarResultsOptions(false, false, false, false, false, false, false,
@@ -55,8 +55,7 @@ cocoaDoc:SetWordsBreakdownResultsOptions(false, false, false, false, false, fals
 cocoaDoc:Reload()
 ```
 
-::: {.tipsection data-latex=""}
+:::: {.tipsection data-latex=""}
 This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading) and [`Reload()`](#standard-reload).
+::::
 :::
-
-{{< pagebreak >}}

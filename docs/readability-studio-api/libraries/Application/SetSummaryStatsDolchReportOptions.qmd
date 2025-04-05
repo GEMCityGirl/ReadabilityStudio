@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetSummaryStatsDolchReportOptions`
 
 Sets which results in the Dolch summary report should be included for new projects.
@@ -17,5 +18,4 @@ SetSummaryStatsDolchReportOptions(boolean includeCoverage,
 | `boolean` includeCoverage | `true` to include the Dolch coverage statistics. | 
 | `boolean` includeWords | `true` to include the Dolch word statistics. | 
 | `boolean` includeExplanation | `true` to include an explanation about the results. |
-
-{{< pagebreak >}}
+:::

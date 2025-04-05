@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetReportFont`
 
 Sets the font for highlighted reports\index{highlighted reports!fonts}.
@@ -20,8 +21,7 @@ SetReportFont(string fontName,
 | [`FontWeight`](#fontweight) weight | The weight of the font. | 
 | `string` color | The name of the color. |
 
-::: {.tipsection data-latex=""}
+:::: {.tipsection data-latex=""}
 This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading) and [`Reload()`](#standard-reload).
+::::
 :::
-
-{{< pagebreak >}}

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetNumeralSyllabication`
 
 Sets the method to determine how to syllabize numerals.
@@ -14,8 +15,7 @@ SetNumeralSyllabication(NumeralSyllabize method)
 | :-- | :-- |
 | [`NumeralSyllabize`](#numeralsyllabize) method | How numerals are syllabized. |
 
-::: {.tipsection data-latex=""}
+:::: {.tipsection data-latex=""}
 This can be optimized by placing it in between calls to [`DelayReloading()`](#batch-delayreloading) and [`Reload()`](#batch-reload).
+::::
 :::
-
-{{< pagebreak >}}

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SortGraph`
 
 Sorts the bars in the specified bar chart.
@@ -16,5 +17,4 @@ SortGraph(GraphType type,
 | :-- | :-- |
 | [`GraphType`](#graphtype) type | The bar chart to sort. | 
 | [`SortOrder`](#sortorder) order | How the bars should be sorted. |
-
-{{< pagebreak >}}
+:::

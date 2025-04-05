@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `UseJavaScriptCookies`
 
 Toggles whether the web harvester parses JavaScript\index{web harvester!managing cookies} for cookies needed by the website.
@@ -13,5 +14,4 @@ UseJavaScriptCookies(boolean useJSCookies)
 **Parameter** | **Description**
 | :-- | :-- |
 | `boolean` useJSCookies | `true` to use cookies parsed from JavaScript when connecting to webpages. |
-
-{{< pagebreak >}}
+:::

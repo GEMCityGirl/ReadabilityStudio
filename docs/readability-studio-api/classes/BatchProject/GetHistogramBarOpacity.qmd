@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetHistogramBarOpacity`
 
 Returns the opacity of the bars within the various histograms.
@@ -8,10 +9,7 @@ Returns the opacity of the bars within the various histograms.
 number GetHistogramBarOpacity()
 ```
 
-
 ### Return value {-}
 
 Type: `number`
-
-
-{{< pagebreak >}}
+:::

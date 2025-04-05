@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetDolchNounsColor`
 
 Sets the font color for Dolch nouns in the formatted Dolch report for new projects.
@@ -13,5 +14,4 @@ SetDolchNounsColor(string colorName)
 **Parameter** | **Description**
 | :-- | :-- |
 | `string` colorName | The name of the color to use. |
-
-{{< pagebreak >}}
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetProgramPath`
 
 Returns the folder path\index{file paths!application folder} to the application.
@@ -13,5 +14,4 @@ string GetProgramPath()
 Type: `string`
 
 The folder path to the application.
-
-{{< pagebreak >}}
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IgnoreBlankLines`
 
 Sets whether to ignore blank lines when figuring out if we are at the end of a paragraph for new projects.
@@ -13,5 +14,4 @@ IgnoreBlankLines(boolean ignore)
 **Parameter** | **Description**
 | :-- | :-- |
 | `boolean` ignore | `true` to ignore blank lines. |
-
-{{< pagebreak >}}
+:::

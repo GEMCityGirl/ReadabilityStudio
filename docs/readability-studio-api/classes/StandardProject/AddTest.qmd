@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `AddTest`
 
 Adds a test to the project.
@@ -35,5 +36,4 @@ consentForm:AddTest(Tests.DanielsonBryan2)
 -- Assuming we have a custom test by this name, add it.
 consentForm:AddTest("Patient Consent Formula")
 ```
-
-{{< pagebreak >}}
+:::

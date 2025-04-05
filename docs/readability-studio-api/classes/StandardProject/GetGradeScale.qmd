@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetGradeScale`
 
 Returns the grade scales\index{grade scales} used to display test scores.
@@ -11,5 +12,4 @@ GradeScale GetGradeScale()
 ### Return value {-}
 
 Type: [`GradeScale`](#gradescale)
-
-{{< pagebreak >}}
+:::

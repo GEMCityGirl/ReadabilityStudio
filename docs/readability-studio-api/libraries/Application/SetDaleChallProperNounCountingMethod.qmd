@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetDaleChallProperNounCountingMethod`
 
 Sets how Dale-Chall counts proper nouns for new projects.
@@ -13,5 +14,4 @@ SetDaleChallProperNounCountingMethod(ProperNounCountingMethod method)
 **Parameter** | **Description**
 | :-- | :-- |
 | [`ProperNounCountingMethod`](#propernouncountingmethod) method | How to count proper nouns. |
-
-{{< pagebreak >}}
+:::

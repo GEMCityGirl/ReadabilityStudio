@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetReadingAgeDisplay`
 
 Sets the age display for test scores to display.
@@ -14,8 +15,7 @@ SetReadingAgeDisplay(ReadingAgeDisplay ageFormat)
 | :-- | :-- |
 | [`ReadingAgeDisplay`](#readingagedisplay) ageFormat | How to display ages for test scores. |
 
-::: {.tipsection data-latex=""}
+:::: {.tipsection data-latex=""}
 This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading) and [`Reload()`](#standard-reload).
+::::
 :::
-
-{{< pagebreak >}}

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetPlotBackgroundImage`
 
 Sets the graph background\index{images!graph backgrounds} (plot area) image.
@@ -13,5 +14,4 @@ SetPlotBackgroundImage(string imagePath)
 **Parameter** | **Description**
 | :-- | :-- |
 | `string` imagePath | The path to the image. |
-
-{{< pagebreak >}}
+:::

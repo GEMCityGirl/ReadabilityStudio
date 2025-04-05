@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetReadingAgeDisplay`
 
 Sets the age display for test scores to display for new projects.
@@ -13,5 +14,4 @@ SetReadingAgeDisplay(ReadingAgeDisplay ageFormat)
 **Parameter** | **Description**
 | :-- | :-- |
 | [`ReadingAgeDisplay`](#readingagedisplay) ageFormat | How to display ages for test scores. |
-
-{{< pagebreak >}}
+:::

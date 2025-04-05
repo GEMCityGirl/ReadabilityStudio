@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetBarChartOrientation`
 
 Sets whether the bar charts should be drawn vertically or horizontally.
@@ -13,5 +14,4 @@ SetBarChartOrientation(Orientation orient)
 **Parameter** | **Description**
 | :-- | :-- |
 | [`Orientation`](#orientation) orient | How the bars should be oriented. |
-
-{{< pagebreak >}}
+:::

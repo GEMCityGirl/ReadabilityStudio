@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetUserPath`
 
 Returns the path of a given folder\index{file paths!user folders} in the user's directory.
@@ -21,7 +22,7 @@ Type: `string`
 ### Example {-}
 
 ``` {.lua}
-cocoa = StandardProject(Application.GetExamplesPath() ..
+cocoa = StandardProject(Application.GetExamplesFolder() ..
                         "Cocoa Desserts.rtf")
 cocoa:SetGraphCommonImage(Application.GetUserPath(UserPath.Pictures) ..
                           "sunset.jpg")
@@ -30,5 +31,4 @@ cocoa:SetHistogramBarEffect(BoxEffect.CommonImage)
 cocoa:SetGraphColorScheme("coffeeshop")
 cocoa:SelectWindow(SideBarSection.WordsBreakdown, -1)
 ```
-
-{{< pagebreak >}}
+:::

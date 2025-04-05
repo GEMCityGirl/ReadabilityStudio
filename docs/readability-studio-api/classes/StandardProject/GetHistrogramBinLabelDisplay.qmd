@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetHistrogramBinLabelDisplay`
 
 Returns how bar labels are displayed on histograms.
@@ -8,10 +9,7 @@ Returns how bar labels are displayed on histograms.
 BinLabelDisplay GetHistrogramBinLabelDisplay()
 ```
 
-
 ### Return value {-}
 
 Type: [`BinLabelDisplay`](#binlabeldisplay)
-
-
-{{< pagebreak >}}
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetIndependentClauseCount`
 
 Returns the number of independent clauses from the document.
@@ -8,10 +9,7 @@ Returns the number of independent clauses from the document.
 number GetIndependentClauseCount()
 ```
 
-
 ### Return value {-}
 
 Type: `number`
-
-
-{{< pagebreak >}}
+:::

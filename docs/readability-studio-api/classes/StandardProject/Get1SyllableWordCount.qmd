@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `Get1SyllableWordCount` {#standard-get1syllablewordcount}
 
 Returns the number of monosyllabic words from the document.
@@ -13,5 +14,4 @@ number Get1SyllableWordCount()
 Type: `number`
 
 The number of monosyllabic words from the document.
-
-{{< pagebreak >}}
+:::

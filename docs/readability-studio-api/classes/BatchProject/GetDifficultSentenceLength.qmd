@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetDifficultSentenceLength`
 
 Returns the threshold for determining an overly-long sentence.
@@ -8,10 +9,7 @@ Returns the threshold for determining an overly-long sentence.
 number GetDifficultSentenceLength()
 ```
 
-
 ### Return value {-}
 
 Type: `number`
-
-
-{{< pagebreak >}}
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetBoxPlotColor`
 
 Sets box color (in box plots) for new projects.
@@ -13,5 +14,4 @@ SetBoxPlotColor(string colorName)
 **Parameter** | **Description**
 | :-- | :-- |
 | `string` colorName | The name of the color to use. |
-
-{{< pagebreak >}}
+:::

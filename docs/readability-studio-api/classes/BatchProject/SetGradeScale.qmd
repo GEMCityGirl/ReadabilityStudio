@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetGradeScale`
 
 Sets the grade scales\index{grade scales} used to display test scores.
@@ -14,8 +15,7 @@ SetGradeScale(GradeScale scale)
 | :-- | :-- |
 | [`GradeScale`](#gradescale) scale | The grade scale to use. |
 
-::: {.tipsection data-latex=""}
+:::: {.tipsection data-latex=""}
 This can be optimized by placing it in between calls to [`DelayReloading()`](#batch-delayreloading) and [`Reload()`](#batch-reload).
+::::
 :::
-
-{{< pagebreak >}}

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetTextHighlighting`
 
 Returns how to highlight content in formatted reports\index{highlighted reports!how to highlight} for new projects.
@@ -8,10 +9,7 @@ Returns how to highlight content in formatted reports\index{highlighted reports!
 TextHighlight GetTextHighlighting()
 ```
 
-
 ### Return value {-}
 
 Type: [`TextHighlight`](#texthighlight)
-
-
-{{< pagebreak >}}
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetMinDocWordCountForBatch`
 
 Sets the minimum number of words that a document must have to be included in batch projects.
@@ -12,6 +13,5 @@ SetMinDocWordCountForBatch(number count)
 
 **Parameter** | **Description**
 | :-- | :-- |
-`number` count | The minimum number of words that a document must have to be included in batch projects.
-
-{{< pagebreak >}}
+| `number` count | The minimum number of words that a document must have to be included in batch projects. |
+:::

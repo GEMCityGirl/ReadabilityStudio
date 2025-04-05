@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetHistogramBarColor`
 
 Sets bar color (in histograms) for new projects.
@@ -13,5 +14,4 @@ SetHistogramBarColor(string colorName)
 **Parameter** | **Description**
 | :-- | :-- |
 | `string` colorName | The name of the color to use. |
-
-{{< pagebreak >}}
+:::

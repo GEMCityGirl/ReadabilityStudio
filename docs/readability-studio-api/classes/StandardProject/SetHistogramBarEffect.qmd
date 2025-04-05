@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetHistogramBarEffect`
 
 Sets bar appearance (in histograms).
@@ -8,7 +9,6 @@ Sets bar appearance (in histograms).
 SetHistogramBarEffect(BoxEffect barEffect)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
@@ -18,7 +18,7 @@ SetHistogramBarEffect(BoxEffect barEffect)
 ### Example {-}
 
 ``` {.lua}
-cocoa = StandardProject(Application.GetExamplesPath() ..
+cocoa = StandardProject(Application.GetExamplesFolder() ..
                         "Cocoa Desserts.rtf")
 cocoa:SetGraphCommonImage(Application.GetUserPath(UserPath.Pictures) ..
                           "sunset.jpg")
@@ -27,6 +27,4 @@ cocoa:SetHistogramBarEffect(BoxEffect.CommonImage)
 cocoa:SetGraphColorScheme("coffeeshop")
 cocoa:SelectWindow(SideBarSection.WordsBreakdown, -1)
 ```
-
-
-{{< pagebreak >}}
+:::

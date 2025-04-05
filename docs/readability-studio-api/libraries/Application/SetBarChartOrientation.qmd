@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetBarChartOrientation`
 
 Sets the orientation for bars for new projects.
@@ -11,7 +12,5 @@ SetBarChartOrientation(Orientation barOrientation)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|[`Orientation`](#orientation) barOrientation | The bar charts' orientation.     |
-
-
-{{< pagebreak >}}
+| [`Orientation`](#orientation) barOrientation | The bar charts' orientation. |
+:::

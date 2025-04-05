@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetProperNounCount`
 
 Returns the number of proper nouns from the document.
@@ -8,10 +9,7 @@ Returns the number of proper nouns from the document.
 number GetProperNounCount()
 ```
 
-
 ### Return value {-}
 
 Type: `number`
-
-
-{{< pagebreak >}}
+:::

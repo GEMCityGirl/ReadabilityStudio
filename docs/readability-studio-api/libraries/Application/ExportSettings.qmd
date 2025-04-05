@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `ExportSettings`
 
 Exports\index{settings!exporting} the program's general settings to the specified file.
@@ -12,12 +13,11 @@ boolean ExportSettings(string settingsFileToExport)
 
 **Parameter** | **Description**
 | :-- | :-- |
-`string` settingsFileToExport | The filepath to save the program's settings to.
+| `string` settingsFileToExport | The filepath to save the program's settings to. |
 
 ### Return value {-}
 
 Type: `boolean`
 
 Returns `true` if settings were successfully exported.
-
-{{< pagebreak >}}
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetPlotBackgroundImageEffect`
 
 Sets the effect applied to an image\index{images!effects} when drawn as a graph's (plot area) background.
@@ -8,17 +9,16 @@ Sets the effect applied to an image\index{images!effects} when drawn as a graph'
 SetPlotBackgroundImageEffect(ImageEffect effect)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|[`ImageEffect`](#imageeffect) effect | The effect to render with. |
+| [`ImageEffect`](#imageeffect) effect | The effect to render with. |
 
 ### Example {-}
 
 ``` {.lua}
-symposium = StandardProject(Application.GetExamplesPath() ..
+symposium = StandardProject(Application.GetExamplesFolder() ..
                             "YA Enterprise Software Symposium.odt")
 symposium:SetPlotBackgroundImage(Application.GetUserPath(UserPath.Pictures) ..
                                  "Skating at Kettering.jpg")
@@ -29,5 +29,4 @@ symposium:SetBarChartBarColor("lavender")
 symposium:SetBarChartBarEffect(BoxEffect.ThickWatercolor)
 symposium:SelectWindow(SideBarSection.WordsBreakdown, -1)
 ```
-
-{{< pagebreak >}}
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetUniqueWordCount`
 
 Returns the number of unique words from the document.
@@ -8,10 +9,7 @@ Returns the number of unique words from the document.
 number GetUniqueWordCount()
 ```
 
-
 ### Return value {-}
 
 Type: `number`
-
-
-{{< pagebreak >}}
+:::

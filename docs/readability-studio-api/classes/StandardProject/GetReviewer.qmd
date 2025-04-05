@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetReviewer`
 
 Returns the reviewer's name.
@@ -8,10 +9,7 @@ Returns the reviewer's name.
 string GetReviewer()
 ```
 
-
 ### Return value {-}
 
 Type: `string`
-
-
-{{< pagebreak >}}
+:::

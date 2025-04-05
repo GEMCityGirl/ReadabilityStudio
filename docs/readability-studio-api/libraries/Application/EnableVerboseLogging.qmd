@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `EnableVerboseLogging`
 
 Toggles whether verbose\index{log report!settings} logging is enabled.
@@ -13,5 +14,4 @@ EnableVerboseLogging(boolean enable)
 **Parameter** | **Description**
 | :-- | :-- |
 | `boolean` enable | `true` to use verbose logging. |
-
-{{< pagebreak >}}
+:::

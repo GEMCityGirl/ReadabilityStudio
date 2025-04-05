@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetPlotBackgroundImageFit`
 
 Specifies how to adjust an image to fit within a graph's background.
@@ -8,12 +9,9 @@ Specifies how to adjust an image to fit within a graph's background.
 SetPlotBackgroundImageFit(ImageFit fitType)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|[`ImageFit`](#imagefit) fitType | How to fit the image. |
-
-
-{{< pagebreak >}}
+| [`ImageFit`](#imagefit) fitType | How to fit the image. |
+:::

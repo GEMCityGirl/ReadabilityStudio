@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetFleschNumeralSyllabizeMethod`
 
 Sets how numerals' syllables are counted for the Flesch Reading Ease test for new projects.
@@ -13,5 +14,4 @@ SetFleschNumeralSyllabizeMethod(FleschNumeralSyllabize method)
 **Parameter** | **Description**
 | :-- | :-- |
 | [`FleschNumeralSyllabize`](#fleschnumeralsyllabize) method | How to syllabize numerals. |
-
-{{< pagebreak >}}
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetLongGradeScaleFormat`
 
 Sets whether to display test scores in long format for new projects.
@@ -13,5 +14,4 @@ SetLongGradeScaleFormat(boolean longFormat)
 **Parameter** | **Description**
 | :-- | :-- |
 | `boolean` longFormat | `true` to display test scores in long format. |
-
-{{< pagebreak >}}
+:::

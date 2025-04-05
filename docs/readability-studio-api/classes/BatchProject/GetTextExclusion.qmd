@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetTextExclusion`
 
 Returns how text should be excluded.
@@ -8,10 +9,7 @@ Returns how text should be excluded.
 TextExclusionType GetTextExclusion()
 ```
 
-
 ### Return value {-}
 
 Type: [`TextExclusionType`](#textexclusiontype)
-
-
-{{< pagebreak >}}
+:::

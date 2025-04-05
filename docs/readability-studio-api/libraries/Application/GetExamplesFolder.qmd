@@ -1,11 +1,12 @@
-## `GetExamplesPath`
+::: {.minipage data-latex="{\textwidth}"}
+## `GetExamplesFolder`
 
 Returns the program's example documents' folder path\index{file paths!examples folder}.
 
 ### Syntax {-}
 
 ``` {.lua}
-string GetExamplesPath()
+string GetExamplesFolder()
 ```
 
 ### Return value {-}
@@ -15,7 +16,7 @@ Type: `string`
 ### Example\index{examples!getting file paths} {-}
 
 ``` {.lua}
-cocoa = StandardProject(Application.GetExamplesPath() ..
+cocoa = StandardProject(Application.GetExamplesFolder() ..
                         "Cocoa Desserts.rtf")
 cocoa:SetGraphCommonImage(Application.GetUserPath(UserPath.Pictures) ..
                           "sunset.jpg")
@@ -24,5 +25,4 @@ cocoa:SetHistogramBarEffect(BoxEffect.CommonImage)
 cocoa:SetGraphColorScheme("coffeeshop")
 cocoa:SelectWindow(SideBarSection.WordsBreakdown, -1)
 ```
-
-{{< pagebreak >}}
+:::

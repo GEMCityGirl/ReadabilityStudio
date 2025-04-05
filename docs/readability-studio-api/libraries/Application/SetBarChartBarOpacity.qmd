@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetBarChartBarOpacity`
 
 Sets the opacity of bar chart bars. 0 is fully transparent, and 255 is opaque.
@@ -12,6 +13,5 @@ SetBarChartBarOpacity(number opacityLevel)
 
 **Parameter** | **Description**
 | :-- | :-- |
-`number` opacityLevel | The opacity of bar chart bars (should be between 0--255).
-
-{{< pagebreak >}}
+| `number` opacityLevel | The opacity of bar chart bars (should be between 0--255). |
+:::

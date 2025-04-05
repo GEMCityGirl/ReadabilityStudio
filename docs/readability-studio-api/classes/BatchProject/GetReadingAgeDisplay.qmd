@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetReadingAgeDisplay`
 
 Returns the age display for test scores to display.
@@ -8,10 +9,7 @@ Returns the age display for test scores to display.
 ReadingAgeDisplay GetReadingAgeDisplay()
 ```
 
-
 ### Return value {-}
 
 Type: [`ReadingAgeDisplay`](#readingagedisplay)
-
-
-{{< pagebreak >}}
+:::

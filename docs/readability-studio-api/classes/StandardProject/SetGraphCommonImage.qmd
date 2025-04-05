@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetGraphCommonImage`
 
 Sets the common image\index{images!bar backgrounds} drawn across all bars.
@@ -21,7 +22,7 @@ The [`BoxEffect.CommonImage`](#boxeffect) effect will need to be enabled for eit
 ### Example {-}
 
 ``` {.lua}
-cocoa = StandardProject(Application.GetExamplesPath() ..
+cocoa = StandardProject(Application.GetExamplesFolder() ..
                         "Cocoa Desserts.rtf")
 cocoa:SetGraphCommonImage(Application.GetUserPath(UserPath.Pictures) ..
                           "sunset.jpg")
@@ -30,5 +31,4 @@ cocoa:SetHistogramBarEffect(BoxEffect.CommonImage)
 cocoa:SetGraphColorScheme("coffeeshop")
 cocoa:SelectWindow(SideBarSection.WordsBreakdown, -1)
 ```
-
-{{< pagebreak >}}
+:::

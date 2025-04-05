@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IsIncludingExcludedPhraseFirstOccurrence`
 
 Returns whether the first occurrence of an excluded phrase should be included for new projects.
@@ -8,10 +9,7 @@ Returns whether the first occurrence of an excluded phrase should be included fo
 boolean IsIncludingExcludedPhraseFirstOccurrence()
 ```
 
-
 ### Return value {-}
 
 Type: `boolean`
-
-
-{{< pagebreak >}}
+:::

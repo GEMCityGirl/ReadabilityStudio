@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetTitle`
 
 Returns the title of the project.
@@ -8,10 +9,7 @@ Returns the title of the project.
 string GetTitle()
 ```
 
-
 ### Return value {-}
 
 Type: `string`
-
-
-{{< pagebreak >}}
+:::

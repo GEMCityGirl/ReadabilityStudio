@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetDaleChallProperNounCountingMethod`
 
 Returns how Dale-Chall counts proper nouns.
@@ -8,10 +9,7 @@ Returns how Dale-Chall counts proper nouns.
 ProperNounCountingMethod GetDaleChallProperNounCountingMethod()
 ```
 
-
 ### Return value {-}
 
 Type: [`ProperNounCountingMethod`](#propernouncountingmethod)
-
-
-{{< pagebreak >}}
+:::

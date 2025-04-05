@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetProjectLanguage`
 
 Returns the project's language.
@@ -8,10 +9,7 @@ Returns the project's language.
 Language GetProjectLanguage()
 ```
 
-
 ### Return value {-}
 
 Type: [`Language`](#language)
-
-
-{{< pagebreak >}}
+:::

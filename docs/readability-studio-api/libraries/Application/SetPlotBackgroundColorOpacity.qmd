@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetPlotBackgroundColorOpacity`
 
 Sets the graph background color opacity.
@@ -13,5 +14,4 @@ SetPlotBackgroundColorOpacity(number opacityLevel)
 **Parameter** | **Description**
 | :-- | :-- |
 | `number` opacityLevel | The opacity level (should be between 0--255) |
-
-{{< pagebreak >}}
+:::

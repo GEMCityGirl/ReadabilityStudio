@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IsExcludingCopyrightNotices`
 
 Returns whether copyright notices are being excluded.
@@ -8,10 +9,7 @@ Returns whether copyright notices are being excluded.
 boolean IsExcludingCopyrightNotices()
 ```
 
-
 ### Return value {-}
 
 Type: `boolean`
-
-
-{{< pagebreak >}}
+:::

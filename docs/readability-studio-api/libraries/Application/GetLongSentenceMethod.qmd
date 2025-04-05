@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetLongSentenceMethod`
 
 Returns the method to determine what a long sentence is for new projects.
@@ -8,10 +9,7 @@ Returns the method to determine what a long sentence is for new projects.
 LongSentence GetLongSentenceMethod()
 ```
 
-
 ### Return value {-}
 
 Type: [`LongSentence`](#longsentence)
-
-
-{{< pagebreak >}}
+:::

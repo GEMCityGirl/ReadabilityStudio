@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetFleschNumeralSyllabizeMethod`
 
 Returns how numerals' syllables are counted for the Flesch Reading Ease test.
@@ -8,10 +9,7 @@ Returns how numerals' syllables are counted for the Flesch Reading Ease test.
 FleschNumeralSyllabize GetFleschNumeralSyllabizeMethod()
 ```
 
-
 ### Return value {-}
 
 Type: [`FleschNumeralSyllabize`](#fleschnumeralsyllabize)
-
-
-{{< pagebreak >}}
+:::

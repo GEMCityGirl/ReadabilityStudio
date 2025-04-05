@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetBoxPlotEffect`
 
 Sets box appearance (in box plots).
@@ -8,12 +9,9 @@ Sets box appearance (in box plots).
 SetBoxPlotEffect(BoxEffect barEffect)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|[`BoxEffect`](#boxeffect) effect | The effect to apply to the bars. |
-
-
-{{< pagebreak >}}
+| [`BoxEffect`](#boxeffect) effect | The effect to apply to the bars. |
+:::

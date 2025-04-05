@@ -1,14 +1,15 @@
-## `StitchImages`
+::: {.minipage data-latex="{\textwidth}"}
+## `MergeImages`
 
 Combines\index{images!editing} a list of images vertically or horizontally.
 
 ### Syntax {-}
 
 ``` {.lua}
-boolean StitchImages(string inputImage1,
-                     ...,
-                     string outputImagePath,
-                     Orientation direction)
+boolean MergeImages(string inputImage1,
+                    ...,
+                    string outputImagePath,
+                    Orientation direction)
 ```
 
 ### Return value {-}
@@ -29,12 +30,11 @@ Returns `true` if image was successfully saved.
 ### Example\index{examples!editing images} {-}
 
 ``` {.lua}
-Application.StitchImages(
+Application.MergeImages(
     Application.GetUserPath(UserPath.Pictures) .. "Charleston Falls Sunrise.JPG",
     Application.GetUserPath(UserPath.Pictures) .. "Charleston Falls Sunset.png",
     -- output can be saved in a different format
     Application.GetUserPath(UserPath.Pictures) .. "CombinedImg.bmp",
     Orientation.Horizontal)
 ```
-
-{{< pagebreak >}}
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IsIgnoringIndenting`
 
 Returns whether indenting is being ignored when parsing paragraphs.
@@ -11,5 +12,4 @@ boolean IsIgnoringIndenting()
 ### Return value {-}
 
 Type: `boolean`
-
-{{< pagebreak >}}
+:::

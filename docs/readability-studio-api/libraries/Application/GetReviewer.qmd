@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetReviewer`
 
 Returns the user name for the software.
@@ -13,5 +14,4 @@ string GetReviewer()
 Type: `string`
 
 The user name for the software.
-
-{{< pagebreak >}}
+:::

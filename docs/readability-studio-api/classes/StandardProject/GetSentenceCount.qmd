@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetSentenceCount`
 
 Returns the number of sentences from the document.
@@ -8,10 +9,7 @@ Returns the number of sentences from the document.
 number GetSentenceCount()
 ```
 
-
 ### Return value {-}
 
 Type: `number`
-
-
-{{< pagebreak >}}
+:::

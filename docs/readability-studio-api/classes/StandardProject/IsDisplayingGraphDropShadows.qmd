@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IsDisplayingGraphDropShadows`
 
 Returns whether to display shadows on graphs.
@@ -11,5 +12,4 @@ boolean IsDisplayingGraphDropShadows()
 ### Return value {-}
 
 Type: `boolean`
-
-{{< pagebreak >}}
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `ExcludeProperNouns`
 
 Specifies whether to exclude proper nouns from the document analysis.
@@ -12,6 +13,5 @@ ExcludeProperNouns(boolean exclude)
 
 **Parameter** | **Description**
 | :-- | :-- |
-`boolean` exclude | `true` to exclude proper nouns, `false` to include them.
-
-{{< pagebreak >}}
+| `boolean` exclude | `true` to exclude proper nouns, `false` to include them. |
+:::

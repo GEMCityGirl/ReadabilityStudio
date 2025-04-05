@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetStippleShape`
 
 Sets the stipple shape used to draw bars in graphs.
@@ -16,8 +17,7 @@ SetStippleShape(string shapeId)
 
 Refer to [`Application.SetStippleShape()`](#app-setstippleshape) for a list of available IDs.
 
-::: {.callout-note}
+:::: {.callout-note}
 The [`BoxEffect.StippleShape`](#boxeffect) effect will need to be enabled for either box plots or bar charts for this to have any effect.
+::::
 :::
-
-{{< pagebreak >}}

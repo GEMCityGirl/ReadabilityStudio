@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetYAxisFont`
 
 Sets the font for the graphs' Y axes for new projects.
@@ -19,5 +20,4 @@ SetYAxisFont(string fontName,
 | `number` pointSize | The point size of the font. | 
 | [`FontWeight`](#fontweight) weight | The weight of the font. | 
 | `string` color | The name of the color. |
-
-{{< pagebreak >}}
+:::

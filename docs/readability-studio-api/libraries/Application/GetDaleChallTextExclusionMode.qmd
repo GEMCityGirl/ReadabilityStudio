@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetDaleChallTextExclusionMode`
 
 Returns how text is excluded for the Dale-Chall test for new projects.
@@ -8,10 +9,7 @@ Returns how text is excluded for the Dale-Chall test for new projects.
 SpecializedTestTextExclusion GetDaleChallTextExclusionMode()
 ```
 
-
 ### Return value {-}
 
 Type: [`SpecializedTestTextExclusion`](#specializedtesttextexclusion)
-
-
-{{< pagebreak >}}
+:::

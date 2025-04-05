@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetStippleShape` {#app-setstippleshape}
 
 Sets the stipple shape used to draw bars in graphs for new projects.
@@ -22,8 +23,7 @@ Available named shapes are: `"sun"`, `"book"`, `"fall-leaf"`, `"man"`, `"woman"`
 `"house"`, `"barn"`, and `"farm"`.
 :::
 
-::: {.callout-note}
+:::: {.callout-note}
 The [`BoxEffect.StippleShape`](#boxeffect) effect will need to be enabled for either box plots or bar charts for this to have any effect.
+::::
 :::
-
-{{< pagebreak >}}

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetPlotBackgroundColor` {#batch-setplotbackgroundcolor}
 
 Sets the plot area color for all graphs. The color is created by specifying the red, blue, and green channels of the color.
@@ -13,5 +14,4 @@ SetPlotBackgroundColor(string colorName)
 **Parameter** | **Description**
 | :-- | :-- |
 | `string` colorName | The name of the color to use. |
-
-{{< pagebreak >}}
+:::

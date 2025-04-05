@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `MergeWordLists`
 
 Merges multiple word lists into a new file.
@@ -44,8 +45,7 @@ Application.MergeWordLists(
     Application.GetUserPath(UserPath.Documents) .. "programming/all-languages.txt")
 ```
 
-::: {.callout-note}
+:::: {.callout-note}
 The output file will also be sorted and have any duplicate entries removed.
+::::
 :::
-
-{{< pagebreak >}}

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `FogUseSentenceUnits`
 
 Sets whether independent clauses are being counted when calculating Gunning Fog for new projects.
@@ -13,5 +14,4 @@ FogUseSentenceUnits(boolean use)
 **Parameter** | **Description**
 | :-- | :-- |
 | `boolean` use | `true` to count independent clauses when calculating Gunning Fog. |
-
-{{< pagebreak >}}
+:::

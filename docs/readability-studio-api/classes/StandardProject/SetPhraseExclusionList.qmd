@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetPhraseExclusionList`
 
 Sets the filepath to the list of phrases and words that should be excluded from analysis.
@@ -14,8 +15,7 @@ SetPhraseExclusionList(string exclusionListPath)
 | :-- | :-- |
 | `string` exclusionListPath | The filepath to the list of phrases and words that should be excluded from analysis. |
 
-::: {.tipsection data-latex=""}
+:::: {.tipsection data-latex=""}
 This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading) and [`Reload()`](#standard-reload).
+::::
 :::
-
-{{< pagebreak >}}

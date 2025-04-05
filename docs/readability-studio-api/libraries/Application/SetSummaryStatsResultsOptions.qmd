@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetSummaryStatsResultsOptions`
 
 Sets which results in the summary statistics section should be included for new projects.
@@ -15,5 +16,4 @@ SetSummaryStatsResultsOptions(boolean includeFormattedReport,
 | :-- | :-- |
 | `boolean` includeFormattedReport | `true` to include a formatted report of the statistics. | 
 | `boolean` TabularReport | `true` to include the statistics in a list. |
-
-{{< pagebreak >}}
+:::

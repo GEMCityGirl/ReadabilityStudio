@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetDifficultTextHighlightColor`
 
 Sets the font color for difficult text in formatted reports for new projects.
@@ -13,5 +14,4 @@ SetDifficultTextHighlightColor(string colorName)
 **Parameter** | **Description**
 | :-- | :-- |
 | `string` colorName | The name of the color to use. |
-
-{{< pagebreak >}}
+:::

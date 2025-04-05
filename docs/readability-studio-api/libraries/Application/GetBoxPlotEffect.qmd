@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetBoxPlotEffect`
 
 Returns how boxes should be drawn within the various box plots for new projects.
@@ -8,10 +9,7 @@ Returns how boxes should be drawn within the various box plots for new projects.
 BoxEffect GetBoxPlotEffect()
 ```
 
-
 ### Return value {-}
 
 Type: [`BoxEffect`](#boxeffect)
-
-
-{{< pagebreak >}}
+:::

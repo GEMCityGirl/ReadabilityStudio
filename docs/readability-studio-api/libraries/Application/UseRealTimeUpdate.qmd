@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `UseRealTimeUpdate`
 
 Toggles whether documents are being re-analyzed as they change\index{real-time updating}.
@@ -13,5 +14,4 @@ UseRealTimeUpdate(boolean use)
 **Parameter** | **Description**
 | :-- | :-- |
 | `boolean` use | `true` to enable real-time updating. |
-
-{{< pagebreak >}}
+:::

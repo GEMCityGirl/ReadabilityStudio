@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IsExcludingNumerals`
 
 Returns whether numerals are being excluded.
@@ -11,5 +12,4 @@ boolean IsExcludingNumerals()
 ### Return value {-}
 
 Type: `boolean`
-
-{{< pagebreak >}}
+:::

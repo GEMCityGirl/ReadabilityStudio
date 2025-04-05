@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IsDisplayingBoxPlotLabels`
 
 Returns whether to display labels on box plots for new projects.
@@ -8,10 +9,7 @@ Returns whether to display labels on box plots for new projects.
 boolean IsDisplayingBoxPlotLabels()
 ```
 
-
 ### Return value {-}
 
 Type: `boolean`
-
-
-{{< pagebreak >}}
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IsApplyingGraphBackgroundFade`
 
 Returns whether to apply a fade to graph background colors.
@@ -8,10 +9,7 @@ Returns whether to apply a fade to graph background colors.
 boolean IsApplyingGraphBackgroundFade()
 ```
 
-
 ### Return value {-}
 
 Type: `boolean`
-
-
-{{< pagebreak >}}
+:::

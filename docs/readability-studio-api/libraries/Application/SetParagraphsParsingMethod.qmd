@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetParagraphsParsingMethod`
 
 Sets how hard returns help determine how paragraphs and sentences are detected.
@@ -12,6 +13,5 @@ SetParagraphsParsingMethod(ParagraphParse parseMethod)
 
 **Parameter** | **Description**
 | :-- | :-- |
-[`ParagraphParse`](#paragraphparse) parseMethod | The paragraph parsing method.
-
-{{< pagebreak >}}
+| [`ParagraphParse`](#paragraphparse) parseMethod | The paragraph parsing method. |
+:::

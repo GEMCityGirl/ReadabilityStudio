@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetFleschKincaidNumeralSyllabizeMethod`
 
 Sets how numerals' syllables are counted for the Flesch-Kincaid test for new projects.
@@ -13,5 +14,4 @@ SetFleschKincaidNumeralSyllabizeMethod(FleschKincaidNumeralSyllabize method)
 **Parameter** | **Description**
 | :-- | :-- |
 | [`FleschKincaidNumeralSyllabize`](#fleschkincaidnumeralsyllabize) method | How to syllablize numerals. |
-
-{{< pagebreak >}}
+:::

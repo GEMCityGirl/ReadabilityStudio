@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetSummaryStatsReportOptions`
 
 Sets which results in the summary statistics reports should be included.
@@ -25,5 +26,4 @@ SetSummaryStatsReportOptions(boolean includeParagraphs,
 | `boolean` includeGrammar | `true` to include grammar statistics. | 
 | `boolean` includeNotes | `true` to include notes. |  
 | `boolean` includeExtendedInfo | `true` to include extended information, such as file information. | 
-
-{{< pagebreak >}}
+:::

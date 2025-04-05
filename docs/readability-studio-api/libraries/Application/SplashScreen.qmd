@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SplashScreen`
 
 Displays the image from the list of splashscreens at the specified index.
@@ -11,6 +12,5 @@ SplashScreen(number index)
 
 **Parameter** | **Description**
 | :-- | :-- |
-`number` index | Index of which image from the list of splashscreens to display.
-
-{{< pagebreak >}}
+| `number` index | Index of which image from the list of splashscreens to display. |
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `FindFiles`
 
 Searches the specified folder for files\index{file paths!searching} matching the given file filter (e.g., "\*.docx" or "\*patient\*") and returns the retrieved filepaths.
@@ -35,5 +36,4 @@ do
     Debug.Print(val)
 end
 ```
-
-{{< pagebreak >}}
+:::

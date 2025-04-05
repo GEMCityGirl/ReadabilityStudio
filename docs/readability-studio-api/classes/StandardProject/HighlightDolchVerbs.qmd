@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `HighlightDolchVerbs`
 
 Sets whether to highlight Dolch verbs in the formatted Dolch report.
@@ -14,8 +15,7 @@ HighlightDolchVerbs(boolean highlight)
 | :-- | :-- |
 | `boolean` highlight | `true` to highlight Dolch verbs. |
 
-::: {.tipsection data-latex=""}
+:::: {.tipsection data-latex=""}
 This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading) and [`Reload()`](#standard-reload).
+::::
 :::
-
-{{< pagebreak >}}

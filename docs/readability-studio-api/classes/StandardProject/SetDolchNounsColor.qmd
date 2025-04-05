@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetDolchNounsColor`
 
 Sets the font color for Dolch nouns in the formatted Dolch report.
@@ -14,8 +15,7 @@ SetDolchNounsColor(string colorName)
 | :-- | :-- |
 | `string` colorName | The name of the color to use. |
 
-::: {.tipsection data-latex=""}
+:::: {.tipsection data-latex=""}
 This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading) and [`Reload()`](#standard-reload).
+::::
 :::
-
-{{< pagebreak >}}

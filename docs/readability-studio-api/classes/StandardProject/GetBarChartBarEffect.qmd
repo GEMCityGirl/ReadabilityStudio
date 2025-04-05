@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetBarChartBarEffect`
 
 Returns how bars should be drawn within the various bar charts.
@@ -8,10 +9,7 @@ Returns how bars should be drawn within the various bar charts.
 BoxEffect GetBarChartBarEffect()
 ```
 
-
 ### Return value {-}
 
 Type: [`BoxEffect`](#boxeffect)
-
-
-{{< pagebreak >}}
+:::

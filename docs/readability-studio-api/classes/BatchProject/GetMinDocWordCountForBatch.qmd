@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetMinDocWordCountForBatch`
 
 Returns the minimum number of words a document must have to be included in the project.
@@ -8,10 +9,7 @@ Returns the minimum number of words a document must have to be included in the p
 number GetMinDocWordCountForBatch()
 ```
 
-
 ### Return value {-}
 
 Type: `number`
-
-
-{{< pagebreak >}}
+:::

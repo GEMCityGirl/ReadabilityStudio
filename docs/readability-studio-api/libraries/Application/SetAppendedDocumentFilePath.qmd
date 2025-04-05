@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetAppendedDocumentFilePath`
 
 Sets the file path to the document being appended for analysis.
@@ -8,12 +9,9 @@ Sets the file path to the document being appended for analysis.
 SetAppendedDocumentFilePath(string filePath)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
 | `string` filePath | The file path to the document being appended for analysis. |
-
-
-{{< pagebreak >}}
+:::

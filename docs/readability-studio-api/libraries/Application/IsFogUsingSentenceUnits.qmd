@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IsFogUsingSentenceUnits`
 
 Returns whether to count independent clauses when calculating Gunning Fog for new projects.
@@ -8,10 +9,7 @@ Returns whether to count independent clauses when calculating Gunning Fog for ne
 boolean IsFogUsingSentenceUnits()
 ```
 
-
 ### Return value {-}
 
 Type: `boolean`
-
-
-{{< pagebreak >}}
+:::

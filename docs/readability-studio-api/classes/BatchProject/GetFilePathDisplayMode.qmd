@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetFilePathDisplayMode`
 
 Returns how filepaths\index{file paths!display in batch projects} are displayed in the project.
@@ -13,5 +14,4 @@ FilePathDisplayMode GetFilePathDisplayMode()
 Type: [`FilePathDisplayMode`](#filepathdisplaymode)
 
 How filepaths are being displayed in lists.
-
-{{< pagebreak >}}
+:::

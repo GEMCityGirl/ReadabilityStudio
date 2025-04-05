@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IsUsingEnglishLabelsForGermanLix`
 
 Returns whether English labels are being used for the brackets on German Lix gauges.
@@ -8,10 +9,7 @@ Returns whether English labels are being used for the brackets on German Lix gau
 boolean IsUsingEnglishLabelsForGermanLix()
 ```
 
-
 ### Return value {-}
 
 Type: `boolean`
-
-
-{{< pagebreak >}}
+:::

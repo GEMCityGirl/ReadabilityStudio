@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `WriteToFile`
 
 Writes a string to the specified file path.
@@ -13,13 +14,12 @@ boolean WriteToFile(string filePath,
 
 **Parameter** | **Description**
 | :-- | :-- |
-`string` filePath | The file to write to (will be overwritten if file exists).
-`string` message | The text to write to the file.
+| `string` filePath | The file to write to (will be overwritten if file exists). |
+| `string` message | The text to write to the file. |
 
 ### Return value {-}
 
 Type: `boolean`
 
 Returns `true` if output was successfully written to the file.
-
-{{< pagebreak >}}
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IsRealTimeUpdating`
 
 Returns whether documents are being re-analyzed as they change\index{real-time updating}.
@@ -11,5 +12,4 @@ boolean IsRealTimeUpdating()
 ### Return value {-}
 
 Type: `boolean`
-
-{{< pagebreak >}}
+:::

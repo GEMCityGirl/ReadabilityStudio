@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetDifficultSentenceLength`
 
 Sets the threshold for determining an overly-long sentence.
@@ -14,8 +15,7 @@ SetDifficultSentenceLength(number length)
 | :-- | :-- |
 | `number` length | The most number of words a sentence can contain before being seen as overly long. |
 
-::: {.tipsection data-latex=""}
+:::: {.tipsection data-latex=""}
 This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading) and [`Reload()`](#standard-reload).
+::::
 :::
-
-{{< pagebreak >}}

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetPlotBackgroundImageFit`
 
 Specifies how to adjust an image to fit within a graph's background.
@@ -8,7 +9,6 @@ Specifies how to adjust an image to fit within a graph's background.
 SetPlotBackgroundImageFit(ImageFit fitType)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
@@ -18,7 +18,7 @@ SetPlotBackgroundImageFit(ImageFit fitType)
 ### Example {-}
 
 ``` {.lua}
-symposium = StandardProject(Application.GetExamplesPath() ..
+symposium = StandardProject(Application.GetExamplesFolder() ..
                             "YA Enterprise Software Symposium.odt")
 symposium:SetPlotBackgroundImage(Application.GetUserPath(UserPath.Pictures) ..
                                  "Skating at Kettering.jpg")
@@ -29,5 +29,4 @@ symposium:SetBarChartBarColor("lavender")
 symposium:SetBarChartBarEffect(BoxEffect.ThickWatercolor)
 symposium:SelectWindow(SideBarSection.WordsBreakdown, -1)
 ```
-
-{{< pagebreak >}}
+:::

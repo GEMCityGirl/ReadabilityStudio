@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `LogMessage`
 
 Sends a message\index{log report!sending messages to} to program's logging system.
@@ -17,5 +18,4 @@ LogMessage(string message)
 ### See also {-}
 
 [`Debug.Print()`](#print)
-
-{{< pagebreak >}}
+:::

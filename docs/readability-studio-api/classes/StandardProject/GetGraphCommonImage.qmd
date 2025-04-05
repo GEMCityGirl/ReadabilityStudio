@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetGraphCommonImage`
 
 Returns the common image\index{images!bar backgrounds} drawn across all bars.
@@ -8,10 +9,7 @@ Returns the common image\index{images!bar backgrounds} drawn across all bars.
 string GetGraphCommonImage()
 ```
 
-
 ### Return value {-}
 
 Type: `string`
-
-
-{{< pagebreak >}}
+:::

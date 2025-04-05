@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetStatus`
 
 Returns the status of the project.
@@ -8,10 +9,7 @@ Returns the status of the project.
 string GetStatus()
 ```
 
-
 ### Return value {-}
 
 Type: `string`
-
-
-{{< pagebreak >}}
+:::

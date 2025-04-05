@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetSentenceBreakdownResultsOptions`
 
 Sets which results in the sentences breakdown section should be included.
@@ -19,5 +20,4 @@ SetSentenceBreakdownResultsOptions(boolean includeLongSentences,
 | `boolean` includeLengthsSpread | `true` to include a box plot showing the spread of the sentence lengths. | 
 | `boolean` includeLengthsDistribution | `true` to include a histogram showing the distribution of the sentence lengths. | 
 | `boolean` includeLengthsDensity | `true` to include a heatmap showing the distribution of the sentence lengths. |
-
-{{< pagebreak >}}
+:::

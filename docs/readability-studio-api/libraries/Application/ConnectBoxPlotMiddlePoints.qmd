@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `ConnectBoxPlotMiddlePoints`
 
 Specifies whether to connect the medians between box plots for new projects.
@@ -13,5 +14,4 @@ ConnectBoxPlotMiddlePoints(boolean display)
 **Parameter** | **Description**
 | :-- | :-- |
 | `boolean` display | `true` to connect the medians. |
-
-{{< pagebreak >}}
+:::

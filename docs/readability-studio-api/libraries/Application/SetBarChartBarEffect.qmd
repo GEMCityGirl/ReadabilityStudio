@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetBarChartBarEffect`
 
 Sets bar appearance (in bar charts) for new projects.
@@ -11,7 +12,5 @@ SetBarChartBarEffect(BoxEffect barEffect)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|[`BoxEffect`](#boxeffect) barEffect | The used to display bars in bar charts.     |
-
-
-{{< pagebreak >}}
+| [`BoxEffect`](#boxeffect) barEffect | The used to display bars in bar charts. |
+:::

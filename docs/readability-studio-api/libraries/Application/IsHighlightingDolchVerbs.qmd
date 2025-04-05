@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IsHighlightingDolchVerbs`
 
 Returns whether Dolch verbs are being highlighted in the formatted Dolch report for new projects.
@@ -8,10 +9,7 @@ Returns whether Dolch verbs are being highlighted in the formatted Dolch report 
 boolean IsHighlightingDolchVerbs()
 ```
 
-
 ### Return value {-}
 
 Type: `boolean`
-
-
-{{< pagebreak >}}
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IsLoggingVerbose`
 
 Returns whether verbose\index{log report!settings} logging is enabled.
@@ -11,5 +12,4 @@ boolean IsLoggingVerbose()
 ### Return value {-}
 
 Type: `boolean`
-
-{{< pagebreak >}}
+:::

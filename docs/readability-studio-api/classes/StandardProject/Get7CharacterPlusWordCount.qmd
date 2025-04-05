@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `Get7CharacterPlusWordCount`
 
 Returns the number of words consisting of seven or more characters from the document.
@@ -8,10 +9,7 @@ Returns the number of words consisting of seven or more characters from the docu
 number Get7CharacterPlusWordCount()
 ```
 
-
 ### Return value {-}
 
 Type: `number`
-
-
-{{< pagebreak >}}
+:::

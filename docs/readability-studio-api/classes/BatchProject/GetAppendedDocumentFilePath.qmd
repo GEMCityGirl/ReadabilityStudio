@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetAppendedDocumentFilePath`
 
 Returns the file path to the document being appended for analysis.
@@ -8,10 +9,7 @@ Returns the file path to the document being appended for analysis.
 string GetAppendedDocumentFilePath()
 ```
 
-
 ### Return value {-}
 
 Type: `string`
-
-
-{{< pagebreak >}}
+:::

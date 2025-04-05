@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IsExcludingFileAddresses`
 
 Returns whether file addresses are being excluded for new projects.
@@ -11,5 +12,4 @@ boolean IsExcludingFileAddresses()
 ### Return value {-}
 
 Type: `boolean`
-
-{{< pagebreak >}}
+:::

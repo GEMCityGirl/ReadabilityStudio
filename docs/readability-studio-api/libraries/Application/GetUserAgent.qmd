@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetUserAgent`
 
 Returns the user agent\index{web harvester!user agent} used when reading or downloading content from websites.
@@ -11,5 +12,4 @@ string GetUserAgent()
 ### Return value {-}
 
 Type: `string`
-
-{{< pagebreak >}}
+:::

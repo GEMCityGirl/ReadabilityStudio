@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetHistogramBinning`
 
 Returns how data are binned in histograms.
@@ -8,10 +9,7 @@ Returns how data are binned in histograms.
 BinningMethod GetHistogramBinning()
 ```
 
-
 ### Return value {-}
 
 Type: [`BinningMethod`](#binningmethod)
-
-
-{{< pagebreak >}}
+:::

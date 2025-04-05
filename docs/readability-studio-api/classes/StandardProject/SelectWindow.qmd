@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SelectWindow`
 
 Selects a window in the project.
@@ -24,5 +25,4 @@ Application.GetActiveStandardProject():SelectWindow(
     -- select list of unfamiliar words for custom test "Consent"
     Application.GetTestId("Consent"))
 ```
-
-{{< pagebreak >}}
+:::

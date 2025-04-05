@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IncludeScoreSummaryReport`
 
 Sets whether to include the test score summary report.
@@ -13,5 +14,4 @@ IncludeScoreSummaryReport(boolean include)
 **Parameter** | **Description**
 | :-- | :-- |
 | `boolean` include | `true` to include the test score summary report. |
-
-{{< pagebreak >}}
+:::

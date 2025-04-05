@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `Reload` {#standard-reload}
 
 Reanalyzes the project's document.
@@ -32,8 +33,7 @@ consentForm:AddTest("Patient Consent Formula")
 
 [`DelayReloading()`](#standard-delayreloading)
 
-::: {.callout-note}
+:::: {.callout-note}
 After this function is called, delayed reloading will be reset.
+::::
 :::
-
-{{< pagebreak >}}

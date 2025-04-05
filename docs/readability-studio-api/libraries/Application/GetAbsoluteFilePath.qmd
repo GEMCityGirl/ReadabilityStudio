@@ -1,4 +1,4 @@
-
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetAbsoluteFilePath`
 
 Combines a base path\index{file paths!getting absolute path} with a relative path and returns the full file path.
@@ -35,5 +35,4 @@ Debug.Print(
     Debug.GetScriptFolderPath(),
     "../../Mizzie/Documents/ProfileReport.txt"))
 ```
-
-{{< pagebreak >}}
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IgnoreBlankLines`
 
 Sets whether to ignore blank lines when figuring out if we are at the end of a paragraph.
@@ -14,8 +15,7 @@ IgnoreBlankLines(boolean ignore)
 | :-- | :-- |
 | `boolean` ignore | `true` to ignore blank lines. |
 
-::: {.tipsection data-latex=""}
+:::: {.tipsection data-latex=""}
 This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading) and [`Reload()`](#standard-reload).
+::::
 :::
-
-{{< pagebreak >}}

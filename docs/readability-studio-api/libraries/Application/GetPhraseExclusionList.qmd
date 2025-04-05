@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetPhraseExclusionList`
 
 Returns the filepath to the phrase exclusion list for new projects.
@@ -8,10 +9,7 @@ Returns the filepath to the phrase exclusion list for new projects.
 string GetPhraseExclusionList()
 ```
 
-
 ### Return value {-}
 
 Type: `string`
-
-
-{{< pagebreak >}}
+:::

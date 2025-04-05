@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `ExcludeFileAddress`
 
 Specifies whether to exclude file paths\index{file paths!excluding} and URLs from the document analysis.
@@ -13,5 +14,4 @@ ExcludeFileAddress(boolean exclude)
 **Parameter** | **Description**
 | :-- | :-- |
 | `boolean` exclude | `true` to exclude filepaths and URLs, `false` to include them. |
-
-{{< pagebreak >}}
+:::

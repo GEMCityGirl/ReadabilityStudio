@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetSpellCheckerOptions` {#standard-setspellcheckeroptions}
 
 Sets which items the spell checker\index{spell checker} should ignore.
@@ -26,8 +27,7 @@ SetSpellCheckerOptions(boolean ignoreProperNouns,
 | `boolean` ignoreSocialMediaTags | `true` to ignore social media tags (e.g., *#goreadabilityformulas*). |
 | `boolean` ignoreColloquialisms | `true` to ignore social colloquialisms (e.g., *rockin'*). |
 
-::: {.tipsection data-latex=""}
+:::: {.tipsection data-latex=""}
 This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading) and [`Reload()`](#standard-reload).
+::::
 :::
-
-{{< pagebreak >}}

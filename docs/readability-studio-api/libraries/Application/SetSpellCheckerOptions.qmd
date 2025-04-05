@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetSpellCheckerOptions`
 
 Sets which items the spell checker\index{spell checker} should ignore.
@@ -18,12 +19,11 @@ SetSpellCheckerOptions(boolean ignoreProperNouns,
 
 **Parameter** | **Description**
 | :-- | :-- |
-`boolean` ignoreProperNouns | `true` to ignore proper nouns.
-`boolean` ignoreUppercased | `true` to ignore uppercased words.
-`boolean` ignoreNumerals | `true` to ignore numerals.
-`boolean` ignoreFileAddresses | `true` to ignore filepaths and URLs.
-`boolean` ignoreProgrammerCode | `true` to ignore programmer code.
-`boolean` ignoreSocialMediaTags | `true` to ignore social media tags (e.g., *#goreadabilityformulas*).
-`boolean` ignoreColloquialisms | `true` to ignore social colloquialisms (e.g., *rockin'*).
-
-{{< pagebreak >}}
+| `boolean` ignoreProperNouns | `true` to ignore proper nouns. |
+| `boolean` ignoreUppercased | `true` to ignore uppercased words. |
+| `boolean` ignoreNumerals | `true` to ignore numerals. |
+| `boolean` ignoreFileAddresses | `true` to ignore filepaths and URLs. |
+| `boolean` ignoreProgrammerCode | `true` to ignore programmer code. |
+| `boolean` ignoreSocialMediaTags | `true` to ignore social media tags (e.g., *#goreadabilityformulas*). |
+| `boolean` ignoreColloquialisms | `true` to ignore social colloquialisms (e.g., *rockin'*). |
+:::

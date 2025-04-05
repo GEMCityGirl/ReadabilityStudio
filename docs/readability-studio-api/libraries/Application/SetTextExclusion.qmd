@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetTextExclusion`
 
 Specifies how text should be excluded.
@@ -20,5 +21,4 @@ SetTextExclusion(TextExclusionType type)
 -- don't exclude any text for all future projects
 Application.SetTextExclusion(TextExclusionType.DoNotExcludeAnyText)
 ```
-
-{{< pagebreak >}}
+:::

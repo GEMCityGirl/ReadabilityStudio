@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetBarChartBarEffect`
 
 Sets how bars should be drawn within the various bar charts.
@@ -12,6 +13,5 @@ SetBarChartBarEffect(BoxEffect effect)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|[`BoxEffect`](#boxeffect) effect | The effect to apply to the bars. |
-
-{{< pagebreak >}}
+| [`BoxEffect`](#boxeffect) effect | The effect to apply to the bars. |
+:::

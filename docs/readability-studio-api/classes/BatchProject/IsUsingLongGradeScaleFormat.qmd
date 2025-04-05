@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IsUsingLongGradeScaleFormat`
 
 Returns whether test scores are being shown in long format.
@@ -8,10 +9,7 @@ Returns whether test scores are being shown in long format.
 boolean IsUsingLongGradeScaleFormat()
 ```
 
-
 ### Return value {-}
 
 Type: `boolean`
-
-
-{{< pagebreak >}}
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetStippleImage`
 
 Returns the stipple image filepath used to draw bars in graphs.
@@ -8,10 +9,7 @@ Returns the stipple image filepath used to draw bars in graphs.
 string GetStippleImage()
 ```
 
-
 ### Return value {-}
 
 Type: `string`
-
-
-{{< pagebreak >}}
+:::

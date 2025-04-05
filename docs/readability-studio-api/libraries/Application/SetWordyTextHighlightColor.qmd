@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetWordyTextHighlightColor`
 
 Sets the font color for wordy content in formatted reports\index{highlighted reports!fonts} for new projects.
@@ -13,5 +14,4 @@ SetWordyTextHighlightColor(string colorName)
 **Parameter** | **Description**
 | :-- | :-- |
 | `string` colorName | The name of the color to use. |
-
-{{< pagebreak >}}
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `AppendDailyLog`
 
 Toggles whether the current log file should be appended\index{log report!settings} when the program restarts.
@@ -13,5 +14,4 @@ AppendDailyLog(boolean append)
 **Parameter** | **Description**
 | :-- | :-- |
 | `boolean` append | `true` to use append mode. |
-
-{{< pagebreak >}}
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetStippleShapeColor`
 
 If using stipple shapes for bars, sets the color for certain shapes.
@@ -13,5 +14,4 @@ SetStippleShapeColor(string colorName)
 **Parameter** | **Description**
 | :-- | :-- |
 | `string` colorName | The name of the color to use. |
-
-{{< pagebreak >}}
+:::

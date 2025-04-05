@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IsHighlightingDolchAdjectives`
 
 Returns whether Dolch adjectives are being highlighted in the formatted Dolch report.
@@ -8,10 +9,7 @@ Returns whether Dolch adjectives are being highlighted in the formatted Dolch re
 boolean IsHighlightingDolchAdjectives()
 ```
 
-
 ### Return value {-}
 
 Type: `boolean`
-
-
-{{< pagebreak >}}
+:::

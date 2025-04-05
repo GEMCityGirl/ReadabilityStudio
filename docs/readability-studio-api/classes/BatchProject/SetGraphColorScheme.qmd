@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetGraphColorScheme`
 
 Sets the graph color scheme.
@@ -15,5 +16,4 @@ SetGraphColorScheme(string colorScheme)
 | `string` colorScheme | The color scheme ID. |
 
 Refer to [`Application.SetGraphColorScheme()`](#app-setstippleshape) for a list of available IDs.
-
-{{< pagebreak >}}
+:::

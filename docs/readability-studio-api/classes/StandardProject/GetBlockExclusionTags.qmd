@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetBlockExclusionTags`
 
 Returns the text exclusion tags.
@@ -8,10 +9,7 @@ Returns the text exclusion tags.
 string GetBlockExclusionTags()
 ```
 
-
 ### Return value {-}
 
 Type: `string`
-
-
-{{< pagebreak >}}
+:::

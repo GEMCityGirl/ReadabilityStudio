@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetStippleShape`
 
 Returns the stipple shape used to draw bars in graphs for new projects.
@@ -8,10 +9,7 @@ Returns the stipple shape used to draw bars in graphs for new projects.
 string GetStippleShape()
 ```
 
-
 ### Return value {-}
 
 Type: `string`
-
-
-{{< pagebreak >}}
+:::

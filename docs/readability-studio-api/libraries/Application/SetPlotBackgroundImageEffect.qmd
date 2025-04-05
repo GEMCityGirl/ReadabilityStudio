@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetPlotBackgroundImageEffect`
 
 Sets the effect applied to an image\index{images!effects} when drawn as a graph's background for new projects.
@@ -8,12 +9,9 @@ Sets the effect applied to an image\index{images!effects} when drawn as a graph'
 SetPlotBackgroundImageEffect(ImageEffect effect)
 ```
 
-
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-|[`ImageEffect`](#imageeffect) effect | The effect to render with. |
-
-
-{{< pagebreak >}}
+| [`ImageEffect`](#imageeffect) effect | The effect to render with. |
+:::

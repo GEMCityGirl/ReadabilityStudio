@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetDocumentStorageMethod`
 
 Returns whether the project embeds its documents or links to them.
@@ -11,5 +12,4 @@ TextStorage GetDocumentStorageMethod()
 ### Return value {-}
 
 Type: [`TextStorage`](#textstorage)
-
-{{< pagebreak >}}
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `PersistCookies`
 
 Toggles whether the web harvester uses keeps cookies read from JavaScript between harvests.
@@ -13,5 +14,4 @@ PersistCookies(boolean keepCookies)
 **Parameter** | **Description**
 | :-- | :-- |
 | `boolean` keepCookies | `true` to keep cookies between harvesting sessions. |
-
-{{< pagebreak >}}
+:::

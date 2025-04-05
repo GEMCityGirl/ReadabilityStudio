@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetWindowSize`
 
 Resizes the program's window size\index{user interface!window size} to the specified width and height.
@@ -13,7 +14,6 @@ SetWindowSize(number width,
 
 **Parameter** | **Description**
 | :-- | :-- |
-`number` width | The program window width (in pixels).
-`number` height | The program window height (in pixels).
-
-{{< pagebreak >}}
+| `number` width | The program window width (in pixels). |
+| `number` height | The program window height (in pixels). |
+:::

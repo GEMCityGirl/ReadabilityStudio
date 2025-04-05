@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetActiveStandardProject`
 
 Returns the active standard project\index{projects!getting active}.
@@ -13,5 +14,4 @@ StandardProject GetActiveStandardProject()
 Type: [`StandardProject`](#standardproject)
 
 The active standard project.
-
-{{< pagebreak >}}
+:::

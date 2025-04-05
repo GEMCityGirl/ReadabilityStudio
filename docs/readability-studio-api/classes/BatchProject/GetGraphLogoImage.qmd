@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetGraphLogoImage`
 
 Returns the logo image filepath.
@@ -8,10 +9,7 @@ Returns the logo image filepath.
 string GetGraphLogoImage()
 ```
 
-
 ### Return value {-}
 
 Type: `string`
-
-
-{{< pagebreak >}}
+:::

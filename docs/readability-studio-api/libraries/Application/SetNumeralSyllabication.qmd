@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetNumeralSyllabication`
 
 Sets the method to determine how to syllabize numerals for new projects.
@@ -12,6 +13,5 @@ SetNumeralSyllabication(NumeralSyllabize method)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|[`NumeralSyllabize`](#numeralsyllabize) method | How numerals are syllabized. |
-
-{{< pagebreak >}}
+| [`NumeralSyllabize`](#numeralsyllabize) method | How numerals are syllabized. |
+:::

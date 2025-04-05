@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetDocumentStorageMethod`
 
 Sets whether the project embeds its documents or links to them.
@@ -14,8 +15,7 @@ SetDocumentStorageMethod(TextStorage storageMethod)
 | :-- | :-- |
 | [`TextStorage`](#textstorage) storageMethod | The text storage method to use for the project. |
 
-::: {.tipsection data-latex=""}
+:::: {.tipsection data-latex=""}
 This can be optimized by placing it in between calls to [`DelayReloading()`](#batch-delayreloading) and [`Reload()`](#batch-reload).
+::::
 :::
-
-{{< pagebreak >}}

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `EnableAllWarnings`
 
 Enables\index{warnings!enabling} all warnings and prompts throughout the program.
@@ -7,5 +8,4 @@ Enables\index{warnings!enabling} all warnings and prompts throughout the program
 ``` {.lua}
 EnableAllWarnings()
 ```
-
-{{< pagebreak >}}
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetCharacterCount`
 
 Returns the total number of characters (letters and numbers) from the document.
@@ -8,10 +9,7 @@ Returns the total number of characters (letters and numbers) from the document.
 number GetCharacterCount()
 ```
 
-
 ### Return value {-}
 
 Type: `number`
-
-
-{{< pagebreak >}}
+:::

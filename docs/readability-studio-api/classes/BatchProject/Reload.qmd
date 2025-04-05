@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `Reload` {#batch-reload}
 
 Reanalyzes the project's documents.
@@ -12,8 +13,7 @@ Reload()
 
 [`DelayReloading()`](#batch-delayreloading)
 
-::: {.callout-note}
+:::: {.callout-note}
 After this function is called, delayed reloading will be reset.
+::::
 :::
-
-{{< pagebreak >}}

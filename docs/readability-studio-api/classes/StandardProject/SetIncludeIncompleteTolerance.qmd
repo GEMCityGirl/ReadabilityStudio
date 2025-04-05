@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetIncludeIncompleteTolerance`
 
 Sets the incomplete-sentence tolerance.
@@ -13,6 +14,9 @@ SetIncludeIncompleteTolerance(number minWordsForCompleteSentence)
 
 **Parameter** | **Description**
 | :-- | :-- |
-`number` minWordsForCompleteSentence | The minimum number of words that will make a sentence missing terminating punctuation be considered complete.
+| `number` minWordsForCompleteSentence | The minimum number of words that will make a sentence missing terminating punctuation be considered complete. |
 
-{{< pagebreak >}}
+:::: {.tipsection data-latex=""}
+This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading) and [`Reload()`](#standard-reload).
+::::
+:::

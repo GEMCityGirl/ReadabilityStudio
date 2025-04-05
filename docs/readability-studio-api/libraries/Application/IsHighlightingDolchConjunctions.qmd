@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IsHighlightingDolchConjunctions`
 
 Returns whether Dolch conjunctions are being highlighted in the formatted Dolch report for new projects.
@@ -8,10 +9,7 @@ Returns whether Dolch conjunctions are being highlighted in the formatted Dolch 
 boolean IsHighlightingDolchConjunctions()
 ```
 
-
 ### Return value {-}
 
 Type: `boolean`
-
-
-{{< pagebreak >}}
+:::

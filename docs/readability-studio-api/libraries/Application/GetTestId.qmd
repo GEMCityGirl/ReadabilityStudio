@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetTestId`
 
 Returns the numeric ID of a test, which should be passed in as a string.
@@ -31,5 +32,4 @@ Application.GetActiveStandardProject():ExportHighlightedWords(
     Application.GetUserPath(UserPath.Documents) ..
         "Home Choice Unfamiliar Words.rtf")
 ```
-
-{{< pagebreak >}}
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IncludeStockerCatholicSupplement`
 
 Sets whether to include additional Catholic words with the Dale-Chall test.
@@ -14,8 +15,7 @@ IncludeStockerCatholicSupplement(boolean include)
 | :-- | :-- |
 | `boolean` include | `true` to include Stocker's Catholic supplement to Dale-Chall. |
 
-::: {.tipsection data-latex=""}
+:::: {.tipsection data-latex=""}
 This can be optimized by placing it in between calls to [`DelayReloading()`](#batch-delayreloading) and [`Reload()`](#batch-reload).
+::::
 :::
-
-{{< pagebreak >}}

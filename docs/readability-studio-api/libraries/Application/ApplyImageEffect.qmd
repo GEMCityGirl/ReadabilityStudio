@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `ApplyImageEffect`
 
 Applies\index{images!editing} an effect to an image and saves the result to another image file.
@@ -35,5 +36,4 @@ Application.ApplyImageEffect(
     -- apply an oil painting look to the new image
     ImageEffect.OilPainting)
 ```
-
-{{< pagebreak >}}
+:::

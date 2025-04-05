@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetReportFont`
 
 Sets the font for highlighted reports\index{highlighted reports!fonts} for new projects.
@@ -19,5 +20,4 @@ SetReportFont(string fontName,
 | `number` pointSize | The point size of the font. | 
 | [`FontWeight`](#fontweight) weight | The weight of the font. | 
 | `string` color | The name of the color. |
-
-{{< pagebreak >}}
+:::

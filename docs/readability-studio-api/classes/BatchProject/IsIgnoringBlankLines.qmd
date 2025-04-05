@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `IsIgnoringBlankLines`
 
 Returns whether blank lines are being ignored when figuring out if we are at the end of a paragraph.
@@ -8,10 +9,7 @@ Returns whether blank lines are being ignored when figuring out if we are at the
 boolean IsIgnoringBlankLines()
 ```
 
-
 ### Return value {-}
 
 Type: `boolean`
-
-
-{{< pagebreak >}}
+:::

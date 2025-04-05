@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetProjectLanguage`
 
 Returns the default language for new projects.
@@ -13,5 +14,4 @@ Language GetProjectLanguage()
 Type: [`Language`](#language)
 
 The default language for new projects.
-
-{{< pagebreak >}}
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `HighlightDolchVerbs`
 
 Sets whether to highlight Dolch verbs in the formatted Dolch report for new projects.
@@ -13,5 +14,4 @@ HighlightDolchVerbs(boolean highlight)
 **Parameter** | **Description**
 | :-- | :-- |
 | `boolean` highlight | `true` to highlight Dolch verbs. |
-
-{{< pagebreak >}}
+:::

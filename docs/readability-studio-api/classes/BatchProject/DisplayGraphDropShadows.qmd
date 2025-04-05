@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `DisplayGraphDropShadows` {#batch-displaygraphdropshadows}
 
 Specifies whether to use shadows underneath items (such as bars) on all the graphs.
@@ -12,7 +13,5 @@ DisplayGraphDropShadows(boolean useShadows)
 
 **Parameter** | **Description**
 | :-- | :-- |
-`boolean` useShadows | `true` to use shadows underneath items (such as bars) on all the graphs.
-UseShadows | `true` to use shadows underneath items (such as bars) on all the graphs.
-
-{{< pagebreak >}}
+| `boolean` useShadows | `true` to use shadows underneath items (such as bars) on all the graphs. |
+:::

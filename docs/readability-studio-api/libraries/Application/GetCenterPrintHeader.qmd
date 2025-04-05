@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetCenterPrintHeader`
 
 Returns the center print header\index{printing!headers \& footers}.
@@ -11,5 +12,4 @@ string GetCenterPrintHeader()
 ### Return value {-}
 
 Type: `string`
-
-{{< pagebreak >}}
+:::

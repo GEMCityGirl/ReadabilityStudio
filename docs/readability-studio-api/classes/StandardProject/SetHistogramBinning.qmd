@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetHistogramBinning`
 
 Sets how data are binned in histograms.
@@ -12,6 +13,5 @@ SetHistogramBinning(BinningMethod method)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|[`BinningMethod`](#binningmethod) method | How to bin the data. |
-
-{{< pagebreak >}}
+| [`BinningMethod`](#binningmethod) method | How to bin the data. |
+:::

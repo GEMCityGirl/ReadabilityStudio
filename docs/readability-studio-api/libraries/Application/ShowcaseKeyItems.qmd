@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `ShowcaseKeyItems`
 
 Specifies whether important parts of certain graphs should be highlighted for new projects.
@@ -13,5 +14,4 @@ ShowcaseKeyItems(boolean showcase)
 **Parameter** | **Description**
 | :-- | :-- |
 | `boolean` showcase | `true` to enable showcasing. |
-
-{{< pagebreak >}}
+:::

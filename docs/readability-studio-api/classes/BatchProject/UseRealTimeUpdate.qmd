@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `UseRealTimeUpdate`
 
 Toggles whether documents are being re-analyzed as they change\index{real-time updating}.
@@ -14,8 +15,7 @@ UseRealTimeUpdate(boolean use)
 | :-- | :-- |
 | `boolean` use | `true` to enable real-time updating. |
 
-::: {.tipsection data-latex=""}
+:::: {.tipsection data-latex=""}
 This can be optimized by placing it in between calls to [`DelayReloading()`](#batch-delayreloading) and [`Reload()`](#batch-reload).
+::::
 :::
-
-{{< pagebreak >}}

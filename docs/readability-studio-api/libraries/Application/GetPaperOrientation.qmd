@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetPaperOrientation`
 
 Returns the printer paper orientation\index{printing!paper orientation}.
@@ -11,5 +12,4 @@ Orientation GetPaperOrientation()
 ### Return value {-}
 
 Type: [`Orientation`](#orientation)
-
-{{< pagebreak >}}
+:::

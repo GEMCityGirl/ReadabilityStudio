@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetWatermark`
 
 Returns the watermark drawn on graphs.
@@ -8,10 +9,7 @@ Returns the watermark drawn on graphs.
 string GetWatermark()
 ```
 
-
 ### Return value {-}
 
 Type: `string`
-
-
-{{< pagebreak >}}
+:::

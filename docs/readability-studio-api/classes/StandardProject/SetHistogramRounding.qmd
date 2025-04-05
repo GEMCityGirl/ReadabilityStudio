@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetHistogramRounding`
 
 Sets how data are rounded (during binning) in histograms.
@@ -12,6 +13,5 @@ SetHistogramRounding(Rounding method)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|[`Rounding`](#rounding) method | How to round values when sorting them into bins. |
-
-{{< pagebreak >}}
+| [`Rounding`](#rounding) method | How to round values when sorting them into bins. |
+:::

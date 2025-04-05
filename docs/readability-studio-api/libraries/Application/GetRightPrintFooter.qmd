@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetRightPrintFooter`
 
 Returns the right print footer\index{printing!headers \& footers}.
@@ -11,5 +12,4 @@ string GetRightPrintFooter()
 ### Return value {-}
 
 Type: `string`
-
-{{< pagebreak >}}
+:::

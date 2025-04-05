@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `CrossReferencePhraseLists`
 
 Compares two phrase lists and creates a new one that contains only the phrases that appear in both of them.
@@ -25,5 +26,4 @@ Returns `true` if cross reference file was successfully saved.
 | `string` wordList | The first phrase list. | 
 | `string` otherWordList | The second phrase list. | 
 | `string` outputFile | The output containing only phrase found in both files. |
-
-{{< pagebreak >}}
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetDaleChallTextExclusionMode`
 
 Sets how text is excluded for the Dale-Chall test.
@@ -14,4 +15,7 @@ SetDaleChallTextExclusionMode(SpecializedTestTextExclusion method)
 | :-- | :-- |
 | [`SpecializedTestTextExclusion`](#specializedtesttextexclusion) method | How to exclude text. |
 
-{{< pagebreak >}}
+:::: {.tipsection data-latex=""}
+This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading) and [`Reload()`](#standard-reload).
+::::
+:::

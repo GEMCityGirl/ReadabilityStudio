@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `RemoveAllCustomTests`
 
 Clears all custom tests from the program.
@@ -7,5 +8,4 @@ Clears all custom tests from the program.
 ``` {.lua}
 RemoveAllCustomTests()
 ```
-
-{{< pagebreak >}}
+:::

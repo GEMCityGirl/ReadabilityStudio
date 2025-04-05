@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetGraphCommonImage`
 
 Sets the common image\index{images!bar backgrounds} drawn across all bars for new projects.
@@ -14,8 +15,7 @@ SetGraphCommonImage(string imagePath)
 | :-- | :-- |
 | `string` imagePath | The path to the image. |
 
-::: {.callout-note}
+:::: {.callout-note}
 The [`BoxEffect.CommonImage`](#boxeffect) effect will need to be enabled for either box plots or bar charts for this to have any effect.
+::::
 :::
-
-{{< pagebreak >}}

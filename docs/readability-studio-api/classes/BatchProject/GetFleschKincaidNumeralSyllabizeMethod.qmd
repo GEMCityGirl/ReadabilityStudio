@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetFleschKincaidNumeralSyllabizeMethod`
 
 Returns how numerals' syllables are counted for the Flesch-Kincaid test.
@@ -8,10 +9,7 @@ Returns how numerals' syllables are counted for the Flesch-Kincaid test.
 FleschKincaidNumeralSyllabize GetFleschKincaidNumeralSyllabizeMethod()
 ```
 
-
 ### Return value {-}
 
 Type: [`FleschKincaidNumeralSyllabize`](#fleschkincaidnumeralsyllabize)
-
-
-{{< pagebreak >}}
+:::

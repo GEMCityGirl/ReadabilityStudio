@@ -1,4 +1,4 @@
-
+::: {.minipage data-latex="{\textwidth}"}
 ## `AggressivelyExclude`
 
 Specifies whether to use aggressive text exclusion.
@@ -27,5 +27,4 @@ Application.ExcludeProperNouns(true)
 Application.ExcludeTrailingCitations(true)
 Application.EnableWarning("document-less-than-100-word")
 ```
-
-{{< pagebreak >}}
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `DisableSSLVerification`
 
 Toggles whether SSL verification\index{web harvester!peer verification} used by the web harvester is disabled.
@@ -13,5 +14,4 @@ DisableSSLVerification(boolean disable)
 **Parameter** | **Description**
 | :-- | :-- |
 | `boolean` disable | `true` to not use SSL verification. |
-
-{{< pagebreak >}}
+:::

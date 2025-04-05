@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetUserAgent`
 
 Sets the user agent\index{web harvester!user agent} used when reading or downloading content from websites.
@@ -13,5 +14,4 @@ SetUserAgent(string userAgent)
 **Parameter** | **Description**
 | :-- | :-- |
 | `string` userAgent | The user agent to send to servers when connecting to websites. |
-
-{{< pagebreak >}}
+:::

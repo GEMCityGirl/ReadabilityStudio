@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetTextHighlighting`
 
 Returns how to highlight content\index{highlighted reports!how to highlight} in formatted reports.
@@ -11,5 +12,4 @@ TextHighlight GetTextHighlighting()
 ### Return value {-}
 
 Type: [`TextHighlight`](#texthighlight)
-
-{{< pagebreak >}}
+:::

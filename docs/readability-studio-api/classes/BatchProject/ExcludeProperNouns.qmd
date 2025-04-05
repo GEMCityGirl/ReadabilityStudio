@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `ExcludeProperNouns` {#batch-excludepropernouns}
 
 Specifies whether to exclude proper nouns.
@@ -14,8 +15,7 @@ ExcludeProperNouns(boolean exclude)
 | :-- | :-- |
 | `boolean` exclude | `true` to exclude proper nouns. |
 
-::: {.tipsection data-latex=""}
+:::: {.tipsection data-latex=""}
 This can be optimized by placing it in between calls to [`DelayReloading()`](#batch-delayreloading) and [`Reload()`](#batch-reload).
+::::
 :::
-
-{{< pagebreak >}}

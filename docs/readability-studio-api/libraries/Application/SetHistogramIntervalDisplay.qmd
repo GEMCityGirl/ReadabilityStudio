@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetHistogramIntervalDisplay`
 
 Sets how bin (axis) labels are displayed on histograms for new projects.
@@ -12,6 +13,5 @@ SetHistogramIntervalDisplay(IntervalDisplay display)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|[`IntervalDisplay`](#intervaldisplay) display | How to display bin (axis) labels. |
-
-{{< pagebreak >}}
+| [`IntervalDisplay`](#intervaldisplay) display | How to display bin (axis) labels. |
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetImageInfo`
 
 Returns\index{images!getting information about} the details of a given file.
@@ -12,7 +13,7 @@ table GetImageInfo(string imagePath)
 
 **Parameter** | **Description**
 | :-- | :-- |
-`string` imagePath | The file path of the image.
+| `string` imagePath | The file path of the image. |
 
 ### Return value {-}
 
@@ -23,13 +24,11 @@ A two-column table of the image's information.
 ### Example {-}
 
 ``` {.lua}
-info = Application.GetImageInfo("C:\\users\\Martin\\images\\GraphLogo.png")
+imgInfo = Application.GetImageInfo("C:\\users\\Martin\\images\\GraphLogo.png")
 
--- print information about an image
-for i,v in pairs(info)
-do
-    Debug.Print("<b>"..i.."</b>: "..v)
-end
+-- print information about the image
+Debug.Print("<b>Name</b>: " .. imgInfo["Name"])
+Debug.Print("<b>Width</b>: " .. imgInfo["Width"])
+Debug.Print("<b>Height</b>: " .. imgInfo["Height"])
 ```
-
-{{< pagebreak >}}
+:::

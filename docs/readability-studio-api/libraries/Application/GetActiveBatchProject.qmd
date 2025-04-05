@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetActiveBatchProject`
 
 Returns the active batch project\index{projects!getting active}.
@@ -13,5 +14,4 @@ BatchProject GetActiveBatchProject()
 Type: [`BatchProject`](#batchproject)
 
 The active batch project.
-
-{{< pagebreak >}}
+:::

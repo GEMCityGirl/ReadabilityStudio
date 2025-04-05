@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `SetLongSentenceMethod`
 
 Sets the method to determine what a long sentence is for new projects.
@@ -12,6 +13,5 @@ SetLongSentenceMethod(LongSentence method)
 
 **Parameter** | **Description**
 | :-- | :-- |
-|[`LongSentence`](#longsentence) method | How to determine if a sentence is overly long. |
-
-{{< pagebreak >}}
+| [`LongSentence`](#longsentence) method | How to determine if a sentence is overly long. |
+:::

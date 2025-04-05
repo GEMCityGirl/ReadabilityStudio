@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `DisableWarning`
 
 Disables\index{warnings!disabling} the specified warning.
@@ -10,8 +11,7 @@ DisableWarning(string warningId)
 
 **Parameter** | **Description**
 | :-- | :-- |
-`string` warningId | The warning's string ID.
+| `string` warningId | The warning's string ID. |
 
 Refer to [`EnableWarning()`](#enablewarning) for a list of warning IDs.
-
-{{< pagebreak >}}
+:::

@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetHistogramIntervalDisplay`
 
 Returns how bin (axis) labels are displayed on histograms.
@@ -8,10 +9,7 @@ Returns how bin (axis) labels are displayed on histograms.
 IntervalDisplay GetHistogramIntervalDisplay()
 ```
 
-
 ### Return value {-}
 
 Type: [`IntervalDisplay`](#intervaldisplay)
-
-
-{{< pagebreak >}}
+:::

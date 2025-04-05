@@ -1,3 +1,4 @@
+::: {.minipage data-latex="{\textwidth}"}
 ## `GetLuaConstantsPath`
 
 Returns the path of the file\index{file paths!support files} containing the Lua enumerations used by the program.
@@ -11,5 +12,4 @@ string GetLuaConstantsPath()
 ### Return value {-}
 
 Type: `string`
-
-{{< pagebreak >}}
+:::
