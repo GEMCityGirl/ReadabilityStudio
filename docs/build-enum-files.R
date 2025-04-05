@@ -58,7 +58,9 @@ functionToTopic <- function(functionInfo)
     }
 
   fileFooter <- "\n\n:::"
-  return(str_glue('::: {.minipage data-latex="{\textwidth}"}{topicContent}\n\n{returnType}{params}{fileFooter}'))
+  return(str_glue('::: {.minipage data-latex="{\\textwidth}"}\n<topicContent>\n\n<returnType><params><fileFooter>',
+                  .open = "<",
+                  .close = ">",))
   }
 
 # Builds function topics for a class (or library), but only if the file doesn't already exist.
