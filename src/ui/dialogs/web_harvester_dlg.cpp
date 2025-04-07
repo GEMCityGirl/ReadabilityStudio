@@ -506,7 +506,7 @@ void WebHarvesterDlg::CreateControls()
             new wxCheckBox(Panel, wxID_ANY, _(L"Replace existing files"), wxDefaultPosition,
                            wxDefaultSize, 0, wxGenericValidator(&m_replaceExistingFiles));
         m_replaceExistingFilesCheckBox->Enable(m_downloadFilesLocally);
-        panelSizer->Add(m_replaceExistingFilesCheckBox, wxSizerFlags{}.Border());
+        panelSizer->Add(m_replaceExistingFilesCheckBox, wxSizerFlags{}.Border(wxLEFT));
         }
 
     mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL | wxHELP),
