@@ -1139,7 +1139,7 @@ ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "editorviewribbon." .. FileExt
 ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "editorclipboardandeditribbon." .. FileExtension, 0, RibbonButtonBar.Clipboard, RibbonButtonBar.Edit)
 ScreenshotLib.CloseEditorTextDlg()
 
-sp:SetDocumentStorageMethod(TextStorage.NoEmbedText)
+sp:SetTextStorageMethod(TextStorage.LoadFromExternalDocument)
 ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "termchecklist-realtime." .. FileExtension, 0, RibbonButtonBar.Project)
 
 sp:DelayReloading(true)
@@ -1158,7 +1158,7 @@ sp:ScrollTextWindow(HighlightedReportType.ThreePlusSyllableHighlightedWords, 180
 ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "incompletesentences." .. FileExtension, 1)
 
 sp:DelayReloading(true) -- prevent reloading website in case we are offline
-sp:SetDocumentStorageMethod(TextStorage.NoEmbedText)
+sp:SetTextStorageMethod(TextStorage.LoadFromExternalDocument)
 sp:OpenProperties(OptionsPageType.ProjectSettings)
 ScreenshotLib.SnapScreenshot(ImagePath .. "reloadwebpage." .. FileExtension, 1085, -1, 1083)
 
