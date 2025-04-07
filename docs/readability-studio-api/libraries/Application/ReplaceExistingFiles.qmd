@@ -1,0 +1,21 @@
+::: {.minipage data-latex="{\textwidth}"}
+## `ReplaceExistingFiles`
+
+Sets whether files being downloaded\index{web harvester!settings} during a web harvest can overwrite each other if they have the same path.
+
+### Syntax {-}
+
+``` {.lua}
+ReplaceExistingFiles(boolean use)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+| `boolean` use | `true` to overwrite existing files while web harvester. |
+
+:::: {.notesection data-latex=""}
+If `false`, then files will be appended with sequential numbers if necessary to prevent overwriting files with the same name.
+::::
+:::

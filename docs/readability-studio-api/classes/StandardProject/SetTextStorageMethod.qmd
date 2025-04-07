@@ -1,12 +1,12 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetDocumentStorageMethod`
+## `SetTextStorageMethod`
 
 Sets whether the project embeds its documents or links to them.
 
 ### Syntax {-}
 
 ``` {.lua}
-SetDocumentStorageMethod(TextStorage storageMethod)
+SetTextStorageMethod(TextStorage storageMethod)
 ```
 
 ### Parameters {-}
@@ -14,6 +14,18 @@ SetDocumentStorageMethod(TextStorage storageMethod)
 **Parameter** | **Description**
 | :-- | :-- |
 | [`TextStorage`](#textstorage) storageMethod | The text storage method to use for the project. |
+
+### Example {-}
+
+``` {.lua}
+doc = StandardProject()
+
+doc:DelayReloading()
+doc:SetTextSource(TextSource.FromFile)
+doc:SetTextStorageMethod(TextStorage.LoadFromExternalDocument)
+doc:SetDocumentFilePath(Application.GetExamplesFolder() .. "Cocoa Desserts.rtf")
+doc:Reload()
+```
 
 :::: {.tipsection data-latex=""}
 This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading) and [`Reload()`](#standard-reload).

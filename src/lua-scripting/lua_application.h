@@ -41,6 +41,18 @@ namespace LuaScripting
     int /*string*/ GetUserFolder(lua_State* L /*UserPath path*/); // Returns the path of a given folder in the user's directory.
     int /*string*/ GetAbsoluteFilePath(lua_State* L /*string filePath, string baseFilePath*/); // Returns the absolute filepath for the first path, relative to the second.
     int /*string*/ DownloadFile(lua_State* L /*string Url, string downloadPath*/); // Downloads a webpage to the provided local path.
+    int /*string*/ GetDownloadFolder(lua_State* L); // Returns the directory path where the web harvester will download files.
+    int SetDownloadFolder(lua_State* L /*string path*/); // Sets the directory path where the web harvester will download files.
+    int /*boolean*/ IsUsingWebsitesFolderStructure(lua_State* L); // Returns whether to mirror websites' folder structure when downloading their files.
+    int UseWebsitesFolderStructure(lua_State* L /*boolean use*/); // Sets whether to mirror websites' folder structure when downloading their files.
+    int /*boolean*/ IsSearchingForBrokenLinks(lua_State* L); // Returns whether a list of broken links are being catalogued while web harvesting.
+    int SeachForBrokenLinks(lua_State* L /*boolean use*/); // Sets whether to build a list of broken links while crawling.
+    int /*boolean*/ IsReplacingExistingFiles(lua_State* L); // Returns whether files being downloaded will replace existing ones.
+    int ReplaceExistingFiles(lua_State* L /*boolean use*/); // Sets whether files being downloaded can overwrite each other if they have the same path.
+    int /*number*/ GetMinimumDownloadFileSizeInKilobytes(lua_State* L); // Returns whether files being downloaded will replace existing ones.
+    int SetMinimumDownloadFileSizeInKilobytes(lua_State* L /*number fileSize*/); // Sets the minimum size a file must be to download.
+    int /*number*/ GetDepthLevel(lua_State* L); // Returns the depth level to crawl from the base URL.
+    int SetDepthLevel(lua_State* L /*number depthLevel*/); // Sets the depth level to crawl from the base URL.
     int /*table*/ FindFiles(lua_State* L /*string directory, string filePattern, boolean recursive*/); // Returns a list of all files from a folder matching the provided file pattern.
     int Close(lua_State*); // Closes the program.
     int /*boolean*/ ExportLogReport(lua_State* L /*string outPath*/); // Saves the program's log report to a tab-delimited text file.
@@ -90,8 +102,8 @@ namespace LuaScripting
     int /*string*/ GetReviewer(lua_State* L); // Returns the reviewer's name.
     int SetProjectLanguage(lua_State* L /*Language lang*/); // Sets the default language for new projects. This will affect syllable counting and also which tests are available.
     int /*Language*/ GetProjectLanguage(lua_State* L); // Returns the default language for new projects.
-    int /*TextStorage*/ GetDocumentStorageMethod(lua_State* L); // Returns whether the project embeds its documents or links to them for new projects.
-    int SetDocumentStorageMethod(lua_State* L /*TextStorage storageMethod*/); // Sets whether new projects embed their documents or link to them.
+    int /*TextStorage*/ GetTextStorageMethod(lua_State* L); // Returns whether the project embeds its documents or links to them for new projects.
+    int SetTextStorageMethod(lua_State* L /*TextStorage storageMethod*/); // Sets whether new projects embed their documents or link to them.
     int SetMinDocWordCountForBatch(lua_State* L /*number minWordCount*/); // Sets the minimum number of words a document must have for new batch projects.
     int /*number*/ GetMinDocWordCountForBatch(lua_State* L); // Returns the minimum number of words a document must have for new batch projects.
     int SetFilePathDisplayMode(lua_State* L /*FilePathDisplayMode displayMode*/); // Sets how filepaths are displayed for new batch projects.
@@ -338,6 +350,18 @@ namespace LuaScripting
         { "LogError", LogError },
         { "MsgBox", MsgBox },
         { "DownloadFile", DownloadFile },
+        { "GetDownloadFolder", GetDownloadFolder },
+        { "SetDownloadFolder", SetDownloadFolder },
+        { "UseWebsitesFolderStructure", UseWebsitesFolderStructure },
+        { "IsUsingWebsitesFolderStructure", IsUsingWebsitesFolderStructure },
+        { "SeachForBrokenLinks", SeachForBrokenLinks },
+        { "IsSearchingForBrokenLinks", IsSearchingForBrokenLinks },
+        { "ReplaceExistingFiles", ReplaceExistingFiles },
+        { "IsReplacingExistingFiles", IsReplacingExistingFiles },
+        { "SetMinimumDownloadFileSizeInKilobytes", SetMinimumDownloadFileSizeInKilobytes },
+        { "GetMinimumDownloadFileSizeInKilobytes", GetMinimumDownloadFileSizeInKilobytes },
+        { "GetDepthLevel", GetDepthLevel },
+        { "SetDepthLevel", SetDepthLevel },
         { "FindFiles", FindFiles },
         { "GetTestId", GetTestId },
         { "GetFileCheckSum", GetFileCheckSum },
@@ -345,8 +369,8 @@ namespace LuaScripting
         { "GetProjectLanguage", GetProjectLanguage },
         { "SetReviewer", SetReviewer },
         { "GetReviewer", GetReviewer },
-        { "GetDocumentStorageMethod", GetDocumentStorageMethod },
-        { "SetDocumentStorageMethod", SetDocumentStorageMethod },
+        { "GetTextStorageMethod", GetTextStorageMethod },
+        { "SetTextStorageMethod", SetTextStorageMethod },
         { "GetParagraphsParsingMethod", GetParagraphsParsingMethod },
         { "SetParagraphsParsingMethod", SetParagraphsParsingMethod },
         { "GetLongSentenceMethod", GetLongSentenceMethod },

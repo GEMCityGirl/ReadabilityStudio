@@ -292,10 +292,11 @@ class WebHarvester
         }
 
     /// @brief Specifies whether all HTML content should be downloaded,
-    ///     regardless of the file's extension.
+    ///     regardless of the file's extension (or lack of one).
+    /// @details This is the default behaviour.
     /// @param harvestAll @c true to download all HTML content.
-    /// @note This is recommended if needing to download PHP response
-    ///     pages with non-standard file extensions.
+    /// @note This is recommended if you need to download pages
+    ///     that don't have extensions (i.e., dynamic pages).
     void HarvestAllHtmlFiles(const bool harvestAll = true) noexcept
         {
         m_harvestAllHtml = harvestAll;

@@ -15,7 +15,7 @@ SetGraphCommonImage(string imagePath)
 | :-- | :-- |
 | `string` imagePath | The path to the image. |
 
-:::: {.callout-note}
+:::: {.notesection data-latex=""}
 The [`BoxEffect.CommonImage`](#boxeffect) effect will need to be enabled for either box plots or bar charts for this to have any effect.
 ::::
 :::

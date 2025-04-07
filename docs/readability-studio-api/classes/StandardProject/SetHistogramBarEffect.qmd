@@ -21,7 +21,7 @@ SetHistogramBarEffect(BoxEffect barEffect)
 cocoa = StandardProject(Application.GetExamplesFolder() ..
                         "Cocoa Desserts.rtf")
 cocoa:SetGraphCommonImage(Application.GetUserFolder(UserPath.Pictures) ..
-                          "sunset.jpg")
+                          "cookies.jpg")
 cocoa:SetBarChartBarEffect(BoxEffect.CommonImage)
 cocoa:SetHistogramBarEffect(BoxEffect.CommonImage)
 cocoa:SetGraphColorScheme("coffeeshop")

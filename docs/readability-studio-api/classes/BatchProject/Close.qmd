@@ -6,7 +6,7 @@ Closes the project.
 ### Syntax {-}
 
 ``` {.lua}
-Close(boolean saveChanges)
+Close(boolean saveChanges = false)
 ```
 
 ### Parameters {-}

@@ -15,6 +15,18 @@ SetDocumentFilePath(string docPath)
 | :-- | :-- |
 | `string` docPath | The path of the document. |
 
+### Example {-}
+
+``` {.lua}
+doc = StandardProject()
+
+doc:DelayReloading()
+doc:SetTextSource(TextSource.FromFile)
+doc:SetTextStorageMethod(TextStorage.LoadFromExternalDocument)
+doc:SetDocumentFilePath(Application.GetExamplesFolder() .. "Cocoa Desserts.rtf")
+doc:Reload()
+```
+
 :::: {.tipsection data-latex=""}
 This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading) and [`Reload()`](#standard-reload).
 ::::

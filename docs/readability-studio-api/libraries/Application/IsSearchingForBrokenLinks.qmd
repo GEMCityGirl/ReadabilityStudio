@@ -1,0 +1,16 @@
+::: {.minipage data-latex="{\textwidth}"}
+## `IsSearchingForBrokenLinks`
+
+Returns whether a list of broken links\index{web harvester!quality checking files} are being catalogued during a web harvest.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsSearchingForBrokenLinks()
+```
+
+### Return value {-}
+
+Type: `boolean`
+
+:::

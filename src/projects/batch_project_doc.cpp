@@ -186,6 +186,12 @@ bool BatchProjectDoc::OnCreate(const wxString& path, long flags)
             ProjectWizardDlg::SetLastSelectedFolder(folders.size() ? folders.back() : wxString{});
             return wxDocument::OnCreate(wxString{}, flags);
             }
+        // scripting framework passes this in to create an empty project
+        // that can have files added later
+        else if (path == L"EMPTY_PROJECT")
+            {
+            return wxDocument::OnCreate(wxString{}, flags);
+            }
         else if (!RunProjectWizard(path))
             {
             return false;

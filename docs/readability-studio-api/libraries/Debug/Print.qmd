@@ -22,13 +22,12 @@ Print(string message)
 ### Example\index{examples!printing to the debugger} {-}
 
 ``` {.lua}
-info = Application.GetImageInfo("C:\\users\\Martin\\images\\GraphLogo.png")
+imgInfo = Application.GetImageInfo("C:\\users\\Martin\\images\\GraphLogo.png")
 
--- print information about an image
-for i,v in pairs(info)
-do
-    Debug.Print("<b>"..i.."</b>: "..v) -- <1>
-end
+-- print information about the image
+Debug.Print("<b>Name</b>: " .. imgInfo["Name"]) -- <1>
+Debug.Print("<b>Width</b>: " .. imgInfo["Width"])
+Debug.Print("<b>Height</b>: " .. imgInfo["Height"])
 ```
 1. The HTML tags `<b>` and `</b>` can be used to bold the message.
 

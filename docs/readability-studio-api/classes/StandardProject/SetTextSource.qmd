@@ -1,0 +1,29 @@
+::: {.minipage data-latex="{\textwidth}"}
+## `SetTextSource`
+
+Sets where a project should get its content from.
+
+### Syntax {-}
+
+``` {.lua}
+SetTextSource(TextSource storageMethod)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+| `TextSource` storageMethod | Where the project is getting its content from. |
+
+### Example {-}
+
+``` {.lua}
+doc = StandardProject()
+
+doc:DelayReloading()
+doc:SetTextSource(TextSource.FromFile)
+doc:SetTextStorageMethod(TextStorage.LoadFromExternalDocument)
+doc:SetDocumentFilePath(Application.GetExamplesFolder() .. "Cocoa Desserts.rtf")
+doc:Reload()
+```
+:::

@@ -339,11 +339,18 @@ RaygorStyle =
   Modern = 2          -- Same as Baldwin-Kaufman, but includes expanded plot and axis labels.
   }
 
--- The following document connection methods are available.
+-- The following document content connections methods are available.
 TextStorage =
   {
-  EmbedText = 0,  -- Embeds the document's text into the project.
-  NoEmbedText = 1 -- Links the project to the external document.
+  EmbedText = 0,               -- Embeds the document's text into the project.
+  LoadFromExternalDocument = 1 -- Links the project to the external document.
+  }
+
+-- The following document content retrieval methods are available.
+TextSource =
+  {
+  FromFile = 0,   -- Project is getting its content from a document.
+  EnteredText = 1 -- Project is using manually entered text.
   }
 
 -- How paragraphs should be deduced.
@@ -515,6 +522,7 @@ Test = protect_enum(Test)
 Language = protect_enum(Language)
 RaygorStyle = protect_enum(RaygorStyle)
 TextStorage = protect_enum(TextStorage)
+TextSource = protect_enum(TextSource)
 ParagraphParse = protect_enum(ParagraphParse)
 NumeralSyllabize = protect_enum(NumeralSyllabize)
 ReadingAgeDisplay = protect_enum(ReadingAgeDisplay)

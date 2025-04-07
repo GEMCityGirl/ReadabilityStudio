@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `SetBarChartBarColor`
 
-Sets the bar color for bar charts. The color is created by specifying the red, blue, and green channels of the color.
+Sets the bar color for bar charts. The color is created by specifying the red, blue, and green channels of the color for new projects.
 
 ### Syntax {-}
 

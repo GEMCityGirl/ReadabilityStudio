@@ -1,0 +1,45 @@
+::: {.minipage data-latex="{\textwidth}"}
+## `LoadFolder`
+
+Analyses all supported documents from the provided folder.
+
+### Syntax {-}
+
+``` {.lua}
+LoadFolder(string folderPath,
+           boolean recursiveSearh = true)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+| `string` folderPath | The folder to load documents from. | 
+| `boolean` recursiveSearh | `true` to search the folder recursively for documents. |
+
+### Example {-}
+
+``` {.lua}
+-- Create an empty project and delay the analyses.
+docs = BatchProject()
+docs:DelayReloading()
+-- Add Spanish graphical tests.
+docs:SetLanguage(Language.Spanish)
+docs:AddTest(Test.Frase)
+docs:AddTest(Test.GpmFry)
+-- Add all supported documents from a "Client Agreements" folder and run all analyses.
+docs:LoadFolder(Application.GetUserFolder(UserPath.Documents) .. "Client Agreements")
+docs:Reload()
+-- Save the graphs.
+docs:ExportGraph(SideBarSection.ReadabilityScores, GraphType.Frase,
+    Application.GetUserFolder(UserPath.Desktop) .. "FRASE.png")
+docs:ExportGraph(SideBarSection.ReadabilityScores, GraphType.GpmFry,
+    Application.GetUserFolder(UserPath.Desktop) .. "GPM.png")
+docs:Close()
+```
+
+:::: {.notesection data-latex=""}
+This function only appends documents to the project.
+All documents in the project previously will remain in it.
+::::
+:::

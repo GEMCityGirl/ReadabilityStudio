@@ -24,16 +24,16 @@ SetGrammarResultsOptions(boolean includeHighlightedReport,
 
 **Parameter** | **Description**
 | :-- | :-- |
-| `boolean` includeHighlightedReport | `true` to include the highlighted grammar report. | 
-| `boolean` includeErrors | `true` to include wording errors and known misspellings. | 
-| `boolean` includePossibleMisspellings | `true` to include possible misspellings. | 
-| `boolean` includeRepeatedWords | `true` to include repeated words. | 
-| `boolean` includeArticleMismatches | `true` to include article mismatches. | 
-| `boolean` includeRedundantPhrases | `true` to include redundant phrases. | 
-| `boolean` includeOverusedWords | `true` to include overused words. | 
-| `boolean` includeWordiness | `true` to include wordiness. | 
-| `boolean` includeCliches | `true` to include cliches. | 
-| `boolean` includePassiveVoice | `true` to include passive voice. | 
-| `boolean` includeConjunctionStartingSentences | `true` to include sentences that start with conjunctions. | 
-| `boolean` includeLowercasedSentences | `true` to include sentences that start with lowercase letters. |
+| `boolean` includeHighlightedReport | (Optional) `true` to include the highlighted grammar report. | 
+| `boolean` includeErrors | (Optional) `true` to include wording errors and known misspellings. | 
+| `boolean` includePossibleMisspellings | (Optional) `true` to include possible misspellings. | 
+| `boolean` includeRepeatedWords | (Optional) `true` to include repeated words. | 
+| `boolean` includeArticleMismatches | (Optional) `true` to include article mismatches. | 
+| `boolean` includeRedundantPhrases | (Optional) `true` to include redundant phrases. | 
+| `boolean` includeOverusedWords | (Optional) `true` to include overused words. | 
+| `boolean` includeWordiness | (Optional) `true` to include wordiness. | 
+| `boolean` includeCliches | (Optional) `true` to include cliches. | 
+| `boolean` includePassiveVoice | (Optional) `true` to include passive voice. | 
+| `boolean` includeConjunctionStartingSentences | (Optional) `true` to include sentences that start with conjunctions. | 
+| `boolean` includeLowercasedSentences | (Optional) `true` to include sentences that start with lowercase letters. |
 :::

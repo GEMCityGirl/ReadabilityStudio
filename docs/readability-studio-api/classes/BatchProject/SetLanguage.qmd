@@ -1,12 +1,12 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetProjectLanguage` {#standard-setprojectlanguage}
+## `SetLanguage` {#batch-setprojectlanguage}
 
 Changes the language for project. This will affect syllable counting and also which tests are available.
 
 ### Syntax {-}
 
 ``` {.lua}
-SetProjectLanguage(Language lang)
+SetLanguage(Language lang)
 ```
 
 ### Parameters {-}
@@ -16,6 +16,6 @@ SetProjectLanguage(Language lang)
 | [`Language`](#language) lang | The language to set the project to. |
 
 :::: {.tipsection data-latex=""}
-This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading) and [`Reload()`](#standard-reload).
+This can be optimized by placing it in between calls to [`DelayReloading()`](#batch-delayreloading) and [`Reload()`](#batch-reload).
 ::::
 :::

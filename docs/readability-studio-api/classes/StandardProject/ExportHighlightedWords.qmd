@@ -27,11 +27,13 @@ Use [`Application.GetTestId()`](#gettestid) to export the highlighted-words repo
 -- Open a project from the user's "Documents" folder
 consentForm = StandardProject(Application.GetUserFolder(UserPath.Documents) ..
                               "Consent Form.rsp")
+
 -- save a highlighted report of unfamiliar words from
 -- a custom test named "Patient Test"
 consentForm:ExportHighlightedWords(Application.GetTestId("Patient Test"),
                           Application.GetUserFolder(UserPath.Documents) ..
                           "Review/ConsentUnfamiliarWords.htm")
+
 -- as well as a highlighted report of 3+ syllable words
 consentForm:ExportHighlightedWords(
                           HighlightedReportType.ThreePlusSyllableHighlightedWords,

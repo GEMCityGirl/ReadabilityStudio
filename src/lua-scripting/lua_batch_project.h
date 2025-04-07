@@ -96,8 +96,11 @@ namespace LuaScripting
         // clang-format off
         // NOTE: these must all be single-line for the build script to properly create new topics from these.
 
+        int LoadFolder(lua_State* L /*string folderPath, boolean recursiveSearh*/); // Analyses all supported documents from the provided folder.
+
         int /*string*/ GetTitle(lua_State* L); // Returns the title of the project.
         int SetWindowSize(lua_State* L /*number width, number height*/); // Sets the size of the project window.
+
         int DelayReloading(lua_State* L /*boolean delay*/); // Prevents a project from updating while settings are being changed.
 
         // SUMMARY STATS
@@ -116,17 +119,19 @@ namespace LuaScripting
         int SetGrammarResultsOptions(lua_State* L /*boolean includeHighlightedReport, boolean includeErrors, boolean includePossibleMisspellings, boolean includeRepeatedWords, boolean includeArticleMismatches, boolean includeRedundantPhrases, boolean includeOverusedWords, boolean includeWordiness, boolean includeCliches, boolean includePassiveVoice, boolean includeConjunctionStartingSentences, boolean includeLowercasedSentences*/); // Sets which grammar results should be included.
 
         // PROJECT SETTINGS
-        int SetProjectLanguage(lua_State* L /*Language lang*/); // Sets the project language. This will affect syllable counting and also which tests are available.
+        int SetLanguage(lua_State* L /*Language lang*/); // Sets the project language. This will affect syllable counting and also which tests are available.
         // cppcheck-suppress functionConst
-        int /*Language*/ GetProjectLanguage(lua_State* L); // Returns the project's language.
+        int /*Language*/ GetLanguage(lua_State* L); // Returns the project's language.
         int SetReviewer(lua_State* L /*string reviewer*/); // Sets the user name for the software.
         int /*string*/ GetReviewer(lua_State* L); // Returns the reviewer's name.
         // cppcheck-suppress functionConst
         int SetStatus(lua_State* L /*string status*/); // Sets the status of the project. This can be freeform text.
         int /*string*/ GetStatus(lua_State* L); // Returns the status of the project.
         // cppcheck-suppress functionConst
-        int /*TextStorage*/ GetDocumentStorageMethod(lua_State* L); // Returns whether the project embeds its documents or links to them.
-        int SetDocumentStorageMethod(lua_State* L /*TextStorage storageMethod*/); // Sets whether the project embeds its documents or links to them.
+        int /*TextSource*/ GetTextSource(lua_State* L); // Returns where a project is getting its content from.
+        int SetTextSource(lua_State* L /*TextSource storageMethod*/); // Sets where a project should get its content from.
+        int /*TextStorage*/ GetTextStorageMethod(lua_State* L); // Returns whether the project embeds its documents or links to them.
+        int SetTextStorageMethod(lua_State* L /*TextStorage storageMethod*/); // Sets whether the project embeds its documents or links to them.
         int SetMinDocWordCountForBatch(lua_State* L /*number wordCount*/); // Sets the minimum number of words a document must have to be included in the project.
         // cppcheck-suppress functionConst
         int /*number*/ GetMinDocWordCountForBatch(lua_State* L); // Returns the minimum number of words a document must have to be included in the project.
@@ -294,7 +299,7 @@ namespace LuaScripting
         int Close(lua_State* L /*boolean saveChanges*/); // Closes the project.
         int ExportAll(lua_State* L/*string outputFolder*/); // Exports all of the results from the project into a folder.
         int ExportList(lua_State* L /*ListType type, string outputFilePath, number fromRow, number toRow, number fromColumn, number toColumn, boolean includeHeaders, boolean includePageBreaks*/); // Saves the specified list as an HTML, text, or LaTeX file to *outputFilePath*.
-        int ExportGraph(lua_State* L /*SideBarSection section, GraphType type, string outputFilePath,boolean grayScale, number width, number height*/); // Saves the specified graph as an image.
+        int ExportGraph(lua_State* L /*SideBarSection section, GraphType type, string outputFilePath, boolean grayScale, number width, number height*/); // Saves the specified graph as an image.
         int SelectWindow(lua_State* L /*SideBarSection section, number windowId*/); // Selects a window in the project.
         int ShowSidebar(lua_State* L /*boolean show*/); // Show or hides the project's sidebar.
         int SortList(lua_State* L /*ListType list, number columnToSort, SortOrder order, ...*/); // Sorts the specified list using a series of columns and sorting orders.

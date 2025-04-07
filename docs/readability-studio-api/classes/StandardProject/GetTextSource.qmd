@@ -1,0 +1,18 @@
+::: {.minipage data-latex="{\textwidth}"}
+## `GetTextSource`
+
+Returns where a project is getting its content from.
+
+### Syntax {-}
+
+``` {.lua}
+TextSource GetTextSource()
+```
+
+
+### Return value {-}
+
+Type: [`TextSource`](#textsource)
+
+
+:::

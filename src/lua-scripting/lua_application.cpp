@@ -185,6 +185,134 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int GetDownloadFolder(lua_State* L)
+        {
+        lua_pushstring(L, wxString{ wxGetApp().GetWebHarvester().GetDownloadDirectory() +
+                                    wxFileName::GetPathSeparator() }
+                              .utf8_str());
+        return 1;
+        }
+
+     //-------------------------------------------------------------
+    int SetDownloadFolder(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetWebHarvester().SetDownloadDirectory(
+            wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int UseWebsitesFolderStructure(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetWebHarvester().KeepWebPathWhenDownloading(
+            int_to_bool(lua_toboolean(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsUsingWebsitesFolderStructure(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetWebHarvester().IsKeepingWebPathWhenDownloading());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int SeachForBrokenLinks(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetWebHarvester().SeachForBrokenLinks(
+            int_to_bool(lua_toboolean(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsSearchingForBrokenLinks(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetWebHarvester().IsSearchingForBrokenLinks());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int ReplaceExistingFiles(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetWebHarvester().ReplaceExistingFiles(
+            int_to_bool(lua_toboolean(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int IsReplacingExistingFiles(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetWebHarvester().IsReplacingExistingFiles());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int SetMinimumDownloadFileSizeInKilobytes(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetWebHarvester().SetMinimumDownloadFileSizeInKilobytes(
+            lua_tointeger(L, 1));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int GetMinimumDownloadFileSizeInKilobytes(lua_State* L)
+        {
+        lua_pushinteger(L,
+                        wxGetApp().GetWebHarvester().
+                        GetMinimumDownloadFileSizeInKilobytes().value_or(5));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int SetDepthLevel(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetWebHarvester().SetDepthLevel(lua_tointeger(L, 1));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int GetDepthLevel(lua_State* L)
+        {
+        lua_pushinteger(L, wxGetApp().GetWebHarvester().GetDepthLevel());
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int GetLuaConstantsPath(lua_State* L)
         {
         lua_pushstring(L, wxGetApp().FindResourceFile(L"rs-constants.lua").utf8_str());
@@ -1126,7 +1254,7 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int SetDocumentStorageMethod(lua_State* L)
+    int SetTextStorageMethod(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))
             {
@@ -1138,7 +1266,7 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int GetDocumentStorageMethod(lua_State* L)
+    int GetTextStorageMethod(lua_State* L)
         {
         lua_pushnumber(L, static_cast<int>(wxGetApp().GetAppOptions().GetDocumentStorageMethod()));
         return 1;

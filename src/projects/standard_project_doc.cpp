@@ -1227,6 +1227,12 @@ bool ProjectDoc::OnCreate(const wxString& path, long flags)
             SetTextSource(TextSource::FromFile);
             return wxDocument::OnCreate(wxString{}, flags);
             }
+        // scripting framework passes this in to create an empty project
+        // that can have files added later
+        else if (path == L"EMPTY_PROJECT")
+            {
+            return wxDocument::OnCreate(wxString{}, flags);
+            }
         // otherwise, use the wizard if raw text (or no text, or examples file path) was passed in
         else
             {
@@ -1262,8 +1268,8 @@ bool ProjectDoc::OnNewDocument()
     // load the document
     if (GetTextSource() == TextSource::FromFile)
         {
-        // there is embedded text (that may have been passed from a batch project), so load that
-        // here.
+        // there is embedded text (that may have been passed from a batch project),
+        // so load that here.
         if (GetDocumentStorageMethod() == TextStorage::EmbedText && GetDocumentText().length())
             {
             LoadDocument();

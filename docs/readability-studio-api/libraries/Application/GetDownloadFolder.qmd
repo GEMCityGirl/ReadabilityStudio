@@ -1,0 +1,18 @@
+::: {.minipage data-latex="{\textwidth}"}
+## `GetDownloadFolder`
+
+Returns the directory path where\index{web harvester!settings} the web harvester will download files.
+
+### Syntax {-}
+
+``` {.lua}
+string GetDownloadFolder()
+```
+
+
+### Return value {-}
+
+Type: `string`
+
+
+:::

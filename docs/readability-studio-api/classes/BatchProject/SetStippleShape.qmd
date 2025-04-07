@@ -17,7 +17,7 @@ SetStippleShape(string shapeId)
 
 Refer to [`Application.SetStippleShape()`](#app-setstippleshape) for a list of available IDs.
 
-:::: {.callout-note}
+:::: {.notesection data-latex=""}
 The [`BoxEffect.StippleShape`](#boxeffect) effect will need to be enabled for either box plots or bar charts for this to have any effect.
 ::::
 :::

@@ -1,0 +1,17 @@
+::: {.minipage data-latex="{\textwidth}"}
+## `SeachForBrokenLinks`
+
+Sets whether to build a list of broken links\index{web harvester!quality checking files} during a web harvest.
+
+### Syntax {-}
+
+``` {.lua}
+SeachForBrokenLinks(boolean use)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+| `boolean` use | `true` to check for broken links while harvesting. |
+:::

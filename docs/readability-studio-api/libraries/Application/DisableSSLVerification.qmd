@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `DisableSSLVerification`
 
-Toggles whether SSL verification\index{web harvester!peer verification} used by the web harvester is disabled.
+Toggles whether SSL verification\index{web harvester!settings} used by the web harvester is disabled.
 
 ### Syntax {-}
 

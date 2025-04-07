@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `UseJavaScriptCookies`
 
-Toggles whether the web harvester parses JavaScript\index{web harvester!managing cookies} for cookies needed by the website.
+Toggles whether the web harvester parses JavaScript\index{web harvester!settings} for cookies needed by the website.
 
 ### Syntax {-}
 

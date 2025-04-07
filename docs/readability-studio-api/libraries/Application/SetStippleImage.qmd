@@ -15,7 +15,7 @@ SetStippleImage(string imagePath)
 | :-- | :-- |
 | `string` imagePath | The path to the image to use for stippling. |
 
-:::: {.callout-note}
+:::: {.notesection data-latex=""}
 The [`BoxEffect.StippleImage`](#boxeffect) effect will need to be enabled for either box plots or bar charts for this to have any effect.
 ::::
 :::

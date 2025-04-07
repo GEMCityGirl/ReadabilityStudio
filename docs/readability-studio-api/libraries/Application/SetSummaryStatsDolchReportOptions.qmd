@@ -15,7 +15,7 @@ SetSummaryStatsDolchReportOptions(boolean includeCoverage,
 
 **Parameter** | **Description**
 | :-- | :-- |
-| `boolean` includeCoverage | `true` to include the Dolch coverage statistics. | 
-| `boolean` includeWords | `true` to include the Dolch word statistics. | 
-| `boolean` includeExplanation | `true` to include an explanation about the results. |
+| `boolean` includeCoverage | (Optional) `true` to include the Dolch coverage statistics. | 
+| `boolean` includeWords | (Optional) `true` to include the Dolch word statistics. | 
+| `boolean` includeExplanation | (Optional) `true` to include an explanation about the results. |
 :::

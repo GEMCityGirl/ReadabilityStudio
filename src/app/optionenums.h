@@ -39,7 +39,7 @@ enum class TextSource
 /// @brief How the document's text is stored in the project.
 /// @note EmbedText can refer to text that was entered by the user in the project
 ///     wizard, or from a file. NoEmbedText (aliased to LoadFromExternalDocument)
-///     will always related to an external file.
+///     will always relate to an external file.
 enum class TextStorage
     {
     EmbedText,

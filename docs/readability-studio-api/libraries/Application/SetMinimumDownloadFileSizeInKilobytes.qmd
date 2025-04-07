@@ -1,0 +1,17 @@
+::: {.minipage data-latex="{\textwidth}"}
+## `SetMinimumDownloadFileSizeInKilobytes`
+
+Sets the minimum size\index{web harvester!settings} a file must be to download.
+
+### Syntax {-}
+
+``` {.lua}
+SetMinimumDownloadFileSizeInKilobytes(number fileSize)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+| `number` fileSize | The number of kilobytes that a file must be to be downloaded. |
+:::

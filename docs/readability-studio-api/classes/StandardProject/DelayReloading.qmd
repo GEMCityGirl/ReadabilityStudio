@@ -8,7 +8,7 @@ This is efficient for when multiple settings are being altered at once.
 ### Syntax {-}
 
 ``` {.lua}
-DelayReloading(boolean delay)
+DelayReloading(boolean delay = true)
 ```
 
 ### Parameters {-}

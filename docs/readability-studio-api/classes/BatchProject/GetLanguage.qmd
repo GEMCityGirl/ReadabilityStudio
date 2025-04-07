@@ -1,12 +1,12 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `GetProjectLanguage`
+## `GetLanguage`
 
 Returns the project's language.
 
 ### Syntax {-}
 
 ``` {.lua}
-Language GetProjectLanguage()
+Language GetLanguage()
 ```
 
 ### Return value {-}

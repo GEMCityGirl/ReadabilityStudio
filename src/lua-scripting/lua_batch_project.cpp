@@ -34,57 +34,6 @@ wxDECLARE_APP(ReadabilityApp);
 namespace LuaScripting
     {
     //-------------------------------------------------------------
-    BatchProject::BatchProject(lua_State* L)
-        {
-        // see if a path was passed in
-        if (lua_gettop(L) > 1)
-            {
-            wxString path(luaL_checkstring(L, 2), wxConvUTF8);
-            wxFileName fn(path);
-            fn.Normalize(wxPATH_NORM_LONG | wxPATH_NORM_DOTS | wxPATH_NORM_TILDE |
-                         wxPATH_NORM_ABSOLUTE);
-            if (fn.GetExt().CmpNoCase(_DT(L"rsbp")) == 0)
-                {
-                m_project =
-                    dynamic_cast<BatchProjectDoc*>(wxGetApp().GetMainFrame()->OpenFile(path));
-                }
-            else if (fn.GetExt().CmpNoCase(_DT(L"rsp")) == 0)
-                {
-                m_project = nullptr;
-                wxMessageBox(_(L"A batch project cannot open a standard project file."),
-                             _(L"Project File Mismatch"), wxOK | wxICON_EXCLAMATION);
-                return;
-                }
-            else
-                {
-                // create a batch project and load a (tab delimited) list of files into it
-                const wxList& templateList =
-                    wxGetApp().GetMainFrame()->GetDocumentManager()->GetTemplates();
-                for (size_t i = 0; i < templateList.GetCount(); ++i)
-                    {
-                    wxDocTemplate* docTemplate =
-                        dynamic_cast<wxDocTemplate*>(templateList.Item(i)->GetData());
-                    if (docTemplate &&
-                        docTemplate->GetDocClassInfo()->IsKindOf(wxCLASSINFO(BatchProjectDoc)))
-                        {
-                        m_project = dynamic_cast<BatchProjectDoc*>(
-                            docTemplate->CreateDocument(path, wxDOC_NEW));
-                        if (m_project && !m_project->OnNewDocument())
-                            {
-                            // Document is implicitly deleted by DeleteAllViews
-                            m_project->DeleteAllViews();
-                            m_project = nullptr;
-                            }
-                        break;
-                        }
-                    }
-                }
-            }
-        // yield so that the view can be fully refreshed before proceeding
-        wxGetApp().Yield();
-        }
-
-    //-------------------------------------------------------------
     bool BatchProject::ReloadIfNotDelayed()
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -119,7 +68,71 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int BatchProject::DelayReloading(lua_State* L)
+    BatchProject::BatchProject(lua_State* L)
+        {
+        const auto createProject = [this](const wxString& folderPath)
+            {
+            // create a batch project and load a folder
+            const wxList& templateList =
+                wxGetApp().GetMainFrame()->GetDocumentManager()->GetTemplates();
+            for (size_t i = 0; i < templateList.GetCount(); ++i)
+                {
+                wxDocTemplate* docTemplate =
+                    dynamic_cast<wxDocTemplate*>(templateList.Item(i)->GetData());
+                if (docTemplate &&
+                    docTemplate->GetDocClassInfo()->IsKindOf(wxCLASSINFO(BatchProjectDoc)))
+                    {
+                    m_project = dynamic_cast<BatchProjectDoc*>(
+                        docTemplate->CreateDocument(folderPath, wxDOC_NEW));
+                    if (m_project && !m_project->OnNewDocument())
+                        {
+                        // Document is implicitly deleted by DeleteAllViews
+                        m_project->DeleteAllViews();
+                        m_project = nullptr;
+                        }
+                    break;
+                    }
+                }
+            };
+
+        // see if a path was passed in
+        if (lua_gettop(L) > 1)
+            {
+            const wxString path(luaL_checkstring(L, 2), wxConvUTF8);
+            wxFileName fn(path);
+            fn.Normalize(wxPATH_NORM_LONG | wxPATH_NORM_DOTS | wxPATH_NORM_TILDE |
+                         wxPATH_NORM_ABSOLUTE);
+            if (fn.GetExt().CmpNoCase(_DT(L"rsbp")) == 0)
+                {
+                m_project =
+                    dynamic_cast<BatchProjectDoc*>(wxGetApp().GetMainFrame()->OpenFile(path));
+                }
+            else if (fn.GetExt().CmpNoCase(_DT(L"rsp")) == 0)
+                {
+                m_project = nullptr;
+                wxMessageBox(_(L"A batch project cannot open a standard project file."),
+                             _(L"Project File Mismatch"), wxOK | wxICON_EXCLAMATION);
+                return;
+                }
+            else if (path.empty())
+                {
+                createProject(L"EMPTY_PROJECT");
+                }
+            else
+                {
+                createProject(path);
+                }
+            }
+        else
+            {
+            createProject(L"EMPTY_PROJECT");
+            }
+        // yield so that the view can be fully refreshed before proceeding
+        wxGetApp().Yield();
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::LoadFolder(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
             {
@@ -130,7 +143,42 @@ namespace LuaScripting
             return 0;
             }
 
-        m_delayReloading = int_to_bool(lua_toboolean(L, 2));
+        const wxString path(luaL_checkstring(L, 2), wxConvUTF8);
+        if (!path.empty() && wxFileName{ path }.IsDir() && wxFileName::DirExists(path))
+            {
+            const bool recursive = ((lua_gettop(L) > 2) ? int_to_bool(lua_toboolean(L, 3)) : true);
+            wxArrayString files;
+                {
+                wxWindowDisabler disableAll;
+                wxBusyInfo wait(_(L"Retrieving files..."), m_project->GetDocumentWindow());
+                wxDir::GetAllFiles(path, &files, wxString{},
+                                   recursive ? (wxDIR_FILES | wxDIR_DIRS) : wxDIR_FILES);
+                files = FilterFiles(files,
+                    ExtractExtensionsFromFileFilter(ReadabilityAppOptions::GetDocumentFilter()));
+                }
+            // append the files to this project, leave what was there already
+            m_project->GetSourceFilesInfo().reserve(
+                m_project->GetSourceFilesInfo().size() + files.size());
+            for (const auto& fl : files)
+                {
+                wxLogMessage(fl);
+                m_project->GetSourceFilesInfo().push_back(comparable_first_pair{ fl, wxString{} });
+                }
+            }
+
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::DelayReloading(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        m_delayReloading = (lua_gettop(L) > 1) ? int_to_bool(lua_toboolean(L, 2)) : true;
         return 0;
         }
 
@@ -2126,7 +2174,7 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int BatchProject::SetProjectLanguage(lua_State* L)
+    int BatchProject::SetLanguage(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
             {
@@ -2144,7 +2192,7 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int BatchProject::GetProjectLanguage(lua_State* L)
+    int BatchProject::GetLanguage(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
             {
@@ -2214,7 +2262,7 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int BatchProject::SetDocumentStorageMethod(lua_State* L)
+    int BatchProject::SetTextStorageMethod(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
             {
@@ -2232,7 +2280,7 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int BatchProject::GetDocumentStorageMethod(lua_State* L)
+    int BatchProject::GetTextStorageMethod(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
             {
@@ -2240,6 +2288,35 @@ namespace LuaScripting
             }
 
         lua_pushnumber(L, static_cast<int>(m_project->GetDocumentStorageMethod()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::SetTextSource(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetTextSource(static_cast<TextSource>(static_cast<int>(lua_tonumber(L, 2))));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int BatchProject::GetTextSource(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetTextSource()));
         return 1;
         }
 
@@ -2804,36 +2881,31 @@ namespace LuaScripting
             return 1;
             }
 
-        BatchProjectView* view = dynamic_cast<BatchProjectView*>(m_project->GetFirstView());
-        if (view)
+        const wxString testName(luaL_checkstring(L, 2), wxConvUTF8);
+
+        if (m_delayReloading)
             {
-            const wxString testName(luaL_checkstring(L, 2), wxConvUTF8);
             if (m_project->GetReadabilityTests().has_test(testName))
                 {
-                auto result = m_project->GetReadabilityTests().find_test(testName);
-                wxCommandEvent cmd(0, result.first->get_test().get_interface_id());
-                view->OnAddTest(cmd);
+                m_project->GetReadabilityTests().include_test(
+                    m_project->GetReadabilityTests().get_test_id(testName).c_str(), true);
                 }
             else if (testName.CmpNoCase(_DT(L"dolch")) == 0)
                 {
-                wxCommandEvent cmd(0, XRCID("ID_DOLCH"));
-                view->OnAddTest(cmd);
+                m_project->IncludeDolchSightWords();
                 }
             else
                 {
-                std::map<int, wxString>::const_iterator pos;
-                for (pos = MainFrame::GetCustomTestMenuIds().begin();
-                     pos != MainFrame::GetCustomTestMenuIds().end(); ++pos)
+                const auto customTestPos =
+                        std::find_if(MainFrame::GetCustomTestMenuIds().cbegin(),
+                                  MainFrame::GetCustomTestMenuIds().cend(),
+                                  [&testName](const auto& test)
+                                    {
+                                    return test.second.CmpNoCase(testName) == 0;
+                                    });
+                if (customTestPos != MainFrame::GetCustomTestMenuIds().cend())
                     {
-                    if (pos->second.CmpNoCase(testName) == 0)
-                        {
-                        break;
-                        }
-                    }
-                if (pos != MainFrame::GetCustomTestMenuIds().end())
-                    {
-                    wxCommandEvent cmd(0, pos->first);
-                    view->GetDocFrame()->OnCustomTest(cmd);
+                    m_project->AddCustomReadabilityTest(testName, false);
                     }
                 else
                     {
@@ -2844,10 +2916,51 @@ namespace LuaScripting
                     return 1;
                     }
                 }
-            lua_pushboolean(L, true);
-            return 1;
             }
-        ReloadIfNotDelayed();
+        else
+            {
+            BatchProjectView* view = dynamic_cast<BatchProjectView*>(m_project->GetFirstView());
+            if (view != nullptr)
+                {
+                if (m_project->GetReadabilityTests().has_test(testName))
+                    {
+                    auto result = m_project->GetReadabilityTests().find_test(testName);
+                    wxCommandEvent cmd(0, result.first->get_test().get_interface_id());
+                    view->OnAddTest(cmd);
+                    }
+                else if (testName.CmpNoCase(_DT(L"dolch")) == 0)
+                    {
+                    wxCommandEvent cmd(0, XRCID("ID_DOLCH"));
+                    view->OnAddTest(cmd);
+                    }
+                else
+                    {
+                    const auto customTestPos =
+                        std::find_if(MainFrame::GetCustomTestMenuIds().cbegin(),
+                                  MainFrame::GetCustomTestMenuIds().cend(),
+                                  [&testName](const auto& test)
+                                    {
+                                    return test.second.CmpNoCase(testName) == 0;
+                                    });
+                    if (customTestPos != MainFrame::GetCustomTestMenuIds().cend())
+                        {
+                        wxCommandEvent cmd(0, customTestPos->first);
+                        view->GetDocFrame()->OnCustomTest(cmd);
+                        }
+                    else
+                        {
+                        wxMessageBox(
+                            wxString::Format(_(L"%s: Unknown test could not be added."), testName),
+                            _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
+                        lua_pushboolean(L, false);
+                        return 1;
+                        }
+                    }
+                lua_pushboolean(L, true);
+                return 1;
+                }
+            }
+
         lua_pushboolean(L, false);
         return 1;
         }
@@ -3274,16 +3387,17 @@ namespace LuaScripting
 
     Luna<BatchProject>::FunctionType BatchProject::methods[] = {
         LUNA_DECLARE_METHOD(BatchProject, Close),
+        LUNA_DECLARE_METHOD(BatchProject, LoadFolder),
         LUNA_DECLARE_METHOD(BatchProject, GetTitle),
         LUNA_DECLARE_METHOD(BatchProject, SetWindowSize),
         LUNA_DECLARE_METHOD(BatchProject, DelayReloading),
-        LUNA_DECLARE_METHOD(BatchProject, SetProjectLanguage),
-        LUNA_DECLARE_METHOD(BatchProject, GetProjectLanguage),
+        LUNA_DECLARE_METHOD(BatchProject, SetLanguage),
+        LUNA_DECLARE_METHOD(BatchProject, GetLanguage),
         LUNA_DECLARE_METHOD(BatchProject, SetReviewer),
         LUNA_DECLARE_METHOD(BatchProject, GetReviewer),
         LUNA_DECLARE_METHOD(BatchProject, SetStatus),
         LUNA_DECLARE_METHOD(BatchProject, GetStatus),
-        LUNA_DECLARE_METHOD(BatchProject, SetDocumentStorageMethod),
+        LUNA_DECLARE_METHOD(BatchProject, SetTextStorageMethod),
         LUNA_DECLARE_METHOD(BatchProject, SetParagraphsParsingMethod),
         LUNA_DECLARE_METHOD(BatchProject, GetParagraphsParsingMethod),
         LUNA_DECLARE_METHOD(BatchProject, GetLongSentenceMethod),
@@ -3296,7 +3410,9 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(BatchProject, IsIgnoringIndenting),
         LUNA_DECLARE_METHOD(BatchProject, SetSentenceStartMustBeUppercased),
         LUNA_DECLARE_METHOD(BatchProject, SentenceStartMustBeUppercased),
-        LUNA_DECLARE_METHOD(BatchProject, GetDocumentStorageMethod),
+        LUNA_DECLARE_METHOD(BatchProject, GetTextStorageMethod),
+        LUNA_DECLARE_METHOD(BatchProject, GetTextSource),
+        LUNA_DECLARE_METHOD(BatchProject, SetTextSource),
         LUNA_DECLARE_METHOD(BatchProject, SetMinDocWordCountForBatch),
         LUNA_DECLARE_METHOD(BatchProject, GetMinDocWordCountForBatch),
         LUNA_DECLARE_METHOD(BatchProject, SetSpellCheckerOptions),

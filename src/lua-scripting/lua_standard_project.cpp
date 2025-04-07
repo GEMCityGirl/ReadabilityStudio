@@ -38,6 +38,47 @@ namespace LuaScripting
     //-------------------------------------------------------------
     StandardProject::StandardProject(lua_State* L)
         {
+        const auto createProject = [this](const wxString& folderPath)
+        {
+            // create a standard project and dump the text into it
+            const wxList& templateList =
+                wxGetApp().GetMainFrame()->GetDocumentManager()->GetTemplates();
+            for (size_t i = 0; i < templateList.GetCount(); ++i)
+                {
+                wxDocTemplate* docTemplate =
+                    dynamic_cast<wxDocTemplate*>(templateList.Item(i)->GetData());
+                if (docTemplate &&
+                    docTemplate->GetDocClassInfo()->IsKindOf(wxCLASSINFO(ProjectDoc)))
+                    {
+                    m_project = dynamic_cast<ProjectDoc*>(
+                        docTemplate->CreateDocument(folderPath, wxDOC_NEW));
+                    if (m_project != nullptr)
+                        {
+                        // if a blank project (that will presumably have a document connected later)
+                        // then we need to temporarily set the project to use (empty) manually
+                        // entered text to suppress errors from analyzing an invalid file.
+                        if (folderPath == L"EMPTY_PROJECT")
+                            {
+                            m_project->SetTextSource(TextSource::EnteredText);
+                            }
+                        if (!m_project->OnNewDocument())
+                            {
+                            // Document is implicitly deleted by DeleteAllViews
+                            m_project->DeleteAllViews();
+                            m_project = nullptr;
+                            }
+                        else if (folderPath == L"EMPTY_PROJECT")
+                            {
+                            m_project->SetTextSource(wxGetApp().GetAppOptions().GetTextSource());
+                            m_project->SetDocumentStorageMethod(
+                                wxGetApp().GetAppOptions().GetDocumentStorageMethod());
+                            }
+                        }
+                    break;
+                    }
+                }
+        };
+
         if (lua_gettop(L) > 1) // see if a path was passed in
             {
             wxString path(luaL_checkstring(L, 2), wxConvUTF8);
@@ -55,30 +96,18 @@ namespace LuaScripting
                              _(L"Project File Mismatch"), wxOK | wxICON_EXCLAMATION);
                 return;
                 }
+            else if (path.empty())
+                {
+                createProject(L"EMPTY_PROJECT");
+                }
             else
                 {
-                // create a standard project and dump the text into it
-                const wxList& templateList =
-                    wxGetApp().GetMainFrame()->GetDocumentManager()->GetTemplates();
-                for (size_t i = 0; i < templateList.GetCount(); ++i)
-                    {
-                    wxDocTemplate* docTemplate =
-                        dynamic_cast<wxDocTemplate*>(templateList.Item(i)->GetData());
-                    if (docTemplate &&
-                        docTemplate->GetDocClassInfo()->IsKindOf(wxCLASSINFO(ProjectDoc)))
-                        {
-                        m_project =
-                            dynamic_cast<ProjectDoc*>(docTemplate->CreateDocument(path, wxDOC_NEW));
-                        if (m_project && !m_project->OnNewDocument())
-                            {
-                            // Document is implicitly deleted by DeleteAllViews
-                            m_project->DeleteAllViews();
-                            m_project = nullptr;
-                            }
-                        break;
-                        }
-                    }
+                createProject(path);
                 }
+            }
+        else
+            {
+            createProject(L"EMPTY_PROJECT");
             }
         // yield so that the view can be fully refreshed before proceeding
         wxGetApp().Yield();
@@ -125,12 +154,8 @@ namespace LuaScripting
             {
             return 0;
             }
-        if (!VerifyParameterCount(L, 1, __func__))
-            {
-            return 0;
-            }
 
-        m_delayReloading = int_to_bool(lua_toboolean(L, 2));
+        m_delayReloading = (lua_gettop(L) > 1) ? int_to_bool(lua_toboolean(L, 2)) : true;
         return 0;
         }
 
@@ -2420,7 +2445,7 @@ namespace LuaScripting
 
     // PROJECT SETTINGS
     //-------------------------------------------------------------
-    int StandardProject::SetProjectLanguage(lua_State* L)
+    int StandardProject::SetLanguage(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
             {
@@ -2438,7 +2463,7 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StandardProject::GetProjectLanguage(lua_State* L)
+    int StandardProject::GetLanguage(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
             {
@@ -2508,7 +2533,7 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StandardProject::SetDocumentStorageMethod(lua_State* L)
+    int StandardProject::SetTextStorageMethod(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
             {
@@ -2526,7 +2551,7 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StandardProject::GetDocumentStorageMethod(lua_State* L)
+    int StandardProject::GetTextStorageMethod(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
             {
@@ -2534,6 +2559,36 @@ namespace LuaScripting
             }
 
         lua_pushnumber(L, static_cast<int>(m_project->GetDocumentStorageMethod()));
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::SetTextSource(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        m_project->SetTextSource(
+            static_cast<TextSource>(static_cast<int>(lua_tonumber(L, 2))));
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int StandardProject::GetTextSource(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+
+        lua_pushnumber(L, static_cast<int>(m_project->GetTextSource()));
         return 1;
         }
 
@@ -3486,64 +3541,100 @@ namespace LuaScripting
             return 1;
             }
 
-        ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
-        if (view)
+        const wxString testName(luaL_checkstring(L, 2), wxConvUTF8);
+
+        if (m_delayReloading)
             {
-            const wxString testName(luaL_checkstring(L, 2), wxConvUTF8);
             if (m_project->GetReadabilityTests().has_test(testName))
                 {
-                const auto result = m_project->GetReadabilityTests().find_test(testName);
-                wxCommandEvent cmd(wxEVT_NULL, result.first->get_test().get_interface_id());
-                view->OnAddTest(cmd);
+                m_project->GetReadabilityTests().include_test(
+                    m_project->GetReadabilityTests().get_test_id(testName).c_str(), true);
                 }
             else if (testName.CmpNoCase(_DT(L"dolch")) == 0)
                 {
-                wxCommandEvent cmd(wxEVT_NULL, XRCID("ID_DOLCH"));
-                view->OnAddTest(cmd);
+                m_project->IncludeDolchSightWords();
                 }
             else
                 {
-                std::map<int, wxString>::const_iterator pos;
-                for (pos = MainFrame::GetCustomTestMenuIds().cbegin();
-                     pos != MainFrame::GetCustomTestMenuIds().cend(); ++pos)
+                const auto customTestPos = std::find_if(
+                    MainFrame::GetCustomTestMenuIds().cbegin(),
+                    MainFrame::GetCustomTestMenuIds().cend(),
+                    [&testName](const auto& test) { return test.second.CmpNoCase(testName) == 0; });
+                if (customTestPos != MainFrame::GetCustomTestMenuIds().cend())
                     {
-                    if (pos->second.CmpNoCase(testName) == 0)
-                        {
-                        break;
-                        }
-                    }
-                if (pos != MainFrame::GetCustomTestMenuIds().end())
-                    {
-                    m_project->AddCustomReadabilityTest(pos->second, true);
-                    CustomReadabilityTestCollection::iterator testIter =
-                        std::find(BaseProject::m_custom_word_tests.begin(),
-                                  BaseProject::m_custom_word_tests.end(), testName);
-                    // find the test
-                    if (testIter != BaseProject::m_custom_word_tests.end())
-                        {
-                        // projects will need to do a full re-indexing
-                        m_project->RefreshRequired(ProjectRefresh::FullReindexing);
-                        m_project->RefreshProject();
-                        }
-                    else
-                        {
-                        lua_pushboolean(L, false);
-                        return 1;
-                        }
+                    m_project->AddCustomReadabilityTest(testName, false);
                     }
                 else
                     {
                     wxMessageBox(
-                        wxString::Format(_(L"%s: unknown test could not be added."), testName),
+                        wxString::Format(_(L"%s: Unknown test could not be added."), testName),
                         _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
                     lua_pushboolean(L, false);
                     return 1;
                     }
                 }
-            wxGetApp().Yield();
-            lua_pushboolean(L, true);
-            return 1;
             }
+        else
+            {
+            ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
+            if (view != nullptr)
+                {
+                if (m_project->GetReadabilityTests().has_test(testName))
+                    {
+                    const auto result = m_project->GetReadabilityTests().find_test(testName);
+                    wxCommandEvent cmd(wxEVT_NULL, result.first->get_test().get_interface_id());
+                    view->OnAddTest(cmd);
+                    }
+                else if (testName.CmpNoCase(_DT(L"dolch")) == 0)
+                    {
+                    wxCommandEvent cmd(wxEVT_NULL, XRCID("ID_DOLCH"));
+                    view->OnAddTest(cmd);
+                    }
+                else
+                    {
+                    std::map<int, wxString>::const_iterator pos;
+                    for (pos = MainFrame::GetCustomTestMenuIds().cbegin();
+                         pos != MainFrame::GetCustomTestMenuIds().cend(); ++pos)
+                        {
+                        if (pos->second.CmpNoCase(testName) == 0)
+                            {
+                            break;
+                            }
+                        }
+                    if (pos != MainFrame::GetCustomTestMenuIds().end())
+                        {
+                        m_project->AddCustomReadabilityTest(pos->second, true);
+                        CustomReadabilityTestCollection::iterator testIter =
+                            std::find(BaseProject::m_custom_word_tests.begin(),
+                                      BaseProject::m_custom_word_tests.end(), testName);
+                        // find the test
+                        if (testIter != BaseProject::m_custom_word_tests.end())
+                            {
+                            // projects will need to do a full re-indexing
+                            m_project->RefreshRequired(ProjectRefresh::FullReindexing);
+                            m_project->RefreshProject();
+                            }
+                        else
+                            {
+                            lua_pushboolean(L, false);
+                            return 1;
+                            }
+                        }
+                    else
+                        {
+                        wxMessageBox(
+                            wxString::Format(_(L"%s: unknown test could not be added."), testName),
+                            _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
+                        lua_pushboolean(L, false);
+                        return 1;
+                        }
+                    }
+                wxGetApp().Yield();
+                lua_pushboolean(L, true);
+                return 1;
+                }
+            }
+
         lua_pushboolean(L, false);
         return 1;
         }
@@ -4559,13 +4650,13 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, IsExcludingFileAddresses),
         LUNA_DECLARE_METHOD(StandardProject, IsExcludingNumerals),
         LUNA_DECLARE_METHOD(StandardProject, IsExcludingProperNouns),
-        LUNA_DECLARE_METHOD(StandardProject, SetProjectLanguage),
-        LUNA_DECLARE_METHOD(StandardProject, GetProjectLanguage),
+        LUNA_DECLARE_METHOD(StandardProject, SetLanguage),
+        LUNA_DECLARE_METHOD(StandardProject, GetLanguage),
         LUNA_DECLARE_METHOD(StandardProject, SetReviewer),
         LUNA_DECLARE_METHOD(StandardProject, GetReviewer),
         LUNA_DECLARE_METHOD(StandardProject, SetStatus),
         LUNA_DECLARE_METHOD(StandardProject, GetStatus),
-        LUNA_DECLARE_METHOD(StandardProject, SetDocumentStorageMethod),
+        LUNA_DECLARE_METHOD(StandardProject, SetTextStorageMethod),
         LUNA_DECLARE_METHOD(StandardProject, SetParagraphsParsingMethod),
         LUNA_DECLARE_METHOD(StandardProject, GetParagraphsParsingMethod),
         LUNA_DECLARE_METHOD(StandardProject, GetLongSentenceMethod),
@@ -4578,7 +4669,9 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, IsIgnoringIndenting),
         LUNA_DECLARE_METHOD(StandardProject, SetSentenceStartMustBeUppercased),
         LUNA_DECLARE_METHOD(StandardProject, SentenceStartMustBeUppercased),
-        LUNA_DECLARE_METHOD(StandardProject, GetDocumentStorageMethod),
+        LUNA_DECLARE_METHOD(StandardProject, GetTextStorageMethod),
+        LUNA_DECLARE_METHOD(StandardProject, GetTextSource),
+        LUNA_DECLARE_METHOD(StandardProject, SetTextSource),
         LUNA_DECLARE_METHOD(StandardProject, SetSpellCheckerOptions),
         LUNA_DECLARE_METHOD(StandardProject, SetSummaryStatsResultsOptions),
         LUNA_DECLARE_METHOD(StandardProject, SetSummaryStatsReportOptions),

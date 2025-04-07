@@ -1,12 +1,12 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetDocumentStorageMethod`
+## `SetTextStorageMethod`
 
 Sets whether new projects embed their documents or link to them.
 
 ### Syntax {-}
 
 ``` {.lua}
-SetDocumentStorageMethod(TextStorage storage)
+SetTextStorageMethod(TextStorage storage)
 ```
 
 ### Parameters {-}

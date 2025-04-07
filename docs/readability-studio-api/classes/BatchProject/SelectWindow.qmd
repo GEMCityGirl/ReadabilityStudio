@@ -14,6 +14,6 @@ SelectWindow(SideBarSection section,
 
 **Parameter** | **Description**
 | :-- | :-- |
-| [`SideBarSection`](#sidebarsection) section | The section of the project that the window is in. |
+| [`SideBarSection`](#sidebarsection) section | The section of the project that the window is. |
 | `number` windowId | The ID of the window to select. |
 :::

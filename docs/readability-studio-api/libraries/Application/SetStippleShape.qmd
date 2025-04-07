@@ -23,7 +23,7 @@ Available named shapes are: `"sun"`, `"book"`, `"fall-leaf"`, `"man"`, `"woman"`
 `"house"`, `"barn"`, and `"farm"`.
 :::
 
-:::: {.callout-note}
+:::: {.notesection data-latex=""}
 The [`BoxEffect.StippleShape`](#boxeffect) effect will need to be enabled for either box plots or bar charts for this to have any effect.
 ::::
 :::

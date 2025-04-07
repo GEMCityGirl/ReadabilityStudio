@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `SetBlockExclusionTags`
 
-Specifies a pair of tags that will have all text between them excluded from the analysis.
+Specifies a pair of tags that will have all text between them excluded from the analysis for new projects.
 
 ### Syntax {-}
 

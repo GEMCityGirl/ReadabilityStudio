@@ -16,10 +16,10 @@ SetSentenceBreakdownResultsOptions(boolean includeLongSentences,
 
 **Parameter** | **Description**
 | :-- | :-- |
-| `boolean` includeLongSentences | `true` to include a list of overly long sentences. | 
-| `boolean` includeLengthsSpread | `true` to include a box plot showing the spread of the sentence lengths. | 
-| `boolean` includeLengthsDistribution | `true` to include a histogram showing the distribution of the sentence lengths. | 
-| `boolean` includeLengthsDensity | `true` to include a heatmap showing the distribution of the sentence lengths. |
+| `boolean` includeLongSentences | (Optional) `true` to include a list of overly long sentences. | 
+| `boolean` includeLengthsSpread | (Optional) `true` to include a box plot showing the spread of the sentence lengths. | 
+| `boolean` includeLengthsDistribution | (Optional) `true` to include a histogram showing the distribution of the sentence lengths. | 
+| `boolean` includeLengthsDensity | (Optional) `true` to include a heatmap showing the distribution of the sentence lengths. |
 
 ### Example {-}
 

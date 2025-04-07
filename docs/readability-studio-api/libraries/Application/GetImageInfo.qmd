@@ -27,8 +27,9 @@ A two-column table of the image's information.
 imgInfo = Application.GetImageInfo("C:\\users\\Martin\\images\\GraphLogo.png")
 
 -- print information about the image
-Debug.Print("<b>Name</b>: " .. imgInfo["Name"])
+Debug.Print("<b>Name</b>: " .. imgInfo["Name"]) -- <1>
 Debug.Print("<b>Width</b>: " .. imgInfo["Width"])
 Debug.Print("<b>Height</b>: " .. imgInfo["Height"])
 ```
+1. The HTML tags `<b>` and `</b>` can be used to bold the message.
 :::

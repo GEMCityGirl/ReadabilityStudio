@@ -1,0 +1,16 @@
+::: {.minipage data-latex="{\textwidth}"}
+## `IsReplacingExistingFiles`
+
+Returns whether files being downloaded during a web harvest\index{web harvester!settings} will replace existing ones.
+
+### Syntax {-}
+
+``` {.lua}
+boolean IsReplacingExistingFiles()
+```
+
+### Return value {-}
+
+Type: `boolean`
+
+:::

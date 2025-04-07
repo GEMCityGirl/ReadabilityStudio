@@ -1,9 +1,10 @@
-::: {.minipage data-latex="{\textwidth}"}
+{{< pagebreak >}}
 ## `MergeWordLists`
 
 Merges multiple word lists into a new file.
 
 All white space characters (i.e., space, tabs, newlines) are used as delimiters when extracting words from the files.
+
 To preserve phrases (i.e., words separated by spaces), use [`MergePhraseLists()`](#mergephraselists) instead.
 
 ### Syntax {-}
@@ -45,7 +46,6 @@ Application.MergeWordLists(
     Application.GetUserFolder(UserPath.Documents) .. "programming/all-languages.txt")
 ```
 
-:::: {.callout-note}
+::: {.notesection data-latex=""}
 The output file will also be sorted and have any duplicate entries removed.
-::::
 :::

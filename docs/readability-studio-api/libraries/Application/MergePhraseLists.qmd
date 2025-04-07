@@ -28,7 +28,7 @@ Returns `true` if files were successfully merged.
 | ... | Any additional files to merge with `inputFile1`. |
 | `string` outputFile | Where to save the combined list of phrases. | 
 
-:::: {.callout-note}
+:::: {.notesection data-latex=""}
 The output file will also be sorted and have any duplicate entries removed.
 ::::
 :::

@@ -100,6 +100,7 @@ namespace LuaScripting
         int DelayReloading(lua_State* L /*boolean delay*/); // Prevents a project from updating while settings are being changed. 
         int /*string*/ GetTitle(lua_State* L); // Returns the title of the project.
         int SetWindowSize(lua_State* L /*number width, number height*/); // Sets the size of the project window.
+
         // Stats functions
         int /*number*/ GetSentenceCount(lua_State* L); // Returns the number of sentences from the document.
         int /*number*/ GetIndependentClauseCount(lua_State* L); // Returns the number of independent clauses from the document.
@@ -167,9 +168,9 @@ namespace LuaScripting
         int /*boolean*/ IsHighlightingDolchNouns(lua_State* L); // Returns whether Dolch nouns are being highlighted in the formatted Dolch report.
 
         // PROJECT SETTINGS
-        int SetProjectLanguage(lua_State* L /*Language lang*/); // Sets the project language. This will affect syllable counting and also which tests are available.
+        int SetLanguage(lua_State* L /*Language lang*/); // Sets the project language. This will affect syllable counting and also which tests are available.
         // cppcheck-suppress functionConst
-        int /*Language*/ GetProjectLanguage(lua_State* L); // Returns the project's language.
+        int /*Language*/ GetLanguage(lua_State* L); // Returns the project's language.
         int SetReviewer(lua_State* L /*string reviewer*/); // Sets the user name for the software.
         // cppcheck-suppress functionConst
         int /*string*/ GetReviewer(lua_State* L); // Returns the reviewer's name.
@@ -177,9 +178,11 @@ namespace LuaScripting
         int SetStatus(lua_State* L /*string status*/); // Sets the status of the project. This can be freeform text.
         int /*string*/ GetStatus(lua_State* L); // Returns the status of the project.
         // cppcheck-suppress functionConst
-        int /*TextStorage*/ GetDocumentStorageMethod(lua_State* L); // Returns whether the project embeds its documents or links to them.
-        int SetDocumentStorageMethod(lua_State* L /*TextStorage storageMethod*/); // Sets whether the project embeds its documents or links to them.
+        int /*TextStorage*/ GetTextStorageMethod(lua_State* L); // Returns whether the project embeds its documents or links to them.
+        int SetTextStorageMethod(lua_State* L /*TextStorage storageMethod*/); // Sets whether the project embeds its documents or links to them.
         int SetDocumentFilePath(lua_State* L /*string docPath*/); // Sets the path of the document being analyzed by the project.
+        int /*TextSource*/ GetTextSource(lua_State* L); // Returns where a project is getting its content from.
+        int SetTextSource(lua_State* L /*TextSource storageMethod*/); // Sets where a project should get its content from.
         int /*string*/ GetDocumentFilePath(lua_State* L); // Returns the path of the document being analyzed by the project.
         int SetAppendedDocumentFilePath(lua_State* L /*string filePath*/); // Sets the file path to the document being appended for analysis.
         int /*string*/ GetAppendedDocumentFilePath(lua_State* L); // Returns the file path to the document being appended for analysis.
@@ -345,7 +348,7 @@ namespace LuaScripting
         int Close(lua_State* L /*boolean saveChanges*/); // Closes the project.
 
         int ExportAll(lua_State* L /*string outputFolder*/); // Exports all of the results from the project into a folder.
-        int ExportGraph(lua_State* L/*GraphType type, string outputFilePath,boolean grayScale, number width, number height*/); // Saves the specified graph as an image.
+        int ExportGraph(lua_State* L/*GraphType type, string outputFilePath, boolean grayScale, number width, number height*/); // Saves the specified graph as an image.
         int ExportScores(lua_State* L /*string outputFilePath*/); // Saves the project's test scores to *outputFilePath*.
         int ExportHighlightedWords(lua_State* L /*HighlightedWordReportType type, string outputFilePath*/); // Saves the specified highlighted words as an RTF or HTML report.
         int ExportReport(lua_State* L /*ReportType type, string outputFilePath*/); // Saves the specified report.

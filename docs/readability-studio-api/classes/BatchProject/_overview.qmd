@@ -1,5 +1,38 @@
 # `BatchProject`
 
-Provides the functionality of a batch project. Batch projects enable you to analyze multiple documents at once and review their aggregated results.
+Provides the functionality of a batch project.
+Batch projects enable you to analyze multiple documents at once and review their aggregated results.
+For\index{examples!creating a batch project} example\index{projects!creating from a folder}:
+
+``` {.lua}
+docs = BatchProject(Application.GetUserFolder(UserPath.Documents) ..
+                    "Client Agreements")
+docs:SetLanguage(Language.Spanish)
+docs:AddTest(Test.Frase)
+```
+
+Empty projects can also be created and have documents added after setting some options:
+
+``` {.lua}
+-- Create an empty project and delay the analyses.
+docs = BatchProject()
+docs:DelayReloading()
+
+-- Add Spanish graphical tests.
+docs:SetLanguage(Language.Spanish)
+docs:AddTest(Test.Frase)
+docs:AddTest(Test.GpmFry)
+
+-- Add all supported documents from a "Client Agreements" folder and run all analyses.
+docs:LoadFolder(Application.GetUserFolder(UserPath.Documents) .. "Client Agreements")
+docs:Reload()
+
+-- Save the graphs.
+docs:ExportGraph(SideBarSection.ReadabilityScores, GraphType.Frase,
+    Application.GetUserFolder(UserPath.Desktop) .. "FRASE.png")
+docs:ExportGraph(SideBarSection.ReadabilityScores, GraphType.GpmFry,
+    Application.GetUserFolder(UserPath.Desktop) .. "GPM.png")
+docs:Close()
+```
 
 {{< pagebreak >}}

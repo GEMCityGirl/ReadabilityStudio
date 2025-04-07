@@ -14,7 +14,7 @@ SelectWindow(SideBarSection section,
 
 **Parameter** | **Description**
 | :-- | :-- |
-| [`SideBarSection`](#sidebarsection) section | The section (along the sidebar) where the window is in. | 
+| [`SideBarSection`](#sidebarsection) section | The section (along the sidebar) where the window is. | 
 | `number` windowId | The window's ID. |
 
 ### Example {-}

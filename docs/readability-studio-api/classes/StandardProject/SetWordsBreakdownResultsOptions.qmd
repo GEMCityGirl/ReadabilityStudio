@@ -23,17 +23,17 @@ SetWordsBreakdownResultsOptions(boolean includeWordCounts,
 
 **Parameter** | **Description**
 | :-- | :-- |
-| `boolean` includeWordCounts | `true` to include the word counts bar chart. | 
-| `boolean` includeSyllableCounts | `true` to include the syllable counts histogram. | 
-| `boolean` include3PlusSyllables | `true` to include the report and list of complex words. | 
-| `boolean` include6PlusChars | `true` to include the report and list of long words. | 
-| `boolean` includeKeyWordCloud | `true` to include the word cloud. | 
-| `boolean` includeDC | `true` to include the Dale-Chall unfamiliar word report and list. | 
-| `boolean` includeSpache | `true` to include the Spache unfamiliar word report and list. | 
-| `boolean` includeHJ | `true` to include the Harris-Jacobson unfamiliar word report and list. | 
-| `boolean` includeCustomTests | `true` to include the custom test reports and lists. | 
-| `boolean` includeAllWords | `true` to include the list of all words. | 
-| `boolean` includeKeyWords | `true` to include the list of key words. |
+| `boolean` includeWordCounts | (Optional) `true` to include the word counts bar chart. | 
+| `boolean` includeSyllableCounts | (Optional) `true` to include the syllable counts histogram. | 
+| `boolean` include3PlusSyllables | (Optional) `true` to include the report and list of complex words. | 
+| `boolean` include6PlusChars | (Optional) `true` to include the report and list of long words. | 
+| `boolean` includeKeyWordCloud | (Optional) `true` to include the word cloud. | 
+| `boolean` includeDC | (Optional) `true` to include the Dale-Chall unfamiliar word report and list. | 
+| `boolean` includeSpache | (Optional) `true` to include the Spache unfamiliar word report and list. | 
+| `boolean` includeHJ | (Optional) `true` to include the Harris-Jacobson unfamiliar word report and list. | 
+| `boolean` includeCustomTests | (Optional) `true` to include the custom test reports and lists. | 
+| `boolean` includeAllWords | (Optional) `true` to include the list of all words. | 
+| `boolean` includeKeyWords | (Optional) `true` to include the list of key words. |
 
 ### Example {-}
 
