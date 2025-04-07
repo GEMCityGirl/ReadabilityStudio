@@ -35,7 +35,7 @@ functionToTopic <- function(functionInfo)
   params <- stringr::str_replace(stringr::str_extract_all(functionInfo, xformedSignatureRE)[[1]], xformedSignatureRE, '\\2')
   if (str_length(params))
     {
-    params <- str_replace_all(params, "([[:alnum:]_]+) ([[:alnum:]_]+)", "|`\\1` \\2 |      |")
+    params <- str_replace_all(params, "([[:alnum:]_]+) ([[:alnum:]_]+)", "| `\\1` \\2 |  |")
     # link param type if an uppercased type (which would usually be a custom type)
     params <- str_replace(params, "[|]`([A-Z][[:alnum:]]+)`", "|[`\\1`](#\\1)")
     params <- str_replace(params, "#[A-Z][[:alnum:]]+", str_to_lower) # lowercase the reference
