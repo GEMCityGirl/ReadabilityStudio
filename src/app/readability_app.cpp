@@ -5614,11 +5614,6 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
             break;
             }
 
-        for (const auto& bLink : wxGetApp().GetWebHarvester().GetBrokenLinks())
-            {
-            wxLogWarning(L"Broken link '%s' (from '%s')", bLink.first, bLink.second);
-            }
-
         if (wxGetApp().GetWebHarvester().GetDownloadedFilePaths().size() == 0)
             {
             failedCrawls += wxGetApp().GetWebHarvester().GetUrl() + L'\n';

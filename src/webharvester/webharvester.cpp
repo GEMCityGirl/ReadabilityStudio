@@ -447,6 +447,12 @@ bool WebHarvester::CrawlLinks()
     m_progressDlg->Destroy();
     m_progressDlg = nullptr;
 
+    // will be empty anyway if search was turned off
+    for (const auto& bLink : GetBrokenLinks())
+        {
+        wxLogWarning(L"Broken link '%s' (from '%s')", bLink.first, bLink.second);
+        }
+
     wxLogVerbose(L"Crawling '%s' complete.", m_url);
 
     return !m_isCancelled;
