@@ -1,0 +1,21 @@
+::: {.minipage data-latex="{\textwidth}"}
+## `SetDomainRestriction`
+
+Sets the domains restrictions that the web harvester is using while crawling.
+
+### Syntax {-}
+
+``` {.lua}
+SetDomainRestriction(DomainRestriction restriction)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+| [`DomainRestriction`](#domainrestriction) restriction | Which domains can files be downloaded from while harvesting. |
+
+### See also {-}
+
+[`AddAllowableDomain()`](#addallowabledomain)
+:::

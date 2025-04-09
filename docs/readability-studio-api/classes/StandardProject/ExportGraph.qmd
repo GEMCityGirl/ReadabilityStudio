@@ -8,7 +8,7 @@ Saves\index{graphs!exporting} the specified graph as an image\index{images!savin
 ``` {.lua}
 ExportGraph(GraphType type,
             string outputFilePath,
-            boolean grayScale,
+            boolean grayScale = false,
             number width,
             number height)
 ```

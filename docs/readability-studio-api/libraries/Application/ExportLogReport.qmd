@@ -18,4 +18,29 @@ Type: `boolean`
 **Parameter** | **Description**
 | :-- | :-- |
 | `string` outPath | The path to save a copy of the log file to. |
+
+### Example {-}
+
+``` {.lua}
+Application.EnableVerboseLogging(true)
+summaries = StandardProject(Application.GetUserFolder(UserPath.Documents) ..
+                            "Course Summaries.docx")
+summaries:AddTest(Test.Fry)
+-- Save a graph...
+if (summaries:ExportGraph(GraphType.Fry,
+      Application.GetUserFolder(UserPath.Pictures) .. "fry.jpg")) then
+  -- ...and log a message about it saving successfully...
+  Application.LogMessage("Graph saved successfully to '" ..
+                         Application.GetUserFolder(UserPath.Pictures) .. "'")
+else
+  -- ...or log a message about it failing and save the log report to review.
+  Application.LogError("Unable to save graph!")
+  Application.ExportLogReport(Application.GetUserFolder(UserPath.Desktop) .. "log.txt")
+  Debug.Print(
+    "<span style='color:red; font-weight:bold'>Failed to save graph!</span> " ..  -- <1>
+    "A copy of the log report has been copied to your desktop.")
+end
+summaries:Close()
+```
+1. `Debug.Print()` can accept HTML-formatted text.
 :::

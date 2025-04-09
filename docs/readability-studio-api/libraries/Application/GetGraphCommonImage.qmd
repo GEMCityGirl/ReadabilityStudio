@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `GetGraphCommonImage`
 
-Returns the common image\index{images!bar backgrounds} drawn across all bars for new projects.
+Returns the path to the common image\index{images!bar backgrounds} drawn across all bars for new projects.
 
 ### Syntax {-}
 

@@ -7,7 +7,7 @@ Selects a window in the project.
 
 ``` {.lua}
 SelectWindow(SideBarSection section,
-             number windowId)
+             number windowId = -1)
 ```
 
 ### Parameters {-}
@@ -15,7 +15,7 @@ SelectWindow(SideBarSection section,
 **Parameter** | **Description**
 | :-- | :-- |
 | [`SideBarSection`](#sidebarsection) section | The section (along the sidebar) where the window is. | 
-| `number` windowId | The window's ID. |
+| `number` windowId | (Optional) The window's ID. |
 
 ### Example {-}
 

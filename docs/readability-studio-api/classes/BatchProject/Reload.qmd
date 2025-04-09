@@ -14,6 +14,6 @@ Reload()
 [`DelayReloading()`](#batch-delayreloading)
 
 :::: {.notesection data-latex=""}
-After this function is called, delayed reloading will be reset.
+After calling this, delayed reloading will be reset.
 ::::
 :::

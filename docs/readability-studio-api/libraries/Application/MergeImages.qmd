@@ -34,7 +34,7 @@ Application.MergeImages(
     Application.GetUserFolder(UserPath.Pictures) .. "Charleston Falls Sunrise.JPG",
     Application.GetUserFolder(UserPath.Pictures) .. "Charleston Falls Sunset.png",
     -- output can be saved in a different format
-    Application.GetUserFolder(UserPath.Pictures) .. "CombinedImg.bmp",
+    Application.GetUserFolder(UserPath.Pictures) .. "Day at Charleston Falls.bmp",
     Orientation.Horizontal)
 ```
 :::

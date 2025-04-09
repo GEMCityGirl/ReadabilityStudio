@@ -548,7 +548,7 @@ void WebHarvesterDlg::UpdateHarvesterSettings(WebHarvester& harvester)
         {
         for (size_t j = 0; j < GetRestrictedDomains().size(); ++j)
             {
-            harvester.AddAllowableWebFolder(GetRestrictedDomains()[j]);
+            harvester.AddAllowableDomain(GetRestrictedDomains()[j]);
             }
         }
     harvester.SetUserAgent(GetUserAgent());

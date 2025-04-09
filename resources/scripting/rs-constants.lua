@@ -429,7 +429,7 @@ GradeScale =
   KeyStagesEnglandWales = 13          -- Key Stages.
   }
 
--- The following values are available for controlling how filepaths in batch project lists are displayed.
+-- The following values are available for controlling how file paths in batch project lists are displayed.
 FilePathDisplayMode =
   {
   TruncatePaths = 0,     -- Show the filename after an abbreviated filepath.
@@ -461,6 +461,17 @@ UserPath =
   Music = 5,     -- User's Music folder.
   Pictures = 6,  -- User's Pictures folder.
   Videos = 7     -- User's Videos folder.
+  }
+
+-- Domain restrictions that can be applied when harvesting a website.
+DomainRestriction =
+  {
+  NotRestricted = 0,             -- No restrictions.
+  RestrictToDomain = 1,          -- Restrict harvesting to the base URL's domain.
+  RestrictToSubDomain = 2,       -- Restrict harvesting to the base URL's subdomain.
+  RestrictToSpecificDomains = 3, -- Restrict harvesting to a list of user-defined domains.
+  RestrictToExternalLinks = 4,   -- Restrict harvesting to links outside of the base URL's domain.
+  RestrictToFolder = 5           -- Restrict harvesting to links within the base URL's folder.
   }
 
 RibbonButtonBar =
@@ -537,3 +548,4 @@ FontWeight = protect_enum(FontWeight)
 TextHighlight = protect_enum(TextHighlight)
 FleschNumeralSyllabize = protect_enum(FleschNumeralSyllabize)
 FleschKincaidNumeralSyllabize = protect_enum(FleschKincaidNumeralSyllabize)
+DomainRestriction = protect_enum(DomainRestriction)

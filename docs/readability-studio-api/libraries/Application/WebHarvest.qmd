@@ -1,0 +1,17 @@
+::: {.minipage data-latex="{\textwidth}"}
+## `WebHarvest`
+
+Begins crawling the web harvester's currently loaded website.
+
+### Syntax {-}
+
+``` {.lua}
+boolean WebHarvest()
+```
+
+### Return value {-}
+
+Type: `boolean`
+
+Returns `true` if the harvesting ran to completion without being cancelled.
+:::

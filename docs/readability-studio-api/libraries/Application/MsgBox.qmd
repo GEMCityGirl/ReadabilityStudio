@@ -7,13 +7,16 @@ Displays a message (with optional title).
 
 ``` {.lua}
 MsgBox(string message,
-       string title)
+       string title = "Readability Studio")
+
+MsgBox(boolean value,
+       string title = "Readability Studio")
 ```
 
 ### Parameters {-}
 
 **Parameter** | **Description**
 | :-- | :-- |
-| `string` message | The message to show. |
+| `string` message or `boolean` value | The message to show or a boolean value (message will show as "true" or "false"). |
 | `string` title | (Optional) The title of the message box. |
 :::

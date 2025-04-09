@@ -313,6 +313,88 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int AddAllowableDomain(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetWebHarvester().AddAllowableDomain(
+            wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int SetDomainRestriction(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetWebHarvester().SetDomainRestriction(
+            static_cast<WebHarvester::DomainRestriction>(lua_tointeger(L, 1)));
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int GetDomainRestriction(lua_State* L)
+        {
+        lua_pushinteger(L, static_cast<int>(wxGetApp().GetWebHarvester().GetDomainRestriction()));
+        wxGetApp().Yield();
+        return 1;
+        }
+
+    //-------------------------------------------------------------
+    int SetWebHarvesterFileFilter(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        wxGetApp().GetWebHarvester().ClearAllowableFileTypes();
+
+        wxStringTokenizer tkz(ExtractExtensionsFromFileFilter(
+            wxString{ luaL_checkstring(L, 1), wxConvUTF8 }), L"*.;");
+        wxString nextFileExt;
+        while (tkz.HasMoreTokens())
+            {
+            nextFileExt = tkz.GetNextToken();
+            if (!nextFileExt.empty())
+                {
+                wxGetApp().GetWebHarvester().AddAllowableFileType(nextFileExt);
+                if (nextFileExt.CmpNoCase(L"html") == 0 || nextFileExt.CmpNoCase(L"htm") == 0)
+                    {
+                    wxGetApp().GetWebHarvester().HarvestAllHtmlFiles(true);
+                    }
+                }
+            }
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int SetWebHarvesterWebsite(lua_State* L)
+        {
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+
+        FilePathResolver resolver(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }, true);
+        wxGetApp().GetWebHarvester().SetUrl(resolver.GetResolvedPath());
+        return 0;
+        }
+
+    //-------------------------------------------------------------
+    int WebHarvest(lua_State* L)
+        {
+        lua_pushboolean(L, wxGetApp().GetWebHarvester().CrawlLinks());
+        return 1;
+        }
+
+    //-------------------------------------------------------------
     int GetLuaConstantsPath(lua_State* L)
         {
         lua_pushstring(L, wxGetApp().FindResourceFile(L"rs-constants.lua").utf8_str());

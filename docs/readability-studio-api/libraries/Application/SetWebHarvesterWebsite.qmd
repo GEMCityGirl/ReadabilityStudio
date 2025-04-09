@@ -1,0 +1,17 @@
+::: {.minipage data-latex="{\textwidth}"}
+## `SetWebHarvesterWebsite`
+
+Sets the website to harvest next.
+
+### Syntax {-}
+
+``` {.lua}
+SetWebHarvesterWebsite(string Url)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+| `string` Url | The base website to crawl. |
+:::

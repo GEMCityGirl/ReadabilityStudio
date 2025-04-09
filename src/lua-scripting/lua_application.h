@@ -40,6 +40,8 @@ namespace LuaScripting
     int /*string*/ GetExamplesFolder(lua_State* L); // Returns the program's example documents' folder path.
     int /*string*/ GetUserFolder(lua_State* L /*UserPath path*/); // Returns the path of a given folder in the user's directory.
     int /*string*/ GetAbsoluteFilePath(lua_State* L /*string filePath, string baseFilePath*/); // Returns the absolute filepath for the first path, relative to the second.
+
+    // WEB HARVESTER
     int /*string*/ DownloadFile(lua_State* L /*string Url, string downloadPath*/); // Downloads a webpage to the provided local path.
     int /*string*/ GetDownloadFolder(lua_State* L); // Returns the directory path where the web harvester will download files.
     int SetDownloadFolder(lua_State* L /*string path*/); // Sets the directory path where the web harvester will download files.
@@ -53,6 +55,13 @@ namespace LuaScripting
     int SetMinimumDownloadFileSizeInKilobytes(lua_State* L /*number fileSize*/); // Sets the minimum size a file must be to download.
     int /*number*/ GetDepthLevel(lua_State* L); // Returns the depth level to crawl from the base URL.
     int SetDepthLevel(lua_State* L /*number depthLevel*/); // Sets the depth level to crawl from the base URL.
+    int /*DomainRestriction*/ GetDomainRestriction(lua_State* L); // Returns the domains restrictions that the web harvester is using while crawling.
+    int SetDomainRestriction(lua_State* L /*DomainRestriction restriction*/); // Sets the domains restrictions that the web harvester is using while crawling.
+    int AddAllowableDomain(lua_State* L /*string domain*/); // Adds a user-defined web path (domain/folder structure) to restrict harvesting to.
+    int SetWebHarvesterFileFilter(lua_State* L /*string filter*/); // Sets the file types that the web harvester will download. This should be a semicolon separated list of file wildcards (e.g., "*.html;*.png").
+    int SetWebHarvesterWebsite(lua_State* L /*string Url*/); // Sets the website to harvest next.
+    int /*boolean*/ WebHarvest(lua_State* L); // Begins crawling the web harvester's currently loaded website.
+
     int /*table*/ FindFiles(lua_State* L /*string directory, string filePattern, boolean recursive*/); // Returns a list of all files from a folder matching the provided file pattern.
     int Close(lua_State*); // Closes the program.
     int /*boolean*/ ExportLogReport(lua_State* L /*string outPath*/); // Saves the program's log report to a tab-delimited text file.
@@ -362,6 +371,12 @@ namespace LuaScripting
         { "GetMinimumDownloadFileSizeInKilobytes", GetMinimumDownloadFileSizeInKilobytes },
         { "GetDepthLevel", GetDepthLevel },
         { "SetDepthLevel", SetDepthLevel },
+        { "GetDomainRestriction", GetDomainRestriction },
+        { "SetDomainRestriction", SetDomainRestriction },
+        { "AddAllowableDomain", AddAllowableDomain },
+        { "SetWebHarvesterFileFilter", SetWebHarvesterFileFilter },
+        { "SetWebHarvesterWebsite", SetWebHarvesterWebsite },
+        { "WebHarvest", WebHarvest },
         { "FindFiles", FindFiles },
         { "GetTestId", GetTestId },
         { "GetFileCheckSum", GetFileCheckSum },

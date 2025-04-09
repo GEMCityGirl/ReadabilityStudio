@@ -1,0 +1,21 @@
+::: {.minipage data-latex="{\textwidth}"}
+## `AddAllowableDomain`
+
+Adds a user-defined web path (domain/folder structure) to restrict harvesting to.
+
+### Syntax {-}
+
+``` {.lua}
+AddAllowableDomain(string domain)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+| `string` domain | A domain to allow downloading files from. |
+
+:::: {.notesection data-latex=""}
+[`SetDomainRestriction()`](#setdomainrestriction) must be set to `DomainRestriction.RestrictToSpecificDomains` for this to have any effect.
+::::
+:::

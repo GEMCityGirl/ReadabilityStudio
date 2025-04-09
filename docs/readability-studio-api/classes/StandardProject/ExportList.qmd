@@ -4,6 +4,7 @@
 
 source('R/appdown.r')
 ```
+
 ::: {.minipage data-latex="{\textwidth}"}
 ## `ExportList` {#standard-exportlist}
 
@@ -14,12 +15,12 @@ Saves\index{lists!exporting} the specified list as an HTML, text, or `r latex_lo
 ``` {.lua}
 ExportList(ListType type,
            string outputFilePath,
-           number fromRow,
-           number toRow,
-           number fromColumn,
-           number toColumn,
-           boolean includeHeaders,
-           boolean IncludePageBreaks)
+           number fromRow = 1,
+           number toRow = -1,
+           number fromColumn = 1,
+           number toColumn = -1,
+           boolean includeHeaders = true,
+           boolean IncludePageBreaks = false)
 ```
 
 ### Parameters {-}

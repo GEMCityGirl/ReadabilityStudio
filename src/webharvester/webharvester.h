@@ -414,7 +414,7 @@ class WebHarvester
     /** @brief Adds a user-defined web path (domain/folder structure)
             to restrict harvesting to.
         @param domain A webpath to restrict harvesting to.*/
-    void AddAllowableWebFolder(wxString domain)
+    void AddAllowableDomain(wxString domain)
         {
         if (domain.empty())
             {

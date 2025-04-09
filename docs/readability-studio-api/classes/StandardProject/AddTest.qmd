@@ -21,7 +21,7 @@ boolean AddTest(string testName)
 
 Type: `boolean`
 
-`true` if the test was successfully added; otherwise, `false`.
+Returns `true` if the test was successfully added; otherwise, `false`.
 
 ### Example\index{examples!adding tests} {-}
 
