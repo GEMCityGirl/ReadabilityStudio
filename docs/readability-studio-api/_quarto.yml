@@ -13,7 +13,7 @@ pdf-cover: "images/non-generated/cover.png"
 pdf-cover-font-color: "255, 255, 255"
 pdf-cover-author-color: "0, 0, 0"
 pdf-cover-color: "103, 59, 161"
-pdf-logo: "images/non-generated/app-logo.png"
+pdf-logo: "images/non-generated/cover-logo.png"
 theme-color: "103, 59, 161"
 chapter-image: "non-generated/banner.jpg"
 number-sections: true
