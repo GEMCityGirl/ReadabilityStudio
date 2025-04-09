@@ -2923,9 +2923,11 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                                      _(L"Search for (and remove) duplicate files."));
 #endif
             toolButtonBar->AddButton(XRCID("ID_VIEW_LOG_REPORT"), _(L"Log Report"),
-                                     ReadRibbonSvgIcon(L"ribbon/log-book.svg"));
+                                     ReadRibbonSvgIcon(L"ribbon/log-book.svg"),
+                                     _(L"View diagnostic information being logged by the program."));
             toolButtonBar->AddButton(XRCID("ID_SCRIPT_WINDOW"), _(L"Lua Script"),
-                                     ReadRibbonSvgIcon(L"ribbon/lua.svg"));
+                                     ReadRibbonSvgIcon(L"ribbon/lua.svg"),
+                                     _(L"Edit and run scripts to automate tasks."));
 #ifndef NDEBUG
     #ifdef ENABLE_PROFILING
             toolButtonBar->AddButton(XRCID("ID_VIEW_PROFILE_REPORT"), _(L"Profile Report"),
