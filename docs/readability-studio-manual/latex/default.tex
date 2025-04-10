@@ -542,6 +542,16 @@ $endif$
 \def\thetitle{$for(title)$$title$$endfor$}
 \def\thesubtitle{$for(subtitle)$$subtitle$$endfor$}
 \def\authorbio{$for(authorbio)$$authorbio$$endfor$}
+\def\thepublisher{$for(publisher)$$publisher$$endfor$}
+\def\thepublishercities{$for(publisher-cities)$\hspace{1cm}$publisher-cities$$endfor$}
+\def\trademark{$for(trademark)$\textit{$trademark$}\textsuperscript{\tiny\textregistered}$endfor$}
+
+% Either shows a logo for the publisher or their name in bold
+$if(publisher-logo)$
+\def\thepublisherlogo{\includegraphics[width=5cm]{$publisher-logo$}}
+$else$
+\def\thepublisherlogo{\large \textbf{\thepublisher}}
+$endif$
 
 % Optional watermark (e.g., "DRAFT" stamped across the pages)
 $if(watermark)$
@@ -567,6 +577,8 @@ $endif$
 
 $if(pdf-cover-color)$
   \definecolor{cover-color}{RGB}{$pdf-cover-color$}
+$elseif(theme-color)$
+  \definecolor{cover-color}{RGB}{$theme-color$}
 $else$
   \definecolor{cover-color}{RGB}{0, 255, 0}
 $endif$
@@ -651,13 +663,14 @@ $endif$
   \begin{tcolorbox}[enhanced jigsaw, sharp corners, box align=bottom, halign=right, boxsep=0.5cm,
                 spread outwards, grow sidewards by=5mm,
                 colback=white, colframe=white, colframe=white, opacityback=1, opacityframe=1, boxrule=0mm]
-    {\fontsize{18pt}{22pt} \color{cover-color} {\usefont{T1}{qcs}{b}{sc} \capitalizetitle{$author$}} }
+    {\fontsize{18pt}{22pt} \color{author-color} {\usefont{T1}{qcs}{b}{sc} \capitalizetitle{$author$}} }
   \end{tcolorbox}
 };
 
 $if(pdf-logo)$
 \begin{tikzpicture}[overlay, remember picture]
-    \node (centerimage) at (current page.south west)[anchor=south west] {\includegraphics[width=1.5cm]{$pdf-logo$}};
+    \node (centerimage) at (current page.south west)[anchor=south west]
+    {\includegraphics[width=$if(pdf-logo-size)$$pdf-logo-size$$else$3cm$endif$]{$pdf-logo$}};
 \end{tikzpicture}
 $endif$
 

@@ -11,10 +11,12 @@ nocite: '@*'
 csl: modern-language-association.csl
 pdf-cover: "images/non-generated/cover.png"
 pdf-cover-font-color: "255, 255, 255"
-pdf-cover-author-color: "0, 0, 0"
-pdf-cover-color: "103, 59, 161"
+pdf-cover-author-color: "61, 60, 59"
 pdf-logo: "images/non-generated/cover-logo.png"
-theme-color: "103, 59, 161"
+trademark: "{{< var PROGRAM_LONGNAME >}}"
+publisher: "{{< var PUBLISHER >}}"
+publisher-cities: Dayton
+theme-color: "248, 149, 34"
 chapter-image: "non-generated/banner.jpg"
 number-sections: true
 crossref:
@@ -22,7 +24,7 @@ crossref:
 book:
   title: "{{< var PROGRAM_NAME >}} {{< var VERSION >}}"
   subtitle: Programming Manual
-  description: "{{< var PROGRAM_DESCRIPTION >}}"
+  description: '{{< var PROGRAM_DESCRIPTION >}}'
   author: '{{< var PROGRAM_AUTHOR >}}'
   date: today
   date-format: "YYYY"
@@ -52,6 +54,7 @@ format:
     citation-package: biblatex
     lot: false
     code-block-bg: false
+    CJKmainfont: '{{< var CJK_FONT >}}'
     linkcolor: black
     citecolor: black
   html:

@@ -56,6 +56,7 @@ endif()
 
 # Edit these values when bumping the release
 project(readstudio VERSION 2024.0.1.0 DESCRIPTION "Readability Studio" HOMEPAGE_URL https://www.oleandersoftware.com/)
+set(PROGRAM_LONGNAME ${readstudio_DESCRIPTION})
 set(PROGRAM_NUMBERED_VERSION 8.0)
 set(PUBLISHER "Oleander Software, Ltd.")
 set(PROGRAM_AUTHOR "Blake Madden")
@@ -88,6 +89,11 @@ message(STATUS "Published by: ${PUBLISHER}")
 message(STATUS "Homepage: ${readstudio_HOMEPAGE_URL}")
 message(STATUS "Output binary: ${CMAKE_PROJECT_NAME}")
 message(STATUS "Writing program info to build peripheral files")
+if(WIN32)
+    set(CJK_FONT "MS Gothic")
+elseif(UNIX)
+    set(CJK_FONT "Noto Serif CJK SC")
+endif()
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/src/version.h.in"
                "${CMAKE_CURRENT_SOURCE_DIR}/src/app/version.h")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/src/citations.bib.in"

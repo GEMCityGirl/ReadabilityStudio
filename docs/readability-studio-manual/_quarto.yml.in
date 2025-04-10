@@ -13,11 +13,13 @@ nocite: '@*'
 csl: modern-language-association.csl
 pdf-cover: "images/non-generated/cover.png"
 pdf-cover-font-color: "255, 255, 255"
-pdf-cover-author-color: "0, 0, 0"
-pdf-cover-color: "111, 144, 132"
+pdf-cover-author-color: "61, 60, 59"
 pdf-logo: "images/non-generated/cover-logo.png"
+trademark: "${PROGRAM_LONGNAME}"
+publisher: ${PUBLISHER}
+publisher-cities: Dayton
 chapter-image: "non-generated/banner.jpg"
-theme-color: "111, 144, 132"
+theme-color: "0, 128, 128"
 watermark: "${DOCS_WATERMARK}"
 number-sections: true
 crossref:
@@ -47,6 +49,7 @@ format:
     lot: true
     lof: true
     code-block-bg: false
+    CJKmainfont: "${CJK_FONT}"
     linkcolor: black
     citecolor: black
   html:

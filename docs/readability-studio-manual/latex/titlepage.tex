@@ -1,4 +1,6 @@
-\pagestyle{empty}
+\thispagestyle{empty}
+
+\newgeometry{top=.5cm, bottom=.5cm, left=.5cm, right=.5cm}
 
 \begin{center}
 
@@ -12,9 +14,14 @@
 
     \large \theauthor
 
-    \vspace*{\fill}
-
 \end{center}
+
+\vspace*{\fill}
+
+    \begin{flushright}
+      \thepublisherlogo \par
+      \normalsize \thepublishercities
+    \end{flushright}
 
 \titlepagedecoration
 
@@ -23,3 +30,4 @@
     \normalsize
 
 \clearpage
+\restoregeometry
