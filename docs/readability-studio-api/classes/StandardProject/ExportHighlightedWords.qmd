@@ -1,4 +1,4 @@
-::: {.minipage data-latex="{\textwidth}"}
+{{< pagebreak >}}
 ## `ExportHighlightedWords`
 
 Saves\index{highlighted reports!exporting} the specified highlighted words as an RTF or HTML report.
@@ -42,4 +42,3 @@ consentForm:ExportHighlightedWords(
 
 consentForm:Close()
 ```
-:::

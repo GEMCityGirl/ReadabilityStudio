@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `SetBoxPlotEffect`
 
-Sets box appearance (in box plots).
+Sets box appearance\index{graphs!box plots} (in box plots).
 
 ### Syntax {-}
 

@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `SetBoxPlotOpacity`
 
-Sets box opacity (in box plots).
+Sets box opacity\index{graphs!box plots} (in box plots).
 
 ### Syntax {-}
 

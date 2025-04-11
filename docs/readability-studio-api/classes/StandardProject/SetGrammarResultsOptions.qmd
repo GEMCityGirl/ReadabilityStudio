@@ -37,6 +37,7 @@ SetGrammarResultsOptions(boolean includeHighlightedReport,
 | `boolean` includeConjunctionStartingSentences | (Optional) `true` to include sentences that start with conjunctions. | 
 | `boolean` includeLowercasedSentences | (Optional) `true` to include sentences that start with lowercase letters. |
 
+::: {.minipage data-latex="{\textwidth}"}
 ### Example {-}
 
 ``` {.lua}
@@ -54,6 +55,7 @@ cocoaDoc:SetWordsBreakdownResultsOptions(false, false, false, false, false, fals
                                          false, false, false, false, false)
 cocoaDoc:Reload()
 ```
+:::
 
 ::: {.tipsection data-latex=""}
 This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading) and [`Reload()`](#standard-reload).

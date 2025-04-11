@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `IsDisplayingAllBoxPlotPoints`
 
-Returns whether to display all points (not just outliers) on box plots.
+Returns whether to display all points (not just outliers) on box plots\index{graphs!box plots}.
 
 ### Syntax {-}
 

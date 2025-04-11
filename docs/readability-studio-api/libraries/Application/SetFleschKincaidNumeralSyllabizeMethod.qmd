@@ -13,5 +13,5 @@ SetFleschKincaidNumeralSyllabizeMethod(FleschKincaidNumeralSyllabize method)
 
 **Parameter** | **Description**
 | :-- | :-- |
-| [`FleschKincaidNumeralSyllabize`](#fleschkincaidnumeralsyllabize) method | How to syllablize numerals. |
+| [`FleschKincaidNumeralSyllabize`](#fleschkincaidnumeralsyllabize) method | How to syllabize numerals. |
 :::

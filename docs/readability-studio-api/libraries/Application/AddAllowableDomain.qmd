@@ -16,6 +16,6 @@ AddAllowableDomain(string domain)
 | `string` domain | A domain to allow downloading files from. |
 
 :::: {.notesection data-latex=""}
-[`SetDomainRestriction()`](#setdomainrestriction) must be set to `DomainRestriction.RestrictToSpecificDomains` for this to have any effect.
+[`SetDomainRestriction()`](#setdomainrestriction) must be set to [`DomainRestriction.RestrictToSpecificDomains`](#domainrestriction) for this to have any effect.
 ::::
 :::

@@ -1,4 +1,4 @@
-::: {.minipage data-latex="{\textwidth}"}
+{{< pagebreak >}}
 ## `LoadFolder`
 
 Analyses all supported documents from the provided folder.
@@ -42,4 +42,7 @@ docs:Close()
 This function only appends documents to the project.
 All documents in the project previously will remain in it.
 ::::
-:::
+
+### See also {-}
+
+[`DelayReloading()`](#delayreloading), [`Reload()`](#reload)

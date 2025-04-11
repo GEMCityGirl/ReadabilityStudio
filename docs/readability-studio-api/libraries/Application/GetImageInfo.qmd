@@ -1,4 +1,4 @@
-::: {.minipage data-latex="{\textwidth}"}
+{{< pagebreak >}}
 ## `GetImageInfo`
 
 Returns\index{images!getting information about} the details of a given file.
@@ -32,4 +32,8 @@ Debug.Print("<b>Width</b>: " .. imgInfo["Width"])
 Debug.Print("<b>Height</b>: " .. imgInfo["Height"])
 ```
 1. The HTML tags `<b>` and `</b>` can be used to bold the message.
-:::
+
+### See also {-}
+
+[`MergeImages()`](#mergeimages), [`ApplyImageEffect()`](#applyimageeffect)
+

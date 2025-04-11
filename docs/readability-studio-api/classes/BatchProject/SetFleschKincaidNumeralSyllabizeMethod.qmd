@@ -13,7 +13,7 @@ SetFleschKincaidNumeralSyllabizeMethod(FleschKincaidNumeralSyllabize method)
 
 **Parameter** | **Description**
 | :-- | :-- |
-| [`FleschKincaidNumeralSyllabize`](#fleschkincaidnumeralsyllabize) method | How to syllablize numerals. |
+| [`FleschKincaidNumeralSyllabize`](#fleschkincaidnumeralsyllabize) method | How to syllabize numerals. |
 
 :::: {.tipsection data-latex=""}
 This can be optimized by placing it in between calls to [`DelayReloading()`](#batch-delayreloading) and [`Reload()`](#batch-reload).

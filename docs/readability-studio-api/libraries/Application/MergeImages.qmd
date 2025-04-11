@@ -1,4 +1,4 @@
-::: {.minipage data-latex="{\textwidth}"}
+{{< pagebreak >}}
 ## `MergeImages`
 
 Combines\index{images!editing} a list of images vertically or horizontally.
@@ -37,4 +37,7 @@ Application.MergeImages(
     Application.GetUserFolder(UserPath.Pictures) .. "Day at Charleston Falls.bmp",
     Orientation.Horizontal)
 ```
-:::
+
+### See also {-}
+
+[`GetImageInfo()`](#getimageinfo), [`ApplyImageEffect()`](#applyimageeffect)

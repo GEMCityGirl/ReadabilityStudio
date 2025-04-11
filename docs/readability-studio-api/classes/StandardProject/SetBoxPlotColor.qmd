@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `SetBoxPlotColor`
 
-Sets box color (in box plots).
+Sets box color\index{graphs!box plots} (in box plots).
 
 ### Syntax {-}
 

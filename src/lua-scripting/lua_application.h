@@ -109,7 +109,7 @@ namespace LuaScripting
     // PROJECT SETTINGS
     int SetReviewer(lua_State* L /*string reviewer*/); // Sets the reviewer's name for new projects.
     int /*string*/ GetReviewer(lua_State* L); // Returns the reviewer's name.
-    int SetProjectLanguage(lua_State* L /*Language lang*/); // Sets the default language for new projects. This will affect syllable counting and also which tests are available.
+    int SetProjectLanguage(lua_State* L /*Language lang*/); // Sets the default language for new projects. This will affect syllable counting and which tests are available.
     int /*Language*/ GetProjectLanguage(lua_State* L); // Returns the default language for new projects.
     int /*TextStorage*/ GetTextStorageMethod(lua_State* L); // Returns whether the project embeds its documents or links to them for new projects.
     int SetTextStorageMethod(lua_State* L /*TextStorage storageMethod*/); // Sets whether new projects embed their documents or link to them.
@@ -276,8 +276,8 @@ namespace LuaScripting
     int SetGraphInvalidRegionColor(lua_State* L /*string colorName*/); // Sets the color for the invalid score regions for Fry-like graphs for new projects.
     int SetRaygorStyle(lua_State* L /*RaygorStyle style*/); // Sets the visual style for Raygor graphs for new projects.
     int /*RaygorStyle*/ GetRaygorStyle(lua_State* L); // Returns the visual style for Raygor graphs for new projects.
-    int ConnectFleschPoints(lua_State* L /*boolean connect*/); // Sets whether connection lines should be drawn between the three rules in Flesch charts for new projects.
-    int /*boolean*/ IsConnectingFleschPoints(lua_State* L); // Returns whether connection lines should be drawn between the three rules in Flesch charts for new projects.
+    int ConnectFleschPoints(lua_State* L /*boolean connect*/); // Sets whether connection lines should be drawn between the three rulers in Flesch charts for new projects.
+    int /*boolean*/ IsConnectingFleschPoints(lua_State* L); // Returns whether connection lines should be drawn between the three rulers in Flesch charts for new projects.
     int IncludeFleschRulerDocGroups(lua_State* L /*boolean include*/); // Sets whether document group labels are drawn next to the syllable ruler on Flesch charts for new projects.
     int /*boolean*/ IsIncludingFleschRulerDocGroups(lua_State* L); // Returns whether document group labels are drawn next to the syllable ruler on Flesch charts for new projects.
     int UseEnglishLabelsForGermanLix(lua_State* L /*boolean useEnglish*/); // Sets whether English labels are being used for the brackets on German Lix gauges for new projects.

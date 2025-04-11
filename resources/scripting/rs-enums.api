@@ -37,3 +37,4 @@ GradeScale	K12PlusUnitedStates;K12PlusAlberta;K12PlusBritishColumbia;K12PlusMani
 FilePathDisplayMode	TruncatePaths;OnlyShowFileNames;NoTruncation
 FontWeight	Thin;ExtraLight;Light;Normal;Medium;SemiBold;Bold;ExtraBold;Heavy;ExtraHeavy
 UserPath	Documents;Desktop;Downloads;Music;Pictures;Videos
+DomainRestriction	NotRestricted;RestrictToDomain;RestrictToSubDomain;RestrictToSpecificDomains;RestrictToExternalLinks;RestrictToFolder

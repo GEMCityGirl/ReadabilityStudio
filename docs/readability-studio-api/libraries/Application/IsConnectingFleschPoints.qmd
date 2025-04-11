@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `IsConnectingFleschPoints`
 
-Returns whether connection lines should be drawn between the three rules in Flesch charts for new projects.
+Returns whether connection lines should be drawn between the three rulers in Flesch charts for new projects.
 
 ### Syntax {-}
 

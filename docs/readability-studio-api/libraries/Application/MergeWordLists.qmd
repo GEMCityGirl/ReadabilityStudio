@@ -1,7 +1,7 @@
 {{< pagebreak >}}
 ## `MergeWordLists`
 
-Merges multiple word lists into a new file.
+Merges multiple word lists\index{word lists!merging} into a new file.
 
 All white space characters (i.e., space, tabs, newlines) are used as delimiters when extracting words from the files.
 
@@ -49,3 +49,7 @@ Application.MergeWordLists(
 ::: {.notesection data-latex=""}
 The output file will also be sorted and have any duplicate entries removed.
 :::
+
+### See also {-}
+
+[`MergePhraseLists()`](#mergephraselists), [`CrossReferenceWordLists()`](#crossreferencewordlists)

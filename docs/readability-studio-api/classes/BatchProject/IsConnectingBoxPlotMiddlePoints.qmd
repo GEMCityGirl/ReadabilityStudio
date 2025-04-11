@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `IsConnectingBoxPlotMiddlePoints`
 
-Returns whether to connect the medians between box plots.
+Returns whether to connect the medians\index{graphs!box plots} between box plots.
 
 ### Syntax {-}
 

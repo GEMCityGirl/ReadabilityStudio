@@ -65,8 +65,8 @@ void LuaInterpreter::RunLuaFile(const wxString& filePath)
     const wxDateTime startTime(wxDateTime::Now());
     if (luaL_dofile(m_L, filePath.utf8_str()) != 0)
         {
-        // error message from Lua has cryptic section in front of it showing the first line of the
-        // script and also just shows the line number without saying "line" in front of it,
+        // Error message from Lua has cryptic section in front of it showing the first line of the
+        // script and just shows the line number without saying "line" in front of it,
         // so reformat this message to make it more readable.
         wxString errorMessage(luaL_checkstring(m_L, -1), wxConvUTF8);
         const auto endOfErrorHeader = errorMessage.find(L"]:");
@@ -131,8 +131,8 @@ void LuaInterpreter::RunLuaCode(const wxString& code, const wxString& filePath,
         // an actual error
         else
             {
-            // error message from Lua has cryptic section in front of it showing the first line of
-            // the script and also just shows the line number without saying "line" in front of it,
+            // Error message from Lua has cryptic section in front of it showing the first line of
+            // the script also just shows the line number without saying "line" in front of it,
             // so reformat this message to make it more readable.
             const auto endOfErrorHeader = errorMessage.find(L"]:");
             if (endOfErrorHeader != wxString::npos)

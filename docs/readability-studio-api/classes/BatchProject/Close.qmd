@@ -13,5 +13,5 @@ Close(boolean saveChanges = false)
 
 **Parameter** | **Description**
 | :-- | :-- |
-| `boolean` saveChanges | Specifies whether to save any changes made to the project. (The default is `false`.) |
+| `boolean` saveChanges | Specifies whether to save any changes made to the project. |
 :::

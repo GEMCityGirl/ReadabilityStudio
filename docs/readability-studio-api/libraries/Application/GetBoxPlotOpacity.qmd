@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `GetBoxPlotOpacity`
 
-Returns the opacity of the boxes within the various box plots for new projects.
+Returns the opacity of the boxes\index{graphs!box plots} within the various box plots for new projects.
 
 ### Syntax {-}
 

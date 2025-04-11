@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `MergePhraseLists`
 
-Merges multiple phrase lists into a new file.
+Merges multiple phrase lists\index{word lists!merging} into a new file.
 
 Newlines are used as delimiters when extracting phrases from the files.
 In other words, each line will be a separate phrase.
@@ -31,4 +31,8 @@ Returns `true` if files were successfully merged.
 :::: {.notesection data-latex=""}
 The output file will also be sorted and have any duplicate entries removed.
 ::::
+
+### See also {-}
+
+[`MergeWordLists()`](#mergewordlists), [`CrossReferenceWordLists()`](#crossreferencewordlists)
 :::

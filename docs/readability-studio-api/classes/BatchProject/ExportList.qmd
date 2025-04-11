@@ -29,9 +29,9 @@ ExportList(ListType type,
 | :-- | :-- |
 | [`ListType`](#listtype) type | The list to export. |
 | `string` outputFilePath | The folder to save the list. |
-| `number` fromRow | (Optional) Specifies the row to begin from. The default is the first row. |
+| `number` fromRow | (Optional) Specifies the row to begin from. |
 | `number` toRow | (Optional) Specifies the last row. Enter `-1` to specify the last row in the list. |
-| `number` fromColumn | (Optional) Specifies the row to column from. The default is the first column. |
+| `number` fromColumn | (Optional) Specifies the row to column from. |
 | `number` toColumn | (Optional) Specifies the last column. Enter `-1` to specify the last column in the list. |
 | `boolean` includeHeaders | (Optional) Specifies whether to include the column headers. |
 | `boolean` includePageBreaks | (Optional) Specifies whether to insert page breaks. Note that this is only applicable if exporting as HTML. |

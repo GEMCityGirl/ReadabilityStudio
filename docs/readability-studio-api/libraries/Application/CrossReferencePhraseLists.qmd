@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `CrossReferencePhraseLists`
 
-Compares two phrase lists and creates a new one that contains only the phrases that appear in both of them.
+Compares two phrase lists\index{word lists!merging} and creates a new one that contains only the phrases that appear in both of them.
 
 These files will be delimited by newlines, so that each line will be parsed as a phrase.
 
@@ -26,4 +26,8 @@ Returns `true` if cross reference file was successfully saved.
 | `string` wordList | The first phrase list. | 
 | `string` otherWordList | The second phrase list. | 
 | `string` outputFile | The output containing only phrase found in both files. |
+
+### See also {-}
+
+[`MergePhraseLists()`](#mergephraselists), [`MergeWordLists()`](#mergewordlists)
 :::

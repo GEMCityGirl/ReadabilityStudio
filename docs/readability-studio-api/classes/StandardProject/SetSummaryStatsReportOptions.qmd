@@ -1,4 +1,4 @@
-::: {.minipage data-latex="{\textwidth}"}
+{{< pagebreak >}}
 ## `SetSummaryStatsReportOptions`
 
 Sets which results in the summary statistics reports should be included.
@@ -44,4 +44,3 @@ cocoaDoc:SetWordsBreakdownResultsOptions(false, false, false, false, false, fals
                                          false, false, false, false, false)
 cocoaDoc:Reload()
 ```
-:::

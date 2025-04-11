@@ -16,4 +16,8 @@ SelectWindow(SideBarSection section,
 | :-- | :-- |
 | [`SideBarSection`](#sidebarsection) section | The section of the project that the window is. |
 | `number` windowId | (Optional) The ID of the window to select. |
+
+### See also {-}
+
+[`Application.GetTestId()`](#gettestid)
 :::

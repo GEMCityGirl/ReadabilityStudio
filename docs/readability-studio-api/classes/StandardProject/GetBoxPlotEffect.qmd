@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `GetBoxPlotEffect`
 
-Returns how boxes should be drawn within the various box plots.
+Returns how boxes\index{graphs!box plots} should be drawn within the various box plots.
 
 ### Syntax {-}
 
