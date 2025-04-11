@@ -20,6 +20,7 @@ publisher: ${PUBLISHER}
 publisher-cities: Dayton
 chapter-image: "non-generated/banner.jpg"
 theme-color: "0, 128, 128"
+page-side-decoration-color: "26, 69, 135"
 watermark: "${DOCS_WATERMARK}"
 number-sections: true
 crossref:

@@ -17,6 +17,7 @@ trademark: "{{< var PROGRAM_LONGNAME >}}"
 publisher: "{{< var PUBLISHER >}}"
 publisher-cities: Dayton
 theme-color: "248, 149, 34"
+page-side-decoration-color: "61, 60, 59"
 chapter-image: "non-generated/banner.jpg"
 number-sections: true
 crossref:
