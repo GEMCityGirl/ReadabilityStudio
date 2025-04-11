@@ -16,6 +16,8 @@ source('../R/appdown.r')
 - Added document's last modified time to the summary statistics (standard projects).
 - **Web Harvester** improvements:
   - Previous download folder is now saved.
+- `@USER@` placeholder can now be entered in printer headers and footers.
+  (This will expand into the user name currently logged into the computer.)
 
 ### Graph Enhancements {-}
 

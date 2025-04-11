@@ -339,6 +339,7 @@ These tags are expanded dynamically when printing takes place. These tags are:
 - `@TIME@`: The time when it was printed.
 - `@PAGENUM@`: The current page number.
 - `@PAGESCNT@`: The number of printed pages.
+- `@USER@`: The user name currently logged into the computer.
 
 For example, printing:
 
