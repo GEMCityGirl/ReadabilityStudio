@@ -1164,7 +1164,7 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
 
     m_frame->SetSizer(mainSizer);
 
-    wxAcceleratorEntry accelEntries[16];
+    wxAcceleratorEntry accelEntries[17];
     accelEntries[0].Set(wxACCEL_NORMAL, WXK_F1, wxID_HELP);
     accelEntries[1].Set(wxACCEL_CMD, static_cast<int>(L'N'), wxID_NEW);
     accelEntries[2].Set(wxACCEL_CMD, static_cast<int>(L'O'), wxID_OPEN);
@@ -1183,6 +1183,7 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
     // the Microsoft Office shortcut for this is Ctrl+F1, but Ctrl and function key
     // combinations don't seem to work under GTK+
     accelEntries[15].Set(wxACCEL_NORMAL, WXK_F4, XRCID("ID_TOGGLE_RIBBON"));
+    accelEntries[16].Set(wxACCEL_CMD, WXK_RIGHT, XRCID("ID_SEND_TO_STANDARD_PROJECT"));
     wxAcceleratorTable accelTable(std::size(accelEntries), accelEntries);
     m_frame->SetAcceleratorTable(accelTable);
 

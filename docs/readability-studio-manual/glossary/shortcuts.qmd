@@ -67,6 +67,11 @@ Print the active window                 `r keys(c('Ctrl','P'))` (`r os_logo('win
 
 Remove the selected test                `r keys(c('Ctrl', 'Del'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys(c('\\cmd','\\backdel'))` (`r os_logo('apple')`)
+
+&nbsp;                                  &nbsp;
+
+Create subproject<br>\linebreak         `r keys(c('Ctrl','\\arrowkeyright'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
+(batch projects only)                   `r keys(c('\\cmd','\\arrowkeyright'))` (`r os_logo('apple')`)
 ------------------------------------------------------------------------------------------------
 :::
 
@@ -119,8 +124,8 @@ Copy first column of selection          `r keys(c('Ctrl','Shift','C'))` (`r os_l
 
 &nbsp;                                  &nbsp;
 
-Copy column from selection<br>\linebreak     `r keys(c('Ctrl','Numpad [1–9]'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
-(column corresponds to the number)           `r keys(c('\\cmd','Numpad [1–9]'))` (`r os_logo('apple')`)
+Copy column from selection<br>\linebreak     `r keys(c('Ctrl','Numpad [1-9]'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
+(column corresponds to the number)           `r keys(c('\\cmd','Numpad [1-9]'))` (`r os_logo('apple')`)
 
 &nbsp;                                  &nbsp;
 

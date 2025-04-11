@@ -165,7 +165,8 @@ menu <- function(menuKeys)
 #        This can be an array of strings that will be separated by '+'.
 #        This string can be the button labels or a command to menukeys (e.g., '\cmd' yields the Clover symbol)
 #        All menukeys command will work in LaTeX and
-#        "\cmd", "\backdel", "\enter", "\shift", "\arrowkeyup", and "\arrowkeydown" are supported in HTML.
+#        "\cmd", "\backdel", "\enter", "\shift", "\arrowkeyright", "arrowkeyleft",
+#        "\arrowkeyup", and "\arrowkeydown" are supported in HTML.
 keys <- function(buttonKeys)
   {
   if (knitr::is_latex_output())
@@ -181,6 +182,8 @@ keys <- function(buttonKeys)
                     stringr::str_replace_all(regex("^\\\\shift$", ignore_case=T), "&#8679;") %>%
                     stringr::str_replace_all(regex("^\\\\arrowkeyup", ignore_case=T), "&#8593;") %>%
                     stringr::str_replace_all(regex("^\\\\arrowkeydown", ignore_case=T), "&#8595;") %>%
+                    stringr::str_replace_all(regex("^\\\\arrowkeyright", ignore_case=T), "&#8594;") %>%
+                    stringr::str_replace_all(regex("^\\\\arrowkeyleft", ignore_case=T), "&#8592;") %>%
                     # LaTeX package uses curly braces to protect characters, but here would we just
                     # need to remove them
                     stringr::str_remove_all("([{]|[}])")
