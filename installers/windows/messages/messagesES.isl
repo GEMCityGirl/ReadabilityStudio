@@ -4,6 +4,7 @@ ProgramFiles=Archivos de programa
 HelpFiles=Archivos de Ayuda
 Examples=Ejemplos
 Documentation=Documentación
+Translations=Traducciones
 Typical=Típica
 Custom=Personalizada
 ErrorCode=Código de erro: 
