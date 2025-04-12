@@ -1440,10 +1440,9 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
                 if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i),
                                                        score))
                     {
-                    scoreText +=
-                        L"\n<tr><td>" +
-                        doc->GetReadabilityMessageCatalog().GetPredictedClozeDescription(score) +
-                        L"</td></tr>";
+                    scoreText += L"\n<tr><td>" +
+                                 ReadabilityMessages::GetPredictedClozeDescription(score) +
+                                 L"</td></tr>";
                     scoreText +=
                         L"\n<tr><td>" +
                         wxString(
@@ -1493,10 +1492,9 @@ void BatchProjectView::UpdateStatAndTestPanes(const long scoreListItem)
                 if (ReadabilityMessages::GetScoreValue(list->GetItemTextEx(scoreListItem, i),
                                                        score))
                     {
-                    scoreText +=
-                        L"\n<tr><td>" +
-                        doc->GetReadabilityMessageCatalog().GetPredictedClozeDescription(score) +
-                        L"</td></tr>";
+                    scoreText += L"\n<tr><td>" +
+                                 ReadabilityMessages::GetPredictedClozeDescription(score) +
+                                 L"</td></tr>";
                     }
                 }
             }
