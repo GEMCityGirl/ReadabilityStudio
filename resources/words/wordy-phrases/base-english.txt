@@ -1132,6 +1132,9 @@ and so on and so forth	and so on, and so forth	0
 and so one	and so on	3		afternoon;can;could;couldn't;day;evening;last;morning;must;night;should;shouldn't;will;would;wouldn't
 and than	and then	3		
 andd	and	3		
+andriod	android	3		
+andriod's	android's	3		
+andriods	androids	3		
 androgenous	androgynous	3		
 androgeny	androgyny	3		
 andthe	and the	3		
@@ -3170,6 +3173,8 @@ check to see if	check if	0
 checkbo	checkbox	3		
 checked to see	checked, inspected, examined	0		
 checking to see	checking, inspecting, examining	0		
+checkox	checkbox	3		
+checkoxes	checkboxes	3		
 checks to see	checks, inspects, examines	0		
 cheif	chief	3		
 cheif's	chief's	3		
@@ -6650,6 +6655,7 @@ expunges	wipes out, clears	0
 expunging	wiping out, clearing	0		
 exressed	expressed	3		
 exsits	exists, exits	3		
+exsting	existing	3		
 extaction	extraction	3		
 exteded	extended	3		
 extemely	extremely	3		
@@ -13190,8 +13196,6 @@ reactives	reactivates	3
 reactiving	reactivating	3		
 read between the lines	surmise the hidden meaning	2		
 readabilty	readability	3		
-readd	read	3		
-readding	reading	3		
 readible	readable	3		
 reading between the lines	surmising the hidden meaning	2		
 readmition	readmission	3		
@@ -13879,6 +13883,7 @@ retaining	keeping, holding	0
 retains	keeps, , holds	0		
 retalitated	retaliated	3		
 retalitation	retaliation	3		
+retargetting	retargeting	3		
 retension	retention	3		
 retention	keeping, holding	0		
 retermines	determines	3		
@@ -17236,6 +17241,9 @@ workfow	workflow	3
 workfow's	workflow's	3		
 workfows	workflows	3		
 workine	working	3		
+worklflow	workflow	3		
+worklflow's	workflow's	3		
+worklflows	workflows	3		
 workststion	workstation	3		
 worls	world	3		
 worstened	worsened	3		

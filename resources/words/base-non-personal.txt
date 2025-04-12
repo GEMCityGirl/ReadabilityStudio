@@ -3228,6 +3228,7 @@ Indus
 Indy
 Infiniband
 InfoBase
+Infobip
 Infomatics
 Informatica
 Infosec
@@ -3595,6 +3596,7 @@ Kolonia
 Komodo
 Konigstein
 Konkani
+Konqueror
 Konsole
 Kontiki
 Kool-Aid
@@ -5523,6 +5525,7 @@ Reichenberg
 Reichstag
 Reidsville
 Reigate
+Rekong
 Relaxin
 Relecloud
 RemoteFX
@@ -6054,6 +6057,7 @@ Slavic
 Slavik
 Slavonic
 Slayology
+Sleipnir
 Slidell
 SlideShare
 Slovak
@@ -6346,6 +6350,7 @@ Sylva
 Sylvania
 Sylvatic
 Symantec
+Symbian
 SynapseML
 Synergiz
 Synopsys
@@ -6476,6 +6481,7 @@ Telepen
 TelePrompters
 Telerik
 Telescopium
+Telesign
 Telex
 Telstra
 Temecula

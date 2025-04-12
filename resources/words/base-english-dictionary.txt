@@ -331,6 +331,7 @@ abouts
 above
 aboveboard
 aboveground
+abovementioned
 aboves
 abra
 abra's
@@ -9187,6 +9188,10 @@ backstacks
 backstage
 backstair
 backstairs
+backstamp
+backstamped
+backstamping
+backstamps
 backstitch
 backstitch's
 backstitched
@@ -12972,6 +12977,9 @@ blackhawks
 blackhead
 blackhead's
 blackheads
+blackhole
+blackhole's
+blackholes
 blacking
 blacking's
 blackings
@@ -22956,6 +22964,9 @@ clicks
 clickstream
 clickstream's
 clickstreams
+clickthrough
+clickthrough's
+clickthroughs
 client
 client's
 clientele
@@ -26976,6 +26987,7 @@ cont
 cont'd
 contact
 contact's
+contactability
 contactable
 contacted
 contacting
@@ -48833,6 +48845,9 @@ fielders
 fielding
 fielding's
 fields
+fieldset
+fieldset's
+fieldsets
 fieldstone
 fieldstone's
 fieldwork
@@ -49378,6 +49393,7 @@ firmlinks
 firmly
 firmness
 firmness's
+firmographic
 firms
 firmus
 firmware
@@ -87718,6 +87734,7 @@ noncumulative
 noncurrent
 noncurrently
 noncustodial
+noncustomized
 noncybernetic
 noncyclic
 nondairy
@@ -88042,6 +88059,7 @@ nonmetal's
 nonmetallic
 nonmetals
 nonmetric
+nonmigrated
 nonmigratory
 nonmilitant
 nonmilitants
@@ -101766,6 +101784,7 @@ precesses
 precessing
 precession
 precession's
+precheck
 precinct
 precinct's
 precincts
@@ -107894,10 +107913,14 @@ readableness
 readably
 readapting
 readapts
+readd
+readded
+readding
 readdress
 readdressed
 readdresses
 readdressing
+readds
 reader
 reader's
 readers
@@ -117255,6 +117278,7 @@ scorching
 scorchingly
 score
 score's
+scoreable
 scoreboard
 scoreboard's
 scoreboards
@@ -125613,6 +125637,7 @@ spongocytes
 spongy
 sponsor
 sponsor's
+sponsorable
 sponsored
 sponsoring
 sponsors
@@ -133523,6 +133548,7 @@ tektite's
 tektites
 tel
 telangiectasia
+tele
 telecampus
 telecampus's
 telecampuses
@@ -150240,6 +150266,7 @@ worktop
 worktops
 workup
 workups
+workwear
 workweek
 workweek's
 workweeks
