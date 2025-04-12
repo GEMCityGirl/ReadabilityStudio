@@ -2091,9 +2091,6 @@ void ProjectDoc::DisplaySentenceCharts()
             sentenceBoxPlotCanvas->Hide();
             sentenceBoxPlotCanvas->SetLabel(BaseProjectView::GetSentenceLengthBoxPlotLabel());
             sentenceBoxPlotCanvas->SetName(BaseProjectView::GetSentenceLengthBoxPlotLabel());
-            sentenceBoxPlotCanvas->GetTopTitles().push_back(
-                GraphItems::Label(GraphItemInfo(_(L"Sentence-lengths Spread")).Scaling(
-                    sentenceBoxPlotCanvas->GetScaling()).Pen(wxNullPen)));
             sentenceBoxPlotCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
             view->GetSentencesBreakdownView().AddWindow(sentenceBoxPlotCanvas);
             }
@@ -2107,6 +2104,8 @@ void ProjectDoc::DisplaySentenceCharts()
         sentenceBoxPlot->SetData(m_sentenceWordLengths, GetSentenceWordCountsColumnName(),
             std::nullopt);
 
+        sentenceBoxPlot->GetTitle().SetText(_(L"Sentence-lengths Spread"));
+        sentenceBoxPlot->GetTitle().SetRelativeAlignment(RelativeAlignment::Centered);
         sentenceBoxPlot->SetShadowType(IsDisplayingDropShadows() ?
             ShadowType::RightSideAndBottomShadow : ShadowType::NoShadow);
         sentenceBoxPlot->ShowLabels(IsDisplayingBoxPlotLabels());
@@ -2267,9 +2266,6 @@ void ProjectDoc::DisplayWordCharts()
             wordBarChartCanvas->Hide();
             wordBarChartCanvas->SetLabel(BaseProjectView::GetWordCountsLabel());
             wordBarChartCanvas->SetName(BaseProjectView::GetWordCountsLabel());
-            wordBarChartCanvas->GetTopTitles().push_back(GraphItems::Label(
-                GraphItemInfo(_(L"Word Totals (by Category)")).
-                Scaling(wordBarChartCanvas->GetScaling()).Pen(wxNullPen)));
             wordBarChartCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
             std::dynamic_pointer_cast<BarChart>(wordBarChartCanvas->GetFixedObject(0, 0))->SetSortable(true);
             std::dynamic_pointer_cast<BarChart>(
@@ -2287,6 +2283,8 @@ void ProjectDoc::DisplayWordCharts()
         wordBarChart->GetBarAxis().SetLabelDisplay(Wisteria::AxisLabelDisplay::DisplayOnlyCustomLabels);
         wordBarChart->GetScalingAxis().SetLabelDisplay(Wisteria::AxisLabelDisplay::DisplayCustomLabelsOrValues);
         wordBarChart->IncludeSpacesBetweenBars(true);
+        wordBarChart->GetTitle().SetText(_(L"Word Totals (by Category)"));
+        wordBarChart->GetTitle().SetRelativeAlignment(RelativeAlignment::Centered);
         wordBarChart->SetShadowType(IsDisplayingDropShadows() ?
             ShadowType::RightSideShadow : ShadowType::NoShadow);
         wordBarChart->SetBinLabelDisplay(IsDisplayingBarChartLabels() ?
@@ -3374,10 +3372,6 @@ void ProjectDoc::DisplayReadabilityGraphs()
                 coverageBarChartCanvas->Hide();
                 coverageBarChartCanvas->SetLabel(BaseProjectView::GetCoverageChartTabLabel());
                 coverageBarChartCanvas->SetName(BaseProjectView::GetCoverageChartTabLabel());
-                coverageBarChartCanvas->GetTopTitles().push_back(
-                    GraphItems::Label(
-                        GraphItemInfo(_(L"Dolch Word Coverage (%)")).
-                        Scaling(coverageBarChartCanvas->GetScaling()).Pen(wxNullPen)));
                 coverageBarChartCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
                 std::dynamic_pointer_cast<BarChart>(coverageBarChartCanvas->GetFixedObject(0, 0))->SetSortable(true);
                 view->GetDolchSightWordsView().AddWindow(coverageBarChartCanvas);
@@ -3392,6 +3386,8 @@ void ProjectDoc::DisplayReadabilityGraphs()
             coverageBarChart->GetBarAxis().SetLabelDisplay(Wisteria::AxisLabelDisplay::DisplayOnlyCustomLabels);
             coverageBarChart->GetScalingAxis().SetLabelDisplay(Wisteria::AxisLabelDisplay::DisplayCustomLabelsOrValues);
             coverageBarChart->GetScalingAxis().SetRange(0, 100, 0, 10, 2);
+            coverageBarChart->GetTitle().SetText(_(L"Dolch Word Coverage (%)"));
+            coverageBarChart->GetTitle().SetRelativeAlignment(RelativeAlignment::Centered);
             coverageBarChart->SetShadowType(IsDisplayingDropShadows() ?
                 ShadowType::RightSideShadow : ShadowType::NoShadow);
             coverageBarChart->IncludeSpacesBetweenBars(true);
@@ -3553,10 +3549,6 @@ void ProjectDoc::DisplayReadabilityGraphs()
                 wordBarChartCanvas->Hide();
                 wordBarChartCanvas->SetLabel(BaseProjectView::GetWordCountsLabel());
                 wordBarChartCanvas->SetName(BaseProjectView::GetWordCountsLabel());
-                wordBarChartCanvas->GetTopTitles().push_back(
-                    GraphItems::Label(
-                        GraphItemInfo(_(L"Dolch Word Breakdown")).
-                        Scaling(wordBarChartCanvas->GetScaling()).Pen(wxNullPen)));
                 wordBarChartCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
                 std::dynamic_pointer_cast<BarChart>(wordBarChartCanvas->GetFixedObject(0, 0))->SetSortable(true);
                 view->GetDolchSightWordsView().AddWindow(wordBarChartCanvas);
@@ -3569,6 +3561,8 @@ void ProjectDoc::DisplayReadabilityGraphs()
             dolchBarChart->SetBarOrientation(static_cast<Wisteria::Orientation>(GetBarChartOrientation()));
             dolchBarChart->GetBarAxis().SetLabelDisplay(Wisteria::AxisLabelDisplay::DisplayOnlyCustomLabels);
             dolchBarChart->GetScalingAxis().SetLabelDisplay(Wisteria::AxisLabelDisplay::DisplayCustomLabelsOrValues);
+            dolchBarChart->GetTitle().SetText(_(L"Dolch Word Breakdown"));
+            dolchBarChart->GetTitle().SetRelativeAlignment(RelativeAlignment::Centered);
             dolchBarChart->SetShadowType(IsDisplayingDropShadows() ?
                 ShadowType::RightSideShadow : ShadowType::NoShadow);
             dolchBarChart->IncludeSpacesBetweenBars(true);
