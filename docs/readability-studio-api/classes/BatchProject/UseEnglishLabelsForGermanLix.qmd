@@ -14,4 +14,17 @@ UseEnglishLabelsForGermanLix(boolean useEnglish)
 **Parameter** | **Description**
 | :-- | :-- |
 | `boolean` useEnglish | `true` to display English translations for the labels. |
+
+### Example {-}
+
+``` {.lua}
+kinderBucher = BatchProject(Application.GetUserFolder(UserPath.Documents) ..
+                            "Bücher.rsbp")
+
+if (kinderBucher:GetLanguage() == Language.German) then
+    kinderBucher:UseEnglishLabelsForGermanLix(true)
+    kinderBucher:AddTest(Test.LixGermanChildrensLiterature)
+    kinderBucher:AddTest(Test.Schwartz)
+end
+```
 :::

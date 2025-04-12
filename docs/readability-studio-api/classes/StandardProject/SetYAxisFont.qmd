@@ -20,4 +20,17 @@ SetYAxisFont(string fontName,
 | `number` pointSize | (Optional) The point size of the font. | 
 | [`FontWeight`](#fontweight) weight | (Optional) The weight of the font. | 
 | `string` color | (Optional) The name of the color. |
+
+### Examples {-}
+
+``` {.lua}
+desserts = StandardProject(Application.GetExamplesFolder() ..
+                           "Cocoa Desserts.rtf")
+-- add a "retro" look to the graphs
+desserts:SetXAxisFont("MONOSPACE", 10, FontWeight.Bold, "darkgray")
+desserts:SetYAxisFont("MONOSPACE", 10, FontWeight.Bold, "darkgray")
+desserts:SetGraphTopTitleFont("MONOSPACE", 10, FontWeight.Bold, "darkgray")
+desserts:SetBarChartBarColor("lightgray")
+desserts:SelectWindow(SideBarSection.WordsBreakdown)
+```
 :::
