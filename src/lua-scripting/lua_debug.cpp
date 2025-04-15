@@ -50,7 +50,7 @@ namespace LuaScripting
 
         if (lua_gettop(L) >= paramIndex)
             {
-            const double pointSize{ lua_tonumber(L, paramIndex++) };
+            const double pointSize{ luaL_checknumber(L, paramIndex++) };
             if (pointSize > 0)
                 {
                 font.SetFractionalPointSize(pointSize);
@@ -59,7 +59,7 @@ namespace LuaScripting
 
         if (lua_gettop(L) >= paramIndex)
             {
-            const int fontWeight{ static_cast<int>(lua_tonumber(L, paramIndex++)) };
+            const int fontWeight{ static_cast<int>(luaL_checkinteger(L, paramIndex++)) };
             if (fontWeight > 0)
                 {
                 font.SetWeight(static_cast<wxFontWeight>(fontWeight));
