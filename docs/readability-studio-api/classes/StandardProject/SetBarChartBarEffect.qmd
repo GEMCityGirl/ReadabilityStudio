@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `SetBarChartBarEffect`
 
-Sets how bars should be drawn within the various bar charts.
+Sets how bars should be drawn within the various bar charts\index{graphs!bar charts}.
 
 ### Syntax {-}
 
@@ -25,6 +25,6 @@ cocoa:SetGraphCommonImage(Application.GetUserFolder(UserPath.Pictures) ..
 cocoa:SetBarChartBarEffect(BoxEffect.CommonImage)
 cocoa:SetHistogramBarEffect(BoxEffect.CommonImage)
 cocoa:SetGraphColorScheme("coffeeshop")
-cocoa:SelectWindow(SideBarSection.WordsBreakdown, -1)
+cocoa:SelectWindow(SideBarSection.WordsBreakdown)
 ```
 :::

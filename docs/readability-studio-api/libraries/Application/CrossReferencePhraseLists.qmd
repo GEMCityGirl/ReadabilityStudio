@@ -8,9 +8,9 @@ These files will be delimited by newlines, so that each line will be parsed as a
 ### Syntax {-}
 
 ``` {.lua}
-boolean CrossReferenceWordLists(string phraseList,
-                                string otherPhraseList,
-                                string outputFile)
+boolean CrossReferencePhraseLists(string phraseList,
+                                  string otherPhraseList,
+                                  string outputFile)
 ```
 
 ### Return value {-}

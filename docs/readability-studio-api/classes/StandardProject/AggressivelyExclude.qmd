@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `AggressivelyExclude` {#standard-aggressivelyexclude}
 
-Specifies whether to use aggressive text exclusion.
+Specifies whether to use aggressive text exclusion\index{text exclusion}.
 
 ### Syntax {-}
 

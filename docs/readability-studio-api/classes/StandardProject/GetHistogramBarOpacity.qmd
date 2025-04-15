@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `GetHistogramBarOpacity`
 
-Returns the opacity of the bars within the various histograms.
+Returns the opacity of the bars within the various histograms\index{graphs!histograms}.
 
 ### Syntax {-}
 

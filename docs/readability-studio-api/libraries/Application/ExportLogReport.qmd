@@ -1,4 +1,4 @@
-::: {.minipage data-latex="{\textwidth}"}
+{{< pagebreak >}}
 ## `ExportLogReport`
 
 Saves\index{log report!exporting} the program's log report to a tab-delimited text file.
@@ -33,7 +33,7 @@ if (summaries:ExportGraph(GraphType.Fry,
   Application.LogMessage("Graph saved successfully to '" ..
                          Application.GetUserFolder(UserPath.Pictures) .. "'")
 else
-  -- ...or log a message about it failing and save the log report to review.
+  -- ...or log an error about it failing and save the log report to review.
   Application.LogError("Unable to save graph!")
   Application.ExportLogReport(Application.GetUserFolder(UserPath.Desktop) .. "log.txt")
   Debug.Print(
@@ -42,5 +42,4 @@ else
 end
 summaries:Close()
 ```
-1. `Debug.Print()` can accept HTML-formatted text.
-:::
+1. [`Debug.Print()`](#print) can accept HTML-formatted text.

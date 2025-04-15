@@ -1,4 +1,4 @@
-::: {.minipage data-latex="{\textwidth}"}
+{{< pagebreak >}}
 ## `Print`
 
 Prints\index{debugger!printing message to} a message to the script editor's debug window.
@@ -34,4 +34,3 @@ Debug.Print("<b>Height</b>: " .. imgInfo["Height"])
 ### See also {-}
 
 [`Application.LogMessage()`](#logmessage), [`Application.LogError()`](#logerror)
-:::

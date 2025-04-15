@@ -1,4 +1,4 @@
-::: {.minipage data-latex="{\textwidth}"}
+{{< pagebreak >}}
 ## `SortList` {#standard-sortlist}
 
 Sorts\index{lists!sorting} the specified list using a series of columns and sorting orders.
@@ -41,4 +41,3 @@ consentForm:ExportList(ListType.AllWords,
 
 consentForm:Close()
 ```
-:::

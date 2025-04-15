@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `SetBarChartBarEffect`
 
-Sets bar appearance (in bar charts) for new projects.
+Sets bar appearance (in bar charts\index{graphs!bar charts}) for new projects.
 
 ### Syntax {-}
 

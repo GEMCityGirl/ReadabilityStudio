@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `ExcludeNumerals` {#batch-excludenumerals}
 
-Specifies whether to exclude numerals.
+Specifies whether to exclude\index{text exclusion} numerals.
 
 ### Syntax {-}
 

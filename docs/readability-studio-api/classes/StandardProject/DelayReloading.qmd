@@ -1,7 +1,8 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `DelayReloading` {#standard-delayreloading}
 
-Prevents a project from updating while settings are being changed. 
+Prevents a project from updating while settings are being changed.
+
 This will require an explicit call to [`Reload()`](#standard-reload) for the changes to take affect.
 This is efficient for when multiple settings are being altered at once.
 
@@ -20,8 +21,7 @@ DelayReloading(boolean delay = true)
 ### Example {-}
 
 ``` {.lua}
--- Opens a document from user's "Documents" folder
--- and changes a few options.
+-- Opens a document from user's "Documents" folder and changes a few options.
 consentForm = StandardProject(Application.GetUserFolder(UserPath.Documents) ..
                               "Consent Form.docx")
 
@@ -37,4 +37,8 @@ consentForm:Reload()
 -- Assuming we have a custom test by this name, add it.
 consentForm:AddTest("Patient Consent Formula")
 ```
+
+### See also {-}
+
+[`Reload()`](#standard-reload)
 :::

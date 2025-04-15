@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `ExcludeCopyrightNotices`
 
-Specifies whether to exclude copyright notices from the document analysis.
+Specifies whether to exclude\index{text exclusion} copyright notices from the document analysis.
 
 ### Syntax {-}
 

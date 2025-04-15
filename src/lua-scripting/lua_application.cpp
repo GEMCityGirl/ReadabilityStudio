@@ -193,7 +193,7 @@ namespace LuaScripting
         return 1;
         }
 
-     //-------------------------------------------------------------
+    //-------------------------------------------------------------
     int SetDownloadFolder(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))
@@ -214,8 +214,7 @@ namespace LuaScripting
             return 0;
             }
 
-        wxGetApp().GetWebHarvester().KeepWebPathWhenDownloading(
-            int_to_bool(lua_toboolean(L, 1)));
+        wxGetApp().GetWebHarvester().KeepWebPathWhenDownloading(int_to_bool(lua_toboolean(L, 1)));
         return 0;
         }
 
@@ -235,8 +234,7 @@ namespace LuaScripting
             return 0;
             }
 
-        wxGetApp().GetWebHarvester().SeachForBrokenLinks(
-            int_to_bool(lua_toboolean(L, 1)));
+        wxGetApp().GetWebHarvester().SeachForBrokenLinks(int_to_bool(lua_toboolean(L, 1)));
         return 0;
         }
 
@@ -256,8 +254,7 @@ namespace LuaScripting
             return 0;
             }
 
-        wxGetApp().GetWebHarvester().ReplaceExistingFiles(
-            int_to_bool(lua_toboolean(L, 1)));
+        wxGetApp().GetWebHarvester().ReplaceExistingFiles(int_to_bool(lua_toboolean(L, 1)));
         return 0;
         }
 
@@ -277,17 +274,15 @@ namespace LuaScripting
             return 0;
             }
 
-        wxGetApp().GetWebHarvester().SetMinimumDownloadFileSizeInKilobytes(
-            lua_tointeger(L, 1));
+        wxGetApp().GetWebHarvester().SetMinimumDownloadFileSizeInKilobytes(luaL_checkinteger(L, 1));
         return 0;
         }
 
     //-------------------------------------------------------------
     int GetMinimumDownloadFileSizeInKilobytes(lua_State* L)
         {
-        lua_pushinteger(L,
-                        wxGetApp().GetWebHarvester().
-                        GetMinimumDownloadFileSizeInKilobytes().value_or(5));
+        lua_pushinteger(
+            L, wxGetApp().GetWebHarvester().GetMinimumDownloadFileSizeInKilobytes().value_or(5));
         wxGetApp().Yield();
         return 1;
         }
@@ -300,7 +295,7 @@ namespace LuaScripting
             return 0;
             }
 
-        wxGetApp().GetWebHarvester().SetDepthLevel(lua_tointeger(L, 1));
+        wxGetApp().GetWebHarvester().SetDepthLevel(luaL_checkinteger(L, 1));
         return 0;
         }
 
@@ -334,7 +329,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetWebHarvester().SetDomainRestriction(
-            static_cast<WebHarvester::DomainRestriction>(lua_tointeger(L, 1)));
+            static_cast<WebHarvester::DomainRestriction>(luaL_checkinteger(L, 1)));
         return 0;
         }
 
@@ -356,8 +351,9 @@ namespace LuaScripting
 
         wxGetApp().GetWebHarvester().ClearAllowableFileTypes();
 
-        wxStringTokenizer tkz(ExtractExtensionsFromFileFilter(
-            wxString{ luaL_checkstring(L, 1), wxConvUTF8 }), L"*.;");
+        wxStringTokenizer tkz(
+            ExtractExtensionsFromFileFilter(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }),
+            L"*.;");
         wxString nextFileExt;
         while (tkz.HasMoreTokens())
             {
@@ -537,15 +533,17 @@ namespace LuaScripting
     int FindFiles(lua_State* L)
         {
         // should be passed a folder to search and the file filter to use
-        if (!VerifyParameterCount(L, 3, __func__))
+        // (recursive flag is optional)
+        if (!VerifyParameterCount(L, 2, __func__))
             {
             return 0;
             }
         lua_newtable(L);
 
         wxDir dir;
-        const int flags =
-            int_to_bool(lua_toboolean(L, 3)) ? (wxDIR_FILES | wxDIR_DIRS) : wxDIR_FILES;
+        const int flags = ((lua_gettop(L) >= 3) ? int_to_bool(lua_toboolean(L, 3)) : true) ?
+                              (wxDIR_FILES | wxDIR_DIRS) :
+                              wxDIR_FILES;
         wxArrayString files;
         const size_t fileCount =
             dir.GetAllFiles(wxString(luaL_checkstring(L, 1), wxConvUTF8), &files,
@@ -590,10 +588,11 @@ namespace LuaScripting
         wxString outPath(luaL_checkstring(L, lua_gettop(L) - 1), wxConvUTF8);
         wxFileName::Mkdir(wxFileName(outPath).GetPath(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
 
-        const wxImage img = (static_cast<Wisteria::Orientation>(lua_tonumber(L, lua_gettop(L))) ==
-                             Wisteria::Orientation::Vertical) ?
-                                Wisteria::GraphItems::Image::StitchVertically(images) :
-                                Wisteria::GraphItems::Image::StitchHorizontally(images);
+        const wxImage img =
+            (static_cast<Wisteria::Orientation>(luaL_checkinteger(L, lua_gettop(L))) ==
+             Wisteria::Orientation::Vertical) ?
+                Wisteria::GraphItems::Image::StitchVertically(images) :
+                Wisteria::GraphItems::Image::StitchHorizontally(images);
 
         lua_pushboolean(L, img.SaveFile(outPath));
 
@@ -622,7 +621,7 @@ namespace LuaScripting
         wxFileName::Mkdir(wxFileName(path).GetPath(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
 
         const wxImage img = Wisteria::GraphItems::Image::ApplyEffect(
-            static_cast<Wisteria::ImageEffect>(lua_tonumber(L, 3)),
+            static_cast<Wisteria::ImageEffect>(luaL_checkinteger(L, 3)),
             Wisteria::GraphItems::Image::LoadFile(inPath));
 
         lua_pushboolean(L, img.SaveFile(wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
@@ -694,8 +693,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int ExportLogReport(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __func__) ||
-            wxGetApp().GetLogFile() == nullptr)
+        if (!VerifyParameterCount(L, 1, __func__) || wxGetApp().GetLogFile() == nullptr)
             {
             return 0;
             }
@@ -732,8 +730,8 @@ namespace LuaScripting
             return 0;
             }
         assert(wxGetApp().GetSplashscreenPaths().GetCount());
-        const auto index = std::clamp<size_t>(lua_tonumber(L, 1) - 1 /*make it zero-indexed*/, 0,
-                                              wxGetApp().GetSplashscreenPaths().GetCount() - 1);
+        const auto index = std::clamp<size_t>(luaL_checkinteger(L, 1) - 1 /*make it zero-indexed*/,
+                                              0, wxGetApp().GetSplashscreenPaths().GetCount() - 1);
         wxBitmap bitmap = wxGetApp().GetScaledImage(
             wxGetApp().GetSplashscreenPaths()[index], wxBITMAP_TYPE_PNG,
             wxSize(wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X) * .5,
@@ -898,10 +896,11 @@ namespace LuaScripting
             return 0;
             }
 
-        lua_pushstring(L, wxString{ wxStandardPaths::Get().GetUserDir(
-                                        static_cast<wxStandardPaths::Dir>(lua_tonumber(L, 1))) +
-                                    wxFileName::GetPathSeparator() }
-                              .utf8_str());
+        lua_pushstring(L,
+                       wxString{ wxStandardPaths::Get().GetUserDir(
+                                     static_cast<wxStandardPaths::Dir>(luaL_checkinteger(L, 1))) +
+                                 wxFileName::GetPathSeparator() }
+                           .utf8_str());
         return 1;
         }
 
@@ -1322,7 +1321,7 @@ namespace LuaScripting
             return 0;
             }
         wxGetApp().GetAppOptions().SetProjectLanguage(
-            static_cast<readability::test_language>(static_cast<int>(lua_tonumber(L, 1))));
+            static_cast<readability::test_language>(static_cast<int>(luaL_checkinteger(L, 1))));
         wxGetApp().Yield();
         return 0;
         }
@@ -1343,7 +1342,7 @@ namespace LuaScripting
             return 0;
             }
         wxGetApp().GetAppOptions().SetDocumentStorageMethod(
-            static_cast<TextStorage>(static_cast<int>(lua_tonumber(L, 1))));
+            static_cast<TextStorage>(static_cast<int>(luaL_checkinteger(L, 1))));
         return 0;
         }
 
@@ -1362,7 +1361,7 @@ namespace LuaScripting
             return 0;
             }
         wxGetApp().GetAppOptions().SetParagraphsParsingMethod(
-            static_cast<ParagraphParse>(static_cast<int>(lua_tonumber(L, 1))));
+            static_cast<ParagraphParse>(luaL_checkinteger(L, 1)));
         return 0;
         }
 
@@ -1375,7 +1374,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetLongSentenceMethod(
-            static_cast<LongSentence>(static_cast<int>(lua_tonumber(L, 1))));
+            static_cast<LongSentence>(luaL_checkinteger(L, 1)));
         return 0;
         }
 
@@ -1394,7 +1393,7 @@ namespace LuaScripting
             return 0;
             }
 
-        wxGetApp().GetAppOptions().SetDifficultSentenceLength(static_cast<int>(lua_tonumber(L, 1)));
+        wxGetApp().GetAppOptions().SetDifficultSentenceLength(luaL_checkinteger(L, 1));
         return 0;
         }
 
@@ -1484,7 +1483,7 @@ namespace LuaScripting
             {
             return 0;
             }
-        wxGetApp().GetAppOptions().SetMinDocWordCountForBatch(static_cast<int>(lua_tonumber(L, 1)));
+        wxGetApp().GetAppOptions().SetMinDocWordCountForBatch(luaL_checkinteger(L, 1));
         return 0;
         }
 
@@ -1505,7 +1504,7 @@ namespace LuaScripting
             }
         wxGetApp().GetAppOptions().SetFilePathTruncationMode(
             static_cast<Wisteria::UI::ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode>(
-                static_cast<int>(lua_tonumber(L, 1))));
+                luaL_checkinteger(L, 1)));
         return 0;
         }
 
@@ -1709,7 +1708,7 @@ namespace LuaScripting
             return 0;
             }
         wxGetApp().GetAppOptions().SetInvalidSentenceMethod(
-            static_cast<InvalidSentence>(static_cast<int>(lua_tonumber(L, 1))));
+            static_cast<InvalidSentence>(luaL_checkinteger(L, 1)));
         return 0;
         }
 
@@ -1939,7 +1938,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetNumeralSyllabicationMethod(
-            static_cast<NumeralSyllabize>(static_cast<int>(lua_tonumber(L, 1))));
+            static_cast<NumeralSyllabize>(luaL_checkinteger(L, 1)));
         return 0;
         }
 
@@ -2301,7 +2300,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetPlotBackGroundImageEffect(
-            static_cast<Wisteria::ImageEffect>(static_cast<int>(lua_tonumber(L, 1))));
+            static_cast<Wisteria::ImageEffect>(luaL_checkinteger(L, 1)));
         return 0;
         }
 
@@ -2322,7 +2321,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetPlotBackGroundImageFit(
-            static_cast<Wisteria::ImageFit>(static_cast<int>(lua_tonumber(L, 1))));
+            static_cast<Wisteria::ImageFit>(luaL_checkinteger(L, 1)));
         return 0;
         }
 
@@ -2772,7 +2771,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetGraphBarEffect(
-            static_cast<BoxEffect>(static_cast<int>(lua_tonumber(L, 1))));
+            static_cast<BoxEffect>(luaL_checkinteger(L, 1)));
         return 0;
         }
 
@@ -2817,7 +2816,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetBarChartOrientation(
-            static_cast<Wisteria::Orientation>(static_cast<int>(lua_tonumber(L, 1))));
+            static_cast<Wisteria::Orientation>(luaL_checkinteger(L, 1)));
         return 0;
         }
 
@@ -2855,7 +2854,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetHistogramBarEffect(
-            static_cast<BoxEffect>(static_cast<int>(lua_tonumber(L, 1))));
+            static_cast<BoxEffect>(luaL_checkinteger(L, 1)));
         return 0;
         }
 
@@ -2996,7 +2995,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetGraphBoxEffect(
-            static_cast<BoxEffect>(static_cast<int>(lua_tonumber(L, 1))));
+            static_cast<BoxEffect>(luaL_checkinteger(L, 1)));
         return 0;
         }
 

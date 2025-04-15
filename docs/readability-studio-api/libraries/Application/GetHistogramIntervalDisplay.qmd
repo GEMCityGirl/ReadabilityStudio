@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `GetHistogramIntervalDisplay`
 
-Returns how bin (axis) labels are displayed on histograms for new projects.
+Returns how bin (axis) labels are displayed on histograms\index{graphs!histograms} for new projects.
 
 ### Syntax {-}
 

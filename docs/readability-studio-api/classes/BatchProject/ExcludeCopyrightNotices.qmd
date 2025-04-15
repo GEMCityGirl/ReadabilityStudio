@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `ExcludeCopyrightNotices` {#batch-excludecopyrightnotices}
 
-Specifies whether to exclude copyright notices.
+Specifies whether to exclude copyright notices\index{text exclusion}.
 
 ### Syntax {-}
 

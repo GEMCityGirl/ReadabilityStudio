@@ -12,4 +12,24 @@ string GetRightPrintHeader()
 ### Return value {-}
 
 Type: `string`
+
+### Example {-}
+
+``` {.lua}
+-- Set headers and footers for printouts.
+Application.SetLeftPrintHeader("")
+-- Only change the center and right headers if they are empty.
+if (Application.GetCenterPrintHeader():len() == 0 and
+    Application.GetRightPrintHeader():len() == 0) then
+    Application.SetCenterPrintHeader("@TITLE@")
+    Application.SetRightPrintHeader("Page @PAGENUM@ of @PAGESCNT@")
+end
+
+Application.SetRightPrintFooter("Page @PAGENUM@")
+Application.SetCenterPrintFooter("")
+Application.SetRightPrintFooter("Printed on @DATE@ by @USER@")
+
+-- Set the paper orientation to landscape.
+Application.SetPaperOrientation(Orientation.Horizontal)
+```
 :::

@@ -35,11 +35,7 @@ Returns `true` if files were successfully merged.
 Application.MergeWordLists(
     Application.GetUserFolder(UserPath.Documents) .. "programming/assembly.txt",
     Application.GetUserFolder(UserPath.Documents) .. "programming/cpp.txt",
-    Application.GetUserFolder(UserPath.Documents) .. "programming/csharp.txt",
     Application.GetUserFolder(UserPath.Documents) .. "programming/html.txt",
-    Application.GetUserFolder(UserPath.Documents) .. "programming/java.txt",
-    Application.GetUserFolder(UserPath.Documents) .. "programming/python.txt",
-    Application.GetUserFolder(UserPath.Documents) .. "programming/visual-basic.txt",
     Application.GetUserFolder(UserPath.Documents) .. "programming/sql.txt",
     Application.GetUserFolder(UserPath.Documents) .. "programming/r.txt",
     -- all proceeding files will be combined into "all-languages.txt"
@@ -52,4 +48,4 @@ The output file will also be sorted and have any duplicate entries removed.
 
 ### See also {-}
 
-[`MergePhraseLists()`](#mergephraselists), [`CrossReferenceWordLists()`](#crossreferencewordlists)
+[`MergePhraseLists()`](#mergephraselists), [`CrossReferencePhraseLists()`](#crossreferencephraselists)

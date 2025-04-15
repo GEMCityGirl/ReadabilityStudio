@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `AggressivelyExclude` {#batch-aggressivelyexclude}
 
-Specifies whether to use aggressive list deduction.
+Specifies whether to use aggressive list deduction\index{text exclusion}.
 
 ### Syntax {-}
 

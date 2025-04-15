@@ -20,7 +20,7 @@ number GetTestId(string testName)
 
 Type: `number`
 
-The numeric ID of the test. Will be `-1` if test was not found.
+The numeric ID of the test. Will be -1 if test was not found.
 
 ### Example\index{examples!retrieving custom test IDs} {-}
 

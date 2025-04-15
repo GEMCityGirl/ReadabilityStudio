@@ -1,4 +1,4 @@
-::: {.minipage data-latex="{\textwidth}"}
+{{< pagebreak >}}
 ## `ExportFilteredText` {#standard-exportfilteredtext}
 
 Saves a copy of the project's document with excluded text (and other optional items) filtered out. Returns `true` if successful.
@@ -24,4 +24,7 @@ ExportFilteredText(string outputFilePath,
 | `boolean` removeBullets | Whether to remove bullets. |
 | `boolean` removeFilePaths | Whether to remove filepaths. |
 | `boolean` stripAbbreviations | Whether to remove the trailing periods off of abbreviations. |
+
+::: {.notesection data-latex=""}
+This is useful for transforming a document to be analyzed by other software that may have difficulty with abbreviations with periods, accented characters, etc. 
 :::

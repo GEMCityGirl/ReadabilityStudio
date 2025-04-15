@@ -1,4 +1,4 @@
-::: {.minipage data-latex="{\textwidth}"}
+{{< pagebreak >}}
 ## `SetAppendedDocumentFilePath` {#standard-setappendeddocumentfilepath}
 
 Specifies the file path to the document being appended for analysis.
@@ -30,7 +30,6 @@ consentForm:SetAppendedDocumentFilePath(
 consentForm:Close(false)
 ```
 
-:::: {.tipsection data-latex=""}
+::: {.tipsection data-latex=""}
 This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading) and [`Reload()`](#standard-reload).
-::::
 :::

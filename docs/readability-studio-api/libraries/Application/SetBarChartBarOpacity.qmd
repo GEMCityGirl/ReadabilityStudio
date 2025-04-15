@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `SetBarChartBarOpacity`
 
-Sets the opacity of bar chart bars for new projects. 0 is fully transparent, and 255 is opaque.
+Sets the opacity of bar chart bars\index{graphs!bar charts} for new projects. 0 is fully transparent, and 255 is opaque.
 
 ### Syntax {-}
 

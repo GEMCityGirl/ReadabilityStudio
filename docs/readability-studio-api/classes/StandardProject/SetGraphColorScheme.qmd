@@ -1,4 +1,4 @@
-::: {.minipage data-latex="{\textwidth}"}
+{{< pagebreak >}}
 ## `SetGraphColorScheme`
 
 Sets the graph color scheme.
@@ -27,6 +27,5 @@ cocoa:SetGraphCommonImage(Application.GetUserFolder(UserPath.Pictures) ..
 cocoa:SetBarChartBarEffect(BoxEffect.CommonImage)
 cocoa:SetHistogramBarEffect(BoxEffect.CommonImage)
 cocoa:SetGraphColorScheme("coffeeshop")
-cocoa:SelectWindow(SideBarSection.WordsBreakdown, -1)
+cocoa:SelectWindow(SideBarSection.WordsBreakdown)
 ```
-:::

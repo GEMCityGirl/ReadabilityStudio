@@ -35,6 +35,7 @@ SetWordsBreakdownResultsOptions(boolean includeWordCounts,
 | `boolean` includeAllWords | (Optional) `true` to include the list of all words. | 
 | `boolean` includeKeyWords | (Optional) `true` to include the list of key words. |
 
+::: {.minipage data-latex="{\textwidth}"}
 ### Example {-}
 
 ``` {.lua}
@@ -52,4 +53,4 @@ cocoaDoc:SetWordsBreakdownResultsOptions(false, false, false, false, false, fals
                                          false, false, false, false, false)
 cocoaDoc:Reload()
 ```
-
+:::

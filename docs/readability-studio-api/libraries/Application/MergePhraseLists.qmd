@@ -1,4 +1,4 @@
-::: {.minipage data-latex="{\textwidth}"}
+{{< pagebreak >}}
 ## `MergePhraseLists`
 
 Merges multiple phrase lists\index{word lists!merging} into a new file.
@@ -34,5 +34,4 @@ The output file will also be sorted and have any duplicate entries removed.
 
 ### See also {-}
 
-[`MergeWordLists()`](#mergewordlists), [`CrossReferenceWordLists()`](#crossreferencewordlists)
-:::
+[`MergeWordLists()`](#mergewordlists), [`CrossReferencePhraseLists()`](#crossreferencephraselists)

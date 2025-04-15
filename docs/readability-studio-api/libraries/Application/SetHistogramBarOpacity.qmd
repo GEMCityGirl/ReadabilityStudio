@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `SetHistogramBarOpacity`
 
-Sets bar opacity (in histograms) for new projects.
+Sets bar opacity (in histograms\index{graphs!histograms}) for new projects.
 
 ### Syntax {-}
 

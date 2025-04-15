@@ -1,0 +1,30 @@
+{{< pagebreak >}}
+## `LoadFiles`
+
+Analyses a list of provided file paths.
+
+### Syntax {-}
+
+``` {.lua}
+LoadFiles(table files)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+| `table` files | A table containing the files to add to the batch. |
+
+### Example\index{examples!analyzing files} {-}
+
+``` {.lua}
+-- Add all files with "feline" in the title from the folder "X:\Clinics\med-instructions"
+felineDocs = BatchProject();
+felineDocs:LoadFiles(Application.FindFiles(
+                     "X:\\Clinics\\med-instructions", "*feline*", true)) -- <1>
+```
+1. '\\' characters need to be escaped with another '\\' in Lua.
+
+### See also {-}
+
+[`Application.FindFiles()`](#findfiles), [`LoadFolder()`](#loadfolder)

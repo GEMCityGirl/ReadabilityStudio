@@ -27,6 +27,6 @@ symposium:SetPlotBackgroundImageEffect(ImageEffect.Sepia)
 symposium:SetPlotBackgroundImageFit(ImageFit.CropAndCenter)
 symposium:SetBarChartBarColor("lavender")
 symposium:SetBarChartBarEffect(BoxEffect.ThickWatercolor)
-symposium:SelectWindow(SideBarSection.WordsBreakdown, -1)
+symposium:SelectWindow(SideBarSection.WordsBreakdown)
 ```
 :::

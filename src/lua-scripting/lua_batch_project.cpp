@@ -132,6 +132,41 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
+    int BatchProject::LoadFiles(lua_State* L)
+        {
+        if (!VerifyProjectIsOpen(__func__))
+            {
+            return 0;
+            }
+        if (!VerifyParameterCount(L, 1, __func__))
+            {
+            return 0;
+            }
+        if (!lua_istable(L, 2))
+            {
+            return luaL_error(L, "%s",
+                wxString::Format(_(L"%s requires a table argument."), __func__).utf8_str());
+            }
+
+        const size_t fileCount{ lua_rawlen(L, 2) };
+
+        // append the files to this project, leave what was there already
+        m_project->GetSourceFilesInfo().reserve(
+            m_project->GetSourceFilesInfo().size() + fileCount);
+        for (int i = 1; i <= static_cast<int>(fileCount); ++i)
+            {
+            lua_rawgeti(L, 2, i);
+            const wxString inputFile(luaL_checkstring(L, -1), wxConvUTF8);
+            m_project->GetSourceFilesInfo().push_back(
+                comparable_first_pair{ inputFile, wxString{} });
+            lua_pop(L, 1);
+            }
+
+        ReloadIfNotDelayed();
+        return 0;
+        }
+
+    //-------------------------------------------------------------
     int BatchProject::LoadFolder(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
@@ -257,7 +292,7 @@ namespace LuaScripting
             }
 
         m_project->SetInvalidSentenceMethod(
-            static_cast<InvalidSentence>(static_cast<int>(lua_tonumber(L, 2))));
+            static_cast<InvalidSentence>(luaL_checkinteger(L, 2)));
         ReloadIfNotDelayed();
         return 0;
         }
@@ -569,7 +604,7 @@ namespace LuaScripting
             }
 
         m_project->SetNumeralSyllabicationMethod(
-            static_cast<NumeralSyllabize>(static_cast<int>(lua_tonumber(L, 2))));
+            static_cast<NumeralSyllabize>(luaL_checkinteger(L, 2)));
         ReloadIfNotDelayed();
         return 0;
         }
@@ -1091,7 +1126,7 @@ namespace LuaScripting
             }
 
         m_project->SetPlotBackGroundImageEffect(
-            static_cast<Wisteria::ImageEffect>(static_cast<int>(lua_tonumber(L, 2))));
+            static_cast<Wisteria::ImageEffect>(luaL_checkinteger(L, 2)));
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -1121,7 +1156,7 @@ namespace LuaScripting
             }
 
         m_project->SetPlotBackGroundImageFit(
-            static_cast<Wisteria::ImageFit>(static_cast<int>(lua_tonumber(L, 2))));
+            static_cast<Wisteria::ImageFit>(luaL_checkinteger(L, 2)));
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -1683,7 +1718,7 @@ namespace LuaScripting
             return 0;
             }
 
-        m_project->SetGraphBarEffect(static_cast<BoxEffect>(static_cast<int>(lua_tonumber(L, 2))));
+        m_project->SetGraphBarEffect(static_cast<BoxEffect>(luaL_checkinteger(L, 2)));
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -1753,7 +1788,7 @@ namespace LuaScripting
             }
 
         m_project->SetBarChartOrientation(
-            static_cast<Wisteria::Orientation>(static_cast<int>(lua_tonumber(L, 2))));
+            static_cast<Wisteria::Orientation>(luaL_checkinteger(L, 2)));
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -1822,7 +1857,7 @@ namespace LuaScripting
             }
 
         m_project->SetHistogramBarEffect(
-            static_cast<BoxEffect>(static_cast<int>(lua_tonumber(L, 2))));
+            static_cast<BoxEffect>(luaL_checkinteger(L, 2)));
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -2023,7 +2058,7 @@ namespace LuaScripting
             return 0;
             }
 
-        m_project->SetGraphBoxEffect(static_cast<BoxEffect>(static_cast<int>(lua_tonumber(L, 2))));
+        m_project->SetGraphBoxEffect(static_cast<BoxEffect>(luaL_checkinteger(L, 2)));
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -2186,7 +2221,7 @@ namespace LuaScripting
             }
 
         m_project->SetProjectLanguage(
-            static_cast<readability::test_language>(static_cast<int>(lua_tonumber(L, 2))));
+            static_cast<readability::test_language>(luaL_checkinteger(L, 2)));
         ReloadIfNotDelayed();
         return 0;
         }
@@ -2274,7 +2309,7 @@ namespace LuaScripting
             }
 
         m_project->SetDocumentStorageMethod(
-            static_cast<TextStorage>(static_cast<int>(lua_tonumber(L, 2))));
+            static_cast<TextStorage>(luaL_checkinteger(L, 2)));
         ReloadIfNotDelayed();
         return 0;
         }
@@ -2303,7 +2338,7 @@ namespace LuaScripting
             return 0;
             }
 
-        m_project->SetTextSource(static_cast<TextSource>(static_cast<int>(lua_tonumber(L, 2))));
+        m_project->SetTextSource(static_cast<TextSource>(luaL_checkinteger(L, 2)));
         ReloadIfNotDelayed();
         return 0;
         }
@@ -2333,7 +2368,7 @@ namespace LuaScripting
             }
 
         m_project->SetLongSentenceMethod(
-            static_cast<LongSentence>(static_cast<int>(lua_tonumber(L, 2))));
+            static_cast<LongSentence>(luaL_checkinteger(L, 2)));
         ReloadIfNotDelayed();
         return 0;
         }
@@ -2362,7 +2397,7 @@ namespace LuaScripting
             return 0;
             }
 
-        m_project->SetDifficultSentenceLength(static_cast<int>(lua_tonumber(L, 2)));
+        m_project->SetDifficultSentenceLength(luaL_checkinteger(L, 2));
         ReloadIfNotDelayed();
         return 0;
         }
@@ -2392,7 +2427,7 @@ namespace LuaScripting
             }
 
         m_project->SetParagraphsParsingMethod(
-            static_cast<ParagraphParse>(static_cast<int>(lua_tonumber(L, 2))));
+            static_cast<ParagraphParse>(luaL_checkinteger(L, 2)));
         ReloadIfNotDelayed();
         return 0;
         }
@@ -2511,7 +2546,7 @@ namespace LuaScripting
             return 0;
             }
 
-        m_project->SetMinDocWordCountForBatch(static_cast<int>(lua_tonumber(L, 2)));
+        m_project->SetMinDocWordCountForBatch(luaL_checkinteger(L, 2));
         ReloadIfNotDelayed();
         return 0;
         }
@@ -2542,7 +2577,7 @@ namespace LuaScripting
 
         m_project->SetFilePathTruncationMode(
             static_cast<ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode>(
-                static_cast<int>(lua_tonumber(L, 2))));
+                luaL_checkinteger(L, 2)));
         ReloadIfNotDelayed();
         return 0;
         }
@@ -3298,7 +3333,7 @@ namespace LuaScripting
                 {
                 columns.push_back(std::pair<size_t, Wisteria::SortDirection>(
                     lua_tonumber(L, i) - 1, static_cast<Wisteria::SortDirection>(
-                                                static_cast<int>(lua_tonumber(L, i + 1)))));
+                                                luaL_checkinteger(L, i + 1))));
                 }
             const auto windowOrSectionId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
             if (windowOrSectionId == wxGetApp().GetDynamicIdMap().cend())
@@ -3388,6 +3423,7 @@ namespace LuaScripting
     Luna<BatchProject>::FunctionType BatchProject::methods[] = {
         LUNA_DECLARE_METHOD(BatchProject, Close),
         LUNA_DECLARE_METHOD(BatchProject, LoadFolder),
+        LUNA_DECLARE_METHOD(BatchProject, LoadFiles),
         LUNA_DECLARE_METHOD(BatchProject, GetTitle),
         LUNA_DECLARE_METHOD(BatchProject, SetWindowSize),
         LUNA_DECLARE_METHOD(BatchProject, DelayReloading),

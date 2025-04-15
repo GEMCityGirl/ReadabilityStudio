@@ -1,13 +1,13 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `SetYAxisFont`
 
-Sets the font for the graphs' Y axes for new projects.
+Sets the font\index{graphs!fonts} for the graphs' Y axes for new projects.
 
 ### Syntax {-}
 
 ``` {.lua}
 SetYAxisFont(string fontName,
-             number pointSize,
+             number pointSize = -1,
              FontWeight weight,
              string color)
 ```
@@ -17,7 +17,7 @@ SetYAxisFont(string fontName,
 **Parameter** | **Description**
 | :-- | :-- |
 | `string` fontName | The name of the font. (The values `"CURSIVE"` and `"MONOSPACE"` can also be used.) | 
-| `number` pointSize | (Optional) The point size of the font. | 
+| `number` pointSize | (Optional) The point size of the font. (Enter -1 to keep the current font size.) | 
 | [`FontWeight`](#fontweight) weight | (Optional) The weight of the font. | 
 | `string` color | (Optional) The name of the color. |
 :::

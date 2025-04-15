@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `IsIncludingExcludedPhraseFirstOccurrence`
 
-Returns whether the first occurrence of an excluded phrase should be included.
+Returns whether the first occurrence of an excluded\index{text exclusion} phrase should be included.
 
 ### Syntax {-}
 

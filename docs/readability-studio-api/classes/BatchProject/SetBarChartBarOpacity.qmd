@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `SetBarChartBarOpacity`
 
-Sets the opacity of the bars within the various bar charts.
+Sets the opacity of the bars within the various bar charts\index{graphs!bar charts}.
 
 ### Syntax {-}
 

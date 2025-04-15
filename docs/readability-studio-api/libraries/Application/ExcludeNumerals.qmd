@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `ExcludeNumerals`
 
-Specifies whether to exclude numerals from the document analysis.
+Specifies whether to exclude\index{text exclusion} numerals from the document analysis.
 
 ### Syntax {-}
 

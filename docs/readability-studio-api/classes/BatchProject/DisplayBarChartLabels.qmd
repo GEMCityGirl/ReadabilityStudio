@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `DisplayBarChartLabels`
 
-Specifies whether to display labels above each bar in a bar chart.
+Specifies whether to display labels above each bar in a bar chart\index{graphs!bar charts}.
 
 ### Syntax {-}
 

@@ -1,4 +1,4 @@
-::: {.minipage data-latex="{\textwidth}"}
+{{< pagebreak >}}
 ## `GetWordCount`
 
 Returns the total number of words from the document.
@@ -12,4 +12,32 @@ number GetWordCount()
 ### Return value {-}
 
 Type: `number`
-:::
+
+### Example {-}
+
+``` {.lua}
+medInstructions = StandardProject(Application.GetUserFolder(UserPath.Documents) ..
+                                  "Dex Instructions.rtf")
+
+difficultWordPercent =
+    math.floor(((medInstructions:Get3SyllablePlusWordCount() /
+                 medInstructions:GetWordCount()) * 100) + 0.5)
+-- Build a report with the statistics and warning message.
+if (difficultWordPercent > 25) then
+    report = "<html><body><h1>" .. medInstructions:GetTitle() .. "</h1>" ..
+             "Difficult word % is <span style='color:red; weight:bold'>" ..
+             difficultWordPercent .. "%</span>!<br />" ..
+             "<h3>Statistics</h3>" ..
+             "<ul><li>Words: " .. medInstructions:GetWordCount() .. "</li>" ..
+             "<li>Complex Words: " ..
+             medInstructions:Get3SyllablePlusWordCount() .. "</li></ul>" ..
+             os.date() ..
+             "</body></html>"
+end
+medInstructions:Close()
+-- Write the error report and show it in the debugger too.
+Application.WriteToFile(Application.GetUserFolder(UserPath.Desktop) ..
+                        "editor-warning.html", report)
+Debug.Print(report)
+```
+

@@ -16,9 +16,11 @@ Type: [`Language`](#language)
 ### Example {-}
 
 ``` {.lua}
+-- Open a previously saved batch project.
 kinderBucher = BatchProject(Application.GetUserFolder(UserPath.Documents) ..
                             "Bücher.rsbp")
 
+-- If it's a German project, then add German tests.
 if (kinderBucher:GetLanguage() == Language.German) then
     kinderBucher:UseEnglishLabelsForGermanLix(true)
     kinderBucher:AddTest(Test.LixGermanChildrensLiterature)

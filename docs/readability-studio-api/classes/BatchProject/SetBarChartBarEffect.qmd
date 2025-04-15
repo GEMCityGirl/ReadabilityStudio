@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `SetBarChartBarEffect`
 
-Sets how bars should be drawn within the various bar charts.
+Sets how bars should be drawn within the various bar charts\index{graphs!bar charts}.
 
 ### Syntax {-}
 

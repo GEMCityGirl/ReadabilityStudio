@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `GetHistogramBarEffect`
 
-Returns how bars should be drawn within the various histograms for new projects.
+Returns how bars should be drawn within the various histograms\index{graphs!histograms} for new projects.
 
 ### Syntax {-}
 

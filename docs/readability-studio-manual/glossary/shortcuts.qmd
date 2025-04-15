@@ -247,6 +247,12 @@ Replace                                 `r keys(c('Ctrl','H'))` (`r os_logo('win
 
 Select all                              `r keys(c('Ctrl','A'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
                                         `r keys(c('\\cmd','A'))` (`r os_logo('apple')`)
+                                        
+
+&nbsp;                                  &nbsp;
+
+Duplicate current line                  `r keys(c('Ctrl','D'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
+                                        `r keys(c('\\cmd','D'))` (`r os_logo('apple')`)
 ------------------------------------------------------------------------------------------------
 :::
 

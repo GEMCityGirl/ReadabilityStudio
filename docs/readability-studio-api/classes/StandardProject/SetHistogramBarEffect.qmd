@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `SetHistogramBarEffect`
 
-Sets bar appearance (in histograms).
+Sets bar appearance (in histograms\index{graphs!histograms}).
 
 ### Syntax {-}
 
@@ -25,6 +25,6 @@ cocoa:SetGraphCommonImage(Application.GetUserFolder(UserPath.Pictures) ..
 cocoa:SetBarChartBarEffect(BoxEffect.CommonImage)
 cocoa:SetHistogramBarEffect(BoxEffect.CommonImage)
 cocoa:SetGraphColorScheme("coffeeshop")
-cocoa:SelectWindow(SideBarSection.WordsBreakdown, -1)
+cocoa:SelectWindow(SideBarSection.WordsBreakdown)
 ```
 :::

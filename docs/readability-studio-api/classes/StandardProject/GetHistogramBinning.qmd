@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `GetHistogramBinning`
 
-Returns how data are binned in histograms.
+Returns how data are binned in histograms\index{graphs!histograms}.
 
 ### Syntax {-}
 

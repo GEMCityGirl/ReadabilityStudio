@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `SetHistogramBarColor`
 
-Sets bar color (in histograms).
+Sets bar color (in histograms\index{graphs!histograms}).
 
 ### Syntax {-}
 

@@ -97,6 +97,7 @@ namespace LuaScripting
         // NOTE: these must all be single-line for the build script to properly create new topics from these.
 
         int LoadFolder(lua_State* L /*string folderPath, boolean recursiveSearh*/); // Analyses all supported documents from the provided folder.
+        int LoadFiles(lua_State* L /*table files*/); // Analyses a list of provided file paths.
 
         int /*string*/ GetTitle(lua_State* L); // Returns the title of the project.
         int SetWindowSize(lua_State* L /*number width, number height*/); // Sets the size of the project window.

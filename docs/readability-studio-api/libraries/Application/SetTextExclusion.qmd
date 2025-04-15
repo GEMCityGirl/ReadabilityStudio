@@ -13,12 +13,12 @@ SetTextExclusion(TextExclusionType type)
 
 **Parameter** | **Description**
 | :-- | :-- |
-[`TextExclusionType`](#textexclusiontype) type | How text should be excluded.
+| [`TextExclusionType`](#textexclusiontype) type | How text should be excluded. |
 
 ### Example {-}
 
 ``` {.lua}
--- don't exclude any text for all future projects
+-- Don't exclude any text for all future projects.
 Application.SetTextExclusion(TextExclusionType.DoNotExcludeAnyText)
 ```
 :::

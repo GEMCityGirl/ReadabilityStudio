@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `SetHistogramBinning`
 
-Sets how data are binned in histograms.
+Sets how data are binned in histograms\index{graphs!histograms}.
 
 ### Syntax {-}
 

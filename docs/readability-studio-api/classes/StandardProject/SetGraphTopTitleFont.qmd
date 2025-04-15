@@ -1,13 +1,13 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `SetGraphTopTitleFont`
 
-Sets the font for the graphs' top titles.
+Sets the font\index{graphs!fonts} for the graphs' top titles.
 
 ### Syntax {-}
 
 ``` {.lua}
 SetGraphTopTitleFont(string fontName,
-                     number pointSize,
+                     number pointSize = -1,
                      FontWeight weight,
                      string color)
 ```
@@ -17,7 +17,7 @@ SetGraphTopTitleFont(string fontName,
 **Parameter** | **Description**
 | :-- | :-- |
 | `string` fontName | The name of the font. (The values `"CURSIVE"` and `"MONOSPACE"` can also be used.) | 
-| `number` pointSize | (Optional) The point size of the font. | 
+| `number` pointSize | (Optional) The point size of the font. (Enter -1 to keep the current font size.) | 
 | [`FontWeight`](#fontweight) weight | (Optional) The weight of the font. | 
 | `string` color | (Optional) The name of the color. |
 
@@ -26,10 +26,10 @@ SetGraphTopTitleFont(string fontName,
 ``` {.lua}
 desserts = StandardProject(Application.GetExamplesFolder() ..
                            "Cocoa Desserts.rtf")
--- add a "retro" look to the graphs
-desserts:SetXAxisFont("MONOSPACE", 10, FontWeight.Bold, "darkgray")
-desserts:SetYAxisFont("MONOSPACE", 10, FontWeight.Bold, "darkgray")
-desserts:SetGraphTopTitleFont("MONOSPACE", 10, FontWeight.Bold, "darkgray")
+-- Add a "retro" look to the graphs.
+desserts:SetXAxisFont("MONOSPACE", -1, FontWeight.Bold, "darkgray")
+desserts:SetYAxisFont("MONOSPACE", -1, FontWeight.Bold, "darkgray")
+desserts:SetGraphTopTitleFont("MONOSPACE", 20, FontWeight.Bold, "darkgray")
 desserts:SetBarChartBarColor("lightgray")
 desserts:SelectWindow(SideBarSection.WordsBreakdown)
 ```

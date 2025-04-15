@@ -1,4 +1,4 @@
-::: {.minipage data-latex="{\textwidth}"}
+{{< pagebreak >}}
 ## `SetWordsBreakdownResultsOptions`
 
 Sets which results in the words breakdown section should be included for new projects.
@@ -34,4 +34,3 @@ SetWordsBreakdownResultsOptions(boolean includeWordCounts,
 | `boolean` includeCustomTests | (Optional) `true` to include the custom test reports and lists. | 
 | `boolean` includeAllWords | (Optional) `true` to include the list of all words. | 
 | `boolean` includeKeyWords | (Optional) `true` to include the list of key words. |
-:::

@@ -18,4 +18,17 @@ SetParagraphsParsingMethod(ParagraphParse parseMethod)
 :::: {.tipsection data-latex=""}
 This can be optimized by placing it in between calls to [`DelayReloading()`](#standard-delayreloading) and [`Reload()`](#standard-reload).
 ::::
+
+### Example {-}
+
+``` {.lua}
+posting = StandardProject()
+posting:DelayReloading()
+posting:SetDocumentFilePath(Application.GetExamplesFolder() .. "Job Posting.odt")
+-- split the description section into separate lines and ignore them
+posting:SetParagraphsParsingMethod(ParagraphParse.EachNewLineIsAParagraph)
+posting:SetTextExclusion(TextExclusionType.ExcludeIncompleteSentences)
+posting:AddTest(Test.Elf)
+posting:Reload()
+```
 :::

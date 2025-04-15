@@ -1,4 +1,4 @@
-::: {.minipage data-latex="{\textwidth}"}
+{{< pagebreak >}}
 ## `Reload` {#batch-reload}
 
 Reanalyzes the project's documents.
@@ -13,7 +13,27 @@ Reload()
 
 [`DelayReloading()`](#batch-delayreloading)
 
-:::: {.notesection data-latex=""}
+::: {.notesection data-latex=""}
 After calling this, delayed reloading will be reset.
-::::
 :::
+
+### Example {-}
+
+``` {.lua}
+-- Create an empty project and delay the analyses.
+docs = BatchProject()
+docs:DelayReloading()
+-- Add Spanish graphical tests.
+docs:SetLanguage(Language.Spanish)
+docs:AddTest(Test.Frase)
+docs:AddTest(Test.GpmFry)
+-- Add all supported documents from a "Client Agreements" folder and run all analyses.
+docs:LoadFolder(Application.GetUserFolder(UserPath.Documents) .. "Client Agreements")
+docs:Reload()
+-- Save the graphs.
+docs:ExportGraph(SideBarSection.ReadabilityScores, GraphType.Frase,
+    Application.GetUserFolder(UserPath.Desktop) .. "FRASE.png")
+docs:ExportGraph(SideBarSection.ReadabilityScores, GraphType.GpmFry,
+    Application.GetUserFolder(UserPath.Desktop) .. "GPM.png")
+docs:Close()
+```

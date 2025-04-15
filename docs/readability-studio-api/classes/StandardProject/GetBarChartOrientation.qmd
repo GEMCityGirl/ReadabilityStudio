@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `GetBarChartOrientation`
 
-Returns whether the bar charts should be drawn vertically or horizontally.
+Returns whether the bar charts\index{graphs!bar charts} should be drawn vertically or horizontally.
 
 ### Syntax {-}
 

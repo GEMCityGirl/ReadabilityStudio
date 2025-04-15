@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `GetHistogramRounding`
 
-Returns how data are rounded (during binning) in histograms.
+Returns how data are rounded (during binning) in histograms\index{graphs!histograms}.
 
 ### Syntax {-}
 

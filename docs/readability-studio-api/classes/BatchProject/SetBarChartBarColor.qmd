@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `SetBarChartBarColor`
 
-If the bar charts' effect is to use a single color, sets the color to draw the bars with.
+If the bar charts'\index{graphs!bar charts} effect is to use a single color, sets the color to draw the bars with.
 
 ### Syntax {-}
 

@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `SetHistogramRounding`
 
-Sets how data are rounded (during binning) in histograms.
+Sets how data are rounded (during binning) in histograms\index{graphs!histograms}.
 
 ### Syntax {-}
 

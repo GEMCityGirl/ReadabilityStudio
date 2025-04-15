@@ -23,8 +23,12 @@ docs:SetLanguage(Language.Spanish)
 docs:AddTest(Test.Frase)
 docs:AddTest(Test.GpmFry)
 
--- Add all supported documents from a "Client Agreements" folder and run all analyses.
+-- Add all supported documents from a "Client Agreements" folder.
 docs:LoadFolder(Application.GetUserFolder(UserPath.Documents) .. "Client Agreements")
+-- ...then add any documents with "Cost-plus" in their title from "X:\Contracts"
+docs:LoadFiles(Application.FindFiles(
+               "X:\\Contracts", "*Cost-plus*", true)) -- <1>
+-- Analyze the documents.
 docs:Reload()
 
 -- Save the graphs.
@@ -34,5 +38,6 @@ docs:ExportGraph(SideBarSection.ReadabilityScores, GraphType.GpmFry,
     Application.GetUserFolder(UserPath.Desktop) .. "GPM.png")
 docs:Close()
 ```
+1. Calls to [`LoadFolder()`](#loadfolder) and [`LoadFiles()`](#loadfiles) append documents to the batch. Any documents currently in the batch will still be included.
 
 {{< pagebreak >}}

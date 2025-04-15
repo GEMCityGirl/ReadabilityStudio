@@ -7,7 +7,8 @@ Searches the specified folder for files\index{file paths!searching} matching the
 
 ``` {.lua}
 table FindFiles(string folderPath,
-                string fileFilter)
+                string fileFilter,
+                boolean recursive = true)
 ```
 
 ### Return value {-}
@@ -22,7 +23,7 @@ A table listing the files.
 | :-- | :-- |
 | `string` folderPath | The folder to search in. |
 | `string` fileFilter | The file pattern to search for. |
-| `boolean` recursive | `true` to search the folder recursively. |
+| `boolean` recursive | (optional) `true` to search the folder recursively. |
 
 ### Example\index{examples!finding files} {-}
 
@@ -30,10 +31,14 @@ A table listing the files.
 files = Application.FindFiles(
     Application.GetUserFolder(UserPath.Pictures), "*.png", true)
 
--- print the file paths that were found
+-- Print the file paths that were found.
 for i,val in ipairs(files)
 do
     Debug.Print(val)
 end
 ```
+
+### See also {-}
+
+[`BatchProject:LoadFiles()`](#loadfiles)
 :::

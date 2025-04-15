@@ -1,4 +1,4 @@
-::: {.minipage data-latex="{\textwidth}"}
+{{< pagebreak >}}
 ## `SetGrammarResultsOptions`
 
 Sets which grammar results should be included for new projects.
@@ -36,4 +36,3 @@ SetGrammarResultsOptions(boolean includeHighlightedReport,
 | `boolean` includePassiveVoice | (Optional) `true` to include passive voice. | 
 | `boolean` includeConjunctionStartingSentences | (Optional) `true` to include sentences that start with conjunctions. | 
 | `boolean` includeLowercasedSentences | (Optional) `true` to include sentences that start with lowercase letters. |
-:::

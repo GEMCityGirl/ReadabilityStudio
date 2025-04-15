@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `ExcludeProperNouns` {#batch-excludepropernouns}
 
-Specifies whether to exclude proper nouns.
+Specifies whether to exclude\index{text exclusion} proper nouns.
 
 ### Syntax {-}
 

@@ -1,7 +1,7 @@
 ::: {.minipage data-latex="{\textwidth}"}
 ## `SetExcludedTextHighlightColor`
 
-Sets the font color for excluded text in formatted reports.
+Sets the font color for excluded\index{text exclusion} text in formatted reports.
 
 ### Syntax {-}
 
