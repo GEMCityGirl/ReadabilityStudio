@@ -21,8 +21,10 @@ using namespace Wisteria::UI;
 //-------------------------------------------------------
 ProjectDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView* view)
     {
-    const wxSize windowSize(std::max(wxGetApp().GetMainFrame()->GetClientSize().GetWidth(), 800),
-                            std::max(wxGetApp().GetMainFrame()->GetClientSize().GetHeight(), 600));
+    const wxSize windowSize(std::max(wxGetApp().GetMainFrame()->GetClientSize().GetWidth(),
+                                     wxGetApp().GetMainFrame()->FromDIP(800)),
+                            std::max(wxGetApp().GetMainFrame()->GetClientSize().GetHeight(),
+                                     wxGetApp().GetMainFrame()->FromDIP(600)));
 
     wxFileName fn(doc->GetFilename());
     wxString title =
