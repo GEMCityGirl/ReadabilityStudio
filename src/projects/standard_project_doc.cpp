@@ -303,7 +303,8 @@ void ProjectDoc::RefreshProject()
        disable on the text view windows. On macOS, disabling/re-enabling
        text controls appears to reset their font color (which we are customizing
        in DisplayHighlightedText().*/
-    wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Reloading project...")).Parent(GetDocumentWindow()));
+    wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Reloading project..."))
+                                   .Parent(wxGetApp().GetParentingWindow()));
 
     LoadHardWords();
 
@@ -600,7 +601,9 @@ bool ProjectDoc::OnOpenDocument(const wxString& filename)
             { CalculateStatistics(); }
         CalculateGraphData();
 
-        wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Loading project...")).Parent(GetDocumentWindow()));
+        wxBusyInfo bi(wxBusyInfoFlags()
+                          .Text(_(L"Loading project..."))
+                          .Parent(wxGetApp().GetParentingWindow()));
 
         LoadHardWords();
 
@@ -1368,7 +1371,7 @@ bool ProjectDoc::OnNewDocument()
 
     // make the busy message go out of scope before queued messages appear
         {
-        wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Loading project...")).Parent(GetDocumentWindow()));
+        wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Loading project...")).Parent(wxGetApp().GetParentingWindow()));
 
         // load the images now
         SetPlotBackGroundImagePath(GetPlotBackGroundImagePath());
