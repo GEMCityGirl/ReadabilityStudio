@@ -4395,8 +4395,8 @@ bool ProjectDoc::AddDolchSightWords()
 
 //-------------------------------------------------------
 void ProjectDoc::SetReadabilityTestResult(const wxString& testId, const wxString& testName,
-                                    const wxString& description,
-                                    const std::pair<double, wxString>& USGradeLevel,
+                                          const wxString& description,
+                                          const std::pair<double, wxString>& USGradeLevel,
                                           const wxString& readerAge, const double indexScore,
                                           const double clozeScore, const bool setFocus)
     {
@@ -4412,8 +4412,8 @@ void ProjectDoc::SetReadabilityTestResult(const wxString& testId, const wxString
     // format the explanation window
     const wxString explanationString = wxString::Format(
         L"<table class='minipage' style='width:100%%;'><tr>\n"
-         "<th colspan='2' style='background:%s; text-align:left'>"
-         "<span style='color:%s;'>%s</span></th></tr>\n%s\n</table>",
+        "<th colspan='2' style='background:%s; text-align:left'>"
+        "<span style='color:%s;'>%s</span></th></tr>\n%s\n</table>",
         ProjectReportFormat::GetReportHeaderColor().GetAsString(wxC2S_HTML_SYNTAX),
         ProjectReportFormat::GetReportHeaderFontColor().GetAsString(wxC2S_HTML_SYNTAX), testName,
         description);
@@ -4453,12 +4453,14 @@ void ProjectDoc::SetReadabilityTestResult(const wxString& testId, const wxString
 
     // select item and select scores window in the main project view
     location = view->GetReadabilityScoresList()->GetResultsListCtrl()->FindEx(testName);
-    view->GetReadabilityScoresList()->GetResultsListCtrl()->Select(location);
+    if (location != wxNOT_FOUND)
+        {
+        view->GetReadabilityScoresList()->GetResultsListCtrl()->Select(location);
         // don't call Focus() because that will call EnsureVisible and cause interface problems,
         // just set the state
-        wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
-    view->GetReadabilityScoresList()->GetResultsListCtrl()->SetColumnWidth(0,
-        view->GetReadabilityScoresList()->GetResultsListCtrl()->EstimateColumnWidth(0));
+        view->GetReadabilityScoresList()->GetResultsListCtrl()->SetItemState(
+            location, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
+        }
     view->GetReadabilityScoresList()->GetResultsListCtrl()->SetColumnWidth(
         0, view->GetReadabilityScoresList()->GetResultsListCtrl()->EstimateColumnWidth(0));
     view->GetReadabilityScoresList()->GetResultsListCtrl()->SetColumnWidth(
