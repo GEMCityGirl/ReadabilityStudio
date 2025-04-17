@@ -275,56 +275,63 @@ void ProjectDoc::RefreshProject()
             _(L"Error"), wxOK | wxICON_EXCLAMATION);
         }
 
-    if (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
-        GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings)
         {
-        CalculateStatisticsIgnoringInvalidSentences();
+        /* NOTE: do not use a progress bar with APP_MODAL because that calls
+           disable on the text view windows. On macOS, disabling/re-enabling
+           text controls appears to reset their font color (which we are customizing
+           in DisplayHighlightedText().*/
+        wxBusyInfo bi(wxBusyInfoFlags()
+                          .Text(_(L"Reloading project..."))
+                          .Parent(wxGetApp().GetParentingWindow()));
+#ifdef __WXGTK__
+        wxMilliSleep(100);
+        wxTheApp->Yield();
+#endif
+
+        if (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
+            GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings)
+            {
+            CalculateStatisticsIgnoringInvalidSentences();
+            }
+        else if (GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences)
+            {
+            CalculateStatistics();
+            }
+        CalculateGraphData();
+
+        if (GetTotalWords() == 0)
+            {
+            LogMessage((GetTextSource() == TextSource::FromFile) ?
+                           _(L"No words were found in the original document. "
+                             "Project cannot be recalculated.") :
+                           _(L"No valid words were entered. Project cannot be recalculated."),
+                       _(L"Import Error"), wxOK | wxICON_INFORMATION);
+            GetDocumentWindow()->Refresh();
+
+            ResetRefreshRequired();
+            return;
+            }
+
+        LoadHardWords();
+
+        DisplayStatistics();
+        DisplayReadabilityScores(false);
+        DisplayReadabilityGraphs();
+        DisplayWordsBreakdown();
+        DisplayHighlightedText(GetTextHighlightColor(), GetTextViewFont());
+        DisplaySentencesBreakdown();
+        DisplayGrammar();
+        DisplaySightWords();
+
+        DeleteUniqueWordMap();
+
+        Modify(true);
+
+        view->UpdateSideBarIcons();
+        view->UpdateRibbonState();
+        view->Present();
+        UpdateAllViews();
         }
-    else if (GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences)
-        {
-        CalculateStatistics();
-        }
-    CalculateGraphData();
-
-    if (GetTotalWords() == 0)
-        {
-        LogMessage((GetTextSource() == TextSource::FromFile) ?
-                       _(L"No words were found in the original document. "
-                         "Project cannot be recalculated.") :
-                       _(L"No valid words were entered. Project cannot be recalculated."),
-                   _(L"Import Error"), wxOK | wxICON_INFORMATION);
-        GetDocumentWindow()->Refresh();
-
-        ResetRefreshRequired();
-        return;
-        }
-
-    /* NOTE: do not use a progress bar with APP_MODAL because that calls
-       disable on the text view windows. On macOS, disabling/re-enabling
-       text controls appears to reset their font color (which we are customizing
-       in DisplayHighlightedText().*/
-    wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Reloading project..."))
-                                   .Parent(wxGetApp().GetParentingWindow()));
-
-    LoadHardWords();
-
-    DisplayStatistics();
-    DisplayReadabilityScores(false);
-    DisplayReadabilityGraphs();
-    DisplayWordsBreakdown();
-    DisplayHighlightedText(GetTextHighlightColor(), GetTextViewFont());
-    DisplaySentencesBreakdown();
-    DisplayGrammar();
-    DisplaySightWords();
-
-    DeleteUniqueWordMap();
-
-    Modify(true);
-
-    view->UpdateSideBarIcons();
-    view->UpdateRibbonState();
-    view->Present();
-    UpdateAllViews();
 
     // See if the view that was originally selected is gone.
     // If so then select the scores section.
@@ -473,6 +480,8 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
 //------------------------------------------------
 bool ProjectDoc::OnOpenDocument(const wxString& filename)
     {
+    wxBusyCursor bc;
+
     wxLogMessage(L"Opening project \"%s\"", filename);
     // make sure there aren't any projects getting updated before we start opening a new one.
     // opening a project may try to add new custom tests, which would cause a race condition with
@@ -572,14 +581,20 @@ bool ProjectDoc::OnOpenDocument(const wxString& filename)
         return false;
         }
 
-    wxBusyCursor bc;
-
     /* If the indexed text was found in the project or external file
        then reanalyze everything. This should be the normal scenario and
        would only fail if the text was not embedded and the 
        external file could not be found (if applicable).*/
     if (LoadingOriginalTextSucceeded())
         {
+        wxBusyInfo bi(wxBusyInfoFlags()
+                          .Text(_(L"Loading project..."))
+                          .Parent(wxGetApp().GetParentingWindow()));
+#ifdef __WXGTK__
+        wxMilliSleep(100);
+        wxTheApp->Yield();
+#endif
+
         /* if they set this to exclude headers and such, make sure we actually have some
            valid sentences to work with*/
         if ((GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
@@ -600,10 +615,6 @@ bool ProjectDoc::OnOpenDocument(const wxString& filename)
         else if (GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences)
             { CalculateStatistics(); }
         CalculateGraphData();
-
-        wxBusyInfo bi(wxBusyInfoFlags()
-                          .Text(_(L"Loading project..."))
-                          .Parent(wxGetApp().GetParentingWindow()));
 
         LoadHardWords();
 
@@ -1358,20 +1369,26 @@ bool ProjectDoc::OnNewDocument()
             }
         }
 
-    if (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
-        GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings)
+        // make the busy message go out of scope before queued messages appear
         {
-        CalculateStatisticsIgnoringInvalidSentences();
-        }
-    else if (GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences)
-        {
-        CalculateStatistics();
-        }
-    CalculateGraphData();
+        wxBusyInfo bi(wxBusyInfoFlags()
+                          .Text(_(L"Loading project..."))
+                          .Parent(wxGetApp().GetParentingWindow()));
+#ifdef __WXGTK__
+        wxMilliSleep(100);
+        wxTheApp->Yield();
+#endif
 
-    // make the busy message go out of scope before queued messages appear
-        {
-        wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Loading project...")).Parent(wxGetApp().GetParentingWindow()));
+        if (GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis ||
+            GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings)
+            {
+            CalculateStatisticsIgnoringInvalidSentences();
+            }
+        else if (GetInvalidSentenceMethod() == InvalidSentence::IncludeAsFullSentences)
+            {
+            CalculateStatistics();
+            }
+        CalculateGraphData();
 
         // load the images now
         SetPlotBackGroundImagePath(GetPlotBackGroundImagePath());
@@ -4377,14 +4394,11 @@ bool ProjectDoc::AddDolchSightWords()
     }
 
 //-------------------------------------------------------
-void ProjectDoc::SetReadabilityTestResult(const wxString& testId,
-                                    const wxString& testName,
+void ProjectDoc::SetReadabilityTestResult(const wxString& testId, const wxString& testName,
                                     const wxString& description,
                                     const std::pair<double, wxString>& USGradeLevel,
-                                    const wxString& readerAge,
-                                    const double indexScore,
-                                    const double clozeScore,
-                                    const bool setFocus)
+                                          const wxString& readerAge, const double indexScore,
+                                          const double clozeScore, const bool setFocus)
     {
     BaseProject::SetReadabilityTestResult(testId, testName, description, USGradeLevel, readerAge,
                                           indexScore, clozeScore, setFocus);
@@ -4392,15 +4406,17 @@ void ProjectDoc::SetReadabilityTestResult(const wxString& testId,
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
     assert(view && "Invalid view when adding test!");
     if (!view)
-        { return; }
+        {
+        return;
+        }
     // format the explanation window
     const wxString explanationString = wxString::Format(
         L"<table class='minipage' style='width:100%%;'><tr>\n"
          "<th colspan='2' style='background:%s; text-align:left'>"
          "<span style='color:%s;'>%s</span></th></tr>\n%s\n</table>",
         ProjectReportFormat::GetReportHeaderColor().GetAsString(wxC2S_HTML_SYNTAX),
-        ProjectReportFormat::GetReportHeaderFontColor().GetAsString(wxC2S_HTML_SYNTAX),
-            testName, description);
+        ProjectReportFormat::GetReportHeaderFontColor().GetAsString(wxC2S_HTML_SYNTAX), testName,
+        description);
 
     wxWindowUpdateLocker noUpdates(view->GetReadabilityScoresList());
     long location = view->GetReadabilityScoresList()->GetResultsListCtrl()->FindEx(testName);
@@ -4408,11 +4424,15 @@ void ProjectDoc::SetReadabilityTestResult(const wxString& testId,
         {
         location = view->GetReadabilityScoresList()->GetResultsListCtrl()->AddRow(testName);
         }
-    view->GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(location, 1, USGradeLevel.second,
+    view->GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(
+        location, 1, USGradeLevel.second,
         NumberFormatInfo(NumberFormatInfo::NumberFormatType::CustomFormatting, 1));
     view->GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(location, 2, readerAge);
     if (std::isnan(indexScore))
-        { view->GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(location, 3, wxString{}); }
+        {
+        view->GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(location, 3,
+                                                                            wxString{});
+        }
     else
         {
         view->GetReadabilityScoresList()->GetDataProvider()->SetItemValue(
@@ -4420,7 +4440,10 @@ void ProjectDoc::SetReadabilityTestResult(const wxString& testId,
             NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1));
         }
     if (std::isnan(clozeScore))
-        { view->GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(location, 4, wxString{}); }
+        {
+        view->GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(location, 4,
+                                                                            wxString{});
+        }
     else
         {
         view->GetReadabilityScoresList()->GetDataProvider()->SetItemValue(
@@ -4431,14 +4454,19 @@ void ProjectDoc::SetReadabilityTestResult(const wxString& testId,
     // select item and select scores window in the main project view
     location = view->GetReadabilityScoresList()->GetResultsListCtrl()->FindEx(testName);
     view->GetReadabilityScoresList()->GetResultsListCtrl()->Select(location);
-    // don't call Focus() because that will call EnsureVisible and cause interface problems, just set the state
-    view->GetReadabilityScoresList()->GetResultsListCtrl()->SetItemState(location,
+        // don't call Focus() because that will call EnsureVisible and cause interface problems,
+        // just set the state
         wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
     view->GetReadabilityScoresList()->GetResultsListCtrl()->SetColumnWidth(0,
         view->GetReadabilityScoresList()->GetResultsListCtrl()->EstimateColumnWidth(0));
-    view->GetReadabilityScoresList()->GetResultsListCtrl()->SetColumnWidth(1, wxLIST_AUTOSIZE_USEHEADER);
-    view->GetReadabilityScoresList()->GetResultsListCtrl()->SetColumnWidth(2, wxLIST_AUTOSIZE_USEHEADER);
-    view->GetReadabilityScoresList()->GetResultsListCtrl()->SetColumnWidth(3, wxLIST_AUTOSIZE_USEHEADER);
+    view->GetReadabilityScoresList()->GetResultsListCtrl()->SetColumnWidth(
+        0, view->GetReadabilityScoresList()->GetResultsListCtrl()->EstimateColumnWidth(0));
+    view->GetReadabilityScoresList()->GetResultsListCtrl()->SetColumnWidth(
+        1, wxLIST_AUTOSIZE_USEHEADER);
+    view->GetReadabilityScoresList()->GetResultsListCtrl()->SetColumnWidth(
+        2, wxLIST_AUTOSIZE_USEHEADER);
+    view->GetReadabilityScoresList()->GetResultsListCtrl()->SetColumnWidth(
+        3, wxLIST_AUTOSIZE_USEHEADER);
     view->GetReadabilityScoresList()->GetResultsListCtrl()->SetSize(
         view->GetReadabilityScoresList()->GetResultsListCtrl()->GetSize());
 

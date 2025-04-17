@@ -160,6 +160,10 @@ bool BatchProjectDoc::OnCreate(const wxString& path, long flags)
                 wxWindowDisabler disableAll;
                 wxBusyInfo wait(wxBusyInfoFlags().Text(_(L"Retrieving files..."))
                                                  .Parent(wxGetApp().GetParentingWindow()));
+#ifdef __WXGTK__
+                wxMilliSleep(100);
+                wxTheApp->Yield();
+#endif
                 wxDir::GetAllFiles(path, &files, wxString{},
                                    wxDIR_FILES | wxDIR_DIRS);
                 files = FilterFiles(files,
@@ -3101,19 +3105,18 @@ void BatchProjectDoc::DisplayScores()
     if (GetTestGoals().size() || GetStatGoals().size())
         {
         Wisteria::UI::ListCtrlEx* goalsList = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
-            view->GetScoresView().FindWindowById(
-                BaseProjectView::READABILITY_GOALS_PAGE_ID));
+            view->GetScoresView().FindWindowById(BaseProjectView::READABILITY_GOALS_PAGE_ID));
         if (!goalsList)
             {
             goalsList = new Wisteria::UI::ListCtrlEx(
-                view->GetSplitter(), BaseProjectView::READABILITY_GOALS_PAGE_ID,
-                wxDefaultPosition, wxDefaultSize, wxLC_REPORT|wxLC_VIRTUAL|wxBORDER_SUNKEN);
+                view->GetSplitter(), BaseProjectView::READABILITY_GOALS_PAGE_ID, wxDefaultPosition,
+                wxDefaultSize, wxLC_REPORT | wxLC_VIRTUAL | wxBORDER_SUNKEN);
             goalsList->Hide();
             goalsList->SetLabel(_(L"Goals"));
             goalsList->SetName(_(L"Goals"));
             goalsList->SetSortable(true);
             goalsList->EnableItemViewOnDblClick();
-            goalsList->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU") );
+            goalsList->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU"));
             goalsList->SetVirtualDataProvider(m_goalsData);
             UpdateListOptions(goalsList);
             view->GetScoresView().InsertWindow(1, goalsList);
@@ -3128,7 +3131,8 @@ void BatchProjectDoc::DisplayScores()
             if (!goal.HasGoals())
                 { continue; }
             auto [sTest, found] = GetReadabilityTests().find_test(goal.GetName().c_str());
-            const wxString testName = found ? sTest->get_test().get_long_name().c_str() : goal.GetName().c_str();
+            const wxString testName =
+                found ? sTest->get_test().get_long_name().c_str() : goal.GetName().c_str();
 
             // only include min or max goal columns if there is an actual goal for it.
             if (!std::isnan(goal.GetMinGoal()))
@@ -3346,9 +3350,11 @@ void BatchProjectDoc::DisplayScoreStatisticsWindow(
         dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetScoresView().FindWindowById(windowId));
     if (!listView)
         {
-        long style = wxLC_VIRTUAL|wxLC_REPORT|wxBORDER_SUNKEN;
+        long style = wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN;
         if (!multiSelectable)
-            { style |= wxLC_SINGLE_SEL; }
+            {
+            style |= wxLC_SINGLE_SEL;
+            }
         listView = new Wisteria::UI::ListCtrlEx(view->GetSplitter(), windowId, wxDefaultPosition,
                                                 wxDefaultSize, style);
         listView->Hide();
@@ -5435,16 +5441,16 @@ bool BatchProjectDoc::OnSaveDocument(const wxString& filename)
     SetFilename(filename, true);
     SetTitle(ParseTitleFromFileName(filename));
 
-    /*write the (zip file) project out to a temp file first, then swap it.
-    This helps us from corrupting the original file if something goes wrong
-    during the write process.*/
+    /* Write the (zip file) project out to a temp file first, then swap it.
+       This helps us from corrupting the original file if something goes wrong
+       during the write process.*/
     wxTempFileOutputStream out(filename);
     wxZipOutputStream zip(out, 9/*Maximum compression*/);
 
     // settings.xml
     Wisteria::ZipCatalog::WriteText(zip, ProjectSettingsFileLabel(), FormatProjectSettings());
 
-    /*if storing indexed text then include it.*/
+    // if storing indexed text, then include it
     if (GetDocumentStorageMethod() == TextStorage::EmbedText)
         {
         int counter{ 1 };
@@ -5582,7 +5588,7 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
         }
     catch (const MemoryMappedFileException&)
         {
-        /*Couldn't get a map of the file for unknown reason, so buffer it.*/
+        // Couldn't get a map of the file for unknown reason, so buffer it.
         if (!LockProjectFile())
             { return false; }
         auto projectFileText = std::make_unique<char[]>(m_File.Length()+1);
@@ -5701,16 +5707,20 @@ void BatchProjectDoc::LoadProjectFile(const char* projectFileText, const size_t 
     // open the project settings file
     std::wstring settingsFile = cat.ReadTextFile(ProjectSettingsFileLabel());
     if (!settingsFile.empty())
-        { LoadSettingsFile(settingsFile.c_str()); }
+        {
+        LoadSettingsFile(settingsFile.c_str());
+        }
     else
         {
-        LogMessage(_(L"Settings file could not be found in the project file. Default settings will be used."),
-                wxGetApp().GetAppName(), wxOK|wxICON_INFORMATION);
+        LogMessage(_(L"Settings file could not be found in the project file. "
+                      "Default settings will be used."),
+                   wxGetApp().GetAppName(), wxOK | wxICON_INFORMATION);
         }
 
     InitializeDocuments();
 
-    // if storing indexed text then read that in from the project file and assign it to respective documents.
+    // if storing indexed text then read that in from the project file
+    // and assign it to respective documents.
     if (GetDocumentStorageMethod() == TextStorage::EmbedText)
         {
         for (auto pos = m_docs.begin();

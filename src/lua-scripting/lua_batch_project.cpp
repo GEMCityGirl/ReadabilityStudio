@@ -186,6 +186,10 @@ namespace LuaScripting
                 {
                 wxWindowDisabler disableAll;
                 wxBusyInfo wait(_(L"Retrieving files..."), m_project->GetDocumentWindow());
+#ifdef __WXGTK__
+                wxMilliSleep(100);
+                wxTheApp->Yield();
+#endif
                 wxDir::GetAllFiles(path, &files, wxString{},
                                    recursive ? (wxDIR_FILES | wxDIR_DIRS) : wxDIR_FILES);
                 files = FilterFiles(files, ExtractExtensionsFromFileFilter(

@@ -2662,6 +2662,10 @@ bool ProjectView::ExportAll(const wxString& folder, wxString listExt, wxString t
 
     wxBusyCursor bc;
     wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Exporting project...")).Parent(GetDocFrame()));
+#ifdef __WXGTK__
+    wxMilliSleep(100);
+    wxTheApp->Yield();
+#endif
 
     // the results window
     if (includeTestScores)
@@ -3034,6 +3038,10 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
 
     wxBusyCursor bc;
     wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Exporting project...")).Parent(GetDocFrame()));
+#ifdef __WXGTK__
+    wxMilliSleep(100);
+    wxTheApp->Yield();
+#endif
 
     lily_of_the_valley::html_encode_text htmlEncode;
     wxString outputText, textWindowStyleSection;

@@ -1114,6 +1114,10 @@ void ProjectWizardDlg::LoadArchive(wxString archivePath /*= wxString{}*/)
 
     wxWindowDisabler disableAll;
     wxBusyInfo wait(_(L"Retrieving files..."), this);
+#ifdef __WXGTK__
+    wxMilliSleep(100);
+    wxTheApp->Yield();
+#endif
     wxGetApp().SetLastSelectedDocFilter(dlg.GetSelectedFileFilter());
 
     Wisteria::ZipCatalog archive(dlg.GetPath());
@@ -1192,6 +1196,10 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
         {
         wxWindowDisabler disableAll;
         wxBusyInfo wait(_(L"Loading Excel file..."), this);
+#ifdef __WXGTK__
+        wxMilliSleep(100);
+        wxTheApp->Yield();
+#endif
         const std::wstring workbookFileText = archive.ReadTextFile(L"xl/workbook.xml");
         excelExtract.read_worksheet_names(workbookFileText.c_str(), workbookFileText.length());
         // read the string table
@@ -1228,6 +1236,10 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
             {
             wxWindowDisabler disableAll;
             wxBusyInfo wait(_(L"Loading worksheet..."), this);
+#ifdef __WXGTK__
+            wxMilliSleep(100);
+            wxTheApp->Yield();
+#endif
             const std::wstring sheetFile = archive.ReadTextFile(
                 wxString::Format(L"xl/worksheets/sheet%d.xml", workSheetSelections.Item(i) + 1));
             if (sheetFile.length())
@@ -1289,6 +1301,10 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
         {
         wxWindowDisabler disableAll;
         wxBusyInfo wait(_(L"Updating file list..."), this);
+#ifdef __WXGTK__
+        wxMilliSleep(100);
+        wxTheApp->Yield();
+#endif
         // list the cells in the grid
         const size_t currentFileCount = m_fileData->GetItemCount();
         size_t cellCount = 0;
@@ -1803,6 +1819,10 @@ void ProjectWizardDlg::OnAddFolderButtonClick([[maybe_unused]] wxCommandEvent&)
         {
         wxWindowDisabler disableAll;
         wxBusyInfo wait(_(L"Retrieving files..."), this);
+#ifdef __WXGTK__
+        wxMilliSleep(100);
+        wxTheApp->Yield();
+#endif
         SetLastSelectedFolder(dirDlg.GetPath());
         wxGetApp().SetLastSelectedDocFilter(dirDlg.GetSelectedFileFilter());
         wxDir::GetAllFiles(dirDlg.GetPath(), &files, wxString{},

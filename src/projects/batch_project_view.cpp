@@ -1912,6 +1912,10 @@ bool BatchProjectView::ExportAllToHtml(const wxFileName& filePath, wxString grap
 
     wxBusyCursor bc;
     wxBusyInfo bi(wxBusyInfoFlags().Text(_(L"Exporting project...")).Parent(GetDocFrame()));
+#ifdef __WXGTK__
+    wxMilliSleep(100);
+    wxTheApp->Yield();
+#endif
 
     lily_of_the_valley::html_encode_text htmlEncode;
     wxString outputText;
