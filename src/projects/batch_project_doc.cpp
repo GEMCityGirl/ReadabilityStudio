@@ -309,10 +309,15 @@ bool BatchProjectDoc::OnNewDocument()
     view->Present();
     UpdateAllViews();
 
-    view->GetSideBar()->SelectSubItem(view->GetSideBar()->FindSubItem(BaseProjectView::ID_SCORE_LIST_PAGE_ID));
-    dynamic_cast<Wisteria::UI::ListCtrlEx*>(
-        view->GetScoresView().FindWindowById(BaseProjectView::ID_SCORE_LIST_PAGE_ID))
-        ->Select(0);
+    view->GetSideBar()->SelectSubItem(
+        view->GetSideBar()->FindSubItem(BaseProjectView::ID_SCORE_LIST_PAGE_ID));
+
+    auto* scoresWindow = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
+        view->GetScoresView().FindWindowById(BaseProjectView::ID_SCORE_LIST_PAGE_ID));
+    if (scoresWindow != nullptr && scoresWindow->GetItemCount() > 0)
+        {
+        scoresWindow->Select(0);
+        }
 
     // try to base the default name of this project from the folder/web domain of the first file
     if (GetSourceFilesInfo().size() > 0)
@@ -649,9 +654,12 @@ void BatchProjectDoc::RefreshProject()
             }
         }
     view->ShowSideBar(view->IsSideBarShown());
-    dynamic_cast<Wisteria::UI::ListCtrlEx*>(
-        view->GetScoresView().FindWindowById(
-        BaseProjectView::ID_SCORE_LIST_PAGE_ID))->Select(0);
+    auto* scoresWindow = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
+        view->GetScoresView().FindWindowById(BaseProjectView::ID_SCORE_LIST_PAGE_ID));
+    if (scoresWindow != nullptr && scoresWindow->GetItemCount() > 0)
+        {
+        scoresWindow->Select(0);
+        }
 
     view->UpdateStatAndTestPanes(currentlySelectedFile);
 
@@ -5692,9 +5700,12 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
     UpdateAllViews();
 
     view->GetSideBar()->SelectSubItem(view->GetSideBar()->FindSubItem(BatchProjectView::ID_SCORE_LIST_PAGE_ID));
-    dynamic_cast<Wisteria::UI::ListCtrlEx*>(
-        view->GetScoresView().FindWindowById(
-        BatchProjectView::ID_SCORE_LIST_PAGE_ID))->Select(0);
+    auto* scoresWindow = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
+        view->GetScoresView().FindWindowById(BaseProjectView::ID_SCORE_LIST_PAGE_ID));
+    if (scoresWindow != nullptr && scoresWindow->GetItemCount() > 0)
+        {
+        scoresWindow->Select(0);
+        }
 
     return true;
     }
