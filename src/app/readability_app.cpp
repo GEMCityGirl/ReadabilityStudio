@@ -3249,26 +3249,13 @@ void MainFrame::OnAbout([[maybe_unused]] wxCommandEvent& event)
     wxDateTime buildDate;
     buildDate.ParseDate(__DATE__);
 
-    wxString licenseAgreementPath = wxGetApp().FindResourceFile(L"license.rtf");
+    wxString licenseAgreementPath = wxGetApp().FindResourceFile(L"LICENSE");
     wxString eula;
-    if (wxFile::Exists(licenseAgreementPath))
+    if (!(wxFile::Exists(licenseAgreementPath) &&
+          Wisteria::TextStream::ReadFile(licenseAgreementPath, eula)))
         {
-        try
-            {
-            lily_of_the_valley::rtf_extract_text filter_rtf(
-                lily_of_the_valley::rtf_extract_text::rtf_extraction_type::rtf_to_html);
-            MemoryMappedFile licFile(licenseAgreementPath, true, true);
-            const wchar_t* eulaContent =
-                filter_rtf(static_cast<char*>(licFile.GetStream()), licFile.GetMapSize());
-            if (eulaContent != nullptr)
-                {
-                eula = eulaContent;
-                }
-            }
-        catch (...)
-            {
-            wxLogMessage(L"Unable to read EULA from '%s'", licenseAgreementPath);
-            }
+        wxLogMessage(L"Unable to read EULA from '%s'", licenseAgreementPath);
+        return;
         }
 
     AboutDialogEx aboutDlg(
@@ -3281,6 +3268,7 @@ void MainFrame::OnAbout([[maybe_unused]] wxCommandEvent& event)
     aboutDlg.ShowModal();
     }
 
+//-------------------------------------------------------
 void MainFrame::OnRibbonBarHelpClicked([[maybe_unused]] wxRibbonBarEvent& event)
     {
     wxCommandEvent cmd;

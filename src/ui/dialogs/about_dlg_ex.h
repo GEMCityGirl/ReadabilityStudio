@@ -21,9 +21,9 @@
 #include <wx/dialog.h>
 #include <wx/hyperlink.h>
 #include <wx/image.h>
-#include <wx/html/htmlwin.h>
 #include <wx/notebook.h>
 #include <wx/statline.h>
+#include <wx/textctrl.h>
 #include <wx/utils.h>
 #include <wx/wx.h>
 
@@ -42,9 +42,8 @@ class AboutDialogEx final : public wxDialog
         @param pos The dialog's position.
         @param size The dialog's size.
         @param style The dialog's style.*/
-    AboutDialogEx(wxWindow* parent, const wxBitmap& logo, wxString appVersion,
-                  wxString copyright, LicenseAdmin* licenseAdmin,
-                  wxString eula, wxWindowID id = wxID_ANY,
+    AboutDialogEx(wxWindow* parent, const wxBitmap& logo, wxString appVersion, wxString copyright,
+                  LicenseAdmin* licenseAdmin, wxString eula, wxWindowID id = wxID_ANY,
                   const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
                   long style = wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
     /// @private

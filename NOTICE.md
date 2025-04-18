@@ -63,11 +63,15 @@ https://github.com/Blake-Madden/ReadabilityStudio
 
 ### Lua
 
-* License: The MIT License (MIT)
+* License: MIT License (MIT)
+
+### Lua manual provided by Lua.org, PUC-Rio
+
+* License: MIT License (MIT)
 
 ### misspell
 
-* License: The MIT License (MIT)
+* License: MIT License (MIT)
 
 ### Oleander Stemming Library
 
@@ -95,7 +99,7 @@ https://github.com/Blake-Madden/ReadabilityStudio
 
 ### libexpat
 
-* License: The MIT License (MIT)
+* License: MIT License (MIT)
 
 ### nanosvg
 
@@ -108,3 +112,33 @@ https://github.com/Blake-Madden/ReadabilityStudio
 ### Wisteria-Dataviz
 
 * License: BSD 3-Clause "New" or "Revised" License
+
+### FindR.cmake
+
+* License: LGPL License 2.1
+
+### doxygen-awesome-css
+
+* License: The MIT License (MIT)
+
+### Catch2
+
+* License: Boost Software License - Version 1.0
+
+### Example files
+
+"The Frog Prince," "The Tale of Peter Rabbit," and "A Christmas Carol" provided by Project Gutenberg
+
+* License: Project Gutenberg License
+
+### Artwork
+
+Icons provided from *freesvg.org* or created by the Author
+
+License: CC0 Public Domain License
+
+Splashscreens were created by the Author
+
+### Legrand Orange Book
+
+* License: License: CC BY-NC-SA 4.0 (but with latextemplates.com exception clause for producing individual works [even commercial])

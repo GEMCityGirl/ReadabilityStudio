@@ -254,8 +254,9 @@ void AboutDialogEx::CreateControls()
         m_sideBarBook->AddPage(eulaPage, /* TRANSLATORS: End User License Agreement */ _(L"EULA"),
                                ID_EULA_PAGE, false);
 
-        wxHtmlWindow* eulaWindow{ new wxHtmlWindow(eulaPage) };
-        eulaWindow->SetPage(m_eula);
+        wxTextCtrl* eulaWindow =
+            new wxTextCtrl(eulaPage, wxID_ANY, wxString{}, wxDefaultPosition, wxDefaultSize,
+                           wxTE_MULTILINE | wxTE_RICH2, wxGenericValidator(&m_eula));
         mainPanelSizer->Add(eulaWindow, wxSizerFlags{ 1 }.Expand().Border());
         }
 
