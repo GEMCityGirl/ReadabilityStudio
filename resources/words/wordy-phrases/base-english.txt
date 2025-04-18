@@ -2495,6 +2495,7 @@ bizzare	bizarre	3
 black sheep	outcast, one who stands unfavorably in a family or group	2		
 blaim	blame	3		
 blaimed	blamed	3		
+blaok	black	3		
 blatent	blatant	3		
 blend of both	blend	1		
 blend together	blend	1		
@@ -3889,6 +3890,9 @@ conjecturing	guessing	0
 conjecutre	conjecture	3		
 conjonction	conjunction	3		
 conjuction	conjunction	3		
+conncetion	connection	3		
+conncetion's	connection's	3		
+conncetions	connections	3		
 conneciton	connection	3		
 connecitons	connections	3		
 connect together	connect	1		
@@ -5154,7 +5158,7 @@ diferent	different	3
 diferrent	different	3		
 differ form	differ from	3		
 differed form	differed from	3		
-different form	different from	3	a;slightly;the	factor;factors;of
+different form	different from	3	a;slightly;the	factor;factors;of;type;types
 different then	different than, missing comma between 'different' and 'then'	3		
 differents	different	3		
 differing form	differing from	3		
@@ -6136,6 +6140,7 @@ enties	entries	3
 entires	entries	3		
 entirity	entirely	3		
 entites	entities	3		
+entitites	entities	3		
 entitity	entity	3		
 entitled to	has a right to	0		
 entitlied	entitled	3		
@@ -7866,7 +7871,6 @@ hesitates	pauses	0
 hesitating	pausing	0		
 heterogeneous	varied	0		
 heterogeneously	variably	0		
-heterogenous	heterogeneous	3		
 hexdecimal	hexadecimal	3		
 hexidecimal	hexadecimal	3		
 hhare	share	3		
@@ -8911,6 +8915,7 @@ initialze	initialize	3
 initialzed	initialized	3		
 initialzes	initializes	3		
 initialzied	initialized	3		
+initialzing	initializing	3		
 initiate	start	0		
 initiated	started	0		
 initiates	starts	0		
@@ -10134,6 +10139,7 @@ many times over	often, frequently	0
 marauder	robber	0		
 marauder's	robber's	0		
 marauders	robbers	0		
+maretking	marketing	3		
 mariage	marriage	3		
 Mariansit	Marianist	3		
 Mariansit's	Marianist's	3		
@@ -10464,6 +10470,7 @@ mmnemonic	mnemonic	3
 mniport	miniport	3		
 mniport's	miniport's	3		
 mniports	miniports	3		
+modalidities	modalities	3		
 moddem	modem	3		
 moddem's	modem's	3		
 moddems	modems	3		
@@ -14377,6 +14384,7 @@ serie	series	3
 serivce	service	3		
 serivces	services	3		
 serpentine	twisting, snaking, sly	0		
+serrvice	service	3		
 servcie	service	3		
 servcie's	service's	3		
 servcies	services	3		
@@ -14957,6 +14965,7 @@ stratagically	strategically	3
 strategies	plans	0		
 strategy	plan	0		
 strategy's	plan's	0		
+stratgy	strategy	3		
 stratifications	layers	0		
 strcuture	structure	3		
 strcuture's	structure's	3		
@@ -15267,6 +15276,7 @@ supress	suppress	3
 supressed	suppressed	3		
 supresses	suppresses	3		
 supressing	suppressing	3		
+supression	suppression	3		
 suprise	surprise	3		
 suprise's	surprise's	3		
 suprised	surprised	3		

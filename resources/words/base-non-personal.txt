@@ -3736,6 +3736,7 @@ Leelawadee
 Leesburg
 Leesville
 Leetonia
+Leetspeak
 LegalForce
 Lego
 Lehi
@@ -4584,6 +4585,7 @@ Needham
 Nehalem
 Nelnet
 Nemariam
+Nemotron
 Neo4j
 NeoGeo
 Neosporin
@@ -5324,6 +5326,8 @@ Progeria
 Projectplace
 Prolixin
 Promethean
+Promptflow
+Prompty
 Pronethalol
 Proofpoint
 Prophetstown
@@ -6114,6 +6118,7 @@ Sonora
 Sony
 Sooners
 Sophoclean
+Sophos
 Sorrentine
 Soulaines
 Soundcloud
@@ -6136,6 +6141,7 @@ SpaceU
 Spacewar
 SpaceX
 Spain
+Spamtrap
 Spanglish
 Spaniard
 Spanish
