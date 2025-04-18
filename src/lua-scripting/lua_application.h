@@ -328,7 +328,7 @@ namespace LuaScripting
     int /*BatchProject*/ GetActiveBatchProject(lua_State* L); // Returns the active batch project.
 
     // printing
-    int SetPaperOrientation(lua_State* L /*Orientation orient*/); // Sets the printer paper orientation. Orientation:Vertical is portrait and Orientation:Horizontal is landscape.
+    int SetPaperOrientation(lua_State* L /*Orientation orient*/); // Sets the printer paper orientation. Orientation.Vertical is portrait and Orientation.Horizontal is landscape.
     int /*Orientation*/ GetPaperOrientation(lua_State* L); // Returns the printer paper orientation.
     int SetLeftPrintHeader(lua_State* L /*string label*/); // Sets the left print header.
     int SetCenterPrintHeader(lua_State* L /*string label*/); // Sets the center print header.

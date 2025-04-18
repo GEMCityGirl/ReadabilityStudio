@@ -10,6 +10,7 @@
  * Contributors:
  *   Blake Madden - initial implementation
  ********************************************************************************/
+
 #ifndef __ABBREVIATION_H__
 #define __ABBREVIATION_H__
 

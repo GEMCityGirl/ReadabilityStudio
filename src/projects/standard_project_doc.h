@@ -1,13 +1,15 @@
-/** @addtogroup Projects
-    @brief Classes for readability projects.
-    @date 2005-2023
-    @copyright Oleander Software, Ltd.
-    @author Blake Madden
-    @details This program is free software; you can redistribute it and/or modify
-     it under the terms of the 3-Clause BSD License.
-
-     SPDX-License-Identifier: BSD-3-Clause
-* @{*/
+/********************************************************************************
+ * Copyright (c) 2005-2025 Blake Madden
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *   Blake Madden - initial implementation
+ ********************************************************************************/
 
 #ifndef __PROJECT_DOC_H__
 #define __PROJECT_DOC_H__
@@ -29,10 +31,7 @@ class ProjectDoc final : public BaseProjectDoc
     ProjectDoc& operator=(const ProjectDoc&) = delete;
 
     /// @private
-    ~ProjectDoc()
-        {
-        DeleteExcludedPhrases();
-        }
+    ~ProjectDoc() { DeleteExcludedPhrases(); }
 
     /// @private
     bool OnOpenDocument(const wxString& filename) final;
@@ -70,19 +69,22 @@ class ProjectDoc final : public BaseProjectDoc
     void DisplayHighlightedText(const wxColour& highlightColor, const wxFont& textViewFont);
 
     [[nodiscard]]
-    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetMisspelledWordData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>&
+    GetMisspelledWordData() const noexcept
         {
         return m_misspelledWordData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetOverusedWordsBySentenceData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>&
+    GetOverusedWordsBySentenceData() const noexcept
         {
         return m_overusedWordsBySentenceData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetPassiveVoiceData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>&
+    GetPassiveVoiceData() const noexcept
         {
         return m_passiveVoiceData;
         }
@@ -99,7 +101,8 @@ class ProjectDoc final : public BaseProjectDoc
 
   private:
     [[nodiscard]]
-    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetOverusedWordsBySentenceData() noexcept
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>&
+    GetOverusedWordsBySentenceData() noexcept
         {
         return m_overusedWordsBySentenceData;
         }
@@ -268,6 +271,7 @@ class ProjectDoc final : public BaseProjectDoc
         textWindow->SetInsertionPoint(cursorPos);
         textWindow->ShowPosition(cursorPos);
         }
+
     void LoadDCTextWindow(const std::wstring& mainBuffer, const std::wstring& paperBuffer);
     void LoadHJTextWindow(const std::wstring& mainBuffer, const std::wstring& paperBuffer);
     void LoadSpacheTextWindow(const std::wstring& mainBuffer, const std::wstring& paperBuffer);
@@ -313,12 +317,14 @@ class ProjectDoc final : public BaseProjectDoc
     std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_overlyLongSentenceData{
         std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_sentenceStartingWithConjunctionsData{
-        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
-    };
-    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_sentenceStartingWithLowercaseData{
-        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
-    };
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>
+        m_sentenceStartingWithConjunctionsData{
+            std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
+        };
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>
+        m_sentenceStartingWithLowercaseData{
+            std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
+        };
     Wisteria::UI::FormattedTextCtrl* m_dcTextWindow{ nullptr };
     Wisteria::UI::FormattedTextCtrl* m_spacheTextWindow{ nullptr };
     Wisteria::UI::FormattedTextCtrl* m_hjTextWindow{ nullptr };
@@ -347,7 +353,5 @@ class ProjectDoc final : public BaseProjectDoc
   public:
     wxDECLARE_DYNAMIC_CLASS(ProjectDoc);
     };
-
-    /** @}*/
 
 #endif //__PROJECT_DOC_H__
