@@ -76,7 +76,6 @@ Name: {app}\res; Type: dirifempty
 Name: {app}; Type: dirifempty
 
 [Code]
-#include "helper.isl"
 
 var
   Upgrade: Boolean;

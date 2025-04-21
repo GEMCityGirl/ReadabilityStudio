@@ -30,6 +30,7 @@
 /src/app/citations.bib
 /installers/windows/setup.isl
 /installers/windows/icons.isl
+/installers/windows/readstudio.iss
 /docs/version_info.txt
 /resource.h
 /docs/coding-bible/.quarto
