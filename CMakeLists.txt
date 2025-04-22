@@ -39,20 +39,25 @@ if(APPLE)
     # Note that this will need to be set via codesign later because we are not
     # codesigning via CMake. This here is more for bookkeeping.
     set(CMAKE_XCODE_ATTRIBUTE_ENABLE_HARDENED_RUNTIME YES)
-elseif(UNIX)
-    set(UNIX_ARCHITECTURE "x86_64" CACHE STRING "" FORCE)
 endif()
 
-if(APPLE AND NOT CMAKE_OSX_DEPLOYMENT_TARGET)
+# Always run these, even if not APPLE, as we use ${CMAKE_OSX_DEPLOYMENT_TARGET} for the docs
+if(NOT CMAKE_OSX_DEPLOYMENT_TARGET)
     # If no deployment target has been set default to the minimum supported
     # OS version (this has to be set before the first project() call)
-    if(CMAKE_SYSTEM_NAME STREQUAL "iOS")
+    if(APPLE AND CMAKE_SYSTEM_NAME STREQUAL "iOS")
         set(CMAKE_OSX_DEPLOYMENT_TARGET 12.0 CACHE STRING "iOS Deployment Target")
     else()
-        set(CMAKE_OSX_DEPLOYMENT_TARGET 10.13 CACHE STRING "macOS Deployment Target")
+        set(CMAKE_OSX_DEPLOYMENT_TARGET 10.15 CACHE STRING "macOS Deployment Target")
     endif()
     message(STATUS "macOS deployment target: ${CMAKE_OSX_DEPLOYMENT_TARGET}")
 endif()
+set(UNIX_ARCHITECTURE "x86_64" CACHE STRING "" FORCE)
+
+# Only used for the docs
+set(WIN32_DEPLOYMENT_TARGET 10)
+set(MIN_RAM "2 GB")
+set(RAM_RECOMMENDED "4 GB")
 
 # Edit these values when bumping the release
 project(readstudio VERSION 2024.0.1.0 DESCRIPTION "Readability Studio" HOMEPAGE_URL https://www.oleandersoftware.com/)
@@ -62,9 +67,11 @@ set(PUBLISHER "Oleander Software, Ltd.")
 set(PROGRAM_AUTHOR "Blake Madden")
 set(PROGRAM_COMMENTS "Readability analysis software")
 set(PROGRAM_RDNS_IDENTIFIER "com.oleandersoftware.readabilitystudio")
+set(GIT_REPO "https://github.com/Blake-Madden/ReadabilityStudio")
 set(INNOSETUP_GUID "{FBFBEAB6-622A-4E16-893D-216C25FF6A69}")
 set(PROGRAM_LICENSE "BSD-3-Clause")
 
+set(FULL_VERSION ${readstudio_VERSION_MAJOR}.${readstudio_VERSION_MINOR}.${readstudio_VERSION_PATCH}.${readstudio_VERSION_TWEAK})
 # Build a displayable version string that only includes the necessary parts
 set(FULL_DISPLAY_VERSION ${readstudio_VERSION_MAJOR})
 if(NOT ${readstudio_VERSION_MINOR} EQUAL 0 OR NOT ${readstudio_VERSION_PATCH} EQUAL 0 OR NOT ${readstudio_VERSION_TWEAK} EQUAL 0)

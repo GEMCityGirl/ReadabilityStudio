@@ -1,4 +1,5 @@
 # ReadabilityStudio
+
 Readability Studio
 
 [![Linux Unit Tests](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/unit-tests.yml)
@@ -7,7 +8,7 @@ Readability Studio
 
 [![cppcheck](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/cppcheck.yml/badge.svg)](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/cppcheck.yml)
 [![Microsoft C++ Code Analysis](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/msvc.yml/badge.svg)](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/msvc.yml)
-[![i18n-check](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/i18n-check.yml/badge.svg)](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/i18n-check.yml)
+[![Quneiform](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/i18n-check.yml/badge.svg)](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/i18n-check.yml)
 
 [![doxygen](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/doxygen.yml/badge.svg)](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/doxygen.yml)
 [![Spell Check](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/spell-check.yml/badge.svg)](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/spell-check.yml)
@@ -48,15 +49,14 @@ Install the following tools to build *Readability Studio*:
 - *GCC* (C++ and fortran compilers)
 - *CMake*
 - *git*
+- *AppImage*
+- *linuxdeploy*
 - *R*
 - *Quarto*
-- *pandoc*
-- *pandoc-citeproc*
-- *AppImage*, *linuxdeploy*, and *AppImageLauncher* (if building an AppImage)
 
 Install the following libraries (*and* their development files, if mentioned):
 
-- *GTK+ 3*, *gtk3-devel*/*libgtk3-dev*
+- *GTK 3*, *gtk3-devel*/*libgtk3-dev*
 - *libCURL*, *libcurl-devel*/*libcurl-dev*
 - *GStreamer*, *gstreamer-devel*
 - *libsecret*, *libsecret-devel*/*libsecret-1-dev*
@@ -81,9 +81,8 @@ Place *wxWidgets* at the same folder level as this project, downloading and buil
 cd ..
 git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
 cd wxWidgets
-cmake . -DCMAKE_INSTALL_PREFIX=./wxlib -DwxBUILD_SHARED=OFF \
-    -DwxBUILD_OPTIMISE=ON -DwxBUILD_STRIPPED_RELEASE=ON -DCMAKE_BUILD_TYPE=Release
-cmake --build . --target install -j $(nproc) --config Release
+cmake . -DCMAKE_INSTALL_PREFIX=./wxlib -DwxBUILD_SHARED=OFF
+cmake --build . --target install -j $(nproc) --config Debug
 cd ..
 cd ReadabilityStudio
 ```
@@ -91,15 +90,15 @@ cd ReadabilityStudio
 Build the program as follows:
 
 ```
-cmake . -DCMAKE_BUILD_TYPE=Release
-cmake --build . --target all -j $(nproc) --config Release
+cmake . -DCMAKE_BUILD_TYPE=Debug
+cmake --build . --target all -j $(nproc) --config Debug
 ```
 
 Build an AppImage:
 
 ```
 linuxdeploy-x86_64.AppImage --appdir installers/unix/AppDir \
---executable installers/unix/AppDir/readstudio \
+--executable installers/unix/AppDir/usr/bin/readstudio \
 -d installers/unix/AppDir/readstudio.desktop \
 -i installers/unix/AppDir/app-logo.svg \
 --output appimage
@@ -183,7 +182,7 @@ codesign --verify --verbose=2 ./"Readability Studio.app"
 cd ..
 ```
 
-Build the DMG image and sign it:
+Build the DMG image:
 
 ```
 test -f ReadabilityStudio.dmg && rm ReadabilityStudio.dmg
@@ -199,14 +198,14 @@ create-dmg \
   --app-drop-link 600 185 \
   "ReadabilityStudio.dmg" \
   "release/"
+```
+
+Sign, notarize, staple, and verify the DMG image:
+
+```
 codesign --force --verbose=2 --sign ${ORG_ID} ./ReadabilityStudio.dmg
 codesign --verify --verbose=2 ./ReadabilityStudio.dmg
 hdiutil verify ./ReadabilityStudio.dmg
-```
-
-Notarize, staple, and verify the app bundle:
-
-```
 xcrun notarytool submit ./ReadabilityStudio.dmg \
   --keychain-profile ${KEYCHAIN_PROFILE} \
   --wait
