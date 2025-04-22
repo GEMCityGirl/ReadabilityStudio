@@ -1,5 +1,6 @@
 project:
   output-dir: "docs-online"
+bibliography: cites.bib
 book:
   chapters:
     - index.qmd

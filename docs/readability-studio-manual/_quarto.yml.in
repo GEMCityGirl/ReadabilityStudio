@@ -5,7 +5,6 @@ toc-depth: 2
 links-as-notes: true
 linestretch: 1.15
 biblio-title: References
-bibliography: cites.bib
 biblio-style: mla
 biblatexoptions: maxbibnames=4
 link-citations: true
