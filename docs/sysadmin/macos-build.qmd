@@ -1,0 +1,172 @@
+```{r}
+#| include: false
+#| eval: true
+
+source('R/appdown.r')
+```
+
+# macOS `r os_logo('apple')`
+
+| Install the following tools to build *{{< var PROGRAM_NAME >}}* |
+| :-- |
+| *XCode* |
+| *CMake* |
+| *create-dmg* |
+| *Homebrew* |
+| *R* (optional) |
+| *Quarto* (optional) |
+
+To install home-brew:
+
+```{bash}
+#| eval: false
+#| echo: true
+
+/bin/bash -c \
+    "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+To install *CMake* and *create-dmg*:
+
+```{bash}
+#| eval: false
+#| echo: true
+
+brew install cmake
+brew install create-dmg
+```
+
+If you get errors about not finding a CXX compiler, run this:
+
+```{bash}
+#| eval: false
+#| echo: true
+
+sudo xcode-select --reset
+```
+
+If you are notarizing the app locally, then add a notarization keychain to your system
+(`APPLE_ID` should be set to your Apple account, usually your email address).
+This only needs to be done once:
+
+```{bash}
+#| eval: false
+#| echo: true
+
+APPLE_ID=
+xcrun notarytool store-credentials --apple-id ${APPLE_ID}
+```
+
+When prompted, set the keychain profile to a meaningful name and enter your 10-digit organization ID as the team ID.
+Then enter your app-specific password. (You can get that from Apple's developer website.)
+
+{{< pagebreak >}}
+
+## Build *wxWidgets* {-}
+
+Download *wxWidgets*:
+
+```{bash}
+#| eval: false
+#| echo: true
+
+git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
+cd wxWidgets
+```
+
+Before building *wxWidgets*, a patch needs to be applied to add text control features needed by the program.
+Follow the instructions in `r menu(c('wxpatch', 'macOS', 'Instructions.txt'))` to apply the patch, and then build:
+
+```{bash}
+#| eval: false
+#| echo: true
+cmake . -DCMAKE_INSTALL_PREFIX=./wxlib -DwxBUILD_SHARED=OFF \
+    -D"CMAKE_OSX_ARCHITECTURES:STRING=arm64;x86_64" \
+    -DCMAKE_OSX_DEPLOYMENT_TARGET=10.13 \
+    -DwxBUILD_OPTIMISE=ON -DwxBUILD_STRIPPED_RELEASE=ON -DCMAKE_BUILD_TYPE=Release
+
+cmake --build . --target install --config Release
+cd ..
+```
+
+## Build *{{< var PROGRAM_NAME >}}* {-}
+
+```{.bash include="build-commands.txt" start-line=9 end-line=17}
+```
+
+If code signing locally, do the following:
+
+(`ORG_ID` should be set to your 10-digit Apple developer organization ID and `KEYCHAIN_PROFILE` should be the keychain profile connected to your Apple ID):
+
+```{bash}
+#| eval: false
+#| echo: true
+
+ORG_ID=
+KEYCHAIN_PROFILE=
+
+cd installers/macos/release
+
+codesign --force --verbose=2 --options runtime \
+         --timestamp --sign ${ORG_ID} ./"Readability Studio.app"
+
+codesign --verify --verbose=2 ./"Readability Studio.app"
+```
+
+{{< pagebreak >}}
+
+## Build the DMG image {-}
+
+::: {.notesection data-latex=""}
+If you build the "Release" version of *{{< var PROGRAM_NAME >}}*, then the CMake build process will copy "{{< var PROGRAM_NAME >}}.app" into `r menu(c('installers', 'macos', 'release'))`.
+:::
+
+Go to  `r menu(c('installers', 'macos', 'release'))` and run the following:
+
+```{bash}
+#| eval: false
+#| echo: true
+
+test -f ReadabilityStudio.dmg && rm ReadabilityStudio.dmg
+create-dmg \
+  --volname "Readability Studio Installer" \
+  --volicon "../../app-logo.icns" \
+  --background "../../app-logo.png" \
+  --window-pos 200 120 \
+  --window-size 800 400 \
+  --icon-size 100 \
+  --icon "readstudio.app" 200 190 \
+  --hide-extension "readstudio.app" \
+  --app-drop-link 600 185 \
+  "ReadabilityStudio.dmg" \
+  "release/"
+```
+
+If notarizing locally, then sign, notarize, staple, and verify the DMG image:
+
+```{bash}
+#| eval: false
+#| echo: true
+
+codesign --force --verbose=2 --sign ${ORG_ID} ./ReadabilityStudio.dmg
+codesign --verify --verbose=2 ./ReadabilityStudio.dmg
+hdiutil verify ./ReadabilityStudio.dmg
+xcrun notarytool submit ./ReadabilityStudio.dmg \
+  --keychain-profile ${KEYCHAIN_PROFILE} \
+  --wait
+
+xcrun stapler staple ./ReadabilityStudio.dmg
+
+xcrun spctl --assess --type open --context context:primary-signature \
+            --ignore-cache --verbose=2 ./ReadabilityStudio.dmg
+```
+
+If you get a notarization error, run the following
+(`GUID` will be the unique ID that the submission process just displayed):
+
+```{bash}
+#| eval: false
+#| echo: true
+
+xcrun notarytool log ${GUID} --keychain-profile ${KEYCHAIN_PROFILE}
+```

@@ -1,0 +1,24 @@
+project:
+  output-dir: "docs"
+theme-color: "26, 69, 135"
+page-side-decoration-color: "0, 128, 128"
+links-as-notes: false
+book:
+  subtitle: System Administrator Manual
+  output-file: "sysadmin-manual"
+  chapters:
+    - index.qmd
+    - part: "Installing"
+      chapters:
+      - windows-install.qmd
+      - macos-install.qmd
+      - linux-install.qmd
+    - part: "Building from Source"
+      chapters:
+      - windows-build.qmd
+      - macos-build.qmd
+      - linux-build.qmd
+format:
+  pdf:
+    lot: false
+    lof: false

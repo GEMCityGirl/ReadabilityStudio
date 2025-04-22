@@ -1,0 +1,15 @@
+```{r}
+#| include: false
+#| eval: true
+
+source('R/appdown.r')
+```
+
+# Preface {#sec-preface .unnumbered}
+
+This book is a guide to building, installing, and maintaining the software product *{{< var PROGRAM_NAME >}}*.
+
+System administrators can follow this guide for deploying installations and updates of *{{< var PROGRAM_NAME >}}*.
+Additionally, instructions are provided for system administrators and individual users for how to build the program from source and optionally install it.
+
+*{{< var PROGRAM_NAME >}}* is available for Microsoft^®^ Windows `r os_logo('Windows')`, macOS `r os_logo('apple')`, and Linux `r os_logo('linux')`.

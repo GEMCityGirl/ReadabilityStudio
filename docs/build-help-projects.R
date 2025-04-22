@@ -29,6 +29,11 @@ clearFolders <- function()
 
   unlink(glue("{docFolder}/release-notes/images"), recursive=T)
 
+  unlink(glue("{docFolder}/syntax/images"), recursive=T)
+  unlink(glue("{docFolder}/syntax/latex"), recursive=T)
+  unlink(glue("{docFolder}/syntax/R"), recursive=T)
+  unlink(glue("{docFolder}/syntax/_extensions"), recursive=T)
+
   unlink(glue("{docFolder}/readability-studio-api/images"), recursive=T)
   unlink(glue("{docFolder}/readability-studio-api/latex"), recursive=T)
   unlink(glue("{docFolder}/readability-studio-api/css"), recursive=T)
@@ -75,6 +80,46 @@ clearFolders()
 dir_copy(glue("{docFolder}/readability-studio-manual/R"),
          glue("{docFolder}/R"),
          TRUE)
+
+# System Admin Manual
+#####################
+
+setwd(glue("{docFolder}/sysadmin/"))
+file_copy(glue("{docFolder}/readability-studio-manual/_quarto.yml"),
+          glue("{docFolder}/sysadmin/_quarto.yml"),
+          TRUE)
+file_copy(glue("{docFolder}/readability-studio-manual/_quarto-sysadmin.yml"),
+          glue("{docFolder}/sysadmin/_quarto-sysadmin.yml"),
+          TRUE)
+file_copy(glue("{docFolder}/readability-studio-manual/modern-language-association.csl"),
+          glue("{docFolder}/sysadmin/modern-language-association.csl"),
+          TRUE)
+file_copy(glue("{docFolder}/readability-studio-manual/LegrandOrangeBook.cls"),
+          glue("{docFolder}/sysadmin/LegrandOrangeBook.cls"),
+          TRUE)
+file_copy(glue("{docFolder}/_variables.yml"),
+          glue("{docFolder}/sysadmin/_variables.yml"),
+          TRUE)
+dir_copy(glue("{docFolder}/readability-studio-manual/latex"),
+         glue("{docFolder}/sysadmin/latex"),
+         TRUE)
+dir_copy(glue("{docFolder}/readability-studio-manual/images"),
+         glue("{docFolder}/sysadmin/images"),
+         TRUE)
+dir_copy(glue("{docFolder}/readability-studio-manual/R"),
+         glue("{docFolder}/sysadmin/R"),
+         TRUE)
+dir_copy(glue("{docFolder}/readability-studio-manual/_extensions"),
+         glue("{docFolder}/sysadmin/_extensions"),
+         TRUE)
+
+quarto::quarto_render(output_format="pdf", as_job=F, profile="sysadmin")
+
+unlink(glue("{docFolder}/sysadmin/modern-language-association.csl"))
+unlink(glue("{docFolder}/sysadmin/_variables.yml"))
+unlink(glue("{docFolder}/sysadmin/_quarto.yml"))
+unlink(glue("{docFolder}/sysadmin/_quarto-sysadmin.yml"))
+unlink(glue("{docFolder}/sysadmin/LegrandOrangeBook.cls"))
 
 # Coding Bible
 ##############
@@ -281,7 +326,6 @@ unlink(glue("{docFolder}/readability-test-reference/_quarto-reference.yml"))
 unlink(glue("{docFolder}/readability-test-reference/readability-tests-spanish.qmd"))
 unlink(glue("{docFolder}/readability-test-reference/readability-tests-german.qmd"))
 unlink(glue("{docFolder}/readability-test-reference/scoring-notes.qmd"))
-unlink(glue("{docFolder}/readability-test-reference/acknowledgements.qmd"))
 unlink(glue("{docFolder}/readability-test-reference/author.qmd"))
 unlink(glue("{docFolder}/readability-test-reference/cites.bib"))
 unlink(glue("{docFolder}/readability-test-reference/modern-language-association.csl"))

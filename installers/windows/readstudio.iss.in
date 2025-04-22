@@ -31,6 +31,7 @@ Source: ..\..\docs\readability-studio-manual\docs-manual\*; DestDir: {app}\reada
 Source: ..\..\docs\readability-studio-manual\docs-online\*; DestDir: {app}\readability-studio-manual\online; Components: HelpFiles; Excludes: "thumbs.db,*.tex,*.log,README.md,\.git"; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\..\docs\readability-test-reference\docs\readability-test-reference.pdf; DestDir: {app}\readability-studio-manual; Components: HelpFiles; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\..\docs\shortcuts-cheatsheet\docs\shortcuts-cheatsheet.pdf; DestDir: {app}\readability-studio-manual; Components: HelpFiles; Flags: replacesameversion restartreplace recursesubdirs
+Source: ..\..\docs\sysadmin\docs\sysadmin-manual.pdf; DestDir: {app}\readability-studio-manual; Components: HelpFiles; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\..\docs\release-notes\docs\release-notes.pdf; DestDir: {app}\readability-studio-manual; Components: HelpFiles; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\..\docs\readability-studio-api\docs\readability-studio-api.pdf; DestDir: {app}\readability-studio-manual; Components: HelpFiles; Flags: replacesameversion restartreplace recursesubdirs
 Source: ..\..\docs\lua-5.4\doc\*; DestDir: {app}\readability-studio-manual\lua-5.4\doc; Components: HelpFiles; Excludes: "thumbs.db"; Flags: replacesameversion restartreplace recursesubdirs

@@ -29,6 +29,11 @@ source('../R/appdown.r')
     - New function `IFS`.
     - The functions `MIN`, `MAX`, `SUM`, `AVERAGE`, `OR`, and `AND` now support 24 arguments. (These were limited to 7 arguments previously.)
 
+### Documentation Enhancements {-}
+
+- "System Administrator Manual" now included for those needing to install and maintain the program.
+- Electronic help now displays responsively in either light or dark mode.
+
 ### Bug Fixes {-}
 
 - Printing text windows now supports more paper sizes.

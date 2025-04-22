@@ -123,6 +123,8 @@ elseif(WIN32)
 endif()
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/docs/_variables.yml.in"
                "${CMAKE_CURRENT_SOURCE_DIR}/docs/_variables.yml")
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/docs/sysadmin/build-commands.txt.in"
+               "${CMAKE_CURRENT_SOURCE_DIR}/docs/sysadmin/build-commands.txt")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/_quarto.yml.in"
                "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/_quarto.yml")
 
@@ -393,6 +395,13 @@ if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/docs/release-notes/docs/")
                    COMMAND ${CMAKE_COMMAND} -E make_directory
                    "${CMAKE_CURRENT_SOURCE_DIR}/docs/release-notes/docs/")
 endif()
+if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/docs/sysadmin/docs/")
+    add_custom_command(TARGET ${PROJECT_NAME}
+                   POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E make_directory
+                   "${CMAKE_CURRENT_SOURCE_DIR}/docs/sysadmin/docs/")
+endif()
+
 if(WIN32 AND NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/release/")
     add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
@@ -437,6 +446,10 @@ add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
                    ${CMAKE_CURRENT_SOURCE_DIR}/docs/release-notes/docs $<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/readability-studio-manual)
+add_custom_command(TARGET ${PROJECT_NAME}
+                   POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy_directory
+                   ${CMAKE_CURRENT_SOURCE_DIR}/docs/sysadmin/docs $<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/readability-studio-manual)
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory

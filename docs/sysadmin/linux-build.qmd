@@ -1,0 +1,83 @@
+```{r}
+#| include: false
+#| eval: true
+
+source('R/appdown.r')
+```
+
+# Linux `r os_logo('linux')`
+
+| Install the following tools to build *{{< var PROGRAM_NAME >}}* |
+| :-- |
+| *GCC* (C++ and fortran compilers) |
+| *CMake* |
+| *git* |
+| *AppImage* |
+| *linuxdeploy* |
+| *Homebrew* |
+| *R* (optional) |
+| *Quarto* (optional) |
+
+| Install the following libraries (and their development files, if mentioned) |
+| :-- |
+| *GTK 3*, *gtk3-devel*/*libgtk3-dev* |
+| *libCURL*, *libcurl-devel*/*libcurl-dev* |
+| *GStreamer*, *gstreamer-devel* |
+| *libsecret*, *libsecret-devel*/*libsecret-1-dev* |
+| *webkit*, *webkit2* |
+| *SDL2-devel* |
+| *libnotify*, *libnotify-devel*/*libnotify-dev* |
+| *TBB*, *tbb-devel*/*tbb-dev* |
+| *OpenMP* |
+| *libopenssl*, *libopenssl-3-devel*/*libssl-dev* |
+| *libxml2*, *libxml2-devel*/*libxml2-dev* |
+
+If building the documentation, prepare *R* to install packages:
+
+```{bash}
+#| eval: false
+#| echo: true
+
+R
+install.packages("pacman")
+```
+
+{{< pagebreak >}}
+
+## Build *wxWidgets* {-}
+
+```{bash}
+#| eval: false
+#| echo: true
+
+git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
+cd wxWidgets
+
+cmake . -DCMAKE_INSTALL_PREFIX=./wxlib -DwxBUILD_SHARED=OFF \
+        -DwxBUILD_OPTIMISE=ON -DwxBUILD_STRIPPED_RELEASE=ON -DCMAKE_BUILD_TYPE=Release
+
+cmake --build . --target install -j $(nproc) --config Release
+cd ..
+```
+
+## Build *{{< var PROGRAM_NAME >}}* {-}
+
+```{.bash include="build-commands.txt" start-line=1 end-line=7}
+```
+
+## Build the AppImage {-}
+
+```{bash}
+#| eval: false
+#| echo: true
+
+linuxdeploy-x86_64.AppImage --appdir installers/unix/AppDir \
+  --executable installers/unix/AppDir/usr/bin/readstudio \
+  -d installers/unix/AppDir/readstudio.desktop \
+  -i installers/unix/AppDir/app-logo.svg \
+  --output appimage
+mv Readability_Studio*.AppImage ./installers/unix
+```
+
+Once built, the AppImage will be available in `r menu(c('installers', 'unix'))`.
+Apply a GPG signature to it before distributing.

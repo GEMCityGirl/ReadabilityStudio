@@ -1,0 +1,22 @@
+```{r}
+#| include: false
+#| eval: true
+
+source('R/appdown.r')
+```
+
+# macOS `r os_logo('apple')`
+
+| Requirements |
+| :-- |
+| macOS {{< var MACOS_REQUIRED >}} (or higher) |
+| Apple Silicon or Intel processor |
+| {{< var MIN_RAM >}} of RAM ({{< var RAM_RECOMMENDED >}} recommended) |
+
+## Installing {-}
+
+Open "ReadabilityStudio.dmg" and drag-and-drop the program into the "Applications" folder.
+
+## Updating {-}
+
+Open "ReadabilityStudio.dmg" and drag-and-drop the program into the "Applications" folder, replacing the existing copy.

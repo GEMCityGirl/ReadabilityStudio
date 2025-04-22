@@ -1,0 +1,55 @@
+```{r}
+#| include: false
+#| eval: true
+
+source('R/appdown.r')
+```
+
+# Microsoft^®^ Windows `r os_logo('Windows')`
+
+| Install the following tools to build *{{< var PROGRAM_NAME >}}* |
+| :-- |
+| *Visual Studio* |
+| *Inno Setup* |
+| *R* (optional) |
+| *Quarto* (optional) |
+
+Perform the following to build:
+
+## Build *wxWidgets* {-}
+
+- Open *Visual Studio* and select *Clone a Repository*
+  - Enter ["https://github.com/wxWidgets/wxWidgets.git"](https://github.com/wxWidgets/wxWidgets.git) and clone it
+- Once the "wxWidgets" folder is cloned and opened in *Visual Studio*:
+  - Open `r menu(c('Project', 'CMake Settings for wxWidgets'))`
+    - Uncheck **wxBUILD_SHARED**
+    - Set **wxBUILD_OPTIMISE** to "ON"
+    - Set the configuration type to "Release"
+    - Save your changes
+  - Select `r menu(c('Build', 'Install wxWidgets'))` (builds and then copies the header, lib, and cmake files to the prefix folder)
+
+{{< pagebreak >}}
+
+## Build *{{< var PROGRAM_NAME >}}* {-}
+
+- From *Visual Studio*, select *Clone a Repository* again
+  - Enter ["{{< var GIT_REPO >}}.git"]({{< var GIT_REPO >}}.git) and clone it to the same level as the "wxWidgets" folder
+- Once the "ReadabilityStudio" folder is cloned and opened in *Visual Studio*:
+  - Open `r menu(c('Project', 'CMake Settings for readstudio'))`
+    - Set the configuration type to "Release" (or create a new release configuration)
+    - Save your changes
+- Select `r menu(c('View', 'CMake Targets'))`
+- Build the "{{< var BUILD_TARGET >}}" target
+- Optionally, the "manuals" target can also be ran to rebuild the documentation
+
+## Build the installer {-}
+
+::: {.notesection data-latex=""}
+If you build the "Release" version of *{{< var PROGRAM_NAME >}}*, then the CMake build process will copy "{{< var BUILD_TARGET >}}.exe" into `r menu(c('installers', 'windows', 'release'))`.
+:::
+
+- Go to `r menu(c('installers', 'windows'))`
+- Digitally sign "release/{{< var BUILD_TARGET >}}.exe"
+- Open "{{< var BUILD_TARGET >}}.iss" in *Inno Setup* and build the installer
+  - The installer will be placed in "output/rssetup{{< var FULL_VERSION >}}.exe"
+- Digitally sign the installer

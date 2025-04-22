@@ -1,0 +1,51 @@
+```{r}
+#| include: false
+#| eval: true
+
+source('R/appdown.r')
+```
+
+# Microsoft^®^ Windows `r os_logo('Windows')`
+
+| Requirements |
+| :-- |
+| 64-bit Windows {{< var WIN32_REQUIRED >}} (or higher) |
+| x86_64 processor |
+| {{< var MIN_RAM >}} of RAM ({{< var RAM_RECOMMENDED >}} recommended) |
+
+The *Microsoft Visual C++ runtime* is also required.
+This is normally managed via *Windows Update*, but can also be installed manually.
+To install, download and run the latest [Microsoft Visual C++ Redistributable](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist) installer.
+
+## Installing {-}
+
+Run the installer ("rssetup{{< var FULL_VERSION >}}.exe") as an administrator.
+You will be prompted for a user name, where to install the program, and which components to install.
+After answering these prompts, continue the installer to completion.
+
+## Updating {-}
+
+To upgrade an installation, run the installer ("rssetup{{< var FULL_VERSION >}}.exe") as an administrator and follow the prompts.
+If there is a previous installation of *{{< var PROGRAM_NAME >}}*, then the installer will update it.
+
+::: {.notesection data-latex=""}
+If updating a 32-bit edition of *{{< var PROGRAM_NAME >}}* (version 2021 or earlier), you will first need to uninstall the program.
+The 64-bit editions default to the 64-bit *Windows* program folder, while earlier editions where installed to the "Program Files (x86)" folder.
+Uninstalling any 32-bit editions will ensure that you won't have multiple installations after updating.
+:::
+
+{{< pagebreak >}}
+
+## Silent Mode {-}
+
+The *{{< var PROGRAM_NAME >}}* installer uses *Inno Setup*, which provides support for silent install.
+(This applies to both installation and upgrading.)
+To perform a silent install, pass the command line arguments `/SILENT` or `/VERYSILENT`.
+For example, the following will run a silent install that will not restart the computer and write its progress to a log file:
+
+```{bash}
+#| eval: false
+#| echo: true
+
+rssetup.exe /SILENT /NORESTART /LOG
+```

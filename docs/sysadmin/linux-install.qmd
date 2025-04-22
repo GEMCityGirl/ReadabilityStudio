@@ -1,0 +1,35 @@
+```{r}
+#| include: false
+#| eval: true
+
+source('R/appdown.r')
+```
+
+# Linux `r os_logo('linux')`
+
+| Requirements |
+| :-- |
+| x86_64 processor |
+| {{< var MIN_RAM >}} of RAM ({{< var RAM_RECOMMENDED >}} recommended) |
+
+## Installing {-}
+
+Make "Readability_Studio-{{< var UNIX_ARCHITECTURE >}}.AppImage" executable.
+This can be done with the following syntax:
+
+```{r}
+#| eval: false
+#| echo: true
+
+chmod u+x <AppImage File>
+```
+
+This can also be down by right-clicking the file, selecting `r menu(c('Properties', 'Permissions'))` and checking *Allow executing file as program*.
+
+This only needs to be done once.
+Now "Readability_Studio-{{< var UNIX_ARCHITECTURE >}}.AppImage" can be ran directly to launch the program.
+
+## Updating {-}
+
+Replace your existing AppImage with the latest version.
+Make the new AppImage executable and then it will be ready to run.
