@@ -21,7 +21,7 @@ Numerous formats are available for each type of window:
 - [Highlighted text](#sec-text-window-export): HTML, RTF, and Pango (Pango is only available on Linux.)
 - Statistic summaries: HTML
 - [Test results](#sec-scores-export): HTML
-- Word, phrase, and sentence [lists](#sec-export-list): HTML, Text, and `r latex_logo(FALSE)`
+- Word, phrase, and sentence [lists](#sec-export-list): HTML, Text, and {{< latex >}}
 - [Graphs](#sec-image-export): PNG, BMP, TIFF, JPEG, GIF, TARGA, and SVG
 
 All windows can also be exported at once by clicking the arrow beneath `r keys("Save")` and selecting [**Export All...**](#sec-export-all-options).
@@ -125,8 +125,8 @@ When [exporting](#sec-exporting)\index{exporting!lists} a list\index{lists!expor
 
 **TXT**: A tab-delimited file with no formatting (i.e., colors will be lost).
 
-**LaTeX**: A `r tex_logo(TRUE)`file with the list formatted into a `longtable{}` environment that can be
-included in a larger `r latex_logo(TRUE)`document.
+**LaTeX**: A {{< latex >}} file with the list formatted into a `longtable{}` environment that can be
+included in a larger {{< latex >}} document.
 :::
 
 After selecting the file format, these additional options will be provided.

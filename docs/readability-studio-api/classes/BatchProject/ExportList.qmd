@@ -8,7 +8,7 @@ source('R/appdown.r')
 ::: {.minipage data-latex="{\textwidth}"}
 ## `ExportList` {#batch-exportlist}
 
-Saves\index{lists!exporting} the specified list as an HTML, text, or `r latex_logo(TRUE)`file to *outputFilePath*.
+Saves\index{lists!exporting} the specified list as an HTML, text, or {{< latex >}} file to *outputFilePath*.
 
 ### Syntax {-}
 

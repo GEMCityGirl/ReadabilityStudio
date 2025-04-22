@@ -22,7 +22,7 @@ IDL (Corba, Microsoft, and UNO/OpenOffice flavors), Fortran, VHDL and to some ex
 
 ### Legrand Orange Book {-}
 
-Highly themable `r latex_logo(TRUE)`book template.
+Highly themable {{< latex >}} book template.
 
 [https://www.latextemplates.com/template/the-legrand-orange-book](https://www.latextemplates.com/template/the-legrand-orange-book)
 

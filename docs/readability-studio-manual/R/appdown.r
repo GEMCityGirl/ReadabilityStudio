@@ -83,60 +83,6 @@ os_logo <- function(os)
     { knitr::asis_output(fontawesome::fa(glue('fab fa-{stringr::str_to_lower(os)}'))) }
   }
 
-# @brief Displays the TeX logo, or simply the word "TeX" if not available.
-# @param withTrailingSpace Set to true to add a trailing space after the logo.
-tex_logo <- function(withTrailingSpace)
-  {
-  if (knitr::is_latex_output())
-    {
-    if (withTrailingSpace)
-      { knitr::asis_output("\\TeX\\ ") }
-    else
-      { knitr::asis_output("\\TeX") }
-    }
-  else if (knitr::is_html_output())
-    {
-    if (withTrailingSpace)
-      { knitr::asis_output(R"(<span style="letter-spacing:-2px;">T</span><sub style="font-size: inherit; letter-spacing:-1px;">E</sub>X&nbsp;)") }
-    else
-      { knitr::asis_output(R"(<span style="letter-spacing:-2px;">T</span><sub style="font-size: inherit; letter-spacing:-1px;">E</sub>X)") }
-    }
-  else
-    {
-    if (withTrailingSpace)
-      { knitr::asis_output("TeX ") }
-    else
-      { knitr::asis_output("TeX") }
-    }
-  }
-
-# @brief Displays the LaTeX logo, or simply the word "LaTeX" if not available.
-# @param withTrailingSpace Set to true to add a trailing space after the logo.
-latex_logo <- function(withTrailingSpace)
-  {
-  if (knitr::is_latex_output())
-    {
-    if (withTrailingSpace)
-      { knitr::asis_output("\\LaTeX\\ ") }
-    else
-      { knitr::asis_output("\\LaTeX") }
-    }
-  else if (knitr::is_html_output())
-    {
-    if (withTrailingSpace)
-      { knitr::asis_output(R"(<span style="letter-spacing:-3px;">L</span><sup style="font-size: inherit; letter-spacing:-1px;">A</sup><span style="letter-spacing:-2px;">T</span><sub style="font-size: inherit; letter-spacing:-1px;">E</sub>X&nbsp;)") }
-    else
-      { knitr::asis_output(R"(<span style="letter-spacing:-3px;">L</span><sup style="font-size: inherit; letter-spacing:-1px;">A</sup><span style="letter-spacing:-2px;">T</span><sub style="font-size: inherit; letter-spacing:-1px;">E</sub>X)") }
-    }
-  else
-    {
-    if (withTrailingSpace)
-      { knitr::asis_output("LaTeX ") }
-    else
-      { knitr::asis_output("LaTeX") }
-    }
-  }
-
 menu <- function(menuKeys)
   {
   if (knitr::is_latex_output())
@@ -203,8 +149,9 @@ keys <- function(buttonKeys)
 # @param inputFolder The folder to read the files from.
 # @param pattern The file pattern to search for. The default is to
 #                read all files.
+# @param addendum Extra text to add to the bottom of the file.
 # @note The input folder is read recursively, and files are read alphabetically.
-combine_files <- function(output, inputFolder, pattern=NULL)
+combine_files <- function(output, inputFolder, pattern=NULL, addendum = "")
   {
   output <- str_glue('{getwd()}/{output}')
   if (file.exists(output))
@@ -216,6 +163,11 @@ combine_files <- function(output, inputFolder, pattern=NULL)
     # add a newline between combined files
     write_lines(append(read_lines(x), "\n"),
                 output, append=T)
+    }
+
+  if (length(addendum))
+    {
+    write_lines(addendum, output, append=T)
     }
   }
 
@@ -320,7 +272,7 @@ superscript <- function(value)
   }
 
 # @brief Returns an URL, formatted with url{} in LaTeX
-#        and split into lines for HTML (it too long).
+#        and split into lines for HTML (if too long).
 # @param text The URL to format.
 url <- function(text)
   {

@@ -300,8 +300,10 @@ Additionally, an outer ring categorizes these subgroups into simple and complex 
 knitr::include_graphics("images/syllables-pie-chart.png")
 ```
 
-The above donut chart shows similar results to the previous histogram. With this visualization, however, it is easier to compare the overall complex- and simple-word groups.
-In this case, less than 10% of the document consists of complex words. Also, looking at the inner ring, we can see that ~two-thirds of the words are one-syllable.
+The above donut chart shows similar results to the previous histogram.
+With this visualization, however, it is easier to compare the overall complex- and simple-word groups.
+In this case, less than 10{{< pct >}} of the document consists of complex words.
+Also, looking at the inner ring, we can see that ~two-thirds of the words are one-syllable.
 :::
 
 ::: {.minipage data-latex="{\textwidth}"}

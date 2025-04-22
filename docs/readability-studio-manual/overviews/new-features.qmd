@@ -167,7 +167,7 @@ source('../R/appdown.r')
 ### Importing/Exporting Enhancements {-}
 
 - Added Markdown importer. Standard Markdown, *RMarkdown*, and *Quarto* documents are supported.
-- Lists can now be exported as `r latex_logo(TRUE)`(in `longtable{}` environments).
+- Lists can now be exported as {{< latex >}} (in `longtable{}` environments).
 - HTML importer:
   - Improved detection of link lists.
   - Improved handling of malformed documents.

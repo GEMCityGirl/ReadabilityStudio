@@ -33,12 +33,14 @@ clearFolders <- function()
   unlink(glue("{docFolder}/readability-studio-api/latex"), recursive=T)
   unlink(glue("{docFolder}/readability-studio-api/css"), recursive=T)
   unlink(glue("{docFolder}/readability-studio-api/R"), recursive=T)
+  unlink(glue("{docFolder}/readability-studio-api/_extensions"), recursive=T)
   unlink(glue("{docFolder}/readability-studio-api/index.ptc"))
 
   unlink(glue("{docFolder}/readability-test-reference/images"), recursive=T)
   unlink(glue("{docFolder}/readability-test-reference/latex"), recursive=T)
   unlink(glue("{docFolder}/readability-test-reference/css"), recursive=T)
   unlink(glue("{docFolder}/readability-test-reference/R"), recursive=T)
+  unlink(glue("{docFolder}/readability-test-reference/_extensions"), recursive=T)
   unlink(glue("{docFolder}/readability-test-reference/data"), recursive=T)
   unlink(glue("{docFolder}/readability-test-reference/overviews"), recursive=T)
   unlink(glue("{docFolder}/readability-test-reference/scoring-notes"), recursive=T)
@@ -69,6 +71,11 @@ clearFolders <- function()
 
 clearFolders()
 
+# copy R script to parent so that single-chapter files can reference it
+dir_copy(glue("{docFolder}/readability-studio-manual/R"),
+         glue("{docFolder}/R"),
+         TRUE)
+
 # Coding Bible
 ##############
 
@@ -77,11 +84,6 @@ quarto::quarto_render(output_format="html", as_job=T)
 
 # Release Notes
 ###############
-
-# copy R script to parent so that single-chapter files can reference it
-dir_copy(glue("{docFolder}/readability-studio-manual/R"),
-         glue("{docFolder}/R"),
-         TRUE)
 
 # Note that this book has its own LaTeX files (i.e., does not copy them from readability-studio-manual).
 # This "book" doesn't have any front or back matter, so its preamble TeX file doesn't include that.
@@ -117,10 +119,10 @@ unlink(glue("{docFolder}/shortcuts-cheatsheet/index.qmd"))
 #############
 
 setwd(glue("{docFolder}/readability-studio-manual/"))
-combine_files("readability-tests-english.qmd", "english")
-combine_files("readability-tests-spanish.qmd", "spanish")
-combine_files("readability-tests-german.qmd", "german")
-combine_files("scoring-notes.qmd", "scoring-notes")
+combine_files("readability-tests-english.qmd", "english", addendum = "{{< elevator 'Back to top' >}}")
+combine_files("readability-tests-spanish.qmd", "spanish", addendum = "{{< elevator 'Back to top' >}}")
+combine_files("readability-tests-german.qmd", "german", addendum = "{{< elevator 'Back to top' >}}")
+combine_files("scoring-notes.qmd", "scoring-notes", addendum = "{{< elevator 'Back to top' >}}")
 
 quarto::quarto_render(output_format="pdf", as_job=F, profile="manual")
 quarto::quarto_render(output_format="html", as_job=F, profile="online")
@@ -129,12 +131,12 @@ unlink(glue("{docFolder}/readability-studio-manual/readability-tests-english.qmd
 unlink(glue("{docFolder}/readability-studio-manual/readability-tests-spanish.qmd"))
 unlink(glue("{docFolder}/readability-studio-manual/readability-tests-german.qmd"))
 unlink(glue("{docFolder}/readability-studio-manual/scoring-notes.qmd"))
-unlink(glue("{docFolder}/readability-studio-manual/acknowledgements.qmd"))
+unlink(glue("{docFolder}/readability-studio-manual/ding.mp3"))
 
 # Programming Manual
 ####################
 
-# build the API help topics and intellisense file
+# build the API help topics and code completion file
 unlink(glue("{docFolder}/readability-studio-api/enums"), recursive=T) # rebuild this folder and keep the latest content
 dir_create(glue("{docFolder}/readability-studio-api/enums"))
 
@@ -185,6 +187,9 @@ dir_copy(glue("{docFolder}/readability-studio-manual/css"),
          TRUE)
 dir_copy(glue("{docFolder}/readability-studio-manual/R"),
          glue("{docFolder}/readability-studio-api/R"),
+         TRUE)
+dir_copy(glue("{docFolder}/readability-studio-manual/_extensions"),
+         glue("{docFolder}/readability-studio-api/_extensions"),
          TRUE)
 
 combine_files("standard-project.qmd", "classes/StandardProject")
@@ -243,6 +248,9 @@ dir_copy(glue("{docFolder}/readability-studio-manual/css"),
          TRUE)
 dir_copy(glue("{docFolder}/readability-studio-manual/R"),
          glue("{docFolder}/readability-test-reference/R"),
+         TRUE)
+dir_copy(glue("{docFolder}/readability-studio-manual/_extensions"),
+         glue("{docFolder}/readability-test-reference/_extensions"),
          TRUE)
 dir_copy(glue("{docFolder}/readability-studio-manual/data"),
          glue("{docFolder}/readability-test-reference/data"),
