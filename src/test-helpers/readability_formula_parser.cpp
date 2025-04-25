@@ -599,8 +599,13 @@ ReadabilityFormulaParser::ReadabilityFormulaParser(const BaseProject* project,
                                                    const wchar_t listSeparator)
     : m_formualProject(project)
     {
-    set_decimal_separator(decimalSeparator);
-    set_list_separator(listSeparator);
+    assert(decimalSeparator <= 255);
+    assert(listSeparator <= 255);
+    if (decimalSeparator <= 255 && listSeparator <= 255)
+        {
+        set_decimal_separator(static_cast<char>(decimalSeparator));
+        set_list_separator(static_cast<char>(listSeparator));
+        }
 
     const double dcWordCount =
         (m_formualProject.GetProject()->GetDaleChallTextExclusionMode() ==
