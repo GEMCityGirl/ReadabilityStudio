@@ -140,9 +140,9 @@ ScreenshotLib.CloseCustomTestDialog()
 -- Standard project wizard
 ScreenshotLib.ShowStandardProjectWizardTextSourcePage(1)
 ScreenshotLib.SnapScreenshot(ImagePath .. "wizard1." .. FileExtension)
--- crop off bottom half
+-- crop off bottom 3/4
 info = Application.GetImageInfo(ImagePath .. "wizard1." .. FileExtension)
-ScreenshotLib.CropScreenshot(ImagePath .. "wizard1." .. FileExtension, -1, info["Height"]/2)
+ScreenshotLib.CropScreenshot(ImagePath .. "wizard1." .. FileExtension, -1, info["Height"]/4)
 
 ScreenshotLib.SetStandardProjectWizardTextFromFilePath("")
 ScreenshotLib.SnapScreenshot(ImagePath .. "exampleselectfile." .. FileExtension, 10001)
