@@ -18,6 +18,9 @@ book:
       - windows-build.qmd
       - macos-build.qmd
       - linux-build.qmd
+    - part: "Administration"
+      chapters:
+      - telemetry.qmd
 format:
   pdf:
     lot: false
