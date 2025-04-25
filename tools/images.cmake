@@ -137,6 +137,7 @@ ribbon/spreadsheet.svg
 ribbon/stats.svg
 ribbon/stop.svg
 ribbon/sum.svg
+ribbon/system-admin.svg
 ribbon/tests-overview.svg
 ribbon/toggle-sidebar.svg
 ribbon/top-titles.svg

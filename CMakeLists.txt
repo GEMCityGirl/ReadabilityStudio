@@ -395,6 +395,12 @@ if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/docs/release-notes/docs/")
                    COMMAND ${CMAKE_COMMAND} -E make_directory
                    "${CMAKE_CURRENT_SOURCE_DIR}/docs/release-notes/docs/")
 endif()
+if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-api/docs/")
+    add_custom_command(TARGET ${PROJECT_NAME}
+                   POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E make_directory
+                   "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-api/docs/")
+endif()
 if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/docs/sysadmin/docs/")
     add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD

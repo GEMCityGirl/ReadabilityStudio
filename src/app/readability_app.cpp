@@ -62,6 +62,7 @@ RSArtProvider::RSArtProvider()
                     { wxART_FIND, L"ribbon/find.svg" },
                     { wxART_FIND_AND_REPLACE, L"ribbon/find-replace.svg" },
                     { wxART_QUIT, L"ribbon/stop.svg" },
+                    { L"ID_SYSADMIN", L"ribbon/system-admin.svg" },
                     { L"ID_NOTES", L"ribbon/notepad.svg" },
                     { L"ID_E_HELP", L"ribbon/electronic-help.svg" },
                     { L"ID_ALIGN_LEFT", L"ribbon/align-left.svg" },
@@ -3147,6 +3148,9 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
         helpButtonBar->AddButton(XRCID("ID_PROGRAMMING_MANUAL"), _(L"Programming Manual"),
                                  ReadRibbonSvgIcon(L"ribbon/lua.svg"),
                                  _(L"Read the Lua programming manual."));
+        helpButtonBar->AddButton(XRCID("ID_SYSADMIN"), _(L"System Admin Manual"),
+                                 ReadRibbonSvgIcon(L"ribbon/system-admin.svg"),
+                                 _(L"Read the system administrator manual."));
         helpButtonBar->AddDropdownButton(XRCID("ID_EXAMPLES"), _(L"Example Documents"),
                                          ReadRibbonSvgIcon(L"ribbon/examples.svg"),
                                          _(L"Analyze example documents from the help."));
@@ -3804,6 +3808,16 @@ MainFrame::MainFrame(wxDocManager* manager, wxFrame* frame,
             wxLaunchDefaultApplication(manualPath);
         },
         XRCID("ID_PROGRAMMING_MANUAL"));
+
+    Bind(
+        wxEVT_RIBBONBUTTONBAR_CLICKED,
+        [this]([[maybe_unused]] wxRibbonButtonBarEvent&)
+        {
+            const wxString manualPath = GetHelpDirectory() + wxFileName::GetPathSeparator() +
+                                        _DT(L"system-admin.pdf");
+            wxLaunchDefaultApplication(manualPath);
+        },
+        XRCID("ID_SYSADMIN"));
 
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &MainFrame::OnAbout, this, wxID_ABOUT);
     Bind(
