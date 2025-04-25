@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __SCHWARTZ_GRAPH_H__
-#define __SCHWARTZ_GRAPH_H__
+#ifndef SCHWARTZ_GRAPH_H
+#define SCHWARTZ_GRAPH_H
 
 #include "polygon_readability_graph.h"
 
@@ -110,4 +110,4 @@ namespace Wisteria::Graphs
         };
     } // namespace Wisteria::Graphs
 
-#endif //__SCHWARTZ_GRAPH_H__
+#endif // SCHWARTZ_GRAPH_H

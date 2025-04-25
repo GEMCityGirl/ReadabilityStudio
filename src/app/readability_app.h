@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __MAIN_APP_H__
-#define __MAIN_APP_H__
+#ifndef RS_MAIN_APP_H
+#define RS_MAIN_APP_H
 
 #include "../../../Licensing/LicenseAdmin.h"
 #include "../Wisteria-Dataviz/src/math/mathematics.h"
@@ -517,4 +517,4 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
     std::map<wxString, wxString> m_colorSchemeMap;
     };
 
-#endif //__MAIN_APP_H__
+#endif // RS_MAIN_APP_H

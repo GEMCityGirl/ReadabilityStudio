@@ -3804,7 +3804,7 @@ void ToolsOptionsDlg::CreateControls()
         panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
         // tag block exclusion
-        if (m_exclusionBlockTags.get_value().size() == 0)
+        if (m_exclusionBlockTags.get_value().empty())
             {
             m_exclusionBlockTagsOption = 0;
             }

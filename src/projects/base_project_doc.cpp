@@ -660,7 +660,7 @@ bool BaseProjectDoc::LockProjectFile()
 //-------------------------------------------------------
 void BaseProjectDoc::RemoveAllGlobalCustomReadabilityTests()
     {
-    if (m_custom_word_tests.size() == 0)
+    if (m_custom_word_tests.empty())
         {
         return;
         }

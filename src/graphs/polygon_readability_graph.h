@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __READABILITY_GRAPH_H__
-#define __READABILITY_GRAPH_H__
+#ifndef READABILITY_GRAPH_H
+#define READABILITY_GRAPH_H
 
 #include "../Wisteria-Dataviz/src/base/colorbrewer.h"
 #include "../Wisteria-Dataviz/src/graphs/groupgraph2d.h"
@@ -231,4 +231,4 @@ namespace Wisteria::Graphs
         };
     } // namespace Wisteria::Graphs
 
-#endif //__READABILITY_GRAPH_H__
+#endif // READABILITY_GRAPH_H

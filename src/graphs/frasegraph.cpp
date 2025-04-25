@@ -15,7 +15,6 @@
 
 wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::PolygonReadabilityGraph)
 
-    using namespace Wisteria;
 using namespace Wisteria::Colors;
 using namespace Wisteria::GraphItems;
 
@@ -86,7 +85,7 @@ namespace Wisteria::Graphs
             return;
             }
 
-        SetGroupColumn(groupColumnName);
+        SetGroupColumn(std::move(groupColumnName));
 
         // if grouping, build the list of group IDs, sorted by their respective labels
         if (IsUsingGrouping())
@@ -239,7 +238,7 @@ namespace Wisteria::Graphs
         // (and highlight in heavy bold and a different color the one where the score lies)
         wxPoint pt1;
         const wxFont quadLabelFont(
-            wxFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize() * 1.25f,
+            wxFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize() * 1.25,
                    wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false,
                    L"Times New Roman"));
         for (const auto& level : GetLevelLabels())
@@ -290,7 +289,7 @@ namespace Wisteria::Graphs
                 continue;
                 }
 
-            const double normalizationFactor =
+            const auto normalizationFactor =
                 safe_divide<double>(100, m_numberOfWordsColumn->GetValue(i));
 
             // add the score to the grouped data
@@ -393,8 +392,8 @@ namespace Wisteria::Graphs
 
         if (m_results.size() == 1 && m_results.front().IsScoreInvalid())
             {
-            wxFont LabelFont = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);
-            LabelFont.SetPointSize(12);
+            wxFont labelFont = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);
+            labelFont.SetPointSize(12);
             const wxPoint textCoordinate(
                 GetPlotAreaBoundingBox().GetX() + (GetPlotAreaBoundingBox().GetWidth() / 2),
                 GetPlotAreaBoundingBox().GetY() + (GetPlotAreaBoundingBox().GetHeight() / 2));
@@ -402,7 +401,7 @@ namespace Wisteria::Graphs
                 GraphItemInfo(_(L"Invalid score: text is too difficult to be plotted"))
                     .Scaling(GetScaling())
                     .Pen(*wxBLACK_PEN)
-                    .Font(LabelFont)
+                    .Font(labelFont)
                     .AnchorPoint(textCoordinate)));
             }
         }

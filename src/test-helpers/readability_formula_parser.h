@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __READABILITY_FORMULA_PARSER_H__
-#define __READABILITY_FORMULA_PARSER_H__
+#ifndef READABILITY_FORMULA_PARSER_H
+#define READABILITY_FORMULA_PARSER_H
 
 #include "../tinyexpr-plusplus/tinyexpr.h"
 #include <limits>
@@ -61,17 +61,10 @@ class ReadabilityFormulaParser : public te_parser
     /// @param signature The signature to parse.
     /// @returns The name of the function from the signature.
     [[nodiscard]]
-    static const wxString SignatureToFunctionName(const wxString& signature)
+    static wxString SignatureToFunctionName(const wxString& signature)
         {
         const auto paren = signature.find(L'(');
-        if (paren == wxString::npos)
-            {
-            return signature;
-            }
-        else
-            {
-            return signature.substr(0, paren);
-            }
+        return ((paren == wxString::npos) ? signature : signature.substr(0, paren));
         }
 
     /// @returns The signature of the custom DC test.
@@ -99,4 +92,4 @@ class ReadabilityFormulaParser : public te_parser
     FormulaProject m_formualProject;
     };
 
-#endif // __READABILITY_FORMULA_PARSER_H__
+#endif // READABILITY_FORMULA_PARSER_H

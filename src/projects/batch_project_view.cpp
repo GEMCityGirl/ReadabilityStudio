@@ -2808,7 +2808,7 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                 std::make_pair(activeListCtrl->GetItemTextEx(item, 0),
                                activeListCtrl->GetItemTextEx(item, 1).Trim(true).Trim(false)));
             }
-        if (selectedFilePaths.size() == 0)
+        if (selectedFilePaths.empty())
             {
             wxMessageBox(_(L"Select a document in the list."), wxGetApp().GetAppName(),
                          wxOK | wxICON_INFORMATION);

@@ -16,7 +16,6 @@
 wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
                           Wisteria::Graphs::PolygonReadabilityGraph)
 
-using namespace Wisteria;
 using namespace Wisteria::Colors;
 using namespace Wisteria::Graphs;
 using namespace Wisteria::GraphItems;
@@ -40,7 +39,7 @@ namespace Wisteria::Graphs
 
         // number of sentences axis goes down, unlike the Fry Graph that goes upwards
         GetLeftYAxis().ReverseScale(true);
-        GetLeftYAxis().SetRange(2.4, 20, 1, 0.4f, 1);
+        GetLeftYAxis().SetRange(2.4, 20, 1, 0.4, 1);
         GetLeftYAxis().ShowOuterLabels(true);
         GetLeftYAxis().EnableAutoStacking(true);
         if (GetLeftYAxis().GetGridlinePen().IsOk())
@@ -98,7 +97,7 @@ namespace Wisteria::Graphs
             return;
             }
 
-        SetGroupColumn(groupColumnName);
+        SetGroupColumn(std::move(groupColumnName));
 
         // if grouping, build the list of group IDs, sorted by their respective labels
         if (IsUsingGrouping())
@@ -148,7 +147,7 @@ namespace Wisteria::Graphs
 
         Graph2D::RecalcSizes(dc);
 
-        wxColour labelFontColor{ GetLeftYAxis().GetFontColor() };
+        const wxColour labelFontColor{ GetLeftYAxis().GetFontColor() };
 
         assert((!m_backscreen || m_backscreen->GetBoundingBox(dc).GetWidth() ==
                                      Canvas::GetDefaultCanvasWidthDIPs()) &&
@@ -493,7 +492,7 @@ namespace Wisteria::Graphs
                                  wxPoint(0, ScaleToScreenAndCanvas(2))));
             legend->GetLegendIcons().push_back(Icons::LegendIcon(Icons::IconShape::HorizontalLine,
                                                                  separatorColor, separatorColor));
-            legend->GetLegendIcons().push_back(
+            legend->GetLegendIcons().emplace_back(
                 Icons::LegendIcon(Icons::IconShape::Circle, separatorColor, separatorColor));
             legend->SetBoxCorners(BoxCorners::Straight);
             AddObject(std::move(legend));
@@ -511,8 +510,8 @@ namespace Wisteria::Graphs
                                 false, GetFancyFontFaceName());
         for (const auto& level : GetLevelLabels())
             {
-            wxPoint pt;
-            GetPhysicalCoordinates(level.GetX(), level.GetY(), pt);
+            wxPoint point;
+            GetPhysicalCoordinates(level.GetX(), level.GetY(), point);
 
             auto levelLabel =
                 std::make_unique<GraphItems::Label>(GraphItemInfo(level.GetLabel())
@@ -521,7 +520,7 @@ namespace Wisteria::Graphs
                                                         .Pen(wxNullPen)
                                                         .Font(numberFont)
                                                         .FontColor(labelFontColor)
-                                                        .AnchorPoint(pt));
+                                                        .AnchorPoint(point));
             levelLabel->SetAnchoring(Anchoring::TopLeftCorner);
             if (GetScores().size() == 1)
                 {
@@ -593,7 +592,7 @@ namespace Wisteria::Graphs
                 continue;
                 }
 
-            const double normalizationFactor =
+            const auto normalizationFactor =
                 safe_divide<double>(100, m_numberOfWordsColumn->GetValue(i));
 
             // add the score to the grouped data
@@ -779,8 +778,8 @@ namespace Wisteria::Graphs
 
         if (m_results.size() == 1 && m_results.front().IsScoreInvalid())
             {
-            wxFont LabelFont = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);
-            LabelFont.SetPointSize(12);
+            wxFont labelFont = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);
+            labelFont.SetPointSize(12);
             const wxPoint textCoordinate(
                 GetPlotAreaBoundingBox().GetX() + (GetPlotAreaBoundingBox().GetWidth() / 2),
                 GetPlotAreaBoundingBox().GetY() + (GetPlotAreaBoundingBox().GetHeight() / 2));
@@ -788,7 +787,7 @@ namespace Wisteria::Graphs
                 GraphItemInfo(_(L"Invalid score: text is too difficult to be plotted"))
                     .Scaling(GetScaling())
                     .Pen(*wxBLACK_PEN)
-                    .Font(LabelFont)
+                    .Font(labelFont)
                     .AnchorPoint(textCoordinate)));
             }
         }

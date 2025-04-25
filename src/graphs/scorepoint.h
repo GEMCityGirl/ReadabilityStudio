@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __SCORE_POINTS_H__
-#define __SCORE_POINTS_H__
+#ifndef SCORE_POINTS_H
+#define SCORE_POINTS_H
 
 #include "../Wisteria-Dataviz/src/base/graphitems.h"
 #include "../Wisteria-Dataviz/src/base/icons.h"
@@ -82,7 +82,7 @@ namespace Wisteria
         [[nodiscard]]
         std::pair<size_t, size_t> GetScoreRange() const noexcept
             {
-            return std::pair<size_t, size_t>(m_score1, m_score2);
+            return std::make_pair(m_score1, m_score2);
             }
 
         /// @returns The middle of the score range (or simply the score if there is only one)
@@ -145,4 +145,4 @@ namespace Wisteria
         };
     } // namespace Wisteria
 
-#endif //__SCORE_POINTS_H__
+#endif // SCORE_POINTS_H

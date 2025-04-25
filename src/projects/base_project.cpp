@@ -8800,7 +8800,7 @@ bool BaseProject::ReviewTestGoal(const wxString& testName, const double score)
             testName == ReadabilityMessages::RAYGOR() ||
             testName == ReadabilityMessages::SCHWARTZ()) &&
            L"Score should not be NaN!");
-    if (GetTestGoals().size() == 0)
+    if (GetTestGoals().empty())
         {
         return false;
         }
@@ -8846,7 +8846,7 @@ void BaseProject::ReviewStatGoals()
 bool BaseProject::ReviewStatGoal(const wxString& statName, const double value)
     {
     assert(!std::isnan(value) && L"Stat value should not be NaN!");
-    if (GetStatGoals().size() == 0)
+    if (GetStatGoals().empty())
         {
         return false;
         }

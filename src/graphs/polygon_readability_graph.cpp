@@ -10,6 +10,7 @@
  * Contributors:
  *   Blake Madden - initial implementation
  ********************************************************************************/
+
 #include "polygon_readability_graph.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::PolygonReadabilityGraph,

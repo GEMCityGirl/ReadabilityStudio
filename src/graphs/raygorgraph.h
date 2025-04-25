@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __RAYGOR_GRAPH_H__
-#define __RAYGOR_GRAPH_H__
+#ifndef RAYGOR_GRAPH_H
+#define RAYGOR_GRAPH_H
 
 #include "polygon_readability_graph.h"
 
@@ -115,4 +115,4 @@ namespace Wisteria::Graphs
         };
     } // namespace Wisteria::Graphs
 
-#endif //__RAYGOR_GRAPH_H__
+#endif // RAYGOR_GRAPH_H

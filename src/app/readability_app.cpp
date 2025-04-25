@@ -3658,7 +3658,7 @@ MainFrame::MainFrame(wxDocManager* manager, wxFrame* frame,
     accelEntries[1].Set(wxACCEL_CMD, static_cast<int>(L'N'), wxID_NEW);
     accelEntries[2].Set(wxACCEL_CMD, static_cast<int>(L'O'), wxID_OPEN);
     accelEntries[3].Set(wxACCEL_CMD, static_cast<int>(L'V'), wxID_PASTE);
-    wxAcceleratorTable accelTable(std::size(accelEntries), accelEntries);
+    const wxAcceleratorTable accelTable(std::size(accelEntries), accelEntries);
     SetAcceleratorTable(accelTable);
 
     // bind menu events to their respective ribbon button events
@@ -4406,7 +4406,7 @@ void MainFrame::RemoveTestBundleFromMenus(const wxString& bundleName)
 //-------------------------------------------------------
 void MainFrame::RemoveCustomTestFromMenus(const wxString& testName)
     {
-    std::map<int, wxString>::iterator menuPos = m_customTestMenuIds.begin();
+    auto menuPos = m_customTestMenuIds.begin();
     for (/*initialized already*/; menuPos != m_customTestMenuIds.end(); ++menuPos)
         {
         if (menuPos->second == testName)
@@ -4467,11 +4467,11 @@ void MainFrame::FillReadabilityMenu(wxMenu* primaryMenu, wxMenu* secondaryMenu, 
                     new wxMenuItem(primaryMenu, rTest.get_test().get_interface_id(),
                                    rTest.get_test().get_long_name().c_str(),
                                    rTest.get_test().get_long_name().c_str());
-                const auto bp = wxGetApp().GetResourceManager().GetSVG(
+                const auto bmp = wxGetApp().GetResourceManager().GetSVG(
                     wxString::Format(L"tests/%s.svg", rTest.get_test().get_id().c_str()));
-                if (bp.IsOk())
+                if (bmp.IsOk())
                     {
-                    testItem->SetBitmap(bp);
+                    testItem->SetBitmap(bmp);
                     }
                 primaryMenu->Append(testItem);
                 }
@@ -4483,11 +4483,11 @@ void MainFrame::FillReadabilityMenu(wxMenu* primaryMenu, wxMenu* secondaryMenu, 
                     new wxMenuItem(secondaryMenu, rTest.get_test().get_interface_id(),
                                    rTest.get_test().get_long_name().c_str(),
                                    rTest.get_test().get_long_name().c_str());
-                const auto bp = wxGetApp().GetResourceManager().GetSVG(
+                const auto bmp = wxGetApp().GetResourceManager().GetSVG(
                     wxString::Format(L"tests/%s.svg", rTest.get_test().get_id().c_str()));
-                if (bp.IsOk())
+                if (bmp.IsOk())
                     {
-                    testItem->SetBitmap(bp);
+                    testItem->SetBitmap(bmp);
                     }
                 secondaryMenu->Append(testItem);
                 }
@@ -4499,11 +4499,11 @@ void MainFrame::FillReadabilityMenu(wxMenu* primaryMenu, wxMenu* secondaryMenu, 
                     new wxMenuItem(adultMenu, rTest.get_test().get_interface_id(),
                                    rTest.get_test().get_long_name().c_str(),
                                    rTest.get_test().get_long_name().c_str());
-                const auto bp = wxGetApp().GetResourceManager().GetSVG(
+                const auto bmp = wxGetApp().GetResourceManager().GetSVG(
                     wxString::Format(L"tests/%s.svg", rTest.get_test().get_id().c_str()));
-                if (bp.IsOk())
+                if (bmp.IsOk())
                     {
-                    testItem->SetBitmap(bp);
+                    testItem->SetBitmap(bmp);
                     }
                 adultMenu->Append(testItem);
                 }
@@ -4515,11 +4515,11 @@ void MainFrame::FillReadabilityMenu(wxMenu* primaryMenu, wxMenu* secondaryMenu, 
                     new wxMenuItem(secondLanguageMenu, rTest.get_test().get_interface_id(),
                                    rTest.get_test().get_long_name().c_str(),
                                    rTest.get_test().get_long_name().c_str());
-                const auto bp = wxGetApp().GetResourceManager().GetSVG(
+                const auto bmp = wxGetApp().GetResourceManager().GetSVG(
                     wxString::Format(L"tests/%s.svg", rTest.get_test().get_id().c_str()));
-                if (bp.IsOk())
+                if (bmp.IsOk())
                     {
-                    testItem->SetBitmap(bp);
+                    testItem->SetBitmap(bmp);
                     }
                 secondLanguageMenu->Append(testItem);
                 }
@@ -5323,7 +5323,7 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
 #ifdef __WXOSX__
     wxString updatedFilePath =
         _DT(L"https://readabilitystudio.com/downloads/readabilitystudio/CurrentMacVersionReadabilityStudio.txt");
-    int responseCode;
+    int responseCode{ 404 };
     if (!wxGetApp().GetWebHarvester().ReadWebPage(updatedFilePath, updateFileContent, contentType,
                                                   statusText, responseCode, false))
         {
@@ -5343,7 +5343,7 @@ void MainFrame::OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& e
     wxString updatedFilePath =
         _DT(L"https://readabilitystudio.com/downloads/readabilitystudio/CurrentVersionReadabilityStudio.txt");
     // clang-format on
-    int responseCode;
+    int responseCode{ 404 };
     if (!wxGetApp().GetWebHarvester().ReadWebPage(updatedFilePath, updateFileContent, contentType,
                                                   statusText, responseCode, false))
         {
@@ -5617,7 +5617,7 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
     wxString failedCrawls;
     for (size_t i = 0; i < webHarvestDlg.GetUrls().GetCount(); ++i)
         {
-        FilePathResolver resolver(webHarvestDlg.GetUrls().Item(i), true);
+        const FilePathResolver resolver(webHarvestDlg.GetUrls().Item(i), true);
         wxGetApp().GetWebHarvester().SetUrl(resolver.GetResolvedPath());
 
         // if user cancelled harvesting, then stop
@@ -5626,13 +5626,13 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
             break;
             }
 
-        if (wxGetApp().GetWebHarvester().GetDownloadedFilePaths().size() == 0)
+        if (wxGetApp().GetWebHarvester().GetDownloadedFilePaths().empty())
             {
             failedCrawls += wxGetApp().GetWebHarvester().GetUrl() + L'\n';
             }
         }
 
-    if (failedCrawls.length())
+    if (!failedCrawls.empty())
         {
         wxMessageBox(
             wxString::Format(_(L"No files were downloaded from the following sites:\n\n%s\n"

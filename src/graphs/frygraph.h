@@ -10,8 +10,9 @@
  * Contributors:
  *   Blake Madden - initial implementation
  ********************************************************************************/
-#ifndef __FRY_GRAPH_H__
-#define __FRY_GRAPH_H__
+
+#ifndef FRY_GRAPH_H
+#define FRY_GRAPH_H
 
 #include "polygon_readability_graph.h"
 
@@ -129,4 +130,4 @@ namespace Wisteria::Graphs
         };
     } // namespace Wisteria::Graphs
 
-#endif //__FRY_GRAPH_H__
+#endif // FRY_GRAPH_H

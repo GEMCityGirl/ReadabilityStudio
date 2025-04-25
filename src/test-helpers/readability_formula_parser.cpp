@@ -143,7 +143,7 @@ static double CustomNewDaleChall(const te_expr* context)
                              ReadabilityFormulaParser::GetCustomNewDaleChallSignature().ToUTF8()));
         }
     // lowest grade for DC
-    double grade_value = 0;
+    double gradeValue = 0;
     try
         {
         size_t gradeBegin = 0, gradeEnd = 0;
@@ -164,14 +164,14 @@ static double CustomNewDaleChall(const te_expr* context)
             }
         // Grade range will be combined into a single double value.
         // Client will need to split this value
-        grade_value = static_cast<double>(
+        gradeValue = static_cast<double>(
             join_int32s(static_cast<uint32_t>(gradeBegin), static_cast<uint32_t>(gradeEnd)));
         }
     catch (const std::domain_error&)
         {
         throw std::runtime_error(_(L"Unable to calculate custom New Dale Chall.").ToUTF8());
         }
-    return grade_value;
+    return gradeValue;
     }
 
 /// Performs a Spache Revised test with a custom familiar word list.
@@ -200,10 +200,10 @@ static double CustomSpache(const te_expr* context)
                 .ToUTF8());
         }
     // lowest grade for Spache
-    double grade_value = 0;
+    double gradeValue = 0;
     try
         {
-        grade_value =
+        gradeValue =
             readability::spache(project->GetTotalWords(),
                                 project->GetCustomTest(testName)->GetUniqueUnfamiliarWordCount(),
                                 project->GetTotalSentences());
@@ -212,7 +212,7 @@ static double CustomSpache(const te_expr* context)
         {
         throw std::runtime_error(_(L"Unable to calculate custom Spache.").ToUTF8());
         }
-    return grade_value;
+    return gradeValue;
     }
 
 /// Performs a Harris-Jacobson test with a custom familiar word list.
@@ -240,13 +240,13 @@ static double CustomHarrisJacobson(const te_expr* context)
                              ReadabilityFormulaParser::GetCustomHarrisJacobsonSignature())
                 .ToUTF8());
         }
-    double grade_value = 1; // lowest grade for HJ
+    double gradeValue = 1; // lowest grade for HJ
     try
         {
         if (project->GetHarrisJacobsonTextExclusionMode() ==
             SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
             {
-            grade_value = readability::harris_jacobson(
+            gradeValue = readability::harris_jacobson(
                 project->GetTotalWordsFromCompleteSentencesAndHeaders() -
                     project->GetTotalNumeralsFromCompleteSentencesAndHeaders(),
                 project->GetCustomTest(testName)->GetUniqueUnfamiliarWordCount(),
@@ -254,7 +254,7 @@ static double CustomHarrisJacobson(const te_expr* context)
             }
         else
             {
-            grade_value = readability::harris_jacobson(
+            gradeValue = readability::harris_jacobson(
                 project->GetTotalWords() - project->GetTotalNumerals(),
                 project->GetCustomTest(testName)->GetUniqueUnfamiliarWordCount(),
                 project->GetTotalSentences());
@@ -264,7 +264,7 @@ static double CustomHarrisJacobson(const te_expr* context)
         {
         throw std::runtime_error(_(L"Unable to calculate custom Harris-Jacobson.").ToUTF8());
         }
-    return grade_value;
+    return gradeValue;
     }
 
 /// @returns The total number of unfamiliar words (from a custom list) the document.
@@ -345,11 +345,8 @@ static double FamiliarHarrisJacobsonWordCount(const te_expr* context)
                 project->GetTotalNumeralsFromCompleteSentencesAndHeaders()) -
                project->GetTotalHardWordsHarrisJacobson();
         }
-    else
-        {
-        return (project->GetTotalWords() - project->GetTotalNumerals()) -
-               project->GetTotalHardWordsHarrisJacobson();
-        }
+    return (project->GetTotalWords() - project->GetTotalNumerals()) -
+        project->GetTotalHardWordsHarrisJacobson();
     }
 
 /// @returns The number of unique monosyllabic words from the document.
@@ -374,10 +371,7 @@ static double FamiliarDaleChallWordCount(const te_expr* context)
         return project->GetTotalWordsFromCompleteSentencesAndHeaders() -
                project->GetTotalHardWordsDaleChall();
         }
-    else
-        {
-        return project->GetTotalWords() - project->GetTotalHardWordsDaleChall();
-        }
+    return project->GetTotalWords() - project->GetTotalHardWordsDaleChall();
     }
 
 /// @returns The total number of monosyllabic words from the document.
@@ -433,7 +427,7 @@ static double WordCount(const te_expr* context, const double wordType)
         {
         return (dynamic_cast<const FormulaProject*>(context))->GetProject()->GetTotalWords();
         }
-    else if (wordType == 1 /*DaleChall*/)
+    if (wordType == 1 /*DaleChall*/)
         {
         const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
         return (project->GetDaleChallTextExclusionMode() ==
@@ -441,7 +435,7 @@ static double WordCount(const te_expr* context, const double wordType)
                    project->GetTotalWordsFromCompleteSentencesAndHeaders() :
                    project->GetTotalWords();
         }
-    else if (wordType == 2 /*HarrisJacobson*/)
+    if (wordType == 2 /*HarrisJacobson*/)
         {
         const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
         return (project->GetHarrisJacobsonTextExclusionMode() ==
@@ -449,11 +443,8 @@ static double WordCount(const te_expr* context, const double wordType)
                    project->GetTotalWordsFromCompleteSentencesAndHeaders() :
                    project->GetTotalWords();
         }
-    else
-        {
-        throw std::runtime_error(
-            wxString::Format(_(L"Invalid value used in %s"), wxString(__func__)).ToUTF8());
-        }
+    throw std::runtime_error(
+        wxString::Format(_(L"Invalid value used in %s"), wxString{ __func__ }).ToUTF8());
     }
 
 /// @returns The total number of words consisting of three or more syllables from the document.
@@ -467,17 +458,14 @@ static double ThreeSyllablePlusWordCount(const te_expr* context, const double wo
             ->GetProject()
             ->GetTotal3PlusSyllabicWords();
         }
-    else if (wordType == 1 /*NumeralsFullySyllabized*/)
+    if (wordType == 1 /*NumeralsFullySyllabized*/)
         {
         return (dynamic_cast<const FormulaProject*>(context))
             ->GetProject()
             ->GetTotal3PlusSyllabicWordsNumeralsFullySyllabized();
         }
-    else
-        {
-        throw std::runtime_error(
-            wxString::Format(_(L"Invalid value used in %s"), wxString(__func__)).ToUTF8());
-        }
+    throw std::runtime_error(
+        wxString::Format(_(L"Invalid value used in %s"), wxString{ __func__ }).ToUTF8());
     }
 
 /// @returns The number of unique words consisting of three or more syllables from the document.
@@ -491,17 +479,14 @@ static double UniqueThreeSyllablePlusWordCount(const te_expr* context, const dou
             ->GetProject()
             ->GetTotalUnique3PlusSyllableWords();
         }
-    else if (wordType == 1 /*NumeralsFullySyllabized*/)
+    if (wordType == 1 /*NumeralsFullySyllabized*/)
         {
         return (dynamic_cast<const FormulaProject*>(context))
             ->GetProject()
             ->GetUnique3PlusSyllabicWordsNumeralsFullySyllabized();
         }
-    else
-        {
-        throw std::runtime_error(
-            wxString::Format(_(L"Invalid value used in %s"), wxString(__func__)).ToUTF8());
-        }
+    throw std::runtime_error(
+        wxString::Format(_(L"Invalid value used in %s"), wxString{ __func__ }).ToUTF8());
     }
 
 /// @returns The total number of syllables from the document.
@@ -513,23 +498,20 @@ static double SyllableCount(const te_expr* context, const double wordType)
         {
         return (dynamic_cast<const FormulaProject*>(context))->GetProject()->GetTotalSyllables();
         }
-    else if (wordType == 1 /*NumeralsFullySyllabized*/)
+    if (wordType == 1 /*NumeralsFullySyllabized*/)
         {
         return (dynamic_cast<const FormulaProject*>(context))
             ->GetProject()
             ->GetTotalSyllablesNumeralsFullySyllabized();
         }
-    else if (wordType == 2 /*NumeralsAreOneSyllable*/)
+    if (wordType == 2 /*NumeralsAreOneSyllable*/)
         {
         return (dynamic_cast<const FormulaProject*>(context))
             ->GetProject()
             ->GetTotalSyllablesNumeralsOneSyllable();
         }
-    else
-        {
-        throw std::runtime_error(
-            wxString::Format(_(L"Invalid value used in %s"), wxString(__func__)).ToUTF8());
-        }
+    throw std::runtime_error(
+        wxString::Format(_(L"Invalid value used in %s"), wxString{ __func__ }).ToUTF8());
     }
 
 /// @returns The total number of characters (i.e., letters and numbers) from the document.
@@ -541,7 +523,7 @@ static double CharacterCount(const te_expr* context, const double wordType)
         {
         return (dynamic_cast<const FormulaProject*>(context))->GetProject()->GetTotalCharacters();
         }
-    else if (wordType == 1 /*DaleChall*/)
+    if (wordType == 1 /*DaleChall*/)
         {
         const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
         return (project->GetDaleChallTextExclusionMode() ==
@@ -549,7 +531,7 @@ static double CharacterCount(const te_expr* context, const double wordType)
                    project->GetTotalCharactersFromCompleteSentencesAndHeaders() :
                    project->GetTotalCharacters();
         }
-    else if (wordType == 2 /*HarrisJacobson*/)
+    if (wordType == 2 /*HarrisJacobson*/)
         {
         const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
         return (project->GetHarrisJacobsonTextExclusionMode() ==
@@ -557,11 +539,8 @@ static double CharacterCount(const te_expr* context, const double wordType)
                    project->GetTotalCharactersFromCompleteSentencesAndHeaders() :
                    project->GetTotalCharacters();
         }
-    else
-        {
-        throw std::runtime_error(
-            wxString::Format(_(L"Invalid value used in %s"), wxString(__func__)).ToUTF8());
-        }
+    throw std::runtime_error(
+        wxString::Format(_(L"Invalid value used in %s"), wxString{ __func__ }).ToUTF8());
     }
 
 /// @returns The total number of sentences from the document.
@@ -573,7 +552,7 @@ static double SentenceCount(const te_expr* context, const double wordType)
         {
         return (dynamic_cast<const FormulaProject*>(context))->GetProject()->GetTotalSentences();
         }
-    else if (wordType == 1 /*DaleChall*/)
+    if (wordType == 1 /*DaleChall*/)
         {
         const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
         return (project->GetDaleChallTextExclusionMode() ==
@@ -581,7 +560,7 @@ static double SentenceCount(const te_expr* context, const double wordType)
                    project->GetTotalSentencesFromCompleteSentencesAndHeaders() :
                    project->GetTotalSentences();
         }
-    else if (wordType == 2 /*HarrisJacobson*/)
+    if (wordType == 2 /*HarrisJacobson*/)
         {
         const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
         return (project->GetHarrisJacobsonTextExclusionMode() ==
@@ -590,17 +569,14 @@ static double SentenceCount(const te_expr* context, const double wordType)
                    project->GetTotalSentences();
         }
     // Fog has special rules for units vs. traditional sentences
-    else if (wordType == 3 /*GunningFog*/)
+    if (wordType == 3 /*GunningFog*/)
         {
         const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
         return project->IsFogUsingSentenceUnits() ? project->GetTotalSentenceUnits() :
                                                 project->GetTotalSentences();
         }
-    else
-        {
-        throw std::runtime_error(
-            wxString::Format(_(L"Invalid value used in %s"), wxString(__func__)).ToUTF8());
-        }
+    throw std::runtime_error(
+        wxString::Format(_(L"Invalid value used in %s"), wxString{ __func__ }).ToUTF8());
     }
 
 //------------------------------------------------

@@ -869,18 +869,18 @@ void BaseProjectView::Present()
             GetDocFrame()->m_exclusionTagsMenu.FindItemByPosition(i)->Check(false);
             }
         wxMenuItem* item = GetDocFrame()->m_exclusionTagsMenu.FindItem(
-            (doc->GetExclusionBlockTags().size() == 0) ? XRCID("ID_EXCLUSION_TAGS_NOT_ENABLED") :
+            (doc->GetExclusionBlockTags().empty()) ? XRCID("ID_EXCLUSION_TAGS_NOT_ENABLED") :
             (doc->GetExclusionBlockTags().at(0) == std::make_pair(L'^', L'^')) ?
-                                                         XRCID("ID_EXCLUSION_TAGS_CAROTS") :
+                                                     XRCID("ID_EXCLUSION_TAGS_CAROTS") :
             (doc->GetExclusionBlockTags().at(0) == std::make_pair(L'<', L'>')) ?
-                                                         XRCID("ID_EXCLUSION_TAGS_ANGLES") :
+                                                     XRCID("ID_EXCLUSION_TAGS_ANGLES") :
             (doc->GetExclusionBlockTags().at(0) == std::make_pair(L'[', L']')) ?
-                                                         XRCID("ID_EXCLUSION_TAGS_BRACES") :
+                                                     XRCID("ID_EXCLUSION_TAGS_BRACES") :
             (doc->GetExclusionBlockTags().at(0) == std::make_pair(L'{', L'}')) ?
-                                                         XRCID("ID_EXCLUSION_TAGS_CURLIES") :
+                                                     XRCID("ID_EXCLUSION_TAGS_CURLIES") :
             (doc->GetExclusionBlockTags().at(0) == std::make_pair(L'(', L')')) ?
-                                                         XRCID("ID_EXCLUSION_TAGS_PARANS") :
-                                                         XRCID("ID_EXCLUSION_TAGS_NOT_ENABLED"));
+                                                     XRCID("ID_EXCLUSION_TAGS_PARANS") :
+                                                     XRCID("ID_EXCLUSION_TAGS_NOT_ENABLED"));
         if (item)
             {
             item->Check(true);

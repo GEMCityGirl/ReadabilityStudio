@@ -11,11 +11,12 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __TEST_BUNDLE_H__
-#define __TEST_BUNDLE_H__
+#ifndef TEST_BUNDLE_H
+#define TEST_BUNDLE_H
 
 #include "../readability/readability_test.h"
 #include <bitset>
+#include <cmath>
 #include <limits>
 #include <set>
 #include <string>
@@ -29,15 +30,15 @@ class Goal
 
     /// @brief Constructor.
     /// @param name The name of the goal (test name or statistic name).
-    explicit Goal(const string_type& name) : m_name(name) { m_passFails.set(); }
+    explicit Goal(string_type name) : m_name(std::move(name)) { m_passFails.set(); }
 
     /// @brief Constructor.
     /// @param name The name of the goal (test name or statistic name).
     /// @param minGoal The minimum value of the goal.
     /// @param maxGoal The maximum value of the goal.
     /// @note Set either the min or max goal to NaN to not use them
-    Goal(const string_type& name, const double minGoal, const double maxGoal)
-        : m_name(name), m_minGoal(minGoal), m_maxGoal(maxGoal)
+    Goal(string_type name, const double minGoal, const double maxGoal)
+        : m_name(std::move(name)), m_minGoal(minGoal), m_maxGoal(maxGoal)
         {
         m_passFails.set();
         }
@@ -116,7 +117,7 @@ class TestBundle
 
     /// @brief Constructor.
     /// @param name The bundle's name.
-    explicit TestBundle(const string_type& name) : m_name(name) {}
+    explicit TestBundle(string_type name) : m_name(std::move(name)) {}
 
     /// @private
     TestBundle() = default;
@@ -212,4 +213,4 @@ class TestBundle
     readability::test_language m_language{ readability::test_language::unknown_language };
     };
 
-#endif // __TEST_BUNDLE_H__
+#endif // TEST_BUNDLE_H

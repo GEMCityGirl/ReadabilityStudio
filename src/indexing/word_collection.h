@@ -242,7 +242,7 @@ public:
     void finalize(const wchar_t sentence_ending_punctuation)
         {
         PROFILE();
-        if (m_words.size() == 0)
+        if (m_words.empty())
             { return; }
         const grammar::is_coordinating_conjunction& isConjunction = *is_conjunction;
         m_valid_paragraph_count = m_complete_sentence_count = m_valid_word_count = 0;
