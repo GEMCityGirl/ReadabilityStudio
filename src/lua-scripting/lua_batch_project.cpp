@@ -50,7 +50,7 @@ namespace LuaScripting
             m_project->RefreshProject();
             wxGetApp().Yield();
             }
-        return 0;
+        return true;
         }
 
     //-------------------------------------------------------------
@@ -67,7 +67,7 @@ namespace LuaScripting
             m_project->RefreshProject();
             wxGetApp().Yield();
             }
-        return 0;
+        return true;
         }
 
     //-------------------------------------------------------------
