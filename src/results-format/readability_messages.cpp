@@ -13,72 +13,66 @@
 
 #include "readability_messages.h"
 
-using namespace readability;
-using namespace Wisteria;
-
 //-----------------------------------------------
 wxString ReadabilityMessages::GetGradeScaleLongLabel(size_t grade) const
     {
-    if (GetGradeScale() == grade_scale::k12_plus_united_states)
+    if (GetGradeScale() == readability::grade_scale::k12_plus_united_states)
         {
         return GetUSGradeScaleLabel(grade);
         }
-    else if (GetGradeScale() == grade_scale::k12_plus_newfoundland_and_labrador)
+    if (GetGradeScale() == readability::grade_scale::k12_plus_newfoundland_and_labrador)
         {
         return GetNewfoundlandAndLabradorScaleLabel(grade);
         }
-    else if (GetGradeScale() == grade_scale::k12_plus_british_columbia)
+    if (GetGradeScale() == readability::grade_scale::k12_plus_british_columbia)
         {
         return GetBritishColumbiaScaleLabel(grade);
         }
-    else if (GetGradeScale() == grade_scale::k12_plus_newbrunswick)
+    if (GetGradeScale() == readability::grade_scale::k12_plus_newbrunswick)
         {
         return GetNewBrunswickScaleLabel(grade);
         }
-    else if (GetGradeScale() == grade_scale::k12_plus_nova_scotia)
+    if (GetGradeScale() == readability::grade_scale::k12_plus_nova_scotia)
         {
         return GetNovaScotiaScaleLabel(grade);
         }
-    else if (GetGradeScale() == grade_scale::k12_plus_ontario)
+    if (GetGradeScale() == readability::grade_scale::k12_plus_ontario)
         {
         return GetOntarioScaleLabel(grade);
         }
-    else if (GetGradeScale() == grade_scale::k12_plus_saskatchewan)
+    if (GetGradeScale() == readability::grade_scale::k12_plus_saskatchewan)
         {
         return GetSaskatchewanScaleLabel(grade);
         }
-    else if (GetGradeScale() == grade_scale::k12_plus_prince_edward_island)
+    if (GetGradeScale() == readability::grade_scale::k12_plus_prince_edward_island)
         {
         return GetPrinceEdwardIslandScaleLabel(grade);
         }
-    else if (GetGradeScale() == grade_scale::k12_plus_manitoba)
+    if (GetGradeScale() == readability::grade_scale::k12_plus_manitoba)
         {
         return GetManitobaScaleLabel(grade);
         }
-    else if (GetGradeScale() == grade_scale::k12_plus_northwest_territories)
+    if (GetGradeScale() == readability::grade_scale::k12_plus_northwest_territories)
         {
         return GetNorthwestTerritoriesScaleLabel(grade);
         }
-    else if (GetGradeScale() == grade_scale::k12_plus_alberta)
+    if (GetGradeScale() == readability::grade_scale::k12_plus_alberta)
         {
         return GetAlbertaScaleLabel(grade);
         }
-    else if (GetGradeScale() == grade_scale::k12_plus_nunavut)
+    if (GetGradeScale() == readability::grade_scale::k12_plus_nunavut)
         {
         return GetNunavutScaleLabel(grade);
         }
-    else if (GetGradeScale() == grade_scale::quebec)
+    if (GetGradeScale() == readability::grade_scale::quebec)
         {
         return GetQuebecScaleLabel(grade);
         }
-    else if (GetGradeScale() == grade_scale::key_stages_england_wales)
+    if (GetGradeScale() == readability::grade_scale::key_stages_england_wales)
         {
         return GetEnglandWalesScaleLabel(grade);
         }
-    else
-        {
-        return GetUSGradeScaleLabel(grade);
-        }
+    return GetUSGradeScaleLabel(grade);
     }
 
 //-----------------------------------------------
@@ -87,15 +81,12 @@ wxString ReadabilityMessages::GetFormattedValue(const double value,
     {
     if (IsUsingLongGradeScaleFormat())
         {
-        size_t grade, month;
-        split_k12_plus_grade_score(value, grade, month);
+        size_t grade{ 0 }, month{ 0 };
+        readability::split_k12_plus_grade_score(value, grade, month);
         return GetGradeScaleLongLabel(grade) + L", " + GetMonthLabel(month);
         }
-    else
-        {
-        return wxNumberFormatter::ToString(value, format.m_precision,
-                                           wxNumberFormatter::Style::Style_NoTrailingZeroes);
-        }
+    return wxNumberFormatter::ToString(value, format.m_precision,
+                                       wxNumberFormatter::Style::Style_NoTrailingZeroes);
     }
 
 //-----------------------------------------------
@@ -125,7 +116,7 @@ wxString ReadabilityMessages::GetFormattedValue(const wxString& value,
         return fullString;
         }
 
-    double numericValue(0);
+    double numericValue{ 0 };
     wxStringTokenizer tkz(value, L"-", wxTOKEN_STRTOK);
     // grade ranges (e.g., 5-6) need to be split and analyzed atomically
     if (tkz.CountTokens() > 1)
@@ -135,28 +126,25 @@ wxString ReadabilityMessages::GetFormattedValue(const wxString& value,
             {
             if (GetScoreValue(tkz.GetNextToken(), numericValue))
                 {
-                size_t grade, month;
+                size_t grade{ 0 }, month{ 0 };
                 // month is not used, grade ranges shouldn't have this
-                split_k12_plus_grade_score(numericValue, grade, month);
+                readability::split_k12_plus_grade_score(numericValue, grade, month);
                 fullValue += GetGradeScaleLongLabel(grade) + L"-";
                 }
             }
-        if (fullValue.length() > 0)
+        if (!fullValue.empty())
             {
             fullValue.RemoveLast();
             }
         return fullValue;
         }
-    else if (GetScoreValue(value, numericValue))
+    if (GetScoreValue(value, numericValue))
         {
-        size_t grade, month;
-        split_k12_plus_grade_score(numericValue, grade, month);
+        size_t grade{ 0 }, month{ 0 };
+        readability::split_k12_plus_grade_score(numericValue, grade, month);
         return GetGradeScaleLongLabel(grade) + L", " + GetMonthLabel(month);
         }
-    else
-        {
-        return value;
-        }
+    return value;
     }
 
 //-----------------------------------------------
@@ -201,7 +189,7 @@ wxString ReadabilityMessages::GetMonthLabel(size_t month)
         break;
         }
 
-    return wxEmptyString;
+    return wxString{};
     }
 
 //-----------------------------------------------------
@@ -214,11 +202,8 @@ wxString ReadabilityMessages::GetAgeFromUSGrade(double value, const ReadingAgeDi
         const size_t age = static_cast<size_t>(round_to_integer(value)) + 5;
         return std::to_wstring(age);
         }
-    else
-        {
-        return wxString::Format(L"%zu-%zu", static_cast<size_t>(std::floor(value)) + 5,
-                                static_cast<size_t>(std::floor(value)) + 6);
-        }
+    return wxString::Format(L"%zu-%zu", static_cast<size_t>(std::floor(value)) + 5,
+                            static_cast<size_t>(std::floor(value)) + 6);
     }
 
 //-----------------------------------------------------
@@ -234,16 +219,13 @@ wxString ReadabilityMessages::GetAgeFromUSGrade(const size_t firstGrade, const s
         const double age = safe_divide<double>((firstGrade + secondGrade), 2) + 5;
         return std::to_wstring(static_cast<size_t>(round_to_integer(age)));
         }
-    else
-        {
-        return wxString::Format(L"%zu-%zu", firstGrade + 5, secondGrade + 6);
-        }
+    return wxString::Format(L"%zu-%zu", firstGrade + 5, secondGrade + 6);
     }
 
 //-----------------------------------------------------
 wxString ReadabilityMessages::GetUSGradeScaleLabel(size_t value)
     {
-    value = truncate_k12_plus_grade(value);
+    value = readability::truncate_k12_plus_grade(value);
 
     switch (value)
         {
@@ -294,7 +276,7 @@ wxString ReadabilityMessages::GetUSGradeScaleLabel(size_t value)
 //-----------------------------------------------------
 wxString ReadabilityMessages::GetNewfoundlandAndLabradorScaleLabel(size_t value)
     {
-    value = truncate_k12_plus_grade(value);
+    value = readability::truncate_k12_plus_grade(value);
 
     switch (value)
         {
@@ -345,7 +327,7 @@ wxString ReadabilityMessages::GetNewfoundlandAndLabradorScaleLabel(size_t value)
 //-----------------------------------------------------
 wxString ReadabilityMessages::GetBritishColumbiaScaleLabel(size_t value)
     {
-    value = truncate_k12_plus_grade(value);
+    value = readability::truncate_k12_plus_grade(value);
 
     switch (value)
         {
@@ -396,7 +378,7 @@ wxString ReadabilityMessages::GetBritishColumbiaScaleLabel(size_t value)
 //-----------------------------------------------------
 wxString ReadabilityMessages::GetNewBrunswickScaleLabel(size_t value)
     {
-    value = truncate_k12_plus_grade(value);
+    value = readability::truncate_k12_plus_grade(value);
 
     switch (value)
         {
@@ -447,7 +429,7 @@ wxString ReadabilityMessages::GetNewBrunswickScaleLabel(size_t value)
 //-----------------------------------------------------
 wxString ReadabilityMessages::GetNovaScotiaScaleLabel(size_t value)
     {
-    value = truncate_k12_plus_grade(value);
+    value = readability::truncate_k12_plus_grade(value);
 
     switch (value)
         {
@@ -498,7 +480,7 @@ wxString ReadabilityMessages::GetNovaScotiaScaleLabel(size_t value)
 //-----------------------------------------------------
 wxString ReadabilityMessages::GetAlbertaScaleLabel(size_t value)
     {
-    value = truncate_k12_plus_grade(value);
+    value = readability::truncate_k12_plus_grade(value);
 
     switch (value)
         {
@@ -549,7 +531,7 @@ wxString ReadabilityMessages::GetAlbertaScaleLabel(size_t value)
 //-----------------------------------------------------
 wxString ReadabilityMessages::GetOntarioScaleLabel(size_t value)
     {
-    value = truncate_k12_plus_grade(value);
+    value = readability::truncate_k12_plus_grade(value);
 
     switch (value)
         {
@@ -600,7 +582,7 @@ wxString ReadabilityMessages::GetOntarioScaleLabel(size_t value)
 //-----------------------------------------------------
 wxString ReadabilityMessages::GetSaskatchewanScaleLabel(size_t value)
     {
-    value = truncate_k12_plus_grade(value);
+    value = readability::truncate_k12_plus_grade(value);
 
     switch (value)
         {
@@ -651,7 +633,7 @@ wxString ReadabilityMessages::GetSaskatchewanScaleLabel(size_t value)
 //-----------------------------------------------------
 wxString ReadabilityMessages::GetPrinceEdwardIslandScaleLabel(size_t value)
     {
-    value = truncate_k12_plus_grade(value);
+    value = readability::truncate_k12_plus_grade(value);
 
     switch (value)
         {
@@ -702,7 +684,7 @@ wxString ReadabilityMessages::GetPrinceEdwardIslandScaleLabel(size_t value)
 //-----------------------------------------------------
 wxString ReadabilityMessages::GetManitobaScaleLabel(size_t value)
     {
-    value = truncate_k12_plus_grade(value);
+    value = readability::truncate_k12_plus_grade(value);
 
     switch (value)
         {
@@ -753,7 +735,7 @@ wxString ReadabilityMessages::GetManitobaScaleLabel(size_t value)
 //-----------------------------------------------------
 wxString ReadabilityMessages::GetNorthwestTerritoriesScaleLabel(size_t value)
     {
-    value = truncate_k12_plus_grade(value);
+    value = readability::truncate_k12_plus_grade(value);
 
     switch (value)
         {
@@ -804,7 +786,7 @@ wxString ReadabilityMessages::GetNorthwestTerritoriesScaleLabel(size_t value)
 //-----------------------------------------------------
 wxString ReadabilityMessages::GetNunavutScaleLabel(size_t value)
     {
-    value = truncate_k12_plus_grade(value);
+    value = readability::truncate_k12_plus_grade(value);
 
     switch (value)
         {
@@ -856,7 +838,7 @@ wxString ReadabilityMessages::GetNunavutScaleLabel(size_t value)
 wxString ReadabilityMessages::GetQuebecScaleLabel(size_t value)
     {
     // there are 20 grades in Quebec, just broken up differently
-    value = truncate_k12_plus_grade(value);
+    value = readability::truncate_k12_plus_grade(value);
 
     switch (value)
         {
@@ -921,7 +903,7 @@ wxString ReadabilityMessages::GetQuebecScaleLabel(size_t value)
 wxString ReadabilityMessages::GetEnglandWalesScaleLabel(size_t value)
     {
     // there are 20 grades in the U.K., just broken up differently
-    value = truncate_k12_plus_grade(value);
+    value = readability::truncate_k12_plus_grade(value);
 
     switch (value)
         {
@@ -1004,8 +986,8 @@ wxString ReadabilityMessages::GetPostSecondaryScaleLabel(size_t value)
 //-----------------------------------------------------
 wxString ReadabilityMessages::GetGradeScaleDescription(double value) const
     {
-    size_t grade, month;
-    split_k12_plus_grade_score(value, grade, month);
+    size_t grade{ 0 }, month{ 0 };
+    readability::split_k12_plus_grade_score(value, grade, month);
 
     return wxString::Format(
         // TRANSLATORS: "%s%s, %s%s" is opening highlight tag, grade, month,
@@ -1019,7 +1001,7 @@ wxString ReadabilityMessages::GetGradeScaleDescription(double value) const
 wxString ReadabilityMessages::GetGradeScaleDescription(size_t value) const
     {
     // make sure that reasonable values were entered
-    value = truncate_k12_plus_grade(value);
+    value = readability::truncate_k12_plus_grade(value);
 
     return wxString::Format(
         // TRANSLATORS: "%s%s%s" is opening highlight tag, grade level description,
@@ -1032,8 +1014,8 @@ wxString ReadabilityMessages::GetGradeScaleDescription(size_t value) const
 wxString ReadabilityMessages::GetGradeScaleDescription(size_t firstGrade, size_t secondGrade) const
     {
     // make sure that reasonable values were entered
-    firstGrade = truncate_k12_plus_grade(firstGrade);
-    secondGrade = truncate_k12_plus_grade(secondGrade);
+    firstGrade = readability::truncate_k12_plus_grade(firstGrade);
+    secondGrade = readability::truncate_k12_plus_grade(secondGrade);
 
     return wxString::Format(
         // TRANSLATORS: "%s%s%s" is opening highlight tag, grade level description,
@@ -1217,15 +1199,8 @@ wxString ReadabilityMessages::GetPredictedClozeDescription(const int clozeScore)
 bool ReadabilityMessages::GetScoreValue(const wxString& valueStr, double& value)
     {
     const wchar_t* const valueStrPtr = valueStr.wc_str();
-    wchar_t* end = nullptr;
+    wchar_t* end{ nullptr };
 
     value = string_util::strtod_ex(valueStrPtr, &end);
-    if (valueStrPtr != end)
-        {
-        return true;
-        }
-    else
-        {
-        return false;
-        }
+    return (valueStrPtr != end);
     }

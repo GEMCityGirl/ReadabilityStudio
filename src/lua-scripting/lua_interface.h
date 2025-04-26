@@ -1,19 +1,24 @@
-/** @addtogroup Scripting
-    @brief Classes for the scripting.
-    @date 2005-2023
-    @copyright Oleander Software, Ltd.
-    @author Blake Madden
-    @details This program is free software; you can redistribute it and/or modify
-     it under the terms of the 3-Clause BSD License.
+/********************************************************************************
+ * Copyright (c) 2005-2025 Blake Madden
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *   Blake Madden - initial implementation
+ ********************************************************************************/
 
-     SPDX-License-Identifier: BSD-3-Clause
-* @{*/
-
-#ifndef __LUAINTERFACE_H__
-#define __LUAINTERFACE_H__
+#ifndef LUAINTERFACE_H
+#define LUAINTERFACE_H
 
 #include "luna.h"
 #include <wx/wx.h>
+
+// NOLINTBEGIN(readability-identifier-length)
+// NOLINTBEGIN(readability-implicit-bool-conversion)
 
 /// @brief Interface for running Lua code.
 /// @details This manages the Lua session, registering our custom libraries,
@@ -51,10 +56,7 @@ class LuaInterpreter
         }
 
     /// @brief Stop running the current script.
-    static void Quit()
-        {
-        m_quitRequested = true;
-        }
+    static void Quit() { m_quitRequested = true; }
 
     /// @returns The file path of the currently running script
     ///     (may be empty if RunLuaCode() was called with no defined file path).
@@ -69,7 +71,7 @@ class LuaInterpreter
     void SetScriptFilePath(const wxString& path) { m_scriptFilePath = path; }
 
   private:
-    static void LineHookCallback(lua_State *L, lua_Debug *ar);
+    static void LineHookCallback(lua_State* L, lua_Debug* ar);
 
     lua_State* m_L{ nullptr };
     static bool m_isRunning;
@@ -77,6 +79,7 @@ class LuaInterpreter
     wxString m_scriptFilePath;
     };
 
-    /** @}*/
+    // NOLINTEND(readability-implicit-bool-conversion)
+    // NOLINTEND(readability-identifier-length)
 
-#endif //__LUAINTERFACE_H__
+#endif // LUAINTERFACE_H

@@ -22,6 +22,9 @@ class ProjectDoc;
 class BatchProjectDoc;
 class ToolsOptionsDlg;
 
+// NOLINTBEGIN(readability-identifier-length)
+// NOLINTBEGIN(readability-implicit-bool-conversion)
+
 namespace LuaScripting
     {
     /// @brief Batch project interface.
@@ -41,10 +44,7 @@ namespace LuaScripting
                              _(L"Warning"), wxOK | wxICON_INFORMATION);
                 return false;
                 }
-            else
-                {
-                return true;
-                }
+            return true;
             }
 
         /// @note This takes into account the boolean parameter in the front
@@ -68,10 +68,7 @@ namespace LuaScripting
                     _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
                 return false;
                 }
-            else
-                {
-                return true;
-                }
+            return true;
             }
 
         bool ReloadIfNotDelayed();
@@ -312,5 +309,8 @@ namespace LuaScripting
         // quneiform-suppress-end
         };
     } // namespace LuaScripting
+
+// NOLINTEND(readability-implicit-bool-conversion)
+// NOLINTEND(readability-identifier-length)
 
 #endif //__LUA_BATCH_PROJECTS_H__

@@ -25,6 +25,9 @@ using namespace Wisteria::Graphs;
 using namespace Wisteria::Colors;
 using namespace Wisteria::UI;
 
+// NOLINTBEGIN(readability-identifier-length)
+// NOLINTBEGIN(readability-implicit-bool-conversion)
+
 wxDECLARE_APP(ReadabilityApp);
 
 /* Note: with Luna, an extra boolean argument is passed into class functions at the front,
@@ -4813,3 +4816,6 @@ namespace LuaScripting
         { nullptr, nullptr }
     };
     } // namespace LuaScripting
+
+// NOLINTEND(readability-implicit-bool-conversion)
+// NOLINTEND(readability-identifier-length)

@@ -102,7 +102,7 @@ namespace Wisteria::Graphs
         void AddBrackets();
 
         [[nodiscard]]
-        size_t GetSyllableAxisOffset() const noexcept
+        uint16_t GetSyllableAxisOffset() const noexcept
             {
             return m_syllableAxisOffset;
             }
@@ -113,7 +113,7 @@ namespace Wisteria::Graphs
         void SetAsGilliamPenaMountainGraph();
         FryGraphType m_fryGraphType{ FryGraphType::Traditional };
         // used for adjusting the axis for other languages
-        size_t m_syllableAxisOffset{ 0 };
+        uint16_t m_syllableAxisOffset{ 0 };
 
         std::array<wxPoint, 37> m_gradeLinePoints;
         std::array<wxPoint, 3> m_longSentencesPoints;

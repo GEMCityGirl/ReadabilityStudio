@@ -15,9 +15,7 @@
 
 wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonReadabilityGraph)
 
-using namespace Wisteria;
-using namespace Wisteria::Colors;
-using namespace Wisteria::GraphItems;
+    using namespace Wisteria::GraphItems;
 
 namespace Wisteria::Graphs
     {
@@ -27,8 +25,8 @@ namespace Wisteria::Graphs
                        std::shared_ptr<Wisteria::Icons::Schemes::IconScheme> shapes /*= nullptr*/)
         : PolygonReadabilityGraph(canvas), m_fryGraphType(fType)
         {
-        SetColorScheme(colors != nullptr ? colors : Settings::GetDefaultColorScheme());
-        SetShapeScheme(shapes != nullptr ? shapes :
+        SetColorScheme(colors != nullptr ? std::move(colors) : Settings::GetDefaultColorScheme());
+        SetShapeScheme(shapes != nullptr ? std::move(shapes) :
                                            std::make_unique<Wisteria::Icons::Schemes::IconScheme>(
                                                Wisteria::Icons::Schemes::StandardShapes()));
 
@@ -47,7 +45,7 @@ namespace Wisteria::Graphs
         GetTopXAxis().GetTitle().SetText(_(L"Average number of syllables per 100 words"));
         GetTopXAxis().GetTitle().GetFont().MakeSmaller();
 
-        for (size_t i = 108 + GetSyllableAxisOffset(); i <= 180 + GetSyllableAxisOffset(); i += 2)
+        for (auto i = 108 + GetSyllableAxisOffset(); i <= 180 + GetSyllableAxisOffset(); i += 2)
             {
             GetBottomXAxis().AddUnevenAxisPoint(
                 i, wxNumberFormatter::ToString(i, 0,
@@ -218,7 +216,7 @@ namespace Wisteria::Graphs
                                      Canvas::GetDefaultCanvasHeightDIPs()) &&
                L"Invalid backscreen size!");
 
-        wxColour labelFontColor{ GetLeftYAxis().GetFontColor() };
+        const wxColour labelFontColor{ GetLeftYAxis().GetFontColor() };
 
         // long sentence danger area
         GetPhysicalCoordinates(108 + GetSyllableAxisOffset(), 2.0, m_longSentencesPoints[0]);
@@ -228,7 +226,8 @@ namespace Wisteria::Graphs
             GraphItemInfo()
                 .Pen(wxNullPen)
                 .Text(_(L"Invalid region: sentences are too long"))
-                .Brush(wxBrush(ColorContrast::ChangeOpacity(GetInvalidAreaColor(), 100))),
+                .Brush(wxBrush(
+                    Wisteria::Colors::ColorContrast::ChangeOpacity(GetInvalidAreaColor(), 100))),
             m_longSentencesPoints));
         // long word danger area
         GetPhysicalCoordinates(141 + GetSyllableAxisOffset(), 25.0, m_longWordPoints[0]);
@@ -244,7 +243,8 @@ namespace Wisteria::Graphs
             GraphItemInfo()
                 .Pen(wxNullPen)
                 .Text(_(L"Invalid region: too many complex words"))
-                .Brush(wxBrush(ColorContrast::ChangeOpacity(GetInvalidAreaColor(), 100))),
+                .Brush(wxBrush(
+                    Wisteria::Colors::ColorContrast::ChangeOpacity(GetInvalidAreaColor(), 100))),
             m_longWordPoints));
         // divider line
         GetPhysicalCoordinates(119.5 + GetSyllableAxisOffset(), 15.8, m_dividerLinePoints[0]);
@@ -317,9 +317,9 @@ namespace Wisteria::Graphs
         GetPhysicalCoordinates(182 + GetSyllableAxisOffset(), 6.8, m_gradeLinePoints[35]);
         GetPhysicalCoordinates(182 + GetSyllableAxisOffset(), 2.4, m_gradeLinePoints[36]);
 
-        const wxBrush selectionBrush =
-            wxBrush(ColorContrast::ChangeOpacity(ColorBrewer::GetColor(Color::LightGray), 100));
-        wxColour separatorColor{ ColorContrast::ChangeOpacity(*wxBLACK, 200) };
+        const wxBrush selectionBrush = wxBrush(Wisteria::Colors::ColorContrast::ChangeOpacity(
+            Wisteria::Colors::ColorBrewer::GetColor(Wisteria::Colors::Color::LightGray), 100));
+        wxColour separatorColor{ Wisteria::Colors::ColorContrast::ChangeOpacity(*wxBLACK, 200) };
         separatorColor = Wisteria::Colors::ColorContrast::ShadeOrTintIfClose(
             separatorColor, GetPlotOrCanvasColor());
 
@@ -362,21 +362,21 @@ namespace Wisteria::Graphs
 
         // add the grade labels to the regions
         // (and highlight in heavy bold and a different color the one where the score lies)
-        wxFont labelFont =
+        const wxFont labelFont =
             wxFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize() * 1.25,
                    wxFONTFAMILY_DEFAULT, wxFONTSTYLE_ITALIC, wxFONTWEIGHT_NORMAL, false,
                    GetFancyFontFaceName());
         for (const auto& level : GetLevelLabels())
             {
-            wxPoint pt;
-            GetPhysicalCoordinates(level.GetX(), level.GetY(), pt);
+            wxPoint point;
+            GetPhysicalCoordinates(level.GetX(), level.GetY(), point);
 
             auto levelLabel = std::make_unique<GraphItems::Label>(GraphItemInfo(level.GetLabel())
                                                                       .Scaling(GetScaling())
                                                                       .Pen(wxNullPen)
                                                                       .Font(labelFont)
                                                                       .FontColor(labelFontColor)
-                                                                      .AnchorPoint(pt));
+                                                                      .AnchorPoint(point));
             levelLabel->SetTextAlignment(TextAlignment::Centered);
             if (GetScores().size() == 1)
                 {
@@ -418,7 +418,8 @@ namespace Wisteria::Graphs
             const uint8_t opacityLevel{ 200 };
             AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
                 GraphItemInfo()
-                    .Pen(wxPen(ColorContrast::ChangeOpacity(gradeLineColor, opacityLevel)))
+                    .Pen(wxPen(Wisteria::Colors::ColorContrast::ChangeOpacity(gradeLineColor,
+                                                                              opacityLevel)))
                     .Brush(gradeLineColor)
                     .Scaling(GetScaling()),
                 &m_gradeLinePoints[3], 2));
@@ -427,7 +428,8 @@ namespace Wisteria::Graphs
                 {
                 AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
                     GraphItemInfo()
-                        .Pen(wxPen(ColorContrast::ChangeOpacity(gradeLineColor, opacityLevel)))
+                        .Pen(wxPen(Wisteria::Colors::ColorContrast::ChangeOpacity(gradeLineColor,
+                                                                                  opacityLevel)))
                         .Brush(gradeLineColor)
                         .Scaling(GetScaling()),
                     &m_gradeLinePoints[pointIter], 2));
@@ -454,7 +456,7 @@ namespace Wisteria::Graphs
                 continue;
                 }
 
-            const double normalizationFactor =
+            const auto normalizationFactor =
                 safe_divide<double>(100, m_numberOfWordsColumn->GetValue(i));
 
             // add the score to the grouped data
@@ -684,11 +686,11 @@ namespace Wisteria::Graphs
                     {
                     AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
                         GraphItemInfo()
-                            .Pen(ColorContrast::ChangeOpacity(
+                            .Pen(Wisteria::Colors::ColorContrast::ChangeOpacity(
                                 Wisteria::Colors::ColorBrewer::GetColor(
                                     Wisteria::Colors::Color::BondiBlue),
                                 100))
-                            .Brush(ColorContrast::ChangeOpacity(
+                            .Brush(Wisteria::Colors::ColorContrast::ChangeOpacity(
                                 Wisteria::Colors::ColorBrewer::GetColor(
                                     Wisteria::Colors::Color::BondiBlue),
                                 100))
@@ -707,7 +709,8 @@ namespace Wisteria::Graphs
                                    200;
         AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
             GraphItemInfo()
-                .Pen(wxPen(ColorContrast::ChangeOpacity(gradeLineColor, opacityLevel)))
+                .Pen(wxPen(
+                    Wisteria::Colors::ColorContrast::ChangeOpacity(gradeLineColor, opacityLevel)))
                 .Brush(gradeLineColor)
                 .Scaling(GetScaling()),
             &m_gradeLinePoints[3], 2));
@@ -723,31 +726,32 @@ namespace Wisteria::Graphs
                                200;
             AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
                 GraphItemInfo()
-                    .Pen(wxPen(ColorContrast::ChangeOpacity(gradeLineColor, opacityLevel)))
+                    .Pen(wxPen(Wisteria::Colors::ColorContrast::ChangeOpacity(gradeLineColor,
+                                                                              opacityLevel)))
                     .Brush(gradeLineColor)
                     .Scaling(GetScaling()),
                 &m_gradeLinePoints[pointIter], 2));
             }
 
         // draw the description label
-        wxColour labelFontColor{ GetLeftYAxis().GetFontColor() };
+        const wxColour labelFontColor{ GetLeftYAxis().GetFontColor() };
         wxPoint pt1, pt2;
         GetPhysicalCoordinates(112 + GetSyllableAxisOffset(), 5.0, pt1);
         GetPhysicalCoordinates(128 + GetSyllableAxisOffset(), 3.3, pt2);
-        auto gradeLevelLabel =
-            std::make_unique<Wisteria::GraphItems::Label>(GraphItemInfo(_(L"APPROXIMATE  GRADE  LEVEL"))
-                                                    .Pen(wxNullPen)
-                                                    .Selectable(false)
-                                                    .FontColor(labelFontColor)
-                                                    // overriding scaling with a hard-coded font
-                                                    // size returned from CalcDiagonalFontSize()
-                                                    .Scaling(1)
-                                                    .DPIScaling(1)
-                                                    .AnchorPoint(pt1)
-                                                    .Anchoring(Anchoring::TopLeftCorner));
+        auto gradeLevelLabel = std::make_unique<Wisteria::GraphItems::Label>(
+            GraphItemInfo(_(L"APPROXIMATE  GRADE  LEVEL"))
+                .Pen(wxNullPen)
+                .Selectable(false)
+                .FontColor(labelFontColor)
+                // overriding scaling with a hard-coded font
+                // size returned from CalcDiagonalFontSize()
+                .Scaling(1)
+                .DPIScaling(1)
+                .AnchorPoint(pt1)
+                .Anchoring(Anchoring::TopLeftCorner));
         gradeLevelLabel->Tilt(-45);
         // make it fit inside of the graph
-        wxRect gradeLabelArea{ pt1, pt2 };
+        const wxRect gradeLabelArea{ pt1, pt2 };
         wxFont labelFont(wxFontInfo().FaceName(GetFancyFontFaceName()));
         labelFont.SetPointSize(Label::CalcDiagonalFontSize(dc, labelFont, gradeLabelArea, 45,
                                                            gradeLevelLabel->GetText()));
@@ -825,7 +829,7 @@ namespace Wisteria::Graphs
         GetCanvas()->SetName(_(L"Gilliam-Pe\U000000F1a-Mountain Graph"));
 
         GetBottomXAxis().Reset();
-        for (size_t i = 108 + GetSyllableAxisOffset(); i <= 180 + GetSyllableAxisOffset(); i += 2)
+        for (auto i = 108 + GetSyllableAxisOffset(); i <= 180 + GetSyllableAxisOffset(); i += 2)
             {
             GetBottomXAxis().AddUnevenAxisPoint(
                 i, wxNumberFormatter::ToString(i, 0,

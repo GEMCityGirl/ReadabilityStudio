@@ -1,10 +1,15 @@
-///////////////////////////////////////////////////////////////////////////////
-// Name:        lua_screenshot.cpp
-// Author:      Blake Madden
-// Copyright:   (c) 2005-2023 Blake Madden
-// Licence:     3-Clause BSD licence
-// SPDX-License-Identifier: BSD-3-Clause
-///////////////////////////////////////////////////////////////////////////////
+/********************************************************************************
+ * Copyright (c) 2005-2025 Blake Madden
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *   Blake Madden - initial implementation
+ ********************************************************************************/
 
 #include "lua_screenshot.h"
 #include "../Wisteria-Dataviz/src/ui/dialogs/archivedlg.h"
@@ -227,16 +232,13 @@ namespace LuaScripting
                             lua_pushboolean(L, true);
                             return 1;
                             }
-                        else if (Screenshot::CropScreenshot(path, wxDefaultCoord, y))
+                        if (Screenshot::CropScreenshot(path, wxDefaultCoord, y))
                             {
                             lua_pushboolean(L, true);
                             return 1;
                             }
-                        else
-                            {
-                            lua_pushboolean(L, false);
-                            return 1;
-                            }
+                        lua_pushboolean(L, false);
+                        return 1;
                         }
                     else
                         {

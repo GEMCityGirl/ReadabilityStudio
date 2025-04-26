@@ -66,7 +66,7 @@ wxString ProjectReportFormat::GetStemmingDisplayName(const stemming::stemming_ty
 //------------------------------------------------
 wxString ProjectReportFormat::FormatFormulaToHtml(const wxString& formula)
     {
-    if (formula.length() == 0)
+    if (formula.empty())
         {
         return formula;
         }
@@ -154,11 +154,11 @@ wxString ProjectReportFormat::FormatFormulaToHtml(const wxString& formula)
 //------------------------------------------------
 wxString ProjectReportFormat::FormatDolchStatisticsInfo(
     const BaseProject* project, const StatisticsReportInfo& statsInfo,
-    const bool includeExplanation, const wxColour attentionColor,
+    const bool includeExplanation, const wxColour& attentionColor,
     std::shared_ptr<Wisteria::UI::ListCtrlExDataProviderBase> listData)
     {
     assert(project);
-    if (!project)
+    if (project == nullptr)
         {
         return wxString{};
         }
@@ -190,11 +190,11 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
 
     const bool containsHighPercentageOfNonDochWords =
         ((totalDolchPercentage < 70) || (totalDolchExcludingNounsPercentage < 60));
-    wxString HTMLText;
+    wxString htmlText;
 
     if (!statsInfo.HasDolchStatisticsEnabled())
         {
-        HTMLText += _(L"No Dolch statistics <a href=\"#SelectStatistics\">currently selected</a>.");
+        htmlText += _(L"No Dolch statistics <a href=\"#SelectStatistics\">currently selected</a>.");
         }
 
     wxBitmap bmp(100, 100);
@@ -233,7 +233,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
     if (statsInfo.IsDolchCoverageEnabled())
         {
         // list completions
-        HTMLText += tableStart + formatHeader(_(L"Dolch Word Coverage"));
+        htmlText += tableStart + formatHeader(_(L"Dolch Word Coverage"));
 
         const double dolchConjuctionPercentage =
             safe_divide<double>(
@@ -296,7 +296,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                  dolchConjuctionPercentage, 1,
                                  wxNumberFormatter::Style::Style_NoTrailingZeroes) +
                              L"% " + _(L"of all Dolch conjunctions") + wxString(L")"));
-            HTMLText += formatRow(_(L"Conjunctions used:"), valueStr, percentStr);
+            htmlText += formatRow(_(L"Conjunctions used:"), valueStr, percentStr);
 
             if (listData)
                 {
@@ -322,7 +322,8 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                      attentionColor.GetAsString(wxC2S_HTML_SYNTAX)) +
                         wxNumberFormatter::ToString(MAX_DOLCH_PREPOSITION_WORDS -
                                                         project->GetUnusedDolchPrepositions(),
-                                                    0, true) +
+                                                    0, wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                            wxNumberFormatter::Style::Style_WithThousandsSep) +
                         L"</span>" :
                     wxNumberFormatter::ToString(
                         MAX_DOLCH_PREPOSITION_WORDS - project->GetUnusedDolchPrepositions(), 0,
@@ -343,7 +344,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                  dolchPrepositionsPercentage, 1,
                                  wxNumberFormatter::Style::Style_NoTrailingZeroes) +
                              L"% " + _(L"of all Dolch prepositions") + wxString(L")"));
-            HTMLText += formatRow(_(L"Prepositions used:"), valueStr, percentStr);
+            htmlText += formatRow(_(L"Prepositions used:"), valueStr, percentStr);
 
             if (listData)
                 {
@@ -391,7 +392,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                  dolchPronounsPercentage, 1,
                                  wxNumberFormatter::Style::Style_NoTrailingZeroes) +
                              L"% " + _(L"of all Dolch pronouns") + wxString(L")"));
-            HTMLText += formatRow(_(L"Pronouns used:"), valueStr, percentStr);
+            htmlText += formatRow(_(L"Pronouns used:"), valueStr, percentStr);
 
             if (listData)
                 {
@@ -439,7 +440,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                  dolchAdverbsPercentage, 1,
                                  wxNumberFormatter::Style::Style_NoTrailingZeroes) +
                              L"% " + _(L"of all Dolch adverbs") + wxString(L")"));
-            HTMLText += formatRow(_(L"Adverbs used:"), valueStr, percentStr);
+            htmlText += formatRow(_(L"Adverbs used:"), valueStr, percentStr);
 
             if (listData)
                 {
@@ -487,7 +488,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                  dolchAdjectivesPercentage, 1,
                                  wxNumberFormatter::Style::Style_NoTrailingZeroes) +
                              L"% " + _(L"of all Dolch adjectives") + wxString(L")"));
-            HTMLText += formatRow(_(L"Adjectives used:"), valueStr, percentStr);
+            htmlText += formatRow(_(L"Adjectives used:"), valueStr, percentStr);
 
             if (listData)
                 {
@@ -535,7 +536,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                  dolchVerbsPercentage, 1,
                                  wxNumberFormatter::Style::Style_NoTrailingZeroes) +
                              L"% " + _(L"of all Dolch verbs") + wxString(L")"));
-            HTMLText += formatRow(_(L"Verbs used:"), valueStr, percentStr);
+            htmlText += formatRow(_(L"Verbs used:"), valueStr, percentStr);
 
             if (listData)
                 {
@@ -582,7 +583,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                  dolchNounPercentage, 1,
                                  wxNumberFormatter::Style::Style_NoTrailingZeroes) +
                              L"% " + _(L"of all Dolch nouns") + wxString(L")"));
-            HTMLText += formatRow(_(L"Nouns used:"), valueStr, percentStr);
+            htmlText += formatRow(_(L"Nouns used:"), valueStr, percentStr);
 
             if (listData)
                 {
@@ -599,7 +600,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                         L"% " + _(L"of all Dolch nouns"));
                 }
             }
-        HTMLText += L"\n</table>";
+        htmlText += L"\n</table>";
 
         wxString useDescription;
         if (dolchConjuctionPercentage >= 75 || dolchPrepositionsPercentage >= 75 ||
@@ -647,7 +648,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                 }
             useDescription += L"<br /><br />";
             }
-        HTMLText += FormatHtmlNoteSection(
+        htmlText += FormatHtmlNoteSection(
             useDescription +
             _(L"Dolch words that are not being used in this document may be viewed in the "
               "<a href=\"#UnusedDolchWords\">Unused Dolch Words</a> output."));
@@ -656,7 +657,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
     // total words
     if (statsInfo.IsDolchWordsEnabled())
         {
-        HTMLText += tableStart + formatHeader(_(L"Dolch Words"));
+        htmlText += tableStart + formatHeader(_(L"Dolch Words"));
 
             // number of Dolch words
             {
@@ -688,7 +689,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                  wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                      wxNumberFormatter::Style::Style_WithThousandsSep) +
                              L"% " + _(L"of all words)"));
-            HTMLText += formatRow(_(L"Number of Dolch words:"), valueStr, percentStr);
+            htmlText += formatRow(_(L"Number of Dolch words:"), valueStr, percentStr);
 
             if (listData)
                 {
@@ -737,7 +738,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                  wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                      wxNumberFormatter::Style::Style_WithThousandsSep) +
                              L"% " + _(L"of all words)"));
-            HTMLText +=
+            htmlText +=
                 formatRow(_(L"Number of Dolch words (excluding nouns):"), valueStr, percentStr);
 
             if (listData)
@@ -788,7 +789,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                  wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                      wxNumberFormatter::Style::Style_WithThousandsSep) +
                              L"% " + _(L"of all words)"));
-            HTMLText += formatRow(_(L"Number of non-Dolch words:"), valueStr, percentStr);
+            htmlText += formatRow(_(L"Number of non-Dolch words:"), valueStr, percentStr);
 
             if (listData)
                 {
@@ -823,7 +824,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                              wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                  wxNumberFormatter::Style::Style_WithThousandsSep) +
                          L"% " + _(L"of all words)"));
-            HTMLText += formatRow(_(L"Number of Dolch conjunctions:"), valueStr, percentStr);
+            htmlText += formatRow(_(L"Number of Dolch conjunctions:"), valueStr, percentStr);
 
             if (listData)
                 {
@@ -845,7 +846,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                         L"% " + _(L"of all words"));
                 }
 
-            HTMLText += formatRow(
+            htmlText += formatRow(
                 _(L"Number of unique Dolch conjunctions:"),
                 wxNumberFormatter::ToString(project->GetDolchConjunctionCounts().first, 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -878,7 +879,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                              wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                  wxNumberFormatter::Style::Style_WithThousandsSep) +
                          L"% " + _(L"of all words)"));
-            HTMLText += formatRow(_(L"Number of Dolch prepositions:"), valueStr, percentStr);
+            htmlText += formatRow(_(L"Number of Dolch prepositions:"), valueStr, percentStr);
             if (listData)
                 {
                 listData->SetItemText(listDataItemCount, 0, _(L"Number of Dolch prepositions"));
@@ -899,7 +900,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                         L"% " + _(L"of all words"));
                 }
 
-            HTMLText += formatRow(
+            htmlText += formatRow(
                 _(L"Number of unique Dolch prepositions:"),
                 wxNumberFormatter::ToString(project->GetDolchPrepositionWordCounts().first, 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -932,7 +933,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                              wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                  wxNumberFormatter::Style::Style_WithThousandsSep) +
                          L"% " + _(L"of all words)"));
-            HTMLText += formatRow(_(L"Number of Dolch pronouns:"), valueStr, percentStr);
+            htmlText += formatRow(_(L"Number of Dolch pronouns:"), valueStr, percentStr);
 
             if (listData)
                 {
@@ -954,7 +955,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                         L"% " + _(L"of all words"));
                 }
 
-            HTMLText += formatRow(
+            htmlText += formatRow(
                 _(L"Number of unique Dolch pronouns:"),
                 wxNumberFormatter::ToString(project->GetDolchPronounCounts().first, 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -986,7 +987,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                              wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                  wxNumberFormatter::Style::Style_WithThousandsSep) +
                          L"% " + _(L"of all words)"));
-            HTMLText += formatRow(_(L"Number of Dolch adverbs:"), valueStr, percentStr);
+            htmlText += formatRow(_(L"Number of Dolch adverbs:"), valueStr, percentStr);
 
             if (listData)
                 {
@@ -1008,7 +1009,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                         L"% " + _(L"of all words"));
                 }
 
-            HTMLText += formatRow(
+            htmlText += formatRow(
                 _(L"Number of unique Dolch adverbs:"),
                 wxNumberFormatter::ToString(project->GetDolchAdverbCounts().first, 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -1040,7 +1041,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                              wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                  wxNumberFormatter::Style::Style_WithThousandsSep) +
                          L"% " + _(L"of all words)"));
-            HTMLText += formatRow(_(L"Number of Dolch adjectives:"), valueStr, percentStr);
+            htmlText += formatRow(_(L"Number of Dolch adjectives:"), valueStr, percentStr);
 
             if (listData)
                 {
@@ -1062,7 +1063,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                         L"% " + _(L"of all words"));
                 }
 
-            HTMLText += formatRow(
+            htmlText += formatRow(
                 _(L"Number of unique Dolch adjectives:"),
                 wxNumberFormatter::ToString(project->GetDolchAdjectiveCounts().first, 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -1095,7 +1096,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                              wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                  wxNumberFormatter::Style::Style_WithThousandsSep) +
                          L"% " + _(L"of all words)"));
-            HTMLText += formatRow(_(L"Number of Dolch verbs:"), valueStr, percentStr);
+            htmlText += formatRow(_(L"Number of Dolch verbs:"), valueStr, percentStr);
 
             if (listData)
                 {
@@ -1116,7 +1117,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                           L"% " + _(L"of all words"));
                 }
 
-            HTMLText += formatRow(
+            htmlText += formatRow(
                 _(L"Number of unique Dolch verbs:"),
                 wxNumberFormatter::ToString(project->GetDolchVerbsCounts().first, 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -1148,7 +1149,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                              wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                  wxNumberFormatter::Style::Style_WithThousandsSep) +
                          L"% " + _(L"of all words)"));
-            HTMLText += formatRow(_(L"Number of Dolch nouns:"), valueStr, percentStr);
+            htmlText += formatRow(_(L"Number of Dolch nouns:"), valueStr, percentStr);
             if (listData)
                 {
                 listData->SetItemText(listDataItemCount, 0, _(L"Number of Dolch nouns"));
@@ -1168,7 +1169,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                           L"% " + _(L"of all words"));
                 }
 
-            HTMLText += formatRow(
+            htmlText += formatRow(
                 _(L"Number of unique  Dolch nouns:"),
                 wxNumberFormatter::ToString(project->GetDolchNounCounts().first, 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -1184,11 +1185,11 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                               wxNumberFormatter::Style::Style_WithThousandsSep));
                 }
             }
-        HTMLText += L"\n</table>";
+        htmlText += L"\n</table>";
 
         if (containsHighPercentageOfNonDochWords)
             {
-            HTMLText += FormatHtmlWarningSection(_(L"This document contains a high percentage of "
+            htmlText += FormatHtmlWarningSection(_(L"This document contains a high percentage of "
                                                    "non-Dolch words and may not be appropriate "
                                                    "for using as a Dolch test aid."));
             }
@@ -1196,29 +1197,29 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
 
     if (includeExplanation && statsInfo.IsDolchExplanationEnabled())
         {
-        HTMLText += tableStart + formatHeader(_(L"Explanation"));
-        HTMLText += L"\n<tr><td style='width:100%'><p>";
-        HTMLText +=
+        htmlText += tableStart + formatHeader(_(L"Explanation"));
+        htmlText += L"\n<tr><td style='width:100%'><p>";
+        htmlText +=
             _(L"The Dolch Sight Words represent the most frequently occurring service "
               "words<sup>1</sup> "
               "in most text, especially children's literature. Early readers need to learn and "
               "recognize "
               "these words to attain reading fluency. Many of these words cannot be sounded out or "
               "represented by pictures; therefore, they must be learned by sight<sup>2</sup>.");
-        HTMLText += L"</p>\n<p>";
-        HTMLText +=
+        htmlText += L"</p>\n<p>";
+        htmlText +=
             _(L"If you are writing educational materials for early readers, then it is recommended "
               "to use as many of these words as possible to help readers practice them. "
               "It is also recommended to keep the percentage of non-Dolch words low so that the "
               "reader can better focus on the sight words.");
-        HTMLText += L"</p>\n<p><sup>1</sup> ";
-        HTMLText += _(L"Pronouns, adjectives, adverbs, prepositions, conjunctions, and verbs.");
-        HTMLText += L"<br /><sup>2</sup> ";
-        HTMLText += _(L"A separate list of nouns commonly found in children's literature is also "
+        htmlText += L"</p>\n<p><sup>1</sup> ";
+        htmlText += _(L"Pronouns, adjectives, adverbs, prepositions, conjunctions, and verbs.");
+        htmlText += L"<br /><sup>2</sup> ";
+        htmlText += _(L"A separate list of nouns commonly found in children's literature is also "
                       "included with the "
                       "Dolch collection. However, the sight words are generally the focus of most "
                       "Dolch activities.");
-        HTMLText += L"</p></td></tr>\n</table>";
+        htmlText += L"</p></td></tr>\n</table>";
         }
 
     if (listData)
@@ -1226,7 +1227,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
         listData->SetSize(listDataItemCount, 3);
         }
 
-    return HTMLText;
+    return htmlText;
     }
 
 //------------------------------------------------
@@ -1255,21 +1256,21 @@ wxString ProjectReportFormat::FormatHtmlReportStart(const wxString& title /*= wx
     }
 
 //------------------------------------------------
-wxString ProjectReportFormat::FormatHtmlReportEnd() { return wxString(L"\n</body>\n</html>"); }
+wxString ProjectReportFormat::FormatHtmlReportEnd() { return { L"\n</body>\n</html>" }; }
 
 //------------------------------------------------
 wxString ProjectReportFormat::FormatStatisticsInfo(
     const BaseProject* project, const StatisticsReportInfo& statsInfo,
-    const wxColour attentionColor,
+    const wxColour& attentionColor,
     std::shared_ptr<Wisteria::UI::ListCtrlExDataProviderBase> listData)
     {
     PROFILE();
-    if (!project)
+    if (project == nullptr)
         {
         return wxString{};
         }
     wxString currentLabel;
-    lily_of_the_valley::html_encode_text htmlEncode;
+    const lily_of_the_valley::html_encode_text htmlEncode;
     lily_of_the_valley::html_extract_text htmlStrip;
     size_t listDataItemCount{ 0 };
     if (listData != nullptr)
@@ -1278,7 +1279,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
         listData->SetSize(MAX_SUMMARY_STAT_ROWS, 3);
         }
 
-    wxString HTMLText;
+    wxString htmlText;
 
     // Number of difficult sentences
     const double overlyLongSentencePercentage =
@@ -1288,20 +1289,20 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                                 project->GetTotalSentences()) *
                 100;
     // Number of exclamatory sentences
-    const double exclamatorySentencePercentage =
+    const auto exclamatorySentencePercentage =
         (project->GetTotalExclamatorySentences() == 0) ?
             0 :
             safe_divide<double>(project->GetTotalExclamatorySentences(),
                                 project->GetTotalSentences()) *
                 100;
-    const double averageCharacterCount =
+    const auto averageCharacterCount =
         safe_divide<double>(project->GetTotalCharacters(), project->GetTotalWords());
-    const double averageSyllableCount =
+    const auto averageSyllableCount =
         safe_divide<double>(project->GetTotalSyllables(), project->GetTotalWords());
 
     if (!statsInfo.HasStatisticsEnabled())
         {
-        HTMLText += _(L"No statistics <a href=\"#SelectStatistics\">currently selected</a>.");
+        htmlText += _(L"No statistics <a href=\"#SelectStatistics\">currently selected</a>.");
         }
 
     wxBitmap bmp(100, 100);
@@ -1348,7 +1349,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
     if (statsInfo.IsParagraphEnabled())
         {
         // number of paragraphs
-        HTMLText += tableStart + formatHeader(_(L"Paragraphs")) +
+        htmlText += tableStart + formatHeader(_(L"Paragraphs")) +
                     formatRow(_(L"Number of paragraphs:"),
                               wxNumberFormatter::ToString(
                                   project->GetTotalParagraphs(), 0,
@@ -1366,13 +1367,13 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
             }
 
         // average paragraph length
-        HTMLText += formatRow(
+        htmlText += formatRow(
             _(L"Average number of sentences per paragraph:"),
             wxNumberFormatter::ToString(
                 safe_divide<double>(project->GetTotalSentences(), project->GetTotalParagraphs()), 1,
                 wxNumberFormatter::Style::Style_NoTrailingZeroes |
                     wxNumberFormatter::Style::Style_WithThousandsSep));
-        HTMLText += L"\n</table>";
+        htmlText += L"\n</table>";
 
         if (listData)
             {
@@ -1391,7 +1392,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
     if (statsInfo.IsSentencesEnabled())
         {
         // Number of sentences
-        HTMLText += tableStart + formatHeader(_(L"Sentences"));
+        htmlText += tableStart + formatHeader(_(L"Sentences"));
 
         if (project->GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis)
             {
@@ -1407,7 +1408,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
             {
             currentLabel = _(L"Number of sentences:");
             }
-        HTMLText += formatRow(
+        htmlText += formatRow(
             currentLabel,
             wxNumberFormatter::ToString(project->GetTotalSentences(), 0,
                                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -1445,7 +1446,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 {
                 currentLabel = _(L"Number of units/independent clauses:");
                 }
-            HTMLText += formatRow(
+            htmlText += formatRow(
                 currentLabel,
                 wxNumberFormatter::ToString(project->GetTotalSentenceUnits(), 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -1502,7 +1503,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
                             wxNumberFormatter::Style::Style_WithThousandsSep) +
                     L"% " + _(L"of all sentences)");
-        HTMLText += formatRow(currentLabel, currentValue, currentPercent);
+        htmlText += formatRow(currentLabel, currentValue, currentPercent);
 
         if (listData)
             {
@@ -1540,11 +1541,12 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                                    project->GetLongestSentence(), 0,
                                    wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                        wxNumberFormatter::Style::Style_WithThousandsSep);
-            HTMLText +=
+            htmlText +=
                 formatRow(wxString::Format(_(L"Longest sentence (sentence #%s):"),
                                            // add 1 to display it as 1 based
                                            wxNumberFormatter::ToString(
-                                               project->GetLongestSentenceIndex() + 1, 0, true)),
+                                               project->GetLongestSentenceIndex() + 1, 0, wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                       wxNumberFormatter::Style::Style_WithThousandsSep)),
                           currentValue);
 
             if (listData)
@@ -1559,11 +1561,11 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
             }
         else
             {
-            HTMLText += L"<tr><td style=\"width:60%\">";
-            HTMLText += _(L"Longest sentence:");
-            HTMLText += L"</td><td style=\"text-align:right; width:10%\">";
-            HTMLText += _(L"N/A");
-            HTMLText += L"</td><td></td></tr>\n";
+            htmlText += L"<tr><td style=\"width:60%\">";
+            htmlText += _(L"Longest sentence:");
+            htmlText += L"</td><td style=\"text-align:right; width:10%\">";
+            htmlText += _(L"N/A");
+            htmlText += L"</td><td></td></tr>\n";
             }
         // average sentence length
         currentValue =
@@ -1579,7 +1581,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                     safe_divide<double>(project->GetTotalWords(), project->GetTotalSentences()), 1,
                     wxNumberFormatter::Style::Style_NoTrailingZeroes |
                         wxNumberFormatter::Style::Style_WithThousandsSep);
-        HTMLText += formatRow(_(L"Average sentence length:"), currentValue);
+        htmlText += formatRow(_(L"Average sentence length:"), currentValue);
 
         if (listData)
             {
@@ -1598,7 +1600,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 safe_divide<double>(project->GetTotalInterrogativeSentences(),
                                     project->GetTotalSentences()) *
                     100;
-        HTMLText += formatRow(
+        htmlText += formatRow(
             _(L"Number of interrogative sentences (questions):"),
             wxNumberFormatter::ToString(project->GetTotalInterrogativeSentences(), 0,
                                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -1651,8 +1653,8 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                                      wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                          wxNumberFormatter::Style::Style_WithThousandsSep) +
                                  L"% " + _(L"of all sentences)");
-        HTMLText += formatRow(_(L"Number of exclamatory sentences:"), currentValue, currentPercent);
-        HTMLText += L"\n</table>";
+        htmlText += formatRow(_(L"Number of exclamatory sentences:"), currentValue, currentPercent);
+        htmlText += L"\n</table>";
 
         if (listData)
             {
@@ -1672,12 +1674,12 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
         // add any necessary notes
         if (overlyLongSentencePercentage >= 40)
             {
-            HTMLText +=
+            htmlText +=
                 FormatHtmlWarningSection(_(L"A large percentage of sentences are overly long."));
             }
         if (exclamatorySentencePercentage >= 25)
             {
-            HTMLText += FormatHtmlNoteSection(
+            htmlText += FormatHtmlNoteSection(
                 _(L"A large percentage of sentences are exclamatory, giving the document an "
                   "overall angry/excited tone. Is this intended?"));
             }
@@ -1686,7 +1688,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
     if (statsInfo.IsWordsEnabled())
         {
         // Number of words
-        HTMLText += tableStart + formatHeader(_(L"Words"));
+        htmlText += tableStart + formatHeader(_(L"Words"));
 
         wxString currentValue =
             (project->GetTotalWords() < 300) ?
@@ -1699,7 +1701,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 wxNumberFormatter::ToString(project->GetTotalWords(), 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep);
-        HTMLText += formatRow(_(L"Number of words:"), currentValue);
+        htmlText += formatRow(_(L"Number of words:"), currentValue);
 
         if (listData)
             {
@@ -1711,7 +1713,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                                                 wxNumberFormatter::Style::Style_WithThousandsSep));
             }
         // Number of unique words
-        HTMLText += formatRow(
+        htmlText += formatRow(
             _(L"Number of unique words:"),
             wxNumberFormatter::ToString(project->GetTotalUniqueWords(), 0,
                                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -1727,7 +1729,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                                                 wxNumberFormatter::Style::Style_WithThousandsSep));
             }
         // Number of total syllables
-        HTMLText += formatRow(
+        htmlText += formatRow(
             _(L"Number of syllables:"),
             wxNumberFormatter::ToString(project->GetTotalSyllables(), 0,
                                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -1743,7 +1745,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                                                 wxNumberFormatter::Style::Style_WithThousandsSep));
             }
         // Number of total characters
-        HTMLText += formatRow(
+        htmlText += formatRow(
             _(L"Number of characters (punctuation excluded):"),
             wxNumberFormatter::ToString(project->GetTotalCharacters(), 0,
                                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -1759,18 +1761,18 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep));
             }
-        HTMLText += formatRow(
+        htmlText += formatRow(
             _(L"Number of characters + punctuation:"),
             wxNumberFormatter::ToString(project->GetTotalCharactersPlusPunctuation(), 0,
                                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                             wxNumberFormatter::Style::Style_WithThousandsSep));
 
-        HTMLText += L"\n<tr><td colspan=\"3\">";
-        HTMLText +=
+        htmlText += L"\n<tr><td colspan=\"3\">";
+        htmlText +=
             FormatHtmlNoteSection(_(L"Sentence-ending punctuation is excluded from this statistic. "
                                     "Tests that include punctuation counts instruct to not include "
                                     "any punctuation that ends a sentence."));
-        HTMLText += L"</td></tr>";
+        htmlText += L"</td></tr>";
 
         if (listData)
             {
@@ -1793,7 +1795,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 wxNumberFormatter::ToString(averageCharacterCount, 1,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep);
-        HTMLText += formatRow(_(L"Average number of characters:"), currentValue);
+        htmlText += formatRow(_(L"Average number of characters:"), currentValue);
 
         if (listData)
             {
@@ -1816,8 +1818,8 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 wxNumberFormatter::ToString(averageSyllableCount, 1,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep);
-        HTMLText += formatRow(_(L"Average number of syllables:"), currentValue);
-        HTMLText += L"\n</table>";
+        htmlText += formatRow(_(L"Average number of syllables:"), currentValue);
+        htmlText += L"\n</table>";
 
         if (listData)
             {
@@ -1834,7 +1836,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
             {
             if (project->GetTotalWords() < 300)
                 {
-                HTMLText += FormatHtmlWarningSection(
+                htmlText += FormatHtmlWarningSection(
                     wxString::Format(_(L"This document only contains %s words. "
                                        "Most readability tests require a minimum of 300 words to "
                                        "generate meaningful results."),
@@ -1845,11 +1847,11 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 }
             if (averageCharacterCount >= 6)
                 {
-                HTMLText += FormatHtmlWarningSection(_(L"The average word length is high."));
+                htmlText += FormatHtmlWarningSection(_(L"The average word length is high."));
                 }
             if (averageSyllableCount >= 4)
                 {
-                HTMLText += FormatHtmlWarningSection(
+                htmlText += FormatHtmlWarningSection(
                     _(L"The average word complexity (syllable count) is high."));
                 }
             }
@@ -1858,7 +1860,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
     if (statsInfo.IsExtendedWordsEnabled())
         {
         // Numeric words
-        HTMLText +=
+        htmlText +=
             tableStart + formatHeader(_(L"Numerals (Numbers, Dates, Currency, etc.)")) +
             formatRow(
                 _(L"Number of numerals:"),
@@ -1873,7 +1875,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
                             wxNumberFormatter::Style::Style_WithThousandsSep) +
                     L"% " + _(L"of all words)"));
-        HTMLText += L"\n</table>";
+        htmlText += L"\n</table>";
 
         if (listData)
             {
@@ -1897,8 +1899,8 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
         // Proper nouns (not supported by German)
         if (project->GetProjectLanguage() != readability::test_language::german_test)
             {
-            HTMLText += tableStart + formatHeader(_(L"Proper Nouns"));
-            HTMLText += formatRow(
+            htmlText += tableStart + formatHeader(_(L"Proper Nouns"));
+            htmlText += formatRow(
                 _(L"Number of proper nouns:"),
                 wxNumberFormatter::ToString(project->GetTotalProperNouns(), 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -1912,7 +1914,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
                             wxNumberFormatter::Style::Style_WithThousandsSep) +
                     L"% " + _(L"of all words)"));
-            HTMLText += L"\n</table>";
+            htmlText += L"\n</table>";
 
             if (listData)
                 {
@@ -1935,7 +1937,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
             }
 
         // Monosyllabic words
-        HTMLText += tableStart + formatHeader(_(L"Monosyllabic Words")) +
+        htmlText += tableStart + formatHeader(_(L"Monosyllabic Words")) +
                     formatRow(_(L"Number of monosyllabic words:"),
                               wxNumberFormatter::ToString(
                                   project->GetTotalMonoSyllabicWords(), 0,
@@ -1971,7 +1973,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
             }
 
         // unique monosyllabic words
-        HTMLText += formatRow(_(L"Number of unique monosyllabic words:"),
+        htmlText += formatRow(_(L"Number of unique monosyllabic words:"),
                               wxNumberFormatter::ToString(
                                   project->GetTotalUniqueMonoSyllablicWords(), 0,
                                   wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -1989,7 +1991,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
             }
 
         // 3+ syllable
-        HTMLText += tableStart + formatHeader(_(L"Complex Words"));
+        htmlText += tableStart + formatHeader(_(L"Complex Words"));
         if (project->GetTotal3PlusSyllabicWords() > 0)
             {
             currentLabel = _(L"Number of <a href=\"#HardWords\">complex (3+ syllable)</a> words:");
@@ -1998,7 +2000,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
             {
             currentLabel = _(L"Number of complex (3+ syllable) words:");
             }
-        HTMLText += formatRow(
+        htmlText += formatRow(
             currentLabel,
             wxNumberFormatter::ToString(project->GetTotal3PlusSyllabicWords(), 0,
                                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -2033,7 +2035,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                                       L"% " + _(L"of all words"));
             }
         // unique 3+ syllable words
-        HTMLText += formatRow(_(L"Number of unique 3+ syllable words:"),
+        htmlText += formatRow(_(L"Number of unique 3+ syllable words:"),
                               wxNumberFormatter::ToString(
                                   project->GetTotalUnique3PlusSyllableWords(), 0,
                                   wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -2051,7 +2053,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
             }
 
         // long words (6 characters or more)
-        HTMLText += tableStart + formatHeader(_(L"Long Words"));
+        htmlText += tableStart + formatHeader(_(L"Long Words"));
         if (project->GetTotalLongWords() > 0)
             {
             currentLabel = _(L"Number of <a href=\"#LongWords\">long (6+ characters)</a> words:");
@@ -2060,7 +2062,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
             {
             currentLabel = _(L"Number of long (6+ characters) words:");
             }
-        HTMLText += formatRow(
+        htmlText += formatRow(
             currentLabel,
             wxNumberFormatter::ToString(project->GetTotalLongWords(), 0,
                                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -2094,7 +2096,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                     L"% " + _(L"of all words"));
             }
         // unique long words
-        HTMLText += formatRow(_(L"Number of unique long words:"),
+        htmlText += formatRow(_(L"Number of unique long words:"),
                               wxNumberFormatter::ToString(
                                   project->GetTotalUnique6CharsPlusWords(), 0,
                                   wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -2113,8 +2115,8 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
         if (project->IsSmogLikeTestIncluded())
             {
             // SMOG
-            HTMLText += tableStart + formatHeader(_(L"SMOG Words"));
-            HTMLText += formatRow(
+            htmlText += tableStart + formatHeader(_(L"SMOG Words"));
+            htmlText += formatRow(
                 _(L"Number of SMOG hard words (3+ syllables, numerals fully syllabized):"),
                 wxNumberFormatter::ToString(
                     project->GetTotal3PlusSyllabicWordsNumeralsFullySyllabized(), 0,
@@ -2155,7 +2157,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                         L"% " + _(L"of all words"));
                 }
             // unique SMOG words
-            HTMLText +=
+            htmlText +=
                 formatRow(_(L"Number of unique SMOG hard words:"),
                           wxNumberFormatter::ToString(
                               project->GetUnique3PlusSyllabicWordsNumeralsFullySyllabized(), 0,
@@ -2176,7 +2178,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
         if (project->GetReadabilityTests().is_test_included(ReadabilityMessages::GUNNING_FOG()))
             {
             // Fog
-            HTMLText += tableStart + formatHeader(_(L"Fog Words")) +
+            htmlText += tableStart + formatHeader(_(L"Fog Words")) +
                         formatRow(_(L"Number of Fog hard words (3+ syllables, with <a "
                                     "href=\"#FogHelp\">exceptions</a>):"),
                                   wxNumberFormatter::ToString(
@@ -2214,7 +2216,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                                           L"% " + _(L"of all words"));
                 }
             // unique fog words
-            HTMLText += formatRow(_(L"Number of unique Fog hard words:"),
+            htmlText += formatRow(_(L"Number of unique Fog hard words:"),
                                   wxNumberFormatter::ToString(
                                       project->GetTotalUniqueHardFogWords(), 0,
                                       wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -2239,7 +2241,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 {
                 listData->SetSize(listDataItemCount, 3);
                 }
-            HTMLText +=
+            htmlText +=
                 FormatDolchStatisticsInfo(project, statsInfo, false, attentionColor, listData);
             // ...then we will add some more rows for the rest of the stats.
             if (listData)
@@ -2257,7 +2259,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
         if (project->IsDaleChallLikeTestIncluded())
             {
             // DC
-            HTMLText += tableStart + formatHeader(_(L"Dale-Chall Unfamiliar Words"));
+            htmlText += tableStart + formatHeader(_(L"Dale-Chall Unfamiliar Words"));
 
             if (project->GetTotalHardWordsDaleChall() > 0)
                 {
@@ -2268,7 +2270,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 {
                 currentLabel = _(L"Number of Dale-Chall unfamiliar words:");
                 }
-            HTMLText += formatRow(
+            htmlText += formatRow(
                 currentLabel,
                 wxNumberFormatter::ToString(project->GetTotalHardWordsDaleChall(), 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -2303,7 +2305,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                                           L"% " + _(L"of all words"));
                 }
             // unique Dale Chall hard words
-            HTMLText += formatRow(_(L"Number of unique Dale-Chall unfamiliar words:"),
+            htmlText += formatRow(_(L"Number of unique Dale-Chall unfamiliar words:"),
                                   wxNumberFormatter::ToString(
                                       project->GetTotalUniqueDCHardWords(), 0,
                                       wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -2323,7 +2325,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
             if (project->GetDaleChallTextExclusionMode() ==
                 SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
                 {
-                HTMLText += FormatHtmlNoteSection(
+                htmlText += FormatHtmlNoteSection(
                     _(L"New Dale-Chall treats headers and sub-headers as full sentences and "
                       "excludes all "
                       "other incomplete sentences (regardless of your current analysis settings). "
@@ -2332,7 +2334,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 }
             if (project->IsIncludingStockerCatholicSupplement())
                 {
-                HTMLText +=
+                htmlText +=
                     FormatHtmlNoteSection(_(L"Stocker's Catholic supplement is being included with "
                                             "the standard New Dale-Chall word list."));
                 }
@@ -2351,7 +2353,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
         if (project->GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()))
             {
             // Harris-Jacobson
-            HTMLText += tableStart + formatHeader(_(L"Harris-Jacobson Unfamiliar Words"));
+            htmlText += tableStart + formatHeader(_(L"Harris-Jacobson Unfamiliar Words"));
             if (project->GetTotalHardWordsHarrisJacobson() > 0)
                 {
                 currentLabel = _(L"Number of <a href=\"#HarrisJacobsonWords\">Harris-Jacobson</a> "
@@ -2361,7 +2363,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 {
                 currentLabel = _(L"Number of Harris-Jacobson unfamiliar words:");
                 }
-            HTMLText += formatRow(
+            htmlText += formatRow(
                 currentLabel,
                 wxNumberFormatter::ToString(project->GetTotalHardWordsHarrisJacobson(), 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -2398,7 +2400,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 }
 
             // unique Harris-Jacobson hard words
-            HTMLText += formatRow(_(L"Number of unique Harris-Jacobson unfamiliar words:"),
+            htmlText += formatRow(_(L"Number of unique Harris-Jacobson unfamiliar words:"),
                                   wxNumberFormatter::ToString(
                                       project->GetTotalUniqueHarrisJacobsonHardWords(), 0,
                                       wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -2418,7 +2420,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
             if (project->GetHarrisJacobsonTextExclusionMode() ==
                 SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
                 {
-                HTMLText += FormatHtmlNoteSection(
+                htmlText += FormatHtmlNoteSection(
                     _(L"Harris-Jacobson treats headers and sub-headers as full sentences and "
                       "excludes all other "
                       "incomplete sentences (regardless of your current analysis settings). "
@@ -2431,7 +2433,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
         if (project->GetReadabilityTests().is_test_included(ReadabilityMessages::SPACHE()))
             {
             // Spache
-            HTMLText += tableStart + formatHeader(_(L"Spache Unfamiliar Words"));
+            htmlText += tableStart + formatHeader(_(L"Spache Unfamiliar Words"));
             if (project->GetTotalHardWordsSpache() > 0)
                 {
                 currentLabel =
@@ -2441,7 +2443,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 {
                 currentLabel = _(L"Number of Spache unfamiliar words:");
                 }
-            HTMLText += formatRow(
+            htmlText += formatRow(
                 currentLabel,
                 wxNumberFormatter::ToString(project->GetTotalHardWordsSpache(), 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -2477,7 +2479,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 }
 
             // unique Spache hard words
-            HTMLText += formatRow(_(L"Number of unique Spache unfamiliar words:"),
+            htmlText += formatRow(_(L"Number of unique Spache unfamiliar words:"),
                                   wxNumberFormatter::ToString(
                                       project->GetTotalUniqueHardWordsSpache(), 0,
                                       wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -2497,8 +2499,8 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
         if (project->GetReadabilityTests().is_test_included(ReadabilityMessages::EFLAW()))
             {
             // EFLAW Miniwords
-            HTMLText += tableStart + formatHeader(_(L"McAlpine EFLAW Miniwords"));
-            HTMLText += formatRow(
+            htmlText += tableStart + formatHeader(_(L"McAlpine EFLAW Miniwords"));
+            htmlText += formatRow(
                 _(L"Number of McAlpine EFLAW miniwords (1-3 characters, except for numerals):"),
                 wxNumberFormatter::ToString(project->GetTotalMiniWords(), 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -2535,7 +2537,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 }
 
             // unique EFLAW miniwords words
-            HTMLText += formatRow(_(L"Number of unique McAlpine EFLAW miniwords words:"),
+            htmlText += formatRow(_(L"Number of unique McAlpine EFLAW miniwords words:"),
                                   wxNumberFormatter::ToString(
                                       project->GetTotalUniqueMiniWords(), 0,
                                       wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -2571,7 +2573,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
             wxString testName(pos->GetIterator()->get_name().c_str());
             testName = htmlEncode({ testName.wc_str(), testName.length() }, true).c_str();
             // total unfamiliar words
-            HTMLText += tableStart + formatHeader(testName) +
+            htmlText += tableStart + formatHeader(testName) +
                         formatRow(wxString::Format(_(L"Number of %s unfamiliar words:"), testName),
                                   wxNumberFormatter::ToString(
                                       pos->GetUnfamiliarWordCount(), 0,
@@ -2609,7 +2611,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 }
 
             // unique unfamiliar words
-            HTMLText +=
+            htmlText +=
                 formatRow(wxString::Format(_(L"Number of unique %s unfamiliar words:"), testName),
                           wxNumberFormatter::ToString(
                               pos->GetUniqueUnfamiliarWordCount(), 0,
@@ -2633,22 +2635,22 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
     if (statsInfo.IsGrammarEnabled() && project->GetGrammarInfo().IsAnyFeatureEnabled())
         {
         // grammar section
-        HTMLText += tableStart + formatHeader(_(L"Grammar"));
+        htmlText += tableStart + formatHeader(_(L"Grammar"));
         // misspelled words
         if (project->GetProjectLanguage() == readability::test_language::english_test &&
             project->GetGrammarInfo().IsMisspellingsEnabled())
             {
             currentLabel.clear();
-            if (project->GetMisspelledWordCount())
+            if (project->GetMisspelledWordCount() != 0)
                 {
                 currentLabel += L"<a href=\"#Misspellings\">";
                 }
             currentLabel += _(L"Misspellings:");
-            if (project->GetMisspelledWordCount())
+            if (project->GetMisspelledWordCount() != 0)
                 {
                 currentLabel += L"</a>";
                 }
-            HTMLText += formatRow(
+            htmlText += formatRow(
                 currentLabel,
                 wxNumberFormatter::ToString(project->GetMisspelledWordCount(), 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -2668,16 +2670,16 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
         if (project->GetGrammarInfo().IsRepeatedWordsEnabled())
             {
             currentLabel.clear();
-            if (project->GetDuplicateWordCount())
+            if (project->GetDuplicateWordCount() != 0)
                 {
                 currentLabel += L"<a href=\"#RepeatedWords\">";
                 }
             currentLabel += _(L"Repeated words:");
-            if (project->GetDuplicateWordCount())
+            if (project->GetDuplicateWordCount() != 0)
                 {
                 currentLabel += L"</a>";
                 }
-            HTMLText += formatRow(
+            htmlText += formatRow(
                 currentLabel,
                 wxNumberFormatter::ToString(project->GetDuplicateWordCount(), 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -2700,16 +2702,16 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
             if (project->GetGrammarInfo().IsArticleMismatchesEnabled())
                 {
                 currentLabel.clear();
-                if (project->GetMismatchedArticleCount())
+                if (project->GetMismatchedArticleCount() != 0)
                     {
                     currentLabel += L"<a href=\"#MismatchedArtcles\">";
                     }
                 currentLabel += _(L"Article mismatches:");
-                if (project->GetMismatchedArticleCount())
+                if (project->GetMismatchedArticleCount() != 0)
                     {
                     currentLabel += L"</a>";
                     }
-                HTMLText += formatRow(currentLabel,
+                htmlText += formatRow(currentLabel,
                                       wxNumberFormatter::ToString(
                                           project->GetMismatchedArticleCount(), 0,
                                           wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -2730,16 +2732,16 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
             if (project->GetGrammarInfo().IsWordingErrorsEnabled())
                 {
                 currentLabel.clear();
-                if (project->GetWordingErrorCount())
+                if (project->GetWordingErrorCount() != 0)
                     {
                     currentLabel += L"<a href=\"#WordingErrors\">";
                     }
                 currentLabel += _(L"Wording errors & misspellings:");
-                if (project->GetWordingErrorCount())
+                if (project->GetWordingErrorCount() != 0)
                     {
                     currentLabel += L"</a>";
                     }
-                HTMLText += formatRow(currentLabel,
+                htmlText += formatRow(currentLabel,
                                       wxNumberFormatter::ToString(
                                           project->GetWordingErrorCount(), 0,
                                           wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -2761,16 +2763,16 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
             if (project->GetGrammarInfo().IsRedundantPhrasesEnabled())
                 {
                 currentLabel.clear();
-                if (project->GetRedundantPhraseCount())
+                if (project->GetRedundantPhraseCount() != 0)
                     {
                     currentLabel += L"<a href=\"#RedundantPhrases\">";
                     }
                 currentLabel += _(L"Redundant phrases:");
-                if (project->GetRedundantPhraseCount())
+                if (project->GetRedundantPhraseCount() != 0)
                     {
                     currentLabel += L"</a>";
                     }
-                HTMLText += formatRow(currentLabel,
+                htmlText += formatRow(currentLabel,
                                       wxNumberFormatter::ToString(
                                           project->GetRedundantPhraseCount(), 0,
                                           wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -2791,16 +2793,16 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
             if (project->GetGrammarInfo().IsOverUsedWordsBySentenceEnabled())
                 {
                 currentLabel.clear();
-                if (project->GetOverusedWordsBySentenceCount())
+                if (project->GetOverusedWordsBySentenceCount() != 0)
                     {
                     currentLabel += L"<a href=\"#OverusedWordsBySentence\">";
                     }
                 currentLabel += _(L"Overused words (x sentence):");
-                if (project->GetOverusedWordsBySentenceCount())
+                if (project->GetOverusedWordsBySentenceCount() != 0)
                     {
                     currentLabel += L"</a>";
                     }
-                HTMLText += formatRow(currentLabel,
+                htmlText += formatRow(currentLabel,
                                       wxNumberFormatter::ToString(
                                           project->GetOverusedWordsBySentenceCount(), 0,
                                           wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -2822,16 +2824,16 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
             if (project->GetGrammarInfo().IsWordyPhrasesEnabled())
                 {
                 currentLabel.clear();
-                if (project->GetWordyPhraseCount())
+                if (project->GetWordyPhraseCount() != 0)
                     {
                     currentLabel += L"<a href=\"#WordyPhrases\">";
                     }
                 currentLabel += _(L"Wordy items:");
-                if (project->GetWordyPhraseCount())
+                if (project->GetWordyPhraseCount() != 0)
                     {
                     currentLabel += L"</a>";
                     }
-                HTMLText += formatRow(currentLabel,
+                htmlText += formatRow(currentLabel,
                                       wxNumberFormatter::ToString(
                                           project->GetWordyPhraseCount(), 0,
                                           wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -2857,11 +2859,11 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                     currentLabel += L"<a href=\"#Cliches\">";
                     }
                 currentLabel += BaseProjectView::GetClichesTabLabel() + L":";
-                if (project->GetClicheCount())
+                if (project->GetClicheCount() != 0)
                     {
                     currentLabel += L"</a>";
                     }
-                HTMLText += formatRow(currentLabel,
+                htmlText += formatRow(currentLabel,
                                       wxNumberFormatter::ToString(
                                           project->GetClicheCount(), 0,
                                           wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -2882,16 +2884,16 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
             if (project->GetGrammarInfo().IsPassiveVoiceEnabled())
                 {
                 currentLabel.clear();
-                if (project->GetPassiveVoicesCount())
+                if (project->GetPassiveVoicesCount() != 0)
                     {
                     currentLabel += L"<a href=\"#PassiveVoice\">";
                     }
                 currentLabel += _(L"Passive voice:");
-                if (project->GetPassiveVoicesCount())
+                if (project->GetPassiveVoicesCount() != 0)
                     {
                     currentLabel += L"</a>";
                     }
-                HTMLText += formatRow(currentLabel,
+                htmlText += formatRow(currentLabel,
                                       wxNumberFormatter::ToString(
                                           project->GetPassiveVoicesCount(), 0,
                                           wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -2918,11 +2920,11 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 currentLabel += L"<a href=\"#SentenceStartingWithConjunctions\">";
                 }
             currentLabel += BaseProjectView::GetSentenceStartingWithConjunctionsLabel() + L":";
-            if (project->GetSentenceStartingWithConjunctionsCount())
+            if (project->GetSentenceStartingWithConjunctionsCount() != 0)
                 {
                 currentLabel += L"</a>";
                 }
-            HTMLText += formatRow(
+            htmlText += formatRow(
                 currentLabel,
                 wxNumberFormatter::ToString(project->GetSentenceStartingWithConjunctionsCount(), 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -2952,11 +2954,11 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 currentLabel += L"* ";
                 }
             currentLabel += BaseProjectView::GetSentenceStartingWithLowercaseLabel() + L":";
-            if (project->GetSentenceStartingWithLowercaseCount())
+            if (project->GetSentenceStartingWithLowercaseCount() != 0)
                 {
                 currentLabel += L"</a>";
                 }
-            HTMLText += formatRow(
+            htmlText += formatRow(
                 currentLabel,
                 wxNumberFormatter::ToString(project->GetSentenceStartingWithLowercaseCount(), 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
@@ -2974,7 +2976,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 }
             }
 
-        HTMLText +=
+        htmlText +=
             L"\n<tr><td colspan=\"3\">" +
             FormatHtmlNoteSection(
                 _(L"Grammar statistics do not directly factor into readability formulas; however, "
@@ -2983,7 +2985,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
 
         if (project->GetSentenceStartMustBeUppercased())
             {
-            HTMLText += L"\n<tr><td colspan=\"3\">" +
+            htmlText += L"\n<tr><td colspan=\"3\">" +
                         FormatHtmlNoteSection(_(L"* This project's sentence-deduction method is "
                                                 "set to only accept capitalized sentences. "
                                                 "Lowercased-sentence detection will be limited to "
@@ -2991,13 +2993,13 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                         L"</td></tr>\n";
             }
 
-        HTMLText += L"\n</table>";
+        htmlText += L"\n</table>";
         }
 
     if (statsInfo.IsExtendedInformationEnabled())
         {
         // file/text stream info section
-        HTMLText += tableStart + formatHeader((!project->GetOriginalDocumentFilePath().empty() ?
+        htmlText += tableStart + formatHeader((!project->GetOriginalDocumentFilePath().empty() ?
                                                    _(L"File Information") :
                                                    _(L"Text Information")));
 
@@ -3006,7 +3008,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
         // file path (if not manually entered text)
         if (!project->GetOriginalDocumentFilePath().empty())
             {
-            HTMLText += formatRow(_(L"Path:"), wxString{}, project->GetOriginalDocumentFilePath());
+            htmlText += formatRow(_(L"Path:"), wxString{}, project->GetOriginalDocumentFilePath());
 
             // get modified time also if a local file
             FilePathResolver resolvePath;
@@ -3017,9 +3019,9 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 const auto modDate =
                     wxFileName{ resolvePath.GetResolvedPath() }.GetModificationTime();
                 // wxDateTime::Format doesn't appear to handle %X, so do it manually
-                wxString am, pm, timeStr;
-                wxDateTime::GetAmPmStrings(&am, &pm);
-                if (am.length() && pm.length())
+                wxString amStr, pmStr, timeStr;
+                wxDateTime::GetAmPmStrings(&amStr, &pmStr);
+                if (!amStr.empty() && !pmStr.empty())
                     {
                     timeStr = modDate.Format(L"%I:%M %p").MakeUpper();
                     }
@@ -3036,11 +3038,11 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
             }
         if (!project->GetAppendedDocumentFilePath().empty())
             {
-            HTMLText += formatRow(_(L"Additional document path:"), wxString{},
+            htmlText += formatRow(_(L"Additional document path:"), wxString{},
                                   project->GetAppendedDocumentFilePath());
             }
         // text size
-        HTMLText += formatRow(
+        htmlText += formatRow(
             _(L"Text size:"), wxString{},
             wxString::Format( // TRANSLATORS: %s is a file size
                 _(L"%s Kbs."),
@@ -3049,9 +3051,9 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                                                 wxNumberFormatter::Style::Style_WithThousandsSep)));
         if (!fileModDate.empty())
             {
-            HTMLText += formatRow(_(L"Last modified:"), wxString{}, fileModDate);
+            htmlText += formatRow(_(L"Last modified:"), wxString{}, fileModDate);
             }
-        HTMLText += L"\n</table>";
+        htmlText += L"\n</table>";
 
         if (listData)
             {
@@ -3078,90 +3080,90 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
          project->GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings ||
          project->GetTotalWords() < 300 || overlyLongSentencePercentage >= 40 ||
          exclamatorySentencePercentage >= 25 || averageCharacterCount >= 6 ||
-         averageSyllableCount >= 4 || project->GetAppendedDocumentFilePath().length()))
+         averageSyllableCount >= 4 || !project->GetAppendedDocumentFilePath().empty()))
         {
-        HTMLText += tableStart + formatNoteHeader(_(L"Notes"));
+        htmlText += tableStart + formatNoteHeader(_(L"Notes"));
         if (project->GetInvalidSentenceMethod() == InvalidSentence::ExcludeFromAnalysis)
             {
-            HTMLText += L"\n<tr><td style='width:100%;'><a name=\"incompsent\">";
-            HTMLText += _(L"Incomplete sentences have been excluded from the analysis. "
+            htmlText += L"\n<tr><td style='width:100%;'><a name=\"incompsent\">";
+            htmlText += _(L"Incomplete sentences have been excluded from the analysis. "
                           "All words from incomplete sentences were ignored and not factored into "
                           "these statistics (except for grammar information).");
-            HTMLText += L"</a></td></tr>";
+            htmlText += L"</a></td></tr>";
             }
         else if (project->GetInvalidSentenceMethod() == InvalidSentence::ExcludeExceptForHeadings)
             {
-            HTMLText += L"\n<tr><td style='width:100%;'><a name=\"incompsent\">";
-            HTMLText += _(L"Lists and tables have been excluded from the analysis. "
+            htmlText += L"\n<tr><td style='width:100%;'><a name=\"incompsent\">";
+            htmlText += _(L"Lists and tables have been excluded from the analysis. "
                           "All words from these sentences were ignored and not factored into these "
                           "statistics (except for grammar information).");
-            HTMLText += L"</a></td></tr>";
+            htmlText += L"</a></td></tr>";
             }
-        if (project->GetAppendedDocumentFilePath().length())
+        if (!project->GetAppendedDocumentFilePath().empty())
             {
-            HTMLText += L"\n<tr><td style='width:100%;'>";
-            HTMLText +=
+            htmlText += L"\n<tr><td style='width:100%;'>";
+            htmlText +=
                 wxString::Format(_(L"An additional document (\"%s\") has been appended and "
                                    "included in the analysis."),
                                  wxFileName(project->GetAppendedDocumentFilePath()).GetFullName());
-            HTMLText += L"</td></tr>";
+            htmlText += L"</td></tr>";
             }
         if (statsInfo.IsExtendedInformationEnabled())
             {
-            HTMLText += L"\n<tr><td style='width:100%;'>";
-            HTMLText +=
+            htmlText += L"\n<tr><td style='width:100%;'>";
+            htmlText +=
                 _(L"Averages are calculated using arithmetic mean "
                   "(the summation of all values in a range divided by the number of items).");
-            HTMLText += L"</td></tr>";
+            htmlText += L"</td></tr>";
             }
         if (project->GetTotalWords() < 300)
             {
-            HTMLText += L"\n<tr><td style='width:100%;'>";
-            HTMLText += wxString::Format(
+            htmlText += L"\n<tr><td style='width:100%;'>";
+            htmlText += wxString::Format(
                 _(L"This document only contains %s words. "
                   "Most readability tests require a minimum of 300 words to be able to generate "
                   "meaningful results."),
                 wxNumberFormatter::ToString(project->GetTotalWords(), 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes));
-            HTMLText += L"</td></tr>";
+            htmlText += L"</td></tr>";
             }
         if (overlyLongSentencePercentage >= 40)
             {
-            HTMLText += L"\n<tr><td style='width:100%;'>";
-            HTMLText += _(L"A large percentage of sentences are overly long.");
-            HTMLText += L"</td></tr>";
+            htmlText += L"\n<tr><td style='width:100%;'>";
+            htmlText += _(L"A large percentage of sentences are overly long.");
+            htmlText += L"</td></tr>";
             }
         if (exclamatorySentencePercentage >= 25)
             {
-            HTMLText += L"\n<tr><td style='width:100%;'>";
-            HTMLText += _(L"A large percentage of sentences are exclamatory, "
+            htmlText += L"\n<tr><td style='width:100%;'>";
+            htmlText += _(L"A large percentage of sentences are exclamatory, "
                           "giving the document an overall angry/excited tone. Is this intended?");
-            HTMLText += L"</td></tr>";
+            htmlText += L"</td></tr>";
             }
         if (averageCharacterCount >= 6)
             {
-            HTMLText += L"\n<tr><td style='width:100%;'>";
-            HTMLText += _(L"The average word length is high.");
-            HTMLText += L"</td></tr>";
+            htmlText += L"\n<tr><td style='width:100%;'>";
+            htmlText += _(L"The average word length is high.");
+            htmlText += L"</td></tr>";
             }
         if (averageSyllableCount >= 4)
             {
-            HTMLText += L"\n<tr><td style='width:100%;'>";
-            HTMLText += _(L"The average word complexity (syllable count) is high.");
-            HTMLText += L"</td></tr>";
+            htmlText += L"\n<tr><td style='width:100%;'>";
+            htmlText += _(L"The average word complexity (syllable count) is high.");
+            htmlText += L"</td></tr>";
             }
-        HTMLText += L"\n</table>";
+        htmlText += L"\n</table>";
         }
 
     // trim off any trailing breaks
-    HTMLText = TrimTrailingBreaks(HTMLText);
+    htmlText = TrimTrailingBreaks(htmlText);
 
     if (listData)
         {
         listData->SetSize(listDataItemCount, listData->GetColumnCount());
         }
 
-    return HTMLText;
+    return htmlText;
     }
 
 //------------------------------------------------
@@ -3173,7 +3175,7 @@ wxString ProjectReportFormat::FormatTestResult(const wxString& score,
                             "width:60%%;'><p>%s</p><p>%s</p></td><td>%s</td></tr>\n",
                             score, theTest.get_description().c_str(),
                             ProjectReportFormat::FormatTestFactors(theTest)) +
-           (note.length() ? wxString::Format(L"<tr><td colspan='2'>%s</td></tr>\n",
+           (!note.empty() ? wxString::Format(L"<tr><td colspan='2'>%s</td></tr>\n",
                                              ProjectReportFormat::FormatHtmlNoteSection(note)) :
                             wxString{});
     }
@@ -3181,7 +3183,7 @@ wxString ProjectReportFormat::FormatTestResult(const wxString& score,
 //------------------------------------------------
 wxString ProjectReportFormat::FormatTestFactors(const readability::readability_test& test)
     {
-    wxString HTMLText =
+    wxString htmlText =
         wxString::Format(L"<table border='0' style='width:100%%'>\n"
                          "<tr><th colspan='2' style='text-align:left;'>%s</th></tr>",
                          _(L"Difficulty Prediction Factors"));
@@ -3198,69 +3200,69 @@ wxString ProjectReportFormat::FormatTestFactors(const readability::readability_t
     // word complexity
     if (test.has_factor(readability::test_factor::word_complexity_2_plus_syllables))
         {
-        HTMLText += formatRow(_(L"Word complexity (2 or more syllables)"), true, true);
+        htmlText += formatRow(_(L"Word complexity (2 or more syllables)"), true, true);
         }
     else if (test.has_factor(readability::test_factor::word_complexity_3_plus_syllables))
         {
-        HTMLText += formatRow(_(L"Word complexity (3 or more syllables)"), true, true);
+        htmlText += formatRow(_(L"Word complexity (3 or more syllables)"), true, true);
         }
     else if (test.has_factor(readability::test_factor::word_complexity_density))
         {
-        HTMLText += formatRow(_(L"Density of complex words"), true, true);
+        htmlText += formatRow(_(L"Density of complex words"), true, true);
         }
     else
         {
-        HTMLText += formatRow(_(L"Word complexity (syllable counts)"),
+        htmlText += formatRow(_(L"Word complexity (syllable counts)"),
                               test.has_factor(readability::test_factor::word_complexity), true);
         }
 
     // word length
     if (test.has_factor(readability::test_factor::word_length_3_less))
         {
-        HTMLText += formatRow(_(L"Word length (3 or less characters)"), true, false);
+        htmlText += formatRow(_(L"Word length (3 or less characters)"), true, false);
         }
     else if (test.has_factor(readability::test_factor::word_length_6_plus))
         {
-        HTMLText += formatRow(_(L"Word length (6 or more characters)"), true, false);
+        htmlText += formatRow(_(L"Word length (6 or more characters)"), true, false);
         }
     else if (test.has_factor(readability::test_factor::word_length_7_plus))
         {
-        HTMLText += formatRow(_(L"Word length (7 or more characters)"), true, false);
+        htmlText += formatRow(_(L"Word length (7 or more characters)"), true, false);
         }
     else
         {
-        HTMLText += formatRow(_(L"Word length"),
+        htmlText += formatRow(_(L"Word length"),
                               test.has_factor(readability::test_factor::word_length), false);
         }
 
     // word familiarity
     if (test.has_factor(readability::test_factor::word_familiarity_spache))
         {
-        HTMLText += formatRow(wxString::Format(_(L"Word familiarity (%s rules)"), _DT(L"Spache")),
+        htmlText += formatRow(wxString::Format(_(L"Word familiarity (%s rules)"), _DT(L"Spache")),
                               true, true);
         }
     else if (test.has_factor(readability::test_factor::word_familiarity_dale_chall))
         {
-        HTMLText += formatRow(
+        htmlText += formatRow(
             wxString::Format(_(L"Word familiarity (%s rules)"), _DT(L"Dale-Chall")), true, true);
         }
     else if (test.has_factor(readability::test_factor::word_familiarity_harris_jacobson))
         {
-        HTMLText +=
+        htmlText +=
             formatRow(wxString::Format(_(L"Word familiarity (%s rules)"), _DT(L"Harris-Jacobson")),
                       true, true);
         }
     else
         {
-        HTMLText += formatRow(_(L"Word familiarity"), false, true);
+        htmlText += formatRow(_(L"Word familiarity"), false, true);
         }
 
     // sentence length
-    HTMLText += formatRow(_(L"Sentence length"),
+    htmlText += formatRow(_(L"Sentence length"),
                           test.has_factor(readability::test_factor::sentence_length), false);
 
-    HTMLText += L"\n</table>\n";
-    return HTMLText;
+    htmlText += L"\n</table>\n";
+    return htmlText;
     }
 
 //------------------------------------------------
@@ -3311,7 +3313,7 @@ wxString ProjectReportFormat::FormatSentence(
     const std::vector<punctuation::punctuation_mark>::const_iterator& punctEnd)
     {
     assert(project);
-    if (!project)
+    if (project == nullptr)
         {
         return wxString{};
         }
@@ -3346,7 +3348,7 @@ wxString ProjectReportFormat::FormatSentence(
 
     bool quoteBeingMoved = false;
     wchar_t quoteChar{ L'\"' };
-    if (currentSentence.length() > 0 &&
+    if (!currentSentence.empty() &&
         characters::is_character::is_quote(currentSentence[currentSentence.length() - 1]))
         {
         quoteChar = currentSentence[currentSentence.length() - 1];

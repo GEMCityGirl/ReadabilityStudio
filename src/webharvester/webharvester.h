@@ -99,7 +99,7 @@ class NonWebPageFileExtension
     /** @returns @c true if @c extension is a known file extension.
         @param extension The file extension to review.*/
     [[nodiscard]]
-    inline bool operator()(std::wstring_view extension) const
+    bool operator()(std::wstring_view extension) const
         {
         return (m_nonWebPageFileExtensions.find(extension.data()) !=
                 m_nonWebPageFileExtensions.cend());
@@ -134,7 +134,7 @@ class ScriptFileExtension
     /** @returns @c true if @c extension is a web script file extension.
         @param extension The file extension to review.*/
     [[nodiscard]]
-    inline bool operator()(std::wstring_view extension) const
+    bool operator()(std::wstring_view extension) const
         {
         return (m_scriptFileExtensions.find(extension.data()) != m_scriptFileExtensions.cend());
         }
@@ -596,10 +596,7 @@ class WebHarvester
     /// @details By default, the names will be shown on the progress bar, which may cause the
     ///     the dialog to constantly resize itself. Setting this to @c false will show a
     ///     simpler "Downloading..." label that may be less jarring.
-    void ShowFileNames(const bool show)
-        {
-        m_hideFileNamesWhileDownloading = !show;
-        }
+    void ShowFileNames(const bool show) { m_hideFileNamesWhileDownloading = !show; }
 
   private:
     /// @returns An URL with spaces encoded to '%20', '\/' converted to '/', and trimmed.

@@ -22,6 +22,9 @@ class ProjectDoc;
 class BatchProjectDoc;
 class ToolsOptionsDlg;
 
+// NOLINTBEGIN(readability-identifier-length)
+// NOLINTBEGIN(readability-implicit-bool-conversion)
+
 namespace LuaScripting
     {
     /// @brief Standard project interface.
@@ -391,5 +394,8 @@ namespace LuaScripting
         // quneiform-suppress-end
         };
     } // namespace LuaScripting
+
+// NOLINTEND(readability-implicit-bool-conversion)
+// NOLINTEND(readability-identifier-length)
 
 #endif //__LUA_STANDARD_PROJECTS_H__

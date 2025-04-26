@@ -1,14 +1,22 @@
-///////////////////////////////////////////////////////////////////////////////
-// Name:        lua_debug.cpp
-// Author:      Blake Madden
-// Copyright:   (c) 2005-2023 Blake Madden
-// Licence:     3-Clause BSD licence
-// SPDX-License-Identifier: BSD-3-Clause
-///////////////////////////////////////////////////////////////////////////////
+/********************************************************************************
+ * Copyright (c) 2005-2025 Blake Madden
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *   Blake Madden - initial implementation
+ ********************************************************************************/
 
 #include "lua_debug.h"
 #include "../Wisteria-Dataviz/src/base/reportbuilder.h"
 #include "../app/readability_app.h"
+
+// NOLINTBEGIN(readability-identifier-length)
+// NOLINTBEGIN(readability-implicit-bool-conversion)
 
 wxDECLARE_APP(ReadabilityApp);
 
@@ -137,3 +145,6 @@ namespace LuaScripting
         return 0;
         }
     } // namespace LuaScripting
+
+// NOLINTEND(readability-implicit-bool-conversion)
+// NOLINTEND(readability-identifier-length)

@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __PROJECT_REPORT_FORMAT_H__
-#define __PROJECT_REPORT_FORMAT_H__
+#ifndef PROJECT_REPORT_FORMAT_H
+#define PROJECT_REPORT_FORMAT_H
 
 #include "../Wisteria-Dataviz/src/import/html_encode.h"
 #include "../projects/base_project.h"
@@ -60,7 +60,7 @@ class ProjectReportFormat
     [[nodiscard]]
     static wxString
     FormatStatisticsInfo(const BaseProject* project, const StatisticsReportInfo& statsInfo,
-                         const wxColour attentionColor,
+                         const wxColour& attentionColor,
                          std::shared_ptr<Wisteria::UI::ListCtrlExDataProviderBase> listData);
     /** @returns Dolch statistics information from a project.
         @param project The project to analyze Dolch statistics from.
@@ -76,7 +76,7 @@ class ProjectReportFormat
     [[nodiscard]]
     static wxString
     FormatDolchStatisticsInfo(const BaseProject* project, const StatisticsReportInfo& statsInfo,
-                              const bool includeExplanation, const wxColour attentionColor,
+                              const bool includeExplanation, const wxColour& attentionColor,
                               std::shared_ptr<Wisteria::UI::ListCtrlExDataProviderBase> listData);
     /** @brief Formats a full sentence from a project's sentence information structure.
         @param project The project containing the sentence and words.
@@ -106,7 +106,7 @@ class ProjectReportFormat
     [[nodiscard]]
     static wxColour GetReportHeaderColor()
         {
-        return wxColour(L"#C3D7D7");
+        return { L"#C3D7D7" };
         }
 
     /// @returns The header color for a report table.
@@ -139,7 +139,7 @@ class ProjectReportFormat
     [[nodiscard]]
     static wxColour GetReportNoteHeaderColor()
         {
-        return wxColour(L"#55A8E6");
+        return { L"#55A8E6" };
         }
 
     /** @returns A test's factors formatted into an HTML table.
@@ -148,4 +148,4 @@ class ProjectReportFormat
     static wxString FormatTestFactors(const readability::readability_test& test);
     };
 
-#endif //__PROJECT_REPORT_FORMAT_H__
+#endif // PROJECT_REPORT_FORMAT_H

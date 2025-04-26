@@ -22,6 +22,9 @@
 #include <map>
 #include <wx/wx.h>
 
+// NOLINTBEGIN(readability-identifier-length)
+// NOLINTBEGIN(readability-implicit-bool-conversion)
+
 namespace LuaScripting
     {
     void VerifyLink(const wchar_t* link, const size_t length, const bool isImage,
@@ -617,5 +620,8 @@ namespace LuaScripting
         { nullptr, nullptr }
     };
     } // namespace LuaScripting
+
+// NOLINTEND(readability-implicit-bool-conversion)
+// NOLINTEND(readability-identifier-length)
 
 #endif //__LUAAPPLICATION_H__

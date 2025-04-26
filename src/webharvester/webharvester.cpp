@@ -307,7 +307,7 @@ bool WebHarvester::ReadWebPage(wxString& url, wxString& webPageContent, wxString
                      QueueDownload::GetResponseMessage(responseCode));
         return false;
         }
-    else if (m_downloader.GetLastRead().size() > 0)
+    if (m_downloader.GetLastRead().size() > 0)
         {
         contentType = m_downloader.GetLastContentType();
         if (contentType.empty())
@@ -723,7 +723,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
             }
         }
 
-    html_utilities::html_url_format formatCurrentUrl(fullUrl.wc_str());
+    const html_utilities::html_url_format formatCurrentUrl(fullUrl.wc_str());
 
     // First, crawl the page (if applicable)
     ///////////////////////////////////////
@@ -737,7 +737,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
             }
         return;
         }
-    else if (IsNonWebPageFileExtension(fileExt.wc_str()))
+    if (IsNonWebPageFileExtension(fileExt.wc_str()))
         {
         // add the link to files to harvest/download if it matches our criteria
         if ((m_harvestAllHtml && pageIsHtml) || VerifyFileExtension(fileExt))
@@ -781,7 +781,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
                 return;
                 }
             // otherwise, an HTML page with an unknown extension
-            else if (pageIsHtml)
+            if (pageIsHtml)
                 {
                 CrawlLinks(fullUrl, html_utilities::hyperlink_parse::hyperlink_parse_method::html);
                 if (m_harvestAllHtml || VerifyFileExtension(fileExt))
@@ -850,7 +850,7 @@ bool WebHarvester::VerifyUrlDomainCriteria(const wxString& url)
         }
     else if (m_domainRestriction == DomainRestriction::RestrictToFolder)
         {
-        string_util::case_insensitive_wstring targetUrlPath{
+        const string_util::case_insensitive_wstring targetUrlPath{
             formatUrl.get_directory_path().c_str()
         };
         return targetUrlPath.starts_with(m_fullDomainFolderPath);
@@ -865,7 +865,7 @@ bool WebHarvester::HarvestLink(wxString& url, const wxString& fileExtension)
         {
         return false;
         }
-    else if (HasUrlAlreadyBeenHarvested(url))
+    if (HasUrlAlreadyBeenHarvested(url))
         {
         return true;
         }
@@ -908,11 +908,13 @@ bool WebHarvester::HarvestLink(wxString& url, const wxString& fileExtension)
                             const wchar_t* currentLink = getHyperLinks();
                             if (currentLink != nullptr)
                                 {
-                                const wxString cLink{ currentLink,
-                                                    getHyperLinks.get_current_hyperlink_length() };
+                                const wxString cLink{
+                                    currentLink, getHyperLinks.get_current_hyperlink_length()
+                                };
                                 const wxFileName fn(cLink);
                                 if (fn.GetFullName().CmpNoCase(jpgName) == 0 &&
-                                    html_utilities::html_url_format::is_absolute_url(cLink.wc_str()))
+                                    html_utilities::html_url_format::is_absolute_url(
+                                        cLink.wc_str()))
                                     {
                                     queuedDownloads.insert(cLink);
                                     }
@@ -948,7 +950,7 @@ wxString WebHarvester::GetCharsetFromContentType(const wxString& contentType)
         charSet.Trim(true);
         return charSet;
         }
-    else if (semicolon != wxString::npos)
+    if (semicolon != wxString::npos)
         {
         wxString charSet = contentType.substr(semicolon + 1);
         charSet.Replace(L"\"", L"");
@@ -979,14 +981,11 @@ wxString WebHarvester::GetCharsetFromPageContent(std::string_view pageContent)
         const wxString encoding = wxLocale::GetSystemEncodingName().MakeLower();
         return (encoding.find(L"utf") != wxString::npos) ? wxString{ L"windows-1252" } : encoding;
         }
-    else
+    // The HTML 5 specification requires that documents advertised as
+    // ISO-8859-1 actually be parsed with the Windows-1252 encoding.
+    if (charSet.CmpNoCase("iso-8859-1") == 0)
         {
-        // The HTML 5 specification requires that documents advertised as
-        // ISO-8859-1 actually be parsed with the Windows-1252 encoding.
-        if (charSet.CmpNoCase("iso-8859-1") == 0)
-            {
-            charSet = "windows-1252";
-            }
-        return charSet;
+        charSet = "windows-1252";
         }
+    return charSet;
     }

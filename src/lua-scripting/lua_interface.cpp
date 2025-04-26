@@ -1,10 +1,15 @@
-///////////////////////////////////////////////////////////////////////////////
-// Name:        lua_interface.cpp
-// Author:      Blake Madden
-// Copyright:   (c) 2005-2023 Blake Madden
-// Licence:     3-Clause BSD licence
-// SPDX-License-Identifier: BSD-3-Clause
-///////////////////////////////////////////////////////////////////////////////
+/********************************************************************************
+ * Copyright (c) 2005-2025 Blake Madden
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *   Blake Madden - initial implementation
+ ********************************************************************************/
 
 #include "lua_interface.h"
 #include "../app/readability_app.h"
@@ -13,6 +18,9 @@
 #include "lua_debug.h"
 #include "lua_screenshot.h"
 #include "lua_standard_project.h"
+
+// NOLINTBEGIN(readability-identifier-length)
+// NOLINTBEGIN(readability-implicit-bool-conversion)
 
 wxDECLARE_APP(ReadabilityApp);
 
@@ -166,3 +174,6 @@ void LuaInterpreter::LineHookCallback(lua_State* L, lua_Debug* ar)
         luaL_error(L, "BREAK_LINE:%d", ar->currentline);
         }
     }
+
+// NOLINTEND(readability-implicit-bool-conversion)
+// NOLINTEND(readability-identifier-length)

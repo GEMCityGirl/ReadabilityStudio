@@ -1,11 +1,14 @@
-#ifndef __LUNA_H__
-#define __LUNA_H__
+/********************************************************************************
+ * SPDX-License-Identifier: MIT
+ * Available from http://lua-users.org/wiki/LuaLunaFive
+ * Anonymous author
+ ********************************************************************************/
+
+#ifndef LUA_LUNA_H
+#define LUA_LUNA_H
 
 #include "lua.hpp"
 #include <string.h> // For strlen
-
-// Available from http://lua-users.org/wiki/LuaLunaFive
-// 2015-09-16: Register uses __call in metatable to create a new class
 
 template < typename T > class Luna {
 public:
@@ -324,4 +327,4 @@ public:
 
 #define LUNA_DECLARE_METHOD(Class, Name) {#Name, &Class::Name}
 
-#endif //__LUNA_H__
+#endif // LUA_LUNA_H

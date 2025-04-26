@@ -11,11 +11,13 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __WORD_COLLECTION_TEXT_FORMATTING_H__
-#define __WORD_COLLECTION_TEXT_FORMATTING_H__
+#ifndef WORD_COLLECTION_TEXT_FORMATTING_H
+#define WORD_COLLECTION_TEXT_FORMATTING_H
 
+#include "../Wisteria-Dataviz/src/import/html_encode.h"
 #include "../Wisteria-Dataviz/src/import/rtf_encode.h"
 #include "../Wisteria-Dataviz/src/math/mathematics.h"
+#include "../app/optionenums.h"
 #include "../indexing/word_collection.h"
 #include <wx/string.h>
 #include <wx/wx.h>
@@ -23,9 +25,8 @@
 template<typename documentT, typename highlightDeterminantT>
 static size_t FormatWordCollectionHighlightedWords(
     const std::shared_ptr<documentT>& theDocument, const highlightDeterminantT& shouldHighlight,
-    std::wstring& text, const std::wstring& headerSection,
-    const std::wstring& endSection, const std::wstring& legend,
-    const std::wstring& ignoreHighlightBegin,
+    std::wstring& text, const std::wstring& headerSection, const std::wstring& endSection,
+    const std::wstring& legend, const std::wstring& ignoreHighlightBegin,
     const std::wstring& ignoreHighlightEnd, const std::wstring& tabSymbol,
     const std::wstring& newLine, const bool highlightIncompleteSentences,
     const bool considerOnlyListItemsAsCompleteSentences, const bool highlightInvalidWords,
@@ -35,22 +36,18 @@ static size_t FormatWordCollectionHighlightedWords(
     text.append(headerSection).append(legend);
 
     // punctuation markers
-    std::vector<punctuation::punctuation_mark>::const_iterator punctPos =
-        theDocument->get_punctuation().begin();
-    std::vector<punctuation::punctuation_mark>::const_iterator punctEnd =
-        theDocument->get_punctuation().end();
+    auto punctPos = theDocument->get_punctuation().begin();
+    auto punctEnd = theDocument->get_punctuation().end();
     // temp word
-    lily_of_the_valley::rtf_encode_text rtfEncode;
+    const lily_of_the_valley::rtf_encode_text rtfEncode;
     std::wstring currentWord;
-    for (std::vector<grammar::paragraph_info>::const_iterator para_iter =
-             theDocument->get_paragraphs().begin();
-         para_iter != theDocument->get_paragraphs().end(); ++para_iter)
+    for (const auto& currentParagraph : theDocument->get_paragraphs())
         {
         // add a tab at the beginning of the paragraph
         text += tabSymbol;
         // go through the current paragraph's sentences
-        for (size_t j = para_iter->get_first_sentence_index();
-             j <= para_iter->get_last_sentence_index(); ++j)
+        for (size_t j = currentParagraph.get_first_sentence_index();
+             j <= currentParagraph.get_last_sentence_index(); ++j)
             {
             if (j >= theDocument->get_sentences().size())
                 {
@@ -137,8 +134,7 @@ static size_t FormatWordCollectionHighlightedWords(
                 while (punctPos != punctEnd && punctPos->get_word_position() == i + 1 &&
                        punctPos->is_connected_to_previous_word())
                     {
-                    std::vector<punctuation::punctuation_mark>::const_iterator nextPunctPos =
-                        (punctPos + 1);
+                    auto nextPunctPos = (punctPos + 1);
                     // if last word in the sentence AND the last punctuation mark in the document OR
                     // the next punctuation mark is not connected to this word then handle the
                     // sentence termination here.
@@ -199,7 +195,7 @@ static size_t FormatWordCollectionHighlightedWords(
             if (!sentenceTerminatorAppendedAlready)
                 {
                 // watch out for abbreviations at end of sentence
-                if (currentWord.length() > 0 && currentWord.back() == L'.')
+                if (!currentWord.empty() && currentWord.back() == L'.')
                     { /*noop*/
                     }
                 else
@@ -228,12 +224,12 @@ static size_t FormatWordCollectionHighlightedWords(
             // add a space at the end of the current sentence
             text += L"  ";
             }
-        if (para_iter->get_sentence_count() > 0)
+        if (currentParagraph.get_sentence_count() > 0)
             {
             text.erase(text.end() - 2, text.cend());
             }
         // add the paragraph line feed
-        for (size_t i = 0; i < para_iter->get_leading_end_of_line_count(); ++i)
+        for (size_t i = 0; i < currentParagraph.get_leading_end_of_line_count(); ++i)
             {
             text += newLine;
             }
@@ -272,17 +268,16 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
     auto punctPos = theDocument->get_punctuation().cbegin();
     auto punctEnd = theDocument->get_punctuation().cend();
     // temp word
-    lily_of_the_valley::rtf_encode_text rtfEncode;
+    const lily_of_the_valley::rtf_encode_text rtfEncode;
     std::wstring currentWord;
     std::wstring wordCountStr;
-    for (auto para_iter = theDocument->get_paragraphs().cbegin();
-         para_iter != theDocument->get_paragraphs().cend(); ++para_iter)
+    for (const auto& currentParagraph : theDocument->get_paragraphs())
         {
         // add a tab at the beginning of the paragraph
         text += tabSymbol;
         // go through the current paragraph's sentences
-        for (size_t j = para_iter->get_first_sentence_index();
-             j <= para_iter->get_last_sentence_index(); ++j)
+        for (size_t j = currentParagraph.get_first_sentence_index();
+             j <= currentParagraph.get_last_sentence_index(); ++j)
             {
             if (j >= theDocument->get_sentences().size())
                 {
@@ -391,8 +386,8 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
                     (std::binary_search(dupWordIndices.cbegin(), dupWordIndices.cend(), i)) ||
                     (std::binary_search(mismatchedArticleIndices.cbegin(),
                                         mismatchedArticleIndices.cend(), i)) ||
-                    (std::binary_search(misspelledWordIndices.cbegin(), misspelledWordIndices.cend(),
-                                        i));
+                    (std::binary_search(misspelledWordIndices.cbegin(),
+                                        misspelledWordIndices.cend(), i));
                 // valid sentence, but word is invalid
                 if (currentSentence.is_valid() && wordIsInvalid)
                     {
@@ -434,8 +429,7 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
                 while (punctPos != punctEnd && punctPos->get_word_position() == i + 1 &&
                        punctPos->is_connected_to_previous_word())
                     {
-                    std::vector<punctuation::punctuation_mark>::const_iterator nextPunctPos =
-                        (punctPos + 1);
+                    auto nextPunctPos = (punctPos + 1);
                     // if last word in the sentence AND the last punctuation mark in the document OR
                     // the next punctuation mark is not connected to this word then handle
                     // the sentence termination here.
@@ -495,7 +489,7 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
             // append sentence terminator if not done already
             if (!sentenceTerminatorAppendedAlready)
                 {
-                if (currentWord.length() > 0 && currentWord.back() == L'.')
+                if (!currentWord.empty() && currentWord.back() == L'.')
                     { /*noop*/
                     }
                 else
@@ -517,8 +511,13 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
                     }
                 }
 
-            wordCountStr = L" " + boldBegin + L" (" +
-                std::to_wstring(currentSentenceLength) + L")" + boldEnd;
+            wordCountStr.clear();
+            wordCountStr.append(L" ")
+                .append(boldBegin)
+                .append(L" (")
+                .append(std::to_wstring(currentSentenceLength))
+                .append(L")")
+                .append(boldEnd);
             if (currentSentenceShouldBeHighlightedAsInvalid || currentSentenceIsOverlyLong)
                 {
                 if (currentSentenceIsOverlyLong)
@@ -538,12 +537,12 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
             // add a space at the end of the current sentence
             text += L"  ";
             }
-        if (para_iter->get_sentence_count() > 0)
+        if (currentParagraph.get_sentence_count() > 0)
             {
             text.erase(text.end() - 2, text.cend());
             }
         // add the paragraph line feed
-        for (size_t i = 0; i < para_iter->get_leading_end_of_line_count(); ++i)
+        for (size_t i = 0; i < currentParagraph.get_leading_end_of_line_count(); ++i)
             {
             text += newLine;
             }
@@ -556,11 +555,10 @@ static size_t FormatWordCollectionHighlightedGrammarIssues(
 
 //------------------------------------------------
 template<typename documentT>
-static size_t FormatFilteredWordCollection(const std::shared_ptr<documentT>& theDocument,
-                                           std::wstring& text,
-                                           const InvalidTextFilterFormat validTextFormatting,
-                                           const bool removeFilePaths,
-                                           const bool stripAbbreviations)
+static size_t
+FormatFilteredWordCollection(const std::shared_ptr<documentT>& theDocument, std::wstring& text,
+                             const InvalidTextFilterFormat validTextFormatting,
+                             const bool removeFilePaths, const bool stripAbbreviations)
     {
     text.clear();
     // punctuation markers
@@ -568,15 +566,14 @@ static size_t FormatFilteredWordCollection(const std::shared_ptr<documentT>& the
     auto punctEnd = theDocument->get_punctuation().cend();
     // temp word
     std::wstring currentWord;
-    for (auto para_iter = theDocument->get_paragraphs().cbegin();
-         para_iter != theDocument->get_paragraphs().cend(); ++para_iter)
+    for (const auto& currentParagraph : theDocument->get_paragraphs())
         {
         // add a tab at the beginning of the paragraph
         text += L'\t';
         // go through the current paragraph's sentences
         size_t formattedSentencesInCurrentParagraph = 0;
-        for (size_t j = para_iter->get_first_sentence_index();
-             j <= para_iter->get_last_sentence_index(); ++j)
+        for (size_t j = currentParagraph.get_first_sentence_index();
+             j <= currentParagraph.get_last_sentence_index(); ++j)
             {
             // this should not happen, this is just a sanity trap
             if (j >= theDocument->get_sentences().size())
@@ -655,8 +652,7 @@ static size_t FormatFilteredWordCollection(const std::shared_ptr<documentT>& the
                 while (punctPos != punctEnd && punctPos->get_word_position() == i + 1 &&
                        punctPos->is_connected_to_previous_word())
                     {
-                    std::vector<punctuation::punctuation_mark>::const_iterator nextPunctPos =
-                        (punctPos + 1);
+                    auto nextPunctPos = (punctPos + 1);
                     // if last word in the sentence AND the last punctuation mark in the document OR
                     // the next punctuation mark is not connected to this word then handle
                     // the sentence termination here.
@@ -664,8 +660,9 @@ static size_t FormatFilteredWordCollection(const std::shared_ptr<documentT>& the
                         (nextPunctPos == punctEnd || nextPunctPos->get_word_position() != i + 1 ||
                          !nextPunctPos->is_connected_to_previous_word()))
                         {
-                        std::wstring punct(1, punctPos->get_punctuation_mark());
-                        std::wstring endingPunctuation(1, currentSentence.get_ending_punctuation());
+                        const std::wstring punct(1, punctPos->get_punctuation_mark());
+                        const std::wstring endingPunctuation(
+                            1, currentSentence.get_ending_punctuation());
                         // flip the last punctuation and period around if the punctuation
                         // is a quote (i.e., ". becomes .")
                         if (characters::is_character::is_quote(punctPos->get_punctuation_mark()))
@@ -680,7 +677,7 @@ static size_t FormatFilteredWordCollection(const std::shared_ptr<documentT>& the
                         ++punctPos;
                         break;
                         }
-                    std::wstring punct(1, punctPos->get_punctuation_mark());
+                    const std::wstring punct(1, punctPos->get_punctuation_mark());
                     text += punct;
                     ++punctPos;
                     }
@@ -689,13 +686,14 @@ static size_t FormatFilteredWordCollection(const std::shared_ptr<documentT>& the
             // append sentence terminator if not done already
             if (!sentenceTerminatorAppendedAlready)
                 {
-                if (currentWord.length() > 0 && currentWord.back() == L'.')
+                if (!currentWord.empty() && currentWord.back() == L'.')
                     { /*noop*/
                     }
                 else
                     {
                     // watch out for abbreviations at end of sentence
-                    std::wstring endingPunctuation(1, currentSentence.get_ending_punctuation());
+                    const std::wstring endingPunctuation(1,
+                                                         currentSentence.get_ending_punctuation());
                     text += endingPunctuation;
                     }
                 }
@@ -708,7 +706,7 @@ static size_t FormatFilteredWordCollection(const std::shared_ptr<documentT>& the
             text.erase(text.end() - 2, text.cend());
             }
         // add the paragraph line feed(s)
-        for (size_t i = 0; i < para_iter->get_leading_end_of_line_count(); ++i)
+        for (size_t i = 0; i < currentParagraph.get_leading_end_of_line_count(); ++i)
             {
             text += L'\n';
             }
@@ -717,4 +715,4 @@ static size_t FormatFilteredWordCollection(const std::shared_ptr<documentT>& the
     return text.length();
     }
 
-#endif // __WORD_COLLECTION_TEXT_FORMATTING_H__
+#endif // WORD_COLLECTION_TEXT_FORMATTING_H

@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __READABILITY_MESSAGES_H__
-#define __READABILITY_MESSAGES_H__
+#ifndef READABILITY_MESSAGES_H
+#define READABILITY_MESSAGES_H
 
 #include "../Wisteria-Dataviz/src/util/donttranslate.h"
 #include "../Wisteria-Dataviz/src/util/formulaformat.h"
@@ -38,7 +38,7 @@ class ReadabilityMessages final : public Wisteria::NumberFormat<wxString>
 
     /// @returns Dolch display label.
     [[nodiscard]]
-    static const wxString GetDolchLabel()
+    static wxString GetDolchLabel()
         {
         return _(L"Dolch Sight Words");
         }
@@ -47,388 +47,388 @@ class ReadabilityMessages final : public Wisteria::NumberFormat<wxString>
     // They are hardwired to external help topics and icons by the same name.
     /// @returns ARI key.
     [[nodiscard]]
-    static const wxString ARI()
+    static wxString ARI()
         {
-        return wxString(_DT(L"ari-test"));
+        return { _DT(L"ari-test") };
         }
 
     /// @returns COLEMAN_LIAU key.
     [[nodiscard]]
-    static const wxString COLEMAN_LIAU()
+    static wxString COLEMAN_LIAU()
         {
-        return wxString(_DT(L"coleman-liau-test"));
+        return { _DT(L"coleman-liau-test") };
         }
 
     /// @returns DALE_CHALL key.
     [[nodiscard]]
-    static const wxString DALE_CHALL()
+    static wxString DALE_CHALL()
         {
-        return wxString(_DT(L"dale-chall-test"));
+        return { _DT(L"dale-chall-test") };
         }
 
     /// @returns FORCAST key.
     [[nodiscard]]
-    static const wxString FORCAST()
+    static wxString FORCAST()
         {
-        return wxString(_DT(L"forcast-test"));
+        return { _DT(L"forcast-test") };
         }
 
     /// @returns FLESCH key.
     [[nodiscard]]
-    static const wxString FLESCH()
+    static wxString FLESCH()
         {
-        return wxString(_DT(L"flesch-test"));
+        return { _DT(L"flesch-test") };
         }
 
     /// @returns FLESCH_KINCAID key.
     [[nodiscard]]
-    static const wxString FLESCH_KINCAID()
+    static wxString FLESCH_KINCAID()
         {
-        return wxString(_DT(L"flesch-kincaid-test"));
+        return { _DT(L"flesch-kincaid-test") };
         }
 
     /// @returns FRY key.
     [[nodiscard]]
-    static const wxString FRY()
+    static wxString FRY()
         {
-        return wxString(_DT(L"fry-test"));
+        return { _DT(L"fry-test") };
         }
 
     /// @returns GUNNING_FOG key.
     [[nodiscard]]
-    static const wxString GUNNING_FOG()
+    static wxString GUNNING_FOG()
         {
-        return wxString(_DT(L"gunning-fog-test"));
+        return { _DT(L"gunning-fog-test") };
         }
 
     /// @returns LIX key.
     [[nodiscard]]
-    static const wxString LIX()
+    static wxString LIX()
         {
-        return wxString(_DT(L"lix-test"));
+        return { _DT(L"lix-test") };
         }
 
     /// @returns EFLAW key.
     [[nodiscard]]
-    static const wxString EFLAW()
+    static wxString EFLAW()
         {
-        return wxString(_DT(L"eflaw-test"));
+        return { _DT(L"eflaw-test") };
         }
 
     /// @returns NEW_FOG key.
     [[nodiscard]]
-    static const wxString NEW_FOG()
+    static wxString NEW_FOG()
         {
-        return wxString(_DT(L"new-fog-count-test"));
+        return { _DT(L"new-fog-count-test") };
         }
 
     /// @returns RAYGOR key.
     [[nodiscard]]
-    static const wxString RAYGOR()
+    static wxString RAYGOR()
         {
-        return wxString(_DT(L"raygor-test"));
+        return { _DT(L"raygor-test") };
         }
 
     /// @returns RIX key.
     [[nodiscard]]
-    static const wxString RIX()
+    static wxString RIX()
         {
-        return wxString(_DT(L"rix-test"));
+        return { _DT(L"rix-test") };
         }
 
     /// @returns SIMPLE_ARI key.
     [[nodiscard]]
-    static const wxString SIMPLE_ARI()
+    static wxString SIMPLE_ARI()
         {
-        return wxString(_DT(L"new-ari-simplified"));
+        return { _DT(L"new-ari-simplified") };
         }
 
     /// @returns SPACHE key.
     [[nodiscard]]
-    static const wxString SPACHE()
+    static wxString SPACHE()
         {
-        return wxString(_DT(L"spache-test"));
+        return { _DT(L"spache-test") };
         }
 
     /// @returns SMOG key.
     [[nodiscard]]
-    static const wxString SMOG()
+    static wxString SMOG()
         {
-        return wxString(_DT(L"smog-test"));
+        return { _DT(L"smog-test") };
         }
 
     /// @returns SMOG_SIMPLIFIED key.
     [[nodiscard]]
-    static const wxString SMOG_SIMPLIFIED()
+    static wxString SMOG_SIMPLIFIED()
         {
-        return wxString(_DT(L"smog-test-simplified"));
+        return { _DT(L"smog-test-simplified") };
         }
 
     /// @returns MODIFIED_SMOG key.
     [[nodiscard]]
-    static const wxString MODIFIED_SMOG()
+    static wxString MODIFIED_SMOG()
         {
-        return wxString(_DT(L"modified-smog"));
+        return { _DT(L"modified-smog") };
         }
 
     /// @returns PSK_FLESCH key.
     [[nodiscard]]
-    static const wxString PSK_FLESCH()
+    static wxString PSK_FLESCH()
         {
-        return wxString(_DT(L"psk-test"));
+        return { _DT(L"psk-test") };
         }
 
     /// @returns HARRIS_JACOBSON key.
     [[nodiscard]]
-    static const wxString HARRIS_JACOBSON()
+    static wxString HARRIS_JACOBSON()
         {
-        return wxString(_DT(L"harris-jacobson"));
+        return { _DT(L"harris-jacobson") };
         }
 
     /// @returns PSK_DALE_CHALL key.
     [[nodiscard]]
-    static const wxString PSK_DALE_CHALL()
+    static wxString PSK_DALE_CHALL()
         {
-        return wxString(_DT(L"psk-dale-chall"));
+        return { _DT(L"psk-dale-chall") };
         }
 
     /// @returns BORMUTH_CLOZE_MEAN key.
     [[nodiscard]]
-    static const wxString BORMUTH_CLOZE_MEAN()
+    static wxString BORMUTH_CLOZE_MEAN()
         {
-        return wxString(_DT(L"bormuth-cloze-mean-machine-passage"));
+        return { _DT(L"bormuth-cloze-mean-machine-passage") };
         }
 
     /// @returns BORMUTH_GRADE_PLACEMENT_35 key.
     [[nodiscard]]
-    static const wxString BORMUTH_GRADE_PLACEMENT_35()
+    static wxString BORMUTH_GRADE_PLACEMENT_35()
         {
-        return wxString(_DT(L"bormuth-grade-placement-35-machine-passage"));
+        return { _DT(L"bormuth-grade-placement-35-machine-passage") };
         }
 
     /// @returns PSK_GUNNING_FOG key.
     [[nodiscard]]
-    static const wxString PSK_GUNNING_FOG()
+    static wxString PSK_GUNNING_FOG()
         {
-        return wxString(_DT(L"psk-fog"));
+        return { _DT(L"psk-fog") };
         }
 
     /// @returns FARR_JENKINS_PATERSON key.
     [[nodiscard]]
-    static const wxString FARR_JENKINS_PATERSON()
+    static wxString FARR_JENKINS_PATERSON()
         {
-        return wxString(_DT(L"farr-jenkins-paterson"));
+        return { _DT(L"farr-jenkins-paterson") };
         }
 
     /// @returns NEW_FARR_JENKINS_PATERSON key.
     [[nodiscard]]
-    static const wxString NEW_FARR_JENKINS_PATERSON()
+    static wxString NEW_FARR_JENKINS_PATERSON()
         {
-        return wxString(_DT(L"new-farr-jenkins-paterson"));
+        return { _DT(L"new-farr-jenkins-paterson") };
         }
 
     /// @returns PSK_FARR_JENKINS_PATERSON key.
     [[nodiscard]]
-    static const wxString PSK_FARR_JENKINS_PATERSON()
+    static wxString PSK_FARR_JENKINS_PATERSON()
         {
-        return wxString(_DT(L"psk-farr-jenkins-paterson"));
+        return { _DT(L"psk-farr-jenkins-paterson") };
         }
 
     /// @returns WHEELER_SMITH key.
     [[nodiscard]]
-    static const wxString WHEELER_SMITH()
+    static wxString WHEELER_SMITH()
         {
-        return wxString(_DT(L"wheeler-smith"));
+        return { _DT(L"wheeler-smith") };
         }
 
     /// @returns GPM_FRY key.
     [[nodiscard]]
-    static const wxString GPM_FRY()
+    static wxString GPM_FRY()
         {
-        return wxString(_DT(L"gilliam-pena-mountain-fry-graph"));
+        return { _DT(L"gilliam-pena-mountain-fry-graph") };
         }
 
     /// @returns FRASE key.
     [[nodiscard]]
-    static const wxString FRASE()
+    static wxString FRASE()
         {
-        return wxString(_DT(L"frase"));
+        return { _DT(L"frase") };
         }
 
     /// @returns CRAWFORD key.
     [[nodiscard]]
-    static const wxString CRAWFORD()
+    static wxString CRAWFORD()
         {
-        return wxString(_DT(L"crawford"));
+        return { _DT(L"crawford") };
         }
 
     /// @returns SOL_SPANISH key.
     [[nodiscard]]
-    static const wxString SOL_SPANISH()
+    static wxString SOL_SPANISH()
         {
-        return wxString(_DT(L"sol-spanish"));
+        return { _DT(L"sol-spanish") };
         }
 
     /// @returns DEGREES_OF_READING_POWER key.
     [[nodiscard]]
-    static const wxString DEGREES_OF_READING_POWER()
+    static wxString DEGREES_OF_READING_POWER()
         {
-        return wxString(_DT(L"degrees-of-reading-power"));
+        return { _DT(L"degrees-of-reading-power") };
         }
 
     /// @returns DEGREES_OF_READING_POWER_GE key.
     [[nodiscard]]
-    static const wxString DEGREES_OF_READING_POWER_GE()
+    static wxString DEGREES_OF_READING_POWER_GE()
         {
-        return wxString(_DT(L"degrees-of-reading-power-grade-equivalent"));
+        return { _DT(L"degrees-of-reading-power-grade-equivalent") };
         }
 
     /// @returns NEW_ARI key.
     [[nodiscard]]
-    static const wxString NEW_ARI()
+    static wxString NEW_ARI()
         {
-        return wxString(_DT(L"new-ari"));
+        return { _DT(L"new-ari") };
         }
 
     /// @returns FLESCH_KINCAID_SIMPLIFIED key.
     [[nodiscard]]
-    static const wxString FLESCH_KINCAID_SIMPLIFIED()
+    static wxString FLESCH_KINCAID_SIMPLIFIED()
         {
-        return wxString(_DT(L"flesch-kincaid-test-simplified"));
+        return { _DT(L"flesch-kincaid-test-simplified") };
         }
 
     /// @returns DOLCH key.
     /// @note This is not technically a test, but store a constant here for it.
     [[nodiscard]]
-    static const wxString DOLCH()
+    static wxString DOLCH()
         {
-        return wxString(_DT(L"dolch"));
+        return { _DT(L"dolch") };
         }
 
     /// @returns AMSTAD key.
     [[nodiscard]]
-    static const wxString AMSTAD()
+    static wxString AMSTAD()
         {
-        return wxString(_DT(L"amstad"));
+        return { _DT(L"amstad") };
         }
 
     /// @returns SMOG_BAMBERGER_VANECEK key.
     [[nodiscard]]
-    static const wxString SMOG_BAMBERGER_VANECEK()
+    static wxString SMOG_BAMBERGER_VANECEK()
         {
-        return wxString(_DT(L"smog-bamberger-vanecek"));
+        return { _DT(L"smog-bamberger-vanecek") };
         }
 
     /// @returns WHEELER_SMITH_BAMBERGER_VANECEK key.
     [[nodiscard]]
-    static const wxString WHEELER_SMITH_BAMBERGER_VANECEK()
+    static wxString WHEELER_SMITH_BAMBERGER_VANECEK()
         {
-        return wxString(_DT(L"wheeler-smith-bamberger-vanecek"));
+        return { _DT(L"wheeler-smith-bamberger-vanecek") };
         }
 
     /// @returns QU key.
     [[nodiscard]]
-    static const wxString QU()
+    static wxString QU()
         {
-        return wxString(_DT(L"qu-bamberger-vanecek"));
+        return { _DT(L"qu-bamberger-vanecek") };
         }
 
     /// @returns NEUE_WIENER_SACHTEXTFORMEL1 key.
     [[nodiscard]]
-    static const wxString NEUE_WIENER_SACHTEXTFORMEL1()
+    static wxString NEUE_WIENER_SACHTEXTFORMEL1()
         {
-        return wxString(_DT(L"neue-wiener-sachtextformel1"));
+        return { _DT(L"neue-wiener-sachtextformel1") };
         }
 
     /// @returns NEUE_WIENER_SACHTEXTFORMEL2 key.
     [[nodiscard]]
-    static const wxString NEUE_WIENER_SACHTEXTFORMEL2()
+    static wxString NEUE_WIENER_SACHTEXTFORMEL2()
         {
-        return wxString(_DT(L"neue-wiener-sachtextformel2"));
+        return { _DT(L"neue-wiener-sachtextformel2") };
         }
 
     /// @returns NEUE_WIENER_SACHTEXTFORMEL3 key.
     [[nodiscard]]
-    static const wxString NEUE_WIENER_SACHTEXTFORMEL3()
+    static wxString NEUE_WIENER_SACHTEXTFORMEL3()
         {
-        return wxString(_DT(L"neue-wiener-sachtextformel3"));
+        return { _DT(L"neue-wiener-sachtextformel3") };
         }
 
     /// @returns LIX_GERMAN_CHILDRENS_LITERATURE key.
     [[nodiscard]]
-    static const wxString LIX_GERMAN_CHILDRENS_LITERATURE()
+    static wxString LIX_GERMAN_CHILDRENS_LITERATURE()
         {
-        return wxString(_DT(L"lix-german-childrens-literature"));
+        return { _DT(L"lix-german-childrens-literature") };
         }
 
     /// @returns LIX_GERMAN_TECHNICAL key.
     [[nodiscard]]
-    static const wxString LIX_GERMAN_TECHNICAL()
+    static wxString LIX_GERMAN_TECHNICAL()
         {
-        return wxString(_DT(L"lix-german-technical"));
+        return { _DT(L"lix-german-technical") };
         }
 
     /// @returns RIX_GERMAN_FICTION key.
     [[nodiscard]]
-    static const wxString RIX_GERMAN_FICTION()
+    static wxString RIX_GERMAN_FICTION()
         {
-        return wxString(_DT(L"rix-german-fiction"));
+        return { _DT(L"rix-german-fiction") };
         }
 
     /// @returns RIX_GERMAN_NONFICTION key.
     [[nodiscard]]
-    static const wxString RIX_GERMAN_NONFICTION()
+    static wxString RIX_GERMAN_NONFICTION()
         {
-        return wxString(_DT(L"rix-german-nonfiction"));
+        return { _DT(L"rix-german-nonfiction") };
         }
 
     /// @returns SCHWARTZ key.
     [[nodiscard]]
-    static const wxString SCHWARTZ()
+    static wxString SCHWARTZ()
         {
-        return wxString(_DT(L"schwartz"));
+        return { _DT(L"schwartz") };
         }
 
     /// @returns ELF key.
     [[nodiscard]]
-    static const wxString ELF()
+    static wxString ELF()
         {
-        return wxString(_DT(L"easy-listening-formula"));
+        return { _DT(L"easy-listening-formula") };
         }
 
     /// @returns DANIELSON_BRYAN_1 key.
     [[nodiscard]]
-    static const wxString DANIELSON_BRYAN_1()
+    static wxString DANIELSON_BRYAN_1()
         {
-        return wxString(_DT(L"danielson-bryan-1"));
+        return { _DT(L"danielson-bryan-1") };
         }
 
     /// @returns DANIELSON_BRYAN_2 key.
     [[nodiscard]]
-    static const wxString DANIELSON_BRYAN_2()
+    static wxString DANIELSON_BRYAN_2()
         {
-        return wxString(_DT(L"danielson-bryan-2"));
+        return { _DT(L"danielson-bryan-2") };
         }
 
     // test bundle names
     //------------------
     /// @returns PSK bundle name.
     [[nodiscard]]
-    static const wxString GetPskBundleName()
+    static wxString GetPskBundleName()
         {
-        return wxString(_DT(L"PSK"));
+        return { _DT(L"PSK") };
         }
 
     /// @returns Kincaid bundle name.
     [[nodiscard]]
-    static const wxString GetKincaidNavyBundleName()
+    static wxString GetKincaidNavyBundleName()
         {
         return _(L"Kincaid's Tests for Navy-Personnel Materials");
         }
 
     /// @returns Consent Forms bundle name.
     [[nodiscard]]
-    static const wxString GetConsentFormsBundleName()
+    static wxString GetConsentFormsBundleName()
         {
         return _(L"Patient Consent Forms");
         }
@@ -649,13 +649,13 @@ class ReadabilityMessages final : public Wisteria::NumberFormat<wxString>
 
   private:
     [[nodiscard]]
-    static const wxString GetHighlightBegin()
+    static wxString GetHighlightBegin()
         {
         return L"<span style='font-weight:bold;'><span style='font-style:italic;'>";
         }
 
     [[nodiscard]]
-    static const wxString GetHighlightEnd()
+    static wxString GetHighlightEnd()
         {
         return L"</span></span>";
         }
@@ -701,4 +701,4 @@ class ReadabilityMessages final : public Wisteria::NumberFormat<wxString>
     };
     };
 
-#endif //__READABILITY_MESSAGES_H__
+#endif // READABILITY_MESSAGES_H

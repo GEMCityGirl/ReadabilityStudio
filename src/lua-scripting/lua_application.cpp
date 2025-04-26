@@ -31,6 +31,9 @@ using namespace Wisteria::GraphItems;
 
 wxDECLARE_APP(ReadabilityApp);
 
+// NOLINTBEGIN(readability-identifier-length)
+// NOLINTBEGIN(readability-implicit-bool-conversion)
+
 namespace LuaScripting
     {
     //-------------------------------------------------------------
@@ -819,11 +822,11 @@ namespace LuaScripting
                 }
 
             html_utilities::html_hyperlink_parse hparse(fileContent.c_str(), fileContent.length());
-            const wchar_t* currentLink;
+            const wchar_t* currentLink{ nullptr };
             while ((currentLink = hparse()) != nullptr)
                 {
                 // review bookmarks in the current page
-                if (hparse.get_current_hyperlink_length() > 2 && currentLink[0] == L'#')
+                if (hparse.get_current_hyperlink_length() > 2 && *currentLink == L'#')
                     {
                     wxString currentBookmark(currentLink + 1,
                                              hparse.get_current_hyperlink_length() - 1);
@@ -938,8 +941,8 @@ namespace LuaScripting
             {
             return 0;
             }
-        wxString path(luaL_checkstring(L, 1), wxConvUTF8);
-        wxString outputStr(luaL_checkstring(L, 2), wxConvUTF8);
+        const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
+        const wxString outputStr(luaL_checkstring(L, 2), wxConvUTF8);
 
         // create the folder to the filepath, if necessary
         wxFileName::Mkdir(wxFileName(path).GetPath(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
@@ -994,7 +997,6 @@ namespace LuaScripting
             }
         grammar::phrase_collection phraseList;
         wxString inputFileBuffer;
-        std::vector<word_list::word_type> newStrings;
         if (Wisteria::TextStream::ReadFile(path, inputFileBuffer))
             {
             phraseList.load_phrases(inputFileBuffer, true, false);
@@ -1039,7 +1041,7 @@ namespace LuaScripting
             }
 
         // create the folder to the filepath, if necessary
-        wxString outputPath(luaL_checkstring(L, 3), wxConvUTF8);
+        const wxString outputPath(luaL_checkstring(L, 3), wxConvUTF8);
         wxFileName::Mkdir(wxFileName(outputPath).GetPath(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
 
         wxFileName(outputPath).SetPermissions(wxS_DEFAULT);
@@ -1067,7 +1069,6 @@ namespace LuaScripting
             }
         grammar::phrase_collection phraseList;
         wxString inputFileBuffer;
-        std::vector<word_list::word_type> newStrings;
         if (Wisteria::TextStream::ReadFile(path, inputFileBuffer))
             {
             phraseList.load_phrases(inputFileBuffer, true, false);
@@ -1087,7 +1088,7 @@ namespace LuaScripting
             }
 
         // create the folder to the filepath, if necessary
-        wxString outputPath(luaL_checkstring(L, 2), wxConvUTF8);
+        const wxString outputPath(luaL_checkstring(L, 2), wxConvUTF8);
         wxFileName::Mkdir(wxFileName(outputPath).GetPath(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
 
         wxFileName(outputPath).SetPermissions(wxS_DEFAULT);
@@ -1138,20 +1139,20 @@ namespace LuaScripting
                         newStrings.push_back(wordList.get_words().at(j) + _DT(L"es"));
                         continue;
                         }
-                    else if ((secondToLastLetter == L'c' || secondToLastLetter == L'C') &&
-                             (lastLetter == L'h' || lastLetter == L'H'))
+                    if ((secondToLastLetter == L'c' || secondToLastLetter == L'C') &&
+                        (lastLetter == L'h' || lastLetter == L'H'))
                         {
                         newStrings.push_back(wordList.get_words().at(j) + _DT(L"es"));
                         continue;
                         }
-                    else if (lastLetter == L's' || lastLetter == L'S' || lastLetter == L'x' ||
-                             lastLetter == L'X' || lastLetter == L'z' || lastLetter == L'Z')
+                    if (lastLetter == L's' || lastLetter == L'S' || lastLetter == L'x' ||
+                        lastLetter == L'X' || lastLetter == L'z' || lastLetter == L'Z')
                         {
                         newStrings.push_back(wordList.get_words().at(j) + _DT(L"es"));
                         continue;
                         }
-                    else if (characters::is_character::is_consonant(secondToLastLetter) &&
-                             (lastLetter == L'y' || lastLetter == L'Y'))
+                    if (characters::is_character::is_consonant(secondToLastLetter) &&
+                        (lastLetter == L'y' || lastLetter == L'Y'))
                         {
                         newStrings.push_back(wordList.get_words().at(j).substr(
                                                  0, wordList.get_words().at(j).length() - 1) +
@@ -1175,7 +1176,7 @@ namespace LuaScripting
         outputStr.Trim(true);
         outputStr.Trim(false);
         // create the folder to the filepath, if necessary
-        wxString outputPath(luaL_checkstring(L, 2), wxConvUTF8);
+        const wxString outputPath(luaL_checkstring(L, 2), wxConvUTF8);
         wxFileName::Mkdir(wxFileName(outputPath).GetPath(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
 
         wxFileName(outputPath).SetPermissions(wxS_DEFAULT);
@@ -1400,8 +1401,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int GetDifficultSentenceLength(lua_State* L)
         {
-        lua_pushnumber(L,
-                       static_cast<int>(wxGetApp().GetAppOptions().GetDifficultSentenceLength()));
+        lua_pushnumber(L, wxGetApp().GetAppOptions().GetDifficultSentenceLength());
         return 1;
         }
 
@@ -1522,7 +1522,7 @@ namespace LuaScripting
             {
             return 0;
             }
-        wxString filePath(luaL_checkstring(L, 1), wxConvUTF8);
+        const wxString filePath(luaL_checkstring(L, 1), wxConvUTF8);
         const auto reviewer = wxGetApp().GetAppOptions().GetReviewer();
         lua_pushboolean(L, wxGetApp().GetAppOptions().LoadOptionsFile(filePath, false, false));
         wxGetApp().GetAppOptions().SetReviewer(reviewer);
@@ -1537,7 +1537,7 @@ namespace LuaScripting
             {
             return 0;
             }
-        wxString filePath(luaL_checkstring(L, 1), wxConvUTF8);
+        const wxString filePath(luaL_checkstring(L, 1), wxConvUTF8);
         lua_pushboolean(L, wxGetApp().GetAppOptions().SaveOptionsFile(filePath));
         wxGetApp().Yield();
         return 1;
@@ -3844,3 +3844,6 @@ namespace LuaScripting
         return 1;
         }
     } // namespace LuaScripting
+
+// NOLINTEND(readability-implicit-bool-conversion)
+// NOLINTEND(readability-identifier-length)

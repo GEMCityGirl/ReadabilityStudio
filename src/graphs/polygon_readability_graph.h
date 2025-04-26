@@ -46,21 +46,21 @@ namespace Wisteria::Graphs
             {
           public:
             /** @brief Constructor.
-                @param x The x axis position.
-                @param y The y axis position.
+                @param xPos The x axis position.
+                @param yPos The y axis position.
                 @param label The label's display string.
                 @param startValue The start value of the level's range of values.
                 @param endValue The end value of the level's range of values.*/
-            LevelLabel(const double x, const double y, const wxString& label,
+            LevelLabel(const double xPos, const double yPos, wxString label,
                        const double startValue, const double endValue)
-                : m_x(x), m_y(y), m_value1(startValue), m_value2(endValue), m_label(label)
+                : m_x(xPos), m_y(yPos), m_value1(startValue), m_value2(endValue),
+                  m_label(std::move(label))
                 {
                 }
 
             /// @returns @c true if a @c value falls within the range of the level.
             [[nodiscard]]
-            bool
-            operator==(const double value) const noexcept
+            bool operator==(const double value) const noexcept
                 {
                 return value >= m_value1 && value <= m_value2;
                 }
@@ -169,25 +169,27 @@ namespace Wisteria::Graphs
                 into the more difficult region.
             @note The backscreened plot that this is used on is not DPI scaled, so the offset
                 values should be treated like DIPs (although technically, they aren't).
-            @param pt The point to review.
+            @param point The point to review.
             @param polygon The points that make up the polygon (region) to test inside of.
-            @param N The number of points in the @c polygon.
+            @param numOfPoints The number of points in the @c polygon.
             @param xOffset How much "wiggle room" (in pixels) to test around to
                 x axis of the polygon's vertices.
             @param yOffset How much "wiggle room" (in pixels) to test around to
                 y axis of the polygon's vertices.*/
         [[nodiscard]]
-        static bool IsScoreInsideRegion(const wxPoint pt, const wxPoint* polygon, const int N,
-                                        const int xOffset, const int yOffset)
+        static bool IsScoreInsideRegion(const wxPoint point, const wxPoint* polygon,
+                                        const int numOfPoints, const int xOffset, const int yOffset)
             {
             // see if the point is even in the polygon's bounding box, then see if it's
             // actually in the polygon
-            return Wisteria::GraphItems::Polygon::GetPolygonBoundingBox(polygon, N).Contains(pt) ?
-                       (Wisteria::GraphItems::Polygon::IsInsidePolygon(pt, polygon, N) ||
+            return Wisteria::GraphItems::Polygon::GetPolygonBoundingBox(polygon, numOfPoints)
+                           .Contains(point) ?
+                       (Wisteria::GraphItems::Polygon::IsInsidePolygon(point, polygon,
+                                                                       numOfPoints) ||
                         Wisteria::GraphItems::Polygon::IsInsidePolygon(
-                            wxPoint(pt.x + xOffset, pt.y), polygon, N) ||
+                            wxPoint(point.x + xOffset, point.y), polygon, numOfPoints) ||
                         Wisteria::GraphItems::Polygon::IsInsidePolygon(
-                            wxPoint(pt.x, pt.y + yOffset), polygon, N)) :
+                            wxPoint(point.x, point.y + yOffset), polygon, numOfPoints)) :
                        false;
             }
 
@@ -198,7 +200,7 @@ namespace Wisteria::Graphs
                 into the more difficult region.
             @note The backscreened plot that this is used on is not DPI scaled, so the offset
                 values should be treated like DIPs (although technically, they aren't).
-            @param pt The point to review.
+            @param point The point to review.
             @param polygon The array of points that make up the polygon (region) to test inside of.
             @param xOffset How much "wiggle room" (in pixels) to test around to
                 x axis of the polygon's vertices.
@@ -206,19 +208,19 @@ namespace Wisteria::Graphs
                 y axis of the polygon's vertices.*/
         template<typename polygonT>
         [[nodiscard]]
-        static bool IsScoreInsideRegion(const wxPoint pt, const polygonT& polygon,
+        static bool IsScoreInsideRegion(const wxPoint point, const polygonT& polygon,
                                         const int xOffset, const int yOffset)
             {
             // see if the point is even in the polygon's bounding box, then see if it's
             // actually in the polygon
             return Wisteria::GraphItems::Polygon::GetPolygonBoundingBox(&polygon[0], polygon.size())
-                           .Contains(pt) ?
-                       (Wisteria::GraphItems::Polygon::IsInsidePolygon(pt, &polygon[0],
+                           .Contains(point) ?
+                       (Wisteria::GraphItems::Polygon::IsInsidePolygon(point, &polygon[0],
                                                                        polygon.size()) ||
                         Wisteria::GraphItems::Polygon::IsInsidePolygon(
-                            wxPoint(pt.x + xOffset, pt.y), &polygon[0], polygon.size()) ||
+                            wxPoint(point.x + xOffset, point.y), &polygon[0], polygon.size()) ||
                         Wisteria::GraphItems::Polygon::IsInsidePolygon(
-                            wxPoint(pt.x, pt.y + yOffset), &polygon[0], polygon.size())) :
+                            wxPoint(point.x, point.y + yOffset), &polygon[0], polygon.size())) :
                        false;
             }
 

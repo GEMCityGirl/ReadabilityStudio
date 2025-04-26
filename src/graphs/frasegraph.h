@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __FRASE_GRAPH_H__
-#define __FRASE_GRAPH_H__
+#ifndef FRASE_GRAPH_H
+#define FRASE_GRAPH_H
 
 #include "polygon_readability_graph.h"
 
@@ -101,4 +101,4 @@ namespace Wisteria::Graphs
         };
     } // namespace Wisteria::Graphs
 
-#endif //__FRASE_GRAPH_H__
+#endif // FRASE_GRAPH_H
