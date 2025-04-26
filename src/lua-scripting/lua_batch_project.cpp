@@ -147,9 +147,9 @@ namespace LuaScripting
             }
         if (!lua_istable(L, 2))
             {
-            return luaL_error(
-                L, "%s",
-                wxString::Format(_(L"%s requires a table argument."), __func__).utf8_str());
+            return luaL_error(L, "%s",
+                              static_cast<const char*>(
+                                  wxString::Format(_(L"%s requires a table argument."), __func__)));
             }
 
         const size_t fileCount{ lua_rawlen(L, 2) };
@@ -572,8 +572,7 @@ namespace LuaScripting
         m_project->GetExclusionBlockTags().clear();
         if (exclusionTags.length() >= 2)
             {
-            m_project->GetExclusionBlockTags().emplace_back(
-                exclusionTags[0], exclusionTags[1]);
+            m_project->GetExclusionBlockTags().emplace_back(exclusionTags[0], exclusionTags[1]);
             }
         ReloadIfNotDelayed();
         return 0;
@@ -3197,13 +3196,13 @@ namespace LuaScripting
                 wxGetApp().Yield();
                 return 1;
                 }
-                wxMessageBox(
-                    wxString::Format(_(L"Unable to find the specified graph (%d) in the project."),
-                                     static_cast<int>(luaL_checkinteger(L, 3))),
-                    _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
-                lua_pushboolean(L, false);
-                return 1;
-                }
+            wxMessageBox(
+                wxString::Format(_(L"Unable to find the specified graph (%d) in the project."),
+                                 static_cast<int>(luaL_checkinteger(L, 3))),
+                _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
+            lua_pushboolean(L, false);
+            return 1;
+            }
         wxGetApp().Yield();
         lua_pushboolean(L, false);
         return 1;
