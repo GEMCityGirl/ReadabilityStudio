@@ -1019,7 +1019,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
-        // Neue wiener sachtextformel 1
+        // Neue Wiener Sachtextformel 1
         {
         readability::readability_test test(
             ReadabilityMessages::NEUE_WIENER_SACHTEXTFORMEL1(),
@@ -1043,7 +1043,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
-        // neue wiener sachtextformel 2
+        // Neue Wiener Sachtextformel 2
         {
         readability::readability_test test(
             ReadabilityMessages::NEUE_WIENER_SACHTEXTFORMEL2(),
@@ -1066,7 +1066,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
-        // neue wiener sachtextformel 3
+        // Neue Wiener Sachtextformel 3
         {
         readability::readability_test test(
             ReadabilityMessages::NEUE_WIENER_SACHTEXTFORMEL3(),
@@ -1467,7 +1467,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
-        // danielson-bryan 1
+        // Danielson-Bryan 1
         {
         readability::readability_test test(
             ReadabilityMessages::DANIELSON_BRYAN_1(), XRCID("ID_DANIELSON_BRYAN_1"),
@@ -1483,7 +1483,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
-        // danielson-bryan 2
+        // Danielson-Bryan 2
         {
         readability::readability_test test(
             ReadabilityMessages::DANIELSON_BRYAN_2(), XRCID("ID_DANIELSON_BRYAN_2"),
@@ -1670,7 +1670,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
-        // flesch-kincaid
+        // Flesch-Kincaid
         {
         readability::readability_test test(
             ReadabilityMessages::FLESCH_KINCAID(), XRCID("ID_FLESCH_KINCAID"),
@@ -1696,7 +1696,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
-        // flesch-kincaid (simplified)
+        // Flesch-Kincaid (simplified)
         {
         readability::readability_test test(
             ReadabilityMessages::FLESCH_KINCAID_SIMPLIFIED(), XRCID("ID_FLESCH_KINCAID_SIMPLIFIED"),
@@ -1960,7 +1960,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
-        // raygor
+        // Raygor
         {
         readability::readability_test test(
             ReadabilityMessages::RAYGOR(), XRCID("ID_RAYGOR"), _DT(L"Raygor Estimate"),
@@ -2088,7 +2088,7 @@ void BaseProject::LoadHardWords()
     m_totalMiniWords = 0;
 
     // Monosyllabic words
-    m_uniqueMonoSyllablicWords = 0;
+    m_uniqueMonoSyllabicWords = 0;
 
     // hard words (Harris-Jacobson)
     readability::is_familiar_word<word_case_insensitive_no_stem, const word_list,
@@ -2258,14 +2258,14 @@ void BaseProject::LoadHardWords()
         assert(wordPos->second.first >= wordPos->second.second);
         /* subtract number of times word is proper from total count of word
            to see if at least on instance is NOT proper. If they are equal, then
-           all instances are proper and therefore cannot be an UNfamiliar word.*/
+           all instances are proper and therefore cannot be an unfamiliar word.*/
         const bool allInstancesAreProper = (wordPos->second.first == wordPos->second.second);
         const size_t nonProperCount = (wordPos->second.first - wordPos->second.second);
         if (wordPos->first.get_syllable_count() == 1 ||
             (wordPos->first.is_numeric() &&
              GetNumeralSyllabicationMethod() == NumeralSyllabize::WholeWordIsOneSyllable))
             {
-            ++m_uniqueMonoSyllablicWords;
+            ++m_uniqueMonoSyllabicWords;
             }
         // proper
         if (HasUI() && wordPos->second.second > 0)
@@ -2940,7 +2940,7 @@ void BaseProject::LoadHardWords()
         assert(wordPos->second.first >= wordPos->second.second);
         /* subtract number of times word is proper from total count of word
            to see if at least on instance is NOT proper. If they are equal, then
-           all instances are proper and therefore cannot be an UNfamiliar word.*/
+           all instances are proper and therefore cannot be an unfamiliar word.*/
         const bool allInstancesAreProper = (wordPos->second.first == wordPos->second.second);
         const size_t nonProperCount = (wordPos->second.first - wordPos->second.second);
         // SOL (same as SMOG, but needs to include headers)

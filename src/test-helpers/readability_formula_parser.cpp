@@ -356,7 +356,7 @@ static double UniqueOneSyllableWordCount(const te_expr* context)
     {
     return (dynamic_cast<const FormulaProject*>(context))
         ->GetProject()
-        ->GetTotalUniqueMonoSyllablicWords();
+        ->GetTotalUniqueMonoSyllabicWords();
     }
 
 /// @returns The total number of familiar Dale-Chall words from the document.

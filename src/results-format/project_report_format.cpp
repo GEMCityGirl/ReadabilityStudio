@@ -1975,7 +1975,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
         // unique monosyllabic words
         htmlText += formatRow(_(L"Number of unique monosyllabic words:"),
                               wxNumberFormatter::ToString(
-                                  project->GetTotalUniqueMonoSyllablicWords(), 0,
+                                  project->GetTotalUniqueMonoSyllabicWords(), 0,
                                   wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                       wxNumberFormatter::Style::Style_WithThousandsSep)) +
                     L"\n</table>";
@@ -1985,7 +1985,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
             listData->SetItemText(listDataItemCount, 0, _(L"Number of unique monosyllabic words"));
             listData->SetItemText(
                 listDataItemCount++, 1,
-                wxNumberFormatter::ToString(project->GetTotalUniqueMonoSyllablicWords(), 0,
+                wxNumberFormatter::ToString(project->GetTotalUniqueMonoSyllabicWords(), 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep));
             }

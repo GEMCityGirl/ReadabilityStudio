@@ -1192,7 +1192,7 @@ void BatchProjectDoc::LoadSummaryStatsSection()
             assert(m_summaryStatsColumnNames[columnCount] == _(L"Number of monosyllabic words"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalMonoSyllabicWords());
             assert(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique monosyllabic words"));
-            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalUniqueMonoSyllablicWords());
+            m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotalUniqueMonoSyllabicWords());
             assert(m_summaryStatsColumnNames[columnCount] == _(L"Number of complex (3+ syllable) words"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetTotal3PlusSyllabicWords());
             assert(m_summaryStatsColumnNames[columnCount] == _(L"Number of unique 3+ syllable words"));

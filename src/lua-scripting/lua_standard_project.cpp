@@ -343,7 +343,7 @@ namespace LuaScripting
             return 0;
             }
 
-        lua_pushinteger(L, m_project->GetTotalUniqueMonoSyllablicWords());
+        lua_pushinteger(L, m_project->GetTotalUniqueMonoSyllabicWords());
         return 1;
         }
 

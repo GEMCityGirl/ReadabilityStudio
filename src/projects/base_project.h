@@ -1113,14 +1113,14 @@ class BaseProject : public ProjectRefresh
     void SetTotalUniqueHardWordsSpache(const double val) noexcept { m_uniqueSpacheHardWords = val; }
 
     [[nodiscard]]
-    const double& GetTotalUniqueMonoSyllablicWords() const noexcept
+    const double& GetTotalUniqueMonoSyllabicWords() const noexcept
         {
-        return m_uniqueMonoSyllablicWords;
+        return m_uniqueMonoSyllabicWords;
         }
 
-    void SetTotalUniqueMonoSyllablicWords(const double val) noexcept
+    void SetTotalUniqueMonoSyllabicWords(const double val) noexcept
         {
-        m_uniqueMonoSyllablicWords = val;
+        m_uniqueMonoSyllabicWords = val;
         }
 
     [[nodiscard]]
@@ -2494,7 +2494,7 @@ class BaseProject : public ProjectRefresh
 
     // (unique) totals
     double m_uniqueWords{ 0 };
-    double m_uniqueMonoSyllablicWords{ 0 };
+    double m_uniqueMonoSyllabicWords{ 0 };
     double m_unique6CharsPlusWords{ 0 };
     double m_unique3PlusSyllableWords{ 0 };
     double m_uniqueDCHardWords{ 0 };
