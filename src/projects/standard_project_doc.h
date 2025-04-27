@@ -110,7 +110,7 @@ class ProjectDoc final : public BaseProjectDoc
     void CalculateGraphData();
     void AddDB2Plot(const bool setFocus = true) final;
     void AddFleschChart(const bool setFocus = true) final;
-    void AddLixGermanGuage(const bool setFocus) final;
+    void AddLixGermanGauge(const bool setFocus) final;
     void AddLixGauge(const bool setFocus = true) final;
     void AddCrawfordGraph(const bool setFocus = true) final;
     void LoadManuallyEnteredText();

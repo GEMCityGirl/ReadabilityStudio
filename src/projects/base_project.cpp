@@ -1417,7 +1417,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
-        // coleman-liau
+        // Coleman-Liau
         {
         readability::readability_test test(
             ReadabilityMessages::COLEMAN_LIAU(), XRCID("ID_COLEMAN_LIAU"), _DT(L"Coleman-Liau"),
@@ -1443,7 +1443,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         m_testIdMap.insert(std::make_pair(test.get_id().c_str(), test.get_interface_id()));
         }
 
-        // new dale-chall
+        // New Dale-Chall
         {
         readability::readability_test test(
             ReadabilityMessages::DALE_CHALL(), XRCID("ID_NEW_DALE_CHALL"), _DT(L"New Dale-Chall"),
@@ -8050,7 +8050,7 @@ bool BaseProject::AddLixGermanChildrensLiterature(const bool setFocus)
         return false;
         }
 
-    AddLixGermanGuage(setFocus);
+    AddLixGermanGauge(setFocus);
 
     GetReadabilityTests().include_test(CURRENT_TEST_KEY, true);
     return true;
@@ -8127,7 +8127,7 @@ bool BaseProject::AddLixGermanTechnical(const bool setFocus)
         return false;
         }
 
-    AddLixGermanGuage(setFocus);
+    AddLixGermanGauge(setFocus);
 
     GetReadabilityTests().include_test(CURRENT_TEST_KEY, true);
     return true;

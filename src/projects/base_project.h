@@ -2340,7 +2340,7 @@ class BaseProject : public ProjectRefresh
     virtual void AddDB2Plot([[maybe_unused]] const bool setFocus) {}
 
     // only AddLixGermanTest should call this
-    virtual void AddLixGermanGuage([[maybe_unused]] const bool setFocus) {}
+    virtual void AddLixGermanGauge([[maybe_unused]] const bool setFocus) {}
 
     // only AddLixTest should call this
     virtual void AddLixGauge([[maybe_unused]] const bool setFocus) {}

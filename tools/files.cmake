@@ -14,6 +14,7 @@ SET(APP_SRC_FILES
     src/indexing/article.cpp
     src/indexing/conjunction.cpp
     src/indexing/contraction.cpp
+    src/indexing/diacritics.cpp
     src/indexing/double_words.cpp
     src/indexing/negating_word.cpp
     src/indexing/passive_voice.cpp

@@ -2797,7 +2797,7 @@ void ProjectDoc::AddDB2Plot(const bool setFocus)
     }
 
 //-------------------------------------------------------
-void ProjectDoc::AddLixGermanGuage(const bool setFocus)
+void ProjectDoc::AddLixGermanGauge(const bool setFocus)
     {
     readability::german_lix_difficulty diffLevel;
     const size_t score = readability::german_lix(diffLevel, GetTotalWords(),
