@@ -48,15 +48,17 @@ add_executable(${CMAKE_PROJECT_NAME} ../src/indexing/article.cpp ../src/indexing
     ../src/indexing/conjunction.cpp ../src/indexing/contraction.cpp ../src/indexing/double_words.cpp
     ../src/indexing/negating_word.cpp ../src/indexing/passive_voice.cpp ../src/indexing/pronoun.cpp
     ../src/indexing/romanize.cpp ../src/indexing/stop_lists.cpp ../src/indexing/syllable.cpp
-    ../src/Wisteria-Dataviz/src/i18n-check/src/i18n_string_util.cpp
-    ../src/Wisteria-Dataviz/src/i18n-check/src/i18n_review.cpp
+    ../src/Wisteria-Dataviz/src/util/i18n_string_util.cpp
+    ../src/indexing/word_functional.cpp
+    ../src/indexing/diacritics.cpp
     abbreviationtests.cpp
     acronymtests.cpp articletests.cpp documenttests.cpp englishsyllabletests.cpp
     germansyllabletests.cpp sentencetests.cpp wordfunctortests.cpp
     conjunctiontests.cpp ischartests.cpp contractiontests.cpp
     doublewordtests.cpp grammartests.cpp stringtests.cpp doctokenizetests.cpp
     romanizetests.cpp readingtests.cpp wordlisttests.cpp chartraitstext.cpp
-    testingmain.cpp wordtests.cpp spanishsyllabletests.cpp projectrefresh.cpp)
+    testingmain.cpp wordtests.cpp spanishsyllabletests.cpp projectrefresh.cpp
+    diacriticstests.cpp)
 
 if(MSVC)
     target_compile_definitions(${CMAKE_PROJECT_NAME} PUBLIC _CRT_SECURE_NO_WARNINGS __UNITTEST _DISABLE_VECTOR_ANNOTATION _DISABLE_STRING_ANNOTATION)
