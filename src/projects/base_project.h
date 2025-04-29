@@ -2303,6 +2303,31 @@ class BaseProject : public ProjectRefresh
 
     void UpdateDocumentSettings();
 
+    [[nodiscard]]
+    std::pair<bool, std::wstring> ExtractRtfRawText(std::string_view sourceFileText);
+    [[nodiscard]]
+    std::pair<bool, std::wstring> ExtractPowerPointRawText(std::string_view sourceFileText);
+    [[nodiscard]]
+    std::pair<bool, std::wstring> ExtractDocxRawText(std::string_view sourceFileText);
+    [[nodiscard]]
+    std::pair<bool, std::wstring> ExtractDocRawText(std::string_view sourceFileText);
+    [[nodiscard]]
+    std::pair<bool, std::wstring> ExtractOpenDocumentRawText(std::string_view sourceFileText);
+    [[nodiscard]]
+    std::pair<bool, std::wstring> ExtractPostscriptRawText(std::string_view sourceFileText);
+    [[nodiscard]]
+    std::pair<bool, std::wstring> ExtractHtmlRawText(std::string_view sourceFileText,
+                                                     const WebPageExtension& isHtmlExtension,
+                                                     const wxString& fileExtension);
+    [[nodiscard]]
+    std::pair<bool, std::wstring> ExtractWorkshopRawText(std::string_view sourceFileText);
+    [[nodiscard]]
+    std::pair<bool, std::wstring> ExtractIdlRawText(std::string_view sourceFileText);
+    [[nodiscard]]
+    std::pair<bool, std::wstring> ExtractCppRawText(std::string_view sourceFileText);
+    [[nodiscard]]
+    std::pair<bool, std::wstring> ExtractMarkdownRawText(std::string_view sourceFileText);
+
   protected:
     [[nodiscard]]
     std::shared_ptr<stemming::stem<traits::case_insensitive_wstring_ex>> CreateStemmer() const
