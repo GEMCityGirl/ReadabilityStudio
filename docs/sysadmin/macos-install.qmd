@@ -17,6 +17,10 @@ source('R/appdown.r')
 
 Open "ReadabilityStudio.dmg" and drag-and-drop the program into the "Applications" folder.
 
+## Uninstalling {-}
+
+From the "Applications" folder, drag "ReadabilityStudio.dmg" into the Trash bin.
+
 ## Updating {-}
 
 Open "ReadabilityStudio.dmg" and drag-and-drop the program into the "Applications" folder, replacing the existing copy.
