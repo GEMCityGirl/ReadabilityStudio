@@ -2177,7 +2177,7 @@ bool BatchProjectView::ExportAllToHtml(
     // the results window
     if (includeTestScores && GetScoresView().GetWindowCount())
         {
-        // the first output in this section will not have a leading pagebreak, but the rest will
+        // the first output in this section will not have a leading page break, but the rest will
         bool includeLeadingPageBreak{ false };
         // update/reset counters for sections, tables, and figures
         ++sectionCounter;

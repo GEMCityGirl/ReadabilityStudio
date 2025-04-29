@@ -207,7 +207,7 @@ void BaseProjectDoc::CopyDocumentLevelSettings(const BaseProjectDoc& that, const
     m_graphBoxColor = that.GetGraphBoxColor();
     m_graphBoxOpacity = that.GetGraphBoxOpacity();
     m_graphBoxEffect = that.GetGraphBoxEffect();
-    // barchart
+    // bar chart
     m_barDisplayLabels = that.m_barDisplayLabels;
     m_graphBarEffect = that.m_graphBarEffect;
     m_graphBarOpacity = that.m_graphBarOpacity;
@@ -2867,11 +2867,11 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     fileText.append(L"\t\t</")
         .append(wxGetApp().GetAppOptions().XML_FLESCH_CHART_SETTINGS.data())
         .append(L">\n");
-    // fry/raygor invalid area colors
+    // Fry/Raygor invalid area colors
     fileText.append(L"\t\t<").append(wxGetApp().GetAppOptions().XML_INVALID_AREA_COLOR.data());
     fileText += XmlFormat::FormatColorAttributes(GetInvalidAreaColor());
     fileText.append(L"/>\n");
-    // raygor style
+    // Raygor style
     XmlFormat::FormatSection(sectionText, wxGetApp().GetAppOptions().XML_RAYGOR_STYLE.data(),
                              static_cast<int>(GetRaygorStyle()), 3);
     fileText += sectionText;

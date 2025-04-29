@@ -641,7 +641,7 @@ void BaseProjectView::Present()
                 }
             }
         }
-    // fill the meuns
+    // fill the menus
     MainFrame::FillReadabilityMenu(
         &GetDocFrame()->m_primaryAgeTestsMenu, &GetDocFrame()->m_secondaryAgeTestsMenu,
         &GetDocFrame()->m_adultTestsMenu, &GetDocFrame()->m_secondLanguageTestsMenu, doc);

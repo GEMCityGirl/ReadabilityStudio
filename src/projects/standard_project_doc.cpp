@@ -2426,7 +2426,7 @@ void ProjectDoc::DisplayWordCharts()
                     _("Familiarity\nFactors")));
             }
 
-        assert(threeSyllableBarPos && monoSyllableBarPos && L"Can't find bars in word barchart!");
+        assert(threeSyllableBarPos && monoSyllableBarPos && L"Can't find bars in word bar chart!");
         if (threeSyllableBarPos && monoSyllableBarPos)
             {
             wordBarChart->GetBarAxis().AddBracket(
