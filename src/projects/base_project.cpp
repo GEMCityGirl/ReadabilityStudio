@@ -17,6 +17,7 @@
 #include "../Wisteria-Dataviz/src/import/idl_extract_text.h"
 #include "../Wisteria-Dataviz/src/import/pptx_extract_text.h"
 #include "../app/readability_app.h"
+#include "../indexing/diacritics.h"
 #include "../indexing/romanize.h"
 #include "../results-format/project_report_format.h"
 #include "../results-format/word_collectiont_text_formatting.h"
@@ -3642,6 +3643,7 @@ BaseProject::ExtractRawTextWithEncoding(const std::wstring& sourceFileText,
                                         const wxString& fileExtension, const wxFileName& fileName,
                                         wxString& label)
     {
+    grammar::convert_ligatures_and_diacritics convertDiacritics;
     lily_of_the_valley::html_extract_text filter_html;
     filter_html.set_log_message_separator(L", ");
     const WebPageExtension isHtmlExtension;
@@ -3650,11 +3652,15 @@ BaseProject::ExtractRawTextWithEncoding(const std::wstring& sourceFileText,
         {
         if (isHtmlExtension(fileExtension.wc_str()))
             {
-            const std::wstring filteredText(
-                filter_html(sourceFileText.c_str(), sourceFileText.length(), true, false));
+            std::wstring filteredText{ filter_html(sourceFileText.c_str(), sourceFileText.length(),
+                                                   true, false) };
             if (filter_html.get_log().length())
                 {
                 wxLogWarning(L"%s: %s", fileName.GetFullPath(), filter_html.get_log());
+                }
+            if (convertDiacritics(filteredText))
+                {
+                filteredText = convertDiacritics.get_conversion();
                 }
             label = coalesce<wchar_t>({ filter_html.get_subject(), filter_html.get_title(),
                                         filter_html.get_keywords(), filter_html.get_description(),
@@ -3676,6 +3682,7 @@ BaseProject::ExtractRawTextWithEncoding(const std::wstring& sourceFileText,
 //------------------------------------------------
 std::pair<bool, std::wstring> BaseProject::ExtractDocxRawText(std::string_view sourceFileText)
     {
+    grammar::convert_ligatures_and_diacritics convertDiacritics;
     word2007_extract_text filter_docx;
     filter_docx.set_log_message_separator(L", ");
     Wisteria::ZipCatalog archive(sourceFileText.data(), sourceFileText.length());
@@ -3705,7 +3712,12 @@ std::pair<bool, std::wstring> BaseProject::ExtractDocxRawText(std::string_view s
             {
             wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(), filter_docx.get_log());
             }
-        return std::make_pair(true, std::move(filter_docx.get_filtered_buffer()));
+        std::wstring extractedText = filter_docx.get_filtered_buffer();
+        if (convertDiacritics(extractedText))
+            {
+            extractedText = convertDiacritics.get_conversion();
+            }
+        return std::make_pair(true, std::move(extractedText));
         }
     catch (...)
         {
@@ -3721,6 +3733,7 @@ std::pair<bool, std::wstring> BaseProject::ExtractDocRawText(std::string_view so
     {
     try
         {
+        grammar::convert_ligatures_and_diacritics convertDiacritics;
         word1997_extract_text filter_word; // Word 97-2003
         filter_word.set_log_message_separator(L", ");
         filter_word(sourceFileText.data(), sourceFileText.length());
@@ -3733,7 +3746,12 @@ std::pair<bool, std::wstring> BaseProject::ExtractDocRawText(std::string_view so
               filter_word.get_title(), filter_word.get_keywords(), filter_word.get_comments(),
               filter_word.get_author(),
               wxFileName(GetOriginalDocumentFilePath()).GetName().wc_str() }));
-        return std::make_pair(true, std::move(filter_word.get_filtered_buffer()));
+        std::wstring extractedText = filter_word.get_filtered_buffer();
+        if (convertDiacritics(extractedText))
+            {
+            extractedText = convertDiacritics.get_conversion();
+            }
+        return std::make_pair(true, std::move(extractedText));
         }
     catch (const rtf_extract_text::rtfparse_exception&)
         {
@@ -3911,6 +3929,7 @@ std::pair<bool, std::wstring> BaseProject::ExtractPostscriptRawText(std::string_
 std::pair<bool, std::wstring>
 BaseProject::ExtractOpenDocumentRawText(std::string_view sourceFileText)
     {
+    grammar::convert_ligatures_and_diacritics convertDiacritics;
     lily_of_the_valley::odt_odp_extract_text filter_odt;
     filter_odt.set_log_message_separator(L", ");
     Wisteria::ZipCatalog archive(sourceFileText.data(), sourceFileText.length());
@@ -3939,7 +3958,12 @@ BaseProject::ExtractOpenDocumentRawText(std::string_view sourceFileText)
             {
             wxLogWarning(L"%s: %s", GetOriginalDocumentFilePath(), filter_odt.get_log());
             }
-        return std::make_pair(true, std::move(filter_odt.get_filtered_buffer()));
+        std::wstring extractedText = filter_odt.get_filtered_buffer();
+        if (convertDiacritics(extractedText))
+            {
+            extractedText = convertDiacritics.get_conversion();
+            }
+        return std::make_pair(true, std::move(extractedText));
         }
     catch (...)
         {
@@ -4009,12 +4033,15 @@ BaseProject::ExtractHtmlRawText(std::string_view sourceFileText,
     SetOriginalDocumentDescription(
         coalesce({ GetOriginalDocumentDescription(), label,
                    wxFileName(GetOriginalDocumentFilePath()).GetName() }));
+
+    // note that ExtractRawTextWithEncoding() handled the diacritic/ligature conversions already
     return std::make_pair(true, std::move(extractResult.second));
     }
 
 //------------------------------------------------
 std::pair<bool, std::wstring> BaseProject::ExtractPowerPointRawText(std::string_view sourceFileText)
     {
+    grammar::convert_ligatures_and_diacritics convertDiacritics;
     lily_of_the_valley::pptx_extract_text filter_pptx;
     filter_pptx.set_log_message_separator(L", ");
     std::wstring pptParsedText;
@@ -4064,6 +4091,11 @@ std::pair<bool, std::wstring> BaseProject::ExtractPowerPointRawText(std::string_
             break;
             }
         }
+
+    if (convertDiacritics(pptParsedText))
+        {
+        pptParsedText = convertDiacritics.get_conversion();
+        }
     return std::make_pair(true, std::move(pptParsedText));
     }
 
@@ -4072,6 +4104,7 @@ std::pair<bool, std::wstring> BaseProject::ExtractWorkshopRawText(std::string_vi
     {
     try
         {
+        grammar::convert_ligatures_and_diacritics convertDiacritics;
         lily_of_the_valley::hhc_hhk_extract_text filter_hhc_hhk;
         filter_hhc_hhk.set_log_message_separator(L", ");
         const std::wstring hhStr = Wisteria::TextStream::CharStreamToUnicode(
@@ -4084,7 +4117,12 @@ std::pair<bool, std::wstring> BaseProject::ExtractWorkshopRawText(std::string_vi
         SetOriginalDocumentDescription(
             coalesce({ GetOriginalDocumentDescription(),
                        wxFileName(GetOriginalDocumentFilePath()).GetName() }));
-        return std::make_pair(true, std::move(filter_hhc_hhk.get_filtered_buffer()));
+        std::wstring extractedText = filter_hhc_hhk.get_filtered_buffer();
+        if (convertDiacritics(extractedText))
+            {
+            extractedText = convertDiacritics.get_conversion();
+            }
+        return std::make_pair(true, std::move(extractedText));
         }
     catch (...)
         {
@@ -4100,19 +4138,27 @@ std::pair<bool, std::wstring> BaseProject::ExtractIdlRawText(std::string_view so
     {
     // override user settings, we would want to ignore code here
     SpellCheckIgnoreProgrammerCode(true);
+    grammar::convert_ligatures_and_diacritics convertDiacritics;
     const std::wstring unicodeStr =
         Wisteria::TextStream::CharStreamToUnicode(sourceFileText.data(), sourceFileText.length());
     SetOriginalDocumentDescription(coalesce(
         { GetOriginalDocumentDescription(), wxFileName(GetOriginalDocumentFilePath()).GetName() }));
     lily_of_the_valley::idl_extract_text filter_idl;
     filter_idl({ unicodeStr.c_str(), unicodeStr.length() });
-    return std::make_pair(true, std::move(filter_idl.get_filtered_buffer()));
+
+    std::wstring extractedText = filter_idl.get_filtered_buffer();
+    if (convertDiacritics(extractedText))
+        {
+        extractedText = convertDiacritics.get_conversion();
+        }
+    return std::make_pair(true, std::move(extractedText));
     }
 
 //------------------------------------------------
 std::pair<bool, std::wstring> BaseProject::ExtractCppRawText(std::string_view sourceFileText)
     {
     SpellCheckIgnoreProgrammerCode(true);
+    grammar::convert_ligatures_and_diacritics convertDiacritics;
     lily_of_the_valley::cpp_extract_text filter_cpp;
     filter_cpp.include_all_comments(true);
     const std::wstring unicodeStr =
@@ -4121,19 +4167,32 @@ std::pair<bool, std::wstring> BaseProject::ExtractCppRawText(std::string_view so
         coalesce<wchar_t>({ GetOriginalDocumentDescription().wc_str(), filter_cpp.get_author(),
                             wxFileName(GetOriginalDocumentFilePath()).GetName().wc_str() }));
     filter_cpp(unicodeStr.c_str(), unicodeStr.length());
-    return std::make_pair(true, std::move(filter_cpp.get_filtered_buffer()));
+
+    std::wstring extractedText = filter_cpp.get_filtered_buffer();
+    if (convertDiacritics(extractedText))
+        {
+        extractedText = convertDiacritics.get_conversion();
+        }
+    return std::make_pair(true, std::move(extractedText));
     }
 
 //------------------------------------------------
 std::pair<bool, std::wstring> BaseProject::ExtractMarkdownRawText(std::string_view sourceFileText)
     {
+    grammar::convert_ligatures_and_diacritics convertDiacritics;
     const std::wstring unicodeStr =
         Wisteria::TextStream::CharStreamToUnicode(sourceFileText.data(), sourceFileText.length());
     SetOriginalDocumentDescription(coalesce(
         { GetOriginalDocumentDescription(), wxFileName(GetOriginalDocumentFilePath()).GetName() }));
     lily_of_the_valley::markdown_extract_text filter_md;
     filter_md({ unicodeStr.c_str(), unicodeStr.length() });
-    return std::make_pair(true, std::move(filter_md.get_filtered_buffer()));
+
+    std::wstring extractedText = filter_md.get_filtered_buffer();
+    if (convertDiacritics(extractedText))
+        {
+        extractedText = convertDiacritics.get_conversion();
+        }
+    return std::make_pair(true, std::move(extractedText));
     }
 
 //------------------------------------------------
@@ -4202,8 +4261,14 @@ std::pair<bool, std::wstring> BaseProject::ExtractRawText(std::string_view sourc
         SetOriginalDocumentDescription(
             coalesce({ GetOriginalDocumentDescription(),
                        wxFileName(GetOriginalDocumentFilePath()).GetName() }));
-        return std::make_pair(true, Wisteria::TextStream::CharStreamToUnicode(
-                                        sourceFileText.data(), sourceFileText.length()));
+        std::wstring extractedText = Wisteria::TextStream::CharStreamToUnicode(
+            sourceFileText.data(), sourceFileText.length());
+        grammar::convert_ligatures_and_diacritics convertDiacritics;
+        if (convertDiacritics(extractedText))
+            {
+            extractedText = convertDiacritics.get_conversion();
+            }
+        return std::make_pair(true, std::move(extractedText));
         }
     else if (fileExtension.CmpNoCase(L"pdf") == 0)
         {

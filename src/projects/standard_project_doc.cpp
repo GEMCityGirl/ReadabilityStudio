@@ -13,6 +13,7 @@
 
 #include "standard_project_doc.h"
 #include "standard_project_view.h"
+#include "../indexing/diacritics.h"
 #include "../results-format/project_report_format.h"
 #include "../results-format/word_collectiont_text_formatting.h"
 #include "../readability/readability.h"
@@ -693,7 +694,15 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
     else if (wizard->IsManualTextEntrySelected() )
         {
         SetTitle(_(L"Untitled"));
-        SetDocumentText(wizard->GetEnteredText().wc_string());
+
+        grammar::convert_ligatures_and_diacritics convertDiacritics;
+        std::wstring enteredText = wizard->GetEnteredText().wc_string();
+        if (convertDiacritics(enteredText))
+            {
+            enteredText = convertDiacritics.get_conversion();
+            }
+        SetDocumentText(enteredText);
+
         SetTextSource(TextSource::EnteredText);
         }
 
