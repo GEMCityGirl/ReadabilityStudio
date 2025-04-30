@@ -3827,6 +3827,7 @@ std::pair<bool, std::wstring> BaseProject::ExtractRtfRawText(std::string_view so
     {
     try
         {
+        grammar::convert_ligatures_and_diacritics convertDiacritics;
         lily_of_the_valley::rtf_extract_text filter_rtf;
         filter_rtf.set_log_message_separator(L", ");
         filter_rtf(sourceFileText.data(), sourceFileText.length());
@@ -3839,7 +3840,12 @@ std::pair<bool, std::wstring> BaseProject::ExtractRtfRawText(std::string_view so
                                 filter_rtf.get_title(), filter_rtf.get_keywords(),
                                 filter_rtf.get_comments(), filter_rtf.get_author(),
                                 wxFileName(GetOriginalDocumentFilePath()).GetName().wc_str() }));
-        return std::make_pair(true, std::move(filter_rtf.get_filtered_buffer()));
+        std::wstring extractedText = filter_rtf.get_filtered_buffer();
+        if (convertDiacritics(extractedText))
+            {
+            extractedText = convertDiacritics.get_conversion();
+            }
+        return std::make_pair(true, std::move(extractedText));
         }
     catch (const rtf_extract_text::rtfparse_stack_underflow&)
         {
