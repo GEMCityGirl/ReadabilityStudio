@@ -3665,7 +3665,7 @@ BaseProject::ExtractRawTextWithEncoding(const std::wstring& sourceFileText,
             label = coalesce<wchar_t>({ filter_html.get_subject(), filter_html.get_title(),
                                         filter_html.get_keywords(), filter_html.get_description(),
                                         filter_html.get_author() });
-            return std::make_pair(true, filteredText);
+            return std::make_pair(true, std::move(filteredText));
             }
         else
             {
