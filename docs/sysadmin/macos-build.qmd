@@ -18,30 +18,21 @@ source('R/appdown.r')
 
 To install home-brew:
 
-```{bash}
-#| eval: false
-#| echo: true
-
+```{.bash}
 /bin/bash -c \
     "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 To install *CMake* and *create-dmg*:
 
-```{bash}
-#| eval: false
-#| echo: true
-
+```{.bash}
 brew install cmake
 brew install create-dmg
 ```
 
 If you get errors about not finding a CXX compiler, run this:
 
-```{bash}
-#| eval: false
-#| echo: true
-
+```{.bash}
 sudo xcode-select --reset
 ```
 
@@ -49,10 +40,7 @@ If you are notarizing the app locally, then add a notarization keychain to your 
 (`APPLE_ID` should be set to your Apple account, usually your email address).
 This only needs to be done once:
 
-```{bash}
-#| eval: false
-#| echo: true
-
+```{.bash}
 APPLE_ID=
 xcrun notarytool store-credentials --apple-id ${APPLE_ID}
 ```
@@ -66,10 +54,7 @@ Then enter your app-specific password. (You can get that from Apple's developer 
 
 Download *wxWidgets*:
 
-```{bash}
-#| eval: false
-#| echo: true
-
+```{.bash}
 git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
 cd wxWidgets
 ```
@@ -77,9 +62,7 @@ cd wxWidgets
 Before building *wxWidgets*, a patch needs to be applied to add text control features needed by the program.
 Follow the instructions in `r menu(c('wxpatch', 'macOS', 'Instructions.txt'))` to apply the patch, and then build:
 
-```{bash}
-#| eval: false
-#| echo: true
+```{.bash}
 cmake . -DCMAKE_INSTALL_PREFIX=./wxlib -DwxBUILD_SHARED=OFF \
     -D"CMAKE_OSX_ARCHITECTURES:STRING=arm64;x86_64" \
     -DCMAKE_OSX_DEPLOYMENT_TARGET=10.13 \
@@ -98,10 +81,7 @@ If code signing locally, do the following:
 
 (`ORG_ID` should be set to your 10-digit Apple developer organization ID and `KEYCHAIN_PROFILE` should be the keychain profile connected to your Apple ID):
 
-```{bash}
-#| eval: false
-#| echo: true
-
+```{.bash}
 ORG_ID=
 KEYCHAIN_PROFILE=
 
@@ -123,10 +103,7 @@ If you build the "Release" version of *{{< var PROGRAM_NAME >}}*, then the CMake
 
 Go to  `r menu(c('installers', 'macos', 'release'))` and run the following:
 
-```{bash}
-#| eval: false
-#| echo: true
-
+```{.bash}
 test -f ReadabilityStudio.dmg && rm ReadabilityStudio.dmg
 create-dmg \
   --volname "Readability Studio Installer" \
@@ -144,10 +121,7 @@ create-dmg \
 
 If notarizing locally, then sign, notarize, staple, and verify the DMG image:
 
-```{bash}
-#| eval: false
-#| echo: true
-
+```{.bash}
 codesign --force --verbose=2 --sign ${ORG_ID} ./ReadabilityStudio.dmg
 codesign --verify --verbose=2 ./ReadabilityStudio.dmg
 hdiutil verify ./ReadabilityStudio.dmg
@@ -164,9 +138,6 @@ xcrun spctl --assess --type open --context context:primary-signature \
 If you get a notarization error, run the following
 (`GUID` will be the unique ID that the submission process just displayed):
 
-```{bash}
-#| eval: false
-#| echo: true
-
+```{.bash}
 xcrun notarytool log ${GUID} --keychain-profile ${KEYCHAIN_PROFILE}
 ```

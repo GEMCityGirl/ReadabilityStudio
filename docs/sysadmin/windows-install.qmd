@@ -55,10 +55,7 @@ The installer uses *Inno Setup*, which provides support for silent install.
 To perform a silent install, pass the command line arguments `/SILENT` or `/VERYSILENT`.
 For example, the following will run a silent install that will not restart the computer and write its progress to a log file:
 
-```{bash}
-#| eval: false
-#| echo: true
-
+```{.bash}
 rssetup.exe /SILENT /NORESTART /LOG
 ```
 

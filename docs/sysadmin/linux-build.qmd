@@ -34,10 +34,7 @@ source('R/appdown.r')
 
 If building the documentation, prepare *R* to install packages:
 
-```{bash}
-#| eval: false
-#| echo: true
-
+```{.bash}
 R
 install.packages("pacman")
 ```
@@ -46,10 +43,7 @@ install.packages("pacman")
 
 ## Build *wxWidgets* {-}
 
-```{bash}
-#| eval: false
-#| echo: true
-
+```{.bash}
 git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
 cd wxWidgets
 
@@ -67,10 +61,7 @@ cd ..
 
 ## Build the AppImage {-}
 
-```{bash}
-#| eval: false
-#| echo: true
-
+```{.bash}
 linuxdeploy-x86_64.AppImage --appdir installers/unix/AppDir \
   --executable installers/unix/AppDir/usr/bin/readstudio \
   -d installers/unix/AppDir/readstudio.desktop \

@@ -17,10 +17,7 @@ source('R/appdown.r')
 Make "Readability_Studio-{{< var UNIX_ARCHITECTURE >}}.AppImage" executable.
 This can be done with the following syntax:
 
-```{r}
-#| eval: false
-#| echo: true
-
+```{.bash}
 chmod u+x <AppImage File>
 ```
 
