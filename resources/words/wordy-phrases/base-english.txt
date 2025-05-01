@@ -838,6 +838,10 @@ alligning	aligning	3
 alligns	aligns	3		
 alliviate	alleviate	3		
 alllocation	allocation	3		
+alllow	allow	3		
+alllowed	allowed	3		
+alllowng	allowing	3		
+alllows	allows	3		
 allmost	almost	3		
 allocatbale	allocatable	3		
 allocate	give	0		
@@ -2886,6 +2890,7 @@ can't not	can't, can (if double negative was intended)	3
 can't see the forest for the trees	unable to understand the full meaning of something because of a fixation on minor details	2		
 cancel out	cancel	0		
 cancelation	cancellation	3		
+canceld	canceled	3		
 cancled	canceled	3		
 candadate	candidate	3		
 candiate	candidate	3		
@@ -3901,6 +3906,9 @@ connectiable	connectable	3
 connecting together	connecting	1		
 connectinos	connections	3		
 connects together	connects	1		
+connenction	connection	3		
+connenction's	connection's	3		
+connenctions	connections	3		
 connetion	connection	3		
 connetion's	connection's	3		
 connetions	connections	3		
@@ -6190,6 +6198,9 @@ enviornmentalist	environmentalist	3
 enviornmentally	environmentally	3		
 enviornments	environments	3		
 envireonment	environment	3		
+envirnmant	environment	3		
+envirnmant's	environment's	3		
+envirnmants	environments	3		
 enviroiment	environment	3		
 enviroment	environment	3		
 enviroment's	environment's	3		
@@ -7900,6 +7911,7 @@ hierarachy	hierarchy	3
 hierarchial	hierarchical	3		
 hierarchichal	hierarchical	3		
 hierarchichally	hierarchically	3		
+hierarchicial	hierarchical	3		
 hierarchie	hierarchy	3		
 hierarcical	hierarchical	3		
 hierarcically	hierarchically	3		
@@ -8248,8 +8260,12 @@ impelment	implement	3
 impelmented	implemented	3		
 impelmenting	implementing	3		
 impelments	implements	3		
+impement	implement	3		
 impementation	implementation	3		
 impementations	implementations	3		
+impemented	implemented	3		
+impementing	implementing	3		
+impements	implements	3		
 imperative	urgent	0		
 imperatively	urgently	0		
 imperceptible	very slight	0		
@@ -9080,7 +9096,10 @@ intepreting	interpreting	3
 inteprets	interprets	3		
 interace	interface	3		
 interaces	interfaces	3		
+interation	iteration	3		
+interation's	iteration's	3		
 interational	international	3		
+interations	iterations	3		
 interator	iterator	3		
 interators	iterators	3		
 interchangable	interchangeable	3		
@@ -9163,6 +9182,7 @@ intership	internship	3
 intership's	internship's	3		
 interships	internships	3		
 intertaining	entertaining	3		
+intertia	inertia	3		
 interupt	interrupt	3		
 interupted	interrupted	3		
 interupting	interrupting	3		
@@ -9251,6 +9271,7 @@ invitaions	invitations	3
 invitiation	invitation	3		
 invitiation's	invitation's	3		
 invitiations	invitations	3		
+invlaid	invalid	3		
 invlid	invalid	3		
 invlove	involve	3		
 invloved	involved	3		
@@ -9924,6 +9945,7 @@ lying like a rug	lying	2
 machiens	machines	3		
 machinary	machinery	3		
 mackeral	mackerel	3		
+madatory	mandatory	3		
 made a break for it	tried to escape	2		
 made a complaint	complained	0		
 made a decision	decided	0		
@@ -10353,6 +10375,9 @@ millepede	millipede	3
 millioniare	millionaire	3		
 milliseonds	milliseconds	3		
 millitary	military	3		
+milllisecond	millisecond	3		
+milllisecond's	millisecond's	3		
+millliseconds	milliseconds	3		
 millon	million	3		
 millsecond	millisecond	3		
 millseconds	milliseconds	3		
@@ -11551,6 +11576,9 @@ par for the course	typical, normal, expected, customary, standard	2
 paragon	model	0		
 paralel	parallel	3		
 paralell	parallel	3		
+paralellization	parallelization	3		
+paralellization's	parallelization's	3		
+paralellizations	parallelizations	3		
 parallelism	likeness	0		
 parallell	parallel	3		
 parallization	parallelization	3		
@@ -11995,6 +12023,7 @@ PIN number	PIN	1
 PIN numbers	PINs	1		
 pinnacle	peak	0		
 pinoneered	pioneered	3		
+pintable	printable	3		
 pipe down	be quiet	2		
 piped down	was quiet	2		
 pipes down	is quiet	2		
@@ -12787,6 +12816,7 @@ protocal's	protocol's	3
 protocals	protocols	3		
 protocoll	protocol	3		
 protoganist	protagonist	3		
+protopery	property	3		
 protrayed	portrayed	3		
 protruberance	protuberance	3		
 protruberances	protuberances	3		
@@ -14499,6 +14529,7 @@ side affect	side effect	3
 sieze	seize	3		
 siezure	seizure	3		
 siezures	seizures	3		
+siged	signed, singed	3		
 sigesbecia	sigesbeckia	3		
 sigesbecia's	sigesbeckia's	3		
 sight for sore eyes	something relieving/pleasant to see	2		
@@ -14519,6 +14550,9 @@ signifigant	significant	3
 signifigantly	significantly	3		
 signitories	signatories	3		
 signitory	signatory	3		
+signiture	signature	3		
+signiture's	signature's	3		
+signitures	signatures	3		
 silver spoon	born of wealth, spoiled	2		
 similar	like	0		
 similar to	like	0		
@@ -15086,6 +15120,7 @@ submitter's	giver's, sender's	0
 submitters	givers, senders	0		
 submitting	sending, giving	0		
 submitting an application for	applying for	0		
+suboject	subject, subobject	3		
 subpecies	subspecies	3		
 subract	subtract	3		
 subracted	subtracted	3		
@@ -15519,6 +15554,9 @@ tantalize	tease	0
 tantalized	teased	0		
 tantalizes	teases	0		
 tantalizing	teasing	0		
+targer	target	3		
+targer's	target's	3		
+targers	targets	3		
 targetted	targeted	3		
 targetting	targeting	3		
 tath	that	3		
@@ -16088,6 +16126,7 @@ trace back	trace	0
 traced back	traced	0		
 traces back	traces	0		
 tracing back	tracing	0		
+tradional	traditional	3		
 tradionally	traditionally	3		
 traditionaly	traditionally	3		
 traditionnal	traditional	3		
@@ -16182,6 +16221,7 @@ trasfers	transfers	3
 trasmission	transmission	3		
 trasmission's	transmission's	3		
 trasmissions	transmissions	3		
+trdansitions	transitions	3		
 treatement	treatment	3		
 treatement's	treatment's	3		
 treatements	treatments	3		
@@ -16223,6 +16263,7 @@ trunctation's	truncation's	3
 trunctations	truncations	3		
 trustworthyness	trustworthiness	3		
 tthe	the	3		
+ttreat	treat	3		
 tumultuous	turbulent, violent	0		
 tumultuously	turbulently, violently	0		
 tuna fish	tuna	1		
@@ -17174,6 +17215,7 @@ wilcards	wildcards	3
 wild-goose chase	pointless endeavor	2		
 wilful	willful	3		
 will effect	will affect	3		
+will installing	while installing	3		
 willingless	willingness	3		
 win hands down	win easily	2		
 window of opportunity	opportunity, chance	0		

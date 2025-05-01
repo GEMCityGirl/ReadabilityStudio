@@ -86,8 +86,10 @@ tetrahexyldecyl
 tetrahydroxystearate
 tetraisostearate
 trehalose
+trema
 tribehenin
 triethylhexanoin
 triglyceride
+umlauts
 xaml
 zinc

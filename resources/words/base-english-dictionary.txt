@@ -8525,6 +8525,7 @@ autotrophic
 autotrophically
 autotrophs
 autotrophy
+autotuning
 autoupdate
 autoupdated
 autoupdates
@@ -24507,6 +24508,7 @@ colorimeter
 colorimeter's
 colorimeters
 colorimetric
+colorimetrically
 colorimetry
 coloring
 coloring's
@@ -45893,6 +45895,7 @@ execration's
 execrations
 execrative
 execs
+executability
 executable
 executable's
 executables
@@ -52741,6 +52744,7 @@ fullscreen
 fullstack
 fullstops
 fulltime
+fullwidth
 fullword
 fullword's
 fullwords
@@ -58225,6 +58229,7 @@ halftoned
 halftones
 halftoning
 halfway
+halfwidth
 halfwit
 halfwit's
 halfwits
@@ -84442,6 +84447,7 @@ multibuffers
 multibus
 multibus's
 multibyte
+multibytes
 multicampus
 multicandidate
 multicandidate's
@@ -84542,6 +84548,7 @@ multigas
 multigenerational
 multigenic
 multigeo
+multihead
 multihome
 multihomed
 multilanguage
@@ -88350,6 +88357,7 @@ nonsexual
 nonshivering
 nonsignaled
 nonsignificant
+nonsimple
 nonsingular
 nonsister
 nonskid
@@ -90057,6 +90065,7 @@ offing's
 offings
 offish
 offline
+offlined
 offload
 offloaded
 offloading
@@ -118769,6 +118778,7 @@ semistrangers
 semistructured
 semisweet
 semisynchronous
+semisynchronously
 semitendinosus
 semitics
 semitone
@@ -129144,6 +129154,9 @@ subkeys'
 sublabel
 sublabel's
 sublabels
+sublanguage
+sublanguage's
+sublanguages
 sublayer
 sublayers
 sublease
@@ -129408,6 +129421,9 @@ subquery's
 subquestion
 subquestion's
 subquestions
+subqueue
+subqueue's
+subqueues
 subrange
 subrange's
 subranges
@@ -142196,6 +142212,7 @@ unhysterically
 uni
 uniaxial
 unibody
+unicable
 unicameral
 unicast
 unicellular
@@ -142302,6 +142319,7 @@ unindustrialized's
 unindustrializeds
 uninfected
 uninflated
+uninflected
 uninfluenced
 uninformative
 uninformatively
@@ -143099,6 +143117,7 @@ unquestioned
 unquestioning
 unquestioningly
 unqueued
+unquiesce
 unquiet
 unquieted
 unquieter

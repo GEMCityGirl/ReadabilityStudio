@@ -548,6 +548,7 @@ synchronized
 tanh
 tccat
 tccpy
+tchar
 tcsat
 tcscat
 tcscmp
@@ -564,6 +565,7 @@ this
 thiscall
 thread_local
 throw
+tmain
 tmakepath
 tolower
 toupper

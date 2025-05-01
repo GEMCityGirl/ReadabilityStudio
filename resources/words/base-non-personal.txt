@@ -1859,6 +1859,7 @@ Diberville
 Dickensian
 Diffchecker
 Digicam
+Digicert
 Digilent
 Digimarc
 Digimon
@@ -7358,6 +7359,7 @@ Wrekin
 WritePlacer
 Wroclaw
 Wronskian
+Wrox
 Wuhan
 Wurlitzer
 Wurttemberg
