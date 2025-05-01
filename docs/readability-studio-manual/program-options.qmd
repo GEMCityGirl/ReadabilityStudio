@@ -192,7 +192,7 @@ The options here specify how your documents should be parsed and analyzed.
 **Longer than [22] words**: Select this option to consider sentences overly long if they exceed the word count specified in this field.
 The default word count is 22, but can be changed as needed.
 
-Considering sentences with more than 22 words to be overly long is based on research from Kincaid (*Development*, 19).
+Considering sentences with more than 22 words to be overly long is based on research from Kincaid [-@{kincaid-aagard-ohara:1980}19].
 
 **Outside sentence outlier range**: Select this option to consider sentences overly long if they are comparatively longer than other sentences in the document.
 This option is only recommended for situations where most of the sentences have an acceptable length, but a few (very) long sentences skew the average.

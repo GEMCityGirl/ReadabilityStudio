@@ -320,7 +320,12 @@ This list can be sorted alphabetically, by word count, or by location. To view a
 
 ![](images/featuressentences.png)
 
-By default, the program considers sentences overly long if they contain more than 22 words. As we can see, there are a few sentences that are barely over 22 words that are not problematic. However, there are a few clustered sentences which exceed 40 words. At this point, we will want to temporarily filter out the smaller of these long sentences and search for the "worst offenders." From the **Home** tab, click the `r keys("Properties")` button and then select **Analysis**. As shown below, we have a couple of different ways to determine if a sentence is overly long:
+By default, the program considers sentences overly long if they contain more than 22 words [-@{kincaid-aagard-ohara:1980}19].
+As we can see, there are a few sentences that are barely over 22 words that are not problematic.
+However, there are a few clustered sentences which exceed 40 words.
+At this point, we will want to temporarily filter out the smaller of these long sentences and search for the "worst offenders."
+From the **Home** tab, click the `r keys("Properties")` button and then select **Analysis**.
+As shown below, we have a couple of different ways to determine if a sentence is overly long:
 
 ```{r echo=F, fig.align='center', out.width='75%'}
 knitr::include_graphics("images/featuressentoptions.png")
