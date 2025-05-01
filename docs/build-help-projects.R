@@ -29,10 +29,10 @@ clearFolders <- function()
 
   unlink(glue("{docFolder}/release-notes/images"), recursive=T)
 
-  unlink(glue("{docFolder}/syntax/images"), recursive=T)
-  unlink(glue("{docFolder}/syntax/latex"), recursive=T)
-  unlink(glue("{docFolder}/syntax/R"), recursive=T)
-  unlink(glue("{docFolder}/syntax/_extensions"), recursive=T)
+  unlink(glue("{docFolder}/sysadmin/images"), recursive=T)
+  unlink(glue("{docFolder}/sysadmin/latex"), recursive=T)
+  unlink(glue("{docFolder}/sysadmin/R"), recursive=T)
+  unlink(glue("{docFolder}/sysadmin/_extensions"), recursive=T)
 
   unlink(glue("{docFolder}/readability-studio-api/images"), recursive=T)
   unlink(glue("{docFolder}/readability-studio-api/latex"), recursive=T)
