@@ -25,7 +25,9 @@ source('../R/appdown.r')
 
 ### Analysis/Test Enhancements {-}
 
-- [Typographical ligatures](#typographical-ligatures) are now converted to the regular characters.
+- [Combined accents](#diacritics) (i.e., diacritics) are now supported.\
+  For example, "e◌́" will be imported as a 'é'.
+- [Typographical ligatures](#typographical-ligatures) are now converted to the regular characters.\
   For example, "ﬀ" will be imported as "ff."
 - Custom test formulas:
     - New function `IFS`.

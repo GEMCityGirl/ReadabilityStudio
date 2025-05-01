@@ -350,25 +350,49 @@ combined to create the word *95 %*.
 ## Typographical Ligatures {#typographical-ligatures}
 
 Ligatures\index{ligatures} are glyphs that combine two (or more) letters.
-For example, 'æ' is a combination of the letters 'a' and 'e'.
-Some ligatures represent unique characters that are part of languages (e.g., 'œ' in French).
+For example, *æ* is a combination of the letters *a* and *e*.
+Some ligatures represent unique characters that are part of languages (e.g., *œ* in French).
 Other times, they are stylistic substitutions used to improve typography.
-An example of this is 'ﬁ'; in some fonts, the dot of the 'i' may overlap the hood of the 'f'.
-To prevent this, 'ﬁ' is used to provide more control of how adjacent "fi" are displayed.
+An example of this is *ﬁ*; in some fonts, the dot of the *i* may overlap the hood of the *f*.
+To prevent this, *ﬁ* is used to provide more control of how adjacent *f i* sequences are displayed.
 
 In the case of typographic ligatures, *{{< var PROGRAM_NAME >}}* will substitute them with their constituent characters.
 This allows for more accurate analyses and word searching.
 These substitutions include:
 
-| Ligature | Replacement |
-| :--      | :--         |
-| ﬀ | ff |
-| ﬁ | fi |
-| ﬂ | fl |
-| ﬃ | ffi |
-| ﬄ | ffl |
-| ﬅ | ft |
-| ﬆ | st |
+- f f
+- f i
+- f l
+- f f i
+- f f l
+- f t
+- s t
+
+## Combined Accents
+
+Diacritical markers are accents combined with letters to produce a new letter.
+For example, *e* combined with *◌́ * will create an "e with acute" (*é*).
+In some files, these accented characters may be stored as two-characters sequences, rather than a single character.
+For example, the file will contain a *e\ ◌́* sequence instead of a simple *é*.
+Although most text editors will display this sequence as a *é*, searching for *é* will not work.
+This is because the text is really an *e* followed by an *◌́ * and there are no *é* characters.
+
+During import, *{{< var PROGRAM_NAME >}}* will substitute these sequences with their proper characters.
+This will ensure accurate results and text searching.
+All diacritical combinations for European letters are supported, including the following accents:
+
+- grave
+- acute
+- circumflex
+- diaeresis/umlauts/trema
+- dot above
+- ring
+- caron
+- short solidus
+- long solidus
+- tilde
+- retroflex hook below 
+- cedilla
 
 ## Link Lists (HTML Importer)
 
