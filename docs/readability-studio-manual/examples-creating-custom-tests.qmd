@@ -48,14 +48,14 @@ Where:
 
 Formulas can either be typed into the **Formula** field, or you can use the [**Function Browser**](#sec-creating-custom-test). For example:
 
-```{r, eval=F, echo=T}
+```{.r}
 206.835 - (84.6*(SyllableCount()/WordCount())) -  
     (1.015*(WordCount()/SentenceCount()))
 ```
 
 There are shortcuts available for various functions, so this formula can also be simplified to this:
 
-```{r, eval=F, echo=T}
+```{.r}
 206.835 - (84.6*(B/W)) - (1.015*(W/S))
 ```
 
@@ -63,7 +63,7 @@ By default, all formula results will be returned with floating-point precision.
 For this particular formula, we will prefer to simply round the result.
 To do this, we will add the [`ROUND`](#sec-custom-test-functions) function to our formula (with `0` as the precision width):
 
-```{r, eval=F, echo=T}
+```{.r}
 ROUND(206.835 - (84.6*(B/W)) - (1.015*(W/S)), 0)
 ```
 
@@ -71,13 +71,13 @@ This formula will yield the same results as the Flesch test.
 For this example, we will have our new test count independent clauses instead of sentences.
 To do this, change `SentenceCount()` (or `S`) to `IndependentClauseCount()` (or `U`). For example:
 
-```{r, eval=F, echo=T}
+```{.r}
 ROUND(206.835 - (84.6*(B/W)) - (1.015*(W/U)), 0)
 ```
 
 Or like this:
 
-```{r, eval=F, echo=T}
+```{.r}
 ROUND(206.835 - (84.6*(SyllableCount()/WordCount())) -  
     (1.015*(WordCount()/IndependentClauseCount())), 0)
 ```
@@ -146,7 +146,7 @@ Because this will be a New Dale-Chall test meant for baking, we will enter the n
 
 Next, we will enter the formula. The formula for a custom New Dale-Chall test\index{CustomNewDaleChall()@\texttt{CustomNewDaleChall()}!example} is:
 
-```{r, eval=F, echo=T}
+```{.r}
 CustomNewDaleChall()
 ```
 
@@ -244,16 +244,17 @@ Because this test will use our own special type of scoring, set **Test result ty
 
 Next, we will enter the formula. Enter the following into the **Formula** field:
 
-```{r, eval=F, echo=T}
+```{.r}
 IF((FamiliarWordCount()/WordCount())*100 > 15, 3,  
    IF((FamiliarWordCount()/WordCount())*100 > 5, 2, 1) )
 ```
 
 ![](images/custom-index-test-example-formula.png)
 
-Basically, this formula classifies a file based on its percentage of buzz words. First, it calculates this percentage in this line:
+Basically, this formula classifies a file based on its percentage of buzz words.
+First, it calculates this percentage in this line:
 
-```{r, eval=F, echo=T}
+```{.r}
 (FamiliarWordCount()/WordCount())*100
 ```
 
