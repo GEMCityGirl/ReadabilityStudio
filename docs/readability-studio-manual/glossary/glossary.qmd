@@ -7,7 +7,7 @@ source('../R/appdown.r')
 
 # Glossary {#sec-glossary}
 
-## Readability Terms {#sec-readability-glossary}
+## Readability & Grammar Terms {#sec-readability-glossary}
 
 :::: {.glsentry data-latex=''}
 ::: {.glsterm data-latex=''}
@@ -33,7 +33,18 @@ Refer to @sec-cloze for an extended explanation.
 interrobang\index{interrobangs}
 :::
 ::: {.glsdef data-latex=''}
-The combination of a question mark and exclamation point at the end of a sentence. Interrobangs are shown as either two separate characters (*?!* or *!?*) or a single character (*‽*).
+The combination of a question mark and exclamation point at the end of a sentence.
+Interrobangs are shown as either two separate characters ("?!" or "!?") or a single character ('‽').
+:::
+::::
+
+:::: {.glsentry data-latex=''}
+::: {.glsterm data-latex=''}
+ligature\index{ligatures}
+:::
+::: {.glsdef data-latex=''}
+A glyph that combines two (or more) letters.
+For example, 'ﬅ' is a ligature containing the letters 'f' and 't'.
 :::
 ::::
 

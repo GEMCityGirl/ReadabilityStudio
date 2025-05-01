@@ -25,6 +25,8 @@ source('../R/appdown.r')
 
 ### Analysis/Test Enhancements {-}
 
+- [Typographical ligatures](#typographical-ligatures) are now converted to the regular characters.
+  For example, "ﬀ" will be imported as "ff."
 - Custom test formulas:
     - New function `IFS`.
     - The functions `MIN`, `MAX`, `SUM`, `AVERAGE`, `OR`, and `AND` now support 24 arguments. (These were limited to 7 arguments previously.)
