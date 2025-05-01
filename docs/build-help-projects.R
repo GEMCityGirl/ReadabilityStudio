@@ -164,6 +164,9 @@ unlink(glue("{docFolder}/shortcuts-cheatsheet/index.qmd"))
 #############
 
 setwd(glue("{docFolder}/readability-studio-manual/"))
+file_copy(glue("{docFolder}/_variables.yml"),
+          glue("{docFolder}/readability-studio-manual/_variables.yml"),
+          TRUE)
 combine_files("readability-tests-english.qmd", "english", addendum = "{{< elevator 'Back to top' >}}")
 combine_files("readability-tests-spanish.qmd", "spanish", addendum = "{{< elevator 'Back to top' >}}")
 combine_files("readability-tests-german.qmd", "german", addendum = "{{< elevator 'Back to top' >}}")
@@ -177,6 +180,7 @@ unlink(glue("{docFolder}/readability-studio-manual/readability-tests-spanish.qmd
 unlink(glue("{docFolder}/readability-studio-manual/readability-tests-german.qmd"))
 unlink(glue("{docFolder}/readability-studio-manual/scoring-notes.qmd"))
 unlink(glue("{docFolder}/readability-studio-manual/ding.mp3"))
+unlink(glue("{docFolder}/readability-studio-manual/_variables.yml"))
 
 # Programming Manual
 ####################
