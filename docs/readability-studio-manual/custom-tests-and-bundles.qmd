@@ -286,10 +286,7 @@ C/C^++^ style comments are supported, which provide:
 
 For example:
 
-```{Rcpp}
-#| eval: false
-#| echo: true
-
+```{.cpp}
 /* Returns a value between 1-3, representing the usage
    of buzz words in the document.*/                                   // <1>
 IF(// Review the % of buzz words in the document.
