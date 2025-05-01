@@ -22,9 +22,7 @@ Batch projects are only available in the *Professional* edition of *Readability 
 To determine the readability of a document collection, you will need to create a new batch project.
 First, click the `r keys("New")` button on the **Home** tab to open the **Select Project Type** dialog, as shown below:
 
-```{r echo=F, fig.align='center', out.width='50%'}
-knitr::include_graphics("images/selectprojecttype.png")
-```
+![]("images/selectprojecttype.png"){width=50% fig-align="center"}
 
 Select **Batch Project** and click the `r keys("OK")` button to proceed to the **New Project** wizard dialog:
 
@@ -157,9 +155,7 @@ Because we had selected **Use documents' descriptions** for our labeling, then t
 From there, these titles will be shown as descriptive labels next to each document in the results.
 Click `r keys('Finish')` to begin the analysis, and once the project appears, select **Raw Scores** under **Readability Scores**:
 
-```{r echo=F, fig.align='center', out.width='50%'}
-knitr::include_graphics("images/batch-desc-labels-scores.png")
-```
+![]("images/batch-desc-labels-scores.png"){width=50% fig-align="center"}
 
 Note how there is a **Label** column next to the **Document** column.
 Despite the documents all having the same name, we can use this column will help us differentiate between them.
@@ -181,16 +177,12 @@ Now we will be shown the **Select Labeling** dialog.
 On this dialog, we can either specify a single label for all documents or use the documents’ metadata to create unique descriptions for each one.
 For this example, we are wanting to group this folders’ documents together, so select **Use a grouping label**, enter a label (e.g., *Notes*) and click `r keys('OK')`.
 
-```{r echo=F, fig.align='center', out.width='50%'}
-knitr::include_graphics("images/group-label-notes.png")
-```
+![]("images/group-label-notes.png"){width=50% fig-align="center"}
 
 Repeat this process with another folder, but enter a different grouping label.
 For example, we could select a folder of help examples and apply the label *Examples* to it:
 
-```{r echo=F, fig.align='center', out.width='50%'}
-knitr::include_graphics("images/group-label-examples.png")
-```
+![]("images/group-label-examples.png"){width=50% fig-align="center"}
 
 ::: {.notesection data-latex=""}
 You can apply a group label to all selected documents by clicking the group button above the list.

@@ -8,9 +8,7 @@ In another experiment, Baldwin and Kaufman compared the correlations between Fry
 
 This graph is primarily used in secondary education to help classify teaching materials and books into their appropriate reading groups. Below is an example of a Raygor graph:
 
-```{r raygor, echo=F, fig.cap='Raygor Estimate graph', fig.align='center', out.width='75%'}
-knitr::include_graphics("images/raygorgraph.png")
-```
+![Raygor Estimate graph]("images/raygorgraph.png"){width=75% fig-align="center"}
 
 ::: {.minipage data-latex="{\textwidth}"}
 The Raygor Estimate instructions are:
