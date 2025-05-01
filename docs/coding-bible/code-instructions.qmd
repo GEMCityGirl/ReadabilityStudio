@@ -5,7 +5,7 @@
 Do the following to add a new option both to the program and its projects:
 
 - Add the variable and `GetXXX()/SetXXX()` functions to **src/app/readability_app_options.h**.
-- Add an XML constant tag for aformentioned variable in **src/app/readability_app_options.h**.
+- Add an XML constant tag for aforementioned variable in **src/app/readability_app_options.h**.
 - Add reset logic for variable in **src/app/readability_app_options.cpp** (`ResetSettings()` function). (This should be the same value as the initializer value in the header file.)
 - Add logic to read value in **src/app/readability_app_options.cpp** (`LoadOptionsFile()` function).
 - Add logic to save value in **src/app/readability_app_options.cpp** (`SaveOptionsFile()` function).
@@ -35,7 +35,7 @@ If wanting to edit this option from the ribbon:
 
 - If a menu item, add it to a menu in `BaseProjectView::CreateChildFrame()` in **src/projects/base_project_view.cpp**.
   - If it is a checkable menu, add logic for setting the proper check state in `BaseProjectView::Present()`.
-- If a ribbon button (not in the project area of the ribbon), add logic for it to be addded to the ribbon in `BatchProjectView::OnItemSelected()` in **src/projects/batch_project_view.cpp** and
+- If a ribbon button (not in the project area of the ribbon), add logic for it to be added to the ribbon in `BatchProjectView::OnItemSelected()` in **src/projects/batch_project_view.cpp** and
   `ProjectView::OnItemSelected()` in **src/projects/standard_project_view.cpp**.
 - If a ribbon button in the project section, add it there in `ReadabilityApp::CreateRibbon()` in **src/app/readability_app.cpp**.
 - Add a `wxEVT_MENU`/`wxEVT_RIBBONBUTTONBAR_CLICKED` event handler for the menu/ribbon button option in **src/projects/base_project_view.h** and **src/projects/base_project_view.cpp**.
@@ -66,17 +66,18 @@ If wanting to edit this option from the ribbon:
   - Add a blank graph for it in `MainFrame::OnBlankGraph()` and `MainFrame::FillMenuWithBlankGraphs()`.
 - Add this `AddXXXTest()` function to standard test function pointer map table in `BaseProject::OnItemSelected()`.
 - If an index test, add its score formatting logic to `BatchProjectView::UpdateStatAndTestPanes()`.
-- Document it in the help.
+- Document it in the help:
+  - Add a topic for it in **docs/readability-studio-manual/[language]**, where "[language]" is the language that the test is meant for.
+  - Add it to the proper dataset in **docs/readability-studio-manual/data** (e.g., **EnglishTests.txt**).
   - If a graphical test, automate making a screenshot of the graph for the help.
 - Add an icon to **resources/images/tests** in SVG format with the same name as the test's string ID.
 
 ## Adding a New Familiar Word List
 
-The following documents how to add a familiar word list (used by a test, such as **Dale-Chall**) to the program. These are extra steps in addendum to [adding a new test](#add-a-new-test).
+The following documents how to add a familiar word list (used by a test, such as Dale-Chall) to the program. These are extra steps in addendum to [adding a new test](#add-a-new-test).
 
 ::: {.note}
-
-This applies to full words lists (e.g., **Dale-Chall**), not supplements such as **Stocker's Catholic Supplement**.
+This applies to full words lists (e.g., Dale-Chall), not supplements such as Stocker's Catholic Supplement.
 :::
 
 - Create a word list file and add to the resources (**resources/words/word-lists**). (This should be a single column text file.)
@@ -84,7 +85,7 @@ This applies to full words lists (e.g., **Dale-Chall**), not supplements such as
 - Load the text file into aforementioned `word_list` in `ReadabilityApp::LoadWordLists()`
 - Add a check that the list is sorted in `ReadabilityApp::VerifyWordLists()`.
 
-### Adding statistics fields {-}
+### Adding Statistics Fields {-}
 
 - Add unique and total unfamiliar word statistic fields to `BaseProject`.
 - Add XML constants in **src/app/readability_app_options.h/cpp** for these unique and total values.
@@ -98,7 +99,8 @@ This applies to full words lists (e.g., **Dale-Chall**), not supplements such as
 - Save these values in `ProjectDoc::OnSaveDocument()`.
 - Add unfamiliar label to **base_project_view.h**.
 
-### Adding support for the list window {-}
+### Adding Support for the List Window {-}
+
 - Add a page ID for the list in **src/projects/base_project_view.h**.
 - Add this ID to the `ListType` enumeration in **resources/scripting/rs-constants.lua**.
 - Add this new enumeration value to the `ListType` in **docs/readability-studio-api/enums/ListType.md**.
@@ -111,7 +113,8 @@ This applies to full words lists (e.g., **Dale-Chall**), not supplements such as
 - Add `EVT_LIST_ITEM_ACTIVATED` message mapping for list ID to `ProjectView::OnListDblClick()`.
 - Add handler for ID to jump to the respective highlighted text window in `ProjectView::OnListDblClick()` (see following instructions for highlighted test window).
 
-### Adding support for the text window {-}
+### Adding Support for the Text Window {-}
+
 - Add a page ID for the text window in **src/projects/base_project_view.h**.
 - Add this ID to the `HighlightedReportType` enumeration in **resources/scripting/rs-constants.lua**.
 - Add this new enumeration value to the `HighlightedReportType` in **docs/readability-studio-api/enums/HighlightedReportType.md**.
@@ -124,19 +127,19 @@ This applies to full words lists (e.g., **Dale-Chall**), not supplements such as
 - Hide or show the text window in `ProjectDoc::DisplayHighlightedText()` based on whether its test is included in the project.
 - Also hide or show the text window in `ProjectDoc::UpdateHighlightedTextWindows()`.
 
-### Remaining standard project steps {-}
+### Remaining Standard Project Steps {-}
 
 - Add hyperlink handler (from formatted stats) to `ProjectView::OnHyperlinkClicked()`.
 - Add bar for unfamiliar words to bar chart in `ProjectDoc::DisplayWordCharts()`.
 - Add cases for both the list and text page IDs in `MainFrame::OnHelpContents()` to go to the help topic **reviewing-word-breakdowns.html**.
 
-### Batch project {-}
+### Batch Project {-}
 
 - Increase the size of the hard word list data provider in `BatchProjectDoc::LoadHardWords()`.
 - Add word stats into data provider in `BatchProjectDoc::LoadHardWords()`.
 - Insert columns into hard word list in `BatchProjectDoc::DisplayHardWords()`.
 
-### Custom test support (low-level) {-}
+### Custom Test Support (Low-level) {-}
 
 - Add word list to `custom_test` (**src/readability/custom_readability_test.h**) class using a `is_familiar_word` object.
 - Add flag for including that list, along with getter and setter functions.
@@ -144,7 +147,7 @@ This applies to full words lists (e.g., **Dale-Chall**), not supplements such as
 - In `custom_test`'s constructor, set the `is_familiar_word` object to use the test's prescribed proper noun and number logic.
 - Add logic for `operator==`, `is_using_familiar_words()`, `reset()`, `is_word_familiar_any_included_list()`, `is_word_familiar_all_included_list()`.
 
-### Custom test support (higher-level) {-}
+### Custom Test Support (Higher-level) {-}
 
 - Add XML string constant for saving word list flag for custom tests to **src/app/readability_app_options.h** (e.g., `XML_INCLUDE_HARRIS_JACOBSON_LIST`).
 - Update any calls to `BaseProjectDoc::AddGlobalCustomReadabilityTest()` to include the word list and respective flag (the `CustomReadabilityTest` typedef passed to this will need these passed to its constructor).
@@ -155,7 +158,7 @@ This applies to full words lists (e.g., **Dale-Chall**), not supplements such as
 - Add logic to `OnAddCustomTest()` in **src/app/readability_app.cpp**.
 - In `AddCustomReadabilityTest()` (**src/projects/base_project.cpp**), mention the inclusion of this list in the test's description.
 
-### Custom test diaog {-}
+### Custom Test Dialog {-}
 
 - Add flag to custom test dialog
 - Add the flag to the `UpdateOptions()` function.
@@ -165,7 +168,7 @@ This applies to full words lists (e.g., **Dale-Chall**), not supplements such as
 - Add a message mapping for the new checkbox ID.
 - Update calls in `OnAddCustomTest()` and `OnEditCustomTest()` to set and get the flags to and from this dialog.
 
-### Custom test formula {-}
+### Custom Test Formula {-}
 
 - Add a `GetCustomXXXSignature()` function in **src/test_helpers/readability_formula_parser.h** that returns the label `"CustomXXX()"` (where `XXX` is the name of the word-list test).
 - Add a `static double CustomXXX(const te_expr* context)` function in **src/test_helpers/readability_formula_parser.cpp** that handles a custom version of the original test. This function is what gets mapped to `"CustomXXX()."` (Refer to `CustomNewDaleChall()` as an example.)
@@ -180,7 +183,7 @@ This applies to full words lists (e.g., **Dale-Chall**), not supplements such as
   - Handle the text exclusion logic in `BaseProject::LoadHardWords()`.
   - In the custom test dialog, warn the user if they select exclusion/proper noun/number options that differ from the test.
 
-### Word list dialog {-}
+### Word List Dialog {-}
 
 - Add page and list IDs for the word list to **ui/dialogs/word_list_dlg.h**.
 - Handle the list being selected in `WordListDlg::GetActiveList()`.

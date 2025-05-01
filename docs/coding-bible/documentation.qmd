@@ -9,12 +9,14 @@ The following styles should be applied to all help projects:
 - File names and paths should be bolded.
 - Data types (programming docs) should be in typewriter font.
 - Parameters to functions (programming docs) should be italicized.
-- Values in programming docs should be in typewriter font.
-- Values elsewhere (e.g., example text) should be quoted.
+- Values (numbers and strings) in programming docs should be in typewriter font.
+- Values elsewhere:
+ - Numbers should not be formatted.
+ - Strings and single characters should be italicized (quoting them makes them difficult to read).
 
 ## Editing
 
-The documentation is stored in **quarto** projects in the **readability-studio-manual** and **readability-studio-api** folders. The quarto files (\*.qmd) can be edited in **RStudio**.
+The documentation is stored in **quarto** projects in the **readability-studio-manual** and **readability-studio-api** folders.
 
 ## Screenshots {#creating-screenshots}
 
@@ -24,7 +26,8 @@ To generate screenshots, do the following:
 
 - Run the script **docs/generate-screenshots.lua** from *Readability Studio*
 
-This will generate all new screenshots in the root **docs/readability-studio-manual/images**. The subdirectory **non-generated** will not be effected, but does not need to be.
+This will generate all new screenshots in the root **docs/readability-studio-manual/images**.
+The subdirectory **non-generated** will not be effected, but does not need to be.
 It should not contain images effected by the program's UI changes and should not contain images with content that should be localized.
 
 ### Reviewing Screenshots {-}
@@ -46,6 +49,6 @@ After generating new screenshots, [build](#building-help) the help and review th
 
 ## Building {#building-help}
 
-From *RStudio*, run **docs/build-help-projects.R** to build all help projects. This should install all needed *R* and *LaTeX* packages the first time you run it.
-If there are any errors will installing the *LaTeX* packages,
-run the script again; you may expericence connection issues to *ctan* and re-running the script will fix it.
+Run **docs/build-help-projects.R** to build all help projects. This should install all needed *R* and *LaTeX* packages the first time you run it.
+If there are any errors while installing the *LaTeX* packages,
+run the script again; you may experience connection issues to *ctan* and re-running the script will fix it.

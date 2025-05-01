@@ -2,17 +2,44 @@
 
 ## Art Assets
 
-All art assets are stored in **resources/images**. Images should be saved into the appropriate folder in SVG format (except the `splash` folder, these are JPEGs). SVGs should have an aspect ratio with the same width and height.
+All art assets are stored in **resources/images**.
+Images should be saved into the appropriate folder in SVG format (except the **splash** folder, these are JPEGs). SVGs should have an aspect ratio with the same width and height.
+
+### Application Icon
+
+If the application icon (**resources/images/ribbon/app-logo.svg**) is changed, then in the project directory:
+
+- Save a copy as **app-logo.png** (1024x1024 resolution)
+- Save a copy as **app-logo.ico** (512x512 resolution)
+- On macOS, run this in a terminal:
+
+```{.bash}
+mkdir app-logo.iconset
+sips -z 16 16     app-logo.png --out app-logo.iconset/icon_16x16.png
+sips -z 32 32     app-logo.png --out app-logo.iconset/icon_16x16@2x.png
+sips -z 32 32     app-logo.png --out app-logo.iconset/icon_32x32.png
+sips -z 64 64     app-logo.png --out app-logo.iconset/icon_32x32@2x.png
+sips -z 128 128   app-logo.png --out app-logo.iconset/icon_128x128.png
+sips -z 256 256   app-logo.png --out app-logo.iconset/icon_128x128@2x.png
+sips -z 256 256   app-logo.png --out app-logo.iconset/icon_256x256.png
+sips -z 512 512   app-logo.png --out app-logo.iconset/icon_256x256@2x.png
+sips -z 512 512   app-logo.png --out app-logo.iconset/icon_512x512.png
+cp app-logo.png app-logo.iconset/icon_512x512@2x.png
+iconutil -c icns app-logo.iconset
+rm -R app-logo.iconset
+```
 
 ## Word Lists
 
 ### Editing Lists {-}
 
-In the **resources/words** folder, the following folders contain word lists used by the program. Some can be edited, others are generated. Also, all these files are meant for all languages, unless otherwise noted.
+In the **resources/words** folder, the following folders contain word lists used by the program.
+Some can be edited, others are generated.
+Also, all these files are meant for all languages, unless otherwise noted.
 
 Please refer to the following file & folder breakdown for reference:
 
-- **base-english-dictionary.txt**: main English dictionary. All forms of a give words (e.g., plural, possessive) should go in here. Note that proper nouns should not go in here.
+- **base-english-dictionary.txt**: main English dictionary. All forms of a given word (e.g., plural, possessive) should go in here. Note that proper nouns should not go in here.
 - **base-non-personal.txt**: places (e.g., cities, countries), company names, species names, etc. should go in here.
 - **base-personal.txt**: person names should go in there.
 - **abbreviations**:
@@ -56,12 +83,12 @@ Please refer to the following file & folder breakdown for reference:
   - **spache-replacements.txt**: generated, **do not edit**.
   - **spanish.txt**: generated, **do not edit**.
 
-  For phrase files, each row should be a phrase, and the column values (tab-delimited) are:
-    - Phrase
-    - Suggestion (optional)
-    - Type (wordy = 0, redundant = 1, cliche = 2, error = 3)
-    - Word proceeding the phrase that will override the grammar checker (optional, can be multiple values delimited by ';' or ',')
-    - Word following the phrase that will override the grammar checker (optional, can be multiple values delimited by ';' or ',')
+For phrase files, each row should be a phrase, and the column values (tab-delimited) are:
+  - Phrase
+  - Suggestion (optional)
+  - Type (wordy = 0, redundant = 1, cliche = 2, error = 3)
+  - Word proceeding the phrase that will override the grammar checker (optional, can be multiple values delimited by ';' or ',')
+  - Word following the phrase that will override the grammar checker (optional, can be multiple values delimited by ';' or ',')
 
 ### Finalizing Lists {-}
 

@@ -7,7 +7,7 @@ The following guidelines relate to all code:
 - Class member variables should be prefixed with a `m_`.
 - Macros should be in all caps. (Although macros should be avoided.)
 - Global and class member constants should be in all caps.
-- Meaningful names should always be used. (Only loop counters may have simple names like `i` ad `j`.)
+- Meaningful names should always be used. (Only loop counters may have simple names like `i` and `j`.)
 - Caps should not be used in function/variable/class names, unless its the name of a test. For example, "DIEHARD" and "FRASE" are acceptable, but you should prefer "Html" to HTML."
 
 ## Bitmask Enumerations
@@ -15,7 +15,7 @@ The following guidelines relate to all code:
 Bitmask enums should use left-shifting to initialize their values,
 as this is easier to read and maintain. For example:
 
-```cpp
+```{.cpp}
 enum DebugSettings
     {
     DebugNone = 0,
@@ -48,7 +48,7 @@ High-level (i.e., code related to user-interfaces or libraries like **wxWidgets*
 
 - Use 4 spaces instead of tabs.
 - Curly braces should be formatted as such:
-```cpp
+```{.cpp}
 if (object == nullptr)
     {
     log("Memory error!");
@@ -57,10 +57,16 @@ if (object == nullptr)
 ```
 This applies to all blocks like `if`, `for`, `while`, etc.
 
+::: {.note}
+A number of these formatting styles are enforced via the project's ".clang-tidy" and ".clang-format" files.
+Run *clang-format* after editing any source file, and run *clang-tidy* when feasible.
+:::
+
 ## Best Practices
 
-- Instrinsic-type (and enumeration) member variables should be initialized.
-- Macros should be avoided; prefer using functions, `constexpr`, `if constexpr`, etc.
+- Intrinsic-type (and enumeration) member variables should be initialized.
+- Macros should be avoided when possible; prefer using functions, `constexpr`, `if constexpr`, etc.\
+  Macros should be limited to debugging and platform-defining sections (e.g., `_WIN32`).
 
 ## i18n Guidelines
 
@@ -72,7 +78,7 @@ This applies to all blocks like `if`, `for`, `while`, etc.
   - Log messages (e.g., `wxLogError`).
   - Messages from low-level code (e.g., the Excel importer).
 - Exception messages should be translatable, unless in low-level code
-  where `gettext` mechanisms aren't avaliable.
+  where `gettext` mechanisms aren't available.
 - Strings consisting of only proper nouns (e.g., "Dale-Chall") should not be translatable.
 - All other common-sense i18n guidelines apply (e.g., do not expose internal codes and numbers for translation).
 - Formatting code (e.g., HTML tags) should not in translatable strings when possible.
