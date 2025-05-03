@@ -557,11 +557,11 @@ if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
         add_custom_command(TARGET ${PROJECT_NAME}
                         POST_BUILD
                         COMMAND ${CMAKE_COMMAND} -E copy_directory "$<TARGET_FILE_DIR:${PROJECT_NAME}>" "${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/AppDir/usr/bin"
-                        COMMENT "Copying binary to installer folder.")
+                        COMMENT "Copying files to AppImage staging folder.")
     elseif(APPLE)
         add_custom_command(TARGET ${PROJECT_NAME}
                            POST_BUILD
                            COMMAND ${CMAKE_COMMAND} -E copy_directory "$<TARGET_FILE_DIR:${PROJECT_NAME}>" "${CMAKE_CURRENT_SOURCE_DIR}/installers/macos/release/"
-                           COMMENT "Copying binary to installer folder.")
+                           COMMENT "Copying files to DMG staging folder.")
     endif()
 endif()
