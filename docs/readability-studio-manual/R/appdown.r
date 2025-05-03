@@ -88,6 +88,7 @@ menu <- function(menuKeys)
   if (knitr::is_latex_output())
     {
     menuKeys = stringr::str_replace_all(menuKeys, "[&]", "\\\\&")
+    menuKeys = stringr::str_replace_all(menuKeys, "[_]", "\\\\_")
     knitr::asis_output(glue('\\menu[,]{',
                               glue_collapse(glue("{<menuKeys>}", .open='<', .close='>'), sep=','),
                               '}', .open='<', .close='>'))
@@ -100,6 +101,30 @@ menu <- function(menuKeys)
       glue_collapse(glue("<div class='keys'>{menuKeys[1:length(menuKeys)-1]}
                           </div><div class='arrow right'></div>"), sep=' '),
       glue("<div class='keys'>{menuKeys[length(menuKeys)]}</div>"),
+           "</div>"))
+    }
+  else
+    { knitr::asis_output(text) }
+  }
+
+file_path <- function(filePath)
+  {
+  if (knitr::is_latex_output())
+    {
+    filePath = stringr::str_replace_all(filePath, "[&]", "\\\\&")
+    filePath = stringr::str_replace_all(filePath, "[_]", "\\\\_")
+    knitr::asis_output(glue('\\directory{',
+                              glue_collapse(glue("<filePath>", .open='<', .close='>'), sep='/'),
+                              '}', .open='<', .close='>'))
+    }
+  else if (knitr::is_html_output())
+    {
+    filePath = stringr::str_replace_all(filePath, "[&]", "&amp;")
+    knitr::asis_output(
+      glue("<div class='menu'>",
+      glue_collapse(glue("<div class='keys'>{filePath[1:length(filePath)-1]}
+                          </div><div class='arrow right'></div>"), sep=' '),
+      glue("<div class='keys'>{filePath[length(filePath)]}</div>"),
            "</div>"))
     }
   else
