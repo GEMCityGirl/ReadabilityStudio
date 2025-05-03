@@ -135,6 +135,8 @@ configure_file("${CMAKE_CURRENT_SOURCE_DIR}/docs/_variables.yml.in"
                "${CMAKE_CURRENT_SOURCE_DIR}/docs/_variables.yml")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/docs/sysadmin/build-commands.txt.in"
                "${CMAKE_CURRENT_SOURCE_DIR}/docs/sysadmin/build-commands.txt")
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/docs/sysadmin/windows-silent.txt.in"
+               "${CMAKE_CURRENT_SOURCE_DIR}/docs/sysadmin/windows-silent.txt")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/_quarto.yml.in"
                "${CMAKE_CURRENT_SOURCE_DIR}/docs/readability-studio-manual/_quarto.yml")
 

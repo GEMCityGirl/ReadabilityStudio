@@ -44,7 +44,7 @@ If there is a previous installation of *{{< var PROGRAM_NAME >}}*, then the inst
 
 ::: {.notesection data-latex=""}
 If updating a 32-bit edition of *{{< var PROGRAM_NAME >}}* (version 2021 or earlier), you will first need to uninstall the program.
-The 64-bit editions default to the 64-bit *Windows* program folder, while earlier editions where installed to the "Program Files (x86)" folder.
+The 64-bit editions default to the 64-bit `r file_path("Program Files")` folder, while earlier editions where installed to the `r file_path("Program Files (x86)")` folder.
 Uninstalling any 32-bit editions will ensure that you won't have multiple installations after updating.
 :::
 
@@ -55,8 +55,7 @@ The installer uses *Inno Setup*, which provides support for silent install.
 To perform a silent install, pass the command line arguments `/SILENT` or `/VERYSILENT`.
 For example, the following will run a silent install that will not restart the computer and write its progress to a log file:
 
-```{.bash}
-rssetup.exe /SILENT /NORESTART /LOG
+```{.bash include="windows-silent.txt"}
 ```
 
 Available command line options include:
