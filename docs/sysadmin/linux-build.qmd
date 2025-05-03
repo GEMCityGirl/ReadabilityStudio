@@ -9,14 +9,14 @@ source('R/appdown.r')
 
 | Install the following tools to build *{{< var PROGRAM_NAME >}}* |
 | :-- |
-| *GCC* (C++ and fortran compilers) |
-| *CMake* |
+| *GCC* {{< var MIN_GCC_REQUIRED >}} or higher (C++ and fortran compilers) |
+| *CMake* {{< var CMAKE_MINIMUM_REQUIRED_VERSION >}} or higher |
 | *git* |
 | *AppImage* |
 | *linuxdeploy* |
-| *Homebrew* |
 | *R* (optional) |
 | *Quarto* (optional) |
+| *POEdit* (optional) |
 
 | Install the following libraries (and their development files, if mentioned) |
 | :-- |
