@@ -389,7 +389,7 @@ class BaseProjectView : public wxView
     [[nodiscard]]
     static wxString GetFailedLabel()
         {
-        return L"\x26A0 " + _(L"Failed");
+        return L"\u26A0 " + _(L"Failed");
         } // includes warning emoji
 
     // tab labels
@@ -571,13 +571,13 @@ class BaseProjectView : public wxView
     [[nodiscard]]
     static wxString GetCheckmarkEmoji()
         {
-        return L"\x2714";
+        return L"\u2714";
         }
 
     [[nodiscard]]
     static wxString GetWarningEmoji()
         {
-        return L"\x26A0";
+        return L"\u26A0";
         }
 
     [[nodiscard]]

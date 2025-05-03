@@ -4809,7 +4809,7 @@ bool BaseProject::LoadDocumentAsSubProject(const wxString& path, const std::wstr
                   "\"Include incomplete sentences containing more than...\" "
                   "option under \"Project Properties\"%s\"Document Indexing\"."),
                 sentencesMissingEndingPunctionsConsideredCompleteBecauseOfLength,
-                GetIncludeIncompleteSentencesIfLongerThanValue(), L" \x00BB "));
+                GetIncludeIncompleteSentencesIfLongerThanValue(), L" \u00BB "));
             LogMessage(warningMsg);
             }
         }
@@ -6386,7 +6386,7 @@ bool BaseProject::AddStandardReadabilityTest(const wxString& id, const bool setF
                   "This behavior can be changed from the \"Readability Scores\"%s"
                   "\"Test Options\" page of the "
                   "Options and Project Properties dialogs."),
-                GetReadabilityTests().get_test_long_name(id).c_str(), L" \x00BB "));
+                GetReadabilityTests().get_test_long_name(id).c_str(), L" \u00BB "));
             LogMessage(warningMsg, true);
             }
         }
@@ -6403,7 +6403,7 @@ bool BaseProject::AddStandardReadabilityTest(const wxString& id, const bool setF
                   "This behavior can be changed from the \"Readability Scores\"%s"
                   "\"Test Options\" page of the "
                   "Options and Project Properties dialogs."),
-                GetReadabilityTests().get_test_long_name(id).c_str(), L" \x00BB "));
+                GetReadabilityTests().get_test_long_name(id).c_str(), L" \u00BB "));
             LogMessage(warningMsg, true);
             }
         }
