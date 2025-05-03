@@ -43,8 +43,8 @@ if(APPLE)
     set(CMAKE_XCODE_ATTRIBUTE_ENABLE_HARDENED_RUNTIME YES)
 endif()
 
-# Always run these, even if not APPLE, as we use ${CMAKE_OSX_DEPLOYMENT_TARGET} for the docs
-if(NOT CMAKE_OSX_DEPLOYMENT_TARGET)
+# Always run these, even if not APPLE, as we use ${CMAKE_OSX_DEPLOYMENT_TARGET} for the docs.
+#
     # If no deployment target has been set default to the minimum supported
     # OS version (this has to be set before the first project() call)
     if(APPLE AND CMAKE_SYSTEM_NAME STREQUAL "iOS")
@@ -53,7 +53,7 @@ if(NOT CMAKE_OSX_DEPLOYMENT_TARGET)
         set(CMAKE_OSX_DEPLOYMENT_TARGET 10.15 CACHE STRING "macOS Deployment Target")
     endif()
     message(STATUS "macOS deployment target: ${CMAKE_OSX_DEPLOYMENT_TARGET}")
-endif()
+
 set(UNIX_ARCHITECTURE "x86_64" CACHE STRING "" FORCE)
 
 # Only used for the docs
