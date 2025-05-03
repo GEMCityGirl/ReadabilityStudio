@@ -1,0 +1,10 @@
+# Getting Involved
+
+All are welcome to get involved with *{{< var PROGRAM_NAME >}}* by contributing to the code, documentation, word list, artwork, etc.
+
+To begin, create a fork of our repository at [{{< var GIT_REPO >}}]({{< var GIT_REPO >}}) and make your edits to this fork.
+After you are finished with your changes, submit them as a pull request.
+(You may be required fill out a contributor agreement.)
+After your pull request is reviewed and approved, it will be merged into the program.
+
+While preparing your contributions, please follow our coding and tech writing style guide as outlined in this chapter.

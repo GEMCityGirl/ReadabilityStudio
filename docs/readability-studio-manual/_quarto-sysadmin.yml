@@ -8,19 +8,25 @@ book:
   output-file: "sysadmin-manual"
   chapters:
     - index.qmd
-    - part: "Installing"
+    - part: "Administration"
       chapters:
       - windows-install.qmd
       - macos-install.qmd
       - linux-install.qmd
+      - telemetry.qmd
     - part: "Building from Source"
       chapters:
       - windows-build.qmd
       - macos-build.qmd
       - linux-build.qmd
-    - part: "Administration"
+    - part: "Contributing"
       chapters:
-      - telemetry.qmd
+      - contributing.qmd
+      - coding-style.qmd
+      - code-structure.qmd
+      - code-instructions.qmd
+      - documentation.qmd
+      - resources.qmd
 format:
   pdf:
     lot: false

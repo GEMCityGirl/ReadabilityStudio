@@ -1,8 +1,0 @@
-# Overview
-
-This book documents the following for **Readability Studio**:
-
-- Coding styles & standards
-- Coding instructions
-- Build instructions for the documentation and resources
-- Build instructions for the installers

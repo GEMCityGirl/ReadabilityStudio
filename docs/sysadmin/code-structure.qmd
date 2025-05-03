@@ -1,0 +1,36 @@
+```{r}
+#| include: false
+#| eval: true
+
+source('R/appdown.r')
+```
+
+# Code Structure
+
+*{{< var PROGRAM_NAME >}}*'s code is organized in the following folder structure within **src**:
+
+- **app**: the application and options classes
+- **Catch2**: submodule containing the testing framework *Catch2* (**do not edit this folder**)
+- **document-helpers**: document parsing helper classes
+- **graphs**: readability graphs
+- **indexing**: parsing, text indexing, and grammar code
+- **lua**: submodule containing the *Lua* scripting language (**do not edit this folder**)
+- **lua-scripting**: code that interfaces *{{< var PROGRAM_NAME >}}* with *Lua*
+- **OleanderStemmingLibrary**: submodule containing the *Oleander Stemming Library*\
+  (**do not edit this folder**)
+- **projects**: standard and batch project classes
+- **readability**: readability formula functions
+- **results-format**: report formatting classes
+- **test-helpers**: custom test parser and bundle classes
+- **tinyexpr-plusplus**: submodule containing the *TinyExpr++* library.\
+  This is the formula-parsing engine used for custom tests (**do not edit this folder**).
+- **tinyxml2**: submodule containing the *TinyXML2* library (**do not edit this folder**)
+- **ui**: user interface code
+- **webharvester**: web harvester clas
+- **Wisteria-Dataviz**: submodule containing the *Wisteria-Dataviz* library.\
+  This is the core graphics library (**do not edit this folder**).
+
+::: {.notesection data-latex=""}
+Although separate modules, *Wisteria-Dataviz*, *Oleander Stemming Library*, and *TinyExpr++* are all maintained by the author of *{{< var PROGRAM_NAME >}}*.
+These projects can also be contributed to and are available at [https://github.com/Blake-Madden/Wisteria-Dataviz](https://github.com/Blake-Madden/Wisteria-Dataviz), [https://github.com/Blake-Madden/OleanderStemmingLibrary](https://github.com/Blake-Madden/OleanderStemmingLibrary), and [https://github.com/Blake-Madden/tinyexpr-plusplus](https://github.com/Blake-Madden/tinyexpr-plusplus), respectively.
+:::

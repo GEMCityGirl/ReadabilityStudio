@@ -1,0 +1,86 @@
+# Coding Style Guide
+
+## Naming Conventions {-}
+
+The following guidelines relate to all code:
+
+- Write in modern C++20, but only use features compatible with the latest *Visual Studio*, *GCC*, and *Apple Clang* releases
+- Class member variables should be prefixed with an `m_`
+- Macros should be in all caps (although macros should be avoided as much as possible)
+- Global and class member constants should be in all caps
+- Meaningful names should always be used (only loop counters may have simple names like `i` and `j`)
+- Caps should not be used in function/variable/class names, even if it's an acronym
+
+### Low-level Styles {-}
+
+Low-level code should follow these guidelines:
+
+- Functions, enums, structs, classes, class member variables, and function parameters should be in `snake_case`
+- Local variables should be `camelCase`
+
+Examples of "low-level" code would be the stemmer, indexing, and document importing libraries
+
+### High-level Code {-}
+
+High-level code (i.e., code related to user-interfaces or libraries like *wxWidgets*) should follow these guidelines:
+
+- Functions, enums, structs, and classes should be in `PascalCase`
+- Class member variables, local variables, and function parameters should be `camelCase`
+
+## Styling {-}
+
+- Use four spaces instead of tabs
+- Curly braces should use Whitesmiths format:
+
+```{.cpp}
+if (object == nullptr)
+    {
+    log("Memory error!");
+    return false;
+    }
+```
+
+This applies to all blocks like `if`, `for`, `while`, etc.
+
+::: {.notesection data-latex=""}
+A number of these formatting styles are enforced via the project's **.clang-tidy** and **.clang-format** files.
+Run *clang-format* after editing any source file, and run *clang-tidy* when feasible.
+:::
+
+## Bitmask Enumerations {-}
+
+Bitmask enums should use left-shifting to initialize their values,
+as this is easier to read and maintain. For example:
+
+```{.cpp}
+enum DebugSettings
+    {
+    DebugNone = 0,
+    DrawBoundingBoxesOnSelection = (1 << 0),
+    DrawInformationOnSelection = (1 << 1),
+    DrawExtraInformation = (1 << 2),
+    IncludeExperimentalCode = (1 << 3),
+    AllowFileIO = (1 << 4),
+    LogExtraInfo = (1 << 5)
+    };
+```
+
+## Best Practices {-}
+
+- Intrinsic-type (and enumeration) member variables should be brace initialized
+- Macros should be avoided when possible; prefer using functions, `constexpr`, `if constexpr`, etc.\
+  Macros should be limited to debugging and platform-defining sections (e.g., `_WIN32`).
+
+## i18n Guidelines {-}
+
+- The following user-facing labels and messages should be made available for translation with the `_()` (*gettext*) macro.
+  - Menu and ribbon labels
+  - All dialog titles and labels
+  - All messages shown to the user (except log messages)
+- The following should not be available for translation as they are meant for developers to review, not users:
+  - Log messages (e.g., `wxLogError()`)
+  - Messages from low-level code (e.g., the *Excel* importer)
+- Exception messages should be translatable, unless in low-level code where *gettext* mechanisms aren't available
+- Strings consisting of only proper nouns (e.g., "Dale-Chall") should not be translatable
+- All other standard i18n guidelines apply (e.g., do not expose internal codes and numbers for translation)
+- Formatting code (e.g., HTML tags) should not in translatable strings when possible

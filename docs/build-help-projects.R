@@ -121,12 +121,6 @@ unlink(glue("{docFolder}/sysadmin/_quarto.yml"))
 unlink(glue("{docFolder}/sysadmin/_quarto-sysadmin.yml"))
 unlink(glue("{docFolder}/sysadmin/LegrandOrangeBook.cls"))
 
-# Coding Bible
-##############
-
-setwd(glue("{docFolder}/coding-bible/"))
-quarto::quarto_render(output_format="html", as_job=T)
-
 # Release Notes
 ###############
 
