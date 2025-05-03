@@ -15,16 +15,12 @@
 # Options:
 # USE_ADDRESS_SANITIZE to use ASAN (ignored in release build)
 
-# Declare the minimum required CMake version
+# Requirements
 cmake_minimum_required(VERSION 3.25)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
-
-if(CMAKE_COMPILER_IS_GNUCC)
-  if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS "12.2.1")
-    message(FATAL_ERROR "Insufficient GCC version")
-  endif()
-endif()
+set(MIN_GCC_REQUIRED "12.2.1")
+set(MIN_MSVC_REQUIRED "1930") # VS 2022 (1930 is the build number, which is what _MSC_VER will be set to)
 
 # https://blog.kitware.com/cmake-and-the-default-build-type/
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
@@ -90,6 +86,14 @@ if(NOT ${readstudio_VERSION_TWEAK} EQUAL 0)
     string(APPEND FULL_DISPLAY_VERSION ".${readstudio_VERSION_TWEAK}")
 endif()
 string(TIMESTAMP BUILD_YEAR "%Y")
+
+if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS ${MIN_GCC_REQUIRED})
+  message(FATAL_ERROR "Insufficient GCC version")
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC" AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS ${MIN_MSVC_REQUIRED})
+  message(FATAL_ERROR "Insufficient Visual Studio version")
+endif()
+# TODO check XCode/AppleClang version
+message(STATUS "Compiler: ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
 
 message(STATUS "${readstudio_DESCRIPTION}")
 message(STATUS "${PROGRAM_COMMENTS}")
