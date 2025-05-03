@@ -71,7 +71,7 @@ set(PROGRAM_COMMENTS "Readability analysis software")
 set(PROGRAM_RDNS_IDENTIFIER "com.oleandersoftware.readabilitystudio")
 set(GIT_REPO "https://github.com/Blake-Madden/ReadabilityStudio")
 set(INNOSETUP_GUID "{FBFBEAB6-622A-4E16-893D-216C25FF6A69}")
-set(PROGRAM_LICENSE "BSD-3-Clause")
+set(PROGRAM_LICENSE "Eclipse Public License 2.0")
 
 set(FULL_VERSION ${readstudio_VERSION_MAJOR}.${readstudio_VERSION_MINOR}.${readstudio_VERSION_PATCH}.${readstudio_VERSION_TWEAK})
 # Build a displayable version string that only includes the necessary parts
