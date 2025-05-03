@@ -10,11 +10,12 @@ source('R/appdown.r')
 | Install the following tools to build *{{< var PROGRAM_NAME >}}* |
 | :-- |
 | *XCode* |
-| *CMake* |
+| *CMake* {{< var CMAKE_MINIMUM_REQUIRED_VERSION >}} or higher |
 | *create-dmg* |
 | *Homebrew* |
 | *R* (optional) |
 | *Quarto* (optional) |
+| *POEdit* (optional) |
 
 To install home-brew:
 

@@ -13,28 +13,27 @@ source('R/appdown.r')
 | *Inno Setup* |
 | *R* (optional) |
 | *Quarto* (optional) |
-
-Perform the following to build:
+| *POEdit* (optional) |
 
 ## Build *wxWidgets* {-}
 
-- Open *Visual Studio* and select *Clone a Repository*
+- Open *Visual Studio* and select **Clone a Repository**
   - Enter ["https://github.com/wxWidgets/wxWidgets.git"](https://github.com/wxWidgets/wxWidgets.git) and clone it
-- Once the "wxWidgets" folder is cloned and opened in *Visual Studio*:
+- Once the **wxWidgets** folder is cloned and opened in *Visual Studio*:
   - Open `r menu(c('Project', 'CMake Settings for wxWidgets'))`
     - Uncheck **wxBUILD_SHARED**
     - Set **wxBUILD_OPTIMISE** to "ON"
     - Set the configuration type to "Release"
     - Save your changes
-  - Select `r menu(c('Build', 'Install wxWidgets'))` (builds and then copies the header, lib, and cmake files to the prefix folder)
+  - Select `r menu(c('Build', 'Install wxWidgets'))` (builds and then copies the header, lib, and *CMake* files to the prefix folder)
 
 {{< pagebreak >}}
 
 ## Build *{{< var PROGRAM_NAME >}}* {-}
 
-- From *Visual Studio*, select *Clone a Repository* again
-  - Enter ["{{< var GIT_REPO >}}.git"]({{< var GIT_REPO >}}.git) and clone it to the same level as the "wxWidgets" folder
-- Once the "ReadabilityStudio" folder is cloned and opened in *Visual Studio*:
+- From *Visual Studio*, select **Clone a Repository** again
+  - Enter ["{{< var GIT_REPO >}}.git"]({{< var GIT_REPO >}}.git) and clone it to the same level as the **wxWidgets** folder
+- Once the **ReadabilityStudio** folder is cloned and opened in *Visual Studio*:
   - Open `r menu(c('Project', 'CMake Settings for readstudio'))`
     - Set the configuration type to "Release" (or create a new release configuration)
     - Save your changes
@@ -45,11 +44,11 @@ Perform the following to build:
 ## Build the installer {-}
 
 ::: {.notesection data-latex=""}
-If you build the "Release" version of *{{< var PROGRAM_NAME >}}*, then the CMake build process will copy "{{< var BUILD_TARGET >}}.exe" into `r menu(c('installers', 'windows', 'release'))`.
+If you build the "Release" version of *{{< var PROGRAM_NAME >}}*, then the *CMake* build process will copy **{{< var BUILD_TARGET >}}.exe** into `r menu(c('installers', 'windows', 'release'))`.
 :::
 
 - Go to `r menu(c('installers', 'windows'))`
 - Digitally sign "release/{{< var BUILD_TARGET >}}.exe"
-- Open "{{< var BUILD_TARGET >}}.iss" in *Inno Setup* and build the installer
-  - The installer will be placed in "output/rssetup{{< var FULL_VERSION >}}.exe"
+- Open **{{< var BUILD_TARGET >}}.iss** in *Inno Setup* and build the installer
+  - The installer will be placed in **output/rssetup{{< var FULL_VERSION >}}.exe**
 - Digitally sign the installer
