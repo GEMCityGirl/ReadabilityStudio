@@ -27,6 +27,12 @@ crossref:
   sec-prefix: sec.
   tbl-prefix: tbl.
   fig-prefix: fig.
+filters:
+  - include-code-files
+  - fontawesome
+  - auto-dark
+  - elevator
+  - fancy-text
 book:
   title: "${readstudio_DESCRIPTION} ${FULL_DISPLAY_VERSION}"
   subtitle: User Manual
