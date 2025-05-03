@@ -13,11 +13,6 @@ docFolder <- this.path::this.dir()
 source(glue("{docFolder}/build-enum-files.R"))
 source(glue("{docFolder}/readability-studio-manual/R/appdown.r"))
 
-# copy R script to parent so that single-chapter files can reference it
-dir_copy(glue("{docFolder}/readability-studio-manual/R"),
-         glue("{docFolder}/R"),
-         TRUE)
-
 # delete previous builds
 unlink(glue("{docFolder}/coding-bible/docs"), recursive=T)
 unlink(glue("{docFolder}/shortcuts-cheatsheet/docs"), recursive=T)
@@ -80,6 +75,11 @@ clearFolders <- function()
   }
 
 clearFolders()
+
+# copy R script to parent so that single-chapter files can reference it
+dir_copy(glue("{docFolder}/readability-studio-manual/R"),
+         glue("{docFolder}/R"),
+         TRUE)
 
 # System Admin Manual
 #####################
