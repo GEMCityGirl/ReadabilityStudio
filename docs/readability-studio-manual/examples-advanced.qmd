@@ -238,10 +238,11 @@ Finally, click the `r keys('Finish')` button to create the project. When the pro
 
 Note that this new flyer is difficult, so let’s review it. Click **Words Breakdown** on the sidebar and then select **3+ Syllables Report**. As we scroll through this window, note the highlighted difficult words:
 
-```{r echo=F, fig.show = 'hold', out.width='50%'}
-knitr::include_graphics("images/addendum-highlighted-text1.png")
-knitr::include_graphics("images/addendum-highlighted-text2.png")
-```
+::: {layout-ncol=2}
+![]("images/addendum-highlighted-text1.png")
+
+![]("images/addendum-highlighted-text2.png")
+:::
 
 As we can see, this document could use some improving. Before we can do that, though, the new owners of our software company have also requested that a disclaimer be appended to all sign-up forms such as this.
 Rather than running a separate analysis on this disclaimer, we would like to append this document to our flyer and analyze them together.

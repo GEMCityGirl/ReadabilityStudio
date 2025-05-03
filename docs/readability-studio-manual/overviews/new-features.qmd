@@ -679,7 +679,7 @@ source('../R/appdown.r')
 
 ### Bug Fixes {-}
 
-- License file is now written to *users/application data* folder for Windows XP SP3 and Vista SP1 compliance.
+- License file is now written to the `r file_path(c("users", "application data"))` folder for Windows XP SP3 and Vista SP1 compliance.
 - Score statistics are now only included if you have more than one test score.
 - Euro symbol (€) is now seen as two syllables.
 - Removed restrictions where tests would fail to be calculated if the number of difficult words was zero.

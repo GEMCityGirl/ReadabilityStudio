@@ -24,9 +24,7 @@ Where:
 
 A chart visualizing this test's score is also available:
 
-```{r crawfordgraph, echo=F, fig.cap='Crawford chart', fig.align='center', out.width='75%'}
-knitr::include_graphics("images/crawford-graph.png")
-```
+![Crawford chart]("images/crawford-graph.png"){width=75% fig-align="center"}
 
 In this chart, the Y axis and interior (i.e., plot area) represent the factors, and the X axis represents the final score. Specifically, the Y axis represents the sample's syllable count, and the interior area represents the sample's sentence count. After finding the intersection of these two factors, the position on the X axis respective to this intersection yields the grade-level score.
 

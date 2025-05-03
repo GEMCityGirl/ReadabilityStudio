@@ -26,9 +26,7 @@ These validation involved correlating the FRASE scores against "teacher judgment
 
 Below is an example of a FRASE graph:
 
-```{r frase, echo=F, fig.cap='FRASE graph', fig.align='center', out.width='75%'}
-knitr::include_graphics("images/frase-graph.png")
-```
+![FRASE graph]("images/frase-graph.png"){width=75% fig-align="center"}
 
 The FRASE graph procedure is:
 
