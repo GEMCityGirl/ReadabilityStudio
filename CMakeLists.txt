@@ -45,14 +45,14 @@ endif()
 
 # Always run these, even if not APPLE, as we use ${CMAKE_OSX_DEPLOYMENT_TARGET} for the docs.
 #
-    # If no deployment target has been set default to the minimum supported
-    # OS version (this has to be set before the first project() call)
-    if(APPLE AND CMAKE_SYSTEM_NAME STREQUAL "iOS")
-        set(CMAKE_OSX_DEPLOYMENT_TARGET 12.0 CACHE STRING "iOS Deployment Target")
-    else()
-        set(CMAKE_OSX_DEPLOYMENT_TARGET 10.15 CACHE STRING "macOS Deployment Target")
-    endif()
-    message(STATUS "macOS deployment target: ${CMAKE_OSX_DEPLOYMENT_TARGET}")
+# If no deployment target has been set default to the minimum supported
+# OS version (this has to be set before the first project() call)
+if(APPLE AND CMAKE_SYSTEM_NAME STREQUAL "iOS")
+    set(CMAKE_OSX_DEPLOYMENT_TARGET 12.0 CACHE STRING "iOS Deployment Target")
+else()
+    set(CMAKE_OSX_DEPLOYMENT_TARGET 10.15 CACHE STRING "macOS Deployment Target")
+endif()
+message(STATUS "macOS deployment target: ${CMAKE_OSX_DEPLOYMENT_TARGET}")
 
 set(UNIX_ARCHITECTURE "x86_64" CACHE STRING "" FORCE)
 
@@ -491,6 +491,33 @@ add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
                    ${CMAKE_CURRENT_SOURCE_DIR}/examples $<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/examples)
+
+# Translations
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/locale/es.mo")
+    add_custom_command(TARGET ${PROJECT_NAME}
+                       POST_BUILD
+                       COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/locale/es.mo" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/es/readstudio.mo"
+                       COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/locale/es.mo" "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/resources/es/readstudio.mo"
+                       COMMENT "Copying Spanish translations to build and installer folders.")
+   if(WIN32)
+     if(EXISTS "${wxWidgets_BASEDIR}/locale/es.mo")
+         add_custom_command(TARGET ${PROJECT_NAME}
+                            POST_BUILD
+                            COMMAND ${CMAKE_COMMAND} -E copy "${wxWidgets_BASEDIR}/locale/es.mo" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/es/wxstd.mo"
+                            COMMAND ${CMAKE_COMMAND} -E copy "${wxWidgets_BASEDIR}/locale/es.mo" "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/resources/es/wxstd.mo"
+                            COMMENT "Copying wxWidgets Spanish translations to build and installer folders.")
+     else()
+       message(WARNING "wxWidgets Spanish translations not found. Compile '${wxWidgets_BASEDIR}/locale/es.po' if you wish to include this.")
+     endif()
+   elseif(UNIX)
+     add_custom_command(TARGET ${PROJECT_NAME}
+                        POST_BUILD
+                        COMMAND ${CMAKE_COMMAND} -E copy_directory "${wxWidgets_BASEDIR}/wxlib/share/locale/" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}"
+                        COMMENT "Copying wxWidgets Spanish translations to build folder.")
+   endif()
+else()
+    message(WARNING "Compiled Spanish translations not found. Translations will not be available.")
+endif()
 
 if(UNIX AND NOT APPLE)
     # Icon used for Linux
