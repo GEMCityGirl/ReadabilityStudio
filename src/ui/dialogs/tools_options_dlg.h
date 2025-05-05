@@ -600,7 +600,7 @@ class ToolsOptionsDlg final : public wxDialog
     [[nodiscard]]
     wxString GetFryLikeLabel() const
         {
-        return _(L"Fry/GPM/Raygor/Schwartz");
+        return _DT(L"Fry/GPM/Raygor/Schwartz");
         }
 
     [[nodiscard]]

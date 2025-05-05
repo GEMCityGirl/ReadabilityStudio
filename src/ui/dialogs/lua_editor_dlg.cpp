@@ -636,9 +636,11 @@ CodeEditor* LuaEditorDlg::CreateLuaScript(wxWindow* parent)
     codeEditor->Show(false);
     codeEditor->IncludeNumberMargin(true);
     codeEditor->IncludeFoldingMargin(true);
-    codeEditor->SetDefaultHeader(wxString::Format(_(L"-- Imports %s specific enumerations"),
-                                                  wxGetApp().GetAppDisplayName()) +
-                                 L"\ndofile(Application.GetLuaConstantsPath())\n\n");
+    codeEditor->SetDefaultHeader(
+        L"-- " +
+        // TRANSLATORS: %s is the program name
+        wxString::Format(_(L"Imports %s specific enumerations"), wxGetApp().GetAppDisplayName()) +
+        L"\ndofile(Application.GetLuaConstantsPath())\n\n");
     codeEditor->SetText(codeEditor->GetDefaultHeader());
     codeEditor->SetModified(false);
 

@@ -159,7 +159,10 @@ ProjectDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView*
         new wxMenuItem(graphBackgroundImageFitSubMenu, XRCID("ID_PLOT_BKIMAGE_FIT_SHRINK"),
                        _(L"Shrink to Fit"), wxString{}, wxITEM_CHECK));
 
-    graphBackgroundImageSubMenu->AppendSubMenu(graphBackgroundImageFitSubMenu, _(L"Fit"));
+    graphBackgroundImageSubMenu->AppendSubMenu(graphBackgroundImageFitSubMenu,
+                                               // TRANSLATORS: How an image is adjust to fit
+                                               // inside of an area
+                                               _(L"Fit"));
 
     item = new wxMenuItem(graphBackgroundImageSubMenu, XRCID("ID_EDIT_PLOT_BKIMAGE_REMOVE"),
                           _(L"Remove Image"));

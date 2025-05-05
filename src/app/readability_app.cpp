@@ -573,7 +573,7 @@ bool ReadabilityApp::OnInit()
         return false;
         }
 
-    // delay this until BaseApp switches to a file logger
+    // wait to call this after BaseApp switches to a file logger above
     wxLogMessage(L"Settings file loaded from: " + AppSettingFolderPath + L"Settings.xml");
 
 #ifndef NDEBUG

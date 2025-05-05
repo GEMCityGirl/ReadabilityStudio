@@ -161,14 +161,19 @@ void AboutDialogEx::CreateControls()
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Version:")));
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, m_appVersion));
 #ifndef NDEBUG
-        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Build:")));
+        productInfoGrid->Add(new wxStaticText(
+            mainPage, wxID_ANY,
+            // TRANSLATORS: Compiled version of the program (e.g., DEBUG or RELEASE)
+            _(L"Build:")));
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"DEBUG")));
 #endif
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Built on:")));
         wxDateTime buildDate;
         buildDate.ParseDate(__DATE__);
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, buildDate.Format(L"%B %d, %G")));
-        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Platform:")));
+        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY,
+                                              // TRANSLATORS: Operating System
+                                              _(L"Platform:")));
         productInfoGrid->Add(
             new wxStaticText(mainPage, wxID_ANY,
 #ifdef __WXGTK__

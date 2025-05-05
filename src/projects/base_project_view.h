@@ -376,6 +376,7 @@ class BaseProjectView : public wxView
     [[nodiscard]]
     static wxString GetModeLabel()
         {
+        // TRANSLATORS: Statistical modes. (Most frequently occurring values in a data range.)
         return _(L"Modes");
         }
 
@@ -389,6 +390,7 @@ class BaseProjectView : public wxView
     [[nodiscard]]
     static wxString GetFailedLabel()
         {
+        // TRANSLATORS: This is an adjective
         return L"\u26A0 " + _(L"Failed");
         } // includes warning emoji
 

@@ -621,6 +621,7 @@ void WebHarvester::CrawlLink(const wxString& currentLink,
 
     const wxString urlLabel = currentLink;
     if (!m_progressDlg->Pulse(m_hideFileNamesWhileDownloading ?
+                                  // TRANSLATORS: Searching across websites.
                                   _(L"Crawling...") :
                                   wxString::Format(_(L"Crawling \"%s\""), urlLabel)))
         {

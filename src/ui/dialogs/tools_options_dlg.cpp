@@ -720,7 +720,8 @@ void ToolsOptionsDlg::OnDolchNounHighlightColorSelect([[maybe_unused]] wxCommand
     if (dialog.ShowModal() == wxID_OK)
         {
         m_dolchNounsColor = dialog.GetColourData().GetColour();
-        m_DolchNounsColorButton->SetBitmapLabel(ResourceManager::CreateColorIcon(m_dolchNounsColor));
+        m_DolchNounsColorButton->SetBitmapLabel(
+            ResourceManager::CreateColorIcon(m_dolchNounsColor));
         wxGetApp().GetAppOptions().CopyColourDataToCustomColours(dialog.GetColourData());
         }
     }
@@ -733,8 +734,7 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
       m_useJsCookies(wxGetApp().GetAppOptions().IsUsingJavaScriptCookies()),
       m_persistJsCookies(wxGetApp().GetAppOptions().IsPersistingJavaScriptCookies()),
       // log options
-      m_logVerbose(wxGetApp().GetLogFile() != nullptr ? wxLog::GetVerbose() :
-                                                        false),
+      m_logVerbose(wxGetApp().GetLogFile() != nullptr ? wxLog::GetVerbose() : false),
       m_logAppendDailyLog(wxGetApp().GetAppOptions().IsAppendingDailyLog()),
       // project settings
       m_projectLanguage(static_cast<int>(project ?
@@ -789,7 +789,7 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
       m_dolchVerbsColor(project ? project->GetDolchVerbsColor() :
                                   wxGetApp().GetAppOptions().GetDolchVerbsColor()),
       m_dolchNounsColor(project ? project->GetDolchNounColor() :
-                                 wxGetApp().GetAppOptions().GetDolchNounsColor()),
+                                  wxGetApp().GetAppOptions().GetDolchNounsColor()),
       m_highlightDolchConjunctions(
           project ? project->IsHighlightingDolchConjunctions() :
                     wxGetApp().GetAppOptions().IsHighlightingDolchConjunctions()),
@@ -854,7 +854,7 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
       m_excludeNumerals(project ? project->IsExcludingNumerals() :
                                   wxGetApp().GetAppOptions().IsExcludingNumerals()),
       m_excludeProperNouns(project ? project->IsExcludingProperNouns() :
-                                    wxGetApp().GetAppOptions().IsExcludingProperNouns()),
+                                     wxGetApp().GetAppOptions().IsExcludingProperNouns()),
       m_excludedPhrasesPath(project ? project->GetExcludedPhrasesPath() :
                                       wxGetApp().GetAppOptions().GetExcludedPhrasesPath()),
       // used to track whether user edited this list from this dialog
@@ -4883,7 +4883,9 @@ void ToolsOptionsDlg::CreateControls()
 
         optionsSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
-        CreateLabelHeader(Panel, panelSizer, _(L"Highlighting"), true);
+        CreateLabelHeader(Panel, panelSizer,
+                          // TRANSLATORS: How text is highlighted
+                          _(L"Highlighting"), true);
 
         wxBoxSizer* optionsIndentSizer = new wxBoxSizer(wxVERTICAL);
         panelSizer->Add(optionsIndentSizer, 0, wxLEFT, OPTION_INDENT_SIZE);
@@ -5076,7 +5078,8 @@ void ToolsOptionsDlg::CreateControls()
                                              wxDefaultPosition, wxDefaultSize, 0,
                                              wxGenericValidator(&m_highlightDolchNouns)),
                               wxSizerFlags{ 1 }.CenterVertical());
-                rowSizer->Add(m_DolchNounsColorButton, wxSizerFlags{}.Align(wxRight).Border(wxLEFT));
+                rowSizer->Add(m_DolchNounsColorButton,
+                              wxSizerFlags{}.Align(wxRight).Border(wxLEFT));
                 }
             }
         }
