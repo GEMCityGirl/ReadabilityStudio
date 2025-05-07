@@ -579,15 +579,24 @@ bool ReadabilityApp::OnInit()
 #ifndef NDEBUG
     wxFileTranslationsLoader::AddCatalogLookupPathPrefix(L".");
 #endif
-    wxTranslations* const translations{ new wxTranslations{} };
-    wxTranslations::Set(translations);
-    if (!translations->AddCatalog(_READSTUDIO_BINARY_NAME))
+    wxLogVerbose(L"UI Language: %d", static_cast<int>(GetAppOptions().GetUiLanguage()));
+    // if English, then just don't bother loading any translations
+    if (GetAppOptions().GetUiLanguage() != UiLanguage::English)
         {
-        wxLogDebug(L"Could not find application's translation catalog.");
-        }
-    if (!translations->AddStdCatalog())
-        {
-        wxLogDebug(L"Could not find standard translation catalog.");
+        wxTranslations* const translations{ new wxTranslations{} };
+        if (GetAppOptions().GetUiLanguage() == UiLanguage::Spanish)
+            {
+            translations->SetLanguage(wxLANGUAGE_SPANISH);
+            }
+        if (!translations->AddCatalog(_READSTUDIO_BINARY_NAME))
+            {
+            wxLogDebug(L"Could not find application's translation catalog.");
+            }
+        if (!translations->AddStdCatalog())
+            {
+            wxLogDebug(L"Could not find standard translation catalog.");
+            }
+        wxTranslations::Set(translations);
         }
 
     GetResourceManager().LoadArchive(FindResourceFile(L"res.wad"));
@@ -2923,9 +2932,10 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                                      ReadRibbonSvgIcon(L"ribbon/duplicate-files.svg"),
                                      _(L"Search for (and remove) duplicate files."));
 #endif
-            toolButtonBar->AddButton(XRCID("ID_VIEW_LOG_REPORT"), _(L"Log Report"),
-                                     ReadRibbonSvgIcon(L"ribbon/log-book.svg"),
-                                     _(L"View diagnostic information being logged by the program."));
+            toolButtonBar->AddButton(
+                XRCID("ID_VIEW_LOG_REPORT"), _(L"Log Report"),
+                ReadRibbonSvgIcon(L"ribbon/log-book.svg"),
+                _(L"View diagnostic information being logged by the program."));
             toolButtonBar->AddButton(XRCID("ID_SCRIPT_WINDOW"), _(L"Lua Script"),
                                      ReadRibbonSvgIcon(L"ribbon/lua.svg"),
                                      _(L"Edit and run scripts to automate tasks."));
@@ -3813,8 +3823,8 @@ MainFrame::MainFrame(wxDocManager* manager, wxFrame* frame,
         wxEVT_RIBBONBUTTONBAR_CLICKED,
         [this]([[maybe_unused]] wxRibbonButtonBarEvent&)
         {
-            const wxString manualPath = GetHelpDirectory() + wxFileName::GetPathSeparator() +
-                                        _DT(L"system-admin.pdf");
+            const wxString manualPath =
+                GetHelpDirectory() + wxFileName::GetPathSeparator() + _DT(L"system-admin.pdf");
             wxLaunchDefaultApplication(manualPath);
         },
         XRCID("ID_SYSADMIN"));

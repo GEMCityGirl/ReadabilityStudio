@@ -733,6 +733,7 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
       m_disablePeerVerify(wxGetApp().GetAppOptions().IsPeerVerifyDisabled()),
       m_useJsCookies(wxGetApp().GetAppOptions().IsUsingJavaScriptCookies()),
       m_persistJsCookies(wxGetApp().GetAppOptions().IsPersistingJavaScriptCookies()),
+      m_uiLanguage(static_cast<int>(wxGetApp().GetAppOptions().GetUiLanguage())),
       // log options
       m_logVerbose(wxGetApp().GetLogFile() != nullptr ? wxLog::GetVerbose() : false),
       m_logAppendDailyLog(wxGetApp().GetAppOptions().IsAppendingDailyLog()),
@@ -1697,9 +1698,13 @@ void ToolsOptionsDlg::SaveOptions()
         SaveStatisticsOptions();
         return;
         }
+    if (m_uiLanguage.has_changed())
+        {
+        wxGetApp().GetAppOptions().SetUiLanguage(static_cast<UiLanguage>(m_uiLanguage.get_value()));
+        }
     if (m_logVerbose.has_changed() && wxGetApp().GetLogFile() != nullptr)
         {
-        wxGetApp().GetLogFile()->SetVerbose(m_logVerbose.get_value());
+        wxLog::SetVerbose(m_logVerbose.get_value());
         }
     if (m_logAppendDailyLog.has_changed())
         {
@@ -1740,7 +1745,7 @@ void ToolsOptionsDlg::SaveOptions()
             {
             // batch projects may need to do a full re-indexing, so just set this flag as a shortcut
             m_readabilityProjectDoc->RefreshRequired(ProjectRefresh::FullReindexing);
-            // also update the filepaths if they were changed and we aren't embedding the documents
+            // also update the file paths if they were changed and we aren't embedding the documents
             if (m_fileList && m_fileList->HasItemBeenEditedByUser() &&
                 m_documentStorageMethod == static_cast<int>(TextStorage::NoEmbedText))
                 {
@@ -3222,9 +3227,23 @@ void ToolsOptionsDlg::CreateControls()
             m_sideBar->AddPage(generalSettingsPage, GetGeneralSettingsLabel(),
                                GENERAL_SETTINGS_PAGE, true, 10);
 
+            wxSizer* optionsSizer = new wxBoxSizer(wxHORIZONTAL);
+            docpanelSizer->Add(optionsSizer, wxSizerFlags{}.Expand());
+
+            optionsSizer->Add(new wxStaticText(generalSettingsPage, wxID_STATIC,
+                                               _(L"UI language (requires restart):")),
+                              wxSizerFlags{}.Border(wxLEFT).CenterVertical());
+
+            wxArrayString choiceStrings = { _(L"System Default"), _(L"English"), _(L"Spanish") };
+            auto* uiLangCombo =
+                new wxComboBox(generalSettingsPage, wxID_ANY, wxString{}, wxDefaultPosition,
+                               wxDefaultSize, choiceStrings, wxCB_DROPDOWN | wxCB_READONLY);
+            uiLangCombo->SetValidator(wxGenericValidator(&m_uiLanguage));
+            optionsSizer->Add(uiLangCombo, wxSizerFlags{}.Expand().Border());
+
             CreateLabelHeader(generalSettingsPage, docpanelSizer, _(L"Settings:"), true);
 
-            wxSizer* optionsSizer = new wxBoxSizer(wxVERTICAL);
+            optionsSizer = new wxBoxSizer(wxVERTICAL);
             docpanelSizer->Add(optionsSizer,
                                wxSizerFlags{}.Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 

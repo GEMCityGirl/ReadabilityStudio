@@ -1318,6 +1318,14 @@ class ReadabilityAppOptions
 
     void SetAppWindowHeight(const int height) noexcept { m_appWindowHeight = height; }
 
+    void SetUiLanguage(const UiLanguage lang) noexcept { m_uiLanguage = lang; }
+
+    [[nodiscard]]
+    UiLanguage GetUiLanguage() const noexcept
+        {
+        return m_uiLanguage;
+        }
+
     [[nodiscard]]
     wxString GetScriptEditorLayout() const
         {
@@ -2616,6 +2624,7 @@ class ReadabilityAppOptions
     bool m_appWindowMaximized{ true };
     int m_appWindowWidth{ 800 };
     int m_appWindowHeight{ 700 };
+    UiLanguage m_uiLanguage{ UiLanguage::Default };
     wxString m_scriptEditorLayout;
     // ribbon
     wxColour m_ribbonActiveTabColor{ wxColour{ 245, 246, 247 } };
@@ -2995,6 +3004,7 @@ class ReadabilityAppOptions
     const std::string_view XML_WINDOW_MAXIMIZED{ _DT("app-window-maximized") };
     const std::string_view XML_WINDOW_WIDTH{ _DT("app-window-width") };
     const std::string_view XML_WINDOW_HEIGHT{ _DT("app-window-height") };
+    const std::string_view XML_UI_LANGUAGE{ _DT("ui-language") };
     const std::string_view XML_LICENSE_ACCEPTED{ _DT("license-accepted") };
     const std::string_view XML_SCRIPT_EDITOR_LAYOUT{ _DT("script-editor-layout") };
     // web harvester options

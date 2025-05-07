@@ -262,6 +262,7 @@ void ReadabilityAppOptions::ResetSettings()
     BaseProjectDoc::ExportTextReports(true);
 
     m_appWindowMaximized = true;
+    m_uiLanguage = UiLanguage::Default;
     m_scriptEditorLayout.clear();
     // theme settings
     SetColorsFromSystem();
@@ -464,6 +465,8 @@ void ReadabilityAppOptions::LoadThemeNode(tinyxml2::XMLElement* appearanceNode)
             {
             m_appWindowHeight = 700;
             }
+        m_uiLanguage = static_cast<UiLanguage>(appearanceNode->ToElement()->IntAttribute(
+            XML_UI_LANGUAGE.data(), static_cast<int>(UiLanguage::Default)));
         m_scriptEditorLayout =
             appearanceNode->ToElement()->Attribute(XML_SCRIPT_EDITOR_LAYOUT.data());
         }
@@ -3462,6 +3465,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     appearance->SetAttribute(XML_WINDOW_MAXIMIZED.data(), bool_to_int(IsAppWindowMaximized()));
     appearance->SetAttribute(XML_WINDOW_WIDTH.data(), GetAppWindowWidth());
     appearance->SetAttribute(XML_WINDOW_HEIGHT.data(), GetAppWindowHeight());
+    appearance->SetAttribute(XML_UI_LANGUAGE.data(), static_cast<int>(GetUiLanguage()));
     appearance->SetAttribute(
         XML_SCRIPT_EDITOR_LAYOUT.data(),
         wxString{ encode({ GetScriptEditorLayout().wc_str() }, false) }.mb_str());

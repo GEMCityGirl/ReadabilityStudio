@@ -14,8 +14,17 @@
 #ifndef __OPTION_ENUMS_H__
 #define __OPTION_ENUMS_H__
 
+#include <wx/language.h>
+
 // helper enumerations
 //--------------------------------------------------
+enum class UiLanguage
+    {
+    Default,
+    English,
+    Spanish
+    };
+
 enum class InvalidTextFilterFormat
     {
     IncludeOnlyValidText,
