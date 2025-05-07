@@ -296,9 +296,9 @@ void WordListDlg::CreateControls()
     AddSingleColumnPage(m_sideBar, HARRIS_JACOBSON_PAGE_ID, HARRIS_JACOBSON_LIST_ID,
                         _DT(L"Harris-Jacobson"), 2, m_HJData,
                         BaseProject::m_harris_jacobson_word_list);
-    AddSingleColumnPage(m_sideBar, DALE_CHALL_PAGE_ID, DALE_CHALL_LIST_ID, _(L"New Dale-Chall"), 0,
+    AddSingleColumnPage(m_sideBar, DALE_CHALL_PAGE_ID, DALE_CHALL_LIST_ID, _DT(L"New Dale-Chall"), 0,
                         m_DCData, BaseProject::m_dale_chall_word_list);
-    AddSingleColumnPage(m_sideBar, SPACHE_PAGE_ID, SPACHE_LIST_ID, _(L"Spache Revised"), 3,
+    AddSingleColumnPage(m_sideBar, SPACHE_PAGE_ID, SPACHE_LIST_ID, _DT(L"Spache Revised"), 3,
                         m_SpacheData, BaseProject::m_spache_word_list);
     AddSingleColumnPage(m_sideBar, STOCKER_PAGE_ID, STOCKER_LIST_ID,
                         _(L"Stocker's Catholic Supplement"), 1, m_StockerData,
