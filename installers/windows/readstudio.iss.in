@@ -37,6 +37,8 @@ Source: ..\..\docs\readability-studio-api\docs\readability-studio-api.pdf; DestD
 Source: ..\..\docs\lua-5.4\doc\*; DestDir: {app}\readability-studio-manual\lua-5.4\doc; Components: HelpFiles; Excludes: "thumbs.db"; Flags: replacesameversion restartreplace recursesubdirs
 ; examples
 Source: ..\..\examples\*; DestDir: {app}\examples; Components: Examples; Excludes: "thumbs.db,README.md,\.git"; Flags: replacesameversion restartreplace recursesubdirs
+; translations
+Source: resources\es\*.mo; DestDir: {app}; Components: Translations; Flags: replacesameversion restartreplace recursesubdirs
 
 [Languages]
 #include "lang.isl"
@@ -62,6 +64,7 @@ Root: HKCR; Subkey: ReadStudioBatchProject\shell\open\command; ValueType: string
 Name: ProgramFiles; Description: {cm:ProgramFiles}; Flags: fixed; Types: Typical Custom
 Name: HelpFiles; Description: {cm:HelpFiles}; Types: Typical Custom
 Name: Examples; Description: {cm:Examples}; Types: Typical Custom
+Name: Translations; Description: {cm:Translations}; Types: Typical Custom
 
 [Types]
 Name: Typical; Description: {cm:Typical}
