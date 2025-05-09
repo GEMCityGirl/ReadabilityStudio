@@ -404,6 +404,7 @@ class BaseProjectView : public wxView
     [[nodiscard]]
     static wxString GetKeyWordsLabel()
         {
+        // TRANSLATORS: "Key" as in important.
         return _(L"Key Words");
         }
 
@@ -432,7 +433,7 @@ class BaseProjectView : public wxView
         }
 
     [[nodiscard]]
-    static wxString GetGilliamPenanMountainFryLabel()
+    static wxString GetGilliamPenaMountainFryLabel()
         {
         return _(L"Gilliam-Pe\U000000F1a-Mountain Graph");
         }
@@ -470,7 +471,7 @@ class BaseProjectView : public wxView
     [[nodiscard]]
     static wxString GetDB2Label()
         {
-        return _(L"Danielson-Bryan 2");
+        return _DT(L"Danielson-Bryan 2");
         }
 
     [[nodiscard]]

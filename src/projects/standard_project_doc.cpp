@@ -3934,8 +3934,8 @@ bool ProjectDoc::AddGilliamPenaMountainFryTest(const bool setFocus)
 
         fryGraphView->SetFixedObjectsGridSize(1, 1);
         fryGraphView->Hide();
-        fryGraphView->SetLabel(BaseProjectView::GetGilliamPenanMountainFryLabel());
-        fryGraphView->SetName(BaseProjectView::GetGilliamPenanMountainFryLabel());
+        fryGraphView->SetLabel(BaseProjectView::GetGilliamPenaMountainFryLabel());
+        fryGraphView->SetName(BaseProjectView::GetGilliamPenaMountainFryLabel());
         fryGraphView->SetPrinterSettings(*wxGetApp().GetPrintData());
 
         auto gFryGraph = std::make_shared<FryGraph>(fryGraphView,

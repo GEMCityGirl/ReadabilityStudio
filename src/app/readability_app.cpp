@@ -668,7 +668,7 @@ bool ReadabilityApp::OnInit()
                          std::make_pair(_DT(L"1990s"), DONTTRANSLATE(L"decade1990s")),
                          std::make_pair(_DT(L"2000s"), DONTTRANSLATE(L"decade2000s")),
                          std::make_pair(_(L"October"), DONTTRANSLATE(L"october")),
-                         std::make_pair(_(L"Slytherin"), DONTTRANSLATE(L"slytherin")),
+                         std::make_pair(DONTTRANSLATE(L"Slytherin"), DONTTRANSLATE(L"slytherin")),
                          std::make_pair(_(L"Campfire"), DONTTRANSLATE(L"campfire")),
                          std::make_pair(_(L"Coffee Shop"), DONTTRANSLATE(L"coffeeshop")),
                          std::make_pair(_(L"Arctic Chill"), DONTTRANSLATE(L"arcticchill")),
@@ -2477,8 +2477,9 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 editButtonBar->AddToggleButton(
-                    XRCID("ID_EDIT_GRAPH_SHOWCASE_KEY_ITEMS"), _(L"Showcase"),
-                    wxGetApp().ReadRibbonSvgIcon(L"ribbon/showcase.svg"),
+                    XRCID("ID_EDIT_GRAPH_SHOWCASE_KEY_ITEMS"),
+                    // TRANSLATORS: Draw attention to.
+                    _(L"Showcase"), wxGetApp().ReadRibbonSvgIcon(L"ribbon/showcase.svg"),
                     _(L"Toggle whether complex word bars are being showcased."));
 
                 editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"),

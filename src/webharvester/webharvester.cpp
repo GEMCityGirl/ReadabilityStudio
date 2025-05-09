@@ -409,9 +409,10 @@ bool WebHarvester::CrawlLinks()
     wxStringTokenizer tkz(m_url, L"\n\r", wxTOKEN_STRTOK);
     const wxString urlLabel = m_hideFileNamesWhileDownloading ? wxString{ _(L"...") } :
                                                                 L" \"" + tkz.GetNextToken() + L"\"";
-    m_progressDlg =
-        new wxProgressDialog(_(L"Web Harvester"), wxString::Format(_(L"Harvesting %s"), urlLabel),
-                             5, nullptr, wxPD_SMOOTH | wxPD_ELAPSED_TIME | wxPD_CAN_ABORT);
+    m_progressDlg = new wxProgressDialog(_(L"Web Harvester"),
+                                         // TRANSLATORS: Gathering pages from a website.
+                                         wxString::Format(_(L"Harvesting %s"), urlLabel), 5,
+                                         nullptr, wxPD_SMOOTH | wxPD_ELAPSED_TIME | wxPD_CAN_ABORT);
     m_progressDlg->Centre();
     m_progressDlg->Raise();
 

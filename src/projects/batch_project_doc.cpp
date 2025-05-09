@@ -1114,7 +1114,7 @@ void BatchProjectDoc::LoadSummaryStatsSection()
         m_summaryStatsColumnNames.push_back(_(L"Number of redundant phrases"));
         m_summaryStatsColumnNames.push_back(_(L"Number of overused words (x sentence)"));
         m_summaryStatsColumnNames.push_back(_(L"Number of wordy items"));
-        m_summaryStatsColumnNames.push_back(_(L"Number of Clich\u00E9s"));
+        m_summaryStatsColumnNames.push_back(_(L"Number of clich\u00E9s"));
         m_summaryStatsColumnNames.push_back(_(L"Number of passive voices"));
         m_summaryStatsColumnNames.push_back(_(L"Number of sentences that begin with conjunctions"));
         m_summaryStatsColumnNames.push_back(_(L"Number of Sentences that begin with lowercased words"));
@@ -1370,7 +1370,7 @@ void BatchProjectDoc::LoadSummaryStatsSection()
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetOverusedWordsBySentenceCount());
             assert(m_summaryStatsColumnNames[columnCount] == _(L"Number of wordy items"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetWordyPhraseCount());
-            assert(m_summaryStatsColumnNames[columnCount] == _(L"Number of Clich\u00E9s"));
+            assert(m_summaryStatsColumnNames[columnCount] == _(L"Number of clich\u00E9s"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetClicheCount());
             assert(m_summaryStatsColumnNames[columnCount] == _(L"Number of passive voices"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++, doc->GetPassiveVoicesCount());
@@ -1412,7 +1412,9 @@ void BatchProjectDoc::LoadWarningsSection()
         {
         // in case there are more warnings than expected, then resize it
         if (warningCount >= m_warnings->GetItemCount())
-            { m_warnings->SetSize(m_warnings->GetItemCount()*1.5); }
+            {
+            m_warnings->SetSize(m_warnings->GetItemCount() * 1.5);
+            }
         m_warnings->SetItemText(warningCount, 0, message.GetMessage());
         ++warningCount;
         }
@@ -1491,14 +1493,15 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
         pos != m_docs.end();
         ++pos)
         {
-        // clear the document's text just in case the user switched from embedding to linking. If the user
-        // switched from linking to embedded then note that the documents will need to be externally loaded
-        // here to reacquire the text.
+        // clear the document's text just in case the user switched from embedding to linking.
+        // If the user switched from linking to embedded then note that the documents will need
+        // to be externally loaded here to reacquire the text.
         if (GetDocumentStorageMethod() == TextStorage::NoEmbedText)
             { (*pos)->FreeDocumentText(); }
         // pre-2007 Microsoft Word files (*.doc) are difficult to detect lists in, so if we are
         // not explicitly specifying "fitted to the page" analysis for this project (above),
-        // then override the global option and set it to treat all newlines as the end of a paragraph.
+        // then override the global option and set it to treat all newlines as the
+        // end of a paragraph.
         if (m_adjustParagraphParserForDocFiles &&
             wxFileName((*pos)->GetOriginalDocumentFilePath()).GetExt().CmpNoCase(_DT(L"doc")) == 0)
             {
@@ -1646,8 +1649,9 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
                                               archiveFilePos->second->GetMessages().back().m_icon);
                     archiveFilePos->second->ClearMessages();
                     }
-                // Only load the document if the archive read didn't fail. Otherwise, LoadDocumentNoUI()
-                // will try to load the ZIP file and get the same error.
+                // Only load the document if the archive read didn't fail.
+                // Otherwise, LoadDocumentNoUI() will try to load the ZIP file and
+                // get the same error.
                 if (memstream.GetLength())
                     {
                     const std::pair<bool, std::wstring> extractResult =
@@ -1684,13 +1688,15 @@ bool BatchProjectDoc::LoadDocuments(wxProgressDialog& progressDlg)
         // passing in an archived file that we extracted here will cause the
         // subproject to use embedded text, see reset it after loading the document
         (*pos)->SetDocumentStorageMethod(GetDocumentStorageMethod());
-        // free the text from the document to conserve memory (unless we are embedding it in the project)
+        // free the text from the document to conserve memory
+        // (unless we are embedding it in the project)
         if (GetDocumentStorageMethod() == TextStorage::NoEmbedText)
             {
             (*pos)->FreeDocumentText();
             }
 
-        // NOTE: Grammar info needs to be loaded here before the documents' word collections are deleted
+        // NOTE: Grammar info needs to be loaded here before the documents'
+        // word collections are deleted
 
         // misspellings
         if ((*pos)->LoadingOriginalTextSucceeded() &&
@@ -2864,8 +2870,8 @@ void BatchProjectDoc::LoadScoresSection()
             else
                 { m_scoreRawData->SetItemText(i, currentColumn++, wxString{}); }
             }
-        // increment this here because our current index into the score data will not be the same as the
-        // index into the current document if any of the documents failed
+        // increment this here because our current index into the score data will not be the same
+        // as the index into the current document if any of the documents failed
         ++i;
         }
     m_scoreRawData->SetSize(i);
@@ -4546,8 +4552,8 @@ void BatchProjectDoc::DisplayBoxPlots()
                 boxPlot->SetStippleShapeColor(GetStippleShapeColor());
 
                 const auto [rangeStart, rangeEnd] = boxPlot->GetLeftYAxis().GetRange();
-                // Set the ranges to fit the index range. Note that the calculated outlier ranges may
-                // go outside of the standard test range, so use the calculated range if larger.
+                // Set the ranges to fit the index range. Note that the calculated outlier ranges
+                // may go outside of the standard test range, so use the calculated range if larger.
                 if (sTest.get_test().get_id() == ReadabilityMessages::FLESCH().wc_str())
                     {
                     boxPlot->GetLeftYAxis().SetRange(
@@ -4705,7 +4711,8 @@ void BatchProjectDoc::DisplayBoxPlots()
                 boxPlot->ShowAllPoints(IsShowingAllBoxPlotPoints());
 
                 // Adjust the axis range and load its labels,
-                // and force the grade (Y) axis to show the full range of Kindergarten through Doctorate.
+                // and force the grade (Y) axis to show the full range of
+                // Kindergarten through Doctorate.
                 boxPlot->GetLeftYAxis().SetRange(0, 19, 0, 1, 1);
                 for (int i = 0; i < 20; ++i)
                     {
@@ -5085,7 +5092,8 @@ bool BatchProjectDoc::RunProjectWizard(const wxString& path)
         // short, terse forms
         else if (wizard->GetSelectedDocumentType() == readability::document_classification::nonnarrative_document)
             {
-            // override how headers and lists are counted so that they are always included if this is a form
+            // override how headers and lists are counted so that they are
+            // always included if this is a form
             SetInvalidSentenceMethod(InvalidSentence::IncludeAsFullSentences);
 
             for (auto rTest = GetReadabilityTests().get_tests().begin();
@@ -5359,7 +5367,8 @@ bool BatchProjectDoc::RunProjectWizard(const wxString& path)
         }
     else if (wizard->IsFragmentedTextSelected())
         {
-        // override how headers and lists are counted so that they are always included if this is a form
+        // override how headers and lists are counted so that they are
+        // always included if this is a form
         SetInvalidSentenceMethod(InvalidSentence::IncludeAsFullSentences);
         for (CustomReadabilityTestCollection::const_iterator pos = m_custom_word_tests.cbegin();
             pos != m_custom_word_tests.cend();
@@ -5573,8 +5582,9 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
         if (m_File.Open(GetFilename(), wxFile::read) )
             {
             m_FileReadOnly = true;
-            LogMessage(_(L"File appears to be open by another application. Project file will be opened as read only."),
-                _(L"Project Open"), wxOK|wxICON_INFORMATION);
+            LogMessage(_(L"File appears to be open by another application. "
+                         "Project file will be opened as read only."),
+                       _(L"Project Open"), wxOK | wxICON_INFORMATION);
             }
         else
             {
@@ -5712,7 +5722,8 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
     view->Present();
     UpdateAllViews();
 
-    view->GetSideBar()->SelectSubItem(view->GetSideBar()->FindSubItem(BatchProjectView::ID_SCORE_LIST_PAGE_ID));
+    view->GetSideBar()->SelectSubItem(
+        view->GetSideBar()->FindSubItem(BatchProjectView::ID_SCORE_LIST_PAGE_ID));
     auto* scoresWindow = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
         view->GetScoresView().FindWindowById(BaseProjectView::ID_SCORE_LIST_PAGE_ID));
     if (scoresWindow != nullptr && scoresWindow->GetItemCount() > 0)
@@ -6795,9 +6806,7 @@ void BatchProjectDoc::SetScoreStatsRow(
 void BatchProjectDoc::RemoveDocument(const wxString& docName)
     {
     std::optional<size_t> position{ std::nullopt };
-    for (std::vector<BaseProject*>::iterator pos = m_docs.begin();
-        pos != m_docs.end();
-        ++pos)
+    for (std::vector<BaseProject*>::iterator pos = m_docs.begin(); pos != m_docs.end(); ++pos)
         {
         if (CompareFilePaths((*pos)->GetOriginalDocumentFilePath(), docName) == 0)
             {
@@ -6809,20 +6818,26 @@ void BatchProjectDoc::RemoveDocument(const wxString& docName)
         }
     // if not found then don't bother looking for it in the file paths list
     if (!position.has_value())
-        { return; }
+        {
+        return;
+        }
     // Also remove the filepath from the list of file paths. These should already be synced up, so
-    // we can remove it from the same position. If they are not synced up, then something is wrong, so
-    // then we would re-sync everything to fix it.
+    // we can remove it from the same position. If they are not synced up, then something is wrong,
+    // so then we would re-sync everything to fix it.
     // cppcheck-suppress assertWithSideEffect
     assert(position.value() < GetSourceFilesInfo().size());
     // cppcheck-suppress assertWithSideEffect
     assert(CompareFilePaths(GetOriginalDocumentFilePath(position.value()), docName) == 0);
     if (position.value() < GetSourceFilesInfo().size() &&
         CompareFilePaths(GetOriginalDocumentFilePath(position.value()), docName) == 0)
-        { GetSourceFilesInfo().erase(GetSourceFilesInfo().begin() + position.value()); }
+        {
+        GetSourceFilesInfo().erase(GetSourceFilesInfo().begin() + position.value());
+        }
     // should never happen, this is a fail safe
     else
-        { SyncFilePathsWithDocuments(); }
+        {
+        SyncFilePathsWithDocuments();
+        }
     }
 
 //-------------------------------------------------------
@@ -6830,9 +6845,8 @@ void BatchProjectDoc::SyncFilePathsWithDocuments()
     {
     GetSourceFilesInfo().clear();
     GetSourceFilesInfo().reserve(m_docs.size());
-    for (std::vector<BaseProject*>::const_iterator pos = m_docs.cbegin();
-        pos != m_docs.cend();
-        ++pos)
+    for (std::vector<BaseProject*>::const_iterator pos = m_docs.cbegin(); pos != m_docs.cend();
+         ++pos)
         {
         assert((*pos)->GetSourceFilesInfo().size());
         GetSourceFilesInfo().push_back((*pos)->GetSourceFilesInfo().at(0));

@@ -843,6 +843,7 @@ wxString ReadabilityMessages::GetQuebecScaleLabel(size_t value)
     switch (value)
         {
     case 0:
+        // TRANSLATORS: Kindergarten in Quebec.
         return _(L"Maternelle");
         break;
     case 1:

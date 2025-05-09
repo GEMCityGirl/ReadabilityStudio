@@ -402,6 +402,7 @@ class ToolsOptionsDlg final : public wxDialog
     [[nodiscard]]
     wxString GetShowcaseKeyItemsLabel() const
         {
+        // TRANSLATORS: "key" as in important.
         return _(L"Showcase key items");
         }
 

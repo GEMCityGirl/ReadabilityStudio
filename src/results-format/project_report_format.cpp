@@ -2178,7 +2178,9 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
         if (project->GetReadabilityTests().is_test_included(ReadabilityMessages::GUNNING_FOG()))
             {
             // Fog
-            htmlText += tableStart + formatHeader(_(L"Fog Words")) +
+            htmlText += tableStart +
+                        // TRANSLATORS: "Fog" is the name of a test, don't translate that part.
+                        formatHeader(_(L"Fog Words")) +
                         formatRow(_(L"Number of Fog hard words (3+ syllables, with <a "
                                     "href=\"#FogHelp\">exceptions</a>):"),
                                   wxNumberFormatter::ToString(

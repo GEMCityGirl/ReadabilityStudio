@@ -259,7 +259,9 @@ void WebHarvesterDlg::CreateControls()
                                      wxDefaultSize, wxTAB_TRAVERSAL);
         wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
         Panel->SetSizer(panelSizer);
-        m_sideBarBook->AddPage(Panel, _(L"Harvesting"), ID_HARVESTING_PAGE, true);
+        m_sideBarBook->AddPage(Panel,
+                               // TRANSLATORS: Gathering pages from a website.
+                               _(L"Harvesting"), ID_HARVESTING_PAGE, true);
 
         // the URLs
         wxStaticBoxSizer* urlSizer = new wxStaticBoxSizer(
