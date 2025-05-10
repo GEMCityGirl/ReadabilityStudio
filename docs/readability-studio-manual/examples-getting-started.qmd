@@ -224,7 +224,7 @@ The language option is only available in the *Language Pack* and *Professional* 
 
 Next, open any web browser, go to the webpage, and copy its URL (i.e., address) onto the clipboard.
 
-![]("images/non-generated/webbrowser.png"){width=75% fig-align="center"}
+![](images/non-generated/webbrowser.png){width=75% fig-align="center"}
 
 Now, go back to the project wizard and select **Read text from a file or webpage**. Paste the URL into the file-path field, as illustrated below.
 
@@ -246,7 +246,7 @@ Aside from non-narrative forms, it is normally recommended to ignore incomplete 
 If you wish to include incomplete sentences in the analysis, click the `r keys("Properties")` button on the **Home** tab to display the **Project Properties** dialog.
 Next, click the **Document Indexing** icon, and select the **Do not exclude any text** option.
 
-![]("images/donotexcludeincompletesentences.png"){width=75% fig-align="center"}
+![](images/donotexcludeincompletesentences.png){width=75% fig-align="center"}
 
 Note that this option is also available on the [**Options**](#sec-options-overview) dialog (from the **Tools** tab) if you wish to change this behavior for all future projects.
 
@@ -255,7 +255,7 @@ By default, the project will directly link to the webpage, although you can chan
 To toggle this behavior, click the `r keys("Properties")` button on the **Home** tab to display the **Project Properties** dialog.
 Then click the **Project Settings** icon. Here, we can see that **Reload the source document when opening project** is selected.
 
-![]("images/reloadwebpage.png"){width=75% fig-align="center"}
+![](images/reloadwebpage.png){width=75% fig-align="center"}
 
 By having this option selected, you will reload the page's content whenever you reopen the project (or at anytime by pressing `r keys("F5")`).
 If you prefer to embed the current version of this page into the project, then select **Embed the source document's original text in the project file**.
@@ -317,15 +317,15 @@ At this point, we will want to temporarily filter out the smaller of these long 
 From the **Home** tab, click the `r keys("Properties")` button and then select **Analysis**.
 As shown below, we have a couple of different ways to determine if a sentence is overly long:
 
-![]("images/featuressentoptions.png"){width=75% fig-align="center"}
+![](images/featuressentoptions.png){width=75% fig-align="center"}
 
 The first option is to define a specific word count as the long sentence boundary. Enter *25* where it says **Longer than [22] words** and click the `r keys("OK")` button. The program will now reanalyze the file, classifying any sentences longer than 25 (instead of 22) as overly long. As shown below, sentences that are between 23–25 words are no longer being considered overly long:
 
-![]("images/featuressentences25.png"){width=75% fig-align="center"}
+![](images/featuressentences25.png){width=75% fig-align="center"}
 
 The second option is to consider sentences overly long if they are comparatively longer than the other sentences in the document. From the **Home** tab, click the `r keys("Properties")` button and then select **Analysis**. Select the option **Outside sentence-length outlier range** and click the `r keys("OK")` button. At this point, the boundary for overly-long sentences will be calculated based on the outlier range of the sentence lengths. After reanalyzing the file, note how there are only two highlighted sentences. One sentence contains 45 words and the other 48 words. These are the two "worst offenders" and should be either reworded or split into small sentences.
 
-![]("images/featuressentencesoutliers.png"){width=75% fig-align="center"}
+![](images/featuressentencesoutliers.png){width=75% fig-align="center"}
 
 To see what the outlier range is, click on the **Summary Statistics** icon in the project sidebar. Here we can see that any sentence more than 43 words is considered overly long.
 
@@ -358,19 +358,19 @@ Let's begin by opening a mid-sized technical document. Select the **Help** tab o
 
 Once the project is created, select **Sentences Breakdown** on the sidebar, and click on the **Lengths (Density)** subitem. Here we will see a heatmap showing the sentences going from left-to-right, where their colors represent the length. Additionally, if the document contains 500 or less paragraphs, then the sentences will be grouped by paragraphs. In this example, the heatmap will show four columns, each containing ~25 paragraphs. These paragraphs go from top-to-bottom, then left-to-right across the columns. In each paragraph, its sentences are shown left-to-right.
 
-![]("images/fixed-with-r-sentencemap.png"){width=75% fig-align="center"}
+![](images/fixed-with-r-sentencemap.png){width=75% fig-align="center"}
 
 In the above heatmap, we can see that the first half of the document contains mostly one-word sentences (most of which are medium length). In most of the second half of the document there are a few more longer sentences, although the paragraphs do remain within 1-2 sentences. In the last ten paragraphs, however, we do see longer paragraphs that also happen to contain longer sentences. In this case, we may want to review the ending section of the document.
 
 Close this project and return to the **Help** tab of the ribbon. Click the `r keys('Example Documents')` button again and select "Instructional Disclaimer." Create a new project with the defaults and select the heatmap when the project opens.
 
-![]("images/disclaimer-sentencemap.png"){width=75% fig-align="center"}
+![](images/disclaimer-sentencemap.png){width=75% fig-align="center"}
 
 In the above graph, we can see that most paragraphs begin with a short intro sentence, but are then followed by rather long sentences. (Some sentences being as high as 40 words.)  Also of interest is a paragraph containing ten sentences—which will be difficult to read through.
 
 Finally, let's view a novel. Close this project and return to the **Help** tab of the ribbon. Click the `r keys('Example Documents')` button again and select *A Christmas Carol*. Create a new project with the defaults and select the heatmap when the project opens.
 
-![]("images/christmas-carol-sentencemap.png"){width=75% fig-align="center"}
+![](images/christmas-carol-sentencemap.png){width=75% fig-align="center"}
 
 Because this document contains more than 500 paragraphs, grouping will not be used. Instead, the sentences will appear in a single heatmap, where the all sentences are displayed left-to-right, top-to-bottom. In the above graph, we can see that the novel's sentences range from 1-19 words in length. Also, the sentence lengths are rather evenly distributed. In other words, the longer sentences are not clumping together within any particular section.
 
@@ -384,7 +384,7 @@ Almost all readability formulas use sentence length as a factor. Because of this
 
 First, let's view the document. From the **Help** tab on the ribbon, click the `r keys('Example Documents')` button, and select "Summer Code Camp." Next, you will be prompted to either create a new project or view the document; select **View document**. Once the flyer is opened, note how it mostly contains simple text boxes:
 
-![]("images/non-generated/summer-code-camp-flyer.png"){width=75% fig-align="center"}
+![](images/non-generated/summer-code-camp-flyer.png){width=75% fig-align="center"}
 
 Rather than excluding these and only analyzing the few remaining sentences, we will analyze everything. Also, we will only use a test that is designed to not rely on sentence lengths.
 
@@ -408,17 +408,17 @@ With this in mind, we will review both halves of the flyer from these perspectiv
 
 Select **Words Breakdown** on the sidebar and then select **3+ Syllables Report**. Here we can see some phrases that could be simplified:
 
-![]("images/summer-code-camp-upper-half1.png"){width=75% fig-align="center"}
+![](images/summer-code-camp-upper-half1.png){width=75% fig-align="center"}
 
 For example, we could remove *Proudly presented* or replace it with *Offered*. Scrolling down further:
 
-![]("images/summer-code-camp-upper-half2.png"){width=75% fig-align="center"}
+![](images/summer-code-camp-upper-half2.png){width=75% fig-align="center"}
 
 The highlighted line above could be rewritten to something like *New to programming? No Problem!*.
 
 Scrolling to the bottom, we can review the second half of this flyer. The content here is meant for parents and their children to fill out together.
 
-![]("images/summer-code-camp-lower-half.png"){width=75% fig-align="center"}
+![](images/summer-code-camp-lower-half.png){width=75% fig-align="center"}
 
 Although there are some longer words here, the responsible adult intended to sign this should be able to understand the content.
 
@@ -443,7 +443,7 @@ First, let's review the concepts of this document to get a broad idea of what it
 This word cloud shows the document's words, after they have been combined (via stemming) and common words (e.g., articles) have been removed.
 The size of the words are relative to their frequencies. As an example, the words "Company" and "Customer" appear much more frequently than any other word:
 
-![]("images/example-difficult-words-wordcloud.png"){width=75% fig-align="center"}
+![](images/example-difficult-words-wordcloud.png){width=75% fig-align="center"}
 
 From this, we can glean that this document is about a customer and company relationship.
 Looking further, we may notice other words such as "claims," "responsibilities," "legal," and "liable."
@@ -453,12 +453,12 @@ Next, click **Syllable Counts** on the sidebar (the one with the histogram icon)
 In these histograms, we want to see a right-tailed distribution, where the bin sizes go down as you go from one-syllable words to more complex ones.
 Although that is the pattern we see here, it has an alarming number of complex words — approximately a third of the document.
 
-![]("images/example-difficult-syllables-histogram.png"){width=75% fig-align="center"}
+![](images/example-difficult-syllables-histogram.png){width=75% fig-align="center"}
 
 To draw attention to these groups of words, press the `r keys('Showcase')` on the ribbon.
 Now the cumulative bar group and labels will only be shown for these bars:
 
-![]("images/example-difficult-syllables-histogram-showcased.png"){width=75% fig-align="center"}
+![](images/example-difficult-syllables-histogram-showcased.png){width=75% fig-align="center"}
 
 If using a solid color for the bars, then the one- and two-syllable word bars will also be translucent.
 By "ghosting" these bars [@{tufte:eyes}24-25], the complex-word bars will receive the focus.
@@ -467,7 +467,7 @@ For another way to visualize complexity, click the **Syllable Counts** on the si
 Here we can see how much of the document consists of complex words by looking at the outer ring.
 We can further see a breakdown of these complex words in the inner ring, where almost a quarter of the document is three-syllable words:
 
-![]("images/example-difficult-syllables-pie-chart.png"){width=75% fig-align="center"}
+![](images/example-difficult-syllables-pie-chart.png){width=75% fig-align="center"}
 
 Note that because we previously pressed `r keys('Showcase')`, the simple-word slices are translucent and their labels are hidden.
 
@@ -477,7 +477,7 @@ For each box, its length is shown as number at its center.
 Also, the darker the box, the longer its length is compared to the rest of the sentences in the document.
 In this example, we can see that the sixth paragraph has ten sentences in it:
 
-![]("images/example-difficult-sentences-heatmap.png"){width=75% fig-align="center"}
+![](images/example-difficult-sentences-heatmap.png){width=75% fig-align="center"}
 
 There are also a few lengthy sentences in this paragraph, judging from the numbers and dark colors across the row.
 
@@ -485,7 +485,7 @@ Finally, let's review how word and sentence complexity affects readability showi
 From the **Readability** tab, click `r menu(c('Secondary','Fry'))` to add a [Fry](#sec-fry-test) test.
 Click on the **Readability Scores** icon on the project sidebar and select **Fry Graph**.
 
-![]("images/example-difficult-fry-showcased.png"){width=75% fig-align="center"}
+![](images/example-difficult-fry-showcased.png){width=75% fig-align="center"}
 
 Here, we can see that the document is scoring at *17+*. Long words are the main contributing factor
 for this, as the score point is pulled to the far right.

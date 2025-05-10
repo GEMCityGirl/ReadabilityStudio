@@ -102,7 +102,7 @@ You can also review the document with its difficult words and [sentences](#sec-r
 
 To determine the readability of a document collection, you will need to create a new batch project. First, click the `r keys("New")` button on the **Home** tab to open the **Select Project Type** dialog, as shown below:
 
-![]("images/selectprojecttype.png"){width=50% fig-align="center"}
+![](images/selectprojecttype.png){width=50% fig-align="center"}
 
 Select **Batch Project** and click the `r keys("OK")` button to proceed to the **New Project** wizard dialog, as shown below:
 

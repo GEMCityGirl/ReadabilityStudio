@@ -25,11 +25,11 @@ The **Raw Scores** subitem will display the scores for each document:
 
 Next to each document name, all of its respective test scores are displayed. In the above example, we can see that the file *NewProject.html* has an [ARI](#sec-ari-test)\index{Automated Readability Index} score of 12.1, a [New Dale-Chall](#sec-dale-chall-test) score of 16+, and a [Flesch-Kincaid](#sec-flesch-kincaid-test) score of 12. To view any document's scores in a vertical layout, double-click on it to display the **View Item** dialog:
 
-![]("images/viewitemrawscores.png"){width=45% fig-align="center"}
+![](images/viewitemrawscores.png){width=45% fig-align="center"}
 
 The **Goals** subitem will display any [goals](#sec-reviewing-goals) that are currently failing in the project:
 
-![]("images/batch-project-goals.png"){width=75% fig-align="center"}
+![](images/batch-project-goals.png){width=75% fig-align="center"}
 
 Above, we can see that most of the documents are passing the goal of having an ELF score below 12. However, most are failing to have an FRE score above 60.
 
@@ -98,7 +98,7 @@ A histogram will be created for each test. For grade level tests, the bins (i.e.
 The height of each bar will reflect the number of documents that scored within the bar's range.
 In the histogram below, we can see that 15 documents scored within the 10^th^ grade range for the [Flesch-Kincaid](#sec-flesch-kincaid-test) test:
 
-![]("images/histogrades.png"){width=75% fig-align="center"}
+![](images/histogrades.png){width=75% fig-align="center"}
 
 We interpret this first by looking at the highest bar. The label above it displays *15*, which is the number of documents in that category. Now, to see the category, we look at the x-axis labels below the bar.
 The *10* on the middle of the bar indicates the bar's range (in this case, the 10^th^ grade).
@@ -113,13 +113,13 @@ Continuing on, this batch has quite a few difficult documents. There are 15 docu
 
 Index tests (such as [Flesch](#sec-flesch-test)) will also have histograms, where the bins are ranges in the index. For example, in the histogram below we can see how most of the documents are in the lower range of the Flesch scale:
 
-![]("images/histoindex.png"){width=75% fig-align="center"}
+![](images/histoindex.png){width=75% fig-align="center"}
 
 From this histogram we can also conclude that this batch has too many difficult documents.
 
 If we revise these documents and reload the project (`r keys("F5")`), then these graphs will show improvement:
 
-![]("images/histoimproved.png"){width=75% fig-align="center"}
+![](images/histoimproved.png){width=75% fig-align="center"}
 
 The appearance of these histograms can be customized from the [**Histogram**](#sec-options-graphs) page of either the [**Options**](#sec-options-overview) or [**Project Properties**](#sec-options-overview) dialog.
 
@@ -136,14 +136,14 @@ After opening a project, click on the **Score Box Plots** icon on the project si
 
 If the project contains groups, then the boxes will be categorized into these groups:
 
-![]("images/boxgrouped.png"){width=75% fig-align="center"}
+![](images/boxgrouped.png){width=75% fig-align="center"}
 
 In the above example, note that the documents in the *Overviews* group mostly score in the high-school range.
 There are, however, a few outliers in this group that may need reviewing.
 
 Along with the grade-level box plots, a separate box plot for each index test will also be included. Below is a box plot of [Flesch](#sec-flesch-test) scores from a batch:
 
-![]("images/boxindex.png"){width=75% fig-align="center"}
+![](images/boxindex.png){width=75% fig-align="center"}
 
 As we can see above, the middle half of the documents fall within a marginally acceptable range of 46–60.5 (60–80 is normally preferred). The upper whisker goes up to 75, meaning that there are a decent number of document in the 60.5–75 range. Unfortunately, the lower whisker extends all the way to 33—this indicates a fair amount of difficult documents. As with the grade-level plot, this graph helps us conclude that some documents in this batch should be revised to lower their scores.
 
@@ -229,7 +229,7 @@ After opening a project, click on the **Grammar** icon on the project sidebar an
 
 To view a specific document's conjunction-starting sentences, double-click on its row in this list. A vertical display of that document's conjunction-starting sentences will be shown:
 
-![]("images/batchconjunctionviewitem.png"){width=60% fig-align="center"}
+![](images/batchconjunctionviewitem.png){width=60% fig-align="center"}
 
 Refer to @sec-reviewing-standard-grammar to learn more about conjunction-starting sentences.
 
@@ -243,7 +243,7 @@ Note that if the option [**Sentences must begin with capitalized words**](#sec-d
 
 To view a specific document's lowercased sentences, double-click on its row in this list. A vertical display of that document's lowercased sentences will be shown:
 
-![]("images/batchlowersentenceviewitem.png"){width=60% fig-align="center"}
+![](images/batchlowersentenceviewitem.png){width=60% fig-align="center"}
 
 ### Reviewing Repeated Words {-}
 
@@ -253,11 +253,11 @@ After opening a project, click on the **Grammar** icon on the project sidebar an
 
 If a repeated word occurs more than once in a document, then a multiplication factor will be shown next to it. For example, if *the the* occurs two separate times in a given document, then this will be displayed as *the the\*2*:
 
-![]("images/batchrepeatedmultiple.png"){width=75% fig-align="center"}
+![](images/batchrepeatedmultiple.png){width=75% fig-align="center"}
 
 To view a specific document's repeated words, double-click on its row in this list. A vertical display of that document's repeated words will be shown:
 
-![]("images/batchrepeatedviewitem.png"){width=75% fig-align="center"}
+![](images/batchrepeatedviewitem.png){width=75% fig-align="center"}
 
 Refer to @sec-reviewing-standard-grammar and @sec-repeated-word-exceptions to learn how repeated words are detected.
 
@@ -273,7 +273,7 @@ If an article mismatch occurs more than once in a document, then a multiplicatio
 
 To view a specific document's article mismatches, double-click on its row in this list. A vertical display of that item will be shown:
 
-![]("images/viewitemarticlemismatch.png"){width=35% fig-align="center"}
+![](images/viewitemarticlemismatch.png){width=35% fig-align="center"}
 
 Refer to @sec-article-mismatching to learn more.
 
@@ -290,7 +290,7 @@ If a wording error occurs more than once in a document, then a multiplication fa
 
 To view a specific document's errors, double click on its row. A vertical display of that document's wording errors will be shown:
 
-![]("images/batchwordingerrorsviewitem.png"){width=60% fig-align="center"}
+![](images/batchwordingerrorsviewitem.png){width=60% fig-align="center"}
 
 ### Reviewing Possible Misspellings {-}
 
@@ -305,7 +305,7 @@ If a misspelling occurs more than once in a document, then a multiplication fact
 
 To view a specific document's misspellings, right click on its row and select **View Item**. A vertical display of that document's misspellings will be shown:
 
-![]("images/batchmisspellingsviewitem.png")width=60% fig-align="center"}
+![](images/batchmisspellingsviewitem.png)width=60% fig-align="center"}
 
 To add any document's misspellings to your dictionary, double click on its row to show the **Add to Dictionary** dialog. From here, you can add any (or all) reported misspellings to your dictionary. Afterwards, these words will no longer be reported as misspelled.
 
@@ -323,7 +323,7 @@ If a redundant phrase occurs more than once in a document, then a multiplication
 
 To view a specific document's redundant phrases, double-click on its row in this list. A vertical display of that document's redundant phrases will be shown:
 
-![]("images/batchredundantphrasesviewitem.png"){width=75% fig-align="center"}
+![](images/batchredundantphrasesviewitem.png){width=75% fig-align="center"}
 
 Refer to @sec-reviewing-standard-grammar for an explanation of what redundant phrase are.
 
@@ -339,7 +339,7 @@ If a wordy item occurs more than once in a document, then a multiplication facto
 
 To view a specific document's wordy item, double-click on its row in this list. A vertical display of that item will be shown:
 
-![]("images/viewitemwordyphrase.png"){width=50% fig-align="center"}
+![](images/viewitemwordyphrase.png){width=50% fig-align="center"}
 
 Refer to @sec-reviewing-standard-grammar for an explanation about wordy phrases.
 
@@ -351,11 +351,11 @@ After opening a project, click on the **Grammar** icon on the project sidebar an
 
 If a cliché occurs more than once in a document, then a multiplication factor will be shown next to it. For example, if *off the wall* occurs four separate times in a given document, then this will be displayed as *off the wall\*4*:
 
-![]("images/batchclichemultiple.png"){width=75% fig-align="center"}
+![](images/batchclichemultiple.png){width=75% fig-align="center"}
 
 To view a specific document's clichés, double-click on its row in this list. A vertical display of that document's clichés will be shown:
 
-![]("images/batchclichesviewitem.png"){width=75% fig-align="center"}
+![](images/batchclichesviewitem.png){width=75% fig-align="center"}
 
 Refer to @sec-reviewing-standard-grammar for an explanation about clichés.
 
@@ -369,7 +369,7 @@ If a passive phrase occurs more than once in a document, then a multiplication f
 
 To view a specific document's passive phrases, right click on its row and select **View Item**. A vertical display of that document's passive phrases will be shown:
 
-![]("images/batchpassivevoiceviewitem.png"){width=25% fig-align="center"}
+![](images/batchpassivevoiceviewitem.png){width=25% fig-align="center"}
 
 Refer to @sec-reviewing-standard-grammar for an explanation about passive phrases.
 

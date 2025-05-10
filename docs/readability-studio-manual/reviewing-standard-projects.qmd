@@ -122,7 +122,7 @@ Goals are recommended score ranges that a document should fall within.
 
 If a project contains goals, then a **Goals** section will be available to show whether they were met. For example:
 
-![]("images/standard-project-goals.png"){width=75% fig-align="center"}
+![](images/standard-project-goals.png){width=75% fig-align="center"}
 
 In the above image, we can see that this project is recommending:
 
@@ -240,7 +240,7 @@ The different types of graphs that may be shown are:
 ::: {.minipage data-latex="{\textwidth}"}
 **Word Counts** [bar chart](#sec-options-graphs): This graph shows the total counts of each type of word (e.g., 3+ syllable words) and how each category compares to one another. This bar chart will appear like this:
 
-![]("images/barchart.png"){width=75% fig-align="center"}
+![](images/barchart.png){width=75% fig-align="center"}
 
 In the above example, we can see that there are 70 unfamiliar New Dale-Chall words, but only 42 three+ syllable words. From this, we could infer that we should first concentrate on replacing these unfamiliar words.
 Lists of these words can be found by clicking on the [**Difficult Words**](#sec-reviewing-word-breakdowns) icon on the project sidebar.
@@ -249,7 +249,7 @@ Lists of these words can be found by clicking on the [**Difficult Words**](#sec-
 :::: {.minipage data-latex="{\textwidth}"}
 **Syllable Counts**: This is a histogram of the words, grouped by syllable count\index{syllables!reviewing in the results}.
 
-![]("images/syllable-count-histogram.png"){width=75% fig-align="center"}
+![](images/syllable-count-histogram.png){width=75% fig-align="center"}
 
 In the above histogram, we see that most of the words are either 1 or 2 syllables. There are only 25 three-syllable words and 17 four-syllable words in the document.
 (Note that selecting a bar will display the first 25 words within that syllable group.)
@@ -268,7 +268,7 @@ Most tests use the total word count variable, although there are some that use u
 **Syllable Counts**: This is a donut chart of the words, grouped by syllable count (along the inner ring).
 Additionally, an outer ring categorizes these subgroups into simple and complex words. (One- and two-syllable words are considered simple, while three [and higher] syllable words are complex.)
 
-![]("images/syllables-pie-chart.png"){width=75% fig-align="center"}
+![](images/syllables-pie-chart.png){width=75% fig-align="center"}
 
 The above donut chart shows similar results to the previous histogram.
 With this visualization, however, it is easier to compare the overall complex- and simple-word groups.
@@ -279,7 +279,7 @@ Also, looking at the inner ring, we can see that ~two-thirds of the words are on
 ::: {.minipage data-latex="{\textwidth}"}
 **Key Word Cloud**: In conjunction with the **Key Words** list, a key word cloud is also included to visualize the main concepts of the document(s).
 
-![]("images/non-generated/key-word-cloud.png"){width=75% fig-align="center"}
+![](images/non-generated/key-word-cloud.png){width=75% fig-align="center"}
 
 A word cloud shows words from a document in a random layout with randomly assigned colors. The size of each word is based on its relative frequency within the document.
 In other words, the larger the word, the more often it is used compared to other words. \
@@ -336,13 +336,13 @@ Finally, any sentence lengths outside of the non-outlier range will be displayed
 
 A histogram is also available to visualize how the sentence lengths are distributed:
 
-![]("images/sentences-histogram.png"){width=75% fig-align="center"}
+![](images/sentences-histogram.png){width=75% fig-align="center"}
 
 In the above graph, we can see a large portion of short sentences, with the rest falling into a normal distribution.
 
 A heatmap of these sentence lengths is also included:
 
-![]("images/sentences-heatmap.png"){width=75% fig-align="center"}
+![](images/sentences-heatmap.png){width=75% fig-align="center"}
 
 This graph displays the document's sentence, going from left-to-right, top-to-bottom. Each square represents a sentence, and the square's color represents its word count. The darker a square, the higher the sentence's word count (relative to the document). Likewise, lighter squares represent the shorter sentences in the document. This is useful for visualizing the trend and density of a document's longer sentences. For example, if sections of the grid are darker than others, then the sentences are longer in these spots and should be reviewed. The example below demonstrates this:
 
@@ -673,7 +673,7 @@ There are two graphs available for review: **Dolch Coverage** and **Word Counts*
 The **Dolch Coverage** graph displays how much of each category is used in the document.
 Refer to @sec-reviewing-dolch for more information.
 
-![]("images/dolch-coverage-chart.png"){width=75% fig-align="center"}
+![](images/dolch-coverage-chart.png){width=75% fig-align="center"}
 
 As we can see in the above graph, 87.5% of the Dolch prepositions are used in the document.
 Pronouns and adverbs are also well covered with 76.9% and 73.5%, respectively.
@@ -683,7 +683,7 @@ From this, we can see that this document may be useful for some Dolch categories
 The **Words Breakdown** graph displays all the raw Dolch word counts, broken down by category.
 Refer to @sec-reviewing-dolch for more information.
 
-![]("images/dolch-word-breakdown.png"){width=75% fig-align="center"}
+![](images/dolch-word-breakdown.png){width=75% fig-align="center"}
 
 As we can see in the above graph, there are 938 total Dolch words used in this document.
 Unfortunately, there are also 489 non-Dolch words.
