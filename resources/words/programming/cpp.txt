@@ -72,6 +72,7 @@ bitwidth's
 bitwidths
 bool
 boolalpha
+bools
 break
 bsearch
 buffsize

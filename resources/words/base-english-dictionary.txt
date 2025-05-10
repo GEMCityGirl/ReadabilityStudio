@@ -8188,9 +8188,13 @@ autoconnect
 autoconnected
 autoconnecting
 autoconnects
+autocorrect
+autocorrected
+autocorrecting
 autocorrection
 autocorrection's
 autocorrections
+autocorrects
 autocorrelate
 autocorrelated
 autocorrelates
@@ -9040,6 +9044,9 @@ backends
 backer
 backer's
 backers
+backface
+backface's
+backfaces
 backfield
 backfield's
 backfields
@@ -17194,6 +17201,7 @@ cacao
 cacao's
 cacaos
 cacciatore
+cachable
 cache
 cache's
 cacheability
@@ -17475,7 +17483,9 @@ calculus's
 caldera
 caldera's
 calderas
+caldron
 caldron's
+caldrons
 calefacient
 calendar
 calendar's
@@ -18877,6 +18887,7 @@ carriageways
 carried
 carrier
 carrier's
+carrierless
 carriers
 carries
 carrion
@@ -20260,6 +20271,9 @@ chain
 chain's
 chainable
 chained
+chainer
+chainer's
+chainers
 chaining
 chainlike
 chains
@@ -24089,6 +24103,10 @@ coiner
 coiner's
 coiners
 coining
+coinitialize
+coinitialized
+coinitializes
+coinitializing
 coinminer
 coinminer's
 coinminers
@@ -35266,6 +35284,9 @@ deswizzle
 deswizzled
 deswizzles
 deswizzling
+desynchronization
+desynchronization's
+desynchronizations
 desynchronize
 desynchronized
 desynchronizes
@@ -47289,6 +47310,7 @@ failback
 failback's
 failbacks
 failed
+failfast
 failing
 failing's
 failingly
@@ -67522,6 +67544,7 @@ instantaneously
 instantaneousness
 instantaneousness's
 instanter
+instantiable
 instantiate
 instantiated
 instantiates
@@ -68530,6 +68553,7 @@ intersessions
 intersex
 intersexed
 intersexual
+intersite
 interspecies
 interspecific
 intersperse
@@ -87559,6 +87583,7 @@ nonagriculture
 nonalcoholic
 nonalcoholics
 nonalertable
+nonaliased
 nonaligned
 nonalignment
 nonalignment's
@@ -88215,6 +88240,7 @@ nonpresidential
 nonprimary
 nonprimitive
 nonprincessy
+nonprintable
 nonprinting
 nonprivileged
 nonprocedural
@@ -88319,6 +88345,7 @@ nonrhythmic
 nonrigid
 nonrivalrous
 nonroot
+nonrooted
 nonrotating
 nonroutable
 nonroutine
@@ -88354,6 +88381,7 @@ nonsensitive
 nonsequential
 nonsexist
 nonsexual
+nonsharable
 nonshivering
 nonsignaled
 nonsignificant
@@ -88462,12 +88490,14 @@ nontraditional
 nontraditionally
 nontransactional
 nontransferable
+nontransformed
 nontransgender
 nontransgender's
 nontransgenders
 nontransient
 nontransitive
 nontransparent
+nontransposed
 nontresspassory
 nontrivial
 nontropical
@@ -89124,6 +89154,9 @@ numismatist
 numismatist's
 numismatists
 nummular
+numpad
+numpad's
+numpads
 numskull
 numskull's
 numskulls
@@ -92827,6 +92860,7 @@ oversubscribe
 oversubscribed
 oversubscribes
 oversubscribing
+oversubscription
 oversubtle
 oversupplied
 oversupplies
@@ -98832,6 +98866,9 @@ pixelization
 pixelization's
 pixelizations
 pixels
+pixelshader
+pixelshader's
+pixelshaders
 pixes
 pixie
 pixie's
@@ -102141,6 +102178,7 @@ prefecture
 prefecture's
 prefectures
 prefer
+preferability
 preferable
 preferableness
 preferableness's
@@ -127681,6 +127719,10 @@ stockings
 stockist
 stockist's
 stockists
+stockkeep
+stockkeeping
+stockkeeps
+stockkept
 stockowner
 stockowner's
 stockowners
@@ -128824,6 +128866,9 @@ subacute
 subaddress
 subaddress's
 subaddresses
+suballocation
+suballocation's
+suballocations
 subaltern
 subaltern's
 subalterns
@@ -138793,6 +138838,7 @@ trisomy
 trisomy's
 trisoxalatoferrate
 tristate
+tristimulus
 tristrip
 tristrip's
 tristrips
@@ -142073,6 +142119,7 @@ ungracefulness
 ungracious
 ungraciously
 ungraciousness
+ungradable
 ungraded
 ungrammatical
 ungrammaticality
@@ -143242,6 +143289,7 @@ unremitted
 unremitting
 unremittingly
 unremunerated
+unrendered
 unreorganized
 unrepairable
 unrepeatability
@@ -143741,6 +143789,7 @@ unsympathizing
 unsympathizing's
 unsympathizingly
 unsympathizings
+unsynced
 unsynchronized
 unsynthesized
 unsystematic
@@ -145775,6 +145824,9 @@ vertebrosternal
 vertex
 vertex's
 vertexes
+vertexshader
+vertexshader's
+vertexshaders
 vertical
 verticalis
 verticality
@@ -146436,6 +146488,9 @@ virtualization's
 virtualizations
 virtualize
 virtualized
+virtualizer
+virtualizer's
+virtualizers
 virtualizes
 virtualizing
 virtually
@@ -147048,6 +147103,7 @@ vowing
 vows
 voxel
 voxel's
+voxelization
 voxels
 voyage
 voyage's

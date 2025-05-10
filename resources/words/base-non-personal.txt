@@ -761,6 +761,7 @@ Benares
 Benedictine
 Benelux
 Bengal
+Bengala
 Bengali
 Bengaluru
 Benghazi
@@ -932,6 +933,7 @@ Bookman
 Bookshare
 Boonville
 Bootswatch
+Bopomofo
 Borax
 Bordentown
 Borealis
@@ -2110,6 +2112,7 @@ Emmitsburg
 Emmys
 Empowerhouse
 Emulex
+Encarta
 Enceladus
 Encinitas
 Encino
@@ -2670,6 +2673,7 @@ GitLab
 Giza
 Gizmodo
 Glaceau
+Glagolitic
 Glamnetic
 Glasgow
 Glassbox
@@ -3895,6 +3899,7 @@ Lucida
 Lucidchart
 Ludhiana
 Ludington
+Lue
 Lufkin
 Lufthansa
 Luftwaffe
@@ -4031,6 +4036,7 @@ Mancunian
 Mandalay
 Mandeville
 Mandiant
+Mandriva
 Manhattan
 Manhattanville
 Manichean
@@ -4836,6 +4842,7 @@ Ofallon
 Ogallala
 Ogbomosho
 Ogdensburg
+Ogham
 Ohio
 Ohioan
 OhioLINK
@@ -5115,6 +5122,7 @@ Persian
 Perthshire
 Peru
 Peruvian
+Pescadero
 Peterbilt
 Peterborough
 Petersburg
@@ -5130,6 +5138,7 @@ Pez
 Pfalz
 Pfizer
 Pflugerville
+Phags-pa
 Phanerozoic
 Phar-Mor
 Pharisaical
@@ -6388,6 +6397,7 @@ Tahitian
 Tahlequah
 Tahoe
 Tahoma
+Tai
 Taipei
 Taiwan
 Taiwanese
@@ -6529,6 +6539,7 @@ TexaSaver
 Texcoco
 TexFlex
 Textron
+Thaana
 Thai
 Thailand
 Thales
