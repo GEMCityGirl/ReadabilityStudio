@@ -6572,25 +6572,25 @@ void BatchProjectDoc::DisplaySightWords()
         listView->DeleteAllColumns();
         listView->InsertColumn(listView->GetColumnCount(), _(L"Document"));
         listView->InsertColumn(listView->GetColumnCount(), _(L"Label"));
-        listView->InsertColumn(listView->GetColumnCount(), L"% " + _(L"of Conjunctions"));
+        listView->InsertColumn(listView->GetColumnCount(), _(L"% of Conjunctions"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
             { listView->InsertColumn(listView->GetColumnCount(), _(L"Conjunctions")); }
-        listView->InsertColumn(listView->GetColumnCount(), L"% " + _(L"of Prepositions"));
+        listView->InsertColumn(listView->GetColumnCount(), _(L"% of Prepositions"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
             { listView->InsertColumn(listView->GetColumnCount(), _(L"Prepositions")); }
-        listView->InsertColumn(listView->GetColumnCount(), L"% " + _(L"of Pronouns"));
+        listView->InsertColumn(listView->GetColumnCount(), _(L"% of Pronouns"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
             { listView->InsertColumn(listView->GetColumnCount(), _(L"Pronouns")); }
-        listView->InsertColumn(listView->GetColumnCount(), L"% " + _(L"of Adverbs"));
+        listView->InsertColumn(listView->GetColumnCount(), _(L"% of Adverbs"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
             { listView->InsertColumn(listView->GetColumnCount(), _(L"Adverbs")); }
-        listView->InsertColumn(listView->GetColumnCount(), L"% " + _(L"of Adjectives"));
+        listView->InsertColumn(listView->GetColumnCount(), _(L"% of Adjectives"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
             { listView->InsertColumn(listView->GetColumnCount(), _(L"Adjectives")); }
-        listView->InsertColumn(listView->GetColumnCount(), L"% " + _(L"of Verbs"));
+        listView->InsertColumn(listView->GetColumnCount(), _(L"% of Verbs"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
             { listView->InsertColumn(listView->GetColumnCount(), _(L"Verbs")); }
-        listView->InsertColumn(listView->GetColumnCount(), L"% " + _(L"of Noun Words"));
+        listView->InsertColumn(listView->GetColumnCount(), _(L"% of Noun Words"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
             { listView->InsertColumn(listView->GetColumnCount(), _(L"Nouns")); }
 
@@ -6632,7 +6632,7 @@ void BatchProjectDoc::DisplaySightWords()
         listView->DeleteAllColumns();
         listView->InsertColumn(listView->GetColumnCount(), _(L"Document"));
         listView->InsertColumn(listView->GetColumnCount(), _(L"Label"));
-        listView->InsertColumn(listView->GetColumnCount(), L"% " + _(L"of Non-Dolch Words"));
+        listView->InsertColumn(listView->GetColumnCount(), _(L"% of Non-Dolch Words"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
             { listView->InsertColumn(listView->GetColumnCount(), _(L"Non-Dolch Words")); }
 

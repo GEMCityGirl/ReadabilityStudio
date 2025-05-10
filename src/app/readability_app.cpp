@@ -642,6 +642,7 @@ bool ReadabilityApp::OnInit()
                    std::make_pair(_(L"Blackboard"), DONTTRANSLATE(L"blackboard")),
                    std::make_pair(_(L"Clock"), DONTTRANSLATE(L"clock")),
                    std::make_pair(_(L"Ruler"), DONTTRANSLATE(L"ruler")),
+                   // TRANSLATORS: "IV" is intravenous.
                    std::make_pair(_(L"IV bag"), DONTTRANSLATE(L"ivbag")),
                    std::make_pair(_(L"Thermometer (cold)"), DONTTRANSLATE(L"cold-thermometer")),
                    std::make_pair(_(L"Thermometer (hot)"), DONTTRANSLATE(L"hot-thermometer")),

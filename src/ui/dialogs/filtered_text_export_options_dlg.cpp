@@ -33,6 +33,7 @@ void FilteredTextExportOptionsDlg::CreateControls()
                                      wxGenericValidator(&m_removeEllipses)),
                       wxSizerFlags{}.Expand().Border(wxBOTTOM));
     itemBoxSizer->Add(new wxCheckBox(itemBoxSizer->GetStaticBox(), wxID_ANY,
+                                     // TRANSLATORS: bullet points in text.
                                      _(L"Remove bullets and list-item numbering"),
                                      wxDefaultPosition, wxDefaultSize, wxCHK_2STATE,
                                      wxGenericValidator(&m_removeBullets)),

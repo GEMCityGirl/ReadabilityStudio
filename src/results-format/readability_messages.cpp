@@ -843,8 +843,7 @@ wxString ReadabilityMessages::GetQuebecScaleLabel(size_t value)
     switch (value)
         {
     case 0:
-        // TRANSLATORS: Kindergarten in Quebec.
-        return _(L"Maternelle");
+        return _DT(L"Maternelle");
         break;
     case 1:
         return _(L"Grade 1 (\U000000C9cole Primaire)");
@@ -865,19 +864,19 @@ wxString ReadabilityMessages::GetQuebecScaleLabel(size_t value)
         return _(L"Grade 6 (\U000000C9cole Primaire)");
         break;
     case 7:
-        return _(L"1 Secondaire (\U000000C9cole Secondaire)");
+        return _DT(L"1 Secondaire (\U000000C9cole Secondaire)");
         break;
     case 8:
-        return _(L"2 Secondaire (\U000000C9cole Secondaire)");
+        return _DT(L"2 Secondaire (\U000000C9cole Secondaire)");
         break;
     case 9:
-        return _(L"3 Secondaire (\U000000C9cole Secondaire)");
+        return _DT(L"3 Secondaire (\U000000C9cole Secondaire)");
         break;
     case 10:
-        return _(L"4 Secondaire (\U000000C9cole Secondaire)");
+        return _DT(L"4 Secondaire (\U000000C9cole Secondaire)");
         break;
     case 11:
-        return _(L"5 Secondaire (\U000000C9cole Secondaire)");
+        return _DT(L"5 Secondaire (\U000000C9cole Secondaire)");
         break;
     case 12:
         return _(L"CEGEP, year 1");

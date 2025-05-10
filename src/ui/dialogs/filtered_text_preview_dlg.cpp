@@ -75,6 +75,7 @@ void FilteredTextPreviewDlg::SetExclusionInfo(
         }
     if (replaceCharacters)
         {
+        // TRANSLATORS: "Special" as in extended ASCII (i.e., non-English).
         m_infoLabel += L"\n\t" + _(L"Special characters");
         }
     if (removeEllipses)
