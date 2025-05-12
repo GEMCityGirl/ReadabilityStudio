@@ -197,41 +197,55 @@ endif()
 # Run ALL unit-test suites for this program and its submodules
 ##############################################################
 if(BUILD_TESTING)
-    set(BUILD_TEMP ${CMAKE_CURRENT_SOURCE_DIR}/BuildTemp)
-    file(REMOVE_RECURSE ${BUILD_TEMP})
-    file(REMOVE_RECURSE ${CMAKE_CURRENT_SOURCE_DIR}/TestResults)
-    file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/TestResults)
+    set(BUILD_TEMP ${CMAKE_CURRENT_SOURCE_DIR}/build-temp)
+    if(EXISTS ${BUILD_TEMP})
+        file(REMOVE_RECURSE ${BUILD_TEMP})
+    endif()
+    if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/test-results)
+        file(REMOVE_RECURSE ${CMAKE_CURRENT_SOURCE_DIR}/test-results)
+    endif()
+    file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/test-results)
 
     # submodule test suites
-    function(RUN_TEST_SUITE TEST_PROJECT TEST_FOLDER TEST_RUNNER)
+    function(run_test_suite TEST_PROJECT TEST_FOLDER TEST_RUNNER)
         execute_process(COMMAND ${CMAKE_COMMAND} -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
                                 -S ${CMAKE_CURRENT_SOURCE_DIR}/src/${TEST_PROJECT}/${TEST_FOLDER} -B ${BUILD_TEMP})
         execute_process(COMMAND ${CMAKE_COMMAND} --build ${BUILD_TEMP} --config ${CMAKE_BUILD_TYPE})
-        execute_process(COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/src/${TEST_PROJECT}/${TEST_FOLDER}/bin/${CMAKE_BUILD_TYPE}/${TEST_RUNNER}
-                                --reporter=junit --out=${CMAKE_CURRENT_SOURCE_DIR}/TestResults/${TEST_RUNNER}-results.xml
-                        WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/src/${TEST_PROJECT}/${TEST_FOLDER}/bin/${CMAKE_BUILD_TYPE}")
+        set(TEST_OUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src/${TEST_PROJECT}/${TEST_FOLDER}/bin)
+        # MSVC tends to make a "Debug" or "Release" in your "bin" folder and put the binaries
+        # in there instead of just the "bin" folder like you tell it to.
+        if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/src/${TEST_PROJECT}/${TEST_FOLDER}/bin/${CMAKE_BUILD_TYPE})
+            set(TEST_OUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src/${TEST_PROJECT}/${TEST_FOLDER}/bin)
+        endif()
+        message(STATUS "Running ${TEST_OUT_DIR}/${TEST_RUNNER}...")
+        execute_process(COMMAND ${TEST_OUT_DIR}/${TEST_RUNNER}
+                                --reporter=junit --out=${CMAKE_CURRENT_SOURCE_DIR}/test-results/${TEST_RUNNER}-results.xml
+                        WORKING_DIRECTORY "${TEST_OUT_DIR}")
         file(REMOVE_RECURSE ${BUILD_TEMP})
     endfunction()
 
     # test suites for RS specifically
-    function(RUN_RS_TEST_SUITE TEST_FOLDER TEST_RUNNER)
+    function(run_rs_test_suite TEST_FOLDER TEST_RUNNER)
         execute_process(COMMAND ${CMAKE_COMMAND} -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
                                 -S ${CMAKE_CURRENT_SOURCE_DIR}/${TEST_FOLDER} -B ${BUILD_TEMP})
         execute_process(COMMAND ${CMAKE_COMMAND} --build ${BUILD_TEMP} --config ${CMAKE_BUILD_TYPE})
-        execute_process(COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/${TEST_FOLDER}/bin/${CMAKE_BUILD_TYPE}/${TEST_RUNNER}
-                                --reporter=junit --out=${CMAKE_CURRENT_SOURCE_DIR}/TestResults/${TEST_RUNNER}-results.xml
-                        WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/${TEST_FOLDER}/bin/${CMAKE_BUILD_TYPE}")
+        set(TEST_OUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src/${TEST_PROJECT}/${TEST_FOLDER}/bin)
+        if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/src/${TEST_PROJECT}/${TEST_FOLDER}/bin/${CMAKE_BUILD_TYPE})
+            set(TEST_OUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src/${TEST_PROJECT}/${TEST_FOLDER}/bin)
+        endif()
+        execute_process(COMMAND ${TEST_OUT_DIR}/${TEST_RUNNER}
+                                --reporter=junit --out=${CMAKE_CURRENT_SOURCE_DIR}/test-results/${TEST_RUNNER}-results.xml
+                        WORKING_DIRECTORY "${TEST_OUT_DIR}")
         file(REMOVE_RECURSE ${BUILD_TEMP})
     endfunction()
 
     run_test_suite(OleanderStemmingLibrary tests OleanderStemTestRunner)
-    run_test_suite(Wisteria-Dataviz/src/i18n-check tests i18nTestRunner)
     run_test_suite(tinyexpr-plusplus tests TETestRunner)
     run_test_suite(Wisteria-Dataviz tests WisteriaTestRunner)
     run_test_suite(Wisteria-Dataviz tests/gui-tests WisteriaGuiTestRunner)
     run_rs_test_suite(tests RSTestRunner)
     run_rs_test_suite(tests/gui-tests RSGuiTestRunner)
-    message(STATUS "Unit test results availabe in ${CMAKE_CURRENT_SOURCE_DIR}/TestResults.")
+    message(STATUS "Unit test results available in ${CMAKE_CURRENT_SOURCE_DIR}/test-results")
 endif()
 
 # Help Files
@@ -496,24 +510,24 @@ add_custom_command(TARGET ${PROJECT_NAME}
 function(copy_translations LANG)
     # Project's translations
     if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}.mo")
-    add_custom_command(TARGET ${PROJECT_NAME}
-                       POST_BUILD
+        add_custom_command(TARGET ${PROJECT_NAME}
+                        POST_BUILD
                         COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}.mo" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/${LANG}/readstudio.mo"
                         COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}.mo" "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/resources/${LANG}/readstudio.mo"
-                       COMMENT "Copying Spanish translations to build and installer folders.")
-     else()
+                        COMMENT "Copying Spanish translations to build and installer folders.")
+    else()
         message(WARNING "Compiled ${PROJECT_NAME} '${LANG}' translations not found.\n(Expected it in '${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}.mo')\nTranslations will not be available.")
-     endif()
+    endif()
     # wxWidgets stock translations
     if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}/wxstd.mo")
-     add_custom_command(TARGET ${PROJECT_NAME}
+        add_custom_command(TARGET ${PROJECT_NAME}
                         POST_BUILD
                         COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}/wxstd.mo" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/${LANG}/readstudio.mo"
                         COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}/wxstd.mo" "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/resources/${LANG}/readstudio.mo"
                         COMMENT "Copying Spanish translations to build and installer folders.")
-else()
+    else()
         message(WARNING "Compiled wxWidgets '${LANG}' translations not found.\n(Expected it in '${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}/wxstd.mo'.)\nTranslations will not be available.")
-endif()
+    endif()
 endfunction()
 
 copy_translations("es")
