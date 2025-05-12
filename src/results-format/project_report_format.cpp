@@ -669,19 +669,18 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
             const wxString percentStr =
                 (totalDolchPercentage < 70) ?
                     GetIssueSpanStart() +
-                        wxString(L"(" +
-                                 wxNumberFormatter::ToString(
-                                     totalDolchPercentage, 1,
-                                     wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                                         wxNumberFormatter::Style::Style_WithThousandsSep) +
-                                 L"% " + _(L"of all words)")) +
+                        wxString::Format(
+                            _(L"(%s%% of all words)"),
+                            wxNumberFormatter::ToString(
+                                totalDolchPercentage, 1,
+                                wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                    wxNumberFormatter::Style::Style_WithThousandsSep)) +
                         L"</span>" :
-                    wxString(L"(" +
-                             wxNumberFormatter::ToString(
-                                 totalDolchPercentage, 1,
-                                 wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                                     wxNumberFormatter::Style::Style_WithThousandsSep) +
-                             L"% " + _(L"of all words)"));
+                    wxString::Format(_(L"(%s%% of all words)"),
+                                     wxNumberFormatter::ToString(
+                                         totalDolchPercentage, 1,
+                                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                             wxNumberFormatter::Style::Style_WithThousandsSep));
             htmlText += formatRow(_(L"Number of Dolch words:"), valueStr, percentStr);
 
             if (listData)
@@ -692,12 +691,13 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                           totalDolchWords, 0,
                                           wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                               wxNumberFormatter::Style::Style_WithThousandsSep));
-                listData->SetItemText(listDataItemCount++, 2,
-                                      wxNumberFormatter::ToString(
-                                          totalDolchPercentage, 1,
-                                          wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                                              wxNumberFormatter::Style::Style_WithThousandsSep) +
-                                          L"% " + _(L"of all words"));
+                listData->SetItemText(
+                    listDataItemCount++, 2,
+                    wxString::Format(_(L"%s%% of all words"),
+                                     wxNumberFormatter::ToString(
+                                         totalDolchPercentage, 1,
+                                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                             wxNumberFormatter::Style::Style_WithThousandsSep)));
                 }
             }
 
@@ -718,19 +718,18 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
             const wxString percentStr =
                 (totalDolchExcludingNounsPercentage < 60) ?
                     GetIssueSpanStart() +
-                        wxString(L"(" +
-                                 wxNumberFormatter::ToString(
-                                     totalDolchExcludingNounsPercentage, 1,
-                                     wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                                         wxNumberFormatter::Style::Style_WithThousandsSep) +
-                                 L"% " + _(L"of all words)")) +
+                        wxString::Format(
+                            _(L"(%s%% of all words)"),
+                            wxNumberFormatter::ToString(
+                                totalDolchExcludingNounsPercentage, 1,
+                                wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                    wxNumberFormatter::Style::Style_WithThousandsSep)) +
                         L"</span>" :
-                    wxString(L"(" +
-                             wxNumberFormatter::ToString(
-                                 totalDolchExcludingNounsPercentage, 1,
-                                 wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                                     wxNumberFormatter::Style::Style_WithThousandsSep) +
-                             L"% " + _(L"of all words)"));
+                    wxString::Format(_(L"(%s%% of all words)"),
+                                     wxNumberFormatter::ToString(
+                                         totalDolchExcludingNounsPercentage, 1,
+                                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                             wxNumberFormatter::Style::Style_WithThousandsSep));
             htmlText +=
                 formatRow(_(L"Number of Dolch words (excluding nouns):"), valueStr, percentStr);
 
@@ -772,19 +771,18 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
             const wxString percentStr =
                 (totalDolchPercentage < 70) ?
                     GetIssueSpanStart() +
-                        wxString(L"(" +
-                                 wxNumberFormatter::ToString(
-                                     100 - totalDolchPercentage, 1,
-                                     wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                                         wxNumberFormatter::Style::Style_WithThousandsSep) +
-                                 L"% " + _(L"of all words)")) +
+                        wxString::Format(
+                            _(L"(%s%% of all words)"),
+                            wxNumberFormatter::ToString(
+                                100 - totalDolchPercentage, 1,
+                                wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                    wxNumberFormatter::Style::Style_WithThousandsSep)) +
                         L"</span>" :
-                    wxString(L"(" +
-                             wxNumberFormatter::ToString(
-                                 100 - totalDolchPercentage, 1,
-                                 wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                                     wxNumberFormatter::Style::Style_WithThousandsSep) +
-                             L"% " + _(L"of all words)"));
+                    wxString::Format(_(L"(%s%% of all words)"),
+                                     wxNumberFormatter::ToString(
+                                         100 - totalDolchPercentage, 1,
+                                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                             wxNumberFormatter::Style::Style_WithThousandsSep));
             htmlText += formatRow(_(L"Number of non-Dolch words:"), valueStr, percentStr);
 
             if (listData)
@@ -811,16 +809,15 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                 wxNumberFormatter::ToString(project->GetDolchConjunctionCounts().second, 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep);
-            const wxString percentStr =
-                wxString(L"(" +
-                         wxNumberFormatter::ToString(
-                             safe_divide<double>(project->GetDolchConjunctionCounts().second,
-                                                 project->GetTotalWords()) *
-                                 100,
-                             1,
-                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                                 wxNumberFormatter::Style::Style_WithThousandsSep) +
-                         L"% " + _(L"of all words)"));
+            const wxString percentStr = wxString::Format(
+                _(L"(%s%% of all words)"),
+                wxNumberFormatter::ToString(
+                    safe_divide<double>(project->GetDolchConjunctionCounts().second,
+                                        project->GetTotalWords()) *
+                        100,
+                    1,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                        wxNumberFormatter::Style::Style_WithThousandsSep));
             htmlText += formatRow(_(L"Number of Dolch conjunctions:"), valueStr, percentStr);
 
             if (listData)
@@ -867,16 +864,15 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                 wxNumberFormatter::ToString(project->GetDolchPrepositionWordCounts().second, 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep);
-            const wxString percentStr =
-                wxString(L"(" +
-                         wxNumberFormatter::ToString(
-                             safe_divide<double>(project->GetDolchPrepositionWordCounts().second,
-                                                 project->GetTotalWords()) *
-                                 100,
-                             1,
-                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                                 wxNumberFormatter::Style::Style_WithThousandsSep) +
-                         L"% " + _(L"of all words)"));
+            const wxString percentStr = wxString::Format(
+                _(L"(%s%% of all words)"),
+                wxNumberFormatter::ToString(
+                    safe_divide<double>(project->GetDolchPrepositionWordCounts().second,
+                                        project->GetTotalWords()) *
+                        100,
+                    1,
+                    wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                        wxNumberFormatter::Style::Style_WithThousandsSep));
             htmlText += formatRow(_(L"Number of Dolch prepositions:"), valueStr, percentStr);
             if (listData)
                 {
@@ -923,15 +919,14 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep);
             const wxString percentStr =
-                wxString(L"(" +
-                         wxNumberFormatter::ToString(
-                             safe_divide<double>(project->GetDolchPronounCounts().second,
-                                                 project->GetTotalWords()) *
-                                 100,
-                             1,
-                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                                 wxNumberFormatter::Style::Style_WithThousandsSep) +
-                         L"% " + _(L"of all words)"));
+                wxString::Format(_(L"(%s%% of all words)"),
+                                 wxNumberFormatter::ToString(
+                                     safe_divide<double>(project->GetDolchPronounCounts().second,
+                                                         project->GetTotalWords()) *
+                                         100,
+                                     1,
+                                     wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                         wxNumberFormatter::Style::Style_WithThousandsSep));
             htmlText += formatRow(_(L"Number of Dolch pronouns:"), valueStr, percentStr);
 
             if (listData)
@@ -978,15 +973,14 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep);
             const wxString percentStr =
-                wxString(L"(" +
-                         wxNumberFormatter::ToString(
-                             safe_divide<double>(project->GetDolchAdverbCounts().second,
-                                                 project->GetTotalWords()) *
-                                 100,
-                             1,
-                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                                 wxNumberFormatter::Style::Style_WithThousandsSep) +
-                         L"% " + _(L"of all words)"));
+                wxString::Format(_(L"(%s%% of all words)"),
+                                 wxNumberFormatter::ToString(
+                                     safe_divide<double>(project->GetDolchAdverbCounts().second,
+                                                         project->GetTotalWords()) *
+                                         100,
+                                     1,
+                                     wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                         wxNumberFormatter::Style::Style_WithThousandsSep));
             htmlText += formatRow(_(L"Number of Dolch adverbs:"), valueStr, percentStr);
 
             if (listData)
@@ -1032,15 +1026,14 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep);
             const wxString percentStr =
-                wxString(L"(" +
-                         wxNumberFormatter::ToString(
-                             safe_divide<double>(project->GetDolchAdjectiveCounts().second,
-                                                 project->GetTotalWords()) *
-                                 100,
-                             1,
-                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                                 wxNumberFormatter::Style::Style_WithThousandsSep) +
-                         L"% " + _(L"of all words)"));
+                wxString::Format(_(L"(%s%% of all words)"),
+                                 wxNumberFormatter::ToString(
+                                     safe_divide<double>(project->GetDolchAdjectiveCounts().second,
+                                                         project->GetTotalWords()) *
+                                         100,
+                                     1,
+                                     wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                         wxNumberFormatter::Style::Style_WithThousandsSep));
             htmlText += formatRow(_(L"Number of Dolch adjectives:"), valueStr, percentStr);
 
             if (listData)
@@ -1088,15 +1081,14 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep);
             const wxString percentStr =
-                wxString(L"(" +
-                         wxNumberFormatter::ToString(
-                             safe_divide<double>(project->GetDolchVerbsCounts().second,
-                                                 project->GetTotalWords()) *
-                                 100,
-                             1,
-                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                                 wxNumberFormatter::Style::Style_WithThousandsSep) +
-                         L"% " + _(L"of all words)"));
+                wxString::Format(_(L"(%s%% of all words)"),
+                                 wxNumberFormatter::ToString(
+                                     safe_divide<double>(project->GetDolchVerbsCounts().second,
+                                                         project->GetTotalWords()) *
+                                         100,
+                                     1,
+                                     wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                         wxNumberFormatter::Style::Style_WithThousandsSep));
             htmlText += formatRow(_(L"Number of Dolch verbs:"), valueStr, percentStr);
 
             if (listData)
@@ -1142,15 +1134,14 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep);
             const wxString percentStr =
-                wxString(L"(" +
-                         wxNumberFormatter::ToString(
-                             safe_divide<double>(project->GetDolchNounCounts().second,
-                                                 project->GetTotalWords()) *
-                                 100,
-                             1,
-                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                                 wxNumberFormatter::Style::Style_WithThousandsSep) +
-                         L"% " + _(L"of all words)"));
+                wxString::Format(_(L"(%s%% of all words)"),
+                                 wxNumberFormatter::ToString(
+                                     safe_divide<double>(project->GetDolchNounCounts().second,
+                                                         project->GetTotalWords()) *
+                                         100,
+                                     1,
+                                     wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                         wxNumberFormatter::Style::Style_WithThousandsSep));
             htmlText += formatRow(_(L"Number of Dolch nouns:"), valueStr, percentStr);
             if (listData)
                 {
@@ -1875,14 +1866,14 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 wxNumberFormatter::ToString(project->GetTotalNumerals(), 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
-                L"(" +
+                wxString::Format(
+                    _(L"(%s%% of all words)"),
                     wxNumberFormatter::ToString(
                         safe_divide<double>(project->GetTotalNumerals(), project->GetTotalWords()) *
                             100,
                         1,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                            wxNumberFormatter::Style::Style_WithThousandsSep) +
-                    L"% " + _(L"of all words)"));
+                            wxNumberFormatter::Style::Style_WithThousandsSep)));
         htmlText += L"\n</table>";
 
         if (listData)
@@ -1914,15 +1905,14 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 wxNumberFormatter::ToString(project->GetTotalProperNouns(), 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
-                L"(" +
-                    wxNumberFormatter::ToString(
-                        safe_divide<double>(project->GetTotalProperNouns(),
-                                            project->GetTotalWords()) *
-                            100,
-                        1,
-                        wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                            wxNumberFormatter::Style::Style_WithThousandsSep) +
-                    L"% " + _(L"of all words)"));
+                wxString::Format(_(L"(%s%% of all words)"),
+                                 wxNumberFormatter::ToString(
+                                     safe_divide<double>(project->GetTotalProperNouns(),
+                                                         project->GetTotalWords()) *
+                                         100,
+                                     1,
+                                     wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                         wxNumberFormatter::Style::Style_WithThousandsSep)));
             htmlText += L"\n</table>";
 
             if (listData)
@@ -1947,21 +1937,21 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
             }
 
         // Monosyllabic words
-        htmlText += tableStart + formatHeader(_(L"Monosyllabic Words")) +
-                    formatRow(_(L"Number of monosyllabic words:"),
-                              wxNumberFormatter::ToString(
-                                  project->GetTotalMonoSyllabicWords(), 0,
-                                  wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                                      wxNumberFormatter::Style::Style_WithThousandsSep),
-                              L"(" +
-                                  wxNumberFormatter::ToString(
-                                      safe_divide<double>(project->GetTotalMonoSyllabicWords(),
-                                                          project->GetTotalWords()) *
-                                          100,
-                                      1,
-                                      wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                                          wxNumberFormatter::Style::Style_WithThousandsSep) +
-                                  L"% " + _(L"of all words)"));
+        htmlText +=
+            tableStart + formatHeader(_(L"Monosyllabic Words")) +
+            formatRow(
+                _(L"Number of monosyllabic words:"),
+                wxNumberFormatter::ToString(project->GetTotalMonoSyllabicWords(), 0,
+                                            wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                                wxNumberFormatter::Style::Style_WithThousandsSep),
+                wxString::Format(_(L"(%s%% of all words)"),
+                                 wxNumberFormatter::ToString(
+                                     safe_divide<double>(project->GetTotalMonoSyllabicWords(),
+                                                         project->GetTotalWords()) *
+                                         100,
+                                     1,
+                                     wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                         wxNumberFormatter::Style::Style_WithThousandsSep)));
 
         if (listData)
             {
@@ -2016,15 +2006,14 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
             wxNumberFormatter::ToString(project->GetTotal3PlusSyllabicWords(), 0,
                                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                             wxNumberFormatter::Style::Style_WithThousandsSep),
-            wxString(L"(" +
-                     wxNumberFormatter::ToString(
-                         safe_divide<double>(project->GetTotal3PlusSyllabicWords(),
-                                             project->GetTotalWords()) *
-                             100,
-                         1,
-                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                             wxNumberFormatter::Style::Style_WithThousandsSep) +
-                     L"% " + _(L"of all words)")));
+            wxString::Format(_(L"(%s%% of all words)"),
+                             wxNumberFormatter::ToString(
+                                 safe_divide<double>(project->GetTotal3PlusSyllabicWords(),
+                                                     project->GetTotalWords()) *
+                                     100,
+                                 1,
+                                 wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                     wxNumberFormatter::Style::Style_WithThousandsSep)));
 
         if (listData)
             {
@@ -2079,15 +2068,14 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
             wxNumberFormatter::ToString(project->GetTotalLongWords(), 0,
                                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                             wxNumberFormatter::Style::Style_WithThousandsSep),
-            wxString(
-                L"(" +
+            wxString::Format(
+                _(L"(%s%% of all words)"),
                 wxNumberFormatter::ToString(
                     safe_divide<double>(project->GetTotalLongWords(), project->GetTotalWords()) *
                         100,
                     1,
                     wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                        wxNumberFormatter::Style::Style_WithThousandsSep) +
-                L"% " + _(L"of all words)")));
+                        wxNumberFormatter::Style::Style_WithThousandsSep)));
 
         if (listData)
             {
@@ -2135,16 +2123,16 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                     project->GetTotal3PlusSyllabicWordsNumeralsFullySyllabized(), 0,
                     wxNumberFormatter::Style::Style_NoTrailingZeroes |
                         wxNumberFormatter::Style::Style_WithThousandsSep),
-                wxString(L"(" +
-                         wxNumberFormatter::ToString(
-                             safe_divide<double>(
-                                 project->GetTotal3PlusSyllabicWordsNumeralsFullySyllabized(),
-                                 project->GetTotalWords()) *
-                                 100,
-                             1,
-                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                                 wxNumberFormatter::Style::Style_WithThousandsSep) +
-                         L"% " + _(L"of all words)")));
+                wxString::Format(
+                    _(L"(%s%% of all words)"),
+                    wxNumberFormatter::ToString(
+                        safe_divide<double>(
+                            project->GetTotal3PlusSyllabicWordsNumeralsFullySyllabized(),
+                            project->GetTotalWords()) *
+                            100,
+                        1,
+                        wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                            wxNumberFormatter::Style::Style_WithThousandsSep)));
 
             if (listData)
                 {
@@ -2201,15 +2189,15 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                                       project->GetTotalHardWordsFog(), 0,
                                       wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                           wxNumberFormatter::Style::Style_WithThousandsSep),
-                                  L"(" +
+                                  wxString::Format(
+                                      _(L"(%s%% of all words)"),
                                       wxNumberFormatter::ToString(
                                           safe_divide<double>(project->GetTotalHardWordsFog(),
                                                               project->GetTotalWords()) *
                                               100,
                                           1,
                                           wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                                              wxNumberFormatter::Style::Style_WithThousandsSep) +
-                                      L"% " + _(L"of all words)"));
+                                              wxNumberFormatter::Style::Style_WithThousandsSep)));
 
             if (listData)
                 {
@@ -2292,15 +2280,14 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 wxNumberFormatter::ToString(project->GetTotalHardWordsDaleChall(), 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
-                wxString(L"(" +
-                         wxNumberFormatter::ToString(
-                             safe_divide<double>(project->GetTotalHardWordsDaleChall(),
-                                                 totalWordCountForDC) *
-                                 100,
-                             1,
-                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                                 wxNumberFormatter::Style::Style_WithThousandsSep) +
-                         L"% " + _(L"of all words)")));
+                wxString::Format(_(L"(%s%% of all words)"),
+                                 wxNumberFormatter::ToString(
+                                     safe_divide<double>(project->GetTotalHardWordsDaleChall(),
+                                                         totalWordCountForDC) *
+                                         100,
+                                     1,
+                                     wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                         wxNumberFormatter::Style::Style_WithThousandsSep)));
 
             if (listData)
                 {
@@ -2386,15 +2373,15 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 wxNumberFormatter::ToString(project->GetTotalHardWordsHarrisJacobson(), 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
-                L"(" +
+                wxString::Format(
+                    _(L"(%s%% of all words)"),
                     wxNumberFormatter::ToString(
                         safe_divide<double>(project->GetTotalHardWordsHarrisJacobson(),
                                             totalWordCountForHJ - totalNumeralCountForHJ) *
                             100,
                         1,
                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                            wxNumberFormatter::Style::Style_WithThousandsSep) +
-                    L"% " + _(L"of all words)"));
+                            wxNumberFormatter::Style::Style_WithThousandsSep)));
 
             if (listData)
                 {
@@ -2467,15 +2454,14 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 wxNumberFormatter::ToString(project->GetTotalHardWordsSpache(), 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
-                L"(" +
-                    wxNumberFormatter::ToString(
-                        safe_divide<double>(project->GetTotalHardWordsSpache(),
-                                            project->GetTotalWords()) *
-                            100,
-                        1,
-                        wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                            wxNumberFormatter::Style::Style_WithThousandsSep) +
-                    L"% " + _(L"of all words)"));
+                wxString::Format(_(L"(%s%% of all words)"),
+                                 wxNumberFormatter::ToString(
+                                     safe_divide<double>(project->GetTotalHardWordsSpache(),
+                                                         project->GetTotalWords()) *
+                                         100,
+                                     1,
+                                     wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                         wxNumberFormatter::Style::Style_WithThousandsSep)));
 
             if (listData)
                 {
@@ -2525,15 +2511,14 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 wxNumberFormatter::ToString(project->GetTotalMiniWords(), 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
-                L"(" +
-                    wxNumberFormatter::ToString(
-                        safe_divide<double>(project->GetTotalMiniWords(),
-                                            project->GetTotalWords()) *
-                            100,
-                        1,
-                        wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                            wxNumberFormatter::Style::Style_WithThousandsSep) +
-                    L"% " + _(L"of all words)"));
+                wxString::Format(_(L"(%s%% of all words)"),
+                                 wxNumberFormatter::ToString(
+                                     safe_divide<double>(project->GetTotalMiniWords(),
+                                                         project->GetTotalWords()) *
+                                         100,
+                                     1,
+                                     wxNumberFormatter::Style::Style_NoTrailingZeroes |
+                                         wxNumberFormatter::Style::Style_WithThousandsSep)));
 
             if (listData)
                 {
@@ -2600,15 +2585,15 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                                       pos->GetUnfamiliarWordCount(), 0,
                                       wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                           wxNumberFormatter::Style::Style_WithThousandsSep),
-                                  L"(" +
+                                  wxString::Format(
+                                      _(L"(%s%% of all words)"),
                                       wxNumberFormatter::ToString(
                                           safe_divide<double>(pos->GetUnfamiliarWordCount(),
                                                               totalWordCountForCustomTest) *
                                               100,
                                           1,
                                           wxNumberFormatter::Style::Style_NoTrailingZeroes |
-                                              wxNumberFormatter::Style::Style_WithThousandsSep) +
-                                      L"% " + _(L"of all words)"));
+                                              wxNumberFormatter::Style::Style_WithThousandsSep)));
 
             if (listData)
                 {
