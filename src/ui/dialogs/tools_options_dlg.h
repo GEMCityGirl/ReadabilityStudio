@@ -934,7 +934,7 @@ class ToolsOptionsDlg final : public wxDialog
     Wisteria::UI::SideBarBook* m_sideBar{ nullptr };
     wxTextCtrl* m_stippleFilePathEdit{ nullptr };
     wxTextCtrl* m_filePathEdit{ nullptr };
-    wxStaticText* m_includeIncompleteSentSizeincludeIncompleteLabel{ nullptr };
+    wxStaticText* m_includeIncompleteSentSizeIncludeIncompleteLabel{ nullptr };
     wxStaticText* m_includeIncompleteSentSizeWordsLabel{ nullptr };
     wxBitmapButton* m_fileBrowseButton{ nullptr };
     wxStaticText* m_syllableLabel{ nullptr };

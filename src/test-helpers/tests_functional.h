@@ -44,14 +44,14 @@ class SyllableCountGreaterEqualWithHighlighting final
 
     /// @returns The tag opening a highlighted section.
     [[nodiscard]]
-    const wxString& GetHightlightBegin() const noexcept
+    const wxString& GetHighlightBegin() const noexcept
         {
         return m_beginHighlight;
         }
 
     /// @returns The tag closing a highlighted section.
     [[nodiscard]]
-    const wxString& GetHightlightEnd() const noexcept
+    const wxString& GetHighlightEnd() const noexcept
         {
         return m_endHighlight;
         }
@@ -83,14 +83,14 @@ class WordLengthGreaterEqualsWithHighlighting final
 
     /// @returns The tag opening a highlighted section.
     [[nodiscard]]
-    const wxString& GetHightlightBegin() const noexcept
+    const wxString& GetHighlightBegin() const noexcept
         {
         return m_beginHighlight;
         }
 
     /// @returns The tag closing a highlighted section.
     [[nodiscard]]
-    const wxString& GetHightlightEnd() const noexcept
+    const wxString& GetHighlightEnd() const noexcept
         {
         return m_endHighlight;
         }
@@ -141,14 +141,14 @@ class IsNotFamiliarWordWithHighlighting
 
     /// @returns The tag opening a highlighted section.
     [[nodiscard]]
-    const wxString& GetHightlightBegin() const noexcept
+    const wxString& GetHighlightBegin() const noexcept
         {
         return m_beginHighlight;
         }
 
     /// @returns The tag closing a highlighted section.
     [[nodiscard]]
-    const wxString& GetHightlightEnd() const noexcept
+    const wxString& GetHighlightEnd() const noexcept
         {
         return m_endHighlight;
         }
@@ -212,14 +212,14 @@ class IsNotFamiliarWordExcludeNumeralsWithHighlighting
 
     /// @returns The tag opening a highlighted section.
     [[nodiscard]]
-    const wxString& GetHightlightBegin() const noexcept
+    const wxString& GetHighlightBegin() const noexcept
         {
         return m_inExcludeState ? m_beginExcludeHighlight : m_beginHighlight;
         }
 
     /// @returns The tag closing a highlighted section.
     [[nodiscard]]
-    const wxString& GetHightlightEnd() const noexcept
+    const wxString& GetHighlightEnd() const noexcept
         {
         return m_inExcludeState ? m_endExcludeHighlight : m_endHighlight;
         }
@@ -246,14 +246,14 @@ class IsNeverFamiliarWordWithHighlighting final
 
     /// @returns The tag opening a highlighted section.
     [[nodiscard]]
-    const wxString& GetHightlightBegin() const noexcept
+    const wxString& GetHighlightBegin() const noexcept
         {
         return m_emptyStr;
         }
 
     /// @returns The tag closing a highlighted section.
     [[nodiscard]]
-    const wxString& GetHightlightEnd() const noexcept
+    const wxString& GetHighlightEnd() const noexcept
         {
         return m_emptyStr;
         }
@@ -286,7 +286,7 @@ class IsDolchWordWithLevelHighlighting final : public readability::is_dolch_word
 
     /// @returns The tag opening a highlighted section.
     [[nodiscard]]
-    const wxString& GetHightlightBegin() const
+    const wxString& GetHighlightBegin() const
         {
         if (readability::is_dolch_word<word_typeT>::get_last_search_result() !=
             readability::is_dolch_word<word_typeT>::get_word_list()->get_words().cend())
@@ -321,9 +321,9 @@ class IsDolchWordWithLevelHighlighting final : public readability::is_dolch_word
     ///     If the current word being highlighted had highlighting
     ///     turned off then just return blank
     [[nodiscard]]
-    const wxString& GetHightlightEnd() const
+    const wxString& GetHighlightEnd() const
         {
-        return (GetHightlightBegin().empty()) ? m_emptyStr : m_endHighlight;
+        return (GetHighlightBegin().empty()) ? m_emptyStr : m_endHighlight;
         }
 
     /// @internal No-op, just needed for interface contract.
@@ -370,14 +370,14 @@ class IsNotDolchWordWithLevelHighlighting
 
     /// @returns The tag opening a highlighted section.
     [[nodiscard]]
-    const wxString& GetHightlightBegin() const noexcept
+    const wxString& GetHighlightBegin() const noexcept
         {
         return m_beginHighlight;
         }
 
     /// @returns The tag closing a highlighted section.
     [[nodiscard]]
-    const wxString& GetHightlightEnd() const noexcept
+    const wxString& GetHighlightEnd() const noexcept
         {
         return m_endHighlight;
         }
@@ -418,14 +418,14 @@ class IsNotCustomFamiliarWordWithHighlighting
 
     /// @returns The tag opening a highlighted section.
     [[nodiscard]]
-    const wxString& GetHightlightBegin() const noexcept
+    const wxString& GetHighlightBegin() const noexcept
         {
         return m_beginHighlight;
         }
 
     /// @returns The tag closing a highlighted section.
     [[nodiscard]]
-    const wxString& GetHightlightEnd() const noexcept
+    const wxString& GetHighlightEnd() const noexcept
         {
         return m_endHighlight;
         }
@@ -474,14 +474,14 @@ class IsNotCustomFamiliarWordExcludeNumeralsWithHighlighting
 
     /// @returns The tag opening a highlighted section.
     [[nodiscard]]
-    const wxString& GetHightlightBegin() const noexcept
+    const wxString& GetHighlightBegin() const noexcept
         {
         return m_inExcludeState ? m_beginExcludeHighlight : m_beginHighlight;
         }
 
     /// @returns The tag closing a highlighted section.
     [[nodiscard]]
-    const wxString& GetHightlightEnd() const noexcept
+    const wxString& GetHighlightEnd() const noexcept
         {
         return m_inExcludeState ? m_endExcludeHighlight : m_endHighlight;
         }

@@ -1485,7 +1485,7 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int ShowListExpordDlg(lua_State* L)
+    int ShowListExportDlg(lua_State* L)
         {
         if (LuaListExportDlg == nullptr)
             {
@@ -1500,7 +1500,7 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int CloseListExpordDlg(lua_State*)
+    int CloseListExportDlg(lua_State*)
         {
         if (LuaListExportDlg)
             {

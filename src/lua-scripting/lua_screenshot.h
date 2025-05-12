@@ -79,8 +79,8 @@ namespace LuaScripting
     int CloseOptions(lua_State*);
     int ShowPrinterHeaderFooterOptions(lua_State*);
     int ClosePrinterHeaderFooterOptions(lua_State*);
-    int ShowListExpordDlg(lua_State* L);
-    int CloseListExpordDlg(lua_State*);
+    int ShowListExportDlg(lua_State* L);
+    int CloseListExportDlg(lua_State*);
     int CloseListViewItemDlg(lua_State*);
     int ShowListViewItemDlg(lua_State* L);
     int ShowGetDirDlg(lua_State* L);
@@ -123,8 +123,8 @@ namespace LuaScripting
         { "CloseGetArchiveDlg", CloseGetArchiveDlg },
         { "ShowListViewItemDlg", ShowListViewItemDlg },
         { "CloseListViewItemDlg", CloseListViewItemDlg },
-        { "ShowListExpordDlg", ShowListExpordDlg },
-        { "CloseListExpordDlg", CloseListExpordDlg },
+        { "ShowListExportDlg", ShowListExportDlg },
+        { "CloseListExportDlg", CloseListExportDlg },
         { "ShowPrinterHeaderFooterOptions", ShowPrinterHeaderFooterOptions },
         { "ClosePrinterHeaderFooterOptions", ClosePrinterHeaderFooterOptions },
         { "ShowStandardProjectWizardLanguagePage", ShowStandardProjectWizardLanguagePage },

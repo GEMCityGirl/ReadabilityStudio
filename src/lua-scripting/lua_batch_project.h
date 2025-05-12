@@ -48,23 +48,23 @@ namespace LuaScripting
             }
 
         /// @note This takes into account the boolean parameter in the front
-        ///     passed to Lunar objects, so @c minParemeterCount should be the actual
+        ///     passed to Lunar objects, so @c minParameterCount should be the actual
         ///     expected number of parameters.
         [[nodiscard]]
-        static bool VerifyParameterCount(lua_State* L, const int minParemeterCount,
+        static bool VerifyParameterCount(lua_State* L, const int minParameterCount,
                                          const wxString& functionName)
             {
             assert(L);
-            assert(minParemeterCount >= 0);
+            assert(minParameterCount >= 0);
             // skip over the boolean param passed in the front indicating success of
             // routing the function to the class object.
-            if ((lua_gettop(L) - 1) < minParemeterCount)
+            if ((lua_gettop(L) - 1) < minParameterCount)
                 {
                 wxMessageBox(
                     wxString::Format(
                         // TRANSLATORS: %s is a function name that failed from a script
                         _(L"%s: Invalid number of arguments.\n\n%d expected, %d provided."),
-                        functionName, minParemeterCount, (lua_gettop(L) - 1)),
+                        functionName, minParameterCount, (lua_gettop(L) - 1)),
                     _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
                 return false;
                 }
@@ -93,7 +93,7 @@ namespace LuaScripting
         // clang-format off
         // NOTE: these must all be single-line for the build script to properly create new topics from these.
 
-        int LoadFolder(lua_State* L /*string folderPath, boolean recursiveSearh*/); // Analyses all supported documents from the provided folder.
+        int LoadFolder(lua_State* L /*string folderPath, boolean recursiveSearch*/); // Analyses all supported documents from the provided folder.
         int LoadFiles(lua_State* L /*table files*/); // Analyses a list of provided file paths.
 
         int /*string*/ GetTitle(lua_State* L); // Returns the title of the project.

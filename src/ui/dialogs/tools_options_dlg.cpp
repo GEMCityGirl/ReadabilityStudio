@@ -3222,13 +3222,13 @@ void ToolsOptionsDlg::CreateControls()
             wxPanel* generalSettingsPage =
                 new wxPanel(m_sideBar, GENERAL_SETTINGS_PAGE, wxDefaultPosition, wxDefaultSize,
                             wxTAB_TRAVERSAL);
-            wxBoxSizer* docpanelSizer = new wxBoxSizer(wxVERTICAL);
-            generalSettingsPage->SetSizer(docpanelSizer);
+            wxBoxSizer* docPanelSizer = new wxBoxSizer(wxVERTICAL);
+            generalSettingsPage->SetSizer(docPanelSizer);
             m_sideBar->AddPage(generalSettingsPage, GetGeneralSettingsLabel(),
                                GENERAL_SETTINGS_PAGE, true, 10);
 
             wxSizer* optionsSizer = new wxBoxSizer(wxHORIZONTAL);
-            docpanelSizer->Add(optionsSizer, wxSizerFlags{}.Expand());
+            docPanelSizer->Add(optionsSizer, wxSizerFlags{}.Expand());
 
             optionsSizer->Add(new wxStaticText(generalSettingsPage, wxID_STATIC,
                                                _(L"UI language (requires restart):")),
@@ -3241,10 +3241,10 @@ void ToolsOptionsDlg::CreateControls()
             uiLangCombo->SetValidator(wxGenericValidator(&m_uiLanguage));
             optionsSizer->Add(uiLangCombo, wxSizerFlags{}.Expand().Border());
 
-            CreateLabelHeader(generalSettingsPage, docpanelSizer, _(L"Settings:"), true);
+            CreateLabelHeader(generalSettingsPage, docPanelSizer, _(L"Settings:"), true);
 
             optionsSizer = new wxBoxSizer(wxVERTICAL);
-            docpanelSizer->Add(optionsSizer,
+            docPanelSizer->Add(optionsSizer,
                                wxSizerFlags{}.Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 
             wxButton* loadSettingsButton =
@@ -3259,10 +3259,10 @@ void ToolsOptionsDlg::CreateControls()
                 new wxButton(generalSettingsPage, ID_RESET_SETTINGS_BUTTON, _(L"Reset"));
             optionsSizer->Add(resetSettingsButton, wxSizerFlags{}.Border(wxTOP | wxBOTTOM));
 
-            CreateLabelHeader(generalSettingsPage, docpanelSizer, _(L"Internet:"), true);
+            CreateLabelHeader(generalSettingsPage, docPanelSizer, _(L"Internet:"), true);
 
             optionsSizer = new wxBoxSizer(wxVERTICAL);
-            docpanelSizer->Add(optionsSizer,
+            docPanelSizer->Add(optionsSizer,
                                wxSizerFlags{}.Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 
             wxBoxSizer* userAgentSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -3295,20 +3295,20 @@ void ToolsOptionsDlg::CreateControls()
 
             optionsSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
-            CreateLabelHeader(generalSettingsPage, docpanelSizer, _(L"Warnings && Prompts:"), true);
+            CreateLabelHeader(generalSettingsPage, docPanelSizer, _(L"Warnings && Prompts:"), true);
 
             optionsSizer = new wxBoxSizer(wxVERTICAL);
-            docpanelSizer->Add(optionsSizer,
+            docPanelSizer->Add(optionsSizer,
                                wxSizerFlags{}.Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 
             wxButton* warningsButton =
                 new wxButton(generalSettingsPage, ID_WARNING_MESSAGES_BUTTON, _(L"Customize..."));
             optionsSizer->Add(warningsButton, wxSizerFlags{}.Border(wxTOP | wxBOTTOM));
 
-            CreateLabelHeader(generalSettingsPage, docpanelSizer, _(L"Log:"), true);
+            CreateLabelHeader(generalSettingsPage, docPanelSizer, _(L"Log:"), true);
 
             optionsSizer = new wxBoxSizer(wxVERTICAL);
-            docpanelSizer->Add(optionsSizer,
+            docPanelSizer->Add(optionsSizer,
                                wxSizerFlags{}.Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 
             optionsSizer->Add(new wxCheckBox(generalSettingsPage, wxID_ANY, _(L"Verbose logging"),
@@ -3703,11 +3703,11 @@ void ToolsOptionsDlg::CreateControls()
 
         wxBoxSizer* includeIncompleteSentSizeSizer = new wxBoxSizer(wxHORIZONTAL);
         optionsIndentSizer->Add(includeIncompleteSentSizeSizer, wxSizerFlags{}.Border(wxBOTTOM));
-        m_includeIncompleteSentSizeincludeIncompleteLabel =
+        m_includeIncompleteSentSizeIncludeIncompleteLabel =
             new wxStaticText(AnalysisIndexingPage, ID_INCOMPLETE_SENTENCE_VALID_LABEL_START,
                              _(L"Include incomplete sentences containing more than"),
                              wxDefaultPosition, wxDefaultSize, 0);
-        includeIncompleteSentSizeSizer->Add(m_includeIncompleteSentSizeincludeIncompleteLabel,
+        includeIncompleteSentSizeSizer->Add(m_includeIncompleteSentSizeIncludeIncompleteLabel,
                                             wxSizerFlags{}.CenterVertical());
         // the spin control for the number of words
         wxSpinCtrl* includeIncompleteSentencesIfLongerThanSpinCtrl =

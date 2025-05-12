@@ -121,9 +121,9 @@ static size_t FormatWordCollectionHighlightedWords(
                 else if (!currentSentenceShouldBeHighlightedAsInvalid &&
                          shouldHighlight(theDocument->get_word(i)))
                     {
-                    text.append(shouldHighlight.GetHightlightBegin().wc_str())
+                    text.append(shouldHighlight.GetHighlightBegin().wc_str())
                         .append(currentWord)
-                        .append(shouldHighlight.GetHightlightEnd().wc_str());
+                        .append(shouldHighlight.GetHighlightEnd().wc_str());
                     }
                 else
                     {

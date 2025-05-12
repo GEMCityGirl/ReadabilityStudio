@@ -158,7 +158,7 @@ endif()
 if(APPLE)
     message(STATUS "Supported architectures: ${CMAKE_OSX_ARCHITECTURES}")
 else()
-    message( STATUS "Architecture: ${CMAKE_SYSTEM_PROCESSOR}" )
+    message(STATUS "Architecture: ${CMAKE_SYSTEM_PROCESSOR}" )
 endif()
 
 # Setup wxWidgets (can be 1-5 folders up from here)
