@@ -561,7 +561,7 @@ void WebHarvesterDlg::UpdateHarvesterSettings(WebHarvester& harvester)
     harvester.SetDownloadDirectory(GetDownloadFolder());
     harvester.KeepWebPathWhenDownloading(IsRetainingWebsiteFolderStructure());
     harvester.ReplaceExistingFiles(IsReplacingExistingFiles());
-    harvester.SeachForBrokenLinks(m_logBrokenLinks);
+    harvester.SearchForBrokenLinks(m_logBrokenLinks);
     harvester.SetMinimumDownloadFileSizeInKilobytes(GetMinimumDownloadFileSizeInKilobytes());
     }
 

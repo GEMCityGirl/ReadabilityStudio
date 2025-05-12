@@ -188,7 +188,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
     const double totalDolchExcludingNounsPercentage =
         safe_divide<double>(totalDolchWordsExcludingNouns, project->GetTotalWords()) * 100;
 
-    const bool containsHighPercentageOfNonDochWords =
+    const bool containsHighPercentageOfNonDolchWords =
         ((totalDolchPercentage < 70) || (totalDolchExcludingNounsPercentage < 60));
     wxString htmlText;
 
@@ -632,7 +632,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                 }
             useDescription.RemoveLast(2);
             useDescription += L".";
-            if (containsHighPercentageOfNonDochWords)
+            if (containsHighPercentageOfNonDolchWords)
                 {
                 useDescription.append(L" ").append(
                     _(L"However, this document contains a high percentage of "
@@ -1190,7 +1190,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
             }
         htmlText += L"\n</table>";
 
-        if (containsHighPercentageOfNonDochWords)
+        if (containsHighPercentageOfNonDolchWords)
             {
             htmlText += FormatHtmlWarningSection(_(L"This document contains a high percentage of "
                                                    "non-Dolch words and may not be appropriate "
@@ -2726,7 +2726,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 currentLabel.clear();
                 if (project->GetMismatchedArticleCount() != 0)
                     {
-                    currentLabel += L"<a href=\"#MismatchedArtcles\">";
+                    currentLabel += L"<a href=\"#MismatchedArticles\">";
                     }
                 currentLabel += _(L"Article mismatches:");
                 if (project->GetMismatchedArticleCount() != 0)

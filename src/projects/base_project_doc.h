@@ -466,37 +466,37 @@ class BaseProjectDoc : public BaseProject, public wxDocument
         }
 
     [[nodiscard]]
-    Wisteria::BinLabelDisplay GetHistrogramBinLabelDisplay() const noexcept
+    Wisteria::BinLabelDisplay GetHistogramBinLabelDisplay() const noexcept
         {
-        return m_histrogramBinLabelDisplayMethod;
+        return m_histogramBinLabelDisplayMethod;
         }
 
-    void SetHistrogramBinLabelDisplay(const Wisteria::BinLabelDisplay display) noexcept
+    void SetHistogramBinLabelDisplay(const Wisteria::BinLabelDisplay display) noexcept
         {
-        m_histrogramBinLabelDisplayMethod = display;
+        m_histogramBinLabelDisplayMethod = display;
         }
 
     [[nodiscard]]
     Wisteria::RoundingMethod GetHistogramRoundingMethod() const noexcept
         {
-        return m_histrogramRoundingMethod;
+        return m_histogramRoundingMethod;
         }
 
     void SetHistogramRoundingMethod(const Wisteria::RoundingMethod rounding) noexcept
         {
-        m_histrogramRoundingMethod = rounding;
+        m_histogramRoundingMethod = rounding;
         }
 
     void
     SetHistogramIntervalDisplay(const Wisteria::Graphs::Histogram::IntervalDisplay display) noexcept
         {
-        m_histrogramIntervalDisplay = display;
+        m_histogramIntervalDisplay = display;
         }
 
     [[nodiscard]]
     Wisteria::Graphs::Histogram::IntervalDisplay GetHistogramIntervalDisplay() const noexcept
         {
-        return m_histrogramIntervalDisplay;
+        return m_histogramIntervalDisplay;
         }
 
     [[nodiscard]]
@@ -1278,11 +1278,11 @@ class BaseProjectDoc : public BaseProject, public wxDocument
     Wisteria::Graphs::Histogram::BinningMethod m_histogramBinningMethod{
         Wisteria::Graphs::Histogram::BinningMethod::BinByIntegerRange
     };
-    Wisteria::BinLabelDisplay m_histrogramBinLabelDisplayMethod{
+    Wisteria::BinLabelDisplay m_histogramBinLabelDisplayMethod{
         Wisteria::BinLabelDisplay::BinValue
     };
-    Wisteria::RoundingMethod m_histrogramRoundingMethod{ Wisteria::RoundingMethod::RoundDown };
-    Wisteria::Graphs::Histogram::IntervalDisplay m_histrogramIntervalDisplay{
+    Wisteria::RoundingMethod m_histogramRoundingMethod{ Wisteria::RoundingMethod::RoundDown };
+    Wisteria::Graphs::Histogram::IntervalDisplay m_histogramIntervalDisplay{
         Wisteria::Graphs::Histogram::IntervalDisplay::Cutpoints
     };
     wxColour m_histogramBarColor{ wxColour{ 182, 164, 204 } }; // lavender

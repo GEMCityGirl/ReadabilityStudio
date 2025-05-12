@@ -80,9 +80,9 @@ BaseProjectDoc::BaseProjectDoc()
       m_useEnglishLabelsGermanLix(wxGetApp().GetAppOptions().IsUsingEnglishLabelsForGermanLix()),
       // histogram options
       m_histogramBinningMethod(wxGetApp().GetAppOptions().GetHistogramBinningMethod()),
-      m_histrogramBinLabelDisplayMethod(wxGetApp().GetAppOptions().GetHistrogramBinLabelDisplay()),
-      m_histrogramRoundingMethod(wxGetApp().GetAppOptions().GetHistogramRoundingMethod()),
-      m_histrogramIntervalDisplay(wxGetApp().GetAppOptions().GetHistogramIntervalDisplay()),
+      m_histogramBinLabelDisplayMethod(wxGetApp().GetAppOptions().GetHistogramBinLabelDisplay()),
+      m_histogramRoundingMethod(wxGetApp().GetAppOptions().GetHistogramRoundingMethod()),
+      m_histogramIntervalDisplay(wxGetApp().GetAppOptions().GetHistogramIntervalDisplay()),
       m_histogramBarColor(wxGetApp().GetAppOptions().GetHistogramBarColor()),
       m_histogramBarOpacity(wxGetApp().GetAppOptions().GetHistogramBarOpacity()),
       m_histogramBarEffect(wxGetApp().GetAppOptions().GetHistogramBarEffect()),
@@ -1795,15 +1795,15 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             long catDisplayMethod = XmlFormat::GetLong(
                 histoSection, histoSectionEnd,
                 wxGetApp().GetAppOptions().XML_GRAPH_BINNING_LABEL_DISPLAY.data(),
-                static_cast<long>(wxGetApp().GetAppOptions().GetHistrogramBinLabelDisplay()));
+                static_cast<long>(wxGetApp().GetAppOptions().GetHistogramBinLabelDisplay()));
             if (catDisplayMethod < 0 ||
                 catDisplayMethod >= static_cast<decltype(catDisplayMethod)>(
                                         BinLabelDisplay::BIN_LABEL_DISPLAY_COUNT))
                 {
                 catDisplayMethod =
-                    static_cast<long>(wxGetApp().GetAppOptions().GetHistrogramBinLabelDisplay());
+                    static_cast<long>(wxGetApp().GetAppOptions().GetHistogramBinLabelDisplay());
                 }
-            SetHistrogramBinLabelDisplay(static_cast<BinLabelDisplay>(catDisplayMethod));
+            SetHistogramBinLabelDisplay(static_cast<BinLabelDisplay>(catDisplayMethod));
             }
 
         // bar chart settings
@@ -2893,7 +2893,7 @@ wxString BaseProjectDoc::FormatProjectSettings() const
     // categorization label display method
     XmlFormat::FormatSection(sectionText,
                              wxGetApp().GetAppOptions().XML_GRAPH_BINNING_LABEL_DISPLAY.data(),
-                             static_cast<int>(GetHistrogramBinLabelDisplay()), 3);
+                             static_cast<int>(GetHistogramBinLabelDisplay()), 3);
     fileText += sectionText;
     // rounding
     XmlFormat::FormatSection(sectionText,

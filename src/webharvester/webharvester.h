@@ -306,7 +306,7 @@ class WebHarvester
     /// @param search @c true to catalogue broken links.
     /// @warning Enabling this will degrade performance because it will
     ///     attempt to connect to each link.
-    void SeachForBrokenLinks(const bool search = true) noexcept { m_searchForBrokenLinks = search; }
+    void SearchForBrokenLinks(const bool search = true) noexcept { m_searchForBrokenLinks = search; }
 
     /// @returns @c true if a list of broken links are being catalogued while harvesting.
     [[nodiscard]]
@@ -469,7 +469,7 @@ class WebHarvester
         }
 
     /// @returns A map of broken links and the respective pages they were found on.
-    /// @note SeachForBrokenLinks() must be enabled.
+    /// @note SearchForBrokenLinks() must be enabled.
     [[nodiscard]]
     const std::map<wxString, wxString>& GetBrokenLinks() const noexcept
         {
@@ -542,12 +542,12 @@ class WebHarvester
             all sites being crawled during a given session.
         @details Client will be responsible for clearing persisting cookies via ClearCookies().
         @note UseJavaScriptCookies() must be set to @c true; otherwise, this will be ignored.
-        @param presistCookies @c true to reuse cookies. If @c false, cookies will not be reused
+        @param persistCookies @c true to reuse cookies. If @c false, cookies will not be reused
             and ClearCookies() will be called.
         @sa UseJavaScriptCookies(), ClearCookies().*/
-    void PersistJavaScriptCookies(const bool presistCookies)
+    void PersistJavaScriptCookies(const bool persistCookies)
         {
-        m_persistJsCookies = presistCookies;
+        m_persistJsCookies = persistCookies;
         if (!m_persistJsCookies)
             {
             ClearCookies();

@@ -51,7 +51,7 @@ namespace LuaScripting
     int /*boolean*/ IsUsingWebsitesFolderStructure(lua_State* L); // Returns whether to mirror websites' folder structure when downloading their files.
     int UseWebsitesFolderStructure(lua_State* L /*boolean use*/); // Sets whether to mirror websites' folder structure when downloading their files.
     int /*boolean*/ IsSearchingForBrokenLinks(lua_State* L); // Returns whether a list of broken links are being catalogued while web harvesting.
-    int SeachForBrokenLinks(lua_State* L /*boolean use*/); // Sets whether to build a list of broken links while crawling.
+    int SearchForBrokenLinks(lua_State* L /*boolean use*/); // Sets whether to build a list of broken links while crawling.
     int /*boolean*/ IsReplacingExistingFiles(lua_State* L); // Returns whether files being downloaded will replace existing ones.
     int ReplaceExistingFiles(lua_State* L /*boolean use*/); // Sets whether files being downloaded can overwrite each other if they have the same path.
     int /*number*/ GetMinimumDownloadFileSizeInKilobytes(lua_State* L); // Returns whether files being downloaded will replace existing ones.
@@ -307,8 +307,8 @@ namespace LuaScripting
     int /*Rounding*/ GetHistogramRounding(lua_State* L); // Returns how data are rounded (during binning) in histograms for new projects.
     int SetHistogramIntervalDisplay(lua_State* L /*IntervalDisplay display*/); // Sets how bin (axis) labels are displayed on histograms for new projects.
     int /*IntervalDisplay*/ GetHistogramIntervalDisplay(lua_State* L); // Returns how bin (axis) labels are displayed on histograms for new projects.
-    int SetHistrogramBinLabelDisplay(lua_State* L /*BinLabelDisplay display*/); // Sets how bar labels are displayed on histograms for new projects.
-    int /*BinLabelDisplay*/ GetHistrogramBinLabelDisplay(lua_State* L); // Returns how bar labels are displayed on histograms for new projects.
+    int SetHistogramBinLabelDisplay(lua_State* L /*BinLabelDisplay display*/); // Sets how bar labels are displayed on histograms for new projects.
+    int /*BinLabelDisplay*/ GetHistogramBinLabelDisplay(lua_State* L); // Returns how bar labels are displayed on histograms for new projects.
 
     int SetBoxPlotColor(lua_State* L /*string colorName*/); // Sets box color (in box plots) for new projects.
     int SetBoxPlotEffect(lua_State* L /*BoxEffect barEffect*/); // Sets box appearance (in box plots) for new projects.
@@ -366,7 +366,7 @@ namespace LuaScripting
         { "SetDownloadFolder", SetDownloadFolder },
         { "UseWebsitesFolderStructure", UseWebsitesFolderStructure },
         { "IsUsingWebsitesFolderStructure", IsUsingWebsitesFolderStructure },
-        { "SeachForBrokenLinks", SeachForBrokenLinks },
+        { "SearchForBrokenLinks", SearchForBrokenLinks },
         { "IsSearchingForBrokenLinks", IsSearchingForBrokenLinks },
         { "ReplaceExistingFiles", ReplaceExistingFiles },
         { "IsReplacingExistingFiles", IsReplacingExistingFiles },
@@ -528,8 +528,8 @@ namespace LuaScripting
         { "GetHistogramRounding", GetHistogramRounding },
         { "SetHistogramIntervalDisplay", SetHistogramIntervalDisplay },
         { "GetHistogramIntervalDisplay", GetHistogramIntervalDisplay },
-        { "SetHistrogramBinLabelDisplay", SetHistrogramBinLabelDisplay },
-        { "GetHistrogramBinLabelDisplay", GetHistrogramBinLabelDisplay },
+        { "SetHistogramBinLabelDisplay", SetHistogramBinLabelDisplay },
+        { "GetHistogramBinLabelDisplay", GetHistogramBinLabelDisplay },
         { "SetBoxPlotColor", SetBoxPlotColor },
         { "SetBoxPlotEffect", SetBoxPlotEffect },
         { "GetBoxPlotEffect", GetBoxPlotEffect },

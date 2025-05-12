@@ -678,7 +678,7 @@ bool ReadabilityApp::OnInit()
                          std::make_pair(_(L"Cosmopolitan"), DONTTRANSLATE(L"cosmopolitan")),
                          std::make_pair(_(L"Day and Night"), DONTTRANSLATE(L"dayandnight")),
                          std::make_pair(_(L"Fresh Flowers"), DONTTRANSLATE(L"freshflowers")),
-                         std::make_pair(_(L"Icecream"), DONTTRANSLATE(L"icecream")),
+                         std::make_pair(_(L"Ice Cream"), DONTTRANSLATE(L"icecream")),
                          std::make_pair(_(L"Urban Oasis"), DONTTRANSLATE(L"urbanoasis")),
                          std::make_pair(_(L"Typewriter"), DONTTRANSLATE(L"typewriter")),
                          std::make_pair(_(L"Tasty Waves"), DONTTRANSLATE(L"tastywaves")),

@@ -230,14 +230,14 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int SeachForBrokenLinks(lua_State* L)
+    int SearchForBrokenLinks(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
 
-        wxGetApp().GetWebHarvester().SeachForBrokenLinks(int_to_bool(lua_toboolean(L, 1)));
+        wxGetApp().GetWebHarvester().SearchForBrokenLinks(int_to_bool(lua_toboolean(L, 1)));
         return 0;
         }
 
@@ -580,7 +580,7 @@ namespace LuaScripting
                 }
             else
                 {
-                wxMessageBox(wxString::Format(_(L"%s: File not found."), inputFile),
+                wxMessageBox(wxString::Format(_(L"%s: file not found."), inputFile),
                              _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
                 lua_pushboolean(L, false);
                 return 1;
@@ -649,7 +649,7 @@ namespace LuaScripting
         const wxImage img = Wisteria::GraphItems::Image::LoadFile(path);
         if (!img.IsOk())
             {
-            wxMessageBox(wxString::Format(_(L"%s: Unable to load image."), path),
+            wxMessageBox(wxString::Format(_(L"%s: unable to load image."), path),
                          _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;
@@ -1210,7 +1210,7 @@ namespace LuaScripting
                 }
             else
                 {
-                wxMessageBox(wxString::Format(_(L"%s: File not found."), inputFile),
+                wxMessageBox(wxString::Format(_(L"%s: file not found."), inputFile),
                              _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
                 lua_pushboolean(L, false);
                 return 1;
@@ -1263,7 +1263,7 @@ namespace LuaScripting
                 }
             else
                 {
-                wxMessageBox(wxString::Format(_(L"%s: File not found."), inputFile),
+                wxMessageBox(wxString::Format(_(L"%s: file not found."), inputFile),
                              _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
                 lua_pushboolean(L, false);
                 return 1;
@@ -2940,23 +2940,23 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int SetHistrogramBinLabelDisplay(lua_State* L)
+    int SetHistogramBinLabelDisplay(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
             }
 
-        wxGetApp().GetAppOptions().SetHistrogramBinLabelDisplay(
+        wxGetApp().GetAppOptions().SetHistogramBinLabelDisplay(
             static_cast<Wisteria::BinLabelDisplay>(luaL_checkinteger(L, 1)));
         return 0;
         }
 
     //-------------------------------------------------------------
-    int GetHistrogramBinLabelDisplay(lua_State* L)
+    int GetHistogramBinLabelDisplay(lua_State* L)
         {
         lua_pushnumber(L,
-                       static_cast<int>(wxGetApp().GetAppOptions().GetHistrogramBinLabelDisplay()));
+                       static_cast<int>(wxGetApp().GetAppOptions().GetHistogramBinLabelDisplay()));
         wxGetApp().Yield();
         return 1;
         }

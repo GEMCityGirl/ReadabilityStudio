@@ -1,12 +1,12 @@
 ::: {.minipage data-latex="{\textwidth}"}
-## `SetHistrogramBinLabelDisplay`
+## `SetHistogramBinLabelDisplay`
 
 Sets how bar labels are displayed on histograms for new projects.
 
 ### Syntax {-}
 
 ``` {.lua}
-SetHistrogramBinLabelDisplay(BinLabelDisplay display)
+SetHistogramBinLabelDisplay(BinLabelDisplay display)
 ```
 
 ### Parameters {-}

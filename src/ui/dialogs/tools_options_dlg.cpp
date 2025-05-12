@@ -497,7 +497,7 @@ void ToolsOptionsDlg::OnHighlightColorSelect([[maybe_unused]] wxCommandEvent& ev
         return;
         }
     wxColourData data;
-    wxGetApp().GetAppOptions().CopyCustomColoursToColourData(data);
+    wxGetApp().GetAppOptions().CopyCustomColorsToColourData(data);
     data.SetChooseFull(true);
     data.SetColour(m_highlightedColor);
 
@@ -507,7 +507,7 @@ void ToolsOptionsDlg::OnHighlightColorSelect([[maybe_unused]] wxCommandEvent& ev
         m_highlightedColor = dialog.GetColourData().GetColour();
         m_highlightColorButton->SetBitmapLabel(
             ResourceManager::CreateColorIcon(m_highlightedColor));
-        wxGetApp().GetAppOptions().CopyColourDataToCustomColours(dialog.GetColourData());
+        wxGetApp().GetAppOptions().CopyColorDataToCustomColors(dialog.GetColourData());
         }
     }
 
@@ -519,7 +519,7 @@ void ToolsOptionsDlg::OnExcludedHighlightColorSelect([[maybe_unused]] wxCommandE
         return;
         }
     wxColourData data;
-    wxGetApp().GetAppOptions().CopyCustomColoursToColourData(data);
+    wxGetApp().GetAppOptions().CopyCustomColorsToColourData(data);
     data.SetChooseFull(true);
     data.SetColour(m_excludedTextHighlightColor);
 
@@ -529,7 +529,7 @@ void ToolsOptionsDlg::OnExcludedHighlightColorSelect([[maybe_unused]] wxCommandE
         m_excludedTextHighlightColor = dialog.GetColourData().GetColour();
         m_excludedHighlightColorButton->SetBitmapLabel(
             ResourceManager::CreateColorIcon(m_excludedTextHighlightColor));
-        wxGetApp().GetAppOptions().CopyColourDataToCustomColours(dialog.GetColourData());
+        wxGetApp().GetAppOptions().CopyColorDataToCustomColors(dialog.GetColourData());
         }
     }
 
@@ -541,7 +541,7 @@ void ToolsOptionsDlg::OnDupWordHighlightColorSelect([[maybe_unused]] wxCommandEv
         return;
         }
     wxColourData data;
-    wxGetApp().GetAppOptions().CopyCustomColoursToColourData(data);
+    wxGetApp().GetAppOptions().CopyCustomColorsToColourData(data);
     data.SetChooseFull(true);
     data.SetColour(m_duplicateWordHighlightColor);
 
@@ -551,7 +551,7 @@ void ToolsOptionsDlg::OnDupWordHighlightColorSelect([[maybe_unused]] wxCommandEv
         m_duplicateWordHighlightColor = dialog.GetColourData().GetColour();
         m_duplicateWordHighlightColorButton->SetBitmapLabel(
             ResourceManager::CreateColorIcon(m_duplicateWordHighlightColor));
-        wxGetApp().GetAppOptions().CopyColourDataToCustomColours(dialog.GetColourData());
+        wxGetApp().GetAppOptions().CopyColorDataToCustomColors(dialog.GetColourData());
         }
     }
 
@@ -563,7 +563,7 @@ void ToolsOptionsDlg::OnWordyPhraseHighlightColorSelect([[maybe_unused]] wxComma
         return;
         }
     wxColourData data;
-    wxGetApp().GetAppOptions().CopyCustomColoursToColourData(data);
+    wxGetApp().GetAppOptions().CopyCustomColorsToColourData(data);
     data.SetChooseFull(true);
     data.SetColour(m_wordyPhraseHighlightColor);
 
@@ -573,7 +573,7 @@ void ToolsOptionsDlg::OnWordyPhraseHighlightColorSelect([[maybe_unused]] wxComma
         m_wordyPhraseHighlightColor = dialog.GetColourData().GetColour();
         m_wordyPhraseHighlightColorButton->SetBitmapLabel(
             ResourceManager::CreateColorIcon(m_wordyPhraseHighlightColor));
-        wxGetApp().GetAppOptions().CopyColourDataToCustomColours(dialog.GetColourData());
+        wxGetApp().GetAppOptions().CopyColorDataToCustomColors(dialog.GetColourData());
         }
     }
 
@@ -586,7 +586,7 @@ void ToolsOptionsDlg::OnDolchConjunctionsHighlightColorSelect(
         return;
         }
     wxColourData data;
-    wxGetApp().GetAppOptions().CopyCustomColoursToColourData(data);
+    wxGetApp().GetAppOptions().CopyCustomColorsToColourData(data);
     data.SetChooseFull(true);
     data.SetColour(m_dolchConjunctionsColor);
 
@@ -596,7 +596,7 @@ void ToolsOptionsDlg::OnDolchConjunctionsHighlightColorSelect(
         m_dolchConjunctionsColor = dialog.GetColourData().GetColour();
         m_DolchConjunctionsColorButton->SetBitmapLabel(
             ResourceManager::CreateColorIcon(m_dolchConjunctionsColor));
-        wxGetApp().GetAppOptions().CopyColourDataToCustomColours(dialog.GetColourData());
+        wxGetApp().GetAppOptions().CopyColorDataToCustomColors(dialog.GetColourData());
         }
     }
 
@@ -609,7 +609,7 @@ void ToolsOptionsDlg::OnDolchPrepositionsHighlightColorSelect(
         return;
         }
     wxColourData data;
-    wxGetApp().GetAppOptions().CopyCustomColoursToColourData(data);
+    wxGetApp().GetAppOptions().CopyCustomColorsToColourData(data);
     data.SetChooseFull(true);
     data.SetColour(m_dolchPrepositionsColor);
 
@@ -619,7 +619,7 @@ void ToolsOptionsDlg::OnDolchPrepositionsHighlightColorSelect(
         m_dolchPrepositionsColor = dialog.GetColourData().GetColour();
         m_DolchPrepositionsColorButton->SetBitmapLabel(
             ResourceManager::CreateColorIcon(m_dolchPrepositionsColor));
-        wxGetApp().GetAppOptions().CopyColourDataToCustomColours(dialog.GetColourData());
+        wxGetApp().GetAppOptions().CopyColorDataToCustomColors(dialog.GetColourData());
         }
     }
 
@@ -631,7 +631,7 @@ void ToolsOptionsDlg::OnDolchPronounsHighlightColorSelect([[maybe_unused]] wxCom
         return;
         }
     wxColourData data;
-    wxGetApp().GetAppOptions().CopyCustomColoursToColourData(data);
+    wxGetApp().GetAppOptions().CopyCustomColorsToColourData(data);
     data.SetChooseFull(true);
     data.SetColour(m_dolchPronounsColor);
 
@@ -641,7 +641,7 @@ void ToolsOptionsDlg::OnDolchPronounsHighlightColorSelect([[maybe_unused]] wxCom
         m_dolchPronounsColor = dialog.GetColourData().GetColour();
         m_DolchPronounsColorButton->SetBitmapLabel(
             ResourceManager::CreateColorIcon(m_dolchPronounsColor));
-        wxGetApp().GetAppOptions().CopyColourDataToCustomColours(dialog.GetColourData());
+        wxGetApp().GetAppOptions().CopyColorDataToCustomColors(dialog.GetColourData());
         }
     }
 
@@ -653,7 +653,7 @@ void ToolsOptionsDlg::OnDolchAdverbsHighlightColorSelect([[maybe_unused]] wxComm
         return;
         }
     wxColourData data;
-    wxGetApp().GetAppOptions().CopyCustomColoursToColourData(data);
+    wxGetApp().GetAppOptions().CopyCustomColorsToColourData(data);
     data.SetChooseFull(true);
     data.SetColour(m_dolchAdverbsColor);
 
@@ -663,7 +663,7 @@ void ToolsOptionsDlg::OnDolchAdverbsHighlightColorSelect([[maybe_unused]] wxComm
         m_dolchAdverbsColor = dialog.GetColourData().GetColour();
         m_DolchAdverbsColorButton->SetBitmapLabel(
             ResourceManager::CreateColorIcon(m_dolchAdverbsColor));
-        wxGetApp().GetAppOptions().CopyColourDataToCustomColours(dialog.GetColourData());
+        wxGetApp().GetAppOptions().CopyColorDataToCustomColors(dialog.GetColourData());
         }
     }
 
@@ -673,7 +673,7 @@ void ToolsOptionsDlg::OnDolchHighlightColorSelect(wxCommandEvent& event)
     if (event.GetId() == ID_DOLCH_ADJECTIVES_COLOR_BUTTON)
         {
         wxColourData data;
-        wxGetApp().GetAppOptions().CopyCustomColoursToColourData(data);
+        wxGetApp().GetAppOptions().CopyCustomColorsToColourData(data);
         data.SetChooseFull(true);
         data.SetColour(m_dolchAdjectivesColor);
 
@@ -683,13 +683,13 @@ void ToolsOptionsDlg::OnDolchHighlightColorSelect(wxCommandEvent& event)
             m_dolchAdjectivesColor = dialog.GetColourData().GetColour();
             m_DolchAdjectivesColorButton->SetBitmapLabel(
                 ResourceManager::CreateColorIcon(m_dolchAdjectivesColor));
-            wxGetApp().GetAppOptions().CopyColourDataToCustomColours(dialog.GetColourData());
+            wxGetApp().GetAppOptions().CopyColorDataToCustomColors(dialog.GetColourData());
             }
         }
     else if (event.GetId() == ID_DOLCH_VERBS_COLOR_BUTTON)
         {
         wxColourData data;
-        wxGetApp().GetAppOptions().CopyCustomColoursToColourData(data);
+        wxGetApp().GetAppOptions().CopyCustomColorsToColourData(data);
         data.SetChooseFull(true);
         data.SetColour(m_dolchVerbsColor);
 
@@ -699,7 +699,7 @@ void ToolsOptionsDlg::OnDolchHighlightColorSelect(wxCommandEvent& event)
             m_dolchVerbsColor = dialog.GetColourData().GetColour();
             m_DolchVerbsColorButton->SetBitmapLabel(
                 ResourceManager::CreateColorIcon(m_dolchVerbsColor));
-            wxGetApp().GetAppOptions().CopyColourDataToCustomColours(dialog.GetColourData());
+            wxGetApp().GetAppOptions().CopyColorDataToCustomColors(dialog.GetColourData());
             }
         }
     }
@@ -712,7 +712,7 @@ void ToolsOptionsDlg::OnDolchNounHighlightColorSelect([[maybe_unused]] wxCommand
         return;
         }
     wxColourData data;
-    wxGetApp().GetAppOptions().CopyCustomColoursToColourData(data);
+    wxGetApp().GetAppOptions().CopyCustomColorsToColourData(data);
     data.SetChooseFull(true);
     data.SetColour(m_dolchNounsColor);
 
@@ -722,7 +722,7 @@ void ToolsOptionsDlg::OnDolchNounHighlightColorSelect([[maybe_unused]] wxCommand
         m_dolchNounsColor = dialog.GetColourData().GetColour();
         m_DolchNounsColorButton->SetBitmapLabel(
             ResourceManager::CreateColorIcon(m_dolchNounsColor));
-        wxGetApp().GetAppOptions().CopyColourDataToCustomColours(dialog.GetColourData());
+        wxGetApp().GetAppOptions().CopyColorDataToCustomColors(dialog.GetColourData());
         }
     }
 
@@ -2651,7 +2651,7 @@ void ToolsOptionsDlg::SaveOptions()
             }
         if (IsPropertyAvailable(m_histogramPropertyGrid, GetBinLabelsLabel()))
             {
-            wxGetApp().GetAppOptions().SetHistrogramBinLabelDisplay(static_cast<BinLabelDisplay>(
+            wxGetApp().GetAppOptions().SetHistogramBinLabelDisplay(static_cast<BinLabelDisplay>(
                 m_histogramPropertyGrid->GetPropertyValueAsInt(GetBinLabelsLabel())));
             }
         if (IsPropertyAvailable(m_histogramPropertyGrid, GetIntervalDisplayLabel()))
@@ -3011,7 +3011,7 @@ void ToolsOptionsDlg::SaveProjectGraphOptions()
             }
         if (IsPropertyAvailable(m_histogramPropertyGrid, GetBinLabelsLabel()))
             {
-            m_readabilityProjectDoc->SetHistrogramBinLabelDisplay(static_cast<BinLabelDisplay>(
+            m_readabilityProjectDoc->SetHistogramBinLabelDisplay(static_cast<BinLabelDisplay>(
                 m_histogramPropertyGrid->GetPropertyValueAsInt(GetBinLabelsLabel())));
             }
         if (IsPropertyAvailable(m_histogramPropertyGrid, GetColorLabel()))
@@ -5895,8 +5895,8 @@ void ToolsOptionsDlg::CreateGraphSection()
             m_histogramPropertyGrid->Append(new wxEnumProperty(
                 GetBinLabelsLabel(), wxPG_LABEL, catLabelTypes,
                 (m_readabilityProjectDoc ?
-                     static_cast<int>(m_readabilityProjectDoc->GetHistrogramBinLabelDisplay()) :
-                     static_cast<int>(wxGetApp().GetAppOptions().GetHistrogramBinLabelDisplay()))));
+                     static_cast<int>(m_readabilityProjectDoc->GetHistogramBinLabelDisplay()) :
+                     static_cast<int>(wxGetApp().GetAppOptions().GetHistogramBinLabelDisplay()))));
             m_histogramPropertyGrid->SetPropertyHelpString(
                 GetBinLabelsLabel(), _(L"Specifies what to display on the bars' labels."));
 

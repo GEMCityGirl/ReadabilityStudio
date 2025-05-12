@@ -1594,10 +1594,10 @@ class ReadabilityAppOptions
 
     /** @brief If using JavaScript cookies, store and send all encountered cookies for
             all sites being crawled during a given session.
-        @param presistCookies @c true to reuse cookies.*/
-    void PersistJavaScriptCookies(const bool presistCookies)
+        @param persistCookies @c true to reuse cookies.*/
+    void PersistJavaScriptCookies(const bool persistCookies)
         {
-        m_persistJsCookies = presistCookies;
+        m_persistJsCookies = persistCookies;
         }
 
     /// @returns If using JavaScript cookies, store and send all encountered cookies for
@@ -1775,37 +1775,37 @@ class ReadabilityAppOptions
         }
 
     [[nodiscard]]
-    Wisteria::BinLabelDisplay GetHistrogramBinLabelDisplay() const noexcept
+    Wisteria::BinLabelDisplay GetHistogramBinLabelDisplay() const noexcept
         {
-        return m_histrogramBinLabelDisplayMethod;
+        return m_histogramBinLabelDisplayMethod;
         }
 
-    void SetHistrogramBinLabelDisplay(const Wisteria::BinLabelDisplay display) noexcept
+    void SetHistogramBinLabelDisplay(const Wisteria::BinLabelDisplay display) noexcept
         {
-        m_histrogramBinLabelDisplayMethod = display;
+        m_histogramBinLabelDisplayMethod = display;
         }
 
     [[nodiscard]]
     Wisteria::RoundingMethod GetHistogramRoundingMethod() const noexcept
         {
-        return m_histrogramRoundingMethod;
+        return m_histogramRoundingMethod;
         }
 
     void SetHistogramRoundingMethod(const Wisteria::RoundingMethod rounding) noexcept
         {
-        m_histrogramRoundingMethod = rounding;
+        m_histogramRoundingMethod = rounding;
         }
 
     void
     SetHistogramIntervalDisplay(const Wisteria::Graphs::Histogram::IntervalDisplay display) noexcept
         {
-        m_histrogramIntervalDisplay = display;
+        m_histogramIntervalDisplay = display;
         }
 
     [[nodiscard]]
     Wisteria::Graphs::Histogram::IntervalDisplay GetHistogramIntervalDisplay() const noexcept
         {
-        return m_histrogramIntervalDisplay;
+        return m_histogramIntervalDisplay;
         }
 
     [[nodiscard]]
@@ -2450,26 +2450,26 @@ class ReadabilityAppOptions
         }
 
     [[nodiscard]]
-    std::vector<wxColour>& GetCustomColours() noexcept
+    std::vector<wxColour>& GetCustomColors() noexcept
         {
-        return m_customColours;
+        return m_customColors;
         }
 
-    void CopyCustomColoursToColourData(wxColourData& colourData)
+    void CopyCustomColorsToColourData(wxColourData& colourData)
         {
-        GetCustomColours().resize(m_maxCustomColors);
+        GetCustomColors().resize(m_maxCustomColors);
         for (size_t i = 0; i < m_maxCustomColors; ++i)
             {
-            colourData.SetCustomColour(i, GetCustomColours().at(i));
+            colourData.SetCustomColour(i, GetCustomColors().at(i));
             }
         }
 
-    void CopyColourDataToCustomColours(const wxColourData& colourData)
+    void CopyColorDataToCustomColors(const wxColourData& colourData)
         {
-        GetCustomColours().clear();
+        GetCustomColors().clear();
         for (size_t i = 0; i < m_maxCustomColors; ++i)
             {
-            GetCustomColours().push_back(colourData.GetCustomColour(i));
+            GetCustomColors().push_back(colourData.GetCustomColour(i));
             }
         }
 
@@ -2691,11 +2691,11 @@ class ReadabilityAppOptions
     Wisteria::Graphs::Histogram::BinningMethod m_histogramBinningMethod{
         Wisteria::Graphs::Histogram::BinningMethod::BinByIntegerRange
     };
-    Wisteria::BinLabelDisplay m_histrogramBinLabelDisplayMethod{
+    Wisteria::BinLabelDisplay m_histogramBinLabelDisplayMethod{
         Wisteria::BinLabelDisplay::BinValue
     };
-    Wisteria::RoundingMethod m_histrogramRoundingMethod{ Wisteria::RoundingMethod::RoundDown };
-    Wisteria::Graphs::Histogram::IntervalDisplay m_histrogramIntervalDisplay{
+    Wisteria::RoundingMethod m_histogramRoundingMethod{ Wisteria::RoundingMethod::RoundDown };
+    Wisteria::Graphs::Histogram::IntervalDisplay m_histogramIntervalDisplay{
         Wisteria::Graphs::Histogram::IntervalDisplay::Cutpoints
     };
     wxColour m_histogramBarColor{ wxColour{ 182, 164, 204 } }; // lavender
@@ -2766,7 +2766,7 @@ class ReadabilityAppOptions
     };
     Wisteria::Graphs::RaygorStyle m_raygorStyle{ Wisteria::Graphs::RaygorStyle::BaldwinKaufman };
     // custom colors
-    std::vector<wxColour> m_customColours;
+    std::vector<wxColour> m_customColors;
     // images used for blank graphs
     wxBitmapBundle m_graphBackgroundImage;
     wxBitmapBundle m_waterMarkImage;
@@ -3028,7 +3028,7 @@ class ReadabilityAppOptions
     const std::string_view XML_STATISTICS_REPORT{ _DT("statistics-report") };
     // Min doc size
     const std::string_view XML_MIN_DOC_SIZE_FOR_BATCH{ _DT("min-doc-size-for-batch") };
-    const std::string_view XML_RANDOM_SAMPLE_SIZE{ _DT("random-samlple-size") };
+    const std::string_view XML_RANDOM_SAMPLE_SIZE{ _DT("random-sample-size") };
     const std::string_view XML_FILE_PATH_TRUNC_MODE{ _DT("filepath-truncation-mode") };
     // export options
     const std::string_view XML_EXPORT{ _DT("export-settings") };

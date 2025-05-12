@@ -609,7 +609,7 @@ void ProjectView::OnHyperlinkClicked(wxHtmlLinkEvent& event)
         {
         GetSideBar()->SelectSubItem(GetSideBar()->FindSubItem(DUPLICATES_LIST_PAGE_ID));
         }
-    else if (event.GetLinkInfo().GetHref() == L"#MismatchedArtcles")
+    else if (event.GetLinkInfo().GetHref() == L"#MismatchedArticles")
         {
         GetSideBar()->SelectSubItem(GetSideBar()->FindSubItem(INCORRECT_ARTICLE_PAGE_ID));
         }

@@ -40,7 +40,7 @@ namespace LuaScripting
             {
             if (m_project == nullptr)
                 {
-                wxMessageBox(wxString::Format(_(L"%s: Accessing project that is already closed."),
+                wxMessageBox(wxString::Format(_(L"%s: accessing project that is already closed."),
                                               functionName),
                              _(L"Warning"), wxOK | wxICON_INFORMATION);
                 return false;
@@ -52,23 +52,23 @@ namespace LuaScripting
             }
 
         /// @note This takes into account the boolean parameter in the front
-        ///     passed to Lunar objects, so @c minParemeterCount should be the actual
+        ///     passed to Lunar objects, so @c minParameterCount should be the actual
         ///     expected number of parameters.
         [[nodiscard]]
-        static bool VerifyParameterCount(lua_State* L, const int minParemeterCount,
+        static bool VerifyParameterCount(lua_State* L, const int minParameterCount,
                                          const wxString& functionName)
             {
             assert(L);
-            assert(minParemeterCount >= 0);
+            assert(minParameterCount >= 0);
             // skip over the boolean param passed in the front indicating success of
             // routing the function to the class object.
-            if ((lua_gettop(L) - 1) < minParemeterCount)
+            if ((lua_gettop(L) - 1) < minParameterCount)
                 {
                 wxMessageBox(
                     wxString::Format(
                         // TRANSLATORS: %s is a function name that failed from a script
                         _(L"%s: Invalid number of arguments.\n\n%d expected, %d provided."),
-                        functionName, minParemeterCount, (lua_gettop(L) - 1)),
+                        functionName, minParameterCount, (lua_gettop(L) - 1)),
                     _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
                 return false;
                 }
@@ -330,8 +330,8 @@ namespace LuaScripting
         int /*Rounding*/ GetHistogramRounding(lua_State* L); // Returns how data are rounded (during binning) in histograms.
         int SetHistogramIntervalDisplay(lua_State* L /*IntervalDisplay display*/); // Sets how bin (axis) labels are displayed on histograms.
         int /*IntervalDisplay*/ GetHistogramIntervalDisplay(lua_State* L); // Returns how bin (axis) labels are displayed on histograms.
-        int SetHistrogramBinLabelDisplay(lua_State* L /*BinLabelDisplay display*/); // Sets how bar labels are displayed on histograms.
-        int /*BinLabelDisplay*/ GetHistrogramBinLabelDisplay(lua_State* L); // Returns how bar labels are displayed on histograms.
+        int SetHistogramBinLabelDisplay(lua_State* L /*BinLabelDisplay display*/); // Sets how bar labels are displayed on histograms.
+        int /*BinLabelDisplay*/ GetHistogramBinLabelDisplay(lua_State* L); // Returns how bar labels are displayed on histograms.
 
         int SetBoxPlotColor(lua_State* L /*string colorName*/); // Sets box color (in box plots).
         int SetBoxPlotEffect(lua_State* L /*BoxEffect barEffect*/); // Sets box appearance (in box plots).

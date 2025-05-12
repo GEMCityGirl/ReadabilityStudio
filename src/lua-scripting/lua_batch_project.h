@@ -39,7 +39,7 @@ namespace LuaScripting
             {
             if (m_project == nullptr)
                 {
-                wxMessageBox(wxString::Format(_(L"%s: Accessing project that is already closed."),
+                wxMessageBox(wxString::Format(_(L"%s: accessing project that is already closed."),
                                               functionName),
                              _(L"Warning"), wxOK | wxICON_INFORMATION);
                 return false;
@@ -277,8 +277,8 @@ namespace LuaScripting
         int /*Rounding*/ GetHistogramRounding(lua_State* L); // Returns how data are rounded (during binning) in histograms.
         int SetHistogramIntervalDisplay(lua_State* L /*IntervalDisplay display*/); // Sets how bin (axis) labels are displayed on histograms.
         int /*IntervalDisplay*/ GetHistogramIntervalDisplay(lua_State* L); // Returns how bin (axis) labels are displayed on histograms.
-        int SetHistrogramBinLabelDisplay(lua_State* L /*BinLabelDisplay display*/); // Sets how bar labels are displayed on histograms.
-        int /*BinLabelDisplay*/ GetHistrogramBinLabelDisplay(lua_State* L); // Returns how bar labels are displayed on histograms.
+        int SetHistogramBinLabelDisplay(lua_State* L /*BinLabelDisplay display*/); // Sets how bar labels are displayed on histograms.
+        int /*BinLabelDisplay*/ GetHistogramBinLabelDisplay(lua_State* L); // Returns how bar labels are displayed on histograms.
 
         int SetBoxPlotColor(lua_State* L /*string colorName*/); // Sets box color (in box plots).
         int SetBoxPlotEffect(lua_State* L /*BoxEffect barEffect*/); // Sets box appearance (in box plots).

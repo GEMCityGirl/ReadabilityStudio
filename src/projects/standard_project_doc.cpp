@@ -2206,7 +2206,7 @@ void ProjectDoc::DisplaySentenceCharts()
             RoundingMethod::NoRounding,
             Histogram::IntervalDisplay::Midpoints,
             IsDisplayingBarChartLabels() ?
-                GetHistrogramBinLabelDisplay() : BinLabelDisplay::NoDisplay,
+                GetHistogramBinLabelDisplay() : BinLabelDisplay::NoDisplay,
             true, 0, std::make_pair(std::nullopt, 5), true);
         sentenceHistogram->GetLeftYAxis().GetTitle().SetText(_(L"Number of Sentences"));
         sentenceHistogram->GetBottomXAxis().GetTitle().SetText(_(L"Number of Words per Sentence"));
@@ -2517,7 +2517,7 @@ void ProjectDoc::DisplayWordCharts()
             RoundingMethod::NoRounding,
             Histogram::IntervalDisplay::Midpoints,
             IsDisplayingBarChartLabels() ?
-                GetHistrogramBinLabelDisplay() : BinLabelDisplay::NoDisplay,
+                GetHistogramBinLabelDisplay() : BinLabelDisplay::NoDisplay,
             // show a bar for all syllable counts, starting from 1
             true, 1);
         if (syllableHistogram->GetBars().size() > 2)

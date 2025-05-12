@@ -377,9 +377,9 @@ void ReadabilityAppOptions::ResetSettings()
     m_fleschChartSyllableRulerDocGroups = false;
     m_useEnglishLabelsGermanLix = false;
     m_histogramBinningMethod = Histogram::BinningMethod::BinByIntegerRange;
-    m_histrogramBinLabelDisplayMethod = BinLabelDisplay::BinValue;
-    m_histrogramRoundingMethod = RoundingMethod::RoundDown;
-    m_histrogramIntervalDisplay = Histogram::IntervalDisplay::Cutpoints;
+    m_histogramBinLabelDisplayMethod = BinLabelDisplay::BinValue;
+    m_histogramRoundingMethod = RoundingMethod::RoundDown;
+    m_histogramIntervalDisplay = Histogram::IntervalDisplay::Cutpoints;
     // lavender
     m_histogramBarColor = wxColour(182, 164, 204);
     // rain color
@@ -438,8 +438,8 @@ void ReadabilityAppOptions::ResetSettings()
     m_fleschKincaidNumeralSyllabizeMethod =
         FleschKincaidNumeralSyllabize::FleschKincaidNumeralSoundOutEachDigit;
     m_raygorStyle = Wisteria::Graphs::RaygorStyle::BaldwinKaufman;
-    // clear the colours
-    m_customColours.clear();
+    // clear the colors
+    m_customColors.clear();
     // reset the warning flags
     WarningManager::EnableWarnings();
     }
@@ -586,7 +586,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
         auto customColoursNode = configRootNode->FirstChildElement(XML_CUSTOM_COLORS.data());
         if (customColoursNode)
             {
-            GetCustomColours().clear();
+            GetCustomColors().clear();
             for (int i = 0; i < m_maxCustomColors; ++i)
                 {
                 auto colourNode = customColoursNode->FirstChildElement(
@@ -599,7 +599,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         colourNode->ToElement()->IntAttribute(XmlFormat::GetBlue().mb_str(), 255);
                     int blue =
                         colourNode->ToElement()->IntAttribute(XmlFormat::GetGreen().mb_str(), 255);
-                    GetCustomColours().push_back(wxColour(red, green, blue));
+                    GetCustomColors().push_back(wxColour(red, green, blue));
                     }
                 else
                     {
@@ -2256,13 +2256,13 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         {
                         int value = catLabelNode->ToElement()->IntAttribute(
                             XML_VALUE.data(),
-                            static_cast<decltype(value)>(GetHistrogramBinLabelDisplay()));
+                            static_cast<decltype(value)>(GetHistogramBinLabelDisplay()));
                         if (value < 0 || value >= static_cast<decltype(value)>(
                                                       BinLabelDisplay::BIN_LABEL_DISPLAY_COUNT))
                             {
                             value = static_cast<decltype(value)>(BinLabelDisplay::BinValue);
                             }
-                        SetHistrogramBinLabelDisplay(static_cast<BinLabelDisplay>(value));
+                        SetHistogramBinLabelDisplay(static_cast<BinLabelDisplay>(value));
                         }
                     auto colorNodeHisto = histogramNode->FirstChildElement(XML_GRAPH_COLOR.data());
                     if (colorNodeHisto)
@@ -3444,18 +3444,18 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto configSection = doc.NewElement(XML_CONFIGURATIONS.data());
 
     auto customColours = doc.NewElement(XML_CUSTOM_COLORS.data());
-    for (int i = 0; static_cast<size_t>(i) < GetCustomColours().size(); ++i)
+    for (int i = 0; static_cast<size_t>(i) < GetCustomColors().size(); ++i)
         {
         auto customColor = doc.NewElement(wxString::Format(_DT(L"color%d"), i).mb_str());
-        customColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetCustomColours().at(i).IsOk() ?
-                                                                    GetCustomColours().at(i).Red() :
+        customColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetCustomColors().at(i).IsOk() ?
+                                                                    GetCustomColors().at(i).Red() :
                                                                     255);
         customColor->SetAttribute(
             XmlFormat::GetGreen().mb_str(),
-            GetCustomColours().at(i).IsOk() ? GetCustomColours().at(i).Green() : 255);
+            GetCustomColors().at(i).IsOk() ? GetCustomColors().at(i).Green() : 255);
         customColor->SetAttribute(
             XmlFormat::GetBlue().mb_str(),
-            GetCustomColours().at(i).IsOk() ? GetCustomColours().at(i).Blue() : 255);
+            GetCustomColors().at(i).IsOk() ? GetCustomColors().at(i).Blue() : 255);
         customColours->InsertEndChild(customColor);
         }
     configSection->InsertEndChild(customColours);
@@ -4284,7 +4284,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     // categorization label display
     auto hCatLabelDisplay = doc.NewElement(XML_GRAPH_BINNING_LABEL_DISPLAY.data());
     hCatLabelDisplay->SetAttribute(XML_VALUE.data(),
-                                   static_cast<int>(GetHistrogramBinLabelDisplay()));
+                                   static_cast<int>(GetHistogramBinLabelDisplay()));
     histogramSettings->InsertEndChild(hCatLabelDisplay);
     // bar color
     auto hbarColor = doc.NewElement(XML_GRAPH_COLOR.data());

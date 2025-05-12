@@ -2249,7 +2249,7 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int StandardProject::SetHistrogramBinLabelDisplay(lua_State* L)
+    int StandardProject::SetHistogramBinLabelDisplay(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
             {
@@ -2260,21 +2260,21 @@ namespace LuaScripting
             return 0;
             }
 
-        m_project->SetHistrogramBinLabelDisplay(
+        m_project->SetHistogramBinLabelDisplay(
             static_cast<Wisteria::BinLabelDisplay>(luaL_checkinteger(L, 2)));
         ReloadIfNotDelayedSimple();
         return 0;
         }
 
     //-------------------------------------------------------------
-    int StandardProject::GetHistrogramBinLabelDisplay(lua_State* L)
+    int StandardProject::GetHistogramBinLabelDisplay(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
             {
             return 0;
             }
 
-        lua_pushnumber(L, static_cast<int>(m_project->GetHistrogramBinLabelDisplay()));
+        lua_pushnumber(L, static_cast<int>(m_project->GetHistogramBinLabelDisplay()));
         wxGetApp().Yield();
         return 1;
         }
@@ -4778,8 +4778,8 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, GetHistogramRounding),
         LUNA_DECLARE_METHOD(StandardProject, SetHistogramIntervalDisplay),
         LUNA_DECLARE_METHOD(StandardProject, GetHistogramIntervalDisplay),
-        LUNA_DECLARE_METHOD(StandardProject, SetHistrogramBinLabelDisplay),
-        LUNA_DECLARE_METHOD(StandardProject, GetHistrogramBinLabelDisplay),
+        LUNA_DECLARE_METHOD(StandardProject, SetHistogramBinLabelDisplay),
+        LUNA_DECLARE_METHOD(StandardProject, GetHistogramBinLabelDisplay),
         LUNA_DECLARE_METHOD(StandardProject, SetBarChartOrientation),
         LUNA_DECLARE_METHOD(StandardProject, SetBoxPlotColor),
         LUNA_DECLARE_METHOD(StandardProject, SetBoxPlotEffect),

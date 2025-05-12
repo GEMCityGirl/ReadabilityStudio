@@ -740,7 +740,7 @@ namespace Wisteria::Graphs
         GetPhysicalCoordinates(112 + GetSyllableAxisOffset(), 5.0, pt1);
         GetPhysicalCoordinates(128 + GetSyllableAxisOffset(), 3.3, pt2);
         auto gradeLevelLabel = std::make_unique<Wisteria::GraphItems::Label>(
-            // TRANSLATORS: extra spaces are used to make uppercased text easier to read.
+            // TRANSLATORS: Extra spaces are used to make uppercased text easier to read.
             GraphItemInfo(_(L"APPROXIMATE  GRADE  LEVEL"))
                 .Pen(wxNullPen) 
                 .Selectable(false)

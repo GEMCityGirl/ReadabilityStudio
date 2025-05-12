@@ -113,10 +113,10 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
 
     /** @brief If using JavaScript cookies, store and send all encountered cookies for
             all sites being crawled during a given session.
-        @param presistCookies @c true to reuse cookies.*/
-    void PersistJavaScriptCookies(const bool presistCookies)
+        @param persistCookies @c true to reuse cookies.*/
+    void PersistJavaScriptCookies(const bool persistCookies)
         {
-        m_persistJsCookies = presistCookies;
+        m_persistJsCookies = persistCookies;
         }
 
     /// @returns If using JavaScript cookies, store and send all encountered cookies for

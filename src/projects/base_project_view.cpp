@@ -805,11 +805,11 @@ void BaseProjectView::Present()
             GetDocFrame()->m_histobarLabelsMenu.FindItemByPosition(i)->Check(false);
             }
         wxMenuItem* item = GetDocFrame()->m_histobarLabelsMenu.FindItem(
-            (doc->GetHistrogramBinLabelDisplay() == BinLabelDisplay::BinPercentage) ?
+            (doc->GetHistogramBinLabelDisplay() == BinLabelDisplay::BinPercentage) ?
                 XRCID("ID_HISTOBAR_LABELS_PERCENTAGE") :
-            (doc->GetHistrogramBinLabelDisplay() == BinLabelDisplay::BinValue) ?
+            (doc->GetHistogramBinLabelDisplay() == BinLabelDisplay::BinValue) ?
                 XRCID("ID_HISTOBAR_LABELS_COUNT") :
-            (doc->GetHistrogramBinLabelDisplay() == BinLabelDisplay::BinValueAndPercentage) ?
+            (doc->GetHistogramBinLabelDisplay() == BinLabelDisplay::BinValueAndPercentage) ?
                 XRCID("ID_HISTOBAR_LABELS_COUNT_AND_PERCENT") :
                 XRCID("ID_HISTOBAR_NO_LABELS"));
         if (item)
