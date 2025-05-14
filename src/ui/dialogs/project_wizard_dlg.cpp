@@ -523,12 +523,12 @@ void ProjectWizardDlg::CreateControls()
             // narrative text
             {
             wxBoxSizer* narrativeSizer = new wxBoxSizer(wxHORIZONTAL);
-            wxBoxSizer* narrativeLablesSizer = new wxBoxSizer(wxVERTICAL);
+            wxBoxSizer* narrativeLabelsSizer = new wxBoxSizer(wxVERTICAL);
             wxRadioButton* narrativeRadioButton =
                 new wxRadioButton(docTypeSizer->GetStaticBox(), ID_NARRATIVE_RADIO_BUTTON,
                                   _(L"&Narrative text"), wxDefaultPosition, wxDefaultSize,
                                   wxRB_GROUP, wxGenericValidator(&m_narrativeSelected));
-            narrativeLablesSizer->Add(narrativeRadioButton);
+            narrativeLabelsSizer->Add(narrativeRadioButton);
             wxStaticText* noteLabel = new wxStaticText(
                 docTypeSizer->GetStaticBox(), ID_NARRATIVE_LABEL,
                 _(L"Document contains flowing sentences and paragraphs. "
@@ -536,10 +536,10 @@ void ProjectWizardDlg::CreateControls()
                   "should be ignored."),
                 wxDefaultPosition, wxDefaultSize, 0);
             noteLabel->Wrap(ScaledNoteWidth);
-            narrativeLablesSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-            narrativeLablesSizer->Add(noteLabel, 1, wxLEFT, wxSizerFlags::GetDefaultBorder() * 3);
-            narrativeLablesSizer->SetMinSize(ScaledNoteWidth, -1);
-            narrativeSizer->Add(narrativeLablesSizer, wxSizerFlags{}.Center());
+            narrativeLabelsSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+            narrativeLabelsSizer->Add(noteLabel, 1, wxLEFT, wxSizerFlags::GetDefaultBorder() * 3);
+            narrativeLabelsSizer->SetMinSize(ScaledNoteWidth, -1);
+            narrativeSizer->Add(narrativeLabelsSizer, wxSizerFlags{}.Center());
 
             narrativeSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             wxBitmap previewImage = wxGetApp().GetScaledImage(
@@ -565,12 +565,12 @@ void ProjectWizardDlg::CreateControls()
             // non-narrative text
             {
             wxBoxSizer* sparseSizer = new wxBoxSizer(wxHORIZONTAL);
-            wxBoxSizer* sparseLablesSizer = new wxBoxSizer(wxVERTICAL);
+            wxBoxSizer* sparseLabelsSizer = new wxBoxSizer(wxVERTICAL);
             wxRadioButton* sparseRadioButton =
                 new wxRadioButton(docTypeSizer->GetStaticBox(), ID_NONNARRATIVE_RADIO_BUTTON,
                                   _(L"Non-narrative, &fragmented text"), wxDefaultPosition,
                                   wxDefaultSize, 0, wxGenericValidator(&m_fragmentedTextSelected));
-            sparseLablesSizer->Add(sparseRadioButton);
+            sparseLabelsSizer->Add(sparseRadioButton);
             wxStaticText* noteLabel = new wxStaticText(
                 docTypeSizer->GetStaticBox(), ID_NONNARRATIVE_LABEL,
                 _(L"Instead of the standard sentence and paragraph structure, the document mostly "
@@ -593,9 +593,9 @@ void ProjectWizardDlg::CreateControls()
             noteSizer->Add(moreInfoButton, wxSizerFlags{}.Border(wxLEFT));
             noteSizer->SetMinSize(ScaledNoteWidth, -1);
 
-            sparseLablesSizer->Add(noteSizer);
+            sparseLabelsSizer->Add(noteSizer);
 
-            sparseSizer->Add(sparseLablesSizer, wxSizerFlags{}.Center());
+            sparseSizer->Add(sparseLabelsSizer, wxSizerFlags{}.Center());
 
             sparseSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             wxBitmap previewImage = wxGetApp().GetScaledImage(
@@ -620,13 +620,13 @@ void ProjectWizardDlg::CreateControls()
             // text with "broken lines"
             {
             wxBoxSizer* narrativeSizer = new wxBoxSizer(wxHORIZONTAL);
-            wxBoxSizer* narrativeLablesSizer = new wxBoxSizer(wxVERTICAL);
+            wxBoxSizer* narrativeLabelsSizer = new wxBoxSizer(wxVERTICAL);
             wxCheckBox* narrativeButton = new wxCheckBox(
                 docLayoutSizer->GetStaticBox(), ID_SENTENCES_SPLIT_RADIO_BUTTON,
                 _(L"&Sentences are split by illustrations or extra spacing"), wxDefaultPosition,
                 wxDefaultSize, wxCHK_2STATE, wxGenericValidator(&m_splitLinesSelected));
-            narrativeLablesSizer->Add(narrativeButton);
-            narrativeLablesSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+            narrativeLabelsSizer->Add(narrativeButton);
+            narrativeLabelsSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
             wxStaticText* noteLabel = new wxStaticText(
                 docLayoutSizer->GetStaticBox(), ID_SENTENCES_SPLIT_LABEL,
@@ -649,9 +649,9 @@ void ProjectWizardDlg::CreateControls()
                 }
             noteSizer->Add(moreInfoButton, wxSizerFlags{}.Border(wxLEFT));
 
-            narrativeLablesSizer->Add(noteSizer);
+            narrativeLabelsSizer->Add(noteSizer);
 
-            narrativeSizer->Add(narrativeLablesSizer, wxSizerFlags{}.Center());
+            narrativeSizer->Add(narrativeLabelsSizer, wxSizerFlags{}.Center());
 
             narrativeSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             wxBitmap previewImage = wxGetApp().GetScaledImage(
@@ -694,12 +694,12 @@ void ProjectWizardDlg::CreateControls()
             // centered text
             {
             wxBoxSizer* centeredSizer = new wxBoxSizer(wxHORIZONTAL);
-            wxBoxSizer* centeredLablesSizer = new wxBoxSizer(wxVERTICAL);
+            wxBoxSizer* centeredLabelsSizer = new wxBoxSizer(wxVERTICAL);
             wxCheckBox* centeredButton =
                 new wxCheckBox(docLayoutSizer->GetStaticBox(), wxID_ANY,
                                _(L"Centered/left-aligned text"), wxDefaultPosition, wxDefaultSize,
                                wxCHK_2STATE, wxGenericValidator(&m_centeredText));
-            centeredLablesSizer->Add(centeredButton);
+            centeredLabelsSizer->Add(centeredButton);
             wxStaticText* noteLabel = new wxStaticText(
                 docLayoutSizer->GetStaticBox(), wxID_STATIC,
                 _(L"Text is indented to be centered or left-aligned on the page. "
@@ -722,9 +722,9 @@ void ProjectWizardDlg::CreateControls()
             noteSizer->Add(moreInfoButton, 0, wxLEFT, wxSizerFlags::GetDefaultBorder() * 3);
             noteSizer->SetMinSize(ScaledNoteWidth, -1);
 
-            centeredLablesSizer->Add(noteSizer, wxSizerFlags{}.Center());
+            centeredLabelsSizer->Add(noteSizer, wxSizerFlags{}.Center());
 
-            centeredSizer->Add(centeredLablesSizer, wxSizerFlags{}.Center());
+            centeredSizer->Add(centeredLabelsSizer, wxSizerFlags{}.Center());
 
             wxBitmap previewImage = wxGetApp().GetScaledImage(
                 L"wizard/centered-text.png", wxBITMAP_TYPE_PNG,
@@ -745,13 +745,13 @@ void ProjectWizardDlg::CreateControls()
             // new lines are always new paragraphs (overrides center text option above)
             {
             wxBoxSizer* wrappedSizer = new wxBoxSizer(wxHORIZONTAL);
-            wxBoxSizer* wrappedLablesSizer = new wxBoxSizer(wxVERTICAL);
+            wxBoxSizer* wrappedLabelsSizer = new wxBoxSizer(wxVERTICAL);
             wxCheckBox* wrappedButton = new wxCheckBox(
                 docLayoutSizer->GetStaticBox(), ID_HARD_RETURN_CHECKBOX,
                 _(L"Line ends (i.e., hard returns) mark the start of a new paragraph"),
                 wxDefaultPosition, wxDefaultSize, wxCHK_2STATE,
                 wxGenericValidator(&m_newLinesAlwaysNewParagraphs));
-            wrappedLablesSizer->Add(wrappedButton);
+            wrappedLabelsSizer->Add(wrappedButton);
             wxStaticText* noteLabel = new wxStaticText(
                 docLayoutSizer->GetStaticBox(), ID_HARD_RETURN_LABEL,
                 _(L"Hard returns in the text always force the start of a new paragraph. "
@@ -760,10 +760,10 @@ void ProjectWizardDlg::CreateControls()
                   "regardless of whether it ends with a period."),
                 wxDefaultPosition, wxDefaultSize, 0);
             noteLabel->Wrap(ScaledNoteWidth);
-            wrappedLablesSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-            wrappedLablesSizer->Add(noteLabel, 1, wxLEFT, wxSizerFlags::GetDefaultBorder() * 3);
-            wrappedLablesSizer->SetMinSize(ScaledNoteWidth, -1);
-            wrappedSizer->Add(wrappedLablesSizer, wxSizerFlags{}.Center());
+            wrappedLabelsSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+            wrappedLabelsSizer->Add(noteLabel, 1, wxLEFT, wxSizerFlags::GetDefaultBorder() * 3);
+            wrappedLabelsSizer->SetMinSize(ScaledNoteWidth, -1);
+            wrappedSizer->Add(wrappedLabelsSizer, wxSizerFlags{}.Center());
 
             wrappedSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
