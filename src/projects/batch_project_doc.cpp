@@ -5406,6 +5406,7 @@ bool BatchProjectDoc::RunProjectWizard(const wxString& path)
                                    GetSourceFilesInfo().end());
         assert(sampleSize == GetSourceFilesInfo().size() && "Invalid random sample size!");
 
+        wxGetApp().GetAppOptions().EnableRandomSampling(wizard->IsRandomSampling());
         wxGetApp().GetAppOptions().SetBatchRandomSamplingSize(wizard->GetRandomSamplePercentage());
         }
     SetMinDocWordCountForBatch(wizard->GetMinDocWordCountForBatch());

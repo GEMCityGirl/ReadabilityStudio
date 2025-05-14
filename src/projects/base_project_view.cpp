@@ -1182,7 +1182,7 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
 
     m_frame->SetSizer(mainSizer);
 
-    wxAcceleratorEntry accelEntries[17];
+    wxAcceleratorEntry accelEntries[18];
     accelEntries[0].Set(wxACCEL_NORMAL, WXK_F1, wxID_HELP);
     accelEntries[1].Set(wxACCEL_CMD, static_cast<int>(L'N'), wxID_NEW);
     accelEntries[2].Set(wxACCEL_CMD, static_cast<int>(L'O'), wxID_OPEN);
@@ -1202,6 +1202,7 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
     // combinations don't seem to work under GTK+
     accelEntries[15].Set(wxACCEL_NORMAL, WXK_F4, XRCID("ID_TOGGLE_RIBBON"));
     accelEntries[16].Set(wxACCEL_CMD, WXK_RIGHT, XRCID("ID_SEND_TO_STANDARD_PROJECT"));
+    accelEntries[17].Set(wxACCEL_NORMAL, WXK_F6, XRCID("ID_LAUNCH_SOURCE_FILE"));
     wxAcceleratorTable accelTable(std::size(accelEntries), accelEntries);
     m_frame->SetAcceleratorTable(accelTable);
 

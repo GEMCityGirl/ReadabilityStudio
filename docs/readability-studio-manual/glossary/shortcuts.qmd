@@ -70,6 +70,10 @@ Remove the selected test                `r keys(c('Ctrl', 'Del'))` (`r os_logo('
 
 &nbsp;                                  &nbsp;
 
+Edit/view the selected document         `r keys('F6')`
+
+&nbsp;                                  &nbsp;
+
 Create subproject<br>\linebreak         `r keys(c('Ctrl','\\arrowkeyright'))` (`r os_logo('windows')`, `r os_logo('linux')`) or<br>\linebreak
 (batch projects only)                   `r keys(c('\\cmd','\\arrowkeyright'))` (`r os_logo('apple')`)
 ------------------------------------------------------------------------------------------------
