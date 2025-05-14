@@ -67,7 +67,7 @@ namespace LuaScripting
                 wxMessageBox(
                     wxString::Format(
                         // TRANSLATORS: %s is a function name that failed from a script
-                        _(L"%s: Invalid number of arguments.\n\n%d expected, %d provided."),
+                        _(L"%s: invalid number of arguments.\n\n%d expected, %d provided."),
                         functionName, minParameterCount, (lua_gettop(L) - 1)),
                     _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
                 return false;

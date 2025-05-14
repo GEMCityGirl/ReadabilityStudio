@@ -2944,7 +2944,7 @@ namespace LuaScripting
                 else
                     {
                     wxMessageBox(
-                        wxString::Format(_(L"%s: Unknown test could not be added."), testName),
+                        wxString::Format(_(L"%s: unknown test could not be added."), testName),
                         _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
                     lua_pushboolean(L, false);
                     return 1;
@@ -2981,7 +2981,7 @@ namespace LuaScripting
                     else
                         {
                         wxMessageBox(
-                            wxString::Format(_(L"%s: Unknown test could not be added."), testName),
+                            wxString::Format(_(L"%s: unknown test could not be added."), testName),
                             _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
                         lua_pushboolean(L, false);
                         return 1;

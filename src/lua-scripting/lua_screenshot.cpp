@@ -1343,7 +1343,7 @@ namespace LuaScripting
         if (lua_gettop(L) < 5)
             {
             wxMessageBox(
-                wxString::Format(_(L"%s: Invalid number of arguments."), wxString(__func__)),
+                wxString::Format(_(L"%s: invalid number of arguments."), wxString(__func__)),
                 _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;
@@ -1368,7 +1368,7 @@ namespace LuaScripting
         if (lua_gettop(L) < 7)
             {
             wxMessageBox(
-                wxString::Format(_(L"%s: Invalid number of arguments."), wxString(__func__)),
+                wxString::Format(_(L"%s: invalid number of arguments."), wxString(__func__)),
                 _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;

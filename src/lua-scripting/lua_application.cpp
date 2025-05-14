@@ -613,7 +613,7 @@ namespace LuaScripting
         const wxString inPath(luaL_checkstring(L, 1), wxConvUTF8);
         if (!wxFile::Exists(inPath))
             {
-            wxMessageBox(wxString::Format(_(L"%s: Invalid image file path."), inPath),
+            wxMessageBox(wxString::Format(_(L"%s: invalid image file path."), inPath),
                          _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;
@@ -641,7 +641,7 @@ namespace LuaScripting
         const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
         if (!wxFile::Exists(path))
             {
-            wxMessageBox(wxString::Format(_(L"%s: Invalid image file path."), path),
+            wxMessageBox(wxString::Format(_(L"%s: invalid image file path."), path),
                          _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;
@@ -773,7 +773,7 @@ namespace LuaScripting
 
         if (!wxFileName::DirExists(path))
             {
-            wxMessageBox(wxString::Format(_(L"%s: Invalid folder path."), path), _(L"Script Error"),
+            wxMessageBox(wxString::Format(_(L"%s: invalid folder path."), path), _(L"Script Error"),
                          wxOK | wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;
@@ -990,7 +990,7 @@ namespace LuaScripting
         wxString path(luaL_checkstring(L, 1), wxConvUTF8);
         if (!wxFile::Exists(path))
             {
-            wxMessageBox(wxString::Format(_(L"%s: Invalid file path."), wxString(__func__)),
+            wxMessageBox(wxString::Format(_(L"%s: invalid file path."), wxString(__func__)),
                          _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;
@@ -1007,7 +1007,7 @@ namespace LuaScripting
         path = wxString(luaL_checkstring(L, 2), wxConvUTF8);
         if (!wxFile::Exists(path))
             {
-            wxMessageBox(wxString::Format(_(L"%s: Invalid file path."), wxString(__func__)),
+            wxMessageBox(wxString::Format(_(L"%s: invalid file path."), wxString(__func__)),
                          _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;
@@ -1062,7 +1062,7 @@ namespace LuaScripting
         wxString path(luaL_checkstring(L, 1), wxConvUTF8);
         if (!wxFile::Exists(path))
             {
-            wxMessageBox(wxString::Format(_(L"%s: Invalid file path."), wxString(__func__)),
+            wxMessageBox(wxString::Format(_(L"%s: invalid file path."), wxString(__func__)),
                          _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;
@@ -1109,7 +1109,7 @@ namespace LuaScripting
         wxString path(luaL_checkstring(L, 1), wxConvUTF8);
         if (!wxFile::Exists(path))
             {
-            wxMessageBox(wxString::Format(_(L"%s: Invalid file path."), wxString(__func__)),
+            wxMessageBox(wxString::Format(_(L"%s: invalid file path."), wxString(__func__)),
                          _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;
@@ -1223,7 +1223,7 @@ namespace LuaScripting
             {
             if (phrase.first.to_string() == phrase.second)
                 {
-                wxMessageBox(wxString::Format(_(L"%s: Phrase '%s' and suggested replacement are "
+                wxMessageBox(wxString::Format(_(L"%s: phrase '%s' and suggested replacement are "
                                                 "the same.\nPlease review your phrase file."),
                                               inputFile, phrase.first.to_string().c_str()),
                              _(L"Warning"), wxOK | wxICON_EXCLAMATION);
