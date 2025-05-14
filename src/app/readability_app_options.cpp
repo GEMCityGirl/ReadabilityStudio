@@ -1178,11 +1178,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                     }
                 m_language = static_cast<readability::test_language>(value);
                 }
-            auto randSizeSizeNode =
+            auto randonSampleSizeNode =
                 projectSettings->FirstChildElement(XML_RANDOM_SAMPLE_SIZE.data());
-            if (randSizeSizeNode)
+            if (randonSampleSizeNode)
                 {
-                int value = randSizeSizeNode->ToElement()->IntAttribute(
+                int value = randonSampleSizeNode->ToElement()->IntAttribute(
                     XML_VALUE.data(), GetBatchRandomSamplingSize());
                 // verify that this is a sensical value
                 if (value < 1 || value > 100)
@@ -1190,6 +1190,13 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                     value = 25;
                     }
                 SetBatchRandomSamplingSize(static_cast<size_t>(value));
+                }
+            auto randomSampleEnabledNode =
+                projectSettings->FirstChildElement(XML_RANDOM_SAMPLE_ENABLED.data());
+            if (randomSampleEnabledNode)
+                {
+                EnableRandomSampling(int_to_bool(randomSampleEnabledNode->ToElement()->IntAttribute(
+                    XML_VALUE.data(), IsRandomSampling())));
                 }
             auto minDocSizeNode =
                 projectSettings->FirstChildElement(XML_MIN_DOC_SIZE_FOR_BATCH.data());
@@ -3450,12 +3457,12 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         customColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetCustomColors().at(i).IsOk() ?
                                                                     GetCustomColors().at(i).Red() :
                                                                     255);
-        customColor->SetAttribute(
-            XmlFormat::GetGreen().mb_str(),
-            GetCustomColors().at(i).IsOk() ? GetCustomColors().at(i).Green() : 255);
-        customColor->SetAttribute(
-            XmlFormat::GetBlue().mb_str(),
-            GetCustomColors().at(i).IsOk() ? GetCustomColors().at(i).Blue() : 255);
+        customColor->SetAttribute(XmlFormat::GetGreen().mb_str(),
+                                  GetCustomColors().at(i).IsOk() ? GetCustomColors().at(i).Green() :
+                                                                   255);
+        customColor->SetAttribute(XmlFormat::GetBlue().mb_str(),
+                                  GetCustomColors().at(i).IsOk() ? GetCustomColors().at(i).Blue() :
+                                                                   255);
         customColours->InsertEndChild(customColor);
         }
     configSection->InsertEndChild(customColours);
@@ -3738,6 +3745,10 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto randSampleSize = doc.NewElement(XML_RANDOM_SAMPLE_SIZE.data());
     randSampleSize->SetAttribute(XML_VALUE.data(), static_cast<int>(GetBatchRandomSamplingSize()));
     projectSettings->InsertEndChild(randSampleSize);
+
+    auto randSampleEnabled = doc.NewElement(XML_RANDOM_SAMPLE_ENABLED.data());
+    randSampleEnabled->SetAttribute(XML_VALUE.data(), bool_to_int(IsRandomSampling()));
+    projectSettings->InsertEndChild(randSampleEnabled);
 
     // sentences breakdown
     auto sentencesBreakdownSection = doc.NewElement(XML_SENTENCES_BREAKDOWN.data());

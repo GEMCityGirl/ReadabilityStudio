@@ -2241,6 +2241,14 @@ class ReadabilityAppOptions
         return m_randomSampleSizeForBatch;
         }
 
+    [[nodiscard]]
+    bool IsRandomSampling() const noexcept
+        {
+        return m_randomSampling;
+        }
+
+    void EnableRandomSampling(const bool enable) noexcept { m_randomSampling = enable; }
+
     // how file paths are shown in batch projects
     void SetFilePathTruncationMode(
         const Wisteria::UI::ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode TruncMode) noexcept
@@ -2724,6 +2732,7 @@ class ReadabilityAppOptions
     VarianceMethod m_varianceMethod{ VarianceMethod::PopulationVariance };
     size_t m_minDocWordCountForBatch{ 50 };
     size_t m_randomSampleSizeForBatch{ 15 };
+    bool m_randomSampling{ false };
     Wisteria::UI::ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode m_filePathTruncationMode{
         Wisteria::UI::ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames
     };
@@ -3029,6 +3038,7 @@ class ReadabilityAppOptions
     // Min doc size
     const std::string_view XML_MIN_DOC_SIZE_FOR_BATCH{ _DT("min-doc-size-for-batch") };
     const std::string_view XML_RANDOM_SAMPLE_SIZE{ _DT("random-sample-size") };
+    const std::string_view XML_RANDOM_SAMPLE_ENABLED{ _DT("random-sample-size-enabled") };
     const std::string_view XML_FILE_PATH_TRUNC_MODE{ _DT("filepath-truncation-mode") };
     // export options
     const std::string_view XML_EXPORT{ _DT("export-settings") };

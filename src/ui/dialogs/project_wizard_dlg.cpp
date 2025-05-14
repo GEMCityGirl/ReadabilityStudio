@@ -455,13 +455,13 @@ void ProjectWizardDlg::CreateControls()
         wxBoxSizer* randomOptionsSizer = new wxBoxSizer(wxHORIZONTAL);
         m_isRandomSampling =
             new wxCheckBox(page, ID_RANDOM_SAMPLE_CHECK, _(L"% of documents to randomly sample:"));
-        m_isRandomSampling->SetValue(false);
+        m_isRandomSampling->SetValue(wxGetApp().GetAppOptions().IsRandomSampling());
 
         m_randPercentageCtrl = new wxSpinCtrl(
             page, ID_RANDOM_SAMPLE_SPIN,
             std::to_wstring(wxGetApp().GetAppOptions().GetBatchRandomSamplingSize()));
         m_randPercentageCtrl->SetRange(1, 100);
-        m_randPercentageCtrl->Enable(false);
+        m_randPercentageCtrl->Enable(wxGetApp().GetAppOptions().IsRandomSampling());
 
         randomOptionsSizer->Add(m_isRandomSampling,
                                 wxSizerFlags{}.Border(wxRIGHT).CenterVertical());
