@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __EDIT_WORD_LIST_DLG_H__
-#define __EDIT_WORD_LIST_DLG_H__
+#ifndef EDIT_WORD_LIST_DLG_H
+#define EDIT_WORD_LIST_DLG_H
 
 #include "../../Wisteria-Dataviz/src/import/text_matrix.h"
 #include "../../Wisteria-Dataviz/src/import/text_preview.h"
@@ -52,7 +52,6 @@ class EditWordListDlg final : public Wisteria::UI::DialogWithHelp
                              const wxSize& size = wxSize(1000, 1000),
                              long style = wxDEFAULT_DIALOG_STYLE | wxCLIP_CHILDREN |
                                           wxRESIZE_BORDER);
-
 
     /// @brief Sets the path to the file that is being edited.
     /// @param path The path of the file.
@@ -119,4 +118,4 @@ class EditWordListDlg final : public Wisteria::UI::DialogWithHelp
     bool m_phraseFileMode{ false };
     };
 
-#endif //__EDIT_WORD_LIST_DLG_H__
+#endif // EDIT_WORD_LIST_DLG_H

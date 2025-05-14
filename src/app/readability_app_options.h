@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __READABILITY_APP_OPTIONS_H__
-#define __READABILITY_APP_OPTIONS_H__
+#ifndef READABILITY_APP_OPTIONS_H
+#define READABILITY_APP_OPTIONS_H
 
 #include "../OleanderStemmingLibrary/src/stemming.h"
 #include "../Wisteria-Dataviz/src/base/image.h"
@@ -475,65 +475,65 @@ class SentencesBreakdownInfo
 
     void Reset() noexcept { EnableAll(); }
 
-    void EnableAll() noexcept { m_sentenceBreadkdownItemsToInclude.set(); }
+    void EnableAll() noexcept { m_sentenceBreakdownItemsToInclude.set(); }
 
     void Set(const wxString& val)
         {
-        m_sentenceBreadkdownItemsToInclude = std::bitset<64>(val.ToStdString());
+        m_sentenceBreakdownItemsToInclude = std::bitset<64>(val.ToStdString());
         }
 
     [[nodiscard]]
     wxString ToString() const
         {
-        return wxString{ m_sentenceBreadkdownItemsToInclude.to_string() };
+        return wxString{ m_sentenceBreakdownItemsToInclude.to_string() };
         }
 
     void EnableLongSentences(const bool enable)
         {
-        m_sentenceBreadkdownItemsToInclude.set(0, enable);
+        m_sentenceBreakdownItemsToInclude.set(0, enable);
         }
 
     [[nodiscard]]
     bool IsLongSentencesEnabled() const
         {
-        return m_sentenceBreadkdownItemsToInclude[0];
+        return m_sentenceBreakdownItemsToInclude[0];
         }
 
     void EnableLengthsBoxPlot(const bool enable)
         {
-        m_sentenceBreadkdownItemsToInclude.set(1, enable);
+        m_sentenceBreakdownItemsToInclude.set(1, enable);
         }
 
     [[nodiscard]]
     bool IsLengthsBoxPlotEnabled() const
         {
-        return m_sentenceBreadkdownItemsToInclude[1];
+        return m_sentenceBreakdownItemsToInclude[1];
         }
 
     void EnableLengthsHeatmap(const bool enable)
         {
-        m_sentenceBreadkdownItemsToInclude.set(2, enable);
+        m_sentenceBreakdownItemsToInclude.set(2, enable);
         }
 
     [[nodiscard]]
     bool IsLengthsHeatmapEnabled() const
         {
-        return m_sentenceBreadkdownItemsToInclude[2];
+        return m_sentenceBreakdownItemsToInclude[2];
         }
 
     void EnableLengthsHistogram(const bool enable)
         {
-        m_sentenceBreadkdownItemsToInclude.set(3, enable);
+        m_sentenceBreakdownItemsToInclude.set(3, enable);
         }
 
     [[nodiscard]]
     bool IsLengthsHistogramEnabled() const
         {
-        return m_sentenceBreadkdownItemsToInclude[3];
+        return m_sentenceBreakdownItemsToInclude[3];
         }
 
   private:
-    std::bitset<64> m_sentenceBreadkdownItemsToInclude{ 0 };
+    std::bitset<64> m_sentenceBreakdownItemsToInclude{ 0 };
     };
 
 class ReadabilityAppOptions
@@ -3086,4 +3086,4 @@ class ReadabilityAppOptions
     const std::string_view XML_CUSTOM_COLORS{ _DT("custom-colors") };
     };
 
-#endif //__READABILITY_APP_OPTIONS_H__
+#endif // READABILITY_APP_OPTIONS_H

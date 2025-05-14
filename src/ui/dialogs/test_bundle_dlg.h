@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __TEST_BUNDLE_DLG_H__
-#define __TEST_BUNDLE_DLG_H__
+#ifndef TEST_BUNDLE_DLG_H
+#define TEST_BUNDLE_DLG_H
 
 #include "../../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
 #include "../../Wisteria-Dataviz/src/ui/controls/sidebarbook.h"
@@ -82,4 +82,4 @@ class TestBundleDlg final : public Wisteria::UI::DialogWithHelp
     Wisteria::UI::SideBarBook* m_sideBarBook{ nullptr };
     };
 
-#endif //__TEST_BUNDLE_DLG_H__
+#endif // TEST_BUNDLE_DLG_H

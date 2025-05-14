@@ -11,13 +11,13 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __EDIT_TEXT_DIALOG_H__
-#define __EDIT_TEXT_DIALOG_H__
+#ifndef EDIT_TEXT_DIALOG_H
+#define EDIT_TEXT_DIALOG_H
 
 #include "../../Wisteria-Dataviz/src/ui/controls/formattedtextctrl.h"
 #include "../../Wisteria-Dataviz/src/ui/ribbon/artmetro.h"
-#include <wx/dialog.h>
 #include <wx/datetime.h>
+#include <wx/dialog.h>
 #include <wx/fdrepdlg.h>
 #include <wx/ribbon/art.h>
 #include <wx/ribbon/bar.h>
@@ -146,4 +146,4 @@ class EditTextDlg final : public wxDialog
     wxTextAttr m_style;
     };
 
-#endif //__EDIT_TEXT_DIALOG_H__
+#endif // EDIT_TEXT_DIALOG_H
