@@ -522,8 +522,8 @@ function(copy_translations LANG)
     if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}/wxstd.mo")
         add_custom_command(TARGET ${PROJECT_NAME}
                         POST_BUILD
-                        COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}/wxstd.mo" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/${LANG}/readstudio.mo"
-                        COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}/wxstd.mo" "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/resources/${LANG}/readstudio.mo"
+                        COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}/wxstd.mo" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/${LANG}/wxstd.mo"
+                        COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}/wxstd.mo" "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/resources/${LANG}/wxstd.mo"
                         COMMENT "Copying Spanish translations to build and installer folders.")
     else()
         message(WARNING "Compiled wxWidgets '${LANG}' translations not found.\n(Expected it in '${CMAKE_CURRENT_SOURCE_DIR}/locale/${LANG}/wxstd.mo'.)\nTranslations will not be available.")
