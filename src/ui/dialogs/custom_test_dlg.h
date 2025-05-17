@@ -665,19 +665,20 @@ class CustomTestDlg final : public wxDialog
     [[nodiscard]]
     wxString GetIncludeDCWordListLabel() const
         {
-        return _(L"Include New Dale-Chall word list");
+        // TRANSLATORS: %s is a test (person) name, like Spache.
+        return wxString::Format(_(L"Include %s word list"), _DT(L"New Dale-Chall"));
         }
 
     [[nodiscard]]
     wxString GetIncludeSpacheWordListLabel() const
         {
-        return _(L"Include Spache Revised word list");
+        return wxString::Format(_(L"Include %s word list"), _DT(L"Spache"));
         }
 
     [[nodiscard]]
     wxString GetIncludeHJWordListLabel() const
         {
-        return _(L"Include Harris-Jacobson word list");
+        return wxString::Format(_(L"Include %s word list"), _DT(L"Harris-Jacobson"));
         }
 
     [[nodiscard]]

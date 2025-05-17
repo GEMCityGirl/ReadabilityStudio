@@ -25,10 +25,10 @@ class Banner : public wxWindow
     {
   public:
     Banner(wxWindow* parent, wxWindowID id, const wxBitmapBundle& logo, const wxString& label)
-        : wxWindow(parent, id, wxDefaultPosition, wxSize(300, 50), wxFULL_REPAINT_ON_RESIZE),
+        : wxWindow(parent, id, wxDefaultPosition, wxSize{ 300, 50 }, wxFULL_REPAINT_ON_RESIZE),
           m_logo(logo), m_label(label)
         {
-        SetMinSize(FromDIP(wxSize(300, 50)));
+        SetMinSize(FromDIP(wxSize{ 300, 50 }));
         SetBackgroundStyle(wxBG_STYLE_CUSTOM);
         Bind(wxEVT_PAINT, &Banner::OnPaint, this);
         }
@@ -454,7 +454,8 @@ void ProjectWizardDlg::CreateControls()
         // random sampling
         wxBoxSizer* randomOptionsSizer = new wxBoxSizer(wxHORIZONTAL);
         m_isRandomSampling =
-            new wxCheckBox(page, ID_RANDOM_SAMPLE_CHECK, _(L"% of documents to randomly sample:"));
+            new wxCheckBox(page, ID_RANDOM_SAMPLE_CHECK,
+                           /* xgettext:no-c-format */ _(L"% of documents to randomly sample:"));
         m_isRandomSampling->SetValue(wxGetApp().GetAppOptions().IsRandomSampling());
 
         m_randPercentageCtrl = new wxSpinCtrl(

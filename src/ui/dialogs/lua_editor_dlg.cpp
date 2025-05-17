@@ -673,12 +673,15 @@ void LuaEditorDlg::CreateControls()
     // wxID_NEW and such trigger parent events
     m_toolbar->AddTool(XRCID("ID_NEW"), _(L"New"),
                        wxArtProvider::GetBitmapBundle(wxART_NEW, wxART_BUTTON),
+                       // TRANSLATORS: A programming script.
                        _(L"Create a new script."));
     m_toolbar->AddTool(XRCID("ID_OPEN"), _(L"Open"),
                        wxArtProvider::GetBitmapBundle(wxART_FILE_OPEN, wxART_BUTTON),
+                       // TRANSLATORS: A programming script.
                        _(L"Open a script."));
     m_toolbar->AddTool(XRCID("ID_SAVE"), _(L"Save"),
                        wxArtProvider::GetBitmapBundle(wxART_FILE_SAVE, wxART_BUTTON),
+                       // TRANSLATORS: A programming script.
                        _(L"Save the script."));
     m_toolbar->AddTool(XRCID("ID_RUN"), _(L"Run"),
                        wxArtProvider::GetBitmapBundle(L"ID_RUN", wxART_BUTTON),

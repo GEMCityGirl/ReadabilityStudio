@@ -681,6 +681,8 @@ bool ReadabilityApp::OnInit()
                          std::make_pair(_(L"Ice Cream"), DONTTRANSLATE(L"icecream")),
                          std::make_pair(_(L"Urban Oasis"), DONTTRANSLATE(L"urbanoasis")),
                          std::make_pair(_(L"Typewriter"), DONTTRANSLATE(L"typewriter")),
+                         // TRANSLATORS: surfing waves. This is a 1980s movie reference that gets
+                         // lost in translation.
                          std::make_pair(_(L"Tasty Waves"), DONTTRANSLATE(L"tastywaves")),
                          std::make_pair(_(L"Spring"), DONTTRANSLATE(L"spring")),
                          std::make_pair(_(L"Shabby Chic"), DONTTRANSLATE(L"shabbychic")),
@@ -963,7 +965,7 @@ bool ReadabilityApp::OnInit()
     // create the document template
     [[maybe_unused]]
     wxDocTemplate* docTemplate =
-        new wxDocTemplate(GetDocManager(), _(L"Standard Project"), _DT(L"*.rsp"), wxString{},
+        new wxDocTemplate(GetDocManager(), _(L"Standard project"), _DT(L"*.rsp"), wxString{},
                           GetAppFileExtension(), GetAppFileExtension() + _DT(L" Doc"), _DT(L"View"),
                           wxCLASSINFO(ProjectDoc), wxCLASSINFO(ProjectView));
 
@@ -971,7 +973,7 @@ bool ReadabilityApp::OnInit()
         {
         [[maybe_unused]]
         wxDocTemplate* batchDocTemplate =
-            new wxDocTemplate(GetDocManager(), _(L"Batch Project"), _DT(L"*.rsbp"), wxString{},
+            new wxDocTemplate(GetDocManager(), _(L"Batch project"), _DT(L"*.rsbp"), wxString{},
                               _DT(L"rsbp"), _DT(L"rsbp Doc"), _DT(L"View"),
                               wxCLASSINFO(BatchProjectDoc), wxCLASSINFO(BatchProjectView));
         }
@@ -4054,8 +4056,11 @@ void MainFrame::OnStartPageClick(wxCommandEvent& event)
                                 wxGetApp().GetAppOptions().GetProjectPath(), wxString{},
                                 wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
                                     wxGetApp().FeatureProfessionalCode()) ?
-                                    _(L"Readability Studio Project (*.rsp;*.rsbp)|*.rsp;*.rsbp") :
-                                    _(L"Readability Studio Project (*.rsp)|*.rsp"),
+                                    // TRANSLATORS: %s is program name.
+                                    wxString::Format(_(L"%s Project (*.rsp;*.rsbp)|*.rsp;*.rsbp"),
+                                                     wxGetApp().GetAppDisplayName()) :
+                                    wxString::Format(_(L"%s Project (*.rsp)|*.rsp"),
+                                                     wxGetApp().GetAppDisplayName()),
                                 wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
             if (dialog.ShowModal() == wxID_OK)
                 {

@@ -3150,9 +3150,11 @@ void ToolsOptionsDlg::OnExportSettings([[maybe_unused]] wxCommandEvent& event)
             SaveOptions();
             }
         }
-    wxFileDialog dialog(this, _(L"Export Settings File"), wxEmptyString, L"Settings.xml",
-                        _(L"Readability Studio Settings Files (*.xml)|*.xml"),
-                        wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+    wxFileDialog dialog(
+        this, _(L"Export Settings File"), wxEmptyString, L"Settings.xml",
+        // TRANSLATORS: %s is the application name.
+        wxString::Format(_(L"%s Settings Files (*.xml)|*.xml"), wxGetApp().GetAppDisplayName()),
+        wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
     if (dialog.ShowModal() != wxID_OK)
         {
         return;
@@ -3164,9 +3166,10 @@ void ToolsOptionsDlg::OnExportSettings([[maybe_unused]] wxCommandEvent& event)
 //-------------------------------------------------------------
 void ToolsOptionsDlg::OnImportSettings([[maybe_unused]] wxCommandEvent& event)
     {
-    wxFileDialog dialog(this, _(L"Import Settings File"), wxEmptyString, L"Settings.xml",
-                        _(L"Readability Studio Settings Files (*.xml)|*.xml"),
-                        wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
+    wxFileDialog dialog(
+        this, _(L"Import Settings File"), wxEmptyString, L"Settings.xml",
+        wxString::Format(_(L"%s Settings Files (*.xml)|*.xml"), wxGetApp().GetAppDisplayName()),
+        wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
     if (dialog.ShowModal() != wxID_OK)
         {
         return;

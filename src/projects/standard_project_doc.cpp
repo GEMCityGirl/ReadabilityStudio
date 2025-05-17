@@ -2138,6 +2138,7 @@ void ProjectDoc::DisplaySentenceCharts()
         sentenceBoxPlot->SetData(m_sentenceWordLengths, GetSentenceWordCountsColumnName(),
             std::nullopt);
 
+        // TRANSLATORS: "Spread" means a range of numbers.
         sentenceBoxPlot->GetTitle().SetText(_(L"Sentence-lengths Spread"));
         sentenceBoxPlot->GetTitle().SetRelativeAlignment(RelativeAlignment::Centered);
         sentenceBoxPlot->SetShadowType(IsDisplayingDropShadows() ?

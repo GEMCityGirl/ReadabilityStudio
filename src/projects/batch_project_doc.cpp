@@ -1037,6 +1037,7 @@ void BatchProjectDoc::LoadSummaryStatsSection()
         m_summaryStatsColumnNames.push_back(_(L"Number of unique 3+ syllable words"));
         m_summaryStatsColumnNames.push_back(_(L"Number of long (6+ characters) words"));
         m_summaryStatsColumnNames.push_back(_(L"Number of unique long words"));
+        // TRANSLATORS: "hard words" as in difficult, not as in "harsh."
         m_summaryStatsColumnNames.push_back(_(L"Number of SMOG hard words"));
         m_summaryStatsColumnNames.push_back(_(L"Number of unique SMOG hard words"));
         m_summaryStatsColumnNames.push_back(_(L"Number of Fog hard words"));
@@ -6337,35 +6338,44 @@ void BatchProjectDoc::DisplayHardWords()
         listView->SetColumnFilePathTruncationMode(0, GetFilePathTruncationMode());
         listView->InsertColumn(columnIndex++, _(L"Label"));
         listView->InsertColumn(columnIndex++, _(L"Total Words"));
-        listView->InsertColumn(columnIndex++, _(L"% of complex (3+ syllable) words"));
+        listView->InsertColumn(columnIndex++,
+                               /* xgettext:no-c-format */ _(L"% of complex (3+ syllable) words"));
         listView->InsertColumn(columnIndex++, _(L"Complex (3+ syllable) words"));
-        listView->InsertColumn(columnIndex++, _(L"% of long (6+ characters) words"));
+        listView->InsertColumn(columnIndex++,
+                               /* xgettext:no-c-format */ _(L"% of long (6+ characters) words"));
         listView->InsertColumn(columnIndex++, _(L"Long (6+ characters) words"));
         if (GetStatisticsReportInfo().IsExtendedWordsEnabled())
             {
             if (IsSmogLikeTestIncluded())
                 {
-                listView->InsertColumn(columnIndex++, _(L"% of SMOG hard words"));
+                listView->InsertColumn(columnIndex++,
+                                       /* xgettext:no-c-format */ _(L"% of SMOG hard words"));
                 listView->InsertColumn(columnIndex++, _(L"SMOG hard words"));
                 }
-            if (GetReadabilityTests().is_test_included(ReadabilityMessages::GUNNING_FOG()) )
+            if (GetReadabilityTests().is_test_included(ReadabilityMessages::GUNNING_FOG()))
                 {
-                listView->InsertColumn(columnIndex++, _(L"% of Fog hard words"));
+                listView->InsertColumn(columnIndex++,
+                                       /* xgettext:no-c-format */ _(L"% of Fog hard words"));
                 listView->InsertColumn(columnIndex++, _(L"Fog hard words"));
                 }
             if (IsDaleChallLikeTestIncluded())
                 {
-                listView->InsertColumn(columnIndex++, _(L"% of Dale-Chall unfamiliar words"));
+                listView->InsertColumn(
+                    columnIndex++,
+                    wxString::Format(_(L"%% of %s unfamiliar words"), _DT(L"Dale-Chall")));
                 listView->InsertColumn(columnIndex++, _(L"Dale-Chall unfamiliar words"));
                 }
             if (GetReadabilityTests().is_test_included(ReadabilityMessages::SPACHE()) )
                 {
-                listView->InsertColumn(columnIndex++, _(L"% of Spache unfamiliar words"));
+                listView->InsertColumn(
+                    columnIndex++,
+                    wxString::Format(_(L"%% of %s unfamiliar words"), _DT(L"Spache")));
                 listView->InsertColumn(columnIndex++, _(L"Spache unfamiliar words"));
                 }
-            if (GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()) )
+            if (GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()))
                 {
-                listView->InsertColumn(columnIndex++, _(L"% of HJ unfamiliar words"));
+                listView->InsertColumn(
+                    columnIndex++, wxString::Format(_(L"%% of %s unfamiliar words"), _DT(L"HJ")));
                 listView->InsertColumn(columnIndex++, _(L"HJ unfamiliar words"));
                 }
             for (std::vector<CustomReadabilityTestInterface>::const_iterator pos = GetCustTestsInUse().cbegin();
@@ -6573,27 +6583,48 @@ void BatchProjectDoc::DisplaySightWords()
         listView->DeleteAllColumns();
         listView->InsertColumn(listView->GetColumnCount(), _(L"Document"));
         listView->InsertColumn(listView->GetColumnCount(), _(L"Label"));
-        listView->InsertColumn(listView->GetColumnCount(), _(L"% of Conjunctions"));
+        listView->InsertColumn(listView->GetColumnCount(),
+                               /* xgettext:no-c-format */ _(L"% of Conjunctions"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
-            { listView->InsertColumn(listView->GetColumnCount(), _(L"Conjunctions")); }
-        listView->InsertColumn(listView->GetColumnCount(), _(L"% of Prepositions"));
+            {
+            listView->InsertColumn(listView->GetColumnCount(), _(L"Conjunctions"));
+            }
+        listView->InsertColumn(listView->GetColumnCount(),
+                               /* xgettext:no-c-format */ _(L"% of Prepositions"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
-            { listView->InsertColumn(listView->GetColumnCount(), _(L"Prepositions")); }
-        listView->InsertColumn(listView->GetColumnCount(), _(L"% of Pronouns"));
+            {
+            listView->InsertColumn(listView->GetColumnCount(), _(L"Prepositions"));
+            }
+        listView->InsertColumn(listView->GetColumnCount(),
+                               /* xgettext:no-c-format */ _(L"% of Pronouns"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
-            { listView->InsertColumn(listView->GetColumnCount(), _(L"Pronouns")); }
-        listView->InsertColumn(listView->GetColumnCount(), _(L"% of Adverbs"));
+            {
+            listView->InsertColumn(listView->GetColumnCount(), _(L"Pronouns"));
+            }
+        listView->InsertColumn(listView->GetColumnCount(),
+                               /* xgettext:no-c-format */ _(L"% of Adverbs"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
-            { listView->InsertColumn(listView->GetColumnCount(), _(L"Adverbs")); }
-        listView->InsertColumn(listView->GetColumnCount(), _(L"% of Adjectives"));
+            {
+            listView->InsertColumn(listView->GetColumnCount(), _(L"Adverbs"));
+            }
+        listView->InsertColumn(listView->GetColumnCount(),
+                               /* xgettext:no-c-format */ _(L"% of Adjectives"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
-            { listView->InsertColumn(listView->GetColumnCount(), _(L"Adjectives")); }
-        listView->InsertColumn(listView->GetColumnCount(), _(L"% of Verbs"));
+            {
+            listView->InsertColumn(listView->GetColumnCount(), _(L"Adjectives"));
+            }
+        listView->InsertColumn(listView->GetColumnCount(),
+                               /* xgettext:no-c-format */ _(L"% of Verbs"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
-            { listView->InsertColumn(listView->GetColumnCount(), _(L"Verbs")); }
-        listView->InsertColumn(listView->GetColumnCount(), _(L"% of Noun Words"));
+            {
+            listView->InsertColumn(listView->GetColumnCount(), _(L"Verbs"));
+            }
+        listView->InsertColumn(listView->GetColumnCount(),
+                               /* xgettext:no-c-format */ _(L"% of Noun Words"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
-            { listView->InsertColumn(listView->GetColumnCount(), _(L"Nouns")); }
+            {
+            listView->InsertColumn(listView->GetColumnCount(), _(L"Nouns"));
+            }
 
         UpdateListOptions(listView);
         listView->SetColumnFilePathTruncationMode(0, GetFilePathTruncationMode());
