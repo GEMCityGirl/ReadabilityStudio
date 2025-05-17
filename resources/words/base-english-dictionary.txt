@@ -5276,6 +5276,7 @@ antiphospholipid
 antiphoton
 antiphoton's
 antiphotons
+antipiracy
 antiplatelet
 antiplatelet's
 antiplatelets
@@ -5367,6 +5368,7 @@ antisocially
 antispam
 antispasmodic
 antispasmodics
+antispoofing
 antispyware
 antistatic
 antisubmarine
@@ -8440,6 +8442,7 @@ autorenewal
 autorenewal's
 autorenewals
 autorepeat
+autorepeated
 autorepeating
 autorepeats
 autoreplies
@@ -8529,6 +8532,8 @@ autotrophic
 autotrophically
 autotrophs
 autotrophy
+autotune
+autotunes
 autotuning
 autoupdate
 autoupdated
@@ -12831,6 +12836,9 @@ bitmasks'
 bitness
 BITNET
 BITNET's
+bitplane
+bitplane's
+bitplanes
 bitrate
 bitrate's
 bitrates
@@ -14835,6 +14843,9 @@ bowstring's
 bowstringed
 bowstringing
 bowstrings
+bowtie
+bowtie's
+bowties
 bowwow
 bowwow's
 bowwowed
@@ -22244,6 +22255,7 @@ cipher's
 ciphered
 ciphering
 ciphers
+ciphertext
 cir
 circa
 circadian
@@ -28214,6 +28226,7 @@ corrector
 corrector's
 correctors
 corrects
+correlatable
 correlate
 correlated
 correlates
@@ -28366,6 +28379,9 @@ cosign
 cosignatories
 cosignatory
 cosignatory's
+cosignature
+cosignature's
+cosignatures
 cosigned
 cosigner
 cosigner's
@@ -39058,6 +39074,7 @@ donator
 donator's
 donators
 done
+doneness
 dong
 dong's
 donged
@@ -67947,6 +67964,7 @@ interacts
 interagencies
 interagency
 interagency's
+interapplication
 interatomic
 interatrial
 interaural
@@ -74688,6 +74706,7 @@ linearities
 linearity
 linearity's
 linearizable
+linearization
 linearize
 linearized
 linearizes
@@ -78654,6 +78673,7 @@ matron
 matron's
 matronly
 matrons
+matronymic
 mats
 Matsushita
 matt
@@ -78763,6 +78783,7 @@ Mawr
 maws
 max
 max's
+maxanisotropy
 maxed
 maxes
 maxilla
@@ -80192,6 +80213,9 @@ metastatic
 metastore
 metastore's
 metastores
+metastructure
+metastructure's
+metastructures
 metasurvey
 metasurvey's
 metasurveys
@@ -84452,6 +84476,7 @@ mullions
 mulls
 Multan
 multi
+multiangle
 multiarray
 multiaxial
 multiband
@@ -84627,6 +84652,7 @@ multipara
 multiparameter
 multiparous
 multipart
+multipartition
 multiparty
 multiparty's
 multipass
@@ -87669,6 +87695,7 @@ nonchalances
 nonchalant
 nonchalantly
 nonchalantness
+noncharacter
 nonchargeable
 nonchemical
 noncitizen
@@ -87725,6 +87752,7 @@ nonconductive
 nonconductor
 nonconductor's
 nonconductors
+nonconfigured
 nonconformant
 nonconforming
 nonconformist
@@ -87753,6 +87781,7 @@ noncontainer
 noncontainer's
 noncontainers
 noncontiguous
+noncontinuable
 noncontinuous
 noncontractile
 noncontributing
@@ -87843,6 +87872,7 @@ nondrinker's
 nondrinkers
 nondrying
 nondurable
+nondynamic
 none
 noneconomic
 noneditable
@@ -88367,6 +88397,7 @@ nonsecular
 nonseeking
 nonsegregated
 nonselectable
+nonselected
 nonselective
 nonself
 nonseminoma
@@ -88415,6 +88446,7 @@ nonstarter
 nonstarter's
 nonstarters
 nonstatic
+nonstereo
 nonsterile
 nonsteroidal
 nonstick
@@ -99997,6 +100029,9 @@ pointlessly
 pointlessness
 pointlessness's
 pointlike
+pointlist
+pointlist's
+pointlists
 points
 pointwise
 pointy
@@ -101287,6 +101322,9 @@ posturings
 postvention
 postvention's
 postventions
+postview
+postviewer
+postviewing
 postvocalic
 postwar
 postzygotic
@@ -102623,6 +102661,10 @@ preregistrations
 prerelease
 prereleased
 prereleases
+prerender
+prerendered
+prerendering
+prerenders
 prerequisite
 prerequisite's
 prerequisites
@@ -102643,6 +102685,7 @@ presager's
 presages
 presaging
 presales
+presampled
 presbyacousia
 presbycusis
 presbyopia
@@ -102787,6 +102830,9 @@ presorted
 presorting
 presorts
 prespecified
+prespecifies
+prespecifing
+prespecify
 press
 pressed
 presser
@@ -109663,6 +109709,7 @@ reenactment
 reenactment's
 reenactments
 reenacts
+reencrypt
 reenergize
 reenergized
 reenergizes
@@ -111138,6 +111185,10 @@ remunerative
 remuneratively
 remunerativeness
 remunerativeness's
+remux
+remuxed
+remuxes
+remuxing
 renaissance
 renaissances
 renal
@@ -118830,6 +118881,7 @@ semitrailer's
 semitrailers
 semitrance
 semitransparent
+semitransparently
 semitropical
 semitruck
 semitruck's
@@ -118992,6 +119044,7 @@ sensorimotor
 sensorimotor's
 sensorimotors
 sensorineural
+sensoring
 sensorium
 sensors
 sensory
@@ -128885,6 +128938,11 @@ subassembly
 subassembly's
 subatomic
 subatomics
+subauthenticate
+subauthenticated
+subauthenticates
+subauthenticating
+subauthentication
 subauthorities
 subauthority
 subauthority's
@@ -131263,6 +131321,7 @@ suspecter's
 suspecting
 suspects
 suspend
+suspendable
 suspended
 suspender
 suspender's
@@ -138424,6 +138483,9 @@ triamcinolone
 triangle
 triangle's
 triangles
+trianglestrip
+trianglestrip's
+trianglestrips
 triangulable
 triangular
 triangularization
@@ -140353,6 +140415,7 @@ unaddressed
 unadept
 unadjustable
 unadjusted
+unadministered
 unadopted
 unadorned
 unadulterated
@@ -140476,7 +140539,10 @@ unassigned
 unassigning
 unassigns
 unassisted
+unassociate
 unassociated
+unassociates
+unassociating
 unassuaged
 unassuming
 unassumingly
@@ -140697,6 +140763,7 @@ uncapitalized
 uncapped
 uncapping
 uncaps
+uncaptured
 uncared
 uncaring
 uncaringly
@@ -141866,6 +141933,7 @@ unexceptionally
 unexcited
 unexciting
 unexcused
+unexecutable
 unexecuted
 unexempt
 unexempted
@@ -142844,6 +142912,8 @@ unmotorized
 unmount
 unmountable
 unmounted
+unmounting
+unmounts
 unmovable
 unmoveable
 unmoved
@@ -143176,6 +143246,7 @@ unquote
 unquoted
 unquotes
 unquoting
+unrailed
 unraisable
 unraised
 unranked
@@ -143509,6 +143580,7 @@ unsensitized
 unsent
 unsentimental
 unsentimentalizes
+unseparated
 unsepulchers
 unsequence
 unsequenced
@@ -143613,6 +143685,7 @@ unsolved
 unsophisticated
 unsophistication
 unsophistication's
+unsortable
 unsorted
 unsought
 unsound

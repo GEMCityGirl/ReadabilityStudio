@@ -339,6 +339,7 @@ lvalues
 makepath
 malloc
 matherr
+maybenull
 mbccat
 mbccpy
 mblen
@@ -385,7 +386,9 @@ npm
 nsprintf
 nullopt
 nullptr
+nullterminated
 obtrace
+octetstring
 offsetof
 openmp
 openssh
@@ -636,7 +639,9 @@ wcsnicmp
 wcsnlen
 wcsstr
 wcstod
+wcstol
 wcstombs
+wcstoul
 wctomb
 while
 WinMain
