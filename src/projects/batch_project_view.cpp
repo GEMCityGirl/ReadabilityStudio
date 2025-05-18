@@ -1761,13 +1761,12 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
     // the results window
     if (includeTestScores && GetScoresView().GetWindowCount())
         {
-        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() +
-                                   GetReadabilityScoresLabel(),
+        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + _DT(L"Readability Scores"),
                                wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
             {
-            wxMessageBox(wxString::Format(_(L"Unable to create \"%s\" folder."),
-                                          GetReadabilityScoresLabel()),
-                         wxGetApp().GetAppName(), wxOK | wxICON_EXCLAMATION);
+            wxMessageBox(
+                wxString::Format(_(L"Unable to create \"%s\" folder."), _DT(L"Readability Scores")),
+                wxGetApp().GetAppName(), wxOK | wxICON_EXCLAMATION);
             }
         else
             {
@@ -1785,7 +1784,7 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
                                 wxString::Format(L"%s [%s]", listWindow->GetName(),
                                                  wxFileName::StripExtension(doc->GetTitle())));
                             listWindow->Save(folder + wxFileName::GetPathSeparator() +
-                                                 GetReadabilityScoresLabel() +
+                                                 _DT(L"Readability Scores") +
                                                  wxFileName::GetPathSeparator() +
                                                  listWindow->GetLabel() + listExt,
                                              GridExportOptions());
@@ -1801,7 +1800,7 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
                                 wxString::Format(L"%s [%s]", graphWindow->GetName(),
                                                  wxFileName::StripExtension(doc->GetTitle())));
                             graphWindow->Save(folder + wxFileName::GetPathSeparator() +
-                                                  GetReadabilityScoresLabel() +
+                                                  _DT(L"Readability Scores") +
                                                   wxFileName::GetPathSeparator() +
                                                   graphWindow->GetLabel() + graphExt,
                                               graphOptions);
@@ -1820,11 +1819,14 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
     if (includeGraphs &&
         (GetHistogramsView().GetWindowCount() || GetBoxPlotView().GetWindowCount()))
         {
-        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + _(L"Graphs"),
+        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() +
+                                   _DT(L"Graphs", DTExplanation::FilePath),
                                wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
             {
-            wxMessageBox(_(L"Unable to create \"Graphs\" folder."), wxGetApp().GetAppName(),
-                         wxOK | wxICON_EXCLAMATION);
+            // TRANSLATORS: "Graphs" should not be translated; these folder names should stay in
+            // English for consistency.
+            wxMessageBox(wxString::Format(_(L"Unable to create \"%s\" folder."), _DT(L"Graphs")),
+                         wxGetApp().GetAppName(), wxOK | wxICON_EXCLAMATION);
             }
         else
             {
@@ -1873,11 +1875,11 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
     // the hard word list views
     if (includeHardWordLists)
         {
-        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetWordsBreakdownLabel(),
+        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + _DT(L"Words Breakdown"),
                                wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
             {
             wxMessageBox(
-                wxString::Format(_(L"Unable to create \"%s\" folder."), GetWordsBreakdownLabel()),
+                wxString::Format(_(L"Unable to create \"%s\" folder."), _DT(L"Words Breakdown")),
                 wxGetApp().GetAppName(), wxOK | wxICON_EXCLAMATION);
             }
         else
@@ -1892,7 +1894,7 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
                         wxString::Format(L"%s [%s]", listWindow->GetName(),
                                          wxFileName::StripExtension(doc->GetTitle())));
                     listWindow->Save(folder + wxFileName::GetPathSeparator() +
-                                         GetWordsBreakdownLabel() + wxFileName::GetPathSeparator() +
+                                         _DT(L"Words Breakdown") + wxFileName::GetPathSeparator() +
                                          listWindow->GetLabel() + listExt,
                                      GridExportOptions());
                     }
@@ -1908,11 +1910,11 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
     if (includeSentencesBreakdown)
         {
         if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() +
-                                   GetSentencesBreakdownLabel(),
+                                   _DT(L"Sentences Breakdown"),
                                wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
             {
             wxMessageBox(wxString::Format(_(L"Unable to create \"%s\" folder."),
-                                          GetSentencesBreakdownLabel()),
+                                          _DT(L"Sentences Breakdown")),
                          wxGetApp().GetAppName(), wxOK | wxICON_EXCLAMATION);
             }
         else
@@ -1927,7 +1929,7 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
                         wxString::Format(L"%s [%s]", listWindow->GetName(),
                                          wxFileName::StripExtension(doc->GetTitle())));
                     listWindow->Save(
-                        folder + wxFileName::GetPathSeparator() + GetSentencesBreakdownLabel() +
+                        folder + wxFileName::GetPathSeparator() + _DT(L"Sentences Breakdown") +
                             wxFileName::GetPathSeparator() + listWindow->GetLabel() + listExt,
                         GridExportOptions());
                     }
@@ -1942,13 +1944,12 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
     // summary statistics
     if (includeSummaryStats)
         {
-        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() +
-                                   GetSummaryStatisticsLabel(),
+        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + _DT(L"Summary Statistics"),
                                wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
             {
-            wxMessageBox(wxString::Format(_(L"Unable to create \"%s\" folder."),
-                                          GetSummaryStatisticsLabel()),
-                         wxGetApp().GetAppName(), wxOK | wxICON_EXCLAMATION);
+            wxMessageBox(
+                wxString::Format(_(L"Unable to create \"%s\" folder."), _DT(L"Summary Statistics")),
+                wxGetApp().GetAppName(), wxOK | wxICON_EXCLAMATION);
             }
         else
             {
@@ -1962,7 +1963,7 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
                         wxString::Format(L"%s [%s]", listWindow->GetName(),
                                          wxFileName::StripExtension(doc->GetTitle())));
                     listWindow->Save(
-                        folder + wxFileName::GetPathSeparator() + GetSummaryStatisticsLabel() +
+                        folder + wxFileName::GetPathSeparator() + _DT(L"Summary Statistics") +
                             wxFileName::GetPathSeparator() + listWindow->GetLabel() + listExt,
                         GridExportOptions());
                     }
@@ -1977,10 +1978,10 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
     // grammar
     if (includeGrammarIssues && GetGrammarView().GetWindowCount())
         {
-        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetGrammarLabel(),
+        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + _DT(L"Grammar"),
                                wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
             {
-            wxMessageBox(wxString::Format(_(L"Unable to create \"%s\" folder."), GetGrammarLabel()),
+            wxMessageBox(wxString::Format(_(L"Unable to create \"%s\" folder."), _DT(L"Grammar")),
                          wxGetApp().GetAppName(), wxOK | wxICON_EXCLAMATION);
             }
         else
@@ -1993,7 +1994,7 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
                     listWindow->SetLabel(
                         wxString::Format(L"%s [%s]", listWindow->GetName(),
                                          wxFileName::StripExtension(doc->GetTitle())));
-                    listWindow->Save(folder + wxFileName::GetPathSeparator() + GetGrammarLabel() +
+                    listWindow->Save(folder + wxFileName::GetPathSeparator() + _DT(L"Grammar") +
                                          wxFileName::GetPathSeparator() + listWindow->GetLabel() +
                                          listExt,
                                      GridExportOptions());
@@ -2009,11 +2010,12 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
     // Sight Words
     if (includeSightWords && GetDolchSightWordsView().GetWindowCount())
         {
-        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetDolchLabel(),
+        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + _DT(L"Sight Words"),
                                wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
             {
-            wxMessageBox(wxString::Format(_(L"Unable to create \"%s\" folder."), GetDolchLabel()),
-                         wxGetApp().GetAppName(), wxOK | wxICON_EXCLAMATION);
+            wxMessageBox(
+                wxString::Format(_(L"Unable to create \"%s\" folder."), _DT(L"Sight Words")),
+                wxGetApp().GetAppName(), wxOK | wxICON_EXCLAMATION);
             }
         else
             {
@@ -2026,7 +2028,7 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
                     listWindow->SetLabel(
                         wxString::Format(L"%s [%s]", listWindow->GetName(),
                                          wxFileName::StripExtension(doc->GetTitle())));
-                    listWindow->Save(folder + wxFileName::GetPathSeparator() + GetDolchLabel() +
+                    listWindow->Save(folder + wxFileName::GetPathSeparator() + _DT(L"Sight Words") +
                                          wxFileName::GetPathSeparator() + listWindow->GetLabel() +
                                          listExt,
                                      GridExportOptions());
@@ -2042,10 +2044,10 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
     // warnings
     if (includeWarnings && GetWarningsView()->GetItemCount())
         {
-        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + GetWarningLabel(),
+        if (!wxFileName::Mkdir(folder + wxFileName::GetPathSeparator() + _DT(L"Warnings"),
                                wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
             {
-            wxMessageBox(wxString::Format(_(L"Unable to create \"%s\" folder."), GetWarningLabel()),
+            wxMessageBox(wxString::Format(_(L"Unable to create \"%s\" folder."), _DT(L"Warnings")),
                          wxGetApp().GetAppName(), wxOK | wxICON_EXCLAMATION);
             }
         else
@@ -2055,8 +2057,8 @@ bool BatchProjectView::ExportAll(const wxString& folder, wxString listExt, wxStr
                 GetWarningsView()->SetLabel(
                     wxString::Format(L"%s [%s]", GetWarningsView()->GetName(),
                                      wxFileName::StripExtension(doc->GetTitle())));
-                GetWarningsView()->Save(folder + wxFileName::GetPathSeparator() +
-                                            GetWarningLabel() + wxFileName::GetPathSeparator() +
+                GetWarningsView()->Save(folder + wxFileName::GetPathSeparator() + _DT(L"Warnings") +
+                                            wxFileName::GetPathSeparator() +
                                             GetWarningsView()->GetLabel() + listExt,
                                         GridExportOptions());
                 }
