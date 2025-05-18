@@ -3788,6 +3788,7 @@ void BatchProjectDoc::DisplayScores()
     // aggregated grade level scores, listed by document
     if (IsIncludingGradeTest())
         {
+        // TRANSLATORS: "x" means "by".
         DisplayScoreStatisticsWindow(_(L"Grade Score Summary (x Document)"),
                                      BaseProjectView::ID_AGGREGATED_DOC_SCORES_LIST_PAGE_ID,
                                      m_aggregatedGradeScoresData, _(L"Document"), _(L"Label"),
@@ -3802,6 +3803,7 @@ void BatchProjectDoc::DisplayScores()
     // aggregated predicted cloze scores, listed by document
     if (IsIncludingClozeTest())
         {
+        // TRANSLATORS: "x" means "by".
         DisplayScoreStatisticsWindow(_(L"Cloze Score Summary (x Document)"),
                                      BaseProjectView::ID_AGGREGATED_CLOZE_SCORES_LIST_PAGE_ID,
                                      m_aggregatedClozeScoresData, _(L"Document"), _(L"Label"),
@@ -6941,6 +6943,7 @@ void BatchProjectDoc::DisplayGrammar()
             listView->InsertColumn(0, _(L"Document"));
             listView->InsertColumn(1, _(L"Label"));
             listView->InsertColumn(2, _(L"Frequency"));
+            // TRANSLATORS: First word in a sentence.
             listView->InsertColumn(3, _(L"Starting Word"));
             listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU"));
             view->GetGrammarView().AddWindow(listView);

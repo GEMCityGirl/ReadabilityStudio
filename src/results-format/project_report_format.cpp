@@ -1304,6 +1304,8 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
     measuringDc.SetFont(measuringDc.GetFont().Larger().Larger());
     // one of the longer labels
     const auto labelColumnWidth = safe_divide<long>(
+        // TRANSLATORS: This is really a placeholder string used for measuring, but
+        // should be translated to measure properly. The "20" here doesn't mean anything.
         measuringDc.GetTextExtent(_(L"Number of difficult sentences (more than 20 words):"))
             .GetWidth(),
         wxGetApp().GetDPIScaleFactor());

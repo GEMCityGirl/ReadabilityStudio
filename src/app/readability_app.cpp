@@ -2653,6 +2653,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 editButtonBar->AddToggleButton(
                     XRCID("ID_EDIT_GRAPH_SHOWCASE_KEY_ITEMS"), _(L"Showcase"),
                     wxGetApp().ReadRibbonSvgIcon(L"ribbon/showcase.svg"),
+                    // TRANSLATORS: Pie chart slices.
                     _(L"Toggle whether complex word slices are being showcased."));
 
                 editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"),

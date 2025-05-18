@@ -338,7 +338,7 @@ void ExportAllDlg::CreateControls()
         if (view->GetDolchSightWordsView().GetWindowCount() > 0)
             {
             wxCheckBox* sightWordsCheck = new wxCheckBox(
-                inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY, _(L"Dolch sight word section"),
+                inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY, _(L"Dolch sight words section"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportSightWords));
             inclusionSectionBoxSizer->Add(sightWordsCheck, wxSizerFlags{}.Expand().Border());
             }

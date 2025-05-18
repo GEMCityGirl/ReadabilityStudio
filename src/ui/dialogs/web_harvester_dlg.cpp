@@ -434,6 +434,7 @@ void WebHarvesterDlg::CreateControls()
         m_domainList->EnableItemAdd();
         m_domainList->EnableLabelEditing();
         m_domainList->EnableItemDeletion();
+        // TRANSLATORS: Website domains.
         m_domainList->InsertColumn(0, _(L"User-defined Domains:"));
         m_domainList->SetColumnEditable(0);
         m_domainList->SetVirtualDataProvider(m_domainData);

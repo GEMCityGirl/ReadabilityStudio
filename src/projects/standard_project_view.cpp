@@ -365,6 +365,7 @@ void ProjectView::OnExportAll([[maybe_unused]] wxCommandEvent& event)
     choices.Add(_(L"Single report"));
     descriptions.Add(
         _(L"Saves the results into a single <span style='font-weight: bold;'>HTML</span> report."));
+    // TRANSLATORS: Different (multiple) files. "Separate" is not a verb here.
     choices.Add(_(L"Separate files"));
     descriptions.Add(_(L"Saves each result window to a separate file."));
     Wisteria::UI::RadioBoxDlg exportTypesDlg(GetDocFrame(), _(L"Select How to Export"), wxString{},
@@ -380,8 +381,7 @@ void ProjectView::OnExportAll([[maybe_unused]] wxCommandEvent& event)
         {
         dlg.GetImageExportOptions().m_imageSize = m_activeWindow->GetClientSize();
         }
-    dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                     L"online/publishing.html");
+    dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"online/publishing.html");
     if (dlg.ShowModal() != wxID_OK || dlg.GetFolderPath().empty())
         {
         return;
@@ -441,8 +441,7 @@ void ProjectView::OnExportFilteredDocument([[maybe_unused]] wxCommandEvent& even
         }
 
     FilteredTextExportOptionsDlg optDlg(GetDocFrame());
-    optDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                        L"online/publishing.html");
+    optDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"online/publishing.html");
     if (optDlg.ShowModal() != wxID_OK)
         {
         return;
@@ -1080,8 +1079,8 @@ void ProjectView::UpdateSideBarIcons()
 
             GetSideBar()->InsertSubItemById(
                 SIDEBAR_WORDS_BREAKDOWN_SECTION_ID, window->GetName(), window->GetId(),
-                window->IsKindOf(wxCLASSINFO(FormattedTextCtrl))                                ? 0 :
-                window->IsKindOf(wxCLASSINFO(ListCtrlEx))                                       ? 15 :
+                window->IsKindOf(wxCLASSINFO(FormattedTextCtrl))                              ? 0 :
+                window->IsKindOf(wxCLASSINFO(ListCtrlEx))                                     ? 15 :
                 (isGraph && checkGraphType(window, wxCLASSINFO(Wisteria::Graphs::Histogram))) ? 6 :
                 (isGraph && checkGraphType(window, wxCLASSINFO(Wisteria::Graphs::BarChart)))  ? 16 :
                 (isGraph && checkGraphType(window, wxCLASSINFO(Wisteria::Graphs::WordCloud))) ? 29 :
@@ -1101,7 +1100,7 @@ void ProjectView::UpdateSideBarIcons()
 
             GetSideBar()->InsertSubItemById(
                 SIDEBAR_SENTENCES_BREAKDOWN_SECTION_ID, window->GetName(), window->GetId(),
-                window->IsKindOf(wxCLASSINFO(ListCtrlEx))                                       ? 15 :
+                window->IsKindOf(wxCLASSINFO(ListCtrlEx))                                     ? 15 :
                 (isGraph && checkGraphType(window, wxCLASSINFO(Wisteria::Graphs::BoxPlot)))   ? 7 :
                 (isGraph && checkGraphType(window, wxCLASSINFO(Wisteria::Graphs::Histogram))) ? 6 :
                 (isGraph && checkGraphType(window, wxCLASSINFO(Wisteria::Graphs::HeatMap)))   ? 24 :
@@ -1135,10 +1134,10 @@ void ProjectView::UpdateSideBarIcons()
 
             GetSideBar()->InsertSubItemById(
                 SIDEBAR_DOLCH_SECTION_ID, window->GetName(), window->GetId(),
-                window->IsKindOf(wxCLASSINFO(FormattedTextCtrl))                               ? 0 :
-                window->IsKindOf(wxCLASSINFO(HtmlTableWindow))                                 ? 17 :
+                window->IsKindOf(wxCLASSINFO(FormattedTextCtrl))                             ? 0 :
+                window->IsKindOf(wxCLASSINFO(HtmlTableWindow))                               ? 17 :
                 (isGraph && checkGraphType(window, wxCLASSINFO(Wisteria::Graphs::BarChart))) ? 16 :
-                window->IsKindOf(wxCLASSINFO(ListCtrlEx))                                      ? 15 :
+                window->IsKindOf(wxCLASSINFO(ListCtrlEx))                                    ? 15 :
                                                                                                9);
             }
         }
@@ -1439,9 +1438,8 @@ void ProjectView::OnMenuCommand(wxCommandEvent& event)
                     if (warningIter != WarningManager::GetWarnings().end() &&
                         warningIter->ShouldBeShown())
                         {
-                        wxRichMessageDialog msg(GetFrame(),
-                                                warningIter->GetMessage(), warningIter->GetTitle(),
-                                                warningIter->GetFlags());
+                        wxRichMessageDialog msg(GetFrame(), warningIter->GetMessage(),
+                                                warningIter->GetTitle(), warningIter->GetFlags());
                         msg.ShowCheckBox(_(L"Remember my answer"));
                         const int dlgResponse = msg.ShowModal();
                         if (warningIter != WarningManager::GetWarnings().end() &&
@@ -3264,7 +3262,8 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
                                       includeLeadingPageBreak);
                     includeLeadingPageBreak = true;
                     }
-                else if (activeWindow->IsKindOf(wxCLASSINFO(FormattedTextCtrl)) && includeTextReports)
+                else if (activeWindow->IsKindOf(wxCLASSINFO(FormattedTextCtrl)) &&
+                         includeTextReports)
                     {
                     formatTextWindow(dynamic_cast<FormattedTextCtrl*>(activeWindow),
                                      includeLeadingPageBreak);
@@ -3324,7 +3323,8 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
                     formatList(dynamic_cast<ListCtrlEx*>(activeWindow), includeLeadingPageBreak);
                     includeLeadingPageBreak = true;
                     }
-                else if (activeWindow->IsKindOf(wxCLASSINFO(FormattedTextCtrl)) && includeTextReports)
+                else if (activeWindow->IsKindOf(wxCLASSINFO(FormattedTextCtrl)) &&
+                         includeTextReports)
                     {
                     formatTextWindow(dynamic_cast<FormattedTextCtrl*>(activeWindow),
                                      includeLeadingPageBreak);
@@ -3360,7 +3360,8 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
                                      includeLeadingPageBreak);
                     includeLeadingPageBreak = true;
                     }
-                else if (activeWindow->IsKindOf(wxCLASSINFO(FormattedTextCtrl)) && includeTextReports)
+                else if (activeWindow->IsKindOf(wxCLASSINFO(FormattedTextCtrl)) &&
+                         includeTextReports)
                     {
                     formatTextWindow(dynamic_cast<FormattedTextCtrl*>(activeWindow),
                                      includeLeadingPageBreak);

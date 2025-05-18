@@ -303,10 +303,14 @@ void EditWordListDlg::OnFilePathChanged(wxCommandEvent& event)
                 }
             if (maxColumnCount > 3)
                 {
+                // TRANSLATORS: An exception for a word before a phrase that negates
+                // a grammar check.
                 m_wordsList->InsertColumn(3, _(L"Proceeding Exception"));
                 }
             if (maxColumnCount > 4)
                 {
+                // TRANSLATORS: An exception for a word after a phrase that negates
+                // a grammar check.
                 m_wordsList->InsertColumn(4, _(L"Trailing Exception"));
                 }
             m_wordsList->SetVirtualDataSize(rowCount, 5);

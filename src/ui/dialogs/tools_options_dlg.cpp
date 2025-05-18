@@ -5348,6 +5348,7 @@ void ToolsOptionsDlg::CreateGraphSection()
 
             // image fit
             wxPGChoices imgFits;
+            // TRANSLATORS: "Crop" as in trimming an image. These are both verbs.
             imgFits.Add(_(L"Crop & center"));
             imgFits.Add(_(L"Shrink to fit"));
             auto imgFitProp = backgroundImage->AppendChild(new wxEnumProperty(
