@@ -9,10 +9,10 @@
  *
  * Contributors:
  *   Blake Madden - initial implementation
- ********************************************************************************/                 \
+ ********************************************************************************/
 
-#ifndef __READ_DICTIONARIES_H__
-#define __READ_DICTIONARIES_H__
+#ifndef READ_DICTIONARIES_H
+#define READ_DICTIONARIES_H
 
 #include <fstream>
 #include <iostream>
@@ -83,4 +83,4 @@ inline std::pair<bool, std::wstring> read_utf8_file(const std::string& file_name
     return std::make_pair(true, buffer);
     }
 
-#endif __READ_DICTIONARIES_H__
+#endif // READ_DICTIONARIES_H
