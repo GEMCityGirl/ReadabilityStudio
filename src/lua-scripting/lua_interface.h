@@ -19,6 +19,7 @@
 
 // NOLINTBEGIN(readability-identifier-length)
 // NOLINTBEGIN(readability-implicit-bool-conversion)
+// cppcheck-suppress-begin functionConst
 
 /// @brief Interface for running Lua code.
 /// @details This manages the Lua session, registering our custom libraries,
@@ -79,6 +80,7 @@ class LuaInterpreter
     wxString m_scriptFilePath;
     };
 
+    // cppcheck-suppress-end functionConst
     // NOLINTEND(readability-implicit-bool-conversion)
     // NOLINTEND(readability-identifier-length)
 

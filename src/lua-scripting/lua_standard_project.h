@@ -24,6 +24,7 @@ class ToolsOptionsDlg;
 
 // NOLINTBEGIN(readability-identifier-length)
 // NOLINTBEGIN(readability-implicit-bool-conversion)
+// cppcheck-suppress-begin functionConst
 
 namespace LuaScripting
     {
@@ -172,15 +173,11 @@ namespace LuaScripting
 
         // PROJECT SETTINGS
         int SetLanguage(lua_State* L /*Language lang*/); // Sets the project language. This will affect syllable counting and which tests are available.
-        // cppcheck-suppress functionConst
         int /*Language*/ GetLanguage(lua_State* L); // Returns the project's language.
         int SetReviewer(lua_State* L /*string reviewer*/); // Sets the user name for the software.
-        // cppcheck-suppress functionConst
         int /*string*/ GetReviewer(lua_State* L); // Returns the reviewer's name.
-        // cppcheck-suppress functionConst
         int SetStatus(lua_State* L /*string status*/); // Sets the status of the project. This can be freeform text.
         int /*string*/ GetStatus(lua_State* L); // Returns the status of the project.
-        // cppcheck-suppress functionConst
         int /*TextStorage*/ GetTextStorageMethod(lua_State* L); // Returns whether the project embeds its documents or links to them.
         int SetTextStorageMethod(lua_State* L /*TextStorage storageMethod*/); // Sets whether the project embeds its documents or links to them.
         int SetDocumentFilePath(lua_State* L /*string docPath*/); // Sets the path of the document being analyzed by the project.
@@ -199,7 +196,6 @@ namespace LuaScripting
         int SetDifficultSentenceLength(lua_State* L /*number length*/); // Sets the threshold for determining an overly-long sentence.
 
         int SetParagraphsParsingMethod(lua_State* L /*ParagraphParse parseMethod*/); // Sets how hard returns help determine how paragraphs and sentences are detected.
-        // cppcheck-suppress functionConst
         int /*ParagraphParse*/ GetParagraphsParsingMethod(lua_State* L); // Returns the method for how paragraphs are parsed.
         int IgnoreBlankLines(lua_State* L /*boolean ignore*/); // Sets whether to ignore blank lines when figuring out if we are at the end of a paragraph.
         int /*boolean*/ IsIgnoringBlankLines(lua_State* L); // Returns whether to ignore blank lines when figuring out if we are at the end of a paragraph.
@@ -395,6 +391,7 @@ namespace LuaScripting
         };
     } // namespace LuaScripting
 
+// cppcheck-suppress-end functionConst
 // NOLINTEND(readability-implicit-bool-conversion)
 // NOLINTEND(readability-identifier-length)
 

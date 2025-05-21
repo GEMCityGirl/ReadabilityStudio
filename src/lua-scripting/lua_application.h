@@ -24,6 +24,7 @@
 
 // NOLINTBEGIN(readability-identifier-length)
 // NOLINTBEGIN(readability-implicit-bool-conversion)
+// cppcheck-suppress-begin functionConst
 
 namespace LuaScripting
     {
@@ -621,6 +622,7 @@ namespace LuaScripting
     };
     } // namespace LuaScripting
 
+// cppcheck-suppress-end functionConst
 // NOLINTEND(readability-implicit-bool-conversion)
 // NOLINTEND(readability-identifier-length)
 

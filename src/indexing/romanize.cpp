@@ -119,9 +119,11 @@ namespace text_transform
                           std::make_pair(static_cast<wchar_t>(0xFB04), L"ffl"),
                           std::make_pair(static_cast<wchar_t>(0xFB05), L"ft"),
                           std::make_pair(static_cast<wchar_t>(0xFB06), L"st"),
+                          // quneiform-suppress-begin
                           // ellipsis
                           std::make_pair(static_cast<wchar_t>(0x2026), L"..."),
                           std::make_pair(static_cast<wchar_t>(133), L"..."),
+                          // quneiform-suppress-end
                           // dashes
                           std::make_pair(static_cast<wchar_t>(0x2012), L"--"),
                           std::make_pair(static_cast<wchar_t>(0x2013), L"--"),

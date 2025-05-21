@@ -32,8 +32,7 @@ class SyllableCountGreaterEqualWithHighlighting final
     {
   public:
     SyllableCountGreaterEqualWithHighlighting(size_t count, bool treat_numerals_as_monosyllabic,
-                                              wxString beginHighlight,
-                                              wxString endHighlight)
+                                              wxString beginHighlight, wxString endHighlight)
         : syllable_count_greater_equal<word_typeT>(count, treat_numerals_as_monosyllabic),
           m_beginHighlight(std::move(beginHighlight)), m_endHighlight(std::move(endHighlight))
         {
@@ -105,25 +104,25 @@ class WordLengthGreaterEqualsWithHighlighting final
     wxString m_endHighlight;
     };
 
-/** @brief Determinant for whether a word is UNfamiliar,
+/** @brief Determinant for whether a word is unfamiliar,
         used for highlighting unfamiliar words in a document. */
 template<typename word_typeT, typename wordlistT, typename stemmerT>
 class IsNotFamiliarWordWithHighlighting
     {
   public:
     /** @brief Constructor.
-        @param wlist the list of familiar words.
+        @param wList the list of familiar words.
         @param beginHighlight the beginning tag of a highlight
             (can be HTML or RTF code, for example).
         @param endHighlight the ending tag of a highlight
             (can be HTML or RTF code, for example).
         @param properNounMethod for determining whether a proper noun
             (not on the word list) should be familiar or not.*/
-    IsNotFamiliarWordWithHighlighting(const wordlistT* wlist, wxString beginHighlight,
+    IsNotFamiliarWordWithHighlighting(const wordlistT* wList, wxString beginHighlight,
                                       wxString endHighlight,
                                       readability::proper_noun_counting_method properNounMethod)
-        : m_is_FamiliarWord(wlist, properNounMethod, true), m_beginHighlight(std::move(beginHighlight)),
-          m_endHighlight(std::move(endHighlight))
+        : m_is_FamiliarWord(wList, properNounMethod, true),
+          m_beginHighlight(std::move(beginHighlight)), m_endHighlight(std::move(endHighlight))
         {
         }
 
@@ -133,8 +132,7 @@ class IsNotFamiliarWordWithHighlighting
     /// @returns @c true if word is not familiar.
     /// @param theWord The word to review.
     [[nodiscard]]
-    bool
-    operator()(const word_typeT& theWord) const
+    bool operator()(const word_typeT& theWord) const
         {
         return !m_is_FamiliarWord(theWord);
         }
@@ -162,7 +160,7 @@ class IsNotFamiliarWordWithHighlighting
     wxString m_endHighlight;
     };
 
-/** @brief Determinant for whether a word is UNfamiliar,
+/** @brief Determinant for whether a word is unfamiliar,
         used for highlighting unfamiliar words in a document.
     @details Will also mark numbers as excluded (some tests forcibly ignore all numbers).*/
 template<typename word_typeT, typename wordlistT, typename stemmerT>
@@ -170,7 +168,7 @@ class IsNotFamiliarWordExcludeNumeralsWithHighlighting
     {
   public:
     /** @brief Constructor.
-        @param wlist the list of familiar words.
+        @param wList the list of familiar words.
         @param beginHighlight the beginning tag of a highlight
             (can be HTML or RTF code, for example).
         @param endHighlight the ending tag of a highlight
@@ -182,11 +180,12 @@ class IsNotFamiliarWordExcludeNumeralsWithHighlighting
         @param properNounMethod for determining whether a proper noun (not on the word list)
             should be familiar or not.*/
     IsNotFamiliarWordExcludeNumeralsWithHighlighting(
-        const wordlistT* wlist, wxString beginHighlight, wxString endHighlight,
+        const wordlistT* wList, wxString beginHighlight, wxString endHighlight,
         wxString beginExcludeHighlight, wxString endExcludeHighlight,
         readability::proper_noun_counting_method properNounMethod)
-        : m_isFamiliarWord(wlist, properNounMethod, true), m_beginHighlight(std::move(beginHighlight)),
-          m_endHighlight(std::move(endHighlight)), m_beginExcludeHighlight(std::move(beginExcludeHighlight)),
+        : m_isFamiliarWord(wList, properNounMethod, true),
+          m_beginHighlight(std::move(beginHighlight)), m_endHighlight(std::move(endHighlight)),
+          m_beginExcludeHighlight(std::move(beginExcludeHighlight)),
           m_endExcludeHighlight(std::move(endExcludeHighlight))
         {
         }
@@ -197,8 +196,7 @@ class IsNotFamiliarWordExcludeNumeralsWithHighlighting
     /// @returns @c true if word is not familiar.
     /// @param theWord The word to review.
     [[nodiscard]]
-    bool
-    operator()(const word_typeT& theWord) const
+    bool operator()(const word_typeT& theWord) const
         {
         // reset
         m_inExcludeState = false;
@@ -269,15 +267,16 @@ class IsDolchWordWithLevelHighlighting final : public readability::is_dolch_word
     {
   public:
     IsDolchWordWithLevelHighlighting(const readability::dolch_word_list* wlist,
-                                     wxString beginConjunctions,
-                                     wxString beginPrepositions,
+                                     wxString beginConjunctions, wxString beginPrepositions,
                                      wxString beginPronouns, wxString beginAdverbs,
                                      wxString beginAdjectives, wxString beginVerbs,
                                      wxString beginNouns, wxString endHighlight)
-        : readability::is_dolch_word<word_typeT>(wlist), m_beginConjunctions(std::move(beginConjunctions)),
-          m_beginPrepositions(std::move(beginPrepositions)), m_beginPronouns(std::move(beginPronouns)),
-          m_beginAdverbs(std::move(beginAdverbs)), m_beginAdjectives(std::move(beginAdjectives)),
-          m_beginVerbs(std::move(beginVerbs)), m_beginNouns(std::move(beginNouns)), m_endHighlight(std::move(endHighlight))
+        : readability::is_dolch_word<word_typeT>(wlist),
+          m_beginConjunctions(std::move(beginConjunctions)),
+          m_beginPrepositions(std::move(beginPrepositions)),
+          m_beginPronouns(std::move(beginPronouns)), m_beginAdverbs(std::move(beginAdverbs)),
+          m_beginAdjectives(std::move(beginAdjectives)), m_beginVerbs(std::move(beginVerbs)),
+          m_beginNouns(std::move(beginNouns)), m_endHighlight(std::move(endHighlight))
         {
         }
 
@@ -350,9 +349,9 @@ class IsNotDolchWordWithLevelHighlighting
     {
   public:
     IsNotDolchWordWithLevelHighlighting(const readability::dolch_word_list* wlist,
-                                        wxString beginHighlight,
-                                        wxString endHighlight)
-        : isDolch(wlist), m_beginHighlight(std::move(beginHighlight)), m_endHighlight(std::move(endHighlight))
+                                        wxString beginHighlight, wxString endHighlight)
+        : isDolch(wlist), m_beginHighlight(std::move(beginHighlight)),
+          m_endHighlight(std::move(endHighlight))
         {
         }
 
@@ -362,8 +361,7 @@ class IsNotDolchWordWithLevelHighlighting
     /// @returns @c true if word is not Dolch familiar.
     /// @param theWord The word to review.
     [[nodiscard]]
-    bool
-    operator()(const word_typeT& theWord) const
+    bool operator()(const word_typeT& theWord) const
         {
         return !isDolch(theWord);
         }
@@ -401,17 +399,16 @@ class IsNotCustomFamiliarWordWithHighlighting
     {
   public:
     IsNotCustomFamiliarWordWithHighlighting(CustomReadabilityTestInterfaceT wordTest,
-                                            wxString beginHighlight,
-                                            wxString endHighlight)
-        : m_wordTest(wordTest), m_beginHighlight(std::move(beginHighlight)), m_endHighlight(std::move(endHighlight))
+                                            wxString beginHighlight, wxString endHighlight)
+        : m_wordTest(wordTest), m_beginHighlight(std::move(beginHighlight)),
+          m_endHighlight(std::move(endHighlight))
         {
         }
 
     /// @returns @c true if word is not familiar.
     /// @param theWord The word to review.
     [[nodiscard]]
-    bool
-    operator()(const word_case_insensitive_no_stem& theWord) const
+    bool operator()(const word_case_insensitive_no_stem& theWord) const
         {
         return !m_wordTest->operator()(theWord);
         }
@@ -453,7 +450,8 @@ class IsNotCustomFamiliarWordExcludeNumeralsWithHighlighting
                                                            wxString endExcludeHighlight)
         : m_wordTest(wordTest), m_beginHighlight(std::move(beginHighlight)),
           m_endHighlight(std::move(endHighlight)),
-          m_beginExcludeHighlight(std::move(beginExcludeHighlight)), m_endExcludeHighlight(std::move(endExcludeHighlight))
+          m_beginExcludeHighlight(std::move(beginExcludeHighlight)),
+          m_endExcludeHighlight(std::move(endExcludeHighlight))
         {
         }
 

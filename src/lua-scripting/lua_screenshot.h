@@ -19,6 +19,7 @@
 
 // NOLINTBEGIN(readability-identifier-length)
 // NOLINTBEGIN(readability-implicit-bool-conversion)
+// cppcheck-suppress-begin functionConst
 
 /// @private
 enum class ProjectScreenshotCropMode
@@ -185,6 +186,7 @@ namespace LuaScripting
     };
     } // namespace LuaScripting
 
+// cppcheck-suppress-end functionConst
 // NOLINTEND(readability-implicit-bool-conversion)
 // NOLINTEND(readability-identifier-length)
 
