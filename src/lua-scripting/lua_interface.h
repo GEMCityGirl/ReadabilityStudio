@@ -19,7 +19,6 @@
 
 // NOLINTBEGIN(readability-identifier-length)
 // NOLINTBEGIN(readability-implicit-bool-conversion)
-// cppcheck-suppress-begin functionConst
 
 /// @brief Interface for running Lua code.
 /// @details This manages the Lua session, registering our custom libraries,
@@ -62,7 +61,7 @@ class LuaInterpreter
     /// @returns The file path of the currently running script
     ///     (may be empty if RunLuaCode() was called with no defined file path).
     [[nodiscard]]
-    const wxString& GetScriptFilePath() noexcept
+    const wxString& GetScriptFilePath() const noexcept
         {
         return m_scriptFilePath;
         }
@@ -80,7 +79,6 @@ class LuaInterpreter
     wxString m_scriptFilePath;
     };
 
-    // cppcheck-suppress-end functionConst
     // NOLINTEND(readability-implicit-bool-conversion)
     // NOLINTEND(readability-identifier-length)
 
