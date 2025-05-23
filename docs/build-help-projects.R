@@ -28,6 +28,7 @@ clearFolders <- function()
   unlink(glue("{docFolder}/shortcuts-cheatsheet/R"), recursive=T)
 
   unlink(glue("{docFolder}/release-notes/images"), recursive=T)
+  unlink(glue("{docFolder}/release-notes/_extensions"), recursive=T)
 
   unlink(glue("{docFolder}/sysadmin/images"), recursive=T)
   unlink(glue("{docFolder}/sysadmin/latex"), recursive=T)
@@ -132,6 +133,9 @@ file_copy(glue("{docFolder}/readability-studio-manual/overviews/new-features.qmd
           TRUE)
 dir_copy(glue("{docFolder}/readability-studio-manual/images"),
          glue("{docFolder}/release-notes/images"),
+         TRUE)
+dir_copy(glue("{docFolder}/readability-studio-manual/_extensions"),
+         glue("{docFolder}/release-notes/_extensions"),
          TRUE)
 
 quarto::quarto_render(output_format="pdf", as_job=F)
