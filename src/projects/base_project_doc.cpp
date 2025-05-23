@@ -1639,12 +1639,12 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         currentEndTag.append(L"</")
             .append(wxGetApp().GetAppOptions().XML_LIX_SETTINGS.data())
             .append(L">");
-        const wchar_t* lixGuageSection = std::wcsstr(graphsSection, currentStartTag);
+        const wchar_t* lixGaugeSection = std::wcsstr(graphsSection, currentStartTag);
         const wchar_t* lixGuageSectionEnd = std::wcsstr(graphsSection, currentEndTag);
-        if (lixGuageSection && lixGuageSectionEnd && (lixGuageSection < lixGuageSectionEnd))
+        if (lixGaugeSection && lixGuageSectionEnd && (lixGaugeSection < lixGuageSectionEnd))
             {
             UseEnglishLabelsForGermanLix(XmlFormat::GetBoolean(
-                lixGuageSection, lixGuageSectionEnd,
+                lixGaugeSection, lixGuageSectionEnd,
                 wxGetApp().GetAppOptions().XML_USE_ENGLISH_LABELS.data(),
                 wxGetApp().GetAppOptions().IsUsingEnglishLabelsForGermanLix()));
             }

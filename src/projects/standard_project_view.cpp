@@ -426,9 +426,9 @@ void ProjectView::OnExportAll([[maybe_unused]] wxCommandEvent& event)
 void ProjectView::OnExportFilteredDocument([[maybe_unused]] wxCommandEvent& event)
     {
     const BaseProjectDoc* doc = dynamic_cast<const BaseProjectDoc*>(GetDocument());
-    wxFileDialog fdialog(GetDocFrame(), _(L"Export Filtered Document"), wxString{}, doc->GetTitle(),
+    wxFileDialog fileDialog(GetDocFrame(), _(L"Export Filtered Document"), wxString{}, doc->GetTitle(),
                          _(L"Text Files (*.txt)|*.txt"), wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
-    if (fdialog.ShowModal() != wxID_OK)
+    if (fileDialog.ShowModal() != wxID_OK)
         {
         return;
         }
@@ -455,8 +455,8 @@ void ProjectView::OnExportFilteredDocument([[maybe_unused]] wxCommandEvent& even
     dlg.SetFilteredValue(validDocText);
     if (dlg.ShowModal() == wxID_OK)
         {
-        wxFileName(fdialog.GetPath()).SetPermissions(wxS_DEFAULT);
-        wxFile filteredFile(fdialog.GetPath(), wxFile::write);
+        wxFileName(fileDialog.GetPath()).SetPermissions(wxS_DEFAULT);
+        wxFile filteredFile(fileDialog.GetPath(), wxFile::write);
         if (!filteredFile.Write(validDocText))
             {
             wxMessageBox(_(L"Unable to write to output file."), _(L"Error"),

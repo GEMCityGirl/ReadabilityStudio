@@ -583,22 +583,22 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
     else
         {
         // general app information
-        auto customColoursNode = configRootNode->FirstChildElement(XML_CUSTOM_COLORS.data());
-        if (customColoursNode)
+        auto customColorsNode = configRootNode->FirstChildElement(XML_CUSTOM_COLORS.data());
+        if (customColorsNode)
             {
             GetCustomColors().clear();
             for (int i = 0; i < m_maxCustomColors; ++i)
                 {
-                auto colourNode = customColoursNode->FirstChildElement(
+                auto colorNode = customColorsNode->FirstChildElement(
                     wxString::Format(_DT(L"color%d"), i).mb_str());
-                if (colourNode)
+                if (colorNode)
                     {
                     int red =
-                        colourNode->ToElement()->IntAttribute(XmlFormat::GetRed().mb_str(), 255);
+                        colorNode->ToElement()->IntAttribute(XmlFormat::GetRed().mb_str(), 255);
                     int green =
-                        colourNode->ToElement()->IntAttribute(XmlFormat::GetBlue().mb_str(), 255);
+                        colorNode->ToElement()->IntAttribute(XmlFormat::GetBlue().mb_str(), 255);
                     int blue =
-                        colourNode->ToElement()->IntAttribute(XmlFormat::GetGreen().mb_str(), 255);
+                        colorNode->ToElement()->IntAttribute(XmlFormat::GetGreen().mb_str(), 255);
                     GetCustomColors().push_back(wxColour(red, green, blue));
                     }
                 else
@@ -935,12 +935,12 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                 SetEditorTextAlignment(static_cast<wxTextAttrAlignment>(
                     textAlignNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
                 }
-            auto lineSpacingnNode =
+            auto lineSpacingNode =
                 editorSettingsNode->FirstChildElement(XML_EDITOR_LINE_SPACING.data());
-            if (lineSpacingnNode)
+            if (lineSpacingNode)
                 {
                 SetEditorLineSpacing(static_cast<wxTextAttrLineSpacing>(
-                    lineSpacingnNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
+                    lineSpacingNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
                 }
             }
         // just get the reviewer from project settings to be used for the start page
@@ -1171,11 +1171,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                     }
                 m_language = static_cast<readability::test_language>(value);
                 }
-            auto randonSampleSizeNode =
+            auto randomSampleSizeNode =
                 projectSettings->FirstChildElement(XML_RANDOM_SAMPLE_SIZE.data());
-            if (randonSampleSizeNode)
+            if (randomSampleSizeNode)
                 {
-                int value = randonSampleSizeNode->ToElement()->IntAttribute(
+                int value = randomSampleSizeNode->ToElement()->IntAttribute(
                     XML_VALUE.data(), GetBatchRandomSamplingSize());
                 // verify that this is a sensical value
                 if (value < 1 || value > 100)
@@ -1985,12 +1985,12 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         }
                     }
                 // color scheme
-                auto colorSchemNode =
+                auto colorSchemeNode =
                     graphDefaultsNode->FirstChildElement(XML_GRAPH_COLOR_SCHEME.data());
-                if (colorSchemNode)
+                if (colorSchemeNode)
                     {
                     const char* colorScheme =
-                        colorSchemNode->ToElement()->Attribute(XML_VALUE.data());
+                        colorSchemeNode->ToElement()->Attribute(XML_VALUE.data());
                     if (colorScheme)
                         {
                         auto colorSchemeStr = Wisteria::TextStream::CharStreamToUnicode(

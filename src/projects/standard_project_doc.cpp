@@ -3863,12 +3863,12 @@ bool ProjectDoc::AddGilliamPenaMountainFryTest(const bool setFocus)
 
      const wxString wordsColumnName{ _DT(L"WORDS") };
     const wxString syllablesColumnName{ _DT(L"SYLLABLES") };
-    const wxString sencentesColumnName{ _DT(L"SENTENCES") };
+    const wxString sentencesColumnName{ _DT(L"SENTENCES") };
 
     auto scoreDataset = std::make_shared<Wisteria::Data::Dataset>();
     scoreDataset->AddContinuousColumn(wordsColumnName);
     scoreDataset->AddContinuousColumn(syllablesColumnName);
-    scoreDataset->AddContinuousColumn(sencentesColumnName);
+    scoreDataset->AddContinuousColumn(sentencesColumnName);
 
     scoreDataset->AddRow(Data::RowInfo().
                     Continuous(
@@ -3909,7 +3909,7 @@ bool ProjectDoc::AddGilliamPenaMountainFryTest(const bool setFocus)
             std::dynamic_pointer_cast<FryGraph>(fryGraphView->GetFixedObject(0, 0));
         assert(gFryGraph);
         gFryGraph->SetData(scoreDataset, wordsColumnName, syllablesColumnName,
-                            sencentesColumnName);
+                            sentencesColumnName);
         }
     else
         {
@@ -3929,7 +3929,7 @@ bool ProjectDoc::AddGilliamPenaMountainFryTest(const bool setFocus)
                      ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
         gFryGraph->SetMessageCatalog(GetReadabilityMessageCatalogPtr());
         gFryGraph->SetData(scoreDataset, wordsColumnName, syllablesColumnName,
-                           sencentesColumnName);
+                           sentencesColumnName);
 
         fryGraphView->SetFixedObject(0, 0, gFryGraph);
 
@@ -4033,12 +4033,12 @@ bool ProjectDoc::AddFryTest(const bool setFocus)
 
     const wxString wordsColumnName{ _DT(L"WORDS") };
     const wxString syllablesColumnName{ _DT(L"SYLLABLES") };
-    const wxString sencentesColumnName{ _DT(L"SENTENCES") };
+    const wxString sentencesColumnName{ _DT(L"SENTENCES") };
 
     auto scoreDataset = std::make_shared<Wisteria::Data::Dataset>();
     scoreDataset->AddContinuousColumn(wordsColumnName);
     scoreDataset->AddContinuousColumn(syllablesColumnName);
-    scoreDataset->AddContinuousColumn(sencentesColumnName);
+    scoreDataset->AddContinuousColumn(sentencesColumnName);
 
     scoreDataset->AddRow(Data::RowInfo().
                     Continuous(
@@ -4079,7 +4079,7 @@ bool ProjectDoc::AddFryTest(const bool setFocus)
             std::dynamic_pointer_cast<FryGraph>(fryGraphView->GetFixedObject(0, 0));
         assert(fryGraph);
         fryGraph->SetData(scoreDataset, wordsColumnName, syllablesColumnName,
-                            sencentesColumnName);
+                            sentencesColumnName);
         }
     else
         {
@@ -4100,7 +4100,7 @@ bool ProjectDoc::AddFryTest(const bool setFocus)
                      ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
         fryGraph->SetMessageCatalog(GetReadabilityMessageCatalogPtr());
         fryGraph->SetData(scoreDataset, wordsColumnName, syllablesColumnName,
-                            sencentesColumnName);
+                            sentencesColumnName);
 
         fryGraphView->SetFixedObject(0, 0, fryGraph);
         view->GetReadabilityResultsView().AddWindow(fryGraphView);
@@ -4203,12 +4203,12 @@ bool ProjectDoc::AddRaygorTest(const bool setFocus)
 
     const wxString wordsColumnName{ _DT(L"WORDS") };
     const wxString sixCharWordsColumnName{ _DT(L"6CHARWORDS") };
-    const wxString sencentesColumnName{ _DT(L"SENTENCES") };
+    const wxString sentencesColumnName{ _DT(L"SENTENCES") };
 
     auto scoreDataset = std::make_shared<Wisteria::Data::Dataset>();
     scoreDataset->AddContinuousColumn(wordsColumnName);
     scoreDataset->AddContinuousColumn(sixCharWordsColumnName);
-    scoreDataset->AddContinuousColumn(sencentesColumnName);
+    scoreDataset->AddContinuousColumn(sentencesColumnName);
 
     scoreDataset->AddRow(Data::RowInfo().
                     Continuous(
@@ -4249,7 +4249,7 @@ bool ProjectDoc::AddRaygorTest(const bool setFocus)
             std::dynamic_pointer_cast<RaygorGraph>(raygorGraphView->GetFixedObject(0, 0));
         assert(raygorGraph);
         raygorGraph->SetData(scoreDataset, wordsColumnName, sixCharWordsColumnName,
-                            sencentesColumnName);
+                            sentencesColumnName);
         }
     else
         {
@@ -4269,7 +4269,7 @@ bool ProjectDoc::AddRaygorTest(const bool setFocus)
                      ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
         raygorGraph->SetMessageCatalog(GetReadabilityMessageCatalogPtr());
         raygorGraph->SetData(scoreDataset, wordsColumnName, sixCharWordsColumnName,
-                            sencentesColumnName);
+                            sentencesColumnName);
 
         raygorGraphView->SetFixedObject(0, 0, raygorGraph);
 
