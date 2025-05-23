@@ -192,8 +192,9 @@ void ReadabilityApp::ShowSplashscreen()
                                Image::GetImageFileTypeFromExtension(ext), wxSize(800, 600));
             if (bitmap.IsOk())
                 {
-                bitmap = CreateSplashscreen(bitmap, GetAppName(), GetAppSubName(), GetVendorName(),
-                                            true);
+                bitmap =
+                    CreateSplashscreen(bitmap, GetAppName(), GetAppSubName(), GetVendorName(), true,
+                                       L"Copyright \U000000A92006-2025 Oleander Software, Ltd., ");
 
                 [[maybe_unused]]
                 wxSplashScreen* splash =
@@ -406,9 +407,9 @@ void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
 //-------------------------------------------
 bool ReadabilityApp::OnInit()
     {
-    SetAppName(_DT(L"Readability Studio"));
+    SetAppName(_READSTUDIO_APP_NAME);
     SetAppSubName(GetAppVersion());
-    SetVendorName(_DT(L"Oleander Software"));
+    SetVendorName(_READSTUDIO_PUBLISHER);
 
     wxString AppSettingFolderPath;
     // if app-specific data folder can't be determined
@@ -3054,7 +3055,7 @@ void MainFrame::OnAbout([[maybe_unused]] wxCommandEvent& event)
     wxDateTime buildDate;
     buildDate.ParseDate(__DATE__);
 
-    wxString licenseAgreementPath = wxGetApp().FindResourceFile(L"LICENSE");
+    wxString licenseAgreementPath = wxGetApp().FindResourceFile(_DT(L"LICENSE"));
     wxString eula;
     if (!(wxFile::Exists(licenseAgreementPath) &&
           Wisteria::TextStream::ReadFile(licenseAgreementPath, eula)))
@@ -3065,7 +3066,8 @@ void MainFrame::OnAbout([[maybe_unused]] wxCommandEvent& event)
 
     AboutDialogEx aboutDlg(
         wxGetApp().GetParentingWindow(), GetAboutDialogImage(), wxGetApp().GetAppVersion(),
-        wxString::Format(_(L"Copyright \U000000A92006-%d %s. All rights reserved."),
+        wxString::Format(_(L"Copyright \U000000A92006-2025 Oleander Software, Ltd.\n"
+                           "Copyright \U000000A92025-%d %s.\nAll rights reserved."),
                          buildDate.GetYear(), wxGetApp().GetVendorDisplayName()),
         eula);
     wxGetApp().UpdateSideBarTheme(aboutDlg.GetSideBar());

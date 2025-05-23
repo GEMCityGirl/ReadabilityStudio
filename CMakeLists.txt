@@ -61,15 +61,15 @@ set(WIN32_DEPLOYMENT_TARGET 10)
 set(MIN_RAM "2 GB")
 set(RAM_RECOMMENDED "4 GB")
 
-# Edit these values when bumping the release
+# Edit these values when bumping the release version
 project(readstudio VERSION 2024.0.1.0 DESCRIPTION "Readability Studio" HOMEPAGE_URL https://www.oleandersoftware.com/)
 set(PROGRAM_LONGNAME ${readstudio_DESCRIPTION})
 set(PROGRAM_NUMBERED_VERSION 8.0)
-set(PUBLISHER "Oleander Software, Ltd.")
+set(PUBLISHER "Eclipse Foundation AISBL")
 set(PROGRAM_AUTHOR "Blake Madden")
 set(PROGRAM_COMMENTS "Readability analysis software")
-set(PROGRAM_RDNS_IDENTIFIER "com.oleandersoftware.readabilitystudio")
-set(GIT_REPO "https://github.com/Blake-Madden/ReadabilityStudio")
+set(PROGRAM_RDNS_IDENTIFIER "org.eclipse.readabilitystudio")
+set(GIT_REPO "https://github.com/eclipse-ers/ReadabilityStudio.git")
 set(INNOSETUP_GUID "{FBFBEAB6-622A-4E16-893D-216C25FF6A69}")
 set(PROGRAM_LICENSE "Eclipse Public License 2.0")
 

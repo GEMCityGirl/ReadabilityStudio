@@ -93,6 +93,7 @@ void AboutDialogEx::CreateControls()
         mainPanelSizer->Add(new wxStaticText(mainPage, wxID_ANY, wxTheApp->GetAppName()),
                             wxSizerFlags{}.Left().Border(wxLEFT));
         mainPanelSizer->Add(productInfoGrid, wxSizerFlags{}.Left().Border(wxLEFT));
+        mainPanelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder() * 2);
         mainPanelSizer->Add(new wxStaticText(mainPage, wxID_ANY, m_copyright),
                             wxSizerFlags{}.Left().Border(wxLEFT));
         mainPanelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
