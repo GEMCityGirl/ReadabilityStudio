@@ -3014,7 +3014,6 @@ class ReadabilityAppOptions
     const std::string_view XML_WINDOW_WIDTH{ _DT("app-window-width") };
     const std::string_view XML_WINDOW_HEIGHT{ _DT("app-window-height") };
     const std::string_view XML_UI_LANGUAGE{ _DT("ui-language") };
-    const std::string_view XML_LICENSE_ACCEPTED{ _DT("license-accepted") };
     const std::string_view XML_SCRIPT_EDITOR_LAYOUT{ _DT("script-editor-layout") };
     // web harvester options
     const std::string_view XML_USER_AGENT{ _DT("user-agent") };

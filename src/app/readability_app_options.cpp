@@ -3472,11 +3472,6 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
 
     configSection->InsertEndChild(appearance);
 
-    // just set this to true for backward compatibility
-    auto licenseAccepted = doc.NewElement(XML_LICENSE_ACCEPTED.data());
-    licenseAccepted->SetAttribute(XML_VALUE.data(), bool_to_int(true));
-    configSection->InsertEndChild(licenseAccepted);
-
     auto userAgent = doc.NewElement(XML_USER_AGENT.data());
     userAgent->SetAttribute(XML_VALUE.data(),
                             wxString(encode({ GetUserAgent().wc_str() }, false).c_str()).mb_str());
