@@ -575,20 +575,8 @@ void BaseProjectView::Present()
                 m_frame->GetMenuBar()->GetMenu(0));
             }
         }
-    // disable unlicensed features
+
     BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        for (auto rTest = doc->GetReadabilityTests().get_tests().begin();
-             rTest != doc->GetReadabilityTests().get_tests().end(); ++rTest)
-            {
-            if (rTest->get_test().has_language(readability::test_language::english_test))
-                {
-                MenuBarEnableAll(GetMenuBar(), rTest->get_test().get_interface_id(), false);
-                }
-            }
-        }
 
     // update menus that might change due to the project's language being changed
     if (GetMenuBar())

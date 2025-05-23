@@ -159,9 +159,7 @@ void BaseProject::UpdateDocumentSettings()
         GetWords()->add_exclusion_block_tags(tagPos->first, tagPos->second);
         }
     // language-specific settings
-    if (GetProjectLanguage() == readability::test_language::spanish_test &&
-        (wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) ||
-         wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode())))
+    if (GetProjectLanguage() == readability::test_language::spanish_test)
         {
         GetWords()->set_syllabizer(&m_spanish_syllabize);
         GetWords()->set_stemmer(&m_spanish_stem);
@@ -174,9 +172,7 @@ void BaseProject::UpdateDocumentSettings()
         GetWords()->set_mismatched_article_function(nullptr);
         GetWords()->set_search_for_passive_voice(false);
         }
-    else if (GetProjectLanguage() == readability::test_language::german_test &&
-             (wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) ||
-              wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode())))
+    else if (GetProjectLanguage() == readability::test_language::german_test)
         {
         GetWords()->set_syllabizer(&m_german_syllabize);
         GetWords()->set_stemmer(&m_german_stem);
@@ -258,14 +254,6 @@ void BaseProject::FormatFilteredText(std::wstring& text, const bool romanizeText
                                      const bool removeFilePaths, const bool stripAbbreviations,
                                      const bool narrowFullWithText) const
     {
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-        {
-        wxMessageBox(_(L"Filtered document exporting is only available in the "
-                       "Professional Edition of Readability Studio."),
-                     _(L"Feature Not Licensed"), wxOK | wxICON_INFORMATION);
-        return;
-        }
-
     auto project = std::make_unique<BaseProject>();
     project->CopySettings(*this);
     project->SetAppendedDocumentText(GetAppendedDocumentText());
@@ -4824,11 +4812,7 @@ bool BaseProject::LoadDocumentAsSubProject(const wxString& path, const std::wstr
 bool BaseProject::AddBormuthClozeMeanTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::BORMUTH_CLOZE_MEAN();
 
     if ((GetDaleChallTextExclusionMode() ==
@@ -4914,11 +4898,7 @@ bool BaseProject::AddBormuthClozeMeanTest(const bool setFocus)
 bool BaseProject::AddBormuthGradePlacement35Test(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::BORMUTH_GRADE_PLACEMENT_35();
 
     if ((GetDaleChallTextExclusionMode() ==
@@ -5010,11 +4990,7 @@ bool BaseProject::AddBormuthGradePlacement35Test(const bool setFocus)
 bool BaseProject::AddPskDaleChallTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::PSK_DALE_CHALL();
 
     if (!GetTotalWords())
@@ -5093,11 +5069,7 @@ bool BaseProject::AddPskDaleChallTest(const bool setFocus)
 bool BaseProject::AddNewDaleChallTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::DALE_CHALL();
 
     if ((GetDaleChallTextExclusionMode() ==
@@ -5191,11 +5163,7 @@ bool BaseProject::AddNewDaleChallTest(const bool setFocus)
 bool BaseProject::AddDegreesOfReadingPowerGeTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::DEGREES_OF_READING_POWER_GE();
 
     if ((GetDaleChallTextExclusionMode() ==
@@ -5288,11 +5256,7 @@ bool BaseProject::AddDegreesOfReadingPowerGeTest(const bool setFocus)
 bool BaseProject::AddDegreesOfReadingPowerTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::DEGREES_OF_READING_POWER();
 
     if ((GetDaleChallTextExclusionMode() ==
@@ -5375,11 +5339,7 @@ bool BaseProject::AddDegreesOfReadingPowerTest(const bool setFocus)
 bool BaseProject::AddSolSpanishTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) &&
-        !wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::SOL_SPANISH();
 
     if (GetTotalSentencesFromCompleteSentencesAndHeaders() == 0)
@@ -5442,11 +5402,7 @@ bool BaseProject::AddSolSpanishTest(const bool setFocus)
 bool BaseProject::AddElfTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::ELF();
 
     if (GetTotalSentences() == 0)
@@ -5506,11 +5462,7 @@ bool BaseProject::AddElfTest(const bool setFocus)
 bool BaseProject::AddSmogSimplifiedTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::SMOG_SIMPLIFIED();
 
     if (GetTotalSentences() == 0)
@@ -5574,11 +5526,7 @@ bool BaseProject::AddSmogSimplifiedTest(const bool setFocus)
 bool BaseProject::AddModifiedSmogTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::MODIFIED_SMOG();
 
     if (GetTotalSentences() == 0)
@@ -5642,11 +5590,7 @@ bool BaseProject::AddModifiedSmogTest(const bool setFocus)
 bool BaseProject::AddQuBambergerVanecekTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) &&
-        !wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::QU();
 
     if (GetTotalSentences() == 0)
@@ -5711,11 +5655,7 @@ bool BaseProject::AddQuBambergerVanecekTest(const bool setFocus)
 bool BaseProject::AddSmogBambergerVanecekTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) &&
-        !wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::SMOG_BAMBERGER_VANECEK();
 
     if (GetTotalSentences() == 0)
@@ -5779,11 +5719,7 @@ bool BaseProject::AddSmogBambergerVanecekTest(const bool setFocus)
 bool BaseProject::AddSmogTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::SMOG();
 
     if (GetTotalSentences() == 0)
@@ -5847,11 +5783,7 @@ bool BaseProject::AddSmogTest(const bool setFocus)
 bool BaseProject::AddCrawfordTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) &&
-        !wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::CRAWFORD();
 
     if (!GetTotalWords())
@@ -5916,11 +5848,7 @@ bool BaseProject::AddCrawfordTest(const bool setFocus)
 bool BaseProject::AddNeueWienerSachtextformel1(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) &&
-        !wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::NEUE_WIENER_SACHTEXTFORMEL1();
 
     if (!GetTotalWords())
@@ -5990,11 +5918,7 @@ bool BaseProject::AddNeueWienerSachtextformel1(const bool setFocus)
 bool BaseProject::AddNeueWienerSachtextformel2(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) &&
-        !wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::NEUE_WIENER_SACHTEXTFORMEL2();
 
     if (!GetTotalWords())
@@ -6064,11 +5988,7 @@ bool BaseProject::AddNeueWienerSachtextformel2(const bool setFocus)
 bool BaseProject::AddNeueWienerSachtextformel3(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) &&
-        !wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::NEUE_WIENER_SACHTEXTFORMEL3();
 
     if (!GetTotalWords())
@@ -6137,11 +6057,7 @@ bool BaseProject::AddNeueWienerSachtextformel3(const bool setFocus)
 bool BaseProject::AddWheelerSmithBambergerVanecekTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) &&
-        !wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::WHEELER_SMITH_BAMBERGER_VANECEK();
 
     if (!GetTotalWords())
@@ -6212,11 +6128,7 @@ bool BaseProject::AddWheelerSmithBambergerVanecekTest(const bool setFocus)
 bool BaseProject::AddWheelerSmithTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::WHEELER_SMITH();
 
     if (!GetTotalWords())
@@ -6287,11 +6199,7 @@ bool BaseProject::AddWheelerSmithTest(const bool setFocus)
 bool BaseProject::AddColemanLiauTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::COLEMAN_LIAU();
 
     if (!GetTotalWords())
@@ -6428,11 +6336,7 @@ bool BaseProject::AddStandardReadabilityTest(const wxString& id, const bool setF
 bool BaseProject::AddSpacheTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::SPACHE();
 
     if (!GetTotalWords())
@@ -6501,11 +6405,7 @@ bool BaseProject::AddSpacheTest(const bool setFocus)
 bool BaseProject::AddNewFogCountTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::NEW_FOG();
 
     if (GetTotalWords() == 0)
@@ -6579,11 +6479,7 @@ bool BaseProject::AddNewFogCountTest(const bool setFocus)
 bool BaseProject::AddPskFogTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::PSK_GUNNING_FOG();
 
     if (GetTotalWords() == 0)
@@ -6657,11 +6553,7 @@ bool BaseProject::AddPskFogTest(const bool setFocus)
 bool BaseProject::AddFogTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::GUNNING_FOG();
 
     if (GetTotalWords() == 0)
@@ -6735,11 +6627,7 @@ bool BaseProject::AddFogTest(const bool setFocus)
 bool BaseProject::AddForcastTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::FORCAST();
 
     if (!GetTotalWords())
@@ -6798,11 +6686,7 @@ bool BaseProject::AddForcastTest(const bool setFocus)
 bool BaseProject::AddAmstadTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) &&
-        !wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::AMSTAD();
 
     if (!GetTotalWords())
@@ -6867,11 +6751,7 @@ bool BaseProject::AddAmstadTest(const bool setFocus)
 bool BaseProject::AddDanielsonBryan1Test(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::DANIELSON_BRYAN_1();
 
     if (!GetTotalWords())
@@ -6940,11 +6820,7 @@ bool BaseProject::AddDanielsonBryan1Test(const bool setFocus)
 bool BaseProject::AddDanielsonBryan2Test(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::DANIELSON_BRYAN_2();
 
     if (!GetTotalWords())
@@ -7008,11 +6884,7 @@ bool BaseProject::AddDanielsonBryan2Test(const bool setFocus)
 bool BaseProject::AddFleschTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::FLESCH();
 
     if (!GetTotalWords())
@@ -7079,11 +6951,7 @@ bool BaseProject::AddFleschTest(const bool setFocus)
 bool BaseProject::AddFarrJenkinsPatersonTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::FARR_JENKINS_PATERSON();
 
     if (!GetTotalWords())
@@ -7143,11 +7011,7 @@ bool BaseProject::AddFarrJenkinsPatersonTest(const bool setFocus)
 bool BaseProject::AddNewFarrJenkinsPatersonTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::NEW_FARR_JENKINS_PATERSON();
 
     if (!GetTotalWords())
@@ -7216,11 +7080,7 @@ bool BaseProject::AddNewFarrJenkinsPatersonTest(const bool setFocus)
 bool BaseProject::AddPskFarrJenkinsPatersonTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::PSK_FARR_JENKINS_PATERSON();
 
     if (!GetTotalWords())
@@ -7289,11 +7149,7 @@ bool BaseProject::AddPskFarrJenkinsPatersonTest(const bool setFocus)
 bool BaseProject::AddFleschKincaidSimplifiedTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::FLESCH_KINCAID_SIMPLIFIED();
 
     if (!GetTotalWords())
@@ -7367,11 +7223,7 @@ bool BaseProject::AddFleschKincaidSimplifiedTest(const bool setFocus)
 bool BaseProject::AddFleschKincaidTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::FLESCH_KINCAID();
 
     if (!GetTotalWords())
@@ -7445,11 +7297,7 @@ bool BaseProject::AddFleschKincaidTest(const bool setFocus)
 bool BaseProject::AddPskFleschTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::PSK_FLESCH();
 
     if (!GetTotalWords())
@@ -7522,11 +7370,7 @@ bool BaseProject::AddPskFleschTest(const bool setFocus)
 bool BaseProject::AddAriTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::ARI();
 
     if (!GetTotalWords())
@@ -7595,11 +7439,7 @@ bool BaseProject::AddAriTest(const bool setFocus)
 bool BaseProject::AddNewAriTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::NEW_ARI();
 
     if (!GetTotalWords())
@@ -7668,11 +7508,7 @@ bool BaseProject::AddNewAriTest(const bool setFocus)
 bool BaseProject::AddSimplifiedAriTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::SIMPLE_ARI();
 
     if (!GetTotalWords())
@@ -7741,11 +7577,7 @@ bool BaseProject::AddSimplifiedAriTest(const bool setFocus)
 bool BaseProject::AddEflawTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::EFLAW();
 
     if (!GetTotalWords())
@@ -7807,11 +7639,7 @@ bool BaseProject::AddEflawTest(const bool setFocus)
 bool BaseProject::AddHarrisJacobsonTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::HARRIS_JACOBSON();
 
     if ((GetHarrisJacobsonTextExclusionMode() ==
@@ -7900,11 +7728,7 @@ bool BaseProject::AddHarrisJacobsonTest(const bool setFocus)
 bool BaseProject::AddRixTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::RIX();
 
     if (!GetTotalWords())
@@ -7974,11 +7798,7 @@ bool BaseProject::AddRixTest(const bool setFocus)
 bool BaseProject::AddRixGermanFiction(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) &&
-        !wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::RIX_GERMAN_FICTION();
 
     if (!GetTotalWords())
@@ -8048,11 +7868,7 @@ bool BaseProject::AddRixGermanFiction(const bool setFocus)
 bool BaseProject::AddRixGermanNonFiction(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) &&
-        !wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::RIX_GERMAN_NONFICTION();
 
     if (!GetTotalWords())
@@ -8122,11 +7938,7 @@ bool BaseProject::AddRixGermanNonFiction(const bool setFocus)
 bool BaseProject::AddLixGermanChildrensLiterature(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) &&
-        !wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::LIX_GERMAN_CHILDRENS_LITERATURE();
 
     if (!GetTotalWords())
@@ -8199,11 +8011,7 @@ bool BaseProject::AddLixGermanChildrensLiterature(const bool setFocus)
 bool BaseProject::AddLixGermanTechnical(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) &&
-        !wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::LIX_GERMAN_TECHNICAL();
 
     if (!GetTotalWords())
@@ -8276,11 +8084,7 @@ bool BaseProject::AddLixGermanTechnical(const bool setFocus)
 bool BaseProject::AddLixTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        return false;
-        }
+
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::LIX();
 
     if (!GetTotalWords())

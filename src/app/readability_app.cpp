@@ -328,8 +328,7 @@ void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
                 }
             // run a Lua script
             wxString luaScriptPath;
-            if (GetLicenseAdmin().IsFeatureEnabled(FeatureProfessionalCode()) &&
-                cmdParser.Found(_DT(L"lua"), &luaScriptPath))
+            if (cmdParser.Found(_DT(L"lua"), &luaScriptPath))
                 {
                 wxString luaScript, errorMessage;
                 if (Wisteria::TextStream::ReadFile(luaScriptPath, luaScript))
@@ -405,131 +404,11 @@ void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
     }
 
 //-------------------------------------------
-void ReadabilityApp::InitializeReadabilityFeatures()
-    {
-    const wxString SERIAL_NUMBER_AND_FEATURE_DEFAULT_PRIVATE_KEY = _DT(L"PyGf5k8d");
-
-    // licensing codes
-    const ByteInfo FEATURE_ENGLISH_READABILITY_TESTS_BYTEINFO(0, 0, true);
-    const wxString FEATURE_ENGLISH_READABILITY_PRIVATE_KEY = _DT(L"lkI6f42Z");
-
-    const ByteInfo FEATURE_LANGUAGE_PACK_READABILITY_TESTS_BYTEINFO(0, 1, false);
-    const wxString FEATURE_LANGUAGE_PACK_READABILITY_PRIVATE_KEY = _DT(L"Ji92Vbpm");
-
-    const wxString FEATURE_HIGHLIGHTED_TEXT_VIEWS = _DT(L"RDHT");
-    const ByteInfo FEATURE_HIGHLIGHTED_TEXT_VIEWS_BYTEINFO(1, 0, true);
-    const wxString FEATURE_HIGHLIGHTED_TEXT_VIEWS_PRIVATE_KEY = _DT(L"SteP7hUS");
-
-    const wxString FEATURE_SUMMARY_STATISTICS = _DT(L"RDSS");
-    const ByteInfo FEATURE_SUMMARY_STATISTICS_BYTEINFO(1, 1, true);
-    const wxString FEATURE_SUMMARY_STATISTICS_PRIVATE_KEY = _DT(L"OuI69Jul");
-
-    const wxString FEATURE_SUMMARY_GRAPHS = _DT(L"RDSG");
-    const ByteInfo FEATURE_SUMMARY_GRAPHS_BYTEINFO(1, 2, true);
-    const wxString FEATURE_SUMMARY_GRAPHS_PRIVATE_KEY = _DT(L"75FyNlx3");
-
-    const wxString FEATURE_DIFFICULT_WORDS = _DT(L"RDDW");
-    const ByteInfo FEATURE_DIFFICULT_WORDS_BYTEINFO(1, 3, true);
-    const wxString FEATURE_DIFFICULT_WORDS_PRIVATE_KEY = _DT(L"MKjqS8y4");
-
-    const ByteInfo FEATURE_PROFESSIONAL_BYTEINFO(2, 0, false);
-    const wxString FEATURE_PROFESSIONAL_PRIVATE_KEY = _DT(L"JH93popC");
-
-    GetLicenseAdmin().SetPrivateKey(SERIAL_NUMBER_AND_FEATURE_DEFAULT_PRIVATE_KEY);
-
-    GetLicenseAdmin().SetFeaturePrivateKey(FeatureEnglishReadabilityTestsCode(),
-                                           FEATURE_ENGLISH_READABILITY_PRIVATE_KEY);
-    GetLicenseAdmin().SetFeatureDescription(FeatureEnglishReadabilityTestsCode(),
-                                            _(L"English readability tests"));
-
-    GetLicenseAdmin().SetFeaturePrivateKey(FeatureLanguagePackCode(),
-                                           FEATURE_LANGUAGE_PACK_READABILITY_PRIVATE_KEY);
-    GetLicenseAdmin().SetFeatureDescription(FeatureLanguagePackCode(),
-                                            _(L"Language Pack (non-English readability tests)"));
-
-    GetLicenseAdmin().SetFeaturePrivateKey(FEATURE_HIGHLIGHTED_TEXT_VIEWS,
-                                           FEATURE_HIGHLIGHTED_TEXT_VIEWS_PRIVATE_KEY);
-    GetLicenseAdmin().SetFeatureDescription(FEATURE_HIGHLIGHTED_TEXT_VIEWS,
-                                            _(L"Highlighted document display"));
-
-    GetLicenseAdmin().SetFeaturePrivateKey(FEATURE_SUMMARY_STATISTICS,
-                                           FEATURE_SUMMARY_STATISTICS_PRIVATE_KEY);
-    GetLicenseAdmin().SetFeatureDescription(FEATURE_SUMMARY_STATISTICS, _(L"Summary statistics"));
-
-    GetLicenseAdmin().SetFeaturePrivateKey(FEATURE_SUMMARY_GRAPHS,
-                                           FEATURE_SUMMARY_GRAPHS_PRIVATE_KEY);
-    GetLicenseAdmin().SetFeatureDescription(FEATURE_SUMMARY_GRAPHS, _(L"Summary graph"));
-
-    GetLicenseAdmin().SetFeaturePrivateKey(FEATURE_DIFFICULT_WORDS,
-                                           FEATURE_DIFFICULT_WORDS_PRIVATE_KEY);
-    GetLicenseAdmin().SetFeatureDescription(FEATURE_DIFFICULT_WORDS, _(L"Words breakdown"));
-
-    GetLicenseAdmin().SetFeaturePrivateKey(FeatureProfessionalCode(),
-                                           FEATURE_PROFESSIONAL_PRIVATE_KEY);
-    GetLicenseAdmin().SetFeatureDescription(FeatureProfessionalCode(), _(L"Professional"));
-
-#if defined SERIAL_NUMBER_GENERATOR_ENABLED || defined LICENSE_FILE_GENERATOR_ENABLED
-    GetLicenseAdmin().SetFeatureByteInfo(FeatureEnglishReadabilityTestsCode(),
-                                         FEATURE_ENGLISH_READABILITY_TESTS_BYTEINFO);
-    GetLicenseAdmin().SetFeatureByteInfo(FeatureLanguagePackCode(),
-                                         FEATURE_LANGUAGE_PACK_READABILITY_TESTS_BYTEINFO);
-
-    GetLicenseAdmin().SetFeatureByteInfo(FEATURE_HIGHLIGHTED_TEXT_VIEWS,
-                                         FEATURE_HIGHLIGHTED_TEXT_VIEWS_BYTEINFO);
-    GetLicenseAdmin().SetFeatureByteInfo(FEATURE_SUMMARY_STATISTICS,
-                                         FEATURE_SUMMARY_STATISTICS_BYTEINFO);
-    GetLicenseAdmin().SetFeatureByteInfo(FEATURE_SUMMARY_GRAPHS, FEATURE_SUMMARY_GRAPHS_BYTEINFO);
-    GetLicenseAdmin().SetFeatureByteInfo(FEATURE_DIFFICULT_WORDS, FEATURE_DIFFICULT_WORDS_BYTEINFO);
-    GetLicenseAdmin().SetFeatureByteInfo(FeatureProfessionalCode(), FEATURE_PROFESSIONAL_BYTEINFO);
-#endif
-
-    GetLicenseAdmin().AddProduct(ProductType(L"101", _(L"Single-user License"),
-                                             ProductType::License::SingleUser,
-                                             ProductType::Type::Standard));
-    GetLicenseAdmin().AddProduct(ProductType(L"102", _(L"Single-user License"),
-                                             ProductType::License::SingleUser,
-                                             ProductType::Type::Standard));
-    GetLicenseAdmin().AddProduct(ProductType(L"103", _(L"Site License"),
-                                             ProductType::License::SiteLicense,
-                                             ProductType::Type::Standard));
-
-    GetLicenseAdmin().AddProduct(ProductType(_DT(L"104"), _(L"Professional Single-user License"),
-                                             ProductType::License::SingleUser,
-                                             ProductType::Type::Professional));
-    GetLicenseAdmin().AddProduct(ProductType(_DT(L"105"), _(L"Professional Single-user License"),
-                                             ProductType::License::SingleUser,
-                                             ProductType::Type::Professional));
-    GetLicenseAdmin().AddProduct(ProductType(_DT(L"106"), _(L"Professional Site License"),
-                                             ProductType::License::SiteLicense,
-                                             ProductType::Type::Professional));
-
-    GetLicenseAdmin().AddProduct(ProductType(_DT(L"107"), _(L"Professional Single-user License"),
-                                             ProductType::License::SingleUser,
-                                             ProductType::Type::ProfessionalUpgrade));
-    GetLicenseAdmin().AddProduct(ProductType(_DT(L"108"), _(L"Professional Site License"),
-                                             ProductType::License::SiteLicense,
-                                             ProductType::Type::ProfessionalUpgrade));
-
-    GetLicenseAdmin().AddProduct(
-        ProductType(_DT(L"109"), _(L"Single-user (with Language Pack) License"),
-                    ProductType::License::SingleUser, ProductType::Type::StandardWithLanguagePack));
-    GetLicenseAdmin().AddProduct(
-        ProductType(_DT(L"110"), _(L"Single-user (with Language Pack) License"),
-                    ProductType::License::SingleUser, ProductType::Type::StandardWithLanguagePack));
-    GetLicenseAdmin().AddProduct(ProductType(_DT(L"111"), _(L"Site License (with Language Pack)"),
-                                             ProductType::License::SiteLicense,
-                                             ProductType::Type::StandardWithLanguagePack));
-    }
-
-//-------------------------------------------
 bool ReadabilityApp::OnInit()
     {
     SetAppName(_DT(L"Readability Studio"));
     SetAppSubName(GetAppVersion());
     SetVendorName(_DT(L"Oleander Software"));
-
-    // set licensing feature information
-    InitializeReadabilityFeatures();
 
     wxString AppSettingFolderPath;
     // if app-specific data folder can't be determined
@@ -696,87 +575,6 @@ bool ReadabilityApp::OnInit()
     // this needs to be called before prompting for the
     // serial number because wxGetTextFromUser will need a parent
     LoadInterface();
-
-    wxString licensePath = FindResourceFile(L"rs.xml");
-    // if couldn't be loaded from the shared users' folder, then go to the user's settings folder.
-    if (!GetLicenseAdmin().LoadLicenseFile(licensePath, GetAppName()) &&
-        wxFileName::FileExists(AppSettingFolderPath + L"rs.xml"))
-        {
-        licensePath = AppSettingFolderPath + L"rs.xml";
-        }
-    if (!GetLicenseAdmin().LoadLicenseFile(licensePath, GetAppName()))
-        {
-        // loop until they hit cancel or enter a valid serial number
-        while (true)
-            {
-            wxString serialNumber =
-                wxGetTextFromUser(_(L"Serial number:"), _(L"Please Enter Your Serial Number"));
-            if (serialNumber.empty())
-                {
-                return false;
-                }
-            if (!GetLicenseAdmin().LoadSerialNumber(serialNumber))
-                {
-                continue;
-                }
-            else
-                {
-                break;
-                }
-            }
-
-        if (GetLicenseAdmin().GetUserName().empty())
-            {
-            GetLicenseAdmin().SetUserName(wxGetUserName());
-            }
-
-        // try to save it to the shared users' application data folder
-#ifdef __WXMSW__
-        if (wxFileName::Mkdir(wxStandardPaths::Get().GetConfigDir(), wxS_DIR_DEFAULT,
-                              wxPATH_MKDIR_FULL))
-            {
-            licensePath =
-                wxStandardPaths::Get().GetConfigDir() + wxFileName::GetPathSeparator() + L"rs.xml";
-            }
-        else
-            {
-            licensePath = AppSettingFolderPath + L"rs.xml";
-            }
-#elif defined(__WXOSX__)
-        /* starting around 10.15, you can no longer write to
-           "/Library/Application Support/AppName", you can only write to the
-           user's Library folder. A shared license file won't be possible on macOS.*/
-        licensePath = AppSettingFolderPath + L"rs.xml";
-#else
-        licensePath = AppSettingFolderPath + L"rs.xml";
-#endif
-        // save the licensing info now that we have it and have validated it
-        if (!GetLicenseAdmin().SaveLicenseFile(licensePath))
-            {
-            // if couldn't be saved in the shared users' folder,
-            // then save to the user's settings folder.
-            licensePath = AppSettingFolderPath + L"rs.xml";
-            if (!GetLicenseAdmin().SaveLicenseFile(licensePath))
-                {
-                wxMessageBox(wxString::Format(_(L"Unable to save license file:\n\n\"%s\"\n\nFile "
-                                                "may be write-protected or you may not have "
-                                                "privileges to write it."),
-                                              licensePath),
-                             _(L"Error"), wxOK | wxICON_ERROR, GetMainFrame());
-                return false;
-                }
-            }
-        // Let's try it again from the top
-        if (!GetLicenseAdmin().LoadLicenseFile(licensePath, GetAppName()))
-            {
-            wxMessageBox(
-                wxString::Format(_(L"Unable to load license file:\n\n\"%s\""), licensePath),
-                _(L"Error"), wxOK | wxICON_ERROR, GetMainFrame());
-            return false;
-            }
-        }
-
-    wxLogMessage(L"License file loaded from: " + GetLicenseAdmin().GetLicenseFilePath());
 
     ShowSplashscreen();
 
@@ -969,21 +767,15 @@ bool ReadabilityApp::OnInit()
                           GetAppFileExtension(), GetAppFileExtension() + _DT(L" Doc"), _DT(L"View"),
                           wxCLASSINFO(ProjectDoc), wxCLASSINFO(ProjectView));
 
-    if (GetLicenseAdmin().IsFeatureEnabled(FeatureProfessionalCode()))
-        {
-        [[maybe_unused]]
-        wxDocTemplate* batchDocTemplate =
-            new wxDocTemplate(GetDocManager(), _(L"Batch project"), _DT(L"*.rsbp"), wxString{},
-                              _DT(L"rsbp"), _DT(L"rsbp Doc"), _DT(L"View"),
-                              wxCLASSINFO(BatchProjectDoc), wxCLASSINFO(BatchProjectView));
-        }
+    [[maybe_unused]]
+    wxDocTemplate* batchDocTemplate =
+        new wxDocTemplate(GetDocManager(), _(L"Batch project"), _DT(L"*.rsbp"), wxString{},
+                          _DT(L"rsbp"), _DT(L"rsbp Doc"), _DT(L"View"),
+                          wxCLASSINFO(BatchProjectDoc), wxCLASSINFO(BatchProjectView));
 
     wxArrayString extensions;
     extensions.Add(GetAppFileExtension());
-    if (GetLicenseAdmin().IsFeatureEnabled(FeatureProfessionalCode()))
-        {
-        extensions.Add(_DT(L"rsbp"));
-        }
+    extensions.Add(_DT(L"rsbp"));
     GetMainFrame()->SetDefaultFileExtentions(extensions);
 
     // printer options
@@ -1788,40 +1580,34 @@ void ReadabilityApp::FillBlankGraphsMenu(wxMenu& blankGraphsMenu)
     menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/raygor-test.svg"));
     blankGraphsMenu.Append(menuItem);
 
-    if (wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()) ||
-        wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()))
-        {
-        // Spanish
-        blankGraphsMenu.AppendSeparator();
+    // Spanish
+    blankGraphsMenu.AppendSeparator();
 
-        menuItem =
-            new wxMenuItem(&blankGraphsMenu, XRCID("ID_BLANK_CRAWFORD_GRAPH"), _DT(L"Crawford"));
-        menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/crawford.svg"));
-        blankGraphsMenu.Append(menuItem);
+    menuItem = new wxMenuItem(&blankGraphsMenu, XRCID("ID_BLANK_CRAWFORD_GRAPH"), _DT(L"Crawford"));
+    menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/crawford.svg"));
+    blankGraphsMenu.Append(menuItem);
 
-        menuItem = new wxMenuItem(&blankGraphsMenu, XRCID("ID_BLANK_FRASE_GRAPH"), _DT(L"FRASE"));
-        menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/frase.svg"));
-        blankGraphsMenu.Append(menuItem);
+    menuItem = new wxMenuItem(&blankGraphsMenu, XRCID("ID_BLANK_FRASE_GRAPH"), _DT(L"FRASE"));
+    menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/frase.svg"));
+    blankGraphsMenu.Append(menuItem);
 
-        menuItem = new wxMenuItem(&blankGraphsMenu, XRCID("ID_BLANK_GPM_GRAPH"),
-                                  _DT(L"Gilliam-Pe\U000000F1a-Mountain"));
-        menuItem->SetBitmap(
-            wxGetApp().GetResourceManager().GetSVG(L"tests/gilliam-pena-mountain-fry-graph.svg"));
-        blankGraphsMenu.Append(menuItem);
+    menuItem = new wxMenuItem(&blankGraphsMenu, XRCID("ID_BLANK_GPM_GRAPH"),
+                              _DT(L"Gilliam-Pe\U000000F1a-Mountain"));
+    menuItem->SetBitmap(
+        wxGetApp().GetResourceManager().GetSVG(L"tests/gilliam-pena-mountain-fry-graph.svg"));
+    blankGraphsMenu.Append(menuItem);
 
-        // German
-        blankGraphsMenu.AppendSeparator();
+    // German
+    blankGraphsMenu.AppendSeparator();
 
-        menuItem = new wxMenuItem(&blankGraphsMenu, XRCID("ID_BLANK_GERMAN_LIX_GRAPH"),
-                                  _DT(L"German Lix Gauge"));
-        menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/lix-test.svg"));
-        blankGraphsMenu.Append(menuItem);
+    menuItem = new wxMenuItem(&blankGraphsMenu, XRCID("ID_BLANK_GERMAN_LIX_GRAPH"),
+                              _DT(L"German Lix Gauge"));
+    menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/lix-test.svg"));
+    blankGraphsMenu.Append(menuItem);
 
-        menuItem =
-            new wxMenuItem(&blankGraphsMenu, XRCID("ID_BLANK_SCHWARTZ_GRAPH"), _DT(L"Schwartz"));
-        menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/schwartz.svg"));
-        blankGraphsMenu.Append(menuItem);
-        }
+    menuItem = new wxMenuItem(&blankGraphsMenu, XRCID("ID_BLANK_SCHWARTZ_GRAPH"), _DT(L"Schwartz"));
+    menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/schwartz.svg"));
+    blankGraphsMenu.Append(menuItem);
     }
 
 //-------------------------------------------------------
@@ -3281,7 +3067,7 @@ void MainFrame::OnAbout([[maybe_unused]] wxCommandEvent& event)
         wxGetApp().GetParentingWindow(), GetAboutDialogImage(), wxGetApp().GetAppVersion(),
         wxString::Format(_(L"Copyright \U000000A92006-%d %s. All rights reserved."),
                          buildDate.GetYear(), wxGetApp().GetVendorDisplayName()),
-        &wxGetApp().GetLicenseAdmin(), eula);
+        eula);
     wxGetApp().UpdateSideBarTheme(aboutDlg.GetSideBar());
 
     aboutDlg.ShowModal();
@@ -4055,13 +3841,9 @@ void MainFrame::OnStartPageClick(wxCommandEvent& event)
             {
             wxFileDialog dialog(wxGetApp().GetParentingWindow(), _(L"Select Project to Open"),
                                 wxGetApp().GetAppOptions().GetProjectPath(), wxString{},
-                                wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-                                    wxGetApp().FeatureProfessionalCode()) ?
-                                    // TRANSLATORS: %s is program name.
-                                    wxString::Format(_(L"%s Project (*.rsp;*.rsbp)|*.rsp;*.rsbp"),
-                                                     wxGetApp().GetAppDisplayName()) :
-                                    wxString::Format(_(L"%s Project (*.rsp)|*.rsp"),
-                                                     wxGetApp().GetAppDisplayName()),
+                                // TRANSLATORS: %s is program name.
+                                wxString::Format(_(L"%s Project (*.rsp;*.rsbp)|*.rsp;*.rsbp"),
+                                                 wxGetApp().GetAppDisplayName()),
                                 wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
             if (dialog.ShowModal() == wxID_OK)
                 {
@@ -4302,14 +4084,6 @@ void MainFrame::OnWordListByPage(wxCommandEvent& event)
 //-------------------------------------------------------
 void MainFrame::OnScriptEditor([[maybe_unused]] wxCommandEvent& event)
     {
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-        {
-        wxMessageBox(_(L"Lua Scripting is only available in the Professional Edition of "
-                       L"Readability Studio."),
-                     _(L"Feature Not Licensed"), wxOK | wxICON_INFORMATION);
-        return;
-        }
-
     if (GetLuaEditor() != nullptr && GetLuaEditor()->IsShown())
         {
         GetLuaEditor()->HideAllWindows();
@@ -5592,14 +5366,6 @@ void MainFrame::OnToolsChapterSplit([[maybe_unused]] wxRibbonButtonBarEvent& eve
 //-------------------------------------------------------
 void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-        {
-        wxMessageBox(_(L"Web Harvester is only available in the "
-                       "Professional Edition of Readability Studio."),
-                     _(L"Feature Not Licensed"), wxOK | wxICON_INFORMATION);
-        return;
-        }
-
     WebHarvesterDlg webHarvestDlg(wxGetApp().GetParentingWindow(), wxArrayString{},
                                   wxString::Format(
                                       // TRANSLATORS: %s are file filters

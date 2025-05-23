@@ -3364,9 +3364,7 @@ void ToolsOptionsDlg::CreateControls()
 
         panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
-        if ((IsGeneralSettings() &&
-             wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode())) ||
-            IsBatchProjectSettings())
+        if (IsGeneralSettings() || IsBatchProjectSettings())
             {
             panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
@@ -3414,8 +3412,6 @@ void ToolsOptionsDlg::CreateControls()
 
         CreateLabelHeader(projectSettingsPage, panelSizer, _(L"Document:"), true);
 
-        if (wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) ||
-            wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
             {
             wxArrayString languages;
             languages.Add(_(L"English"));

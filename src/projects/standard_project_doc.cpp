@@ -1224,14 +1224,6 @@ void ProjectDoc::DisplayReadabilityScores(const bool setFocus)
 //-------------------------------------------------------
 bool ProjectDoc::OnCreate(const wxString& path, long flags)
     {
-    // see if anything is even licensed first
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-            wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        {
-        LogMessage(_(L"You are not currently licensed to create a new project."), _(L"Error"),
-                   wxOK | wxICON_ERROR);
-        return false;
-        }
     if (flags & wxDOC_NEW)
         {
         const wxString exampleFolder =
@@ -3009,9 +3001,6 @@ void ProjectDoc::AddFleschChart(const bool setFocus)
 bool ProjectDoc::AddSchwartzTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) &&
-        !wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-        { return false; }
 
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::SCHWARTZ();
 
@@ -3174,9 +3163,6 @@ bool ProjectDoc::AddSchwartzTest(const bool setFocus)
 bool ProjectDoc::AddFraseTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) &&
-        !wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-        { return false; }
 
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::FRASE();
 
@@ -3872,9 +3858,6 @@ void ProjectDoc::DisplayStatistics()
 bool ProjectDoc::AddGilliamPenaMountainFryTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) &&
-        !wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-        { return false; }
 
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::GPM_FRY();
 
@@ -4045,8 +4028,6 @@ bool ProjectDoc::AddGilliamPenaMountainFryTest(const bool setFocus)
 bool ProjectDoc::AddFryTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        { return false; }
 
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::FRY();
 
@@ -4217,8 +4198,6 @@ bool ProjectDoc::AddFryTest(const bool setFocus)
 bool ProjectDoc::AddRaygorTest(const bool setFocus)
     {
     ClearReadabilityTestResult();
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        { return false; }
 
     const wxString CURRENT_TEST_KEY = ReadabilityMessages::RAYGOR();
 
@@ -4381,8 +4360,6 @@ bool ProjectDoc::AddRaygorTest(const bool setFocus)
 
 bool ProjectDoc::AddDolchSightWords()
     {
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureEnglishReadabilityTestsCode()))
-        { return false; }
     if (!GetTotalWords())
         {
         LogMessage(_(L"Unable to calculate Dolch words: at least one word must be present in document."),

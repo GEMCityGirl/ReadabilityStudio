@@ -1040,16 +1040,6 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             XmlFormat::GetLong(docParsingSection, docParsingSectionEnd,
                                wxGetApp().GetAppOptions().XML_PROJECT_LANGUAGE.data(),
                                static_cast<long>(wxGetApp().GetAppOptions().GetProjectLanguage())));
-        if (projectLanguage != readability::test_language::english_test &&
-            !wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) &&
-            !wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-            {
-            LogMessage(
-                _(L"Non-English projects can only be opened with Professional Edition or "
-                  "Standard Edition with Language Pack.\nProject will be opened as English."),
-                _(L"Language Not Licensed"), wxOK | wxICON_INFORMATION);
-            projectLanguage = readability::test_language::english_test;
-            }
         SetProjectLanguage(projectLanguage);
 
         // exporting file paths

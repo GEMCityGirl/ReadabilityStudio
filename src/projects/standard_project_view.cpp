@@ -425,13 +425,6 @@ void ProjectView::OnExportAll([[maybe_unused]] wxCommandEvent& event)
 //------------------------------------------------------
 void ProjectView::OnExportFilteredDocument([[maybe_unused]] wxCommandEvent& event)
     {
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-        {
-        wxMessageBox(_(L"Filtered document exporting is only available in the "
-                       "Professional Edition of Readability Studio."),
-                     _(L"Feature Not Licensed"), wxOK | wxICON_INFORMATION);
-        return;
-        }
     const BaseProjectDoc* doc = dynamic_cast<const BaseProjectDoc*>(GetDocument());
     wxFileDialog fdialog(GetDocFrame(), _(L"Export Filtered Document"), wxString{}, doc->GetTitle(),
                          _(L"Text Files (*.txt)|*.txt"), wxFD_SAVE | wxFD_OVERWRITE_PROMPT);

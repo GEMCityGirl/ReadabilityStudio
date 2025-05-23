@@ -14,7 +14,6 @@
 #ifndef PROJECTWIZARD_H
 #define PROJECTWIZARD_H
 
-#include "../../../../Licensing/LicenseAdmin.h"
 #include "../../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
 #include "../../Wisteria-Dataviz/src/ui/controls/sidebarbook.h"
 #include "../../Wisteria-Dataviz/src/ui/controls/thumbnail.h"

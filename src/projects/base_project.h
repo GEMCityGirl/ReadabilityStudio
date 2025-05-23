@@ -14,7 +14,6 @@
 #ifndef BASE_PROJECT_H
 #define BASE_PROJECT_H
 
-#include "../../../Licensing/LicenseAdmin.h"
 #include "../Wisteria-Dataviz/src/data/dataset.h"
 #include "../Wisteria-Dataviz/src/graphs/barchart.h"
 #include "../Wisteria-Dataviz/src/graphs/crawfordgraph.h"

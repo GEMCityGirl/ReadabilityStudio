@@ -14,7 +14,6 @@
 #ifndef RS_MAIN_APP_H
 #define RS_MAIN_APP_H
 
-#include "../../../Licensing/LicenseAdmin.h"
 #include "../Wisteria-Dataviz/src/math/mathematics.h"
 #include "../Wisteria-Dataviz/src/ui/app.h"
 #include "../Wisteria-Dataviz/src/ui/controls/codeeditor.h"
@@ -345,31 +344,6 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
         }
 
     [[nodiscard]]
-    LicenseAdmin& GetLicenseAdmin() noexcept
-        {
-        return m_licenseAdmin;
-        }
-
-    // licensing codes
-    [[nodiscard]]
-    static const wxString FeatureEnglishReadabilityTestsCode()
-        {
-        return _DT(L"ERDT");
-        }
-
-    [[nodiscard]]
-    static const wxString FeatureProfessionalCode()
-        {
-        return _DT(L"RPRO");
-        }
-
-    [[nodiscard]]
-    static const wxString FeatureLanguagePackCode()
-        {
-        return _DT(L"LPRT");
-        }
-
-    [[nodiscard]]
     LuaInterpreter& GetLuaRunner() noexcept
         {
         return m_LuaRunner;
@@ -493,13 +467,10 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
         }
 
   private:
-    void InitializeReadabilityFeatures();
-
     /// @brief IDs exposed to scripting and their respective dynamic IDs in the framework.
     /// @details Set (or add to this) in your framework's initialization.
     static std::map<wxWindowID, wxWindowID> m_dynamicIdMap;
 
-    LicenseAdmin m_licenseAdmin;
     std::unique_ptr<ReadabilityAppOptions> m_appOptions{ nullptr };
     bool LoadWordLists(const wxString& AppSettingFolderPath);
     wxArrayString m_lastSelectedWebPages;

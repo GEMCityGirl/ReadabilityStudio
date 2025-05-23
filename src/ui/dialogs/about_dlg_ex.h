@@ -14,7 +14,6 @@
 #ifndef ABOUT_DIALOG_EX_H
 #define ABOUT_DIALOG_EX_H
 
-#include "../../../../Licensing/LicenseAdmin.h"
 #include "../../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
 #include "../../Wisteria-Dataviz/src/ui/controls/sidebarbook.h"
 #include <wx/bitmap.h>
@@ -37,13 +36,12 @@ class AboutDialogEx final : public wxDialog
         @param appVersion The application's version.
         @param copyright The copyright string.
         @param eula The end-user license agreement content.
-        @param licenseAdmin The license administrator interface.
         @param id The dialog's ID.
         @param pos The dialog's position.
         @param size The dialog's size.
         @param style The dialog's style.*/
     AboutDialogEx(wxWindow* parent, const wxBitmap& logo, wxString appVersion, wxString copyright,
-                  LicenseAdmin* licenseAdmin, wxString eula, wxWindowID id = wxID_ANY,
+                  wxString eula, wxWindowID id = wxID_ANY,
                   const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
                   long style = wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
     /// @private
@@ -63,7 +61,6 @@ class AboutDialogEx final : public wxDialog
     constexpr static int ID_VERSION_PAGE = wxID_HIGHEST;
     constexpr static int ID_LICENSING_PAGE = wxID_HIGHEST + 1;
     constexpr static int ID_EULA_PAGE = wxID_HIGHEST + 2;
-    constexpr static int ID_UPDATE_LICENSE = wxID_HIGHEST + 3;
 
     /// Creation.
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition,
@@ -73,16 +70,10 @@ class AboutDialogEx final : public wxDialog
     /// Creates the controls and sizers.
     void CreateControls();
 
-    void OnUpdateLicense([[maybe_unused]] wxCommandEvent& event);
-    void FillLicenseGrid();
-
-    LicenseAdmin* m_licenseAdmin{ nullptr };
-    Wisteria::UI::ListCtrlEx* m_licenseGrid{ nullptr };
     Wisteria::UI::SideBarBook* m_sideBarBook{ nullptr };
 
     wxBitmap m_logo;
     wxString m_appVersion;
-    wxString m_serialNumber;
     wxString m_copyright;
     wxString m_eula;
     };

@@ -1169,13 +1169,6 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                     {
                     value = static_cast<decltype(value)>(readability::test_language::english_test);
                     }
-                else if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-                             wxGetApp().FeatureLanguagePackCode()) &&
-                         !wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-                             wxGetApp().FeatureProfessionalCode()))
-                    {
-                    value = static_cast<decltype(value)>(readability::test_language::english_test);
-                    }
                 m_language = static_cast<readability::test_language>(value);
                 }
             auto randonSampleSizeNode =

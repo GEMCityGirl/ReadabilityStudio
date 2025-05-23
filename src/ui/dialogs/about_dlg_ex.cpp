@@ -15,108 +15,13 @@
 #include <wx/generic/statbmpg.h>
 
 //------------------------------------------------------
-void AboutDialogEx::OnUpdateLicense([[maybe_unused]] wxCommandEvent& event)
-    {
-    TransferDataFromWindow();
-
-    if (!m_licenseAdmin->LoadSerialNumber(m_serialNumber))
-        {
-        wxMessageBox(_(L"Unable to load serial number."), _(L"Error"), wxOK | wxICON_EXCLAMATION,
-                     this);
-        return;
-        }
-    // save the licensing info now that we have it and have validated it
-    if (!m_licenseAdmin->SaveLicenseFile(m_licenseAdmin->GetLicenseFilePath()))
-        {
-        wxMessageBox(_(L"Unable to save license file. "
-                       "You must have Administrator privileges to update your license file."),
-                     _(L"Error"), wxOK | wxICON_EXCLAMATION, this);
-        return;
-        }
-    // let's try it again from the top
-    if (!m_licenseAdmin->LoadLicenseFile(m_licenseAdmin->GetLicenseFilePath(),
-                                         wxTheApp->GetAppName()))
-        {
-        wxMessageBox(
-            _(L"Unable to open updated license file. Please close and reopen the application."),
-            _(L"Error"), wxOK | wxICON_EXCLAMATION, this);
-        return;
-        }
-    FillLicenseGrid();
-    wxMessageBox(_(L"License Update Complete. Please close and reopen the application for all "
-                   "changes to take effect."),
-                 _(L"License Update"), wxOK | wxICON_INFORMATION, this);
-    wxLogMessage(L"License Updated.");
-    }
-
-//------------------------------------------------------
-void AboutDialogEx::FillLicenseGrid()
-    {
-    if (!m_licenseGrid)
-        {
-        return;
-        }
-    wxWindowUpdateLocker noUpdates(m_licenseGrid);
-    m_licenseGrid->DeleteAllItems();
-    // add the feature info to the grid
-    for (size_t i = 0; i < m_licenseAdmin->GetFeatureCount(); ++i)
-        {
-        const LicenseFeature feature = m_licenseAdmin->GetFeatureInfo(i);
-        /* if the signature isn't valid then the license file has been tampered with,
-           so just ignore this feature*/
-        if (!feature.IsSignatureValid())
-            {
-            continue;
-            }
-        long insertedIndex = m_licenseGrid->InsertItem(m_licenseGrid->GetItemCount(),
-                                                       (feature.GetDescription() != wxEmptyString) ?
-                                                           feature.GetDescription() :
-                                                           feature.GetFeatureCode());
-        if (!feature.IsEnabled())
-            {
-            m_licenseGrid->SetItem(insertedIndex, 1, _(L"Not enabled"));
-            m_licenseGrid->SetItem(insertedIndex, 2, _(L"N/A"));
-            }
-        else if (feature.IsPermanent())
-            {
-            m_licenseGrid->SetItem(insertedIndex, 1, _(L"Never expires"));
-            m_licenseGrid->SetItem(insertedIndex, 2, _(L"N/A"));
-            }
-        else if (feature.IsExpirationDateValid())
-            {
-            m_licenseGrid->SetItem(insertedIndex, 1,
-                                   feature.GetExpirationDateInfo().GetDateFormattedString());
-            if (feature.IsExpired())
-                {
-                m_licenseGrid->SetItem(insertedIndex, 2, _(L"Expired"));
-                }
-            else
-                {
-                m_licenseGrid->SetItem(
-                    insertedIndex, 2,
-                    std::to_wstring(
-                        feature.GetExpirationDateInfo().GetDaysRemainingUntilExpiration()));
-                }
-            }
-        // this should not happen unless license file was tampered with
-        else
-            {
-            m_licenseGrid->SetItem(insertedIndex, 1, _(L"Error loading date"));
-            m_licenseGrid->SetItem(insertedIndex, 2, _(L"Disabled"));
-            }
-        }
-    }
-
-//------------------------------------------------------
 AboutDialogEx::AboutDialogEx(wxWindow* parent, const wxBitmap& logo, wxString appVersion,
-                             wxString copyright, LicenseAdmin* licenseAdmin, wxString eula,
-                             wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
-    : m_licenseAdmin(licenseAdmin), m_logo(logo), m_appVersion(std::move(appVersion)),
-      m_copyright(std::move(copyright)), m_eula(std::move(eula))
+                             wxString copyright, wxString eula, wxWindowID id, const wxPoint& pos,
+                             const wxSize& size, long style)
+    : m_logo(logo), m_appVersion(std::move(appVersion)), m_copyright(std::move(copyright)),
+      m_eula(std::move(eula))
     {
-    m_serialNumber = m_licenseAdmin->GetSerialNumber();
     Create(parent, id, pos, size, style);
-    Bind(wxEVT_BUTTON, &AboutDialogEx::OnUpdateLicense, this, AboutDialogEx::ID_UPDATE_LICENSE);
     }
 
 //------------------------------------------------------
@@ -193,71 +98,13 @@ void AboutDialogEx::CreateControls()
         mainPanelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
         }
 
-        // licensing page
-        {
-        wxPanel* mainPage = new wxPanel(m_sideBarBook);
-        wxBoxSizer* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
-        mainPage->SetSizer(mainPanelSizer);
-        m_sideBarBook->AddPage(mainPage, _(L"Licensing"), ID_LICENSING_PAGE, false);
-
-        wxBoxSizer* updateSerialNumberSizer = new wxBoxSizer(wxHORIZONTAL);
-        updateSerialNumberSizer->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Serial #:")), 0,
-                                     wxALIGN_LEFT | wxALIGN_CENTRE_VERTICAL | wxRIGHT,
-                                     wxSizerFlags::GetDefaultBorder());
-        updateSerialNumberSizer->Add(new wxTextCtrl(mainPage, wxID_ANY, wxEmptyString,
-                                                    wxDefaultPosition, wxDefaultSize, 0,
-                                                    wxGenericValidator(&m_serialNumber)),
-                                     wxSizerFlags{ 1 }.Expand());
-        updateSerialNumberSizer->Add(new wxButton(mainPage, ID_UPDATE_LICENSE, _(L"Update")));
-        mainPanelSizer->Add(updateSerialNumberSizer,
-                            wxSizerFlags{}.Expand().Border(wxLEFT | wxRIGHT));
-
-        // user and license info
-        auto userInfoGrid = new wxFlexGridSizer(2, wxSize(wxSizerFlags::GetDefaultBorder(), 0));
-        if (m_licenseAdmin->GetUserName().length())
-            {
-            userInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"User Name:")));
-            userInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, m_licenseAdmin->GetUserName()));
-            }
-        if (m_licenseAdmin->GetUserOrganization().length())
-            {
-            userInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Company:")));
-            userInfoGrid->Add(
-                new wxStaticText(mainPage, wxID_ANY, m_licenseAdmin->GetUserOrganization()));
-            }
-        userInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"User ID:")));
-        userInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, m_licenseAdmin->GetPublicKey()));
-        userInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"License:")));
-        userInfoGrid->Add(
-            new wxStaticText(mainPage, wxID_ANY, m_licenseAdmin->GetProductDescription()));
-        mainPanelSizer->Add(userInfoGrid, wxSizerFlags{}.Border(wxALL).Align(wxALIGN_LEFT));
-
-        // license grid
-        m_licenseGrid =
-            new Wisteria::UI::ListCtrlEx(mainPage, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-                                         wxLC_SINGLE_SEL | wxLC_REPORT | wxBORDER_SUNKEN);
-        m_licenseGrid->EnableGridLines();
-        m_licenseGrid->InsertColumn(0, _(L"Product Feature"), wxLIST_FORMAT_LEFT,
-                                    wxLIST_AUTOSIZE_USEHEADER);
-        m_licenseGrid->InsertColumn(1, _(L"Expiration Date"), wxLIST_FORMAT_LEFT,
-                                    wxLIST_AUTOSIZE_USEHEADER);
-        m_licenseGrid->InsertColumn(2, _(L"Days Remaining"), wxLIST_FORMAT_LEFT,
-                                    wxLIST_AUTOSIZE_USEHEADER);
-        FillLicenseGrid();
-        mainPanelSizer->Add(m_licenseGrid, wxSizerFlags{ 1 }.Left().Expand().Border());
-        m_licenseGrid->SetColumnWidth(0, m_licenseGrid->EstimateColumnWidth(0));
-        m_licenseGrid->SetColumnWidth(1, wxLIST_AUTOSIZE_USEHEADER);
-        m_licenseGrid->SetColumnWidth(2, wxLIST_AUTOSIZE_USEHEADER);
-        }
-
-    // EULA page
+    // License page
     if (m_eula.length() > 0)
         {
         wxPanel* eulaPage = new wxPanel(m_sideBarBook);
         wxBoxSizer* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
         eulaPage->SetSizer(mainPanelSizer);
-        m_sideBarBook->AddPage(eulaPage, /* TRANSLATORS: End User License Agreement */ _(L"EULA"),
-                               ID_EULA_PAGE, false);
+        m_sideBarBook->AddPage(eulaPage, _(L"License"), ID_EULA_PAGE, false);
 
         wxTextCtrl* eulaWindow =
             new wxTextCtrl(eulaPage, wxID_ANY, wxString{}, wxDefaultPosition, wxDefaultSize,

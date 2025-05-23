@@ -52,13 +52,7 @@ LuaInterpreter::~LuaInterpreter()
 //------------------------------------------------------
 void LuaInterpreter::RunLuaFile(const wxString& filePath)
     {
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-        {
-        wxMessageBox(_(L"Lua scripting is only available with Professional edition."),
-                     _(L"Licensing Error"), wxOK | wxICON_EXCLAMATION);
-        return;
-        }
-    else if (IsRunning())
+    if (IsRunning())
         {
         wxMessageBox(_(L"Another Lua script is already running. "
                        "Please wait for the other script to finish."),
@@ -101,13 +95,7 @@ void LuaInterpreter::RunLuaFile(const wxString& filePath)
 void LuaInterpreter::RunLuaCode(const wxString& code, const wxString& filePath,
                                 wxString& errorMessage)
     {
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-        {
-        wxMessageBox(_(L"Lua scripting is only available with Professional edition."),
-                     _(L"Licensing Error"), wxOK | wxICON_EXCLAMATION);
-        return;
-        }
-    else if (IsRunning())
+    if (IsRunning())
         {
         wxMessageBox(_(L"Another Lua script is already running. "
                        "Please wait for the other script to finish."),

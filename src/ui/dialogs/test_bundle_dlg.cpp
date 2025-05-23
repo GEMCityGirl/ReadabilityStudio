@@ -136,15 +136,6 @@ void TestBundleDlg::CreateControls()
         const size_t rowCount = (m_standardTests.get_tests().size() / maxColumns) + 1;
         for (auto& sTest : m_standardTests.get_tests())
             {
-            // don't allow non-English tests in here if not licensed
-            if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-                    wxGetApp().FeatureLanguagePackCode()) &&
-                !wxGetApp().GetLicenseAdmin().IsFeatureEnabled(
-                    wxGetApp().FeatureProfessionalCode()) &&
-                !sTest.get_test().has_language(readability::test_language::english_test))
-                {
-                continue;
-                }
             // if set to a particular language, then only include tests with that language
             if (m_testBundle.GetLanguage() != readability::test_language::unknown_language &&
                 !sTest.get_test().has_language(m_testBundle.GetLanguage()))

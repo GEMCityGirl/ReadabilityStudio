@@ -156,13 +156,6 @@ void BatchProjectDoc::RemoveMisspellings(const wxArrayString& misspellingsToRemo
 //-------------------------------------------------------
 bool BatchProjectDoc::OnCreate(const wxString& path, long flags)
     {
-    // see if anything is even licensed first
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-        {
-        LogMessage(_(L"You are not currently licensed to create a new batch project."), _(L"Error"),
-                   wxOK | wxICON_ERROR);
-        return false;
-        }
     if (flags & wxDOC_NEW)
         {
         // if a folder, load the all supported document types recursively
@@ -221,10 +214,6 @@ bool BatchProjectDoc::OnCreate(const wxString& path, long flags)
 //-------------------------------------------------------
 bool BatchProjectDoc::OnNewDocument()
     {
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-        {
-        return false;
-        }
     if (!wxDocument::OnNewDocument())
         {
         return false;
@@ -6175,12 +6164,6 @@ bool BatchProjectDoc::OnOpenDocument(const wxString& filename)
             {
             return false;
             }
-        }
-    if (!wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-        {
-        LogMessage(_(L"You are not currently licensed to create a new batch project."), _(L"Error"),
-                   wxOK | wxICON_ERROR);
-        return false;
         }
 
     wxBusyCursor wait;

@@ -226,22 +226,18 @@ void ProjectWizardDlg::CreateControls()
         optionsSizer->Add(banner, wxSizerFlags{}.Expand().Border(wxBOTTOM));
 
         // select the language
-        if (wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) ||
-            wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-            {
-            // do not sort, connected to an enumeration
-            wxArrayString langs;
-            langs.Add(_(L"English"));
-            langs.Add(_(L"Spanish"));
-            langs.Add(_(L"German"));
-            wxBoxSizer* langSizer = new wxBoxSizer(wxHORIZONTAL);
-            langSizer->Add(new wxStaticText(page, wxID_STATIC, _(L"Document language:")), 0,
-                           wxRIGHT | wxALIGN_CENTRE, wxSizerFlags::GetDefaultBorder());
-            langSizer->Add(new wxChoice(page, LANGUAGE_BUTTON, wxDefaultPosition, wxDefaultSize,
-                                        langs, 0, wxGenericValidator(&m_selectedLang)),
-                           0, wxALIGN_LEFT | wxALL, wxSizerFlags::GetDefaultBorder());
-            optionsSizer->Add(langSizer);
-            }
+        // (do not sort, connected to an enumeration)
+        wxArrayString langs;
+        langs.Add(_(L"English"));
+        langs.Add(_(L"Spanish"));
+        langs.Add(_(L"German"));
+        wxBoxSizer* langSizer = new wxBoxSizer(wxHORIZONTAL);
+        langSizer->Add(new wxStaticText(page, wxID_STATIC, _(L"Document language:")), 0,
+                       wxRIGHT | wxALIGN_CENTRE, wxSizerFlags::GetDefaultBorder());
+        langSizer->Add(new wxChoice(page, LANGUAGE_BUTTON, wxDefaultPosition, wxDefaultSize, langs,
+                                    0, wxGenericValidator(&m_selectedLang)),
+                       0, wxALIGN_LEFT | wxALL, wxSizerFlags::GetDefaultBorder());
+        optionsSizer->Add(langSizer);
 
         // file path
         optionsSizer->Add(new wxRadioButton(
@@ -291,15 +287,11 @@ void ProjectWizardDlg::CreateControls()
             m_fileBrowseButton->Disable();
             }
 
-        if (wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) ||
-            wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-            {
-            wxStaticText* noteLabel = new wxStaticText(
-                page, wxID_STATIC,
-                _(L"The selected language will affect syllable counting and determine which "
-                  "tests and grammar features will be made available."));
-            optionsSizer->Add(noteLabel, 0, wxALIGN_LEFT | wxALL, wxSizerFlags::GetDefaultBorder());
-            }
+        wxStaticText* noteLabel = new wxStaticText(
+            page, wxID_STATIC,
+            _(L"The selected language will affect syllable counting and determine which "
+              "tests and grammar features will be made available."));
+        optionsSizer->Add(noteLabel, 0, wxALIGN_LEFT | wxALL, wxSizerFlags::GetDefaultBorder());
 
         pageSizer->Add(optionsSizer, wxSizerFlags{ 1 }.Expand().Border());
         }
@@ -321,21 +313,17 @@ void ProjectWizardDlg::CreateControls()
         optionsSizer->Add(banner, wxSizerFlags{}.Expand().Border(wxBOTTOM));
 
         // select the language
-        if (wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) ||
-            wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode()))
-            {
-            wxArrayString langs;
-            langs.Add(_(L"English"));
-            langs.Add(_(L"Spanish"));
-            langs.Add(_(L"German"));
-            wxBoxSizer* langSizer = new wxBoxSizer(wxHORIZONTAL);
-            langSizer->Add(new wxStaticText(page, wxID_STATIC, _(L"Documents' language:")), 0,
-                           wxRIGHT | wxALIGN_CENTRE, wxSizerFlags::GetDefaultBorder());
-            langSizer->Add(new wxChoice(page, LANGUAGE_BUTTON, wxDefaultPosition, wxDefaultSize,
-                                        langs, 0, wxGenericValidator(&m_selectedLang)),
-                           0, wxALIGN_LEFT | wxALL, wxSizerFlags::GetDefaultBorder());
-            optionsSizer->Add(langSizer);
-            }
+        wxArrayString langs;
+        langs.Add(_(L"English"));
+        langs.Add(_(L"Spanish"));
+        langs.Add(_(L"German"));
+        wxBoxSizer* langSizer = new wxBoxSizer(wxHORIZONTAL);
+        langSizer->Add(new wxStaticText(page, wxID_STATIC, _(L"Documents' language:")), 0,
+                       wxRIGHT | wxALIGN_CENTRE, wxSizerFlags::GetDefaultBorder());
+        langSizer->Add(new wxChoice(page, LANGUAGE_BUTTON, wxDefaultPosition, wxDefaultSize, langs,
+                                    0, wxGenericValidator(&m_selectedLang)),
+                       0, wxALIGN_LEFT | wxALL, wxSizerFlags::GetDefaultBorder());
+        optionsSizer->Add(langSizer);
 
         auto buttonsSizer = new wxGridSizer(
             4, wxSize(wxSizerFlags::GetDefaultBorder(), wxSizerFlags::GetDefaultBorder()));
@@ -1153,10 +1141,7 @@ void ProjectWizardDlg::LoadArchive(wxString archivePath /*= wxString{}*/)
 //-------------------------------------------------------------
 readability::test_language ProjectWizardDlg::GetLanguage() const
     {
-    return (wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureLanguagePackCode()) ||
-            wxGetApp().GetLicenseAdmin().IsFeatureEnabled(wxGetApp().FeatureProfessionalCode())) ?
-               static_cast<readability::test_language>(m_selectedLang) :
-               readability::test_language::english_test;
+    return static_cast<readability::test_language>(m_selectedLang);
     }
 
 //-------------------------------------------------------------
