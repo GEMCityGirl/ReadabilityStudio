@@ -183,17 +183,17 @@ ProjectDocChildFrame* BaseProjectView::CreateChildFrame(wxDocument* doc, wxView*
                                                       _(L"Modern"), wxString{}, wxITEM_CHECK));
 
     // histogram bar labels
-    subframe->m_histobarLabelsMenu.Append(new wxMenuItem(&subframe->m_histobarLabelsMenu,
+    subframe->m_histoBarLabelsMenu.Append(new wxMenuItem(&subframe->m_histoBarLabelsMenu,
                                                          XRCID("ID_HISTOBAR_LABELS_COUNT"),
                                                          _(L"Counts"), wxString{}, wxITEM_CHECK));
-    subframe->m_histobarLabelsMenu.Append(
-        new wxMenuItem(&subframe->m_histobarLabelsMenu, XRCID("ID_HISTOBAR_LABELS_PERCENTAGE"),
+    subframe->m_histoBarLabelsMenu.Append(
+        new wxMenuItem(&subframe->m_histoBarLabelsMenu, XRCID("ID_HISTOBAR_LABELS_PERCENTAGE"),
                        _(L"Percentages"), wxString{}, wxITEM_CHECK));
-    subframe->m_histobarLabelsMenu.Append(new wxMenuItem(
-        &subframe->m_histobarLabelsMenu, XRCID("ID_HISTOBAR_LABELS_COUNT_AND_PERCENT"),
+    subframe->m_histoBarLabelsMenu.Append(new wxMenuItem(
+        &subframe->m_histoBarLabelsMenu, XRCID("ID_HISTOBAR_LABELS_COUNT_AND_PERCENT"),
         _(L"Counts && Percentages"), wxString{}, wxITEM_CHECK));
-    subframe->m_histobarLabelsMenu.Append(
-        new wxMenuItem(&subframe->m_histobarLabelsMenu, XRCID("ID_HISTOBAR_NO_LABELS"),
+    subframe->m_histoBarLabelsMenu.Append(
+        new wxMenuItem(&subframe->m_histoBarLabelsMenu, XRCID("ID_HISTOBAR_NO_LABELS"),
                        _(L"No labels"), wxString{}, wxITEM_CHECK));
 
     // zoom
@@ -800,11 +800,11 @@ void BaseProjectView::Present()
 
         // histogram bin labels
         {
-        for (size_t i = 0; i < GetDocFrame()->m_histobarLabelsMenu.GetMenuItemCount(); ++i)
+        for (size_t i = 0; i < GetDocFrame()->m_histoBarLabelsMenu.GetMenuItemCount(); ++i)
             {
-            GetDocFrame()->m_histobarLabelsMenu.FindItemByPosition(i)->Check(false);
+            GetDocFrame()->m_histoBarLabelsMenu.FindItemByPosition(i)->Check(false);
             }
-        wxMenuItem* item = GetDocFrame()->m_histobarLabelsMenu.FindItem(
+        wxMenuItem* item = GetDocFrame()->m_histoBarLabelsMenu.FindItem(
             (doc->GetHistogramBinLabelDisplay() == BinLabelDisplay::BinPercentage) ?
                 XRCID("ID_HISTOBAR_LABELS_PERCENTAGE") :
             (doc->GetHistogramBinLabelDisplay() == BinLabelDisplay::BinValue) ?

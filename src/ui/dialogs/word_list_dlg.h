@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __WORD_LIST_DIALOG_H__
-#define __WORD_LIST_DIALOG_H__
+#ifndef WORD_LIST_DIALOG_H
+#define WORD_LIST_DIALOG_H
 
 #include "../../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
 #include "../../Wisteria-Dataviz/src/ui/controls/sidebarbook.h"
@@ -59,7 +59,6 @@ class WordListDlg final : public wxDialog
     constexpr static int DOLCH_PAGE_ID = wxID_HIGHEST + 4;
 
   private:
-
     void CreateControls();
     [[nodiscard]]
     Wisteria::UI::ListCtrlEx* GetActiveList();
@@ -67,8 +66,7 @@ class WordListDlg final : public wxDialog
     void OnRibbonButton(wxRibbonButtonBarEvent& event);
     void OnNegative(wxCommandEvent& event);
     void OnClose([[maybe_unused]] wxCloseEvent& event);
-    void AddSingleColumnPage(Wisteria::UI::SideBarBook* sideBar,
-                             const int id, const int listId,
+    void AddSingleColumnPage(Wisteria::UI::SideBarBook* sideBar, const int id, const int listId,
                              const wxString& label, const int imageId,
                              std::shared_ptr<Wisteria::UI::ListCtrlExDataProvider> data,
                              const word_list& wordList);
@@ -97,4 +95,4 @@ class WordListDlg final : public wxDialog
     Wisteria::UI::SideBarBook* m_sideBar{ nullptr };
     };
 
-#endif //__WORD_LIST_DIALOG_H__
+#endif // WORD_LIST_DIALOG_H

@@ -33,7 +33,7 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
     {
     TransferDataFromWindow();
     // make any corrections to the formula
-    SetFormula(BaseProjectDoc::UpdateCustumReadabilityTest(GetFormula().wc_str()).c_str());
+    SetFormula(BaseProjectDoc::UpdateCustomReadabilityTest(GetFormula().wc_str()).c_str());
     TransferDataToWindow();
 
     try

@@ -2463,21 +2463,21 @@ class ReadabilityAppOptions
         return m_customColors;
         }
 
-    void CopyCustomColorsToColourData(wxColourData& colourData)
+    void CopyCustomColorsToColorData(wxColourData& colorData)
         {
         GetCustomColors().resize(m_maxCustomColors);
         for (size_t i = 0; i < m_maxCustomColors; ++i)
             {
-            colourData.SetCustomColour(i, GetCustomColors().at(i));
+            colorData.SetCustomColour(i, GetCustomColors().at(i));
             }
         }
 
-    void CopyColorDataToCustomColors(const wxColourData& colourData)
+    void CopyColorDataToCustomColors(const wxColourData& colorData)
         {
         GetCustomColors().clear();
         for (size_t i = 0; i < m_maxCustomColors; ++i)
             {
-            GetCustomColors().push_back(colourData.GetCustomColour(i));
+            GetCustomColors().push_back(colorData.GetCustomColour(i));
             }
         }
 

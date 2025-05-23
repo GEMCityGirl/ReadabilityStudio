@@ -289,8 +289,7 @@ void TestBundleDlg::CreateControls()
                 editButtonsSizer->Add(addButton);
 
                 Bind(
-                    wxEVT_BUTTON,
-                    [this](wxCommandEvent&)
+                    wxEVT_BUTTON, [this](wxCommandEvent&)
                     { m_testGoalsListCtrl->EditItem(m_testGoalsListCtrl->AddRow(), 0); },
                     ID_ADD_TEST_GOALS_BUTTON);
 
@@ -301,9 +300,8 @@ void TestBundleDlg::CreateControls()
                 editButtonsSizer->Add(deleteButton);
 
                 Bind(
-                    wxEVT_BUTTON,
-                    [this](wxCommandEvent&) { m_testGoalsListCtrl->DeleteSelectedItems(); },
-                    ID_DELETE_TEST_GOALS_BUTTON);
+                    wxEVT_BUTTON, [this](wxCommandEvent&)
+                    { m_testGoalsListCtrl->DeleteSelectedItems(); }, ID_DELETE_TEST_GOALS_BUTTON);
 
                 mainPanelSizer->Add(editButtonsSizer,
                                     wxSizerFlags{}.Right().Border(wxTOP | wxRIGHT));
@@ -398,8 +396,7 @@ void TestBundleDlg::CreateControls()
                 editButtonsSizer->Add(addButton);
 
                 Bind(
-                    wxEVT_BUTTON,
-                    [this](wxCommandEvent&)
+                    wxEVT_BUTTON, [this](wxCommandEvent&)
                     { m_statGoalsListCtrl->EditItem(m_statGoalsListCtrl->AddRow(), 0); },
                     ID_ADD_STAT_GOALS_BUTTON);
 
@@ -410,9 +407,8 @@ void TestBundleDlg::CreateControls()
                 editButtonsSizer->Add(deleteButton);
 
                 Bind(
-                    wxEVT_BUTTON,
-                    [this](wxCommandEvent&) { m_statGoalsListCtrl->DeleteSelectedItems(); },
-                    ID_DELETE_STAT_GOALS_BUTTON);
+                    wxEVT_BUTTON, [this](wxCommandEvent&)
+                    { m_statGoalsListCtrl->DeleteSelectedItems(); }, ID_DELETE_STAT_GOALS_BUTTON);
 
                 mainPanelSizer->Add(editButtonsSizer,
                                     wxSizerFlags{}.Right().Border(wxTOP | wxRIGHT));

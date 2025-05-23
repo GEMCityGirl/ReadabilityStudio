@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __NEW_CUSTOM_WORD_TEST_SIMPLE_DLG_H__
-#define __NEW_CUSTOM_WORD_TEST_SIMPLE_DLG_H__
+#ifndef NEW_CUSTOM_WORD_TEST_SIMPLE_DLG_H
+#define NEW_CUSTOM_WORD_TEST_SIMPLE_DLG_H
 
 #include "../../Wisteria-Dataviz/src/ui/dialogs/dialogwithhelp.h"
 #include <wx/filename.h>
@@ -94,4 +94,4 @@ class NewCustomWordTestSimpleDlg final : public Wisteria::UI::DialogWithHelp
     wxString m_wordListFilePath;
     };
 
-#endif //__NEW_CUSTOM_WORD_TEST_SIMPLE_DLG_H__
+#endif // NEW_CUSTOM_WORD_TEST_SIMPLE_DLG_H

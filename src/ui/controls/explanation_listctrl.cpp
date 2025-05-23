@@ -17,8 +17,8 @@ using namespace Wisteria::UI;
 
 wxIMPLEMENT_DYNAMIC_CLASS(ExplanationListCtrl, wxSplitterWindow)
 
-ExplanationListExportOptions ExplanationListCtrl::m_lastCopyOption =
-    ExplanationListExportOptions::ExportGrid;
+    ExplanationListExportOptions ExplanationListCtrl::m_lastCopyOption =
+        ExplanationListExportOptions::ExportGrid;
 ExplanationListExportOptions ExplanationListCtrl::m_lastSaveOption =
     ExplanationListExportOptions::ExportBoth;
 
@@ -63,16 +63,10 @@ void ExplanationListCtrl::OnMenuCommand(wxCommandEvent& event)
     }
 
 //------------------------------------------------------
-void ExplanationListCtrl::OnPreview([[maybe_unused]] wxCommandEvent& event)
-    {
-    PrintPreview();
-    }
+void ExplanationListCtrl::OnPreview([[maybe_unused]] wxCommandEvent& event) { PrintPreview(); }
 
 //------------------------------------------------------
-void ExplanationListCtrl::OnPrint([[maybe_unused]] wxCommandEvent& event)
-    {
-    Print();
-    }
+void ExplanationListCtrl::OnPrint([[maybe_unused]] wxCommandEvent& event) { Print(); }
 
 //------------------------------------------------------
 void ExplanationListCtrl::PrintPreview()
@@ -256,9 +250,9 @@ void ExplanationListCtrl::OnResize(wxSizeEvent& event)
 //------------------------------------------------------
 void ExplanationListCtrl::OnItemSelected(wxListEvent& event)
     {
-    GetExplanationView()->SetPage(wxString::Format(
-        L"<body>%s</body>",
-        m_explanations[GetResultsListCtrl()->GetItemTextEx(event.GetIndex(), 0)]));
+    GetExplanationView()->SetPage(
+        wxString::Format(L"<body>%s</body>",
+                         m_explanations[GetResultsListCtrl()->GetItemTextEx(event.GetIndex(), 0)]));
     }
 
 //------------------------------------------------------
@@ -291,8 +285,7 @@ void ExplanationListCtrl::UpdateExplanationDisplay()
     if (selected != wxNOT_FOUND)
         {
         GetExplanationView()->SetPage(wxString::Format(
-            L"<body>%s</body>",
-            m_explanations[GetResultsListCtrl()->GetItemTextEx(selected, 0)]));
+            L"<body>%s</body>", m_explanations[GetResultsListCtrl()->GetItemTextEx(selected, 0)]));
         }
     }
 

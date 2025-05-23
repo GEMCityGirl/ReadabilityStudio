@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __LUAAPPLICATION_H__
-#define __LUAAPPLICATION_H__
+#ifndef LUAAPPLICATION_H
+#define LUAAPPLICATION_H
 
 #include "../Wisteria-Dataviz/src/util/donttranslate.h"
 #include "lua.hpp"
@@ -626,4 +626,4 @@ namespace LuaScripting
 // NOLINTEND(readability-implicit-bool-conversion)
 // NOLINTEND(readability-identifier-length)
 
-#endif //__LUAAPPLICATION_H__
+#endif // LUAAPPLICATION_H

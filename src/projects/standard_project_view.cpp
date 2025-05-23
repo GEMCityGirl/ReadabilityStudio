@@ -1657,14 +1657,14 @@ void ProjectView::UpdateStatistics()
     {
     ProjectDoc* doc = dynamic_cast<ProjectDoc*>(GetDocument());
 
-    // Determine the stats rows colour from the list control's background colour.
-    const wxColour listRowColour = GetReadabilityScoresList()->GetBackgroundColour();
+    // Determine the stats rows color from the list control's background color.
+    const wxColour listRowColor = GetReadabilityScoresList()->GetBackgroundColour();
     // Depending on the background, stats row color
     // will be 3% more dark or 50% brighter.
-    const int alpha = listRowColour.GetRGB() > 0x808080 ? 97 : 150;
+    const int alpha = listRowColor.GetRGB() > 0x808080 ? 97 : 150;
 
     wxListItemAttr statRowAttribs;
-    statRowAttribs.SetBackgroundColour(listRowColour.ChangeLightness(alpha));
+    statRowAttribs.SetBackgroundColour(listRowColor.ChangeLightness(alpha));
 
     const wxString selectedItem =
         GetReadabilityScoresList()->GetResultsListCtrl()->GetSelectedText();
@@ -3157,7 +3157,7 @@ bool ProjectView::ExportAllToHtml(const wxFileName& filePath, wxString graphExt,
     // scores section
     if (includeTestScores && GetReadabilityResultsView().GetWindowCount())
         {
-        // the first output in this section will not have a leading pagebreak, but the rest will
+        // the first output in this section will not have a leading page break, but the rest will
         bool includeLeadingPageBreak{ false };
         // indicates that a section has already been written out after the TOC so that we
         // know if we need to insert a page break in front of the next section

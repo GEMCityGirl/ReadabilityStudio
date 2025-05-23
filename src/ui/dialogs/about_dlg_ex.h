@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __ABOUT_DIALOG_EX_H__
-#define __ABOUT_DIALOG_EX_H__
+#ifndef ABOUT_DIALOG_EX_H
+#define ABOUT_DIALOG_EX_H
 
 #include "../../../../Licensing/LicenseAdmin.h"
 #include "../../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
@@ -87,4 +87,4 @@ class AboutDialogEx final : public wxDialog
     wxString m_eula;
     };
 
-#endif //__ABOUT_DIALOG_EX_H__
+#endif // ABOUT_DIALOG_EX_H

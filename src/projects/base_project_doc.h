@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __BASE_PROJECT_DOC_H__
-#define __BASE_PROJECT_DOC_H__
+#ifndef BASE_PROJECT_DOC_H
+#define BASE_PROJECT_DOC_H
 
 #include "../Wisteria-Dataviz/src/ui/controls/formattedtextctrl.h"
 #include "../graphs/frygraph.h"
@@ -43,11 +43,11 @@ class BaseProjectDoc : public BaseProject, public wxDocument
     void CopyDocumentLevelSettings(const BaseProjectDoc& that, const bool reloadImages);
 
     static bool AddGlobalCustomReadabilityTest(CustomReadabilityTest& customTest);
-    /// When we switched to the Tinyexpr++ formula engine (circa 2020),
+    /// When we switched to the TinyExpr++ formula engine (circa 2020),
     /// the syntax slightly changed, so this updates custom test formulas
     /// to work with the new parser.
     static CustomReadabilityTest::string_type
-    UpdateCustumReadabilityTest(const CustomReadabilityTest::string_type& formula);
+    UpdateCustomReadabilityTest(const CustomReadabilityTest::string_type& formula);
     static void RemoveGlobalCustomReadabilityTest(const wxString& testName);
     static void RemoveAllGlobalCustomReadabilityTests();
 
@@ -119,7 +119,7 @@ class BaseProjectDoc : public BaseProject, public wxDocument
         return m_graphColorSchemeName;
         }
 
-    // @note Must be the internal key (e.g., "coffeeshot"), not "Coffee Shop."
+    // @note Must be the internal key (e.g., "coffeeshop"), not "Coffee Shop."
     void SetGraphColorScheme(wxString colorScheme);
 
     [[nodiscard]]
@@ -1363,4 +1363,4 @@ class BaseProjectDoc : public BaseProject, public wxDocument
     wxDECLARE_DYNAMIC_CLASS(BaseProjectDoc);
     };
 
-#endif //__BASE_PROJECT_DOC_H__
+#endif // BASE_PROJECT_DOC_H

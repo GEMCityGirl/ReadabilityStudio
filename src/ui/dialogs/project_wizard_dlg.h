@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __PROJECTWIZARD_H__
-#define __PROJECTWIZARD_H__
+#ifndef PROJECTWIZARD_H
+#define PROJECTWIZARD_H
 
 #include "../../../../Licensing/LicenseAdmin.h"
 #include "../../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
@@ -486,4 +486,4 @@ class ProjectWizardDlg final : public wxDialog
     };
     };
 
-#endif //__PROJECTWIZARD_H__
+#endif // PROJECTWIZARD_H

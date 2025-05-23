@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __BATCH_PROJECT_DOC_H__
-#define __BATCH_PROJECT_DOC_H__
+#ifndef BATCH_PROJECT_DOC_H
+#define BATCH_PROJECT_DOC_H
 
 #include "../Wisteria-Dataviz/src/data/dataset.h"
 #include "../Wisteria-Dataviz/src/graphs/boxplot.h"
@@ -418,4 +418,4 @@ class BatchProjectDoc final : public BaseProjectDoc
     wxDECLARE_DYNAMIC_CLASS(BatchProjectDoc);
     };
 
-#endif //__BATCH_PROJECT_DOC_H__
+#endif // BATCH_PROJECT_DOC_H

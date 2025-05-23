@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __FILTEREDTEXTEXPORTOPTIONS_DLG_H__
-#define __FILTEREDTEXTEXPORTOPTIONS_DLG_H__
+#ifndef FILTEREDTEXTEXPORTOPTIONS_DLG_H
+#define FILTEREDTEXTEXPORTOPTIONS_DLG_H
 
 #include "../../Wisteria-Dataviz/src/ui/dialogs/dialogwithhelp.h"
 #include <wx/statline.h>
@@ -119,4 +119,4 @@ class FilteredTextExportOptionsDlg : public Wisteria::UI::DialogWithHelp
     bool m_narrowFullWidthCharacters{ true };
     };
 
-#endif //__FILTEREDTEXTEXPORTOPTIONS_DLG_H__
+#endif // FILTEREDTEXTEXPORTOPTIONS_DLG_H

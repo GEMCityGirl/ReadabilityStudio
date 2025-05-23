@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __WEB_HARVESTER_DIALOG_H__
-#define __WEB_HARVESTER_DIALOG_H__
+#ifndef WEB_HARVESTER_DIALOG_H
+#define WEB_HARVESTER_DIALOG_H
 
 #include "../../Wisteria-Dataviz/src/ui/controls/codeeditor.h"
 #include "../../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
@@ -38,7 +38,8 @@ class LinkDialog final : public wxDialog
     LinkDialog(LinkDialog&) = delete;
     LinkDialog& operator=(const LinkDialog&) = delete;
 
-    [[nodiscard]] wxString GetValue() const
+    [[nodiscard]]
+    wxString GetValue() const
         {
         return (m_codeWindow != nullptr) ? m_codeWindow->GetValue() : wxString{};
         }
@@ -225,7 +226,7 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
         {
         m_localFolderLabel->Enable(m_downloadFilesLocally);
         m_localFolderEdit->Enable(m_downloadFilesLocally);
-        m_retainWebsiteFolderStuctureCheckBox->Enable(m_downloadFilesLocally);
+        m_retainWebsiteFolderStructureCheckBox->Enable(m_downloadFilesLocally);
         m_replaceExistingFilesCheckBox->Enable(m_downloadFilesLocally);
         m_minFileSizeLabel->Enable(m_downloadFilesLocally);
         m_minFileSizeCtrl->Enable(m_downloadFilesLocally);
@@ -269,7 +270,7 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
     };
     wxTextCtrl* m_localFolderEdit{ nullptr };
     wxStaticText* m_localFolderLabel{ nullptr };
-    wxCheckBox* m_retainWebsiteFolderStuctureCheckBox{ nullptr };
+    wxCheckBox* m_retainWebsiteFolderStructureCheckBox{ nullptr };
     wxCheckBox* m_replaceExistingFilesCheckBox{ nullptr };
     Wisteria::UI::ListCtrlEx* m_urlList{ nullptr };
     wxBitmapButton* m_addDomainButton{ nullptr };
@@ -287,4 +288,4 @@ class WebHarvesterDlg final : public Wisteria::UI::DialogWithHelp
     wxString m_downloadFolder;
     };
 
-#endif // __WEB_HARVESTER_DIALOG_H__
+#endif // WEB_HARVESTER_DIALOG_H

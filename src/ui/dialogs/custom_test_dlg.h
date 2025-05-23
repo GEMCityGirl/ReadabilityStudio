@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __CUSTOM_TEST_DLG_H__
-#define __CUSTOM_TEST_DLG_H__
+#ifndef CUSTOM_TEST_DLG_H
+#define CUSTOM_TEST_DLG_H
 
 #include "../../OleanderStemmingLibrary/src/stemming.h"
 #include "../../Wisteria-Dataviz/src/import/text_matrix.h"
@@ -728,4 +728,4 @@ class CustomTestDlg final : public wxDialog
     Wisteria::UI::FunctionBrowserCtrl::NameList m_shortcuts;
     };
 
-#endif //__CUSTOM_TEST_DLG_H__
+#endif // CUSTOM_TEST_DLG_H

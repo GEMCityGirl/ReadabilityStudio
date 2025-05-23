@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __FILEPATH_RESOLVER__
-#define __FILEPATH_RESOLVER__
+#ifndef FILEPATH_RESOLVER
+#define FILEPATH_RESOLVER
 
 #include "../Wisteria-Dataviz/src/util/fileutil.h"
 #include "webharvester.h"
@@ -64,4 +64,4 @@ class FilePathResolver final : public FilePathResolverBase
                 std::initializer_list<wxString> pathsToSearch = std::initializer_list<wxString>{});
     };
 
-#endif // __FILEPATH_RESOLVER__
+#endif // FILEPATH_RESOLVER

@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __BASE_PROJECT_H__
-#define __BASE_PROJECT_H__
+#ifndef BASE_PROJECT_H
+#define BASE_PROJECT_H
 
 #include "../../../Licensing/LicenseAdmin.h"
 #include "../Wisteria-Dataviz/src/data/dataset.h"
@@ -2702,4 +2702,4 @@ class BaseProjectProcessingLock
     BaseProject* m_project{ nullptr };
     };
 
-#endif //__BASE_PROJECT_H__
+#endif // BASE_PROJECT_H

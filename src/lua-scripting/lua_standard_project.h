@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __LUA_STANDARD_PROJECTS_H__
-#define __LUA_STANDARD_PROJECTS_H__
+#ifndef LUA_STANDARD_PROJECTS_H
+#define LUA_STANDARD_PROJECTS_H
 
 #include "lua_debug.h"
 #include "luna.h"
@@ -395,4 +395,4 @@ namespace LuaScripting
 // NOLINTEND(readability-implicit-bool-conversion)
 // NOLINTEND(readability-identifier-length)
 
-#endif //__LUA_STANDARD_PROJECTS_H__
+#endif // LUA_STANDARD_PROJECTS_H

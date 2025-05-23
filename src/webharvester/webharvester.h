@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __WEBHARVESTER_H__
-#define __WEBHARVESTER_H__
+#ifndef WEBHARVESTER_H
+#define WEBHARVESTER_H
 
 #include "../Wisteria-Dataviz/src/import/html_extract_text.h"
 #include "../Wisteria-Dataviz/src/util/char_traits.h"
@@ -293,7 +293,7 @@ class WebHarvester
 
     /// @brief Specifies whether all HTML content should be downloaded,
     ///     regardless of the file's extension (or lack of one).
-    /// @details This is the default behaviour.
+    /// @details This is the default behavior.
     /// @param harvestAll @c true to download all HTML content.
     /// @note This is recommended if you need to download pages
     ///     that don't have extensions (i.e., dynamic pages).
@@ -306,7 +306,10 @@ class WebHarvester
     /// @param search @c true to catalogue broken links.
     /// @warning Enabling this will degrade performance because it will
     ///     attempt to connect to each link.
-    void SearchForBrokenLinks(const bool search = true) noexcept { m_searchForBrokenLinks = search; }
+    void SearchForBrokenLinks(const bool search = true) noexcept
+        {
+        m_searchForBrokenLinks = search;
+        }
 
     /// @returns @c true if a list of broken links are being catalogued while harvesting.
     [[nodiscard]]
@@ -707,4 +710,4 @@ class WebHarvester
     inline static const std::wstring_view VBSCRIPT_CONTENT_TYPE{ _DT(L"application/x-vbscript") };
     };
 
-#endif // __WEBHARVESTER_H__
+#endif // WEBHARVESTER_H

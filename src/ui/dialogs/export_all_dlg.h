@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __EXPORTALL_DLG_H__
-#define __EXPORTALL_DLG_H__
+#ifndef EXPORTALL_DLG_H
+#define EXPORTALL_DLG_H
 
 #include "../../Wisteria-Dataviz/src/ui/dialogs/dialogwithhelp.h"
 #include "../../Wisteria-Dataviz/src/ui/dialogs/imageexportdlg.h"
@@ -225,4 +225,4 @@ class ExportAllDlg final : public Wisteria::UI::DialogWithHelp
     bool m_fileMode{ true };
     };
 
-#endif //__EXPORTALL_DLG_H__
+#endif // EXPORTALL_DLG_H

@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __LUA_EDITOR_DIALOG_H__
-#define __LUA_EDITOR_DIALOG_H__
+#ifndef LUA_EDITOR_DIALOG_H
+#define LUA_EDITOR_DIALOG_H
 
 #include "../../Wisteria-Dataviz/src/ui/controls/codeeditor.h"
 #include "../../Wisteria-Dataviz/src/ui/dialogs/functionbrowserdlg.h"
@@ -150,4 +150,4 @@ class LuaEditorDlg final : public wxFrame
     std::vector<LibnameAndEntries> m_enums;
     };
 
-#endif //__LUA_EDITOR_DIALOG_H__
+#endif // LUA_EDITOR_DIALOG_H

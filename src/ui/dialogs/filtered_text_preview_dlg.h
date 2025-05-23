@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __FILTEREDTEXTPREVIEWDLG_DIALOG_H__
-#define __FILTEREDTEXTPREVIEWDLG_DIALOG_H__
+#ifndef FILTEREDTEXTPREVIEWDLG_DIALOG_H
+#define FILTEREDTEXTPREVIEWDLG_DIALOG_H
 
 #include "../../Wisteria-Dataviz/src/ui/dialogs/dialogwithhelp.h"
 #include "../../app/optionenums.h"
@@ -72,15 +72,15 @@ class FilteredTextPreviewDlg final : public Wisteria::UI::DialogWithHelp
     /// @param show @c true to expand it, @c false to collapse it.
     void ShowDetails(const bool show = true)
         {
-        if (m_collpane)
+        if (m_collPane)
             {
             if (show)
                 {
-                m_collpane->Expand();
+                m_collPane->Expand();
                 }
             else
                 {
-                m_collpane->Collapse();
+                m_collPane->Collapse();
                 }
             }
         }
@@ -96,7 +96,7 @@ class FilteredTextPreviewDlg final : public Wisteria::UI::DialogWithHelp
 
         CreateControls();
         Centre();
-        m_collpane->Collapse();
+        m_collPane->Collapse();
 
         return true;
         }
@@ -110,10 +110,10 @@ class FilteredTextPreviewDlg final : public Wisteria::UI::DialogWithHelp
                           const bool removeBullets, const bool removeFilePaths,
                           const bool stripAbbreviationPeriods);
 
-    wxCollapsiblePane* m_collpane{ nullptr };
+    wxCollapsiblePane* m_collPane{ nullptr };
 
     wxString m_infoLabel;
     wxString m_filteredValue;
     };
 
-#endif //__FILTEREDTEXTPREVIEWDLG_DIALOG_H__
+#endif // FILTEREDTEXTPREVIEWDLG_DIALOG_H

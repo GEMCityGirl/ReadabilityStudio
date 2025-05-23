@@ -29,17 +29,17 @@ void FilteredTextPreviewDlg::CreateControls()
 
     previewWindowSizer->AddSpacer(wxSizerFlags::GetDefaultBorder() * 2);
 
-    m_collpane = new wxCollapsiblePane(this, wxID_ANY, _(L"Details:"));
-    previewWindowSizer->Add(m_collpane, wxSizerFlags{}.Expand());
+    m_collPane = new wxCollapsiblePane(this, wxID_ANY, _(L"Details:"));
+    previewWindowSizer->Add(m_collPane, wxSizerFlags{}.Expand());
 
     wxBoxSizer* filteredOutSizer = new wxBoxSizer(wxVERTICAL);
-    filteredOutSizer->Add(new wxStaticText(m_collpane->GetPane(), wxID_STATIC,
+    filteredOutSizer->Add(new wxStaticText(m_collPane->GetPane(), wxID_STATIC,
                                            _(L"The following are being filtered:")));
-    wxStaticText* infoLabel = new wxStaticText(m_collpane->GetPane(), wxID_STATIC, m_infoLabel);
+    wxStaticText* infoLabel = new wxStaticText(m_collPane->GetPane(), wxID_STATIC, m_infoLabel);
     filteredOutSizer->Add(infoLabel, wxSizerFlags{}.Expand());
-    m_collpane->GetPane()->SetSizer(filteredOutSizer);
-    m_collpane->Expand();
-    filteredOutSizer->SetSizeHints(m_collpane->GetPane());
+    m_collPane->GetPane()->SetSizer(filteredOutSizer);
+    m_collPane->Expand();
+    filteredOutSizer->SetSizeHints(m_collPane->GetPane());
 
     mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL | wxHELP),
                    wxSizerFlags{}.Expand().Border());

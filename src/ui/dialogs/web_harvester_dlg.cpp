@@ -498,11 +498,11 @@ void WebHarvesterDlg::CreateControls()
         panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
         // folder structure
-        m_retainWebsiteFolderStuctureCheckBox = new wxCheckBox(
+        m_retainWebsiteFolderStructureCheckBox = new wxCheckBox(
             Panel, wxID_ANY, _(L"&Use website's folder structure"), wxDefaultPosition,
             wxDefaultSize, 0, wxGenericValidator(&m_keepWebPathWhenDownloading));
-        m_retainWebsiteFolderStuctureCheckBox->Enable(m_downloadFilesLocally);
-        panelSizer->Add(m_retainWebsiteFolderStuctureCheckBox, wxSizerFlags{}.Border());
+        m_retainWebsiteFolderStructureCheckBox->Enable(m_downloadFilesLocally);
+        panelSizer->Add(m_retainWebsiteFolderStructureCheckBox, wxSizerFlags{}.Border());
 
         // existing files
         m_replaceExistingFilesCheckBox =

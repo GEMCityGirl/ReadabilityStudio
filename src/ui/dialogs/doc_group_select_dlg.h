@@ -10,8 +10,9 @@
  * Contributors:
  *   Blake Madden - initial implementation
  ********************************************************************************/
-#ifndef __DOC_GROUP_DIALOG_H__
-#define __DOC_GROUP_DIALOG_H__
+
+#ifndef DOC_GROUP_DIALOG_H
+#define DOC_GROUP_DIALOG_H
 
 #include "../../Wisteria-Dataviz/src/ui/dialogs/dialogwithhelp.h"
 #include <wx/dialog.h>
@@ -101,4 +102,4 @@ class DocGroupSelectDlg final : public Wisteria::UI::DialogWithHelp
     wxTextCtrl* m_groupingLabelEntry{ nullptr };
     };
 
-#endif //__DOC_GROUP_DIALOG_H__
+#endif // DOC_GROUP_DIALOG_H

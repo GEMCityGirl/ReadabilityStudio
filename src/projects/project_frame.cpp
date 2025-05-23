@@ -101,7 +101,7 @@ ProjectDocChildFrame::ProjectDocChildFrame(wxDocument* doc, wxView* view, wxFram
     Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED, &ProjectDocChildFrame::OnTextExclusionDropdown,
          this, XRCID("ID_TEXT_EXCLUSION"));
     Bind(wxEVT_RIBBONBUTTONBAR_DROPDOWN_CLICKED,
-         &ProjectDocChildFrame::OnEditGraphRaygorStyleDrowdown, this,
+         &ProjectDocChildFrame::OnEditGraphRaygorStyleDropdown, this,
          XRCID("ID_EDIT_GRAPH_RAYGOR_STYLE"));
     // ribbon buttons
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &ProjectDocChildFrame::OnEditDictionaryButton, this,
@@ -911,7 +911,7 @@ void ProjectDocChildFrame::OnLongSentencesOptions(wxCommandEvent& event)
 void ProjectDocChildFrame::OnEditGraphColor(wxCommandEvent& event)
     {
     wxColourData data;
-    wxGetApp().GetAppOptions().CopyCustomColorsToColourData(data);
+    wxGetApp().GetAppOptions().CopyCustomColorsToColorData(data);
     data.SetChooseFull(true);
     auto doc = dynamic_cast<BaseProjectDoc*>(GetDocument());
     assert(doc && L"Invalid document when editing graph colors!");
@@ -2024,15 +2024,15 @@ void ProjectDocChildFrame::OnEditGraphOpacity(wxCommandEvent& event)
 //---------------------------------------------------
 void ProjectDocChildFrame::OnHistoBarLabelSelected(wxCommandEvent& event)
     {
-    for (size_t i = 0; i < m_histobarLabelsMenu.GetMenuItemCount(); ++i)
+    for (size_t i = 0; i < m_histoBarLabelsMenu.GetMenuItemCount(); ++i)
         {
-        m_histobarLabelsMenu.FindItemByPosition(i)->Check(false);
+        m_histoBarLabelsMenu.FindItemByPosition(i)->Check(false);
         }
     if (event.GetId() == XRCID("ID_HISTOBAR_LABELS_PERCENTAGE"))
         {
         dynamic_cast<BaseProjectDoc*>(GetDocument())
             ->SetHistogramBinLabelDisplay(BinLabelDisplay::BinPercentage);
-        wxMenuItem* item = m_histobarLabelsMenu.FindItem(XRCID("ID_HISTOBAR_LABELS_PERCENTAGE"));
+        wxMenuItem* item = m_histoBarLabelsMenu.FindItem(XRCID("ID_HISTOBAR_LABELS_PERCENTAGE"));
         if (item)
             {
             item->Check(true);
@@ -2042,7 +2042,7 @@ void ProjectDocChildFrame::OnHistoBarLabelSelected(wxCommandEvent& event)
         {
         dynamic_cast<BaseProjectDoc*>(GetDocument())
             ->SetHistogramBinLabelDisplay(BinLabelDisplay::BinValue);
-        wxMenuItem* item = m_histobarLabelsMenu.FindItem(XRCID("ID_HISTOBAR_LABELS_COUNT"));
+        wxMenuItem* item = m_histoBarLabelsMenu.FindItem(XRCID("ID_HISTOBAR_LABELS_COUNT"));
         if (item)
             {
             item->Check(true);
@@ -2053,7 +2053,7 @@ void ProjectDocChildFrame::OnHistoBarLabelSelected(wxCommandEvent& event)
         dynamic_cast<BaseProjectDoc*>(GetDocument())
             ->SetHistogramBinLabelDisplay(BinLabelDisplay::BinValueAndPercentage);
         wxMenuItem* item =
-            m_histobarLabelsMenu.FindItem(XRCID("ID_HISTOBAR_LABELS_COUNT_AND_PERCENT"));
+            m_histoBarLabelsMenu.FindItem(XRCID("ID_HISTOBAR_LABELS_COUNT_AND_PERCENT"));
         if (item)
             {
             item->Check(true);
@@ -2063,7 +2063,7 @@ void ProjectDocChildFrame::OnHistoBarLabelSelected(wxCommandEvent& event)
         {
         dynamic_cast<BaseProjectDoc*>(GetDocument())
             ->SetHistogramBinLabelDisplay(BinLabelDisplay::NoDisplay);
-        wxMenuItem* item = m_histobarLabelsMenu.FindItem(XRCID("ID_HISTOBAR_NO_LABELS"));
+        wxMenuItem* item = m_histoBarLabelsMenu.FindItem(XRCID("ID_HISTOBAR_NO_LABELS"));
         if (item)
             {
             item->Check(true);

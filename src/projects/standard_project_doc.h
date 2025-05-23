@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __PROJECT_DOC_H__
-#define __PROJECT_DOC_H__
+#ifndef PROJECT_DOC_H
+#define PROJECT_DOC_H
 
 #include "../app/readability_app.h"
 #include "base_project_doc.h"
@@ -354,4 +354,4 @@ class ProjectDoc final : public BaseProjectDoc
     wxDECLARE_DYNAMIC_CLASS(ProjectDoc);
     };
 
-#endif //__PROJECT_DOC_H__
+#endif // PROJECT_DOC_H

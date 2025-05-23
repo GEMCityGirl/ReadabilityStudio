@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __PROPGRID_WORDLIST_H__
-#define __PROPGRID_WORDLIST_H__
+#ifndef PROPGRID_WORDLIST_H
+#define PROPGRID_WORDLIST_H
 
 #include "../dialogs/edit_word_list_dlg.h"
 #include <wx/propgrid/advprops.h>
@@ -53,4 +53,4 @@ class WordListProperty final : public wxLongStringProperty
     bool m_phraseMode{ false };
     };
 
-#endif //__PROPGRID_WORDLIST_H__
+#endif // PROPGRID_WORDLIST_H

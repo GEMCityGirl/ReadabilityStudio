@@ -497,7 +497,7 @@ void ToolsOptionsDlg::OnHighlightColorSelect([[maybe_unused]] wxCommandEvent& ev
         return;
         }
     wxColourData data;
-    wxGetApp().GetAppOptions().CopyCustomColorsToColourData(data);
+    wxGetApp().GetAppOptions().CopyCustomColorsToColorData(data);
     data.SetChooseFull(true);
     data.SetColour(m_highlightedColor);
 
@@ -519,7 +519,7 @@ void ToolsOptionsDlg::OnExcludedHighlightColorSelect([[maybe_unused]] wxCommandE
         return;
         }
     wxColourData data;
-    wxGetApp().GetAppOptions().CopyCustomColorsToColourData(data);
+    wxGetApp().GetAppOptions().CopyCustomColorsToColorData(data);
     data.SetChooseFull(true);
     data.SetColour(m_excludedTextHighlightColor);
 
@@ -541,7 +541,7 @@ void ToolsOptionsDlg::OnDupWordHighlightColorSelect([[maybe_unused]] wxCommandEv
         return;
         }
     wxColourData data;
-    wxGetApp().GetAppOptions().CopyCustomColorsToColourData(data);
+    wxGetApp().GetAppOptions().CopyCustomColorsToColorData(data);
     data.SetChooseFull(true);
     data.SetColour(m_duplicateWordHighlightColor);
 
@@ -563,7 +563,7 @@ void ToolsOptionsDlg::OnWordyPhraseHighlightColorSelect([[maybe_unused]] wxComma
         return;
         }
     wxColourData data;
-    wxGetApp().GetAppOptions().CopyCustomColorsToColourData(data);
+    wxGetApp().GetAppOptions().CopyCustomColorsToColorData(data);
     data.SetChooseFull(true);
     data.SetColour(m_wordyPhraseHighlightColor);
 
@@ -586,7 +586,7 @@ void ToolsOptionsDlg::OnDolchConjunctionsHighlightColorSelect(
         return;
         }
     wxColourData data;
-    wxGetApp().GetAppOptions().CopyCustomColorsToColourData(data);
+    wxGetApp().GetAppOptions().CopyCustomColorsToColorData(data);
     data.SetChooseFull(true);
     data.SetColour(m_dolchConjunctionsColor);
 
@@ -609,7 +609,7 @@ void ToolsOptionsDlg::OnDolchPrepositionsHighlightColorSelect(
         return;
         }
     wxColourData data;
-    wxGetApp().GetAppOptions().CopyCustomColorsToColourData(data);
+    wxGetApp().GetAppOptions().CopyCustomColorsToColorData(data);
     data.SetChooseFull(true);
     data.SetColour(m_dolchPrepositionsColor);
 
@@ -631,7 +631,7 @@ void ToolsOptionsDlg::OnDolchPronounsHighlightColorSelect([[maybe_unused]] wxCom
         return;
         }
     wxColourData data;
-    wxGetApp().GetAppOptions().CopyCustomColorsToColourData(data);
+    wxGetApp().GetAppOptions().CopyCustomColorsToColorData(data);
     data.SetChooseFull(true);
     data.SetColour(m_dolchPronounsColor);
 
@@ -653,7 +653,7 @@ void ToolsOptionsDlg::OnDolchAdverbsHighlightColorSelect([[maybe_unused]] wxComm
         return;
         }
     wxColourData data;
-    wxGetApp().GetAppOptions().CopyCustomColorsToColourData(data);
+    wxGetApp().GetAppOptions().CopyCustomColorsToColorData(data);
     data.SetChooseFull(true);
     data.SetColour(m_dolchAdverbsColor);
 
@@ -673,7 +673,7 @@ void ToolsOptionsDlg::OnDolchHighlightColorSelect(wxCommandEvent& event)
     if (event.GetId() == ID_DOLCH_ADJECTIVES_COLOR_BUTTON)
         {
         wxColourData data;
-        wxGetApp().GetAppOptions().CopyCustomColorsToColourData(data);
+        wxGetApp().GetAppOptions().CopyCustomColorsToColorData(data);
         data.SetChooseFull(true);
         data.SetColour(m_dolchAdjectivesColor);
 
@@ -689,7 +689,7 @@ void ToolsOptionsDlg::OnDolchHighlightColorSelect(wxCommandEvent& event)
     else if (event.GetId() == ID_DOLCH_VERBS_COLOR_BUTTON)
         {
         wxColourData data;
-        wxGetApp().GetAppOptions().CopyCustomColorsToColourData(data);
+        wxGetApp().GetAppOptions().CopyCustomColorsToColorData(data);
         data.SetChooseFull(true);
         data.SetColour(m_dolchVerbsColor);
 
@@ -712,7 +712,7 @@ void ToolsOptionsDlg::OnDolchNounHighlightColorSelect([[maybe_unused]] wxCommand
         return;
         }
     wxColourData data;
-    wxGetApp().GetAppOptions().CopyCustomColorsToColourData(data);
+    wxGetApp().GetAppOptions().CopyCustomColorsToColorData(data);
     data.SetChooseFull(true);
     data.SetColour(m_dolchNounsColor);
 

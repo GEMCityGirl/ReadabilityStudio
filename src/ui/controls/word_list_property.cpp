@@ -15,10 +15,10 @@
 
 wxIMPLEMENT_DYNAMIC_CLASS(WordListProperty, wxLongStringProperty)
 
-//------------------------------------------------------
-WordListProperty::WordListProperty(const wxString& label /*= wxPG_LABEL*/,
-                                   const wxString& name /*= wxPG_LABEL*/,
-                                   const wxString& value /*= wxString{}*/)
+    //------------------------------------------------------
+    WordListProperty::WordListProperty(const wxString& label /*= wxPG_LABEL*/,
+                                       const wxString& name /*= wxPG_LABEL*/,
+                                       const wxString& value /*= wxString{}*/)
     : wxLongStringProperty(label, name, value), m_phraseMode(false)
     {
     }

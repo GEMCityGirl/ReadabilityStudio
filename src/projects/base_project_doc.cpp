@@ -759,7 +759,7 @@ void BaseProjectDoc::RemoveGlobalCustomReadabilityTest(const wxString& testName)
 
 //-------------------------------------------------------
 CustomReadabilityTest::string_type
-BaseProjectDoc::UpdateCustumReadabilityTest(const CustomReadabilityTest::string_type& testFormula)
+BaseProjectDoc::UpdateCustomReadabilityTest(const CustomReadabilityTest::string_type& testFormula)
     {
     CustomReadabilityTest::string_type formula = testFormula;
     string_util::replace_all_whole_word<decltype(formula)>(formula, L"WORDCOUNT()",
@@ -785,7 +785,7 @@ BaseProjectDoc::UpdateCustumReadabilityTest(const CustomReadabilityTest::string_
 //-------------------------------------------------------
 bool BaseProjectDoc::AddGlobalCustomReadabilityTest(CustomReadabilityTest& customTest)
     {
-    customTest.set_formula(UpdateCustumReadabilityTest(customTest.get_formula()));
+    customTest.set_formula(UpdateCustomReadabilityTest(customTest.get_formula()));
     // see if there is a test included already (globally) with the same name
     if (std::find(m_custom_word_tests.begin(), m_custom_word_tests.end(), customTest.get_name()) !=
         m_custom_word_tests.end())

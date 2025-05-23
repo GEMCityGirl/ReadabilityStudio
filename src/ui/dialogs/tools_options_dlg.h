@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __TOOLS_OPTIONS_DIALOG_H__
-#define __TOOLS_OPTIONS_DIALOG_H__
+#ifndef TOOLS_OPTIONS_DIALOG_H
+#define TOOLS_OPTIONS_DIALOG_H
 
 #include "../../Wisteria-Dataviz/src/base/image.h"
 #include "../../Wisteria-Dataviz/src/ui/controls/sidebarbook.h"
@@ -1068,4 +1068,4 @@ class ToolsOptionsDlg final : public wxDialog
     wxDECLARE_CLASS(ToolsOptionsDlg);
     };
 
-#endif //__TOOLS_OPTIONS_DIALOG_H__
+#endif // TOOLS_OPTIONS_DIALOG_H

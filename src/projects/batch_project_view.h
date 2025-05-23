@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __BATCH_PROJECT_VIEW_H__
-#define __BATCH_PROJECT_VIEW_H__
+#ifndef BATCH_PROJECT_VIEW_H
+#define BATCH_PROJECT_VIEW_H
 
 #include "../Wisteria-Dataviz/src/graphs/crawfordgraph.h"
 #include "../Wisteria-Dataviz/src/graphs/fleschchart.h"
@@ -478,4 +478,4 @@ class BatchProjectView final : public BaseProjectView
     wxDECLARE_DYNAMIC_CLASS(BatchProjectView);
     };
 
-#endif //__BATCH_PROJECT_VIEW_H__
+#endif // BATCH_PROJECT_VIEW_H

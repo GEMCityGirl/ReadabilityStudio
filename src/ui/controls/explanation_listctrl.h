@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __EXPLANATION_LISTCTRL_H__
-#define __EXPLANATION_LISTCTRL_H__
+#ifndef EXPLANATION_LISTCTRL_H
+#define EXPLANATION_LISTCTRL_H
 
 #include "../../Wisteria-Dataviz/src/base/canvas.h"
 #include "../../Wisteria-Dataviz/src/ui/controls/htmltablewin.h"
@@ -259,4 +259,4 @@ class ExplanationListCtrl final : public wxSplitterWindow
     wxDECLARE_DYNAMIC_CLASS(ExplanationListCtrl);
     };
 
-#endif //__EXPLANATION_LISTCTRL_H__
+#endif // EXPLANATION_LISTCTRL_H

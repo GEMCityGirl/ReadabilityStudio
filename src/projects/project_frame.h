@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __PROJECT_FRAME_H__
-#define __PROJECT_FRAME_H__
+#ifndef PROJECT_FRAME_H
+#define PROJECT_FRAME_H
 
 #include <wx/aui/aui.h>
 #include <wx/colordlg.h>
@@ -114,7 +114,7 @@ class ProjectDocChildFrame : public wxDocChildFrame
 
     void OnHistoBarSelectCommonImage([[maybe_unused]] wxCommandEvent& event);
 
-    void OnEditGraphRaygorStyleDrowdown(wxRibbonButtonBarEvent& event)
+    void OnEditGraphRaygorStyleDropdown(wxRibbonButtonBarEvent& event)
         {
         event.PopupMenu(&m_raygorStyleMenu);
         }
@@ -153,7 +153,7 @@ class ProjectDocChildFrame : public wxDocChildFrame
 
     void OnHistoBarsLabelsDropdown(wxRibbonButtonBarEvent& event)
         {
-        event.PopupMenu(&m_histobarLabelsMenu);
+        event.PopupMenu(&m_histoBarLabelsMenu);
         }
 
     void OnZoomButtonDropdown(wxRibbonButtonBarEvent& event) { event.PopupMenu(&m_zoomMenu); }
@@ -301,7 +301,7 @@ class ProjectDocChildFrame : public wxDocChildFrame
     wxMenu m_fileOpenMenu;
     wxMenu m_exportMenu;
     wxMenu m_longSentencesMenu;
-    wxMenu m_histobarLabelsMenu;
+    wxMenu m_histoBarLabelsMenu;
     wxMenu m_numeralSyllabicationMenu;
     wxMenu m_textExclusionMenu;
     wxMenu m_exclusionTagsMenu;
@@ -329,4 +329,4 @@ class ProjectDocChildFrame : public wxDocChildFrame
     wxMenu m_raygorStyleMenu;
     };
 
-#endif //__PROJECT_FRAME_H__
+#endif // PROJECT_FRAME_H

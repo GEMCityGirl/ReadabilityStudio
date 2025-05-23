@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __BASE_PROJECT_VIEW_H__
-#define __BASE_PROJECT_VIEW_H__
+#ifndef BASE_PROJECT_VIEW_H
+#define BASE_PROJECT_VIEW_H
 
 #include "../Wisteria-Dataviz/src/ui/controls/formattedtextctrl.h"
 #include "../Wisteria-Dataviz/src/ui/controls/infobarex.h"
@@ -746,4 +746,4 @@ class BaseProjectView : public wxView
     wxDECLARE_DYNAMIC_CLASS(BaseProjectView);
     };
 
-#endif //__BASE_PROJECT_VIEW_H__
+#endif // BASE_PROJECT_VIEW_H

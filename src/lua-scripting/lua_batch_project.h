@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __LUA_BATCH_PROJECTS_H__
-#define __LUA_BATCH_PROJECTS_H__
+#ifndef LUA_BATCH_PROJECTS_H
+#define LUA_BATCH_PROJECTS_H
 
 #include "lua_debug.h"
 #include "luna.h"
@@ -309,4 +309,4 @@ namespace LuaScripting
 // NOLINTEND(readability-implicit-bool-conversion)
 // NOLINTEND(readability-identifier-length)
 
-#endif //__LUA_BATCH_PROJECTS_H__
+#endif // LUA_BATCH_PROJECTS_H
