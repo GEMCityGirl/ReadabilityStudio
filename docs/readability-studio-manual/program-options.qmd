@@ -309,10 +309,10 @@ The program will stop excluding text after a *References* header if it detects a
 **Also exclude Internet and file addresses**: Select this option to ignore URLs (i.e., Internet addresses) and filepaths. Note that this applies to words inside of complete sentences, not just incomplete. For example:
 
 ::: {.fancyquotes data-latex=''}
-{{< var PROGRAM_NAME >}} is available from *www.oleandersoftware.com*.
+{{< var PROGRAM_NAME >}} is available from *www.readabilitystudio.com*.
 :::
 
-If this option is selected, then *www.oleandersoftware.com* will be excluded from every analysis. This includes sentence-length, word-length, and syllable-count calculations.
+If this option is selected, then *www.readabilitystudio.com* will be excluded from every analysis. This includes sentence-length, word-length, and syllable-count calculations.
 
 **Also exclude numerals**\index{numerals!excluding}: Select this option to ignore all numbers. For example:
 
