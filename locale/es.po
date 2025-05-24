@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Readability Studio\n"
-"POT-Creation-Date: 2025-05-23 06:51-0400\n"
-"PO-Revision-Date: 2025-05-23 06:54-0400\n"
+"POT-Creation-Date: 2025-05-24 06:24-0400\n"
+"PO-Revision-Date: 2025-05-24 06:36-0400\n"
 "Last-Translator: Blake Madden\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -859,6 +859,7 @@ msgstr "Scripts Lua (*.lua)|*.lua"
 #: Wisteria-Dataviz/src/ui/controls/codeeditor.cpp:176
 msgid "C++ Source Files (*.cpp;*.c;*.h;*.hpp)|*.cpp;*.c;*.h;*.hpp"
 msgstr ""
+"Archivos de código fuente de C++ (*.cpp;*.c;*.h;*.hpp)|*.cpp;*.c;*.h;*.hpp"
 
 #: Wisteria-Dataviz/src/ui/controls/codeeditor.cpp:182
 msgid "HTML Files (*.html;*.htm)|*.html;*.htm"
@@ -1706,7 +1707,7 @@ msgstr "Detallado"
 
 #: Wisteria-Dataviz/src/ui/dialogs/listdlg.cpp:329
 msgid "Toggles whether the logging system includes more detailed information."
-msgstr ""
+msgstr "Alterna si el sistema de registro incluye información más detallada."
 
 #: Wisteria-Dataviz/src/ui/dialogs/listdlg.cpp:397
 msgid "Don't show this again"
@@ -1867,21 +1868,19 @@ msgid "%d hours ago"
 msgstr "%d horas atrás"
 
 #: Wisteria-Dataviz/src/wxStartPage/startpage.cpp:604
-#, fuzzy, c-format
-#| msgid "Today at "
+#, c-format
 msgid "Today at %s"
-msgstr "Hoy en "
+msgstr "Hoy a las %s"
 
 #: Wisteria-Dataviz/src/wxStartPage/startpage.cpp:606
-#, fuzzy, c-format
-#| msgid "Yesterday at "
+#, c-format
 msgid "Yesterday at %s"
-msgstr "Ayer en "
+msgstr "Ayer a las %s"
 
 #. TRANSLATORS: DAY at TIME OF DAY
 #. TRANSLATORS: placeholders are date and time
 #: Wisteria-Dataviz/src/wxStartPage/startpage.cpp:610
-#: results-format/project_report_format.cpp:3045
+#: results-format/project_report_format.cpp:3047
 #, c-format
 msgid "%s at %s"
 msgstr "%s en %s"
@@ -2285,7 +2284,7 @@ msgstr "Exportar Todo..."
 
 #: app/readability_app.cpp:1726 app/readability_app.cpp:1762
 msgid "Export Filtered Document..."
-msgstr ""
+msgstr "Exportar Documento Filtrado..."
 
 #: app/readability_app.cpp:1751
 msgid "Export Scores && Statistics..."
@@ -2813,7 +2812,7 @@ msgstr ""
 
 #: app/readability_app.cpp:2718 app/readability_app.cpp:2905
 msgid "Download and analyze multiple webpages."
-msgstr ""
+msgstr "Descarga y analiza varias páginas web."
 
 #: app/readability_app.cpp:2720 app/readability_app.cpp:2907
 msgid "Chapter Split"
@@ -3105,7 +3104,7 @@ msgstr "Ayuda Electrónica"
 
 #: app/readability_app.cpp:2938
 msgid "Read the documentation in a browser."
-msgstr ""
+msgstr "Lea la documentación en un navegador."
 
 #: app/readability_app.cpp:2939
 msgid "Manual"
@@ -3121,7 +3120,7 @@ msgstr "Referencia de Pruebas"
 
 #: app/readability_app.cpp:2943
 msgid "Read the readability tests reference."
-msgstr ""
+msgstr "Lea la referencia de las pruebas de legibilidad."
 
 #: app/readability_app.cpp:2944 ui/dialogs/custom_test_dlg.cpp:817
 msgid "Shortcuts"
@@ -3129,7 +3128,7 @@ msgstr "Accesos Rápidos"
 
 #: app/readability_app.cpp:2946
 msgid "Read the keyboard shortcuts cheatsheet."
-msgstr ""
+msgstr "Lee la hoja de trucos de atajos de teclado."
 
 #: app/readability_app.cpp:2947
 msgid "Release Notes"
@@ -3145,7 +3144,7 @@ msgstr "Manual de Programación"
 
 #: app/readability_app.cpp:2952
 msgid "Read the Lua programming manual."
-msgstr ""
+msgstr "Lea el manual de programación de Lua."
 
 #: app/readability_app.cpp:2953
 msgid "System Admin Manual"
@@ -3153,7 +3152,7 @@ msgstr "Manual del Administrador del Sistema"
 
 #: app/readability_app.cpp:2955
 msgid "Read the system administrator manual."
-msgstr ""
+msgstr "Lea el manual del administrador del sistema."
 
 #: app/readability_app.cpp:2956
 msgid "Example Documents"
@@ -3831,6 +3830,8 @@ msgid ""
 "This document is embedded in the project.\n"
 "Do you wish to link to the original document instead?"
 msgstr ""
+"Este documento está incrustado en el proyecto.\n"
+"¿Desea enlazar con el documento original?"
 
 #: app/readability_app_options.cpp:125
 msgid "Link Document"
@@ -4259,10 +4260,9 @@ msgid "Script Error"
 msgstr "Error de Guion"
 
 #: lua-scripting/lua_application.cpp:616 lua-scripting/lua_application.cpp:644
-#, fuzzy, c-format
-#| msgid "Invalid file."
+#, c-format
 msgid "%s: invalid image file path."
-msgstr "Archivo no válido."
+msgstr "%s: ruta del archivo de imagen no válida."
 
 #: lua-scripting/lua_application.cpp:652
 #, c-format
@@ -5197,6 +5197,8 @@ msgstr "Se trata de una prueba personalizada que utiliza la siguiente fórmula:"
 #: projects/base_project.cpp:8231
 msgid "This test uses the following criteria to determine word familiarity:"
 msgstr ""
+"Esta prueba utiliza los siguientes criterios para determinar la familiaridad "
+"de las palabras:"
 
 #: projects/base_project.cpp:8236 projects/base_project.cpp:8243
 #: projects/base_project.cpp:8250
@@ -5297,6 +5299,9 @@ msgid ""
 "This project or settings file contains a custom test named \"%s\" that "
 "conflicts with an existing test of the same name."
 msgstr ""
+"Este archivo de proyecto o configuración contiene una prueba personalizada "
+"denominada \"%s\" que entra en conflicto con una prueba existente del mismo "
+"nombre."
 
 #: projects/base_project_doc.cpp:814
 #, c-format
@@ -5765,7 +5770,7 @@ msgid "Graphs"
 msgstr "Gráficos"
 
 #: projects/base_project_view.h:201
-#: results-format/project_report_format.cpp:2647
+#: results-format/project_report_format.cpp:2649
 #: ui/dialogs/tools_options_dlg.h:586
 msgid "Grammar"
 msgstr "Gramática"
@@ -5840,14 +5845,12 @@ msgid "Syllable Counts"
 msgstr "Recuentos de sílabas"
 
 #: projects/base_project_view.h:310
-#, fuzzy
 msgid "Lengths (Spread)"
-msgstr "Rango de Longitud de Oraciones"
+msgstr "Longitudes (Rango de Longitud)"
 
 #: projects/base_project_view.h:316
-#, fuzzy
 msgid "Lengths (Distribution)"
-msgstr "Distribución de Longitud de Oraciones"
+msgstr "Longitudes (Distribución)"
 
 #: projects/base_project_view.h:322
 msgid "Lengths (Density)"
@@ -5865,13 +5868,12 @@ msgstr "Palabras de Dolch"
 
 #: projects/base_project_view.h:341 projects/batch_project_doc.cpp:7465
 #: projects/standard_project_doc.cpp:3683
-#, fuzzy
 msgid "Non-Dolch Words"
-msgstr "Total de Palabras que no son Dolch"
+msgstr "Palabras que no son Dolch"
 
 #: projects/base_project_view.h:347
 msgid "Unused Dolch Words"
-msgstr ""
+msgstr "Palabras Dolch Sin Usar"
 
 #: projects/base_project_view.h:353
 #: results-format/project_report_format.cpp:236
@@ -6299,22 +6301,22 @@ msgid "Number of unique Dale-Chall unfamiliar words"
 msgstr ""
 
 #: projects/batch_project_doc.cpp:1229 projects/batch_project_doc.cpp:1514
-#: results-format/project_report_format.cpp:2391
+#: results-format/project_report_format.cpp:2393
 msgid "Number of Harris-Jacobson unfamiliar words"
 msgstr ""
 
 #: projects/batch_project_doc.cpp:1231 projects/batch_project_doc.cpp:1518
-#: results-format/project_report_format.cpp:2420
+#: results-format/project_report_format.cpp:2422
 msgid "Number of unique Harris-Jacobson unfamiliar words"
 msgstr ""
 
 #: projects/batch_project_doc.cpp:1235 projects/batch_project_doc.cpp:1525
-#: results-format/project_report_format.cpp:2471
+#: results-format/project_report_format.cpp:2473
 msgid "Number of Spache unfamiliar words"
 msgstr ""
 
 #: projects/batch_project_doc.cpp:1236 projects/batch_project_doc.cpp:1529
-#: results-format/project_report_format.cpp:2499
+#: results-format/project_report_format.cpp:2501
 msgid "Number of unique Spache unfamiliar words"
 msgstr ""
 
@@ -6323,34 +6325,34 @@ msgid "Number of McAlpine EFLAW miniwords"
 msgstr ""
 
 #: projects/batch_project_doc.cpp:1242 projects/batch_project_doc.cpp:1539
-#: results-format/project_report_format.cpp:2557
+#: results-format/project_report_format.cpp:2559
 msgid "Number of unique McAlpine EFLAW miniwords words"
 msgstr ""
 
 #: projects/batch_project_doc.cpp:1247 projects/batch_project_doc.cpp:1546
-#: results-format/project_report_format.cpp:2603
+#: results-format/project_report_format.cpp:2605
 #, c-format
 msgid "Number of %s unfamiliar words"
 msgstr "Número de palabras desconocidas %s"
 
 #: projects/batch_project_doc.cpp:1249 projects/batch_project_doc.cpp:1551
-#: results-format/project_report_format.cpp:2633
+#: results-format/project_report_format.cpp:2635
 #, c-format
 msgid "Number of unique %s unfamiliar words"
 msgstr "Número de palabras únicas %s desconocidas"
 
 #: projects/batch_project_doc.cpp:1255 projects/batch_project_doc.cpp:1559
-#: results-format/project_report_format.cpp:2670
+#: results-format/project_report_format.cpp:2672
 msgid "Number of possible misspellings"
 msgstr "Número de posibles faltas de ortografía"
 
 #: projects/batch_project_doc.cpp:1256 projects/batch_project_doc.cpp:1562
-#: results-format/project_report_format.cpp:2699
+#: results-format/project_report_format.cpp:2701
 msgid "Number of repeated words"
 msgstr "Número de palabras repetidas"
 
 #: projects/batch_project_doc.cpp:1257 projects/batch_project_doc.cpp:1564
-#: results-format/project_report_format.cpp:2731
+#: results-format/project_report_format.cpp:2733
 msgid "Number of article mismatches"
 msgstr "Número de discrepancias de artículos"
 
@@ -6359,37 +6361,37 @@ msgid "Number of errors & misspellings"
 msgstr "Número de errores y faltas de ortografía"
 
 #: projects/batch_project_doc.cpp:1259 projects/batch_project_doc.cpp:1569
-#: results-format/project_report_format.cpp:2792
+#: results-format/project_report_format.cpp:2794
 msgid "Number of redundant phrases"
 msgstr "Número de frases redundantes"
 
 #: projects/batch_project_doc.cpp:1260 projects/batch_project_doc.cpp:1573
-#: results-format/project_report_format.cpp:2823
+#: results-format/project_report_format.cpp:2825
 msgid "Number of overused words (x sentence)"
 msgstr "Número de palabras usadas en exceso (x oración)"
 
 #: projects/batch_project_doc.cpp:1261 projects/batch_project_doc.cpp:1576
-#: results-format/project_report_format.cpp:2853
+#: results-format/project_report_format.cpp:2855
 msgid "Number of wordy items"
 msgstr "Número de elementos con muchas palabras"
 
 #: projects/batch_project_doc.cpp:1262 projects/batch_project_doc.cpp:1578
-#: results-format/project_report_format.cpp:2883
+#: results-format/project_report_format.cpp:2885
 msgid "Number of clichés"
 msgstr "Número de clichés"
 
 #: projects/batch_project_doc.cpp:1263 projects/batch_project_doc.cpp:1580
-#: results-format/project_report_format.cpp:2913
+#: results-format/project_report_format.cpp:2915
 msgid "Number of passive voices"
 msgstr "Número de voces pasivas"
 
 #: projects/batch_project_doc.cpp:1264 projects/batch_project_doc.cpp:1583
-#: results-format/project_report_format.cpp:2945
+#: results-format/project_report_format.cpp:2947
 msgid "Number of sentences that begin with conjunctions"
 msgstr "Número de oraciones que comienzan con conjunciones"
 
 #: projects/batch_project_doc.cpp:1266 projects/batch_project_doc.cpp:1587
-#: results-format/project_report_format.cpp:2979
+#: results-format/project_report_format.cpp:2981
 msgid "Number of Sentences that begin with lowercased words"
 msgstr "Número de oraciones que comienzan con palabras en minúsculas"
 
@@ -6577,6 +6579,8 @@ msgstr "PhD - doctorado"
 #: projects/standard_project_doc.cpp:6394
 msgid "File appears to be open by another application. Cannot save project."
 msgstr ""
+"El archivo parece estar abierto por otra aplicación. No se puede guardar el "
+"proyecto."
 
 #: projects/batch_project_doc.cpp:6064 projects/batch_project_doc.cpp:6078
 #: projects/batch_project_doc.cpp:6090 projects/standard_project_doc.cpp:6368
@@ -6609,6 +6613,8 @@ msgid ""
 "File appears to be open by another application. Project file will be opened "
 "as read only."
 msgstr ""
+"El archivo parece estar abierto por otra aplicación. El archivo del proyecto "
+"se abrirá como de solo lectura."
 
 #: projects/batch_project_doc.cpp:6213 projects/batch_project_doc.cpp:6218
 #: projects/batch_project_doc.cpp:6229 projects/batch_project_doc.cpp:6235
@@ -6844,9 +6850,9 @@ msgid "Verbs"
 msgstr "Verbos"
 
 #: projects/batch_project_doc.cpp:7408
-#, fuzzy, no-c-format
-msgid "% of Noun Words"
-msgstr "Todas las Palabras"
+#, no-c-format
+msgid "% of Nouns"
+msgstr "% of Sustantivos"
 
 #: projects/batch_project_doc.cpp:7411 projects/standard_project_doc.cpp:3434
 #: projects/standard_project_doc.cpp:3606
@@ -6937,7 +6943,7 @@ msgstr "Exportando"
 
 #: projects/batch_project_view.cpp:359
 msgid "Exporting filtered documents..."
-msgstr ""
+msgstr "Exportación de documentos filtrados..."
 
 #: projects/batch_project_view.cpp:399 projects/batch_project_view.cpp:2590
 #: projects/batch_project_view.cpp:2627 projects/batch_project_view.cpp:2635
@@ -7111,8 +7117,8 @@ msgstr "Tamaño de Texto"
 #. TRANSLATORS: %s is number of kilobytes in a file
 #. TRANSLATORS: %s is a file size
 #: projects/batch_project_view.cpp:2541
-#: results-format/project_report_format.cpp:3057
-#: results-format/project_report_format.cpp:3073
+#: results-format/project_report_format.cpp:3059
+#: results-format/project_report_format.cpp:3075
 #, c-format
 msgid "%s Kbs."
 msgstr "%s Kbs."
@@ -7186,7 +7192,7 @@ msgstr ""
 
 #: projects/batch_project_view.cpp:2833 projects/standard_project_view.cpp:429
 msgid "Export Filtered Document"
-msgstr ""
+msgstr "Exportar Documento Filtrado"
 
 #: projects/batch_project_view.cpp:2835 projects/standard_project_view.cpp:430
 msgid "Text Files (*.txt)|*.txt"
@@ -7395,6 +7401,8 @@ msgid ""
 "External document could not be located.\n"
 "Unable to create project."
 msgstr ""
+"No se ha podido localizar el documento externo.\n"
+"No se puede crear el proyecto."
 
 #: projects/standard_project_doc.cpp:476
 msgid ""
@@ -7755,7 +7763,7 @@ msgstr "Errores (palabras repetidas)"
 
 #: projects/standard_project_doc.cpp:5074
 msgid "Style (Wordy items, redundant phrases, passive voice, and clichés)"
-msgstr ""
+msgstr "Estilo (elementos prolijos, frases redundantes, voz pasiva y clichés)"
 
 #: projects/standard_project_doc.cpp:5087
 msgid "Dolch conjunctions"
@@ -7786,9 +7794,8 @@ msgid "Dolch nouns"
 msgstr "Sustantivos de Dolch"
 
 #: projects/standard_project_doc.cpp:5171
-#, fuzzy
 msgid "Non-Dolch words"
-msgstr "Total de Palabras que no son Dolch"
+msgstr "Palabras que no son Dolch"
 
 #: projects/standard_project_doc.cpp:5815
 #, c-format
@@ -7834,6 +7841,8 @@ msgstr "Informe de Dale-Chall (Desconocido)"
 #: projects/standard_project_doc.cpp:6367
 msgid "Project appears to be open by another application. Cannot save project."
 msgstr ""
+"El proyecto parece estar abierto por otra aplicación. No se puede guardar el "
+"proyecto."
 
 #: projects/standard_project_doc.cpp:6536
 #: projects/standard_project_doc.cpp:6979
@@ -7953,7 +7962,7 @@ msgstr "Seleccione un elemento para excluir."
 #: projects/standard_project_view.cpp:1399
 msgid ""
 "This project is not currently excluding text. Do you wish to change this?"
-msgstr ""
+msgstr "Actualmente, este proyecto no excluye texto. ¿Desea cambiar esto?"
 
 #: projects/standard_project_view.cpp:1401
 msgid "Text Exclusion Method"
@@ -8285,10 +8294,10 @@ msgstr ""
 #: results-format/project_report_format.cpp:2129
 #: results-format/project_report_format.cpp:2195
 #: results-format/project_report_format.cpp:2285
-#: results-format/project_report_format.cpp:2379
-#: results-format/project_report_format.cpp:2459
-#: results-format/project_report_format.cpp:2516
-#: results-format/project_report_format.cpp:2591
+#: results-format/project_report_format.cpp:2381
+#: results-format/project_report_format.cpp:2461
+#: results-format/project_report_format.cpp:2518
+#: results-format/project_report_format.cpp:2593
 #, c-format
 msgid "(%s%% of all words)"
 msgstr "(%s%% de todas las palabras)"
@@ -8317,10 +8326,10 @@ msgstr "Número de palabras Dolch:"
 #: results-format/project_report_format.cpp:2153
 #: results-format/project_report_format.cpp:2216
 #: results-format/project_report_format.cpp:2305
-#: results-format/project_report_format.cpp:2400
-#: results-format/project_report_format.cpp:2479
-#: results-format/project_report_format.cpp:2537
-#: results-format/project_report_format.cpp:2612
+#: results-format/project_report_format.cpp:2402
+#: results-format/project_report_format.cpp:2481
+#: results-format/project_report_format.cpp:2539
+#: results-format/project_report_format.cpp:2614
 #, c-format
 msgid "%s%% of all words"
 msgstr "%s%% de todas las palabras"
@@ -8531,12 +8540,12 @@ msgid "Number of exclamatory sentences:"
 msgstr "Número de oraciones exclamativas:"
 
 #: results-format/project_report_format.cpp:1679
-#: results-format/project_report_format.cpp:3142
+#: results-format/project_report_format.cpp:3144
 msgid "A large percentage of sentences are overly long."
 msgstr ""
 
 #: results-format/project_report_format.cpp:1684
-#: results-format/project_report_format.cpp:3148
+#: results-format/project_report_format.cpp:3150
 msgid ""
 "A large percentage of sentences are exclamatory, giving the document an "
 "overall angry/excited tone. Is this intended?"
@@ -8590,12 +8599,12 @@ msgid ""
 msgstr ""
 
 #: results-format/project_report_format.cpp:1851
-#: results-format/project_report_format.cpp:3155
+#: results-format/project_report_format.cpp:3157
 msgid "The average word length is high."
 msgstr "La longitud media de las palabras es alta."
 
 #: results-format/project_report_format.cpp:1856
-#: results-format/project_report_format.cpp:3161
+#: results-format/project_report_format.cpp:3163
 msgid "The average word complexity (syllable count) is high."
 msgstr "La complejidad media de las palabras (número de sílabas) es alta."
 
@@ -8704,7 +8713,8 @@ msgstr "Número de palabras desconocidas de Dale-Chall:"
 msgid "Number of unique Dale-Chall unfamiliar words:"
 msgstr ""
 
-#: results-format/project_report_format.cpp:2336
+#. TRANSLATORS: "New Dale Chall" is a test name that should not be translated.
+#: results-format/project_report_format.cpp:2337
 msgid ""
 "New Dale-Chall treats headers and sub-headers as full sentences and excludes "
 "all other incomplete sentences (regardless of your current analysis "
@@ -8712,17 +8722,20 @@ msgid ""
 "count and percentage."
 msgstr ""
 
-#: results-format/project_report_format.cpp:2345
+#. TRANSLATORS: "New Dale Chall" is a test name that should not be translated.
+#: results-format/project_report_format.cpp:2347
 msgid ""
 "Stocker's Catholic supplement is being included with the standard New Dale-"
 "Chall word list."
 msgstr ""
+"El suplemento católico de Stocker está siendo incluido en la lista estándar "
+"de palabras de New Dale-Chall."
 
-#: results-format/project_report_format.cpp:2363
+#: results-format/project_report_format.cpp:2365
 msgid "Harris-Jacobson Unfamiliar Words"
 msgstr "Harris-Jacobson Palabras Desconocidas"
 
-#: results-format/project_report_format.cpp:2366
+#: results-format/project_report_format.cpp:2368
 msgid ""
 "Number of <a href=\"#HarrisJacobsonWords\">Harris-Jacobson</a> unfamiliar "
 "words:"
@@ -8730,15 +8743,15 @@ msgstr ""
 "Número de palabras desconocidas de <a href=\"#HarrisJacobsonWords\">Harris-"
 "Jacobson</a> :"
 
-#: results-format/project_report_format.cpp:2371
+#: results-format/project_report_format.cpp:2373
 msgid "Number of Harris-Jacobson unfamiliar words:"
 msgstr ""
 
-#: results-format/project_report_format.cpp:2411
+#: results-format/project_report_format.cpp:2413
 msgid "Number of unique Harris-Jacobson unfamiliar words:"
 msgstr ""
 
-#: results-format/project_report_format.cpp:2432
+#: results-format/project_report_format.cpp:2434
 msgid ""
 "Harris-Jacobson treats headers and sub-headers as full sentences and "
 "excludes all other incomplete sentences (regardless of your current analysis "
@@ -8747,145 +8760,145 @@ msgid ""
 "count and percentage."
 msgstr ""
 
-#: results-format/project_report_format.cpp:2444
+#: results-format/project_report_format.cpp:2446
 msgid "Spache Unfamiliar Words"
 msgstr "Palabras Desconocidas de Spache"
 
-#: results-format/project_report_format.cpp:2448
+#: results-format/project_report_format.cpp:2450
 msgid "Number of <a href=\"#SpacheWords\">Spache</a> unfamiliar words:"
 msgstr ""
 "Número de palabras desconocidas de <a href=\"#SpacheWords\">Spache</a> :"
 
-#: results-format/project_report_format.cpp:2452
+#: results-format/project_report_format.cpp:2454
 msgid "Number of Spache unfamiliar words:"
 msgstr ""
 
-#: results-format/project_report_format.cpp:2490
+#: results-format/project_report_format.cpp:2492
 msgid "Number of unique Spache unfamiliar words:"
 msgstr ""
 
-#: results-format/project_report_format.cpp:2510
+#: results-format/project_report_format.cpp:2512
 msgid "McAlpine EFLAW Miniwords"
 msgstr "McAlpine EFLAW Minipalabras"
 
-#: results-format/project_report_format.cpp:2512
+#: results-format/project_report_format.cpp:2514
 msgid ""
 "Number of McAlpine EFLAW miniwords (1-3 characters, except for numerals):"
 msgstr ""
 
-#: results-format/project_report_format.cpp:2529
+#: results-format/project_report_format.cpp:2531
 msgid ""
 "Number of McAlpine EFLAW miniwords (1-3 characters, except for numerals)"
 msgstr ""
 
-#: results-format/project_report_format.cpp:2548
+#: results-format/project_report_format.cpp:2550
 msgid "Number of unique McAlpine EFLAW miniwords words:"
 msgstr ""
 
-#: results-format/project_report_format.cpp:2585
+#: results-format/project_report_format.cpp:2587
 #, c-format
 msgid "Number of %s unfamiliar words:"
 msgstr "Número de %s palabras desconocidas:"
 
-#: results-format/project_report_format.cpp:2624
+#: results-format/project_report_format.cpp:2626
 #, c-format
 msgid "Number of unique %s unfamiliar words:"
 msgstr "Número de palabras únicas %s desconocidas:"
 
-#: results-format/project_report_format.cpp:2657
+#: results-format/project_report_format.cpp:2659
 msgid "Misspellings:"
 msgstr "Falta de Ortografía:"
 
-#: results-format/project_report_format.cpp:2686
+#: results-format/project_report_format.cpp:2688
 msgid "Repeated words:"
 msgstr "Palabras repetidas:"
 
-#: results-format/project_report_format.cpp:2718
+#: results-format/project_report_format.cpp:2720
 msgid "Article mismatches:"
 msgstr "Discrepancias de artículos:"
 
-#: results-format/project_report_format.cpp:2748
+#: results-format/project_report_format.cpp:2750
 msgid "Wording errors & misspellings:"
 msgstr "Errores de redacción y faltas de ortografía:"
 
-#: results-format/project_report_format.cpp:2762
+#: results-format/project_report_format.cpp:2764
 msgid "Number of wording errors & misspellings"
 msgstr "Número de errores de redacción y faltas de ortografía"
 
-#: results-format/project_report_format.cpp:2779
+#: results-format/project_report_format.cpp:2781
 msgid "Redundant phrases:"
 msgstr "Frases redundantes:"
 
-#: results-format/project_report_format.cpp:2809
+#: results-format/project_report_format.cpp:2811
 msgid "Overused words (x sentence):"
 msgstr "Palabras usadas en exceso (x oración)"
 
-#: results-format/project_report_format.cpp:2840
+#: results-format/project_report_format.cpp:2842
 msgid "Wordy items:"
 msgstr "Artículos prolijos:"
 
-#: results-format/project_report_format.cpp:2900
+#: results-format/project_report_format.cpp:2902
 msgid "Passive voice:"
 msgstr "Voz pasiva:"
 
-#: results-format/project_report_format.cpp:2991
+#: results-format/project_report_format.cpp:2993
 msgid ""
 "Grammar statistics do not directly factor into readability formulas; "
 "however, they can be useful suggestions for improving the document."
 msgstr ""
 
-#: results-format/project_report_format.cpp:2998
+#: results-format/project_report_format.cpp:3000
 msgid ""
 "* This project's sentence-deduction method is set to only accept capitalized "
 "sentences. Lowercased-sentence detection will be limited to sentences that "
 "begin new paragraphs."
 msgstr ""
 
-#: results-format/project_report_format.cpp:3012
+#: results-format/project_report_format.cpp:3014
 msgid "File Information"
 msgstr "Información del Fichero"
 
-#: results-format/project_report_format.cpp:3013
+#: results-format/project_report_format.cpp:3015
 msgid "Text Information"
 msgstr "Información Textual"
 
-#: results-format/project_report_format.cpp:3020
+#: results-format/project_report_format.cpp:3022
 msgid "Path:"
 msgstr "Ruta:"
 
-#: results-format/project_report_format.cpp:3050
+#: results-format/project_report_format.cpp:3052
 msgid "Additional document path:"
 msgstr "Ruta de documento adicional:"
 
-#: results-format/project_report_format.cpp:3055
+#: results-format/project_report_format.cpp:3057
 msgid "Text size:"
 msgstr "Tamaño del texto:"
 
-#: results-format/project_report_format.cpp:3063
+#: results-format/project_report_format.cpp:3065
 msgid "Last modified:"
 msgstr "Última modificación:"
 
-#: results-format/project_report_format.cpp:3069
+#: results-format/project_report_format.cpp:3071
 msgid "Text size"
 msgstr "Tamaño del texto"
 
-#: results-format/project_report_format.cpp:3080
+#: results-format/project_report_format.cpp:3082
 msgid "Last modified"
 msgstr "Última modificación"
 
-#: results-format/project_report_format.cpp:3094
+#: results-format/project_report_format.cpp:3096
 #: ui/dialogs/tools_options_dlg.h:592
 msgid "Notes"
 msgstr "Notas"
 
-#: results-format/project_report_format.cpp:3098
+#: results-format/project_report_format.cpp:3100
 msgid ""
 "Incomplete sentences have been excluded from the analysis. All words from "
 "incomplete sentences were ignored and not factored into these statistics "
 "(except for grammar information)."
 msgstr ""
 
-#: results-format/project_report_format.cpp:3106
+#: results-format/project_report_format.cpp:3108
 msgid ""
 "Lists and tables have been excluded from the analysis. All words from these "
 "sentences were ignored and not factored into these statistics (except for "
@@ -8895,84 +8908,84 @@ msgstr ""
 "estas oraciones se ignoraron y no se tuvieron en cuenta en estas "
 "estadísticas (excepto la información gramatical)."
 
-#: results-format/project_report_format.cpp:3115
+#: results-format/project_report_format.cpp:3117
 #, c-format
 msgid ""
 "An additional document (\"%s\") has been appended and included in the "
 "analysis."
 msgstr ""
 
-#: results-format/project_report_format.cpp:3124
+#: results-format/project_report_format.cpp:3126
 msgid ""
 "Averages are calculated using arithmetic mean (the summation of all values "
 "in a range divided by the number of items)."
 msgstr ""
 
-#: results-format/project_report_format.cpp:3132
+#: results-format/project_report_format.cpp:3134
 #, c-format
 msgid ""
 "This document only contains %s words. Most readability tests require a "
 "minimum of 300 words to be able to generate meaningful results."
 msgstr ""
 
-#: results-format/project_report_format.cpp:3198
+#: results-format/project_report_format.cpp:3200
 msgid "Difficulty Prediction Factors"
 msgstr ""
 
-#: results-format/project_report_format.cpp:3212
+#: results-format/project_report_format.cpp:3214
 msgid "Word complexity (2 or more syllables)"
 msgstr "Complejidad de las palabras (2 o más sílabas)"
 
-#: results-format/project_report_format.cpp:3216
+#: results-format/project_report_format.cpp:3218
 msgid "Word complexity (3 or more syllables)"
 msgstr "Complejidad de las palabras (3 o más sílabas)"
 
-#: results-format/project_report_format.cpp:3220
+#: results-format/project_report_format.cpp:3222
 msgid "Density of complex words"
 msgstr ""
 
-#: results-format/project_report_format.cpp:3224
+#: results-format/project_report_format.cpp:3226
 msgid "Word complexity (syllable counts)"
 msgstr "Complejidad de las palabras (recuento de sílabas)"
 
-#: results-format/project_report_format.cpp:3231
+#: results-format/project_report_format.cpp:3233
 msgid "Word length (3 or less characters)"
 msgstr "Longitud de la palabra (3 o menos caracteres)"
 
-#: results-format/project_report_format.cpp:3235
+#: results-format/project_report_format.cpp:3237
 msgid "Word length (6 or more characters)"
 msgstr "Longitud de la palabra (6 o más caracteres)"
 
-#: results-format/project_report_format.cpp:3239
+#: results-format/project_report_format.cpp:3241
 msgid "Word length (7 or more characters)"
 msgstr "Longitud de las palabras (7 o más caracteres)"
 
-#: results-format/project_report_format.cpp:3243
+#: results-format/project_report_format.cpp:3245
 msgid "Word length"
 msgstr "Longitud de la palabra"
 
-#: results-format/project_report_format.cpp:3250
-#: results-format/project_report_format.cpp:3256
-#: results-format/project_report_format.cpp:3261
+#: results-format/project_report_format.cpp:3252
+#: results-format/project_report_format.cpp:3258
+#: results-format/project_report_format.cpp:3263
 #, c-format
 msgid "Word familiarity (%s rules)"
 msgstr "Familiaridad con las palabras (reglas %s)"
 
-#: results-format/project_report_format.cpp:3266
+#: results-format/project_report_format.cpp:3268
 msgid "Word familiarity"
 msgstr "Familiaridad con las palabras"
 
-#: results-format/project_report_format.cpp:3270
+#: results-format/project_report_format.cpp:3272
 msgid "Sentence length"
 msgstr "Longitud de la oración"
 
 #. TRANSLATORS: %s is a warning emoji (icon)
-#: results-format/project_report_format.cpp:3299
+#: results-format/project_report_format.cpp:3301
 #, c-format
 msgid "%s Warning"
 msgstr "Alerta de %s"
 
-#: results-format/project_report_format.cpp:3315
+#: results-format/project_report_format.cpp:3317
 msgid "Note"
 msgstr "Nota"
 
@@ -9104,9 +9117,8 @@ msgstr "4º (Elementary)"
 #: results-format/readability_messages.cpp:503
 #: results-format/readability_messages.cpp:554
 #: results-format/readability_messages.cpp:656
-#, fuzzy
 msgid "Grade 5 (Elementary)"
-msgstr "5º (Elementary Level)"
+msgstr "Grado 5 (Primaria)"
 
 #: results-format/readability_messages.cpp:302
 #: results-format/readability_messages.cpp:353
@@ -9594,7 +9606,7 @@ msgstr "Estudiante de primer año de posgrado"
 
 #: results-format/readability_messages.cpp:976
 msgid "Post-graduate sophomore"
-msgstr ""
+msgstr "Segundo año de posgrado"
 
 #: results-format/readability_messages.cpp:979
 msgid "Doctorate"
@@ -10420,7 +10432,7 @@ msgstr "Fórmula:"
 
 #: ui/dialogs/custom_test_dlg.cpp:776
 msgid "Enter a formula, such as:"
-msgstr ""
+msgstr "Introduzca una fórmula, como la siguiente:"
 
 #: ui/dialogs/custom_test_dlg.cpp:790
 msgid "or a function representing a familiar-word test:"
@@ -10569,6 +10581,8 @@ msgid ""
 "The name \"%s\" is already in use as a statistic. Please enter a different "
 "name."
 msgstr ""
+"El nombre \"%s\" ya está en uso como estadística. Por favor, introduzca un "
+"nombre diferente."
 
 #: ui/dialogs/custom_test_dlg.cpp:1100
 msgid "Familiar word list file not found."
@@ -10649,7 +10663,7 @@ msgstr "Lista personalizada de palabras familiares"
 
 #: ui/dialogs/custom_test_dlg.h:650
 msgid "File containing familiar words"
-msgstr ""
+msgstr "Archivo que contiene palabras conocidas"
 
 #: ui/dialogs/custom_test_dlg.h:656
 msgid "Use stemming to search for similar words"
@@ -10662,10 +10676,9 @@ msgstr "Listas estándar de palabras conocidas"
 #. TRANSLATORS: %s is a test (person) name, like Spache.
 #: ui/dialogs/custom_test_dlg.h:669 ui/dialogs/custom_test_dlg.h:675
 #: ui/dialogs/custom_test_dlg.h:681
-#, fuzzy, c-format
-#| msgid "Include lists"
+#, c-format
 msgid "Include %s word list"
-msgstr "Incluir listas"
+msgstr "Incluir %s lista de palabras"
 
 #: ui/dialogs/custom_test_dlg.h:687
 msgid "Include Stocker's Catholic supplement"
@@ -10843,7 +10856,7 @@ msgstr "Guardar Lista de Palabras"
 
 #: ui/dialogs/edit_word_list_dlg.cpp:143 ui/dialogs/edit_word_list_dlg.cpp:246
 msgid "The list have been edited. Do you wish to save your changes?"
-msgstr ""
+msgstr "La lista ha sido editada. ¿Desea guardar sus cambios?"
 
 #: ui/dialogs/edit_word_list_dlg.cpp:176
 msgid "File containing list:"
@@ -11381,11 +11394,11 @@ msgstr "Seleccione Pruebas de Legibilidad"
 
 #: ui/dialogs/project_wizard_dlg.cpp:815
 msgid "Recommend tests based on &document type"
-msgstr ""
+msgstr "Recomendar pruebas en función del tipo de documento"
 
 #: ui/dialogs/project_wizard_dlg.cpp:816
 msgid "Recommend tests based on &industry or field"
-msgstr ""
+msgstr "Recomendar pruebas basadas en la industria o el campo"
 
 #: ui/dialogs/project_wizard_dlg.cpp:817
 msgid "&Manually select tests"
@@ -11557,6 +11570,8 @@ msgstr "Entrada no Válida"
 msgid ""
 "File not found. Please enter a valid file to be analyzed before continuing."
 msgstr ""
+"Archivo no encontrado. Por favor, introduzca un archivo válido para ser "
+"analizado antes de continuar."
 
 #: ui/dialogs/project_wizard_dlg.cpp:1477
 msgid "Please select files to be analyzed before continuing."
@@ -11868,7 +11883,7 @@ msgstr "Importar Archivo de Configuración"
 
 #: ui/dialogs/tools_options_dlg.cpp:3178
 msgid "Settings from the selected file will now be applied."
-msgstr ""
+msgstr "Ahora se aplicará la configuración del archivo seleccionado."
 
 #: ui/dialogs/tools_options_dlg.cpp:3189
 msgid "Do you wish to reset all of your program and user settings?"
@@ -12031,7 +12046,7 @@ msgstr "palabras"
 
 #: ui/dialogs/tools_options_dlg.cpp:3630
 msgid "Out&side sentence-length outlier range"
-msgstr ""
+msgstr "Fuera del rango de valores atípicos de la longitud de la oración"
 
 #: ui/dialogs/tools_options_dlg.cpp:3636
 msgid "Sentence/Paragraph Deduction:"
