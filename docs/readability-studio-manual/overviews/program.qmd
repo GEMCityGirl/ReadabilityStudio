@@ -27,7 +27,7 @@ These tools can assist you in improving your documents so that they meet their t
 Another important feature is that the program analyzes the entire content of your document (rather than samples).
 This will give you the most accurate results possible.
 
-Finally, the *Professional* edition of *Readability Studio* offers multiple-document analysis.
+Finally, *Readability Studio* offers multiple-document analysis.
 The program can analyze hundreds (or even thousands) of documents at once and aggregate their results.
 This includes all readability scores, difficult word and sentence statistics, and grammar issues.
 You can also drill down into a specific document to review it in deeper detail.
@@ -104,10 +104,6 @@ knitr::asis_output(glue_collapse(
 \end{table})")))
 ```
 
-::: {.notesection data-latex=""}
-Spanish and German tests are only available in the *Professional* edition, or if you have the *Language Pack* feature licensed.
-:::
-
 #### Helpful assistance for test selection {-}
 
 *Readability Studio* presents an intuitive interface for selecting readability tests.
@@ -119,7 +115,7 @@ Experts can manually select the tests that they want to perform, while those les
 Graphical tests such as Fry and Raygor are included, as well as a bar chart showing a breakdown of the difficult word categories.
 If you are reviewing Dolch Sight Words, then breakdown charts of your category usage and coverage are also included.
 
-Multiple-document graphs are also provided in the *Professional* edition of *Readability Studio*.
+Multiple-document graphs are also available.
 Here, [histograms](#sec-reviewing-batch-histograms) and [box plots](#sec-reviewing-batch-box-plots) show the distribution of a document collection's test scores.
 This is useful for summarizing the general reading level of a batch of documents. It is also useful for finding problematic documents in a batch (i.e., outliers).
 

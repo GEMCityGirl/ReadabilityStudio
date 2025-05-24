@@ -19,7 +19,6 @@ In this chapter, we will step through the process of creating a project, explain
 
 To begin, click the `r keys("New")` button on the **Home** tab to display the **New Project** dialog.
 This dialog enables you to create either a [standard](#sec-creating-standard-project) or [batch](#sec-creating-batch-project) project.
-Note that batch projects are only available with **Professional Edition**.
 
 **Standard project**: Select this option to create a standard project, which can analyze a file, a webpage, or typed text.
 
@@ -27,15 +26,12 @@ Note that batch projects are only available with **Professional Edition**.
 
 ## Standard Project {#sec-creating-standard-project}
 
-To determine a document's readability you will need to create a new project. First, click the `r keys("New")` button on the **Home** tab to open the **New Project** wizard.
-(If you are using the *Professional* edition, select **Standard Project** and click `r keys("OK")`).
+To determine a document's readability you will need to create a new project.
+First, click the `r keys("New")` button on the **Home** tab to open the **New Project** wizard.
+Then select **Standard Project** and click `r keys("OK")`).
 On the first page of the wizard, the options for specifying the document and its language will be shown:
 
 ![](images/wizard1.png)
-
-::: {.notesection data-latex=""}
-The language option is only available in the *Language Pack* and *Professional* editions of *Readability Studio*.
-:::
 
 The language option will control how the document is analyzed (e.g., syllable counting). This will also affect which tests, word lists, and grammar features will be available.
 For example, if we select **Spanish**, then only Spanish tests will be included, and features related to English word lists (e.g., New Dale-Chall) will not be available. For this example, select **English**.

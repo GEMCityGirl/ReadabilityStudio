@@ -11,10 +11,6 @@ source('R/appdown.r')
 This will involve gathering documents from folders, grouping them, and then processing them all at once.
 We will also discuss the batches' aggregated results and how to interpret them.
 
-::: {.notesection data-latex=""}
-Batch projects are only available in the *Professional* edition of *Readability Studio*.
-:::
-
 \newpage
 
 ## Reviewing a Collection of Documents

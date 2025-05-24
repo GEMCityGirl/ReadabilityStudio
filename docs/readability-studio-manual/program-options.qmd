@@ -133,10 +133,6 @@ Any document which does not meet this threshold will be removed from a batch dur
 The language selected here will affect how syllables are counted and control which tests, word lists, and grammar features will be made available.
 For example, if Spanish is selected, then only Spanish tests will be available and the document will be analyzed using the Spanish syllable counter.
 
-::: {.notesection data-latex=""}
-This feature is only available if either *Professional* or *Language Pack* features are licensed.
-:::
-
 :::: {.optionssection data-latex=""}
 ::: {.optionssectiontitle data-latex=""}
 Linking and embedding

@@ -20,10 +20,6 @@ First, select **English** as the document language (if this option is available)
 
 ![](images/exampleselectfile.png)
 
-::: {.notesection data-latex=""}
-The language option is only available in the *Language Pack* and *Professional* editions of *Readability Studio*.
-:::
-
 This will open the **Select Document to Analyze** dialog. Choose the file that you want to analyze and click the `r keys("Open")` button to accept.
 
 You will then return to the **Document** page. Click the `r keys("Forward >")` button twice to proceed to the **Test Selection** dialog.
@@ -99,10 +95,6 @@ The first step is to open the **New Project** wizard and select the recipe file.
 Next, select **English** as the document language (if this option is available). Then, select the option **Read text from a file or webpage**. Click the button next to the file path field to browse for it:
 
 ![](images/exampleselectfile.png)
-
-::: {.notesection data-latex=""}
-The language option is only available in the *Language Pack* and *Professional* editions of *Readability Studio*.
-:::
 
 This will open the **Select Document to Analyze** dialog. Choose the file that you want to analyze and click the `r keys("Open")` button to accept.
 
@@ -218,10 +210,6 @@ First, click on the `r keys("New")` button (on the **Home** tab). The **New Proj
 
 First, select **English** as the document language.
 
-::: {.notesection data-latex=""}
-The language option is only available in the *Language Pack* and *Professional* editions of *Readability Studio*.
-:::
-
 Next, open any web browser, go to the webpage, and copy its URL (i.e., address) onto the clipboard.
 
 ![](images/non-generated/webbrowser.png){width=75% fig-align="center"}
@@ -278,10 +266,6 @@ You will then be presented with the **New Project** wizard dialog, as shown belo
 Select **English** as the document language (if this option is available) and click the `r keys("Forward >")` button until you reach the **Test Selection** page, as shown below:
 
 ![](images/wizardreadabilitymethods.png)
-
-::: {.notesection data-latex=""}
-The language option is only available in the *Language Pack* and *Professional* editions of *Readability Studio*.
-:::
 
 Select the **Recommend tests based on document type** and select the **Technical document** option, as shown below:
 
