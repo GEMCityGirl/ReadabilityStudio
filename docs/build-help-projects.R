@@ -128,6 +128,12 @@ unlink(glue("{docFolder}/sysadmin/LegrandOrangeBook.cls"))
 # Note that this book has its own LaTeX files (i.e., does not copy them from readability-studio-manual).
 # This "book" doesn't have any front or back matter, so its preamble TeX file doesn't include that.
 setwd(glue("{docFolder}/release-notes/"))
+file_copy(glue("{docFolder}/_variables.yml"),
+          glue("{docFolder}/release-notes/_variables.yml"),
+          TRUE)
+file_copy(glue("{docFolder}/readability-studio-manual/_quarto-release-notes.yml"),
+          glue("{docFolder}/release-notes/_quarto.yml"),
+          TRUE)
 file_copy(glue("{docFolder}/readability-studio-manual/overviews/new-features.qmd"),
           glue("{docFolder}/release-notes/index.qmd"),
           TRUE)
@@ -140,6 +146,8 @@ dir_copy(glue("{docFolder}/readability-studio-manual/_extensions"),
 
 quarto::quarto_render(output_format="pdf", as_job=F)
 
+unlink(glue("{docFolder}/release-notes/_quarto.yml"))
+unlink(glue("{docFolder}/release-notes/_variables.yml"))
 unlink(glue("{docFolder}/release-notes/index.qmd"))
 
 # Shortcuts Cheatsheet
@@ -149,6 +157,9 @@ setwd(glue("{docFolder}/shortcuts-cheatsheet/"))
 file_copy(glue("{docFolder}/readability-studio-manual/glossary/shortcuts.qmd"),
           glue("{docFolder}/shortcuts-cheatsheet/index.qmd"),
           TRUE)
+file_copy(glue("{docFolder}/readability-studio-manual/_quarto-shortcuts-cheatsheet.yml"),
+          glue("{docFolder}/shortcuts-cheatsheet/_quarto.yml"),
+          TRUE)
 
 readLines(glue("{docFolder}/shortcuts-cheatsheet/index.qmd")) |>
   str_replace("# Keyboard Shortcuts", "# *Readability Studio* Keyboard Shortcuts") |>
@@ -156,6 +167,7 @@ readLines(glue("{docFolder}/shortcuts-cheatsheet/index.qmd")) |>
 
 quarto::quarto_render(output_format="pdf", as_job=F)
 
+unlink(glue("{docFolder}/shortcuts-cheatsheet/_quarto.yml"))
 unlink(glue("{docFolder}/shortcuts-cheatsheet/index.qmd"))
 
 # User Manual
@@ -260,6 +272,9 @@ unlink(glue("{docFolder}/readability-studio-api/LegrandOrangeBook.cls"))
 ########################
 
 setwd(glue("{docFolder}/readability-test-reference/"))
+file_copy(glue("{docFolder}/_variables.yml"),
+          glue("{docFolder}/readability-test-reference/_variables.yml"),
+          TRUE)
 dir_copy(glue("{docFolder}/readability-studio-manual/images"),
          glue("{docFolder}/readability-test-reference/images"),
          TRUE)
@@ -322,6 +337,7 @@ combine_files("scoring-notes.qmd", "scoring-notes",
 
 quarto::quarto_render(output_format="pdf", as_job=F, profile="reference")
 
+unlink(glue("{docFolder}/readability-test-reference/_variables.yml"))
 unlink(glue("{docFolder}/readability-test-reference/readability-tests-english.qmd"))
 unlink(glue("{docFolder}/readability-test-reference/_quarto.yml"))
 unlink(glue("{docFolder}/readability-test-reference/_quarto-reference.yml"))
