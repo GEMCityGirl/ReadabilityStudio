@@ -7405,7 +7405,7 @@ void BatchProjectDoc::DisplaySightWords()
             listView->InsertColumn(listView->GetColumnCount(), _(L"Verbs"));
             }
         listView->InsertColumn(listView->GetColumnCount(),
-                               /* xgettext:no-c-format */ _(L"% of Noun Words"));
+                               /* xgettext:no-c-format */ _(L"% of Nouns"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
             {
             listView->InsertColumn(listView->GetColumnCount(), _(L"Nouns"));

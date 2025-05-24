@@ -2333,6 +2333,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                 SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings)
                 {
                 htmlText += FormatHtmlNoteSection(
+                    // TRANSLATORS: "New Dale Chall" is a test name that should not be translated.
                     _(L"New Dale-Chall treats headers and sub-headers as full sentences and "
                       "excludes all "
                       "other incomplete sentences (regardless of your current analysis settings). "
@@ -2342,6 +2343,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
             if (project->IsIncludingStockerCatholicSupplement())
                 {
                 htmlText +=
+                    // TRANSLATORS: "New Dale Chall" is a test name that should not be translated.
                     FormatHtmlNoteSection(_(L"Stocker's Catholic supplement is being included with "
                                             "the standard New Dale-Chall word list."));
                 }
