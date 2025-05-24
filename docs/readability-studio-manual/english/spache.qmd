@@ -15,7 +15,7 @@ Spache Revised is generally used for primary age (i.e., Kindergarten to 7^th^ gr
 Because this formula uses familiar words (rather than syllable or letter counts), it is often regarded as a more accurate test for younger readers.
 
 ::: {.content-hidden when-profile="reference"}
-Note that *Readability Studio* uses the revised 1974 version of Spache.
+Note that *{{< var PROGRAM_NAME >}}* uses the revised 1974 version of Spache.
 :::
 
 ::: {.callout-note icon=false}

@@ -7,7 +7,7 @@ source('R/appdown.r')
 
 # Preface {#sec-preface .unnumbered}
 
-This book is a guide to the software product *Readability Studio*,
+This book is a guide to the software product *{{< var PROGRAM_NAME >}}*,
 as well as a reference for readability formulas.
 
 Chapters [-@sec-english-readability-tests], [-@sec-spanish-readability-tests],

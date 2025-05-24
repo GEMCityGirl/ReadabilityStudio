@@ -7,7 +7,7 @@ source('R/appdown.r')
 
 # Program & Project Options {#sec-options-overview}
 
-*Readability Studio* offers many customizable features, including:
+*{{< var PROGRAM_NAME >}}* offers many customizable features, including:
 
 - How documents are parsed and analyzed.
 - How results (e.g., statistics and graphs) are displayed.
@@ -84,7 +84,7 @@ All cookies will be cleared once the dialog's session is complete.
 - **Prompt about auto-searching for missing files.** By default, projects link to the documents that they analyze. When you open a project, the document will be reanalyzed to include any recent changes. If the document cannot be found, then the program will ask if it should search for a document by the same name. This search will be relative to the project file's location. Unchecking this option will suppress this prompt and the program will automatically search for and load the document.
 - **Prompt about re-linking to a document that has been embedded.** By default, a project will link to the document it is analyzing. When you click the `r keys("Edit Document")` button (on the **Home** tab), the document will be opened in its default editor. However, if you have chosen to embed the document into the project, then this prompt will appear. It will ask you whether you want to change this setting to link to the document and then edit it, or it continue embedding the document and then edit the embedded text. Note that if you continue to embed the document and edit the embedded text, then your changes will only be reflected in your project—your changes will not appear in the original document.
 - **Prompt about failing to load a project that is missing its embedded text.** When opening a project which embeds the document's text, then an error message will be shown if the embedded text is not found within the project.
-- **Check if ClearType is turned on.** If ClearType is turned off, then the program will ask you about enabling it. ClearType makes fonts smoother and easier to read. This applies to the Windows^®^ edition of *Readability Studio* only.
+- **Check if ClearType is turned on.** If ClearType is turned off, then the program will ask you about enabling it. ClearType makes fonts smoother and easier to read. This applies to the Windows^®^ edition of *{{< var PROGRAM_NAME >}}* only.
 - **Prompt about whether to set the application's word exclusion list from a project.** When adding a word exclusion list from the ribbon for the first time, you will be prompted about setting this list to be included in all future projects. 
 
 The following are informational messages shown interactively in the program:
@@ -153,11 +153,11 @@ If the document cannot be found, then only the results from the previous analysi
 ::::
 
 **Real-time update**\index{real-time updating}: Select this option to automatically reload the project as the source document is edited externally.
-This allows for editing the document in another program (e.g., *Word*) and having the results update in *Readability Studio* in real time.
+This allows for editing the document in another program (e.g., *Word*) and having the results update in *{{< var PROGRAM_NAME >}}* in real time.
 (This is only relevant for standard projects and for when the project is linked to a local document.)
 
 ::: {.notesection data-latex=""}
-The changes will take effect in *Readability Studio* only after you save the document from the other program.
+The changes will take effect in *{{< var PROGRAM_NAME >}}* only after you save the document from the other program.
 Real-time update works by checking the modified time on the document every five seconds; if the document's timestamp has changed, then it will be reloaded.
 :::
 
@@ -175,7 +175,7 @@ When the project analyzes the entitlement, the policy will be appended to the en
 Note that for batch projects, this document will be appended to each document in the batch.
 
 Also note that your original document is not affected by this process.
-The original and additional documents are only combined within *Readability Studio* while it analyzes them.
+The original and additional documents are only combined within *{{< var PROGRAM_NAME >}}* while it analyzes them.
 
 \newpage
 
@@ -229,7 +229,7 @@ Refer to @sec-line-chaining for more information.
 The options **Ignore blank lines** and **Ignore indenting** are disabled if **Line ends always begin a new paragraph** is selected. In this case, line feeds will always indicate the end of a paragraph, whether or not it is followed by blank or indented lines.
 :::
 
-**Sentences must begin with capitalized words**: Select this option to have sentence deduction assume that all sentences begin with capitalized words. By default, *Readability Studio* takes into consideration writing that does not capitalize the first word of every sentence. To change this behavior, select this option and the program will be more grammatically strict when deducing sentences.
+**Sentences must begin with capitalized words**: Select this option to have sentence deduction assume that all sentences begin with capitalized words. By default, *{{< var PROGRAM_NAME >}}* takes into consideration writing that does not capitalize the first word of every sentence. To change this behavior, select this option and the program will be more grammatically strict when deducing sentences.
 
 ### Text Exclusion\index{text exclusion!options} {#sec-options-text-exclusion}
 
@@ -309,7 +309,7 @@ The program will stop excluding text after a *References* header if it detects a
 **Also exclude Internet and file addresses**: Select this option to ignore URLs (i.e., Internet addresses) and filepaths. Note that this applies to words inside of complete sentences, not just incomplete. For example:
 
 ::: {.fancyquotes data-latex=''}
-Readability Studio is available from *www.oleandersoftware.com*.
+{{< var PROGRAM_NAME >}} is available from *www.oleandersoftware.com*.
 :::
 
 If this option is selected, then *www.oleandersoftware.com* will be excluded from every analysis. This includes sentence-length, word-length, and syllable-count calculations.
@@ -512,7 +512,9 @@ The **text exclusion** option will affect any custom test using the following fu
 
 ### Scores {-}
 
-The options on this page customize which results to include in the **Readability Scores** section and how grade-level scores and reading ages are displayed. Most readability tests use U.S. K-12 (+college) grade levels to represent their scores; however, *Readability Studio* can display these scores in other formats as well. For example, a score of 4 could be shown as *Key stage 2 (year 5)* if using the Key Stages grade scale.
+The options on this page customize which results to include in the **Readability Scores** section and how grade-level scores and reading ages are displayed.
+Most readability tests use U.S. K-12 (+college) grade levels to represent their scores; however, *{{< var PROGRAM_NAME >}}* can display these scores in other formats as well.
+For example, a score of 4 could be shown as *Key stage 2 (year 5)* if using the Key Stages grade scale.
 
 #### Results {-}
 

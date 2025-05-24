@@ -7,7 +7,7 @@ source('../R/appdown.r')
 
 ## Open-Source Tools & Content {.unnumbered}
 
-The following open-source software, artwork, and example files were used to create *Readability Studio*.
+The following open-source software, artwork, and example files were used to create *{{< var PROGRAM_NAME >}}*.
 
 ### Documentation Software & Templates {-}
 ***

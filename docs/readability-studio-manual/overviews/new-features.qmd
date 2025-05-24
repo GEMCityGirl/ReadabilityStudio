@@ -7,7 +7,7 @@ source('../R/appdown.r')
 
 # New Features and Enhancements {#sec-new-features}
 
-## Readability Studio 2025 {-}
+## {{< var PROGRAM_NAME >}} 2025 {-}
 ***
 
 ### General Enhancements {-}
@@ -44,7 +44,7 @@ source('../R/appdown.r')
 
 \newpage
 
-## Readability Studio 2024.0.1 {-}
+## {{< var PROGRAM_NAME >}} 2024.0.1 {-}
 ***
 
 ### General Enhancements {-}
@@ -61,7 +61,7 @@ source('../R/appdown.r')
 - Fixed text being too light when printing statistics report under dark mode.
 - Fixed empty dialog intermittently appearing under macOS.
 
-## Readability Studio 2024 {-}
+## {{< var PROGRAM_NAME >}} 2024 {-}
 ***
 
 ### General Enhancements {-}
@@ -69,7 +69,7 @@ source('../R/appdown.r')
 - Added real-time updating to standard projects. This enables the project to update itself while you edit the original document in another program.
   (Refer to [@sec-external-editing]{.content-visible when-profile="online"}["Editing from Other Programs"]{.content-hidden when-profile="online"} for an example.)
 - Greatly enhanced editing documents that are embedded within standard projects.
-  (Refer to [@sec-rs-as-an-editor]{.content-visible when-profile="online"}["Editing within Readability Studio"]{.content-hidden when-profile="online"} for an example.)
+  (Refer to [@sec-rs-as-an-editor]{.content-visible when-profile="online"}["Editing within {{< var PROGRAM_NAME >}}"]{.content-hidden when-profile="online"} for an example.)
   - Added a save button to the editor that will cause the project to analyze your changes immediately.
   - The project window can now be selected while the editor is open. This allows for changing options, adding tests, and viewing different results while the editor is active.
   - Added find &amp; replace, undo/redo, and clipboard operations to the editor.
@@ -191,7 +191,7 @@ source('../R/appdown.r')
   - Release notes
 - Added new examples:
   - "High-level Review of a Disclaimer"
-  - "Editing within Readability Studio"
+  - "Editing within {{< var PROGRAM_NAME >}}"
   - "Editing from Other Programs"
   - "Selective Colorization"
   - "A Retro Appearance"
@@ -213,7 +213,7 @@ source('../R/appdown.r')
 
 \newpage
 
-## Readability Studio 2020/2021 {-}
+## {{< var PROGRAM_NAME >}} 2020/2021 {-}
 ***
 
 ### General Enhancements {-}
@@ -377,7 +377,7 @@ source('../R/appdown.r')
 
 \newpage
 
-## Readability Studio 2019 {-}
+## {{< var PROGRAM_NAME >}} 2019 {-}
 ***
 
 ### General Enhancements {-}
@@ -462,7 +462,7 @@ source('../R/appdown.r')
 
 \newpage
 
-## Readability Studio 2015 {-}
+## {{< var PROGRAM_NAME >}} 2015 {-}
 ***
 
 ### General Enhancements {-}
@@ -532,12 +532,12 @@ source('../R/appdown.r')
 
 \newpage
 
-## Readability Studio 2012 {-}
+## {{< var PROGRAM_NAME >}} 2012 {-}
 ***
 
 ### General Enhancements {-}
 
-- *Readability Studio* now available for Mac OS X^®^ (v10.5 and above).
+- *{{< var PROGRAM_NAME >}}* now available for Mac OS X^®^ (v10.5 and above).
 - New ribbon interface.
 - Improved project sidebar for easier results navigation.
 - Suggested replacements are now shown in the difficult and unfamiliar word lists.
@@ -594,7 +594,7 @@ source('../R/appdown.r')
 
 \newpage
 
-## Readability Studio 3.0-3.2 (2009–2010) {-}
+## {{< var PROGRAM_NAME >}} 3.0-3.2 (2009–2010) {-}
 ***
 
 ### General Enhancements {-}
@@ -691,7 +691,7 @@ source('../R/appdown.r')
 
 \newpage
 
-## Readability Studio 2.0 (2008) {-}
+## {{< var PROGRAM_NAME >}} 2.0 (2008) {-}
 ***
 
 ### Bug Fixes {-}
@@ -705,7 +705,7 @@ source('../R/appdown.r')
 - Incorrect warning about document version number on non-English locales.
 - Printing large lists would truncate excess columns.
 
-## Readability Studio 1.2 (2007) {-}
+## {{< var PROGRAM_NAME >}} 1.2 (2007) {-}
 ***
 
 ### General Enhancements {-}
@@ -713,7 +713,7 @@ source('../R/appdown.r')
 - Program is now fully Unicode.
 - Fixed printing issues.
 
-## Readability Studio 1.0/1.1 (2006) {-}
+## {{< var PROGRAM_NAME >}} 1.0/1.1 (2006) {-}
 ***
 
 Initial Windows^®^ Release.

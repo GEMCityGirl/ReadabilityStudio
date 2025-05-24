@@ -7,9 +7,9 @@ source('R/appdown.r')
 
 # Editing
 
-## Editing within Readability Studio {#sec-rs-as-an-editor}
+## Editing within {{< var PROGRAM_NAME >}} {#sec-rs-as-an-editor}
 
-In this example, we will write and edit a document from within *Readability Studio* itself\index{editing!from \textit{Readability Studio}|(}. Click the `r keys("New")` button on the **Home** tab to open the **New Project** wizard.
+In this example, we will write and edit a document from within *{{< var PROGRAM_NAME >}}* itself\index{editing!from \textit{Readability Studio}|(}. Click the `r keys("New")` button on the **Home** tab to open the **New Project** wizard.
 Next, select the **Manually enter text** option.
 
 ![](images/wizardentertext.png)
@@ -66,7 +66,7 @@ If the editor is not open, then double clicking a list item will search for it i
 Once you are finished editing and ready to export your document, copy it and paste it into another program.
 For example, click `r keys("Select All")` and `r keys("Copy")`, then paste into a program such as *Microsoft Word*, *Outlook*, *Pages*, *LibreOffice*, etc.
 
-In the next example (see @sec-external-editing), we will edit our document from another program and view the changes in *Readability Studio* in real-time.\index{editing!from \textit{Readability Studio}|)}
+In the next example (see @sec-external-editing), we will edit our document from another program and view the changes in *{{< var PROGRAM_NAME >}}* in real-time.\index{editing!from \textit{Readability Studio}|)}
 
 \newpage
 
@@ -77,7 +77,7 @@ Continuing\index{editing!from other programs|(} from the previous example (see @
 
 ![](images/non-generated/term-checklist-in-external-editor.png)
 
-From *LibreOffice*, save the document and move the program over to the side of the screen. Next, go back to the project in *Readability Studio*.
+From *LibreOffice*, save the document and move the program over to the side of the screen. Next, go back to the project in *{{< var PROGRAM_NAME >}}*.
 From the *Home* tab on the ribbon, click the `r keys('Properties')` button. On the *Project Properties* dialog, select *Project Settings* on the sidebar.
 Then, under *Linking and embedding*, select *Reload the document when opening project*.
 
@@ -94,7 +94,7 @@ Also, because we selected *Real-time update*\index{real-time updating}, the proj
 The program will check every few seconds to see if the document's modified time has changed; if it has, then the project will reload.
 
 ::: {.notesection data-latex=""}
-You will need to save from your external editor before *Readability Studio* can detect any changes.
+You will need to save from your external editor before *{{< var PROGRAM_NAME >}}* can detect any changes.
 :::
 
 By placing the two programs side-by-side, you can review any issues while you edit.
@@ -111,7 +111,7 @@ The real-time update option is also available on the ribbon and can be toggled a
 
 If this option is unpressed, then the project will only update when you explicitly click the `r keys('Reload')` button.
 
-Once you are finished editing, you can close the other program and continue reviewing the results in *Readability Studio*.
+Once you are finished editing, you can close the other program and continue reviewing the results in *{{< var PROGRAM_NAME >}}*.
 
 ::: {.tipsection data-latex=""}
 To reopen the document in your default editor, click `r keys('Edit Document')` from the ribbon's **Document** tab.\index{editing!from other programs|)}

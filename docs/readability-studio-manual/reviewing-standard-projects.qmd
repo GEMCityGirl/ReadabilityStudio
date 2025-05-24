@@ -201,7 +201,7 @@ The types of word lists that may be shown are:
 
 ::: {.notesection data-latex=""}
 If you are ignoring incomplete sentences, then these lists will only include the words from complete sentences. If you need to review all the words from the document, then select the option [**Do not exclude any text**](#sec-options-text-exclusion).
-Refer to @sec-how-text-is-excluded to learn more about how *Readability Studio* handles incomplete sentences.
+Refer to @sec-how-text-is-excluded to learn more about how *{{< var PROGRAM_NAME >}}* handles incomplete sentences.
 :::
 
 To find the most complex words, sort the **Syllable Count** column of the **3+ Syllables** list. You can sort any of the columns by clicking on the column header. To change the sorting order to either ascending or descending, click the column header a second time. As you can see below, the words with the most syllables are now shown at the top of the list.
@@ -307,7 +307,7 @@ A list of overly-long sentences:
 
 Note that if you are ignoring incomplete sentences, then this list will only include the complete sentences.
 If you need to review all the sentences from the document, then select the option [**Do not exclude any text**](#sec-options-text-exclusion).
-Refer to @sec-how-text-is-excluded to learn more about how *Readability Studio* handles incomplete sentences.
+Refer to @sec-how-text-is-excluded to learn more about how *{{< var PROGRAM_NAME >}}* handles incomplete sentences.
 
 To find the longest sentence, [sort](#sec-column-sorting) the **Word Count** column into descending order.
 As you can see below, the longest sentence is now shown at the top of the list.
@@ -392,7 +392,7 @@ After opening a project, click on the **Grammar** icon on the project sidebar an
 
 Beginning sentences with conjunctions is not an issue for most writing, but should be avoided with professional publications. This feature is provided to grammatically improve professional documents.
 
-The conjunctions that *Readability Studio* searches for are the most common coordinating conjunctions. These are:
+The conjunctions that *{{< var PROGRAM_NAME >}}* searches for are the most common coordinating conjunctions. These are:
 
 ::: {.minipage data-latex="{\textwidth}"}
 - and
@@ -423,7 +423,7 @@ A repeated word is when the same word appears after itself (which is usually a t
 Gabi gave her report *to to* the manager.
 :::
 
-In this case, the word *to* was accidentally typed twice. *Readability Studio* will consider this a repeated word and include it in this list.
+In this case, the word *to* was accidentally typed twice. *{{< var PROGRAM_NAME >}}* will consider this a repeated word and include it in this list.
 
 Repeated words are bound to the sentence level. If the same word ends one sentence and begins the next, then it will not be considered a repeated word. For example, *Blake* would not be considered a repeated word here:
 
@@ -517,7 +517,9 @@ A redundant phrase is when a modifier expresses something that is already implie
 Gabi and Blake *collaborated together* on the report. They should have a *brief summary* ready later today.
 :::
 
-In this case, *collaborated together* and *brief summary* are redundant. Collaboration already implies two or more people working together. The *together* in this phrase adds nothing and just makes this sentence wordy. As for *brief summary*, summaries are always brief; hence, the redundancy in that phrase. *Readability Studio* will consider these as redundant phrases and include them in this list.
+In this case, *collaborated together* and *brief summary* are redundant. Collaboration already implies two or more people working together.
+The *together* in this phrase adds nothing and just makes this sentence wordy. As for *brief summary*, summaries are always brief; hence, the redundancy in that phrase.
+*{{< var PROGRAM_NAME >}}* will consider these as redundant phrases and include them in this list.
 
 Redundant phrases are bound to the sentence level. If part of a phrase ends one sentence and begins the next, then it will not be considered a redundant phrase. For example, *brief. Summaries* would not be considered a redundant phrase here because the words are in different sentences:
 
@@ -543,7 +545,8 @@ A phrase is wordy if it contains too many words or contains complex words that c
 *Over the course of* the presentation, Blake amazed the Provost with his data visualizations.
 :::
 
-In this case, *Over the course of* is wordy. *Readability Studio* will consider this a wordy phrase and offer *during* or *throughout* as replacements.
+In this case, *Over the course of* is wordy.
+*{{< var PROGRAM_NAME >}}* will consider this a wordy phrase and offer *during* or *throughout* as replacements.
 
 Wordy phrases are bound to the sentence level. If part of a phrase ends one sentence and begins the next, then it will not be considered a wordy phrase. For example, *a host of* would not be considered a wordy phrase here because its words are in two different sentences:
 
@@ -638,7 +641,7 @@ The Dolch Sight Words [-@{dolch}456–60] represent the most frequently occurrin
 
 If you are writing educational materials for early readers, then use as many of these words as possible to help readers practice them. Also, keep the percentage of non-Dolch words low so that readers can better focus on the sight words.
 
-*Readability Studio* offers a suite of Dolch statistics and graphs as a tool for educators and writers targeting early readers. If you are creating material intended to help early readers practice Dolch words, then it is recommended to include this in your project. To add Dolch statistics to your project, go to the **Readability** tab and select either **Primary-age Reading** or **Second Language Reading** and select **Dolch Sight Words**. A **Dolch Sight Words** icon will appear at the bottom of the project sidebar—clicking on that will display all the Dolch information.
+*{{< var PROGRAM_NAME >}}* offers a suite of Dolch statistics and graphs as a tool for educators and writers targeting early readers. If you are creating material intended to help early readers practice Dolch words, then it is recommended to include this in your project. To add Dolch statistics to your project, go to the **Readability** tab and select either **Primary-age Reading** or **Second Language Reading** and select **Dolch Sight Words**. A **Dolch Sight Words** icon will appear at the bottom of the project sidebar—clicking on that will display all the Dolch information.
 
 [^DolchPronounsFootnote]: Pronouns, adjectives, adverbs, prepositions, conjunctions, and verbs.
 [^DolchNounsListFootnote]: A separate list of nouns commonly found in children's literature is also included with the Dolch collection. However, the sight words are generally the focus of most Dolch activities.

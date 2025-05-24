@@ -53,7 +53,7 @@ After selecting your document structure, click the `r keys("Forward >")` button 
 
 ![](images/wizardbatchreadabilitymethods.png)
 
-On this page, you will select how you want *Readability Studio* to choose the readability tests to perform.
+On this page, you will select how you want *{{< var PROGRAM_NAME >}}* to choose the readability tests to perform.
 Select the **Recommend tests based on document type**:
 
 ![](images/wizardbatchdoctype.png)

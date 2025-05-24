@@ -20,7 +20,7 @@ First, let us view the document. From the **Help** tab on the ribbon, click the 
 
 ![](images/non-generated/JostPostingViewDocument.png){width=75% fig-align="center"}
 
-Close this document and return to *Readability Studio*. Click the `r keys('Example Documents')` button and again select "Job Posting." Next, select **Create a new project**. When the **New Project Wizard** appears, select the **Document Structure** page and check **Line ends (i.e., hard returns) mark the start of a new paragraph**:
+Close this document and return to *{{< var PROGRAM_NAME >}}*. Click the `r keys('Example Documents')` button and again select "Job Posting." Next, select **Create a new project**. When the **New Project Wizard** appears, select the **Document Structure** page and check **Line ends (i.e., hard returns) mark the start of a new paragraph**:
 
 ![](images/wizarddocstructurehardreturns.png)
 
@@ -223,7 +223,7 @@ Once the document is opened, note how the flyer’s short text boxes have been r
 
 This means that when we import this document, we will specify that it is a narrative document and apply text exclusion. (This is in contrast to the earlier flyer, where we specified it as non-narrative, fragmented text.)
 
-Close this document and return to **Readability Studio**. Click the `r keys('Example Documents')` button and again select "YA Enterprise Software Symposium."
+Close this document and return to *{{< var PROGRAM_NAME >}}*. Click the `r keys('Example Documents')` button and again select "YA Enterprise Software Symposium."
 Next, select **Create a new project**. When the **New Project Wizard** appears, select the **Document Structure** page and select **Narrative text**:
 
 ![](images/wizarddocstructurenarrativeselected.png)
@@ -247,7 +247,7 @@ Note that this new flyer is difficult, so let’s review it. Click **Words Break
 As we can see, this document could use some improving. Before we can do that, though, the new owners of our software company have also requested that a disclaimer be appended to all sign-up forms such as this.
 Rather than running a separate analysis on this disclaimer, we would like to append this document to our flyer and analyze them together.
 To do this, go to the **Home** tab of the ribbon and select **Properties**. On the **Properties** dialog, select **Project Settings** on the sidebar.
-Next, under the **Append Additional Document** section, click the folder button and navigate to the *examples* folder from where *Readability Studio* is installed. Select the file "Instructional Disclaimer.odt":
+Next, under the **Append Additional Document** section, click the folder button and navigate to the *examples* folder from where *{{< var PROGRAM_NAME >}}* is installed. Select the file "Instructional Disclaimer.odt":
 
 ![](images/addendum-properties.png){width=75% fig-align="center"}
 

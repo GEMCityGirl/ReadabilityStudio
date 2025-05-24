@@ -7,7 +7,7 @@ source('R/appdown.r')
 
 # Publishing the Results
 
-`r drop_cap('All')` graphs\index{graphs!exporting}, lists\index{lists!exporting}, statistical summaries\index{summaries!exporting}, and highlighted text reports\index{text reports!exporting} can be exported and printed from *Readability Studio*.
+`r drop_cap('All')` graphs\index{graphs!exporting}, lists\index{lists!exporting}, statistical summaries\index{summaries!exporting}, and highlighted text reports\index{text reports!exporting} can be exported and printed from *{{< var PROGRAM_NAME >}}*.
 This is useful for reviewing the results outside the program, as well as publishing and sharing them with colleagues.
 
 \newpage
@@ -217,11 +217,11 @@ Also, the romanization of items that may cause issues with legacy programs:
 
 The first set of items are normally excluded from analysis because they a.) are not part of the narrative text and b.) skew the average sentence length.
 
-By default, *Readability Studio* will automatically ignore these items, rather than requiring you to manually remove them from your document. This is helpful by saving time and by not having to maintain two copies of your document: the original and the “cleansed” version used for analysis.
+By default, *{{< var PROGRAM_NAME >}}* will automatically ignore these items, rather than requiring you to manually remove them from your document. This is helpful by saving time and by not having to maintain two copies of your document: the original and the “cleansed” version used for analysis.
 
-The second set of items do not cause issue with *Readability Studio*. It can recognize extended characters (e.g., *é*, *—*, etc.) and can properly deduce sentence endings. For these reasons, document cleaning is generally not necessary within *Readability Studio*.
+The second set of items do not cause issue with *{{< var PROGRAM_NAME >}}*. It can recognize extended characters (e.g., *é*, *—*, etc.) and can properly deduce sentence endings. For these reasons, document cleaning is generally not necessary within *{{< var PROGRAM_NAME >}}*.
 
-Refer to @sec-how-text-is-excluded to learn how *Readability Studio* automatically filters documents.
+Refer to @sec-how-text-is-excluded to learn how *{{< var PROGRAM_NAME >}}* automatically filters documents.
 
 ### Exporting Filtered Documents {-}
 

@@ -61,18 +61,19 @@ After specifying your document structure, click the `r keys("Forward >")` button
 
 ![](images/wizardreadabilitymethods.png)
 
-On this page, you will select how you want *Readability Studio* to choose the readability tests to perform.
+On this page, you will select how you want *{{< var PROGRAM_NAME >}}* to choose the readability tests to perform.
 Your first option is to tell the program which type of document you are analyzing and it will select the most appropriate tests based on that.
 To do this, select the **Recommend tests based on document type** option.
 You will then be presented with the **Select the type of document...** options, where you can select which type of document best describes your file (e.g., a literary work or technical form), as shown below:
 
 ![](images/wizarddoctypetechselected.png)
 
-Your second option is to tell *Readability Studio* which type of industry your document relates to and it will select the most appropriate tests based on that. To do this, select the **Recommend tests based on industry or field** option. You will then be presented with the **Select the type of industry...** options, where you can select which field your file relates to (e.g., magazine publishing or the military), as shown below:
+Your second option is to tell *{{< var PROGRAM_NAME >}}* which type of industry your document relates to and it will select the most appropriate tests based on that. To do this, select the **Recommend tests based on industry or field** option. You will then be presented with the **Select the type of industry...** options, where you can select which field your file relates to (e.g., magazine publishing or the military), as shown below:
 
 ![](images/wizardindustry.png)
 
-Your third option is to manually select the tests yourself. To do this, select the **Manually select tests** option. You will then be presented with the **Standard tests** options, where you can select any of the tests that *Readability Studio* has to offer, as shown below:
+Your third option is to manually select the tests yourself. To do this, select the **Manually select tests** option.
+You will then be presented with the **Standard tests** options, where you can select any of the tests that *{{< var PROGRAM_NAME >}}* has to offer, as shown below:
 
 ![](images/wizardtests.png)
 
@@ -84,7 +85,8 @@ Your final option is to select a [test bundle](#sec-test-bundles).
 
 Along with adding tests to a project, test bundles also can include [goals](#sec-reviewing-goals) to help with reviewing your scores.
 
-Note that you can always add or remove tests from your project at any time. If you select either the document type or industry options, you are not bound to the tests that *Readability Studio* recommends.
+Note that you can always add or remove tests from your project at any time.
+If you select either the document type or industry options, you are not bound to the tests that *{{< var PROGRAM_NAME >}}* recommends.
 
 Finally, click the `r keys("Finish")` button and the project will be created and will appear like this:
 
@@ -96,7 +98,8 @@ You can also review the document with its difficult words and [sentences](#sec-r
 
 ## Batch Projects {#sec-creating-batch-project}
 
-To determine the readability of a document collection, you will need to create a new batch project. First, click the `r keys("New")` button on the **Home** tab to open the **Select Project Type** dialog, as shown below:
+To determine the readability of a document collection, you will need to create a new batch project.
+First, click the `r keys("New")` button on the **Home** tab to open the **Select Project Type** dialog, as shown below:
 
 ![](images/selectprojecttype.png){width=50% fig-align="center"}
 
@@ -104,9 +107,10 @@ Select **Batch Project** and click the `r keys("OK")` button to proceed to the *
 
 ![](images/wizardbatchselectfiles.png)
 
-On the first page of this dialog, **Documents**, are options for selecting your documents and how to specify their language. The language option will control how the documents are analyzed (e.g., syllable counting). This will also affect which tests, word lists, and grammar features will be available. For example, if we select **Spanish**, then only Spanish tests will be included, and features related to English word lists (e.g., New Dale-Chall) will not be available. For this example, select **English**.
+On the first page of this dialog, **Documents**, are options for selecting your documents and how to specify their language.
+The language option will control how the documents are analyzed (e.g., syllable counting). This will also affect which tests, word lists, and grammar features will be available. For example, if we select **Spanish**, then only Spanish tests will be included, and features related to English word lists (e.g., New Dale-Chall) will not be available. For this example, select **English**.
 
-Now you can add files from a folder, archive file, Excel^®^ 2007 file, or website to the project.
+Now you can add files from a folder, archive file, *Excel*^®^ 2007 file, or website to the project.
 
 To add files from a folder, click the `r keys("Add folder")` button. You will be presented with the [**Select Directory**](#sec-batch-project-import-features) dialog. On this dialog, you can select the document types to search for, as well as whether to search recursively within the folders.
 

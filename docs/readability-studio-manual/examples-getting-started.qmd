@@ -89,7 +89,7 @@ This example book is available by going to the **Help** tab of the ribbon, click
 
 ## Analyzing a Work in Progress
 
-In this example, we will analyze recipes that we are working on for a middle-school home economics class. Our target audience will be seventh-eighth graders and we will use *Readability Studio* to meet their reading level.
+In this example, we will analyze recipes that we are working on for a middle-school home economics class. Our target audience will be seventh-eighth graders and we will use *{{< var PROGRAM_NAME >}}* to meet their reading level.
 
 The first step is to open the **New Project** wizard and select the recipe file. Click the `r keys("New")` button on the **Home** tab to open the **New Project** wizard.
 Next, select **English** as the document language (if this option is available). Then, select the option **Read text from a file or webpage**. Click the button next to the file path field to browse for it:
@@ -153,7 +153,7 @@ Not only is it long, but it is a little confusing. It is unclear what was mixed 
 
 Continue this process for as many of the long sentences as you can. Sentences in the 20-word range are normally acceptable, but sentences over 30 words should be revised.
 
-Other useful tools for shortening sentences in *Readability Studio* are the other pages in the **Grammar** section.
+Other useful tools for shortening sentences in *{{< var PROGRAM_NAME >}}* are the other pages in the **Grammar** section.
 Click on the **Grammar** icon on the project sidebar. Click on the [**Repeated Words**](#sec-reviewing-standard-grammar) page and note how the phrase *and and* is in the file (obviously a typo).
 Next, click on the [**Redundant Phrases**](#sec-reviewing-standard-grammar) page.
 Note how the phrase *mixed together* is redundant and the program is suggesting that it be replaced with *mixed*.
@@ -202,7 +202,8 @@ Finally, whenever you open this project, it will automatically reload the source
 
 ## Analyzing a Webpage
 
-In this example, we will create a project that reads and analyzes a webpage. Although you can save a webpage from your web browser and load the HTML file, *Readability Studio* can also directly connect to a webpage.
+In this example, we will create a project that reads and analyzes a webpage.
+Although you can save a webpage from your web browser and load the HTML file, *{{< var PROGRAM_NAME >}}* can also directly connect to a webpage.
 
 First, click on the `r keys("New")` button (on the **Home** tab). The **New Project** wizard dialog will appear, as shown below:
 
@@ -227,7 +228,8 @@ Next, accept the rest of the defaults on the **New Project** wizard by clicking 
 
 ![](images/incompletesentences.png)
 
-Note how some text is highlighted gray. These are [incomplete sentences](#sec-how-text-is-excluded), and because *Readability Studio*, by default, ignores incomplete sentences, nothing highlighted gray is factored into the analysis.
+Note how some text is highlighted gray.
+These are [incomplete sentences](#sec-how-text-is-excluded), and because *{{< var PROGRAM_NAME >}}*, by default, ignores incomplete sentences, nothing highlighted gray is factored into the analysis.
 That is, nothing highlighted gray here counts towards the overall sentence, paragraph, and word totals and are also not included in any readability test calculation.
 Aside from non-narrative forms, it is normally recommended to ignore incomplete sentences. This is especially true for webpages, because often HTML tables and lists are used on websites to display menus—items that are not normally part of the page's narrative.
 
@@ -372,7 +374,7 @@ First, let's view the document. From the **Help** tab on the ribbon, click the `
 
 Rather than excluding these and only analyzing the few remaining sentences, we will analyze everything. Also, we will only use a test that is designed to not rely on sentence lengths.
 
-Close this document and return to *Readability Studio*. Click the `r keys('Example Documents')` button and again select "Summer Code Camp." Next, select **Create a new project**. When the **New Project Wizard** appears, select the **Document Structure** page and select **Non-narrative, fragmented text**:
+Close this document and return to *{{< var PROGRAM_NAME >}}*. Click the `r keys('Example Documents')` button and again select "Summer Code Camp." Next, select **Create a new project**. When the **New Project Wizard** appears, select the **Document Structure** page and select **Non-narrative, fragmented text**:
 
 ![](images/wizarddocstructurenonnarrative.png)
 

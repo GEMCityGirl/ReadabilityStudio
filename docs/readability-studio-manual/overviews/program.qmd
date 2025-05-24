@@ -7,17 +7,17 @@ source('../R/appdown.r')
 
 # Program Overview
 
-## What Readability Studio Offers {#sec-program-offering}
+## What *{{< var PROGRAM_NAME >}}* Offers {#sec-program-offering}
 
-*Readability Studio* eases the task of performing these tests.
+*{{< var PROGRAM_NAME >}}* eases the task of performing these tests.
 The program quickly imports and analyzes your work using the most popular tests.
 In addition, it offers insightful explanations and suggestions for improving your documents.
 
-### Readability Studio's Unique Features {-}
+### *{{< var PROGRAM_NAME >}}*'s Unique Features {-}
 
 #### Numerous insightful tests {-}
 
-*Readability Studio* offers many popular readability tests, along with in-depth explanations.
+*{{< var PROGRAM_NAME >}}* offers many popular readability tests, along with in-depth explanations.
 Each test result includes an explanation of the score and the factors that affect it.
 
 The program also provides many useful features to help review the difficult aspects of your document.
@@ -27,7 +27,7 @@ These tools can assist you in improving your documents so that they meet their t
 Another important feature is that the program analyzes the entire content of your document (rather than samples).
 This will give you the most accurate results possible.
 
-Finally, *Readability Studio* offers multiple-document analysis.
+Finally, *{{< var PROGRAM_NAME >}}* offers multiple-document analysis.
 The program can analyze hundreds (or even thousands) of documents at once and aggregate their results.
 This includes all readability scores, difficult word and sentence statistics, and grammar issues.
 You can also drill down into a specific document to review it in deeper detail.
@@ -106,12 +106,12 @@ knitr::asis_output(glue_collapse(
 
 #### Helpful assistance for test selection {-}
 
-*Readability Studio* presents an intuitive interface for selecting readability tests.
+*{{< var PROGRAM_NAME >}}* presents an intuitive interface for selecting readability tests.
 Experts can manually select the tests that they want to perform, while those less familiar with these tests can be guided through a helpful [wizard](#sec-creating-standard-project). This wizard can recommend which tests to include based on the document's type (e.g., text book) or industry (e.g., health care).
 
 #### Graphics {-}
 
-*Readability Studio* includes numerous graphs to help visualize your results.
+*{{< var PROGRAM_NAME >}}* includes numerous graphs to help visualize your results.
 Graphical tests such as Fry and Raygor are included, as well as a bar chart showing a breakdown of the difficult word categories.
 If you are reviewing Dolch Sight Words, then breakdown charts of your category usage and coverage are also included.
 
@@ -137,7 +137,7 @@ Difficult words and sentences are also shown highlighted in their original conte
 
 #### Grammar tools {-}
 
-Along with readability analysis, *Readability Studio* also offers basic grammar checking. The program can detect the following problems:
+Along with readability analysis, *{{< var PROGRAM_NAME >}}* also offers basic grammar checking. The program can detect the following problems:
 
 - [wording errors and known misspellings (English only)](#sec-reviewing-standard-grammar)
 - [possible misspellings (English only)](#sec-reviewing-standard-grammar)
@@ -156,14 +156,14 @@ They are also aggregated into sortable lists to give a general overview of any p
 
 #### Dolch Sight Words {-}
 
-*Readability Studio* also includes a [Dolch](#sec-reviewing-dolch) suite of statistics and graphs, which is useful for educators and writers who work with young readers.
+*{{< var PROGRAM_NAME >}}* also includes a [Dolch](#sec-reviewing-dolch) suite of statistics and graphs, which is useful for educators and writers who work with young readers.
 The program provides a complete breakdown of Dolch words that you are using (and not using) in your content.
 This enables writers to see how they can improve their Dolch practice materials.
 This also enables educators to determine which materials are appropriate for Dolch practice.
 
 #### Numerous file formats supported {-}
 
-*Readability Studio* supports importing text from many file formats, including:
+*{{< var PROGRAM_NAME >}}* supports importing text from many file formats, including:
 
 - ANSI and Unicode text (\*.txt)
 - *Microsoft^®^ Word* 97–2003 (\*.doc)
@@ -180,11 +180,12 @@ This also enables educators to determine which materials are appropriate for Dol
 - Interface Definition Language (\*.idl)
 - (Doxygen style) C^++^ source (\*.cpp and \*.h)
 
-You do not need the native application for these file formats. *Readability Studio* is capable of importing these files without any additional programs.
+You do not need the native application for these file formats.
+*{{< var PROGRAM_NAME >}}* is capable of importing these files without any additional programs.
 
 #### Exporting capabilities {-}
 
-*Readability Studio* provides printing and [exporting](#sec-exporting) capabilities for all test scores, word lists, statistics, graphs, etc.
+*{{< var PROGRAM_NAME >}}* provides printing and [exporting](#sec-exporting) capabilities for all test scores, word lists, statistics, graphs, etc.
 This enables you to easily share and publish your results.
 
 - Test results, statistics, and difficult word lists can all be exported as HTML, text, or {{< latex >}}.
@@ -194,8 +195,8 @@ This enables you to easily share and publish your results.
 
 #### Flexibility {-}
 
-Finally, *Readability Studio* is highly configurable.
+Finally, *{{< var PROGRAM_NAME >}}* is highly configurable.
 Many options, such as how documents are analyzed and how the results are displayed, are customizable.
 For example, you can specify how numeric words (e.g., *10/31/1974*) are [syllabized](#sec-document-analysis).
 Other programs either sound out each digit or treat the entire word as one syllable and you cannot change this.
-With *Readability Studio*, you can toggle this behavior at anytime.
+With *{{< var PROGRAM_NAME >}}*, you can toggle this behavior at anytime.
