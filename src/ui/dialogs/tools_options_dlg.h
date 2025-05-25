@@ -625,24 +625,28 @@ class ToolsOptionsDlg final : public wxDialog
     [[nodiscard]]
     wxString GetBinningOptionsLabel() const
         {
+        // TRANSLATORS: "Bins" are data ranges in a histogram that values fall into.
         return _(L"Binning Options");
         }
 
     [[nodiscard]]
     wxString GetBinDisplayLabel() const
         {
+        // TRANSLATORS: "Bins" are data ranges in a histogram that values fall into.
         return _(L"Bin Display");
         }
 
     [[nodiscard]]
     wxString GetBoxAppearanceLabel() const
         {
+        // TRANSLATORS: The boxes in a box plot.
         return _(L"Box Appearance");
         }
 
     [[nodiscard]]
     wxString GetBoxOptionsLabel() const
         {
+        // TRANSLATORS: The boxes in a box plot.
         return _(L"Box Options");
         }
 
