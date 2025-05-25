@@ -3056,13 +3056,32 @@ void MainFrame::OnAbout([[maybe_unused]] wxCommandEvent& event)
     wxDateTime buildDate;
     buildDate.ParseDate(__DATE__);
 
-    wxString licenseAgreementPath = wxGetApp().FindResourceFile(_DT(L"LICENSE"));
+    wxString filePath = wxGetApp().FindResourceFile(_DT(L"LICENSE"));
     wxString eula;
-    if (!(wxFile::Exists(licenseAgreementPath) &&
-          Wisteria::TextStream::ReadFile(licenseAgreementPath, eula)))
+    if (!(wxFile::Exists(filePath) && Wisteria::TextStream::ReadFile(filePath, eula)))
         {
-        wxLogMessage(L"Unable to read EULA from '%s'", licenseAgreementPath);
-        return;
+        wxLogMessage(L"Unable to read EULA from '%s'", filePath);
+        }
+
+    filePath = wxGetApp().FindResourceFile(_DT(L"citations.mla"));
+    wxString mlaCitation;
+    if (!(wxFile::Exists(filePath) && Wisteria::TextStream::ReadFile(filePath, mlaCitation)))
+        {
+        wxLogMessage(L"Unable to read MLA citation from '%s'", filePath);
+        }
+
+    filePath = wxGetApp().FindResourceFile(_DT(L"citations.apa"));
+    wxString apaCitation;
+    if (!(wxFile::Exists(filePath) && Wisteria::TextStream::ReadFile(filePath, apaCitation)))
+        {
+        wxLogMessage(L"Unable to read APA citation from '%s'", filePath);
+        }
+
+    filePath = wxGetApp().FindResourceFile(_DT(L"citations.bib"));
+    wxString bibTexCitation;
+    if (!(wxFile::Exists(filePath) && Wisteria::TextStream::ReadFile(filePath, bibTexCitation)))
+        {
+        wxLogMessage(L"Unable to read BibTeX citation from '%s'", filePath);
         }
 
     AboutDialogEx aboutDlg(
@@ -3070,7 +3089,7 @@ void MainFrame::OnAbout([[maybe_unused]] wxCommandEvent& event)
         wxString::Format(_(L"Copyright \U000000A92006-2025 Oleander Software, Ltd.\n"
                            "Copyright \U000000A92025-%d %s.\nAll rights reserved."),
                          buildDate.GetYear(), wxGetApp().GetVendorDisplayName()),
-        eula);
+        eula, mlaCitation, apaCitation, bibTexCitation);
     wxGetApp().UpdateSideBarTheme(aboutDlg.GetSideBar());
 
     aboutDlg.ShowModal();

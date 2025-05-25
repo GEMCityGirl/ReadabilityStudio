@@ -67,6 +67,8 @@ set(PROGRAM_LONGNAME ${readstudio_DESCRIPTION})
 set(PROGRAM_NUMBERED_VERSION 8.0)
 set(PUBLISHER "Eclipse Foundation AISBL")
 set(PROGRAM_AUTHOR "Blake Madden")
+set(PROGRAM_AUTHOR_MLA "Madden, Blake")
+set(PROGRAM_AUTHOR_APA "Madden, B.")
 set(PROGRAM_COMMENTS "Readability analysis software")
 set(PROGRAM_RDNS_IDENTIFIER "org.eclipse.readabilitystudio")
 set(GIT_REPO "https://github.com/eclipse-ers/ReadabilityStudio.git")
@@ -113,8 +115,12 @@ elseif(UNIX)
 endif()
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/src/version.h.in"
                "${CMAKE_CURRENT_SOURCE_DIR}/src/app/version.h")
-configure_file("${CMAKE_CURRENT_SOURCE_DIR}/src/citations.bib.in"
-               "${CMAKE_CURRENT_SOURCE_DIR}/src/app/citations.bib")
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/citations.bib.in"
+               "${CMAKE_CURRENT_SOURCE_DIR}/citations.bib")
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/citations.mla.in"
+               "${CMAKE_CURRENT_SOURCE_DIR}/citations.mla")
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/citations.apa.in"
+               "${CMAKE_CURRENT_SOURCE_DIR}/citations.apa")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/resource.h.in"
                "${CMAKE_CURRENT_SOURCE_DIR}/resource.h")
 if(UNIX AND NOT APPLE)
@@ -549,6 +555,19 @@ add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy
                    ${CMAKE_CURRENT_SOURCE_DIR}/LICENSE $<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER})
+# Citation files
+add_custom_command(TARGET ${PROJECT_NAME}
+                   POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy
+                   ${CMAKE_CURRENT_SOURCE_DIR}/citations.bib $<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER})
+add_custom_command(TARGET ${PROJECT_NAME}
+                   POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy
+                   ${CMAKE_CURRENT_SOURCE_DIR}/citations.mla $<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER})
+add_custom_command(TARGET ${PROJECT_NAME}
+                   POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy
+                   ${CMAKE_CURRENT_SOURCE_DIR}/citations.apa $<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER})
 # Zip up images and menu resources
 if(WIN32)
     file(MAKE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/resources/")

@@ -16,10 +16,12 @@
 
 //------------------------------------------------------
 AboutDialogEx::AboutDialogEx(wxWindow* parent, const wxBitmap& logo, wxString appVersion,
-                             wxString copyright, wxString eula, wxWindowID id, const wxPoint& pos,
-                             const wxSize& size, long style)
+                             wxString copyright, wxString eula, wxString mlaCitation,
+                             wxString apaCitation, wxString bibtexCitation, wxWindowID id,
+                             const wxPoint& pos, const wxSize& size, long style)
     : m_logo(logo), m_appVersion(std::move(appVersion)), m_copyright(std::move(copyright)),
-      m_eula(std::move(eula))
+      m_eula(std::move(eula)), m_mlaCitation(std::move(mlaCitation)),
+      m_apaCitation(std::move(apaCitation)), m_bibtexCitation(std::move(bibtexCitation))
     {
     Create(parent, id, pos, size, style);
     }
@@ -35,6 +37,60 @@ bool AboutDialogEx::Create(wxWindow* parent, wxWindowID id, const wxPoint& pos, 
 
     CreateControls();
     Centre();
+
+    Bind(
+        wxEVT_BUTTON,
+        [this]([[maybe_unused]] wxCommandEvent&)
+        {
+            if (wxTheClipboard->Open())
+                {
+                if (m_bibtexCitation.length())
+                    {
+                    wxTheClipboard->Clear();
+                    wxDataObjectComposite* obj = new wxDataObjectComposite();
+                    obj->Add(new wxTextDataObject(m_mlaCitation));
+                    wxTheClipboard->SetData(obj);
+                    }
+                wxTheClipboard->Close();
+                }
+        },
+        AboutDialogEx::ID_COPYMLA);
+
+    Bind(
+        wxEVT_BUTTON,
+        [this]([[maybe_unused]] wxCommandEvent&)
+        {
+            if (wxTheClipboard->Open())
+                {
+                if (m_bibtexCitation.length())
+                    {
+                    wxTheClipboard->Clear();
+                    wxDataObjectComposite* obj = new wxDataObjectComposite();
+                    obj->Add(new wxTextDataObject(m_apaCitation));
+                    wxTheClipboard->SetData(obj);
+                    }
+                wxTheClipboard->Close();
+                }
+        },
+        AboutDialogEx::ID_COPYAPA);
+
+    Bind(
+        wxEVT_BUTTON,
+        [this]([[maybe_unused]] wxCommandEvent&)
+        {
+            if (wxTheClipboard->Open())
+                {
+                if (m_bibtexCitation.length())
+                    {
+                    wxTheClipboard->Clear();
+                    wxDataObjectComposite* obj = new wxDataObjectComposite();
+                    obj->Add(new wxTextDataObject(m_bibtexCitation));
+                    wxTheClipboard->SetData(obj);
+                    }
+                wxTheClipboard->Close();
+                }
+        },
+        AboutDialogEx::ID_COPYBIBTEX);
 
     return true;
     }
@@ -100,17 +156,74 @@ void AboutDialogEx::CreateControls()
         }
 
     // License page
-    if (m_eula.length() > 0)
+    if (!m_eula.empty())
         {
         wxPanel* eulaPage = new wxPanel(m_sideBarBook);
         wxBoxSizer* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
         eulaPage->SetSizer(mainPanelSizer);
-        m_sideBarBook->AddPage(eulaPage, _(L"License"), ID_EULA_PAGE, false);
+        m_sideBarBook->AddPage(eulaPage, _(L"License"), ID_LICENSING_PAGE, false);
 
-        wxTextCtrl* eulaWindow =
-            new wxTextCtrl(eulaPage, wxID_ANY, wxString{}, wxDefaultPosition, wxDefaultSize,
-                           wxTE_MULTILINE | wxTE_RICH2, wxGenericValidator(&m_eula));
+        wxTextCtrl* eulaWindow = new wxTextCtrl(
+            eulaPage, wxID_ANY, wxString{}, wxDefaultPosition, wxDefaultSize,
+            wxTE_MULTILINE | wxTE_RICH2 | wxTE_READONLY, wxGenericValidator(&m_eula));
         mainPanelSizer->Add(eulaWindow, wxSizerFlags{ 1 }.Expand().Border());
+        }
+
+    if (!m_mlaCitation.empty() && !m_apaCitation.empty() && !m_bibtexCitation.empty())
+        {
+        wxPanel* citationPage = new wxPanel(m_sideBarBook);
+        wxBoxSizer* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
+        citationPage->SetSizer(mainPanelSizer);
+        m_sideBarBook->AddPage(citationPage, _(L"Citation"), ID_CITATION, false);
+
+        mainPanelSizer->Add(new wxStaticText(citationPage, wxID_ANY,
+                                             wxString::Format(_(L"To cite %s in publications:"),
+                                                              wxTheApp->GetAppName())),
+                            wxSizerFlags{}.Border(wxLEFT));
+
+        mainPanelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder() * 2);
+
+            {
+            mainPanelSizer->Add(new wxStaticText(citationPage, wxID_ANY, _(L"MLA:")),
+                                wxSizerFlags{}.Border(wxLEFT));
+            wxBoxSizer* textRowSizer = new wxBoxSizer(wxHORIZONTAL);
+            wxHtmlWindow* textWindow = new wxHtmlWindow(
+                citationPage, wxID_ANY, wxDefaultPosition, wxSize{ -1, FromDIP(75) },
+                wxHW_SCROLLBAR_AUTO | wxBORDER_THEME | wxHW_NO_SELECTION);
+            textWindow->SetPage(m_mlaCitation);
+            textRowSizer->Add(textWindow, wxSizerFlags{ 1 }.Expand());
+            textRowSizer->Add(new wxBitmapButton(
+                citationPage, ID_COPYMLA, wxArtProvider::GetBitmap(wxART_COPY, wxART_BUTTON)));
+            mainPanelSizer->Add(textRowSizer, wxSizerFlags{}.Expand().Border());
+            }
+
+            {
+            mainPanelSizer->Add(new wxStaticText(citationPage, wxID_ANY, _(L"APA:")),
+                                wxSizerFlags{}.Border(wxLEFT));
+            wxBoxSizer* textRowSizer = new wxBoxSizer(wxHORIZONTAL);
+            wxHtmlWindow* textWindow = new wxHtmlWindow(
+                citationPage, wxID_ANY, wxDefaultPosition, wxSize{ -1, FromDIP(75) },
+                wxHW_SCROLLBAR_AUTO | wxBORDER_THEME | wxHW_NO_SELECTION);
+            textWindow->SetPage(m_apaCitation);
+            textRowSizer->Add(textWindow, wxSizerFlags{ 1 }.Expand());
+            textRowSizer->Add(new wxBitmapButton(
+                citationPage, ID_COPYAPA, wxArtProvider::GetBitmap(wxART_COPY, wxART_BUTTON)));
+            mainPanelSizer->Add(textRowSizer, wxSizerFlags{}.Expand().Border());
+            }
+
+            {
+            mainPanelSizer->Add(new wxStaticText(citationPage, wxID_ANY, _(L"BibTeX:")),
+                                wxSizerFlags{}.Border(wxLEFT));
+            wxBoxSizer* textRowSizer = new wxBoxSizer(wxHORIZONTAL);
+            wxTextCtrl* textWindow = new wxTextCtrl(
+                citationPage, wxID_ANY, wxString{}, wxDefaultPosition, wxSize{ -1, FromDIP(175) },
+                wxTE_MULTILINE | wxTE_RICH2 | wxTE_READONLY, wxGenericValidator(&m_bibtexCitation));
+            textWindow->SetFont(wxFontInfo{}.Family(wxFontFamily::wxFONTFAMILY_TELETYPE));
+            textRowSizer->Add(textWindow, wxSizerFlags{ 1 }.Expand());
+            textRowSizer->Add(new wxBitmapButton(
+                citationPage, ID_COPYBIBTEX, wxArtProvider::GetBitmap(wxART_COPY, wxART_BUTTON)));
+            mainPanelSizer->Add(textRowSizer, wxSizerFlags{ 1 }.Expand().Border());
+            }
         }
 
     mainSizer->Add(CreateSeparatedButtonSizer(wxCLOSE), wxSizerFlags{}.Expand().Border());
