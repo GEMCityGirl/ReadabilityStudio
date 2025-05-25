@@ -2,7 +2,7 @@
 
 This content is produced and maintained by the Eclipse Foundation.
 
-* Project home: https://github.com/Blake-Madden/ReadabilityStudio
+* Project home: https://github.com/eclipse-ers/ReadabilityStudio
 
 ## Trademarks
 
@@ -29,7 +29,7 @@ SPDX-License-Identifier: EPL-2.0
 
 The project maintains the following source code repositories:
 
-https://github.com/Blake-Madden/ReadabilityStudio
+https://github.com/eclipse-ers/ReadabilityStudio
 
 ## Third-party Content
 
