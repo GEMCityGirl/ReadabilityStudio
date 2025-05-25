@@ -12,7 +12,7 @@ source('../R/appdown.r')
 
 ### General Enhancements {-}
 
-- Added Lua scripting. This allows for programming your own scripts to automate the application.
+- Added Lua scripting. This allows for programming your own scripts to automate various tasks.
 - Added document's last modified time to the summary statistics (standard projects).
 - **Web Harvester** improvements:
   - Previous download folder is now saved.
@@ -26,12 +26,13 @@ source('../R/appdown.r')
 ### Analysis/Test Enhancements {-}
 
 - [Combined accents](#diacritics) (i.e., diacritics) are now supported.\
-  For example, "e◌́" will be imported as a 'é'.
+  For example, "e ◌́" will be imported as a 'é'.
 - [Typographical ligatures](#typographical-ligatures) are now converted to the regular characters.\
-  For example, "ﬀ" will be imported as "ff."
+  For example, "ﬀ" will be imported as "f f."
 - Custom test formulas:
     - New function `IFS`.
-    - The functions `MIN`, `MAX`, `SUM`, `AVERAGE`, `OR`, and `AND` now support 24 arguments. (These were limited to 7 arguments previously.)
+    - The functions `MIN`, `MAX`, `SUM`, `AVERAGE`, `OR`, and `AND` now support 24 arguments.
+      (These were limited to 7 arguments previously.)
 
 ### Documentation Enhancements {-}
 
