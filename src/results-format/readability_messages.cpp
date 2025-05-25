@@ -908,6 +908,7 @@ wxString ReadabilityMessages::GetEnglandWalesScaleLabel(size_t value)
     switch (value)
         {
     case 0:
+        // TRANSLATORS: "Keys stage" should probably not be translated, but "year" can.
         return _(L"Key stage 1 (year 1)");
         break;
     case 1:

@@ -1684,7 +1684,8 @@ void ReadabilityApp::FillGradeScalesMenu(wxMenu& menu)
                                wxITEM_CHECK));
     menu.Append(
         new wxMenuItem(&menu, XRCID("ID_QUEBEC"), _DT(L"Quebec"), wxString{}, wxITEM_CHECK));
-    menu.Append(new wxMenuItem(&menu, XRCID("ID_ENGLAND"), _(L"Key stages (England && Wales)"),
+    menu.Append(new wxMenuItem(&menu, XRCID("ID_ENGLAND"),
+                               _DT(L"Key stages (England && Wales)", DTExplanation::ProperNoun),
                                wxString{}, wxITEM_CHECK));
     }
 

@@ -2436,6 +2436,8 @@ void ProjectDoc::DisplayWordCharts()
                 ((eflawBarPos.value_or(monoSyllableBarPos.value()) - threeSyllableBarPos.value())
                     * math_constants::half) +
                         threeSyllableBarPos.value(),
+                // TRANSLATORS: "Length Factors" is a phrase that is split across lines in English.
+                // Translations should treat this as a phrase and split accordingly.
                 _("Complexity or\nLength\nFactors")));
             }
 

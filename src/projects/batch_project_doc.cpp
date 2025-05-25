@@ -7459,7 +7459,8 @@ void BatchProjectDoc::DisplaySightWords()
         listView->DeleteAllColumns();
         listView->InsertColumn(listView->GetColumnCount(), _(L"Document"));
         listView->InsertColumn(listView->GetColumnCount(), _(L"Label"));
-        listView->InsertColumn(listView->GetColumnCount(), _(L"% of Non-Dolch Words"));
+        listView->InsertColumn(listView->GetColumnCount(),
+                               /* xgettext:no-c-format */ _(L"% of Non-Dolch Words"));
         if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
             {
             listView->InsertColumn(listView->GetColumnCount(), _(L"Non-Dolch Words"));
@@ -7636,6 +7637,7 @@ void BatchProjectDoc::SetScoreStatsRow(
         if (sortedData.size() < 2)
             {
             dataGrid->SetItemText(rowNum, currentColumn++,
+                                  // TRANSLATORS: "std. dev." is standard deviation.
                                   _(L"More than one value is required to calculate std. dev."));
             dataGrid->SetItemText(rowNum, currentColumn++,
                                   _(L"More than one value is required to calculate variance."));

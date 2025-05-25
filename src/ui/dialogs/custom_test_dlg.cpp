@@ -44,7 +44,7 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
             (IsIncludingCustomWordList() || IsIncludingSpacheList() || IsIncludingHJList() ||
              IsIncludingDaleChallList() || IsIncludingStockerList()))
             {
-            if (wxMessageBox(_(L"An unfamiliar word list has been defined, "
+            if (wxMessageBox(_(L"A familiar word list has been defined, "
                                "but no formula has been specified. "
                                "Do you wish to use the New Dale-Chall formula for this test?"),
                              _(L"No Formula Defined"), wxYES_NO | wxICON_QUESTION) == wxNO)
@@ -216,7 +216,7 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
              !IsIncludingDaleChallList() && !IsIncludingStockerList()))
             {
             wxMessageBox(_(L"Familiar words not defined.\n\n"
-                           "This formula requires an unfamiliar word list to be selected."),
+                           "This formula requires a familiar word list to be selected."),
                          _(L"Error in Formula"), wxOK | wxICON_EXCLAMATION);
             return false;
             }
@@ -241,8 +241,8 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
              IsIncludingDaleChallList() || IsIncludingStockerList()))
             {
             wxMessageBox(
-                _(L"An unfamiliar word list has been defined, but the formula is not using it. "
-                  "Unfamiliar word list definitions will be ignored."),
+                _(L"A familiar word list has been defined, but the formula is not using it. "
+                  "Familiar word list definitions will be ignored."),
                 _(L"Warning"), wxOK | wxICON_EXCLAMATION);
             }
         if ((project->GetFormulaParser().is_function_used(

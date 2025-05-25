@@ -4154,7 +4154,7 @@ void ToolsOptionsDlg::CreateControls()
             gradeLevelOption.Add(_DT(L"Quebec"),
                                  static_cast<int>(readability::grade_scale::quebec));
             gradeLevelOption.Add(
-                _(L"Key stages (England & Wales)"),
+                _DT(L"Key stages (England & Wales)", DTExplanation::ProperNoun),
                 static_cast<int>(readability::grade_scale::key_stages_england_wales));
             m_gradeLevelPropertyGrid->Append(new wxEnumProperty(
                 GetGradeScaleLabel(), wxPG_LABEL, gradeLevelOption,
@@ -5921,7 +5921,7 @@ void ToolsOptionsDlg::CreateGraphSection()
             m_boxPlotsPropertyGrid->Append(new wxPropertyCategory(GetBoxAppearanceLabel()));
             m_boxPlotsPropertyGrid->SetPropertyHelpString(
                 GetBoxAppearanceLabel(),
-                _(L"The options in this section customize the display of the box(es)."));
+                _(L"The options in this section customize the display of the boxes."));
             // color for box
             m_boxPlotsPropertyGrid->Append(new wxColourProperty(
                 GetColorLabel(), wxPG_LABEL,
