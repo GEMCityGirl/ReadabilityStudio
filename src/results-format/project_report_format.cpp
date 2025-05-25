@@ -2185,6 +2185,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
             htmlText += tableStart +
                         // TRANSLATORS: "Fog" is the name of a test, don't translate that part.
                         formatHeader(_(L"Fog Words")) +
+                        // TRANSLATORS: "Fog" is the name of a test, don't translate that part.
                         formatRow(_(L"Number of Fog hard words (3+ syllables, with <a "
                                     "href=\"#FogHelp\">exceptions</a>):"),
                                   wxNumberFormatter::ToString(
@@ -2231,6 +2232,7 @@ wxString ProjectReportFormat::FormatStatisticsInfo(
                         L"\n</table>";
             if (listData)
                 {
+                // TRANSLATORS: "Fog" is a test name; don't translate it.
                 listData->SetItemText(listDataItemCount, 0, _(L"Number of unique Fog hard words"));
                 listData->SetItemText(listDataItemCount++, 1,
                                       wxNumberFormatter::ToString(

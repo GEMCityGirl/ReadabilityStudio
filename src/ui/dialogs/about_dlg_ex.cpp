@@ -184,7 +184,7 @@ void AboutDialogEx::CreateControls()
         mainPanelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder() * 2);
 
             {
-            mainPanelSizer->Add(new wxStaticText(citationPage, wxID_ANY, _(L"MLA:")),
+            mainPanelSizer->Add(new wxStaticText(citationPage, wxID_ANY, _DT(L"MLA:")),
                                 wxSizerFlags{}.Border(wxLEFT));
             wxBoxSizer* textRowSizer = new wxBoxSizer(wxHORIZONTAL);
             wxHtmlWindow* textWindow = new wxHtmlWindow(
@@ -198,7 +198,7 @@ void AboutDialogEx::CreateControls()
             }
 
             {
-            mainPanelSizer->Add(new wxStaticText(citationPage, wxID_ANY, _(L"APA:")),
+            mainPanelSizer->Add(new wxStaticText(citationPage, wxID_ANY, _DT(L"APA:")),
                                 wxSizerFlags{}.Border(wxLEFT));
             wxBoxSizer* textRowSizer = new wxBoxSizer(wxHORIZONTAL);
             wxHtmlWindow* textWindow = new wxHtmlWindow(
@@ -212,7 +212,7 @@ void AboutDialogEx::CreateControls()
             }
 
             {
-            mainPanelSizer->Add(new wxStaticText(citationPage, wxID_ANY, _(L"BibTeX:")),
+            mainPanelSizer->Add(new wxStaticText(citationPage, wxID_ANY, _DT(L"BibTeX:")),
                                 wxSizerFlags{}.Border(wxLEFT));
             wxBoxSizer* textRowSizer = new wxBoxSizer(wxHORIZONTAL);
             wxTextCtrl* textWindow = new wxTextCtrl(

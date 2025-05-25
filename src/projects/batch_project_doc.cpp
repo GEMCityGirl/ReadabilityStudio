@@ -1184,6 +1184,7 @@ void BatchProjectDoc::LoadSummaryStatsSection()
         // TRANSLATORS: "hard words" as in difficult, not as in "harsh."
         m_summaryStatsColumnNames.push_back(_(L"Number of SMOG hard words"));
         m_summaryStatsColumnNames.push_back(_(L"Number of unique SMOG hard words"));
+        // TRANSLATORS: "Fog" is a test name; don't translate it.
         m_summaryStatsColumnNames.push_back(_(L"Number of Fog hard words"));
         m_summaryStatsColumnNames.push_back(_(L"Number of unique Fog hard words"));
         if (IsIncludingDolchSightWords())
