@@ -51,27 +51,16 @@ Then enter your app-specific password. (You can get that from Apple's developer 
 
 {{< pagebreak >}}
 
-## Build *wxWidgets* {-}
-
-Download *wxWidgets*:
+## Download *wxWidgets* {-}
 
 ```{.bash}
 git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
-cd wxWidgets
 ```
 
-Before building *wxWidgets*, a patch needs to be applied to add text control features needed by the program.
-Follow the instructions in `r menu(c('wxpatch', 'macOS', 'Instructions.txt'))` to apply the patch, and then build:
+This should be cloned into a folder next to *{{< var PROGRAM_NAME >}}*.
 
-```{.bash}
-cmake . -DCMAKE_INSTALL_PREFIX=./wxlib -DwxBUILD_SHARED=OFF \
-    -D"CMAKE_OSX_ARCHITECTURES:STRING=arm64;x86_64" \
-    -DCMAKE_OSX_DEPLOYMENT_TARGET=10.13 \
-    -DwxBUILD_OPTIMISE=ON -DwxBUILD_STRIPPED_RELEASE=ON -DCMAKE_BUILD_TYPE=Release
-
-cmake --build . --target install --config Release
-cd ..
-```
+Before including *wxWidgets* in the build, a patch needs to be applied to add text control features needed by the program.
+Follow the instructions in `r menu(c('wxpatch', 'macOS', 'Instructions.txt'))` to apply the patch.
 
 ## Build *{{< var PROGRAM_NAME >}}* {-}
 

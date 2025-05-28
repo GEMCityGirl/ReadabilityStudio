@@ -15,17 +15,10 @@ source('R/appdown.r')
 | *Quarto* (optional) |
 | *POEdit* (optional) |
 
-## Build *wxWidgets* {-}
+## Download *wxWidgets* {-}
 
 - Open *Visual Studio* and select **Clone a Repository**
-  - Enter ["https://github.com/wxWidgets/wxWidgets.git"](https://github.com/wxWidgets/wxWidgets.git) and clone it
-- Once the **wxWidgets** folder is cloned and opened in *Visual Studio*:
-  - Open `r menu(c('Project', 'CMake Settings for wxWidgets'))`
-    - Uncheck **wxBUILD_SHARED**
-    - Set **wxBUILD_OPTIMISE** to "ON"
-    - Set the configuration type to "Release"
-    - Save your changes
-  - Select `r menu(c('Build', 'Install wxWidgets'))` (builds and then copies the header, lib, and *CMake* files to the prefix folder)
+  - Enter ["https://github.com/wxWidgets/wxWidgets.git"](https://github.com/wxWidgets/wxWidgets.git) and clone it into a folder next to *{{< var PROGRAM_NAME >}}*
 
 {{< pagebreak >}}
 

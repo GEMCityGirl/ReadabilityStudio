@@ -171,23 +171,18 @@ endif()
 ##############################################################
 include(src/Wisteria-Dataviz/cmake/folders.cmake)
 
-# Find wxWidgets (wxWidgetsConfig.cmake, specifically) and select its components
+# Add wxWidgets to the build
+set(wxBUILD_SHARED OFF)
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+    set(__WXDEBUG__ 0)
+    set(wxBUILD_OPTIMISE ON)
+    set(BUILD_STRIPPED_RELEASE ON)
+endif()
 find_directory("wxWidgets" wxWidgets_BASEDIR)
-if(WIN32)
-    set(wxWidgets_DIR "${wxWidgets_BASEDIR}/out/install/x64-${CMAKE_BUILD_TYPE}/lib/cmake/wxWidgets")
-elseif(UNIX)
-    set(wxWidgets_DIR "${wxWidgets_BASEDIR}/wxlib/lib/cmake/wxWidgets")
-endif()
-
-message(STATUS "Adding wxWidgets CMake config folder: ${wxWidgets_DIR}")
-if(NOT EXISTS "${wxWidgets_DIR}/wxWidgetsConfig.cmake" AND NOT EXISTS "${wxWidgets_DIR}/wxwidgets-config.cmake")
-    message(FATAL_ERROR "Cannot find wxWidgets CMake configuration. (Looked in ${wxWidgets_DIR}.)")
-endif()
-set(wxWidgets_USE_STATIC 1)
-find_package(wxWidgets 3.3 COMPONENTS core base xrc propgrid xml aui ribbon qa stc net richtext REQUIRED CONFIG)
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/../wxWidgets" ${CMAKE_CURRENT_SOURCE_DIR}/wxWidgets_lib)
+set(wxWidgets_LIBRARIES wx::core wx::base wx::xrc wx::propgrid wx::xml wx::aui wx::ribbon wx::qa wx::stc wx::net wx::richtext)
 
 message(STATUS "Adding wxWidgets libraries: ${wxWidgets_LIBRARIES}")
-message(STATUS "Adding wxWidgets: ${wxPLATFORM_LIB_DIR}")
 
 if(UNIX AND NOT APPLE)
     # GTK 3 dependency
@@ -311,7 +306,7 @@ add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE ${APP_SRC_FILES})
 if(MSVC)
     # _DISABLE_VECTOR_ANNOTATION _DISABLE_STRING_ANNOTATION are needed for ASAN not being enabled in linked wxWidgets libs
     # https://learn.microsoft.com/en-us/cpp/sanitizers/error-container-overflow?view=msvc-170
-    target_compile_definitions(${PROJECT_NAME} PUBLIC __WXMSW__ CRCPP_USE_CPP11 _UNICODE
+    target_compile_definitions(${PROJECT_NAME} PUBLIC __WXMSW__ CRCPP_USE_CPP11 _CRT_SECURE_NO_WARNINGS _UNICODE
         $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING _DISABLE_VECTOR_ANNOTATION _DISABLE_STRING_ANNOTATION> $<$<CONFIG:Release>:NDEBUG>)
     # /Zc:__cplusplus tells MSVC to set the C++ version what we are
     # actually compiling as. The default behavior in MSVC is to say that the
@@ -337,7 +332,7 @@ if(MSVC)
                                $<$<CONFIG:Release>:/O2>)
     endif()
 elseif(MINGW OR MSYS)
-    target_compile_definitions(${PROJECT_NAME} PUBLIC __WXMSW__ CRCPP_USE_CPP11 _UNICODE
+    target_compile_definitions(${PROJECT_NAME} PUBLIC __WXMSW__ CRCPP_USE_CPP11 _CRT_SECURE_NO_WARNINGS _UNICODE
             $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING> $<$<CONFIG:Release>:NDEBUG>)
     target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow -Werror
                            $<$<CONFIG:Debug>:-Og>
