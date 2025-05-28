@@ -44,6 +44,7 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
             (IsIncludingCustomWordList() || IsIncludingSpacheList() || IsIncludingHJList() ||
              IsIncludingDaleChallList() || IsIncludingStockerList()))
             {
+            // TRANSLATORS: "New Dale-Chall" should not be translated; it is a test name.
             if (wxMessageBox(_(L"A familiar word list has been defined, "
                                "but no formula has been specified. "
                                "Do you wish to use the New Dale-Chall formula for this test?"),

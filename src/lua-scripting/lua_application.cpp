@@ -147,7 +147,7 @@ namespace LuaScripting
                     if (!img.IsOk())
                         {
                         badImageSizes.insert(std::make_pair(
-                            currentFile, wxString::Format(_(L"%s (image is possibly corrupt))"),
+                            currentFile, wxString::Format(_(L"%s (image is possibly corrupt)"),
                                                           fn.GetFullPath())));
                         }
                     else if (!is_within<long>(img.GetHeight(), height - 5, height + 5) ||
@@ -157,7 +157,7 @@ namespace LuaScripting
                             std::make_pair(currentFile,
                                            wxString::Format( // TRANSLATORS: Placeholders are a file
                                                              // name and an image's dimensions
-                                               _(L"%s (%ld x %ld vs. %d x %d))"), fn.GetFullPath(),
+                                               _(L"%s (%ld x %ld vs. %d x %d)"), fn.GetFullPath(),
                                                width, height, img.GetWidth(), img.GetHeight())));
                         }
                     }

@@ -46,6 +46,7 @@ class BaseProjectView : public wxView
         }
 
     void ShowSideBar(const bool show = true);
+
     [[nodiscard]]
     bool IsSideBarShown() const noexcept
         {
@@ -707,7 +708,7 @@ class BaseProjectView : public wxView
 
     bool OnClose(bool deleteWindow = true) override;
 
-    void OnDraw(wxDC*) override{};
+    void OnDraw(wxDC*) override {}
 
     void OnDClickRibbonBar([[maybe_unused]] wxRibbonBarEvent& event);
 

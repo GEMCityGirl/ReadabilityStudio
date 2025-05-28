@@ -794,6 +794,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         readability::readability_test test(
             ReadabilityMessages::DEGREES_OF_READING_POWER(), XRCID("ID_DEGREES_OF_READING_POWER"),
             _DT(L"Degrees of Reading Power"), _DT(L"Degrees of Reading Power"),
+            // TRANSLATORS: "Degrees of Reading Power" should not be translated.
             _(L"Degrees of Reading Power is designed for matching documents to a student's "
               "reading ability (based on his/her DRP score). This test is influenced by "
               "sentence length, word length, and number of familiar Dale-Chall words."),
@@ -948,6 +949,7 @@ void BaseProject::InitializeStandardReadabilityTests()
             ReadabilityMessages::BORMUTH_GRADE_PLACEMENT_35(),
             XRCID("ID_BORMUTH_GRADE_PLACEMENT_35"), _DT(L"Bormuth Grade Placement"),
             _DT(L"Bormuth Grade Placement"),
+            // TRANSLATORS: "Bormuth Grade Placement" should not be translated.
             _(L"Bormuth Grade Placement is designed for students and is "
               "highly regarded for its accuracy because "
               "it uses three variables (rather than the traditional two variables)."),
@@ -1173,6 +1175,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         readability::readability_test test(
             ReadabilityMessages::ARI(), XRCID("ID_ARI"), _DT(L"ARI"),
             _DT(L"Automated Readability Index"),
+            // TRANSLATORS: "Automated Readability Index" should not be translated.
             _(L"Automated Readability Index, also known as \"ARI\" or \"auto\", "
               "was originally created for U.S. Air Force materials and was designed "
               "for technical documents and manuals."),
@@ -1210,13 +1213,15 @@ void BaseProject::InitializeStandardReadabilityTests()
 
         // fog
         {
-        readability::readability_test test(ReadabilityMessages::GUNNING_FOG(), XRCID("ID_FOG"),
-                                           _DT(L"Gunning Fog"), _DT(L"Gunning Fog"),
-                                           _(L"Gunning Fog Index is generally recommended for "
-                                             "business publications and journals."),
-                                           readability::readability_test_type::grade_level, false,
-                                           _DT(L".4 * (WordCount()/SentenceCount(GunningFog) + "
-                                               "((HardFogWordCount()/WordCount())*100))"));
+        readability::readability_test test(
+            ReadabilityMessages::GUNNING_FOG(), XRCID("ID_FOG"), _DT(L"Gunning Fog"),
+            _DT(L"Gunning Fog"),
+            // TRANSLATORS: "Gunning Fog" should not be translated; it is a test name
+            _(L"Gunning Fog Index is generally recommended for "
+              "business publications and journals."),
+            readability::readability_test_type::grade_level, false,
+            _DT(L".4 * (WordCount()/SentenceCount(GunningFog) + "
+                "((HardFogWordCount()/WordCount())*100))"));
         test.add_document_classification(readability::document_classification::technical_document,
                                          true);
         test.add_document_classification(readability::document_classification::general_document,
@@ -1245,7 +1250,8 @@ void BaseProject::InitializeStandardReadabilityTests()
         readability::readability_test test(
             ReadabilityMessages::PSK_GUNNING_FOG(), XRCID("ID_PSK_FOG"), _DT(L"PSK Gunning Fog"),
             _DT(L"Powers-Sumner-Kearl (Gunning Fog)"),
-            _(L"PSK Gunning Fog Index is generally recommended for "
+            // TRANSLATORS: "PSK Gunning Fog" should not be translated.
+            _(L"PSK Gunning Fog is generally recommended for "
               "business publications and journals."),
             readability::readability_test_type::grade_level, false,
             _DT(L"3.0680 + (.0877*(WordCount(Default)/SentenceCount(GunningFog))) +\n"
@@ -1385,6 +1391,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         {
         readability::readability_test test(
             ReadabilityMessages::RIX(), XRCID("ID_RIX"), _DT(L"Rix"), _DT(L"Rate Index (Rix)"),
+            // TRANSLATORS: "Rate Index" should not be translated.
             _(L"The Rate Index (Rix) formula is a variation of Lix and can be used on "
               "documents of any Western European language."),
             readability::readability_test_type::index_value_and_grade_level, false, L"");
@@ -1437,6 +1444,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         readability::readability_test test(
             ReadabilityMessages::DALE_CHALL(), XRCID("ID_NEW_DALE_CHALL"), _DT(L"New Dale-Chall"),
             _DT(L"New Dale-Chall"),
+            // TRANSLATORS: "New Dale-Chall" should not be translated; it is a test name.
             _(L"New Dale-Chall is generally used for primary and secondary age readers "
               "to help classify school text books and literature."),
             readability::readability_test_type::grade_level, false, L"");
@@ -1591,6 +1599,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         readability::readability_test test(
             ReadabilityMessages::FLESCH(), XRCID("ID_FLESCH"), _DT(L"Flesch Reading Ease"),
             _DT(L"Flesch Reading Ease"),
+            // TRANSLATORS: "Flesch Reading Ease" should not be translated.
             _(L"Flesch Reading Ease is meant for secondary and adult-level text and is a standard "
               "used by many U.S. government agencies, including the U.S. Department of Defense. "
               "Scores range from 0-100 (the higher the score, the easier to read). "
@@ -1709,6 +1718,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         readability::readability_test test(
             ReadabilityMessages::NEW_FOG(), XRCID("ID_NEW_FOG_COUNT"), _DT(L"New Fog Count"),
             _DT(L"New Fog Count (Kincaid)"),
+            // TRANSLATORS: "New Fog Count" should not be translated; it is a test name.
             _(L"New Fog Count is a modified version of the Gunning Fog Index created for the "
               "U.S. Navy and was designed for technical documents and manuals.\n\n"
               "This test is part of the Kincaid Navy Personnel collection of tests."),
@@ -1849,6 +1859,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         readability::readability_test test(
             ReadabilityMessages::MODIFIED_SMOG(), XRCID("ID_SMOG_MODIFIED"), _DT(L"Modified SMOG"),
             _DT(L"Modified SMOG"),
+            // TRANSLATORS: "Modified SMOG" should not be translated; it is a test name.
             _(L"Modified SMOG is a variation of SMOG that is adjusted for primary-age materials."),
             readability::readability_test_type::grade_level, false, L"");
         test.add_teaching_level(readability::test_teaching_level::primary_grade);
@@ -1863,6 +1874,8 @@ void BaseProject::InitializeStandardReadabilityTests()
         {
         readability::readability_test test(
             ReadabilityMessages::SIMPLE_ARI(), XRCID("ID_SIMPLIFIED_ARI"), _DT(L"SARI"),
+            // TRANSLATORS: "New Automated Readability Index" should not be translated;
+            // it is a test name.
             _DT(L"New Automated Readability Index (Kincaid, simplified)"),
             _(L"New Automated Readability Index is a modified version of ARI created for "
               "U.S. Navy materials and was designed for technical documents and manuals.\n\n"
@@ -1882,6 +1895,8 @@ void BaseProject::InitializeStandardReadabilityTests()
         readability::readability_test test(
             ReadabilityMessages::NEW_ARI(), XRCID("ID_NEW_ARI"), _DT(L"New ARI"),
             _DT(L"New Automated Readability Index (Kincaid)"),
+            // TRANSLATORS: "New Automated Readability Index" should not be translated;
+            // it is a test name.
             _(L"New Automated Readability Index is a modified version of ARI created for "
               "U.S. Navy materials and was designed for technical documents and manuals.\n\n"
               "This test is part of the Kincaid Navy Personnel collection of tests."),

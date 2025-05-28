@@ -3925,8 +3925,10 @@ void ToolsOptionsDlg::CreateControls()
             // Fog
             m_readabilityTestsPropertyGrid->Append(new wxPropertyCategory(_DT(L"Gunning Fog")));
             m_readabilityTestsPropertyGrid->SetPropertyHelpString(
-                _DT(L"Gunning Fog"), _(L"The options in this section customize how Gunning Fog "
-                                       "related tests are calculated."));
+                _DT(L"Gunning Fog"),
+                // TRANSLATORS: "Gunning Fog" should not be translated; it is a test name.
+                _(L"The options in this section customize how Gunning Fog "
+                  "related tests are calculated."));
 
             m_readabilityTestsPropertyGrid->Append(new wxBoolProperty(
                 GetCountIndependentClausesLabel(), wxPG_LABEL,
@@ -4020,7 +4022,7 @@ void ToolsOptionsDlg::CreateControls()
                          wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod()))));
             m_readabilityTestsPropertyGrid->SetPropertyHelpString(
                 GetProperNounsLabel(),
-                _(L"Controls how proper nouns are treated by Dale-Chall related tests"));
+                _(L"Controls how proper nouns are treated by Dale-Chall related tests."));
 
             wxPGChoices textExclusionMethods;
             textExclusionMethods.Add(_(L"Exclude incomplete sentences, except headings"));
