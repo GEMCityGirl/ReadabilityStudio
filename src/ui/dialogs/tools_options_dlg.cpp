@@ -3938,6 +3938,7 @@ void ToolsOptionsDlg::CreateControls()
                                                                  wxPG_BOOL_USE_CHECKBOX, true);
             m_readabilityTestsPropertyGrid->SetPropertyHelpString(
                 GetCountIndependentClausesLabel(),
+                // TRANSLATORS: "Gunning Fog" should not be translated; it is a test name.
                 _(L"Check this option to count independent clauses as separate "
                   "sentences when calculating a Gunning Fog score. Independent clauses "
                   "are detected by dashes, colons, and semicolons "
@@ -5845,7 +5846,7 @@ void ToolsOptionsDlg::CreateGraphSection()
                              wxGetApp().GetAppOptions().GetHistogramBinningMethod()))));
                 m_histogramPropertyGrid->SetPropertyHelpString(
                     GetBinSortingLabel(),
-                    _(L"Bin sorting refers to how values (e.g., index and grade scores) are "
+                    _(L"Binning refers to how values (e.g., index and grade scores) are "
                       "categorized into separate classes. Each class (or bin) is displayed "
                       "on a histogram as a bar. The options listed here control how these "
                       "bins are created and how your data are sorted into them."));

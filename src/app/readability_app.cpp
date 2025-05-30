@@ -857,6 +857,9 @@ bool ReadabilityApp::OnInit()
         { _DT(L"syllables-per-100-words"), std::numeric_limits<double>::quiet_NaN(), 150 }
         };
     ConsentFormsBundle.SetDescription(
+        // TRANSLATORS: "Flesch Reading Ease," "Easy Listening Formula," and
+        // "Consent Forms" should not be translated.
+        // These are test names and the name of a published article, respectively.
         _(L"Grundner's recommendations for patient consent forms.\n\n"
            "This bundle includes the tests Fry, Flesch Reading Ease, SMOG, and "
            "the Easy Listening Formula, as recommended by T. M. Grundner (\"Consent Forms\" 9-10). "

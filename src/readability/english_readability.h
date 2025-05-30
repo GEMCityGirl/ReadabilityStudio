@@ -2663,7 +2663,7 @@ namespace readability
             .4);
         }
 
-    /** @brief PSK variation of Fog index.
+    /** @brief PSK variation of Fog.
         @param number_of_words The number of words in the sample.
         @param number_of_hard_words The number of hard words in the sample.
         @param number_of_sentences The number of sentences in the sample.

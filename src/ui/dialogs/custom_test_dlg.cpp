@@ -94,6 +94,7 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
                     .ToStdString()) &&
             !IsIncludingDaleChallList())
             {
+            // TRANSLATORS: "New Dale-Chall" should not be translated; it is a test name.
             if (wxMessageBox(_(L"The New Dale-Chall formula is being used for this test, "
                                "but the standard Dale-Chall word list is not being included. "
                                "Do you wish to include this word list?"),
@@ -275,9 +276,9 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
                                             .FromDouble(project->GetFormulaParser().evaluate(), 1)
                                             .Prepend(_(L"Calculated value: "))
                                             .Prepend(L"\n\n");
-            wxMessageBox(
-                _(L"Formula is valid; no syntax errors were detected.") + calculatedValueMsg,
-                _(L"Formula Validated"), wxOK | wxICON_INFORMATION);
+            wxMessageBox(_(L"Formula is valid; no syntax errors were detected.") +
+                             calculatedValueMsg,
+                         _(L"Formula Validated"), wxOK | wxICON_INFORMATION);
             }
         }
     catch (const std::exception& exp)
@@ -464,12 +465,14 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
     m_generalDocumentStatistics = {
         wxString(
             _DT(L"SyllableCount()\t") +
+            // TRANSLATORS: "Default" should not be translated in here, it is a program keyword.
             _(L"Returns the number of syllables from the document.\n\n"
               "This function takes an argument specifying which numeral syllabizing method to use. "
               "These values are: Default, NumeralsFullySyllabized, and NumeralsAreOneSyllable"))
             .wc_string(),
         wxString(
             _DT(L"CharacterCount()\t") +
+            // TRANSLATORS: "Default" should not be translated in here, it is a program keyword.
             _(L"Returns the number of characters (i.e., letters and numbers) from the document.\n\n"
               "This function takes an argument specifying which text exclusion method to use. "
               "These values are: Default, DaleChall, and HarrisJacobson"))
@@ -534,14 +537,17 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
             .wc_string(),
         wxString(
             _DT(L"ThreeSyllablePlusWordCount()\t") +
+            // TRANSLATORS: "Default" should not be translated in here, it is a program keyword.
             _(L"Returns the number of words consisting of three or more syllables from the "
               "document.\n\nThis function takes an argument specifying which numeral "
               "syllabizing method to use. These values are: Default or NumeralsFullySyllabized"))
             .wc_string(),
-        wxString(_DT(L"WordCount()\t") +
-                 _(L"Returns the number of words from the document.\n\n"
-                   "This function takes an argument specifying which text exclusion method to use. "
-                   "These values are: Default, DaleChall, and HarrisJacobson"))
+        wxString(
+            _DT(L"WordCount()\t") +
+            // TRANSLATORS: "Default" should not be translated in here, it is a program keyword.
+            _(L"Returns the number of words from the document.\n\n"
+              "This function takes an argument specifying which text exclusion method to use. "
+              "These values are: Default, DaleChall, and HarrisJacobson"))
             .wc_string(),
         wxString(_DT(L"NumeralCount()\t") + _(L"Returns the number of numerals from the document."))
             .wc_string(),
@@ -557,6 +563,7 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
             .wc_string(),
         wxString(
             _DT(L"UniqueThreeSyllablePlusWordCount()\t") +
+            // TRANSLATORS: "Default" should not be translated in here, it is a program keyword.
             _(L"Returns the number of unique words consisting of three or more syllables from the "
               "document.\n\nThis function takes an argument specifying which numeral syllabizing "
               "method to use. These values are: Default or NumeralsFullySyllabized"))
@@ -565,6 +572,7 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
                  _(L"Returns the number of unique monosyllabic words from the document."))
             .wc_string(),
         wxString(_DT(L"HardFogWordCount()\t") +
+                 // TRANSLATORS: "Gunning Fog" should not be translated.
                  _(L"Returns the number of difficult Gunning Fog words."))
             .wc_string(),
         wxString(_DT(L"MiniWordCount()\t") +
@@ -573,10 +581,12 @@ bool CustomTestDlg::Create(wxWindow* parent, wxWindowID id, const wxString& capt
     };
 
     m_sentenceFunctions = {
-        wxString(_DT(L"SentenceCount()\t") +
-                 _(L"Returns the number of sentences from the document.\n\n"
-                   "This function takes an argument specifying which text exclusion method to use. "
-                   "These values are: Default, DaleChall, HarrisJacobson, and GunningFog"))
+        wxString(
+            _DT(L"SentenceCount()\t") +
+            // TRANSLATORS: "Default" should not be translated in here, it is a program keyword.
+            _(L"Returns the number of sentences from the document.\n\n"
+              "This function takes an argument specifying which text exclusion method to use. "
+              "These values are: Default, DaleChall, HarrisJacobson, and GunningFog"))
             .wc_string(),
         wxString(_DT(L"IndependentClauseCount()\t") +
                  _(L"Returns the number of units/independent clauses from the document.") +
@@ -885,6 +895,7 @@ void CustomTestDlg::CreateControls()
                                                           wxPG_BOOL_USE_CHECKBOX, true);
             m_wordListsPropertyGrid->SetPropertyHelpString(
                 GetIncludeDCWordListLabel(),
+                // TRANSLATORS: "New Dale-Chall" should not be translated.
                 _(L"Check this option to use the New Dale-Chall word list "
                   "(along with any other selected word lists) "
                   "to determine if a word is familiar."));
@@ -895,6 +906,7 @@ void CustomTestDlg::CreateControls()
                                                           wxPG_BOOL_USE_CHECKBOX, true);
             m_wordListsPropertyGrid->SetPropertyHelpString(
                 GetIncludeSpacheWordListLabel(),
+                // TRANSLATORS: "Spache Revised" should not be translated.
                 _(L"Check this option to use the Spache Revised word list "
                   "(along with any other selected word lists) "
                   "to determine if a word is familiar."));

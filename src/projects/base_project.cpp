@@ -819,6 +819,7 @@ void BaseProject::InitializeStandardReadabilityTests()
             ReadabilityMessages::DEGREES_OF_READING_POWER_GE(),
             XRCID("ID_DEGREES_OF_READING_POWER_GE"), _DT(L"Degrees of Reading Power (GE)"),
             _DT(L"Degrees of Reading Power (grade equivalent)"),
+            // TRANSLATORS: "Degrees of Reading Power" should not be translated.
             _(L"Degrees of Reading Power (GE) is designed for matching documents to a student's "
               "reading ability (based on his/her DRP score). This test is a conversion of a "
               "DRP (difficulty) score into a grade level."),
@@ -972,6 +973,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         readability::readability_test test(
             ReadabilityMessages::BORMUTH_CLOZE_MEAN(), XRCID("ID_BORMUTH_CLOZE_MEAN"),
             _DT(L"Bormuth Cloze Mean"), _DT(L"Bormuth Cloze Mean"),
+            // TRANSLATORS: "Bormuth Cloze Mean" should not be translated.
             _(L"Bormuth Cloze Mean is designed for students and is highly "
               "regarded for its accuracy because it uses "
               "three variables (rather than the traditional two variables)."),
@@ -1217,7 +1219,7 @@ void BaseProject::InitializeStandardReadabilityTests()
             ReadabilityMessages::GUNNING_FOG(), XRCID("ID_FOG"), _DT(L"Gunning Fog"),
             _DT(L"Gunning Fog"),
             // TRANSLATORS: "Gunning Fog" should not be translated; it is a test name
-            _(L"Gunning Fog Index is generally recommended for "
+            _(L"Gunning Fog is generally recommended for "
               "business publications and journals."),
             readability::readability_test_type::grade_level, false,
             _DT(L".4 * (WordCount()/SentenceCount(GunningFog) + "
@@ -1546,6 +1548,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         readability::readability_test test(
             ReadabilityMessages::FARR_JENKINS_PATERSON(), XRCID("ID_FARR_JENKINS_PATERSON"),
             _DT(L"Farr-Jenkins-Paterson"), _DT(L"Farr-Jenkins-Paterson"),
+            // TRANSLATORS: "Flesch Reading Ease" should not be translated.
             _(L"Farr-Jenkins-Paterson is a variation of the Flesch Reading Ease test, "
               "which uses the mono-syllabic word count instead of the overall syllable count. "
               "Scores range from 0-100 (the higher the score, the easier to read). "
@@ -1637,6 +1640,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         {
         readability::readability_test test(
             ReadabilityMessages::AMSTAD(), XRCID("ID_AMSTAD"), _DT(L"Amstad"), _DT(L"Amstad"),
+            // TRANSLATORS: "Flesch Reading Ease" should not be translated.
             _(L"Amstad is a recalculation of Flesch Reading Ease for German text. "
               "It is meant for secondary and adult-level text. "
               "Scores range from 0-100 (the higher the score, the easier to read). "
@@ -1719,7 +1723,7 @@ void BaseProject::InitializeStandardReadabilityTests()
             ReadabilityMessages::NEW_FOG(), XRCID("ID_NEW_FOG_COUNT"), _DT(L"New Fog Count"),
             _DT(L"New Fog Count (Kincaid)"),
             // TRANSLATORS: "New Fog Count" should not be translated; it is a test name.
-            _(L"New Fog Count is a modified version of the Gunning Fog Index created for the "
+            _(L"New Fog Count is a modified version of Gunning Fog created for the "
               "U.S. Navy and was designed for technical documents and manuals.\n\n"
               "This test is part of the Kincaid Navy Personnel collection of tests."),
             readability::readability_test_type::grade_level, false,
@@ -1807,7 +1811,7 @@ void BaseProject::InitializeStandardReadabilityTests()
         {
         readability::readability_test test(
             ReadabilityMessages::SMOG(), XRCID("ID_SMOG"), _DT(L"SMOG"), _DT(L"SMOG"),
-            _(L"SMOG (colloquially referred to as Simple Measure of Gobbledygook) is generally "
+            _(L"SMOG is generally "
               "appropriate for secondary age (4th grade to college level) readers. "
               "SMOG tests for 100% comprehension, whereas most formulas test for "
               "around 50%-75% comprehension."),
@@ -1839,9 +1843,8 @@ void BaseProject::InitializeStandardReadabilityTests()
         readability::readability_test test(
             ReadabilityMessages::SMOG_SIMPLIFIED(), XRCID("ID_SMOG_SIMPLIFIED"),
             _(L"SMOG (simplified)"), _(L"SMOG (simplified)"),
-            _(L"SMOG (colloquially referred to as Simple Measure of Gobbledygook) "
-              "is generally appropriate for secondary age (4th grade to college level) readers. "
-              "SMOG tests for 100% comprehension, whereas most formulas test for "
+            _(L"SMOG is generally appropriate for secondary age (4th grade to college level) "
+              "readers. SMOG tests for 100% comprehension, whereas most formulas test for "
               "around 50%-75% comprehension."),
             readability::readability_test_type::grade_level, false,
             _DT(L"FLOOR(SQRT(C*(30/S))) + 3"));
@@ -3799,8 +3802,8 @@ std::pair<bool, std::wstring> BaseProject::ExtractDocRawText(std::string_view so
         }
     catch (const word1997_extract_text::msword_fastsaved&)
         {
-        LogMessage(_(L"Word file is fast-saved and could not be read.\n"
-                     "Please save file with fast-saving turned off and try again."),
+        LogMessage(_(L"Word file is \"fast-saved\" and could not be read.\n"
+                     "Please save file with \"fast-saving\" turned off and try again."),
                    _(L"Import Error"), wxOK | wxICON_EXCLAMATION);
         return std::make_pair(false, std::wstring{});
         }

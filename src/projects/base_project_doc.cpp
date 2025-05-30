@@ -858,7 +858,7 @@ bool BaseProjectDoc::AddGlobalCustomReadabilityTest(CustomReadabilityTest& custo
     catch (...)
         {
         wxMessageBox(wxString::Format(_(L"An unknown error occurred while validating the formula. "
-                                         "Cannot add custom test \"%s\"."),
+                                        "Cannot add custom test \"%s\"."),
                                       customTest.get_name().c_str()),
                      _(L"Error in Formula"), wxOK | wxICON_EXCLAMATION);
         return false;
@@ -955,7 +955,8 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                         {
                         LogMessage(wxString::Format(
                                        _(L"Warning: This project was saved from a newer version "
-                                         "of Readability Studio. Some information may be lost.")),
+                                         "of %s. Some information may be lost."),
+                                       wxGetApp().GetAppDisplayName()),
                                    _(L"Version Conflict"), wxOK | wxICON_INFORMATION);
                         }
                     }
@@ -1640,11 +1641,11 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             .append(wxGetApp().GetAppOptions().XML_LIX_SETTINGS.data())
             .append(L">");
         const wchar_t* lixGaugeSection = std::wcsstr(graphsSection, currentStartTag);
-        const wchar_t* lixGuageSectionEnd = std::wcsstr(graphsSection, currentEndTag);
-        if (lixGaugeSection && lixGuageSectionEnd && (lixGaugeSection < lixGuageSectionEnd))
+        const wchar_t* lixGaugeSectionEnd = std::wcsstr(graphsSection, currentEndTag);
+        if (lixGaugeSection && lixGaugeSectionEnd && (lixGaugeSection < lixGaugeSectionEnd))
             {
             UseEnglishLabelsForGermanLix(XmlFormat::GetBoolean(
-                lixGaugeSection, lixGuageSectionEnd,
+                lixGaugeSection, lixGaugeSectionEnd,
                 wxGetApp().GetAppOptions().XML_USE_ENGLISH_LABELS.data(),
                 wxGetApp().GetAppOptions().IsUsingEnglishLabelsForGermanLix()));
             }
@@ -2207,7 +2208,7 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
     else
         {
         LogMessage(wxString::Format(_(L"Warning: \"%s\" section not found in project file. Default "
-                                       "test settings will be used."),
+                                      "test settings will be used."),
                                     wxGetApp().GetAppOptions().XML_READABILITY_TESTS_SECTION),
                    _(L"Error"), wxOK | wxICON_ERROR);
         }

@@ -3584,6 +3584,7 @@ void ProjectDoc::DisplayReadabilityGraphs()
             dolchBarChart->SetBarOrientation(static_cast<Wisteria::Orientation>(GetBarChartOrientation()));
             dolchBarChart->GetBarAxis().SetLabelDisplay(Wisteria::AxisLabelDisplay::DisplayOnlyCustomLabels);
             dolchBarChart->GetScalingAxis().SetLabelDisplay(Wisteria::AxisLabelDisplay::DisplayCustomLabelsOrValues);
+            // TRANSLATORS: A breakdown is a summary.
             dolchBarChart->GetTitle().SetText(_(L"Dolch Word Breakdown"));
             dolchBarChart->GetTitle().SetRelativeAlignment(RelativeAlignment::Centered);
             dolchBarChart->SetShadowType(IsDisplayingDropShadows() ?
