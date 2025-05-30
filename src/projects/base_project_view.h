@@ -15,7 +15,6 @@
 #define BASE_PROJECT_VIEW_H
 
 #include "../Wisteria-Dataviz/src/ui/controls/formattedtextctrl.h"
-#include "../Wisteria-Dataviz/src/ui/controls/infobarex.h"
 #include "../Wisteria-Dataviz/src/ui/controls/listctrlex.h"
 #include "../Wisteria-Dataviz/src/ui/controls/searchpanel.h"
 #include "../Wisteria-Dataviz/src/ui/controls/sidebar.h"
@@ -27,6 +26,7 @@
 #include "../results-format/readability_messages.h"
 #include "../ui/controls/explanation_listctrl.h"
 #include "project_frame.h"
+#include <wx/infobar.h>
 
 /// @brief Base view for batch and standard projects.
 class BaseProjectView : public wxView
@@ -84,7 +84,7 @@ class BaseProjectView : public wxView
         }
 
     [[nodiscard]]
-    Wisteria::UI::InfoBarEx* GetInfoBar() noexcept
+    wxInfoBar* GetInfoBar() noexcept
         {
         return m_infoBar;
         }
@@ -697,7 +697,7 @@ class BaseProjectView : public wxView
     wxWindow* m_activeWindow{ nullptr };
     static IdRange m_customTestSidebarIdRange;
     Wisteria::UI::SearchPanel* m_searchCtrl{ nullptr };
-    Wisteria::UI::InfoBarEx* m_infoBar{ nullptr };
+    wxInfoBar* m_infoBar{ nullptr };
     wxMenuBar* m_menuBar{ nullptr };
 
     constexpr static int LEFT_PANE = wxID_HIGHEST + 78;

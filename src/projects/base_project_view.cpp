@@ -1013,7 +1013,9 @@ void BaseProjectView::ShowInfoMessage(const WarningMessage& message)
             }
         else
             {
-            GetInfoBar()->IncludeDontShowAgainCheckbox(!message.ShouldOnlyBeShownOnce());
+            GetInfoBar()->ShowCheckBox(
+                message.ShouldOnlyBeShownOnce() ? wxString{} : _(L"Do not show this again."),
+                false);
             GetInfoBar()->ShowMessage(message.GetMessage(), message.GetFlags());
             m_lastShownMessageId = message.GetId();
             }
@@ -1028,6 +1030,7 @@ void BaseProjectView::ShowInfoMessage(const WarningMessage& message)
 //-------------------------------------------------------
 void BaseProjectView::OnCloseInfoBar([[maybe_unused]] wxCommandEvent& event)
     {
+    GetInfoBar()->Dismiss();
     if (m_lastShownMessageId.length())
         {
         auto warningIter = WarningManager::GetWarning(m_lastShownMessageId);
@@ -1039,7 +1042,7 @@ void BaseProjectView::OnCloseInfoBar([[maybe_unused]] wxCommandEvent& event)
                 }
             else
                 {
-                if (GetInfoBar()->IsDontShowAgainChecked())
+                if (GetInfoBar()->IsCheckBoxChecked())
                     {
                     warningIter->Show(false);
                     }
@@ -1143,7 +1146,7 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
     m_ribbon = wxGetApp().CreateRibbon(m_frame, doc);
     mainSizer->Add(m_ribbon, wxSizerFlags{}.Expand());
 
-    m_infoBar = new InfoBarEx(m_frame);
+    m_infoBar = new wxInfoBar(m_frame, wxID_ANY, wxINFOBAR_CHECKBOX);
     GetInfoBar()->Connect(wxID_CLOSE, wxEVT_BUTTON,
                           wxCommandEventHandler(BaseProjectView::OnCloseInfoBar), nullptr, this);
     GetInfoBar()->SetEffectDuration(250);

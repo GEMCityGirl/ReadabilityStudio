@@ -126,7 +126,6 @@ SET(APP_SRC_FILES
     src/Wisteria-Dataviz/src/ui/controls/gtk/gtktextview-helper.cpp
     src/Wisteria-Dataviz/src/ui/controls/htmltablewin.cpp
     src/Wisteria-Dataviz/src/ui/controls/htmltablewinprintout.cpp
-    src/Wisteria-Dataviz/src/ui/controls/infobarex.cpp
     src/Wisteria-Dataviz/src/ui/controls/listctrlex.cpp
     src/Wisteria-Dataviz/src/ui/controls/listctrlexdataprovider.cpp
     src/Wisteria-Dataviz/src/ui/controls/searchpanel.cpp
