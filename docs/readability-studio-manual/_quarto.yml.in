@@ -33,7 +33,6 @@ crossref:
 filters:
   - include-code-files
   - fontawesome
-  - auto-dark
   - elevator
   - fancy-text
 book:
