@@ -2439,6 +2439,7 @@ beteween	between	3
 betrothed	engaged	0		
 bets the farm	bets everything	2		
 betting the farm	betting everything	2		
+bettween	between	3		
 betweed	between	3		
 betweeen	between	3		
 between a rock and a hard place	between two very difficult options, in a difficult position	2		
@@ -4475,6 +4476,7 @@ countermands	cancels, recalls	0
 counterpoart	counterpart	3		
 countires	countries	3		
 course of action	course, direction, plan	0		
+coursely	coarsely	3		
 couse	course	3		
 couse's	course's	3		
 couses	courses	3		
@@ -4614,6 +4616,7 @@ cuturally	culturally	3
 Cyberbulling	Cyberbullying	3		
 cyclinder	cylinder	3		
 CYMK	CMYK	3		
+cyptographic	cryptographic	3		
 dackeries	daiquiris	3		
 dackery	daiquiri	3		
 dackery's	daiquiri's	3		
@@ -4668,6 +4671,9 @@ deamon	daemon	3
 deamon's	daemon's	3		
 deamons	daemons	3		
 deapth	depth	3		
+deascription	description	3		
+deascription's	description's	3		
+deascriptions	descriptions	3		
 death warmed over	ill looking	2		
 debateable	debatable	3		
 debilitate	weaken	0		
@@ -4720,6 +4726,7 @@ declation	declaration	3
 declations	declarations	3		
 declination	downward slope	0		
 declinations	downward slopes	0		
+declinded	declined	3		
 decod	decode	3		
 decomissioned	decommissioned	3		
 decommision	decommission	3		
@@ -4931,6 +4938,7 @@ dependecies	dependencies	3
 dependecy	dependency	3		
 dependees	dependencies	3		
 dependend	dependent	3		
+dependings	depending	3		
 depenencies	dependencies	3		
 depenency	dependency	3		
 deplete	empty	0		
@@ -4956,6 +4964,9 @@ deprectates	deprecates	3
 deprectating	deprecating	3		
 deprected	deprecated	3		
 depricated	deprecated	3		
+deptartment	department	3		
+deptartment's	department's	3		
+deptartments	departments	3		
 deptch	depth	3		
 deptch's	depth's	3		
 deptchs	depths	3		
@@ -5118,6 +5129,7 @@ detroy	destroy	3
 detroyed	destroyed	3		
 detroying	destroying	3		
 detroys	destroys	3		
+dettach	detach	3		
 deubugging	debugging	3		
 devasted	devastated	3		
 develoment	development	3		
@@ -6843,6 +6855,7 @@ factory manger	factory manager	3
 factory mangers	factory managers	3		
 factual basis	basis, fact, reason	0		
 faiedl	failed	3		
+faield	failed	3		
 fail to comply with	disobey, violate	0		
 faild	failed	3		
 failed to	didn't	0		
@@ -7128,6 +7141,7 @@ following after	following	1	a;the
 following along the lines of	imitating, resembling	0		
 following the	after the	0		
 followng	following	3		
+followoing	following	3		
 follows after	follows	1		
 follows along the lines of	imitates, resembles	0		
 follwing	following	3		
@@ -8224,6 +8238,7 @@ identical	same	0
 identical to	the same as	0		
 identicalness	sameness	0		
 identicial	identical	3		
+identier	identifier	3		
 identies	identities	3		
 identifcation	identification	3		
 identifed	identified	3		
@@ -8264,6 +8279,7 @@ if this is not the case	if not	0
 if this is the case	if so	0		
 if this is the situation	if so	0		
 if this is true	if so	0		
+iformation	information	3		
 Ignation	Ignatian	3		
 ignoble	base, common, dishonorable, mean	0		
 ignominious	shameful	0		
@@ -9040,6 +9056,10 @@ initilizing	initializing	3
 initilzation	initialization	3		
 initilzation's	initialization's	3		
 initilzations	initializations	3		
+inititate	initiate	3		
+inititated	initiated	3		
+inititates	initiates	3		
+inititating	initiating	3		
 initivative	initiative	3		
 initivative's	initiative's	3		
 initivatives	initiatives	3		
@@ -9125,6 +9145,7 @@ instatiate	instantiate	3
 instatiated	instantiated	3		
 instatiates	instantiates	3		
 instatiating	instantiating	3		
+instgance	instance	3		
 institue	institute	3		
 institution	office, company, school	0		
 institution of higher learning	college, university	0		
@@ -9290,6 +9311,9 @@ intesifying	intensifying	3
 intesity	intensity	3		
 intested	interested	3		
 intevene	intervene	3		
+intevention	intervention	3		
+intevention's	intervention's	3		
+inteventions	interventions	3		
 intex	index	3		
 intformation	information	3		
 intformation's	information's	3		
@@ -9321,9 +9345,13 @@ intregral	integral	3
 intrepid	fearless	0		
 intrepidly	fearlessly	0		
 intrest	interest	3		
+intrinisc	intrinsic, intrinsics	3		
 intrinisic	intrinsic	3		
 intrinisics	intrinsics	3		
 intrinsincs	intrinsics	3		
+introducton	introduction	3		
+introducton's	introduction's	3		
+introductons	introductions	3		
 introdued	introduced	3		
 intruction	instruction	3		
 intructions	instructions	3		
@@ -10212,6 +10240,7 @@ managable	manageable	3
 managaer	manager	3		
 managaer's	manager's	3		
 managaers	managers	3		
+manageing	managing	3		
 managemen	management	3		
 managemment	management	3		
 managemment's	management's	3		
@@ -10232,9 +10261,11 @@ maneouvring	manoeuvring	3
 manfiest	manifest	3		
 manfiest's	manifest's	3		
 manfiests	manifests	3		
+manfuactureres	manufacturers	3		
 mangement	management	3		
 mangement's	management's	3		
 mangements	managements	3		
+maniplation	manipulation	3		
 manisfestations	manifestations	3		
 manner	way	0		
 manoeuverability	maneuverability	3		
@@ -10682,6 +10713,9 @@ most be	must be, most are	3	at
 most of the time	usually	0		
 most of there	most of their	3		
 mosture	moisture	3		
+mothod	method	3		
+mothod's	method's	3		
+mothods	methods	3		
 motionless	still, inert	0		
 motiviated	motivated	3		
 mountainous	large, bulky	0		
@@ -11025,6 +11059,9 @@ noticably	noticeably	3
 notications	notifications	3		
 noticeing	noticing	3		
 noticible	noticeable	3		
+notidication	notification	3		
+notidication's	notification's	3		
+notidications	notifications	3		
 notifcation	notification	3		
 notifcation's	notification's	3		
 notifcations	notifications	3		
@@ -11667,6 +11704,7 @@ paket	packet	3
 paket's	packet's	3		
 pakets	packets	3		
 palatable	pleasing	0		
+palatte	palette	3		
 paleolitic	paleolithic	3		
 palete	palette	3		
 pallete	palette	3		
@@ -11894,8 +11932,11 @@ peculure	peculiar	3
 pedestrain	pedestrian	3		
 peevish	cross	0		
 peevishly	crossly	0		
+peform	perform	3		
 peformance	performance	3		
 peformed	performed	3		
+peforming	performing	3		
+peforms	performs	3		
 peice	piece	3		
 peice's	piece's	3		
 peices	pieces	3		
@@ -13420,6 +13461,7 @@ receipients	recipients	3
 receivesthe	receives the	3		
 recepient	recipient	3		
 recepients	recipients	3		
+receved	received	3		
 receving	receiving	3		
 rechargable	rechargeable	3		
 reched	reached	3		
@@ -13580,6 +13622,7 @@ referrs	refers	3
 reffered	referred	3		
 refference	reference	3		
 reffering	referring	3		
+refinded	refunded, refined	3		
 reflect	say, show	0		
 refractory	stubborn	0		
 refrence	reference	3		
@@ -13916,6 +13959,7 @@ rescind	repeal, cancel	0
 rescinded	repealed, canceled	0		
 rescinding	repealing, canceling	0		
 rescinds	repeals, cancels	0		
+resdistributable	redistributable	3		
 researc	research	3		
 research manger	research manager	3		
 research mangers	research managers	3		
@@ -13930,6 +13974,7 @@ reserch's	research's	3
 reserched	researched	3		
 reserches	researches	3		
 reserching	researching	3		
+resereved	reserved	3		
 reserverd	reserved	3		
 reservied	reserved	3		
 resest	reset	3		
@@ -14656,6 +14701,7 @@ shreak	shriek	3
 shriniking	shrinking	3		
 shrinked	shrunk	3		
 shutsdown	shuts down	3		
+shwon	shown	3		
 sick and tired	annoyed, tired	0		
 sick as a dog	miserable, felling very low	2		
 sicne	since	3		
@@ -15788,6 +15834,9 @@ terriory	territory	3
 territoy	territory	3		
 terroist	terrorist	3		
 tertiary	third	0		
+tesselation	tessellation	3		
+tesselation's	tessellation's	3		
+tesselations	tessellations	3		
 test out	test	0		
 tested out	tested	0		
 testiclular	testicular	3		
@@ -16328,6 +16377,10 @@ transending	transcending	3
 transfered	transferred	3		
 transfering	transferring	3		
 transformaton	transformation	3		
+transfrom	transform	3		
+transfromed	transformed	3		
+transfroming	transforming	3		
+transfroms	transforms	3		
 transisition	transition	3		
 transisition's	transition's	3		
 transisitions	transitions	3		

@@ -344,6 +344,7 @@ Appolonia
 Appomattox
 Appworx
 Apr
+Apress
 April
 Apriori
 Apuleius
@@ -577,6 +578,7 @@ Avonite
 Avstream
 Avène
 AWACS
+Axialis
 Axios
 Aylesbury
 Aylmer
@@ -2229,6 +2231,7 @@ Eurasian
 Eurocentric
 Eurocom
 Eurogamer
+Eurographics
 Euronext
 Europa
 Europe
@@ -2579,6 +2582,7 @@ Gallup
 Galveston
 Galápagos
 GAMA
+Gamani
 Gamaredon
 Gamasutra
 Gambia
@@ -3224,6 +3228,7 @@ Indianan
 Indianapolis
 Indianian
 Indianola
+Indic
 IndieGoGo
 inDigital
 Indiglo
@@ -3969,6 +3974,7 @@ Macon
 macOS
 MacPaint
 Macrogol
+Macromedia
 Macrovision
 Macworld
 Madagascan
@@ -6150,6 +6156,7 @@ Southfield
 Southlake
 Southpark
 Southport
+Southridge
 Southside
 Southtown
 Southwark
@@ -7330,6 +7337,7 @@ WinRT
 Winsborough
 Winscard
 Winsock
+Winstation
 Winsupply
 WinZip
 Wireline

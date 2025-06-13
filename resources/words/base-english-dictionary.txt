@@ -8216,6 +8216,7 @@ autocrat's
 autocratic
 autocratically
 autocrats
+autocreated
 autocreation
 autocreation's
 autocreations
@@ -8314,6 +8315,7 @@ autoignition's
 autoimmune
 autoimmunities
 autoimmunity
+autoincrement
 autoinducer
 autoinducer's
 autoinducers
@@ -25985,6 +25987,10 @@ condition's
 conditionable
 conditional
 conditionality
+conditionalize
+conditionalized
+conditionalizes
+conditionalizing
 conditionally
 conditionals
 conditioned
@@ -44694,6 +44700,7 @@ error's
 errored
 erroring
 errors
+errorstopic
 errs
 ersatz
 ersatzes
@@ -45365,6 +45372,7 @@ eval
 evals
 evaluable
 evaluate
+evaluateable
 evaluated
 evaluates
 evaluating
@@ -67562,6 +67570,7 @@ instantaneousness
 instantaneousness's
 instanter
 instantiable
+instantiatable
 instantiate
 instantiated
 instantiates
@@ -68028,6 +68037,7 @@ interchanger's
 interchanges
 interchanging
 interchangings
+intercharacter
 interchurch
 intercity
 interclass
@@ -68492,6 +68502,9 @@ interpupillary
 interquartile
 interracial
 interred
+interreflection
+interreflection's
+interreflections
 interregional
 interregionally
 interregnum
@@ -73951,6 +73964,8 @@ letterboxing
 lettered
 letterer's
 letterers
+letterform
+letterforms
 letterhead
 letterhead's
 letterheads
@@ -88051,6 +88066,7 @@ noninterference's
 noninterferences
 noninterlaced
 noninterrupt
+nonintersecting
 nonintervention
 nonintervention's
 noninterventionist
@@ -88389,6 +88405,7 @@ nonscience
 nonscientific
 nonscientists
 nonscoring
+nonscriptable
 nonscrollable
 nonseasonal
 nonseasonally
@@ -88845,6 +88862,7 @@ nothingness's
 nothings
 notice
 notice's
+noticeability
 noticeable
 noticeably
 noticeboard
@@ -110241,6 +110259,7 @@ regionalism
 regionalism's
 regionalisms
 regionalization
+regionalized
 regionally
 regionals
 regions
@@ -129526,7 +129545,9 @@ subquestion's
 subquestions
 subqueue
 subqueue's
+subqueued
 subqueues
+subqueuing
 subrange
 subrange's
 subranges
@@ -130832,6 +130853,7 @@ superpower's
 superpowers
 superpredicate
 supers
+supersampling
 supersaturate
 supersaturated
 supersaturates
@@ -135610,6 +135632,7 @@ thumbtacks
 thumbtrack
 thumbtrack's
 thumbtracks
+thumbview
 thump
 thump's
 thumped
@@ -143303,6 +143326,7 @@ unrecognized
 unrecognizing
 unrecognizingly
 unrecommended
+unreconcilable
 unreconciled
 unreconstructed
 unrecordable
@@ -143661,6 +143685,7 @@ unsloped
 unslung
 unsmiling
 unsmilingly
+unsmoothed
 unsnap
 unsnapped
 unsnapping
@@ -145875,6 +145900,7 @@ versionability's
 versionable
 versioned
 versioning
+versionless
 versions
 verso
 verso's
@@ -146238,6 +146264,7 @@ videotaped
 videotapes
 videotaping
 videotex
+videotext
 vidian
 vidovic
 vids

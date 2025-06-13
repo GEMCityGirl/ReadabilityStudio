@@ -366,6 +366,7 @@ mktime
 modf
 module
 MOF
+Msgbox
 mutable
 namespace
 new
