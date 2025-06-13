@@ -62,9 +62,9 @@ set(MIN_RAM "2 GB")
 set(RAM_RECOMMENDED "4 GB")
 
 # Edit these values when bumping the release version
-project(readstudio VERSION 2024.0.1.0 DESCRIPTION "Readability Studio" HOMEPAGE_URL https://www.oleandersoftware.com/)
+project(readstudio VERSION 2025.0.0.0 DESCRIPTION "Readability Studio" HOMEPAGE_URL https://www.oleandersoftware.com/)
 set(PROGRAM_LONGNAME ${readstudio_DESCRIPTION})
-set(PROGRAM_NUMBERED_VERSION 8.0)
+set(PROGRAM_NUMBERED_VERSION 9.0)
 set(PUBLISHER "Eclipse Foundation AISBL")
 set(PROGRAM_AUTHOR "Blake Madden")
 set(PROGRAM_AUTHOR_MLA "Madden, Blake")
