@@ -13,6 +13,9 @@
 
 #include "about_dlg_ex.h"
 #include <wx/generic/statbmpg.h>
+#include <wx/stc/stc.h>
+#include <wx/webrequest.h>
+#include <wx/webview.h>
 
 //------------------------------------------------------
 AboutDialogEx::AboutDialogEx(wxWindow* parent, const wxBitmap& logo, wxString appVersion,
@@ -44,7 +47,7 @@ bool AboutDialogEx::Create(wxWindow* parent, wxWindowID id, const wxPoint& pos, 
         {
             if (wxTheClipboard->Open())
                 {
-                if (m_mlaCitation.length())
+                if (!m_mlaCitation.empty())
                     {
                     wxTheClipboard->Clear();
                     wxDataObjectComposite* obj = new wxDataObjectComposite();
@@ -62,7 +65,7 @@ bool AboutDialogEx::Create(wxWindow* parent, wxWindowID id, const wxPoint& pos, 
         {
             if (wxTheClipboard->Open())
                 {
-                if (m_apaCitation.length())
+                if (!m_apaCitation.empty())
                     {
                     wxTheClipboard->Clear();
                     wxDataObjectComposite* obj = new wxDataObjectComposite();
@@ -80,7 +83,7 @@ bool AboutDialogEx::Create(wxWindow* parent, wxWindowID id, const wxPoint& pos, 
         {
             if (wxTheClipboard->Open())
                 {
-                if (m_bibtexCitation.length())
+                if (!m_bibtexCitation.empty())
                     {
                     wxTheClipboard->Clear();
                     wxDataObjectComposite* obj = new wxDataObjectComposite();
@@ -91,6 +94,24 @@ bool AboutDialogEx::Create(wxWindow* parent, wxWindowID id, const wxPoint& pos, 
                 }
         },
         AboutDialogEx::ID_COPYBIBTEX);
+
+    Bind(
+        wxEVT_BUTTON,
+        [this]([[maybe_unused]] wxCommandEvent&)
+        {
+            if (wxTheClipboard->Open())
+                {
+                if (!m_components.empty())
+                    {
+                    wxTheClipboard->Clear();
+                    wxDataObjectComposite* obj = new wxDataObjectComposite();
+                    obj->Add(new wxTextDataObject(m_components));
+                    wxTheClipboard->SetData(obj);
+                    }
+                wxTheClipboard->Close();
+                }
+        },
+        AboutDialogEx::ID_COPY_COMPONENTS);
 
     return true;
     }
@@ -167,6 +188,67 @@ void AboutDialogEx::CreateControls()
             eulaPage, wxID_ANY, wxString{}, wxDefaultPosition, wxDefaultSize,
             wxTE_MULTILINE | wxTE_RICH2 | wxTE_READONLY, wxGenericValidator(&m_eula));
         mainPanelSizer->Add(eulaWindow, wxSizerFlags{ 1 }.Expand().Border());
+        }
+
+        // components
+        {
+        wxPanel* componentsPage = new wxPanel(m_sideBarBook);
+        wxBoxSizer* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
+        componentsPage->SetSizer(mainPanelSizer);
+        m_sideBarBook->AddPage(componentsPage, _(L"Components"), ID_COMPONENTS, false);
+
+        // Consistently format library info with the name and version number.
+        const auto formatLibInfo = [](const auto& libInfo)
+        {
+            return wxString::Format(
+                _(L"<span style='font-weight: bold;'>%s</span> - version %s<br />\n"),
+                libInfo.GetName(), libInfo.GetNumericVersionString());
+        };
+
+        // Get wxWidget's version, as well as its submodules, and sort them.
+        std::vector<wxString> allLibInfo;
+        allLibInfo.push_back(formatLibInfo(wxGetLibraryVersionInfo()));
+        /// @todo uncomment after upgrading to WDV 1.0.1
+        // allLibInfo.push_back(formatLibInfo(Wisteria::GetLibraryVersionInfo()));
+        allLibInfo.push_back(formatLibInfo(wxTIFFHandler::GetLibraryVersionInfo()));
+        allLibInfo.push_back(formatLibInfo(wxJPEGHandler::GetLibraryVersionInfo()));
+        allLibInfo.push_back(formatLibInfo(wxPNGHandler::GetLibraryVersionInfo()));
+        allLibInfo.push_back(formatLibInfo(wxWEBPHandler::GetLibraryVersionInfo()));
+        allLibInfo.push_back(formatLibInfo(wxRegEx::GetLibraryVersionInfo()));
+        allLibInfo.push_back(formatLibInfo(wxXmlDocument::GetLibraryVersionInfo()));
+        allLibInfo.push_back(formatLibInfo(wxStyledTextCtrl::GetLibraryVersionInfo()));
+        allLibInfo.push_back(formatLibInfo(wxWebSession::GetDefault().GetLibraryVersionInfo()));
+        allLibInfo.push_back(formatLibInfo(wxGetZlibVersionInfo()));
+        /// @todo uncomment if WebView is ever included
+        // allLibInfo.push_back(formatLibInfo(wxWebView::GetBackendVersionInfo()));
+        std::sort(allLibInfo.begin(), allLibInfo.end(),
+                  [](const auto& lhv, const auto& rhv) { return wxStricmp(lhv, rhv) < 0; });
+
+        // Format all the library strings into one.
+        m_components = [&allLibInfo]()
+        {
+            wxString allStr;
+            // most library strings will be ~30 characters long
+            allStr.reserve(allLibInfo.size() * 50);
+            for (const auto& lib : allLibInfo)
+                {
+                allStr.append(lib).append(L'\n');
+                }
+            allStr.Trim();
+            return allStr;
+        }();
+
+        mainPanelSizer->Add(new wxStaticText(componentsPage, wxID_ANY, _DT(L"Included libraries:")),
+                            wxSizerFlags{}.Border(wxLEFT));
+        wxBoxSizer* textRowSizer = new wxBoxSizer(wxHORIZONTAL);
+        wxHtmlWindow* textWindow =
+            new wxHtmlWindow(componentsPage, wxID_ANY, wxDefaultPosition, wxSize{ -1, FromDIP(75) },
+                             wxHW_SCROLLBAR_AUTO | wxBORDER_THEME | wxHW_NO_SELECTION);
+        textWindow->SetPage(m_components);
+        textRowSizer->Add(textWindow, wxSizerFlags{ 1 }.Expand());
+        textRowSizer->Add(new wxBitmapButton(componentsPage, ID_COPY_COMPONENTS,
+                                             wxArtProvider::GetBitmap(wxART_COPY, wxART_BUTTON)));
+        mainPanelSizer->Add(textRowSizer, wxSizerFlags{ 1 }.Expand().Border());
         }
 
     if (!m_mlaCitation.empty() && !m_apaCitation.empty() && !m_bibtexCitation.empty())

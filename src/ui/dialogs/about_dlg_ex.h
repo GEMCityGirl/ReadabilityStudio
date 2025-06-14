@@ -69,6 +69,8 @@ class AboutDialogEx final : public wxDialog
     constexpr static int ID_COPYMLA = wxID_HIGHEST + 3;
     constexpr static int ID_COPYAPA = wxID_HIGHEST + 4;
     constexpr static int ID_COPYBIBTEX = wxID_HIGHEST + 5;
+    constexpr static int ID_COMPONENTS = wxID_HIGHEST + 6;
+    constexpr static int ID_COPY_COMPONENTS = wxID_HIGHEST + 7;
 
     /// Creation.
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition,
@@ -84,6 +86,7 @@ class AboutDialogEx final : public wxDialog
     wxString m_appVersion;
     wxString m_copyright;
     wxString m_eula;
+    wxString m_components;
     wxString m_mlaCitation;
     wxString m_apaCitation;
     wxString m_bibtexCitation;
