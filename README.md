@@ -2,16 +2,22 @@
 
 Readability Studio
 
-[![Linux Unit Tests](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/unit-tests.yml)
-[![macOS Unit Tests](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/mac-unit-tests.yml/badge.svg)](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/mac-unit-tests.yml)
-[![Windows Unit Tests](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/windows-unit-tests.yml/badge.svg)](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/windows-unit-tests.yml)
+| Platforms  | Result |
+| ------------- | ------------- |
+| Linux  | [![Linux Unit Tests](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/unit-tests.yml) |
+| macOS  | [![macOS Unit Tests](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/mac-unit-tests.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/mac-unit-tests.yml) |
+| Windows | [![Windows Unit Tests](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/windows-unit-tests.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/windows-unit-tests.yml) |
 
-[![cppcheck](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/cppcheck.yml/badge.svg)](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/cppcheck.yml)
-[![Microsoft C++ Code Analysis](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/msvc.yml/badge.svg)](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/msvc.yml)
-[![Quneiform](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/quneiform.yml/badge.svg)](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/quneiform.yml)
+| Code Analyses  | Result |
+| ------------- | ------------- |
+| cppcheck | [![cppcheck](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/cppcheck.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/cppcheck.yml) |
+| MS PREfast | [![Microsoft C++ Code Analysis](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/msvc.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/msvc.yml) |
+| Quneiform | [![Quneiform](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/quneiform.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/quneiform.yml) |
 
-[![doxygen](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/doxygen.yml/badge.svg)](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/doxygen.yml)
-[![Spell Check](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/spell-check.yml/badge.svg)](https://github.com/Blake-Madden/ReadabilityStudio/actions/workflows/spell-check.yml)
+| Documentation | Result |
+| ------------- | ------------- |
+| Doxygen | [![doxygen](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/doxygen.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/doxygen.yml) |
+| Spellcheck | [![Spell Check](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/spell-check.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/spell-check.yml) |
 
 # Building
 
