@@ -44,7 +44,7 @@ bool AboutDialogEx::Create(wxWindow* parent, wxWindowID id, const wxPoint& pos, 
         {
             if (wxTheClipboard->Open())
                 {
-                if (m_bibtexCitation.length())
+                if (m_mlaCitation.length())
                     {
                     wxTheClipboard->Clear();
                     wxDataObjectComposite* obj = new wxDataObjectComposite();
@@ -62,7 +62,7 @@ bool AboutDialogEx::Create(wxWindow* parent, wxWindowID id, const wxPoint& pos, 
         {
             if (wxTheClipboard->Open())
                 {
-                if (m_bibtexCitation.length())
+                if (m_apaCitation.length())
                     {
                     wxTheClipboard->Clear();
                     wxDataObjectComposite* obj = new wxDataObjectComposite();
