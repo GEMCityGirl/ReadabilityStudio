@@ -172,6 +172,7 @@ endif()
 include(src/Wisteria-Dataviz/cmake/folders.cmake)
 
 # Add wxWidgets to the build
+set(wxUSE_WEBVIEW_EDGE ON)
 set(wxBUILD_SHARED OFF)
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
     set(__WXDEBUG__ 0)
