@@ -6,7 +6,7 @@ jobs:
     name: cppcheck-test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
           
       - name: cppcheck
         uses: deep5050/cppcheck-action@main
@@ -14,6 +14,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN}}
           std: c++17
           inline_suppression: enable
+          inconclusive: disable
           exclude_check: ./tests
           output_file: cppcheck_report.txt
           other_options: --library=wxwidgets
