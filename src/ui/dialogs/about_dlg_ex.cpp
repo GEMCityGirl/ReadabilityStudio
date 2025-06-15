@@ -125,6 +125,24 @@ bool AboutDialogEx::Create(wxWindow* parent, wxWindowID id, const wxPoint& pos, 
         },
         AboutDialogEx::ID_COPY_COMPONENTS);
 
+    Bind(
+        wxEVT_BUTTON,
+        [this]([[maybe_unused]] wxCommandEvent&)
+        {
+            if (wxTheClipboard->Open())
+                {
+                if (!m_eula.empty())
+                    {
+                    wxTheClipboard->Clear();
+                    wxDataObjectComposite* obj = new wxDataObjectComposite();
+                    obj->Add(new wxTextDataObject(m_eula));
+                    wxTheClipboard->SetData(obj);
+                    }
+                wxTheClipboard->Close();
+                }
+        },
+        AboutDialogEx::ID_COPY_LICENSE);
+
     return true;
     }
 
@@ -196,10 +214,14 @@ void AboutDialogEx::CreateControls()
         eulaPage->SetSizer(mainPanelSizer);
         m_sideBarBook->AddPage(eulaPage, _(L"License"), ID_LICENSING_PAGE, false);
 
+        wxBoxSizer* textRowSizer = new wxBoxSizer(wxHORIZONTAL);
         wxTextCtrl* eulaWindow = new wxTextCtrl(
             eulaPage, wxID_ANY, wxString{}, wxDefaultPosition, wxDefaultSize,
             wxTE_MULTILINE | wxTE_RICH2 | wxTE_READONLY, wxGenericValidator(&m_eula));
-        mainPanelSizer->Add(eulaWindow, wxSizerFlags{ 1 }.Expand().Border());
+        textRowSizer->Add(eulaWindow, wxSizerFlags{ 1 }.Expand());
+        textRowSizer->Add(new wxBitmapButton(eulaPage, ID_COPY_LICENSE,
+                                             wxArtProvider::GetBitmap(wxART_COPY, wxART_BUTTON)));
+        mainPanelSizer->Add(textRowSizer, wxSizerFlags{ 1 }.Expand().Border());
         }
 
         // components

@@ -71,6 +71,7 @@ class AboutDialogEx final : public wxDialog
     constexpr static int ID_COPYBIBTEX = wxID_HIGHEST + 5;
     constexpr static int ID_COMPONENTS = wxID_HIGHEST + 6;
     constexpr static int ID_COPY_COMPONENTS = wxID_HIGHEST + 7;
+    constexpr static int ID_COPY_LICENSE = wxID_HIGHEST + 8;
 
     /// Creation.
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition,
