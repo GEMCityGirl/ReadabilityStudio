@@ -189,12 +189,16 @@ void ReadabilityApp::ShowSplashscreen()
             wxString ext{ GetSplashscreenPaths()[imageIndex] };
             wxBitmap bitmap =
                 GetScaledImage(GetSplashscreenPaths()[imageIndex],
-                               Image::GetImageFileTypeFromExtension(ext), wxSize(800, 600));
+                               Image::GetImageFileTypeFromExtension(ext), wxSize{ 800, 600 });
             if (bitmap.IsOk())
                 {
+                // quneiform-suppress-begin
+                // (the concatenation here is OK, so ignore that)
                 bitmap = CreateSplashscreen(
                     bitmap, GetAppName(), GetAppSubName(), GetVendorName(), true,
+                    // TRANSLATORS: "\U000000A92006-2025" should not be edited.
                     _(L"Copyright \U000000A92006-2025 Oleander Software, Ltd., "));
+                // quneiform-suppress-begin
 
                 [[maybe_unused]]
                 wxSplashScreen* splash =
@@ -3090,6 +3094,9 @@ void MainFrame::OnAbout([[maybe_unused]] wxCommandEvent& event)
 
     AboutDialogEx aboutDlg(
         wxGetApp().GetParentingWindow(), GetAboutDialogImage(), wxGetApp().GetAppVersion(),
+        // TRANSLATORS: with "\U000000A9%s%d %s", "\U000000A9" should not be edited
+        // (it's a copyright symbol), "%s%d" is a range of years and " %s" is the
+        // software publisher.
         wxString::Format(_(L"Copyright \U000000A92006-2025 Oleander Software, Ltd.\n"
                            "Copyright \U000000A9%s%d %s.\nAll rights reserved."),
                          (buildDate.GetYear() > 2025 ? wxString{ L"2025-" } : wxString{}),
