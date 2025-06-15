@@ -194,7 +194,7 @@ void ReadabilityApp::ShowSplashscreen()
                 {
                 bitmap =
                     CreateSplashscreen(bitmap, GetAppName(), GetAppSubName(), GetVendorName(), true,
-                                       L"Copyright \U000000A92006-2025 Oleander Software, Ltd., ");
+                                       _(L"Copyright \U000000A92006-2025 Oleander Software, Ltd., "));
 
                 [[maybe_unused]]
                 wxSplashScreen* splash =
