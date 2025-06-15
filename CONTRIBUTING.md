@@ -1,4 +1,4 @@
-# Contributing to *Eclipse Readability Studio*®
+# Contributing to *Eclipse Readability Studio*Â®
 
 Thanks for your interest in this project.
 
