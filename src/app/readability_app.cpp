@@ -192,9 +192,9 @@ void ReadabilityApp::ShowSplashscreen()
                                Image::GetImageFileTypeFromExtension(ext), wxSize(800, 600));
             if (bitmap.IsOk())
                 {
-                bitmap =
-                    CreateSplashscreen(bitmap, GetAppName(), GetAppSubName(), GetVendorName(), true,
-                                       _(L"Copyright \U000000A92006-2025 Oleander Software, Ltd., "));
+                bitmap = CreateSplashscreen(
+                    bitmap, GetAppName(), GetAppSubName(), GetVendorName(), true,
+                    _(L"Copyright \U000000A92006-2025 Oleander Software, Ltd., "));
 
                 [[maybe_unused]]
                 wxSplashScreen* splash =
@@ -3091,7 +3091,8 @@ void MainFrame::OnAbout([[maybe_unused]] wxCommandEvent& event)
     AboutDialogEx aboutDlg(
         wxGetApp().GetParentingWindow(), GetAboutDialogImage(), wxGetApp().GetAppVersion(),
         wxString::Format(_(L"Copyright \U000000A92006-2025 Oleander Software, Ltd.\n"
-                           "Copyright \U000000A92025-%d %s.\nAll rights reserved."),
+                           "Copyright \U000000A9%s%d %s.\nAll rights reserved."),
+                         (buildDate.GetYear() > 2025 ? wxString{ L"2025-" } : wxString{}),
                          buildDate.GetYear(), wxGetApp().GetVendorDisplayName()),
         eula, mlaCitation, apaCitation, bibTexCitation);
     wxGetApp().UpdateSideBarTheme(aboutDlg.GetSideBar());
