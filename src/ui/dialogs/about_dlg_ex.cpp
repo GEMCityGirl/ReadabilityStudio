@@ -12,6 +12,11 @@
  ********************************************************************************/
 
 #include "about_dlg_ex.h"
+#include "../../OleanderStemmingLibrary/src/stemming.h"
+#include "../../Wisteria-Dataviz/src/import/html_extract_text.h"
+#include "../../lua/lua.h"
+#include "../../tinyexpr-plusplus/tinyexpr.h"
+#include "../../tinyxml2/tinyxml2.h"
 #include <wx/generic/statbmpg.h>
 #include <wx/stc/stc.h>
 #include <wx/webrequest.h>
@@ -49,9 +54,13 @@ bool AboutDialogEx::Create(wxWindow* parent, wxWindowID id, const wxPoint& pos, 
                 {
                 if (!m_mlaCitation.empty())
                     {
+                    // has italics in it
+                    lily_of_the_valley::html_extract_text htmlExtract;
+                    const wxString strippedText =
+                        htmlExtract(m_mlaCitation.wc_str(), m_mlaCitation.length(), true, true);
                     wxTheClipboard->Clear();
                     wxDataObjectComposite* obj = new wxDataObjectComposite();
-                    obj->Add(new wxTextDataObject(m_mlaCitation));
+                    obj->Add(new wxTextDataObject(strippedText));
                     wxTheClipboard->SetData(obj);
                     }
                 wxTheClipboard->Close();
@@ -103,9 +112,12 @@ bool AboutDialogEx::Create(wxWindow* parent, wxWindowID id, const wxPoint& pos, 
                 {
                 if (!m_components.empty())
                     {
+                    lily_of_the_valley::html_extract_text htmlExtract;
+                    const wxString strippedText =
+                        htmlExtract(m_components.wc_str(), m_components.length(), true, true);
                     wxTheClipboard->Clear();
                     wxDataObjectComposite* obj = new wxDataObjectComposite();
-                    obj->Add(new wxTextDataObject(m_components));
+                    obj->Add(new wxTextDataObject(strippedText));
                     wxTheClipboard->SetData(obj);
                     }
                 wxTheClipboard->Close();
@@ -200,16 +212,35 @@ void AboutDialogEx::CreateControls()
         // Consistently format library info with the name and version number.
         const auto formatLibInfo = [](const auto& libInfo)
         {
+            wxString copyright = libInfo.GetCopyright();
+            copyright.Replace(L"\n", L"<br />");
+
             return wxString::Format(
-                _(L"<span style='font-weight: bold;'>%s</span> - version %s<br />\n"),
-                libInfo.GetName(), libInfo.GetNumericVersionString());
+                L"<span style='font-weight: bold;'>%s</span> - %s<br />%s<br />", libInfo.GetName(),
+                (libInfo.AtLeast(0) ?
+                     wxString::Format(_(L"version %s"), libInfo.GetNumericVersionString()) :
+                     _(L"unversioned")),
+                (libInfo.HasCopyright() ? copyright + L"<br />" : wxString{}));
         };
 
         // Get wxWidget's version, as well as its submodules, and sort them.
         std::vector<wxString> allLibInfo;
         allLibInfo.push_back(formatLibInfo(wxGetLibraryVersionInfo()));
-        /// @todo uncomment after upgrading to WDV 1.0.1
-        // allLibInfo.push_back(formatLibInfo(Wisteria::GetLibraryVersionInfo()));
+        allLibInfo.push_back(formatLibInfo(Wisteria::GetLibraryVersionInfo()));
+        allLibInfo.push_back(
+            formatLibInfo(wxVersionInfo{ L"Lua", LUA_VERSION_MAJOR_N, LUA_VERSION_MINOR_N,
+                                         LUA_VERSION_RELEASE_N, 0, wxString{}, LUA_COPYRIGHT }));
+        allLibInfo.push_back(formatLibInfo(wxVersionInfo{
+            L"Oleander Stemming Library", stemming::OLEANDER_STEM_MAJOR_VERSION,
+            stemming::OLEANDER_STEM_MINOR_VERSION, stemming::OLEANDER_STEM_PATCH_VERSION,
+            stemming::OLEANDER_STEM_TWEAK_VERSION, wxString{},
+            stemming::OLEANDER_STEM_COPYRIGHT }));
+        allLibInfo.push_back(formatLibInfo(
+            wxVersionInfo{ L"TinyExpr++", TINYEXPR_CPP_MAJOR_VERSION, TINYEXPR_CPP_MINOR_VERSION,
+                           TINYEXPR_CPP_PATCH_VERSION, TINYEXPR_CPP_TWEAK_VERSION, wxString{},
+                           TINYEXPR_CPP_COPYRIGHT }));
+        allLibInfo.push_back(formatLibInfo(wxVersionInfo{
+            L"TinyXML2", TIXML2_MAJOR_VERSION, TIXML2_MINOR_VERSION, TIXML2_PATCH_VERSION }));
         allLibInfo.push_back(formatLibInfo(wxTIFFHandler::GetLibraryVersionInfo()));
         allLibInfo.push_back(formatLibInfo(wxJPEGHandler::GetLibraryVersionInfo()));
         allLibInfo.push_back(formatLibInfo(wxPNGHandler::GetLibraryVersionInfo()));
@@ -217,8 +248,14 @@ void AboutDialogEx::CreateControls()
         allLibInfo.push_back(formatLibInfo(wxRegEx::GetLibraryVersionInfo()));
         allLibInfo.push_back(formatLibInfo(wxXmlDocument::GetLibraryVersionInfo()));
         allLibInfo.push_back(formatLibInfo(wxStyledTextCtrl::GetLibraryVersionInfo()));
-        allLibInfo.push_back(formatLibInfo(wxWebSession::GetDefault().GetLibraryVersionInfo()));
         allLibInfo.push_back(formatLibInfo(wxGetZlibVersionInfo()));
+        // submodules without version information
+        allLibInfo.push_back(formatLibInfo(wxVersionInfo{ L"NanoSVG", -1 }));
+        allLibInfo.push_back(formatLibInfo(wxVersionInfo{ L"CRCpp", -1 }));
+        allLibInfo.push_back(formatLibInfo(wxVersionInfo{ L"wxSimpleJSON", -1 }));
+        allLibInfo.push_back(formatLibInfo(wxVersionInfo{ L"wxStartPage", -1 }));
+        allLibInfo.push_back(formatLibInfo(wxVersionInfo{ L"easyexif", -1 }));
+        allLibInfo.push_back(formatLibInfo(wxVersionInfo{ L"UTF8-CPP", -1 }));
         /// @todo uncomment if WebView is ever included
         // allLibInfo.push_back(formatLibInfo(wxWebView::GetBackendVersionInfo()));
         std::sort(allLibInfo.begin(), allLibInfo.end(),
@@ -232,7 +269,7 @@ void AboutDialogEx::CreateControls()
             allStr.reserve(allLibInfo.size() * 50);
             for (const auto& lib : allLibInfo)
                 {
-                allStr.append(lib).append(L'\n');
+                allStr.append(lib);
                 }
             allStr.Trim();
             return allStr;
