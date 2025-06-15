@@ -29,6 +29,7 @@ wxDECLARE_APP(ReadabilityApp);
 
 // NOLINTBEGIN(readability-identifier-length)
 // NOLINTBEGIN(readability-implicit-bool-conversion)
+// cppcheck-suppress-file [functionConst]
 
 /* Note: with Luna, an extra boolean argument is passed into class functions at the front,
    this should be skipped over. It seems to be an indicator of the function being successfully
