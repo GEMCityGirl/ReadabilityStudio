@@ -535,7 +535,8 @@ bool ReadabilityApp::OnInit()
                    std::make_pair(_(L"Factory"), DONTTRANSLATE(L"factory")),
                    std::make_pair(_(L"House"), DONTTRANSLATE(L"house")),
                    std::make_pair(_(L"Barn"), DONTTRANSLATE(L"barn")),
-                   std::make_pair(_(L"Farm"), DONTTRANSLATE(L"farm")) };
+                   std::make_pair(_(L"Farm"), DONTTRANSLATE(L"farm")),
+                   std::make_pair(_(L"Dollar"), DONTTRANSLATE(L"dollar")) };
 
     // do the same for the color schemes (for the graphs)
     m_colorSchemeMap = { std::make_pair(_(L"Dusk"), DONTTRANSLATE(L"dusk")),
