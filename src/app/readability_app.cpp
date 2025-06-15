@@ -3205,7 +3205,7 @@ void MainFrame::OnViewLogReport([[maybe_unused]] wxRibbonButtonBarEvent& event)
         }
     wxGetApp().UpdateRibbonTheme(m_logWindow->GetRibbon());
     m_logWindow->SetActiveLog(wxGetApp().GetLogFile());
-    m_logWindow->Readlog();
+    m_logWindow->ReadLog();
     // fit the columns
     m_logWindow->GetListCtrl()->DistributeColumns(-1);
 

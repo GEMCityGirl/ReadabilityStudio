@@ -2582,7 +2582,7 @@ void BatchProjectView::OnExportStatisticsReport([[maybe_unused]] wxCommandEvent&
                           _(L": Summary Statistics") + L"</span></h1>\n<h2>" + _(L"Files:") +
                           L"</h2>\n";
     std::wstring strippedFileHeader{ fileHeader };
-    lily_of_the_valley::html_format::strip_body_atributes(strippedFileHeader);
+    lily_of_the_valley::html_format::strip_body_attributes(strippedFileHeader);
 
     wxTempFile outputFile(fdialog.GetPath());
     if (!outputFile.Write(strippedFileHeader))
