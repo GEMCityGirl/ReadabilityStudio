@@ -13,6 +13,7 @@
 
 #include "about_dlg_ex.h"
 #include "../../OleanderStemmingLibrary/src/stemming.h"
+#include "../../Wisteria-Dataviz/src/easyexif/exif.h"
 #include "../../Wisteria-Dataviz/src/import/html_extract_text.h"
 #include "../../lua/lua.h"
 #include "../../tinyexpr-plusplus/tinyexpr.h"
@@ -276,7 +277,8 @@ void AboutDialogEx::CreateControls()
         allLibInfo.push_back(formatLibInfo(wxVersionInfo{ L"CRCpp", -1 }));
         allLibInfo.push_back(formatLibInfo(wxVersionInfo{ L"wxSimpleJSON", -1 }));
         allLibInfo.push_back(formatLibInfo(wxVersionInfo{ L"wxStartPage", -1 }));
-        allLibInfo.push_back(formatLibInfo(wxVersionInfo{ L"easyexif", -1 }));
+        allLibInfo.push_back(formatLibInfo(
+            wxVersionInfo{ L"easyexif", -1, 0, 0, 0, wxString{}, easyexif::EASYEXIF_COPYRIGHT }));
         allLibInfo.push_back(formatLibInfo(wxVersionInfo{ L"UTF8-CPP", -1 }));
         /// @todo uncomment if WebView is ever included
         // allLibInfo.push_back(formatLibInfo(wxWebView::GetBackendVersionInfo()));
