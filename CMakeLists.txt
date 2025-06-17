@@ -185,12 +185,11 @@ set(wxBUILD_SHARED OFF)
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
     set(__WXDEBUG__ 0)
     set(wxBUILD_OPTIMISE ON)
-    set(BUILD_STRIPPED_RELEASE ON)
+    set(wxBUILD_STRIPPED_RELEASE ON)
 endif()
 find_directory("wxWidgets" wxWidgets_BASEDIR)
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/../wxWidgets" ${CMAKE_CURRENT_SOURCE_DIR}/wxWidgets_lib)
 set(wxWidgets_LIBRARIES wx::core wx::base wx::xrc wx::propgrid wx::xml wx::aui wx::ribbon wx::qa wx::stc wx::net wx::richtext)
-
 message(STATUS "Adding wxWidgets libraries: ${wxWidgets_LIBRARIES}")
 
 if(UNIX AND NOT APPLE)
