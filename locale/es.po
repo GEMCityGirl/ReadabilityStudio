@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Readability Studio\n"
-"POT-Creation-Date: 2025-05-30 14:54-0400\n"
-"PO-Revision-Date: 2025-05-30 14:55-0400\n"
+"POT-Creation-Date: 2025-06-17 05:58-0400\n"
+"PO-Revision-Date: 2025-06-17 06:01-0400\n"
 "Last-Translator: Blake Madden\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -36,22 +36,22 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-18: Wisteria-Dataviz/src/data\n"
 "X-Poedit-SearchPathExcluded-19: Wisteria-Dataviz/src/base/reportbuilder.cpp\n"
 
-#: Wisteria-Dataviz/src/base/axis.cpp:3018
+#: Wisteria-Dataviz/src/base/axis.cpp:2995
 #, c-format
 msgid "Q1FY%s"
 msgstr "Q1FY%s"
 
-#: Wisteria-Dataviz/src/base/axis.cpp:3022
+#: Wisteria-Dataviz/src/base/axis.cpp:2999
 #, c-format
 msgid "Q2FY%s"
 msgstr "Q2FY%s"
 
-#: Wisteria-Dataviz/src/base/axis.cpp:3026
+#: Wisteria-Dataviz/src/base/axis.cpp:3003
 #, c-format
 msgid "Q3FY%s"
 msgstr "Q3FY%s"
 
-#: Wisteria-Dataviz/src/base/axis.cpp:3030
+#: Wisteria-Dataviz/src/base/axis.cpp:3007
 #, c-format
 msgid "Q4FY%s"
 msgstr "Q4FY%s"
@@ -66,53 +66,54 @@ msgstr "Q4FY%s"
 #. TRANSLATORS: formatted number ("%s") and percent ("%%")
 #. TRANSLATORS: Percentage value (%s) and % symbol (%%).
 #. '%%' can be changed and/or moved elsewhere in the string.
-#. TRANSLATORS: Percent value placeholder and percentage symbol (%%)
+#. TRANSLATORS: Percent value placeholder and percentage
+#. symbol (%%)
 #. TRANSLATORS: Percentage value and percentage symbol (%%).
 #. '%%' can be changed and/or moved within string.
 #. TRANSLATORS: Percentage value (%s) and % symbol (%%).
 #. '%%' can be changed and/or moved elsewhere in the string.
-#: Wisteria-Dataviz/src/base/axis.cpp:3424
+#: Wisteria-Dataviz/src/base/axis.cpp:3401
 #: Wisteria-Dataviz/src/graphs/barchart.cpp:55
-#: Wisteria-Dataviz/src/graphs/histogram.cpp:537
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1103
+#: Wisteria-Dataviz/src/graphs/histogram.cpp:613
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1101
 #: Wisteria-Dataviz/src/graphs/likertchart.cpp:1129
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1154
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1183
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1320
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1344
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1371
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1400
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1475
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1494
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1513
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1532
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1555
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1580
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1710
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1730
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1750
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1770
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1794
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1819
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1891
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1910
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1929
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1948
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1967
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1986
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:2010
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:2035
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:2168
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:2188
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:2208
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:2228
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:2248
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:2268
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:2293
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:2318
-#: Wisteria-Dataviz/src/graphs/piechart.cpp:51
-#: Wisteria-Dataviz/src/graphs/piechart.cpp:204
-#: Wisteria-Dataviz/src/graphs/sankeydiagram.cpp:438
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1157
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1189
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1336
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1362
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1391
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1424
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1505
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1526
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1547
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1568
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1593
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1620
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1759
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1780
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1801
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1822
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1847
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1875
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1952
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1973
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:1994
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:2015
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:2036
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:2057
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:2083
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:2110
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:2252
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:2273
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:2294
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:2315
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:2336
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:2357
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:2383
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:2411
+#: Wisteria-Dataviz/src/graphs/piechart.cpp:43
+#: Wisteria-Dataviz/src/graphs/piechart.cpp:195
+#: Wisteria-Dataviz/src/graphs/sankeydiagram.cpp:484
 #: Wisteria-Dataviz/src/graphs/table.cpp:68
 #: projects/standard_project_doc.cpp:3431
 #: projects/standard_project_doc.cpp:3448
@@ -125,7 +126,7 @@ msgstr "Q4FY%s"
 msgid "%s%%"
 msgstr "%s%%"
 
-#: Wisteria-Dataviz/src/base/axis.cpp:3973
+#: Wisteria-Dataviz/src/base/axis.cpp:3935
 #, c-format
 msgid "'%s': label column not found for line plot."
 msgstr ""
@@ -150,7 +151,7 @@ msgstr ""
 #: Wisteria-Dataviz/src/ui/controls/htmltablewin.cpp:27
 #: Wisteria-Dataviz/src/ui/controls/htmltablewin.cpp:132
 #: Wisteria-Dataviz/src/ui/controls/listctrlex.cpp:1559
-#: Wisteria-Dataviz/src/ui/dialogs/listdlg.cpp:258 app/readability_app.cpp:1904
+#: Wisteria-Dataviz/src/ui/dialogs/listdlg.cpp:258 app/readability_app.cpp:1909
 #: ui/dialogs/word_list_dlg.cpp:190
 msgid "Print"
 msgstr "Imprimir"
@@ -189,10 +190,6 @@ msgstr ""
 "Un formato de imagen comprimido sin pérdidas. La imagen se puede comprimir a "
 "un tamaño más pequeño sin pérdida de calidad."
 
-#: Wisteria-Dataviz/src/base/canvas.cpp:189
-msgid "Joint Photographic Experts Group"
-msgstr "Joint Photographic Experts Group"
-
 #: Wisteria-Dataviz/src/base/canvas.cpp:190
 msgid ""
 "A lossy-compressed image format. Some image quality may be lost, compared to "
@@ -201,18 +198,10 @@ msgstr ""
 "Un formato de imagen comprimido con pérdidas. Es posible que se pierda parte "
 "de la calidad de la imagen, en comparación con otros formatos como PNG."
 
-#: Wisteria-Dataviz/src/base/canvas.cpp:193
-msgid "Bitmap"
-msgstr "Mapa de bits"
-
 #: Wisteria-Dataviz/src/base/canvas.cpp:194
 msgid "An uncompressed raster (i.e., pixel based) image format."
 msgstr ""
 "Un formato de imagen rasterizada sin comprimir (es decir, basado en píxeles)."
-
-#: Wisteria-Dataviz/src/base/canvas.cpp:196
-msgid "Tagged Image File Format"
-msgstr "Tagged Image File Format"
 
 #: Wisteria-Dataviz/src/base/canvas.cpp:197
 msgid ""
@@ -223,17 +212,9 @@ msgstr ""
 "Este formato se puede comprimir o descomprimir y ofrece compresión con y sin "
 "pérdidas. Por lo general, se prefiere este formato para la autoedición."
 
-#: Wisteria-Dataviz/src/base/canvas.cpp:201
-msgid "Truevision Advanced Raster Graphics Adapter"
-msgstr "Truevision Advanced Raster Graphics Adapter"
-
 #: Wisteria-Dataviz/src/base/canvas.cpp:202
 msgid "A raster (i.e., pixel based) image format."
 msgstr "Un formato de imagen rasterizado (es decir, basado en píxeles)."
-
-#: Wisteria-Dataviz/src/base/canvas.cpp:204
-msgid "Graphics Interchange Format"
-msgstr "Formato de gráficos intercambeable"
 
 #: Wisteria-Dataviz/src/base/canvas.cpp:205
 msgid ""
@@ -242,10 +223,6 @@ msgid ""
 msgstr ""
 "Un formato de imagen rasterizado (es decir, basado en píxeles). Tenga en "
 "cuenta que este formato de imagen está limitado a 256 colores."
-
-#: Wisteria-Dataviz/src/base/canvas.cpp:208
-msgid "Scalable Vector Graphics"
-msgstr "Gráficos Vectoriales Escalables"
 
 #: Wisteria-Dataviz/src/base/canvas.cpp:209
 msgid ""
@@ -289,21 +266,21 @@ msgstr "Guardar Error"
 #: Wisteria-Dataviz/src/base/canvas.cpp:463
 #: Wisteria-Dataviz/src/ui/controls/formattedtextctrl.h:74
 #: Wisteria-Dataviz/src/ui/controls/htmltablewin.cpp:25
-#: app/readability_app.cpp:1926 app/readability_app.cpp:1958
-#: app/readability_app.cpp:1981 app/readability_app.cpp:2007
-#: app/readability_app.cpp:2009 app/readability_app.cpp:2027
-#: app/readability_app.cpp:2029 app/readability_app.cpp:2050
-#: app/readability_app.cpp:2052 app/readability_app.cpp:2077
-#: app/readability_app.cpp:2099 app/readability_app.cpp:2121
-#: app/readability_app.cpp:2123 app/readability_app.cpp:2140
-#: app/readability_app.cpp:2167 app/readability_app.cpp:2169
-#: app/readability_app.cpp:2212 app/readability_app.cpp:2214
-#: app/readability_app.cpp:2256 app/readability_app.cpp:2303
-#: app/readability_app.cpp:2343 app/readability_app.cpp:2391
-#: app/readability_app.cpp:2425 app/readability_app.cpp:2464
-#: app/readability_app.cpp:2497 app/readability_app.cpp:2530
-#: app/readability_app.cpp:2566 app/readability_app.cpp:2605
-#: app/readability_app.cpp:2638 app/readability_app.cpp:2669
+#: app/readability_app.cpp:1931 app/readability_app.cpp:1963
+#: app/readability_app.cpp:1986 app/readability_app.cpp:2012
+#: app/readability_app.cpp:2014 app/readability_app.cpp:2032
+#: app/readability_app.cpp:2034 app/readability_app.cpp:2055
+#: app/readability_app.cpp:2057 app/readability_app.cpp:2082
+#: app/readability_app.cpp:2104 app/readability_app.cpp:2126
+#: app/readability_app.cpp:2128 app/readability_app.cpp:2145
+#: app/readability_app.cpp:2172 app/readability_app.cpp:2174
+#: app/readability_app.cpp:2217 app/readability_app.cpp:2219
+#: app/readability_app.cpp:2261 app/readability_app.cpp:2308
+#: app/readability_app.cpp:2348 app/readability_app.cpp:2396
+#: app/readability_app.cpp:2430 app/readability_app.cpp:2469
+#: app/readability_app.cpp:2502 app/readability_app.cpp:2535
+#: app/readability_app.cpp:2571 app/readability_app.cpp:2610
+#: app/readability_app.cpp:2643 app/readability_app.cpp:2674
 #: projects/base_project_view.cpp:64 ui/controls/explanation_listctrl.cpp:215
 #: ui/dialogs/edit_text_dlg.cpp:197
 msgid "Copy"
@@ -313,8 +290,8 @@ msgstr "Copiar"
 #: Wisteria-Dataviz/src/ui/controls/formattedtextctrl.h:80
 #: Wisteria-Dataviz/src/ui/controls/htmltablewin.cpp:30
 #: Wisteria-Dataviz/src/ui/dialogs/htmltablepanel.cpp:32
-#: Wisteria-Dataviz/src/ui/dialogs/listdlg.cpp:249 app/readability_app.cpp:1712
-#: app/readability_app.cpp:1737 app/readability_app.cpp:1901
+#: Wisteria-Dataviz/src/ui/dialogs/listdlg.cpp:249 app/readability_app.cpp:1717
+#: app/readability_app.cpp:1742 app/readability_app.cpp:1906
 #: ui/controls/explanation_listctrl.cpp:194 ui/dialogs/edit_text_dlg.cpp:174
 #: ui/dialogs/lua_editor_dlg.cpp:682 ui/dialogs/word_list_dlg.cpp:185
 msgid "Save"
@@ -340,16 +317,16 @@ msgstr ""
 "(*.pcx)|*.pcx"
 
 #. TRANSLATORS: A GO sign, as in OK to proceed
-#: Wisteria-Dataviz/src/base/shapes.cpp:1998
+#: Wisteria-Dataviz/src/base/shapes.cpp:2145
 msgid "GO"
 msgstr "IR"
 
 #. TRANSLATORS: Simple placeholder text of any sort
-#: Wisteria-Dataviz/src/base/shapes.cpp:2641
+#: Wisteria-Dataviz/src/base/shapes.cpp:2788
 msgid "ABC"
 msgstr "ABC"
 
-#: Wisteria-Dataviz/src/base/shapes.cpp:2738
+#: Wisteria-Dataviz/src/base/shapes.cpp:2885
 msgid "DAYTON TIMES"
 msgstr "DAYTON TIMES"
 
@@ -359,7 +336,8 @@ msgstr "DAYTON TIMES"
 #. TRANSLATORS: Bar length, percentage of overall length,
 #. and percent symbol (%%).
 #. '%%' can be changed or moved.
-#. TRANSLATORS: Bar length, percentage of overall length, and percent symbol (%%).
+#. TRANSLATORS: Bar length, percentage of overall length, and percent symbol
+#. (%%).
 #. '%%' can be changed or moved.
 #. TRANSLATORS: Pie chart label and then a percentage value in parentheses
 #. TRANSLATORS: Group label, the percentage value,
@@ -368,10 +346,10 @@ msgstr "DAYTON TIMES"
 #. and then percent sign (%%)
 #: Wisteria-Dataviz/src/graphs/barchart.cpp:44
 #: Wisteria-Dataviz/src/graphs/barchart.cpp:63
-#: Wisteria-Dataviz/src/graphs/histogram.cpp:543
-#: Wisteria-Dataviz/src/graphs/piechart.cpp:217
-#: Wisteria-Dataviz/src/graphs/sankeydiagram.cpp:429
-#: Wisteria-Dataviz/src/graphs/sankeydiagram.cpp:448
+#: Wisteria-Dataviz/src/graphs/histogram.cpp:620
+#: Wisteria-Dataviz/src/graphs/piechart.cpp:208
+#: Wisteria-Dataviz/src/graphs/sankeydiagram.cpp:471
+#: Wisteria-Dataviz/src/graphs/sankeydiagram.cpp:496
 #, c-format
 msgid "%s (%s%%)"
 msgstr "%s (%s%%)"
@@ -526,7 +504,7 @@ msgstr ""
 "'%s': columna de peso no encontrada para el gráfico de barras categórico."
 
 #: Wisteria-Dataviz/src/graphs/categoricalbarchart.cpp:102
-#: Wisteria-Dataviz/src/graphs/histogram.cpp:98
+#: Wisteria-Dataviz/src/graphs/histogram.cpp:107
 #: projects/batch_project_doc.cpp:6451 projects/batch_project_doc.cpp:6499
 #: projects/batch_project_doc.cpp:6547 projects/batch_project_doc.cpp:6593
 #: projects/batch_project_doc.cpp:6639 projects/batch_project_doc.cpp:6689
@@ -551,25 +529,25 @@ msgstr ""
 msgid "Frequency"
 msgstr "Frecuencia"
 
-#: Wisteria-Dataviz/src/graphs/crawfordgraph.cpp:33
-#: Wisteria-Dataviz/src/graphs/crawfordgraph.cpp:34
+#: Wisteria-Dataviz/src/graphs/crawfordgraph.cpp:29
+#: Wisteria-Dataviz/src/graphs/crawfordgraph.cpp:30
 #: projects/base_project_view.h:481
 msgid "Crawford Graph"
 msgstr "Gráfico de Crawford"
 
-#: Wisteria-Dataviz/src/graphs/crawfordgraph.cpp:37
+#: Wisteria-Dataviz/src/graphs/crawfordgraph.cpp:32
 msgid "SPANISH READABILITY GRAPH"
 msgstr "GRÁFICO DE LEGIBILIDAD EN ESPAÑOL"
 
-#: Wisteria-Dataviz/src/graphs/crawfordgraph.cpp:38
+#: Wisteria-Dataviz/src/graphs/crawfordgraph.cpp:35
 msgid "Number of Syllables per 100 Words"
 msgstr "Número de Sílabas por Cada 100 Palabras"
 
-#: Wisteria-Dataviz/src/graphs/crawfordgraph.cpp:39
+#: Wisteria-Dataviz/src/graphs/crawfordgraph.cpp:36
 msgid "Approximate Grade Level of Reading Difficulty"
 msgstr "Nivel Aproximado de Dificultad de Lectura"
 
-#: Wisteria-Dataviz/src/graphs/crawfordgraph.cpp:89
+#: Wisteria-Dataviz/src/graphs/crawfordgraph.cpp:86
 msgid ""
 "Number of Sentences\n"
 "per 100 Words"
@@ -577,28 +555,28 @@ msgstr ""
 "Número de Oraciones\n"
 "por 100 palabras"
 
-#: Wisteria-Dataviz/src/graphs/danielsonbryan2plot.cpp:32
-#: Wisteria-Dataviz/src/graphs/danielsonbryan2plot.cpp:33
+#: Wisteria-Dataviz/src/graphs/danielsonbryan2plot.cpp:28
+#: Wisteria-Dataviz/src/graphs/danielsonbryan2plot.cpp:29
 msgid "Danielson-Bryan Plot"
 msgstr "Trama de Danielson-Bryan"
 
-#: Wisteria-Dataviz/src/graphs/danielsonbryan2plot.cpp:153
+#: Wisteria-Dataviz/src/graphs/danielsonbryan2plot.cpp:149
 msgid "very difficult, college level"
 msgstr "muy difícil, nivel universitario"
 
-#: Wisteria-Dataviz/src/graphs/danielsonbryan2plot.cpp:154
+#: Wisteria-Dataviz/src/graphs/danielsonbryan2plot.cpp:151
 msgid "difficult, high school level"
 msgstr "difícil, nivel de escuela secundaria"
 
-#: Wisteria-Dataviz/src/graphs/danielsonbryan2plot.cpp:156
+#: Wisteria-Dataviz/src/graphs/danielsonbryan2plot.cpp:153
 msgid "fairly difficult, junior high school level"
 msgstr "bastante difícil, nivel de escuela secundaria"
 
-#: Wisteria-Dataviz/src/graphs/danielsonbryan2plot.cpp:157
+#: Wisteria-Dataviz/src/graphs/danielsonbryan2plot.cpp:155
 msgid "standard, sixth-grade level"
 msgstr "estándar, nivel de sexto grado"
 
-#: Wisteria-Dataviz/src/graphs/danielsonbryan2plot.cpp:158
+#: Wisteria-Dataviz/src/graphs/danielsonbryan2plot.cpp:157
 msgid "fairly easy, fifth-grade level"
 msgstr "bastante fácil, nivel de quinto grado"
 
@@ -606,20 +584,20 @@ msgstr "bastante fácil, nivel de quinto grado"
 msgid "easy, fourth-grade level"
 msgstr "fácil, nivel de cuarto grado"
 
-#: Wisteria-Dataviz/src/graphs/danielsonbryan2plot.cpp:160
+#: Wisteria-Dataviz/src/graphs/danielsonbryan2plot.cpp:161
 msgid "very easy, third-grade level"
 msgstr "muy fácil, nivel de tercer grado"
 
-#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:34
-#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:35
+#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:29
+#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:30
 msgid "Flesch Readability Chart"
 msgstr "Gráficos de Legibilidad de Flesch"
 
-#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:37
+#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:32
 msgid "How Easy?"
 msgstr "¿Qué tan fácil?"
 
-#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:63
+#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:58
 msgid ""
 "WORDS PER\n"
 "SENTENCE"
@@ -627,27 +605,27 @@ msgstr ""
 "PALABRAS POR\n"
 "ORACIONES"
 
-#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:80
+#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:76
 msgid "Very Easy"
 msgstr "Muy Fácil"
 
-#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:82
+#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:79
 msgid "Easy"
 msgstr "Fácil"
 
-#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:84
+#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:81
 msgid "Fairly Easy"
 msgstr "Bastante fácil"
 
-#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:86
+#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:84
 msgid "Standard"
 msgstr "Estándar"
 
-#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:88
+#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:86
 msgid "Fairly Difficult"
 msgstr "Bastante Difícil"
 
-#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:90
+#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:89
 msgid "Difficult"
 msgstr "Difícil"
 
@@ -655,7 +633,7 @@ msgstr "Difícil"
 msgid "Very Difficult"
 msgstr "Muy Difícil"
 
-#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:96
+#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:99
 msgid ""
 "READABILITY\n"
 "SCORE"
@@ -663,7 +641,7 @@ msgstr ""
 "LEGIBILIDAD\n"
 "PUNTUACIÓN"
 
-#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:114
+#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:117
 msgid ""
 "SYLLABLES PER\n"
 "100 WORDS"
@@ -671,7 +649,7 @@ msgstr ""
 "SILABAS POR CADA\n"
 "100 PALABRAS"
 
-#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:281
+#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:296
 msgid ""
 "HOW TO USE THIS CHART\n"
 "       Take a pencil or ruler and connect your\n"
@@ -687,20 +665,20 @@ msgstr ""
 "intersección del lápiz o la regla con el\n"
 "La línea central muestra su puntaje de \"Facilidad de Lectura\"."
 
-#: Wisteria-Dataviz/src/graphs/ganttchart.cpp:67
+#: Wisteria-Dataviz/src/graphs/ganttchart.cpp:63
 #, c-format
 msgid "'%s': task name column not found for Gantt chart."
 msgstr ""
 "'%s': no se encontró la columna del nombre de la tarea para el diagrama de "
 "Gantt."
 
-#: Wisteria-Dataviz/src/graphs/ganttchart.cpp:75
+#: Wisteria-Dataviz/src/graphs/ganttchart.cpp:71
 #, c-format
 msgid "'%s': start date column not found for Gantt chart."
 msgstr ""
 "'%s': no se encontró la columna de fecha de inicio para el diagrama de Gantt."
 
-#: Wisteria-Dataviz/src/graphs/ganttchart.cpp:83
+#: Wisteria-Dataviz/src/graphs/ganttchart.cpp:79
 #, c-format
 msgid "'%s': end date column not found for Gantt chart."
 msgstr ""
@@ -710,8 +688,8 @@ msgstr ""
 #. TRANSLATORS: Description, # of days, then a date range
 #. TRANSLATORS: Description, # of days,
 #. then a date range
-#: Wisteria-Dataviz/src/graphs/ganttchart.cpp:223
-#: Wisteria-Dataviz/src/graphs/ganttchart.cpp:237
+#: Wisteria-Dataviz/src/graphs/ganttchart.cpp:220
+#: Wisteria-Dataviz/src/graphs/ganttchart.cpp:234
 #, c-format
 msgid ""
 "%s\n"
@@ -723,20 +701,20 @@ msgstr ""
 "(%s a %s)"
 
 #. TRANSLATORS: \u2713 is a checkmark character
-#: Wisteria-Dataviz/src/graphs/ganttchart.cpp:256
+#: Wisteria-Dataviz/src/graphs/ganttchart.cpp:253
 msgid "✓ Complete"
 msgstr "✓ Completo"
 
-#: Wisteria-Dataviz/src/graphs/ganttchart.cpp:257
+#: Wisteria-Dataviz/src/graphs/ganttchart.cpp:254
 #, c-format
 msgid "%d%% complete"
 msgstr "%d%% completo"
 
 #. TRANSLATORS: %s -> task resource, %d -> number of days for a task
 #. TRANSLATORS: %s -> task description, %d -> number of days for a task
-#: Wisteria-Dataviz/src/graphs/ganttchart.cpp:272
-#: Wisteria-Dataviz/src/graphs/ganttchart.cpp:280
-#: Wisteria-Dataviz/src/graphs/ganttchart.cpp:288
+#: Wisteria-Dataviz/src/graphs/ganttchart.cpp:269
+#: Wisteria-Dataviz/src/graphs/ganttchart.cpp:277
+#: Wisteria-Dataviz/src/graphs/ganttchart.cpp:285
 #, c-format
 msgid ""
 "%s\n"
@@ -746,7 +724,7 @@ msgstr ""
 "%d días"
 
 #. TRANSLATORS: # of days remaining in a task
-#: Wisteria-Dataviz/src/graphs/ganttchart.cpp:295
+#: Wisteria-Dataviz/src/graphs/ganttchart.cpp:292
 #, c-format
 msgid "%d days"
 msgstr "%d días"
@@ -769,12 +747,12 @@ msgstr "'%s': columna de grupo no encontrada para el gráfico."
 msgid "[NO GROUP]"
 msgstr "[SIN GRUPO]"
 
-#: Wisteria-Dataviz/src/graphs/groupgraph2d.h:96
+#: Wisteria-Dataviz/src/graphs/groupgraph2d.h:97
 #, c-format
 msgid "%zu: code not found in categorical data."
 msgstr "%zu: código no encontrado en los datos categóricos."
 
-#: Wisteria-Dataviz/src/graphs/heatmap.cpp:59
+#: Wisteria-Dataviz/src/graphs/heatmap.cpp:54
 #, c-format
 msgid "'%s': continuous column not found for heatmap."
 msgstr "'%s': columna continua no encontrada para el mapa de calor."
@@ -788,85 +766,92 @@ msgstr "Grupos"
 msgid "'%s': continuous column not found for histogram."
 msgstr "'%s': columna continua no encontrada para el histograma."
 
+#. TRANSLATORS: Label truncation.
+#: Wisteria-Dataviz/src/graphs/histogram.cpp:254
+#: Wisteria-Dataviz/src/graphs/histogram.cpp:577
+#: webharvester/webharvester.cpp:410
+msgid "..."
+msgstr "..."
+
 #. TRANSLATORS: %s are the cutoff points for a bin
-#: Wisteria-Dataviz/src/graphs/histogram.cpp:585
+#: Wisteria-Dataviz/src/graphs/histogram.cpp:665
 #, c-format
 msgid "%s and <= %s"
 msgstr "%s y <= %s"
 
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:92
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:175
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:208
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:243
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:278
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:370
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:615
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:86
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:168
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:201
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:236
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:271
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:362
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:609
 #, c-format
 msgid "'%s': categorical column not found for Likert chart."
 msgstr "'%s': columna categórica no encontrada para el gráfico Likert."
 
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:309
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:317
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:302
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:310
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:318
 #: Wisteria-Dataviz/src/graphs/likertchart.cpp:325
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:332
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:341
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:349
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:334
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:342
 msgid "No response"
 msgstr "Sin respuesta"
 
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:309
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:317
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:302
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:310
 msgid "Strongly disagree"
 msgstr "Totalmente en desacuerdo"
 
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:310
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:303
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:311
 #: Wisteria-Dataviz/src/graphs/likertchart.cpp:318
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:325
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:333
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:342
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:350
-#: Wisteria-Dataviz/src/graphs/likertchart.h:1289
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:326
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:335
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:343
+#: Wisteria-Dataviz/src/graphs/likertchart.h:1286
 msgid "Disagree"
 msgstr "No estoy de acuerdo"
 
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:310
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:318
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:326
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:334
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:303
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:311
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:319
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:327
 msgid "Somewhat disagree"
 msgstr "Algo en desacuerdo"
 
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:311
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:326
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:343
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:585
-#: Wisteria-Dataviz/src/graphs/likertchart.h:1280
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:304
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:319
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:336
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:579
+#: Wisteria-Dataviz/src/graphs/likertchart.h:1277
 msgid "Neutral"
 msgstr "Neutral"
 
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:311
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:319
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:327
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:335
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:304
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:312
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:320
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:328
 msgid "Somewhat agree"
 msgstr "Parcialmente de acuerdo"
 
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:305
 #: Wisteria-Dataviz/src/graphs/likertchart.cpp:312
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:319
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:327
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:336
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:320
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:329
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:337
 #: Wisteria-Dataviz/src/graphs/likertchart.cpp:344
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:351
-#: Wisteria-Dataviz/src/graphs/likertchart.h:1288
+#: Wisteria-Dataviz/src/graphs/likertchart.h:1285
 msgid "Agree"
 msgstr "Estoy de acuerdo"
 
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:312
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:320
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:305
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:313
 msgid "Strongly agree"
 msgstr "Totalmente de acuerdo"
 
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:382
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:374
 #, c-format
 msgid ""
 "Invalid Likert response: %<PRIu64>\n"
@@ -877,48 +862,48 @@ msgstr ""
 "Columna: %s\n"
 "Los valores no deben exceder de 7."
 
-#: Wisteria-Dataviz/src/graphs/likertchart.cpp:593
+#: Wisteria-Dataviz/src/graphs/likertchart.cpp:587
 #, c-format
 msgid "'%s': group column not found for Likert chart."
 msgstr "'%s': columna de grupo no encontrada para el gráfico Likert."
 
-#: Wisteria-Dataviz/src/graphs/likertchart.h:1290
+#: Wisteria-Dataviz/src/graphs/likertchart.h:1287
 msgid "No Response"
 msgstr "Sin Respuesta"
 
-#: Wisteria-Dataviz/src/graphs/lineplot.cpp:38
+#: Wisteria-Dataviz/src/graphs/lineplot.cpp:35
 #, c-format
 msgid "'%s': Y column not found for line plot."
 msgstr "'%s': No se ha encontrado la columna Y para el gráfico de líneas."
 
-#: Wisteria-Dataviz/src/graphs/lineplot.cpp:60
+#: Wisteria-Dataviz/src/graphs/lineplot.cpp:58
 #, c-format
 msgid "'%s': X column not found for line plot."
 msgstr "'%s': No se encontró la columna X para el gráfico de líneas."
 
-#: Wisteria-Dataviz/src/graphs/lixgauge.cpp:30
-#: Wisteria-Dataviz/src/graphs/lixgauge.cpp:31 projects/base_project_view.h:457
+#: Wisteria-Dataviz/src/graphs/lixgauge.cpp:28
+#: Wisteria-Dataviz/src/graphs/lixgauge.cpp:29 projects/base_project_view.h:457
 #: ui/dialogs/tools_options_dlg.h:616
 msgid "Lix Gauge"
 msgstr "Calibre de Lix"
 
-#: Wisteria-Dataviz/src/graphs/lixgauge.cpp:43
+#: Wisteria-Dataviz/src/graphs/lixgauge.cpp:41
 msgid "Lix standards"
 msgstr "Estándares de Lix"
 
-#: Wisteria-Dataviz/src/graphs/lixgauge.cpp:134
+#: Wisteria-Dataviz/src/graphs/lixgauge.cpp:133
 msgid "Very easy text"
 msgstr "Texto muy fácil"
 
-#: Wisteria-Dataviz/src/graphs/lixgauge.cpp:136
+#: Wisteria-Dataviz/src/graphs/lixgauge.cpp:135
 msgid "Easy text"
 msgstr "Texto fácil"
 
-#: Wisteria-Dataviz/src/graphs/lixgauge.cpp:138
+#: Wisteria-Dataviz/src/graphs/lixgauge.cpp:137
 msgid "Average text"
 msgstr "Texto promedio"
 
-#: Wisteria-Dataviz/src/graphs/lixgauge.cpp:140
+#: Wisteria-Dataviz/src/graphs/lixgauge.cpp:139
 msgid "Difficult text"
 msgstr "Texto difícil"
 
@@ -934,7 +919,7 @@ msgstr "Libros para niños"
 msgid "Fiction"
 msgstr "Ficción"
 
-#: Wisteria-Dataviz/src/graphs/lixgauge.cpp:187
+#: Wisteria-Dataviz/src/graphs/lixgauge.cpp:186
 msgid "Factual prose"
 msgstr "Prosa fáctica"
 
@@ -942,33 +927,33 @@ msgstr "Prosa fáctica"
 msgid "Technical literature"
 msgstr "Bibliografía técnica"
 
-#: Wisteria-Dataviz/src/graphs/lixgaugegerman.cpp:33
-#: Wisteria-Dataviz/src/graphs/lixgaugegerman.cpp:34
+#: Wisteria-Dataviz/src/graphs/lixgaugegerman.cpp:29
+#: Wisteria-Dataviz/src/graphs/lixgaugegerman.cpp:30
 #: projects/base_project_view.h:463
 msgid "German Lix Gauge"
 msgstr "Calibre de Lix Alemán"
 
-#: Wisteria-Dataviz/src/graphs/lixgaugegerman.cpp:128
+#: Wisteria-Dataviz/src/graphs/lixgaugegerman.cpp:124
 msgid "very easy text"
 msgstr "texto muy fácil"
 
-#: Wisteria-Dataviz/src/graphs/lixgaugegerman.cpp:132
+#: Wisteria-Dataviz/src/graphs/lixgaugegerman.cpp:128
 msgid "easy text"
 msgstr "texto fácil"
 
-#: Wisteria-Dataviz/src/graphs/lixgaugegerman.cpp:136
+#: Wisteria-Dataviz/src/graphs/lixgaugegerman.cpp:132
 msgid "average text"
 msgstr "texto promedio"
 
-#: Wisteria-Dataviz/src/graphs/lixgaugegerman.cpp:141
+#: Wisteria-Dataviz/src/graphs/lixgaugegerman.cpp:137
 msgid "difficult text"
 msgstr "texto difícil"
 
-#: Wisteria-Dataviz/src/graphs/lixgaugegerman.cpp:145
+#: Wisteria-Dataviz/src/graphs/lixgaugegerman.cpp:141
 msgid "very difficult text"
 msgstr "texto muy difícil"
 
-#: Wisteria-Dataviz/src/graphs/lixgaugegerman.cpp:189
+#: Wisteria-Dataviz/src/graphs/lixgaugegerman.cpp:185
 msgid ""
 "children and youth\n"
 "literature (for ages 8-16)"
@@ -976,7 +961,7 @@ msgstr ""
 "niños y jóvenes\n"
 "literatura (para niños de 8 a 16 años)"
 
-#: Wisteria-Dataviz/src/graphs/lixgaugegerman.cpp:195
+#: Wisteria-Dataviz/src/graphs/lixgaugegerman.cpp:191
 msgid ""
 "bellestristic texts (prose\n"
 "fiction for adults)"
@@ -984,7 +969,7 @@ msgstr ""
 "textos belistísticos (prosa\n"
 "ficción para adultos)"
 
-#: Wisteria-Dataviz/src/graphs/lixgaugegerman.cpp:200
+#: Wisteria-Dataviz/src/graphs/lixgaugegerman.cpp:196
 msgid ""
 "informational (non fiction)\n"
 "texts (Sachliteratur)"
@@ -992,7 +977,7 @@ msgstr ""
 "informativo (no ficción)\n"
 "textos (Sachliteratur)"
 
-#: Wisteria-Dataviz/src/graphs/lixgaugegerman.cpp:205
+#: Wisteria-Dataviz/src/graphs/lixgaugegerman.cpp:201
 msgid ""
 "technical texts\n"
 "(Fachliteratur)"
@@ -1000,23 +985,24 @@ msgstr ""
 "textos técnicos\n"
 "(Fachliteratur)"
 
-#: Wisteria-Dataviz/src/graphs/lrroadmap.cpp:38
+#. TRANSLATORS: "IV" means independent variable.
+#: Wisteria-Dataviz/src/graphs/lrroadmap.cpp:39
 #, c-format
 msgid "'%s': IV name column not found for roadmap."
 msgstr ""
 "'%s': No se ha encontrado la columna de nombre IV para la hoja de ruta."
 
-#: Wisteria-Dataviz/src/graphs/lrroadmap.cpp:45
+#: Wisteria-Dataviz/src/graphs/lrroadmap.cpp:47
 #, c-format
 msgid "'%s': coefficient column not found for roadmap."
 msgstr "'%s': columna de coeficiente no encontrada para la hoja de ruta."
 
-#: Wisteria-Dataviz/src/graphs/lrroadmap.cpp:54
+#: Wisteria-Dataviz/src/graphs/lrroadmap.cpp:57
 #, c-format
 msgid "'%s': p-value column not found for roadmap."
 msgstr "'%s': no se encontró la columna de valor p para la hoja de ruta."
 
-#: Wisteria-Dataviz/src/graphs/lrroadmap.cpp:112
+#: Wisteria-Dataviz/src/graphs/lrroadmap.cpp:131
 #, c-format
 msgid ""
 "The larger the map marker and deeper the curve, the stronger the item's "
@@ -1025,19 +1011,19 @@ msgstr ""
 "Cuanto más grande sea el marcador del mapa y más profunda sea la curva, más "
 "fuerte será la asociación del elemento con %s"
 
-#: Wisteria-Dataviz/src/graphs/lrroadmap.h:150
+#: Wisteria-Dataviz/src/graphs/lrroadmap.h:151
 #, c-format
 msgid "Positively associated with %s"
 msgstr "Asociado positivamente con %s"
 
-#: Wisteria-Dataviz/src/graphs/lrroadmap.h:157
+#: Wisteria-Dataviz/src/graphs/lrroadmap.h:158
 #, c-format
 msgid "Negatively associated with %s"
 msgstr "Asociado negativamente con %s"
 
 #. TRANSLATORS: Percentage value (%s), % symbol (%%), and value.
 #. '%%' can be changed and/or moved elsewhere in the string.
-#: Wisteria-Dataviz/src/graphs/piechart.cpp:44
+#: Wisteria-Dataviz/src/graphs/piechart.cpp:36
 #, c-format
 msgid ""
 "%s%%\n"
@@ -1047,7 +1033,7 @@ msgstr ""
 "(%s)"
 
 #. TRANSLATORS: Pie chart label and then a percentage value in parentheses
-#: Wisteria-Dataviz/src/graphs/piechart.cpp:65
+#: Wisteria-Dataviz/src/graphs/piechart.cpp:56
 #, c-format
 msgid ""
 "%s\n"
@@ -1058,35 +1044,35 @@ msgstr ""
 
 #. TRANSLATORS: Percentage value (%s), % symbol (%%), and value.
 #. '%%' can be changed and/or moved elsewhere in the string.
-#: Wisteria-Dataviz/src/graphs/piechart.cpp:197
+#: Wisteria-Dataviz/src/graphs/piechart.cpp:188
 #, c-format
 msgid "%s%% (%s)"
 msgstr "%s%% (%s)"
 
-#: Wisteria-Dataviz/src/graphs/piechart.cpp:424
+#: Wisteria-Dataviz/src/graphs/piechart.cpp:419
 #, c-format
 msgid "'%s': group column not found for pie chart."
 msgstr "'%s': columna de grupo no encontrada para el gráfico circular."
 
-#: Wisteria-Dataviz/src/graphs/piechart.cpp:442
+#: Wisteria-Dataviz/src/graphs/piechart.cpp:435
 #, c-format
 msgid "'%s': inner group column not found for pie chart."
 msgstr ""
 "'%s': no se encontró la columna del grupo interno para el gráfico circular."
 
-#: Wisteria-Dataviz/src/graphs/piechart.cpp:456
+#: Wisteria-Dataviz/src/graphs/piechart.cpp:448
 #, c-format
 msgid "'%s': aggregate column not found for pie chart."
 msgstr "'%s': columna agregada no encontrada para el gráfico circular."
 
-#: Wisteria-Dataviz/src/graphs/proconroadmap.cpp:35
+#: Wisteria-Dataviz/src/graphs/proconroadmap.cpp:33
 #, c-format
 msgid "'%s': positive influencers name column not found for roadmap."
 msgstr ""
 "'%s': la columna de nombre de los influencers positivos no se encontró para "
 "la hoja de ruta."
 
-#: Wisteria-Dataviz/src/graphs/proconroadmap.cpp:45
+#: Wisteria-Dataviz/src/graphs/proconroadmap.cpp:43
 #, c-format
 msgid "'%s': positive value column not found for roadmap."
 msgstr "'%s': columna de valor positivo no encontrada para la hoja de ruta."
@@ -1103,7 +1089,7 @@ msgstr ""
 msgid "'%s': negative value column not found for roadmap."
 msgstr "'%s': columna de valor negativo no encontrada para la hoja de ruta."
 
-#: Wisteria-Dataviz/src/graphs/proconroadmap.cpp:138
+#: Wisteria-Dataviz/src/graphs/proconroadmap.cpp:145
 msgid ""
 "The larger the map marker and deeper the curve, the more responses for the "
 "positive or negative sentiment"
@@ -1112,60 +1098,69 @@ msgstr ""
 "respuestas para el sentimiento positivo o negativo"
 
 #. TRANSLATORS: A favorable reason.
-#: Wisteria-Dataviz/src/graphs/proconroadmap.h:224
+#: Wisteria-Dataviz/src/graphs/proconroadmap.h:229
 msgid "Pro"
 msgstr "Pro"
 
-#. TRANSLATORS: A unfavorable reason.
-#: Wisteria-Dataviz/src/graphs/proconroadmap.h:225
+#. TRANSLATORS: An unfavorable reason.
+#: Wisteria-Dataviz/src/graphs/proconroadmap.h:230
 msgid "Con"
 msgstr "Contra"
 
-#: Wisteria-Dataviz/src/graphs/roadmap.cpp:298
+#: Wisteria-Dataviz/src/graphs/roadmap.cpp:295
 msgid "Key\n"
 msgstr "Clave\n"
 
-#: Wisteria-Dataviz/src/graphs/roadmap.h:219
+#: Wisteria-Dataviz/src/graphs/roadmap.h:247
 msgid "Goal"
 msgstr "Objetivo"
 
-#: Wisteria-Dataviz/src/graphs/sankeydiagram.cpp:36
+#: Wisteria-Dataviz/src/graphs/sankeydiagram.cpp:34
 #, c-format
 msgid "'%s': 'from' column not found for diagram."
 msgstr "'%s': no se encontró la columna 'de' para el diagrama."
 
-#: Wisteria-Dataviz/src/graphs/sankeydiagram.cpp:42
+#: Wisteria-Dataviz/src/graphs/sankeydiagram.cpp:41
 #, c-format
 msgid "'%s': 'to' column not found for diagram."
 msgstr "'%s': no se encontró la columna 'a' para el diagrama."
 
-#: Wisteria-Dataviz/src/graphs/sankeydiagram.cpp:49
+#: Wisteria-Dataviz/src/graphs/sankeydiagram.cpp:50
 #, c-format
 msgid "'%s': 'from' weight column provided, but 'to' column was not."
 msgstr ""
 "'%s': se proporcionó la columna de peso 'desde', pero no la columna 'a'."
 
-#: Wisteria-Dataviz/src/graphs/sankeydiagram.cpp:55
+#: Wisteria-Dataviz/src/graphs/sankeydiagram.cpp:58
 #, c-format
 msgid "'%s': 'to' weight column provided, but 'from' column was not."
 msgstr ""
 "'%s': se proporcionó la columna de peso 'a', pero no la columna 'desde'."
 
-#: Wisteria-Dataviz/src/graphs/sankeydiagram.cpp:67
+#: Wisteria-Dataviz/src/graphs/sankeydiagram.cpp:72
 #, c-format
 msgid "'%s': 'from' weight column not found for diagram."
 msgstr "'%s': no se ha encontrado la columna de peso 'desde' para el diagrama."
 
-#: Wisteria-Dataviz/src/graphs/sankeydiagram.cpp:73
+#: Wisteria-Dataviz/src/graphs/sankeydiagram.cpp:80
 #, c-format
 msgid "'%s': 'to' weight column not found for diagram."
 msgstr "'%s': no se ha encontrado la columna de peso 'a' para el diagrama."
 
-#: Wisteria-Dataviz/src/graphs/sankeydiagram.cpp:85
+#: Wisteria-Dataviz/src/graphs/sankeydiagram.cpp:94
 #, c-format
 msgid "'%s': 'from' sort column not found for diagram."
 msgstr ""
 "'%s': no se ha encontrado la columna de ordenación 'desde' para el diagrama."
+
+#: Wisteria-Dataviz/src/graphs/scalechart.cpp:31
+msgid "Scale"
+msgstr "Escala"
+
+#: Wisteria-Dataviz/src/graphs/scalechart.cpp:34
+#: projects/standard_project_view.cpp:1592 ui/dialogs/tools_options_dlg.h:890
+msgid "Scores"
+msgstr "Puntuaciones de pruebas"
 
 #: Wisteria-Dataviz/src/graphs/table.cpp:165
 #: Wisteria-Dataviz/src/graphs/table.cpp:241
@@ -1193,76 +1188,76 @@ msgstr "Gran Total"
 msgid "Total"
 msgstr "Total"
 
-#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:57
+#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:52
 msgid "Group column required for W-curve plot."
 msgstr "Columna de grupo necesaria para el trazado de la curva W."
 
 #. TRANSLATORS: OK to translate as "Time".
 #. This is uppercased only because that's how it appears in the original article.
-#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:77
+#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:72
 msgid "TIME"
 msgstr "TIEMPO"
 
-#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:78
+#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:73
 msgid "Level of control, satisfaction, and effectiveness"
 msgstr "Nivel de control, satisfacción y efectividad"
 
 #. TRANSLATORS: %s is time interval (e.g., semester)
-#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:112
+#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:107
 #, c-format
 msgid "First %s"
 msgstr "Primera %s"
 
 #. TRANSLATORS: %s is time interval (e.g., semester)
-#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:116
+#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:111
 #, c-format
 msgid "Second %s"
 msgstr "Segunda %s"
 
 #. TRANSLATORS: %s is time interval (e.g., semester)
-#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:120
+#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:115
 #, c-format
 msgid "Third %s"
 msgstr "Tercera %s"
 
 #. TRANSLATORS: %s is time interval (e.g., semester)
-#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:124
+#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:119
 #, c-format
 msgid "Fourth %s"
 msgstr "Cuarto %s"
 
 #. TRANSLATORS: %s is time interval (e.g., semester)
-#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:128
+#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:123
 #, c-format
 msgid "Fifth %s"
 msgstr "Quinta %s"
 
 #. TRANSLATORS: %s is time interval (e.g., semester)
-#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:132
+#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:127
 #, c-format
 msgid "Sixth %s"
 msgstr "Sexto %s"
 
 #. TRANSLATORS: %s is time interval (e.g., semester)
-#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:136
+#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:131
 #, c-format
 msgid "Seventh %s"
 msgstr "Séptima %s"
 
 #. TRANSLATORS: %s is time interval (e.g., semester)
-#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:140
+#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:135
 #, c-format
 msgid "Eighth %s"
 msgstr "Octavo %s"
 
 #. TRANSLATORS: %s is time interval (e.g., semester)
-#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:144
+#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:139
 #, c-format
 msgid "Ninth %s"
 msgstr "Novena %s"
 
 #. TRANSLATORS: %s is time interval (e.g., semester)
-#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:148
+#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:143
 #, c-format
 msgid "Tenth %s"
 msgstr "Décimo %s"
@@ -1271,35 +1266,35 @@ msgstr "Décimo %s"
 msgid "year"
 msgstr "año"
 
-#: Wisteria-Dataviz/src/graphs/wordcloud.cpp:58
+#: Wisteria-Dataviz/src/graphs/wordcloud.cpp:51
 #, c-format
 msgid "'%s': word column not found for word cloud."
 msgstr "'%s': columna de palabras no encontrada para la nube de palabras."
 
-#: Wisteria-Dataviz/src/graphs/wordcloud.cpp:68
+#: Wisteria-Dataviz/src/graphs/wordcloud.cpp:61
 #, c-format
 msgid "'%s': continuous weight column not found for word cloud."
 msgstr ""
 "'%s': no se encontró la columna de peso continuo para la nube de palabras."
 
-#: Wisteria-Dataviz/src/ui/app.cpp:311
+#: Wisteria-Dataviz/src/ui/app.cpp:310
 msgid "All rights reserved."
 msgstr "Todos los derechos reservados."
 
-#: Wisteria-Dataviz/src/ui/app.cpp:351
+#: Wisteria-Dataviz/src/ui/app.cpp:350
 msgid "Timestamp of this report"
 msgstr "Marca de tiempo de este informe"
 
-#: Wisteria-Dataviz/src/ui/app.cpp:353 app/readability_app.cpp:2732
-#: app/readability_app.cpp:2921 app/readability_app.cpp:3193
+#: Wisteria-Dataviz/src/ui/app.cpp:352 app/readability_app.cpp:2737
+#: app/readability_app.cpp:2926 app/readability_app.cpp:3209
 msgid "Log Report"
 msgstr "Informe de Registro"
 
-#: Wisteria-Dataviz/src/ui/app.cpp:361
+#: Wisteria-Dataviz/src/ui/app.cpp:360
 msgid "Settings File"
 msgstr "Archivo de Ajustes"
 
-#: Wisteria-Dataviz/src/ui/app.cpp:372
+#: Wisteria-Dataviz/src/ui/app.cpp:371
 #, c-format
 msgid ""
 "An error report has been saved to:\n"
@@ -1314,7 +1309,7 @@ msgstr ""
 "Envíe este archivo por correo electrónico a %s para que se revise este "
 "problema. Gracias por su paciencia."
 
-#: Wisteria-Dataviz/src/ui/app.cpp:376
+#: Wisteria-Dataviz/src/ui/app.cpp:375
 msgid "Error Report"
 msgstr "Informe de Errores"
 
@@ -1370,10 +1365,10 @@ msgstr "No se puede guardar el archivo \"%s\"."
 #: Wisteria-Dataviz/src/ui/controls/formattedtextctrl.cpp:827
 #: Wisteria-Dataviz/src/ui/controls/htmltablewin.cpp:281
 #: Wisteria-Dataviz/src/ui/dialogs/excelpreviewdlg.cpp:67
-#: app/readability_app.cpp:247 app/readability_app.cpp:926
-#: app/readability_app.cpp:4144 app/readability_app.cpp:4176
-#: app/readability_app.cpp:4475 app/readability_app.cpp:4576
-#: app/readability_app.cpp:5189 app/readability_app_options.cpp:488
+#: app/readability_app.cpp:251 app/readability_app.cpp:931
+#: app/readability_app.cpp:4160 app/readability_app.cpp:4192
+#: app/readability_app.cpp:4491 app/readability_app.cpp:4592
+#: app/readability_app.cpp:5205 app/readability_app_options.cpp:488
 #: app/readability_app_options.cpp:496 app/readability_app_options.cpp:503
 #: app/readability_app_options.cpp:572 app/readability_app_options.cpp:579
 #: app/readability_app_options.cpp:4858 projects/base_project.cpp:4389
@@ -1577,15 +1572,15 @@ msgid "Copy All"
 msgstr "Copiar Todo"
 
 #: Wisteria-Dataviz/src/ui/controls/formattedtextctrl.h:77
-#: Wisteria-Dataviz/src/ui/dialogs/listdlg.cpp:283 app/readability_app.cpp:1929
-#: app/readability_app.cpp:1931 app/readability_app.cpp:1961
-#: app/readability_app.cpp:1963 app/readability_app.cpp:1984
-#: app/readability_app.cpp:1986 app/readability_app.cpp:2010
-#: app/readability_app.cpp:2012 app/readability_app.cpp:2030
-#: app/readability_app.cpp:2032 app/readability_app.cpp:2053
-#: app/readability_app.cpp:2055 app/readability_app.cpp:2124
-#: app/readability_app.cpp:2126 app/readability_app.cpp:2143
-#: app/readability_app.cpp:2145 ui/dialogs/edit_text_dlg.cpp:232
+#: Wisteria-Dataviz/src/ui/dialogs/listdlg.cpp:283 app/readability_app.cpp:1934
+#: app/readability_app.cpp:1936 app/readability_app.cpp:1966
+#: app/readability_app.cpp:1968 app/readability_app.cpp:1989
+#: app/readability_app.cpp:1991 app/readability_app.cpp:2015
+#: app/readability_app.cpp:2017 app/readability_app.cpp:2035
+#: app/readability_app.cpp:2037 app/readability_app.cpp:2058
+#: app/readability_app.cpp:2060 app/readability_app.cpp:2129
+#: app/readability_app.cpp:2131 app/readability_app.cpp:2148
+#: app/readability_app.cpp:2150 ui/dialogs/edit_text_dlg.cpp:232
 #: ui/dialogs/word_list_dlg.cpp:207
 msgid "Select All"
 msgstr "Seleccionar Todo"
@@ -1604,23 +1599,14 @@ msgstr "Buscar no compatible en esta ventana."
 msgid "Find"
 msgstr "Buscar"
 
-#: Wisteria-Dataviz/src/ui/controls/infobarex.cpp:35
-msgid "Hide this notification message."
-msgstr "Ocultar esta notificación."
-
-#: Wisteria-Dataviz/src/ui/controls/infobarex.cpp:38
-#: projects/base_project_view.cpp:1017
-msgid "Do not show this again."
-msgstr "No volver a mostrar."
-
 #: Wisteria-Dataviz/src/ui/controls/listctrlex.cpp:440
 msgid "Please select an item in the list to view."
 msgstr "Seleccione un elemento de la lista para verlo."
 
 #: Wisteria-Dataviz/src/ui/controls/listctrlex.cpp:440
 #: Wisteria-Dataviz/src/ui/dialogs/listctrlitemviewdlg.h:109
-#: app/readability_app.cpp:1933 app/readability_app.cpp:1965
-#: app/readability_app.cpp:1988 app/readability_app.cpp:2147
+#: app/readability_app.cpp:1938 app/readability_app.cpp:1970
+#: app/readability_app.cpp:1993 app/readability_app.cpp:2152
 msgid "View Item"
 msgstr "Ver Elemento"
 
@@ -1759,21 +1745,21 @@ msgstr "Seleccione una Imagen"
 msgid "Image Files"
 msgstr "Fichero de Imagen"
 
-#: Wisteria-Dataviz/src/ui/dialogs/archivedlg.cpp:38
+#: Wisteria-Dataviz/src/ui/dialogs/archivedlg.cpp:37
 msgid "Please select a valid archive file."
 msgstr "Seleccione un archivo de almacenamiento válido."
 
-#: Wisteria-Dataviz/src/ui/dialogs/archivedlg.cpp:38
+#: Wisteria-Dataviz/src/ui/dialogs/archivedlg.cpp:37
 #: projects/base_project.cpp:4395 ui/dialogs/new_custom_test_simple_dlg.cpp:34
 msgid "Invalid File"
 msgstr "Archivo no válido"
 
-#: Wisteria-Dataviz/src/ui/dialogs/archivedlg.cpp:57
+#: Wisteria-Dataviz/src/ui/dialogs/archivedlg.cpp:56
 #: Wisteria-Dataviz/src/ui/dialogs/archivedlg.h:41
 msgid "Select Archive File"
 msgstr "Seleccione Archivo de Almacenamiento"
 
-#: Wisteria-Dataviz/src/ui/dialogs/archivedlg.cpp:58
+#: Wisteria-Dataviz/src/ui/dialogs/archivedlg.cpp:57
 msgid "Archive files (*.zip)|*.zip"
 msgstr "Archivos de archivo (*.zip)|*.zip"
 
@@ -1880,11 +1866,11 @@ msgstr "Seleccione un elemento de la lista de funciones para insertarlo."
 msgid "Invalid Selection"
 msgstr "Selección no Válida"
 
-#: Wisteria-Dataviz/src/ui/dialogs/functionbrowserdlg.cpp:332
+#: Wisteria-Dataviz/src/ui/dialogs/functionbrowserdlg.cpp:331
 msgid "&Insert"
 msgstr "&Insertar"
 
-#: Wisteria-Dataviz/src/ui/dialogs/functionbrowserdlg.cpp:337
+#: Wisteria-Dataviz/src/ui/dialogs/functionbrowserdlg.cpp:336
 msgid "&Close"
 msgstr "&Cerrar"
 
@@ -2111,19 +2097,19 @@ msgstr "Guarde la lista."
 msgid "Print the list."
 msgstr "Imprima la lista."
 
-#: Wisteria-Dataviz/src/ui/dialogs/listdlg.cpp:270 app/readability_app.cpp:1920
-#: app/readability_app.cpp:1944 app/readability_app.cpp:1975
-#: app/readability_app.cpp:2001 app/readability_app.cpp:2020
-#: app/readability_app.cpp:2044 app/readability_app.cpp:2071
-#: app/readability_app.cpp:2085 app/readability_app.cpp:2109
-#: app/readability_app.cpp:2131 app/readability_app.cpp:2157
-#: app/readability_app.cpp:2174 app/readability_app.cpp:2222
-#: app/readability_app.cpp:2267 app/readability_app.cpp:2313
-#: app/readability_app.cpp:2354 app/readability_app.cpp:2401
-#: app/readability_app.cpp:2435 app/readability_app.cpp:2474
-#: app/readability_app.cpp:2507 app/readability_app.cpp:2540
-#: app/readability_app.cpp:2576 app/readability_app.cpp:2615
-#: app/readability_app.cpp:2648 ui/dialogs/edit_text_dlg.cpp:205
+#: Wisteria-Dataviz/src/ui/dialogs/listdlg.cpp:270 app/readability_app.cpp:1925
+#: app/readability_app.cpp:1949 app/readability_app.cpp:1980
+#: app/readability_app.cpp:2006 app/readability_app.cpp:2025
+#: app/readability_app.cpp:2049 app/readability_app.cpp:2076
+#: app/readability_app.cpp:2090 app/readability_app.cpp:2114
+#: app/readability_app.cpp:2136 app/readability_app.cpp:2162
+#: app/readability_app.cpp:2179 app/readability_app.cpp:2227
+#: app/readability_app.cpp:2272 app/readability_app.cpp:2318
+#: app/readability_app.cpp:2359 app/readability_app.cpp:2406
+#: app/readability_app.cpp:2440 app/readability_app.cpp:2479
+#: app/readability_app.cpp:2512 app/readability_app.cpp:2545
+#: app/readability_app.cpp:2581 app/readability_app.cpp:2620
+#: app/readability_app.cpp:2653 ui/dialogs/edit_text_dlg.cpp:205
 #: ui/dialogs/word_list_dlg.cpp:198
 msgid "Edit"
 msgstr "Editar"
@@ -2143,20 +2129,20 @@ msgstr "Copie los elementos seleccionados."
 msgid "Select the entire list."
 msgstr "Seleccione la lista completa."
 
-#: Wisteria-Dataviz/src/ui/dialogs/listdlg.cpp:291 app/readability_app.cpp:1936
-#: app/readability_app.cpp:1968 app/readability_app.cpp:1991
-#: app/readability_app.cpp:2013 app/readability_app.cpp:2033
-#: app/readability_app.cpp:2056 app/readability_app.cpp:2102
-#: app/readability_app.cpp:2150 app/readability_app.cpp:2209
+#: Wisteria-Dataviz/src/ui/dialogs/listdlg.cpp:291 app/readability_app.cpp:1941
+#: app/readability_app.cpp:1973 app/readability_app.cpp:1996
+#: app/readability_app.cpp:2018 app/readability_app.cpp:2038
+#: app/readability_app.cpp:2061 app/readability_app.cpp:2107
+#: app/readability_app.cpp:2155 app/readability_app.cpp:2214
 #: ui/dialogs/word_list_dlg.cpp:212
 msgid "Sort"
 msgstr "Ordenar"
 
-#: Wisteria-Dataviz/src/ui/dialogs/listdlg.cpp:295 app/readability_app.cpp:1938
-#: app/readability_app.cpp:1970 app/readability_app.cpp:1993
-#: app/readability_app.cpp:2015 app/readability_app.cpp:2035
-#: app/readability_app.cpp:2058 app/readability_app.cpp:2104
-#: app/readability_app.cpp:2152 ui/dialogs/word_list_dlg.cpp:215
+#: Wisteria-Dataviz/src/ui/dialogs/listdlg.cpp:295 app/readability_app.cpp:1943
+#: app/readability_app.cpp:1975 app/readability_app.cpp:1998
+#: app/readability_app.cpp:2020 app/readability_app.cpp:2040
+#: app/readability_app.cpp:2063 app/readability_app.cpp:2109
+#: app/readability_app.cpp:2157 ui/dialogs/word_list_dlg.cpp:215
 msgid "Sort the list."
 msgstr "Ordena la lista."
 
@@ -2257,29 +2243,29 @@ msgstr "Pies de página"
 msgid "Printer Headers & Footers"
 msgstr "Encabezados y Pies de Página de Impresora"
 
-#: Wisteria-Dataviz/src/ui/dialogs/variableselectdlg.cpp:78
+#: Wisteria-Dataviz/src/ui/dialogs/variableselectdlg.cpp:79
 msgid "Only one variable is allowed in this list."
 msgstr "Solo se permite una variable en esta lista."
 
-#: Wisteria-Dataviz/src/ui/dialogs/variableselectdlg.cpp:79
+#: Wisteria-Dataviz/src/ui/dialogs/variableselectdlg.cpp:80
 msgid "Invalid Variable Selection"
 msgstr "Selección de Variables no Válidas"
 
-#: Wisteria-Dataviz/src/ui/dialogs/variableselectdlg.cpp:163
+#: Wisteria-Dataviz/src/ui/dialogs/variableselectdlg.cpp:164
 msgid "Variables"
 msgstr "Variables"
 
-#: Wisteria-Dataviz/src/ui/dialogs/variableselectdlg.cpp:227
+#: Wisteria-Dataviz/src/ui/dialogs/variableselectdlg.cpp:229
 #, c-format
 msgid "%s (optional)"
 msgstr "%s (opcional)"
 
-#: Wisteria-Dataviz/src/ui/dialogs/variableselectdlg.cpp:310
+#: Wisteria-Dataviz/src/ui/dialogs/variableselectdlg.cpp:315
 #, c-format
 msgid "Variables must be selected for the '%s' list."
 msgstr "Las variables deben seleccionarse para la lista '%s'."
 
-#: Wisteria-Dataviz/src/ui/dialogs/variableselectdlg.cpp:312
+#: Wisteria-Dataviz/src/ui/dialogs/variableselectdlg.cpp:317
 msgid "Variable Not Specified"
 msgstr "Variable no Especificada"
 
@@ -2331,7 +2317,7 @@ msgstr ""
 "%s"
 
 #: Wisteria-Dataviz/src/wxStartPage/startpage.cpp:87
-#: app/readability_app.cpp:1873 ui/dialogs/project_wizard_dlg.cpp:304
+#: app/readability_app.cpp:1878 ui/dialogs/project_wizard_dlg.cpp:304
 msgid "Documents"
 msgstr "Documentos"
 
@@ -2446,234 +2432,243 @@ msgstr "Diccionario Personalizado de dlemán"
 msgid "Custom English Dictionary"
 msgstr "Diccionario de Inglés Personalizado"
 
-#: app/readability_app.cpp:247
+#. TRANSLATORS: "\U000000A92006-2025" should not be edited.
+#: app/readability_app.cpp:200
+msgid "Copyright ©2006-2025 Oleander Software, Ltd., "
+msgstr "Derechos de autor ©2006-2025 Oleander Software, Ltd. "
+
+#: app/readability_app.cpp:251
 msgid "Error loading custom dictionary file."
 msgstr "Error al cargar un archivo de diccionario personalizado."
 
-#: app/readability_app.cpp:508
+#: app/readability_app.cpp:512
 msgid "Sun"
 msgstr "Sol"
 
-#: app/readability_app.cpp:509 ui/dialogs/tools_options_dlg.cpp:5438
+#: app/readability_app.cpp:513 ui/dialogs/tools_options_dlg.cpp:5438
 msgid "Book"
 msgstr "Libro"
 
-#: app/readability_app.cpp:510
+#: app/readability_app.cpp:514
 msgid "Fall leaf"
 msgstr "Hoja de otoño"
 
-#: app/readability_app.cpp:511
+#: app/readability_app.cpp:515
 msgid "Man"
 msgstr "Hombre"
 
-#: app/readability_app.cpp:512
+#: app/readability_app.cpp:516
 msgid "Woman"
 msgstr "Mujer"
 
-#: app/readability_app.cpp:513
+#: app/readability_app.cpp:517
 msgid "Business woman"
 msgstr "Mujer de negocios"
 
-#: app/readability_app.cpp:514
+#: app/readability_app.cpp:518
 msgid "Tire"
 msgstr "Neumático"
 
-#: app/readability_app.cpp:515
+#: app/readability_app.cpp:519
 msgid "Flower"
 msgstr "Flor"
 
-#: app/readability_app.cpp:516
+#: app/readability_app.cpp:520
 msgid "Warning road sign"
 msgstr "Señal de tráfico de advertencia"
 
-#: app/readability_app.cpp:517
+#: app/readability_app.cpp:521
 msgid "Location marker"
 msgstr "Marcador de ubicación"
 
-#: app/readability_app.cpp:518
+#: app/readability_app.cpp:522
 msgid "Graduation cap"
 msgstr "Gorro de graduación"
 
-#: app/readability_app.cpp:519
+#: app/readability_app.cpp:523
 msgid "Car"
 msgstr "Coche"
 
-#: app/readability_app.cpp:520
+#: app/readability_app.cpp:524
 msgid "Newspaper"
 msgstr "Periódico"
 
-#: app/readability_app.cpp:521
+#: app/readability_app.cpp:525
 msgid "Snowflake"
 msgstr "Copo de nieve"
 
-#: app/readability_app.cpp:522
+#: app/readability_app.cpp:526
 msgid "Blackboard"
 msgstr "Blackboard"
 
-#: app/readability_app.cpp:523
+#: app/readability_app.cpp:527
 msgid "Clock"
 msgstr "Reloj"
 
-#: app/readability_app.cpp:524
+#: app/readability_app.cpp:528
 msgid "Ruler"
 msgstr "Regla de medición"
 
 #. TRANSLATORS: "IV" is intravenous.
-#: app/readability_app.cpp:526
+#: app/readability_app.cpp:530
 msgid "IV bag"
 msgstr "Bolsa intravenosa"
 
-#: app/readability_app.cpp:527
+#: app/readability_app.cpp:531
 msgid "Thermometer (cold)"
 msgstr "Termómetro (frío)"
 
-#: app/readability_app.cpp:528
+#: app/readability_app.cpp:532
 msgid "Thermometer (hot)"
 msgstr "Termómetro (caliente)"
 
-#: app/readability_app.cpp:529
+#: app/readability_app.cpp:533
 msgid "Apple (red)"
 msgstr "Manzana (rojo)"
 
-#: app/readability_app.cpp:530
+#: app/readability_app.cpp:534
 msgid "Apple (Granny Smith)"
 msgstr "Manzana de la abuela Smith"
 
-#: app/readability_app.cpp:531
+#: app/readability_app.cpp:535
 msgid "Heart"
 msgstr "Corazón"
 
-#: app/readability_app.cpp:532
+#: app/readability_app.cpp:536
 msgid "Immaculate Heart"
 msgstr "Inmaculado Corazón"
 
-#: app/readability_app.cpp:533
+#: app/readability_app.cpp:537
 msgid "Flame"
 msgstr "Llama"
 
-#: app/readability_app.cpp:534
+#: app/readability_app.cpp:538
 msgid "Office"
 msgstr "Oficina"
 
-#: app/readability_app.cpp:535
+#: app/readability_app.cpp:539
 msgid "Factory"
 msgstr "Fábrica"
 
-#: app/readability_app.cpp:536
+#: app/readability_app.cpp:540
 msgid "House"
 msgstr "Casa"
 
-#: app/readability_app.cpp:537
+#: app/readability_app.cpp:541
 msgid "Barn"
 msgstr "Granero"
 
-#: app/readability_app.cpp:538
+#: app/readability_app.cpp:542
 msgid "Farm"
 msgstr "Granja"
 
-#: app/readability_app.cpp:541
+#: app/readability_app.cpp:543
+msgid "Dollar"
+msgstr "Dolar"
+
+#: app/readability_app.cpp:546
 msgid "Dusk"
 msgstr "Crepúsculo"
 
-#: app/readability_app.cpp:542
+#: app/readability_app.cpp:547
 msgid "Earth Tones"
 msgstr "Tonos Tierra"
 
-#: app/readability_app.cpp:551
+#: app/readability_app.cpp:556
 msgid "October"
 msgstr "Octubre"
 
-#: app/readability_app.cpp:553 ui/dialogs/tools_options_dlg.cpp:5231
+#: app/readability_app.cpp:558 ui/dialogs/tools_options_dlg.cpp:5231
 msgid "Campfire"
 msgstr "Fogata"
 
-#: app/readability_app.cpp:554
+#: app/readability_app.cpp:559
 msgid "Coffee Shop"
 msgstr "Café"
 
-#: app/readability_app.cpp:555
+#: app/readability_app.cpp:560
 msgid "Arctic Chill"
 msgstr "Frío ártico"
 
-#: app/readability_app.cpp:556
+#: app/readability_app.cpp:561
 msgid "Back to School"
 msgstr "Escuela Primaria"
 
-#: app/readability_app.cpp:557
+#: app/readability_app.cpp:562
 msgid "Box of Chocolates"
 msgstr "Caja de Bombones"
 
-#: app/readability_app.cpp:558
+#: app/readability_app.cpp:563
 msgid "Cosmopolitan"
 msgstr "Cosmopolita"
 
-#: app/readability_app.cpp:559
+#: app/readability_app.cpp:564
 msgid "Day and Night"
 msgstr "Día y Noche"
 
-#: app/readability_app.cpp:560
+#: app/readability_app.cpp:565
 msgid "Fresh Flowers"
 msgstr "Flores frescas"
 
-#: app/readability_app.cpp:561
+#: app/readability_app.cpp:566
 msgid "Ice Cream"
 msgstr "Helados"
 
-#: app/readability_app.cpp:562
+#: app/readability_app.cpp:567
 msgid "Urban Oasis"
 msgstr "Oasis Urbano"
 
-#: app/readability_app.cpp:563
+#: app/readability_app.cpp:568
 msgid "Typewriter"
 msgstr "Máquina de escribir"
 
 #. TRANSLATORS: surfing waves. This is a 1980s movie reference that gets
 #. lost in translation.
-#: app/readability_app.cpp:566
+#: app/readability_app.cpp:571
 msgid "Tasty Waves"
 msgstr "Olas de Surf"
 
-#: app/readability_app.cpp:567
+#: app/readability_app.cpp:572
 msgid "Spring"
 msgstr "Muelle"
 
-#: app/readability_app.cpp:568
+#: app/readability_app.cpp:573
 msgid "Shabby Chic"
 msgstr "Elegante"
 
-#: app/readability_app.cpp:569
+#: app/readability_app.cpp:574
 msgid "Rolling Thunder"
 msgstr "Trueno rodante"
 
-#: app/readability_app.cpp:570
+#: app/readability_app.cpp:575
 msgid "Produce Section"
 msgstr "Sección de Productos Agrícolas"
 
-#: app/readability_app.cpp:571
+#: app/readability_app.cpp:576
 msgid "Nautical"
 msgstr "Náutico"
 
-#: app/readability_app.cpp:572
+#: app/readability_app.cpp:577
 msgid "Semesters"
 msgstr "Semestres"
 
-#: app/readability_app.cpp:573
+#: app/readability_app.cpp:578
 msgid "Seasons"
 msgstr "Temporadas"
 
-#: app/readability_app.cpp:574
+#: app/readability_app.cpp:579
 msgid "Meadow Sunset"
 msgstr "Atardecer en la Pradera"
 
-#: app/readability_app.cpp:767
+#: app/readability_app.cpp:772
 msgid "Standard project"
 msgstr "Proyecto estándar"
 
-#: app/readability_app.cpp:773
+#: app/readability_app.cpp:778
 msgid "Batch project"
 msgstr "Proyecto por lotes"
 
-#: app/readability_app.cpp:820
+#: app/readability_app.cpp:825
 msgid ""
 "Powers, Sumner, and Kearl's four adjusted formulas, which were recalculated "
 "using the McCall-Crabbs 1950 tests. These formulas were also adjusted to "
@@ -2683,7 +2678,7 @@ msgstr ""
 "utilizando las pruebas de McCall-Crabbs de 1950. Estas fórmulas también se "
 "ajustaron para predecir puntuaciones más cercanas entre sí."
 
-#: app/readability_app.cpp:834
+#: app/readability_app.cpp:839
 msgid ""
 "Kincaid's collection of recalculated tests, designed for enlisted U.S. Navy "
 "Personnel."
@@ -2694,7 +2689,7 @@ msgstr ""
 #. TRANSLATORS: "Flesch Reading Ease," "Easy Listening Formula," and
 #. "Consent Forms" should not be translated.
 #. These are test names and the name of a published article, respectively.
-#: app/readability_app.cpp:863
+#: app/readability_app.cpp:868
 msgid ""
 "Grundner's recommendations for patient consent forms.\n"
 "\n"
@@ -2714,349 +2709,328 @@ msgstr ""
 "consentimiento. (Tenga en cuenta que SMOG no tenía un puntaje de prueba "
 "recomendado)."
 
-#: app/readability_app.cpp:888 projects/base_project.cpp:8563
+#: app/readability_app.cpp:893 projects/base_project.cpp:8563
 #: projects/batch_project_view.cpp:2983 projects/standard_project_doc.cpp:1355
 #: projects/standard_project_view.cpp:942
 #: projects/standard_project_view.cpp:1436 ui/dialogs/custom_test_dlg.cpp:164
 msgid "Remember my answer"
 msgstr "Recordar mi respuesta"
 
-#: app/readability_app.cpp:926
+#: app/readability_app.cpp:931
 msgid "Word & phrase file missing or corrupt. Please reinstall."
 msgstr ""
 "Falta un archivo de palabras y frases o está dañado. Por favor, vuelva a "
 "instalar."
 
-#: app/readability_app.cpp:1328 projects/base_project_view.cpp:1163
+#: app/readability_app.cpp:1333 projects/base_project_view.cpp:1163
 msgid "Open Project..."
 msgstr "Abrir Proyecto..."
 
-#: app/readability_app.cpp:1366 app/readability_app.cpp:2850
+#: app/readability_app.cpp:1371 app/readability_app.cpp:2855
 #: projects/base_project_view.cpp:584 projects/base_project_view.cpp:588
 msgid "Readability"
 msgstr "Legibilidad"
 
-#: app/readability_app.cpp:1375 projects/base_project_view.cpp:616
+#: app/readability_app.cpp:1380 projects/base_project_view.cpp:616
 #: ui/dialogs/test_bundle_dlg.cpp:190 ui/dialogs/tools_options_dlg.h:255
 msgid "Custom Tests"
 msgstr "Pruebas Personalizadas"
 
-#: app/readability_app.cpp:1381
+#: app/readability_app.cpp:1386
 msgid "Test Bundles"
 msgstr "Paquetes de Prueba"
 
-#: app/readability_app.cpp:1539
+#: app/readability_app.cpp:1544
 msgid "Do you wish to recalculate any open projects that include this test?"
 msgstr "¿Desea recalcular algún proyecto abierto que incluya esta prueba?"
 
-#: app/readability_app.cpp:1540 projects/base_project_doc.cpp:722
+#: app/readability_app.cpp:1545 projects/base_project_doc.cpp:722
 msgid "Project Update"
 msgstr "Actualización del Proyecto"
 
-#: app/readability_app.cpp:1625 app/readability_app.cpp:4352
-#: app/readability_app.cpp:4353 app/readability_app.cpp:4361
-#: app/readability_app.cpp:4362 results-format/readability_messages.h:43
+#: app/readability_app.cpp:1630 app/readability_app.cpp:4368
+#: app/readability_app.cpp:4369 app/readability_app.cpp:4377
+#: app/readability_app.cpp:4378 results-format/readability_messages.h:43
 #: ui/dialogs/tools_options_dlg.h:806 ui/dialogs/word_list_dlg.cpp:246
 #: ui/dialogs/word_list_dlg.cpp:251
 msgid "Dolch Sight Words"
 msgstr "Palabras Familiares a Simple Vista de Dolch"
 
-#: app/readability_app.cpp:1645 ui/dialogs/word_list_dlg.cpp:304
+#: app/readability_app.cpp:1650 ui/dialogs/word_list_dlg.cpp:304
 msgid "Stocker's Catholic Supplement"
 msgstr "Suplemento Católico de Stocker"
 
-#: app/readability_app.cpp:1650
+#: app/readability_app.cpp:1655
 msgid "Edit Word List..."
 msgstr "Editar Lista de Palabras..."
 
-#: app/readability_app.cpp:1664 ui/dialogs/tools_options_dlg.cpp:4129
+#: app/readability_app.cpp:1669 ui/dialogs/tools_options_dlg.cpp:4129
 msgid "K-12+ (United States of America)"
 msgstr "K-12+ (Estados Unidos de América)"
 
-#: app/readability_app.cpp:1667 ui/dialogs/tools_options_dlg.cpp:4132
+#: app/readability_app.cpp:1672 ui/dialogs/tools_options_dlg.cpp:4132
 msgid "K-12+ (Newfoundland and Labrador)"
 msgstr "K-12+ (Terranova y Labrador)"
 
-#: app/readability_app.cpp:1668 ui/dialogs/tools_options_dlg.cpp:4135
+#: app/readability_app.cpp:1673 ui/dialogs/tools_options_dlg.cpp:4135
 msgid "K-12+ (British Columbia/Yukon)"
 msgstr "K-12+ (Columbia Británica/Yukón)"
 
-#: app/readability_app.cpp:1670 ui/dialogs/tools_options_dlg.cpp:4137
+#: app/readability_app.cpp:1675 ui/dialogs/tools_options_dlg.cpp:4137
 msgid "K-12+ (New Brunswick)"
 msgstr "K-12+ (Nuevo Brunswick)"
 
-#: app/readability_app.cpp:1672 ui/dialogs/tools_options_dlg.cpp:4139
+#: app/readability_app.cpp:1677 ui/dialogs/tools_options_dlg.cpp:4139
 msgid "K-12+ (Nova Scotia)"
 msgstr "K-12+ (Nueva Escocia)"
 
-#: app/readability_app.cpp:1674 ui/dialogs/tools_options_dlg.cpp:4141
+#: app/readability_app.cpp:1679 ui/dialogs/tools_options_dlg.cpp:4141
 msgid "K-12+ (Ontario)"
 msgstr "K-12+ (Ontario)"
 
-#: app/readability_app.cpp:1676 ui/dialogs/tools_options_dlg.cpp:4143
+#: app/readability_app.cpp:1681 ui/dialogs/tools_options_dlg.cpp:4143
 msgid "K-12+ (Saskatchewan)"
 msgstr "K-12+ (Saskatchewan)"
 
-#: app/readability_app.cpp:1678 ui/dialogs/tools_options_dlg.cpp:4146
+#: app/readability_app.cpp:1683 ui/dialogs/tools_options_dlg.cpp:4146
 msgid "K-12+ (Prince Edward Island)"
 msgstr "K-12+ (Isla del Príncipe Eduardo)"
 
-#: app/readability_app.cpp:1680 ui/dialogs/tools_options_dlg.cpp:4148
+#: app/readability_app.cpp:1685 ui/dialogs/tools_options_dlg.cpp:4148
 msgid "K-12+ (Manitoba)"
 msgstr "K-12+ (Manitoba)"
 
-#: app/readability_app.cpp:1682 ui/dialogs/tools_options_dlg.cpp:4151
+#: app/readability_app.cpp:1687 ui/dialogs/tools_options_dlg.cpp:4151
 msgid "K-12+ (Northwest Territories)"
 msgstr "K-12+ (Territorios del Noroeste)"
 
-#: app/readability_app.cpp:1684 ui/dialogs/tools_options_dlg.cpp:4153
+#: app/readability_app.cpp:1689 ui/dialogs/tools_options_dlg.cpp:4153
 msgid "K-12+ (Alberta)"
 msgstr "K-12+ (Alberta)"
 
-#: app/readability_app.cpp:1686 ui/dialogs/tools_options_dlg.cpp:4155
+#: app/readability_app.cpp:1691 ui/dialogs/tools_options_dlg.cpp:4155
 msgid "K-12+ (Nunavut)"
 msgstr "K-12+ (Nunavut)"
 
-#: app/readability_app.cpp:1716 app/readability_app.cpp:1741
+#: app/readability_app.cpp:1721 app/readability_app.cpp:1746
 msgid "Save As..."
 msgstr "Guardar como…"
 
-#: app/readability_app.cpp:1721 app/readability_app.cpp:1746
+#: app/readability_app.cpp:1726 app/readability_app.cpp:1751
 #: ui/dialogs/tools_options_dlg.cpp:3258
 msgid "Export..."
 msgstr "Exportar..."
 
-#: app/readability_app.cpp:1724 app/readability_app.cpp:1749
+#: app/readability_app.cpp:1729 app/readability_app.cpp:1754
 msgid "Export All..."
 msgstr "Exportar Todo..."
 
-#: app/readability_app.cpp:1730 app/readability_app.cpp:1766
+#: app/readability_app.cpp:1735 app/readability_app.cpp:1771
 msgid "Export Filtered Document..."
 msgstr "Exportar Documento Filtrado..."
 
-#: app/readability_app.cpp:1755
+#: app/readability_app.cpp:1760
 msgid "Export Scores && Statistics..."
 msgstr "Exportar Puntuaciones y Estadísticas..."
 
-#: app/readability_app.cpp:1760
+#: app/readability_app.cpp:1765
 msgid "Export Statistics Report..."
 msgstr "Informe de Estadísticas de Exportación..."
 
-#: app/readability_app.cpp:1771
+#: app/readability_app.cpp:1776
 msgid "Batch Export Filtered Document..."
 msgstr "Exportación por Lotes de Documentos Filtrados..."
 
-#: app/readability_app.cpp:1784
+#: app/readability_app.cpp:1789
 msgid "Print..."
 msgstr "Imprimir..."
 
-#: app/readability_app.cpp:1789
+#: app/readability_app.cpp:1794
 msgid "Print Preview..."
 msgstr "Vista previa de impresión..."
 
-#: app/readability_app.cpp:1794
+#: app/readability_app.cpp:1799
 msgid "Page Setup..."
 msgstr "Configurar Página..."
 
-#: app/readability_app.cpp:1798
+#: app/readability_app.cpp:1803
 msgid "Headers && Footers..."
 msgstr "Encabezados y Pies de Página..."
 
-#: app/readability_app.cpp:1855
+#: app/readability_app.cpp:1860
 msgid "Home"
 msgstr "Inicio"
 
-#: app/readability_app.cpp:1860
+#: app/readability_app.cpp:1865
 msgid "Project"
 msgstr "Proyecto"
 
-#: app/readability_app.cpp:1864 ui/dialogs/lua_editor_dlg.cpp:674
+#: app/readability_app.cpp:1869 ui/dialogs/lua_editor_dlg.cpp:674
 msgid "New"
 msgstr "Nuevo"
 
-#: app/readability_app.cpp:1866
+#: app/readability_app.cpp:1871
 msgid "Create a new project."
 msgstr "Crear un nuevo proyecto."
 
-#: app/readability_app.cpp:1867 ui/dialogs/lua_editor_dlg.cpp:678
+#: app/readability_app.cpp:1872 ui/dialogs/lua_editor_dlg.cpp:678
 msgid "Open"
 msgstr "Abrir"
 
-#: app/readability_app.cpp:1869
+#: app/readability_app.cpp:1874
 msgid "Open an existing project."
 msgstr "Abra un proyecto existente."
 
-#: app/readability_app.cpp:1877
+#: app/readability_app.cpp:1882
 msgid "Subproject"
 msgstr "Subproyecto"
 
-#: app/readability_app.cpp:1879
+#: app/readability_app.cpp:1884
 msgid "Create a standard project from the selected document."
 msgstr "Cree un proyecto estándar a partir del documento seleccionado."
 
-#: app/readability_app.cpp:1881 ui/dialogs/custom_test_dlg.cpp:821
+#: app/readability_app.cpp:1886 ui/dialogs/custom_test_dlg.cpp:821
 #: ui/dialogs/tools_options_dlg.h:794
 msgid "Statistics"
 msgstr "Estadísticas"
 
-#: app/readability_app.cpp:1883
+#: app/readability_app.cpp:1888
 msgid "Display statistics for the selected document."
 msgstr "Mostrar estadísticas para el documento seleccionado."
 
-#: app/readability_app.cpp:1884
+#: app/readability_app.cpp:1889
 msgid "Remove Document"
 msgstr "Eliminar Documento"
 
-#: app/readability_app.cpp:1886
+#: app/readability_app.cpp:1891
 msgid "Remove the selected document from the project."
 msgstr "Elimine el documento seleccionado del proyecto."
 
-#: app/readability_app.cpp:1890
+#: app/readability_app.cpp:1895
 msgid "Reload"
 msgstr "Actualizar"
 
-#: app/readability_app.cpp:1892
+#: app/readability_app.cpp:1897
 msgid "Reanalyze the document."
 msgstr "Vuelva a analizar el documento."
 
-#: app/readability_app.cpp:1896
+#: app/readability_app.cpp:1901
 msgid "Real-time Update"
 msgstr "Actualización en Tiempo Real"
 
-#: app/readability_app.cpp:1898
+#: app/readability_app.cpp:1903
 msgid ""
 "Automatically reload the project as the source document is edited externally."
 msgstr ""
 "Vuelva a cargar automáticamente el proyecto a medida que el documento de "
 "origen se edita externamente."
 
-#: app/readability_app.cpp:1903
+#: app/readability_app.cpp:1908
 msgid "Save the project."
 msgstr "Guarde el proyecto."
 
-#: app/readability_app.cpp:1906
+#: app/readability_app.cpp:1911
 msgid "Print the selected window."
 msgstr "Imprimir la ventana seleccionada."
 
-#: app/readability_app.cpp:1907
+#: app/readability_app.cpp:1912
 msgid "Properties"
 msgstr "Propiedades"
 
-#: app/readability_app.cpp:1909
+#: app/readability_app.cpp:1914
 msgid "Change the settings for this project."
 msgstr "Cambie la configuración de este proyecto."
 
-#: app/readability_app.cpp:1910
+#: app/readability_app.cpp:1915
 msgid "Sidebar"
 msgstr "Barra Lateral"
 
-#: app/readability_app.cpp:1912
+#: app/readability_app.cpp:1917
 msgid "Shows or hides the sidebar."
 msgstr "Muestra u oculta la barra lateral."
 
-#: app/readability_app.cpp:1928 app/readability_app.cpp:1960
-#: app/readability_app.cpp:1983 app/readability_app.cpp:2101
-#: app/readability_app.cpp:2142
+#: app/readability_app.cpp:1933 app/readability_app.cpp:1965
+#: app/readability_app.cpp:1988 app/readability_app.cpp:2106
+#: app/readability_app.cpp:2147
 msgid "Copy the selected rows."
 msgstr "Copie las filas seleccionadas."
 
-#: app/readability_app.cpp:1935 app/readability_app.cpp:1967
-#: app/readability_app.cpp:1990 app/readability_app.cpp:2149
+#: app/readability_app.cpp:1940 app/readability_app.cpp:1972
+#: app/readability_app.cpp:1995 app/readability_app.cpp:2154
 msgid "View the selected row in tabular format."
 msgstr "Vea la fila seleccionada en formato tabular."
 
-#: app/readability_app.cpp:1951 app/readability_app.cpp:2092
+#: app/readability_app.cpp:1956 app/readability_app.cpp:2097
 msgid "Long Format"
 msgstr "Formato Largo"
 
-#: app/readability_app.cpp:1953 app/readability_app.cpp:2094
+#: app/readability_app.cpp:1958 app/readability_app.cpp:2099
 msgid "Display scores in long format."
 msgstr "Muestra las puntuaciones en formato largo."
 
-#: app/readability_app.cpp:1955 app/readability_app.cpp:2096
-#: app/readability_app.cpp:2380
+#: app/readability_app.cpp:1960 app/readability_app.cpp:2101
+#: app/readability_app.cpp:2385
 msgid "Grade Scale"
 msgstr "Escala de Grado"
 
-#: app/readability_app.cpp:1957 app/readability_app.cpp:2098
-#: app/readability_app.cpp:2382
+#: app/readability_app.cpp:1962 app/readability_app.cpp:2103
+#: app/readability_app.cpp:2387
 msgid "Change the grade scale display of the scores."
 msgstr ""
 "Cambiar la visualización de las puntuaciones en la escala de calificaciones."
 
-#: app/readability_app.cpp:1994 app/readability_app.cpp:2036
-#: app/readability_app.cpp:2063
+#: app/readability_app.cpp:1999 app/readability_app.cpp:2041
+#: app/readability_app.cpp:2068
 msgid "Sum"
 msgstr "Suma"
 
-#: app/readability_app.cpp:1996 app/readability_app.cpp:2038
-#: app/readability_app.cpp:2065
+#: app/readability_app.cpp:2001 app/readability_app.cpp:2043
+#: app/readability_app.cpp:2070
 msgid "Total the values from the selected column."
 msgstr "Totalizar los valores de la columna seleccionada."
 
-#: app/readability_app.cpp:2060
+#: app/readability_app.cpp:2065
 msgid "Exclude Selected"
 msgstr "Excluir los Elementos Seleccionados"
 
-#: app/readability_app.cpp:2062
+#: app/readability_app.cpp:2067
 msgid "Exclude selected words."
 msgstr "Excluir palabras seleccionadas."
 
-#: app/readability_app.cpp:2079
+#: app/readability_app.cpp:2084
 msgid "Copy the report."
 msgstr "Copie el informe."
 
-#: app/readability_app.cpp:2115 app/readability_app.cpp:2184
-#: app/readability_app.cpp:2232 app/readability_app.cpp:2283
-#: app/readability_app.cpp:2323 app/readability_app.cpp:2367
-#: app/readability_app.cpp:2415 app/readability_app.cpp:2454
-#: app/readability_app.cpp:2484 app/readability_app.cpp:2517
-#: app/readability_app.cpp:2550 app/readability_app.cpp:2593
-#: app/readability_app.cpp:2625 app/readability_app.cpp:2659
+#: app/readability_app.cpp:2120 app/readability_app.cpp:2189
+#: app/readability_app.cpp:2237 app/readability_app.cpp:2288
+#: app/readability_app.cpp:2328 app/readability_app.cpp:2372
+#: app/readability_app.cpp:2420 app/readability_app.cpp:2459
+#: app/readability_app.cpp:2489 app/readability_app.cpp:2522
+#: app/readability_app.cpp:2555 app/readability_app.cpp:2598
+#: app/readability_app.cpp:2630 app/readability_app.cpp:2664
 #: ui/dialogs/edit_text_dlg.cpp:249 ui/dialogs/tools_options_dlg.cpp:4901
 msgid "Font"
 msgstr "Tipo de letra"
 
-#: app/readability_app.cpp:2117
+#: app/readability_app.cpp:2122
 msgid "Change the font."
 msgstr "Cambia la fuente."
 
-#: app/readability_app.cpp:2118
+#: app/readability_app.cpp:2123
 msgid "Highlight"
 msgstr "Highlight"
 
-#: app/readability_app.cpp:2120
+#: app/readability_app.cpp:2125
 msgid "Change the highlight colors."
 msgstr "Cambia los colores de resaltado."
 
-#: app/readability_app.cpp:2137 app/readability_app.cpp:2164
+#: app/readability_app.cpp:2142 app/readability_app.cpp:2169
 msgid "Edit Report"
 msgstr "Editar Informe"
 
-#: app/readability_app.cpp:2139 app/readability_app.cpp:2166
+#: app/readability_app.cpp:2144 app/readability_app.cpp:2171
 msgid "Select which statistics to include in the report."
 msgstr "Seleccione las estadísticas que desea incluir en el informe."
-
-#: app/readability_app.cpp:2181 app/readability_app.cpp:2229
-#: app/readability_app.cpp:2280 app/readability_app.cpp:2320
-#: app/readability_app.cpp:2364 app/readability_app.cpp:2412
-#: app/readability_app.cpp:2451 app/readability_app.cpp:2481
-#: app/readability_app.cpp:2514 app/readability_app.cpp:2547
-#: app/readability_app.cpp:2590 app/readability_app.cpp:2622
-#: app/readability_app.cpp:2656 ui/dialogs/tools_options_dlg.h:466
-#: ui/dialogs/tools_options_dlg.h:662
-msgid "Background"
-msgstr "Fondo"
-
-#: app/readability_app.cpp:2183 app/readability_app.cpp:2231
-#: app/readability_app.cpp:2282 app/readability_app.cpp:2322
-#: app/readability_app.cpp:2366 app/readability_app.cpp:2414
-#: app/readability_app.cpp:2453 app/readability_app.cpp:2483
-#: app/readability_app.cpp:2516 app/readability_app.cpp:2549
-#: app/readability_app.cpp:2592 app/readability_app.cpp:2624
-#: app/readability_app.cpp:2658
-msgid "Set the graph's background."
-msgstr "Establezca el fondo del gráfico."
 
 #: app/readability_app.cpp:2186 app/readability_app.cpp:2234
 #: app/readability_app.cpp:2285 app/readability_app.cpp:2325
@@ -3064,40 +3038,30 @@ msgstr "Establezca el fondo del gráfico."
 #: app/readability_app.cpp:2456 app/readability_app.cpp:2486
 #: app/readability_app.cpp:2519 app/readability_app.cpp:2552
 #: app/readability_app.cpp:2595 app/readability_app.cpp:2627
-#: app/readability_app.cpp:2661
+#: app/readability_app.cpp:2661 ui/dialogs/tools_options_dlg.h:466
+#: ui/dialogs/tools_options_dlg.h:662
+msgid "Background"
+msgstr "Fondo"
+
+#: app/readability_app.cpp:2188 app/readability_app.cpp:2236
+#: app/readability_app.cpp:2287 app/readability_app.cpp:2327
+#: app/readability_app.cpp:2371 app/readability_app.cpp:2419
+#: app/readability_app.cpp:2458 app/readability_app.cpp:2488
+#: app/readability_app.cpp:2521 app/readability_app.cpp:2554
+#: app/readability_app.cpp:2597 app/readability_app.cpp:2629
+#: app/readability_app.cpp:2663
+msgid "Set the graph's background."
+msgstr "Establezca el fondo del gráfico."
+
+#: app/readability_app.cpp:2191 app/readability_app.cpp:2239
+#: app/readability_app.cpp:2290 app/readability_app.cpp:2330
+#: app/readability_app.cpp:2374 app/readability_app.cpp:2422
+#: app/readability_app.cpp:2461 app/readability_app.cpp:2491
+#: app/readability_app.cpp:2524 app/readability_app.cpp:2557
+#: app/readability_app.cpp:2600 app/readability_app.cpp:2632
+#: app/readability_app.cpp:2666
 msgid "Change the graph's fonts."
 msgstr "Cambia las fuentes del gráfico."
-
-#: app/readability_app.cpp:2187 app/readability_app.cpp:2235
-#: app/readability_app.cpp:2286 app/readability_app.cpp:2326
-#: app/readability_app.cpp:2370 app/readability_app.cpp:2418
-#: app/readability_app.cpp:2457 app/readability_app.cpp:2487
-#: app/readability_app.cpp:2520 app/readability_app.cpp:2553
-#: app/readability_app.cpp:2596 app/readability_app.cpp:2628
-#: app/readability_app.cpp:2662 projects/project_frame.cpp:1646
-#: ui/dialogs/tools_options_dlg.h:436
-msgid "Watermark"
-msgstr "Marca de Agua"
-
-#: app/readability_app.cpp:2189 app/readability_app.cpp:2237
-#: app/readability_app.cpp:2288 app/readability_app.cpp:2328
-#: app/readability_app.cpp:2372 app/readability_app.cpp:2420
-#: app/readability_app.cpp:2459 app/readability_app.cpp:2489
-#: app/readability_app.cpp:2522 app/readability_app.cpp:2555
-#: app/readability_app.cpp:2598 app/readability_app.cpp:2630
-#: app/readability_app.cpp:2664
-msgid "Add a watermark to the graph."
-msgstr "Agregar una marca de agua al gráfico."
-
-#: app/readability_app.cpp:2190 app/readability_app.cpp:2238
-#: app/readability_app.cpp:2289 app/readability_app.cpp:2329
-#: app/readability_app.cpp:2373 app/readability_app.cpp:2421
-#: app/readability_app.cpp:2460 app/readability_app.cpp:2490
-#: app/readability_app.cpp:2523 app/readability_app.cpp:2556
-#: app/readability_app.cpp:2599 app/readability_app.cpp:2631
-#: app/readability_app.cpp:2665
-msgid "Logo"
-msgstr "Logotipo"
 
 #: app/readability_app.cpp:2192 app/readability_app.cpp:2240
 #: app/readability_app.cpp:2291 app/readability_app.cpp:2331
@@ -3105,302 +3069,333 @@ msgstr "Logotipo"
 #: app/readability_app.cpp:2462 app/readability_app.cpp:2492
 #: app/readability_app.cpp:2525 app/readability_app.cpp:2558
 #: app/readability_app.cpp:2601 app/readability_app.cpp:2633
-#: app/readability_app.cpp:2667
-msgid "Add a logo to the graph."
-msgstr "Agregar un logotipo al gráfico."
+#: app/readability_app.cpp:2667 projects/project_frame.cpp:1646
+#: ui/dialogs/tools_options_dlg.h:436
+msgid "Watermark"
+msgstr "Marca de Agua"
 
-#: app/readability_app.cpp:2193 app/readability_app.cpp:2241
-#: app/readability_app.cpp:2292 app/readability_app.cpp:2332
-#: app/readability_app.cpp:2376 app/readability_app.cpp:2493
-msgid "Shadows"
-msgstr "Sombras"
+#: app/readability_app.cpp:2194 app/readability_app.cpp:2242
+#: app/readability_app.cpp:2293 app/readability_app.cpp:2333
+#: app/readability_app.cpp:2377 app/readability_app.cpp:2425
+#: app/readability_app.cpp:2464 app/readability_app.cpp:2494
+#: app/readability_app.cpp:2527 app/readability_app.cpp:2560
+#: app/readability_app.cpp:2603 app/readability_app.cpp:2635
+#: app/readability_app.cpp:2669
+msgid "Add a watermark to the graph."
+msgstr "Agregar una marca de agua al gráfico."
 
 #: app/readability_app.cpp:2195 app/readability_app.cpp:2243
 #: app/readability_app.cpp:2294 app/readability_app.cpp:2334
-#: app/readability_app.cpp:2378 app/readability_app.cpp:2495
+#: app/readability_app.cpp:2378 app/readability_app.cpp:2426
+#: app/readability_app.cpp:2465 app/readability_app.cpp:2495
+#: app/readability_app.cpp:2528 app/readability_app.cpp:2561
+#: app/readability_app.cpp:2604 app/readability_app.cpp:2636
+#: app/readability_app.cpp:2670
+msgid "Logo"
+msgstr "Logotipo"
+
+#: app/readability_app.cpp:2197 app/readability_app.cpp:2245
+#: app/readability_app.cpp:2296 app/readability_app.cpp:2336
+#: app/readability_app.cpp:2380 app/readability_app.cpp:2428
+#: app/readability_app.cpp:2467 app/readability_app.cpp:2497
+#: app/readability_app.cpp:2530 app/readability_app.cpp:2563
+#: app/readability_app.cpp:2606 app/readability_app.cpp:2638
+#: app/readability_app.cpp:2672
+msgid "Add a logo to the graph."
+msgstr "Agregar un logotipo al gráfico."
+
+#: app/readability_app.cpp:2198 app/readability_app.cpp:2246
+#: app/readability_app.cpp:2297 app/readability_app.cpp:2337
+#: app/readability_app.cpp:2381 app/readability_app.cpp:2498
+msgid "Shadows"
+msgstr "Sombras"
+
+#: app/readability_app.cpp:2200 app/readability_app.cpp:2248
+#: app/readability_app.cpp:2299 app/readability_app.cpp:2339
+#: app/readability_app.cpp:2383 app/readability_app.cpp:2500
 msgid "Display drop shadows on the graphs."
 msgstr "Mostrar sombras paralelas en los gráficos."
 
-#: app/readability_app.cpp:2197 app/readability_app.cpp:2296
-#: app/readability_app.cpp:2336 app/readability_app.cpp:2384
+#: app/readability_app.cpp:2202 app/readability_app.cpp:2301
+#: app/readability_app.cpp:2341 app/readability_app.cpp:2389
 msgid "Bar Style"
 msgstr "Estilo de la Barra"
 
-#: app/readability_app.cpp:2199 app/readability_app.cpp:2298
-#: app/readability_app.cpp:2338 app/readability_app.cpp:2386
+#: app/readability_app.cpp:2204 app/readability_app.cpp:2303
+#: app/readability_app.cpp:2343 app/readability_app.cpp:2391
 msgid "Changes the bar appearance."
 msgstr "Cambia la apariencia de la barra."
 
-#: app/readability_app.cpp:2201 app/readability_app.cpp:2300
-#: app/readability_app.cpp:2340 app/readability_app.cpp:2388
+#: app/readability_app.cpp:2206 app/readability_app.cpp:2305
+#: app/readability_app.cpp:2345 app/readability_app.cpp:2393
 #: ui/dialogs/project_wizard_dlg.cpp:418 ui/dialogs/tools_options_dlg.cpp:3547
 #: ui/dialogs/tools_options_dlg.h:393
 msgid "Labels"
 msgstr "Etiquetas"
 
-#: app/readability_app.cpp:2203
+#: app/readability_app.cpp:2208
 msgid "Shows or hides the bars' labels."
 msgstr "Muestra u oculta las etiquetas de las barras."
 
-#: app/readability_app.cpp:2205 ui/dialogs/tools_options_dlg.h:369
+#: app/readability_app.cpp:2210 ui/dialogs/tools_options_dlg.h:369
 msgid "Orientation"
 msgstr "Orientación"
 
-#: app/readability_app.cpp:2207
+#: app/readability_app.cpp:2212
 msgid "Changes the axis orientation."
 msgstr "Cambia la orientación del eje."
 
-#: app/readability_app.cpp:2211
+#: app/readability_app.cpp:2216
 msgid "Sort the bars in the graph."
 msgstr "Ordena las barras en el gráfico."
 
-#: app/readability_app.cpp:2215 app/readability_app.cpp:2217
-#: app/readability_app.cpp:2259 app/readability_app.cpp:2261
-#: app/readability_app.cpp:2306 app/readability_app.cpp:2308
-#: app/readability_app.cpp:2346 app/readability_app.cpp:2348
-#: app/readability_app.cpp:2394 app/readability_app.cpp:2396
-#: app/readability_app.cpp:2428 app/readability_app.cpp:2430
-#: app/readability_app.cpp:2467 app/readability_app.cpp:2469
-#: app/readability_app.cpp:2500 app/readability_app.cpp:2502
-#: app/readability_app.cpp:2533 app/readability_app.cpp:2535
-#: app/readability_app.cpp:2569 app/readability_app.cpp:2571
-#: app/readability_app.cpp:2608 app/readability_app.cpp:2610
-#: app/readability_app.cpp:2641 app/readability_app.cpp:2643
-#: app/readability_app.cpp:2672 app/readability_app.cpp:2674
+#: app/readability_app.cpp:2220 app/readability_app.cpp:2222
+#: app/readability_app.cpp:2264 app/readability_app.cpp:2266
+#: app/readability_app.cpp:2311 app/readability_app.cpp:2313
+#: app/readability_app.cpp:2351 app/readability_app.cpp:2353
+#: app/readability_app.cpp:2399 app/readability_app.cpp:2401
+#: app/readability_app.cpp:2433 app/readability_app.cpp:2435
+#: app/readability_app.cpp:2472 app/readability_app.cpp:2474
+#: app/readability_app.cpp:2505 app/readability_app.cpp:2507
+#: app/readability_app.cpp:2538 app/readability_app.cpp:2540
+#: app/readability_app.cpp:2574 app/readability_app.cpp:2576
+#: app/readability_app.cpp:2613 app/readability_app.cpp:2615
+#: app/readability_app.cpp:2646 app/readability_app.cpp:2648
+#: app/readability_app.cpp:2677 app/readability_app.cpp:2679
 msgid "Zoom"
 msgstr "Acercar"
 
-#: app/readability_app.cpp:2245
+#: app/readability_app.cpp:2250
 msgid "Box Style"
 msgstr "Estilo de Caja"
 
-#: app/readability_app.cpp:2247
+#: app/readability_app.cpp:2252
 msgid "Changes the box appearance."
 msgstr "Cambia la apariencia de la caja."
 
-#: app/readability_app.cpp:2249
+#: app/readability_app.cpp:2254
 msgid "Display Labels"
 msgstr "Mostrar Etiquetas"
 
-#: app/readability_app.cpp:2251
+#: app/readability_app.cpp:2256
 msgid "Displays labels on the box and whiskers."
 msgstr "Muestra etiquetas en la caja y los bigotes."
 
-#: app/readability_app.cpp:2253
+#: app/readability_app.cpp:2258
 msgid "Display Points"
 msgstr "Mostrar Puntos"
 
-#: app/readability_app.cpp:2255
+#: app/readability_app.cpp:2260
 msgid "Displays all data points onto the plot."
 msgstr "Muestra todos los puntos de datos de la gráfica."
 
-#: app/readability_app.cpp:2258 app/readability_app.cpp:2305
-#: app/readability_app.cpp:2345 app/readability_app.cpp:2393
-#: app/readability_app.cpp:2427 app/readability_app.cpp:2466
-#: app/readability_app.cpp:2499 app/readability_app.cpp:2532
-#: app/readability_app.cpp:2568 app/readability_app.cpp:2607
-#: app/readability_app.cpp:2640 app/readability_app.cpp:2671
+#: app/readability_app.cpp:2263 app/readability_app.cpp:2310
+#: app/readability_app.cpp:2350 app/readability_app.cpp:2398
+#: app/readability_app.cpp:2432 app/readability_app.cpp:2471
+#: app/readability_app.cpp:2504 app/readability_app.cpp:2537
+#: app/readability_app.cpp:2573 app/readability_app.cpp:2612
+#: app/readability_app.cpp:2645 app/readability_app.cpp:2676
 msgid "Copy the graph."
 msgstr "Copia el gráfico."
 
 #. TRANSLATORS: Draw attention to.
-#: app/readability_app.cpp:2276 app/readability_app.cpp:2445
-#: app/readability_app.cpp:2585
+#: app/readability_app.cpp:2281 app/readability_app.cpp:2450
+#: app/readability_app.cpp:2590
 msgid "Showcase"
 msgstr "Mostrar Artículos Importantes"
 
-#: app/readability_app.cpp:2277
+#: app/readability_app.cpp:2282
 msgid "Toggle whether complex word bars are being showcased."
 msgstr "Alternar si se resaltan las barras de palabras complejas."
 
-#: app/readability_app.cpp:2302 app/readability_app.cpp:2342
-#: app/readability_app.cpp:2390
+#: app/readability_app.cpp:2307 app/readability_app.cpp:2347
+#: app/readability_app.cpp:2395
 msgid "Changes what is displayed on the bars' labels."
 msgstr "Cambia lo que se muestra en las etiquetas de las barras."
 
-#: app/readability_app.cpp:2360 app/readability_app.cpp:2407
-#: app/readability_app.cpp:2441
+#: app/readability_app.cpp:2365 app/readability_app.cpp:2412
+#: app/readability_app.cpp:2446
 msgid "Colors"
 msgstr "Colores"
 
-#: app/readability_app.cpp:2362
+#: app/readability_app.cpp:2367
 msgid "Select the color scheme for the grouped histogram."
 msgstr "Seleccione la combinación de colores para el histograma agrupado."
 
-#: app/readability_app.cpp:2409 app/readability_app.cpp:2443
+#: app/readability_app.cpp:2414 app/readability_app.cpp:2448
 msgid "Select the color scheme for the pie chart."
 msgstr "Seleccione la combinación de colores para el gráfico circular."
 
 #. TRANSLATORS: Pie chart slices.
-#: app/readability_app.cpp:2448
+#: app/readability_app.cpp:2453
 msgid "Toggle whether complex word slices are being showcased."
 msgstr ""
 "Alternar si desea resaltar sectores de gráficos circulares de palabras "
 "complejas."
 
-#: app/readability_app.cpp:2527
+#: app/readability_app.cpp:2532
 msgid "English Labels"
 msgstr "Etiquetas en Iglés"
 
-#: app/readability_app.cpp:2529
+#: app/readability_app.cpp:2534
 msgid "Use translated (English) labels for the brackets."
 msgstr "Utilice etiquetas traducidas (al inglés) para los corchetes."
 
-#: app/readability_app.cpp:2559 app/readability_app.cpp:2602
+#: app/readability_app.cpp:2564 app/readability_app.cpp:2607
 msgid "Invalid Region"
 msgstr "Región no Válida"
 
-#: app/readability_app.cpp:2561 app/readability_app.cpp:2604
+#: app/readability_app.cpp:2566 app/readability_app.cpp:2609
 msgid "Change the color of the invalid regions."
 msgstr "Cambie el color de las regiones no válidas."
 
-#: app/readability_app.cpp:2563
+#: app/readability_app.cpp:2568
 msgid "Raygor Style"
 msgstr "Estilo Raygor"
 
-#: app/readability_app.cpp:2565
+#: app/readability_app.cpp:2570
 msgid "Change the layout style of the Raygor graph."
 msgstr "Cambie el estilo de diseño del gráfico de Raygor."
 
-#: app/readability_app.cpp:2587
+#: app/readability_app.cpp:2592
 msgid "Toggle whether the score is being showcased."
 msgstr "Alternar si la puntuación está resaltada."
 
-#: app/readability_app.cpp:2635
+#: app/readability_app.cpp:2640
 msgid "Connect Points"
 msgstr "Puntos de Conexión"
 
-#: app/readability_app.cpp:2637
+#: app/readability_app.cpp:2642
 msgid "Display the line through the factors and score."
 msgstr "Muestre la línea a través de los factores y la puntuación."
 
-#: app/readability_app.cpp:2681
+#: app/readability_app.cpp:2686
 msgid "Settings"
 msgstr "Preferencias"
 
-#: app/readability_app.cpp:2684
+#: app/readability_app.cpp:2689
 msgid "Printing"
 msgstr "Imprimiendo"
 
-#: app/readability_app.cpp:2686
+#: app/readability_app.cpp:2691
 msgid "Change print settings."
 msgstr "Cambiar la configuración de impresión."
 
-#: app/readability_app.cpp:2687 app/readability_app.cpp:2760
+#: app/readability_app.cpp:2692 app/readability_app.cpp:2765
 #: ui/dialogs/tools_options_dlg.h:526
 msgid "Spell Checker"
 msgstr "Corrector Ortográfico"
 
-#: app/readability_app.cpp:2689 app/readability_app.cpp:2762
+#: app/readability_app.cpp:2694 app/readability_app.cpp:2767
 msgid "Edit the spell checker's dictionary."
 msgstr "Edita el diccionario del corrector ortográfico."
 
-#: app/readability_app.cpp:2690 app/readability_app.cpp:2918
+#: app/readability_app.cpp:2695 app/readability_app.cpp:2923
 #: ui/dialogs/tools_options_dlg.cpp:908 ui/dialogs/tools_options_dlg.h:74
 msgid "Options"
 msgstr "Opciones"
 
-#: app/readability_app.cpp:2692 app/readability_app.cpp:2920
+#: app/readability_app.cpp:2697 app/readability_app.cpp:2925
 msgid "Change the program's general options."
 msgstr "Cambie las opciones generales del programa."
 
-#: app/readability_app.cpp:2695
+#: app/readability_app.cpp:2700
 msgid "Readability Tests"
 msgstr "Pruebas de Legibilidad"
 
-#: app/readability_app.cpp:2698 app/readability_app.cpp:2869
+#: app/readability_app.cpp:2703 app/readability_app.cpp:2874
 msgid "Custom"
 msgstr "Personalizado"
 
-#: app/readability_app.cpp:2700 app/readability_app.cpp:2871
+#: app/readability_app.cpp:2705 app/readability_app.cpp:2876
 msgid "Create or edit custom tests."
 msgstr "Crea o edita pruebas personalizadas."
 
-#: app/readability_app.cpp:2701 app/readability_app.cpp:2872
+#: app/readability_app.cpp:2706 app/readability_app.cpp:2877
 #: projects/base_project_view.cpp:620
 msgid "Bundles"
 msgstr "Paquetes"
 
-#: app/readability_app.cpp:2703 app/readability_app.cpp:2874
+#: app/readability_app.cpp:2708 app/readability_app.cpp:2879
 msgid "Add multiple tests to a project at once."
 msgstr "Agregue varias pruebas a un proyecto a la vez."
 
-#: app/readability_app.cpp:2704 app/readability_app.cpp:2883
+#: app/readability_app.cpp:2709 app/readability_app.cpp:2888
 msgid "Tests Overview"
 msgstr "Descripción General de las Pruebas"
 
-#: app/readability_app.cpp:2706 app/readability_app.cpp:2885
+#: app/readability_app.cpp:2711 app/readability_app.cpp:2890
 msgid "View information about each readability test."
 msgstr "Ver información sobre cada prueba de legibilidad."
 
-#: app/readability_app.cpp:2708 app/readability_app.cpp:2893
+#: app/readability_app.cpp:2713 app/readability_app.cpp:2898
 #: ui/dialogs/custom_test_dlg.cpp:849 ui/dialogs/word_list_dlg.h:38
 msgid "Word Lists"
 msgstr "Listas de Palabras"
 
-#: app/readability_app.cpp:2710 app/readability_app.cpp:2895
+#: app/readability_app.cpp:2715 app/readability_app.cpp:2900
 msgid "View the word lists used by readability tests."
 msgstr "Ver las listas de palabras utilizadas por las pruebas de legibilidad."
 
-#: app/readability_app.cpp:2712 app/readability_app.cpp:2897
+#: app/readability_app.cpp:2717 app/readability_app.cpp:2902
 msgid "Blank Graphs"
 msgstr "Gráficos en Blanco"
 
-#: app/readability_app.cpp:2714 app/readability_app.cpp:2899
+#: app/readability_app.cpp:2719 app/readability_app.cpp:2904
 msgid "Print or save blank readability graph templates."
 msgstr "Imprima o guarde plantillas de gráficos de legibilidad en blanco."
 
-#: app/readability_app.cpp:2717 app/readability_app.cpp:2880
-#: app/readability_app.cpp:2902 ui/dialogs/lua_editor_dlg.cpp:717
+#: app/readability_app.cpp:2722 app/readability_app.cpp:2885
+#: app/readability_app.cpp:2907 ui/dialogs/lua_editor_dlg.cpp:717
 msgid "Tools"
 msgstr "Herramientas"
 
-#: app/readability_app.cpp:2720 app/readability_app.cpp:2907
-#: app/readability_app.cpp:5466 ui/dialogs/web_harvester_dlg.h:62
+#: app/readability_app.cpp:2725 app/readability_app.cpp:2912
+#: app/readability_app.cpp:5482 ui/dialogs/web_harvester_dlg.h:62
 #: webharvester/webharvester.cpp:412
 msgid "Web Harvester"
 msgstr "Recopilador de Sitios Web"
 
-#: app/readability_app.cpp:2722 app/readability_app.cpp:2909
+#: app/readability_app.cpp:2727 app/readability_app.cpp:2914
 msgid "Download and analyze multiple webpages."
 msgstr "Descarga y analiza varias páginas web."
 
-#: app/readability_app.cpp:2724 app/readability_app.cpp:2911
+#: app/readability_app.cpp:2729 app/readability_app.cpp:2916
 msgid "Chapter Split"
 msgstr "División de Capítulos"
 
-#: app/readability_app.cpp:2726 app/readability_app.cpp:2913
+#: app/readability_app.cpp:2731 app/readability_app.cpp:2918
 msgid "Split a document into smaller documents."
 msgstr "Divida un documento en documentos más pequeños."
 
-#: app/readability_app.cpp:2727 app/readability_app.cpp:2914
+#: app/readability_app.cpp:2732 app/readability_app.cpp:2919
 msgid "Find Duplicates"
 msgstr "Buscar Duplicados"
 
-#: app/readability_app.cpp:2729
+#: app/readability_app.cpp:2734
 msgid "Search for (and remove) duplicate files."
 msgstr "Busque (y elimine) archivos duplicados."
 
-#: app/readability_app.cpp:2734
+#: app/readability_app.cpp:2739
 msgid "View diagnostic information being logged by the program."
 msgstr "Ver la información de diagnóstico que registra el programa."
 
-#: app/readability_app.cpp:2735 app/readability_app.cpp:2923
-#: app/readability_app.cpp:4123 lua-scripting/lua_interface.cpp:59
+#: app/readability_app.cpp:2740 app/readability_app.cpp:2928
+#: app/readability_app.cpp:4139 lua-scripting/lua_interface.cpp:59
 #: lua-scripting/lua_interface.cpp:102 ui/dialogs/lua_editor_dlg.h:44
 msgid "Lua Script"
 msgstr "Script Lua"
 
-#: app/readability_app.cpp:2737
+#: app/readability_app.cpp:2742
 msgid "Edit and run scripts to automate tasks."
 msgstr "Edite y ejecute scripts para automatizar tareas."
 
-#: app/readability_app.cpp:2740 app/readability_app.cpp:2927
-#: app/readability_app.cpp:3121
+#: app/readability_app.cpp:2745 app/readability_app.cpp:2932
+#: app/readability_app.cpp:3137
 msgid "Profile Report"
 msgstr "Informe de Perfil"
 
-#: app/readability_app.cpp:2750 projects/batch_project_doc.cpp:1149
+#: app/readability_app.cpp:2755 projects/batch_project_doc.cpp:1149
 #: projects/batch_project_doc.cpp:3437 projects/batch_project_doc.cpp:3494
 #: projects/batch_project_doc.cpp:3592 projects/batch_project_doc.cpp:3784
 #: projects/batch_project_doc.cpp:3799 projects/batch_project_doc.cpp:6449
@@ -3415,72 +3410,72 @@ msgstr "Informe de Perfil"
 msgid "Document"
 msgstr "Documento"
 
-#: app/readability_app.cpp:2753
+#: app/readability_app.cpp:2758
 msgid "Proofing"
 msgstr "Revisión"
 
-#: app/readability_app.cpp:2757
+#: app/readability_app.cpp:2762
 msgid "Edit Document"
 msgstr "Editar Documento"
 
-#: app/readability_app.cpp:2759
+#: app/readability_app.cpp:2764
 msgid "Edit the document that is being analyzed."
 msgstr "Edite el documento que se está analizando."
 
-#: app/readability_app.cpp:2765 results-format/project_report_format.cpp:1391
+#: app/readability_app.cpp:2770 results-format/project_report_format.cpp:1391
 #: ui/dialogs/tools_options_dlg.h:568
 msgid "Sentences"
 msgstr "Oraciones"
 
-#: app/readability_app.cpp:2769 projects/base_project_view.h:421
+#: app/readability_app.cpp:2774 projects/base_project_view.h:421
 #: projects/project_frame.cpp:881
 msgid "Long Sentences"
 msgstr "Oraciones Largas"
 
-#: app/readability_app.cpp:2771
+#: app/readability_app.cpp:2776
 msgid "Control how overly long sentences are determined."
 msgstr "Controlar cómo se determinan las oraciones demasiado largas."
 
-#: app/readability_app.cpp:2774
+#: app/readability_app.cpp:2779
 msgid "Sentence & Paragraph Deduction"
 msgstr "Deducción de Oraciones y Párrafos"
 
-#: app/readability_app.cpp:2779
+#: app/readability_app.cpp:2784
 msgid "Line Ends"
 msgstr "Finales de Línea"
 
-#: app/readability_app.cpp:2780
+#: app/readability_app.cpp:2785
 msgid "Control how line ends effect paragraph detection."
 msgstr ""
 "Controlar cómo los finales de línea afectan a la detección de párrafos."
 
-#: app/readability_app.cpp:2782
+#: app/readability_app.cpp:2787
 msgid "Ignore Blank Lines"
 msgstr "Ignorar Líneas en Blanco"
 
-#: app/readability_app.cpp:2784
+#: app/readability_app.cpp:2789
 msgid ""
 "Control whether blank lines should affect how paragraph breaks are detected."
 msgstr ""
 "Controlar si las líneas en blanco deben afectar a la forma en que se "
 "detectan los saltos de párrafo."
 
-#: app/readability_app.cpp:2786
+#: app/readability_app.cpp:2791
 msgid "Ignore Indenting"
 msgstr "Ignorar Sangría"
 
-#: app/readability_app.cpp:2788
+#: app/readability_app.cpp:2793
 msgid ""
 "Control whether indenting should affect how paragraph breaks are detected."
 msgstr ""
 "Controlar si la sangría debe afectar a la forma en que se detectan los "
 "saltos de párrafo."
 
-#: app/readability_app.cpp:2790
+#: app/readability_app.cpp:2795
 msgid "Strict Capitalization"
 msgstr "Capitalización Estricta"
 
-#: app/readability_app.cpp:2792
+#: app/readability_app.cpp:2797
 msgid ""
 "Change whether sentences must begin with capital letters when determining "
 "sentence breaks."
@@ -3488,23 +3483,23 @@ msgstr ""
 "Cambie si las oraciones deben comenzar con letras mayúsculas al determinar "
 "los saltos de oración."
 
-#: app/readability_app.cpp:2796
+#: app/readability_app.cpp:2801
 msgid "Text Exclusion"
 msgstr "Exclusión de Texto"
 
-#: app/readability_app.cpp:2801
+#: app/readability_app.cpp:2806
 msgid "Exclusion"
 msgstr "Exclusión"
 
-#: app/readability_app.cpp:2803
+#: app/readability_app.cpp:2808
 msgid "Select how text should be excluded from the analysis."
 msgstr "Seleccione cómo se debe excluir el texto del análisis."
 
-#: app/readability_app.cpp:2804
+#: app/readability_app.cpp:2809
 msgid "Incomplete Threshold"
 msgstr "Umbral para Oraciones Incompletas"
 
-#: app/readability_app.cpp:2806
+#: app/readability_app.cpp:2811
 msgid ""
 "Specify the minimum length of an incomplete sentence that should be "
 "considered valid."
@@ -3512,11 +3507,11 @@ msgstr ""
 "Especificar la longitud mínima de una oración incompleta que debe "
 "considerarse válida."
 
-#: app/readability_app.cpp:2808
+#: app/readability_app.cpp:2813
 msgid "Aggressive"
 msgstr "Agresivo"
 
-#: app/readability_app.cpp:2810
+#: app/readability_app.cpp:2815
 msgid ""
 "Aggressively excludes list items, citations, and copyright notices (if "
 "applicable)."
@@ -3524,441 +3519,455 @@ msgstr ""
 "Excluye de forma agresiva los elementos de la lista, las citas y los avisos "
 "de derechos de autor (si corresponde)."
 
-#: app/readability_app.cpp:2813
+#: app/readability_app.cpp:2818
 msgid "Copyrights"
 msgstr "Copyrights"
 
-#: app/readability_app.cpp:2815
+#: app/readability_app.cpp:2820
 msgid "Exclude trailing copyright statements from the analysis."
 msgstr "Excluir las declaraciones de derechos de autor finales del análisis."
 
-#: app/readability_app.cpp:2816
+#: app/readability_app.cpp:2821
 msgid "Citations"
 msgstr "Citaciones"
 
-#: app/readability_app.cpp:2818
+#: app/readability_app.cpp:2823
 msgid "Exclude trailing citations from the analysis."
 msgstr "Excluir las citas finales del análisis."
 
-#: app/readability_app.cpp:2820
+#: app/readability_app.cpp:2825
 msgid "File Names"
 msgstr "Nombres de Archivo"
 
-#: app/readability_app.cpp:2822
+#: app/readability_app.cpp:2827
 msgid "Exclude file names and website addresses from the analysis."
 msgstr ""
 "Excluya los nombres de archivo y las direcciones de sitios web del análisis."
 
-#: app/readability_app.cpp:2823 app/readability_app.cpp:2839
+#: app/readability_app.cpp:2828 app/readability_app.cpp:2844
 #: projects/base_project.cpp:8332 ui/dialogs/custom_test_dlg.h:614
 msgid "Numerals"
 msgstr "Números"
 
-#: app/readability_app.cpp:2825
+#: app/readability_app.cpp:2830
 msgid "Exclude numbers from the analysis."
 msgstr "Excluir números del análisis."
 
-#: app/readability_app.cpp:2826 projects/base_project_view.h:523
+#: app/readability_app.cpp:2831 projects/base_project_view.h:523
 #: results-format/project_report_format.cpp:1904
 #: ui/dialogs/custom_test_dlg.h:620
 msgid "Proper Nouns"
 msgstr "Nombres Propios"
 
-#: app/readability_app.cpp:2828
+#: app/readability_app.cpp:2833
 msgid "Exclude proper names from the analysis."
 msgstr "Excluir los nombres propios del análisis."
 
-#: app/readability_app.cpp:2830
+#: app/readability_app.cpp:2835
 msgid "Exclude Words"
 msgstr "Excluir Palabras"
 
-#: app/readability_app.cpp:2832
+#: app/readability_app.cpp:2837
 msgid "Add a custom list of words and phrases to exclude from the analysis."
 msgstr ""
 "Agregue una lista personalizada de palabras y frases para excluirse del "
 "análisis."
 
-#: app/readability_app.cpp:2834
+#: app/readability_app.cpp:2839
 msgid "Exclusion Tags"
 msgstr "Etiquetas de Exclusión"
 
-#: app/readability_app.cpp:2836
+#: app/readability_app.cpp:2841
 msgid "Specify tags that will exclude all text between them."
 msgstr "Especificar etiquetas que excluirán todo el texto entre ellas."
 
-#: app/readability_app.cpp:2844
+#: app/readability_app.cpp:2849
 msgid "Syllabication"
 msgstr "Silabación"
 
-#: app/readability_app.cpp:2846
+#: app/readability_app.cpp:2851
 msgid "Specify how syllables should be counted for numbers."
 msgstr "Especifique cómo se deben contar las sílabas de los números."
 
-#: app/readability_app.cpp:2852
+#: app/readability_app.cpp:2857
 msgid "Tests"
 msgstr "Pruebas"
 
-#: app/readability_app.cpp:2856
+#: app/readability_app.cpp:2861
 msgid "Primary"
 msgstr "Primario"
 
-#: app/readability_app.cpp:2858
+#: app/readability_app.cpp:2863
 msgid "Tests meant for primary-age materials."
 msgstr "Pruebas destinados a materiales de edad primaria."
 
-#: app/readability_app.cpp:2859
+#: app/readability_app.cpp:2864
 msgid "Secondary"
 msgstr "Secundario"
 
-#: app/readability_app.cpp:2861
+#: app/readability_app.cpp:2866
 msgid "Tests meant for secondary-age materials."
 msgstr "Pruebas destinados a materiales de edad secundaria."
 
-#: app/readability_app.cpp:2862
+#: app/readability_app.cpp:2867
 msgid "Adult"
 msgstr "Adultos"
 
-#: app/readability_app.cpp:2864
+#: app/readability_app.cpp:2869
 msgid "Tests meant for adult-level materials."
 msgstr "Pruebas destinadas a materiales de nivel adulto."
 
-#: app/readability_app.cpp:2866
+#: app/readability_app.cpp:2871
 msgid "Second Language"
 msgstr "Segundo Idioma"
 
-#: app/readability_app.cpp:2868
+#: app/readability_app.cpp:2873
 msgid "Tests for materials designed for second-language readers."
 msgstr "Pruebas de materiales diseñados para lectores de segundas lenguas."
 
-#: app/readability_app.cpp:2875
+#: app/readability_app.cpp:2880
 msgid "Remove"
 msgstr "Eliminar"
 
-#: app/readability_app.cpp:2877
+#: app/readability_app.cpp:2882
 msgid "Remove the selected test from the project."
 msgstr "Elimine la prueba seleccionada del proyecto."
 
-#: app/readability_app.cpp:2889 projects/batch_project_view.cpp:569
+#: app/readability_app.cpp:2894 projects/batch_project_view.cpp:569
 msgid "Test Explanations"
 msgstr "Explicaciones de la Prueba"
 
-#: app/readability_app.cpp:2891
+#: app/readability_app.cpp:2896
 msgid "Read an explanation of the selected test score."
 msgstr "Lea una explicación de la puntuación de la prueba seleccionada."
 
-#: app/readability_app.cpp:2904
+#: app/readability_app.cpp:2909
 msgid "Tools & Settings"
 msgstr "Herramientas y Ajustes"
 
-#: app/readability_app.cpp:2916
+#: app/readability_app.cpp:2921
 msgid "Search for and remove duplicate files."
 msgstr "Buscar y eliminar archivos duplicados."
 
-#: app/readability_app.cpp:2935
+#: app/readability_app.cpp:2940
 msgid "Help"
 msgstr "Ayuda"
 
-#: app/readability_app.cpp:2937
+#: app/readability_app.cpp:2942
 msgid "Documentation"
 msgstr "Documentación"
 
-#: app/readability_app.cpp:2940
+#: app/readability_app.cpp:2945
 msgid "Electronic Help"
 msgstr "Ayuda Electrónica"
 
-#: app/readability_app.cpp:2942
+#: app/readability_app.cpp:2947
 msgid "Read the documentation in a browser."
 msgstr "Lea la documentación en un navegador."
 
-#: app/readability_app.cpp:2943
+#: app/readability_app.cpp:2948
 msgid "Manual"
 msgstr "Libro"
 
-#: app/readability_app.cpp:2944
+#: app/readability_app.cpp:2949
 msgid "Read the manual."
 msgstr "Lea el manual."
 
-#: app/readability_app.cpp:2945
+#: app/readability_app.cpp:2950
 msgid "Tests Reference"
 msgstr "Referencia de Pruebas"
 
-#: app/readability_app.cpp:2947
+#: app/readability_app.cpp:2952
 msgid "Read the readability tests reference."
 msgstr "Lea la referencia de las pruebas de legibilidad."
 
-#: app/readability_app.cpp:2948 ui/dialogs/custom_test_dlg.cpp:828
+#: app/readability_app.cpp:2953 ui/dialogs/custom_test_dlg.cpp:828
 msgid "Shortcuts"
 msgstr "Accesos Rápidos"
 
-#: app/readability_app.cpp:2950
+#: app/readability_app.cpp:2955
 msgid "Read the keyboard shortcuts cheatsheet."
 msgstr "Lee la hoja de trucos de atajos de teclado."
 
-#: app/readability_app.cpp:2951
+#: app/readability_app.cpp:2956
 msgid "Release Notes"
 msgstr "Información de la Versión"
 
-#: app/readability_app.cpp:2953
+#: app/readability_app.cpp:2958
 msgid "Read the release notes."
 msgstr "Lea las notas de la versión."
 
-#: app/readability_app.cpp:2954
+#: app/readability_app.cpp:2959
 msgid "Programming Manual"
 msgstr "Manual de Programación"
 
-#: app/readability_app.cpp:2956
+#: app/readability_app.cpp:2961
 msgid "Read the Lua programming manual."
 msgstr "Lea el manual de programación de Lua."
 
-#: app/readability_app.cpp:2957
+#: app/readability_app.cpp:2962
 msgid "System Admin Manual"
 msgstr "Manual del Administrador del Sistema"
 
-#: app/readability_app.cpp:2959
+#: app/readability_app.cpp:2964
 msgid "Read the system administrator manual."
 msgstr "Lea el manual del administrador del sistema."
 
-#: app/readability_app.cpp:2960
+#: app/readability_app.cpp:2965
 msgid "Example Documents"
 msgstr "Documentos de Ejemplo"
 
-#: app/readability_app.cpp:2962
+#: app/readability_app.cpp:2967
 msgid "Analyze example documents from the help."
 msgstr "Analizar documentos de ejemplo de la ayuda."
 
-#: app/readability_app.cpp:2965
+#: app/readability_app.cpp:2970
 msgid "Support"
 msgstr "Apoyo"
 
-#: app/readability_app.cpp:2967
+#: app/readability_app.cpp:2972
 msgid "Updates"
 msgstr "Actualizaciones"
 
-#: app/readability_app.cpp:2969
+#: app/readability_app.cpp:2974
 msgid "Check for updates."
 msgstr "Comprobar las actualizaciones."
 
-#: app/readability_app.cpp:2970
+#: app/readability_app.cpp:2975
 msgid "About"
 msgstr "Acerca de"
 
-#: app/readability_app.cpp:2972
+#: app/readability_app.cpp:2977
 msgid "Learn more about the program."
 msgstr "Más información sobre el programa."
 
-#: app/readability_app.cpp:3092
+#. TRANSLATORS: with "\U000000A9%s%d %s", "\U000000A9" should not be edited
+#. (it's a copyright symbol), "%s%d" is a range of years and " %s" is the
+#. software publisher.
+#: app/readability_app.cpp:3100
 #, c-format
 msgid ""
 "Copyright ©2006-2025 Oleander Software, Ltd.\n"
-"Copyright ©2025-%d %s.\n"
-"All rights reserved."
+"Copyright ©%s%d %s.\n"
+"All rights reserved.\n"
+"\n"
+"\n"
+"%s® is a Trademark of %s.\n"
+"Jakarta and Jakarta EE are Trademarks of %s.\n"
+"Eclipse® is a Trademark of %s.\n"
+"Eclipse Foundation is a Trademark of %s."
 msgstr ""
 "Derechos de autor ©2006-2025 Oleander Software, Ltd.\n"
-"Derechos de autor ©2025-%d %s.\n"
-"Todos los derechos reservados."
+"Derechos de autor © %s%d %s.\n"
+"Todos los derechos reservados.\n"
+"\n"
+"® %s es una marca comercial de %s.\n"
+"Jakarta y Jakarta EE son marcas comerciales de %s.\n"
+"Eclipse® es una marca comercial de %s.\n"
+"Eclipse Foundation es una marca comercial de %s."
 
-#: app/readability_app.cpp:3230
+#: app/readability_app.cpp:3246
 msgid "Readability Tests Overview"
 msgstr "Descripción General de las Pruebas de Legibilidad"
 
-#: app/readability_app.cpp:3236
+#: app/readability_app.cpp:3252
 msgid "Name"
 msgstr "Nombre"
 
-#: app/readability_app.cpp:3237
+#: app/readability_app.cpp:3253
 msgid "Score Type"
 msgstr "Tipo de Puntuación"
 
-#: app/readability_app.cpp:3238
+#: app/readability_app.cpp:3254
 msgid "Languages"
 msgstr "Idiomas"
 
-#: app/readability_app.cpp:3239
+#: app/readability_app.cpp:3255
 msgid "Word Complexity"
 msgstr "Complejidad de las Palabras"
 
-#: app/readability_app.cpp:3240
+#: app/readability_app.cpp:3256
 msgid "Word Length"
 msgstr "Longitud de las Palabras"
 
-#: app/readability_app.cpp:3241
+#: app/readability_app.cpp:3257
 msgid "Word Familiarity"
 msgstr "Familiaridad con las Palabras"
 
-#: app/readability_app.cpp:3242 projects/standard_project_doc.cpp:6983
+#: app/readability_app.cpp:3258 projects/standard_project_doc.cpp:6983
 msgid "Sentence Length"
 msgstr "Longitud de la Oración"
 
-#: app/readability_app.cpp:3243
+#: app/readability_app.cpp:3259
 msgid "Description"
 msgstr "Descripción"
 
-#: app/readability_app.cpp:3258 app/readability_app.cpp:3273
+#: app/readability_app.cpp:3274 app/readability_app.cpp:3289
 #: ui/dialogs/custom_test_dlg.h:592
 msgid "Grade level"
 msgstr "Nivel de grado"
 
-#: app/readability_app.cpp:3261
+#: app/readability_app.cpp:3277
 msgid "Index score"
 msgstr "Puntuación del índice"
 
-#: app/readability_app.cpp:3264
+#: app/readability_app.cpp:3280
 msgid "Grade level and index score"
 msgstr "Nivel de grado y puntuación del índice"
 
-#: app/readability_app.cpp:3267
+#: app/readability_app.cpp:3283
 msgid "Cloze score"
 msgstr "Puntuación de Cloze"
 
-#: app/readability_app.cpp:3270
+#: app/readability_app.cpp:3286
 msgid "Grade level and cloze score"
 msgstr "Nivel de grado y puntaje de cloze"
 
-#: app/readability_app.cpp:3279 results-format/project_report_format.cpp:33
+#: app/readability_app.cpp:3295 results-format/project_report_format.cpp:33
 #: ui/dialogs/project_wizard_dlg.cpp:231 ui/dialogs/project_wizard_dlg.cpp:317
 #: ui/dialogs/tools_options_dlg.cpp:3240 ui/dialogs/tools_options_dlg.cpp:3417
 msgid "English"
 msgstr "Inglés"
 
-#: app/readability_app.cpp:3283 results-format/project_report_format.cpp:54
+#: app/readability_app.cpp:3299 results-format/project_report_format.cpp:54
 #: ui/dialogs/project_wizard_dlg.cpp:232 ui/dialogs/project_wizard_dlg.cpp:318
 #: ui/dialogs/tools_options_dlg.cpp:3240 ui/dialogs/tools_options_dlg.cpp:3418
 msgid "Spanish"
 msgstr "Español"
 
-#: app/readability_app.cpp:3287 results-format/project_report_format.cpp:42
+#: app/readability_app.cpp:3303 results-format/project_report_format.cpp:42
 #: ui/dialogs/project_wizard_dlg.cpp:233 ui/dialogs/project_wizard_dlg.cpp:319
 #: ui/dialogs/tools_options_dlg.cpp:3419
 msgid "German"
 msgstr "Alemán"
 
-#: app/readability_app.cpp:3298
+#: app/readability_app.cpp:3314
 msgid "X (2 or more syllables)"
 msgstr "X (2 o más sílabas)"
 
-#: app/readability_app.cpp:3300
+#: app/readability_app.cpp:3316
 msgid "X (3 or more syllables)"
 msgstr "X (3 o más sílabas)"
 
-#: app/readability_app.cpp:3302
+#: app/readability_app.cpp:3318
 msgid "X (syllable density)"
 msgstr "X (densidad de sílabas)"
 
-#: app/readability_app.cpp:3309
+#: app/readability_app.cpp:3325
 msgid "X (3 or less characters)"
 msgstr "X (3 o menos caracteres)"
 
-#: app/readability_app.cpp:3311
+#: app/readability_app.cpp:3327
 msgid "X (6 or more characters)"
 msgstr "X (6 o más caracteres)"
 
-#: app/readability_app.cpp:3313
+#: app/readability_app.cpp:3329
 msgid "X (7 or more characters)"
 msgstr "X (7 o más caracteres)"
 
-#: app/readability_app.cpp:3320
+#: app/readability_app.cpp:3336
 msgid "X (Spache rules)"
 msgstr "X (reglas de Spache)"
 
-#: app/readability_app.cpp:3322
+#: app/readability_app.cpp:3338
 msgid "X (Dale-Chall rules)"
 msgstr "X (reglas de Dale-Chall)"
 
-#: app/readability_app.cpp:3324
+#: app/readability_app.cpp:3340
 msgid "X (Harris-Jacobson rules)"
 msgstr "X (reglas de Harris-Jacobson)"
 
-#: app/readability_app.cpp:3353 app/readability_app.cpp:3363
-#: app/readability_app.cpp:3373 app/readability_app.cpp:3389
-#: app/readability_app.cpp:3404 app/readability_app.cpp:3418
-#: app/readability_app.cpp:3431 app/readability_app.cpp:3441
+#: app/readability_app.cpp:3369 app/readability_app.cpp:3379
+#: app/readability_app.cpp:3389 app/readability_app.cpp:3405
+#: app/readability_app.cpp:3420 app/readability_app.cpp:3434
+#: app/readability_app.cpp:3447 app/readability_app.cpp:3457
 #, c-format
 msgid "Blank \"%s\" Graph"
 msgstr "Gráfico \"%s\" en Blanco"
 
-#: app/readability_app.cpp:3453
+#: app/readability_app.cpp:3469
 msgid "Blank Lix Gauge"
 msgstr "Calibre Lix en Blanco"
 
-#: app/readability_app.cpp:3462
+#: app/readability_app.cpp:3478
 msgid "Blank German Lix Gauge"
 msgstr "Calibre de Lix alemán en Blanco"
 
-#: app/readability_app.cpp:3815
+#: app/readability_app.cpp:3831
 msgid "Create a New Project"
 msgstr "Crear un Nuevo Proyecto"
 
-#: app/readability_app.cpp:3817
+#: app/readability_app.cpp:3833
 msgid "Open a Project"
 msgstr "Abrir un Proyecto"
 
-#: app/readability_app.cpp:3819
+#: app/readability_app.cpp:3835
 msgid "Read the Examples"
 msgstr "Leer los Ejemplos"
 
-#: app/readability_app.cpp:3821
+#: app/readability_app.cpp:3837
 msgid "Read the Notes"
 msgstr "Leer las Notas"
 
-#: app/readability_app.cpp:3823
+#: app/readability_app.cpp:3839
 msgid "Read the Manual"
 msgstr "Leer el Manual"
 
-#: app/readability_app.cpp:3825
+#: app/readability_app.cpp:3841
 msgid "Review Program Options"
 msgstr "Revisar las Opciones del Programa"
 
-#: app/readability_app.cpp:3867
+#: app/readability_app.cpp:3883
 msgid "Select Project to Open"
 msgstr "Seleccione el Proyecto que desea Abrir"
 
 #. TRANSLATORS: %s is program name.
-#: app/readability_app.cpp:3870
+#: app/readability_app.cpp:3886
 #, c-format
 msgid "%s Project (*.rsp;*.rsbp)|*.rsp;*.rsbp"
 msgstr "Proyecto %s (*.rsp;*.rsbp)|*.rsp;*.rsbp"
 
-#: app/readability_app.cpp:3917
+#: app/readability_app.cpp:3933
 msgid "New Project..."
 msgstr "Nuevo Proyecto..."
 
-#: app/readability_app.cpp:3920
+#: app/readability_app.cpp:3936
 msgid "New Project from Clipboard..."
 msgstr "Nuevo Proyecto desde el Portapapeles..."
 
-#: app/readability_app.cpp:3952 projects/project_frame.cpp:2503
+#: app/readability_app.cpp:3968 projects/project_frame.cpp:2503
 msgid "Edit Custom Dictionary..."
 msgstr "Editar Diccionario Personalizado..."
 
-#: app/readability_app.cpp:3953
+#: app/readability_app.cpp:3969
 msgid "Settings..."
 msgstr "Preferencias..."
 
-#: app/readability_app.cpp:4033
+#: app/readability_app.cpp:4049
 msgid "Create a new project"
 msgstr "Crear un nuevo proyecto"
 
-#: app/readability_app.cpp:4034
+#: app/readability_app.cpp:4050
 msgid "View document"
 msgstr "Ver Documento"
 
-#: app/readability_app.cpp:4036
+#: app/readability_app.cpp:4052
 msgid "Create a new project using the example document"
 msgstr "Creación de un nuevo proyecto mediante el documento de ejemplo"
 
-#: app/readability_app.cpp:4037
+#: app/readability_app.cpp:4053
 msgid "View the document in your system's default editor"
 msgstr "Ver el documento en el editor predeterminado de su sistema"
 
-#: app/readability_app.cpp:4039
+#: app/readability_app.cpp:4055
 msgid "Select how to open the example document"
 msgstr "Seleccione cómo abrir el documento de ejemplo"
 
-#: app/readability_app.cpp:4040
+#: app/readability_app.cpp:4056
 msgid "Open Example Document"
 msgstr "Abrir Documento de Ejemplo"
 
-#: app/readability_app.cpp:4142
+#: app/readability_app.cpp:4158
 msgid ""
 "Unable to add custom test to menu: not enough menu IDs, please contact "
 "software vendor to remove this limitation."
@@ -3967,7 +3976,7 @@ msgstr ""
 "de menú, comuníquese con el proveedor de software para eliminar esta "
 "limitación."
 
-#: app/readability_app.cpp:4174
+#: app/readability_app.cpp:4190
 msgid ""
 "Unable to add test bundle to menu: not enough menu IDs, please contact "
 "software vendor to remove this limitation."
@@ -3975,63 +3984,63 @@ msgstr ""
 "No se puede agregar un paquete de prueba al menú: no hay suficientes ID de "
 "menú, comuníquese con el proveedor de software para eliminar esta limitación."
 
-#: app/readability_app.cpp:4434
+#: app/readability_app.cpp:4450
 msgid "Children's Publishing"
 msgstr "Publicaciones Infantiles"
 
-#: app/readability_app.cpp:4436
+#: app/readability_app.cpp:4452
 msgid "Young Adult and Adult Publishing"
 msgstr "Publicaciones para Jóvenes y Adultos"
 
-#: app/readability_app.cpp:4438
+#: app/readability_app.cpp:4454
 msgid "Children's Healthcare"
 msgstr "Cuidado de la Salud Infantil"
 
-#: app/readability_app.cpp:4440
+#: app/readability_app.cpp:4456
 msgid "Adult Healthcare"
 msgstr "Cuidado de la Salud para Adultos"
 
-#: app/readability_app.cpp:4442
+#: app/readability_app.cpp:4458
 msgid "Military & Government"
 msgstr "Fuerzas Armadas y Gobierno"
 
-#: app/readability_app.cpp:4444
+#: app/readability_app.cpp:4460
 msgid "Second Language Education"
 msgstr "Educación en Segundas Idioma"
 
-#: app/readability_app.cpp:4445 ui/dialogs/custom_test_dlg.h:608
+#: app/readability_app.cpp:4461 ui/dialogs/custom_test_dlg.h:608
 msgid "Broadcasting"
 msgstr "Radiodifusión"
 
-#: app/readability_app.cpp:4446
+#: app/readability_app.cpp:4462
 msgid "Industry"
 msgstr "Industria"
 
-#: app/readability_app.cpp:4448
+#: app/readability_app.cpp:4464
 msgid "General Document"
 msgstr "Documento General"
 
-#: app/readability_app.cpp:4450
+#: app/readability_app.cpp:4466
 msgid "Technical Document"
 msgstr "Documento Técnico"
 
-#: app/readability_app.cpp:4452
+#: app/readability_app.cpp:4468
 msgid "Structured Form"
 msgstr "Forma Estructurada"
 
-#: app/readability_app.cpp:4454 ui/dialogs/custom_test_dlg.h:599
+#: app/readability_app.cpp:4470 ui/dialogs/custom_test_dlg.h:599
 msgid "Literature"
 msgstr "Literatura"
 
-#: app/readability_app.cpp:4456
+#: app/readability_app.cpp:4472
 msgid "Children's Literature"
 msgstr "Literatura Infantil"
 
-#: app/readability_app.cpp:4457
+#: app/readability_app.cpp:4473
 msgid "General Document Type"
 msgstr "Tipo de Documento General"
 
-#: app/readability_app.cpp:4473
+#: app/readability_app.cpp:4489
 msgid ""
 "Unable to add test bundle to menu: internal error, please contact software "
 "vendor."
@@ -4039,19 +4048,19 @@ msgstr ""
 "No se puede agregar el paquete de prueba al menú: error interno, comuníquese "
 "con el proveedor de software."
 
-#: app/readability_app.cpp:4519 app/readability_app.cpp:4590
+#: app/readability_app.cpp:4535 app/readability_app.cpp:4606
 msgid "Add..."
 msgstr "Agregar..."
 
-#: app/readability_app.cpp:4534 app/readability_app.cpp:4623
+#: app/readability_app.cpp:4550 app/readability_app.cpp:4639
 msgid "Edit..."
 msgstr "Editar..."
 
-#: app/readability_app.cpp:4540 app/readability_app.cpp:4628
+#: app/readability_app.cpp:4556 app/readability_app.cpp:4644
 msgid "Remove..."
 msgstr "Eliminar..."
 
-#: app/readability_app.cpp:4574
+#: app/readability_app.cpp:4590
 msgid ""
 "Unable to add custom test to menu: internal error, please contact software "
 "vendor."
@@ -4059,48 +4068,48 @@ msgstr ""
 "No se puede agregar una prueba personalizada al menú: error interno, "
 "comuníquese con el proveedor de software."
 
-#: app/readability_app.cpp:4595
+#: app/readability_app.cpp:4611
 msgid "Add Custom Test Based on..."
 msgstr "Agregue una Prueba Personalizada Basada en..."
 
-#: app/readability_app.cpp:4602 app/readability_app.cpp:4608
-#: app/readability_app.cpp:4614
+#: app/readability_app.cpp:4618 app/readability_app.cpp:4624
+#: app/readability_app.cpp:4630
 #, c-format
 msgid "Add Custom \"%s\"..."
 msgstr "Agregar \"%s\" Personalizado..."
 
-#: app/readability_app.cpp:4655
+#: app/readability_app.cpp:4671
 msgid "Select test to remove:"
 msgstr "Seleccione la prueba que desea eliminar:"
 
-#: app/readability_app.cpp:4656 projects/batch_project_view.cpp:846
+#: app/readability_app.cpp:4672 projects/batch_project_view.cpp:846
 #: projects/standard_project_view.cpp:2101
 msgid "Remove Test"
 msgstr "Eliminar Prueba"
 
-#: app/readability_app.cpp:4698
+#: app/readability_app.cpp:4714
 msgid "Select bundle to edit:"
 msgstr "Seleccione el paquete que desea editar:"
 
-#: app/readability_app.cpp:4699
+#: app/readability_app.cpp:4715
 msgid "Edit Bundle"
 msgstr "Editar paquete"
 
-#: app/readability_app.cpp:4737
+#: app/readability_app.cpp:4753
 msgid "Select bundle to remove:"
 msgstr "Seleccione el paquete que desea eliminar:"
 
-#: app/readability_app.cpp:4738
+#: app/readability_app.cpp:4754
 msgid "Remove Bundle"
 msgstr "Eliminar Paquete"
 
-#: app/readability_app.cpp:4775 app/readability_app.cpp:4796
-#: app/readability_app.cpp:4880
+#: app/readability_app.cpp:4791 app/readability_app.cpp:4812
+#: app/readability_app.cpp:4896
 #, c-format
 msgid "Add Custom \"%s\""
 msgstr "Agregar \"%s\" Personalizado"
 
-#: app/readability_app.cpp:4825
+#: app/readability_app.cpp:4841
 msgid ""
 "Select a linear-regression-based test to use as the basis for a new custom "
 "test:"
@@ -4108,52 +4117,52 @@ msgstr ""
 "Seleccione una prueba basada en regresión lineal para usarla como base para "
 "una nueva prueba personalizada:"
 
-#: app/readability_app.cpp:4826
+#: app/readability_app.cpp:4842
 msgid "Select a Test"
 msgstr "Seleccione una Prueba"
 
 #. TRANSLATORS: %s is a readability test name
-#: app/readability_app.cpp:4839
+#: app/readability_app.cpp:4855
 #, c-format
 msgid "Custom %s"
 msgstr "%s Personalizado"
 
-#: app/readability_app.cpp:4870
+#: app/readability_app.cpp:4886
 #, c-format
 msgid "Internal error: unable to find '%s'."
 msgstr "Error interno: no se puede encontrar '%s'."
 
-#: app/readability_app.cpp:4943
+#: app/readability_app.cpp:4959
 msgid "Select test to edit:"
 msgstr "Seleccione la prueba que desea editar:"
 
-#: app/readability_app.cpp:4944
+#: app/readability_app.cpp:4960
 msgid "Edit Test"
 msgstr "Editar Prueba"
 
-#: app/readability_app.cpp:5012
+#: app/readability_app.cpp:5028
 msgid "No text is currently on the clipboard."
 msgstr "No hay texto en el portapapeles."
 
-#: app/readability_app.cpp:5053
+#: app/readability_app.cpp:5069
 msgid "Project still processing. Please wait before closing."
 msgstr "El proyecto aún se está procesando. Espere antes de cerrar."
 
-#: app/readability_app.cpp:5073 projects/base_project.cpp:4419
+#: app/readability_app.cpp:5089 projects/base_project.cpp:4419
 #: ui/dialogs/project_wizard_dlg.cpp:1608 ui/dialogs/tools_options_dlg.cpp:407
 msgid "Select Document to Analyze"
 msgstr "Seleccione el Documento que Desea Analizar"
 
-#: app/readability_app.cpp:5153 app/readability_app.cpp:5168
+#: app/readability_app.cpp:5169 app/readability_app.cpp:5184
 #, c-format
 msgid "An error occurred while trying to connect to the website:\t%s"
-msgstr "Se ha producido un error al intentar conectarse al sitio web: %s"
+msgstr "Se ha producido un error al intentar conectarse al sitio web:\t%s"
 
-#: app/readability_app.cpp:5155 app/readability_app.cpp:5170
+#: app/readability_app.cpp:5171 app/readability_app.cpp:5186
 msgid "Connection Error"
 msgstr "Error de Conexión"
 
-#: app/readability_app.cpp:5179
+#: app/readability_app.cpp:5195
 #, c-format
 msgid ""
 "There is a new version of %s currently available.\n"
@@ -4162,7 +4171,7 @@ msgstr ""
 "Actualmente hay disponible una nueva versión de %s.\n"
 "¿Desea ir a la página de descarga?"
 
-#: app/readability_app.cpp:5187
+#: app/readability_app.cpp:5203
 msgid ""
 "Unable to open default browser. Please make sure that you have an Internet "
 "browser installed and are connected to the Internet."
@@ -4170,47 +4179,47 @@ msgstr ""
 "No se puede abrir el navegador predeterminado. Asegúrese de tener un "
 "navegador de Internet instalado y de estar conectado a Internet."
 
-#: app/readability_app.cpp:5195
+#: app/readability_app.cpp:5211
 msgid "There are no updates currently available."
 msgstr "No hay actualizaciones disponibles actualmente."
 
-#: app/readability_app.cpp:5217 ui/controls/word_list_property.cpp:59
+#: app/readability_app.cpp:5233 ui/controls/word_list_property.cpp:59
 #: ui/dialogs/custom_test_dlg.cpp:869
 msgid "Edit Word List"
 msgstr "Editar Lista de Palabras"
 
-#: app/readability_app.cpp:5229 lua-scripting/lua_screenshot.cpp:564
+#: app/readability_app.cpp:5245 lua-scripting/lua_screenshot.cpp:564
 msgid "Edit Phrase List"
 msgstr "Editar Lista de Frases"
 
-#: app/readability_app.cpp:5242
+#: app/readability_app.cpp:5258
 msgid "All Files (*.*)|*.*"
 msgstr "Todos los archivos (*.*)|*.*"
 
-#: app/readability_app.cpp:5252 lua-scripting/lua_batch_project.cpp:190
+#: app/readability_app.cpp:5268 lua-scripting/lua_batch_project.cpp:191
 #: projects/batch_project_doc.cpp:168 ui/dialogs/project_wizard_dlg.cpp:1105
 #: ui/dialogs/project_wizard_dlg.cpp:1807
 msgid "Retrieving files..."
 msgstr "Encontrar archivos..."
 
-#: app/readability_app.cpp:5265 app/readability_app.cpp:5298
+#: app/readability_app.cpp:5281 app/readability_app.cpp:5314
 msgid "Duplicate Files"
 msgstr "Archivos Duplicados"
 
-#: app/readability_app.cpp:5265
+#: app/readability_app.cpp:5281
 msgid "Searching for duplicate files..."
 msgstr "Buscando archivos duplicados..."
 
-#: app/readability_app.cpp:5276
+#: app/readability_app.cpp:5292
 #, c-format
 msgid "Processing %s of %s files..."
 msgstr "Procesamiento de %s de %s archivos..."
 
-#: app/readability_app.cpp:5304
+#: app/readability_app.cpp:5320
 msgid "Loading duplicates..."
 msgstr "Cargando duplicados..."
 
-#: app/readability_app.cpp:5335
+#: app/readability_app.cpp:5351
 #, c-format
 msgid ""
 "Found %lu duplicate files. You can select and delete duplicates from a "
@@ -4219,25 +4228,25 @@ msgstr ""
 "Se encontraron %lu archivos duplicados. Puedes seleccionar y eliminar "
 "duplicados de un grupo, dejando un solo archivo para el grupo."
 
-#: app/readability_app.cpp:5343
+#: app/readability_app.cpp:5359
 msgid "No duplicate files found."
 msgstr "No se encontraron archivos duplicados."
 
-#: app/readability_app.cpp:5355
+#: app/readability_app.cpp:5371
 msgid "Select File to Split"
 msgstr "Seleccione el Archivo para Dividir"
 
-#: app/readability_app.cpp:5378 app/readability_app.cpp:5384
+#: app/readability_app.cpp:5394 app/readability_app.cpp:5400
 msgid "Unable to split document."
 msgstr "No se puede dividir el documento."
 
 #. TRANSLATORS: %s are file filters
-#: app/readability_app.cpp:5397
+#: app/readability_app.cpp:5413
 #, c-format
 msgid "Documents & Images (%s;%s)|%s;%s|"
 msgstr "Documentos e Imágenes (%s;%s)|%s;%s|"
 
-#: app/readability_app.cpp:5447
+#: app/readability_app.cpp:5463
 #, c-format
 msgid ""
 "No files were downloaded from the following sites:\n"
@@ -4250,7 +4259,7 @@ msgstr ""
 "%s\n"
 "Revise el informe de registro para ver si hay posibles problemas de conexión."
 
-#: app/readability_app.cpp:5450 app/readability_app_options.cpp:50
+#: app/readability_app.cpp:5466 app/readability_app_options.cpp:50
 #: app/readability_app_options.cpp:56 app/readability_app_options.cpp:62
 #: app/readability_app_options.cpp:65 app/readability_app_options.cpp:69
 #: app/readability_app_options.cpp:78 app/readability_app_options.cpp:103
@@ -4266,7 +4275,7 @@ msgstr ""
 msgid "Warning"
 msgstr "Advertencia"
 
-#: app/readability_app.cpp:5466
+#: app/readability_app.cpp:5482
 msgid "Web crawl complete."
 msgstr "Sitios web de recopilación completa."
 
@@ -4900,14 +4909,14 @@ msgstr "%s: archivo no encontrado."
 #: lua-scripting/lua_application.cpp:1113
 #: lua-scripting/lua_application.cpp:1214
 #: lua-scripting/lua_application.cpp:1267
-#: lua-scripting/lua_batch_project.cpp:2948
-#: lua-scripting/lua_batch_project.cpp:2985
-#: lua-scripting/lua_batch_project.cpp:3069
-#: lua-scripting/lua_batch_project.cpp:3147
-#: lua-scripting/lua_batch_project.cpp:3202
-#: lua-scripting/lua_batch_project.cpp:3272
-#: lua-scripting/lua_batch_project.cpp:3286
-#: lua-scripting/lua_batch_project.cpp:3339
+#: lua-scripting/lua_batch_project.cpp:2949
+#: lua-scripting/lua_batch_project.cpp:2986
+#: lua-scripting/lua_batch_project.cpp:3070
+#: lua-scripting/lua_batch_project.cpp:3148
+#: lua-scripting/lua_batch_project.cpp:3203
+#: lua-scripting/lua_batch_project.cpp:3273
+#: lua-scripting/lua_batch_project.cpp:3287
+#: lua-scripting/lua_batch_project.cpp:3340
 #: lua-scripting/lua_batch_project.h:69 lua-scripting/lua_debug.cpp:95
 #: lua-scripting/lua_interface.cpp:79 lua-scripting/lua_screenshot.cpp:1347
 #: lua-scripting/lua_screenshot.cpp:1372
@@ -4964,43 +4973,43 @@ msgstr ""
 "%s: la frase \"%s\" y el reemplazo sugerido son lo mismo.\n"
 "Por favor, revisa tu archivo de frases."
 
-#: lua-scripting/lua_batch_project.cpp:116
+#: lua-scripting/lua_batch_project.cpp:117
 msgid "A batch project cannot open a standard project file."
 msgstr "Un proyecto por lotes no puede abrir un archivo de proyecto estándar."
 
-#: lua-scripting/lua_batch_project.cpp:117
+#: lua-scripting/lua_batch_project.cpp:118
 #: lua-scripting/lua_standard_project.cpp:99
 msgid "Project File Mismatch"
 msgstr "Discrepancia de Archivos de Proyecto"
 
-#: lua-scripting/lua_batch_project.cpp:152
+#: lua-scripting/lua_batch_project.cpp:153
 #, c-format
 msgid "%s requires a table argument."
 msgstr "%s requiere un argumento de tabla."
 
-#: lua-scripting/lua_batch_project.cpp:2947
-#: lua-scripting/lua_batch_project.cpp:2984
+#: lua-scripting/lua_batch_project.cpp:2948
+#: lua-scripting/lua_batch_project.cpp:2985
 #: lua-scripting/lua_standard_project.cpp:3569
 #: lua-scripting/lua_standard_project.cpp:3625
 #, c-format
 msgid "%s: unknown test could not be added."
 msgstr "%s: no se pudo agregar una prueba desconocida."
 
-#: lua-scripting/lua_batch_project.cpp:3067
-#: lua-scripting/lua_batch_project.cpp:3337
+#: lua-scripting/lua_batch_project.cpp:3068
+#: lua-scripting/lua_batch_project.cpp:3338
 #: lua-scripting/lua_standard_project.cpp:4069
 #, c-format
 msgid "Unable to find the specified list (%d) in the project."
 msgstr "No se puede encontrar la lista especificada (%d) en el proyecto."
 
-#: lua-scripting/lua_batch_project.cpp:3145
-#: lua-scripting/lua_batch_project.cpp:3270
+#: lua-scripting/lua_batch_project.cpp:3146
+#: lua-scripting/lua_batch_project.cpp:3271
 #: lua-scripting/lua_standard_project.cpp:4202
 #, c-format
 msgid "Unable to find the specified section (%d) in the project."
 msgstr "No se puede encontrar la sección (%d) especificada en el proyecto."
 
-#: lua-scripting/lua_batch_project.cpp:3200
+#: lua-scripting/lua_batch_project.cpp:3201
 #: lua-scripting/lua_standard_project.cpp:3770
 #: lua-scripting/lua_standard_project.cpp:3832
 #: lua-scripting/lua_standard_project.cpp:4358
@@ -5008,7 +5017,7 @@ msgstr "No se puede encontrar la sección (%d) especificada en el proyecto."
 msgid "Unable to find the specified graph (%d) in the project."
 msgstr "No se puede encontrar el gráfico especificado (%d) en el proyecto."
 
-#: lua-scripting/lua_batch_project.cpp:3284
+#: lua-scripting/lua_batch_project.cpp:3285
 #, c-format
 msgid "Unable to find the specified window (%d) in the project."
 msgstr "No se puede encontrar la ventana especificada (%d) en el proyecto."
@@ -5584,7 +5593,7 @@ msgid ""
 "Modified SMOG is a variation of SMOG that is adjusted for primary-age "
 "materials."
 msgstr ""
-"El SMOG modificado es una variación del SMOG que se ajusta a los materiales "
+"Modified SMOG es una variación del SMOG que se ajusta a los materiales "
 "de la edad primaria."
 
 #. TRANSLATORS: "New Automated Readability Index" should not be translated;
@@ -6635,6 +6644,10 @@ msgstr "Lectura de adultos (formularios y documentos técnicos)"
 #: projects/base_project_view.cpp:611
 msgid "Second Language Reading"
 msgstr "Lectura de un segundo idioma"
+
+#: projects/base_project_view.cpp:1017
+msgid "Do not show this again."
+msgstr "No volver a mostrar."
 
 #: projects/base_project_view.cpp:1131
 msgid "Save the project"
@@ -8980,10 +8993,6 @@ msgstr ""
 "No se puede guardar \"%s\".\n"
 "Compruebe que tiene acceso de escritura a este archivo o que no está en uso."
 
-#: projects/standard_project_view.cpp:1592 ui/dialogs/tools_options_dlg.h:890
-msgid "Scores"
-msgstr "Puntuaciones de pruebas"
-
 #: projects/standard_project_view.cpp:1600
 msgid "Grade Level"
 msgstr "Nivel de Grado"
@@ -9899,7 +9908,7 @@ msgstr "Frases redundantes:"
 
 #: results-format/project_report_format.cpp:2813
 msgid "Overused words (x sentence):"
-msgstr "Palabras usadas en exceso (x oración)"
+msgstr "Palabras usadas en exceso (x oración):"
 
 #: results-format/project_report_format.cpp:2844
 msgid "Wordy items:"
@@ -11056,46 +11065,59 @@ msgid "Select which section to copy:"
 msgstr "Seleccione la sección que desea copiar:"
 
 #. TRANSLATORS: %s is the application name
-#: ui/dialogs/about_dlg_ex.cpp:34
+#: ui/dialogs/about_dlg_ex.cpp:43
 #, c-format
 msgid "About %s"
 msgstr "Acerca de %s"
 
-#: ui/dialogs/about_dlg_ex.cpp:111
+#: ui/dialogs/about_dlg_ex.cpp:163
 msgid "Product Info"
 msgstr "Información del Producto"
 
-#: ui/dialogs/about_dlg_ex.cpp:122
+#: ui/dialogs/about_dlg_ex.cpp:174
 msgid "Version:"
 msgstr "Versión:"
 
 #. TRANSLATORS: Compiled version of the program (e.g., DEBUG or RELEASE)
-#: ui/dialogs/about_dlg_ex.cpp:128
+#: ui/dialogs/about_dlg_ex.cpp:180
 msgid "Build:"
 msgstr "Compilación del Programa:"
 
-#: ui/dialogs/about_dlg_ex.cpp:129
+#: ui/dialogs/about_dlg_ex.cpp:181
 msgid "DEBUG"
 msgstr "DEPURAR"
 
-#: ui/dialogs/about_dlg_ex.cpp:131
+#: ui/dialogs/about_dlg_ex.cpp:183
 msgid "Built on:"
 msgstr "Creado el:"
 
 #. TRANSLATORS: Operating System
-#: ui/dialogs/about_dlg_ex.cpp:137
+#: ui/dialogs/about_dlg_ex.cpp:189
 msgid "Platform:"
 msgstr "Plataforma:"
 
-#: ui/dialogs/about_dlg_ex.cpp:164
+#: ui/dialogs/about_dlg_ex.cpp:216
 msgid "License"
 msgstr "Licencia"
 
-#: ui/dialogs/about_dlg_ex.cpp:177
+#: ui/dialogs/about_dlg_ex.cpp:233
+msgid "Components"
+msgstr "Componentes"
+
+#: ui/dialogs/about_dlg_ex.cpp:244
+#, c-format
+msgid "version %s"
+msgstr "versión %s"
+
+#: ui/dialogs/about_dlg_ex.cpp:245
+msgid "unversioned"
+msgstr "no versión"
+
+#: ui/dialogs/about_dlg_ex.cpp:320
 msgid "Citation"
 msgstr "Citación"
 
-#: ui/dialogs/about_dlg_ex.cpp:180
+#: ui/dialogs/about_dlg_ex.cpp:323
 #, c-format
 msgid "To cite %s in publications:"
 msgstr "Para citar %s en publicaciones:"
@@ -14871,10 +14893,6 @@ msgstr "Descargando..."
 msgid "Downloading \"%s\""
 msgstr "Descargando \"%s\""
 
-#: webharvester/webharvester.cpp:410
-msgid "..."
-msgstr "..."
-
 #. TRANSLATORS: Gathering pages from a website.
 #: webharvester/webharvester.cpp:414
 #, c-format
@@ -14899,6 +14917,27 @@ msgstr "Búsqueda..."
 #, c-format
 msgid "Crawling \"%s\""
 msgstr "Búsqueda \"%s\""
+
+#~ msgid "Joint Photographic Experts Group"
+#~ msgstr "Joint Photographic Experts Group"
+
+#~ msgid "Bitmap"
+#~ msgstr "Mapa de bits"
+
+#~ msgid "Tagged Image File Format"
+#~ msgstr "Tagged Image File Format"
+
+#~ msgid "Truevision Advanced Raster Graphics Adapter"
+#~ msgstr "Truevision Advanced Raster Graphics Adapter"
+
+#~ msgid "Graphics Interchange Format"
+#~ msgstr "Formato de gráficos intercambeable"
+
+#~ msgid "Scalable Vector Graphics"
+#~ msgstr "Gráficos Vectoriales Escalables"
+
+#~ msgid "Hide this notification message."
+#~ msgstr "Ocultar esta notificación."
 
 #, fuzzy
 #~| msgid "Connection Error"
@@ -15321,10 +15360,6 @@ msgstr "Búsqueda \"%s\""
 #, fuzzy
 #~ msgid "Replacements"
 #~ msgstr "Sustituir"
-
-#, fuzzy
-#~ msgid "Comments"
-#~ msgstr "Documento:"
 
 #, fuzzy
 #~ msgid "Failing"
