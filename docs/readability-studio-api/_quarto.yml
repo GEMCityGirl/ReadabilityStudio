@@ -15,7 +15,10 @@ pdf-cover-author-color: "61, 60, 59"
 pdf-logo: "images/non-generated/cover-logo.png"
 trademark: "{{< var PROGRAM_LONGNAME >}}"
 publisher: "{{< var PUBLISHER >}}"
-publisher-cities: Dayton
+publisher-cities:
+  - Brussels
+  - Ottawa
+  - Darmstadt
 theme-color: "248, 149, 34"
 page-side-decoration-color: "61, 60, 59"
 chapter-image: "non-generated/banner.jpg"

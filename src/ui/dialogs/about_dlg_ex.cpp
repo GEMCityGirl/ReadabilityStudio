@@ -274,7 +274,7 @@ void AboutDialogEx::CreateControls()
         allLibInfo.push_back(formatLibInfo(wxGetZlibVersionInfo()));
         // submodules without version information
         allLibInfo.push_back(formatLibInfo(wxVersionInfo{ L"NanoSVG", -1 }));
-        allLibInfo.push_back(formatLibInfo(wxVersionInfo{ L"CRCpp", -1 }));
+        allLibInfo.push_back(formatLibInfo(wxVersionInfo{ L"CRC++", -1 }));
         allLibInfo.push_back(formatLibInfo(wxVersionInfo{ L"wxSimpleJSON", -1 }));
         allLibInfo.push_back(formatLibInfo(wxVersionInfo{ L"wxStartPage", -1 }));
         allLibInfo.push_back(formatLibInfo(
