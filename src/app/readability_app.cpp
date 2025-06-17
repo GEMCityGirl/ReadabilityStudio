@@ -198,7 +198,7 @@ void ReadabilityApp::ShowSplashscreen()
                     bitmap, GetAppName(), GetAppSubName(), GetVendorName(), true,
                     // TRANSLATORS: "\U000000A92006-2025" should not be edited.
                     _(L"Copyright \U000000A92006-2025 Oleander Software, Ltd., "));
-                // quneiform-suppress-begin
+                // quneiform-suppress-end
 
                 [[maybe_unused]]
                 wxSplashScreen* splash =

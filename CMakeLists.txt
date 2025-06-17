@@ -97,6 +97,14 @@ endif()
 # TODO check XCode/AppleClang version
 message(STATUS "Compiler: ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
 
+# Read implemtation of Snowball used by stemming library (this appears in the help)
+file(READ "${CMAKE_CURRENT_SOURCE_DIR}/src/OleanderStemmingLibrary/src/stemming.h" STEM_CONTENT)
+string(REGEX MATCH "SNOWBALL_MAJOR_VERSION = ([0-9]+)" _ ${STEM_CONTENT})
+set(SNOWBALL_MAJOR_VERSION ${CMAKE_MATCH_1})
+string(REGEX MATCH "SNOWBALL_MINOR_VERSION = ([0-9]+)" _ ${STEM_CONTENT})
+set(SNOWBALL_MINOR_VERSION ${CMAKE_MATCH_1})
+message(STATUS "Snowball standard in use: ${SNOWBALL_MAJOR_VERSION}.${SNOWBALL_MINOR_VERSION}")
+
 message(STATUS "${readstudio_DESCRIPTION}")
 message(STATUS "${PROGRAM_COMMENTS}")
 message(STATUS "Full version: ${readstudio_VERSION_MAJOR}.${readstudio_VERSION_MINOR}.${readstudio_VERSION_PATCH}.${readstudio_VERSION_TWEAK}")
