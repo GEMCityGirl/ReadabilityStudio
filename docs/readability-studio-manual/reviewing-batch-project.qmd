@@ -10,20 +10,26 @@ source('R/appdown.r')
 ::: {.tipsection data-latex=""}
 For any list that displays a document name in the first column, the following features are available: \
 
-To create a [standard project](#sec-creating-standard-project) for any document in the list, select it and click the `r keys("Subproject")` button on the **Home** tab. This is useful for reviewing a particular document in greater detail. Note that when this standard project is created, it will copy all the project settings from the batch project. (These options may differ from your [global configurations](#sec-options-overview).) \
+To create a [standard project](#sec-creating-standard-project) for any document in the list, select it and click the `r keys("Subproject")` button on the **Home** tab.
+This is useful for reviewing a particular document in greater detail.
+Note that when this standard project is created, it will copy all the project settings from the batch project.
+(These options may differ from your [global configurations](#sec-options-overview).) \
 
 To remove any document in the list from the project, select it and press `r keys('Del')` (`r os_logo('windows')`, `r os_logo('linux')`) or `r keys('\\backdel')` (`r os_logo('apple')`) on your keyboard.
 :::
 
 ## Test Scores {#sec-reviewing-batch-scores}
 
-After opening a project, click on the **Readability Scores** icon on the project sidebar. The following lists may be available: **Raw Scores**, **Goals**, **Score Summary**, **Grade Score Summary (x Document)**, and **Cloze Score Summary (x Document)**.
+After opening a project, click on the **Readability Scores** icon on the project sidebar.
+The following lists may be available: **Raw Scores**, **Goals**, **Score Summary**, **Grade Score Summary (x Document)**, and **Cloze Score Summary (x Document)**.
 
 The **Raw Scores** subitem will display the scores for each document:
 
 ![](images/batchrawscores.png)
 
-Next to each document name, all of its respective test scores are displayed. In the above example, we can see that the file *NewProject.html* has an [ARI](#sec-ari-test)\index{Automated Readability Index} score of 12.1, a [New Dale-Chall](#sec-dale-chall-test) score of 16+, and a [Flesch-Kincaid](#sec-flesch-kincaid-test) score of 12. To view any document's scores in a vertical layout, double-click on it to display the **View Item** dialog:
+Next to each document name, all of its respective test scores are displayed.
+In the above example, we can see that the file *NewProject.html* has an [ARI](#sec-ari-test)\index{Automated Readability Index} score of 12.1, a [New Dale-Chall](#sec-dale-chall-test) score of 16+, and a [Flesch-Kincaid](#sec-flesch-kincaid-test) score of 12.
+To view any document's scores in a vertical layout, double-click on it to display the **View Item** dialog:
 
 ![](images/viewitemrawscores.png){width=45% fig-align="center"}
 
@@ -31,10 +37,12 @@ The **Goals** subitem will display any [goals](#sec-reviewing-goals) that are cu
 
 ![](images/batch-project-goals.png){width=75% fig-align="center"}
 
-Above, we can see that most of the documents are passing the goal of having an ELF score below 12. However, most are failing to have an FRE score above 60.
+Above, we can see that most of the documents are passing the goal of having an ELF score below 12.
+However, most are failing to have an FRE score above 60.
 
 ::: {.notesection data-latex=""}
-For simplicity, only goals that are failing are shown here. If all goals are passing, then this window will display a message indicating that.
+For simplicity, only goals that are failing are shown here.
+If all goals are passing, then this window will display a message indicating that.
 :::
 
 The **Score Summary** subitem will display the aggregated statistics for each test:
@@ -64,9 +72,12 @@ If [**Extended Information**](#sec-options-statistics) is enabled, then these ad
 - [Upper quartile](#sec-stat-terms): the test score at the 75% percentile. This is the score separating the upper quarter of the scores from the rest of the scores.
 :::
 
-Note that when calculating these statistics, failed test scores are treated as missing observations and not included. For example, let us say that you analyze 100 documents, but 3 of them cannot calculate [Fry](#sec-fry-test) because their average sentence length is too high. In this case, the valid 97 Fry scores will be added and divided by 97 (not 100) to get the means.
+Note that when calculating these statistics, failed test scores are treated as missing observations and not included.
+For example, let us say that you analyze 100 documents, but 3 of them cannot calculate [Fry](#sec-fry-test) because their average sentence length is too high.
+In this case, the valid 97 Fry scores will be added and divided by 97 (not 100) to get the means.
 
-Some special scores will be converted when being aggregated into these statistics. For example, grade ranges such as *5–6* (from [New Dale-Chall](#sec-dale-chall-test)) will be converted to its own average (e.g., *5–6* will be 5.5).
+Some special scores will be converted when being aggregated into these statistics.
+For example, grade ranges such as *5–6* (from [New Dale-Chall](#sec-dale-chall-test)) will be converted to its own average (e.g., *5–6* will be 5.5).
 
 To remove any test in this list from the project, select it and press `r keys(c('Ctrl', 'Del'))` (`r os_logo('windows')`, `r os_logo('linux')`) or `r keys(c('\\cmd', '\\backdel'))` (`r os_logo('apple')`) on your keyboard.
 
@@ -74,7 +85,9 @@ The **Grade Score Summary (x Document)** subitem will display aggregated statist
 
 ![](images/batch-grade-scores-by-document.png)
 
-The **Valid N** column represents the number of grade-level tests that were successfully ran against each document. After this column are additional columns displaying grade-level score statistics, document-by-document. In the above example, we can see that the document *CustomWordTest.html* had 5 different grade tests ran against it, with 9.5 being the lowest score and 10.9 being the highest.
+The **Valid N** column represents the number of grade-level tests that were successfully ran against each document.
+After this column are additional columns displaying grade-level score statistics, document-by-document.
+In the above example, we can see that the document *CustomWordTest.html* had 5 different grade tests ran against it, with 9.5 being the lowest score and 10.9 being the highest.
 
 Note that this subitem will only be available if at least one grade-level test is included in the project.
 
@@ -100,7 +113,8 @@ In the histogram below, we can see that 15 documents scored within the 10^th^ gr
 
 ![](images/histogrades.png){width=75% fig-align="center"}
 
-We interpret this first by looking at the highest bar. The label above it displays *15*, which is the number of documents in that category. Now, to see the category, we look at the x-axis labels below the bar.
+We interpret this first by looking at the highest bar. The label above it displays *15*, which is the number of documents in that category.
+Now, to see the category, we look at the x-axis labels below the bar.
 The *10* on the middle of the bar indicates the bar's range (in this case, the 10^th^ grade).
 Because we are [rounding](#sec-options-graphs) our scores down (the default), scores such as 9.7 will be rounded down and fall into the previous bin (i.e., bar).
 Scores between 10.0 and 10.9 will fall into this bin; therefore, this bar will represent the 10^th^ grade.
@@ -109,9 +123,13 @@ Scores between 10.0 and 10.9 will fall into this bin; therefore, this bar will r
 Selecting a bar will display the first 25 documents within that bin as a tooltip.
 :::
 
-Continuing on, this batch has quite a few difficult documents. There are 15 documents in the 10^th^ grade range, 10 documents in the 9^th^ grade range, etc. In contrast, there are few easy documents, with only 2 in the 6^th^–7^th^ grade ranges. From this, we can surmise that the readability of this batch needs improving.
+Continuing on, this batch has quite a few difficult documents.
+There are 15 documents in the 10^th^ grade range, 10 documents in the 9^th^ grade range, etc.
+In contrast, there are few easy documents, with only 2 in the 6^th^–7^th^ grade ranges.
+From this, we can surmise that the readability of this batch needs improving.
 
-Index tests (such as [Flesch](#sec-flesch-test)) will also have histograms, where the bins are ranges in the index. For example, in the histogram below we can see how most of the documents are in the lower range of the Flesch scale:
+Index tests (such as [Flesch](#sec-flesch-test)) will also have histograms, where the bins are ranges in the index.
+For example, in the histogram below we can see how most of the documents are in the lower range of the Flesch scale:
 
 ![](images/histoindex.png){width=75% fig-align="center"}
 
@@ -141,11 +159,15 @@ If the project contains groups, then the boxes will be categorized into these gr
 In the above example, note that the documents in the *Overviews* group mostly score in the high-school range.
 There are, however, a few outliers in this group that may need reviewing.
 
-Along with the grade-level box plots, a separate box plot for each index test will also be included. Below is a box plot of [Flesch](#sec-flesch-test) scores from a batch:
+Along with the grade-level box plots, a separate box plot for each index test will also be included.
+Below is a box plot of [Flesch](#sec-flesch-test) scores from a batch:
 
 ![](images/boxindex.png){width=75% fig-align="center"}
 
-As we can see above, the middle half of the documents fall within a marginally acceptable range of 46–60.5 (60–80 is normally preferred). The upper whisker goes up to 75, meaning that there are a decent number of document in the 60.5–75 range. Unfortunately, the lower whisker extends all the way to 33—this indicates a fair amount of difficult documents. As with the grade-level plot, this graph helps us conclude that some documents in this batch should be revised to lower their scores.
+As we can see above, the middle half of the documents fall within a marginally acceptable range of 46–60.5 (60–80 is normally preferred).
+The upper whisker goes up to 75, meaning that there are a decent number of document in the 60.5–75 range.
+Unfortunately, the lower whisker extends all the way to 33—this indicates a fair amount of difficult documents.
+As with the grade-level plot, this graph helps us conclude that some documents in this batch should be revised to lower their scores.
 
 \newpage
 
@@ -178,7 +200,11 @@ Note that test-specific word counts/percentages (e.g., Dale-Chall unfamiliar wor
 
 **All Words**: This list displays all the words from the documents and their respective frequency counts.
 
-**Key Words**: This list is the same as **All Words**, except that it excludes filenames, numeric words, and common words, and then combines the remaining words. In regards to combining words, words with the same root will be merged into a single row. For example, *report*, *reports*, and *reporting* will be combined into one row, with the frequency counts for all three words also combined. As for excluding words, common words (e.g., *the*), numerals, and filenames are not included in this list. (If no words can be combined and there are no common words to ignore, then this list will not be shown.)
+**Key Words**: This list is the same as **All Words**, except that it excludes filenames, numeric words, and common words, and then combines the remaining words.
+In regards to combining words, words with the same root will be merged into a single row.
+For example, *report*, *reports*, and *reporting* will be combined into one row, with the frequency counts for all three words also combined.
+As for excluding words, common words (e.g., *the*), numerals, and filenames are not included in this list.
+(If no words can be combined and there are no common words to ignore, then this list will not be shown.)
 
 **Key Word Cloud**: Refer to @sec-reviewing-word-breakdowns.
 
@@ -186,7 +212,8 @@ Note that test-specific word counts/percentages (e.g., Dale-Chall unfamiliar wor
 
 ## Long Sentences {#sec-reviewing-batch-long-sentences}
 
-After opening a project, click on the **Sentences Breakdown** icon on the project sidebar and click on the **Long Sentences** subitem. This window will display a list of the difficult sentences from your documents.
+After opening a project, click on the **Sentences Breakdown** icon on the project sidebar and click on the **Long Sentences** subitem.
+This window will display a list of the difficult sentences from your documents.
 
 ![](images/batchlongsentences.png)
 
@@ -194,7 +221,8 @@ Note that if you are ignoring incomplete sentences, then this will only include 
 If you need to review all sentences from the documents, then select the option [**Include in analysis and treat as full sentences**](#sec-document-analysis).
 Refer to @sec-how-text-is-excluded to learn more about how *{{< var PROGRAM_NAME >}}* handles incomplete sentences.
 
-To find the longest sentence, [sort](#sec-column-sorting) the **Longest Sentence Length** column into descending order. As we can see below, the longest sentence is now shown at the top of the list.
+To find the longest sentence, [sort](#sec-column-sorting) the **Longest Sentence Length** column into descending order.
+As we can see below, the longest sentence is now shown at the top of the list.
 
 ![](images/batchlongestsentence.png)
 
@@ -211,23 +239,29 @@ Note that if there are no long sentences in your documents, then this window wil
 
 ## Summary Statistics {#sec-reviewing-batch-summary-stats}
 
-To display a list containing statistics of all your documents, click on the **Summary Statistics** icon on the project sidebar. To control which statistics are included in this list, click the `r keys('Edit Statistics')` button on the **Home** tab of the ribbon.
+To display a list containing statistics of all your documents, click on the **Summary Statistics** icon on the project sidebar.
+To control which statistics are included in this list, click the `r keys('Edit Statistics')` button on the **Home** tab of the ribbon.
 
 ## Grammar {#sec-reviewing-batch-grammar}
 
 Note that the following windows are only included if their respective grammar issues are detected in the documents.
 
-Also, from any of these windows you can create a [standard project](#sec-creating-standard-project). Within a given window, select a document in its list and click the `r keys("Subproject")` button on the **Home** tab.
+Also, from any of these windows you can create a [standard project](#sec-creating-standard-project).
+Within a given window, select a document in its list and click the `r keys("Subproject")` button on the **Home** tab.
 
-This is useful for reviewing a particular document in greater detail. Note that when this standard project is created, it will copy all the project settings from the batch project. These options may differ from your [global configurations](#sec-options-overview).
+This is useful for reviewing a particular document in greater detail.
+Note that when this standard project is created, it will copy all the project settings from the batch project.
+These options may differ from your [global configurations](#sec-options-overview).
 
 ### Reviewing Conjunction-Starting Sentences {-}
 
-After opening a project, click on the **Grammar** icon on the project sidebar and select the **Conjunction-Starting Sentences** subitem. This window will display a list of all sentences that begin with coordinating conjunctions.
+After opening a project, click on the **Grammar** icon on the project sidebar and select the **Conjunction-Starting Sentences** subitem.
+This window will display a list of all sentences that begin with coordinating conjunctions.
 
 ![](images/batchconjunctionstart.png)
 
-To view a specific document's conjunction-starting sentences, double-click on its row in this list. A vertical display of that document's conjunction-starting sentences will be shown:
+To view a specific document's conjunction-starting sentences, double-click on its row in this list.
+A vertical display of that document's conjunction-starting sentences will be shown:
 
 ![](images/batchconjunctionviewitem.png){width=60% fig-align="center"}
 
@@ -235,23 +269,28 @@ Refer to @sec-reviewing-standard-grammar to learn more about conjunction-startin
 
 ### Reviewing Lowercased Sentences {-}
 
-After opening a project, click on the **Grammar** icon on the project sidebar and select the **Lowercased Sentences** subitem. This window will display a list of all sentences that begin with lowercased words (which is usually a typo).
+After opening a project, click on the **Grammar** icon on the project sidebar and select the **Lowercased Sentences** subitem.
+This window will display a list of all sentences that begin with lowercased words (which is usually a typo).
 
 ![](images/batchlowersentences.png)
 
-Note that if the option [**Sentences must begin with capitalized words**](#sec-document-analysis) is enabled, then this feature will be limited to sentences that begin new paragraphs. If you want to search for any possible sentences that begin with lowercased words, then you should leave this option unchecked.
+Note that if the option [**Sentences must begin with capitalized words**](#sec-document-analysis) is enabled, then this feature will be limited to sentences that begin new paragraphs.
+If you want to search for any possible sentences that begin with lowercased words, then you should leave this option unchecked.
 
-To view a specific document's lowercased sentences, double-click on its row in this list. A vertical display of that document's lowercased sentences will be shown:
+To view a specific document's lowercased sentences, double-click on its row in this list.
+A vertical display of that document's lowercased sentences will be shown:
 
 ![](images/batchlowersentenceviewitem.png){width=60% fig-align="center"}
 
 ### Reviewing Repeated Words {-}
 
-After opening a project, click on the **Grammar** icon on the project sidebar and select the **Repeated Words** subitem. This window will display a list of all repeated words from each document.
+After opening a project, click on the **Grammar** icon on the project sidebar and select the **Repeated Words** subitem.
+This window will display a list of all repeated words from each document.
 
 ![](images/batchrepeatedwords.png)
 
-If a repeated word occurs more than once in a document, then a multiplication factor will be shown next to it. For example, if *the the* occurs two separate times in a given document, then this will be displayed as *the the\*2*:
+If a repeated word occurs more than once in a document, then a multiplication factor will be shown next to it.
+For example, if *the the* occurs two separate times in a given document, then this will be displayed as *the the\*2*:
 
 ![](images/batchrepeatedmultiple.png){width=75% fig-align="center"}
 
@@ -263,15 +302,19 @@ Refer to @sec-reviewing-standard-grammar and @sec-repeated-word-exceptions to le
 
 ### Reviewing Article Mismatches {-}
 
-After opening a project, click on the **Grammar** icon on the project sidebar and select the **Article Mismatches** subitem. This window will display a list of articles (i.e., *a* and *an*) that do not match their following noun.
+After opening a project, click on the **Grammar** icon on the project sidebar and select the **Article Mismatches** subitem.
+This window will display a list of articles (i.e., *a* and *an*) that do not match their following noun.
 
 ![](images/batcharticlemismatches.png)
 
-Article mismatch searching does not affect readability calculations, so this analysis is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
+Article mismatch searching does not affect readability calculations, so this analysis is applied to all sentences.
+[Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
-If an article mismatch occurs more than once in a document, then a multiplication factor will be shown next to it. For example, if *a electronic* occurs twice in a given document, then this will be displayed as *a electronic\*2*.
+If an article mismatch occurs more than once in a document, then a multiplication factor will be shown next to it.
+For example, if *a electronic* occurs twice in a given document, then this will be displayed as *a electronic\*2*.
 
-To view a specific document's article mismatches, double-click on its row in this list. A vertical display of that item will be shown:
+To view a specific document's article mismatches, double-click on its row in this list.
+A vertical display of that item will be shown:
 
 ![](images/viewitemarticlemismatch.png){width=35% fig-align="center"}
 
@@ -284,11 +327,14 @@ This window will display a list of misused phrases, grammatically incorrect word
 
 ![](images/batchwordingerrors.png)
 
-This search is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
+This search is applied to all sentences.
+[Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
-If a wording error occurs more than once in a document, then a multiplication factor will be shown next to it. For example, if *other then* occurs two separate times in a given document, then this will be displayed as *other then\*2*.
+If a wording error occurs more than once in a document, then a multiplication factor will be shown next to it.
+For example, if *other then* occurs two separate times in a given document, then this will be displayed as *other then\*2*.
 
-To view a specific document's errors, double click on its row. A vertical display of that document's wording errors will be shown:
+To view a specific document's errors, double click on its row.
+A vertical display of that document's wording errors will be shown:
 
 ![](images/batchwordingerrorsviewitem.png){width=60% fig-align="center"}
 
@@ -299,29 +345,39 @@ This window will display a list of all possible misspellings from each document.
 
 ![](images/batchmisspellings.png)
 
-This search is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
+This search is applied to all sentences.
+[Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
-If a misspelling occurs more than once in a document, then a multiplication factor will be shown next to it. For example, if *specfy* occurs two separate times in a given document, then this will be displayed as *specfy\*2*.
+If a misspelling occurs more than once in a document, then a multiplication factor will be shown next to it.
+For example, if *specfy* occurs two separate times in a given document, then this will be displayed as *specfy\*2*.
 
-To view a specific document's misspellings, right click on its row and select **View Item**. A vertical display of that document's misspellings will be shown:
+To view a specific document's misspellings, right click on its row and select **View Item**.
+A vertical display of that document's misspellings will be shown:
 
 ![](images/batchmisspellingsviewitem.png)width=60% fig-align="center"}
 
-To add any document's misspellings to your dictionary, double click on its row to show the **Add to Dictionary** dialog. From here, you can add any (or all) reported misspellings to your dictionary. Afterwards, these words will no longer be reported as misspelled.
+To add any document's misspellings to your dictionary, double click on its row to show the **Add to Dictionary** dialog.
+From here, you can add any (or all) reported misspellings to your dictionary.
+Afterwards, these words will no longer be reported as misspelled.
 
 ### Reviewing Redundant Phrases {-}
 
-After opening a project, click on the **Grammar** icon on the project sidebar and select the **Redundant Phrases** subitem. This window will display a list of redundant phrases from the documents. Suggested replacements will also be shown next to each phrase in this list.
+After opening a project, click on the **Grammar** icon on the project sidebar and select the **Redundant Phrases** subitem.
+This window will display a list of redundant phrases from the documents.
+Suggested replacements will also be shown next to each phrase in this list.
 
 ![](images/batchredundantphrases.png)
 
-Redundant-phrase searching does not affect readability calculations, so this analysis is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
+Redundant-phrase searching does not affect readability calculations, so this analysis is applied to all sentences.
+[Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
-If a redundant phrase occurs more than once in a document, then a multiplication factor will be shown next to it. For example, if *brief summary* occurs three separate times in a given document, then this will be displayed as *brief summary\*3*:
+If a redundant phrase occurs more than once in a document, then a multiplication factor will be shown next to it.
+For example, if *brief summary* occurs three separate times in a given document, then this will be displayed as *brief summary\*3*:
 
 ![](images/batchredundantphrasesmultiple.png)
 
-To view a specific document's redundant phrases, double-click on its row in this list. A vertical display of that document's redundant phrases will be shown:
+To view a specific document's redundant phrases, double-click on its row in this list.
+A vertical display of that document's redundant phrases will be shown:
 
 ![](images/batchredundantphrasesviewitem.png){width=75% fig-align="center"}
 
@@ -329,15 +385,19 @@ Refer to @sec-reviewing-standard-grammar for an explanation of what redundant ph
 
 ### Reviewing Wordy Items {-}
 
-After opening a project, click on the **Grammar** icon on the project sidebar and select the **Wordy Items** subitem. This window will display a list of wordy phrases and difficult words from the documents. Suggested replacements will also be shown next to each phrase in this list.
+After opening a project, click on the **Grammar** icon on the project sidebar and select the **Wordy Items** subitem.
+This window will display a list of wordy phrases and difficult words from the documents.
+Suggested replacements will also be shown next to each phrase in this list.
 
 ![](images/batchwordyphrases.png)
 
-If a wordy item occurs more than once in a document, then a multiplication factor will be shown next to it. For example, if *result in* occurs two separate times in a given document, then this will be displayed as *result in\*2*:
+If a wordy item occurs more than once in a document, then a multiplication factor will be shown next to it.
+For example, if *result in* occurs two separate times in a given document, then this will be displayed as *result in\*2*:
 
 ![](images/batchwordyphrasesmultiple.png)
 
-To view a specific document's wordy item, double-click on its row in this list. A vertical display of that item will be shown:
+To view a specific document's wordy item, double-click on its row in this list.
+A vertical display of that item will be shown:
 
 ![](images/viewitemwordyphrase.png){width=50% fig-align="center"}
 
@@ -345,15 +405,19 @@ Refer to @sec-reviewing-standard-grammar for an explanation about wordy phrases.
 
 ### Reviewing Clichés {-}
 
-After opening a project, click on the **Grammar** icon on the project sidebar and select the **Clichés** subitem. This window will display a list of clichés from the documents. Suggested replacements will be shown next to each cliché in this list.
+After opening a project, click on the **Grammar** icon on the project sidebar and select the **Clichés** subitem.
+This window will display a list of clichés from the documents.
+Suggested replacements will be shown next to each cliché in this list.
 
 ![](images/batchcliches.png)
 
-If a cliché occurs more than once in a document, then a multiplication factor will be shown next to it. For example, if *off the wall* occurs four separate times in a given document, then this will be displayed as *off the wall\*4*:
+If a cliché occurs more than once in a document, then a multiplication factor will be shown next to it.
+For example, if *off the wall* occurs four separate times in a given document, then this will be displayed as *off the wall\*4*:
 
 ![](images/batchclichemultiple.png){width=75% fig-align="center"}
 
-To view a specific document's clichés, double-click on its row in this list. A vertical display of that document's clichés will be shown:
+To view a specific document's clichés, double-click on its row in this list.
+A vertical display of that document's clichés will be shown:
 
 ![](images/batchclichesviewitem.png){width=75% fig-align="center"}
 
@@ -361,13 +425,16 @@ Refer to @sec-reviewing-standard-grammar for an explanation about clichés.
 
 ### Reviewing Passive Voice {-}
 
-After opening a project, click on the **Grammar** icon on the project sidebar and select the **Passive Voice** subitem. This window will display a list of all passive phrases from each document.
+After opening a project, click on the **Grammar** icon on the project sidebar and select the **Passive Voice** subitem.
+This window will display a list of all passive phrases from each document.
 
 ![](images/batchpassivevoice.png)
 
-If a passive phrase occurs more than once in a document, then a multiplication factor will be shown next to it. For example, if *be chosen* occurs twice in a given document, then this will be displayed as *be chosen\*2*.
+If a passive phrase occurs more than once in a document, then a multiplication factor will be shown next to it.
+For example, if *be chosen* occurs twice in a given document, then this will be displayed as *be chosen\*2*.
 
-To view a specific document's passive phrases, right click on its row and select **View Item**. A vertical display of that document's passive phrases will be shown:
+To view a specific document's passive phrases, right click on its row and select **View Item**.
+A vertical display of that document's passive phrases will be shown:
 
 ![](images/batchpassivevoiceviewitem.png){width=25% fig-align="center"}
 
@@ -375,13 +442,17 @@ Refer to @sec-reviewing-standard-grammar for an explanation about passive phrase
 
 ### Reviewing Overused Words (x Sentence) {-}
 
-After opening a project, click on the **Grammar** icon on the project sidebar and select the **Overused Words (x Sentence)** subitem. This window will display a list of all sentences that use the same word multiple times from each document. (These are more of style suggestions, rather than grammar issues.) When reviewing these, it is recommended to change some of the repeated words to add more variety to your content.
+After opening a project, click on the **Grammar** icon on the project sidebar and select the **Overused Words (x Sentence)** subitem.
+This window will display a list of all sentences that use the same word multiple times from each document.
+(These are more of style suggestions, rather than grammar issues.)
+When reviewing these, it is recommended to change some of the repeated words to add more variety to your content.
 
 ![](images/batchoverusedwordsbysentence.png)
 
 Numeric words, proper nouns, words containing less than three letters, and common words (e.g., *the*) are excluded from this review.
 
-To view a specific document's overused words, right click on its row and select **View Item**. A vertical display of that document's overused words will be shown.
+To view a specific document's overused words, right click on its row and select **View Item**.
+A vertical display of that document's overused words will be shown.
 
 Refer to @sec-reviewing-standard-grammar for an explanation about overused words.
 
