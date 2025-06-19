@@ -19,6 +19,7 @@ unlink(glue("{docFolder}/shortcuts-cheatsheet/docs"), recursive=T)
 unlink(glue("{docFolder}/readability-studio-manual/docs-manual"), recursive=T)
 unlink(glue("{docFolder}/readability-test-reference/docs-online"), recursive=T)
 unlink(glue("{docFolder}/readability-studio-api/docs"), recursive=T)
+unlink(glue("{docFolder}/release-notes/docs"), recursive=T)
 
 # delete helper files copied from the main project into others
 clearFolders <- function()
