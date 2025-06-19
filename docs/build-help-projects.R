@@ -1,13 +1,16 @@
 if (!require("pacman")) install.packages("pacman")
 library(pacman)
 pacman::p_load(glue, readr, stringr, fs, lubridate, tidyverse, kableExtra,
-               Hmisc, cowplot, beeswarm, tinytex, stringi, this.path, janitor, quarto)
+               Hmisc, cowplot, beeswarm, tinytex, stringi, this.path, janitor, quarto,
+               magick, pdftools)
 
 if (nchar(tinytex::tinytex_root()) == 0)
   {
   tinytex::install_tinytex()
   }
 # call tinytex::reinstall_tinytex() if you get a "tlmgr: Remote repository is newer than local..." error message
+
+thumbnailWidth <- "256"
 
 docFolder <- this.path::this.dir()
 source(glue("{docFolder}/build-enum-files.R"))
@@ -116,6 +119,11 @@ dir_copy(glue("{docFolder}/readability-studio-manual/_extensions"),
          TRUE)
 
 quarto::quarto_render(output_format="pdf", as_job=F, profile="sysadmin")
+# create a thumbnail for the website
+img <- image_convert(image_read_pdf(glue("{docFolder}/sysadmin/docs/sysadmin-manual.pdf"), 1),
+                     format="jpeg")
+img <- image_scale(img, thumbnailWidth)
+image_write(img, glue("{docFolder}/sysadmin/docs/sysadmin-manual-thumb.jpg"))
 
 unlink(glue("{docFolder}/sysadmin/modern-language-association.csl"))
 unlink(glue("{docFolder}/sysadmin/_variables.yml"))
@@ -146,6 +154,11 @@ dir_copy(glue("{docFolder}/readability-studio-manual/_extensions"),
          TRUE)
 
 quarto::quarto_render(output_format="pdf", as_job=F)
+# create a thumbnail for the website
+img <- image_convert(image_read_pdf(glue("{docFolder}/release-notes/docs/release-notes.pdf"), 1),
+                     format="jpeg")
+img <- image_scale(img, thumbnailWidth)
+image_write(img, glue("{docFolder}/release-notes/docs/release-notes-thumb.jpg"))
 
 unlink(glue("{docFolder}/release-notes/_quarto.yml"))
 unlink(glue("{docFolder}/release-notes/_variables.yml"))
@@ -167,6 +180,11 @@ readLines(glue("{docFolder}/shortcuts-cheatsheet/index.qmd")) |>
   writeLines(glue("{docFolder}/shortcuts-cheatsheet/index.qmd"))
 
 quarto::quarto_render(output_format="pdf", as_job=F)
+# create a thumbnail for the website
+img <- image_convert(image_read_pdf(glue("{docFolder}/shortcuts-cheatsheet/docs/shortcuts-cheatsheet.pdf"), 1),
+                     format="jpeg")
+img <- image_scale(img, thumbnailWidth)
+image_write(img, glue("{docFolder}/shortcuts-cheatsheet/docs/shortcuts-cheatsheet-thumb.jpg"))
 
 unlink(glue("{docFolder}/shortcuts-cheatsheet/_quarto.yml"))
 unlink(glue("{docFolder}/shortcuts-cheatsheet/index.qmd"))
@@ -185,6 +203,10 @@ combine_files("scoring-notes.qmd", "scoring-notes", addendum = "{{< elevator 'Ba
 
 quarto::quarto_render(output_format="pdf", as_job=F, profile="manual")
 quarto::quarto_render(output_format="html", as_job=F, profile="online")
+img <- image_convert(image_read_pdf(glue("{docFolder}/readability-studio-manual/docs-manual/readability-studio-manual.pdf"), 1),
+                     format="jpeg")
+img <- image_scale(img, thumbnailWidth)
+image_write(img, glue("{docFolder}/readability-studio-manual/docs-manual/readability-studio-manual-thumb.jpg"))
 
 unlink(glue("{docFolder}/readability-studio-manual/readability-tests-english.qmd"))
 unlink(glue("{docFolder}/readability-studio-manual/readability-tests-spanish.qmd"))
@@ -259,6 +281,10 @@ combine_files("libdebug.qmd", "libraries/Debug")
 combine_files("enums.qmd", "enums")
 
 quarto::quarto_render(output_format="pdf", as_job=F)
+img <- image_convert(image_read_pdf(glue("{docFolder}/readability-studio-api/docs/readability-studio-api.pdf"), 1),
+                     format="jpeg")
+img <- image_scale(img, thumbnailWidth)
+image_write(img, glue("{docFolder}/readability-studio-api/docs/rreadability-studio-api-thumb.jpg"))
 
 unlink(glue("{docFolder}/readability-studio-api/standard-project.qmd"))
 unlink(glue("{docFolder}/readability-studio-api/batch-project.qmd"))
@@ -337,6 +363,11 @@ combine_files("scoring-notes.qmd", "scoring-notes",
               "(intro|grade[-]level[-]results|cloze)")
 
 quarto::quarto_render(output_format="pdf", as_job=F, profile="reference")
+# create a thumbnail for the website
+img <- image_convert(image_read_pdf(glue("{docFolder}/readability-test-reference/docs/readability-test-reference.pdf"), 1),
+                     format="jpeg")
+img <- image_scale(img, thumbnailWidth)
+image_write(img, glue("{docFolder}/readability-test-reference/docs/readability-test-reference-thumb.jpg"))
 
 unlink(glue("{docFolder}/readability-test-reference/_variables.yml"))
 unlink(glue("{docFolder}/readability-test-reference/readability-tests-english.qmd"))
