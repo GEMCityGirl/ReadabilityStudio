@@ -24,13 +24,14 @@ source('R/appdown.r')
 | *libCURL*, *libcurl-devel*/*libcurl-dev* |
 | *GStreamer*, *gstreamer-devel* |
 | *libsecret*, *libsecret-devel*/*libsecret-1-dev* |
-| *webkit*, *webkit2* |
+| *libwebkit2*, *libwebkit2-devel* |
 | *SDL2-devel* |
 | *libnotify*, *libnotify-devel*/*libnotify-dev* |
 | *TBB*, *tbb-devel*/*tbb-dev* |
 | *OpenMP* |
 | *libopenssl*, *libopenssl-3-devel*/*libssl-dev* |
 | *libxml2*, *libxml2-devel*/*libxml2-dev* |
+| *libpoppler-cpp-dev* (optional |
 
 If building the documentation, prepare *R* to install packages:
 
