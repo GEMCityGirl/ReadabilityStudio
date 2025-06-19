@@ -275,7 +275,6 @@ void AboutDialogEx::CreateControls()
         // submodules without version information
         allLibInfo.push_back(formatLibInfo(wxVersionInfo{ L"NanoSVG", -1 }));
         allLibInfo.push_back(formatLibInfo(wxVersionInfo{ L"CRC++", -1 }));
-        allLibInfo.push_back(formatLibInfo(wxVersionInfo{ L"wxSimpleJSON", -1 }));
         allLibInfo.push_back(formatLibInfo(wxVersionInfo{ L"wxStartPage", -1 }));
         allLibInfo.push_back(formatLibInfo(
             wxVersionInfo{ L"easyexif", -1, 0, 0, 0, wxString{}, easyexif::EASYEXIF_COPYRIGHT }));
