@@ -89,6 +89,7 @@ RSArtProvider::RSArtProvider()
                     { L"ID_SELECT_ALL", L"ribbon/select-all.svg" },
                     { L"ID_REFRESH", L"ribbon/reload.svg" },
                     { L"ID_REALTIME_UPDATE", L"ribbon/realtime.svg" },
+                    { L"ID_WHATS_NEW", L"ribbon/outreach.svg" },
                     { L"ID_LINK", L"ribbon/link.svg" } };
     }
 
@@ -3827,8 +3828,8 @@ void ReadabilityApp::InitStartPage()
         GetMainFrameEx(), wxID_ANY, mruFiles, GetResourceManager().GetSVG(L"ribbon/app-logo.svg"));
 
     GetMainFrameEx()->GetStartPage()->SetUserName(GetAppOptions().GetReviewer());
-    GetMainFrameEx()->GetStartPage()->AddButton(GetResourceManager().GetSVG(L"ribbon/document.svg"),
-                                                _(L"Create a New Project"));
+    GetMainFrameEx()->GetStartPage()->AddButton(
+        wxArtProvider::GetBitmapBundle(L"ID_DOCUMENT", wxART_BUTTON), _(L"Create a New Project"));
     GetMainFrameEx()->GetStartPage()->AddButton(wxArtProvider::GetBitmapBundle(wxART_FILE_OPEN),
                                                 _(L"Open a Project"));
     GetMainFrameEx()->GetStartPage()->AddButton(GetResourceManager().GetSVG(L"ribbon/examples.svg"),
@@ -3837,6 +3838,8 @@ void ReadabilityApp::InitStartPage()
         wxArtProvider::GetBitmapBundle("ID_NOTES", wxART_BUTTON), _(L"Read the Notes"));
     GetMainFrameEx()->GetStartPage()->AddButton(
         wxArtProvider::GetBitmapBundle(wxART_HELP_BOOK, wxART_BUTTON), _(L"Read the Manual"));
+    GetMainFrameEx()->GetStartPage()->AddButton(
+        wxArtProvider::GetBitmapBundle("ID_WHATS_NEW", wxART_BUTTON), _(L"What's New"));
     GetMainFrameEx()->GetStartPage()->AddButton(
         GetResourceManager().GetSVG(L"ribbon/configure.svg"), _(L"Review Program Options"));
 
@@ -3907,6 +3910,12 @@ void MainFrame::OnStartPageClick(wxCommandEvent& event)
             wxLaunchDefaultApplication(manualPath);
             }
         else if (event.GetId() == GetStartPage()->GetButtonID(5))
+            {
+            const wxString manualPath =
+                GetHelpDirectory() + wxFileName::GetPathSeparator() + _DT(L"release-notes.pdf");
+            wxLaunchDefaultApplication(manualPath);
+            }
+        else if (event.GetId() == GetStartPage()->GetButtonID(6))
             {
             ToolsOptionsDlg optionsDlg(wxGetApp().GetParentingWindow());
             optionsDlg.SelectPage(ToolsOptionsDlg::GENERAL_SETTINGS_PAGE);

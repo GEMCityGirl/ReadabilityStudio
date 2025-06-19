@@ -102,6 +102,7 @@ ribbon/misspellings.svg
 ribbon/notepad.svg
 ribbon/number-syllabize.svg
 ribbon/opacity.svg
+ribbon/outreach.svg
 ribbon/paper-notes.svg
 ribbon/paragraph-indent.svg
 ribbon/paragraph.svg

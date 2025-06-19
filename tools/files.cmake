@@ -2,8 +2,8 @@
 # DO NOT MODIFY MANUALLY!
 
 SET(APP_SRC_FILES
-    src/app/readability_app.cpp
     src/app/readability_app_options.cpp
+    src/app/readability_app.cpp
     src/document-helpers/chapter_split.cpp
     src/graphs/frasegraph.cpp
     src/graphs/frygraph.cpp
@@ -30,9 +30,9 @@ SET(APP_SRC_FILES
     src/lua-scripting/lua_screenshot.cpp
     src/lua-scripting/lua_standard_project.cpp
     src/lua-scripting/onelua_no_warnings.c
-    src/projects/base_project.cpp
     src/projects/base_project_doc.cpp
     src/projects/base_project_view.cpp
+    src/projects/base_project.cpp
     src/projects/batch_project_doc.cpp
     src/projects/batch_project_view.cpp
     src/projects/project_frame.cpp
@@ -74,7 +74,6 @@ SET(APP_SRC_FILES
     src/Wisteria-Dataviz/src/base/lines.cpp
     src/Wisteria-Dataviz/src/base/points.cpp
     src/Wisteria-Dataviz/src/base/polygon.cpp
-    src/Wisteria-Dataviz/src/base/reportbuilder.cpp
     src/Wisteria-Dataviz/src/base/reportbuildercolors.cpp
     src/Wisteria-Dataviz/src/base/reportprintout.cpp
     src/Wisteria-Dataviz/src/base/shapes.cpp
@@ -108,6 +107,7 @@ SET(APP_SRC_FILES
     src/Wisteria-Dataviz/src/graphs/proconroadmap.cpp
     src/Wisteria-Dataviz/src/graphs/roadmap.cpp
     src/Wisteria-Dataviz/src/graphs/sankeydiagram.cpp
+    src/Wisteria-Dataviz/src/graphs/scalechart.cpp
     src/Wisteria-Dataviz/src/graphs/table.cpp
     src/Wisteria-Dataviz/src/graphs/wcurveplot.cpp
     src/Wisteria-Dataviz/src/graphs/wordcloud.cpp
@@ -165,6 +165,4 @@ SET(APP_SRC_FILES
     src/Wisteria-Dataviz/src/util/warningmanager.cpp
     src/Wisteria-Dataviz/src/util/xml_format.cpp
     src/Wisteria-Dataviz/src/util/zipcatalog.cpp
-    src/Wisteria-Dataviz/src/wxSimpleJSON/src/cJSON/cJSON.c
-    src/Wisteria-Dataviz/src/wxSimpleJSON/src/wxSimpleJSON.cpp
     src/Wisteria-Dataviz/src/wxStartPage/startpage.cpp)
