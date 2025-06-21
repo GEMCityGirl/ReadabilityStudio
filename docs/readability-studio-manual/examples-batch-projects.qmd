@@ -180,12 +180,12 @@ After adding your documents, click `r keys('Finish')`.
 When the project appears, select **Raw Scores** under **Readability Scores**.
 Here we can see a list of documents, along with their group labels next to them:
 
-[]("images/batch-group-labels-scores.png"){width=75% fig-align="center"}
+![](images/batch-group-labels-scores.png){width=75% fig-align="center"}
 
 Here, we can sort by group or scores and see how the groups compare. In the above example, we can see that the *Tests* group is scoring poorly.
 
 Grouping is also shown in the readability graphs. For example, if we included a Fry graph, then it may appear as such:
 
-[]("images/fry-grouped.png"){width=75% fig-align="center"}
+![](images/fry-grouped.png){width=75% fig-align="center"}
 
 Here, we can see the *Tests* group again scoring rather high, as much of this group’s documents are clustering in the higher grade ranges.

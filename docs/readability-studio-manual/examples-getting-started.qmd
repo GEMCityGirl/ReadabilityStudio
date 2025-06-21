@@ -179,7 +179,7 @@ Because this project is already linked to the recipe document, we can reload it 
 To view this connection, click the `r keys("Properties")` button on the **Home** tab to open the **Project Properties** dialog.
 Select the **Project Settings** icon and note the option **Reload the source document when opening project**:
 
-[]("images/linktofile.png"){width=75% fig-align="center"}
+![](images/linktofile.png){width=75% fig-align="center"}
 
 Also of note is the **Real-time update** checkbox\index{real-time updating}.
 If this is checked, then the program will automatically reload the project when the document is edited.

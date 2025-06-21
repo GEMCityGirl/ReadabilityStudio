@@ -43,7 +43,7 @@ Note that this test treats numerals\index{numerals!Flesch Reading Ease} as monos
 
 Along with the raw score, a chart is also available to visualize the score's meaning:
 
-![Flesch chart]("images/flesch-chart.png"){width=75% fig-align="center"}
+![Flesch chart](images/flesch-chart.png){width=75% fig-align="center"}
 
 This chart consists of three "rulers." The middle ruler displays the Flesch score as a red point.
 On both sides of this ruler are brackets showing the reading levels.

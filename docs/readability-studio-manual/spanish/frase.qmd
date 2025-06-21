@@ -26,7 +26,7 @@ These validation involved correlating the FRASE scores against "teacher judgment
 
 Below is an example of a FRASE graph:
 
-![FRASE graph]("images/frase-graph.png"){width=75% fig-align="center"}
+![FRASE graph](images/frase-graph.png){width=75% fig-align="center"}
 
 The FRASE graph procedure is:
 

@@ -34,7 +34,7 @@ The index score of Lix can be summarized as follows:
 
 Note that Lix also includes a chart to visualize the meaning of its index score:
 
-![Lix gauge]("images/lix-gauge.png"){width=75% fig-align="center"}
+![Lix gauge](images/lix-gauge.png){width=75% fig-align="center"}
 
 ::: {.callout-note icon=false}
 ## Lix formula
