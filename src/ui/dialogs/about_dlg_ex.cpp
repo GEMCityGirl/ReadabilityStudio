@@ -13,6 +13,7 @@
 
 #include "about_dlg_ex.h"
 #include "../../OleanderStemmingLibrary/src/stemming.h"
+#include "../../Wisteria-Dataviz/src/CRCpp/inc/CRC.h"
 #include "../../Wisteria-Dataviz/src/easyexif/exif.h"
 #include "../../Wisteria-Dataviz/src/import/html_extract_text.h"
 #include "../../lua/lua.h"
@@ -274,7 +275,9 @@ void AboutDialogEx::CreateControls()
         allLibInfo.push_back(formatLibInfo(wxGetZlibVersionInfo()));
         // submodules without version information
         allLibInfo.push_back(formatLibInfo(wxVersionInfo{ L"NanoSVG", -1 }));
-        allLibInfo.push_back(formatLibInfo(wxVersionInfo{ L"CRC++", -1 }));
+        allLibInfo.push_back(formatLibInfo(
+            wxVersionInfo{ L"CRC++", CRCPP_MAJOR_VERSION, CRCPP_MINOR_VERSION, CRCPP_PATCH_VERSION,
+                           CRCPP_REVISION_VERSION, wxString{}, CRCPP_COPYRIGHT }));
         allLibInfo.push_back(formatLibInfo(wxVersionInfo{ L"wxStartPage", -1 }));
         allLibInfo.push_back(formatLibInfo(
             wxVersionInfo{ L"easyexif", -1, 0, 0, 0, wxString{}, easyexif::EASYEXIF_COPYRIGHT }));
