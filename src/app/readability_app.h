@@ -285,7 +285,8 @@ class MainFrame final : public Wisteria::UI::BaseMainFrame
 class ReadabilityApp final : public Wisteria::UI::BaseApp
     {
   public:
-    ReadabilityApp() = default;
+    ReadabilityApp() { SetClassName(_READSTUDIO_APP_RDNS_IDENTIFIER); }
+
     ReadabilityApp(const ReadabilityApp&) = delete;
     ReadabilityApp& operator=(const ReadabilityApp&) = delete;
 

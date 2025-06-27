@@ -9,3 +9,4 @@ inline constexpr wchar_t _READSTUDIO_BINARY_NAME[] = L"${CMAKE_PROJECT_NAME}";
 inline constexpr wchar_t _READSTUDIO_PUBLISHER[] = L"${PUBLISHER}";
 inline constexpr wchar_t _READSTUDIO_APP_NAME[] = L"${readstudio_DESCRIPTION}";
 inline constexpr wchar_t _READSTUDIO_APP_LONG_NAME[] = L"${PROGRAM_LONGNAME}";
+inline constexpr wchar_t _READSTUDIO_APP_RDNS_IDENTIFIER[] = L"${PROGRAM_RDNS_IDENTIFIER}";
