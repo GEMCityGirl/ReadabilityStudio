@@ -264,11 +264,13 @@ include(cmake/modules/FindR.cmake)
 if(TARGET manuals)
     if(NOT R_FOUND)
         message(FATAL_ERROR "R not found. Help manuals cannot be built.")
+    else()
+        set(R_ALL_OPTION_MAYBE_UNAVAILABLE ALL)
     endif()
 endif()
 
 add_custom_target(manuals
-                ALL
+                ${R_ALL_OPTION_MAYBE_UNAVAILABLE}
                 COMMAND "${R_SCRIPT}"
                     "${CMAKE_CURRENT_SOURCE_DIR}/docs/build-help-projects.R"
                 WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/docs/")
@@ -281,11 +283,13 @@ if(TARGET doxygen-docs)
         # Just warning about API docs not being built when requested.
         # It is included with ALL, but not necessary for end users.
         message(WARNING "Doxygen not found. API documentation cannot be built.")
+    else()
+        set(DOXYGEN_ALL_OPTION_MAYBE_UNAVAILABLE ALL)
     endif()
 endif()
 
 add_custom_target(doxygen-docs
-            ALL
+            ${DOXYGEN_ALL_OPTION_MAYBE_UNAVAILABLE}
             COMMAND ${DOXYGEN_EXECUTABLE} "${CMAKE_SOURCE_DIR}/docs/doxygen/Doxyfile"
             WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/docs/doxygen"
             COMMENT "Generating API documentation with Doxygen"
@@ -297,7 +301,7 @@ add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 # Build binary
 ##############################################################
 
-# (run "tools/Build CMake Files List.R" to update this)
+# (run "tools/build-cmake-files-list.R" to update this)
 include(${CMAKE_CURRENT_SOURCE_DIR}/tools/files.cmake)
 if(WIN32)
     # Include an RC file and HiDPI manifest for Windows (provided by wxWidgets)
