@@ -16,7 +16,7 @@
 wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
                           Wisteria::Graphs::PolygonReadabilityGraph)
 
-namespace Wisteria::Graphs
+    namespace Wisteria::Graphs
     {
     //----------------------------------------------------------------
     SchwartzGraph::SchwartzGraph(
@@ -34,7 +34,7 @@ namespace Wisteria::Graphs
         GetCanvas()->SetName(_(L"Schwartz Graph"));
 
         // number of sentences axis goes down, unlike the Fry Graph that goes upwards
-        GetLeftYAxis().ReverseScale(true);
+        GetLeftYAxis().Reverse();
         GetLeftYAxis().SetRange(2.4, 20, 1, 0.4, 1);
         GetLeftYAxis().ShowOuterLabels(true);
         GetLeftYAxis().EnableAutoStacking(true);

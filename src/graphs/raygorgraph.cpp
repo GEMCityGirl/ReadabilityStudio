@@ -87,7 +87,7 @@ namespace Wisteria::Graphs
         GetBottomXAxis().ShowOuterLabels(true);
 
         // number of sentences axis goes down, unlike the Fry Graph that goes upwards
-        GetLeftYAxis().ReverseScale(true);
+        GetLeftYAxis().Reverse();
         GetLeftYAxis().AddUnevenAxisPoint(
             3.2, wxNumberFormatter::ToString(3.2, 1, wxNumberFormatter::Style::Style_None) +
                      ((GetRaygorStyle() == RaygorStyle::Modern) ? wxString{ L"(-)" } : wxString{}));
