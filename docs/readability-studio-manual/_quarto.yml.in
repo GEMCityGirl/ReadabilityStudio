@@ -30,6 +30,9 @@ crossref:
   sec-prefix: sec.
   tbl-prefix: tbl.
   fig-prefix: fig.
+fontfamilies:
+  - name: \brandfont
+    font: Roboto
 filters:
   - include-code-files
   - fontawesome
