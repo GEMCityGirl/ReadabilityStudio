@@ -17,11 +17,16 @@ The *Microsoft Visual C++ runtime* is also required.
 This is normally managed via *Windows Update*, but can also be installed manually.
 To install, download and run the latest [Microsoft Visual C++ Redistributable](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist) installer.
 
-## Installing {-}
+## Installing Locally {-}
 
 Run the installer ("rssetup{{< var FULL_VERSION >}}.exe") as an administrator.
 You will be prompted for a user name, where to install the program, and which components to install.
 After answering these prompts, continue the installer to completion.
+
+## Installing Remotely {-}
+
+Run the installer ("rssetup{{< var FULL_VERSION >}}.exe") via a remote tool, such as *Windows^®^ SCCM* (*System Center Configuration Manager*).
+Refer to the end of this chapter for available command line options.
 
 ## Uninstalling {-}
 
@@ -32,7 +37,6 @@ System Admins can run this program remotely to uninstall the program from workst
 
 ::: {.tipsection data-latex=""}
 "unins???.exe" can take parameters, such as `/VERYSILENT`.
-Refer to the end of this chapter.
 :::
 
 {{< pagebreak >}}
@@ -48,9 +52,9 @@ The 64-bit editions default to the 64-bit `r file_path("Program Files")` folder,
 Uninstalling any 32-bit editions will ensure that you won't have multiple installations after updating.
 :::
 
-## Silent Mode {-}
+## Command Line Options {-}
 
-The installer uses *Inno Setup*, which provides support for silent install.
+The installer uses *Inno Setup*, which provides support for silent install and other options.
 (This applies to installing, uninstalling, and upgrading.)
 To perform a silent install, pass the command line arguments `/SILENT` or `/VERYSILENT`.
 For example, the following will run a silent install that will not restart the computer and write its progress to a log file:

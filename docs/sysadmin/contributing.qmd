@@ -1,10 +1,24 @@
 # Getting Involved
 
 All are welcome to get involved with *{{< var PROGRAM_NAME >}}* by contributing to the code, documentation, word list, artwork, etc.
+Follow these steps to become a contributor:
 
-To begin, create a fork of our repository at [{{< var GIT_REPO >}}]({{< var GIT_REPO >}}) and make your edits to this fork.
-After you are finished with your changes, submit them as a pull request.
-(You may be required fill out a contributor agreement.)
-After your pull request is reviewed and approved, it will be merged into the program.
+- Register with *GitHub*\
+  Go to [GitHub.com](https://github.com/) and click **Sign up** in the upper right corner to create an account.
+- Register with *Eclipse*\
+  Go to [Eclipse.org](https://www.eclipse.org/) and click **Create account** in the upper right corner to create an account.
+- Connect *Eclipse* and *GitHub*\
+  Once your accounts are set up, select **Edit my account** in the upper right corner of *Eclipse.org*.
+  On the **My Account** page, select the **Account Settings** tab.
+  Enter the name of your *GitHub* account in the **GitHub ID** field and click **Update Account**.
+- Digitally Sign the Eclipse ECA\
+  While still on the **My Account** page, go to the **Eclipse ECA** tab and follow the instructions to sign the Eclipse Contributor Agreement.
+  This is required legal paperwork that certifies that the code you contribute is actually yours to contribute and will be made available under an open source license.
 
-While preparing your contributions, please follow our coding and tech writing style guide as outlined in this chapter.
+To make a contribution:
+
+- Create a fork of our repository at [{{< var GIT_REPO >}}]({{< var GIT_REPO >}}) and make your edits to this fork.
+- After you are finished with your changes, submit them as a pull request.
+- After your pull request is reviewed and approved, it will be merged into the program.
+
+While preparing your contributions, please follow our coding and tech writing style guide, as outlined in this chapter.
