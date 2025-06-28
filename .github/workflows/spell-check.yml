@@ -1,9 +1,11 @@
 name: Spell Check
-on: [push]
+on: [push, pull_request]
 
 jobs:
   check-unix:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     name: Check Spelling
 
     steps:

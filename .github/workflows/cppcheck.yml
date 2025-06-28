@@ -1,10 +1,12 @@
 name: cppcheck
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
     name: cppcheck-test
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
           

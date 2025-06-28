@@ -1,5 +1,5 @@
 name: Windows Unit Tests
-on: [push]
+on: [push, pull_request]
 
 env:
   testrunner: 'RSTestRunner'
@@ -9,6 +9,8 @@ jobs:
   build:
     name: unit-tests
     runs-on: windows-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v3
         with:
