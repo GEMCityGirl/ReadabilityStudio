@@ -9,9 +9,7 @@ cmake --build . --target readstudio -j $(nproc) --config Release
 git clone ${GIT_REPO}.git --recurse-submodules
 cd ReadabilityStudio
 
-cmake . -DCMAKE_BUILD_TYPE=Release -G Xcode
-# XCode will not understand an "all" target,
-# so the binary and manuals must be built separately
+cmake . -DCMAKE_BUILD_TYPE=Release
 cmake --build . --target readstudio --config Release
 # Uncomment to rebuild the manuals
 #cmake --build . --target manuals
