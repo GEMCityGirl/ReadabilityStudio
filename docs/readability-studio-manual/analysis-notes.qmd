@@ -368,7 +368,7 @@ These substitutions include:
 - f t
 - s t
 
-## Combined Accents
+## Combined Accents {#diacritics}
 
 Diacritical markers are accents combined with letters to produce a new letter.
 For example, *e* combined with *◌́ * will create an "e with acute" (*é*).
