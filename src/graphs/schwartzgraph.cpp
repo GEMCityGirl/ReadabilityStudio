@@ -21,12 +21,12 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
     //----------------------------------------------------------------
     SchwartzGraph::SchwartzGraph(
         Wisteria::Canvas * canvas,
-        std::shared_ptr<Wisteria::Colors::Schemes::ColorScheme> colors /*= nullptr*/,
-        std::shared_ptr<Wisteria::Icons::Schemes::IconScheme> shapes /*= nullptr*/)
+        const std::shared_ptr<Wisteria::Colors::Schemes::ColorScheme>& colors /*= nullptr*/,
+        const std::shared_ptr<Wisteria::Icons::Schemes::IconScheme>& shapes /*= nullptr*/)
         : PolygonReadabilityGraph(canvas)
         {
-        SetColorScheme(colors != nullptr ? std::move(colors) : Settings::GetDefaultColorScheme());
-        SetShapeScheme(shapes != nullptr ? std::move(shapes) :
+        SetColorScheme(colors != nullptr ? colors : Settings::GetDefaultColorScheme());
+        SetShapeScheme(shapes != nullptr ? shapes :
                                            std::make_unique<Wisteria::Icons::Schemes::IconScheme>(
                                                Wisteria::Icons::Schemes::StandardShapes()));
 
@@ -76,11 +76,11 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
         }
 
     //----------------------------------------------------------------
-    void SchwartzGraph::SetData(std::shared_ptr<const Wisteria::Data::Dataset> data,
+    void SchwartzGraph::SetData(const std::shared_ptr<Wisteria::Data::Dataset>& data,
                                 const wxString& numberOfWordsColumnName,
                                 const wxString& numberOfSyllablesColumnName,
                                 const wxString& numberOfSentencesColumnName,
-                                std::optional<const wxString> groupColumnName /*= std::nullopt*/)
+                                const std::optional<wxString>& groupColumnName /*= std::nullopt*/)
         {
         SetDataset(data);
         ResetGrouping();
@@ -93,7 +93,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
             return;
             }
 
-        SetGroupColumn(std::move(groupColumnName));
+        SetGroupColumn(groupColumnName);
 
         // if grouping, build the list of group IDs, sorted by their respective labels
         if (IsUsingGrouping())

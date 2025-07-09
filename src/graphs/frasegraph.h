@@ -51,8 +51,8 @@ namespace Wisteria::Graphs
                Leave as null to use the standard shapes.*/
         explicit FraseGraph(
             Wisteria::Canvas* canvas,
-            std::shared_ptr<Wisteria::Colors::Schemes::ColorScheme> colors = nullptr,
-            std::shared_ptr<Wisteria::Icons::Schemes::IconScheme> shapes = nullptr);
+            const std::shared_ptr<Wisteria::Colors::Schemes::ColorScheme>& colors = nullptr,
+            const std::shared_ptr<Wisteria::Icons::Schemes::IconScheme>& shapes = nullptr);
 
         /** @brief Sets the data.
             @param data The data to use.
@@ -68,11 +68,11 @@ namespace Wisteria::Graphs
             @throws std::runtime_error If any columns can't be found, throws an exception.\n
                 The exception's @c what() message is UTF-8 encoded, so pass it to
                 @c wxString::FromUTF8() when formatting it for an error message.*/
-        void SetData(std::shared_ptr<const Wisteria::Data::Dataset> data,
+        void SetData(const std::shared_ptr<Wisteria::Data::Dataset>& data,
                      const wxString& numberOfWordsColumnName,
                      const wxString& numberOfSyllablesColumnName,
                      const wxString& numberOfSentencesColumnName,
-                     std::optional<const wxString> groupColumnName = std::nullopt);
+                     const std::optional<wxString>& groupColumnName = std::nullopt);
 
         /// @returns The results calculated from the last call to SetData().
         /// @note These scores will be aligned with the order of the data from

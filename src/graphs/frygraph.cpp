@@ -20,13 +20,14 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
 namespace Wisteria::Graphs
     {
     //----------------------------------------------------------------
-    FryGraph::FryGraph(Wisteria::Canvas* canvas, const FryGraphType fType,
-                       std::shared_ptr<Wisteria::Colors::Schemes::ColorScheme> colors /*= nullptr*/,
-                       std::shared_ptr<Wisteria::Icons::Schemes::IconScheme> shapes /*= nullptr*/)
+    FryGraph::FryGraph(
+        Wisteria::Canvas* canvas, const FryGraphType fType,
+        const std::shared_ptr<Wisteria::Colors::Schemes::ColorScheme>& colors /*= nullptr*/,
+        const std::shared_ptr<Wisteria::Icons::Schemes::IconScheme>& shapes /*= nullptr*/)
         : PolygonReadabilityGraph(canvas), m_fryGraphType(fType)
         {
-        SetColorScheme(colors != nullptr ? std::move(colors) : Settings::GetDefaultColorScheme());
-        SetShapeScheme(shapes != nullptr ? std::move(shapes) :
+        SetColorScheme(colors != nullptr ? colors : Settings::GetDefaultColorScheme());
+        SetShapeScheme(shapes != nullptr ? shapes :
                                            std::make_unique<Wisteria::Icons::Schemes::IconScheme>(
                                                Wisteria::Icons::Schemes::StandardShapes()));
 
@@ -147,11 +148,11 @@ namespace Wisteria::Graphs
         }
 
     //----------------------------------------------------------------
-    void FryGraph::SetData(std::shared_ptr<const Wisteria::Data::Dataset> data,
+    void FryGraph::SetData(const std::shared_ptr<Wisteria::Data::Dataset>& data,
                            const wxString& numberOfWordsColumnName,
                            const wxString& numberOfSyllablesColumnName,
                            const wxString& numberOfSentencesColumnName,
-                           std::optional<const wxString> groupColumnName /*= std::nullopt*/)
+                           const std::optional<wxString>& groupColumnName /*= std::nullopt*/)
         {
         SetDataset(data);
         ResetGrouping();
@@ -164,7 +165,7 @@ namespace Wisteria::Graphs
             return;
             }
 
-        SetGroupColumn(std::move(groupColumnName));
+        SetGroupColumn(groupColumnName);
 
         // if grouping, build the list of group IDs, sorted by their respective labels
         if (IsUsingGrouping())
@@ -742,7 +743,7 @@ namespace Wisteria::Graphs
         auto gradeLevelLabel = std::make_unique<Wisteria::GraphItems::Label>(
             // TRANSLATORS: Extra spaces are used to make uppercased text easier to read.
             GraphItemInfo(_(L"APPROXIMATE  GRADE  LEVEL"))
-                .Pen(wxNullPen) 
+                .Pen(wxNullPen)
                 .Selectable(false)
                 .FontColor(labelFontColor)
                 // overriding scaling with a hard-coded font
