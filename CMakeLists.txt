@@ -20,6 +20,7 @@ cmake_minimum_required(VERSION 3.25)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(MIN_GCC_REQUIRED "12.2.1")
+set(MIN_APPLECLANG_REQUIRED "15.3")
 set(MIN_MSVC_REQUIRED "19.30") # VS 2022 (1930 is the build number, which is what _MSC_VER will be set to)
 
 # https://blog.kitware.com/cmake-and-the-default-build-type/
@@ -93,8 +94,9 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND CMAKE_CXX_COMPILER_VERSION VERSION_L
   message(FATAL_ERROR "Insufficient GCC version")
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC" AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS ${MIN_MSVC_REQUIRED})
   message(FATAL_ERROR "Insufficient Visual Studio version")
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL "APPLECLANG" AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS ${MIN_APPLECLANG_REQUIRED})
+  message(FATAL_ERROR "Insufficient AppleClang version")
 endif()
-# TODO check XCode/AppleClang version
 message(STATUS "Compiler: ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
 
 # Read implemtation of Snowball used by stemming library (this appears in the help)
