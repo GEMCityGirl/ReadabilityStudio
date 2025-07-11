@@ -334,9 +334,7 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
     [[nodiscard]]
     ReadabilityAppOptions& GetAppOptions() noexcept
         {
-        // Create this on demand, because creating it within the app earlier
-        // crashes on UNIX.
-        // @todo figure out why that crashes under UNIX.
+        // This object is too big for the stack, so create it on-demand from the heap
         if (m_appOptions == nullptr)
             {
             m_appOptions = std::make_unique<ReadabilityAppOptions>();
