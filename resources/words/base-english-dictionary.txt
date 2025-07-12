@@ -18384,6 +18384,7 @@ captivity's
 captor
 captor's
 captors
+capturable
 capture
 captured
 capturer
@@ -23805,6 +23806,9 @@ coder
 coder's
 coders
 codes
+codeset
+codeset's
+codesets
 codesign
 codesigned
 codesigning
@@ -46429,6 +46433,7 @@ expiation
 expiation's
 expiations
 expiatory
+expirable
 expiration
 expiration's
 expirations
@@ -47152,6 +47157,7 @@ face's
 facecloth
 facecloths
 faced
+facedness
 facedown
 faceless
 facelessness
@@ -54418,6 +54424,9 @@ geochemistry's
 geochemists
 geochronology
 geochronology's
+geocircle
+geocircle's
+geocircles
 geocode
 geocoded
 geocodes
@@ -54548,6 +54557,9 @@ geosense
 geosensed
 geosenses
 geosensing
+geoshape
+geoshape's
+geoshapes
 geospace
 geospatial
 geostationary
@@ -57177,6 +57189,7 @@ groundwork's
 groundworks
 group
 group's
+groupbox
 groupchat
 groupchat's
 groupchats
@@ -76311,6 +76324,7 @@ lumens
 luminal
 luminance
 luminance's
+luminances
 luminaries
 luminary
 luminary's
@@ -80590,6 +80604,9 @@ microdart's
 microdarts
 microdata
 microdata's
+microdegree
+microdegree's
+microdegrees
 microdeletion
 microdelivery
 microdelivery's
@@ -84847,6 +84864,7 @@ multithreading
 multithreads
 multitier
 multitiered
+multitimbral
 multitouch
 multitrack
 multitrack's
@@ -84880,6 +84898,7 @@ multiview's
 multiviews
 multivitamin
 multivitamins
+multivoice
 multivolume
 multiwavelength
 multiway
@@ -86644,6 +86663,7 @@ netball's
 netbook
 netbook's
 netbooks
+netboot
 netcard
 netcard's
 netcards
@@ -87768,6 +87788,7 @@ nonconductor
 nonconductor's
 nonconductors
 nonconfigured
+nonconformance
 nonconformant
 nonconforming
 nonconformist
@@ -97036,6 +97057,7 @@ pessimist's
 pessimistic
 pessimistically
 pessimists
+pessimization
 pest
 pest's
 pester
@@ -106541,6 +106563,9 @@ quicksilver's
 quicksilvered
 quicksilvering
 quicksilvers
+quicksort
+quicksort's
+quicksorts
 quickstart
 quickstart's
 quickstarts
@@ -110850,6 +110875,10 @@ reliant
 reliantly
 relic
 relic's
+relicence
+relicenced
+relicences
+relicencing
 relicense
 relicensed
 relicenser

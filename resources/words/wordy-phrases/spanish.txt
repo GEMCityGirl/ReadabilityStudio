@@ -61,6 +61,7 @@ Champange	Champagne	3
 Champange's	Champagne's	3		
 Chigaco	Chicago	3		
 Chigaco's	Chicago's	3		
+Chineese	Chinese	3		
 Chocolately	Chocolatey	3		
 Chocolately's	Chocolatey's	3		
 Chrismas	Christmas	3		
@@ -145,6 +146,7 @@ Italium	Itanium, Italicum	3
 Italium's	Itanium's, Italicum's	3		
 Italiums	Itaniums, Italicums	3		
 Japanes	Japanese	3		
+Javascipt	JavaScript	3		
 Javitz	Javits	3		
 Jeruselum	Jerusalem	3		
 Jeruselum's	Jerusalem's	3		
@@ -199,6 +201,8 @@ Microsot's	Microsoft's	3
 miiniport	miniport	3		
 miiniport's	miniport's	3		
 miiniports	miniports	3		
+Mirosoft	Microsoft	3		
+Mirosoft's	Microsoft's	3		
 Misouri	Missouri	3		
 Missisipi	Mississippi	3		
 Missisippi	Mississippi	3		
@@ -276,5 +280,7 @@ Vileck's	Vilcek's	3
 Wallce	Wallace	3		
 Wallce's	Wallace's	3		
 Wallces	Wallaces	3		
+Wikipeda	Wikipedia	3		
+Wikipeda's	Wikipedia's	3		
 Zimperuim	Zimperium	3		
 Zimperuim's	Zimperium's	3		

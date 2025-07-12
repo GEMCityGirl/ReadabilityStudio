@@ -3577,6 +3577,7 @@ Kippur
 Kirghistan
 Kirghizia
 Kiribati
+Kirix
 Kirker
 Kirksville
 Kirtland
@@ -3799,6 +3800,7 @@ Libcurl
 Liberia
 Liberian
 Libertinus
+libexpat
 Libra
 LibreOffice
 Libreville
@@ -5575,6 +5577,7 @@ Reuss
 Reuters
 Revcontent
 Revealjs
+Reversi
 Revlimid
 Revlon
 Rexburg
