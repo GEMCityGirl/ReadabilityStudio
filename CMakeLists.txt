@@ -99,6 +99,18 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "APPLECLANG" AND CMAKE_CXX_COMPILER_VERSIO
 endif()
 message(STATUS "Compiler: ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
 
+# interproceduarl optimization
+if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
+    include(CheckIPOSupported)
+    check_ipo_supported(RESULT ipo_supported)
+    if(${ipo_supported})
+      message(STATUS "Interproceduarl compiler optimization: enabled")
+      set(CMAKE_INTERPROCEDURAL_OPTIMIZATION ${ipo_supported})
+    elseif()
+      message(STATUS "Interproceduarl compiler optimization: not enabled")
+    endif()
+endif()
+
 # Read implemtation of Snowball used by stemming library (this appears in the help)
 file(READ "${CMAKE_CURRENT_SOURCE_DIR}/src/OleanderStemmingLibrary/src/stemming.h" STEM_CONTENT)
 string(REGEX MATCH "SNOWBALL_MAJOR_VERSION = ([0-9]+)" _ ${STEM_CONTENT})
