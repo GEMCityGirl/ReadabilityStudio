@@ -8,9 +8,9 @@
 #############################################################################
 
 # Build targets:
-# readstudio: builds the main application
+# readstudio: builds the main application (included with ALL)
 # manuals: builds the manuals and HTML help
-# doxygen-docs: builds the API documentation
+# doxygen-docs: builds the API documentation (included with ALL)
 
 # Options:
 # USE_ADDRESS_SANITIZE to use ASAN (ignored in release build)
@@ -292,14 +292,12 @@ add_custom_target(manuals
 # Build the API documentation
 ########################
 find_package(Doxygen)
-if(TARGET doxygen-docs)
-    if(NOT DOXYGEN_FOUND)
-        # Just warning about API docs not being built when requested.
-        # It is included with ALL, but not necessary for end users.
-        message(WARNING "Doxygen not found. API documentation cannot be built.")
-    else()
-        set(DOXYGEN_ALL_OPTION_MAYBE_UNAVAILABLE ALL)
-    endif()
+if(NOT DOXYGEN_FOUND)
+    # Just warning about API docs not being built.
+    # We will try to include it with ALL, but not necessary for end users.
+    message(WARNING "Doxygen not found. API documentation cannot be built.")
+else()
+    set(DOXYGEN_ALL_OPTION_MAYBE_UNAVAILABLE ALL)
 endif()
 
 add_custom_target(doxygen-docs
