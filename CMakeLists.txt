@@ -275,16 +275,11 @@ endif()
 ##############################################################
 
 include(cmake/modules/FindR.cmake)
-if(TARGET manuals)
-    if(NOT R_FOUND)
-        message(FATAL_ERROR "R not found. Help manuals cannot be built.")
-    else()
-        set(R_ALL_OPTION_MAYBE_UNAVAILABLE ALL)
-    endif()
+if(NOT R_FOUND)
+    message(WARNING "R not found. Help manuals cannot be built.")
 endif()
 
 add_custom_target(manuals
-                ${R_ALL_OPTION_MAYBE_UNAVAILABLE}
                 COMMAND "${R_SCRIPT}"
                     "${CMAKE_CURRENT_SOURCE_DIR}/docs/build-help-projects.R"
                 WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/docs/")
