@@ -57,6 +57,35 @@ If wanting to edit this option from the ribbon:
   "batch_project_view"/"standard_project_view" files instead
 - Map the event handler in `BaseProjectView`'s constructor (or `BatchProjectView`'s and `ProjectView`'s constructors)
 
+## Adding a New Option to a Graph's Ribbon
+
+For options specific to a graph that needs to be added to the ribbon:
+
+- If this graph doesn't have its own custom ribbon panel, then:
+  - Add a `wxWindowID` constant for the graph's ribbon panel to\
+    `r file_path(c("src", "app", "readability_app.h"))`
+- Add logic for adding the new option button to the graph's panel in\
+  `ReadabilityApp::CreateRibbon()`\
+  (`r file_path(c("src", "app", "readability_app.cpp"))`)
+- Add logic for using the option to the graph's function in\
+  `r file_path(c("src", "projects", "standard_project_doc.cpp"))`\
+  (for readability graphs, this will be its `AddXXX()` function)
+- Add logic for using the new option in the graph's `DisplayXXX()` function in\
+  `r file_path(c("src", "projects", "batch_project_doc.cpp"))`
+- If not already present, create a `wxRibbonPanel*` variable from calling\
+  `hideEditPanel()` with the graph's ribbon panel ID in\
+  `BatchProjectView::OnItemSelected()`\
+  (`r file_path(c("src", "projects", "batch_project_view.cpp"))`).
+  - In the same function, (if not present) add code to show the graph's panel
+    when the selected item is of that graph's type.\
+    Also, add code to toggle the button's state (if applicable)
+- Repeat the aforementioned steps, but in\
+  `r file_path(c("src", "projects", "standard_project_view.cpp"))`
+- If not already present, add a function to\
+  `r file_path(c("src", "projects", "project_frame.cpp"))`\
+  to handle the new ribbon button being clicked. Refer to\
+  `ProjectDocChildFrame::OnShowcaseKeyItems()` as an example
+
 ## Adding a New Test {-#add-a-new-test}
 
 - Add the actual function to `r file_path(c("src", "readability", "english_readability.h"))` (or other file if a different language). (This only applies to linear regression based tests with a formula, not tests that calculate their values graphically [e.g., Fry].)
