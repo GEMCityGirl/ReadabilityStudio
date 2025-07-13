@@ -6123,7 +6123,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                         highlighterTagsThemed.HIGHLIGHT_END);
                 IsNotCustomFamiliarWordExcludeNumeralsWithHighlighting<
                     std::vector<CustomReadabilityTestInterface>::iterator>
-                    notCustomWordExcludeNumberalsThemed(
+                    notCustomWordExcludeNumeralsThemed(
                         pos, highlighterTagsThemed.HIGHLIGHT_BEGIN,
                         highlighterTagsThemed.HIGHLIGHT_END,
                         highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN,
@@ -6135,7 +6135,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                             highlighterTagsPaperWhite.HIGHLIGHT_END);
                 IsNotCustomFamiliarWordExcludeNumeralsWithHighlighting<
                     std::vector<CustomReadabilityTestInterface>::iterator>
-                    notCustomWordExcludeNumberalsPaperWhite(
+                    notCustomWordExcludeNumeralsPaperWhite(
                         pos, highlighterTagsPaperWhite.HIGHLIGHT_BEGIN,
                         highlighterTagsPaperWhite.HIGHLIGHT_END,
                         highlighterTagsPaperWhite.IGNORE_HIGHLIGHT_BEGIN,
@@ -6143,7 +6143,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
                 // clear cached first instances of proper nouns
                 notCustomWordThemed.Reset();
-                notCustomWordExcludeNumberalsThemed.Reset();
+                notCustomWordExcludeNumeralsThemed.Reset();
 
                 // special text exclusion logic is used for Custom HJ and DC tests
                 if ((pos->IsHarrisJacobsonFormula() &&
@@ -6156,7 +6156,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     if (pos->IsHarrisJacobsonFormula())
                         {
                         FormatWordCollectionHighlightedWords(
-                            GetWords(), notCustomWordExcludeNumberalsThemed, formattedBuffer,
+                            GetWords(), notCustomWordExcludeNumeralsThemed, formattedBuffer,
                             textHeaderThemed.header.wc_string(),
                             textHeaderThemed.endSection.wc_string(),
                             unfamiliarWordsLegendThemed.wc_string(),
@@ -6187,7 +6187,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     if (pos->IsHarrisJacobsonFormula())
                         {
                         FormatWordCollectionHighlightedWords(
-                            GetWords(), notCustomWordExcludeNumberalsThemed, formattedBuffer,
+                            GetWords(), notCustomWordExcludeNumeralsThemed, formattedBuffer,
                             textHeaderThemed.header.wc_string(),
                             textHeaderThemed.endSection.wc_string(),
                             unfamiliarWordsLegendThemed.wc_string(),
@@ -6219,10 +6219,10 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 SetFormattedTextAndRestoreInsertionPoint(textWindow, formattedBuffer.c_str());
 
                 notCustomWordThemed.Reset();
-                notCustomWordExcludeNumberalsThemed.Reset();
+                notCustomWordExcludeNumeralsThemed.Reset();
 
                 notCustomWordPaperWhite.Reset();
-                notCustomWordExcludeNumberalsPaperWhite.Reset();
+                notCustomWordExcludeNumeralsPaperWhite.Reset();
 
                 const wxString unfamiliarWordsLegendLinePaperWhite =
                     BuildLegendLine(highlighterTagsPaperWhite,
@@ -6241,7 +6241,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     if (pos->IsHarrisJacobsonFormula())
                         {
                         FormatWordCollectionHighlightedWords(
-                            GetWords(), notCustomWordExcludeNumberalsPaperWhite, formattedBuffer,
+                            GetWords(), notCustomWordExcludeNumeralsPaperWhite, formattedBuffer,
                             textHeaderPaperWhite.header.wc_string(),
                             textHeaderPaperWhite.endSection.wc_string(),
                             unfamiliarWordsLegendPaperWhite.wc_string(),
@@ -6272,7 +6272,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     if (pos->IsHarrisJacobsonFormula())
                         {
                         FormatWordCollectionHighlightedWords(
-                            GetWords(), notCustomWordExcludeNumberalsPaperWhite, formattedBuffer,
+                            GetWords(), notCustomWordExcludeNumeralsPaperWhite, formattedBuffer,
                             textHeaderPaperWhite.header.wc_string(),
                             textHeaderPaperWhite.endSection.wc_string(),
                             unfamiliarWordsLegendPaperWhite.wc_string(),

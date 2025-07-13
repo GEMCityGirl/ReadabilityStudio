@@ -2198,7 +2198,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_STATS_SUMMARY_REPORT_PANEL);
     wxRibbonPanel* editSimpleListWithSummationButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_PANEL);
-    wxRibbonPanel* editSimpleListWithSummationAndExcludButtonBarWindow =
+    wxRibbonPanel* editSimpleListWithSummationAndExcludeButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_AND_EXCLUDE_PANEL);
     wxRibbonPanel* editSimpleListButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_PANEL);
@@ -2503,7 +2503,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                         }
                     else
                         {
-                        editSimpleListWithSummationAndExcludButtonBarWindow->Show();
+                        editSimpleListWithSummationAndExcludeButtonBarWindow->Show();
                         }
                     }
                 else if (GetActiveProjectWindow()->IsKindOf(wxCLASSINFO(FormattedTextCtrl)))
