@@ -21,7 +21,9 @@ source('../R/appdown.r')
 
 ### Graph Enhancements {-}
 
+- Added showcase option to Danielson-Bryan 2 plot.
 - Added new icon shapes for stipple brushes.
+- Added WebP image support.
 
 ### Analysis/Test Enhancements {-}
 

@@ -426,8 +426,9 @@ void ProjectView::OnExportAll([[maybe_unused]] wxCommandEvent& event)
 void ProjectView::OnExportFilteredDocument([[maybe_unused]] wxCommandEvent& event)
     {
     const BaseProjectDoc* doc = dynamic_cast<const BaseProjectDoc*>(GetDocument());
-    wxFileDialog fileDialog(GetDocFrame(), _(L"Export Filtered Document"), wxString{}, doc->GetTitle(),
-                         _(L"Text Files (*.txt)|*.txt"), wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+    wxFileDialog fileDialog(GetDocFrame(), _(L"Export Filtered Document"), wxString{},
+                            doc->GetTitle(), _(L"Text Files (*.txt)|*.txt"),
+                            wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
     if (fileDialog.ShowModal() != wxID_OK)
         {
         return;
@@ -2222,6 +2223,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_FRY_PANEL);
     wxRibbonPanel* editFleschButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_FLESCH_PANEL);
+    wxRibbonPanel* editDB2ButtonBarWindow = hideEditPanel(MainFrame::ID_EDIT_RIBBON_DB2_PANEL);
     wxRibbonPanel* editGeneralReadabilityButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_GENERAL_READABILITY_GRAPH_PANEL);
     // hide batch panels that we don't use here
@@ -2311,6 +2313,14 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                     {
                     editFrySchwartzButtonBarWindow->Show();
                     getEditButtonBar(editFrySchwartzButtonBarWindow)
+                        ->ToggleButton(
+                            XRCID("ID_EDIT_GRAPH_SHOWCASE_KEY_ITEMS"),
+                            dynamic_cast<ProjectDoc*>(GetDocument())->IsShowcasingKeyItems());
+                    }
+                else if (graph->IsKindOf(wxCLASSINFO(DanielsonBryan2Plot)))
+                    {
+                    editDB2ButtonBarWindow->Show();
+                    getEditButtonBar(editDB2ButtonBarWindow)
                         ->ToggleButton(
                             XRCID("ID_EDIT_GRAPH_SHOWCASE_KEY_ITEMS"),
                             dynamic_cast<ProjectDoc*>(GetDocument())->IsShowcasingKeyItems());

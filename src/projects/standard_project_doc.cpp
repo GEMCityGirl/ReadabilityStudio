@@ -2789,6 +2789,11 @@ void ProjectDoc::AddDB2Plot(const bool setFocus)
         view->GetReadabilityResultsView().AddWindow(db2PlotView);
         }
     UpdateGraphOptions(db2PlotView);
+
+    auto db2Plot =
+        std::dynamic_pointer_cast<DanielsonBryan2Plot>(db2PlotView->GetFixedObject(0, 0));
+    db2Plot->ShowcaseScore(IsShowcasingKeyItems());
+
     db2PlotView->CalcAllSizes(gdc);
 
     // if they asked to set focus to the score then select the graph

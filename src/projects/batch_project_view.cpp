@@ -1016,6 +1016,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_FRY_PANEL);
     wxRibbonPanel* editFleschButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_FLESCH_PANEL);
+    wxRibbonPanel* editDB2ButtonBarWindow = hideEditPanel(MainFrame::ID_EDIT_RIBBON_DB2_PANEL);
     wxRibbonPanel* editListCsvssButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIST_CSVSS_PANEL);
     wxRibbonPanel* editListTestScoresButtonBarWindow =
@@ -1077,6 +1078,15 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                             ->ToggleButton(XRCID("ID_FLESCH_DISPLAY_LINES"),
                                            dynamic_cast<BatchProjectDoc*>(GetDocument())
                                                ->IsConnectingFleschPoints());
+                        }
+                    else if (graph->IsKindOf(wxCLASSINFO(DanielsonBryan2Plot)))
+                        {
+                        editDB2ButtonBarWindow->Show();
+                        getEditButtonBar(editDB2ButtonBarWindow)
+                            ->ToggleButton(
+                                XRCID("ID_EDIT_GRAPH_SHOWCASE_KEY_ITEMS"),
+                                           dynamic_cast<BatchProjectDoc*>(GetDocument())
+                                               ->IsShowcasingKeyItems());
                         }
                     else
                         {

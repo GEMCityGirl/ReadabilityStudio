@@ -4122,6 +4122,8 @@ void BatchProjectDoc::DisplayDB2Plot()
             }
         UpdateGraphOptions(view->GetDB2Plot());
 
+        db2Plot->ShowcaseScore(IsShowcasingKeyItems());
+
         // add legend if grouping
         if (IsShowingGroupLegends())
             {
