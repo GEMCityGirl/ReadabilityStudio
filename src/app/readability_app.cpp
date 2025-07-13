@@ -355,9 +355,9 @@ void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
                              wxPATH_NORM_ABSOLUTE);
                 // allow ability to open native files or import something from command line
                 size_t i = 0;
-                for (i = 0; i < GetMainFrame()->GetDefaultFileExtentions().GetCount(); ++i)
+                for (i = 0; i < GetMainFrame()->GetDefaultFileExtensions().GetCount(); ++i)
                     {
-                    if (fn.GetExt().CmpNoCase(GetMainFrame()->GetDefaultFileExtentions()[i]) == 0)
+                    if (fn.GetExt().CmpNoCase(GetMainFrame()->GetDefaultFileExtensions()[i]) == 0)
                         {
                         GetMainFrame()->OpenFile(fn.GetFullPath());
                         break;
@@ -365,7 +365,7 @@ void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
                     }
                 // not a recognized project extension, so open the file as a new standard project
                 // (note that we will bypass the wizard)
-                if (i == GetMainFrame()->GetDefaultFileExtentions().GetCount())
+                if (i == GetMainFrame()->GetDefaultFileExtensions().GetCount())
                     {
                     const auto& templateList = GetDocManager()->GetTemplates();
                     for (size_t j = 0; j < templateList.GetCount(); ++j)
@@ -783,7 +783,7 @@ bool ReadabilityApp::OnInit()
     wxArrayString extensions;
     extensions.Add(GetAppFileExtension());
     extensions.Add(_DT(L"rsbp"));
-    GetMainFrame()->SetDefaultFileExtentions(extensions);
+    GetMainFrame()->SetDefaultFileExtensions(extensions);
 
     // printer options
     GetMainFrame()->GetDocumentManager()->GetPageSetupDialogData().GetPrintData().SetPaperId(
