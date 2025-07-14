@@ -274,3 +274,15 @@ When a new color scheme is added to the `r file_path("Wisteria-Dataviz")`  submo
 
 - Add a mapping of the displayable name and internal *Wisteria* key in `m_colorSchemeMap` in\
   `r file_path(c("src", "app", "readability_app.cpp"))`. (This will need to be the internal keys, not the displayable name.)
+
+## Adding New Files
+
+If adding a new source file, image, or word list to the build, run the configuration step for the main "CMakeLists.txt."
+This will re-generate the following files, which the build script will include:
+
+- `r file_path(c("cmake", "includes", "files.cmake"))`: the source files built into the program (including files from submodules)
+- `r file_path(c("cmake", "includes", "images.cmake"))`: the images to be packaged into "res.wad" (the distributable resource file)
+- `r file_path(c("cmake", "includes", "words.cmake"))`: the word lists to be packaged into "res.wad" (the distributable resource file)
+
+The file `r file_path(c("cmake", "list-files.cmake"))` gathers and filters the that should be included.
+If you need to filter more files, edit the regular expressions in this script.

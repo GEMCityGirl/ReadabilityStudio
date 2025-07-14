@@ -111,7 +111,7 @@ if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
     endif()
 endif()
 
-# Read implemtation of Snowball used by stemming library (this appears in the help)
+# Read implementation of Snowball used by stemming library (this appears in the help)
 file(READ "${CMAKE_CURRENT_SOURCE_DIR}/src/OleanderStemmingLibrary/src/stemming.h" STEM_CONTENT)
 string(REGEX MATCH "SNOWBALL_MAJOR_VERSION = ([0-9]+)" _ ${STEM_CONTENT})
 set(SNOWBALL_MAJOR_VERSION ${CMAKE_MATCH_1})
@@ -188,6 +188,9 @@ if(APPLE)
 else()
     message(STATUS "Architecture: ${CMAKE_SYSTEM_PROCESSOR}" )
 endif()
+
+# Build source and resource file lists to include
+include(cmake/list-files.cmake)
 
 # Setup wxWidgets (can be 1-5 folders up from here)
 ##############################################################
@@ -307,9 +310,8 @@ add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 
 # Build binary
 ##############################################################
-
-# (run "tools/build-cmake-files-list.R" to update this)
-include(${CMAKE_CURRENT_SOURCE_DIR}/tools/files.cmake)
+# (re-configure project to update this)
+include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/includes/files.cmake)
 if(WIN32)
     # Include an RC file and HiDPI manifest for Windows (provided by wxWidgets)
     set(wxUSE_DPI_AWARE_MANIFEST 1)
@@ -586,14 +588,14 @@ add_custom_command(TARGET ${PROJECT_NAME}
 file(MAKE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/resources/")
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E tar "cvf" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/res.wad" --format=zip --files-from="${CMAKE_CURRENT_SOURCE_DIR}/tools/images.cmake"
+                   COMMAND ${CMAKE_COMMAND} -E tar "cvf" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/res.wad" --format=zip --files-from="${CMAKE_CURRENT_SOURCE_DIR}/cmake/includes/images.cmake"
                    COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/res.wad" "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/resources/"
                    COMMENT "Building resourse bundle and copying to build and installer folders."
                    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/resources/images")
 # Word lists
 add_custom_command(TARGET ${PROJECT_NAME}
                    POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E tar "cvf" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/words.wad" --format=zip --files-from="${CMAKE_CURRENT_SOURCE_DIR}/tools/words.cmake"
+                   COMMAND ${CMAKE_COMMAND} -E tar "cvf" "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/words.wad" --format=zip --files-from="${CMAKE_CURRENT_SOURCE_DIR}/cmake/includes/words.cmake"
                    COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE_DIR:${PROJECT_NAME}>${RESOURCE_FOLDER}/words.wad" "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/resources/"
                    COMMENT "Building word lists and copying to build and installer folders."
                    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/resources/words")

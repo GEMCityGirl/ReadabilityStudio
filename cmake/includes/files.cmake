@@ -1,9 +1,9 @@
-# Automatically generated from 'Build CMake Files List.R'
+# Automatically generated from 'list-files.cmake'
 # DO NOT MODIFY MANUALLY!
 
 SET(APP_SRC_FILES
-    src/app/readability_app_options.cpp
     src/app/readability_app.cpp
+    src/app/readability_app_options.cpp
     src/document-helpers/chapter_split.cpp
     src/graphs/frasegraph.cpp
     src/graphs/frygraph.cpp
@@ -30,9 +30,9 @@ SET(APP_SRC_FILES
     src/lua-scripting/lua_screenshot.cpp
     src/lua-scripting/lua_standard_project.cpp
     src/lua-scripting/onelua_no_warnings.c
+    src/projects/base_project.cpp
     src/projects/base_project_doc.cpp
     src/projects/base_project_view.cpp
-    src/projects/base_project.cpp
     src/projects/batch_project_doc.cpp
     src/projects/batch_project_view.cpp
     src/projects/project_frame.cpp
@@ -98,6 +98,7 @@ SET(APP_SRC_FILES
     src/Wisteria-Dataviz/src/graphs/groupgraph2d.cpp
     src/Wisteria-Dataviz/src/graphs/heatmap.cpp
     src/Wisteria-Dataviz/src/graphs/histogram.cpp
+    src/Wisteria-Dataviz/src/graphs/inflesz.cpp
     src/Wisteria-Dataviz/src/graphs/likertchart.cpp
     src/Wisteria-Dataviz/src/graphs/lineplot.cpp
     src/Wisteria-Dataviz/src/graphs/lixgauge.cpp
