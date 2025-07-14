@@ -15,13 +15,11 @@
 
 wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonReadabilityGraph)
 
-    using namespace Wisteria::GraphItems;
-
-namespace Wisteria::Graphs
+    namespace Wisteria::Graphs
     {
     //----------------------------------------------------------------
     FryGraph::FryGraph(
-        Wisteria::Canvas* canvas, const FryGraphType fType,
+        Wisteria::Canvas * canvas, const FryGraphType fType,
         const std::shared_ptr<Wisteria::Colors::Schemes::ColorScheme>& colors /*= nullptr*/,
         const std::shared_ptr<Wisteria::Icons::Schemes::IconScheme>& shapes /*= nullptr*/)
         : PolygonReadabilityGraph(canvas), m_fryGraphType(fType)
@@ -35,9 +33,10 @@ namespace Wisteria::Graphs
         GetCanvas()->SetLabel(_(L"Fry Graph"));
         GetCanvas()->SetName(_(L"Fry Graph"));
         GetTitle() = GraphItems::Label(
-            GraphItemInfo(_(L"GRAPH FOR ESTIMATING READABILITY"
-                            "\U00002014EXTENDED\nby Edward Fry, Rutgers University Reading Center, "
-                            "New Brunswick, NJ 08904"))
+            GraphItems::GraphItemInfo(
+                _(L"GRAPH FOR ESTIMATING READABILITY"
+                  "\U00002014EXTENDED\nby Edward Fry, Rutgers University Reading Center, "
+                  "New Brunswick, NJ 08904"))
                 .Scaling(GetScaling())
                 .Pen(wxNullPen)
                 .LabelAlignment(TextAlignment::Centered));
@@ -207,7 +206,7 @@ namespace Wisteria::Graphs
         }
 
     //----------------------------------------------------------------
-    void FryGraph::RecalcSizes(wxDC& dc)
+    void FryGraph::RecalcSizes(wxDC & dc)
         {
         Graph2D::RecalcSizes(dc);
 
@@ -225,7 +224,7 @@ namespace Wisteria::Graphs
         GetPhysicalCoordinates(124 + GetSyllableAxisOffset(), 2.0, m_longSentencesPoints[1]);
         GetPhysicalCoordinates(108 + GetSyllableAxisOffset(), 4.2, m_longSentencesPoints[2]);
         AddObject(std::make_unique<GraphItems::Polygon>(
-            GraphItemInfo()
+            GraphItems::GraphItemInfo()
                 .Pen(wxNullPen)
                 .Text(_(L"Invalid region: sentences are too long"))
                 .Brush(wxBrush(
@@ -242,7 +241,7 @@ namespace Wisteria::Graphs
         GetPhysicalCoordinates(182 + GetSyllableAxisOffset(), 7.3, m_longWordPoints[7]);
         GetPhysicalCoordinates(182 + GetSyllableAxisOffset(), 25.0, m_longWordPoints[8]);
         AddObject(std::make_unique<GraphItems::Polygon>(
-            GraphItemInfo()
+            GraphItems::GraphItemInfo()
                 .Pen(wxNullPen)
                 .Text(_(L"Invalid region: too many complex words"))
                 .Brush(wxBrush(
@@ -327,7 +326,7 @@ namespace Wisteria::Graphs
 
         // the separator line
         auto levelsSpline = std::make_unique<GraphItems::Polygon>(
-            GraphItemInfo()
+            GraphItems::GraphItemInfo()
                 .Pen(wxPen(separatorColor))
                 .Brush(wxBrush(separatorColor))
                 .Scaling(GetScaling()),
@@ -339,7 +338,7 @@ namespace Wisteria::Graphs
 
         // draw the grade areas (for selecting)
         AddObject(std::make_unique<GraphItems::Polygon>(
-            GraphItemInfo(GetMessageCatalog()->GetGradeScaleLongLabel(1))
+            GraphItems::GraphItemInfo(GetMessageCatalog()->GetGradeScaleLongLabel(1))
                 .Pen(wxNullPen)
                 .Brush(wxNullBrush)
                 .SelectionBrush(selectionBrush),
@@ -348,17 +347,18 @@ namespace Wisteria::Graphs
         for (size_t i = 2, pointIter = 5; i <= 16; ++i, pointIter += 2)
             {
             AddObject(std::make_unique<GraphItems::Polygon>(
-                GraphItemInfo(GetMessageCatalog()->GetGradeScaleLongLabel(i))
+                GraphItems::GraphItemInfo(GetMessageCatalog()->GetGradeScaleLongLabel(i))
                     .Pen(wxNullPen)
                     .Brush(wxNullBrush)
                     .SelectionBrush(selectionBrush),
                 &m_gradeLinePoints[(pointIter - 2)], 4));
             }
-        AddObject(std::make_unique<GraphItems::Polygon>(GraphItemInfo(_(L"Post-graduate+"))
-                                                            .Pen(wxNullPen)
-                                                            .Brush(wxNullBrush)
-                                                            .SelectionBrush(selectionBrush),
-                                                        &m_gradeLinePoints[33], 4));
+        AddObject(
+            std::make_unique<GraphItems::Polygon>(GraphItems::GraphItemInfo(_(L"Post-graduate+"))
+                                                      .Pen(wxNullPen)
+                                                      .Brush(wxNullBrush)
+                                                      .SelectionBrush(selectionBrush),
+                                                  &m_gradeLinePoints[33], 4));
 
         CalculateScorePositions(dc);
 
@@ -373,12 +373,13 @@ namespace Wisteria::Graphs
             wxPoint point;
             GetPhysicalCoordinates(level.GetX(), level.GetY(), point);
 
-            auto levelLabel = std::make_unique<GraphItems::Label>(GraphItemInfo(level.GetLabel())
-                                                                      .Scaling(GetScaling())
-                                                                      .Pen(wxNullPen)
-                                                                      .Font(labelFont)
-                                                                      .FontColor(labelFontColor)
-                                                                      .AnchorPoint(point));
+            auto levelLabel =
+                std::make_unique<GraphItems::Label>(GraphItems::GraphItemInfo(level.GetLabel())
+                                                        .Scaling(GetScaling())
+                                                        .Pen(wxNullPen)
+                                                        .Font(labelFont)
+                                                        .FontColor(labelFontColor)
+                                                        .AnchorPoint(point));
             levelLabel->SetTextAlignment(TextAlignment::Centered);
             if (GetScores().size() == 1)
                 {
@@ -406,7 +407,7 @@ namespace Wisteria::Graphs
         }
 
     //----------------------------------------------------------------
-    void FryGraph::CalculateScorePositions(wxDC& dc)
+    void FryGraph::CalculateScorePositions(wxDC & dc)
         {
         const wxColour gradeLineColor{
             Wisteria::Colors::ColorContrast::IsDark(GetPlotOrCanvasColor()) ?
@@ -419,7 +420,7 @@ namespace Wisteria::Graphs
             // draw regular grade lines and return since there are no points to plot
             const uint8_t opacityLevel{ 200 };
             AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
-                GraphItemInfo()
+                GraphItems::GraphItemInfo()
                     .Pen(wxPen(Wisteria::Colors::ColorContrast::ChangeOpacity(gradeLineColor,
                                                                               opacityLevel)))
                     .Brush(gradeLineColor)
@@ -429,7 +430,7 @@ namespace Wisteria::Graphs
             for (size_t i = 2, pointIter = 5; i <= 16; ++i, pointIter += 2)
                 {
                 AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
-                    GraphItemInfo()
+                    GraphItems::GraphItemInfo()
                         .Pen(wxPen(Wisteria::Colors::ColorContrast::ChangeOpacity(gradeLineColor,
                                                                                   opacityLevel)))
                         .Brush(gradeLineColor)
@@ -687,7 +688,7 @@ namespace Wisteria::Graphs
                 if (!highlightedGradeLinePoints.empty())
                     {
                     AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
-                        GraphItemInfo()
+                        GraphItems::GraphItemInfo()
                             .Pen(Wisteria::Colors::ColorContrast::ChangeOpacity(
                                 Wisteria::Colors::ColorBrewer::GetColor(
                                     Wisteria::Colors::Color::BondiBlue),
@@ -710,7 +711,7 @@ namespace Wisteria::Graphs
                                    Wisteria::Settings::GHOST_OPACITY :
                                    200;
         AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
-            GraphItemInfo()
+            GraphItems::GraphItemInfo()
                 .Pen(wxPen(
                     Wisteria::Colors::ColorContrast::ChangeOpacity(gradeLineColor, opacityLevel)))
                 .Brush(gradeLineColor)
@@ -727,7 +728,7 @@ namespace Wisteria::Graphs
                                Wisteria::Settings::GHOST_OPACITY :
                                200;
             AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
-                GraphItemInfo()
+                GraphItems::GraphItemInfo()
                     .Pen(wxPen(Wisteria::Colors::ColorContrast::ChangeOpacity(gradeLineColor,
                                                                               opacityLevel)))
                     .Brush(gradeLineColor)
@@ -742,7 +743,7 @@ namespace Wisteria::Graphs
         GetPhysicalCoordinates(128 + GetSyllableAxisOffset(), 3.3, pt2);
         auto gradeLevelLabel = std::make_unique<Wisteria::GraphItems::Label>(
             // TRANSLATORS: Extra spaces are used to make uppercased text easier to read.
-            GraphItemInfo(_(L"APPROXIMATE  GRADE  LEVEL"))
+            GraphItems::GraphItemInfo(_(L"APPROXIMATE  GRADE  LEVEL"))
                 .Pen(wxNullPen)
                 .Selectable(false)
                 .FontColor(labelFontColor)
@@ -756,13 +757,13 @@ namespace Wisteria::Graphs
         // make it fit inside of the graph
         const wxRect gradeLabelArea{ pt1, pt2 };
         wxFont labelFont(wxFontInfo().FaceName(GetFancyFontFaceName()));
-        labelFont.SetPointSize(Label::CalcDiagonalFontSize(dc, labelFont, gradeLabelArea, 45,
-                                                           gradeLevelLabel->GetText()));
+        labelFont.SetPointSize(GraphItems::Label::CalcDiagonalFontSize(
+            dc, labelFont, gradeLabelArea, 45, gradeLevelLabel->GetText()));
         gradeLevelLabel->SetFont(labelFont);
         if constexpr (Settings::IsDebugFlagEnabled(DebugSettings::DrawExtraInformation))
             {
             AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
-                GraphItemInfo().Pen(*wxRED).Brush(wxNullBrush),
+                GraphItems::GraphItemInfo().Pen(*wxRED).Brush(wxNullBrush),
                 std::vector<wxPoint>{ gradeLabelArea.GetTopLeft(), gradeLabelArea.GetTopRight(),
                                       gradeLabelArea.GetBottomRight(),
                                       gradeLabelArea.GetBottomLeft() }));
@@ -789,12 +790,13 @@ namespace Wisteria::Graphs
                                        m_results[i].m_sentenceStatistic, m_results[i].m_scorePoint))
                 {
                 points->AddPoint(
-                    Point2D(GraphItemInfo(GetDataset()->GetIdColumn().GetValue(i))
-                                .AnchorPoint(m_results[i].m_scorePoint)
-                                .Pen(Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
-                                    GetPlotOrCanvasColor()))
-                                .Brush(GetColorScheme()->GetColor(colorIndex)),
-                            Settings::GetPointRadius(), GetShapeScheme()->GetShape(colorIndex)),
+                    GraphItems::Point2D(
+                        GraphItems::GraphItemInfo(GetDataset()->GetIdColumn().GetValue(i))
+                            .AnchorPoint(m_results[i].m_scorePoint)
+                            .Pen(Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
+                                GetPlotOrCanvasColor()))
+                            .Brush(GetColorScheme()->GetColor(colorIndex)),
+                        Settings::GetPointRadius(), GetShapeScheme()->GetShape(colorIndex)),
                     dc);
                 }
             else
@@ -815,7 +817,7 @@ namespace Wisteria::Graphs
                 GetPlotAreaBoundingBox().GetX() + (GetPlotAreaBoundingBox().GetWidth() / 2),
                 GetPlotAreaBoundingBox().GetY() + (GetPlotAreaBoundingBox().GetHeight() / 2));
             AddObject(std::make_unique<Wisteria::GraphItems::Label>(
-                GraphItemInfo(_(L"Invalid score: text is too difficult to be plotted"))
+                GraphItems::GraphItemInfo(_(L"Invalid score: text is too difficult to be plotted"))
                     .Scaling(GetScaling())
                     .Pen(*wxBLACK_PEN)
                     .Font(labelFont)
@@ -864,14 +866,14 @@ namespace Wisteria::Graphs
     void FryGraph::AddBrackets()
         {
         GetLeftYAxis().ClearBrackets();
-        Axis::AxisBracket yBracketLong(2, 5.6, 3.6, _(L"Long sentences"));
+        GraphItems::Axis::AxisBracket yBracketLong(2, 5.6, 3.6, _(L"Long sentences"));
         yBracketLong.SetBracketLineStyle(Wisteria::BracketLineStyle::NoConnectionLines);
         yBracketLong.GetLabel().SetTextOrientation(Orientation::Vertical);
         yBracketLong.SetPadding(0);
         yBracketLong.GetLabel().SetFont(GetTopXAxis().GetFont());
         GetLeftYAxis().AddBracket(yBracketLong);
 
-        Axis::AxisBracket yBracketShort(5.6, 25, 12.5, _(L"Short sentences"));
+        GraphItems::Axis::AxisBracket yBracketShort(5.6, 25, 12.5, _(L"Short sentences"));
         yBracketShort.SetBracketLineStyle(Wisteria::BracketLineStyle::NoConnectionLines);
         yBracketShort.GetLabel().SetTextOrientation(Orientation::Vertical);
         yBracketShort.SetPadding(0);
@@ -881,17 +883,18 @@ namespace Wisteria::Graphs
         GetLeftYAxis().EnableAutoStacking(false);
 
         GetTopXAxis().ClearBrackets();
-        Axis::AxisBracket xBracketLong(140 + GetSyllableAxisOffset(), 182 + GetSyllableAxisOffset(),
-                                       164 + GetSyllableAxisOffset(), _(L"Long words"));
+        Wisteria::GraphItems::Axis::AxisBracket xBracketLong(
+            140 + GetSyllableAxisOffset(), 182 + GetSyllableAxisOffset(),
+            164 + GetSyllableAxisOffset(), _(L"Long words"));
         xBracketLong.SetBracketLineStyle(Wisteria::BracketLineStyle::NoConnectionLines);
         xBracketLong.GetLabel().SetTextOrientation(Orientation::Horizontal);
         xBracketLong.SetPadding(0);
         xBracketLong.GetLabel().SetFont(GetLeftYAxis().GetFont());
         GetTopXAxis().AddBracket(xBracketLong);
 
-        Axis::AxisBracket xBracketShort(108 + GetSyllableAxisOffset(),
-                                        140 + GetSyllableAxisOffset(),
-                                        126 + GetSyllableAxisOffset(), _(L"Short words"));
+        GraphItems::Axis::AxisBracket xBracketShort(
+            108 + GetSyllableAxisOffset(), 140 + GetSyllableAxisOffset(),
+            126 + GetSyllableAxisOffset(), _(L"Short words"));
         xBracketShort.SetBracketLineStyle(Wisteria::BracketLineStyle::NoConnectionLines);
         xBracketShort.GetLabel().SetTextOrientation(Orientation::Horizontal);
         xBracketShort.SetPadding(0);
