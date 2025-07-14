@@ -25,6 +25,9 @@ chapter-image: "non-generated/banner.jpg"
 number-sections: true
 crossref:
   chapters: true
+fontfamilies:
+  - name: \brandfont
+    font: Roboto
 book:
   title: "{{< var PROGRAM_NAME >}} {{< var VERSION >}}"
   subtitle: Programming Manual
