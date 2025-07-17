@@ -76,6 +76,22 @@ set(GIT_REPO "https://github.com/eclipse-ers/ReadabilityStudio.git")
 set(INNOSETUP_GUID "{FBFBEAB6-622A-4E16-893D-216C25FF6A69}")
 set(PROGRAM_LICENSE "Eclipse Public License 2.0")
 
+find_package(Git)
+if(Git_FOUND)
+  execute_process(
+    COMMAND ${GIT_EXECUTABLE} --no-pager log -n 1 HEAD --pretty=format:%H
+    OUTPUT_VARIABLE BUILD_VERSION
+    RESULT_VARIABLE result
+    ERROR_QUIET
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+  )
+  if(NOT result EQUAL 0)
+    message(WARNING "git not found. Unable to generate build version.")
+  else()
+    string(TOUPPER ${BUILD_VERSION} BUILD_VERSION)
+  endif()
+endif()
+
 set(FULL_VERSION ${readstudio_VERSION_MAJOR}.${readstudio_VERSION_MINOR}.${readstudio_VERSION_PATCH}.${readstudio_VERSION_TWEAK})
 # Build a displayable version string that only includes the necessary parts
 set(FULL_DISPLAY_VERSION ${readstudio_VERSION_MAJOR})
@@ -124,6 +140,7 @@ message(STATUS "${PROGRAM_COMMENTS}")
 message(STATUS "Full version: ${readstudio_VERSION_MAJOR}.${readstudio_VERSION_MINOR}.${readstudio_VERSION_PATCH}.${readstudio_VERSION_TWEAK}")
 message(STATUS "Display version: ${FULL_DISPLAY_VERSION}")
 message(STATUS "Numbered Version: ${PROGRAM_NUMBERED_VERSION}")
+message(STATUS "Build: ${BUILD_VERSION}")
 message(STATUS "Built in: ${BUILD_YEAR}")
 message(STATUS "Authored by: ${PROGRAM_AUTHOR}")
 message(STATUS "Published by: ${PUBLISHER}")
