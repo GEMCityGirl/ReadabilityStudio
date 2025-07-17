@@ -22,6 +22,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(MIN_GCC_REQUIRED "12.2.1")
 set(MIN_APPLECLANG_REQUIRED "15.3")
 set(MIN_MSVC_REQUIRED "19.30") # VS 2022 (1930 is the build number, which is what _MSC_VER will be set to)
+Set(MIN_WXWIDGETS_REQUIRED "3.3.1")
 
 # https://blog.kitware.com/cmake-and-the-default-build-type/
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
@@ -107,11 +108,11 @@ endif()
 string(TIMESTAMP BUILD_YEAR "%Y")
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS ${MIN_GCC_REQUIRED})
-  message(FATAL_ERROR "Insufficient GCC version")
+  message(FATAL_ERROR "Insufficient GCC version. ${MIN_GCC_REQUIRED} is required, but only ${CMAKE_CXX_COMPILER_VERSION} found.")
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC" AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS ${MIN_MSVC_REQUIRED})
-  message(FATAL_ERROR "Insufficient Visual Studio version")
+  message(FATAL_ERROR "Insufficient Visual Studio version. ${MIN_MSVC_REQUIRED} is required, but only ${CMAKE_CXX_COMPILER_VERSION} found.")
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL "APPLECLANG" AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS ${MIN_APPLECLANG_REQUIRED})
-  message(FATAL_ERROR "Insufficient AppleClang version")
+  message(FATAL_ERROR "Insufficient AppleClang version. ${MIN_APPLECLANG_REQUIRED} is required, but only ${CMAKE_CXX_COMPILER_VERSION} found.")
 endif()
 message(STATUS "Compiler: ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
 
@@ -123,7 +124,7 @@ if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
       message(STATUS "Interproceduarl compiler optimization: enabled")
       set(CMAKE_INTERPROCEDURAL_OPTIMIZATION ${ipo_supported})
     elseif()
-      message(STATUS "Interproceduarl compiler optimization: not enabled")
+      message(STATUS "Interprocedural compiler optimization: not enabled")
     endif()
 endif()
 
@@ -225,6 +226,10 @@ find_directory("wxWidgets" wxWidgets_BASEDIR)
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/../wxWidgets" ${CMAKE_CURRENT_SOURCE_DIR}/wxWidgets_lib)
 set(wxWidgets_LIBRARIES wx::core wx::base wx::xrc wx::propgrid wx::xml wx::aui wx::ribbon wx::qa wx::stc wx::net wx::richtext)
 message(STATUS "Adding wxWidgets libraries: ${wxWidgets_LIBRARIES}")
+
+if(wxVERSION VERSION_LESS ${MIN_WXWIDGETS_REQUIRED})
+  message(FATAL_ERROR "Insufficient wxWidgets version. ${MIN_WXWIDGETS_REQUIRED} is required, but only ${wxVERSION} found.")
+endif()
 
 if(UNIX AND NOT APPLE)
     # GTK 3 dependency
