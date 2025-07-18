@@ -32,11 +32,31 @@ PROJECT(RSGuiTestRunner)
 
 # Setup wxWidgets
 ########################
+include(../../src/Wisteria-Dataviz/cmake/folders.cmake)
 
-# Find wxWidgets (wxWidgetsConfig.cmake, specifically) and select its components
-SET(wxWidgets_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../../wxWidgets/out/install/x64-${CMAKE_BUILD_TYPE}/lib/cmake/wxWidgets")
-SET(wxWidgets_USE_STATIC 1)
-FIND_PACKAGE(wxWidgets 3.3 COMPONENTS core base xrc propgrid xml aui ribbon qa stc net REQUIRED CONFIG)
+set(wxUSE_WEBVIEW_EDGE ON)
+set(wxBUILD_SHARED OFF)
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+    set(__WXDEBUG__ 0)
+    set(wxBUILD_OPTIMISE ON)
+    set(wxBUILD_STRIPPED_RELEASE ON)
+endif()
+find_directory("wxWidgets" wxWidgets_BASEDIR)
+message(STATUS "wxWidgets found in: ${wxWidgets_BASEDIR}")
+add_subdirectory(${wxWidgets_BASEDIR} ${CMAKE_CURRENT_SOURCE_DIR}/wxWidgets_lib)
+set(wxWidgets_LIBRARIES wx::core wx::base wx::xrc wx::propgrid wx::xml wx::aui wx::ribbon wx::qa wx::stc wx::net wx::richtext)
+message(STATUS "Adding wxWidgets libraries: ${wxWidgets_LIBRARIES}")
+
+if(UNIX AND NOT APPLE)
+    # GTK 3 dependency
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
+
+    # Setup CMake to use GTK+, tell the compiler where to look for headers
+    # and to the linker where to look for libraries
+    include_directories(${GTK3_INCLUDE_DIRS})
+    link_directories(${GTK3_LIBRARY_DIRS})
+endif()
 
 IF(APPLE AND NOT CMAKE_OSX_DEPLOYMENT_TARGET)
     # If no deployment target has been set default to the minimum supported
