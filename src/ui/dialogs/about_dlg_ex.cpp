@@ -16,6 +16,7 @@
 #include "../../Wisteria-Dataviz/src/CRCpp/inc/CRC.h"
 #include "../../Wisteria-Dataviz/src/easyexif/exif.h"
 #include "../../Wisteria-Dataviz/src/import/html_extract_text.h"
+#include "../../app/version.h"
 #include "../../lua/lua.h"
 #include "../../tinyexpr-plusplus/tinyexpr.h"
 #include "../../tinyxml2/tinyxml2.h"
@@ -174,11 +175,17 @@ void AboutDialogEx::CreateControls()
         auto productInfoGrid = new wxFlexGridSizer(2, wxSize(wxSizerFlags::GetDefaultBorder(), 0));
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Version:")));
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, m_appVersion));
+        constexpr std::wstring_view buildVersion{ _READSTUDIO_BUILD_VERSION };
+        if (!buildVersion.empty())
+            {
+            productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Build:")));
+            productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, buildVersion.data()));
+            }
 #ifndef NDEBUG
         productInfoGrid->Add(new wxStaticText(
             mainPage, wxID_ANY,
             // TRANSLATORS: Compiled version of the program (e.g., DEBUG or RELEASE)
-            _(L"Build:")));
+            _(L"Build type:")));
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"DEBUG")));
 #endif
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Built on:")));
@@ -284,7 +291,7 @@ void AboutDialogEx::CreateControls()
                                          easyexif::EASYEXIF_COPYRIGHT }),
             formatLibInfo(wxVersionInfo{ L"UTF8-CPP", -1 })
         };
-        
+
         std::sort(allLibInfo.begin(), allLibInfo.end(),
                   [](const auto& lhv, const auto& rhv) { return wxStricmp(lhv, rhv) < 0; });
 
