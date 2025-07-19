@@ -70,7 +70,7 @@ namespace grammar
             // if this is [to be][not][past participle]
             if (is_past_participle(words[analyzePosition]))
                 {
-                if (m_past_participle_exeptions.contains(words[analyzePosition].c_str()))
+                if (m_past_participle_exceptions.contains(words[analyzePosition].c_str()))
                     {
                     // "ed" word should be followed by preposition showing
                     // that something is affecting "I".
@@ -116,7 +116,7 @@ namespace grammar
         [[nodiscard]]
         static word_list& get_past_participle_exeptions() noexcept
             {
-            return m_past_participle_exeptions;
+            return m_past_participle_exceptions;
             }
 
       private:
@@ -133,7 +133,7 @@ namespace grammar
             }
 
         static std::set<string_type> m_to_be_verbs;
-        static word_list m_past_participle_exeptions;
+        static word_list m_past_participle_exceptions;
         };
     } // namespace grammar
 

@@ -181,7 +181,7 @@ namespace readability
             // industry
             m_industry_classification = that.m_industry_classification;
             // document
-            m_document_classificaiton = that.m_document_classificaiton;
+            m_document_classification = that.m_document_classification;
             // language
             m_language = that.m_language;
             // factors
@@ -206,13 +206,13 @@ namespace readability
         // document type association
         void add_document_classification(const document_classification doc, const bool set_flag)
             {
-            m_document_classificaiton.set(static_cast<size_t>(doc), set_flag);
+            m_document_classification.set(static_cast<size_t>(doc), set_flag);
             }
 
         [[nodiscard]]
         bool has_document_classification(const document_classification doc) const
             {
-            return m_document_classificaiton.test(static_cast<size_t>(doc));
+            return m_document_classification.test(static_cast<size_t>(doc));
             }
 
         /// Adds a language that this test should be used on.
@@ -263,7 +263,7 @@ namespace readability
             m_industry_classification{ 0 };
         // document
         std::bitset<static_cast<size_t>(document_classification::DOCUMENT_CLASSIFICATION_COUNT)>
-            m_document_classificaiton{ 0 };
+            m_document_classification{ 0 };
         // language
         std::bitset<static_cast<size_t>(test_language::TEST_LANGUAGE_COUNT)> m_language{ 0 };
         // factors

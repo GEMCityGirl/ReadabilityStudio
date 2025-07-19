@@ -20,4 +20,4 @@ std::set<is_english_passive_voice::string_type> is_english_passive_voice::m_to_b
     L"is", L"isn't", L"was",    L"wasn't", L"were", L"weren't"
 };
 
-word_list is_english_passive_voice::m_past_participle_exeptions;
+word_list is_english_passive_voice::m_past_participle_exceptions;

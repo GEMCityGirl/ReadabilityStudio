@@ -39,16 +39,16 @@ namespace tokenize
                 the end of a paragraph. If @c false, then parser will intelligently deduce
                 when a paragraph starts.
                 This is recommended for text split by newlines to fit a page.
-            @param ignore_blank_lines_when_determing_paragraph_split Whether to ignore blank lines
+            @param ignore_blank_lines_when_determining_paragraph_split Whether to ignore blank lines
                 between lines when deducing if two lines are part of the same paragraph.
-            @param ignore_indenting_when_determing_paragraph_split Whether to review line
+            @param ignore_indenting_when_determining_paragraph_split Whether to review line
                 indenting when deducing if a line is a bullet point.
             @param sentence_start_must_be_uppercased Whether sentences must be uppercased.\n
                 Recommended to be false when analyzing sloppy writing.*/
         document_tokenize(const wchar_t* text, const size_t length,
                           const bool always_treat_linefeeds_as_end_of_paragraph,
-                          const bool ignore_blank_lines_when_determing_paragraph_split,
-                          const bool ignore_indenting_when_determing_paragraph_split,
+                          const bool ignore_blank_lines_when_determining_paragraph_split,
+                          const bool ignore_indenting_when_determining_paragraph_split,
                           const bool sentence_start_must_be_uppercased)
             : m_sentence_position(0), m_current_sentence_index(0), m_current_paragraph_index(0),
               m_current_char(text), m_text_block_beginning(text),
@@ -61,8 +61,8 @@ namespace tokenize
               m_current_leading_end_of_line_count(0), m_moved_past_beginning_nontext(false),
               // enables "smart" paragraph separation if false
               m_treat_eol_as_eop(always_treat_linefeeds_as_end_of_paragraph),
-              m_ignore_blank_lines(ignore_blank_lines_when_determing_paragraph_split),
-              m_ignore_indenting(ignore_indenting_when_determing_paragraph_split),
+              m_ignore_blank_lines(ignore_blank_lines_when_determining_paragraph_split),
+              m_ignore_indenting(ignore_indenting_when_determining_paragraph_split),
               isEndOfSentence(sentence_start_must_be_uppercased)
             {
             // skip anything like "***" at the start of the file.
@@ -198,7 +198,7 @@ namespace tokenize
                 {
                 isEol(m_current_char, m_text_block_end);
                 assert(isEol.get_eol_count() > 0);
-                const wchar_t* const origionalStop = m_current_char;
+                const wchar_t* const originalStop = m_current_char;
                 m_current_char += isEol.get_characters_skipped_count();
                 m_current_leading_end_of_line_count = isEol.get_eol_count();
                 /* If previous line was a TOC line (e.g., "Overview....17") then start a new
@@ -263,11 +263,11 @@ namespace tokenize
                             }
                         }
                     // if next line is not a bullet, then see if previous line was one
-                    if (!nextToOtherBulletedLine && (origionalStop > m_text_block_beginning))
+                    if (!nextToOtherBulletedLine && (originalStop > m_text_block_beginning))
                         {
                         const size_t previousNewlineOffset =
                             std::wstring_view{ m_text_block_beginning }.find_last_of(
-                                L"\r\n", (origionalStop - m_text_block_beginning) - 1);
+                                L"\r\n", (originalStop - m_text_block_beginning) - 1);
                         // previous newline or start of text
                         const wchar_t* previousNewline =
                             (previousNewlineOffset != std::wstring::npos) ?
@@ -973,8 +973,11 @@ namespace tokenize
             }
 
         /** @brief Sets a list of known (spelled correctly) words.
-            @param splist The list of known words.*/
-        void set_known_spellings(const word_list* splist) noexcept { m_known_spellings = splist; }
+            @param spellList The list of known words.*/
+        void set_known_spellings(const word_list* spellList) noexcept
+            {
+            m_known_spellings = spellList;
+            }
 
         /// @brief punctuation marks in between words.
         /// @note This is public for when an analysis system needs to std::move its content
