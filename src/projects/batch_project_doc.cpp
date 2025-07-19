@@ -22,11 +22,6 @@
 #include "batch_project_view.h"
 #include <limits>
 
-using namespace Wisteria;
-using namespace Wisteria::Graphs;
-using namespace Wisteria::GraphItems;
-using namespace Wisteria::Colors;
-
 wxDECLARE_APP(ReadabilityApp);
 
 wxIMPLEMENT_DYNAMIC_CLASS(BatchProjectDoc, wxDocument)
@@ -783,32 +778,32 @@ void BatchProjectDoc::LoadDolchSection()
                 100;
             m_dolchCompletionData->SetItemValue(
                 dolchDocumentCount, 2, dolchConjunctionPercentage,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting, 1,
-                                 true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::PercentageFormatting, 1, true));
             m_dolchCompletionData->SetItemValue(
                 dolchDocumentCount, 3, dolchPrepositionsPercentage,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting, 1,
-                                 true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::PercentageFormatting, 1, true));
             m_dolchCompletionData->SetItemValue(
                 dolchDocumentCount, 4, dolchPronounsPercentage,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting, 1,
-                                 true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::PercentageFormatting, 1, true));
             m_dolchCompletionData->SetItemValue(
                 dolchDocumentCount, 5, dolchAdverbsPercentage,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting, 1,
-                                 true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::PercentageFormatting, 1, true));
             m_dolchCompletionData->SetItemValue(
                 dolchDocumentCount, 6, dolchAdjectivesPercentage,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting, 1,
-                                 true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::PercentageFormatting, 1, true));
             m_dolchCompletionData->SetItemValue(
                 dolchDocumentCount, 7, dolchVerbsPercentage,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting, 1,
-                                 true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::PercentageFormatting, 1, true));
             m_dolchCompletionData->SetItemValue(
                 dolchDocumentCount, 8, dolchNounPercentage,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting, 1,
-                                 true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::PercentageFormatting, 1, true));
             // word stats
             size_t columnCount = 0;
             m_dolchWordsBatchData->SetItemText(dolchDocumentCount, columnCount++,
@@ -820,14 +815,14 @@ void BatchProjectDoc::LoadDolchSection()
                 safe_divide<double>((*pos)->GetDolchConjunctionCounts().second,
                                     (*pos)->GetTotalWords()) *
                     100,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting, 1,
-                                 true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::PercentageFormatting, 1, true));
             if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
                 {
                 m_dolchWordsBatchData->SetItemValue(
                     dolchDocumentCount, columnCount++, (*pos)->GetDolchConjunctionCounts().second,
-                    NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0,
-                                     true));
+                    Wisteria::NumberFormatInfo(
+                        Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
                 }
 
             m_dolchWordsBatchData->SetItemValue(
@@ -835,15 +830,15 @@ void BatchProjectDoc::LoadDolchSection()
                 safe_divide<double>((*pos)->GetDolchPrepositionWordCounts().second,
                                     (*pos)->GetTotalWords()) *
                     100,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting, 1,
-                                 true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::PercentageFormatting, 1, true));
             if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
                 {
                 m_dolchWordsBatchData->SetItemValue(
                     dolchDocumentCount, columnCount++,
                     (*pos)->GetDolchPrepositionWordCounts().second,
-                    NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0,
-                                     true));
+                    Wisteria::NumberFormatInfo(
+                        Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
                 }
 
             m_dolchWordsBatchData->SetItemValue(
@@ -851,14 +846,14 @@ void BatchProjectDoc::LoadDolchSection()
                 safe_divide<double>((*pos)->GetDolchPronounCounts().second,
                                     (*pos)->GetTotalWords()) *
                     100,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting, 1,
-                                 true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::PercentageFormatting, 1, true));
             if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
                 {
                 m_dolchWordsBatchData->SetItemValue(
                     dolchDocumentCount, columnCount++, (*pos)->GetDolchPronounCounts().second,
-                    NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0,
-                                     true));
+                    Wisteria::NumberFormatInfo(
+                        Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
                 }
 
             m_dolchWordsBatchData->SetItemValue(
@@ -866,14 +861,14 @@ void BatchProjectDoc::LoadDolchSection()
                 safe_divide<double>((*pos)->GetDolchAdverbCounts().second,
                                     (*pos)->GetTotalWords()) *
                     100,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting, 1,
-                                 true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::PercentageFormatting, 1, true));
             if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
                 {
                 m_dolchWordsBatchData->SetItemValue(
                     dolchDocumentCount, columnCount++, (*pos)->GetDolchAdverbCounts().second,
-                    NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0,
-                                     true));
+                    Wisteria::NumberFormatInfo(
+                        Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
                 }
 
             m_dolchWordsBatchData->SetItemValue(
@@ -881,42 +876,42 @@ void BatchProjectDoc::LoadDolchSection()
                 safe_divide<double>((*pos)->GetDolchAdjectiveCounts().second,
                                     (*pos)->GetTotalWords()) *
                     100,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting, 1,
-                                 true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::PercentageFormatting, 1, true));
             if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
                 {
                 m_dolchWordsBatchData->SetItemValue(
                     dolchDocumentCount, columnCount++, (*pos)->GetDolchAdjectiveCounts().second,
-                    NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0,
-                                     true));
+                    Wisteria::NumberFormatInfo(
+                        Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
                 }
 
             m_dolchWordsBatchData->SetItemValue(
                 dolchDocumentCount, columnCount++,
                 safe_divide<double>((*pos)->GetDolchVerbsCounts().second, (*pos)->GetTotalWords()) *
                     100,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting, 1,
-                                 true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::PercentageFormatting, 1, true));
             if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
                 {
                 m_dolchWordsBatchData->SetItemValue(
                     dolchDocumentCount, columnCount++, (*pos)->GetDolchVerbsCounts().second,
-                    NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0,
-                                     true));
+                    Wisteria::NumberFormatInfo(
+                        Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
                 }
 
             m_dolchWordsBatchData->SetItemValue(
                 dolchDocumentCount, columnCount++,
                 safe_divide<double>((*pos)->GetDolchNounCounts().second, (*pos)->GetTotalWords()) *
                     100,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting, 1,
-                                 true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::PercentageFormatting, 1, true));
             if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
                 {
                 m_dolchWordsBatchData->SetItemValue(
                     dolchDocumentCount, columnCount++, (*pos)->GetDolchNounCounts().second,
-                    NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0,
-                                     true));
+                    Wisteria::NumberFormatInfo(
+                        Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
                 }
 
             // non-word stats
@@ -934,14 +929,14 @@ void BatchProjectDoc::LoadDolchSection()
                 safe_divide<double>(totalDolchWords, (*pos)->GetTotalWords()) * 100;
             m_NonDolchWordsData->SetItemValue(
                 dolchDocumentCount, 2, 100 - totalDolchPercentage,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting, 1,
-                                 true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::PercentageFormatting, 1, true));
             if (GetStatisticsReportInfo().IsExtendedInformationEnabled())
                 {
                 m_NonDolchWordsData->SetItemValue(
                     dolchDocumentCount, 3, (*pos)->GetTotalWords() - totalDolchWords,
-                    NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0,
-                                     true));
+                    Wisteria::NumberFormatInfo(
+                        Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
                 }
 
             ++dolchDocumentCount;
@@ -990,26 +985,29 @@ void BatchProjectDoc::LoadHardWordsSection()
             // total overall words
             m_hardWordsData->SetItemValue(
                 hardWordRowCount, columnIndex++, (*pos)->GetTotalWords(),
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
             // complex words
             m_hardWordsData->SetItemValue(
                 hardWordRowCount, columnIndex++,
                 safe_divide<double>((*pos)->GetTotal3PlusSyllabicWords(), (*pos)->GetTotalWords()) *
                     100,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting, 1,
-                                 true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::PercentageFormatting, 1, true));
             m_hardWordsData->SetItemValue(
                 hardWordRowCount, columnIndex++, (*pos)->GetTotal3PlusSyllabicWords(),
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
             // long words
             m_hardWordsData->SetItemValue(
                 hardWordRowCount, columnIndex++,
                 safe_divide<double>((*pos)->GetTotalLongWords(), (*pos)->GetTotalWords()) * 100,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting, 1,
-                                 true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::PercentageFormatting, 1, true));
             m_hardWordsData->SetItemValue(
                 hardWordRowCount, columnIndex++, (*pos)->GetTotalLongWords(),
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
             if (GetStatisticsReportInfo().IsExtendedWordsEnabled())
                 {
                 // hard SMOG words (numerals fully syllabized)
@@ -1021,13 +1019,15 @@ void BatchProjectDoc::LoadHardWordsSection()
                             (*pos)->GetTotal3PlusSyllabicWordsNumeralsFullySyllabized(),
                             (*pos)->GetTotalWords()) *
                             100,
-                        NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,
-                                         1, true));
+                        Wisteria::NumberFormatInfo(
+                            Wisteria::NumberFormatInfo::NumberFormatType::PercentageFormatting, 1,
+                            true));
                     m_hardWordsData->SetItemValue(
                         hardWordRowCount, columnIndex++,
                         (*pos)->GetTotal3PlusSyllabicWordsNumeralsFullySyllabized(),
-                        NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0,
-                                         true));
+                        Wisteria::NumberFormatInfo(
+                            Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 0,
+                            true));
                     }
                 // hard FOG words
                 if (GetReadabilityTests().is_test_included(ReadabilityMessages::GUNNING_FOG()))
@@ -1037,12 +1037,14 @@ void BatchProjectDoc::LoadHardWordsSection()
                         safe_divide<double>((*pos)->GetTotalHardWordsFog(),
                                             (*pos)->GetTotalWords()) *
                             100,
-                        NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,
-                                         1, true));
+                        Wisteria::NumberFormatInfo(
+                            Wisteria::NumberFormatInfo::NumberFormatType::PercentageFormatting, 1,
+                            true));
                     m_hardWordsData->SetItemValue(
                         hardWordRowCount, columnIndex++, (*pos)->GetTotalHardWordsFog(),
-                        NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0,
-                                         true));
+                        Wisteria::NumberFormatInfo(
+                            Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 0,
+                            true));
                     }
                 // hard DC words
                 const size_t totalWordCountForDC =
@@ -1068,12 +1070,14 @@ void BatchProjectDoc::LoadHardWordsSection()
                         safe_divide<double>((*pos)->GetTotalHardWordsDaleChall(),
                                             totalWordCountForDC) *
                             100,
-                        NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,
-                                         1, true));
+                        Wisteria::NumberFormatInfo(
+                            Wisteria::NumberFormatInfo::NumberFormatType::PercentageFormatting, 1,
+                            true));
                     m_hardWordsData->SetItemValue(
                         hardWordRowCount, columnIndex++, (*pos)->GetTotalHardWordsDaleChall(),
-                        NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0,
-                                         true));
+                        Wisteria::NumberFormatInfo(
+                            Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 0,
+                            true));
                     }
                 // hard spache words
                 if (GetReadabilityTests().is_test_included(ReadabilityMessages::SPACHE()))
@@ -1083,12 +1087,14 @@ void BatchProjectDoc::LoadHardWordsSection()
                         safe_divide<double>((*pos)->GetTotalHardWordsSpache(),
                                             (*pos)->GetTotalWords()) *
                             100,
-                        NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,
-                                         1, true));
+                        Wisteria::NumberFormatInfo(
+                            Wisteria::NumberFormatInfo::NumberFormatType::PercentageFormatting, 1,
+                            true));
                     m_hardWordsData->SetItemValue(
                         hardWordRowCount, columnIndex++, (*pos)->GetTotalHardWordsSpache(),
-                        NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0,
-                                         true));
+                        Wisteria::NumberFormatInfo(
+                            Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 0,
+                            true));
                     }
                 // hard HJ words
                 if (GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()))
@@ -1098,12 +1104,14 @@ void BatchProjectDoc::LoadHardWordsSection()
                         safe_divide<double>((*pos)->GetTotalHardWordsHarrisJacobson(),
                                             totalWordCountForHJ - totalNumeralCountForHJ) *
                             100,
-                        NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,
-                                         1, true));
+                        Wisteria::NumberFormatInfo(
+                            Wisteria::NumberFormatInfo::NumberFormatType::PercentageFormatting, 1,
+                            true));
                     m_hardWordsData->SetItemValue(
                         hardWordRowCount, columnIndex++, (*pos)->GetTotalHardWordsHarrisJacobson(),
-                        NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0,
-                                         true));
+                        Wisteria::NumberFormatInfo(
+                            Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 0,
+                            true));
                     }
                 for (auto custTestPos = (*pos)->GetCustTestsInUse().begin();
                      custTestPos != (*pos)->GetCustTestsInUse().end(); ++custTestPos)
@@ -1125,12 +1133,14 @@ void BatchProjectDoc::LoadHardWordsSection()
                         safe_divide<double>(custTestPos->GetUnfamiliarWordCount(),
                                             totalWordCountForCustomTest) *
                             100,
-                        NumberFormatInfo(NumberFormatInfo::NumberFormatType::PercentageFormatting,
-                                         1, true));
+                        Wisteria::NumberFormatInfo(
+                            Wisteria::NumberFormatInfo::NumberFormatType::PercentageFormatting, 1,
+                            true));
                     m_hardWordsData->SetItemValue(
                         hardWordRowCount, columnIndex++, custTestPos->GetUnfamiliarWordCount(),
-                        NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0,
-                                         true));
+                        Wisteria::NumberFormatInfo(
+                            Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 0,
+                            true));
                     }
                 }
             ++hardWordRowCount;
@@ -1302,8 +1312,8 @@ void BatchProjectDoc::LoadSummaryStatsSection()
             m_summaryStatsData->SetItemValue(
                 rowCount, columnCount++,
                 safe_divide<double>(doc->GetTotalWords(), doc->GetTotalSentences()),
-                Wisteria::NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,
-                                           1, false));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 1, false));
             assert(m_summaryStatsColumnNames[columnCount] ==
                    _(L"Number of interrogative sentences (questions)"));
             m_summaryStatsData->SetItemValue(rowCount, columnCount++,
@@ -1334,13 +1344,13 @@ void BatchProjectDoc::LoadSummaryStatsSection()
             assert(m_summaryStatsColumnNames[columnCount] == _(L"Average number of characters"));
             m_summaryStatsData->SetItemValue(
                 rowCount, columnCount++, averageCharacterCount,
-                Wisteria::NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,
-                                           1, false));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 1, false));
             assert(m_summaryStatsColumnNames[columnCount] == _(L"Average number of syllables"));
             m_summaryStatsData->SetItemValue(
                 rowCount, columnCount++, averageSyllableCount,
-                Wisteria::NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,
-                                           1, false));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 1, false));
             }
         if (GetStatisticsReportInfo().IsExtendedWordsEnabled())
             {
@@ -1594,8 +1604,8 @@ void BatchProjectDoc::LoadSummaryStatsSection()
             assert(m_summaryStatsColumnNames[columnCount] == _(L"Text size (Kbs.)"));
             m_summaryStatsData->SetItemValue(
                 rowCount, columnCount++, safe_divide<double>(doc->GetTextSize(), 1024),
-                Wisteria::NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,
-                                           2, true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 2, true));
             }
 
         ++rowCount;
@@ -2805,13 +2815,13 @@ void BatchProjectDoc::LoadScoresSection()
                 // have special logic for graphical tests
                 if (rTests->get_test().get_id() == ReadabilityMessages::FRY().wc_str())
                     {
-                    const auto fryGraph = std::dynamic_pointer_cast<FryGraph>(
+                    const auto fryGraph = std::dynamic_pointer_cast<Wisteria::Graphs::FryGraph>(
                         view->GetFryGraph()->GetFixedObject(0, 0));
                     if (!fryGraph->GetScores().at(i).IsScoreInvalid() &&
                         !fryGraph->GetScores().at(i).IsScoreOutOfGradeRange())
                         {
                         rTests->get_grade_point_collection()->AddRow(
-                            Data::RowInfo()
+                            Wisteria::Data::RowInfo()
                                 .Continuous(
                                     { static_cast<double>(fryGraph->GetScores().at(i).GetScore()) })
                                 .Categoricals({ groupId })
@@ -2822,8 +2832,8 @@ void BatchProjectDoc::LoadScoresSection()
                             wxNumberFormatter::ToString(
                                 fryGraph->GetScores().at(i).GetScore(), 0,
                                 wxNumberFormatter::Style::Style_NoTrailingZeroes),
-                            NumberFormatInfo(NumberFormatInfo::NumberFormatType::CustomFormatting,
-                                             1));
+                            Wisteria::NumberFormatInfo(
+                                Wisteria::NumberFormatInfo::NumberFormatType::CustomFormatting, 1));
                         (*pos)->GetAggregatedGradeScores().push_back(
                             fryGraph->GetScores().at(i).GetScore());
                         (*pos)->ReviewTestGoal(ReadabilityMessages::FRY(),
@@ -2857,13 +2867,13 @@ void BatchProjectDoc::LoadScoresSection()
                     }
                 else if (rTests->get_test().get_id() == ReadabilityMessages::GPM_FRY().wc_str())
                     {
-                    const auto fryGraph = std::dynamic_pointer_cast<FryGraph>(
+                    const auto fryGraph = std::dynamic_pointer_cast<Wisteria::Graphs::FryGraph>(
                         view->GetGpmFryGraph()->GetFixedObject(0, 0));
                     if (!fryGraph->GetScores().at(i).IsScoreInvalid() &&
                         !fryGraph->GetScores().at(i).IsScoreOutOfGradeRange())
                         {
                         rTests->get_grade_point_collection()->AddRow(
-                            Data::RowInfo()
+                            Wisteria::Data::RowInfo()
                                 .Continuous(
                                     { static_cast<double>(fryGraph->GetScores().at(i).GetScore()) })
                                 .Categoricals({ groupId })
@@ -2874,8 +2884,8 @@ void BatchProjectDoc::LoadScoresSection()
                             wxNumberFormatter::ToString(
                                 fryGraph->GetScores().at(i).GetScore(), 0,
                                 wxNumberFormatter::Style::Style_NoTrailingZeroes),
-                            NumberFormatInfo(NumberFormatInfo::NumberFormatType::CustomFormatting,
-                                             1));
+                            Wisteria::NumberFormatInfo(
+                                Wisteria::NumberFormatInfo::NumberFormatType::CustomFormatting, 1));
                         (*pos)->GetAggregatedGradeScores().push_back(
                             fryGraph->GetScores().at(i).GetScore());
                         (*pos)->ReviewTestGoal(ReadabilityMessages::GPM_FRY(),
@@ -2910,13 +2920,14 @@ void BatchProjectDoc::LoadScoresSection()
                     }
                 else if (rTests->get_test().get_id() == ReadabilityMessages::SCHWARTZ().wc_str())
                     {
-                    const auto schwartzGraph = std::dynamic_pointer_cast<SchwartzGraph>(
-                        view->GetSchwartzGraph()->GetFixedObject(0, 0));
+                    const auto schwartzGraph =
+                        std::dynamic_pointer_cast<Wisteria::Graphs::SchwartzGraph>(
+                            view->GetSchwartzGraph()->GetFixedObject(0, 0));
                     if (!schwartzGraph->GetScores().at(i).IsScoreInvalid() &&
                         !schwartzGraph->GetScores().at(i).IsScoreOutOfGradeRange())
                         {
                         rTests->get_grade_point_collection()->AddRow(
-                            Data::RowInfo()
+                            Wisteria::Data::RowInfo()
                                 .Continuous({ schwartzGraph->GetScores().at(i).GetScoreAverage() })
                                 .Categoricals({ groupId })
                                 .Id(wxFileName((*pos)->GetOriginalDocumentFilePath())
@@ -2926,8 +2937,8 @@ void BatchProjectDoc::LoadScoresSection()
                             wxNumberFormatter::ToString(
                                 schwartzGraph->GetScores().at(i).GetScoreAverage(), 1,
                                 wxNumberFormatter::Style::Style_NoTrailingZeroes),
-                            NumberFormatInfo(NumberFormatInfo::NumberFormatType::CustomFormatting,
-                                             1));
+                            Wisteria::NumberFormatInfo(
+                                Wisteria::NumberFormatInfo::NumberFormatType::CustomFormatting, 1));
                         (*pos)->GetAggregatedGradeScores().push_back(
                             schwartzGraph->GetScores().at(i).GetScoreAverage());
                         (*pos)->ReviewTestGoal(ReadabilityMessages::SCHWARTZ(),
@@ -2961,13 +2972,14 @@ void BatchProjectDoc::LoadScoresSection()
                     }
                 else if (rTests->get_test().get_id() == ReadabilityMessages::RAYGOR().wc_str())
                     {
-                    const auto raygorGraph = std::dynamic_pointer_cast<RaygorGraph>(
-                        view->GetRaygorGraph()->GetFixedObject(0, 0));
+                    const auto raygorGraph =
+                        std::dynamic_pointer_cast<Wisteria::Graphs::RaygorGraph>(
+                            view->GetRaygorGraph()->GetFixedObject(0, 0));
                     if (!raygorGraph->GetScores().at(i).IsScoreInvalid() &&
                         !raygorGraph->GetScores().at(i).IsScoreOutOfGradeRange())
                         {
                         rTests->get_grade_point_collection()->AddRow(
-                            Data::RowInfo()
+                            Wisteria::Data::RowInfo()
                                 .Continuous({ static_cast<double>(
                                     raygorGraph->GetScores().at(i).GetScore()) })
                                 .Categoricals({ groupId })
@@ -2978,8 +2990,8 @@ void BatchProjectDoc::LoadScoresSection()
                             wxNumberFormatter::ToString(
                                 raygorGraph->GetScores().at(i).GetScore(), 0,
                                 wxNumberFormatter::Style::Style_NoTrailingZeroes),
-                            NumberFormatInfo(NumberFormatInfo::NumberFormatType::CustomFormatting,
-                                             1));
+                            Wisteria::NumberFormatInfo(
+                                Wisteria::NumberFormatInfo::NumberFormatType::CustomFormatting, 1));
                         (*pos)->GetAggregatedGradeScores().push_back(
                             raygorGraph->GetScores().at(i).GetScore());
                         (*pos)->ReviewTestGoal(ReadabilityMessages::RAYGOR(),
@@ -3016,13 +3028,14 @@ void BatchProjectDoc::LoadScoresSection()
                          ReadabilityMessages::GetScoreValue((*pos)->GetLastGradeLevel(), value))
                     {
                     rTests->get_grade_point_collection()->AddRow(
-                        Data::RowInfo()
+                        Wisteria::Data::RowInfo()
                             .Continuous({ value })
                             .Categoricals({ groupId })
                             .Id(wxFileName((*pos)->GetOriginalDocumentFilePath()).GetFullName()));
                     m_scoreRawData->SetItemText(
                         i, currentColumn++, (*pos)->GetLastGradeLevel(),
-                        NumberFormatInfo(NumberFormatInfo::NumberFormatType::CustomFormatting, 1));
+                        Wisteria::NumberFormatInfo(
+                            Wisteria::NumberFormatInfo::NumberFormatType::CustomFormatting, 1));
                     (*pos)->GetAggregatedGradeScores().push_back(value);
                     }
                 else
@@ -3036,12 +3049,12 @@ void BatchProjectDoc::LoadScoresSection()
                 {
                 if (rTests->get_test().get_id() == ReadabilityMessages::FRASE().wc_str())
                     {
-                    auto fraseGraph = std::dynamic_pointer_cast<FraseGraph>(
+                    auto fraseGraph = std::dynamic_pointer_cast<Wisteria::Graphs::FraseGraph>(
                         view->GetFraseGraph()->GetFixedObject(0, 0));
                     if (!fraseGraph->GetScores().at(i).IsScoreInvalid())
                         {
                         rTests->get_index_point_collection()->AddRow(
-                            Data::RowInfo()
+                            Wisteria::Data::RowInfo()
                                 .Continuous({ static_cast<double>(
                                     fraseGraph->GetScores().at(i).GetScore()) })
                                 .Categoricals({ groupId })
@@ -3052,8 +3065,8 @@ void BatchProjectDoc::LoadScoresSection()
                             wxNumberFormatter::ToString(
                                 fraseGraph->GetScores().at(i).GetScore(), 0,
                                 wxNumberFormatter::Style::Style_NoTrailingZeroes),
-                            NumberFormatInfo(NumberFormatInfo::NumberFormatType::CustomFormatting,
-                                             1));
+                            Wisteria::NumberFormatInfo(
+                                Wisteria::NumberFormatInfo::NumberFormatType::CustomFormatting, 1));
                         (*pos)->ReviewTestGoal(ReadabilityMessages::FRASE(),
                                                fraseGraph->GetScores().at(i).GetScore());
                         }
@@ -3075,14 +3088,14 @@ void BatchProjectDoc::LoadScoresSection()
                          !std::isnan((*pos)->GetLastIndexScore()))
                     {
                     rTests->get_index_point_collection()->AddRow(
-                        Data::RowInfo()
+                        Wisteria::Data::RowInfo()
                             .Continuous({ (*pos)->GetLastIndexScore() })
                             .Categoricals({ groupId })
                             .Id(wxFileName((*pos)->GetOriginalDocumentFilePath()).GetFullName()));
                     m_scoreRawData->SetItemValue(
                         i, currentColumn++, (*pos)->GetLastIndexScore(),
-                        NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,
-                                         1));
+                        Wisteria::NumberFormatInfo(
+                            Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 1));
                     }
                 else
                     {
@@ -3098,7 +3111,7 @@ void BatchProjectDoc::LoadScoresSection()
                     !std::isnan((*pos)->GetLastClozeScore()))
                     {
                     rTests->get_cloze_point_collection()->AddRow(
-                        Data::RowInfo()
+                        Wisteria::Data::RowInfo()
                             .Continuous({ (*pos)->GetLastClozeScore() })
                             .Categoricals({ groupId })
                             .Id(wxFileName((*pos)->GetOriginalDocumentFilePath()).GetFullName()));
@@ -3120,15 +3133,16 @@ void BatchProjectDoc::LoadScoresSection()
                     if (!std::isnan((*pos)->GetLastIndexScore()))
                         {
                         rTests->get_index_point_collection()->AddRow(
-                            Data::RowInfo()
+                            Wisteria::Data::RowInfo()
                                 .Continuous({ (*pos)->GetLastIndexScore() })
                                 .Categoricals({ groupId })
                                 .Id(wxFileName((*pos)->GetOriginalDocumentFilePath())
                                         .GetFullName()));
                         m_scoreRawData->SetItemValue(
                             i, currentColumn++, (*pos)->GetLastIndexScore(),
-                            NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,
-                                             1));
+                            Wisteria::NumberFormatInfo(
+                                Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting,
+                                1));
                         }
                     else
                         {
@@ -3137,15 +3151,15 @@ void BatchProjectDoc::LoadScoresSection()
                     if (ReadabilityMessages::GetScoreValue((*pos)->GetLastGradeLevel(), value))
                         {
                         rTests->get_grade_point_collection()->AddRow(
-                            Data::RowInfo()
+                            Wisteria::Data::RowInfo()
                                 .Continuous({ value })
                                 .Categoricals({ groupId })
                                 .Id(wxFileName((*pos)->GetOriginalDocumentFilePath())
                                         .GetFullName()));
                         m_scoreRawData->SetItemText(
                             i, currentColumn++, (*pos)->GetLastGradeLevel(),
-                            NumberFormatInfo(NumberFormatInfo::NumberFormatType::CustomFormatting,
-                                             1));
+                            Wisteria::NumberFormatInfo(
+                                Wisteria::NumberFormatInfo::NumberFormatType::CustomFormatting, 1));
                         (*pos)->GetAggregatedGradeScores().push_back(value);
                         }
                     else
@@ -3169,15 +3183,15 @@ void BatchProjectDoc::LoadScoresSection()
                     if (ReadabilityMessages::GetScoreValue((*pos)->GetLastGradeLevel(), value))
                         {
                         rTests->get_grade_point_collection()->AddRow(
-                            Data::RowInfo()
+                            Wisteria::Data::RowInfo()
                                 .Continuous({ value })
                                 .Categoricals({ groupId })
                                 .Id(wxFileName((*pos)->GetOriginalDocumentFilePath())
                                         .GetFullName()));
                         m_scoreRawData->SetItemText(
                             i, currentColumn++, (*pos)->GetLastGradeLevel(),
-                            NumberFormatInfo(NumberFormatInfo::NumberFormatType::CustomFormatting,
-                                             1));
+                            Wisteria::NumberFormatInfo(
+                                Wisteria::NumberFormatInfo::NumberFormatType::CustomFormatting, 1));
                         (*pos)->GetAggregatedGradeScores().push_back(value);
                         }
                     else
@@ -3187,7 +3201,7 @@ void BatchProjectDoc::LoadScoresSection()
                     if (!std::isnan((*pos)->GetLastClozeScore()))
                         {
                         rTests->get_cloze_point_collection()->AddRow(
-                            Data::RowInfo()
+                            Wisteria::Data::RowInfo()
                                 .Continuous({ (*pos)->GetLastClozeScore() })
                                 .Categoricals({ groupId })
                                 .Id(wxFileName((*pos)->GetOriginalDocumentFilePath())
@@ -3220,13 +3234,14 @@ void BatchProjectDoc::LoadScoresSection()
                     ReadabilityMessages::GetScoreValue((*pos)->GetLastGradeLevel(), value))
                     {
                     m_customTestScores[(testPos - GetCustTestsInUse().begin())]->AddRow(
-                        Data::RowInfo()
+                        Wisteria::Data::RowInfo()
                             .Continuous({ value })
                             .Categoricals({ groupId })
                             .Id(wxFileName((*pos)->GetOriginalDocumentFilePath()).GetFullName()));
                     m_scoreRawData->SetItemText(
                         i, currentColumn++, (*pos)->GetLastGradeLevel(),
-                        NumberFormatInfo(NumberFormatInfo::NumberFormatType::CustomFormatting, 1));
+                        Wisteria::NumberFormatInfo(
+                            Wisteria::NumberFormatInfo::NumberFormatType::CustomFormatting, 1));
                     (*pos)->GetAggregatedGradeScores().push_back(value);
                     }
                 else if (testPos->GetIterator()->get_test_type() ==
@@ -3234,21 +3249,21 @@ void BatchProjectDoc::LoadScoresSection()
                          !std::isnan((*pos)->GetLastIndexScore()))
                     {
                     m_customTestScores[(testPos - GetCustTestsInUse().begin())]->AddRow(
-                        Data::RowInfo()
+                        Wisteria::Data::RowInfo()
                             .Continuous({ (*pos)->GetLastIndexScore() })
                             .Categoricals({ groupId })
                             .Id(wxFileName((*pos)->GetOriginalDocumentFilePath()).GetFullName()));
                     m_scoreRawData->SetItemValue(
                         i, currentColumn++, (*pos)->GetLastIndexScore(),
-                        NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,
-                                         1));
+                        Wisteria::NumberFormatInfo(
+                            Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 1));
                     }
                 else if (testPos->GetIterator()->get_test_type() ==
                              readability::readability_test_type::predicted_cloze_score &&
                          !std::isnan((*pos)->GetLastClozeScore()))
                     {
                     m_customTestScores[(testPos - GetCustTestsInUse().begin())]->AddRow(
-                        Data::RowInfo()
+                        Wisteria::Data::RowInfo()
                             .Continuous({ (*pos)->GetLastClozeScore() })
                             .Categoricals({ groupId })
                             .Id(wxFileName((*pos)->GetOriginalDocumentFilePath()).GetFullName()));
@@ -3970,7 +3985,7 @@ void BatchProjectDoc::DisplayCrawfordGraph()
             assert((!IsShowingGroupLegends() || foundGroupId != GetDocumentLabels().cend()) &&
                    L"Could not find group label for Crawford graph!");
             scoreDataset->AddRow(
-                Data::RowInfo()
+                Wisteria::Data::RowInfo()
                     .Id(wxFileName((*pos)->GetOriginalDocumentFilePath()).GetFullName().wc_str())
                     .Categoricals({ IsShowingGroupLegends() ? foundGroupId->second : 0 })
                     .Continuous({ gradeValue, syllablesPer100Words }));
@@ -3980,7 +3995,7 @@ void BatchProjectDoc::DisplayCrawfordGraph()
     // Crawford Graph
     if (GetReadabilityTests().is_test_included(ReadabilityMessages::CRAWFORD()) && m_docs.size())
         {
-        std::shared_ptr<CrawfordGraph> crawfordGraph{ nullptr };
+        std::shared_ptr<Wisteria::Graphs::CrawfordGraph> crawfordGraph{ nullptr };
         Wisteria::Canvas* crawfordGraphCanvas = dynamic_cast<Wisteria::Canvas*>(
             view->GetScoresView().FindWindowById(BaseProjectView::CRAWFORD_GRAPH_PAGE_ID));
 
@@ -3990,7 +4005,7 @@ void BatchProjectDoc::DisplayCrawfordGraph()
                 new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::CRAWFORD_GRAPH_PAGE_ID);
             crawfordGraphCanvas->SetFixedObjectsGridSize(1, 1);
 
-            crawfordGraph = std::make_shared<CrawfordGraph>(
+            crawfordGraph = std::make_shared<Wisteria::Graphs::CrawfordGraph>(
                 crawfordGraphCanvas,
                 std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
                     *std::make_shared<Wisteria::Colors::Schemes::EarthTones>()));
@@ -4008,7 +4023,7 @@ void BatchProjectDoc::DisplayCrawfordGraph()
             }
         else
             {
-            crawfordGraph = std::dynamic_pointer_cast<CrawfordGraph>(
+            crawfordGraph = std::dynamic_pointer_cast<Wisteria::Graphs::CrawfordGraph>(
                 view->GetCrawfordGraph()->GetFixedObject(0, 0));
             assert(crawfordGraph);
             crawfordGraph->SetData(scoreDataset, scoresColumnName, syllablesColumnName,
@@ -4030,9 +4045,9 @@ void BatchProjectDoc::DisplayCrawfordGraph()
         // ...and if not grouping, use light blue for points
         else
             {
-            crawfordGraph->SetColorScheme(
-                std::make_shared<Colors::Schemes::ColorScheme>(Colors::Schemes::ColorScheme{
-                    ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
+            crawfordGraph->SetColorScheme(std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
+                Wisteria::Colors::Schemes::ColorScheme{ Wisteria::Colors::ColorBrewer::GetColor(
+                    Wisteria::Colors::Color::CelestialBlue) }));
             }
 
         wxGCDC gdc(view->GetDocFrame());
@@ -4071,7 +4086,7 @@ void BatchProjectDoc::DisplayDB2Plot()
             assert((!IsShowingGroupLegends() || foundGroupId != GetDocumentLabels().cend()) &&
                    L"Could not find group label for DB Plot!");
             scoreDataset->AddRow(
-                Data::RowInfo()
+                Wisteria::Data::RowInfo()
                     .Id(wxFileName((*pos)->GetOriginalDocumentFilePath()).GetFullName().wc_str())
                     .Categoricals({ IsShowingGroupLegends() ? foundGroupId->second : 0 })
                     .Continuous({ score }));
@@ -4082,7 +4097,7 @@ void BatchProjectDoc::DisplayDB2Plot()
     if (GetReadabilityTests().is_test_included(ReadabilityMessages::DANIELSON_BRYAN_2()) &&
         m_docs.size())
         {
-        std::shared_ptr<DanielsonBryan2Plot> db2Plot{ nullptr };
+        std::shared_ptr<Wisteria::Graphs::DanielsonBryan2Plot> db2Plot{ nullptr };
         Wisteria::Canvas* db2PlotCanvas = dynamic_cast<Wisteria::Canvas*>(
             view->GetScoresView().FindWindowById(BaseProjectView::DB2_PAGE_ID));
 
@@ -4091,7 +4106,7 @@ void BatchProjectDoc::DisplayDB2Plot()
             db2PlotCanvas = new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::DB2_PAGE_ID);
             db2PlotCanvas->SetFixedObjectsGridSize(1, 1);
 
-            db2Plot = std::make_shared<DanielsonBryan2Plot>(
+            db2Plot = std::make_shared<Wisteria::Graphs::DanielsonBryan2Plot>(
                 db2PlotCanvas, std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
                                    *std::make_shared<Wisteria::Colors::Schemes::EarthTones>()));
             db2Plot->SetData(scoreDataset, scoresColumnName,
@@ -4112,7 +4127,7 @@ void BatchProjectDoc::DisplayDB2Plot()
             }
         else
             {
-            db2Plot = std::dynamic_pointer_cast<DanielsonBryan2Plot>(
+            db2Plot = std::dynamic_pointer_cast<Wisteria::Graphs::DanielsonBryan2Plot>(
                 view->GetDB2Plot()->GetFixedObject(0, 0));
             assert(db2Plot);
             db2Plot->SetData(scoreDataset, scoresColumnName,
@@ -4136,9 +4151,9 @@ void BatchProjectDoc::DisplayDB2Plot()
         // ...and if not grouping, use light blue for points
         else
             {
-            db2Plot->SetColorScheme(
-                std::make_shared<Colors::Schemes::ColorScheme>(Colors::Schemes::ColorScheme{
-                    ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
+            db2Plot->SetColorScheme(std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
+                Wisteria::Colors::Schemes::ColorScheme{ Wisteria::Colors::ColorBrewer::GetColor(
+                    Wisteria::Colors::Color::CelestialBlue) }));
             }
 
         wxGCDC gdc(view->GetDocFrame());
@@ -4194,7 +4209,7 @@ void BatchProjectDoc::DisplayFleschChart()
             assert((!IsShowingGroupLegends() || foundGroupId != GetDocumentLabels().cend()) &&
                    L"Could not find group label for Flesch Chart!");
             scoreDataset->AddRow(
-                Data::RowInfo()
+                Wisteria::Data::RowInfo()
                     .Id(wxFileName((*pos)->GetOriginalDocumentFilePath()).GetFullName().wc_str())
                     .Categoricals({ IsShowingGroupLegends() ? foundGroupId->second : 0 })
                     .Continuous({ ASL, static_cast<double>(score), ASW }));
@@ -4204,7 +4219,7 @@ void BatchProjectDoc::DisplayFleschChart()
     // Flesch Chart
     if (GetReadabilityTests().is_test_included(ReadabilityMessages::FLESCH()) && m_docs.size())
         {
-        std::shared_ptr<FleschChart> fleschChart{ nullptr };
+        std::shared_ptr<Wisteria::Graphs::FleschChart> fleschChart{ nullptr };
         Wisteria::Canvas* fleschChartCanvas = dynamic_cast<Wisteria::Canvas*>(
             view->GetScoresView().FindWindowById(BaseProjectView::FLESCH_CHART_PAGE_ID));
 
@@ -4218,7 +4233,7 @@ void BatchProjectDoc::DisplayFleschChart()
                 new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::FLESCH_CHART_PAGE_ID);
             fleschChartCanvas->SetFixedObjectsGridSize(1, 1);
 
-            fleschChart = std::make_shared<FleschChart>(
+            fleschChart = std::make_shared<Wisteria::Graphs::FleschChart>(
                 fleschChartCanvas, std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
                                        *std::make_shared<Wisteria::Colors::Schemes::EarthTones>()));
             fleschChart->SetData(
@@ -4235,7 +4250,7 @@ void BatchProjectDoc::DisplayFleschChart()
             }
         else
             {
-            fleschChart = std::dynamic_pointer_cast<FleschChart>(
+            fleschChart = std::dynamic_pointer_cast<Wisteria::Graphs::FleschChart>(
                 view->GetFleschChart()->GetFixedObject(0, 0));
             assert(fleschChart);
             fleschChart->SetData(
@@ -4294,7 +4309,7 @@ void BatchProjectDoc::DisplayGermanLixGauge()
             assert((!IsShowingGroupLegends() || foundGroupId != GetDocumentLabels().cend()) &&
                    L"Could not find group label for German Lix gauge!");
             scoreDataset->AddRow(
-                Data::RowInfo()
+                Wisteria::Data::RowInfo()
                     .Id(wxFileName((*pos)->GetOriginalDocumentFilePath()).GetFullName().wc_str())
                     .Categoricals({ IsShowingGroupLegends() ? foundGroupId->second : 0 })
                     .Continuous({ static_cast<double>(score) }));
@@ -4307,7 +4322,7 @@ void BatchProjectDoc::DisplayGermanLixGauge()
          GetReadabilityTests().is_test_included(ReadabilityMessages::LIX_GERMAN_TECHNICAL())) &&
         m_docs.size())
         {
-        std::shared_ptr<LixGaugeGerman> lixGauge{ nullptr };
+        std::shared_ptr<Wisteria::Graphs::LixGaugeGerman> lixGauge{ nullptr };
         Wisteria::Canvas* lixGaugeCanvas = dynamic_cast<Wisteria::Canvas*>(
             view->GetScoresView().FindWindowById(BaseProjectView::LIX_GAUGE_GERMAN_PAGE_ID));
 
@@ -4317,7 +4332,7 @@ void BatchProjectDoc::DisplayGermanLixGauge()
                                                   BaseProjectView::LIX_GAUGE_GERMAN_PAGE_ID);
             lixGaugeCanvas->SetFixedObjectsGridSize(1, 1);
 
-            lixGauge = std::make_shared<LixGaugeGerman>(
+            lixGauge = std::make_shared<Wisteria::Graphs::LixGaugeGerman>(
                 lixGaugeCanvas, std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
                                     *std::make_shared<Wisteria::Colors::Schemes::EarthTones>()));
             lixGauge->SetData(scoreDataset, scoresColumnName,
@@ -4332,7 +4347,7 @@ void BatchProjectDoc::DisplayGermanLixGauge()
             }
         else
             {
-            lixGauge = std::dynamic_pointer_cast<LixGaugeGerman>(
+            lixGauge = std::dynamic_pointer_cast<Wisteria::Graphs::LixGaugeGerman>(
                 view->GetGermanLixGauge()->GetFixedObject(0, 0));
             assert(lixGauge);
             lixGauge->SetData(scoreDataset, scoresColumnName,
@@ -4354,9 +4369,9 @@ void BatchProjectDoc::DisplayGermanLixGauge()
             }
         else
             {
-            lixGauge->SetColorScheme(
-                std::make_shared<Colors::Schemes::ColorScheme>(Colors::Schemes::ColorScheme{
-                    ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
+            lixGauge->SetColorScheme(std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
+                Wisteria::Colors::Schemes::ColorScheme{ Wisteria::Colors::ColorBrewer::GetColor(
+                    Wisteria::Colors::Color::CelestialBlue) }));
             }
 
         wxGCDC gdc(view->GetDocFrame());
@@ -4396,7 +4411,7 @@ void BatchProjectDoc::DisplayLixGauge()
             assert((!IsShowingGroupLegends() || foundGroupId != GetDocumentLabels().cend()) &&
                    L"Could not find group label for Lix Gauge!");
             scoreDataset->AddRow(
-                Data::RowInfo()
+                Wisteria::Data::RowInfo()
                     .Id(wxFileName((*pos)->GetOriginalDocumentFilePath()).GetFullName().wc_str())
                     .Categoricals({ IsShowingGroupLegends() ? foundGroupId->second : 0 })
                     .Continuous({ static_cast<double>(score) }));
@@ -4406,7 +4421,7 @@ void BatchProjectDoc::DisplayLixGauge()
     // Lix Gauge
     if (GetReadabilityTests().is_test_included(ReadabilityMessages::LIX()) && m_docs.size())
         {
-        std::shared_ptr<LixGauge> lixGauge{ nullptr };
+        std::shared_ptr<Wisteria::Graphs::LixGauge> lixGauge{ nullptr };
         Wisteria::Canvas* lixGaugeCanvas = dynamic_cast<Wisteria::Canvas*>(
             view->GetScoresView().FindWindowById(BaseProjectView::LIX_GAUGE_PAGE_ID));
 
@@ -4416,7 +4431,7 @@ void BatchProjectDoc::DisplayLixGauge()
                 new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::LIX_GAUGE_PAGE_ID);
             lixGaugeCanvas->SetFixedObjectsGridSize(1, 1);
 
-            lixGauge = std::make_shared<LixGauge>(
+            lixGauge = std::make_shared<Wisteria::Graphs::LixGauge>(
                 lixGaugeCanvas, std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
                                     *std::make_shared<Wisteria::Colors::Schemes::EarthTones>()));
             lixGauge->SetData(scoreDataset, scoresColumnName,
@@ -4434,8 +4449,8 @@ void BatchProjectDoc::DisplayLixGauge()
             }
         else
             {
-            lixGauge =
-                std::dynamic_pointer_cast<LixGauge>(view->GetLixGauge()->GetFixedObject(0, 0));
+            lixGauge = std::dynamic_pointer_cast<Wisteria::Graphs::LixGauge>(
+                view->GetLixGauge()->GetFixedObject(0, 0));
             assert(lixGauge);
             lixGauge->SetData(scoreDataset, scoresColumnName,
                               IsShowingGroupLegends() ?
@@ -4454,9 +4469,9 @@ void BatchProjectDoc::DisplayLixGauge()
             }
         else
             {
-            lixGauge->SetColorScheme(
-                std::make_shared<Colors::Schemes::ColorScheme>(Colors::Schemes::ColorScheme{
-                    ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
+            lixGauge->SetColorScheme(std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
+                Wisteria::Colors::Schemes::ColorScheme{ Wisteria::Colors::ColorBrewer::GetColor(
+                    Wisteria::Colors::Color::CelestialBlue) }));
             }
 
         wxGCDC gdc(view->GetDocFrame());
@@ -4519,7 +4534,7 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
             assert((!IsShowingGroupLegends() || foundGroupId != GetDocumentLabels().cend()) &&
                    L"Could not find group label!");
             scoreDataset->AddRow(
-                Data::RowInfo()
+                Wisteria::Data::RowInfo()
                     .Id(wxFileName(doc->GetOriginalDocumentFilePath()).GetFullName())
                     .Categoricals({ IsShowingGroupLegends() ? foundGroupId->second : 0 })
                     .
@@ -4540,14 +4555,14 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
         view->GetScoresView().FindWindowById(BaseProjectView::FRY_PAGE_ID));
     if (GetReadabilityTests().is_test_included(ReadabilityMessages::FRY()) && GetDocuments().size())
         {
-        std::shared_ptr<FryGraph> fryGraph{ nullptr };
+        std::shared_ptr<Wisteria::Graphs::FryGraph> fryGraph{ nullptr };
         if (!fryGraphCanvas)
             {
             fryGraphCanvas =
                 new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::FRY_PAGE_ID);
 
-            fryGraph =
-                std::make_shared<FryGraph>(fryGraphCanvas, FryGraph::FryGraphType::Traditional);
+            fryGraph = std::make_shared<Wisteria::Graphs::FryGraph>(
+                fryGraphCanvas, Wisteria::Graphs::FryGraph::FryGraphType::Traditional);
             fryGraph->SetMessageCatalog(GetReadabilityMessageCatalogPtr());
             fryGraph->SetData(
                 scoreDataset, totalWordsColumnName, totalSyllablesNumeralsFullySyllabizedColumnName,
@@ -4566,8 +4581,8 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
             }
         else
             {
-            fryGraph =
-                std::dynamic_pointer_cast<FryGraph>(view->GetFryGraph()->GetFixedObject(0, 0));
+            fryGraph = std::dynamic_pointer_cast<Wisteria::Graphs::FryGraph>(
+                view->GetFryGraph()->GetFixedObject(0, 0));
             assert(fryGraph);
             fryGraph->SetData(
                 scoreDataset, totalWordsColumnName, totalSyllablesNumeralsFullySyllabizedColumnName,
@@ -4590,9 +4605,9 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
         // ...and if not grouping, use light blue for points
         else
             {
-            fryGraph->SetColorScheme(
-                std::make_shared<Colors::Schemes::ColorScheme>(Colors::Schemes::ColorScheme{
-                    ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
+            fryGraph->SetColorScheme(std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
+                Wisteria::Colors::Schemes::ColorScheme{ Wisteria::Colors::ColorBrewer::GetColor(
+                    Wisteria::Colors::Color::CelestialBlue) }));
             }
 
         wxGCDC gdc(view->GetDocFrame());
@@ -4610,13 +4625,14 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
     if (GetReadabilityTests().is_test_included(ReadabilityMessages::GPM_FRY()) &&
         GetDocuments().size())
         {
-        std::shared_ptr<FryGraph> gFryGraph{ nullptr };
+        std::shared_ptr<Wisteria::Graphs::FryGraph> gFryGraph{ nullptr };
         if (!fryGraphCanvas)
             {
             fryGraphCanvas =
                 new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::GPM_FRY_PAGE_ID);
 
-            gFryGraph = std::make_shared<FryGraph>(fryGraphCanvas, FryGraph::FryGraphType::GPM);
+            gFryGraph = std::make_shared<Wisteria::Graphs::FryGraph>(
+                fryGraphCanvas, Wisteria::Graphs::FryGraph::FryGraphType::GPM);
             gFryGraph->SetMessageCatalog(GetReadabilityMessageCatalogPtr());
             gFryGraph->SetData(
                 scoreDataset, totalWordsColumnName, totalSyllablesNumeralsFullySyllabizedColumnName,
@@ -4635,8 +4651,8 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
             }
         else
             {
-            gFryGraph =
-                std::dynamic_pointer_cast<FryGraph>(view->GetGpmFryGraph()->GetFixedObject(0, 0));
+            gFryGraph = std::dynamic_pointer_cast<Wisteria::Graphs::FryGraph>(
+                view->GetGpmFryGraph()->GetFixedObject(0, 0));
             assert(gFryGraph);
             gFryGraph->SetData(
                 scoreDataset, totalWordsColumnName, totalSyllablesNumeralsFullySyllabizedColumnName,
@@ -4659,9 +4675,9 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
         // ...and if not grouping, use light blue for points
         else
             {
-            gFryGraph->SetColorScheme(
-                std::make_shared<Colors::Schemes::ColorScheme>(Colors::Schemes::ColorScheme{
-                    ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
+            gFryGraph->SetColorScheme(std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
+                Wisteria::Colors::Schemes::ColorScheme{ Wisteria::Colors::ColorBrewer::GetColor(
+                    Wisteria::Colors::Color::CelestialBlue) }));
             }
 
         wxGCDC gdc(view->GetDocFrame());
@@ -4679,13 +4695,13 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
     if (GetReadabilityTests().is_test_included(ReadabilityMessages::SCHWARTZ()) &&
         GetDocuments().size())
         {
-        std::shared_ptr<SchwartzGraph> schwartzGraph{ nullptr };
+        std::shared_ptr<Wisteria::Graphs::SchwartzGraph> schwartzGraph{ nullptr };
         if (!schwartzGraphCanvas)
             {
             schwartzGraphCanvas =
                 new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::SCHWARTZ_PAGE_ID);
 
-            schwartzGraph = std::make_shared<SchwartzGraph>(schwartzGraphCanvas);
+            schwartzGraph = std::make_shared<Wisteria::Graphs::SchwartzGraph>(schwartzGraphCanvas);
             schwartzGraph->SetMessageCatalog(GetReadabilityMessageCatalogPtr());
             schwartzGraph->SetData(
                 scoreDataset, totalWordsColumnName, totalSyllablesNumeralsOneSyllableColumnName,
@@ -4704,7 +4720,7 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
             }
         else
             {
-            schwartzGraph = std::dynamic_pointer_cast<SchwartzGraph>(
+            schwartzGraph = std::dynamic_pointer_cast<Wisteria::Graphs::SchwartzGraph>(
                 view->GetSchwartzGraph()->GetFixedObject(0, 0));
             assert(schwartzGraph);
             schwartzGraph->SetData(
@@ -4729,9 +4745,9 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
         // ...and if not grouping, use light blue for points
         else
             {
-            schwartzGraph->SetColorScheme(
-                std::make_shared<Colors::Schemes::ColorScheme>(Colors::Schemes::ColorScheme{
-                    ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
+            schwartzGraph->SetColorScheme(std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
+                Wisteria::Colors::Schemes::ColorScheme{ Wisteria::Colors::ColorBrewer::GetColor(
+                    Wisteria::Colors::Color::CelestialBlue) }));
             }
 
         wxGCDC gdc(view->GetDocFrame());
@@ -4749,13 +4765,13 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
     if (GetReadabilityTests().is_test_included(ReadabilityMessages::FRASE()) &&
         GetDocuments().size())
         {
-        std::shared_ptr<FraseGraph> fraseGraph{ nullptr };
+        std::shared_ptr<Wisteria::Graphs::FraseGraph> fraseGraph{ nullptr };
         if (!fraseGraphCanvas)
             {
             fraseGraphCanvas =
                 new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::FRASE_PAGE_ID);
 
-            fraseGraph = std::make_shared<FraseGraph>(fraseGraphCanvas);
+            fraseGraph = std::make_shared<Wisteria::Graphs::FraseGraph>(fraseGraphCanvas);
             fraseGraph->SetMessageCatalog(GetReadabilityMessageCatalogPtr());
             fraseGraph->SetData(scoreDataset, totalWordsColumnName, totalSyllablesColumnName,
                                 totalSentencesColumnName,
@@ -4774,8 +4790,8 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
             }
         else
             {
-            fraseGraph =
-                std::dynamic_pointer_cast<FraseGraph>(view->GetFraseGraph()->GetFixedObject(0, 0));
+            fraseGraph = std::dynamic_pointer_cast<Wisteria::Graphs::FraseGraph>(
+                view->GetFraseGraph()->GetFixedObject(0, 0));
             assert(fraseGraph);
             fraseGraph->SetData(scoreDataset, totalWordsColumnName, totalSyllablesColumnName,
                                 totalSentencesColumnName,
@@ -4797,9 +4813,9 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
         // ...and if not grouping, use light blue for points
         else
             {
-            fraseGraph->SetColorScheme(
-                std::make_shared<Colors::Schemes::ColorScheme>(Colors::Schemes::ColorScheme{
-                    ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
+            fraseGraph->SetColorScheme(std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
+                Wisteria::Colors::Schemes::ColorScheme{ Wisteria::Colors::ColorBrewer::GetColor(
+                    Wisteria::Colors::Color::CelestialBlue) }));
             }
 
         wxGCDC gdc(view->GetDocFrame());
@@ -4817,7 +4833,7 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
     if (GetReadabilityTests().is_test_included(ReadabilityMessages::RAYGOR()) &&
         GetDocuments().size())
         {
-        std::shared_ptr<RaygorGraph> raygorGraph{ nullptr };
+        std::shared_ptr<Wisteria::Graphs::RaygorGraph> raygorGraph{ nullptr };
         if (!raygorGraphCanvas)
             {
             raygorGraphCanvas =
@@ -4825,7 +4841,7 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
 
             raygorGraphCanvas->SetFixedObjectsGridSize(1, 1);
 
-            raygorGraph = std::make_shared<RaygorGraph>(raygorGraphCanvas);
+            raygorGraph = std::make_shared<Wisteria::Graphs::RaygorGraph>(raygorGraphCanvas);
             raygorGraph->SetMessageCatalog(GetReadabilityMessageCatalogPtr());
             raygorGraph->SetData(scoreDataset, totalWordsLessNumerals,
                                  total6PlusCharWordsLessNumerals, totalSentencesColumnName,
@@ -4843,7 +4859,7 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
             }
         else
             {
-            raygorGraph = std::dynamic_pointer_cast<RaygorGraph>(
+            raygorGraph = std::dynamic_pointer_cast<Wisteria::Graphs::RaygorGraph>(
                 view->GetRaygorGraph()->GetFixedObject(0, 0));
             assert(raygorGraph);
             raygorGraph->SetData(scoreDataset, totalWordsLessNumerals,
@@ -4869,9 +4885,9 @@ void BatchProjectDoc::DisplayReadabilityGraphs()
         // ...and if not grouping, use light blue for points
         else
             {
-            raygorGraph->SetColorScheme(
-                std::make_shared<Colors::Schemes::ColorScheme>(Colors::Schemes::ColorScheme{
-                    ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
+            raygorGraph->SetColorScheme(std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
+                Wisteria::Colors::Schemes::ColorScheme{ Wisteria::Colors::ColorBrewer::GetColor(
+                    Wisteria::Colors::Color::CelestialBlue) }));
             }
 
         wxGCDC gdc(view->GetDocFrame());
@@ -4916,7 +4932,8 @@ void BatchProjectDoc::DisplayBoxPlots()
                     boxPlotCanvas = new Wisteria::Canvas(view->GetSplitter(),
                                                          sTest.get_test().get_interface_id());
                     boxPlotCanvas->SetFixedObjectsGridSize(1, 1);
-                    boxPlotCanvas->SetFixedObject(0, 0, std::make_shared<BoxPlot>(boxPlotCanvas));
+                    boxPlotCanvas->SetFixedObject(
+                        0, 0, std::make_shared<Wisteria::Graphs::BoxPlot>(boxPlotCanvas));
                     boxPlotCanvas->Hide();
                     boxPlotCanvas->SetLabel(pageLabel);
                     boxPlotCanvas->SetName(pageLabel);
@@ -4924,11 +4941,11 @@ void BatchProjectDoc::DisplayBoxPlots()
                     }
                 UpdateGraphOptions(boxPlotCanvas);
 
-                auto boxPlot =
-                    std::dynamic_pointer_cast<BoxPlot>(boxPlotCanvas->GetFixedObject(0, 0));
+                auto boxPlot = std::dynamic_pointer_cast<Wisteria::Graphs::BoxPlot>(
+                    boxPlotCanvas->GetFixedObject(0, 0));
                 assert(boxPlot && "Invalid dynamic cast to box plot!");
-                boxPlot->SetBrushScheme(std::make_shared<Brushes::Schemes::BrushScheme>(
-                    Colors::Schemes::ColorScheme({ GetGraphBoxColor() })));
+                boxPlot->SetBrushScheme(std::make_shared<Wisteria::Brushes::Schemes::BrushScheme>(
+                    Wisteria::Colors::Schemes::ColorScheme({ GetGraphBoxColor() })));
                 boxPlot->SetData(sTest.get_grade_point_collection(), GetScoreColumnName(),
                                  // if more documents than groups, then use grouping
                                  (GetDocumentLabels().size() > 1 &&
@@ -4941,19 +4958,19 @@ void BatchProjectDoc::DisplayBoxPlots()
                     boxPlotCanvas->SetFixedObjectsGridSize(1, 2);
                     boxPlotCanvas->SetFixedObject(
                         0, 1,
-                        boxPlot->CreateLegend(LegendOptions().PlacementHint(
-                            LegendCanvasPlacementHint::RightOfGraph)));
+                        boxPlot->CreateLegend(Wisteria::Graphs::LegendOptions().PlacementHint(
+                            Wisteria::LegendCanvasPlacementHint::RightOfGraph)));
                     }
 
-                boxPlot->GetTitle() =
-                    GraphItems::Label(GraphItemInfo(sTest.get_test().get_long_name().c_str())
-                                          .DPIScaling(boxPlotCanvas->GetDPIScaleFactor())
-                                          .Scaling(boxPlotCanvas->GetScaling())
-                                          .Pen(wxNullPen));
+                boxPlot->GetTitle() = Wisteria::GraphItems::Label(
+                    Wisteria::GraphItems::GraphItemInfo(sTest.get_test().get_long_name().c_str())
+                        .DPIScaling(boxPlotCanvas->GetDPIScaleFactor())
+                        .Scaling(boxPlotCanvas->GetScaling())
+                        .Pen(wxNullPen));
 
                 boxPlot->SetShadowType(IsDisplayingDropShadows() ?
-                                           ShadowType::RightSideAndBottomShadow :
-                                           ShadowType::NoShadow);
+                                           Wisteria::ShadowType::RightSideAndBottomShadow :
+                                           Wisteria::ShadowType::NoShadow);
                 boxPlot->SetOpacity(GetGraphBoxOpacity());
                 boxPlot->SetBoxEffect(GetGraphBoxEffect());
                 if (const auto convertedIcon =
@@ -4973,7 +4990,7 @@ void BatchProjectDoc::DisplayBoxPlots()
                 for (int i = 0; i < 20; ++i)
                     {
                     boxPlot->GetLeftYAxis().SetCustomLabel(
-                        i, GraphItems::Label(
+                        i, Wisteria::GraphItems::Label(
                                GetReadabilityMessageCatalog().GetGradeScaleLongLabel(i)));
                     }
                 boxPlot->GetLeftYAxis().SetLabelDisplay(
@@ -5010,7 +5027,8 @@ void BatchProjectDoc::DisplayBoxPlots()
                     boxPlotCanvas = new Wisteria::Canvas(view->GetSplitter(),
                                                          sTest.get_test().get_interface_id());
                     boxPlotCanvas->SetFixedObjectsGridSize(1, 1);
-                    boxPlotCanvas->SetFixedObject(0, 0, std::make_shared<BoxPlot>(boxPlotCanvas));
+                    boxPlotCanvas->SetFixedObject(
+                        0, 0, std::make_shared<Wisteria::Graphs::BoxPlot>(boxPlotCanvas));
                     boxPlotCanvas->Hide();
                     boxPlotCanvas->SetLabel(pageLabel);
                     boxPlotCanvas->SetName(pageLabel);
@@ -5018,11 +5036,11 @@ void BatchProjectDoc::DisplayBoxPlots()
                     }
                 UpdateGraphOptions(boxPlotCanvas);
 
-                auto boxPlot =
-                    std::dynamic_pointer_cast<BoxPlot>(boxPlotCanvas->GetFixedObject(0, 0));
+                auto boxPlot = std::dynamic_pointer_cast<Wisteria::Graphs::BoxPlot>(
+                    boxPlotCanvas->GetFixedObject(0, 0));
                 assert(boxPlot && "Invalid dynamic cast to box plot!");
-                boxPlot->SetBrushScheme(std::make_shared<Brushes::Schemes::BrushScheme>(
-                    Colors::Schemes::ColorScheme({ GetGraphBoxColor() })));
+                boxPlot->SetBrushScheme(std::make_shared<Wisteria::Brushes::Schemes::BrushScheme>(
+                    Wisteria::Colors::Schemes::ColorScheme({ GetGraphBoxColor() })));
                 boxPlot->SetData(sTest.get_index_point_collection(), GetScoreColumnName(),
                                  // if more documents than groups, then use grouping
                                  (GetDocumentLabels().size() > 1 &&
@@ -5035,19 +5053,19 @@ void BatchProjectDoc::DisplayBoxPlots()
                     boxPlotCanvas->SetFixedObjectsGridSize(1, 2);
                     boxPlotCanvas->SetFixedObject(
                         0, 1,
-                        boxPlot->CreateLegend(LegendOptions().PlacementHint(
-                            LegendCanvasPlacementHint::RightOfGraph)));
+                        boxPlot->CreateLegend(Wisteria::Graphs::LegendOptions().PlacementHint(
+                            Wisteria::LegendCanvasPlacementHint::RightOfGraph)));
                     }
 
-                boxPlot->GetTitle() =
-                    GraphItems::Label(GraphItemInfo(sTest.get_test().get_long_name().c_str())
-                                          .DPIScaling(boxPlotCanvas->GetDPIScaleFactor())
-                                          .Scaling(boxPlotCanvas->GetScaling())
-                                          .Pen(wxNullPen));
+                boxPlot->GetTitle() = Wisteria::GraphItems::Label(
+                    Wisteria::GraphItems::GraphItemInfo(sTest.get_test().get_long_name().c_str())
+                        .DPIScaling(boxPlotCanvas->GetDPIScaleFactor())
+                        .Scaling(boxPlotCanvas->GetScaling())
+                        .Pen(wxNullPen));
 
                 boxPlot->SetShadowType(IsDisplayingDropShadows() ?
-                                           ShadowType::RightSideAndBottomShadow :
-                                           ShadowType::NoShadow);
+                                           Wisteria::ShadowType::RightSideAndBottomShadow :
+                                           Wisteria::ShadowType::NoShadow);
                 boxPlot->ShowLabels(IsDisplayingBoxPlotLabels());
                 boxPlot->ShowAllPoints(IsShowingAllBoxPlotPoints());
                 boxPlot->SetOpacity(GetGraphBoxOpacity());
@@ -5115,7 +5133,8 @@ void BatchProjectDoc::DisplayBoxPlots()
                     boxPlotCanvas = new Wisteria::Canvas(view->GetSplitter(),
                                                          sTest.get_test().get_interface_id());
                     boxPlotCanvas->SetFixedObjectsGridSize(1, 1);
-                    boxPlotCanvas->SetFixedObject(0, 0, std::make_shared<BoxPlot>(boxPlotCanvas));
+                    boxPlotCanvas->SetFixedObject(
+                        0, 0, std::make_shared<Wisteria::Graphs::BoxPlot>(boxPlotCanvas));
                     boxPlotCanvas->Hide();
                     boxPlotCanvas->SetLabel(pageLabel);
                     boxPlotCanvas->SetName(pageLabel);
@@ -5123,11 +5142,11 @@ void BatchProjectDoc::DisplayBoxPlots()
                     }
                 UpdateGraphOptions(boxPlotCanvas);
 
-                auto boxPlot =
-                    std::dynamic_pointer_cast<BoxPlot>(boxPlotCanvas->GetFixedObject(0, 0));
+                auto boxPlot = std::dynamic_pointer_cast<Wisteria::Graphs::BoxPlot>(
+                    boxPlotCanvas->GetFixedObject(0, 0));
                 assert(boxPlot && "Invalid dynamic cast to box plot!");
-                boxPlot->SetBrushScheme(std::make_shared<Brushes::Schemes::BrushScheme>(
-                    Colors::Schemes::ColorScheme({ GetGraphBoxColor() })));
+                boxPlot->SetBrushScheme(std::make_shared<Wisteria::Brushes::Schemes::BrushScheme>(
+                    Wisteria::Colors::Schemes::ColorScheme({ GetGraphBoxColor() })));
                 boxPlot->SetData(sTest.get_cloze_point_collection(), GetScoreColumnName(),
                                  // if more documents than groups, then use grouping
                                  (GetDocumentLabels().size() > 1 &&
@@ -5140,18 +5159,18 @@ void BatchProjectDoc::DisplayBoxPlots()
                     boxPlotCanvas->SetFixedObjectsGridSize(1, 2);
                     boxPlotCanvas->SetFixedObject(
                         0, 1,
-                        boxPlot->CreateLegend(LegendOptions().PlacementHint(
-                            LegendCanvasPlacementHint::RightOfGraph)));
+                        boxPlot->CreateLegend(Wisteria::Graphs::LegendOptions().PlacementHint(
+                            Wisteria::LegendCanvasPlacementHint::RightOfGraph)));
                     }
 
-                boxPlot->GetTitle() =
-                    GraphItems::Label(GraphItemInfo(sTest.get_test().get_long_name().c_str())
-                                          .DPIScaling(boxPlotCanvas->GetDPIScaleFactor())
-                                          .Scaling(boxPlotCanvas->GetScaling())
-                                          .Pen(wxNullPen));
+                boxPlot->GetTitle() = Wisteria::GraphItems::Label(
+                    Wisteria::GraphItems::GraphItemInfo(sTest.get_test().get_long_name().c_str())
+                        .DPIScaling(boxPlotCanvas->GetDPIScaleFactor())
+                        .Scaling(boxPlotCanvas->GetScaling())
+                        .Pen(wxNullPen));
                 boxPlot->SetShadowType(IsDisplayingDropShadows() ?
-                                           ShadowType::RightSideAndBottomShadow :
-                                           ShadowType::NoShadow);
+                                           Wisteria::ShadowType::RightSideAndBottomShadow :
+                                           Wisteria::ShadowType::NoShadow);
                 boxPlot->SetOpacity(GetGraphBoxOpacity());
                 boxPlot->SetBoxEffect(GetGraphBoxEffect());
                 if (const auto convertedIcon =
@@ -5197,7 +5216,8 @@ void BatchProjectDoc::DisplayBoxPlots()
                     boxPlotCanvas = new Wisteria::Canvas(
                         view->GetSplitter(), testPos->GetIterator()->get_interface_id());
                     boxPlotCanvas->SetFixedObjectsGridSize(1, 1);
-                    boxPlotCanvas->SetFixedObject(0, 0, std::make_shared<BoxPlot>(boxPlotCanvas));
+                    boxPlotCanvas->SetFixedObject(
+                        0, 0, std::make_shared<Wisteria::Graphs::BoxPlot>(boxPlotCanvas));
                     boxPlotCanvas->Hide();
                     boxPlotCanvas->SetLabel(testPos->GetIterator()->get_name().c_str());
                     boxPlotCanvas->SetName(testPos->GetIterator()->get_name().c_str());
@@ -5205,11 +5225,11 @@ void BatchProjectDoc::DisplayBoxPlots()
                     }
                 UpdateGraphOptions(boxPlotCanvas);
 
-                auto boxPlot =
-                    std::dynamic_pointer_cast<BoxPlot>(boxPlotCanvas->GetFixedObject(0, 0));
+                auto boxPlot = std::dynamic_pointer_cast<Wisteria::Graphs::BoxPlot>(
+                    boxPlotCanvas->GetFixedObject(0, 0));
                 assert(boxPlot && "Invalid dynamic cast to box plot!");
-                boxPlot->SetBrushScheme(std::make_shared<Brushes::Schemes::BrushScheme>(
-                    Colors::Schemes::ColorScheme({ GetGraphBoxColor() })));
+                boxPlot->SetBrushScheme(std::make_shared<Wisteria::Brushes::Schemes::BrushScheme>(
+                    Wisteria::Colors::Schemes::ColorScheme({ GetGraphBoxColor() })));
                 boxPlot->SetData(scoreDataset, GetScoreColumnName(),
                                  // if more documents than groups, then use grouping
                                  (GetDocumentLabels().size() > 1 &&
@@ -5222,19 +5242,19 @@ void BatchProjectDoc::DisplayBoxPlots()
                     boxPlotCanvas->SetFixedObjectsGridSize(1, 2);
                     boxPlotCanvas->SetFixedObject(
                         0, 1,
-                        boxPlot->CreateLegend(LegendOptions().PlacementHint(
-                            LegendCanvasPlacementHint::RightOfGraph)));
+                        boxPlot->CreateLegend(Wisteria::Graphs::LegendOptions().PlacementHint(
+                            Wisteria::LegendCanvasPlacementHint::RightOfGraph)));
                     }
 
-                boxPlot->GetTitle() =
-                    GraphItems::Label(GraphItemInfo(testPos->GetIterator()->get_name().c_str())
-                                          .DPIScaling(boxPlotCanvas->GetDPIScaleFactor())
-                                          .Scaling(boxPlotCanvas->GetScaling())
-                                          .Pen(wxNullPen));
+                boxPlot->GetTitle() = Wisteria::GraphItems::Label(
+                    Wisteria::GraphItems::GraphItemInfo(testPos->GetIterator()->get_name().c_str())
+                        .DPIScaling(boxPlotCanvas->GetDPIScaleFactor())
+                        .Scaling(boxPlotCanvas->GetScaling())
+                        .Pen(wxNullPen));
 
                 boxPlot->SetShadowType(IsDisplayingDropShadows() ?
-                                           ShadowType::RightSideAndBottomShadow :
-                                           ShadowType::NoShadow);
+                                           Wisteria::ShadowType::RightSideAndBottomShadow :
+                                           Wisteria::ShadowType::NoShadow);
                 boxPlot->SetOpacity(GetGraphBoxOpacity());
                 boxPlot->SetBoxEffect(GetGraphBoxEffect());
                 if (const auto convertedIcon =
@@ -5254,7 +5274,7 @@ void BatchProjectDoc::DisplayBoxPlots()
                 for (int i = 0; i < 20; ++i)
                     {
                     boxPlot->GetLeftYAxis().SetCustomLabel(
-                        i, GraphItems::Label(
+                        i, Wisteria::GraphItems::Label(
                                GetReadabilityMessageCatalog().GetGradeScaleLongLabel(i)));
                     }
                 boxPlot->GetLeftYAxis().SetLabelDisplay(
@@ -5282,7 +5302,8 @@ void BatchProjectDoc::DisplayBoxPlots()
                     boxPlotCanvas = new Wisteria::Canvas(
                         view->GetSplitter(), testPos->GetIterator()->get_interface_id());
                     boxPlotCanvas->SetFixedObjectsGridSize(1, 1);
-                    boxPlotCanvas->SetFixedObject(0, 0, std::make_shared<BoxPlot>(boxPlotCanvas));
+                    boxPlotCanvas->SetFixedObject(
+                        0, 0, std::make_shared<Wisteria::Graphs::BoxPlot>(boxPlotCanvas));
                     boxPlotCanvas->Hide();
                     boxPlotCanvas->SetLabel(testPos->GetIterator()->get_name().c_str());
                     boxPlotCanvas->SetName(testPos->GetIterator()->get_name().c_str());
@@ -5290,8 +5311,8 @@ void BatchProjectDoc::DisplayBoxPlots()
                     }
                 UpdateGraphOptions(boxPlotCanvas);
 
-                auto boxPlot =
-                    std::dynamic_pointer_cast<BoxPlot>(boxPlotCanvas->GetFixedObject(0, 0));
+                auto boxPlot = std::dynamic_pointer_cast<Wisteria::Graphs::BoxPlot>(
+                    boxPlotCanvas->GetFixedObject(0, 0));
                 assert(boxPlot && "Invalid dynamic cast to box plot!");
                 boxPlot->SetData(scoreDataset, GetScoreColumnName(),
                                  // if more documents than groups, then use grouping
@@ -5299,27 +5320,27 @@ void BatchProjectDoc::DisplayBoxPlots()
                                   GetDocuments().size() > GetDocumentLabels().size()) ?
                                      std::optional<wxString>(GetGroupColumnName()) :
                                      std::nullopt);
-                boxPlot->SetBrushScheme(std::make_shared<Brushes::Schemes::BrushScheme>(
-                    Colors::Schemes::ColorScheme({ GetGraphBoxColor() })));
+                boxPlot->SetBrushScheme(std::make_shared<Wisteria::Brushes::Schemes::BrushScheme>(
+                    Wisteria::Colors::Schemes::ColorScheme({ GetGraphBoxColor() })));
 
                 if (boxPlot->GetBoxCount() > 1)
                     {
                     boxPlotCanvas->SetFixedObjectsGridSize(1, 2);
                     boxPlotCanvas->SetFixedObject(
                         0, 1,
-                        boxPlot->CreateLegend(LegendOptions().PlacementHint(
-                            LegendCanvasPlacementHint::RightOfGraph)));
+                        boxPlot->CreateLegend(Wisteria::Graphs::LegendOptions().PlacementHint(
+                            Wisteria::LegendCanvasPlacementHint::RightOfGraph)));
                     }
 
-                boxPlot->GetTitle() =
-                    GraphItems::Label(GraphItemInfo(testPos->GetIterator()->get_name().c_str())
-                                          .DPIScaling(boxPlotCanvas->GetDPIScaleFactor())
-                                          .Scaling(boxPlotCanvas->GetScaling())
-                                          .Pen(wxNullPen));
+                boxPlot->GetTitle() = Wisteria::GraphItems::Label(
+                    Wisteria::GraphItems::GraphItemInfo(testPos->GetIterator()->get_name().c_str())
+                        .DPIScaling(boxPlotCanvas->GetDPIScaleFactor())
+                        .Scaling(boxPlotCanvas->GetScaling())
+                        .Pen(wxNullPen));
 
                 boxPlot->SetShadowType(IsDisplayingDropShadows() ?
-                                           ShadowType::RightSideAndBottomShadow :
-                                           ShadowType::NoShadow);
+                                           Wisteria::ShadowType::RightSideAndBottomShadow :
+                                           Wisteria::ShadowType::NoShadow);
                 boxPlot->SetOpacity(GetGraphBoxOpacity());
                 boxPlot->SetBoxEffect(GetGraphBoxEffect());
                 if (const auto convertedIcon =
@@ -5487,7 +5508,7 @@ void BatchProjectDoc::DisplayHistogram(const wxString& name, const wxWindowID Id
             canvas->SetFixedObjectsGridSize(1, 1);
             canvas->SetFixedObject(
                 0, 0,
-                std::make_shared<Histogram>(
+                std::make_shared<Wisteria::Graphs::Histogram>(
                     canvas, IsShowingGroupLegends() ?
                                 std::make_shared<Wisteria::Brushes::Schemes::BrushScheme>(
                                     *std::make_shared<Wisteria::Colors::Schemes::EarthTones>()) :
@@ -5502,7 +5523,8 @@ void BatchProjectDoc::DisplayHistogram(const wxString& name, const wxWindowID Id
             }
         UpdateGraphOptions(canvas);
 
-        auto histogram = std::dynamic_pointer_cast<Histogram>(canvas->GetFixedObject(0, 0));
+        auto histogram =
+            std::dynamic_pointer_cast<Wisteria::Graphs::Histogram>(canvas->GetFixedObject(0, 0));
         assert(histogram && "Invalid histogram cast!");
 
         if (!IsShowingGroupLegends())
@@ -5512,42 +5534,44 @@ void BatchProjectDoc::DisplayHistogram(const wxString& name, const wxWindowID Id
                     Wisteria::Colors::Schemes::ColorScheme({ GetHistogramBarColor() }))));
             }
 
-        histogram->SetData(data, GetScoreColumnName(),
-                           (IsShowingGroupLegends() ?
-                                std::optional<wxString>(GetGroupColumnName()) :
-                                std::nullopt),
-                           (isTestGradeLevel ? Histogram::BinningMethod::BinUniqueValues :
-                                               GetHistogramBinningMethod()),
-                           GetHistogramRoundingMethod(), GetHistogramIntervalDisplay(),
-                           GetHistogramBinLabelDisplay(), true,
-                           (isTestGradeLevel ? 0 :
-                            startAtOne       ? 1 :
-                                               std::numeric_limits<double>::quiet_NaN()));
+        histogram->SetData(
+            data, GetScoreColumnName(),
+            (IsShowingGroupLegends() ? std::optional<wxString>(GetGroupColumnName()) :
+                                       std::nullopt),
+            (isTestGradeLevel ? Wisteria::Graphs::Histogram::BinningMethod::BinUniqueValues :
+                                GetHistogramBinningMethod()),
+            GetHistogramRoundingMethod(), GetHistogramIntervalDisplay(),
+            GetHistogramBinLabelDisplay(), true,
+            (isTestGradeLevel ? 0 :
+             startAtOne       ? 1 :
+                                std::numeric_limits<double>::quiet_NaN()));
 
         if (IsShowingGroupLegends())
             {
             canvas->SetFixedObjectsGridSize(1, 2);
             canvas->SetFixedObject(
                 0, 1,
-                histogram->CreateLegend(LegendOptions()
-                                            .PlacementHint(LegendCanvasPlacementHint::RightOfGraph)
-                                            .IncludeHeader(false)));
+                histogram->CreateLegend(
+                    Wisteria::Graphs::LegendOptions()
+                        .PlacementHint(Wisteria::LegendCanvasPlacementHint::RightOfGraph)
+                        .IncludeHeader(false)));
             }
 
         histogram->ClearProperties();
         histogram->GetBarAxis().ClearBrackets();
-        histogram->GetTitle() = GraphItems::Label(GraphItemInfo(topLabel)
-                                                      .DPIScaling(canvas->GetDPIScaleFactor())
-                                                      .Scaling(canvas->GetScaling())
-                                                      .Pen(wxNullPen));
+        histogram->GetTitle() =
+            Wisteria::GraphItems::Label(Wisteria::GraphItems::GraphItemInfo(topLabel)
+                                            .DPIScaling(canvas->GetDPIScaleFactor())
+                                            .Scaling(canvas->GetScaling())
+                                            .Pen(wxNullPen));
         histogram->GetScalingAxis().GetTitle().SetText(_(L"Number of Documents"));
         histogram->GetBarAxis().GetTitle() =
-            GraphItems::Label(GraphItemInfo(bottomLabel)
-                                  .DPIScaling(canvas->GetDPIScaleFactor())
-                                  .Scaling(canvas->GetScaling())
-                                  .Pen(wxNullPen));
-        histogram->SetShadowType(IsDisplayingDropShadows() ? ShadowType::RightSideShadow :
-                                                             ShadowType::NoShadow);
+            Wisteria::GraphItems::Label(Wisteria::GraphItems::GraphItemInfo(bottomLabel)
+                                            .DPIScaling(canvas->GetDPIScaleFactor())
+                                            .Scaling(canvas->GetScaling())
+                                            .Pen(wxNullPen));
+        histogram->SetShadowType(IsDisplayingDropShadows() ? Wisteria::ShadowType::RightSideShadow :
+                                                             Wisteria::ShadowType::NoShadow);
         histogram->SetBarEffect(GetHistogramBarEffect());
         if (const auto convertedIcon = Wisteria::ReportEnumConvert::ConvertIcon(GetStippleShape());
             convertedIcon)
@@ -5574,15 +5598,15 @@ void BatchProjectDoc::DisplayHistogram(const wxString& name, const wxWindowID Id
                         // include the Kindergarten bin label just to show where everything starts,
                         // then hide any labels where the bins are empty
                         (foundValidBar == histogram->GetBars().cend() && i > 0) ?
-                            GraphItems::Label{} :
-                            GraphItems::Label(
-                                GetReadabilityMessageCatalog().GetGradeScaleLongLabel(i)));
+                            Wisteria::GraphItems::Label{} :
+                            Wisteria::GraphItems::Label{
+                                GetReadabilityMessageCatalog().GetGradeScaleLongLabel(i) });
                     }
                 // if not too many bins, show the long grade labels on the X axis
                 histogram->GetBarAxis().SetLabelDisplay(
                     (histogram->GetBinsWithValuesCount() <= 5) ?
-                        AxisLabelDisplay::DisplayOnlyCustomLabels :
-                        AxisLabelDisplay::DisplayValues);
+                        Wisteria::AxisLabelDisplay::DisplayOnlyCustomLabels :
+                        Wisteria::AxisLabelDisplay::DisplayValues);
                 if (GetReadabilityMessageCatalog().GetGradeScale() ==
                     readability::grade_scale::k12_plus_united_states)
                     {
@@ -5595,17 +5619,17 @@ void BatchProjectDoc::DisplayHistogram(const wxString& name, const wxWindowID Id
                             {
                             return;
                             }
-                        histogram->GetBarAxis().AddBracket(Axis::AxisBracket(
+                        histogram->GetBarAxis().AddBracket(Wisteria::GraphItems::Axis::AxisBracket(
                             startGrade, std::min(endGrade, lastGradeBar),
                             startGrade + ((std::min(endGrade, lastGradeBar) - startGrade) / 2),
                             label));
                         histogram->GetBarAxis().SetCustomLabel(
                             startGrade,
-                            GraphItems::Label(
+                            Wisteria::GraphItems::Label(
                                 GetReadabilityMessageCatalog().GetGradeScaleLongLabel(startGrade)));
                         histogram->GetBarAxis().SetCustomLabel(
                             endGrade,
-                            GraphItems::Label(
+                            Wisteria::GraphItems::Label(
                                 GetReadabilityMessageCatalog().GetGradeScaleLongLabel(endGrade)));
                     };
 
@@ -7264,7 +7288,8 @@ void BatchProjectDoc::DisplayHardWords()
             wordCloudCanvas =
                 new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::WORD_CLOUD_PAGE_ID);
             wordCloudCanvas->SetFixedObjectsGridSize(1, 1);
-            wordCloudCanvas->SetFixedObject(0, 0, std::make_shared<WordCloud>(wordCloudCanvas));
+            wordCloudCanvas->SetFixedObject(
+                0, 0, std::make_shared<Wisteria::Graphs::WordCloud>(wordCloudCanvas));
             wordCloudCanvas->Hide();
             wordCloudCanvas->SetLabel(BaseProjectView::GetWordCloudLabel());
             wordCloudCanvas->SetName(BaseProjectView::GetWordCloudLabel());
@@ -7273,8 +7298,8 @@ void BatchProjectDoc::DisplayHardWords()
             }
         UpdateGraphOptions(wordCloudCanvas);
 
-        auto wordCloud =
-            std::dynamic_pointer_cast<WordCloud>(wordCloudCanvas->GetFixedObject(0, 0));
+        auto wordCloud = std::dynamic_pointer_cast<Wisteria::Graphs::WordCloud>(
+            wordCloudCanvas->GetFixedObject(0, 0));
         assert(wordCloud);
         // top 100 words, with a min frequency of 2
         wordCloud->SetData(m_keyWordsDataset, GetWordsColumnName(), GetWordsCountsColumnName(), 2,
@@ -7548,19 +7573,22 @@ void BatchProjectDoc::SetScoreStatsRow(
         dataGrid->SetItemValue(rowNum, currentColumn++, sortedData.size());
         dataGrid->SetItemValue(
             rowNum, currentColumn++, minVal,
-            NumberFormatInfo(allowCustomFormatting ?
-                                 NumberFormatInfo::NumberFormatType::CustomFormatting :
-                                 NumberFormatInfo::NumberFormatType::StandardFormatting,
-                             decimalSize));
+            Wisteria::NumberFormatInfo(
+                allowCustomFormatting ?
+                    Wisteria::NumberFormatInfo::NumberFormatType::CustomFormatting :
+                    Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting,
+                decimalSize));
         dataGrid->SetItemValue(
             rowNum, currentColumn++, maxVal,
-            NumberFormatInfo(allowCustomFormatting ?
-                                 NumberFormatInfo::NumberFormatType::CustomFormatting :
-                                 NumberFormatInfo::NumberFormatType::StandardFormatting,
-                             decimalSize));
+            Wisteria::NumberFormatInfo(
+                allowCustomFormatting ?
+                    Wisteria::NumberFormatInfo::NumberFormatType::CustomFormatting :
+                    Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting,
+                decimalSize));
         dataGrid->SetItemValue(
             rowNum, currentColumn++, rangeVal,
-            NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, decimalSize));
+            Wisteria::NumberFormatInfo(
+                Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, decimalSize));
 
         if (modes.size() > 1)
             {
@@ -7578,20 +7606,22 @@ void BatchProjectDoc::SetScoreStatsRow(
                 }
             dataGrid->SetItemText(
                 rowNum, currentColumn++, modeString,
-                NumberFormatInfo(allowCustomFormatting ?
-                                     NumberFormatInfo::NumberFormatType::CustomFormatting :
-                                     NumberFormatInfo::NumberFormatType::StandardFormatting,
-                                 0),
+                Wisteria::NumberFormatInfo(
+                    allowCustomFormatting ?
+                        Wisteria::NumberFormatInfo::NumberFormatType::CustomFormatting :
+                        Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting,
+                    0),
                 *modes.begin());
             }
         else if (modes.size() == 1)
             {
             dataGrid->SetItemValue(
                 rowNum, currentColumn++, *modes.cbegin(),
-                NumberFormatInfo(allowCustomFormatting ?
-                                     NumberFormatInfo::NumberFormatType::CustomFormatting :
-                                     NumberFormatInfo::NumberFormatType::StandardFormatting,
-                                 0));
+                Wisteria::NumberFormatInfo(
+                    allowCustomFormatting ?
+                        Wisteria::NumberFormatInfo::NumberFormatType::CustomFormatting :
+                        Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting,
+                    0));
             }
         else // shouldn't happen
             {
@@ -7600,16 +7630,18 @@ void BatchProjectDoc::SetScoreStatsRow(
 
         dataGrid->SetItemValue(
             rowNum, currentColumn++, meansVal,
-            NumberFormatInfo(allowCustomFormatting ?
-                                 NumberFormatInfo::NumberFormatType::CustomFormatting :
-                                 NumberFormatInfo::NumberFormatType::StandardFormatting,
-                             decimalSize));
+            Wisteria::NumberFormatInfo(
+                allowCustomFormatting ?
+                    Wisteria::NumberFormatInfo::NumberFormatType::CustomFormatting :
+                    Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting,
+                decimalSize));
         dataGrid->SetItemValue(
             rowNum, currentColumn++, medianVal,
-            NumberFormatInfo(allowCustomFormatting ?
-                                 NumberFormatInfo::NumberFormatType::CustomFormatting :
-                                 NumberFormatInfo::NumberFormatType::StandardFormatting,
-                             decimalSize));
+            Wisteria::NumberFormatInfo(
+                allowCustomFormatting ?
+                    Wisteria::NumberFormatInfo::NumberFormatType::CustomFormatting :
+                    Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting,
+                decimalSize));
 
         if (sortedData.size() < 3)
             {
@@ -7620,8 +7652,9 @@ void BatchProjectDoc::SetScoreStatsRow(
             {
             dataGrid->SetItemValue(
                 rowNum, currentColumn++, Skewness,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,
-                                 std::max(decimalSize, HIGHER_PRECISION)));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting,
+                    std::max(decimalSize, HIGHER_PRECISION)));
             }
 
         if (sortedData.size() < 4)
@@ -7633,8 +7666,9 @@ void BatchProjectDoc::SetScoreStatsRow(
             {
             dataGrid->SetItemValue(
                 rowNum, currentColumn++, Kurtosis,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,
-                                 std::max(decimalSize, HIGHER_PRECISION)));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting,
+                    std::max(decimalSize, HIGHER_PRECISION)));
             }
 
         if (sortedData.size() < 2)
@@ -7649,25 +7683,29 @@ void BatchProjectDoc::SetScoreStatsRow(
             {
             dataGrid->SetItemValue(
                 rowNum, currentColumn++, stddev,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,
-                                 std::max(decimalSize, HIGHER_PRECISION)));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting,
+                    std::max(decimalSize, HIGHER_PRECISION)));
             dataGrid->SetItemValue(
                 rowNum, currentColumn++, Variance,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting,
-                                 std::max(decimalSize, HIGHER_PRECISION)));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting,
+                    std::max(decimalSize, HIGHER_PRECISION)));
             }
         dataGrid->SetItemValue(
             rowNum, currentColumn++, lowerQuartile,
-            NumberFormatInfo(allowCustomFormatting ?
-                                 NumberFormatInfo::NumberFormatType::CustomFormatting :
-                                 NumberFormatInfo::NumberFormatType::StandardFormatting,
-                             decimalSize));
+            Wisteria::NumberFormatInfo(
+                allowCustomFormatting ?
+                    Wisteria::NumberFormatInfo::NumberFormatType::CustomFormatting :
+                    Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting,
+                decimalSize));
         dataGrid->SetItemValue(
             rowNum, currentColumn++, upperQuartile,
-            NumberFormatInfo(allowCustomFormatting ?
-                                 NumberFormatInfo::NumberFormatType::CustomFormatting :
-                                 NumberFormatInfo::NumberFormatType::StandardFormatting,
-                             decimalSize));
+            Wisteria::NumberFormatInfo(
+                allowCustomFormatting ?
+                    Wisteria::NumberFormatInfo::NumberFormatType::CustomFormatting :
+                    Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting,
+                decimalSize));
         }
     else
         {

@@ -23,9 +23,6 @@
 #include "edit_word_list_dlg.h"
 #include <wx/richmsgdlg.h>
 
-using namespace Wisteria::UI;
-using namespace Wisteria::UI;
-
 wxDECLARE_APP(ReadabilityApp);
 
 //-------------------------------------------------------------
@@ -696,7 +693,7 @@ void CustomTestDlg::CreateControls()
     {
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
 
-    m_sideBarBook = new SideBarBook(this, wxID_ANY);
+    m_sideBarBook = new Wisteria::UI::SideBarBook(this, wxID_ANY);
 
     wxGetApp().UpdateSideBarTheme(m_sideBarBook->GetSideBar());
 
@@ -767,9 +764,9 @@ void CustomTestDlg::CreateControls()
                                  wxSizerFlags{}.Border(wxLEFT | wxTOP | wxRIGHT));
             formulaBoxSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
-            m_formulaCtrl =
-                new CodeEditor(formulaBoxSizer->GetStaticBox(), wxSTC_LEX_CPPNOCASE,
-                               ID_FORMULA_FIELD, wxDefaultPosition, FromDIP(wxSize{ 600, 300 }));
+            m_formulaCtrl = new Wisteria::UI::CodeEditor(
+                formulaBoxSizer->GetStaticBox(), wxSTC_LEX_CPPNOCASE, ID_FORMULA_FIELD,
+                wxDefaultPosition, FromDIP(wxSize{ 600, 300 }));
 
             m_formulaCtrl->AddFunctionsOrClasses(m_math);
             m_formulaCtrl->AddFunctionsOrClasses(m_logic);
@@ -810,7 +807,7 @@ void CustomTestDlg::CreateControls()
             // function browser
             {
             Wisteria::UI::FunctionBrowserCtrl* functionBrowser =
-                new FunctionBrowserCtrl(m_generalPage, m_formulaCtrl);
+                new Wisteria::UI::FunctionBrowserCtrl(m_generalPage, m_formulaCtrl);
             wxGetApp().UpdateSideBarTheme(functionBrowser->GetSidebar());
             functionBrowser->Hide();
             functionBrowser->SetParameterSeparator(FormulaFormat::GetListSeparator());

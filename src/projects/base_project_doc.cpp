@@ -20,12 +20,6 @@ wxIMPLEMENT_DYNAMIC_CLASS(BaseProjectDoc, wxDocument)
 
     wxDECLARE_APP(ReadabilityApp);
 
-using namespace lily_of_the_valley;
-using namespace Wisteria;
-using namespace Wisteria::Graphs;
-using namespace Wisteria::Colors;
-using namespace Wisteria::UI;
-
 wxString BaseProjectDoc::m_exportTextViewExt = L"htm";
 wxString BaseProjectDoc::m_exportListExt = L"htm";
 wxString BaseProjectDoc::m_exportGraphExt = L"png";
@@ -416,7 +410,7 @@ wxColour BaseProjectDoc::GetTextReportBackgroundColor() const
     }
 
 //------------------------------------------------
-void BaseProjectDoc::UpdateTextWindowOptions(FormattedTextCtrl* textW) const
+void BaseProjectDoc::UpdateTextWindowOptions(Wisteria::UI::FormattedTextCtrl* textW) const
     {
     if (textW == nullptr)
         {
@@ -475,7 +469,7 @@ void BaseProjectDoc::UpdatePrinterHeaderAndFooters(ExplanationListCtrl* window)
     }
 
 //------------------------------------------------
-void BaseProjectDoc::UpdatePrinterHeaderAndFooters(FormattedTextCtrl* window)
+void BaseProjectDoc::UpdatePrinterHeaderAndFooters(Wisteria::UI::FormattedTextCtrl* window)
     {
     if (window == nullptr)
         {
@@ -491,7 +485,7 @@ void BaseProjectDoc::UpdatePrinterHeaderAndFooters(FormattedTextCtrl* window)
     }
 
 //------------------------------------------------
-void BaseProjectDoc::UpdatePrinterHeaderAndFooters(ListCtrlEx* window)
+void BaseProjectDoc::UpdatePrinterHeaderAndFooters(Wisteria::UI::ListCtrlEx* window)
     {
     if (window == nullptr)
         {
@@ -523,7 +517,7 @@ void BaseProjectDoc::UpdatePrinterHeaderAndFooters(Wisteria::UI::HtmlTableWindow
     }
 
 //------------------------------------------------
-void BaseProjectDoc::UpdateListOptions(ListCtrlEx* list)
+void BaseProjectDoc::UpdateListOptions(Wisteria::UI::ListCtrlEx* list)
     {
     if (list == nullptr)
         {
@@ -559,7 +553,7 @@ void BaseProjectDoc::UpdateGraphOptions(Wisteria::Canvas* canvas)
         {
         graph->SetBrushScheme(m_graphBrushScheme);
         }
-    if (graph->IsKindOf(wxCLASSINFO(WordCloud)))
+    if (graph->IsKindOf(wxCLASSINFO(Wisteria::Graphs::WordCloud)))
         {
         const auto foundColorScheme =
             std::find_if(wxGetApp().GetGraphColorSchemeMap().cbegin(),
@@ -567,10 +561,11 @@ void BaseProjectDoc::UpdateGraphOptions(Wisteria::Canvas* canvas)
                          { return GetGraphColorScheme() == colorKey.second; });
         if (foundColorScheme != wxGetApp().GetGraphColorSchemeMap().cend())
             {
-            graph->SetColorScheme(ReportEnumConvert::ConvertColorScheme(foundColorScheme->second));
+            graph->SetColorScheme(
+                Wisteria::ReportEnumConvert::ConvertColorScheme(foundColorScheme->second));
             }
         }
-    graph->SetPlotBackgroundColor(Colors::ColorContrast::ChangeOpacity(
+    graph->SetPlotBackgroundColor(Wisteria::Colors::ColorContrast::ChangeOpacity(
         GetPlotBackGroundColor(), GetPlotBackGroundColorOpacity()));
     graph->SetPlotBackgroundImage(m_plotBackgroundImageWithEffect, GetPlotBackGroundImageOpacity());
     graph->SetPlotBackgroundImageFit(GetPlotBackGroundImageFit());
@@ -1027,15 +1022,16 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             docParsingSection, docParsingSectionEnd,
             wxGetApp().GetAppOptions().XML_FILE_PATH_TRUNC_MODE.data(),
             static_cast<long>(wxGetApp().GetAppOptions().GetFilePathTruncationMode()));
-        if (truncMode >=
-            static_cast<decltype(truncMode)>(ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::
-                                                 COLUMN_FILE_PATHS_TRUNCATION_MODE_COUNT))
+        if (truncMode >= static_cast<decltype(truncMode)>(
+                             Wisteria::UI::ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::
+                                 COLUMN_FILE_PATHS_TRUNCATION_MODE_COUNT))
             {
             truncMode = static_cast<decltype(truncMode)>(
                 wxGetApp().GetAppOptions().GetFilePathTruncationMode());
             }
         SetFilePathTruncationMode(
-            static_cast<ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode>(truncMode));
+            static_cast<Wisteria::UI::ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode>(
+                truncMode));
         // The project's language (used for determining which tests can be used)
         readability::test_language projectLanguage = static_cast<readability::test_language>(
             XmlFormat::GetLong(docParsingSection, docParsingSectionEnd,
@@ -1052,11 +1048,11 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         }
 
     // sentences breakdown
-    const wchar_t* sentencesBreakdownSection =
-        html_extract_text::find_element(settingsFileText, settingsFileTextEnd,
-                                        wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN_W, true);
+    const wchar_t* sentencesBreakdownSection = lily_of_the_valley::html_extract_text::find_element(
+        settingsFileText, settingsFileTextEnd, wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN_W,
+        true);
     const wchar_t* sentencesBreakdownSectionEnd =
-        sentencesBreakdownSection ? html_extract_text::find_closing_element(
+        sentencesBreakdownSection ? lily_of_the_valley::html_extract_text::find_closing_element(
                                         sentencesBreakdownSection, settingsFileTextEnd,
                                         wxGetApp().GetAppOptions().XML_SENTENCES_BREAKDOWN_W) :
                                     nullptr;
@@ -1072,11 +1068,11 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         }
 
     // words breakdown
-    const wchar_t* wordsBreakdownSection =
-        html_extract_text::find_element(settingsFileText, settingsFileTextEnd,
-                                        wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN_W, true);
+    const wchar_t* wordsBreakdownSection = lily_of_the_valley::html_extract_text::find_element(
+        settingsFileText, settingsFileTextEnd, wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN_W,
+        true);
     const wchar_t* wordsBreakdownSectionSectionEnd =
-        wordsBreakdownSection ? html_extract_text::find_closing_element(
+        wordsBreakdownSection ? lily_of_the_valley::html_extract_text::find_closing_element(
                                     wordsBreakdownSection, settingsFileTextEnd,
                                     wxGetApp().GetAppOptions().XML_WORDS_BREAKDOWN_W) :
                                 nullptr;
@@ -1196,11 +1192,12 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             XmlFormat::GetString(parsingSection, parsingSectionEnd,
                                  wxGetApp().GetAppOptions().XML_EXCLUDED_PHRASES_PATH.data()));
         LoadExcludePhrases();
-        const wchar_t* exclusionBlockTagSection = html_extract_text::find_element(
-            parsingSection, parsingSectionEnd, wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAGS_W,
-            true);
+        const wchar_t* exclusionBlockTagSection =
+            lily_of_the_valley::html_extract_text::find_element(
+                parsingSection, parsingSectionEnd,
+                wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAGS_W, true);
         const wchar_t* exclusionBlockTagSectionEnd =
-            exclusionBlockTagSection ? html_extract_text::find_closing_element(
+            exclusionBlockTagSection ? lily_of_the_valley::html_extract_text::find_closing_element(
                                            exclusionBlockTagSection, parsingSectionEnd,
                                            wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAGS_W) :
                                        nullptr;
@@ -1210,16 +1207,17 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             const wchar_t* exclusionBlockTag = exclusionBlockTagSection;
             while (exclusionBlockTag)
                 {
-                exclusionBlockTag = html_extract_text::find_element(
+                exclusionBlockTag = lily_of_the_valley::html_extract_text::find_element(
                     exclusionBlockTag, parsingSectionEnd,
                     wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAG_W, true);
                 if (!exclusionBlockTag)
                     {
                     break;
                     }
-                const wchar_t* exclusionBlockTagEnd = html_extract_text::find_closing_element(
-                    exclusionBlockTag, parsingSectionEnd,
-                    wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAG_W);
+                const wchar_t* exclusionBlockTagEnd =
+                    lily_of_the_valley::html_extract_text::find_closing_element(
+                        exclusionBlockTag, parsingSectionEnd,
+                        wxGetApp().GetAppOptions().XML_EXCLUDE_BLOCK_TAG_W);
                 if (!exclusionBlockTagEnd)
                     {
                     break;
@@ -1539,22 +1537,23 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_EFFECT.data(),
             static_cast<int>(GetPlotBackGroundImageEffect()));
-        if (imageEffect < 0 ||
-            imageEffect >= static_cast<decltype(imageEffect)>(ImageEffect::IMAGE_EFFECTS_COUNT))
+        if (imageEffect < 0 || imageEffect >= static_cast<decltype(imageEffect)>(
+                                                  Wisteria::ImageEffect::IMAGE_EFFECTS_COUNT))
             {
-            imageEffect = static_cast<decltype(imageEffect)>(ImageEffect::NoEffect);
+            imageEffect = static_cast<decltype(imageEffect)>(Wisteria::ImageEffect::NoEffect);
             }
-        SetPlotBackGroundImageEffect(static_cast<ImageEffect>(imageEffect));
+        SetPlotBackGroundImageEffect(static_cast<Wisteria::ImageEffect>(imageEffect));
 
         long imageFit = XmlFormat::GetLong(
             graphsSection, graphsSectionEnd,
             wxGetApp().GetAppOptions().XML_GRAPH_PLOT_BACKGROUND_IMAGE_FIT.data(),
             static_cast<int>(GetPlotBackGroundImageFit()));
-        if (imageFit < 0 || imageFit >= static_cast<decltype(imageFit)>(ImageFit::IMAGE_FIT_COUNT))
+        if (imageFit < 0 ||
+            imageFit >= static_cast<decltype(imageFit)>(Wisteria::ImageFit::IMAGE_FIT_COUNT))
             {
-            imageFit = static_cast<decltype(imageFit)>(ImageFit::Shrink);
+            imageFit = static_cast<decltype(imageFit)>(Wisteria::ImageFit::Shrink);
             }
-        SetPlotBackGroundImageFit(static_cast<ImageFit>(imageFit));
+        SetPlotBackGroundImageFit(static_cast<Wisteria::ImageFit>(imageFit));
 
         SetBackGroundColor(
             XmlFormat::GetColor(graphsSection, graphsSectionEnd,
@@ -1692,12 +1691,12 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                 boxPlotSection, boxPlotSectionEnd, wxGetApp().GetAppOptions().XML_BOX_EFFECT.data(),
                 static_cast<long>(wxGetApp().GetAppOptions().GetGraphBoxEffect()));
             if (boxEffect < 0 ||
-                boxEffect >= static_cast<decltype(boxEffect)>(BoxEffect::EFFECTS_COUNT))
+                boxEffect >= static_cast<decltype(boxEffect)>(Wisteria::BoxEffect::EFFECTS_COUNT))
                 {
                 boxEffect = static_cast<decltype(boxEffect)>(
                     wxGetApp().GetAppOptions().GetGraphBoxEffect());
                 }
-            SetGraphBoxEffect(static_cast<BoxEffect>(boxEffect));
+            SetGraphBoxEffect(static_cast<Wisteria::BoxEffect>(boxEffect));
             SetGraphBoxOpacity(
                 XmlFormat::GetLong(boxPlotSection, boxPlotSectionEnd,
                                    wxGetApp().GetAppOptions().XML_GRAPH_OPACITY.data(),
@@ -1732,12 +1731,12 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                 histoSection, histoSectionEnd, wxGetApp().GetAppOptions().XML_BAR_EFFECT.data(),
                 static_cast<long>(wxGetApp().GetAppOptions().GetHistogramBarEffect()));
             if (barEffect < 0 ||
-                barEffect >= static_cast<decltype(barEffect)>(BoxEffect::EFFECTS_COUNT))
+                barEffect >= static_cast<decltype(barEffect)>(Wisteria::BoxEffect::EFFECTS_COUNT))
                 {
                 barEffect = static_cast<decltype(barEffect)>(
                     wxGetApp().GetAppOptions().GetHistogramBarEffect());
                 }
-            SetHistogramBarEffect(static_cast<BoxEffect>(barEffect));
+            SetHistogramBarEffect(static_cast<Wisteria::BoxEffect>(barEffect));
             SetHistogramBarColor(XmlFormat::GetColor(
                 histoSection, histoSectionEnd, wxGetApp().GetAppOptions().XML_GRAPH_COLOR.data(),
                 wxGetApp().GetAppOptions().GetHistogramBarColor()));
@@ -1749,39 +1748,42 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                 histoSection, histoSectionEnd,
                 wxGetApp().GetAppOptions().XML_GRAPH_BINNING_METHOD.data(),
                 static_cast<long>(wxGetApp().GetAppOptions().GetHistogramBinningMethod()));
-            if (catMethod < 0 || catMethod >= static_cast<decltype(catMethod)>(
-                                                  Histogram::BinningMethod::BINNING_METHOD_COUNT))
+            if (catMethod < 0 ||
+                catMethod >= static_cast<decltype(catMethod)>(
+                                 Wisteria::Graphs::Histogram::BinningMethod::BINNING_METHOD_COUNT))
                 {
                 catMethod =
                     static_cast<long>(wxGetApp().GetAppOptions().GetHistogramBinningMethod());
                 }
-            SetHistogramBinningMethod(static_cast<Histogram::BinningMethod>(catMethod));
+            SetHistogramBinningMethod(
+                static_cast<Wisteria::Graphs::Histogram::BinningMethod>(catMethod));
             // how values are rounded
             long roundMethod = XmlFormat::GetLong(
                 histoSection, histoSectionEnd,
                 wxGetApp().GetAppOptions().XML_GRAPH_ROUNDING_METHOD.data(),
                 static_cast<long>(wxGetApp().GetAppOptions().GetHistogramRoundingMethod()));
             if (roundMethod >=
-                static_cast<decltype(roundMethod)>(RoundingMethod::ROUNDING_METHOD_COUNT))
+                static_cast<decltype(roundMethod)>(Wisteria::RoundingMethod::ROUNDING_METHOD_COUNT))
                 {
                 roundMethod =
                     static_cast<long>(wxGetApp().GetAppOptions().GetHistogramRoundingMethod());
                 }
-            SetHistogramRoundingMethod(static_cast<RoundingMethod>(roundMethod));
+            SetHistogramRoundingMethod(static_cast<Wisteria::RoundingMethod>(roundMethod));
             // how the intervals are displayed on the axis and bar
             long intervalDisplayMethod = XmlFormat::GetLong(
                 histoSection, histoSectionEnd,
                 wxGetApp().GetAppOptions().XML_GRAPH_INTERVAL_DISPLAY.data(),
                 static_cast<long>(wxGetApp().GetAppOptions().GetHistogramIntervalDisplay()));
             if (intervalDisplayMethod < 0 ||
-                intervalDisplayMethod >= static_cast<decltype(intervalDisplayMethod)>(
-                                             Histogram::IntervalDisplay::INTERVAL_METHOD_COUNT))
+                intervalDisplayMethod >=
+                    static_cast<decltype(intervalDisplayMethod)>(
+                        Wisteria::Graphs::Histogram::IntervalDisplay::INTERVAL_METHOD_COUNT))
                 {
                 intervalDisplayMethod =
                     static_cast<long>(wxGetApp().GetAppOptions().GetHistogramIntervalDisplay());
                 }
             SetHistogramIntervalDisplay(
-                static_cast<Histogram::IntervalDisplay>(intervalDisplayMethod));
+                static_cast<Wisteria::Graphs::Histogram::IntervalDisplay>(intervalDisplayMethod));
             // how the categories are displayed on the axis and bar
             long catDisplayMethod = XmlFormat::GetLong(
                 histoSection, histoSectionEnd,
@@ -1789,12 +1791,12 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                 static_cast<long>(wxGetApp().GetAppOptions().GetHistogramBinLabelDisplay()));
             if (catDisplayMethod < 0 ||
                 catDisplayMethod >= static_cast<decltype(catDisplayMethod)>(
-                                        BinLabelDisplay::BIN_LABEL_DISPLAY_COUNT))
+                                        Wisteria::BinLabelDisplay::BIN_LABEL_DISPLAY_COUNT))
                 {
                 catDisplayMethod =
                     static_cast<long>(wxGetApp().GetAppOptions().GetHistogramBinLabelDisplay());
                 }
-            SetHistogramBinLabelDisplay(static_cast<BinLabelDisplay>(catDisplayMethod));
+            SetHistogramBinLabelDisplay(static_cast<Wisteria::BinLabelDisplay>(catDisplayMethod));
             }
 
         // bar chart settings
@@ -1816,12 +1818,12 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                 barSection, barSectionEnd, wxGetApp().GetAppOptions().XML_BAR_EFFECT.data(),
                 static_cast<long>(wxGetApp().GetAppOptions().GetGraphBarEffect()));
             if (barEffect < 0 ||
-                barEffect >= static_cast<decltype(barEffect)>(BoxEffect::EFFECTS_COUNT))
+                barEffect >= static_cast<decltype(barEffect)>(Wisteria::BoxEffect::EFFECTS_COUNT))
                 {
                 barEffect = static_cast<decltype(barEffect)>(
                     wxGetApp().GetAppOptions().GetGraphBarEffect());
                 }
-            SetGraphBarEffect(static_cast<BoxEffect>(barEffect));
+            SetGraphBarEffect(static_cast<Wisteria::BoxEffect>(barEffect));
             long orientation = XmlFormat::GetLong(
                 barSection, barSectionEnd, wxGetApp().GetAppOptions().XML_BAR_ORIENTATION.data(),
                 static_cast<decltype(orientation)>(
@@ -1989,13 +1991,13 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         }
 
     // read stat goals
-    const wchar_t* statGoalsSection = html_extract_text::find_element(
+    const wchar_t* statGoalsSection = lily_of_the_valley::html_extract_text::find_element(
         settingsFileText, settingsFileTextEnd, wxGetApp().GetAppOptions().XML_STAT_GOALS_W, true);
     const wchar_t* statGoalsSectionEnd =
-        statGoalsSection ?
-            html_extract_text::find_closing_element(statGoalsSection, settingsFileTextEnd,
-                                                    wxGetApp().GetAppOptions().XML_STAT_GOALS_W) :
-            nullptr;
+        statGoalsSection ? lily_of_the_valley::html_extract_text::find_closing_element(
+                               statGoalsSection, settingsFileTextEnd,
+                               wxGetApp().GetAppOptions().XML_STAT_GOALS_W) :
+                           nullptr;
     if (statGoalsSection && statGoalsSectionEnd)
         {
         for (const auto& statGoal : GetStatGoalLabels())
@@ -2016,14 +2018,14 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         }
 
     // read in the statistics configurations
-    const wchar_t* statsSection =
-        html_extract_text::find_element(settingsFileText, settingsFileTextEnd,
-                                        wxGetApp().GetAppOptions().XML_STATISTICS_SECTION_W, true);
-    const wchar_t* statsSectionEnd = statsSection ?
-                                         html_extract_text::find_closing_element(
-                                             statsSection, settingsFileTextEnd,
-                                             wxGetApp().GetAppOptions().XML_STATISTICS_SECTION_W) :
-                                         nullptr;
+    const wchar_t* statsSection = lily_of_the_valley::html_extract_text::find_element(
+        settingsFileText, settingsFileTextEnd, wxGetApp().GetAppOptions().XML_STATISTICS_SECTION_W,
+        true);
+    const wchar_t* statsSectionEnd =
+        statsSection ? lily_of_the_valley::html_extract_text::find_closing_element(
+                           statsSection, settingsFileTextEnd,
+                           wxGetApp().GetAppOptions().XML_STATISTICS_SECTION_W) :
+                       nullptr;
     if (statsSection && statsSectionEnd)
         {
         SetVarianceMethod(static_cast<VarianceMethod>(XmlFormat::GetLong(
@@ -2045,11 +2047,11 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
         }
 
     // read in the readability tests' configurations
-    const wchar_t* readabilityTestSection = html_extract_text::find_element(
+    const wchar_t* readabilityTestSection = lily_of_the_valley::html_extract_text::find_element(
         settingsFileText, settingsFileTextEnd,
         wxGetApp().GetAppOptions().XML_READABILITY_TESTS_SECTION_W, true);
     const wchar_t* readabilityTestSectionEnd =
-        readabilityTestSection ? html_extract_text::find_closing_element(
+        readabilityTestSection ? lily_of_the_valley::html_extract_text::find_closing_element(
                                      readabilityTestSection, settingsFileTextEnd,
                                      wxGetApp().GetAppOptions().XML_READABILITY_TESTS_SECTION_W) :
                                  nullptr;
@@ -2109,12 +2111,13 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
             wxGetApp().GetAppOptions().XML_DOLCH_SIGHT_WORDS_TEST.data(), false));
 
         // test-specific options
-        const wchar_t* fleschKincaidOptionsSection = html_extract_text::find_element(
-            readabilityTestSection, readabilityTestSectionEnd,
-            wxGetApp().GetAppOptions().XML_FLESCH_KINCAID_OPTIONS_W, true);
+        const wchar_t* fleschKincaidOptionsSection =
+            lily_of_the_valley::html_extract_text::find_element(
+                readabilityTestSection, readabilityTestSectionEnd,
+                wxGetApp().GetAppOptions().XML_FLESCH_KINCAID_OPTIONS_W, true);
         const wchar_t* fleschKincaidOptionsSectionEnd =
             fleschKincaidOptionsSection ?
-                html_extract_text::find_closing_element(
+                lily_of_the_valley::html_extract_text::find_closing_element(
                     fleschKincaidOptionsSection, readabilityTestSectionEnd,
                     wxGetApp().GetAppOptions().XML_FLESCH_KINCAID_OPTIONS_W) :
                 nullptr;
@@ -2128,11 +2131,11 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                         wxGetApp().GetAppOptions().GetFleschKincaidNumeralSyllabizeMethod()))));
             }
 
-        const wchar_t* fleschOptionsSection =
-            html_extract_text::find_element(readabilityTestSection, readabilityTestSectionEnd,
-                                            wxGetApp().GetAppOptions().XML_FLESCH_OPTIONS_W, true);
+        const wchar_t* fleschOptionsSection = lily_of_the_valley::html_extract_text::find_element(
+            readabilityTestSection, readabilityTestSectionEnd,
+            wxGetApp().GetAppOptions().XML_FLESCH_OPTIONS_W, true);
         const wchar_t* fleschOptionsSectionEnd =
-            fleschOptionsSection ? html_extract_text::find_closing_element(
+            fleschOptionsSection ? lily_of_the_valley::html_extract_text::find_closing_element(
                                        fleschOptionsSection, readabilityTestSectionEnd,
                                        wxGetApp().GetAppOptions().XML_FLESCH_OPTIONS_W) :
                                    nullptr;
@@ -2144,11 +2147,11 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                 static_cast<int>(wxGetApp().GetAppOptions().GetFleschNumeralSyllabizeMethod()))));
             }
 
-        const wchar_t* fogOptionsSection = html_extract_text::find_element(
+        const wchar_t* fogOptionsSection = lily_of_the_valley::html_extract_text::find_element(
             readabilityTestSection, readabilityTestSectionEnd,
             wxGetApp().GetAppOptions().XML_GUNNING_FOG_OPTIONS_W, true);
         const wchar_t* fogOptionsSectionEnd =
-            fogOptionsSection ? html_extract_text::find_closing_element(
+            fogOptionsSection ? lily_of_the_valley::html_extract_text::find_closing_element(
                                     fogOptionsSection, readabilityTestSectionEnd,
                                     wxGetApp().GetAppOptions().XML_GUNNING_FOG_OPTIONS_W) :
                                 nullptr;
@@ -2160,11 +2163,11 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                                       wxGetApp().GetAppOptions().IsFogUsingSentenceUnits()));
             }
 
-        const wchar_t* hjOptionsSection = html_extract_text::find_element(
+        const wchar_t* hjOptionsSection = lily_of_the_valley::html_extract_text::find_element(
             readabilityTestSection, readabilityTestSectionEnd,
             wxGetApp().GetAppOptions().XML_HARRIS_JACOBSON_OPTIONS_W, true);
         const wchar_t* hjOptionsSectionEnd =
-            hjOptionsSection ? html_extract_text::find_closing_element(
+            hjOptionsSection ? lily_of_the_valley::html_extract_text::find_closing_element(
                                    hjOptionsSection, readabilityTestSectionEnd,
                                    wxGetApp().GetAppOptions().XML_HARRIS_JACOBSON_OPTIONS_W) :
                                nullptr;
@@ -2178,11 +2181,11 @@ void BaseProjectDoc::LoadSettingsFile(const wchar_t* settingsFileText)
                         wxGetApp().GetAppOptions().GetHarrisJacobsonTextExclusionMode()))));
             }
 
-        const wchar_t* dcOptionsSection = html_extract_text::find_element(
+        const wchar_t* dcOptionsSection = lily_of_the_valley::html_extract_text::find_element(
             readabilityTestSection, readabilityTestSectionEnd,
             wxGetApp().GetAppOptions().XML_NEW_DALE_CHALL_OPTIONS_W, true);
         const wchar_t* dcOptionsSectionEnd =
-            dcOptionsSection ? html_extract_text::find_closing_element(
+            dcOptionsSection ? lily_of_the_valley::html_extract_text::find_closing_element(
                                    dcOptionsSection, readabilityTestSectionEnd,
                                    wxGetApp().GetAppOptions().XML_NEW_DALE_CHALL_OPTIONS_W) :
                                nullptr;

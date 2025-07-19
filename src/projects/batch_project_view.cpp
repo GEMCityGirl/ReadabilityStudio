@@ -26,7 +26,6 @@
 #include "batch_project_doc.h"
 #include "standard_project_doc.h"
 
-using namespace lily_of_the_valley;
 using namespace Wisteria;
 using namespace Wisteria::UI;
 using namespace Wisteria::Graphs;
@@ -1083,8 +1082,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                         {
                         editDB2ButtonBarWindow->Show();
                         getEditButtonBar(editDB2ButtonBarWindow)
-                            ->ToggleButton(
-                                XRCID("ID_EDIT_GRAPH_SHOWCASE_KEY_ITEMS"),
+                            ->ToggleButton(XRCID("ID_EDIT_GRAPH_SHOWCASE_KEY_ITEMS"),
                                            dynamic_cast<BatchProjectDoc*>(GetDocument())
                                                ->IsShowcasingKeyItems());
                         }
@@ -2181,7 +2179,7 @@ bool BatchProjectView::ExportAllToHtml(
         lily_of_the_valley::html_format::strip_hyperlinks(htmlText);
 
         outputText += (includeLeadingPageBreak ? pageBreak : wxString{}) +
-                      html_extract_text::get_body(htmlText);
+                      lily_of_the_valley::html_extract_text::get_body(htmlText);
     };
 
     bool hasSections{ false };

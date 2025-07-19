@@ -15,10 +15,6 @@
 
 wxDECLARE_APP(ReadabilityApp);
 
-using namespace Wisteria;
-using namespace Wisteria::GraphItems;
-using namespace Wisteria::UI;
-
 wxString ProjectWizardDlg::m_lastSelectedFolder;
 
 class Banner : public wxWindow
@@ -74,7 +70,7 @@ ProjectWizardDlg::ProjectWizardDlg(wxWindow* parent, const ProjectType projectTy
     const wxString& caption /*= _(L"New Project Wizard")*/,
     const wxPoint& pos /*= wxDefaultPosition*/, const wxSize& size /*= wxDefaultSize*/,
     long style /*= wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER*/,
-    ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode fileTruncMode /*=
+    Wisteria::UI::ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode fileTruncMode /*=
         ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::NoTruncation*/) :
     m_minDocWordCountForBatch(wxGetApp().GetAppOptions().GetMinDocWordCountForBatch()),
     m_fromFileSelected(wxGetApp().GetAppOptions().GetTextSource() == TextSource::FromFile),
@@ -197,7 +193,7 @@ void ProjectWizardDlg::CreateControls()
     const int ScaledNoteWidth = FromDIP(wxSize(500, 500)).GetWidth();
 
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
-    m_sideBarBook = new SideBarBook(this, wxID_ANY);
+    m_sideBarBook = new Wisteria::UI::SideBarBook(this, wxID_ANY);
     wxGetApp().UpdateSideBarTheme(m_sideBarBook->GetSideBar());
     mainSizer->Add(m_sideBarBook, wxSizerFlags{ 1 }.Expand().Border());
 
@@ -409,9 +405,9 @@ void ProjectWizardDlg::CreateControls()
             {
             m_fileData->SetSize(0, 2);
             }
-        m_fileList =
-            new ListCtrlEx(page, wxID_ANY, wxDefaultPosition, FromDIP(wxSize{ 200, 150 }),
-                           wxLC_VIRTUAL | wxLC_EDIT_LABELS | wxLC_REPORT | wxLC_ALIGN_LEFT);
+        m_fileList = new Wisteria::UI::ListCtrlEx(
+            page, wxID_ANY, wxDefaultPosition, FromDIP(wxSize{ 200, 150 }),
+            wxLC_VIRTUAL | wxLC_EDIT_LABELS | wxLC_REPORT | wxLC_ALIGN_LEFT);
         m_fileList->EnableGridLines();
         m_fileList->EnableItemDeletion();
         m_fileList->InsertColumn(0, _(L"Files"));
@@ -464,7 +460,7 @@ void ProjectWizardDlg::CreateControls()
         {
         wxFont imageFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT));
         imageFont.MakeBold().MakeLarger().MakeLarger();
-        Wisteria::GraphItems::Label imageLabel(GraphItemInfo()
+        Wisteria::GraphItems::Label imageLabel(Wisteria::GraphItems::GraphItemInfo()
                                                    .DPIScaling(GetDPIScaleFactor())
                                                    .Pen(wxPen(wxColour(L"#BCE8F1"), 2))
                                                    .Font(imageFont)
@@ -548,7 +544,8 @@ void ProjectWizardDlg::CreateControls()
             imageLabel.Draw(memDc);
             memDc.SelectObject(wxNullBitmap);
             narrativeSizer->AddStretchSpacer();
-            narrativeSizer->Add(new Thumbnail(docTypeSizer->GetStaticBox(), previewImage));
+            narrativeSizer->Add(
+                new Wisteria::UI::Thumbnail(docTypeSizer->GetStaticBox(), previewImage));
             docTypeSizer->Add(narrativeSizer, wxSizerFlags{}.Expand().Border());
             }
             // non-narrative text
@@ -603,7 +600,8 @@ void ProjectWizardDlg::CreateControls()
             imageLabel.Draw(memDc);
             memDc.SelectObject(wxNullBitmap);
             sparseSizer->AddStretchSpacer();
-            sparseSizer->Add(new Thumbnail(docTypeSizer->GetStaticBox(), previewImage));
+            sparseSizer->Add(
+                new Wisteria::UI::Thumbnail(docTypeSizer->GetStaticBox(), previewImage));
             docTypeSizer->Add(sparseSizer, wxSizerFlags{}.Expand().Border());
             }
             // text with "broken lines"
@@ -659,7 +657,8 @@ void ProjectWizardDlg::CreateControls()
             imageLabel.Draw(memDc);
             memDc.SelectObject(wxNullBitmap);
             narrativeSizer->AddStretchSpacer();
-            narrativeSizer->Add(new Thumbnail(docLayoutSizer->GetStaticBox(), previewImage));
+            narrativeSizer->Add(
+                new Wisteria::UI::Thumbnail(docLayoutSizer->GetStaticBox(), previewImage));
             narrativeSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
             previewImage = wxGetApp().GetScaledImage(
@@ -677,7 +676,8 @@ void ProjectWizardDlg::CreateControls()
                         wxSizerFlags::GetDefaultBorder()));
             imageLabel.Draw(memDc2);
             memDc2.SelectObject(wxNullBitmap);
-            narrativeSizer->Add(new Thumbnail(docLayoutSizer->GetStaticBox(), previewImage));
+            narrativeSizer->Add(
+                new Wisteria::UI::Thumbnail(docLayoutSizer->GetStaticBox(), previewImage));
             docLayoutSizer->Add(narrativeSizer, wxSizerFlags{}.Expand().Border());
             }
             // centered text
@@ -728,7 +728,8 @@ void ProjectWizardDlg::CreateControls()
             imageLabel.Draw(memDc);
             memDc.SelectObject(wxNullBitmap);
             centeredSizer->AddStretchSpacer();
-            centeredSizer->Add(new Thumbnail(docLayoutSizer->GetStaticBox(), previewImage));
+            centeredSizer->Add(
+                new Wisteria::UI::Thumbnail(docLayoutSizer->GetStaticBox(), previewImage));
             docLayoutSizer->Add(centeredSizer, wxSizerFlags{}.Expand().Border());
             }
             // new lines are always new paragraphs (overrides center text option above)
@@ -773,7 +774,8 @@ void ProjectWizardDlg::CreateControls()
             imageLabel.Draw(memDc);
             memDc.SelectObject(wxNullBitmap);
             wrappedSizer->AddStretchSpacer();
-            wrappedSizer->Add(new Thumbnail(docLayoutSizer->GetStaticBox(), previewImage));
+            wrappedSizer->Add(
+                new Wisteria::UI::Thumbnail(docLayoutSizer->GetStaticBox(), previewImage));
             wrappedSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
             previewImage = wxGetApp().GetScaledImage(
@@ -790,7 +792,8 @@ void ProjectWizardDlg::CreateControls()
                         wxSizerFlags::GetDefaultBorder()));
             imageLabel.Draw(memDc2);
             memDc2.SelectObject(wxNullBitmap);
-            wrappedSizer->Add(new Thumbnail(docLayoutSizer->GetStaticBox(), previewImage));
+            wrappedSizer->Add(
+                new Wisteria::UI::Thumbnail(docLayoutSizer->GetStaticBox(), previewImage));
             docLayoutSizer->Add(wrappedSizer, wxSizerFlags{}.Expand().Border());
             }
         pageSizer->Add(optionsSizer, wxSizerFlags{ 1 }.Expand().Border());
@@ -1070,7 +1073,7 @@ void ProjectWizardDlg::UpdateTestsUI()
 //-------------------------------------------------------------
 void ProjectWizardDlg::LoadArchive(wxString archivePath /*= wxString{}*/)
     {
-    ArchiveDlg dlg(this, ReadabilityAppOptions::GetDocumentFilter());
+    Wisteria::UI::ArchiveDlg dlg(this, ReadabilityAppOptions::GetDocumentFilter());
     dlg.SetPath(archivePath);
     dlg.SetSelectedFileFilter(wxGetApp().GetLastSelectedDocFilter());
     dlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
@@ -1238,7 +1241,7 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
                 }
             }
 
-        ExcelPreviewDlg excelPreview(
+        Wisteria::UI::ExcelPreviewDlg excelPreview(
             this, &wrk, &excelExtract, wxID_ANY,
             wxString::Format(
                 _(L"\"%s\" Preview"),
@@ -1269,7 +1272,7 @@ void ProjectWizardDlg::LoadSpreadsheet(wxString excelPath /*= wxString{}*/)
                     lily_of_the_valley::xlsx_extract_text::verify_sheet(wrk).second.c_str());
                 }
             // verify that the filtering looks OK when debugging
-            ExcelPreviewDlg excelPreviewFilterDEBUG(
+            Wisteria::UI::ExcelPreviewDlg excelPreviewFilterDEBUG(
                 this, &wrk, &excelExtract, wxID_ANY,
                 wxString(_DT(L"DEBUG CHECK ")) +
                     excelExtract.get_worksheet_names().at(workSheetSelections.Item(i)).c_str());
@@ -1791,7 +1794,7 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
 //-------------------------------------------------------------
 void ProjectWizardDlg::OnAddFolderButtonClick([[maybe_unused]] wxCommandEvent&)
     {
-    GetDirFilterDialog dirDlg(this, ReadabilityAppOptions::GetDocumentFilter());
+    Wisteria::UI::GetDirFilterDialog dirDlg(this, ReadabilityAppOptions::GetDocumentFilter());
     dirDlg.SetSelectedFileFilter(wxGetApp().GetLastSelectedDocFilter());
     dirDlg.SetPath(GetLastSelectedFolder());
     dirDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),

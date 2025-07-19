@@ -6123,11 +6123,10 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                         highlighterTagsThemed.HIGHLIGHT_END);
                 IsNotCustomFamiliarWordExcludeNumeralsWithHighlighting<
                     std::vector<CustomReadabilityTestInterface>::iterator>
-                    notCustomWordExcludeNumeralsThemed(
-                        pos, highlighterTagsThemed.HIGHLIGHT_BEGIN,
-                        highlighterTagsThemed.HIGHLIGHT_END,
-                        highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN,
-                        highlighterTagsThemed.HIGHLIGHT_END);
+                    notCustomWordExcludeNumeralsThemed(pos, highlighterTagsThemed.HIGHLIGHT_BEGIN,
+                                                       highlighterTagsThemed.HIGHLIGHT_END,
+                                                       highlighterTagsThemed.IGNORE_HIGHLIGHT_BEGIN,
+                                                       highlighterTagsThemed.HIGHLIGHT_END);
 
                 IsNotCustomFamiliarWordWithHighlighting<
                     std::vector<CustomReadabilityTestInterface>::iterator>
