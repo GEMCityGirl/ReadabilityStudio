@@ -26,8 +26,7 @@ namespace grammar
         /** @returns The number of syllables for a given number.
             @param number The number to review.*/
         [[nodiscard]]
-        size_t
-        operator()(const wchar_t number) const noexcept
+        size_t operator()(const wchar_t number) const noexcept
             {
             if (!characters::is_character::is_numeric_simple(number))
                 {
@@ -48,8 +47,7 @@ namespace grammar
             @param length The length of the text.
             @returns The number of syllables counted.*/
         [[nodiscard]]
-        size_t
-        operator()(const wchar_t* start, const size_t length) final
+        size_t operator()(const wchar_t* start, const size_t length) final
             {
             assert(start && std::wcslen(start) >= length);
             // reset our data

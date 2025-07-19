@@ -376,8 +376,7 @@ namespace characters
         /** @returns @c true if a character can appear inside the word.
             @param ch The letter to be reviewed.*/
         [[nodiscard]]
-        constexpr bool
-        operator()(const wchar_t ch) const noexcept
+        constexpr bool operator()(const wchar_t ch) const noexcept
             {
             // clang-format off
             return is_either<wchar_t>(ch, 35, 0xFF03) ? // #

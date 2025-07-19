@@ -24,8 +24,7 @@ namespace grammar
         {
       public:
         [[nodiscard]]
-        constexpr size_t
-        operator()(const wchar_t number) const noexcept
+        constexpr size_t operator()(const wchar_t number) const noexcept
             {
             return ((number == common_lang_constants::NUMBER_2 ||
                      number == common_lang_constants::NUMBER_3 ||
@@ -66,8 +65,7 @@ namespace grammar
             @param start The text block to analyze.
             @param length The length of the text block to analyze.*/
         [[nodiscard]]
-        size_t
-        operator()(const wchar_t* start, const size_t length) final
+        size_t operator()(const wchar_t* start, const size_t length) final
             {
             // reset our data
             reset();

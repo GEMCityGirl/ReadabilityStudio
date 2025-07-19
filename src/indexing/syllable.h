@@ -244,8 +244,7 @@ namespace grammar
         {
       public:
         [[nodiscard]]
-        constexpr size_t
-        operator()(const wchar_t number) const noexcept
+        constexpr size_t operator()(const wchar_t number) const noexcept
             {
             return ((number >= common_lang_constants::NUMBER_1 &&
                      number <= common_lang_constants::NUMBER_6) ||
@@ -278,8 +277,7 @@ namespace grammar
             @param length The length of the text.
             @returns The number of syllables in the text.*/
         [[nodiscard]]
-        size_t
-        operator()(const wchar_t* start, const size_t length) final;
+        size_t operator()(const wchar_t* start, const size_t length) final;
 
       private:
         /// @brief Analyzes the overall string for special situations that
