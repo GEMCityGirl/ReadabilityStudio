@@ -19,11 +19,6 @@
 
 wxDECLARE_APP(ReadabilityApp);
 
-using namespace Wisteria::Colors;
-using namespace Wisteria::GraphItems;
-using namespace Wisteria::UI;
-using namespace lily_of_the_valley;
-
 //-------------------------------------------------------
 LuaEditorDlg::LuaEditorDlg(
     wxWindow* parent, wxWindowID id /*= wxID_ANY*/, const wxString& caption /*= _(L"Lua Script")*/,
@@ -58,7 +53,7 @@ LuaEditorDlg::LuaEditorDlg(
                 return;
                 }
 
-            auto editor = dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage());
+            auto editor = dynamic_cast<Wisteria::UI::CodeEditor*>(m_notebook->GetCurrentPage());
             editor->AnnotationClearAll();
             wxString errorMessage;
 
@@ -153,7 +148,8 @@ LuaEditorDlg::LuaEditorDlg(
                  return;
                  }
 
-             auto codeEditor = dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage());
+             auto codeEditor =
+                 dynamic_cast<Wisteria::UI::CodeEditor*>(m_notebook->GetCurrentPage());
              if (codeEditor && codeEditor->GetModify())
                  {
                  if (wxMessageBox(_(L"Do you wish to save your unsaved changes?"),
@@ -195,7 +191,8 @@ LuaEditorDlg::LuaEditorDlg(
                 // now that we are opening an existing script.
                 if (m_notebook->GetPageCount() == 1)
                     {
-                    auto codeEditor = dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage());
+                    auto codeEditor =
+                        dynamic_cast<Wisteria::UI::CodeEditor*>(m_notebook->GetCurrentPage());
                     if (codeEditor && !codeEditor->GetModify() &&
                         codeEditor->GetScriptFilePath().empty())
                         {
@@ -256,7 +253,8 @@ LuaEditorDlg::LuaEditorDlg(
     Bind(wxEVT_SEARCH,
          [this](wxCommandEvent& evt)
          {
-             auto codeEditor = dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage());
+             auto codeEditor =
+                 dynamic_cast<Wisteria::UI::CodeEditor*>(m_notebook->GetCurrentPage());
              if (codeEditor)
                  {
                  codeEditor->FindNext(evt.GetString());
@@ -340,7 +338,7 @@ void LuaEditorDlg::ImportAPI()
                     {
                     std::wstring libName = lib.front();
                     lib.erase(lib.begin(), lib.begin() + 1);
-                    CodeEditor::NameList nl;
+                    Wisteria::UI::CodeEditor::NameList nl;
                     for (const auto& className : lib)
                         {
                         nl.insert(className);
@@ -368,7 +366,7 @@ void LuaEditorDlg::ImportAPI()
                     {
                     std::wstring libName = lib.front();
                     lib.erase(lib.begin(), lib.begin() + 1);
-                    CodeEditor::NameList nl;
+                    Wisteria::UI::CodeEditor::NameList nl;
                     for (const auto& lName : lib)
                         {
                         nl.insert(lName);
@@ -396,7 +394,7 @@ void LuaEditorDlg::ImportAPI()
                     {
                     std::wstring libName = lib.front();
                     lib.erase(lib.begin(), lib.begin() + 1);
-                    CodeEditor::NameList nl;
+                    Wisteria::UI::CodeEditor::NameList nl;
                     for (const auto& lName : lib)
                         {
                         nl.insert(lName);
@@ -416,11 +414,12 @@ void LuaEditorDlg::OnSave([[maybe_unused]] wxCommandEvent& event)
         return;
         }
 
-    if (dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage())->Save())
+    if (dynamic_cast<Wisteria::UI::CodeEditor*>(m_notebook->GetCurrentPage())->Save())
         {
         m_notebook->SetPageText(
             m_notebook->GetSelection(),
-            wxFileName(dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage())->GetScriptFilePath())
+            wxFileName(dynamic_cast<Wisteria::UI::CodeEditor*>(m_notebook->GetCurrentPage())
+                           ->GetScriptFilePath())
                 .GetName());
         }
     }
@@ -428,7 +427,7 @@ void LuaEditorDlg::OnSave([[maybe_unused]] wxCommandEvent& event)
 //------------------------------------------------------
 void LuaEditorDlg::OnShowReplaceDialog([[maybe_unused]] wxCommandEvent& event)
     {
-    auto currentScript = dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage());
+    auto currentScript = dynamic_cast<Wisteria::UI::CodeEditor*>(m_notebook->GetCurrentPage());
     if (currentScript != nullptr && m_findData.GetFindString().empty())
         {
         m_findData.SetFindString(currentScript->GetSelectedText());
@@ -452,7 +451,7 @@ void LuaEditorDlg::OnShowReplaceDialog([[maybe_unused]] wxCommandEvent& event)
 //------------------------------------------------------
 void LuaEditorDlg::OnShowFindDialog([[maybe_unused]] wxCommandEvent& event)
     {
-    auto currentScript = dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage());
+    auto currentScript = dynamic_cast<Wisteria::UI::CodeEditor*>(m_notebook->GetCurrentPage());
     if (currentScript != nullptr && m_findData.GetFindString().empty())
         {
         m_findData.SetFindString(currentScript->GetSelectedText());
@@ -480,7 +479,7 @@ void LuaEditorDlg::OnFindDialog(wxFindDialogEvent& event)
         return;
         }
 
-    auto currentScript = dynamic_cast<CodeEditor*>(m_notebook->GetCurrentPage());
+    auto currentScript = dynamic_cast<Wisteria::UI::CodeEditor*>(m_notebook->GetCurrentPage());
     if (currentScript == nullptr)
         {
         return;
@@ -577,7 +576,7 @@ void LuaEditorDlg::SetThemeColor(const wxColour& color)
 
     m_mgr.GetArtProvider()->SetColour(wxAUI_DOCKART_BACKGROUND_COLOUR, color);
 
-    ThemedAuiToolbarArt* toolbarArt = new ThemedAuiToolbarArt;
+    auto* toolbarArt = new Wisteria::UI::ThemedAuiToolbarArt;
     toolbarArt->SetThemeColor(color);
     m_toolbar->SetArtProvider(toolbarArt);
 
@@ -588,10 +587,11 @@ void LuaEditorDlg::SetThemeColor(const wxColour& color)
 
     const wxString htmlText = *(m_debugMessageWindow->GetParser()->GetSource());
     const auto debugReportBody =
-        wxString::Format(
-            L"<html>\n<body bgcolor=%s text=%s>", color.GetAsString(wxC2S_HTML_SYNTAX),
-            ColorContrast::BlackOrWhiteContrast(color).GetAsString(wxC2S_HTML_SYNTAX)) +
-        wxString(html_extract_text::get_body(htmlText.wc_str())) + L"\n</body>\n</html>";
+        wxString::Format(L"<html>\n<body bgcolor=%s text=%s>", color.GetAsString(wxC2S_HTML_SYNTAX),
+                         Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(color).GetAsString(
+                             wxC2S_HTML_SYNTAX)) +
+        wxString{ lily_of_the_valley::html_extract_text::get_body(htmlText.wc_str()) } +
+        L"\n</body>\n</html>";
     m_debugMessageWindow->SetPage(debugReportBody);
 
     m_mgr.Update();
@@ -603,13 +603,14 @@ void LuaEditorDlg::DebugOutput(const wxString& str)
     if (m_debugMessageWindow)
         {
         const wxColour bkColor = m_mgr.GetArtProvider()->GetColour(wxAUI_DOCKART_BACKGROUND_COLOUR);
-        const wxString htmlText = wxString(html_extract_text::get_body(
-                                      m_debugMessageWindow->GetParser()->GetSource()->wc_str())) +
+        const wxString htmlText = wxString{ lily_of_the_valley::html_extract_text::get_body(
+                                      m_debugMessageWindow->GetParser()->GetSource()->wc_str()) } +
                                   L"\n<br />" + str;
         const auto debugReportBody =
             wxString::Format(
                 L"<html>\n<body bgcolor=%s text=%s>", bkColor.GetAsString(wxC2S_HTML_SYNTAX),
-                ColorContrast::BlackOrWhiteContrast(bkColor).GetAsString(wxC2S_HTML_SYNTAX)) +
+                Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(bkColor).GetAsString(
+                    wxC2S_HTML_SYNTAX)) +
             htmlText + L"\n</body>\n</html>";
         m_debugMessageWindow->SetPage(debugReportBody);
         }
@@ -624,15 +625,16 @@ void LuaEditorDlg::DebugClear()
         const auto debugReportBody = wxString::Format(
             L"<html>\n<body bgcolor=%s text=%s>\n</body>\n</html>",
             bkColor.GetAsString(wxC2S_HTML_SYNTAX),
-            ColorContrast::BlackOrWhiteContrast(bkColor).GetAsString(wxC2S_HTML_SYNTAX));
+            Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(bkColor).GetAsString(
+                wxC2S_HTML_SYNTAX));
         m_debugMessageWindow->SetPage(debugReportBody);
         }
     }
 
 //-------------------------------------------------------
-CodeEditor* LuaEditorDlg::CreateLuaScript(wxWindow* parent)
+Wisteria::UI::CodeEditor* LuaEditorDlg::CreateLuaScript(wxWindow* parent)
     {
-    auto codeEditor = new CodeEditor(parent, wxSTC_LEX_LUA);
+    auto codeEditor = new Wisteria::UI::CodeEditor(parent, wxSTC_LEX_LUA);
     codeEditor->Show(false);
     codeEditor->IncludeNumberMargin(true);
     codeEditor->IncludeFoldingMargin(true);
@@ -731,7 +733,7 @@ void LuaEditorDlg::CreateControls()
 
     m_mgr.AddPane(m_notebook, wxAuiPaneInfo().Name(L"auinotebook").CenterPane().PaneBorder(false));
 
-    m_functionBrowser = new FunctionBrowserCtrl(this, this);
+    m_functionBrowser = new Wisteria::UI::FunctionBrowserCtrl(this, this);
     wxGetApp().UpdateSideBarTheme(m_functionBrowser->GetSidebar());
     m_functionBrowser->SetParameterSeparator(FormulaFormat::GetListSeparator());
     m_functionBrowser->AddCategory(L"Libraries", 1000);
@@ -785,7 +787,7 @@ void LuaEditorDlg::OnClose([[maybe_unused]] wxCloseEvent& event)
     // ask about any unsaved changes
     for (size_t i = 0; i < m_notebook->GetPageCount(); ++i)
         {
-        auto codeEditor = dynamic_cast<CodeEditor*>(m_notebook->GetPage(i));
+        auto codeEditor = dynamic_cast<Wisteria::UI::CodeEditor*>(m_notebook->GetPage(i));
         if (codeEditor && codeEditor->GetModify() &&
             (wxMessageBox(_(L"Do you wish to save your unsaved changes?"), _(L"Save Script"),
                           wxYES_NO | wxICON_QUESTION) == wxYES))
