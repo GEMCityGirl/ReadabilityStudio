@@ -39,8 +39,8 @@ namespace grammar
             @returns Whether or not this word combination is passive.*/
         template<typename Tword_iter>
         [[nodiscard]]
-        bool
-        operator()(const Tword_iter& words, const size_t max_word_count, size_t& word_count) const
+        bool operator()(const Tword_iter& words, const size_t max_word_count,
+                        size_t& word_count) const
             {
             word_count = 0;
             // where we start to review the words after "to be"

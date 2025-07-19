@@ -109,19 +109,22 @@ class BatchProjectDoc final : public BaseProjectDoc
     void RemoveMisspellings(const wxArrayString& misspellingsToRemove) final;
 
     [[nodiscard]]
-    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetMisspelledWordData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>&
+    GetMisspelledWordData() const noexcept
         {
         return m_misspelledWordData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetRepeatedWordData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>&
+    GetRepeatedWordData() const noexcept
         {
         return m_dupWordData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetIncorrectArticleData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>&
+    GetIncorrectArticleData() const noexcept
         {
         return m_incorrectArticleData;
         }
@@ -134,49 +137,57 @@ class BatchProjectDoc final : public BaseProjectDoc
         }
 
     [[nodiscard]]
-    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetPassiveVoiceData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>&
+    GetPassiveVoiceData() const noexcept
         {
         return m_passiveVoiceData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetWordyItemsData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>&
+    GetWordyItemsData() const noexcept
         {
         return m_wordyPhraseData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetRedundantPhrasesData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>&
+    GetRedundantPhrasesData() const noexcept
         {
         return m_redundantPhraseData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetWordingErrorsData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>&
+    GetWordingErrorsData() const noexcept
         {
         return m_wordingErrorData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetClicheData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>&
+    GetClicheData() const noexcept
         {
         return m_clichePhraseData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetAllWordsBatchData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>&
+    GetAllWordsBatchData() const noexcept
         {
         return m_allWordsBatchData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetKeyWordsBatchData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>&
+    GetKeyWordsBatchData() const noexcept
         {
         return m_keyWordsBatchData;
         }
 
     [[nodiscard]]
-    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& GetLongSentencesData() const noexcept
+    const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>&
+    GetLongSentencesData() const noexcept
         {
         return m_overlyLongSentenceData;
         }
@@ -281,11 +292,11 @@ class BatchProjectDoc final : public BaseProjectDoc
         @param varianceMethod The variance method to calculate with (population or sample).
         @param allowCustomFormatting Whether custom formatting should be used for number formatting
             in the @c dataGrid.*/
-    static void SetScoreStatsRow(std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> dataGrid,
-                                 const wxString& rowName, const wxString& optionalDescription,
-                                 const long rowNum, const std::vector<double>& data,
-                                 const int decimalSize, const VarianceMethod varianceMethod,
-                                 const bool allowCustomFormatting);
+    static void
+    SetScoreStatsRow(std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> dataGrid,
+                     const wxString& rowName, const wxString& optionalDescription,
+                     const long rowNum, const std::vector<double>& data, const int decimalSize,
+                     const VarianceMethod varianceMethod, const bool allowCustomFormatting);
     /** @brief Fills a score list control with statistics.
         @param The name of the list control.
         @param windowId The window ID of the list control.
@@ -295,11 +306,12 @@ class BatchProjectDoc final : public BaseProjectDoc
             If empty, will not be used for the second column.\n
             This parameter only makes sense for adding a description next to a document.
         @param multiSelectable @c true to make the list control multi-item selectable.*/
-    void DisplayScoreStatisticsWindow(const wxString& windowName, const int windowId,
-                                      std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> data,
-                                      const wxString& firstColumnName,
-                                      const wxString& optionalSecondColumnName,
-                                      const bool multiSelectable);
+    void
+    DisplayScoreStatisticsWindow(const wxString& windowName, const int windowId,
+                                 std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> data,
+                                 const wxString& firstColumnName,
+                                 const wxString& optionalSecondColumnName,
+                                 const bool multiSelectable);
 
     /// @returns `true` if there is more than one document label, but not more than
     ///     the max number of groups for the legends.
@@ -379,12 +391,14 @@ class BatchProjectDoc final : public BaseProjectDoc
     std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_overlyLongSentenceData{
         std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };
-    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_sentenceStartingWithConjunctionsData{
-        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
-    };
-    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_sentenceStartingWithLowercaseData{
-        std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
-    };
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>
+        m_sentenceStartingWithConjunctionsData{
+            std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
+        };
+    std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>
+        m_sentenceStartingWithLowercaseData{
+            std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
+        };
     std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider> m_allWordsBatchData{
         std::make_shared<Wisteria::UI::ListCtrlExNumericDataProvider>()
     };

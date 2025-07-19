@@ -459,8 +459,7 @@ class BaseProjectDoc : public BaseProject, public wxDocument
         return m_histogramBinningMethod;
         }
 
-    void
-    SetHistogramBinningMethod(const Wisteria::Graphs::Histogram::BinningMethod method) noexcept
+    void SetHistogramBinningMethod(const Wisteria::Graphs::Histogram::BinningMethod method) noexcept
         {
         m_histogramBinningMethod = method;
         }
@@ -1167,7 +1166,6 @@ class BaseProjectDoc : public BaseProject, public wxDocument
         }
 
   protected:
-
     /// @returns The goal values of a test goal (if specified in the project).
     std::tuple<double, double> GetGoalsForTest(const wxString& testName) const
         {

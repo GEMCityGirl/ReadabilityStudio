@@ -170,8 +170,7 @@ void ExportAllDlg::OnImageOptionsButtonClick([[maybe_unused]] wxCommandEvent& ev
     wxString ext{ (m_graphCombo ? m_graphCombo->GetValue() : wxString{ L"png" }) };
     Wisteria::UI::ImageExportDlg optDlg(this, Image::GetImageFileTypeFromExtension(ext),
                                         wxNullBitmap, m_imageExportOptions);
-    optDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
-                        L"online/publishing.html");
+    optDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(), L"online/publishing.html");
     if (optDlg.ShowModal() == wxID_OK)
         {
         m_imageExportOptions = optDlg.GetOptions();

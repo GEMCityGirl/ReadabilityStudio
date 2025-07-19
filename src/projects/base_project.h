@@ -2138,7 +2138,7 @@ class BaseProject : public ProjectRefresh
             else
                 {
                 LogMessage(wxString::Format(_(L"Exclusion phrase list not found:\n\n%s\n\nList "
-                                               "will not be included in this project."),
+                                              "will not be included in this project."),
                                             filePath),
                            _(L"Warning"), wxOK | wxICON_EXCLAMATION);
                 SetModifiedFlag();

@@ -22,9 +22,9 @@ void DocGroupSelectDlg::CreateControls()
                               _(L"Use a grouping label"),
                               _(L"Use the last common folder between files") };
 
-    wxRadioBox* radioBox = new wxRadioBox(
-        this, wxID_ANY, _(L"Select how to label the documents:"), wxDefaultPosition,
-        wxDefaultSize, choices, 0, wxRA_SPECIFY_ROWS, wxGenericValidator(&m_selected));
+    wxRadioBox* radioBox = new wxRadioBox(this, wxID_ANY, _(L"Select how to label the documents:"),
+                                          wxDefaultPosition, wxDefaultSize, choices, 0,
+                                          wxRA_SPECIFY_ROWS, wxGenericValidator(&m_selected));
 
     mainSizer->Add(radioBox, wxSizerFlags{}.Border());
 
@@ -32,8 +32,8 @@ void DocGroupSelectDlg::CreateControls()
     wxBoxSizer* labelSizer = new wxBoxSizer(wxHORIZONTAL);
     m_groupingLabelText = new wxStaticText(this, wxID_STATIC, _(L"Grouping label:"));
     m_groupingLabelEntry =
-        new wxTextCtrl(this, wxID_ANY, wxString{}, wxDefaultPosition, wxDefaultSize,
-                       wxBORDER_THEME, wxGenericValidator(&m_groupingLabel));
+        new wxTextCtrl(this, wxID_ANY, wxString{}, wxDefaultPosition, wxDefaultSize, wxBORDER_THEME,
+                       wxGenericValidator(&m_groupingLabel));
     labelSizer->Add(m_groupingLabelText, wxSizerFlags{}.CenterVertical());
     labelSizer->Add(m_groupingLabelEntry, wxSizerFlags{ 1 }.Expand().Border());
 

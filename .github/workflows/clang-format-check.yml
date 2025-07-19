@@ -9,7 +9,7 @@ jobs:
       - uses: DoozyX/clang-format-lint-action@v0.20
         with:
           source: "src"
-          exclude: "src/Wisteria-Dataviz src/tinyxml2 src/tinyexpr-plusplus src/OleanderStemmingLibrary src/lua src/Catch2"
+          exclude: "src/Wisteria-Dataviz src/tinyxml2 src/tinyexpr-plusplus src/OleanderStemmingLibrary src/lua src/Catch2 src/lua-scripting/luna.h"
           extensions: 'h,cpp'
           style: file
           clangFormatVersion: 20
