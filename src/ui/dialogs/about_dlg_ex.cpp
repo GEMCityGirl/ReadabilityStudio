@@ -16,6 +16,7 @@
 #include "../../Wisteria-Dataviz/src/CRCpp/inc/CRC.h"
 #include "../../Wisteria-Dataviz/src/easyexif/exif.h"
 #include "../../Wisteria-Dataviz/src/import/html_extract_text.h"
+#include "../../Wisteria-Dataviz/src/util/hardwareinfo.h"
 #include "../../app/version.h"
 #include "../../lua/lua.h"
 #include "../../tinyexpr-plusplus/tinyexpr.h"
@@ -185,10 +186,10 @@ void AboutDialogEx::CreateControls()
         productInfoGrid->Add(new wxStaticText(
             mainPage, wxID_ANY,
             // TRANSLATORS: Compiled version of the program (e.g., DEBUG or RELEASE)
-            _(L"Build type:")));
+            _(L"Build Type:")));
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"DEBUG")));
 #endif
-        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Built on:")));
+        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Built On:")));
         wxDateTime buildDate;
         buildDate.ParseDate(__DATE__);
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, buildDate.Format(L"%B %d, %G")));
@@ -204,6 +205,10 @@ void AboutDialogEx::CreateControls()
                              wxGetOsDescription()
 #endif
                              ));
+        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Physical Memory:")));
+        productInfoGrid->Add(new wxStaticText(
+            mainPage, wxID_ANY,
+            wxFileName::GetHumanReadableSize(wxSystemHardwareInfo::GetMemory().GetValue())));
 
         // put it all together
         mainPanelSizer->Add(new wxStaticText(mainPage, wxID_ANY, wxTheApp->GetAppName()),
