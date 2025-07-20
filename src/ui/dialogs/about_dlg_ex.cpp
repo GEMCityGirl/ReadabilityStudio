@@ -189,7 +189,7 @@ void AboutDialogEx::CreateControls()
             _(L"Build Type:")));
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"DEBUG")));
 #endif
-        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Built On:")));
+        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Build Date:")));
         wxDateTime buildDate;
         buildDate.ParseDate(__DATE__);
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, buildDate.Format(L"%B %d, %G")));
@@ -205,6 +205,15 @@ void AboutDialogEx::CreateControls()
                              wxGetOsDescription()
 #endif
                              ));
+        productInfoGrid->Add(new wxStaticText(
+            mainPage, wxID_ANY, /* TRANSLATORS: Computer CPU information */ _(L"Architecture:")));
+        productInfoGrid->Add(
+            new wxStaticText(mainPage, wxID_ANY,
+                             wxString::Format(/* TRANSLATORS: CPU type, and then threads count */
+                                              _(L"%s, %d CPU threads"),
+                                              wxSystemHardwareInfo::GetNativeCPUArchitectureName(),
+                                              wxSystemHardwareInfo::GetCPUCount())));
+
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Memory:")));
         productInfoGrid->Add(new wxStaticText(
             mainPage, wxID_ANY,
