@@ -205,10 +205,19 @@ void AboutDialogEx::CreateControls()
                              wxGetOsDescription()
 #endif
                              ));
-        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Physical Memory:")));
+        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Memory:")));
         productInfoGrid->Add(new wxStaticText(
             mainPage, wxID_ANY,
             wxFileName::GetHumanReadableSize(wxSystemHardwareInfo::GetMemory().GetValue())));
+
+        if (wxGetMouseState().ShiftDown())
+            {
+            productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Peak Memory Usage:")));
+            productInfoGrid->Add(
+                new wxStaticText(mainPage, wxID_ANY,
+                                 wxFileName::GetHumanReadableSize(
+                                     wxSystemHardwareInfo::GetPeakUsedMemory().GetValue())));
+            }
 
         // put it all together
         mainPanelSizer->Add(new wxStaticText(mainPage, wxID_ANY, wxTheApp->GetAppName()),
