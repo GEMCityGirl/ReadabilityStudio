@@ -55,8 +55,7 @@ namespace grammar
         // used for sorting
         /// @private
         [[nodiscard]]
-        inline bool
-        operator<(const size_t sentence_position) const noexcept
+        inline bool operator<(const size_t sentence_position) const noexcept
             {
             return m_begin_index < sentence_position;
             }

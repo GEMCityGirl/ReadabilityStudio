@@ -32,9 +32,8 @@ namespace grammar
             @param nextWord The word following this one, needed for a deeper analysis if the
                 contraction ends with "'s" and may be ambiguous. This is optional.*/
         [[nodiscard]]
-        bool
-        operator()(const std::wstring_view text,
-                   const std::wstring_view nextWord = std::wstring_view{}) const;
+        bool operator()(const std::wstring_view text,
+                        const std::wstring_view nextWord = std::wstring_view{}) const;
 
       private:
         using string_type = std::basic_string_view<wchar_t, traits::case_insensitive_ex>;

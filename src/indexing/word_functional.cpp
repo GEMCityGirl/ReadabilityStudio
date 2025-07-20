@@ -14,8 +14,7 @@
 #include "word_functional.h"
 
 // documents
-std::set<traits::case_insensitive_wstring_ex>
-    is_file_extension::m_file_extensions = { // NOLINT
+std::set<traits::case_insensitive_wstring_ex> is_file_extension::m_file_extensions = { // NOLINT
     L"xml", L"html", L"htm", L"xhtml", L"rtf", L"doc", L"docx", L"dot", L"docm", L"txt", L"ppt",
     L"pptx", L"pdf", L"ps", L"odt", L"ott", L"odp", L"otp", L"pptm", L"md", L"xaml",
     // Visual Studio files

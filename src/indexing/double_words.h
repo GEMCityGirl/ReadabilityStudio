@@ -32,8 +32,7 @@ namespace grammar
         /// @param text The word to review.
         /// @returns @c true if this word is allowed to be repeated.
         [[nodiscard]]
-        bool
-        operator()(const std::wstring_view text) const;
+        bool operator()(const std::wstring_view text) const;
 
       private:
         using string_type = std::basic_string_view<wchar_t, traits::case_insensitive_ex>;

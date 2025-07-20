@@ -89,8 +89,7 @@ class word : public std::basic_string<wchar_t, Tchar_traits>
     /// @returns Whether this word doesn't equal @c that.
     /// @param that The word to compare against.
     [[nodiscard]]
-    bool
-    operator!=(const word<Tchar_traits, Tstemmer>& that) const noexcept
+    bool operator!=(const word<Tchar_traits, Tstemmer>& that) const noexcept
         {
         return compare(that) != 0;
         }
@@ -98,8 +97,7 @@ class word : public std::basic_string<wchar_t, Tchar_traits>
     /// @returns Whether this word is less than @c that.
     /// @param that The word to compare against.
     [[nodiscard]]
-    bool
-    operator<(const word<Tchar_traits, Tstemmer>& that) const noexcept
+    bool operator<(const word<Tchar_traits, Tstemmer>& that) const noexcept
         {
         return compare(that) < 0;
         }
@@ -107,8 +105,7 @@ class word : public std::basic_string<wchar_t, Tchar_traits>
     /// @returns Whether the words are the same, compared by stems.
     /// @param that The word to compare against.
     [[nodiscard]]
-    bool
-    operator==(const word<Tchar_traits, Tstemmer>& that) const noexcept
+    bool operator==(const word<Tchar_traits, Tstemmer>& that) const noexcept
         {
         return compare(that) == 0;
         }
@@ -116,8 +113,7 @@ class word : public std::basic_string<wchar_t, Tchar_traits>
     /// @returns Whether the words are the same, compared by stems.
     /// @param that The word to compare against.
     [[nodiscard]]
-    bool
-    operator==(const wchar_t* that) const
+    bool operator==(const wchar_t* that) const
         {
         return compare(that) == 0;
         }

@@ -28,8 +28,7 @@ namespace punctuation
         /** @returns @c true if a character is punctuation.
             @param ch The character to review.*/
         [[nodiscard]]
-        constexpr bool
-        operator()(const wchar_t ch) const noexcept
+        constexpr bool operator()(const wchar_t ch) const noexcept
             {
             return characters::is_character::is_punctuation(ch);
             }
@@ -48,8 +47,7 @@ namespace punctuation
                 (e.g., an ampersand), then it is treated as NOT being punctuation,
                 but rather a word.*/
         [[nodiscard]]
-        inline size_t
-        operator()(std::wstring_view text) const
+        inline size_t operator()(std::wstring_view text) const
             {
             if (text.empty())
                 {
@@ -58,15 +56,15 @@ namespace punctuation
             /* special case where the word is just ('&', '#', '@', or '%');
                treat it like a regular character (e.g., not punctuation)*/
             if (text.length() == 1 &&
-                string_util::is_one_of(
-                    string_util::full_width_to_narrow(text[0]),
-                        m_whole_word_punctuation.data()))
+                string_util::is_one_of(string_util::full_width_to_narrow(text[0]),
+                                       m_whole_word_punctuation.data()))
                 {
                 return 0;
                 }
             return std::count_if(text.cbegin(), text.cend(),
                                  characters::is_character::is_punctuation);
             }
+
         /// @brief Punctuation marks can be full words by themselves.
         inline static const std::wstring_view m_whole_word_punctuation{ L"&#@%" };
         };
@@ -122,8 +120,7 @@ namespace punctuation
             @param that The punctuation mark to compare against.
             @returns @c true if this mark's word position is less than that's word position.*/
         [[nodiscard]]
-        bool
-        operator<(const punctuation_mark& that) const noexcept
+        bool operator<(const punctuation_mark& that) const noexcept
             {
             return m_word_position < that.m_word_position;
             }
@@ -132,8 +129,7 @@ namespace punctuation
         /// @param mark The character to compare against.
         /// @returns @c true if marks are equal.
         [[nodiscard]]
-        constexpr bool
-        operator==(const wchar_t mark) const noexcept
+        constexpr bool operator==(const wchar_t mark) const noexcept
             {
             return m_mark == mark;
             }

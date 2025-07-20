@@ -26,22 +26,19 @@ const std::set<grammar::is_contraction::string_type> grammar::is_contraction::m_
 // "Frank's got a new car. Frank's a happy man. Frank's car is nice."
 // The first two "Frank's" are contractions, the last one is a possessive  noun.
 const std::set<grammar::is_contraction::string_type>
-    grammar::is_contraction::m_s_contractions_following_word = {
-    L"a", L"an", L"got", L"the"
-};
+    grammar::is_contraction::m_s_contractions_following_word = { L"a", L"an", L"got", L"the" };
 
 // Contractions that would start with an apostrophe (that parser may not be including).
 const std::set<grammar::is_contraction::string_type>
     grammar::is_contraction::m_contraction_without_apostrophe = {
-    L"tis", L"twas", L"twere", L"twould", L"twill",
-    // Contractions of two words without an apostrophe (e.g., going to -> gonna).
-    L"gonna", L"wanna", L"kinda", L"shoulda", L"woulda", L"coulda", L"dunno", L"gimme", L"gotta"
-};
+        L"tis", L"twas", L"twere", L"twould", L"twill",
+        // Contractions of two words without an apostrophe (e.g., going to -> gonna).
+        L"gonna", L"wanna", L"kinda", L"shoulda", L"woulda", L"coulda", L"dunno", L"gimme", L"gotta"
+    };
 
 //--------------------------------------------------------
 bool grammar::is_contraction::operator()(
-    const std::wstring_view text,
-                                const std::wstring_view nextWord /*= std::wstring_view{}*/) const
+    const std::wstring_view text, const std::wstring_view nextWord /*= std::wstring_view{}*/) const
     {
     if (text.length() < 3)
         {
@@ -65,8 +62,8 @@ bool grammar::is_contraction::operator()(
                 if (nextWord.length() > 0)
                     {
                     return m_s_contractions_following_word.find(
-                                string_type{ nextWord.data(), nextWord.length() }) !=
-                            m_s_contractions_following_word.cend();
+                               string_type{ nextWord.data(), nextWord.length() }) !=
+                           m_s_contractions_following_word.cend();
                     }
                 return false;
                 }

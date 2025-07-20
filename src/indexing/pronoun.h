@@ -30,8 +30,7 @@ namespace grammar
             @param text The text block to analyze.
             @todo add Spanish and German words too.*/
         [[nodiscard]]
-        bool
-        operator()(std::wstring_view text) const
+        bool operator()(std::wstring_view text) const
             {
             if (text.empty())
                 {

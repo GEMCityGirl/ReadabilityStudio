@@ -62,10 +62,10 @@ namespace text_transform
                 to their narrow counterparts.
             @returns A string encoded to simpler text.*/
         [[nodiscard]]
-        std::wstring
-        operator()(std::wstring_view text, const bool replace_extended_ascii_characters,
-                   const bool remove_ellipses, const bool remove_bullets,
-                   const bool narrow_full_width_characters) const;
+        std::wstring operator()(std::wstring_view text,
+                                const bool replace_extended_ascii_characters,
+                                const bool remove_ellipses, const bool remove_bullets,
+                                const bool narrow_full_width_characters) const;
 
       private:
         static const romanization_conversion_table m_conversionTable;

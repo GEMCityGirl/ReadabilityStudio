@@ -30,19 +30,19 @@ namespace traits
         {
       public:
         //-------------------------------------------------------------
-        static constexpr bool eq_int_type(const int_type& i1, const int_type& i2) noexcept
+        constexpr static bool eq_int_type(const int_type& i1, const int_type& i2) noexcept
             {
             return tolower(i1) == tolower(i2);
             }
 
         //-------------------------------------------------------------
-        static constexpr char_type to_char_type(const int_type& i) noexcept
+        constexpr static char_type to_char_type(const int_type& i) noexcept
             {
             return static_cast<char_type>(i);
             }
 
         //-------------------------------------------------------------
-        static constexpr int_type to_int_type(const char_type& c) noexcept
+        constexpr static int_type to_int_type(const char_type& c) noexcept
             {
             return static_cast<unsigned char>(c);
             }
@@ -61,7 +61,7 @@ namespace traits
 
         /// @todo Unit test
         //-------------------------------------------------------------
-        inline static constexpr bool eq_case_sensitive(const char_type& first,
+        inline constexpr static bool eq_case_sensitive(const char_type& first,
                                                        const char_type& second) noexcept
             {
             // special logic for apostrophes
@@ -160,7 +160,7 @@ namespace traits
             }
 
         //-------------------------------------------------------------
-        static constexpr char_type tolower(const char_type& ch) noexcept
+        constexpr static char_type tolower(const char_type& ch) noexcept
             {
             return characters::is_character::to_lower(string_util::full_width_to_narrow(ch));
             }

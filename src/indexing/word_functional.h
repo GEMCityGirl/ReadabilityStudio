@@ -883,6 +883,7 @@ class is_file_extension
         {
         return m_file_extensions.find(str) != m_file_extensions.cend();
         }
+
   private:
     static std::set<traits::case_insensitive_wstring_ex> m_file_extensions;
     };

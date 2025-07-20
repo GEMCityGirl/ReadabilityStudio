@@ -113,7 +113,7 @@ namespace grammar
             // tilde
             { { L'n', 0x0303 }, L'ñ' },
             { { L'N', 0x0303 }, L'Ñ' },
-            // retroflex hook below 
+            // retroflex hook below
             { { L'e', 0x0322 }, L'ę' },
             { { L'E', 0x0322 }, L'Ę' },
             // cedilla

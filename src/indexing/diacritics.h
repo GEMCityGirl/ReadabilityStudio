@@ -31,7 +31,8 @@ namespace grammar
         ///     @param input The input stream to convert (if necessary).
         /// @returns @c true if the input text had ligatures or diacritics to convert.\n
         ///     Call get_conversion() to get the converted buffer if this returns @c true.
-        [[nodiscard("Indicates whether the input contained characters that needed to be converted.")]]
+        [[nodiscard(
+            "Indicates whether the input contained characters that needed to be converted.")]]
         bool operator()(std::wstring_view input);
 
         /// @returns The converted buffer from the previous string processing.

@@ -49,8 +49,7 @@ namespace grammar
             @param text The word to review.
             @returns Whether or not this word is a coordinating conjunction.*/
         [[nodiscard]]
-        bool
-        operator()(const std::wstring_view text) const final
+        bool operator()(const std::wstring_view text) const final
             {
             if (text.empty())
                 {
@@ -73,8 +72,7 @@ namespace grammar
             @param text The word to review.
             @returns Whether or not this word is a coordinating conjunction.*/
         [[nodiscard]]
-        bool
-        operator()(const std::wstring_view text) const final
+        bool operator()(const std::wstring_view text) const final
             {
             if (text.empty())
                 {
@@ -97,8 +95,7 @@ namespace grammar
             @param text The word to review.
             @returns Whether or not this word is a coordinating conjunction.*/
         [[nodiscard]]
-        bool
-        operator()(const std::wstring_view text) const final
+        bool operator()(const std::wstring_view text) const final
             {
             if (text.empty())
                 {
@@ -124,8 +121,7 @@ namespace grammar
 
             @returns Whether or not this word is a coordinating conjunction.*/
         [[nodiscard]]
-        bool
-        operator()(const std::wstring_view text) const noexcept final
+        bool operator()(const std::wstring_view text) const noexcept final
             {
             if (text.empty())
                 {
