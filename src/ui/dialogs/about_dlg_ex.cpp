@@ -147,6 +147,24 @@ bool AboutDialogEx::Create(wxWindow* parent, wxWindowID id, const wxPoint& pos, 
         },
         AboutDialogEx::ID_COPY_LICENSE);
 
+    Bind(
+        wxEVT_BUTTON,
+        [this]([[maybe_unused]] wxCommandEvent&)
+        {
+            if (wxTheClipboard->Open())
+                {
+                if (!m_productInfo.empty())
+                    {
+                    wxTheClipboard->Clear();
+                    wxDataObjectComposite* obj = new wxDataObjectComposite();
+                    obj->Add(new wxTextDataObject(m_productInfo));
+                    wxTheClipboard->SetData(obj);
+                    }
+                wxTheClipboard->Close();
+                }
+        },
+        AboutDialogEx::ID_COPY_PRODUCT_INFO);
+
     return true;
     }
 
@@ -231,11 +249,29 @@ void AboutDialogEx::CreateControls()
         // put it all together
         mainPanelSizer->Add(new wxStaticText(mainPage, wxID_ANY, wxTheApp->GetAppName()),
                             wxSizerFlags{}.Left().Border(wxLEFT));
-        mainPanelSizer->Add(productInfoGrid, wxSizerFlags{}.Left().Border(wxLEFT));
-        mainPanelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder() * 2);
+
+        auto* productArea = new wxBoxSizer(wxHORIZONTAL);
+        productArea->Add(productInfoGrid, wxSizerFlags{}.Left().Border(wxLEFT));
+        productArea->AddStretchSpacer();
+        productArea->Add(new wxBitmapButton(mainPage, ID_COPY_PRODUCT_INFO,
+                                            wxArtProvider::GetBitmap(wxART_COPY, wxART_BUTTON)));
+        mainPanelSizer->Add(productArea, wxSizerFlags{}.Expand());
+        mainPanelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder() * 5);
+        mainPanelSizer->AddStretchSpacer();
         mainPanelSizer->Add(new wxStaticText(mainPage, wxID_ANY, m_copyright),
                             wxSizerFlags{}.Left().Border(wxLEFT));
         mainPanelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
+
+        m_productInfo = wxTheApp->GetAppName() + L"\n";
+        for (size_t i = 0; i < productInfoGrid->GetChildren().size(); ++i)
+            {
+            const auto* currentWindow = productInfoGrid->GetChildren()[i]->GetWindow();
+            if (currentWindow != nullptr)
+                {
+                m_productInfo.append(currentWindow->GetLabel());
+                m_productInfo.append((i % 2 == 0) ? L'\t' : L'\n');
+                }
+            }
         }
 
     // License page

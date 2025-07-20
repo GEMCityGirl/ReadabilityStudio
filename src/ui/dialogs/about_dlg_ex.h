@@ -72,6 +72,7 @@ class AboutDialogEx final : public wxDialog
     constexpr static int ID_COMPONENTS = wxID_HIGHEST + 6;
     constexpr static int ID_COPY_COMPONENTS = wxID_HIGHEST + 7;
     constexpr static int ID_COPY_LICENSE = wxID_HIGHEST + 8;
+    constexpr static int ID_COPY_PRODUCT_INFO = wxID_HIGHEST + 9;
 
     /// Creation.
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition,
@@ -91,6 +92,7 @@ class AboutDialogEx final : public wxDialog
     wxString m_mlaCitation;
     wxString m_apaCitation;
     wxString m_bibtexCitation;
+    wxString m_productInfo;
     };
 
 #endif // ABOUT_DIALOG_EX_H

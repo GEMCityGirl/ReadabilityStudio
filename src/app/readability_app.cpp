@@ -3134,7 +3134,7 @@ void MainFrame::OnAbout([[maybe_unused]] wxCommandEvent& event)
         // (it's a copyright symbol), "%s%d" is a range of years and " %s" is the
         // software publisher.
         wxString::Format(_(L"Copyright \U000000A92006-2025 Oleander Software, Ltd.\n"
-                           "Copyright \U000000A9%s%d %s.\nAll rights reserved.\n\n\n"
+                           "Copyright \U000000A9%s%d %s.\nAll rights reserved.\n\n"
                            "%s\U000000AE is a Trademark of %s.\n"
                            "Jakarta and Jakarta EE are Trademarks of %s.\n"
                            "Eclipse\U000000AE is a Trademark of %s.\n"
