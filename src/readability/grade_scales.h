@@ -114,7 +114,7 @@ namespace readability
     /// @param value The value to clamp to a K-12 grade level.
     /// @returns @c value, clamped to a K-12 grade level.
     [[nodiscard]]
-    constexpr inline double truncate_k12_plus_grade(const double value) noexcept
+    inline constexpr double truncate_k12_plus_grade(const double value) noexcept
         {
         return std::clamp<double>(value, 0, 19);
         }

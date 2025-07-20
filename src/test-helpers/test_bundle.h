@@ -47,8 +47,7 @@ class Goal
     /// @param that The goal to compare against.
     /// @returns @c true if this goal's name is less than the other one.
     [[nodiscard]]
-    bool
-    operator<(const Goal& that) const noexcept
+    bool operator<(const Goal& that) const noexcept
         {
         return GetName() < that.GetName();
         }
@@ -126,8 +125,7 @@ class TestBundle
     /// @param that The bundle to compare against.
     /// @returns @c true if this bundle's name is less than the other one.
     [[nodiscard]]
-    bool
-    operator<(const TestBundle& that) const noexcept
+    bool operator<(const TestBundle& that) const noexcept
         {
         return GetName() < that.GetName();
         }

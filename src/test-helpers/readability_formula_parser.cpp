@@ -346,7 +346,7 @@ static double FamiliarHarrisJacobsonWordCount(const te_expr* context)
                project->GetTotalHardWordsHarrisJacobson();
         }
     return (project->GetTotalWords() - project->GetTotalNumerals()) -
-        project->GetTotalHardWordsHarrisJacobson();
+           project->GetTotalHardWordsHarrisJacobson();
     }
 
 /// @returns The number of unique monosyllabic words from the document.
@@ -573,7 +573,7 @@ static double SentenceCount(const te_expr* context, const double wordType)
         {
         const BaseProject* project = (dynamic_cast<const FormulaProject*>(context))->GetProject();
         return project->IsFogUsingSentenceUnits() ? project->GetTotalSentenceUnits() :
-                                                project->GetTotalSentences();
+                                                    project->GetTotalSentences();
         }
     throw std::runtime_error(
         wxString::Format(_(L"Invalid value used in %s"), wxString{ __func__ }).ToUTF8());

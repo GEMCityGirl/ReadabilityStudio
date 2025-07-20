@@ -1315,8 +1315,8 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
 
     // add the label for the window type to the export menu item
     assert(GetActiveProjectWindow());
-    if (wxMenuItem *
-            exportMenuItem{ GetDocFrame()->m_exportMenu.FindChildItem(XRCID("ID_SAVE_ITEM")) };
+    if (wxMenuItem* exportMenuItem{
+            GetDocFrame()->m_exportMenu.FindChildItem(XRCID("ID_SAVE_ITEM")) };
         exportMenuItem != nullptr && GetActiveProjectWindow() != nullptr)
         {
         exportMenuItem->SetItemLabel(
