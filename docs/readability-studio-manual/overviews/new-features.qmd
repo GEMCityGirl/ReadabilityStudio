@@ -23,6 +23,8 @@ source('../R/appdown.r')
 
 - Added showcase option to Danielson-Bryan 2 plot.
 - Added new icon shapes for stipple brushes.
+- Stipple shapes now support transparency.\
+  This includes using icon shapes for histograms that use showcasing.
 - Added WebP image support.
 
 ### Analysis/Test Enhancements {-}

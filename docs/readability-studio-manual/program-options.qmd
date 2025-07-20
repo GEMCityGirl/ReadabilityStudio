@@ -849,10 +849,6 @@ Note that watermarks and logos will also appear when you [print](#sec-printing) 
 This is done by lowering the opacity of the bars and slices for 1- and 2-syllable word groups.
 Also, the labels for these bars and slices will be removed. Finally, the cumulative bar for the simple-words bar group will be removed on the histogram.
 
-::: {.notesection data-latex=""}
-If using a stipple shape on the syllable histogram, then the opacity feature will have no effect.
-:::
-
 ### Axes {-}
 
 The options on this page customize the axis settings of your graphs.
