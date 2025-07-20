@@ -1,10 +1,13 @@
 cmake_minimum_required(VERSION 3.25)
 
-# edit these to change which files are being filtered out
-set(SRC_FILES_TO_REMOVE_FILTER "(wxSimpleJSON|reportbuilder.cpp|demo.cpp|main.cpp|Wisteria-Dataviz/tests|\
+# edit this regex to change which files are being filtered out
+set(SRC_FILES_TO_REMOVE_FILTER "(wxSimpleJSON|demo.cpp|main.cpp|Wisteria-Dataviz/tests|\
 Catch2|OleanderStemmingLibrary/tests|tinyexpr-plusplus/tests|utfcpp/tests|\
-utfcpp/samples|utfcpp/extern|cxxopts|xmltest.cpp|html5-printer.cpp)")
+utfcpp/samples|utfcpp/extern|cxxopts|xmltest.cpp|html5-printer.cpp|\
+textclassifier.cpp|candlestickplot.cpp|ganttchart.cpp|lrroadmap.cpp|proconroadmap.cpp|\
+roadmap.cpp|sankeydiagram.cpp|table.cpp|wcurveplot.cpp|variableselectdlg.cpp|reportbuilder.cpp)")
 
+# these files get compiled into larger ones that are included with the distribution
 set(WORD_FILES_TO_REMOVE_FILTER "(common-dictionary|base-english-dictionary.txt|base-non-personal.txt|base-personal.txt|base-english.txt|\
 base-german.txt|base-spanish.txt|common-errors.txt|sql.txt|visual-basic.txt|programming/r.txt|python.txt|java.txt|\
 html.txt|csharp.txt|cpp.txt|assembly.txt)")

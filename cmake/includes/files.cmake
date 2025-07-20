@@ -83,17 +83,14 @@ SET(APP_SRC_FILES
     src/Wisteria-Dataviz/src/data/join.cpp
     src/Wisteria-Dataviz/src/data/pivot.cpp
     src/Wisteria-Dataviz/src/data/subset.cpp
-    src/Wisteria-Dataviz/src/data/textclassifier.cpp
     src/Wisteria-Dataviz/src/debug/debug_profile.cpp
     src/Wisteria-Dataviz/src/easyexif/exif.cpp
     src/Wisteria-Dataviz/src/graphs/barchart.cpp
     src/Wisteria-Dataviz/src/graphs/boxplot.cpp
-    src/Wisteria-Dataviz/src/graphs/candlestickplot.cpp
     src/Wisteria-Dataviz/src/graphs/categoricalbarchart.cpp
     src/Wisteria-Dataviz/src/graphs/crawfordgraph.cpp
     src/Wisteria-Dataviz/src/graphs/danielsonbryan2plot.cpp
     src/Wisteria-Dataviz/src/graphs/fleschchart.cpp
-    src/Wisteria-Dataviz/src/graphs/ganttchart.cpp
     src/Wisteria-Dataviz/src/graphs/graph2d.cpp
     src/Wisteria-Dataviz/src/graphs/groupgraph2d.cpp
     src/Wisteria-Dataviz/src/graphs/heatmap.cpp
@@ -103,14 +100,8 @@ SET(APP_SRC_FILES
     src/Wisteria-Dataviz/src/graphs/lineplot.cpp
     src/Wisteria-Dataviz/src/graphs/lixgauge.cpp
     src/Wisteria-Dataviz/src/graphs/lixgaugegerman.cpp
-    src/Wisteria-Dataviz/src/graphs/lrroadmap.cpp
     src/Wisteria-Dataviz/src/graphs/piechart.cpp
-    src/Wisteria-Dataviz/src/graphs/proconroadmap.cpp
-    src/Wisteria-Dataviz/src/graphs/roadmap.cpp
-    src/Wisteria-Dataviz/src/graphs/sankeydiagram.cpp
     src/Wisteria-Dataviz/src/graphs/scalechart.cpp
-    src/Wisteria-Dataviz/src/graphs/table.cpp
-    src/Wisteria-Dataviz/src/graphs/wcurveplot.cpp
     src/Wisteria-Dataviz/src/graphs/wordcloud.cpp
     src/Wisteria-Dataviz/src/import/cpp_extract_text.cpp
     src/Wisteria-Dataviz/src/import/doc_extract_text.cpp
@@ -148,13 +139,13 @@ SET(APP_SRC_FILES
     src/Wisteria-Dataviz/src/ui/dialogs/opacitydlg.cpp
     src/Wisteria-Dataviz/src/ui/dialogs/printerheaderfooterdlg.cpp
     src/Wisteria-Dataviz/src/ui/dialogs/radioboxdlg.cpp
-    src/Wisteria-Dataviz/src/ui/dialogs/variableselectdlg.cpp
     src/Wisteria-Dataviz/src/ui/dialogs/warningmessagesdlg.cpp
     src/Wisteria-Dataviz/src/ui/mainframe.cpp
     src/Wisteria-Dataviz/src/ui/ribbon/artmetro.cpp
     src/Wisteria-Dataviz/src/util/downloadfile.cpp
     src/Wisteria-Dataviz/src/util/fileutil.cpp
     src/Wisteria-Dataviz/src/util/formulaformat.cpp
+    src/Wisteria-Dataviz/src/util/hardwareinfo.cpp
     src/Wisteria-Dataviz/src/util/i18n_string_util.cpp
     src/Wisteria-Dataviz/src/util/idhelpers.cpp
     src/Wisteria-Dataviz/src/util/logfile.cpp
