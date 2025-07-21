@@ -4357,6 +4357,7 @@ void BatchProjectDoc::DisplayGermanLixGauge()
             }
         assert(lixGauge);
         lixGauge->UseEnglishLabels(IsUsingEnglishLabelsForGermanLix());
+        lixGauge->ShowcaseScore(IsShowcasingKeyItems());
         UpdateGraphOptions(view->GetGermanLixGauge());
 
         if (IsShowingGroupLegends())

@@ -3031,8 +3031,11 @@ void ProjectDoc::AddLixGermanGauge(const bool setFocus)
     UpdateGraphOptions(lixGaugeView);
 
     // in case this option changed
-    std::dynamic_pointer_cast<LixGaugeGerman>(lixGaugeView->GetFixedObject(0, 0))
-        ->UseEnglishLabels(IsUsingEnglishLabelsForGermanLix());
+    auto lixGermanPlot =
+        std::dynamic_pointer_cast<LixGaugeGerman>(lixGaugeView->GetFixedObject(0, 0));
+    lixGermanPlot->ShowcaseScore(IsShowcasingKeyItems());
+    lixGermanPlot->UseEnglishLabels(IsUsingEnglishLabelsForGermanLix());
+
     lixGaugeView->CalcAllSizes(gdc);
 
     // if they asked to set focus to the score then select the graph

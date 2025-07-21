@@ -2295,6 +2295,10 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
                         ->ToggleButton(XRCID("ID_USE_ENGLISH_LABELS"),
                                        dynamic_cast<ProjectDoc*>(GetDocument())
                                            ->IsUsingEnglishLabelsForGermanLix());
+                    getEditButtonBar(editLixGermanButtonBarWindow)
+                        ->ToggleButton(
+                            XRCID("ID_EDIT_GRAPH_SHOWCASE_KEY_ITEMS"),
+                            dynamic_cast<ProjectDoc*>(GetDocument())->IsShowcasingKeyItems());
                     }
                 else if (graph->IsKindOf(wxCLASSINFO(RaygorGraph)))
                     {
@@ -2606,8 +2610,7 @@ void ProjectView::OnItemSelected(wxCommandEvent& event)
 
     // add the label for the window type to the export menu item
     assert(GetActiveProjectWindow());
-    if (wxMenuItem* exportMenuItem{
-             GetDocFrame()->m_exportMenu.FindChildItem(XRCID("ID_SAVE_ITEM")) };
+    if (auto* exportMenuItem{ GetDocFrame()->m_exportMenu.FindChildItem(XRCID("ID_SAVE_ITEM")) };
         exportMenuItem != nullptr && GetActiveProjectWindow() != nullptr)
         {
         exportMenuItem->SetItemLabel(
