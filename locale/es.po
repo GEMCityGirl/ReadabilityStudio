@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Readability Studio\n"
-"POT-Creation-Date: 2025-07-19 08:19-0400\n"
-"PO-Revision-Date: 2025-07-19 08:23-0400\n"
+"POT-Creation-Date: 2025-07-21 05:11-0400\n"
+"PO-Revision-Date: 2025-07-21 05:17-0400\n"
 "Last-Translator: Blake Madden\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -36,22 +36,22 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-18: Wisteria-Dataviz/src/data\n"
 "X-Poedit-SearchPathExcluded-19: Wisteria-Dataviz/src/base/reportbuilder.cpp\n"
 
-#: Wisteria-Dataviz/src/base/axis.cpp:3018
+#: Wisteria-Dataviz/src/base/axis.cpp:3017
 #, c-format
 msgid "Q1FY%s"
 msgstr "Q1FY%s"
 
-#: Wisteria-Dataviz/src/base/axis.cpp:3022
+#: Wisteria-Dataviz/src/base/axis.cpp:3021
 #, c-format
 msgid "Q2FY%s"
 msgstr "Q2FY%s"
 
-#: Wisteria-Dataviz/src/base/axis.cpp:3026
+#: Wisteria-Dataviz/src/base/axis.cpp:3025
 #, c-format
 msgid "Q3FY%s"
 msgstr "Q3FY%s"
 
-#: Wisteria-Dataviz/src/base/axis.cpp:3030
+#: Wisteria-Dataviz/src/base/axis.cpp:3029
 #, c-format
 msgid "Q4FY%s"
 msgstr "Q4FY%s"
@@ -72,7 +72,7 @@ msgstr "Q4FY%s"
 #. '%%' can be changed and/or moved within string.
 #. TRANSLATORS: Percentage value (%s) and % symbol (%%).
 #. '%%' can be changed and/or moved elsewhere in the string.
-#: Wisteria-Dataviz/src/base/axis.cpp:3442
+#: Wisteria-Dataviz/src/base/axis.cpp:3441
 #: Wisteria-Dataviz/src/graphs/barchart.cpp:65
 #: Wisteria-Dataviz/src/graphs/histogram.cpp:611
 #: Wisteria-Dataviz/src/graphs/likertchart.cpp:1101
@@ -126,7 +126,7 @@ msgstr "Q4FY%s"
 msgid "%s%%"
 msgstr "%s%%"
 
-#: Wisteria-Dataviz/src/base/axis.cpp:3969
+#: Wisteria-Dataviz/src/base/axis.cpp:3968
 #, c-format
 msgid "'%s': label column not found for line plot."
 msgstr ""
@@ -301,7 +301,7 @@ msgstr "Copiar"
 #: Wisteria-Dataviz/src/ui/dialogs/listdlg.cpp:250 app/readability_app.cpp:1719
 #: app/readability_app.cpp:1744 app/readability_app.cpp:1908
 #: ui/controls/explanation_listctrl.cpp:194 ui/dialogs/edit_text_dlg.cpp:174
-#: ui/dialogs/lua_editor_dlg.cpp:682 ui/dialogs/word_list_dlg.cpp:185
+#: ui/dialogs/lua_editor_dlg.cpp:684 ui/dialogs/word_list_dlg.cpp:185
 msgid "Save"
 msgstr "Guardar"
 
@@ -326,17 +326,17 @@ msgstr ""
 "(*.pcx)|*.pcx|WebP (*.webp)|*.webp"
 
 #. TRANSLATORS: A GO sign, as in OK to proceed.
-#: Wisteria-Dataviz/src/base/shapes.cpp:2235
+#: Wisteria-Dataviz/src/base/shapes.cpp:2250
 msgid "GO"
 msgstr "IR"
 
 #. TRANSLATORS: Simple placeholder text of any sort
-#: Wisteria-Dataviz/src/base/shapes.cpp:2885
+#: Wisteria-Dataviz/src/base/shapes.cpp:2904
 msgid "ABC"
 msgstr "ABC"
 
 #. TRANSLATORS: Name of a newspaper drawn on newspaper icons used for graphs.
-#: Wisteria-Dataviz/src/base/shapes.cpp:2990
+#: Wisteria-Dataviz/src/base/shapes.cpp:3010
 msgid "DAYTON TIMES"
 msgstr "DAYTON TIMES"
 
@@ -515,13 +515,13 @@ msgstr ""
 
 #: Wisteria-Dataviz/src/graphs/categoricalbarchart.cpp:97
 #: Wisteria-Dataviz/src/graphs/histogram.cpp:107
-#: projects/batch_project_doc.cpp:6453 projects/batch_project_doc.cpp:6501
-#: projects/batch_project_doc.cpp:6549 projects/batch_project_doc.cpp:6595
-#: projects/batch_project_doc.cpp:6641 projects/batch_project_doc.cpp:6691
-#: projects/batch_project_doc.cpp:6738 projects/batch_project_doc.cpp:6787
-#: projects/batch_project_doc.cpp:6836 projects/batch_project_doc.cpp:6883
-#: projects/batch_project_doc.cpp:6931 projects/batch_project_doc.cpp:7201
-#: projects/batch_project_doc.cpp:7239 projects/standard_project_doc.cpp:1712
+#: projects/batch_project_doc.cpp:6477 projects/batch_project_doc.cpp:6525
+#: projects/batch_project_doc.cpp:6573 projects/batch_project_doc.cpp:6619
+#: projects/batch_project_doc.cpp:6665 projects/batch_project_doc.cpp:6715
+#: projects/batch_project_doc.cpp:6762 projects/batch_project_doc.cpp:6811
+#: projects/batch_project_doc.cpp:6860 projects/batch_project_doc.cpp:6907
+#: projects/batch_project_doc.cpp:6955 projects/batch_project_doc.cpp:7225
+#: projects/batch_project_doc.cpp:7263 projects/standard_project_doc.cpp:1712
 #: projects/standard_project_doc.cpp:1772
 #: projects/standard_project_doc.cpp:1832
 #: projects/standard_project_doc.cpp:1884
@@ -531,11 +531,11 @@ msgstr ""
 #: projects/standard_project_doc.cpp:2096
 #: projects/standard_project_doc.cpp:2146
 #: projects/standard_project_doc.cpp:2197
-#: projects/standard_project_doc.cpp:7044
-#: projects/standard_project_doc.cpp:7157
-#: projects/standard_project_doc.cpp:7448
-#: projects/standard_project_doc.cpp:7644
-#: projects/standard_project_doc.cpp:7685
+#: projects/standard_project_doc.cpp:7043
+#: projects/standard_project_doc.cpp:7156
+#: projects/standard_project_doc.cpp:7447
+#: projects/standard_project_doc.cpp:7643
+#: projects/standard_project_doc.cpp:7684
 msgid "Frequency"
 msgstr "Frecuencia"
 
@@ -631,15 +631,15 @@ msgstr "Bastante fácil"
 msgid "Standard"
 msgstr "Estándar"
 
-#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:86
+#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:87
 msgid "Fairly Difficult"
 msgstr "Bastante Difícil"
 
-#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:89
+#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:90
 msgid "Difficult"
 msgstr "Difícil"
 
-#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:92
+#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:93
 msgid "Very Difficult"
 msgstr "Muy Difícil"
 
@@ -659,7 +659,7 @@ msgstr ""
 "SILABAS POR CADA\n"
 "100 PALABRAS"
 
-#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:296
+#: Wisteria-Dataviz/src/graphs/fleschchart.cpp:301
 msgid ""
 "HOW TO USE THIS CHART\n"
 "       Take a pencil or ruler and connect your\n"
@@ -753,7 +753,7 @@ msgstr "Conjunto de datos no establecido antes de llamar a SetGroupColumn()."
 msgid "'%s': group column not found for graph."
 msgstr "'%s': columna de grupo no encontrada para el gráfico."
 
-#: Wisteria-Dataviz/src/graphs/groupgraph2d.cpp:148
+#: Wisteria-Dataviz/src/graphs/groupgraph2d.cpp:149
 msgid "[NO GROUP]"
 msgstr "[SIN GRUPO]"
 
@@ -925,7 +925,7 @@ msgstr "Texto muy difícil"
 msgid "Books for children"
 msgstr "Libros para niños"
 
-#: Wisteria-Dataviz/src/graphs/lixgauge.cpp:186
+#: Wisteria-Dataviz/src/graphs/lixgauge.cpp:185
 msgid "Fiction"
 msgstr "Ficción"
 
@@ -1065,11 +1065,11 @@ msgstr "Pro"
 msgid "Con"
 msgstr "Contra"
 
-#: Wisteria-Dataviz/src/graphs/roadmap.cpp:295
+#: Wisteria-Dataviz/src/graphs/roadmap.cpp:306
 msgid "Key\n"
 msgstr "Clave\n"
 
-#: Wisteria-Dataviz/src/graphs/roadmap.h:247
+#: Wisteria-Dataviz/src/graphs/roadmap.h:239
 msgid "Goal"
 msgstr "Objetivo"
 
@@ -1146,76 +1146,76 @@ msgstr "Gran Total"
 msgid "Total"
 msgstr "Total"
 
-#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:53
+#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:52
 msgid "Group column required for W-curve plot."
 msgstr "Columna de grupo necesaria para el trazado de la curva W."
 
 #. TRANSLATORS: OK to translate as "Time".
 #. This is uppercased only because that's how it appears in the original article.
-#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:73
+#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:72
 msgid "TIME"
 msgstr "TIEMPO"
 
-#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:74
+#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:73
 msgid "Level of control, satisfaction, and effectiveness"
 msgstr "Nivel de control, satisfacción y efectividad"
 
 #. TRANSLATORS: %s is time interval (e.g., semester)
-#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:107
+#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:106
 #, c-format
 msgid "First %s"
 msgstr "Primera %s"
 
 #. TRANSLATORS: %s is time interval (e.g., semester)
-#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:111
+#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:110
 #, c-format
 msgid "Second %s"
 msgstr "Segunda %s"
 
 #. TRANSLATORS: %s is time interval (e.g., semester)
-#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:115
+#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:114
 #, c-format
 msgid "Third %s"
 msgstr "Tercera %s"
 
 #. TRANSLATORS: %s is time interval (e.g., semester)
-#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:119
+#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:118
 #, c-format
 msgid "Fourth %s"
 msgstr "Cuarto %s"
 
 #. TRANSLATORS: %s is time interval (e.g., semester)
-#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:123
+#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:122
 #, c-format
 msgid "Fifth %s"
 msgstr "Quinta %s"
 
 #. TRANSLATORS: %s is time interval (e.g., semester)
-#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:127
+#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:126
 #, c-format
 msgid "Sixth %s"
 msgstr "Sexto %s"
 
 #. TRANSLATORS: %s is time interval (e.g., semester)
-#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:131
+#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:130
 #, c-format
 msgid "Seventh %s"
 msgstr "Séptima %s"
 
 #. TRANSLATORS: %s is time interval (e.g., semester)
-#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:135
+#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:134
 #, c-format
 msgid "Eighth %s"
 msgstr "Octavo %s"
 
 #. TRANSLATORS: %s is time interval (e.g., semester)
-#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:139
+#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:138
 #, c-format
 msgid "Ninth %s"
 msgstr "Novena %s"
 
 #. TRANSLATORS: %s is time interval (e.g., semester)
-#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:143
+#: Wisteria-Dataviz/src/graphs/wcurveplot.cpp:142
 #, c-format
 msgid "Tenth %s"
 msgstr "Décimo %s"
@@ -1235,24 +1235,24 @@ msgid "'%s': continuous weight column not found for word cloud."
 msgstr ""
 "'%s': no se encontró la columna de peso continuo para la nube de palabras."
 
-#: Wisteria-Dataviz/src/ui/app.cpp:314
+#: Wisteria-Dataviz/src/ui/app.cpp:256
 msgid "All rights reserved."
 msgstr "Todos los derechos reservados."
 
-#: Wisteria-Dataviz/src/ui/app.cpp:354
+#: Wisteria-Dataviz/src/ui/app.cpp:296
 msgid "Timestamp of this report"
 msgstr "Marca de tiempo de este informe"
 
-#: Wisteria-Dataviz/src/ui/app.cpp:356 app/readability_app.cpp:2773
+#: Wisteria-Dataviz/src/ui/app.cpp:298 app/readability_app.cpp:2773
 #: app/readability_app.cpp:2962 app/readability_app.cpp:3245
 msgid "Log Report"
 msgstr "Informe de Registro"
 
-#: Wisteria-Dataviz/src/ui/app.cpp:364
+#: Wisteria-Dataviz/src/ui/app.cpp:306
 msgid "Settings File"
 msgstr "Archivo de Ajustes"
 
-#: Wisteria-Dataviz/src/ui/app.cpp:375
+#: Wisteria-Dataviz/src/ui/app.cpp:317
 #, c-format
 msgid ""
 "An error report has been saved to:\n"
@@ -1267,12 +1267,12 @@ msgstr ""
 "Envíe este archivo por correo electrónico a %s para que se revise este "
 "problema. Gracias por su paciencia."
 
-#: Wisteria-Dataviz/src/ui/app.cpp:379
+#: Wisteria-Dataviz/src/ui/app.cpp:321
 msgid "Error Report"
 msgstr "Informe de Errores"
 
 #: Wisteria-Dataviz/src/ui/controls/codeeditor.cpp:156
-#: ui/dialogs/lua_editor_dlg.cpp:183
+#: ui/dialogs/lua_editor_dlg.cpp:179
 msgid "Lua Scripts (*.lua)|*.lua"
 msgstr "Scripts Lua (*.lua)|*.lua"
 
@@ -1288,18 +1288,18 @@ msgstr "Archivos HTML (*.html;*.htm)|*.html;*.htm"
 #: Wisteria-Dataviz/src/ui/controls/codeeditor.cpp:191
 #: Wisteria-Dataviz/src/ui/controls/codeeditor.cpp:210
 #: ui/dialogs/edit_text_dlg.cpp:558 ui/dialogs/edit_text_dlg.cpp:567
-#: ui/dialogs/lua_editor_dlg.cpp:159 ui/dialogs/lua_editor_dlg.cpp:790
+#: ui/dialogs/lua_editor_dlg.cpp:155 ui/dialogs/lua_editor_dlg.cpp:792
 msgid "Do you wish to save your unsaved changes?"
 msgstr "¿Desea guardar los cambios no guardados?"
 
 #: Wisteria-Dataviz/src/ui/controls/codeeditor.cpp:191
 #: Wisteria-Dataviz/src/ui/controls/codeeditor.cpp:210
-#: ui/dialogs/lua_editor_dlg.cpp:160 ui/dialogs/lua_editor_dlg.cpp:790
+#: ui/dialogs/lua_editor_dlg.cpp:156 ui/dialogs/lua_editor_dlg.cpp:792
 msgid "Save Script"
 msgstr "Guardar Guion"
 
 #: Wisteria-Dataviz/src/ui/controls/codeeditor.cpp:216
-#: ui/dialogs/lua_editor_dlg.cpp:182
+#: ui/dialogs/lua_editor_dlg.cpp:178
 msgid "Select Script to Open"
 msgstr "Seleccione el Script que Desea Abrir"
 
@@ -1378,15 +1378,15 @@ msgstr "No se puede guardar el archivo \"%s\"."
 #: projects/base_project.cpp:8040 projects/base_project.cpp:8050
 #: projects/base_project.cpp:8113 projects/base_project.cpp:8123
 #: projects/base_project.cpp:8234 projects/base_project.cpp:8484
-#: projects/base_project.cpp:8748 projects/base_project_doc.cpp:879
-#: projects/base_project_doc.cpp:1308 projects/base_project_doc.cpp:1499
-#: projects/base_project_doc.cpp:2213 projects/base_project_doc.cpp:2297
-#: projects/base_project_doc.cpp:3333 projects/batch_project_doc.cpp:6179
-#: projects/batch_project_view.cpp:399 projects/batch_project_view.cpp:407
-#: projects/batch_project_view.cpp:2600 projects/batch_project_view.cpp:2637
-#: projects/batch_project_view.cpp:2645 projects/batch_project_view.cpp:2690
-#: projects/batch_project_view.cpp:2698 projects/batch_project_view.cpp:2704
-#: projects/batch_project_view.cpp:2837 projects/batch_project_view.cpp:2880
+#: projects/base_project.cpp:8748 projects/base_project_doc.cpp:874
+#: projects/base_project_doc.cpp:1306 projects/base_project_doc.cpp:1497
+#: projects/base_project_doc.cpp:2216 projects/base_project_doc.cpp:2300
+#: projects/base_project_doc.cpp:3336 projects/batch_project_doc.cpp:6203
+#: projects/batch_project_view.cpp:398 projects/batch_project_view.cpp:406
+#: projects/batch_project_view.cpp:2598 projects/batch_project_view.cpp:2635
+#: projects/batch_project_view.cpp:2643 projects/batch_project_view.cpp:2688
+#: projects/batch_project_view.cpp:2696 projects/batch_project_view.cpp:2702
+#: projects/batch_project_view.cpp:2835 projects/batch_project_view.cpp:2878
 #: projects/project_frame.cpp:2459 projects/project_frame.cpp:2593
 #: projects/standard_project_doc.cpp:112 projects/standard_project_doc.cpp:270
 #: projects/standard_project_doc.cpp:282 projects/standard_project_doc.cpp:392
@@ -1406,15 +1406,15 @@ msgstr "No se puede guardar el archivo \"%s\"."
 #: projects/standard_project_doc.cpp:4416
 #: projects/standard_project_doc.cpp:4546
 #: projects/standard_project_doc.cpp:4554
-#: projects/standard_project_doc.cpp:6420
+#: projects/standard_project_doc.cpp:6419
 #: projects/standard_project_view.cpp:463
 #: projects/standard_project_view.cpp:1394
 #: projects/standard_project_view.cpp:1409
 #: projects/standard_project_view.cpp:1469
 #: projects/standard_project_view.cpp:1486
-#: ui/controls/explanation_listctrl.cpp:160 ui/dialogs/custom_test_dlg.cpp:1072
-#: ui/dialogs/custom_test_dlg.cpp:1083 ui/dialogs/custom_test_dlg.cpp:1095
-#: ui/dialogs/custom_test_dlg.cpp:1107 ui/dialogs/custom_test_dlg.cpp:1113
+#: ui/controls/explanation_listctrl.cpp:160 ui/dialogs/custom_test_dlg.cpp:1069
+#: ui/dialogs/custom_test_dlg.cpp:1080 ui/dialogs/custom_test_dlg.cpp:1092
+#: ui/dialogs/custom_test_dlg.cpp:1104 ui/dialogs/custom_test_dlg.cpp:1110
 #: ui/dialogs/doc_group_select_dlg.cpp:73 ui/dialogs/edit_word_list_dlg.cpp:109
 #: ui/dialogs/edit_word_list_dlg.cpp:256 ui/dialogs/export_all_dlg.cpp:94
 #: ui/dialogs/export_all_dlg.cpp:101 ui/dialogs/export_all_dlg.cpp:109
@@ -1427,12 +1427,12 @@ msgstr "Error"
 #: Wisteria-Dataviz/src/ui/controls/codeeditor.cpp:304
 #: Wisteria-Dataviz/src/ui/controls/formattedtextctrl.cpp:847
 #: Wisteria-Dataviz/src/ui/controls/listctrlex.cpp:1998
-#: ui/dialogs/lua_editor_dlg.cpp:534
+#: ui/dialogs/lua_editor_dlg.cpp:533
 msgid "No further occurrences found."
 msgstr "No se encontraron más instancias."
 
 #: Wisteria-Dataviz/src/ui/controls/codeeditor.cpp:304
-#: ui/dialogs/lua_editor_dlg.cpp:534
+#: ui/dialogs/lua_editor_dlg.cpp:533
 msgid "Item Not Found"
 msgstr "Artículo no Encontrado"
 
@@ -1481,7 +1481,7 @@ msgstr "Documento de Exportación"
 #: Wisteria-Dataviz/src/ui/controls/formattedtextctrl.cpp:723
 #: Wisteria-Dataviz/src/ui/controls/htmltablewin.cpp:246
 #: Wisteria-Dataviz/src/ui/controls/listctrlex.cpp:2607
-#: ui/controls/explanation_listctrl.cpp:169 ui/dialogs/export_all_dlg.cpp:189
+#: ui/controls/explanation_listctrl.cpp:169 ui/dialogs/export_all_dlg.cpp:188
 msgid "Save As"
 msgstr "Guardar como"
 
@@ -1553,7 +1553,7 @@ msgstr "Buscar no compatible en esta ventana."
 
 #: Wisteria-Dataviz/src/ui/controls/htmltablewin.cpp:318
 #: ui/dialogs/edit_text_dlg.cpp:221 ui/dialogs/edit_text_dlg.cpp:522
-#: ui/dialogs/lua_editor_dlg.cpp:469 ui/dialogs/lua_editor_dlg.cpp:694
+#: ui/dialogs/lua_editor_dlg.cpp:468 ui/dialogs/lua_editor_dlg.cpp:696
 msgid "Find"
 msgstr "Buscar"
 
@@ -1846,7 +1846,7 @@ msgstr "Funciones/Operadores:"
 
 #: Wisteria-Dataviz/src/ui/dialogs/functionbrowserdlg.h:238
 #: Wisteria-Dataviz/src/ui/dialogs/functionbrowserdlg.h:268
-#: ui/dialogs/lua_editor_dlg.cpp:704 ui/dialogs/lua_editor_dlg.cpp:758
+#: ui/dialogs/lua_editor_dlg.cpp:706 ui/dialogs/lua_editor_dlg.cpp:760
 msgid "Function Browser"
 msgstr "Explorador de Funciones"
 
@@ -1977,7 +1977,7 @@ msgstr "Verticalmente"
 msgid "Merge Images:"
 msgstr "Fusionar Imágenes:"
 
-#: Wisteria-Dataviz/src/ui/dialogs/imagemergedlg.cpp:64
+#: Wisteria-Dataviz/src/ui/dialogs/imagemergedlg.cpp:63
 msgid ""
 "Click any thumbnail to select a different image.\n"
 "Click OK to combine images into a new one."
@@ -1985,7 +1985,7 @@ msgstr ""
 "Haga clic en cualquier miniatura para seleccionar una imagen diferente.\n"
 "Haga clic en Aceptar para combinar imágenes en una nueva."
 
-#: Wisteria-Dataviz/src/ui/dialogs/imagemergedlg.cpp:122
+#: Wisteria-Dataviz/src/ui/dialogs/imagemergedlg.cpp:121
 msgid "Select Output Image"
 msgstr "Seleccionar Imagen de Salida"
 
@@ -2105,7 +2105,7 @@ msgid "Sort the list."
 msgstr "Ordena la lista."
 
 #: Wisteria-Dataviz/src/ui/dialogs/listdlg.cpp:303
-#: ui/dialogs/lua_editor_dlg.cpp:700
+#: ui/dialogs/lua_editor_dlg.cpp:702
 msgid "Clear"
 msgstr "Limpiar"
 
@@ -2275,7 +2275,7 @@ msgstr ""
 "%s"
 
 #: Wisteria-Dataviz/src/wxStartPage/startpage.cpp:87
-#: app/readability_app.cpp:1880 ui/dialogs/project_wizard_dlg.cpp:304
+#: app/readability_app.cpp:1880 ui/dialogs/project_wizard_dlg.cpp:300
 msgid "Documents"
 msgstr "Documentos"
 
@@ -2672,9 +2672,9 @@ msgstr ""
 "recomendado)."
 
 #: app/readability_app.cpp:895 projects/base_project.cpp:8563
-#: projects/batch_project_view.cpp:2993 projects/standard_project_doc.cpp:1426
+#: projects/batch_project_view.cpp:2991 projects/standard_project_doc.cpp:1426
 #: projects/standard_project_view.cpp:943
-#: projects/standard_project_view.cpp:1437 ui/dialogs/custom_test_dlg.cpp:164
+#: projects/standard_project_view.cpp:1437 ui/dialogs/custom_test_dlg.cpp:161
 msgid "Remember my answer"
 msgstr "Recordar mi respuesta"
 
@@ -2706,7 +2706,7 @@ msgstr "Paquetes de Prueba"
 msgid "Do you wish to recalculate any open projects that include this test?"
 msgstr "¿Desea recalcular algún proyecto abierto que incluya esta prueba?"
 
-#: app/readability_app.cpp:1547 projects/base_project_doc.cpp:722
+#: app/readability_app.cpp:1547 projects/base_project_doc.cpp:717
 msgid "Project Update"
 msgstr "Actualización del Proyecto"
 
@@ -2827,7 +2827,7 @@ msgstr "Inicio"
 msgid "Project"
 msgstr "Proyecto"
 
-#: app/readability_app.cpp:1871 ui/dialogs/lua_editor_dlg.cpp:674
+#: app/readability_app.cpp:1871 ui/dialogs/lua_editor_dlg.cpp:676
 msgid "New"
 msgstr "Nuevo"
 
@@ -2835,7 +2835,7 @@ msgstr "Nuevo"
 msgid "Create a new project."
 msgstr "Crear un nuevo proyecto."
 
-#: app/readability_app.cpp:1874 ui/dialogs/lua_editor_dlg.cpp:678
+#: app/readability_app.cpp:1874 ui/dialogs/lua_editor_dlg.cpp:680
 msgid "Open"
 msgstr "Abrir"
 
@@ -2851,7 +2851,7 @@ msgstr "Subproyecto"
 msgid "Create a standard project from the selected document."
 msgstr "Cree un proyecto estándar a partir del documento seleccionado."
 
-#: app/readability_app.cpp:1888 ui/dialogs/custom_test_dlg.cpp:821
+#: app/readability_app.cpp:1888 ui/dialogs/custom_test_dlg.cpp:818
 #: ui/dialogs/tools_options_dlg.h:794
 msgid "Statistics"
 msgstr "Estadísticas"
@@ -3091,7 +3091,7 @@ msgstr "Cambia la apariencia de la barra."
 
 #: app/readability_app.cpp:2208 app/readability_app.cpp:2307
 #: app/readability_app.cpp:2347 app/readability_app.cpp:2395
-#: ui/dialogs/project_wizard_dlg.cpp:418 ui/dialogs/tools_options_dlg.cpp:3547
+#: ui/dialogs/project_wizard_dlg.cpp:414 ui/dialogs/tools_options_dlg.cpp:3547
 #: ui/dialogs/tools_options_dlg.h:393
 msgid "Labels"
 msgstr "Etiquetas"
@@ -3165,7 +3165,7 @@ msgstr "Copia el gráfico."
 
 #. TRANSLATORS: Draw attention to.
 #: app/readability_app.cpp:2283 app/readability_app.cpp:2452
-#: app/readability_app.cpp:2592 app/readability_app.cpp:2663
+#: app/readability_app.cpp:2592 app/readability_app.cpp:2662
 msgid "Showcase"
 msgstr "Mostrar Artículos Importantes"
 
@@ -3298,7 +3298,7 @@ msgid "View information about each readability test."
 msgstr "Ver información sobre cada prueba de legibilidad."
 
 #: app/readability_app.cpp:2749 app/readability_app.cpp:2934
-#: ui/dialogs/custom_test_dlg.cpp:849 ui/dialogs/word_list_dlg.h:38
+#: ui/dialogs/custom_test_dlg.cpp:846 ui/dialogs/word_list_dlg.h:38
 msgid "Word Lists"
 msgstr "Listas de Palabras"
 
@@ -3315,7 +3315,7 @@ msgid "Print or save blank readability graph templates."
 msgstr "Imprima o guarde plantillas de gráficos de legibilidad en blanco."
 
 #: app/readability_app.cpp:2758 app/readability_app.cpp:2921
-#: app/readability_app.cpp:2943 ui/dialogs/lua_editor_dlg.cpp:717
+#: app/readability_app.cpp:2943 ui/dialogs/lua_editor_dlg.cpp:719
 msgid "Tools"
 msgstr "Herramientas"
 
@@ -3364,18 +3364,18 @@ msgstr "Edite y ejecute scripts para automatizar tareas."
 msgid "Profile Report"
 msgstr "Informe de Perfil"
 
-#: app/readability_app.cpp:2791 projects/batch_project_doc.cpp:1149
-#: projects/batch_project_doc.cpp:3437 projects/batch_project_doc.cpp:3494
-#: projects/batch_project_doc.cpp:3592 projects/batch_project_doc.cpp:3784
-#: projects/batch_project_doc.cpp:3799 projects/batch_project_doc.cpp:6451
-#: projects/batch_project_doc.cpp:6499 projects/batch_project_doc.cpp:6547
-#: projects/batch_project_doc.cpp:6593 projects/batch_project_doc.cpp:6639
-#: projects/batch_project_doc.cpp:6689 projects/batch_project_doc.cpp:6736
-#: projects/batch_project_doc.cpp:6785 projects/batch_project_doc.cpp:6834
-#: projects/batch_project_doc.cpp:6881 projects/batch_project_doc.cpp:6929
-#: projects/batch_project_doc.cpp:7039 projects/batch_project_doc.cpp:7100
-#: projects/batch_project_doc.cpp:7315 projects/batch_project_doc.cpp:7372
-#: projects/batch_project_doc.cpp:7463 ui/dialogs/project_wizard_dlg.cpp:217
+#: app/readability_app.cpp:2791 projects/batch_project_doc.cpp:1159
+#: projects/batch_project_doc.cpp:3452 projects/batch_project_doc.cpp:3509
+#: projects/batch_project_doc.cpp:3607 projects/batch_project_doc.cpp:3799
+#: projects/batch_project_doc.cpp:3814 projects/batch_project_doc.cpp:6475
+#: projects/batch_project_doc.cpp:6523 projects/batch_project_doc.cpp:6571
+#: projects/batch_project_doc.cpp:6617 projects/batch_project_doc.cpp:6663
+#: projects/batch_project_doc.cpp:6713 projects/batch_project_doc.cpp:6760
+#: projects/batch_project_doc.cpp:6809 projects/batch_project_doc.cpp:6858
+#: projects/batch_project_doc.cpp:6905 projects/batch_project_doc.cpp:6953
+#: projects/batch_project_doc.cpp:7063 projects/batch_project_doc.cpp:7124
+#: projects/batch_project_doc.cpp:7340 projects/batch_project_doc.cpp:7397
+#: projects/batch_project_doc.cpp:7488 ui/dialogs/project_wizard_dlg.cpp:213
 msgid "Document"
 msgstr "Documento"
 
@@ -3602,7 +3602,7 @@ msgstr "Eliminar"
 msgid "Remove the selected test from the project."
 msgstr "Elimine la prueba seleccionada del proyecto."
 
-#: app/readability_app.cpp:2930 projects/batch_project_view.cpp:569
+#: app/readability_app.cpp:2930 projects/batch_project_view.cpp:568
 msgid "Test Explanations"
 msgstr "Explicaciones de la Prueba"
 
@@ -3650,7 +3650,7 @@ msgstr "Referencia de Pruebas"
 msgid "Read the readability tests reference."
 msgstr "Lea la referencia de las pruebas de legibilidad."
 
-#: app/readability_app.cpp:2989 ui/dialogs/custom_test_dlg.cpp:828
+#: app/readability_app.cpp:2989 ui/dialogs/custom_test_dlg.cpp:825
 msgid "Shortcuts"
 msgstr "Accesos Rápidos"
 
@@ -3720,7 +3720,6 @@ msgid ""
 "Copyright ©%s%d %s.\n"
 "All rights reserved.\n"
 "\n"
-"\n"
 "%s® is a Trademark of %s.\n"
 "Jakarta and Jakarta EE are Trademarks of %s.\n"
 "Eclipse® is a Trademark of %s.\n"
@@ -3730,7 +3729,7 @@ msgstr ""
 "Derechos de autor © %s%d %s.\n"
 "Todos los derechos reservados.\n"
 "\n"
-"® %s es una marca comercial de %s.\n"
+"%s® es una marca comercial de %s.\n"
 "Jakarta y Jakarta EE son marcas comerciales de %s.\n"
 "Eclipse® es una marca comercial de %s.\n"
 "Eclipse Foundation es una marca comercial de %s."
@@ -3763,7 +3762,7 @@ msgstr "Longitud de las Palabras"
 msgid "Word Familiarity"
 msgstr "Familiaridad con las Palabras"
 
-#: app/readability_app.cpp:3294 projects/standard_project_doc.cpp:7290
+#: app/readability_app.cpp:3294 projects/standard_project_doc.cpp:7289
 msgid "Sentence Length"
 msgstr "Longitud de la Oración"
 
@@ -3793,19 +3792,19 @@ msgid "Grade level and cloze score"
 msgstr "Nivel de grado y puntaje de cloze"
 
 #: app/readability_app.cpp:3331 results-format/project_report_format.cpp:33
-#: ui/dialogs/project_wizard_dlg.cpp:231 ui/dialogs/project_wizard_dlg.cpp:317
+#: ui/dialogs/project_wizard_dlg.cpp:227 ui/dialogs/project_wizard_dlg.cpp:313
 #: ui/dialogs/tools_options_dlg.cpp:3240 ui/dialogs/tools_options_dlg.cpp:3417
 msgid "English"
 msgstr "Inglés"
 
 #: app/readability_app.cpp:3335 results-format/project_report_format.cpp:54
-#: ui/dialogs/project_wizard_dlg.cpp:232 ui/dialogs/project_wizard_dlg.cpp:318
+#: ui/dialogs/project_wizard_dlg.cpp:228 ui/dialogs/project_wizard_dlg.cpp:314
 #: ui/dialogs/tools_options_dlg.cpp:3240 ui/dialogs/tools_options_dlg.cpp:3418
 msgid "Spanish"
 msgstr "Español"
 
 #: app/readability_app.cpp:3339 results-format/project_report_format.cpp:42
-#: ui/dialogs/project_wizard_dlg.cpp:233 ui/dialogs/project_wizard_dlg.cpp:319
+#: ui/dialogs/project_wizard_dlg.cpp:229 ui/dialogs/project_wizard_dlg.cpp:315
 #: ui/dialogs/tools_options_dlg.cpp:3419
 msgid "German"
 msgstr "Alemán"
@@ -4055,7 +4054,7 @@ msgstr "Agregar \"%s\" Personalizado..."
 msgid "Select test to remove:"
 msgstr "Seleccione la prueba que desea eliminar:"
 
-#: app/readability_app.cpp:4716 projects/batch_project_view.cpp:846
+#: app/readability_app.cpp:4716 projects/batch_project_view.cpp:845
 #: projects/standard_project_view.cpp:2102
 msgid "Remove Test"
 msgstr "Eliminar Prueba"
@@ -4122,7 +4121,7 @@ msgid "Project still processing. Please wait before closing."
 msgstr "El proyecto aún se está procesando. Espere antes de cerrar."
 
 #: app/readability_app.cpp:5133 projects/base_project.cpp:4419
-#: ui/dialogs/project_wizard_dlg.cpp:1608 ui/dialogs/tools_options_dlg.cpp:407
+#: ui/dialogs/project_wizard_dlg.cpp:1611 ui/dialogs/tools_options_dlg.cpp:407
 msgid "Select Document to Analyze"
 msgstr "Seleccione el Documento que Desea Analizar"
 
@@ -4157,7 +4156,7 @@ msgid "There are no updates currently available."
 msgstr "No hay actualizaciones disponibles actualmente."
 
 #: app/readability_app.cpp:5277 ui/controls/word_list_property.cpp:59
-#: ui/dialogs/custom_test_dlg.cpp:869
+#: ui/dialogs/custom_test_dlg.cpp:866
 msgid "Edit Word List"
 msgstr "Editar Lista de Palabras"
 
@@ -4170,8 +4169,8 @@ msgid "All Files (*.*)|*.*"
 msgstr "Todos los archivos (*.*)|*.*"
 
 #: app/readability_app.cpp:5312 lua-scripting/lua_batch_project.cpp:191
-#: projects/batch_project_doc.cpp:168 ui/dialogs/project_wizard_dlg.cpp:1105
-#: ui/dialogs/project_wizard_dlg.cpp:1807
+#: projects/batch_project_doc.cpp:163 ui/dialogs/project_wizard_dlg.cpp:1108
+#: ui/dialogs/project_wizard_dlg.cpp:1810
 msgid "Retrieving files..."
 msgstr "Encontrar archivos..."
 
@@ -4241,10 +4240,10 @@ msgstr ""
 #: lua-scripting/lua_batch_project.h:45 lua-scripting/lua_standard_project.h:46
 #: projects/base_project.cpp:3384 projects/base_project.cpp:3562
 #: projects/base_project.cpp:8736 projects/base_project.h:2143
-#: projects/base_project_doc.cpp:813 projects/batch_project_doc.cpp:477
-#: projects/batch_project_doc.cpp:3439 projects/standard_project_doc.cpp:437
-#: projects/standard_project_doc.cpp:621 ui/dialogs/custom_test_dlg.cpp:248
-#: ui/dialogs/custom_test_dlg.cpp:267
+#: projects/base_project_doc.cpp:808 projects/batch_project_doc.cpp:472
+#: projects/batch_project_doc.cpp:3454 projects/standard_project_doc.cpp:437
+#: projects/standard_project_doc.cpp:621 ui/dialogs/custom_test_dlg.cpp:245
+#: ui/dialogs/custom_test_dlg.cpp:264
 msgid "Warning"
 msgstr "Advertencia"
 
@@ -4347,8 +4346,8 @@ msgstr ""
 "estándar de New Dale-Chall.\n"
 "¿Desea ajustar esta configuración para que coincida con la prueba estándar?"
 
-#: app/readability_app_options.cpp:85 ui/dialogs/custom_test_dlg.cpp:101
-#: ui/dialogs/custom_test_dlg.cpp:117 ui/dialogs/custom_test_dlg.cpp:133
+#: app/readability_app_options.cpp:85 ui/dialogs/custom_test_dlg.cpp:98
+#: ui/dialogs/custom_test_dlg.cpp:114 ui/dialogs/custom_test_dlg.cpp:130
 msgid "Settings Conflict"
 msgstr "Conflicto de Configuración"
 
@@ -4426,7 +4425,7 @@ msgstr ""
 "Advertir sobre histogramas de valor único que requieren etiquetas de eje de "
 "punto medio."
 
-#: app/readability_app_options.cpp:119 projects/batch_project_view.cpp:3073
+#: app/readability_app_options.cpp:119 projects/batch_project_view.cpp:3071
 msgid "File Not Found"
 msgstr "Archivo No Encontrado"
 
@@ -4791,7 +4790,7 @@ msgstr ""
 "ALTON L. RAYGOR—UNIVERSIDAD DE MINNESOTA"
 
 #: graphs/raygorgraph.cpp:153 graphs/raygorgraph.cpp:556
-#: projects/batch_project_doc.cpp:5615
+#: projects/batch_project_doc.cpp:5639
 msgid "College"
 msgstr "Universidad"
 
@@ -4904,7 +4903,7 @@ msgstr "%s: archivo no encontrado."
 #: lua-scripting/lua_standard_project.cpp:4071
 #: lua-scripting/lua_standard_project.cpp:4204
 #: lua-scripting/lua_standard_project.cpp:4360
-#: lua-scripting/lua_standard_project.h:73 ui/dialogs/lua_editor_dlg.cpp:104
+#: lua-scripting/lua_standard_project.h:73 ui/dialogs/lua_editor_dlg.cpp:99
 msgid "Script Error"
 msgstr "Error de Guion"
 
@@ -6150,19 +6149,19 @@ msgstr ""
 "\n"
 "La lista no se incluirá en este proyecto."
 
-#: projects/base_project_doc.cpp:653 projects/batch_project_doc.cpp:6220
-#: projects/batch_project_doc.cpp:6262 projects/standard_project_doc.cpp:550
+#: projects/base_project_doc.cpp:648 projects/batch_project_doc.cpp:6244
+#: projects/batch_project_doc.cpp:6286 projects/standard_project_doc.cpp:550
 #: projects/standard_project_doc.cpp:592
 #, c-format
 msgid "'%s': unable to open project file."
 msgstr "'%s': no se puede abrir el archivo del proyecto."
 
-#: projects/base_project_doc.cpp:654 projects/batch_project_doc.cpp:6142
-#: projects/standard_project_doc.cpp:6737
+#: projects/base_project_doc.cpp:649 projects/batch_project_doc.cpp:6166
+#: projects/standard_project_doc.cpp:6736
 msgid "Project Error"
 msgstr "Error de Proyecto"
 
-#: projects/base_project_doc.cpp:719
+#: projects/base_project_doc.cpp:714
 msgid ""
 "This test will need to be removed from any open projects that are currently "
 "including it.\n"
@@ -6172,7 +6171,7 @@ msgstr ""
 "actualmente.\n"
 "¿Desea proceder con la eliminación de esta prueba?"
 
-#: projects/base_project_doc.cpp:810
+#: projects/base_project_doc.cpp:805
 #, c-format
 msgid ""
 "This project or settings file contains a custom test named \"%s\" that "
@@ -6182,24 +6181,24 @@ msgstr ""
 "denominada \"%s\" que entra en conflicto con una prueba existente del mismo "
 "nombre."
 
-#: projects/base_project_doc.cpp:814
+#: projects/base_project_doc.cpp:809
 #, c-format
 msgid "Use existing version of \"%s\""
 msgstr "Utilice la versión existente de \"%s\""
 
-#: projects/base_project_doc.cpp:815
+#: projects/base_project_doc.cpp:810
 msgid "Rename test being imported"
 msgstr "Cambiar el nombre de la prueba que se está importando"
 
-#: projects/base_project_doc.cpp:821
+#: projects/base_project_doc.cpp:816
 msgid "Please specify a different name:"
 msgstr "Por favor, especifique un nombre diferente:"
 
-#: projects/base_project_doc.cpp:822
+#: projects/base_project_doc.cpp:817
 msgid "Enter New Test Name"
 msgstr "Introduzca el Nuevo Nombre de la Prueba"
 
-#: projects/base_project_doc.cpp:845
+#: projects/base_project_doc.cpp:840
 #, c-format
 msgid ""
 "Error in formula, cannot add custom test \"%s\":\n"
@@ -6208,14 +6207,14 @@ msgstr ""
 "Error en la fórmula, no se puede agregar la prueba personalizada \"%s\":\n"
 "\n"
 
-#: projects/base_project_doc.cpp:847 projects/base_project_doc.cpp:855
-#: projects/base_project_doc.cpp:863 ui/dialogs/custom_test_dlg.cpp:87
-#: ui/dialogs/custom_test_dlg.cpp:222 ui/dialogs/custom_test_dlg.cpp:288
-#: ui/dialogs/custom_test_dlg.cpp:295
+#: projects/base_project_doc.cpp:842 projects/base_project_doc.cpp:850
+#: projects/base_project_doc.cpp:858 ui/dialogs/custom_test_dlg.cpp:84
+#: ui/dialogs/custom_test_dlg.cpp:219 ui/dialogs/custom_test_dlg.cpp:285
+#: ui/dialogs/custom_test_dlg.cpp:292
 msgid "Error in Formula"
 msgstr "Error en la Fórmula"
 
-#: projects/base_project_doc.cpp:854 ui/dialogs/custom_test_dlg.cpp:287
+#: projects/base_project_doc.cpp:849 ui/dialogs/custom_test_dlg.cpp:284
 #, c-format
 msgid ""
 "%s\n"
@@ -6224,7 +6223,7 @@ msgstr ""
 "%s\n"
 "Verifique la sintaxis de la fórmula."
 
-#: projects/base_project_doc.cpp:860
+#: projects/base_project_doc.cpp:855
 #, c-format
 msgid ""
 "An unknown error occurred while validating the formula. Cannot add custom "
@@ -6233,15 +6232,15 @@ msgstr ""
 "Se ha producido un error desconocido al validar la fórmula. No se puede "
 "agregar una prueba personalizada \"%s\"."
 
-#: projects/base_project_doc.cpp:879
+#: projects/base_project_doc.cpp:874
 msgid "Unable to load word list."
 msgstr "No se puede cargar la lista de palabras."
 
-#: projects/base_project_doc.cpp:915
+#: projects/base_project_doc.cpp:910
 msgid "Project still being reloaded. Please wait before closing."
 msgstr "El proyecto aún se está recargando. Espere antes de cerrar."
 
-#: projects/base_project_doc.cpp:957
+#: projects/base_project_doc.cpp:952
 #, c-format
 msgid ""
 "Warning: This project was saved from a newer version of %s. Some information "
@@ -6250,11 +6249,11 @@ msgstr ""
 "Advertencia: Este proyecto se guardó de una versión más reciente de %s. Es "
 "posible que se pierda parte de la información."
 
-#: projects/base_project_doc.cpp:960
+#: projects/base_project_doc.cpp:955
 msgid "Version Conflict"
 msgstr "Conflicto de Versiones"
 
-#: projects/base_project_doc.cpp:1305
+#: projects/base_project_doc.cpp:1303
 #, c-format
 msgid ""
 "Warning: \"%s\" section not found in project file. Default configurations "
@@ -6263,12 +6262,12 @@ msgstr ""
 "Advertencia: La sección \"%s\" no se encuentra en el archivo del proyecto. "
 "Se utilizarán las configuraciones predeterminadas."
 
-#: projects/base_project_doc.cpp:1497
+#: projects/base_project_doc.cpp:1495
 #, c-format
 msgid "Unable to add custom readability test \"%s\"."
 msgstr "No se puede agregar la prueba de legibilidad personalizada \"%s\"."
 
-#: projects/base_project_doc.cpp:2210
+#: projects/base_project_doc.cpp:2213
 #, c-format
 msgid ""
 "Warning: \"%s\" section not found in project file. Default test settings "
@@ -6277,7 +6276,7 @@ msgstr ""
 "Advertencia: La sección \"%s\" no se encuentra en el archivo del proyecto. "
 "Se usará la configuración de prueba predeterminada."
 
-#: projects/base_project_doc.cpp:2294
+#: projects/base_project_doc.cpp:2297
 #, c-format
 msgid ""
 "Warning: \"%s\" section not found in project file. No highlighted text views "
@@ -6286,7 +6285,7 @@ msgstr ""
 "Advertencia: La sección \"%s\" no se encuentra en el archivo del proyecto. "
 "No se mostrarán vistas de texto resaltadas."
 
-#: projects/base_project_doc.cpp:3330
+#: projects/base_project_doc.cpp:3333
 #, c-format
 msgid ""
 "Unable to find test bundle \"%s\": internal error, please contact software "
@@ -6295,7 +6294,7 @@ msgstr ""
 "No se puede encontrar el paquete de prueba \"%s\": error interno, "
 "comuníquese con el proveedor del software."
 
-#: projects/base_project_doc.h:1118
+#: projects/base_project_doc.h:1117
 msgid "Project still being reloaded. Please wait..."
 msgstr "El proyecto aún se está recargando. Espera..."
 
@@ -6662,8 +6661,8 @@ msgstr "Puntuaciones de Legibilidad"
 msgid "Highlighted Reports"
 msgstr "Informes Resaltado"
 
-#: projects/base_project_view.h:196 projects/batch_project_view.cpp:1852
-#: projects/batch_project_view.cpp:1872
+#: projects/base_project_view.h:196 projects/batch_project_view.cpp:1850
+#: projects/batch_project_view.cpp:1870
 msgid "Graphs"
 msgstr "Gráficos"
 
@@ -6721,8 +6720,8 @@ msgstr "Clichés"
 msgid "Errors & Misspellings"
 msgstr "Errores y Faltas de Ortografía"
 
-#: projects/base_project_view.h:281 projects/batch_project_view.cpp:573
-#: projects/batch_project_view.cpp:2590
+#: projects/base_project_view.h:281 projects/batch_project_view.cpp:572
+#: projects/batch_project_view.cpp:2588
 msgid "Summary Statistics"
 msgstr "Resumen de Estadísticas"
 
@@ -6734,7 +6733,7 @@ msgstr "Histogramas"
 msgid "Coverage Chart"
 msgstr "Gráfico de Cobertura"
 
-#: projects/base_project_view.h:299 ui/dialogs/custom_test_dlg.cpp:826
+#: projects/base_project_view.h:299 ui/dialogs/custom_test_dlg.cpp:823
 msgid "Word Counts"
 msgstr "Recuentos de Palabras"
 
@@ -6764,7 +6763,7 @@ msgstr "Nube de Palabras Importante"
 msgid "Dolch Words"
 msgstr "Palabras de Dolch"
 
-#: projects/base_project_view.h:342 projects/batch_project_doc.cpp:7469
+#: projects/base_project_view.h:342 projects/batch_project_doc.cpp:7494
 #: projects/standard_project_doc.cpp:3878
 msgid "Non-Dolch Words"
 msgstr "Palabras que no son Dolch"
@@ -6786,17 +6785,17 @@ msgstr "Puntuaciones"
 msgid "Average (Mean)"
 msgstr "Medias"
 
-#: projects/base_project_view.h:374 projects/batch_project_doc.cpp:3913
+#: projects/base_project_view.h:374 projects/batch_project_doc.cpp:3928
 msgid "Median"
 msgstr "Mediana"
 
 #. TRANSLATORS: Statistical modes. (Most frequently occurring values in a data range.)
-#: projects/base_project_view.h:381 projects/batch_project_doc.cpp:3908
+#: projects/base_project_view.h:381 projects/batch_project_doc.cpp:3923
 #: projects/standard_project_view.cpp:1842
 msgid "Modes"
 msgstr "Moda y Rango"
 
-#: projects/base_project_view.h:387 projects/batch_project_doc.cpp:3916
+#: projects/base_project_view.h:387 projects/batch_project_doc.cpp:3931
 msgid "Std. Dev."
 msgstr "Desv. Std."
 
@@ -6814,7 +6813,7 @@ msgstr "Todas las Palabras"
 msgid "Key Words"
 msgstr "Palabras Importantes"
 
-#: projects/base_project_view.h:415 projects/batch_project_doc.cpp:6550
+#: projects/base_project_view.h:415 projects/batch_project_doc.cpp:6574
 msgid "Repeated Words"
 msgstr "Palabras Repetidas"
 
@@ -6866,46 +6865,46 @@ msgstr "Discrepancias de Artículos"
 msgid "Passive Voice"
 msgstr "Voz Pasiva"
 
-#: projects/batch_project_doc.cpp:236
+#: projects/batch_project_doc.cpp:231
 msgid "Creating Project"
 msgstr "Creación de Proyecto"
 
-#: projects/batch_project_doc.cpp:238 projects/batch_project_doc.cpp:6270
+#: projects/batch_project_doc.cpp:233 projects/batch_project_doc.cpp:6294
 #, c-format
 msgid "Analyzing %s documents..."
 msgstr "Análisis %s documentos..."
 
-#: projects/batch_project_doc.cpp:267 projects/batch_project_doc.cpp:652
-#: projects/batch_project_doc.cpp:6305
+#: projects/batch_project_doc.cpp:262 projects/batch_project_doc.cpp:647
+#: projects/batch_project_doc.cpp:6329
 msgid "Loading Dolch statistics..."
 msgstr "Cargando estadísticas de Dolch..."
 
-#: projects/batch_project_doc.cpp:273 projects/batch_project_doc.cpp:655
-#: projects/batch_project_doc.cpp:6311
+#: projects/batch_project_doc.cpp:268 projects/batch_project_doc.cpp:650
+#: projects/batch_project_doc.cpp:6335
 msgid "Loading difficult words..."
 msgstr "Cargando palabras difíciles..."
 
-#: projects/batch_project_doc.cpp:279 projects/batch_project_doc.cpp:658
-#: projects/batch_project_doc.cpp:6317
+#: projects/batch_project_doc.cpp:274 projects/batch_project_doc.cpp:653
+#: projects/batch_project_doc.cpp:6341
 msgid "Loading graphs..."
 msgstr "Cargando gráficos..."
 
-#: projects/batch_project_doc.cpp:286 projects/batch_project_doc.cpp:662
-#: projects/batch_project_doc.cpp:6323
+#: projects/batch_project_doc.cpp:281 projects/batch_project_doc.cpp:657
+#: projects/batch_project_doc.cpp:6347
 msgid "Loading scores..."
 msgstr "Cargando puntajes de pruebas..."
 
-#: projects/batch_project_doc.cpp:292 projects/batch_project_doc.cpp:665
-#: projects/batch_project_doc.cpp:6329
+#: projects/batch_project_doc.cpp:287 projects/batch_project_doc.cpp:660
+#: projects/batch_project_doc.cpp:6353
 msgid "Loading summary statistics..."
 msgstr "Cargando estadísticas de resumen..."
 
-#: projects/batch_project_doc.cpp:316 projects/batch_project_doc.cpp:677
-#: projects/batch_project_doc.cpp:6353
+#: projects/batch_project_doc.cpp:311 projects/batch_project_doc.cpp:672
+#: projects/batch_project_doc.cpp:6377
 msgid "Loading grammar information..."
 msgstr "Cargando información gramatical..."
 
-#: projects/batch_project_doc.cpp:478
+#: projects/batch_project_doc.cpp:473
 msgid ""
 "The following documents could not be loaded because they either do not "
 "contain enough valid text or could not be found. Do you wish to remove these "
@@ -6915,396 +6914,396 @@ msgstr ""
 "suficiente texto válido o no se encontraron. ¿Desea eliminarlos de este "
 "proyecto?"
 
-#: projects/batch_project_doc.cpp:610
+#: projects/batch_project_doc.cpp:605
 #, c-format
 msgid "Reloading \"%s\""
 msgstr "Recargando \"%s\""
 
-#: projects/batch_project_doc.cpp:610
+#: projects/batch_project_doc.cpp:605
 msgid "Analyzing documents..."
 msgstr "Análisis de documentos..."
 
-#: projects/batch_project_doc.cpp:1149 projects/batch_project_doc.cpp:3438
-#: projects/batch_project_doc.cpp:3495 projects/batch_project_doc.cpp:3594
-#: projects/batch_project_doc.cpp:3784 projects/batch_project_doc.cpp:3799
-#: projects/batch_project_doc.cpp:6452 projects/batch_project_doc.cpp:6500
-#: projects/batch_project_doc.cpp:6548 projects/batch_project_doc.cpp:6594
-#: projects/batch_project_doc.cpp:6640 projects/batch_project_doc.cpp:6690
-#: projects/batch_project_doc.cpp:6737 projects/batch_project_doc.cpp:6786
-#: projects/batch_project_doc.cpp:6835 projects/batch_project_doc.cpp:6882
-#: projects/batch_project_doc.cpp:6930 projects/batch_project_doc.cpp:7040
-#: projects/batch_project_doc.cpp:7102 projects/batch_project_doc.cpp:7316
-#: projects/batch_project_doc.cpp:7373 projects/batch_project_doc.cpp:7464
+#: projects/batch_project_doc.cpp:1159 projects/batch_project_doc.cpp:3453
+#: projects/batch_project_doc.cpp:3510 projects/batch_project_doc.cpp:3609
+#: projects/batch_project_doc.cpp:3799 projects/batch_project_doc.cpp:3814
+#: projects/batch_project_doc.cpp:6476 projects/batch_project_doc.cpp:6524
+#: projects/batch_project_doc.cpp:6572 projects/batch_project_doc.cpp:6618
+#: projects/batch_project_doc.cpp:6664 projects/batch_project_doc.cpp:6714
+#: projects/batch_project_doc.cpp:6761 projects/batch_project_doc.cpp:6810
+#: projects/batch_project_doc.cpp:6859 projects/batch_project_doc.cpp:6906
+#: projects/batch_project_doc.cpp:6954 projects/batch_project_doc.cpp:7064
+#: projects/batch_project_doc.cpp:7126 projects/batch_project_doc.cpp:7341
+#: projects/batch_project_doc.cpp:7398 projects/batch_project_doc.cpp:7489
 msgid "Label"
 msgstr "Etiqueta"
 
-#: projects/batch_project_doc.cpp:1152 projects/batch_project_doc.cpp:1286
+#: projects/batch_project_doc.cpp:1162 projects/batch_project_doc.cpp:1296
 #: results-format/project_report_format.cpp:1357
 msgid "Number of paragraphs"
 msgstr "Número de párrafos"
 
-#: projects/batch_project_doc.cpp:1156 projects/batch_project_doc.cpp:1291
+#: projects/batch_project_doc.cpp:1166 projects/batch_project_doc.cpp:1301
 #: results-format/project_report_format.cpp:1415
 msgid "Number of sentences"
 msgstr "Número de oraciones"
 
-#: projects/batch_project_doc.cpp:1157 projects/batch_project_doc.cpp:1294
+#: projects/batch_project_doc.cpp:1167 projects/batch_project_doc.cpp:1304
 #: results-format/project_report_format.cpp:1453
 msgid "Number of units/independent clauses"
 msgstr "Número de unidades/cláusulas independientes"
 
-#: projects/batch_project_doc.cpp:1158 projects/batch_project_doc.cpp:1296
+#: projects/batch_project_doc.cpp:1168 projects/batch_project_doc.cpp:1306
 msgid "Number of difficult sentences"
 msgstr "Número de oraciones difíciles"
 
-#: projects/batch_project_doc.cpp:1159 projects/batch_project_doc.cpp:1299
+#: projects/batch_project_doc.cpp:1169 projects/batch_project_doc.cpp:1309
 #: results-format/project_report_format.cpp:1552
 msgid "Longest sentence"
 msgstr "Oración más larga"
 
-#: projects/batch_project_doc.cpp:1160 projects/batch_project_doc.cpp:1301
+#: projects/batch_project_doc.cpp:1170 projects/batch_project_doc.cpp:1311
 #: results-format/project_report_format.cpp:1586
 msgid "Average sentence length"
 msgstr "Longitud media de las oraciones"
 
-#: projects/batch_project_doc.cpp:1161 projects/batch_project_doc.cpp:1308
+#: projects/batch_project_doc.cpp:1171 projects/batch_project_doc.cpp:1318
 #: results-format/project_report_format.cpp:1615
 msgid "Number of interrogative sentences (questions)"
 msgstr "Número de oraciones interrogativas (preguntas)"
 
-#: projects/batch_project_doc.cpp:1162 projects/batch_project_doc.cpp:1311
+#: projects/batch_project_doc.cpp:1172 projects/batch_project_doc.cpp:1321
 #: results-format/project_report_format.cpp:1661
 msgid "Number of exclamatory sentences"
 msgstr "Número de oraciones exclamativas"
 
-#: projects/batch_project_doc.cpp:1166 projects/batch_project_doc.cpp:1321
+#: projects/batch_project_doc.cpp:1176 projects/batch_project_doc.cpp:1331
 #: results-format/project_report_format.cpp:1709
 msgid "Number of words"
 msgstr "Número de palabras"
 
-#: projects/batch_project_doc.cpp:1167 projects/batch_project_doc.cpp:1323
+#: projects/batch_project_doc.cpp:1177 projects/batch_project_doc.cpp:1333
 #: results-format/project_report_format.cpp:1725
 msgid "Number of unique words"
 msgstr "Número de palabras únicas"
 
-#: projects/batch_project_doc.cpp:1168 projects/batch_project_doc.cpp:1325
+#: projects/batch_project_doc.cpp:1178 projects/batch_project_doc.cpp:1335
 #: results-format/project_report_format.cpp:1741
 msgid "Number of syllables"
 msgstr "Número de sílabas"
 
-#: projects/batch_project_doc.cpp:1169 projects/batch_project_doc.cpp:1328
+#: projects/batch_project_doc.cpp:1179 projects/batch_project_doc.cpp:1338
 #: results-format/project_report_format.cpp:1758
 msgid "Number of characters (punctuation excluded)"
 msgstr "Número de caracteres (excluidos los signos de puntuación)"
 
-#: projects/batch_project_doc.cpp:1170 projects/batch_project_doc.cpp:1331
+#: projects/batch_project_doc.cpp:1180 projects/batch_project_doc.cpp:1341
 #: results-format/project_report_format.cpp:1780
 msgid "Number of characters + punctuation"
 msgstr "Número de caracteres + puntuación"
 
-#: projects/batch_project_doc.cpp:1171 projects/batch_project_doc.cpp:1334
+#: projects/batch_project_doc.cpp:1181 projects/batch_project_doc.cpp:1344
 #: results-format/project_report_format.cpp:1803
 msgid "Average number of characters"
 msgstr "Número medio de caracteres"
 
-#: projects/batch_project_doc.cpp:1172 projects/batch_project_doc.cpp:1339
+#: projects/batch_project_doc.cpp:1182 projects/batch_project_doc.cpp:1349
 #: results-format/project_report_format.cpp:1827
 msgid "Average number of syllables"
 msgstr "Número medio de sílabas"
 
-#: projects/batch_project_doc.cpp:1176 projects/batch_project_doc.cpp:1347
+#: projects/batch_project_doc.cpp:1186 projects/batch_project_doc.cpp:1357
 #: results-format/project_report_format.cpp:1883
 msgid "Number of numerals"
 msgstr "Número de números"
 
-#: projects/batch_project_doc.cpp:1177 projects/batch_project_doc.cpp:1349
+#: projects/batch_project_doc.cpp:1187 projects/batch_project_doc.cpp:1359
 #: results-format/project_report_format.cpp:1922
 msgid "Number of proper nouns"
 msgstr "Número de nombres propios"
 
-#: projects/batch_project_doc.cpp:1178 projects/batch_project_doc.cpp:1351
+#: projects/batch_project_doc.cpp:1188 projects/batch_project_doc.cpp:1361
 #: results-format/project_report_format.cpp:1960
 msgid "Number of monosyllabic words"
 msgstr "Número de palabras monosilábicas"
 
-#: projects/batch_project_doc.cpp:1179 projects/batch_project_doc.cpp:1355
+#: projects/batch_project_doc.cpp:1189 projects/batch_project_doc.cpp:1365
 #: results-format/project_report_format.cpp:1988
 msgid "Number of unique monosyllabic words"
 msgstr "Número de palabras monosilábicas únicas"
 
-#: projects/batch_project_doc.cpp:1180 projects/batch_project_doc.cpp:1359
+#: projects/batch_project_doc.cpp:1190 projects/batch_project_doc.cpp:1369
 #: results-format/project_report_format.cpp:2023
 msgid "Number of complex (3+ syllable) words"
 msgstr "Número de palabras complejas (3+ sílabas)"
 
-#: projects/batch_project_doc.cpp:1181 projects/batch_project_doc.cpp:1363
+#: projects/batch_project_doc.cpp:1191 projects/batch_project_doc.cpp:1373
 #: results-format/project_report_format.cpp:2050
 msgid "Number of unique 3+ syllable words"
 msgstr "Número de palabras únicas de 3+ sílabas"
 
-#: projects/batch_project_doc.cpp:1182 projects/batch_project_doc.cpp:1367
+#: projects/batch_project_doc.cpp:1192 projects/batch_project_doc.cpp:1377
 #: results-format/project_report_format.cpp:2084
 msgid "Number of long (6+ characters) words"
 msgstr "Número de palabras largas (6+ caracteres)"
 
-#: projects/batch_project_doc.cpp:1183 projects/batch_project_doc.cpp:1369
+#: projects/batch_project_doc.cpp:1193 projects/batch_project_doc.cpp:1379
 #: results-format/project_report_format.cpp:2110
 msgid "Number of unique long words"
 msgstr "Número de palabras largas únicas"
 
 #. TRANSLATORS: "hard words" as in difficult, not as in "harsh."
-#: projects/batch_project_doc.cpp:1185 projects/batch_project_doc.cpp:1372
+#: projects/batch_project_doc.cpp:1195 projects/batch_project_doc.cpp:1382
 msgid "Number of SMOG hard words"
 msgstr "Número de palabras duras SMOG"
 
-#: projects/batch_project_doc.cpp:1186 projects/batch_project_doc.cpp:1376
+#: projects/batch_project_doc.cpp:1196 projects/batch_project_doc.cpp:1386
 #: results-format/project_report_format.cpp:2173
 msgid "Number of unique SMOG hard words"
 msgstr "Número de palabras difíciles únicas de SMOG"
 
 #. TRANSLATORS: "Fog" is a test name; don't translate it.
-#: projects/batch_project_doc.cpp:1188 projects/batch_project_doc.cpp:1379
+#: projects/batch_project_doc.cpp:1198 projects/batch_project_doc.cpp:1389
 msgid "Number of Fog hard words"
 msgstr "Número de palabras difíciles de Fog"
 
 #. TRANSLATORS: "Fog" is a test name; don't translate it.
-#: projects/batch_project_doc.cpp:1189 projects/batch_project_doc.cpp:1381
+#: projects/batch_project_doc.cpp:1199 projects/batch_project_doc.cpp:1391
 #: results-format/project_report_format.cpp:2236
 msgid "Number of unique Fog hard words"
 msgstr "Número de palabras difíciles de niebla únicas"
 
-#: projects/batch_project_doc.cpp:1194 projects/batch_project_doc.cpp:1389
+#: projects/batch_project_doc.cpp:1204 projects/batch_project_doc.cpp:1399
 #: results-format/project_report_format.cpp:301
 msgid "Number of conjunctions used"
 msgstr "Número de conjunciones utilizadas"
 
-#: projects/batch_project_doc.cpp:1195 projects/batch_project_doc.cpp:1395
+#: projects/batch_project_doc.cpp:1205 projects/batch_project_doc.cpp:1405
 #: results-format/project_report_format.cpp:348
 msgid "Number of prepositions used"
 msgstr "Número de preposiciones utilizadas"
 
-#: projects/batch_project_doc.cpp:1196 projects/batch_project_doc.cpp:1400
+#: projects/batch_project_doc.cpp:1206 projects/batch_project_doc.cpp:1410
 #: results-format/project_report_format.cpp:395
 msgid "Number of pronouns used"
 msgstr "Número de pronombres utilizados"
 
-#: projects/batch_project_doc.cpp:1197 projects/batch_project_doc.cpp:1404
+#: projects/batch_project_doc.cpp:1207 projects/batch_project_doc.cpp:1414
 #: results-format/project_report_format.cpp:442
 msgid "Number of adverbs used"
 msgstr "Número de adverbios utilizados"
 
-#: projects/batch_project_doc.cpp:1198 projects/batch_project_doc.cpp:1409
+#: projects/batch_project_doc.cpp:1208 projects/batch_project_doc.cpp:1419
 #: results-format/project_report_format.cpp:489
 msgid "Number of adjectives used"
 msgstr "Número de adjetivos utilizados"
 
-#: projects/batch_project_doc.cpp:1199 projects/batch_project_doc.cpp:1414
+#: projects/batch_project_doc.cpp:1209 projects/batch_project_doc.cpp:1424
 #: results-format/project_report_format.cpp:536
 msgid "Number of verbs used"
 msgstr "Número de verbos utilizados"
 
-#: projects/batch_project_doc.cpp:1200 projects/batch_project_doc.cpp:1418
+#: projects/batch_project_doc.cpp:1210 projects/batch_project_doc.cpp:1428
 #: results-format/project_report_format.cpp:582
 msgid "Number of nouns used"
 msgstr "Número de sustantivos utilizados"
 
-#: projects/batch_project_doc.cpp:1204 projects/batch_project_doc.cpp:1436
+#: projects/batch_project_doc.cpp:1214 projects/batch_project_doc.cpp:1446
 #: results-format/project_report_format.cpp:688
 msgid "Number of Dolch words"
 msgstr "Número de palabras Dolch"
 
-#: projects/batch_project_doc.cpp:1205 projects/batch_project_doc.cpp:1439
+#: projects/batch_project_doc.cpp:1215 projects/batch_project_doc.cpp:1449
 #: results-format/project_report_format.cpp:739
 msgid "Number of Dolch words (excluding nouns)"
 msgstr "Número de palabras de Dolch (excluyendo sustantivos)"
 
-#: projects/batch_project_doc.cpp:1206 projects/batch_project_doc.cpp:1443
+#: projects/batch_project_doc.cpp:1216 projects/batch_project_doc.cpp:1453
 #: results-format/project_report_format.cpp:790
 msgid "Number of non-Dolch words"
 msgstr "Número de palabras que no son Dolch"
 
-#: projects/batch_project_doc.cpp:1207 projects/batch_project_doc.cpp:1447
+#: projects/batch_project_doc.cpp:1217 projects/batch_project_doc.cpp:1457
 #: results-format/project_report_format.cpp:825
 msgid "Number of Dolch conjunctions"
 msgstr "Número de conjunciones Dolch"
 
-#: projects/batch_project_doc.cpp:1208 projects/batch_project_doc.cpp:1451
+#: projects/batch_project_doc.cpp:1218 projects/batch_project_doc.cpp:1461
 #: results-format/project_report_format.cpp:853
 msgid "Number of unique Dolch conjunctions"
 msgstr "Número de conjunciones únicas de Dolch"
 
-#: projects/batch_project_doc.cpp:1209 projects/batch_project_doc.cpp:1455
+#: projects/batch_project_doc.cpp:1219 projects/batch_project_doc.cpp:1465
 #: results-format/project_report_format.cpp:879
 msgid "Number of Dolch prepositions"
 msgstr "Número de preposiciones Dolch"
 
-#: projects/batch_project_doc.cpp:1210 projects/batch_project_doc.cpp:1459
+#: projects/batch_project_doc.cpp:1220 projects/batch_project_doc.cpp:1469
 #: results-format/project_report_format.cpp:907
 msgid "Number of unique Dolch prepositions"
 msgstr "Número de preposiciones únicas de Dolch"
 
-#: projects/batch_project_doc.cpp:1211 projects/batch_project_doc.cpp:1463
+#: projects/batch_project_doc.cpp:1221 projects/batch_project_doc.cpp:1473
 #: results-format/project_report_format.cpp:934
 msgid "Number of Dolch pronouns"
 msgstr "Número de pronombres Dolch"
 
-#: projects/batch_project_doc.cpp:1212 projects/batch_project_doc.cpp:1467
+#: projects/batch_project_doc.cpp:1222 projects/batch_project_doc.cpp:1477
 #: results-format/project_report_format.cpp:961
 msgid "Number of unique Dolch pronouns"
 msgstr "Número de pronombres únicos de Dolch"
 
-#: projects/batch_project_doc.cpp:1213 projects/batch_project_doc.cpp:1470
+#: projects/batch_project_doc.cpp:1223 projects/batch_project_doc.cpp:1480
 #: results-format/project_report_format.cpp:988
 msgid "Number of Dolch adverbs"
 msgstr "Número de adverbios Dolch"
 
-#: projects/batch_project_doc.cpp:1214 projects/batch_project_doc.cpp:1474
+#: projects/batch_project_doc.cpp:1224 projects/batch_project_doc.cpp:1484
 #: results-format/project_report_format.cpp:1014
 msgid "Number of unique Dolch adverbs"
 msgstr "Número de adverbios únicos de Dolch"
 
-#: projects/batch_project_doc.cpp:1215 projects/batch_project_doc.cpp:1478
+#: projects/batch_project_doc.cpp:1225 projects/batch_project_doc.cpp:1488
 #: results-format/project_report_format.cpp:1041
 msgid "Number of Dolch adjectives"
 msgstr "Número de adjetivos Dolch"
 
-#: projects/batch_project_doc.cpp:1216 projects/batch_project_doc.cpp:1482
+#: projects/batch_project_doc.cpp:1226 projects/batch_project_doc.cpp:1492
 #: results-format/project_report_format.cpp:1069
 msgid "Number of unique Dolch adjectives"
 msgstr "Número de adjetivos únicos de Dolch"
 
-#: projects/batch_project_doc.cpp:1217 projects/batch_project_doc.cpp:1485
+#: projects/batch_project_doc.cpp:1227 projects/batch_project_doc.cpp:1495
 #: results-format/project_report_format.cpp:1096
 msgid "Number of Dolch verbs"
 msgstr "Número de verbos Dolch"
 
-#: projects/batch_project_doc.cpp:1218 projects/batch_project_doc.cpp:1489
+#: projects/batch_project_doc.cpp:1228 projects/batch_project_doc.cpp:1499
 #: results-format/project_report_format.cpp:1122
 msgid "Number of unique Dolch verbs"
 msgstr "Número de verbos únicos de Dolch"
 
-#: projects/batch_project_doc.cpp:1219 projects/batch_project_doc.cpp:1492
+#: projects/batch_project_doc.cpp:1229 projects/batch_project_doc.cpp:1502
 #: results-format/project_report_format.cpp:1148
 msgid "Number of Dolch nouns"
 msgstr "Número de sustantivos Dolch"
 
-#: projects/batch_project_doc.cpp:1220 projects/batch_project_doc.cpp:1496
+#: projects/batch_project_doc.cpp:1230 projects/batch_project_doc.cpp:1506
 #: results-format/project_report_format.cpp:1174
 msgid "Number of unique Dolch nouns"
 msgstr "Número de sustantivos Dolch únicos"
 
-#: projects/batch_project_doc.cpp:1225 projects/batch_project_doc.cpp:1504
+#: projects/batch_project_doc.cpp:1235 projects/batch_project_doc.cpp:1514
 #: results-format/project_report_format.cpp:2299
 msgid "Number of Dale-Chall unfamiliar words"
 msgstr "Número de palabras desconocidas de Dale-Chall"
 
-#: projects/batch_project_doc.cpp:1226 projects/batch_project_doc.cpp:1508
+#: projects/batch_project_doc.cpp:1236 projects/batch_project_doc.cpp:1518
 #: results-format/project_report_format.cpp:2326
 msgid "Number of unique Dale-Chall unfamiliar words"
 msgstr "Número de palabras desconocidas únicas de Dale-Chall"
 
-#: projects/batch_project_doc.cpp:1230 projects/batch_project_doc.cpp:1515
+#: projects/batch_project_doc.cpp:1240 projects/batch_project_doc.cpp:1525
 #: results-format/project_report_format.cpp:2395
 msgid "Number of Harris-Jacobson unfamiliar words"
 msgstr "Número de palabras desconocidas de Harris-Jacobson"
 
-#: projects/batch_project_doc.cpp:1232 projects/batch_project_doc.cpp:1519
+#: projects/batch_project_doc.cpp:1242 projects/batch_project_doc.cpp:1529
 #: results-format/project_report_format.cpp:2424
 msgid "Number of unique Harris-Jacobson unfamiliar words"
 msgstr "Número de palabras desconocidas únicas de Harris-Jacobson"
 
-#: projects/batch_project_doc.cpp:1236 projects/batch_project_doc.cpp:1526
+#: projects/batch_project_doc.cpp:1246 projects/batch_project_doc.cpp:1536
 #: results-format/project_report_format.cpp:2475
 msgid "Number of Spache unfamiliar words"
 msgstr "Número de palabras desconocidas de Spache"
 
-#: projects/batch_project_doc.cpp:1237 projects/batch_project_doc.cpp:1530
+#: projects/batch_project_doc.cpp:1247 projects/batch_project_doc.cpp:1540
 #: results-format/project_report_format.cpp:2503
 msgid "Number of unique Spache unfamiliar words"
 msgstr "Número de palabras desconocidas únicas de Spache"
 
-#: projects/batch_project_doc.cpp:1241 projects/batch_project_doc.cpp:1537
+#: projects/batch_project_doc.cpp:1251 projects/batch_project_doc.cpp:1547
 msgid "Number of McAlpine EFLAW miniwords"
 msgstr "Número de minipalabras de McAlpine EFLAW"
 
-#: projects/batch_project_doc.cpp:1243 projects/batch_project_doc.cpp:1540
+#: projects/batch_project_doc.cpp:1253 projects/batch_project_doc.cpp:1550
 #: results-format/project_report_format.cpp:2561
 msgid "Number of unique McAlpine EFLAW miniwords words"
 msgstr "Número de minipalabras únicas de McAlpine EFLAW palabras"
 
-#: projects/batch_project_doc.cpp:1248 projects/batch_project_doc.cpp:1547
+#: projects/batch_project_doc.cpp:1258 projects/batch_project_doc.cpp:1557
 #: results-format/project_report_format.cpp:2607
 #, c-format
 msgid "Number of %s unfamiliar words"
 msgstr "Número de palabras desconocidas %s"
 
-#: projects/batch_project_doc.cpp:1250 projects/batch_project_doc.cpp:1552
+#: projects/batch_project_doc.cpp:1260 projects/batch_project_doc.cpp:1562
 #: results-format/project_report_format.cpp:2637
 #, c-format
 msgid "Number of unique %s unfamiliar words"
 msgstr "Número de palabras únicas %s desconocidas"
 
-#: projects/batch_project_doc.cpp:1256 projects/batch_project_doc.cpp:1560
+#: projects/batch_project_doc.cpp:1266 projects/batch_project_doc.cpp:1570
 #: results-format/project_report_format.cpp:2674
 msgid "Number of possible misspellings"
 msgstr "Número de posibles faltas de ortografía"
 
-#: projects/batch_project_doc.cpp:1257 projects/batch_project_doc.cpp:1563
+#: projects/batch_project_doc.cpp:1267 projects/batch_project_doc.cpp:1573
 #: results-format/project_report_format.cpp:2703
 msgid "Number of repeated words"
 msgstr "Número de palabras repetidas"
 
-#: projects/batch_project_doc.cpp:1258 projects/batch_project_doc.cpp:1565
+#: projects/batch_project_doc.cpp:1268 projects/batch_project_doc.cpp:1575
 #: results-format/project_report_format.cpp:2735
 msgid "Number of article mismatches"
 msgstr "Número de discrepancias de artículos"
 
-#: projects/batch_project_doc.cpp:1259 projects/batch_project_doc.cpp:1568
+#: projects/batch_project_doc.cpp:1269 projects/batch_project_doc.cpp:1578
 msgid "Number of errors & misspellings"
 msgstr "Número de errores y faltas de ortografía"
 
-#: projects/batch_project_doc.cpp:1260 projects/batch_project_doc.cpp:1570
+#: projects/batch_project_doc.cpp:1270 projects/batch_project_doc.cpp:1580
 #: results-format/project_report_format.cpp:2796
 msgid "Number of redundant phrases"
 msgstr "Número de frases redundantes"
 
-#: projects/batch_project_doc.cpp:1261 projects/batch_project_doc.cpp:1574
+#: projects/batch_project_doc.cpp:1271 projects/batch_project_doc.cpp:1584
 #: results-format/project_report_format.cpp:2827
 msgid "Number of overused words (x sentence)"
 msgstr "Número de palabras usadas en exceso (x oración)"
 
-#: projects/batch_project_doc.cpp:1262 projects/batch_project_doc.cpp:1577
+#: projects/batch_project_doc.cpp:1272 projects/batch_project_doc.cpp:1587
 #: results-format/project_report_format.cpp:2857
 msgid "Number of wordy items"
 msgstr "Número de elementos con muchas palabras"
 
-#: projects/batch_project_doc.cpp:1263 projects/batch_project_doc.cpp:1579
+#: projects/batch_project_doc.cpp:1273 projects/batch_project_doc.cpp:1589
 #: results-format/project_report_format.cpp:2887
 msgid "Number of clichés"
 msgstr "Número de clichés"
 
-#: projects/batch_project_doc.cpp:1264 projects/batch_project_doc.cpp:1581
+#: projects/batch_project_doc.cpp:1274 projects/batch_project_doc.cpp:1591
 #: results-format/project_report_format.cpp:2917
 msgid "Number of passive voices"
 msgstr "Número de voces pasivas"
 
-#: projects/batch_project_doc.cpp:1265 projects/batch_project_doc.cpp:1584
+#: projects/batch_project_doc.cpp:1275 projects/batch_project_doc.cpp:1594
 #: results-format/project_report_format.cpp:2949
 msgid "Number of sentences that begin with conjunctions"
 msgstr "Número de oraciones que comienzan con conjunciones"
 
-#: projects/batch_project_doc.cpp:1267 projects/batch_project_doc.cpp:1588
+#: projects/batch_project_doc.cpp:1277 projects/batch_project_doc.cpp:1598
 #: results-format/project_report_format.cpp:2983
 msgid "Number of Sentences that begin with lowercased words"
 msgstr "Número de oraciones que comienzan con palabras en minúsculas"
 
-#: projects/batch_project_doc.cpp:1271 projects/batch_project_doc.cpp:1594
+#: projects/batch_project_doc.cpp:1281 projects/batch_project_doc.cpp:1604
 msgid "Text size (Kbs.)"
 msgstr "Tamaño del texto (Kbs.)"
 
-#: projects/batch_project_doc.cpp:2835 projects/batch_project_doc.cpp:2887
-#: projects/batch_project_doc.cpp:2939 projects/batch_project_doc.cpp:2991
-#: projects/batch_project_doc.cpp:3063 projects/standard_project_doc.cpp:3275
+#: projects/batch_project_doc.cpp:2845 projects/batch_project_doc.cpp:2897
+#: projects/batch_project_doc.cpp:2950 projects/batch_project_doc.cpp:3003
+#: projects/batch_project_doc.cpp:3076 projects/standard_project_doc.cpp:3275
 #: projects/standard_project_doc.cpp:3431
 #: projects/standard_project_doc.cpp:4151
 #: projects/standard_project_doc.cpp:4310
@@ -7312,8 +7311,8 @@ msgstr "Tamaño del texto (Kbs.)"
 msgid "Text is too difficult to be plotted."
 msgstr "El texto es demasiado difícil de trazar."
 
-#: projects/batch_project_doc.cpp:2843 projects/batch_project_doc.cpp:2895
-#: projects/batch_project_doc.cpp:2947 projects/standard_project_doc.cpp:4164
+#: projects/batch_project_doc.cpp:2853 projects/batch_project_doc.cpp:2905
+#: projects/batch_project_doc.cpp:2958 projects/standard_project_doc.cpp:4164
 #: projects/standard_project_doc.cpp:4323
 msgid ""
 "Text is too difficult to be classified to a specific grade level because it "
@@ -7322,8 +7321,8 @@ msgstr ""
 "El texto es demasiado difícil para clasificarlo en un nivel de grado "
 "específico porque contiene demasiadas palabras de sílabas altas."
 
-#: projects/batch_project_doc.cpp:2845 projects/batch_project_doc.cpp:2897
-#: projects/batch_project_doc.cpp:2949 projects/batch_project_doc.cpp:3001
+#: projects/batch_project_doc.cpp:2855 projects/batch_project_doc.cpp:2907
+#: projects/batch_project_doc.cpp:2960 projects/batch_project_doc.cpp:3013
 #: projects/standard_project_doc.cpp:4166
 #: projects/standard_project_doc.cpp:4325
 #: projects/standard_project_doc.cpp:4488
@@ -7334,7 +7333,7 @@ msgstr ""
 "El texto es demasiado difícil para ser clasificado a un nivel de grado "
 "específico porque contiene demasiadas oraciones largas."
 
-#: projects/batch_project_doc.cpp:2999 projects/standard_project_doc.cpp:4486
+#: projects/batch_project_doc.cpp:3011 projects/standard_project_doc.cpp:4486
 msgid ""
 "Text is too difficult to be classified to a specific grade level because it "
 "contains too many 6+ character words."
@@ -7342,7 +7341,7 @@ msgstr ""
 "El texto es demasiado difícil para ser clasificado a un nivel de grado "
 "específico porque contiene demasiadas palabras de 6+ caracteres."
 
-#: projects/batch_project_doc.cpp:3365 projects/batch_project_doc.cpp:7678
+#: projects/batch_project_doc.cpp:3380 projects/batch_project_doc.cpp:7716
 #: projects/standard_project_view.cpp:1713
 #: projects/standard_project_view.cpp:1714
 #: projects/standard_project_view.cpp:1715
@@ -7357,7 +7356,7 @@ msgstr ""
 msgid "N/A"
 msgstr "N/D"
 
-#: projects/batch_project_doc.cpp:3581 projects/batch_project_doc.cpp:3582
+#: projects/batch_project_doc.cpp:3596 projects/batch_project_doc.cpp:3597
 #: projects/standard_project_doc.cpp:1198
 #: projects/standard_project_doc.cpp:1199 ui/dialogs/test_bundle_dlg.cpp:268
 msgid "Goals"
@@ -7365,162 +7364,162 @@ msgstr "Objetivos"
 
 #. TRANSLATORS: %s is test name
 #. TRANSLATORS: %s is goal name
-#: projects/batch_project_doc.cpp:3611 projects/batch_project_doc.cpp:3638
+#: projects/batch_project_doc.cpp:3626 projects/batch_project_doc.cpp:3653
 #, c-format
 msgid "%s Min"
 msgstr "%s Mínimo"
 
 #. TRANSLATORS: %s is test name
 #. TRANSLATORS: %s is goal name
-#: projects/batch_project_doc.cpp:3618 projects/batch_project_doc.cpp:3645
+#: projects/batch_project_doc.cpp:3633 projects/batch_project_doc.cpp:3660
 #, c-format
 msgid "%s Max"
 msgstr "%s Máximo"
 
-#: projects/batch_project_doc.cpp:3763 projects/batch_project_view.cpp:2376
+#: projects/batch_project_doc.cpp:3778 projects/batch_project_view.cpp:2374
 #: projects/standard_project_view.cpp:3398
 msgid "Status"
 msgstr "Estado"
 
-#: projects/batch_project_doc.cpp:3765
+#: projects/batch_project_doc.cpp:3780
 msgid "All documents passing."
 msgstr "Todos los documentos están pasando."
 
-#: projects/batch_project_doc.cpp:3776
+#: projects/batch_project_doc.cpp:3791
 msgid "Score Summary"
 msgstr "Resumen de la Puntuación"
 
-#: projects/batch_project_doc.cpp:3777 projects/standard_project_view.cpp:1598
+#: projects/batch_project_doc.cpp:3792 projects/standard_project_view.cpp:1598
 #: ui/dialogs/test_bundle_dlg.cpp:305
 msgid "Test"
 msgstr "Prueba"
 
 #. TRANSLATORS: "x" means "by".
-#: projects/batch_project_doc.cpp:3782
+#: projects/batch_project_doc.cpp:3797
 msgid "Grade Score Summary (x Document)"
 msgstr "Resumen de puntuaciones por grado (por documento)"
 
 #. TRANSLATORS: "x" means "by".
-#: projects/batch_project_doc.cpp:3797
+#: projects/batch_project_doc.cpp:3812
 msgid "Cloze Score Summary (x Document)"
 msgstr "Resumen de la Puntuación de Cloze (x Documento)"
 
-#: projects/batch_project_doc.cpp:3904
+#: projects/batch_project_doc.cpp:3919
 msgid "Valid N"
 msgstr "N válido"
 
-#: projects/batch_project_doc.cpp:3905
+#: projects/batch_project_doc.cpp:3920
 msgid "Minimum"
 msgstr "Mínimo"
 
-#: projects/batch_project_doc.cpp:3906
+#: projects/batch_project_doc.cpp:3921
 msgid "Maximum"
 msgstr "Máximo"
 
-#: projects/batch_project_doc.cpp:3907
+#: projects/batch_project_doc.cpp:3922
 msgid "Range"
 msgstr "Intervalo"
 
-#: projects/batch_project_doc.cpp:3909
+#: projects/batch_project_doc.cpp:3924
 msgid "Means"
 msgstr "Medias"
 
-#: projects/batch_project_doc.cpp:3914
+#: projects/batch_project_doc.cpp:3929
 msgid "Skewness"
 msgstr "Asimetría"
 
-#: projects/batch_project_doc.cpp:3915
+#: projects/batch_project_doc.cpp:3930
 msgid "Kurtosis"
 msgstr "Curtosis"
 
-#: projects/batch_project_doc.cpp:3917
+#: projects/batch_project_doc.cpp:3932
 msgid "Variance"
 msgstr "Varianza"
 
-#: projects/batch_project_doc.cpp:3918
+#: projects/batch_project_doc.cpp:3933
 msgid "Lower Quartile"
 msgstr "Cuartil Inferior"
 
-#: projects/batch_project_doc.cpp:3919
+#: projects/batch_project_doc.cpp:3934
 msgid "Upper Quartile"
 msgstr "Cuartil Superior"
 
-#: projects/batch_project_doc.cpp:5390 projects/batch_project_doc.cpp:5424
-#: projects/batch_project_doc.cpp:5435 projects/batch_project_doc.cpp:5456
+#: projects/batch_project_doc.cpp:5411 projects/batch_project_doc.cpp:5445
+#: projects/batch_project_doc.cpp:5456 projects/batch_project_doc.cpp:5477
 msgid "Grade Levels"
 msgstr "Niveles de Grado"
 
-#: projects/batch_project_doc.cpp:5398 projects/batch_project_doc.cpp:5417
-#: projects/batch_project_doc.cpp:5459
+#: projects/batch_project_doc.cpp:5419 projects/batch_project_doc.cpp:5438
+#: projects/batch_project_doc.cpp:5480
 msgid "Index Values"
 msgstr "Valores de Índice"
 
-#: projects/batch_project_doc.cpp:5406 projects/batch_project_doc.cpp:5442
-#: projects/batch_project_doc.cpp:5460
+#: projects/batch_project_doc.cpp:5427 projects/batch_project_doc.cpp:5463
+#: projects/batch_project_doc.cpp:5481
 msgid "Predicted Cloze Scores"
 msgstr "Puntuaciones de Cloze previstas"
 
-#: projects/batch_project_doc.cpp:5543
+#: projects/batch_project_doc.cpp:5567
 msgid "Number of Documents"
 msgstr "Número de Documentos"
 
-#: projects/batch_project_doc.cpp:5612
+#: projects/batch_project_doc.cpp:5636
 msgid "Elementary School"
 msgstr "Escuela Primaria"
 
-#: projects/batch_project_doc.cpp:5613
+#: projects/batch_project_doc.cpp:5637
 msgid "Middle School"
 msgstr "Escuela Intermedia"
 
-#: projects/batch_project_doc.cpp:5614
+#: projects/batch_project_doc.cpp:5638
 msgid "High School"
 msgstr "Escuela Secundaria"
 
-#: projects/batch_project_doc.cpp:5616
+#: projects/batch_project_doc.cpp:5640
 msgid "Graduate School"
 msgstr "Escuela de Posgrado"
 
-#: projects/batch_project_doc.cpp:5617
+#: projects/batch_project_doc.cpp:5641
 msgid "PhD"
 msgstr "PhD - doctorado"
 
-#: projects/batch_project_doc.cpp:6066 projects/batch_project_doc.cpp:6092
-#: projects/standard_project_doc.cpp:6676
+#: projects/batch_project_doc.cpp:6090 projects/batch_project_doc.cpp:6116
+#: projects/standard_project_doc.cpp:6675
 msgid "File appears to be open by another application. Cannot save project."
 msgstr ""
 "El archivo parece estar abierto por otra aplicación. No se puede guardar el "
 "proyecto."
 
-#: projects/batch_project_doc.cpp:6067 projects/batch_project_doc.cpp:6081
-#: projects/batch_project_doc.cpp:6093 projects/standard_project_doc.cpp:6649
-#: projects/standard_project_doc.cpp:6663
-#: projects/standard_project_doc.cpp:6677
+#: projects/batch_project_doc.cpp:6091 projects/batch_project_doc.cpp:6105
+#: projects/batch_project_doc.cpp:6117 projects/standard_project_doc.cpp:6648
+#: projects/standard_project_doc.cpp:6662
+#: projects/standard_project_doc.cpp:6676
 msgid "Project Save"
 msgstr "Guardar"
 
-#: projects/batch_project_doc.cpp:6081 projects/standard_project_doc.cpp:6663
+#: projects/batch_project_doc.cpp:6105 projects/standard_project_doc.cpp:6662
 msgid "Project file was opened as read only. Unable to save."
 msgstr ""
 "El archivo de proyecto se abrió como de solo lectura. No se puede guardar."
 
-#: projects/batch_project_doc.cpp:6114
+#: projects/batch_project_doc.cpp:6138
 #, c-format
 msgid "Saving \"%s\""
 msgstr "Guardar \"%s\""
 
-#: projects/batch_project_doc.cpp:6141 projects/standard_project_doc.cpp:6736
+#: projects/batch_project_doc.cpp:6165 projects/standard_project_doc.cpp:6735
 msgid "Unable to save project file. File may be locked by another process."
 msgstr ""
 "No se puede guardar el archivo de proyecto. El archivo puede estar bloqueado "
 "por otro proceso."
 
-#: projects/batch_project_doc.cpp:6178 projects/standard_project_doc.cpp:509
+#: projects/batch_project_doc.cpp:6202 projects/standard_project_doc.cpp:509
 #, c-format
 msgid "'%s': unable to open project file. File not found."
 msgstr ""
 "'%s': no se puede abrir el archivo del proyecto. Archivo no encontrado."
 
-#: projects/batch_project_doc.cpp:6214
+#: projects/batch_project_doc.cpp:6238
 msgid ""
 "File appears to be open by another application. Project file will be opened "
 "as read only."
@@ -7528,33 +7527,33 @@ msgstr ""
 "El archivo parece estar abierto por otra aplicación. El archivo del proyecto "
 "se abrirá como de solo lectura."
 
-#: projects/batch_project_doc.cpp:6216 projects/batch_project_doc.cpp:6221
-#: projects/batch_project_doc.cpp:6232 projects/batch_project_doc.cpp:6238
-#: projects/batch_project_doc.cpp:6243 projects/batch_project_doc.cpp:6263
+#: projects/batch_project_doc.cpp:6240 projects/batch_project_doc.cpp:6245
+#: projects/batch_project_doc.cpp:6256 projects/batch_project_doc.cpp:6262
+#: projects/batch_project_doc.cpp:6267 projects/batch_project_doc.cpp:6287
 #: projects/standard_project_doc.cpp:551 projects/standard_project_doc.cpp:562
 #: projects/standard_project_doc.cpp:568 projects/standard_project_doc.cpp:573
 #: projects/standard_project_doc.cpp:593
 msgid "Project Open"
 msgstr "Proyecto Abierto"
 
-#: projects/batch_project_doc.cpp:6232 projects/standard_project_doc.cpp:562
+#: projects/batch_project_doc.cpp:6256 projects/standard_project_doc.cpp:562
 msgid "Invalid project file. File is empty."
 msgstr "Archivo de proyecto no válido. El archivo está vacío."
 
-#: projects/batch_project_doc.cpp:6238 projects/standard_project_doc.cpp:568
+#: projects/batch_project_doc.cpp:6262 projects/standard_project_doc.cpp:568
 msgid "Invalid file."
 msgstr "Archivo no válido."
 
-#: projects/batch_project_doc.cpp:6243 projects/standard_project_doc.cpp:573
+#: projects/batch_project_doc.cpp:6267 projects/standard_project_doc.cpp:573
 msgid "Unable to open file from Cloud service."
 msgstr "No se puede abrir el archivo desde el servicio en la nube."
 
-#: projects/batch_project_doc.cpp:6268
+#: projects/batch_project_doc.cpp:6292
 #, c-format
 msgid "Opening \"%s\""
 msgstr "Abriendo  \"%s\""
 
-#: projects/batch_project_doc.cpp:6410 projects/standard_project_doc.cpp:371
+#: projects/batch_project_doc.cpp:6434 projects/standard_project_doc.cpp:371
 msgid ""
 "Settings file could not be found in the project file. Default settings will "
 "be used."
@@ -7562,113 +7561,113 @@ msgstr ""
 "No se pudo encontrar el archivo de configuración en el archivo del proyecto. "
 "Se utilizará la configuración predeterminada."
 
-#: projects/batch_project_doc.cpp:6455 projects/batch_project_doc.cpp:6643
-#: projects/batch_project_doc.cpp:6740
+#: projects/batch_project_doc.cpp:6479 projects/batch_project_doc.cpp:6667
+#: projects/batch_project_doc.cpp:6764
 msgid "Suggestions"
 msgstr "Sugerencias"
 
-#: projects/batch_project_doc.cpp:6502
+#: projects/batch_project_doc.cpp:6526
 msgid "Unique Count"
 msgstr "Recuento Único"
 
-#: projects/batch_project_doc.cpp:6692
+#: projects/batch_project_doc.cpp:6716
 msgid "Overused Words"
 msgstr "Palabras Usadas en Exceso"
 
-#: projects/batch_project_doc.cpp:6789
+#: projects/batch_project_doc.cpp:6813
 msgid "Explanations/Suggestions"
 msgstr "Explicaciones/Sugerencias"
 
-#: projects/batch_project_doc.cpp:6884 projects/batch_project_doc.cpp:7378
+#: projects/batch_project_doc.cpp:6908 projects/batch_project_doc.cpp:7403
 #: projects/standard_project_doc.cpp:3734
 #: projects/standard_project_doc.cpp:3868
 msgid "Conjunctions"
 msgstr "Conjunciones"
 
 #. TRANSLATORS: First word in a sentence.
-#: projects/batch_project_doc.cpp:6933
+#: projects/batch_project_doc.cpp:6957
 msgid "Starting Word"
 msgstr "Primera Palabra de la Oración"
 
-#: projects/batch_project_doc.cpp:7041
+#: projects/batch_project_doc.cpp:7065
 msgid "Overly-long Sentences"
 msgstr "Oraciones Demasiado Largas"
 
-#: projects/batch_project_doc.cpp:7042
+#: projects/batch_project_doc.cpp:7066
 msgid "Longest Sentence Length"
 msgstr "Longitud de Oración más Larga"
 
-#: projects/batch_project_doc.cpp:7043
+#: projects/batch_project_doc.cpp:7067
 msgid "Longest Sentence"
 msgstr "Oración más Larga"
 
-#: projects/batch_project_doc.cpp:7103 projects/standard_project_doc.cpp:2599
+#: projects/batch_project_doc.cpp:7127 projects/standard_project_doc.cpp:2599
 #: projects/standard_project_doc.cpp:3899
 #: projects/standard_project_view.cpp:293
 #: projects/standard_project_view.cpp:301
 msgid "Total Words"
 msgstr "Número Total de Palabras"
 
-#: projects/batch_project_doc.cpp:7105
+#: projects/batch_project_doc.cpp:7129
 #, no-c-format
 msgid "% of complex (3+ syllable) words"
 msgstr "% de palabras complejas (de 3 o más sílabas)"
 
-#: projects/batch_project_doc.cpp:7106
+#: projects/batch_project_doc.cpp:7130
 msgid "Complex (3+ syllable) words"
 msgstr "Palabras complejas (3+ sílabas)"
 
-#: projects/batch_project_doc.cpp:7108
+#: projects/batch_project_doc.cpp:7132
 #, no-c-format
 msgid "% of long (6+ characters) words"
 msgstr "% de palabras largas (6+ caracteres)"
 
-#: projects/batch_project_doc.cpp:7109
+#: projects/batch_project_doc.cpp:7133
 msgid "Long (6+ characters) words"
 msgstr "Palabras largas (6+ caracteres)"
 
-#: projects/batch_project_doc.cpp:7115
+#: projects/batch_project_doc.cpp:7139
 #, no-c-format
 msgid "% of SMOG hard words"
 msgstr "% de palabras difíciles de SMOG"
 
-#: projects/batch_project_doc.cpp:7116
+#: projects/batch_project_doc.cpp:7140
 msgid "SMOG hard words"
 msgstr "Palabras difíciles de SMOG"
 
-#: projects/batch_project_doc.cpp:7121
+#: projects/batch_project_doc.cpp:7145
 #, no-c-format
 msgid "% of Fog hard words"
 msgstr "% de palabras difíciles de Fog"
 
-#: projects/batch_project_doc.cpp:7122
+#: projects/batch_project_doc.cpp:7146
 msgid "Fog hard words"
 msgstr "FOG palabras difíciles"
 
-#: projects/batch_project_doc.cpp:7128 projects/batch_project_doc.cpp:7135
-#: projects/batch_project_doc.cpp:7141 projects/batch_project_doc.cpp:7153
+#: projects/batch_project_doc.cpp:7152 projects/batch_project_doc.cpp:7159
+#: projects/batch_project_doc.cpp:7165 projects/batch_project_doc.cpp:7177
 #, c-format
 msgid "%% of %s unfamiliar words"
 msgstr "%% de %s palabras desconocidas"
 
-#: projects/batch_project_doc.cpp:7129
+#: projects/batch_project_doc.cpp:7153
 msgid "Dale-Chall unfamiliar words"
 msgstr "Palabras desconocidas de Dale-Chall"
 
-#: projects/batch_project_doc.cpp:7136
+#: projects/batch_project_doc.cpp:7160
 msgid "Spache unfamiliar words"
 msgstr "Spache palabras desconocidas"
 
-#: projects/batch_project_doc.cpp:7142
+#: projects/batch_project_doc.cpp:7166
 msgid "HJ unfamiliar words"
 msgstr "HJ palabras desconocidas"
 
-#: projects/batch_project_doc.cpp:7156
+#: projects/batch_project_doc.cpp:7180
 #, c-format
 msgid "%s unfamiliar words"
 msgstr "%s palabras desconocidas"
 
-#: projects/batch_project_doc.cpp:7200 projects/batch_project_doc.cpp:7238
+#: projects/batch_project_doc.cpp:7224 projects/batch_project_doc.cpp:7262
 #: projects/standard_project_doc.cpp:1710
 #: projects/standard_project_doc.cpp:1770
 #: projects/standard_project_doc.cpp:2040
@@ -7676,239 +7675,239 @@ msgstr "%s palabras desconocidas"
 msgid "Word"
 msgstr "Palabra"
 
-#: projects/batch_project_doc.cpp:7202
+#: projects/batch_project_doc.cpp:7226
 msgid "Document Count"
 msgstr "Número de Documentos"
 
-#: projects/batch_project_doc.cpp:7317
+#: projects/batch_project_doc.cpp:7342
 msgid "Conjunctions Coverage"
 msgstr "Cobertura de Conjunciones"
 
-#: projects/batch_project_doc.cpp:7318
+#: projects/batch_project_doc.cpp:7343
 msgid "Prepositions Coverage"
 msgstr "Cobertura de Preposiciones"
 
-#: projects/batch_project_doc.cpp:7319
+#: projects/batch_project_doc.cpp:7344
 msgid "Pronouns Coverage"
 msgstr "Cobertura de Pronombres"
 
-#: projects/batch_project_doc.cpp:7320
+#: projects/batch_project_doc.cpp:7345
 msgid "Adverbs Coverage"
 msgstr "Cobertura de Adverbios"
 
-#: projects/batch_project_doc.cpp:7321
+#: projects/batch_project_doc.cpp:7346
 msgid "Adjectives Coverage"
 msgstr "Adjetivos Cobertura"
 
-#: projects/batch_project_doc.cpp:7322
+#: projects/batch_project_doc.cpp:7347
 msgid "Verbs Coverage"
 msgstr "Cobertura de Verbos"
 
-#: projects/batch_project_doc.cpp:7323
+#: projects/batch_project_doc.cpp:7348
 msgid "Noun Coverage"
 msgstr "Cobertura de Sustantivos"
 
-#: projects/batch_project_doc.cpp:7375
+#: projects/batch_project_doc.cpp:7400
 #, no-c-format
 msgid "% of Conjunctions"
 msgstr "% de Conjunciones"
 
-#: projects/batch_project_doc.cpp:7381
+#: projects/batch_project_doc.cpp:7406
 #, no-c-format
 msgid "% of Prepositions"
 msgstr "% de Preposiciones"
 
-#: projects/batch_project_doc.cpp:7384 projects/standard_project_doc.cpp:3713
+#: projects/batch_project_doc.cpp:7409 projects/standard_project_doc.cpp:3713
 #: projects/standard_project_doc.cpp:3858
 msgid "Prepositions"
 msgstr "Preposiciones"
 
-#: projects/batch_project_doc.cpp:7387
+#: projects/batch_project_doc.cpp:7412
 #, no-c-format
 msgid "% of Pronouns"
 msgstr "% of Pronombres"
 
-#: projects/batch_project_doc.cpp:7390 projects/standard_project_doc.cpp:3693
+#: projects/batch_project_doc.cpp:7415 projects/standard_project_doc.cpp:3693
 #: projects/standard_project_doc.cpp:3847
 msgid "Pronouns"
 msgstr "Pronombres"
 
-#: projects/batch_project_doc.cpp:7393
+#: projects/batch_project_doc.cpp:7418
 #, no-c-format
 msgid "% of Adverbs"
 msgstr "% de Adverbios"
 
-#: projects/batch_project_doc.cpp:7396 projects/standard_project_doc.cpp:3673
+#: projects/batch_project_doc.cpp:7421 projects/standard_project_doc.cpp:3673
 #: projects/standard_project_doc.cpp:3837
 msgid "Adverbs"
 msgstr "Adverbios"
 
-#: projects/batch_project_doc.cpp:7399
+#: projects/batch_project_doc.cpp:7424
 #, no-c-format
 msgid "% of Adjectives"
 msgstr "% de Adjetivos"
 
-#: projects/batch_project_doc.cpp:7402 projects/standard_project_doc.cpp:3653
+#: projects/batch_project_doc.cpp:7427 projects/standard_project_doc.cpp:3653
 #: projects/standard_project_doc.cpp:3827
 msgid "Adjectives"
 msgstr "Adjetivos"
 
-#: projects/batch_project_doc.cpp:7405
+#: projects/batch_project_doc.cpp:7430
 #, no-c-format
 msgid "% of Verbs"
 msgstr "% de Verbos"
 
-#: projects/batch_project_doc.cpp:7408 projects/standard_project_doc.cpp:3633
+#: projects/batch_project_doc.cpp:7433 projects/standard_project_doc.cpp:3633
 #: projects/standard_project_doc.cpp:3817
 msgid "Verbs"
 msgstr "Verbos"
 
-#: projects/batch_project_doc.cpp:7411
+#: projects/batch_project_doc.cpp:7436
 #, no-c-format
 msgid "% of Nouns"
 msgstr "% of Sustantivos"
 
-#: projects/batch_project_doc.cpp:7414 projects/standard_project_doc.cpp:3614
+#: projects/batch_project_doc.cpp:7439 projects/standard_project_doc.cpp:3614
 #: projects/standard_project_doc.cpp:3807
 msgid "Nouns"
 msgstr "Sustantivos"
 
-#: projects/batch_project_doc.cpp:7466
+#: projects/batch_project_doc.cpp:7491
 #, no-c-format
 msgid "% of Non-Dolch Words"
 msgstr "% de Palabras que no son Dolch"
 
-#: projects/batch_project_doc.cpp:7617
+#: projects/batch_project_doc.cpp:7649
 msgid "More than two values are required to calculate skewness."
 msgstr "Se requieren más de dos valores para calcular la asimetría."
 
-#: projects/batch_project_doc.cpp:7630
+#: projects/batch_project_doc.cpp:7663
 msgid "More than three values are required to calculate Kurtosis."
 msgstr "Se requieren más de tres valores para calcular la curtosis."
 
 #. TRANSLATORS: "std. dev." is standard deviation.
-#: projects/batch_project_doc.cpp:7644
+#: projects/batch_project_doc.cpp:7678
 msgid "More than one value is required to calculate std. dev."
 msgstr "Se requiere más de un valor para calcular desviación estándar."
 
-#: projects/batch_project_doc.cpp:7646
+#: projects/batch_project_doc.cpp:7680
 msgid "More than one value is required to calculate variance."
 msgstr "Se requiere más de un valor para calcular la varianza."
 
-#: projects/batch_project_view.cpp:249 projects/standard_project_view.cpp:237
+#: projects/batch_project_view.cpp:248 projects/standard_project_view.cpp:237
 msgid "Total Possible Misspellings"
 msgstr "Total de Posibles Faltas de Ortografía"
 
-#: projects/batch_project_view.cpp:255
+#: projects/batch_project_view.cpp:254
 msgid "Total Repeated Words"
 msgstr "Total de Palabras Repetidas"
 
-#: projects/batch_project_view.cpp:261
+#: projects/batch_project_view.cpp:260
 msgid "Total Article Mismatches"
 msgstr "Total de Incongruencias en los Artículos"
 
-#: projects/batch_project_view.cpp:267 projects/standard_project_view.cpp:245
+#: projects/batch_project_view.cpp:266 projects/standard_project_view.cpp:245
 msgid "Total Passive Phrases"
 msgstr "Total de Frases Pasivas"
 
-#: projects/batch_project_view.cpp:272
+#: projects/batch_project_view.cpp:271
 msgid "Total Wordy Items"
 msgstr "Total de Artículos Prolijos"
 
-#: projects/batch_project_view.cpp:278
+#: projects/batch_project_view.cpp:277
 msgid "Total Redundant Phrases"
 msgstr "Total de Frases Redundantes"
 
-#: projects/batch_project_view.cpp:283
+#: projects/batch_project_view.cpp:282
 msgid "Total Overused Words (x Sentence)"
 msgstr "Total de Palabras Usadas en Exceso (x Oración)"
 
-#: projects/batch_project_view.cpp:290
+#: projects/batch_project_view.cpp:289
 msgid "Total Errors & Misspellings"
 msgstr "Total de Errores y Faltas de Ortografía"
 
-#: projects/batch_project_view.cpp:295
+#: projects/batch_project_view.cpp:294
 msgid "Total Clichés"
 msgstr "Clichés Totales"
 
-#: projects/batch_project_view.cpp:301
+#: projects/batch_project_view.cpp:300
 msgid "Total Overly-long Sentences"
 msgstr "Total de Oraciones Demasiado Largas"
 
-#: projects/batch_project_view.cpp:306
+#: projects/batch_project_view.cpp:305
 msgid "Total Conjunction-starting Sentences"
 msgstr "Total de Oraciones Iniciales de Conjunción"
 
-#: projects/batch_project_view.cpp:312
+#: projects/batch_project_view.cpp:311
 msgid "Total Lowercases Sentences"
 msgstr "Total de Oraciones en Minúsculas"
 
-#: projects/batch_project_view.cpp:316 projects/standard_project_view.cpp:352
+#: projects/batch_project_view.cpp:315 projects/standard_project_view.cpp:352
 msgid "Column Summations"
 msgstr "Sumas de Columnas"
 
-#: projects/batch_project_view.cpp:345
+#: projects/batch_project_view.cpp:344
 msgid "Select Output Directory"
 msgstr "Seleccione Directorio de Salida"
 
-#: projects/batch_project_view.cpp:359 projects/batch_project_view.cpp:2584
+#: projects/batch_project_view.cpp:358 projects/batch_project_view.cpp:2582
 msgid "Exporting"
 msgstr "Exportando"
 
-#: projects/batch_project_view.cpp:359
+#: projects/batch_project_view.cpp:358
 msgid "Exporting filtered documents..."
 msgstr "Exportación de documentos filtrados..."
 
-#: projects/batch_project_view.cpp:399 projects/batch_project_view.cpp:2600
-#: projects/batch_project_view.cpp:2637 projects/batch_project_view.cpp:2645
-#: projects/batch_project_view.cpp:2690 projects/batch_project_view.cpp:2698
-#: projects/batch_project_view.cpp:2704 projects/batch_project_view.cpp:2880
+#: projects/batch_project_view.cpp:398 projects/batch_project_view.cpp:2598
+#: projects/batch_project_view.cpp:2635 projects/batch_project_view.cpp:2643
+#: projects/batch_project_view.cpp:2688 projects/batch_project_view.cpp:2696
+#: projects/batch_project_view.cpp:2702 projects/batch_project_view.cpp:2878
 #: projects/standard_project_view.cpp:463
 msgid "Unable to write to output file."
 msgstr "No se puede escribir en el archivo de salida."
 
-#: projects/batch_project_view.cpp:406
+#: projects/batch_project_view.cpp:405
 msgid "Errors encountered while exporting. Please review the Log Report."
 msgstr "Errores encontrados al exportar. Revise el informe de registro."
 
-#: projects/batch_project_view.cpp:427
+#: projects/batch_project_view.cpp:426
 msgid "Please select a document to add its misspellings to your dictionary."
 msgstr ""
 "Por favor, seleccione un documento para añadir sus faltas de ortografía a su "
 "diccionario."
 
-#: projects/batch_project_view.cpp:428 projects/batch_project_view.cpp:451
-#: projects/batch_project_view.cpp:469 projects/batch_project_view.cpp:506
+#: projects/batch_project_view.cpp:427 projects/batch_project_view.cpp:450
+#: projects/batch_project_view.cpp:468 projects/batch_project_view.cpp:505
 #: projects/standard_project_view.cpp:1283
 #: projects/standard_project_view.cpp:1297
 msgid "Add to Dictionary"
 msgstr "Añadir al Diccionario"
 
-#: projects/batch_project_view.cpp:452 projects/batch_project_view.cpp:507
+#: projects/batch_project_view.cpp:451 projects/batch_project_view.cpp:506
 msgid "Check the words to add to your custom dictionary and click OK:"
 msgstr ""
 "Marque las palabras que desea agregar a su diccionario personalizado y haga "
 "clic en Aceptar:"
 
-#: projects/batch_project_view.cpp:469 projects/standard_project_view.cpp:1297
+#: projects/batch_project_view.cpp:468 projects/standard_project_view.cpp:1297
 msgid "There are no misspellings in this document."
 msgstr "No hay faltas de ortografía en este documento."
 
-#: projects/batch_project_view.cpp:833 projects/standard_project_view.cpp:2152
+#: projects/batch_project_view.cpp:832 projects/standard_project_view.cpp:2152
 msgid "Please select a test to remove."
 msgstr "Seleccione una prueba para eliminarla."
 
-#: projects/batch_project_view.cpp:844 projects/standard_project_view.cpp:2100
+#: projects/batch_project_view.cpp:843 projects/standard_project_view.cpp:2100
 #, c-format
 msgid "Do you wish to remove \"%s\" from the project?"
 msgstr "¿Desea eliminar \"%s\" del proyecto?"
 
-#: projects/batch_project_view.cpp:848 projects/batch_project_view.cpp:925
+#: projects/batch_project_view.cpp:847 projects/batch_project_view.cpp:924
 #: projects/standard_project_view.cpp:2104
 msgid "Always delete without prompting"
 msgstr "Eliminar siempre sin preguntar"
 
-#: projects/batch_project_view.cpp:889 projects/batch_project_view.cpp:965
+#: projects/batch_project_view.cpp:888 projects/batch_project_view.cpp:964
 msgid ""
 "Please select a window that contains a list of documents, select the ones "
 "that you wish to remove, and try again."
@@ -7916,34 +7915,34 @@ msgstr ""
 "Seleccione una ventana que contenga una lista de documentos, seleccione los "
 "que desea eliminar y vuelva a intentarlo."
 
-#: projects/batch_project_view.cpp:923
+#: projects/batch_project_view.cpp:922
 msgid "Remove Documents"
 msgstr "Eliminar Documentos"
 
-#: projects/batch_project_view.cpp:924
+#: projects/batch_project_view.cpp:923
 msgid "Do you wish to remove these documents from the project?"
 msgstr "¿Desea eliminar estos documentos del proyecto?"
 
-#: projects/batch_project_view.cpp:942
+#: projects/batch_project_view.cpp:941
 msgid "Removing documents..."
 msgstr "Eliminación de documentos..."
 
-#: projects/batch_project_view.cpp:959 projects/batch_project_view.cpp:960
+#: projects/batch_project_view.cpp:958 projects/batch_project_view.cpp:959
 msgid "No documents available."
 msgstr "No hay documentos disponibles."
 
-#: projects/batch_project_view.cpp:1325 projects/batch_project_view.cpp:1331
+#: projects/batch_project_view.cpp:1323 projects/batch_project_view.cpp:1329
 #: projects/standard_project_view.cpp:2614
 #: projects/standard_project_view.cpp:2620
 #, c-format
 msgid "Export %s..."
 msgstr "Exportar %s..."
 
-#: projects/batch_project_view.cpp:1604
+#: projects/batch_project_view.cpp:1602
 msgid "Index score: "
 msgstr "Puntuación del índice: "
 
-#: projects/batch_project_view.cpp:1756 projects/batch_project_view.cpp:2115
+#: projects/batch_project_view.cpp:1754 projects/batch_project_view.cpp:2113
 #: projects/standard_project_view.cpp:2679
 #: projects/standard_project_view.cpp:3055
 msgid "Exporting project..."
@@ -7951,10 +7950,10 @@ msgstr "Exportando proyecto..."
 
 #. TRANSLATORS: "Graphs" should not be translated; these folder names should stay in
 #. English for consistency.
-#: projects/batch_project_view.cpp:1778 projects/batch_project_view.cpp:1838
-#: projects/batch_project_view.cpp:1892 projects/batch_project_view.cpp:1926
-#: projects/batch_project_view.cpp:1961 projects/batch_project_view.cpp:1994
-#: projects/batch_project_view.cpp:2027 projects/batch_project_view.cpp:2060
+#: projects/batch_project_view.cpp:1776 projects/batch_project_view.cpp:1836
+#: projects/batch_project_view.cpp:1890 projects/batch_project_view.cpp:1924
+#: projects/batch_project_view.cpp:1959 projects/batch_project_view.cpp:1992
+#: projects/batch_project_view.cpp:2025 projects/batch_project_view.cpp:2058
 #: projects/standard_project_view.cpp:2693
 #: projects/standard_project_view.cpp:2760
 #: projects/standard_project_view.cpp:2813
@@ -7965,109 +7964,109 @@ msgstr "Exportando proyecto..."
 msgid "Unable to create \"%s\" folder."
 msgstr "No se puede crear la carpeta \"%s\"."
 
-#: projects/batch_project_view.cpp:1850
+#: projects/batch_project_view.cpp:1848
 #, c-format
 msgid "%s Histogram [%s]"
 msgstr "%s Histograma [%s]"
 
-#: projects/batch_project_view.cpp:1870
+#: projects/batch_project_view.cpp:1868
 #, c-format
 msgid "%s Box Plot [%s]"
 msgstr "%s Diagrama de caja [%s]"
 
-#: projects/batch_project_view.cpp:2160 projects/standard_project_view.cpp:3098
+#: projects/batch_project_view.cpp:2158 projects/standard_project_view.cpp:3098
 #, c-format
 msgid "Figure %zu.%zu: %s"
 msgstr "Figura %zu.%zu: %s"
 
-#: projects/batch_project_view.cpp:2178 projects/standard_project_view.cpp:3114
+#: projects/batch_project_view.cpp:2176 projects/standard_project_view.cpp:3114
 #, c-format
 msgid "Table %zu.%zu: %s"
 msgstr "Tabla %zu.%zu: %s"
 
-#: projects/batch_project_view.cpp:2376 projects/standard_project_view.cpp:3398
+#: projects/batch_project_view.cpp:2374 projects/standard_project_view.cpp:3398
 msgid "Project Title"
 msgstr "Título del Proyecto"
 
-#: projects/batch_project_view.cpp:2376 projects/standard_project_view.cpp:3398
+#: projects/batch_project_view.cpp:2374 projects/standard_project_view.cpp:3398
 msgid "Reviewer"
 msgstr "Revisor"
 
-#: projects/batch_project_view.cpp:2377 projects/standard_project_view.cpp:3399
+#: projects/batch_project_view.cpp:2375 projects/standard_project_view.cpp:3399
 msgid "Date"
 msgstr "Fecha"
 
-#: projects/batch_project_view.cpp:2458
+#: projects/batch_project_view.cpp:2456
 msgid "Export Scores & Statistics"
 msgstr "Exportar Puntuaciones y Estadísticas"
 
 #. TRANSLATORS: %s is document title
-#: projects/batch_project_view.cpp:2461
+#: projects/batch_project_view.cpp:2459
 #, c-format
 msgid "%s Scores & Statistics"
 msgstr "%s Puntuaciones y Estadísticas"
 
-#: projects/batch_project_view.cpp:2462 projects/batch_project_view.cpp:2577
-#: ui/dialogs/export_all_dlg.cpp:191
+#: projects/batch_project_view.cpp:2460 projects/batch_project_view.cpp:2575
+#: ui/dialogs/export_all_dlg.cpp:190
 msgid "HTML Files (*.htm;*.html)|*.htm;*.html"
 msgstr "Archivos HTML (*.htm;*.html)|*.htm;*.html"
 
-#: projects/batch_project_view.cpp:2483
+#: projects/batch_project_view.cpp:2481
 msgid "Scores &amp; Statistics"
 msgstr "Puntuaciones y Estadísticas"
 
-#: projects/batch_project_view.cpp:2496
+#: projects/batch_project_view.cpp:2494
 msgid "Number of Paragraphs"
 msgstr "Número de Párrafos"
 
-#: projects/batch_project_view.cpp:2500 projects/standard_project_doc.cpp:2346
+#: projects/batch_project_view.cpp:2498 projects/standard_project_doc.cpp:2346
 msgid "Number of Sentences"
 msgstr "Número de Oraciones"
 
-#: projects/batch_project_view.cpp:2504 projects/standard_project_doc.cpp:2745
+#: projects/batch_project_view.cpp:2502 projects/standard_project_doc.cpp:2745
 msgid "Number of Words"
 msgstr "Número de Palabras"
 
-#: projects/batch_project_view.cpp:2508
+#: projects/batch_project_view.cpp:2506
 msgid "Text Size"
 msgstr "Tamaño de Texto"
 
 #. TRANSLATORS: %s is number of kilobytes in a file
 #. TRANSLATORS: %s is a file size
-#: projects/batch_project_view.cpp:2551
+#: projects/batch_project_view.cpp:2549
 #: results-format/project_report_format.cpp:3061
 #: results-format/project_report_format.cpp:3077
 #, c-format
 msgid "%s Kbs."
 msgstr "%s Kbs."
 
-#: projects/batch_project_view.cpp:2573
+#: projects/batch_project_view.cpp:2571
 msgid "Export Statistics Report"
 msgstr "Informe de Estadísticas de Exportación"
 
 #. TRANSLATORS: %s is document title
-#: projects/batch_project_view.cpp:2576
+#: projects/batch_project_view.cpp:2574
 #, c-format
 msgid "%s Summary Statistics Report"
 msgstr "%s Informe Resumido de Estadísticas"
 
-#: projects/batch_project_view.cpp:2584
+#: projects/batch_project_view.cpp:2582
 msgid "Exporting statistics..."
 msgstr "Exportación de estadísticas..."
 
-#: projects/batch_project_view.cpp:2592
+#: projects/batch_project_view.cpp:2590
 msgid ": Summary Statistics"
 msgstr ": Resumen de Estadísticas"
 
-#: projects/batch_project_view.cpp:2592
+#: projects/batch_project_view.cpp:2590
 msgid "Files:"
 msgstr "Archivos:"
 
-#: projects/batch_project_view.cpp:2730 projects/standard_project_view.cpp:365
+#: projects/batch_project_view.cpp:2728 projects/standard_project_view.cpp:365
 msgid "Single report"
 msgstr "Informe único"
 
-#: projects/batch_project_view.cpp:2731 projects/standard_project_view.cpp:367
+#: projects/batch_project_view.cpp:2729 projects/standard_project_view.cpp:367
 msgid ""
 "Saves the results into a single <span style='font-weight: bold;'>HTML</span> "
 "report."
@@ -8076,51 +8075,51 @@ msgstr ""
 "bold;'>HTML</span> ."
 
 #. TRANSLATORS: Different (multiple) files. "Separate" is not a verb here.
-#: projects/batch_project_view.cpp:2733 projects/standard_project_view.cpp:369
+#: projects/batch_project_view.cpp:2731 projects/standard_project_view.cpp:369
 msgid "Separate files"
 msgstr "Diferentes archivos"
 
-#: projects/batch_project_view.cpp:2734 projects/standard_project_view.cpp:370
+#: projects/batch_project_view.cpp:2732 projects/standard_project_view.cpp:370
 msgid "Saves each result window to a separate file."
 msgstr "Guarda cada ventana de resultados en un archivo independiente."
 
-#: projects/batch_project_view.cpp:2735 projects/standard_project_view.cpp:371
+#: projects/batch_project_view.cpp:2733 projects/standard_project_view.cpp:371
 msgid "Select How to Export"
 msgstr "Seleccione Cómo Exportar"
 
-#: projects/batch_project_view.cpp:2736 projects/standard_project_view.cpp:372
+#: projects/batch_project_view.cpp:2734 projects/standard_project_view.cpp:372
 msgid "Export methods:"
 msgstr "Métodos de exportación:"
 
-#: projects/batch_project_view.cpp:2737 projects/standard_project_view.cpp:372
+#: projects/batch_project_view.cpp:2735 projects/standard_project_view.cpp:372
 msgid "Export All"
 msgstr "Exportar todo"
 
-#: projects/batch_project_view.cpp:2802
+#: projects/batch_project_view.cpp:2800
 msgid "Select a list that contains document names."
 msgstr "Seleccione una lista que contenga los nombres de los documentos."
 
-#: projects/batch_project_view.cpp:2825
+#: projects/batch_project_view.cpp:2823
 msgid "Select a document in the list."
 msgstr "Seleccione un documento de la lista."
 
-#: projects/batch_project_view.cpp:2837
+#: projects/batch_project_view.cpp:2835
 msgid "Unable to find selected subproject."
 msgstr "No se puede encontrar el subproyecto seleccionado."
 
-#: projects/batch_project_view.cpp:2843 projects/standard_project_view.cpp:429
+#: projects/batch_project_view.cpp:2841 projects/standard_project_view.cpp:429
 msgid "Export Filtered Document"
 msgstr "Exportar Documento Filtrado"
 
-#: projects/batch_project_view.cpp:2845 projects/standard_project_view.cpp:430
+#: projects/batch_project_view.cpp:2843 projects/standard_project_view.cpp:430
 msgid "Text Files (*.txt)|*.txt"
 msgstr "Archivos de Texto (*.txt)|*.txt"
 
-#: projects/batch_project_view.cpp:3036 projects/standard_project_view.cpp:974
+#: projects/batch_project_view.cpp:3034 projects/standard_project_view.cpp:974
 msgid "Edit Embedded Document"
 msgstr "Editar Documento Incrustado"
 
-#: projects/batch_project_view.cpp:3038 projects/standard_project_view.cpp:976
+#: projects/batch_project_view.cpp:3036 projects/standard_project_view.cpp:976
 msgid ""
 "Note: The appended template document is not included here.\n"
 "Only the embedded text is editable from this dialog."
@@ -8128,11 +8127,11 @@ msgstr ""
 "Nota: El documento de plantilla adjunto no se incluye aquí.\n"
 "Solo el texto incrustado es editable desde este cuadro de diálogo."
 
-#: projects/batch_project_view.cpp:3053 projects/standard_project_view.cpp:987
+#: projects/batch_project_view.cpp:3051 projects/standard_project_view.cpp:987
 msgid "Files inside of archives files cannot be edited."
 msgstr "Los archivos dentro de los archivos comprimidos no se pueden editar."
 
-#: projects/batch_project_view.cpp:3071
+#: projects/batch_project_view.cpp:3069
 #, c-format
 msgid "File could not be found: %s"
 msgstr "No se pudo encontrar el archivo: %s"
@@ -8418,9 +8417,9 @@ msgstr "Recuento de Sílabas"
 #: projects/standard_project_doc.cpp:1833
 #: projects/standard_project_doc.cpp:1885
 #: projects/standard_project_doc.cpp:1938
-#: projects/standard_project_doc.cpp:6986
-#: projects/standard_project_doc.cpp:7198
-#: projects/standard_project_doc.cpp:7340 ui/dialogs/edit_word_list_dlg.cpp:298
+#: projects/standard_project_doc.cpp:6985
+#: projects/standard_project_doc.cpp:7197
+#: projects/standard_project_doc.cpp:7339 ui/dialogs/edit_word_list_dlg.cpp:298
 msgid "Suggestion"
 msgstr "Sugerencia"
 
@@ -8770,24 +8769,24 @@ msgid "%s (Unfamiliar) Report"
 msgstr "%s (Desconocido) Informe"
 
 #: projects/standard_project_doc.cpp:6115
-#: projects/standard_project_doc.cpp:6229
+#: projects/standard_project_doc.cpp:6228
 #, c-format
 msgid "Unfamiliar %s words"
 msgstr "Palabras %s desconocidas"
 
-#: projects/standard_project_doc.cpp:6324 ui/dialogs/tools_options_dlg.h:520
+#: projects/standard_project_doc.cpp:6323 ui/dialogs/tools_options_dlg.h:520
 msgid "Highlighted Report"
 msgstr "Informe Resaltado"
 
-#: projects/standard_project_doc.cpp:6395
+#: projects/standard_project_doc.cpp:6394
 msgid "Highlighted Dolch Words"
 msgstr "Palabras Resaltadas Dolch"
 
-#: projects/standard_project_doc.cpp:6404
+#: projects/standard_project_doc.cpp:6403
 msgid "Highlighted Non-Dolch Words"
 msgstr "Palabras Resaltadas No Dolch"
 
-#: projects/standard_project_doc.cpp:6418
+#: projects/standard_project_doc.cpp:6417
 msgid ""
 "An internal error occurred while formatting the highlighted text. Please "
 "contact the software vendor."
@@ -8795,73 +8794,73 @@ msgstr ""
 "Se ha producido un error interno al formatear el texto resaltado. Póngase en "
 "contacto con el proveedor del software."
 
-#: projects/standard_project_doc.cpp:6537
+#: projects/standard_project_doc.cpp:6536
 msgid "Spache (Unfamiliar) Report"
 msgstr "Informe Spache (Desconocido)"
 
-#: projects/standard_project_doc.cpp:6568
+#: projects/standard_project_doc.cpp:6567
 msgid "Harris-Jacobson (Unfamiliar) Report"
 msgstr "Informe Harris-Jacobson (Desconocido)"
 
-#: projects/standard_project_doc.cpp:6608
+#: projects/standard_project_doc.cpp:6607
 msgid "Dale-Chall (Unfamiliar) Report"
 msgstr "Informe de Dale-Chall (Desconocido)"
 
-#: projects/standard_project_doc.cpp:6648
+#: projects/standard_project_doc.cpp:6647
 msgid "Project appears to be open by another application. Cannot save project."
 msgstr ""
 "El proyecto parece estar abierto por otra aplicación. No se puede guardar el "
 "proyecto."
 
-#: projects/standard_project_doc.cpp:6836
-#: projects/standard_project_doc.cpp:7289
-#: projects/standard_project_doc.cpp:7514
-#: projects/standard_project_doc.cpp:7581
+#: projects/standard_project_doc.cpp:6835
+#: projects/standard_project_doc.cpp:7288
+#: projects/standard_project_doc.cpp:7513
+#: projects/standard_project_doc.cpp:7580
 msgid "Sentence"
 msgstr "Oración"
 
-#: projects/standard_project_doc.cpp:6837
+#: projects/standard_project_doc.cpp:6836
 msgid "Word Count"
 msgstr "Recuento de Palabras"
 
-#: projects/standard_project_doc.cpp:6838
-#: projects/standard_project_doc.cpp:6987
-#: projects/standard_project_doc.cpp:7098
-#: projects/standard_project_doc.cpp:7199
-#: projects/standard_project_doc.cpp:7291
-#: projects/standard_project_doc.cpp:7341
-#: projects/standard_project_doc.cpp:7382
-#: projects/standard_project_doc.cpp:7515
-#: projects/standard_project_doc.cpp:7582
+#: projects/standard_project_doc.cpp:6837
+#: projects/standard_project_doc.cpp:6986
+#: projects/standard_project_doc.cpp:7097
+#: projects/standard_project_doc.cpp:7198
+#: projects/standard_project_doc.cpp:7290
+#: projects/standard_project_doc.cpp:7340
+#: projects/standard_project_doc.cpp:7381
+#: projects/standard_project_doc.cpp:7514
+#: projects/standard_project_doc.cpp:7581
 msgid "Sentence #"
 msgstr "Oración #"
 
-#: projects/standard_project_doc.cpp:7043
+#: projects/standard_project_doc.cpp:7042
 msgid "Misspelling"
 msgstr "Falta de ortografía"
 
-#: projects/standard_project_doc.cpp:7097
+#: projects/standard_project_doc.cpp:7096
 msgid "Words that Appear Twice Adjacently"
 msgstr "Palabras que Aparecen dos Veces Adyacentes"
 
-#: projects/standard_project_doc.cpp:7156
+#: projects/standard_project_doc.cpp:7155
 msgid "Article Mismatch"
 msgstr "Discrepancia de Artículos"
 
-#: projects/standard_project_doc.cpp:7288
+#: projects/standard_project_doc.cpp:7287
 msgid "Repeated Word"
 msgstr "Palabra Repetida"
 
-#: projects/standard_project_doc.cpp:7381
+#: projects/standard_project_doc.cpp:7380
 msgid "Explanation/Suggestion"
 msgstr "Explicación/Sugerencia"
 
-#: projects/standard_project_doc.cpp:7645
-#: projects/standard_project_doc.cpp:7725 ui/dialogs/word_list_dlg.cpp:254
+#: projects/standard_project_doc.cpp:7644
+#: projects/standard_project_doc.cpp:7724 ui/dialogs/word_list_dlg.cpp:254
 msgid "Category"
 msgstr "Categoría"
 
-#: projects/standard_project_doc.cpp:7752
+#: projects/standard_project_doc.cpp:7751
 msgid ""
 "Simple Words\n"
 "(1-2 syllables)"
@@ -8869,7 +8868,7 @@ msgstr ""
 "Palabras sencillas\n"
 "(1-2 sílabas)"
 
-#: projects/standard_project_doc.cpp:7752
+#: projects/standard_project_doc.cpp:7751
 msgid ""
 "Complex Words\n"
 "(3+ syllables)"
@@ -8877,12 +8876,12 @@ msgstr ""
 "Palabras Complejas\n"
 "(3+ sílabas)"
 
-#: projects/standard_project_doc.cpp:7879
+#: projects/standard_project_doc.cpp:7878
 #, c-format
 msgid "Sentence #%s (%s)"
 msgstr "Oración #%s (%s)"
 
-#: projects/standard_project_doc.cpp:7898
+#: projects/standard_project_doc.cpp:7897
 #, c-format
 msgid "Sentence #%s"
 msgstr "Oración #%s"
@@ -11038,69 +11037,88 @@ msgid "Select which section to copy:"
 msgstr "Seleccione la sección que desea copiar:"
 
 #. TRANSLATORS: %s is the application name
-#: ui/dialogs/about_dlg_ex.cpp:45
+#: ui/dialogs/about_dlg_ex.cpp:46
 #, c-format
 msgid "About %s"
 msgstr "Acerca de %s"
 
-#: ui/dialogs/about_dlg_ex.cpp:165
+#: ui/dialogs/about_dlg_ex.cpp:184
 msgid "Product Info"
 msgstr "Información del Producto"
 
-#: ui/dialogs/about_dlg_ex.cpp:176
+#: ui/dialogs/about_dlg_ex.cpp:195
 msgid "Version:"
 msgstr "Versión:"
 
-#: ui/dialogs/about_dlg_ex.cpp:181
+#: ui/dialogs/about_dlg_ex.cpp:200
 msgid "Build:"
 msgstr "Compilación del programa:"
 
 #. TRANSLATORS: Compiled version of the program (e.g., DEBUG or RELEASE)
-#: ui/dialogs/about_dlg_ex.cpp:188
-msgid "Build type:"
-msgstr "Tipo de compilación del programa:"
+#: ui/dialogs/about_dlg_ex.cpp:207
+msgid "Build Type:"
+msgstr "Tipo de Compilación del Programa:"
 
-#: ui/dialogs/about_dlg_ex.cpp:189
+#: ui/dialogs/about_dlg_ex.cpp:208
 msgid "DEBUG"
 msgstr "DEPURAR"
 
-#: ui/dialogs/about_dlg_ex.cpp:191
-msgid "Built on:"
-msgstr "Creado el:"
+#: ui/dialogs/about_dlg_ex.cpp:210
+msgid "Build Date:"
+msgstr "Fecha de Compilación del Programa:"
 
 #. TRANSLATORS: Operating System
-#: ui/dialogs/about_dlg_ex.cpp:197
+#: ui/dialogs/about_dlg_ex.cpp:216
 msgid "Platform:"
 msgstr "Plataforma:"
 
-#: ui/dialogs/about_dlg_ex.cpp:224
+#. TRANSLATORS: Computer CPU information
+#: ui/dialogs/about_dlg_ex.cpp:227
+msgid "Architecture:"
+msgstr "Arquitectura:"
+
+#. TRANSLATORS: CPU type, and then threads count
+#: ui/dialogs/about_dlg_ex.cpp:231
+#, c-format
+msgid "%s, %d CPU threads"
+msgstr "%s, %d subprocesos de CPU"
+
+#: ui/dialogs/about_dlg_ex.cpp:235
+msgid "Memory:"
+msgstr "Memoria:"
+
+#: ui/dialogs/about_dlg_ex.cpp:242
+msgid "Peak Memory Usage:"
+msgstr "Uso Máximo de la Memoria:"
+
+#: ui/dialogs/about_dlg_ex.cpp:283
 msgid "License"
 msgstr "Licencia"
 
-#: ui/dialogs/about_dlg_ex.cpp:241
+#: ui/dialogs/about_dlg_ex.cpp:300
 msgid "Components"
 msgstr "Componentes"
 
-#: ui/dialogs/about_dlg_ex.cpp:252
+#: ui/dialogs/about_dlg_ex.cpp:311
 #, c-format
 msgid "version %s"
 msgstr "versión %s"
 
-#: ui/dialogs/about_dlg_ex.cpp:253
+#: ui/dialogs/about_dlg_ex.cpp:312
 msgid "unversioned"
 msgstr "no versión"
 
-#: ui/dialogs/about_dlg_ex.cpp:330
+#: ui/dialogs/about_dlg_ex.cpp:389
 msgid "Citation"
 msgstr "Citación"
 
-#: ui/dialogs/about_dlg_ex.cpp:333
+#: ui/dialogs/about_dlg_ex.cpp:392
 #, c-format
 msgid "To cite %s in publications:"
 msgstr "Para citar %s en publicaciones:"
 
 #. TRANSLATORS: "New Dale-Chall" should not be translated; it is a test name.
-#: ui/dialogs/custom_test_dlg.cpp:48
+#: ui/dialogs/custom_test_dlg.cpp:45
 msgid ""
 "A familiar word list has been defined, but no formula has been specified. Do "
 "you wish to use the New Dale-Chall formula for this test?"
@@ -11109,19 +11127,19 @@ msgstr ""
 "ninguna fórmula. ¿Desea utilizar la fórmula de New Dale-Chall para esta "
 "prueba?"
 
-#: ui/dialogs/custom_test_dlg.cpp:51
+#: ui/dialogs/custom_test_dlg.cpp:48
 msgid "No Formula Defined"
 msgstr "No hay Fórmula Definida"
 
-#: ui/dialogs/custom_test_dlg.cpp:67
+#: ui/dialogs/custom_test_dlg.cpp:64
 msgid "Please enter a formula."
 msgstr "Por favor, introduzca una fórmula."
 
-#: ui/dialogs/custom_test_dlg.cpp:67
+#: ui/dialogs/custom_test_dlg.cpp:64
 msgid "Missing Formula"
 msgstr "Fórmula Faltante"
 
-#: ui/dialogs/custom_test_dlg.cpp:84
+#: ui/dialogs/custom_test_dlg.cpp:81
 #, c-format
 msgid ""
 "Syntax error in formula at position %s:\n"
@@ -11133,7 +11151,7 @@ msgstr ""
 "^"
 
 #. TRANSLATORS: "New Dale-Chall" should not be translated; it is a test name.
-#: ui/dialogs/custom_test_dlg.cpp:98
+#: ui/dialogs/custom_test_dlg.cpp:95
 msgid ""
 "The New Dale-Chall formula is being used for this test, but the standard "
 "Dale-Chall word list is not being included. Do you wish to include this word "
@@ -11143,7 +11161,7 @@ msgstr ""
 "incluye la lista de palabras estándar de Dale-Chall. ¿Desea incluir esta "
 "lista de palabras?"
 
-#: ui/dialogs/custom_test_dlg.cpp:114
+#: ui/dialogs/custom_test_dlg.cpp:111
 msgid ""
 "The Spache formula is being used for this test, but the standard Spache word "
 "list is not being included. Do you wish to include this word list?"
@@ -11151,7 +11169,7 @@ msgstr ""
 "La fórmula de Spache se utiliza para esta prueba, pero no se incluye la "
 "lista de palabras estándar de Spache. ¿Desea incluir esta lista de palabras?"
 
-#: ui/dialogs/custom_test_dlg.cpp:130
+#: ui/dialogs/custom_test_dlg.cpp:127
 msgid ""
 "The Harris-Jacobson formula is being used for this test, but the standard "
 "Harris-Jacobson word list is not being included. Do you wish to include this "
@@ -11161,15 +11179,15 @@ msgstr ""
 "incluye la lista de palabras estándar de Harris-Jacobson. ¿Desea incluir "
 "esta lista de palabras?"
 
-#: ui/dialogs/custom_test_dlg.cpp:165
+#: ui/dialogs/custom_test_dlg.cpp:162
 msgid "Adjust to match New Dale-Chall"
 msgstr "Ajuste para que coincida con New Dale-Chall"
 
-#: ui/dialogs/custom_test_dlg.cpp:165
+#: ui/dialogs/custom_test_dlg.cpp:162
 msgid "Do not adjust"
 msgstr "No ajustar"
 
-#: ui/dialogs/custom_test_dlg.cpp:220
+#: ui/dialogs/custom_test_dlg.cpp:217
 msgid ""
 "Familiar words not defined.\n"
 "\n"
@@ -11179,7 +11197,7 @@ msgstr ""
 "\n"
 "Esta fórmula requiere seleccionar una lista de palabras conocidas."
 
-#: ui/dialogs/custom_test_dlg.cpp:246
+#: ui/dialogs/custom_test_dlg.cpp:243
 msgid ""
 "A familiar word list has been defined, but the formula is not using it. "
 "Familiar word list definitions will be ignored."
@@ -11187,7 +11205,7 @@ msgstr ""
 "Se ha definido una lista de palabras conocidas, pero la fórmula no la "
 "utiliza. Se ignorarán las definiciones de listas de palabras conocidas."
 
-#: ui/dialogs/custom_test_dlg.cpp:265
+#: ui/dialogs/custom_test_dlg.cpp:262
 msgid ""
 "Custom familiar word tests must return a grade level result. Test result "
 "type has been reset to grade level."
@@ -11196,19 +11214,19 @@ msgstr ""
 "resultado de nivel de grado. El tipo de resultado de la prueba se ha "
 "restablecido al nivel de grado."
 
-#: ui/dialogs/custom_test_dlg.cpp:277
+#: ui/dialogs/custom_test_dlg.cpp:274
 msgid "Calculated value: "
 msgstr "Valor calculado: "
 
-#: ui/dialogs/custom_test_dlg.cpp:279
+#: ui/dialogs/custom_test_dlg.cpp:276
 msgid "Formula is valid; no syntax errors were detected."
 msgstr "La fórmula es válida; No se detectaron errores de sintaxis."
 
-#: ui/dialogs/custom_test_dlg.cpp:281
+#: ui/dialogs/custom_test_dlg.cpp:278
 msgid "Formula Validated"
 msgstr "Fórmula Validada"
 
-#: ui/dialogs/custom_test_dlg.cpp:293
+#: ui/dialogs/custom_test_dlg.cpp:290
 msgid ""
 "An unknown error occurred while validating the formula. Please verify the "
 "syntax of the formula."
@@ -11216,63 +11234,63 @@ msgstr ""
 "Se ha producido un error desconocido al validar la fórmula. Verifique la "
 "sintaxis de la fórmula."
 
-#: ui/dialogs/custom_test_dlg.cpp:364
+#: ui/dialogs/custom_test_dlg.cpp:361
 msgid "Multiplication."
 msgstr "Multiplicación."
 
-#: ui/dialogs/custom_test_dlg.cpp:365
+#: ui/dialogs/custom_test_dlg.cpp:362
 msgid "Division."
 msgstr "División."
 
-#: ui/dialogs/custom_test_dlg.cpp:367
+#: ui/dialogs/custom_test_dlg.cpp:364
 msgid "Modulus: Divides two values and returns the remainder."
 msgstr "Módulo: Divide dos valores y devuelve el resto."
 
-#: ui/dialogs/custom_test_dlg.cpp:369
+#: ui/dialogs/custom_test_dlg.cpp:366
 msgid "Addition."
 msgstr "Sumar."
 
-#: ui/dialogs/custom_test_dlg.cpp:370
+#: ui/dialogs/custom_test_dlg.cpp:367
 msgid "Subtraction."
 msgstr "Sustracción."
 
-#: ui/dialogs/custom_test_dlg.cpp:371
+#: ui/dialogs/custom_test_dlg.cpp:368
 msgid "Exponentiation."
 msgstr "Exponenciación."
 
-#: ui/dialogs/custom_test_dlg.cpp:372
+#: ui/dialogs/custom_test_dlg.cpp:369
 msgid "Equals."
 msgstr "Iguales."
 
-#: ui/dialogs/custom_test_dlg.cpp:373
+#: ui/dialogs/custom_test_dlg.cpp:370
 msgid "Less than."
 msgstr "Menor que."
 
-#: ui/dialogs/custom_test_dlg.cpp:374
+#: ui/dialogs/custom_test_dlg.cpp:371
 msgid "Greater than."
 msgstr "Mayor que."
 
-#: ui/dialogs/custom_test_dlg.cpp:375
+#: ui/dialogs/custom_test_dlg.cpp:372
 msgid "Not equal to."
 msgstr "No es igual a."
 
-#: ui/dialogs/custom_test_dlg.cpp:376
+#: ui/dialogs/custom_test_dlg.cpp:373
 msgid "Greater than or equal to."
 msgstr "Mayor o igual a."
 
-#: ui/dialogs/custom_test_dlg.cpp:377
+#: ui/dialogs/custom_test_dlg.cpp:374
 msgid "Less than or equal to."
 msgstr "Menor o igual que."
 
-#: ui/dialogs/custom_test_dlg.cpp:378
+#: ui/dialogs/custom_test_dlg.cpp:375
 msgid "Logical conjunction."
 msgstr "Conjunción lógica."
 
-#: ui/dialogs/custom_test_dlg.cpp:379
+#: ui/dialogs/custom_test_dlg.cpp:376
 msgid "Logical alternative."
 msgstr "Alternativa lógica."
 
-#: ui/dialogs/custom_test_dlg.cpp:384
+#: ui/dialogs/custom_test_dlg.cpp:381
 msgid ""
 "If \"condition\" is true (non-zero), then \"value_if_true\" is returned; "
 "otherwise, \"value_if_false\" is returned."
@@ -11280,11 +11298,11 @@ msgstr ""
 "Si \"condition\" es true (distinto de cero), se devuelve \"value_if_true\"; "
 "de lo contrario, se devuelve \"value_if_false\"."
 
-#: ui/dialogs/custom_test_dlg.cpp:388
+#: ui/dialogs/custom_test_dlg.cpp:385
 msgid "Returns the logical negation of \"value.\""
 msgstr "Devuelve la negación lógica del \"valor\"."
 
-#: ui/dialogs/custom_test_dlg.cpp:393
+#: ui/dialogs/custom_test_dlg.cpp:390
 msgid ""
 "Returns the remainder after Number is divided by Divisor. The result has the "
 "same sign as divisor."
@@ -11292,47 +11310,47 @@ msgstr ""
 "Devuelve el resto después de dividir el número por el divisor. El resultado "
 "tiene el mismo signo que el divisor."
 
-#: ui/dialogs/custom_test_dlg.cpp:397
+#: ui/dialogs/custom_test_dlg.cpp:394
 msgid "Constrains x within the range of start and end."
 msgstr "Restringe x dentro del rango de inicio y fin."
 
-#: ui/dialogs/custom_test_dlg.cpp:399
+#: ui/dialogs/custom_test_dlg.cpp:396
 msgid "Exponential function (Euler to the power of x)."
 msgstr "Función exponencial (Euler elevado a x)."
 
-#: ui/dialogs/custom_test_dlg.cpp:401
+#: ui/dialogs/custom_test_dlg.cpp:398
 msgid "Natural logarithm of x (base Euler)."
 msgstr "Logaritmo neperiano de x (base Euler)."
 
-#: ui/dialogs/custom_test_dlg.cpp:402
+#: ui/dialogs/custom_test_dlg.cpp:399
 msgid "Common logarithm of x (base 10)."
 msgstr "Logaritmo común de x (base 10)."
 
-#: ui/dialogs/custom_test_dlg.cpp:403
+#: ui/dialogs/custom_test_dlg.cpp:400
 msgid "Square root of x."
 msgstr "Raíz cuadrada de x."
 
-#: ui/dialogs/custom_test_dlg.cpp:404
+#: ui/dialogs/custom_test_dlg.cpp:401
 msgid "Absolute value of x."
 msgstr "Valor absoluto de x."
 
-#: ui/dialogs/custom_test_dlg.cpp:405
+#: ui/dialogs/custom_test_dlg.cpp:402
 msgid "Returns the sign of x. For example:"
 msgstr "Devuelve el signo de x. Por ejemplo:"
 
-#: ui/dialogs/custom_test_dlg.cpp:408
+#: ui/dialogs/custom_test_dlg.cpp:405
 msgid "Discards the fractional part of a number. For example:"
 msgstr "Descarta la parte fraccionaria de un número. Por ejemplo:"
 
-#: ui/dialogs/custom_test_dlg.cpp:412
+#: ui/dialogs/custom_test_dlg.cpp:409
 msgid "Returns the smallest integer not less than x. For example:"
 msgstr "Devuelve el entero más pequeño no menor que x. Por ejemplo:"
 
-#: ui/dialogs/custom_test_dlg.cpp:416
+#: ui/dialogs/custom_test_dlg.cpp:413
 msgid "Returns the largest integer not greater than x. For example:"
 msgstr "Devuelve el entero más grande que no sea mayor que x. Por ejemplo:"
 
-#: ui/dialogs/custom_test_dlg.cpp:420
+#: ui/dialogs/custom_test_dlg.cpp:417
 msgid ""
 "Returns the number x rounded to n decimal places. (n is optional and "
 "defaults to zero.) For example:"
@@ -11340,12 +11358,12 @@ msgstr ""
 "Devuelve el número x redondeado a n decimales. (n es opcional y el valor "
 "predeterminado es cero). Por ejemplo:"
 
-#: ui/dialogs/custom_test_dlg.cpp:426
+#: ui/dialogs/custom_test_dlg.cpp:423
 msgid "Generates a random floating point number within the range of 0 and 1."
 msgstr ""
 "Genera un número de coma flotante aleatorio dentro del intervalo de 0 y 1."
 
-#: ui/dialogs/custom_test_dlg.cpp:429
+#: ui/dialogs/custom_test_dlg.cpp:426
 msgid ""
 "The Power function raises Base to any power. For fractional exponents, Base "
 "must be greater than 0."
@@ -11353,23 +11371,23 @@ msgstr ""
 "La función de potencia eleva la base a cualquier potencia. En el caso de los "
 "exponentes fraccionarios, la base debe ser mayor que 0."
 
-#: ui/dialogs/custom_test_dlg.cpp:433
+#: ui/dialogs/custom_test_dlg.cpp:430
 msgid "Returns the lowest value from a specified range of values."
 msgstr "Devuelve el valor más bajo de un intervalo especificado de valores."
 
-#: ui/dialogs/custom_test_dlg.cpp:436
+#: ui/dialogs/custom_test_dlg.cpp:433
 msgid "Returns the highest value from a specified range of values."
 msgstr "Devuelve el valor más alto de un intervalo especificado de valores."
 
-#: ui/dialogs/custom_test_dlg.cpp:442
+#: ui/dialogs/custom_test_dlg.cpp:439
 msgid "Returns the sum of a specified range of values."
 msgstr "Devuelve la suma de un intervalo especificado de valores."
 
-#: ui/dialogs/custom_test_dlg.cpp:445
+#: ui/dialogs/custom_test_dlg.cpp:442
 msgid "Returns the average of a specified range of values."
 msgstr "Devuelve el promedio de un rango especificado de valores."
 
-#: ui/dialogs/custom_test_dlg.cpp:451
+#: ui/dialogs/custom_test_dlg.cpp:448
 msgid ""
 "Performs a New Dale-Chall test with a custom familiar word list. Note that "
 "this test will use the same text exclusion rules as the Dale-Chall test "
@@ -11380,13 +11398,13 @@ msgstr ""
 "exclusión de texto que la prueba de Dale-Chall (anulando los valores "
 "predeterminados del sistema)."
 
-#: ui/dialogs/custom_test_dlg.cpp:456
+#: ui/dialogs/custom_test_dlg.cpp:453
 msgid "Performs a Spache Revised test with a custom familiar word list."
 msgstr ""
 "Realiza una prueba de Spache Revised con una lista personalizada de palabras "
 "conocidas."
 
-#: ui/dialogs/custom_test_dlg.cpp:459
+#: ui/dialogs/custom_test_dlg.cpp:456
 msgid ""
 "Performs a Harris-Jacobson test with a custom familiar word list. Note that "
 "this test will use the same text exclusion rules as the Harris-Jacobson test "
@@ -11398,7 +11416,7 @@ msgstr ""
 "valores predeterminados del sistema)."
 
 #. TRANSLATORS: "Default" should not be translated in here, it is a program keyword.
-#: ui/dialogs/custom_test_dlg.cpp:469
+#: ui/dialogs/custom_test_dlg.cpp:466
 msgid ""
 "Returns the number of syllables from the document.\n"
 "\n"
@@ -11413,7 +11431,7 @@ msgstr ""
 "NumeralsAreOneSyllable"
 
 #. TRANSLATORS: "Default" should not be translated in here, it is a program keyword.
-#: ui/dialogs/custom_test_dlg.cpp:476
+#: ui/dialogs/custom_test_dlg.cpp:473
 msgid ""
 "Returns the number of characters (i.e., letters and numbers) from the "
 "document.\n"
@@ -11428,7 +11446,7 @@ msgstr ""
 "texto que se va a utilizar. Estos valores son: Default, DaleChall y "
 "HarrisJacobson"
 
-#: ui/dialogs/custom_test_dlg.cpp:481
+#: ui/dialogs/custom_test_dlg.cpp:478
 msgid ""
 "Returns the number of characters (i.e., letters and numbers) and punctuation "
 "from the document.\n"
@@ -11441,20 +11459,20 @@ msgstr ""
 "Tenga en cuenta que la puntuación al final de la oración no se incluye en "
 "este recuento."
 
-#: ui/dialogs/custom_test_dlg.cpp:489
+#: ui/dialogs/custom_test_dlg.cpp:486
 msgid "Returns the number of familiar words (from a custom list) the document."
 msgstr ""
 "Devuelve el número de palabras conocidas (de una lista personalizada) del "
 "documento."
 
-#: ui/dialogs/custom_test_dlg.cpp:492
+#: ui/dialogs/custom_test_dlg.cpp:489
 msgid ""
 "Returns the number of unfamiliar words (from a custom list) the document."
 msgstr ""
 "Devuelve el número de palabras desconocidas (de una lista personalizada) del "
 "documento."
 
-#: ui/dialogs/custom_test_dlg.cpp:495
+#: ui/dialogs/custom_test_dlg.cpp:492
 msgid ""
 "Returns the number of unique unfamiliar words (from a custom list) from the "
 "document."
@@ -11462,13 +11480,13 @@ msgstr ""
 "Devuelve el número de palabras desconocidas únicas (de una lista "
 "personalizada) del documento."
 
-#: ui/dialogs/custom_test_dlg.cpp:499
+#: ui/dialogs/custom_test_dlg.cpp:496
 msgid ""
 "Returns the number of unfamiliar Harris-Jacobson words from the document."
 msgstr ""
 "Devuelve el número de palabras desconocidas de Harris-Jacobson del documento."
 
-#: ui/dialogs/custom_test_dlg.cpp:503
+#: ui/dialogs/custom_test_dlg.cpp:500
 msgid ""
 "Returns the number of unique unfamiliar Harris-Jacobson words from the "
 "document."
@@ -11476,18 +11494,18 @@ msgstr ""
 "Devuelve el número de palabras desconocidas únicas de Harris-Jacobson del "
 "documento."
 
-#: ui/dialogs/custom_test_dlg.cpp:506
+#: ui/dialogs/custom_test_dlg.cpp:503
 msgid "Returns the number of familiar Harris-Jacobson words from the document."
 msgstr ""
 "Devuelve el número de palabras conocidas de Harris-Jacobson del documento."
 
-#: ui/dialogs/custom_test_dlg.cpp:509
+#: ui/dialogs/custom_test_dlg.cpp:506
 msgid ""
 "Returns the number of unfamiliar New Dale-Chall words from the document."
 msgstr ""
 "Devuelve el número de palabras desconocidas de New Dale-Chall del documento."
 
-#: ui/dialogs/custom_test_dlg.cpp:513
+#: ui/dialogs/custom_test_dlg.cpp:510
 msgid ""
 "Returns the number of unique unfamiliar New Dale-Chall words from the "
 "document."
@@ -11495,24 +11513,24 @@ msgstr ""
 "Devuelve el número de palabras desconocidas únicas de New Dale-Chall del "
 "documento."
 
-#: ui/dialogs/custom_test_dlg.cpp:516
+#: ui/dialogs/custom_test_dlg.cpp:513
 msgid "Returns the number of familiar Dale-Chall words from the document."
 msgstr "Devuelve el número de palabras conocidas de Dale-Chall del documento."
 
-#: ui/dialogs/custom_test_dlg.cpp:519
+#: ui/dialogs/custom_test_dlg.cpp:516
 msgid "Returns the number of unfamiliar Spache words from the document."
 msgstr "Devuelve el número de palabras desconocidas de Spache del documento."
 
-#: ui/dialogs/custom_test_dlg.cpp:522
+#: ui/dialogs/custom_test_dlg.cpp:519
 msgid "Returns the number of unique unfamiliar Spache words from the document."
 msgstr ""
 "Devuelve el número de palabras desconocidas únicas de Spache del documento."
 
-#: ui/dialogs/custom_test_dlg.cpp:525
+#: ui/dialogs/custom_test_dlg.cpp:522
 msgid "Returns the number of familiar Spache words from the document."
 msgstr "Devuelve el número de palabras de Spache conocidas del documento."
 
-#: ui/dialogs/custom_test_dlg.cpp:528
+#: ui/dialogs/custom_test_dlg.cpp:525
 msgid ""
 "Returns the number of words consisting of six or more characters from the "
 "document."
@@ -11520,7 +11538,7 @@ msgstr ""
 "Devuelve el número de palabras que constan de seis o más caracteres del "
 "documento."
 
-#: ui/dialogs/custom_test_dlg.cpp:532
+#: ui/dialogs/custom_test_dlg.cpp:529
 msgid ""
 "Returns the number of words consisting of seven or more characters from the "
 "document."
@@ -11528,12 +11546,12 @@ msgstr ""
 "Devuelve el número de palabras que constan de siete o más caracteres del "
 "documento."
 
-#: ui/dialogs/custom_test_dlg.cpp:536
+#: ui/dialogs/custom_test_dlg.cpp:533
 msgid "Returns the number of monosyllabic words from the document."
 msgstr "Devuelve el número de palabras monosilábicas del documento."
 
 #. TRANSLATORS: "Default" should not be translated in here, it is a program keyword.
-#: ui/dialogs/custom_test_dlg.cpp:541
+#: ui/dialogs/custom_test_dlg.cpp:538
 msgid ""
 "Returns the number of words consisting of three or more syllables from the "
 "document.\n"
@@ -11548,7 +11566,7 @@ msgstr ""
 "numérica usar. Estos valores son: Default o NumeralsFullySyllabized"
 
 #. TRANSLATORS: "Default" should not be translated in here, it is a program keyword.
-#: ui/dialogs/custom_test_dlg.cpp:548
+#: ui/dialogs/custom_test_dlg.cpp:545
 msgid ""
 "Returns the number of words from the document.\n"
 "\n"
@@ -11561,19 +11579,19 @@ msgstr ""
 "texto que se va a utilizar. Estos valores son: Default, DaleChall y "
 "HarrisJacobson"
 
-#: ui/dialogs/custom_test_dlg.cpp:552
+#: ui/dialogs/custom_test_dlg.cpp:549
 msgid "Returns the number of numerals from the document."
 msgstr "Devuelve el número de números del documento."
 
-#: ui/dialogs/custom_test_dlg.cpp:555
+#: ui/dialogs/custom_test_dlg.cpp:552
 msgid "Returns the number of proper nouns from the document."
 msgstr "Devuelve el número de nombres propios del documento."
 
-#: ui/dialogs/custom_test_dlg.cpp:558
+#: ui/dialogs/custom_test_dlg.cpp:555
 msgid "Returns the number of unique words from the document."
 msgstr "Devuelve el número de palabras únicas del documento."
 
-#: ui/dialogs/custom_test_dlg.cpp:561
+#: ui/dialogs/custom_test_dlg.cpp:558
 msgid ""
 "Returns the number of unique words consisting of six or more characters from "
 "the document."
@@ -11582,7 +11600,7 @@ msgstr ""
 "del documento."
 
 #. TRANSLATORS: "Default" should not be translated in here, it is a program keyword.
-#: ui/dialogs/custom_test_dlg.cpp:567
+#: ui/dialogs/custom_test_dlg.cpp:564
 msgid ""
 "Returns the number of unique words consisting of three or more syllables "
 "from the document.\n"
@@ -11596,21 +11614,21 @@ msgstr ""
 "Esta función toma un argumento que especifica qué método de silabación "
 "numérica usar. Estos valores son: Default o NumeralsFullySyllabized"
 
-#: ui/dialogs/custom_test_dlg.cpp:572
+#: ui/dialogs/custom_test_dlg.cpp:569
 msgid "Returns the number of unique monosyllabic words from the document."
 msgstr "Devuelve el número de palabras monosilábicas únicas del documento."
 
 #. TRANSLATORS: "Gunning Fog" should not be translated.
-#: ui/dialogs/custom_test_dlg.cpp:576
+#: ui/dialogs/custom_test_dlg.cpp:573
 msgid "Returns the number of difficult Gunning Fog words."
 msgstr "Devuelve el número de palabras difíciles de Gunning Fog."
 
-#: ui/dialogs/custom_test_dlg.cpp:579
+#: ui/dialogs/custom_test_dlg.cpp:576
 msgid "Returns the number of miniwords from the document."
 msgstr "Devuelve el número de minipalabras del documento."
 
 #. TRANSLATORS: "Default" should not be translated in here, it is a program keyword.
-#: ui/dialogs/custom_test_dlg.cpp:587
+#: ui/dialogs/custom_test_dlg.cpp:584
 msgid ""
 "Returns the number of sentences from the document.\n"
 "\n"
@@ -11623,76 +11641,76 @@ msgstr ""
 "texto que se va a utilizar. Estos valores son: Default, DaleChall, "
 "HarrisJacobson y GunningFog"
 
-#: ui/dialogs/custom_test_dlg.cpp:592
+#: ui/dialogs/custom_test_dlg.cpp:589
 msgid "Returns the number of units/independent clauses from the document."
 msgstr "Devuelve el número de unidades/cláusulas independientes del documento."
 
-#: ui/dialogs/custom_test_dlg.cpp:599 ui/dialogs/custom_test_dlg.cpp:601
-#: ui/dialogs/custom_test_dlg.cpp:605 ui/dialogs/custom_test_dlg.cpp:607
-#: ui/dialogs/custom_test_dlg.cpp:610 ui/dialogs/custom_test_dlg.cpp:613
-#: ui/dialogs/custom_test_dlg.cpp:616 ui/dialogs/custom_test_dlg.cpp:619
-#: ui/dialogs/custom_test_dlg.cpp:622 ui/dialogs/custom_test_dlg.cpp:625
-#: ui/dialogs/custom_test_dlg.cpp:628 ui/dialogs/custom_test_dlg.cpp:630
-#: ui/dialogs/custom_test_dlg.cpp:633 ui/dialogs/custom_test_dlg.cpp:636
-#: ui/dialogs/custom_test_dlg.cpp:638
+#: ui/dialogs/custom_test_dlg.cpp:596 ui/dialogs/custom_test_dlg.cpp:598
+#: ui/dialogs/custom_test_dlg.cpp:602 ui/dialogs/custom_test_dlg.cpp:604
+#: ui/dialogs/custom_test_dlg.cpp:607 ui/dialogs/custom_test_dlg.cpp:610
+#: ui/dialogs/custom_test_dlg.cpp:613 ui/dialogs/custom_test_dlg.cpp:616
+#: ui/dialogs/custom_test_dlg.cpp:619 ui/dialogs/custom_test_dlg.cpp:622
+#: ui/dialogs/custom_test_dlg.cpp:625 ui/dialogs/custom_test_dlg.cpp:627
+#: ui/dialogs/custom_test_dlg.cpp:630 ui/dialogs/custom_test_dlg.cpp:633
+#: ui/dialogs/custom_test_dlg.cpp:635
 #, c-format
 msgid "Shortcut for %s."
 msgstr "Atajo para %s."
 
-#: ui/dialogs/custom_test_dlg.cpp:716 ui/dialogs/tools_options_dlg.h:788
+#: ui/dialogs/custom_test_dlg.cpp:713 ui/dialogs/tools_options_dlg.h:788
 msgid "General Settings"
 msgstr "Preferencias Generales"
 
-#: ui/dialogs/custom_test_dlg.cpp:722
+#: ui/dialogs/custom_test_dlg.cpp:719
 #: ui/dialogs/new_custom_test_simple_dlg.cpp:74
 msgid "Test name:"
 msgstr "Nombre de la prueba:"
 
-#: ui/dialogs/custom_test_dlg.cpp:736
+#: ui/dialogs/custom_test_dlg.cpp:733
 msgid "Test result type:"
 msgstr "Tipo de resultado de la prueba:"
 
-#: ui/dialogs/custom_test_dlg.cpp:751
+#: ui/dialogs/custom_test_dlg.cpp:748
 msgid "Formula:"
 msgstr "Fórmula:"
 
-#: ui/dialogs/custom_test_dlg.cpp:787
+#: ui/dialogs/custom_test_dlg.cpp:784
 msgid "Enter a formula, such as:"
 msgstr "Introduzca una fórmula, como la siguiente:"
 
-#: ui/dialogs/custom_test_dlg.cpp:801
+#: ui/dialogs/custom_test_dlg.cpp:798
 msgid "or a function representing a familiar-word test:"
 msgstr "o una función que representa una prueba de palabras conocidas:"
 
-#: ui/dialogs/custom_test_dlg.cpp:818
+#: ui/dialogs/custom_test_dlg.cpp:815
 msgid "Operators"
 msgstr "Operadores"
 
-#: ui/dialogs/custom_test_dlg.cpp:819
+#: ui/dialogs/custom_test_dlg.cpp:816
 msgid "Logic"
 msgstr "Lógica"
 
-#: ui/dialogs/custom_test_dlg.cpp:820
+#: ui/dialogs/custom_test_dlg.cpp:817
 msgid "Math"
 msgstr "Matemáticas"
 
-#: ui/dialogs/custom_test_dlg.cpp:822
+#: ui/dialogs/custom_test_dlg.cpp:819
 msgid "Custom Familiar Word Tests"
 msgstr "Pruebas Personalizadas de Palabras Familiares"
 
-#: ui/dialogs/custom_test_dlg.cpp:824
+#: ui/dialogs/custom_test_dlg.cpp:821
 msgid "Syllable/Character Counts"
 msgstr "Recuentos de Sílabas/Caracteres"
 
-#: ui/dialogs/custom_test_dlg.cpp:827
+#: ui/dialogs/custom_test_dlg.cpp:824
 msgid "Sentence Counts"
 msgstr "Recuentos de Oraciones"
 
-#: ui/dialogs/custom_test_dlg.cpp:843
+#: ui/dialogs/custom_test_dlg.cpp:840
 msgid "Familiar Words"
 msgstr "Palabras Familiares"
 
-#: ui/dialogs/custom_test_dlg.cpp:863
+#: ui/dialogs/custom_test_dlg.cpp:860
 msgid ""
 "Check this option to use your own word list to determine if a word is "
 "familiar."
@@ -11700,7 +11718,7 @@ msgstr ""
 "Marque esta opción para usar su propia lista de palabras para determinar si "
 "una palabra es familiar."
 
-#: ui/dialogs/custom_test_dlg.cpp:872
+#: ui/dialogs/custom_test_dlg.cpp:869
 msgid ""
 "Enter the path to the familiar-word list into this field. This list must be "
 "a text file where each word is separated by a space, tab, comma, semicolon, "
@@ -11711,7 +11729,7 @@ msgstr ""
 "separada por un espacio, una tabulación, una coma, un punto y coma o una "
 "nueva línea."
 
-#: ui/dialogs/custom_test_dlg.cpp:886
+#: ui/dialogs/custom_test_dlg.cpp:883
 msgid ""
 "Select from this list the stemming method (if any) to use when comparing "
 "your familiar words with the words in a document."
@@ -11721,7 +11739,7 @@ msgstr ""
 "documento."
 
 #. TRANSLATORS: "New Dale-Chall" should not be translated.
-#: ui/dialogs/custom_test_dlg.cpp:899
+#: ui/dialogs/custom_test_dlg.cpp:896
 msgid ""
 "Check this option to use the New Dale-Chall word list (along with any other "
 "selected word lists) to determine if a word is familiar."
@@ -11731,7 +11749,7 @@ msgstr ""
 "palabra es familiar."
 
 #. TRANSLATORS: "Spache Revised" should not be translated.
-#: ui/dialogs/custom_test_dlg.cpp:910
+#: ui/dialogs/custom_test_dlg.cpp:907
 msgid ""
 "Check this option to use the Spache Revised word list (along with any other "
 "selected word lists) to determine if a word is familiar."
@@ -11740,7 +11758,7 @@ msgstr ""
 "con cualquier otra lista de palabras seleccionada) para determinar si una "
 "palabra es familiar."
 
-#: ui/dialogs/custom_test_dlg.cpp:920
+#: ui/dialogs/custom_test_dlg.cpp:917
 msgid ""
 "Check this option to use the Harris-Jacobson word list (along with any other "
 "selected word lists) to determine if a word is familiar."
@@ -11749,7 +11767,7 @@ msgstr ""
 "con cualquier otra lista de palabras seleccionada) para determinar si una "
 "palabra es familiar."
 
-#: ui/dialogs/custom_test_dlg.cpp:930
+#: ui/dialogs/custom_test_dlg.cpp:927
 msgid ""
 "Check this option to include Stocker's supplementary word list for Catholic "
 "students (along with any other selected word lists) to determine if a word "
@@ -11759,7 +11777,7 @@ msgstr ""
 "Stocker para estudiantes católicos (junto con cualquier otra lista de "
 "palabras seleccionada) para determinar si una palabra es familiar."
 
-#: ui/dialogs/custom_test_dlg.cpp:942
+#: ui/dialogs/custom_test_dlg.cpp:939
 msgid ""
 "Check this option to consider words familiar only if they appear on your "
 "custom list and other selected lists.\n"
@@ -11775,56 +11793,56 @@ msgstr ""
 "desea encontrar palabras que aparezcan dentro de una unión de su lista de "
 "palabras y otra lista (por ejemplo, Spache)."
 
-#: ui/dialogs/custom_test_dlg.cpp:963
+#: ui/dialogs/custom_test_dlg.cpp:960
 msgid "Proper Nouns & Numerals"
 msgstr "Nombres Propios y Números"
 
-#: ui/dialogs/custom_test_dlg.cpp:973 ui/dialogs/tools_options_dlg.cpp:4014
+#: ui/dialogs/custom_test_dlg.cpp:970 ui/dialogs/tools_options_dlg.cpp:4014
 msgid "Count as unfamiliar"
 msgstr "Considerar como desconocido"
 
-#: ui/dialogs/custom_test_dlg.cpp:974 ui/dialogs/tools_options_dlg.cpp:4015
+#: ui/dialogs/custom_test_dlg.cpp:971 ui/dialogs/tools_options_dlg.cpp:4015
 msgid "Count as familiar"
 msgstr "Considerar como familiar"
 
-#: ui/dialogs/custom_test_dlg.cpp:975
+#: ui/dialogs/custom_test_dlg.cpp:972
 msgid "Count only first occurrence of each as unfamiliar"
 msgstr "Cuente solo la primera aparición de cada uno como desconocida"
 
-#: ui/dialogs/custom_test_dlg.cpp:980
+#: ui/dialogs/custom_test_dlg.cpp:977
 msgid "Controls how proper nouns are handled in terms of being familiar words."
 msgstr ""
 "Controlar cómo se manejan los nombres propios en términos de ser palabras "
 "conocidas."
 
-#: ui/dialogs/custom_test_dlg.cpp:989
+#: ui/dialogs/custom_test_dlg.cpp:986
 msgid "Check this to also consider numeric words as familiar."
 msgstr ""
 "Marque esto para considerar también las palabras numéricas como familiares."
 
-#: ui/dialogs/custom_test_dlg.cpp:1003
+#: ui/dialogs/custom_test_dlg.cpp:1000
 msgid "Classification"
 msgstr "Clasificación"
 
-#: ui/dialogs/custom_test_dlg.cpp:1006
+#: ui/dialogs/custom_test_dlg.cpp:1003
 msgid "Associate with industry"
 msgstr "Asociarse con la industria"
 
-#: ui/dialogs/custom_test_dlg.cpp:1015
+#: ui/dialogs/custom_test_dlg.cpp:1012
 msgid "Associate with document type"
 msgstr "Asociar con el tipo de documento"
 
-#: ui/dialogs/custom_test_dlg.cpp:1072
+#: ui/dialogs/custom_test_dlg.cpp:1069
 msgid "Please enter a test name."
 msgstr "Por favor, introduzca un nombre de prueba."
 
-#: ui/dialogs/custom_test_dlg.cpp:1080
+#: ui/dialogs/custom_test_dlg.cpp:1077
 #, c-format
 msgid "There is a test named \"%s\" already. Please enter a different name."
 msgstr ""
 "Ya hay una prueba llamada \"%s\". Por favor, introduzca un nombre diferente."
 
-#: ui/dialogs/custom_test_dlg.cpp:1092
+#: ui/dialogs/custom_test_dlg.cpp:1089
 #, c-format
 msgid ""
 "There is a standard test with the name \"%s\" already. Please enter a "
@@ -11833,7 +11851,7 @@ msgstr ""
 "Ya existe una prueba estándar con el nombre \"%s\". Por favor, introduzca un "
 "nombre diferente."
 
-#: ui/dialogs/custom_test_dlg.cpp:1104
+#: ui/dialogs/custom_test_dlg.cpp:1101
 #, c-format
 msgid ""
 "The name \"%s\" is already in use as a statistic. Please enter a different "
@@ -11842,7 +11860,7 @@ msgstr ""
 "El nombre \"%s\" ya está en uso como estadística. Por favor, introduzca un "
 "nombre diferente."
 
-#: ui/dialogs/custom_test_dlg.cpp:1113
+#: ui/dialogs/custom_test_dlg.cpp:1110
 msgid "Familiar word list file not found."
 msgstr "No se encontró el archivo de lista de palabras conocidas."
 
@@ -11963,7 +11981,7 @@ msgstr "Usar una etiqueta de agrupación"
 msgid "Use the last common folder between files"
 msgstr "Usar la última carpeta común entre archivos"
 
-#: ui/dialogs/doc_group_select_dlg.cpp:26
+#: ui/dialogs/doc_group_select_dlg.cpp:25
 msgid "Select how to label the documents:"
 msgstr "Seleccione cómo etiquetar los documentos:"
 
@@ -12028,11 +12046,11 @@ msgid "Search for text."
 msgstr "Buscar texto."
 
 #: ui/dialogs/edit_text_dlg.cpp:225 ui/dialogs/edit_text_dlg.cpp:505
-#: ui/dialogs/lua_editor_dlg.cpp:446 ui/dialogs/lua_editor_dlg.cpp:696
+#: ui/dialogs/lua_editor_dlg.cpp:445 ui/dialogs/lua_editor_dlg.cpp:698
 msgid "Replace"
 msgstr "Sustituir"
 
-#: ui/dialogs/edit_text_dlg.cpp:229 ui/dialogs/lua_editor_dlg.cpp:698
+#: ui/dialogs/edit_text_dlg.cpp:229 ui/dialogs/lua_editor_dlg.cpp:700
 msgid "Replace text."
 msgstr "Reemplace el texto."
 
@@ -12173,79 +12191,79 @@ msgstr "No se ha especificado la carpeta de exportación."
 msgid "You must select at least one item to be saved."
 msgstr "Debe seleccionar al menos un elemento para guardar."
 
-#: ui/dialogs/export_all_dlg.cpp:200 ui/dialogs/web_harvester_dlg.cpp:86
+#: ui/dialogs/export_all_dlg.cpp:199 ui/dialogs/web_harvester_dlg.cpp:86
 msgid "Choose a directory"
 msgstr "Elija un directorio"
 
-#: ui/dialogs/export_all_dlg.cpp:222
+#: ui/dialogs/export_all_dlg.cpp:221
 msgid "File to export to:"
 msgstr "Archivo a exportar a:"
 
-#: ui/dialogs/export_all_dlg.cpp:222
+#: ui/dialogs/export_all_dlg.cpp:221
 msgid "Folder to export to:"
 msgstr "Carpeta a la que exportar:"
 
-#: ui/dialogs/export_all_dlg.cpp:241
+#: ui/dialogs/export_all_dlg.cpp:240
 msgid "Sections to export:"
 msgstr "Secciones a exportar:"
 
-#: ui/dialogs/export_all_dlg.cpp:251 ui/dialogs/export_all_dlg.cpp:299
+#: ui/dialogs/export_all_dlg.cpp:250 ui/dialogs/export_all_dlg.cpp:298
 msgid "Test scores"
 msgstr "Puntuaciones de los exámenes"
 
-#: ui/dialogs/export_all_dlg.cpp:256 ui/dialogs/export_all_dlg.cpp:304
+#: ui/dialogs/export_all_dlg.cpp:255 ui/dialogs/export_all_dlg.cpp:303
 msgid "Summary statistics"
 msgstr "Resumen de estadísticas"
 
-#: ui/dialogs/export_all_dlg.cpp:263 ui/dialogs/export_all_dlg.cpp:316
+#: ui/dialogs/export_all_dlg.cpp:262 ui/dialogs/export_all_dlg.cpp:315
 msgid "Words breakdown"
 msgstr "Detalles de la palabra"
 
-#: ui/dialogs/export_all_dlg.cpp:272 ui/dialogs/export_all_dlg.cpp:325
+#: ui/dialogs/export_all_dlg.cpp:271 ui/dialogs/export_all_dlg.cpp:324
 msgid "Sentences breakdown"
 msgstr "Detalles de oraciones"
 
-#: ui/dialogs/export_all_dlg.cpp:280 ui/dialogs/export_all_dlg.cpp:333
+#: ui/dialogs/export_all_dlg.cpp:279 ui/dialogs/export_all_dlg.cpp:332
 msgid "Grammar section"
 msgstr "Sección de gramática"
 
-#: ui/dialogs/export_all_dlg.cpp:288 ui/dialogs/export_all_dlg.cpp:341
+#: ui/dialogs/export_all_dlg.cpp:287 ui/dialogs/export_all_dlg.cpp:340
 msgid "Dolch sight words section"
 msgstr "Sección de palabras familiares a simple vista de Dolch"
 
-#: ui/dialogs/export_all_dlg.cpp:309
+#: ui/dialogs/export_all_dlg.cpp:308
 msgid "Histograms/box plots"
 msgstr "Histogramas/diagramas de caja"
 
-#: ui/dialogs/export_all_dlg.cpp:349
+#: ui/dialogs/export_all_dlg.cpp:348
 msgid "Warnings section"
 msgstr "Sección de advertencias"
 
-#: ui/dialogs/export_all_dlg.cpp:356
+#: ui/dialogs/export_all_dlg.cpp:355
 msgid "Export file types:"
 msgstr "Tipos de archivos de exportación:"
 
-#: ui/dialogs/export_all_dlg.cpp:367
+#: ui/dialogs/export_all_dlg.cpp:366
 msgid "Export lists as:"
 msgstr "Exportar listas como:"
 
-#: ui/dialogs/export_all_dlg.cpp:387
+#: ui/dialogs/export_all_dlg.cpp:386
 msgid "Export text reports as:"
 msgstr "Exportar informes de texto como:"
 
-#: ui/dialogs/export_all_dlg.cpp:406
+#: ui/dialogs/export_all_dlg.cpp:405
 msgid "Export graphs as:"
 msgstr "Exportar gráficos como:"
 
-#: ui/dialogs/export_all_dlg.cpp:423
+#: ui/dialogs/export_all_dlg.cpp:422
 msgid "Image options"
 msgstr "Opciones de imagen"
 
-#: ui/dialogs/export_all_dlg.cpp:429
+#: ui/dialogs/export_all_dlg.cpp:428
 msgid "Include lists"
 msgstr "Incluir listas"
 
-#: ui/dialogs/export_all_dlg.cpp:434
+#: ui/dialogs/export_all_dlg.cpp:433
 msgid "Include text reports"
 msgstr "Incluir informes de texto"
 
@@ -12346,85 +12364,85 @@ msgstr "Vista Previa del Documento Filtrado"
 
 #. TRANSLATORS: placeholders are a line number and error message
 #. from a script
-#: ui/dialogs/lua_editor_dlg.cpp:103
+#: ui/dialogs/lua_editor_dlg.cpp:98
 #, c-format
 msgid "Line #%s: %s"
 msgstr "Línea #%s: %s"
 
-#: ui/dialogs/lua_editor_dlg.cpp:107
+#: ui/dialogs/lua_editor_dlg.cpp:102
 msgid "Error:"
 msgstr "Error:"
 
-#: ui/dialogs/lua_editor_dlg.cpp:172 ui/dialogs/lua_editor_dlg.cpp:729
+#: ui/dialogs/lua_editor_dlg.cpp:168 ui/dialogs/lua_editor_dlg.cpp:731
 msgid "(unnamed)"
 msgstr "sin nombre"
 
 #. TRANSLATORS: %s is the program name
-#: ui/dialogs/lua_editor_dlg.cpp:642
+#: ui/dialogs/lua_editor_dlg.cpp:644
 #, c-format
 msgid "Imports %s specific enumerations"
 msgstr "Importaciones %s enumeraciones específicas"
 
 #. TRANSLATORS: A programming script.
-#: ui/dialogs/lua_editor_dlg.cpp:677
+#: ui/dialogs/lua_editor_dlg.cpp:679
 msgid "Create a new script."
 msgstr "Crear un nuevo script de programación."
 
 #. TRANSLATORS: A programming script.
-#: ui/dialogs/lua_editor_dlg.cpp:681
+#: ui/dialogs/lua_editor_dlg.cpp:683
 msgid "Open a script."
 msgstr "Abrir un guion."
 
 #. TRANSLATORS: A programming script.
-#: ui/dialogs/lua_editor_dlg.cpp:685
+#: ui/dialogs/lua_editor_dlg.cpp:687
 msgid "Save the script."
 msgstr "Guardar el guion."
 
-#: ui/dialogs/lua_editor_dlg.cpp:686
+#: ui/dialogs/lua_editor_dlg.cpp:688
 msgid "Run"
 msgstr "Ejecutar"
 
-#: ui/dialogs/lua_editor_dlg.cpp:688
+#: ui/dialogs/lua_editor_dlg.cpp:690
 msgid "Execute the script (or selection)."
 msgstr "Ejecute el script (o la selección)."
 
-#: ui/dialogs/lua_editor_dlg.cpp:689
+#: ui/dialogs/lua_editor_dlg.cpp:691
 msgid "Stop"
 msgstr "Detener"
 
-#: ui/dialogs/lua_editor_dlg.cpp:691
+#: ui/dialogs/lua_editor_dlg.cpp:693
 msgid "Stop the currently running script."
 msgstr "Detenga el script que se está ejecutando actualmente."
 
-#: ui/dialogs/lua_editor_dlg.cpp:695
+#: ui/dialogs/lua_editor_dlg.cpp:697
 msgid "Find text."
 msgstr "Buscar texto."
 
-#: ui/dialogs/lua_editor_dlg.cpp:702
+#: ui/dialogs/lua_editor_dlg.cpp:704
 msgid "Clear the log window."
 msgstr "Borre la ventana de registro."
 
-#: ui/dialogs/lua_editor_dlg.cpp:706
+#: ui/dialogs/lua_editor_dlg.cpp:708
 msgid "View the function browser."
 msgstr "Ver el navegador de funciones."
 
-#: ui/dialogs/lua_editor_dlg.cpp:707
+#: ui/dialogs/lua_editor_dlg.cpp:709
 msgid "Content"
 msgstr "Contenido"
 
-#: ui/dialogs/lua_editor_dlg.cpp:709
+#: ui/dialogs/lua_editor_dlg.cpp:711
 msgid "View the documentation."
 msgstr "Consulte la documentación."
 
-#: ui/dialogs/lua_editor_dlg.cpp:710
+#: ui/dialogs/lua_editor_dlg.cpp:712
 msgid "Lua Reference"
 msgstr "Referencia de Lua"
 
-#: ui/dialogs/lua_editor_dlg.cpp:712
+#: ui/dialogs/lua_editor_dlg.cpp:714
 msgid "View the Lua Reference Manual."
 msgstr "Consulte el Manual de Referencia de Lua."
 
-#: ui/dialogs/lua_editor_dlg.cpp:771
+#: ui/dialogs/lua_editor_dlg.cpp:773
 msgid "Debug Output"
 msgstr "Salida de Depuración"
 
@@ -12453,27 +12471,27 @@ msgstr "Lista personalizada de palabras conocidas:"
 msgid "New Custom Test"
 msgstr "Nueva Prueba Personalizada"
 
-#: ui/dialogs/project_wizard_dlg.cpp:225
+#: ui/dialogs/project_wizard_dlg.cpp:221
 msgid "Select Document"
 msgstr "Seleccionar Documento"
 
-#: ui/dialogs/project_wizard_dlg.cpp:235
+#: ui/dialogs/project_wizard_dlg.cpp:231
 msgid "Document language:"
 msgstr "Idioma del documento:"
 
-#: ui/dialogs/project_wizard_dlg.cpp:244
+#: ui/dialogs/project_wizard_dlg.cpp:240
 msgid "&Read text from a file or webpage:"
 msgstr "Leer texto de un archivo o página web:"
 
-#: ui/dialogs/project_wizard_dlg.cpp:262
+#: ui/dialogs/project_wizard_dlg.cpp:258
 msgid "Click this button to browse for the file that you want to analyze."
 msgstr "Haga clic en este botón para buscar el archivo que desea analizar."
 
-#: ui/dialogs/project_wizard_dlg.cpp:268
+#: ui/dialogs/project_wizard_dlg.cpp:264
 msgid "Manually enter text:"
 msgstr "Introducir texto manualmente:"
 
-#: ui/dialogs/project_wizard_dlg.cpp:292
+#: ui/dialogs/project_wizard_dlg.cpp:288
 msgid ""
 "The selected language will affect syllable counting and determine which "
 "tests and grammar features will be made available."
@@ -12481,84 +12499,84 @@ msgstr ""
 "El idioma seleccionado afectará el conteo de sílabas y determinará qué "
 "pruebas y características gramaticales estarán disponibles."
 
-#: ui/dialogs/project_wizard_dlg.cpp:312
+#: ui/dialogs/project_wizard_dlg.cpp:308
 msgid "Select Documents"
 msgstr "Seleccionar Documentos"
 
-#: ui/dialogs/project_wizard_dlg.cpp:321
+#: ui/dialogs/project_wizard_dlg.cpp:317
 msgid "Documents' language:"
 msgstr "Idioma de los documentos:"
 
-#: ui/dialogs/project_wizard_dlg.cpp:331
+#: ui/dialogs/project_wizard_dlg.cpp:327
 msgid "&Add folder..."
 msgstr "&Agregar carpeta..."
 
-#: ui/dialogs/project_wizard_dlg.cpp:335
+#: ui/dialogs/project_wizard_dlg.cpp:331
 msgid "&Add files..."
 msgstr "&Agregar archivos..."
 
-#: ui/dialogs/project_wizard_dlg.cpp:339
+#: ui/dialogs/project_wizard_dlg.cpp:335
 msgid "&Add archive..."
 msgstr "&Agregar archivo..."
 
-#: ui/dialogs/project_wizard_dlg.cpp:343
+#: ui/dialogs/project_wizard_dlg.cpp:339
 msgid "&Add spreadsheet..."
 msgstr "&Agregar hoja de cálculo..."
 
-#: ui/dialogs/project_wizard_dlg.cpp:347
+#: ui/dialogs/project_wizard_dlg.cpp:343
 msgid "&Add web pages..."
 msgstr "&Agregar páginas web..."
 
-#: ui/dialogs/project_wizard_dlg.cpp:351
+#: ui/dialogs/project_wizard_dlg.cpp:347
 msgid "&Add web page..."
 msgstr "&Agregar página web..."
 
-#: ui/dialogs/project_wizard_dlg.cpp:361
+#: ui/dialogs/project_wizard_dlg.cpp:357
 msgid "Add a document"
 msgstr "Agregar un documento"
 
-#: ui/dialogs/project_wizard_dlg.cpp:367 ui/dialogs/tools_options_dlg.cpp:3526
+#: ui/dialogs/project_wizard_dlg.cpp:363 ui/dialogs/tools_options_dlg.cpp:3526
 msgid "Remove selected document"
 msgstr "Eliminar documento seleccionado"
 
-#: ui/dialogs/project_wizard_dlg.cpp:372
+#: ui/dialogs/project_wizard_dlg.cpp:368
 msgid "Group selected documents"
 msgstr "Agrupar documentos seleccionados"
 
-#: ui/dialogs/project_wizard_dlg.cpp:417 ui/dialogs/tools_options_dlg.cpp:3546
+#: ui/dialogs/project_wizard_dlg.cpp:413 ui/dialogs/tools_options_dlg.cpp:3546
 msgid "Files"
 msgstr "Archivos"
 
-#: ui/dialogs/project_wizard_dlg.cpp:430 ui/dialogs/tools_options_dlg.cpp:3378
+#: ui/dialogs/project_wizard_dlg.cpp:426 ui/dialogs/tools_options_dlg.cpp:3378
 msgid "Minimum document word count:"
 msgstr "Número mínimo de palabras del documento:"
 
-#: ui/dialogs/project_wizard_dlg.cpp:446
+#: ui/dialogs/project_wizard_dlg.cpp:442
 #, no-c-format
 msgid "% of documents to randomly sample:"
 msgstr "% de documentos a muestrear aleatoriamente:"
 
-#: ui/dialogs/project_wizard_dlg.cpp:494
+#: ui/dialogs/project_wizard_dlg.cpp:490
 msgid "Document Structure"
 msgstr "Estructura del Documento"
 
-#: ui/dialogs/project_wizard_dlg.cpp:502
+#: ui/dialogs/project_wizard_dlg.cpp:498
 msgid "Specify Document Structure"
 msgstr "Especificar la Estructura del Documento"
 
-#: ui/dialogs/project_wizard_dlg.cpp:505
+#: ui/dialogs/project_wizard_dlg.cpp:501
 msgid "Composition"
 msgstr "Composición"
 
-#: ui/dialogs/project_wizard_dlg.cpp:507
+#: ui/dialogs/project_wizard_dlg.cpp:503
 msgid "Layout"
 msgstr "Disposición"
 
-#: ui/dialogs/project_wizard_dlg.cpp:518
+#: ui/dialogs/project_wizard_dlg.cpp:514
 msgid "&Narrative text"
 msgstr "&Texto narrativo"
 
-#: ui/dialogs/project_wizard_dlg.cpp:523
+#: ui/dialogs/project_wizard_dlg.cpp:519
 msgid ""
 "Document contains flowing sentences and paragraphs. Items such as headers "
 "and list items are not part of the narrative text and should be ignored."
@@ -12567,17 +12585,17 @@ msgstr ""
 "encabezados y los elementos de lista no forman parte del texto narrativo y "
 "deben omitirse."
 
-#: ui/dialogs/project_wizard_dlg.cpp:542
+#: ui/dialogs/project_wizard_dlg.cpp:538
 msgid "Narrative text is analyzed, while headers such as these are ignored."
 msgstr ""
 "Se analiza el texto narrativo, mientras que los encabezados como estos se "
 "ignoran."
 
-#: ui/dialogs/project_wizard_dlg.cpp:560
+#: ui/dialogs/project_wizard_dlg.cpp:557
 msgid "Non-narrative, &fragmented text"
 msgstr "Texto fragmentado y no narrativo"
 
-#: ui/dialogs/project_wizard_dlg.cpp:565
+#: ui/dialogs/project_wizard_dlg.cpp:562
 msgid ""
 "Instead of the standard sentence and paragraph structure, the document "
 "mostly consists of list items and terse sentence fragments. NOTE: this "
@@ -12587,18 +12605,18 @@ msgstr ""
 "consta principalmente de elementos de lista y fragmentos de oraciones "
 "concisas. NOTA: esta opción desactivará la exclusión de texto."
 
-#: ui/dialogs/project_wizard_dlg.cpp:597
+#: ui/dialogs/project_wizard_dlg.cpp:594
 msgid ""
 "Document contains few sentences and mostly consists of terse blocks of text."
 msgstr ""
 "El documento contiene pocas oraciones y en su mayoría consta de bloques de "
 "texto concisos."
 
-#: ui/dialogs/project_wizard_dlg.cpp:615
+#: ui/dialogs/project_wizard_dlg.cpp:613
 msgid "&Sentences are split by illustrations or extra spacing"
 msgstr "Las oraciones están divididas por ilustraciones o espaciado adicional"
 
-#: ui/dialogs/project_wizard_dlg.cpp:622
+#: ui/dialogs/project_wizard_dlg.cpp:620
 msgid ""
 "The document's sentences may be wrapped around illustrations or contain "
 "empty lines between them. This is common for children's picture books."
@@ -12607,14 +12625,14 @@ msgstr ""
 "ilustraciones o contener líneas vacías entre ellas. Esto es común para los "
 "libros ilustrados para niños."
 
-#: ui/dialogs/project_wizard_dlg.cpp:653
+#: ui/dialogs/project_wizard_dlg.cpp:651
 msgid ""
 "Sentences split into fragments by illustrations will be chained together."
 msgstr ""
 "Las oraciones divididas en fragmentos por ilustraciones se encadenan entre "
 "sí."
 
-#: ui/dialogs/project_wizard_dlg.cpp:672
+#: ui/dialogs/project_wizard_dlg.cpp:671
 msgid "Split sentences with extra lines between them will be chained together."
 msgstr ""
 "Las oraciones divididas con líneas adicionales entre ellas se encadenan "
@@ -12638,13 +12656,13 @@ msgstr ""
 msgid "Text is left-aligned to be centered on the page."
 msgstr "El texto se alinea a la izquierda para centrarse en la página."
 
-#: ui/dialogs/project_wizard_dlg.cpp:740
+#: ui/dialogs/project_wizard_dlg.cpp:741
 msgid "Line ends (i.e., hard returns) mark the start of a new paragraph"
 msgstr ""
 "Los finales de línea (es decir, saltos de línea) marcan el comienzo de un "
 "nuevo párrafo"
 
-#: ui/dialogs/project_wizard_dlg.cpp:746
+#: ui/dialogs/project_wizard_dlg.cpp:747
 msgid ""
 "Hard returns in the text always force the start of a new paragraph. "
 "Selecting this option will instruct the program to treat all line ends as "
@@ -12656,7 +12674,7 @@ msgstr ""
 "finales de línea como el final de la oración y el párrafo, "
 "independientemente de si terminan con un punto."
 
-#: ui/dialogs/project_wizard_dlg.cpp:766
+#: ui/dialogs/project_wizard_dlg.cpp:767
 msgid ""
 "Hard returns separate these lines into different paragraphs. This prevents "
 "them from being combined into one sentence."
@@ -12664,45 +12682,45 @@ msgstr ""
 "Saltos de línea separan estas líneas en diferentes párrafos. Esto evita que "
 "se combinen en una sola oración."
 
-#: ui/dialogs/project_wizard_dlg.cpp:787
+#: ui/dialogs/project_wizard_dlg.cpp:789
 msgid "Line ends always force the start of a new sentence and paragraph."
 msgstr ""
 "Los finales de línea siempre fuerzan el comienzo de una nueva oración y "
 "párrafo."
 
-#: ui/dialogs/project_wizard_dlg.cpp:804
+#: ui/dialogs/project_wizard_dlg.cpp:807
 msgid "Test Selection"
 msgstr "Selección de Pruebas"
 
-#: ui/dialogs/project_wizard_dlg.cpp:811
+#: ui/dialogs/project_wizard_dlg.cpp:814
 msgid "Select Readability Tests"
 msgstr "Seleccione Pruebas de Legibilidad"
 
-#: ui/dialogs/project_wizard_dlg.cpp:815
+#: ui/dialogs/project_wizard_dlg.cpp:818
 msgid "Recommend tests based on &document type"
 msgstr "Recomendar pruebas en función del tipo de documento"
 
-#: ui/dialogs/project_wizard_dlg.cpp:816
+#: ui/dialogs/project_wizard_dlg.cpp:819
 msgid "Recommend tests based on &industry or field"
 msgstr "Recomendar pruebas basadas en la industria o el campo"
 
-#: ui/dialogs/project_wizard_dlg.cpp:817
+#: ui/dialogs/project_wizard_dlg.cpp:820
 msgid "&Manually select tests"
 msgstr "Selección manual de pruebas"
 
-#: ui/dialogs/project_wizard_dlg.cpp:818
+#: ui/dialogs/project_wizard_dlg.cpp:821
 msgid "Use a test &bundle"
 msgstr "Usar una prueba y un paquete"
 
-#: ui/dialogs/project_wizard_dlg.cpp:820
+#: ui/dialogs/project_wizard_dlg.cpp:823
 msgid "Choose how to select tests:"
 msgstr "Elija cómo seleccionar las pruebas:"
 
-#: ui/dialogs/project_wizard_dlg.cpp:828
+#: ui/dialogs/project_wizard_dlg.cpp:831
 msgid "&General document (textbook, report, correspondence)"
 msgstr "Documento general (libro de texto, informe, correspondencia)"
 
-#: ui/dialogs/project_wizard_dlg.cpp:830
+#: ui/dialogs/project_wizard_dlg.cpp:833
 msgid ""
 "&Technical document or form (application, résumé/CV, instructions, manual, "
 "detailed report)"
@@ -12710,7 +12728,7 @@ msgstr ""
 "Documento o formulario técnico (solicitud, résumé/currículum vitae, "
 "instrucciones, manual, informe detallado)"
 
-#: ui/dialogs/project_wizard_dlg.cpp:832
+#: ui/dialogs/project_wizard_dlg.cpp:835
 msgid ""
 "Non-narrative &form with fragmented text (brochure, menu, quiz). NOTE: this "
 "option will disable text exclusion."
@@ -12718,23 +12736,23 @@ msgstr ""
 "No narrativo forma con texto fragmentado (folleto, menú, cuestionario). "
 "NOTA: esta opción desactivará la exclusión de texto."
 
-#: ui/dialogs/project_wizard_dlg.cpp:834
+#: ui/dialogs/project_wizard_dlg.cpp:837
 msgid "&Literature (young adult and adult)"
 msgstr "Literatura (juvenil y adulto)"
 
-#: ui/dialogs/project_wizard_dlg.cpp:835
+#: ui/dialogs/project_wizard_dlg.cpp:838
 msgid "&Children's literature"
 msgstr "&Literatura infantil"
 
-#: ui/dialogs/project_wizard_dlg.cpp:837
+#: ui/dialogs/project_wizard_dlg.cpp:840
 msgid "Select the type of document that you are analyzing:"
 msgstr "Seleccione el tipo de documento que está analizando:"
 
-#: ui/dialogs/project_wizard_dlg.cpp:844
+#: ui/dialogs/project_wizard_dlg.cpp:847
 msgid "Children's &publishing (literature, textbooks, magazines)"
 msgstr "Editorial infantil (literatura, libros de texto, revistas)"
 
-#: ui/dialogs/project_wizard_dlg.cpp:845
+#: ui/dialogs/project_wizard_dlg.cpp:848
 msgid ""
 "&Young adult and adult publishing (literature, textbooks, magazine/newspaper "
 "articles)"
@@ -12742,131 +12760,131 @@ msgstr ""
 "Publicaciones para jóvenes y adultos (literatura, libros de texto, artículos "
 "de revistas y periódicos)"
 
-#: ui/dialogs/project_wizard_dlg.cpp:847
+#: ui/dialogs/project_wizard_dlg.cpp:850
 msgid "&Children's healthcare"
 msgstr "Cuidado de la salud infantil"
 
-#: ui/dialogs/project_wizard_dlg.cpp:848
+#: ui/dialogs/project_wizard_dlg.cpp:851
 msgid "&Adult healthcare"
 msgstr "Cuidado de la salud para adultos"
 
-#: ui/dialogs/project_wizard_dlg.cpp:849
+#: ui/dialogs/project_wizard_dlg.cpp:852
 msgid "&Military and government"
 msgstr "&Fuerzas Armadas y Gobierno"
 
-#: ui/dialogs/project_wizard_dlg.cpp:850
+#: ui/dialogs/project_wizard_dlg.cpp:853
 msgid "&Second Language (ESL) Education"
 msgstr "Educación en Segundo Idioma"
 
-#: ui/dialogs/project_wizard_dlg.cpp:851
+#: ui/dialogs/project_wizard_dlg.cpp:854
 msgid "&Broadcasting"
 msgstr "Radiodifusión"
 
-#: ui/dialogs/project_wizard_dlg.cpp:854
+#: ui/dialogs/project_wizard_dlg.cpp:857
 msgid "Select the type of industry that this document belongs to:"
 msgstr "Seleccione el tipo de industria a la que pertenece este documento:"
 
-#: ui/dialogs/project_wizard_dlg.cpp:866
+#: ui/dialogs/project_wizard_dlg.cpp:869
 msgid "Standard tests:"
 msgstr "Pruebas estándar:"
 
-#: ui/dialogs/project_wizard_dlg.cpp:869
+#: ui/dialogs/project_wizard_dlg.cpp:872
 msgid "Custom tests:"
 msgstr "Pruebas personalizadas:"
 
-#: ui/dialogs/project_wizard_dlg.cpp:908
+#: ui/dialogs/project_wizard_dlg.cpp:911
 msgid "Dolch Sight Words Suite"
 msgstr "Palabras Familiares a Simple Vista de Dolch"
 
-#: ui/dialogs/project_wizard_dlg.cpp:921
+#: ui/dialogs/project_wizard_dlg.cpp:924
 msgid "Select the test bundle to apply:"
 msgstr "Seleccione el paquete de prueba que desea aplicar:"
 
-#: ui/dialogs/project_wizard_dlg.cpp:937
+#: ui/dialogs/project_wizard_dlg.cpp:940
 msgid "< Back"
 msgstr "< Atrás"
 
-#: ui/dialogs/project_wizard_dlg.cpp:939
+#: ui/dialogs/project_wizard_dlg.cpp:942
 msgid "Forward >"
 msgstr "Adelante >"
 
-#: ui/dialogs/project_wizard_dlg.cpp:940
+#: ui/dialogs/project_wizard_dlg.cpp:943
 msgid "Finish"
 msgstr "Finalizar"
 
-#: ui/dialogs/project_wizard_dlg.cpp:1029
-#: ui/dialogs/project_wizard_dlg.cpp:1166
+#: ui/dialogs/project_wizard_dlg.cpp:1032
+#: ui/dialogs/project_wizard_dlg.cpp:1169
 msgid "Enter a group label for the selected documents"
 msgstr "Introduzca una etiqueta de grupo para los documentos seleccionados"
 
-#: ui/dialogs/project_wizard_dlg.cpp:1030
-#: ui/dialogs/project_wizard_dlg.cpp:1167
+#: ui/dialogs/project_wizard_dlg.cpp:1033
+#: ui/dialogs/project_wizard_dlg.cpp:1170
 msgid "Group Label"
 msgstr "Etiqueta de Grupo"
 
-#: ui/dialogs/project_wizard_dlg.cpp:1152
+#: ui/dialogs/project_wizard_dlg.cpp:1155
 msgid "Select Spreadsheet to Analyze"
 msgstr "Seleccione la Hoja de Cálculo para Analizar"
 
-#: ui/dialogs/project_wizard_dlg.cpp:1153
+#: ui/dialogs/project_wizard_dlg.cpp:1156
 msgid "Excel Files (*.xlsx)|*.xlsx"
 msgstr "Archivos de Excel (*.xlsx)|*.xlsx"
 
-#: ui/dialogs/project_wizard_dlg.cpp:1177
+#: ui/dialogs/project_wizard_dlg.cpp:1180
 msgid ""
 "Unable to open Excel document, file is either password-protected or corrupt."
 msgstr ""
 "No se puede abrir el documento de Excel; el archivo está protegido por "
 "contraseña o está dañado."
 
-#: ui/dialogs/project_wizard_dlg.cpp:1184
+#: ui/dialogs/project_wizard_dlg.cpp:1187
 msgid "Loading Excel file..."
 msgstr "Cargando archivo de Excel..."
 
-#: ui/dialogs/project_wizard_dlg.cpp:1210
+#: ui/dialogs/project_wizard_dlg.cpp:1213
 msgid "Select the worksheets to import:"
 msgstr "Seleccione las hojas de trabajo que desea importar:"
 
-#: ui/dialogs/project_wizard_dlg.cpp:1211
+#: ui/dialogs/project_wizard_dlg.cpp:1214
 msgid "Excel Import"
 msgstr "Importar Excel"
 
-#: ui/dialogs/project_wizard_dlg.cpp:1224
+#: ui/dialogs/project_wizard_dlg.cpp:1227
 msgid "Loading worksheet..."
 msgstr "Cargando hoja de trabajo..."
 
-#: ui/dialogs/project_wizard_dlg.cpp:1244
+#: ui/dialogs/project_wizard_dlg.cpp:1247
 #, c-format
 msgid "\"%s\" Preview"
 msgstr "Vista previa de \"%s\""
 
-#: ui/dialogs/project_wizard_dlg.cpp:1289
+#: ui/dialogs/project_wizard_dlg.cpp:1292
 msgid "Updating file list..."
 msgstr "Actualización de la lista de archivos..."
 
-#: ui/dialogs/project_wizard_dlg.cpp:1450
+#: ui/dialogs/project_wizard_dlg.cpp:1453
 msgid "Please enter a file to be analyzed before continuing."
 msgstr ""
 "Por favor, introduzca un archivo para ser analizado antes de continuar."
 
-#: ui/dialogs/project_wizard_dlg.cpp:1451
-#: ui/dialogs/project_wizard_dlg.cpp:1460
-#: ui/dialogs/project_wizard_dlg.cpp:1478
+#: ui/dialogs/project_wizard_dlg.cpp:1454
+#: ui/dialogs/project_wizard_dlg.cpp:1463
+#: ui/dialogs/project_wizard_dlg.cpp:1481
 msgid "Invalid Input"
 msgstr "Entrada no Válida"
 
-#: ui/dialogs/project_wizard_dlg.cpp:1458
+#: ui/dialogs/project_wizard_dlg.cpp:1461
 msgid ""
 "File not found. Please enter a valid file to be analyzed before continuing."
 msgstr ""
 "Archivo no encontrado. Por favor, introduzca un archivo válido para ser "
 "analizado antes de continuar."
 
-#: ui/dialogs/project_wizard_dlg.cpp:1477
+#: ui/dialogs/project_wizard_dlg.cpp:1480
 msgid "Please select files to be analyzed before continuing."
 msgstr "Seleccione los archivos que desea analizar antes de continuar."
 
-#: ui/dialogs/project_wizard_dlg.cpp:1490
+#: ui/dialogs/project_wizard_dlg.cpp:1493
 msgid ""
 "Because the document composition was set to non-narrative text, the document "
 "type will also be adjusted to non-narrative."
@@ -12874,7 +12892,7 @@ msgstr ""
 "Dado que la composición del documento se estableció en texto no narrativo, "
 "el tipo de documento también se ajustará a no narrativo."
 
-#: ui/dialogs/project_wizard_dlg.cpp:1502
+#: ui/dialogs/project_wizard_dlg.cpp:1505
 msgid ""
 "Because the test selection is set to non-narrative, the document composition "
 "will also be set to non-narrative."
@@ -12882,7 +12900,7 @@ msgstr ""
 "Dado que la selección de la prueba se establece en no narrativa, la "
 "composición del documento también se establecerá en no narrativa."
 
-#: ui/dialogs/project_wizard_dlg.cpp:1511
+#: ui/dialogs/project_wizard_dlg.cpp:1514
 msgid ""
 "If text is centered, then new lines should not force the start of a new "
 "paragraph. Please unselect one of these options."
@@ -12890,7 +12908,7 @@ msgstr ""
 "Si el texto está centrado, las nuevas líneas no deben forzar el inicio de un "
 "nuevo párrafo. Anule la selección de una de estas opciones."
 
-#: ui/dialogs/project_wizard_dlg.cpp:1519
+#: ui/dialogs/project_wizard_dlg.cpp:1522
 msgid ""
 "If sentences are split, then new lines should not force the start of a new "
 "paragraph. Please unselect one of these options."
@@ -12898,7 +12916,7 @@ msgstr ""
 "Si las oraciones están divididas, las nuevas líneas no deben forzar el "
 "comienzo de un nuevo párrafo. Anule la selección de una de estas opciones."
 
-#: ui/dialogs/project_wizard_dlg.cpp:1539
+#: ui/dialogs/project_wizard_dlg.cpp:1542
 msgid ""
 "Note that there are no tests associated with this document type for the "
 "selected language."
@@ -12906,7 +12924,7 @@ msgstr ""
 "Tenga en cuenta que no hay pruebas asociadas con este tipo de documento para "
 "el idioma seleccionado."
 
-#: ui/dialogs/project_wizard_dlg.cpp:1558
+#: ui/dialogs/project_wizard_dlg.cpp:1561
 msgid ""
 "Note that there are no tests associated with this industry for the selected "
 "language."
@@ -12914,15 +12932,15 @@ msgstr ""
 "Tenga en cuenta que no hay pruebas asociadas con esta industria para el "
 "idioma seleccionado."
 
-#: ui/dialogs/project_wizard_dlg.cpp:1635
+#: ui/dialogs/project_wizard_dlg.cpp:1638
 msgid "Enter a web page to analyze:"
 msgstr "Entra en una página web para analizar:"
 
-#: ui/dialogs/project_wizard_dlg.cpp:1635
+#: ui/dialogs/project_wizard_dlg.cpp:1638
 msgid "Enter Web Page"
 msgstr "Entrar en la Página Web"
 
-#: ui/dialogs/project_wizard_dlg.cpp:1642
+#: ui/dialogs/project_wizard_dlg.cpp:1645
 #, c-format
 msgid ""
 "\"%s\" does not appear to be a valid web page.\n"
@@ -12931,7 +12949,7 @@ msgstr ""
 "\"%s\" no parece ser una página web válida.\n"
 "Asegúrate de incluir el prefijo 'www', 'http' o 'https'."
 
-#: ui/dialogs/project_wizard_dlg.cpp:1911
+#: ui/dialogs/project_wizard_dlg.cpp:1914
 msgid "Select Documents to Analyze"
 msgstr "Seleccionar Documentos para Analizar"
 
@@ -14894,6 +14912,9 @@ msgstr "Búsqueda..."
 #, c-format
 msgid "Crawling \"%s\""
 msgstr "Búsqueda \"%s\""
+
+#~ msgid "Built on:"
+#~ msgstr "Creado el:"
 
 #~ msgid "very easy text"
 #~ msgstr "texto muy fácil"
