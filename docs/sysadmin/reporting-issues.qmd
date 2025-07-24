@@ -1,0 +1,25 @@
+```{r}
+#| include: false
+#| eval: true
+
+source('R/appdown.r')
+```
+
+# Reporting Issues
+
+To report an issue or request a feature, visit [{{< var ISSUE_PAGE >}}]({{< var ISSUE_PAGE >}}).
+
+When entering an issue, please include the following:
+
+- A description of the issue or feature request
+- If an issue, step-by-step instructions for how to reproduce it
+- If a feature request, explain how you would like for the feature to work and a possible use case
+- The version of *{{< var PROGRAM_NAME >}}* and your operating system information\
+  (this can be copied from the program's **About** dialog)
+- Any supporting documents or screenshots\
+  (please do not include sensitive or confidential data)
+
+::: {.warningsection data-latex=""}
+Any issue that you report will be publicly available and can be read by anyone.
+Do not include any personal or proprietary information or files in your report.
+:::

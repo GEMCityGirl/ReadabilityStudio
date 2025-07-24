@@ -74,6 +74,7 @@ set(PROGRAM_AUTHOR_APA "Madden, B.")
 set(PROGRAM_COMMENTS "Readability analysis software")
 set(PROGRAM_RDNS_IDENTIFIER "org.eclipse.readabilitystudio")
 set(GIT_REPO "https://github.com/eclipse-ers/ReadabilityStudio.git")
+string(REGEX REPLACE "[.]git$" "" ISSUE_PAGE "${GIT_REPO}/issues")
 set(INNOSETUP_GUID "{FBFBEAB6-622A-4E16-893D-216C25FF6A69}")
 set(PROGRAM_LICENSE "Eclipse Public License 2.0")
 
@@ -84,8 +85,7 @@ if(Git_FOUND)
     OUTPUT_VARIABLE BUILD_VERSION
     RESULT_VARIABLE result
     ERROR_QUIET
-    OUTPUT_STRIP_TRAILING_WHITESPACE
-  )
+    OUTPUT_STRIP_TRAILING_WHITESPACE)
   if(NOT result EQUAL 0)
     message(WARNING "git not found. Unable to generate build version.")
   else()
