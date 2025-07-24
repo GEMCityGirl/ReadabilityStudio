@@ -60,7 +60,11 @@ format:
     lot: true
     lof: true
     code-block-bg: false
-    CJKmainfont: "${CJK_FONT}"
+    CJKmainfont: NotoSerifJP
+    CJKoptions:
+      - Path=./fonts/NotoSerifJP/
+      - Extension=.ttf
+      - UprightFont=*-VariableFontwght
     linkcolor: black
     citecolor: black
   html:
