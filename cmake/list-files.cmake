@@ -16,6 +16,22 @@ set(FILE_SRC_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 
 message(STATUS "Generating file lists for build system.")
 
+# Don't touch the file unless it is out of date or missing.
+# CMake generators may break if build files get updated but their content didn't actually change.
+function(update_file_if_needed FILE_MANIFEST_PATH FILE_CONTENT)
+    if(NOT EXISTS "${FILE_MANIFEST_PATH}")
+        message(STATUS "${FILE_MANIFEST_PATH}: creating list.")
+        file(WRITE "${FILE_MANIFEST_PATH}" "${FILE_CONTENT}")
+    else()
+        file(READ "${FILE_MANIFEST_PATH}" ORIGINAL_FILE_CONTENT)
+        string(COMPARE NOTEQUAL "${FILE_CONTENT}" "${ORIGINAL_FILE_CONTENT}" FILES_DIFFERENT)
+        if (FILES_DIFFERENT)
+            message(STATUS "${FILE_MANIFEST_PATH}: updating list.")
+            file(WRITE "${FILE_MANIFEST_PATH}" "${FILE_CONTENT}")
+        endif()
+    endif()
+endfunction()
+
 # source files to include in the build
 block()
     file(GLOB_RECURSE LISTED_SRC_FILES LIST_DIRECTORIES false RELATIVE ${FILE_SRC_PATH} "${FILE_SRC_PATH}/src/*.cpp")
@@ -25,15 +41,16 @@ block()
     # filter out the files that we don't want, such as tests, unused submodules, etc.
     list(FILTER LISTED_SRC_FILES EXCLUDE REGEX ${SRC_FILES_TO_REMOVE_FILTER})
 
-    set(FILE_MANIFEST_PATH "${FILE_SRC_PATH}/cmake/includes/files.cmake")
-    file(WRITE "${FILE_MANIFEST_PATH}"
-    "# Automatically generated from 'list-files.cmake'\
+    set(FILE_CONTENT "# Automatically generated from 'list-files.cmake'\
 \n\# DO NOT MODIFY MANUALLY!\n\nSET(APP_SRC_FILES")
-
     foreach(CURR_FILE IN LISTS LISTED_SRC_FILES)
-        file(APPEND "${FILE_MANIFEST_PATH}" "\n    ${CURR_FILE}")
+        string(APPEND FILE_CONTENT "\n    ${CURR_FILE}")
     endforeach()
-    file(APPEND "${FILE_MANIFEST_PATH}" ")")
+    string(STRIP "${FILE_CONTENT}" FILE_CONTENT)
+    string(APPEND FILE_CONTENT ")")
+
+    set(FILE_MANIFEST_PATH "${FILE_SRC_PATH}/cmake/includes/files.cmake")
+    update_file_if_needed("${FILE_MANIFEST_PATH}" "${FILE_CONTENT}")
 endblock()
 
 # flat list of images to include in the resource zip file
@@ -54,7 +71,7 @@ block()
     string(STRIP "${FILE_CONTENT}" FILE_CONTENT)
 
     set(FILE_MANIFEST_PATH "${FILE_SRC_PATH}/cmake/includes/images.cmake")
-    file(WRITE "${FILE_MANIFEST_PATH}" "${FILE_CONTENT}")
+    update_file_if_needed("${FILE_MANIFEST_PATH}" "${FILE_CONTENT}")
 endblock()
 
 # flat list of word files to include in the resource zip file
@@ -72,5 +89,5 @@ block()
     string(STRIP "${FILE_CONTENT}" FILE_CONTENT)
 
     set(FILE_MANIFEST_PATH "${FILE_SRC_PATH}/cmake/includes/words.cmake")
-    file(WRITE "${FILE_MANIFEST_PATH}" "${FILE_CONTENT}")
+    update_file_if_needed("${FILE_MANIFEST_PATH}" "${FILE_CONTENT}")
 endblock()
