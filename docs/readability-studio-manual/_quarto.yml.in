@@ -33,6 +33,11 @@ crossref:
 fontfamilies:
   - name: \brandfont
     font: Roboto
+    options:
+      - Path=./fonts/Roboto/
+      - Extension=.ttf
+      - UprightFont=*-VariableFontwdthwght
+      - ItalicFont=*-ItalicVariableFontwdthwght
 filters:
   - include-code-files
   - fontawesome
