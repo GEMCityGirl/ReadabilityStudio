@@ -38,6 +38,13 @@ fontfamilies:
       - Extension=.ttf
       - UprightFont=*-VariableFontwdthwght
       - ItalicFont=*-ItalicVariableFontwdthwght
+  - name: \covertitlefont
+    font: PlayfairDisplay
+    options:
+      - Path=./fonts/PlayfairDisplay/
+      - Extension=.ttf
+      - UprightFont=*-VariableFontwght
+      - ItalicFont=*-ItalicVariableFontwght
 filters:
   - include-code-files
   - fontawesome

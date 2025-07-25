@@ -28,6 +28,18 @@ crossref:
 fontfamilies:
   - name: \brandfont
     font: Roboto
+    options:
+      - Path=./fonts/Roboto/
+      - Extension=.ttf
+      - UprightFont=*-VariableFontwdthwght
+      - ItalicFont=*-ItalicVariableFontwdthwght
+  - name: \covertitlefont
+    font: PlayfairDisplay
+    options:
+      - Path=./fonts/PlayfairDisplay/
+      - Extension=.ttf
+      - UprightFont=*-VariableFontwght
+      - ItalicFont=*-ItalicVariableFontwght
 book:
   title: "{{< var PROGRAM_NAME >}} {{< var VERSION >}}"
   subtitle: Programming Manual
@@ -61,7 +73,11 @@ format:
     citation-package: biblatex
     lot: false
     code-block-bg: false
-    CJKmainfont: '{{< var CJK_FONT >}}'
+    CJKmainfont: NotoSerifJP
+    CJKoptions:
+      - Path=./fonts/NotoSerifJP/
+      - Extension=.ttf
+      - UprightFont=*-VariableFontwght
     linkcolor: black
     citecolor: black
   html:

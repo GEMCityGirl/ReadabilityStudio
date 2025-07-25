@@ -36,6 +36,7 @@ clearFolders <- function()
 
   unlink(glue("{docFolder}/sysadmin/images"), recursive=T)
   unlink(glue("{docFolder}/sysadmin/latex"), recursive=T)
+  unlink(glue("{docFolder}/sysadmin/fonts"), recursive=T)
   unlink(glue("{docFolder}/sysadmin/R"), recursive=T)
   unlink(glue("{docFolder}/sysadmin/_extensions"), recursive=T)
 
@@ -43,6 +44,7 @@ clearFolders <- function()
   unlink(glue("{docFolder}/readability-studio-api/latex"), recursive=T)
   unlink(glue("{docFolder}/readability-studio-api/css"), recursive=T)
   unlink(glue("{docFolder}/readability-studio-api/R"), recursive=T)
+  unlink(glue("{docFolder}/readability-studio-api/fonts"), recursive=T)
   unlink(glue("{docFolder}/readability-studio-api/_extensions"), recursive=T)
   unlink(glue("{docFolder}/readability-studio-api/index.ptc"))
 
@@ -50,6 +52,7 @@ clearFolders <- function()
   unlink(glue("{docFolder}/readability-test-reference/latex"), recursive=T)
   unlink(glue("{docFolder}/readability-test-reference/css"), recursive=T)
   unlink(glue("{docFolder}/readability-test-reference/R"), recursive=T)
+  unlink(glue("{docFolder}/readability-test-reference/fonts"), recursive=T)
   unlink(glue("{docFolder}/readability-test-reference/_extensions"), recursive=T)
   unlink(glue("{docFolder}/readability-test-reference/data"), recursive=T)
   unlink(glue("{docFolder}/readability-test-reference/overviews"), recursive=T)
@@ -107,6 +110,9 @@ file_copy(glue("{docFolder}/_variables.yml"),
           TRUE)
 dir_copy(glue("{docFolder}/readability-studio-manual/latex"),
          glue("{docFolder}/sysadmin/latex"),
+         TRUE)
+dir_copy(glue("{docFolder}/readability-studio-manual/fonts"),
+         glue("{docFolder}/sysadmin/fonts"),
          TRUE)
 dir_copy(glue("{docFolder}/readability-studio-manual/images"),
          glue("{docFolder}/sysadmin/images"),
@@ -270,6 +276,9 @@ dir_copy(glue("{docFolder}/readability-studio-manual/css"),
 dir_copy(glue("{docFolder}/readability-studio-manual/R"),
          glue("{docFolder}/readability-studio-api/R"),
          TRUE)
+dir_copy(glue("{docFolder}/readability-studio-manual/fonts"),
+         glue("{docFolder}/readability-studio-api/fonts"),
+         TRUE)
 dir_copy(glue("{docFolder}/readability-studio-manual/_extensions"),
          glue("{docFolder}/readability-studio-api/_extensions"),
          TRUE)
@@ -337,6 +346,9 @@ dir_copy(glue("{docFolder}/readability-studio-manual/css"),
          TRUE)
 dir_copy(glue("{docFolder}/readability-studio-manual/R"),
          glue("{docFolder}/readability-test-reference/R"),
+         TRUE)
+dir_copy(glue("{docFolder}/readability-studio-manual/fonts"),
+         glue("{docFolder}/readability-test-reference/fonts"),
          TRUE)
 dir_copy(glue("{docFolder}/readability-studio-manual/_extensions"),
          glue("{docFolder}/readability-test-reference/_extensions"),
