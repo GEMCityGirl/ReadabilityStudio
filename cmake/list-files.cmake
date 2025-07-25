@@ -12,38 +12,38 @@ set(WORD_FILES_TO_REMOVE_FILTER "(common-dictionary|base-english-dictionary.txt|
 base-german.txt|base-spanish.txt|common-errors.txt|sql.txt|visual-basic.txt|programming/r.txt|python.txt|java.txt|\
 html.txt|csharp.txt|cpp.txt|assembly.txt)")
 
-set(PATH ${CMAKE_CURRENT_SOURCE_DIR})
+set(FILE_SRC_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 
 message(STATUS "Generating file lists for build system.")
 
 # source files to include in the build
 block()
-    file(GLOB_RECURSE LISTED_SRC_FILES LIST_DIRECTORIES false RELATIVE ${PATH} "${PATH}/src/*.cpp")
-    file(GLOB_RECURSE C_SRC_FILES LIST_DIRECTORIES false RELATIVE ${PATH} "${PATH}/src/onelua_no_warnings[.]c")
+    file(GLOB_RECURSE LISTED_SRC_FILES LIST_DIRECTORIES false RELATIVE ${FILE_SRC_PATH} "${FILE_SRC_PATH}/src/*.cpp")
+    file(GLOB_RECURSE C_SRC_FILES LIST_DIRECTORIES false RELATIVE ${FILE_SRC_PATH} "${FILE_SRC_PATH}/src/onelua_no_warnings[.]c")
     list(APPEND LISTED_SRC_FILES ${C_SRC_FILES})
     list(SORT LISTED_SRC_FILES CASE INSENSITIVE)
     # filter out the files that we don't want, such as tests, unused submodules, etc.
     list(FILTER LISTED_SRC_FILES EXCLUDE REGEX ${SRC_FILES_TO_REMOVE_FILTER})
 
-    set(FILE_MANIFEST "${PATH}/cmake/includes/files.cmake")
-    file(WRITE "${FILE_MANIFEST}"
+    set(FILE_MANIFEST_PATH "${FILE_SRC_PATH}/cmake/includes/files.cmake")
+    file(WRITE "${FILE_MANIFEST_PATH}"
     "# Automatically generated from 'list-files.cmake'\
 \n\# DO NOT MODIFY MANUALLY!\n\nSET(APP_SRC_FILES")
 
     foreach(CURR_FILE IN LISTS LISTED_SRC_FILES)
-        file(APPEND "${FILE_MANIFEST}" "\n    ${CURR_FILE}")
+        file(APPEND "${FILE_MANIFEST_PATH}" "\n    ${CURR_FILE}")
     endforeach()
-    file(APPEND "${FILE_MANIFEST}" ")")
+    file(APPEND "${FILE_MANIFEST_PATH}" ")")
 endblock()
 
 # flat list of images to include in the resource zip file
 block()
-    file(GLOB_RECURSE LISTED_IMG_FILES LIST_DIRECTORIES false RELATIVE "${PATH}/resources/images" "${PATH}/resources/images/*.svg")
-    file(GLOB_RECURSE LISTED_OTHER_SRC_FILES LIST_DIRECTORIES false RELATIVE "${PATH}/resources/images" "${PATH}/resources/images/*.png")
+    file(GLOB_RECURSE LISTED_IMG_FILES LIST_DIRECTORIES false RELATIVE "${FILE_SRC_PATH}/resources/images" "${FILE_SRC_PATH}/resources/images/*.svg")
+    file(GLOB_RECURSE LISTED_OTHER_SRC_FILES LIST_DIRECTORIES false RELATIVE "${FILE_SRC_PATH}/resources/images" "${FILE_SRC_PATH}/resources/images/*.png")
     list(APPEND LISTED_IMG_FILES ${LISTED_OTHER_SRC_FILES})
-    file(GLOB_RECURSE LISTED_OTHER_SRC_FILES LIST_DIRECTORIES false RELATIVE "${PATH}/resources/images" "${PATH}/resources/images/*.jpg")
+    file(GLOB_RECURSE LISTED_OTHER_SRC_FILES LIST_DIRECTORIES false RELATIVE "${FILE_SRC_PATH}/resources/images" "${FILE_SRC_PATH}/resources/images/*.jpg")
     list(APPEND LISTED_IMG_FILES ${LISTED_OTHER_SRC_FILES})
-    file(GLOB_RECURSE LISTED_OTHER_SRC_FILES LIST_DIRECTORIES false RELATIVE "${PATH}/resources/images" "${PATH}/resources/images/*.xrc")
+    file(GLOB_RECURSE LISTED_OTHER_SRC_FILES LIST_DIRECTORIES false RELATIVE "${FILE_SRC_PATH}/resources/images" "${FILE_SRC_PATH}/resources/images/*.xrc")
     list(APPEND LISTED_IMG_FILES ${LISTED_OTHER_SRC_FILES})
     list(SORT LISTED_IMG_FILES CASE INSENSITIVE)
 
@@ -51,15 +51,15 @@ block()
     foreach(CURR_FILE IN LISTS LISTED_IMG_FILES)
         string(APPEND FILE_CONTENT "${CURR_FILE}\n")
     endforeach()
-    string(STRIP ${FILE_CONTENT} FILE_CONTENT)
+    string(STRIP "${FILE_CONTENT}" FILE_CONTENT)
 
-    set(FILE_MANIFEST "${PATH}/cmake/includes/images.cmake")
-    file(WRITE "${FILE_MANIFEST}" ${FILE_CONTENT})
+    set(FILE_MANIFEST_PATH "${FILE_SRC_PATH}/cmake/includes/images.cmake")
+    file(WRITE "${FILE_MANIFEST_PATH}" "${FILE_CONTENT}")
 endblock()
 
 # flat list of word files to include in the resource zip file
 block()
-    file(GLOB_RECURSE LISTED_WORD_FILES LIST_DIRECTORIES false RELATIVE "${PATH}/resources/words" "${PATH}/resources/words/*.txt")
+    file(GLOB_RECURSE LISTED_WORD_FILES LIST_DIRECTORIES false RELATIVE "${FILE_SRC_PATH}/resources/words" "${FILE_SRC_PATH}/resources/words/*.txt")
     list(SORT LISTED_WORD_FILES CASE INSENSITIVE)
     # filter out the files that we don't want, such as the base files that are merged into lager ones
     # (the larger ones are what gets included in the final product)
@@ -69,8 +69,8 @@ block()
     foreach(CURR_FILE IN LISTS LISTED_WORD_FILES)
         string(APPEND FILE_CONTENT "${CURR_FILE}\n")
     endforeach()
-    string(STRIP ${FILE_CONTENT} FILE_CONTENT)
+    string(STRIP "${FILE_CONTENT}" FILE_CONTENT)
 
-    set(FILE_MANIFEST "${PATH}/cmake/includes/words.cmake")
-    file(WRITE "${FILE_MANIFEST}" ${FILE_CONTENT})
+    set(FILE_MANIFEST_PATH "${FILE_SRC_PATH}/cmake/includes/words.cmake")
+    file(WRITE "${FILE_MANIFEST_PATH}" "${FILE_CONTENT}")
 endblock()
