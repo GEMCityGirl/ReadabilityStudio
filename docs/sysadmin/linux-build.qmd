@@ -9,29 +9,31 @@ source('R/appdown.r')
 
 | Install the following tools to build *{{< var PROGRAM_NAME >}}* |
 | :-- |
-| *GCC* {{< var MIN_GCC_REQUIRED >}} or higher (C++ and fortran compilers) |
-| *CMake* {{< var CMAKE_MINIMUM_REQUIRED_VERSION >}} or higher |
+| *GCC* {{< var MIN_GCC_REQUIRED >}} or higher (*gcc* and *gfortran*) |
+| *CMake* {{< var CMAKE_MINIMUM_REQUIRED_VERSION >}} or higher (*cmake* and *cmake-extra*) |
 | *git* |
-| *AppImage* |
-| *linuxdeploy* |
-| *R* (optional) |
-| *Quarto* (optional) |
-| *POEdit* (optional) |
+| *AppImage* (*libappimage-dev*) |
+| *R* (*r-base*, optional) |
+| *Quarto* ([https://quarto.org/](https://quarto.org/), optional) |
+| *POEdit* (*poedit*, optional) |
 
 | Install the following libraries (and their development files, if mentioned) |
 | :-- |
-| *GTK 3*, *gtk3-devel*/*libgtk3-dev* |
-| *libCURL*, *libcurl-devel*/*libcurl-dev* |
-| *GStreamer*, *gstreamer-devel* |
-| *libsecret*, *libsecret-devel*/*libsecret-1-dev* |
+| *gtk3-devel*/*libgtk3-dev* |
+| *libcurl-devel*/*libcurl-dev* |
+| *gstreamer-devel*/*libgstreamermm1.0-dev* |
+| *libsecret-devel*/*libsecret-1-dev* |
 | *libwebkit2*, *libwebkit2-devel* |
-| *SDL2-devel* |
+| *libsdl2-dev* |
 | *libnotify*, *libnotify-devel*/*libnotify-dev* |
-| *TBB*, *tbb-devel*/*tbb-dev* |
-| *OpenMP* |
-| *libopenssl*, *libopenssl-3-devel*/*libssl-dev* |
+| *tbb-devel*/*tbb-dev* |
+| *libopenssl-3-devel*/*libssl-dev* |
 | *libxml2*, *libxml2-devel*/*libxml2-dev* |
-| *libpoppler-cpp-dev* (optional |
+| *libgspell-1-dev* |
+| *libmagick++-dev* (optional) |
+| *libpoppler-cpp-dev* (optional) |
+
+{{< pagebreak >}}
 
 If building the documentation, prepare *R* to install packages:
 
@@ -39,8 +41,6 @@ If building the documentation, prepare *R* to install packages:
 R
 install.packages("pacman")
 ```
-
-{{< pagebreak >}}
 
 ## Download *wxWidgets* {-}
 
