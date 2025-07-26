@@ -241,11 +241,10 @@ void AboutDialogEx::CreateControls()
         if (wxGetMouseState().ShiftDown())
             {
             productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Peak Memory Usage:")));
-            productInfoGrid->Add(
-                new wxStaticText(mainPage, wxID_ANY,
+            productInfoGrid->Add(new wxStaticText(
+                mainPage, wxID_ANY,
                                  wxFileName::GetHumanReadableSize(
-                                     wxSystemHardwareInfo::GetPeakUsedMemory().GetValue(),
-                                 _("Not available"))));
+                    wxSystemHardwareInfo::GetPeakUsedMemory().GetValue(), _("Not available"))));
             }
 
         // put it all together
@@ -257,7 +256,7 @@ void AboutDialogEx::CreateControls()
         productArea->AddStretchSpacer();
         productArea->Add(new wxBitmapButton(mainPage, ID_COPY_PRODUCT_INFO,
                                             wxArtProvider::GetBitmap(wxART_COPY, wxART_BUTTON)));
-        mainPanelSizer->Add(productArea, wxSizerFlags{}.Expand());
+        mainPanelSizer->Add(productArea, wxSizerFlags{}.Expand().Border());
         mainPanelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder() * 5);
         mainPanelSizer->AddStretchSpacer();
         mainPanelSizer->Add(new wxStaticText(mainPage, wxID_ANY, m_copyright),
@@ -302,14 +301,18 @@ void AboutDialogEx::CreateControls()
         m_sideBarBook->AddPage(componentsPage, _(L"Components"), ID_COMPONENTS, false);
 
         // Consistently format library info with the name and version number.
-        const auto formatLibInfo = [](const auto& libInfo)
+        const auto formatLibInfo = [](const auto& libInfo) -> wxString
         {
+            if (!libInfo.IsOk())
+                {
+                return {};
+                }
             wxString copyright = libInfo.GetCopyright();
             copyright.Replace(L"\n", L"<br />");
 
             return wxString::Format(
                 L"<span style='font-weight: bold;'>%s</span> - %s<br />%s<br />", libInfo.GetName(),
-                (libInfo.AtLeast(0) ?
+                (libInfo.AtLeast(0, 0, 1) ?
                      wxString::Format(_(L"version %s"), libInfo.GetNumericVersionString()) :
                      _(L"unversioned")),
                 (libInfo.HasCopyright() ? copyright + L"<br />" : wxString{}));
