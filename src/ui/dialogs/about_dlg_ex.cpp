@@ -243,7 +243,7 @@ void AboutDialogEx::CreateControls()
             productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Peak Memory Usage:")));
             productInfoGrid->Add(new wxStaticText(
                 mainPage, wxID_ANY,
-                                 wxFileName::GetHumanReadableSize(
+                wxFileName::GetHumanReadableSize(
                     wxSystemHardwareInfo::GetPeakUsedMemory().GetValue(), _("Not available"))));
             }
 
@@ -373,8 +373,10 @@ void AboutDialogEx::CreateControls()
             return allStr;
         }();
 
-        mainPanelSizer->Add(new wxStaticText(componentsPage, wxID_ANY, _DT(L"Included libraries:")),
-                            wxSizerFlags{}.Border(wxLEFT));
+        mainPanelSizer->Add(
+            new wxStaticText(componentsPage, wxID_ANY,
+                             /* TRANSLATORS: program library */ _(L"Included libraries:")),
+            wxSizerFlags{}.Border(wxLEFT));
         wxBoxSizer* textRowSizer = new wxBoxSizer(wxHORIZONTAL);
         wxHtmlWindow* textWindow =
             new wxHtmlWindow(componentsPage, wxID_ANY, wxDefaultPosition, wxSize{ -1, FromDIP(75) },
