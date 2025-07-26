@@ -1009,6 +1009,7 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
     wxRibbonPanel* editGraphButtonBarWindow = hideEditPanel(MainFrame::ID_EDIT_RIBBON_GRAPH_PANEL);
     wxRibbonPanel* editLixGermanButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIX_GERMAN_PANEL);
+    wxRibbonPanel* editLixButtonBarWindow = hideEditPanel(MainFrame::ID_EDIT_RIBBON_LIX_PANEL);
     wxRibbonPanel* editRaygorButtonBarWindow =
         hideEditPanel(MainFrame::ID_EDIT_RIBBON_RAYGOR_PANEL);
     wxRibbonPanel* editFrySchwartzButtonBarWindow =
@@ -1061,6 +1062,14 @@ void BatchProjectView::OnItemSelected(wxCommandEvent& event)
                                            dynamic_cast<BatchProjectDoc*>(GetDocument())
                                                ->IsUsingEnglishLabelsForGermanLix());
                         getEditButtonBar(editLixGermanButtonBarWindow)
+                            ->ToggleButton(XRCID("ID_EDIT_GRAPH_SHOWCASE_KEY_ITEMS"),
+                                           dynamic_cast<BatchProjectDoc*>(GetDocument())
+                                               ->IsShowcasingKeyItems());
+                        }
+                    else if (graph->IsKindOf(wxCLASSINFO(LixGauge)))
+                        {
+                        editLixButtonBarWindow->Show();
+                        getEditButtonBar(editLixButtonBarWindow)
                             ->ToggleButton(XRCID("ID_EDIT_GRAPH_SHOWCASE_KEY_ITEMS"),
                                            dynamic_cast<BatchProjectDoc*>(GetDocument())
                                                ->IsShowcasingKeyItems());

@@ -4459,6 +4459,7 @@ void BatchProjectDoc::DisplayLixGauge()
                                   std::nullopt);
             }
         UpdateGraphOptions(view->GetLixGauge());
+        lixGauge->ShowcaseScore(IsShowcasingKeyItems());
 
         if (IsShowingGroupLegends())
             {

@@ -23,6 +23,7 @@ source('../R/appdown.r')
 
 - Added showcase option to:\
   Danielson-Bryan 2 plot\
+  Lix Gauge\
   German Lix Gauge
 - Added new icon shapes for stipple brushes.
 - Stipple shapes now support transparency.\

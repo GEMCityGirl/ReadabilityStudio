@@ -3094,6 +3094,9 @@ void ProjectDoc::AddLixGauge(const bool setFocus)
         view->GetReadabilityResultsView().AddWindow(lixGaugeView);
         }
     UpdateGraphOptions(lixGaugeView);
+    auto lixPlot = std::dynamic_pointer_cast<LixGauge>(lixGaugeView->GetFixedObject(0, 0));
+    lixPlot->ShowcaseScore(IsShowcasingKeyItems());
+
     lixGaugeView->CalcAllSizes(gdc);
 
     // if they asked to set focus to the score then select the graph
