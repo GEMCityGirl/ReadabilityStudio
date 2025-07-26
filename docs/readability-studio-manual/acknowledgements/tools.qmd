@@ -12,7 +12,7 @@ The following open-source software, artwork, and example files were used to crea
 ### Documentation Software & Templates {-}
 ***
 
-#### Doxygen {-}
+#### *Doxygen* {-}
 
 Doxygen is the de facto standard tool for generating documentation from annotated C++ sources,
 but it also supports other popular programming languages such as C, Objective-C, C#, PHP, Java, Python,
@@ -20,20 +20,20 @@ IDL (Corba, Microsoft, and UNO/OpenOffice flavors), Fortran, VHDL and to some ex
 
 [https://doxygen.nl/](https://doxygen.nl/)
 
-### Legrand Orange Book {-}
+### *Legrand Orange Book* {-}
 
 Highly themable {{< latex >}} book template.
 
 [https://www.latextemplates.com/template/the-legrand-orange-book](https://www.latextemplates.com/template/the-legrand-orange-book)
 
-#### LibreOffice {-}
+#### *LibreOffice* {-}
 
 LibreOffice is a free and powerful office suite, and a successor to OpenOffice.org (commonly known as OpenOffice).
 Its clean interface and feature-rich tools help you unleash your creativity and enhance your productivity.
 
 [https://www.libreoffice.org/](https://www.libreoffice.org/)
 
-#### Pandoc {-}
+#### *Pandoc* {-}
 
 A universal document converter.
 
@@ -41,7 +41,7 @@ If you need to convert files from one markup format into another, pandoc is your
 
 [https://pandoc.org/](https://pandoc.org/)
 
-#### Quarto {-}
+#### *Quarto* {-}
 
 An open-source scientific and technical publishing system.
 
@@ -50,13 +50,13 @@ An open-source scientific and technical publishing system.
 ### Software Development, Quality Assurance & Packaging Software {-}
 ***
 
-#### Catch2 {-}
+#### *Catch2* {-}
 
 Catch2 is mainly a unit testing framework for C++, but it also provides basic micro-benchmarking features, and simple BDD macros.
 
 [https://github.com/catchorg/Catch2](https://github.com/catchorg/Catch2)
 
-#### Clang {-}
+#### *Clang* {-}
 
 A C language family frontend for LLVM.
 
@@ -67,13 +67,13 @@ You can get and build the source today.
 
 [https://clang.llvm.org/](https://clang.llvm.org/)
 
-#### CMake {-}
+#### *CMake* {-}
 
 CMake is an open-source, cross-platform family of tools designed to build, test and package software.
 
 [https://cmake.org/](https://cmake.org/)
 
-#### GCC, the GNU Compiler Collection {-}
+#### *GCC*, the GNU Compiler Collection {-}
 
 The GNU Compiler Collection includes front ends for C, C++, Objective-C, Fortran, Ada, Go, and D, as well as libraries for these languages (libstdc++,...).
 GCC was originally written as the compiler for the GNU operating system.
@@ -83,13 +83,13 @@ R is a free software environment for statistical computing and graphics. It comp
 
 [https://www.gnu.org/](https://www.gnu.org/)
 
-#### git {-}
+#### *git* {-}
 
 Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
 
 [https://git-scm.com/](https://git-scm.com/)
 
-#### Inno Setup {-}
+#### *Inno Setup* {-}
 
 Inno Setup is a free installer for Windows programs by Jordan Russell and Martijn Laan.
 First introduced in 1997, Inno Setup today rivals and even surpasses many commercial installers in feature set and stability.
@@ -99,12 +99,12 @@ First introduced in 1997, Inno Setup today rivals and even surpasses many commer
 ### Artwork Editing Software {-}
 ***
 
-#### GNU Image Manipulation Program {-}
+#### *GNU Image Manipulation Program* {-}
 The Free & Open Source Image Editor.
 
 [https://www.gimp.org/](https://www.gimp.org/)
 
-#### Inkscape {-}
+#### *Inkscape* {-}
 Inkscape is a professional vector graphics editor for Linux, Windows and macOS. It's free and open source.
 
 [https://inkscape.org/](https://inkscape.org/)
@@ -112,12 +112,12 @@ Inkscape is a professional vector graphics editor for Linux, Windows and macOS. 
 ### Data Analysis Software {-}
 ***
 
-#### R {-}
+#### *R* {-}
 R is a free software environment for statistical computing and graphics. It compiles and runs on a wide variety of UNIX platforms, Windows and MacOS.
 
 [https://www.r-project.org/](https://www.r-project.org/)
 
-#### RStudio {-}
+#### *RStudio* {-}
 
 Open source and enterprise-ready professional software for data science.
 
@@ -142,3 +142,13 @@ Free SVG vector files.
 Download and upload SVG images with CC0 public domain license.
 
 [https://freesvg.org/](https://freesvg.org/)
+
+#### Google Fonts {-}
+
+*Roboto* designed by Christian Robertson, Paratype, Font Bureau.
+*Playfair Display* designed by Claus Eggers Sørensen.
+*Noto Sans Japanese* created by Google, inc.
+
+All fonts licensed under the SIL Open Font License Version 1.1.
+
+[https://fonts.google.com](https://fonts.google.com)
