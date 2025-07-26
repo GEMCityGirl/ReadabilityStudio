@@ -235,7 +235,8 @@ void AboutDialogEx::CreateControls()
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Memory:")));
         productInfoGrid->Add(new wxStaticText(
             mainPage, wxID_ANY,
-            wxFileName::GetHumanReadableSize(wxSystemHardwareInfo::GetMemory().GetValue())));
+            wxFileName::GetHumanReadableSize(wxSystemHardwareInfo::GetMemory().GetValue(),
+                                             _("Not available"))));
 
         if (wxGetMouseState().ShiftDown())
             {
@@ -243,7 +244,8 @@ void AboutDialogEx::CreateControls()
             productInfoGrid->Add(
                 new wxStaticText(mainPage, wxID_ANY,
                                  wxFileName::GetHumanReadableSize(
-                                     wxSystemHardwareInfo::GetPeakUsedMemory().GetValue())));
+                                     wxSystemHardwareInfo::GetPeakUsedMemory().GetValue(),
+                                 _("Not available"))));
             }
 
         // put it all together
