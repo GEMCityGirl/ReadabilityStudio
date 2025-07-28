@@ -3237,7 +3237,12 @@ void ToolsOptionsDlg::CreateControls()
                                                _(L"UI language (requires restart):")),
                               wxSizerFlags{}.Border(wxLEFT).CenterVertical());
 
-            wxArrayString choiceStrings = { _(L"System Default"), _(L"English"), _(L"Spanish") };
+            wxArrayString choiceStrings = {
+                _(L"System Default"), wxString{ _DT(L"English", DTExplanation::Constant) },
+                wxString{ _DT(L"Español", DTExplanation::Constant,
+                              L"This should be in the native language so that users can recognize "
+                               "it when selecting which lanuage to use.") }
+            };
             auto* uiLangCombo =
                 new wxComboBox(generalSettingsPage, wxID_ANY, wxString{}, wxDefaultPosition,
                                wxDefaultSize, choiceStrings, wxCB_DROPDOWN | wxCB_READONLY);
