@@ -3241,7 +3241,7 @@ void ToolsOptionsDlg::CreateControls()
                 _(L"System Default"), wxString{ _DT(L"English", DTExplanation::Constant) },
                 wxString{ _DT(L"Español", DTExplanation::Constant,
                               L"This should be in the native language so that users can recognize "
-                               "it when selecting which lanuage to use.") }
+                              "it when selecting which language to use.") }
             };
             auto* uiLangCombo =
                 new wxComboBox(generalSettingsPage, wxID_ANY, wxString{}, wxDefaultPosition,
