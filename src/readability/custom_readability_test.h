@@ -388,7 +388,7 @@ namespace readability
                 break;
             case stemming::stemming_type::dutch:
                 std::for_each(wordData.begin(), wordData.end(),
-                              stemming::dutch_stem<string_type>());
+                              stemming::dutch_porter_stem<string_type>());
                 break;
             case stemming::stemming_type::english:
                 std::for_each(wordData.begin(), wordData.end(),
@@ -715,7 +715,7 @@ namespace readability
             is_word_familiar_no_stem;
         is_familiar_word<word_typeT, const word_list_type, stemming::danish_stem<string_type>>
             is_word_familiar_danish_stem;
-        is_familiar_word<word_typeT, const word_list_type, stemming::dutch_stem<string_type>>
+        is_familiar_word<word_typeT, const word_list_type, stemming::dutch_porter_stem<string_type>>
             is_word_familiar_dutch_stem;
         is_familiar_word<word_typeT, const word_list_type, stemming::english_stem<string_type>>
             is_word_familiar_english_stem;
