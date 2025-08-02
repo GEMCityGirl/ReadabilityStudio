@@ -9,7 +9,7 @@ source('R/appdown.r')
 
 | Install the following tools to build *{{< var PROGRAM_NAME >}}* |
 | :-- |
-| *XCode* |
+| *XCode* {{< var MIN_APPLECLANG_REQUIRED >}} or higher |
 | *CMake* {{< var CMAKE_MINIMUM_REQUIRED_VERSION >}} or higher |
 | *create-dmg* |
 | *Homebrew* |

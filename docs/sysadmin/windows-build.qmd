@@ -9,7 +9,7 @@ source('R/appdown.r')
 
 | Install the following tools to build *{{< var PROGRAM_NAME >}}* |
 | :-- |
-| *Visual Studio* |
+| *Visual Studio* (toolset {{< var MIN_MSVC_TOOLSET_REQUIRED >}} or higher) |
 | *Inno Setup* |
 | *R* (optional) |
 | *Quarto* (optional) |
