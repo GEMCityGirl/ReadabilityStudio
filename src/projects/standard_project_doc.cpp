@@ -6995,6 +6995,7 @@ void ProjectDoc::DisplayGrammar()
                 listView->DistributeColumns();
                 listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU"));
                 UpdateListOptions(listView);
+                listView->SortColumn(0, Wisteria::SortDirection::SortAscending);
                 view->GetGrammarView().AddWindow(listView);
                 }
             }
@@ -7106,6 +7107,7 @@ void ProjectDoc::DisplayGrammar()
                 listView->DistributeColumns();
                 listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU"));
                 UpdateListOptions(listView);
+                listView->SortColumn(0, Wisteria::SortDirection::SortAscending);
                 view->GetGrammarView().AddWindow(listView);
                 }
             }
@@ -7120,13 +7122,13 @@ void ProjectDoc::DisplayGrammar()
         // Mismatched articles
         {
         frequency_set<traits::case_insensitive_wstring_ex> articleMismatchesWords;
-        const auto& incorectArticleIndices = GetWords()->get_incorrect_article_indices();
-        for (size_t i = 0; i < incorectArticleIndices.size(); ++i)
+        const auto& incorrectArticleIndices = GetWords()->get_incorrect_article_indices();
+        for (size_t i = 0; i < incorrectArticleIndices.size(); ++i)
             {
             articleMismatchesWords.insert(
-                GetWords()->get_word(incorectArticleIndices[i]).c_str() +
+                GetWords()->get_word(incorrectArticleIndices[i]).c_str() +
                 traits::case_insensitive_wstring_ex(L" ") +
-                GetWords()->get_word(incorectArticleIndices[i] + 1).c_str());
+                GetWords()->get_word(incorrectArticleIndices[i] + 1).c_str());
             }
         m_incorrectArticleData->DeleteAllItems();
         m_incorrectArticleData->SetSize(articleMismatchesWords.get_data().size(), 2);
@@ -7207,6 +7209,7 @@ void ProjectDoc::DisplayGrammar()
                 listView->DistributeColumns();
                 listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU"));
                 UpdateListOptions(listView);
+                listView->SortColumn(0, Wisteria::SortDirection::SortAscending);
                 view->GetGrammarView().AddWindow(listView);
                 }
             }
@@ -7349,6 +7352,7 @@ void ProjectDoc::DisplayGrammar()
                 listView->DistributeColumns();
                 listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU"));
                 UpdateListOptions(listView);
+                listView->SortColumn(0, Wisteria::SortDirection::SortAscending);
                 view->GetGrammarView().AddWindow(listView);
                 }
             }
@@ -7390,6 +7394,7 @@ void ProjectDoc::DisplayGrammar()
                 listView->DistributeColumns();
                 listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU"));
                 UpdateListOptions(listView);
+                listView->SortColumn(0, Wisteria::SortDirection::SortAscending);
                 view->GetGrammarView().AddWindow(listView);
                 }
             }
@@ -7524,6 +7529,7 @@ void ProjectDoc::DisplayGrammar()
                 listView->DistributeColumns();
                 listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU"));
                 UpdateListOptions(listView);
+                listView->SortColumn(1, Wisteria::SortDirection::SortAscending);
                 view->GetGrammarView().AddWindow(listView);
                 }
             }
@@ -7590,6 +7596,7 @@ void ProjectDoc::DisplayGrammar()
                 listView->DistributeColumns();
                 listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU"));
                 UpdateListOptions(listView);
+                listView->SortColumn(1, Wisteria::SortDirection::SortAscending);
                 view->GetGrammarView().AddWindow(listView);
                 }
             }

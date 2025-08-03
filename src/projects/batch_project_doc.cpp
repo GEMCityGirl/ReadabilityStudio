@@ -7235,6 +7235,14 @@ void BatchProjectDoc::DisplayHardWords()
         listView->SetColumnWidth(0, listView->EstimateColumnWidth(0));
         listView->SetColumnWidth(1, wxLIST_AUTOSIZE_USEHEADER);
         listView->SetColumnWidth(2, wxLIST_AUTOSIZE_USEHEADER);
+        if (listView->GetSortedColumn() == -1)
+            {
+            listView->SortColumn(0, Wisteria::SortDirection::SortAscending);
+            }
+        else
+            {
+            listView->Resort();
+            }
         }
     else
         {
@@ -7269,8 +7277,15 @@ void BatchProjectDoc::DisplayHardWords()
         UpdateListOptions(listView);
         listView->SetVirtualDataProvider(GetKeyWordsBatchData());
         listView->SetVirtualDataSize(GetKeyWordsBatchData()->GetItemCount());
-        listView->Resort();
         listView->DistributeColumns();
+        if (listView->GetSortedColumn() == -1)
+            {
+            listView->SortColumn(0, Wisteria::SortDirection::SortAscending);
+            }
+        else
+            {
+            listView->Resort();
+            }
         }
     else
         {
