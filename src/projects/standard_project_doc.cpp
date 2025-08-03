@@ -7660,6 +7660,12 @@ void ProjectDoc::DisplaySightWords()
                 listView->DistributeColumns();
                 listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU"));
                 UpdateListOptions(listView);
+                // sort by category, frequency, then words
+                listView->SortColumns(
+                    { std::make_pair(2, Wisteria::SortDirection::SortAscending),
+                      std::make_pair(1, Wisteria::SortDirection::SortDescending),
+                      std::make_pair(0, Wisteria::SortDirection::SortAscending) });
+
                 view->GetDolchSightWordsView().AddWindow(listView);
                 }
             }
@@ -7700,6 +7706,11 @@ void ProjectDoc::DisplaySightWords()
                 listView->DistributeColumns();
                 listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU"));
                 UpdateListOptions(listView);
+                // sort by frequency (low to high), then words (highest to lowest)
+                listView->SortColumns(
+                    { std::make_pair(1, Wisteria::SortDirection::SortDescending),
+                      std::make_pair(0, Wisteria::SortDirection::SortAscending) });
+
                 view->GetDolchSightWordsView().AddWindow(listView);
                 }
             }
@@ -7740,6 +7751,11 @@ void ProjectDoc::DisplaySightWords()
                 listView->DistributeColumns();
                 listView->AssignContextMenu(wxXmlResource::Get()->LoadMenu(L"IDM_LIST_MENU"));
                 UpdateListOptions(listView);
+                // sort by category, then words (highest to lowest)
+                listView->SortColumns(
+                    { std::make_pair(1, Wisteria::SortDirection::SortAscending),
+                      std::make_pair(0, Wisteria::SortDirection::SortAscending) });
+
                 view->GetDolchSightWordsView().AddWindow(listView);
                 }
             }
