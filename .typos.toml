@@ -34,9 +34,10 @@ Programa = "Programa"
 objets = "objets"
 sur = "sur"
 Hel = "Hel"
-# false positives
-deliminated = "deliminated"
 
 [type.svg]
 extend-glob = ["*.svg"]
 check-file = false
+
+[files]
+extend-exclude = ["src/Catch2/", "src/lua/"]
