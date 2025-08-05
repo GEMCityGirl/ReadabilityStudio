@@ -22,7 +22,7 @@
 using namespace grammar;
 using namespace characters;
 
-TEST_CASE("English conjuctions", "[conjuctions]")
+TEST_CASE("English conjunctions", "[conjunctions]")
     {
     SECTION("Nulls")
         {
@@ -59,7 +59,7 @@ TEST_CASE("English conjuctions", "[conjuctions]")
         }
     }
 
-TEST_CASE("German conjuctions", "[conjuctions]")
+TEST_CASE("German conjunctions", "[conjunctions]")
     {
     SECTION("German")
         {
@@ -83,7 +83,7 @@ TEST_CASE("German conjuctions", "[conjuctions]")
         }
     }
 
-TEST_CASE("Spanish conjuctions", "[conjuctions]")
+TEST_CASE("Spanish conjunctions", "[conjunctions]")
     {
     SECTION("Spanish")
         {
@@ -111,7 +111,7 @@ TEST_CASE("Spanish conjuctions", "[conjuctions]")
         }
     }
 
-TEST_CASE("Russian conjuctions", "[conjuctions]")
+TEST_CASE("Russian conjunctions", "[conjunctions]")
     {
     SECTION("Null")
         {

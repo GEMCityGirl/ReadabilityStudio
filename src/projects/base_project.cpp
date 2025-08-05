@@ -3813,7 +3813,7 @@ std::pair<bool, std::wstring> BaseProject::ExtractDocRawText(std::string_view so
                    wxOK | wxICON_EXCLAMATION);
         return std::make_pair(false, std::wstring{});
         }
-    catch (const word1997_extract_text::msword_root_enrty_not_found&)
+    catch (const word1997_extract_text::msword_root_entry_not_found&)
         {
         LogMessage(_(L"File does not appear to be a valid Word file."), _(L"Import Error"),
                    wxOK | wxICON_EXCLAMATION);

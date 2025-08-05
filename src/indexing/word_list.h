@@ -192,7 +192,7 @@ class word_list_with_replacements
         lily_of_the_valley::text_row<word_type> row(std::nullopt);
         row.add_column(tabbedColumn);
         // just reading in a single list of words, so ignore extra tabs and spaces and whatnot
-        row.treat_consecutive_delimitors_as_one(true);
+        row.treat_consecutive_delimiters_as_one(true);
 
         // define the rows
         lily_of_the_valley::text_matrix<word_type> importer(&words);

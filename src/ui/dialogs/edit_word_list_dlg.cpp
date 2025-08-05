@@ -267,7 +267,7 @@ void EditWordListDlg::OnFilePathChanged(wxCommandEvent& event)
                 lily_of_the_valley::text_column_delimited_character_parser{ L'\t' }, 5);
             lily_of_the_valley::text_row<Wisteria::UI::ListCtrlExDataProvider::ListCellString> row(
                 std::nullopt);
-            row.treat_consecutive_delimitors_as_one(false);
+            row.treat_consecutive_delimiters_as_one(false);
             row.add_column(tabbedColumn);
 
             lily_of_the_valley::text_matrix<Wisteria::UI::ListCtrlExDataProvider::ListCellString>

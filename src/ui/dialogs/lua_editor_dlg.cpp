@@ -306,7 +306,7 @@ void LuaEditorDlg::ImportAPI()
     lily_of_the_valley::standard_delimited_character_column semiColonColumn(
         lily_of_the_valley::text_column_delimited_character_parser{ L';' }, std::nullopt);
     lily_of_the_valley::text_row<std::wstring> row(std::nullopt);
-    row.treat_consecutive_delimitors_as_one(true); // skip consecutive semicolons
+    row.treat_consecutive_delimiters_as_one(true); // skip consecutive semicolons
     row.add_column(tabbedColumn);
     row.add_column(semiColonColumn);
     row.allow_column_resizing(true);

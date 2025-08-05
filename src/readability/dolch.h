@@ -126,7 +126,7 @@ namespace readability
             row.add_column(tabbedColumn);
             row.set_values(&rowStrings);
             // prevent reading empty columns, we should have two filled-in columns
-            row.treat_consecutive_delimitors_as_one(true);
+            row.treat_consecutive_delimiters_as_one(true);
 
             do
                 {

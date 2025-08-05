@@ -3233,7 +3233,7 @@ void MainFrame::OnViewProfileReport([[maybe_unused]] wxRibbonButtonBarEvent& eve
         myColumn(parser, std::nullopt);
     lily_of_the_valley::text_row<ListCtrlExDataProvider::ListCellString> myRow(std::nullopt);
     myRow.add_column(myColumn);
-    myRow.treat_consecutive_delimitors_as_one(false);
+    myRow.treat_consecutive_delimiters_as_one(false);
 
     lily_of_the_valley::text_matrix<ListCtrlExDataProvider::ListCellString> importer(
         &profileReportDialog.GetData()->GetMatrix());
@@ -5428,7 +5428,7 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
             }
         fileListDlg.GetListCtrl()->SetVirtualDataSize(rowCount);
         fileListDlg.GetListCtrl()->DistributeColumns(-1);
-        fileListDlg.GetInforBar()->ShowMessage(
+        fileListDlg.GetInfoBar()->ShowMessage(
             wxString::Format(
                 _(L"Found %lu duplicate files. You can select and delete duplicates from a group, "
                   "leaving one file for the group."),

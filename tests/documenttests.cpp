@@ -1616,7 +1616,7 @@ TEST_CASE("Document misspellings", "[document]")
         CHECK(doc.get_duplicate_word_indices().size() == 1);
         CHECK(doc.get_duplicate_word_indices().at(0) == 3);
         }
-    SECTION("Misspelling And Double Word With Punctation")
+    SECTION("Misspelling And Double Word With Punctuation")
         {
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
                              &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
@@ -3408,7 +3408,7 @@ TEST_CASE("Document", "[document]")
         CHECK(doc.get_valid_paragraph_count() == 1);
         }
 
-    SECTION("Double Word With Punctation")
+    SECTION("Double Word With Punctuation")
         {
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
         const wchar_t text[] = L"Ay, ay captain.";
@@ -3427,7 +3427,7 @@ TEST_CASE("Document", "[document]")
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
         const wchar_t text[] = L" 5 5 are good numbers";
         doc.load_document(text, wcslen(text), false, false, false, false);
-        CHECK(doc.get_duplicate_word_indices().size() == 0); // ok to repeate numbers
+        CHECK(doc.get_duplicate_word_indices().size() == 0); // ok to repeat numbers
         }
     
     
@@ -3506,7 +3506,7 @@ TEST_CASE("Document", "[document]")
     SECTION("Proper Single Acronym Start Of Sentence")
         {
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t text[] = L"IGN Magazine: I think Chun Li is the best fighter in Street Figher. Cammy, Ryu, and Ken are cool too. Sincerely, Joe Franklyn Cool, Alan Smithee.";
+        const wchar_t text[] = L"IGN Magazine: I think Chun Li is the best fighter in Street Fighter. Cammy, Ryu, and Ken are cool too. Sincerely, Joe Franklyn Cool, Alan Smithee.";
         doc.load_document(text, wcslen(text), false, false, false, false);
         CHECK(doc.get_words()[0].is_proper_noun());
         CHECK(doc.get_words()[1].is_proper_noun());
@@ -3779,12 +3779,12 @@ TEST_CASE("Document", "[document]")
         CHECK(1 == tokIter->second.second);
         }
 
-    SECTION("Conjuction")
+    SECTION("Conjunction")
         {
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
             &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
             &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t text[] = L"I am Mr. Smithe.  And name is C. Blake Smithe.  BUT I ususally go by Blake.  Or the Blakeman.  Seriously, call me Blake.";
+        const wchar_t text[] = L"I am Mr. Smithe.  And name is C. Blake Smithe.  BUT I usually go by Blake.  Or the Blakeman.  Seriously, call me Blake.";
         doc.load_document(text, wcslen(text), false, false, false, false);
         CHECK(doc.get_conjunction_beginning_sentences().size() == 3);
         CHECK(doc.get_conjunction_beginning_sentences()[0] == 1);

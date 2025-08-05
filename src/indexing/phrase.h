@@ -475,7 +475,7 @@ namespace grammar
             lily_of_the_valley::standard_delimited_character_column tabbedColumn(
                 lily_of_the_valley::text_column_delimited_character_parser{ L'\t' }, 5);
             lily_of_the_valley::text_row<traits::case_insensitive_wstring_ex> row(std::nullopt);
-            row.treat_consecutive_delimitors_as_one(false);
+            row.treat_consecutive_delimiters_as_one(false);
             row.add_column(tabbedColumn);
             row.set_values(&rowStrings);
 
@@ -484,7 +484,7 @@ namespace grammar
             lily_of_the_valley::text_row<traits::case_insensitive_wstring_ex> phraseRow(
                 std::nullopt);
             // just grabbing list of words, extra spaces can be ignored
-            phraseRow.treat_consecutive_delimitors_as_one(true);
+            phraseRow.treat_consecutive_delimiters_as_one(true);
             phraseRow.allow_column_resizing();
             phraseRow.add_column(spacedColumn);
             phraseRow.set_values(&newPhrasePair.first.get_words());

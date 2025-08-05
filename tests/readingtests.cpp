@@ -481,7 +481,7 @@ TEST_CASE("Flesch tests", "[flesch][readability-tests]")
 
 TEST_CASE("Lix German tests", "[lix][german][readability-tests]")
     {
-    SECTION("LixGermanTechnialDocumentsConversion")
+    SECTION("Lix German Technical Documents Conversion")
         {
         CHECK(readability::lix_index_to_german_technical_literature_grade_level(0) == 3);
         CHECK(readability::lix_index_to_german_technical_literature_grade_level(30) == 3);
@@ -510,7 +510,7 @@ TEST_CASE("Lix German tests", "[lix][german][readability-tests]")
         CHECK(readability::lix_index_to_german_technical_literature_grade_level(70) == 15);
         CHECK(readability::lix_index_to_german_technical_literature_grade_level(101) == 15);
         }
-    SECTION("LixGermanChildrensBooksConversion")
+    SECTION("Lix German Childrens Books Conversion")
         {
         CHECK(readability::lix_index_to_german_childrens_literature_grade_level(7) == 1);
         CHECK(readability::lix_index_to_german_childrens_literature_grade_level(19) == 1);
@@ -552,7 +552,7 @@ TEST_CASE("Lix German tests", "[lix][german][readability-tests]")
             { CHECK(readability::german_lix_difficulty::german_lix_very_difficult == german_lix_index_to_difficulty_level(i)); }
         }
 
-    SECTION("GermanLix")
+    SECTION("German Lix")
         {
         // should return the same index value as regular Lix
         german_lix_difficulty diffLevel;
@@ -644,7 +644,7 @@ TEST_CASE("Sol tests", "[sol][readability-tests]")
         }
     }
 
-TEST_CASE("Forcast tests", "[forcast][readability-tests]")
+TEST_CASE("FORCAST tests", "[forcast][readability-tests]")
     {
     SECTION("FORCAST")
         {
