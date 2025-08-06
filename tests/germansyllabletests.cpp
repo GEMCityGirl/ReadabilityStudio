@@ -44,7 +44,7 @@ TEST_CASE("German Syllabizer", "[syllable]")
         CHECK(syllabize(L"FREIRBIER", 9) == 2);
         CHECK(syllabize(L"FREUND", 6) == 1);
         }
-    SECTION("Seperable Prefixes")
+    SECTION("Separable Prefixes")
         {
         german_syllabize syllabize;
         CHECK(syllabize(L"abbrechen", 9) == 3);

@@ -370,7 +370,7 @@ TEST_CASE("Sentences", "[sentence]")
         CHECK(sent(text, wcslen(text), 8, 5, 2));
         }
     // test unknown abbreviations that are nothing but consonants
-    SECTION("Abbreviation6")
+    SECTION("Abbreviation 6")
         {
         const wchar_t text[] = L"The mfgs. cfgs. IS very complx.";
         grammar::is_end_of_sentence sent(false);
@@ -378,14 +378,14 @@ TEST_CASE("Sentences", "[sentence]")
         CHECK_FALSE(sent(text, wcslen(text), 14, 10, 2));
         CHECK(sent(text, wcslen(text), 30, 24, 5));
         }
-    SECTION("Abbreviation7")
+    SECTION("Abbreviation 7")
         {
         const wchar_t text[] = L"The Mfg. CDs. It's very complx.";
         grammar::is_end_of_sentence sent(false);
         CHECK_FALSE(sent(text, wcslen(text), 7, 4, 1));
         CHECK(sent(text, wcslen(text), 12, 9, 2));
         }
-    SECTION("AbbreviationPossesive")
+    SECTION("Abbreviation Possessive")
         {
         document<word_case_insensitive_no_stem> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"The Co.'s books are Co.'s";
@@ -393,28 +393,28 @@ TEST_CASE("Sentences", "[sentence]")
         CHECK(doc.get_words().at(1) == L"Co.'s");
         CHECK(doc.get_words().at(4) == L"Co.'s");
         }
-    SECTION("AbbreviationQuestion")
+    SECTION("Abbreviation Question")
         {
         document<word_case_insensitive_no_stem> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"He's a dr.?  Really?";
         doc.load_document(text, wcslen(text), false, false, false, false);
         CHECK(doc.get_sentence_count() == 2);
         }
-    SECTION("AbbreviationInParen")
+    SECTION("Abbreviation In Paren")
         {
         document<word_case_insensitive_no_stem> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"He's a doctor (dr.) and a good one.";
         doc.load_document(text, wcslen(text), false, false, false, false);
         CHECK(doc.get_sentence_count() == 1);
         }
-    SECTION("AbbreviationInTwoParens")
+    SECTION("Abbreviation In Two Parens")
         {
         document<word_case_insensitive_no_stem> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"He's a [doctor (dr.)] and a good one.";
         doc.load_document(text, wcslen(text), false, false, false, false);
         CHECK(doc.get_sentence_count() == 1);
         }
-    SECTION("AbbreviationQuoteAtEnd")
+    SECTION("Abbreviation Quote At End")
         {
         document<word_case_insensitive_no_stem> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"The Co.'s books are Co.'";
@@ -422,7 +422,7 @@ TEST_CASE("Sentences", "[sentence]")
         CHECK(doc.get_words().at(1) == L"Co.'s");
         CHECK(doc.get_words().at(4) == L"Co.");
         }
-    SECTION("AbbreviationQuoteAtEnd2")
+    SECTION("Abbreviation Quote At End 2")
         {
         document<word_case_insensitive_no_stem> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"The Co.'s books are good.'";
@@ -430,7 +430,7 @@ TEST_CASE("Sentences", "[sentence]")
         CHECK(doc.get_words().at(1) == L"Co.'s");
         CHECK(doc.get_words().at(4) == L"good");
         }
-    SECTION("SentenceEndRegular")
+    SECTION("Sentence End Regular")
         {
         const wchar_t text[] = L"I am Mr. Smithe.  My name is C. Blake Smithe.";
         grammar::is_end_of_sentence sent(false);
@@ -472,25 +472,25 @@ TEST_CASE("Sentences", "[sentence]")
         grammar::is_end_of_sentence sent(false);
         CHECK(sent(text, wcslen(text), 8, 7, 2));
         }
-    SECTION("EndOfText")
+    SECTION("End Of Text")
         {
         const wchar_t text[] = L"I am Mr. Smithe.  My name is C. Blake Smithe.";
         grammar::is_end_of_sentence sent(false);
         CHECK(sent(text, wcslen(text), 44, 30, 5) );
         }
-    SECTION("SentenceEndQuoted")
+    SECTION("Sentence End Quoted")
         {
         const wchar_t text[] = L"I am Mr. Smithe.\" Hello";
         grammar::is_end_of_sentence sent(false);
         CHECK(sent(text, wcslen(text), 15, 9, 3) );
         }
-    SECTION("SentenceEndQuoted2")
+    SECTION("Sentence End Quoted 2")
         {
         const wchar_t text[] = L"I am Mr. Smithe.” —anonymous.";
         grammar::is_end_of_sentence sent(false);
         CHECK(sent(text, wcslen(text), 15, 9, 3) );
         }
-    SECTION("SentenceStartQuoted")
+    SECTION("Sentence Start Quoted")
         {
         const wchar_t text[] = L"I am Mr. Smithe. \"Hello";
         grammar::is_end_of_sentence sent(false);
@@ -532,7 +532,7 @@ TEST_CASE("Sentences", "[sentence]")
         grammar::is_end_of_sentence sent(false);
         CHECK(sent(text, wcslen(text), 19, 10, 3) );
         }
-    SECTION("TripleBangs")
+    SECTION("Triple Bangs")
         {
         const wchar_t text[] = L"Uh!!! Oh!";
         grammar::is_end_of_sentence sent(false);
@@ -550,7 +550,7 @@ TEST_CASE("Sentences", "[sentence]")
         grammar::is_end_of_sentence sent(false);
         CHECK_FALSE(sent(text, wcslen(text), 2, 0, 0));
         }
-    SECTION("EllipsesSpaces")
+    SECTION("Ellipses Spaces")
         {
         const wchar_t text[] = L"Uh . . . oh!";
         grammar::is_end_of_sentence sent(false);

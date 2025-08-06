@@ -26,7 +26,7 @@ source('R/appdown.r')
   This is the formula-parsing engine used for custom tests (**do not edit this folder**).
 - **tinyxml2**: submodule containing the *TinyXML2* library (**do not edit this folder**)
 - **ui**: user interface code
-- **webharvester**: web harvester clas
+- **webharvester**: web harvester class
 - **Wisteria-Dataviz**: submodule containing the *Wisteria-Dataviz* library.\
   This is the core graphics library (**do not edit this folder**).
 

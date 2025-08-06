@@ -118,7 +118,7 @@ namespace grammar
             @note This adjustment is done by shortening the internal length variable,
                 it does not change the text buffer.
             @param start The text being reviewed.*/
-        void adjust_length_if_possesive(const wchar_t* start);
+        void adjust_length_if_possessive(const wchar_t* start);
 
         /** @brief If there are any periods in this word, then break it up into smaller words.
             @returns @c true if word was split and syllabized.

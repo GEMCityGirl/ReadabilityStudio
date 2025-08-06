@@ -71,14 +71,15 @@ class document
 
 #ifdef __UNITTEST
     void load_document(const wchar_t* words, const size_t length, const bool treatEolAsEos,
-                       const bool ignoreBlankLinesWhenDetermingParagraphSplit,
-                       const bool ignoreIndentingWhenDetermingParagraphSplit,
+                       const bool ignoreBlankLinesWhenDeterminingParagraphSplit,
+                       const bool ignoreIndentingWhenDeterminingParagraphSplit,
                        const bool sentenceStartMustBeUppercased)
         {
         treat_eol_as_eos(treatEolAsEos);
-        ignore_blank_lines_when_determing_paragraph_split(
-            ignoreBlankLinesWhenDetermingParagraphSplit);
-        ignore_indenting_when_determing_paragraph_split(ignoreIndentingWhenDetermingParagraphSplit);
+        ignore_blank_lines_when_determining_paragraph_split(
+            ignoreBlankLinesWhenDeterminingParagraphSplit);
+        ignore_indenting_when_determining_paragraph_split(
+            ignoreIndentingWhenDeterminingParagraphSplit);
         sentence_start_must_be_uppercased(sentenceStartMustBeUppercased);
         load(words, length);
         }
@@ -92,8 +93,8 @@ class document
         reserve_word_size(length / 5);
 
         tokenize::document_tokenize<> tokenize_text(
-            words, length, m_treat_eol_as_eos, m_ignore_blank_lines_when_determing_paragraph_split,
-            m_ignore_indenting_when_determing_paragraph_split, m_sentence_start_must_be_uppercased);
+            words, length, m_treat_eol_as_eos, m_ignore_blank_lines_when_determining_paragraph_split,
+            m_ignore_indenting_when_determining_paragraph_split, m_sentence_start_must_be_uppercased);
 
         tokenize_text.set_known_spellings(is_correctly_spelled.get_word_list());
 
@@ -323,7 +324,7 @@ class document
             {
             /* If an incomplete sentence then look ahead and see how many more follow.
                If there are just one or two consecutive incomplete sentences then they are
-               more than likely a header (and subheader). Three or more incomplete sentences
+               more than likely a header (and sub-header). Three or more incomplete sentences
                is more than likely a list or table of some sort.*/
             if (!sent_iter->is_valid())
                 {
@@ -1039,14 +1040,14 @@ class document
 
     void treat_eol_as_eos(const bool eol_as_eos) noexcept { m_treat_eol_as_eos = eol_as_eos; }
 
-    void ignore_blank_lines_when_determing_paragraph_split(const bool ignore) noexcept
+    void ignore_blank_lines_when_determining_paragraph_split(const bool ignore) noexcept
         {
-        m_ignore_blank_lines_when_determing_paragraph_split = ignore;
+        m_ignore_blank_lines_when_determining_paragraph_split = ignore;
         }
 
-    void ignore_indenting_when_determing_paragraph_split(const bool ignore) noexcept
+    void ignore_indenting_when_determining_paragraph_split(const bool ignore) noexcept
         {
-        m_ignore_indenting_when_determing_paragraph_split = ignore;
+        m_ignore_indenting_when_determining_paragraph_split = ignore;
         }
 
     void sentence_start_must_be_uppercased(const bool mustBeUppercased) noexcept
@@ -1147,9 +1148,9 @@ class document
 
     void set_stemmer(stemming::stem<>* stemmer) { stem_word = stemmer; }
 
-    void set_conjunction_function(const grammar::is_coordinating_conjunction* isConjuction)
+    void set_conjunction_function(const grammar::is_coordinating_conjunction* isConjunction)
         {
-        is_conjunction = isConjuction;
+        is_conjunction = isConjunction;
         }
 
     void set_mismatched_article_function(
@@ -1847,7 +1848,7 @@ class document
                and double-check that they really aren't proper.*/
             if (wordPos->is_exclamatory() && !wordPos->is_proper_noun())
                 {
-                // perform a case-INsensitive search here because all of these words will be in all
+                // perform a case-insensitive search here because all of these words will be in all
                 // caps.
                 auto propPos =
                     std::find_if(properWords.get_data().cbegin(), properWords.get_data().cend(),
@@ -1918,7 +1919,7 @@ class document
                         {
                         ++wordCounter;
                         // If word was common, then keep going. Otherwise, feed in the last word
-                        // that was UNcommon and stop scanning.
+                        // that was uncommon and stop scanning.
                         if (!is_word_common(wordCounter - 1))
                             {
                             if (m_words[wordCounter - 1].is_proper_noun())
@@ -2420,9 +2421,9 @@ class document
                     if (uncommonWord.second.first.size() == 2)
                         {
                         const auto firstWord = uncommonWord.second.first.cbegin();
-                        const auto secondtWord = std::next(firstWord);
-                        if (((*firstWord) + 1) == *secondtWord ||
-                            ((*firstWord) + 2) == *secondtWord)
+                        const auto secondWord = std::next(firstWord);
+                        if (((*firstWord) + 1) == *secondWord ||
+                            ((*firstWord) + 2) == *secondWord)
                             {
                             continue;
                             }
@@ -2916,8 +2917,8 @@ class document
     size_t m_valid_word_count{ 0 };
     // flags
     bool m_treat_eol_as_eos{ false };
-    bool m_ignore_blank_lines_when_determing_paragraph_split{ false };
-    bool m_ignore_indenting_when_determing_paragraph_split{ false };
+    bool m_ignore_blank_lines_when_determining_paragraph_split{ false };
+    bool m_ignore_indenting_when_determining_paragraph_split{ false };
     bool m_sentence_start_must_be_uppercased{ false };
     bool m_ignore_trailing_copyright_notice_paragraphs{ true };
     bool m_ignore_citation_sections{ true };

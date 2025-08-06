@@ -583,12 +583,12 @@ static double SentenceCount(const te_expr* context, const double wordType)
 void ReadabilityFormulaParser::UpdateVariables()
     {
     const double dcWordCount =
-        (m_formualProject.GetProject()->GetDaleChallTextExclusionMode() ==
+        (m_formulaProject.GetProject()->GetDaleChallTextExclusionMode() ==
          SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ?
-            (m_formualProject.GetProject()->GetTotalWordsFromCompleteSentencesAndHeaders() -
-             m_formualProject.GetProject()->GetTotalHardWordsDaleChall()) :
-            (m_formualProject.GetProject()->GetTotalWords() -
-             m_formualProject.GetProject()->GetTotalHardWordsDaleChall());
+            (m_formulaProject.GetProject()->GetTotalWordsFromCompleteSentencesAndHeaders() -
+             m_formulaProject.GetProject()->GetTotalHardWordsDaleChall()) :
+            (m_formulaProject.GetProject()->GetTotalWords() -
+             m_formulaProject.GetProject()->GetTotalHardWordsDaleChall());
 
     set_constant(_DT("D"), dcWordCount);
     }
@@ -597,7 +597,7 @@ void ReadabilityFormulaParser::UpdateVariables()
 ReadabilityFormulaParser::ReadabilityFormulaParser(const BaseProject* project,
                                                    const wchar_t decimalSeparator,
                                                    const wchar_t listSeparator)
-    : m_formualProject(project)
+    : m_formulaProject(project)
     {
     assert(decimalSeparator <= 255);
     assert(listSeparator <= 255);
@@ -608,84 +608,84 @@ ReadabilityFormulaParser::ReadabilityFormulaParser(const BaseProject* project,
         }
 
     const double dcWordCount =
-        (m_formualProject.GetProject()->GetDaleChallTextExclusionMode() ==
+        (m_formulaProject.GetProject()->GetDaleChallTextExclusionMode() ==
          SpecializedTestTextExclusion::ExcludeIncompleteSentencesExceptHeadings) ?
-            (m_formualProject.GetProject()->GetTotalWordsFromCompleteSentencesAndHeaders() -
-             m_formualProject.GetProject()->GetTotalHardWordsDaleChall()) :
-            (m_formualProject.GetProject()->GetTotalWords() -
-             m_formualProject.GetProject()->GetTotalHardWordsDaleChall());
+            (m_formulaProject.GetProject()->GetTotalWordsFromCompleteSentencesAndHeaders() -
+             m_formulaProject.GetProject()->GetTotalHardWordsDaleChall()) :
+            (m_formulaProject.GetProject()->GetTotalWords() -
+             m_formulaProject.GetProject()->GetTotalHardWordsDaleChall());
 
     set_variables_and_functions(std::set<te_variable>{
         // note that these constants must be char* (not whcar_t*)
         { _DT("UNIQUETHREESYLLABLEPLUSWORDCOUNT"),
           static_cast<te_confun1>(UniqueThreeSyllablePlusWordCount), TE_DEFAULT,
-          &m_formualProject },
+          &m_formulaProject },
         { _DT("THREESYLLABLEPLUSWORDCOUNT"), static_cast<te_confun1>(ThreeSyllablePlusWordCount),
-          TE_DEFAULT, &m_formualProject },
+          TE_DEFAULT, &m_formulaProject },
         { _DT("SYLLABLECOUNT"), static_cast<te_confun1>(SyllableCount), TE_DEFAULT,
-          &m_formualProject },
+          &m_formulaProject },
         { _DT("CHARACTERCOUNT"), static_cast<te_confun1>(CharacterCount), TE_DEFAULT,
-          &m_formualProject },
+          &m_formulaProject },
         { _DT("SENTENCECOUNT"), static_cast<te_confun1>(SentenceCount), TE_DEFAULT,
-          &m_formualProject },
-        { _DT("WORDCOUNT"), static_cast<te_confun1>(WordCount), TE_DEFAULT, &m_formualProject },
+          &m_formulaProject },
+        { _DT("WORDCOUNT"), static_cast<te_confun1>(WordCount), TE_DEFAULT, &m_formulaProject },
         { _DT("MINIWORDCOUNT"), static_cast<te_confun0>(MiniWordCount), TE_DEFAULT,
-          &m_formualProject },
+          &m_formulaProject },
         { _DT("HARDFOGWORDCOUNT"), static_cast<te_confun0>(HardFogWordCount), TE_DEFAULT,
-          &m_formualProject },
+          &m_formulaProject },
         { _DT("CHARACTERPLUSPUNCTUATIONCOUNT"),
-          static_cast<te_confun0>(CharacterPlusPunctuationCount), TE_DEFAULT, &m_formualProject },
+          static_cast<te_confun0>(CharacterPlusPunctuationCount), TE_DEFAULT, &m_formulaProject },
         { _DT("NUMERALCOUNT"), static_cast<te_confun0>(NumeralCount), TE_DEFAULT,
-          &m_formualProject },
+          &m_formulaProject },
         { _DT("UNIQUEWORDCOUNT"), static_cast<te_confun0>(UniqueWordCount), TE_DEFAULT,
-          &m_formualProject },
+          &m_formulaProject },
         { _DT("UNIQUESIXCHARACTERPLUSWORDCOUNT"),
-          static_cast<te_confun0>(UniqueSixCharacterPlusWordCount), TE_DEFAULT, &m_formualProject },
+          static_cast<te_confun0>(UniqueSixCharacterPlusWordCount), TE_DEFAULT, &m_formulaProject },
         { _DT("UNIQUEONESYLLABLEWORDCOUNT"), static_cast<te_confun0>(UniqueOneSyllableWordCount),
-          TE_DEFAULT, &m_formualProject },
+          TE_DEFAULT, &m_formulaProject },
         { _DT("FAMILIARWORDCOUNT"), static_cast<te_confun0>(FamiliarWordCount), TE_DEFAULT,
-          &m_formualProject },
+          &m_formulaProject },
         { _DT("UNFAMILIARWORDCOUNT"), static_cast<te_confun0>(UnfamiliarWordCount), TE_DEFAULT,
-          &m_formualProject },
+          &m_formulaProject },
         { _DT("UNIQUEUNFAMILIARWORDCOUNT"), static_cast<te_confun0>(UniqueUnfamiliarWordCount),
-          TE_DEFAULT, &m_formualProject },
+          TE_DEFAULT, &m_formulaProject },
         { _DT("UNFAMILIARHARRISJACOBSONWORDCOUNT"),
           static_cast<te_confun0>(UnfamiliarHarrisJacobsonWordCount), TE_DEFAULT,
-          &m_formualProject },
+          &m_formulaProject },
         { _DT("UNIQUEUNFAMILIARHARRISJACOBSONWORDCOUNT"),
           static_cast<te_confun0>(UniqueUnfamiliarHarrisJacobsonWordCount), TE_DEFAULT,
-          &m_formualProject },
+          &m_formulaProject },
         { _DT("FAMILIARHARRISJACOBSONWORDCOUNT"),
-          static_cast<te_confun0>(FamiliarHarrisJacobsonWordCount), TE_DEFAULT, &m_formualProject },
+          static_cast<te_confun0>(FamiliarHarrisJacobsonWordCount), TE_DEFAULT, &m_formulaProject },
         { _DT("UNFAMILIARDALECHALLWORDCOUNT"),
-          static_cast<te_confun0>(UnfamiliarDaleChallWordCount), TE_DEFAULT, &m_formualProject },
+          static_cast<te_confun0>(UnfamiliarDaleChallWordCount), TE_DEFAULT, &m_formulaProject },
         { _DT("UNIQUEUNFAMILIARDALECHALLWORDCOUNT"),
           static_cast<te_confun0>(UniqueUnfamiliarDaleChallWordCount), TE_DEFAULT,
-          &m_formualProject },
+          &m_formulaProject },
         { _DT("FAMILIARDALECHALLWORDCOUNT"), static_cast<te_confun0>(FamiliarDaleChallWordCount),
-          TE_DEFAULT, &m_formualProject },
+          TE_DEFAULT, &m_formulaProject },
         { _DT("UNFAMILIARSPACHEWORDCOUNT"), static_cast<te_confun0>(UnfamiliarSpacheWordCount),
-          TE_DEFAULT, &m_formualProject },
+          TE_DEFAULT, &m_formulaProject },
         { _DT("UNIQUEUNFAMILIARSPACHEWORDCOUNT"),
-          static_cast<te_confun0>(UniqueUnfamiliarSpacheWordCount), TE_DEFAULT, &m_formualProject },
+          static_cast<te_confun0>(UniqueUnfamiliarSpacheWordCount), TE_DEFAULT, &m_formulaProject },
         { _DT("FAMILIARSPACHEWORDCOUNT"), static_cast<te_confun0>(FamiliarSpacheWordCount),
-          TE_DEFAULT, &m_formualProject },
+          TE_DEFAULT, &m_formulaProject },
         { _DT("SIXCHARACTERPLUSWORDCOUNT"), static_cast<te_confun0>(SixCharacterPlusWordCount),
-          TE_DEFAULT, &m_formualProject },
+          TE_DEFAULT, &m_formulaProject },
         { _DT("SEVENCHARACTERPLUSWORDCOUNT"), static_cast<te_confun0>(SevenCharacterPlusWordCount),
-          TE_DEFAULT, &m_formualProject },
+          TE_DEFAULT, &m_formulaProject },
         { _DT("ONESYLLABLEWORDCOUNT"), static_cast<te_confun0>(OneSyllableWordCount), TE_DEFAULT,
-          &m_formualProject },
+          &m_formulaProject },
         { _DT("INDEPENDENTCLAUSECOUNT"), static_cast<te_confun0>(IndependentClauseCount),
-          TE_DEFAULT, &m_formualProject },
+          TE_DEFAULT, &m_formulaProject },
         { _DT("PROPERNOUNCOUNT"), static_cast<te_confun0>(ProperNounCount), TE_DEFAULT,
-          &m_formualProject },
+          &m_formulaProject },
         { _DT("CUSTOMHARRISJACOBSON"), static_cast<te_confun0>(CustomHarrisJacobson), TE_DEFAULT,
-          &m_formualProject },
+          &m_formulaProject },
         { _DT("CUSTOMSPACHE"), static_cast<te_confun0>(CustomSpache), TE_DEFAULT,
-          &m_formualProject },
+          &m_formulaProject },
         { _DT("CUSTOMNEWDALECHALL"), static_cast<te_confun0>(CustomNewDaleChall), TE_DEFAULT,
-          &m_formualProject },
+          &m_formulaProject },
         // shortcuts
         { "B", &project->GetTotalSyllables() },
         { "S", &project->GetTotalSentences() },

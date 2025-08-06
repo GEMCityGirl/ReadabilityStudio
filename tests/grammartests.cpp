@@ -210,14 +210,14 @@ TEST_CASE("Bullets", "[bullets]")
         CHECK(is_indented(text+24).first == false);//\r\n will be seen as only one line
         CHECK(is_indented(text+24).second == 0);
         }
-    SECTION("Number Number Paranthesis")
+    SECTION("Number Number Parenthesis")
         {
         const wchar_t text[] = L"3.) item 1";
         grammar::is_bulleted_text is_indented;
         CHECK(is_indented(text).first);
         CHECK(is_indented(text).second == 3);
         }
-    SECTION("Number Number Paranthesis 2")
+    SECTION("Number Number Parenthesis 2")
         {
         const wchar_t text[] = L"3). item 1";
         grammar::is_bulleted_text is_indented;
@@ -231,7 +231,7 @@ TEST_CASE("Bullets", "[bullets]")
         CHECK(is_indented(text).first);
         CHECK(is_indented(text).second == 2);
         }
-    SECTION("Letter Paranthesis")
+    SECTION("Letter Parenthesis")
         {
         const wchar_t text[] = L"a.) item 1";
         grammar::is_bulleted_text is_indented;
@@ -399,7 +399,7 @@ TEST_CASE("Passive Voice", "[passive-voice]")
     {
     std::vector<std::wstring> m_strings;
 
-    SECTION("Ingore Proper Nouns")
+    SECTION("Ignore Proper Nouns")
         {
         grammar::is_english_passive_voice pasV;
         size_t wordCount;
@@ -971,7 +971,7 @@ TEST_CASE("Phrases", "[phrase]")
         phrases.load_phrases(L"all rights reserved\ntrademarks\ncopyright notice", true, false);
         CHECK(phrases(positive.begin(), 0, positive.size(), true) == 1);
         }
-    SECTION("Search Similiar Matches")
+    SECTION("Search Similar Matches")
         {
         std::vector<std::basic_string<wchar_t, traits::case_insensitive_ex>> positive;
         positive.push_back(L"all");
@@ -1470,56 +1470,56 @@ TEST_CASE("Indent", "[indent]")
     {
     SECTION("Null")
         {
-        grammar::is_intented_text is_indented;
+        grammar::is_indented_text is_indented;
         CHECK(is_indented(nullptr).first == false);
         CHECK(is_indented(nullptr).second == 0);
         }
     SECTION("Tab")
         {
         const wchar_t text[] = L"\titem 1";
-        grammar::is_intented_text is_indented;
+        grammar::is_indented_text is_indented;
         CHECK(is_indented(text).first == true);
         CHECK(is_indented(text).second == 1);
         }
     SECTION("Space Tab")
         {
         const wchar_t text[] = L" \t item 1";
-        grammar::is_intented_text is_indented;
+        grammar::is_indented_text is_indented;
         CHECK(is_indented(text).first == true);
         CHECK(is_indented(text).second == 3);
         }
     SECTION("No Space")
         {
         const wchar_t text[] = L"item 1";
-        grammar::is_intented_text is_indented;
+        grammar::is_indented_text is_indented;
         CHECK(is_indented(text).first == false);
         CHECK(is_indented(text).second == 0);
         }
     SECTION("One Space")
         {
         const wchar_t text[] = L" item 1";
-        grammar::is_intented_text is_indented;
+        grammar::is_indented_text is_indented;
         CHECK(is_indented(text).first == false);
         CHECK(is_indented(text).second == 0);
         }
     SECTION("Two Space")
         {
         const wchar_t text[] = L"  item 1";
-        grammar::is_intented_text is_indented;
+        grammar::is_indented_text is_indented;
         CHECK(is_indented(text).first == false);
         CHECK(is_indented(text).second == 0);
         }
     SECTION("Spaces")
         {
         const wchar_t text[] = L"   item 1";
-        grammar::is_intented_text is_indented;
+        grammar::is_indented_text is_indented;
         CHECK(is_indented(text).first == true);
         CHECK(is_indented(text).second == 3);
         }
     SECTION("All Spaces")
         {
         const wchar_t text[] = L"     ";
-        grammar::is_intented_text is_indented;
+        grammar::is_indented_text is_indented;
         CHECK(is_indented(text).first == true);
         CHECK(is_indented(text).second == 5);
         }

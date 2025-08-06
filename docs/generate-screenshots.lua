@@ -79,7 +79,7 @@ ScreenshotLib.ShowListViewItemDlg("Document", "C:\\Topics2008\\Overviews\\BatchP
 ScreenshotLib.SnapScreenshot(ImagePath .. "batchredundantphrasesviewitem." .. FileExtension)
 ScreenshotLib.CloseListViewItemDlg()
 
-ScreenshotLib.ShowListViewItemDlg("Document", "C:\\Topics2008\\Overviews\\BatchProject\\Grammar\\ReviewingBatchCliches.html", "Count", "4", "Clichés", "\"off the wall\" * 4", "Explanations/Suggestions", "\"unusual\"")
+ScreenshotLib.ShowListViewItemDlg("Document", "C:\\Topics2008\\Overviews\\BatchProject\\Grammar\\ReviewingBatchCliches.html", "Count", "4", "ClichÃ©s", "\"off the wall\" * 4", "Explanations/Suggestions", "\"unusual\"")
 ScreenshotLib.SnapScreenshot(ImagePath .. "batchclichesviewitem." .. FileExtension)
 ScreenshotLib.CloseListViewItemDlg()
 
@@ -864,7 +864,7 @@ ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "ribbon-edit-list-options-with
 
 sp:Close()
 
--- exlcuded tags example
+-- excluded tags example
 ------------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "Press Release.rtf")
 

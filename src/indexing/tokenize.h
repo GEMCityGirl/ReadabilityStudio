@@ -27,7 +27,7 @@
 namespace tokenize
     {
     /** @brief Class for tokenizing a text block into words, sentences, and paragraphs.*/
-    template<typename is_characerT = characters::is_character,
+    template<typename is_characterT = characters::is_character,
              typename is_punctuationT = punctuation::is_punctuation>
     class document_tokenize
         {
@@ -995,12 +995,12 @@ namespace tokenize
             }
 
         grammar::is_end_of_line isEol;
-        is_characerT is_character;
+        is_characterT is_character;
         is_punctuationT isPunctuation;
         grammar::is_abbreviation isAbbreviation;
         grammar::is_acronym isAcronym;
         grammar::is_bulleted_text is_bulleted;
-        grammar::is_intented_text is_indented;
+        grammar::is_indented_text is_indented;
         size_t m_sentence_position{ 0 };
         size_t m_current_sentence_index{ 0 };
         size_t m_current_paragraph_index{ 0 };

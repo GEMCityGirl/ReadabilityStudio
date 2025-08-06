@@ -1002,7 +1002,7 @@ ToolsOptionsDlg::ToolsOptionsDlg(wxWindow* parent, BaseProjectDoc* project /*= n
     Bind(wxEVT_CHOICE, &ToolsOptionsDlg::OnParagraphParseChange, this, ID_PARAGRAPH_PARSE);
     Bind(wxEVT_CHOICE, &ToolsOptionsDlg::OnNumberSyllabizeChange, this, ID_NUMBER_SYLLABIZE_METHOD);
     Bind(wxEVT_CHOICE, &ToolsOptionsDlg::OnExclusionBlockTagChange, this,
-         ID_EXCLUSION_TAG_BLOCK_SELCTION);
+         ID_EXCLUSION_TAG_BLOCK_SELECTION);
 
     Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnOK, this, wxID_OK);
     Bind(wxEVT_BUTTON, &ToolsOptionsDlg::OnHelp, this, wxID_HELP);
@@ -3872,8 +3872,8 @@ void ToolsOptionsDlg::CreateControls()
         exclusionBlockTagsOptions.Add(_(L"[ and ]"));
         exclusionBlockTagsOptions.Add(_(L"{ and }"));
         exclusionBlockTagsOptions.Add(_(L"( and )"));
-        m_exclusionBlockTagsCombo = new wxChoice(
-            AnalysisIndexingPage, ID_EXCLUSION_TAG_BLOCK_SELCTION, wxDefaultPosition, wxDefaultSize,
+        m_exclusionBlockTagsCombo = new wxChoice(AnalysisIndexingPage, ID_EXCLUSION_TAG_BLOCK_SELECTION, wxDefaultPosition,
+                         wxDefaultSize,
             exclusionBlockTagsOptions, 0, wxGenericValidator(&m_exclusionBlockTagsOption));
         m_exclusionBlockTagsCombo->Enable(
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeFromAnalysis)) ||

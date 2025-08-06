@@ -75,7 +75,7 @@ int main( int argc, char* argv[] )
         read_utf8_file("StopListForProper.txt").second.c_str(), true, false);
     Stop_list.load_words(
         read_utf8_file("StopListWestern.txt").second.c_str(), true, false);
-    grammar::is_english_passive_voice::get_past_participle_exeptions().load_words(
+    grammar::is_english_passive_voice::get_past_participle_exceptions().load_words(
         L"excited\nseven\nheaven\nhaven\nalien\ninfrared\nsacred", true, true);
 
     Catch::Session().run(argc, argv);

@@ -89,7 +89,7 @@ class ReadabilityFormulaParser : public te_parser
         }
 
   private:
-    FormulaProject m_formualProject;
+    FormulaProject m_formulaProject;
     };
 
 #endif // READABILITY_FORMULA_PARSER_H

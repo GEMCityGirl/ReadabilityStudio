@@ -112,7 +112,7 @@ namespace grammar
         }
 
     //----------------------------------------------
-    void base_syllabize::adjust_length_if_possesive(const wchar_t* start)
+    void base_syllabize::adjust_length_if_possessive(const wchar_t* start)
         {
         assert(start);
         if (start == nullptr)
@@ -203,7 +203,7 @@ namespace grammar
             }
 
         m_length = length;
-        adjust_length_if_possesive(start);
+        adjust_length_if_possessive(start);
         const wchar_t* end = start + m_length;
 
         m_ends_with_nt_contraction =
@@ -281,7 +281,7 @@ namespace grammar
             // if it's a vowel and it's the only one in this block
             if (current_char_is_vowel && !is_in_vowel_block)
                 {
-                // only check an 'e' for silence if there was already a previos vowel
+                // only check an 'e' for silence if there was already a previous vowel
                 if (m_previous_vowel != m_length && !wasLastVowelSilentE &&
                     (traits::case_insensitive_ex::eq(current_char[0],
                                                      common_lang_constants::LOWER_E) &&
@@ -3811,7 +3811,7 @@ namespace grammar
                 {
                 return false;
                 }
-            // tomatoe, doe, toe
+            // doe, toe
             else if (position + 2 == m_length)
                 {
                 // Chloe is an exception here

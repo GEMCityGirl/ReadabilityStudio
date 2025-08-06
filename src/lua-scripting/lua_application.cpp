@@ -811,10 +811,10 @@ namespace LuaScripting
                     }
                 }
             // read any elements' IDs that may be used as bookmarks
-            std::wstring_view htmlConent{ fileContent.wc_str(), fileContent.length() };
-            while (htmlConent.length() > 0)
+            std::wstring_view htmlContent{ fileContent.wc_str(), fileContent.length() };
+            while (htmlContent.length() > 0)
                 {
-                auto nextBookmark = lily_of_the_valley::html_extract_text::find_id(htmlConent);
+                auto nextBookmark = lily_of_the_valley::html_extract_text::find_id(htmlContent);
                 if (nextBookmark.length() > 0)
                     {
                     BookmarksInCurrentPage.insert(nextBookmark);

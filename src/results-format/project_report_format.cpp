@@ -235,7 +235,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
         // list completions
         htmlText += tableStart + formatHeader(_(L"Dolch Word Coverage"));
 
-        const double dolchConjuctionPercentage =
+        const double dolchConjunctionPercentage =
             safe_divide<double>(
                 (MAX_DOLCH_CONJUNCTION_WORDS - project->GetUnusedDolchConjunctions()),
                 MAX_DOLCH_CONJUNCTION_WORDS) *
@@ -269,7 +269,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
             // Conjunctions
             {
             const wxString valueStr =
-                (dolchConjuctionPercentage >= 75) ?
+                (dolchConjunctionPercentage >= 75) ?
                     wxString::Format(L"<span style=\"color:%s\">",
                                      attentionColor.GetAsString(wxC2S_HTML_SYNTAX)) +
                         wxNumberFormatter::ToString(
@@ -282,17 +282,17 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
                             wxNumberFormatter::Style::Style_WithThousandsSep);
             const wxString percentStr =
-                (dolchConjuctionPercentage >= 75) ?
+                (dolchConjunctionPercentage >= 75) ?
                     wxString::Format(L"<span style=\"color:%s\">",
                                      attentionColor.GetAsString(wxC2S_HTML_SYNTAX)) +
                         wxString::Format(_(L"(%s%% of all Dolch conjunctions)"),
                                          wxNumberFormatter::ToString(
-                                             dolchConjuctionPercentage, 1,
+                                             dolchConjunctionPercentage, 1,
                                              wxNumberFormatter::Style::Style_NoTrailingZeroes)) +
                         L"</span>" :
                     wxString::Format(_(L"(%s%% of all Dolch conjunctions)"),
                                      wxNumberFormatter::ToString(
-                                         dolchConjuctionPercentage, 1,
+                                         dolchConjunctionPercentage, 1,
                                          wxNumberFormatter::Style::Style_NoTrailingZeroes));
             htmlText += formatRow(_(L"Conjunctions used:"), valueStr, percentStr);
 
@@ -309,7 +309,7 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
                     listDataItemCount++, 2,
                     wxString::Format(_(L"%s%% of all Dolch conjunctions"),
                                      wxNumberFormatter::ToString(
-                                         dolchConjuctionPercentage, 1,
+                                         dolchConjunctionPercentage, 1,
                                          wxNumberFormatter::Style::Style_NoTrailingZeroes)));
                 }
             }
@@ -596,13 +596,13 @@ wxString ProjectReportFormat::FormatDolchStatisticsInfo(
         htmlText += L"\n</table>";
 
         wxString useDescription;
-        if (dolchConjuctionPercentage >= 75 || dolchPrepositionsPercentage >= 75 ||
+        if (dolchConjunctionPercentage >= 75 || dolchPrepositionsPercentage >= 75 ||
             dolchPronounsPercentage >= 75 || dolchAdverbsPercentage >= 75 ||
             dolchAdjectivesPercentage >= 75 || dolchVerbsPercentage >= 75 ||
             dolchNounPercentage >= 75)
             {
             useDescription = _(L"This document makes excellent use of:");
-            if (dolchConjuctionPercentage >= 75)
+            if (dolchConjunctionPercentage >= 75)
                 {
                 useDescription += wxString::Format(L" %s, ", _(L"conjunctions"));
                 }

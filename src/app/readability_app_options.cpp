@@ -3824,17 +3824,17 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
 
     // whether to ignore blank lines when figuring out if an
     // incomplete sentences is end of paragraph
-    auto ingnoreBlankLinesMethod =
+    auto ignoreBlankLinesMethod =
         doc.NewElement(XML_IGNORE_BLANK_LINES_FOR_PARAGRAPH_PARSING.data());
-    ingnoreBlankLinesMethod->SetAttribute(XML_VALUE.data(),
+    ignoreBlankLinesMethod->SetAttribute(XML_VALUE.data(),
                                           bool_to_int(m_ignoreBlankLinesForParagraphsParser));
-    documentAnalysisSection->InsertEndChild(ingnoreBlankLinesMethod);
+    documentAnalysisSection->InsertEndChild(ignoreBlankLinesMethod);
 
     // whether we should ignore indenting when parsing paragraphs
-    auto ingnoreIndentsMethod = doc.NewElement(XML_IGNORE_INDENTING_FOR_PARAGRAPH_PARSING.data());
-    ingnoreIndentsMethod->SetAttribute(XML_VALUE.data(),
+    auto ignoreIndentsMethod = doc.NewElement(XML_IGNORE_INDENTING_FOR_PARAGRAPH_PARSING.data());
+    ignoreIndentsMethod->SetAttribute(XML_VALUE.data(),
                                        bool_to_int(m_ignoreIndentingForParagraphsParser));
-    documentAnalysisSection->InsertEndChild(ingnoreIndentsMethod);
+    documentAnalysisSection->InsertEndChild(ignoreIndentsMethod);
 
     // whether sentences must start capitalized
     auto sentenceStartMustBeUppercased =

@@ -128,9 +128,9 @@ void BaseProject::UpdateDocumentSettings()
                                             InvalidSentence::ExcludeExceptForHeadings);
     GetWords()->treat_eol_as_eos(m_paragraphsParsingMethod ==
                                  ParagraphParse::EachNewLineIsAParagraph);
-    GetWords()->ignore_blank_lines_when_determing_paragraph_split(
+    GetWords()->ignore_blank_lines_when_determining_paragraph_split(
         IsIgnoringBlankLinesForParagraphsParser());
-    GetWords()->ignore_indenting_when_determing_paragraph_split(
+    GetWords()->ignore_indenting_when_determining_paragraph_split(
         IsIgnoringIndentingForParagraphsParser());
     GetWords()->sentence_start_must_be_uppercased(GetSentenceStartMustBeUppercased());
     GetWords()->set_copyright_phrase_function(&copyright_notice_phrases);

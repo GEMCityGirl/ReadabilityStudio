@@ -8,7 +8,7 @@ Sets which results in the sentences breakdown section should be included for new
 ``` {.lua}
 SetSentenceBreakdownResultsOptions(boolean includeLongSentences,
                                    boolean includeLengthsSpread,
-                                   boolean includeLengthsDistrobution,
+                                   boolean includeLengthsDistribution,
                                    boolean includeLengthsDensity)
 ```
 

@@ -636,7 +636,7 @@ bool ReadabilityApp::OnInit()
         { 1076, ToolsOptionsDlg::ID_INCOMPLETE_SENTENCE_VALID_LABEL_START },
         { 1077, ToolsOptionsDlg::ID_INCOMPLETE_SENTENCE_VALID_LABEL_END },
         { 1078, ToolsOptionsDlg::ID_EXCLUSION_TAG_BLOCK_LABEL },
-        { 1079, ToolsOptionsDlg::ID_EXCLUSION_TAG_BLOCK_SELCTION },
+        { 1079, ToolsOptionsDlg::ID_EXCLUSION_TAG_BLOCK_SELECTION },
         { 1080, ToolsOptionsDlg::ID_ADDITIONAL_FILE_BROWSE_BUTTON },
         { 1083, ToolsOptionsDlg::ID_ADDITIONAL_FILE_FIELD },
         { 1084, ToolsOptionsDlg::ID_INCOMPLETE_SENTENCE_VALID_VALUE_BOX },
@@ -1076,7 +1076,7 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
         abbreviationsFileText.c_str(), true, false);
     grammar::is_abbreviation::get_non_abbreviations().load_words(
         nonAbbreviationsFileText.c_str(), true, false);
-    grammar::is_english_passive_voice::get_past_participle_exeptions().load_words(
+    grammar::is_english_passive_voice::get_past_participle_exceptions().load_words(
         pastParticipleExceptionsFileText.c_str(), true, false);
     grammar::is_incorrect_english_article::get_a_exceptions().load_words(
         aExceptionsFileText.c_str(), true, false);

@@ -156,7 +156,7 @@ namespace grammar
         };
 
     /** @brief Text indentation functor.*/
-    class is_intented_text
+    class is_indented_text
         {
       public:
         /** @brief Indicates whether a line of text is indented.

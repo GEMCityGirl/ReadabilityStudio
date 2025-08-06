@@ -36,10 +36,42 @@ sur = "sur"
 Hel = "Hel"
 FORCAST = "FORCAST"
 Forcast = "Forcast"
+sie = "sie"
+Nothin = "Nothin"
+tryin = "tryin"
+goin = "goin"
+Autor = "Autor"
+Ful = "Ful"
+nd = "nd"
+specfy = "specfy"
+als = "als"
+ein = "ein"
+tio = "tio"
+ane = "ane"
+som = "som"
+ther = "ther"
+ine = "ine"
+wdth = "wdth"
+thr = "thr"
+aer = "aer"
+ure = "ure"
+reall = "reall"
+Claus = "Claus"
+Vas = "Vas"
+vas = "vas"
+tro = "tro"
+Curso = "Curso"
+Perspectivas = "Perspectivas"
 
 [type.svg]
 extend-glob = ["*.svg"]
 check-file = false
 
 [files]
-extend-exclude = ["src/Catch2/", "src/lua/", "docs/projects", "resources/words", "locale/*.po", "examples", "tests/Dictionaries"]
+extend-exclude = ["src/Catch2/", "src/lua/", "docs/projects",
+                  "resources/words", "locale/*.po", "examples",
+                  "tests/Dictionaries", "tests/germansyllabletests.cpp",
+                  "docs/lua-5.4", "installers/windows/messages/messages-es.isl",
+                  "installers/windows/messages/messages-pt.isl",
+                  "installers/windows/messages/messages-fr.isl",
+                  "docs/readability-studio-manual/_extensions/quarto-ext/fontawesome/assets/css/all.min.css"]

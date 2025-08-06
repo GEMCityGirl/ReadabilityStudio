@@ -7,7 +7,7 @@ Analyses all supported documents from the provided folder.
 
 ``` {.lua}
 LoadFolder(string folderPath,
-           boolean recursiveSearh = true)
+           boolean recursiveSearch = true)
 ```
 
 ### Parameters {-}
@@ -15,7 +15,7 @@ LoadFolder(string folderPath,
 **Parameter** | **Description**
 | :-- | :-- |
 | `string` folderPath | The folder to load documents from. | 
-| `boolean` recursiveSearh | `true` to search the folder recursively for documents. |
+| `boolean` recursiveSearch | `true` to search the folder recursively for documents. |
 
 ### Example {-}
 

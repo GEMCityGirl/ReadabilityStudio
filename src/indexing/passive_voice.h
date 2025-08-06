@@ -114,7 +114,7 @@ namespace grammar
         ///     complete list (but should at least contain the most common ones).
         /// @returns Access to the past participle word list to edit or use.
         [[nodiscard]]
-        static word_list& get_past_participle_exeptions() noexcept
+        static word_list& get_past_participle_exceptions() noexcept
             {
             return m_past_participle_exceptions;
             }

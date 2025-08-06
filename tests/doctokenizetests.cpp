@@ -255,7 +255,7 @@ TEST_CASE("Document tokenize", "[document]")
         b = tokenize();
         CHECK(tokenize.is_numeric() == false);
         }
-    SECTION("Hypenated")
+    SECTION("Hyphenated")
         {
         const wchar_t testText[] = L"Header \n\nNext pump-\nkin Another sent-\n\nence?\nLast sentence.";
         tokenize::document_tokenize<> tokenize(testText, wcslen(testText), false, false, false, false);
@@ -274,7 +274,7 @@ TEST_CASE("Document tokenize", "[document]")
         b = tokenize();
         CHECK(tokenize.is_split_word() == false);
         }
-    SECTION("HypenatedSameLine")
+    SECTION("Hyphenated Same Line")
         {
         const wchar_t testText[] = L"pro- gramming.";
         tokenize::document_tokenize<> tokenize(testText, wcslen(testText), false, false, false, false);

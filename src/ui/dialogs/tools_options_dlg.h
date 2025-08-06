@@ -162,7 +162,7 @@ class ToolsOptionsDlg final : public wxDialog
     constexpr static int ID_INCOMPLETE_SENTENCE_VALID_LABEL_START = wxID_HIGHEST + 73;
     constexpr static int ID_INCOMPLETE_SENTENCE_VALID_LABEL_END = wxID_HIGHEST + 74;
     constexpr static int ID_EXCLUSION_TAG_BLOCK_LABEL = wxID_HIGHEST + 75;
-    constexpr static int ID_EXCLUSION_TAG_BLOCK_SELCTION = wxID_HIGHEST + 76;
+    constexpr static int ID_EXCLUSION_TAG_BLOCK_SELECTION = wxID_HIGHEST + 76;
     constexpr static int ID_ADDITIONAL_FILE_BROWSE_BUTTON = wxID_HIGHEST + 77;
     constexpr static int ID_ADD_FILES_BUTTON = wxID_HIGHEST + 78;
     constexpr static int ID_THEME_COMBO = wxID_HIGHEST + 79;

@@ -354,7 +354,7 @@ TEST_CASE("English article 2", "[articles]")
         CHECK_FALSE(artc(L"a", L"unix"));
         CHECK_FALSE(artc(L"a", L"useful"));
         CHECK_FALSE(artc(L"a", L"Utopia"));
-        CHECK_FALSE(artc(L"a", L"Ukranian"));
+        CHECK_FALSE(artc(L"a", L"Ukrainian"));
         CHECK_FALSE(artc(L"a", L"uterus"));
         CHECK_FALSE(artc(L"a", L"urethra"));
         CHECK_FALSE(artc(L"a", L"u-turn"));
@@ -377,7 +377,7 @@ TEST_CASE("English article 2", "[articles]")
         CHECK(artc(L"an", L"unicycle"));
         CHECK(artc(L"an", L"useful"));
         CHECK(artc(L"an", L"Utopia"));
-        CHECK(artc(L"an", L"Ukranian"));
+        CHECK(artc(L"an", L"Ukrainian"));
         CHECK(artc(L"an", L"uterus"));
         CHECK(artc(L"an", L"urethra"));
         CHECK(artc(L"an", L"using"));

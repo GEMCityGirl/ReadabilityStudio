@@ -95,7 +95,7 @@ TEST_CASE("Document phrases", "[document]")
         CHECK(doc.get_word(2).is_proper_noun() == false);
         CHECK(0 == doc.get_proper_phrase_indices().size());
         }
-    SECTION("Proper Phrases Auxillary Word")
+    SECTION("Proper Phrases Auxiliary Word")
         {
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
                              &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
@@ -113,7 +113,7 @@ TEST_CASE("Document phrases", "[document]")
         CHECK(2 == doc.get_proper_phrase_indices()[0].first);
         CHECK(3 == doc.get_proper_phrase_indices()[0].second);
         }
-    SECTION("Proper Phrases Auxillary Word At Start")
+    SECTION("Proper Phrases Auxiliary Word At Start")
         {
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
                              &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
@@ -1272,7 +1272,7 @@ TEST_CASE("Document citations 2", "[document]")
     word_list Secondary_known_spellings;
     word_list Programming_known_spellings;
 
-    SECTION("Citations Exclude Aggresive")
+    SECTION("Citations Exclude Aggressive")
         {
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap,
                              &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
@@ -2450,7 +2450,7 @@ TEST_CASE("Document lowercased sentences", "[document]")
                              &Known_spellings, &Secondary_known_spellings,
                              &Programming_known_spellings, &Stop_list);
         const wchar_t text[] =
-            L"I am Mr. Smithe.  and my name is C. Blake Smithe.  but I ususally go by Blake.  Or "
+            L"I am Mr. Smithe.  and my name is C. Blake Smithe.  but I usually go by Blake.  Or "
             L"the Blakeman. Mr. blake is OK too. Seriously, call me Blake. 7 is my favorite "
             L"number.  seven is another way to spell that";
         doc.load_document(text, wcslen(text), false, false, false, false);
@@ -2970,7 +2970,7 @@ TEST_CASE("Document sentence unit", "[document]")
                              &Known_spellings, &Secondary_known_spellings,
                              &Programming_known_spellings, &Stop_list);
         const wchar_t text[] =
-            L"I—am Mr. Smithe my name is C. Blake Smithe.  I ususally go by Blake: or the "
+            L"I—am Mr. Smithe my name is C. Blake Smithe.  I usually go by Blake: or the "
             L"Blakeman; Mr. blake is OK too. Seriously, call me Blake.";
         doc.load_document(text, wcslen(text), false, false, false, false);
         CHECK(doc.get_sentence_count() == 3);
@@ -2985,7 +2985,7 @@ TEST_CASE("Document sentence unit", "[document]")
                              &Known_spellings, &Secondary_known_spellings,
                              &Programming_known_spellings, &Stop_list);
         const wchar_t text[] =
-            L"I am Mr. Smithe--my name is C. Blake Smithe.  I ususally go by Blake:; or the "
+            L"I am Mr. Smithe--my name is C. Blake Smithe.  I usually go by Blake:; or the "
             L"Blakeman; Mr. blake is OK too. Seriously, call me Blake.";
         doc.load_document(text, wcslen(text), false, false, false, false);
         CHECK(doc.get_sentence_count() == 3);
@@ -3000,7 +3000,7 @@ TEST_CASE("Document sentence unit", "[document]")
                              &Known_spellings, &Secondary_known_spellings,
                              &Programming_known_spellings, &Stop_list);
         const wchar_t text[] =
-            L"I am Mr. Smithe my name is C. Blake Smithe.  I ususally go by Blake or the Blakeman "
+            L"I am Mr. Smithe my name is C. Blake Smithe.  I usually go by Blake or the Blakeman "
             L"Mr. blake is OK too. Seriously, call me Blake.";
         doc.load_document(text, wcslen(text), false, false, false, false);
         CHECK(doc.get_sentence_count() == 3);
@@ -3531,7 +3531,7 @@ TEST_CASE("Document", "[document]")
            Single proper nouns, separated by punctuation.
            End of document.*/
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t text[] = L"IGN Magazine: I think Chun Li is the best fighter in Street Figher. Cammy, Ryu, and Ken are cool to. Sincerely, Joe Franklyn Cool, Alan Smithee.";
+        const wchar_t text[] = L"IGN Magazine: I think Chun Li is the best fighter in Street Fighter. Cammy, Ryu, and Ken are cool to. Sincerely, Joe Franklyn Cool, Alan Smithee.";
         doc.set_search_for_proper_phrases(true);
         doc.load_document(text, wcslen(text), false, false, false, false);
         CHECK(doc.get_words()[0].is_proper_noun());

@@ -76,7 +76,7 @@ namespace grammar
                 }
 
             m_length = length;
-            adjust_length_if_possesive(start);
+            adjust_length_if_possessive(start);
             const wchar_t* end = start + m_length;
 
             const std::pair<bool, size_t> mathResult = is_special_math_word(start, m_length);

@@ -79,7 +79,7 @@ if(WIN32 AND R_EXECUTABLE MATCHES "R_EXECUTABLE-NOTFOUND")
   endif()
 endif()
 
-#---searching R installtion using R executable
+#---searching R installation using R executable
 if(R_EXECUTABLE)
   execute_process(COMMAND ${R_EXECUTABLE} RHOME
                   OUTPUT_VARIABLE R_ROOT_DIR

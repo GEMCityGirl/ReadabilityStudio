@@ -72,7 +72,7 @@ namespace grammar
                 }
 
             m_length = length;
-            adjust_length_if_possesive(start);
+            adjust_length_if_possessive(start);
             const wchar_t* end = start + m_length;
 
             if (syllabize_if_contains_periods<russian_syllabize<Tcharacter_traits>>(start, end))
