@@ -3872,9 +3872,10 @@ void ToolsOptionsDlg::CreateControls()
         exclusionBlockTagsOptions.Add(_(L"[ and ]"));
         exclusionBlockTagsOptions.Add(_(L"{ and }"));
         exclusionBlockTagsOptions.Add(_(L"( and )"));
-        m_exclusionBlockTagsCombo = new wxChoice(AnalysisIndexingPage, ID_EXCLUSION_TAG_BLOCK_SELECTION, wxDefaultPosition,
-                         wxDefaultSize,
-            exclusionBlockTagsOptions, 0, wxGenericValidator(&m_exclusionBlockTagsOption));
+        m_exclusionBlockTagsCombo =
+            new wxChoice(AnalysisIndexingPage, ID_EXCLUSION_TAG_BLOCK_SELECTION, wxDefaultPosition,
+                         wxDefaultSize, exclusionBlockTagsOptions, 0,
+                         wxGenericValidator(&m_exclusionBlockTagsOption));
         m_exclusionBlockTagsCombo->Enable(
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeFromAnalysis)) ||
             (m_textExclusionMethod == static_cast<int>(InvalidSentence::ExcludeExceptForHeadings)));

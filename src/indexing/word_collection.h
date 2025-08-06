@@ -93,8 +93,10 @@ class document
         reserve_word_size(length / 5);
 
         tokenize::document_tokenize<> tokenize_text(
-            words, length, m_treat_eol_as_eos, m_ignore_blank_lines_when_determining_paragraph_split,
-            m_ignore_indenting_when_determining_paragraph_split, m_sentence_start_must_be_uppercased);
+            words, length, m_treat_eol_as_eos,
+            m_ignore_blank_lines_when_determining_paragraph_split,
+            m_ignore_indenting_when_determining_paragraph_split,
+            m_sentence_start_must_be_uppercased);
 
         tokenize_text.set_known_spellings(is_correctly_spelled.get_word_list());
 
@@ -2422,8 +2424,7 @@ class document
                         {
                         const auto firstWord = uncommonWord.second.first.cbegin();
                         const auto secondWord = std::next(firstWord);
-                        if (((*firstWord) + 1) == *secondWord ||
-                            ((*firstWord) + 2) == *secondWord)
+                        if (((*firstWord) + 1) == *secondWord || ((*firstWord) + 2) == *secondWord)
                             {
                             continue;
                             }

@@ -545,7 +545,7 @@ TEST_CASE("Word Functors", "[word]")
         CHECK(doc.get_words().operator[](3).is_proper_noun() == true);
         CHECK(doc.get_words().operator[](3).is_acronym() == true);
         }
-    SECTION("Proper Nouns With Possesive Acronym")
+    SECTION("Proper Nouns With Possessive Acronym")
         {
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap, &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns, &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
         const wchar_t* text = L"A's ARE THE ATM's.";

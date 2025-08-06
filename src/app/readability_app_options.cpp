@@ -3827,13 +3827,13 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto ignoreBlankLinesMethod =
         doc.NewElement(XML_IGNORE_BLANK_LINES_FOR_PARAGRAPH_PARSING.data());
     ignoreBlankLinesMethod->SetAttribute(XML_VALUE.data(),
-                                          bool_to_int(m_ignoreBlankLinesForParagraphsParser));
+                                         bool_to_int(m_ignoreBlankLinesForParagraphsParser));
     documentAnalysisSection->InsertEndChild(ignoreBlankLinesMethod);
 
     // whether we should ignore indenting when parsing paragraphs
     auto ignoreIndentsMethod = doc.NewElement(XML_IGNORE_INDENTING_FOR_PARAGRAPH_PARSING.data());
     ignoreIndentsMethod->SetAttribute(XML_VALUE.data(),
-                                       bool_to_int(m_ignoreIndentingForParagraphsParser));
+                                      bool_to_int(m_ignoreIndentingForParagraphsParser));
     documentAnalysisSection->InsertEndChild(ignoreIndentsMethod);
 
     // whether sentences must start capitalized

@@ -81,17 +81,17 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    bool VerifyParameterCount(lua_State* L, const int minParemeterCount,
+    bool VerifyParameterCount(lua_State* L, const int minParameterCount,
                               const wxString& functionName)
         {
         assert(L);
-        assert(minParemeterCount >= 0);
-        if (lua_gettop(L) < minParemeterCount)
+        assert(minParameterCount >= 0);
+        if (lua_gettop(L) < minParameterCount)
             {
             wxMessageBox(wxString::Format(
                              // TRANSLATORS: %s is a function name that failed from a script
                              _(L"%s: invalid number of arguments.\n\n%d expected, %d provided."),
-                             functionName, minParemeterCount, lua_gettop(L)),
+                             functionName, minParameterCount, lua_gettop(L)),
                          _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
             return false;
             }

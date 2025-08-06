@@ -30,7 +30,7 @@ namespace LuaScripting
         @param functionName The function's name (to display if an error occurs).
         @returns @c true if enough arguments where passed to the function.*/
     [[nodiscard]]
-    bool VerifyParameterCount(lua_State* L, const int minParemeterCount,
+    bool VerifyParameterCount(lua_State* L, const int minParameterCount,
                               const wxString& functionName);
     /** @brief Prints a message to the debug window.
         @param str The message to print.*/

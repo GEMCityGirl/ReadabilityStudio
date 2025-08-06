@@ -984,7 +984,7 @@ TEST_CASE("Fog tests", "[fog][readability-tests]")
         // 4 syllables fail
         CHECK(readability::is_easy_gunning_fog_word(L"adahaded", 8, 4) == false);
         }
-    SECTION("Hypenated Words")
+    SECTION("Hyphenated Words")
         {
         // 1 and 2 syllables, should be easy
         CHECK(readability::is_easy_gunning_fog_word(L"high-roller", 11, 3));
@@ -995,7 +995,7 @@ TEST_CASE("Fog tests", "[fog][readability-tests]")
         // 2 and 3 syllables, should be hard
         CHECK(readability::is_easy_gunning_fog_word(L"man-highroller", 14, 4) == false);
         }
-    SECTION("Hypenated Words Stray Hyphens")
+    SECTION("Hyphenated Words Stray Hyphens")
         {
         // 1 and 2 syllables, should be easy
         CHECK(readability::is_easy_gunning_fog_word(L"high-roller-", 12, 3));

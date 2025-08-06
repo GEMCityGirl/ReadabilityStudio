@@ -60,7 +60,13 @@ Claus = "Claus"
 Vas = "Vas"
 vas = "vas"
 tro = "tro"
+valu = "valu"
+wher = "wher"
+nin = "nin"
+# misspelled on purpose in examples
+specifiy = "specifiy"
 Curso = "Curso"
+Informacion = "Informacion"
 Perspectivas = "Perspectivas"
 
 [type.svg]
@@ -74,4 +80,5 @@ extend-exclude = ["src/Catch2/", "src/lua/", "docs/projects",
                   "docs/lua-5.4", "installers/windows/messages/messages-es.isl",
                   "installers/windows/messages/messages-pt.isl",
                   "installers/windows/messages/messages-fr.isl",
-                  "docs/readability-studio-manual/_extensions/quarto-ext/fontawesome/assets/css/all.min.css"]
+                  "docs/readability-studio-manual/_extensions/quarto-ext/fontawesome/assets/css/all.min.css",
+                  "docs/readability-studio-manual/_extensions/quarto-ext/fontawesome/assets/css/all.css"]

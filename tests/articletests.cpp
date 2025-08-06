@@ -192,7 +192,7 @@ TEST_CASE("English article", "[articles]")
         CHECK(artc(L"an", L"ZPP")); // should be "a ZPP"
         CHECK_FALSE(artc(L"an", L"NZPD")); // correct
         }
-    SECTION("Known A Acronymns")
+    SECTION("Known A Acronyms")
         {
         CHECK_FALSE(artc(L"a", L"UTF"));
         CHECK(artc(L"an", L"UTF"));

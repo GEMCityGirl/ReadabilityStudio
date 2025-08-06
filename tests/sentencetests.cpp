@@ -1217,7 +1217,7 @@ TEST_CASE("Sentences Incomplete", "[sentence]")
         document<MYWORD> doc(L"", &ENsyllabizer, &ENStemmer, &is_conjunction, &pmap,
             &copyrightPMap, &citationPMap, &Known_proper_nouns, &Known_personal_nouns,
             &Known_spellings, &Secondary_known_spellings, &Programming_known_spellings, &Stop_list);
-        const wchar_t* text = L"Ingredients:\n\nItem 1\n\nItem 2\n\nItem 3\n\nHere are some other ingredientes?\n\nItem 1\n\nItem 2\n\nItem 3";
+        const wchar_t* text = L"Ingredients:\n\nItem 1\n\nItem 2\n\nItem 3\n\nHere are some other ingredients?\n\nItem 1\n\nItem 2\n\nItem 3";
         doc.load_document(text, wcslen(text), false, false, false, false);
 
         CHECK(doc.get_sentences()[0].get_type() == sentence_paragraph_type::complete);
