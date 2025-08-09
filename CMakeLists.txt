@@ -16,12 +16,13 @@
 # USE_ADDRESS_SANITIZE to use ASAN (ignored in release build)
 
 # Requirements
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.26)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(MIN_GCC_REQUIRED "12.2.1")
 set(MIN_APPLECLANG_REQUIRED "15.3")
 set(MIN_MSVC_TOOLSET_REQUIRED "19.30") # VS 2022 (1930 is the build number, which is what _MSC_VER will be set to)
+set(MIN_MSVC_REQUIRED "Visual Studio 2022") # Just used in the help
 Set(MIN_WXWIDGETS_REQUIRED "3.3.1")
 
 # https://blog.kitware.com/cmake-and-the-default-build-type/
@@ -396,9 +397,6 @@ elseif(UNIX)
                            $<$<CONFIG:Release>:-O2>)
 endif()
 
-# Define the build target for the executable and copy it into the "app" subfolder
-set_target_properties(${PROJECT_NAME} PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/build")
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 # Link required libraries to the executable

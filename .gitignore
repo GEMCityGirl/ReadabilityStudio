@@ -1,4 +1,5 @@
-# Output files
+# Output files, intermediate build, or generated files
+/build
 /docs/doxygen/html
 /docs/coding-bible/docs
 /docs/readability-studio-api/docs
@@ -21,8 +22,6 @@
 /tests/gui-tests/Bin
 /tests/gui-tests/out
 *.log
-
-# Intermediate build or generated files
 /Catch2
 /CMakeFiles
 /resource.h
@@ -79,25 +78,27 @@
 /docs/shortcuts-cheatsheet/docs
 /docs/release-notes/.quarto
 /docs/release-notes/index.tex
+/docs/sysadmin/sysadmin-manual.tex
+/wxWidgets_lib
+/docs/_variables.yml
+/docs/readability-studio-api/_variables.yml
+/docs/sysadmin/docs
+/docs/sysadmin/build-commands.txt
+/docs/sysadmin/sysadmin-manual.tex
+/docs/sysadmin/windows-silent.txt
 
 # Configuration files
 /docs/coding-bible/.Rproj.user
 /docs/readability-studio-api/.Rproj.user
 /.vs
-/CMakeSettings.json
+CMakeSettings.json
+CMakeUserPresets.json
 .Rproj.user
 .Rhistory
 *.db
-/cpp.hint
-/docs/_variables.yml
-/docs/readability-studio-api/_variables.yml
 *.ptc
+/cpp.hint
 /docs/sysadmin/.gitignore
-/docs/sysadmin/docs
-/docs/sysadmin/build-commands.txt
-/docs/sysadmin/sysadmin-manual.tex
-/docs/sysadmin/windows-silent.txt
 /citations.apa
 /citations.bib
 /citations.mla
-/wxWidgets_lib

@@ -9,29 +9,25 @@ source('R/appdown.r')
 
 | Install the following tools to build *{{< var PROGRAM_NAME >}}* |
 | :-- |
-| *Visual Studio* (toolset {{< var MIN_MSVC_TOOLSET_REQUIRED >}} or higher) |
+| *{{< var MIN_MSVC_REQUIRED >}}* or higher |
 | *Inno Setup* |
 | *R* (optional) |
 | *Quarto* (optional) |
 | *POEdit* (optional) |
 
+{{< pagebreak >}}
+
 ## Download *wxWidgets* {-}
 
 - Open *Visual Studio* and select **Clone a Repository**
-  - Enter ["https://github.com/wxWidgets/wxWidgets.git"](https://github.com/wxWidgets/wxWidgets.git) and clone it into a folder next to *{{< var PROGRAM_NAME >}}*
-
-{{< pagebreak >}}
+  - Enter ["https://github.com/wxWidgets/wxWidgets.git"](https://github.com/wxWidgets/wxWidgets.git) and clone it
 
 ## Build *{{< var PROGRAM_NAME >}}* {-}
 
 - From *Visual Studio*, select **Clone a Repository** again
   - Enter ["{{< var GIT_REPO >}}.git"]({{< var GIT_REPO >}}.git) and clone it to the same level as the **wxWidgets** folder
-- Once the **ReadabilityStudio** folder is cloned and opened in *Visual Studio*:
-  - Open `r menu(c('Project', 'CMake Settings for readstudio'))`
-    - Set the configuration type to "Release" (or create a new release configuration)
-    - Save your changes
-- Select `r menu(c('View', 'CMake Targets'))`
-- Build the "{{< var BUILD_TARGET >}}" target
+- Once the **ReadabilityStudio** folder is cloned, open it in *Visual Studio*
+- Select the "{{< var MIN_MSVC_REQUIRED >}} Release" configuration and build it
 - Optionally, the "manuals" target can also be ran to rebuild the documentation
 
 ## Build the installer {-}

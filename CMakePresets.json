@@ -1,0 +1,105 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+      "major": 3,
+      "minor": 26,
+      "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "common",
+      "hidden": true,
+      "binaryDir": "${sourceDir}/build/${presetName}"
+    },
+    {
+      "name": "release",
+      "hidden": true,
+      "inherits": "common",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "debug",
+      "hidden": true,
+      "inherits": "common",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "msw_base",
+      "description": "Base configuration for MSW",
+      "hidden": true,
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "msw_release",
+      "inherits": [
+        "release",
+        "msw_base"
+      ],
+      "displayName": "Visual Studio 2022 Release",
+      "generator": "Visual Studio 17 2022"
+    },
+    {
+      "name": "msw_debug",
+      "inherits": [
+        "debug",
+        "msw_base"
+      ],
+      "displayName": "Visual Studio 2022 Debug",
+      "generator": "Visual Studio 17 2022"
+    },
+    {
+      "name": "macos_base",
+      "hidden": true,
+      "description": "Base configuration for macOS",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      }
+    },
+    {
+      "name": "macos_xcode_release",
+      "inherits": [
+        "release",
+        "macos_base"
+      ],
+      "displayName": "macOS Xcode Release",
+      "generator": "Xcode"
+    },
+    {
+      "name": "macos_xcode_debug",
+      "inherits": [
+        "debug",
+        "macos_base"
+      ],
+      "displayName": "macOS Xcode Debug",
+      "generator": "Xcode"
+    },
+    {
+      "name": "macos_make_release",
+      "inherits": [
+        "release",
+        "macos_base"
+      ],
+      "displayName": "macOS Make Release",
+      "generator": "Unix Makefiles"
+    },
+    {
+      "name": "macos_make_debug",
+      "inherits": [
+        "debug",
+        "macos_base"
+      ],
+      "displayName": "macOS Make Debug",
+      "generator": "Unix Makefiles"
+    }
+  ]
+}
