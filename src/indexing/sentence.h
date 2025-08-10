@@ -206,9 +206,10 @@ namespace grammar
                 {
                 return std::make_pair(false, 0);
                 }
+
             // first, step over any spaces at the start of the line,
             // sometimes bullets can be indented
-            while (text.length() && characters::is_character::is_space_horizontal(text[0]))
+            while (!text.empty() && characters::is_character::is_space_horizontal(text[0]))
                 {
                 text.remove_prefix(1);
                 }
@@ -217,40 +218,40 @@ namespace grammar
                 return std::make_pair(false, 0);
                 }
             // first see if it's a bullet
-            else if (string_util::is_either<wchar_t>(text[0], 0x95, 0x2022) /* bullet*/ ||
-                     text[0] == 0x2023 /* triangle bullet*/ ||
-                     text[0] == 0x25A0 /* filled in square*/ ||
-                     text[0] == 0x25CF /* filled in circle*/ || text[0] == 0xB7 /* middle dot*/)
+            if (string_util::is_either<wchar_t>(text[0], 0x95, 0x2022) /* bullet*/ ||
+                text[0] == 0x2023 /* triangle bullet*/ || text[0] == 0x25A0 /* filled in square*/ ||
+                text[0] == 0x25CF /* filled in circle*/ || text[0] == 0xB7 /* middle dot*/)
                 {
                 return std::make_pair(true, 1);
                 }
             // or a dash followed by a space
-            else if (characters::is_character::is_hyphen(text[0]) &&
-                     characters::is_character::is_space_horizontal(text[1]))
+            if (text.length() >= 2 && characters::is_character::is_hyphen(text[0]) &&
+                characters::is_character::is_space_horizontal(text[1]))
                 {
                 return std::make_pair(true, 1);
                 }
+
+            const auto originalLength{ text.length() };
+
             // else, see if it more than two spaces (more than likely an indentation)
-            const wchar_t* current_char = text.data();
-            while (current_char[0] != 0 &&
-                   characters::is_character::is_space_horizontal(current_char[0]))
+            while (!text.empty() && characters::is_character::is_space_horizontal(text[0]))
                 {
-                ++current_char;
+                text.remove_prefix(1);
                 }
-            if (current_char[0] == 0)
+            if (text.empty())
                 {
                 return std::make_pair(false, 0);
                 }
-            // or a numeric bullet
-            if (characters::is_character::is_numeric(current_char[0]))
+            //  or a numeric bullet
+            if (characters::is_character::is_numeric(text[0]))
                 {
-                ++current_char;
+                text.remove_prefix(1);
                 // scan until we hit something non-numeric
-                while (current_char[0] != 0)
+                while (!text.empty())
                     {
-                    if (characters::is_character::is_numeric(current_char[0]))
+                    if (characters::is_character::is_numeric(text[0]))
                         {
-                        ++current_char;
+                        text.remove_prefix(1);
                         }
                     else
                         {
@@ -258,61 +259,60 @@ namespace grammar
                         }
                     }
                 // if at the end of the text then this is not a bullet
-                if (current_char[0] == 0)
+                if (text.empty())
                     {
                     return std::make_pair(false, 0);
                     }
                 // if number if followed by a dot, tab, closing parenthesis, or colon then it is a
                 // numeric bullet
-                else if (characters::is_character::is_period(current_char[0]) ||
-                         current_char[0] == 0x09 || current_char[0] == 0x29 ||
-                         current_char[0] == 0xFF09 ||
+                else if (characters::is_character::is_period(text[0]) || text[0] == 0x09 ||
+                         text[0] == 0x29 || text[0] == 0xFF09 ||
                          // colon only makes sense if it is followed by a space. If it part of the
                          // numeric work then it must be a time or something.
-                         (current_char[0] == L':' &&
-                          characters::is_character::is_space_horizontal(current_char[1])))
+                         (text.length() >= 2 && text[0] == L':' &&
+                          characters::is_character::is_space_horizontal(text[1])))
                     {
-                    ++current_char;
+                    text.remove_prefix(1);
                     // sometimes you might see "1.) Some info", so skip all expected punctuation
-                    while (current_char[0] != 0 &&
-                           (characters::is_character::is_period(current_char[0]) ||
-                            // right parentheses
-                            current_char[0] == 0x29 || current_char[0] == 0xFF09))
+                    while (!text.empty() && (characters::is_character::is_period(text[0]) ||
+                                             // right parentheses
+                                             text[0] == 0x29 || text[0] == 0xFF09))
                         {
-                        ++current_char;
+                        text.remove_prefix(1);
                         }
-                    return std::make_pair(true, (current_char - text.data()));
+                    return std::make_pair(true, originalLength - text.length());
                     }
                 else
                     {
-                    // scan to the next line and see if it starts with a number too. If so,
+                    // Scan to the next line and see if it starts with a number too. If so,
                     // then this more than likely is a list of some sort (e.g., a recipe).
-                    is_end_of_line isEol;
-                    const wchar_t* nextLine = current_char;
-                    while (nextLine[0] != 0 &&
+                    auto nextLine{ text };
+                    while (!nextLine.empty() &&
                            string_util::is_neither<wchar_t>(nextLine[0], 10, 13))
                         {
-                        ++nextLine;
+                        nextLine.remove_prefix(1);
                         }
-                    if (nextLine[0] == 0)
+                    if (nextLine.empty())
                         {
                         return std::make_pair(false, 0);
                         }
                     // hit the next newline, so skip to the start of the line
-                    const wchar_t* const newLineStart = nextLine;
-                    while (nextLine[0] != 0 && characters::is_character::is_space(nextLine[0]))
+                    const auto newLineStart = nextLine;
+                    while (!nextLine.empty() && characters::is_character::is_space(nextLine[0]))
                         {
-                        ++nextLine;
+                        nextLine.remove_prefix(1);
                         }
-                    // see how many newlines are after this line. If more than 1, then this is
+                    // See how many newlines are after this line. If more than 1, then this is
                     // probably a bullet.
-                    isEol(newLineStart, nextLine);
+                    is_end_of_line isEol;
+                    isEol(newLineStart.data(), nextLine.data());
                     if (isEol.get_eol_count() > 1)
                         {
-                        return std::make_pair(true, (current_char - text.data()));
+                        return std::make_pair(true, originalLength - text.length());
                         }
-                    return characters::is_character::is_numeric(nextLine[0]) ?
-                               std::pair<bool, size_t>(true, (current_char - text.data())) :
+                    return (!nextLine.empty() &&
+                            characters::is_character::is_numeric(nextLine[0])) ?
+                               std::pair<bool, size_t>(true, originalLength - text.length()) :
                                // anything else means that this probably is not a numeric bullet
                                std::pair<bool, size_t>(false, 0);
                     }
@@ -321,22 +321,21 @@ namespace grammar
                lowercased letter as a bullet point.
                Counting anything else could be a real word or (in the case of being uppercased)
                an initial.*/
-            else if (characters::is_character::is_lower(current_char[0]) && current_char[1] != 0)
+            else if (text.length() > 1 && characters::is_character::is_lower(text[0]))
                 {
-                ++current_char;
-                if (characters::is_character::is_period(current_char[0]) ||
+                text.remove_prefix(1);
+                if (characters::is_character::is_period(text[0]) ||
                     // right parentheses
-                    current_char[0] == 0x29 || current_char[0] == 0xFF09 || current_char[0] == L':')
+                    text[0] == 0x29 || text[0] == 0xFF09 || text[0] == L':')
                     {
-                    ++current_char;
+                    text.remove_prefix(1);
                     // sometimes you might see "a.) Some info", so skip all expected punctuation
-                    while (current_char[0] != 0 &&
-                           (characters::is_character::is_period(current_char[0]) ||
-                            current_char[0] == 0x29 || current_char[0] == 0xFF09))
+                    while (!text.empty() && (characters::is_character::is_period(text[0]) ||
+                                             text[0] == 0x29 || text[0] == 0xFF09))
                         {
-                        ++current_char;
+                        text.remove_prefix(1);
                         }
-                    return std::make_pair(true, (current_char - text.data()));
+                    return std::make_pair(true, originalLength - text.length());
                     }
                 // anything else means that this probably is not a letter bullet
                 else
