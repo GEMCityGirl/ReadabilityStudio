@@ -7,11 +7,11 @@
 # Licence:     Eclipse Public License 2.0
 #############################################################################
 
-project(RSTestRunner)
-
 cmake_minimum_required(VERSION 3.12)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+project(RSTestRunner)
 
 # Options:
 # - USE_ADDRESS_SANITIZE to use ASAN
