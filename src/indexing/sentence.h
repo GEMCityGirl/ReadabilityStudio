@@ -246,7 +246,7 @@ namespace grammar
                 {
                 ++current_char;
                 // scan until we hit something non-numeric
-                do
+                while (current_char[0])
                     {
                     if (characters::is_character::is_numeric(current_char[0]))
                         {
@@ -256,7 +256,7 @@ namespace grammar
                         {
                         break;
                         }
-                    } while (current_char[0]);
+                    }
                 // if at the end of the text then this is not a bullet
                 if (current_char[0] == 0)
                     {
@@ -272,14 +272,15 @@ namespace grammar
                          (current_char[0] == L':' &&
                           characters::is_character::is_space_horizontal(current_char[1])))
                     {
+                    ++current_char;
                     // sometimes you might see "1.) Some info", so skip all expected punctuation
-                    do
+                    while (current_char[0] &&
+                           (characters::is_character::is_period(current_char[0]) ||
+                            // right parentheses
+                            current_char[0] == 0x29 || current_char[0] == 0xFF09))
                         {
                         ++current_char;
-                        } while (current_char[0] &&
-                                 (characters::is_character::is_period(current_char[0]) ||
-                                  // right parentheses
-                                  current_char[0] == 0x29 || current_char[0] == 0xFF09));
+                        }
                     return std::make_pair(true, (current_char - text.data()));
                     }
                 else
@@ -327,13 +328,14 @@ namespace grammar
                     // right parentheses
                     current_char[0] == 0x29 || current_char[0] == 0xFF09 || current_char[0] == L':')
                     {
+                    ++current_char;
                     // sometimes you might see "a.) Some info", so skip all expected punctuation
-                    do
+                    while (current_char[0] &&
+                           (characters::is_character::is_period(current_char[0]) ||
+                            current_char[0] == 0x29 || current_char[0] == 0xFF09))
                         {
                         ++current_char;
-                        } while (current_char[0] &&
-                                 (characters::is_character::is_period(current_char[0]) ||
-                                  current_char[0] == 0x29 || current_char[0] == 0xFF09));
+                        }
                     return std::make_pair(true, (current_char - text.data()));
                     }
                 // anything else means that this probably is not a letter bullet
