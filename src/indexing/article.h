@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __ARTICLE_H__
-#define __ARTICLE_H__
+#ifndef INDEXING_ARTICLE_H
+#define INDEXING_ARTICLE_H
 
 #include "../Wisteria-Dataviz/src/util/string_util.h"
 #include "abbreviation.h"
@@ -86,4 +86,4 @@ namespace grammar
         };
     } // namespace grammar
 
-#endif //__ARTICLE_H__
+#endif // INDEXING_ARTICLE_H

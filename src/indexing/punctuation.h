@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __PUNCTUATION_H__
-#define __PUNCTUATION_H__
+#ifndef INDEXING_PUNCTUATION_H
+#define INDEXING_PUNCTUATION_H
 
 #include "character_traits.h"
 #include "characters.h"
@@ -142,4 +142,4 @@ namespace punctuation
         };
     } // namespace punctuation
 
-#endif //__PUNCTUATION_H__
+#endif // INDEXING_PUNCTUATION_H

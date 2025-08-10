@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __STOP_WORD_LIST_H__
-#define __STOP_WORD_LIST_H__
+#ifndef STOP_WORD_LIST_H
+#define STOP_WORD_LIST_H
 
 #include "word_list.h"
 
@@ -38,4 +38,4 @@ namespace grammar
         };
     } // namespace grammar
 
-#endif //__STOP_WORD_LIST_H__
+#endif // STOP_WORD_LIST_H

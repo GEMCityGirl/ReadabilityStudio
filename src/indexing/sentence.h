@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __SENTENCE_H__
-#define __SENTENCE_H__
+#ifndef INDEXING_SENTENCE_H
+#define INDEXING_SENTENCE_H
 
 #include "../OleanderStemmingLibrary/src/common_lang_constants.h"
 #include "abbreviation.h"
@@ -1173,4 +1173,4 @@ namespace grammar
         };
     } // namespace grammar
 
-#endif //__SENTENCE_H__
+#endif // INDEXING_SENTENCE_H

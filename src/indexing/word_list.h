@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __WORD_LIST_H__
-#define __WORD_LIST_H__
+#ifndef WORD_LIST_H
+#define WORD_LIST_H
 
 #include "../Wisteria-Dataviz/src/import/text_matrix.h"
 #include "../Wisteria-Dataviz/src/import/text_preview.h"
@@ -246,4 +246,4 @@ class word_list_with_replacements
     std::map<word_type, word_type> m_word_map;
     };
 
-#endif //__WORD_LIST_H__
+#endif // WORD_LIST_H

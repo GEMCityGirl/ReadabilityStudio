@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __NEGATING_WORD_H__
-#define __NEGATING_WORD_H__
+#ifndef NEGATING_WORD_H
+#define NEGATING_WORD_H
 
 #include "character_traits.h"
 #include <algorithm>
@@ -45,4 +45,4 @@ namespace grammar
         };
     } // namespace grammar
 
-#endif //__NEGATING_WORD_H__
+#endif // NEGATING_WORD_H

@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __DOUBLE_WORDS_H__
-#define __DOUBLE_WORDS_H__
+#ifndef DOUBLE_WORDS_H
+#define DOUBLE_WORDS_H
 
 #include "character_traits.h"
 #include <algorithm>
@@ -40,4 +40,4 @@ namespace grammar
         };
     } // namespace grammar
 
-#endif //__DOUBLE_WORDS_H__
+#endif // DOUBLE_WORDS_H

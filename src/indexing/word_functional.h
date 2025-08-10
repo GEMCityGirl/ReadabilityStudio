@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __WORD_FUNCTIONAL_H__
-#define __WORD_FUNCTIONAL_H__
+#ifndef WORD_FUNCTIONAL_H
+#define WORD_FUNCTIONAL_H
 
 #include "../OleanderStemmingLibrary/src/stemming.h"
 #include "../Wisteria-Dataviz/src/util/string_util.h"
@@ -1421,4 +1421,4 @@ inline outT copy_member_if(inT begin, inT end, outT dest, _Pr meets_criteria,
     return (dest);
     }
 
-#endif //__WORD_FUNCTIONAL_H__
+#endif // WORD_FUNCTIONAL_H

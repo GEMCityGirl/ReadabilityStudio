@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __CHARACTER_TRAITS_H__
-#define __CHARACTER_TRAITS_H__
+#ifndef CHARACTER_TRAITS_H
+#define CHARACTER_TRAITS_H
 
 #include "../Wisteria-Dataviz/src/util/string_util.h"
 #include "characters.h"
@@ -330,4 +330,4 @@ namespace traits
     using case_insensitive_wstring_ex = std::basic_string<wchar_t, traits::case_insensitive_ex>;
     } // namespace traits
 
-#endif //__CHARACTER_TRAITS_H__
+#endif // CHARACTER_TRAITS_H

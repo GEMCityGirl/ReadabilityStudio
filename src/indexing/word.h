@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __WORD_H__
-#define __WORD_H__
+#ifndef INDEXING_WORD_H
+#define INDEXING_WORD_H
 
 #include "../OleanderStemmingLibrary/src/english_stem.h"
 #include "character_traits.h"
@@ -581,4 +581,4 @@ using word_case_insensitive_no_stem =
     word<traits::case_insensitive_ex,
          stemming::no_op_stem<std::basic_string<wchar_t, traits::case_insensitive_ex>>>;
 
-#endif //__WORD_H__
+#endif // INDEXING_WORD_H

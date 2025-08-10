@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __SPANISH_SYLLABLE_H__
-#define __SPANISH_SYLLABLE_H__
+#ifndef SPANISH_SYLLABLE_H
+#define SPANISH_SYLLABLE_H
 
 #include "syllable.h"
 #include <utility>
@@ -661,4 +661,4 @@ namespace grammar
         };
     } // namespace grammar
 
-#endif //__SPANISH_SYLLABLE_H__
+#endif // SPANISH_SYLLABLE_H

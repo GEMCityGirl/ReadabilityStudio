@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __WORD_COLLECTION_H__
-#define __WORD_COLLECTION_H__
+#ifndef WORD_COLLECTION_H
+#define WORD_COLLECTION_H
 
 #include "../OleanderStemmingLibrary/src/common_lang_constants.h"
 #include "../Wisteria-Dataviz/src/debug/debug_profile.h"
@@ -2936,4 +2936,4 @@ class document
     size_t m_allowable_incomplete_sentence_size{ 15 };
     };
 
-#endif //__WORD_COLLECTION_H__
+#endif // WORD_COLLECTION_H

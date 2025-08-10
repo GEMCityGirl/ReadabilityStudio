@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __CONTRACTION_H__
-#define __CONTRACTION_H__
+#ifndef INDEXING_CONTRACTION_H
+#define INDEXING_CONTRACTION_H
 
 #include "character_traits.h"
 #include <algorithm>
@@ -43,4 +43,4 @@ namespace grammar
         };
     } // namespace grammar
 
-#endif //__CONTRACTION_H__
+#endif // INDEXING_CONTRACTION_H

@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __TOKENIZE_H__
-#define __TOKENIZE_H__
+#ifndef INDEXING_TOKENIZE_H
+#define INDEXING_TOKENIZE_H
 
 #include "../OleanderStemmingLibrary/src/common_lang_constants.h"
 #include "../Wisteria-Dataviz/src/debug/debug_profile.h"
@@ -1028,4 +1028,4 @@ namespace tokenize
         };
     } // namespace tokenize
 
-#endif //__TOKENIZE_H__
+#endif // INDEXING_TOKENIZE_H

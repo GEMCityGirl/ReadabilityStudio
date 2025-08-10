@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __ENGLISH_SYLLABLE_H__
-#define __ENGLISH_SYLLABLE_H__
+#ifndef ENGLISH_SYLLABLE_H
+#define ENGLISH_SYLLABLE_H
 
 #include "../OleanderStemmingLibrary/src/common_lang_constants.h"
 #include "../Wisteria-Dataviz/src/util/string_util.h"
@@ -348,4 +348,4 @@ namespace grammar
         };
     } // namespace grammar
 
-#endif // __ENGLISH_SYLLABLE_H__
+#endif // ENGLISH_SYLLABLE_H

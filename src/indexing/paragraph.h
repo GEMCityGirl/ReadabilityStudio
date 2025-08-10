@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __PARAGRAPH_H__
-#define __PARAGRAPH_H__
+#ifndef INDEXING_PARAGRAPH_H
+#define INDEXING_PARAGRAPH_H
 
 #include "abbreviation.h"
 #include "sentence.h"
@@ -144,4 +144,4 @@ namespace grammar
         };
     } // namespace grammar
 
-#endif //__PARAGRAPH_H__
+#endif // INDEXING_PARAGRAPH_H

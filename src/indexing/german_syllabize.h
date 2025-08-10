@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __GERMAN_SYLLABLE_H__
-#define __GERMAN_SYLLABLE_H__
+#ifndef GERMAN_SYLLABLE_H
+#define GERMAN_SYLLABLE_H
 
 #include "syllable.h"
 #include <utility>
@@ -895,4 +895,4 @@ namespace grammar
         };
     } // namespace grammar
 
-#endif // __GERMAN_SYLLABLE_H__
+#endif // GERMAN_SYLLABLE_H

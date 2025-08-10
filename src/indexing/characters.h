@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __CHARACTERS_H__
-#define __CHARACTERS_H__
+#ifndef INDEXING_CHARACTERS_H
+#define INDEXING_CHARACTERS_H
 
 #include "../Wisteria-Dataviz/src/util/string_util.h"
 #include <cassert>
@@ -800,4 +800,4 @@ namespace characters
         };
     } // namespace characters
 
-#endif //__CHARACTERS_H__
+#endif // INDEXING_CHARACTERS_H

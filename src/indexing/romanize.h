@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __CHARACTER_SIMPLIFY_H__
-#define __CHARACTER_SIMPLIFY_H__
+#ifndef CHARACTER_SIMPLIFY_H
+#define CHARACTER_SIMPLIFY_H
 
 #include "character_traits.h"
 #include "characters.h"
@@ -74,4 +74,4 @@ namespace text_transform
         };
     } // namespace text_transform
 
-#endif //__CHARACTER_SIMPLIFY_H__
+#endif // CHARACTER_SIMPLIFY_H

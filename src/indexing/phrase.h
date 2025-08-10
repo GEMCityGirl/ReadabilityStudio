@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __PHRASE_H__
-#define __PHRASE_H__
+#ifndef INDEXING_PHRASE_H
+#define INDEXING_PHRASE_H
 
 #include "../Wisteria-Dataviz/src/import/text_matrix.h"
 #include "../Wisteria-Dataviz/src/import/text_preview.h"
@@ -682,4 +682,4 @@ namespace grammar
         };
     } // namespace grammar
 
-#endif //__PHRASE_H__
+#endif // INDEXING_PHRASE_H

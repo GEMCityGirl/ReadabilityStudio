@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __CONJUNCTION_H__
-#define __CONJUNCTION_H__
+#ifndef INDEXING_CONJUNCTION_H
+#define INDEXING_CONJUNCTION_H
 
 #include "../Wisteria-Dataviz/src/util/string_util.h"
 #include "character_traits.h"
@@ -164,4 +164,4 @@ namespace grammar
         };
     } // namespace grammar
 
-#endif //__CONJUNCTION_H__
+#endif // INDEXING_CONJUNCTION_H

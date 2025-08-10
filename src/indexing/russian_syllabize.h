@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __RUSSIAN_SYLLABLE_H__
-#define __RUSSIAN_SYLLABLE_H__
+#ifndef RUSSIAN_SYLLABLE_H
+#define RUSSIAN_SYLLABLE_H
 
 #include "syllable.h"
 #include <utility>
@@ -195,4 +195,4 @@ namespace grammar
         };
     } // namespace grammar
 
-#endif //__RUSSIAN_SYLLABLE_H__
+#endif // RUSSIAN_SYLLABLE_H

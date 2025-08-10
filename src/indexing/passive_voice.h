@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __PASSIVE_VOICE_H__
-#define __PASSIVE_VOICE_H__
+#ifndef PASSIVE_VOICE_H
+#define PASSIVE_VOICE_H
 
 #include "character_traits.h"
 #include "word_list.h"
@@ -137,4 +137,4 @@ namespace grammar
         };
     } // namespace grammar
 
-#endif //__PASSIVE_VOICE_H__
+#endif // PASSIVE_VOICE_H

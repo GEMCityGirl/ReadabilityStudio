@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __PRONOUN_H__
-#define __PRONOUN_H__
+#ifndef INDEXING_PRONOUN_H
+#define INDEXING_PRONOUN_H
 
 #include "character_traits.h"
 #include <algorithm>
@@ -45,4 +45,4 @@ namespace grammar
         };
     } // namespace grammar
 
-#endif //__PRONOUN_H__
+#endif // INDEXING_PRONOUN_H
