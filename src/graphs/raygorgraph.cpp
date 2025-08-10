@@ -540,7 +540,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
                 .Pen(wxNullPen)
                 .Brush(wxNullBrush)
                 .SelectionBrush(selectionBrush),
-            &m_gradeLinePoints[0], 5));
+            m_gradeLinePoints.data(), 5));
         // the rest of the grade areas
         for (size_t i = 4, pointIter = 5; i <= 12; ++i, pointIter += 2)
             {
@@ -710,8 +710,8 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
                     {
                     scorePoint.SetScore(4);
                     }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[0],
-                                             5, 1, -1))
+                else if (IsScoreInsideRegion(scorePoint.m_scorePoint,
+                                             graph->m_gradeLinePoints.data(), 5, 1, -1))
                     {
                     scorePoint.SetScore(3);
                     }

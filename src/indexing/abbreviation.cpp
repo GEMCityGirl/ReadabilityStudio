@@ -12,6 +12,12 @@
  ********************************************************************************/
 
 #include "abbreviation.h"
+#include "../OleanderStemmingLibrary/src/common_lang_constants.h"
+#include "../Wisteria-Dataviz/src/util/string_util.h"
+#include "character_traits.h"
+#include "characters.h"
+#include <algorithm>
+#include <vector>
 
 namespace grammar
     {
@@ -28,15 +34,14 @@ namespace grammar
 
         word_list::word_type cmpKey(text.data(), text.length());
         // should this word never be an abbreviation?
-        if (std::binary_search(get_non_abbreviations().get_words().begin(),
-                               get_non_abbreviations().get_words().end(), cmpKey))
+        if (std::ranges::binary_search(get_non_abbreviations().get_words(), cmpKey))
             {
             return false;
             }
 
         if (characters::is_character::is_consonant(text[0]))
             {
-            size_t i = 1;
+            size_t i{ 1 };
             // go through everything (except the last character) and stop if we hit something other
             // than a consonant
             for (i = 1; i < text.length() - 1; ++i)
@@ -97,8 +102,7 @@ namespace grammar
                 }
             }
 
-        bool result = std::binary_search(get_abbreviations().get_words().begin(),
-                                         get_abbreviations().get_words().end(), cmpKey);
+        bool result = std::ranges::binary_search(get_abbreviations().get_words(), cmpKey);
         // if not found, then try to see if this is more than one word combined by '/',
         // followed by an abbreviation.
         if (!result)
@@ -107,8 +111,7 @@ namespace grammar
             if (lastSlash != std::wstring_view::npos && lastSlash != text.length() - 1)
                 {
                 cmpKey.assign(text.data() + (lastSlash + 1), text.length() - (lastSlash + 1));
-                result = std::binary_search(get_abbreviations().get_words().begin(),
-                                            get_abbreviations().get_words().end(), cmpKey);
+                result = std::ranges::binary_search(get_abbreviations().get_words(), cmpKey);
                 }
             }
         return result;
@@ -130,7 +133,7 @@ namespace grammar
                 {
                 break;
                 }
-            else if (characters::is_character::is_upper(text[i]))
+            if (characters::is_character::is_upper(text[i]))
                 {
                 ++letterCount;
                 ++upperCaseLetterCount;
@@ -175,10 +178,7 @@ namespace grammar
                 {
                 continue;
                 }
-            else
-                {
-                break;
-                }
+            break;
             }
         // see if followed by numbers (that can be part of the acronym, such as F.A.K.K.2)
         if (i < text.length())

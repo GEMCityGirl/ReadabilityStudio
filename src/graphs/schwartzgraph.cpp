@@ -244,7 +244,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
         GetPhysicalCoordinates(162.45, 17.1, m_gradeLinePoints[3]);
         GetPhysicalCoordinates(128.2, 7.6, m_gradeLinePoints[4]);
 
-        // 2th grade
+        // 2nd grade
         GetPhysicalCoordinates(168.5, 13.1, m_gradeLinePoints[5]);
         GetPhysicalCoordinates(135, 4, m_gradeLinePoints[6]);
 
@@ -686,33 +686,33 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
                 {
                 if (GetScores().at(0).GetScoreRange().first == 8)
                     {
-                    std::copy(m_gradeOver8Polygon.cbegin(), m_gradeOver8Polygon.cend(),
-                              std::back_inserter(highlightedGradeLinePoints));
+                    std::ranges::copy(std::as_const(m_gradeOver8Polygon),
+                                      std::back_inserter(highlightedGradeLinePoints));
                     }
                 else if (GetScores().at(0).GetScoreRange().first == 7)
                     {
-                    std::copy(m_grade7to8Polygon.cbegin(), m_grade7to8Polygon.cend(),
-                              std::back_inserter(highlightedGradeLinePoints));
+                    std::ranges::copy(std::as_const(m_grade7to8Polygon),
+                                      std::back_inserter(highlightedGradeLinePoints));
                     }
                 else if (GetScores().at(0).GetScoreRange().first == 5)
                     {
-                    std::copy(m_grade5to6Polygon.cbegin(), m_grade5to6Polygon.cend(),
-                              std::back_inserter(highlightedGradeLinePoints));
+                    std::ranges::copy(std::as_const(m_grade5to6Polygon),
+                                      std::back_inserter(highlightedGradeLinePoints));
                     }
                 else if (GetScores().at(0).GetScoreRange().first == 3)
                     {
-                    std::copy(m_grade3to4Polygon.cbegin(), m_grade3to4Polygon.cend(),
-                              std::back_inserter(highlightedGradeLinePoints));
+                    std::ranges::copy(std::as_const(m_grade3to4Polygon),
+                                      std::back_inserter(highlightedGradeLinePoints));
                     }
                 else if (GetScores().at(0).GetScoreRange().first == 2)
                     {
-                    std::copy(m_grade2Polygon.cbegin(), m_grade2Polygon.cend(),
-                              std::back_inserter(highlightedGradeLinePoints));
+                    std::ranges::copy(std::as_const(m_grade2Polygon),
+                                      std::back_inserter(highlightedGradeLinePoints));
                     }
                 else if (GetScores().at(0).GetScoreRange().first == 1)
                     {
-                    std::copy(m_grade1Polygon.cbegin(), m_grade1Polygon.cend(),
-                              std::back_inserter(highlightedGradeLinePoints));
+                    std::ranges::copy(std::as_const(m_grade1Polygon),
+                                      std::back_inserter(highlightedGradeLinePoints));
                     }
 
                 if (!highlightedGradeLinePoints.empty())
@@ -736,10 +736,9 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
         // draw the grade lines
         for (size_t i = 3; i < std::size(m_gradeLinePoints); i += 2)
             {
-            auto foundHighlitLine =
-                std::find(highlightedGradeLinePoints.cbegin(), highlightedGradeLinePoints.cend(),
-                          m_gradeLinePoints[i]);
-            const uint8_t opacityLevel = (foundHighlitLine == highlightedGradeLinePoints.cend() &&
+            auto foundHighlightLine =
+                std::ranges::find(std::as_const(highlightedGradeLinePoints), m_gradeLinePoints[i]);
+            const uint8_t opacityLevel = (foundHighlightLine == highlightedGradeLinePoints.cend() &&
                                           IsShowcasingScore() && GetScores().size() == 1) ?
                                              Wisteria::Settings::GHOST_OPACITY :
                                              200;

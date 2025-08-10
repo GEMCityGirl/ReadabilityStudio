@@ -175,7 +175,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::Polygo
                                                                 .Text(_(L"Beginner Level"))
                                                                 .Brush(wxNullBrush)
                                                                 .SelectionBrush(selectionBrush),
-                                                            &m_levelLinePoints[0], 3));
+                                                            m_levelLinePoints.data(), 3));
         // II
         AddObject(
             std::make_unique<Wisteria::GraphItems::Polygon>(Wisteria::GraphItems::GraphItemInfo()
@@ -335,8 +335,8 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::Polygo
                     {
                     scorePoint.SetScore(2);
                     }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_levelLinePoints[0],
-                                             3, 1, 1))
+                else if (IsScoreInsideRegion(scorePoint.m_scorePoint,
+                                             graph->m_levelLinePoints.data(), 3, 1, 1))
                     {
                     scorePoint.SetScore(1);
                     }

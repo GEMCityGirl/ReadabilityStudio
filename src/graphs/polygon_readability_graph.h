@@ -46,8 +46,8 @@ namespace Wisteria::Graphs
             {
           public:
             /** @brief Constructor.
-                @param xPos The x axis position.
-                @param yPos The y axis position.
+                @param xPos The x-axis position.
+                @param yPos The y-axis position.
                 @param label The label's display string.
                 @param startValue The start value of the level's range of values.
                 @param endValue The end value of the level's range of values.*/
@@ -65,14 +65,14 @@ namespace Wisteria::Graphs
                 return value >= m_value1 && value <= m_value2;
                 }
 
-            /// @returns The x axis position of the label.
+            /// @returns The x-axis position of the label.
             [[nodiscard]]
             double GetX() const noexcept
                 {
                 return m_x;
                 }
 
-            /// @returns The y axis position of the label.
+            /// @returns The y-axis position of the label.
             [[nodiscard]]
             double GetY() const noexcept
                 {
@@ -173,9 +173,9 @@ namespace Wisteria::Graphs
             @param polygon The points that make up the polygon (region) to test inside of.
             @param numOfPoints The number of points in the @c polygon.
             @param xOffset How much "wiggle room" (in pixels) to test around to
-                x axis of the polygon's vertices.
+                x-axis of the polygon's vertices.
             @param yOffset How much "wiggle room" (in pixels) to test around to
-                y axis of the polygon's vertices.*/
+                y-axis of the polygon's vertices.*/
         [[nodiscard]]
         static bool IsScoreInsideRegion(const wxPoint point, const wxPoint* polygon,
                                         const int numOfPoints, const int xOffset, const int yOffset)
@@ -203,9 +203,9 @@ namespace Wisteria::Graphs
             @param point The point to review.
             @param polygon The array of points that make up the polygon (region) to test inside of.
             @param xOffset How much "wiggle room" (in pixels) to test around to
-                x axis of the polygon's vertices.
+                x-axis of the polygon's vertices.
             @param yOffset How much "wiggle room" (in pixels) to test around to
-                y axis of the polygon's vertices.*/
+                y-axis of the polygon's vertices.*/
         template<typename polygonT>
         [[nodiscard]]
         static bool IsScoreInsideRegion(const wxPoint point, const polygonT& polygon,

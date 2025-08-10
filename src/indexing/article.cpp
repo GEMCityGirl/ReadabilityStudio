@@ -64,7 +64,7 @@ bool grammar::is_incorrect_english_article::operator()(std::wstring_view article
           (word[0] == 'S' && characters::is_character::is_consonant(word[1]) &&
            (word[1] != 'C' && word[1] != 'H' && word[1] != 'L' && word[1] != 'M' &&
             word[1] != 'T' && word[1] != 'W'))));
-    const grammar::is_acronym isAcronym;
+    constexpr grammar::is_acronym IS_ACRONYM;
     const bool useLetterSoundedOut =
         (startsWith5Consonants || (word.length() == 1) ||
          // 2-letter acronym
@@ -75,7 +75,7 @@ bool grammar::is_incorrect_english_article::operator()(std::wstring_view article
          characters::is_character::is_numeric(word[1]) ||
          // if an acronym and no vowels (including wide versions), then each letter should be
          // sounded out
-         (isAcronym(word) &&
+         (IS_ACRONYM(word) &&
           word.find_first_of(L"aeiouy\uFF41\uFF45\uFF49\uFF4F\uFF55\uFF59AEIOUY\uFF21\uFF25"
                              "\uFF29\uFF2F\uFF35\uFF39") == std::wstring_view::npos));
     const bool isYear = (word.length() == 4 && characters::is_character::is_numeric(word[0]) &&
@@ -100,18 +100,18 @@ bool grammar::is_incorrect_english_article::operator()(std::wstring_view article
         return false;
         }
     // a 2nd, a 1st, a 3rd
-    else if (!isSoundingOutStartingNumbers && word.length() >= 3 &&
-             characters::is_character::is_numeric(word[word.length() - 3]) &&
-             (string_util::strnicmp(word.data() + (word.length() - 2), L"st", 2) == 0 ||
-              string_util::strnicmp(word.data() + (word.length() - 2), L"rd", 2) == 0 ||
-              string_util::strnicmp(word.data() + (word.length() - 2), L"nd", 2) == 0))
+    if (!isSoundingOutStartingNumbers && word.length() >= 3 &&
+        characters::is_character::is_numeric(word[word.length() - 3]) &&
+        (string_util::strnicmp(word.data() + (word.length() - 2), L"st", 2) == 0 ||
+         string_util::strnicmp(word.data() + (word.length() - 2), L"rd", 2) == 0 ||
+         string_util::strnicmp(word.data() + (word.length() - 2), L"nd", 2) == 0))
         {
         return !(article.length() == 1 && traits::case_insensitive_ex::eq(article[0], L'a'));
         }
     // a 5th, etc.
-    else if (!isSoundingOutStartingNumbers && word.length() >= 3 &&
-             characters::is_character::is_numeric(word[word.length() - 3]) &&
-             string_util::strnicmp(word.data() + (word.length() - 2), L"th", 2) == 0)
+    if (!isSoundingOutStartingNumbers && word.length() >= 3 &&
+        characters::is_character::is_numeric(word[word.length() - 3]) &&
+        string_util::strnicmp(word.data() + (word.length() - 2), L"th", 2) == 0)
         {
         // a 5th
         if (word[word.length() - 3] == L'2' || word[word.length() - 3] == L'3' ||
@@ -122,7 +122,7 @@ bool grammar::is_incorrect_english_article::operator()(std::wstring_view article
             return !(article.length() == 1 && traits::case_insensitive_ex::eq(article[0], L'a'));
             }
         // an 8th, an 11th
-        else if (word[word.length() - 3] == L'1' || word[word.length() - 3] == L'8')
+        if (word[word.length() - 3] == L'1' || word[word.length() - 3] == L'8')
             {
             return !(article.length() == 2 && traits::case_insensitive_ex::eq(article[0], L'a') &&
                      traits::case_insensitive_ex::eq(article[1], L'n'));
@@ -140,50 +140,40 @@ bool grammar::is_incorrect_english_article::operator()(std::wstring_view article
                     traits::case_insensitive_ex::eq(word[0], L'8'));
             }
         // check for consonants that would cause this to be an error
-        else if (useLetterSoundedOut)
+        if (useLetterSoundedOut)
             {
-            if (!is_a_exception(word) && (traits::case_insensitive_ex::eq(word[0], L'8') ||
-                                          traits::case_insensitive_ex::eq(word[0], L'a') ||
-                                          traits::case_insensitive_ex::eq(word[0], L'e') ||
-                                          traits::case_insensitive_ex::eq(word[0], L'i') ||
-                                          traits::case_insensitive_ex::eq(word[0], L'o') ||
-                                          // u is actually correct (e.g., "a u-turn")
-                                          traits::case_insensitive_ex::eq(word[0], L'f') ||
-                                          traits::case_insensitive_ex::eq(word[0], L'h') ||
-                                          traits::case_insensitive_ex::eq(word[0], L'l') ||
-                                          traits::case_insensitive_ex::eq(word[0], L'm') ||
-                                          traits::case_insensitive_ex::eq(word[0], L'n') ||
-                                          traits::case_insensitive_ex::eq(word[0], L'r') ||
-                                          traits::case_insensitive_ex::eq(word[0], L's') ||
-                                          traits::case_insensitive_ex::eq(word[0], L'x')))
-                {
-                return true;
-                }
-            else
-                {
-                return false;
-                }
+            return (!is_a_exception(word) && (traits::case_insensitive_ex::eq(word[0], L'8') ||
+                                              traits::case_insensitive_ex::eq(word[0], L'a') ||
+                                              traits::case_insensitive_ex::eq(word[0], L'e') ||
+                                              traits::case_insensitive_ex::eq(word[0], L'i') ||
+                                              traits::case_insensitive_ex::eq(word[0], L'o') ||
+                                              // u is actually correct (e.g., "a u-turn")
+                                              traits::case_insensitive_ex::eq(word[0], L'f') ||
+                                              traits::case_insensitive_ex::eq(word[0], L'h') ||
+                                              traits::case_insensitive_ex::eq(word[0], L'l') ||
+                                              traits::case_insensitive_ex::eq(word[0], L'm') ||
+                                              traits::case_insensitive_ex::eq(word[0], L'n') ||
+                                              traits::case_insensitive_ex::eq(word[0], L'r') ||
+                                              traits::case_insensitive_ex::eq(word[0], L's') ||
+                                              traits::case_insensitive_ex::eq(word[0], L'x')));
             }
         // if starts with a vowel (excluding 'y'),
         // then it should be wrong (unless a known exception)
-        else if (!traits::case_insensitive_ex::eq(word[0], L'y') &&
-                 characters::is_character::is_vowel(word[0]))
+        if (!traits::case_insensitive_ex::eq(word[0], L'y') &&
+            characters::is_character::is_vowel(word[0]))
             {
             return !is_a_exception(word);
             }
         // if starts with a consonant, then it should be correct
         // (unless a known exception that should actually go with an "an")
-        else if (characters::is_character::is_consonant(word[0]))
+        if (characters::is_character::is_consonant(word[0]))
             {
             return is_an_exception(word);
             }
-        else
-            {
-            return false;
-            }
+        return false;
         }
-    else if (article.length() == 2 && traits::case_insensitive_ex::eq(article[0], L'a') &&
-             traits::case_insensitive_ex::eq(article[1], L'n'))
+    if (article.length() == 2 && traits::case_insensitive_ex::eq(article[0], L'a') &&
+        traits::case_insensitive_ex::eq(article[1], L'n'))
         {
         if (isSoundingOutStartingNumbers)
             {
@@ -193,7 +183,7 @@ bool grammar::is_incorrect_english_article::operator()(std::wstring_view article
                       traits::case_insensitive_ex::eq(word[1], L'8')) ||
                      traits::case_insensitive_ex::eq(word[0], L'8'));
             }
-        else if (useLetterSoundedOut)
+        if (useLetterSoundedOut)
             {
             if (!is_an_exception(word) && ((traits::case_insensitive_ex::ge(word[0], L'0') &&
                                             traits::case_insensitive_ex::le(word[0], L'7')) ||
@@ -262,28 +252,28 @@ bool grammar::is_incorrect_english_article::is_an_exception(std::wstring_view wo
         {
         return true;
         }
-    else if (traits::case_insensitive_ex::compare(word.data(), L"hono", 4) == 0 ||
-             traits::case_insensitive_ex::compare(word.data(), L"hour", 4) == 0 ||
-             traits::case_insensitive_ex::compare(word.data(), L"heir", 4) == 0 ||
-             traits::case_insensitive_ex::compare(word.data(), L"html", 4) == 0 ||
-             traits::case_insensitive_ex::compare(word.data(), L"honest", 6) == 0 ||
-             // an HRESULT
-             (word.length() >= 2 && traits::case_insensitive_ex::eq(word[0], L'H') &&
-              characters::is_character::is_consonant(word[1])) ||
-             // treat SAT and sat differently
-             (word.length() == 3 &&
-              traits::case_insensitive_ex::compare_case_sensitive(word.data(), L"SAT", 3) == 0))
+    if (traits::case_insensitive_ex::compare(word.data(), L"hono", 4) == 0 ||
+        traits::case_insensitive_ex::compare(word.data(), L"hour", 4) == 0 ||
+        traits::case_insensitive_ex::compare(word.data(), L"heir", 4) == 0 ||
+        traits::case_insensitive_ex::compare(word.data(), L"html", 4) == 0 ||
+        traits::case_insensitive_ex::compare(word.data(), L"honest", 6) == 0 ||
+        // an HRESULT
+        (word.length() >= 2 && traits::case_insensitive_ex::eq(word[0], L'H') &&
+         characters::is_character::is_consonant(word[1])) ||
+        // treat SAT and sat differently
+        (word.length() == 3 &&
+         traits::case_insensitive_ex::compare_case_sensitive(word.data(), L"SAT", 3) == 0))
         {
         return true;
         }
     // an XML, an XBox
-    else if (word.length() >= 2 && traits::case_insensitive_ex::eq(word[0], L'x') &&
-             characters::is_character::is_consonant(word[1]))
+    if (word.length() >= 2 && traits::case_insensitive_ex::eq(word[0], L'x') &&
+        characters::is_character::is_consonant(word[1]))
         {
         return true;
         }
     // an NTSTATUS
-    else if (traits::case_insensitive_ex::compare(word.data(), L"nt", 2) == 0)
+    if (traits::case_insensitive_ex::compare(word.data(), L"nt", 2) == 0)
         {
         return true;
         }
@@ -302,7 +292,7 @@ bool grammar::is_incorrect_english_article::is_a_exception(std::wstring_view wor
         return false;
         }
 
-    static const std::set<traits::case_insensitive_wstring_ex> case_i_u_3_prefixes = {
+    static const std::set<traits::case_insensitive_wstring_ex> caseIU3Prefixes = {
         L"uac", L"ubi", L"udf", L"uef", L"uie", L"uin" /* a uint_32 is correct */,
         L"ukr", L"ulo", /* a ULONG_PTR */
         L"ure", L"uri", L"uro", L"usa", L"usb", L"use",
@@ -318,12 +308,12 @@ bool grammar::is_incorrect_english_article::is_a_exception(std::wstring_view wor
         return true;
         }
     // a
-    else if (traits::case_insensitive_ex::eq(word[0], L'a'))
+    if (traits::case_insensitive_ex::eq(word[0], L'a'))
         {
         return false;
         }
     // e
-    else if (traits::case_insensitive_ex::eq(word[0], L'e'))
+    if (traits::case_insensitive_ex::eq(word[0], L'e'))
         {
         if (traits::case_insensitive_ex::compare(word.data(), L"eu", 2) == 0)
             {
@@ -348,8 +338,8 @@ bool grammar::is_incorrect_english_article::is_a_exception(std::wstring_view wor
             return true;
             }
         // "A or B" is OK, but "a OR in the hospital" is wrong, so do this case sensitively
-        else if (word.length() == 2 &&
-                 traits::case_insensitive_ex::compare_case_sensitive(word.data(), L"or", 2) == 0)
+        if (word.length() == 2 &&
+            traits::case_insensitive_ex::compare_case_sensitive(word.data(), L"or", 2) == 0)
             {
             return true;
             }
@@ -361,8 +351,8 @@ bool grammar::is_incorrect_english_article::is_a_exception(std::wstring_view wor
     // u
     else if (traits::case_insensitive_ex::eq(word[0], L'u'))
         {
-        if ((word.length() >= 3 && case_i_u_3_prefixes.find(traits::case_insensitive_wstring_ex(
-                                       word.data(), 3)) != case_i_u_3_prefixes.cend()) ||
+        if ((word.length() >= 3 && caseIU3Prefixes.find(traits::case_insensitive_wstring_ex(
+                                       word.data(), 3)) != caseIU3Prefixes.cend()) ||
             // UNC, but not UNCLE
             (word.length() == 3 &&
              traits::case_insensitive_ex::compare_case_sensitive(word.data(), L"UNC", 3) == 0) ||
@@ -371,7 +361,7 @@ bool grammar::is_incorrect_english_article::is_a_exception(std::wstring_view wor
             return true;
             }
         // "a UX" (User eXperience) is correct
-        else if (word.length() >= 2 && traits::case_insensitive_ex::eq(word[1], L'x'))
+        if (word.length() >= 2 && traits::case_insensitive_ex::eq(word[1], L'x'))
             {
             return true;
             }
@@ -395,8 +385,8 @@ bool grammar::is_incorrect_english_article::is_a_exception(std::wstring_view wor
                 return false;
                 }
             // ...but "unimolecular" should be an 'a'
-            else if (word.length() > 4 && (traits::case_insensitive_ex::eq(word[3], L'm') ||
-                                           traits::case_insensitive_ex::eq(word[3], L'g')))
+            if (word.length() > 4 && (traits::case_insensitive_ex::eq(word[3], L'm') ||
+                                      traits::case_insensitive_ex::eq(word[3], L'g')))
                 {
                 return characters::is_character::is_vowel(word[4]);
                 }

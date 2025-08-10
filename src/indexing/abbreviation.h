@@ -11,22 +11,15 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __ABBREVIATION_H__
-#define __ABBREVIATION_H__
+#ifndef ABBREVIATION_H
+#define ABBREVIATION_H
 
-#include "../OleanderStemmingLibrary/src/common_lang_constants.h"
-#include "../Wisteria-Dataviz/src/util/string_util.h"
-#include "character_traits.h"
-#include "characters.h"
 #include "word_list.h"
-#include <algorithm>
-#include <functional>
-#include <vector>
 
 /// @brief Namespace for grammar analysis.
 namespace grammar
     {
-    // @brief Predicate for determining if a word is an abbreviation (case insensitive).
+    // @brief Predicate for determining if a word is an abbreviation (case-insensitive).
     class is_abbreviation
         {
       public:
@@ -99,4 +92,4 @@ namespace grammar
         };
     } // namespace grammar
 
-#endif //__ABBREVIATION_H__
+#endif // ABBREVIATION_H

@@ -330,7 +330,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
                 .Pen(wxPen(separatorColor))
                 .Brush(wxBrush(separatorColor))
                 .Scaling(GetScaling()),
-            &m_dividerLinePoints[0], std::size(m_dividerLinePoints) - 2);
+            m_dividerLinePoints.data(), std::size(m_dividerLinePoints) - 2);
         levelsSpline->SetShape(GraphItems::Polygon::PolygonShape::Spline);
         AddObject(std::move(levelsSpline));
 
@@ -342,7 +342,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
                 .Pen(wxNullPen)
                 .Brush(wxNullBrush)
                 .SelectionBrush(selectionBrush),
-            &m_gradeLinePoints[0], 5));
+            m_gradeLinePoints.data(), 5));
         // the rest of the grade areas
         for (size_t i = 2, pointIter = 5; i <= 16; ++i, pointIter += 2)
             {
@@ -418,11 +418,11 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
         if (GetDataset() == nullptr)
             {
             // draw regular grade lines and return since there are no points to plot
-            const uint8_t opacityLevel{ 200 };
+            constexpr uint8_t OPACITY_LEVEL{ 200 };
             AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
                 GraphItems::GraphItemInfo()
                     .Pen(wxPen(Wisteria::Colors::ColorContrast::ChangeOpacity(gradeLineColor,
-                                                                              opacityLevel)))
+                                                                              OPACITY_LEVEL)))
                     .Brush(gradeLineColor)
                     .Scaling(GetScaling()),
                 &m_gradeLinePoints[3], 2));
@@ -432,7 +432,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
                 AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
                     GraphItems::GraphItemInfo()
                         .Pen(wxPen(Wisteria::Colors::ColorContrast::ChangeOpacity(gradeLineColor,
-                                                                                  opacityLevel)))
+                                                                                  OPACITY_LEVEL)))
                         .Brush(gradeLineColor)
                         .Scaling(GetScaling()),
                     &m_gradeLinePoints[pointIter], 2));
@@ -473,7 +473,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
             m_results[i].ResetStatus();
 
             const auto calcScoreFromPolygons =
-                [this](const std::unique_ptr<FryGraph>& graph, ScorePoint& scorePoint)
+                [](const std::unique_ptr<FryGraph>& graph, ScorePoint& scorePoint)
             {
                 // see where the point is
                 if (!graph->GetPhysicalCoordinates(scorePoint.m_wordStatistic,
@@ -564,8 +564,8 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
                     {
                     scorePoint.SetScore(2);
                     }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[0],
-                                             5, 1, 1))
+                else if (IsScoreInsideRegion(scorePoint.m_scorePoint,
+                                             graph->m_gradeLinePoints.data(), 5, 1, 1))
                     {
                     scorePoint.SetScore(1);
                     }
@@ -681,7 +681,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
                     }
                 else if (GetScores().at(0).GetScore() == 1)
                     {
-                    std::copy(&m_gradeLinePoints[0], &m_gradeLinePoints[5],
+                    std::copy(m_gradeLinePoints.data(), &m_gradeLinePoints[5],
                               std::back_inserter(highlightedGradeLinePoints));
                     }
 
@@ -704,9 +704,9 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
             }
 
         // draw the grade lines
-        auto foundHighlitLine = std::find(highlightedGradeLinePoints.cbegin(),
-                                          highlightedGradeLinePoints.cend(), m_gradeLinePoints[3]);
-        uint8_t opacityLevel = (foundHighlitLine == highlightedGradeLinePoints.cend() &&
+        auto foundHighlightLine =
+            std::ranges::find(std::as_const(highlightedGradeLinePoints), m_gradeLinePoints[3]);
+        uint8_t opacityLevel = (foundHighlightLine == highlightedGradeLinePoints.cend() &&
                                 IsShowcasingScore() && GetScores().size() == 1) ?
                                    Wisteria::Settings::GHOST_OPACITY :
                                    200;
@@ -720,10 +720,9 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
         // the rest of grade region lines
         for (size_t i = 2, pointIter = 5; i <= 16; ++i, pointIter += 2)
             {
-            foundHighlitLine =
-                std::find(highlightedGradeLinePoints.cbegin(), highlightedGradeLinePoints.cend(),
-                          m_gradeLinePoints[pointIter]);
-            opacityLevel = (foundHighlitLine == highlightedGradeLinePoints.cend() &&
+            foundHighlightLine = std::ranges::find(std::as_const(highlightedGradeLinePoints),
+                                                   m_gradeLinePoints[pointIter]);
+            opacityLevel = (foundHighlightLine == highlightedGradeLinePoints.cend() &&
                             IsShowcasingScore() && GetScores().size() == 1) ?
                                Wisteria::Settings::GHOST_OPACITY :
                                200;
@@ -754,7 +753,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
                 .AnchorPoint(pt1)
                 .Anchoring(Anchoring::TopLeftCorner));
         gradeLevelLabel->Tilt(-45);
-        // make it fit inside of the graph
+        // make it fit inside the graph
         const wxRect gradeLabelArea{ pt1, pt2 };
         wxFont labelFont(wxFontInfo().FaceName(GetFancyFontFaceName()));
         labelFont.SetPointSize(GraphItems::Label::CalcDiagonalFontSize(
