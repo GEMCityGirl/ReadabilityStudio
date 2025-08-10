@@ -372,10 +372,10 @@ namespace tokenize
                     // through to let the punctuation indexer pick it up.
                     if (isPunctuation(m_current_char[0]) &&
                         // a few punctuation marks can be full words by themselves
-                        !string_util::is_one_of(
-                            string_util::full_width_to_narrow(m_current_char[0]),
-                            punctuation::punctuation_count::m_whole_word_punctuation.data()) &&
-                        m_current_char + 1 < m_text_block_end && !is_character(m_current_char[1]))
+                        punctuation::punctuation_count::m_whole_word_punctuation.find(
+                            string_util::full_width_to_narrow(m_current_char[0])) ==
+                            std::wstring_view::npos &&
+                        std::next(m_current_char) < m_text_block_end && !is_character(m_current_char[1]))
                         { /*noop*/
                         }
                     // Otherwise, the first character is a real character or punctuation that can
@@ -777,7 +777,7 @@ namespace tokenize
                         // but watch out for legit words like "domain"
                         (m_known_spellings == nullptr ||
                          !m_known_spellings->contains(
-                             std::wstring_view(word_start, wordEnd - word_start).data())))
+                             std::wstring_view(word_start, wordEnd - word_start))))
                         {
                         break;
                         }

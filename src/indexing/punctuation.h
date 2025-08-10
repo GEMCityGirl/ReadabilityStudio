@@ -56,8 +56,8 @@ namespace punctuation
             /* special case where the word is just ('&', '#', '@', or '%');
                treat it like a regular character (e.g., not punctuation)*/
             if (text.length() == 1 &&
-                string_util::is_one_of(string_util::full_width_to_narrow(text[0]),
-                                       m_whole_word_punctuation.data()))
+                m_whole_word_punctuation.find(string_util::full_width_to_narrow(text[0])) !=
+                    std::wstring_view::npos)
                 {
                 return 0;
                 }

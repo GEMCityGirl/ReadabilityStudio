@@ -172,7 +172,7 @@ namespace text_transform
                         {
                         encoded_text += text[i++];
                         }
-                    const std::pair<bool, size_t> bullet = isBullet(text.data() + i);
+                    const std::pair<bool, size_t> bullet = isBullet(text.substr(i));
                     if (bullet.first)
                         {
                         // if there is not a proceeding character in front of this bullet

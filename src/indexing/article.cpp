@@ -95,23 +95,23 @@ bool grammar::is_incorrect_english_article::operator()(std::wstring_view article
     const bool isSoundingOutStartingNumbers = (isYear || isTime || is2Digit);
     // if something like "1,800,00" then don't bother analyzing, will be too complicated
     if (!isSoundingOutStartingNumbers && characters::is_character::is_numeric(word[0]) &&
-        std::wcscspn(word.data(), L",.") < word.length())
+        word.find_first_of(L",.") != std::wstring_view::npos)
         {
         return false;
         }
     // a 2nd, a 1st, a 3rd
     if (!isSoundingOutStartingNumbers && word.length() >= 3 &&
         characters::is_character::is_numeric(word[word.length() - 3]) &&
-        (string_util::strnicmp(word.data() + (word.length() - 2), L"st", 2) == 0 ||
-         string_util::strnicmp(word.data() + (word.length() - 2), L"rd", 2) == 0 ||
-         string_util::strnicmp(word.data() + (word.length() - 2), L"nd", 2) == 0))
+        (traits::case_insensitive_ex::compare(word.substr(word.length() - 2), L"st", 2) == 0 ||
+         traits::case_insensitive_ex::compare(word.substr(word.length() - 2), L"rd", 2) == 0 ||
+         traits::case_insensitive_ex::compare(word.substr(word.length() - 2), L"nd", 2) == 0))
         {
         return !(article.length() == 1 && traits::case_insensitive_ex::eq(article[0], L'a'));
         }
     // a 5th, etc.
     if (!isSoundingOutStartingNumbers && word.length() >= 3 &&
         characters::is_character::is_numeric(word[word.length() - 3]) &&
-        string_util::strnicmp(word.data() + (word.length() - 2), L"th", 2) == 0)
+        traits::case_insensitive_ex::compare(word.substr(word.length() - 2), L"th", 2) == 0)
         {
         // a 5th
         if (word[word.length() - 3] == L'2' || word[word.length() - 3] == L'3' ||
