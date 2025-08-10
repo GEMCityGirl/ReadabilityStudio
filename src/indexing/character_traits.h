@@ -18,6 +18,7 @@
 #include "characters.h"
 #include <cassert>
 #include <string>
+#include <string_view>
 
 /// @brief String traits use special comparison logic.
 namespace traits
@@ -189,7 +190,33 @@ namespace traits
             return 0;
             }
 
-        /// @todo unit test!
+        //-------------------------------------------------------------
+        static int compare(const std::basic_string_view<char_type> s1, const char_type* s2,
+                           size_t n) noexcept
+            {
+            if (s1.empty())
+                {
+                return -1;
+                }
+            if (s2 == nullptr)
+                {
+                return 1;
+                }
+            for (size_t i = 0; i < n; ++i)
+                {
+                // first string isn't long enough, so it is less than the other
+                if (i == s1.length())
+                    {
+                    return -1;
+                    }
+                if (!eq(s1[i], s2[i]))
+                    {
+                    return lt(s1[i], s2[i]) ? -1 : 1;
+                    }
+                }
+            return 0;
+            }
+
         //-------------------------------------------------------------
         static int compare_case_sensitive(const char_type* s1, const char_type* s2,
                                           size_t n) noexcept

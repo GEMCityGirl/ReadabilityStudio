@@ -21,7 +21,7 @@
 
 using namespace Catch::Matchers;
 
-TEST_CASE("Western character traits", "[chartraits]")
+TEST_CASE("Western character traits", "[char-traits]")
     {
     SECTION("Length")
         {
@@ -70,6 +70,36 @@ TEST_CASE("Western character traits", "[chartraits]")
         CHECK(traits::case_insensitive_ex::compare(L"HELLO", L"hello", 5) == 0);
         CHECK(traits::case_insensitive_ex::compare(L"hello", L"hello", 5) == 0);
         CHECK(traits::case_insensitive_ex::compare(L"helÜo", L"helüo", 5) == 0);
+
+        CHECK(traits::case_insensitive_ex::compare(L"HELL", L"hello", 5) == -1);
+        CHECK(traits::case_insensitive_ex::compare(L"ahello", L"hello", 5) == -1);
+        CHECK(traits::case_insensitive_ex::compare(L"HELLO", L"hellm", 5) == 1);
+        CHECK(traits::case_insensitive_ex::compare(L"ZELLO", L"hello", 5) == 1);
+        }
+    SECTION("Compare Views")
+        {
+        CHECK(traits::case_insensitive_ex::compare(std::wstring_view{ L"" }, L"hello", 5) == -1);
+        CHECK(traits::case_insensitive_ex::compare(std::wstring_view{ L"HELLO" }, L"hello", 5) == 0);
+        CHECK(traits::case_insensitive_ex::compare(std::wstring_view{ L"hello" }, L"hello", 5) == 0);
+        CHECK(traits::case_insensitive_ex::compare(std::wstring_view{ L"helÜo" }, L"helüo", 5) == 0);
+
+        CHECK(traits::case_insensitive_ex::compare(std::wstring_view{ L"HELL" }, L"hello", 5) == -1);
+        CHECK(traits::case_insensitive_ex::compare(std::wstring_view{ L"ahello" }, L"hello", 5) == -1);
+        CHECK(traits::case_insensitive_ex::compare(std::wstring_view{ L"HELLO" }, L"hellm", 5) == 1);
+        CHECK(traits::case_insensitive_ex::compare(std::wstring_view{ L"ZELLO" }, L"hello", 5) == 1);
+        }
+    SECTION("Sensitive Compare")
+        {
+        CHECK(traits::case_insensitive_ex::compare_case_sensitive(L"HELLO", L"hello", 5) == -1);
+        CHECK(traits::case_insensitive_ex::compare_case_sensitive(L"hello", L"HELLO", 5) == 1);
+        CHECK(traits::case_insensitive_ex::compare_case_sensitive(L"hello", L"hello", 5) == 0);
+        CHECK(traits::case_insensitive_ex::compare_case_sensitive(L"helÜo", L"helüo", 5) == -1);
+        CHECK(traits::case_insensitive_ex::compare_case_sensitive(L"helüo", L"helÜo", 5) == 1);
+
+        CHECK(traits::case_insensitive_ex::compare_case_sensitive(L"hell", L"hello", 5) == -1);
+        CHECK(traits::case_insensitive_ex::compare_case_sensitive(L"ahello", L"hello", 5) == -1);
+        CHECK(traits::case_insensitive_ex::compare_case_sensitive(L"HELLO", L"hellm", 5) == -1);
+        CHECK(traits::case_insensitive_ex::compare_case_sensitive(L"ZELLO", L"hello", 5) == -1);
         }
     SECTION("Find")
         {
@@ -130,7 +160,7 @@ TEST_CASE("Western character traits", "[chartraits]")
         }
     }
 
-TEST_CASE("Character traits", "[chartraits]")
+TEST_CASE("Character traits", "[char-traits]")
     {
     SECTION("Is Lower")
         {
