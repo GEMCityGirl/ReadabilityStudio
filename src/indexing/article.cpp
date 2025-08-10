@@ -30,9 +30,9 @@ bool grammar::is_incorrect_english_article::operator()(std::wstring_view article
         }
 
     // words that are debatable, just return that they match
-    if ((word.length() == 3 && traits::case_insensitive_ex::compare(word.data(), L"URL", 3) == 0) ||
+    if ((word.length() == 3 && traits::case_insensitive_ex::compare(word, L"URL", 3) == 0) ||
         // the pronunciation of Xavier is debated, so ignore that word entirely
-        (word.length() >= 3 && traits::case_insensitive_ex::compare(word.data(), L"Xav", 3) == 0))
+        (word.length() >= 3 && traits::case_insensitive_ex::compare(word, L"Xav", 3) == 0))
         {
         return false;
         }
@@ -252,17 +252,17 @@ bool grammar::is_incorrect_english_article::is_an_exception(std::wstring_view wo
         {
         return true;
         }
-    if (traits::case_insensitive_ex::compare(word.data(), L"hono", 4) == 0 ||
-        traits::case_insensitive_ex::compare(word.data(), L"hour", 4) == 0 ||
-        traits::case_insensitive_ex::compare(word.data(), L"heir", 4) == 0 ||
-        traits::case_insensitive_ex::compare(word.data(), L"html", 4) == 0 ||
-        traits::case_insensitive_ex::compare(word.data(), L"honest", 6) == 0 ||
+    if (traits::case_insensitive_ex::compare(word, L"hono", 4) == 0 ||
+        traits::case_insensitive_ex::compare(word, L"hour", 4) == 0 ||
+        traits::case_insensitive_ex::compare(word, L"heir", 4) == 0 ||
+        traits::case_insensitive_ex::compare(word, L"html", 4) == 0 ||
+        traits::case_insensitive_ex::compare(word, L"honest", 6) == 0 ||
         // an HRESULT
         (word.length() >= 2 && traits::case_insensitive_ex::eq(word[0], L'H') &&
          characters::is_character::is_consonant(word[1])) ||
         // treat SAT and sat differently
         (word.length() == 3 &&
-         traits::case_insensitive_ex::compare_case_sensitive(word.data(), L"SAT", 3) == 0))
+         traits::case_insensitive_ex::compare_case_sensitive(word, L"SAT", 3) == 0))
         {
         return true;
         }
@@ -273,7 +273,7 @@ bool grammar::is_incorrect_english_article::is_an_exception(std::wstring_view wo
         return true;
         }
     // an NTSTATUS
-    if (traits::case_insensitive_ex::compare(word.data(), L"nt", 2) == 0)
+    if (traits::case_insensitive_ex::compare(word, L"nt", 2) == 0)
         {
         return true;
         }
@@ -315,7 +315,7 @@ bool grammar::is_incorrect_english_article::is_a_exception(std::wstring_view wor
     // e
     if (traits::case_insensitive_ex::eq(word[0], L'e'))
         {
-        if (traits::case_insensitive_ex::compare(word.data(), L"eu", 2) == 0)
+        if (traits::case_insensitive_ex::compare(word, L"eu", 2) == 0)
             {
             return true;
             }
@@ -332,14 +332,14 @@ bool grammar::is_incorrect_english_article::is_a_exception(std::wstring_view wor
     // o
     else if (traits::case_insensitive_ex::eq(word[0], L'o'))
         {
-        if (traits::case_insensitive_ex::compare(word.data(), L"one-", 4) == 0 ||
-            traits::case_insensitive_ex::compare(word.data(), L"once-", 5) == 0)
+        if (traits::case_insensitive_ex::compare(word, L"one-", 4) == 0 ||
+            traits::case_insensitive_ex::compare(word, L"once-", 5) == 0)
             {
             return true;
             }
         // "A or B" is OK, but "a OR in the hospital" is wrong, so do this case sensitively
         if (word.length() == 2 &&
-            traits::case_insensitive_ex::compare_case_sensitive(word.data(), L"or", 2) == 0)
+            traits::case_insensitive_ex::compare_case_sensitive(word, L"or", 2) == 0)
             {
             return true;
             }
@@ -355,8 +355,8 @@ bool grammar::is_incorrect_english_article::is_a_exception(std::wstring_view wor
                                        word.data(), 3)) != caseIU3Prefixes.cend()) ||
             // UNC, but not UNCLE
             (word.length() == 3 &&
-             traits::case_insensitive_ex::compare_case_sensitive(word.data(), L"UNC", 3) == 0) ||
-            traits::case_insensitive_ex::compare(word.data(), L"uter", 4) == 0)
+             traits::case_insensitive_ex::compare_case_sensitive(word, L"UNC", 3) == 0) ||
+            traits::case_insensitive_ex::compare(word, L"uter", 4) == 0)
             {
             return true;
             }
@@ -371,12 +371,12 @@ bool grammar::is_incorrect_english_article::is_a_exception(std::wstring_view wor
             return true;
             }
         // "a UCX_USBDEVICE_CHARACTERISTIC" and "a UCM_TYPEC_PARTNER" are correct
-        else if (traits::case_insensitive_ex::compare(word.data(), L"ucm", 3) == 0 ||
-                 traits::case_insensitive_ex::compare(word.data(), L"ucx", 3) == 0)
+        else if (traits::case_insensitive_ex::compare(word, L"ucm", 3) == 0 ||
+                 traits::case_insensitive_ex::compare(word, L"ucx", 3) == 0)
             {
             return true;
             }
-        else if (traits::case_insensitive_ex::compare(word.data(), L"uni", 3) == 0)
+        else if (traits::case_insensitive_ex::compare(word, L"uni", 3) == 0)
             {
             // unimpressed, uninteresting, unignored, uninitialized
             // should have "an" in front
@@ -410,12 +410,12 @@ bool grammar::is_incorrect_english_article::is_a_exception(std::wstring_view wor
                 }
             }
         // a uranium
-        else if (traits::case_insensitive_ex::compare(word.data(), L"ura", 3) == 0)
+        else if (traits::case_insensitive_ex::compare(word, L"ura", 3) == 0)
             {
             return true;
             }
         // "a unanimous decision" is correct
-        else if (traits::case_insensitive_ex::compare(word.data(), L"unani", 5) == 0)
+        else if (traits::case_insensitive_ex::compare(word, L"unani", 5) == 0)
             {
             return true;
             }
