@@ -193,6 +193,10 @@ namespace tokenize
                 }
             m_moved_past_beginning_nontext = true;
 
+            const auto lengthToBlockEnd =
+                [&m_text_block_end = std::as_const(m_text_block_end)](const auto* startOfBlock)
+            { return static_cast<size_t>(std::distance(startOfBlock, m_text_block_end)); };
+
             // see if this might be a header paragraph
             if (is_at_eol() && (m_is_at_end_of_sentence == false))
                 {
@@ -234,7 +238,9 @@ namespace tokenize
                     }
                 else if (m_treat_eol_as_eop ||
                          (!m_ignore_blank_lines && isEol.get_eol_count() > 1) ||
-                         (!m_ignore_indenting && is_indented(m_current_char).first) ||
+                         (!m_ignore_indenting &&
+                          is_indented({ m_current_char, lengthToBlockEnd(m_current_char) })
+                              .first) ||
                          is_formatted_line_separator(m_current_char).first)
                     {
                     ++m_current_sentence_index;
@@ -243,7 +249,7 @@ namespace tokenize
                     // reset for the next word (its position will be the first in the next sentence)
                     m_sentence_position = 0;
                     }
-                else if (is_bulleted(m_current_char).first)
+                else if (is_bulleted({ m_current_char, lengthToBlockEnd(m_current_char) }).first)
                     {
                     bool nextToOtherBulletedLine = false;
                     // look forward to next line and see if it is a bullet
@@ -257,7 +263,7 @@ namespace tokenize
                             ++nextNewline;
                             }
                         if (*nextNewline && (nextNewline < m_text_block_end) &&
-                            is_bulleted(nextNewline).first)
+                            is_bulleted({ nextNewline, lengthToBlockEnd(nextNewline) }).first)
                             {
                             nextToOtherBulletedLine = true;
                             }
@@ -266,8 +272,9 @@ namespace tokenize
                     if (!nextToOtherBulletedLine && (originalStop > m_text_block_beginning))
                         {
                         const size_t previousNewlineOffset =
-                            std::wstring_view{ m_text_block_beginning }.find_last_of(
-                                L"\r\n", (originalStop - m_text_block_beginning) - 1);
+                            std::wstring_view{ m_text_block_beginning,
+                                               lengthToBlockEnd(m_text_block_beginning) }
+                                .find_last_of(L"\r\n", (originalStop - m_text_block_beginning) - 1);
                         // previous newline or start of text
                         const wchar_t* previousNewline =
                             (previousNewlineOffset != std::wstring::npos) ?
@@ -280,7 +287,8 @@ namespace tokenize
                             ++previousNewline;
                             }
                         if (*previousNewline && (previousNewline < m_text_block_end) &&
-                            is_bulleted(previousNewline).first)
+                            is_bulleted({ previousNewline, lengthToBlockEnd(previousNewline) })
+                                .first)
                             {
                             nextToOtherBulletedLine = true;
                             }
@@ -375,7 +383,8 @@ namespace tokenize
                         punctuation::punctuation_count::m_whole_word_punctuation.find(
                             string_util::full_width_to_narrow(m_current_char[0])) ==
                             std::wstring_view::npos &&
-                        std::next(m_current_char) < m_text_block_end && !is_character(m_current_char[1]))
+                        std::next(m_current_char) < m_text_block_end &&
+                        !is_character(m_current_char[1]))
                         { /*noop*/
                         }
                     // Otherwise, the first character is a real character or punctuation that can

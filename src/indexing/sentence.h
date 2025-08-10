@@ -164,9 +164,9 @@ namespace grammar
                 stream right after a newline.
             @returns Whether text stream is indented, and the length of the indentation if true.*/
         [[nodiscard]]
-        const std::pair<bool, size_t> operator()(const wchar_t* text) const noexcept
+        const std::pair<bool, size_t> operator()(std::wstring_view text) const noexcept
             {
-            if (text == nullptr || text[0] == 0)
+            if (text.empty())
                 {
                 return std::make_pair(false, 0);
                 }
@@ -176,15 +176,14 @@ namespace grammar
                 return std::make_pair(true, 1);
                 }
             // else, see if it more than two spaces (more than likely an indentation)
-            const wchar_t* current_char = text;
-            while (current_char[0] != 0 &&
-                   characters::is_character::is_space_horizontal(current_char[0]))
+            const auto originalLength{ text.length() };
+            while (!text.empty() && characters::is_character::is_space_horizontal(text[0]))
                 {
-                ++current_char;
+                text.remove_prefix(1);
                 }
-            if ((current_char - text) > 2)
+            if ((originalLength - text.length()) > 2)
                 {
-                return std::make_pair(true, (current_char - text));
+                return std::make_pair(true, (originalLength - text.length()));
                 }
             return std::make_pair(false, 0);
             }

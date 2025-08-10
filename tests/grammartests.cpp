@@ -1471,8 +1471,8 @@ TEST_CASE("Indent", "[indent]")
     SECTION("Null")
         {
         grammar::is_indented_text is_indented;
-        CHECK(is_indented(nullptr).first == false);
-        CHECK(is_indented(nullptr).second == 0);
+        CHECK(is_indented(L"").first == false);
+        CHECK(is_indented(L"").second == 0);
         }
     SECTION("Tab")
         {
