@@ -301,8 +301,8 @@ namespace grammar
         static bool is_none_affecting_suffix(const wchar_t* word, size_t suffix_length);
         /// @returns @c true if suffix makes the preceding 'e' NOT silent
         [[nodiscard]]
-        bool does_suffix_negate_silent_e(const wchar_t* suffix, const size_t suffix_length,
-                                         const size_t next_vowel_index) const;
+        static bool does_suffix_negate_silent_e(const wchar_t* suffix, const size_t suffix_length,
+                                                const size_t next_vowel_index);
         /** @returns @c true if a single (non-'e') vowel
                 (i.e., vowel surrounded by consonants) should not be seen as a syllable break.
                 There are fairly uncommon.

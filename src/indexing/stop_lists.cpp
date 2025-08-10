@@ -13,6 +13,7 @@
 
 #include "stop_lists.h"
 
-using namespace grammar;
-
-word_list is_non_proper_word::m_word_list;
+namespace grammar
+    {
+    word_list is_non_proper_word::m_word_list;
+    }

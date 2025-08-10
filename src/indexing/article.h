@@ -49,7 +49,7 @@ namespace grammar
             @param word The word following the article.
             @returns Whether an article/following word pair is a mismatch.*/
         [[nodiscard]]
-        bool operator()(std::wstring_view article, std::wstring_view word) const noexcept final;
+        bool operator()(std::wstring_view article, std::wstring_view word) const final;
 
         /** @returns The list of words following an 'a' that would be correct
                 (that the analyzer might get wrong).*/

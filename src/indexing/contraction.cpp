@@ -59,7 +59,7 @@ bool grammar::is_contraction::operator()(
                     return true;
                     }
                 // ...otherwise, it might be a possessive word; review it.
-                if (nextWord.length() > 0)
+                if (!nextWord.empty())
                     {
                     return m_s_contractions_following_word.find(
                                string_type{ nextWord.data(), nextWord.length() }) !=
@@ -72,10 +72,6 @@ bool grammar::is_contraction::operator()(
             }
         }
     // "it [word]" being contracted to "t[word]"
-    if (m_contraction_without_apostrophe.find(string_type{ text.data(), text.length() }) !=
-        m_contraction_without_apostrophe.cend())
-        {
-        return true;
-        }
-    return false;
+    return (m_contraction_without_apostrophe.find(string_type{ text.data(), text.length() }) !=
+            m_contraction_without_apostrophe.cend());
     }

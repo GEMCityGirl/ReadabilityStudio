@@ -18,7 +18,7 @@ word_list grammar::is_incorrect_english_article::m_an_exceptions;
 
 //-------------------------------------------------------------
 bool grammar::is_incorrect_english_article::operator()(std::wstring_view article,
-                                                       std::wstring_view word) const noexcept
+                                                       std::wstring_view word) const
     {
     // we only look at "a" and "an"
     if (article.empty() || word.empty() || article.length() > 2 ||
@@ -185,33 +185,26 @@ bool grammar::is_incorrect_english_article::operator()(std::wstring_view article
             }
         if (useLetterSoundedOut)
             {
-            if (!is_an_exception(word) && ((traits::case_insensitive_ex::ge(word[0], L'0') &&
-                                            traits::case_insensitive_ex::le(word[0], L'7')) ||
-                                           traits::case_insensitive_ex::eq(word[0], L'9') ||
-                                           traits::case_insensitive_ex::eq(word[0], L'u') ||
-                                           traits::case_insensitive_ex::eq(word[0], L'b') ||
-                                           traits::case_insensitive_ex::eq(word[0], L'c') ||
-                                           traits::case_insensitive_ex::eq(word[0], L'd') ||
-                                           traits::case_insensitive_ex::eq(word[0], L'g') ||
-                                           traits::case_insensitive_ex::eq(word[0], L'j') ||
-                                           traits::case_insensitive_ex::eq(word[0], L'k') ||
-                                           traits::case_insensitive_ex::eq(word[0], L'p') ||
-                                           traits::case_insensitive_ex::eq(word[0], L'q') ||
-                                           traits::case_insensitive_ex::eq(word[0], L't') ||
-                                           traits::case_insensitive_ex::eq(word[0], L'v') ||
-                                           traits::case_insensitive_ex::eq(word[0], L'w') ||
-                                           traits::case_insensitive_ex::eq(word[0], L'y') ||
-                                           traits::case_insensitive_ex::eq(word[0], L'z')))
-                {
-                return true;
-                }
-            else
-                {
-                return false;
-                }
+            return (!is_an_exception(word) && ((traits::case_insensitive_ex::ge(word[0], L'0') &&
+                                                traits::case_insensitive_ex::le(word[0], L'7')) ||
+                                               traits::case_insensitive_ex::eq(word[0], L'9') ||
+                                               traits::case_insensitive_ex::eq(word[0], L'u') ||
+                                               traits::case_insensitive_ex::eq(word[0], L'b') ||
+                                               traits::case_insensitive_ex::eq(word[0], L'c') ||
+                                               traits::case_insensitive_ex::eq(word[0], L'd') ||
+                                               traits::case_insensitive_ex::eq(word[0], L'g') ||
+                                               traits::case_insensitive_ex::eq(word[0], L'j') ||
+                                               traits::case_insensitive_ex::eq(word[0], L'k') ||
+                                               traits::case_insensitive_ex::eq(word[0], L'p') ||
+                                               traits::case_insensitive_ex::eq(word[0], L'q') ||
+                                               traits::case_insensitive_ex::eq(word[0], L't') ||
+                                               traits::case_insensitive_ex::eq(word[0], L'v') ||
+                                               traits::case_insensitive_ex::eq(word[0], L'w') ||
+                                               traits::case_insensitive_ex::eq(word[0], L'y') ||
+                                               traits::case_insensitive_ex::eq(word[0], L'z')));
             }
         // check for any consonants that would be OK after an "an"
-        else if (characters::is_character::is_consonant(word[0]))
+        if (characters::is_character::is_consonant(word[0]))
             {
             return !is_an_exception(word);
             }
@@ -277,10 +270,7 @@ bool grammar::is_incorrect_english_article::is_an_exception(std::wstring_view wo
         {
         return true;
         }
-    else
-        {
-        return false;
-        }
+    return false;
     }
 
 //-------------------------------------------------------------
@@ -315,17 +305,10 @@ bool grammar::is_incorrect_english_article::is_a_exception(std::wstring_view wor
     // e
     if (traits::case_insensitive_ex::eq(word[0], L'e'))
         {
-        if (traits::case_insensitive_ex::compare(word, L"eu", 2) == 0)
-            {
-            return true;
-            }
-        else
-            {
-            return false;
-            }
+        return (traits::case_insensitive_ex::compare(word, L"eu", 2) == 0);
         }
     // i
-    else if (traits::case_insensitive_ex::eq(word[0], L'i'))
+    if (traits::case_insensitive_ex::eq(word[0], L'i'))
         {
         return false;
         }
@@ -343,10 +326,7 @@ bool grammar::is_incorrect_english_article::is_a_exception(std::wstring_view wor
             {
             return true;
             }
-        else
-            {
-            return false;
-            }
+        return false;
         }
     // u
     else if (traits::case_insensitive_ex::eq(word[0], L'u'))
@@ -366,13 +346,13 @@ bool grammar::is_incorrect_english_article::is_a_exception(std::wstring_view wor
             return true;
             }
         // "a UAA-compliant" is correct
-        else if (word.length() >= 2 && traits::case_insensitive_ex::eq(word[1], L'a'))
+        if (word.length() >= 2 && traits::case_insensitive_ex::eq(word[1], L'a'))
             {
             return true;
             }
         // "a UCX_USBDEVICE_CHARACTERISTIC" and "a UCM_TYPEC_PARTNER" are correct
-        else if (traits::case_insensitive_ex::compare(word, L"ucm", 3) == 0 ||
-                 traits::case_insensitive_ex::compare(word, L"ucx", 3) == 0)
+        if (traits::case_insensitive_ex::compare(word, L"ucm", 3) == 0 ||
+            traits::case_insensitive_ex::compare(word, L"ucx", 3) == 0)
             {
             return true;
             }
@@ -391,15 +371,15 @@ bool grammar::is_incorrect_english_article::is_a_exception(std::wstring_view wor
                 return characters::is_character::is_vowel(word[4]);
                 }
             // "a unidimensional" is correct, "a undetermined" is wrong
-            else if (word.length() > 4 && (traits::case_insensitive_ex::eq(word[3], L'd')))
+            if (word.length() > 4 && (traits::case_insensitive_ex::eq(word[3], L'd')))
                 {
                 return traits::case_insensitive_ex::eq(word[4], L'i');
                 }
             // unillegal (for the sake of argument, let's say that's a word)
-            else if (word.length() > 4 &&
-                     (traits::case_insensitive_ex::eq(word[3], L'l') &&
-                      // but should have a consonant following, because "a unilateral" is correct
-                      characters::is_character::is_consonant(word[4])))
+            if (word.length() > 4 &&
+                (traits::case_insensitive_ex::eq(word[3], L'l') &&
+                 // but should have a consonant following, because "a unilateral" is correct
+                 characters::is_character::is_consonant(word[4])))
                 {
                 return false;
                 }

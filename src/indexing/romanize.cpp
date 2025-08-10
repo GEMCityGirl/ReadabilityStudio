@@ -153,12 +153,12 @@ namespace text_transform
                                       const bool remove_ellipses, const bool remove_bullets,
                                       const bool narrow_full_width_characters) const
         {
-        std::wstring encoded_text;
+        std::wstring encodedText;
         if (text.empty())
             {
-            return encoded_text;
+            return encodedText;
             }
-        encoded_text.reserve(text.length() * 2);
+        encodedText.reserve(text.length() * 2);
 
         for (size_t i = 0; i < text.length(); ++i)
             {
@@ -170,17 +170,16 @@ namespace text_transform
                     while (i < text.length() && characters::is_character::is_space(text[i]))
                         // copy over any whitespace (including the newline we are on)
                         {
-                        encoded_text += text[i++];
+                        encodedText += text[i++];
                         }
                     const std::pair<bool, size_t> bullet = isBullet(text.substr(i));
                     if (bullet.first)
                         {
                         // if there is not a proceeding character in front of this bullet
                         // already, then replace the bullet with a tab
-                        if (encoded_text.empty() ||
-                            encoded_text[encoded_text.length() - 1] != L'\t')
+                        if (encodedText.empty() || encodedText[encodedText.length() - 1] != L'\t')
                             {
-                            encoded_text += L'\t';
+                            encodedText += L'\t';
                             }
                         i += bullet.second; // skip full length of the bullet
                         if (i >= text.length())
@@ -219,15 +218,12 @@ namespace text_transform
                     if (lookAhead >= text.length() ||
                         isEndOfSentence.can_character_begin_sentence(text[lookAhead]))
                         {
-                        encoded_text += L'.';
+                        encodedText += L'.';
                         continue;
                         }
                     // otherwise, make it a space
-                    else
-                        {
-                        encoded_text += L' ';
-                        continue;
-                        }
+                    encodedText += L' ';
+                    continue;
                     }
                 }
             if (replace_extended_ascii_characters)
@@ -235,26 +231,26 @@ namespace text_transform
                 const auto replacementPos = m_conversionTable.get_table().find(text[i]);
                 if (replacementPos != m_conversionTable.get_table().cend())
                     {
-                    encoded_text += replacementPos->second;
+                    encodedText += replacementPos->second;
                     }
                 else if (narrow_full_width_characters)
                     {
-                    encoded_text += string_util::full_width_to_narrow(text[i]);
+                    encodedText += string_util::full_width_to_narrow(text[i]);
                     }
                 else
                     {
-                    encoded_text += text[i];
+                    encodedText += text[i];
                     }
                 }
             else if (narrow_full_width_characters)
                 {
-                encoded_text += string_util::full_width_to_narrow(text[i]);
+                encodedText += string_util::full_width_to_narrow(text[i]);
                 }
             else
                 {
-                encoded_text += text[i];
+                encodedText += text[i];
                 }
             }
-        return encoded_text;
+        return encodedText;
         }
     } // namespace text_transform

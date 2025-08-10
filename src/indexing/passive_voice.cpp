@@ -13,11 +13,12 @@
 
 #include "passive_voice.h"
 
-using namespace grammar;
+namespace grammar
+    {
+    std::set<is_english_passive_voice::string_type> is_english_passive_voice::m_to_be_verbs = {
+        L"am", L"are",   L"aren't", L"be",     L"been", L"being",
+        L"is", L"isn't", L"was",    L"wasn't", L"were", L"weren't"
+    };
 
-std::set<is_english_passive_voice::string_type> is_english_passive_voice::m_to_be_verbs = {
-    L"am", L"are",   L"aren't", L"be",     L"been", L"being",
-    L"is", L"isn't", L"was",    L"wasn't", L"were", L"weren't"
-};
-
-word_list is_english_passive_voice::m_past_participle_exceptions;
+    word_list is_english_passive_voice::m_past_participle_exceptions;
+    } // namespace grammar
