@@ -76,7 +76,7 @@ TEST_CASE("Western character traits", "[char-traits]")
         CHECK(traits::case_insensitive_ex::compare(L"HELLO", L"hellm", 5) == 1);
         CHECK(traits::case_insensitive_ex::compare(L"ZELLO", L"hello", 5) == 1);
         }
-    SECTION("Compare Views")
+    SECTION("Compare View")
         {
         CHECK(traits::case_insensitive_ex::compare(std::wstring_view{ L"" }, L"hello", 5) == -1);
         CHECK(traits::case_insensitive_ex::compare(std::wstring_view{ L"HELLO" }, L"hello", 5) == 0);
@@ -100,6 +100,19 @@ TEST_CASE("Western character traits", "[char-traits]")
         CHECK(traits::case_insensitive_ex::compare_case_sensitive(L"ahello", L"hello", 5) == -1);
         CHECK(traits::case_insensitive_ex::compare_case_sensitive(L"HELLO", L"hellm", 5) == -1);
         CHECK(traits::case_insensitive_ex::compare_case_sensitive(L"ZELLO", L"hello", 5) == -1);
+        }
+    SECTION("Sensitive Compare View")
+        {
+        CHECK(traits::case_insensitive_ex::compare_case_sensitive(std::wstring_view{ L"HELLO" }, L"hello", 5) == -1);
+        CHECK(traits::case_insensitive_ex::compare_case_sensitive(std::wstring_view{ L"hello" }, L"HELLO", 5) == 1);
+        CHECK(traits::case_insensitive_ex::compare_case_sensitive(std::wstring_view{ L"hello" }, L"hello", 5) == 0);
+        CHECK(traits::case_insensitive_ex::compare_case_sensitive(std::wstring_view{ L"helÜo" }, L"helüo", 5) == -1);
+        CHECK(traits::case_insensitive_ex::compare_case_sensitive(std::wstring_view{ L"helüo" }, L"helÜo", 5) == 1);
+
+        CHECK(traits::case_insensitive_ex::compare_case_sensitive(std::wstring_view{ L"hell" }, L"hello", 5) == -1);
+        CHECK(traits::case_insensitive_ex::compare_case_sensitive(std::wstring_view{ L"ahello" }, L"hello", 5) == -1);
+        CHECK(traits::case_insensitive_ex::compare_case_sensitive(std::wstring_view{ L"HELLO" }, L"hellm", 5) == -1);
+        CHECK(traits::case_insensitive_ex::compare_case_sensitive(std::wstring_view{ L"ZELLO" }, L"hello", 5) == -1);
         }
     SECTION("Find")
         {

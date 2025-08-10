@@ -191,6 +191,30 @@ namespace traits
             }
 
         //-------------------------------------------------------------
+        static int compare_case_sensitive(const char_type* s1, const char_type* s2,
+                                          size_t n) noexcept
+            {
+            assert(s1);
+            assert(s2);
+            if (s1 == nullptr)
+                {
+                return -1;
+                }
+            else if (s2 == nullptr)
+                {
+                return 1;
+                }
+            for (size_t i = 0; i < n; ++i)
+                {
+                if (!eq_case_sensitive(s1[i], s2[i]))
+                    {
+                    return lt_case_sensitive(s1[i], s2[i]) ? -1 : 1;
+                    }
+                }
+            return 0;
+            }
+
+        //-------------------------------------------------------------
         static int compare(const std::basic_string_view<char_type> s1, const char_type* s2,
                            size_t n) noexcept
             {
@@ -218,21 +242,24 @@ namespace traits
             }
 
         //-------------------------------------------------------------
-        static int compare_case_sensitive(const char_type* s1, const char_type* s2,
-                                          size_t n) noexcept
+        static int compare_case_sensitive(const std::basic_string_view<char_type> s1,
+                                          const char_type* s2, size_t n) noexcept
             {
-            assert(s1);
-            assert(s2);
-            if (s1 == nullptr)
+            if (s1.empty())
                 {
                 return -1;
                 }
-            else if (s2 == nullptr)
+            if (s2 == nullptr)
                 {
                 return 1;
                 }
             for (size_t i = 0; i < n; ++i)
                 {
+                // first string isn't long enough, so it is less than the other
+                if (i == s1.length())
+                    {
+                    return -1;
+                    }
                 if (!eq_case_sensitive(s1[i], s2[i]))
                     {
                     return lt_case_sensitive(s1[i], s2[i]) ? -1 : 1;
