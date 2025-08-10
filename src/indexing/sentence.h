@@ -246,7 +246,7 @@ namespace grammar
                 {
                 ++current_char;
                 // scan until we hit something non-numeric
-                while (current_char[0])
+                while (current_char[0] != 0)
                     {
                     if (characters::is_character::is_numeric(current_char[0]))
                         {
@@ -274,7 +274,7 @@ namespace grammar
                     {
                     ++current_char;
                     // sometimes you might see "1.) Some info", so skip all expected punctuation
-                    while (current_char[0] &&
+                    while (current_char[0] != 0 &&
                            (characters::is_character::is_period(current_char[0]) ||
                             // right parentheses
                             current_char[0] == 0x29 || current_char[0] == 0xFF09))
@@ -330,7 +330,7 @@ namespace grammar
                     {
                     ++current_char;
                     // sometimes you might see "a.) Some info", so skip all expected punctuation
-                    while (current_char[0] &&
+                    while (current_char[0] != 0 &&
                            (characters::is_character::is_period(current_char[0]) ||
                             current_char[0] == 0x29 || current_char[0] == 0xFF09))
                         {
