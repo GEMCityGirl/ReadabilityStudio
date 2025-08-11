@@ -30,7 +30,7 @@ class BaseProjectDoc : public BaseProject, public wxDocument
     BaseProjectDoc(const BaseProjectDoc&) = delete;
     BaseProjectDoc& operator=(const BaseProjectDoc&) = delete;
 
-    ~BaseProjectDoc() { m_File.Close(); }
+    ~BaseProjectDoc() override { m_File.Close(); }
 
     /** Call this if you have constructed a project document
         and need to copy over all settings from another project. In turn, this would be like
@@ -172,7 +172,7 @@ class BaseProjectDoc : public BaseProject, public wxDocument
         m_plotBackGroundColorOpacity = opacity;
         }
 
-    /// water mark functions
+    /// watermark functions
     void SetWatermark(const wxString& watermark) { m_watermark = watermark; }
 
     [[nodiscard]]
@@ -504,7 +504,7 @@ class BaseProjectDoc : public BaseProject, public wxDocument
         return m_histogramBarColor;
         }
 
-    void SetHistogramBarColor(const wxColour color)
+    void SetHistogramBarColor(const wxColour& color)
         {
         if (color.IsOk())
             {
@@ -538,7 +538,7 @@ class BaseProjectDoc : public BaseProject, public wxDocument
         return m_barChartBarColor;
         }
 
-    void SetBarChartBarColor(const wxColour color)
+    void SetBarChartBarColor(const wxColour& color)
         {
         if (color.IsOk())
             {
@@ -1096,7 +1096,7 @@ class BaseProjectDoc : public BaseProject, public wxDocument
     /// @brief Updates printer headers and footers for a text window.
     /// @param window The text window to update.
     static void UpdatePrinterHeaderAndFooters(Wisteria::UI::FormattedTextCtrl* window);
-    /// @brief Updates printer headers and footers for a explanation list control.
+    /// @brief Updates printer headers and footers for an explanation list control.
     /// @param window The explanation list control to update.
     static void UpdatePrinterHeaderAndFooters(ExplanationListCtrl* window);
     /// @brief Updates printer headers and footers for an HTML report.
@@ -1154,13 +1154,13 @@ class BaseProjectDoc : public BaseProject, public wxDocument
 
     // used for the contents of a project (zip) file
     [[nodiscard]]
-    static const wxString ProjectSettingsFileLabel()
+    static wxString ProjectSettingsFileLabel()
         {
         return L"settings.xml";
         }
 
     [[nodiscard]]
-    static const wxString ProjectContentFileLabel()
+    static wxString ProjectContentFileLabel()
         {
         return L"content0.txt";
         }
@@ -1205,7 +1205,7 @@ class BaseProjectDoc : public BaseProject, public wxDocument
             MemoryMappedFile sourceFile;
             sourceFile.MapFile(GetFilename(), true, true);
             const char* projectFileText = static_cast<char*>(sourceFile.GetStream());
-            Wisteria::ZipCatalog cat(projectFileText, sourceFile.GetMapSize());
+            const Wisteria::ZipCatalog cat(projectFileText, sourceFile.GetMapSize());
             return cat.ReadBitmap(fileName, wxBITMAP_TYPE_ANY);
             }
         catch (...)

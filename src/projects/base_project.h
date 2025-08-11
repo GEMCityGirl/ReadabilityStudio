@@ -136,25 +136,25 @@ class CustomReadabilityTestInterface
         }
 
     [[nodiscard]]
-    inline bool operator<(const CustomReadabilityTestInterface& that) const
+    bool operator<(const CustomReadabilityTestInterface& that) const
         {
         return m_testName < that.m_testName;
         }
 
     [[nodiscard]]
-    inline bool operator==(const CustomReadabilityTestInterface& that) const
+    bool operator==(const CustomReadabilityTestInterface& that) const
         {
         return m_testName == that.m_testName;
         }
 
     [[nodiscard]]
-    inline bool operator==(const wxString& testName) const
+    bool operator==(const wxString& testName) const
         {
         return m_testName == testName;
         }
 
     [[nodiscard]]
-    inline bool operator()(const word_case_insensitive_no_stem& theWord) const
+    bool operator()(const word_case_insensitive_no_stem& theWord) const
         {
         return m_iter->is_word_familiar(theWord);
         }
@@ -271,7 +271,7 @@ class BaseProject : public ProjectRefresh
     BaseProject(const BaseProject&) = delete;
     BaseProject& operator==(const BaseProject&) = delete;
 
-    virtual ~BaseProject() {}
+    virtual ~BaseProject() = default;
 
     [[nodiscard]]
     const wxString& GetCurrentCustomTest() const
@@ -280,7 +280,7 @@ class BaseProject : public ProjectRefresh
         }
 
     /// @brief Gets (and constructs, if necessary) the formula parser.
-    /// @note This is created on demand on the heap as we don't won't create this in a
+    /// @note This is created on demand on the heap as we don't create this in a
     ///     thin client unless really needed.
     [[nodiscard]]
     ReadabilityFormulaParser& GetFormulaParser()
@@ -304,7 +304,7 @@ class BaseProject : public ProjectRefresh
             If this is blank, the @c path will be loaded and analyzed. If this has content,
             then this will override @c path and be used instead.
         @param minWordCount The minimum number of words to be acceptable for this to be a legitimate
-            document.\n If the document has less words than this then
+            document.\n If the document has fewer words than this then
             LoadingOriginalTextSucceeded() will return @c false and an error will be issued.*/
     bool LoadDocumentAsSubProject(
         const wxString& path,
@@ -319,8 +319,9 @@ class BaseProject : public ProjectRefresh
 
     /** @brief Sets the project's title.
         @details This should be implemented by derived documents.\n
-            The non UI version of this class simply ignores this.*/
-    virtual void SetDocumentTitle(const wxString&) {}
+            The non UI version of this class simply ignores this.
+        @param title The document title.*/
+    virtual void SetDocumentTitle(const wxString& title) {}
 
     /// If an appended document is being included, then this loads that into the buffer.
     bool LoadAppendedDocument();
@@ -333,7 +334,7 @@ class BaseProject : public ProjectRefresh
             wxLogMessage(L"Analyzing %s", GetOriginalDocumentFilePath());
             }
         CreateWords();
-        if (GetAppendedDocumentText().length())
+        if (!GetAppendedDocumentText().empty())
             {
             const std::wstring concatenatedText =
                 GetDocumentText() + L"\n\f\n" + GetAppendedDocumentText();
@@ -1238,7 +1239,7 @@ class BaseProject : public ProjectRefresh
     /// functions to calculate and include tests
     /// Graphical tests need to be virtual because projects add these differently
     bool AddStandardReadabilityTest(const wxString& id, const bool setFocus = true);
-    typedef bool (BaseProject::*AddTestFunction)(const bool);
+    using AddTestFunction = bool (BaseProject::*)(const bool);
     std::unordered_map<int, AddTestFunction> m_standardTestFunctions;
     bool AddNewDaleChallTest(const bool setFocus = true);
     bool AddSmogTest(const bool setFocus = true);
@@ -1314,7 +1315,7 @@ class BaseProject : public ProjectRefresh
 
     /// by default, will not actually calculate the test, it just includes it
     bool AddCustomReadabilityTest(const wxString& name, const bool calculate = false);
-    /// this will calculate all of the included custom tests
+    /// this will calculate all the included custom tests
     void AddCustomReadabilityTests();
 
     /// functions to simply include a test (will not calculate it)
@@ -1425,19 +1426,19 @@ class BaseProject : public ProjectRefresh
     /// @brief Clears the queued-up messages.
     void ClearQueuedMessages() noexcept { m_queuedMessages.clear(); }
 
-    /// @brief Shows all of the queued-up messages and then clears them.
+    /// @brief Shows all the queued-up messages and then clears them.
     /// @note Should be implemented by caller, as this subsystem has no UI.
     virtual void ShowQueuedMessages() {}
 
     [[nodiscard]]
     bool HasCustomTest(const wxString& testName) const
         {
-        for (auto pos = m_customTestsInUse.cbegin(); pos != m_customTestsInUse.cend(); ++pos)
+        for (const auto& pos : m_customTestsInUse)
             {
             // can't use the interface's internal iterator's comparison because it might be out of
             // sync when this is called. We need to do the comparison ourselves, so just make be
             // sure that this is the same type of comparison done by the iterator.
-            if (pos->GetTestName().CmpNoCase(testName) == 0)
+            if (pos.GetTestName().CmpNoCase(testName) == 0)
                 {
                 return true;
                 }
@@ -1449,8 +1450,7 @@ class BaseProject : public ProjectRefresh
     [[nodiscard]]
     std::vector<CustomReadabilityTestInterface>::iterator GetCustomTest(const wxString& testName)
         {
-        for (std::vector<CustomReadabilityTestInterface>::iterator pos = m_customTestsInUse.begin();
-             pos != m_customTestsInUse.end(); ++pos)
+        for (auto pos = m_customTestsInUse.begin(); pos != m_customTestsInUse.end(); ++pos)
             {
             // can't use the interface's internal iterator's comparison because it might be out of
             // sync when this is called. We need to do the comparison ourselves, so just make be
@@ -1679,7 +1679,7 @@ class BaseProject : public ProjectRefresh
         return m_sourceFilePaths;
         }
 
-    void SetReadabilityTests(const TestCollectionType& that) noexcept { m_readabilityTests = that; }
+    void SetReadabilityTests(const TestCollectionType& that) { m_readabilityTests = that; }
 
     [[nodiscard]]
     TestCollectionType& GetReadabilityTests() noexcept
@@ -1946,7 +1946,7 @@ class BaseProject : public ProjectRefresh
     [[nodiscard]]
     bool IsIncludingGradeTest() const;
 
-    virtual void RemoveMisspellings(const wxArrayString&) {}
+    virtual void RemoveMisspellings(const wxArrayString& misspellings) {}
 
     [[nodiscard]]
     const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& Get3SyllablePlusData() const
@@ -2335,18 +2335,15 @@ class BaseProject : public ProjectRefresh
             {
             return std::make_shared<stemming::english_stem<traits::case_insensitive_wstring_ex>>();
             }
-        else if (GetProjectLanguage() == readability::test_language::spanish_test)
+        if (GetProjectLanguage() == readability::test_language::spanish_test)
             {
             return std::make_shared<stemming::spanish_stem<traits::case_insensitive_wstring_ex>>();
             }
-        else if (GetProjectLanguage() == readability::test_language::german_test)
+        if (GetProjectLanguage() == readability::test_language::german_test)
             {
             return std::make_shared<stemming::german_stem<traits::case_insensitive_wstring_ex>>();
             }
-        else
-            {
-            return std::make_shared<stemming::no_op_stem<traits::case_insensitive_wstring_ex>>();
-            }
+        return std::make_shared<stemming::no_op_stem<traits::case_insensitive_wstring_ex>>();
         }
 
     void SetCurrentCustomTest(const wxString& test) { m_currentCustTest = test; }
@@ -2677,7 +2674,7 @@ class BaseProject : public ProjectRefresh
     static std::map<wxString, int> m_testIdMap;
 
     // just used to return a reference to an empty string
-    const wxString m_emptyString{};
+    const wxString m_emptyString;
     };
 
 /// Used to mark a project as being loaded or refreshed.

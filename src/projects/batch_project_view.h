@@ -41,7 +41,7 @@ class BatchProjectView final : public BaseProjectView
     void OnDocumentDelete([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnTestDelete([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnTestDeleteMenu([[maybe_unused]] wxCommandEvent& event);
-    /// Side bar was clicked.
+    /// Sidebar was clicked.
     void OnItemSelected(wxCommandEvent& event);
     /// Document scores were selected.
     void OnScoreItemSelected(wxListEvent& event);
@@ -60,7 +60,7 @@ class BatchProjectView final : public BaseProjectView
 
     /// @returns @c true if ID is for a list window with filepaths listed in it.
     [[nodiscard]]
-    bool IsFilenameList(const wxWindowID id) const noexcept
+    static bool IsFilenameList(const wxWindowID id) noexcept
         {
         return (id == ID_SCORE_LIST_PAGE_ID || id == READABILITY_GOALS_PAGE_ID ||
                 id == ID_DIFFICULT_WORDS_LIST_PAGE_ID || id == LONG_SENTENCES_LIST_PAGE_ID ||

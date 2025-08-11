@@ -35,11 +35,11 @@ class BatchProjectDoc final : public BaseProjectDoc
     BatchProjectDoc(const BatchProjectDoc&) = delete;
     BatchProjectDoc& operator=(const BatchProjectDoc&) = delete;
 
-    ~BatchProjectDoc()
+    ~BatchProjectDoc() override
         {
-        for (std::vector<BaseProject*>::iterator pos = m_docs.begin(); pos != m_docs.end(); ++pos)
+        for (auto& doc : m_docs)
             {
-            wxDELETE(*pos);
+            wxDELETE(doc);
             }
         DeleteExcludedPhrases();
         }
@@ -95,9 +95,10 @@ class BatchProjectDoc final : public BaseProjectDoc
     [[nodiscard]]
     const BaseProject* GetDocument(const wxString& docName) const
         {
-        for (auto doc : GetDocuments())
+        for (auto* doc : GetDocuments())
             {
-            if (doc && CompareFilePaths(doc->GetOriginalDocumentFilePath(), docName) == 0)
+            if (doc != nullptr &&
+                CompareFilePaths(doc->GetOriginalDocumentFilePath(), docName) == 0)
                 {
                 return doc;
                 }
@@ -286,7 +287,7 @@ class BatchProjectDoc final : public BaseProjectDoc
         @param optionalDescription An optional description for the second column.
             If empty, then won't be used for the second column.
             This parameter only makes sense for adding a description next to a document.
-        @param rowNum The row index to write to inside of @c dataGrid.
+        @param rowNum The row index to write to inside @c dataGrid.
         @param data The data to analyze.
         @param decimalSize The amount of floating-point precision to use.
         @param varianceMethod The variance method to calculate with (population or sample).
@@ -298,7 +299,7 @@ class BatchProjectDoc final : public BaseProjectDoc
                      const long rowNum, const std::vector<double>& data, const int decimalSize,
                      const VarianceMethod varianceMethod, const bool allowCustomFormatting);
     /** @brief Fills a score list control with statistics.
-        @param The name of the list control.
+        @param windowName The name of the list control.
         @param windowId The window ID of the list control.
         @param data The data grid used for the list control (will be written to).
         @param firstColumnName The label for the first column in @c data.
@@ -322,13 +323,13 @@ class BatchProjectDoc final : public BaseProjectDoc
         }
 
     [[nodiscard]]
-    wxString GetScoreColumnName() const
+    static wxString GetScoreColumnName()
         {
         return _DT(L"SCORE");
         }
 
     [[nodiscard]]
-    wxString GetGroupColumnName() const
+    static wxString GetGroupColumnName()
         {
         return _DT(L"GROUP");
         }

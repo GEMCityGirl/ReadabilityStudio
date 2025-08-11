@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __PROJECT_REFRESH_H__
-#define __PROJECT_REFRESH_H__
+#ifndef PROJECT_REFRESH_H
+#define PROJECT_REFRESH_H
 
 /// @brief Class for managing which sections of a project need to be updated.
 class ProjectRefresh
@@ -77,4 +77,4 @@ class ProjectRefresh
     int m_refreshNeeded{ NoRefresh };
     };
 
-#endif //__PROJECT_REFRESH_H__
+#endif // PROJECT_REFRESH_H

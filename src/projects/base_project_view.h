@@ -36,7 +36,7 @@ class BaseProjectView : public wxView
     BaseProjectView(const BaseProjectView&) = delete;
     BaseProjectView& operator=(const BaseProjectView&) = delete;
 
-    virtual ~BaseProjectView();
+    ~BaseProjectView() override;
 
     void SetLeftPaneSize(const int leftPaneWidth)
         {
@@ -704,11 +704,11 @@ class BaseProjectView : public wxView
     constexpr static int SPLITTER_ID = wxID_HIGHEST + 79;
 
   private:
-    void OnActivateView(bool activate, wxView*, wxView*) override;
+    void OnActivateView(bool activate, wxView* oldView, wxView* newView) override;
 
-    bool OnClose(bool deleteWindow = true) override;
+    bool OnClose(bool deleteWindow) override;
 
-    void OnDraw(wxDC*) override {}
+    void OnDraw(wxDC* dc) override {}
 
     void OnDClickRibbonBar([[maybe_unused]] wxRibbonBarEvent& event);
 
