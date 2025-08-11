@@ -15,8 +15,6 @@
 #define INDEXING_CONTRACTION_H
 
 #include "character_traits.h"
-#include <algorithm>
-#include <functional>
 #include <set>
 #include <string_view>
 

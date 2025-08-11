@@ -47,7 +47,7 @@ namespace punctuation
                 (e.g., an ampersand), then it is treated as NOT being punctuation,
                 but rather a word.*/
         [[nodiscard]]
-        inline size_t operator()(std::wstring_view text) const
+        size_t operator()(std::wstring_view text) const
             {
             if (text.empty())
                 {
@@ -61,12 +61,12 @@ namespace punctuation
                 {
                 return 0;
                 }
-            return std::count_if(text.cbegin(), text.cend(),
-                                 characters::is_character::is_punctuation);
+            return std::ranges::count_if(std::as_const(text),
+                                         characters::is_character::is_punctuation);
             }
 
         /// @brief Punctuation marks can be full words by themselves.
-        inline static const std::wstring_view m_whole_word_punctuation{ L"&#@%" };
+        constexpr static std::wstring_view m_whole_word_punctuation{ L"&#@%" };
         };
 
     /** @brief Punctuation mark class. Used in tokenizer to keep track of

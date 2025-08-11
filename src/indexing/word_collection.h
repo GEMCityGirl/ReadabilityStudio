@@ -42,6 +42,7 @@
 #include <set>
 #include <stdexcept>
 #include <string>
+#include <utility>
 #include <vector>
 
 /** @brief Class representing a document.
@@ -100,50 +101,50 @@ class document
 
         tokenize_text.set_known_spellings(is_correctly_spelled.get_word_list());
 
-        grammar::base_syllabize& count_syllables = *syllabize;
-        punctuation::punctuation_count count_punctuation;
+        grammar::base_syllabize& countSyllables = *syllabize;
+        const punctuation::punctuation_count countPunctuation;
 
-        const wchar_t* current_char = nullptr;
+        const wchar_t* currentChar = nullptr;
 
-        while ((current_char = tokenize_text()) != nullptr)
+        while ((currentChar = tokenize_text()) != nullptr)
             {
             if (!tokenize_text.is_split_word())
                 {
                 m_words.emplace_back(
-                    current_char, tokenize_text.get_current_word_length(),
+                    currentChar, tokenize_text.get_current_word_length(),
                     tokenize_text.get_current_sentence_index(),
                     tokenize_text.get_sentence_position(),
                     tokenize_text.get_current_paragraph_index(), tokenize_text.is_numeric(),
                     // these are really calculated after the entire document is loaded,
                     // so just set reasonable default values for now
                     true, false, false,
-                    count_syllables(current_char, tokenize_text.get_current_word_length()),
-                    count_punctuation({ current_char, tokenize_text.get_current_word_length() }));
+                    countSyllables(currentChar, tokenize_text.get_current_word_length()),
+                    countPunctuation({ currentChar, tokenize_text.get_current_word_length() }));
                 }
             // Review words at the end of the line that are hyphenated,
-            // because they usually are connected to the word on the next line.
+            // because they are usually connected to the word on the next line.
             else
                 {
                 PROFILE_SECTION_START("document::load(): split word");
                 // Review versions of the word with and without hyphens to see which one we should
                 // use. Also strip out newlines.
-                wchar_t* currentWord = new wchar_t[tokenize_text.get_current_word_length() + 1];
+                auto* currentWord = new wchar_t[tokenize_text.get_current_word_length() + 1];
                 std::wmemset(currentWord, 0, tokenize_text.get_current_word_length() + 1);
 
-                wchar_t* currentWordNoHyphens =
+                auto* currentWordNoHyphens =
                     new wchar_t[tokenize_text.get_current_word_length() + 1];
                 std::wmemset(currentWordNoHyphens, 0, tokenize_text.get_current_word_length() + 1);
                 size_t currentWordSize = 0, currentWordNoHyphensSize = 0;
                 for (size_t i = 0; i < tokenize_text.get_current_word_length(); ++i)
                     {
-                    if (!characters::is_character::is_space(current_char[i]))
+                    if (!characters::is_character::is_space(currentChar[i]))
                         {
-                        currentWord[currentWordSize++] = current_char[i];
+                        currentWord[currentWordSize++] = currentChar[i];
                         }
-                    if (!characters::is_character::is_space(current_char[i]) &&
-                        !characters::is_character::is_hyphen(current_char[i]))
+                    if (!characters::is_character::is_space(currentChar[i]) &&
+                        !characters::is_character::is_hyphen(currentChar[i]))
                         {
-                        currentWordNoHyphens[currentWordNoHyphensSize++] = current_char[i];
+                        currentWordNoHyphens[currentWordNoHyphensSize++] = currentChar[i];
                         }
                     }
                 if (is_correctly_spelled(Tword_type(currentWordNoHyphens)))
@@ -156,9 +157,8 @@ class document
                         // these are really calculated after the entire document is loaded,
                         // so just set reasonable default values for now
                         true, false, false,
-                        count_syllables(current_char, tokenize_text.get_current_word_length()),
-                        count_punctuation(
-                            { current_char, tokenize_text.get_current_word_length() }));
+                        countSyllables(currentChar, tokenize_text.get_current_word_length()),
+                        countPunctuation({ currentChar, tokenize_text.get_current_word_length() }));
                     }
                 else
                     {
@@ -169,9 +169,8 @@ class document
                         // these are really calculated after the entire document is loaded,
                         // so just set reasonable default values for now
                         true, false, false,
-                        count_syllables(current_char, tokenize_text.get_current_word_length()),
-                        count_punctuation(
-                            { current_char, tokenize_text.get_current_word_length() }));
+                        countSyllables(currentChar, tokenize_text.get_current_word_length()),
+                        countPunctuation({ currentChar, tokenize_text.get_current_word_length() }));
                     }
                 delete[] currentWord;
                 delete[] currentWordNoHyphens;
@@ -201,10 +200,10 @@ class document
         m_paragraphs.reserve(safe_divide<size_t>(size, 80));
         }
 
-    inline void update_sentence_paragraph_info(const size_t current_sentence_index,
-                                               const size_t current_paragraph_index,
-                                               const wchar_t sentence_ending_punctuation,
-                                               const size_t leading_end_of_line_count)
+    void update_sentence_paragraph_info(const size_t current_sentence_index,
+                                        const size_t current_paragraph_index,
+                                        const wchar_t sentence_ending_punctuation,
+                                        const size_t leading_end_of_line_count)
         {
         if (m_sentences.size() != current_sentence_index)
             {
@@ -222,13 +221,12 @@ class document
                 {
                 /*a new paragraph has started, so load information representing
                 the previous paragraph*/
-                m_paragraphs.push_back(grammar::paragraph_info(
-                    m_current_paragraph_begin,
-                    (m_sentences.size() > 0) ? (m_sentences.size() - 1) : (0),
+                m_paragraphs.emplace_back(
+                    m_current_paragraph_begin, !m_sentences.empty() ? (m_sentences.size() - 1) : 0,
                     leading_end_of_line_count,
-                    (m_sentences.size() > 0) ?
+                    !m_sentences.empty() ?
                         m_sentences[m_sentences.size() - 1].ends_with_valid_punctuation() :
-                        false));
+                        false);
                 m_current_paragraph_begin = m_sentences.size();
                 }
             }
@@ -252,12 +250,11 @@ class document
                 m_current_sentence_begin, (m_words.size() > 0) ? (m_words.size() - 1) : (0),
                 sentence_ending_punctuation));
 
-            m_paragraphs.push_back(grammar::paragraph_info(
-                m_current_paragraph_begin,
-                (m_sentences.size() > 0) ? (m_sentences.size() - 1) : (0), 0,
-                (m_sentences.size() > 0) ?
+            m_paragraphs.emplace_back(
+                m_current_paragraph_begin, !m_sentences.empty() ? (m_sentences.size() - 1) : (0), 0,
+                !m_sentences.empty() ?
                     m_sentences[m_sentences.size() - 1].ends_with_valid_punctuation() :
-                    false));
+                    false);
             }
         // finish tagging the words
         //-------------------------
@@ -279,8 +276,9 @@ class document
                  { word.set_abbreviation_tag(isAbbreviation({ word.c_str(), word.length() })); });
             // contractions
             {
-            auto punctPos = m_punctuation.size() ? m_punctuation.cbegin() : m_punctuation.cend();
-            grammar::is_contraction isContraction;
+            auto punctPos =
+                (!m_punctuation.empty()) ? m_punctuation.cbegin() : m_punctuation.cend();
+            const grammar::is_contraction isContraction;
             for (size_t i = 0;
                  // no normal writing would have a contraction as the last word
                  i < m_words.size() - 1; ++i)
@@ -320,7 +318,7 @@ class document
         m_overused_words_by_sentence.reserve(safe_divide<size_t>(m_words.size(), 10));
 
         // go through the sentences and mark the incomplete ones as either a header or a list item
-        auto paragraphPos = m_paragraphs.size() ? m_paragraphs.cbegin() : m_paragraphs.cend();
+        auto paragraphPos = (!m_paragraphs.empty()) ? m_paragraphs.cbegin() : m_paragraphs.cend();
         for (auto sent_iter = m_sentences.begin(); sent_iter != m_sentences.end();
              /*handled in loop*/)
             {
@@ -410,7 +408,7 @@ class document
         if (!is_exclusion_aggressive())
             {
             auto punctPosNonConst =
-                m_punctuation.size() ? m_punctuation.begin() : m_punctuation.end();
+                (!m_punctuation.empty()) ? m_punctuation.begin() : m_punctuation.end();
             for (auto sentPos = m_sentences.begin(); sentPos != m_sentences.end(); ++sentPos)
                 {
                 if (!sentPos->is_valid())
@@ -684,7 +682,7 @@ class document
         // them to incomplete, if need be).
         if (m_ignore_trailing_copyright_notice_paragraphs)
             {
-            if (m_paragraphs.size())
+            if (!m_paragraphs.empty())
                 {
                 ignore_copyright_notice_paragraphs_simple();
                 // find the last valid paragraph and then deduce from there if the last 2 (or 1)
@@ -719,7 +717,7 @@ class document
 
         update_citation_info();
 
-        auto punctPos = m_punctuation.size() ? m_punctuation.cbegin() : m_punctuation.cend();
+        auto punctPos = (!m_punctuation.empty()) ? m_punctuation.cbegin() : m_punctuation.cend();
         // Update the extra info attached to individual words and tally up the valid sentence and
         // paragraph counts. Start with going through the paragraphs and sort out invalid and
         // grammatically questionable sentences.
@@ -840,49 +838,49 @@ class document
         }
 
     [[nodiscard]]
-    inline const auto& get_words() const noexcept
+    const auto& get_words() const noexcept
         {
         return m_words;
         }
 
     [[nodiscard]]
-    inline const Tword_type& get_word(const size_t index) const
+    const Tword_type& get_word(const size_t index) const
         {
         return m_words[index];
         }
 
     [[nodiscard]]
-    inline const auto& get_sentences() const noexcept
+    const auto& get_sentences() const noexcept
         {
         return m_sentences;
         }
 
     [[nodiscard]]
-    inline const auto& get_paragraphs() const noexcept
+    const auto& get_paragraphs() const noexcept
         {
         return m_paragraphs;
         }
 
     [[nodiscard]]
-    inline const auto& get_punctuation() const noexcept
+    const auto& get_punctuation() const noexcept
         {
         return m_punctuation;
         }
 
     [[nodiscard]]
-    inline const auto& get_duplicate_word_indices() const noexcept
+    const auto& get_duplicate_word_indices() const noexcept
         {
         return m_duplicate_word_indices;
         }
 
     [[nodiscard]]
-    inline const auto& get_incorrect_article_indices() const noexcept
+    const auto& get_incorrect_article_indices() const noexcept
         {
         return m_incorrect_articles;
         }
 
     [[nodiscard]]
-    inline const auto& get_passive_voice_indices() const noexcept
+    const auto& get_passive_voice_indices() const noexcept
         {
         return m_passive_voices;
         }
@@ -894,21 +892,21 @@ class document
         }
 
     [[nodiscard]]
-    inline const auto& get_misspelled_words() const noexcept
+    const auto& get_misspelled_words() const noexcept
         {
         return m_misspelled_words;
         }
 
-    inline void clear_misspelled_words() { m_misspelled_words.clear(); }
+    void clear_misspelled_words() { m_misspelled_words.clear(); }
 
     [[nodiscard]]
-    inline const auto& get_conjunction_beginning_sentences() const noexcept
+    const auto& get_conjunction_beginning_sentences() const noexcept
         {
         return m_conjunction_beginning_sentences;
         }
 
     [[nodiscard]]
-    inline const auto& get_lowercase_beginning_sentences() const noexcept
+    const auto& get_lowercase_beginning_sentences() const noexcept
         {
         return m_lowercase_beginning_sentences;
         }
@@ -988,54 +986,54 @@ class document
 
     /// @returns The number of *all* sentences (both valid and invalid).
     [[nodiscard]]
-    inline size_t get_sentence_count() const noexcept
+    size_t get_sentence_count() const noexcept
         {
         return m_sentences.size();
         }
 
     /// @returns The number of sentences words.
     [[nodiscard]]
-    inline size_t get_complete_sentence_count() const noexcept
+    size_t get_complete_sentence_count() const noexcept
         {
         return m_complete_sentence_count;
         }
 
     /// @returns The number of *all* paragraphs (both valid and invalid).
     [[nodiscard]]
-    inline size_t get_paragraph_count() const noexcept
+    size_t get_paragraph_count() const noexcept
         {
         return m_paragraphs.size();
         }
 
     /// @returns The number of paragraphs words.
     [[nodiscard]]
-    inline size_t get_valid_paragraph_count() const noexcept
+    size_t get_valid_paragraph_count() const noexcept
         {
         return m_valid_paragraph_count;
         }
 
     [[nodiscard]]
-    inline size_t get_punctuation_count() const noexcept
+    size_t get_punctuation_count() const noexcept
         {
         return m_punctuation.size();
         }
 
     [[nodiscard]]
-    inline size_t get_valid_punctuation_count() const noexcept
+    size_t get_valid_punctuation_count() const noexcept
         {
         return m_valid_punctuation_count;
         }
 
     /// @returns The number of *all* words (both valid and invalid).
     [[nodiscard]]
-    inline size_t get_word_count() const noexcept
+    size_t get_word_count() const noexcept
         {
         return m_words.size();
         }
 
     /// @returns The number of valid words.
     [[nodiscard]]
-    inline size_t get_valid_word_count() const noexcept
+    size_t get_valid_word_count() const noexcept
         {
         return m_valid_word_count;
         }
@@ -1179,7 +1177,7 @@ class document
     void set_excluded_phrase_function(
         std::shared_ptr<const grammar::phrase_collection> excluded_phrase) noexcept
         {
-        is_excluded_phrase = excluded_phrase;
+        is_excluded_phrase = std::move(excluded_phrase);
         }
 
     void set_known_proper_nouns(const word_list* known_proper_nouns)
@@ -1387,11 +1385,12 @@ class document
                 }
             }
         // go through the user-defined excluded phrases (if any)
-        if (is_excluded_phrase && is_excluded_phrase->get_phrases().size() > 0)
+        if (is_excluded_phrase && !is_excluded_phrase->get_phrases().empty())
             {
             std::set<size_t> alreadyEncounteredExcludedPhrases;
             const grammar::phrase_collection& isExcludedPhrase = *is_excluded_phrase;
-            auto punctPos = m_punctuation.size() ? m_punctuation.cbegin() : m_punctuation.cend();
+            auto punctPos =
+                (!m_punctuation.empty()) ? m_punctuation.cbegin() : m_punctuation.cend();
             // search for user-defined excluded phrases throughout the sentences
             for (size_t sentenceCounter = 0; sentenceCounter < m_sentences.size();
                  ++sentenceCounter)
@@ -1462,16 +1461,16 @@ class document
 
     /** Find the proper nouns, first looking for any capitalized words *not* starting a sentence.
         The word must also be in a complete sentence. If it isn't then it is more than likely in
-        a header where all of the words would usually be capitalized.
+        a header where all the words would usually be capitalized.
 
         Note that during the second pass--which looks for proper nouns--the comparison against
-        known proper nouns must be case sensitive. If a word in all caps is encountered we
+        known proper nouns must be case-sensitive. If a word in all caps is encountered we
         will want to prevent it from making other instances of the word that are not in all caps
         from being erroneously seen as the same word.*/
     void search_for_proper_nouns()
         {
         PROFILE();
-        const grammar::is_acronym isAcronym;
+        constexpr grammar::is_acronym isAcronym;
         // this collection is forced to be case-sensitive because it relies on words being
         // capitalized to match
         frequency_set<Tword_type, string_util::less_basic_string_compare<Tword_type>> properWords;
@@ -1490,9 +1489,9 @@ class document
                 {
                 continue;
                 }
-            // see if in all caps and then look at the words around it to see if it is
+            // see if in all caps and then look at the surrounding words to see if it is
             // an acronym or simply uppercased word
-            else if (isAcronym({ wordPos->c_str(), wordPos->length() }))
+            if (isAcronym({ wordPos->c_str(), wordPos->length() }))
                 {
                 // if it has more than one period in it and more than half uppercase letters then it
                 // absolutely must be an acronym. Same for if it ends with a lowercase 's' (e.g.,
@@ -1626,7 +1625,7 @@ class document
                        later. Treat it as if it were the first word of a sentence (basically, we see
                        it as dialogue). */
                     if (!punctPos->is_connected_to_previous_word() &&
-                        is_character.is_double_quote(punctPos->get_punctuation_mark()))
+                        characters::is_character::is_double_quote(punctPos->get_punctuation_mark()))
                         {
                         m_quoteStartWords.push_back(currentWordIndex);
                         wordIsAtStartOfQuote = true;
@@ -1636,10 +1635,11 @@ class document
                        punctuation not a single quote, then we will treat it as if it were the first
                        word of a sentence (basically, we see it as embedded dialogue). */
                     else if (!punctPos->is_connected_to_previous_word() &&
-                             is_character.is_single_quote(punctPos->get_punctuation_mark()) &&
+                             characters::is_character::is_single_quote(
+                                 punctPos->get_punctuation_mark()) &&
                              punctPos + 1 != m_punctuation.end() &&
                              ((punctPos + 1)->get_word_position() > currentWordIndex + 3 ||
-                              !is_character.is_single_quote(
+                              !characters::is_character::is_single_quote(
                                   (punctPos + 1)->get_punctuation_mark())))
                         {
                         m_quoteStartWords.push_back(currentWordIndex);
@@ -1651,7 +1651,7 @@ class document
                 if (!wordIsAtStartOfQuote)
                     {
                     // watch out for auxiliary words which are not really proper
-                    if (!non_proper.get_word_list().contains(wordPos->c_str()))
+                    if (!grammar::is_non_proper_word::get_word_list().contains(wordPos->c_str()))
                         {
                         wordPos->set_proper_noun(true);
                         properWords.insert(Tword_type(wordPos->c_str()));
@@ -1857,7 +1857,7 @@ class document
                                  string_util::equal_basic_string_i_compare_map<Tword_type, size_t>(
                                      Tword_type(wordPos->c_str())));
                 if (propPos != properWords.get_data().cend() ||
-                    // note that the *known* proper nouns are already case insensitive.
+                    // note that the *known* proper nouns are already case-insensitive.
                     is_known_proper_nouns->contains(wordPos->c_str()))
                     {
                     wordPos->set_proper_noun(true);
@@ -1886,7 +1886,7 @@ class document
     void search_for_negated_phrases()
         {
         PROFILE();
-        const grammar::is_negating IsNegating;
+        constexpr grammar::is_negating isNegating;
         assert(searches_for_negated_phrases() &&
                "Negated phrase searching should be enabled if searching for negated phrases.");
         m_negating_phrase_indices.clear();
@@ -1906,7 +1906,7 @@ class document
                     {
                     ++punctPos;
                     }
-                if (IsNegating({ m_words[wordCounter].c_str(), m_words[wordCounter].length() }) &&
+                if (isNegating({ m_words[wordCounter].c_str(), m_words[wordCounter].length() }) &&
                     // if next word has punctuation in front of it then do not count this.
                     !(punctPos != m_punctuation.end() &&
                       punctPos->get_word_position() == wordCounter + 1))
@@ -1950,8 +1950,7 @@ class document
                     // should certainly be the case
                     if ((wordCounter - startWord) > 1)
                         {
-                        m_negating_phrase_indices.push_back(
-                            std::make_pair(startWord, wordCounter - startWord));
+                        m_negating_phrase_indices.emplace_back(startWord, wordCounter - startWord);
                         }
                     // step back, loop will increment this again when it restarts
                     --wordCounter;
@@ -2023,8 +2022,7 @@ class document
                     // should certainly be the case
                     if ((wordCounter - startWord) > 1)
                         {
-                        m_proper_phrase_indices.push_back(
-                            std::make_pair(startWord, wordCounter - startWord));
+                        m_proper_phrase_indices.emplace_back(startWord, wordCounter - startWord);
                         }
                     // step back, loop will increment this again when it restarts
                     --wordCounter;
@@ -2077,7 +2075,7 @@ class document
                          (!m_stop_list->contains(m_words[startWord].c_str()) &&
                           !m_stop_list->contains(m_words[wordCounter - 1].c_str()))))
                         {
-                        phraseIndices.push_back(std::make_pair(startWord, wordCounter - startWord));
+                        phraseIndices.emplace_back(startWord, wordCounter - startWord);
                         }
                     // step back to the beginning of the phrase, loop will increment to the
                     // following word
@@ -2185,8 +2183,8 @@ class document
                         if (!(punctPos != m_punctuation.end() &&
                               punctPos->get_word_position() == wordCounter + 1))
                             {
-                            m_passive_voices.push_back(std::pair<size_t, size_t>(
-                                wordCounter, currentPassiveVoiceWordCount));
+                            m_passive_voices.emplace_back(wordCounter,
+                                                          currentPassiveVoiceWordCount);
                             // the past participle in this passive phrase can be misspelled,
                             // so we won't skip the rest of this phrase in the next loop analysis
                             }
@@ -2216,8 +2214,7 @@ class document
                         true);
                     if (phraseResult != grammar::phrase_collection::npos)
                         {
-                        m_known_phrase_indices.push_back(
-                            comparable_first_pair<size_t, size_t>(wordCounter, phraseResult));
+                        m_known_phrase_indices.emplace_back(wordCounter, phraseResult);
                         // just skip the rest of the words in this phrase (-1 to take the loop
                         // increment into account)
                         wordCounter +=
@@ -2341,7 +2338,7 @@ class document
                                                 common_lang_constants::COLON) ||
                 traits::case_insensitive_ex::eq(punctIter->get_punctuation_mark(),
                                                 common_lang_constants::SEMICOLON) ||
-                is_character.is_dash_or_hyphen(punctIter->get_punctuation_mark()))
+                characters::is_character::is_dash_or_hyphen(punctIter->get_punctuation_mark()))
                 {
                 // avoid consecutive unit delimiters (i.e., ones that are attached to the same word)
                 if (punctIter->get_word_position() == currentWordPos)
@@ -2349,7 +2346,7 @@ class document
                     continue;
                     }
                 // in case we are on a punctuation trailing the last word of the document
-                else if (punctIter->get_word_position() >= m_words.size())
+                if (punctIter->get_word_position() >= m_words.size())
                     {
                     currentWordPos = m_words.size() - 1;
                     }
@@ -2434,11 +2431,10 @@ class document
                             static_cast<double>(sent_iter->get_valid_word_count()),
                             static_cast<double>(uncommonWord.second.first.size()))) <= 5)
                         {
-                        m_overused_words_by_sentence.push_back(
+                        m_overused_words_by_sentence.emplace_back(
                             // Insert the sentence and word indices of the
                             // overly-used uncommon word.
-                            std::make_pair(sent_iter - m_sentences.cbegin(),
-                                           uncommonWord.second.first));
+                            sent_iter - m_sentences.cbegin(), uncommonWord.second.first);
                         }
                     }
                 }
@@ -2638,13 +2634,13 @@ class document
                     return true;
                     }
                 // ... or the last sentence
-                else if (is_year(get_word(get_sentences()[theParagraph.get_last_sentence_index()]
-                                              .get_last_word_index())))
+                if (is_year(get_word(get_sentences()[theParagraph.get_last_sentence_index()]
+                                         .get_last_word_index())))
                     {
                     return true;
                     }
                 }
-            // is there a year sentence (5 or less words and one year)
+            // is there a year sentence (5 or fewer words and one year)
             for (size_t sentIndex = theParagraph.get_first_sentence_index();
                  sentIndex <= theParagraph.get_last_sentence_index(); ++sentIndex)
                 {
@@ -2769,7 +2765,7 @@ class document
             /* Examine the next header (moving upwards in the document) to see if it's a citation
                header. Note that we also look at any single-sentence paragraph which ends with a ':'
                (the indexing engine will not see those as headers).
-               The header must be 3 words or less to help avoid a false positive.*/
+               The header must be 3 words or fewer to help avoid a false positive.*/
             if ((para_iter->get_type() == grammar::sentence_paragraph_type::header ||
                  para_iter->get_type() == grammar::sentence_paragraph_type::list_item ||
                  (para_iter->get_sentence_count() == 1 &&
@@ -2890,7 +2886,7 @@ class document
     //--------------------------
     std::vector<size_t> m_quoteStartWords;
     // the index into the words and the index into the list of known phrases
-    // (which is inside of "is_known_phrase")
+    // (which is inside "is_known_phrase")
     std::vector<comparable_first_pair<size_t, size_t>> m_known_phrase_indices;
     std::vector<std::pair<size_t, size_t>> m_proper_phrase_indices;
     std::vector<std::pair<size_t, size_t>> m_negating_phrase_indices;

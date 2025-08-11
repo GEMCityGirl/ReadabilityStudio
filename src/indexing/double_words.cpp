@@ -59,6 +59,5 @@ bool grammar::is_double_word_exception::operator()(const std::wstring_view text)
         {
         return true;
         }
-    return m_double_word_exceptions.find(string_type{ text.data(), text.length() }) !=
-           m_double_word_exceptions.cend();
+    return m_double_word_exceptions.contains(string_type{ text.data(), text.length() });
     }

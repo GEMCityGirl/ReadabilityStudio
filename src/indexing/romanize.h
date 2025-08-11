@@ -15,7 +15,6 @@
 #define CHARACTER_SIMPLIFY_H
 
 #include "character_traits.h"
-#include "characters.h"
 #include "sentence.h"
 #include <map>
 

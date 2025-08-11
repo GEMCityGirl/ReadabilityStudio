@@ -10,6 +10,7 @@
  * Contributors:
  *   Blake Madden - initial implementation
  ********************************************************************************/
+
 #include "conjunction.h"
 
 const std::set<grammar::is_coordinating_conjunction::string_type>

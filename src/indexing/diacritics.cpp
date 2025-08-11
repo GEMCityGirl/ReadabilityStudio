@@ -149,7 +149,7 @@ namespace grammar
                     m_combined_diacritics.find(std::make_pair(input[i], input[i + 1]));
                 if (diaPos != m_combined_diacritics.cend())
                     {
-                    // ...replace with the corresponding accented character and
+                    // ...replace with the corresponding accented character
                     // and step over the two-character sequence
                     m_convertedBuffer.append(input.substr(lastStart, i - lastStart));
                     m_convertedBuffer += diaPos->second;

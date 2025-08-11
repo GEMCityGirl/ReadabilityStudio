@@ -19,7 +19,6 @@
 #include "../Wisteria-Dataviz/src/math/mathematics.h"
 #include "../Wisteria-Dataviz/src/util/string_util.h"
 #include "character_traits.h"
-#include <cstdarg>
 #include <vector>
 
 /// @brief Namespace for grammar analysis.
@@ -80,7 +79,7 @@ namespace grammar
             @param newWord The word to add to the end of the phrase.*/
         void add_word(const wchar_t* newWord) { m_words.emplace_back(newWord); }
 
-        /** @brief Removes all of the words from the phrase.*/
+        /** @brief Removes all the words from the phrase.*/
         void clear_words() noexcept { m_words.clear(); }
 
         /** @brief Resizes the number of words.
@@ -110,7 +109,7 @@ namespace grammar
             std::copy(src, src + count, m_words.begin());
             }
 
-        /** @brief Indicates whether or not this phrase is less than another phrase.
+        /** @brief Indicates whether this phrase is less than another phrase.
             @details A phrase is less than other phrase if sorts alphabetically
                 before the other phrase.\n
                 The number of words in the phrase only matters if all the words
@@ -140,11 +139,8 @@ namespace grammar
                 }
             // if we went through every word in this phrase and it matched every word in the other
             // phrase, but there are still more words in the other phrase, then this phrase is less.
-            if (i == get_word_count() && get_word_count() < that.get_word_count())
-                {
-                return true;
-                }
-            return false;
+            return static_cast<bool>(i == get_word_count() &&
+                                     get_word_count() < that.get_word_count());
             }
 
         /** @returns @c true if all the words between the two phrases are the same.*/
@@ -202,8 +198,7 @@ namespace grammar
             // before returning true, make sure there isn't a proceeding word exception
             if (get_proceeding_exceptions().size() && position > 0)
                 {
-                if (get_proceeding_exceptions().find((words - 1)->c_str()) !=
-                    get_proceeding_exceptions().cend())
+                if (get_proceeding_exceptions().contains((words - 1)->c_str()))
                     {
                     return std::make_pair(false, phrase_comparison_result::phrase_rule_exception);
                     }
@@ -211,8 +206,7 @@ namespace grammar
             // ...or trailing exception
             if (get_trailing_exceptions().size() && get_word_count() + 1 <= max_word_count)
                 {
-                if (get_trailing_exceptions().find((words + i)->c_str()) !=
-                    get_trailing_exceptions().cend())
+                if (get_trailing_exceptions().contains((words + i)->c_str()))
                     {
                     return std::make_pair(false, phrase_comparison_result::phrase_rule_exception);
                     }
@@ -250,19 +244,19 @@ namespace grammar
 
         /** @returns The phrase formatted into a string.*/
         [[nodiscard]]
-        const traits::case_insensitive_wstring_ex to_string() const
+        traits::case_insensitive_wstring_ex to_string() const
             {
-            traits::case_insensitive_wstring_ex full_string;
+            traits::case_insensitive_wstring_ex fullString;
             for (size_t i = 0; i < get_word_count(); ++i)
                 {
-                full_string += m_words[i].c_str();
-                full_string += L' ';
+                fullString += m_words[i].c_str();
+                fullString += L' ';
                 }
-            if (full_string.length())
+            if (!fullString.empty())
                 {
-                full_string.erase(full_string.length() - 1);
+                fullString.erase(fullString.length() - 1);
                 }
-            return full_string;
+            return fullString;
             }
 
         /** @brief Sets the trailing exceptions, which are used in equal_to_words().
@@ -341,7 +335,7 @@ namespace grammar
       public:
         using phrase_word_pair = comparable_first_pair<phrase<traits::case_insensitive_wstring_ex>,
                                                        traits::case_insensitive_wstring_ex>;
-        static const size_t npos = static_cast<size_t>(-1);
+        constexpr static size_t npos = static_cast<size_t>(-1);
 
         /** @brief Compares a range of words to see if it matches any phrases in this collection.
             @details The word range can be bigger than the phrases,
@@ -354,7 +348,7 @@ namespace grammar
             @param max_word_count The maximum number of words from the sequence to compare against.
                 This would usually be the number of words in the sequence until the
                 end of the sentence.
-            @param allow_one_word_phrase Whether or not any of our phrases only contain one word.
+            @param allow_one_word_phrase Whether any of our phrases only contain one word.
             @returns The index into the phrase collection of the matching phrase,
                 or @c npos if no match is found.*/
         template<typename Tword_iter>
@@ -375,11 +369,10 @@ namespace grammar
                 {
                 searchPhrase.add_word(words[1].c_str());
                 }
-            phrase_word_pair searchValue(searchPhrase, traits::case_insensitive_wstring_ex());
+            const phrase_word_pair searchValue(searchPhrase, traits::case_insensitive_wstring_ex());
 
             // find the first phrase that begins with the first word(s)
-            std::vector<phrase_word_pair>::const_iterator foundPhrase =
-                std::lower_bound(m_phrases.begin(), m_phrases.end(), searchValue);
+            auto foundPhrase = std::lower_bound(m_phrases.cbegin(), m_phrases.cend(), searchValue);
             if (foundPhrase == m_phrases.end())
                 {
                 return npos;
@@ -391,7 +384,7 @@ namespace grammar
                     {
                     // look ahead to see if there are any bigger phrases that match these
                     // words before returning this index
-                    std::vector<phrase_word_pair>::const_iterator nextPhrase = foundPhrase + 1;
+                    auto nextPhrase = foundPhrase + 1;
                     while (nextPhrase != m_phrases.end() &&
                            nextPhrase->first.get_words()[0].compare(words[0].c_str()) == 0)
                         {
@@ -406,7 +399,7 @@ namespace grammar
                             }
                         // The current phrase in the list doesn't match the rest of the text,
                         // but it's either lesser than it (lexicographically),
-                        // or it short circuited by a rule or the next phrase is too long.
+                        // or it short-circuited by a rule or the next phrase is too long.
                         // Move onto the next phrase in the list and see if that matches.
                         else if (nextPhraseCompareResult.second !=
                                  phrase_comparison_result::phrase_greater_than)
@@ -442,7 +435,7 @@ namespace grammar
             - Proceeding exceptions (optional, can be multiple values delimited by ';' or ',')
             - Trailing exceptions (optional, can be multiple values delimited by ';' or ',')
             @param text The text stream to load the phrases from.
-            @param sort_phrases Whether or not to sort the phrases after loading them.
+            @param sort_phrases Whether to sort the phrases after loading them.
                 If loading multiple streams, then it is more optimal to set this to @c false
                 and to call sort() after loading all other streams.
             @param preserve_phrases Whether phrases already in the list should be kept.
@@ -450,7 +443,7 @@ namespace grammar
                 @c true will preserve them.*/
         void load_phrases(const wchar_t* text, const bool sort_phrases, const bool preserve_phrases)
             {
-            if (!text)
+            if (text == nullptr)
                 {
                 return;
                 }
@@ -557,7 +550,7 @@ namespace grammar
                     while (tkzr.has_more_tokens())
                         {
                         auto nTok = tkzr.get_next_token();
-                        if (nTok.length())
+                        if (!nTok.empty())
                             {
                             expts.emplace(std::move(nTok));
                             }
@@ -581,7 +574,7 @@ namespace grammar
                     while (tkzr.has_more_tokens())
                         {
                         auto nTok = tkzr.get_next_token();
-                        if (nTok.length())
+                        if (!nTok.empty())
                             {
                             expts.emplace(std::move(nTok));
                             }
@@ -594,7 +587,7 @@ namespace grammar
                     }
 
                 m_phrases.push_back(newPhrasePair);
-                } while (text);
+                } while (text != nullptr);
 
             if (sort_phrases)
                 {
@@ -612,8 +605,8 @@ namespace grammar
                 {
                 outputStr += phrase.first.to_string().c_str();
                 // don't bother exporting blank columns
-                if (phrase.second.length() || phrase.first.get_proceeding_exceptions().size() ||
-                    phrase.first.get_trailing_exceptions().size())
+                if (!phrase.second.empty() || !phrase.first.get_proceeding_exceptions().empty() ||
+                    !phrase.first.get_trailing_exceptions().empty())
                     {
                     outputStr += L'\t';
                     outputStr += phrase.second.c_str();
@@ -650,8 +643,8 @@ namespace grammar
 
         /** @brief Sorts the phrases.
             @details If loading multiple lists (from load_phrases()), this it is usually
-                optimal to not sort while loading them, but instead sort them afterwards.*/
-        void sort() noexcept { std::sort(m_phrases.begin(), m_phrases.end()); }
+                optimal to not sort while loading them, but instead sort them afterward.*/
+        void sort() { std::sort(m_phrases.begin(), m_phrases.end()); }
 
         /** @brief Removes all duplicate phrases (the strings in the phrases are compared,
                 other fields are ignored).
@@ -659,8 +652,7 @@ namespace grammar
         void remove_duplicates()
             {
             std::sort(m_phrases.begin(), m_phrases.end());
-            std::vector<phrase_word_pair>::iterator endOfUniquePos =
-                std::unique(m_phrases.begin(), m_phrases.end());
+            const auto endOfUniquePos = std::unique(m_phrases.begin(), m_phrases.end());
             if (endOfUniquePos != m_phrases.end())
                 {
                 m_phrases.erase(endOfUniquePos, m_phrases.end());

@@ -14,13 +14,7 @@
 #ifndef INDEXING_ARTICLE_H
 #define INDEXING_ARTICLE_H
 
-#include "../Wisteria-Dataviz/src/util/string_util.h"
-#include "abbreviation.h"
-#include "character_traits.h"
 #include "word_list.h"
-#include <algorithm>
-#include <functional>
-#include <set>
 #include <string_view>
 
 namespace grammar
@@ -30,7 +24,7 @@ namespace grammar
         {
       public:
         /// @private
-        virtual ~is_incorrect_article() {}
+        virtual ~is_incorrect_article() = default;
 
         /** @brief Determines if an article/proceeding word pair is a mismatch.
             @param article The article.

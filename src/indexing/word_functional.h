@@ -18,9 +18,7 @@
 #include "../Wisteria-Dataviz/src/util/string_util.h"
 #include "abbreviation.h"
 #include "characters.h"
-#include <functional>
 #include <set>
-#include <vector>
 
 /** @brief Counting/Searching functor for `std::count_if` or `std::find`
         that counts punctuation marks, based on where punctuation mark is in the word.*/
@@ -40,7 +38,7 @@ class punctuation_mark_count_if_word_position
     /** @returns @c true if a valid punctuation mark based on its position in the word.
         @param punct The type of punctuation that this mark is.*/
     [[nodiscard]]
-    inline bool operator()(const Tpunctuation_type& punct) const noexcept
+    bool operator()(const Tpunctuation_type& punct) const noexcept
         {
         return punct.get_word_position() == m_word_position;
         }
@@ -72,7 +70,7 @@ class syllable_count_equals
     /** @returns @c true if a word contains the predefined syllable count.
         @param the_word The word to review.*/
     [[nodiscard]]
-    inline bool operator()(const word_typeT& the_word) const
+    bool operator()(const word_typeT& the_word) const
         {
         return (m_treat_numerals_as_monosyllabic && the_word.is_numeric()) ?
                    (m_count == 1) :
@@ -110,7 +108,7 @@ class valid_syllable_count_equals
         @c false if the word is invalid.
         @param the_word The word to review.*/
     [[nodiscard]]
-    inline bool operator()(const word_typeT& the_word) const
+    bool operator()(const word_typeT& the_word) const
         {
         if (the_word.is_valid())
             {
@@ -153,7 +151,7 @@ class syllable_count_greater_equal
             compared to the predefined syllable count.
         @param the_word The word to review.*/
     [[nodiscard]]
-    inline bool operator()(const word_typeT& the_word) const
+    bool operator()(const word_typeT& the_word) const
         {
         return (m_treat_numerals_as_monosyllabic && the_word.is_numeric()) ?
                    (1 >= m_count) :
@@ -189,7 +187,7 @@ class valid_syllable_count_greater_equal
             compared to the predefined syllable count.
         @param the_word The word to review.*/
     [[nodiscard]]
-    inline bool operator()(const word_typeT& the_word) const
+    bool operator()(const word_typeT& the_word) const
         {
         if (the_word.is_valid())
             {
@@ -229,7 +227,7 @@ class syllable_count_greater_equal_ignore_numerals
             compared to the predefined syllable count.
         @param the_word The word to review.*/
     [[nodiscard]]
-    inline bool operator()(const word_typeT& the_word) const
+    bool operator()(const word_typeT& the_word) const
         {
         return the_word.is_numeric() ? false : the_word.get_syllable_count() >= m_count;
         }
@@ -251,7 +249,7 @@ class valid_syllable_count_greater_equal_ignore_numerals
     valid_syllable_count_greater_equal_ignore_numerals() = delete;
 
     [[nodiscard]]
-    inline bool operator()(const word_typeT& the_word) const
+    bool operator()(const word_typeT& the_word) const
         {
         if (the_word.is_valid())
             {
@@ -281,7 +279,7 @@ class syllable_count_greater_equal_ignore_numerals_and_proper_nouns
     syllable_count_greater_equal_ignore_numerals_and_proper_nouns() = delete;
 
     [[nodiscard]]
-    inline bool operator()(const word_typeT& the_word) const
+    bool operator()(const word_typeT& the_word) const
         {
         return (the_word.is_numeric() || the_word.is_proper_noun()) ?
                    false :
@@ -306,7 +304,7 @@ class valid_syllable_count_greater_equal_ignore_numerals_and_proper_nouns
     valid_syllable_count_greater_equal_ignore_numerals_and_proper_nouns() = delete;
 
     [[nodiscard]]
-    inline bool operator()(const word_typeT& the_word) const
+    bool operator()(const word_typeT& the_word) const
         {
         if (the_word.is_valid())
             {
@@ -338,7 +336,7 @@ class syllable_count_greater
     syllable_count_greater() = delete;
 
     [[nodiscard]]
-    inline bool operator()(const word_typeT& the_word) const
+    bool operator()(const word_typeT& the_word) const
         {
         return (m_treat_numerals_as_monosyllabic && the_word.is_numeric()) ?
                    (1 > m_count) :
@@ -364,7 +362,7 @@ class valid_syllable_count_greater
     valid_syllable_count_greater() = delete;
 
     [[nodiscard]]
-    inline bool operator()(const word_typeT& the_word) const
+    bool operator()(const word_typeT& the_word) const
         {
         if (the_word.is_valid())
             {
@@ -520,7 +518,7 @@ class is_proper_noun
         @param the_word The word to review.
         @returns @c true if @c the_word is proper.*/
     [[nodiscard]]
-    inline bool operator()(const word_typeT& the_word) const noexcept
+    bool operator()(const word_typeT& the_word) const noexcept
         {
         return the_word.is_proper_noun();
         }
@@ -537,7 +535,7 @@ class is_valid_proper_noun
     /* @returns @c true if a word is proper.
        @param the_word The word to review.*/
     [[nodiscard]]
-    inline bool operator()(const word_typeT& the_word) const noexcept
+    bool operator()(const word_typeT& the_word) const noexcept
         {
         if (the_word.is_valid())
             {
@@ -560,7 +558,7 @@ class is_numeric
     /** @returns @c true if a word is numeric.
         @param the_word The word to review.*/
     [[nodiscard]]
-    inline bool operator()(const word_typeT& the_word) const noexcept
+    bool operator()(const word_typeT& the_word) const noexcept
         {
         return the_word.is_numeric();
         }
@@ -577,7 +575,7 @@ class is_valid_numeric
     /** @returns @c true if a word is numeric.
         @param the_word The word to review.*/
     [[nodiscard]]
-    inline bool operator()(const word_typeT& the_word) const noexcept
+    bool operator()(const word_typeT& the_word) const noexcept
         {
         if (the_word.is_valid())
             {
@@ -605,7 +603,7 @@ class word_length_equals
     /** @returns @c true if words are the same length.
         @param the_word The word to review.*/
     [[nodiscard]]
-    inline bool operator()(const word_typeT& the_word) const noexcept
+    bool operator()(const word_typeT& the_word) const noexcept
         {
         return the_word.length() == m_count;
         }
@@ -630,7 +628,7 @@ class valid_word_length_equals
     /** @returns @c true if a word is valid and its length equals our specified number.
         @param the_word The word to review.*/
     [[nodiscard]]
-    inline bool operator()(const word_typeT& the_word) const noexcept
+    bool operator()(const word_typeT& the_word) const noexcept
         {
         if (the_word.is_valid())
             {
@@ -664,7 +662,7 @@ class word_length_greater_equals
         @param the_word The word to review.
         @returns @c true if current word's length is greater than or equal to the seeded length.*/
     [[nodiscard]]
-    inline bool operator()(const word_typeT& the_word) const noexcept
+    bool operator()(const word_typeT& the_word) const noexcept
         {
         return the_word.length() >= m_count;
         }
@@ -693,7 +691,7 @@ class word_length_excluding_punctuation_greater_equals
         @returns @c true if current word's length is greater than or equal to the
             seeded length (ignoring punctuation in the word)*/
     [[nodiscard]]
-    inline bool operator()(const word_typeT& the_word) const noexcept
+    bool operator()(const word_typeT& the_word) const noexcept
         {
         return the_word.get_length_excluding_punctuation() >= m_count;
         }
@@ -720,7 +718,7 @@ class valid_word_length_greater_equals
         @returns @c true if current word's length is greater than or equal to the
             seeded length (if word is valid).*/
     [[nodiscard]]
-    inline bool operator()(const word_typeT& the_word) const noexcept
+    bool operator()(const word_typeT& the_word) const noexcept
         {
         if (the_word.is_valid())
             {
@@ -757,7 +755,7 @@ class valid_word_length_excluding_punctuation_greater_equals
         @returns @c true if current word's length is greater than or equal to
             the seeded length (ignoring punctuation in the word, and if word is valid).*/
     [[nodiscard]]
-    inline bool operator()(const word_typeT& the_word) const noexcept
+    bool operator()(const word_typeT& the_word) const noexcept
         {
         if (the_word.is_valid())
             {
@@ -881,7 +879,7 @@ class is_file_extension
     [[nodiscard]]
     static bool is_extension(const traits::case_insensitive_wstring_ex& str)
         {
-        return m_file_extensions.find(str) != m_file_extensions.cend();
+        return m_file_extensions.contains(str);
         }
 
   private:
@@ -1084,10 +1082,7 @@ class is_correctly_spelled_word
             {
             return true;
             }
-        else
-            {
-            return is_on_list(the_word);
-            }
+        return is_on_list(the_word);
         // clang-format on
         }
 
@@ -1200,20 +1195,20 @@ class is_correctly_spelled_word
             return true;
             }
         // ignore UI ampersand with escaping ampersand in front of it.
-        else if (the_word.length() == 2 && the_word[0] == L'&' && the_word[1] == L'&')
+        if (the_word.length() == 2 && the_word[0] == L'&' && the_word[1] == L'&')
             {
             return true;
             }
         // a hexadecimal string
-        else if (the_word.length() >= 3 && the_word[0] == L'0' &&
-                 string_util::is_either(the_word[1], L'x', L'X') &&
-                 string_util::is_hex_digit(the_word[2]))
+        if (the_word.length() >= 3 && the_word[0] == L'0' &&
+            string_util::is_either(the_word[1], L'x', L'X') &&
+            string_util::is_hex_digit(the_word[2]))
             {
             return true;
             }
         // a possible printf command (e.g., "%d")
-        else if (the_word.length() == 2 && the_word[0] == L'%' &&
-                 characters::is_character::is_alpha(the_word[1]))
+        if (the_word.length() == 2 && the_word[0] == L'%' &&
+            characters::is_character::is_alpha(the_word[1]))
             {
             return true;
             }
@@ -1221,34 +1216,32 @@ class is_correctly_spelled_word
         // Visual Basic 6 variables can start with '$'
         // Doxygen commands start with '@'
         // C/C++ reference var may have '&' in front
-        else if (the_word.length() > 1 && string_util::is_one_of(the_word[0], L"#$@&"))
+        if (the_word.length() > 1 && string_util::is_one_of(the_word[0], L"#$@&"))
             {
             return true;
             }
         // at this point, if less than 3 characters then we don't have
         // any text to make a determination, then return false
-        else if (the_word.length() < 3)
+        if (the_word.length() < 3)
             {
             return false;
             }
         // words ending with a number are usually a variable name (e.g., "Text1").
-        else if (characters::is_character::is_numeric(the_word[the_word.length() - 1]))
+        if (characters::is_character::is_numeric(the_word[the_word.length() - 1]))
             {
             return true;
             }
         // if it contains an underscore (common for variables),
         // percent (like a printf command), or accessors
-        else if (the_word.find(L'_') != word_typeT::npos ||
-                 the_word.find(L'%') != word_typeT::npos ||
-                 // C++ accessors
-                 the_word.find(L"::") != word_typeT::npos ||
-                 the_word.find(L"->") != word_typeT::npos)
+        if (the_word.find(L'_') != word_typeT::npos || the_word.find(L'%') != word_typeT::npos ||
+            // C++ accessors
+            the_word.find(L"::") != word_typeT::npos || the_word.find(L"->") != word_typeT::npos)
             {
             return true;
             }
         // first two letters in caps is probably a variable (e.g., "PValue")
-        else if (characters::is_character::is_upper(the_word[0]) &&
-                 characters::is_character::is_upper(the_word[1]))
+        if (characters::is_character::is_upper(the_word[0]) &&
+            characters::is_character::is_upper(the_word[1]))
             {
             return true;
             }
@@ -1262,25 +1255,25 @@ class is_correctly_spelled_word
                 {
                 return true;
                 }
-            else if (characters::is_character::is_alpha(the_word.operator[](i)) &&
-                     string_util::is_numeric_8bit(the_word.operator[](i + 1)))
+            if (characters::is_character::is_alpha(the_word.operator[](i)) &&
+                string_util::is_numeric_8bit(the_word.operator[](i + 1)))
                 {
                 return true;
                 }
-            else if (the_word.length() >= 3 && i < the_word.length() - 2 &&
-                     (characters::is_character::is_alpha(the_word.operator[](i)) ||
-                      characters::is_character::is_numeric(the_word.operator[](i))) &&
-                     characters::is_character::is_either<wchar_t>(the_word.operator[](i + 1), L'.',
-                                                                  L':') &&
-                     characters::is_character::is_alpha(the_word.operator[](i + 2)))
+            if (the_word.length() >= 3 && i < the_word.length() - 2 &&
+                (characters::is_character::is_alpha(the_word.operator[](i)) ||
+                 characters::is_character::is_numeric(the_word.operator[](i))) &&
+                characters::is_character::is_either<wchar_t>(the_word.operator[](i + 1), L'.',
+                                                             L':') &&
+                characters::is_character::is_alpha(the_word.operator[](i + 2)))
                 {
                 return true;
                 }
-            else if (the_word.length() >= 4 && i < the_word.length() - 3 &&
-                     characters::is_character::is_alpha(the_word.operator[](i)) &&
-                     the_word.operator[](i + 1) == L'-' &&
-                     characters::is_character::is_upper(the_word.operator[](i + 2)) &&
-                     characters::is_character::is_upper(the_word.operator[](i + 3)))
+            if (the_word.length() >= 4 && i < the_word.length() - 3 &&
+                characters::is_character::is_alpha(the_word.operator[](i)) &&
+                the_word.operator[](i + 1) == L'-' &&
+                characters::is_character::is_upper(the_word.operator[](i + 2)) &&
+                characters::is_character::is_upper(the_word.operator[](i + 3)))
                 {
                 return true;
                 }
@@ -1356,8 +1349,8 @@ class is_correctly_spelled_word
                     continue;
                     }
                 // if ignoring uppercase, then see if this part of the word is an acronym
-                else if (is_ignoring_uppercased() &&
-                         isAcronym({ compValue.c_str(), compValue.length() }))
+                if (is_ignoring_uppercased() &&
+                    isAcronym({ compValue.c_str(), compValue.length() }))
                     {
                     continue;
                     }

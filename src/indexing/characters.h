@@ -35,8 +35,7 @@ namespace characters
         /// @returns @c true if value is either of the other values.
         template<typename T>
         [[nodiscard]]
-        inline constexpr static bool is_either(const T value, const T first,
-                                               const T second) noexcept
+        constexpr static bool is_either(const T value, const T first, const T second) noexcept
             {
             return (value == first || value == second);
             }
@@ -77,7 +76,7 @@ namespace characters
                 // OE ligature
                 (ch == 0x0152) ||
                 // Eastern European
-                // C with acute, R with acuate, L with stroke, R with charon, A with breve, C with
+                // C with acute, R with acute, L with stroke, R with charon, A with breve, C with
                 // charon, A with ogonek, O with double accent
                 (ch == 0x0106 || ch == 0x0154 || ch == 0x0141 || ch == 0x0158 || ch == 0x0102 ||
                  ch == 0x010C || ch == 0x0104 || ch == 0x0150) ||
@@ -107,7 +106,7 @@ namespace characters
                 // German eszett (not exactly lowercase, but words never begin with these)
                 (ch == 0xDF) ||
                 // Eastern European
-                // C with acute, R with acuate, L with stroke, R with charon, A with breve, C with
+                // C with acute, R with acute, L with stroke, R with charon, A with breve, C with
                 // charon, A with ogonek, O with double accent
                 (ch == 0x0107 || ch == 0x0155 || ch == 0x0142 || ch == 0x0159 || ch == 0x0103 ||
                  ch == 0x010D || ch == 0x0105 || ch == 0x0151) ||
@@ -545,7 +544,7 @@ namespace characters
             return std::make_pair((periodCount > 1), periodCount);
             }
 
-        /** @returns @c true if a punctuation character can appear inside of a date/time string.
+        /** @returns @c true if a punctuation character can appear inside a date/time string.
             @param ch The letter to be reviewed.*/
         [[nodiscard]]
         constexpr static bool can_character_form_date_time(const wchar_t ch) noexcept
@@ -650,11 +649,11 @@ namespace characters
                 {
                 return false;
                 }
-            else if (word.length() == 1)
+            if (word.length() == 1)
                 {
                 return is_numeric(word[0]);
                 }
-            else if (can_character_prefix_numeral(word[0]) && is_numeric(word[1]))
+            if (can_character_prefix_numeral(word[0]) && is_numeric(word[1]))
                 {
                 return true;
                 }
@@ -795,7 +794,7 @@ namespace characters
             // see if it is either a space, control character, or alphanumeric and negate that
             return !(is_numeric(ch) || is_alpha(ch) || is_space(ch) ||
                      // control characters
-                     ((ch >= 0x00) && (ch <= 0x20)));
+                     (ch <= 0x20));
             }
         };
     } // namespace characters

@@ -44,7 +44,7 @@ namespace grammar
             }
 
         /// @returns The (writable) converted buffer from the previous string processing.
-        /// @details This is useful for moving this buffer into anther string.
+        /// @details This is useful for moving this buffer into another string.
         /// @note This will be empty if there was nothing to convert.
         [[nodiscard("Returns the converted content from the last call to ().")]]
         std::wstring& get_conversion()

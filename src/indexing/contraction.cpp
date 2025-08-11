@@ -53,17 +53,15 @@ bool grammar::is_contraction::operator()(
                 {
                 // If something like "that's", then we know it is "that is"
                 // and indeed a contraction.
-                if (m_s_contractions.find(string_type{ text.data(), text.length() }) !=
-                    m_s_contractions.cend())
+                if (m_s_contractions.contains(string_type{ text.data(), text.length() }))
                     {
                     return true;
                     }
                 // ...otherwise, it might be a possessive word; review it.
                 if (!nextWord.empty())
                     {
-                    return m_s_contractions_following_word.find(
-                               string_type{ nextWord.data(), nextWord.length() }) !=
-                           m_s_contractions_following_word.cend();
+                    return m_s_contractions_following_word.contains(
+                        string_type{ nextWord.data(), nextWord.length() });
                     }
                 return false;
                 }
@@ -72,6 +70,5 @@ bool grammar::is_contraction::operator()(
             }
         }
     // "it [word]" being contracted to "t[word]"
-    return (m_contraction_without_apostrophe.find(string_type{ text.data(), text.length() }) !=
-            m_contraction_without_apostrophe.cend());
+    return (m_contraction_without_apostrophe.contains(string_type{ text.data(), text.length() }));
     }

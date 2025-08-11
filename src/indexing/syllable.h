@@ -19,6 +19,7 @@
 #include "character_traits.h"
 #include "characters.h"
 #include <set>
+#include <utility>
 
 namespace grammar
     {
@@ -26,12 +27,12 @@ namespace grammar
     class base_syllabize
         {
       public:
-        base_syllabize() noexcept {}
+        base_syllabize() noexcept = default;
 
         base_syllabize(const base_syllabize& that) = delete;
         base_syllabize& operator=(const base_syllabize& that) = delete;
 
-        virtual ~base_syllabize() {}
+        virtual ~base_syllabize() = default;
 
         virtual size_t operator()(const wchar_t* start, const size_t length) = 0;
 
@@ -44,7 +45,7 @@ namespace grammar
         /** @brief Special case mathematical terms that need to be counted differently.
             @param start The word to analyze.
             @param length The length of the word.
-            @returns A pair indicating whether or not this is a special case,
+            @returns A pair indicating whether this is a special case,
                 and if so the syllable count.*/
         [[nodiscard]]
         static std::pair<bool, size_t> is_special_math_word(const wchar_t* start,
@@ -90,7 +91,7 @@ namespace grammar
                     ++numeral_string;
                     continue;
                     }
-                else if (characters::is_character::is_numeric_simple(numeral_string[0]))
+                if (characters::is_character::is_numeric_simple(numeral_string[0]))
                     {
                     syllableCount += syllabify_number(numeral_string[0]);
                     }
@@ -150,7 +151,7 @@ namespace grammar
                     separateSectionsSyllableCount +=
                         dotSyllabize(currentSection, period - currentSection);
                     currentSection = period + 1;
-                    if (static_cast<size_t>(currentSection - start) >= m_length)
+                    if (std::cmp_greater_equal(currentSection - start, m_length))
                         {
                         break;
                         }
@@ -201,7 +202,7 @@ namespace grammar
                     separateSectionsSyllableCount +=
                         dashSyllabize(currentSection, dash - currentSection);
                     currentSection = dash + 1;
-                    if (static_cast<size_t>(currentSection - start) >= m_length)
+                    if (std::cmp_greater_equal(currentSection - start, m_length))
                         {
                         break;
                         }
@@ -226,7 +227,7 @@ namespace grammar
             }
 
         /** @brief Determines if a 'y' is a consonant.
-            @param word The text begin examined.
+            @param word The text being examined.
             @param position Where the 'y' being examined is in the block of text.
             @returns @c true if the letter at "position" is a consonant 'y'.
             @bug benzoyl is broken*/
@@ -270,7 +271,7 @@ namespace grammar
         {
       public:
         /// Constructor.
-        english_syllabize() noexcept {}
+        english_syllabize() noexcept = default;
 
         /** @brief Counts the syllables in a block of text.
             @param start The start of the block of text.

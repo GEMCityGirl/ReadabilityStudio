@@ -15,9 +15,6 @@
 #define DOUBLE_WORDS_H
 
 #include "character_traits.h"
-#include <algorithm>
-#include <cwctype>
-#include <functional>
 #include <set>
 #include <string_view>
 

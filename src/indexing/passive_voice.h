@@ -16,8 +16,6 @@
 
 #include "character_traits.h"
 #include "word_list.h"
-#include <algorithm>
-#include <functional>
 #include <set>
 #include <string_view>
 
@@ -36,7 +34,7 @@ namespace grammar
             @param max_word_count The total number of words that can be analyzed.
             @param[out] word_count Parameter to store the number of words in this passive voice.
                 Will be either @c 2 or @c 3.
-            @returns Whether or not this word combination is passive.*/
+            @returns Whether this word combination is passive.*/
         template<typename Tword_iter>
         [[nodiscard]]
         bool operator()(const Tword_iter& words, const size_t max_word_count,
@@ -50,8 +48,7 @@ namespace grammar
                 return false;
                 }
             // see is the verb is a "to be" verb
-            if (m_to_be_verbs.find(string_type{ words[0].c_str(), words[0].length() }) ==
-                m_to_be_verbs.cend())
+            if (!m_to_be_verbs.contains(string_type{ words[0].c_str(), words[0].length() }))
                 {
                 return false;
                 }
@@ -86,10 +83,7 @@ namespace grammar
                         word_count = analyzePosition + 2;
                         return true;
                         }
-                    else
-                        {
-                        return false;
-                        }
+                    return false;
                     }
                 else
                     {

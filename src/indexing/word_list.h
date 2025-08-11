@@ -97,8 +97,7 @@ class word_list
         @param theWord The word to be added.*/
     void add_word(const word_type& theWord)
         {
-        std::vector<word_type>::iterator insertionPoint =
-            std::lower_bound(m_words.begin(), m_words.end(), theWord);
+        const auto insertionPoint = std::lower_bound(m_words.cbegin(), m_words.cend(), theWord);
         m_words.insert(insertionPoint, theWord);
         }
 
@@ -108,19 +107,18 @@ class word_list
         {
         const size_t previousSize = get_list_size();
         m_words.resize(m_words.size() + theWords.size());
-        std::copy(theWords.cbegin(), theWords.cend(), m_words.begin() + previousSize);
+        std::ranges::copy(theWords, m_words.begin() + previousSize);
         sort();
         }
 
     /** @brief Sorts the word list (in A-Z [ascending] order).*/
-    void sort() noexcept { std::sort(m_words.begin(), m_words.end()); }
+    void sort() noexcept { std::ranges::sort(m_words); }
 
     /** @brief Sorts and removes any duplicate words in the list.*/
     void remove_duplicates()
         {
         sort();
-        std::vector<word_type>::iterator endOfUniquePos =
-            std::unique(m_words.begin(), m_words.end());
+        const auto endOfUniquePos = std::unique(m_words.begin(), m_words.end());
         if (endOfUniquePos != m_words.end())
             {
             m_words.erase(endOfUniquePos, m_words.end());
@@ -180,7 +178,7 @@ class word_list_with_replacements
             clear();
             }
 
-        if (!text)
+        if (text == nullptr)
             {
             return;
             }
@@ -202,9 +200,9 @@ class word_list_with_replacements
         lily_of_the_valley::text_preview importPreview;
         const size_t rowCount = importPreview(text, L'\t', true, false);
         importer.read(text, rowCount, 2, true);
-        for (size_t i = 0; i < words.size(); ++i)
+        for (const auto& word : words)
             {
-            m_word_map.insert(std::make_pair(words[i].at(0), words[i].at(1)));
+            m_word_map.insert(std::make_pair(word.at(0), word.at(1)));
             }
         }
 
@@ -219,10 +217,7 @@ class word_list_with_replacements
             {
             return std::make_pair(false, word_type(L""));
             }
-        else
-            {
-            return std::make_pair(true, pos->second);
-            }
+        return std::make_pair(true, pos->second);
         }
 
     /** @returns The internal word list as a map.*/

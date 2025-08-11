@@ -15,8 +15,6 @@
 #define NEGATING_WORD_H
 
 #include "character_traits.h"
-#include <algorithm>
-#include <functional>
 #include <set>
 #include <string_view>
 
@@ -36,7 +34,7 @@ namespace grammar
                 {
                 return false;
                 }
-            return m_words.find(string_type{ text.data(), text.length() }) != m_words.cend();
+            return m_words.contains(string_type{ text.data(), text.length() });
             }
 
       private:

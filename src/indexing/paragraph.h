@@ -14,9 +14,7 @@
 #ifndef INDEXING_PARAGRAPH_H
 #define INDEXING_PARAGRAPH_H
 
-#include "abbreviation.h"
 #include "sentence.h"
-#include <vector>
 
 namespace grammar
     {
@@ -55,7 +53,7 @@ namespace grammar
         // used for sorting
         /// @private
         [[nodiscard]]
-        inline bool operator<(const size_t sentence_position) const noexcept
+        bool operator<(const size_t sentence_position) const noexcept
             {
             return m_begin_index < sentence_position;
             }
@@ -64,42 +62,42 @@ namespace grammar
                 is inside of this paragraph.
             @param sentence_position The sentence index to see if it is in this paragraph.*/
         [[nodiscard]]
-        inline bool contains_sentence(const size_t sentence_position) const noexcept
+        bool contains_sentence(const size_t sentence_position) const noexcept
             {
             return sentence_position >= m_begin_index && sentence_position <= m_end_index;
             }
 
         /** @returns The index (into the document) of the first sentence in this paragraph.*/
         [[nodiscard]]
-        inline size_t get_first_sentence_index() const noexcept
+        size_t get_first_sentence_index() const noexcept
             {
             return m_begin_index;
             }
 
         /** @returns The index (into the document) of the last sentence in this paragraph.*/
         [[nodiscard]]
-        inline size_t get_last_sentence_index() const noexcept
+        size_t get_last_sentence_index() const noexcept
             {
             return m_end_index;
             }
 
         /// @returns The number of sentences in the paragraph.
         [[nodiscard]]
-        inline size_t get_sentence_count() const noexcept
+        size_t get_sentence_count() const noexcept
             {
             return m_size;
             }
 
         /** @returns The number of newlines in front of this paragraph.*/
         [[nodiscard]]
-        inline size_t get_leading_end_of_line_count() const noexcept
+        size_t get_leading_end_of_line_count() const noexcept
             {
             return m_leading_end_of_line_count;
             }
 
         /** @brief Sets whether this paragraph contains any valid sentences or not.
             @param valid Whether the paragraph is valid or not.*/
-        inline void set_valid(const bool valid) noexcept
+        void set_valid(const bool valid) noexcept
             {
             m_is_valid = valid;
             // If is valid now, but previous type was incomplete, then set it to complete.
@@ -117,7 +115,7 @@ namespace grammar
 
         /** @returns Whether this paragraph contains any valid sentences or not.*/
         [[nodiscard]]
-        inline bool is_valid() const noexcept
+        bool is_valid() const noexcept
             {
             return m_is_valid;
             }

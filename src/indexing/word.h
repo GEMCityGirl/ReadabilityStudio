@@ -342,7 +342,7 @@ class word : public std::basic_string<wchar_t, Tchar_traits>
     std::bitset<static_cast<size_t>(word_flags::WORD_FLAG_COUNT)> flags{ 0 };
     };
 
-/** @brief Specialized version of word that does not using a stemmer at all.
+/** @brief Specialized version of word that does not use a stemmer at all.
     @details get_stem() is just included for compatibility and returns original string.
         Use this if stemming is not needed, as this will not store an extra string
         for the stem.*/

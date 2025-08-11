@@ -16,8 +16,6 @@
 
 #include "../Wisteria-Dataviz/src/util/string_util.h"
 #include "character_traits.h"
-#include <algorithm>
-#include <functional>
 #include <set>
 #include <string_view>
 
@@ -28,11 +26,11 @@ namespace grammar
         {
       public:
         /// @private
-        virtual ~is_coordinating_conjunction() {}
+        virtual ~is_coordinating_conjunction() = default;
 
         /** @brief Determines if a word is a coordinating conjunction.
             @param text The word to review.
-            @returns Whether or not this word is a coordinating conjunction.*/
+            @returns Whether this word is a coordinating conjunction.*/
         virtual bool operator()(const std::wstring_view text) const = 0;
 
       protected:
@@ -41,13 +39,13 @@ namespace grammar
         };
 
     /** @brief Predicate for determining if a word is an
-            English coordinating conjunction (case insensitive).*/
+            English coordinating conjunction (case-insensitive).*/
     class is_english_coordinating_conjunction final : public is_coordinating_conjunction
         {
       public:
         /** @brief Determines if a word is an English coordinating conjunction.
             @param text The word to review.
-            @returns Whether or not this word is a coordinating conjunction.*/
+            @returns Whether this word is a coordinating conjunction.*/
         [[nodiscard]]
         bool operator()(const std::wstring_view text) const final
             {
@@ -55,8 +53,7 @@ namespace grammar
                 {
                 return false;
                 }
-            return m_conjunctions.find(string_type(text.data(), text.length())) !=
-                   m_conjunctions.cend();
+            return m_conjunctions.contains(string_type(text.data(), text.length()));
             }
 
       private:
@@ -64,13 +61,13 @@ namespace grammar
         };
 
     /** Predicate for determining if a word is a Spanish coordinating
-            conjunction (case insensitive).*/
+            conjunction (case-insensitive).*/
     class is_spanish_coordinating_conjunction final : public is_coordinating_conjunction
         {
       public:
         /** @brief Determines if a word is a Spanish coordinating conjunction.
             @param text The word to review.
-            @returns Whether or not this word is a coordinating conjunction.*/
+            @returns Whether this word is a coordinating conjunction.*/
         [[nodiscard]]
         bool operator()(const std::wstring_view text) const final
             {
@@ -78,8 +75,7 @@ namespace grammar
                 {
                 return false;
                 }
-            return m_conjunctions.find(string_type(text.data(), text.length())) !=
-                   m_conjunctions.cend();
+            return m_conjunctions.contains(string_type(text.data(), text.length()));
             }
 
       private:
@@ -87,13 +83,13 @@ namespace grammar
         };
 
     /** @brief Predicate for determining if a word is a German coordinating
-            conjunction (case insensitive).*/
+            conjunction (case-insensitive).*/
     class is_german_coordinating_conjunction final : public is_coordinating_conjunction
         {
       public:
         /** @brief Determines if a word is a German coordinating conjunction.
             @param text The word to review.
-            @returns Whether or not this word is a coordinating conjunction.*/
+            @returns Whether this word is a coordinating conjunction.*/
         [[nodiscard]]
         bool operator()(const std::wstring_view text) const final
             {
@@ -101,8 +97,7 @@ namespace grammar
                 {
                 return false;
                 }
-            return m_conjunctions.find(string_type(text.data(), text.length())) !=
-                   m_conjunctions.cend();
+            return m_conjunctions.contains(string_type(text.data(), text.length()));
             }
 
       private:
@@ -110,7 +105,7 @@ namespace grammar
         };
 
     /// @brief Predicate for determining if a word is a Russian coordinating
-    ///     conjunction (case insensitive).
+    ///     conjunction (case-insensitive).
     /// @todo add '&'
     /// @todo make this a binary searchable set
     class is_russian_coordinating_conjunction final : public is_coordinating_conjunction
@@ -119,7 +114,7 @@ namespace grammar
         /** @brief Determines if a word is a Russian coordinating conjunction.
             @param text The word to review.
 
-            @returns Whether or not this word is a coordinating conjunction.*/
+            @returns Whether this word is a coordinating conjunction.*/
         [[nodiscard]]
         bool operator()(const std::wstring_view text) const noexcept final
             {

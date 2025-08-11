@@ -17,7 +17,6 @@
 #include "character_traits.h"
 #include "characters.h"
 #include <algorithm>
-#include <vector>
 
 namespace grammar
     {
@@ -41,7 +40,7 @@ namespace grammar
 
         if (characters::is_character::is_consonant(text[0]))
             {
-            size_t i{ 1 };
+            size_t i{ 1 };  // NOLINT
             // go through everything (except the last character) and stop if we hit something other
             // than a consonant
             for (i = 1; i < text.length() - 1; ++i)

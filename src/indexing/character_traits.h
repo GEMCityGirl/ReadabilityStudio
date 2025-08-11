@@ -49,7 +49,7 @@ namespace traits
             }
 
         //-------------------------------------------------------------
-        inline static bool eq(const char_type& first, const char_type& second) noexcept
+        static bool eq(const char_type& first, const char_type& second) noexcept
             {
             // special logic for apostrophes
             if (characters::is_character::is_apostrophe(first) &&
@@ -62,8 +62,8 @@ namespace traits
 
         /// @todo Unit test
         //-------------------------------------------------------------
-        inline constexpr static bool eq_case_sensitive(const char_type& first,
-                                                       const char_type& second) noexcept
+        constexpr static bool eq_case_sensitive(const char_type& first,
+                                                const char_type& second) noexcept
             {
             // special logic for apostrophes
             if (characters::is_character::is_apostrophe(first) &&
@@ -76,7 +76,7 @@ namespace traits
             }
 
         //-------------------------------------------------------------
-        inline static bool lt(const char_type& first, const char_type& second) noexcept
+        static bool lt(const char_type& first, const char_type& second) noexcept
             {
             // special logic for apostrophes
             if (characters::is_character::is_apostrophe(first) &&
@@ -84,11 +84,11 @@ namespace traits
                 {
                 return false;
                 }
-            else if (characters::is_character::is_apostrophe(first))
+            if (characters::is_character::is_apostrophe(first))
                 {
                 return (L'\'' < tolower(second));
                 }
-            else if (characters::is_character::is_apostrophe(second))
+            if (characters::is_character::is_apostrophe(second))
                 {
                 return (tolower(first) < L'\'');
                 }
@@ -97,8 +97,7 @@ namespace traits
 
         /// @todo unit test!
         //-------------------------------------------------------------
-        inline static bool lt_case_sensitive(const char_type& first,
-                                             const char_type& second) noexcept
+        static bool lt_case_sensitive(const char_type& first, const char_type& second) noexcept
             {
             // special logic for apostrophes
             if (characters::is_character::is_apostrophe(first) &&
@@ -106,11 +105,11 @@ namespace traits
                 {
                 return false;
                 }
-            else if (characters::is_character::is_apostrophe(first))
+            if (characters::is_character::is_apostrophe(first))
                 {
                 return (L'\'' < string_util::full_width_to_narrow(second));
                 }
-            else if (characters::is_character::is_apostrophe(second))
+            if (characters::is_character::is_apostrophe(second))
                 {
                 return (string_util::full_width_to_narrow(first) < L'\'');
                 }
@@ -120,7 +119,7 @@ namespace traits
 
         /// @todo Unit test
         //-------------------------------------------------------------
-        inline static bool le(const char_type& first, const char_type& second) noexcept
+        static bool le(const char_type& first, const char_type& second) noexcept
             {
             // special logic for apostrophes
             if (characters::is_character::is_apostrophe(first) &&
@@ -128,11 +127,11 @@ namespace traits
                 {
                 return false;
                 }
-            else if (characters::is_character::is_apostrophe(first))
+            if (characters::is_character::is_apostrophe(first))
                 {
                 return (L'\'' <= tolower(second));
                 }
-            else if (characters::is_character::is_apostrophe(second))
+            if (characters::is_character::is_apostrophe(second))
                 {
                 return (tolower(first) <= L'\'');
                 }
@@ -141,7 +140,7 @@ namespace traits
 
         /// @todo Unit test
         //-------------------------------------------------------------
-        inline static bool ge(const char_type& first, const char_type& second) noexcept
+        static bool ge(const char_type& first, const char_type& second) noexcept
             {
             // special logic for apostrophes
             if (characters::is_character::is_apostrophe(first) &&
@@ -149,11 +148,11 @@ namespace traits
                 {
                 return false;
                 }
-            else if (characters::is_character::is_apostrophe(first))
+            if (characters::is_character::is_apostrophe(first))
                 {
                 return (L'\'' >= tolower(second));
                 }
-            else if (characters::is_character::is_apostrophe(second))
+            if (characters::is_character::is_apostrophe(second))
                 {
                 return (tolower(first) >= L'\'');
                 }
@@ -175,7 +174,7 @@ namespace traits
                 {
                 return -1;
                 }
-            else if (s2 == nullptr)
+            if (s2 == nullptr)
                 {
                 return 1;
                 }
@@ -200,7 +199,7 @@ namespace traits
                 {
                 return -1;
                 }
-            else if (s2 == nullptr)
+            if (s2 == nullptr)
                 {
                 return 1;
                 }

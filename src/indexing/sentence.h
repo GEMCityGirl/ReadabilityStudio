@@ -19,7 +19,6 @@
 #include "characters.h"
 #include "punctuation.h"
 #include "word.h"
-#include <vector>
 
 namespace grammar
     {
@@ -28,7 +27,7 @@ namespace grammar
         {
       public:
         /// @brief Constructor.
-        is_end_of_line() noexcept {}
+        is_end_of_line() noexcept = default;
 
         /** @returns @c true if a character is a newline or linefeed.
             @param ch The character to examine.*/
@@ -47,7 +46,7 @@ namespace grammar
             m_characters_skipped_count = 0;
             m_eol_count = 0;
 
-            if (!first || !last || (first > last))
+            if ((first == nullptr) || (last == nullptr) || (first > last))
                 {
                 return;
                 }
@@ -87,10 +86,7 @@ namespace grammar
                         first = scanAheadForNonSpace;
                         continue;
                         }
-                    else
-                        {
-                        break;
-                        }
+                    break;
                     }
                 else
                     {
@@ -164,14 +160,14 @@ namespace grammar
                 stream right after a newline.
             @returns Whether text stream is indented, and the length of the indentation if true.*/
         [[nodiscard]]
-        const std::pair<bool, size_t> operator()(std::wstring_view text) const noexcept
+        std::pair<bool, size_t> operator()(std::wstring_view text) const noexcept
             {
             if (text.empty())
                 {
                 return std::make_pair(false, 0);
                 }
             // first see if it's a tab
-            else if (text[0] == 0x09)
+            if (text[0] == 0x09)
                 {
                 return std::make_pair(true, 1);
                 }
@@ -199,7 +195,7 @@ namespace grammar
             @returns Whether the text stream begins with a bullet,
                 and the length of the bullet if true.*/
         [[nodiscard]]
-        const std::pair<bool, size_t> operator()(std::wstring_view text) const noexcept
+        std::pair<bool, size_t> operator()(std::wstring_view text) const noexcept
             {
             if (text.empty())
                 {
@@ -262,14 +258,14 @@ namespace grammar
                     {
                     return std::make_pair(false, 0);
                     }
-                // if number if followed by a dot, tab, closing parenthesis, or colon then it is a
+                // if number is followed by a dot, tab, closing parenthesis, or colon then it is a
                 // numeric bullet
-                else if (characters::is_character::is_period(text[0]) || text[0] == 0x09 ||
-                         text[0] == 0x29 || text[0] == 0xFF09 ||
-                         // colon only makes sense if it is followed by a space. If it part of the
-                         // numeric work then it must be a time or something.
-                         (text.length() >= 2 && text[0] == L':' &&
-                          characters::is_character::is_space_horizontal(text[1])))
+                if (characters::is_character::is_period(text[0]) || text[0] == 0x09 ||
+                    text[0] == 0x29 || text[0] == 0xFF09 ||
+                    // colon only makes sense if it is followed by a space. If it's part of the
+                    // numeric work then it must be a time or something.
+                    (text.length() >= 2 && text[0] == L':' &&
+                     characters::is_character::is_space_horizontal(text[1])))
                     {
                     text.remove_prefix(1);
                     // sometimes you might see "1.) Some info", so skip all expected punctuation
@@ -316,7 +312,7 @@ namespace grammar
                                std::pair<bool, size_t>(false, 0);
                     }
                 }
-            /* ..or a letter bullet point. Note that we only count a single-digit,
+            /* ...or a letter bullet point. Note that we only count a single-digit,
                lowercased letter as a bullet point.
                Counting anything else could be a real word or (in the case of being uppercased)
                an initial.*/
@@ -337,10 +333,7 @@ namespace grammar
                     return std::make_pair(true, originalLength - text.length());
                     }
                 // anything else means that this probably is not a letter bullet
-                else
-                    {
-                    return std::make_pair(false, 0);
-                    }
+                return std::make_pair(false, 0);
                 }
             return std::make_pair(false, 0);
             }
@@ -368,11 +361,11 @@ namespace grammar
         [[nodiscard]]
         bool operator()(const wchar_t* text, const size_t length, size_t current_position,
                         const size_t previous_word_position,
-                        const size_t sentence_position_of_previous_word)
+                        const size_t sentence_position_of_previous_word) const
             {
             assert(current_position < length);
             assert(previous_word_position < current_position);
-            const size_t original_position = current_position;
+            const size_t originalPosition = current_position;
 
             /* if it's a number and first word in sentence then it is probably a bullet point,
                so ignore it and treat it like part of the sentence*/
@@ -407,7 +400,7 @@ namespace grammar
                 if (traits::case_insensitive_ex::eq(text[current_position], L':'))
                     {
                     // eat up "regular" whitespace (space or tab) after colon first
-                    size_t i;
+                    size_t i{ 0 };
                     for (i = current_position + 1; i < length; ++i)
                         {
                         if (!characters::is_character::is_space_horizontal(text[i]))
@@ -431,7 +424,7 @@ namespace grammar
                    Suddenly, others entered the room.
 
                    This will be two sentences.*/
-                else if (characters::is_character::is_dash(text[current_position]))
+                if (characters::is_character::is_dash(text[current_position]))
                     {
                     return (
                         current_position + 2 < length &&
@@ -459,7 +452,7 @@ namespace grammar
                         ++i;
                         }
                     // if the next word starts with a number, then it might be a page number
-                    if (i < length && is_character.is_numeric(text[i]))
+                    if (i < length && characters::is_character::is_numeric(text[i]))
                         {
                         // skip any more text that is part of the number (possible page number)
                         while (i < length && !characters::is_character::is_space(text[i]))
@@ -493,11 +486,11 @@ namespace grammar
                             {
                             continue;
                             }
-                        else if (!can_character_end_sentence_strict(text[i]))
+                        if (!can_character_end_sentence_strict(text[i]))
                             {
                             break;
                             }
-                        else if (characters::is_character::is_period(text[i]))
+                        if (characters::is_character::is_period(text[i]))
                             {
                             ++periodCount;
                             }
@@ -541,7 +534,7 @@ namespace grammar
                         {
                         return !(
                             isAbbreviation({ text + previous_word_position,
-                                             (original_position - previous_word_position) + 1 }) ||
+                                             (originalPosition - previous_word_position) + 1 }) ||
                             isAcronym({ text + previous_word_position,
                                         (current_position - previous_word_position) + 1 }) ||
                             ((current_position - previous_word_position) == 1 &&
@@ -573,15 +566,15 @@ namespace grammar
                     return true;
                     }
                 // curved left arrow, used for marking the end of footnote.
-                else if (text[current_position + 1] == 8617)
+                if (text[current_position + 1] == 8617)
                     {
                     return true;
                     }
                 /* character matches, so now verify that the following text can start a sentence
                    (at least one space should follow)*/
-                else if (characters::is_character::is_space(text[current_position + 1]) ||
-                         can_character_begin_or_end_parenthetical_or_quoted_section(
-                             text[current_position + 1]))
+                if (characters::is_character::is_space(text[current_position + 1]) ||
+                    can_character_begin_or_end_parenthetical_or_quoted_section(
+                        text[current_position + 1]))
                     {
                     // special case with "etc.".
                     if (previous_word_position + 3 < length &&
@@ -639,16 +632,13 @@ namespace grammar
                         if (!characters::is_character::is_space(text[i]))
                             {
                             // skip any "garbage" punctuation in between words
-                            if (!is_character.can_character_begin_word(text[i]))
+                            if (!characters::is_character::can_character_begin_word(text[i]))
                                 {
                                 nonWordPunctEncountered = true;
                                 continue;
                                 }
                             // found a legit character to start the next word...
-                            else
-                                {
-                                break;
-                                }
+                            break;
                             }
                         // if the .?!: is followed by a CRLF and not an abbreviation
                         // then it's most likely end of sentence
@@ -666,70 +656,62 @@ namespace grammar
 
                     // if the word is just one letter then it is probably an initial.
                     // A single number or non-letter at the end of a sentence is OK.
-                    if ((original_position - previous_word_position) == 1 &&
+                    if ((originalPosition - previous_word_position) == 1 &&
                         characters::is_character::is_alpha(text[previous_word_position]) &&
-                        characters::is_character::is_period(text[original_position]))
+                        characters::is_character::is_period(text[originalPosition]))
                         {
                         return false;
                         }
                     // Special case with "no. of." (number of).
                     // We can't make "no." an abbreviation because it is such a
                     // common word that can end a sentence.
-                    // Note that "of" is a case sensitive comparison, so "No. Of course not."
+                    // Note that "of" is a case-sensitive comparison, so "No. Of course not."
                     // would be seen as two sentences.
                     // Note that we also treat "no. #" and "no. [0-9]" as an abbreviation.
-                    else if ((previous_word_position + 2 < length &&
-                              traits::case_insensitive_ex::eq(text[previous_word_position], L'n') &&
-                              traits::case_insensitive_ex::eq(text[previous_word_position + 1],
-                                                              L'o') &&
-                              characters::is_character::is_period(
-                                  text[previous_word_position + 2])) &&
-                             ((i + 2 < length &&
-                               string_util::full_width_to_narrow(text[i]) == L'o' &&
-                               string_util::full_width_to_narrow(text[i + 1]) == L'f' &&
-                               string_util::full_width_to_narrow(text[i + 2]) == L' ') ||
-                              (string_util::full_width_to_narrow(text[i]) == L'#') ||
-                              is_character.is_numeric(text[i])))
+                    if ((previous_word_position + 2 < length &&
+                         traits::case_insensitive_ex::eq(text[previous_word_position], L'n') &&
+                         traits::case_insensitive_ex::eq(text[previous_word_position + 1], L'o') &&
+                         characters::is_character::is_period(text[previous_word_position + 2])) &&
+                        ((i + 2 < length && string_util::full_width_to_narrow(text[i]) == L'o' &&
+                          string_util::full_width_to_narrow(text[i + 1]) == L'f' &&
+                          string_util::full_width_to_narrow(text[i + 2]) == L' ') ||
+                         (string_util::full_width_to_narrow(text[i]) == L'#') ||
+                         characters::is_character::is_numeric(text[i])))
                         {
                         return false;
                         }
                     // "Vs." can never start a sentence, so if a word is in front of it that
                     // ends with a period, then it must be an unknown abbreviation
-                    else if (i + 2 < length && traits::case_insensitive_ex::eq(text[i], L'v') &&
-                             traits::case_insensitive_ex::eq(text[i + 1], L's') &&
-                             characters::is_character::is_period(text[i + 2]))
+                    if (i + 2 < length && traits::case_insensitive_ex::eq(text[i], L'v') &&
+                        traits::case_insensitive_ex::eq(text[i + 1], L's') &&
+                        characters::is_character::is_period(text[i + 2]))
                         {
                         return false;
                         }
                     // Special logic for month name ambiguous abbreviations.
                     // Only see them as a month if followed by a number.
-                    else if ((current_position - previous_word_position) == 3 &&
-                             // "Jan." can be a person's name or an abbreviation for January
-                             ((string_util::full_width_to_narrow(text[previous_word_position]) ==
-                                   L'J' &&
-                               traits::case_insensitive_ex::eq(text[previous_word_position + 1],
-                                                               L'a') &&
-                               traits::case_insensitive_ex::eq(text[previous_word_position + 2],
-                                                               L'n')) ||
-                              // "Mar." can be March abbreviation or "Sea" in Spanish
-                              (string_util::full_width_to_narrow(text[previous_word_position]) ==
-                                   L'M' &&
-                               traits::case_insensitive_ex::eq(text[previous_word_position + 1],
-                                                               L'a') &&
-                               traits::case_insensitive_ex::eq(text[previous_word_position + 2],
-                                                               L'r'))))
+                    if ((current_position - previous_word_position) == 3 &&
+                        // "Jan." can be a person's name or an abbreviation for January
+                        ((string_util::full_width_to_narrow(text[previous_word_position]) == L'J' &&
+                          traits::case_insensitive_ex::eq(text[previous_word_position + 1], L'a') &&
+                          traits::case_insensitive_ex::eq(text[previous_word_position + 2],
+                                                          L'n')) ||
+                         // "Mar." can be March abbreviation or "Sea" in Spanish
+                         (string_util::full_width_to_narrow(text[previous_word_position]) == L'M' &&
+                          traits::case_insensitive_ex::eq(text[previous_word_position + 1], L'a') &&
+                          traits::case_insensitive_ex::eq(text[previous_word_position + 2], L'r'))))
                         {
-                        return !is_character.is_numeric(text[i]);
+                        return !characters::is_character::is_numeric(text[i]);
                         }
                     // see if it's just an abbreviation or acronym
-                    else if (isAbbreviation({ text + previous_word_position,
-                                              (original_position - previous_word_position) + 1 }))
+                    if (isAbbreviation({ text + previous_word_position,
+                                         (originalPosition - previous_word_position) + 1 }))
                         {
                         return false;
                         }
-                    else if (isAcronym.is_dotted_acronym(
-                                 { text + previous_word_position,
-                                   (current_position - previous_word_position) + 1 }))
+                    if (grammar::is_acronym::is_dotted_acronym(
+                            { text + previous_word_position,
+                              (current_position - previous_word_position) + 1 }))
                         {
                         return false;
                         }
@@ -740,19 +722,18 @@ namespace grammar
                        'sentence_start_must_be_uppercased' flag.
                        Sentence termination inside of a quote is tricky,
                        so we need to have special logic for that.*/
-                    else if (can_character_begin_or_end_parenthetical_or_quoted_section(
-                                 text[current_position + 1]) &&
-                             // if following word is lowercase
-                             characters::is_character::is_lower(text[i]) &&
-                             // and there is no punctuation between quote and word (like a dash)
-                             nonWordPunctEncountered == false)
+                    if (can_character_begin_or_end_parenthetical_or_quoted_section(
+                            text[current_position + 1]) &&
+                        // if following word is lowercase
+                        characters::is_character::is_lower(text[i]) &&
+                        // and there is no punctuation between quote and word (like a dash)
+                        !nonWordPunctEncountered)
                         {
                         return false;
                         }
-                    else if (const auto ellipsisRes = is_character.is_ellipsis(
-                                 { text + original_position,
-                                   (current_position - original_position) + 1 });
-                             ellipsisRes.first)
+                    if (const auto ellipsisRes = characters::is_character::is_ellipsis(
+                            { text + originalPosition, (current_position - originalPosition) + 1 });
+                        ellipsisRes.first)
                         {
                         // three dots followed immediately by ? or ! is an end of sentence
                         if (ellipsisRes.second == 3 &&
@@ -761,10 +742,10 @@ namespace grammar
                             return true;
                             }
                         // if three dots and the following text is a letter or number (regardless of
-                        // case) or ? or !, then consider this an ellipsis mid sentence.
-                        else if (ellipsisRes.second == 3 &&
-                                 (characters::is_character::is_alpha(text[i]) ||
-                                  characters::is_character::is_numeric_simple(text[i])))
+                        // case) or ? or !, then consider this an ellipsis mid-sentence.
+                        if (ellipsisRes.second == 3 &&
+                            (characters::is_character::is_alpha(text[i]) ||
+                             characters::is_character::is_numeric_simple(text[i])))
                             {
                             return false;
                             }
@@ -776,46 +757,33 @@ namespace grammar
                             // case, the following (paraphrased) text will be a new sentence.
                             (ellipsisRes.second == 4 ||
                              !characters::is_character::is_lower(text[i])) &&
-                            nonWordPunctEncountered == false);
+                            !nonWordPunctEncountered);
                         }
                     // see if the next character can start a sentence
-                    else if (can_character_begin_sentence(text[i]))
-                        {
-                        return true;
-                        }
-                    else
-                        {
-                        return false;
-                        }
+                    return can_character_begin_sentence(text[i]);
                     }
-                // must assume inside of a quotation or unknown abbreviation
-                else
-                    {
-                    return false;
-                    }
-                }
-            else
-                {
+                // must assume inside a quotation or unknown abbreviation
                 return false;
                 }
+            return false;
             }
 
         /** @returns @c true if a character can start a sentence.
                 This can be a letter, left parenthesis, dash, or quote.
             @param ch The character to review.*/
         [[nodiscard]]
-        inline bool can_character_begin_sentence(const wchar_t ch) const noexcept
+        bool can_character_begin_sentence(const wchar_t ch) const noexcept
             {
             return ((m_sentence_start_must_be_uppercased &&
-                     is_character.can_character_begin_word_uppercase(ch)) ||
+                     characters::is_character::can_character_begin_word_uppercase(ch)) ||
                     (!m_sentence_start_must_be_uppercased &&
-                     is_character.can_character_begin_word(ch)) ||
+                     characters::is_character::can_character_begin_word(ch)) ||
                     // or is a left parenthesis (sometimes sentences start with these)
                     traits::case_insensitive_ex::eq(ch, 40) ||
                     // or various hyphens/dashes, sometimes follows a quote from a person
-                    is_character.is_dash_or_hyphen(ch) ||
+                    characters::is_character::is_dash_or_hyphen(ch) ||
                     // or if simply a quote symbol
-                    is_character.is_quote(ch));
+                    characters::is_character::is_quote(ch));
             }
 
         /** @returns @c true if a character can be valid sentence-ending punctuation,
@@ -825,7 +793,7 @@ namespace grammar
                 stop character (e.g., '?' or '.') or something like ':' or
                 ellipse followed by a hard return.*/
         [[nodiscard]]
-        inline static bool is_non_period_terminator(const wchar_t character) noexcept
+        static bool is_non_period_terminator(const wchar_t character) noexcept
             {
             return (traits::case_insensitive_ex::eq(character, L'!') ||
                     traits::case_insensitive_ex::eq(character, L'?') ||
@@ -841,7 +809,7 @@ namespace grammar
                 standard stop character (e.g., '?' or '.')
                 or something like ':' or ellipse followed by a hard return.*/
         [[nodiscard]]
-        inline static bool can_character_end_sentence_strict(const wchar_t character) noexcept
+        static bool can_character_end_sentence_strict(const wchar_t character) noexcept
             {
             return (characters::is_character::is_period(character) ||
                     traits::case_insensitive_ex::eq(character, L'!') ||
@@ -862,7 +830,7 @@ namespace grammar
                 This function should only be used if you plan to further review the character
                 (e.g., by calling operator()).*/
         [[nodiscard]]
-        inline static bool can_character_end_sentence_passive(const wchar_t character) noexcept
+        static bool can_character_end_sentence_passive(const wchar_t character) noexcept
             {
             return (can_character_end_sentence_strict(character) ||
                     characters::is_character::is_dash(character));
@@ -872,7 +840,7 @@ namespace grammar
                 parenthetical section following a sentence.
             @param character The character to review.*/
         [[nodiscard]]
-        inline static bool
+        static bool
         can_character_begin_or_end_parenthetical_or_quoted_section(const wchar_t character) noexcept
             {
             return (traits::case_insensitive_ex::eq(character, L'(') ||
@@ -913,9 +881,7 @@ namespace grammar
                       const wchar_t ending_punctuation) noexcept
             : m_begin_index(begin_index), m_end_index(end_index),
               m_size((end_index - begin_index) + 1), m_valid_size((end_index - begin_index) + 1),
-              m_ending_punctuation(ending_punctuation),
-              // sentence will have at least one unit
-              m_unit_count(1)
+              m_ending_punctuation(ending_punctuation)
             {
             m_is_valid = ends_with_valid_punctuation();
             m_sentence_type = m_is_valid ? sentence_paragraph_type::complete :
@@ -1005,7 +971,7 @@ namespace grammar
                 what can really end a sentence.\n
                 This will include punctuation used for passive EOS deduction (e.g., dashes).*/
         [[nodiscard]]
-        inline bool ends_with_valid_punctuation() const noexcept
+        bool ends_with_valid_punctuation() const noexcept
             {
             return (is_end_of_sentence::can_character_end_sentence_passive(m_ending_punctuation));
             }
@@ -1080,8 +1046,7 @@ namespace grammar
         {
       public:
         [[nodiscard]]
-        inline bool operator()(const sentence_info& sent1,
-                               const sentence_info& sent2) const noexcept
+        bool operator()(const sentence_info& sent1, const sentence_info& sent2) const noexcept
             {
             return (sent1.get_first_word_index() < sent2.get_first_word_index());
             }
@@ -1100,7 +1065,7 @@ namespace grammar
         /** @returns @c true if a sentence has more words than the predefined value.
             @param the_sentence The sentence to review.*/
         [[nodiscard]]
-        inline bool operator()(const sentence_info& the_sentence) const noexcept
+        bool operator()(const sentence_info& the_sentence) const noexcept
             {
             return the_sentence.get_word_count() > m_count;
             }
@@ -1125,7 +1090,7 @@ namespace grammar
         /** @returns @c true if a valid sentence has more valid words than the predefined value.
             @param the_sentence The sentence to review.*/
         [[nodiscard]]
-        inline bool operator()(const sentence_info& the_sentence) const noexcept
+        bool operator()(const sentence_info& the_sentence) const noexcept
             {
             if (!the_sentence.is_valid())
                 {
@@ -1156,19 +1121,16 @@ namespace grammar
                 return false;
                 }
             // ...if left sentence is incomplete then it is less than the other
-            else if (!sent1.is_valid())
+            if (!sent1.is_valid())
                 {
                 return true;
                 }
             // ...otherwise, if left is complete and right is not then it must be bigger
-            else if (!sent2.is_valid())
+            if (!sent2.is_valid())
                 {
                 return false;
                 }
-            else
-                {
-                return sent1.get_valid_word_count() < sent2.get_valid_word_count();
-                }
+            return sent1.get_valid_word_count() < sent2.get_valid_word_count();
             }
         };
     } // namespace grammar
