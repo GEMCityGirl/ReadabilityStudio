@@ -1477,7 +1477,6 @@ class document
         frequency_set<Tword_type, string_util::less_basic_string_i_compare<Tword_type>>
             nonProperWords;
         auto punctPos = m_punctuation.size() ? m_punctuation.cbegin() : m_punctuation.cend();
-        typename std::vector<Tword_type>::iterator otherWord;
         size_t currentWordIndex{ 0 };
         m_quoteStartWords.clear();
         bool wordIsAtStartOfQuote = false;
@@ -1489,40 +1488,41 @@ class document
                 {
                 continue;
                 }
-            // see if in all caps and then look at the surrounding words to see if it is
-            // an acronym or simply uppercased word
+            // see if in all caps...
             if (isAcronym({ wordPos->c_str(), wordPos->length() }))
                 {
-                // if it has more than one period in it and more than half uppercase letters then it
-                // absolutely must be an acronym. Same for if it ends with a lowercase 's' (e.g.,
-                // "ATMs").
+                // ...if it has more than one period in it and more than half uppercase
+                // letters then it absolutely must be an acronym.
+                // Same for if it ends with a lowercase 's' (e.g., "ATMs").
                 if (isAcronym.get_dot_count() > 1 || isAcronym.ends_with_lower_s())
                     {
                     wordPos->set_exclamatory(false);
                     wordPos->set_acronym(true);
                     }
-                // if first word, then just look at following word
-                else if (wordPos == m_words.begin())
+                // ...or look at the surrounding words to see if it is
+                // an acronym or simply uppercased word
+                else if (m_words.size() > 1)
                     {
-                    otherWord = wordPos + 1;
-                    if (otherWord != m_words.end() &&
+                    // if first word, then just look at following word
+                    if (wordPos == m_words.begin())
+                        {
+                        auto otherWord{ std::next(wordPos) };
+                        assert(otherWord != m_words.end());
                         // words need to be in the same sentence
-                        otherWord->get_sentence_index() == wordPos->get_sentence_index() &&
-                        isAcronym({ otherWord->c_str(), otherWord->length() }))
-                        {
-                        // following word is uppercased too, so don't treat this as
-                        // an acronym or proper
-                        wordPos->set_exclamatory(true);
-                        wordPos->set_acronym(false);
-                        continue;
+                        if (otherWord->get_sentence_index() == wordPos->get_sentence_index() &&
+                            isAcronym({ otherWord->c_str(), otherWord->length() }))
+                            {
+                            // following word is uppercased too, so don't treat this as
+                            // an acronym or proper
+                            wordPos->set_exclamatory(true);
+                            wordPos->set_acronym(false);
+                            continue;
+                            }
                         }
-                    }
-                // ...else, if last word then just look at the word in front of it
-                else if (wordPos == m_words.end() - 1)
-                    {
-                    if (m_words.size() != 1)
+                    // ...else, if last word then just look at the word in front of it
+                    else if (wordPos == m_words.end() - 1)
                         {
-                        otherWord = wordPos - 1;
+                        auto otherWord{ std::prev(wordPos) };
                         // words need to be in the same sentence
                         if (otherWord->get_sentence_index() == wordPos->get_sentence_index() &&
                             isAcronym({ otherWord->c_str(), otherWord->length() }))
@@ -1534,33 +1534,33 @@ class document
                             continue;
                             }
                         }
-                    }
-                // otherwise, look at the word before and after and if either are
-                // uppercased then it's not an acronym or proper (it's exclamatory)
-                else
-                    {
-                    otherWord = wordPos - 1;
-                    // words need to be in the same sentence
-                    if (otherWord->get_sentence_index() == wordPos->get_sentence_index() &&
-                        otherWord->is_exclamatory())
+                    // otherwise, look at the word before and after and if either are
+                    // uppercased then it's not an acronym or proper (it's exclamatory)
+                    else if (m_words.size() > 2) // between two other words
                         {
-                        // proceeding word was uppercased too, so don't treat this as
-                        // an acronym or proper
-                        wordPos->set_exclamatory(true);
-                        wordPos->set_acronym(false);
-                        continue;
-                        }
-                    otherWord = wordPos + 1;
-                    if (otherWord != m_words.end() &&
+                        auto otherWord{ std::prev(wordPos) };
                         // words need to be in the same sentence
-                        otherWord->get_sentence_index() == wordPos->get_sentence_index() &&
-                        isAcronym({ otherWord->c_str(), otherWord->length() }))
-                        {
-                        // following word is uppercased too, so don't treat this as
-                        // an acronym or proper
-                        wordPos->set_exclamatory(true);
-                        wordPos->set_acronym(false);
-                        continue;
+                        if (otherWord->get_sentence_index() == wordPos->get_sentence_index() &&
+                            otherWord->is_exclamatory())
+                            {
+                            // proceeding word was uppercased too, so don't treat this as
+                            // an acronym or proper
+                            wordPos->set_exclamatory(true);
+                            wordPos->set_acronym(false);
+                            continue;
+                            }
+                        otherWord = std::next(wordPos);
+                        assert(otherWord != m_words.end());
+                        // words need to be in the same sentence
+                        if (otherWord->get_sentence_index() == wordPos->get_sentence_index() &&
+                            isAcronym({ otherWord->c_str(), otherWord->length() }))
+                            {
+                            // following word is uppercased too, so don't treat this as
+                            // an acronym or proper
+                            wordPos->set_exclamatory(true);
+                            wordPos->set_acronym(false);
+                            continue;
+                            }
                         }
                     }
                 // if we get this far then the word really is an acronym
@@ -1666,8 +1666,8 @@ class document
                 }
             }
 
-        // Second pass, going over words whose capitalization can be ambiguous (first word of
-        // sentence, etc.)
+        // Second pass, going over words whose capitalization can be ambiguous
+        // (first word of sentence, etc.)
         punctPos = m_punctuation.size() ? m_punctuation.begin() :
                                           m_punctuation.end(); // reset for second pass
         for (auto sentPos = m_sentences.cbegin(); sentPos != m_sentences.cend(); ++sentPos)
