@@ -11,8 +11,8 @@
  *   Blake Madden - initial implementation
  ********************************************************************************/
 
-#ifndef __SPANISH_READABILITY_H__
-#define __SPANISH_READABILITY_H__
+#ifndef SPANISH_READABILITY_H
+#define SPANISH_READABILITY_H
 
 #include "../Wisteria-Dataviz/src/math/mathematics.h"
 #include "english_readability.h"
@@ -79,6 +79,38 @@ namespace readability
         // ...then clip to the regular 0-19 grade level range
         return truncate_k12_plus_grade(solScore);
         }
+
+    /** @brief Szigriszt-Pazos Perspicuity scale.
+        @details This value is used for both the original Szigriszt-Pazos chart and the
+            INFLESZ chart.
+        @code
+        INFLESZ = 206.835 - (62.3*(SY/W)) - (W/S)
+        @endcode
+        @param number_of_words The number of words in the sample.
+        @param number_of_syllables The number of syllables in the sample.
+        @param number_of_sentences The number of sentences in the sample.
+        @note The original article uses the intercept of @c 207 for both this formula and
+            the FRE formula. FRE uses @c 206.835, so it is assumed
+            that @c 206.835 was intended here, but @c 207 was used for shorthand.
+            Barrio-Cantalejo (et al.) drew the same conclusion and used 206.835 in their
+            interpretation of this formula.
+        @returns The Szigriszt-Pazos index value (0-100).*/
+    [[nodiscard]]
+    inline size_t szigriszt_pazos_perspicuity(const uint32_t number_of_words,
+                                              const uint32_t number_of_syllables,
+                                              const uint32_t number_of_sentences)
+        {
+        if (number_of_words == 0 || number_of_sentences == 0)
+            {
+            throw std::domain_error("invalid word/sentence count.");
+            }
+        const size_t result = static_cast<size_t>(round_to_integer(std::clamp<double>(
+            206.835 - safe_divide<double>(number_of_words, number_of_sentences) -
+                (62.3 * (safe_divide<double>(number_of_syllables, number_of_words))),
+            0, 100)));
+
+        return result;
+        }
     } // namespace readability
 
-#endif //__SPANISH_READABILITY_H__
+#endif // SPANISH_READABILITY_H
