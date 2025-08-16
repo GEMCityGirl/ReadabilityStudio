@@ -2286,7 +2286,9 @@ void BaseProject::LoadHardWords()
                     wxString::Format(_(L"%zu (%zu additional occurrences not proper)"),
                                      wordPos->second.second,
                                      (wordPos->second.first - wordPos->second.second)),
-                    NumberFormatInfo::NumberFormatType::StandardFormatting, wordPos->second.second);
+                    Wisteria::NumberFormatInfo{
+                        NumberFormatInfo::NumberFormatType::StandardFormatting },
+                    wordPos->second.second);
                 }
             else
                 {
@@ -2506,7 +2508,9 @@ void BaseProject::LoadHardWords()
                               "%zu non-proper and unfamiliar)"),
                             nonProperCount, wordPos->second.first,
                             (wordPos->second.first - nonProperCount), nonProperCount),
-                        NumberFormatInfo::NumberFormatType::StandardFormatting, nonProperCount);
+                        Wisteria::NumberFormatInfo{
+                            NumberFormatInfo::NumberFormatType::StandardFormatting },
+                        nonProperCount);
                     }
                 auto replacement = harris_jacobson_replacement_list.find(wordPos->first.c_str());
                 if (replacement.first)
@@ -2552,7 +2556,9 @@ void BaseProject::LoadHardWords()
                                   "%zu non-proper and unfamiliar)"),
                                 nonProperCount, wordPos->second.first,
                                 (wordPos->second.first - nonProperCount), nonProperCount),
-                            NumberFormatInfo::NumberFormatType::StandardFormatting, nonProperCount);
+                            Wisteria::NumberFormatInfo{
+                                NumberFormatInfo::NumberFormatType::StandardFormatting },
+                            nonProperCount);
                         }
                     auto replacement = dale_chall_replacement_list.find(wordPos->first.c_str());
                     if (replacement.first)
@@ -2605,7 +2611,9 @@ void BaseProject::LoadHardWords()
                             wxString::Format(
                                 _(L"1 (%zu total occurrences, only first occurrence unfamiliar)"),
                                 wordPos->second.first),
-                            NumberFormatInfo::NumberFormatType::StandardFormatting, 1);
+                            Wisteria::NumberFormatInfo{
+                                NumberFormatInfo::NumberFormatType::StandardFormatting },
+                            1);
                         }
                     else
                         {
@@ -2616,7 +2624,8 @@ void BaseProject::LoadHardWords()
                                 _(L"%zu (%zu total occurrences. First proper occurrence "
                                   "unfamiliar, %zu non-proper and unfamiliar)"),
                                 nonProperCount + 1, wordPos->second.first, nonProperCount),
-                            NumberFormatInfo::NumberFormatType::StandardFormatting,
+                            Wisteria::NumberFormatInfo{
+                                NumberFormatInfo::NumberFormatType::StandardFormatting },
                             nonProperCount + 1);
                         }
                     auto replacement = dale_chall_replacement_list.find(wordPos->first.c_str());
@@ -2654,7 +2663,9 @@ void BaseProject::LoadHardWords()
                               "%zu non-proper and unfamiliar)"),
                             nonProperCount, wordPos->second.first,
                             (wordPos->second.first - nonProperCount), nonProperCount),
-                        NumberFormatInfo::NumberFormatType::StandardFormatting, nonProperCount);
+                        Wisteria::NumberFormatInfo{
+                            NumberFormatInfo::NumberFormatType::StandardFormatting },
+                        nonProperCount);
                     }
                 auto replacement = spache_replacement_list.find(wordPos->first.c_str());
                 if (replacement.first)
@@ -2715,7 +2726,8 @@ void BaseProject::LoadHardWords()
                                       "%zu non-proper and unfamiliar)"),
                                     nonProperCount, wordPos->second.first,
                                     (wordPos->second.first - nonProperCount), nonProperCount),
-                                NumberFormatInfo::NumberFormatType::StandardFormatting,
+                                Wisteria::NumberFormatInfo{
+                                    NumberFormatInfo::NumberFormatType::StandardFormatting },
                                 nonProperCount);
                             }
                         }
@@ -2755,7 +2767,9 @@ void BaseProject::LoadHardWords()
                                 wxString::Format(_(L"1 (%zu total occurrences, only first "
                                                    "occurrence unfamiliar)"),
                                                  wordPos->second.first),
-                                NumberFormatInfo::NumberFormatType::StandardFormatting, 1);
+                                Wisteria::NumberFormatInfo{
+                                    NumberFormatInfo::NumberFormatType::StandardFormatting },
+                                1);
                             }
                         else
                             {
@@ -2767,7 +2781,8 @@ void BaseProject::LoadHardWords()
                                       "First proper occurrence unfamiliar, %zu "
                                       "non-proper and unfamiliar)"),
                                     nonProperCount + 1, wordPos->second.first, nonProperCount),
-                                NumberFormatInfo::NumberFormatType::StandardFormatting,
+                                Wisteria::NumberFormatInfo{
+                                    NumberFormatInfo::NumberFormatType::StandardFormatting },
                                 nonProperCount + 1);
                             }
                         }
@@ -2971,7 +2986,9 @@ void BaseProject::LoadHardWords()
                               "%zu non-proper and unfamiliar)"),
                             nonProperCount, wordPos->second.first,
                             (wordPos->second.first - nonProperCount), nonProperCount),
-                        NumberFormatInfo::NumberFormatType::StandardFormatting, nonProperCount);
+                        Wisteria::NumberFormatInfo{
+                            NumberFormatInfo::NumberFormatType::StandardFormatting },
+                        nonProperCount);
                     }
                 auto replacement = harris_jacobson_replacement_list.find(wordPos->first.c_str());
                 if (replacement.first)
@@ -3018,7 +3035,9 @@ void BaseProject::LoadHardWords()
                                   "%zu non-proper and unfamiliar)"),
                                 nonProperCount, wordPos->second.first,
                                 (wordPos->second.first - nonProperCount), nonProperCount),
-                            NumberFormatInfo::NumberFormatType::StandardFormatting, nonProperCount);
+                            Wisteria::NumberFormatInfo{
+                                NumberFormatInfo::NumberFormatType::StandardFormatting },
+                            nonProperCount);
                         }
                     auto replacement = dale_chall_replacement_list.find(wordPos->first.c_str());
                     if (replacement.first)
@@ -3072,7 +3091,9 @@ void BaseProject::LoadHardWords()
                                 // TRANSLATORS: %zu are word total placeholders
                                 _(L"1 (%zu total occurrences, only first occurrence unfamiliar)"),
                                 wordPos->second.first),
-                            NumberFormatInfo::NumberFormatType::StandardFormatting, 1);
+                            Wisteria::NumberFormatInfo{
+                                NumberFormatInfo::NumberFormatType::StandardFormatting },
+                            1);
                         }
                     else
                         {
@@ -3084,7 +3105,8 @@ void BaseProject::LoadHardWords()
                                   "First proper occurrence unfamiliar, %zu "
                                   "non-proper and unfamiliar)"),
                                 nonProperCount + 1, wordPos->second.first, nonProperCount),
-                            NumberFormatInfo::NumberFormatType::StandardFormatting,
+                            Wisteria::NumberFormatInfo{
+                                NumberFormatInfo::NumberFormatType::StandardFormatting },
                             nonProperCount + 1);
                         }
                     auto replacement = dale_chall_replacement_list.find(wordPos->first.c_str());
@@ -3154,7 +3176,8 @@ void BaseProject::LoadHardWords()
                                           "%zu non-proper and unfamiliar)"),
                                         nonProperCount, wordPos->second.first,
                                         (wordPos->second.first - nonProperCount), nonProperCount),
-                                    NumberFormatInfo::NumberFormatType::StandardFormatting,
+                                    Wisteria::NumberFormatInfo{
+                                        NumberFormatInfo::NumberFormatType::StandardFormatting },
                                     nonProperCount);
                                 }
                             }
@@ -3198,7 +3221,9 @@ void BaseProject::LoadHardWords()
                                         _(L"1 (%zu total occurrences, only first "
                                           "occurrence unfamiliar)"),
                                         wordPos->second.first),
-                                    NumberFormatInfo::NumberFormatType::StandardFormatting, 1);
+                                    Wisteria::NumberFormatInfo{
+                                        NumberFormatInfo::NumberFormatType::StandardFormatting },
+                                    1);
                                 }
                             else
                                 {
@@ -3210,7 +3235,8 @@ void BaseProject::LoadHardWords()
                                           "First proper occurrence unfamiliar, "
                                           "%zu non-proper and unfamiliar)"),
                                         nonProperCount + 1, wordPos->second.first, nonProperCount),
-                                    NumberFormatInfo::NumberFormatType::StandardFormatting,
+                                    Wisteria::NumberFormatInfo{
+                                        NumberFormatInfo::NumberFormatType::StandardFormatting },
                                     nonProperCount + 1);
                                 }
                             }

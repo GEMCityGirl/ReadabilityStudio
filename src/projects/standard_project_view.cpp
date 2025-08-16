@@ -1728,7 +1728,8 @@ void ProjectView::UpdateStatistics()
                     doc->GetReadabilityMessageCatalog().GetFormattedValue(
                         wxNumberFormatter::ToString(
                             *modesIter, 0, wxNumberFormatter::Style::Style_NoTrailingZeroes),
-                        NumberFormatInfo::NumberFormatType::CustomFormatting) +
+                        Wisteria::NumberFormatInfo{
+                            NumberFormatInfo::NumberFormatType::CustomFormatting }) +
                     L"; ";
                 }
             // chop off the last "; "
@@ -1811,7 +1812,9 @@ void ProjectView::UpdateStatistics()
                   "scale values is not applicable because the scales used between tests are "
                   "different.</p>"),
                 doc->GetReadabilityMessageCatalog().GetFormattedValue(
-                    gradeAverage, NumberFormatInfo::NumberFormatType::CustomFormatting),
+                    gradeAverage,
+                    Wisteria::NumberFormatInfo{
+                        NumberFormatInfo::NumberFormatType::CustomFormatting }),
                 ageAverage, clozeAverage) +
             L"</td></tr>\n</table>";
 
@@ -1886,7 +1889,9 @@ void ProjectView::UpdateStatistics()
                       "Note that a median of the scale values is not applicable because the scales "
                       "used between tests are different.</p>"),
                     doc->GetReadabilityMessageCatalog().GetFormattedValue(
-                        gradeMedian, NumberFormatInfo::NumberFormatType::CustomFormatting),
+                        gradeMedian,
+                        Wisteria::NumberFormatInfo{
+                            NumberFormatInfo::NumberFormatType::CustomFormatting }),
                     ageMedian, clozeMedian) +
                 L"</td></tr>\n</table>";
 
@@ -1953,7 +1958,9 @@ void ProjectView::UpdateStatistics()
                       "Also note that a standard deviation of the scale values is not applicable "
                       "because the scales used between tests are different.</p>"),
                     doc->GetReadabilityMessageCatalog().GetFormattedValue(
-                        gradeStdDev, NumberFormatInfo::NumberFormatType::CustomFormatting),
+                        gradeStdDev,
+                        Wisteria::NumberFormatInfo{
+                            NumberFormatInfo::NumberFormatType::CustomFormatting }),
                     ageStdDev, clozeStdDev) +
                 L"</td></tr>\n</table>";
 

@@ -25,6 +25,7 @@
 #include <wx/stc/stc.h>
 #include <wx/webrequest.h>
 #include <wx/webview.h>
+#include <wx/zstream.h>
 
 //------------------------------------------------------
 AboutDialogEx::AboutDialogEx(wxWindow* parent, const wxBitmap& logo, wxString appVersion,
