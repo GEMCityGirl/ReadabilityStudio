@@ -80,7 +80,10 @@ format:
     linkcolor: black
     citecolor: black
   html:
-    theme: cosmo
+    theme:
+      light: flatly
+      dark: darkly
     html-math-method: katex
     css: css/style.css
     smooth-scroll: true
+    respect-user-color-scheme: true
