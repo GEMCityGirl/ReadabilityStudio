@@ -423,17 +423,21 @@ A repeated word is when the same word appears after itself (which is usually a t
 Gabi gave her report *to to* the manager.
 :::
 
-In this case, the word *to* was accidentally typed twice. *{{< var PROGRAM_NAME >}}* will consider this a repeated word and include it in this list.
+In this case, the word *to* was accidentally typed twice.
+*{{< var PROGRAM_NAME >}}* will consider this a repeated word and include it in this list.
 
-Repeated words are bound to the sentence level. If the same word ends one sentence and begins the next, then it will not be considered a repeated word. For example, *Blake* would not be considered a repeated word here:
+Repeated words are bound to the sentence level.
+If the same word ends one sentence and begins the next, then it will not be considered a repeated word. For example, *Blake* would not be considered a repeated word here:
 
 ::: {.fancyquotes data-latex=''}
 Gabi gave her sales report to *Blake. Blake* really appreciated Gabi's promptness.
 :::
 
-Repeated word searching is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
+Repeated word searching is applied to all sentences.
+[Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
-To view any repeated word in its original context, double-click on it. This will take you to the [**Highlighted Report**](#sec-reviewing-standard-grammar) page with that repeated word selected.
+To view any repeated word in its original context, double-click on it.
+This will take you to the [**Highlighted Report**](#sec-reviewing-standard-grammar) page with that repeated word selected.
 
 Note that if there are no repeated words in your document, then this window will not be included.
 
@@ -441,7 +445,8 @@ Refer to @sec-repeated-word-exceptions for more information on how repeated word
 
 ### Reviewing Article Mismatches {-}
 
-After opening a project, click on the **Grammar** icon on the project sidebar and select the **Article Mismatches** subitem. This window will display a list of articles (i.e., *a* and *an*) that do not match their following noun.
+After opening a project, click on the **Grammar** icon on the project sidebar and select the **Article Mismatches** subitem.
+This window will display a list of articles (i.e., *a* and *an*) that do not match their following noun.
 
 ![](images/articlemismatches.png)
 
@@ -450,7 +455,8 @@ For example, the following articles would be marked as mismatching:
 - a electronic
 - an textbook
 
-This search is applied to all sentences. [Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
+This search is applied to all sentences.
+[Incomplete sentences](#sec-how-text-is-excluded) will be reviewed for this, even if they are excluded from the analysis.
 
 To view any item in its original context, double-click on it. This will take you to the **Highlighted Report** page with that item selected.
 

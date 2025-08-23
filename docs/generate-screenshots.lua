@@ -55,11 +55,11 @@ ScreenshotLib.ShowGetDirDlg("/home/rdoyle/ReadabilityStudio/Topics")
 ScreenshotLib.SnapScreenshot(ImagePath .. "selectdirectory." .. FileExtension)
 ScreenshotLib.CloseGetDirDlg()
 
-ScreenshotLib.ShowListViewItemDlg("Document", "C:\\Licenses\\EULA.rtf", "Count", "1", "Passive Voice", "\"be purchased\"")
+ScreenshotLib.ShowListViewItemDlg("Document", "C:\\Licenses\\license.rtf", "Count", "1", "Passive Voice", "\"be purchased\"")
 ScreenshotLib.SnapScreenshot(ImagePath .. "batchpassivevoiceviewitem." .. FileExtension)
 ScreenshotLib.CloseListViewItemDlg()
 
-ScreenshotLib.ShowListViewItemDlg("Document", "C:\\Licenses\\EULA.rtf", "Count", "2", "Article Mismatches", "\"a agreement\" * 2")
+ScreenshotLib.ShowListViewItemDlg("Document", "C:\\Licenses\\license.rtf", "Count", "2", "Article Mismatches", "\"a agreement\" * 2")
 ScreenshotLib.SnapScreenshot(ImagePath .. "viewitemarticlemismatch." .. FileExtension)
 ScreenshotLib.CloseListViewItemDlg()
 
@@ -636,7 +636,7 @@ a:Close()
 Application.RemoveAllCustomTests()
 
 -- article mismating
-sp = StandardProject(ScreenshotProjectsFolder .. "Eula.rtf")
+sp = StandardProject(ScreenshotProjectsFolder .. "license.rtf")
 sp:SelectWindow(SideBarSection.Grammar, ListType.ArticleMismatch)
 ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "articlemismatches." .. FileExtension, 1)
 sp:Close()
