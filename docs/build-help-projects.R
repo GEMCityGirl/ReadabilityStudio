@@ -1,4 +1,7 @@
-if (!require("pacman")) install.packages("pacman")
+if (nchar(system.file(package="pacman")) == 0)
+  {
+  install.packages("pacman")
+  }
 library(pacman)
 pacman::p_load(glue, readr, stringr, fs, lubridate, tidyverse, kableExtra,
                Hmisc, cowplot, beeswarm, tinytex, stringi, this.path, janitor, quarto,

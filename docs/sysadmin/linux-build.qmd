@@ -35,13 +35,6 @@ source('R/appdown.r')
 
 {{< pagebreak >}}
 
-If building the documentation, prepare *R* to install packages:
-
-```{.bash}
-R
-install.packages("pacman")
-```
-
 ## Download *wxWidgets* {-}
 
 ```{.bash}
