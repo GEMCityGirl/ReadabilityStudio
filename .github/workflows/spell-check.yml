@@ -1,17 +1,21 @@
-name: Spell Check (codespell)
+name: Spell Check
 on: [push, pull_request]
+permissions:
+  contents: read
+env:
+  CLICOLOR: 1
 
 jobs:
-  check-unix:
+  typos:
+    name: Spell Check with Typos & codespell
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    name: Check Spelling
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
+      - name: Run Typos
+        uses: crate-ci/typos@v1.35.1
+        with:
+          config: ./.typos.toml
       - name: Install codespell
         run: |
           pip install codespell

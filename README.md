@@ -17,8 +17,7 @@ Readability Studio
 | Documentation & Formatting | Result |
 | ------------- | ------------- |
 | Doxygen | [![doxygen](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/doxygen.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/doxygen.yml) |
-| Spellcheck (codespell) | [![Spell Check](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/spell-check.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/spell-check.yml) |
-| Spellcheck (Typos) | [![Spell Check (Typos)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/typos.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/typos.yml) |
+| Spellcheck | [![Spell Check](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/spell-check.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/spell-check.yml) |
 | clang-format | [![clang-format](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/clang-format-check.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/clang-format-check.yml) |
 
 # Building
