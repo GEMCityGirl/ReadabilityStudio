@@ -70,6 +70,7 @@
 /docs/readability-studio-manual/readability-studio-manual_files/figure-html
 /docs/readability-studio-manual/readability-studio-manual_files/figure-latex
 /docs/readability-studio-manual/readability-studio-manual.tex
+/docs/readability-studio-manual/images/non-generated/cover.png
 /docs/readability-studio-manual/site_libs
 /docs/readability-studio-manual/.quarto
 /docs/shortcuts-cheatsheet/.quarto
@@ -79,13 +80,13 @@
 /docs/release-notes/.quarto
 /docs/release-notes/index.tex
 /docs/sysadmin/sysadmin-manual.tex
-/wxWidgets_lib
 /docs/_variables.yml
 /docs/readability-studio-api/_variables.yml
 /docs/sysadmin/docs
 /docs/sysadmin/build-commands.txt
 /docs/sysadmin/sysadmin-manual.tex
 /docs/sysadmin/windows-silent.txt
+/wxWidgets_lib
 
 # Configuration files
 /docs/coding-bible/.Rproj.user
