@@ -4143,7 +4143,7 @@ namespace LuaScripting
                 // Custom word-list tests have the same integral IDs for their highlighted-text
                 // reports and list controls, so search by label instead.
                 view->GetSideBar()->SelectSubItem(
-                    view->GetSideBar()->FindSubItem(selWindow->GetLabel()));
+                    view->GetSideBar()->FindSubItem(selWindow->GetName()));
                 if (lua_gettop(L) >= 4)
                     {
                     dynamic_cast<FormattedTextCtrl*>(selWindow)->ShowPosition(
@@ -4486,7 +4486,7 @@ namespace LuaScripting
                     // Custom word-list tests have the same integral IDs for their highlighted-text
                     // reports and list controls, so search by label instead.
                     view->GetSideBar()->SelectSubItem(
-                        view->GetSideBar()->FindSubItem(selWindow->GetLabel()));
+                        view->GetSideBar()->FindSubItem(selWindow->GetName()));
                     dynamic_cast<FormattedTextCtrl*>(selWindow)->ShowPosition(
                         luaL_checkinteger(L, 3));
                     }
