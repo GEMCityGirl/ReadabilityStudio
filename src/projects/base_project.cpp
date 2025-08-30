@@ -15,6 +15,7 @@
 #include "../Wisteria-Dataviz/src/import/cpp_extract_text.h"
 #include "../Wisteria-Dataviz/src/import/idl_extract_text.h"
 #include "../Wisteria-Dataviz/src/import/pptx_extract_text.h"
+#include "../Wisteria-Dataviz/src/utfcpp/source/utf8.h"
 #include "../app/readability_app.h"
 #include "../indexing/diacritics.h"
 #include "../indexing/romanize.h"

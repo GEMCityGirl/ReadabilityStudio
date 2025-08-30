@@ -17,6 +17,7 @@
 #include "../Wisteria-Dataviz/src/math/mathematics.h"
 #include "../ui/dialogs/custom_test_dlg.h"
 #include "readability_app.h"
+#include <wx/fontenum.h>
 
 using namespace Wisteria;
 using namespace Wisteria::Graphs;
