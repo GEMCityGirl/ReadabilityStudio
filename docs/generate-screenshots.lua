@@ -4,11 +4,11 @@ ScreenshotLib.ShowScriptEditor(false)
 
 -- input
 ScreenshotProjectsFolder = Application.GetAbsoluteFilePath(
-            Debug.GetScriptFolderPath(),
+            Debug.GetScriptFolder(),
             "projects/")
 
 -- output
-ImagePath = Debug.GetScriptFolderPath().."readability-studio-manual/images/"
+ImagePath = Debug.GetScriptFolder().."readability-studio-manual/images/"
 FileExtension = "bmp"
 
 function wait(seconds)
@@ -112,9 +112,9 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "printerheadersfooters." .. FileExtens
 ScreenshotLib.ClosePrinterHeaderFooterOptions()
 
 -- List export
-ScreenshotLib.ShowListExpordDlg(1031, 1, false, true)
+ScreenshotLib.ShowListExportDlg(1031, 1, false, true)
 ScreenshotLib.SnapScreenshot(ImagePath .. "exportoptions." .. FileExtension)
-ScreenshotLib.CloseListExpordDlg()
+ScreenshotLib.CloseListExportDlg()
 
 -- Custom test dialog
 ScreenshotLib.ShowCustomTestDialogGeneralSettings()
@@ -337,7 +337,7 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "longsentences." .. FileExtension)
 sp:SelectHighlightedWordReport(HighlightedReportType.ThreePlusSyllableHighlightedWords, 4335, 4347)
 ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "difficultwordselected." .. FileExtension, 1)
 sp:SelectWindow(SideBarSection.WordsBreakdown, ListType.ThreePlusSyllableWords)
-sp:SortList(ListType.ThreePlusSyllableWordsList, 2, SortOrder.SortDescending)
+sp:SortList(ListType.ThreePlusSyllableWords, 2, SortOrder.SortDescending)
 ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "exampledifficultwords." .. FileExtension, 1)
 sp:SelectWindow(SideBarSection.SentencesBreakdown, ListType.LongSentences)
 ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "examplelongsentences." .. FileExtension, 1)
@@ -420,7 +420,7 @@ ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "passivevoice." .. File
 sp:SelectReadabilityTest(4)
 ScreenshotLib.SnapScreenshot(ImagePath .. "scores." .. FileExtension)
 sp:SelectWindow(SideBarSection.WordsBreakdown, ListType.ThreePlusSyllableWords)
-sp:SortList(ListType.ThreePlusSyllableWordsList,2,SortOrder.SortDescending,3,SortOrder.SortDescending)
+sp:SortList(ListType.ThreePlusSyllableWords,2,SortOrder.SortDescending,3,SortOrder.SortDescending)
 ScreenshotLib.SnapScreenshot(ImagePath .. "difficultwords." .. FileExtension)
 
 sp:SelectRowsInWordsBreakdownList(ListType.ThreePlusSyllableWords, 1, 3, 4, 5, 7, 8, 9, 10, 12, 13, 15,
@@ -590,7 +590,7 @@ a:Close()
 
 -- German graph
 a = StandardProject(ScreenshotProjectsFolder .. "turkey brining.rtf")
-a:SetProjectLanguage(Language.German)
+a:SetLanguage(Language.German)
 a:AddTest(Test.Schwartz)
 a:AddTest(Test.LixGermanTechnical)
 a:ExportGraph(GraphType.Schwartz, ImagePath .. "schwartz." .. FileExtension)
@@ -709,11 +709,11 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "custom-test-example2-custom-text." ..
 ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "ribbon-edit-text-window." .. FileExtension, 0, RibbonButtonBar.Edit)
 
 a:SelectWindow(SideBarSection.WordsBreakdown, ListType.DaleChallUnfamiliarWords)
-a:SortList(ListType.DaleChallUnfamiliarWordsList,1,SortOrder.SortAscending)
+a:SortList(ListType.DaleChallUnfamiliarWords, 1, SortOrder.SortAscending)
 ScreenshotLib.SnapScreenshot(ImagePath .. "custom-test-example2-dc-word-list." .. FileExtension)
 
 a:SelectWindow(SideBarSection.WordsBreakdown, Application.GetTestId("New Dale-Chall (Baking)"))
-a:SortList(Application.GetTestId("New Dale-Chall (Baking)"),1,SortOrder.SortAscending)
+a:SortList(Application.GetTestId("New Dale-Chall (Baking)"), 1, SortOrder.SortAscending)
 ScreenshotLib.SnapScreenshot(ImagePath .. "custom-test-example2-custom-word-list." .. FileExtension)
 
 a:SelectWindow(SideBarSection.Statistics, ReportType.StatisticsSummaryReport)
@@ -980,14 +980,14 @@ bp:ShowSidebar(false)
 bp:ExportGraph(SideBarSection.ReadabilityScores, GraphType.Fry, ImagePath .. "fry-grouped." .. FileExtension)
 bp:ExportGraph(SideBarSection.BoxPlots, Application.GetTestId("fry-test"), ImagePath .. "boxgrouped." .. FileExtension)
 bp:SelectWindow(SideBarSection.ReadabilityScores, ListType.BatchRawScores)
-bp:SortList(ListType.BatchRawScores, 3, SortAscending)
+bp:SortList(ListType.BatchRawScores, 3, SortOrder.SortAscending)
 ScreenshotLib.SnapScreenshotOfListControl(ImagePath .. "batch-group-labels-scores." .. FileExtension,
     ListType.BatchRawScores, -1, 2, -1, 4)
 bp:Close()
 
 ScreenshotLib.ShowBatchProjectWizardTextSourcePage(
             Application.GetAbsoluteFilePath(
-            Debug.GetScriptFolderPath(),
+            Debug.GetScriptFolder(),
             ScreenshotProjectsFolder .. "Statistics Manual Ch. 1"))
 ScreenshotLib.SnapScreenshot(ImagePath .. "wizardbatchselectfilessamenames." .. FileExtension, 10009)
 -- crop off bottom half
