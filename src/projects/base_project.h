@@ -321,7 +321,7 @@ class BaseProject : public ProjectRefresh
         @details This should be implemented by derived documents.\n
             The non UI version of this class simply ignores this.
         @param title The document title.*/
-    virtual void SetDocumentTitle(const wxString& title) {}
+    virtual void SetDocumentTitle([[maybe_unused]] const wxString& title) {}
 
     /// If an appended document is being included, then this loads that into the buffer.
     bool LoadAppendedDocument();
@@ -1946,7 +1946,7 @@ class BaseProject : public ProjectRefresh
     [[nodiscard]]
     bool IsIncludingGradeTest() const;
 
-    virtual void RemoveMisspellings(const wxArrayString& misspellings) {}
+    virtual void RemoveMisspellings([[maybe_unused]] const wxArrayString& misspellings) {}
 
     [[nodiscard]]
     const std::shared_ptr<Wisteria::UI::ListCtrlExNumericDataProvider>& Get3SyllablePlusData() const
