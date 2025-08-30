@@ -92,7 +92,7 @@ namespace LuaScripting
             return 0;
             }
 
-        const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
+        const wxString path{ luaL_checkstring(L, 1), wxConvUTF8 };
         int startWindowToHighlight = wxID_ANY, endWindowToHighlight = wxID_ANY,
             cutOffWindow = wxID_ANY;
         if (lua_gettop(L) > 1)
@@ -156,8 +156,8 @@ namespace LuaScripting
             return 0;
             }
 
-        const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
-        const wxString annotation(luaL_checkstring(L, 2), wxConvUTF8);
+        const wxString path{ luaL_checkstring(L, 1), wxConvUTF8 };
+        const wxString annotation{ luaL_checkstring(L, 2), wxConvUTF8 };
         int startWindowToHighlight = wxID_ANY, endWindowToHighlight = wxID_ANY;
 
         auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 3));
@@ -196,7 +196,7 @@ namespace LuaScripting
             return 0;
             }
 
-        const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
+        const wxString path{ luaL_checkstring(L, 1), wxConvUTF8 };
 
         wxDocument* currentDoc =
             wxGetApp().GetMainFrame()->GetDocumentManager()->GetCurrentDocument();
@@ -206,7 +206,7 @@ namespace LuaScripting
             {
             auto project = dynamic_cast<BaseProjectDoc*>(currentDoc);
             auto firstView = project->GetFirstView();
-            if (firstView && firstView->IsKindOf(wxCLASSINFO(BaseProjectView)))
+            if (firstView != nullptr && firstView->IsKindOf(wxCLASSINFO(BaseProjectView)))
                 {
                 auto docView = dynamic_cast<BaseProjectView*>(firstView);
                 docView->Activate(true);
@@ -275,7 +275,7 @@ namespace LuaScripting
             return 0;
             }
 
-        const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
+        const wxString path{ luaL_checkstring(L, 1), wxConvUTF8 };
 
         wxCoord x{ wxDefaultCoord }, y{ wxDefaultCoord };
 
@@ -337,7 +337,7 @@ namespace LuaScripting
             return 0;
             }
 
-        const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
+        const wxString path{ luaL_checkstring(L, 1), wxConvUTF8 };
         int pageToSelect{ 0 }, firstButtonBarID{ -1 }, lastButtonBarID{ -1 };
         if (lua_gettop(L) >= 2)
             {
@@ -388,8 +388,8 @@ namespace LuaScripting
             return 0;
             }
 
-        const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
-        int startRow{ -1 }, endRow{ -1 }, startColumn{ -1 }, endColumn{ -1 }, cuttOffRow{ -1 };
+        const wxString path{ luaL_checkstring(L, 1), wxConvUTF8 };
+        int startRow{ -1 }, endRow{ -1 }, startColumn{ -1 }, endColumn{ -1 }, cutOffRow{ -1 };
         if (lua_gettop(L) >= 3)
             {
             startRow = lua_tonumber(L, 3);
@@ -408,7 +408,7 @@ namespace LuaScripting
             }
         if (lua_gettop(L) >= 7)
             {
-            cuttOffRow = lua_tonumber(L, 7);
+            cutOffRow = lua_tonumber(L, 7);
             }
         wxWindowID windowId = lua_tonumber(L, 2);
         if (const auto windowMappedId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
@@ -422,7 +422,7 @@ namespace LuaScripting
                                startRow == -1 ? -1 : startRow - 1, endRow == -1 ? -1 : endRow - 1,
                                startColumn == -1 ? -1 : startColumn - 1,
                                endColumn == -1 ? -1 : endColumn - 1,
-                               cuttOffRow == -1 ? -1 : cuttOffRow - 1));
+                               cutOffRow == -1 ? -1 : cutOffRow - 1));
         return 1;
         }
 
@@ -434,7 +434,7 @@ namespace LuaScripting
             return 0;
             }
 
-        const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
+        const wxString path{ luaL_checkstring(L, 1), wxConvUTF8 };
         int propGridId = wxID_ANY;
         wxString propertyStart, propertyEnd;
         if (lua_gettop(L) > 1)
@@ -451,11 +451,11 @@ namespace LuaScripting
             }
         if (lua_gettop(L) > 2)
             {
-            propertyStart = wxString(luaL_checkstring(L, 3), wxConvUTF8);
+            propertyStart = wxString{ luaL_checkstring(L, 3), wxConvUTF8 };
             }
         if (lua_gettop(L) > 3)
             {
-            propertyEnd = wxString(luaL_checkstring(L, 4), wxConvUTF8);
+            propertyEnd = wxString{ luaL_checkstring(L, 4), wxConvUTF8 };
             }
         lua_pushboolean(
             L, Screenshot::SaveScreenshotOfDialogWithPropertyGrid(
@@ -473,7 +473,7 @@ namespace LuaScripting
             return 0;
             }
 
-        const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
+        const wxString path{ luaL_checkstring(L, 1), wxConvUTF8 };
         lua_pushboolean(L, Screenshot::HighlightItemInScreenshot(
                                path, wxPoint(lua_tonumber(L, 2), lua_tonumber(L, 3)),
                                wxPoint(lua_tonumber(L, 4), lua_tonumber(L, 5))));
@@ -493,7 +493,7 @@ namespace LuaScripting
             }
         if (lua_gettop(L) > 1)
             {
-            LuaDocGroupSelectDlg->SetGroupingLabel(wxString(luaL_checkstring(L, 2), wxConvUTF8));
+            LuaDocGroupSelectDlg->SetGroupingLabel(wxString{ luaL_checkstring(L, 2), wxConvUTF8 });
             }
         LuaDocGroupSelectDlg->Show();
         wxGetApp().Yield();
@@ -503,7 +503,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int CloseDocGroupSelectDlg(lua_State*)
         {
-        if (LuaDocGroupSelectDlg)
+        if (LuaDocGroupSelectDlg != nullptr)
             {
             LuaDocGroupSelectDlg->Destroy();
             LuaDocGroupSelectDlg = nullptr;
@@ -541,7 +541,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int CloseEditorTextDlg(lua_State*)
         {
-        if (LuaEditTextDlg)
+        if (LuaEditTextDlg != nullptr)
             {
             LuaEditTextDlg->Destroy();
             LuaEditTextDlg = nullptr;
@@ -564,7 +564,7 @@ namespace LuaScripting
                 new EditWordListDlg(wxGetApp().GetMainFrame(), wxID_ANY, _(L"Edit Phrase List"));
             }
         LuaEditWordListDlg->SetPhraseFileMode(true);
-        LuaEditWordListDlg->SetFilePath(wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        LuaEditWordListDlg->SetFilePath(wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
         LuaEditWordListDlg->Show();
         wxGetApp().Yield();
         return 0;
@@ -573,7 +573,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int CloseEditWordListDlg(lua_State*)
         {
-        if (LuaEditWordListDlg)
+        if (LuaEditWordListDlg != nullptr)
             {
             LuaEditWordListDlg->Destroy();
             LuaEditWordListDlg = nullptr;
@@ -609,7 +609,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int CloseSortListDlg(lua_State*)
         {
-        if (LuaListCtrlSortDlg)
+        if (LuaListCtrlSortDlg != nullptr)
             {
             LuaListCtrlSortDlg->Destroy();
             LuaListCtrlSortDlg = nullptr;
@@ -629,7 +629,7 @@ namespace LuaScripting
             }
         wxDocument* currentDoc =
             wxGetApp().GetMainFrame()->GetDocumentManager()->GetCurrentDocument();
-        if (currentDoc && currentDoc->IsKindOf(wxCLASSINFO(ProjectDoc)))
+        if (currentDoc != nullptr && currentDoc->IsKindOf(wxCLASSINFO(ProjectDoc)))
             {
             std::wstring filteredText;
             dynamic_cast<ProjectDoc*>(currentDoc)
@@ -646,7 +646,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int CloseFilteredTextPreviewDlg(lua_State*)
         {
-        if (LuaFilteredTextPreviewDlg)
+        if (LuaFilteredTextPreviewDlg != nullptr)
             {
             LuaFilteredTextPreviewDlg->Destroy();
             LuaFilteredTextPreviewDlg = nullptr;
@@ -709,9 +709,9 @@ namespace LuaScripting
             }
         LuaStandardProjectWizard =
             new ProjectWizardDlg(wxGetApp().GetMainFrame(), ProjectType::StandardProject,
-                                 wxString(luaL_checkstring(L, 1), wxConvUTF8));
+                                 wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
         LuaStandardProjectWizard->SetTextFromFileSelected();
-        LuaStandardProjectWizard->SetFilePath(wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        LuaStandardProjectWizard->SetFilePath(wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
         LuaStandardProjectWizard->SelectPage(0);
         LuaStandardProjectWizard->FindWindow(wxID_FORWARD)->SetFocus();
         LuaStandardProjectWizard->Show();
@@ -733,9 +733,9 @@ namespace LuaScripting
             }
         LuaStandardProjectWizard =
             new ProjectWizardDlg(wxGetApp().GetMainFrame(), ProjectType::StandardProject,
-                                 wxString(luaL_checkstring(L, 1), wxConvUTF8));
+                                 wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
         LuaStandardProjectWizard->SetTextFromFileSelected();
-        LuaStandardProjectWizard->SetFilePath(wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        LuaStandardProjectWizard->SetFilePath(wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
         LuaStandardProjectWizard->Show();
         wxGetApp().Yield();
         return 0;
@@ -753,7 +753,8 @@ namespace LuaScripting
         LuaStandardProjectWizard->SetManualTextEntrySelected();
         if (lua_gettop(L) > 0)
             {
-            LuaStandardProjectWizard->SetEnteredText(wxString(luaL_checkstring(L, 1), wxConvUTF8));
+            LuaStandardProjectWizard->SetEnteredText(
+                wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
             }
         LuaStandardProjectWizard->SelectPage(0);
         LuaStandardProjectWizard->FindWindow(wxID_FORWARD)->SetFocus();
@@ -885,7 +886,7 @@ namespace LuaScripting
         for (int i = 1; i <= lua_gettop(L); ++i)
             {
             LuaStandardProjectWizard->SelectStandardTestManually(
-                wxString(luaL_checkstring(L, i), wxConvUTF8));
+                wxString{ luaL_checkstring(L, i), wxConvUTF8 });
             }
         LuaStandardProjectWizard->FindWindow(wxID_FORWARD)->SetFocus();
         LuaStandardProjectWizard->Show();
@@ -908,7 +909,7 @@ namespace LuaScripting
         if (lua_gettop(L) > 0)
             {
             LuaStandardProjectWizard->SetSelectedTestBundle(
-                wxString(luaL_checkstring(L, 1), wxConvUTF8));
+                wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
             }
         LuaStandardProjectWizard->FindWindow(wxID_FORWARD)->SetFocus();
         LuaStandardProjectWizard->Show();
@@ -920,7 +921,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int CloseStandardProjectWizard(lua_State*)
         {
-        if (LuaStandardProjectWizard)
+        if (LuaStandardProjectWizard != nullptr)
             {
             LuaStandardProjectWizard->Destroy();
             LuaStandardProjectWizard = nullptr;
@@ -940,7 +941,7 @@ namespace LuaScripting
             {
             LuaBatchProjectWizard =
                 new ProjectWizardDlg(wxGetApp().GetMainFrame(), ProjectType::BatchProject,
-                                     wxString(luaL_checkstring(L, 1), wxConvUTF8));
+                                     wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
             }
         else
             {
@@ -965,7 +966,7 @@ namespace LuaScripting
             }
         LuaBatchProjectWizard = new ProjectWizardDlg(
             wxGetApp().GetMainFrame(), ProjectType::BatchProject,
-            wxString(luaL_checkstring(L, 1), wxConvUTF8), wxID_ANY, _(L"New Project Wizard"),
+            wxString{ luaL_checkstring(L, 1), wxConvUTF8 }, wxID_ANY, _(L"New Project Wizard"),
             wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER,
             ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::OnlyShowFileNames);
         LuaBatchProjectWizard->SetFileListTruncationMode(
@@ -1106,7 +1107,7 @@ namespace LuaScripting
         for (int i = 1; i <= lua_gettop(L); ++i)
             {
             LuaStandardProjectWizard->SelectStandardTestManually(
-                wxString(luaL_checkstring(L, i), wxConvUTF8));
+                wxString{ luaL_checkstring(L, i), wxConvUTF8 });
             }
         LuaBatchProjectWizard->FindWindow(wxID_FORWARD)->SetFocus();
         LuaBatchProjectWizard->Show();
@@ -1131,7 +1132,7 @@ namespace LuaScripting
             {
             LuaBatchProjectWizard->GetFileList()->SetVirtualDataSize(1, 1);
             LuaBatchProjectWizard->GetFileList()->SetItemText(
-                0, 0, wxString(luaL_checkstring(L, 1), wxConvUTF8));
+                0, 0, wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
             }
         LuaBatchProjectWizard->FindWindow(wxID_FORWARD)->SetFocus();
         LuaBatchProjectWizard->Show();
@@ -1142,7 +1143,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int CloseBatchProjectWizard(lua_State*)
         {
-        if (LuaBatchProjectWizard)
+        if (LuaBatchProjectWizard != nullptr)
             {
             LuaBatchProjectWizard->Destroy();
             LuaBatchProjectWizard = nullptr;
@@ -1154,7 +1155,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int ShowTestBundleDialog(lua_State* L)
         {
-        if (LuaTestBundleDlg)
+        if (LuaTestBundleDlg != nullptr)
             {
             LuaTestBundleDlg->Close();
             }
@@ -1163,13 +1164,13 @@ namespace LuaScripting
         for (int i = 2; i < lua_gettop(L); ++i)
             {
             bundle.GetTestGoals().insert(
-                TestGoal{ wxString(luaL_checkstring(L, i + 1), wxConvUTF8).wc_str() });
+                TestGoal{ wxString{ luaL_checkstring(L, i + 1), wxConvUTF8 }.wc_str() });
             }
         LuaTestBundleDlg = new TestBundleDlg(wxGetApp().GetMainFrame(), bundle);
         if (lua_gettop(L) > 0)
             {
             LuaTestBundleDlg->SetTestBundleName(
-                wxString(luaL_checkstring(L, 1), wxConvUTF8).wc_str());
+                wxString{ luaL_checkstring(L, 1), wxConvUTF8 }.wc_str());
             }
         if (lua_gettop(L) > 1)
             {
@@ -1192,7 +1193,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int CloseTestBundleDialog(lua_State*)
         {
-        if (LuaTestBundleDlg)
+        if (LuaTestBundleDlg != nullptr)
             {
             LuaTestBundleDlg->Destroy();
             LuaTestBundleDlg = nullptr;
@@ -1212,12 +1213,12 @@ namespace LuaScripting
         // set the test name (if provided)
         if (lua_gettop(L) > 0)
             {
-            LuaCustomTestDlg->SetTestName(wxString(luaL_checkstring(L, 1), wxConvUTF8), false);
+            LuaCustomTestDlg->SetTestName(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }, false);
             }
         // set formula (if provided)
         if (lua_gettop(L) > 1)
             {
-            LuaCustomTestDlg->SetFormula(wxString(luaL_checklstring(L, 2, nullptr), wxConvUTF8));
+            LuaCustomTestDlg->SetFormula(wxString{ luaL_checklstring(L, 2, nullptr), wxConvUTF8 });
             }
         // set the test type (if provided)
         if (lua_gettop(L) > 2)
@@ -1408,7 +1409,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int CloseCustomTestDialog(lua_State*)
         {
-        if (LuaCustomTestDlg)
+        if (LuaCustomTestDlg != nullptr)
             {
             LuaCustomTestDlg->Destroy();
             LuaCustomTestDlg = nullptr;
@@ -1445,7 +1446,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int CloseOptions(lua_State*)
         {
-        if (LuaOptionsDlg)
+        if (LuaOptionsDlg != nullptr)
             {
             LuaOptionsDlg->Destroy();
             LuaOptionsDlg = nullptr;
@@ -1475,7 +1476,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int ClosePrinterHeaderFooterOptions(lua_State*)
         {
-        if (LuaPrinterOptions)
+        if (LuaPrinterOptions != nullptr)
             {
             LuaPrinterOptions->Destroy();
             LuaPrinterOptions = nullptr;
@@ -1502,7 +1503,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int CloseListExportDlg(lua_State*)
         {
-        if (LuaListExportDlg)
+        if (LuaListExportDlg != nullptr)
             {
             LuaListExportDlg->Destroy();
             LuaListExportDlg = nullptr;
@@ -1514,7 +1515,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int CloseListViewItemDlg(lua_State*)
         {
-        if (LuaListViewItemDlg)
+        if (LuaListViewItemDlg != nullptr)
             {
             LuaListViewItemDlg->Destroy();
             LuaListViewItemDlg = nullptr;
@@ -1526,7 +1527,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int ShowListViewItemDlg(lua_State* L)
         {
-        if (LuaListViewItemDlg)
+        if (LuaListViewItemDlg != nullptr)
             {
             CloseListViewItemDlg(L);
             }
@@ -1552,7 +1553,7 @@ namespace LuaScripting
             LuaGetArchiveDlg = new ArchiveDlg(wxGetApp().GetMainFrame(),
                                               ReadabilityAppOptions::GetDocumentFilter());
             }
-        LuaGetArchiveDlg->SetPath(wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        LuaGetArchiveDlg->SetPath(wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
         LuaGetArchiveDlg->Show();
         wxGetApp().Yield();
         return 0;
@@ -1561,7 +1562,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int CloseGetArchiveDlg(lua_State*)
         {
-        if (LuaGetArchiveDlg)
+        if (LuaGetArchiveDlg != nullptr)
             {
             LuaGetArchiveDlg->Destroy();
             LuaGetArchiveDlg = nullptr;
@@ -1578,7 +1579,7 @@ namespace LuaScripting
             LuaGetDirDlg = new GetDirFilterDialog(wxGetApp().GetMainFrame(),
                                                   ReadabilityAppOptions::GetDocumentFilter());
             }
-        LuaGetDirDlg->SetPath(wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        LuaGetDirDlg->SetPath(wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
         LuaGetDirDlg->Show();
         wxGetApp().Yield();
         return 0;
@@ -1587,7 +1588,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int CloseGetDirDlg(lua_State*)
         {
-        if (LuaGetDirDlg)
+        if (LuaGetDirDlg != nullptr)
             {
             LuaGetDirDlg->Destroy();
             LuaGetDirDlg = nullptr;
@@ -1618,7 +1619,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int CloseSelectProjectTypeDlg(lua_State*)
         {
-        if (LuaSelectProjectType)
+        if (LuaSelectProjectType != nullptr)
             {
             LuaSelectProjectType->Destroy();
             LuaSelectProjectType = nullptr;
@@ -1645,7 +1646,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int CloseWebHarvesterDlg(lua_State*)
         {
-        if (LuaWebHarvesterDlg)
+        if (LuaWebHarvesterDlg != nullptr)
             {
             LuaWebHarvesterDlg->Destroy();
             LuaWebHarvesterDlg = nullptr;

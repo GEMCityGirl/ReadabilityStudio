@@ -508,7 +508,7 @@ namespace LuaScripting
             return 0;
             }
 
-        m_project->SetExcludedPhrasesPath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
+        m_project->SetExcludedPhrasesPath(wxString{ luaL_checkstring(L, 2), wxConvUTF8 });
         m_project->LoadExcludePhrases();
         ReloadIfNotDelayed();
         return 0;
@@ -969,7 +969,7 @@ namespace LuaScripting
             return 0;
             }
 
-        m_project->SetAppendedDocumentFilePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
+        m_project->SetAppendedDocumentFilePath(wxString{ luaL_checkstring(L, 2), wxConvUTF8 });
         ReloadIfNotDelayed();
         return 0;
         }
@@ -1073,7 +1073,7 @@ namespace LuaScripting
             return 0;
             }
 
-        m_project->SetGraphCommonImagePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
+        m_project->SetGraphCommonImagePath(wxString{ luaL_checkstring(L, 2), wxConvUTF8 });
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -1102,7 +1102,7 @@ namespace LuaScripting
             return 0;
             }
 
-        m_project->SetPlotBackGroundImagePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
+        m_project->SetPlotBackGroundImagePath(wxString{ luaL_checkstring(L, 2), wxConvUTF8 });
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -1414,7 +1414,7 @@ namespace LuaScripting
             return 0;
             }
 
-        m_project->SetGraphColorScheme(wxString(luaL_checkstring(L, 2), wxConvUTF8));
+        m_project->SetGraphColorScheme(wxString{ luaL_checkstring(L, 2), wxConvUTF8 });
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -1443,7 +1443,7 @@ namespace LuaScripting
             return 0;
             }
 
-        m_project->SetWatermark(wxString(luaL_checkstring(L, 2), wxConvUTF8));
+        m_project->SetWatermark(wxString{ luaL_checkstring(L, 2), wxConvUTF8 });
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -1472,7 +1472,7 @@ namespace LuaScripting
             return 0;
             }
 
-        m_project->SetWatermarkLogoPath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
+        m_project->SetWatermarkLogoPath(wxString{ luaL_checkstring(L, 2), wxConvUTF8 });
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -1501,7 +1501,7 @@ namespace LuaScripting
             return 0;
             }
 
-        m_project->SetStippleImagePath(wxString(luaL_checkstring(L, 2), wxConvUTF8));
+        m_project->SetStippleImagePath(wxString{ luaL_checkstring(L, 2), wxConvUTF8 });
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -1530,7 +1530,7 @@ namespace LuaScripting
             return 0;
             }
 
-        m_project->SetStippleShape(wxString(luaL_checkstring(L, 2), wxConvUTF8));
+        m_project->SetStippleShape(wxString{ luaL_checkstring(L, 2), wxConvUTF8 });
         ReloadIfNotDelayedSimple();
         return 0;
         }
@@ -2256,7 +2256,7 @@ namespace LuaScripting
             return 0;
             }
 
-        m_project->SetReviewer(wxString(luaL_checkstring(L, 2), wxConvUTF8));
+        m_project->SetReviewer(wxString{ luaL_checkstring(L, 2), wxConvUTF8 });
         ReloadIfNotDelayed();
         return 0;
         }
@@ -2285,7 +2285,7 @@ namespace LuaScripting
             return 0;
             }
 
-        m_project->SetStatus(wxString(luaL_checkstring(L, 2), wxConvUTF8));
+        m_project->SetStatus(wxString{ luaL_checkstring(L, 2), wxConvUTF8 });
         ReloadIfNotDelayed();
         return 0;
         }
@@ -2919,7 +2919,7 @@ namespace LuaScripting
             return 1;
             }
 
-        const wxString testName(luaL_checkstring(L, 2), wxConvUTF8);
+        const wxString testName{ luaL_checkstring(L, 2), wxConvUTF8 };
 
         if (m_delayReloading)
             {
@@ -3110,7 +3110,7 @@ namespace LuaScripting
                 exportOptions.m_pageUsingPrinterSettings =
                     (lua_gettop(L) > 8) ? int_to_bool(lua_toboolean(L, 9)) : false;
                 lua_pushboolean(
-                    L, listWindow->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8),
+                    L, listWindow->Save(wxString{ luaL_checklstring(L, 3, nullptr), wxConvUTF8 },
                                         exportOptions));
                 listWindow->SetLabel(originalLabel);
                 listWindow->SetFocus();
@@ -3169,7 +3169,7 @@ namespace LuaScripting
                     graphWindow = dynamic_cast<Wisteria::Canvas*>(selWindow);
                     }
                 }
-            if (graphWindow)
+            if (graphWindow != nullptr)
                 {
                 const BatchProjectDoc* doc = dynamic_cast<BatchProjectDoc*>(view->GetDocument());
                 const wxString originalLabel = graphWindow->GetLabel();

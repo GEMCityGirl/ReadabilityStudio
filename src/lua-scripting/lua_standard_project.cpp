@@ -3694,7 +3694,7 @@ namespace LuaScripting
             }
         wxString outputPath(luaL_checkstring(L, 2), wxConvUTF8);
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
-        if (view)
+        if (view != nullptr)
             {
             view->ExportAll(outputPath, BaseProjectDoc::GetExportListExt(),
                             BaseProjectDoc::GetExportTextViewExt(),
@@ -3717,7 +3717,7 @@ namespace LuaScripting
             }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
-        if (view)
+        if (view != nullptr)
             {
             ExplanationListCtrl* scoresWindow =
                 dynamic_cast<ExplanationListCtrl*>(view->GetReadabilityResultsView().FindWindowById(
@@ -3761,7 +3761,7 @@ namespace LuaScripting
             }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
-        if (view)
+        if (view != nullptr)
             {
             const auto idPos = wxGetApp().GetDynamicIdMap().find(luaL_checkinteger(L, 2));
             if (idPos == wxGetApp().GetDynamicIdMap().cend())
@@ -3775,30 +3775,30 @@ namespace LuaScripting
             Wisteria::Canvas* graphWindow = dynamic_cast<Wisteria::Canvas*>(
                 view->GetReadabilityResultsView().FindWindowById(idPos->second));
             // look in stats summary section if not in the readability section
-            if (!graphWindow)
+            if (graphWindow == nullptr)
                 {
                 graphWindow = dynamic_cast<Wisteria::Canvas*>(
                     view->GetSummaryView().FindWindowById(idPos->second));
                 }
             // look in word section if not in the stats section
-            if (!graphWindow)
+            if (graphWindow == nullptr)
                 {
                 graphWindow = dynamic_cast<Wisteria::Canvas*>(
                     view->GetWordsBreakdownView().FindWindowById(idPos->second));
                 }
             // look in sentence section if not in the words section
-            if (!graphWindow)
+            if (graphWindow == nullptr)
                 {
                 graphWindow = dynamic_cast<Wisteria::Canvas*>(
                     view->GetSentencesBreakdownView().FindWindowById(idPos->second));
                 }
             // look in Dolch section if not in the stats summary section
-            if (!graphWindow)
+            if (graphWindow == nullptr)
                 {
                 graphWindow = dynamic_cast<Wisteria::Canvas*>(
                     view->GetDolchSightWordsView().FindWindowById(idPos->second));
                 }
-            if (graphWindow)
+            if (graphWindow != nullptr)
                 {
                 const ProjectDoc* doc = dynamic_cast<ProjectDoc*>(view->GetDocument());
                 const wxString originalLabel = graphWindow->GetName();
@@ -3820,8 +3820,8 @@ namespace LuaScripting
                     opt.m_imageSize.SetHeight(luaL_checkinteger(L, 6));
                     }
                 lua_pushboolean(
-                    L,
-                    graphWindow->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8), opt));
+                    L, graphWindow->Save(wxString{ luaL_checklstring(L, 3, nullptr), wxConvUTF8 },
+                                         opt));
                 graphWindow->SetLabel(originalLabel);
                 wxGetApp().Yield();
                 return 1;
@@ -3854,7 +3854,7 @@ namespace LuaScripting
             }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
-        if (view)
+        if (view != nullptr)
             {
             wxWindowID windowId = luaL_checkinteger(L, 2);
             if (const auto windowMappedId =
@@ -3867,18 +3867,18 @@ namespace LuaScripting
                 dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(
                     windowId, CLASSINFO(FormattedTextCtrl)));
             // look in grammar section if not in the highlighted words section
-            if (!textWindow)
+            if (textWindow == nullptr)
                 {
                 textWindow = dynamic_cast<FormattedTextCtrl*>(
                     view->GetGrammarView().FindWindowById(windowId));
                 }
             // look in Dolch section if not in the grammar section
-            if (!textWindow)
+            if (textWindow == nullptr)
                 {
                 textWindow = dynamic_cast<FormattedTextCtrl*>(
                     view->GetDolchSightWordsView().FindWindowById(windowId));
                 }
-            if (textWindow)
+            if (textWindow != nullptr)
                 {
                 const ProjectDoc* doc = dynamic_cast<ProjectDoc*>(view->GetDocument());
                 const wxString originalLabel = textWindow->GetName();
@@ -3886,7 +3886,7 @@ namespace LuaScripting
                     originalLabel +
                     wxString::Format(L" [%s]", wxFileName::StripExtension(doc->GetTitle())));
                 lua_pushboolean(
-                    L, textWindow->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8)));
+                    L, textWindow->Save(wxString{ luaL_checklstring(L, 3, nullptr), wxConvUTF8 }));
                 wxGetApp().Yield();
                 return 1;
                 }
@@ -3919,7 +3919,7 @@ namespace LuaScripting
             }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
-        if (view)
+        if (view != nullptr)
             {
             const ProjectDoc* doc = dynamic_cast<ProjectDoc*>(view->GetDocument());
             wxWindowID windowId = luaL_checkinteger(L, 2);
@@ -3933,14 +3933,14 @@ namespace LuaScripting
                 {
                 HtmlTableWindow* window =
                     dynamic_cast<HtmlTableWindow*>(view->GetSummaryView().FindWindowById(windowId));
-                if (window)
+                if (window != nullptr)
                     {
                     const wxString originalLabel = window->GetName();
                     window->SetLabel(
                         originalLabel +
                         wxString::Format(L" [%s]", wxFileName::StripExtension(doc->GetTitle())));
                     lua_pushboolean(
-                        L, window->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8)));
+                        L, window->Save(wxString{ luaL_checklstring(L, 3, nullptr), wxConvUTF8 }));
                     window->SetLabel(originalLabel);
                     wxGetApp().Yield();
                     return 1;
@@ -3950,14 +3950,14 @@ namespace LuaScripting
                 {
                 HtmlTableWindow* window = dynamic_cast<HtmlTableWindow*>(
                     view->GetReadabilityResultsView().FindWindowById(windowId));
-                if (window)
+                if (window != nullptr)
                     {
                     const wxString originalLabel = window->GetName();
                     window->SetLabel(
                         originalLabel +
                         wxString::Format(L" [%s]", wxFileName::StripExtension(doc->GetTitle())));
                     lua_pushboolean(
-                        L, window->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8)));
+                        L, window->Save(wxString{ luaL_checklstring(L, 3, nullptr), wxConvUTF8 }));
                     window->SetLabel(originalLabel);
                     wxGetApp().Yield();
                     return 1;
@@ -3967,14 +3967,14 @@ namespace LuaScripting
                 {
                 ExplanationListCtrl* window = dynamic_cast<ExplanationListCtrl*>(
                     view->GetReadabilityResultsView().FindWindowById(windowId));
-                if (window)
+                if (window != nullptr)
                     {
                     const wxString originalLabel = window->GetName();
                     window->SetLabel(
                         originalLabel +
                         wxString::Format(L" [%s]", wxFileName::StripExtension(doc->GetTitle())));
                     lua_pushboolean(
-                        L, window->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8)));
+                        L, window->Save(wxString{ luaL_checklstring(L, 3, nullptr), wxConvUTF8 }));
                     window->SetLabel(originalLabel);
                     wxGetApp().Yield();
                     return 1;
@@ -4009,7 +4009,7 @@ namespace LuaScripting
             }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
-        if (view)
+        if (view != nullptr)
             {
             wxWindowID windowId = luaL_checkinteger(L, 2);
             if (const auto windowMappedId =
@@ -4020,27 +4020,28 @@ namespace LuaScripting
                 }
             ListCtrlEx* listWindow =
                 dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(windowId));
-            if (!listWindow) // look in grammar section if not in the highlighted words section
+            if (listWindow ==
+                nullptr) // look in grammar section if not in the highlighted words section
                 {
                 listWindow =
                     dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(windowId));
                 }
-            if (!listWindow) // look in sentences section if not in the grammar section
+            if (listWindow == nullptr) // look in sentences section if not in the grammar section
                 {
                 listWindow = dynamic_cast<ListCtrlEx*>(
                     view->GetSentencesBreakdownView().FindWindowById(windowId));
                 }
-            if (!listWindow) // look in Dolch section if not in the sentences section
+            if (listWindow == nullptr) // look in Dolch section if not in the sentences section
                 {
                 listWindow = dynamic_cast<ListCtrlEx*>(
                     view->GetDolchSightWordsView().FindWindowById(windowId));
                 }
-            if (!listWindow) // look in stats section if not in the Dolch section
+            if (listWindow == nullptr) // look in stats section if not in the Dolch section
                 {
                 listWindow =
                     dynamic_cast<ListCtrlEx*>(view->GetSummaryView().FindWindowById(windowId));
                 }
-            if (listWindow)
+            if (listWindow != nullptr)
                 {
                 const ProjectDoc* doc = dynamic_cast<ProjectDoc*>(view->GetDocument());
                 const wxString originalLabel = listWindow->GetName();
@@ -4057,7 +4058,7 @@ namespace LuaScripting
                 exportOptions.m_pageUsingPrinterSettings =
                     (lua_gettop(L) > 8) ? int_to_bool(lua_toboolean(L, 9)) : false;
                 lua_pushboolean(
-                    L, listWindow->Save(wxString(luaL_checklstring(L, 3, nullptr), wxConvUTF8),
+                    L, listWindow->Save(wxString{ luaL_checklstring(L, 3, nullptr), wxConvUTF8 },
                                         exportOptions));
                 listWindow->SetLabel(originalLabel);
                 wxGetApp().Yield();
@@ -4124,7 +4125,7 @@ namespace LuaScripting
             }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
-        if (view)
+        if (view != nullptr)
             {
             wxWindowID windowId = luaL_checkinteger(L, 2);
             if (const auto windowMappedId =
@@ -4138,7 +4139,7 @@ namespace LuaScripting
 
             wxWindow* selWindow = view->GetWordsBreakdownView().FindWindowById(
                 windowId, wxCLASSINFO(FormattedTextCtrl));
-            if (selWindow && selWindow->IsKindOf(wxCLASSINFO(FormattedTextCtrl)))
+            if (selWindow != nullptr && selWindow->IsKindOf(wxCLASSINFO(FormattedTextCtrl)))
                 {
                 // Custom word-list tests have the same integral IDs for their highlighted-text
                 // reports and list controls, so search by label instead.
@@ -4172,7 +4173,7 @@ namespace LuaScripting
             }
 
         auto view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
-        if (view)
+        if (view != nullptr)
             {
             view->ShowSideBar(int_to_bool(lua_toboolean(L, 2)));
             }
@@ -4193,7 +4194,7 @@ namespace LuaScripting
             }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
-        if (view)
+        if (view != nullptr)
             {
             const auto sectionId = wxGetApp().GetDynamicIdMap().find(luaL_checkinteger(L, 2));
             if (sectionId == wxGetApp().GetDynamicIdMap().cend())
@@ -4255,7 +4256,7 @@ namespace LuaScripting
             }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
-        if (view)
+        if (view != nullptr)
             {
             const auto index = view->GetSideBar()->FindFolder(
                 BaseProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID);
@@ -4284,7 +4285,7 @@ namespace LuaScripting
             }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
-        if (view)
+        if (view != nullptr)
             {
             wxWindowID windowId = luaL_checkinteger(L, 2);
             if (const auto windowMappedId =
@@ -4297,30 +4298,30 @@ namespace LuaScripting
             ListCtrlEx* listWindow =
                 dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(windowId));
             // look in grammar section if not in the highlighted words section
-            if (!listWindow)
+            if (listWindow == nullptr)
                 {
                 listWindow =
                     dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(windowId));
                 }
             // look in Dolch section if not in the grammar section
-            if (!listWindow)
+            if (listWindow == nullptr)
                 {
                 listWindow = dynamic_cast<ListCtrlEx*>(
                     view->GetDolchSightWordsView().FindWindowById(windowId));
                 }
             // look in stats section if not in the Dolch section
-            if (!listWindow)
+            if (listWindow == nullptr)
                 {
                 listWindow =
                     dynamic_cast<ListCtrlEx*>(view->GetSummaryView().FindWindowById(windowId));
                 }
             // look in stats section if not in the sentences section
-            if (!listWindow)
+            if (listWindow == nullptr)
                 {
                 listWindow = dynamic_cast<ListCtrlEx*>(
                     view->GetSentencesBreakdownView().FindWindowById(windowId));
                 }
-            if (listWindow)
+            if (listWindow != nullptr)
                 {
                 std::vector<std::pair<size_t, Wisteria::SortDirection>> columns;
                 for (int i = 3; i <= lua_gettop(L); i += 2)
@@ -4349,7 +4350,7 @@ namespace LuaScripting
             }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
-        if (view)
+        if (view != nullptr)
             {
             const auto graphID = wxGetApp().GetDynamicIdMap().find(luaL_checkinteger(L, 2));
             if (graphID == wxGetApp().GetDynamicIdMap().cend())
@@ -4363,30 +4364,30 @@ namespace LuaScripting
             Wisteria::Canvas* graphWindow = dynamic_cast<Wisteria::Canvas*>(
                 view->GetSummaryView().FindWindowById(graphID->second));
             // look in Dolch section if not in the summary section
-            if (!graphWindow)
+            if (graphWindow == nullptr)
                 {
                 graphWindow = dynamic_cast<Wisteria::Canvas*>(
                     view->GetDolchSightWordsView().FindWindowById(graphID->second));
                 }
             // look in words section
-            if (!graphWindow)
+            if (graphWindow == nullptr)
                 {
                 graphWindow = dynamic_cast<Wisteria::Canvas*>(
                     view->GetWordsBreakdownView().FindWindowById(graphID->second));
                 }
             // look in sentences section
-            if (!graphWindow)
+            if (graphWindow == nullptr)
                 {
                 graphWindow = dynamic_cast<Wisteria::Canvas*>(
                     view->GetSentencesBreakdownView().FindWindowById(graphID->second));
                 }
             // look in grammar section
-            if (!graphWindow)
+            if (graphWindow == nullptr)
                 {
                 graphWindow = dynamic_cast<Wisteria::Canvas*>(
                     view->GetGrammarView().FindWindowById(graphID->second));
                 }
-            if (graphWindow)
+            if (graphWindow != nullptr)
                 {
                 std::dynamic_pointer_cast<BarChart>(graphWindow->GetFixedObject(0, 0))
                     ->SortBars(BarChart::BarSortComparison::SortByBarLength,
@@ -4411,7 +4412,7 @@ namespace LuaScripting
             }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
-        if (view)
+        if (view != nullptr)
             {
             wxWindowID windowId = luaL_checkinteger(L, 2);
             if (const auto windowMappedId =
@@ -4425,7 +4426,7 @@ namespace LuaScripting
 
             wxWindow* selWindow =
                 view->GetWordsBreakdownView().FindWindowById(windowId, CLASSINFO(ListCtrlEx));
-            if (selWindow && selWindow->IsKindOf(wxCLASSINFO(ListCtrlEx)))
+            if (selWindow != nullptr && selWindow->IsKindOf(wxCLASSINFO(ListCtrlEx)))
                 {
                 // Custom word-list tests have the same integral IDs for their highlighted-text
                 // reports and list controls, so search by label instead.
@@ -4456,7 +4457,7 @@ namespace LuaScripting
             }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
-        if (view)
+        if (view != nullptr)
             {
             wxWindowID windowId = luaL_checkinteger(L, 2);
             if (const auto windowMappedId =
@@ -4481,7 +4482,7 @@ namespace LuaScripting
                     {
                     selWindow = view->GetGrammarView().FindWindowById(windowId);
                     }
-                if (selWindow && selWindow->IsKindOf(wxCLASSINFO(FormattedTextCtrl)))
+                if (selWindow != nullptr && selWindow->IsKindOf(wxCLASSINFO(FormattedTextCtrl)))
                     {
                     // Custom word-list tests have the same integral IDs for their highlighted-text
                     // reports and list controls, so search by label instead.
@@ -4506,7 +4507,7 @@ namespace LuaScripting
             }
 
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
-        if (view)
+        if (view != nullptr)
             {
             const auto [parentPos, childPos] = view->GetSideBar()->FindSubItem(
                 BaseProjectView::SIDEBAR_GRAMMAR_SECTION_ID,
