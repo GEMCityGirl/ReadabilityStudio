@@ -246,7 +246,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::Polygo
         const wxFont quadLabelFont(wxFont(
             wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetFractionalPointSize() * 1.25,
             wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false,
-            L"Times New Roman"));
+            Wisteria::GraphItems::Label::GetFirstAvailableMonospaceFont()));
         for (const auto& level : GetLevelLabels())
             {
             GetPhysicalCoordinates(level.GetX(), level.GetY(), pt1);
