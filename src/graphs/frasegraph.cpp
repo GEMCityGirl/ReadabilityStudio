@@ -12,6 +12,7 @@
  ********************************************************************************/
 
 #include "frasegraph.h"
+#include <span>
 
 wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::PolygonReadabilityGraph)
 
@@ -169,21 +170,21 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::Polygo
             Wisteria::Colors::ColorBrewer::GetColor(Wisteria::Colors::Color::LightGray), 100));
 
         // I
-        AddObject(
-            std::make_unique<Wisteria::GraphItems::Polygon>(Wisteria::GraphItems::GraphItemInfo()
-                                                                .Pen(wxNullPen)
-                                                                .Text(_(L"Beginner Level"))
-                                                                .Brush(wxNullBrush)
-                                                                .SelectionBrush(selectionBrush),
-                                                            m_levelLinePoints.data(), 3));
+        AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
+            Wisteria::GraphItems::GraphItemInfo()
+                .Pen(wxNullPen)
+                .Text(_(L"Beginner Level"))
+                .Brush(wxNullBrush)
+                .SelectionBrush(selectionBrush),
+            std::span(m_levelLinePoints.cbegin(), std::next(m_levelLinePoints.cbegin(), 3))));
         // II
-        AddObject(
-            std::make_unique<Wisteria::GraphItems::Polygon>(Wisteria::GraphItems::GraphItemInfo()
-                                                                .Pen(wxNullPen)
-                                                                .Text(_(L"Intermediate Level"))
-                                                                .Brush(wxNullBrush)
-                                                                .SelectionBrush(selectionBrush),
-                                                            &m_levelLinePoints[3], 5));
+        AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
+            Wisteria::GraphItems::GraphItemInfo()
+                .Pen(wxNullPen)
+                .Text(_(L"Intermediate Level"))
+                .Brush(wxNullBrush)
+                .SelectionBrush(selectionBrush),
+            std::span(std::next(m_levelLinePoints.cbegin(), 3), 5)));
         // III
         AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
             Wisteria::GraphItems::GraphItemInfo()
@@ -191,15 +192,15 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::Polygo
                 .Text(_(L"Advanced Intermediate Level"))
                 .Brush(wxNullBrush)
                 .SelectionBrush(selectionBrush),
-            &m_levelLinePoints[6], 4));
+            std::span(std::next(m_levelLinePoints.cbegin(), 6), 4)));
         // IV
-        AddObject(
-            std::make_unique<Wisteria::GraphItems::Polygon>(Wisteria::GraphItems::GraphItemInfo()
-                                                                .Pen(wxNullPen)
-                                                                .Text(_(L"Advanced Level"))
-                                                                .Brush(wxNullBrush)
-                                                                .SelectionBrush(selectionBrush),
-                                                            &m_levelLinePoints[8], 3));
+        AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
+            Wisteria::GraphItems::GraphItemInfo()
+                .Pen(wxNullPen)
+                .Text(_(L"Advanced Level"))
+                .Brush(wxNullBrush)
+                .SelectionBrush(selectionBrush),
+            std::span(std::next(m_levelLinePoints.cbegin(), 8), 3)));
 
         // separator line
         wxColour separatorColor{ Wisteria::Colors::ColorContrast::ChangeOpacity(*wxBLACK, 200) };
@@ -216,27 +217,27 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::Polygo
         AddObject(std::move(levelsSpline));
 
         // draw the region lines
-        AddObject(
-            std::make_unique<Wisteria::GraphItems::Polygon>(Wisteria::GraphItems::GraphItemInfo()
-                                                                .Pen(wxPen(separatorColor))
-                                                                .Brush(separatorColor)
-                                                                .SelectionBrush(selectionBrush)
-                                                                .Scaling(GetScaling()),
-                                                            &m_levelLinePoints[3], 2));
-        AddObject(
-            std::make_unique<Wisteria::GraphItems::Polygon>(Wisteria::GraphItems::GraphItemInfo()
-                                                                .Pen(wxPen(separatorColor))
-                                                                .Brush(separatorColor)
-                                                                .SelectionBrush(selectionBrush)
-                                                                .Scaling(GetScaling()),
-                                                            &m_levelLinePoints[6], 2));
-        AddObject(
-            std::make_unique<Wisteria::GraphItems::Polygon>(Wisteria::GraphItems::GraphItemInfo()
-                                                                .Pen(wxPen(separatorColor))
-                                                                .Brush(separatorColor)
-                                                                .SelectionBrush(selectionBrush)
-                                                                .Scaling(GetScaling()),
-                                                            &m_levelLinePoints[8], 2));
+        AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
+            Wisteria::GraphItems::GraphItemInfo()
+                .Pen(wxPen{ separatorColor })
+                .Brush(separatorColor)
+                .SelectionBrush(selectionBrush)
+                .Scaling(GetScaling()),
+            std::span(std::next(m_levelLinePoints.cbegin(), 3), 2)));
+        AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
+            Wisteria::GraphItems::GraphItemInfo()
+                .Pen(wxPen{ separatorColor })
+                .Brush(separatorColor)
+                .SelectionBrush(selectionBrush)
+                .Scaling(GetScaling()),
+            std::span(std::next(m_levelLinePoints.cbegin(), 6), 2)));
+        AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
+            Wisteria::GraphItems::GraphItemInfo()
+                .Pen(wxPen{ separatorColor })
+                .Brush(separatorColor)
+                .SelectionBrush(selectionBrush)
+                .Scaling(GetScaling()),
+            std::span(std::next(m_levelLinePoints.cbegin(), 8), 2)));
 
         CalculateScorePositions(dc);
 
@@ -320,23 +321,26 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::Polygo
                     return false;
                     }
 
-                if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_levelLinePoints[8], 3, 1,
-                                        1))
+                if (IsScoreInsideRegion(
+                        scorePoint.m_scorePoint,
+                        std::span(std::next(graph->m_levelLinePoints.cbegin(), 8), 3), 1, 1))
                     {
                     scorePoint.SetScore(4);
                     }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_levelLinePoints[6],
-                                             4, 1, 1))
+                else if (IsScoreInsideRegion(
+                             scorePoint.m_scorePoint,
+                             std::span(std::next(graph->m_levelLinePoints.cbegin(), 6), 4), 1, 1))
                     {
                     scorePoint.SetScore(3);
                     }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_levelLinePoints[3],
-                                             5, 1, 1))
+                else if (IsScoreInsideRegion(
+                             scorePoint.m_scorePoint,
+                             std::span(std::next(graph->m_levelLinePoints.cbegin(), 3), 5), 1, 1))
                     {
                     scorePoint.SetScore(2);
                     }
                 else if (IsScoreInsideRegion(scorePoint.m_scorePoint,
-                                             graph->m_levelLinePoints.data(), 3, 1, 1))
+                                             std::span(graph->m_levelLinePoints.cbegin(), 3), 1, 1))
                     {
                     scorePoint.SetScore(1);
                     }
