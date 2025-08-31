@@ -223,7 +223,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
         GetPhysicalCoordinates(124 + GetSyllableAxisOffset(), 2.0, m_longSentencesPoints[1]);
         GetPhysicalCoordinates(108 + GetSyllableAxisOffset(), 4.2, m_longSentencesPoints[2]);
         AddObject(std::make_unique<GraphItems::Polygon>(
-            GraphItems::GraphItemInfo()
+            GraphItems::GraphItemInfo{}
                 .Pen(wxNullPen)
                 .Text(_(L"Invalid region: sentences are too long"))
                 .Brush(wxBrush(Colors::ColorContrast::ChangeOpacity(GetInvalidAreaColor(), 100))),
@@ -239,7 +239,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
         GetPhysicalCoordinates(182 + GetSyllableAxisOffset(), 7.3, m_longWordPoints[7]);
         GetPhysicalCoordinates(182 + GetSyllableAxisOffset(), 25.0, m_longWordPoints[8]);
         AddObject(std::make_unique<GraphItems::Polygon>(
-            GraphItems::GraphItemInfo()
+            GraphItems::GraphItemInfo{}
                 .Pen(wxNullPen)
                 .Text(_(L"Invalid region: too many complex words"))
                 .Brush(wxBrush(Colors::ColorContrast::ChangeOpacity(GetInvalidAreaColor(), 100))),
@@ -323,9 +323,9 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
 
         // the separator line
         auto levelsSpline = std::make_unique<GraphItems::Polygon>(
-            GraphItems::GraphItemInfo()
-                .Pen(wxPen(separatorColor))
-                .Brush(wxBrush(separatorColor))
+            GraphItems::GraphItemInfo{}
+                .Pen(wxPen{ separatorColor })
+                .Brush(wxBrush{ separatorColor })
                 .Scaling(GetScaling()),
             m_dividerLinePoints.data(), std::size(m_dividerLinePoints) - 2);
         levelsSpline->SetShape(GraphItems::Polygon::PolygonShape::Spline);
@@ -415,8 +415,9 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
             // draw regular grade lines and return since there are no points to plot
             constexpr uint8_t OPACITY_LEVEL{ 200 };
             AddObject(std::make_unique<GraphItems::Polygon>(
-                GraphItems::GraphItemInfo()
-                    .Pen(wxPen(Colors::ColorContrast::ChangeOpacity(gradeLineColor, OPACITY_LEVEL)))
+                GraphItems::GraphItemInfo{}
+                    .Pen(wxPen{
+                        Colors::ColorContrast::ChangeOpacity(gradeLineColor, OPACITY_LEVEL) })
                     .Brush(gradeLineColor)
                     .Scaling(GetScaling()),
                 &m_gradeLinePoints[3], 2));
@@ -424,9 +425,9 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
             for (size_t i = 2, pointIter = 5; i <= 16; ++i, pointIter += 2)
                 {
                 AddObject(std::make_unique<GraphItems::Polygon>(
-                    GraphItems::GraphItemInfo()
-                        .Pen(wxPen(
-                            Colors::ColorContrast::ChangeOpacity(gradeLineColor, OPACITY_LEVEL)))
+                    GraphItems::GraphItemInfo{}
+                        .Pen(wxPen{
+                            Colors::ColorContrast::ChangeOpacity(gradeLineColor, OPACITY_LEVEL) })
                         .Brush(gradeLineColor)
                         .Scaling(GetScaling()),
                     &m_gradeLinePoints[pointIter], 2));
@@ -682,7 +683,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
                 if (!highlightedGradeLinePoints.empty())
                     {
                     AddObject(std::make_unique<GraphItems::Polygon>(
-                        GraphItems::GraphItemInfo()
+                        GraphItems::GraphItemInfo{}
                             .Pen(Colors::ColorContrast::ChangeOpacity(
                                 Colors::ColorBrewer::GetColor(Colors::Color::BondiBlue), 100))
                             .Brush(Colors::ColorContrast::ChangeOpacity(
@@ -701,8 +702,8 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
                                    Wisteria::Settings::GHOST_OPACITY :
                                    200;
         AddObject(std::make_unique<GraphItems::Polygon>(
-            GraphItems::GraphItemInfo()
-                .Pen(wxPen(Colors::ColorContrast::ChangeOpacity(gradeLineColor, opacityLevel)))
+            GraphItems::GraphItemInfo{}
+                .Pen(wxPen{ Colors::ColorContrast::ChangeOpacity(gradeLineColor, opacityLevel) })
                 .Brush(gradeLineColor)
                 .Scaling(GetScaling()),
             &m_gradeLinePoints[3], 2));
@@ -716,8 +717,9 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
                                Wisteria::Settings::GHOST_OPACITY :
                                200;
             AddObject(std::make_unique<GraphItems::Polygon>(
-                GraphItems::GraphItemInfo()
-                    .Pen(wxPen(Colors::ColorContrast::ChangeOpacity(gradeLineColor, opacityLevel)))
+                GraphItems::GraphItemInfo{}
+                    .Pen(
+                        wxPen{ Colors::ColorContrast::ChangeOpacity(gradeLineColor, opacityLevel) })
                     .Brush(gradeLineColor)
                     .Scaling(GetScaling()),
                 &m_gradeLinePoints[pointIter], 2));
@@ -750,7 +752,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
         if constexpr (Settings::IsDebugFlagEnabled(DebugSettings::DrawExtraInformation))
             {
             AddObject(std::make_unique<GraphItems::Polygon>(
-                GraphItems::GraphItemInfo().Pen(*wxRED).Brush(wxNullBrush),
+                GraphItems::GraphItemInfo{}.Pen(*wxRED).Brush(wxNullBrush),
                 std::vector<wxPoint>{ gradeLabelArea.GetTopLeft(), gradeLabelArea.GetTopRight(),
                                       gradeLabelArea.GetBottomRight(),
                                       gradeLabelArea.GetBottomLeft() }));

@@ -171,7 +171,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
         GetPhysicalCoordinates(125, 2.4, m_longSentencesPoints[15]);
 
         auto invalidSentenceArea = std::make_unique<GraphItems::Polygon>(
-            GraphItems::GraphItemInfo()
+            GraphItems::GraphItemInfo{}
                 .Pen(wxNullPen)
                 .Brush(wxBrush(GetInvalidAreaColor(), wxBRUSHSTYLE_FDIAGONAL_HATCH))
                 .Text(_(L"Invalid region: sentences are too long")),
@@ -213,7 +213,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
         GetPhysicalCoordinates(189, 20.0, m_longWordPoints[30]);
 
         auto invalidWordArea = std::make_unique<GraphItems::Polygon>(
-            GraphItems::GraphItemInfo()
+            GraphItems::GraphItemInfo{}
                 .Pen(wxNullPen)
                 .Brush(wxBrush(GetInvalidAreaColor(), wxBRUSHSTYLE_FDIAGONAL_HATCH))
                 .Text(_(L"Invalid region: words are too long")),
@@ -384,25 +384,25 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
         auto linePoints = std::make_unique<GraphItems::Points2D>(wxNullPen);
         linePoints->SetScaling(GetScaling());
         linePoints->SetDPIScaleFactor(GetDPIScaleFactor());
-        linePoints->AddPoint(GraphItems::Point2D(GraphItems::GraphItemInfo()
+        linePoints->AddPoint(GraphItems::Point2D(GraphItems::GraphItemInfo{}
                                                      .AnchorPoint(m_dividerLinePoints[1])
                                                      .Brush(separatorColor),
                                                  Settings::GetPointRadius(),
                                                  Icons::IconShape::Circle),
                              dc);
-        linePoints->AddPoint(GraphItems::Point2D(GraphItems::GraphItemInfo()
+        linePoints->AddPoint(GraphItems::Point2D(GraphItems::GraphItemInfo{}
                                                      .AnchorPoint(m_dividerLinePoints[2])
                                                      .Brush(separatorColor),
                                                  Settings::GetPointRadius(),
                                                  Icons::IconShape::Circle),
                              dc);
-        linePoints->AddPoint(GraphItems::Point2D(GraphItems::GraphItemInfo()
+        linePoints->AddPoint(GraphItems::Point2D(GraphItems::GraphItemInfo{}
                                                      .AnchorPoint(m_dividerLinePoints[3])
                                                      .Brush(separatorColor),
                                                  Settings::GetPointRadius(),
                                                  Icons::IconShape::Circle),
                              dc);
-        linePoints->AddPoint(GraphItems::Point2D(GraphItems::GraphItemInfo()
+        linePoints->AddPoint(GraphItems::Point2D(GraphItems::GraphItemInfo{}
                                                      .AnchorPoint(m_dividerLinePoints[4])
                                                      .Brush(separatorColor),
                                                  Settings::GetPointRadius(),
@@ -410,7 +410,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
                              dc);
         // index [5] is just added to the spline to curve it better,
         // not used for a middle point
-        linePoints->AddPoint(GraphItems::Point2D(GraphItems::GraphItemInfo()
+        linePoints->AddPoint(GraphItems::Point2D(GraphItems::GraphItemInfo{}
                                                      .AnchorPoint(m_dividerLinePoints[6])
                                                      .Brush(separatorColor),
                                                  Settings::GetPointRadius(),
@@ -420,9 +420,9 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
 
         // separator line
         auto levelsSpline = std::make_unique<GraphItems::Polygon>(
-            GraphItems::GraphItemInfo()
-                .Pen(separatorColor)
-                .Brush(separatorColor)
+            GraphItems::GraphItemInfo{}
+                .Pen(wxPen{ separatorColor })
+                .Brush(wxBrush{ separatorColor })
                 .Scaling(GetScaling())
                 .DPIScaling(GetDPIScaleFactor()),
             std::span(std::next(m_dividerLinePoints.cbegin(), 1), m_dividerLinePoints.size() - 3));
@@ -573,7 +573,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
             for (size_t i = 3; i < std::size(m_gradeLinePoints); i += 2)
                 {
                 AddObject(std::make_unique<GraphItems::Polygon>(
-                    GraphItems::GraphItemInfo()
+                    GraphItems::GraphItemInfo{}
                         .Pen(wxPen{ Colors::ColorContrast::ChangeOpacity(gradeLineColor, 200) })
                         .Brush(gradeLineColor)
                         .Scaling(GetScaling()),
@@ -716,7 +716,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
                 if (!highlightedGradeLinePoints.empty())
                     {
                     AddObject(std::make_unique<GraphItems::Polygon>(
-                        GraphItems::GraphItemInfo()
+                        GraphItems::GraphItemInfo{}
                             .Pen(Colors::ColorContrast::ChangeOpacity(
                                 Colors::ColorBrewer::GetColor(Colors::Color::BondiBlue), 100))
                             .Brush(Colors::ColorContrast::ChangeOpacity(
@@ -737,7 +737,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
                                              Settings::GHOST_OPACITY :
                                              200;
             AddObject(std::make_unique<GraphItems::Polygon>(
-                GraphItems::GraphItemInfo()
+                GraphItems::GraphItemInfo{}
                     .Pen(
                         wxPen{ Colors::ColorContrast::ChangeOpacity(gradeLineColor, opacityLevel) })
                     .Brush(gradeLineColor)

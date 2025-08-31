@@ -390,7 +390,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
         GetPhysicalCoordinates(18, 8.1, dividerPt);
         splinePoints->AddPoint(
             GraphItems::Point2D(
-                GraphItems::GraphItemInfo()
+                GraphItems::GraphItemInfo{}
                     .AnchorPoint(dividerPt)
                     .Brush(separatorColor)
                     .Pen(Colors::ColorContrast::BlackOrWhiteContrast(GetPlotOrCanvasColor())),
@@ -400,7 +400,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
         GetPhysicalCoordinates(19.5, 7.28, dividerPt);
         splinePoints->AddPoint(
             GraphItems::Point2D(
-                GraphItems::GraphItemInfo()
+                GraphItems::GraphItemInfo{}
                     .AnchorPoint(dividerPt)
                     .Brush(separatorColor)
                     .Pen(Colors::ColorContrast::BlackOrWhiteContrast(GetPlotOrCanvasColor())),
@@ -410,7 +410,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
         GetPhysicalCoordinates(21, 6.69, dividerPt);
         splinePoints->AddPoint(
             GraphItems::Point2D(
-                GraphItems::GraphItemInfo()
+                GraphItems::GraphItemInfo{}
                     .AnchorPoint(dividerPt)
                     .Brush(separatorColor)
                     .Pen(Colors::ColorContrast::BlackOrWhiteContrast(GetPlotOrCanvasColor())),
@@ -420,7 +420,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
         GetPhysicalCoordinates(23.7, 5.91, dividerPt);
         splinePoints->AddPoint(
             GraphItems::Point2D(
-                GraphItems::GraphItemInfo()
+                GraphItems::GraphItemInfo{}
                     .AnchorPoint(dividerPt)
                     .Scaling(GetScaling())
                     .Brush(separatorColor)
@@ -431,7 +431,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
         GetPhysicalCoordinates(26.5, 5.26, dividerPt);
         splinePoints->AddPoint(
             GraphItems::Point2D(
-                GraphItems::GraphItemInfo()
+                GraphItems::GraphItemInfo{}
                     .AnchorPoint(dividerPt)
                     .Brush(separatorColor)
                     .Pen(Colors::ColorContrast::BlackOrWhiteContrast(GetPlotOrCanvasColor())),
@@ -441,7 +441,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
         GetPhysicalCoordinates(28.5, 5, dividerPt);
         splinePoints->AddPoint(
             GraphItems::Point2D(
-                GraphItems::GraphItemInfo()
+                GraphItems::GraphItemInfo{}
                     .AnchorPoint(dividerPt)
                     .Brush(separatorColor)
                     .Pen(Colors::ColorContrast::BlackOrWhiteContrast(GetPlotOrCanvasColor())),
@@ -451,7 +451,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
         GetPhysicalCoordinates(30.1, 4.82, dividerPt);
         splinePoints->AddPoint(
             GraphItems::Point2D(
-                GraphItems::GraphItemInfo()
+                GraphItems::GraphItemInfo{}
                     .AnchorPoint(dividerPt)
                     .Brush(separatorColor)
                     .Pen(Colors::ColorContrast::BlackOrWhiteContrast(GetPlotOrCanvasColor())),
@@ -461,7 +461,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
         GetPhysicalCoordinates(32.2, 4.6, dividerPt);
         splinePoints->AddPoint(
             GraphItems::Point2D(
-                GraphItems::GraphItemInfo()
+                GraphItems::GraphItemInfo{}
                     .AnchorPoint(dividerPt)
                     .Brush(separatorColor)
                     .Pen(Colors::ColorContrast::BlackOrWhiteContrast(GetPlotOrCanvasColor())),
@@ -471,7 +471,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
         GetPhysicalCoordinates(34.2, 4.44, dividerPt);
         splinePoints->AddPoint(
             GraphItems::Point2D(
-                GraphItems::GraphItemInfo()
+                GraphItems::GraphItemInfo{}
                     .AnchorPoint(dividerPt)
                     .Brush(separatorColor)
                     .Pen(Colors::ColorContrast::BlackOrWhiteContrast(GetPlotOrCanvasColor())),
@@ -481,7 +481,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
         GetPhysicalCoordinates(37, 4.25, dividerPt);
         splinePoints->AddPoint(
             GraphItems::Point2D(
-                GraphItems::GraphItemInfo()
+                GraphItems::GraphItemInfo{}
                     .AnchorPoint(dividerPt)
                     .Brush(separatorColor)
                     .Pen(Colors::ColorContrast::BlackOrWhiteContrast(GetPlotOrCanvasColor())),
@@ -491,7 +491,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
         AddObject(std::move(splinePoints));
 
         auto levelsSpline = std::make_unique<GraphItems::Polygon>(
-            GraphItems::GraphItemInfo()
+            GraphItems::GraphItemInfo{}
                 .Pen(wxPen{ separatorColor })
                 .Brush(wxBrush{ separatorColor })
                 .Scaling(GetScaling())
@@ -508,7 +508,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
                                      *wxBLUE };
         gradeLineColor = Colors::ColorContrast::ChangeOpacity(gradeLineColor, 200);
         AddObject(std::make_unique<GraphItems::Polygon>(
-            GraphItems::GraphItemInfo()
+            GraphItems::GraphItemInfo{}
                 .Pen(gradeLineColor)
                 .Brush(gradeLineColor)
                 .Scaling(GetScaling()),
@@ -517,14 +517,14 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
         for (size_t i = 4, pointIter = 5; i <= 12; ++i, pointIter += 2)
             {
             AddObject(std::make_unique<GraphItems::Polygon>(
-                GraphItems::GraphItemInfo()
+                GraphItems::GraphItemInfo{}
                     .Pen(gradeLineColor)
                     .Brush(gradeLineColor)
                     .Scaling(GetScaling()),
                 std::span(std::next(m_gradeLinePoints.cbegin(), pointIter), 2)));
             }
         AddObject(std::make_unique<GraphItems::Polygon>(
-            GraphItems::GraphItemInfo()
+            GraphItems::GraphItemInfo{}
                 .Pen(gradeLineColor)
                 .Brush(gradeLineColor)
                 .Scaling(GetScaling()),

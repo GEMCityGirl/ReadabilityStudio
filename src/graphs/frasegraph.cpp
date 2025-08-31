@@ -169,7 +169,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::Polygo
 
         // I
         AddObject(std::make_unique<GraphItems::Polygon>(
-            GraphItems::GraphItemInfo()
+            GraphItems::GraphItemInfo{}
                 .Pen(wxNullPen)
                 .Text(_(L"Beginner Level"))
                 .Brush(wxNullBrush)
@@ -177,7 +177,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::Polygo
             std::span(m_levelLinePoints.cbegin(), std::next(m_levelLinePoints.cbegin(), 3))));
         // II
         AddObject(std::make_unique<GraphItems::Polygon>(
-            GraphItems::GraphItemInfo()
+            GraphItems::GraphItemInfo{}
                 .Pen(wxNullPen)
                 .Text(_(L"Intermediate Level"))
                 .Brush(wxNullBrush)
@@ -185,7 +185,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::Polygo
             std::span(std::next(m_levelLinePoints.cbegin(), 3), 5)));
         // III
         AddObject(std::make_unique<GraphItems::Polygon>(
-            GraphItems::GraphItemInfo()
+            GraphItems::GraphItemInfo{}
                 .Pen(wxNullPen)
                 .Text(_(L"Advanced Intermediate Level"))
                 .Brush(wxNullBrush)
@@ -193,7 +193,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::Polygo
             std::span(std::next(m_levelLinePoints.cbegin(), 6), 4)));
         // IV
         AddObject(std::make_unique<GraphItems::Polygon>(
-            GraphItems::GraphItemInfo()
+            GraphItems::GraphItemInfo{}
                 .Pen(wxNullPen)
                 .Text(_(L"Advanced Level"))
                 .Brush(wxNullBrush)
@@ -205,8 +205,8 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::Polygo
         separatorColor =
             Colors::ColorContrast::ShadeOrTintIfClose(separatorColor, GetPlotOrCanvasColor());
         auto levelsSpline =
-            std::make_unique<GraphItems::Polygon>(GraphItems::GraphItemInfo()
-                                                      .Pen(wxPen(separatorColor))
+            std::make_unique<GraphItems::Polygon>(GraphItems::GraphItemInfo{}
+                                                      .Pen(wxPen{ separatorColor })
                                                       .Brush(separatorColor)
                                                       .SelectionBrush(selectionBrush)
                                                       .Scaling(GetScaling()),
@@ -216,21 +216,21 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::Polygo
 
         // draw the region lines
         AddObject(std::make_unique<GraphItems::Polygon>(
-            GraphItems::GraphItemInfo()
+            GraphItems::GraphItemInfo{}
                 .Pen(wxPen{ separatorColor })
                 .Brush(separatorColor)
                 .SelectionBrush(selectionBrush)
                 .Scaling(GetScaling()),
             std::span(std::next(m_levelLinePoints.cbegin(), 3), 2)));
         AddObject(std::make_unique<GraphItems::Polygon>(
-            GraphItems::GraphItemInfo()
+            GraphItems::GraphItemInfo{}
                 .Pen(wxPen{ separatorColor })
                 .Brush(separatorColor)
                 .SelectionBrush(selectionBrush)
                 .Scaling(GetScaling()),
             std::span(std::next(m_levelLinePoints.cbegin(), 6), 2)));
         AddObject(std::make_unique<GraphItems::Polygon>(
-            GraphItems::GraphItemInfo()
+            GraphItems::GraphItemInfo{}
                 .Pen(wxPen{ separatorColor })
                 .Brush(separatorColor)
                 .SelectionBrush(selectionBrush)
