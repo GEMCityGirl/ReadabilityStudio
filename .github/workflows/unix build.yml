@@ -1,0 +1,41 @@
+name: Linux Build & Unit Tests
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: ubuntu-build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Download wxwidgets
+        run: |
+             export DISPLAY=:0.0
+             sudo apt-get update && sudo apt-get install xvfb cmake libtbb-dev libgtk-3-0 libgtk-3-dev
+             git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
+
+      - name: Install LinuxDeploy
+        id: install-linuxdeploy
+        uses: miurahr/install-linuxdeploy-action@v1.8.0
+
+      - name: Build
+        run: |
+             cmake ./
+             cmake --build . -j4
+             ${{ steps.install-linuxdeploy.outputs.linuxdeploy }}
+               --appdir installers/unix/AppDir \
+               --executable installers/unix/AppDir/usr/bin/readstudio \
+               -d installers/unix/AppDir/readstudio.desktop \
+               -i installers/unix/AppDir/app-logo.svg \
+               --output appimage
+               mv Readability_Studio*.AppImage ./installers/unix
+
+      - name: Archive AppImage
+        uses: actions/upload-artifact@v4
+        with:
+          name: Linux AppImage
+          path: ${{ github.workspace }}/installers/unix/*.*
