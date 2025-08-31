@@ -425,14 +425,14 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
                 .Brush(separatorColor)
                 .Scaling(GetScaling())
                 .DPIScaling(GetDPIScaleFactor()),
-            &m_dividerLinePoints[1], m_dividerLinePoints.size() - 3);
+            std::span(std::next(m_dividerLinePoints.cbegin(), 1), m_dividerLinePoints.size() - 3));
         levelsSpline->SetShape(GraphItems::Polygon::PolygonShape::Spline);
         AddObject(std::move(levelsSpline));
 
         // inner lines of polygons
         // (can't draw outline around full polygon because it overlaps the axis)
         auto polySeparatorLineWords =
-            std::make_unique<GraphItems::Lines>(wxPen(L"#ECECEC", 1), GetScaling());
+            std::make_unique<GraphItems::Lines>(wxPen{ L"#ECECEC" }, GetScaling());
         for (size_t i = 0; i < m_longWordPoints.size() - 2; ++i)
             {
             polySeparatorLineWords->AddLine(m_longWordPoints[i], m_longWordPoints[i + 1]);
@@ -442,25 +442,27 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
         auto polySeparatorLineWordsAxis =
             std::make_unique<GraphItems::Lines>(GetLeftYAxis().GetPen(), GetScaling());
         polySeparatorLineWordsAxis->AddLine(m_longWordPoints[m_longWordPoints.size() - 2],
-                                      m_longWordPoints[m_longWordPoints.size() - 1]);
+                                            m_longWordPoints[m_longWordPoints.size() - 1]);
         polySeparatorLineWordsAxis->AddLine(m_longWordPoints[m_longWordPoints.size() - 1],
-                                      m_longWordPoints[0]);
+                                            m_longWordPoints[0]);
         AddObject(std::move(polySeparatorLineWordsAxis));
 
         auto polySeparatorLineSentences =
-            std::make_unique<GraphItems::Lines>(wxPen(L"#ECECEC"), GetScaling());
+            std::make_unique<GraphItems::Lines>(wxPen{ L"#ECECEC" }, GetScaling());
         for (size_t i = 0; i < m_longSentencesPoints.size() - 2; ++i)
             {
-            polySeparatorLineSentences->AddLine(m_longSentencesPoints[i], m_longSentencesPoints[i + 1]);
+            polySeparatorLineSentences->AddLine(m_longSentencesPoints[i],
+                                                m_longSentencesPoints[i + 1]);
             }
         AddObject(std::move(polySeparatorLineSentences));
 
         auto polySeparatorLineSentencesAxis =
             std::make_unique<GraphItems::Lines>(GetTopXAxis().GetPen(), GetScaling());
-        polySeparatorLineSentencesAxis->AddLine(m_longSentencesPoints[m_longSentencesPoints.size() - 2],
-                                          m_longSentencesPoints[m_longSentencesPoints.size() - 1]);
-        polySeparatorLineSentencesAxis->AddLine(m_longSentencesPoints[m_longSentencesPoints.size() - 1],
-                                          m_longSentencesPoints[0]);
+        polySeparatorLineSentencesAxis->AddLine(
+            m_longSentencesPoints[m_longSentencesPoints.size() - 2],
+            m_longSentencesPoints[m_longSentencesPoints.size() - 1]);
+        polySeparatorLineSentencesAxis->AddLine(
+            m_longSentencesPoints[m_longSentencesPoints.size() - 1], m_longSentencesPoints[0]);
         AddObject(std::move(polySeparatorLineSentencesAxis));
 
         // the explanatory legends (embedded on the graph)
@@ -572,10 +574,10 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
                 {
                 AddObject(std::make_unique<GraphItems::Polygon>(
                     GraphItems::GraphItemInfo()
-                        .Pen(wxPen(Colors::ColorContrast::ChangeOpacity(gradeLineColor, 200)))
+                        .Pen(wxPen{ Colors::ColorContrast::ChangeOpacity(gradeLineColor, 200) })
                         .Brush(gradeLineColor)
                         .Scaling(GetScaling()),
-                    &m_gradeLinePoints[i], 2));
+                    std::span(std::next(m_gradeLinePoints.cbegin(), i), 2)));
                 }
             return;
             }
@@ -736,10 +738,11 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
                                              200;
             AddObject(std::make_unique<GraphItems::Polygon>(
                 GraphItems::GraphItemInfo()
-                    .Pen(wxPen(Colors::ColorContrast::ChangeOpacity(gradeLineColor, opacityLevel)))
+                    .Pen(
+                        wxPen{ Colors::ColorContrast::ChangeOpacity(gradeLineColor, opacityLevel) })
                     .Brush(gradeLineColor)
                     .Scaling(GetScaling()),
-                &m_gradeLinePoints[i], 2));
+                std::span(std::next(m_gradeLinePoints.cbegin(), i), 2)));
             }
 
         auto points = std::make_unique<GraphItems::Points2D>(wxNullPen);

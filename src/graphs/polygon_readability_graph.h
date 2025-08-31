@@ -19,6 +19,7 @@
 #include "../results-format/readability_messages.h"
 #include "scorepoint.h"
 #include <array>
+#include <span>
 
 namespace Wisteria::Graphs
     {

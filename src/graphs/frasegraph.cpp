@@ -12,7 +12,6 @@
  ********************************************************************************/
 
 #include "frasegraph.h"
-#include <span>
 
 wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::PolygonReadabilityGraph)
 
