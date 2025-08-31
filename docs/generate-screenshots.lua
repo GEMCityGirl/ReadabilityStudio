@@ -470,12 +470,10 @@ Application.RemoveAllCustomTests()
 sp = StandardProject(ScreenshotProjectsFolder .. "Features(Outlier).rsp")
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "featuressentencesoutliers." .. FileExtension,
-HighlightedReportType.GrammarHighlightedIssues, true,
-    2437, 2439, 2959, 2961)
+  HighlightedReportType.GrammarHighlightedIssues, true, "(45)", "(48)")
 
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "featuressentences25." .. FileExtension,
-HighlightedReportType.GrammarHighlightedIssues, true,
-    1627, 1629, 1788, 1790)
+  HighlightedReportType.GrammarHighlightedIssues, true, "(25)", "(25)")
 
 sp:SelectWindow(SideBarSection.Statistics, ReportType.StatisticsSummaryReport)
 ScreenshotLib.SnapScreenshot(ImagePath .. "featuressentences43." .. FileExtension)
@@ -551,7 +549,7 @@ sp:CloseProperties()
 sp:SelectWindow(SideBarSection.WordsBreakdown, HighlightedReportType.ThreePlusSyllableHighlightedWords)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "peter-rabbit-chained-sentences." .. FileExtension,
   HighlightedReportType.ThreePlusSyllableHighlightedWords, true,
-  1046, 1194)
+  "First he ate some lettuces and some French beans And then He Ate Some Radishes And then, feeling rather sick, he went to look for some parsley.")
 
 sp:Close()
 Application.RemoveAllCustomTests()
@@ -750,10 +748,11 @@ sp:Reload()
 
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-header-excluded." .. FileExtension,
-HighlightedReportType.GrammarHighlightedIssues, true, 229, 252)
+    HighlightedReportType.GrammarHighlightedIssues, true, "Danielson-Bryan 1 Test")
 
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-partial-excluded." .. FileExtension,
-HighlightedReportType.GrammarHighlightedIssues, true, 929, 934, 999, 1133)
+    HighlightedReportType.GrammarHighlightedIssues, true,
+    "Where:", "RP Number of characters, in this context being letters, numbers, and punctuation (except for sentence-ending punctuation, such as periods)")
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 
@@ -772,7 +771,7 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "exclusion-example-aggressive-list." .
 sp:CloseProperties()
 
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-where-excluded." .. FileExtension,
-HighlightedReportType.GrammarHighlightedIssues, true, 929, 934)
+    HighlightedReportType.GrammarHighlightedIssues, true, "Where:")
 
 sp:SetIncludeIncompleteTolerance(20)
 
@@ -785,12 +784,14 @@ ScreenshotLib.SnapScreenshot(ImagePath .. "exclusion-example-incomp-length-value
 sp:CloseProperties()
 
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-long-sentence-excluded." .. FileExtension,
-  HighlightedReportType.GrammarHighlightedIssues, true, 989, 1123)
+    HighlightedReportType.GrammarHighlightedIssues, true,
+    "RP Number of characters, in this context being letters, numbers, and punctuation (except for sentence-ending punctuation, such as periods)")
 
 sp:ScrollTextWindow(HighlightedReportType.GrammarHighlightedIssues, "Danielson, Wayne A., and")
 
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-copyright-included." .. FileExtension,
-  HighlightedReportType.GrammarHighlightedIssues, true, 2195, 2240)
+    HighlightedReportType.GrammarHighlightedIssues, true,
+    "©2011 Oleander Software, all rights reserved.")
 
 sp:ExcludeCopyrightNotices(true)
 
@@ -804,7 +805,8 @@ sp:CloseProperties()
 
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-copyright-excluded-now." .. FileExtension,
-  HighlightedReportType.GrammarHighlightedIssues, true, 2195, 2240)
+    HighlightedReportType.GrammarHighlightedIssues, true,
+    "©2011 Oleander Software, all rights reserved.")
 
 sp:ExcludeFileAddress(true)
 
@@ -818,7 +820,8 @@ sp:CloseProperties()
 
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-url-excluded-now." .. FileExtension,
-    HighlightedReportType.GrammarHighlightedIssues, true, 2162, 2183)
+    HighlightedReportType.GrammarHighlightedIssues, true,
+    "http://www.jstor.org/")
 
 sp:ExcludeProperNouns(true)
 sp:ExcludeNumerals(true)
@@ -826,10 +829,11 @@ sp:ExcludeNumerals(true)
 sp:Reload()
 
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-numbers-excluded-now." .. FileExtension,
-    HighlightedReportType.GrammarHighlightedIssues, true, 281, 284, 539, 543)
+    HighlightedReportType.GrammarHighlightedIssues, true, "206", "1105")
 
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-proper-excluded-now." .. FileExtension,
-HighlightedReportType.GrammarHighlightedIssues, true, 262, 277, 532, 538)
+    HighlightedReportType.GrammarHighlightedIssues, true,
+    "Danielson-Bryan", "Farr-Jenkins-Paterson", "UNIVAC")
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 
@@ -849,7 +853,7 @@ sp:Reload()
 
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-custom-words-excluded-now." .. FileExtension,
-    HighlightedReportType.GrammarHighlightedIssues, true, 371, 386, 619, 630)
+    HighlightedReportType.GrammarHighlightedIssues, true, "sentence length", "punctuation")
 
 sp:ExcludeTrailingCitations(true)
 
@@ -857,7 +861,8 @@ sp:Reload()
 
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-citation-excluded." .. FileExtension,
-HighlightedReportType.GrammarHighlightedIssues, true, 1926, 2090)
+    HighlightedReportType.GrammarHighlightedIssues, true,
+    "Danielson, Wayne A., and Sam Dunn Bryan.  “Computer Automation of Two Readability Formulas.”  Journalism Quarterly.  40 (1963): 201-206.  Print.")
 
 sp:SelectWindow(SideBarSection.WordsBreakdown, ListType.ThreePlusSyllableWords)
 ScreenshotLib.SnapScreenshotOfRibbon(ImagePath .. "ribbon-edit-list-options-with-exclude-selected." .. FileExtension, 0, RibbonButtonBar.Edit)
@@ -870,19 +875,20 @@ sp = StandardProject(ScreenshotProjectsFolder .. "Press Release.rtf")
 
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-tags-example-list-excluded." .. FileExtension,
-HighlightedReportType.GrammarHighlightedIssues, true, 1318, 1408)
+    HighlightedReportType.GrammarHighlightedIssues, true,
+   "<Marketing representative name>", "<Company>", "<Company slogan>", "<Copyright info>")
 
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-tags-example-not-excluding." .. FileExtension,
-HighlightedReportType.GrammarHighlightedIssues, true,
-    865, 874, 892, 903, 1415, 1530)
+    HighlightedReportType.GrammarHighlightedIssues, true,
+    "<Platforms>", "<Note that this is not intended for general distribution. (9)  This is a preliminary draft, final approval pending>")
 
 sp:SetBlockExclusionTags("<>")
 sp:Reload()
 
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-tags-example-excluding." .. FileExtension,
-HighlightedReportType.GrammarHighlightedIssues, true,
-    865, 872, 892, 901, 1414, 1526)
+    HighlightedReportType.GrammarHighlightedIssues, true,
+    "<Platforms>", "<Note that this is not intended for general distribution. (9)  This is a preliminary draft, final approval pending>")
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 ScreenshotLib.SnapScreenshot(ImagePath .. "exclusion-tags-example-options." .. FileExtension, 1078, 1079, 1078)
@@ -913,7 +919,9 @@ sp = StandardProject(ScreenshotProjectsFolder .. "Job Posting.odt")
 sp:SetParagraphsParsingMethod(ParagraphParse.EachNewLineIsAParagraph)
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "job-posting-highlighted-text." .. FileExtension,
-    HighlightedReportType.GrammarHighlightedIssues, true, 257, 399)
+    HighlightedReportType.GrammarHighlightedIssues, true,
+    "Title: Data Analyst", "Department: Admin Office", "Pay Grade: A2",
+    "Job Posting Close Date: Dec. 14th 2022", "Start Date: Jan. 1st 2022")
 sp:Close(false)
 
 -- Flyer example
@@ -923,11 +931,15 @@ sp:SetTextExclusion(TextExclusionType.DoNotExcludeAnyText)
 sp:AddTest(Test.Forcast)
 sp:SelectWindow(SideBarSection.WordsBreakdown, HighlightedReportType.ThreePlusSyllableHighlightedWords)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "summer-code-camp-upper-half1." .. FileExtension,
-    HighlightedReportType.ThreePlusSyllableHighlightedWords, true, 111, 168)
+    HighlightedReportType.ThreePlusSyllableHighlightedWords, true,
+    "Proudly presented by Northwoods Software Testing Services")
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "summer-code-camp-upper-half2." .. FileExtension,
-    HighlightedReportType.ThreePlusSyllableHighlightedWords, true, 472, 525)
+    HighlightedReportType.ThreePlusSyllableHighlightedWords, true,
+    "No previous computer programming experience required!")
+
+sp:ScrollTextWindow(SideBarSection.WordsBreakdown, "Please fill out and return no later than May 25th")
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "summer-code-camp-lower-half." .. FileExtension,
-    HighlightedReportType.ThreePlusSyllableHighlightedWords, true, 640, 893)
+    HighlightedReportType.ThreePlusSyllableHighlightedWords, true)
 sp:Close(false)
 
 -- addendum example
@@ -942,19 +954,26 @@ sp:AddTest(Test.Flesch)
 sp:ExportGraph(GraphType.Flesch, ImagePath .. "addendum-flesch1." .. FileExtension)
 sp:SelectWindow(SideBarSection.WordsBreakdown, HighlightedReportType.ThreePlusSyllableHighlightedWords)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "addendum-highlighted-text1." .. FileExtension,
-    HighlightedReportType.ThreePlusSyllableHighlightedWords, false, 350, 452)
+    HighlightedReportType.ThreePlusSyllableHighlightedWords, false,
+    "Preparing young minds for an exciting career* in enterprise-level software development and deployment.")
+sp:ScrollTextWindow(SideBarSection.WordsBreakdown,
+    "(Previous computer experience recommended).")
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "addendum-highlighted-text2." .. FileExtension,
-    HighlightedReportType.ThreePlusSyllableHighlightedWords, false, 790, 1122)
+    HighlightedReportType.ThreePlusSyllableHighlightedWords, false)
 
 sp:SetAppendedDocumentFilePath(ScreenshotProjectsFolder .. "Instructional Disclaimer.odt")
 
 sp:ExportGraph(GraphType.Flesch, ImagePath .. "addendum-flesch2." .. FileExtension)
 sp:SelectWindow(SideBarSection.WordsBreakdown, HighlightedReportType.ThreePlusSyllableHighlightedWords)
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "addendum-highlighted-text3." .. FileExtension,
-    HighlightedReportType.ThreePlusSyllableHighlightedWords, true, 3401, 4359)
+    HighlightedReportType.ThreePlusSyllableHighlightedWords, true,
+    "Any instruction, advice, or products provided by Company do not include any sort of warranty or guarantee of Customer's perceived quality.  Although Company has provided quality instruction in the past, this performance being represented is historical; past performance is not a reliable indicator of current or future results and Customer's expectations of quality is in no way guaranteed.  The quality of instruction may fluctuate and Company cannot be held responsible for lower level of quality that Customer may experience.  Customer hereby releases Company and Owners from any perceived obligation or expectations related to Customer's subjective measurements of instructional quality.  Customer also releases Company and Owners from any legal responsibilities as a result of interaction with Company's products, services, advice, or third-party catering services (e.g., allergic reactions, inaccurate educational materials, Customer “disappointment”).")
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
+
+sp:ScrollTextWindow(SideBarSection.Grammar, 
+    "Customer also releases Company and Owners from any legal")
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "addendum-highlighted-text4." .. FileExtension,
-    HighlightedReportType.GrammarHighlightedIssues, true, 4434, 5218)
+    HighlightedReportType.GrammarHighlightedIssues, true)
 
 -- show a generic set of file paths in the properties dialog and get a screenshot of that
 sp:DelayReloading(true)
