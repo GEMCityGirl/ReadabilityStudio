@@ -4137,7 +4137,8 @@ namespace LuaScripting
 
             view->GetSideBar()->CollapseAll();
 
-            wxWindow* selWindow = view->GetWordsBreakdownView().FindWindowById(windowId, wxCLASSINFO(wxTextCtrl));
+            wxWindow* selWindow =
+                view->GetWordsBreakdownView().FindWindowById(windowId, wxCLASSINFO(wxTextCtrl));
             if (selWindow != nullptr && selWindow->IsKindOf(wxCLASSINFO(wxTextCtrl)))
                 {
                 // Custom word-list tests have the same integral IDs for their highlighted-text
@@ -4157,10 +4158,13 @@ namespace LuaScripting
                     else
                         {
                         DebugPrint(wxString::Format(
+                            // TRANSLATORS: %s are formatting tags and
+                            // should stay wrapped around "Warning"
                             _(L"%sWarning%s: unable to find \"%s\" in text window."),
                             L"<span style='color:blue; font-weight:bold;'>", L"</span>",
                             wxString{ contentToFind }.Truncate(10).append(
-                                contentToFind.length() > 10 ? wxString{ L"..." } : wxString{})));
+                                contentToFind.length() > 10 ? wxString{ _DT(L"...") } :
+                                                              wxString{})));
                         }
                     }
                 selWindow->SetFocus();
@@ -4514,7 +4518,8 @@ namespace LuaScripting
                             _(L"%sWarning%s: unable to find \"%s\" in text window."),
                             L"<span style='color:blue; font-weight:bold;'>", L"</span>",
                             wxString{ contentToFind }.Truncate(10).append(
-                                contentToFind.length() > 10 ? wxString{ L"..." } : wxString{})));
+                                contentToFind.length() > 10 ? wxString{ _DT(L"...") } :
+                                                              wxString{})));
                         }
                     }
                 }
@@ -4558,10 +4563,12 @@ namespace LuaScripting
                         else
                             {
                             DebugPrint(wxString::Format(
+                                // TRANSLATORS: %s are formatting tags and
+                                // should stay wrapped around "Warning"
                                 _(L"%sWarning%s: unable to find \"%s\" in text window."),
                                 L"<span style='color:blue; font-weight:bold;'>", L"</span>",
                                 wxString{ contentToFind }.Truncate(10).append(
-                                    contentToFind.length() > 10 ? wxString{ L"..." } :
+                                    contentToFind.length() > 10 ? wxString{ _DT(L"...") } :
                                                                   wxString{})));
                             }
                         selWindow->SetFocus();

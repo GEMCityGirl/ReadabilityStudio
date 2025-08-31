@@ -368,6 +368,8 @@ namespace LuaScripting
                 else
                     {
                     DebugPrint(wxString::Format(
+                        // TRANSLATORS: %s are formatting tags and
+                        // should stay wrapped around "Warning"
                         _(L"%sWarning%s: unable to find \"%s\" in text window."),
                         L"<span style='color:blue; font-weight:bold;'>", L"</span>",
                         wxString{ contentToFind }.Truncate(10).append(

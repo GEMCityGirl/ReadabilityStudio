@@ -183,8 +183,7 @@ namespace Wisteria::Graphs
             {
             // see if the point is even in the polygon's bounding box, then see if it's
             // actually in the polygon
-            return Wisteria::GraphItems::Polygon::GetPolygonBoundingBox(polygon)
-                           .Contains(point) ?
+            return Wisteria::GraphItems::Polygon::GetPolygonBoundingBox(polygon).Contains(point) ?
                        (Wisteria::GraphItems::Polygon::IsInsidePolygon(point, &polygon[0],
                                                                        polygon.size()) ||
                         Wisteria::GraphItems::Polygon::IsInsidePolygon(
