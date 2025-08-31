@@ -389,6 +389,9 @@ TEST_CASE("English article 2", "[articles]")
         CHECK(artc(L"an", L"Sat"));
         // a SAT (like the text) is wrong
         CHECK_FALSE(artc(L"an", L"SAT"));
+
+        // reset
+        artc.get_a_exceptions().clear();
         }
     SECTION("A Letters")
         {
