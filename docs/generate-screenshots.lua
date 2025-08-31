@@ -332,7 +332,7 @@ bp:Close()
 -- Standard project
 -------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "Cocoa Desserts.rsp")
-sp:ScrollTextWindow(HighlightedReportType.GrammarHighlightedIssues, 500)
+sp:ScrollTextWindow(HighlightedReportType.GrammarHighlightedIssues, "Sift together one-half cup of the flour")
 ScreenshotLib.SnapScreenshot(ImagePath .. "longsentences." .. FileExtension) 
 sp:SelectHighlightedWordReport(HighlightedReportType.ThreePlusSyllableHighlightedWords, 4335, 4347)
 ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "difficultwordselected." .. FileExtension, 1)
@@ -345,7 +345,7 @@ sp:SelectWindow(SideBarSection.Statistics, ReportType.StatisticsSummaryReport)
 ScreenshotLib.SnapScreenshot(ImagePath .. "examplestats." .. FileExtension)
 sp:SelectWindow(SideBarSection.ReadabilityScores, ReportType.ReadabilityScoresTabularReport)
 ScreenshotLib.SnapScreenshot(ImagePath .. "testscores." .. FileExtension)
-sp:SelectTextGrammarWindow(4228, 4469)
+sp:SelectTextGrammarWindow("Put the cocoa in a small saucepan; add the cold water and stir until perfectly smooth; then the hot water, and cook for one or two minutes, add vanilla and a speck of salt, then stir in enough sugar to make it stiff enough to spread nicely.")
 ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "longsentenceselected." .. FileExtension, 1)
 
 sp:DelayReloading(true)
@@ -461,7 +461,7 @@ sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 ScreenshotLib.SnapScreenshot(ImagePath .. "featuressentoptions." .. FileExtension, 1040, 1041, 1086)
 sp:CloseProperties()
 
-sp:ScrollTextWindow(HighlightedReportType.GrammarHighlightedIssues, 1300)
+sp:ScrollTextWindow(HighlightedReportType.GrammarHighlightedIssues, "Experts can manually select the tests that they want to")
 ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "featuressentences." .. FileExtension, 1)
 sp:Close()
 Application.RemoveAllCustomTests()
@@ -557,7 +557,7 @@ sp:Close()
 Application.RemoveAllCustomTests()
 
 sp = StandardProject(ScreenshotProjectsFolder .. "The Tale of Peter Rabbit(Split Sentences).rsp")
-sp:ScrollTextWindow(HighlightedReportType.ThreePlusSyllableHighlightedWords, 1200)
+sp:ScrollTextWindow(HighlightedReportType.ThreePlusSyllableHighlightedWords, "First he ate some lettuces and some French beans")
 ScreenshotLib.SnapScreenshot(ImagePath .. "peter-rabbit-split-sentences." .. FileExtension)
 
 sp:Close()
@@ -787,7 +787,7 @@ sp:CloseProperties()
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-long-sentence-excluded." .. FileExtension,
   HighlightedReportType.GrammarHighlightedIssues, true, 989, 1123)
 
-sp:ScrollTextWindow(HighlightedReportType.GrammarHighlightedIssues, 2000)
+sp:ScrollTextWindow(HighlightedReportType.GrammarHighlightedIssues, "Danielson, Wayne A., and")
 
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-copyright-included." .. FileExtension,
   HighlightedReportType.GrammarHighlightedIssues, true, 2195, 2240)
@@ -1154,7 +1154,7 @@ sp.Close()
 -- Website example
 ------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "LibreOffice.rsp")
-sp:ScrollTextWindow(HighlightedReportType.ThreePlusSyllableHighlightedWords, 1800)
+sp:ScrollTextWindow(HighlightedReportType.ThreePlusSyllableHighlightedWords, "processed as indicated in the YouTube privacy policy")
 ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "incompletesentences." .. FileExtension, 1)
 
 sp:DelayReloading(true) -- prevent reloading website in case we are offline

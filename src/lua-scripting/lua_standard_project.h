@@ -378,7 +378,7 @@ namespace LuaScripting
         int /*INTERNAL!!!*/ SelectHighlightedWordReport(lua_State* L);
         /* Selects and scrolls down a text window.
            WindowToSelect The text window to select. Refer to HighlightedReportType enumeration.
-           Position Character position to scroll into view.*/
+           ContentToHighlight The content to scroll to.*/
         int /*INTERNAL!!!*/ ScrollTextWindow(lua_State* L);
         /* Selects the Readability Results section of the project and highlights a test by index.
            TestToSelect The test to select, based on position in the list.*/

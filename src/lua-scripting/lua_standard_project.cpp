@@ -4482,14 +4482,29 @@ namespace LuaScripting
                     {
                     selWindow = view->GetGrammarView().FindWindowById(windowId);
                     }
-                if (selWindow != nullptr && selWindow->IsKindOf(wxCLASSINFO(FormattedTextCtrl)))
+                if (selWindow != nullptr && selWindow->IsKindOf(wxCLASSINFO(wxTextCtrl)))
                     {
                     // Custom word-list tests have the same integral IDs for their highlighted-text
                     // reports and list controls, so search by label instead.
                     view->GetSideBar()->SelectSubItem(
                         view->GetSideBar()->FindSubItem(selWindow->GetName()));
-                    dynamic_cast<FormattedTextCtrl*>(selWindow)->ShowPosition(
-                        luaL_checkinteger(L, 3));
+
+                    const wxString contentToFind{ luaL_checkstring(L, 3), wxConvUTF8 };
+                    auto* textCtrl{ dynamic_cast<wxTextCtrl*>(selWindow) };
+                    const auto searchResult = textCtrl->SearchText(wxTextSearch{ contentToFind });
+                    if (searchResult)
+                        {
+                        textCtrl->ShowPosition(searchResult.m_start);
+                        }
+                    else
+                        {
+                        DebugPrint(wxString::Format( // TRANSLATORS: %s are formatting tags and
+                                                     // should stay wrapped around "Warning"
+                            _(L"%sWarning%s: unable to find \"%s\" in text window."),
+                            L"<span style='color:blue; font-weight:bold;'>", L"</span>",
+                            wxString{ contentToFind }.Truncate(10).append(
+                                contentToFind.length() > 10 ? wxString{ L"..." } : wxString{})));
+                        }
                     }
                 }
             }
@@ -4531,12 +4546,12 @@ namespace LuaScripting
                             }
                         else
                             {
-                            DebugPrint(wxString::Format( // TRANSLATORS: %s are formatting tags and
-                                                         // should stay wrapped around "Warning"
-                                _(L"%sWarning%s: unable to find \"%s\" in grammar text window."),
+                            DebugPrint(wxString::Format(
+                                _(L"%sWarning%s: unable to find \"%s\" in text window."),
                                 L"<span style='color:blue; font-weight:bold;'>", L"</span>",
                                 wxString{ contentToFind }.Truncate(10).append(
-                                    contentToFind.length() > 10 ? L"..." : wxString{})));
+                                    contentToFind.length() > 10 ? wxString{ L"..." } :
+                                                                  wxString{})));
                             }
                         selWindow->SetFocus();
                         }
