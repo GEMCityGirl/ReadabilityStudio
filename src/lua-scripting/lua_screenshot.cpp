@@ -303,27 +303,80 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SnapScreenshotOfTextWindow(lua_State* L)
         {
-        if (!VerifyParameterCount(L, 1, __func__))
+        if (!VerifyParameterCount(L, 2, __func__))
             {
             return 0;
             }
 
-        const wxString path(luaL_checkstring(L, 1), wxConvUTF8);
-        std::vector<std::pair<long, long>> highlightPoints;
-        if (lua_gettop(L) > 3)
-            {
-            for (long i = 4; i <= lua_gettop(L); i += 2)
-                {
-                highlightPoints.push_back(
-                    std::make_pair(lua_tonumber(L, i), lua_tonumber(L, i + 1)));
-                }
-            }
         wxWindowID windowId = lua_tonumber(L, 2);
         if (const auto windowMappedId = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 2));
             windowMappedId != wxGetApp().GetDynamicIdMap().cend())
             {
             windowId = windowMappedId->second;
             }
+
+        wxWindow* windowToCapture = Screenshot::GetActiveDialogOrFrame();
+        if (windowToCapture == nullptr && wxTopLevelWindows.GetCount() > 0)
+            {
+            windowToCapture = wxTopLevelWindows.GetLast()->GetData();
+            }
+        if (windowToCapture == nullptr)
+            {
+            lua_pushboolean(L, false);
+            return 1;
+            }
+        if (windowToCapture->GetId() != windowId ||
+            !windowToCapture->IsKindOf(CLASSINFO(wxTextCtrl)))
+            {
+            wxWindow* foundWindow = windowToCapture->FindWindow(windowId);
+            if (foundWindow && foundWindow->IsKindOf(CLASSINFO(wxTextCtrl)))
+                {
+                windowToCapture = foundWindow;
+                }
+            else
+                {
+                lua_pushboolean(L, false);
+                return 1;
+                }
+            }
+
+        auto* textCtrl = dynamic_cast<wxTextCtrl*>(windowToCapture);
+        wxASSERT(textCtrl);
+        if (textCtrl == nullptr)
+            {
+            lua_pushboolean(L, false);
+            return 1;
+            }
+
+        std::vector<std::pair<long, long>> highlightPoints;
+        if (lua_gettop(L) > 3)
+            {
+            // search for the strings to highlight and store their positions in the text
+            // (it is assumed that the strings are in the order that the appear in the text)
+            wxTextSearchResult previousFind;
+            for (long i = 4; i <= lua_gettop(L); ++i)
+                {
+                const wxString contentToFind{ luaL_checkstring(L, i), wxConvUTF8 };
+                const auto searchResult = textCtrl->SearchText(
+                    wxTextSearch{ contentToFind }.Start(previousFind ? previousFind.m_end : 0));
+                if (searchResult)
+                    {
+                    highlightPoints.push_back(
+                        std::make_pair(searchResult.m_start, searchResult.m_end));
+                    previousFind = searchResult;
+                    }
+                else
+                    {
+                    DebugPrint(wxString::Format(
+                        _(L"%sWarning%s: unable to find \"%s\" in text window."),
+                        L"<span style='color:blue; font-weight:bold;'>", L"</span>",
+                        wxString{ contentToFind }.Truncate(10).append(
+                            contentToFind.length() > 10 ? wxString{ L"..." } : wxString{})));
+                    }
+                }
+            }
+
+        const wxString path{ luaL_checkstring(L, 1), wxConvUTF8 };
         lua_pushboolean(L, Screenshot::SaveScreenshotOfTextWindow(
                                path, windowId, lua_toboolean(L, 3), highlightPoints));
         return 1;
