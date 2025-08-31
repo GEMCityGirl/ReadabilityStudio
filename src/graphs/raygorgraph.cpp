@@ -20,14 +20,14 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
     //----------------------------------------------------------------
     RaygorGraph::RaygorGraph(
         Wisteria::Canvas * canvas,
-        const std::shared_ptr<Wisteria::Colors::Schemes::ColorScheme>& colors /*= nullptr*/,
-        const std::shared_ptr<Wisteria::Icons::Schemes::IconScheme>& shapes /*= nullptr*/)
+        const std::shared_ptr<Colors::Schemes::ColorScheme>& colors /*= nullptr*/,
+        const std::shared_ptr<Icons::Schemes::IconScheme>& shapes /*= nullptr*/)
         : PolygonReadabilityGraph(canvas)
         {
         SetColorScheme(colors != nullptr ? colors : Settings::GetDefaultColorScheme());
         SetShapeScheme(shapes != nullptr ? shapes :
-                                           std::make_unique<Wisteria::Icons::Schemes::IconScheme>(
-                                               Wisteria::Icons::Schemes::StandardShapes()));
+                                           std::make_unique<Icons::Schemes::IconScheme>(
+                                               Icons::Schemes::StandardShapes()));
 
         GetCanvas()->SetLabel(_(L"Raygor Estimate"));
         GetCanvas()->SetName(_(L"Raygor Estimate"));
@@ -259,11 +259,10 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
         GetPhysicalCoordinates(20.4, 3.6, m_longSentencesPoints[5]);
         GetPhysicalCoordinates(27, 3.2, m_longSentencesPoints[6]);
         GetPhysicalCoordinates(6, 3.2, m_longSentencesPoints[7]);
-        AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
-            Wisteria::GraphItems::GraphItemInfo(_(L"Invalid region: sentences are too long"))
+        AddObject(std::make_unique<GraphItems::Polygon>(
+            GraphItems::GraphItemInfo(_(L"Invalid region: sentences are too long"))
                 .Pen(wxNullPen)
-                .Brush(wxBrush(
-                    Wisteria::Colors::ColorContrast::ChangeOpacity(GetInvalidAreaColor(), 100)))
+                .Brush(wxBrush(Colors::ColorContrast::ChangeOpacity(GetInvalidAreaColor(), 100)))
                 .Show((GetRaygorStyle() != RaygorStyle::Original)),
             m_longSentencesPoints));
         // long word region
@@ -278,10 +277,9 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
         GetPhysicalCoordinates(44, 7.3, m_longWordPoints[8]);
         GetPhysicalCoordinates(44, 28.0, m_longWordPoints[9]);
         AddObject(std::make_unique<GraphItems::Polygon>(
-            Wisteria::GraphItems::GraphItemInfo(_(L"Invalid region: too many long words"))
+            GraphItems::GraphItemInfo(_(L"Invalid region: too many long words"))
                 .Pen(wxNullPen)
-                .Brush(wxBrush(
-                    Wisteria::Colors::ColorContrast::ChangeOpacity(GetInvalidAreaColor(), 100)))
+                .Brush(wxBrush(Colors::ColorContrast::ChangeOpacity(GetInvalidAreaColor(), 100)))
                 .Show((GetRaygorStyle() != RaygorStyle::Original)),
             m_longWordPoints));
         // divider line
@@ -354,8 +352,8 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
             // draw the "Long Words" area label
             {
             GetPhysicalCoordinates(31, 14.5, topCorner);
-            auto invalidLabel = std::make_unique<Wisteria::GraphItems::Label>(
-                Wisteria::GraphItems::GraphItemInfo(
+            auto invalidLabel = std::make_unique<GraphItems::Label>(
+                GraphItems::GraphItemInfo(
                     /* TRANSLATORS: Uppercasing is just for display */ _(L"INVALID"))
                     .Scaling(GetScaling())
                     .Pen(wxNullPen)
@@ -370,7 +368,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
             {
             GetPhysicalCoordinates(7, 3.5, topCorner);
             auto invalidLabel = std::make_unique<GraphItems::Label>(
-                Wisteria::GraphItems::GraphItemInfo(
+                GraphItems::GraphItemInfo(
                     /* TRANSLATORS: Uppercasing is just for display */ _(L"INVALID"))
                     .Scaling(GetScaling())
                     .Pen(wxNullPen)
@@ -382,118 +380,118 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
             }
 
         // middle points on the separator line
-        wxColour separatorColor{ Wisteria::Colors::ColorContrast::ChangeOpacity(*wxBLACK, 200) };
-        separatorColor = Wisteria::Colors::ColorContrast::ShadeOrTintIfClose(
-            separatorColor, GetPlotOrCanvasColor());
+        wxColour separatorColor{ Colors::ColorContrast::ChangeOpacity(*wxBLACK, 200) };
+        separatorColor =
+            Colors::ColorContrast::ShadeOrTintIfClose(separatorColor, GetPlotOrCanvasColor());
         wxPoint dividerPt;
         auto splinePoints = std::make_unique<GraphItems::Points2D>(wxNullPen);
         splinePoints->SetScaling(GetScaling());
         splinePoints->SetDPIScaleFactor(GetDPIScaleFactor());
         GetPhysicalCoordinates(18, 8.1, dividerPt);
-        splinePoints->AddPoint(Wisteria::GraphItems::Point2D(
-                                   Wisteria::GraphItems::GraphItemInfo()
-                                       .AnchorPoint(dividerPt)
-                                       .Brush(separatorColor)
-                                       .Pen(Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
-                                           GetPlotOrCanvasColor())),
-                                   Settings::GetPointRadius() / 2, Icons::IconShape::Circle),
-                               dc);
+        splinePoints->AddPoint(
+            GraphItems::Point2D(
+                GraphItems::GraphItemInfo()
+                    .AnchorPoint(dividerPt)
+                    .Brush(separatorColor)
+                    .Pen(Colors::ColorContrast::BlackOrWhiteContrast(GetPlotOrCanvasColor())),
+                Settings::GetPointRadius() / 2, Icons::IconShape::Circle),
+            dc);
 
         GetPhysicalCoordinates(19.5, 7.28, dividerPt);
-        splinePoints->AddPoint(Wisteria::GraphItems::Point2D(
-                                   Wisteria::GraphItems::GraphItemInfo()
-                                       .AnchorPoint(dividerPt)
-                                       .Brush(separatorColor)
-                                       .Pen(Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
-                                           GetPlotOrCanvasColor())),
-                                   Settings::GetPointRadius() / 2, Icons::IconShape::Circle),
-                               dc);
+        splinePoints->AddPoint(
+            GraphItems::Point2D(
+                GraphItems::GraphItemInfo()
+                    .AnchorPoint(dividerPt)
+                    .Brush(separatorColor)
+                    .Pen(Colors::ColorContrast::BlackOrWhiteContrast(GetPlotOrCanvasColor())),
+                Settings::GetPointRadius() / 2, Icons::IconShape::Circle),
+            dc);
 
         GetPhysicalCoordinates(21, 6.69, dividerPt);
-        splinePoints->AddPoint(Wisteria::GraphItems::Point2D(
-                                   Wisteria::GraphItems::GraphItemInfo()
-                                       .AnchorPoint(dividerPt)
-                                       .Brush(separatorColor)
-                                       .Pen(Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
-                                           GetPlotOrCanvasColor())),
-                                   Settings::GetPointRadius() / 2, Icons::IconShape::Circle),
-                               dc);
+        splinePoints->AddPoint(
+            GraphItems::Point2D(
+                GraphItems::GraphItemInfo()
+                    .AnchorPoint(dividerPt)
+                    .Brush(separatorColor)
+                    .Pen(Colors::ColorContrast::BlackOrWhiteContrast(GetPlotOrCanvasColor())),
+                Settings::GetPointRadius() / 2, Icons::IconShape::Circle),
+            dc);
 
         GetPhysicalCoordinates(23.7, 5.91, dividerPt);
-        splinePoints->AddPoint(Wisteria::GraphItems::Point2D(
-                                   Wisteria::GraphItems::GraphItemInfo()
-                                       .AnchorPoint(dividerPt)
-                                       .Scaling(GetScaling())
-                                       .Brush(separatorColor)
-                                       .Pen(Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
-                                           GetPlotOrCanvasColor())),
-                                   Settings::GetPointRadius() / 2, Icons::IconShape::Circle),
-                               dc);
+        splinePoints->AddPoint(
+            GraphItems::Point2D(
+                GraphItems::GraphItemInfo()
+                    .AnchorPoint(dividerPt)
+                    .Scaling(GetScaling())
+                    .Brush(separatorColor)
+                    .Pen(Colors::ColorContrast::BlackOrWhiteContrast(GetPlotOrCanvasColor())),
+                Settings::GetPointRadius() / 2, Icons::IconShape::Circle),
+            dc);
 
         GetPhysicalCoordinates(26.5, 5.26, dividerPt);
-        splinePoints->AddPoint(Wisteria::GraphItems::Point2D(
-                                   Wisteria::GraphItems::GraphItemInfo()
-                                       .AnchorPoint(dividerPt)
-                                       .Brush(separatorColor)
-                                       .Pen(Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
-                                           GetPlotOrCanvasColor())),
-                                   Settings::GetPointRadius() / 2, Icons::IconShape::Circle),
-                               dc);
+        splinePoints->AddPoint(
+            GraphItems::Point2D(
+                GraphItems::GraphItemInfo()
+                    .AnchorPoint(dividerPt)
+                    .Brush(separatorColor)
+                    .Pen(Colors::ColorContrast::BlackOrWhiteContrast(GetPlotOrCanvasColor())),
+                Settings::GetPointRadius() / 2, Icons::IconShape::Circle),
+            dc);
 
         GetPhysicalCoordinates(28.5, 5, dividerPt);
-        splinePoints->AddPoint(Wisteria::GraphItems::Point2D(
-                                   Wisteria::GraphItems::GraphItemInfo()
-                                       .AnchorPoint(dividerPt)
-                                       .Brush(separatorColor)
-                                       .Pen(Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
-                                           GetPlotOrCanvasColor())),
-                                   Settings::GetPointRadius() / 2, Icons::IconShape::Circle),
-                               dc);
+        splinePoints->AddPoint(
+            GraphItems::Point2D(
+                GraphItems::GraphItemInfo()
+                    .AnchorPoint(dividerPt)
+                    .Brush(separatorColor)
+                    .Pen(Colors::ColorContrast::BlackOrWhiteContrast(GetPlotOrCanvasColor())),
+                Settings::GetPointRadius() / 2, Icons::IconShape::Circle),
+            dc);
 
         GetPhysicalCoordinates(30.1, 4.82, dividerPt);
-        splinePoints->AddPoint(Wisteria::GraphItems::Point2D(
-                                   Wisteria::GraphItems::GraphItemInfo()
-                                       .AnchorPoint(dividerPt)
-                                       .Brush(separatorColor)
-                                       .Pen(Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
-                                           GetPlotOrCanvasColor())),
-                                   Settings::GetPointRadius() / 2, Icons::IconShape::Circle),
-                               dc);
+        splinePoints->AddPoint(
+            GraphItems::Point2D(
+                GraphItems::GraphItemInfo()
+                    .AnchorPoint(dividerPt)
+                    .Brush(separatorColor)
+                    .Pen(Colors::ColorContrast::BlackOrWhiteContrast(GetPlotOrCanvasColor())),
+                Settings::GetPointRadius() / 2, Icons::IconShape::Circle),
+            dc);
 
         GetPhysicalCoordinates(32.2, 4.6, dividerPt);
-        splinePoints->AddPoint(Wisteria::GraphItems::Point2D(
-                                   Wisteria::GraphItems::GraphItemInfo()
-                                       .AnchorPoint(dividerPt)
-                                       .Brush(separatorColor)
-                                       .Pen(Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
-                                           GetPlotOrCanvasColor())),
-                                   Settings::GetPointRadius() / 2, Icons::IconShape::Circle),
-                               dc);
+        splinePoints->AddPoint(
+            GraphItems::Point2D(
+                GraphItems::GraphItemInfo()
+                    .AnchorPoint(dividerPt)
+                    .Brush(separatorColor)
+                    .Pen(Colors::ColorContrast::BlackOrWhiteContrast(GetPlotOrCanvasColor())),
+                Settings::GetPointRadius() / 2, Icons::IconShape::Circle),
+            dc);
 
         GetPhysicalCoordinates(34.2, 4.44, dividerPt);
-        splinePoints->AddPoint(Wisteria::GraphItems::Point2D(
-                                   Wisteria::GraphItems::GraphItemInfo()
-                                       .AnchorPoint(dividerPt)
-                                       .Brush(separatorColor)
-                                       .Pen(Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
-                                           GetPlotOrCanvasColor())),
-                                   Settings::GetPointRadius() / 2, Icons::IconShape::Circle),
-                               dc);
+        splinePoints->AddPoint(
+            GraphItems::Point2D(
+                GraphItems::GraphItemInfo()
+                    .AnchorPoint(dividerPt)
+                    .Brush(separatorColor)
+                    .Pen(Colors::ColorContrast::BlackOrWhiteContrast(GetPlotOrCanvasColor())),
+                Settings::GetPointRadius() / 2, Icons::IconShape::Circle),
+            dc);
 
         GetPhysicalCoordinates(37, 4.25, dividerPt);
-        splinePoints->AddPoint(Wisteria::GraphItems::Point2D(
-                                   Wisteria::GraphItems::GraphItemInfo()
-                                       .AnchorPoint(dividerPt)
-                                       .Brush(separatorColor)
-                                       .Pen(Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
-                                           GetPlotOrCanvasColor())),
-                                   Settings::GetPointRadius() / 2, Icons::IconShape::Circle),
-                               dc);
+        splinePoints->AddPoint(
+            GraphItems::Point2D(
+                GraphItems::GraphItemInfo()
+                    .AnchorPoint(dividerPt)
+                    .Brush(separatorColor)
+                    .Pen(Colors::ColorContrast::BlackOrWhiteContrast(GetPlotOrCanvasColor())),
+                Settings::GetPointRadius() / 2, Icons::IconShape::Circle),
+            dc);
 
         AddObject(std::move(splinePoints));
 
-        auto levelsSpline = std::make_unique<Wisteria::GraphItems::Polygon>(
-            Wisteria::GraphItems::GraphItemInfo()
+        auto levelsSpline = std::make_unique<GraphItems::Polygon>(
+            GraphItems::GraphItemInfo()
                 .Pen(wxPen(separatorColor))
                 .Brush(wxBrush(separatorColor))
                 .Scaling(GetScaling()),
@@ -504,39 +502,36 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
         // Draw the grade lines
         //---------------------
         // 3rd grade
-        wxColour gradeLineColor{ Wisteria::Colors::ColorContrast::IsDark(GetPlotOrCanvasColor()) ?
-                                     Wisteria::Colors::ColorBrewer::GetColor(
-                                         Wisteria::Colors::Color::BondiBlue) :
+        wxColour gradeLineColor{ Colors::ColorContrast::IsDark(GetPlotOrCanvasColor()) ?
+                                     Colors::ColorBrewer::GetColor(Colors::Color::BondiBlue) :
                                      *wxBLUE };
-        gradeLineColor = Wisteria::Colors::ColorContrast::ChangeOpacity(gradeLineColor, 200);
-        AddObject(
-            std::make_unique<Wisteria::GraphItems::Polygon>(Wisteria::GraphItems::GraphItemInfo()
-                                                                .Pen(gradeLineColor)
-                                                                .Brush(gradeLineColor)
-                                                                .Scaling(GetScaling()),
-                                                            &m_gradeLinePoints[3], 2));
+        gradeLineColor = Colors::ColorContrast::ChangeOpacity(gradeLineColor, 200);
+        AddObject(std::make_unique<GraphItems::Polygon>(GraphItems::GraphItemInfo()
+                                                            .Pen(gradeLineColor)
+                                                            .Brush(gradeLineColor)
+                                                            .Scaling(GetScaling()),
+                                                        &m_gradeLinePoints[3], 2));
         // the rest of the grade lines
         for (size_t i = 4, pointIter = 5; i <= 12; ++i, pointIter += 2)
             {
-            AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
-                Wisteria::GraphItems::GraphItemInfo()
-                    .Pen(gradeLineColor)
-                    .Brush(gradeLineColor)
-                    .Scaling(GetScaling()),
-                &m_gradeLinePoints[pointIter], 2));
+            AddObject(std::make_unique<GraphItems::Polygon>(GraphItems::GraphItemInfo()
+                                                                .Pen(gradeLineColor)
+                                                                .Brush(gradeLineColor)
+                                                                .Scaling(GetScaling()),
+                                                            &m_gradeLinePoints[pointIter], 2));
             }
-        AddObject(std::make_unique<GraphItems::Polygon>(Wisteria::GraphItems::GraphItemInfo()
+        AddObject(std::make_unique<GraphItems::Polygon>(GraphItems::GraphItemInfo()
                                                             .Pen(gradeLineColor)
                                                             .Brush(gradeLineColor)
                                                             .Scaling(GetScaling()),
                                                         &m_gradeLinePoints[23], 2));
 
-        const wxBrush selectionBrush = wxBrush(Wisteria::Colors::ColorContrast::ChangeOpacity(
-            Wisteria::Colors::ColorBrewer::GetColor(Wisteria::Colors::Color::LightGray), 100));
+        const wxBrush selectionBrush = wxBrush(Colors::ColorContrast::ChangeOpacity(
+            Colors::ColorBrewer::GetColor(Colors::Color::LightGray), 100));
 
         // draw the grade areas (for selecting)
-        AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
-            Wisteria::GraphItems::GraphItemInfo(GetMessageCatalog()->GetGradeScaleLongLabel(3))
+        AddObject(std::make_unique<GraphItems::Polygon>(
+            GraphItems::GraphItemInfo(GetMessageCatalog()->GetGradeScaleLongLabel(3))
                 .Pen(wxNullPen)
                 .Brush(wxNullBrush)
                 .SelectionBrush(selectionBrush),
@@ -545,21 +540,20 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
         for (size_t i = 4, pointIter = 5; i <= 12; ++i, pointIter += 2)
             {
             AddObject(std::make_unique<GraphItems::Polygon>(
-                Wisteria::GraphItems::GraphItemInfo(GetMessageCatalog()->GetGradeScaleLongLabel(i))
+                GraphItems::GraphItemInfo(GetMessageCatalog()->GetGradeScaleLongLabel(i))
                     .Pen(wxNullPen)
                     .Brush(wxNullBrush)
                     .SelectionBrush(selectionBrush),
                 &m_gradeLinePoints[(pointIter - 2)], 4));
             }
         // last labels are a little special because they are more vast
-        AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
-            Wisteria::GraphItems::GraphItemInfo(_(L"College"))
-                .Pen(wxNullPen)
-                .Brush(wxNullBrush)
-                .SelectionBrush(selectionBrush),
-            &m_gradeLinePoints[21], 4));
-        AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
-            Wisteria::GraphItems::GraphItemInfo(_(L"Post College (e.g., Professor)"))
+        AddObject(std::make_unique<GraphItems::Polygon>(GraphItems::GraphItemInfo(_(L"College"))
+                                                            .Pen(wxNullPen)
+                                                            .Brush(wxNullBrush)
+                                                            .SelectionBrush(selectionBrush),
+                                                        &m_gradeLinePoints[21], 4));
+        AddObject(std::make_unique<GraphItems::Polygon>(
+            GraphItems::GraphItemInfo(_(L"Post College (e.g., Professor)"))
                 .Pen(wxNullPen)
                 .Brush(wxNullBrush)
                 .SelectionBrush(selectionBrush),
@@ -581,8 +575,8 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
             wxPoint point;
             GetPhysicalCoordinates(level.GetX(), level.GetY(), point);
 
-            auto levelLabel = std::make_unique<Wisteria::GraphItems::Label>(
-                Wisteria::GraphItems::GraphItemInfo(level.GetLabel())
+            auto levelLabel = std::make_unique<GraphItems::Label>(
+                GraphItems::GraphItemInfo(level.GetLabel())
                     .Scaling(GetScaling())
                     .Pen(wxNullPen)
                     .Font((GetRaygorStyle() == RaygorStyle::Modern) ? labelFont :
@@ -754,11 +748,11 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
                                        m_results[i].m_scorePoint))
                 {
                 points->AddPoint(
-                    Wisteria::GraphItems::Point2D(
-                        Wisteria::GraphItems::GraphItemInfo(GetDataset()->GetIdColumn().GetValue(i))
+                    GraphItems::Point2D(
+                        GraphItems::GraphItemInfo(GetDataset()->GetIdColumn().GetValue(i))
                             .AnchorPoint(m_results[i].m_scorePoint)
-                            .Pen(Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
-                                GetPlotOrCanvasColor()))
+                            .Pen(
+                                Colors::ColorContrast::BlackOrWhiteContrast(GetPlotOrCanvasColor()))
                             .Brush(GetColorScheme()->GetColor(colorIndex)),
                         Settings::GetPointRadius(), GetShapeScheme()->GetShape(colorIndex)),
                     dc);
@@ -780,9 +774,8 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
             const wxPoint textCoordinate(
                 GetPlotAreaBoundingBox().GetX() + (GetPlotAreaBoundingBox().GetWidth() / 2),
                 GetPlotAreaBoundingBox().GetY() + (GetPlotAreaBoundingBox().GetHeight() / 2));
-            AddObject(std::make_unique<Wisteria::GraphItems::Label>(
-                Wisteria::GraphItems::GraphItemInfo(
-                    _(L"Invalid score: text is too difficult to be plotted"))
+            AddObject(std::make_unique<GraphItems::Label>(
+                GraphItems::GraphItemInfo(_(L"Invalid score: text is too difficult to be plotted"))
                     .Scaling(GetScaling())
                     .Pen(*wxBLACK_PEN)
                     .Font(labelFont)

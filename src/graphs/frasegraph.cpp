@@ -21,21 +21,21 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::Polygo
     //----------------------------------------------------------------
     FraseGraph::FraseGraph(
         Wisteria::Canvas * canvas,
-        const std::shared_ptr<Wisteria::Colors::Schemes::ColorScheme>& colors /*= nullptr*/,
-        const std::shared_ptr<Wisteria::Icons::Schemes::IconScheme>& shapes /*= nullptr*/)
+        const std::shared_ptr<Colors::Schemes::ColorScheme>& colors /*= nullptr*/,
+        const std::shared_ptr<Icons::Schemes::IconScheme>& shapes /*= nullptr*/)
         : PolygonReadabilityGraph(canvas)
         {
         SetColorScheme(colors != nullptr ? colors : Settings::GetDefaultColorScheme());
         SetShapeScheme(shapes != nullptr ? shapes :
-                                           std::make_shared<Wisteria::Icons::Schemes::IconScheme>(
-                                               Wisteria::Icons::Schemes::StandardShapes()));
+                                           std::make_shared<Icons::Schemes::IconScheme>(
+                                               Icons::Schemes::StandardShapes()));
 
         GetCanvas()->SetLabel(_(L"FRASE Graph"));
         GetCanvas()->SetName(_(L"FRASE Graph"));
         GetLeftYAxis().GetTitle().SetText(_(L"Average number of sentences per 100 words"));
         GetBottomXAxis().GetTitle().SetText(_(L"Average number of syllables per 100 words"));
         GetTitle() = GraphItems::Label(
-            Wisteria::GraphItems::GraphItemInfo(
+            GraphItems::GraphItemInfo(
                 _(L"FRASE (Fry Readability Adaptation for Spanish Evaluation) Graph"))
                 .Pen(wxNullPen));
 
@@ -43,8 +43,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::Polygo
         GetBottomXAxis().SetRange(182, 234, 0, 1, 1);
         GetBottomXAxis().SetDisplayInterval(4, 2);
         GetBottomXAxis().GetGridlinePen() = wxNullPen;
-        GetBottomXAxis().SetTickMarkDisplay(
-            Wisteria::GraphItems::Axis::TickMark::DisplayType::Inner);
+        GetBottomXAxis().SetTickMarkDisplay(GraphItems::Axis::TickMark::DisplayType::Inner);
         GetBottomXAxis().SetTickMarkInterval(2);
         GetBottomXAxis().SetMajorTickMarkLength(10);
         GetBottomXAxis().SetMinorTickMarkLength(10);
@@ -53,7 +52,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::Polygo
         GetLeftYAxis().SetRange(0, 15, 0, 1, 1);
         GetLeftYAxis().ShowOuterLabels(false);
         GetLeftYAxis().GetGridlinePen() = wxNullPen;
-        GetLeftYAxis().SetTickMarkDisplay(Wisteria::GraphItems::Axis::TickMark::DisplayType::Inner);
+        GetLeftYAxis().SetTickMarkDisplay(GraphItems::Axis::TickMark::DisplayType::Inner);
         GetLeftYAxis().SetTickMarkInterval(1);
         GetLeftYAxis().SetMajorTickMarkLength(10);
         GetLeftYAxis().SetMinorTickMarkLength(10);
@@ -166,36 +165,36 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::Polygo
         GetPhysicalCoordinates(210.5, 0, m_levelLinePoints[9]);
         GetPhysicalCoordinates(234, 0, m_levelLinePoints[10]);
 
-        const wxBrush selectionBrush = wxBrush(Wisteria::Colors::ColorContrast::ChangeOpacity(
-            Wisteria::Colors::ColorBrewer::GetColor(Wisteria::Colors::Color::LightGray), 100));
+        const wxBrush selectionBrush = wxBrush(Colors::ColorContrast::ChangeOpacity(
+            Colors::ColorBrewer::GetColor(Colors::Color::LightGray), 100));
 
         // I
-        AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
-            Wisteria::GraphItems::GraphItemInfo()
+        AddObject(std::make_unique<GraphItems::Polygon>(
+            GraphItems::GraphItemInfo()
                 .Pen(wxNullPen)
                 .Text(_(L"Beginner Level"))
                 .Brush(wxNullBrush)
                 .SelectionBrush(selectionBrush),
             std::span(m_levelLinePoints.cbegin(), std::next(m_levelLinePoints.cbegin(), 3))));
         // II
-        AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
-            Wisteria::GraphItems::GraphItemInfo()
+        AddObject(std::make_unique<GraphItems::Polygon>(
+            GraphItems::GraphItemInfo()
                 .Pen(wxNullPen)
                 .Text(_(L"Intermediate Level"))
                 .Brush(wxNullBrush)
                 .SelectionBrush(selectionBrush),
             std::span(std::next(m_levelLinePoints.cbegin(), 3), 5)));
         // III
-        AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
-            Wisteria::GraphItems::GraphItemInfo()
+        AddObject(std::make_unique<GraphItems::Polygon>(
+            GraphItems::GraphItemInfo()
                 .Pen(wxNullPen)
                 .Text(_(L"Advanced Intermediate Level"))
                 .Brush(wxNullBrush)
                 .SelectionBrush(selectionBrush),
             std::span(std::next(m_levelLinePoints.cbegin(), 6), 4)));
         // IV
-        AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
-            Wisteria::GraphItems::GraphItemInfo()
+        AddObject(std::make_unique<GraphItems::Polygon>(
+            GraphItems::GraphItemInfo()
                 .Pen(wxNullPen)
                 .Text(_(L"Advanced Level"))
                 .Brush(wxNullBrush)
@@ -203,36 +202,36 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::Polygo
             std::span(std::next(m_levelLinePoints.cbegin(), 8), 3)));
 
         // separator line
-        wxColour separatorColor{ Wisteria::Colors::ColorContrast::ChangeOpacity(*wxBLACK, 200) };
-        separatorColor = Wisteria::Colors::ColorContrast::ShadeOrTintIfClose(
-            separatorColor, GetPlotOrCanvasColor());
+        wxColour separatorColor{ Colors::ColorContrast::ChangeOpacity(*wxBLACK, 200) };
+        separatorColor =
+            Colors::ColorContrast::ShadeOrTintIfClose(separatorColor, GetPlotOrCanvasColor());
         auto levelsSpline =
-            std::make_unique<Wisteria::GraphItems::Polygon>(Wisteria::GraphItems::GraphItemInfo()
-                                                                .Pen(wxPen(separatorColor))
-                                                                .Brush(separatorColor)
-                                                                .SelectionBrush(selectionBrush)
-                                                                .Scaling(GetScaling()),
-                                                            m_dividerLinePoints);
-        levelsSpline->SetShape(Wisteria::GraphItems::Polygon::PolygonShape::Spline);
+            std::make_unique<GraphItems::Polygon>(GraphItems::GraphItemInfo()
+                                                      .Pen(wxPen(separatorColor))
+                                                      .Brush(separatorColor)
+                                                      .SelectionBrush(selectionBrush)
+                                                      .Scaling(GetScaling()),
+                                                  m_dividerLinePoints);
+        levelsSpline->SetShape(GraphItems::Polygon::PolygonShape::Spline);
         AddObject(std::move(levelsSpline));
 
         // draw the region lines
-        AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
-            Wisteria::GraphItems::GraphItemInfo()
+        AddObject(std::make_unique<GraphItems::Polygon>(
+            GraphItems::GraphItemInfo()
                 .Pen(wxPen{ separatorColor })
                 .Brush(separatorColor)
                 .SelectionBrush(selectionBrush)
                 .Scaling(GetScaling()),
             std::span(std::next(m_levelLinePoints.cbegin(), 3), 2)));
-        AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
-            Wisteria::GraphItems::GraphItemInfo()
+        AddObject(std::make_unique<GraphItems::Polygon>(
+            GraphItems::GraphItemInfo()
                 .Pen(wxPen{ separatorColor })
                 .Brush(separatorColor)
                 .SelectionBrush(selectionBrush)
                 .Scaling(GetScaling()),
             std::span(std::next(m_levelLinePoints.cbegin(), 6), 2)));
-        AddObject(std::make_unique<Wisteria::GraphItems::Polygon>(
-            Wisteria::GraphItems::GraphItemInfo()
+        AddObject(std::make_unique<GraphItems::Polygon>(
+            GraphItems::GraphItemInfo()
                 .Pen(wxPen{ separatorColor })
                 .Brush(separatorColor)
                 .SelectionBrush(selectionBrush)
@@ -247,17 +246,17 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::Polygo
         const wxFont quadLabelFont(wxFont(
             wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetFractionalPointSize() * 1.25,
             wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false,
-            Wisteria::GraphItems::Label::GetFirstAvailableMonospaceFont()));
+            GraphItems::Label::GetFirstAvailableMonospaceFont()));
         for (const auto& level : GetLevelLabels())
             {
             GetPhysicalCoordinates(level.GetX(), level.GetY(), pt1);
-            auto levelLabel = std::make_unique<Wisteria::GraphItems::Label>(
-                Wisteria::GraphItems::GraphItemInfo(level.GetLabel())
-                    .Scaling(GetScaling())
-                    .Pen(wxNullPen)
-                    .Font(quadLabelFont)
-                    .FontColor(labelFontColor)
-                    .AnchorPoint(pt1));
+            auto levelLabel =
+                std::make_unique<GraphItems::Label>(GraphItems::GraphItemInfo(level.GetLabel())
+                                                        .Scaling(GetScaling())
+                                                        .Pen(wxNullPen)
+                                                        .Font(quadLabelFont)
+                                                        .FontColor(labelFontColor)
+                                                        .AnchorPoint(pt1));
             levelLabel->SetTextAlignment(Wisteria::TextAlignment::Centered);
             if (GetScores().size() == 1 && level == GetScores().front().GetScore())
                 {
@@ -383,11 +382,11 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::Polygo
                                        m_results[i].m_sentenceStatistic, m_results[i].m_scorePoint))
                 {
                 points->AddPoint(
-                    Wisteria::GraphItems::Point2D(
-                        Wisteria::GraphItems::GraphItemInfo(GetDataset()->GetIdColumn().GetValue(i))
+                    GraphItems::Point2D(
+                        GraphItems::GraphItemInfo(GetDataset()->GetIdColumn().GetValue(i))
                             .AnchorPoint(m_results[i].m_scorePoint)
-                            .Pen(Wisteria::Colors::ColorContrast::BlackOrWhiteContrast(
-                                GetPlotOrCanvasColor()))
+                            .Pen(
+                                Colors::ColorContrast::BlackOrWhiteContrast(GetPlotOrCanvasColor()))
                             .Brush(GetColorScheme()->GetColor(colorIndex)),
                         Settings::GetPointRadius(), GetShapeScheme()->GetShape(colorIndex)),
                     dc);
@@ -409,9 +408,8 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::Polygo
             const wxPoint textCoordinate(
                 GetPlotAreaBoundingBox().GetX() + (GetPlotAreaBoundingBox().GetWidth() / 2),
                 GetPlotAreaBoundingBox().GetY() + (GetPlotAreaBoundingBox().GetHeight() / 2));
-            AddObject(std::make_unique<Wisteria::GraphItems::Label>(
-                Wisteria::GraphItems::GraphItemInfo(
-                    _(L"Invalid score: text is too difficult to be plotted"))
+            AddObject(std::make_unique<GraphItems::Label>(
+                GraphItems::GraphItemInfo(_(L"Invalid score: text is too difficult to be plotted"))
                     .Scaling(GetScaling())
                     .Pen(*wxBLACK_PEN)
                     .Font(labelFont)
