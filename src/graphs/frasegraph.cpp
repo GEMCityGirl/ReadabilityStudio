@@ -208,8 +208,9 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::Polygo
             std::make_unique<GraphItems::Polygon>(GraphItems::GraphItemInfo{}
                                                       .Pen(wxPen{ separatorColor })
                                                       .Brush(separatorColor)
-                                                      .SelectionBrush(selectionBrush)
-                                                      .Scaling(GetScaling()),
+                                                      .Selectable(false)
+                                                      .Scaling(GetScaling())
+                                                      .DPIScaling(GetDPIScaleFactor()),
                                                   m_dividerLinePoints);
         levelsSpline->SetShape(GraphItems::Polygon::PolygonShape::Spline);
         AddObject(std::move(levelsSpline));

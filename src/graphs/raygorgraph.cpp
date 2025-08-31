@@ -494,6 +494,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
             GraphItems::GraphItemInfo{}
                 .Pen(wxPen{ separatorColor })
                 .Brush(wxBrush{ separatorColor })
+                .Selectable(false)
                 .Scaling(GetScaling())
                 .DPIScaling(GetDPIScaleFactor()),
             std::span(std::next(m_dividerLinePoints.cbegin(), 1), m_dividerLinePoints.size() - 2));
