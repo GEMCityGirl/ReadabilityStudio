@@ -1073,13 +1073,13 @@ sp:SelectWindow(SideBarSection.WordsBreakdown, GraphType.WordBarChart)
 sp:DisplayBarChartLabels(false)
 
 -- change bar chart effects
-sp:SetGraphCommonImage(ScreenshotProjectsFolder .. "bookstore.png")
+sp:SetGraphCommonImage(ScreenshotProjectsFolder .. "BookStore.png")
 sp:SetBarChartBarEffect(BoxEffect.CommonImage)
 sp:Reload()
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "example-barchart-common-image." .. FileExtension)
 
 -- change the background to an image
-sp:SetPlotBackgroundImage(ScreenshotProjectsFolder .. "bookstore.png")
+sp:SetPlotBackgroundImage(ScreenshotProjectsFolder .. "BookStore.png")
 sp:SetPlotBackgroundImageFit(ImageFit.CropAndCenter)
 sp:Reload()
 sp:ExportGraph(GraphType.WordBarChart, ImagePath .. "example-graph-background-image-for-common-image." .. FileExtension)
