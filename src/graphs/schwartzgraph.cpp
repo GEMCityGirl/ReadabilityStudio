@@ -431,37 +431,37 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
 
         // inner lines of polygons
         // (can't draw outline around full polygon because it overlaps the axis)
-        auto polysepLineWords =
+        auto polySeparatorLineWords =
             std::make_unique<GraphItems::Lines>(wxPen(L"#ECECEC", 1), GetScaling());
         for (size_t i = 0; i < m_longWordPoints.size() - 2; ++i)
             {
-            polysepLineWords->AddLine(m_longWordPoints[i], m_longWordPoints[i + 1]);
+            polySeparatorLineWords->AddLine(m_longWordPoints[i], m_longWordPoints[i + 1]);
             }
-        AddObject(std::move(polysepLineWords));
+        AddObject(std::move(polySeparatorLineWords));
 
-        auto polysepLineWordsAxis =
+        auto polySeparatorLineWordsAxis =
             std::make_unique<GraphItems::Lines>(GetLeftYAxis().GetPen(), GetScaling());
-        polysepLineWordsAxis->AddLine(m_longWordPoints[m_longWordPoints.size() - 2],
+        polySeparatorLineWordsAxis->AddLine(m_longWordPoints[m_longWordPoints.size() - 2],
                                       m_longWordPoints[m_longWordPoints.size() - 1]);
-        polysepLineWordsAxis->AddLine(m_longWordPoints[m_longWordPoints.size() - 1],
+        polySeparatorLineWordsAxis->AddLine(m_longWordPoints[m_longWordPoints.size() - 1],
                                       m_longWordPoints[0]);
-        AddObject(std::move(polysepLineWordsAxis));
+        AddObject(std::move(polySeparatorLineWordsAxis));
 
-        auto polysepLineSentences =
+        auto polySeparatorLineSentences =
             std::make_unique<GraphItems::Lines>(wxPen(L"#ECECEC"), GetScaling());
         for (size_t i = 0; i < m_longSentencesPoints.size() - 2; ++i)
             {
-            polysepLineSentences->AddLine(m_longSentencesPoints[i], m_longSentencesPoints[i + 1]);
+            polySeparatorLineSentences->AddLine(m_longSentencesPoints[i], m_longSentencesPoints[i + 1]);
             }
-        AddObject(std::move(polysepLineSentences));
+        AddObject(std::move(polySeparatorLineSentences));
 
-        auto polysepLineSentencesAxis =
+        auto polySeparatorLineSentencesAxis =
             std::make_unique<GraphItems::Lines>(GetTopXAxis().GetPen(), GetScaling());
-        polysepLineSentencesAxis->AddLine(m_longSentencesPoints[m_longSentencesPoints.size() - 2],
+        polySeparatorLineSentencesAxis->AddLine(m_longSentencesPoints[m_longSentencesPoints.size() - 2],
                                           m_longSentencesPoints[m_longSentencesPoints.size() - 1]);
-        polysepLineSentencesAxis->AddLine(m_longSentencesPoints[m_longSentencesPoints.size() - 1],
+        polySeparatorLineSentencesAxis->AddLine(m_longSentencesPoints[m_longSentencesPoints.size() - 1],
                                           m_longSentencesPoints[0]);
-        AddObject(std::move(polysepLineSentencesAxis));
+        AddObject(std::move(polySeparatorLineSentencesAxis));
 
         // the explanatory legends (embedded on the graph)
         const wxFont legendFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize(),
