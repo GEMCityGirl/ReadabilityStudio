@@ -500,14 +500,14 @@ namespace LuaScripting
         if (lua_isboolean(L, 1))
             {
             wxMessageBox(lua_toboolean(L, 1) ? _(L"true") : _(L"false"),
-                         (lua_gettop(L) > 1) ? wxString(luaL_checkstring(L, 2), wxConvUTF8) :
+                         (lua_gettop(L) > 1) ? wxString{ luaL_checkstring(L, 2), wxConvUTF8 } :
                                                wxGetApp().GetAppName(),
                          wxOK | wxICON_INFORMATION);
             }
         else if (lua_isstring(L, 1))
             {
-            wxMessageBox(wxString(luaL_checkstring(L, 1), wxConvUTF8),
-                         (lua_gettop(L) > 1) ? wxString(luaL_checkstring(L, 2), wxConvUTF8) :
+            wxMessageBox(wxString{ luaL_checkstring(L, 1), wxConvUTF8 },
+                         (lua_gettop(L) > 1) ? wxString{ luaL_checkstring(L, 2), wxConvUTF8 } :
                                                wxGetApp().GetAppName(),
                          wxOK | wxICON_INFORMATION);
             }
@@ -549,8 +549,8 @@ namespace LuaScripting
                               wxDIR_FILES;
         wxArrayString files;
         const size_t fileCount =
-            dir.GetAllFiles(wxString(luaL_checkstring(L, 1), wxConvUTF8), &files,
-                            wxString(luaL_checkstring(L, 2), wxConvUTF8), flags);
+            dir.GetAllFiles(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }, &files,
+                            wxString{ luaL_checkstring(L, 2), wxConvUTF8 }, flags);
 
         for (size_t i = 1; i <= fileCount; ++i)
             {
@@ -721,7 +721,7 @@ namespace LuaScripting
             return 0;
             }
         // avoid printf injection
-        wxLogMessage(L"%s", wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        wxLogMessage(L"%s", wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
         return 0;
         }
 
@@ -916,8 +916,8 @@ namespace LuaScripting
             }
 
         // set to relative path
-        wxFileName fn(wxString(luaL_checkstring(L, 2), wxConvUTF8));
-        if (fn.MakeAbsolute(wxString(luaL_checkstring(L, 1), wxConvUTF8)))
+        wxFileName fn(wxString{ luaL_checkstring(L, 2), wxConvUTF8 });
+        if (fn.MakeAbsolute(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }))
             {
             lua_pushstring(L, fn.GetFullPath().utf8_str());
             }
@@ -927,8 +927,8 @@ namespace LuaScripting
                                          // should stay wrapped around "Warning"
                 _(L"%sWarning%s: unable to make %s path absolute."),
                 L"<span style='color:blue; font-weight:bold;'>", L"</span>",
-                wxString(luaL_checkstring(L, 2), wxConvUTF8)));
-            lua_pushstring(L, wxString(luaL_checkstring(L, 2), wxConvUTF8));
+                wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
+            lua_pushstring(L, wxString{ luaL_checkstring(L, 2), wxConvUTF8 });
             }
 
         return 1;
@@ -960,7 +960,7 @@ namespace LuaScripting
             {
             return 0;
             }
-        wxLogError(L"%s", wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        wxLogError(L"%s", wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
         return 0;
         }
 
@@ -1004,7 +1004,7 @@ namespace LuaScripting
         phraseList.remove_duplicates();
 
         // load the word list being cross referenced against
-        path = wxString(luaL_checkstring(L, 2), wxConvUTF8);
+        path = wxString{ luaL_checkstring(L, 2), wxConvUTF8 };
         if (!wxFile::Exists(path))
             {
             wxMessageBox(wxString::Format(_(L"%s: invalid file path."), wxString(__func__)),
@@ -1301,7 +1301,7 @@ namespace LuaScripting
             {
             return 0;
             }
-        wxGetApp().GetAppOptions().SetReviewer(wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        wxGetApp().GetAppOptions().SetReviewer(wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
         wxGetApp().Yield();
         return 0;
         }
@@ -1572,7 +1572,7 @@ namespace LuaScripting
             {
             return 0;
             }
-        WarningManager::EnableWarning(wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        WarningManager::EnableWarning(wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
         return 0;
         }
 
@@ -1583,7 +1583,7 @@ namespace LuaScripting
             {
             return 0;
             }
-        WarningManager::DisableWarning(wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        WarningManager::DisableWarning(wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
         return 0;
         }
 
@@ -1863,7 +1863,7 @@ namespace LuaScripting
             return 0;
             }
         wxGetApp().GetAppOptions().SetExcludedPhrasesPath(
-            wxString(luaL_checkstring(L, 1), wxConvUTF8));
+            wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
         return 0;
         }
 
@@ -2261,7 +2261,7 @@ namespace LuaScripting
             return 0;
             }
         wxGetApp().GetAppOptions().SetGraphCommonImagePath(
-            wxString(luaL_checkstring(L, 1), wxConvUTF8));
+            wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
         return 0;
         }
 
@@ -2280,7 +2280,7 @@ namespace LuaScripting
             return 0;
             }
         wxGetApp().GetAppOptions().SetPlotBackGroundImagePath(
-            wxString(luaL_checkstring(L, 1), wxConvUTF8));
+            wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
         return 0;
         }
 
@@ -2630,7 +2630,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetGraphColorScheme(
-            wxString(luaL_checkstring(L, 1), wxConvUTF8));
+            wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
         return 0;
         }
 
@@ -2649,7 +2649,7 @@ namespace LuaScripting
             return 0;
             }
 
-        wxGetApp().GetAppOptions().SetWatermark(wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        wxGetApp().GetAppOptions().SetWatermark(wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
         return 0;
         }
 
@@ -2668,7 +2668,7 @@ namespace LuaScripting
             return 0;
             }
 
-        wxGetApp().GetAppOptions().SetWatermarkLogo(wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        wxGetApp().GetAppOptions().SetWatermarkLogo(wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
         return 0;
         }
 
@@ -2688,7 +2688,7 @@ namespace LuaScripting
             }
 
         wxGetApp().GetAppOptions().SetStippleImagePath(
-            wxString(luaL_checkstring(L, 1), wxConvUTF8));
+            wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
         return 0;
         }
 
@@ -2707,7 +2707,7 @@ namespace LuaScripting
             return 0;
             }
 
-        wxGetApp().GetAppOptions().SetStippleShape(wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        wxGetApp().GetAppOptions().SetStippleShape(wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
         return 0;
         }
 
@@ -3738,7 +3738,7 @@ namespace LuaScripting
             return 0;
             }
         wxGetApp().GetAppOptions().SetLeftPrinterHeader(
-            wxString(luaL_checkstring(L, 1), wxConvUTF8));
+            wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
         return 0;
         }
 
@@ -3750,7 +3750,7 @@ namespace LuaScripting
             return 0;
             }
         wxGetApp().GetAppOptions().SetCenterPrinterHeader(
-            wxString(luaL_checkstring(L, 1), wxConvUTF8));
+            wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
         return 0;
         }
 
@@ -3762,7 +3762,7 @@ namespace LuaScripting
             return 0;
             }
         wxGetApp().GetAppOptions().SetRightPrinterHeader(
-            wxString(luaL_checkstring(L, 1), wxConvUTF8));
+            wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
         return 0;
         }
 
@@ -3774,7 +3774,7 @@ namespace LuaScripting
             return 0;
             }
         wxGetApp().GetAppOptions().SetLeftPrinterFooter(
-            wxString(luaL_checkstring(L, 1), wxConvUTF8));
+            wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
         return 0;
         }
 
@@ -3786,7 +3786,7 @@ namespace LuaScripting
             return 0;
             }
         wxGetApp().GetAppOptions().SetCenterPrinterFooter(
-            wxString(luaL_checkstring(L, 1), wxConvUTF8));
+            wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
         return 0;
         }
 
@@ -3798,7 +3798,7 @@ namespace LuaScripting
             return 0;
             }
         wxGetApp().GetAppOptions().SetRightPrinterFooter(
-            wxString(luaL_checkstring(L, 1), wxConvUTF8));
+            wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
         return 0;
         }
 

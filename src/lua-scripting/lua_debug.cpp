@@ -133,7 +133,7 @@ namespace LuaScripting
             {
             return 0;
             }
-        DebugPrint(wxString(luaL_checkstring(L, 1), wxConvUTF8));
+        DebugPrint(wxString{ luaL_checkstring(L, 1), wxConvUTF8 });
         return 0;
         }
 

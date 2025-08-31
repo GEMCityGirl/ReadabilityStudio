@@ -588,7 +588,7 @@ namespace LuaScripting
         wxArrayString columns;
         for (int i = 1; i < lua_gettop(L) + 1; ++i)
             {
-            columns.Add(wxGetTranslation(wxString(luaL_checkstring(L, i), wxConvUTF8)));
+            columns.Add(wxGetTranslation(wxString{ luaL_checkstring(L, i), wxConvUTF8 }));
             }
         if (LuaListCtrlSortDlg == nullptr)
             {
@@ -1344,7 +1344,7 @@ namespace LuaScripting
         if (lua_gettop(L) < 5)
             {
             wxMessageBox(
-                wxString::Format(_(L"%s: invalid number of arguments."), wxString(__func__)),
+                wxString::Format(_(L"%s: invalid number of arguments."), wxString{ __func__ }),
                 _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;
@@ -1369,7 +1369,7 @@ namespace LuaScripting
         if (lua_gettop(L) < 7)
             {
             wxMessageBox(
-                wxString::Format(_(L"%s: invalid number of arguments."), wxString(__func__)),
+                wxString::Format(_(L"%s: invalid number of arguments."), wxString{ __func__ }),
                 _(L"Script Error"), wxOK | wxICON_EXCLAMATION);
             lua_pushboolean(L, false);
             return 1;
@@ -1536,8 +1536,8 @@ namespace LuaScripting
         for (int i = 1; i < lua_gettop(L); i += 2)
             {
             LuaListViewItemDlg->AddValue(
-                wxGetTranslation(wxString(luaL_checklstring(L, i, nullptr), wxConvUTF8)),
-                wxGetTranslation(wxString(luaL_checklstring(L, i + 1, nullptr), wxConvUTF8)));
+                wxGetTranslation(wxString{ luaL_checklstring(L, i, nullptr), wxConvUTF8 }),
+                wxGetTranslation(wxString{ luaL_checklstring(L, i + 1, nullptr), wxConvUTF8 }));
             }
         LuaListViewItemDlg->Create(wxGetApp().GetMainFrame());
         LuaListViewItemDlg->Show();
