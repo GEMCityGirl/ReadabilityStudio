@@ -4137,20 +4137,31 @@ namespace LuaScripting
 
             view->GetSideBar()->CollapseAll();
 
-            wxWindow* selWindow = view->GetWordsBreakdownView().FindWindowById(
-                windowId, wxCLASSINFO(FormattedTextCtrl));
-            if (selWindow != nullptr && selWindow->IsKindOf(wxCLASSINFO(FormattedTextCtrl)))
+            wxWindow* selWindow = view->GetWordsBreakdownView().FindWindowById(windowId, wxCLASSINFO(wxTextCtrl));
+            if (selWindow != nullptr && selWindow->IsKindOf(wxCLASSINFO(wxTextCtrl)))
                 {
                 // Custom word-list tests have the same integral IDs for their highlighted-text
                 // reports and list controls, so search by label instead.
                 view->GetSideBar()->SelectSubItem(
                     view->GetSideBar()->FindSubItem(selWindow->GetName()));
-                if (lua_gettop(L) >= 4)
+                if (lua_gettop(L) >= 3)
                     {
-                    dynamic_cast<FormattedTextCtrl*>(selWindow)->ShowPosition(
-                        luaL_checkinteger(L, 3));
-                    dynamic_cast<FormattedTextCtrl*>(selWindow)->SetSelection(
-                        luaL_checkinteger(L, 3), luaL_checkinteger(L, 4));
+                    const wxString contentToFind{ luaL_checkstring(L, 3), wxConvUTF8 };
+                    auto* textCtrl{ dynamic_cast<wxTextCtrl*>(selWindow) };
+                    const auto searchResult = textCtrl->SearchText(wxTextSearch{ contentToFind });
+                    if (searchResult)
+                        {
+                        textCtrl->ShowPosition(searchResult.m_start);
+                        textCtrl->SetSelection(searchResult.m_start, searchResult.m_end);
+                        }
+                    else
+                        {
+                        DebugPrint(wxString::Format(
+                            _(L"%sWarning%s: unable to find \"%s\" in text window."),
+                            L"<span style='color:blue; font-weight:bold;'>", L"</span>",
+                            wxString{ contentToFind }.Truncate(10).append(
+                                contentToFind.length() > 10 ? wxString{ L"..." } : wxString{})));
+                        }
                     }
                 selWindow->SetFocus();
                 }

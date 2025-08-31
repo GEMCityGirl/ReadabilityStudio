@@ -365,17 +365,16 @@ namespace LuaScripting
         /* Selects the highlighted text window in the Grammar section. (Can also optionally find and select a string in it.)
            ContentToHighlight An optional string to search for and highlight in the text window.*/
         int SelectTextGrammarWindow(lua_State* L);
+        /* Selects a highlighted text window in the Word Breakdown section.(Can also optionally find and select a string in it.)
+           WindowToSelect The text window to select. Refer to HighlightedReportType enumeration.
+           ContentToHighlight An optional string to search for and highlight in the text window.*/
+        int SelectHighlightedWordReport(lua_State* L);
 
         // HIDDEN interfaces for testing and screenshots
         /* Selects and sorts a list in the Words Breakdown section.
            WindowToSelect The list window to select items in. Refer to ListType enumeration.
            RowsToSelect Rows to select.*/
         int /*INTERNAL!!!*/ SelectRowsInWordsBreakdownList(lua_State* L);
-        /* Selects a range of text in a text window.
-           WindowToSelect The text window to select. Refer to HighlightedReportType enumeration.
-           StartPosition Character position to begin selection.
-           EndPosition Character position to end selection.*/
-        int /*INTERNAL!!!*/ SelectHighlightedWordReport(lua_State* L);
         /* Selects and scrolls down a text window.
            WindowToSelect The text window to select. Refer to HighlightedReportType enumeration.
            ContentToHighlight The content to scroll to.*/
