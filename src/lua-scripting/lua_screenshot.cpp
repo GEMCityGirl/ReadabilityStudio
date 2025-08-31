@@ -373,7 +373,7 @@ namespace LuaScripting
                         _(L"%sWarning%s: unable to find \"%s\" in text window."),
                         L"<span style='color:blue; font-weight:bold;'>", L"</span>",
                         wxString{ contentToFind }.Truncate(10).append(
-                            contentToFind.length() > 10 ? wxString{ L"..." } : wxString{})));
+                            contentToFind.length() > 10 ? wxString{ _DT(L"...") } : wxString{})));
                     }
                 }
             }
