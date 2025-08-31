@@ -4514,16 +4514,30 @@ namespace LuaScripting
                 BaseProjectView::LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID);
             if (parentPos.has_value() && childPos.has_value())
                 {
-                if (lua_gettop(L) >= 2)
+                if (lua_gettop(L) >= 1)
                     {
                     wxWindow* selWindow = view->GetGrammarView().FindWindowById(
                         BaseProjectView::LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID);
-                    if (selWindow && selWindow->IsKindOf(wxCLASSINFO(FormattedTextCtrl)))
+                    if (selWindow != nullptr && selWindow->IsKindOf(wxCLASSINFO(wxTextCtrl)))
                         {
-                        dynamic_cast<FormattedTextCtrl*>(selWindow)->ShowPosition(
-                            luaL_checkinteger(L, 2));
-                        dynamic_cast<FormattedTextCtrl*>(selWindow)->SetSelection(
-                            luaL_checkinteger(L, 2), luaL_checkinteger(L, 3));
+                        const wxString contentToFind{ luaL_checkstring(L, 2), wxConvUTF8 };
+                        auto* textCtrl{ dynamic_cast<wxTextCtrl*>(selWindow) };
+                        const auto searchResult =
+                            textCtrl->SearchText(wxTextSearch{ contentToFind });
+                        if (searchResult)
+                            {
+                            textCtrl->ShowPosition(searchResult.m_start);
+                            textCtrl->SetSelection(searchResult.m_start, searchResult.m_end);
+                            }
+                        else
+                            {
+                            DebugPrint(wxString::Format( // TRANSLATORS: %s are formatting tags and
+                                                         // should stay wrapped around "Warning"
+                                _(L"%sWarning%s: unable to find \"%s\" in grammar text window."),
+                                L"<span style='color:blue; font-weight:bold;'>", L"</span>",
+                                wxString{ contentToFind }.Truncate(10).append(
+                                    contentToFind.length() > 10 ? L"..." : wxString{})));
+                            }
                         selWindow->SetFocus();
                         }
                     }
