@@ -329,7 +329,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
                 .Selectable(false)
                 .Scaling(GetScaling())
                 .DPIScaling(GetDPIScaleFactor()),
-            m_dividerLinePoints.data(), std::size(m_dividerLinePoints) - 2);
+            std::span(m_dividerLinePoints.cbegin(), m_dividerLinePoints.size() - 2));
         levelsSpline->SetShape(GraphItems::Polygon::PolygonShape::Spline);
         AddObject(std::move(levelsSpline));
 
@@ -341,7 +341,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
                 .Pen(wxNullPen)
                 .Brush(wxNullBrush)
                 .SelectionBrush(selectionBrush),
-            m_gradeLinePoints.data(), 5));
+            std::span(m_gradeLinePoints.cbegin(), 5)));
         // the rest of the grade areas
         for (size_t i = 2, pointIter = 5; i <= 16; ++i, pointIter += 2)
             {
@@ -350,14 +350,14 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
                     .Pen(wxNullPen)
                     .Brush(wxNullBrush)
                     .SelectionBrush(selectionBrush),
-                &m_gradeLinePoints[(pointIter - 2)], 4));
+                std::span(std::next(m_gradeLinePoints.cbegin(), (pointIter - 2)), 4)));
             }
-        AddObject(
-            std::make_unique<GraphItems::Polygon>(GraphItems::GraphItemInfo(_(L"Post-graduate+"))
-                                                      .Pen(wxNullPen)
-                                                      .Brush(wxNullBrush)
-                                                      .SelectionBrush(selectionBrush),
-                                                  &m_gradeLinePoints[33], 4));
+        AddObject(std::make_unique<GraphItems::Polygon>(
+            GraphItems::GraphItemInfo(_(L"Post-graduate+"))
+                .Pen(wxNullPen)
+                .Brush(wxNullBrush)
+                .SelectionBrush(selectionBrush),
+            std::span(std::next(m_gradeLinePoints.cbegin(), 33), 4)));
 
         CalculateScorePositions(dc);
 
@@ -422,7 +422,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
                         Colors::ColorContrast::ChangeOpacity(gradeLineColor, OPACITY_LEVEL) })
                     .Brush(gradeLineColor)
                     .Scaling(GetScaling()),
-                &m_gradeLinePoints[3], 2));
+                std::span(std::next(m_gradeLinePoints.cbegin(), 3), 2)));
             // the rest of grade region lines
             for (size_t i = 2, pointIter = 5; i <= 16; ++i, pointIter += 2)
                 {
@@ -432,7 +432,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
                             Colors::ColorContrast::ChangeOpacity(gradeLineColor, OPACITY_LEVEL) })
                         .Brush(gradeLineColor)
                         .Scaling(GetScaling()),
-                    &m_gradeLinePoints[pointIter], 2));
+                    std::span(std::next(m_gradeLinePoints.cbegin(), pointIter), 2)));
                 }
             return;
             }
@@ -708,7 +708,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
                 .Pen(wxPen{ Colors::ColorContrast::ChangeOpacity(gradeLineColor, opacityLevel) })
                 .Brush(gradeLineColor)
                 .Scaling(GetScaling()),
-            &m_gradeLinePoints[3], 2));
+            std::span(std::next(m_gradeLinePoints.cbegin(), 3), 2)));
         // the rest of grade region lines
         for (size_t i = 2, pointIter = 5; i <= 16; ++i, pointIter += 2)
             {
@@ -724,7 +724,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
                         wxPen{ Colors::ColorContrast::ChangeOpacity(gradeLineColor, opacityLevel) })
                     .Brush(gradeLineColor)
                     .Scaling(GetScaling()),
-                &m_gradeLinePoints[pointIter], 2));
+               std::span(std::next(m_gradeLinePoints.cbegin(), pointIter), 2)));
             }
 
         // draw the description label
