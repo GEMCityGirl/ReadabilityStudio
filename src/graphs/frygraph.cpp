@@ -481,88 +481,104 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
                     return false;
                     }
 
-                if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[33], 4,
-                                        1, 1))
+                if (IsScoreInsideRegion(
+                        scorePoint.m_scorePoint,
+                        std::span(std::next(graph->m_gradeLinePoints.cbegin(), 33), 4), 1, 1))
                     {
                     scorePoint.SetScore(17);
                     }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[31],
-                                             4, 1, 1))
+                else if (IsScoreInsideRegion(
+                             scorePoint.m_scorePoint,
+                             std::span(std::next(graph->m_gradeLinePoints.cbegin(), 31), 4), 1, 1))
                     {
                     scorePoint.SetScore(16);
                     }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[29],
-                                             4, 1, 1))
+                else if (IsScoreInsideRegion(
+                             scorePoint.m_scorePoint,
+                             std::span(std::next(graph->m_gradeLinePoints.cbegin(), 29), 4), 1, 1))
                     {
                     scorePoint.SetScore(15);
                     }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[27],
-                                             4, 1, 1))
+                else if (IsScoreInsideRegion(
+                             scorePoint.m_scorePoint,
+                             std::span(std::next(graph->m_gradeLinePoints.cbegin(), 27), 4), 1, 1))
                     {
                     scorePoint.SetScore(14);
                     }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[25],
-                                             4, 1, 1))
+                else if (IsScoreInsideRegion(
+                             scorePoint.m_scorePoint,
+                             std::span(std::next(graph->m_gradeLinePoints.cbegin(), 25), 4), 1, 1))
                     {
                     scorePoint.SetScore(13);
                     }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[23],
-                                             4, 1, 1))
+                else if (IsScoreInsideRegion(
+                             scorePoint.m_scorePoint,
+                             std::span(std::next(graph->m_gradeLinePoints.cbegin(), 23), 4), 1, 1))
                     {
                     scorePoint.SetScore(12);
                     }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[21],
-                                             4, 1, 1))
+                else if (IsScoreInsideRegion(
+                             scorePoint.m_scorePoint,
+                             std::span(std::next(graph->m_gradeLinePoints.cbegin(), 21), 4), 1, 1))
                     {
                     scorePoint.SetScore(11);
                     }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[19],
-                                             4, 1, 1))
+                else if (IsScoreInsideRegion(
+                             scorePoint.m_scorePoint,
+                             std::span(std::next(graph->m_gradeLinePoints.cbegin(), 19), 4), 1, 1))
                     {
                     scorePoint.SetScore(10);
                     }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[17],
-                                             4, 1, 1))
+                else if (IsScoreInsideRegion(
+                             scorePoint.m_scorePoint,
+                             std::span(std::next(graph->m_gradeLinePoints.cbegin(), 17), 4), 1, 1))
                     {
                     scorePoint.SetScore(9);
                     }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[15],
-                                             4, 1, 1))
+                else if (IsScoreInsideRegion(
+                             scorePoint.m_scorePoint,
+                             std::span(std::next(graph->m_gradeLinePoints.cbegin(), 15), 4), 1, 1))
                     {
                     scorePoint.SetScore(8);
                     }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[13],
-                                             4, 1, 1))
+                else if (IsScoreInsideRegion(
+                             scorePoint.m_scorePoint,
+                             std::span(std::next(graph->m_gradeLinePoints.cbegin(), 13), 4), 1, 1))
                     {
                     scorePoint.SetScore(7);
                     }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[11],
-                                             4, 1, 1))
+                else if (IsScoreInsideRegion(
+                             scorePoint.m_scorePoint,
+                             std::span(std::next(graph->m_gradeLinePoints.cbegin(), 11), 4), 1, 1))
                     {
                     scorePoint.SetScore(6);
                     }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[9],
-                                             4, 1, 1))
+                else if (IsScoreInsideRegion(
+                             scorePoint.m_scorePoint,
+                             std::span(std::next(graph->m_gradeLinePoints.cbegin(), 9), 4), 1, 1))
                     {
                     scorePoint.SetScore(5);
                     }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[7],
-                                             4, 1, 1))
+                else if (IsScoreInsideRegion(
+                             scorePoint.m_scorePoint,
+                             std::span(std::next(graph->m_gradeLinePoints.cbegin(), 7), 4), 1, 1))
                     {
                     scorePoint.SetScore(4);
                     }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[5],
-                                             4, 1, 1))
+                else if (IsScoreInsideRegion(
+                             scorePoint.m_scorePoint,
+                             std::span(std::next(graph->m_gradeLinePoints.cbegin(), 5), 4), 1, 1))
                     {
                     scorePoint.SetScore(3);
                     }
-                else if (IsScoreInsideRegion(scorePoint.m_scorePoint, &graph->m_gradeLinePoints[3],
-                                             4, 1, 1))
+                else if (IsScoreInsideRegion(
+                             scorePoint.m_scorePoint,
+                             std::span(std::next(graph->m_gradeLinePoints.cbegin(), 3), 4), 1, 1))
                     {
                     scorePoint.SetScore(2);
                     }
                 else if (IsScoreInsideRegion(scorePoint.m_scorePoint,
-                                             graph->m_gradeLinePoints.data(), 5, 1, 1))
+                                             std::span(graph->m_gradeLinePoints.cbegin(), 5), 1, 1))
                     {
                     scorePoint.SetScore(1);
                     }
@@ -724,7 +740,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
                         wxPen{ Colors::ColorContrast::ChangeOpacity(gradeLineColor, opacityLevel) })
                     .Brush(gradeLineColor)
                     .Scaling(GetScaling()),
-               std::span(std::next(m_gradeLinePoints.cbegin(), pointIter), 2)));
+                std::span(std::next(m_gradeLinePoints.cbegin(), pointIter), 2)));
             }
 
         // draw the description label

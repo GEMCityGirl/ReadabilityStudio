@@ -171,37 +171,6 @@ namespace Wisteria::Graphs
             @note The backscreened plot that this is used on is not DPI scaled, so the offset
                 values should be treated like DIPs (although technically, they aren't).
             @param point The point to review.
-            @param polygon The points that make up the polygon (region) to test inside of.
-            @param numOfPoints The number of points in the @c polygon.
-            @param xOffset How much "wiggle room" (in pixels) to test around to
-                x-axis of the polygon's vertices.
-            @param yOffset How much "wiggle room" (in pixels) to test around to
-                y-axis of the polygon's vertices.*/
-        [[nodiscard]]
-        static bool IsScoreInsideRegion(const wxPoint point, const wxPoint* polygon,
-                                        const int numOfPoints, const int xOffset, const int yOffset)
-            {
-            // see if the point is even in the polygon's bounding box, then see if it's
-            // actually in the polygon
-            return Wisteria::GraphItems::Polygon::GetPolygonBoundingBox(polygon, numOfPoints)
-                           .Contains(point) ?
-                       (Wisteria::GraphItems::Polygon::IsInsidePolygon(point, polygon,
-                                                                       numOfPoints) ||
-                        Wisteria::GraphItems::Polygon::IsInsidePolygon(
-                            wxPoint(point.x + xOffset, point.y), polygon, numOfPoints) ||
-                        Wisteria::GraphItems::Polygon::IsInsidePolygon(
-                            wxPoint(point.x, point.y + yOffset), polygon, numOfPoints)) :
-                       false;
-            }
-
-        /** This is a more liberal than calling `Polygon::IsInsidePolygon()` because it
-                will see if the point next to or below the point are also in the polygon.
-                This helps prevent scores that are right on a line to switch between regions
-                when different screen resolutions. This way, it will error on the side of going
-                into the more difficult region.
-            @note The backscreened plot that this is used on is not DPI scaled, so the offset
-                values should be treated like DIPs (although technically, they aren't).
-            @param point The point to review.
             @param polygon The array of points that make up the polygon (region) to test inside of.
             @param xOffset How much "wiggle room" (in pixels) to test around to
                 x-axis of the polygon's vertices.
