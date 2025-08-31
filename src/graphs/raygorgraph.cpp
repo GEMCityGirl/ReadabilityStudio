@@ -492,10 +492,11 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
 
         auto levelsSpline = std::make_unique<GraphItems::Polygon>(
             GraphItems::GraphItemInfo()
-                .Pen(wxPen(separatorColor))
-                .Brush(wxBrush(separatorColor))
-                .Scaling(GetScaling()),
-            &m_dividerLinePoints[1], std::size(m_dividerLinePoints) - 2);
+                .Pen(wxPen{ separatorColor })
+                .Brush(wxBrush{ separatorColor })
+                .Scaling(GetScaling())
+                .DPIScaling(GetDPIScaleFactor()),
+            std::span(std::next(m_dividerLinePoints.cbegin(), 1), m_dividerLinePoints.size() - 2));
         levelsSpline->SetShape(GraphItems::Polygon::PolygonShape::Spline);
         AddObject(std::move(levelsSpline));
 
@@ -506,25 +507,28 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
                                      Colors::ColorBrewer::GetColor(Colors::Color::BondiBlue) :
                                      *wxBLUE };
         gradeLineColor = Colors::ColorContrast::ChangeOpacity(gradeLineColor, 200);
-        AddObject(std::make_unique<GraphItems::Polygon>(GraphItems::GraphItemInfo()
-                                                            .Pen(gradeLineColor)
-                                                            .Brush(gradeLineColor)
-                                                            .Scaling(GetScaling()),
-                                                        &m_gradeLinePoints[3], 2));
+        AddObject(std::make_unique<GraphItems::Polygon>(
+            GraphItems::GraphItemInfo()
+                .Pen(gradeLineColor)
+                .Brush(gradeLineColor)
+                .Scaling(GetScaling()),
+            std::span(std::next(m_gradeLinePoints.cbegin(), 3), 2)));
         // the rest of the grade lines
         for (size_t i = 4, pointIter = 5; i <= 12; ++i, pointIter += 2)
             {
-            AddObject(std::make_unique<GraphItems::Polygon>(GraphItems::GraphItemInfo()
-                                                                .Pen(gradeLineColor)
-                                                                .Brush(gradeLineColor)
-                                                                .Scaling(GetScaling()),
-                                                            &m_gradeLinePoints[pointIter], 2));
+            AddObject(std::make_unique<GraphItems::Polygon>(
+                GraphItems::GraphItemInfo()
+                    .Pen(gradeLineColor)
+                    .Brush(gradeLineColor)
+                    .Scaling(GetScaling()),
+                std::span(std::next(m_gradeLinePoints.cbegin(), pointIter), 2)));
             }
-        AddObject(std::make_unique<GraphItems::Polygon>(GraphItems::GraphItemInfo()
-                                                            .Pen(gradeLineColor)
-                                                            .Brush(gradeLineColor)
-                                                            .Scaling(GetScaling()),
-                                                        &m_gradeLinePoints[23], 2));
+        AddObject(std::make_unique<GraphItems::Polygon>(
+            GraphItems::GraphItemInfo()
+                .Pen(gradeLineColor)
+                .Brush(gradeLineColor)
+                .Scaling(GetScaling()),
+            std::span(std::next(m_gradeLinePoints.cbegin(), 23), 2)));
 
         const wxBrush selectionBrush = wxBrush(Colors::ColorContrast::ChangeOpacity(
             Colors::ColorBrewer::GetColor(Colors::Color::LightGray), 100));
@@ -535,7 +539,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
                 .Pen(wxNullPen)
                 .Brush(wxNullBrush)
                 .SelectionBrush(selectionBrush),
-            m_gradeLinePoints.data(), 5));
+            std::span(m_gradeLinePoints.cbegin(), 5)));
         // the rest of the grade areas
         for (size_t i = 4, pointIter = 5; i <= 12; ++i, pointIter += 2)
             {
@@ -544,20 +548,21 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
                     .Pen(wxNullPen)
                     .Brush(wxNullBrush)
                     .SelectionBrush(selectionBrush),
-                &m_gradeLinePoints[(pointIter - 2)], 4));
+                std::span(std::next(m_gradeLinePoints.cbegin(), (pointIter - 2)), 4)));
             }
         // last labels are a little special because they are more vast
-        AddObject(std::make_unique<GraphItems::Polygon>(GraphItems::GraphItemInfo(_(L"College"))
-                                                            .Pen(wxNullPen)
-                                                            .Brush(wxNullBrush)
-                                                            .SelectionBrush(selectionBrush),
-                                                        &m_gradeLinePoints[21], 4));
+        AddObject(std::make_unique<GraphItems::Polygon>(
+            GraphItems::GraphItemInfo(_(L"College"))
+                .Pen(wxNullPen)
+                .Brush(wxNullBrush)
+                .SelectionBrush(selectionBrush),
+            std::span(std::next(m_gradeLinePoints.cbegin(), 21), 4)));
         AddObject(std::make_unique<GraphItems::Polygon>(
             GraphItems::GraphItemInfo(_(L"Post College (e.g., Professor)"))
                 .Pen(wxNullPen)
                 .Brush(wxNullBrush)
                 .SelectionBrush(selectionBrush),
-            &m_gradeLinePoints[23], 4));
+            std::span(std::next(m_gradeLinePoints.cbegin(), 23), 4)));
 
         CalculateScorePositions(dc);
 
