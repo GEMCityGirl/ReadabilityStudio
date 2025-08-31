@@ -1,3 +1,5 @@
+was give	was given	3
+2th	2nd	3
 10nd	10th	3		
 10st	10th	3		
 11th hour	almost late, last minute, right before the anticipated deadline	2		
@@ -2921,7 +2923,6 @@ can't hold a candle to	can't compare to	2
 can't not	can't, can (if double negative was intended)	3		
 can't see the forest for the trees	unable to understand the full meaning of something because of a fixation on minor details	2		
 cancel out	cancel	0		
-cancelation	cancellation	3		
 canceld	canceled	3		
 cancled	canceled	3		
 candadate	candidate	3		
