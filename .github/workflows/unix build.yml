@@ -12,7 +12,7 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Download wxwidgets
+      - name: Download wxWidgets
         run: |
              export DISPLAY=:0.0
              sudo apt-get update && sudo apt-get install xvfb cmake libtbb-dev libgtk-3-0 libgtk-3-dev libwebkit2gtk-4.1-0 libwebkit2gtk-4.1-dev libcurl4-openssl-dev
@@ -24,9 +24,9 @@ jobs:
 
       - name: Build
         run: |
-             cmake ./
-             cmake --build . -j4
-             ${{ steps.install-linuxdeploy.outputs.linuxdeploy }}
+             cmake . -DCMAKE_BUILD_TYPE=Release
+             cmake --build . -j4 --config Release
+             ${{ steps.install-linuxdeploy.outputs.linuxdeploy }} \
                --appdir installers/unix/AppDir \
                --executable installers/unix/AppDir/usr/bin/readstudio \
                -d installers/unix/AppDir/readstudio.desktop \
@@ -38,4 +38,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Linux AppImage
-          path: ${{ github.workspace }}/installers/unix/*.*
+          path: ${{ github.workspace }}/installers/unix/*.AppImage
