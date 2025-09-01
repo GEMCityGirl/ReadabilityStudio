@@ -755,9 +755,7 @@ ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-partial
     "Where:", "RP Number of characters, in this context being letters, numbers, and punctuation (except for sentence-ending punctuation, such as periods)")
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
-
 ScreenshotLib.SnapScreenshot(ImagePath .. "exclusion-example-all-excluded." .. FileExtension, 1051, 1058, 1058)
-
 sp:CloseProperties()
 
 sp:AggressivelyExclude(true)
@@ -765,9 +763,7 @@ sp:AggressivelyExclude(true)
 sp:Reload()
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
-
 ScreenshotLib.SnapScreenshot(ImagePath .. "exclusion-example-aggressive-list." .. FileExtension, 1051, 1051, 1058)
-
 sp:CloseProperties()
 
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-where-excluded." .. FileExtension,
@@ -778,9 +774,7 @@ sp:SetIncludeIncompleteTolerance(20)
 sp:Reload()
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
-
 ScreenshotLib.SnapScreenshot(ImagePath .. "exclusion-example-incomp-length-value." .. FileExtension, 1076, 1077, 1077)
-
 sp:CloseProperties()
 
 ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-long-sentence-excluded." .. FileExtension,
@@ -798,9 +792,7 @@ sp:ExcludeCopyrightNotices(true)
 sp:Reload()
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
-
 ScreenshotLib.SnapScreenshot(ImagePath .. "exclusion-example-copyright-excluded." .. FileExtension, 1054, 1054, 1058)
-
 sp:CloseProperties()
 
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
@@ -813,9 +805,7 @@ sp:ExcludeFileAddress(true)
 sp:Reload()
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
-
 ScreenshotLib.SnapScreenshot(ImagePath .. "exclusion-example-url-excluded." .. FileExtension, 1056, 1056, 1058)
-
 sp:CloseProperties()
 
 sp:SelectWindow(SideBarSection.Grammar, HighlightedReportType.GrammarHighlightedIssues)
@@ -836,9 +826,7 @@ ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-proper-
     "Danielson-Bryan", "Farr-Jenkins-Paterson", "UNIVAC")
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
-
 ScreenshotLib.SnapScreenshot(ImagePath .. "exclusion-example-edit-list-button." .. FileExtension, 1052, 1052, 1052)
-
 sp:CloseProperties()
 
 -- Exclusion word list
@@ -1167,7 +1155,7 @@ sp:SetReviewer("Lilith")
 sp:SetStatus("Draft")
 sp:OpenProperties(OptionsPageType.ProjectSettings)
 ScreenshotLib.SnapScreenshot(ImagePath .. "realtime-options." .. FileExtension, 1085, 1087, 1088)
-
+sp:CloseProperties()
 sp.Close()
 
 -- Website example
@@ -1180,6 +1168,7 @@ sp:DelayReloading(true) -- prevent reloading website in case we are offline
 sp:SetTextStorageMethod(TextStorage.LoadFromExternalDocument)
 sp:OpenProperties(OptionsPageType.ProjectSettings)
 ScreenshotLib.SnapScreenshot(ImagePath .. "reloadwebpage." .. FileExtension, 1085, -1, 1083)
+sp:CloseProperties()
 
 sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
 ScreenshotLib.SnapScreenshot(ImagePath .. "excludeincompletesentences." .. FileExtension, 1036, -1, 1084)
