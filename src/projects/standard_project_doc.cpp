@@ -438,8 +438,8 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
                     Modify(true);
                     return true;
                     }
-                // Should not happen. File was supposed to be embedded, but wasn't in the project
-                // file and external file can't be found either.
+                // Should not normally happen. File was supposed to be embedded, but wasn't in the
+                // project file and external file can't be found either.
                 else
                     {
                     wxMessageBox(
@@ -463,8 +463,9 @@ bool ProjectDoc::LoadProjectFile(const char* projectFileText, const size_t textL
                 }
             else
                 {
-                wxMessageBox(_(L"External document could not be located.\n"
-                               "Unable to create project."),
+                wxMessageBox(wxString::Format(_(L"External document could not be located:\n\n"
+                                                "\"%s\"\n\nUnable to create project."),
+                                              GetOriginalDocumentFilePath()),
                              _(L"Error"), wxOK | wxICON_EXCLAMATION);
                 return false;
                 }
