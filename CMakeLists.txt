@@ -645,10 +645,7 @@ if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
                            COMMENT "Copying binary to installer folder.")
     elseif(UNIX AND NOT APPLE)
         set(INSTALLER_FOLDER "${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/AppDir/usr/bin/")
-        add_custom_command(TARGET ${PROJECT_NAME}
-                           POST_BUILD
-                           COMMAND ${CMAKE_COMMAND} -E make_directory
-                           ${INSTALLER_FOLDER})
+        file(MAKE_DIRECTORY "${INSTALLER_FOLDER}")
         add_custom_command(TARGET ${PROJECT_NAME}
                            POST_BUILD
                            COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:${PROJECT_NAME}>" "${INSTALLER_FOLDER}"
