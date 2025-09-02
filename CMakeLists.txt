@@ -644,14 +644,67 @@ if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
                            COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:${PROJECT_NAME}>" "${CMAKE_CURRENT_SOURCE_DIR}/installers/windows/release/"
                            COMMENT "Copying binary to installer folder.")
     elseif(UNIX AND NOT APPLE)
+        set(INSTALLER_FOLDER "${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/AppDir/usr/bin/")
         add_custom_command(TARGET ${PROJECT_NAME}
-                       POST_BUILD
-                       COMMAND ${CMAKE_COMMAND} -E make_directory
-                       ${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/AppDir/usr/bin)
+                           POST_BUILD
+                           COMMAND ${CMAKE_COMMAND} -E make_directory
+                           ${INSTALLER_FOLDER})
+        add_custom_command(TARGET ${PROJECT_NAME}
+                           POST_BUILD
+                           COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:${PROJECT_NAME}>" "${INSTALLER_FOLDER}"
+                           COMMENT "Copying binary AppImage staging folder.")
+        add_custom_command(TARGET ${PROJECT_NAME}
+                           POST_BUILD
+                           COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:words.wad>" "${INSTALLER_FOLDER}"
+                           COMMENT "Copying resource file AppImage staging folder.")
+        add_custom_command(TARGET ${PROJECT_NAME}
+                           POST_BUILD
+                           COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:res.wad>" "${INSTALLER_FOLDER}"
+                           COMMENT "Copying resource file AppImage staging folder.")
+        add_custom_command(TARGET ${PROJECT_NAME}
+                           POST_BUILD
+                           COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:rs-libraries.api>" "${INSTALLER_FOLDER}"
+                           COMMENT "Copying resource file AppImage staging folder.")
+        add_custom_command(TARGET ${PROJECT_NAME}
+                           POST_BUILD
+                           COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:rs-enums.api>" "${INSTALLER_FOLDER}"
+                           COMMENT "Copying resource file AppImage staging folder.")
+        add_custom_command(TARGET ${PROJECT_NAME}
+                           POST_BUILD
+                           COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:rs-classes.api>" "${INSTALLER_FOLDER}"
+                           COMMENT "Copying resource file AppImage staging folder.")
+        add_custom_command(TARGET ${PROJECT_NAME}
+                           POST_BUILD
+                           COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:rs-constants.lua>" "${INSTALLER_FOLDER}"
+                           COMMENT "Copying resource file AppImage staging folder.")
+        add_custom_command(TARGET ${PROJECT_NAME}
+                           POST_BUILD
+                           COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:LICENSE>" "${INSTALLER_FOLDER}"
+                           COMMENT "Copying resource file AppImage staging folder.")
+        add_custom_command(TARGET ${PROJECT_NAME}
+                           POST_BUILD
+                           COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:citations.mla>" "${INSTALLER_FOLDER}"
+                           COMMENT "Copying resource file AppImage staging folder.")
+        add_custom_command(TARGET ${PROJECT_NAME}
+                           POST_BUILD
+                           COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:citations.apa>" "${INSTALLER_FOLDER}"
+                           COMMENT "Copying resource file AppImage staging folder.")
+        add_custom_command(TARGET ${PROJECT_NAME}
+                           POST_BUILD
+                           COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:citations.bib>" "${INSTALLER_FOLDER}"
+                           COMMENT "Copying resource file AppImage staging folder.")
         add_custom_command(TARGET ${PROJECT_NAME}
                         POST_BUILD
-                        COMMAND ${CMAKE_COMMAND} -E copy_directory "$<TARGET_FILE_DIR:${PROJECT_NAME}>" "${CMAKE_CURRENT_SOURCE_DIR}/installers/unix/AppDir/usr/bin"
-                        COMMENT "Copying files to AppImage staging folder.")
+                        COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/examples" "${INSTALLER_FOLDER}"
+                        COMMENT "Copying examples to AppImage staging folder.")
+        add_custom_command(TARGET ${PROJECT_NAME}
+                        POST_BUILD
+                        COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/readability-studio-manual" "${INSTALLER_FOLDER}"
+                        COMMENT "Copying manuals to AppImage staging folder.")
+        add_custom_command(TARGET ${PROJECT_NAME}
+                        POST_BUILD
+                        COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/report-themes" "${INSTALLER_FOLDER}"
+                        COMMENT "Copying report themes to AppImage staging folder.")
     elseif(APPLE)
         add_custom_command(TARGET ${PROJECT_NAME}
                            POST_BUILD
