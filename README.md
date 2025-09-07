@@ -4,7 +4,8 @@ Readability Studio
 
 | Platforms  | Result |
 | ------------- | ------------- |
-| Linux  | [![Linux Build](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/unix%20build.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/unix%20build.yml) |
+| Linux    | [![Linux Build](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/unix%20build.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/unix%20build.yml) |
+| Windows  | [![Windows Build](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/windows-build.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/windows-build.yml) |
 
 | Unit Tests  | Result |
 | ------------- | ------------- |
