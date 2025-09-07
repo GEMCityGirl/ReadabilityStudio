@@ -4,20 +4,24 @@ Readability Studio
 
 | Platforms  | Result |
 | ------------- | ------------- |
-| Linux  | [![Linux Unit Tests](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/unit-tests.yml) |
-| macOS  | [![macOS Unit Tests](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/mac-unit-tests.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/mac-unit-tests.yml) |
+| Linux  | [![Linux Build](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/unix%20build.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/unix%20build.yml) |
+
+| Unit Tests  | Result |
+| ------------- | ------------- |
+| Linux   | [![Linux Unit Tests](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/unit-tests.yml) |
+| macOS   | [![macOS Unit Tests](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/mac-unit-tests.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/mac-unit-tests.yml) |
 | Windows | [![Windows Unit Tests](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/windows-unit-tests.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/windows-unit-tests.yml) |
 
 | Code Analyses  | Result |
 | ------------- | ------------- |
-| cppcheck | [![cppcheck](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/cppcheck.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/cppcheck.yml) |
+| cppcheck   | [![cppcheck](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/cppcheck.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/cppcheck.yml) |
 | MS PREfast | [![Microsoft C++ Code Analysis](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/msvc.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/msvc.yml) |
-| Quneiform | [![Quneiform](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/quneiform.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/quneiform.yml) |
+| Quneiform  | [![Quneiform](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/quneiform.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/quneiform.yml) |
 
 | Documentation & Formatting | Result |
 | ------------- | ------------- |
-| Doxygen | [![doxygen](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/doxygen.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/doxygen.yml) |
-| Spellcheck | [![Spell Check](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/spell-check.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/spell-check.yml) |
+| Doxygen      | [![doxygen](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/doxygen.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/doxygen.yml) |
+| Spellcheck   | [![Spell Check](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/spell-check.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/spell-check.yml) |
 | clang-format | [![clang-format](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/clang-format-check.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/clang-format-check.yml) |
 
 # Building
@@ -39,7 +43,7 @@ Install the following tools to build *Readability Studio*:
     - Set **wxBUILD_OPTIMISE** to "ON"
     - Set the configuration type to "Release"
     - Save your changes
-  - Select **Build** > **Install wxWidgets** (builds and then copies the header, lib, and cmake files to the prefix folder)
+  - Select **Build** > **Install wxWidgets** (builds and then copies the header, lib, and CMake files to the prefix folder)
 - Open this project's CMake file in *Visual Studio*:
   - Open **Project** > **CMake Settings for readstudio**
     - Set the configuration type to "Release" (or create a new release configuration)

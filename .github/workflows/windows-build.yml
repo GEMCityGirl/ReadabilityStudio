@@ -1,0 +1,32 @@
+name: Windows Build
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: windows-build
+    runs-on: windows-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Download wxWidgets
+        run: |
+             git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
+
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v1.0.2
+
+      - name: Build
+        working-directory: ${{env.GITHUB_WORKSPACE}}
+        run: |
+             cmake . -DCMAKE_BUILD_TYPE=Release
+             msbuild ${{ env.project }}.sln
+
+      - name: Archive Windows Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: Windows Windows Build
+          path: ${{ github.workspace }}/installers/windows/*
