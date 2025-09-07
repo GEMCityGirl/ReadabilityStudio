@@ -362,13 +362,8 @@ namespace LuaScripting
         int SelectWindow(lua_State* L /*SideBarSection section, number windowId*/); // Selects a window in the project.
         int ShowSidebar(lua_State* L /*boolean show*/); // Show or hides the project's sidebar.
 
-        /* Selects the highlighted text window in the Grammar section. (Can also optionally find and select a string in it.)
-           ContentToHighlight An optional string to search for and highlight in the text window.*/
-        int SelectTextGrammarWindow(lua_State* L);
-        /* Selects a highlighted text window in the Word Breakdown section.(Can also optionally find and select a string in it.)
-           WindowToSelect The text window to select. Refer to HighlightedReportType enumeration.
-           ContentToHighlight An optional string to search for and highlight in the text window.*/
-        int SelectHighlightedWordReport(lua_State* L);
+        int SelectTextGrammarWindow(lua_State* L /*string contentToHighlight*/); // Selects the highlighted text window in the Grammar section. (Can also optionally find and select a string in it.)
+        int SelectHighlightedWordReport(lua_State* L /*HighlightedReportType windowToSelect, string contentToHighlight*/); // Selects a highlighted text window in the Word Breakdown section. (Can also optionally find and select a string in it.)
 
         // HIDDEN interfaces for testing and screenshots
         /* Selects and sorts a list in the Words Breakdown section.

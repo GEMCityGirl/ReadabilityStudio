@@ -1,0 +1,17 @@
+::: {.minipage data-latex="{\textwidth}"}
+## `SelectTextGrammarWindow`
+
+Selects the highlighted text window in the **Grammar** section. (Can also optionally find and select a string in it.)
+
+### Syntax {-}
+
+``` {.lua}
+SelectTextGrammarWindow(string contentToHighlight)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+| `string` contentToHighlight | An optional string to search for and highlight in the text window. |
+:::

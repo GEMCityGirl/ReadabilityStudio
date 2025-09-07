@@ -1,0 +1,19 @@
+::: {.minipage data-latex="{\textwidth}"}
+## `SelectHighlightedWordReport`
+
+Selects a highlighted text window in the **Word Breakdown** section. (Can also optionally find and select a string in it.)
+
+### Syntax {-}
+
+``` {.lua}
+SelectHighlightedWordReport(HighlightedReportType windowToSelect,
+                            string contentToHighlight)
+```
+
+### Parameters {-}
+
+**Parameter** | **Description**
+| :-- | :-- |
+| `HighlightedReportType` windowToSelect | The text window to select. | 
+| `string` contentToHighlight | An optional string to search for and highlight in the text window. |
+:::
