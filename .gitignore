@@ -16,6 +16,7 @@
 /installers/windows/release/
 /installers/windows/resources
 /installers/macos/
+/installers/unix/AppDir/usr/bin
 /out/
 /TestResults
 /tests/gui-tests/.vs
@@ -103,3 +104,4 @@ CMakeUserPresets.json
 /citations.apa
 /citations.bib
 /citations.mla
+
