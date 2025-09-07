@@ -26,13 +26,6 @@
 #include "../ui/dialogs/project_wizard_dlg.h"
 #include "standard_project_view.h"
 
-using namespace Wisteria;
-using namespace Wisteria::Graphs;
-using namespace Wisteria::GraphItems;
-using namespace Wisteria::Colors;
-using namespace Wisteria::GraphItems;
-using namespace Wisteria::UI;
-
 wxDECLARE_APP(ReadabilityApp);
 
 wxIMPLEMENT_DYNAMIC_CLASS(ProjectDoc, wxDocument)
@@ -1149,14 +1142,15 @@ void ProjectDoc::DisplayReadabilityScores(const bool setFocus)
                 {
                 text = _(L"No tests are currently in the project.");
                 }
-            HtmlTableWindow* scoresReport =
-                dynamic_cast<HtmlTableWindow*>(view->GetReadabilityResultsView().FindWindowById(
-                    BaseProjectView::READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID));
+            Wisteria::UI::HtmlTableWindow* scoresReport =
+                dynamic_cast<Wisteria::UI::HtmlTableWindow*>(
+                    view->GetReadabilityResultsView().FindWindowById(
+                        BaseProjectView::READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID));
             if (!scoresReport)
                 {
-                scoresReport =
-                    new HtmlTableWindow(view->GetSplitter(),
-                                        BaseProjectView::READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID);
+                scoresReport = new Wisteria::UI::HtmlTableWindow(
+                    view->GetSplitter(),
+                    BaseProjectView::READABILITY_SCORES_SUMMARY_REPORT_PAGE_ID);
                 scoresReport->Hide();
                 scoresReport->SetName(_(L"Summary Report"));
                 scoresReport->SetPrinterSettings(wxGetApp().GetPrintData());
@@ -1187,14 +1181,14 @@ void ProjectDoc::DisplayReadabilityScores(const bool setFocus)
         // add/remove the goals
         if (GetTestGoals().size() || GetStatGoals().size())
             {
-            ListCtrlEx* goalsList =
-                dynamic_cast<ListCtrlEx*>(view->GetReadabilityResultsView().FindWindowById(
+            Wisteria::UI::ListCtrlEx* goalsList = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
+                view->GetReadabilityResultsView().FindWindowById(
                     BaseProjectView::READABILITY_GOALS_PAGE_ID));
             if (!goalsList)
                 {
-                goalsList =
-                    new ListCtrlEx(view->GetSplitter(), BaseProjectView::READABILITY_GOALS_PAGE_ID,
-                                   wxDefaultPosition, wxDefaultSize, wxLC_REPORT | wxBORDER_SUNKEN);
+                goalsList = new Wisteria::UI::ListCtrlEx(
+                    view->GetSplitter(), BaseProjectView::READABILITY_GOALS_PAGE_ID,
+                    wxDefaultPosition, wxDefaultSize, wxLC_REPORT | wxBORDER_SUNKEN);
                 goalsList->Hide();
                 goalsList->SetLabel(_(L"Goals"));
                 goalsList->SetName(_(L"Goals"));
@@ -1581,12 +1575,13 @@ bool ProjectDoc::OnNewDocument()
             WarningManager::GetWarning(_DT(L"incomplete-sentences-valid-from-length"));
         if (warningIter != WarningManager::GetWarnings().end() && warningIter->ShouldBeShown())
             {
-            ListDlg listDlg(
+            Wisteria::UI::ListDlg listDlg(
                 view->GetFrame(), longIncompleteSentences, false,
                 wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
                 wxGetApp().GetAppOptions().GetRibbonHoverColor(),
                 wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
-                LD_CLOSE_BUTTON | LD_DONT_SHOW_AGAIN, wxID_ANY, warningIter->GetTitle(),
+                Wisteria::UI::LD_CLOSE_BUTTON | Wisteria::UI::LD_DONT_SHOW_AGAIN, wxID_ANY,
+                warningIter->GetTitle(),
                 wxString::Format(
                     wxPLURAL(
                         L"This document contains %zu incomplete sentence longer than %zu words "
@@ -1675,7 +1670,7 @@ void ProjectDoc::DisplayWordsBreakdown()
             view->GetWordsBreakdownView().FindWindowPositionById(lastGraphWindow->GetId());
         }
 
-    const auto resetListView = [](ListCtrlEx* listView)
+    const auto resetListView = [](Wisteria::UI::ListCtrlEx* listView)
     {
         if (listView != nullptr && listView->GetVirtualDataProvider() != nullptr &&
             listView->GetVirtualDataProvider()->GetItemCount() == 0)
@@ -1686,7 +1681,7 @@ void ProjectDoc::DisplayWordsBreakdown()
 
         // complex words (3+ syllable)
         {
-        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(
+        auto* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
             view->GetWordsBreakdownView().FindWindowById(BaseProjectView::HARD_WORDS_LIST_PAGE_ID));
         // data will be null if call to LoadHardWords() failed
         // (will happen if document was missing or other project failure).
@@ -1701,7 +1696,7 @@ void ProjectDoc::DisplayWordsBreakdown()
                 }
             else
                 {
-                listView = new ListCtrlEx(
+                listView = new Wisteria::UI::ListCtrlEx(
                     view->GetSplitter(), BaseProjectView::HARD_WORDS_LIST_PAGE_ID,
                     wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
@@ -1748,7 +1743,7 @@ void ProjectDoc::DisplayWordsBreakdown()
 
         // long words (6+ characters)
         {
-        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(
+        auto* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
             view->GetWordsBreakdownView().FindWindowById(BaseProjectView::LONG_WORDS_LIST_PAGE_ID));
         if (GetWordsBreakdownInfo().Is6PlusCharacterEnabled() &&
             GetTotalUnique6CharsPlusWords() > 0 && Get6CharacterPlusData())
@@ -1761,7 +1756,7 @@ void ProjectDoc::DisplayWordsBreakdown()
                 }
             else
                 {
-                listView = new ListCtrlEx(
+                listView = new Wisteria::UI::ListCtrlEx(
                     view->GetSplitter(), BaseProjectView::LONG_WORDS_LIST_PAGE_ID,
                     wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
@@ -1808,7 +1803,7 @@ void ProjectDoc::DisplayWordsBreakdown()
 
         // hard words (DC)
         {
-        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(
+        auto* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
             view->GetWordsBreakdownView().FindWindowById(BaseProjectView::DC_WORDS_LIST_PAGE_ID));
         if (GetWordsBreakdownInfo().IsDCUnfamiliarEnabled() && IsDaleChallLikeTestIncluded() &&
             GetTotalUniqueDCHardWords() > 0 && GetDaleChallHardWordData())
@@ -1821,7 +1816,7 @@ void ProjectDoc::DisplayWordsBreakdown()
                 }
             else
                 {
-                listView = new ListCtrlEx(
+                listView = new Wisteria::UI::ListCtrlEx(
                     view->GetSplitter(), BaseProjectView::DC_WORDS_LIST_PAGE_ID, wxDefaultPosition,
                     wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
@@ -1858,8 +1853,8 @@ void ProjectDoc::DisplayWordsBreakdown()
 
         // hard words (Spache)
         {
-        ListCtrlEx* listView =
-            dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+        auto* listView =
+            dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
                 BaseProjectView::SPACHE_WORDS_LIST_PAGE_ID));
         if (GetWordsBreakdownInfo().IsSpacheUnfamiliarEnabled() &&
             GetReadabilityTests().is_test_included(ReadabilityMessages::SPACHE()) &&
@@ -1873,7 +1868,7 @@ void ProjectDoc::DisplayWordsBreakdown()
                 }
             else
                 {
-                listView = new ListCtrlEx(
+                listView = new Wisteria::UI::ListCtrlEx(
                     view->GetSplitter(), BaseProjectView::SPACHE_WORDS_LIST_PAGE_ID,
                     wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
@@ -1911,8 +1906,8 @@ void ProjectDoc::DisplayWordsBreakdown()
 
         // hard words (Harris-Jacobson)
         {
-        ListCtrlEx* listView =
-            dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+        auto* listView =
+            dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
                 BaseProjectView::HARRIS_JACOBSON_WORDS_LIST_PAGE_ID));
         if (GetWordsBreakdownInfo().IsHarrisJacobsonUnfamiliarEnabled() &&
             GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()) &&
@@ -1926,7 +1921,7 @@ void ProjectDoc::DisplayWordsBreakdown()
                 }
             else
                 {
-                listView = new ListCtrlEx(
+                listView = new Wisteria::UI::ListCtrlEx(
                     view->GetSplitter(), BaseProjectView::HARRIS_JACOBSON_WORDS_LIST_PAGE_ID,
                     wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
@@ -1966,9 +1961,9 @@ void ProjectDoc::DisplayWordsBreakdown()
     for (std::vector<CustomReadabilityTestInterface>::iterator pos = GetCustTestsInUse().begin();
          pos != GetCustTestsInUse().end(); ++pos)
         {
-        ListCtrlEx* listView =
-            dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
-                pos->GetIterator()->get_interface_id(), CLASSINFO(ListCtrlEx)));
+        auto* listView =
+            dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+                pos->GetIterator()->get_interface_id(), CLASSINFO(Wisteria::UI::ListCtrlEx)));
         if (GetWordsBreakdownInfo().IsCustomTestsUnfamiliarEnabled() &&
             pos->GetIterator()->is_using_familiar_words() &&
             pos->GetUniqueUnfamiliarWordCount() > 0 && pos->GetListViewData())
@@ -1982,7 +1977,7 @@ void ProjectDoc::DisplayWordsBreakdown()
                 }
             else
                 {
-                listView = new ListCtrlEx(
+                listView = new Wisteria::UI::ListCtrlEx(
                     view->GetSplitter(), pos->GetIterator()->get_interface_id(), wxDefaultPosition,
                     wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
@@ -2018,7 +2013,7 @@ void ProjectDoc::DisplayWordsBreakdown()
 
         // all words
         {
-        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(
+        auto* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
             view->GetWordsBreakdownView().FindWindowById(BaseProjectView::ALL_WORDS_LIST_PAGE_ID));
         if (GetWordsBreakdownInfo().IsAllWordsEnabled() && GetTotalWords() > 0 &&
             GetAllWordsBaseData())
@@ -2031,7 +2026,7 @@ void ProjectDoc::DisplayWordsBreakdown()
                 }
             else
                 {
-                listView = new ListCtrlEx(
+                listView = new Wisteria::UI::ListCtrlEx(
                     view->GetSplitter(), BaseProjectView::ALL_WORDS_LIST_PAGE_ID, wxDefaultPosition,
                     wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
@@ -2068,8 +2063,8 @@ void ProjectDoc::DisplayWordsBreakdown()
 
         // key words list
         {
-        ListCtrlEx* listView =
-            dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+        auto* listView =
+            dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
                 BaseProjectView::ALL_WORDS_CONDENSED_LIST_PAGE_ID));
         if (GetWordsBreakdownInfo().IsKeyWordsEnabled() && GetTotalWords() > 0 &&
             GetKeyWordsBaseData() &&
@@ -2086,7 +2081,7 @@ void ProjectDoc::DisplayWordsBreakdown()
                 }
             else
                 {
-                listView = new ListCtrlEx(
+                listView = new Wisteria::UI::ListCtrlEx(
                     view->GetSplitter(), BaseProjectView::ALL_WORDS_CONDENSED_LIST_PAGE_ID,
                     wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
@@ -2122,8 +2117,8 @@ void ProjectDoc::DisplayWordsBreakdown()
 #ifndef NDEBUG
         // proper nouns
         {
-        ListCtrlEx* listView =
-            dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+        auto* listView =
+            dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
                 BaseProjectView::PROPER_NOUNS_LIST_PAGE_ID));
         if (GetWordsBreakdownInfo().IsProperNounsEnabled() && GetProperNounsData() &&
             GetProperNounsData()->GetItemCount())
@@ -2136,7 +2131,7 @@ void ProjectDoc::DisplayWordsBreakdown()
                 }
             else
                 {
-                listView = new ListCtrlEx(
+                listView = new Wisteria::UI::ListCtrlEx(
                     view->GetSplitter(), BaseProjectView::PROPER_NOUNS_LIST_PAGE_ID,
                     wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
@@ -2173,8 +2168,8 @@ void ProjectDoc::DisplayWordsBreakdown()
 
         // contractions
         {
-        ListCtrlEx* listView =
-            dynamic_cast<ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
+        auto* listView =
+            dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetWordsBreakdownView().FindWindowById(
                 BaseProjectView::CONTRACTIONS_LIST_PAGE_ID));
         if (GetWordsBreakdownInfo().IsContractionsEnabled() && GetContractionsData() &&
             GetContractionsData()->GetItemCount())
@@ -2187,7 +2182,7 @@ void ProjectDoc::DisplayWordsBreakdown()
                 }
             else
                 {
-                listView = new ListCtrlEx(
+                listView = new Wisteria::UI::ListCtrlEx(
                     view->GetSplitter(), BaseProjectView::CONTRACTIONS_LIST_PAGE_ID,
                     wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
@@ -2248,8 +2243,8 @@ void ProjectDoc::DisplaySentenceCharts()
             sentenceBoxPlotCanvas = new Wisteria::Canvas(
                 view->GetSplitter(), BaseProjectView::SENTENCE_BOX_PLOT_PAGE_ID);
             sentenceBoxPlotCanvas->SetFixedObjectsGridSize(1, 1);
-            sentenceBoxPlotCanvas->SetFixedObject(0, 0,
-                                                  std::make_shared<BoxPlot>(sentenceBoxPlotCanvas));
+            sentenceBoxPlotCanvas->SetFixedObject(
+                0, 0, std::make_shared<Wisteria::Graphs::BoxPlot>(sentenceBoxPlotCanvas));
             sentenceBoxPlotCanvas->Hide();
             sentenceBoxPlotCanvas->SetLabel(BaseProjectView::GetSentenceLengthBoxPlotLabel());
             sentenceBoxPlotCanvas->SetName(BaseProjectView::GetSentenceLengthBoxPlotLabel());
@@ -2258,19 +2253,19 @@ void ProjectDoc::DisplaySentenceCharts()
             }
         UpdateGraphOptions(sentenceBoxPlotCanvas);
 
-        auto sentenceBoxPlot =
-            std::dynamic_pointer_cast<BoxPlot>(sentenceBoxPlotCanvas->GetFixedObject(0, 0));
-        sentenceBoxPlot->SetBrushScheme(std::make_shared<Brushes::Schemes::BrushScheme>(
-            Colors::Schemes::ColorScheme({ GetGraphBoxColor() })));
+        auto sentenceBoxPlot = std::dynamic_pointer_cast<Wisteria::Graphs::BoxPlot>(
+            sentenceBoxPlotCanvas->GetFixedObject(0, 0));
+        sentenceBoxPlot->SetBrushScheme(std::make_shared<Wisteria::Brushes::Schemes::BrushScheme>(
+            Wisteria::Colors::Schemes::ColorScheme({ GetGraphBoxColor() })));
         sentenceBoxPlot->SetData(m_sentenceWordLengths, GetSentenceWordCountsColumnName(),
                                  std::nullopt);
 
         // TRANSLATORS: "Spread" means a range of numbers.
         sentenceBoxPlot->GetTitle().SetText(_(L"Sentence-lengths Spread"));
-        sentenceBoxPlot->GetTitle().SetRelativeAlignment(RelativeAlignment::Centered);
+        sentenceBoxPlot->GetTitle().SetRelativeAlignment(Wisteria::RelativeAlignment::Centered);
         sentenceBoxPlot->SetShadowType(IsDisplayingDropShadows() ?
-                                           ShadowType::RightSideAndBottomShadow :
-                                           ShadowType::NoShadow);
+                                           Wisteria::ShadowType::RightSideAndBottomShadow :
+                                           Wisteria::ShadowType::NoShadow);
         sentenceBoxPlot->ShowLabels(IsDisplayingBoxPlotLabels());
         sentenceBoxPlot->ShowAllPoints(IsShowingAllBoxPlotPoints());
         sentenceBoxPlot->SetOpacity(GetGraphBoxOpacity());
@@ -2304,7 +2299,7 @@ void ProjectDoc::DisplaySentenceCharts()
             sentenceHistogramCanvas->SetFixedObjectsGridSize(1, 1);
             sentenceHistogramCanvas->SetFixedObject(
                 0, 0,
-                std::make_shared<Histogram>(
+                std::make_shared<Wisteria::Graphs::Histogram>(
                     sentenceHistogramCanvas,
                     std::make_shared<Wisteria::Brushes::Schemes::BrushScheme>(
                         *std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
@@ -2317,15 +2312,16 @@ void ProjectDoc::DisplaySentenceCharts()
             }
         UpdateGraphOptions(sentenceHistogramCanvas);
 
-        auto sentenceHistogram =
-            std::dynamic_pointer_cast<Histogram>(sentenceHistogramCanvas->GetFixedObject(0, 0));
+        auto sentenceHistogram = std::dynamic_pointer_cast<Wisteria::Graphs::Histogram>(
+            sentenceHistogramCanvas->GetFixedObject(0, 0));
         assert(sentenceHistogram);
 
         sentenceHistogram->GetTitle().SetText(_(L"Sentence-lengths Distribution"));
-        sentenceHistogram->GetTitle().SetRelativeAlignment(RelativeAlignment::Centered);
+        sentenceHistogram->GetTitle().SetRelativeAlignment(Wisteria::RelativeAlignment::Centered);
         sentenceHistogram->SetSortable(false);
-        sentenceHistogram->SetShadowType(IsDisplayingDropShadows() ? ShadowType::RightSideShadow :
-                                                                     ShadowType::NoShadow);
+        sentenceHistogram->SetShadowType(IsDisplayingDropShadows() ?
+                                             Wisteria::ShadowType::RightSideShadow :
+                                             Wisteria::ShadowType::NoShadow);
         sentenceHistogram->SetBarEffect(GetHistogramBarEffect());
         if (const auto convertedIcon = Wisteria::ReportEnumConvert::ConvertIcon(GetStippleShape());
             convertedIcon)
@@ -2337,13 +2333,14 @@ void ProjectDoc::DisplaySentenceCharts()
         sentenceHistogram->SetBrushScheme(std::make_shared<Wisteria::Brushes::Schemes::BrushScheme>(
             *std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
                 Wisteria::Colors::Schemes::ColorScheme({ GetHistogramBarColor() }))));
-        sentenceHistogram->SetData(m_sentenceWordLengths, GetSentenceWordCountsColumnName(),
-                                   std::nullopt, Histogram::BinningMethod::BinByIntegerRange,
-                                   RoundingMethod::NoRounding,
-                                   Histogram::IntervalDisplay::Midpoints,
-                                   IsDisplayingBarChartLabels() ? GetHistogramBinLabelDisplay() :
-                                                                  BinLabelDisplay::NoDisplay,
-                                   true, 0, std::make_pair(std::nullopt, 5), true);
+        sentenceHistogram->SetData(
+            m_sentenceWordLengths, GetSentenceWordCountsColumnName(), std::nullopt,
+            Wisteria::Graphs::Histogram::BinningMethod::BinByIntegerRange,
+            Wisteria::RoundingMethod::NoRounding,
+            Wisteria::Graphs::Histogram::IntervalDisplay::Midpoints,
+            IsDisplayingBarChartLabels() ? GetHistogramBinLabelDisplay() :
+                                           Wisteria::BinLabelDisplay::NoDisplay,
+            true, 0, std::make_pair(std::nullopt, 5), true);
         sentenceHistogram->GetLeftYAxis().GetTitle().SetText(_(L"Number of Sentences"));
         sentenceHistogram->GetBottomXAxis().GetTitle().SetText(_(L"Number of Words per Sentence"));
         sentenceHistogramCanvas->CalcAllSizes(gdc);
@@ -2371,8 +2368,8 @@ void ProjectDoc::DisplaySentenceCharts()
             sentenceHeatmapCanvas = new Wisteria::Canvas(view->GetSplitter(),
                                                          BaseProjectView::SENTENCE_HEATMAP_PAGE_ID);
             sentenceHeatmapCanvas->SetFixedObjectsGridSize(1, 2);
-            sentenceHeatmapCanvas->SetFixedObject(0, 0,
-                                                  std::make_shared<HeatMap>(sentenceHeatmapCanvas));
+            sentenceHeatmapCanvas->SetFixedObject(
+                0, 0, std::make_shared<Wisteria::Graphs::HeatMap>(sentenceHeatmapCanvas));
             sentenceHeatmapCanvas->Hide();
             sentenceHeatmapCanvas->SetLabel(BaseProjectView::GetSentenceLengthHeatmapLabel());
             sentenceHeatmapCanvas->SetName(BaseProjectView::GetSentenceLengthHeatmapLabel());
@@ -2382,8 +2379,8 @@ void ProjectDoc::DisplaySentenceCharts()
             }
         UpdateGraphOptions(sentenceHeatmapCanvas);
 
-        auto heatMap =
-            std::dynamic_pointer_cast<HeatMap>(sentenceHeatmapCanvas->GetFixedObject(0, 0));
+        auto heatMap = std::dynamic_pointer_cast<Wisteria::Graphs::HeatMap>(
+            sentenceHeatmapCanvas->GetFixedObject(0, 0));
         heatMap->SetCanvasMargins(5, 5, 5, 5);
         heatMap->SetData(m_sentenceWordLengths, GetSentenceWordCountsColumnName(),
                          ((paragraphCount <= 500) ? std::optional<wxString>(GetGroupColumnName()) :
@@ -2407,10 +2404,10 @@ void ProjectDoc::DisplaySentenceCharts()
         heatMap->SetLeftPadding(5);
         heatMap->SetGroupHeaderPrefix(_(L"Paragraphs"));
 
-        auto legend =
-            heatMap->CreateLegend(LegendOptions()
-                                      .PlacementHint(LegendCanvasPlacementHint::RightOfGraph)
-                                      .IncludeHeader(true));
+        auto legend = heatMap->CreateLegend(
+            Wisteria::Graphs::LegendOptions{}
+                .PlacementHint(Wisteria::LegendCanvasPlacementHint::RightOfGraph)
+                .IncludeHeader(true));
         legend->SetLine(0, _(L"Sentence Word Counts"));
         legend->SetCanvasWidthProportion(sentenceHeatmapCanvas->CalcMinWidthProportion(*legend));
         sentenceHeatmapCanvas->SetFixedObject(0, 1, std::move(legend));
@@ -2447,22 +2444,24 @@ void ProjectDoc::DisplayWordCharts()
             wordBarChartCanvas =
                 new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::WORD_BREAKDOWN_PAGE_ID);
             wordBarChartCanvas->SetFixedObjectsGridSize(1, 1);
-            wordBarChartCanvas->SetFixedObject(0, 0,
-                                               std::make_shared<BarChart>(wordBarChartCanvas));
+            wordBarChartCanvas->SetFixedObject(
+                0, 0, std::make_shared<Wisteria::Graphs::BarChart>(wordBarChartCanvas));
             wordBarChartCanvas->Hide();
             wordBarChartCanvas->SetLabel(BaseProjectView::GetWordCountsLabel());
             wordBarChartCanvas->SetName(BaseProjectView::GetWordCountsLabel());
             wordBarChartCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
-            std::dynamic_pointer_cast<BarChart>(wordBarChartCanvas->GetFixedObject(0, 0))
+            std::dynamic_pointer_cast<Wisteria::Graphs::BarChart>(
+                wordBarChartCanvas->GetFixedObject(0, 0))
                 ->SetSortable(true);
-            std::dynamic_pointer_cast<BarChart>(wordBarChartCanvas->GetFixedObject(0, 0))
+            std::dynamic_pointer_cast<Wisteria::Graphs::BarChart>(
+                wordBarChartCanvas->GetFixedObject(0, 0))
                 ->SetSortDirection(Wisteria::SortDirection::NoSort);
             view->GetWordsBreakdownView().InsertWindow(0, wordBarChartCanvas);
             }
         UpdateGraphOptions(wordBarChartCanvas);
 
-        auto wordBarChart =
-            std::dynamic_pointer_cast<BarChart>(wordBarChartCanvas->GetFixedObject(0, 0));
+        auto wordBarChart = std::dynamic_pointer_cast<Wisteria::Graphs::BarChart>(
+            wordBarChartCanvas->GetFixedObject(0, 0));
         assert(wordBarChart);
 
         wordBarChart->ClearBars();
@@ -2475,11 +2474,13 @@ void ProjectDoc::DisplayWordCharts()
             Wisteria::AxisLabelDisplay::DisplayCustomLabelsOrValues);
         wordBarChart->IncludeSpacesBetweenBars(true);
         wordBarChart->GetTitle().SetText(_(L"Word Totals (by Category)"));
-        wordBarChart->GetTitle().SetRelativeAlignment(RelativeAlignment::Centered);
-        wordBarChart->SetShadowType(IsDisplayingDropShadows() ? ShadowType::RightSideShadow :
-                                                                ShadowType::NoShadow);
-        wordBarChart->SetBinLabelDisplay(IsDisplayingBarChartLabels() ? BinLabelDisplay::BinValue :
-                                                                        BinLabelDisplay::NoDisplay);
+        wordBarChart->GetTitle().SetRelativeAlignment(Wisteria::RelativeAlignment::Centered);
+        wordBarChart->SetShadowType(IsDisplayingDropShadows() ?
+                                        Wisteria::ShadowType::RightSideShadow :
+                                        Wisteria::ShadowType::NoShadow);
+        wordBarChart->SetBinLabelDisplay(IsDisplayingBarChartLabels() ?
+                                             Wisteria::BinLabelDisplay::BinValue :
+                                             Wisteria::BinLabelDisplay::NoDisplay);
         wordBarChart->GetRightYAxis().Show(false);
         wordBarChart->GetTopXAxis().Show(false);
         wordBarChart->GetScalingAxis().GetGridlinePen() = wxNullPen;
@@ -2498,106 +2499,120 @@ void ProjectDoc::DisplayWordCharts()
                 {
                 continue;
                 }
-            wordBarChart->AddBar(BarChart::Bar(
+            wordBarChart->AddBar(Wisteria::Graphs::BarChart::Bar(
                 ++currentBar,
-                { { BarChart::BarBlock(
-                    BarChart::BarBlockInfo(static_cast<double>(cText.GetUnfamiliarWordCount()))
+                { { Wisteria::Graphs::BarChart::BarBlock(
+                    Wisteria::Graphs::BarChart::BarBlockInfo(
+                        static_cast<double>(cText.GetUnfamiliarWordCount()))
                         .Brush(GetBarChartBarColor())) } },
                 wxNumberFormatter::ToString(cText.GetUnfamiliarWordCount(), 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
-                GraphItems::Label(wxString::Format( // TRANSLATORS: %s is a custom test name
-                    _(L"%s (unfamiliar)"), cText.GetIterator()->get_name().c_str())),
+                Wisteria::GraphItems::Label(
+                    wxString::Format( // TRANSLATORS: %s is a custom test name
+                        _(L"%s (unfamiliar)"), cText.GetIterator()->get_name().c_str())),
                 GetGraphBarEffect(), GetGraphBarOpacity()));
             }
 
         if (IsDaleChallLikeTestIncluded())
             {
-            wordBarChart->AddBar(BarChart::Bar(
+            wordBarChart->AddBar(Wisteria::Graphs::BarChart::Bar(
                 ++currentBar,
-                { { BarChart::BarBlock(
-                    BarChart::BarBlockInfo(static_cast<double>(GetTotalHardWordsDaleChall()))
+                { { Wisteria::Graphs::BarChart::BarBlock(
+                    Wisteria::Graphs::BarChart::BarBlockInfo(
+                        static_cast<double>(GetTotalHardWordsDaleChall()))
                         .Brush(GetBarChartBarColor())) } },
                 wxNumberFormatter::ToString(GetTotalHardWordsDaleChall(), 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
-                GraphItems::Label(_(L"DC (unfamiliar)")), GetGraphBarEffect(),
+                Wisteria::GraphItems::Label(_(L"DC (unfamiliar)")), GetGraphBarEffect(),
                 GetGraphBarOpacity()));
             }
         if (GetReadabilityTests().is_test_included(ReadabilityMessages::SPACHE()))
             {
-            wordBarChart->AddBar(BarChart::Bar(
+            wordBarChart->AddBar(Wisteria::Graphs::BarChart::Bar(
                 ++currentBar,
-                { { BarChart::BarBlock(
-                    BarChart::BarBlockInfo(static_cast<double>(GetTotalHardWordsSpache()))
+                { { Wisteria::Graphs::BarChart::BarBlock(
+                    Wisteria::Graphs::BarChart::BarBlockInfo(
+                        static_cast<double>(GetTotalHardWordsSpache()))
                         .Brush(GetBarChartBarColor())) } },
                 wxNumberFormatter::ToString(GetTotalHardWordsSpache(), 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
-                GraphItems::Label(_(L"Spache (unfamiliar)")), GetGraphBarEffect(),
+                Wisteria::GraphItems::Label(_(L"Spache (unfamiliar)")), GetGraphBarEffect(),
                 GetGraphBarOpacity()));
             }
         if (GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()))
             {
-            wordBarChart->AddBar(BarChart::Bar(
+            wordBarChart->AddBar(Wisteria::Graphs::BarChart::Bar(
                 ++currentBar,
-                { { BarChart::BarBlock(
-                    BarChart::BarBlockInfo(static_cast<double>(GetTotalHardWordsHarrisJacobson()))
+                { { Wisteria::Graphs::BarChart::BarBlock(
+                    Wisteria::Graphs::BarChart::BarBlockInfo(
+                        static_cast<double>(GetTotalHardWordsHarrisJacobson()))
                         .Brush(GetBarChartBarColor())) } },
                 wxNumberFormatter::ToString(GetTotalHardWordsHarrisJacobson(), 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
-                GraphItems::Label(_(L"HJ (unfamiliar)")), GetGraphBarEffect(),
+                Wisteria::GraphItems::Label(_(L"HJ (unfamiliar)")), GetGraphBarEffect(),
                 GetGraphBarOpacity()));
             }
-        wordBarChart->AddBar(BarChart::Bar(
+        wordBarChart->AddBar(Wisteria::Graphs::BarChart::Bar(
             ++currentBar,
-            { { BarChart::BarBlock(
-                BarChart::BarBlockInfo(static_cast<double>(GetTotal3PlusSyllabicWords()))
+            { { Wisteria::Graphs::BarChart::BarBlock(
+                Wisteria::Graphs::BarChart::BarBlockInfo(
+                    static_cast<double>(GetTotal3PlusSyllabicWords()))
                     .Brush(GetBarChartBarColor())) } },
             wxNumberFormatter::ToString(GetTotal3PlusSyllabicWords(), 0,
                                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                             wxNumberFormatter::Style::Style_WithThousandsSep),
-            GraphItems::Label(_(L"3+ syllables")), GetGraphBarEffect(), GetGraphBarOpacity()));
-        wordBarChart->AddBar(BarChart::Bar(
+            Wisteria::GraphItems::Label(_(L"3+ syllables")), GetGraphBarEffect(),
+            GetGraphBarOpacity()));
+        wordBarChart->AddBar(Wisteria::Graphs::BarChart::Bar(
             ++currentBar,
-            { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetTotalLongWords()))
-                                       .Brush(GetBarChartBarColor())) } },
+            { { Wisteria::Graphs::BarChart::BarBlock(
+                Wisteria::Graphs::BarChart::BarBlockInfo(static_cast<double>(GetTotalLongWords()))
+                    .Brush(GetBarChartBarColor())) } },
             wxNumberFormatter::ToString(GetTotalLongWords(), 0,
                                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                             wxNumberFormatter::Style::Style_WithThousandsSep),
-            GraphItems::Label(_(L"6+ characters")), GetGraphBarEffect(), GetGraphBarOpacity()));
-        wordBarChart->AddBar(BarChart::Bar(
+            Wisteria::GraphItems::Label(_(L"6+ characters")), GetGraphBarEffect(),
+            GetGraphBarOpacity()));
+        wordBarChart->AddBar(Wisteria::Graphs::BarChart::Bar(
             ++currentBar,
-            { { BarChart::BarBlock(
-                BarChart::BarBlockInfo(static_cast<double>(GetTotalMonoSyllabicWords()))
+            { { Wisteria::Graphs::BarChart::BarBlock(
+                Wisteria::Graphs::BarChart::BarBlockInfo(
+                    static_cast<double>(GetTotalMonoSyllabicWords()))
                     .Brush(GetBarChartBarColor())) } },
             wxNumberFormatter::ToString(GetTotalMonoSyllabicWords(), 0,
                                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                             wxNumberFormatter::Style::Style_WithThousandsSep),
-            GraphItems::Label(_(L"Monosyllabic")), GetGraphBarEffect(), GetGraphBarOpacity()));
+            Wisteria::GraphItems::Label(_(L"Monosyllabic")), GetGraphBarEffect(),
+            GetGraphBarOpacity()));
         if (GetReadabilityTests().is_test_included(ReadabilityMessages::EFLAW()))
             {
-            wordBarChart->AddBar(BarChart::Bar(
+            wordBarChart->AddBar(Wisteria::Graphs::BarChart::Bar(
                 ++currentBar,
-                { { BarChart::BarBlock(
-                    BarChart::BarBlockInfo(static_cast<double>(GetTotalMiniWords()))
+                { { Wisteria::Graphs::BarChart::BarBlock(
+                    Wisteria::Graphs::BarChart::BarBlockInfo(
+                        static_cast<double>(GetTotalMiniWords()))
                         .Brush(GetBarChartBarColor())) } },
                 wxNumberFormatter::ToString(GetTotalMiniWords(), 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
-                GraphItems::Label(_(L"EFLAW miniwords")), GetGraphBarEffect(),
+                Wisteria::GraphItems::Label(_(L"EFLAW miniwords")), GetGraphBarEffect(),
                 GetGraphBarOpacity()));
             }
         // all the words
-        wordBarChart->AddBar(BarChart::Bar(
+        wordBarChart->AddBar(Wisteria::Graphs::BarChart::Bar(
             ++currentBar,
-            { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetTotalWords()))
-                                       .Brush(GetBarChartBarColor())) } },
+            { { Wisteria::Graphs::BarChart::BarBlock(
+                Wisteria::Graphs::BarChart::BarBlockInfo(static_cast<double>(GetTotalWords()))
+                    .Brush(GetBarChartBarColor())) } },
             wxNumberFormatter::ToString(GetTotalWords(), 0,
                                         wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                             wxNumberFormatter::Style::Style_WithThousandsSep),
-            GraphItems::Label(_(L"Total Words")), GetGraphBarEffect(), GetGraphBarOpacity()));
+            Wisteria::GraphItems::Label(_(L"Total Words")), GetGraphBarEffect(),
+            GetGraphBarOpacity()));
 
         // add brackets around the factors of the categories
         auto threeSyllableBarPos =
@@ -2609,7 +2624,7 @@ void ProjectDoc::DisplayWordCharts()
 
         if (threeSyllableBarPos && threeSyllableBarPos.value() > 1)
             {
-            wordBarChart->GetBarAxis().AddBracket(Axis::AxisBracket(
+            wordBarChart->GetBarAxis().AddBracket(Wisteria::GraphItems::Axis::AxisBracket(
                 1, threeSyllableBarPos.value() - 1,
                 (threeSyllableBarPos.value() * math_constants::half), _("Familiarity\nFactors")));
             }
@@ -2617,7 +2632,7 @@ void ProjectDoc::DisplayWordCharts()
         assert(threeSyllableBarPos && monoSyllableBarPos && L"Can't find bars in word bar chart!");
         if (threeSyllableBarPos && monoSyllableBarPos)
             {
-            wordBarChart->GetBarAxis().AddBracket(Axis::AxisBracket(
+            wordBarChart->GetBarAxis().AddBracket(Wisteria::GraphItems::Axis::AxisBracket(
                 threeSyllableBarPos.value(), eflawBarPos.value_or(monoSyllableBarPos.value()),
                 ((eflawBarPos.value_or(monoSyllableBarPos.value()) - threeSyllableBarPos.value()) *
                  math_constants::half) +
@@ -2630,15 +2645,16 @@ void ProjectDoc::DisplayWordCharts()
         for (auto& bracket : wordBarChart->GetBarAxis().GetBrackets())
             {
             bracket.SetPerpendicularLabelConnectionLinesAlignment(
-                AxisLabelAlignment::AlignWithBoundary);
+                Wisteria::AxisLabelAlignment::AlignWithBoundary);
             }
 
         // update the bar labels
-        wordBarChart->SetBinLabelDisplay(IsDisplayingBarChartLabels() ? BinLabelDisplay::BinValue :
-                                                                        BinLabelDisplay::NoDisplay);
+        wordBarChart->SetBinLabelDisplay(IsDisplayingBarChartLabels() ?
+                                             Wisteria::BinLabelDisplay::BinValue :
+                                             Wisteria::BinLabelDisplay::NoDisplay);
 
         // won't sort unless this is a refresh and user sorted it previously
-        wordBarChart->SortBars(BarChart::BarSortComparison::SortByBarLength,
+        wordBarChart->SortBars(Wisteria::Graphs::BarChart::BarSortComparison::SortByBarLength,
                                wordBarChart->GetSortDirection());
 
         wordBarChartCanvas->CalcAllSizes(gdc);
@@ -2661,7 +2677,7 @@ void ProjectDoc::DisplayWordCharts()
             histoCanvas->SetFixedObjectsGridSize(1, 1);
             histoCanvas->SetFixedObject(
                 0, 0,
-                std::make_shared<Histogram>(
+                std::make_shared<Wisteria::Graphs::Histogram>(
                     histoCanvas,
                     std::make_shared<Wisteria::Brushes::Schemes::BrushScheme>(
                         *std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
@@ -2677,15 +2693,16 @@ void ProjectDoc::DisplayWordCharts()
             }
         UpdateGraphOptions(histoCanvas);
 
-        auto syllableHistogram =
-            std::dynamic_pointer_cast<Histogram>(histoCanvas->GetFixedObject(0, 0));
+        auto syllableHistogram = std::dynamic_pointer_cast<Wisteria::Graphs::Histogram>(
+            histoCanvas->GetFixedObject(0, 0));
         assert(syllableHistogram);
 
         syllableHistogram->GetTitle().SetText(_(L"Words (by Syllable Count)"));
-        syllableHistogram->GetTitle().SetRelativeAlignment(RelativeAlignment::Centered);
+        syllableHistogram->GetTitle().SetRelativeAlignment(Wisteria::RelativeAlignment::Centered);
         syllableHistogram->SetSortable(false);
-        syllableHistogram->SetShadowType(IsDisplayingDropShadows() ? ShadowType::RightSideShadow :
-                                                                     ShadowType::NoShadow);
+        syllableHistogram->SetShadowType(IsDisplayingDropShadows() ?
+                                             Wisteria::ShadowType::RightSideShadow :
+                                             Wisteria::ShadowType::NoShadow);
         syllableHistogram->SetBarEffect(GetHistogramBarEffect());
         if (const auto convertedIcon = Wisteria::ReportEnumConvert::ConvertIcon(GetStippleShape());
             convertedIcon)
@@ -2698,11 +2715,12 @@ void ProjectDoc::DisplayWordCharts()
             *std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
                 Wisteria::Colors::Schemes::ColorScheme({ GetHistogramBarColor() }))));
         syllableHistogram->SetData(m_syllableCounts, GetSyllableCountsColumnName(), std::nullopt,
-                                   Histogram::BinningMethod::BinUniqueValues,
-                                   RoundingMethod::NoRounding,
-                                   Histogram::IntervalDisplay::Midpoints,
-                                   IsDisplayingBarChartLabels() ? GetHistogramBinLabelDisplay() :
-                                                                  BinLabelDisplay::NoDisplay,
+                                   Wisteria::Graphs::Histogram::BinningMethod::BinUniqueValues,
+                                   Wisteria::RoundingMethod::NoRounding,
+                                   Wisteria::Graphs::Histogram::IntervalDisplay::Midpoints,
+                                   IsDisplayingBarChartLabels() ?
+                                       GetHistogramBinLabelDisplay() :
+                                       Wisteria::BinLabelDisplay::NoDisplay,
                                    // show a bar for all syllable counts, starting from 1
                                    true, 1);
         if (syllableHistogram->GetBars().size() > 2)
@@ -2766,7 +2784,8 @@ void ProjectDoc::DisplayWordCharts()
             syllablePieCanvas = new Wisteria::Canvas(view->GetSplitter(),
                                                      BaseProjectView::SYLLABLE_PIECHART_PAGE_ID);
             syllablePieCanvas->SetFixedObjectsGridSize(1, 1);
-            syllablePieCanvas->SetFixedObject(0, 0, std::make_shared<PieChart>(syllablePieCanvas));
+            syllablePieCanvas->SetFixedObject(
+                0, 0, std::make_shared<Wisteria::Graphs::PieChart>(syllablePieCanvas));
             syllablePieCanvas->Hide();
             syllablePieCanvas->SetLabel(BaseProjectView::GetSyllableCountsLabel());
             syllablePieCanvas->SetName(BaseProjectView::GetSyllableCountsLabel());
@@ -2778,16 +2797,18 @@ void ProjectDoc::DisplayWordCharts()
             }
         UpdateGraphOptions(syllablePieCanvas);
 
-        auto syllablePieChart =
-            std::dynamic_pointer_cast<PieChart>(syllablePieCanvas->GetFixedObject(0, 0));
+        auto syllablePieChart = std::dynamic_pointer_cast<Wisteria::Graphs::PieChart>(
+            syllablePieCanvas->GetFixedObject(0, 0));
         assert(syllablePieChart);
 
         // add a donut hole
         syllablePieChart->IncludeDonutHole(true);
         syllablePieChart->GetDonutHoleLabel().SetText(_(L"Number of\nSyllables\nper Word"));
-        syllablePieChart->GetDonutHoleLabel().SetTextAlignment(TextAlignment::JustifiedAtCharacter);
-        syllablePieChart->SetInnerPieMidPointLabelDisplay(BinLabelDisplay::BinNameAndPercentage);
-        syllablePieChart->SetOuterPieMidPointLabelDisplay(BinLabelDisplay::BinPercentage);
+        syllablePieChart->GetDonutHoleLabel().SetTextAlignment(
+            Wisteria::TextAlignment::JustifiedAtCharacter);
+        syllablePieChart->SetInnerPieMidPointLabelDisplay(
+            Wisteria::BinLabelDisplay::BinNameAndPercentage);
+        syllablePieChart->SetOuterPieMidPointLabelDisplay(Wisteria::BinLabelDisplay::BinPercentage);
         syllablePieChart->SetData(m_syllableCounts, std::nullopt, GetWordTypeGroupColumnName(),
                                   GetSyllableCountsColumnName());
 
@@ -2822,7 +2843,8 @@ void ProjectDoc::DisplayWordCharts()
             wordCloudCanvas =
                 new Wisteria::Canvas(view->GetSplitter(), BaseProjectView::WORD_CLOUD_PAGE_ID);
             wordCloudCanvas->SetFixedObjectsGridSize(1, 1);
-            wordCloudCanvas->SetFixedObject(0, 0, std::make_shared<WordCloud>(wordCloudCanvas));
+            wordCloudCanvas->SetFixedObject(
+                0, 0, std::make_shared<Wisteria::Graphs::WordCloud>(wordCloudCanvas));
             wordCloudCanvas->Hide();
             wordCloudCanvas->SetLabel(BaseProjectView::GetWordCloudLabel());
             wordCloudCanvas->SetName(BaseProjectView::GetWordCloudLabel());
@@ -2842,8 +2864,8 @@ void ProjectDoc::DisplayWordCharts()
             }
         UpdateGraphOptions(wordCloudCanvas);
 
-        auto wordCloud =
-            std::dynamic_pointer_cast<WordCloud>(wordCloudCanvas->GetFixedObject(0, 0));
+        auto wordCloud = std::dynamic_pointer_cast<Wisteria::Graphs::WordCloud>(
+            wordCloudCanvas->GetFixedObject(0, 0));
         assert(wordCloud);
         // top 100 words, with a min frequency of 2
         // (unless less than 100 words, then include everything)
@@ -2874,7 +2896,8 @@ void ProjectDoc::AddCrawfordGraph(const bool setFocus)
     scoreDataset->AddContinuousColumn(scoresColumnName);
     scoreDataset->AddContinuousColumn(syllablesColumnName);
 
-    scoreDataset->AddRow(Data::RowInfo().Continuous({ gradeValue, syllablesPer100Words }));
+    scoreDataset->AddRow(
+        Wisteria::Data::RowInfo().Continuous({ gradeValue, syllablesPer100Words }));
 
     // Crawford graph
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
@@ -2884,8 +2907,8 @@ void ProjectDoc::AddCrawfordGraph(const bool setFocus)
         view->GetReadabilityResultsView().FindWindowById(BaseProjectView::CRAWFORD_GRAPH_PAGE_ID));
     if (crawfordGraphView)
         {
-        auto crawfordGraph =
-            std::dynamic_pointer_cast<CrawfordGraph>(crawfordGraphView->GetFixedObject(0, 0));
+        auto crawfordGraph = std::dynamic_pointer_cast<Wisteria::Graphs::CrawfordGraph>(
+            crawfordGraphView->GetFixedObject(0, 0));
         crawfordGraph->SetData(scoreDataset, scoresColumnName, syllablesColumnName);
         }
     else
@@ -2899,10 +2922,11 @@ void ProjectDoc::AddCrawfordGraph(const bool setFocus)
         crawfordGraphView->SetName(BaseProjectView::GetCrawfordGraphLabel());
         crawfordGraphView->SetPrinterSettings(*wxGetApp().GetPrintData());
 
-        auto crawfordGraph = std::make_shared<CrawfordGraph>(
+        auto crawfordGraph = std::make_shared<Wisteria::Graphs::CrawfordGraph>(
             crawfordGraphView,
-            std::make_shared<Colors::Schemes::ColorScheme>(Colors::Schemes::ColorScheme{
-                ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
+            std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
+                Wisteria::Colors::Schemes::ColorScheme{ Wisteria::Colors::ColorBrewer::GetColor(
+                    Wisteria::Colors::Color::CelestialBlue) }));
 
         crawfordGraph->SetData(scoreDataset, scoresColumnName, syllablesColumnName);
         crawfordGraphView->SetFixedObject(0, 0, crawfordGraph);
@@ -2932,7 +2956,7 @@ void ProjectDoc::AddDB2Plot(const bool setFocus)
     auto scoreDataset = std::make_shared<Wisteria::Data::Dataset>();
     scoreDataset->AddContinuousColumn(scoresColumnName);
 
-    scoreDataset->AddRow(Data::RowInfo().Continuous({ static_cast<double>(score) }));
+    scoreDataset->AddRow(Wisteria::Data::RowInfo().Continuous({ static_cast<double>(score) }));
 
     // DB2
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
@@ -2942,8 +2966,8 @@ void ProjectDoc::AddDB2Plot(const bool setFocus)
         view->GetReadabilityResultsView().FindWindowById(BaseProjectView::DB2_PAGE_ID));
     if (db2PlotView != nullptr)
         {
-        auto db2Plot =
-            std::dynamic_pointer_cast<DanielsonBryan2Plot>(db2PlotView->GetFixedObject(0, 0));
+        auto db2Plot = std::dynamic_pointer_cast<Wisteria::Graphs::DanielsonBryan2Plot>(
+            db2PlotView->GetFixedObject(0, 0));
         db2Plot->SetData(scoreDataset, scoresColumnName);
         }
     else
@@ -2956,10 +2980,11 @@ void ProjectDoc::AddDB2Plot(const bool setFocus)
         db2PlotView->SetName(BaseProjectView::GetDB2Label());
         db2PlotView->SetPrinterSettings(*wxGetApp().GetPrintData());
 
-        auto db2Plot = std::make_shared<DanielsonBryan2Plot>(
+        auto db2Plot = std::make_shared<Wisteria::Graphs::DanielsonBryan2Plot>(
             db2PlotView,
-            std::make_shared<Colors::Schemes::ColorScheme>(Colors::Schemes::ColorScheme{
-                ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
+            std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
+                Wisteria::Colors::Schemes::ColorScheme{ Wisteria::Colors::ColorBrewer::GetColor(
+                    Wisteria::Colors::Color::CelestialBlue) }));
 
         db2Plot->SetData(scoreDataset, scoresColumnName);
         db2PlotView->SetFixedObject(0, 0, db2Plot);
@@ -2967,8 +2992,8 @@ void ProjectDoc::AddDB2Plot(const bool setFocus)
         }
     UpdateGraphOptions(db2PlotView);
 
-    auto db2Plot =
-        std::dynamic_pointer_cast<DanielsonBryan2Plot>(db2PlotView->GetFixedObject(0, 0));
+    auto db2Plot = std::dynamic_pointer_cast<Wisteria::Graphs::DanielsonBryan2Plot>(
+        db2PlotView->GetFixedObject(0, 0));
     db2Plot->ShowcaseScore(IsShowcasingKeyItems());
 
     db2PlotView->CalcAllSizes(gdc);
@@ -2994,7 +3019,7 @@ void ProjectDoc::AddLixGermanGauge(const bool setFocus)
     auto scoreDataset = std::make_shared<Wisteria::Data::Dataset>();
     scoreDataset->AddContinuousColumn(scoresColumnName);
 
-    scoreDataset->AddRow(Data::RowInfo().Continuous({ static_cast<double>(score) }));
+    scoreDataset->AddRow(Wisteria::Data::RowInfo().Continuous({ static_cast<double>(score) }));
 
     // Lix Gauge (German)
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
@@ -3005,8 +3030,8 @@ void ProjectDoc::AddLixGermanGauge(const bool setFocus)
             BaseProjectView::LIX_GAUGE_GERMAN_PAGE_ID));
     if (lixGaugeView)
         {
-        auto lixGauge =
-            std::dynamic_pointer_cast<LixGaugeGerman>(lixGaugeView->GetFixedObject(0, 0));
+        auto lixGauge = std::dynamic_pointer_cast<Wisteria::Graphs::LixGaugeGerman>(
+            lixGaugeView->GetFixedObject(0, 0));
         lixGauge->SetData(scoreDataset, scoresColumnName);
         }
     else
@@ -3020,10 +3045,11 @@ void ProjectDoc::AddLixGermanGauge(const bool setFocus)
         lixGaugeView->SetName(BaseProjectView::GetGermanLixGaugeLabel());
         lixGaugeView->SetPrinterSettings(*wxGetApp().GetPrintData());
 
-        auto lixGauge = std::make_shared<LixGaugeGerman>(
+        auto lixGauge = std::make_shared<Wisteria::Graphs::LixGaugeGerman>(
             lixGaugeView,
-            std::make_shared<Colors::Schemes::ColorScheme>(Colors::Schemes::ColorScheme{
-                ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
+            std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
+                Wisteria::Colors::Schemes::ColorScheme{ Wisteria::Colors::ColorBrewer::GetColor(
+                    Wisteria::Colors::Color::CelestialBlue) }));
 
         lixGauge->SetData(scoreDataset, scoresColumnName);
         lixGaugeView->SetFixedObject(0, 0, lixGauge);
@@ -3032,8 +3058,8 @@ void ProjectDoc::AddLixGermanGauge(const bool setFocus)
     UpdateGraphOptions(lixGaugeView);
 
     // in case this option changed
-    auto lixGermanPlot =
-        std::dynamic_pointer_cast<LixGaugeGerman>(lixGaugeView->GetFixedObject(0, 0));
+    auto lixGermanPlot = std::dynamic_pointer_cast<Wisteria::Graphs::LixGaugeGerman>(
+        lixGaugeView->GetFixedObject(0, 0));
     lixGermanPlot->ShowcaseScore(IsShowcasingKeyItems());
     lixGermanPlot->UseEnglishLabels(IsUsingEnglishLabelsForGermanLix());
 
@@ -3061,7 +3087,7 @@ void ProjectDoc::AddLixGauge(const bool setFocus)
     auto scoreDataset = std::make_shared<Wisteria::Data::Dataset>();
     scoreDataset->AddContinuousColumn(scoresColumnName);
 
-    scoreDataset->AddRow(Data::RowInfo().Continuous({ static_cast<double>(score) }));
+    scoreDataset->AddRow(Wisteria::Data::RowInfo().Continuous({ static_cast<double>(score) }));
 
     // Lix Gauge
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
@@ -3071,7 +3097,8 @@ void ProjectDoc::AddLixGauge(const bool setFocus)
         view->GetReadabilityResultsView().FindWindowById(BaseProjectView::LIX_GAUGE_PAGE_ID));
     if (lixGaugeView)
         {
-        auto lixGauge = std::dynamic_pointer_cast<LixGauge>(lixGaugeView->GetFixedObject(0, 0));
+        auto lixGauge = std::dynamic_pointer_cast<Wisteria::Graphs::LixGauge>(
+            lixGaugeView->GetFixedObject(0, 0));
         lixGauge->SetData(scoreDataset, scoresColumnName);
         }
     else
@@ -3085,17 +3112,19 @@ void ProjectDoc::AddLixGauge(const bool setFocus)
         lixGaugeView->SetName(BaseProjectView::GetLixGaugeLabel());
         lixGaugeView->SetPrinterSettings(*wxGetApp().GetPrintData());
 
-        auto lixGauge = std::make_shared<LixGauge>(
+        auto lixGauge = std::make_shared<Wisteria::Graphs::LixGauge>(
             lixGaugeView,
-            std::make_shared<Colors::Schemes::ColorScheme>(Colors::Schemes::ColorScheme{
-                ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
+            std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
+                Wisteria::Colors::Schemes::ColorScheme{ Wisteria::Colors::ColorBrewer::GetColor(
+                    Wisteria::Colors::Color::CelestialBlue) }));
 
         lixGauge->SetData(scoreDataset, scoresColumnName);
         lixGaugeView->SetFixedObject(0, 0, lixGauge);
         view->GetReadabilityResultsView().AddWindow(lixGaugeView);
         }
     UpdateGraphOptions(lixGaugeView);
-    auto lixPlot = std::dynamic_pointer_cast<LixGauge>(lixGaugeView->GetFixedObject(0, 0));
+    auto lixPlot =
+        std::dynamic_pointer_cast<Wisteria::Graphs::LixGauge>(lixGaugeView->GetFixedObject(0, 0));
     lixPlot->ShowcaseScore(IsShowcasingKeyItems());
 
     lixGaugeView->CalcAllSizes(gdc);
@@ -3135,7 +3164,8 @@ void ProjectDoc::AddFleschChart(const bool setFocus)
     scoreDataset->AddContinuousColumn(scoresColumnName);
     scoreDataset->AddContinuousColumn(syllablesColumnName);
 
-    scoreDataset->AddRow(Data::RowInfo().Continuous({ ASL, static_cast<double>(score), ASW }));
+    scoreDataset->AddRow(
+        Wisteria::Data::RowInfo().Continuous({ ASL, static_cast<double>(score), ASW }));
 
     // Flesch chart
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
@@ -3145,8 +3175,8 @@ void ProjectDoc::AddFleschChart(const bool setFocus)
         view->GetReadabilityResultsView().FindWindowById(BaseProjectView::FLESCH_CHART_PAGE_ID));
     if (fleschChartCanvas)
         {
-        auto fleschChart =
-            std::dynamic_pointer_cast<FleschChart>(fleschChartCanvas->GetFixedObject(0, 0));
+        auto fleschChart = std::dynamic_pointer_cast<Wisteria::Graphs::FleschChart>(
+            fleschChartCanvas->GetFixedObject(0, 0));
         fleschChart->SetData(scoreDataset, wordsColumnName, scoresColumnName, syllablesColumnName);
         }
     else
@@ -3160,10 +3190,11 @@ void ProjectDoc::AddFleschChart(const bool setFocus)
         fleschChartCanvas->SetName(BaseProjectView::GetFleschChartLabel());
         fleschChartCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
 
-        auto fleschChart = std::make_shared<FleschChart>(
+        auto fleschChart = std::make_shared<Wisteria::Graphs::FleschChart>(
             fleschChartCanvas,
-            std::make_shared<Colors::Schemes::ColorScheme>(Colors::Schemes::ColorScheme{
-                ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
+            std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
+                Wisteria::Colors::Schemes::ColorScheme{ Wisteria::Colors::ColorBrewer::GetColor(
+                    Wisteria::Colors::Color::CelestialBlue) }));
         assert(fleschChart);
         fleschChart->SetData(scoreDataset, wordsColumnName, scoresColumnName, syllablesColumnName);
         fleschChartCanvas->SetFixedObject(0, 0, fleschChart);
@@ -3172,7 +3203,8 @@ void ProjectDoc::AddFleschChart(const bool setFocus)
         }
     UpdateGraphOptions(fleschChartCanvas);
 
-    std::dynamic_pointer_cast<FleschChart>(fleschChartCanvas->GetFixedObject(0, 0))
+    std::dynamic_pointer_cast<Wisteria::Graphs::FleschChart>(
+        fleschChartCanvas->GetFixedObject(0, 0))
         ->ShowConnectionLine(IsConnectingFleschPoints());
     fleschChartCanvas->CalcAllSizes(gdc);
 
@@ -3201,7 +3233,7 @@ bool ProjectDoc::AddSchwartzTest(const bool setFocus)
     scoreDataset->AddContinuousColumn(syllablesColumnName);
     scoreDataset->AddContinuousColumn(sencentesColumnName);
 
-    scoreDataset->AddRow(Data::RowInfo().Continuous(
+    scoreDataset->AddRow(Wisteria::Data::RowInfo().Continuous(
         { GetTotalWords(), GetTotalSyllablesNumeralsOneSyllable(), GetTotalSentenceUnits() }));
 
     if (GetTotalWords() == 0)
@@ -3232,8 +3264,8 @@ bool ProjectDoc::AddSchwartzTest(const bool setFocus)
         view->GetReadabilityResultsView().FindWindowById(BaseProjectView::SCHWARTZ_PAGE_ID));
     if (schwartzGraphView)
         {
-        auto schwartzGraph =
-            std::dynamic_pointer_cast<SchwartzGraph>(schwartzGraphView->GetFixedObject(0, 0));
+        auto schwartzGraph = std::dynamic_pointer_cast<Wisteria::Graphs::SchwartzGraph>(
+            schwartzGraphView->GetFixedObject(0, 0));
         assert(schwartzGraph);
         schwartzGraph->SetData(scoreDataset, wordsColumnName, syllablesColumnName,
                                sencentesColumnName);
@@ -3249,10 +3281,11 @@ bool ProjectDoc::AddSchwartzTest(const bool setFocus)
         schwartzGraphView->SetName(BaseProjectView::GetSchwartzLabel());
         schwartzGraphView->SetPrinterSettings(*wxGetApp().GetPrintData());
 
-        auto schwartzGraph = std::make_shared<SchwartzGraph>(
+        auto schwartzGraph = std::make_shared<Wisteria::Graphs::SchwartzGraph>(
             schwartzGraphView,
-            std::make_shared<Colors::Schemes::ColorScheme>(Colors::Schemes::ColorScheme{
-                ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
+            std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
+                Wisteria::Colors::Schemes::ColorScheme{ Wisteria::Colors::ColorBrewer::GetColor(
+                    Wisteria::Colors::Color::CelestialBlue) }));
         schwartzGraph->SetMessageCatalog(GetReadabilityMessageCatalogPtr());
         schwartzGraph->SetData(scoreDataset, wordsColumnName, syllablesColumnName,
                                sencentesColumnName);
@@ -3262,8 +3295,8 @@ bool ProjectDoc::AddSchwartzTest(const bool setFocus)
         }
     UpdateGraphOptions(schwartzGraphView);
 
-    auto schwartzGraph =
-        std::dynamic_pointer_cast<SchwartzGraph>(schwartzGraphView->GetFixedObject(0, 0));
+    auto schwartzGraph = std::dynamic_pointer_cast<Wisteria::Graphs::SchwartzGraph>(
+        schwartzGraphView->GetFixedObject(0, 0));
     assert(schwartzGraph);
 
     schwartzGraph->SetInvalidAreaColor(GetInvalidAreaColor());
@@ -3361,8 +3394,8 @@ bool ProjectDoc::AddFraseTest(const bool setFocus)
     scoreDataset->AddContinuousColumn(syllablesColumnName);
     scoreDataset->AddContinuousColumn(sencentesColumnName);
 
-    scoreDataset->AddRow(
-        Data::RowInfo().Continuous({ GetTotalWords(), GetTotalSyllables(), GetTotalSentences() }));
+    scoreDataset->AddRow(Wisteria::Data::RowInfo().Continuous(
+        { GetTotalWords(), GetTotalSyllables(), GetTotalSentences() }));
 
     if (GetTotalWords() == 0)
         {
@@ -3392,8 +3425,8 @@ bool ProjectDoc::AddFraseTest(const bool setFocus)
         view->GetReadabilityResultsView().FindWindowById(BaseProjectView::FRASE_PAGE_ID));
     if (fraseGraphView)
         {
-        auto fraseGraph =
-            std::dynamic_pointer_cast<FraseGraph>(fraseGraphView->GetFixedObject(0, 0));
+        auto fraseGraph = std::dynamic_pointer_cast<Wisteria::Graphs::FraseGraph>(
+            fraseGraphView->GetFixedObject(0, 0));
         assert(fraseGraph);
         fraseGraph->SetData(scoreDataset, wordsColumnName, syllablesColumnName,
                             sencentesColumnName);
@@ -3409,10 +3442,11 @@ bool ProjectDoc::AddFraseTest(const bool setFocus)
         fraseGraphView->SetName(BaseProjectView::GetFraseLabel());
         fraseGraphView->SetPrinterSettings(*wxGetApp().GetPrintData());
 
-        auto fraseGraph = std::make_shared<FraseGraph>(
+        auto fraseGraph = std::make_shared<Wisteria::Graphs::FraseGraph>(
             fraseGraphView,
-            std::make_shared<Colors::Schemes::ColorScheme>(Colors::Schemes::ColorScheme{
-                ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
+            std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
+                Wisteria::Colors::Schemes::ColorScheme{ Wisteria::Colors::ColorBrewer::GetColor(
+                    Wisteria::Colors::Color::CelestialBlue) }));
         fraseGraph->SetMessageCatalog(GetReadabilityMessageCatalogPtr());
         fraseGraph->SetData(scoreDataset, wordsColumnName, syllablesColumnName,
                             sencentesColumnName);
@@ -3430,7 +3464,8 @@ bool ProjectDoc::AddFraseTest(const bool setFocus)
         return false;
         }
 
-    auto fraseGraph = std::dynamic_pointer_cast<FraseGraph>(fraseGraphView->GetFixedObject(0, 0));
+    auto fraseGraph = std::dynamic_pointer_cast<Wisteria::Graphs::FraseGraph>(
+        fraseGraphView->GetFixedObject(0, 0));
     assert(fraseGraph);
     if (fraseGraph->GetScores().front().IsScoreInvalid())
         {
@@ -3569,19 +3604,20 @@ void ProjectDoc::DisplayReadabilityGraphs()
                     view->GetSplitter(), BaseProjectView::DOLCH_COVERAGE_CHART_PAGE_ID);
                 coverageBarChartCanvas->SetFixedObjectsGridSize(1, 1);
                 coverageBarChartCanvas->SetFixedObject(
-                    0, 0, std::make_shared<BarChart>(coverageBarChartCanvas));
+                    0, 0, std::make_shared<Wisteria::Graphs::BarChart>(coverageBarChartCanvas));
                 coverageBarChartCanvas->Hide();
                 coverageBarChartCanvas->SetLabel(BaseProjectView::GetCoverageChartTabLabel());
                 coverageBarChartCanvas->SetName(BaseProjectView::GetCoverageChartTabLabel());
                 coverageBarChartCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
-                std::dynamic_pointer_cast<BarChart>(coverageBarChartCanvas->GetFixedObject(0, 0))
+                std::dynamic_pointer_cast<Wisteria::Graphs::BarChart>(
+                    coverageBarChartCanvas->GetFixedObject(0, 0))
                     ->SetSortable(true);
                 view->GetDolchSightWordsView().AddWindow(coverageBarChartCanvas);
                 }
             UpdateGraphOptions(coverageBarChartCanvas);
 
-            auto coverageBarChart =
-                std::dynamic_pointer_cast<BarChart>(coverageBarChartCanvas->GetFixedObject(0, 0));
+            auto coverageBarChart = std::dynamic_pointer_cast<Wisteria::Graphs::BarChart>(
+                coverageBarChartCanvas->GetFixedObject(0, 0));
             assert(coverageBarChart);
 
             coverageBarChart->ClearBars();
@@ -3593,9 +3629,11 @@ void ProjectDoc::DisplayReadabilityGraphs()
                 Wisteria::AxisLabelDisplay::DisplayCustomLabelsOrValues);
             coverageBarChart->GetScalingAxis().SetRange(0, 100, 0, 10, 2);
             coverageBarChart->GetTitle().SetText(_(L"Dolch Word Coverage (%)"));
-            coverageBarChart->GetTitle().SetRelativeAlignment(RelativeAlignment::Centered);
-            coverageBarChart->SetShadowType(
-                IsDisplayingDropShadows() ? ShadowType::RightSideShadow : ShadowType::NoShadow);
+            coverageBarChart->GetTitle().SetRelativeAlignment(
+                Wisteria::RelativeAlignment::Centered);
+            coverageBarChart->SetShadowType(IsDisplayingDropShadows() ?
+                                                Wisteria::ShadowType::RightSideShadow :
+                                                Wisteria::ShadowType::NoShadow);
             coverageBarChart->IncludeSpacesBetweenBars(true);
             coverageBarChart->GetRightYAxis().Show(false);
             coverageBarChart->GetTopXAxis().Show(false);
@@ -3607,10 +3645,11 @@ void ProjectDoc::DisplayReadabilityGraphs()
                                     ProjectReportFormat::MAX_DOLCH_NOUNS) *
                 100;
             coverageBarChart->AddBar(
-                BarChart::Bar(
+                Wisteria::Graphs::BarChart::Bar(
                     ++currentBar,
-                    { { BarChart::BarBlock(
-                        BarChart::BarBlockInfo(dolchNounPercentage).Brush(GetDolchNounColor())) } },
+                    { { Wisteria::Graphs::BarChart::BarBlock(
+                        Wisteria::Graphs::BarChart::BarBlockInfo(dolchNounPercentage)
+                            .Brush(GetDolchNounColor())) } },
                     wxString::Format(/* TRANSLATORS: Percentage value (%s) and % symbol (%%).
                                         '%%' can be changed and/or moved elsewhere in the string. */
                                      _("%s%%"),
@@ -3618,7 +3657,8 @@ void ProjectDoc::DisplayReadabilityGraphs()
                                          dolchNounPercentage, 1,
                                          wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                              wxNumberFormatter::Style::Style_WithThousandsSep)),
-                    GraphItems::Label(_(L"Nouns")), GetGraphBarEffect(), GetGraphBarOpacity()),
+                    Wisteria::GraphItems::Label(_(L"Nouns")), GetGraphBarEffect(),
+                    GetGraphBarOpacity()),
                 false);
 
             const double dolchVerbsPercentage =
@@ -3626,10 +3666,11 @@ void ProjectDoc::DisplayReadabilityGraphs()
                                     ProjectReportFormat::MAX_DOLCH_VERBS) *
                 100;
             coverageBarChart->AddBar(
-                BarChart::Bar(
+                Wisteria::Graphs::BarChart::Bar(
                     ++currentBar,
-                    { { BarChart::BarBlock(BarChart::BarBlockInfo(dolchVerbsPercentage)
-                                               .Brush(GetDolchVerbsColor())) } },
+                    { { Wisteria::Graphs::BarChart::BarBlock(
+                        Wisteria::Graphs::BarChart::BarBlockInfo(dolchVerbsPercentage)
+                            .Brush(GetDolchVerbsColor())) } },
                     wxString::Format(/* TRANSLATORS: Percentage value (%s) and % symbol (%%).
                                         '%%' can be changed and/or moved elsewhere in the string. */
                                      _("%s%%"),
@@ -3637,7 +3678,8 @@ void ProjectDoc::DisplayReadabilityGraphs()
                                          dolchVerbsPercentage, 1,
                                          wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                              wxNumberFormatter::Style::Style_WithThousandsSep)),
-                    GraphItems::Label(_(L"Verbs")), GetGraphBarEffect(), GetGraphBarOpacity()),
+                    Wisteria::GraphItems::Label(_(L"Verbs")), GetGraphBarEffect(),
+                    GetGraphBarOpacity()),
                 false);
 
             const double dolchAdjectivesPercentage =
@@ -3646,10 +3688,11 @@ void ProjectDoc::DisplayReadabilityGraphs()
                     ProjectReportFormat::MAX_DOLCH_ADJECTIVE_WORDS) *
                 100;
             coverageBarChart->AddBar(
-                BarChart::Bar(
+                Wisteria::Graphs::BarChart::Bar(
                     ++currentBar,
-                    { { BarChart::BarBlock(BarChart::BarBlockInfo(dolchAdjectivesPercentage)
-                                               .Brush(GetDolchAdjectivesColor())) } },
+                    { { Wisteria::Graphs::BarChart::BarBlock(
+                        Wisteria::Graphs::BarChart::BarBlockInfo(dolchAdjectivesPercentage)
+                            .Brush(GetDolchAdjectivesColor())) } },
                     wxString::Format(/* TRANSLATORS: Percentage value (%s) and % symbol (%%).
                                         '%%' can be changed and/or moved elsewhere in the string. */
                                      _("%s%%"),
@@ -3657,7 +3700,8 @@ void ProjectDoc::DisplayReadabilityGraphs()
                                          dolchAdjectivesPercentage, 1,
                                          wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                              wxNumberFormatter::Style::Style_WithThousandsSep)),
-                    GraphItems::Label(_(L"Adjectives")), GetGraphBarEffect(), GetGraphBarOpacity()),
+                    Wisteria::GraphItems::Label(_(L"Adjectives")), GetGraphBarEffect(),
+                    GetGraphBarOpacity()),
                 false);
 
             const double dolchAdverbsPercentage =
@@ -3666,10 +3710,11 @@ void ProjectDoc::DisplayReadabilityGraphs()
                     ProjectReportFormat::MAX_DOLCH_ADVERB_WORDS) *
                 100;
             coverageBarChart->AddBar(
-                BarChart::Bar(
+                Wisteria::Graphs::BarChart::Bar(
                     ++currentBar,
-                    { { BarChart::BarBlock(BarChart::BarBlockInfo(dolchAdverbsPercentage)
-                                               .Brush(GetDolchAdverbsColor())) } },
+                    { { Wisteria::Graphs::BarChart::BarBlock(
+                        Wisteria::Graphs::BarChart::BarBlockInfo(dolchAdverbsPercentage)
+                            .Brush(GetDolchAdverbsColor())) } },
                     wxString::Format(/* TRANSLATORS: Percentage value (%s) and % symbol (%%).
                                         '%%' can be changed and/or moved elsewhere in the string. */
                                      _("%s%%"),
@@ -3677,7 +3722,8 @@ void ProjectDoc::DisplayReadabilityGraphs()
                                          dolchAdverbsPercentage, 1,
                                          wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                              wxNumberFormatter::Style::Style_WithThousandsSep)),
-                    GraphItems::Label(_(L"Adverbs")), GetGraphBarEffect(), GetGraphBarOpacity()),
+                    Wisteria::GraphItems::Label(_(L"Adverbs")), GetGraphBarEffect(),
+                    GetGraphBarOpacity()),
                 false);
 
             const double dolchPronounsPercentage =
@@ -3686,10 +3732,11 @@ void ProjectDoc::DisplayReadabilityGraphs()
                     ProjectReportFormat::MAX_DOLCH_PRONOUN_WORDS) *
                 100;
             coverageBarChart->AddBar(
-                BarChart::Bar(
+                Wisteria::Graphs::BarChart::Bar(
                     ++currentBar,
-                    { { BarChart::BarBlock(BarChart::BarBlockInfo(dolchPronounsPercentage)
-                                               .Brush(GetDolchPronounsColor())) } },
+                    { { Wisteria::Graphs::BarChart::BarBlock(
+                        Wisteria::Graphs::BarChart::BarBlockInfo(dolchPronounsPercentage)
+                            .Brush(GetDolchPronounsColor())) } },
                     wxString::Format(/* TRANSLATORS: Percentage value (%s) and % symbol (%%).
                                         '%%' can be changed and/or moved elsewhere in the string. */
                                      _("%s%%"),
@@ -3697,7 +3744,8 @@ void ProjectDoc::DisplayReadabilityGraphs()
                                          dolchPronounsPercentage, 1,
                                          wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                              wxNumberFormatter::Style::Style_WithThousandsSep)),
-                    GraphItems::Label(_(L"Pronouns")), GetGraphBarEffect(), GetGraphBarOpacity()),
+                    Wisteria::GraphItems::Label(_(L"Pronouns")), GetGraphBarEffect(),
+                    GetGraphBarOpacity()),
                 false);
 
             const double dolchPrepositionsPercentage =
@@ -3706,10 +3754,11 @@ void ProjectDoc::DisplayReadabilityGraphs()
                                     ProjectReportFormat::MAX_DOLCH_PREPOSITION_WORDS) *
                 100;
             coverageBarChart->AddBar(
-                BarChart::Bar(
+                Wisteria::Graphs::BarChart::Bar(
                     ++currentBar,
-                    { { BarChart::BarBlock(BarChart::BarBlockInfo(dolchPrepositionsPercentage)
-                                               .Brush(GetDolchPrepositionsColor())) } },
+                    { { Wisteria::Graphs::BarChart::BarBlock(
+                        Wisteria::Graphs::BarChart::BarBlockInfo(dolchPrepositionsPercentage)
+                            .Brush(GetDolchPrepositionsColor())) } },
                     wxString::Format(/* TRANSLATORS: Percentage value (%s) and % symbol (%%).
                                         '%%' can be changed and/or moved elsewhere in the string. */
                                      _("%s%%"),
@@ -3717,7 +3766,7 @@ void ProjectDoc::DisplayReadabilityGraphs()
                                          dolchPrepositionsPercentage, 1,
                                          wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                              wxNumberFormatter::Style::Style_WithThousandsSep)),
-                    GraphItems::Label(_(L"Prepositions")), GetGraphBarEffect(),
+                    Wisteria::GraphItems::Label(_(L"Prepositions")), GetGraphBarEffect(),
                     GetGraphBarOpacity()),
                 false);
 
@@ -3727,10 +3776,11 @@ void ProjectDoc::DisplayReadabilityGraphs()
                                     ProjectReportFormat::MAX_DOLCH_CONJUNCTION_WORDS) *
                 100;
             coverageBarChart->AddBar(
-                BarChart::Bar(
+                Wisteria::Graphs::BarChart::Bar(
                     ++currentBar,
-                    { { BarChart::BarBlock(BarChart::BarBlockInfo(dolchConjunctionsPercentage)
-                                               .Brush(GetDolchConjunctionsColor())) } },
+                    { { Wisteria::Graphs::BarChart::BarBlock(
+                        Wisteria::Graphs::BarChart::BarBlockInfo(dolchConjunctionsPercentage)
+                            .Brush(GetDolchConjunctionsColor())) } },
                     wxString::Format(/* TRANSLATORS: Percentage value (%s) and % symbol (%%).
                                         '%%' can be changed and/or moved elsewhere in the string. */
                                      _("%s%%"),
@@ -3738,17 +3788,18 @@ void ProjectDoc::DisplayReadabilityGraphs()
                                          dolchConjunctionsPercentage, 1,
                                          wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                              wxNumberFormatter::Style::Style_WithThousandsSep)),
-                    GraphItems::Label(_(L"Conjunctions")), GetGraphBarEffect(),
+                    Wisteria::GraphItems::Label(_(L"Conjunctions")), GetGraphBarEffect(),
                     GetGraphBarOpacity()),
                 false);
 
             // update the bar labels
             coverageBarChart->SetBinLabelDisplay(IsDisplayingBarChartLabels() ?
-                                                     BinLabelDisplay::BinValue :
-                                                     BinLabelDisplay::NoDisplay);
+                                                     Wisteria::BinLabelDisplay::BinValue :
+                                                     Wisteria::BinLabelDisplay::NoDisplay);
 
-            coverageBarChart->SortBars(BarChart::BarSortComparison::SortByBarLength,
-                                       coverageBarChart->GetSortDirection());
+            coverageBarChart->SortBars(
+                Wisteria::Graphs::BarChart::BarSortComparison::SortByBarLength,
+                coverageBarChart->GetSortDirection());
 
             coverageBarChartCanvas->CalcAllSizes(gdc);
 
@@ -3766,19 +3817,20 @@ void ProjectDoc::DisplayReadabilityGraphs()
                 wordBarChartCanvas = new Wisteria::Canvas(view->GetSplitter(),
                                                           BaseProjectView::DOLCH_BREAKDOWN_PAGE_ID);
                 wordBarChartCanvas->SetFixedObjectsGridSize(1, 1);
-                wordBarChartCanvas->SetFixedObject(0, 0,
-                                                   std::make_shared<BarChart>(wordBarChartCanvas));
+                wordBarChartCanvas->SetFixedObject(
+                    0, 0, std::make_shared<Wisteria::Graphs::BarChart>(wordBarChartCanvas));
                 wordBarChartCanvas->Hide();
                 wordBarChartCanvas->SetLabel(BaseProjectView::GetWordCountsLabel());
                 wordBarChartCanvas->SetName(BaseProjectView::GetWordCountsLabel());
                 wordBarChartCanvas->SetPrinterSettings(*wxGetApp().GetPrintData());
-                std::dynamic_pointer_cast<BarChart>(wordBarChartCanvas->GetFixedObject(0, 0))
+                std::dynamic_pointer_cast<Wisteria::Graphs::BarChart>(
+                    wordBarChartCanvas->GetFixedObject(0, 0))
                     ->SetSortable(true);
                 view->GetDolchSightWordsView().AddWindow(wordBarChartCanvas);
                 }
             UpdateGraphOptions(wordBarChartCanvas);
-            auto dolchBarChart =
-                std::dynamic_pointer_cast<BarChart>(wordBarChartCanvas->GetFixedObject(0, 0));
+            auto dolchBarChart = std::dynamic_pointer_cast<Wisteria::Graphs::BarChart>(
+                wordBarChartCanvas->GetFixedObject(0, 0));
             assert(dolchBarChart);
 
             dolchBarChart->ClearBars();
@@ -3790,127 +3842,145 @@ void ProjectDoc::DisplayReadabilityGraphs()
                 Wisteria::AxisLabelDisplay::DisplayCustomLabelsOrValues);
             // TRANSLATORS: A breakdown is a summary.
             dolchBarChart->GetTitle().SetText(_(L"Dolch Word Breakdown"));
-            dolchBarChart->GetTitle().SetRelativeAlignment(RelativeAlignment::Centered);
-            dolchBarChart->SetShadowType(IsDisplayingDropShadows() ? ShadowType::RightSideShadow :
-                                                                     ShadowType::NoShadow);
+            dolchBarChart->GetTitle().SetRelativeAlignment(Wisteria::RelativeAlignment::Centered);
+            dolchBarChart->SetShadowType(IsDisplayingDropShadows() ?
+                                             Wisteria::ShadowType::RightSideShadow :
+                                             Wisteria::ShadowType::NoShadow);
             dolchBarChart->IncludeSpacesBetweenBars(true);
             dolchBarChart->SetBinLabelDisplay(IsDisplayingBarChartLabels() ?
-                                                  BinLabelDisplay::BinValue :
-                                                  BinLabelDisplay::NoDisplay);
+                                                  Wisteria::BinLabelDisplay::BinValue :
+                                                  Wisteria::BinLabelDisplay::NoDisplay);
             dolchBarChart->GetRightYAxis().Show(false);
             dolchBarChart->GetTopXAxis().Show(false);
             dolchBarChart->GetScalingAxis().GetGridlinePen() = wxNullPen;
 
             currentBar = 0;
 
-            dolchBarChart->AddBar(BarChart::Bar(
+            dolchBarChart->AddBar(Wisteria::Graphs::BarChart::Bar(
                 ++currentBar,
-                { { BarChart::BarBlock(
-                    BarChart::BarBlockInfo(static_cast<double>(GetDolchNounCounts().second))
+                { { Wisteria::Graphs::BarChart::BarBlock(
+                    Wisteria::Graphs::BarChart::BarBlockInfo(
+                        static_cast<double>(GetDolchNounCounts().second))
                         .Brush(GetDolchNounColor())) } },
                 wxNumberFormatter::ToString(GetDolchNounCounts().second, 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
-                GraphItems::Label(_(L"Nouns")), GetGraphBarEffect(), GetGraphBarOpacity()));
+                Wisteria::GraphItems::Label(_(L"Nouns")), GetGraphBarEffect(),
+                GetGraphBarOpacity()));
 
-            dolchBarChart->AddBar(BarChart::Bar(
+            dolchBarChart->AddBar(Wisteria::Graphs::BarChart::Bar(
                 ++currentBar,
-                { { BarChart::BarBlock(
-                    BarChart::BarBlockInfo(static_cast<double>(GetDolchVerbsCounts().second))
+                { { Wisteria::Graphs::BarChart::BarBlock(
+                    Wisteria::Graphs::BarChart::BarBlockInfo(
+                        static_cast<double>(GetDolchVerbsCounts().second))
                         .Brush(GetDolchVerbsColor())) } },
                 wxNumberFormatter::ToString(GetDolchVerbsCounts().second, 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
-                GraphItems::Label(_(L"Verbs")), GetGraphBarEffect(), GetGraphBarOpacity()));
+                Wisteria::GraphItems::Label(_(L"Verbs")), GetGraphBarEffect(),
+                GetGraphBarOpacity()));
 
-            dolchBarChart->AddBar(BarChart::Bar(
+            dolchBarChart->AddBar(Wisteria::Graphs::BarChart::Bar(
                 ++currentBar,
-                { { BarChart::BarBlock(
-                    BarChart::BarBlockInfo(static_cast<double>(GetDolchAdjectiveCounts().second))
+                { { Wisteria::Graphs::BarChart::BarBlock(
+                    Wisteria::Graphs::BarChart::BarBlockInfo(
+                        static_cast<double>(GetDolchAdjectiveCounts().second))
                         .Brush(GetDolchAdjectivesColor())) } },
                 wxNumberFormatter::ToString(GetDolchAdjectiveCounts().second, 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
-                GraphItems::Label(_(L"Adjectives")), GetGraphBarEffect(), GetGraphBarOpacity()));
+                Wisteria::GraphItems::Label(_(L"Adjectives")), GetGraphBarEffect(),
+                GetGraphBarOpacity()));
 
-            dolchBarChart->AddBar(BarChart::Bar(
+            dolchBarChart->AddBar(Wisteria::Graphs::BarChart::Bar(
                 ++currentBar,
-                { { BarChart::BarBlock(
-                    BarChart::BarBlockInfo(static_cast<double>(GetDolchAdverbCounts().second))
+                { { Wisteria::Graphs::BarChart::BarBlock(
+                    Wisteria::Graphs::BarChart::BarBlockInfo(
+                        static_cast<double>(GetDolchAdverbCounts().second))
                         .Brush(GetDolchAdverbsColor())) } },
                 wxNumberFormatter::ToString(GetDolchAdverbCounts().second, 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
-                GraphItems::Label(_(L"Adverbs")), GetGraphBarEffect(), GetGraphBarOpacity()));
+                Wisteria::GraphItems::Label(_(L"Adverbs")), GetGraphBarEffect(),
+                GetGraphBarOpacity()));
 
-            dolchBarChart->AddBar(BarChart::Bar(
+            dolchBarChart->AddBar(Wisteria::Graphs::BarChart::Bar(
                 ++currentBar,
-                { { BarChart::BarBlock(
-                    BarChart::BarBlockInfo(static_cast<double>(GetDolchPronounCounts().second))
+                { { Wisteria::Graphs::BarChart::BarBlock(
+                    Wisteria::Graphs::BarChart::BarBlockInfo(
+                        static_cast<double>(GetDolchPronounCounts().second))
                         .Brush(GetDolchPronounsColor())) } },
                 wxNumberFormatter::ToString(GetDolchPronounCounts().second, 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
-                GraphItems::Label(_(L"Pronouns")), GetGraphBarEffect(), GetGraphBarOpacity()));
+                Wisteria::GraphItems::Label(_(L"Pronouns")), GetGraphBarEffect(),
+                GetGraphBarOpacity()));
 
-            dolchBarChart->AddBar(BarChart::Bar(
+            dolchBarChart->AddBar(Wisteria::Graphs::BarChart::Bar(
                 ++currentBar,
-                { { BarChart::BarBlock(
-                    BarChart::BarBlockInfo(
+                { { Wisteria::Graphs::BarChart::BarBlock(
+                    Wisteria::Graphs::BarChart::BarBlockInfo(
                         static_cast<double>(GetDolchPrepositionWordCounts().second))
                         .Brush(GetDolchPrepositionsColor())) } },
                 wxNumberFormatter::ToString(GetDolchPrepositionWordCounts().second, 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
-                GraphItems::Label(_(L"Prepositions")), GetGraphBarEffect(), GetGraphBarOpacity()));
+                Wisteria::GraphItems::Label(_(L"Prepositions")), GetGraphBarEffect(),
+                GetGraphBarOpacity()));
 
-            dolchBarChart->AddBar(BarChart::Bar(
+            dolchBarChart->AddBar(Wisteria::Graphs::BarChart::Bar(
                 ++currentBar,
-                { { BarChart::BarBlock(
-                    BarChart::BarBlockInfo(static_cast<double>(GetDolchConjunctionCounts().second))
+                { { Wisteria::Graphs::BarChart::BarBlock(
+                    Wisteria::Graphs::BarChart::BarBlockInfo(
+                        static_cast<double>(GetDolchConjunctionCounts().second))
                         .Brush(GetDolchConjunctionsColor())) } },
                 wxNumberFormatter::ToString(GetDolchConjunctionCounts().second, 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
-                GraphItems::Label(_(L"Conjunctions")), GetGraphBarEffect(), GetGraphBarOpacity()));
+                Wisteria::GraphItems::Label(_(L"Conjunctions")), GetGraphBarEffect(),
+                GetGraphBarOpacity()));
 
-            dolchBarChart->AddBar(BarChart::Bar(
+            dolchBarChart->AddBar(Wisteria::Graphs::BarChart::Bar(
                 ++currentBar,
-                { { BarChart::BarBlock(
-                    BarChart::BarBlockInfo(static_cast<double>(GetTotalWords() - totalDolchWords))
+                { { Wisteria::Graphs::BarChart::BarBlock(
+                    Wisteria::Graphs::BarChart::BarBlockInfo(
+                        static_cast<double>(GetTotalWords() - totalDolchWords))
                         .Brush(GetBarChartBarColor())) } },
                 wxNumberFormatter::ToString((GetTotalWords() - totalDolchWords), 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
-                GraphItems::Label(_(L"Non-Dolch Words")), GetGraphBarEffect(),
+                Wisteria::GraphItems::Label(_(L"Non-Dolch Words")), GetGraphBarEffect(),
                 GetGraphBarOpacity()));
 
-            dolchBarChart->AddBar(BarChart::Bar(
+            dolchBarChart->AddBar(Wisteria::Graphs::BarChart::Bar(
                 ++currentBar,
-                { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(totalDolchWords))
-                                           .Brush(GetBarChartBarColor())) } },
+                { { Wisteria::Graphs::BarChart::BarBlock(
+                    Wisteria::Graphs::BarChart::BarBlockInfo(static_cast<double>(totalDolchWords))
+                        .Brush(GetBarChartBarColor())) } },
                 wxNumberFormatter::ToString(totalDolchWords, 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
-                GraphItems::Label(_(L"Total Dolch Words")), GetGraphBarEffect(),
+                Wisteria::GraphItems::Label(_(L"Total Dolch Words")), GetGraphBarEffect(),
                 GetGraphBarOpacity()));
 
             // all the words
-            dolchBarChart->AddBar(BarChart::Bar(
+            dolchBarChart->AddBar(Wisteria::Graphs::BarChart::Bar(
                 ++currentBar,
-                { { BarChart::BarBlock(BarChart::BarBlockInfo(static_cast<double>(GetTotalWords()))
-                                           .Brush(GetBarChartBarColor())) } },
+                { { Wisteria::Graphs::BarChart::BarBlock(
+                    Wisteria::Graphs::BarChart::BarBlockInfo(static_cast<double>(GetTotalWords()))
+                        .Brush(GetBarChartBarColor())) } },
                 wxNumberFormatter::ToString(GetTotalWords(), 0,
                                             wxNumberFormatter::Style::Style_NoTrailingZeroes |
                                                 wxNumberFormatter::Style::Style_WithThousandsSep),
-                GraphItems::Label(_(L"Total Words")), GetGraphBarEffect(), GetGraphBarOpacity()));
+                Wisteria::GraphItems::Label(_(L"Total Words")), GetGraphBarEffect(),
+                GetGraphBarOpacity()));
 
             // update the bar labels
             dolchBarChart->SetBinLabelDisplay(IsDisplayingBarChartLabels() ?
-                                                  BinLabelDisplay::BinValue :
-                                                  BinLabelDisplay::NoDisplay);
+                                                  Wisteria::BinLabelDisplay::BinValue :
+                                                  Wisteria::BinLabelDisplay::NoDisplay);
 
-            dolchBarChart->SortBars(BarChart::BarSortComparison::SortByBarLength,
+            dolchBarChart->SortBars(Wisteria::Graphs::BarChart::BarSortComparison::SortByBarLength,
                                     dolchBarChart->GetSortDirection());
 
             wordBarChartCanvas->CalcAllSizes(gdc);
@@ -3947,12 +4017,12 @@ void ProjectDoc::DisplayStatistics()
 
     if (GetStatisticsInfo().IsReportEnabled())
         {
-        HtmlTableWindow* summaryReportWindow = dynamic_cast<HtmlTableWindow*>(
+        auto* summaryReportWindow = dynamic_cast<Wisteria::UI::HtmlTableWindow*>(
             view->GetSummaryView().FindWindowById(BaseProjectView::STATS_REPORT_PAGE_ID));
         if (summaryReportWindow == nullptr)
             {
-            summaryReportWindow =
-                new HtmlTableWindow(view->GetSplitter(), BaseProjectView::STATS_REPORT_PAGE_ID);
+            summaryReportWindow = new Wisteria::UI::HtmlTableWindow(
+                view->GetSplitter(), BaseProjectView::STATS_REPORT_PAGE_ID);
             summaryReportWindow->Hide();
             summaryReportWindow->SetLabel(BaseProjectView::GetFormattedReportLabel());
             summaryReportWindow->SetName(BaseProjectView::GetFormattedReportLabel());
@@ -3996,11 +4066,11 @@ void ProjectDoc::DisplayStatistics()
 
     if (GetStatisticsInfo().IsTableEnabled())
         {
-        ListCtrlEx* tabularStatsList = dynamic_cast<ListCtrlEx*>(
+        Wisteria::UI::ListCtrlEx* tabularStatsList = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
             view->GetSummaryView().FindWindowById(BaseProjectView::STATS_LIST_PAGE_ID));
         if (tabularStatsList == nullptr)
             {
-            tabularStatsList = new ListCtrlEx(
+            tabularStatsList = new Wisteria::UI::ListCtrlEx(
                 view->GetSplitter(), BaseProjectView::STATS_LIST_PAGE_ID, wxDefaultPosition,
                 wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
             tabularStatsList->Hide();
@@ -4036,12 +4106,12 @@ void ProjectDoc::DisplayStatistics()
 
     if (IsIncludingDolchSightWords())
         {
-        HtmlTableWindow* sumWindow = dynamic_cast<HtmlTableWindow*>(
+        auto* sumWindow = dynamic_cast<Wisteria::UI::HtmlTableWindow*>(
             view->GetDolchSightWordsView().FindWindowById(BaseProjectView::DOLCH_STATS_PAGE_ID));
         if (!sumWindow)
             {
-            sumWindow =
-                new HtmlTableWindow(view->GetSplitter(), BaseProjectView::DOLCH_STATS_PAGE_ID);
+            sumWindow = new Wisteria::UI::HtmlTableWindow(view->GetSplitter(),
+                                                          BaseProjectView::DOLCH_STATS_PAGE_ID);
             sumWindow->Hide();
             sumWindow->SetLabel(_(L"Summary"));
             sumWindow->SetName(_(L"Dolch Summary"));
@@ -4084,7 +4154,7 @@ bool ProjectDoc::AddGilliamPenaMountainFryTest(const bool setFocus)
     scoreDataset->AddContinuousColumn(syllablesColumnName);
     scoreDataset->AddContinuousColumn(sentencesColumnName);
 
-    scoreDataset->AddRow(Data::RowInfo().Continuous(
+    scoreDataset->AddRow(Wisteria::Data::RowInfo().Continuous(
         { GetTotalWords(), GetTotalSyllablesNumeralsFullySyllabized(), GetTotalSentences() }));
 
     if (GetTotalWords() == 0)
@@ -4114,7 +4184,8 @@ bool ProjectDoc::AddGilliamPenaMountainFryTest(const bool setFocus)
         view->GetReadabilityResultsView().FindWindowById(BaseProjectView::GPM_FRY_PAGE_ID));
     if (fryGraphView)
         {
-        auto gFryGraph = std::dynamic_pointer_cast<FryGraph>(fryGraphView->GetFixedObject(0, 0));
+        auto gFryGraph = std::dynamic_pointer_cast<Wisteria::Graphs::FryGraph>(
+            fryGraphView->GetFixedObject(0, 0));
         assert(gFryGraph);
         gFryGraph->SetData(scoreDataset, wordsColumnName, syllablesColumnName, sentencesColumnName);
         }
@@ -4128,10 +4199,11 @@ bool ProjectDoc::AddGilliamPenaMountainFryTest(const bool setFocus)
         fryGraphView->SetName(BaseProjectView::GetGilliamPenaMountainFryLabel());
         fryGraphView->SetPrinterSettings(*wxGetApp().GetPrintData());
 
-        auto gFryGraph = std::make_shared<FryGraph>(
-            fryGraphView, FryGraph::FryGraphType::GPM,
-            std::make_shared<Colors::Schemes::ColorScheme>(Colors::Schemes::ColorScheme{
-                ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
+        auto gFryGraph = std::make_shared<Wisteria::Graphs::FryGraph>(
+            fryGraphView, Wisteria::Graphs::FryGraph::FryGraphType::GPM,
+            std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
+                Wisteria::Colors::Schemes::ColorScheme{ Wisteria::Colors::ColorBrewer::GetColor(
+                    Wisteria::Colors::Color::CelestialBlue) }));
         gFryGraph->SetMessageCatalog(GetReadabilityMessageCatalogPtr());
         gFryGraph->SetData(scoreDataset, wordsColumnName, syllablesColumnName, sentencesColumnName);
 
@@ -4141,7 +4213,8 @@ bool ProjectDoc::AddGilliamPenaMountainFryTest(const bool setFocus)
         }
     UpdateGraphOptions(fryGraphView);
 
-    auto gFryGraph = std::dynamic_pointer_cast<FryGraph>(fryGraphView->GetFixedObject(0, 0));
+    auto gFryGraph =
+        std::dynamic_pointer_cast<Wisteria::Graphs::FryGraph>(fryGraphView->GetFixedObject(0, 0));
     gFryGraph->SetInvalidAreaColor(GetInvalidAreaColor());
     gFryGraph->ShowcaseScore(IsShowcasingKeyItems());
     fryGraphView->CalcAllSizes(gdc);
@@ -4242,7 +4315,7 @@ bool ProjectDoc::AddFryTest(const bool setFocus)
     scoreDataset->AddContinuousColumn(syllablesColumnName);
     scoreDataset->AddContinuousColumn(sentencesColumnName);
 
-    scoreDataset->AddRow(Data::RowInfo().Continuous(
+    scoreDataset->AddRow(Wisteria::Data::RowInfo().Continuous(
         { GetTotalWords(), GetTotalSyllablesNumeralsFullySyllabized(), GetTotalSentences() }));
 
     if (GetTotalWords() == 0)
@@ -4272,7 +4345,8 @@ bool ProjectDoc::AddFryTest(const bool setFocus)
         view->GetReadabilityResultsView().FindWindowById(BaseProjectView::FRY_PAGE_ID));
     if (fryGraphView)
         {
-        auto fryGraph = std::dynamic_pointer_cast<FryGraph>(fryGraphView->GetFixedObject(0, 0));
+        auto fryGraph = std::dynamic_pointer_cast<Wisteria::Graphs::FryGraph>(
+            fryGraphView->GetFixedObject(0, 0));
         assert(fryGraph);
         fryGraph->SetData(scoreDataset, wordsColumnName, syllablesColumnName, sentencesColumnName);
         }
@@ -4287,10 +4361,11 @@ bool ProjectDoc::AddFryTest(const bool setFocus)
         fryGraphView->SetName(BaseProjectView::GetFryLabel());
         fryGraphView->SetPrinterSettings(*wxGetApp().GetPrintData());
 
-        auto fryGraph = std::make_shared<FryGraph>(
-            fryGraphView, FryGraph::FryGraphType::Traditional,
-            std::make_shared<Colors::Schemes::ColorScheme>(Colors::Schemes::ColorScheme{
-                ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
+        auto fryGraph = std::make_shared<Wisteria::Graphs::FryGraph>(
+            fryGraphView, Wisteria::Graphs::FryGraph::FryGraphType::Traditional,
+            std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
+                Wisteria::Colors::Schemes::ColorScheme{ Wisteria::Colors::ColorBrewer::GetColor(
+                    Wisteria::Colors::Color::CelestialBlue) }));
         fryGraph->SetMessageCatalog(GetReadabilityMessageCatalogPtr());
         fryGraph->SetData(scoreDataset, wordsColumnName, syllablesColumnName, sentencesColumnName);
 
@@ -4299,7 +4374,8 @@ bool ProjectDoc::AddFryTest(const bool setFocus)
         }
     UpdateGraphOptions(fryGraphView);
 
-    auto fryGraph = std::dynamic_pointer_cast<FryGraph>(fryGraphView->GetFixedObject(0, 0));
+    auto fryGraph =
+        std::dynamic_pointer_cast<Wisteria::Graphs::FryGraph>(fryGraphView->GetFixedObject(0, 0));
 
     fryGraph->SetInvalidAreaColor(GetInvalidAreaColor());
     fryGraph->ShowcaseScore(IsShowcasingKeyItems());
@@ -4401,7 +4477,7 @@ bool ProjectDoc::AddRaygorTest(const bool setFocus)
     scoreDataset->AddContinuousColumn(sixCharWordsColumnName);
     scoreDataset->AddContinuousColumn(sentencesColumnName);
 
-    scoreDataset->AddRow(Data::RowInfo().Continuous(
+    scoreDataset->AddRow(Wisteria::Data::RowInfo().Continuous(
         { GetTotalWords() - GetTotalNumerals(), GetTotalSixPlusCharacterWordsIgnoringNumerals(),
           GetTotalSentences() }));
 
@@ -4432,8 +4508,8 @@ bool ProjectDoc::AddRaygorTest(const bool setFocus)
         view->GetReadabilityResultsView().FindWindowById(BaseProjectView::RAYGOR_PAGE_ID));
     if (raygorGraphView)
         {
-        auto raygorGraph =
-            std::dynamic_pointer_cast<RaygorGraph>(raygorGraphView->GetFixedObject(0, 0));
+        auto raygorGraph = std::dynamic_pointer_cast<Wisteria::Graphs::RaygorGraph>(
+            raygorGraphView->GetFixedObject(0, 0));
         assert(raygorGraph);
         raygorGraph->SetData(scoreDataset, wordsColumnName, sixCharWordsColumnName,
                              sentencesColumnName);
@@ -4450,10 +4526,11 @@ bool ProjectDoc::AddRaygorTest(const bool setFocus)
         raygorGraphView->SetName(BaseProjectView::GetRaygorLabel());
         raygorGraphView->SetPrinterSettings(*wxGetApp().GetPrintData());
 
-        auto raygorGraph = std::make_shared<RaygorGraph>(
+        auto raygorGraph = std::make_shared<Wisteria::Graphs::RaygorGraph>(
             raygorGraphView,
-            std::make_shared<Colors::Schemes::ColorScheme>(Colors::Schemes::ColorScheme{
-                ColorBrewer::GetColor(Colors::Color::CelestialBlue) }));
+            std::make_shared<Wisteria::Colors::Schemes::ColorScheme>(
+                Wisteria::Colors::Schemes::ColorScheme{ Wisteria::Colors::ColorBrewer::GetColor(
+                    Wisteria::Colors::Color::CelestialBlue) }));
         raygorGraph->SetMessageCatalog(GetReadabilityMessageCatalogPtr());
         raygorGraph->SetData(scoreDataset, wordsColumnName, sixCharWordsColumnName,
                              sentencesColumnName);
@@ -4464,8 +4541,8 @@ bool ProjectDoc::AddRaygorTest(const bool setFocus)
         }
     UpdateGraphOptions(raygorGraphView);
 
-    auto raygorGraph =
-        std::dynamic_pointer_cast<RaygorGraph>(raygorGraphView->GetFixedObject(0, 0));
+    auto raygorGraph = std::dynamic_pointer_cast<Wisteria::Graphs::RaygorGraph>(
+        raygorGraphView->GetFixedObject(0, 0));
     raygorGraph->SetInvalidAreaColor(GetInvalidAreaColor());
     raygorGraph->SetRaygorStyle(GetRaygorStyle());
     raygorGraphView->CalcAllSizes(gdc);
@@ -4607,7 +4684,8 @@ void ProjectDoc::SetReadabilityTestResult(const wxString& testId, const wxString
         }
     view->GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(
         location, 1, USGradeLevel.second,
-        NumberFormatInfo(NumberFormatInfo::NumberFormatType::CustomFormatting, 1));
+        Wisteria::NumberFormatInfo(Wisteria::NumberFormatInfo::NumberFormatType::CustomFormatting,
+                                   1));
     view->GetReadabilityScoresList()->GetResultsListCtrl()->SetItemText(location, 2, readerAge);
     if (std::isnan(indexScore))
         {
@@ -4618,7 +4696,8 @@ void ProjectDoc::SetReadabilityTestResult(const wxString& testId, const wxString
         {
         view->GetReadabilityScoresList()->GetDataProvider()->SetItemValue(
             location, 3, round_decimal_place(indexScore, 10),
-            NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 1));
+            Wisteria::NumberFormatInfo(
+                Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 1));
         }
     if (std::isnan(clozeScore))
         {
@@ -4743,7 +4822,7 @@ ProjectDoc::HighlighterColors ProjectDoc::BuildReportColors(const wxColour& high
     {
     HighlighterColors highlighterColors;
 
-    ColorContrast colorContrast(backgroundColor);
+    Wisteria::Colors::ColorContrast colorContrast(backgroundColor);
     highlighterColors.highlightColor =
         (GetTextHighlightMethod() == TextHighlight::HighlightForeground) ?
             colorContrast.Contrast(highlightColor) :
@@ -5834,8 +5913,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
 
         // loads text buffers for text window
         const auto loadTextBuffer =
-            [this, view, textBeingExcluded, textBufferLength, &textHeaderThemed,
-             &highlighterTagsThemed,
+            [this, textBeingExcluded, &textHeaderThemed, &highlighterTagsThemed,
              useRtfEncoding](auto& highlighter, const wxString& legend, std::wstring& mainBuffer)
         {
             highlighter.Reset();
@@ -5851,8 +5929,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         };
 
         const auto loadPaperTextBuffer =
-            [this, view, textBeingExcluded, textBufferLength, &textHeaderPaperWhite,
-             &highlighterTagsPaperWhite,
+            [this, textBeingExcluded, &textHeaderPaperWhite, &highlighterTagsPaperWhite,
              useRtfEncoding](auto& highlighter, const wxString& legend, std::wstring& paperBuffer)
         {
             highlighter.Reset();
@@ -6094,15 +6171,16 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             {
             const wxString windowLabel(wxString::Format(_(L"%s (Unfamiliar) Report"),
                                                         pos->GetIterator()->get_name().c_str()));
-            FormattedTextCtrl* textWindow =
-                dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(
-                    pos->GetIterator()->get_interface_id(), CLASSINFO(FormattedTextCtrl)));
+            auto* textWindow = dynamic_cast<Wisteria::UI::FormattedTextCtrl*>(
+                view->GetWordsBreakdownView().FindWindowById(
+                    pos->GetIterator()->get_interface_id(),
+                    CLASSINFO(Wisteria::UI::FormattedTextCtrl)));
 
             if (pos->GetIterator()->is_using_familiar_words())
                 {
                 if (!textWindow)
                     {
-                    textWindow = new FormattedTextCtrl(
+                    textWindow = new Wisteria::UI::FormattedTextCtrl(
                         view->GetSplitter(), pos->GetIterator()->get_interface_id(),
                         wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
                     textWindow->Hide();
@@ -6110,7 +6188,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                     textWindow->SetName(windowLabel);
                     // find respective list and add it beneath that
                     auto buddyWindowPosition = view->GetWordsBreakdownView().FindWindowPositionById(
-                        pos->GetIterator()->get_interface_id(), CLASSINFO(ListCtrlEx));
+                        pos->GetIterator()->get_interface_id(),
+                        CLASSINFO(Wisteria::UI::ListCtrlEx));
                     view->GetWordsBreakdownView().InsertWindow(
                         (buddyWindowPosition != wxNOT_FOUND) ? buddyWindowPosition + 1 : 0,
                         textWindow);
@@ -6317,12 +6396,12 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         if (GetGrammarInfo().IsHighlightedReportEnabled() && GetTotalWords() > 0)
             {
             // display this in the Grammar section
-            FormattedTextCtrl* textWindow =
-                dynamic_cast<FormattedTextCtrl*>(view->GetGrammarView().FindWindowById(
+            auto* textWindow = dynamic_cast<Wisteria::UI::FormattedTextCtrl*>(
+                view->GetGrammarView().FindWindowById(
                     BaseProjectView::LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID));
             if (!textWindow)
                 {
-                textWindow = new FormattedTextCtrl(
+                textWindow = new Wisteria::UI::FormattedTextCtrl(
                     view->GetSplitter(), BaseProjectView::LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID,
                     wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
                 textWindow->Hide();
@@ -6393,8 +6472,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         if (IsIncludingDolchSightWords())
             {
                 {
-                FormattedTextCtrl* textWindow =
-                    dynamic_cast<FormattedTextCtrl*>(view->GetDolchSightWordsView().FindWindowById(
+                auto* textWindow = dynamic_cast<Wisteria::UI::FormattedTextCtrl*>(
+                    view->GetDolchSightWordsView().FindWindowById(
                         BaseProjectView::DOLCH_WORDS_TEXT_PAGE_ID));
                 textWindow =
                     LoadTextWindow(textWindow, BaseProjectView::DOLCH_WORDS_TEXT_PAGE_ID,
@@ -6402,8 +6481,8 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                 view->GetDolchSightWordsView().AddWindow(textWindow);
                 }
                 {
-                FormattedTextCtrl* textWindow =
-                    dynamic_cast<FormattedTextCtrl*>(view->GetDolchSightWordsView().FindWindowById(
+                auto* textWindow = dynamic_cast<Wisteria::UI::FormattedTextCtrl*>(
+                    view->GetDolchSightWordsView().FindWindowById(
                         BaseProjectView::NON_DOLCH_WORDS_TEXT_PAGE_ID));
                 textWindow = LoadTextWindow(
                     textWindow, BaseProjectView::NON_DOLCH_WORDS_TEXT_PAGE_ID,
@@ -6437,8 +6516,8 @@ ProjectDoc::LoadTextWindow(Wisteria::UI::FormattedTextCtrl* textWindow, const in
 
     if (textWindow == nullptr)
         {
-        textWindow = new FormattedTextCtrl(view->GetSplitter(), ID, wxDefaultPosition,
-                                           wxDefaultSize, wxTE_READONLY);
+        textWindow = new Wisteria::UI::FormattedTextCtrl(view->GetSplitter(), ID, wxDefaultPosition,
+                                                         wxDefaultSize, wxTE_READONLY);
         textWindow->Hide();
         textWindow->SetMargins(10, 10);
         textWindow->SetName(label);
@@ -6483,7 +6562,7 @@ void ProjectDoc::LoadThreeSyllTextWindow(const std::wstring& mainBuffer,
 
     if (GetWordsBreakdownInfo().Is3PlusSyllablesEnabled() && GetTotalUnique3PlusSyllableWords() > 0)
         {
-        FormattedTextCtrl* textWindow = dynamic_cast<FormattedTextCtrl*>(
+        auto* textWindow = dynamic_cast<Wisteria::UI::FormattedTextCtrl*>(
             view->GetWordsBreakdownView().FindWindowById(BaseProjectView::HARD_WORDS_TEXT_PAGE_ID));
         // always included for any language
         textWindow = LoadTextWindow(textWindow, BaseProjectView::HARD_WORDS_TEXT_PAGE_ID,
@@ -6508,7 +6587,7 @@ void ProjectDoc::LoadSixCharsTextWindow(const std::wstring& mainBuffer,
 
     if (GetWordsBreakdownInfo().Is6PlusCharacterEnabled() && GetTotalUnique6CharsPlusWords() > 0)
         {
-        FormattedTextCtrl* textWindow = dynamic_cast<FormattedTextCtrl*>(
+        auto* textWindow = dynamic_cast<Wisteria::UI::FormattedTextCtrl*>(
             view->GetWordsBreakdownView().FindWindowById(BaseProjectView::LONG_WORDS_TEXT_PAGE_ID));
         // always included for any language
         textWindow =
@@ -6535,8 +6614,8 @@ void ProjectDoc::LoadSpacheTextWindow(const std::wstring& mainBuffer,
         GetWordsBreakdownInfo().IsSpacheUnfamiliarEnabled() &&
         GetReadabilityTests().is_test_included(ReadabilityMessages::SPACHE()))
         {
-        m_spacheTextWindow =
-            dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(
+        m_spacheTextWindow = dynamic_cast<Wisteria::UI::FormattedTextCtrl*>(
+            view->GetWordsBreakdownView().FindWindowById(
                 BaseProjectView::SPACHE_WORDS_TEXT_PAGE_ID));
         m_spacheTextWindow =
             LoadTextWindow(m_spacheTextWindow, BaseProjectView::SPACHE_WORDS_TEXT_PAGE_ID,
@@ -6561,12 +6640,12 @@ void ProjectDoc::LoadHJTextWindow(const std::wstring& mainBuffer, const std::wst
         GetWordsBreakdownInfo().IsHarrisJacobsonUnfamiliarEnabled() &&
         GetReadabilityTests().is_test_included(ReadabilityMessages::HARRIS_JACOBSON()))
         {
-        m_hjTextWindow =
-            dynamic_cast<FormattedTextCtrl*>(view->GetWordsBreakdownView().FindWindowById(
+        m_hjTextWindow = dynamic_cast<Wisteria::UI::FormattedTextCtrl*>(
+            view->GetWordsBreakdownView().FindWindowById(
                 BaseProjectView::HARRIS_JACOBSON_WORDS_TEXT_PAGE_ID));
         if (m_hjTextWindow == nullptr)
             {
-            m_hjTextWindow = new FormattedTextCtrl(
+            m_hjTextWindow = new Wisteria::UI::FormattedTextCtrl(
                 view->GetSplitter(), BaseProjectView::HARRIS_JACOBSON_WORDS_TEXT_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
             m_hjTextWindow->Hide();
@@ -6601,14 +6680,14 @@ void ProjectDoc::LoadDCTextWindow(const std::wstring& mainBuffer, const std::wst
     if (GetProjectLanguage() == readability::test_language::english_test &&
         GetWordsBreakdownInfo().IsDCUnfamiliarEnabled() && IsDaleChallLikeTestIncluded())
         {
-        m_dcTextWindow = dynamic_cast<FormattedTextCtrl*>(
+        m_dcTextWindow = dynamic_cast<Wisteria::UI::FormattedTextCtrl*>(
             view->GetWordsBreakdownView().FindWindowById(BaseProjectView::DC_WORDS_TEXT_PAGE_ID));
         // construct (if needed) and set options
         if (m_dcTextWindow == nullptr)
             {
-            m_dcTextWindow =
-                new FormattedTextCtrl(view->GetSplitter(), BaseProjectView::DC_WORDS_TEXT_PAGE_ID,
-                                      wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
+            m_dcTextWindow = new Wisteria::UI::FormattedTextCtrl(
+                view->GetSplitter(), BaseProjectView::DC_WORDS_TEXT_PAGE_ID, wxDefaultPosition,
+                wxDefaultSize, wxTE_READONLY);
             m_dcTextWindow->Hide();
             m_dcTextWindow->SetMargins(10, 10);
             m_dcTextWindow->SetName(_(L"Dale-Chall (Unfamiliar) Report"));
@@ -6712,7 +6791,7 @@ bool ProjectDoc::OnSaveDocument(const wxString& filename)
             zip.PutNextEntry(fn.GetFullName());
             m_plotBackgroundImage.GetBitmap(m_plotBackgroundImage.GetDefaultSize())
                 .ConvertToImage()
-                .SaveFile(zip, Image::GetImageFileTypeFromExtension(ext));
+                .SaveFile(zip, Wisteria::GraphItems::Image::GetImageFileTypeFromExtension(ext));
             }
         if (m_graphStippleImage.IsOk())
             {
@@ -6721,7 +6800,7 @@ bool ProjectDoc::OnSaveDocument(const wxString& filename)
             zip.PutNextEntry(fn.GetFullName());
             m_graphStippleImage.GetBitmap(m_graphStippleImage.GetDefaultSize())
                 .ConvertToImage()
-                .SaveFile(zip, Image::GetImageFileTypeFromExtension(ext));
+                .SaveFile(zip, Wisteria::GraphItems::Image::GetImageFileTypeFromExtension(ext));
             }
         if (m_waterMarkImage.IsOk())
             {
@@ -6730,7 +6809,7 @@ bool ProjectDoc::OnSaveDocument(const wxString& filename)
             zip.PutNextEntry(fn.GetFullName());
             m_waterMarkImage.GetBitmap(m_waterMarkImage.GetDefaultSize())
                 .ConvertToImage()
-                .SaveFile(zip, Image::GetImageFileTypeFromExtension(ext));
+                .SaveFile(zip, Wisteria::GraphItems::Image::GetImageFileTypeFromExtension(ext));
             }
         }
     zip.Close();
@@ -6811,14 +6890,15 @@ void ProjectDoc::DisplayOverlyLongSentences()
                 longSenteceCount++, 2,
                 // add 1 to make it one-indexed
                 (pos - GetWords()->get_sentences().begin()) + 1,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
             }
         }
     m_overlyLongSentenceData->SetSize(longSenteceCount);
 
     // long sentences
-    ListCtrlEx* listView =
-        dynamic_cast<ListCtrlEx*>(view->GetSentencesBreakdownView().FindWindowById(
+    auto* listView =
+        dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetSentencesBreakdownView().FindWindowById(
             BaseProjectView::LONG_SENTENCES_LIST_PAGE_ID));
     if (GetSentencesBreakdownInfo().IsLongSentencesEnabled() &&
         m_overlyLongSentenceData->GetItemCount())
@@ -6832,7 +6912,7 @@ void ProjectDoc::DisplayOverlyLongSentences()
             }
         else
             {
-            listView = new ListCtrlEx(
+            listView = new Wisteria::UI::ListCtrlEx(
                 view->GetSplitter(), BaseProjectView::LONG_SENTENCES_LIST_PAGE_ID,
                 wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
             listView->Hide();
@@ -6883,7 +6963,7 @@ void ProjectDoc::DisplayGrammar()
 
     ProjectView* view = dynamic_cast<ProjectView*>(GetFirstView());
 
-    const auto resetListView = [](ListCtrlEx* listView)
+    const auto resetListView = [](Wisteria::UI::ListCtrlEx* listView)
     {
         if (listView != nullptr && listView->GetVirtualDataProvider() != nullptr &&
             listView->GetVirtualDataProvider()->GetItemCount() == 0)
@@ -6917,7 +6997,8 @@ void ProjectDoc::DisplayGrammar()
                 clicheCount++, 2,
                 // make 1-based index
                 GetWords()->get_words()[wordyIndices[i].first].get_sentence_index() + 1,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
             }
         else if (wordyPhrases[wordyIndices[i].second].first.get_type() ==
                  grammar::phrase_type::phrase_redundant)
@@ -6931,7 +7012,8 @@ void ProjectDoc::DisplayGrammar()
                 redundantPhraseCount++, 2,
                 // make 1-based index
                 GetWords()->get_words()[wordyIndices[i].first].get_sentence_index() + 1,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
             }
         else if (wordyPhrases[wordyIndices[i].second].first.get_type() ==
                  grammar::phrase_type::phrase_error)
@@ -6945,7 +7027,8 @@ void ProjectDoc::DisplayGrammar()
                 wordingErrorCount++, 2,
                 // make 1-based index
                 GetWords()->get_words()[wordyIndices[i].first].get_sentence_index() + 1,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
             }
         else
             {
@@ -6958,7 +7041,8 @@ void ProjectDoc::DisplayGrammar()
                 wordyPhraseCount++, 2,
                 // make 1-based index
                 GetWords()->get_words()[wordyIndices[i].first].get_sentence_index() + 1,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
             }
         }
     m_wordyPhraseData->SetSize(wordyPhraseCount);
@@ -6968,7 +7052,7 @@ void ProjectDoc::DisplayGrammar()
 
         // Wording errors and known misspellings
         {
-        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(
+        auto* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
             view->GetGrammarView().FindWindowById(BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID));
         if (GetGrammarInfo().IsWordingErrorsEnabled() && m_wordingErrorData->GetItemCount())
             {
@@ -6981,7 +7065,7 @@ void ProjectDoc::DisplayGrammar()
                 }
             else
                 {
-                listView = new ListCtrlEx(
+                listView = new Wisteria::UI::ListCtrlEx(
                     view->GetSplitter(), BaseProjectView::WORDING_ERRORS_LIST_PAGE_ID,
                     wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
@@ -7027,7 +7111,7 @@ void ProjectDoc::DisplayGrammar()
             }
 
         m_misspelledWordData->SetSize(misspelledWords.get_data().size());
-        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(
+        auto* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
             view->GetGrammarView().FindWindowById(BaseProjectView::MISSPELLED_WORD_LIST_PAGE_ID));
         if (GetGrammarInfo().IsMisspellingsEnabled() && m_misspelledWordData->GetItemCount())
             {
@@ -7040,7 +7124,7 @@ void ProjectDoc::DisplayGrammar()
                 }
             else
                 {
-                listView = new ListCtrlEx(
+                listView = new Wisteria::UI::ListCtrlEx(
                     view->GetSplitter(), BaseProjectView::MISSPELLED_WORD_LIST_PAGE_ID,
                     wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
@@ -7079,9 +7163,10 @@ void ProjectDoc::DisplayGrammar()
             m_dupWordData->SetItemValue(
                 i, 1, dupWord.get_sentence_index() + 1,
                 // make it one-indexed
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
             }
-        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(
+        auto* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
             view->GetGrammarView().FindWindowById(BaseProjectView::DUPLICATES_LIST_PAGE_ID));
         if (GetGrammarInfo().IsRepeatedWordsEnabled() && m_dupWordData->GetItemCount())
             {
@@ -7094,7 +7179,7 @@ void ProjectDoc::DisplayGrammar()
                 }
             else
                 {
-                listView = new ListCtrlEx(
+                listView = new Wisteria::UI::ListCtrlEx(
                     view->GetSplitter(), BaseProjectView::DUPLICATES_LIST_PAGE_ID,
                     wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
@@ -7141,7 +7226,7 @@ void ProjectDoc::DisplayGrammar()
                                                 mIter->first.c_str());
             m_incorrectArticleData->SetItemValue(uniqueIncorrectArticleCount++, 1, mIter->second);
             }
-        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(
+        auto* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
             view->GetGrammarView().FindWindowById(BaseProjectView::INCORRECT_ARTICLE_PAGE_ID));
         if (GetGrammarInfo().IsArticleMismatchesEnabled() && m_incorrectArticleData->GetItemCount())
             {
@@ -7154,7 +7239,7 @@ void ProjectDoc::DisplayGrammar()
                 }
             else
                 {
-                listView = new ListCtrlEx(
+                listView = new Wisteria::UI::ListCtrlEx(
                     view->GetSplitter(), BaseProjectView::INCORRECT_ARTICLE_PAGE_ID,
                     wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
@@ -7182,7 +7267,7 @@ void ProjectDoc::DisplayGrammar()
 
         // redundant phrases
         {
-        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(
+        auto* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
             view->GetGrammarView().FindWindowById(BaseProjectView::REDUNDANT_PHRASE_LIST_PAGE_ID));
         if (GetGrammarInfo().IsRedundantPhrasesEnabled() && m_redundantPhraseData->GetItemCount())
             {
@@ -7195,7 +7280,7 @@ void ProjectDoc::DisplayGrammar()
                 }
             else
                 {
-                listView = new ListCtrlEx(
+                listView = new Wisteria::UI::ListCtrlEx(
                     view->GetSplitter(), BaseProjectView::REDUNDANT_PHRASE_LIST_PAGE_ID,
                     wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
@@ -7271,11 +7356,13 @@ void ProjectDoc::DisplayGrammar()
             GetOverusedWordsBySentenceData()->SetItemValue(
                 overUsedWordsListsIter - GetWords()->get_overused_words_by_sentence().begin(), 3,
                 (overUsedWordsListsIter->first) + 1,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
             }
 
-        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
-            BaseProjectView::OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID));
+        auto* listView =
+            dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+                BaseProjectView::OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID));
         if (GetGrammarInfo().IsOverUsedWordsBySentenceEnabled() &&
             GetOverusedWordsBySentenceData() && GetOverusedWordsBySentenceData()->GetItemCount())
             {
@@ -7287,7 +7374,7 @@ void ProjectDoc::DisplayGrammar()
                 }
             else
                 {
-                listView = new ListCtrlEx(
+                listView = new Wisteria::UI::ListCtrlEx(
                     view->GetSplitter(), BaseProjectView::OVERUSED_WORDS_BY_SENTENCE_LIST_PAGE_ID,
                     wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
@@ -7325,7 +7412,7 @@ void ProjectDoc::DisplayGrammar()
 
         // Wordy items
         {
-        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(
+        auto* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
             view->GetGrammarView().FindWindowById(BaseProjectView::WORDY_PHRASES_LIST_PAGE_ID));
         if (GetGrammarInfo().IsWordyPhrasesEnabled() && m_wordyPhraseData->GetItemCount())
             {
@@ -7338,7 +7425,7 @@ void ProjectDoc::DisplayGrammar()
                 }
             else
                 {
-                listView = new ListCtrlEx(
+                listView = new Wisteria::UI::ListCtrlEx(
                     view->GetSplitter(), BaseProjectView::WORDY_PHRASES_LIST_PAGE_ID,
                     wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
@@ -7367,7 +7454,7 @@ void ProjectDoc::DisplayGrammar()
 
         // Cliches
         {
-        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(
+        auto* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
             view->GetGrammarView().FindWindowById(BaseProjectView::CLICHES_LIST_PAGE_ID));
         if (GetGrammarInfo().IsClichesEnabled() && m_clichePhraseData->GetItemCount())
             {
@@ -7380,7 +7467,7 @@ void ProjectDoc::DisplayGrammar()
                 }
             else
                 {
-                listView = new ListCtrlEx(
+                listView = new Wisteria::UI::ListCtrlEx(
                     view->GetSplitter(), BaseProjectView::CLICHES_LIST_PAGE_ID, wxDefaultPosition,
                     wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
@@ -7435,7 +7522,7 @@ void ProjectDoc::DisplayGrammar()
             m_passiveVoiceData->SetItemText(uniquePassiveVoiceCount, 0, mIter->first.c_str());
             m_passiveVoiceData->SetItemValue(uniquePassiveVoiceCount++, 1, mIter->second);
             }
-        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(
+        auto* listView = dynamic_cast<Wisteria::UI::ListCtrlEx*>(
             view->GetGrammarView().FindWindowById(BaseProjectView::PASSIVE_VOICE_PAGE_ID));
         if (GetGrammarInfo().IsPassiveVoiceEnabled() && m_passiveVoiceData->GetItemCount())
             {
@@ -7448,7 +7535,7 @@ void ProjectDoc::DisplayGrammar()
                 }
             else
                 {
-                listView = new ListCtrlEx(
+                listView = new Wisteria::UI::ListCtrlEx(
                     view->GetSplitter(), BaseProjectView::PASSIVE_VOICE_PAGE_ID, wxDefaultPosition,
                     wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
@@ -7496,12 +7583,14 @@ void ProjectDoc::DisplayGrammar()
                 sentenceStartingWithConjunctionsCount++, 1,
                 // add 1 to make it one-indexed
                 (*pos) + 1,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
             }
         m_sentenceStartingWithConjunctionsData->SetSize(sentenceStartingWithConjunctionsCount);
         // display it
-        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
-            BaseProjectView::SENTENCES_CONJUNCTION_START_LIST_PAGE_ID));
+        auto* listView =
+            dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+                BaseProjectView::SENTENCES_CONJUNCTION_START_LIST_PAGE_ID));
         if (GetGrammarInfo().IsConjunctionStartingSentencesEnabled() &&
             m_sentenceStartingWithConjunctionsData->GetItemCount())
             {
@@ -7515,7 +7604,7 @@ void ProjectDoc::DisplayGrammar()
                 }
             else
                 {
-                listView = new ListCtrlEx(
+                listView = new Wisteria::UI::ListCtrlEx(
                     view->GetSplitter(), BaseProjectView::SENTENCES_CONJUNCTION_START_LIST_PAGE_ID,
                     wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
@@ -7565,12 +7654,14 @@ void ProjectDoc::DisplayGrammar()
                 sentenceStartingWithLowercaseCount++, 1,
                 // add 1 to make it one-indexed
                 (*pos) + 1,
-                NumberFormatInfo(NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
+                Wisteria::NumberFormatInfo(
+                    Wisteria::NumberFormatInfo::NumberFormatType::StandardFormatting, 0, true));
             }
         m_sentenceStartingWithLowercaseData->SetSize(sentenceStartingWithLowercaseCount);
         // display it
-        ListCtrlEx* listView = dynamic_cast<ListCtrlEx*>(view->GetGrammarView().FindWindowById(
-            BaseProjectView::SENTENCES_LOWERCASE_START_LIST_PAGE_ID));
+        auto* listView =
+            dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetGrammarView().FindWindowById(
+                BaseProjectView::SENTENCES_LOWERCASE_START_LIST_PAGE_ID));
         if (GetGrammarInfo().IsLowercaseSentencesEnabled() &&
             m_sentenceStartingWithLowercaseData->GetItemCount())
             {
@@ -7583,7 +7674,7 @@ void ProjectDoc::DisplayGrammar()
                 }
             else
                 {
-                listView = new ListCtrlEx(
+                listView = new Wisteria::UI::ListCtrlEx(
                     view->GetSplitter(), BaseProjectView::SENTENCES_LOWERCASE_START_LIST_PAGE_ID,
                     wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
@@ -7622,7 +7713,7 @@ void ProjectDoc::DisplaySightWords()
         return;
         }
 
-    const auto resetListView = [](ListCtrlEx* listView)
+    const auto resetListView = [](Wisteria::UI::ListCtrlEx* listView)
     {
         if (listView != nullptr && listView->GetVirtualDataProvider() != nullptr &&
             listView->GetVirtualDataProvider()->GetItemCount() == 0)
@@ -7633,8 +7724,8 @@ void ProjectDoc::DisplaySightWords()
 
         // Dolch words
         {
-        ListCtrlEx* listView =
-            dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
+        auto* listView =
+            dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
                 BaseProjectView::DOLCH_WORDS_LIST_PAGE_ID));
         if (IsIncludingDolchSightWords() && GetDolchWordData()->GetItemCount())
             {
@@ -7646,7 +7737,7 @@ void ProjectDoc::DisplaySightWords()
                 }
             else
                 {
-                listView = new ListCtrlEx(
+                listView = new Wisteria::UI::ListCtrlEx(
                     view->GetSplitter(), BaseProjectView::DOLCH_WORDS_LIST_PAGE_ID,
                     wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
@@ -7680,8 +7771,8 @@ void ProjectDoc::DisplaySightWords()
 
         // non-Dolch words
         {
-        ListCtrlEx* listView =
-            dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
+        auto* listView =
+            dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
                 BaseProjectView::NON_DOLCH_WORDS_LIST_PAGE_ID));
         if (IsIncludingDolchSightWords() && GetNonDolchWordData()->GetItemCount())
             {
@@ -7693,7 +7784,7 @@ void ProjectDoc::DisplaySightWords()
                 }
             else
                 {
-                listView = new ListCtrlEx(
+                listView = new Wisteria::UI::ListCtrlEx(
                     view->GetSplitter(), BaseProjectView::NON_DOLCH_WORDS_LIST_PAGE_ID,
                     wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
@@ -7725,8 +7816,8 @@ void ProjectDoc::DisplaySightWords()
 
         // unused Dolch words
         {
-        ListCtrlEx* listView =
-            dynamic_cast<ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
+        auto* listView =
+            dynamic_cast<Wisteria::UI::ListCtrlEx*>(view->GetDolchSightWordsView().FindWindowById(
                 BaseProjectView::UNUSED_DOLCH_WORDS_LIST_PAGE_ID));
         if (IsIncludingDolchSightWords() && GetUnusedDolchWordData()->GetItemCount())
             {
@@ -7738,7 +7829,7 @@ void ProjectDoc::DisplaySightWords()
                 }
             else
                 {
-                listView = new ListCtrlEx(
+                listView = new Wisteria::UI::ListCtrlEx(
                     view->GetSplitter(), BaseProjectView::UNUSED_DOLCH_WORDS_LIST_PAGE_ID,
                     wxDefaultPosition, wxDefaultSize, wxLC_VIRTUAL | wxLC_REPORT | wxBORDER_SUNKEN);
                 listView->Hide();
@@ -7791,16 +7882,17 @@ void ProjectDoc::CalculateGraphData()
                 if (wordPos->is_numeric() &&
                     GetNumeralSyllabicationMethod() == NumeralSyllabize::WholeWordIsOneSyllable)
                     {
-                    m_syllableCounts->AddRow(Data::RowInfo().Continuous({ 1 }).Categoricals({ 0 }));
+                    m_syllableCounts->AddRow(
+                        Wisteria::Data::RowInfo().Continuous({ 1 }).Categoricals({ 0 }));
                     }
                 else
                     {
                     m_syllableCounts->AddRow(
-                        Data::RowInfo()
+                        Wisteria::Data::RowInfo()
                             .Continuous({ static_cast<double>(wordPos->get_syllable_count()) })
                             .
                         // simple or complex?
-                        Categoricals({ static_cast<Data::GroupIdType>(
+                        Categoricals({ static_cast<Wisteria::Data::GroupIdType>(
                             (wordPos->get_syllable_count()) < 3 ? 0 : 1) })
                             .
                         // add the word as a row ID so that it appears as a tooltip on the bin
@@ -7813,14 +7905,15 @@ void ProjectDoc::CalculateGraphData()
             if (wordPos->is_numeric() &&
                 GetNumeralSyllabicationMethod() == NumeralSyllabize::WholeWordIsOneSyllable)
                 {
-                m_syllableCounts->AddRow(Data::RowInfo().Continuous({ 1 }).Categoricals({ 0 }));
+                m_syllableCounts->AddRow(
+                    Wisteria::Data::RowInfo().Continuous({ 1 }).Categoricals({ 0 }));
                 }
             else
                 {
                 m_syllableCounts->AddRow(
-                    Data::RowInfo()
+                    Wisteria::Data::RowInfo()
                         .Continuous({ static_cast<double>(wordPos->get_syllable_count()) })
-                        .Categoricals({ static_cast<Data::GroupIdType>(
+                        .Categoricals({ static_cast<Wisteria::Data::GroupIdType>(
                             (wordPos->get_syllable_count()) < 3 ? 0 : 1) })
                         .Id(wordPos->c_str()));
                 }
@@ -7846,14 +7939,15 @@ void ProjectDoc::CalculateGraphData()
                     if (GetWords()->get_sentences()[sentenceIndex].is_valid())
                         {
                         m_sentenceWordLengths->AddRow(
-                            Data::RowInfo()
+                            Wisteria::Data::RowInfo()
                                 .Continuous(
                                     { static_cast<double>(GetWords()
                                                               ->get_sentences()[sentenceIndex]
                                                               .get_valid_word_count()),
                                       static_cast<double>(sentenceIndex) })
-                                .Categoricals({ static_cast<Data::GroupIdType>(std::distance(
-                                    GetWords()->get_paragraphs().cbegin(), paragraphIter)) }));
+                                .Categoricals(
+                                    { static_cast<Wisteria::Data::GroupIdType>(std::distance(
+                                        GetWords()->get_paragraphs().cbegin(), paragraphIter)) }));
                         }
                     }
                 }
@@ -7868,12 +7962,12 @@ void ProjectDoc::CalculateGraphData()
                  sentenceIndex <= paragraphIter->get_last_sentence_index(); ++sentenceIndex)
                 {
                 m_sentenceWordLengths->AddRow(
-                    Data::RowInfo()
+                    Wisteria::Data::RowInfo()
                         .Continuous(
                             { static_cast<double>(
                                   GetWords()->get_sentences()[sentenceIndex].get_word_count()),
                               static_cast<double>(sentenceIndex) })
-                        .Categoricals({ static_cast<Data::GroupIdType>(std::distance(
+                        .Categoricals({ static_cast<Wisteria::Data::GroupIdType>(std::distance(
                             GetWords()->get_paragraphs().cbegin(), paragraphIter)) }));
                 }
             }
