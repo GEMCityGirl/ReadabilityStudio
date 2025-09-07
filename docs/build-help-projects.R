@@ -249,6 +249,8 @@ thumbNail <- image_convert(image_read_pdf(glue("{docFolder}/readability-studio-m
                      format="png") %>%
   image_scale(thumbnailWidth)
 image_write(thumbNail, glue("{docFolder}/readability-studio-manual/docs-manual/readability-studio-manual-thumb.png"))
+# note that the online build using the thumbnail that was just generated
+quarto::quarto_render(output_format="html", as_job=F, profile="online")
 
 unlink(glue("{docFolder}/readability-studio-manual/readability-tests-english.qmd"))
 unlink(glue("{docFolder}/readability-studio-manual/readability-tests-spanish.qmd"))

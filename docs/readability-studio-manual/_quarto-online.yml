@@ -2,6 +2,7 @@ project:
   output-dir: "docs-online"
 bibliography: cites.bib
 book:
+  cover-image: "docs-manual/readability-studio-manual-thumb.png"
   chapters:
     - index.qmd
     - part: "Overviews"
