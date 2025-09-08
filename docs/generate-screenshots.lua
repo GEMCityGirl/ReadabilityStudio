@@ -99,7 +99,7 @@ ScreenshotLib.ShowListViewItemDlg("Document", "C:\\Topics2008\\Overviews\\BatchP
 ScreenshotLib.SnapScreenshot(ImagePath .. "batchwordingerrorsviewitem." .. FileExtension)
 ScreenshotLib.CloseListViewItemDlg()
 
-ScreenshotLib.OpenOptions(OptionsPageType.AnalysisDocumentIndexing)
+ScreenshotLib.ShowOptions(OptionsPageType.AnalysisDocumentIndexing)
 ScreenshotLib.SnapScreenshot(ImagePath .. "options-dlg." .. FileExtension, -1, -1, 1089)
 ScreenshotLib.CloseOptions()
 
@@ -351,7 +351,7 @@ ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "longsentenceselected."
 sp:DelayReloading(true)
 sp:SetDocumentFilePath("/home/mcrane/Cocoa Desserts.rtf") -- use generic filepath
 sp:SetReviewer("Maris")
-sp:OpenProperties(OptionsPageType.ProjectSettings)
+sp:ShowProperties(OptionsPageType.ProjectSettings)
 ScreenshotLib.SnapScreenshot(ImagePath .. "projectproperties." .. FileExtension, -1, -1, 1083)
 ScreenshotLib.SnapScreenshot(ImagePath .. "linktofile." .. FileExtension, 1085, -1, 1083)
 sp:CloseProperties()
@@ -457,7 +457,7 @@ sp:SelectWindow(SideBarSection.SentencesBreakdown, ListType.LongSentences)
 sp:SortList(ListType.LongSentences, 2, SortOrder.SortDescending)
 ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "featuressentencelistsorted." .. FileExtension, 1)
 
-sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
+sp:ShowProperties(OptionsPageType.AnalysisDocumentIndexing)
 ScreenshotLib.SnapScreenshot(ImagePath .. "featuressentoptions." .. FileExtension, 1040, 1041, 1086)
 sp:CloseProperties()
 
@@ -542,7 +542,7 @@ bp:Close()
 -- Standard project (Peter Rabbit)
 ----------------------------------
 sp = StandardProject(ScreenshotProjectsFolder .. "The Tale of Peter Rabbit.rsp")
-sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
+sp:ShowProperties(OptionsPageType.AnalysisDocumentIndexing)
 ScreenshotLib.SnapScreenshot(ImagePath .. "ignore-blank-lines." .. FileExtension, 1042, 1043, 1086)
 sp:CloseProperties()
 
@@ -754,7 +754,7 @@ ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-partial
     HighlightedReportType.GrammarHighlightedIssues, true,
     "Where:", "RP Number of characters, in this context being letters, numbers, and punctuation (except for sentence-ending punctuation, such as periods)")
 
-sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
+sp:ShowProperties(OptionsPageType.AnalysisDocumentIndexing)
 ScreenshotLib.SnapScreenshot(ImagePath .. "exclusion-example-all-excluded." .. FileExtension, 1051, 1058, 1058)
 sp:CloseProperties()
 
@@ -762,7 +762,7 @@ sp:AggressivelyExclude(true)
 
 sp:Reload()
 
-sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
+sp:ShowProperties(OptionsPageType.AnalysisDocumentIndexing)
 ScreenshotLib.SnapScreenshot(ImagePath .. "exclusion-example-aggressive-list." .. FileExtension, 1051, 1051, 1058)
 sp:CloseProperties()
 
@@ -773,7 +773,7 @@ sp:SetIncludeIncompleteTolerance(20)
 
 sp:Reload()
 
-sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
+sp:ShowProperties(OptionsPageType.AnalysisDocumentIndexing)
 ScreenshotLib.SnapScreenshot(ImagePath .. "exclusion-example-incomp-length-value." .. FileExtension, 1076, 1077, 1077)
 sp:CloseProperties()
 
@@ -791,7 +791,7 @@ sp:ExcludeCopyrightNotices(true)
 
 sp:Reload()
 
-sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
+sp:ShowProperties(OptionsPageType.AnalysisDocumentIndexing)
 ScreenshotLib.SnapScreenshot(ImagePath .. "exclusion-example-copyright-excluded." .. FileExtension, 1054, 1054, 1058)
 sp:CloseProperties()
 
@@ -804,7 +804,7 @@ sp:ExcludeFileAddress(true)
 
 sp:Reload()
 
-sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
+sp:ShowProperties(OptionsPageType.AnalysisDocumentIndexing)
 ScreenshotLib.SnapScreenshot(ImagePath .. "exclusion-example-url-excluded." .. FileExtension, 1056, 1056, 1058)
 sp:CloseProperties()
 
@@ -825,7 +825,7 @@ ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-example-proper-
     HighlightedReportType.GrammarHighlightedIssues, true,
     "Danielson-Bryan", "Farr-Jenkins-Paterson", "UNIVAC")
 
-sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
+sp:ShowProperties(OptionsPageType.AnalysisDocumentIndexing)
 ScreenshotLib.SnapScreenshot(ImagePath .. "exclusion-example-edit-list-button." .. FileExtension, 1052, 1052, 1052)
 sp:CloseProperties()
 
@@ -878,7 +878,7 @@ ScreenshotLib.SnapScreenshotOfTextWindow(ImagePath .. "exclusion-tags-example-ex
     HighlightedReportType.GrammarHighlightedIssues, true,
     "<Platforms>", "<Note that this is not intended for general distribution. (9)  This is a preliminary draft, final approval pending>")
 
-sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
+sp:ShowProperties(OptionsPageType.AnalysisDocumentIndexing)
 ScreenshotLib.SnapScreenshot(ImagePath .. "exclusion-tags-example-options." .. FileExtension, 1078, 1079, 1078)
 sp:CloseProperties()
 
@@ -968,7 +968,7 @@ sp:DelayReloading(true)
 sp:SetReviewer("Daphne")
 sp:SetDocumentFilePath("/home/dmoon/YA Enterprise Software Symposium.odt")
 sp:SetAppendedDocumentFilePath("/home/dmoon/Instructional Disclaimer.odt")
-sp:OpenProperties(OptionsPageType.ProjectSettings)
+sp:ShowProperties(OptionsPageType.ProjectSettings)
 ScreenshotLib.SnapScreenshot(ImagePath .. "addendum-properties." .. FileExtension, 1083, 1080, 1080)
 sp:CloseProperties()
 sp:Close()
@@ -1153,7 +1153,7 @@ sp:DelayReloading(true)
 sp:SetDocumentFilePath("/home/LSternin/Termination Checklist.odt") -- use generic filepath
 sp:SetReviewer("Lilith")
 sp:SetStatus("Draft")
-sp:OpenProperties(OptionsPageType.ProjectSettings)
+sp:ShowProperties(OptionsPageType.ProjectSettings)
 ScreenshotLib.SnapScreenshot(ImagePath .. "realtime-options." .. FileExtension, 1085, 1087, 1088)
 sp:CloseProperties()
 sp.Close()
@@ -1166,16 +1166,16 @@ ScreenshotLib.SnapScreenshotOfActiveProject(ImagePath .. "incompletesentences." 
 
 sp:DelayReloading(true) -- prevent reloading website in case we are offline
 sp:SetTextStorageMethod(TextStorage.LoadFromExternalDocument)
-sp:OpenProperties(OptionsPageType.ProjectSettings)
+sp:ShowProperties(OptionsPageType.ProjectSettings)
 ScreenshotLib.SnapScreenshot(ImagePath .. "reloadwebpage." .. FileExtension, 1085, -1, 1083)
 sp:CloseProperties()
 
-sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
+sp:ShowProperties(OptionsPageType.AnalysisDocumentIndexing)
 ScreenshotLib.SnapScreenshot(ImagePath .. "excludeincompletesentences." .. FileExtension, 1036, -1, 1084)
 sp:CloseProperties()
 
 sp:SetTextExclusion(TextExclusionType.DoNotExcludeAnyText)
-sp:OpenProperties(OptionsPageType.AnalysisDocumentIndexing)
+sp:ShowProperties(OptionsPageType.AnalysisDocumentIndexing)
 ScreenshotLib.SnapScreenshot(ImagePath .. "donotexcludeincompletesentences." .. FileExtension, 1036, -1, 1084)
 sp:CloseProperties()
 

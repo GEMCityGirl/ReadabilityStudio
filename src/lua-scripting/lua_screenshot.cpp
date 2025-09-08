@@ -1469,7 +1469,7 @@ namespace LuaScripting
         }
 
     //-------------------------------------------------------------
-    int OpenOptions(lua_State* L)
+    int ShowOptions(lua_State* L)
         {
         if (!VerifyParameterCount(L, 1, __func__))
             {

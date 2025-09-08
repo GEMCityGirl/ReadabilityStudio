@@ -4584,7 +4584,7 @@ namespace LuaScripting
 
     // HIDDEN interfaces for testing and screenshots
     //-------------------------------------------------------------
-    int StandardProject::OpenProperties(lua_State* L)
+    int StandardProject::ShowProperties(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
             {
@@ -4850,7 +4850,7 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(StandardProject, ExportReport),
         LUNA_DECLARE_METHOD(StandardProject, ExportList),
         LUNA_DECLARE_METHOD(StandardProject, ExportFilteredText),
-        LUNA_DECLARE_METHOD(StandardProject, OpenProperties),
+        LUNA_DECLARE_METHOD(StandardProject, ShowProperties),
         LUNA_DECLARE_METHOD(StandardProject, CloseProperties),
         LUNA_DECLARE_METHOD(StandardProject, SelectHighlightedWordReport),
         LUNA_DECLARE_METHOD(StandardProject, SelectWindow),

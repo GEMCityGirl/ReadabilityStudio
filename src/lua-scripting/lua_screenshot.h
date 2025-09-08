@@ -76,7 +76,7 @@ namespace LuaScripting
     int SetCustomTestDialogIndustries(lua_State* L);
     int SetCustomTestDialogIncludedLists(lua_State* L);
     int CloseCustomTestDialog(lua_State*);
-    int OpenOptions(lua_State* L);
+    int ShowOptions(lua_State* L);
     int CloseOptions(lua_State*);
     int ShowPrinterHeaderFooterOptions(lua_State*);
     int ClosePrinterHeaderFooterOptions(lua_State*);

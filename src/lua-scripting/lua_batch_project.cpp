@@ -3371,7 +3371,7 @@ namespace LuaScripting
 
     // hidden functions just used for screenshots
     //-------------------------------------------------------------
-    int BatchProject::OpenProperties(lua_State* L)
+    int BatchProject::ShowProperties(lua_State* L)
         {
         if (!VerifyProjectIsOpen(__func__))
             {
@@ -3590,7 +3590,7 @@ namespace LuaScripting
         LUNA_DECLARE_METHOD(BatchProject, SelectWindow),
         LUNA_DECLARE_METHOD(BatchProject, ShowSidebar),
         LUNA_DECLARE_METHOD(BatchProject, SortList),
-        LUNA_DECLARE_METHOD(BatchProject, OpenProperties),
+        LUNA_DECLARE_METHOD(BatchProject, ShowProperties),
         LUNA_DECLARE_METHOD(BatchProject, CloseProperties),
         { nullptr, nullptr }
     };

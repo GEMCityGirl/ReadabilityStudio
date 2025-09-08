@@ -298,7 +298,7 @@ namespace LuaScripting
         int SortList(lua_State* L /*ListType list, number columnToSort, SortOrder order, ...*/); // Sorts the specified list using a series of columns and sorting orders.
 
         // hidden functions just used for screenshots
-        int /*INTERNAL!!!*/ OpenProperties(lua_State* L);
+        int /*INTERNAL!!!*/ ShowProperties(lua_State* L);
         int /*INTERNAL!!!*/ CloseProperties(lua_State*);
         // clang-format on
         // quneiform-suppress-end

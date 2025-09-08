@@ -378,7 +378,7 @@ namespace LuaScripting
            TestToSelect The test to select, based on position in the list.*/
         int /*INTERNAL!!!*/ SelectReadabilityTest(lua_State* L);
         // Opens the properties dialog and the specified page
-        int /*INTERNAL!!!*/ OpenProperties(lua_State* L);
+        int /*INTERNAL!!!*/ ShowProperties(lua_State* L);
         int /*INTERNAL!!!*/ CloseProperties(lua_State*);
         // clang-format on
         // quneiform-suppress-end
