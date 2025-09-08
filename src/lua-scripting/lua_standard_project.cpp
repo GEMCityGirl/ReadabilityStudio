@@ -4152,7 +4152,8 @@ namespace LuaScripting
                     const auto searchResult = textCtrl->SearchText(wxTextSearch{ contentToFind });
                     if (searchResult)
                         {
-                        textCtrl->ShowPosition(searchResult.m_start);
+                        textCtrl->ShowPosition(0);
+                        textCtrl->ShowPosition(searchResult.m_end);
                         textCtrl->SetSelection(searchResult.m_start, searchResult.m_end);
                         }
                     else
@@ -4509,7 +4510,8 @@ namespace LuaScripting
                     const auto searchResult = textCtrl->SearchText(wxTextSearch{ contentToFind });
                     if (searchResult)
                         {
-                        textCtrl->ShowPosition(searchResult.m_start);
+                        textCtrl->ShowPosition(0);
+                        textCtrl->ShowPosition(searchResult.m_end);
                         }
                     else
                         {
@@ -4557,7 +4559,10 @@ namespace LuaScripting
                             textCtrl->SearchText(wxTextSearch{ contentToFind });
                         if (searchResult)
                             {
-                            textCtrl->ShowPosition(searchResult.m_start);
+                            // Move to the start of the window and then ensure that the end
+                            // content is shown. This best ensures that all of the content is shown.
+                            textCtrl->ShowPosition(0);
+                            textCtrl->ShowPosition(searchResult.m_end);
                             textCtrl->SetSelection(searchResult.m_start, searchResult.m_end);
                             }
                         else
