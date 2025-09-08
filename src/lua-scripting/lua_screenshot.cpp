@@ -87,6 +87,8 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SnapScreenshot(lua_State* L)
         {
+        // wait for any changes in the UI to finish updating
+        ::wxSleep(2);
         if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
@@ -151,6 +153,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SnapScreenshotWithAnnotation(lua_State* L)
         {
+        ::wxSleep(2);
         if (!VerifyParameterCount(L, 3, __func__))
             {
             return 0;
@@ -191,6 +194,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SnapScreenshotOfActiveProject(lua_State* L)
         {
+        ::wxSleep(2);
         if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
@@ -303,6 +307,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SnapScreenshotOfTextWindow(lua_State* L)
         {
+        ::wxSleep(2);
         if (!VerifyParameterCount(L, 2, __func__))
             {
             return 0;
@@ -387,6 +392,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SnapScreenshotOfRibbon(lua_State* L)
         {
+        ::wxSleep(2);
         if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
@@ -438,6 +444,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SnapScreenshotOfListControl(lua_State* L)
         {
+        ::wxSleep(2);
         if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
@@ -484,6 +491,7 @@ namespace LuaScripting
     //-------------------------------------------------------------
     int SnapScreenshotOfDialogWithPropertyGrid(lua_State* L)
         {
+        ::wxSleep(2);
         if (!VerifyParameterCount(L, 1, __func__))
             {
             return 0;
@@ -815,7 +823,6 @@ namespace LuaScripting
         LuaStandardProjectWizard->FindWindow(wxID_FORWARD)->SetFocus();
         LuaStandardProjectWizard->Show();
         wxGetApp().Yield();
-        ::wxSleep(2);
         return 0;
         }
 
@@ -837,9 +844,6 @@ namespace LuaScripting
         LuaStandardProjectWizard->FindWindow(wxID_FORWARD)->SetFocus();
         LuaStandardProjectWizard->Show();
         wxGetApp().Yield();
-        // animation for radio button change takes a second (and it's in a separate thread),
-        // so wait for the UI to finish updating
-        ::wxSleep(2);
         return 0;
         }
 
@@ -863,7 +867,6 @@ namespace LuaScripting
         LuaStandardProjectWizard->FindWindow(wxID_FORWARD)->SetFocus();
         LuaStandardProjectWizard->Show();
         wxGetApp().Yield();
-        ::wxSleep(2);
         return 0;
         }
 
@@ -887,7 +890,6 @@ namespace LuaScripting
         LuaStandardProjectWizard->FindWindow(wxID_FORWARD)->SetFocus();
         LuaStandardProjectWizard->Show();
         wxGetApp().Yield();
-        ::wxSleep(2);
         return 0;
         }
 
@@ -923,7 +925,6 @@ namespace LuaScripting
         LuaStandardProjectWizard->FindWindow(wxID_FORWARD)->SetFocus();
         LuaStandardProjectWizard->Show();
         wxGetApp().Yield();
-        ::wxSleep(2);
         return 0;
         }
 
@@ -946,7 +947,6 @@ namespace LuaScripting
         LuaStandardProjectWizard->FindWindow(wxID_FORWARD)->SetFocus();
         LuaStandardProjectWizard->Show();
         wxGetApp().Yield();
-        ::wxSleep(2);
         return 0;
         }
 
@@ -969,7 +969,6 @@ namespace LuaScripting
         LuaStandardProjectWizard->FindWindow(wxID_FORWARD)->SetFocus();
         LuaStandardProjectWizard->Show();
         wxGetApp().Yield();
-        ::wxSleep(2);
         return 0;
         }
 
@@ -1053,7 +1052,6 @@ namespace LuaScripting
         LuaBatchProjectWizard->FindWindow(wxID_FORWARD)->SetFocus();
         LuaBatchProjectWizard->Show();
         wxGetApp().Yield();
-        ::wxSleep(2);
         return 0;
         }
 
@@ -1079,7 +1077,6 @@ namespace LuaScripting
         LuaBatchProjectWizard->FindWindow(wxID_FORWARD)->SetFocus();
         LuaBatchProjectWizard->Show();
         wxGetApp().Yield();
-        ::wxSleep(2);
         return 0;
         }
 
@@ -1105,7 +1102,6 @@ namespace LuaScripting
         LuaBatchProjectWizard->FindWindow(wxID_FORWARD)->SetFocus();
         LuaBatchProjectWizard->Show();
         wxGetApp().Yield();
-        ::wxSleep(2);
         return 0;
         }
 
@@ -1167,7 +1163,6 @@ namespace LuaScripting
         LuaBatchProjectWizard->FindWindow(wxID_FORWARD)->SetFocus();
         LuaBatchProjectWizard->Show();
         wxGetApp().Yield();
-        ::wxSleep(2);
         return 0;
         }
 
