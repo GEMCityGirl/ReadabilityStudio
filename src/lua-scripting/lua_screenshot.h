@@ -158,7 +158,7 @@ namespace LuaScripting
         { "BatchProjectWizardTextSourcePageSetFiles", BatchProjectWizardTextSourcePageSetFiles },
         { "CloseBatchProjectWizard", CloseBatchProjectWizard },
         { "CloseStandardProjectWizard", CloseStandardProjectWizard },
-        { "OpenOptions", OpenOptions },
+        { "ShowOptions", ShowOptions },
         { "CloseOptions", CloseOptions },
         { "ShowTestBundleDialog", ShowTestBundleDialog },
         { "CloseTestBundleDialog", CloseTestBundleDialog },
