@@ -218,17 +218,18 @@ void ReadabilityAppOptions::SetColorsFromSystem()
             m_ribbonInactiveTabColor = m_ribbonInactiveTabColor.ChangeLightness(95);
             }
         }
-    m_ribbonHoverColor = wxColour(253, 211, 155); // light orange color
-    m_ribbonHoverFontColor = *wxBLACK;
+    m_ribbonHoverColor = wxColour{ 253, 211, 155 }; // light orange
+    m_ribbonHoverFontColor = Wisteria::Colors::ColorContrast::ShadeOrTint(
+        wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT));
     m_ribbonActiveFontColor = wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT);
     m_ribbonInactiveFontColor = wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT);
 
     // Sidebar colors
     // if ugly Windows default gray, then override the system with prettier colors
-    if (wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE) == wxColour(240, 240, 240))
+    if (wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE) == wxColour{ 240, 240, 240 })
         {
-        m_sideBarBackgroundColor = wxColour(200, 211, 231); // Serenity
-        m_sideBarParentColor = wxColour(180, 189, 207);     // slightly darker
+        m_sideBarBackgroundColor = wxColour{ 200, 211, 231 }; // Serenity
+        m_sideBarParentColor = wxColour{ 180, 189, 207 };     // slightly darker
         }
     else
         {
