@@ -4127,6 +4127,7 @@ namespace LuaScripting
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view != nullptr)
             {
+            view->Activate(true);
             wxWindowID windowId = luaL_checkinteger(L, 2);
             if (const auto windowMappedId =
                     wxGetApp().GetDynamicIdMap().find(luaL_checkinteger(L, 2));
@@ -4212,6 +4213,7 @@ namespace LuaScripting
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view != nullptr)
             {
+            view->Activate(true);
             const auto sectionId = wxGetApp().GetDynamicIdMap().find(luaL_checkinteger(L, 2));
             if (sectionId == wxGetApp().GetDynamicIdMap().cend())
                 {
@@ -4274,6 +4276,7 @@ namespace LuaScripting
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view != nullptr)
             {
+            view->Activate(true);
             const auto index = view->GetSideBar()->FindFolder(
                 BaseProjectView::SIDEBAR_READABILITY_SCORES_SECTION_ID);
             if (index.has_value())
@@ -4430,6 +4433,7 @@ namespace LuaScripting
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view != nullptr)
             {
+            view->Activate(true);
             wxWindowID windowId = luaL_checkinteger(L, 2);
             if (const auto windowMappedId =
                     wxGetApp().GetDynamicIdMap().find(luaL_checkinteger(L, 2));
@@ -4475,6 +4479,7 @@ namespace LuaScripting
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view != nullptr)
             {
+            view->Activate(true);
             wxWindowID windowId = luaL_checkinteger(L, 2);
             if (const auto windowMappedId =
                     wxGetApp().GetDynamicIdMap().find(luaL_checkinteger(L, 2));
@@ -4542,6 +4547,7 @@ namespace LuaScripting
         ProjectView* view = dynamic_cast<ProjectView*>(m_project->GetFirstView());
         if (view != nullptr)
             {
+            view->Activate(true);
             const auto [parentPos, childPos] = view->GetSideBar()->FindSubItem(
                 BaseProjectView::SIDEBAR_GRAMMAR_SECTION_ID,
                 BaseProjectView::LONG_SENTENCES_AND_WORDINESS_TEXT_PAGE_ID);

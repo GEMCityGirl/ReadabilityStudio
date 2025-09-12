@@ -3264,6 +3264,7 @@ namespace LuaScripting
         auto* view = dynamic_cast<BatchProjectView*>(m_project->GetFirstView());
         if (view != nullptr)
             {
+            view->Activate(true);
             const auto sectionId = ReadabilityApp::GetDynamicIdMap().find(luaL_checkinteger(L, 2));
             if (sectionId == ReadabilityApp::GetDynamicIdMap().cend())
                 {
