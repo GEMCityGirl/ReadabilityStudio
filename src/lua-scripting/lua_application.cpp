@@ -852,7 +852,7 @@ namespace LuaScripting
             {
             wxGetApp().GetMainFrameEx()->GetLuaEditor()->DebugOutput(
                 wxString::Format(_DT(L"Broken link in '<span style='font-weight:bold;'>%s</span>': "
-                                     "<span style='color:red; font-weight:bold;'>%s</span>",
+                                     "<span style='color:#FF7386; font-weight:bold;'>%s</span>",
                                      DTExplanation::DebugMessage),
                                  badLink.first, badLink.second));
             wxLogError(L"Broken link in '%s': %s", badLink.first, badLink.second);
@@ -867,7 +867,7 @@ namespace LuaScripting
             {
             wxGetApp().GetMainFrameEx()->GetLuaEditor()->DebugOutput(wxString::Format(
                 _DT(L"Bad image size in '<span style='font-weight:bold;'>%s</span>%s</span>': "
-                    "<span style='color:red; font-weight:bold;'>%s</span>"),
+                    "<span style='color:#FF7386; font-weight:bold;'>%s</span>"),
                 badImage.first, badImage.second));
             wxLogError(L"Bad image size in '%s': %s", badImage.first, badImage.second);
             }
@@ -926,7 +926,7 @@ namespace LuaScripting
             DebugPrint(wxString::Format( // TRANSLATORS: %s are formatting tags and
                                          // should stay wrapped around "Warning"
                 _(L"%sWarning%s: unable to make %s path absolute."),
-                L"<span style='color:blue; font-weight:bold;'>", L"</span>",
+                L"<span style='color:#00A2E8; font-weight:bold;'>", L"</span>",
                 wxString{ luaL_checkstring(L, 2), wxConvUTF8 }));
             lua_pushstring(L, wxString{ luaL_checkstring(L, 2), wxConvUTF8 });
             }

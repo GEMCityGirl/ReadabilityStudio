@@ -94,7 +94,6 @@ namespace LuaScripting
             return 0;
             }
 
-        const wxString path{ luaL_checkstring(L, 1), wxConvUTF8 };
         int startWindowToHighlight = wxID_ANY, endWindowToHighlight = wxID_ANY,
             cutOffWindow = wxID_ANY;
         if (lua_gettop(L) > 1)
@@ -145,8 +144,9 @@ namespace LuaScripting
                     }
                 }
             }
-        lua_pushboolean(L, Screenshot::SaveScreenshot(path, startWindowToHighlight,
-                                                      endWindowToHighlight, cutOffWindow));
+        lua_pushboolean(L, Screenshot::SaveScreenshot(
+                               wxString{ luaL_checkstring(L, 1), wxConvUTF8 },
+                               startWindowToHighlight, endWindowToHighlight, cutOffWindow));
         return 1;
         }
 
@@ -159,8 +159,6 @@ namespace LuaScripting
             return 0;
             }
 
-        const wxString path{ luaL_checkstring(L, 1), wxConvUTF8 };
-        const wxString annotation{ luaL_checkstring(L, 2), wxConvUTF8 };
         int startWindowToHighlight = wxID_ANY, endWindowToHighlight = wxID_ANY;
 
         auto idPos = wxGetApp().GetDynamicIdMap().find(lua_tonumber(L, 3));
@@ -186,8 +184,10 @@ namespace LuaScripting
                 }
             }
 
-        lua_pushboolean(L, Screenshot::SaveScreenshot(path, annotation, startWindowToHighlight,
-                                                      endWindowToHighlight));
+        lua_pushboolean(L,
+                        Screenshot::SaveScreenshot(wxString{ luaL_checkstring(L, 1), wxConvUTF8 },
+                                                   wxString{ luaL_checkstring(L, 2), wxConvUTF8 },
+                                                   startWindowToHighlight, endWindowToHighlight));
         return 1;
         }
 
@@ -279,8 +279,6 @@ namespace LuaScripting
             return 0;
             }
 
-        const wxString path{ luaL_checkstring(L, 1), wxConvUTF8 };
-
         wxCoord x{ wxDefaultCoord }, y{ wxDefaultCoord };
 
         if (lua_gettop(L) >= 1)
@@ -292,7 +290,7 @@ namespace LuaScripting
             y = lua_tonumber(L, 3);
             }
 
-        if (Screenshot::CropScreenshot(path, x, y))
+        if (Screenshot::CropScreenshot(wxString{ luaL_checkstring(L, 1), wxConvUTF8 }, x, y))
             {
             lua_pushboolean(L, true);
             return 1;
@@ -334,7 +332,7 @@ namespace LuaScripting
             !windowToCapture->IsKindOf(CLASSINFO(wxTextCtrl)))
             {
             wxWindow* foundWindow = windowToCapture->FindWindow(windowId);
-            if (foundWindow && foundWindow->IsKindOf(CLASSINFO(wxTextCtrl)))
+            if (foundWindow != nullptr && foundWindow->IsKindOf(CLASSINFO(wxTextCtrl)))
                 {
                 windowToCapture = foundWindow;
                 }
@@ -357,7 +355,7 @@ namespace LuaScripting
         if (lua_gettop(L) > 3)
             {
             // search for the strings to highlight and store their positions in the text
-            // (it is assumed that the strings are in the order that the appear in the text)
+            // (it is assumed that the strings are in the order that they appear in the text)
             wxTextSearchResult previousFind;
             for (long i = 4; i <= lua_gettop(L); ++i)
                 {
@@ -376,16 +374,16 @@ namespace LuaScripting
                         // TRANSLATORS: %s are formatting tags and
                         // should stay wrapped around "Warning"
                         _(L"%sWarning%s: unable to find \"%s\" in text window."),
-                        L"<span style='color:blue; font-weight:bold;'>", L"</span>",
+                        L"<span style='color:#00A2E8; font-weight:bold;'>", L"</span>",
                         wxString{ contentToFind }.Truncate(10).append(
                             contentToFind.length() > 10 ? wxString{ _DT(L"...") } : wxString{})));
                     }
                 }
             }
 
-        const wxString path{ luaL_checkstring(L, 1), wxConvUTF8 };
         lua_pushboolean(L, Screenshot::SaveScreenshotOfTextWindow(
-                               path, windowId, lua_toboolean(L, 3), highlightPoints));
+                               wxString{ luaL_checkstring(L, 1), wxConvUTF8 }, windowId,
+                               lua_toboolean(L, 3), highlightPoints));
         return 1;
         }
 
@@ -398,7 +396,6 @@ namespace LuaScripting
             return 0;
             }
 
-        const wxString path{ luaL_checkstring(L, 1), wxConvUTF8 };
         int pageToSelect{ 0 }, firstButtonBarID{ -1 }, lastButtonBarID{ -1 };
         if (lua_gettop(L) >= 2)
             {
@@ -436,8 +433,9 @@ namespace LuaScripting
                 lastButtonBarID = lua_tonumber(L, 3);
                 }
             }
-        lua_pushboolean(L, Screenshot::SaveScreenshotOfRibbon(path, pageToSelect, firstButtonBarID,
-                                                              lastButtonBarID));
+        lua_pushboolean(
+            L, Screenshot::SaveScreenshotOfRibbon(wxString{ luaL_checkstring(L, 1), wxConvUTF8 },
+                                                  pageToSelect, firstButtonBarID, lastButtonBarID));
         return 1;
         }
 
@@ -450,7 +448,6 @@ namespace LuaScripting
             return 0;
             }
 
-        const wxString path{ luaL_checkstring(L, 1), wxConvUTF8 };
         int startRow{ -1 }, endRow{ -1 }, startColumn{ -1 }, endColumn{ -1 }, cutOffRow{ -1 };
         if (lua_gettop(L) >= 3)
             {
@@ -479,7 +476,7 @@ namespace LuaScripting
             windowId = windowMappedId->second;
             }
         lua_pushboolean(L, Screenshot::SaveScreenshotOfListControl(
-                               path, windowId,
+                               wxString{ luaL_checkstring(L, 1), wxConvUTF8 }, windowId,
                                // make zero-indexed
                                startRow == -1 ? -1 : startRow - 1, endRow == -1 ? -1 : endRow - 1,
                                startColumn == -1 ? -1 : startColumn - 1,
@@ -497,7 +494,6 @@ namespace LuaScripting
             return 0;
             }
 
-        const wxString path{ luaL_checkstring(L, 1), wxConvUTF8 };
         int propGridId = wxID_ANY;
         wxString propertyStart, propertyEnd;
         if (lua_gettop(L) > 1)
@@ -522,7 +518,8 @@ namespace LuaScripting
             }
         lua_pushboolean(
             L, Screenshot::SaveScreenshotOfDialogWithPropertyGrid(
-                   path, propGridId, propertyStart, propertyEnd,
+                   wxString{ luaL_checkstring(L, 1), wxConvUTF8 }, propGridId, propertyStart,
+                   propertyEnd,
                    std::make_pair(((lua_gettop(L) > 4) ? int_to_bool(lua_toboolean(L, 5)) : false),
                                   ((lua_gettop(L) > 5) ? lua_tonumber(L, 6) : -1))));
         return 1;
@@ -536,9 +533,9 @@ namespace LuaScripting
             return 0;
             }
 
-        const wxString path{ luaL_checkstring(L, 1), wxConvUTF8 };
         lua_pushboolean(L, Screenshot::HighlightItemInScreenshot(
-                               path, wxPoint(lua_tonumber(L, 2), lua_tonumber(L, 3)),
+                               wxString{ luaL_checkstring(L, 1), wxConvUTF8 },
+                               wxPoint(lua_tonumber(L, 2), lua_tonumber(L, 3)),
                                wxPoint(lua_tonumber(L, 4), lua_tonumber(L, 5))));
         return 1;
         }
