@@ -4154,6 +4154,7 @@ namespace LuaScripting
                     if (searchResult)
                         {
                         textCtrl->ShowPosition(0);
+                        ::wxSleep(2);
                         textCtrl->ShowPosition(searchResult.m_end);
                         textCtrl->SetSelection(searchResult.m_start, searchResult.m_end);
                         }
@@ -4516,6 +4517,7 @@ namespace LuaScripting
                     if (searchResult)
                         {
                         textCtrl->ShowPosition(0);
+                        ::wxSleep(2);
                         textCtrl->ShowPosition(searchResult.m_end);
                         }
                     else
@@ -4568,6 +4570,7 @@ namespace LuaScripting
                             // Move to the start of the window and then ensure that the end
                             // content is shown. This best ensures that all of the content is shown.
                             textCtrl->ShowPosition(0);
+                            ::wxSleep(2);
                             textCtrl->ShowPosition(searchResult.m_end);
                             textCtrl->SetSelection(searchResult.m_start, searchResult.m_end);
                             }
