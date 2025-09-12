@@ -4163,7 +4163,7 @@ namespace LuaScripting
                             // TRANSLATORS: %s are formatting tags and
                             // should stay wrapped around "Warning"
                             _(L"%sWarning%s: unable to find \"%s\" in text window."),
-                            L"<span style='color:blue; font-weight:bold;'>", L"</span>",
+                            L"<span style='color:#00A2E8; font-weight:bold;'>", L"</span>",
                             wxString{ contentToFind }.Truncate(10).append(
                                 contentToFind.length() > 10 ? wxString{ _DT(L"...") } :
                                                               wxString{})));
@@ -4523,7 +4523,7 @@ namespace LuaScripting
                         DebugPrint(wxString::Format( // TRANSLATORS: %s are formatting tags and
                                                      // should stay wrapped around "Warning"
                             _(L"%sWarning%s: unable to find \"%s\" in text window."),
-                            L"<span style='color:blue; font-weight:bold;'>", L"</span>",
+                            L"<span style='color:#00A2E8; font-weight:bold;'>", L"</span>",
                             wxString{ contentToFind }.Truncate(10).append(
                                 contentToFind.length() > 10 ? wxString{ _DT(L"...") } :
                                                               wxString{})));
@@ -4577,7 +4577,7 @@ namespace LuaScripting
                                 // TRANSLATORS: %s are formatting tags and
                                 // should stay wrapped around "Warning"
                                 _(L"%sWarning%s: unable to find \"%s\" in text window."),
-                                L"<span style='color:blue; font-weight:bold;'>", L"</span>",
+                                L"<span style='color:#00A2E8; font-weight:bold;'>", L"</span>",
                                 wxString{ contentToFind }.Truncate(10).append(
                                     contentToFind.length() > 10 ? wxString{ _DT(L"...") } :
                                                                   wxString{})));
