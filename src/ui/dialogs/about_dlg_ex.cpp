@@ -17,35 +17,39 @@
 #include "../../Wisteria-Dataviz/src/easyexif/exif.h"
 #include "../../Wisteria-Dataviz/src/import/html_extract_text.h"
 #include "../../Wisteria-Dataviz/src/util/hardwareinfo.h"
-#include "../../app/version.h"
+#include "../../app/readability_app.h"
 #include "../../lua/lua.h"
 #include "../../tinyexpr-plusplus/tinyexpr.h"
 #include "../../tinyxml2/tinyxml2.h"
+#include <algorithm>
+#include <utility>
 #include <wx/generic/statbmpg.h>
 #include <wx/stc/stc.h>
-#include <wx/webrequest.h>
 #include <wx/webview.h>
 #include <wx/zstream.h>
 
+wxDECLARE_APP(ReadabilityApp);
+
 //------------------------------------------------------
-AboutDialogEx::AboutDialogEx(wxWindow* parent, const wxBitmap& logo, wxString appVersion,
+AboutDialogEx::AboutDialogEx(wxWindow* parent, wxBitmap banner, wxString appVersion,
                              wxString copyright, wxString eula, wxString mlaCitation,
                              wxString apaCitation, wxString bibtexCitation, wxWindowID id,
                              const wxPoint& pos, const wxSize& size, long style)
-    : m_logo(logo), m_appVersion(std::move(appVersion)), m_copyright(std::move(copyright)),
-      m_eula(std::move(eula)), m_mlaCitation(std::move(mlaCitation)),
-      m_apaCitation(std::move(apaCitation)), m_bibtexCitation(std::move(bibtexCitation))
+    : m_banner(std::move(banner)), m_appVersion(std::move(appVersion)),
+      m_copyright(std::move(copyright)), m_eula(std::move(eula)),
+      m_mlaCitation(std::move(mlaCitation)), m_apaCitation(std::move(apaCitation)),
+      m_bibtexCitation(std::move(bibtexCitation))
     {
     Create(parent, id, pos, size, style);
     }
 
 //------------------------------------------------------
 bool AboutDialogEx::Create(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size,
-                           long style)
+                           const long style)
     {
     wxDialog::Create(parent, id,
                      wxString::Format(/* TRANSLATORS: %s is the application name */ _(L"About %s"),
-                                      wxTheApp->GetAppName()),
+                                      wxGetApp().GetAppName()),
                      pos, size, style);
 
     CreateControls();
@@ -64,7 +68,7 @@ bool AboutDialogEx::Create(wxWindow* parent, wxWindowID id, const wxPoint& pos, 
                     const wxString strippedText =
                         htmlExtract(m_mlaCitation.wc_str(), m_mlaCitation.length(), true, true);
                     wxTheClipboard->Clear();
-                    wxDataObjectComposite* obj = new wxDataObjectComposite();
+                    auto* obj = new wxDataObjectComposite();
                     obj->Add(new wxTextDataObject(strippedText));
                     wxTheClipboard->SetData(obj);
                     }
@@ -82,7 +86,7 @@ bool AboutDialogEx::Create(wxWindow* parent, wxWindowID id, const wxPoint& pos, 
                 if (!m_apaCitation.empty())
                     {
                     wxTheClipboard->Clear();
-                    wxDataObjectComposite* obj = new wxDataObjectComposite();
+                    auto* obj = new wxDataObjectComposite();
                     obj->Add(new wxTextDataObject(m_apaCitation));
                     wxTheClipboard->SetData(obj);
                     }
@@ -100,7 +104,7 @@ bool AboutDialogEx::Create(wxWindow* parent, wxWindowID id, const wxPoint& pos, 
                 if (!m_bibtexCitation.empty())
                     {
                     wxTheClipboard->Clear();
-                    wxDataObjectComposite* obj = new wxDataObjectComposite();
+                    auto* obj = new wxDataObjectComposite();
                     obj->Add(new wxTextDataObject(m_bibtexCitation));
                     wxTheClipboard->SetData(obj);
                     }
@@ -121,7 +125,7 @@ bool AboutDialogEx::Create(wxWindow* parent, wxWindowID id, const wxPoint& pos, 
                     const wxString strippedText =
                         htmlExtract(m_components.wc_str(), m_components.length(), true, true);
                     wxTheClipboard->Clear();
-                    wxDataObjectComposite* obj = new wxDataObjectComposite();
+                    auto* obj = new wxDataObjectComposite();
                     obj->Add(new wxTextDataObject(strippedText));
                     wxTheClipboard->SetData(obj);
                     }
@@ -139,7 +143,7 @@ bool AboutDialogEx::Create(wxWindow* parent, wxWindowID id, const wxPoint& pos, 
                 if (!m_eula.empty())
                     {
                     wxTheClipboard->Clear();
-                    wxDataObjectComposite* obj = new wxDataObjectComposite();
+                    auto* obj = new wxDataObjectComposite();
                     obj->Add(new wxTextDataObject(m_eula));
                     wxTheClipboard->SetData(obj);
                     }
@@ -157,7 +161,7 @@ bool AboutDialogEx::Create(wxWindow* parent, wxWindowID id, const wxPoint& pos, 
                 if (!m_productInfo.empty())
                     {
                     wxTheClipboard->Clear();
-                    wxDataObjectComposite* obj = new wxDataObjectComposite();
+                    auto* obj = new wxDataObjectComposite();
                     obj->Add(new wxTextDataObject(m_productInfo));
                     wxTheClipboard->SetData(obj);
                     }
@@ -172,34 +176,34 @@ bool AboutDialogEx::Create(wxWindow* parent, wxWindowID id, const wxPoint& pos, 
 //------------------------------------------------------
 void AboutDialogEx::CreateControls()
     {
-    wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
+    auto* mainSizer = new wxBoxSizer(wxVERTICAL);
 
     m_sideBarBook = new Wisteria::UI::SideBarBook(this, wxID_ANY);
     mainSizer->Add(m_sideBarBook, wxSizerFlags{ 1 }.Expand().Border());
 
         // version info page
         {
-        wxPanel* mainPage = new wxPanel(m_sideBarBook);
-        wxBoxSizer* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
+        auto* mainPage = new wxPanel(m_sideBarBook);
+        auto* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
         mainPage->SetSizer(mainPanelSizer);
         m_sideBarBook->AddPage(mainPage, _(L"Product Info"), ID_VERSION_PAGE, true);
 
-        if (m_logo.IsOk())
+        if (m_banner.IsOk())
             {
-            wxGenericStaticBitmap* logoBox = new wxGenericStaticBitmap(
-                mainPage, wxID_ANY, m_logo, wxDefaultPosition, wxDefaultSize, wxSIMPLE_BORDER);
-            mainPanelSizer->Add(logoBox, 0, wxALIGN_CENTER_HORIZONTAL | wxALL,
+            auto* bannerBox = new wxGenericStaticBitmap(
+                mainPage, wxID_ANY, m_banner, wxDefaultPosition, wxDefaultSize, wxSIMPLE_BORDER);
+            mainPanelSizer->Add(bannerBox, 0, wxALIGN_CENTER_HORIZONTAL | wxALL,
                                 wxSizerFlags::GetDefaultBorder());
             }
 
-        auto productInfoGrid = new wxFlexGridSizer(2, wxSize(wxSizerFlags::GetDefaultBorder(), 0));
+        auto* productInfoGrid = new wxFlexGridSizer(2, wxSize(wxSizerFlags::GetDefaultBorder(), 0));
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Version:")));
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, m_appVersion));
-        constexpr std::wstring_view buildVersion{ _READSTUDIO_BUILD_VERSION };
-        if (!buildVersion.empty())
+        constexpr std::wstring_view BUILD_VERSION{ _READSTUDIO_BUILD_VERSION };
+        if constexpr (!BUILD_VERSION.empty())
             {
             productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Build:")));
-            productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, buildVersion.data()));
+            productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, wxString{ BUILD_VERSION }));
             }
 #ifndef NDEBUG
         productInfoGrid->Add(new wxStaticText(
@@ -249,11 +253,11 @@ void AboutDialogEx::CreateControls()
             }
 
         // put it all together
-        mainPanelSizer->Add(new wxStaticText(mainPage, wxID_ANY, wxTheApp->GetAppName()),
+        mainPanelSizer->Add(new wxStaticText(mainPage, wxID_ANY, wxGetApp().GetAppName()),
                             wxSizerFlags{}.Left().Border(wxLEFT));
 
         auto* productArea = new wxBoxSizer(wxHORIZONTAL);
-        productArea->Add(productInfoGrid, wxSizerFlags{}.Left().Border(wxLEFT));
+        productArea->Add(productInfoGrid);
         productArea->AddStretchSpacer();
         productArea->Add(new wxBitmapButton(mainPage, ID_COPY_PRODUCT_INFO,
                                             wxArtProvider::GetBitmap(wxART_COPY, wxART_BUTTON)));
@@ -264,7 +268,7 @@ void AboutDialogEx::CreateControls()
                             wxSizerFlags{}.Left().Border(wxLEFT));
         mainPanelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
-        m_productInfo = wxTheApp->GetAppName() + L"\n";
+        m_productInfo = wxGetApp().GetAppName() + L"\n";
         for (size_t i = 0; i < productInfoGrid->GetChildren().size(); ++i)
             {
             const auto* currentWindow = productInfoGrid->GetChildren()[i]->GetWindow();
@@ -279,13 +283,13 @@ void AboutDialogEx::CreateControls()
     // License page
     if (!m_eula.empty())
         {
-        wxPanel* eulaPage = new wxPanel(m_sideBarBook);
-        wxBoxSizer* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
+        auto* eulaPage = new wxPanel(m_sideBarBook);
+        auto* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
         eulaPage->SetSizer(mainPanelSizer);
         m_sideBarBook->AddPage(eulaPage, _(L"License"), ID_LICENSING_PAGE, false);
 
-        wxBoxSizer* textRowSizer = new wxBoxSizer(wxHORIZONTAL);
-        wxTextCtrl* eulaWindow = new wxTextCtrl(
+        auto* textRowSizer = new wxBoxSizer(wxHORIZONTAL);
+        auto* eulaWindow = new wxTextCtrl(
             eulaPage, wxID_ANY, wxString{}, wxDefaultPosition, wxDefaultSize,
             wxTE_MULTILINE | wxTE_RICH2 | wxTE_READONLY, wxGenericValidator(&m_eula));
         textRowSizer->Add(eulaWindow, wxSizerFlags{ 1 }.Expand());
@@ -296,8 +300,8 @@ void AboutDialogEx::CreateControls()
 
         // components
         {
-        wxPanel* componentsPage = new wxPanel(m_sideBarBook);
-        wxBoxSizer* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
+        auto* componentsPage = new wxPanel(m_sideBarBook);
+        auto* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
         componentsPage->SetSizer(mainPanelSizer);
         m_sideBarBook->AddPage(componentsPage, _(L"Components"), ID_COMPONENTS, false);
 
@@ -357,8 +361,8 @@ void AboutDialogEx::CreateControls()
             formatLibInfo(wxVersionInfo{ L"UTF8-CPP", -1 })
         };
 
-        std::sort(allLibInfo.begin(), allLibInfo.end(),
-                  [](const auto& lhv, const auto& rhv) { return wxStricmp(lhv, rhv) < 0; });
+        std::ranges::sort(allLibInfo,
+                          [](const auto& lhv, const auto& rhv) { return wxStricmp(lhv, rhv) < 0; });
 
         // Format all the library strings into one.
         m_components = [&allLibInfo]()
@@ -378,8 +382,8 @@ void AboutDialogEx::CreateControls()
             new wxStaticText(componentsPage, wxID_ANY,
                              /* TRANSLATORS: program library */ _(L"Included libraries:")),
             wxSizerFlags{}.Border(wxLEFT));
-        wxBoxSizer* textRowSizer = new wxBoxSizer(wxHORIZONTAL);
-        wxHtmlWindow* textWindow =
+        auto* textRowSizer = new wxBoxSizer(wxHORIZONTAL);
+        auto* textWindow =
             new wxHtmlWindow(componentsPage, wxID_ANY, wxDefaultPosition, wxSize{ -1, FromDIP(75) },
                              wxHW_SCROLLBAR_AUTO | wxBORDER_THEME | wxHW_NO_SELECTION);
         textWindow->SetPage(m_components);
@@ -391,14 +395,14 @@ void AboutDialogEx::CreateControls()
 
     if (!m_mlaCitation.empty() && !m_apaCitation.empty() && !m_bibtexCitation.empty())
         {
-        wxPanel* citationPage = new wxPanel(m_sideBarBook);
-        wxBoxSizer* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
+        auto* citationPage = new wxPanel(m_sideBarBook);
+        auto* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
         citationPage->SetSizer(mainPanelSizer);
         m_sideBarBook->AddPage(citationPage, _(L"Citation"), ID_CITATION, false);
 
         mainPanelSizer->Add(new wxStaticText(citationPage, wxID_ANY,
                                              wxString::Format(_(L"To cite %s in publications:"),
-                                                              wxTheApp->GetAppName())),
+                                                              wxGetApp().GetAppName())),
                             wxSizerFlags{}.Border(wxLEFT));
 
         mainPanelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder() * 2);
@@ -406,8 +410,8 @@ void AboutDialogEx::CreateControls()
             {
             mainPanelSizer->Add(new wxStaticText(citationPage, wxID_ANY, _DT(L"MLA:")),
                                 wxSizerFlags{}.Border(wxLEFT));
-            wxBoxSizer* textRowSizer = new wxBoxSizer(wxHORIZONTAL);
-            wxHtmlWindow* textWindow = new wxHtmlWindow(
+            auto* textRowSizer = new wxBoxSizer(wxHORIZONTAL);
+            auto* textWindow = new wxHtmlWindow(
                 citationPage, wxID_ANY, wxDefaultPosition, wxSize{ -1, FromDIP(75) },
                 wxHW_SCROLLBAR_AUTO | wxBORDER_THEME | wxHW_NO_SELECTION);
             textWindow->SetPage(m_mlaCitation);
@@ -420,8 +424,8 @@ void AboutDialogEx::CreateControls()
             {
             mainPanelSizer->Add(new wxStaticText(citationPage, wxID_ANY, _DT(L"APA:")),
                                 wxSizerFlags{}.Border(wxLEFT));
-            wxBoxSizer* textRowSizer = new wxBoxSizer(wxHORIZONTAL);
-            wxHtmlWindow* textWindow = new wxHtmlWindow(
+            auto* textRowSizer = new wxBoxSizer(wxHORIZONTAL);
+            auto* textWindow = new wxHtmlWindow(
                 citationPage, wxID_ANY, wxDefaultPosition, wxSize{ -1, FromDIP(75) },
                 wxHW_SCROLLBAR_AUTO | wxBORDER_THEME | wxHW_NO_SELECTION);
             textWindow->SetPage(m_apaCitation);
@@ -434,11 +438,18 @@ void AboutDialogEx::CreateControls()
             {
             mainPanelSizer->Add(new wxStaticText(citationPage, wxID_ANY, _DT(L"BibTeX:")),
                                 wxSizerFlags{}.Border(wxLEFT));
-            wxBoxSizer* textRowSizer = new wxBoxSizer(wxHORIZONTAL);
-            wxTextCtrl* textWindow = new wxTextCtrl(
+            auto* textRowSizer = new wxBoxSizer(wxHORIZONTAL);
+            auto* textWindow = new wxTextCtrl(
                 citationPage, wxID_ANY, wxString{}, wxDefaultPosition, wxSize{ -1, FromDIP(175) },
                 wxTE_MULTILINE | wxTE_RICH2 | wxTE_READONLY, wxGenericValidator(&m_bibtexCitation));
             textWindow->SetFont(wxFontInfo{}.Family(wxFontFamily::wxFONTFAMILY_TELETYPE));
+            // Force the text color to reset to the system text color.
+            // Setting the font changes the font color to black, and simply setting it back to
+            // wxSYS_COLOUR_WINDOWTEXT will have no effect because the control still thinks the font
+            // color is that, although it really isn't. So set it to the dialog color and then
+            // to the text color for it to take effect.
+            textWindow->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW));
+            textWindow->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT));
             textRowSizer->Add(textWindow, wxSizerFlags{ 1 }.Expand());
             textRowSizer->Add(new wxBitmapButton(
                 citationPage, ID_COPYBIBTEX, wxArtProvider::GetBitmap(wxART_COPY, wxART_BUTTON)));

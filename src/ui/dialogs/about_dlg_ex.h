@@ -20,8 +20,6 @@
 #include <wx/dialog.h>
 #include <wx/hyperlink.h>
 #include <wx/image.h>
-#include <wx/notebook.h>
-#include <wx/statline.h>
 #include <wx/textctrl.h>
 #include <wx/utils.h>
 #include <wx/wx.h>
@@ -33,7 +31,7 @@ class AboutDialogEx final : public wxDialog
   public:
     /** @brief Constructor.
         @param parent The dialog's parent.
-        @param logo The application's logo.
+        @param banner A banner to show at the top of the dialog.
         @param appVersion The application's version.
         @param copyright The copyright string.
         @param eula The end-user license agreement content.
@@ -44,7 +42,7 @@ class AboutDialogEx final : public wxDialog
         @param pos The dialog's position.
         @param size The dialog's size.
         @param style The dialog's style.*/
-    AboutDialogEx(wxWindow* parent, const wxBitmap& logo, wxString appVersion, wxString copyright,
+    AboutDialogEx(wxWindow* parent, wxBitmap banner, wxString appVersion, wxString copyright,
                   wxString eula, wxString mlaCitation, wxString apaCitation,
                   wxString bibtexCitation, wxWindowID id = wxID_ANY,
                   const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
@@ -84,7 +82,7 @@ class AboutDialogEx final : public wxDialog
 
     Wisteria::UI::SideBarBook* m_sideBarBook{ nullptr };
 
-    wxBitmap m_logo;
+    wxBitmap m_banner;
     wxString m_appVersion;
     wxString m_copyright;
     wxString m_eula;
