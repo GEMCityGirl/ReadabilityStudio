@@ -1324,10 +1324,7 @@ void ReadabilityApp::LoadInterface()
                                .GetSVG(L"ribbon/app-logo.svg")
                                .GetBitmap(GetMainFrame()->FromDIP(wxSize{ 32, 32 })));
     GetMainFrame()->SetIcon(appIcon);
-    GetMainFrame()->SetLogo(wxGetApp()
-                                .GetResourceManager()
-                                .GetSVG(L"ribbon/app-logo.svg")
-                                .GetBitmap(GetMainFrame()->FromDIP(wxSize(128, 128))));
+    GetMainFrame()->SetLogo(wxGetApp().GetResourceManager().GetSVG(L"ribbon/app-logo.svg"));
     // set up the ribbon (and its submenus)
     GetMainFrame()->InitControls(CreateRibbon(GetMainFrame(), nullptr));
 
