@@ -253,8 +253,29 @@ void AboutDialogEx::CreateControls()
             }
 
         // put it all together
-        mainPanelSizer->Add(new wxStaticText(mainPage, wxID_ANY, wxGetApp().GetAppName()),
-                            wxSizerFlags{}.Left().Border(wxLEFT));
+        auto* appLabelSizer = new wxBoxSizer(wxVERTICAL);
+        auto* appLabel = new wxStaticText(mainPage, wxID_ANY, wxGetApp().GetAppName());
+        appLabel->SetFont(wxFontInfo{ appLabel->GetFont().GetFractionalPointSize() * 2 }.FaceName(
+            Wisteria::GraphItems::Label::GetFirstAvailableFont({ DONTTRANSLATE(L"Roboto"),
+                                                                 DONTTRANSLATE(L"Orbitron"),
+                                                                 DONTTRANSLATE(L"Georgia") })));
+        appLabel->SetForegroundColour(
+            wxSystemSettings::SelectLightDark(wxColour{ L"#3D3C3B" }, wxColour{ L"#F89522" }));
+        appLabelSizer->Add(appLabel);
+        appLabel = new wxStaticText(mainPage, wxID_ANY, wxGetApp().GetAppVersion());
+        appLabel->SetFont(wxFontInfo{ appLabel->GetFont().GetFractionalPointSize() * 1.5 }.FaceName(
+            Wisteria::GraphItems::Label::GetFirstAvailableFont({ DONTTRANSLATE(L"Roboto"),
+                                                                 DONTTRANSLATE(L"Orbitron"),
+                                                                 DONTTRANSLATE(L"Georgia") })));
+        appLabel->SetForegroundColour(
+            wxSystemSettings::SelectLightDark(wxColour{ L"#F89522" }, *wxWHITE));
+        appLabelSizer->Add(appLabel);
+        auto* appTitleSizer = new wxBoxSizer(wxHORIZONTAL);
+        appTitleSizer->Add(new wxStaticBitmap(
+            mainPage, wxID_ANY,
+            wxGetApp().GetMainFrame()->GetLogo().GetBitmap(FromDIP(wxSize{ 128, 128 }))));
+        appTitleSizer->Add(appLabelSizer, wxSizerFlags{}.CenterVertical());
+        mainPanelSizer->Add(appTitleSizer, wxSizerFlags{}.Left().Border(wxLEFT));
 
         auto* productArea = new wxBoxSizer(wxHORIZONTAL);
         productArea->Add(productInfoGrid);
