@@ -13251,6 +13251,9 @@ Bugattis
 Buginese
 Buginese's
 Bugineses
+Bugslayer
+Bugslayer's
+Bugslayers
 Bugzilla
 Bugzilla's
 Bugzillas
@@ -33140,6 +33143,9 @@ Geneks
 Genell
 Genell's
 Genells
+Generis
+Generis's
+Generises
 Generos
 Generos's
 Generosa
@@ -55800,7 +55806,7 @@ Mackenzi
 Mackenzi's
 MacKenzie
 MacKenzie's
-MacKenzies
+Mackenzies
 Mackenzis
 Mackenzy
 Mackenzy's
@@ -61580,7 +61586,7 @@ Miskewicz's
 Miskewiczes
 MISRA
 MISRA's
-MISRAs
+Misras
 Missie
 Missie's
 Missies
@@ -63754,8 +63760,8 @@ Nast's
 Nasts
 Nat
 Nat's
-Nata
-Nata's
+NATA
+NATA's
 Natacha
 Natacha's
 Natachas
@@ -63800,7 +63806,7 @@ Nataniels
 Natarajan
 Natarajan's
 Natarajans
-NATAs
+Natas
 Natascha
 Natascha's
 Nataschas
@@ -72195,6 +72201,9 @@ Redd
 Redd's
 Reddit
 Reddit's
+Redditor
+Redditor's
+Redditors
 Reddits
 Redds
 Rederich
@@ -84710,8 +84719,8 @@ Tewdors
 Tewkesburies
 Tewkesbury
 Tewkesbury's
-TeX
-Tex's
+Tex
+TeX's
 Texaco
 Texaco's
 Texacos
@@ -84730,7 +84739,7 @@ Texases
 Texcoco
 Texcoco's
 Texcocos
-Texes
+TeXes
 TexFlex
 TexFlex's
 TexFlexes

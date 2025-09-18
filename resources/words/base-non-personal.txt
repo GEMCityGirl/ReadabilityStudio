@@ -1058,6 +1058,7 @@ Buddhism
 Buddhist
 Buellton
 Buginese
+Bugslayer
 Bugzilla
 Buiron
 Bujumbura
@@ -5530,6 +5531,7 @@ Reconquista
 Recplex
 Redbook
 Reddit
+Redditor
 Redgate
 Redhat
 Redhill

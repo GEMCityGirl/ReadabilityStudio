@@ -12804,6 +12804,9 @@ bitchy
 bitcode
 bitcode's
 bitcodes
+bitcount
+bitcount's
+bitcounts
 bitdepth
 bitdepth's
 bitdepths
@@ -35929,6 +35932,9 @@ dialplan
 dialplan's
 dialplans
 dials
+dialtone
+dialtone's
+dialtones
 dialup
 dialup's
 dialyse
@@ -43059,6 +43065,9 @@ encrypting
 encryption
 encryption's
 encryptions
+encryptor
+encryptor's
+encryptors
 encrypts
 enculturate
 enculturated
@@ -46835,6 +46844,7 @@ extortions
 extortive
 extorts
 extra
+extrabold
 extracellular
 extracellularly
 extrachromosomal
@@ -46872,6 +46882,7 @@ extrajudicial
 extrajudicially
 extralegal
 extralegally
+extralight
 extralinguistic
 extramarital
 extramedullary
@@ -88279,6 +88290,7 @@ nonpersistent
 nonperson
 nonpersonal
 nonpersons
+nonperspective
 nonperturbing
 nonphotosynthetic
 nonphysical
@@ -88301,6 +88313,7 @@ nonportable
 nonpracticing
 nonpregnant
 nonprejudicial
+nonpremultiplied
 nonprescription
 nonpresent
 nonpresidential
@@ -109753,6 +109766,9 @@ reenactment's
 reenactments
 reenacts
 reencrypt
+reencrypted
+reencrypting
+reencrypts
 reenergize
 reenergized
 reenergizes
@@ -109862,6 +109878,10 @@ refastened
 refastening
 refastens
 refavors
+refcount
+refcounted
+refcounting
+refcounts
 refection
 refection's
 refections
@@ -112059,6 +112079,10 @@ reregistering
 reregisters
 reregistration
 reregistration's
+rerender
+rerendered
+rerendering
+rerenders
 rerolled
 reroute
 rerouted
@@ -136062,6 +136086,9 @@ timespan's
 timespans
 timestamp
 timestamped
+timestamper
+timestamper's
+timestampers
 timestamping
 timestamps
 timetable
@@ -143031,6 +143058,7 @@ unobtrusive
 unobtrusively
 unobtrusiveness
 unobtrusiveness's
+unoccluded
 unoccupied
 unoffensive
 unofficial
@@ -147505,6 +147533,7 @@ waitressed
 waitresses
 waitressing
 waits
+waivable
 waive
 waived
 waiver
@@ -151422,6 +151451,7 @@ zeppelin
 zeppelin's
 zeppelins
 zero
+zero'ed
 zero's
 zeroed
 zeroed's

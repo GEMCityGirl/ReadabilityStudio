@@ -13,6 +13,7 @@
 24-carrots	24-carats	3		
 2rd	2nd	3		
 2st	2nd	3		
+2th	2nd	3		
 3nd	3rd	3		
 3rt	3rd	3		
 3st	3rd	3		
@@ -238,6 +239,7 @@ accesing	accessing	3
 accesnt	accent	3		
 accesors	accessors	3		
 accessable	accessible	3		
+accessibile	accessible	3		
 accessibililty	accessibility	3		
 accessibililty's	accessibility's	3		
 accessible	easy to reach	0		
@@ -2958,13 +2960,12 @@ camreas	cameras	3
 can effect	can affect	3		
 can goods	canned goods	3		
 can here	can hear	3		
-can not	cannot,can't (unless putting emphasis on the word 'not')	3		only
+can not	cannot, can't (unless putting emphasis on the word 'not')	3		only
 can't hit the broadside of a barn	has poor aim/marksmanship	2		
 can't hold a candle to	can't compare to	2		
 can't not	can't, can (if double negative was intended)	3		
 can't see the forest for the trees	unable to understand the full meaning of something because of a fixation on minor details	2		
 cancel out	cancel	0		
-cancelation	cancellation	3		
 canceld	canceled	3		
 cancled	canceled	3		
 candadate	candidate	3		
@@ -3870,6 +3871,7 @@ conatined	contained	3
 conatining	containing	3		
 conatins	contains	3		
 concantenated	concatenated	3		
+concatanate	concatenate	3		
 concatenate together	concatenate	1		
 concatenated together	concatenated	1		
 concatenates together	concatenates	1		
@@ -3936,6 +3938,7 @@ condescending	stooping down	0
 condescends	stoops down	0		
 condidtion	condition	3		
 condidtions	conditions	3		
+condiftion	condition	3		
 conditionaly	conditionally	3		
 conditionnaly	conditionally	3		
 conditionsof	conditions of	3		
@@ -5217,6 +5220,7 @@ determine	decide, figure, find	0
 determined	decided, figured	0		
 determines	decides, figures	0		
 determing	determining	3		
+determinine	determine	3		
 determining	deciding, figuring	0		
 determinining	determining	3		
 determins	determines	3		
@@ -5272,6 +5276,7 @@ devided	divided	3
 devides	devices, divides	3		
 deviding	dividing	3		
 devistating	devastating	3		
+devive	device,devise	3		
 devloper	developer	3		
 devloper's	developer's	3		
 devlopers	developers	3		
@@ -5301,6 +5306,7 @@ diaolgs	dialogs	3
 diaolog	dialog	3		
 diaolog's	dialog's	3		
 diaologs	dialogs	3		
+diasble	disable	3		
 diaster	disaster	3		
 dichotomies	groups, branches, divisions	0		
 dichotomy	group, branch, division	0		
@@ -6022,6 +6028,7 @@ elememts	elements	3
 elementay	elementary	3		
 eleminated	eliminated	3		
 eleminating	eliminating	3		
+elemtment	element	3		
 elephant in the room	obvious issue that everyone is ignoring	2		
 eles	eels	3		
 eletricity	electricity	3		
@@ -6174,6 +6181,7 @@ encapsultes	encapsulates	3
 encapsulting	encapsulating	3		
 enchanced	enhanced	3		
 enchancement	enhancement	3		
+enclousure	enclosure	3		
 encodeded	encoded	3		
 enconding	encoding	3		
 encondings	encodings	3		
@@ -7543,6 +7551,7 @@ garanteeed	guaranteed	3
 garantees	guarantees	3		
 garantied	guaranteed	3		
 garanty	guarantee	3		
+gardning	gardening	3		
 garentee	guarantee	3		
 gargantuan	giant	0		
 garnison	garrison	3		
@@ -7959,6 +7968,7 @@ hard fact	fact	0
 hard facts	facts	0		
 hard to swallow	difficult to believe	2		
 hardeing	hardening	3		
+hardning	hardening	3		
 hardward	hardware	3		
 harras	harass	3		
 harrased	harassed	3		
@@ -8454,6 +8464,7 @@ illegimacy	illegitimacy	3
 illegitmate	illegitimate	3		
 illess	illness	3		
 illiegal	illegal	3		
+illlustration	illustration	3		
 illumination	light	0		
 illustrate	draw, show	0		
 illustrated	drawn, showed	0		
@@ -11861,6 +11872,7 @@ outputing	outputting	3
 outragous	outrageous	3		
 outselves	ourselves	3		
 outside of	outside (unless proceeding a pronoun)	0		
+outuput	output	3		
 outut	output	3		
 over a barrel	at a disadvantage	2		
 over and done with	done, finished	0		
@@ -17464,6 +17476,7 @@ volumn	volume	3
 volumne	volume	3		
 vreity	variety	3		
 vriety	variety	3		
+vritual	virtual	3		
 vulenrabilities	vulnerabilities	3		
 vulenrability	vulnerability	3		
 vulenrability's	vulnerability's	3		
@@ -17543,6 +17556,7 @@ was dubious about	doubted	0
 was evidence about	proved	0		
 was evidence of	proved	0		
 was faced with	faced	0		
+was give	was given	3		
 was harmful to	harmed	0		
 was in agreement	agreed	0		
 was in attendance	attended	0		
