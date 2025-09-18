@@ -798,14 +798,13 @@ bool ReadabilityApp::OnInit()
     const size_t imageIndex = randNum(GetRandomNumberEngine());
     if (imageIndex < GetSplashscreenPaths().GetCount())
         {
-        wxString ext{ GetSplashscreenPaths()[imageIndex] };
+        wxString imageName{ GetSplashscreenPaths()[imageIndex] };
         auto scaledBmp =
             GetScaledImage(GetSplashscreenPaths()[imageIndex],
-                           Image::GetImageFileTypeFromExtension(ext), wxSize{ 500, 400 });
+                           Image::GetImageFileTypeFromExtension(imageName), wxSize{ 800, 800 });
         // crop the bottom
-        GetMainFrameEx()->SetAboutDialogImage(
-            wxBitmap(wxImage(scaledBmp.ConvertToImage())
-                         .Resize(GetMainFrame()->FromDIP(wxSize{ 500, 200 }), wxPoint(0, 0))));
+        GetMainFrameEx()->SetAboutDialogImage(wxBitmap(wxImage{ scaledBmp.ConvertToImage() }.Resize(
+            GetMainFrame()->FromDIP(wxSize{ 800, 100 }), wxPoint{ 0, 0 })));
         }
 
     // set the help

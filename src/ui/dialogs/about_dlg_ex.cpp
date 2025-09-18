@@ -178,6 +178,14 @@ void AboutDialogEx::CreateControls()
     {
     auto* mainSizer = new wxBoxSizer(wxVERTICAL);
 
+    if (m_banner.IsOk())
+        {
+        auto* bannerBox = new wxStaticBitmap(this, wxID_ANY, m_banner, wxDefaultPosition,
+                                             wxDefaultSize, wxSIMPLE_BORDER);
+        mainSizer->Add(bannerBox, 0, wxALIGN_CENTER_HORIZONTAL | wxALL,
+                       wxSizerFlags::GetDefaultBorder());
+        }
+
     m_sideBarBook = new Wisteria::UI::SideBarBook(this, wxID_ANY);
     mainSizer->Add(m_sideBarBook, wxSizerFlags{ 1 }.Expand().Border());
 
@@ -187,14 +195,6 @@ void AboutDialogEx::CreateControls()
         auto* mainPanelSizer = new wxBoxSizer(wxVERTICAL);
         mainPage->SetSizer(mainPanelSizer);
         m_sideBarBook->AddPage(mainPage, _(L"Product Info"), ID_VERSION_PAGE, true);
-
-        if (m_banner.IsOk())
-            {
-            auto* bannerBox = new wxGenericStaticBitmap(
-                mainPage, wxID_ANY, m_banner, wxDefaultPosition, wxDefaultSize, wxSIMPLE_BORDER);
-            mainPanelSizer->Add(bannerBox, 0, wxALIGN_CENTER_HORIZONTAL | wxALL,
-                                wxSizerFlags::GetDefaultBorder());
-            }
 
         auto* productInfoGrid = new wxFlexGridSizer(2, wxSize(wxSizerFlags::GetDefaultBorder(), 0));
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Version:")));
