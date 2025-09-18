@@ -33,29 +33,36 @@ jobs:
 
           profanity.load_censor_words()
 
+          # List of words you want to ignore
+          ignore_words = {"stripchart", "studip", "Guido", "Coon", "Header", "he/she", "sexual", "Test", "Kill"}
+
           extensions = ['.md', '.qmd']
 
           # Gather all files to check
           files_to_check = []
           for root, dirs, files in os.walk('.'):
-              for file in files:
-                  if any(file.endswith(ext) for ext in extensions):
-                      files_to_check.append(os.path.join(root, file))
+            for file in files:
+                if any(file.endswith(ext) for ext in extensions):
+                  files_to_check.append(os.path.join(root, file))
+
+          def contains_profanity_with_ignore(word):
+            """Return True if word is profane and not in ignore list."""
+            return word.lower() not in ignore_words and profanity.contains_profanity(word)
 
           def check_file(path):
-              try:
-                  with open(path, 'r', encoding='utf-8', errors='ignore') as f:
-                      content = f.read()
-                      words_found = [w for w in content.split() if profanity.contains_profanity(w)]
-                      if words_found:
-                          return path, words_found
-              except Exception as e:
-                  print(f"⚠️ Could not read {path}: {e}")
-              return None, []
+            try:
+                with open(path, 'r', encoding='utf-8', errors='ignore') as f:
+                  content = f.read()
+                  words_found = [w for w in content.split() if contains_profanity_with_ignore(w)]
+                  if words_found:
+                    return path, words_found
+            except Exception as e:
+                print(f"⚠️ Could not read {path}: {e}")
+            return None, []
 
           # Parallel scan
           with Pool(cpu_count()) as pool:
-              results = pool.map(check_file, files_to_check)
+            results = pool.map(check_file, files_to_check)
 
           # Filter profane files
           profane_files = [(f, words) for f, words in results if words]
@@ -65,10 +72,10 @@ jobs:
           # Write artifact report
           report_file = 'profanity_report.txt'
           with open(report_file, 'w', encoding='utf-8') as f:
-              if profane_files:
-                  f.write("Profanity detected in the following files:\n")
-                  for file_path, words in profane_files:
-                      f.write(f"{file_path}: {', '.join(words)}\n")
+            if profane_files:
+                f.write("Profanity detected in the following files:\n")
+                for file_path, words in profane_files:
+                    f.write(f"{file_path}: {', '.join(words)}\n")
               else:
                   f.write("No profanity detected.\n")
 
@@ -85,7 +92,7 @@ jobs:
                   summary.write(f"**Files with profanity:** <span style='color:red'>{profane_count}</span>\n\n")
                   summary.write("### Offending files and words\n")
                   for file_path, words in profane_files:
-                      summary.write(f"- {file_path}: {', '.join(words)}\n")
+                    summary.write(f"- {file_path}: {', '.join(words)}\n")
               else:
                   summary.write("**Files with profanity:** 0 ✅\n")
 
