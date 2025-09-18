@@ -16,6 +16,7 @@
 #include "../../Wisteria-Dataviz/src/CRCpp/inc/CRC.h"
 #include "../../Wisteria-Dataviz/src/easyexif/exif.h"
 #include "../../Wisteria-Dataviz/src/import/html_extract_text.h"
+#include "../../Wisteria-Dataviz/src/ui/dialogs/dialogwithhelp.h"
 #include "../../Wisteria-Dataviz/src/util/hardwareinfo.h"
 #include "../../app/readability_app.h"
 #include "../../lua/lua.h"
@@ -273,7 +274,8 @@ void AboutDialogEx::CreateControls()
         auto* appTitleSizer = new wxBoxSizer(wxHORIZONTAL);
         appTitleSizer->Add(new wxStaticBitmap(
             mainPage, wxID_ANY,
-            wxGetApp().GetMainFrame()->GetLogo().GetBitmap(FromDIP(wxSize{ 128, 128 }))));
+            Wisteria::UI::DialogWithHelp::FixStaticBitmapImage(wxGetApp().GetMainFrame()->GetLogo(),
+                                                               FromDIP(wxSize{ 128, 128 }))));
         appTitleSizer->Add(appLabelSizer, wxSizerFlags{}.CenterVertical());
         mainPanelSizer->Add(appTitleSizer, wxSizerFlags{}.Left().Border(wxLEFT));
 
