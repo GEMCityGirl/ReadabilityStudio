@@ -76,8 +76,8 @@ jobs:
                 f.write("Profanity detected in the following files:\n")
                 for file_path, words in profane_files:
                     f.write(f"{file_path}: {', '.join(words)}\n")
-              else:
-                  f.write("No profanity detected.\n")
+            else:
+                f.write("No profanity detected.\n")
 
           # Export report file for next step
           with open(os.environ['GITHUB_OUTPUT'], 'a') as gh_out:
