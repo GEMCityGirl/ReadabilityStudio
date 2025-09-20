@@ -163,9 +163,9 @@ namespace Wisteria::Graphs
         /// @param dc The measuring DC.
         virtual void CalculateScorePositions([[maybe_unused]] wxDC& dc) {}
 
-        /** This is a more liberal than calling `Polygon::IsInsidePolygon()` because it
+        /** @brief This is a more liberal than calling `geometry::is_inside_polygon` because it
                 will see if the point next to or below the point are also in the polygon.
-                This helps prevent scores that are right on a line to switch between regions
+            @details This helps prevent scores that are right on a line to switch between regions
                 when different screen resolutions. This way, it will error on the side of going
                 into the more difficult region.
             @note The backscreened plot that this is used on is not DPI scaled, so the offset
@@ -184,12 +184,11 @@ namespace Wisteria::Graphs
             // see if the point is even in the polygon's bounding box, then see if it's
             // actually in the polygon
             return Wisteria::GraphItems::Polygon::GetPolygonBoundingBox(polygon).Contains(point) ?
-                       (Wisteria::GraphItems::Polygon::IsInsidePolygon(point, &polygon[0],
-                                                                       polygon.size()) ||
-                        Wisteria::GraphItems::Polygon::IsInsidePolygon(
-                            wxPoint(point.x + xOffset, point.y), &polygon[0], polygon.size()) ||
-                        Wisteria::GraphItems::Polygon::IsInsidePolygon(
-                            wxPoint(point.x, point.y + yOffset), &polygon[0], polygon.size())) :
+                       (geometry::is_inside_polygon(point, polygon) ||
+                        geometry::is_inside_polygon(wxPoint{ point.x + xOffset, point.y },
+                                                    polygon) ||
+                        geometry::is_inside_polygon(wxPoint{ point.x, point.y + yOffset },
+                                                    polygon)) :
                        false;
             }
 
