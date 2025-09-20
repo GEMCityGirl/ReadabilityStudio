@@ -28,62 +28,72 @@ jobs:
           python - <<'EOF'
           import os
           import sys
+          import string
           from multiprocessing import Pool, cpu_count
           from better_profanity import profanity
 
+          # Load default profanity words
           profanity.load_censor_words()
 
-          # List of words you want to ignore
-          ignore_words = {"stripchart", "studip", "Guido", "Coon", "Header", "he/she", "sexual", "Test", "Kill"}
+          # Ignore list (all lowercase)
+          ignore_words = {w.lower() for w in ["stripchart", "studip", "Guido", "Coon", "Header", "he/she", "sexual", "Test", "Kill"]}
 
+          # File extensions to scan
           extensions = ['.md', '.qmd']
 
           # Gather all files to check
           files_to_check = []
           for root, dirs, files in os.walk('.'):
-            for file in files:
-                if any(file.endswith(ext) for ext in extensions):
-                  files_to_check.append(os.path.join(root, file))
+              for file in files:
+                  if any(file.endswith(ext) for ext in extensions):
+                      files_to_check.append(os.path.join(root, file))
+
+          def normalize_word(word):
+              """Lowercase and strip punctuation."""
+              return word.lower().strip(string.punctuation)
 
           def contains_profanity_with_ignore(word):
-            """Return True if word is profane and not in ignore list."""
-            return word.lower() not in ignore_words and profanity.contains_profanity(word)
+              word_norm = normalize_word(word)
+              # Skip if any ignore word is a substring
+              if any(ignore in word_norm for ignore in ignore_words):
+                  return False
+              return profanity.contains_profanity(word_norm)
 
           def check_file(path):
-            try:
-                with open(path, 'r', encoding='utf-8', errors='ignore') as f:
-                  content = f.read()
-                  words_found = [w for w in content.split() if contains_profanity_with_ignore(w)]
-                  if words_found:
-                    return path, words_found
-            except Exception as e:
-                print(f"⚠️ Could not read {path}: {e}")
-            return None, []
+              try:
+                  with open(path, 'r', encoding='utf-8', errors='ignore') as f:
+                      content = f.read()
+                      words_found = [w for w in content.split() if contains_profanity_with_ignore(w)]
+                      if words_found:
+                          return path, words_found
+              except Exception as e:
+                  print(f"⚠️ Could not read {path}: {e}")
+              return None, []
 
           # Parallel scan
           with Pool(cpu_count()) as pool:
-            results = pool.map(check_file, files_to_check)
+              results = pool.map(check_file, files_to_check)
 
-          # Filter profane files
+          # Filter files with profanity
           profane_files = [(f, words) for f, words in results if words]
           total_files = len(files_to_check)
           profane_count = len(profane_files)
 
-          # Write artifact report
+          # Write report
           report_file = 'profanity_report.txt'
           with open(report_file, 'w', encoding='utf-8') as f:
-            if profane_files:
-                f.write("Profanity detected in the following files:\n")
-                for file_path, words in profane_files:
-                    f.write(f"{file_path}: {', '.join(words)}\n")
-            else:
-                f.write("No profanity detected.\n")
+              if profane_files:
+                  f.write("Profanity detected in the following files:\n")
+                  for file_path, words in profane_files:
+                      f.write(f"{file_path}: {', '.join(words)}\n")
+              else:
+                  f.write("No profanity detected.\n")
 
-          # Export report file for next step
+          # Export report for next step
           with open(os.environ['GITHUB_OUTPUT'], 'a') as gh_out:
               gh_out.write(f"report_file={report_file}\n")
 
-          # Write GitHub Actions job summary with red highlight for failure
+          # GitHub Actions summary
           summary_path = os.environ['GITHUB_STEP_SUMMARY']
           with open(summary_path, 'a') as summary:
               summary.write(f"## Profanity Check Summary\n")
@@ -92,7 +102,7 @@ jobs:
                   summary.write(f"**Files with profanity:** <span style='color:red'>{profane_count}</span>\n\n")
                   summary.write("### Offending files and words\n")
                   for file_path, words in profane_files:
-                    summary.write(f"- {file_path}: {', '.join(words)}\n")
+                      summary.write(f"- {file_path}: {', '.join(words)}\n")
               else:
                   summary.write("**Files with profanity:** 0 ✅\n")
 
@@ -100,7 +110,7 @@ jobs:
           for file_path, words in profane_files:
               print(f"::error file={file_path}::Profanity detected: {', '.join(words)}")
 
-          # Fail workflow if any profanity
+          # Fail workflow if profanity found
           if profane_files:
               sys.exit("❌ Profanity detected. Failing workflow.")
           else:
