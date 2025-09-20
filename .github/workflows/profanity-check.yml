@@ -36,7 +36,7 @@ jobs:
           profanity.load_censor_words()
 
           # Ignore list (all lowercase)
-          ignore_words = {w.lower() for w in ["stripchart", "studip", "Guido", "Coon", "Header", "he/she", "sexual", "Test", "Kill"]}
+          ignore_words = {w.lower() for w in ["stripchart", "stupid", "XXX", "wad", "Pigs", "Guido", "Coon", "Header", "he/she", "sexual", "Test", "Kill"]}
 
           # File extensions to scan
           extensions = ['.md', '.qmd']

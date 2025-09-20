@@ -23,7 +23,7 @@ jobs:
         working-directory: ${{env.GITHUB_WORKSPACE}}
         run: |
              cmake . -DCMAKE_BUILD_TYPE=Release
-             cmake --build . -target=readstudio -j4 --config Release
+             cmake --build . --target=readstudio -j4 --config Release
 
       - name: Archive Windows Build
         uses: actions/upload-artifact@v4
