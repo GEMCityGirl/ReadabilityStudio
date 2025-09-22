@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleExecutable</key>
-	<string>${CMAKE_PROJECT_NAME}</string>
+	<string>${readstudio_DESCRIPTION}</string>
 
 	<key>CFBundleDisplayName</key>
 	<string>${readstudio_DESCRIPTION}</string>
@@ -71,7 +71,7 @@
 	<string>${readstudio_VERSION_MAJOR}.${readstudio_VERSION_MINOR}.${readstudio_VERSION_PATCH}.${readstudio_VERSION_TWEAK}, (c) 2006-${BUILD_YEAR} ${PUBLISHER}</string>
 
 	<key>CFBundleName</key>
-	<string>${CMAKE_PROJECT_NAME}</string>
+	<string>${readstudio_DESCRIPTION}</string>
 
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
