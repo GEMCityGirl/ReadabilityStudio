@@ -2536,7 +2536,7 @@ class ReadabilityAppOptions
 
     // embedded text editor
     wxFont m_editorFont;
-    wxColour m_editorFontColor{ *wxBLACK };
+    wxColour m_editorFontColor{ wxColour{ 0, 0, 0 } };
     bool m_editorIndent{ false };
     bool m_editorSpaceAfterNewlines{ false };
     wxTextAttrAlignment m_editorTextAlignment{ wxTextAttrAlignment::wxTEXT_ALIGNMENT_JUSTIFIED };
@@ -2573,7 +2573,7 @@ class ReadabilityAppOptions
     wxColour m_textHighlightColor{ wxColour{ 152, 251, 152 } };
     wxColour m_excludedTextHighlightColor{ wxColour{ 175, 175, 175 } };
     wxColour m_duplicateWordHighlightColor{ wxColour{ 255, 128, 128 } };
-    wxColour m_fontColor{ *wxBLACK };
+    wxColour m_fontColor{ wxColour{ 0, 0, 0 } };
     wxFont m_textViewFont;
     LongSentence m_longSentenceMethod{ LongSentence::LongerThanSpecifiedLength };
     int m_difficultSentenceLength{ 22 };
@@ -2638,17 +2638,17 @@ class ReadabilityAppOptions
     wxColour m_ribbonActiveTabColor{ wxColour{ 245, 246, 247 } };
     wxColour m_ribbonInactiveTabColor{ wxColour{ 254, 254, 254 } };
     wxColour m_ribbonHoverColor{ wxColour{ 232, 239, 247 } };
-    wxColour m_ribbonHoverFontColor{ *wxBLACK };
-    wxColour m_ribbonActiveFontColor{ *wxBLACK };
-    wxColour m_ribbonInactiveFontColor{ *wxBLACK };
+    wxColour m_ribbonHoverFontColor{ wxColour{ 0, 0, 0 } };
+    wxColour m_ribbonActiveFontColor{ wxColour{ 0, 0, 0 } };
+    wxColour m_ribbonInactiveFontColor{ wxColour{ 0, 0, 0 } };
     // sidebar
     wxColour m_sideBarBackgroundColor{ wxColour{ 200, 211, 231 } }; // Serenity
     wxColour m_sideBarParentColor{ wxColour{ 180, 189, 207 } };     // slightly darker
     wxColour m_sideBarActiveColor{ wxColour{ L"#FDB759" } };        // orange
-    wxColour m_sideBarActiveFontColor{ *wxBLACK };
-    wxColour m_sideBarFontColor{ *wxBLACK };
+    wxColour m_sideBarActiveFontColor{ wxColour{ 0, 0, 0 } };
+    wxColour m_sideBarFontColor{ wxColour{ 0, 0, 0 } };
     wxColour m_sideBarHoverColor{ wxColour{ 253, 211, 155 } }; // slightly lighter
-    wxColour m_sideBarHoverFontColor{ *wxBLACK };
+    wxColour m_sideBarHoverFontColor{ wxColour{ 0, 0, 0 } };
     // last opened file locations
     wxString m_imagePath;
     wxString m_projectPath;
@@ -2674,21 +2674,21 @@ class ReadabilityAppOptions
     wxString m_plotBackGroundImagePath;
     wxString m_watermark;
     wxString m_watermarkImg;
-    wxColour m_graphBackGroundColor{ *wxWHITE };
-    wxColour m_plotBackGroundColor{ *wxWHITE };
+    wxColour m_graphBackGroundColor{ wxColour{ 255, 255, 255 } };
+    wxColour m_plotBackGroundColor{ wxColour{ 255, 255, 255 } };
     uint8_t m_plotBackGroundImageOpacity{ wxALPHA_OPAQUE };
     uint8_t m_plotBackGroundColorOpacity{ wxALPHA_TRANSPARENT };
-    wxColour m_xAxisFontColor{ *wxBLACK };
+    wxColour m_xAxisFontColor{ wxColour{ 0, 0, 0 } };
     wxFont m_xAxisFont;
-    wxColour m_yAxisFontColor{ *wxBLACK };
+    wxColour m_yAxisFontColor{ wxColour{ 0, 0, 0 } };
     wxFont m_yAxisFont;
-    wxColour m_topTitleFontColor{ *wxBLACK };
+    wxColour m_topTitleFontColor{ wxColour{ 0, 0, 0 } };
     wxFont m_topTitleFont;
-    wxColour m_bottomTitleFontColor{ *wxBLACK };
+    wxColour m_bottomTitleFontColor{ wxColour{ 0, 0, 0 } };
     wxFont m_bottomTitleFont;
-    wxColour m_leftTitleFontColor{ *wxBLACK };
+    wxColour m_leftTitleFontColor{ wxColour{ 0, 0, 0 } };
     wxFont m_leftTitleFont;
-    wxColour m_rightTitleFontColor{ *wxBLACK };
+    wxColour m_rightTitleFontColor{ wxColour{ 0, 0, 0 } };
     wxFont m_rightTitleFont;
     // a "rainy" look for the readability graphs
     wxColour m_graphInvalidAreaColor{ wxColour{ 193, 205, 193 } }; // honeydew

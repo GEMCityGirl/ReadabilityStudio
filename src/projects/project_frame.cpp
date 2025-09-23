@@ -1918,14 +1918,14 @@ void ProjectDocChildFrame::OnEditPlotBackgroundImage([[maybe_unused]] wxCommandE
 //---------------------------------------------------
 void ProjectDocChildFrame::OnEditGraphOpacity(wxCommandEvent& event)
     {
-    wxBitmap bmp(wxGetApp().GetMainFrame()->FromDIP(wxSize(300, 300)));
+    wxBitmap bmp(wxGetApp().GetMainFrame()->FromDIP(wxSize{ 300, 300 }));
     uint8_t opacity = wxALPHA_OPAQUE;
 
     const auto fillSquare = [](wxBitmap& theBmp, wxColour opacityColor)
     {
         wxMemoryDC memDC(theBmp);
-        memDC.SetBrush(wxBrush(opacityColor));
-        memDC.SetPen(*wxBLACK_PEN);
+        memDC.SetBrush(wxBrush{ opacityColor });
+        memDC.SetPen(wxColour{ 0, 0, 0 });
         memDC.Clear();
         memDC.DrawRectangle(0, 0, theBmp.GetWidth(), theBmp.GetHeight());
         memDC.SelectObject(wxNullBitmap);

@@ -176,7 +176,8 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
                 .Brush(wxBrush(GetInvalidAreaColor(), wxBRUSHSTYLE_FDIAGONAL_HATCH))
                 .Text(_(L"Invalid region: sentences are too long")),
             m_longSentencesPoints);
-        invalidSentenceArea->SetBackgroundFill(Colors::GradientFill(*wxWHITE));
+        invalidSentenceArea->SetBackgroundFill(
+            Colors::GradientFill(Colors::ColorBrewer::GetColor(Colors::Color::White)));
         AddObject(std::move(invalidSentenceArea));
 
         // long word region
@@ -218,7 +219,8 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
                 .Brush(wxBrush(GetInvalidAreaColor(), wxBRUSHSTYLE_FDIAGONAL_HATCH))
                 .Text(_(L"Invalid region: words are too long")),
             m_longWordPoints);
-        invalidWordArea->SetBackgroundFill(Colors::GradientFill(*wxWHITE));
+        invalidWordArea->SetBackgroundFill(
+            Colors::GradientFill(Colors::ColorBrewer::GetColor(Colors::Color::White)));
         AddObject(std::move(invalidWordArea));
 
         // divider line
@@ -378,7 +380,8 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
             m_gradeOver8Polygon));
 
         // middle points on the separator line
-        wxColour separatorColor{ Colors::ColorContrast::ChangeOpacity(*wxBLACK, 200) };
+        wxColour separatorColor{ Colors::ColorContrast::ChangeOpacity(
+            Wisteria::Colors::ColorBrewer::GetColor(Wisteria::Colors::Color::Black), 200) };
         separatorColor =
             Colors::ColorContrast::ShadeOrTintIfClose(separatorColor, GetPlotOrCanvasColor());
         auto linePoints = std::make_unique<GraphItems::Points2D>(wxNullPen);
@@ -475,8 +478,8 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
         GetPhysicalCoordinates(126, 19.6, textCoordinate);
         auto mainLabel = std::make_unique<GraphItems::Label>(
             GraphItems::GraphItemInfo(_(L"German\nReadability Graph"))
-                .Pen(*wxBLACK_PEN)
-                .FontBackgroundColor(*wxWHITE)
+                .Pen(Wisteria::Colors::ColorBrewer::GetColor(Wisteria::Colors::Color::Black))
+                .FontBackgroundColor(Colors::ColorBrewer::GetColor(Colors::Color::White))
                 .Scaling(GetScaling())
                 .DPIScaling(GetDPIScaleFactor())
                 .Font(wxFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize() * 1.5,
@@ -494,8 +497,8 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
                 GraphItems::GraphItemInfo(_(L"Average line\nAverage, each zone"))
                     .Scaling(GetScaling())
                     .DPIScaling(GetDPIScaleFactor())
-                    .Pen(*wxBLACK_PEN)
-                    .FontBackgroundColor(*wxWHITE)
+                    .Pen(Wisteria::Colors::ColorBrewer::GetColor(Wisteria::Colors::Color::Black))
+                    .FontBackgroundColor(Colors::ColorBrewer::GetColor(Colors::Color::White))
                     .Font(legendFont)
                     .LabelAlignment(TextAlignment::FlushLeft)
                     .Anchoring(Anchoring::BottomLeftCorner)
@@ -566,7 +569,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
         {
         const wxColour gradeLineColor{ Colors::ColorContrast::IsDark(GetPlotOrCanvasColor()) ?
                                            Colors::ColorBrewer::GetColor(Colors::Color::BondiBlue) :
-                                           *wxBLUE };
+                                           Colors::ColorBrewer::GetColor(Colors::Color::Blue) };
 
         if (GetDataset() == nullptr)
             {
@@ -793,7 +796,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
             AddObject(std::make_unique<GraphItems::Label>(
                 GraphItems::GraphItemInfo(_(L"Invalid score: text is too difficult to be plotted"))
                     .Scaling(GetScaling())
-                    .Pen(*wxBLACK_PEN)
+                    .Pen(Wisteria::Colors::ColorBrewer::GetColor(Wisteria::Colors::Color::Black))
                     .Font(labelFont)
                     .AnchorPoint(textCoordinate)));
             }

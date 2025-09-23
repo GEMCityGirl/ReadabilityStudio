@@ -4962,27 +4962,27 @@ ProjectDoc::BuildHighlighterTags([[maybe_unused]] const wxColour& highlightColor
     const int dolchNounTextColorIndexBGMode = (GetDolchNounColor().GetLuminance() < .5f) ? 13 : 1;
 #elif defined(__WXGTK__)
     const wxColour highlightedTextColor =
-        (highlightColor.GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
+        (highlightColor.GetLuminance() < .5f) ? wxColour{ 255, 255, 255 } : wxColour{ 0, 0, 0 };
     const wxColour errorTextColor =
-        (GetDuplicateWordHighlightColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
+        (GetDuplicateWordHighlightColor().GetLuminance() < .5f) ? wxColour{ 255, 255, 255 } : wxColour{ 0, 0, 0 };
     const wxColour styleTextColor =
-        (GetWordyPhraseHighlightColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
+        (GetWordyPhraseHighlightColor().GetLuminance() < .5f) ? wxColour{ 255, 255, 255 } : wxColour{ 0, 0, 0 };
     const wxColour excludedTextColor =
-        (GetExcludedTextHighlightColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
+        (GetExcludedTextHighlightColor().GetLuminance() < .5f) ? wxColour{ 255, 255, 255 } : wxColour{ 0, 0, 0 };
     const wxColour dolchConjunctionsTextColor =
-        (GetDolchConjunctionsColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
+        (GetDolchConjunctionsColor().GetLuminance() < .5f) ? wxColour{ 255, 255, 255 } : wxColour{ 0, 0, 0 };
     const wxColour dolchPrepositionsTextColor =
-        (GetDolchPrepositionsColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
+        (GetDolchPrepositionsColor().GetLuminance() < .5f) ? wxColour{ 255, 255, 255 } : wxColour{ 0, 0, 0 };
     const wxColour dolchPronounsTextColor =
-        (GetDolchPronounsColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
+        (GetDolchPronounsColor().GetLuminance() < .5f) ? wxColour{ 255, 255, 255 } : wxColour{ 0, 0, 0 };
     const wxColour dolchAdverbsTextColor =
-        (GetDolchAdverbsColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
+        (GetDolchAdverbsColor().GetLuminance() < .5f) ? wxColour{ 255, 255, 255 } : wxColour{ 0, 0, 0 };
     const wxColour dolchAdjectivesTextColor =
-        (GetDolchAdjectivesColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
+        (GetDolchAdjectivesColor().GetLuminance() < .5f) ? wxColour{ 255, 255, 255 } : wxColour{ 0, 0, 0 };
     const wxColour dolchVerbsTextColor =
-        (GetDolchVerbsColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
+        (GetDolchVerbsColor().GetLuminance() < .5f) ? wxColour{ 255, 255, 255 } : wxColour{ 0, 0, 0 };
     const wxColour dolchNounTextColor =
-        (GetDolchNounColor().GetLuminance() < .5f) ? *wxWHITE : *wxBLACK;
+        (GetDolchNounColor().GetLuminance() < .5f) ? wxColour{ 255, 255, 255 } : wxColour{ 0, 0, 0 };
 #endif
 
 #ifdef __WXMSW__
@@ -5796,7 +5796,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             BuildHighlighterTags(highlightColor, highlighterColorsThemed);
 
         const HighlighterColors highlighterColorsPaperWhite =
-            BuildReportColors(highlightColor, *wxWHITE);
+            BuildReportColors(highlightColor, wxColour{ 255, 255, 255 });
         const HighlighterTags highlighterTagsPaperWhite =
             BuildHighlighterTags(highlightColor, highlighterColorsPaperWhite);
 
@@ -5813,7 +5813,7 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
         const TextHeader textHeaderThemed =
             BuildHeader(GetTextReportBackgroundColor(), highlighterColorsThemed, textViewFont);
         const TextHeader textHeaderPaperWhite =
-            BuildHeader(*wxWHITE, highlighterColorsPaperWhite, textViewFont);
+            BuildHeader(wxColour{ 255, 255, 255 }, highlighterColorsPaperWhite, textViewFont);
 
         // specialized highlighters
         SyllableCountGreaterEqualWithHighlighting<word_case_insensitive_no_stem>

@@ -5392,7 +5392,7 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
     FileListDlg fileListDlg(wxGetApp().GetParentingWindow(), wxID_ANY, _(L"Duplicate Files"));
     fileListDlg.GetListCtrl()->SetVirtualDataSize(files.size());
     size_t rowCount{ 0 };
-    fileListDlg.GetListCtrl()->SetForegroundColour(*wxBLACK);
+    fileListDlg.GetListCtrl()->SetForegroundColour(wxColour{ 0, 0, 0 });
         // catalogue duplicates
         {
         wxBusyInfo wait(_(L"Loading duplicates..."), this);
@@ -5410,8 +5410,9 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
                     {
                     const wxFileName fn(curFile);
                     wxItemAttr attribs;
-                    attribs.SetBackgroundColour(
-                        (alternatingColor ? (*wxGREEN).ChangeLightness(160) : *wxWHITE));
+                    attribs.SetBackgroundColour((alternatingColor ?
+                                                     wxColour{ 0, 255, 0 }.ChangeLightness(160) :
+                                                     wxColour{ 255, 255, 255 }));
                     fileListDlg.GetListCtrlData()->SetRowAttributes(rowCount, attribs);
                     fileListDlg.GetListCtrlData()->SetItemText(rowCount, 0, fn.GetFullName());
                     fileListDlg.GetListCtrlData()->SetItemText(rowCount, 1, fn.GetPath());

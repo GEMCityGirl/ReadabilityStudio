@@ -269,7 +269,7 @@ void AboutDialogEx::CreateControls()
                                                                  DONTTRANSLATE(L"Orbitron"),
                                                                  DONTTRANSLATE(L"Georgia") })));
         appLabel->SetForegroundColour(
-            wxSystemSettings::SelectLightDark(wxColour{ L"#F89522" }, *wxWHITE));
+            wxSystemSettings::SelectLightDark(wxColour{ L"#F89522" }, wxColour{ 255, 255, 255 }));
         appLabelSizer->Add(appLabel);
         auto* appTitleSizer = new wxBoxSizer(wxHORIZONTAL);
         appTitleSizer->Add(new wxStaticBitmap(

@@ -324,12 +324,12 @@ void EditTextDlg::CreateControls()
     {
         if (m_parentDoc != nullptr &&
             // Default white? Just keep their selected font color.
-            m_parentDoc->GetTextReportBackgroundColor() != *wxWHITE)
+            m_parentDoc->GetTextReportBackgroundColor() != wxColour{ 255, 255, 255 })
             {
             // if they are theming and it's dark, then explicitly use white
             return (Wisteria::Colors::ColorContrast::IsDark(
                         m_parentDoc->GetTextReportBackgroundColor()) ?
-                        *wxWHITE :
+                        wxColour{ 255, 255, 255 } :
                         // ...otherwise, shade or tint to go with the theme
                         Wisteria::Colors::ColorContrast::ShadeOrTintIfClose(
                             wxGetApp().GetAppOptions().GetEditorFontColor(),

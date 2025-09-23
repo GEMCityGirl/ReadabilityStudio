@@ -45,7 +45,7 @@ class Banner : public wxWindow
 
         dc.SetPen(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT));
         dc.SetTextForeground(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT));
-        dc.SetBackground(*wxTRANSPARENT_BRUSH);
+        dc.SetBackground(wxColour{ 0, 0, 0, 0 });
         dc.Clear();
         dc.DrawBitmap(logo, leftBorder, (GetClientSize().GetHeight() / 2) - (logo.GetHeight() / 2));
         dc.DrawText(m_label, leftBorder + logo.GetWidth() + 6,

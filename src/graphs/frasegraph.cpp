@@ -201,7 +201,8 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::Polygo
             std::span(std::next(m_levelLinePoints.cbegin(), 8), 3)));
 
         // separator line
-        wxColour separatorColor{ Colors::ColorContrast::ChangeOpacity(*wxBLACK, 200) };
+        wxColour separatorColor{ Colors::ColorContrast::ChangeOpacity(
+            Wisteria::Colors::ColorBrewer::GetColor(Wisteria::Colors::Color::Black), 200) };
         separatorColor =
             Colors::ColorContrast::ShadeOrTintIfClose(separatorColor, GetPlotOrCanvasColor());
         auto levelsSpline =
@@ -411,7 +412,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FraseGraph, Wisteria::Graphs::Polygo
             AddObject(std::make_unique<GraphItems::Label>(
                 GraphItems::GraphItemInfo(_(L"Invalid score: text is too difficult to be plotted"))
                     .Scaling(GetScaling())
-                    .Pen(*wxBLACK_PEN)
+                    .Pen(Wisteria::Colors::ColorBrewer::GetColor(Wisteria::Colors::Color::Black))
                     .Font(labelFont)
                     .AnchorPoint(textCoordinate)));
             }

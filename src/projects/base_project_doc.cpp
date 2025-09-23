@@ -405,7 +405,7 @@ wxColour BaseProjectDoc::GetTextReportBackgroundColor() const
         }
     else
         {
-        return *wxWHITE;
+        return wxColour{ 255, 255, 255 };
         }
     }
 

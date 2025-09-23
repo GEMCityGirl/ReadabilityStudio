@@ -563,11 +563,11 @@ bool BatchProjectView::OnCreate(wxDocument* doc, long flags)
         return false;
         }
 
-    m_testExplanations = new HtmlTablePanel(GetDocFrame(), wxID_ANY, *wxWHITE);
+    m_testExplanations = new HtmlTablePanel(GetDocFrame(), wxID_ANY, wxColour{ 255, 255, 255 });
     m_testExplanations->Hide();
     m_testExplanations->GetHtmlWindow()->SetLabel(_(L"Test Explanations"));
 
-    m_statsReport = new HtmlTablePanel(GetDocFrame(), wxID_ANY, *wxWHITE);
+    m_statsReport = new HtmlTablePanel(GetDocFrame(), wxID_ANY, wxColour{ 255, 255, 255 });
     m_statsReport->Hide();
     m_statsReport->GetHtmlWindow()->SetLabel(_(L"Summary Statistics"));
 

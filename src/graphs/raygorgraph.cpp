@@ -380,7 +380,8 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
             }
 
         // middle points on the separator line
-        wxColour separatorColor{ Colors::ColorContrast::ChangeOpacity(*wxBLACK, 200) };
+        wxColour separatorColor{ Colors::ColorContrast::ChangeOpacity(
+            Wisteria::Colors::ColorBrewer::GetColor(Wisteria::Colors::Color::Black), 200) };
         separatorColor =
             Colors::ColorContrast::ShadeOrTintIfClose(separatorColor, GetPlotOrCanvasColor());
         wxPoint dividerPt;
@@ -506,7 +507,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
         // 3rd grade
         wxColour gradeLineColor{ Colors::ColorContrast::IsDark(GetPlotOrCanvasColor()) ?
                                      Colors::ColorBrewer::GetColor(Colors::Color::BondiBlue) :
-                                     *wxBLUE };
+                                     Colors::ColorBrewer::GetColor(Colors::Color::Blue) };
         gradeLineColor = Colors::ColorContrast::ChangeOpacity(gradeLineColor, 200);
         AddObject(std::make_unique<GraphItems::Polygon>(
             GraphItems::GraphItemInfo{}
@@ -795,7 +796,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::RaygorGraph, Wisteria::Graphs::Polyg
             AddObject(std::make_unique<GraphItems::Label>(
                 GraphItems::GraphItemInfo(_(L"Invalid score: text is too difficult to be plotted"))
                     .Scaling(GetScaling())
-                    .Pen(*wxBLACK_PEN)
+                    .Pen(Wisteria::Colors::ColorBrewer::GetColor(Wisteria::Colors::Color::Black))
                     .Font(labelFont)
                     .AnchorPoint(textCoordinate)));
             }

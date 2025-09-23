@@ -237,9 +237,9 @@ void ReadabilityAppOptions::SetColorsFromSystem()
         m_sideBarParentColor = m_ribbonActiveTabColor;
         }
     m_sideBarActiveColor = L"#FDB759"; // bright orange
-    m_sideBarActiveFontColor = *wxBLACK;
+    m_sideBarActiveFontColor = wxColour{ 0, 0, 0 };
     m_sideBarHoverColor = m_ribbonHoverColor;
-    m_sideBarHoverFontColor = *wxBLACK;
+    m_sideBarHoverFontColor = wxColour{ 0, 0, 0 };
     m_sideBarFontColor = wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT);
     }
 

@@ -113,7 +113,7 @@ class ProjectReportFormat
     [[nodiscard]]
     static wxColour GetReportHeaderFontColor()
         {
-        return *wxBLACK;
+        return wxColour{ 0, 0, 0 };
         }
 
     /** @returns A formula formatted into HTML.

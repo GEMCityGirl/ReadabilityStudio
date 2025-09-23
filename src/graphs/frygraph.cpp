@@ -317,7 +317,8 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
 
         const wxBrush selectionBrush = wxBrush(Colors::ColorContrast::ChangeOpacity(
             Colors::ColorBrewer::GetColor(Colors::Color::LightGray), 100));
-        wxColour separatorColor{ Colors::ColorContrast::ChangeOpacity(*wxBLACK, 200) };
+        wxColour separatorColor{ Colors::ColorContrast::ChangeOpacity(
+            Wisteria::Colors::ColorBrewer::GetColor(Wisteria::Colors::Color::Black), 200) };
         separatorColor =
             Colors::ColorContrast::ShadeOrTintIfClose(separatorColor, GetPlotOrCanvasColor());
 
@@ -410,7 +411,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
         {
         const wxColour gradeLineColor{ Colors::ColorContrast::IsDark(GetPlotOrCanvasColor()) ?
                                            Colors::ColorBrewer::GetColor(Colors::Color::BondiBlue) :
-                                           *wxBLUE };
+                                           Colors::ColorBrewer::GetColor(Colors::Color::Blue) };
 
         if (GetDataset() == nullptr)
             {
@@ -770,7 +771,9 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
         if constexpr (Settings::IsDebugFlagEnabled(DebugSettings::DrawExtraInformation))
             {
             AddObject(std::make_unique<GraphItems::Polygon>(
-                GraphItems::GraphItemInfo{}.Pen(*wxRED).Brush(wxNullBrush),
+                GraphItems::GraphItemInfo{}
+                    .Pen(Colors::ColorBrewer::GetColor(Colors::Color::Red))
+                    .Brush(wxNullBrush),
                 std::vector<wxPoint>{ gradeLabelArea.GetTopLeft(), gradeLabelArea.GetTopRight(),
                                       gradeLabelArea.GetBottomRight(),
                                       gradeLabelArea.GetBottomLeft() }));
@@ -826,7 +829,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::FryGraph, Wisteria::Graphs::PolygonR
             AddObject(std::make_unique<GraphItems::Label>(
                 GraphItems::GraphItemInfo(_(L"Invalid score: text is too difficult to be plotted"))
                     .Scaling(GetScaling())
-                    .Pen(*wxBLACK_PEN)
+                    .Pen(Wisteria::Colors::ColorBrewer::GetColor(Wisteria::Colors::Color::Black))
                     .Font(labelFont)
                     .AnchorPoint(textCoordinate)));
             }
