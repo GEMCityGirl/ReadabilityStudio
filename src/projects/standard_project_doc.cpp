@@ -4963,26 +4963,36 @@ ProjectDoc::BuildHighlighterTags([[maybe_unused]] const wxColour& highlightColor
 #elif defined(__WXGTK__)
     const wxColour highlightedTextColor =
         (highlightColor.GetLuminance() < .5f) ? wxColour{ 255, 255, 255 } : wxColour{ 0, 0, 0 };
-    const wxColour errorTextColor =
-        (GetDuplicateWordHighlightColor().GetLuminance() < .5f) ? wxColour{ 255, 255, 255 } : wxColour{ 0, 0, 0 };
-    const wxColour styleTextColor =
-        (GetWordyPhraseHighlightColor().GetLuminance() < .5f) ? wxColour{ 255, 255, 255 } : wxColour{ 0, 0, 0 };
-    const wxColour excludedTextColor =
-        (GetExcludedTextHighlightColor().GetLuminance() < .5f) ? wxColour{ 255, 255, 255 } : wxColour{ 0, 0, 0 };
-    const wxColour dolchConjunctionsTextColor =
-        (GetDolchConjunctionsColor().GetLuminance() < .5f) ? wxColour{ 255, 255, 255 } : wxColour{ 0, 0, 0 };
-    const wxColour dolchPrepositionsTextColor =
-        (GetDolchPrepositionsColor().GetLuminance() < .5f) ? wxColour{ 255, 255, 255 } : wxColour{ 0, 0, 0 };
-    const wxColour dolchPronounsTextColor =
-        (GetDolchPronounsColor().GetLuminance() < .5f) ? wxColour{ 255, 255, 255 } : wxColour{ 0, 0, 0 };
-    const wxColour dolchAdverbsTextColor =
-        (GetDolchAdverbsColor().GetLuminance() < .5f) ? wxColour{ 255, 255, 255 } : wxColour{ 0, 0, 0 };
-    const wxColour dolchAdjectivesTextColor =
-        (GetDolchAdjectivesColor().GetLuminance() < .5f) ? wxColour{ 255, 255, 255 } : wxColour{ 0, 0, 0 };
-    const wxColour dolchVerbsTextColor =
-        (GetDolchVerbsColor().GetLuminance() < .5f) ? wxColour{ 255, 255, 255 } : wxColour{ 0, 0, 0 };
-    const wxColour dolchNounTextColor =
-        (GetDolchNounColor().GetLuminance() < .5f) ? wxColour{ 255, 255, 255 } : wxColour{ 0, 0, 0 };
+    const wxColour errorTextColor = (GetDuplicateWordHighlightColor().GetLuminance() < .5f) ?
+                                        wxColour{ 255, 255, 255 } :
+                                        wxColour{ 0, 0, 0 };
+    const wxColour styleTextColor = (GetWordyPhraseHighlightColor().GetLuminance() < .5f) ?
+                                        wxColour{ 255, 255, 255 } :
+                                        wxColour{ 0, 0, 0 };
+    const wxColour excludedTextColor = (GetExcludedTextHighlightColor().GetLuminance() < .5f) ?
+                                           wxColour{ 255, 255, 255 } :
+                                           wxColour{ 0, 0, 0 };
+    const wxColour dolchConjunctionsTextColor = (GetDolchConjunctionsColor().GetLuminance() < .5f) ?
+                                                    wxColour{ 255, 255, 255 } :
+                                                    wxColour{ 0, 0, 0 };
+    const wxColour dolchPrepositionsTextColor = (GetDolchPrepositionsColor().GetLuminance() < .5f) ?
+                                                    wxColour{ 255, 255, 255 } :
+                                                    wxColour{ 0, 0, 0 };
+    const wxColour dolchPronounsTextColor = (GetDolchPronounsColor().GetLuminance() < .5f) ?
+                                                wxColour{ 255, 255, 255 } :
+                                                wxColour{ 0, 0, 0 };
+    const wxColour dolchAdverbsTextColor = (GetDolchAdverbsColor().GetLuminance() < .5f) ?
+                                               wxColour{ 255, 255, 255 } :
+                                               wxColour{ 0, 0, 0 };
+    const wxColour dolchAdjectivesTextColor = (GetDolchAdjectivesColor().GetLuminance() < .5f) ?
+                                                  wxColour{ 255, 255, 255 } :
+                                                  wxColour{ 0, 0, 0 };
+    const wxColour dolchVerbsTextColor = (GetDolchVerbsColor().GetLuminance() < .5f) ?
+                                             wxColour{ 255, 255, 255 } :
+                                             wxColour{ 0, 0, 0 };
+    const wxColour dolchNounTextColor = (GetDolchNounColor().GetLuminance() < .5f) ?
+                                            wxColour{ 255, 255, 255 } :
+                                            wxColour{ 0, 0, 0 };
 #endif
 
 #ifdef __WXMSW__
