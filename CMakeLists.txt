@@ -34,6 +34,8 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release")
 endif()
 
+include(cmake/modules/CheckASAN.cmake)
+
 message(STATUS "Build: ${CMAKE_BUILD_TYPE}")
 message(STATUS "Generator: ${CMAKE_GENERATOR}")
 
@@ -377,24 +379,55 @@ if(MSVC)
 elseif(MINGW OR MSYS)
     target_compile_definitions(${PROJECT_NAME} PUBLIC __WXMSW__ CRCPP_USE_CPP11 _CRT_SECURE_NO_WARNINGS _UNICODE
             $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING> $<$<CONFIG:Release>:NDEBUG>)
-    target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow -Werror
-                           $<$<CONFIG:Debug>:-Og>
-                           $<$<CONFIG:Release>:-O2>)
+
+    if(USE_ADDRESS_SANITIZE)
+        target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow -Werror
+                               $<$<CONFIG:Debug>:-Og -g3 -fsanitize=address -fno-omit-frame-pointer>
+                               $<$<CONFIG:Release>:-O2>)
+        target_link_options(${PROJECT_NAME} PUBLIC
+                            $<$<CONFIG:Debug>:-fsanitize=address>)
+    else()
+        target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow -Werror
+                               $<$<CONFIG:Debug>:-Og>
+                               $<$<CONFIG:Release>:-O2>)
+    endif()
 elseif(APPLE)
     target_compile_definitions(${PROJECT_NAME} PUBLIC __WXOSX__ CRCPP_USE_CPP11
         $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING> $<$<CONFIG:Release>:NDEBUG>)
-    # TODO: don't include -Werror for now, but eventually add it
-    target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow
-                           $<$<CONFIG:Debug>:-Og>
-                           $<$<CONFIG:Release>:-O2>)
+
+    if(USE_ADDRESS_SANITIZE)
+        target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow
+                               $<$<CONFIG:Debug>:-Og -g3 -fsanitize=address -fno-omit-frame-pointer>
+                               $<$<CONFIG:Release>:-O2>)
+        target_compile_options(${PROJECT_NAME} PUBLIC
+                               $<$<AND:$<BOOL:${USE_ADDRESS_SANITIZE}>,$<CONFIG:Debug>,$<COMPILE_LANG_AND_ID:CXX,Clang>>:-fsanitize-address-use-after-scope>)
+        target_link_options(${PROJECT_NAME} PUBLIC
+                            $<$<CONFIG:Debug>:-fsanitize=address>)
+    else()
+        # TODO: don't include -Werror for now, but eventually add it
+        target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow
+                               $<$<CONFIG:Debug>:-Og>
+                               $<$<CONFIG:Release>:-O2>)
+    endif()
 elseif(UNIX)
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -s")
     target_compile_definitions(${PROJECT_NAME} PUBLIC __WXGTK__ CRCPP_USE_CPP11
         $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING> $<$<CONFIG:Release>:NDEBUG>)
-    # TODO: don't include -Werror for now, but eventually add it
-    target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow -fopenmp
-                           $<$<CONFIG:Debug>:-Og -g3>
-                           $<$<CONFIG:Release>:-O2>)
+
+    if(USE_ADDRESS_SANITIZE)
+        target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow -fopenmp
+                               $<$<CONFIG:Debug>:-Og -g3 -fsanitize=address -fno-omit-frame-pointer>
+                               $<$<CONFIG:Release>:-O2>)
+        target_compile_options(${PROJECT_NAME} PUBLIC
+                               $<$<AND:$<BOOL:${USE_ADDRESS_SANITIZE}>,$<CONFIG:Debug>,$<COMPILE_LANG_AND_ID:CXX,Clang>>:-fsanitize-address-use-after-scope>)
+        target_link_options(${PROJECT_NAME} PUBLIC
+                            $<$<CONFIG:Debug>:-fsanitize=address>)
+    else()
+        # TODO: don't include -Werror for now, but eventually add it
+        target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow -fopenmp
+                               $<$<CONFIG:Debug>:-Og -g3>
+                               $<$<CONFIG:Release>:-O2>)
+    endif()
 endif()
 
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
