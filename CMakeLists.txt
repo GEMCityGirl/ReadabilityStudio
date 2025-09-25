@@ -80,7 +80,7 @@ string(APPEND ISSUE_PAGE "/issues")
 set(INNOSETUP_GUID "{FBFBEAB6-622A-4E16-893D-216C25FF6A69}")
 set(PROGRAM_LICENSE "Eclipse Public License 2.0")
 
-find_package(Git)
+include(cmake/modules/FindGit.cmake)
 if(Git_FOUND)
   execute_process(
     COMMAND ${GIT_EXECUTABLE} --no-pager log -n 1 HEAD --pretty=format:%H
