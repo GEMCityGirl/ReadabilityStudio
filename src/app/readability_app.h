@@ -297,7 +297,7 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
     int OnExit() final;
 
     void LoadInterface();
-    void LoadInterfaceLicensableFeatures();
+    void LoadMenus();
 
     [[nodiscard]]
     MainFrame* GetMainFrameEx() noexcept

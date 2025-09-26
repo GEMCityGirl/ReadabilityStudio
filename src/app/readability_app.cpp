@@ -580,14 +580,11 @@ bool ReadabilityApp::OnInit()
                          std::make_pair(_(L"Seasons"), DONTTRANSLATE(L"seasons")),
                          std::make_pair(_(L"Meadow Sunset"), DONTTRANSLATE(L"meadowsunset")) };
 
-    // this needs to be called before prompting for the
-    // serial number because wxGetTextFromUser will need a parent
     LoadInterface();
 
     ShowSplashscreen();
 
-    // now load any menus which are affected by licensing
-    LoadInterfaceLicensableFeatures();
+    LoadMenus();
 
     m_dynamicIdMap = {
         /* This maps internal (dynamic) IDs to constants in "resources/scripting/rs-constants.lua".
@@ -1277,7 +1274,7 @@ bool ReadabilityApp::VerifyWordLists()
     }
 
 //-----------------------------------
-void ReadabilityApp::LoadInterfaceLicensableFeatures()
+void ReadabilityApp::LoadMenus()
     {
     FillWordListsMenu(GetMainFrameEx()->m_wordListMenu);
     FillBlankGraphsMenu(GetMainFrameEx()->m_blankGraphMenu);
