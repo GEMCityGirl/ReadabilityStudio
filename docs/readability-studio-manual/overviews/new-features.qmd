@@ -12,6 +12,7 @@ source('../R/appdown.r')
 
 ### General Enhancements {-}
 
+- Program's interface is now available in Spanish.
 - Added Lua scripting. This allows for programming your own scripts to automate various tasks.
 - Added document's last modified time to the summary statistics (standard projects).
 - **Web Harvester** improvements:
