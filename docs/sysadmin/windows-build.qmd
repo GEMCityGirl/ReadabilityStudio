@@ -30,6 +30,11 @@ source('R/appdown.r')
 - Select the "{{< var MIN_MSVC_REQUIRED >}} Release" configuration and build it
 - Optionally, the "manuals" target can also be ran to rebuild the documentation
 
+::: {.tipsection data-latex=""}
+To create a debug build, select the "{{< var MIN_MSVC_REQUIRED >}} Debug" configuration.
+Additionally, selecting "{{< var MIN_MSVC_REQUIRED >}} Debug w/ ASAN" will enable AddressSanitizer.
+:::
+
 ## Build the installer {-}
 
 ::: {.notesection data-latex=""}

@@ -34,8 +34,6 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release")
 endif()
 
-include(cmake/modules/CheckASAN.cmake)
-
 message(STATUS "Build: ${CMAKE_BUILD_TYPE}")
 message(STATUS "Generator: ${CMAKE_GENERATOR}")
 
@@ -119,6 +117,8 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "APPLECLANG" AND CMAKE_CXX_COMPILER_VERSIO
   message(FATAL_ERROR "Insufficient AppleClang version. ${MIN_APPLECLANG_REQUIRED} is required, but only ${CMAKE_CXX_COMPILER_VERSION} found.")
 endif()
 message(STATUS "Compiler: ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
+
+include(cmake/modules/CheckASAN.cmake)
 
 # interproceduarl optimization
 if(${CMAKE_BUILD_TYPE} STREQUAL "Release")

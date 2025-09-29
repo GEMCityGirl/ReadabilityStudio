@@ -28,6 +28,16 @@
       }
     },
     {
+      "name": "debug_with_ASAN",
+      "hidden": true,
+      "inherits": [
+        "debug"
+      ],
+      "cacheVariables": {
+        "USE_ADDRESS_SANITIZE": "TRUE"
+      }
+    },
+    {
       "name": "msw_base",
       "description": "Base configuration for MSW",
       "hidden": true,
@@ -53,6 +63,15 @@
         "msw_base"
       ],
       "displayName": "Visual Studio 2022 Debug",
+      "generator": "Visual Studio 17 2022"
+    },
+    {
+      "name": "msw_debug_asan",
+      "inherits": [
+        "debug_with_ASAN",
+        "msw_base"
+      ],
+      "displayName": "Visual Studio 2022 Debug w/ ASAN",
       "generator": "Visual Studio 17 2022"
     },
     {
@@ -84,6 +103,15 @@
       "generator": "Xcode"
     },
     {
+      "name": "macos_xcode_debug_asan",
+      "inherits": [
+        "debug_with_ASAN",
+        "macos_base"
+      ],
+      "displayName": "macOS Xcode Debug w/ ASAN",
+      "generator": "Xcode"
+    },
+    {
       "name": "macos_make_release",
       "inherits": [
         "release",
@@ -99,6 +127,15 @@
         "macos_base"
       ],
       "displayName": "macOS Make Debug",
+      "generator": "Unix Makefiles"
+    },
+    {
+      "name": "macos_make_debug_asan",
+      "inherits": [
+        "debug_with_ASAN",
+        "macos_base"
+      ],
+      "displayName": "macOS Make Debug w/ ASAN",
       "generator": "Unix Makefiles"
     }
   ]

@@ -67,6 +67,12 @@ Follow the instructions in `r menu(c('wxpatch', 'macOS', 'Instructions.txt'))` t
 ```{.bash include="build-commands.txt" start-line=9 end-line=17}
 ```
 
+::: {.tipsection data-latex=""}
+To create a debug build, pass `-DCMAKE_BUILD_TYPE=Debug` during the configuration stage,
+and `--config Debug` during the build stage. Additionally, pass `-DUSE_ADDRESS_SANITIZE=TRUE`
+to enable AddressSanitizer for debug builds.
+:::
+
 If code signing locally, do the following:
 
 (`ORG_ID` should be set to your 10-digit Apple developer organization ID and `KEYCHAIN_PROFILE` should be the keychain profile connected to your Apple ID):

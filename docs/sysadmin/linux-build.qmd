@@ -48,6 +48,12 @@ This should be cloned into a folder next to *{{< var PROGRAM_NAME >}}*.
 ```{.bash include="build-commands.txt" start-line=1 end-line=7}
 ```
 
+::: {.tipsection data-latex=""}
+To create a debug build, pass `-DCMAKE_BUILD_TYPE=Debug` during the configuration stage,
+and `--config Debug` during the build stage. Additionally, pass `-DUSE_ADDRESS_SANITIZE=TRUE`
+to enable AddressSanitizer for debug builds.
+:::
+
 ## Build the AppImage {-}
 
 ```{.bash}
