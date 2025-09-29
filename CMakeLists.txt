@@ -729,7 +729,7 @@ endif()
 if(APPLE)
     set_target_properties(${PROJECT_NAME} PROPERTIES
         RESOURCE app-logo.icns
-        OUTPUT_NAME ${readstudio_DESCRIPTION}
+        OUTPUT_NAME ${PROJECT_NAME}
         XCODE_ATTRIBUTE_EXECUTABLE_NAME ${PROJECT_NAME} 
         MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist.in)
 
