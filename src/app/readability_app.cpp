@@ -509,6 +509,12 @@ bool ReadabilityApp::OnInit()
         wxLog::SetLogLevel(wxLOG_Max);
         }
 
+    LoadInterface();
+
+    ShowSplashscreen();
+
+    LoadMenus();
+
     // load map of graph icons to human readable strings
     m_shapeMap = { std::make_pair(_(L"Sun"), DONTTRANSLATE(L"sun")),
                    std::make_pair(_(L"Book"), DONTTRANSLATE(L"book")),
@@ -579,12 +585,6 @@ bool ReadabilityApp::OnInit()
                          std::make_pair(_(L"Semesters"), DONTTRANSLATE(L"semesters")),
                          std::make_pair(_(L"Seasons"), DONTTRANSLATE(L"seasons")),
                          std::make_pair(_(L"Meadow Sunset"), DONTTRANSLATE(L"meadowsunset")) };
-
-    LoadInterface();
-
-    ShowSplashscreen();
-
-    LoadMenus();
 
     m_dynamicIdMap = {
         /* This maps internal (dynamic) IDs to constants in "resources/scripting/rs-constants.lua".
@@ -874,8 +874,8 @@ bool ReadabilityApp::OnInit()
     dynamic_cast<MainFrame*>(GetMainFrame())->AddTestBundleToMenus(ConsentFormsBundle.GetName().c_str());
     // clang-format on
 
-    // See if ClearType is turned on. If not, then graphs will look awful, so ask user about turning
-    // it on.
+    // See if ClearType is turned on. If not, then graphs will look awful,
+    // so ask user about turning it on.
 #ifdef __WXMSW__
     int fontSmoothing{ 0 }, smoothingType{ 0 };
     ::SystemParametersInfo(SPI_GETFONTSMOOTHING, 0, &fontSmoothing, 0);
@@ -915,6 +915,8 @@ bool ReadabilityApp::OnInit()
 #endif
 
     GetAppOptions().SaveOptionsFile();
+
+    BaseApp::LogSystemInfo();
 
     return true;
     }
