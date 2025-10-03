@@ -119,6 +119,12 @@ endif()
 message(STATUS "Compiler: ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
 
 include(cmake/modules/CheckASAN.cmake)
+if(${CMAKE_BUILD_TYPE} STREQUAL "Debug" AND USE_ADDRESS_SANITIZE)
+    message(STATUS "AddressSanitizer is enabled")
+    add_compile_definitions(USE_ADDRESS_SANITIZE=1)
+else()
+    add_compile_definitions(USE_ADDRESS_SANITIZE=0)
+endif()
 
 # interproceduarl optimization
 if(${CMAKE_BUILD_TYPE} STREQUAL "Release")

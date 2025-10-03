@@ -211,7 +211,12 @@ void AboutDialogEx::CreateControls()
             mainPage, wxID_ANY,
             // TRANSLATORS: Compiled version of the program (e.g., DEBUG or RELEASE)
             _(L"Build Type:")));
-        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"DEBUG")));
+    #ifdef USE_ADDRESS_SANITIZE
+        productInfoGrid->Add(new wxStaticText(
+            mainPage, wxID_ANY, _DT(L"DEBUG with AddressSanitizer", DTExplanation::DebugMessage)));
+    #else
+        productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _DT(L"DEBUG")));
+    #endif
 #endif
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _(L"Build Date:")));
         wxDateTime buildDate;
