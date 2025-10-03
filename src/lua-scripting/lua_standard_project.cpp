@@ -72,9 +72,9 @@ namespace LuaScripting
                             }
                         else if (folderPath == L"EMPTY_PROJECT")
                             {
-                            m_project->SetTextSource(wxGetApp().GetAppOptions().GetTextSource());
+                            m_project->SetTextSource(wxGetApp().GetAppOptions()->GetTextSource());
                             m_project->SetDocumentStorageMethod(
-                                wxGetApp().GetAppOptions().GetDocumentStorageMethod());
+                                wxGetApp().GetAppOptions()->GetDocumentStorageMethod());
                             }
                         }
                     break;

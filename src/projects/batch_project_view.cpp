@@ -443,9 +443,10 @@ void BatchProjectView::OnAddToDictionary([[maybe_unused]] wxCommandEvent& event)
             startingQuote = reportString.find(L'\"', endingQuote + 1);
             }
         ListDlg misspellingDlg(
-            GetDocFrame(), misspellings, true, wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
-            wxGetApp().GetAppOptions().GetRibbonHoverColor(),
-            wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
+            GetDocFrame(), misspellings, true,
+            wxGetApp().GetAppOptions()->GetRibbonActiveTabColor(),
+            wxGetApp().GetAppOptions()->GetRibbonHoverColor(),
+            wxGetApp().GetAppOptions()->GetRibbonActiveFontColor(),
             LD_COPY_BUTTON | LD_SELECT_ALL_BUTTON | LD_OK_CANCEL_BUTTONS, wxID_ANY,
             _(L"Add to Dictionary"),
             _(L"Check the words to add to your custom dictionary and click OK:"));
@@ -498,9 +499,10 @@ void BatchProjectView::OnDblClick(wxListEvent& event)
             startingQuote = reportString.find(L'\"', endingQuote + 1);
             }
         ListDlg misspellingDlg(
-            GetDocFrame(), misspellings, true, wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
-            wxGetApp().GetAppOptions().GetRibbonHoverColor(),
-            wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
+            GetDocFrame(), misspellings, true,
+            wxGetApp().GetAppOptions()->GetRibbonActiveTabColor(),
+            wxGetApp().GetAppOptions()->GetRibbonHoverColor(),
+            wxGetApp().GetAppOptions()->GetRibbonActiveFontColor(),
             LD_COPY_BUTTON | LD_SELECT_ALL_BUTTON | LD_OK_CANCEL_BUTTONS, wxID_ANY,
             _(L"Add to Dictionary"),
             _(L"Check the words to add to your custom dictionary and click OK:"));
@@ -915,9 +917,9 @@ void BatchProjectView::OnDocumentDelete([[maybe_unused]] wxRibbonButtonBarEvent&
         if (warningIter != WarningManager::GetWarnings().end() && warningIter->ShouldBeShown())
             {
             ListDlg listDlg(GetDocFrame(), filesToRemove, false,
-                            wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
-                            wxGetApp().GetAppOptions().GetRibbonHoverColor(),
-                            wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
+                            wxGetApp().GetAppOptions()->GetRibbonActiveTabColor(),
+                            wxGetApp().GetAppOptions()->GetRibbonHoverColor(),
+                            wxGetApp().GetAppOptions()->GetRibbonActiveFontColor(),
                             LD_YES_NO_BUTTONS | LD_DONT_SHOW_AGAIN, wxID_ANY,
                             _(L"Remove Documents"),
                             _(L"Do you wish to remove these documents from the project?"));
@@ -3121,17 +3123,17 @@ void BatchProjectView::OnMenuCommand(wxCommandEvent& event)
                 {
                 activeWindow->SetPrinterSettings(*wxGetApp().GetPrintData());
                 activeWindow->SetLeftPrinterHeader(
-                    wxGetApp().GetAppOptions().GetLeftPrinterHeader());
+                    wxGetApp().GetAppOptions()->GetLeftPrinterHeader());
                 activeWindow->SetCenterPrinterHeader(
-                    wxGetApp().GetAppOptions().GetCenterPrinterHeader());
+                    wxGetApp().GetAppOptions()->GetCenterPrinterHeader());
                 activeWindow->SetRightPrinterHeader(
-                    wxGetApp().GetAppOptions().GetRightPrinterHeader());
+                    wxGetApp().GetAppOptions()->GetRightPrinterHeader());
                 activeWindow->SetLeftPrinterFooter(
-                    wxGetApp().GetAppOptions().GetLeftPrinterFooter());
+                    wxGetApp().GetAppOptions()->GetLeftPrinterFooter());
                 activeWindow->SetCenterPrinterFooter(
-                    wxGetApp().GetAppOptions().GetCenterPrinterFooter());
+                    wxGetApp().GetAppOptions()->GetCenterPrinterFooter());
                 activeWindow->SetRightPrinterFooter(
-                    wxGetApp().GetAppOptions().GetRightPrinterFooter());
+                    wxGetApp().GetAppOptions()->GetRightPrinterFooter());
                 }
 
             activeWindow->SetLabel(wxString::Format(L"%s [%s]", activeWindow->GetName(),

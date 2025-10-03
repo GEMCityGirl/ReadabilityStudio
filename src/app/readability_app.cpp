@@ -449,9 +449,8 @@ bool ReadabilityApp::OnInit()
 #ifdef __WXMSW__
     MSWEnableDarkMode();
 #endif
-    GetAppOptions().LoadOptionsFile(AppSettingFolderPath + L"Settings.xml", true);
-
-    AppendDailyLog(GetAppOptions().IsAppendingDailyLog());
+    m_preInitOptions.LoadOptionsFile(AppSettingFolderPath + L"Settings.xml");
+    AppendDailyLog(m_preInitOptions.m_logAppendDailyLog);
 
     if (!BaseApp::OnInit())
         {
@@ -464,12 +463,12 @@ bool ReadabilityApp::OnInit()
 #ifndef NDEBUG
     wxFileTranslationsLoader::AddCatalogLookupPathPrefix(L".");
 #endif
-    wxLogVerbose(L"UI Language: %d", static_cast<int>(GetAppOptions().GetUiLanguage()));
+    wxLogVerbose(L"UI Language: %d", static_cast<int>(m_preInitOptions.m_uiLanguage));
     // if English, then just don't bother loading any translations
-    if (GetAppOptions().GetUiLanguage() != UiLanguage::English)
+    if (m_preInitOptions.m_uiLanguage != UiLanguage::English)
         {
         wxTranslations* const translations{ new wxTranslations{} };
-        if (GetAppOptions().GetUiLanguage() == UiLanguage::Spanish)
+        if (m_preInitOptions.m_uiLanguage == UiLanguage::Spanish)
             {
             translations->SetLanguage(wxLANGUAGE_SPANISH);
             }
@@ -510,9 +509,7 @@ bool ReadabilityApp::OnInit()
         }
 
     LoadInterface();
-
     ShowSplashscreen();
-
     LoadMenus();
 
     // load map of graph icons to human readable strings
@@ -785,9 +782,9 @@ bool ReadabilityApp::OnInit()
 
     // printer options
     GetMainFrame()->GetDocumentManager()->GetPageSetupDialogData().GetPrintData().SetPaperId(
-        static_cast<wxPaperSize>(GetAppOptions().GetPaperId()));
+        static_cast<wxPaperSize>(GetAppOptions()->GetPaperId()));
     GetMainFrame()->GetDocumentManager()->GetPageSetupDialogData().GetPrintData().SetOrientation(
-        GetAppOptions().GetPaperOrientation());
+        GetAppOptions()->GetPaperOrientation());
     GetMainFrame()->GetDocumentManager()->GetPageSetupDialogData().EnableMargins(false);
 
     // get a random image for the About box
@@ -809,7 +806,7 @@ bool ReadabilityApp::OnInit()
     wxLogMessage(L"Documentation Location: %s", GetMainFrame()->GetHelpDirectory());
 
     // load the full set of user settings
-    GetAppOptions().LoadOptionsFile(AppSettingFolderPath + L"Settings.xml", false);
+    GetAppOptions()->LoadOptionsFile(AppSettingFolderPath + L"Settings.xml", false);
 
     // clang-format off
     // add some standard test bundles
@@ -914,7 +911,7 @@ bool ReadabilityApp::OnInit()
         }
 #endif
 
-    GetAppOptions().SaveOptionsFile();
+    GetAppOptions()->SaveOptionsFile();
 
     BaseApp::LogSystemInfo();
 
@@ -1303,15 +1300,15 @@ void ReadabilityApp::LoadInterface()
     wxArrayString extensions;
     extensions.Add(GetAppFileExtension());
     // create the main frame window
-    SetMainFrame(new MainFrame(
-        GetDocManager(), nullptr, extensions, GetAppName(), wxPoint(0, 0),
-        wxSize(GetAppOptions().GetAppWindowWidth(), GetAppOptions().GetAppWindowHeight()),
-        wxDEFAULT_FRAME_STYLE));
+    SetMainFrame(
+        new MainFrame(GetDocManager(), nullptr, extensions, GetAppName(), wxPoint{ 0, 0 },
+                      wxSize(m_preInitOptions.m_appWindowWidth, m_preInitOptions.m_appWindowHeight),
+                      wxDEFAULT_FRAME_STYLE));
 
     wxLogMessage(L"Display Scaling Factor: %.2f", GetMainFrame()->GetDPIScaleFactor());
     m_dpiScaleFactor = GetMainFrame()->GetDPIScaleFactor();
 
-    if (GetAppOptions().IsAppWindowMaximized())
+    if (m_preInitOptions.m_appWindowMaximized)
         {
         GetMainFrame()->Maximize();
         GetMainFrame()->SetSize(GetMainFrame()->GetSize());
@@ -1323,6 +1320,10 @@ void ReadabilityApp::LoadInterface()
                                .GetBitmap(GetMainFrame()->FromDIP(wxSize{ 32, 32 })));
     GetMainFrame()->SetIcon(appIcon);
     GetMainFrame()->SetLogo(wxGetApp().GetResourceManager().GetSVG(L"ribbon/app-logo.svg"));
+
+    // now safe to load the full options, which gets colors and font info from the systems
+    CreateAppOptions();
+
     // set up the ribbon (and its submenus)
     GetMainFrame()->InitControls(CreateRibbon(GetMainFrame(), nullptr));
 
@@ -1402,7 +1403,7 @@ int ReadabilityApp::OnExit()
     {
     wxLogDebug(__func__);
     m_webHarvester.CancelPending();
-    GetAppOptions().SaveOptionsFile();
+    GetAppOptions()->SaveOptionsFile();
 
     return BaseApp::OnExit();
     }
@@ -1806,13 +1807,13 @@ void ReadabilityApp::FillPrintMenu(wxMenu& printMenu, const RibbonType rtype)
 void ReadabilityApp::UpdateSideBarTheme(Wisteria::UI::SideBar* sidebar)
     {
     SideBarColorScheme colorScheme;
-    colorScheme.m_backgroundColor = GetAppOptions().GetSideBarBackgroundColor();
-    colorScheme.m_foregroundColor = GetAppOptions().GetSideBarFontColor();
-    colorScheme.m_selectedColor = GetAppOptions().GetSideBarActiveColor();
-    colorScheme.m_selectedFontColor = GetAppOptions().GetSideBarActiveFontColor();
-    colorScheme.m_highlightColor = GetAppOptions().GetSideBarHoverColor();
-    colorScheme.m_highlightFontColor = GetAppOptions().GetSideBarHoverFontColor();
-    colorScheme.m_parentColor = GetAppOptions().GetSideBarParentColor();
+    colorScheme.m_backgroundColor = GetAppOptions()->GetSideBarBackgroundColor();
+    colorScheme.m_foregroundColor = GetAppOptions()->GetSideBarFontColor();
+    colorScheme.m_selectedColor = GetAppOptions()->GetSideBarActiveColor();
+    colorScheme.m_selectedFontColor = GetAppOptions()->GetSideBarActiveFontColor();
+    colorScheme.m_highlightColor = GetAppOptions()->GetSideBarHoverColor();
+    colorScheme.m_highlightFontColor = GetAppOptions()->GetSideBarHoverFontColor();
+    colorScheme.m_parentColor = GetAppOptions()->GetSideBarParentColor();
 
     sidebar->SetColorScheme(colorScheme);
     }
@@ -3059,35 +3060,35 @@ void ReadabilityApp::UpdateRibbonTheme(wxRibbonBar* ribbon)
     assert(ribbon != nullptr && L"Attempting to theme a null ribbon!");
     if (ribbon != nullptr)
         {
-        ribbon->GetArtProvider()->SetColourScheme(GetAppOptions().GetRibbonActiveTabColor(),
-                                                  GetAppOptions().GetRibbonInactiveTabColor(),
-                                                  GetAppOptions().GetRibbonHoverColor());
+        ribbon->GetArtProvider()->SetColourScheme(GetAppOptions()->GetRibbonActiveTabColor(),
+                                                  GetAppOptions()->GetRibbonInactiveTabColor(),
+                                                  GetAppOptions()->GetRibbonHoverColor());
 
         ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_COLOUR,
-                                            GetAppOptions().GetRibbonActiveFontColor());
+                                            GetAppOptions()->GetRibbonActiveFontColor());
         ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_DISABLED_COLOUR,
-                                            GetAppOptions().GetRibbonInactiveFontColor());
+                                            GetAppOptions()->GetRibbonInactiveFontColor());
         ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_HIGHLIGHT_TOP_COLOUR,
-                                            GetAppOptions().GetRibbonActiveFontColor());
+                                            GetAppOptions()->GetRibbonActiveFontColor());
         ribbon->GetArtProvider()->SetColour(
             wxRIBBON_ART_BUTTON_BAR_LABEL_HIGHLIGHT_GRADIENT_TOP_COLOUR,
-            GetAppOptions().GetRibbonActiveFontColor());
+            GetAppOptions()->GetRibbonActiveFontColor());
         ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_HIGHLIGHT_COLOUR,
-                                            GetAppOptions().GetRibbonHoverFontColor());
+                                            GetAppOptions()->GetRibbonHoverFontColor());
         ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_BUTTON_BAR_LABEL_HIGHLIGHT_GRADIENT_COLOUR,
-                                            GetAppOptions().GetRibbonActiveFontColor());
+                                            GetAppOptions()->GetRibbonActiveFontColor());
         ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_TAB_ACTIVE_LABEL_COLOUR,
-                                            GetAppOptions().GetRibbonActiveFontColor());
+                                            GetAppOptions()->GetRibbonActiveFontColor());
         ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_PANEL_LABEL_COLOUR,
-                                            GetAppOptions().GetRibbonActiveFontColor());
+                                            GetAppOptions()->GetRibbonActiveFontColor());
         ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_PANEL_MINIMISED_LABEL_COLOUR,
-                                            GetAppOptions().GetRibbonActiveFontColor());
+                                            GetAppOptions()->GetRibbonActiveFontColor());
         ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_PANEL_HOVER_LABEL_COLOUR,
-                                            GetAppOptions().GetRibbonHoverFontColor());
+                                            GetAppOptions()->GetRibbonHoverFontColor());
         ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_TAB_LABEL_COLOUR,
-                                            GetAppOptions().GetRibbonInactiveFontColor());
+                                            GetAppOptions()->GetRibbonInactiveFontColor());
         ribbon->GetArtProvider()->SetColour(wxRIBBON_ART_TAB_HOVER_LABEL_COLOUR,
-                                            GetAppOptions().GetRibbonHoverFontColor());
+                                            GetAppOptions()->GetRibbonHoverFontColor());
         }
     }
 
@@ -3198,9 +3199,9 @@ void MainFrame::OnViewProfileReport([[maybe_unused]] wxRibbonButtonBarEvent& eve
     const wxSize screenSize{ wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X),
                              wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y) };
     ListDlg profileReportDialog(
-        wxGetApp().GetParentingWindow(), wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
-        wxGetApp().GetAppOptions().GetRibbonHoverColor(),
-        wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
+        wxGetApp().GetParentingWindow(), wxGetApp().GetAppOptions()->GetRibbonActiveTabColor(),
+        wxGetApp().GetAppOptions()->GetRibbonHoverColor(),
+        wxGetApp().GetAppOptions()->GetRibbonActiveFontColor(),
         LD_SAVE_BUTTON | LD_COPY_BUTTON | LD_PRINT_BUTTON | LD_SELECT_ALL_BUTTON | LD_FIND_BUTTON |
             LD_COLUMN_HEADERS | LD_SORT_BUTTON,
         wxID_ANY, _(L"Profile Report"), wxString{}, wxDefaultPosition,
@@ -3269,9 +3270,9 @@ void MainFrame::OnViewLogReport([[maybe_unused]] wxRibbonButtonBarEvent& event)
         const wxSize screenSize{ wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X),
                                  wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y) };
         m_logWindow =
-            new ListDlg(nullptr, wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
-                        wxGetApp().GetAppOptions().GetRibbonHoverColor(),
-                        wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
+            new ListDlg(nullptr, wxGetApp().GetAppOptions()->GetRibbonActiveTabColor(),
+                        wxGetApp().GetAppOptions()->GetRibbonHoverColor(),
+                        wxGetApp().GetAppOptions()->GetRibbonActiveFontColor(),
                         LD_SAVE_BUTTON | LD_COPY_BUTTON | LD_PRINT_BUTTON | LD_SELECT_ALL_BUTTON |
                             LD_FIND_BUTTON | LD_COLUMN_HEADERS | LD_SORT_BUTTON | LD_CLEAR_BUTTON |
                             LD_REFRESH_BUTTON | LD_LOG_VERBOSE_BUTTON,
@@ -3307,9 +3308,9 @@ void MainFrame::OnTestsOverview([[maybe_unused]] wxRibbonButtonBarEvent& event)
                              wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y) };
     // test overview dialog
     ListDlg testsOverviewDlg(
-        wxGetApp().GetParentingWindow(), wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
-        wxGetApp().GetAppOptions().GetRibbonHoverColor(),
-        wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
+        wxGetApp().GetParentingWindow(), wxGetApp().GetAppOptions()->GetRibbonActiveTabColor(),
+        wxGetApp().GetAppOptions()->GetRibbonHoverColor(),
+        wxGetApp().GetAppOptions()->GetRibbonActiveFontColor(),
         LD_SAVE_BUTTON | LD_COPY_BUTTON | LD_PRINT_BUTTON | LD_SELECT_ALL_BUTTON |
             LD_COLUMN_HEADERS | LD_FIND_BUTTON | LD_SORT_BUTTON,
         wxID_ANY, _(L"Readability Tests Overview"), wxString{}, wxDefaultPosition,
@@ -3438,7 +3439,7 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
                           wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"FRASE")));
         graphDlg.GetCanvas()->SetFixedObject(0, 0,
                                              std::make_shared<FraseGraph>(graphDlg.GetCanvas()));
-        wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
+        wxGetApp().GetAppOptions()->UpdateGraphOptions(graphDlg.GetCanvas());
         graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
@@ -3448,7 +3449,7 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
                           wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Crawford")));
         graphDlg.GetCanvas()->SetFixedObject(0, 0,
                                              std::make_shared<CrawfordGraph>(graphDlg.GetCanvas()));
-        wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
+        wxGetApp().GetAppOptions()->UpdateGraphOptions(graphDlg.GetCanvas());
         graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
@@ -3460,10 +3461,10 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
             std::make_shared<FryGraph>(graphDlg.GetCanvas(), FryGraph::FryGraphType::Traditional);
         // update custom settings on graph
         fryGraph->SetMessageCatalog(project.GetReadabilityMessageCatalogPtr());
-        fryGraph->SetInvalidAreaColor(wxGetApp().GetAppOptions().GetInvalidAreaColor());
+        fryGraph->SetInvalidAreaColor(wxGetApp().GetAppOptions()->GetInvalidAreaColor());
 
         graphDlg.GetCanvas()->SetFixedObject(0, 0, fryGraph);
-        wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
+        wxGetApp().GetAppOptions()->UpdateGraphOptions(graphDlg.GetCanvas());
         graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
@@ -3476,10 +3477,10 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
             std::make_shared<FryGraph>(graphDlg.GetCanvas(), FryGraph::FryGraphType::GPM);
         // update custom settings on graph
         gFryGraph->SetMessageCatalog(project.GetReadabilityMessageCatalogPtr());
-        gFryGraph->SetInvalidAreaColor(wxGetApp().GetAppOptions().GetInvalidAreaColor());
+        gFryGraph->SetInvalidAreaColor(wxGetApp().GetAppOptions()->GetInvalidAreaColor());
 
         graphDlg.GetCanvas()->SetFixedObject(0, 0, gFryGraph);
-        wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
+        wxGetApp().GetAppOptions()->UpdateGraphOptions(graphDlg.GetCanvas());
         graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
@@ -3490,10 +3491,10 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
         auto raygorGraph = std::make_shared<RaygorGraph>(graphDlg.GetCanvas());
         // update custom settings on graph
         raygorGraph->SetMessageCatalog(project.GetReadabilityMessageCatalogPtr());
-        raygorGraph->SetInvalidAreaColor(wxGetApp().GetAppOptions().GetInvalidAreaColor());
+        raygorGraph->SetInvalidAreaColor(wxGetApp().GetAppOptions()->GetInvalidAreaColor());
 
         graphDlg.GetCanvas()->SetFixedObject(0, 0, raygorGraph);
-        wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
+        wxGetApp().GetAppOptions()->UpdateGraphOptions(graphDlg.GetCanvas());
         graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
@@ -3502,10 +3503,10 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
         GraphDlg graphDlg(wxGetApp().GetParentingWindow(), wxID_ANY,
                           wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Flesch Reading Ease")));
         auto fleschChart = std::make_shared<FleschChart>(graphDlg.GetCanvas());
-        fleschChart->ShowConnectionLine(wxGetApp().GetAppOptions().IsConnectingFleschPoints());
+        fleschChart->ShowConnectionLine(wxGetApp().GetAppOptions()->IsConnectingFleschPoints());
 
         graphDlg.GetCanvas()->SetFixedObject(0, 0, fleschChart);
-        wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
+        wxGetApp().GetAppOptions()->UpdateGraphOptions(graphDlg.GetCanvas());
         graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
@@ -3516,7 +3517,7 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
             wxString::Format(_(L"Blank \"%s\" Graph"), BaseProjectView::GetDB2Label()));
         graphDlg.GetCanvas()->SetFixedObject(
             0, 0, std::make_shared<DanielsonBryan2Plot>(graphDlg.GetCanvas()));
-        wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
+        wxGetApp().GetAppOptions()->UpdateGraphOptions(graphDlg.GetCanvas());
         graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
@@ -3526,10 +3527,10 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
                           wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Schwartz")));
         auto schwartzGraph = std::make_shared<SchwartzGraph>(graphDlg.GetCanvas());
         schwartzGraph->SetMessageCatalog(project.GetReadabilityMessageCatalogPtr());
-        schwartzGraph->SetInvalidAreaColor(wxGetApp().GetAppOptions().GetInvalidAreaColor());
+        schwartzGraph->SetInvalidAreaColor(wxGetApp().GetAppOptions()->GetInvalidAreaColor());
 
         graphDlg.GetCanvas()->SetFixedObject(0, 0, schwartzGraph);
-        wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
+        wxGetApp().GetAppOptions()->UpdateGraphOptions(graphDlg.GetCanvas());
         graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
@@ -3538,7 +3539,7 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
         GraphDlg graphDlg(wxGetApp().GetParentingWindow(), wxID_ANY, _(L"Blank Lix Gauge"));
         graphDlg.GetCanvas()->SetFixedObject(0, 0,
                                              std::make_shared<LixGauge>(graphDlg.GetCanvas()));
-        wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
+        wxGetApp().GetAppOptions()->UpdateGraphOptions(graphDlg.GetCanvas());
         graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
@@ -3546,10 +3547,10 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
         {
         GraphDlg graphDlg(wxGetApp().GetParentingWindow(), wxID_ANY, _(L"Blank German Lix Gauge"));
         auto lixGauge = std::make_shared<LixGaugeGerman>(graphDlg.GetCanvas());
-        lixGauge->UseEnglishLabels(wxGetApp().GetAppOptions().IsUsingEnglishLabelsForGermanLix());
+        lixGauge->UseEnglishLabels(wxGetApp().GetAppOptions()->IsUsingEnglishLabelsForGermanLix());
 
         graphDlg.GetCanvas()->SetFixedObject(0, 0, lixGauge);
-        wxGetApp().GetAppOptions().UpdateGraphOptions(graphDlg.GetCanvas());
+        wxGetApp().GetAppOptions()->UpdateGraphOptions(graphDlg.GetCanvas());
         graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
@@ -3819,7 +3820,7 @@ MainFrame::MainFrame(wxDocManager* manager, wxFrame* frame,
 void ReadabilityApp::UpdateStartPageTheme()
     {
     GetMainFrameEx()->GetStartPage()->SetButtonAreaBackgroundColor(
-        GetAppOptions().GetSideBarBackgroundColor());
+        GetAppOptions()->GetSideBarBackgroundColor());
     GetMainFrameEx()->GetStartPage()->SetMRUBackgroundColor(
         wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW));
     }
@@ -3895,7 +3896,7 @@ void ReadabilityApp::InitStartPage()
     GetMainFrameEx()->m_startPage = new wxStartPage(
         GetMainFrameEx(), wxID_ANY, mruFiles, GetResourceManager().GetSVG(L"ribbon/app-logo.svg"));
 
-    GetMainFrameEx()->GetStartPage()->SetUserName(GetAppOptions().GetReviewer());
+    GetMainFrameEx()->GetStartPage()->SetUserName(GetAppOptions()->GetReviewer());
     GetMainFrameEx()->GetStartPage()->AddButton(
         wxArtProvider::GetBitmapBundle(L"ID_DOCUMENT", wxART_BUTTON), _(L"Create a New Project"));
     GetMainFrameEx()->GetStartPage()->AddButton(wxArtProvider::GetBitmapBundle(wxART_FILE_OPEN),
@@ -3931,9 +3932,9 @@ void ReadabilityApp::UpdateDocumentThemes()
                 UpdateRibbonTheme(view->GetRibbon());
                 UpdateSideBarTheme(view->GetSideBar());
                 view->GetQuickToolbar()->SetBackgroundColour(
-                    GetAppOptions().GetRibbonInactiveTabColor());
+                    GetAppOptions()->GetRibbonInactiveTabColor());
                 view->GetSearchPanel()->SetBackgroundColour(
-                    GetAppOptions().GetRibbonInactiveTabColor());
+                    GetAppOptions()->GetRibbonInactiveTabColor());
                 doc->GetDocumentWindow()->Refresh();
                 }
             }
@@ -3952,14 +3953,14 @@ void MainFrame::OnStartPageClick(wxCommandEvent& event)
         else if (event.GetId() == GetStartPage()->GetButtonID(1))
             {
             wxFileDialog dialog(wxGetApp().GetParentingWindow(), _(L"Select Project to Open"),
-                                wxGetApp().GetAppOptions().GetProjectPath(), wxString{},
+                                wxGetApp().GetAppOptions()->GetProjectPath(), wxString{},
                                 // TRANSLATORS: %s is program name.
                                 wxString::Format(_(L"%s Project (*.rsp;*.rsbp)|*.rsp;*.rsbp"),
                                                  wxGetApp().GetAppDisplayName()),
                                 wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
             if (dialog.ShowModal() == wxID_OK)
                 {
-                wxGetApp().GetAppOptions().SetProjectPath(wxFileName(dialog.GetPath()).GetPath());
+                wxGetApp().GetAppOptions()->SetProjectPath(wxFileName(dialog.GetPath()).GetPath());
                 OpenFile(dialog.GetPath());
                 }
             }
@@ -3989,7 +3990,7 @@ void MainFrame::OnStartPageClick(wxCommandEvent& event)
             optionsDlg.SelectPage(ToolsOptionsDlg::GENERAL_SETTINGS_PAGE);
             if (optionsDlg.ShowModal() == wxID_OK)
                 {
-                wxGetApp().GetAppOptions().SaveOptionsFile();
+                wxGetApp().GetAppOptions()->SaveOptionsFile();
                 }
             }
         }
@@ -4079,7 +4080,7 @@ void MainFrame::OnEditDictionarySettings([[maybe_unused]] wxCommandEvent& event)
     optionsDlg.SelectPage(ToolsOptionsDlg::GRAMMAR_PAGE);
     if (optionsDlg.ShowModal() == wxID_OK)
         {
-        wxGetApp().GetAppOptions().SaveOptionsFile();
+        wxGetApp().GetAppOptions()->SaveOptionsFile();
         }
     }
 
@@ -4216,9 +4217,9 @@ void MainFrame::OnScriptEditor([[maybe_unused]] wxCommandEvent& event)
             nullptr, wxID_ANY, _(L"Lua Script"), wxDefaultPosition,
             wxSize{ static_cast<int>(screenSize.GetWidth() * math_constants::third),
                     static_cast<int>(screenSize.GetHeight() * math_constants::three_quarters) });
-        if (!wxGetApp().GetAppOptions().GetScriptEditorLayout().empty())
+        if (!wxGetApp().GetAppOptions()->GetScriptEditorLayout().empty())
             {
-            GetLuaEditor()->LoadLayout(wxGetApp().GetAppOptions().GetScriptEditorLayout());
+            GetLuaEditor()->LoadLayout(wxGetApp().GetAppOptions()->GetScriptEditorLayout());
             }
         }
     GetLuaEditor()->SetThemeColor(wxSystemSettings::GetColour(wxSystemColour::wxSYS_COLOUR_WINDOW));
@@ -4876,9 +4877,9 @@ void MainFrame::OnAddCustomTest(wxCommandEvent& event)
                 stemming::stemming_type::no_stemming, true, true,
                 &BaseProject::m_dale_chall_word_list, false, &BaseProject::m_spache_word_list,
                 false, &BaseProject::m_harris_jacobson_word_list,
-                wxGetApp().GetAppOptions().IsIncludingStockerCatholicSupplement(),
+                wxGetApp().GetAppOptions()->IsIncludingStockerCatholicSupplement(),
                 &BaseProject::m_stocker_catholic_word_list, false,
-                wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod(), true, false,
+                wxGetApp().GetAppOptions()->GetDaleChallProperNounCountingMethod(), true, false,
                 false, false, false, false, false, false, false, false, false, false, false);
             ProjectDoc::AddGlobalCustomReadabilityTest(cTest);
             }
@@ -5116,21 +5117,21 @@ void MainFrame::OnPaste([[maybe_unused]] wxCommandEvent& event) { Paste(); }
 void MainFrame::OnPrinterHeaderFooter([[maybe_unused]] wxCommandEvent& event)
     {
     PrinterHeaderFooterDlg dlg(wxGetApp().GetParentingWindow(),
-                               wxGetApp().GetAppOptions().GetLeftPrinterHeader(),
-                               wxGetApp().GetAppOptions().GetCenterPrinterHeader(),
-                               wxGetApp().GetAppOptions().GetRightPrinterHeader(),
-                               wxGetApp().GetAppOptions().GetLeftPrinterFooter(),
-                               wxGetApp().GetAppOptions().GetCenterPrinterFooter(),
-                               wxGetApp().GetAppOptions().GetRightPrinterFooter());
+                               wxGetApp().GetAppOptions()->GetLeftPrinterHeader(),
+                               wxGetApp().GetAppOptions()->GetCenterPrinterHeader(),
+                               wxGetApp().GetAppOptions()->GetRightPrinterHeader(),
+                               wxGetApp().GetAppOptions()->GetLeftPrinterFooter(),
+                               wxGetApp().GetAppOptions()->GetCenterPrinterFooter(),
+                               wxGetApp().GetAppOptions()->GetRightPrinterFooter());
     dlg.SetHelpTopic(GetHelpDirectory(), _DT(L"online/publishing.html"));
     if (dlg.ShowModal() == wxID_OK)
         {
-        wxGetApp().GetAppOptions().SetLeftPrinterHeader(dlg.GetLeftPrinterHeader());
-        wxGetApp().GetAppOptions().SetCenterPrinterHeader(dlg.GetCenterPrinterHeader());
-        wxGetApp().GetAppOptions().SetRightPrinterHeader(dlg.GetRightPrinterHeader());
-        wxGetApp().GetAppOptions().SetLeftPrinterFooter(dlg.GetLeftPrinterFooter());
-        wxGetApp().GetAppOptions().SetCenterPrinterFooter(dlg.GetCenterPrinterFooter());
-        wxGetApp().GetAppOptions().SetRightPrinterFooter(dlg.GetRightPrinterFooter());
+        wxGetApp().GetAppOptions()->SetLeftPrinterHeader(dlg.GetLeftPrinterHeader());
+        wxGetApp().GetAppOptions()->SetCenterPrinterHeader(dlg.GetCenterPrinterHeader());
+        wxGetApp().GetAppOptions()->SetRightPrinterHeader(dlg.GetRightPrinterHeader());
+        wxGetApp().GetAppOptions()->SetLeftPrinterFooter(dlg.GetLeftPrinterFooter());
+        wxGetApp().GetAppOptions()->SetCenterPrinterFooter(dlg.GetCenterPrinterFooter());
+        wxGetApp().GetAppOptions()->SetRightPrinterFooter(dlg.GetRightPrinterFooter());
         }
     }
 
@@ -5148,15 +5149,15 @@ void MainFrame::OnClose(wxCloseEvent& event)
             event.Veto();
             }
         }
-    wxGetApp().GetAppOptions().SetAppWindowMaximized(IsMaximized());
-    wxGetApp().GetAppOptions().SetAppWindowWidth(GetSize().GetWidth());
-    wxGetApp().GetAppOptions().SetAppWindowHeight(GetSize().GetHeight());
+    wxGetApp().GetAppOptions()->SetAppWindowMaximized(IsMaximized());
+    wxGetApp().GetAppOptions()->SetAppWindowWidth(GetSize().GetWidth());
+    wxGetApp().GetAppOptions()->SetAppWindowHeight(GetSize().GetHeight());
     if (GetLuaEditor() != nullptr)
         {
-        wxGetApp().GetAppOptions().SetScriptEditorLayout(GetLuaEditor()->GetLayout());
+        wxGetApp().GetAppOptions()->SetScriptEditorLayout(GetLuaEditor()->GetLayout());
         }
-    wxGetApp().GetAppOptions().SetPaperId(wxGetApp().GetPrintData()->GetPaperId());
-    wxGetApp().GetAppOptions().SetPaperOrientation(wxGetApp().GetPrintData()->GetOrientation());
+    wxGetApp().GetAppOptions()->SetPaperId(wxGetApp().GetPrintData()->GetPaperId());
+    wxGetApp().GetAppOptions()->SetPaperOrientation(wxGetApp().GetPrintData()->GetOrientation());
     event.Skip();
     }
 
@@ -5296,7 +5297,7 @@ void MainFrame::OnToolsOptions([[maybe_unused]] wxRibbonButtonBarEvent& event)
     ToolsOptionsDlg optionsDlg(wxGetApp().GetParentingWindow());
     if (optionsDlg.ShowModal() == wxID_OK)
         {
-        wxGetApp().GetAppOptions().SaveOptionsFile();
+        wxGetApp().GetAppOptions()->SaveOptionsFile();
         }
     if (m_logWindow != nullptr)
         {
@@ -5308,11 +5309,11 @@ void MainFrame::OnToolsOptions([[maybe_unused]] wxRibbonButtonBarEvent& event)
 void MainFrame::OnEditWordList([[maybe_unused]] wxCommandEvent& event)
     {
     EditWordListDlg editDlg(wxGetApp().GetParentingWindow(), wxID_ANY, _(L"Edit Word List"));
-    editDlg.SetDefaultDir(wxGetApp().GetAppOptions().GetWordListPath());
+    editDlg.SetDefaultDir(wxGetApp().GetAppOptions()->GetWordListPath());
     editDlg.SetHelpTopic(GetHelpDirectory(), _DT(L"online/program-options.html"));
     if (editDlg.ShowModal() == wxID_OK)
         {
-        wxGetApp().GetAppOptions().SetWordListPath(wxFileName(editDlg.GetFilePath()).GetPath());
+        wxGetApp().GetAppOptions()->SetWordListPath(wxFileName(editDlg.GetFilePath()).GetPath());
         }
     }
 
@@ -5320,7 +5321,7 @@ void MainFrame::OnEditWordList([[maybe_unused]] wxCommandEvent& event)
 void MainFrame::OnEditPhraseList([[maybe_unused]] wxCommandEvent& event)
     {
     EditWordListDlg editDlg(wxGetApp().GetParentingWindow(), wxID_ANY, _(L"Edit Phrase List"));
-    editDlg.SetDefaultDir(wxGetApp().GetAppOptions().GetWordListPath());
+    editDlg.SetDefaultDir(wxGetApp().GetAppOptions()->GetWordListPath());
     editDlg.SetHelpTopic(GetHelpDirectory(), _DT(L"online/program-options.html"));
     editDlg.SetPhraseFileMode(true);
     editDlg.ShowModal();
@@ -5447,7 +5448,7 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
 void MainFrame::OnToolsChapterSplit([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
     wxFileDialog dialog(wxGetApp().GetParentingWindow(), _(L"Select File to Split"),
-                        wxGetApp().GetAppOptions().GetProjectPath(), wxString{},
+                        wxGetApp().GetAppOptions()->GetProjectPath(), wxString{},
                         ReadabilityAppOptions::GetDocumentFilter(),
                         wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
 
@@ -5489,10 +5490,10 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
                                   wxString::Format(
                                       // TRANSLATORS: %s are file filters
                                       _(L"Documents & Images (%s;%s)|%s;%s|"),
-                                      wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD.data(),
-                                      wxGetApp().GetAppOptions().ALL_IMAGES_WILDCARD.data(),
-                                      wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD.data(),
-                                      wxGetApp().GetAppOptions().ALL_IMAGES_WILDCARD.data()) +
+                                      wxGetApp().GetAppOptions()->ALL_DOCUMENTS_WILDCARD.data(),
+                                      wxGetApp().GetAppOptions()->ALL_IMAGES_WILDCARD.data(),
+                                      wxGetApp().GetAppOptions()->ALL_DOCUMENTS_WILDCARD.data(),
+                                      wxGetApp().GetAppOptions()->ALL_IMAGES_WILDCARD.data()) +
                                       ReadabilityAppOptions::GetDocumentFilter() + L"|" +
                                       Wisteria::GraphItems::Image::GetImageFileFilter(),
                                   wxGetApp().GetLastSelectedDocFilter(),
@@ -5501,7 +5502,7 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
     webHarvestDlg.UpdateFromHarvesterSettings(wxGetApp().GetWebHarvester());
     // force downloading locally
     webHarvestDlg.DownloadFilesLocally(true);
-    webHarvestDlg.SetDownloadFolder(wxGetApp().GetAppOptions().GetDownloadsPath());
+    webHarvestDlg.SetDownloadFolder(wxGetApp().GetAppOptions()->GetDownloadsPath());
     webHarvestDlg.SetHelpTopic(GetHelpDirectory(), _DT(L"online/additional-features.html"));
 
     if (webHarvestDlg.ShowModal() != wxID_OK)
@@ -5550,12 +5551,12 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
     wxGetApp().GetWebHarvester().ClearCookies();
 
     // update global internet options that mirror the same options from the dialog
-    wxGetApp().GetAppOptions().DisablePeerVerify(webHarvestDlg.IsPeerVerifyDisabled());
-    wxGetApp().GetAppOptions().UseJavaScriptCookies(webHarvestDlg.IsUsingJavaScriptCookies());
-    wxGetApp().GetAppOptions().PersistJavaScriptCookies(
+    wxGetApp().GetAppOptions()->DisablePeerVerify(webHarvestDlg.IsPeerVerifyDisabled());
+    wxGetApp().GetAppOptions()->UseJavaScriptCookies(webHarvestDlg.IsUsingJavaScriptCookies());
+    wxGetApp().GetAppOptions()->PersistJavaScriptCookies(
         webHarvestDlg.IsPersistingJavaScriptCookies());
-    wxGetApp().GetAppOptions().SetUserAgent(webHarvestDlg.GetUserAgent());
-    wxGetApp().GetAppOptions().SetDownloadsPath(webHarvestDlg.GetDownloadFolder());
+    wxGetApp().GetAppOptions()->SetUserAgent(webHarvestDlg.GetUserAgent());
+    wxGetApp().GetAppOptions()->SetDownloadsPath(webHarvestDlg.GetDownloadFolder());
 
     wxMessageBox(_(L"Web crawl complete."), _(L"Web Harvester"), wxOK | wxICON_INFORMATION);
     }

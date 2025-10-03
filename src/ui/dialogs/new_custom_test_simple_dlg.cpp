@@ -52,7 +52,7 @@ void NewCustomWordTestSimpleDlg::OnBrowseForFileClick([[maybe_unused]] wxCommand
     TransferDataFromWindow();
     wxFileDialog dialog(this, _(L"Select Word List File"),
                         m_wordListFilePath.length() ? wxString{} :
-                                                      wxGetApp().GetAppOptions().GetWordListPath(),
+                                                      wxGetApp().GetAppOptions()->GetWordListPath(),
                         m_wordListFilePath, _(L"Text files (*.txt)|*.txt"),
                         wxFD_OPEN | wxFD_FILE_MUST_EXIST | wxFD_PREVIEW);
     if (dialog.ShowModal() != wxID_OK)
@@ -61,7 +61,7 @@ void NewCustomWordTestSimpleDlg::OnBrowseForFileClick([[maybe_unused]] wxCommand
         }
 
     m_wordListFilePath = dialog.GetPath();
-    wxGetApp().GetAppOptions().SetWordListPath(wxFileName(m_wordListFilePath).GetPath());
+    wxGetApp().GetAppOptions()->SetWordListPath(wxFileName(m_wordListFilePath).GetPath());
     TransferDataToWindow();
     }
 

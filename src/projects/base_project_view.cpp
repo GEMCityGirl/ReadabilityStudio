@@ -1124,7 +1124,7 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
     // quick access toolbar
     m_quickToolbar = new wxAuiToolBar(m_frame, wxID_ANY);
     auto toolbarArt = new Wisteria::UI::ThemedAuiToolbarArt();
-    toolbarArt->SetThemeColor(wxGetApp().GetAppOptions().GetRibbonInactiveTabColor());
+    toolbarArt->SetThemeColor(wxGetApp().GetAppOptions()->GetRibbonInactiveTabColor());
     GetQuickToolbar()->SetArtProvider(toolbarArt);
     quickAccessToolbarSizer->Add(GetQuickToolbar(), wxSizerFlags{ 1 }.Expand());
     // save
@@ -1139,7 +1139,7 @@ bool BaseProjectView::OnCreate(wxDocument* doc, [[maybe_unused]] long flags)
     GetQuickToolbar()->Realize();
 
     m_searchCtrl = new SearchPanel(m_frame, wxID_ANY);
-    GetSearchPanel()->SetBackgroundColour(wxGetApp().GetAppOptions().GetRibbonInactiveTabColor());
+    GetSearchPanel()->SetBackgroundColour(wxGetApp().GetAppOptions()->GetRibbonInactiveTabColor());
     quickAccessToolbarSizer->Add(GetSearchPanel());
     mainSizer->Add(quickAccessToolbarSizer, wxSizerFlags{}.Expand());
 

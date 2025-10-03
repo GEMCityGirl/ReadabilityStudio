@@ -125,7 +125,7 @@ void TestBundleDlg::CreateControls()
         page->SetSizer(mainPanelSizer);
         m_sideBarBook->AddPage(page, _(L"Standard Tests"), ID_STANDARD_TEST_PAGE, false);
 
-        m_standardTests = wxGetApp().GetAppOptions().GetReadabilityTests();
+        m_standardTests = wxGetApp().GetAppOptions()->GetReadabilityTests();
 
         lily_of_the_valley::html_extract_text stripHtml;
         auto readabilityStandardTestSizer = new wxGridBagSizer(

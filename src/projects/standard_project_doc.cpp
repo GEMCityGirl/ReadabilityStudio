@@ -690,7 +690,7 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
         }
 
     SetProjectLanguage(wizard->GetLanguage());
-    wxGetApp().GetAppOptions().SetProjectLanguage(wizard->GetLanguage());
+    wxGetApp().GetAppOptions()->SetProjectLanguage(wizard->GetLanguage());
 
     if (wizard->IsTextFromFileSelected())
         {
@@ -828,7 +828,7 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
                     }
                 }
             }
-        wxGetApp().GetAppOptions().SetTestByDocumentType(wizard->GetSelectedDocumentType());
+        wxGetApp().GetAppOptions()->SetTestByDocumentType(wizard->GetSelectedDocumentType());
         }
     // user selected the program to use recommended tests by industry
     else if (wizard->IsIndustrySelected())
@@ -983,7 +983,7 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
                     }
                 }
             }
-        wxGetApp().GetAppOptions().SetTestByIndustry(wizard->GetSelectedIndustryType());
+        wxGetApp().GetAppOptions()->SetTestByIndustry(wizard->GetSelectedIndustryType());
         }
     // user manually selected the readability test to run
     else if (wizard->IsManualTestSelected())
@@ -999,7 +999,7 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
                 rTest->include(false);
                 }
             }
-        wxGetApp().GetAppOptions().SetReadabilityTests(wizard->GetReadabilityTestsInfo());
+        wxGetApp().GetAppOptions()->SetReadabilityTests(wizard->GetReadabilityTestsInfo());
 
         // Dolch
         if (wizard->GetLanguage() == readability::test_language::english_test)
@@ -1008,7 +1008,7 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
             // Ignore whether this was checked or not if not English.
             // This way, if this project is non-English, then it won't affect
             // future English projects when they are being created.
-            wxGetApp().GetAppOptions().SetDolch(IsIncludingDolchSightWords());
+            wxGetApp().GetAppOptions()->SetDolch(IsIncludingDolchSightWords());
             }
         else
             {
@@ -1016,13 +1016,13 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
             }
         // Custom tests. See what was selected, look it up in the global list of test, and add
         // its unique test ID to the options manager's list of included custom tests.
-        wxGetApp().GetAppOptions().GetIncludedCustomTests().clear();
+        wxGetApp().GetAppOptions()->GetIncludedCustomTests().clear();
         wxArrayInt selectedTestIndices = wizard->GetSelectedCustomTests();
         for (size_t i = 0; i < selectedTestIndices.Count(); ++i)
             {
             CustomReadabilityTest selectedTest = m_custom_word_tests[selectedTestIndices.Item(i)];
             AddCustomReadabilityTest(selectedTest.get_name().c_str());
-            wxGetApp().GetAppOptions().GetIncludedCustomTests().emplace_back(
+            wxGetApp().GetAppOptions()->GetIncludedCustomTests().emplace_back(
                 selectedTest.get_name().c_str());
             }
         }
@@ -1030,7 +1030,7 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
     else if (wizard->IsTestBundleSelected())
         {
         ApplyTestBundle(wizard->GetSelectedTestBundle());
-        wxGetApp().GetAppOptions().SetSelectedTestBundle(wizard->GetSelectedTestBundle());
+        wxGetApp().GetAppOptions()->SetSelectedTestBundle(wizard->GetSelectedTestBundle());
         }
     // set parsing options based on how the user defined the structure of the document
     IgnoreBlankLinesForParagraphsParser(wizard->IsSplitLinesSelected());
@@ -1074,14 +1074,14 @@ bool ProjectDoc::RunProjectWizard(const wxString& path)
             }
         }
 
-    wxGetApp().GetAppOptions().SetTextSource(
+    wxGetApp().GetAppOptions()->SetTextSource(
         wizard->IsTextFromFileSelected() ? TextSource::FromFile : TextSource::EnteredText);
-    wxGetApp().GetAppOptions().SetTestRecommendation(
+    wxGetApp().GetAppOptions()->SetTestRecommendation(
         wizard->IsDocumentTypeSelected() ? TestRecommendation::BasedOnDocumentType :
         wizard->IsIndustrySelected()     ? TestRecommendation::BasedOnIndustry :
         wizard->IsTestBundleSelected()   ? TestRecommendation::UseBundle :
                                            TestRecommendation::ManuallySelectTests);
-    wxGetApp().GetAppOptions().SaveOptionsFile();
+    wxGetApp().GetAppOptions()->SaveOptionsFile();
     wizard->Destroy();
     return true;
     }
@@ -1155,17 +1155,17 @@ void ProjectDoc::DisplayReadabilityScores(const bool setFocus)
                 scoresReport->SetName(_(L"Summary Report"));
                 scoresReport->SetPrinterSettings(wxGetApp().GetPrintData());
                 scoresReport->SetLeftPrinterHeader(
-                    wxGetApp().GetAppOptions().GetLeftPrinterHeader());
+                    wxGetApp().GetAppOptions()->GetLeftPrinterHeader());
                 scoresReport->SetCenterPrinterHeader(
-                    wxGetApp().GetAppOptions().GetCenterPrinterHeader());
+                    wxGetApp().GetAppOptions()->GetCenterPrinterHeader());
                 scoresReport->SetRightPrinterHeader(
-                    wxGetApp().GetAppOptions().GetRightPrinterHeader());
+                    wxGetApp().GetAppOptions()->GetRightPrinterHeader());
                 scoresReport->SetLeftPrinterFooter(
-                    wxGetApp().GetAppOptions().GetLeftPrinterFooter());
+                    wxGetApp().GetAppOptions()->GetLeftPrinterFooter());
                 scoresReport->SetCenterPrinterFooter(
-                    wxGetApp().GetAppOptions().GetCenterPrinterFooter());
+                    wxGetApp().GetAppOptions()->GetCenterPrinterFooter());
                 scoresReport->SetRightPrinterFooter(
-                    wxGetApp().GetAppOptions().GetRightPrinterFooter());
+                    wxGetApp().GetAppOptions()->GetRightPrinterFooter());
                 view->GetReadabilityResultsView().InsertWindow(1, scoresReport);
                 }
             scoresReport->SetPage(ProjectReportFormat::FormatHtmlReportStart() + text +
@@ -1577,9 +1577,9 @@ bool ProjectDoc::OnNewDocument()
             {
             Wisteria::UI::ListDlg listDlg(
                 view->GetFrame(), longIncompleteSentences, false,
-                wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
-                wxGetApp().GetAppOptions().GetRibbonHoverColor(),
-                wxGetApp().GetAppOptions().GetRibbonActiveFontColor(),
+                wxGetApp().GetAppOptions()->GetRibbonActiveTabColor(),
+                wxGetApp().GetAppOptions()->GetRibbonHoverColor(),
+                wxGetApp().GetAppOptions()->GetRibbonActiveFontColor(),
                 Wisteria::UI::LD_CLOSE_BUTTON | Wisteria::UI::LD_DONT_SHOW_AGAIN, wxID_ANY,
                 warningIter->GetTitle(),
                 wxString::Format(
@@ -4028,17 +4028,17 @@ void ProjectDoc::DisplayStatistics()
             summaryReportWindow->SetName(BaseProjectView::GetFormattedReportLabel());
             summaryReportWindow->SetPrinterSettings(wxGetApp().GetPrintData());
             summaryReportWindow->SetLeftPrinterHeader(
-                wxGetApp().GetAppOptions().GetLeftPrinterHeader());
+                wxGetApp().GetAppOptions()->GetLeftPrinterHeader());
             summaryReportWindow->SetCenterPrinterHeader(
-                wxGetApp().GetAppOptions().GetCenterPrinterHeader());
+                wxGetApp().GetAppOptions()->GetCenterPrinterHeader());
             summaryReportWindow->SetRightPrinterHeader(
-                wxGetApp().GetAppOptions().GetRightPrinterHeader());
+                wxGetApp().GetAppOptions()->GetRightPrinterHeader());
             summaryReportWindow->SetLeftPrinterFooter(
-                wxGetApp().GetAppOptions().GetLeftPrinterFooter());
+                wxGetApp().GetAppOptions()->GetLeftPrinterFooter());
             summaryReportWindow->SetCenterPrinterFooter(
-                wxGetApp().GetAppOptions().GetCenterPrinterFooter());
+                wxGetApp().GetAppOptions()->GetCenterPrinterFooter());
             summaryReportWindow->SetRightPrinterFooter(
-                wxGetApp().GetAppOptions().GetRightPrinterFooter());
+                wxGetApp().GetAppOptions()->GetRightPrinterFooter());
             }
 
         wxString formattedStats =
@@ -4116,12 +4116,12 @@ void ProjectDoc::DisplayStatistics()
             sumWindow->SetLabel(_(L"Summary"));
             sumWindow->SetName(_(L"Dolch Summary"));
             sumWindow->SetPrinterSettings(wxGetApp().GetPrintData());
-            sumWindow->SetLeftPrinterHeader(wxGetApp().GetAppOptions().GetLeftPrinterHeader());
-            sumWindow->SetCenterPrinterHeader(wxGetApp().GetAppOptions().GetCenterPrinterHeader());
-            sumWindow->SetRightPrinterHeader(wxGetApp().GetAppOptions().GetRightPrinterHeader());
-            sumWindow->SetLeftPrinterFooter(wxGetApp().GetAppOptions().GetLeftPrinterFooter());
-            sumWindow->SetCenterPrinterFooter(wxGetApp().GetAppOptions().GetCenterPrinterFooter());
-            sumWindow->SetRightPrinterFooter(wxGetApp().GetAppOptions().GetRightPrinterFooter());
+            sumWindow->SetLeftPrinterHeader(wxGetApp().GetAppOptions()->GetLeftPrinterHeader());
+            sumWindow->SetCenterPrinterHeader(wxGetApp().GetAppOptions()->GetCenterPrinterHeader());
+            sumWindow->SetRightPrinterHeader(wxGetApp().GetAppOptions()->GetRightPrinterHeader());
+            sumWindow->SetLeftPrinterFooter(wxGetApp().GetAppOptions()->GetLeftPrinterFooter());
+            sumWindow->SetCenterPrinterFooter(wxGetApp().GetAppOptions()->GetCenterPrinterFooter());
+            sumWindow->SetRightPrinterFooter(wxGetApp().GetAppOptions()->GetRightPrinterFooter());
 
             view->GetDolchSightWordsView().AddWindow(sumWindow);
             }

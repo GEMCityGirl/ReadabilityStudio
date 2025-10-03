@@ -54,7 +54,7 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
                 SetFormula(ReadabilityFormulaParser::GetCustomNewDaleChallSignature());
                 SetIncludingDaleChallList(true);
                 SetProperNounMethod(static_cast<int>(
-                    wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod()));
+                    wxGetApp().GetAppOptions()->GetDaleChallProperNounCountingMethod()));
                 TransferDataToWindow();
                 return true;
                 }
@@ -138,7 +138,8 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
                     ReadabilityFormulaParser::GetCustomNewDaleChallSignature())
                     .ToStdString()) &&
             GetProperNounMethod() !=
-                static_cast<int>(wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod()))
+                static_cast<int>(
+                    wxGetApp().GetAppOptions()->GetDaleChallProperNounCountingMethod()))
             {
             std::vector<WarningMessage>::iterator warningIter =
                 WarningManager::GetWarning(_DT(L"ndc-proper-noun-conflict"));
@@ -149,7 +150,7 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
                     if (warningIter->GetPreviousResponse() == wxID_YES)
                         {
                         SetProperNounMethod(static_cast<int>(
-                            wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod()));
+                            wxGetApp().GetAppOptions()->GetDaleChallProperNounCountingMethod()));
                         TransferDataToWindow();
                         }
                     }
@@ -164,7 +165,7 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
                     if (dlgResponse == wxID_YES)
                         {
                         SetProperNounMethod(static_cast<int>(
-                            wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod()));
+                            wxGetApp().GetAppOptions()->GetDaleChallProperNounCountingMethod()));
                         TransferDataToWindow();
                         }
                     if (warningIter != WarningManager::GetWarnings().end() &&

@@ -1425,7 +1425,7 @@ void ProjectView::OnMenuCommand(wxCommandEvent& event)
 
                 // if no application-level exclusion list is being used, then ask
                 // if we want this new one to used for that as well
-                if (wxGetApp().GetAppOptions().GetExcludedPhrasesPath().empty())
+                if (wxGetApp().GetAppOptions()->GetExcludedPhrasesPath().empty())
                     {
                     auto warningIter =
                         WarningManager::GetWarning(_DT(L"set-app-exclusion-list-from-project"));
@@ -1444,7 +1444,7 @@ void ProjectView::OnMenuCommand(wxCommandEvent& event)
                             }
                         if (dlgResponse == wxID_YES)
                             {
-                            wxGetApp().GetAppOptions().SetExcludedPhrasesPath(dialog.GetPath());
+                            wxGetApp().GetAppOptions()->SetExcludedPhrasesPath(dialog.GetPath());
                             }
                         }
                     }
@@ -1611,16 +1611,16 @@ bool ProjectView::OnCreate(wxDocument* doc, long flags)
     readabilityScoresView->GetResultsListCtrl()->AssignContextMenu(
         wxXmlResource::Get()->LoadMenu(L"IDM_READABILITY_SCORE_LIST"));
     readabilityScoresView->SetPrinterSettings(wxGetApp().GetPrintData());
-    readabilityScoresView->SetLeftPrinterHeader(wxGetApp().GetAppOptions().GetLeftPrinterHeader());
+    readabilityScoresView->SetLeftPrinterHeader(wxGetApp().GetAppOptions()->GetLeftPrinterHeader());
     readabilityScoresView->SetCenterPrinterHeader(
-        wxGetApp().GetAppOptions().GetCenterPrinterHeader());
+        wxGetApp().GetAppOptions()->GetCenterPrinterHeader());
     readabilityScoresView->SetRightPrinterHeader(
-        wxGetApp().GetAppOptions().GetRightPrinterHeader());
-    readabilityScoresView->SetLeftPrinterFooter(wxGetApp().GetAppOptions().GetLeftPrinterFooter());
+        wxGetApp().GetAppOptions()->GetRightPrinterHeader());
+    readabilityScoresView->SetLeftPrinterFooter(wxGetApp().GetAppOptions()->GetLeftPrinterFooter());
     readabilityScoresView->SetCenterPrinterFooter(
-        wxGetApp().GetAppOptions().GetCenterPrinterFooter());
+        wxGetApp().GetAppOptions()->GetCenterPrinterFooter());
     readabilityScoresView->SetRightPrinterFooter(
-        wxGetApp().GetAppOptions().GetRightPrinterFooter());
+        wxGetApp().GetAppOptions()->GetRightPrinterFooter());
     readabilityScoresView->SetResources(wxGetApp().GetMainFrame()->GetHelpDirectory(),
                                         L"online/customizing-results.html");
     GetReadabilityResultsView().AddWindow(readabilityScoresView);

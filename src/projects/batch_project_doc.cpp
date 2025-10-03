@@ -466,9 +466,9 @@ bool BatchProjectDoc::CheckForFailedDocuments()
     wxASSERT_MSG(view->GetFrame(), L"Invalid frame for newly created document!");
     // show the names of the failed documents somehow so the user can review it before removing them
     Wisteria::UI::ListDlg listDlg(
-        view->GetFrame(), failedDocs, false, wxGetApp().GetAppOptions().GetRibbonActiveTabColor(),
-        wxGetApp().GetAppOptions().GetRibbonHoverColor(),
-        wxGetApp().GetAppOptions().GetRibbonActiveFontColor(), Wisteria::UI::LD_YES_NO_BUTTONS,
+        view->GetFrame(), failedDocs, false, wxGetApp().GetAppOptions()->GetRibbonActiveTabColor(),
+        wxGetApp().GetAppOptions()->GetRibbonHoverColor(),
+        wxGetApp().GetAppOptions()->GetRibbonActiveFontColor(), Wisteria::UI::LD_YES_NO_BUTTONS,
         wxID_ANY, _(L"Warning"),
         _(L"The following documents could not be loaded because they either do not contain "
           "enough valid text or could not be found. Do you wish to remove these documents "
@@ -5667,7 +5667,7 @@ bool BatchProjectDoc::RunProjectWizard(const wxString& path)
         }
 
     SetProjectLanguage(wizard->GetLanguage());
-    wxGetApp().GetAppOptions().SetProjectLanguage(wizard->GetLanguage());
+    wxGetApp().GetAppOptions()->SetProjectLanguage(wizard->GetLanguage());
 
     // get readability options that were selected
     if (wizard->IsDocumentTypeSelected())
@@ -5783,7 +5783,7 @@ bool BatchProjectDoc::RunProjectWizard(const wxString& path)
                     }
                 }
             }
-        wxGetApp().GetAppOptions().SetTestByDocumentType(wizard->GetSelectedDocumentType());
+        wxGetApp().GetAppOptions()->SetTestByDocumentType(wizard->GetSelectedDocumentType());
         }
     // user selected the program to use recommended tests by industry
     else if (wizard->IsIndustrySelected())
@@ -5938,7 +5938,7 @@ bool BatchProjectDoc::RunProjectWizard(const wxString& path)
                     }
                 }
             }
-        wxGetApp().GetAppOptions().SetTestByIndustry(wizard->GetSelectedIndustryType());
+        wxGetApp().GetAppOptions()->SetTestByIndustry(wizard->GetSelectedIndustryType());
         }
     // user manually selected the readability test to run
     else if (wizard->IsManualTestSelected())
@@ -5954,7 +5954,7 @@ bool BatchProjectDoc::RunProjectWizard(const wxString& path)
                 rTest->include(false);
                 }
             }
-        wxGetApp().GetAppOptions().SetReadabilityTests(wizard->GetReadabilityTestsInfo());
+        wxGetApp().GetAppOptions()->SetReadabilityTests(wizard->GetReadabilityTestsInfo());
 
         // Dolch
         if (wizard->GetLanguage() == readability::test_language::english_test)
@@ -5963,7 +5963,7 @@ bool BatchProjectDoc::RunProjectWizard(const wxString& path)
             // Ignore whether this was checked or not if not English.
             // This way, if this project is non-English, then it won't affect
             // future English projects when they are being created.
-            wxGetApp().GetAppOptions().SetDolch(IsIncludingDolchSightWords());
+            wxGetApp().GetAppOptions()->SetDolch(IsIncludingDolchSightWords());
             }
         else
             {
@@ -5971,13 +5971,13 @@ bool BatchProjectDoc::RunProjectWizard(const wxString& path)
             }
         // Custom tests. See what was selected, look it up in the global list of test, and add
         // its unique test ID to the options manager's list of included custom tests.
-        wxGetApp().GetAppOptions().GetIncludedCustomTests().clear();
+        wxGetApp().GetAppOptions()->GetIncludedCustomTests().clear();
         wxArrayInt selectedTestIndices = wizard->GetSelectedCustomTests();
         for (size_t i = 0; i < selectedTestIndices.Count(); ++i)
             {
             CustomReadabilityTest selectedTest = m_custom_word_tests[selectedTestIndices.Item(i)];
             AddCustomReadabilityTest(selectedTest.get_name().c_str());
-            wxGetApp().GetAppOptions().GetIncludedCustomTests().push_back(
+            wxGetApp().GetAppOptions()->GetIncludedCustomTests().push_back(
                 selectedTest.get_name().c_str());
             }
         }
@@ -5985,7 +5985,7 @@ bool BatchProjectDoc::RunProjectWizard(const wxString& path)
     else if (wizard->IsTestBundleSelected())
         {
         ApplyTestBundle(wizard->GetSelectedTestBundle());
-        wxGetApp().GetAppOptions().SetSelectedTestBundle(wizard->GetSelectedTestBundle());
+        wxGetApp().GetAppOptions()->SetSelectedTestBundle(wizard->GetSelectedTestBundle());
         }
     // set parsing options based on how the user defined the structure of the document
     IgnoreBlankLinesForParagraphsParser(wizard->IsSplitLinesSelected());
@@ -6056,18 +6056,18 @@ bool BatchProjectDoc::RunProjectWizard(const wxString& path)
                                    GetSourceFilesInfo().end());
         assert(sampleSize == GetSourceFilesInfo().size() && "Invalid random sample size!");
 
-        wxGetApp().GetAppOptions().EnableRandomSampling(wizard->IsRandomSampling());
-        wxGetApp().GetAppOptions().SetBatchRandomSamplingSize(wizard->GetRandomSamplePercentage());
+        wxGetApp().GetAppOptions()->EnableRandomSampling(wizard->IsRandomSampling());
+        wxGetApp().GetAppOptions()->SetBatchRandomSamplingSize(wizard->GetRandomSamplePercentage());
         }
     SetMinDocWordCountForBatch(wizard->GetMinDocWordCountForBatch());
-    wxGetApp().GetAppOptions().SetMinDocWordCountForBatch(wizard->GetMinDocWordCountForBatch());
+    wxGetApp().GetAppOptions()->SetMinDocWordCountForBatch(wizard->GetMinDocWordCountForBatch());
 
-    wxGetApp().GetAppOptions().SetTestRecommendation(
+    wxGetApp().GetAppOptions()->SetTestRecommendation(
         wizard->IsDocumentTypeSelected() ? TestRecommendation::BasedOnDocumentType :
         wizard->IsIndustrySelected()     ? TestRecommendation::BasedOnIndustry :
         wizard->IsTestBundleSelected()   ? TestRecommendation::UseBundle :
                                            TestRecommendation::ManuallySelectTests);
-    wxGetApp().GetAppOptions().SaveOptionsFile();
+    wxGetApp().GetAppOptions()->SaveOptionsFile();
     wizard->Destroy();
     return true;
     }

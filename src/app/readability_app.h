@@ -299,6 +299,11 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
     void LoadInterface();
     void LoadMenus();
 
+    /// @brief Constructs the options handler.
+    /// @warning This must be called after `BaseApp::OnInit()` has be called
+    ///     so the construction of system fonts and colors are safe.
+    void CreateAppOptions() { m_appOptions = std::make_unique<ReadabilityAppOptions>(); }
+
     [[nodiscard]]
     MainFrame* GetMainFrameEx() noexcept
         {
@@ -334,14 +339,10 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
     void SetLastSelectedDocFilter(const wxString& filter) { m_lastSelectedDocFilter = filter; }
 
     [[nodiscard]]
-    ReadabilityAppOptions& GetAppOptions() noexcept
+    std::unique_ptr<ReadabilityAppOptions>& GetAppOptions() noexcept
         {
-        // This object is too big for the stack, so create it on-demand from the heap
-        if (m_appOptions == nullptr)
-            {
-            m_appOptions = std::make_unique<ReadabilityAppOptions>();
-            }
-        return *m_appOptions.get();
+        wxASSERT_MSG(m_appOptions, L"Call CreateAppOptions() to construct this interface!");
+        return m_appOptions;
         }
 
     [[nodiscard]]
@@ -472,6 +473,7 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
     /// @details Set (or add to this) in your framework's initialization.
     static std::map<wxWindowID, wxWindowID> m_dynamicIdMap;
 
+    PreAppInitOptions m_preInitOptions;
     std::unique_ptr<ReadabilityAppOptions> m_appOptions{ nullptr };
     bool LoadWordLists(const wxString& AppSettingFolderPath);
     wxArrayString m_lastSelectedWebPages;

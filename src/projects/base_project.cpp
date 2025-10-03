@@ -338,75 +338,75 @@ bool BaseProject::IsIncludingGradeTest() const
 
 //-------------------------------------------------------
 BaseProject::BaseProject()
-    : m_minDocWordCountForBatch(wxGetApp().GetAppOptions().GetMinDocWordCountForBatch()),
+    : m_minDocWordCountForBatch(wxGetApp().GetAppOptions()->GetMinDocWordCountForBatch()),
       m_includeIncompleteSentencesIfLongerThan(
-          wxGetApp().GetAppOptions().GetIncludeIncompleteSentencesIfLongerThanValue()),
+          wxGetApp().GetAppOptions()->GetIncludeIncompleteSentencesIfLongerThanValue()),
 
-      m_difficultSentenceLength(wxGetApp().GetAppOptions().GetDifficultSentenceLength()),
+      m_difficultSentenceLength(wxGetApp().GetAppOptions()->GetDifficultSentenceLength()),
 
-      m_numeralSyllabicationMethod(wxGetApp().GetAppOptions().GetNumeralSyllabicationMethod()),
-      m_longSentenceMethod(wxGetApp().GetAppOptions().GetLongSentenceMethod()),
-      m_paragraphsParsingMethod(wxGetApp().GetAppOptions().GetParagraphsParsingMethod()),
-      m_invalidSentenceMethod(wxGetApp().GetAppOptions().GetInvalidSentenceMethod()),
-      m_textSource(wxGetApp().GetAppOptions().GetTextSource()),
-      m_documentStorageMethod(wxGetApp().GetAppOptions().GetDocumentStorageMethod()),
-      m_varianceMethod(wxGetApp().GetAppOptions().GetVarianceMethod()),
+      m_numeralSyllabicationMethod(wxGetApp().GetAppOptions()->GetNumeralSyllabicationMethod()),
+      m_longSentenceMethod(wxGetApp().GetAppOptions()->GetLongSentenceMethod()),
+      m_paragraphsParsingMethod(wxGetApp().GetAppOptions()->GetParagraphsParsingMethod()),
+      m_invalidSentenceMethod(wxGetApp().GetAppOptions()->GetInvalidSentenceMethod()),
+      m_textSource(wxGetApp().GetAppOptions()->GetTextSource()),
+      m_documentStorageMethod(wxGetApp().GetAppOptions()->GetDocumentStorageMethod()),
+      m_varianceMethod(wxGetApp().GetAppOptions()->GetVarianceMethod()),
       // readability scores options
-      m_includeScoreSummaryReport(wxGetApp().GetAppOptions().IsIncludingScoreSummaryReport()),
+      m_includeScoreSummaryReport(wxGetApp().GetAppOptions()->IsIncludingScoreSummaryReport()),
       // test options
-      m_hjTextExclusion(wxGetApp().GetAppOptions().GetHarrisJacobsonTextExclusionMode()),
-      m_dcTextExclusion(wxGetApp().GetAppOptions().GetDaleChallTextExclusionMode()),
+      m_hjTextExclusion(wxGetApp().GetAppOptions()->GetHarrisJacobsonTextExclusionMode()),
+      m_dcTextExclusion(wxGetApp().GetAppOptions()->GetDaleChallTextExclusionMode()),
       m_dcProperNounCountingMethod(
-          wxGetApp().GetAppOptions().GetDaleChallProperNounCountingMethod()),
-      m_fleschNumeralSyllabizeMethod(wxGetApp().GetAppOptions().GetFleschNumeralSyllabizeMethod()),
+          wxGetApp().GetAppOptions()->GetDaleChallProperNounCountingMethod()),
+      m_fleschNumeralSyllabizeMethod(wxGetApp().GetAppOptions()->GetFleschNumeralSyllabizeMethod()),
       m_fleschKincaidNumeralSyllabizeMethod(
-          wxGetApp().GetAppOptions().GetFleschKincaidNumeralSyllabizeMethod()),
+          wxGetApp().GetAppOptions()->GetFleschKincaidNumeralSyllabizeMethod()),
       // language options
-      m_language(wxGetApp().GetAppOptions().GetProjectLanguage()),
-      m_reviewer(wxGetApp().GetAppOptions().GetReviewer()),
+      m_language(wxGetApp().GetAppOptions()->GetProjectLanguage()),
+      m_reviewer(wxGetApp().GetAppOptions()->GetReviewer()),
 
       // grammar
       m_spellcheck_ignore_proper_nouns(
-          wxGetApp().GetAppOptions().SpellCheckIsIgnoringProperNouns()),
-      m_spellcheck_ignore_uppercased(wxGetApp().GetAppOptions().SpellCheckIsIgnoringUppercased()),
-      m_spellcheck_ignore_numerals(wxGetApp().GetAppOptions().SpellCheckIsIgnoringNumerals()),
+          wxGetApp().GetAppOptions()->SpellCheckIsIgnoringProperNouns()),
+      m_spellcheck_ignore_uppercased(wxGetApp().GetAppOptions()->SpellCheckIsIgnoringUppercased()),
+      m_spellcheck_ignore_numerals(wxGetApp().GetAppOptions()->SpellCheckIsIgnoringNumerals()),
       m_spellcheck_ignore_file_addresses(
-          wxGetApp().GetAppOptions().SpellCheckIsIgnoringFileAddresses()),
+          wxGetApp().GetAppOptions()->SpellCheckIsIgnoringFileAddresses()),
       m_spellcheck_ignore_programmer_code(
-          wxGetApp().GetAppOptions().SpellCheckIsIgnoringProgrammerCode()),
-      m_allow_colloquialisms(wxGetApp().GetAppOptions().SpellCheckIsAllowingColloquialisms()),
+          wxGetApp().GetAppOptions()->SpellCheckIsIgnoringProgrammerCode()),
+      m_allow_colloquialisms(wxGetApp().GetAppOptions()->SpellCheckIsAllowingColloquialisms()),
       m_spellcheck_ignore_social_media_tags(
-          wxGetApp().GetAppOptions().SpellCheckIsIgnoringSocialMediaTags()),
+          wxGetApp().GetAppOptions()->SpellCheckIsIgnoringSocialMediaTags()),
 
       // analysis
       m_ignoreBlankLinesForParagraphsParser(
-          wxGetApp().GetAppOptions().IsIgnoringBlankLinesForParagraphsParser()),
+          wxGetApp().GetAppOptions()->IsIgnoringBlankLinesForParagraphsParser()),
       m_ignoreIndentingForParagraphsParser(
-          wxGetApp().GetAppOptions().IsIgnoringIndentingForParagraphsParser()),
+          wxGetApp().GetAppOptions()->IsIgnoringIndentingForParagraphsParser()),
       m_sentenceStartMustBeUppercased(
-          wxGetApp().GetAppOptions().GetSentenceStartMustBeUppercased()),
-      m_aggressiveExclusion(wxGetApp().GetAppOptions().IsExcludingAggressively()),
+          wxGetApp().GetAppOptions()->GetSentenceStartMustBeUppercased()),
+      m_aggressiveExclusion(wxGetApp().GetAppOptions()->IsExcludingAggressively()),
       m_excludeTrailingCopyrightNoticeParagraphs(
-          wxGetApp().GetAppOptions().IsExcludingTrailingCopyrightNoticeParagraphs()),
-      m_excludeTrailingCitations(wxGetApp().GetAppOptions().IsExcludingTrailingCitations()),
-      m_excludeFileAddresses(wxGetApp().GetAppOptions().IsExcludingFileAddresses()),
-      m_excludeNumerals(wxGetApp().GetAppOptions().IsExcludingNumerals()),
-      m_excludeProperNouns(wxGetApp().GetAppOptions().IsExcludingProperNouns()),
+          wxGetApp().GetAppOptions()->IsExcludingTrailingCopyrightNoticeParagraphs()),
+      m_excludeTrailingCitations(wxGetApp().GetAppOptions()->IsExcludingTrailingCitations()),
+      m_excludeFileAddresses(wxGetApp().GetAppOptions()->IsExcludingFileAddresses()),
+      m_excludeNumerals(wxGetApp().GetAppOptions()->IsExcludingNumerals()),
+      m_excludeProperNouns(wxGetApp().GetAppOptions()->IsExcludingProperNouns()),
       m_includeExcludedPhraseFirstOccurrence(
-          wxGetApp().GetAppOptions().IsIncludingExcludedPhraseFirstOccurrence()),
+          wxGetApp().GetAppOptions()->IsIncludingExcludedPhraseFirstOccurrence()),
 
-      m_fogUseSentenceUnits(wxGetApp().GetAppOptions().IsFogUsingSentenceUnits()),
+      m_fogUseSentenceUnits(wxGetApp().GetAppOptions()->IsFogUsingSentenceUnits()),
       m_includeStockerCatholicDCSupplement(
-          wxGetApp().GetAppOptions().IsIncludingStockerCatholicSupplement()),
+          wxGetApp().GetAppOptions()->IsIncludingStockerCatholicSupplement()),
 
-      m_statsInfo(wxGetApp().GetAppOptions().GetStatisticsInfo()),
-      m_statsReportInfo(wxGetApp().GetAppOptions().GetStatisticsReportInfo()),
-      m_grammarInfo(wxGetApp().GetAppOptions().GetGrammarInfo()),
-      m_wordsBreakdownInfo(wxGetApp().GetAppOptions().GetWordsBreakdownInfo()),
-      m_sentencesBreakdownInfo(wxGetApp().GetAppOptions().GetSentencesBreakdownInfo()),
-      m_excludedPhrasesPath(wxGetApp().GetAppOptions().GetExcludedPhrasesPath()),
-      m_exclusionBlockTags(wxGetApp().GetAppOptions().GetExclusionBlockTags()),
-      m_appendedDocumentFilePath(wxGetApp().GetAppOptions().GetAppendedDocumentFilePath())
+      m_statsInfo(wxGetApp().GetAppOptions()->GetStatisticsInfo()),
+      m_statsReportInfo(wxGetApp().GetAppOptions()->GetStatisticsReportInfo()),
+      m_grammarInfo(wxGetApp().GetAppOptions()->GetGrammarInfo()),
+      m_wordsBreakdownInfo(wxGetApp().GetAppOptions()->GetWordsBreakdownInfo()),
+      m_sentencesBreakdownInfo(wxGetApp().GetAppOptions()->GetSentencesBreakdownInfo()),
+      m_excludedPhrasesPath(wxGetApp().GetAppOptions()->GetExcludedPhrasesPath()),
+      m_exclusionBlockTags(wxGetApp().GetAppOptions()->GetExclusionBlockTags()),
+      m_appendedDocumentFilePath(wxGetApp().GetAppOptions()->GetAppendedDocumentFilePath())
     {
     ResetStandardReadabilityTests(m_readabilityTests);
     // bind the standard test functions with their respective IDs
@@ -761,11 +761,11 @@ BaseProject::BaseProject()
         }
 
     m_readMessages.SetReadingAgeDisplay(
-        wxGetApp().GetAppOptions().GetReadabilityMessageCatalog().GetReadingAgeDisplay());
+        wxGetApp().GetAppOptions()->GetReadabilityMessageCatalog().GetReadingAgeDisplay());
     m_readMessages.SetGradeScale(
-        wxGetApp().GetAppOptions().GetReadabilityMessageCatalog().GetGradeScale());
+        wxGetApp().GetAppOptions()->GetReadabilityMessageCatalog().GetGradeScale());
     m_readMessages.SetLongGradeScaleFormat(
-        wxGetApp().GetAppOptions().GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat());
+        wxGetApp().GetAppOptions()->GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat());
     }
 
 //-------------------------------------------------------

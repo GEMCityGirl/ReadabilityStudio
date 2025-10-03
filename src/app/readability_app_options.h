@@ -536,6 +536,23 @@ class SentencesBreakdownInfo
     std::bitset<64> m_sentenceBreakdownItemsToInclude{ 0 };
     };
 
+/// @brief Options that need to be loaded from the settings file before
+///     the application is fully constructed.
+/// @details ReadabilityAppOptions cannot be constructed until the `wxApp::OnInit()`
+///     is called and the top-level window constructed.
+///     These are the options needed prior to that.
+class PreAppInitOptions
+    {
+  public:
+    bool LoadOptionsFile(const wxString& optionsFile);
+
+    bool m_appWindowMaximized{ true };
+    int m_appWindowWidth{ 800 };
+    int m_appWindowHeight{ 700 };
+    UiLanguage m_uiLanguage{ UiLanguage::Default };
+    bool m_logAppendDailyLog{ false };
+    };
+
 class ReadabilityAppOptions
     {
   public:
@@ -2788,311 +2805,395 @@ class ReadabilityAppOptions
     constexpr static int m_maxCustomColors{ 16 };
 
   public:
-    const std::string_view XML_EDITOR{ _DT("editor") };
-    const std::string_view XML_EDITOR_FONT{ _DT("editor-font") };
-    const std::string_view XML_EDITOR_FONTCOLOR{ _DT("editor-font-color") };
-    const std::string_view XML_EDITOR_INDENT{ _DT("editor-indent") };
-    const std::string_view XML_EDITOR_SPACE_AFTER_PARAGRAPH{ _DT("editor-space-after-paragraph") };
-    const std::string_view XML_EDITOR_TEXT_ALIGNMENT{ _DT("editor-text-alignment") };
-    const std::string_view XML_EDITOR_LINE_SPACING{ _DT("editor-line-spacing") };
-    const std::string_view XML_LOG_SETTINGS{ _DT("log-setting") };
-    const std::string_view XML_LOG_VERBOSE{ _DT("log-verbose") };
-    const std::string_view XML_LOG_APPEND_DAILY{ _DT("log-append-daily") };
-    const std::string_view XML_PROJECT_HEADER{ _DT("oleander-readability-studio-project") };
-    const std::string_view XML_DOCUMENT{ _DT("document") };
-    const std::string_view XML_TEXT_SOURCE{ _DT("text-source") };
-    const std::string_view XML_DOCUMENT_PATH{ _DT("file-path") };
-    const std::string_view XML_DESCRIPTION{ _DT("description") };
-    const std::string_view XML_DOCUMENT_ANALYSIS_LOGIC{ _DT("document-analysis-logic") };
-    const std::string_view XML_EXPORT_FOLDER_PATH{ _DT("export-folder-path") };
-    const std::string_view XML_EXPORT_FILE_PATH{ _DT("export-file-path") };
-    const std::string_view XML_INCLUDE{ _DT("include") };
-    const std::string_view XML_CONFIGURATIONS{ _DT("configurations") };
-    const std::string_view XML_VERSION{ _DT("version") };
-    const std::wstring_view XML_VERSION_W{ _DT(L"version") };
-    const std::string_view XML_HIGHLIGHT_METHOD{ _DT("highlight-method") };
-    const std::string_view XML_HIGHLIGHTCOLOR{ _DT("highlight-color") };
-    const std::string_view XML_EXCLUDED_HIGHLIGHTCOLOR{ _DT("excluded-highlight-color") };
-    const std::string_view XML_DUP_WORD_HIGHLIGHTCOLOR{ _DT("duplicate-word-highlight-color") };
-    const std::string_view XML_WORDY_PHRASE_HIGHLIGHTCOLOR{ _DT("wordy-phrase-highlight-color") };
-    const std::string_view XML_LONG_SENTENCES{ _DT("long-sentences") };
-    const std::string_view XML_LONG_SENTENCE_METHOD{ _DT("long-sentence-method") };
-    const std::string_view XML_LONG_SENTENCE_LENGTH{ _DT("long-sentence-length") };
-    const std::string_view XML_NUMERAL_SYLLABICATION_METHOD{ _DT("numeral-syllabication-method") };
-    const std::string_view XML_PARAGRAPH_PARSING_METHOD{ _DT("paragraph-parsing-method") };
-    const std::string_view XML_IGNORE_BLANK_LINES_FOR_PARAGRAPH_PARSING{ _DT(
+    inline constexpr static std::string_view XML_EDITOR{ _DT("editor") };
+    inline constexpr static std::string_view XML_EDITOR_FONT{ _DT("editor-font") };
+    inline constexpr static std::string_view XML_EDITOR_FONTCOLOR{ _DT("editor-font-color") };
+    inline constexpr static std::string_view XML_EDITOR_INDENT{ _DT("editor-indent") };
+    inline constexpr static std::string_view XML_EDITOR_SPACE_AFTER_PARAGRAPH{ _DT(
+        "editor-space-after-paragraph") };
+    inline constexpr static std::string_view XML_EDITOR_TEXT_ALIGNMENT{ _DT(
+        "editor-text-alignment") };
+    inline constexpr static std::string_view XML_EDITOR_LINE_SPACING{ _DT("editor-line-spacing") };
+    inline constexpr static std::string_view XML_LOG_SETTINGS{ _DT("log-setting") };
+    inline constexpr static std::string_view XML_LOG_VERBOSE{ _DT("log-verbose") };
+    inline constexpr static std::string_view XML_LOG_APPEND_DAILY{ _DT("log-append-daily") };
+    inline constexpr static std::string_view XML_PROJECT_HEADER{ _DT(
+        "oleander-readability-studio-project") };
+    inline constexpr static std::string_view XML_DOCUMENT{ _DT("document") };
+    inline constexpr static std::string_view XML_TEXT_SOURCE{ _DT("text-source") };
+    inline constexpr static std::string_view XML_DOCUMENT_PATH{ _DT("file-path") };
+    inline constexpr static std::string_view XML_DESCRIPTION{ _DT("description") };
+    inline constexpr static std::string_view XML_DOCUMENT_ANALYSIS_LOGIC{ _DT(
+        "document-analysis-logic") };
+    inline constexpr static std::string_view XML_EXPORT_FOLDER_PATH{ _DT("export-folder-path") };
+    inline constexpr static std::string_view XML_EXPORT_FILE_PATH{ _DT("export-file-path") };
+    inline constexpr static std::string_view XML_INCLUDE{ _DT("include") };
+    inline constexpr static std::string_view XML_CONFIGURATIONS{ _DT("configurations") };
+    inline constexpr static std::string_view XML_VERSION{ _DT("version") };
+    inline constexpr static std::wstring_view XML_VERSION_W{ _DT(L"version") };
+    inline constexpr static std::string_view XML_HIGHLIGHT_METHOD{ _DT("highlight-method") };
+    inline constexpr static std::string_view XML_HIGHLIGHTCOLOR{ _DT("highlight-color") };
+    inline constexpr static std::string_view XML_EXCLUDED_HIGHLIGHTCOLOR{ _DT(
+        "excluded-highlight-color") };
+    inline constexpr static std::string_view XML_DUP_WORD_HIGHLIGHTCOLOR{ _DT(
+        "duplicate-word-highlight-color") };
+    inline constexpr static std::string_view XML_WORDY_PHRASE_HIGHLIGHTCOLOR{ _DT(
+        "wordy-phrase-highlight-color") };
+    inline constexpr static std::string_view XML_LONG_SENTENCES{ _DT("long-sentences") };
+    inline constexpr static std::string_view XML_LONG_SENTENCE_METHOD{ _DT(
+        "long-sentence-method") };
+    inline constexpr static std::string_view XML_LONG_SENTENCE_LENGTH{ _DT(
+        "long-sentence-length") };
+    inline constexpr static std::string_view XML_NUMERAL_SYLLABICATION_METHOD{ _DT(
+        "numeral-syllabication-method") };
+    inline constexpr static std::string_view XML_PARAGRAPH_PARSING_METHOD{ _DT(
+        "paragraph-parsing-method") };
+    inline constexpr static std::string_view XML_IGNORE_BLANK_LINES_FOR_PARAGRAPH_PARSING{ _DT(
         "ignore-blank-lines-for-paragraphs") };
-    const std::string_view XML_IGNORE_INDENTING_FOR_PARAGRAPH_PARSING{ _DT(
+    inline constexpr static std::string_view XML_IGNORE_INDENTING_FOR_PARAGRAPH_PARSING{ _DT(
         "ignore-indenting-for-paragraphs") };
-    const std::string_view XML_SENTENCES_MUST_START_CAPITALIZED{ _DT(
+    inline constexpr static std::string_view XML_SENTENCES_MUST_START_CAPITALIZED{ _DT(
         "sentences-must-start-capitalized") };
-    const std::string_view XML_AGGRESSIVE_EXCLUSION{ _DT("aggressively-deduce-lists") };
-    const std::string_view XML_IGNORE_COPYRIGHT_NOTICES{ _DT("ignore-trailing-copyright-notices") };
-    const std::string_view XML_IGNORE_CITATIONS{ _DT("ignore-trailing-citations") };
-    const std::string_view XML_IGNORE_FILE_ADDRESSES{ _DT("ignore-file-addresses") };
-    const std::string_view XML_IGNORE_NUMERALS{ _DT("ignore-numerals") };
-    const std::string_view XML_IGNORE_PROPER_NOUNS{ _DT("ignore-proper-nouns") };
-    const std::string_view XML_EXCLUDED_PHRASES_PATH{ _DT("excluded-phrases-filepath") };
-    const std::string_view XML_EXCLUDED_PHRASES_INCLUDE_FIRST_OCCURRENCE{ _DT(
+    inline constexpr static std::string_view XML_AGGRESSIVE_EXCLUSION{ _DT(
+        "aggressively-deduce-lists") };
+    inline constexpr static std::string_view XML_IGNORE_COPYRIGHT_NOTICES{ _DT(
+        "ignore-trailing-copyright-notices") };
+    inline constexpr static std::string_view XML_IGNORE_CITATIONS{ _DT(
+        "ignore-trailing-citations") };
+    inline constexpr static std::string_view XML_IGNORE_FILE_ADDRESSES{ _DT(
+        "ignore-file-addresses") };
+    inline constexpr static std::string_view XML_IGNORE_NUMERALS{ _DT("ignore-numerals") };
+    inline constexpr static std::string_view XML_IGNORE_PROPER_NOUNS{ _DT("ignore-proper-nouns") };
+    inline constexpr static std::string_view XML_EXCLUDED_PHRASES_PATH{ _DT(
+        "excluded-phrases-filepath") };
+    inline constexpr static std::string_view XML_EXCLUDED_PHRASES_INCLUDE_FIRST_OCCURRENCE{ _DT(
         "excluded-phrases-include-first-occurrence") };
-    const std::string_view XML_EXCLUDE_BLOCK_TAGS{ _DT("exclude-block-tags") };
-    const std::wstring_view XML_EXCLUDE_BLOCK_TAGS_W{ _DT(L"exclude-block-tags") };
-    const std::string_view XML_EXCLUDE_BLOCK_TAG{ _DT("exclude-block-tag") };
-    const std::wstring_view XML_EXCLUDE_BLOCK_TAG_W{ _DT(L"exclude-block-tag") };
-    const std::string_view XML_INVALID_SENTENCE_METHOD{ _DT("invalid-sentence-method") };
-    const std::string_view XML_METHOD{ _DT("method") };
-    const std::string_view XML_VALUE{ _DT("value") };
-    const std::string_view XML_DISPLAY{ _DT("display") };
-    const std::string_view XML_CONFIG_HEADER{ _DT("oleander-readability-studio-configuration") };
-    const std::string_view XML_WIZARD_PAGES_SETTINGS{ _DT("wizard-page-defaults") };
-    const std::string_view XML_WIZARD_BATCH_GROUP{ _DT("batch-group-method") };
-    const std::string_view XML_PROJECT_LANGUAGE{ _DT("project-language") };
+    inline constexpr static std::string_view XML_EXCLUDE_BLOCK_TAGS{ _DT("exclude-block-tags") };
+    inline constexpr static std::wstring_view XML_EXCLUDE_BLOCK_TAGS_W{ _DT(
+        L"exclude-block-tags") };
+    inline constexpr static std::string_view XML_EXCLUDE_BLOCK_TAG{ _DT("exclude-block-tag") };
+    inline constexpr static std::wstring_view XML_EXCLUDE_BLOCK_TAG_W{ _DT(L"exclude-block-tag") };
+    inline constexpr static std::string_view XML_INVALID_SENTENCE_METHOD{ _DT(
+        "invalid-sentence-method") };
+    inline constexpr static std::string_view XML_METHOD{ _DT("method") };
+    inline constexpr static std::string_view XML_VALUE{ _DT("value") };
+    inline constexpr static std::string_view XML_DISPLAY{ _DT("display") };
+    inline constexpr static std::string_view XML_CONFIG_HEADER{ _DT(
+        "oleander-readability-studio-configuration") };
+    inline constexpr static std::string_view XML_WIZARD_PAGES_SETTINGS{ _DT(
+        "wizard-page-defaults") };
+    inline constexpr static std::string_view XML_WIZARD_BATCH_GROUP{ _DT("batch-group-method") };
+    inline constexpr static std::string_view XML_PROJECT_LANGUAGE{ _DT("project-language") };
     // test settings
-    const std::string_view XML_READABILITY_TEST_GRADE_SCALE_DISPLAY{ _DT(
+    inline constexpr static std::string_view XML_READABILITY_TEST_GRADE_SCALE_DISPLAY{ _DT(
         "readability-test-grade-scale-display") };
-    const std::string_view XML_READABILITY_TEST_GRADE_SCALE_LONG_FORMAT{ _DT(
+    inline constexpr static std::string_view XML_READABILITY_TEST_GRADE_SCALE_LONG_FORMAT{ _DT(
         "readability-test-grade-scale-long-format") };
-    const std::string_view XML_NEW_DALE_CHALL_OPTIONS{ _DT("dale-chall-options") };
-    const std::wstring_view XML_NEW_DALE_CHALL_OPTIONS_W{ _DT(L"dale-chall-options") };
-    const std::string_view XML_STOCKER_LIST{ _DT("include-stocker-catholic-supplement") };
-    const std::string_view XML_HARRIS_JACOBSON_OPTIONS{ _DT("harris-jacobson-options") };
-    const std::wstring_view XML_HARRIS_JACOBSON_OPTIONS_W{ _DT(L"harris-jacobson-options") };
-    const std::string_view XML_GUNNING_FOG_OPTIONS{ _DT("gunning-fog-options") };
-    const std::wstring_view XML_GUNNING_FOG_OPTIONS_W{ _DT(L"gunning-fog-options") };
-    const std::string_view XML_TEXT_EXCLUSION{ _DT("text-exclusion-mode") };
-    const std::string_view XML_INCLUDE_INCOMPLETE_SENTENCES_LONGER_THAN{ _DT(
+    inline constexpr static std::string_view XML_NEW_DALE_CHALL_OPTIONS{ _DT(
+        "dale-chall-options") };
+    inline constexpr static std::wstring_view XML_NEW_DALE_CHALL_OPTIONS_W{ _DT(
+        L"dale-chall-options") };
+    inline constexpr static std::string_view XML_STOCKER_LIST{ _DT(
+        "include-stocker-catholic-supplement") };
+    inline constexpr static std::string_view XML_HARRIS_JACOBSON_OPTIONS{ _DT(
+        "harris-jacobson-options") };
+    inline constexpr static std::wstring_view XML_HARRIS_JACOBSON_OPTIONS_W{ _DT(
+        L"harris-jacobson-options") };
+    inline constexpr static std::string_view XML_GUNNING_FOG_OPTIONS{ _DT("gunning-fog-options") };
+    inline constexpr static std::wstring_view XML_GUNNING_FOG_OPTIONS_W{ _DT(
+        L"gunning-fog-options") };
+    inline constexpr static std::string_view XML_TEXT_EXCLUSION{ _DT("text-exclusion-mode") };
+    inline constexpr static std::string_view XML_INCLUDE_INCOMPLETE_SENTENCES_LONGER_THAN{ _DT(
         "include-incomplete-sentences-longer-than") };
-    const std::string_view XML_USE_SENTENCE_UNITS{ _DT("use-sentence-units") };
-    const std::string_view XML_USE_HIGH_PRECISION{ _DT("use-precision") };
-    const std::string_view XML_PROPER_NOUN_COUNTING_METHOD{ _DT("proper-noun-counting-method") };
-    const std::string_view XML_FLESCH_OPTIONS{ _DT("flesch-options") };
-    const std::wstring_view XML_FLESCH_OPTIONS_W{ _DT(L"flesch-options") };
-    const std::string_view XML_FLESCH_KINCAID_OPTIONS{ _DT("flesch-kincaid-options") };
-    const std::wstring_view XML_FLESCH_KINCAID_OPTIONS_W{ _DT(L"flesch-kincaid-options") };
-    const std::string_view XML_RAYGOR_STYLE{ _DT("raygor-style") };
+    inline constexpr static std::string_view XML_USE_SENTENCE_UNITS{ _DT("use-sentence-units") };
+    inline constexpr static std::string_view XML_USE_HIGH_PRECISION{ _DT("use-precision") };
+    inline constexpr static std::string_view XML_PROPER_NOUN_COUNTING_METHOD{ _DT(
+        "proper-noun-counting-method") };
+    inline constexpr static std::string_view XML_FLESCH_OPTIONS{ _DT("flesch-options") };
+    inline constexpr static std::wstring_view XML_FLESCH_OPTIONS_W{ _DT(L"flesch-options") };
+    inline constexpr static std::string_view XML_FLESCH_KINCAID_OPTIONS{ _DT(
+        "flesch-kincaid-options") };
+    inline constexpr static std::wstring_view XML_FLESCH_KINCAID_OPTIONS_W{ _DT(
+        L"flesch-kincaid-options") };
+    inline constexpr static std::string_view XML_RAYGOR_STYLE{ _DT("raygor-style") };
     // custom test settings
-    const std::string_view XML_TEST_BUNDLES{ _DT("test-bundles") };
-    const std::string_view XML_TEST_BUNDLE{ _DT("test-bundle") };
-    const std::string_view XML_TEST_BUNDLE_NAME{ _DT("test-bundle-name") };
-    const std::string_view XML_TEST_BUNDLE_DESCRIPTION{ _DT("test-bundle-description") };
-    const std::string_view XML_CUSTOM_TESTS{ _DT("custom-tests") };
-    const std::string_view XML_CUSTOM_TEST{ _DT("custom-test") };
-    const std::string_view XML_CUSTOM_FAMILIAR_WORD_TEST{ _DT("custom-familiar-word-test") };
-    const std::string_view XML_BUNDLE_STATISTICS{ _DT("bundle-statistics") };
-    const std::string_view XML_BUNDLE_STATISTIC{ _DT("bundle-statistic") };
-    const std::string_view XML_TEST_NAMES{ _DT("test-names") };
-    const std::string_view XML_TEST_NAME{ _DT("test-name") };
-    const std::string_view XML_TEST_TYPE{ _DT("test-type") };
-    const std::string_view XML_FAMILIAR_WORD_FILE_PATH{ _DT("familiar-word-file-path") };
-    const std::string_view XML_TEST_FORMULA_TYPE{ _DT("test-formula-type") };
-    const std::string_view XML_TEST_FORMULA{ _DT("test-formula") };
-    const std::string_view XML_STEMMING_TYPE{ _DT("stemming-type") };
-    const std::string_view XML_INCLUDE_CUSTOM_WORD_LIST{ _DT("include-custom-word-list") };
-    const std::string_view XML_INCLUDE_DC_LIST{ _DT("include-dale-chall-list") };
-    const std::string_view XML_INCLUDE_SPACHE_LIST{ _DT("include-spache-list") };
-    const std::string_view XML_INCLUDE_HARRIS_JACOBSON_LIST{ _DT("include-harris-jacobson-list") };
-    const std::string_view XML_INCLUDE_STOCKER_LIST{ _DT("include-stocker-list") };
-    const std::string_view XML_FAMILIAR_WORDS_ALL_LISTS{ _DT("familiar-words-all-lists") };
-    const std::string_view XML_INCLUDE_PROPER_NOUNS{ _DT("include-proper-nouns") };
-    const std::string_view XML_INCLUDE_NUMERIC{ _DT("include-numeric") };
+    inline constexpr static std::string_view XML_TEST_BUNDLES{ _DT("test-bundles") };
+    inline constexpr static std::string_view XML_TEST_BUNDLE{ _DT("test-bundle") };
+    inline constexpr static std::string_view XML_TEST_BUNDLE_NAME{ _DT("test-bundle-name") };
+    inline constexpr static std::string_view XML_TEST_BUNDLE_DESCRIPTION{ _DT(
+        "test-bundle-description") };
+    inline constexpr static std::string_view XML_CUSTOM_TESTS{ _DT("custom-tests") };
+    inline constexpr static std::string_view XML_CUSTOM_TEST{ _DT("custom-test") };
+    inline constexpr static std::string_view XML_CUSTOM_FAMILIAR_WORD_TEST{ _DT(
+        "custom-familiar-word-test") };
+    inline constexpr static std::string_view XML_BUNDLE_STATISTICS{ _DT("bundle-statistics") };
+    inline constexpr static std::string_view XML_BUNDLE_STATISTIC{ _DT("bundle-statistic") };
+    inline constexpr static std::string_view XML_TEST_NAMES{ _DT("test-names") };
+    inline constexpr static std::string_view XML_TEST_NAME{ _DT("test-name") };
+    inline constexpr static std::string_view XML_TEST_TYPE{ _DT("test-type") };
+    inline constexpr static std::string_view XML_FAMILIAR_WORD_FILE_PATH{ _DT(
+        "familiar-word-file-path") };
+    inline constexpr static std::string_view XML_TEST_FORMULA_TYPE{ _DT("test-formula-type") };
+    inline constexpr static std::string_view XML_TEST_FORMULA{ _DT("test-formula") };
+    inline constexpr static std::string_view XML_STEMMING_TYPE{ _DT("stemming-type") };
+    inline constexpr static std::string_view XML_INCLUDE_CUSTOM_WORD_LIST{ _DT(
+        "include-custom-word-list") };
+    inline constexpr static std::string_view XML_INCLUDE_DC_LIST{ _DT("include-dale-chall-list") };
+    inline constexpr static std::string_view XML_INCLUDE_SPACHE_LIST{ _DT("include-spache-list") };
+    inline constexpr static std::string_view XML_INCLUDE_HARRIS_JACOBSON_LIST{ _DT(
+        "include-harris-jacobson-list") };
+    inline constexpr static std::string_view XML_INCLUDE_STOCKER_LIST{ _DT(
+        "include-stocker-list") };
+    inline constexpr static std::string_view XML_FAMILIAR_WORDS_ALL_LISTS{ _DT(
+        "familiar-words-all-lists") };
+    inline constexpr static std::string_view XML_INCLUDE_PROPER_NOUNS{ _DT(
+        "include-proper-nouns") };
+    inline constexpr static std::string_view XML_INCLUDE_NUMERIC{ _DT("include-numeric") };
     // graph settings
-    const std::string_view XML_GRAPH_SETTINGS{ _DT("graph-settings") };
-    const std::string_view XML_GRAPH_COLOR_SCHEME{ _DT("graph-color-scheme") };
-    const std::string_view XML_GRAPH_BACKGROUND_COLOR{ _DT("graph-background-color") };
-    const std::string_view XML_GRAPH_PLOT_BACKGROUND_COLOR{ _DT("graph-plot-background-color") };
-    const std::string_view XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH{ _DT("graph-background-image") };
-    const std::string_view XML_GRAPH_PLOT_BACKGROUND_IMAGE_OPACITY{ _DT(
+    inline constexpr static std::string_view XML_GRAPH_SETTINGS{ _DT("graph-settings") };
+    inline constexpr static std::string_view XML_GRAPH_COLOR_SCHEME{ _DT("graph-color-scheme") };
+    inline constexpr static std::string_view XML_GRAPH_BACKGROUND_COLOR{ _DT(
+        "graph-background-color") };
+    inline constexpr static std::string_view XML_GRAPH_PLOT_BACKGROUND_COLOR{ _DT(
+        "graph-plot-background-color") };
+    inline constexpr static std::string_view XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH{ _DT(
+        "graph-background-image") };
+    inline constexpr static std::string_view XML_GRAPH_PLOT_BACKGROUND_IMAGE_OPACITY{ _DT(
         "graph-background-opacity") };
-    const std::string_view XML_GRAPH_PLOT_BACKGROUND_IMAGE_EFFECT{ _DT(
+    inline constexpr static std::string_view XML_GRAPH_PLOT_BACKGROUND_IMAGE_EFFECT{ _DT(
         "graph-background-image-effect") };
-    const std::string_view XML_GRAPH_PLOT_BACKGROUND_IMAGE_FIT{ _DT("graph-background-image-fit") };
-    const std::string_view XML_GRAPH_PLOT_BACKGROUND_COLOR_OPACITY{ _DT(
+    inline constexpr static std::string_view XML_GRAPH_PLOT_BACKGROUND_IMAGE_FIT{ _DT(
+        "graph-background-image-fit") };
+    inline constexpr static std::string_view XML_GRAPH_PLOT_BACKGROUND_COLOR_OPACITY{ _DT(
         "graph-plot-background-color-opacity") };
-    const std::string_view XML_GRAPH_BACKGROUND_LINEAR_GRADIENT{ _DT(
+    inline constexpr static std::string_view XML_GRAPH_BACKGROUND_LINEAR_GRADIENT{ _DT(
         "graph-background-linear-gradient") };
-    const std::string_view XML_GRAPH_WATERMARK{ _DT("watermark") };
-    const std::string_view XML_GRAPH_WATERMARK_LOGO_IMAGE_PATH{ _DT("watermark-logo") };
-    const std::string_view XML_GRAPH_COMMON_IMAGE_PATH{ _DT("common-image") };
-    const std::string_view XML_DISPLAY_DROP_SHADOW{ _DT("display-drop-shadow") };
-    const std::string_view XML_SHOWCASE_KEY_ITEMS{ _DT("showcase-key-items") };
-    const std::string_view XML_AXIS_SETTINGS{ _DT("axis-settings") };
-    const std::string_view XML_FRY_RAYGOR_SETTINGS{ _DT("fry-raygor-settings") };
-    const std::string_view XML_INVALID_AREA_COLOR{ _DT("invalid-area-color-1") };
-    const std::string_view XML_FLESCH_CHART_SETTINGS{ _DT("flesch-chart-settings") };
-    const std::string_view XML_INCLUDE_CONNECTION_LINE{ _DT("include-connection-line") };
-    const std::string_view XML_FLESCH_RULER_DOC_GROUPS{ _DT("flesch-ruler-doc-groups") };
-    const std::string_view XML_LIX_SETTINGS{ _DT("lix-settings") };
-    const std::string_view XML_USE_ENGLISH_LABELS{ _DT("use-english-labels") };
-    const std::string_view XML_X_AXIS{ _DT("x-axis") };
-    const std::string_view XML_Y_AXIS{ _DT("y-axis") };
-    const std::string_view XML_FONT_COLOR{ _DT("font-color") };
-    const std::string_view XML_FONT{ _DT("font") };
-    const std::string_view XML_TITLE_SETTINGS{ _DT("title-settings") };
-    const std::string_view XML_TOP_TITLE{ _DT("top-title") };
-    const std::string_view XML_BOTTOM_TITLE{ _DT("bottom-title") };
-    const std::string_view XML_LEFT_TITLE{ _DT("left-title") };
-    const std::string_view XML_RIGHT_TITLE{ _DT("right-title") };
-    const std::string_view XML_HISTOGRAM_SETTINGS{ _DT("histogram-settings") };
-    const std::string_view XML_GRAPH_BINNING_METHOD{ _DT("binning-method") };
-    const std::string_view XML_GRAPH_ROUNDING_METHOD{ _DT("rounding-method") };
-    const std::string_view XML_GRAPH_INTERVAL_DISPLAY{ _DT("interval-display") };
-    const std::string_view XML_GRAPH_BINNING_LABEL_DISPLAY{ _DT("bin-label-display") };
-    const std::string_view XML_BAR_CHART_SETTINGS{ _DT("bar-chart-settings") };
-    const std::string_view XML_GRAPH_OPACITY{ _DT("opacity") };
-    const std::string_view XML_GRAPH_COLOR{ _DT("color") };
-    const std::string_view XML_BAR_ORIENTATION{ _DT("bar-orientation") };
-    const std::string_view XML_BAR_EFFECT{ _DT("bar-effect") };
-    const std::string_view XML_BAR_DISPLAY_LABELS{ _DT("bar-display-labels") };
-    const std::string_view XML_GRAPH_STIPPLE_PATH{ _DT("stipple-image-path") };
-    const std::string_view XML_GRAPH_STIPPLE_SHAPE{ _DT("stipple-shape") };
-    const std::string_view XML_GRAPH_STIPPLE_COLOR{ _DT("stipple-color") };
-    const std::string_view XML_BOX_PLOT_SETTINGS{ _DT("box-plot-settings") };
-    const std::string_view XML_BOX_EFFECT{ _DT("box-effect") };
-    const std::string_view XML_BOX_DISPLAY_LABELS{ _DT("box-display-labels") };
-    const std::string_view XML_BOX_CONNECT_MIDDLE_POINTS{ _DT("box-connect-middle-points") };
-    const std::string_view XML_BOX_PLOT_SHOW_ALL_POINTS{ _DT("box-plot-show-all-points") };
+    inline constexpr static std::string_view XML_GRAPH_WATERMARK{ _DT("watermark") };
+    inline constexpr static std::string_view XML_GRAPH_WATERMARK_LOGO_IMAGE_PATH{ _DT(
+        "watermark-logo") };
+    inline constexpr static std::string_view XML_GRAPH_COMMON_IMAGE_PATH{ _DT("common-image") };
+    inline constexpr static std::string_view XML_DISPLAY_DROP_SHADOW{ _DT("display-drop-shadow") };
+    inline constexpr static std::string_view XML_SHOWCASE_KEY_ITEMS{ _DT("showcase-key-items") };
+    inline constexpr static std::string_view XML_AXIS_SETTINGS{ _DT("axis-settings") };
+    inline constexpr static std::string_view XML_FRY_RAYGOR_SETTINGS{ _DT("fry-raygor-settings") };
+    inline constexpr static std::string_view XML_INVALID_AREA_COLOR{ _DT("invalid-area-color-1") };
+    inline constexpr static std::string_view XML_FLESCH_CHART_SETTINGS{ _DT(
+        "flesch-chart-settings") };
+    inline constexpr static std::string_view XML_INCLUDE_CONNECTION_LINE{ _DT(
+        "include-connection-line") };
+    inline constexpr static std::string_view XML_FLESCH_RULER_DOC_GROUPS{ _DT(
+        "flesch-ruler-doc-groups") };
+    inline constexpr static std::string_view XML_LIX_SETTINGS{ _DT("lix-settings") };
+    inline constexpr static std::string_view XML_USE_ENGLISH_LABELS{ _DT("use-english-labels") };
+    inline constexpr static std::string_view XML_X_AXIS{ _DT("x-axis") };
+    inline constexpr static std::string_view XML_Y_AXIS{ _DT("y-axis") };
+    inline constexpr static std::string_view XML_FONT_COLOR{ _DT("font-color") };
+    inline constexpr static std::string_view XML_FONT{ _DT("font") };
+    inline constexpr static std::string_view XML_TITLE_SETTINGS{ _DT("title-settings") };
+    inline constexpr static std::string_view XML_TOP_TITLE{ _DT("top-title") };
+    inline constexpr static std::string_view XML_BOTTOM_TITLE{ _DT("bottom-title") };
+    inline constexpr static std::string_view XML_LEFT_TITLE{ _DT("left-title") };
+    inline constexpr static std::string_view XML_RIGHT_TITLE{ _DT("right-title") };
+    inline constexpr static std::string_view XML_HISTOGRAM_SETTINGS{ _DT("histogram-settings") };
+    inline constexpr static std::string_view XML_GRAPH_BINNING_METHOD{ _DT("binning-method") };
+    inline constexpr static std::string_view XML_GRAPH_ROUNDING_METHOD{ _DT("rounding-method") };
+    inline constexpr static std::string_view XML_GRAPH_INTERVAL_DISPLAY{ _DT("interval-display") };
+    inline constexpr static std::string_view XML_GRAPH_BINNING_LABEL_DISPLAY{ _DT(
+        "bin-label-display") };
+    inline constexpr static std::string_view XML_BAR_CHART_SETTINGS{ _DT("bar-chart-settings") };
+    inline constexpr static std::string_view XML_GRAPH_OPACITY{ _DT("opacity") };
+    inline constexpr static std::string_view XML_GRAPH_COLOR{ _DT("color") };
+    inline constexpr static std::string_view XML_BAR_ORIENTATION{ _DT("bar-orientation") };
+    inline constexpr static std::string_view XML_BAR_EFFECT{ _DT("bar-effect") };
+    inline constexpr static std::string_view XML_BAR_DISPLAY_LABELS{ _DT("bar-display-labels") };
+    inline constexpr static std::string_view XML_GRAPH_STIPPLE_PATH{ _DT("stipple-image-path") };
+    inline constexpr static std::string_view XML_GRAPH_STIPPLE_SHAPE{ _DT("stipple-shape") };
+    inline constexpr static std::string_view XML_GRAPH_STIPPLE_COLOR{ _DT("stipple-color") };
+    inline constexpr static std::string_view XML_BOX_PLOT_SETTINGS{ _DT("box-plot-settings") };
+    inline constexpr static std::string_view XML_BOX_EFFECT{ _DT("box-effect") };
+    inline constexpr static std::string_view XML_BOX_DISPLAY_LABELS{ _DT("box-display-labels") };
+    inline constexpr static std::string_view XML_BOX_CONNECT_MIDDLE_POINTS{ _DT(
+        "box-connect-middle-points") };
+    inline constexpr static std::string_view XML_BOX_PLOT_SHOW_ALL_POINTS{ _DT(
+        "box-plot-show-all-points") };
     // printer setting tags
-    const std::string_view XML_PRINTER_SETTINGS{ _DT("printer-settings") };
-    const std::string_view XML_PRINTER_ID{ _DT("paper-id") };
-    const std::string_view XML_PRINTER_ORIENTATION{ _DT("paper-orientation") };
-    const std::string_view XML_PRINTER_LEFT_HEADER{ _DT("printer-left-header") };
-    const std::string_view XML_PRINTER_CENTER_HEADER{ _DT("printer-center-header") };
-    const std::string_view XML_PRINTER_RIGHT_HEADER{ _DT("printer-right-header") };
-    const std::string_view XML_PRINTER_LEFT_FOOTER{ _DT("printer-left-footer") };
-    const std::string_view XML_PRINTER_CENTER_FOOTER{ _DT("printer-center-footer") };
-    const std::string_view XML_PRINTER_RIGHT_FOOTER{ _DT("printer-right-footer") };
+    inline constexpr static std::string_view XML_PRINTER_SETTINGS{ _DT("printer-settings") };
+    inline constexpr static std::string_view XML_PRINTER_ID{ _DT("paper-id") };
+    inline constexpr static std::string_view XML_PRINTER_ORIENTATION{ _DT("paper-orientation") };
+    inline constexpr static std::string_view XML_PRINTER_LEFT_HEADER{ _DT("printer-left-header") };
+    inline constexpr static std::string_view XML_PRINTER_CENTER_HEADER{ _DT(
+        "printer-center-header") };
+    inline constexpr static std::string_view XML_PRINTER_RIGHT_HEADER{ _DT(
+        "printer-right-header") };
+    inline constexpr static std::string_view XML_PRINTER_LEFT_FOOTER{ _DT("printer-left-footer") };
+    inline constexpr static std::string_view XML_PRINTER_CENTER_FOOTER{ _DT(
+        "printer-center-footer") };
+    inline constexpr static std::string_view XML_PRINTER_RIGHT_FOOTER{ _DT(
+        "printer-right-footer") };
     // stats section
-    const std::string_view XML_STATISTICS_SECTION{ _DT("statistics") };
-    const std::wstring_view XML_STATISTICS_SECTION_W{ _DT(L"statistics") };
-    const std::string_view XML_VARIANCE_METHOD{ _DT("variance-calculation") };
+    inline constexpr static std::string_view XML_STATISTICS_SECTION{ _DT("statistics") };
+    inline constexpr static std::wstring_view XML_STATISTICS_SECTION_W{ _DT(L"statistics") };
+    inline constexpr static std::string_view XML_VARIANCE_METHOD{ _DT("variance-calculation") };
     // tests section
-    const std::string_view XML_PROJECT_SETTINGS{ _DT("project-settings") };
-    const std::string_view XML_READABILITY_TESTS_SECTION{ _DT("readability-tests") };
-    const std::wstring_view XML_READABILITY_TESTS_SECTION_W{ _DT(L"readability-tests") };
-    const std::string_view XML_READING_AGE_FORMAT{ _DT("reading-age-format") };
-    const std::string_view XML_INCLUDE_SCORES_SUMMARY_REPORT{ _DT("include-score-summary-report") };
-    const std::string_view XML_DOLCH_SUITE{ _DT("dolch-suite") };
-    const std::string_view XML_DOLCH_SIGHT_WORDS_TEST{ _DT("dolch-sight-words") };
-    const std::string_view XML_TEST_RECOMMENDATION{ _DT("test-recommendation") };
-    const std::string_view XML_TEST_BY_INDUSTRY{ _DT("tests-by-industry") };
-    const std::string_view XML_TEST_BY_DOCUMENT_TYPE{ _DT("tests-by-document-type") };
-    const std::string_view XML_SELECTED_TEST_BUNDLE{ _DT("selected-test-bundle") };
-    const std::string_view XML_INDUSTRY_CHILDRENS_PUBLISHING{ _DT(
+    inline constexpr static std::string_view XML_PROJECT_SETTINGS{ _DT("project-settings") };
+    inline constexpr static std::string_view XML_READABILITY_TESTS_SECTION{ _DT(
+        "readability-tests") };
+    inline constexpr static std::wstring_view XML_READABILITY_TESTS_SECTION_W{ _DT(
+        L"readability-tests") };
+    inline constexpr static std::string_view XML_READING_AGE_FORMAT{ _DT("reading-age-format") };
+    inline constexpr static std::string_view XML_INCLUDE_SCORES_SUMMARY_REPORT{ _DT(
+        "include-score-summary-report") };
+    inline constexpr static std::string_view XML_DOLCH_SUITE{ _DT("dolch-suite") };
+    inline constexpr static std::string_view XML_DOLCH_SIGHT_WORDS_TEST{ _DT("dolch-sight-words") };
+    inline constexpr static std::string_view XML_TEST_RECOMMENDATION{ _DT("test-recommendation") };
+    inline constexpr static std::string_view XML_TEST_BY_INDUSTRY{ _DT("tests-by-industry") };
+    inline constexpr static std::string_view XML_TEST_BY_DOCUMENT_TYPE{ _DT(
+        "tests-by-document-type") };
+    inline constexpr static std::string_view XML_SELECTED_TEST_BUNDLE{ _DT(
+        "selected-test-bundle") };
+    inline constexpr static std::string_view XML_INDUSTRY_CHILDRENS_PUBLISHING{ _DT(
         "industry-childrens-publishing") };
-    const std::string_view XML_INDUSTRY_ADULTPUBLISHING{ _DT("industry-adult-publishing") };
-    const std::string_view XML_INDUSTRY_SECONDARY_LANGUAGE{ _DT("industry-secondary-language") };
-    const std::string_view XML_INDUSTRY_CHILDRENS_HEALTHCARE{ _DT(
+    inline constexpr static std::string_view XML_INDUSTRY_ADULTPUBLISHING{ _DT(
+        "industry-adult-publishing") };
+    inline constexpr static std::string_view XML_INDUSTRY_SECONDARY_LANGUAGE{ _DT(
+        "industry-secondary-language") };
+    inline constexpr static std::string_view XML_INDUSTRY_CHILDRENS_HEALTHCARE{ _DT(
         "industry-childrens-healthcare") };
-    const std::string_view XML_INDUSTRY_ADULT_HEALTHCARE{ _DT("industry-healthcare") };
-    const std::string_view XML_INDUSTRY_MILITARY_GOVERNMENT{ _DT("industry-military-government") };
-    const std::string_view XML_INDUSTRY_BROADCASTING{ _DT("industry-broadcasting") };
-    const std::string_view XML_DOCUMENT_GENERAL{ _DT("document-general") };
-    const std::string_view XML_DOCUMENT_TECHNICAL{ _DT("document-technical") };
-    const std::string_view XML_DOCUMENT_FORM{ _DT("document-form") };
-    const std::string_view XML_DOCUMENT_YOUNGADULT{ _DT("document-young-adult") };
-    const std::string_view XML_DOCUMENT_CHILDREN_LIT{ _DT("document-children-literature") };
-    const std::string_view XML_STAT_GOALS{ _DT("statistics-goals") };
-    const std::wstring_view XML_STAT_GOALS_W{ _DT(L"statistics-goals") };
-    const std::string_view XML_GOAL_MIN_VAL_GOAL{ _DT("min-value-goal") };
-    const std::string_view XML_GOAL_MAX_VAL_GOAL{ _DT("max-value-goal") };
+    inline constexpr static std::string_view XML_INDUSTRY_ADULT_HEALTHCARE{ _DT(
+        "industry-healthcare") };
+    inline constexpr static std::string_view XML_INDUSTRY_MILITARY_GOVERNMENT{ _DT(
+        "industry-military-government") };
+    inline constexpr static std::string_view XML_INDUSTRY_BROADCASTING{ _DT(
+        "industry-broadcasting") };
+    inline constexpr static std::string_view XML_DOCUMENT_GENERAL{ _DT("document-general") };
+    inline constexpr static std::string_view XML_DOCUMENT_TECHNICAL{ _DT("document-technical") };
+    inline constexpr static std::string_view XML_DOCUMENT_FORM{ _DT("document-form") };
+    inline constexpr static std::string_view XML_DOCUMENT_YOUNGADULT{ _DT("document-young-adult") };
+    inline constexpr static std::string_view XML_DOCUMENT_CHILDREN_LIT{ _DT(
+        "document-children-literature") };
+    inline constexpr static std::string_view XML_STAT_GOALS{ _DT("statistics-goals") };
+    inline constexpr static std::wstring_view XML_STAT_GOALS_W{ _DT(L"statistics-goals") };
+    inline constexpr static std::string_view XML_GOAL_MIN_VAL_GOAL{ _DT("min-value-goal") };
+    inline constexpr static std::string_view XML_GOAL_MAX_VAL_GOAL{ _DT("max-value-goal") };
     // text view constants
-    const std::string_view XML_TEXT_VIEWS_SECTION{ _DT("text-views") };
-    const std::string_view XML_DOCUMENT_DISPLAY_FONTCOLOR{ _DT("document-display-font-color") };
-    const std::string_view XML_DOCUMENT_DISPLAY_FONT{ _DT("document-display-font") };
-    const std::string_view XML_DOLCH_CONJUNCTIONS_HIGHLIGHTCOLOR{ _DT(
+    inline constexpr static std::string_view XML_TEXT_VIEWS_SECTION{ _DT("text-views") };
+    inline constexpr static std::string_view XML_DOCUMENT_DISPLAY_FONTCOLOR{ _DT(
+        "document-display-font-color") };
+    inline constexpr static std::string_view XML_DOCUMENT_DISPLAY_FONT{ _DT(
+        "document-display-font") };
+    inline constexpr static std::string_view XML_DOLCH_CONJUNCTIONS_HIGHLIGHTCOLOR{ _DT(
         "dolch-conjunction-font-color") };
-    const std::string_view XML_DOLCH_PREPOSITIONS_HIGHLIGHTCOLOR{ _DT(
+    inline constexpr static std::string_view XML_DOLCH_PREPOSITIONS_HIGHLIGHTCOLOR{ _DT(
         "dolch-preposition-font-color") };
-    const std::string_view XML_DOLCH_PRONOUNS_HIGHLIGHTCOLOR{ _DT("dolch-pronoun-font-color") };
-    const std::string_view XML_DOLCH_ADVERBS_HIGHLIGHTCOLOR{ _DT("dolch-adverb-font-color") };
-    const std::string_view XML_DOLCH_ADJECTIVES_HIGHLIGHTCOLOR{ _DT("dolch-adjective-font-color") };
-    const std::string_view XML_DOLCH_VERBS_HIGHLIGHTCOLOR{ _DT("dolch-verb-font-color") };
-    const std::string_view XML_DOLCH_NOUNS_HIGHLIGHTCOLOR{ _DT("dolch-noun-font-color") };
+    inline constexpr static std::string_view XML_DOLCH_PRONOUNS_HIGHLIGHTCOLOR{ _DT(
+        "dolch-pronoun-font-color") };
+    inline constexpr static std::string_view XML_DOLCH_ADVERBS_HIGHLIGHTCOLOR{ _DT(
+        "dolch-adverb-font-color") };
+    inline constexpr static std::string_view XML_DOLCH_ADJECTIVES_HIGHLIGHTCOLOR{ _DT(
+        "dolch-adjective-font-color") };
+    inline constexpr static std::string_view XML_DOLCH_VERBS_HIGHLIGHTCOLOR{ _DT(
+        "dolch-verb-font-color") };
+    inline constexpr static std::string_view XML_DOLCH_NOUNS_HIGHLIGHTCOLOR{ _DT(
+        "dolch-noun-font-color") };
     // general options
-    const std::string_view XML_APPEARANCE{ _DT("appearance") };
-    const std::string_view XML_WINDOW_MAXIMIZED{ _DT("app-window-maximized") };
-    const std::string_view XML_WINDOW_WIDTH{ _DT("app-window-width") };
-    const std::string_view XML_WINDOW_HEIGHT{ _DT("app-window-height") };
-    const std::string_view XML_UI_LANGUAGE{ _DT("ui-language") };
-    const std::string_view XML_SCRIPT_EDITOR_LAYOUT{ _DT("script-editor-layout") };
+    inline constexpr static std::string_view XML_APPEARANCE{ _DT("appearance") };
+    inline constexpr static std::string_view XML_WINDOW_MAXIMIZED{ _DT("app-window-maximized") };
+    inline constexpr static std::string_view XML_WINDOW_WIDTH{ _DT("app-window-width") };
+    inline constexpr static std::string_view XML_WINDOW_HEIGHT{ _DT("app-window-height") };
+    inline constexpr static std::string_view XML_UI_LANGUAGE{ _DT("ui-language") };
+    inline constexpr static std::string_view XML_SCRIPT_EDITOR_LAYOUT{ _DT(
+        "script-editor-layout") };
     // web harvester options
-    const std::string_view XML_USER_AGENT{ _DT("user-agent") };
-    const std::string_view XML_DISABLE_PEER_VERIFY{ _DT("disable-peer-verify") };
-    const std::string_view XML_USE_JS_COOKIES{ _DT("use-javascript-cookies") };
-    const std::string_view XML_PERSIST_COOKIES{ _DT("persist-cookies") };
-    const std::string_view XML_DOWNLOAD_MIN_FILESIZE{ _DT("download-min-file-size") };
-    const std::string_view XML_DOWNLOAD_KEEP_FOLDER_STRUCTURE{ _DT(
+    inline constexpr static std::string_view XML_USER_AGENT{ _DT("user-agent") };
+    inline constexpr static std::string_view XML_DISABLE_PEER_VERIFY{ _DT("disable-peer-verify") };
+    inline constexpr static std::string_view XML_USE_JS_COOKIES{ _DT("use-javascript-cookies") };
+    inline constexpr static std::string_view XML_PERSIST_COOKIES{ _DT("persist-cookies") };
+    inline constexpr static std::string_view XML_DOWNLOAD_MIN_FILESIZE{ _DT(
+        "download-min-file-size") };
+    inline constexpr static std::string_view XML_DOWNLOAD_KEEP_FOLDER_STRUCTURE{ _DT(
         "download-keep-web-folder-structure") };
-    const std::string_view XML_DOWNLOAD_REPLACE_EXISTING{ _DT("download-replace-existing-files") };
+    inline constexpr static std::string_view XML_DOWNLOAD_REPLACE_EXISTING{ _DT(
+        "download-replace-existing-files") };
     // project options
-    const std::string_view XML_REVIEWER{ _DT("project-reviewer") };
-    const std::string_view XML_STATUS{ _DT("project-status") };
-    const std::string_view XML_REALTIME_UPDATE{ _DT("realtime-refresh") };
-    const std::string_view XML_APPENDED_DOC_PATH{ _DT("appended-doc-path") };
+    inline constexpr static std::string_view XML_REVIEWER{ _DT("project-reviewer") };
+    inline constexpr static std::string_view XML_STATUS{ _DT("project-status") };
+    inline constexpr static std::string_view XML_REALTIME_UPDATE{ _DT("realtime-refresh") };
+    inline constexpr static std::string_view XML_APPENDED_DOC_PATH{ _DT("appended-doc-path") };
     // document linking information
-    const std::string_view XML_DOCUMENT_STORAGE_METHOD{ _DT("document-storage-method") };
+    inline constexpr static std::string_view XML_DOCUMENT_STORAGE_METHOD{ _DT(
+        "document-storage-method") };
     // stats information
-    const std::string_view XML_STATISTICS_RESULTS{ _DT("statistics-results") };
-    const std::string_view XML_STATISTICS_REPORT{ _DT("statistics-report") };
+    inline constexpr static std::string_view XML_STATISTICS_RESULTS{ _DT("statistics-results") };
+    inline constexpr static std::string_view XML_STATISTICS_REPORT{ _DT("statistics-report") };
     // Min doc size
-    const std::string_view XML_MIN_DOC_SIZE_FOR_BATCH{ _DT("min-doc-size-for-batch") };
-    const std::string_view XML_RANDOM_SAMPLE_SIZE{ _DT("random-sample-size") };
-    const std::string_view XML_RANDOM_SAMPLE_ENABLED{ _DT("random-sample-size-enabled") };
-    const std::string_view XML_FILE_PATH_TRUNC_MODE{ _DT("filepath-truncation-mode") };
+    inline constexpr static std::string_view XML_MIN_DOC_SIZE_FOR_BATCH{ _DT(
+        "min-doc-size-for-batch") };
+    inline constexpr static std::string_view XML_RANDOM_SAMPLE_SIZE{ _DT("random-sample-size") };
+    inline constexpr static std::string_view XML_RANDOM_SAMPLE_ENABLED{ _DT(
+        "random-sample-size-enabled") };
+    inline constexpr static std::string_view XML_FILE_PATH_TRUNC_MODE{ _DT(
+        "filepath-truncation-mode") };
     // export options
-    const std::string_view XML_EXPORT{ _DT("export-settings") };
-    const std::string_view XML_EXPORT_LIST_EXT{ _DT("export-list-extension") };
-    const std::string_view XML_EXPORT_TEXT_EXT{ _DT("export-text-extension") };
-    const std::string_view XML_EXPORT_GRAPH_EXT{ _DT("export-graph-extension") };
-    const std::string_view XML_EXPORT_LISTS{ _DT("export-lists") };
-    const std::string_view XML_EXPORT_SENTENCES_BREAKDOWN{ _DT("export-sentence-breakdown") };
-    const std::string_view XML_EXPORT_GRAPHS{ _DT("export-graphs") };
-    const std::string_view XML_EXPORT_TEST_RESULTS{ _DT("export-test-results") };
-    const std::string_view XML_EXPORT_STATS{ _DT("export-statistics") };
-    const std::string_view XML_EXPORT_GRAMMAR{ _DT("export-grammar") };
-    const std::string_view XML_EXPORT_DOLCH_WORDS{ _DT("export-dolch-words") };
-    const std::string_view XML_EXPORT_WARNINGS{ _DT("export-warnings") };
+    inline constexpr static std::string_view XML_EXPORT{ _DT("export-settings") };
+    inline constexpr static std::string_view XML_EXPORT_LIST_EXT{ _DT("export-list-extension") };
+    inline constexpr static std::string_view XML_EXPORT_TEXT_EXT{ _DT("export-text-extension") };
+    inline constexpr static std::string_view XML_EXPORT_GRAPH_EXT{ _DT("export-graph-extension") };
+    inline constexpr static std::string_view XML_EXPORT_LISTS{ _DT("export-lists") };
+    inline constexpr static std::string_view XML_EXPORT_SENTENCES_BREAKDOWN{ _DT(
+        "export-sentence-breakdown") };
+    inline constexpr static std::string_view XML_EXPORT_GRAPHS{ _DT("export-graphs") };
+    inline constexpr static std::string_view XML_EXPORT_TEST_RESULTS{ _DT("export-test-results") };
+    inline constexpr static std::string_view XML_EXPORT_STATS{ _DT("export-statistics") };
+    inline constexpr static std::string_view XML_EXPORT_GRAMMAR{ _DT("export-grammar") };
+    inline constexpr static std::string_view XML_EXPORT_DOLCH_WORDS{ _DT("export-dolch-words") };
+    inline constexpr static std::string_view XML_EXPORT_WARNINGS{ _DT("export-warnings") };
     // warning settings
-    const std::string_view XML_WARNING_MESSAGE_SETTINGS{ _DT("warning-message-settings") };
-    const std::string_view XML_WARNING_MESSAGE{ _DT("warning-message") };
-    const std::string_view XML_PREVIOUS_RESPONSE{ _DT("previous-response") };
+    inline constexpr static std::string_view XML_WARNING_MESSAGE_SETTINGS{ _DT(
+        "warning-message-settings") };
+    inline constexpr static std::string_view XML_WARNING_MESSAGE{ _DT("warning-message") };
+    inline constexpr static std::string_view XML_PREVIOUS_RESPONSE{ _DT("previous-response") };
     // general strings
-    const std::wstring_view ALL_DOCUMENTS_WILDCARD{
+    inline constexpr static std::wstring_view ALL_DOCUMENTS_WILDCARD{
         _DT(LR"(*.txt;*.htm;*.html;*.xhtml;*.sgml;*.php;*.php3;*.php4;*.aspx;*.asp;*.rtf;*.doc;*.docx;*.docm;*.pptx;*.pptm;*.dot;*.wri;*.odt;*.ott;*.odp;*.otp;*.ps;*.idl;*.cpp;*.c;*.h;*.md;*.qmd;*.rmd)")
     };
-    const std::wstring_view ALL_IMAGES_WILDCARD{ _DT(
+    inline constexpr static std::wstring_view ALL_IMAGES_WILDCARD{ _DT(
         LR"(*.bmp;*.jpg;*.jpeg;*.jpe;*.png;*.gif;*.tga;*.tif;*.tiff;*.pcx)") };
     // last opened file locations
-    const std::string_view XML_FILE_OPEN_PATHS{ _DT("file-open-paths") };
-    const std::string_view XML_FILE_OPEN_IMAGE_PATH{ _DT("image-path") };
-    const std::string_view XML_DOWNLOADS_PATH{ _DT("downloads") };
-    const std::string_view XML_FILE_OPEN_PROJECT_PATH{ _DT("project-path") };
-    const std::string_view XML_FILE_OPEN_WORDLIST_PATH{ _DT("wordlist-path") };
+    inline constexpr static std::string_view XML_FILE_OPEN_PATHS{ _DT("file-open-paths") };
+    inline constexpr static std::string_view XML_FILE_OPEN_IMAGE_PATH{ _DT("image-path") };
+    inline constexpr static std::string_view XML_DOWNLOADS_PATH{ _DT("downloads") };
+    inline constexpr static std::string_view XML_FILE_OPEN_PROJECT_PATH{ _DT("project-path") };
+    inline constexpr static std::string_view XML_FILE_OPEN_WORDLIST_PATH{ _DT("wordlist-path") };
     // grammar
-    const std::string_view XML_GRAMMAR{ _DT("grammar") };
-    const std::string_view XML_SPELLCHECK_IGNORE_PROPER_NOUNS{ _DT(
+    inline constexpr static std::string_view XML_GRAMMAR{ _DT("grammar") };
+    inline constexpr static std::string_view XML_SPELLCHECK_IGNORE_PROPER_NOUNS{ _DT(
         "spellcheck-ignore-proper-nouns") };
-    const std::string_view XML_SPELLCHECK_IGNORE_UPPERCASED{ _DT("spellcheck-ignore-uppercased") };
-    const std::string_view XML_SPELLCHECK_IGNORE_NUMERALS{ _DT("spellcheck-ignore-numerals") };
-    const std::string_view XML_SPELLCHECK_IGNORE_FILE_ADDRESSES{ _DT(
+    inline constexpr static std::string_view XML_SPELLCHECK_IGNORE_UPPERCASED{ _DT(
+        "spellcheck-ignore-uppercased") };
+    inline constexpr static std::string_view XML_SPELLCHECK_IGNORE_NUMERALS{ _DT(
+        "spellcheck-ignore-numerals") };
+    inline constexpr static std::string_view XML_SPELLCHECK_IGNORE_FILE_ADDRESSES{ _DT(
         "spellcheck-ignore-file-address") };
-    const std::string_view XML_SPELLCHECK_IGNORE_PROGRAMMER_CODE{ _DT(
+    inline constexpr static std::string_view XML_SPELLCHECK_IGNORE_PROGRAMMER_CODE{ _DT(
         "spellcheck-ignore-programmer-code") };
-    const std::string_view XML_SPELLCHECK_ALLOW_COLLOQUIALISMS{ _DT(
+    inline constexpr static std::string_view XML_SPELLCHECK_ALLOW_COLLOQUIALISMS{ _DT(
         "spellcheck-allow-colloquialisms") };
-    const std::string_view XML_SPELLCHECK_IGNORE_SOCIAL_MEDIA_TAGS{ _DT(
+    inline constexpr static std::string_view XML_SPELLCHECK_IGNORE_SOCIAL_MEDIA_TAGS{ _DT(
         "spellcheck-ignore-social-media-tags") };
-    const std::string_view XML_GRAMMAR_INFO{ _DT("grammar-features") };
+    inline constexpr static std::string_view XML_GRAMMAR_INFO{ _DT("grammar-features") };
     // words breakdown
-    const std::string_view XML_WORDS_BREAKDOWN{ _DT("words-breakdown") };
-    const std::wstring_view XML_WORDS_BREAKDOWN_W{ _DT(L"words-breakdown") };
-    const std::string_view XML_WORDS_BREAKDOWN_INFO{ _DT("words-breakdown-features") };
+    inline constexpr static std::string_view XML_WORDS_BREAKDOWN{ _DT("words-breakdown") };
+    inline constexpr static std::wstring_view XML_WORDS_BREAKDOWN_W{ _DT(L"words-breakdown") };
+    inline constexpr static std::string_view XML_WORDS_BREAKDOWN_INFO{ _DT(
+        "words-breakdown-features") };
     // sentences breakdown
-    const std::string_view XML_SENTENCES_BREAKDOWN{ _DT("sentences-breakdown") };
-    const std::wstring_view XML_SENTENCES_BREAKDOWN_W{ _DT(L"sentences-breakdown") };
-    const std::string_view XML_SENTENCES_BREAKDOWN_INFO{ _DT("sentences-breakdown-features") };
+    inline constexpr static std::string_view XML_SENTENCES_BREAKDOWN{ _DT("sentences-breakdown") };
+    inline constexpr static std::wstring_view XML_SENTENCES_BREAKDOWN_W{ _DT(
+        L"sentences-breakdown") };
+    inline constexpr static std::string_view XML_SENTENCES_BREAKDOWN_INFO{ _DT(
+        "sentences-breakdown-features") };
     // custom colors
-    const std::string_view XML_CUSTOM_COLORS{ _DT("custom-colors") };
+    inline constexpr static std::string_view XML_CUSTOM_COLORS{ _DT("custom-colors") };
     };
 
 #endif // READABILITY_APP_OPTIONS_H

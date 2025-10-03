@@ -25,6 +25,84 @@ using namespace Wisteria::UI;
 
 wxDECLARE_APP(ReadabilityApp);
 
+//------------------------------------------------
+bool PreAppInitOptions::LoadOptionsFile(const wxString& optionsFile)
+    {
+    if (!wxFile::Exists(optionsFile))
+        {
+        return false;
+        }
+
+    tinyxml2::XMLDocument doc;
+    doc.LoadFile(optionsFile.mb_str());
+    if (doc.Error())
+        {
+        // may appear while program is loading
+        wxLogError(L"Unable to load configuration file:\n%s", doc.ErrorStr());
+        return false;
+        }
+    // see if it is a valid config file
+    auto node = doc.FirstChildElement(ReadabilityAppOptions::XML_CONFIG_HEADER.data());
+    if (!node)
+        {
+        wxMessageBox(_(L"Invalid configuration file. Project header section not found."),
+                     _(L"Error"), wxOK | wxICON_ERROR);
+        return false;
+        }
+    // read in the configurations
+    auto configRootNode = node->FirstChildElement(ReadabilityAppOptions::XML_CONFIGURATIONS.data());
+    if (!configRootNode)
+        {
+        wxMessageBox(_(L"Invalid configuration file. No configurations found."), _(L"Error"),
+                     wxOK | wxICON_ERROR);
+        return false;
+        }
+    else
+        {
+        // appearance of the program
+        auto appearanceNode =
+            configRootNode->FirstChildElement(ReadabilityAppOptions::XML_APPEARANCE.data());
+        if (appearanceNode != nullptr)
+            {
+            int maximized = appearanceNode->ToElement()->IntAttribute(
+                ReadabilityAppOptions::XML_WINDOW_MAXIMIZED.data(), 1);
+            m_appWindowMaximized = int_to_bool(maximized);
+            // NOTE: DIPs can't be used here because this is called before UI construction
+            m_appWindowWidth = appearanceNode->ToElement()->IntAttribute(
+                ReadabilityAppOptions::XML_WINDOW_WIDTH.data(), 800);
+            m_appWindowHeight = appearanceNode->ToElement()->IntAttribute(
+                ReadabilityAppOptions::XML_WINDOW_HEIGHT.data(), 700);
+            // make sure the values make sense
+            if (m_appWindowWidth < 1)
+                {
+                m_appWindowWidth = 800;
+                }
+            if (m_appWindowHeight < 1)
+                {
+                m_appWindowHeight = 700;
+                }
+            m_uiLanguage = static_cast<UiLanguage>(appearanceNode->ToElement()->IntAttribute(
+                ReadabilityAppOptions::XML_UI_LANGUAGE.data(),
+                static_cast<int>(UiLanguage::Default)));
+            }
+        // log report settings
+        auto logSettingsNode =
+            configRootNode->FirstChildElement(ReadabilityAppOptions::XML_LOG_SETTINGS.data());
+        if (logSettingsNode != nullptr)
+            {
+            auto logAppendNode = logSettingsNode->FirstChildElement(
+                ReadabilityAppOptions::XML_LOG_APPEND_DAILY.data());
+            if (logAppendNode != nullptr)
+                {
+                m_logAppendDailyLog = int_to_bool(logAppendNode->ToElement()->IntAttribute(
+                    ReadabilityAppOptions::XML_VALUE.data(), 1));
+                }
+            }
+        }
+    return true;
+    }
+
+//------------------------------------------------
 ReadabilityAppOptions::ReadabilityAppOptions()
     : m_textHighlight(TextHighlight::HighlightBackground),
       m_fontColor(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT))

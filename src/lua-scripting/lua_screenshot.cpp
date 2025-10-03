@@ -1508,12 +1508,12 @@ namespace LuaScripting
         if (LuaPrinterOptions == nullptr)
             {
             LuaPrinterOptions = new PrinterHeaderFooterDlg(
-                wxGetApp().GetMainFrame(), wxGetApp().GetAppOptions().GetLeftPrinterHeader(),
-                wxGetApp().GetAppOptions().GetCenterPrinterHeader(),
-                wxGetApp().GetAppOptions().GetRightPrinterHeader(),
-                wxGetApp().GetAppOptions().GetLeftPrinterFooter(),
-                wxGetApp().GetAppOptions().GetCenterPrinterFooter(),
-                wxGetApp().GetAppOptions().GetRightPrinterFooter());
+                wxGetApp().GetMainFrame(), wxGetApp().GetAppOptions()->GetLeftPrinterHeader(),
+                wxGetApp().GetAppOptions()->GetCenterPrinterHeader(),
+                wxGetApp().GetAppOptions()->GetRightPrinterHeader(),
+                wxGetApp().GetAppOptions()->GetLeftPrinterFooter(),
+                wxGetApp().GetAppOptions()->GetCenterPrinterFooter(),
+                wxGetApp().GetAppOptions()->GetRightPrinterFooter());
             }
         LuaPrinterOptions->Show();
         wxGetApp().Yield();

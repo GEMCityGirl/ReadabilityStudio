@@ -72,16 +72,16 @@ ProjectWizardDlg::ProjectWizardDlg(wxWindow* parent, const ProjectType projectTy
     long style /*= wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER*/,
     Wisteria::UI::ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode fileTruncMode /*=
         ListCtrlEx::ColumnInfo::ColumnFilePathTruncationMode::NoTruncation*/) :
-    m_minDocWordCountForBatch(wxGetApp().GetAppOptions().GetMinDocWordCountForBatch()),
-    m_fromFileSelected(wxGetApp().GetAppOptions().GetTextSource() == TextSource::FromFile),
-    m_manualSelected(wxGetApp().GetAppOptions().GetTextSource() == TextSource::EnteredText),
-    m_testSelectionMethod(static_cast<int>(wxGetApp().GetAppOptions().GetTestRecommendation())),
-    m_selectedDocType(static_cast<int>(wxGetApp().GetAppOptions().GetTestByDocumentType())),
-    m_selectedIndustryType(static_cast<int>(wxGetApp().GetAppOptions().GetTestByIndustry())),
-    m_includeDolchSightWords(wxGetApp().GetAppOptions().IsDolchSelected()),
-    m_readabilityTests(wxGetApp().GetAppOptions().GetReadabilityTests()),
+    m_minDocWordCountForBatch(wxGetApp().GetAppOptions()->GetMinDocWordCountForBatch()),
+    m_fromFileSelected(wxGetApp().GetAppOptions()->GetTextSource() == TextSource::FromFile),
+    m_manualSelected(wxGetApp().GetAppOptions()->GetTextSource() == TextSource::EnteredText),
+    m_testSelectionMethod(static_cast<int>(wxGetApp().GetAppOptions()->GetTestRecommendation())),
+    m_selectedDocType(static_cast<int>(wxGetApp().GetAppOptions()->GetTestByDocumentType())),
+    m_selectedIndustryType(static_cast<int>(wxGetApp().GetAppOptions()->GetTestByIndustry())),
+    m_includeDolchSightWords(wxGetApp().GetAppOptions()->IsDolchSelected()),
+    m_readabilityTests(wxGetApp().GetAppOptions()->GetReadabilityTests()),
     m_projectType(projectType),
-    m_selectedLang(static_cast<int>(wxGetApp().GetAppOptions().GetProjectLanguage())),
+    m_selectedLang(static_cast<int>(wxGetApp().GetAppOptions()->GetProjectLanguage())),
     m_fileListTruncationMode(fileTruncMode)
     {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_VALIDATE_RECURSIVELY | wxWS_EX_CONTEXTHELP);
@@ -107,7 +107,7 @@ ProjectWizardDlg::ProjectWizardDlg(wxWindow* parent, const ProjectType projectTy
     CreateControls();
     Centre();
 
-    if (wxGetApp().GetAppOptions().GetInvalidSentenceMethod() ==
+    if (wxGetApp().GetAppOptions()->GetInvalidSentenceMethod() ==
         InvalidSentence::IncludeAsFullSentences)
         {
         SetFragmentedTextSelected();
@@ -116,13 +116,13 @@ ProjectWizardDlg::ProjectWizardDlg(wxWindow* parent, const ProjectType projectTy
         {
         SetNarrativeSelected();
         }
-    SetSplitLinesSelected(wxGetApp().GetAppOptions().IsIgnoringBlankLinesForParagraphsParser());
+    SetSplitLinesSelected(wxGetApp().GetAppOptions()->IsIgnoringBlankLinesForParagraphsParser());
     // ignoring indenting doesn't make sense if each line should start a new paragraph
-    SetCenteredTextSelected(wxGetApp().GetAppOptions().GetParagraphsParsingMethod() !=
+    SetCenteredTextSelected(wxGetApp().GetAppOptions()->GetParagraphsParsingMethod() !=
                                 ParagraphParse::EachNewLineIsAParagraph &&
-                            wxGetApp().GetAppOptions().IsIgnoringIndentingForParagraphsParser());
+                            wxGetApp().GetAppOptions()->IsIgnoringIndentingForParagraphsParser());
     SetNewLinesAlwaysNewParagraphsSelected(
-        wxGetApp().GetAppOptions().GetParagraphsParsingMethod() ==
+        wxGetApp().GetAppOptions()->GetParagraphsParsingMethod() ==
         ParagraphParse::EachNewLineIsAParagraph);
 
     Bind(wxEVT_BUTTON, &ProjectWizardDlg::OnGroupClick, this, ProjectWizardDlg::ID_GROUP_BUTTON);
@@ -380,7 +380,7 @@ void ProjectWizardDlg::CreateControls()
                 wxArrayString files;
                 wxDir::GetAllFiles(GetFilePath(), &files, wxString{}, wxDIR_FILES | wxDIR_DIRS);
                 files =
-                    FilterFiles(files, wxGetApp().GetAppOptions().ALL_DOCUMENTS_WILDCARD.data());
+                    FilterFiles(files, wxGetApp().GetAppOptions()->ALL_DOCUMENTS_WILDCARD.data());
 
                 m_fileData->SetSize(files.GetCount(), 2);
                 m_fileData->SetValues(files);
@@ -440,13 +440,13 @@ void ProjectWizardDlg::CreateControls()
         m_isRandomSampling =
             new wxCheckBox(page, ID_RANDOM_SAMPLE_CHECK,
                            /* xgettext:no-c-format */ _(L"% of documents to randomly sample:"));
-        m_isRandomSampling->SetValue(wxGetApp().GetAppOptions().IsRandomSampling());
+        m_isRandomSampling->SetValue(wxGetApp().GetAppOptions()->IsRandomSampling());
 
         m_randPercentageCtrl = new wxSpinCtrl(
             page, ID_RANDOM_SAMPLE_SPIN,
-            std::to_wstring(wxGetApp().GetAppOptions().GetBatchRandomSamplingSize()));
+            std::to_wstring(wxGetApp().GetAppOptions()->GetBatchRandomSamplingSize()));
         m_randPercentageCtrl->SetRange(1, 100);
-        m_randPercentageCtrl->Enable(wxGetApp().GetAppOptions().IsRandomSampling());
+        m_randPercentageCtrl->Enable(wxGetApp().GetAppOptions()->IsRandomSampling());
 
         randomOptionsSizer->Add(m_isRandomSampling,
                                 wxSizerFlags{}.Border(wxRIGHT).CenterVertical());
@@ -470,7 +470,7 @@ void ProjectWizardDlg::CreateControls()
         imageLabel.SetTextAlignment(Wisteria::TextAlignment::FlushLeft);
         imageLabel.SetAnchoring(Wisteria::Anchoring::TopRightCorner);
 
-        if (wxGetApp().GetAppOptions().GetInvalidSentenceMethod() ==
+        if (wxGetApp().GetAppOptions()->GetInvalidSentenceMethod() ==
             InvalidSentence::IncludeAsFullSentences)
             {
             SetFragmentedTextSelected();
@@ -479,9 +479,10 @@ void ProjectWizardDlg::CreateControls()
             {
             SetNarrativeSelected();
             }
-        SetSplitLinesSelected(wxGetApp().GetAppOptions().IsIgnoringBlankLinesForParagraphsParser());
+        SetSplitLinesSelected(
+            wxGetApp().GetAppOptions()->IsIgnoringBlankLinesForParagraphsParser());
         SetCenteredTextSelected(
-            wxGetApp().GetAppOptions().IsIgnoringIndentingForParagraphsParser());
+            wxGetApp().GetAppOptions()->IsIgnoringIndentingForParagraphsParser());
 
         wxPanel* page =
             new wxPanel(m_sideBarBook, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
@@ -881,13 +882,13 @@ void ProjectWizardDlg::CreateControls()
                 customTestNames.Add(customTest.get_name().c_str());
                 }
             // go through the list of test IDs that were checked the last time this wizard was used
-            for (size_t i = 0; i < wxGetApp().GetAppOptions().GetIncludedCustomTests().size(); ++i)
+            for (size_t i = 0; i < wxGetApp().GetAppOptions()->GetIncludedCustomTests().size(); ++i)
                 {
                 // find the test in the global list of tests, searching by test id
                 CustomReadabilityTestCollection::const_iterator testIter =
                     std::find(BaseProject::m_custom_word_tests.begin(),
                               BaseProject::m_custom_word_tests.end(),
-                              wxGetApp().GetAppOptions().GetIncludedCustomTests().at(i).c_str());
+                              wxGetApp().GetAppOptions()->GetIncludedCustomTests().at(i).c_str());
                 // if the test was found, then check it in the list
                 if (testIter != BaseProject::m_custom_word_tests.end())
                     {
@@ -924,7 +925,7 @@ void ProjectWizardDlg::CreateControls()
             new wxRadioBox(page, ID_TEST_BUNDLE_RADIO_BOX, _(L"Select the test bundle to apply:"),
                            wxDefaultPosition, wxDefaultSize, testBundles, 0, wxRA_SPECIFY_ROWS,
                            wxGenericValidator(&m_selectedBundle));
-        SetSelectedTestBundle(wxGetApp().GetAppOptions().GetSelectedTestBundle());
+        SetSelectedTestBundle(wxGetApp().GetAppOptions()->GetSelectedTestBundle());
         m_testTypesSizer->Add(m_testsBundlesRadioBox, wxSizerFlags{}.Border(wxLEFT));
 
         TransferDataToWindow();
@@ -1048,7 +1049,7 @@ void ProjectWizardDlg::OnGroupClick([[maybe_unused]] wxCommandEvent&)
 void ProjectWizardDlg::UpdateTestsUI()
     {
     TransferDataFromWindow();
-    m_readabilityTests = wxGetApp().GetAppOptions().GetReadabilityTests();
+    m_readabilityTests = wxGetApp().GetAppOptions()->GetReadabilityTests();
     wxArrayString testNames;
     m_selectedTests.clear();
     for (const auto& rTest : m_readabilityTests.get_tests())
@@ -1089,7 +1090,7 @@ void ProjectWizardDlg::LoadArchive(wxString archivePath /*= wxString{}*/)
     DocGroupSelectDlg selectLabelTypeDlg(this);
     selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
                                     L"online/additional-features.html");
-    selectLabelTypeDlg.SetSelection(wxGetApp().GetAppOptions().GetBatchGroupMethod());
+    selectLabelTypeDlg.SetSelection(wxGetApp().GetAppOptions()->GetBatchGroupMethod());
     if (selectLabelTypeDlg.ShowModal() != wxID_OK)
         {
         return;
@@ -1102,7 +1103,7 @@ void ProjectWizardDlg::LoadArchive(wxString archivePath /*= wxString{}*/)
         {
         groupByLastCommonFolder = true;
         }
-    wxGetApp().GetAppOptions().SetBatchGroupMethod(selectLabelTypeDlg.GetSelection());
+    wxGetApp().GetAppOptions()->SetBatchGroupMethod(selectLabelTypeDlg.GetSelection());
 
     wxWindowDisabler disableAll;
     wxBusyInfo wait(_(L"Retrieving files..."), this);
@@ -1653,7 +1654,7 @@ void ProjectWizardDlg::OnAddWebPageButtonClick([[maybe_unused]] wxCommandEvent&)
         DocGroupSelectDlg selectLabelTypeDlg(this);
         selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
                                         L"online/additional-features.html");
-        selectLabelTypeDlg.SetSelection(wxGetApp().GetAppOptions().GetBatchGroupMethod());
+        selectLabelTypeDlg.SetSelection(wxGetApp().GetAppOptions()->GetBatchGroupMethod());
         if (selectLabelTypeDlg.ShowModal() != wxID_OK)
             {
             return;
@@ -1662,7 +1663,7 @@ void ProjectWizardDlg::OnAddWebPageButtonClick([[maybe_unused]] wxCommandEvent&)
             {
             groupLabel = selectLabelTypeDlg.GetGroupingLabel();
             }
-        wxGetApp().GetAppOptions().SetBatchGroupMethod(selectLabelTypeDlg.GetSelection());
+        wxGetApp().GetAppOptions()->SetBatchGroupMethod(selectLabelTypeDlg.GetSelection());
 
         const size_t currentFileCount = m_fileData->GetItemCount();
         m_fileData->SetSize(currentFileCount + 1, 2);
@@ -1684,7 +1685,7 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
                                   ReadabilityAppOptions::GetDocumentFilter(),
                                   wxGetApp().GetLastSelectedDocFilter(), false);
     webHarvestDlg.UpdateFromHarvesterSettings(wxGetApp().GetWebHarvester());
-    webHarvestDlg.SetDownloadFolder(wxGetApp().GetAppOptions().GetDownloadsPath());
+    webHarvestDlg.SetDownloadFolder(wxGetApp().GetAppOptions()->GetDownloadsPath());
     webHarvestDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
                                L"online/additional-features.html");
     if (webHarvestDlg.ShowModal() != wxID_OK)
@@ -1698,7 +1699,7 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
     DocGroupSelectDlg selectLabelTypeDlg(this);
     selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
                                     L"online/additional-features.html");
-    selectLabelTypeDlg.SetSelection(wxGetApp().GetAppOptions().GetBatchGroupMethod());
+    selectLabelTypeDlg.SetSelection(wxGetApp().GetAppOptions()->GetBatchGroupMethod());
     if (selectLabelTypeDlg.ShowModal() != wxID_OK)
         {
         return;
@@ -1711,7 +1712,7 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
         {
         groupByLastCommonFolder = true;
         }
-    wxGetApp().GetAppOptions().SetBatchGroupMethod(selectLabelTypeDlg.GetSelection());
+    wxGetApp().GetAppOptions()->SetBatchGroupMethod(selectLabelTypeDlg.GetSelection());
 
     wxGetApp().SetLastSelectedWebPages(webHarvestDlg.GetUrls());
     wxGetApp().SetLastSelectedDocFilter(webHarvestDlg.GetSelectedDocFilter());
@@ -1774,12 +1775,12 @@ void ProjectWizardDlg::OnAddWebPagesButtonClick([[maybe_unused]] wxCommandEvent&
     wxGetApp().GetWebHarvester().ClearCookies();
 
     // update global internet options that mirror the same options from the dialog
-    wxGetApp().GetAppOptions().DisablePeerVerify(webHarvestDlg.IsPeerVerifyDisabled());
-    wxGetApp().GetAppOptions().UseJavaScriptCookies(webHarvestDlg.IsUsingJavaScriptCookies());
-    wxGetApp().GetAppOptions().PersistJavaScriptCookies(
+    wxGetApp().GetAppOptions()->DisablePeerVerify(webHarvestDlg.IsPeerVerifyDisabled());
+    wxGetApp().GetAppOptions()->UseJavaScriptCookies(webHarvestDlg.IsUsingJavaScriptCookies());
+    wxGetApp().GetAppOptions()->PersistJavaScriptCookies(
         webHarvestDlg.IsPersistingJavaScriptCookies());
-    wxGetApp().GetAppOptions().SetUserAgent(webHarvestDlg.GetUserAgent());
-    wxGetApp().GetAppOptions().SetDownloadsPath(webHarvestDlg.GetDownloadFolder());
+    wxGetApp().GetAppOptions()->SetUserAgent(webHarvestDlg.GetUserAgent());
+    wxGetApp().GetAppOptions()->SetDownloadsPath(webHarvestDlg.GetDownloadFolder());
 
     if (groupByLastCommonFolder && files.size() > 0)
         {
@@ -1826,7 +1827,7 @@ void ProjectWizardDlg::OnAddFolderButtonClick([[maybe_unused]] wxCommandEvent&)
     DocGroupSelectDlg selectLabelTypeDlg(this);
     selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
                                     L"online/additional-features.html");
-    selectLabelTypeDlg.SetSelection(wxGetApp().GetAppOptions().GetBatchGroupMethod());
+    selectLabelTypeDlg.SetSelection(wxGetApp().GetAppOptions()->GetBatchGroupMethod());
     if (selectLabelTypeDlg.ShowModal() != wxID_OK)
         {
         return;
@@ -1839,7 +1840,7 @@ void ProjectWizardDlg::OnAddFolderButtonClick([[maybe_unused]] wxCommandEvent&)
         {
         groupByLastCommonFolder = true;
         }
-    wxGetApp().GetAppOptions().SetBatchGroupMethod(selectLabelTypeDlg.GetSelection());
+    wxGetApp().GetAppOptions()->SetBatchGroupMethod(selectLabelTypeDlg.GetSelection());
 
     wxWindowUpdateLocker noUpdates(m_fileList);
     const size_t currentFileCount = m_fileData->GetItemCount();
@@ -1934,7 +1935,7 @@ void ProjectWizardDlg::OnAddFileButtonClick([[maybe_unused]] wxCommandEvent&)
     DocGroupSelectDlg selectLabelTypeDlg(this);
     selectLabelTypeDlg.SetHelpTopic(wxGetApp().GetMainFrame()->GetHelpDirectory(),
                                     L"online/additional-features.html");
-    selectLabelTypeDlg.SetSelection(wxGetApp().GetAppOptions().GetBatchGroupMethod());
+    selectLabelTypeDlg.SetSelection(wxGetApp().GetAppOptions()->GetBatchGroupMethod());
     if (selectLabelTypeDlg.ShowModal() != wxID_OK)
         {
         return;
@@ -1947,7 +1948,7 @@ void ProjectWizardDlg::OnAddFileButtonClick([[maybe_unused]] wxCommandEvent&)
         {
         groupByLastCommonFolder = true;
         }
-    wxGetApp().GetAppOptions().SetBatchGroupMethod(selectLabelTypeDlg.GetSelection());
+    wxGetApp().GetAppOptions()->SetBatchGroupMethod(selectLabelTypeDlg.GetSelection());
 
     // set the default name of the project to the last folder of the file selected here.
     const wxArrayString folders = wxFileName(wxFileName(files[0]).GetPathWithSep()).GetDirs();

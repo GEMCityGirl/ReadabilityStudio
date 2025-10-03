@@ -29,8 +29,8 @@ EditTextDlg::EditTextDlg(wxWindow* parent, BaseProjectDoc* parentDoc, wxString v
                          const wxSize& size /*= wxSize(600, 500)*/,
                          long style /*= wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER*/)
     : m_value(std::move(value)),
-      m_usingParaSpace(wxGetApp().GetAppOptions().IsEditorShowSpaceAfterParagraph()),
-      m_lineSpacing(wxGetApp().GetAppOptions().GetEditorLineSpacing()), m_parentDoc(parentDoc)
+      m_usingParaSpace(wxGetApp().GetAppOptions()->IsEditorShowSpaceAfterParagraph()),
+      m_lineSpacing(wxGetApp().GetAppOptions()->GetEditorLineSpacing()), m_parentDoc(parentDoc)
     {
     Create(parent, id,
            (m_parentDoc != nullptr) ?
@@ -120,8 +120,8 @@ EditTextDlg::EditTextDlg(wxWindow* parent, BaseProjectDoc* parentDoc, wxString v
                 UpdateButtons();
                 EnableSaveButton(wasModified);
 
-                wxGetApp().GetAppOptions().SetEditorFont(dialog.GetFontData().GetChosenFont());
-                wxGetApp().GetAppOptions().SetEditorFontColor(dialog.GetFontData().GetColour());
+                wxGetApp().GetAppOptions()->SetEditorFont(dialog.GetFontData().GetChosenFont());
+                wxGetApp().GetAppOptions()->SetEditorFontColor(dialog.GetFontData().GetColour());
                 }
         },
         wxID_SELECT_FONT);
@@ -332,18 +332,18 @@ void EditTextDlg::CreateControls()
                         wxColour{ 255, 255, 255 } :
                         // ...otherwise, shade or tint to go with the theme
                         Wisteria::Colors::ColorContrast::ShadeOrTintIfClose(
-                            wxGetApp().GetAppOptions().GetEditorFontColor(),
+                            wxGetApp().GetAppOptions()->GetEditorFontColor(),
                             m_parentDoc->GetTextReportBackgroundColor()));
             }
         else
             {
-            return wxGetApp().GetAppOptions().GetEditorFontColor();
+            return wxGetApp().GetAppOptions()->GetEditorFontColor();
             }
     }();
 
-    m_style = wxTextAttr{ fontColor, wxNullColour, wxGetApp().GetAppOptions().GetEditorFont() };
+    m_style = wxTextAttr{ fontColor, wxNullColour, wxGetApp().GetAppOptions()->GetEditorFont() };
 
-    if (wxGetApp().GetAppOptions().IsEditorIndenting())
+    if (wxGetApp().GetAppOptions()->IsEditorIndenting())
         {
         m_style.SetLeftIndent(50, -40);
         }
@@ -351,15 +351,15 @@ void EditTextDlg::CreateControls()
         {
         m_style.SetLeftIndent(0);
         }
-    m_style.SetAlignment(wxGetApp().GetAppOptions().GetEditorTextAlignment());
+    m_style.SetAlignment(wxGetApp().GetAppOptions()->GetEditorTextAlignment());
     m_style.SetParagraphSpacingAfter(
-        wxGetApp().GetAppOptions().IsEditorShowSpaceAfterParagraph() ? 40 : 0);
-    m_style.SetLineSpacing(wxGetApp().GetAppOptions().GetEditorLineSpacing());
+        wxGetApp().GetAppOptions()->IsEditorShowSpaceAfterParagraph() ? 40 : 0);
+    m_style.SetLineSpacing(wxGetApp().GetAppOptions()->GetEditorLineSpacing());
     m_textEntry->SetDefaultStyle(m_style);
 
 #if wxUSE_SPELLCHECK
     const auto lang = (m_parentDoc != nullptr) ? m_parentDoc->GetProjectLanguage() :
-                                                 wxGetApp().GetAppOptions().GetProjectLanguage();
+                                                 wxGetApp().GetAppOptions()->GetProjectLanguage();
     m_textEntry->EnableProofCheck(
         wxTextProofOptions::Default()
             .Language((lang == readability::test_language::spanish_test) ? _DT("es") :
@@ -611,7 +611,7 @@ void EditTextDlg::OnParagraphSpaceSelected([[maybe_unused]] wxCommandEvent& even
         // update menu
         m_usingParaSpace = !m_usingParaSpace;
         m_style.SetParagraphSpacingAfter(m_usingParaSpace ? 40 : 0);
-        wxGetApp().GetAppOptions().AddParagraphSpaceInEditor(m_usingParaSpace);
+        wxGetApp().GetAppOptions()->AddParagraphSpaceInEditor(m_usingParaSpace);
 
         m_textEntry->SetStyle(0, m_textEntry->GetLastPosition(), m_style);
         // don't mark as modified when just changing the view's appearance
@@ -640,7 +640,7 @@ void EditTextDlg::OnLineSpaceSelected(wxCommandEvent& event)
 
         m_style.SetLineSpacing(m_lineSpacing);
 
-        wxGetApp().GetAppOptions().SetEditorLineSpacing(
+        wxGetApp().GetAppOptions()->SetEditorLineSpacing(
             static_cast<wxTextAttrLineSpacing>(m_style.GetLineSpacing()));
 
         m_textEntry->SetStyle(0, m_textEntry->GetLastPosition(), m_style);
@@ -692,12 +692,12 @@ void EditTextDlg::OnEditButtons(wxRibbonButtonBarEvent& event)
             if (m_style.GetLeftIndent() == 0)
                 {
                 m_style.SetLeftIndent(50, -40);
-                wxGetApp().GetAppOptions().IndentEditor(true);
+                wxGetApp().GetAppOptions()->IndentEditor(true);
                 }
             else
                 {
                 m_style.SetLeftIndent(0, 0);
-                wxGetApp().GetAppOptions().IndentEditor(false);
+                wxGetApp().GetAppOptions()->IndentEditor(false);
                 }
             m_textEntry->SetStyle(0, m_textEntry->GetLastPosition(), m_style);
             // don't mark as modified when just changing the view's appearance
@@ -728,7 +728,7 @@ void EditTextDlg::OnEditButtons(wxRibbonButtonBarEvent& event)
             UpdateButtons();
             EnableSaveButton(wasModified);
 
-            wxGetApp().GetAppOptions().SetEditorTextAlignment(m_style.GetAlignment());
+            wxGetApp().GetAppOptions()->SetEditorTextAlignment(m_style.GetAlignment());
             }
         }
     }
@@ -811,7 +811,7 @@ void EditTextDlg::UpdateButtons()
             paragraphButtonBar->ToggleButton(buttonToEnable, true);
 
             paragraphButtonBar->ToggleButton(wxID_INDENT,
-                                             wxGetApp().GetAppOptions().IsEditorIndenting());
+                                             wxGetApp().GetAppOptions()->IsEditorIndenting());
             }
         }
 
