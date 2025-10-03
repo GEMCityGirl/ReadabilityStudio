@@ -1,0 +1,30 @@
+name: macOS Build
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: macos-build
+    runs-on: macos-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Download wxWidgets
+        run: |
+             brew install cmake
+             brew install create-dmg
+             git clone https://github.com/wxWidgets/wxWidgets.git --recurse-submodules
+
+      - name: Build
+        run: |
+             cmake -S . -B ./build -DCMAKE_BUILD_TYPE=Release
+             cmake --build ./build --target all -j $(nproc) --config Release
+
+      - name: Archive App Bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: macOS App Bundle
+          path: ${{ github.workspace }}/installers/macos/release/*.app
