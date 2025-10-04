@@ -133,31 +133,31 @@ void ReadabilityApp::EditDictionary(const readability::test_language lang)
         // reload the custom dictionary
         if (lang == readability::test_language::spanish_test)
             {
-            wxString ExtraDictionaryText;
+            wxString extraDictionaryText;
             if (wxFile::Exists(m_CustomSpanishDictionaryPath) &&
-                Wisteria::TextStream::ReadFile(m_CustomSpanishDictionaryPath, ExtraDictionaryText))
+                Wisteria::TextStream::ReadFile(m_CustomSpanishDictionaryPath, extraDictionaryText))
                 {
-                BaseProject::known_custom_spanish_spellings.load_words(ExtraDictionaryText, true,
+                BaseProject::known_custom_spanish_spellings.load_words(extraDictionaryText, true,
                                                                        false);
                 }
             }
         else if (lang == readability::test_language::german_test)
             {
-            wxString ExtraDictionaryText;
+            wxString extraDictionaryText;
             if (wxFile::Exists(m_CustomGermanDictionaryPath) &&
-                Wisteria::TextStream::ReadFile(m_CustomGermanDictionaryPath, ExtraDictionaryText))
+                Wisteria::TextStream::ReadFile(m_CustomGermanDictionaryPath, extraDictionaryText))
                 {
-                BaseProject::known_custom_german_spellings.load_words(ExtraDictionaryText, true,
+                BaseProject::known_custom_german_spellings.load_words(extraDictionaryText, true,
                                                                       false);
                 }
             }
         else
             {
-            wxString ExtraDictionaryText;
+            wxString extraDictionaryText;
             if (wxFile::Exists(m_CustomEnglishDictionaryPath) &&
-                Wisteria::TextStream::ReadFile(m_CustomEnglishDictionaryPath, ExtraDictionaryText))
+                Wisteria::TextStream::ReadFile(m_CustomEnglishDictionaryPath, extraDictionaryText))
                 {
-                BaseProject::known_custom_english_spellings.load_words(ExtraDictionaryText, true,
+                BaseProject::known_custom_english_spellings.load_words(extraDictionaryText, true,
                                                                        false);
                 }
             }
@@ -933,56 +933,61 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     const size_t readSize = theFile.Read(wordyZipFileText.get(), theFile.Length());
     Wisteria::ZipCatalog cat(wordyZipFileText.get(), readSize);
     // read in the wordy items
-    std::wstring englishWordyPhraseFileText = cat.ReadTextFile(L"wordy-phrases/english.txt");
-    std::wstring spanishWordyPhraseFileText = cat.ReadTextFile(L"wordy-phrases/spanish.txt");
-    std::wstring germanWordyPhraseFileText = cat.ReadTextFile(L"wordy-phrases/german.txt");
-    std::wstring DCReplacementFileText =
+    const std::wstring englishWordyPhraseFileText = cat.ReadTextFile(L"wordy-phrases/english.txt");
+    const std::wstring spanishWordyPhraseFileText = cat.ReadTextFile(L"wordy-phrases/spanish.txt");
+    const std::wstring germanWordyPhraseFileText = cat.ReadTextFile(L"wordy-phrases/german.txt");
+    const std::wstring dcReplacementFileText =
         cat.ReadTextFile(L"wordy-phrases/dale-chall-replacements.txt");
-    std::wstring SpacheReplacementFileText =
+    const std::wstring spacheReplacementFileText =
         cat.ReadTextFile(L"wordy-phrases/spache-replacements.txt");
-    std::wstring HarrisJacobsonReplacementFileText =
+    const std::wstring harrisJacobsonReplacementFileText =
         cat.ReadTextFile(L"wordy-phrases/harris-jacobson-replacements.txt");
-    std::wstring DifficultWordReplacementFileText =
+    const std::wstring difficultWordReplacementFileText =
         cat.ReadTextFile(L"wordy-phrases/single-word-replacements-english.txt");
     // proper noun stop word list
-    std::wstring properNounStopList = cat.ReadTextFile(L"stop-words/proper-nouns-stoplist.txt");
+    const std::wstring properNounStopList =
+        cat.ReadTextFile(L"stop-words/proper-nouns-stoplist.txt");
     // copyright notices
-    std::wstring copyRightNoticePhraseFileText = cat.ReadTextFile(L"copyright-notices/notices.txt");
+    const std::wstring copyRightNoticePhraseFileText =
+        cat.ReadTextFile(L"copyright-notices/notices.txt");
     // citation headers
-    std::wstring citationPhraseFileText = cat.ReadTextFile(L"citation-headers/citations.txt");
+    const std::wstring citationPhraseFileText = cat.ReadTextFile(L"citation-headers/citations.txt");
     // known proper nouns
-    std::wstring properNounsFileText = cat.ReadTextFile(L"proper-nouns/all.txt");
-    std::wstring personalNounsFileText = cat.ReadTextFile(L"proper-nouns/personal.txt");
+    const std::wstring properNounsFileText = cat.ReadTextFile(L"proper-nouns/all.txt");
+    const std::wstring personalNounsFileText = cat.ReadTextFile(L"proper-nouns/personal.txt");
     // stop lists
-    std::wstring EnglishStopList = cat.ReadTextFile(L"stop-words/english.txt");
-    std::wstring SpanishStopList = cat.ReadTextFile(L"stop-words/spanish.txt");
-    std::wstring GermanStopList = cat.ReadTextFile(L"stop-words/german.txt");
+    const std::wstring englishStopList = cat.ReadTextFile(L"stop-words/english.txt");
+    const std::wstring spanishStopList = cat.ReadTextFile(L"stop-words/spanish.txt");
+    const std::wstring germanStopList = cat.ReadTextFile(L"stop-words/german.txt");
     // known spellings
-    std::wstring EnglishSpellingsFileText = cat.ReadTextFile(L"dictionaries/english.txt");
-    std::wstring SpanishspellingsFileText = cat.ReadTextFile(L"dictionaries/spanish.txt");
-    std::wstring GermanspellingsFileText = cat.ReadTextFile(L"dictionaries/german.txt");
-    std::wstring ProgrammingSpellingsFileText = cat.ReadTextFile(L"programming/all-languages.txt");
+    const std::wstring englishSpellingsFileText = cat.ReadTextFile(L"dictionaries/english.txt");
+    const std::wstring spanishSpellingsFileText = cat.ReadTextFile(L"dictionaries/spanish.txt");
+    const std::wstring germanSpellingsFileText = cat.ReadTextFile(L"dictionaries/german.txt");
+    const std::wstring programmingSpellingsFileText =
+        cat.ReadTextFile(L"programming/all-languages.txt");
     // articles
-    std::wstring aExceptionsFileText = cat.ReadTextFile(_DT(L"articles/a-exceptions.txt"));
-    std::wstring anExceptionsFileText = cat.ReadTextFile(_DT(L"articles/an-exceptions.txt"));
+    const std::wstring aExceptionsFileText = cat.ReadTextFile(_DT(L"articles/a-exceptions.txt"));
+    const std::wstring anExceptionsFileText = cat.ReadTextFile(_DT(L"articles/an-exceptions.txt"));
     // read in the abbreviations
-    std::wstring abbreviationsFileText = cat.ReadTextFile(_DT(L"abbreviations/abbreviations.txt"));
-    std::wstring nonAbbreviationsFileText =
+    const std::wstring abbreviationsFileText =
+        cat.ReadTextFile(_DT(L"abbreviations/abbreviations.txt"));
+    const std::wstring nonAbbreviationsFileText =
         cat.ReadTextFile(_DT(L"abbreviations/non-abbreviations.txt"));
     // read in the past-participle exceptions
-    std::wstring pastParticipleExceptionsFileText =
+    const std::wstring pastParticipleExceptionsFileText =
         cat.ReadTextFile(_DT(L"past-participles/exceptions.txt"));
     // read in the DC words
-    std::wstring dcFileText = cat.ReadTextFile(_DT(L"word-lists/new-dale-chall.txt"));
+    const std::wstring dcFileText = cat.ReadTextFile(_DT(L"word-lists/new-dale-chall.txt"));
     // read in the DC Catholic supplementary words
-    std::wstring stockerCatholicFileText =
+    const std::wstring stockerCatholicFileText =
         cat.ReadTextFile(_DT(L"word-lists/stocker-catholic-supplement.txt"));
     // read in the Spache words
-    std::wstring spacheFileText = cat.ReadTextFile(_DT(L"word-lists/revised-spache.txt"));
+    const std::wstring spacheFileText = cat.ReadTextFile(_DT(L"word-lists/revised-spache.txt"));
     // Harris-Jacobson words
-    std::wstring harrisJacobsonFileText = cat.ReadTextFile(_DT(L"word-lists/harris-jacobson.txt"));
+    const std::wstring harrisJacobsonFileText =
+        cat.ReadTextFile(_DT(L"word-lists/harris-jacobson.txt"));
     // read in the Dolch words
-    std::wstring dolchFileText = cat.ReadTextFile(_DT(L"word-lists/dolch.txt"));
+    const std::wstring dolchFileText = cat.ReadTextFile(_DT(L"word-lists/dolch.txt"));
 
     BaseProject::english_wordy_phrases.load_phrases(englishWordyPhraseFileText.c_str(), false,
                                                     false);
@@ -990,18 +995,18 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
                                                     false);
     BaseProject::german_wordy_phrases.load_phrases(germanWordyPhraseFileText.c_str(), false, false);
 
-    BaseProject::dale_chall_replacement_list.load_words(DCReplacementFileText.c_str(), false);
-    BaseProject::spache_replacement_list.load_words(SpacheReplacementFileText.c_str(), false);
+    BaseProject::dale_chall_replacement_list.load_words(dcReplacementFileText.c_str(), false);
+    BaseProject::spache_replacement_list.load_words(spacheReplacementFileText.c_str(), false);
     BaseProject::harris_jacobson_replacement_list.load_words(
-        HarrisJacobsonReplacementFileText.c_str(), false);
+        harrisJacobsonReplacementFileText.c_str(), false);
     BaseProject::difficult_word_replacement_list.load_words(
-        DifficultWordReplacementFileText.c_str(), false);
+        difficultWordReplacementFileText.c_str(), false);
 
     BaseProject::known_proper_nouns.load_words(properNounsFileText.c_str(), false, false);
     BaseProject::known_personal_nouns.load_words(personalNounsFileText.c_str(), false, false);
-    BaseProject::english_stoplist.load_words(EnglishStopList.c_str(), false, false);
-    BaseProject::spanish_stoplist.load_words(SpanishStopList.c_str(), false, false);
-    BaseProject::german_stoplist.load_words(GermanStopList.c_str(), false, false);
+    BaseProject::english_stoplist.load_words(englishStopList.c_str(), false, false);
+    BaseProject::spanish_stoplist.load_words(spanishStopList.c_str(), false, false);
+    BaseProject::german_stoplist.load_words(germanStopList.c_str(), false, false);
 
     BaseProject::m_dale_chall_word_list.load_words(dcFileText.c_str(), false, false);
     BaseProject::m_stocker_catholic_word_list.load_words(stockerCatholicFileText.c_str(), false,
@@ -1015,8 +1020,8 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
                                                         false);
     BaseProject::m_dolch_word_list.load_words(dolchFileText.c_str());
 
-    BaseProject::known_english_spellings.load_words(EnglishSpellingsFileText.c_str(), false, false);
-    BaseProject::known_programming_spellings.load_words(ProgrammingSpellingsFileText.c_str(), false,
+    BaseProject::known_english_spellings.load_words(englishSpellingsFileText.c_str(), false, false);
+    BaseProject::known_programming_spellings.load_words(programmingSpellingsFileText.c_str(), false,
                                                         false);
     m_CustomEnglishDictionaryPath = AppSettingFolderPath + L"DictionaryEN.txt";
     wxString ExtraDictionaryText;
@@ -1032,7 +1037,7 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
         outputFile.Write(wxString{}, wxConvUTF8);
         }
 
-    BaseProject::known_spanish_spellings.load_words(SpanishspellingsFileText.c_str(), false, false);
+    BaseProject::known_spanish_spellings.load_words(spanishSpellingsFileText.c_str(), false, false);
     m_CustomSpanishDictionaryPath = AppSettingFolderPath + L"DictionaryES.txt";
     if (wxFile::Exists(m_CustomSpanishDictionaryPath) &&
         Wisteria::TextStream::ReadFile(m_CustomSpanishDictionaryPath, ExtraDictionaryText))
@@ -1046,7 +1051,7 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
         outputFile.Write(wxString{}, wxConvUTF8);
         }
 
-    BaseProject::known_german_spellings.load_words(GermanspellingsFileText.c_str(), false, false);
+    BaseProject::known_german_spellings.load_words(germanSpellingsFileText.c_str(), false, false);
     m_CustomGermanDictionaryPath = AppSettingFolderPath + L"DictionaryDE.txt";
     if (wxFile::Exists(m_CustomGermanDictionaryPath) &&
         Wisteria::TextStream::ReadFile(m_CustomGermanDictionaryPath, ExtraDictionaryText))
@@ -1854,15 +1859,15 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
         new wxRibbonBar(frame, wxID_ANY, wxDefaultPosition, wxDefaultSize,
                         wxRIBBON_BAR_SHOW_PAGE_ICONS | wxRIBBON_BAR_DEFAULT_STYLE);
         {
-        wxRibbonPage* homePage =
+        auto* homePage =
             new wxRibbonPage(ribbon, wxID_ANY, _(L"Home"),
                              GetResourceManager()
                                  .GetSVG(L"ribbon/home.svg")
                                  .GetBitmap(GetMainFrame()->FromDIP(wxSize{ 16, 16 })));
-        wxRibbonPanel* projectPanel =
+        auto* projectPanel =
             new wxRibbonPanel(homePage, wxID_ANY, _(L"Project"), wxNullBitmap, wxDefaultPosition,
                               wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-        wxRibbonButtonBar* projectButtonBar =
+        auto* projectButtonBar =
             new wxRibbonButtonBar(projectPanel, MainFrame::ID_PROJECT_RIBBON_BUTTON_BAR);
         projectButtonBar->AddHybridButton(wxID_NEW, _(L"New"),
                                           ReadRibbonSvgIcon(L"ribbon/document.svg"),
@@ -1872,10 +1877,10 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                                           _(L"Open an existing project."));
         if (rtype == RibbonType::BatchProjectRibbon)
             {
-            wxRibbonPanel* documentsPanel = new wxRibbonPanel(
-                homePage, wxID_ANY, _(L"Documents"), wxNullBitmap, wxDefaultPosition, wxDefaultSize,
-                wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-            wxRibbonButtonBar* documentsButtonBar = new wxRibbonButtonBar(documentsPanel);
+            auto* documentsPanel = new wxRibbonPanel(homePage, wxID_ANY, _(L"Documents"),
+                                                     wxNullBitmap, wxDefaultPosition, wxDefaultSize,
+                                                     wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+            auto* documentsButtonBar = new wxRibbonButtonBar(documentsPanel);
             documentsButtonBar->AddButton(
                 XRCID("ID_SEND_TO_STANDARD_PROJECT"), _(L"Subproject"),
                 ReadRibbonSvgIcon(L"ribbon/send-to-subproject.svg"),
@@ -1919,11 +1924,11 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 //--------------
                 // list button edit panel (Copy, Select, View, Sort)
                 {
-                wxRibbonPanel* editPanel = new wxRibbonPanel(
-                    homePage, MainFrame::ID_EDIT_RIBBON_LIST_PANEL, _(L"Edit"), wxNullBitmap,
-                    wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+                auto* editPanel = new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_LIST_PANEL,
+                                                    _(L"Edit"), wxNullBitmap, wxDefaultPosition,
+                                                    wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
 
-                wxRibbonButtonBar* editButtonBar =
+                auto* editButtonBar =
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
@@ -1942,12 +1947,12 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 }
                 // list button edit panel (Long Format, Grade Scales, Copy, Select, View, Sort)
                 {
-                wxRibbonPanel* editPanel =
+                auto* editPanel =
                     new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_LIST_TEST_SCORES_PANEL,
                                       _(L"Edit"), wxNullBitmap, wxDefaultPosition, wxDefaultSize,
                                       wxRIBBON_PANEL_NO_AUTO_MINIMISE);
 
-                wxRibbonButtonBar* editButtonBar =
+                auto* editButtonBar =
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 editButtonBar->AddToggleButton(
@@ -1974,11 +1979,11 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 }
                 // list button edit panel (Copy, Select, View, Sort, Sum)
                 {
-                wxRibbonPanel* editPanel = new wxRibbonPanel(
+                auto* editPanel = new wxRibbonPanel(
                     homePage, MainFrame::ID_EDIT_RIBBON_LIST_CSVSS_PANEL, _(L"Edit"), wxNullBitmap,
                     wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
 
-                wxRibbonButtonBar* editButtonBar =
+                auto* editButtonBar =
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
@@ -2000,11 +2005,11 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 }
                 // list button edit panel (Copy, Select, Sort)
                 {
-                wxRibbonPanel* editPanel = new wxRibbonPanel(
+                auto* editPanel = new wxRibbonPanel(
                     homePage, MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_PANEL, _(L"Edit"), wxNullBitmap,
                     wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
 
-                wxRibbonButtonBar* editButtonBar =
+                auto* editButtonBar =
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
@@ -2019,12 +2024,12 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 }
                 // list button edit panel (Copy, Select, Sort, Sum)
                 {
-                wxRibbonPanel* editPanel = new wxRibbonPanel(
+                auto* editPanel = new wxRibbonPanel(
                     homePage, MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_PANEL, _(L"Edit"),
                     wxNullBitmap, wxDefaultPosition, wxDefaultSize,
                     wxRIBBON_PANEL_NO_AUTO_MINIMISE);
 
-                wxRibbonButtonBar* editButtonBar =
+                auto* editButtonBar =
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
@@ -2042,12 +2047,12 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 }
                 // list button edit panel (Copy, Select, Exclude, Sum, Sort)
                 {
-                wxRibbonPanel* editPanel = new wxRibbonPanel(
+                auto* editPanel = new wxRibbonPanel(
                     homePage, MainFrame::ID_EDIT_RIBBON_LIST_SIMPLE_WITH_SUM_AND_EXCLUDE_PANEL,
                     _(L"Edit"), wxNullBitmap, wxDefaultPosition, wxDefaultSize,
                     wxRIBBON_PANEL_NO_AUTO_MINIMISE);
 
-                wxRibbonButtonBar* editButtonBar =
+                auto* editButtonBar =
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 editButtonBar->AddHybridButton(wxID_COPY, _(L"Copy"),
@@ -2069,12 +2074,12 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 }
                 // HTML window
                 {
-                wxRibbonPanel* editPanel =
+                auto* editPanel =
                     new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_SUMMARY_REPORT_PANEL,
                                       _(L"Edit"), wxNullBitmap, wxDefaultPosition, wxDefaultSize,
                                       wxRIBBON_PANEL_NO_AUTO_MINIMISE);
 
-                wxRibbonButtonBar* editButtonBar =
+                auto* editButtonBar =
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 editButtonBar->AddButton(wxID_COPY, _(L"Copy"),
@@ -2083,12 +2088,12 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 }
                 // explanation list control
                 {
-                wxRibbonPanel* editPanel =
+                auto* editPanel =
                     new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_EXPLANATION_LIST_PANEL,
                                       _(L"Edit"), wxNullBitmap, wxDefaultPosition, wxDefaultSize,
                                       wxRIBBON_PANEL_NO_AUTO_MINIMISE);
 
-                wxRibbonButtonBar* editButtonBar =
+                auto* editButtonBar =
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 editButtonBar->AddToggleButton(
@@ -2108,11 +2113,11 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 }
                 // formatted text control
                 {
-                wxRibbonPanel* editPanel = new wxRibbonPanel(
+                auto* editPanel = new wxRibbonPanel(
                     homePage, MainFrame::ID_EDIT_RIBBON_REPORT_PANEL, _(L"Edit"), wxNullBitmap,
                     wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
 
-                wxRibbonButtonBar* editButtonBar =
+                auto* editButtonBar =
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 editButtonBar->AddButton(XRCID("ID_TEXT_WINDOW_FONT"), _(L"Font"),
@@ -2130,11 +2135,11 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 }
                 // statistics list report in a standard project
                 {
-                wxRibbonPanel* editPanel = new wxRibbonPanel(
+                auto* editPanel = new wxRibbonPanel(
                     homePage, MainFrame::ID_EDIT_RIBBON_STATS_LIST_PANEL, _(L"Edit"), wxNullBitmap,
                     wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
 
-                wxRibbonButtonBar* editButtonBar =
+                auto* editButtonBar =
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 editButtonBar->AddButton(XRCID("ID_EDIT_STATS_REPORT"), _(L"Edit Report"),
@@ -2156,12 +2161,12 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 }
                 // statistics HTML report in a standard project
                 {
-                wxRibbonPanel* editPanel = new wxRibbonPanel(
+                auto* editPanel = new wxRibbonPanel(
                     homePage, MainFrame::ID_EDIT_RIBBON_STATS_SUMMARY_REPORT_PANEL, _(L"Edit"),
                     wxNullBitmap, wxDefaultPosition, wxDefaultSize,
                     wxRIBBON_PANEL_NO_AUTO_MINIMISE);
 
-                wxRibbonButtonBar* editButtonBar =
+                auto* editButtonBar =
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 editButtonBar->AddButton(XRCID("ID_EDIT_STATS_REPORT"), _(L"Edit Report"),
@@ -2173,11 +2178,11 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 }
                 // bar chart panel
                 {
-                wxRibbonPanel* editPanel = new wxRibbonPanel(
+                auto* editPanel = new wxRibbonPanel(
                     homePage, MainFrame::ID_EDIT_RIBBON_BAR_CHART_PANEL, _(L"Edit"), wxNullBitmap,
                     wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
 
-                wxRibbonButtonBar* editButtonBar =
+                auto* editButtonBar =
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"),
@@ -2221,11 +2226,11 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 }
                 // box plot panel
                 {
-                wxRibbonPanel* editPanel = new wxRibbonPanel(
+                auto* editPanel = new wxRibbonPanel(
                     homePage, MainFrame::ID_EDIT_RIBBON_BOX_PLOT_PANEL, _(L"Edit"), wxNullBitmap,
                     wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
 
-                wxRibbonButtonBar* editButtonBar =
+                auto* editButtonBar =
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"),
@@ -2265,12 +2270,12 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 }
                 // histogram panel
                 {
-                wxRibbonPanel* editPanel =
+                auto* editPanel =
                     new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_SYLLABLE_HISTOGRAM_PANEL,
                                       _(L"Edit"), wxNullBitmap, wxDefaultPosition, wxDefaultSize,
                                       wxRIBBON_PANEL_NO_AUTO_MINIMISE);
 
-                wxRibbonButtonBar* editButtonBar =
+                auto* editButtonBar =
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 editButtonBar->AddToggleButton(
@@ -2312,11 +2317,11 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 }
                 // histogram panel
                 {
-                wxRibbonPanel* editPanel = new wxRibbonPanel(
+                auto* editPanel = new wxRibbonPanel(
                     homePage, MainFrame::ID_EDIT_RIBBON_HISTOGRAM_PANEL, _(L"Edit"), wxNullBitmap,
                     wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
 
-                wxRibbonButtonBar* editButtonBar =
+                auto* editButtonBar =
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"),
@@ -2352,12 +2357,12 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 }
                 // batch project histogram panel
                 {
-                wxRibbonPanel* editPanel =
+                auto* editPanel =
                     new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_HISTOGRAM_BATCH_PANEL,
                                       _(L"Edit"), wxNullBitmap, wxDefaultPosition, wxDefaultSize,
                                       wxRIBBON_PANEL_NO_AUTO_MINIMISE);
 
-                wxRibbonButtonBar* editButtonBar =
+                auto* editButtonBar =
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 editButtonBar->AddButton(XRCID("ID_EDIT_GRAPH_COLOR_SCHEME"), _(L"Colors"),
@@ -2434,11 +2439,11 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 }
                 // pie chart panel
                 {
-                wxRibbonPanel* editPanel = new wxRibbonPanel(
+                auto* editPanel = new wxRibbonPanel(
                     homePage, MainFrame::ID_EDIT_RIBBON_PIE_CHART_PANEL, _(L"Edit"), wxNullBitmap,
                     wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
 
-                wxRibbonButtonBar* editButtonBar =
+                auto* editButtonBar =
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 editButtonBar->AddButton(XRCID("ID_EDIT_GRAPH_COLOR_SCHEME"), _(L"Colors"),
@@ -2473,11 +2478,11 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 }
                 // graph panel
                 {
-                wxRibbonPanel* editPanel = new wxRibbonPanel(
-                    homePage, MainFrame::ID_EDIT_RIBBON_GRAPH_PANEL, _(L"Edit"), wxNullBitmap,
-                    wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+                auto* editPanel = new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_GRAPH_PANEL,
+                                                    _(L"Edit"), wxNullBitmap, wxDefaultPosition,
+                                                    wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
 
-                wxRibbonButtonBar* editButtonBar =
+                auto* editButtonBar =
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"),
@@ -2506,11 +2511,11 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 }
                 // Lix (German) panel
                 {
-                wxRibbonPanel* editPanel = new wxRibbonPanel(
+                auto* editPanel = new wxRibbonPanel(
                     homePage, MainFrame::ID_EDIT_RIBBON_LIX_GERMAN_PANEL, _(L"Edit"), wxNullBitmap,
                     wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
 
-                wxRibbonButtonBar* editButtonBar =
+                auto* editButtonBar =
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 editButtonBar->AddToggleButton(XRCID("ID_EDIT_GRAPH_SHOWCASE_KEY_ITEMS"),
@@ -2543,11 +2548,11 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 }
                 // Raygor panel
                 {
-                wxRibbonPanel* editPanel = new wxRibbonPanel(
+                auto* editPanel = new wxRibbonPanel(
                     homePage, MainFrame::ID_EDIT_RIBBON_RAYGOR_PANEL, _(L"Edit"), wxNullBitmap,
                     wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
 
-                wxRibbonButtonBar* editButtonBar =
+                auto* editButtonBar =
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"),
@@ -2579,11 +2584,11 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 }
                 // Fry panel
                 {
-                wxRibbonPanel* editPanel = new wxRibbonPanel(
-                    homePage, MainFrame::ID_EDIT_RIBBON_FRY_PANEL, _(L"Edit"), wxNullBitmap,
-                    wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+                auto* editPanel = new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_FRY_PANEL,
+                                                    _(L"Edit"), wxNullBitmap, wxDefaultPosition,
+                                                    wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
 
-                wxRibbonButtonBar* editButtonBar =
+                auto* editButtonBar =
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 if (doc->IsKindOf(wxCLASSINFO(ProjectDoc)))
@@ -2618,11 +2623,11 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 }
                 // Flesch panel
                 {
-                wxRibbonPanel* editPanel = new wxRibbonPanel(
+                auto* editPanel = new wxRibbonPanel(
                     homePage, MainFrame::ID_EDIT_RIBBON_FLESCH_PANEL, _(L"Edit"), wxNullBitmap,
                     wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
 
-                wxRibbonButtonBar* editButtonBar =
+                auto* editButtonBar =
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"),
@@ -2651,11 +2656,11 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 }
                 // DB2
                 {
-                wxRibbonPanel* editPanel = new wxRibbonPanel(
-                    homePage, MainFrame::ID_EDIT_RIBBON_DB2_PANEL, _(L"Edit"), wxNullBitmap,
-                    wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+                auto* editPanel = new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_DB2_PANEL,
+                                                    _(L"Edit"), wxNullBitmap, wxDefaultPosition,
+                                                    wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
 
-                wxRibbonButtonBar* editButtonBar =
+                auto* editButtonBar =
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 editButtonBar->AddToggleButton(
@@ -2685,11 +2690,11 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 }
                 // LIX
                 {
-                wxRibbonPanel* editPanel = new wxRibbonPanel(
-                    homePage, MainFrame::ID_EDIT_RIBBON_LIX_PANEL, _(L"Edit"), wxNullBitmap,
-                    wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+                auto* editPanel = new wxRibbonPanel(homePage, MainFrame::ID_EDIT_RIBBON_LIX_PANEL,
+                                                    _(L"Edit"), wxNullBitmap, wxDefaultPosition,
+                                                    wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
 
-                wxRibbonButtonBar* editButtonBar =
+                auto* editButtonBar =
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 editButtonBar->AddToggleButton(
@@ -2719,12 +2724,12 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 }
                 // panel for other readability graphs
                 {
-                wxRibbonPanel* editPanel = new wxRibbonPanel(
+                auto* editPanel = new wxRibbonPanel(
                     homePage, MainFrame::ID_EDIT_RIBBON_GENERAL_READABILITY_GRAPH_PANEL, _(L"Edit"),
                     wxNullBitmap, wxDefaultPosition, wxDefaultSize,
                     wxRIBBON_PANEL_NO_AUTO_MINIMISE);
 
-                wxRibbonButtonBar* editButtonBar =
+                auto* editButtonBar =
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 editButtonBar->AddDropdownButton(XRCID("ID_EDIT_GRAPH_BACKGROUND"),
@@ -2752,10 +2757,10 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
         else // rtype == RibbonType::MainFrameRibbon
             {
             // settings section
-            wxRibbonPanel* settingsPanel = new wxRibbonPanel(
-                homePage, wxID_ANY, _(L"Settings"), wxNullBitmap, wxDefaultPosition, wxDefaultSize,
-                wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-            wxRibbonButtonBar* settingsButtonBar = new wxRibbonButtonBar(settingsPanel);
+            auto* settingsPanel = new wxRibbonPanel(homePage, wxID_ANY, _(L"Settings"),
+                                                    wxNullBitmap, wxDefaultPosition, wxDefaultSize,
+                                                    wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+            auto* settingsButtonBar = new wxRibbonButtonBar(settingsPanel);
             settingsButtonBar->AddDropdownButton(XRCID("ID_PRINT_OPTIONS"), _(L"Printing"),
                                                  ReadRibbonSvgIcon(L"ribbon/print.svg"),
                                                  _(L"Change print settings."));
@@ -2766,10 +2771,10 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                                          ReadRibbonSvgIcon(L"ribbon/configure.svg"),
                                          _(L"Change the program's general options."));
             // test section
-            wxRibbonPanel* readabilityTestsPanel = new wxRibbonPanel(
+            auto* readabilityTestsPanel = new wxRibbonPanel(
                 homePage, wxID_ANY, _(L"Readability Tests"), wxNullBitmap, wxDefaultPosition,
                 wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-            wxRibbonButtonBar* readabilityTestsBar = new wxRibbonButtonBar(readabilityTestsPanel);
+            auto* readabilityTestsBar = new wxRibbonButtonBar(readabilityTestsPanel);
             readabilityTestsBar->AddDropdownButton(XRCID("ID_CUSTOM_TESTS"), _(L"Custom"),
                                                    ReadRibbonSvgIcon(L"ribbon/formula.svg"),
                                                    _(L"Create or edit custom tests."));
@@ -2788,10 +2793,10 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 ReadRibbonSvgIcon(L"ribbon/blank-graphs.svg"),
                 _(L"Print or save blank readability graph templates."));
             // tools section
-            wxRibbonPanel* toolsPanel =
+            auto* toolsPanel =
                 new wxRibbonPanel(homePage, wxID_ANY, _(L"Tools"), wxNullBitmap, wxDefaultPosition,
                                   wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-            wxRibbonButtonBar* toolButtonBar = new wxRibbonButtonBar(toolsPanel);
+            auto* toolButtonBar = new wxRibbonButtonBar(toolsPanel);
             toolButtonBar->AddButton(XRCID("ID_WEB_HARVEST"), _(L"Web Harvester"),
                                      ReadRibbonSvgIcon(L"ribbon/web-export.svg"),
                                      _(L"Download and analyze multiple webpages."));
@@ -2822,12 +2827,12 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
     if (rtype != RibbonType::MainFrameRibbon)
         {
         // Document tab
-        wxRibbonPage* documentPage = new wxRibbonPage(ribbon, wxID_ANY, _(L"Document"));
+        auto* documentPage = new wxRibbonPage(ribbon, wxID_ANY, _(L"Document"));
         // proofing section
-        wxRibbonPanel* proofingPanel =
+        auto* proofingPanel =
             new wxRibbonPanel(documentPage, wxID_ANY, _(L"Proofing"), wxNullBitmap,
                               wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-        wxRibbonButtonBar* proofingButtonBar =
+        auto* proofingButtonBar =
             new wxRibbonButtonBar(proofingPanel, MainFrame::ID_PROOFING_RIBBON_BUTTON_BAR);
         proofingButtonBar->AddButton(XRCID("ID_LAUNCH_SOURCE_FILE"), _(L"Edit Document"),
                                      ReadRibbonSvgIcon(L"ribbon/edit-document.svg"),
@@ -2836,19 +2841,19 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                                            ReadRibbonSvgIcon(L"ribbon/misspellings.svg"),
                                            _(L"Edit the spell checker's dictionary."));
         // sentence section
-        wxRibbonPanel* sentencePanel =
+        auto* sentencePanel =
             new wxRibbonPanel(documentPage, wxID_ANY, _(L"Sentences"), wxNullBitmap,
                               wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-        wxRibbonButtonBar* sentenceButtonBar = new wxRibbonButtonBar(sentencePanel);
+        auto* sentenceButtonBar = new wxRibbonButtonBar(sentencePanel);
         sentenceButtonBar->AddDropdownButton(
             XRCID("ID_SENTENCE_LENGTHS"), _(L"Long Sentences"),
             ReadRibbonSvgIcon(L"ribbon/long-sentence.svg"),
             _(L"Control how overly long sentences are determined."));
         // sentence/paragraph deduction
-        wxRibbonPanel* deductionPanel = new wxRibbonPanel(
+        auto* deductionPanel = new wxRibbonPanel(
             documentPage, wxID_ANY, _(L"Sentence & Paragraph Deduction"), wxNullBitmap,
             wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-        wxRibbonButtonBar* deductionButtonBar = new wxRibbonButtonBar(
+        auto* deductionButtonBar = new wxRibbonButtonBar(
             deductionPanel, MainFrame::ID_PARAGRAPH_DEDUCTION_RIBBON_BUTTON_BAR);
         deductionButtonBar->AddDropdownButton(
             XRCID("ID_LINE_ENDS"), _(L"Line Ends"), ReadRibbonSvgIcon(L"ribbon/paragraph.svg"),
@@ -2867,10 +2872,10 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             _(L"Change whether sentences must begin with capital letters "
               "when determining sentence breaks."));
         // text exclusion
-        wxRibbonPanel* exclusionPanel =
+        auto* exclusionPanel =
             new wxRibbonPanel(documentPage, wxID_ANY, _(L"Text Exclusion"), wxNullBitmap,
                               wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-        wxRibbonButtonBar* exclusionButtonBar =
+        auto* exclusionButtonBar =
             new wxRibbonButtonBar(exclusionPanel, MainFrame::ID_TEXT_EXCLUSION_RIBBON_BUTTON_BAR);
         exclusionButtonBar->AddDropdownButton(
             XRCID("ID_TEXT_EXCLUSION"), _(L"Exclusion"),
@@ -2910,10 +2915,10 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             ReadRibbonSvgIcon(L"ribbon/exclusion-tags.svg"),
             _(L"Specify tags that will exclude all text between them."));
         // numeral syllabizing
-        wxRibbonPanel* numeralsPanel =
+        auto* numeralsPanel =
             new wxRibbonPanel(documentPage, wxID_ANY, _(L"Numerals"), wxNullBitmap,
                               wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-        wxRibbonButtonBar* numeralsButtonBar =
+        auto* numeralsButtonBar =
             new wxRibbonButtonBar(numeralsPanel, MainFrame::ID_NUMERALS_RIBBON_BUTTON_BAR);
         numeralsButtonBar->AddDropdownButton(
             XRCID("ID_NUMERAL_SYLLABICATION"), _(L"Syllabication"),
@@ -2921,12 +2926,11 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             _(L"Specify how syllables should be counted for numbers."));
 
         // Readability tests tab
-        wxRibbonPage* testsPage =
-            new wxRibbonPage(ribbon, wxID_ANY, _(L"Readability"), wxNullBitmap);
-        wxRibbonPanel* standardTestsPanel =
+        auto* testsPage = new wxRibbonPage(ribbon, wxID_ANY, _(L"Readability"), wxNullBitmap);
+        auto* standardTestsPanel =
             new wxRibbonPanel(testsPage, wxID_ANY, _(L"Tests"), wxNullBitmap, wxDefaultPosition,
                               wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-        wxRibbonButtonBar* standardTestsBar = new wxRibbonButtonBar(standardTestsPanel);
+        auto* standardTestsBar = new wxRibbonButtonBar(standardTestsPanel);
 
         standardTestsBar->AddDropdownButton(XRCID("ID_PRIMARY_AGE_TESTS_BUTTON"), _(L"Primary"),
                                             ReadRibbonSvgIcon(L"tests/dolch.svg"),
@@ -2951,10 +2955,10 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                                     ReadRibbonSvgIcon(L"ribbon/delete.svg"),
                                     _(L"Remove the selected test from the project."));
         // readability tools section
-        wxRibbonPanel* readabilityToolsPanel =
+        auto* readabilityToolsPanel =
             new wxRibbonPanel(testsPage, wxID_ANY, _(L"Tools"), wxNullBitmap, wxDefaultPosition,
                               wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-        wxRibbonButtonBar* readabilityToolBar = new wxRibbonButtonBar(readabilityToolsPanel);
+        auto* readabilityToolBar = new wxRibbonButtonBar(readabilityToolsPanel);
         readabilityToolBar->AddButton(XRCID("ID_TESTS_OVERVIEW"), _(L"Tests Overview"),
                                       ReadRibbonSvgIcon(L"ribbon/tests-overview.svg"),
                                       _(L"View information about each readability test."));
@@ -2974,11 +2978,11 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
             _(L"Print or save blank readability graph templates."));
 
         // Tools tab
-        wxRibbonPage* toolsPage = new wxRibbonPage(ribbon, wxID_ANY, _(L"Tools"));
-        wxRibbonPanel* toolsPanel =
+        auto* toolsPage = new wxRibbonPage(ribbon, wxID_ANY, _(L"Tools"));
+        auto* toolsPanel =
             new wxRibbonPanel(toolsPage, wxID_ANY, _(L"Tools & Settings"), wxNullBitmap,
                               wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-        wxRibbonButtonBar* toolButtonBar = new wxRibbonButtonBar(toolsPanel);
+        auto* toolButtonBar = new wxRibbonButtonBar(toolsPanel);
         toolButtonBar->AddButton(XRCID("ID_WEB_HARVEST"), _(L"Web Harvester"),
                                  ReadRibbonSvgIcon(L"ribbon/web-export.svg"),
                                  _(L"Download and analyze multiple webpages."));
@@ -3007,11 +3011,11 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
 
         // Help tab
         {
-        wxRibbonPage* helpPage = new wxRibbonPage(ribbon, wxID_ANY, _(L"Help"));
-        wxRibbonPanel* helpPanel =
+        auto* helpPage = new wxRibbonPage(ribbon, wxID_ANY, _(L"Help"));
+        auto* helpPanel =
             new wxRibbonPanel(helpPage, wxID_ANY, _(L"Documentation"), wxNullBitmap,
                               wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-        wxRibbonButtonBar* helpButtonBar = new wxRibbonButtonBar(helpPanel);
+        auto* helpButtonBar = new wxRibbonButtonBar(helpPanel);
         helpButtonBar->AddButton(wxID_HELP, _(L"Electronic Help"),
                                  ReadRibbonSvgIcon(L"ribbon/electronic-help.svg"),
                                  _(L"Read the documentation in a browser."));
@@ -3036,9 +3040,8 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                                          ReadRibbonSvgIcon(L"ribbon/examples.svg"),
                                          _(L"Analyze example documents from the help."));
 
-        wxRibbonPanel* supportPanel =
-            new wxRibbonPanel(helpPage, wxID_ANY, _(L"Support"), wxNullBitmap);
-        wxRibbonButtonBar* supportButtonBar = new wxRibbonButtonBar(supportPanel);
+        auto* supportPanel = new wxRibbonPanel(helpPage, wxID_ANY, _(L"Support"), wxNullBitmap);
+        auto* supportButtonBar = new wxRibbonButtonBar(supportPanel);
         supportButtonBar->AddButton(XRCID("ID_CHECK_FOR_UPDATES"), _(L"Updates"),
                                     ReadRibbonSvgIcon(L"ribbon/updates.svg"),
                                     _(L"Check for updates."));
