@@ -668,18 +668,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
         if (customColorsNode)
             {
             GetCustomColors().clear();
+            std::string colorStr{ "color" };
             for (int i = 0; i < m_maxCustomColors; ++i)
                 {
-                auto colorNode = customColorsNode->FirstChildElement(
-                    wxString::Format(_DT(L"color%d"), i).mb_str());
-                if (colorNode)
+                const auto currentColor{ std::string{ colorStr + std::to_string(i) } };
+                const auto* colorNode = customColorsNode->FirstChildElement(currentColor.c_str());
+                if (colorNode != nullptr)
                     {
-                    int red = colorNode->ToElement()->IntAttribute(XmlFormat::RED_TAG.data(), 255);
-                    int green =
-                        colorNode->ToElement()->IntAttribute(XmlFormat::BLUE_TAG.data(), 255);
-                    int blue =
-                        colorNode->ToElement()->IntAttribute(XmlFormat::GREEN_TAG.data(), 255);
-                    GetCustomColors().push_back(wxColour(red, green, blue));
+                    GetCustomColors().push_back(TiXmlNodeToColor(colorNode));
                     }
                 else
                     {
@@ -942,23 +938,17 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                 }
             }
         // editor settings
-        auto editorSettingsNode = configRootNode->FirstChildElement(XML_EDITOR.data());
-        if (editorSettingsNode)
+        auto* editorSettingsNode = configRootNode->FirstChildElement(XML_EDITOR.data());
+        if (editorSettingsNode != nullptr)
             {
-            auto fontColorNode = editorSettingsNode->FirstChildElement(XML_EDITOR_FONTCOLOR.data());
-            if (fontColorNode)
+            auto* fontColorNode = editorSettingsNode->FirstChildElement(XML_EDITOR_FONTCOLOR.data());
+            if (fontColorNode != nullptr)
                 {
-                int red = fontColorNode->ToElement()->IntAttribute(XmlFormat::RED_TAG.data(),
-                                                                   m_editorFontColor.Red());
-                int green = fontColorNode->ToElement()->IntAttribute(XmlFormat::GREEN_TAG.data(),
-                                                                     m_editorFontColor.Green());
-                int blue = fontColorNode->ToElement()->IntAttribute(XmlFormat::BLUE_TAG.data(),
-                                                                    m_editorFontColor.Blue());
-                m_editorFontColor.Set(red, green, blue);
+                m_editorFontColor = TiXmlNodeToColor(fontColorNode);
                 }
             // font
-            auto fontNode = editorSettingsNode->FirstChildElement(XML_EDITOR_FONT.data());
-            if (fontNode)
+            auto* fontNode = editorSettingsNode->FirstChildElement(XML_EDITOR_FONT.data());
+            if (fontNode != nullptr)
                 {
                 int pointSize = fontNode->ToElement()->IntAttribute(
                     XmlFormat::FONT_POINT_SIZE_TAG.data(),
@@ -995,29 +985,29 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         }
                     }
                 }
-            auto indentNode = editorSettingsNode->FirstChildElement(XML_EDITOR_INDENT.data());
-            if (indentNode)
+            auto* indentNode = editorSettingsNode->FirstChildElement(XML_EDITOR_INDENT.data());
+            if (indentNode != nullptr)
                 {
                 IndentEditor(
                     int_to_bool(indentNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
                 }
-            auto spaceAfterParagraphNode =
+            auto* spaceAfterParagraphNode =
                 editorSettingsNode->FirstChildElement(XML_EDITOR_SPACE_AFTER_PARAGRAPH.data());
-            if (spaceAfterParagraphNode)
+            if (spaceAfterParagraphNode != nullptr)
                 {
                 AddParagraphSpaceInEditor(int_to_bool(
                     spaceAfterParagraphNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
                 }
-            auto textAlignNode =
+            auto* textAlignNode =
                 editorSettingsNode->FirstChildElement(XML_EDITOR_TEXT_ALIGNMENT.data());
-            if (textAlignNode)
+            if (textAlignNode != nullptr)
                 {
                 SetEditorTextAlignment(static_cast<wxTextAttrAlignment>(
                     textAlignNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
                 }
-            auto lineSpacingNode =
+            auto* lineSpacingNode =
                 editorSettingsNode->FirstChildElement(XML_EDITOR_LINE_SPACING.data());
-            if (lineSpacingNode)
+            if (lineSpacingNode != nullptr)
                 {
                 SetEditorLineSpacing(static_cast<wxTextAttrLineSpacing>(
                     lineSpacingNode->ToElement()->IntAttribute(XML_VALUE.data(), 1)));
@@ -4924,6 +4914,22 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         return false;
         }
     return true;
+    }
+
+//--------------------------------------------
+wxColour ReadabilityAppOptions::TiXmlNodeToColor(const tinyxml2::XMLNode* colorNode)
+    {
+    if (colorNode != nullptr)
+        {
+        const auto red = static_cast<wxColour::ChannelType>(
+            colorNode->ToElement()->IntAttribute(XmlFormat::RED_TAG.data(), 255));
+        const auto green = static_cast<wxColour::ChannelType>(
+            colorNode->ToElement()->IntAttribute(XmlFormat::BLUE_TAG.data(), 255));
+        const auto blue = static_cast<wxColour::ChannelType>(
+            colorNode->ToElement()->IntAttribute(XmlFormat::GREEN_TAG.data(), 255));
+        return { red, green, blue };
+        }
+    return wxNullColour;
     }
 
 //--------------------------------------------

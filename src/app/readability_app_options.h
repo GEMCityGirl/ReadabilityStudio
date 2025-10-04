@@ -2549,7 +2549,9 @@ class ReadabilityAppOptions
     /// @returns The value from the specified attribute from @c node as a double, or NaN on failure.
     /// @note This assumes the double is written in US format (and no thousands separator).
     [[nodiscard]]
-    static double TiXmlNodeToDouble(const tinyxml2::XMLNode* node, const wxString& tagToRead);
+    static double TiXmlNodeToDouble(const tinyxml2::XMLNode* colorNode, const wxString& tagToRead);
+    [[nodiscard]]
+    static wxColour TiXmlNodeToColor(const tinyxml2::XMLNode* node);
 
     // embedded text editor
     wxFont m_editorFont;
