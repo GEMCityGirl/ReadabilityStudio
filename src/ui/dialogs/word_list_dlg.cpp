@@ -161,10 +161,10 @@ void WordListDlg::AddSingleColumnPage(Wisteria::UI::SideBarBook* sideBar, const 
 //---------------------------------------------
 void WordListDlg::CreateControls()
     {
-    wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
+    auto* mainSizer = new wxBoxSizer(wxVERTICAL);
     mainSizer->SetMinSize(FromDIP(wxSize(800, 600)));
 
-    wxBoxSizer* searchSizer = new wxBoxSizer(wxHORIZONTAL);
+    auto* searchSizer = new wxBoxSizer(wxHORIZONTAL);
     searchSizer->AddStretchSpacer(1);
     auto searcher = new Wisteria::UI::SearchPanel(this, wxID_ANY);
     searcher->SetBackgroundColour(GetBackgroundColour());
@@ -172,15 +172,15 @@ void WordListDlg::CreateControls()
     mainSizer->Add(searchSizer, wxSizerFlags{}.Expand());
 
         {
-        wxRibbonBar* ribbon = new wxRibbonBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-                                              wxRIBBON_BAR_FLOW_HORIZONTAL);
-        wxRibbonPage* homePage = new wxRibbonPage(ribbon, wxID_ANY, wxEmptyString);
+        auto* ribbon = new wxRibbonBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                                       wxRIBBON_BAR_FLOW_HORIZONTAL);
+        auto* homePage = new wxRibbonPage(ribbon, wxID_ANY, wxEmptyString);
             // export
             {
-            wxRibbonPanel* exportPage =
+            auto* exportPage =
                 new wxRibbonPanel(homePage, wxID_ANY, _(L"Export"), wxNullBitmap, wxDefaultPosition,
                                   wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-            wxRibbonButtonBar* buttonBar = new wxRibbonButtonBar(exportPage);
+            auto* buttonBar = new wxRibbonButtonBar(exportPage);
             buttonBar->AddButton(
                 wxID_SAVE, _(L"Save"),
                 wxArtProvider::GetBitmap(wxART_FILE_SAVE, wxART_BUTTON, FromDIP(wxSize{ 32, 32 }))
@@ -194,10 +194,10 @@ void WordListDlg::CreateControls()
             }
             // edit
             {
-            wxRibbonPanel* editPage =
+            auto* editPage =
                 new wxRibbonPanel(homePage, wxID_ANY, _(L"Edit"), wxNullBitmap, wxDefaultPosition,
                                   wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-            wxRibbonButtonBar* buttonBar = new wxRibbonButtonBar(editPage);
+            auto* buttonBar = new wxRibbonButtonBar(editPage);
             buttonBar->AddButton(
                 wxID_COPY, _(L"Copy Selection"),
                 wxArtProvider::GetBitmap(wxART_COPY, wxART_BUTTON, FromDIP(wxSize{ 32, 32 }))
@@ -239,9 +239,9 @@ void WordListDlg::CreateControls()
 
         // Dolch
         {
-        wxPanel* page = new wxPanel(m_sideBar, DOLCH_PAGE_ID, wxDefaultPosition, wxDefaultSize,
-                                    wxTAB_TRAVERSAL);
-        wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
+        auto* page = new wxPanel(m_sideBar, DOLCH_PAGE_ID, wxDefaultPosition, wxDefaultSize,
+                                 wxTAB_TRAVERSAL);
+        auto* panelSizer = new wxBoxSizer(wxVERTICAL);
         page->SetSizer(panelSizer);
         m_sideBar->AddPage(page, _(L"Dolch Sight Words"), DOLCH_PAGE_ID, true, 4);
 
@@ -255,12 +255,12 @@ void WordListDlg::CreateControls()
         list->SetVirtualDataProvider(m_DolchData);
         list->SetVirtualDataSize(BaseProject::m_dolch_word_list.get_list_size(), 2);
         size_t currentDolchItem = 0;
-        for (const auto& DolchPos : BaseProject::m_dolch_word_list.get_words())
+        for (const auto& dolchPos : BaseProject::m_dolch_word_list.get_words())
             {
-            list->SetItemText(currentDolchItem, 0, wxString(DolchPos.get_word().c_str()));
+            list->SetItemText(currentDolchItem, 0, wxString(dolchPos.get_word().c_str()));
 
             wxString classificationLabel;
-            switch (DolchPos.get_type())
+            switch (dolchPos.get_type())
                 {
             case readability::sight_word_type::conjunction:
                 classificationLabel = _(L"Conjunction");

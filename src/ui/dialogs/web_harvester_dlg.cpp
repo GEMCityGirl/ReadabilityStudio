@@ -255,31 +255,31 @@ void WebHarvesterDlg::CreateControls()
 
         // website page
         {
-        wxPanel* Panel = new wxPanel(m_sideBarBook, ID_HARVESTING_PAGE, wxDefaultPosition,
-                                     wxDefaultSize, wxTAB_TRAVERSAL);
-        wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
+        auto* Panel = new wxPanel(m_sideBarBook, ID_HARVESTING_PAGE, wxDefaultPosition,
+                                  wxDefaultSize, wxTAB_TRAVERSAL);
+        auto* panelSizer = new wxBoxSizer(wxVERTICAL);
         Panel->SetSizer(panelSizer);
         m_sideBarBook->AddPage(Panel,
                                // TRANSLATORS: Gathering pages from a website.
                                _(L"Harvesting"), ID_HARVESTING_PAGE, true);
 
         // the URLs
-        wxStaticBoxSizer* urlSizer = new wxStaticBoxSizer(
+        auto* urlSizer = new wxStaticBoxSizer(
             new wxStaticBox(Panel, wxID_ANY, _(L"Websites to Harvest")), wxVERTICAL);
-        wxBoxSizer* urlButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
-        wxBitmapButton* addUrlButton = new wxBitmapButton(
+        auto* urlButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
+        auto* addUrlButton = new wxBitmapButton(
             urlSizer->GetStaticBox(), ID_ADD_URL_BUTTON,
             wxArtProvider::GetBitmap(L"ID_ADD", wxART_BUTTON, FromDIP(wxSize{ 16, 16 })));
         addUrlButton->SetToolTip(_(L"Add a website to the list"));
         urlButtonsSizer->Add(addUrlButton);
 
-        wxBitmapButton* deleteUrlButton = new wxBitmapButton(
+        auto* deleteUrlButton = new wxBitmapButton(
             urlSizer->GetStaticBox(), ID_DELETE_URL_BUTTON,
             wxArtProvider::GetBitmap(wxART_DELETE, wxART_BUTTON, FromDIP(wxSize{ 16, 16 })));
         deleteUrlButton->SetToolTip(_(L"Delete selected websites"));
         urlButtonsSizer->Add(deleteUrlButton);
 
-        wxBitmapButton* loadUrlsButton = new wxBitmapButton(
+        auto* loadUrlsButton = new wxBitmapButton(
             urlSizer->GetStaticBox(), ID_LOAD_URLS_BUTTON,
             wxArtProvider::GetBitmap(L"ID_LINK", wxART_BUTTON, FromDIP(wxSize{ 16, 16 })));
         loadUrlsButton->SetToolTip(_(L"Load links from HTML content"));
@@ -303,7 +303,7 @@ void WebHarvesterDlg::CreateControls()
         panelSizer->Add(urlSizer, wxSizerFlags{ 1 }.Expand().Border());
 
         // depth level
-        wxBoxSizer* depthLevelSizer = new wxBoxSizer(wxHORIZONTAL);
+        auto* depthLevelSizer = new wxBoxSizer(wxHORIZONTAL);
         depthLevelSizer->Add(new wxStaticText(Panel, wxID_ANY, _(L"Depth level:")),
                              wxSizerFlags{}.CenterVertical());
         depthLevelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
@@ -315,7 +315,7 @@ void WebHarvesterDlg::CreateControls()
         panelSizer->Add(depthLevelSizer, wxSizerFlags{}.Border(wxLEFT | wxBOTTOM));
 
         // file filters
-        wxBoxSizer* fileTypeSizer = new wxBoxSizer(wxHORIZONTAL);
+        auto* fileTypeSizer = new wxBoxSizer(wxHORIZONTAL);
         panelSizer->Add(fileTypeSizer, wxSizerFlags{}.Expand());
         fileTypeSizer->Add(new wxStaticText(Panel, wxID_STATIC, _(L"File types to include:")),
                            wxSizerFlags{}.Border(wxLEFT).CenterVertical());
@@ -344,17 +344,17 @@ void WebHarvesterDlg::CreateControls()
                            wxSizerFlags{ 1 }.Expand().Border(wxLEFT | wxRIGHT | wxBOTTOM));
 
         // user agent
-        wxBoxSizer* userAgentSizer = new wxBoxSizer(wxHORIZONTAL);
+        auto* userAgentSizer = new wxBoxSizer(wxHORIZONTAL);
         panelSizer->Add(userAgentSizer, wxSizerFlags{}.Expand().Border(wxLEFT));
 
         userAgentSizer->Add(new wxStaticText(Panel, wxID_STATIC, _(L"User agent:")),
                             wxSizerFlags{}.CenterVertical());
-        wxTextCtrl* userAgentEdit =
+        auto* userAgentEdit =
             new wxTextCtrl(Panel, wxID_ANY, wxString{}, wxDefaultPosition, wxDefaultSize,
                            wxBORDER_THEME, wxGenericValidator(&m_userAgent));
         userAgentSizer->Add(userAgentEdit, wxSizerFlags{ 1 }.Expand().Border(wxLEFT | wxRIGHT));
 
-        wxBoxSizer* extendedOpsSizer = new wxBoxSizer(wxVERTICAL);
+        auto* extendedOpsSizer = new wxBoxSizer(wxVERTICAL);
         panelSizer->Add(extendedOpsSizer, wxSizerFlags{}.Expand().Border(wxLEFT));
         // disable SSL
         extendedOpsSizer->Add(new wxCheckBox(Panel, wxID_ANY,
@@ -384,13 +384,13 @@ void WebHarvesterDlg::CreateControls()
 
         // domain restriction page
         {
-        wxPanel* Panel = new wxPanel(m_sideBarBook, ID_DOMAINS_PAGE, wxDefaultPosition,
-                                     wxDefaultSize, wxTAB_TRAVERSAL);
-        wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
+        auto* Panel = new wxPanel(m_sideBarBook, ID_DOMAINS_PAGE, wxDefaultPosition, wxDefaultSize,
+                                  wxTAB_TRAVERSAL);
+        auto* panelSizer = new wxBoxSizer(wxVERTICAL);
         Panel->SetSizer(panelSizer);
         m_sideBarBook->AddPage(Panel, _(L"Domain Restriction"), ID_DOMAINS_PAGE, false);
 
-        wxStaticBoxSizer* domainBoxSizer = new wxStaticBoxSizer(
+        auto* domainBoxSizer = new wxStaticBoxSizer(
             new wxStaticBox(Panel, wxID_ANY, _(L"Domain Restriction")), wxVERTICAL);
         panelSizer->Add(domainBoxSizer, wxSizerFlags{ 1 }.Expand().Border());
 
@@ -407,7 +407,7 @@ void WebHarvesterDlg::CreateControls()
         m_domainCombo->SetValidator(wxGenericValidator(&m_selectedDomainRestriction));
         domainBoxSizer->Add(m_domainCombo, wxSizerFlags{}.Expand().Border());
 
-        wxBoxSizer* domainButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
+        auto* domainButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
         m_addDomainButton = new wxBitmapButton(
             domainBoxSizer->GetStaticBox(), ID_ADD_DOMAIN_BUTTON,
             wxArtProvider::GetBitmap(L"ID_ADD", wxART_BUTTON, FromDIP(wxSize{ 16, 16 })));
@@ -444,9 +444,9 @@ void WebHarvesterDlg::CreateControls()
 
         // local downloading
         {
-        wxPanel* Panel = new wxPanel(m_sideBarBook, ID_DOWNLOAD_PAGE, wxDefaultPosition,
-                                     wxDefaultSize, wxTAB_TRAVERSAL);
-        wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
+        auto* Panel = new wxPanel(m_sideBarBook, ID_DOWNLOAD_PAGE, wxDefaultPosition, wxDefaultSize,
+                                  wxTAB_TRAVERSAL);
+        auto* panelSizer = new wxBoxSizer(wxVERTICAL);
         Panel->SetSizer(panelSizer);
         m_sideBarBook->AddPage(Panel, _(L"Download"), ID_DOWNLOAD_PAGE, false);
         panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
@@ -464,7 +464,7 @@ void WebHarvesterDlg::CreateControls()
         m_localFolderLabel->Enable(m_downloadFilesLocally);
         panelSizer->Add(m_localFolderLabel, wxSizerFlags{}.Border(wxLEFT | wxBOTTOM | wxRIGHT));
 
-        wxBoxSizer* downloadFolderPathSizer = new wxBoxSizer(wxHORIZONTAL);
+        auto* downloadFolderPathSizer = new wxBoxSizer(wxHORIZONTAL);
         m_localFolderEdit =
             new wxTextCtrl(Panel, wxID_ANY, wxString{}, wxDefaultPosition, wxDefaultSize,
                            wxBORDER_THEME, wxGenericValidator(&m_downloadFolder));

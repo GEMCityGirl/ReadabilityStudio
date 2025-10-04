@@ -3223,15 +3223,15 @@ void ToolsOptionsDlg::CreateControls()
         {
         if (IsGeneralSettings())
             {
-            wxPanel* generalSettingsPage =
+            auto* generalSettingsPage =
                 new wxPanel(m_sideBar, GENERAL_SETTINGS_PAGE, wxDefaultPosition, wxDefaultSize,
                             wxTAB_TRAVERSAL);
-            wxBoxSizer* docPanelSizer = new wxBoxSizer(wxVERTICAL);
+            auto* docPanelSizer = new wxBoxSizer(wxVERTICAL);
             generalSettingsPage->SetSizer(docPanelSizer);
             m_sideBar->AddPage(generalSettingsPage, GetGeneralSettingsLabel(),
                                GENERAL_SETTINGS_PAGE, true, 10);
 
-            wxSizer* optionsSizer = new wxBoxSizer(wxHORIZONTAL);
+            auto* optionsSizer = new wxBoxSizer(wxHORIZONTAL);
             docPanelSizer->Add(optionsSizer, wxSizerFlags{}.Expand());
 
             optionsSizer->Add(new wxStaticText(generalSettingsPage, wxID_STATIC,
@@ -3256,15 +3256,15 @@ void ToolsOptionsDlg::CreateControls()
             docPanelSizer->Add(optionsSizer,
                                wxSizerFlags{}.Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 
-            wxButton* loadSettingsButton =
+            auto* loadSettingsButton =
                 new wxButton(generalSettingsPage, ID_LOAD_SETTINGS_BUTTON, _(L"Import..."));
             optionsSizer->Add(loadSettingsButton, wxSizerFlags{}.Border(wxTOP | wxBOTTOM));
 
-            wxButton* exportSettingsButton =
+            auto* exportSettingsButton =
                 new wxButton(generalSettingsPage, ID_EXPORT_SETTINGS_BUTTON, _(L"Export..."));
             optionsSizer->Add(exportSettingsButton, wxSizerFlags{}.Border(wxTOP | wxBOTTOM));
 
-            wxButton* resetSettingsButton =
+            auto* resetSettingsButton =
                 new wxButton(generalSettingsPage, ID_RESET_SETTINGS_BUTTON, _(L"Reset"));
             optionsSizer->Add(resetSettingsButton, wxSizerFlags{}.Border(wxTOP | wxBOTTOM));
 
@@ -3274,13 +3274,13 @@ void ToolsOptionsDlg::CreateControls()
             docPanelSizer->Add(optionsSizer,
                                wxSizerFlags{}.Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 
-            wxBoxSizer* userAgentSizer = new wxBoxSizer(wxHORIZONTAL);
+            auto* userAgentSizer = new wxBoxSizer(wxHORIZONTAL);
             optionsSizer->Add(userAgentSizer, wxSizerFlags{}.Expand());
 
             userAgentSizer->Add(
                 new wxStaticText(generalSettingsPage, wxID_STATIC, _(L"User agent:")),
                 wxSizerFlags{}.CenterVertical());
-            wxTextCtrl* userAgentEdit =
+            auto* userAgentEdit =
                 new wxTextCtrl(generalSettingsPage, wxID_ANY, wxString{}, wxDefaultPosition,
                                wxDefaultSize, wxBORDER_THEME, wxGenericValidator(&m_userAgent));
             userAgentSizer->Add(userAgentEdit, wxSizerFlags{ 1 }.Expand().Border(wxLEFT | wxRIGHT));
@@ -3310,7 +3310,7 @@ void ToolsOptionsDlg::CreateControls()
             docPanelSizer->Add(optionsSizer,
                                wxSizerFlags{}.Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 
-            wxButton* warningsButton =
+            auto* warningsButton =
                 new wxButton(generalSettingsPage, ID_WARNING_MESSAGES_BUTTON, _(L"Customize..."));
             optionsSizer->Add(warningsButton, wxSizerFlags{}.Border(wxTOP | wxBOTTOM));
 
@@ -3335,9 +3335,9 @@ void ToolsOptionsDlg::CreateControls()
     // Project settings
     if (GetSectionsBeingShown() & ProjectSection)
         {
-        wxPanel* projectSettingsPage = new wxPanel(
-            m_sideBar, PROJECT_SETTINGS_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-        wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
+        auto* projectSettingsPage = new wxPanel(m_sideBar, PROJECT_SETTINGS_PAGE, wxDefaultPosition,
+                                                wxDefaultSize, wxTAB_TRAVERSAL);
+        auto* panelSizer = new wxBoxSizer(wxVERTICAL);
         m_sideBar->AddPage(projectSettingsPage, GetProjectSettingsLabel(), PROJECT_SETTINGS_PAGE,
                            // if the only section being shown, then show this page
                            (GetSectionsBeingShown() == ProjectSection), 11);
@@ -3345,11 +3345,11 @@ void ToolsOptionsDlg::CreateControls()
         // project properties
         CreateLabelHeader(projectSettingsPage, panelSizer, _(L"Project:"), true);
 
-        wxFlexGridSizer* projectExtraInfoSizer = new wxFlexGridSizer(2, 5, 5);
+        auto* projectExtraInfoSizer = new wxFlexGridSizer(2, 5, 5);
         projectExtraInfoSizer->Add(
             new wxStaticText(projectSettingsPage, wxID_STATIC, _(L"Reviewer:")),
             wxSizerFlags{}.CenterVertical());
-        wxTextCtrl* reviewerEdit =
+        auto* reviewerEdit =
             new wxTextCtrl(projectSettingsPage, wxID_ANY, wxEmptyString, wxDefaultPosition,
                            wxDefaultSize, wxBORDER_THEME, wxGenericValidator(&m_reviewer));
         projectExtraInfoSizer->Add(reviewerEdit, wxSizerFlags{ 1 }.Expand());
@@ -3374,19 +3374,19 @@ void ToolsOptionsDlg::CreateControls()
             {
             panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
-            wxStaticBoxSizer* batchOptionsBox =
+            auto* batchOptionsBox =
                 new wxStaticBoxSizer(wxVERTICAL, projectSettingsPage, _(L"Batch options"));
 
-            wxBoxSizer* minDocSizeBoxSizer = new wxBoxSizer(wxHORIZONTAL);
+            auto* minDocSizeBoxSizer = new wxBoxSizer(wxHORIZONTAL);
             batchOptionsBox->Add(minDocSizeBoxSizer, wxSizerFlags{}.Expand().Border(wxLEFT));
 
-            wxStaticText* minDocSizeLabel = new wxStaticText(
+            auto* minDocSizeLabel = new wxStaticText(
                 batchOptionsBox->GetStaticBox(), wxID_STATIC, _(L"Minimum document word count:"),
                 wxDefaultPosition, wxDefaultSize, wxALIGN_LEFT);
             minDocSizeBoxSizer->Add(minDocSizeLabel,
                                     wxSizerFlags{}.Border(wxRIGHT).CenterVertical());
 
-            wxSpinCtrl* minDocWordCountForBatchSpinCtrl = new wxSpinCtrl(
+            auto* minDocWordCountForBatchSpinCtrl = new wxSpinCtrl(
                 batchOptionsBox->GetStaticBox(), wxID_ANY,
                 std::to_wstring(m_minDocWordCountForBatch.get_value()), wxDefaultPosition,
                 wxDefaultSize, wxSP_ARROW_KEYS, 1, std::numeric_limits<int>::max(), 0);
@@ -3395,7 +3395,7 @@ void ToolsOptionsDlg::CreateControls()
             minDocSizeBoxSizer->Add(minDocWordCountForBatchSpinCtrl,
                                     wxSizerFlags{}.CenterVertical());
 
-            wxBoxSizer* fileTruncSizer = new wxBoxSizer(wxHORIZONTAL);
+            auto* fileTruncSizer = new wxBoxSizer(wxHORIZONTAL);
             fileTruncSizer->Add(new wxStaticText(batchOptionsBox->GetStaticBox(), wxID_STATIC,
                                                  _(L"File path display:")),
                                 wxSizerFlags{}.Border(wxRIGHT).CenterVertical());
@@ -3404,9 +3404,9 @@ void ToolsOptionsDlg::CreateControls()
             truncModes.Add(_(L"Partially truncate the file path"));
             truncModes.Add(_(L"Show only the file name"));
             truncModes.Add(_(L"Show the full file path"));
-            wxChoice* fileTruncCombo = new wxChoice(batchOptionsBox->GetStaticBox(), wxID_ANY,
-                                                    wxDefaultPosition, wxDefaultSize, truncModes, 0,
-                                                    wxGenericValidator(&m_filePathTruncationMode));
+            auto* fileTruncCombo = new wxChoice(batchOptionsBox->GetStaticBox(), wxID_ANY,
+                                                wxDefaultPosition, wxDefaultSize, truncModes, 0,
+                                                wxGenericValidator(&m_filePathTruncationMode));
             fileTruncSizer->Add(fileTruncCombo, wxSizerFlags{}.Border(wxRIGHT).CenterVertical());
             batchOptionsBox->AddSpacer(wxSizerFlags::GetDefaultBorder());
             batchOptionsBox->Add(fileTruncSizer, wxSizerFlags{}.Expand().Border(wxLEFT));
@@ -3424,10 +3424,9 @@ void ToolsOptionsDlg::CreateControls()
             languages.Add(_(L"Spanish"));
             languages.Add(_(L"German"));
 
-            wxBoxSizer* langSizer = new wxBoxSizer(wxHORIZONTAL);
-            wxStaticText* langLabel =
-                new wxStaticText(projectSettingsPage, wxID_STATIC, _(L"Language:"),
-                                 wxDefaultPosition, wxDefaultSize, wxALIGN_LEFT);
+            auto* langSizer = new wxBoxSizer(wxHORIZONTAL);
+            auto* langLabel = new wxStaticText(projectSettingsPage, wxID_STATIC, _(L"Language:"),
+                                               wxDefaultPosition, wxDefaultSize, wxALIGN_LEFT);
             langSizer->Add(langLabel, wxSizerFlags{}.CenterVertical().Left());
             langSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
             langSizer->Add(new wxChoice(projectSettingsPage, wxID_ANY, wxDefaultPosition,
@@ -3470,7 +3469,7 @@ void ToolsOptionsDlg::CreateControls()
 
         if (IsStandardProjectSettings())
             {
-            wxBoxSizer* fileBrowseBoxSizer = new wxBoxSizer(wxHORIZONTAL);
+            auto* fileBrowseBoxSizer = new wxBoxSizer(wxHORIZONTAL);
             panelSizer->Add(fileBrowseBoxSizer,
                             wxSizerFlags{}.Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 
@@ -3491,14 +3490,14 @@ void ToolsOptionsDlg::CreateControls()
 
             panelSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
 
-            wxBoxSizer* docDescriptionSizer = new wxBoxSizer(wxHORIZONTAL);
+            auto* docDescriptionSizer = new wxBoxSizer(wxHORIZONTAL);
             panelSizer->Add(docDescriptionSizer,
                             wxSizerFlags{}.Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 
             docDescriptionSizer->Add(
                 new wxStaticText(projectSettingsPage, wxID_STATIC, _(L"Document description:")),
                 wxSizerFlags{}.CenterVertical());
-            wxTextCtrl* descriptionEdit =
+            auto* descriptionEdit =
                 new wxTextCtrl(projectSettingsPage, ID_DOCUMENT_DESCRIPTION_FIELD, wxEmptyString,
                                wxDefaultPosition, wxDefaultSize, wxBORDER_THEME,
                                wxGenericValidator(&m_description));
@@ -3506,8 +3505,8 @@ void ToolsOptionsDlg::CreateControls()
             }
         else if (IsBatchProjectSettings())
             {
-            wxBoxSizer* filesSizer = new wxBoxSizer(wxVERTICAL);
-            wxBoxSizer* filesButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
+            auto* filesSizer = new wxBoxSizer(wxVERTICAL);
+            auto* filesButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
             // add files (uses file browser)
             m_addFilesButton =
                 new wxBitmapButton(projectSettingsPage, ID_ADD_FILES_BUTTON,
@@ -3572,11 +3571,11 @@ void ToolsOptionsDlg::CreateControls()
                 _(L"Append Additional Document (e.g., policies, license agreements, addendums):"),
                 true);
 
-            wxBoxSizer* fileBrowseBoxSizer = new wxBoxSizer(wxHORIZONTAL);
+            auto* fileBrowseBoxSizer = new wxBoxSizer(wxHORIZONTAL);
             panelSizer->Add(fileBrowseBoxSizer,
                             wxSizerFlags{}.Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 
-            wxTextCtrl* filePathEdit = new wxTextCtrl(
+            auto* filePathEdit = new wxTextCtrl(
                 projectSettingsPage, ID_ADDITIONAL_FILE_FIELD, wxEmptyString, wxDefaultPosition,
                 wxDefaultSize, wxBORDER_THEME, wxGenericValidator(&m_appendedDocumentFilePath));
             filePathEdit->AutoCompleteFileNames();
@@ -3593,11 +3592,11 @@ void ToolsOptionsDlg::CreateControls()
     // Document parsing page
     if (GetSectionsBeingShown() & DocumentIndexing)
         {
-        wxPanel* AnalysisIndexingPage = new wxPanel(
-            m_sideBar, ANALYSIS_INDEXING_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+        auto* AnalysisIndexingPage = new wxPanel(m_sideBar, ANALYSIS_INDEXING_PAGE,
+                                                 wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
         wxRadioButton* radioButton = nullptr;
 
-        wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
+        auto* panelSizer = new wxBoxSizer(wxVERTICAL);
         AnalysisIndexingPage->SetSizer(panelSizer);
         m_sideBar->AddPage(AnalysisIndexingPage, _(L"Document Indexing"), ANALYSIS_INDEXING_PAGE,
                            // if the only section being shown, then show this page
@@ -3607,10 +3606,10 @@ void ToolsOptionsDlg::CreateControls()
         CreateLabelHeader(AnalysisIndexingPage, panelSizer,
                           _(L"Consider Sentences Overly Long If:"), true);
 
-        wxBoxSizer* optionsIndentSizer = new wxBoxSizer(wxVERTICAL);
+        auto* optionsIndentSizer = new wxBoxSizer(wxVERTICAL);
         panelSizer->Add(optionsIndentSizer,
                         wxSizerFlags{}.Expand().Border(wxLEFT | wxRIGHT, OPTION_INDENT_SIZE));
-        wxBoxSizer* longerThanWordSizer = new wxBoxSizer(wxHORIZONTAL);
+        auto* longerThanWordSizer = new wxBoxSizer(wxHORIZONTAL);
         optionsIndentSizer->Add(longerThanWordSizer, wxSizerFlags{}.Border(wxBOTTOM));
         radioButton =
             new wxRadioButton(AnalysisIndexingPage, ID_SENTENCE_LONGER_THAN_BUTTON,
@@ -3618,7 +3617,7 @@ void ToolsOptionsDlg::CreateControls()
                               wxGenericValidator(&m_longSentencesNumberOfWords));
         longerThanWordSizer->Add(radioButton, wxSizerFlags{}.CenterVertical());
         // the spin control for the number of words
-        wxSpinCtrl* wordsPerLongSentenceSpinCtrl =
+        auto* wordsPerLongSentenceSpinCtrl =
             new wxSpinCtrl(AnalysisIndexingPage, wxID_ANY,
                            std::to_wstring(m_sentenceLength.get_value()), wxDefaultPosition,
                            wxDefaultSize, wxSP_ARROW_KEYS, 0, std::numeric_limits<int>::max(), 0);
@@ -3626,8 +3625,8 @@ void ToolsOptionsDlg::CreateControls()
         longerThanWordSizer->Add(wordsPerLongSentenceSpinCtrl,
                                  wxSizerFlags{}.CenterVertical().Border());
         // "words" after it
-        wxStaticText* wordsLabel = new wxStaticText(AnalysisIndexingPage, wxID_STATIC, _(L"words"),
-                                                    wxDefaultPosition, wxDefaultSize, 0);
+        auto* wordsLabel = new wxStaticText(AnalysisIndexingPage, wxID_STATIC, _(L"words"),
+                                            wxDefaultPosition, wxDefaultSize, 0);
         longerThanWordSizer->Add(wordsLabel,
                                  wxSizerFlags{}.CenterVertical().Border(wxLEFT | wxRIGHT));
 
@@ -3645,14 +3644,14 @@ void ToolsOptionsDlg::CreateControls()
         panelSizer->Add(optionsIndentSizer,
                         wxSizerFlags{}.Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 
-        wxBoxSizer* lineEndsSizer = new wxBoxSizer(wxHORIZONTAL);
+        auto* lineEndsSizer = new wxBoxSizer(wxHORIZONTAL);
         lineEndsSizer->Add(new wxStaticText(AnalysisIndexingPage, wxID_STATIC, _(L"Line ends:")),
                            wxSizerFlags{}.CenterVertical().Border(wxRIGHT));
 
         wxArrayString paragraphParseOptions;
         paragraphParseOptions.Add(_(L"only begin a new paragraph if following a valid sentence"));
         paragraphParseOptions.Add(_(L"always begin a new paragraph"));
-        wxChoice* paragraphParseCombo =
+        auto* paragraphParseCombo =
             new wxChoice(AnalysisIndexingPage, ID_PARAGRAPH_PARSE, wxDefaultPosition, wxDefaultSize,
                          paragraphParseOptions, 0, wxGenericValidator(&m_paragraphParsingMethod));
         lineEndsSizer->Add(paragraphParseCombo, wxSizerFlags{}.CenterVertical().Border(wxRIGHT));
@@ -3678,7 +3677,7 @@ void ToolsOptionsDlg::CreateControls()
         optionsIndentSizer->Add(m_ignoreIndentingCheckBox,
                                 wxSizerFlags{}.Expand().Border(wxBOTTOM));
 
-        wxCheckBox* sentenceStartMustBeUppercasedCheckBox =
+        auto* sentenceStartMustBeUppercasedCheckBox =
             new wxCheckBox(AnalysisIndexingPage, ID_SENTENCES_MUST_BE_CAP_BUTTON,
                            _(L"Sentences must begin with capitalized words"), wxDefaultPosition,
                            wxDefaultSize, 0, wxGenericValidator(&m_sentenceStartMustBeUppercased));
@@ -3692,7 +3691,7 @@ void ToolsOptionsDlg::CreateControls()
         panelSizer->Add(optionsIndentSizer,
                         wxSizerFlags{}.Expand().Border(wxLEFT, OPTION_INDENT_SIZE));
 
-        wxBoxSizer* exclusionSizer = new wxBoxSizer(wxHORIZONTAL);
+        auto* exclusionSizer = new wxBoxSizer(wxHORIZONTAL);
         exclusionSizer->Add(new wxStaticText(AnalysisIndexingPage, wxID_STATIC, _(L"Exclusion:")),
                             wxSizerFlags{}.CenterVertical().Border(wxRIGHT));
 
@@ -3700,13 +3699,13 @@ void ToolsOptionsDlg::CreateControls()
         exclusionOptions.Add(_(L"Exclude all incomplete sentences"));
         exclusionOptions.Add(_(L"Do not exclude any text"));
         exclusionOptions.Add(_(L"Exclude all incomplete sentences, except headings"));
-        wxChoice* exclusionCombo = new wxChoice(AnalysisIndexingPage, ID_TEXT_EXCLUDE_METHOD,
-                                                wxDefaultPosition, wxDefaultSize, exclusionOptions,
-                                                0, wxGenericValidator(&m_textExclusionMethod));
+        auto* exclusionCombo = new wxChoice(AnalysisIndexingPage, ID_TEXT_EXCLUDE_METHOD,
+                                            wxDefaultPosition, wxDefaultSize, exclusionOptions, 0,
+                                            wxGenericValidator(&m_textExclusionMethod));
         exclusionSizer->Add(exclusionCombo, wxSizerFlags{}.CenterVertical().Border(wxRIGHT));
         optionsIndentSizer->Add(exclusionSizer, wxSizerFlags{}.Expand().Border(wxBOTTOM));
 
-        wxBoxSizer* includeIncompleteSentSizeSizer = new wxBoxSizer(wxHORIZONTAL);
+        auto* includeIncompleteSentSizeSizer = new wxBoxSizer(wxHORIZONTAL);
         optionsIndentSizer->Add(includeIncompleteSentSizeSizer, wxSizerFlags{}.Border(wxBOTTOM));
         m_includeIncompleteSentSizeIncludeIncompleteLabel =
             new wxStaticText(AnalysisIndexingPage, ID_INCOMPLETE_SENTENCE_VALID_LABEL_START,
@@ -3731,7 +3730,7 @@ void ToolsOptionsDlg::CreateControls()
         includeIncompleteSentSizeSizer->Add(m_includeIncompleteSentSizeWordsLabel,
                                             wxSizerFlags{}.CenterVertical());
 
-        wxFlexGridSizer* ignoreOptionsGrid = new wxFlexGridSizer(
+        auto* ignoreOptionsGrid = new wxFlexGridSizer(
             2, wxSize(wxSizerFlags::GetDefaultBorder(), wxSizerFlags::GetDefaultBorder()));
         optionsIndentSizer->Add(ignoreOptionsGrid, wxSizerFlags{}.Expand().Border(wxBOTTOM));
 
@@ -3787,10 +3786,10 @@ void ToolsOptionsDlg::CreateControls()
         ignoreOptionsGrid->Add(m_ignoreProperNounsCheckBox);
 
         // excluded phrases
-        wxStaticBoxSizer* excludedPhrasesFileBrowseBoxSizer = new wxStaticBoxSizer(
+        auto* excludedPhrasesFileBrowseBoxSizer = new wxStaticBoxSizer(
             wxVERTICAL, AnalysisIndexingPage, _(L"Words && phrases to exclude:"));
 
-        wxBoxSizer* excludePathSizer = new wxBoxSizer(wxHORIZONTAL);
+        auto* excludePathSizer = new wxBoxSizer(wxHORIZONTAL);
         excludedPhrasesFileBrowseBoxSizer->Add(excludePathSizer, wxSizerFlags{ 1 }.Expand());
 
         m_excludedPhrasesPathFilePathEdit =
@@ -3857,7 +3856,7 @@ void ToolsOptionsDlg::CreateControls()
             m_exclusionBlockTagsOption = 0;
             }
 
-        wxBoxSizer* exclusionBlockTagsSizer = new wxBoxSizer(wxHORIZONTAL);
+        auto* exclusionBlockTagsSizer = new wxBoxSizer(wxHORIZONTAL);
         m_exclusionBlockTagsLabel = new wxStaticText(
             AnalysisIndexingPage, ID_EXCLUSION_TAG_BLOCK_LABEL, _(L"Exclude text between:"),
             wxDefaultPosition, wxDefaultSize, wxALIGN_LEFT);
@@ -3886,7 +3885,7 @@ void ToolsOptionsDlg::CreateControls()
         // syllabication
         CreateLabelHeader(AnalysisIndexingPage, panelSizer, _(L"Numerals:"), true);
 
-        wxBoxSizer* syllableSizer = new wxBoxSizer(wxHORIZONTAL);
+        auto* syllableSizer = new wxBoxSizer(wxHORIZONTAL);
         m_syllableLabel = new wxStaticText(AnalysisIndexingPage, wxID_STATIC, _(L"Syllabication:"));
         syllableSizer->Add(m_syllableLabel, wxSizerFlags{}.Border(wxRIGHT).CenterVertical());
 
@@ -3920,12 +3919,12 @@ void ToolsOptionsDlg::CreateControls()
         if (IsGeneralSettings() ||
             m_projectLanguage == static_cast<int>(readability::test_language::english_test))
             {
-            wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
+            auto* panelSizer = new wxBoxSizer(wxVERTICAL);
             ScoreTestOptionsPage->SetSizer(panelSizer);
             m_sideBar->AddSubPage(ScoreTestOptionsPage, GetTestOptionsLabel(),
                                   SCORES_TEST_OPTIONS_PAGE, false, 9);
 
-            wxPropertyGridManager* pgMan = new wxPropertyGridManager(
+            auto* pgMan = new wxPropertyGridManager(
                 ScoreTestOptionsPage, wxID_ANY, wxDefaultPosition, wxDefaultSize,
                 wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
             m_readabilityTestsPropertyGrid = pgMan->AddPage();
@@ -4096,13 +4095,13 @@ void ToolsOptionsDlg::CreateControls()
 
             // grade level tab
             {
-            wxPanel* Panel = new wxPanel(m_sideBar, SCORES_DISPLAY_PAGE, wxDefaultPosition,
-                                         wxDefaultSize, wxTAB_TRAVERSAL);
-            wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
+            auto* Panel = new wxPanel(m_sideBar, SCORES_DISPLAY_PAGE, wxDefaultPosition,
+                                      wxDefaultSize, wxTAB_TRAVERSAL);
+            auto* panelSizer = new wxBoxSizer(wxVERTICAL);
             Panel->SetSizer(panelSizer);
             m_sideBar->AddSubPage(Panel, GetScoreDisplayLabel(), SCORES_DISPLAY_PAGE, false, 9);
 
-            wxPropertyGridManager* pgMan = new wxPropertyGridManager(
+            auto* pgMan = new wxPropertyGridManager(
                 Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
                 wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
             m_gradeLevelPropertyGrid = pgMan->AddPage();
@@ -4224,18 +4223,18 @@ void ToolsOptionsDlg::CreateControls()
     // Statistics page
     if (GetSectionsBeingShown() & Statistics)
         {
-        wxPanel* Panel = new wxPanel(m_sideBar, ANALYSIS_STATISTICS_PAGE, wxDefaultPosition,
-                                     wxDefaultSize, wxTAB_TRAVERSAL);
-        wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
+        auto* Panel = new wxPanel(m_sideBar, ANALYSIS_STATISTICS_PAGE, wxDefaultPosition,
+                                  wxDefaultSize, wxTAB_TRAVERSAL);
+        auto* panelSizer = new wxBoxSizer(wxVERTICAL);
         Panel->SetSizer(panelSizer);
         m_sideBar->AddPage(Panel, BaseProjectView::GetSummaryStatisticsLabel(),
                            ANALYSIS_STATISTICS_PAGE,
                            // if the only section being shown, then show this page
                            (GetSectionsBeingShown() == Statistics), 2);
 
-        wxPropertyGridManager* pgMan = new wxPropertyGridManager(
-            Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-            wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
+        auto* pgMan = new wxPropertyGridManager(Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                                                wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION |
+                                                    wxPGMAN_DEFAULT_STYLE);
         m_statisticsPropertyGrid = pgMan->AddPage();
         // Results
         m_statisticsPropertyGrid->Append(new wxPropertyCategory(GetResultsLabel()));
@@ -4393,17 +4392,17 @@ void ToolsOptionsDlg::CreateControls()
     // words breakdown page (these options only apply to general options and standard projects)
     if ((GetSectionsBeingShown() & WordsBreakdown) && !IsBatchProjectSettings())
         {
-        wxPanel* Panel = new wxPanel(m_sideBar, WORDS_BREAKDOWN_PAGE, wxDefaultPosition,
-                                     wxDefaultSize, wxTAB_TRAVERSAL);
-        wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
+        auto* Panel = new wxPanel(m_sideBar, WORDS_BREAKDOWN_PAGE, wxDefaultPosition, wxDefaultSize,
+                                  wxTAB_TRAVERSAL);
+        auto* panelSizer = new wxBoxSizer(wxVERTICAL);
         Panel->SetSizer(panelSizer);
         m_sideBar->AddPage(Panel, BaseProjectView::GetWordsBreakdownLabel(), WORDS_BREAKDOWN_PAGE,
                            // if the only section being shown, then show this page
                            (GetSectionsBeingShown() == WordsBreakdown), 13);
 
-        wxPropertyGridManager* pgMan = new wxPropertyGridManager(
-            Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-            wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
+        auto* pgMan = new wxPropertyGridManager(Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                                                wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION |
+                                                    wxPGMAN_DEFAULT_STYLE);
         m_wordsBreakdownPropertyGrid = pgMan->AddPage();
 
         // which features to include
@@ -4553,18 +4552,18 @@ void ToolsOptionsDlg::CreateControls()
     // sentences breakdown page (these options only apply to general options and standard projects)
     if ((GetSectionsBeingShown() & SentencesBreakdown) && !IsBatchProjectSettings())
         {
-        wxPanel* Panel = new wxPanel(m_sideBar, SENTENCES_BREAKDOWN_PAGE, wxDefaultPosition,
-                                     wxDefaultSize, wxTAB_TRAVERSAL);
-        wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
+        auto* Panel = new wxPanel(m_sideBar, SENTENCES_BREAKDOWN_PAGE, wxDefaultPosition,
+                                  wxDefaultSize, wxTAB_TRAVERSAL);
+        auto* panelSizer = new wxBoxSizer(wxVERTICAL);
         Panel->SetSizer(panelSizer);
         m_sideBar->AddPage(Panel, BaseProjectView::GetSentencesBreakdownLabel(),
                            SENTENCES_BREAKDOWN_PAGE,
                            // if the only section being shown, then show this page
                            (GetSectionsBeingShown() == SentencesBreakdown), 14);
 
-        wxPropertyGridManager* pgMan = new wxPropertyGridManager(
-            Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-            wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
+        auto* pgMan = new wxPropertyGridManager(Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                                                wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION |
+                                                    wxPGMAN_DEFAULT_STYLE);
         m_sentencesBreakdownPropertyGrid = pgMan->AddPage();
 
         // which features to include
@@ -4638,17 +4637,17 @@ void ToolsOptionsDlg::CreateControls()
     // Grammar page
     if (GetSectionsBeingShown() & Grammar)
         {
-        wxPanel* Panel =
+        auto* Panel =
             new wxPanel(m_sideBar, GRAMMAR_PAGE, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-        wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
+        auto* panelSizer = new wxBoxSizer(wxVERTICAL);
         Panel->SetSizer(panelSizer);
         m_sideBar->AddPage(Panel, BaseProjectView::GetGrammarLabel(), GRAMMAR_PAGE,
                            // if the only section being shown, then show this page
                            (GetSectionsBeingShown() == Grammar), 4);
 
-        wxPropertyGridManager* pgMan = new wxPropertyGridManager(
-            Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-            wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
+        auto* pgMan = new wxPropertyGridManager(Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                                                wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION |
+                                                    wxPGMAN_DEFAULT_STYLE);
         m_grammarPropertyGrid = pgMan->AddPage();
 
         // which grammar features to include
@@ -4890,22 +4889,22 @@ void ToolsOptionsDlg::CreateControls()
     // text window options page (these options only apply to general options and standard projects)
     if ((GetSectionsBeingShown() & TextSection) && !IsBatchProjectSettings())
         {
-        wxPanel* Panel = new wxPanel(m_sideBar, DOCUMENT_DISPLAY_GENERAL_PAGE, wxDefaultPosition,
-                                     wxDefaultSize, wxTAB_TRAVERSAL);
+        auto* Panel = new wxPanel(m_sideBar, DOCUMENT_DISPLAY_GENERAL_PAGE, wxDefaultPosition,
+                                  wxDefaultSize, wxTAB_TRAVERSAL);
 
         m_sideBar->AddPage(Panel, BaseProjectView::GetHighlightedReportsLabel(),
                            DOCUMENT_DISPLAY_GENERAL_PAGE,
                            // if the only section being shown, then show this page
                            (GetSectionsBeingShown() == TextSection), 0);
 
-        wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
+        auto* panelSizer = new wxBoxSizer(wxVERTICAL);
         Panel->SetSizer(panelSizer);
         m_sideBar->AddSubPage(Panel, GetGeneralLabel(), DOCUMENT_DISPLAY_GENERAL_PAGE, false, 9);
 
         CreateLabelHeader(Panel, panelSizer, _(L"Formatting"), true);
 
         // sizer associated with static box holding controls
-        wxSizer* optionsSizer = new wxBoxSizer(wxVERTICAL);
+        auto* optionsSizer = new wxBoxSizer(wxVERTICAL);
         panelSizer->Add(optionsSizer, 0, wxLEFT, OPTION_INDENT_SIZE);
 
         // font
@@ -4919,7 +4918,7 @@ void ToolsOptionsDlg::CreateControls()
                           // TRANSLATORS: How text is highlighted
                           _(L"Highlighting"), true);
 
-        wxBoxSizer* optionsIndentSizer = new wxBoxSizer(wxVERTICAL);
+        auto* optionsIndentSizer = new wxBoxSizer(wxVERTICAL);
         panelSizer->Add(optionsIndentSizer, 0, wxLEFT, OPTION_INDENT_SIZE);
 
             // highlight color for excluded text
@@ -4961,7 +4960,7 @@ void ToolsOptionsDlg::CreateControls()
             optionsIndentSizer->Add(m_wordyPhraseHighlightColorButton, wxSizerFlags{}.Expand());
             }
 
-        wxBoxSizer* highlightSizer = new wxBoxSizer(wxHORIZONTAL);
+        auto* highlightSizer = new wxBoxSizer(wxHORIZONTAL);
         highlightSizer->Add(
             new wxStaticText(Panel, wxID_STATIC, _(L"Highlight text by changing its:")),
             wxSizerFlags{}.Border(wxRIGHT).CenterVertical());
@@ -5030,7 +5029,7 @@ void ToolsOptionsDlg::CreateControls()
                 }
                 // pronouns
                 {
-                wxBoxSizer* rowSizer = new wxBoxSizer(wxHORIZONTAL);
+                auto* rowSizer = new wxBoxSizer(wxHORIZONTAL);
                 optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
                 optionsIndentSizer->Add(rowSizer, wxSizerFlags{}.Expand());
 
@@ -5047,7 +5046,7 @@ void ToolsOptionsDlg::CreateControls()
                 }
                 // adverbs
                 {
-                wxBoxSizer* rowSizer = new wxBoxSizer(wxHORIZONTAL);
+                auto* rowSizer = new wxBoxSizer(wxHORIZONTAL);
                 optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
                 optionsIndentSizer->Add(rowSizer, wxSizerFlags{}.Expand());
 
@@ -5064,7 +5063,7 @@ void ToolsOptionsDlg::CreateControls()
                 }
                 // adjectives
                 {
-                wxBoxSizer* rowSizer = new wxBoxSizer(wxHORIZONTAL);
+                auto* rowSizer = new wxBoxSizer(wxHORIZONTAL);
                 optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
                 optionsIndentSizer->Add(rowSizer, wxSizerFlags{}.Expand());
 
@@ -5081,7 +5080,7 @@ void ToolsOptionsDlg::CreateControls()
                 }
                 // verbs
                 {
-                wxBoxSizer* rowSizer = new wxBoxSizer(wxHORIZONTAL);
+                auto* rowSizer = new wxBoxSizer(wxHORIZONTAL);
                 optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
                 optionsIndentSizer->Add(rowSizer, wxSizerFlags{}.Expand());
 
@@ -5098,7 +5097,7 @@ void ToolsOptionsDlg::CreateControls()
                 }
                 // noun color
                 {
-                wxBoxSizer* rowSizer = new wxBoxSizer(wxHORIZONTAL);
+                auto* rowSizer = new wxBoxSizer(wxHORIZONTAL);
                 optionsIndentSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
                 optionsIndentSizer->Add(rowSizer, wxSizerFlags{}.Expand());
 
@@ -5214,8 +5213,8 @@ void ToolsOptionsDlg::CreateGraphSection()
     {
     if (GetSectionsBeingShown() & GraphsSection)
         {
-        wxPanel* GraphGeneralPage = new wxPanel(m_sideBar, GRAPH_GENERAL_PAGE, wxDefaultPosition,
-                                                wxDefaultSize, wxTAB_TRAVERSAL);
+        auto* GraphGeneralPage = new wxPanel(m_sideBar, GRAPH_GENERAL_PAGE, wxDefaultPosition,
+                                             wxDefaultSize, wxTAB_TRAVERSAL);
         m_sideBar->AddPage(GraphGeneralPage, GetGraphsLabel(), GRAPH_GENERAL_PAGE,
                            // if the only section being shown, then show this page
                            (GetSectionsBeingShown() == GraphsSection), 7);
@@ -5223,12 +5222,12 @@ void ToolsOptionsDlg::CreateGraphSection()
             // General tab
             //-----------
             {
-            wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
+            auto* panelSizer = new wxBoxSizer(wxVERTICAL);
             GraphGeneralPage->SetSizer(panelSizer);
             m_sideBar->AddSubPage(GraphGeneralPage, GetGeneralLabel(), GRAPH_GENERAL_PAGE, false,
                                   9);
 
-            wxPropertyGridManager* pgMan = new wxPropertyGridManager(
+            auto* pgMan = new wxPropertyGridManager(
                 GraphGeneralPage, ID_GRAPH_OPTIONS_PROPERTYGRID, wxDefaultPosition, wxDefaultSize,
                 wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
             m_generalGraphPropertyGrid = pgMan->AddPage();
@@ -5315,7 +5314,7 @@ void ToolsOptionsDlg::CreateGraphSection()
             m_generalGraphPropertyGrid->Append(plotColor);
 
             // image
-            wxImageFileProperty* backgroundImage = new wxImageFileProperty(
+            auto* backgroundImage = new wxImageFileProperty(
                 GetImageLabel(), wxPG_LABEL,
                 (m_readabilityProjectDoc ?
                      m_readabilityProjectDoc->GetPlotBackGroundImagePath() :
@@ -5395,7 +5394,7 @@ void ToolsOptionsDlg::CreateGraphSection()
                   "This label will be stamped diagonally, top left-hand corner to "
                   "bottom right-hand corner."));
             // logo
-            wxImageFileProperty* graphLogo = new wxImageFileProperty(
+            auto* graphLogo = new wxImageFileProperty(
                 GetLogoImageLabel(), wxPG_LABEL,
                 (m_readabilityProjectDoc ? m_readabilityProjectDoc->GetWatermarkLogoPath() :
                                            wxGetApp().GetAppOptions()->GetWatermarkLogo()));
@@ -5420,7 +5419,7 @@ void ToolsOptionsDlg::CreateGraphSection()
                 GetEffectsLabel(),
                 _(L"The options in this section customize various visual effects of the graphs."));
             // stipple image
-            wxImageFileProperty* customBrushProp = new wxImageFileProperty(
+            auto* customBrushProp = new wxImageFileProperty(
                 GetStippleImageLabel(), wxPG_LABEL,
                 (m_readabilityProjectDoc ? m_readabilityProjectDoc->GetStippleImagePath() :
                                            wxGetApp().GetAppOptions()->GetStippleImagePath()));
@@ -5473,7 +5472,7 @@ void ToolsOptionsDlg::CreateGraphSection()
             shapeColorProp->SetHelpString(_(L"Selects the color used for certain stipple shapes."));
 
             // common image
-            wxImageFileProperty* commonImageProp = new wxImageFileProperty(
+            auto* commonImageProp = new wxImageFileProperty(
                 GetCommonImageLabel(), wxPG_LABEL,
                 (m_readabilityProjectDoc ? m_readabilityProjectDoc->GetGraphCommonImagePath() :
                                            wxGetApp().GetAppOptions()->GetGraphCommonImagePath()));
@@ -5522,10 +5521,10 @@ void ToolsOptionsDlg::CreateGraphSection()
             // Axes tab
             //-----------
             {
-            wxPanel* Panel = new wxPanel(m_sideBar, GRAPH_AXIS_PAGE, wxDefaultPosition,
-                                         wxDefaultSize, wxTAB_TRAVERSAL);
-            wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
-            wxBoxSizer* optionsSizer = new wxBoxSizer(wxVERTICAL);
+            auto* Panel = new wxPanel(m_sideBar, GRAPH_AXIS_PAGE, wxDefaultPosition, wxDefaultSize,
+                                      wxTAB_TRAVERSAL);
+            auto* panelSizer = new wxBoxSizer(wxVERTICAL);
+            auto* optionsSizer = new wxBoxSizer(wxVERTICAL);
             Panel->SetSizer(panelSizer);
             m_sideBar->AddSubPage(Panel, GetAxisSettingsLabel(), GRAPH_AXIS_PAGE, false, 9);
 
@@ -5546,10 +5545,10 @@ void ToolsOptionsDlg::CreateGraphSection()
             // Titles tab
             //-----------
             {
-            wxPanel* Panel = new wxPanel(m_sideBar, GRAPH_TITLES_PAGE, wxDefaultPosition,
-                                         wxDefaultSize, wxTAB_TRAVERSAL);
-            wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
-            wxBoxSizer* optionsSizer = new wxBoxSizer(wxVERTICAL);
+            auto* Panel = new wxPanel(m_sideBar, GRAPH_TITLES_PAGE, wxDefaultPosition,
+                                      wxDefaultSize, wxTAB_TRAVERSAL);
+            auto* panelSizer = new wxBoxSizer(wxVERTICAL);
+            auto* optionsSizer = new wxBoxSizer(wxVERTICAL);
             Panel->SetSizer(panelSizer);
             m_sideBar->AddSubPage(Panel, GetTitlesLabel(), GRAPH_TITLES_PAGE, false, 9);
 
@@ -5588,15 +5587,15 @@ void ToolsOptionsDlg::CreateGraphSection()
             // Readability Graphs tab
             //-----------
             {
-            wxPanel* Panel = new wxPanel(m_sideBar, GRAPH_READABILITY_GRAPHS_PAGE,
-                                         wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-            wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
+            auto* Panel = new wxPanel(m_sideBar, GRAPH_READABILITY_GRAPHS_PAGE, wxDefaultPosition,
+                                      wxDefaultSize, wxTAB_TRAVERSAL);
+            auto* panelSizer = new wxBoxSizer(wxVERTICAL);
             Panel->SetSizer(panelSizer);
             m_sideBar->AddSubPage(Panel, GetReadabilityGraphLabel(), GRAPH_READABILITY_GRAPHS_PAGE,
                                   false, 9);
 
             // Fry-like graphs
-            wxPropertyGridManager* pgMan = new wxPropertyGridManager(
+            auto* pgMan = new wxPropertyGridManager(
                 Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
                 wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
             m_readabilityGraphPropertyGrid = pgMan->AddPage();
@@ -5676,13 +5675,13 @@ void ToolsOptionsDlg::CreateGraphSection()
         //-----------
         if (!IsBatchProjectSettings())
             {
-            wxPanel* Panel = new wxPanel(m_sideBar, GRAPH_BAR_CHART_PAGE, wxDefaultPosition,
-                                         wxDefaultSize, wxTAB_TRAVERSAL);
-            wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
+            auto* Panel = new wxPanel(m_sideBar, GRAPH_BAR_CHART_PAGE, wxDefaultPosition,
+                                      wxDefaultSize, wxTAB_TRAVERSAL);
+            auto* panelSizer = new wxBoxSizer(wxVERTICAL);
             Panel->SetSizer(panelSizer);
             m_sideBar->AddSubPage(Panel, GetBarChartLabel(), GRAPH_BAR_CHART_PAGE, false, 9);
 
-            wxPropertyGridManager* pgMan = new wxPropertyGridManager(
+            auto* pgMan = new wxPropertyGridManager(
                 Panel, ID_BARCHART_OPTIONS_PROPERTYGRID, wxDefaultPosition, wxDefaultSize,
                 wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
             m_barChartPropertyGrid = pgMan->AddPage();
@@ -5774,13 +5773,13 @@ void ToolsOptionsDlg::CreateGraphSection()
             // Histogram tab
             //-----------
             {
-            wxPanel* Panel = new wxPanel(m_sideBar, GRAPH_HISTOGRAM_PAGE, wxDefaultPosition,
-                                         wxDefaultSize, wxTAB_TRAVERSAL);
-            wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
+            auto* Panel = new wxPanel(m_sideBar, GRAPH_HISTOGRAM_PAGE, wxDefaultPosition,
+                                      wxDefaultSize, wxTAB_TRAVERSAL);
+            auto* panelSizer = new wxBoxSizer(wxVERTICAL);
             Panel->SetSizer(panelSizer);
             m_sideBar->AddSubPage(Panel, GetHistogramsLabel(), GRAPH_HISTOGRAM_PAGE, false, 9);
 
-            wxPropertyGridManager* pgMan = new wxPropertyGridManager(
+            auto* pgMan = new wxPropertyGridManager(
                 Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
                 wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
             m_histogramPropertyGrid = pgMan->AddPage();
@@ -5924,13 +5923,13 @@ void ToolsOptionsDlg::CreateGraphSection()
             // Box Plot tab
             //-----------
             {
-            wxPanel* Panel = new wxPanel(m_sideBar, GRAPH_BOX_PLOT_PAGE, wxDefaultPosition,
-                                         wxDefaultSize, wxTAB_TRAVERSAL);
-            wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
+            auto* Panel = new wxPanel(m_sideBar, GRAPH_BOX_PLOT_PAGE, wxDefaultPosition,
+                                      wxDefaultSize, wxTAB_TRAVERSAL);
+            auto* panelSizer = new wxBoxSizer(wxVERTICAL);
             Panel->SetSizer(panelSizer);
             m_sideBar->AddSubPage(Panel, GetBoxPlotLabel(), GRAPH_BOX_PLOT_PAGE, false, 9);
 
-            wxPropertyGridManager* pgMan = new wxPropertyGridManager(
+            auto* pgMan = new wxPropertyGridManager(
                 Panel, wxID_ANY, wxDefaultPosition, wxDefaultSize,
                 wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
             m_boxPlotsPropertyGrid = pgMan->AddPage();
@@ -6060,8 +6059,8 @@ void ToolsOptionsDlg::CreateLabelHeader(wxWindow* parent, wxSizer* parentSizer,
         return;
         }
     // The title
-    wxBoxSizer* titleSizer = new wxBoxSizer(wxHORIZONTAL);
-    wxStaticText* titleText =
+    auto* titleSizer = new wxBoxSizer(wxHORIZONTAL);
+    auto* titleText =
         new wxStaticText(parent, wxID_ANY, title, wxDefaultPosition, wxDefaultSize, wxALIGN_LEFT);
     titleSizer->Add(titleText);
     titleSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());

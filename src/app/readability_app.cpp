@@ -30,11 +30,6 @@
 #include "../ui/dialogs/test_bundle_dlg.h"
 #include "../ui/dialogs/tools_options_dlg.h"
 
-using namespace Wisteria;
-using namespace Wisteria::GraphItems;
-using namespace Wisteria::Graphs;
-using namespace Wisteria::UI;
-
 // ===========================================================================
 // implementation
 // ===========================================================================
@@ -129,7 +124,7 @@ void ReadabilityApp::EditDictionary(const readability::test_language lang)
         {
         // custom dictionary will be written back to with edit words at this point,
         // so just reload it.
-        wxBusyCursor wait;
+        const wxBusyCursor wait;
         // reload the custom dictionary
         if (lang == readability::test_language::spanish_test)
             {
@@ -190,7 +185,8 @@ void ReadabilityApp::ShowSplashscreen()
             wxString ext{ GetSplashscreenPaths()[imageIndex] };
             wxBitmap bitmap =
                 GetScaledImage(GetSplashscreenPaths()[imageIndex],
-                               Image::GetImageFileTypeFromExtension(ext), wxSize{ 800, 600 });
+                               Wisteria::GraphItems::Image::GetImageFileTypeFromExtension(ext),
+                               wxSize{ 800, 600 });
             if (bitmap.IsOk())
                 {
                 // quneiform-suppress-begin
@@ -782,7 +778,7 @@ bool ReadabilityApp::OnInit()
 
     // printer options
     GetMainFrame()->GetDocumentManager()->GetPageSetupDialogData().GetPrintData().SetPaperId(
-        static_cast<wxPaperSize>(GetAppOptions()->GetPaperId()));
+        GetAppOptions()->GetPaperId());
     GetMainFrame()->GetDocumentManager()->GetPageSetupDialogData().GetPrintData().SetOrientation(
         GetAppOptions()->GetPaperOrientation());
     GetMainFrame()->GetDocumentManager()->GetPageSetupDialogData().EnableMargins(false);
@@ -795,7 +791,8 @@ bool ReadabilityApp::OnInit()
         wxString imageName{ GetSplashscreenPaths()[imageIndex] };
         auto scaledBmp =
             GetScaledImage(GetSplashscreenPaths()[imageIndex],
-                           Image::GetImageFileTypeFromExtension(imageName), wxSize{ 800, 800 });
+                           Wisteria::GraphItems::Image::GetImageFileTypeFromExtension(imageName),
+                           wxSize{ 800, 800 });
         // crop the bottom
         GetMainFrameEx()->SetAboutDialogImage(wxBitmap(wxImage{ scaledBmp.ConvertToImage() }.Resize(
             GetMainFrame()->FromDIP(wxSize{ 800, 100 }), wxPoint{ 0, 0 })));
@@ -811,36 +808,36 @@ bool ReadabilityApp::OnInit()
     // clang-format off
     // add some standard test bundles
     // PSK
-    TestBundle PskBundle(ReadabilityMessages::GetPskBundleName().wc_str());
-    PskBundle.GetTestGoals().insert(TestGoal{ ReadabilityMessages::PSK_DALE_CHALL().wc_str() });
-    PskBundle.GetTestGoals().insert(TestGoal{ ReadabilityMessages::PSK_FLESCH().wc_str() });
-    PskBundle.GetTestGoals().insert(TestGoal{ ReadabilityMessages::PSK_GUNNING_FOG().wc_str() });
-    PskBundle.GetTestGoals().insert(TestGoal{ ReadabilityMessages::PSK_FARR_JENKINS_PATERSON().wc_str() });
-    PskBundle.SetDescription(
+    TestBundle pskBundle(ReadabilityMessages::GetPskBundleName().wc_str());
+    pskBundle.GetTestGoals().insert(TestGoal{ ReadabilityMessages::PSK_DALE_CHALL().wc_str() });
+    pskBundle.GetTestGoals().insert(TestGoal{ ReadabilityMessages::PSK_FLESCH().wc_str() });
+    pskBundle.GetTestGoals().insert(TestGoal{ ReadabilityMessages::PSK_GUNNING_FOG().wc_str() });
+    pskBundle.GetTestGoals().insert(TestGoal{ ReadabilityMessages::PSK_FARR_JENKINS_PATERSON().wc_str() });
+    pskBundle.SetDescription(
         _(L"Powers, Sumner, and Kearl's four adjusted formulas, which were recalculated "
            "using the McCall-Crabbs 1950 tests. These formulas were also adjusted to predict "
            "closer scores to each other.").wc_str());
-    PskBundle.SetLanguage(readability::test_language::english_test);
-    PskBundle.Lock();
-    BaseProject::m_testBundles.insert(PskBundle);
-    dynamic_cast<MainFrame*>(GetMainFrame())->AddTestBundleToMenus(PskBundle.GetName().c_str());
+    pskBundle.SetLanguage(readability::test_language::english_test);
+    pskBundle.Lock();
+    BaseProject::m_testBundles.insert(pskBundle);
+    dynamic_cast<MainFrame*>(GetMainFrame())->AddTestBundleToMenus(pskBundle.GetName().c_str());
 
     // Kincaid's Navy Personnel tests
-    TestBundle NavyBundle(ReadabilityMessages::GetKincaidNavyBundleName().wc_str());
-    NavyBundle.GetTestGoals().insert(TestGoal{ ReadabilityMessages::FLESCH_KINCAID().wc_str() });
-    NavyBundle.GetTestGoals().insert(TestGoal{ ReadabilityMessages::NEW_ARI().wc_str() });
-    NavyBundle.GetTestGoals().insert(TestGoal{ ReadabilityMessages::NEW_FOG().wc_str() });
-    NavyBundle.SetDescription(
+    TestBundle navyBundle(ReadabilityMessages::GetKincaidNavyBundleName().wc_str());
+    navyBundle.GetTestGoals().insert(TestGoal{ ReadabilityMessages::FLESCH_KINCAID().wc_str() });
+    navyBundle.GetTestGoals().insert(TestGoal{ ReadabilityMessages::NEW_ARI().wc_str() });
+    navyBundle.GetTestGoals().insert(TestGoal{ ReadabilityMessages::NEW_FOG().wc_str() });
+    navyBundle.SetDescription(
         _(L"Kincaid's collection of recalculated tests, "
            "designed for enlisted U.S. Navy Personnel.").wc_str());
-    NavyBundle.SetLanguage(readability::test_language::english_test);
-    NavyBundle.Lock();
-    BaseProject::m_testBundles.insert(NavyBundle);
-    dynamic_cast<MainFrame*>(GetMainFrame())->AddTestBundleToMenus(NavyBundle.GetName().c_str());
+    navyBundle.SetLanguage(readability::test_language::english_test);
+    navyBundle.Lock();
+    BaseProject::m_testBundles.insert(navyBundle);
+    dynamic_cast<MainFrame*>(GetMainFrame())->AddTestBundleToMenus(navyBundle.GetName().c_str());
 
     // Grundner's Consent Forms
-    TestBundle ConsentFormsBundle(ReadabilityMessages::GetConsentFormsBundleName().wc_str());
-    ConsentFormsBundle.GetTestGoals() =
+    TestBundle consentFormsBundle(ReadabilityMessages::GetConsentFormsBundleName().wc_str());
+    consentFormsBundle.GetTestGoals() =
         {
         TestGoal{ ReadabilityMessages::ELF().wc_str(), std::numeric_limits<double>::quiet_NaN(), 12 },
         // intersection of 4.5 (y axis) and 150 (x axis)
@@ -850,13 +847,13 @@ bool ReadabilityApp::OnInit()
         // no constraints recommended
         TestGoal{ ReadabilityMessages::SMOG().wc_str() }
         };
-    ConsentFormsBundle.GetStatGoals() =
+    consentFormsBundle.GetStatGoals() =
         {
         // specific Fry statistic constraints
         { _DT(L"sentences-per-100-words"), 4.5, std::numeric_limits<double>::quiet_NaN() },
         { _DT(L"syllables-per-100-words"), std::numeric_limits<double>::quiet_NaN(), 150 }
         };
-    ConsentFormsBundle.SetDescription(
+    consentFormsBundle.SetDescription(
         // TRANSLATORS: "Flesch Reading Ease," "Easy Listening Formula," and
         // "Consent Forms" should not be translated.
         // These are test names and the name of a published article, respectively.
@@ -865,10 +862,10 @@ bool ReadabilityApp::OnInit()
            "the Easy Listening Formula, as recommended by T. M. Grundner (\"Consent Forms\" 9-10). "
            "Also included are the recommended test scores (i.e., goals) that consent forms "
            "should fall within. (Note that SMOG did not have a recommended test score.)").wc_str());
-    ConsentFormsBundle.SetLanguage(readability::test_language::english_test);
-    ConsentFormsBundle.Lock();
-    BaseProject::m_testBundles.insert(ConsentFormsBundle);
-    dynamic_cast<MainFrame*>(GetMainFrame())->AddTestBundleToMenus(ConsentFormsBundle.GetName().c_str());
+    consentFormsBundle.SetLanguage(readability::test_language::english_test);
+    consentFormsBundle.Lock();
+    BaseProject::m_testBundles.insert(consentFormsBundle);
+    dynamic_cast<MainFrame*>(GetMainFrame())->AddTestBundleToMenus(consentFormsBundle.GetName().c_str());
     // clang-format on
 
     // See if ClearType is turned on. If not, then graphs will look awful,
@@ -1811,7 +1808,7 @@ void ReadabilityApp::FillPrintMenu(wxMenu& printMenu, const RibbonType rtype)
 //-----------------------------------
 void ReadabilityApp::UpdateSideBarTheme(Wisteria::UI::SideBar* sidebar)
     {
-    SideBarColorScheme colorScheme;
+    Wisteria::UI::SideBarColorScheme colorScheme;
     colorScheme.m_backgroundColor = GetAppOptions()->GetSideBarBackgroundColor();
     colorScheme.m_foregroundColor = GetAppOptions()->GetSideBarFontColor();
     colorScheme.m_selectedColor = GetAppOptions()->GetSideBarActiveColor();
@@ -1826,7 +1823,7 @@ void ReadabilityApp::UpdateSideBarTheme(Wisteria::UI::SideBar* sidebar)
 //-----------------------------------
 Wisteria::UI::SideBar* ReadabilityApp::CreateSideBar(wxWindow* frame, const wxWindowID id)
     {
-    auto sideBar = new SideBar(frame, id);
+    auto* sideBar = new Wisteria::UI::SideBar(frame, id);
     sideBar->SetImageList(dynamic_cast<MainFrame*>(GetMainFrame())->GetProjectSideBarImageList());
 
     UpdateSideBarTheme(sideBar);
@@ -3049,7 +3046,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                                     ReadRibbonSvgIcon(L"ribbon/app-logo.svg"),
                                     _(L"Learn more about the program."));
         }
-    ribbon->SetArtProvider(new RibbonMetroArtProvider);
+    ribbon->SetArtProvider(new Wisteria::UI::RibbonMetroArtProvider);
     UpdateRibbonTheme(ribbon);
 
     ribbon->Realize();
@@ -3201,12 +3198,14 @@ void MainFrame::OnViewProfileReport([[maybe_unused]] wxRibbonButtonBarEvent& eve
 
     const wxSize screenSize{ wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X),
                              wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y) };
-    ListDlg profileReportDialog(
+    Wisteria::UI::ListDlg profileReportDialog(
         wxGetApp().GetParentingWindow(), wxGetApp().GetAppOptions()->GetRibbonActiveTabColor(),
         wxGetApp().GetAppOptions()->GetRibbonHoverColor(),
         wxGetApp().GetAppOptions()->GetRibbonActiveFontColor(),
-        LD_SAVE_BUTTON | LD_COPY_BUTTON | LD_PRINT_BUTTON | LD_SELECT_ALL_BUTTON | LD_FIND_BUTTON |
-            LD_COLUMN_HEADERS | LD_SORT_BUTTON,
+        Wisteria::UI::LD_SAVE_BUTTON | Wisteria::UI::LD_COPY_BUTTON |
+            Wisteria::UI::LD_PRINT_BUTTON | Wisteria::UI::LD_SELECT_ALL_BUTTON |
+            Wisteria::UI::LD_FIND_BUTTON | Wisteria::UI::LD_COLUMN_HEADERS |
+            Wisteria::UI::LD_SORT_BUTTON,
         wxID_ANY, _(L"Profile Report"), wxString{}, wxDefaultPosition,
         wxSize{ static_cast<int>(screenSize.GetWidth() * math_constants::half),
                 static_cast<int>(screenSize.GetHeight() * math_constants::half) });
@@ -3230,16 +3229,17 @@ void MainFrame::OnViewProfileReport([[maybe_unused]] wxRibbonButtonBarEvent& eve
     const lily_of_the_valley::text_column_delimited_character_parser parser(L'\t');
     lily_of_the_valley::text_column<lily_of_the_valley::text_column_delimited_character_parser>
         myColumn(parser, std::nullopt);
-    lily_of_the_valley::text_row<ListCtrlExDataProvider::ListCellString> myRow(std::nullopt);
+    lily_of_the_valley::text_row<Wisteria::UI::ListCtrlExDataProvider::ListCellString> myRow(
+        std::nullopt);
     myRow.add_column(myColumn);
     myRow.treat_consecutive_delimiters_as_one(false);
 
-    lily_of_the_valley::text_matrix<ListCtrlExDataProvider::ListCellString> importer(
+    lily_of_the_valley::text_matrix<Wisteria::UI::ListCtrlExDataProvider::ListCellString> importer(
         &profileReportDialog.GetData()->GetMatrix());
 
     // header row, which will just be skipped
     importer.add_row_definition(
-        lily_of_the_valley::text_row<ListCtrlExDataProvider::ListCellString>(1));
+        lily_of_the_valley::text_row<Wisteria::UI::ListCtrlExDataProvider::ListCellString>(1));
     importer.add_row_definition(myRow);
 
     // see how many lines are in the file
@@ -3272,17 +3272,19 @@ void MainFrame::OnViewLogReport([[maybe_unused]] wxRibbonButtonBarEvent& event)
         {
         const wxSize screenSize{ wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X),
                                  wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y) };
-        m_logWindow =
-            new ListDlg(nullptr, wxGetApp().GetAppOptions()->GetRibbonActiveTabColor(),
-                        wxGetApp().GetAppOptions()->GetRibbonHoverColor(),
-                        wxGetApp().GetAppOptions()->GetRibbonActiveFontColor(),
-                        LD_SAVE_BUTTON | LD_COPY_BUTTON | LD_PRINT_BUTTON | LD_SELECT_ALL_BUTTON |
-                            LD_FIND_BUTTON | LD_COLUMN_HEADERS | LD_SORT_BUTTON | LD_CLEAR_BUTTON |
-                            LD_REFRESH_BUTTON | LD_LOG_VERBOSE_BUTTON,
-                        wxID_ANY, _(L"Log Report"), wxString{}, wxDefaultPosition,
-                        wxSize{ static_cast<int>(screenSize.GetWidth() * math_constants::half),
-                                static_cast<int>(screenSize.GetHeight() * math_constants::half) },
-                        wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER | wxDIALOG_NO_PARENT);
+        m_logWindow = new Wisteria::UI::ListDlg(
+            nullptr, wxGetApp().GetAppOptions()->GetRibbonActiveTabColor(),
+            wxGetApp().GetAppOptions()->GetRibbonHoverColor(),
+            wxGetApp().GetAppOptions()->GetRibbonActiveFontColor(),
+            Wisteria::UI::LD_SAVE_BUTTON | Wisteria::UI::LD_COPY_BUTTON |
+                Wisteria::UI::LD_PRINT_BUTTON | Wisteria::UI::LD_SELECT_ALL_BUTTON |
+                Wisteria::UI::LD_FIND_BUTTON | Wisteria::UI::LD_COLUMN_HEADERS |
+                Wisteria::UI::LD_SORT_BUTTON | Wisteria::UI::LD_CLEAR_BUTTON |
+                Wisteria::UI::LD_REFRESH_BUTTON | Wisteria::UI::LD_LOG_VERBOSE_BUTTON,
+            wxID_ANY, _(L"Log Report"), wxString{}, wxDefaultPosition,
+            wxSize{ static_cast<int>(screenSize.GetWidth() * math_constants::half),
+                    static_cast<int>(screenSize.GetHeight() * math_constants::half) },
+            wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER | wxDIALOG_NO_PARENT);
         // move over to the right side of the screen
         const int screenWidth{ wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X) };
         int xPos{ 0 }, yPos{ 0 };
@@ -3310,12 +3312,14 @@ void MainFrame::OnTestsOverview([[maybe_unused]] wxRibbonButtonBarEvent& event)
     const wxSize screenSize{ wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_X),
                              wxSystemSettings::GetMetric(wxSystemMetric::wxSYS_SCREEN_Y) };
     // test overview dialog
-    ListDlg testsOverviewDlg(
+    Wisteria::UI::ListDlg testsOverviewDlg(
         wxGetApp().GetParentingWindow(), wxGetApp().GetAppOptions()->GetRibbonActiveTabColor(),
         wxGetApp().GetAppOptions()->GetRibbonHoverColor(),
         wxGetApp().GetAppOptions()->GetRibbonActiveFontColor(),
-        LD_SAVE_BUTTON | LD_COPY_BUTTON | LD_PRINT_BUTTON | LD_SELECT_ALL_BUTTON |
-            LD_COLUMN_HEADERS | LD_FIND_BUTTON | LD_SORT_BUTTON,
+        Wisteria::UI::LD_SAVE_BUTTON | Wisteria::UI::LD_COPY_BUTTON |
+            Wisteria::UI::LD_PRINT_BUTTON | Wisteria::UI::LD_SELECT_ALL_BUTTON |
+            Wisteria::UI::LD_COLUMN_HEADERS | Wisteria::UI::LD_FIND_BUTTON |
+            Wisteria::UI::LD_SORT_BUTTON,
         wxID_ANY, _(L"Readability Tests Overview"), wxString{}, wxDefaultPosition,
         wxSize{ static_cast<int>(screenSize.GetWidth() * math_constants::three_quarters),
                 static_cast<int>(screenSize.GetHeight() * math_constants::half) });
@@ -3438,30 +3442,31 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
     BaseProject project;
     if (event.GetId() == XRCID("ID_BLANK_FRASE_GRAPH"))
         {
-        GraphDlg graphDlg(wxGetApp().GetParentingWindow(), wxID_ANY,
-                          wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"FRASE")));
-        graphDlg.GetCanvas()->SetFixedObject(0, 0,
-                                             std::make_shared<FraseGraph>(graphDlg.GetCanvas()));
+        Wisteria::UI::GraphDlg graphDlg(wxGetApp().GetParentingWindow(), wxID_ANY,
+                                        wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"FRASE")));
+        graphDlg.GetCanvas()->SetFixedObject(
+            0, 0, std::make_shared<Wisteria::Graphs::FraseGraph>(graphDlg.GetCanvas()));
         wxGetApp().GetAppOptions()->UpdateGraphOptions(graphDlg.GetCanvas());
         graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
     else if (event.GetId() == XRCID("ID_BLANK_CRAWFORD_GRAPH"))
         {
-        GraphDlg graphDlg(wxGetApp().GetParentingWindow(), wxID_ANY,
-                          wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Crawford")));
-        graphDlg.GetCanvas()->SetFixedObject(0, 0,
-                                             std::make_shared<CrawfordGraph>(graphDlg.GetCanvas()));
+        Wisteria::UI::GraphDlg graphDlg(
+            wxGetApp().GetParentingWindow(), wxID_ANY,
+            wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Crawford")));
+        graphDlg.GetCanvas()->SetFixedObject(
+            0, 0, std::make_shared<Wisteria::Graphs::CrawfordGraph>(graphDlg.GetCanvas()));
         wxGetApp().GetAppOptions()->UpdateGraphOptions(graphDlg.GetCanvas());
         graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
     else if (event.GetId() == XRCID("ID_BLANK_FRY_GRAPH"))
         {
-        GraphDlg graphDlg(wxGetApp().GetParentingWindow(), wxID_ANY,
-                          wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Fry")));
-        auto fryGraph =
-            std::make_shared<FryGraph>(graphDlg.GetCanvas(), FryGraph::FryGraphType::Traditional);
+        Wisteria::UI::GraphDlg graphDlg(wxGetApp().GetParentingWindow(), wxID_ANY,
+                                        wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Fry")));
+        auto fryGraph = std::make_shared<Wisteria::Graphs::FryGraph>(
+            graphDlg.GetCanvas(), Wisteria::Graphs::FryGraph::FryGraphType::Traditional);
         // update custom settings on graph
         fryGraph->SetMessageCatalog(project.GetReadabilityMessageCatalogPtr());
         fryGraph->SetInvalidAreaColor(wxGetApp().GetAppOptions()->GetInvalidAreaColor());
@@ -3473,11 +3478,11 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
         }
     else if (event.GetId() == XRCID("ID_BLANK_GPM_GRAPH"))
         {
-        GraphDlg graphDlg(
+        Wisteria::UI::GraphDlg graphDlg(
             wxGetApp().GetParentingWindow(), wxID_ANY,
             wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Gilliam-Pe\U000000F1a-Mountain")));
-        auto gFryGraph =
-            std::make_shared<FryGraph>(graphDlg.GetCanvas(), FryGraph::FryGraphType::GPM);
+        auto gFryGraph = std::make_shared<Wisteria::Graphs::FryGraph>(
+            graphDlg.GetCanvas(), Wisteria::Graphs::FryGraph::FryGraphType::GPM);
         // update custom settings on graph
         gFryGraph->SetMessageCatalog(project.GetReadabilityMessageCatalogPtr());
         gFryGraph->SetInvalidAreaColor(wxGetApp().GetAppOptions()->GetInvalidAreaColor());
@@ -3489,9 +3494,9 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
         }
     else if (event.GetId() == XRCID("ID_BLANK_RAYGOR_GRAPH"))
         {
-        GraphDlg graphDlg(wxGetApp().GetParentingWindow(), wxID_ANY,
-                          wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Raygor")));
-        auto raygorGraph = std::make_shared<RaygorGraph>(graphDlg.GetCanvas());
+        Wisteria::UI::GraphDlg graphDlg(wxGetApp().GetParentingWindow(), wxID_ANY,
+                                        wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Raygor")));
+        auto raygorGraph = std::make_shared<Wisteria::Graphs::RaygorGraph>(graphDlg.GetCanvas());
         // update custom settings on graph
         raygorGraph->SetMessageCatalog(project.GetReadabilityMessageCatalogPtr());
         raygorGraph->SetInvalidAreaColor(wxGetApp().GetAppOptions()->GetInvalidAreaColor());
@@ -3503,9 +3508,10 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
         }
     else if (event.GetId() == XRCID("ID_BLANK_FLESCH_GRAPH"))
         {
-        GraphDlg graphDlg(wxGetApp().GetParentingWindow(), wxID_ANY,
-                          wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Flesch Reading Ease")));
-        auto fleschChart = std::make_shared<FleschChart>(graphDlg.GetCanvas());
+        Wisteria::UI::GraphDlg graphDlg(
+            wxGetApp().GetParentingWindow(), wxID_ANY,
+            wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Flesch Reading Ease")));
+        auto fleschChart = std::make_shared<Wisteria::Graphs::FleschChart>(graphDlg.GetCanvas());
         fleschChart->ShowConnectionLine(wxGetApp().GetAppOptions()->IsConnectingFleschPoints());
 
         graphDlg.GetCanvas()->SetFixedObject(0, 0, fleschChart);
@@ -3515,20 +3521,22 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
         }
     else if (event.GetId() == XRCID("ID_BLANK_DB2_GRAPH"))
         {
-        GraphDlg graphDlg(
+        Wisteria::UI::GraphDlg graphDlg(
             wxGetApp().GetParentingWindow(), wxID_ANY,
             wxString::Format(_(L"Blank \"%s\" Graph"), BaseProjectView::GetDB2Label()));
         graphDlg.GetCanvas()->SetFixedObject(
-            0, 0, std::make_shared<DanielsonBryan2Plot>(graphDlg.GetCanvas()));
+            0, 0, std::make_shared<Wisteria::Graphs::DanielsonBryan2Plot>(graphDlg.GetCanvas()));
         wxGetApp().GetAppOptions()->UpdateGraphOptions(graphDlg.GetCanvas());
         graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
     else if (event.GetId() == XRCID("ID_BLANK_SCHWARTZ_GRAPH"))
         {
-        GraphDlg graphDlg(wxGetApp().GetParentingWindow(), wxID_ANY,
-                          wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Schwartz")));
-        auto schwartzGraph = std::make_shared<SchwartzGraph>(graphDlg.GetCanvas());
+        Wisteria::UI::GraphDlg graphDlg(
+            wxGetApp().GetParentingWindow(), wxID_ANY,
+            wxString::Format(_(L"Blank \"%s\" Graph"), _DT(L"Schwartz")));
+        auto schwartzGraph =
+            std::make_shared<Wisteria::Graphs::SchwartzGraph>(graphDlg.GetCanvas());
         schwartzGraph->SetMessageCatalog(project.GetReadabilityMessageCatalogPtr());
         schwartzGraph->SetInvalidAreaColor(wxGetApp().GetAppOptions()->GetInvalidAreaColor());
 
@@ -3539,17 +3547,19 @@ void MainFrame::OnBlankGraph(wxCommandEvent& event)
         }
     else if (event.GetId() == XRCID("ID_BLANK_LIX_GRAPH"))
         {
-        GraphDlg graphDlg(wxGetApp().GetParentingWindow(), wxID_ANY, _(L"Blank Lix Gauge"));
-        graphDlg.GetCanvas()->SetFixedObject(0, 0,
-                                             std::make_shared<LixGauge>(graphDlg.GetCanvas()));
+        Wisteria::UI::GraphDlg graphDlg(wxGetApp().GetParentingWindow(), wxID_ANY,
+                                        _(L"Blank Lix Gauge"));
+        graphDlg.GetCanvas()->SetFixedObject(
+            0, 0, std::make_shared<Wisteria::Graphs::LixGauge>(graphDlg.GetCanvas()));
         wxGetApp().GetAppOptions()->UpdateGraphOptions(graphDlg.GetCanvas());
         graphDlg.GetCanvas()->ResetResizeDelay();
         graphDlg.ShowModal();
         }
     else if (event.GetId() == XRCID("ID_BLANK_GERMAN_LIX_GRAPH"))
         {
-        GraphDlg graphDlg(wxGetApp().GetParentingWindow(), wxID_ANY, _(L"Blank German Lix Gauge"));
-        auto lixGauge = std::make_shared<LixGaugeGerman>(graphDlg.GetCanvas());
+        Wisteria::UI::GraphDlg graphDlg(wxGetApp().GetParentingWindow(), wxID_ANY,
+                                        _(L"Blank German Lix Gauge"));
+        auto lixGauge = std::make_shared<Wisteria::Graphs::LixGaugeGerman>(graphDlg.GetCanvas());
         lixGauge->UseEnglishLabels(wxGetApp().GetAppOptions()->IsUsingEnglishLabelsForGermanLix());
 
         graphDlg.GetCanvas()->SetFixedObject(0, 0, lixGauge);
@@ -4132,9 +4142,9 @@ void MainFrame::OnOpenExample(wxCommandEvent& event)
         wxArrayString descriptions;
         descriptions.push_back(_(L"Create a new project using the example document"));
         descriptions.push_back(_(L"View the document in your system's default editor"));
-        RadioBoxDlg choiceDlg(wxGetApp().GetParentingWindow(),
-                              _(L"Select how to open the example document"), wxString{}, wxString{},
-                              _(L"Open Example Document"), choices, descriptions);
+        Wisteria::UI::RadioBoxDlg choiceDlg(
+            wxGetApp().GetParentingWindow(), _(L"Select how to open the example document"),
+            wxString{}, wxString{}, _(L"Open Example Document"), choices, descriptions);
         if (choiceDlg.ShowModal() == wxID_CANCEL)
             {
             return;
@@ -5119,13 +5129,13 @@ void MainFrame::OnPaste([[maybe_unused]] wxCommandEvent& event) { Paste(); }
 //-------------------------------------------------------
 void MainFrame::OnPrinterHeaderFooter([[maybe_unused]] wxCommandEvent& event)
     {
-    PrinterHeaderFooterDlg dlg(wxGetApp().GetParentingWindow(),
-                               wxGetApp().GetAppOptions()->GetLeftPrinterHeader(),
-                               wxGetApp().GetAppOptions()->GetCenterPrinterHeader(),
-                               wxGetApp().GetAppOptions()->GetRightPrinterHeader(),
-                               wxGetApp().GetAppOptions()->GetLeftPrinterFooter(),
-                               wxGetApp().GetAppOptions()->GetCenterPrinterFooter(),
-                               wxGetApp().GetAppOptions()->GetRightPrinterFooter());
+    Wisteria::UI::PrinterHeaderFooterDlg dlg(wxGetApp().GetParentingWindow(),
+                                             wxGetApp().GetAppOptions()->GetLeftPrinterHeader(),
+                                             wxGetApp().GetAppOptions()->GetCenterPrinterHeader(),
+                                             wxGetApp().GetAppOptions()->GetRightPrinterHeader(),
+                                             wxGetApp().GetAppOptions()->GetLeftPrinterFooter(),
+                                             wxGetApp().GetAppOptions()->GetCenterPrinterFooter(),
+                                             wxGetApp().GetAppOptions()->GetRightPrinterFooter());
     dlg.SetHelpTopic(GetHelpDirectory(), _DT(L"online/publishing.html"));
     if (dlg.ShowModal() == wxID_OK)
         {
@@ -5333,10 +5343,10 @@ void MainFrame::OnEditPhraseList([[maybe_unused]] wxCommandEvent& event)
 //-------------------------------------------------------
 void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& event)
     {
-    GetDirFilterDialog dirDlg(wxGetApp().GetParentingWindow(),
-                              ReadabilityAppOptions::GetDocumentFilter() + L"|" +
-                                  Wisteria::GraphItems::Image::GetImageFileFilter() + L"|" +
-                                  _(L"All Files (*.*)|*.*"));
+    Wisteria::UI::GetDirFilterDialog dirDlg(wxGetApp().GetParentingWindow(),
+                                            ReadabilityAppOptions::GetDocumentFilter() + L"|" +
+                                                Wisteria::GraphItems::Image::GetImageFileFilter() +
+                                                L"|" + _(L"All Files (*.*)|*.*"));
     if (dirDlg.ShowModal() != wxID_OK || dirDlg.GetPath().empty())
         {
         return;
@@ -5392,7 +5402,8 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
             }
         }
 
-    FileListDlg fileListDlg(wxGetApp().GetParentingWindow(), wxID_ANY, _(L"Duplicate Files"));
+    Wisteria::UI::FileListDlg fileListDlg(wxGetApp().GetParentingWindow(), wxID_ANY,
+                                          _(L"Duplicate Files"));
     fileListDlg.GetListCtrl()->SetVirtualDataSize(files.size());
     size_t rowCount{ 0 };
     fileListDlg.GetListCtrl()->SetForegroundColour(wxColour{ 0, 0, 0 });

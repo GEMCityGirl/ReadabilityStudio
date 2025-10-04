@@ -30,7 +30,7 @@ ExportAllDlg::ExportAllDlg(wxWindow* parent, BaseProjectDoc* doc, const bool fil
                            long style /*= wxDEFAULT_DIALOG_STYLE|wxCLIP_CHILDREN*/)
     : m_readabilityProjectDoc(doc), m_fileMode(fileMode)
     {
-    assert(doc && L"NULL document passed to export all dialog!");
+    wxASSERT_MSG(doc, L"NULL document passed to export all dialog!");
     wxString exportDir = doc->GetExportFolder();
     if (exportDir.empty())
         {
@@ -165,7 +165,7 @@ void ExportAllDlg::OnIncludeListsTextWindowsCheck([[maybe_unused]] wxCommandEven
 //-------------------------------------------------------------
 void ExportAllDlg::OnImageOptionsButtonClick([[maybe_unused]] wxCommandEvent& event)
     {
-    assert(m_graphCombo && L"Graph file combobox not initialized!");
+    wxASSERT_MSG(m_graphCombo, L"Graph file combobox not initialized!");
 
     wxString ext{ (m_graphCombo ? m_graphCombo->GetValue() : wxString{ L"png" }) };
     Wisteria::UI::ImageExportDlg optDlg(this, Image::GetImageFileTypeFromExtension(ext),
@@ -210,25 +210,25 @@ void ExportAllDlg::OnFolderBrowseButtonClick([[maybe_unused]] wxCommandEvent& ev
 //-------------------------------------------------------------
 void ExportAllDlg::CreateControls()
     {
-    wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
+    auto* mainSizer = new wxBoxSizer(wxVERTICAL);
     SetSizer(mainSizer);
 
-    wxBoxSizer* itemsBoxSizer = new wxBoxSizer(wxVERTICAL);
+    auto* itemsBoxSizer = new wxBoxSizer(wxVERTICAL);
     mainSizer->Add(itemsBoxSizer, wxSizerFlags{}.Expand().Border().Top());
 
     // export path
-    wxStaticBox* pathBox = new wxStaticBox(
+    auto* pathBox = new wxStaticBox(
         this, wxID_ANY, m_fileMode ? _(L"File to export to:") : _(L"Folder to export to:"));
-    wxStaticBoxSizer* pathBoxBoxSizer = new wxStaticBoxSizer(pathBox, wxVERTICAL);
+    auto* pathBoxBoxSizer = new wxStaticBoxSizer(pathBox, wxVERTICAL);
     itemsBoxSizer->Add(pathBoxBoxSizer, wxSizerFlags{ 1 }.Expand());
 
-    wxBoxSizer* folderBrowseBoxSizer = new wxBoxSizer(wxHORIZONTAL);
+    auto* folderBrowseBoxSizer = new wxBoxSizer(wxHORIZONTAL);
     pathBoxBoxSizer->Add(folderBrowseBoxSizer, wxSizerFlags{}.Expand().Border());
 
-    wxTextCtrl* folderPathEdit = new wxTextCtrl(
-        pathBoxBoxSizer->GetStaticBox(), wxID_ANY, wxString{}, wxDefaultPosition, wxDefaultSize,
-        wxBORDER_THEME,
-        m_fileMode ? wxGenericValidator(&m_filePath) : wxGenericValidator(&m_folderPath));
+    auto* folderPathEdit = new wxTextCtrl(pathBoxBoxSizer->GetStaticBox(), wxID_ANY, wxString{},
+                                          wxDefaultPosition, wxDefaultSize, wxBORDER_THEME,
+                                          m_fileMode ? wxGenericValidator(&m_filePath) :
+                                                       wxGenericValidator(&m_folderPath));
     folderBrowseBoxSizer->Add(folderPathEdit, wxSizerFlags{ 1 }.Expand());
 
     m_folderBrowseButton =
@@ -237,28 +237,27 @@ void ExportAllDlg::CreateControls()
     folderBrowseBoxSizer->Add(m_folderBrowseButton);
 
     // inclusion options
-    wxStaticBox* inclusionSectionBox = new wxStaticBox(this, wxID_ANY, _(L"Sections to export:"));
-    wxStaticBoxSizer* inclusionSectionBoxSizer =
-        new wxStaticBoxSizer(inclusionSectionBox, wxVERTICAL);
+    auto* inclusionSectionBox = new wxStaticBox(this, wxID_ANY, _(L"Sections to export:"));
+    auto* inclusionSectionBoxSizer = new wxStaticBoxSizer(inclusionSectionBox, wxVERTICAL);
     itemsBoxSizer->Add(inclusionSectionBoxSizer);
     if (IsStandardProject())
         {
-        const ProjectView* view =
+        const auto* view =
             dynamic_cast<const ProjectView*>(m_readabilityProjectDoc->GetFirstView());
 
-        wxCheckBox* testResultsCheck = new wxCheckBox(
-            inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY, _(L"Test scores"),
-            wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportTestResults));
+        auto* testResultsCheck = new wxCheckBox(inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY,
+                                                _(L"Test scores"), wxDefaultPosition, wxDefaultSize,
+                                                0, wxGenericValidator(&m_exportTestResults));
         inclusionSectionBoxSizer->Add(testResultsCheck, wxSizerFlags{}.Expand().Border());
 
-        wxCheckBox* statisticsCheck = new wxCheckBox(
+        auto* statisticsCheck = new wxCheckBox(
             inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY, _(L"Summary statistics"),
             wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportStatistics));
         inclusionSectionBoxSizer->Add(statisticsCheck, wxSizerFlags{}.Expand().Border());
 
         if (view->GetWordsBreakdownView().GetWindowCount() > 0)
             {
-            wxCheckBox* listCheck = new wxCheckBox(
+            auto* listCheck = new wxCheckBox(
                 inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY, _(L"Words breakdown"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportHardWordLists));
             inclusionSectionBoxSizer->Add(listCheck, wxSizerFlags{}.Expand().Border());
@@ -266,7 +265,7 @@ void ExportAllDlg::CreateControls()
 
         if (view->GetSentencesBreakdownView().GetWindowCount() > 0)
             {
-            wxCheckBox* listCheck =
+            auto* listCheck =
                 new wxCheckBox(inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY,
                                _(L"Sentences breakdown"), wxDefaultPosition, wxDefaultSize, 0,
                                wxGenericValidator(&m_exportSentencesBreakdown));
@@ -275,7 +274,7 @@ void ExportAllDlg::CreateControls()
 
         if (view->GetGrammarView().GetWindowCount() > 0)
             {
-            wxCheckBox* wordinessCheck = new wxCheckBox(
+            auto* wordinessCheck = new wxCheckBox(
                 inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY, _(L"Grammar section"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportWordiness));
             inclusionSectionBoxSizer->Add(wordinessCheck, wxSizerFlags{}.Expand().Border());
@@ -283,7 +282,7 @@ void ExportAllDlg::CreateControls()
 
         if (view->GetDolchSightWordsView().GetWindowCount() > 0)
             {
-            wxCheckBox* sightWordsCheck = new wxCheckBox(
+            auto* sightWordsCheck = new wxCheckBox(
                 inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY, _(L"Dolch sight words section"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportSightWords));
             inclusionSectionBoxSizer->Add(sightWordsCheck, wxSizerFlags{}.Expand().Border());
@@ -294,24 +293,24 @@ void ExportAllDlg::CreateControls()
         const BatchProjectView* view =
             dynamic_cast<const BatchProjectView*>(m_readabilityProjectDoc->GetFirstView());
 
-        wxCheckBox* testResultsCheck = new wxCheckBox(
-            inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY, _(L"Test scores"),
-            wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportTestResults));
+        auto* testResultsCheck = new wxCheckBox(inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY,
+                                                _(L"Test scores"), wxDefaultPosition, wxDefaultSize,
+                                                0, wxGenericValidator(&m_exportTestResults));
         inclusionSectionBoxSizer->Add(testResultsCheck, wxSizerFlags{}.Expand().Border());
 
-        wxCheckBox* statisticsCheck = new wxCheckBox(
+        auto* statisticsCheck = new wxCheckBox(
             inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY, _(L"Summary statistics"),
             wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportStatistics));
         inclusionSectionBoxSizer->Add(statisticsCheck, wxSizerFlags{}.Expand().Border());
 
-        wxCheckBox* graphCheck = new wxCheckBox(
-            inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY, _(L"Histograms/box plots"),
-            wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportGraphs));
+        auto* graphCheck = new wxCheckBox(inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY,
+                                          _(L"Histograms/box plots"), wxDefaultPosition,
+                                          wxDefaultSize, 0, wxGenericValidator(&m_exportGraphs));
         inclusionSectionBoxSizer->Add(graphCheck, wxSizerFlags{}.Expand().Border());
 
         if (view->GetWordsBreakdownView().GetWindowCount() > 0)
             {
-            wxCheckBox* listCheck = new wxCheckBox(
+            auto* listCheck = new wxCheckBox(
                 inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY, _(L"Words breakdown"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportHardWordLists));
             inclusionSectionBoxSizer->Add(listCheck, wxSizerFlags{}.Expand().Border());
@@ -319,7 +318,7 @@ void ExportAllDlg::CreateControls()
 
         if (view->GetSentencesBreakdownView().GetWindowCount() > 0)
             {
-            wxCheckBox* listCheck =
+            auto* listCheck =
                 new wxCheckBox(inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY,
                                _(L"Sentences breakdown"), wxDefaultPosition, wxDefaultSize, 0,
                                wxGenericValidator(&m_exportSentencesBreakdown));
@@ -328,7 +327,7 @@ void ExportAllDlg::CreateControls()
 
         if (view->GetGrammarView().GetWindowCount() > 0)
             {
-            wxCheckBox* grammarCheck = new wxCheckBox(
+            auto* grammarCheck = new wxCheckBox(
                 inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY, _(L"Grammar section"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportWordiness));
             inclusionSectionBoxSizer->Add(grammarCheck, wxSizerFlags{}.Expand().Border());
@@ -336,7 +335,7 @@ void ExportAllDlg::CreateControls()
 
         if (view->GetDolchSightWordsView().GetWindowCount() > 0)
             {
-            wxCheckBox* sightWordsCheck = new wxCheckBox(
+            auto* sightWordsCheck = new wxCheckBox(
                 inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY, _(L"Dolch sight words section"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportSightWords));
             inclusionSectionBoxSizer->Add(sightWordsCheck, wxSizerFlags{}.Expand().Border());
@@ -344,7 +343,7 @@ void ExportAllDlg::CreateControls()
 
         if (view->GetWarningsView()->GetItemCount() > 0)
             {
-            wxCheckBox* warningsCheck = new wxCheckBox(
+            auto* warningsCheck = new wxCheckBox(
                 inclusionSectionBoxSizer->GetStaticBox(), wxID_ANY, _(L"Warnings section"),
                 wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&m_exportWarnings));
             inclusionSectionBoxSizer->Add(warningsCheck, wxSizerFlags{}.Expand().Border());
@@ -352,8 +351,8 @@ void ExportAllDlg::CreateControls()
         }
 
     // the extension values
-    wxStaticBox* exportTypeBox = new wxStaticBox(this, wxID_ANY, _(L"Export file types:"));
-    wxStaticBoxSizer* exportTypeStaticBoxSizer = new wxStaticBoxSizer(exportTypeBox, wxVERTICAL);
+    auto* exportTypeBox = new wxStaticBox(this, wxID_ANY, _(L"Export file types:"));
+    auto* exportTypeStaticBoxSizer = new wxStaticBoxSizer(exportTypeBox, wxVERTICAL);
     itemsBoxSizer->Add(exportTypeStaticBoxSizer);
 
     auto exportTypeBoxSizer = new wxFlexGridSizer(3, 5, 5);
@@ -361,7 +360,7 @@ void ExportAllDlg::CreateControls()
 
     if (!m_fileMode)
         {
-        wxStaticText* listLabel =
+        auto* listLabel =
             new wxStaticText(exportTypeStaticBoxSizer->GetStaticBox(), ID_LIST_TYPE_LABEL,
                              _(L"Export lists as:"), wxDefaultPosition, wxDefaultSize, 0);
         listLabel->Enable(m_exportingLists);
@@ -381,7 +380,7 @@ void ExportAllDlg::CreateControls()
         // text view section
         if (IsStandardProject())
             {
-            wxStaticText* textViewLabel = new wxStaticText(
+            auto* textViewLabel = new wxStaticText(
                 exportTypeStaticBoxSizer->GetStaticBox(), ID_TEXT_TYPE_LABEL,
                 _(L"Export text reports as:"), wxDefaultPosition, wxDefaultSize, 0);
             textViewLabel->Enable(m_exportingTextReports);
@@ -400,7 +399,7 @@ void ExportAllDlg::CreateControls()
         }
 
     // graph view section
-    wxStaticText* graphLabel =
+    auto* graphLabel =
         new wxStaticText(exportTypeStaticBoxSizer->GetStaticBox(), wxID_STATIC,
                          _(L"Export graphs as:"), wxDefaultPosition, wxDefaultSize, 0);
     exportTypeBoxSizer->Add(graphLabel, wxSizerFlags{}.Border().CenterVertical());
@@ -418,8 +417,8 @@ void ExportAllDlg::CreateControls()
     m_graphCombo->SetStringSelection(m_graphExt);
     exportTypeBoxSizer->Add(m_graphCombo, wxSizerFlags{}.Border().CenterVertical());
 
-    auto imageButton = new wxButton(exportTypeStaticBoxSizer->GetStaticBox(),
-                                    ID_IMAGE_OPTIONS_BUTTON, _(L"Image options"));
+    auto* imageButton = new wxButton(exportTypeStaticBoxSizer->GetStaticBox(),
+                                     ID_IMAGE_OPTIONS_BUTTON, _(L"Image options"));
     imageButton->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/boxplot.svg"));
     exportTypeBoxSizer->Add(imageButton, wxSizerFlags{}.Border().CenterVertical());
 
