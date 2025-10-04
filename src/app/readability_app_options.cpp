@@ -674,12 +674,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                     wxString::Format(_DT(L"color%d"), i).mb_str());
                 if (colorNode)
                     {
-                    int red =
-                        colorNode->ToElement()->IntAttribute(XmlFormat::GetRed().mb_str(), 255);
+                    int red = colorNode->ToElement()->IntAttribute(XmlFormat::RED_TAG.data(), 255);
                     int green =
-                        colorNode->ToElement()->IntAttribute(XmlFormat::GetBlue().mb_str(), 255);
+                        colorNode->ToElement()->IntAttribute(XmlFormat::BLUE_TAG.data(), 255);
                     int blue =
-                        colorNode->ToElement()->IntAttribute(XmlFormat::GetGreen().mb_str(), 255);
+                        colorNode->ToElement()->IntAttribute(XmlFormat::GREEN_TAG.data(), 255);
                     GetCustomColors().push_back(wxColour(red, green, blue));
                     }
                 else
@@ -949,11 +948,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
             auto fontColorNode = editorSettingsNode->FirstChildElement(XML_EDITOR_FONTCOLOR.data());
             if (fontColorNode)
                 {
-                int red = fontColorNode->ToElement()->IntAttribute(XmlFormat::GetRed().mb_str(),
+                int red = fontColorNode->ToElement()->IntAttribute(XmlFormat::RED_TAG.data(),
                                                                    m_editorFontColor.Red());
-                int green = fontColorNode->ToElement()->IntAttribute(XmlFormat::GetGreen().mb_str(),
+                int green = fontColorNode->ToElement()->IntAttribute(XmlFormat::GREEN_TAG.data(),
                                                                      m_editorFontColor.Green());
-                int blue = fontColorNode->ToElement()->IntAttribute(XmlFormat::GetBlue().mb_str(),
+                int blue = fontColorNode->ToElement()->IntAttribute(XmlFormat::BLUE_TAG.data(),
                                                                     m_editorFontColor.Blue());
                 m_editorFontColor.Set(red, green, blue);
                 }
@@ -962,14 +961,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
             if (fontNode)
                 {
                 int pointSize = fontNode->ToElement()->IntAttribute(
-                    XmlFormat::GetFontPointSize().mb_str(),
+                    XmlFormat::FONT_POINT_SIZE_TAG.data(),
                     wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize());
-                int style = fontNode->ToElement()->IntAttribute(XmlFormat::GetFontStyle().mb_str(),
+                int style = fontNode->ToElement()->IntAttribute(XmlFormat::FONT_STYLE_TAG.data(),
                                                                 wxFONTSTYLE_NORMAL);
-                int weight = fontNode->ToElement()->IntAttribute(
-                    XmlFormat::GetFontWeight().mb_str(), wxFONTWEIGHT_NORMAL);
+                int weight = fontNode->ToElement()->IntAttribute(XmlFormat::FONT_WEIGHT_TAG.data(),
+                                                                 wxFONTWEIGHT_NORMAL);
                 int underlined =
-                    fontNode->ToElement()->IntAttribute(XmlFormat::GetFontUnderline().mb_str(), 0);
+                    fontNode->ToElement()->IntAttribute(XmlFormat::FONT_UNDERLINE_TAG.data(), 0);
                 // get the font point size
                 m_editorFont.SetPointSize(
                     (pointSize > 0) ?
@@ -983,7 +982,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                 m_editorFont.SetUnderlined(int_to_bool(underlined));
                 // get the font facename
                 const char* faceName =
-                    fontNode->ToElement()->Attribute(XmlFormat::GetFontFaceName().mb_str());
+                    fontNode->ToElement()->Attribute(XmlFormat::FONT_FACE_NAME_TAG.data());
                 if (faceName)
                     {
                     const auto faceNameStr =
@@ -2089,11 +2088,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                     graphDefaultsNode->FirstChildElement(XML_GRAPH_BACKGROUND_COLOR.data());
                 if (colorNode)
                     {
-                    int red = colorNode->ToElement()->IntAttribute(XmlFormat::GetRed().mb_str(),
+                    int red = colorNode->ToElement()->IntAttribute(XmlFormat::RED_TAG.data(),
                                                                    GetBackGroundColor().Red());
-                    int green = colorNode->ToElement()->IntAttribute(XmlFormat::GetGreen().mb_str(),
+                    int green = colorNode->ToElement()->IntAttribute(XmlFormat::GREEN_TAG.data(),
                                                                      GetBackGroundColor().Green());
-                    int blue = colorNode->ToElement()->IntAttribute(XmlFormat::GetBlue().mb_str(),
+                    int blue = colorNode->ToElement()->IntAttribute(XmlFormat::BLUE_TAG.data(),
                                                                     GetBackGroundColor().Blue());
                     SetBackGroundColor(wxColour(red, green, blue));
                     }
@@ -2127,12 +2126,12 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                     graphDefaultsNode->FirstChildElement(XML_GRAPH_PLOT_BACKGROUND_COLOR.data());
                 if (colorNode)
                     {
-                    int red = colorNode->ToElement()->IntAttribute(XmlFormat::GetRed().mb_str(),
+                    int red = colorNode->ToElement()->IntAttribute(XmlFormat::RED_TAG.data(),
                                                                    GetPlotBackGroundColor().Red());
                     int green = colorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetGreen().mb_str(), GetPlotBackGroundColor().Green());
+                        XmlFormat::GREEN_TAG.data(), GetPlotBackGroundColor().Green());
                     int blue = colorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetBlue().mb_str(), GetPlotBackGroundColor().Blue());
+                        XmlFormat::BLUE_TAG.data(), GetPlotBackGroundColor().Blue());
                     SetPlotBackGroundColor(wxColour(red, green, blue));
                     }
                 auto opacityNode = graphDefaultsNode->FirstChildElement(
@@ -2222,11 +2221,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                 if (stippleColorNode)
                     {
                     int red = stippleColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetRed().mb_str(), GetStippleShapeColor().Red());
+                        XmlFormat::RED_TAG.data(), GetStippleShapeColor().Red());
                     int green = stippleColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetGreen().mb_str(), GetStippleShapeColor().Green());
+                        XmlFormat::GREEN_TAG.data(), GetStippleShapeColor().Green());
                     int blue = stippleColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetBlue().mb_str(), GetStippleShapeColor().Blue());
+                        XmlFormat::BLUE_TAG.data(), GetStippleShapeColor().Blue());
                     SetStippleShapeColor(wxColour(red, green, blue));
                     }
                 // whether drop shadows should be shown
@@ -2349,11 +2348,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                     if (colorNodeHisto)
                         {
                         int red = colorNodeHisto->ToElement()->IntAttribute(
-                            XmlFormat::GetRed().mb_str(), GetHistogramBarColor().Red());
+                            XmlFormat::RED_TAG.data(), GetHistogramBarColor().Red());
                         int green = colorNodeHisto->ToElement()->IntAttribute(
-                            XmlFormat::GetGreen().mb_str(), GetHistogramBarColor().Green());
+                            XmlFormat::GREEN_TAG.data(), GetHistogramBarColor().Green());
                         int blue = colorNodeHisto->ToElement()->IntAttribute(
-                            XmlFormat::GetBlue().mb_str(), GetHistogramBarColor().Blue());
+                            XmlFormat::BLUE_TAG.data(), GetHistogramBarColor().Blue());
                         SetHistogramBarColor(wxColour(red, green, blue));
                         }
                     auto opacityNodeHisto =
@@ -2387,11 +2386,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                     if (colorNodeBarChart)
                         {
                         int red = colorNodeBarChart->ToElement()->IntAttribute(
-                            XmlFormat::GetRed().mb_str(), GetBarChartBarColor().Red());
+                            XmlFormat::RED_TAG.data(), GetBarChartBarColor().Red());
                         int green = colorNodeBarChart->ToElement()->IntAttribute(
-                            XmlFormat::GetGreen().mb_str(), GetBarChartBarColor().Green());
+                            XmlFormat::GREEN_TAG.data(), GetBarChartBarColor().Green());
                         int blue = colorNodeBarChart->ToElement()->IntAttribute(
-                            XmlFormat::GetBlue().mb_str(), GetBarChartBarColor().Blue());
+                            XmlFormat::BLUE_TAG.data(), GetBarChartBarColor().Blue());
                         SetBarChartBarColor(wxColour(red, green, blue));
                         }
                     auto orientationNode =
@@ -2445,11 +2444,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                     if (colorNodeBoxPlot)
                         {
                         int red = colorNodeBoxPlot->ToElement()->IntAttribute(
-                            XmlFormat::GetRed().mb_str(), GetGraphBoxColor().Red());
+                            XmlFormat::RED_TAG.data(), GetGraphBoxColor().Red());
                         int green = colorNodeBoxPlot->ToElement()->IntAttribute(
-                            XmlFormat::GetGreen().mb_str(), GetGraphBoxColor().Green());
+                            XmlFormat::GREEN_TAG.data(), GetGraphBoxColor().Green());
                         int blue = colorNodeBoxPlot->ToElement()->IntAttribute(
-                            XmlFormat::GetBlue().mb_str(), GetGraphBoxColor().Blue());
+                            XmlFormat::BLUE_TAG.data(), GetGraphBoxColor().Blue());
                         SetGraphBoxColor(wxColour(red, green, blue));
                         }
                     auto opacityNodeBoxPlot =
@@ -2545,11 +2544,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                     if (colorNodeInvalidArea)
                         {
                         int red = colorNodeInvalidArea->ToElement()->IntAttribute(
-                            XmlFormat::GetRed().mb_str(), GetInvalidAreaColor().Red());
+                            XmlFormat::RED_TAG.data(), GetInvalidAreaColor().Red());
                         int green = colorNodeInvalidArea->ToElement()->IntAttribute(
-                            XmlFormat::GetGreen().mb_str(), GetInvalidAreaColor().Green());
+                            XmlFormat::GREEN_TAG.data(), GetInvalidAreaColor().Green());
                         int blue = colorNodeInvalidArea->ToElement()->IntAttribute(
-                            XmlFormat::GetBlue().mb_str(), GetInvalidAreaColor().Blue());
+                            XmlFormat::BLUE_TAG.data(), GetInvalidAreaColor().Blue());
                         SetInvalidAreaColor(wxColour(red, green, blue));
                         }
                     // Raygor appearance
@@ -2581,11 +2580,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         if (colorNodeXAxis)
                             {
                             int red = colorNodeXAxis->ToElement()->IntAttribute(
-                                XmlFormat::GetRed().mb_str(), GetXAxisFontColor().Red());
+                                XmlFormat::RED_TAG.data(), GetXAxisFontColor().Red());
                             int green = colorNodeXAxis->ToElement()->IntAttribute(
-                                XmlFormat::GetGreen().mb_str(), GetXAxisFontColor().Green());
+                                XmlFormat::GREEN_TAG.data(), GetXAxisFontColor().Green());
                             int blue = colorNodeXAxis->ToElement()->IntAttribute(
-                                XmlFormat::GetBlue().mb_str(), GetXAxisFontColor().Blue());
+                                XmlFormat::BLUE_TAG.data(), GetXAxisFontColor().Blue());
                             SetXAxisFontColor(wxColour(red, green, blue));
                             }
                         // font
@@ -2593,14 +2592,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         if (fontNode)
                             {
                             int pointSize = fontNode->ToElement()->IntAttribute(
-                                XmlFormat::GetFontPointSize().mb_str(),
+                                XmlFormat::FONT_POINT_SIZE_TAG.data(),
                                 wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize());
                             int style = fontNode->ToElement()->IntAttribute(
-                                XmlFormat::GetFontStyle().mb_str(), wxFONTSTYLE_NORMAL);
+                                XmlFormat::FONT_STYLE_TAG.data(), wxFONTSTYLE_NORMAL);
                             int weight = fontNode->ToElement()->IntAttribute(
-                                XmlFormat::GetFontWeight().mb_str(), wxFONTWEIGHT_NORMAL);
+                                XmlFormat::FONT_WEIGHT_TAG.data(), wxFONTWEIGHT_NORMAL);
                             int underlined = fontNode->ToElement()->IntAttribute(
-                                XmlFormat::GetFontUnderline().mb_str(), 0);
+                                XmlFormat::FONT_UNDERLINE_TAG.data(), 0);
                             // get the font point size
                             m_xAxisFont.SetPointSize(
                                 (pointSize > 0) ? pointSize :
@@ -2614,7 +2613,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                             m_xAxisFont.SetUnderlined(int_to_bool(underlined));
                             // get the font facename
                             const char* faceName = fontNode->ToElement()->Attribute(
-                                XmlFormat::GetFontFaceName().mb_str());
+                                XmlFormat::FONT_FACE_NAME_TAG.data());
                             if (faceName)
                                 {
                                 const auto faceNameStr = Wisteria::TextStream::CharStreamToUnicode(
@@ -2636,11 +2635,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         if (colorNodeYAxis)
                             {
                             int red = colorNodeYAxis->ToElement()->IntAttribute(
-                                XmlFormat::GetRed().mb_str(), GetYAxisFontColor().Red());
+                                XmlFormat::RED_TAG.data(), GetYAxisFontColor().Red());
                             int green = colorNodeYAxis->ToElement()->IntAttribute(
-                                XmlFormat::GetGreen().mb_str(), GetYAxisFontColor().Green());
+                                XmlFormat::GREEN_TAG.data(), GetYAxisFontColor().Green());
                             int blue = colorNodeYAxis->ToElement()->IntAttribute(
-                                XmlFormat::GetBlue().mb_str(), GetYAxisFontColor().Blue());
+                                XmlFormat::BLUE_TAG.data(), GetYAxisFontColor().Blue());
                             SetYAxisFontColor(wxColour(red, green, blue));
                             }
                         // font
@@ -2648,14 +2647,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         if (fontNode)
                             {
                             int pointSize = fontNode->ToElement()->IntAttribute(
-                                XmlFormat::GetFontPointSize().mb_str(),
+                                XmlFormat::FONT_POINT_SIZE_TAG.data(),
                                 wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize());
                             int style = fontNode->ToElement()->IntAttribute(
-                                XmlFormat::GetFontStyle().mb_str(), wxFONTSTYLE_NORMAL);
+                                XmlFormat::FONT_STYLE_TAG.data(), wxFONTSTYLE_NORMAL);
                             int weight = fontNode->ToElement()->IntAttribute(
-                                XmlFormat::GetFontWeight().mb_str(), wxFONTWEIGHT_NORMAL);
+                                XmlFormat::FONT_WEIGHT_TAG.data(), wxFONTWEIGHT_NORMAL);
                             int underlined = fontNode->ToElement()->IntAttribute(
-                                XmlFormat::GetFontUnderline().mb_str(), 0);
+                                XmlFormat::FONT_UNDERLINE_TAG.data(), 0);
                             // get the font point size
                             m_yAxisFont.SetPointSize(
                                 (pointSize > 0) ? pointSize :
@@ -2669,7 +2668,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                             m_yAxisFont.SetUnderlined(int_to_bool(underlined));
                             // get the font facename
                             const char* faceName = fontNode->ToElement()->Attribute(
-                                XmlFormat::GetFontFaceName().mb_str());
+                                XmlFormat::FONT_FACE_NAME_TAG.data());
                             if (faceName)
                                 {
                                 const auto faceNameStr = Wisteria::TextStream::CharStreamToUnicode(
@@ -2697,12 +2696,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         if (colorNodeTopTitle)
                             {
                             int red = colorNodeTopTitle->ToElement()->IntAttribute(
-                                XmlFormat::GetRed().mb_str(), GetGraphTopTitleFontColor().Red());
+                                XmlFormat::RED_TAG.data(), GetGraphTopTitleFontColor().Red());
                             int green = colorNodeTopTitle->ToElement()->IntAttribute(
-                                XmlFormat::GetGreen().mb_str(),
-                                GetGraphTopTitleFontColor().Green());
+                                XmlFormat::GREEN_TAG.data(), GetGraphTopTitleFontColor().Green());
                             int blue = colorNodeTopTitle->ToElement()->IntAttribute(
-                                XmlFormat::GetBlue().mb_str(), GetGraphTopTitleFontColor().Blue());
+                                XmlFormat::BLUE_TAG.data(), GetGraphTopTitleFontColor().Blue());
                             SetGraphTopTitleFontColor(wxColour(red, green, blue));
                             }
                         // font
@@ -2710,14 +2708,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         if (fontNode)
                             {
                             int pointSize = fontNode->ToElement()->IntAttribute(
-                                XmlFormat::GetFontPointSize().mb_str(),
+                                XmlFormat::FONT_POINT_SIZE_TAG.data(),
                                 wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize());
                             int style = fontNode->ToElement()->IntAttribute(
-                                XmlFormat::GetFontStyle().mb_str(), wxFONTSTYLE_NORMAL);
+                                XmlFormat::FONT_STYLE_TAG.data(), wxFONTSTYLE_NORMAL);
                             int weight = fontNode->ToElement()->IntAttribute(
-                                XmlFormat::GetFontWeight().mb_str(), wxFONTWEIGHT_NORMAL);
+                                XmlFormat::FONT_WEIGHT_TAG.data(), wxFONTWEIGHT_NORMAL);
                             int underlined = fontNode->ToElement()->IntAttribute(
-                                XmlFormat::GetFontUnderline().mb_str(), 0);
+                                XmlFormat::FONT_UNDERLINE_TAG.data(), 0);
                             // get the font point size
                             m_topTitleFont.SetPointSize(
                                 (pointSize > 0) ? pointSize :
@@ -2731,7 +2729,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                             m_topTitleFont.SetUnderlined(int_to_bool(underlined));
                             // get the font facename
                             const char* faceName = fontNode->ToElement()->Attribute(
-                                XmlFormat::GetFontFaceName().mb_str());
+                                XmlFormat::FONT_FACE_NAME_TAG.data());
                             if (faceName)
                                 {
                                 const auto faceNameStr = Wisteria::TextStream::CharStreamToUnicode(
@@ -2754,13 +2752,12 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         if (colorNodeBottomTitle)
                             {
                             int red = colorNodeBottomTitle->ToElement()->IntAttribute(
-                                XmlFormat::GetRed().mb_str(), GetGraphBottomTitleFontColor().Red());
+                                XmlFormat::RED_TAG.data(), GetGraphBottomTitleFontColor().Red());
                             int green = colorNodeBottomTitle->ToElement()->IntAttribute(
-                                XmlFormat::GetGreen().mb_str(),
+                                XmlFormat::GREEN_TAG.data(),
                                 GetGraphBottomTitleFontColor().Green());
                             int blue = colorNodeBottomTitle->ToElement()->IntAttribute(
-                                XmlFormat::GetBlue().mb_str(),
-                                GetGraphBottomTitleFontColor().Blue());
+                                XmlFormat::BLUE_TAG.data(), GetGraphBottomTitleFontColor().Blue());
                             SetGraphBottomTitleFontColor(wxColour(red, green, blue));
                             }
                         // font
@@ -2768,14 +2765,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         if (fontNode)
                             {
                             int pointSize = fontNode->ToElement()->IntAttribute(
-                                XmlFormat::GetFontPointSize().mb_str(),
+                                XmlFormat::FONT_POINT_SIZE_TAG.data(),
                                 wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize());
                             int style = fontNode->ToElement()->IntAttribute(
-                                XmlFormat::GetFontStyle().mb_str(), wxFONTSTYLE_NORMAL);
+                                XmlFormat::FONT_STYLE_TAG.data(), wxFONTSTYLE_NORMAL);
                             int weight = fontNode->ToElement()->IntAttribute(
-                                XmlFormat::GetFontWeight().mb_str(), wxFONTWEIGHT_NORMAL);
+                                XmlFormat::FONT_WEIGHT_TAG.data(), wxFONTWEIGHT_NORMAL);
                             int underlined = fontNode->ToElement()->IntAttribute(
-                                XmlFormat::GetFontUnderline().mb_str(), 0);
+                                XmlFormat::FONT_UNDERLINE_TAG.data(), 0);
                             // get the font point size
                             m_bottomTitleFont.SetPointSize(
                                 (pointSize > 0) ? pointSize :
@@ -2789,7 +2786,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                             m_bottomTitleFont.SetUnderlined(int_to_bool(underlined));
                             // get the font facename
                             const char* faceName = fontNode->ToElement()->Attribute(
-                                XmlFormat::GetFontFaceName().mb_str());
+                                XmlFormat::FONT_FACE_NAME_TAG.data());
                             if (faceName)
                                 {
                                 const auto faceNameStr = Wisteria::TextStream::CharStreamToUnicode(
@@ -2812,12 +2809,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         if (colorNodeLeftTitle)
                             {
                             int red = colorNodeLeftTitle->ToElement()->IntAttribute(
-                                XmlFormat::GetRed().mb_str(), GetGraphLeftTitleFontColor().Red());
+                                XmlFormat::RED_TAG.data(), GetGraphLeftTitleFontColor().Red());
                             int green = colorNodeLeftTitle->ToElement()->IntAttribute(
-                                XmlFormat::GetGreen().mb_str(),
-                                GetGraphLeftTitleFontColor().Green());
+                                XmlFormat::GREEN_TAG.data(), GetGraphLeftTitleFontColor().Green());
                             int blue = colorNodeLeftTitle->ToElement()->IntAttribute(
-                                XmlFormat::GetBlue().mb_str(), GetGraphLeftTitleFontColor().Blue());
+                                XmlFormat::BLUE_TAG.data(), GetGraphLeftTitleFontColor().Blue());
                             SetGraphLeftTitleFontColor(wxColour(red, green, blue));
                             }
                         // font
@@ -2825,14 +2821,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         if (fontNode)
                             {
                             int pointSize = fontNode->ToElement()->IntAttribute(
-                                XmlFormat::GetFontPointSize().mb_str(),
+                                XmlFormat::FONT_POINT_SIZE_TAG.data(),
                                 wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize());
                             int style = fontNode->ToElement()->IntAttribute(
-                                XmlFormat::GetFontStyle().mb_str(), wxFONTSTYLE_NORMAL);
+                                XmlFormat::FONT_STYLE_TAG.data(), wxFONTSTYLE_NORMAL);
                             int weight = fontNode->ToElement()->IntAttribute(
-                                XmlFormat::GetFontWeight().mb_str(), wxFONTWEIGHT_NORMAL);
+                                XmlFormat::FONT_WEIGHT_TAG.data(), wxFONTWEIGHT_NORMAL);
                             int underlined = fontNode->ToElement()->IntAttribute(
-                                XmlFormat::GetFontUnderline().mb_str(), 0);
+                                XmlFormat::FONT_UNDERLINE_TAG.data(), 0);
                             // get the font point size
                             m_leftTitleFont.SetPointSize(
                                 (pointSize > 0) ? pointSize :
@@ -2846,7 +2842,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                             m_leftTitleFont.SetUnderlined(int_to_bool(underlined));
                             // get the font facename
                             const char* faceName = fontNode->ToElement()->Attribute(
-                                XmlFormat::GetFontFaceName().mb_str());
+                                XmlFormat::FONT_FACE_NAME_TAG.data());
                             if (faceName)
                                 {
                                 const auto faceNameStr = Wisteria::TextStream::CharStreamToUnicode(
@@ -2869,13 +2865,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         if (colorNodeRightTitle)
                             {
                             int red = colorNodeRightTitle->ToElement()->IntAttribute(
-                                XmlFormat::GetRed().mb_str(), GetGraphRightTitleFontColor().Red());
+                                XmlFormat::RED_TAG.data(), GetGraphRightTitleFontColor().Red());
                             int green = colorNodeRightTitle->ToElement()->IntAttribute(
-                                XmlFormat::GetGreen().mb_str(),
-                                GetGraphRightTitleFontColor().Green());
+                                XmlFormat::GREEN_TAG.data(), GetGraphRightTitleFontColor().Green());
                             int blue = colorNodeRightTitle->ToElement()->IntAttribute(
-                                XmlFormat::GetBlue().mb_str(),
-                                GetGraphRightTitleFontColor().Blue());
+                                XmlFormat::BLUE_TAG.data(), GetGraphRightTitleFontColor().Blue());
                             SetGraphRightTitleFontColor(wxColour(red, green, blue));
                             }
                         // font
@@ -2883,14 +2877,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         if (fontNode)
                             {
                             int pointSize = fontNode->ToElement()->IntAttribute(
-                                XmlFormat::GetFontPointSize().mb_str(),
+                                XmlFormat::FONT_POINT_SIZE_TAG.data(),
                                 wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize());
                             int style = fontNode->ToElement()->IntAttribute(
-                                XmlFormat::GetFontStyle().mb_str(), wxFONTSTYLE_NORMAL);
+                                XmlFormat::FONT_STYLE_TAG.data(), wxFONTSTYLE_NORMAL);
                             int weight = fontNode->ToElement()->IntAttribute(
-                                XmlFormat::GetFontWeight().mb_str(), wxFONTWEIGHT_NORMAL);
+                                XmlFormat::FONT_WEIGHT_TAG.data(), wxFONTWEIGHT_NORMAL);
                             int underlined = fontNode->ToElement()->IntAttribute(
-                                XmlFormat::GetFontUnderline().mb_str(), 0);
+                                XmlFormat::FONT_UNDERLINE_TAG.data(), 0);
                             // get the font point size
                             m_rightTitleFont.SetPointSize(
                                 (pointSize > 0) ? pointSize :
@@ -2904,7 +2898,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                             m_rightTitleFont.SetUnderlined(int_to_bool(underlined));
                             // get the font facename
                             const char* faceName = fontNode->ToElement()->Attribute(
-                                XmlFormat::GetFontFaceName().mb_str());
+                                XmlFormat::FONT_FACE_NAME_TAG.data());
                             if (faceName)
                                 {
                                 const auto faceNameStr = Wisteria::TextStream::CharStreamToUnicode(
@@ -3288,11 +3282,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                 auto colorNode = textViewNode->FirstChildElement(XML_HIGHLIGHTCOLOR.data());
                 if (colorNode)
                     {
-                    int red = colorNode->ToElement()->IntAttribute(XmlFormat::GetRed().mb_str(),
+                    int red = colorNode->ToElement()->IntAttribute(XmlFormat::RED_TAG.data(),
                                                                    m_textHighlightColor.Red());
-                    int green = colorNode->ToElement()->IntAttribute(XmlFormat::GetGreen().mb_str(),
+                    int green = colorNode->ToElement()->IntAttribute(XmlFormat::GREEN_TAG.data(),
                                                                      m_textHighlightColor.Green());
-                    int blue = colorNode->ToElement()->IntAttribute(XmlFormat::GetBlue().mb_str(),
+                    int blue = colorNode->ToElement()->IntAttribute(XmlFormat::BLUE_TAG.data(),
                                                                     m_textHighlightColor.Blue());
                     m_textHighlightColor.Set(red, green, blue);
                     }
@@ -3302,11 +3296,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                 if (dolchConjunctionsColorNode)
                     {
                     int red = dolchConjunctionsColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetRed().mb_str(), GetDolchConjunctionsColor().Red());
+                        XmlFormat::RED_TAG.data(), GetDolchConjunctionsColor().Red());
                     int green = dolchConjunctionsColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetGreen().mb_str(), GetDolchConjunctionsColor().Green());
+                        XmlFormat::GREEN_TAG.data(), GetDolchConjunctionsColor().Green());
                     int blue = dolchConjunctionsColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetBlue().mb_str(), GetDolchConjunctionsColor().Blue());
+                        XmlFormat::BLUE_TAG.data(), GetDolchConjunctionsColor().Blue());
                     SetDolchConjunctionsColor(wxColour(red, green, blue));
                     m_highlightDolchConjunctions =
                         int_to_bool(dolchConjunctionsColorNode->ToElement()->IntAttribute(
@@ -3317,11 +3311,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                 if (dolchPrepositionsColorNode)
                     {
                     int red = dolchPrepositionsColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetRed().mb_str(), GetDolchPrepositionsColor().Red());
+                        XmlFormat::RED_TAG.data(), GetDolchPrepositionsColor().Red());
                     int green = dolchPrepositionsColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetGreen().mb_str(), GetDolchPrepositionsColor().Green());
+                        XmlFormat::GREEN_TAG.data(), GetDolchPrepositionsColor().Green());
                     int blue = dolchPrepositionsColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetBlue().mb_str(), GetDolchPrepositionsColor().Blue());
+                        XmlFormat::BLUE_TAG.data(), GetDolchPrepositionsColor().Blue());
                     SetDolchPrepositionsColor(wxColour(red, green, blue));
                     m_highlightDolchPrepositions =
                         int_to_bool(dolchPrepositionsColorNode->ToElement()->IntAttribute(
@@ -3332,11 +3326,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                 if (dolchPronounsColorNode)
                     {
                     int red = dolchPronounsColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetRed().mb_str(), GetDolchPronounsColor().Red());
+                        XmlFormat::RED_TAG.data(), GetDolchPronounsColor().Red());
                     int green = dolchPronounsColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetGreen().mb_str(), GetDolchPronounsColor().Green());
+                        XmlFormat::GREEN_TAG.data(), GetDolchPronounsColor().Green());
                     int blue = dolchPronounsColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetBlue().mb_str(), GetDolchPronounsColor().Blue());
+                        XmlFormat::BLUE_TAG.data(), GetDolchPronounsColor().Blue());
                     SetDolchPronounsColor(wxColour(red, green, blue));
                     m_highlightDolchPronouns =
                         int_to_bool(dolchPronounsColorNode->ToElement()->IntAttribute(
@@ -3347,11 +3341,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                 if (dolchAdverbsColorNode)
                     {
                     int red = dolchAdverbsColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetRed().mb_str(), GetDolchAdverbsColor().Red());
+                        XmlFormat::RED_TAG.data(), GetDolchAdverbsColor().Red());
                     int green = dolchAdverbsColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetGreen().mb_str(), GetDolchAdverbsColor().Green());
+                        XmlFormat::GREEN_TAG.data(), GetDolchAdverbsColor().Green());
                     int blue = dolchAdverbsColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetBlue().mb_str(), GetDolchAdverbsColor().Blue());
+                        XmlFormat::BLUE_TAG.data(), GetDolchAdverbsColor().Blue());
                     SetDolchAdverbsColor(wxColour(red, green, blue));
                     m_highlightDolchAdverbs =
                         int_to_bool(dolchAdverbsColorNode->ToElement()->IntAttribute(
@@ -3362,11 +3356,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                 if (dolchAdjectivesColorNode)
                     {
                     int red = dolchAdjectivesColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetRed().mb_str(), GetDolchAdjectivesColor().Red());
+                        XmlFormat::RED_TAG.data(), GetDolchAdjectivesColor().Red());
                     int green = dolchAdjectivesColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetGreen().mb_str(), GetDolchAdjectivesColor().Green());
+                        XmlFormat::GREEN_TAG.data(), GetDolchAdjectivesColor().Green());
                     int blue = dolchAdjectivesColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetBlue().mb_str(), GetDolchAdjectivesColor().Blue());
+                        XmlFormat::BLUE_TAG.data(), GetDolchAdjectivesColor().Blue());
                     SetDolchAdjectivesColor(wxColour(red, green, blue));
                     m_highlightDolchAdjectives =
                         int_to_bool(dolchAdjectivesColorNode->ToElement()->IntAttribute(
@@ -3377,11 +3371,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                 if (dolchVerbColorNode)
                     {
                     int red = dolchVerbColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetRed().mb_str(), GetDolchVerbsColor().Red());
+                        XmlFormat::RED_TAG.data(), GetDolchVerbsColor().Red());
                     int green = dolchVerbColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetGreen().mb_str(), GetDolchVerbsColor().Green());
+                        XmlFormat::GREEN_TAG.data(), GetDolchVerbsColor().Green());
                     int blue = dolchVerbColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetBlue().mb_str(), GetDolchVerbsColor().Blue());
+                        XmlFormat::BLUE_TAG.data(), GetDolchVerbsColor().Blue());
                     SetDolchVerbsColor(wxColour(red, green, blue));
                     m_highlightDolchVerbs =
                         int_to_bool(dolchVerbColorNode->ToElement()->IntAttribute(
@@ -3392,11 +3386,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                 if (dolchNounColorNode)
                     {
                     int red = dolchNounColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetRed().mb_str(), GetDolchNounsColor().Red());
+                        XmlFormat::RED_TAG.data(), GetDolchNounsColor().Red());
                     int green = dolchNounColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetGreen().mb_str(), GetDolchNounsColor().Green());
+                        XmlFormat::GREEN_TAG.data(), GetDolchNounsColor().Green());
                     int blue = dolchNounColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetBlue().mb_str(), GetDolchNounsColor().Blue());
+                        XmlFormat::BLUE_TAG.data(), GetDolchNounsColor().Blue());
                     SetDolchNounsColor(wxColour(red, green, blue));
                     m_highlightDolchNouns =
                         int_to_bool(dolchNounColorNode->ToElement()->IntAttribute(
@@ -3408,11 +3402,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                 if (wordyPhrasesColorNode)
                     {
                     int red = wordyPhrasesColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetRed().mb_str(), m_wordyPhraseHighlightColor.Red());
+                        XmlFormat::RED_TAG.data(), m_wordyPhraseHighlightColor.Red());
                     int green = wordyPhrasesColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetGreen().mb_str(), m_wordyPhraseHighlightColor.Green());
+                        XmlFormat::GREEN_TAG.data(), m_wordyPhraseHighlightColor.Green());
                     int blue = wordyPhrasesColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetBlue().mb_str(), m_wordyPhraseHighlightColor.Blue());
+                        XmlFormat::BLUE_TAG.data(), m_wordyPhraseHighlightColor.Blue());
                     m_wordyPhraseHighlightColor.Set(red, green, blue);
                     }
                 // the highlight color for repeated words
@@ -3421,11 +3415,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                 if (dupWordColorNode)
                     {
                     int red = dupWordColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetRed().mb_str(), m_duplicateWordHighlightColor.Red());
+                        XmlFormat::RED_TAG.data(), m_duplicateWordHighlightColor.Red());
                     int green = dupWordColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetGreen().mb_str(), m_duplicateWordHighlightColor.Green());
+                        XmlFormat::GREEN_TAG.data(), m_duplicateWordHighlightColor.Green());
                     int blue = dupWordColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetBlue().mb_str(), m_duplicateWordHighlightColor.Blue());
+                        XmlFormat::BLUE_TAG.data(), m_duplicateWordHighlightColor.Blue());
                     m_duplicateWordHighlightColor.Set(red, green, blue);
                     }
                 // the highlight color for ignored sentences
@@ -3434,11 +3428,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                 if (excludedColorNode)
                     {
                     int red = excludedColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetRed().mb_str(), m_excludedTextHighlightColor.Red());
+                        XmlFormat::RED_TAG.data(), m_excludedTextHighlightColor.Red());
                     int green = excludedColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetGreen().mb_str(), m_excludedTextHighlightColor.Green());
+                        XmlFormat::GREEN_TAG.data(), m_excludedTextHighlightColor.Green());
                     int blue = excludedColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetBlue().mb_str(), m_excludedTextHighlightColor.Blue());
+                        XmlFormat::BLUE_TAG.data(), m_excludedTextHighlightColor.Blue());
                     m_excludedTextHighlightColor.Set(red, green, blue);
                     }
                 // document display font information
@@ -3446,12 +3440,12 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                     textViewNode->FirstChildElement(XML_DOCUMENT_DISPLAY_FONTCOLOR.data());
                 if (fontColorNode)
                     {
-                    int red = fontColorNode->ToElement()->IntAttribute(XmlFormat::GetRed().mb_str(),
+                    int red = fontColorNode->ToElement()->IntAttribute(XmlFormat::RED_TAG.data(),
                                                                        m_fontColor.Red());
                     int green = fontColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetGreen().mb_str(), m_fontColor.Green());
-                    int blue = fontColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GetBlue().mb_str(), m_fontColor.Blue());
+                        XmlFormat::GREEN_TAG.data(), m_fontColor.Green());
+                    int blue = fontColorNode->ToElement()->IntAttribute(XmlFormat::BLUE_TAG.data(),
+                                                                        m_fontColor.Blue());
                     m_fontColor.Set(red, green, blue);
                     }
                 // font
@@ -3459,14 +3453,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                 if (fontNode)
                     {
                     int pointSize = fontNode->ToElement()->IntAttribute(
-                        XmlFormat::GetFontPointSize().mb_str(),
+                        XmlFormat::FONT_POINT_SIZE_TAG.data(),
                         wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT).GetPointSize());
                     int style = fontNode->ToElement()->IntAttribute(
-                        XmlFormat::GetFontStyle().mb_str(), wxFONTSTYLE_NORMAL);
+                        XmlFormat::FONT_STYLE_TAG.data(), wxFONTSTYLE_NORMAL);
                     int weight = fontNode->ToElement()->IntAttribute(
-                        XmlFormat::GetFontWeight().mb_str(), wxFONTWEIGHT_NORMAL);
+                        XmlFormat::FONT_WEIGHT_TAG.data(), wxFONTWEIGHT_NORMAL);
                     int underlined = fontNode->ToElement()->IntAttribute(
-                        XmlFormat::GetFontUnderline().mb_str(), 0);
+                        XmlFormat::FONT_UNDERLINE_TAG.data(), 0);
                     // get the font point size
                     m_textViewFont.SetPointSize(
                         (pointSize > 0) ?
@@ -3480,7 +3474,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                     m_textViewFont.SetUnderlined(int_to_bool(underlined));
                     // get the font facename
                     const char* faceName =
-                        fontNode->ToElement()->Attribute(XmlFormat::GetFontFaceName().mb_str());
+                        fontNode->ToElement()->Attribute(XmlFormat::FONT_FACE_NAME_TAG.data());
                     if (faceName)
                         {
                         const auto faceNameStr = Wisteria::TextStream::CharStreamToUnicode(
@@ -3528,15 +3522,15 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     for (int i = 0; static_cast<size_t>(i) < GetCustomColors().size(); ++i)
         {
         auto customColor = doc.NewElement(wxString::Format(_DT(L"color%d"), i).mb_str());
-        customColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetCustomColors().at(i).IsOk() ?
-                                                                    GetCustomColors().at(i).Red() :
-                                                                    255);
-        customColor->SetAttribute(XmlFormat::GetGreen().mb_str(),
-                                  GetCustomColors().at(i).IsOk() ? GetCustomColors().at(i).Green() :
+        customColor->SetAttribute(XmlFormat::RED_TAG.data(), GetCustomColors().at(i).IsOk() ?
+                                                                 GetCustomColors().at(i).Red() :
+                                                                 255);
+        customColor->SetAttribute(XmlFormat::GREEN_TAG.data(), GetCustomColors().at(i).IsOk() ?
+                                                                   GetCustomColors().at(i).Green() :
                                                                    255);
-        customColor->SetAttribute(XmlFormat::GetBlue().mb_str(),
-                                  GetCustomColors().at(i).IsOk() ? GetCustomColors().at(i).Blue() :
-                                                                   255);
+        customColor->SetAttribute(XmlFormat::BLUE_TAG.data(), GetCustomColors().at(i).IsOk() ?
+                                                                  GetCustomColors().at(i).Blue() :
+                                                                  255);
         customColours->InsertEndChild(customColor);
         }
     configSection->InsertEndChild(customColours);
@@ -3731,21 +3725,21 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         {
         auto editorSection = doc.NewElement(XML_EDITOR.data());
         auto fontcolor = doc.NewElement(XML_EDITOR_FONTCOLOR.data());
-        fontcolor->SetAttribute(XmlFormat::GetRed().mb_str(), m_editorFontColor.Red());
-        fontcolor->SetAttribute(XmlFormat::GetGreen().mb_str(), m_editorFontColor.Green());
-        fontcolor->SetAttribute(XmlFormat::GetBlue().mb_str(), m_editorFontColor.Blue());
+        fontcolor->SetAttribute(XmlFormat::RED_TAG.data(), m_editorFontColor.Red());
+        fontcolor->SetAttribute(XmlFormat::GREEN_TAG.data(), m_editorFontColor.Green());
+        fontcolor->SetAttribute(XmlFormat::BLUE_TAG.data(), m_editorFontColor.Blue());
         editorSection->InsertEndChild(fontcolor);
 
         auto font = doc.NewElement(XML_EDITOR_FONT.data());
-        font->SetAttribute(XmlFormat::GetFontPointSize().mb_str(), m_editorFont.GetPointSize());
-        font->SetAttribute(XmlFormat::GetFontStyle().mb_str(),
+        font->SetAttribute(XmlFormat::FONT_POINT_SIZE_TAG.data(), m_editorFont.GetPointSize());
+        font->SetAttribute(XmlFormat::FONT_STYLE_TAG.data(),
                            static_cast<int>(m_editorFont.GetStyle()));
-        font->SetAttribute(XmlFormat::GetFontWeight().mb_str(),
+        font->SetAttribute(XmlFormat::FONT_WEIGHT_TAG.data(),
                            static_cast<int>(m_editorFont.GetWeight()));
-        font->SetAttribute(XmlFormat::GetFontUnderline().mb_str(),
+        font->SetAttribute(XmlFormat::FONT_UNDERLINE_TAG.data(),
                            bool_to_int(m_editorFont.GetUnderlined()));
         font->SetAttribute(
-            XmlFormat::GetFontFaceName().mb_str(),
+            XmlFormat::FONT_FACE_NAME_TAG.data(),
             wxString(encode({ m_editorFont.GetFaceName().wc_str() }, false).c_str()).mb_str());
         editorSection->InsertEndChild(font);
 
@@ -4267,19 +4261,19 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     if (GetBackGroundColor().IsOk())
         {
         auto backgroundColor = doc.NewElement(XML_GRAPH_BACKGROUND_COLOR.data());
-        backgroundColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetBackGroundColor().Red());
-        backgroundColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetBackGroundColor().Green());
-        backgroundColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetBackGroundColor().Blue());
+        backgroundColor->SetAttribute(XmlFormat::RED_TAG.data(), GetBackGroundColor().Red());
+        backgroundColor->SetAttribute(XmlFormat::GREEN_TAG.data(), GetBackGroundColor().Green());
+        backgroundColor->SetAttribute(XmlFormat::BLUE_TAG.data(), GetBackGroundColor().Blue());
         graphDefaultsSection->InsertEndChild(backgroundColor);
         }
     if (GetPlotBackGroundColor().IsOk())
         {
         auto plotBackgroundColor = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_COLOR.data());
-        plotBackgroundColor->SetAttribute(XmlFormat::GetRed().mb_str(),
+        plotBackgroundColor->SetAttribute(XmlFormat::RED_TAG.data(),
                                           GetPlotBackGroundColor().Red());
-        plotBackgroundColor->SetAttribute(XmlFormat::GetGreen().mb_str(),
+        plotBackgroundColor->SetAttribute(XmlFormat::GREEN_TAG.data(),
                                           GetPlotBackGroundColor().Green());
-        plotBackgroundColor->SetAttribute(XmlFormat::GetBlue().mb_str(),
+        plotBackgroundColor->SetAttribute(XmlFormat::BLUE_TAG.data(),
                                           GetPlotBackGroundColor().Blue());
         graphDefaultsSection->InsertEndChild(plotBackgroundColor);
         }
@@ -4318,11 +4312,10 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     if (GetStippleShapeColor().IsOk())
         {
         auto stippleShapeColor = doc.NewElement(XML_GRAPH_STIPPLE_COLOR.data());
-        stippleShapeColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetStippleShapeColor().Red());
-        stippleShapeColor->SetAttribute(XmlFormat::GetGreen().mb_str(),
+        stippleShapeColor->SetAttribute(XmlFormat::RED_TAG.data(), GetStippleShapeColor().Red());
+        stippleShapeColor->SetAttribute(XmlFormat::GREEN_TAG.data(),
                                         GetStippleShapeColor().Green());
-        stippleShapeColor->SetAttribute(XmlFormat::GetBlue().mb_str(),
-                                        GetStippleShapeColor().Blue());
+        stippleShapeColor->SetAttribute(XmlFormat::BLUE_TAG.data(), GetStippleShapeColor().Blue());
         graphDefaultsSection->InsertEndChild(stippleShapeColor);
         }
 
@@ -4368,9 +4361,9 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     histogramSettings->InsertEndChild(hCatLabelDisplay);
     // bar color
     auto hbarColor = doc.NewElement(XML_GRAPH_COLOR.data());
-    hbarColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetHistogramBarColor().Red());
-    hbarColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetHistogramBarColor().Green());
-    hbarColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetHistogramBarColor().Blue());
+    hbarColor->SetAttribute(XmlFormat::RED_TAG.data(), GetHistogramBarColor().Red());
+    hbarColor->SetAttribute(XmlFormat::GREEN_TAG.data(), GetHistogramBarColor().Green());
+    hbarColor->SetAttribute(XmlFormat::BLUE_TAG.data(), GetHistogramBarColor().Blue());
     histogramSettings->InsertEndChild(hbarColor);
     // bar opacity
     auto hbarOpacity = doc.NewElement(XML_GRAPH_OPACITY.data());
@@ -4387,9 +4380,9 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto barChartSettings = doc.NewElement(XML_BAR_CHART_SETTINGS.data());
     // bar color
     auto barChartbarColor = doc.NewElement(XML_GRAPH_COLOR.data());
-    barChartbarColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetBarChartBarColor().Red());
-    barChartbarColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetBarChartBarColor().Green());
-    barChartbarColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetBarChartBarColor().Blue());
+    barChartbarColor->SetAttribute(XmlFormat::RED_TAG.data(), GetBarChartBarColor().Red());
+    barChartbarColor->SetAttribute(XmlFormat::GREEN_TAG.data(), GetBarChartBarColor().Green());
+    barChartbarColor->SetAttribute(XmlFormat::BLUE_TAG.data(), GetBarChartBarColor().Blue());
     barChartSettings->InsertEndChild(barChartbarColor);
     // bar orientation
     auto barOrientation = doc.NewElement(XML_BAR_ORIENTATION.data());
@@ -4415,9 +4408,9 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto boxPlotSettings = doc.NewElement(XML_BOX_PLOT_SETTINGS.data());
     // box color
     auto boxColor = doc.NewElement(XML_GRAPH_COLOR.data());
-    boxColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetGraphBoxColor().Red());
-    boxColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetGraphBoxColor().Green());
-    boxColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetGraphBoxColor().Blue());
+    boxColor->SetAttribute(XmlFormat::RED_TAG.data(), GetGraphBoxColor().Red());
+    boxColor->SetAttribute(XmlFormat::GREEN_TAG.data(), GetGraphBoxColor().Green());
+    boxColor->SetAttribute(XmlFormat::BLUE_TAG.data(), GetGraphBoxColor().Blue());
     boxPlotSettings->InsertEndChild(boxColor);
     // box opacity
     auto boxOpacity = doc.NewElement(XML_GRAPH_OPACITY.data());
@@ -4466,9 +4459,9 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto fryRaygor = doc.NewElement(XML_FRY_RAYGOR_SETTINGS.data());
     // invalid area colors
     auto invalidAreaColor = doc.NewElement(XML_INVALID_AREA_COLOR.data());
-    invalidAreaColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetInvalidAreaColor().Red());
-    invalidAreaColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetInvalidAreaColor().Green());
-    invalidAreaColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetInvalidAreaColor().Blue());
+    invalidAreaColor->SetAttribute(XmlFormat::RED_TAG.data(), GetInvalidAreaColor().Red());
+    invalidAreaColor->SetAttribute(XmlFormat::GREEN_TAG.data(), GetInvalidAreaColor().Green());
+    invalidAreaColor->SetAttribute(XmlFormat::BLUE_TAG.data(), GetInvalidAreaColor().Blue());
     fryRaygor->InsertEndChild(invalidAreaColor);
 
     auto raygorStyle = doc.NewElement(XML_RAYGOR_STYLE.data());
@@ -4482,20 +4475,20 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto xAxis = doc.NewElement(XML_X_AXIS.data());
     // x-axis font color
     auto xAxisFontColor = doc.NewElement(XML_FONT_COLOR.data());
-    xAxisFontColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetXAxisFontColor().Red());
-    xAxisFontColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetXAxisFontColor().Green());
-    xAxisFontColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetXAxisFontColor().Blue());
+    xAxisFontColor->SetAttribute(XmlFormat::RED_TAG.data(), GetXAxisFontColor().Red());
+    xAxisFontColor->SetAttribute(XmlFormat::GREEN_TAG.data(), GetXAxisFontColor().Green());
+    xAxisFontColor->SetAttribute(XmlFormat::BLUE_TAG.data(), GetXAxisFontColor().Blue());
     // x-axis font
     auto xAxisFont = doc.NewElement(XML_FONT.data());
-    xAxisFont->SetAttribute(XmlFormat::GetFontPointSize().mb_str(), GetXAxisFont().GetPointSize());
-    xAxisFont->SetAttribute(XmlFormat::GetFontStyle().mb_str(),
+    xAxisFont->SetAttribute(XmlFormat::FONT_POINT_SIZE_TAG.data(), GetXAxisFont().GetPointSize());
+    xAxisFont->SetAttribute(XmlFormat::FONT_STYLE_TAG.data(),
                             static_cast<int>(GetXAxisFont().GetStyle()));
-    xAxisFont->SetAttribute(XmlFormat::GetFontWeight().mb_str(),
+    xAxisFont->SetAttribute(XmlFormat::FONT_WEIGHT_TAG.data(),
                             static_cast<int>(GetXAxisFont().GetWeight()));
-    xAxisFont->SetAttribute(XmlFormat::GetFontUnderline().mb_str(),
+    xAxisFont->SetAttribute(XmlFormat::FONT_UNDERLINE_TAG.data(),
                             bool_to_int(GetXAxisFont().GetUnderlined()));
     xAxisFont->SetAttribute(
-        XmlFormat::GetFontFaceName().mb_str(),
+        XmlFormat::FONT_FACE_NAME_TAG.data(),
         wxString(encode({ GetXAxisFont().GetFaceName().wc_str() }, false).c_str()).mb_str());
     // put it all together
     xAxis->InsertEndChild(xAxisFontColor);
@@ -4506,20 +4499,20 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto yAxis = doc.NewElement(XML_Y_AXIS.data());
     // y-axis font color
     auto yAxisFontColor = doc.NewElement(XML_FONT_COLOR.data());
-    yAxisFontColor->SetAttribute(XmlFormat::GetRed().mb_str(), GetYAxisFontColor().Red());
-    yAxisFontColor->SetAttribute(XmlFormat::GetGreen().mb_str(), GetYAxisFontColor().Green());
-    yAxisFontColor->SetAttribute(XmlFormat::GetBlue().mb_str(), GetYAxisFontColor().Blue());
+    yAxisFontColor->SetAttribute(XmlFormat::RED_TAG.data(), GetYAxisFontColor().Red());
+    yAxisFontColor->SetAttribute(XmlFormat::GREEN_TAG.data(), GetYAxisFontColor().Green());
+    yAxisFontColor->SetAttribute(XmlFormat::BLUE_TAG.data(), GetYAxisFontColor().Blue());
     // y-axis font
     auto yAxisFont = doc.NewElement(XML_FONT.data());
-    yAxisFont->SetAttribute(XmlFormat::GetFontPointSize().mb_str(), GetYAxisFont().GetPointSize());
-    yAxisFont->SetAttribute(XmlFormat::GetFontStyle().mb_str(),
+    yAxisFont->SetAttribute(XmlFormat::FONT_POINT_SIZE_TAG.data(), GetYAxisFont().GetPointSize());
+    yAxisFont->SetAttribute(XmlFormat::FONT_STYLE_TAG.data(),
                             static_cast<int>(GetYAxisFont().GetStyle()));
-    yAxisFont->SetAttribute(XmlFormat::GetFontWeight().mb_str(),
+    yAxisFont->SetAttribute(XmlFormat::FONT_WEIGHT_TAG.data(),
                             static_cast<int>(GetYAxisFont().GetWeight()));
-    yAxisFont->SetAttribute(XmlFormat::GetFontUnderline().mb_str(),
+    yAxisFont->SetAttribute(XmlFormat::FONT_UNDERLINE_TAG.data(),
                             bool_to_int(GetYAxisFont().GetUnderlined()));
     yAxisFont->SetAttribute(
-        XmlFormat::GetFontFaceName().mb_str(),
+        XmlFormat::FONT_FACE_NAME_TAG.data(),
         wxString(encode({ GetYAxisFont().GetFaceName().wc_str() }, false).c_str()).mb_str());
     // put it all together
     yAxis->InsertEndChild(yAxisFontColor);
@@ -4532,24 +4525,22 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto topTitle = doc.NewElement(XML_TOP_TITLE.data());
     // top title font color
     auto topTitleFontColor = doc.NewElement(XML_FONT_COLOR.data());
-    topTitleFontColor->SetAttribute(XmlFormat::GetRed().mb_str(),
-                                    GetGraphTopTitleFontColor().Red());
-    topTitleFontColor->SetAttribute(XmlFormat::GetGreen().mb_str(),
+    topTitleFontColor->SetAttribute(XmlFormat::RED_TAG.data(), GetGraphTopTitleFontColor().Red());
+    topTitleFontColor->SetAttribute(XmlFormat::GREEN_TAG.data(),
                                     GetGraphTopTitleFontColor().Green());
-    topTitleFontColor->SetAttribute(XmlFormat::GetBlue().mb_str(),
-                                    GetGraphTopTitleFontColor().Blue());
+    topTitleFontColor->SetAttribute(XmlFormat::BLUE_TAG.data(), GetGraphTopTitleFontColor().Blue());
     // top title font
     auto topTitleFont = doc.NewElement(XML_FONT.data());
-    topTitleFont->SetAttribute(XmlFormat::GetFontPointSize().mb_str(),
+    topTitleFont->SetAttribute(XmlFormat::FONT_POINT_SIZE_TAG.data(),
                                GetGraphTopTitleFont().GetPointSize());
-    topTitleFont->SetAttribute(XmlFormat::GetFontStyle().mb_str(),
+    topTitleFont->SetAttribute(XmlFormat::FONT_STYLE_TAG.data(),
                                static_cast<int>(GetGraphTopTitleFont().GetStyle()));
-    topTitleFont->SetAttribute(XmlFormat::GetFontWeight().mb_str(),
+    topTitleFont->SetAttribute(XmlFormat::FONT_WEIGHT_TAG.data(),
                                static_cast<int>(GetGraphTopTitleFont().GetWeight()));
-    topTitleFont->SetAttribute(XmlFormat::GetFontUnderline().mb_str(),
+    topTitleFont->SetAttribute(XmlFormat::FONT_UNDERLINE_TAG.data(),
                                bool_to_int(GetGraphTopTitleFont().GetUnderlined()));
     topTitleFont->SetAttribute(
-        XmlFormat::GetFontFaceName().mb_str(),
+        XmlFormat::FONT_FACE_NAME_TAG.data(),
         wxString(encode({ GetGraphTopTitleFont().GetFaceName().wc_str() }, false).c_str())
             .mb_str());
     // put it all together
@@ -4560,24 +4551,24 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto bottomTitle = doc.NewElement(XML_BOTTOM_TITLE.data());
     // bottom title font color
     auto bottomTitleFontColor = doc.NewElement(XML_FONT_COLOR.data());
-    bottomTitleFontColor->SetAttribute(XmlFormat::GetRed().mb_str(),
+    bottomTitleFontColor->SetAttribute(XmlFormat::RED_TAG.data(),
                                        GetGraphBottomTitleFontColor().Red());
-    bottomTitleFontColor->SetAttribute(XmlFormat::GetGreen().mb_str(),
+    bottomTitleFontColor->SetAttribute(XmlFormat::GREEN_TAG.data(),
                                        GetGraphBottomTitleFontColor().Green());
-    bottomTitleFontColor->SetAttribute(XmlFormat::GetBlue().mb_str(),
+    bottomTitleFontColor->SetAttribute(XmlFormat::BLUE_TAG.data(),
                                        GetGraphBottomTitleFontColor().Blue());
     // bottom title font
     auto bottomTitleFont = doc.NewElement(XML_FONT.data());
-    bottomTitleFont->SetAttribute(XmlFormat::GetFontPointSize().mb_str(),
+    bottomTitleFont->SetAttribute(XmlFormat::FONT_POINT_SIZE_TAG.data(),
                                   GetGraphBottomTitleFont().GetPointSize());
-    bottomTitleFont->SetAttribute(XmlFormat::GetFontStyle().mb_str(),
+    bottomTitleFont->SetAttribute(XmlFormat::FONT_STYLE_TAG.data(),
                                   static_cast<int>(GetGraphBottomTitleFont().GetStyle()));
-    bottomTitleFont->SetAttribute(XmlFormat::GetFontWeight().mb_str(),
+    bottomTitleFont->SetAttribute(XmlFormat::FONT_WEIGHT_TAG.data(),
                                   static_cast<int>(GetGraphBottomTitleFont().GetWeight()));
-    bottomTitleFont->SetAttribute(XmlFormat::GetFontUnderline().mb_str(),
+    bottomTitleFont->SetAttribute(XmlFormat::FONT_UNDERLINE_TAG.data(),
                                   bool_to_int(GetGraphBottomTitleFont().GetUnderlined()));
     bottomTitleFont->SetAttribute(
-        XmlFormat::GetFontFaceName().mb_str(),
+        XmlFormat::FONT_FACE_NAME_TAG.data(),
         wxString(encode({ GetGraphBottomTitleFont().GetFaceName().wc_str() }, false).c_str())
             .mb_str());
     // put it all together
@@ -4588,24 +4579,23 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto leftTitle = doc.NewElement(XML_LEFT_TITLE.data());
     // left title font color
     auto leftTitleFontColor = doc.NewElement(XML_FONT_COLOR.data());
-    leftTitleFontColor->SetAttribute(XmlFormat::GetRed().mb_str(),
-                                     GetGraphLeftTitleFontColor().Red());
-    leftTitleFontColor->SetAttribute(XmlFormat::GetGreen().mb_str(),
+    leftTitleFontColor->SetAttribute(XmlFormat::RED_TAG.data(), GetGraphLeftTitleFontColor().Red());
+    leftTitleFontColor->SetAttribute(XmlFormat::GREEN_TAG.data(),
                                      GetGraphLeftTitleFontColor().Green());
-    leftTitleFontColor->SetAttribute(XmlFormat::GetBlue().mb_str(),
+    leftTitleFontColor->SetAttribute(XmlFormat::BLUE_TAG.data(),
                                      GetGraphLeftTitleFontColor().Blue());
     // left title font
     auto leftTitleFont = doc.NewElement(XML_FONT.data());
-    leftTitleFont->SetAttribute(XmlFormat::GetFontPointSize().mb_str(),
+    leftTitleFont->SetAttribute(XmlFormat::FONT_POINT_SIZE_TAG.data(),
                                 GetGraphLeftTitleFont().GetPointSize());
-    leftTitleFont->SetAttribute(XmlFormat::GetFontStyle().mb_str(),
+    leftTitleFont->SetAttribute(XmlFormat::FONT_STYLE_TAG.data(),
                                 static_cast<int>(GetGraphLeftTitleFont().GetStyle()));
-    leftTitleFont->SetAttribute(XmlFormat::GetFontWeight().mb_str(),
+    leftTitleFont->SetAttribute(XmlFormat::FONT_WEIGHT_TAG.data(),
                                 static_cast<int>(GetGraphLeftTitleFont().GetWeight()));
-    leftTitleFont->SetAttribute(XmlFormat::GetFontUnderline().mb_str(),
+    leftTitleFont->SetAttribute(XmlFormat::FONT_UNDERLINE_TAG.data(),
                                 bool_to_int(GetGraphLeftTitleFont().GetUnderlined()));
     leftTitleFont->SetAttribute(
-        XmlFormat::GetFontFaceName().mb_str(),
+        XmlFormat::FONT_FACE_NAME_TAG.data(),
         wxString(encode({ GetGraphLeftTitleFont().GetFaceName().wc_str() }, false).c_str())
             .mb_str());
     // put it all together
@@ -4616,24 +4606,24 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto rightTitle = doc.NewElement(XML_RIGHT_TITLE.data());
     // right title font color
     auto rightTitleFontColor = doc.NewElement(XML_FONT_COLOR.data());
-    rightTitleFontColor->SetAttribute(XmlFormat::GetRed().mb_str(),
+    rightTitleFontColor->SetAttribute(XmlFormat::RED_TAG.data(),
                                       GetGraphRightTitleFontColor().Red());
-    rightTitleFontColor->SetAttribute(XmlFormat::GetGreen().mb_str(),
+    rightTitleFontColor->SetAttribute(XmlFormat::GREEN_TAG.data(),
                                       GetGraphRightTitleFontColor().Green());
-    rightTitleFontColor->SetAttribute(XmlFormat::GetBlue().mb_str(),
+    rightTitleFontColor->SetAttribute(XmlFormat::BLUE_TAG.data(),
                                       GetGraphRightTitleFontColor().Blue());
     // right title font
     auto rightTitleFont = doc.NewElement(XML_FONT.data());
-    rightTitleFont->SetAttribute(XmlFormat::GetFontPointSize().mb_str(),
+    rightTitleFont->SetAttribute(XmlFormat::FONT_POINT_SIZE_TAG.data(),
                                  GetGraphRightTitleFont().GetPointSize());
-    rightTitleFont->SetAttribute(XmlFormat::GetFontStyle().mb_str(),
+    rightTitleFont->SetAttribute(XmlFormat::FONT_STYLE_TAG.data(),
                                  static_cast<int>(GetGraphRightTitleFont().GetStyle()));
-    rightTitleFont->SetAttribute(XmlFormat::GetFontWeight().mb_str(),
+    rightTitleFont->SetAttribute(XmlFormat::FONT_WEIGHT_TAG.data(),
                                  static_cast<int>(GetGraphRightTitleFont().GetWeight()));
-    rightTitleFont->SetAttribute(XmlFormat::GetFontUnderline().mb_str(),
+    rightTitleFont->SetAttribute(XmlFormat::FONT_UNDERLINE_TAG.data(),
                                  bool_to_int(GetGraphRightTitleFont().GetUnderlined()));
     rightTitleFont->SetAttribute(
-        XmlFormat::GetFontFaceName().mb_str(),
+        XmlFormat::FONT_FACE_NAME_TAG.data(),
         wxString(encode({ GetGraphRightTitleFont().GetFaceName().wc_str() }, false).c_str())
             .mb_str());
     // put it all together
@@ -4801,127 +4791,121 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
 
     // highlighting information
     auto highlight = doc.NewElement(XML_HIGHLIGHTCOLOR.data());
-    highlight->SetAttribute(XmlFormat::GetRed().mb_str(), m_textHighlightColor.Red());
-    highlight->SetAttribute(XmlFormat::GetGreen().mb_str(), m_textHighlightColor.Green());
-    highlight->SetAttribute(XmlFormat::GetBlue().mb_str(), m_textHighlightColor.Blue());
+    highlight->SetAttribute(XmlFormat::RED_TAG.data(), m_textHighlightColor.Red());
+    highlight->SetAttribute(XmlFormat::GREEN_TAG.data(), m_textHighlightColor.Green());
+    highlight->SetAttribute(XmlFormat::BLUE_TAG.data(), m_textHighlightColor.Blue());
     textViewsSection->InsertEndChild(highlight);
 
     // highlight color for wordy items
     auto wordyPhrasesHighlight = doc.NewElement(XML_WORDY_PHRASE_HIGHLIGHTCOLOR.data());
-    wordyPhrasesHighlight->SetAttribute(XmlFormat::GetRed().mb_str(),
+    wordyPhrasesHighlight->SetAttribute(XmlFormat::RED_TAG.data(),
                                         m_wordyPhraseHighlightColor.Red());
-    wordyPhrasesHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(),
+    wordyPhrasesHighlight->SetAttribute(XmlFormat::GREEN_TAG.data(),
                                         m_wordyPhraseHighlightColor.Green());
-    wordyPhrasesHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(),
+    wordyPhrasesHighlight->SetAttribute(XmlFormat::BLUE_TAG.data(),
                                         m_wordyPhraseHighlightColor.Blue());
     textViewsSection->InsertEndChild(wordyPhrasesHighlight);
 
     // highlight color for repeated words
     auto dupWordsHighlight = doc.NewElement(XML_DUP_WORD_HIGHLIGHTCOLOR.data());
-    dupWordsHighlight->SetAttribute(XmlFormat::GetRed().mb_str(),
-                                    m_duplicateWordHighlightColor.Red());
-    dupWordsHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(),
+    dupWordsHighlight->SetAttribute(XmlFormat::RED_TAG.data(), m_duplicateWordHighlightColor.Red());
+    dupWordsHighlight->SetAttribute(XmlFormat::GREEN_TAG.data(),
                                     m_duplicateWordHighlightColor.Green());
-    dupWordsHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(),
+    dupWordsHighlight->SetAttribute(XmlFormat::BLUE_TAG.data(),
                                     m_duplicateWordHighlightColor.Blue());
     textViewsSection->InsertEndChild(dupWordsHighlight);
 
     // highlight color for dolch words
     auto dolchConjunctionsHighlight = doc.NewElement(XML_DOLCH_CONJUNCTIONS_HIGHLIGHTCOLOR.data());
-    dolchConjunctionsHighlight->SetAttribute(XmlFormat::GetRed().mb_str(),
+    dolchConjunctionsHighlight->SetAttribute(XmlFormat::RED_TAG.data(),
                                              GetDolchConjunctionsColor().Red());
-    dolchConjunctionsHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(),
+    dolchConjunctionsHighlight->SetAttribute(XmlFormat::GREEN_TAG.data(),
                                              GetDolchConjunctionsColor().Green());
-    dolchConjunctionsHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(),
+    dolchConjunctionsHighlight->SetAttribute(XmlFormat::BLUE_TAG.data(),
                                              GetDolchConjunctionsColor().Blue());
     dolchConjunctionsHighlight->SetAttribute(XML_INCLUDE.data(),
                                              bool_to_int(IsHighlightingDolchConjunctions()));
     textViewsSection->InsertEndChild(dolchConjunctionsHighlight);
 
     auto dolchPrepositionsHighlight = doc.NewElement(XML_DOLCH_PREPOSITIONS_HIGHLIGHTCOLOR.data());
-    dolchPrepositionsHighlight->SetAttribute(XmlFormat::GetRed().mb_str(),
+    dolchPrepositionsHighlight->SetAttribute(XmlFormat::RED_TAG.data(),
                                              GetDolchPrepositionsColor().Red());
-    dolchPrepositionsHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(),
+    dolchPrepositionsHighlight->SetAttribute(XmlFormat::GREEN_TAG.data(),
                                              GetDolchPrepositionsColor().Green());
-    dolchPrepositionsHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(),
+    dolchPrepositionsHighlight->SetAttribute(XmlFormat::BLUE_TAG.data(),
                                              GetDolchPrepositionsColor().Blue());
     dolchPrepositionsHighlight->SetAttribute(XML_INCLUDE.data(),
                                              bool_to_int(IsHighlightingDolchPrepositions()));
     textViewsSection->InsertEndChild(dolchPrepositionsHighlight);
 
     auto dolchPronounHighlight = doc.NewElement(XML_DOLCH_PRONOUNS_HIGHLIGHTCOLOR.data());
-    dolchPronounHighlight->SetAttribute(XmlFormat::GetRed().mb_str(),
-                                        GetDolchPronounsColor().Red());
-    dolchPronounHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(),
+    dolchPronounHighlight->SetAttribute(XmlFormat::RED_TAG.data(), GetDolchPronounsColor().Red());
+    dolchPronounHighlight->SetAttribute(XmlFormat::GREEN_TAG.data(),
                                         GetDolchPronounsColor().Green());
-    dolchPronounHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(),
-                                        GetDolchPronounsColor().Blue());
+    dolchPronounHighlight->SetAttribute(XmlFormat::BLUE_TAG.data(), GetDolchPronounsColor().Blue());
     dolchPronounHighlight->SetAttribute(XML_INCLUDE.data(),
                                         bool_to_int(IsHighlightingDolchPronouns()));
     textViewsSection->InsertEndChild(dolchPronounHighlight);
 
     auto dolchAdverbHighlight = doc.NewElement(XML_DOLCH_ADVERBS_HIGHLIGHTCOLOR.data());
-    dolchAdverbHighlight->SetAttribute(XmlFormat::GetRed().mb_str(), GetDolchAdverbsColor().Red());
-    dolchAdverbHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(),
-                                       GetDolchAdverbsColor().Green());
-    dolchAdverbHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(),
-                                       GetDolchAdverbsColor().Blue());
+    dolchAdverbHighlight->SetAttribute(XmlFormat::RED_TAG.data(), GetDolchAdverbsColor().Red());
+    dolchAdverbHighlight->SetAttribute(XmlFormat::GREEN_TAG.data(), GetDolchAdverbsColor().Green());
+    dolchAdverbHighlight->SetAttribute(XmlFormat::BLUE_TAG.data(), GetDolchAdverbsColor().Blue());
     dolchAdverbHighlight->SetAttribute(XML_INCLUDE.data(),
                                        bool_to_int(IsHighlightingDolchAdverbs()));
     textViewsSection->InsertEndChild(dolchAdverbHighlight);
 
     auto dolchAdjectiveHighlight = doc.NewElement(XML_DOLCH_ADJECTIVES_HIGHLIGHTCOLOR.data());
-    dolchAdjectiveHighlight->SetAttribute(XmlFormat::GetRed().mb_str(),
+    dolchAdjectiveHighlight->SetAttribute(XmlFormat::RED_TAG.data(),
                                           GetDolchAdjectivesColor().Red());
-    dolchAdjectiveHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(),
+    dolchAdjectiveHighlight->SetAttribute(XmlFormat::GREEN_TAG.data(),
                                           GetDolchAdjectivesColor().Green());
-    dolchAdjectiveHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(),
+    dolchAdjectiveHighlight->SetAttribute(XmlFormat::BLUE_TAG.data(),
                                           GetDolchAdjectivesColor().Blue());
     dolchAdjectiveHighlight->SetAttribute(XML_INCLUDE.data(),
                                           bool_to_int(IsHighlightingDolchAdjectives()));
     textViewsSection->InsertEndChild(dolchAdjectiveHighlight);
 
     auto dolchVerbHighlight = doc.NewElement(XML_DOLCH_VERBS_HIGHLIGHTCOLOR.data());
-    dolchVerbHighlight->SetAttribute(XmlFormat::GetRed().mb_str(), GetDolchVerbsColor().Red());
-    dolchVerbHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(), GetDolchVerbsColor().Green());
-    dolchVerbHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(), GetDolchVerbsColor().Blue());
+    dolchVerbHighlight->SetAttribute(XmlFormat::RED_TAG.data(), GetDolchVerbsColor().Red());
+    dolchVerbHighlight->SetAttribute(XmlFormat::GREEN_TAG.data(), GetDolchVerbsColor().Green());
+    dolchVerbHighlight->SetAttribute(XmlFormat::BLUE_TAG.data(), GetDolchVerbsColor().Blue());
     dolchVerbHighlight->SetAttribute(XML_INCLUDE.data(), bool_to_int(IsHighlightingDolchVerbs()));
     textViewsSection->InsertEndChild(dolchVerbHighlight);
 
     auto dolchNounHighlight = doc.NewElement(XML_DOLCH_NOUNS_HIGHLIGHTCOLOR.data());
-    dolchNounHighlight->SetAttribute(XmlFormat::GetRed().mb_str(), GetDolchNounsColor().Red());
-    dolchNounHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(), GetDolchNounsColor().Green());
-    dolchNounHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(), GetDolchNounsColor().Blue());
+    dolchNounHighlight->SetAttribute(XmlFormat::RED_TAG.data(), GetDolchNounsColor().Red());
+    dolchNounHighlight->SetAttribute(XmlFormat::GREEN_TAG.data(), GetDolchNounsColor().Green());
+    dolchNounHighlight->SetAttribute(XmlFormat::BLUE_TAG.data(), GetDolchNounsColor().Blue());
     dolchNounHighlight->SetAttribute(XML_INCLUDE.data(), bool_to_int(IsHighlightingDolchNouns()));
     textViewsSection->InsertEndChild(dolchNounHighlight);
 
     // highlight color for excluded text
     auto excludedHighlight = doc.NewElement(XML_EXCLUDED_HIGHLIGHTCOLOR.data());
-    excludedHighlight->SetAttribute(XmlFormat::GetRed().mb_str(),
-                                    m_excludedTextHighlightColor.Red());
-    excludedHighlight->SetAttribute(XmlFormat::GetGreen().mb_str(),
+    excludedHighlight->SetAttribute(XmlFormat::RED_TAG.data(), m_excludedTextHighlightColor.Red());
+    excludedHighlight->SetAttribute(XmlFormat::GREEN_TAG.data(),
                                     m_excludedTextHighlightColor.Green());
-    excludedHighlight->SetAttribute(XmlFormat::GetBlue().mb_str(),
+    excludedHighlight->SetAttribute(XmlFormat::BLUE_TAG.data(),
                                     m_excludedTextHighlightColor.Blue());
     textViewsSection->InsertEndChild(excludedHighlight);
 
     // document display font information
     auto fontcolor = doc.NewElement(XML_DOCUMENT_DISPLAY_FONTCOLOR.data());
-    fontcolor->SetAttribute(XmlFormat::GetRed().mb_str(), m_fontColor.Red());
-    fontcolor->SetAttribute(XmlFormat::GetGreen().mb_str(), m_fontColor.Green());
-    fontcolor->SetAttribute(XmlFormat::GetBlue().mb_str(), m_fontColor.Blue());
+    fontcolor->SetAttribute(XmlFormat::RED_TAG.data(), m_fontColor.Red());
+    fontcolor->SetAttribute(XmlFormat::GREEN_TAG.data(), m_fontColor.Green());
+    fontcolor->SetAttribute(XmlFormat::BLUE_TAG.data(), m_fontColor.Blue());
     textViewsSection->InsertEndChild(fontcolor);
 
     auto font = doc.NewElement(XML_DOCUMENT_DISPLAY_FONT.data());
-    font->SetAttribute(XmlFormat::GetFontPointSize().mb_str(), m_textViewFont.GetPointSize());
-    font->SetAttribute(XmlFormat::GetFontStyle().mb_str(),
+    font->SetAttribute(XmlFormat::FONT_POINT_SIZE_TAG.data(), m_textViewFont.GetPointSize());
+    font->SetAttribute(XmlFormat::FONT_STYLE_TAG.data(),
                        static_cast<int>(m_textViewFont.GetStyle()));
-    font->SetAttribute(XmlFormat::GetFontWeight().mb_str(),
+    font->SetAttribute(XmlFormat::FONT_WEIGHT_TAG.data(),
                        static_cast<int>(m_textViewFont.GetWeight()));
-    font->SetAttribute(XmlFormat::GetFontUnderline().mb_str(),
+    font->SetAttribute(XmlFormat::FONT_UNDERLINE_TAG.data(),
                        bool_to_int(m_textViewFont.GetUnderlined()));
     font->SetAttribute(
-        XmlFormat::GetFontFaceName().mb_str(),
+        XmlFormat::FONT_FACE_NAME_TAG.data(),
         wxString(encode({ m_textViewFont.GetFaceName().wc_str() }, false).c_str()).mb_str());
     textViewsSection->InsertEndChild(font);
 

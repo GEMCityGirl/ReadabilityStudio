@@ -3252,14 +3252,16 @@ wxString BaseProjectDoc::FormatProjectSettings() const
             .append(L"=\"")
             .append(maxGoalStr)
             .append(L"\">");
-        fileText += rTest.is_included() ? XmlFormat::GetTrue() : XmlFormat::GetFalse();
+        fileText += rTest.is_included() ? wxString{ XmlFormat::TRUE_TAG } :
+                                          wxString{ XmlFormat::FALSE_TAG };
         fileText.append(L"</").append(rTest.get_test().get_id().c_str()).append(L">\n");
         }
     // Dolch sight words
     fileText.append(L"\t\t<")
         .append(wxGetApp().GetAppOptions()->XML_DOLCH_SIGHT_WORDS_TEST.data())
         .append(L">");
-    fileText += IsIncludingDolchSightWords() ? XmlFormat::GetTrue() : XmlFormat::GetFalse();
+    fileText += IsIncludingDolchSightWords() ? wxString{ XmlFormat::TRUE_TAG } :
+                                               wxString{ XmlFormat::FALSE_TAG };
     fileText.append(L"</")
         .append(wxGetApp().GetAppOptions()->XML_DOLCH_SIGHT_WORDS_TEST.data())
         .append(L">\n");
