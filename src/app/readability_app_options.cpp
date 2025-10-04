@@ -613,14 +613,15 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
 
     lily_of_the_valley::html_extract_text filter_html;
 
-    const auto readString = [&filter_html, this](const tinyxml2::XMLElement* node,
-                                                 const std::string_view xmlId,
-                                                 const wxString& fallbackValue)
+    const auto readString = [&filter_html](const tinyxml2::XMLElement* node,
+                                           const std::string_view xmlId,
+                                           const wxString& fallbackValue)
     {
         auto childNode = node->FirstChildElement(xmlId.data());
         if (childNode != nullptr)
             {
-            const char* stringVal = childNode->ToElement()->Attribute(XML_VALUE.data());
+            const char* stringVal =
+                childNode->ToElement()->Attribute(ReadabilityAppOptions::XML_VALUE.data());
             if (stringVal != nullptr)
                 {
                 const auto streamedText =
