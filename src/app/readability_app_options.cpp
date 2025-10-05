@@ -26,15 +26,16 @@ using namespace Wisteria::UI;
 wxDECLARE_APP(ReadabilityApp);
 
 //------------------------------------------------
-bool PreAppInitOptions::LoadOptionsFile(const wxString& optionsFile)
+bool PreAppInitOptions::LoadOptionsFile(wxString optionsFile)
     {
-    if (!wxFile::Exists(optionsFile))
+    wxString fileContent;
+    if (!wxFile::Exists(optionsFile) || !Wisteria::TextStream::ReadFile(optionsFile, fileContent))
         {
         return false;
         }
 
     tinyxml2::XMLDocument doc;
-    doc.LoadFile(optionsFile.mb_str());
+    doc.Parse(fileContent.utf8_str());
     if (doc.Error())
         {
         // may appear while program is loading
@@ -42,16 +43,17 @@ bool PreAppInitOptions::LoadOptionsFile(const wxString& optionsFile)
         return false;
         }
     // see if it is a valid config file
-    auto node = doc.FirstChildElement(ReadabilityAppOptions::XML_CONFIG_HEADER.data());
-    if (!node)
+    auto* node = doc.FirstChildElement(ReadabilityAppOptions::XML_CONFIG_HEADER.data());
+    if (node == nullptr)
         {
         wxMessageBox(_(L"Invalid configuration file. Project header section not found."),
                      _(L"Error"), wxOK | wxICON_ERROR);
         return false;
         }
     // read in the configurations
-    auto configRootNode = node->FirstChildElement(ReadabilityAppOptions::XML_CONFIGURATIONS.data());
-    if (!configRootNode)
+    auto* configRootNode =
+        node->FirstChildElement(ReadabilityAppOptions::XML_CONFIGURATIONS.data());
+    if (configRootNode == nullptr)
         {
         wxMessageBox(_(L"Invalid configuration file. No configurations found."), _(L"Error"),
                      wxOK | wxICON_ERROR);
@@ -60,7 +62,7 @@ bool PreAppInitOptions::LoadOptionsFile(const wxString& optionsFile)
     else
         {
         // appearance of the program
-        auto appearanceNode =
+        auto* appearanceNode =
             configRootNode->FirstChildElement(ReadabilityAppOptions::XML_APPEARANCE.data());
         if (appearanceNode != nullptr)
             {
@@ -86,11 +88,11 @@ bool PreAppInitOptions::LoadOptionsFile(const wxString& optionsFile)
                 static_cast<int>(UiLanguage::Default)));
             }
         // log report settings
-        auto logSettingsNode =
+        auto* logSettingsNode =
             configRootNode->FirstChildElement(ReadabilityAppOptions::XML_LOG_SETTINGS.data());
         if (logSettingsNode != nullptr)
             {
-            auto logAppendNode = logSettingsNode->FirstChildElement(
+            auto* logAppendNode = logSettingsNode->FirstChildElement(
                 ReadabilityAppOptions::XML_LOG_APPEND_DAILY.data());
             if (logAppendNode != nullptr)
                 {
@@ -103,9 +105,7 @@ bool PreAppInitOptions::LoadOptionsFile(const wxString& optionsFile)
     }
 
 //------------------------------------------------
-ReadabilityAppOptions::ReadabilityAppOptions()
-    : m_textHighlight(TextHighlight::HighlightBackground),
-      m_fontColor(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT))
+ReadabilityAppOptions::ReadabilityAppOptions() : m_textHighlight(TextHighlight::HighlightBackground)
     {
     SetFonts();
     SetColorsFromSystem();
@@ -279,6 +279,7 @@ void ReadabilityAppOptions::SetFonts()
 //------------------------------------------------
 void ReadabilityAppOptions::SetColorsFromSystem()
     {
+    m_fontColor = wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT);
     // Ribbon colors
     m_ribbonActiveTabColor = wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE);
     m_ribbonInactiveTabColor = wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW);
@@ -591,7 +592,7 @@ bool ReadabilityAppOptions::LoadThemeFile(const wxString& optionsFile)
     }
 
 //------------------------------------------------
-bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
+bool ReadabilityAppOptions::LoadOptionsFile(wxString optionsFile,
                                             const bool loadOnlyGeneralOptions /*= false*/,
                                             const bool writeChangesBackToThisFile /*= true*/)
     {
@@ -601,7 +602,8 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
         m_optionsFile = optionsFile;
         }
 
-    if (!wxFile::Exists(optionsFile))
+    wxString fileContent;
+    if (!wxFile::Exists(optionsFile) || !Wisteria::TextStream::ReadFile(optionsFile, fileContent))
         {
         return false;
         }
@@ -638,7 +640,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
     };
 
     tinyxml2::XMLDocument doc;
-    doc.LoadFile(optionsFile.mb_str());
+    doc.Parse(fileContent.utf8_str());
     if (doc.Error())
         {
         // may appear while program is loading
@@ -1016,7 +1018,8 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
             configRootNode->FirstChildElement(XML_PROJECT_SETTINGS.data());
         if (projectSettingsForReview)
             {
-            auto* projectReviewer = projectSettingsForReview->FirstChildElement(XML_REVIEWER.data());
+            auto* projectReviewer =
+                projectSettingsForReview->FirstChildElement(XML_REVIEWER.data());
             if (projectReviewer)
                 {
                 const char* reviewerChars =
@@ -1195,7 +1198,8 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         }
                     }
                 }
-            auto* appendedDocPath = projectSettings->FirstChildElement(XML_APPENDED_DOC_PATH.data());
+            auto* appendedDocPath =
+                projectSettings->FirstChildElement(XML_APPENDED_DOC_PATH.data());
             if (appendedDocPath)
                 {
                 const char* appendedDocChars =
@@ -1512,8 +1516,9 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         }
                     }
                 // whether to include first occurrence of excluded phrases
-                auto* includeExcludedPhraseFirstOccurrence = documentAnalysisNode->FirstChildElement(
-                    XML_EXCLUDED_PHRASES_INCLUDE_FIRST_OCCURRENCE.data());
+                auto* includeExcludedPhraseFirstOccurrence =
+                    documentAnalysisNode->FirstChildElement(
+                        XML_EXCLUDED_PHRASES_INCLUDE_FIRST_OCCURRENCE.data());
                 if (includeExcludedPhraseFirstOccurrence)
                     {
                     IncludeExcludedPhraseFirstOccurrence(
@@ -2869,7 +2874,8 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         XML_METHOD.data(), m_batchGroupDefault);
                     }
                 // Text Source
-                auto* textSource = wizardPageDefaultsNode->FirstChildElement(XML_TEXT_SOURCE.data());
+                auto* textSource =
+                    wizardPageDefaultsNode->FirstChildElement(XML_TEXT_SOURCE.data());
                 if (textSource)
                     {
                     m_textSource = static_cast<TextSource>(textSource->ToElement()->IntAttribute(
@@ -3155,7 +3161,8 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
             if (textViewNode)
                 {
                 // how highlighting is done
-                auto* highlightMethod = textViewNode->FirstChildElement(XML_HIGHLIGHT_METHOD.data());
+                auto* highlightMethod =
+                    textViewNode->FirstChildElement(XML_HIGHLIGHT_METHOD.data());
                 if (highlightMethod)
                     {
                     m_textHighlight =
@@ -3379,7 +3386,8 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         XML_VALUE.data(), bool_to_int(wxGetApp().GetWebHarvester().IsReplacingExistingFiles()));
     configSection->InsertEndChild(downloadReplaceExistingNode);
 
-    auto* downloadWebFolderStructureNode = doc.NewElement(XML_DOWNLOAD_KEEP_FOLDER_STRUCTURE.data());
+    auto* downloadWebFolderStructureNode =
+        doc.NewElement(XML_DOWNLOAD_KEEP_FOLDER_STRUCTURE.data());
     downloadWebFolderStructureNode->SetAttribute(
         XML_VALUE.data(),
         bool_to_int(wxGetApp().GetWebHarvester().IsKeepingWebPathWhenDownloading()));
@@ -3661,7 +3669,8 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
                                                     bool_to_int(SpellCheckIsIgnoringProperNouns()));
     grammarSection->InsertEndChild(spellCheckIgnoreProperNounsMethod);
 
-    auto* spellCheckIgnoreUppercasedMethod = doc.NewElement(XML_SPELLCHECK_IGNORE_UPPERCASED.data());
+    auto* spellCheckIgnoreUppercasedMethod =
+        doc.NewElement(XML_SPELLCHECK_IGNORE_UPPERCASED.data());
     spellCheckIgnoreUppercasedMethod->SetAttribute(XML_VALUE.data(),
                                                    bool_to_int(SpellCheckIsIgnoringUppercased()));
     grammarSection->InsertEndChild(spellCheckIgnoreUppercasedMethod);
@@ -3992,7 +4001,8 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
                 readability::industry_classification::sedondary_language_industry)));
         customFamWordTest->InsertEndChild(industrySecondaryLanguage);
 
-        auto* industryChildrensHealthCare = doc.NewElement(XML_INDUSTRY_CHILDRENS_HEALTHCARE.data());
+        auto* industryChildrensHealthCare =
+            doc.NewElement(XML_INDUSTRY_CHILDRENS_HEALTHCARE.data());
         industryChildrensHealthCare->SetAttribute(
             XML_VALUE.data(),
             static_cast<int>(pos->has_industry_classification(
@@ -4526,7 +4536,8 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
                              static_cast<int>(GetReadabilityMessageCatalog().GetGradeScale()));
     readabilityTestSection->InsertEndChild(gradeScale);
 
-    auto* gradeScaleLongFormat = doc.NewElement(XML_READABILITY_TEST_GRADE_SCALE_LONG_FORMAT.data());
+    auto* gradeScaleLongFormat =
+        doc.NewElement(XML_READABILITY_TEST_GRADE_SCALE_LONG_FORMAT.data());
     gradeScaleLongFormat->SetAttribute(
         XML_VALUE.data(),
         bool_to_int(GetReadabilityMessageCatalog().IsUsingLongGradeScaleFormat()));

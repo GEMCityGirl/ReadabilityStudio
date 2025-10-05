@@ -544,7 +544,7 @@ class SentencesBreakdownInfo
 class PreAppInitOptions
     {
   public:
-    bool LoadOptionsFile(const wxString& optionsFile);
+    bool LoadOptionsFile(wxString optionsFile);
 
     bool m_appWindowMaximized{ true };
     int m_appWindowWidth{ 800 };
@@ -562,7 +562,7 @@ class ReadabilityAppOptions
     ReadabilityAppOptions();
     /// set the third parameter to false if you only want to load the settings from this file and
     /// write back to a different settings file
-    bool LoadOptionsFile(const wxString& optionsFile, const bool loadOnlyGeneralOptions = false,
+    bool LoadOptionsFile(wxString optionsFile, const bool loadOnlyGeneralOptions = false,
                          const bool writeChangesBackToThisFile = true);
     // saves options file, defaults to the current project file
     bool SaveOptionsFile(const wxString& optionsFile = wxEmptyString);
