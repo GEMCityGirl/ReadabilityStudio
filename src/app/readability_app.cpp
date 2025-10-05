@@ -161,7 +161,7 @@ void ReadabilityApp::EditDictionary(const readability::test_language lang)
         auto& docs = wxGetApp().GetDocManager()->GetDocuments();
         for (size_t i = 0; i < docs.GetCount(); ++i)
             {
-            BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
+            auto* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
             doc->RefreshRequired(ProjectRefresh::FullReindexing);
             doc->RefreshProject();
             }
@@ -198,7 +198,7 @@ void ReadabilityApp::ShowSplashscreen()
                 // quneiform-suppress-end
 
                 [[maybe_unused]]
-                wxSplashScreen* splash =
+                auto* splash =
                     new wxSplashScreen(bitmap, wxSPLASH_CENTRE_ON_SCREEN | wxSPLASH_TIMEOUT, 2000,
                                        GetMainFrame(), -1, wxDefaultPosition, wxDefaultSize,
                                        wxFRAME_NO_TASKBAR | wxSTAY_ON_TOP);
@@ -304,7 +304,7 @@ void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
             wxCmdLineParser cmdParser(cmdLineDesc, argc, argv);
             int CommandLineResult = 0;
                 {
-                wxLogNull logger;
+                const wxLogNull logger;
                 CommandLineResult = cmdParser.Parse(false);
                 }
 
@@ -760,13 +760,13 @@ bool ReadabilityApp::OnInit()
 
     // create the document template
     [[maybe_unused]]
-    wxDocTemplate* docTemplate =
+    auto* docTemplate =
         new wxDocTemplate(GetDocManager(), _(L"Standard project"), _DT(L"*.rsp"), wxString{},
                           GetAppFileExtension(), GetAppFileExtension() + _DT(L" Doc"), _DT(L"View"),
                           wxCLASSINFO(ProjectDoc), wxCLASSINFO(ProjectView));
 
     [[maybe_unused]]
-    wxDocTemplate* batchDocTemplate =
+    auto* batchDocTemplate =
         new wxDocTemplate(GetDocManager(), _(L"Batch project"), _DT(L"*.rsbp"), wxString{},
                           _DT(L"rsbp"), _DT(L"rsbp Doc"), _DT(L"View"),
                           wxCLASSINFO(BatchProjectDoc), wxCLASSINFO(BatchProjectView));
@@ -1852,9 +1852,8 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                                                 RibbonType::StandardProjectRibbon :
                                                 RibbonType::BatchProjectRibbon;
     // Home tab
-    wxRibbonBar* ribbon =
-        new wxRibbonBar(frame, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-                        wxRIBBON_BAR_SHOW_PAGE_ICONS | wxRIBBON_BAR_DEFAULT_STYLE);
+    auto* ribbon = new wxRibbonBar(frame, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                                   wxRIBBON_BAR_SHOW_PAGE_ICONS | wxRIBBON_BAR_DEFAULT_STYLE);
         {
         auto* homePage =
             new wxRibbonPage(ribbon, wxID_ANY, _(L"Home"),
@@ -2402,11 +2401,11 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
                 }
                 // wordcloud panel
                 {
-                wxRibbonPanel* editPanel = new wxRibbonPanel(
+                auto* editPanel = new wxRibbonPanel(
                     homePage, MainFrame::ID_EDIT_RIBBON_WORDCLOUD_PANEL, _(L"Edit"), wxNullBitmap,
                     wxDefaultPosition, wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
 
-                wxRibbonButtonBar* editButtonBar =
+                auto* editButtonBar =
                     new wxRibbonButtonBar(editPanel, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
 
                 editButtonBar->AddButton(XRCID("ID_EDIT_GRAPH_COLOR_SCHEME"), _(L"Colors"),
@@ -4263,8 +4262,8 @@ void MainFrame::AddCustomTestToMenus(const wxString& testName)
     auto& docs = wxGetApp().GetDocManager()->GetDocuments();
     for (size_t i = 0; i < docs.GetCount(); ++i)
         {
-        BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
-        BaseProjectView* view = dynamic_cast<BaseProjectView*>(doc->GetFirstView());
+        auto* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
+        auto* view = dynamic_cast<BaseProjectView*>(doc->GetFirstView());
         FillMenuWithCustomTests(&view->GetDocFrame()->m_customTestsMenu, doc, true);
         FillMenuWithCustomTests(view->GetDocFrame()->m_customTestsRegularMenu, doc, true);
         }
@@ -4288,8 +4287,8 @@ void MainFrame::AddTestBundleToMenus(const wxString& bundleName)
     auto& docs = wxGetApp().GetDocManager()->GetDocuments();
     for (size_t i = 0; i < docs.GetCount(); ++i)
         {
-        BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
-        BaseProjectView* view = dynamic_cast<BaseProjectView*>(doc->GetFirstView());
+        auto* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
+        auto* view = dynamic_cast<BaseProjectView*>(doc->GetFirstView());
         FillMenuWithTestBundles(&view->GetDocFrame()->m_testsBundleMenu, doc, true);
         FillMenuWithTestBundles(view->GetDocFrame()->m_testsBundleRegularMenu, doc, true);
         }
@@ -4318,8 +4317,8 @@ void MainFrame::RemoveTestBundleFromMenus(const wxString& bundleName)
     auto& docs = wxGetApp().GetDocManager()->GetDocuments();
     for (size_t i = 0; i < docs.GetCount(); ++i)
         {
-        BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
-        BaseProjectView* view = dynamic_cast<BaseProjectView*>(doc->GetFirstView());
+        auto* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
+        auto* view = dynamic_cast<BaseProjectView*>(doc->GetFirstView());
         FillMenuWithTestBundles(&view->GetDocFrame()->m_testsBundleMenu, doc, true);
         FillMenuWithTestBundles(view->GetDocFrame()->m_testsBundleRegularMenu, doc, true);
         }
@@ -4348,8 +4347,8 @@ void MainFrame::RemoveCustomTestFromMenus(const wxString& testName)
     auto& docs = wxGetApp().GetDocManager()->GetDocuments();
     for (size_t i = 0; i < docs.GetCount(); ++i)
         {
-        BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
-        BaseProjectView* view = dynamic_cast<BaseProjectView*>(doc->GetFirstView());
+        auto* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
+        auto* view = dynamic_cast<BaseProjectView*>(doc->GetFirstView());
         FillMenuWithCustomTests(&view->GetDocFrame()->m_customTestsMenu, doc, true);
         FillMenuWithCustomTests(view->GetDocFrame()->m_customTestsRegularMenu, doc, true);
         }
@@ -4387,10 +4386,9 @@ void MainFrame::FillReadabilityMenu(wxMenu* primaryMenu, wxMenu* secondaryMenu, 
                     readability::test_teaching_level::primary_grade) &&
                 rTest.get_test().has_language(project->GetProjectLanguage()))
                 {
-                wxMenuItem* testItem =
-                    new wxMenuItem(primaryMenu, rTest.get_test().get_interface_id(),
-                                   rTest.get_test().get_long_name().c_str(),
-                                   rTest.get_test().get_long_name().c_str());
+                auto* testItem = new wxMenuItem(primaryMenu, rTest.get_test().get_interface_id(),
+                                                rTest.get_test().get_long_name().c_str(),
+                                                rTest.get_test().get_long_name().c_str());
                 const auto bmp = wxGetApp().GetResourceManager().GetSVG(
                     wxString::Format(L"tests/%s.svg", rTest.get_test().get_id().c_str()));
                 if (bmp.IsOk())
@@ -4403,10 +4401,9 @@ void MainFrame::FillReadabilityMenu(wxMenu* primaryMenu, wxMenu* secondaryMenu, 
                     readability::test_teaching_level::secondary_grade) &&
                 rTest.get_test().has_language(project->GetProjectLanguage()))
                 {
-                wxMenuItem* testItem =
-                    new wxMenuItem(secondaryMenu, rTest.get_test().get_interface_id(),
-                                   rTest.get_test().get_long_name().c_str(),
-                                   rTest.get_test().get_long_name().c_str());
+                auto* testItem = new wxMenuItem(secondaryMenu, rTest.get_test().get_interface_id(),
+                                                rTest.get_test().get_long_name().c_str(),
+                                                rTest.get_test().get_long_name().c_str());
                 const auto bmp = wxGetApp().GetResourceManager().GetSVG(
                     wxString::Format(L"tests/%s.svg", rTest.get_test().get_id().c_str()));
                 if (bmp.IsOk())
@@ -4419,10 +4416,9 @@ void MainFrame::FillReadabilityMenu(wxMenu* primaryMenu, wxMenu* secondaryMenu, 
                     readability::test_teaching_level::adult_level) &&
                 rTest.get_test().has_language(project->GetProjectLanguage()))
                 {
-                wxMenuItem* testItem =
-                    new wxMenuItem(adultMenu, rTest.get_test().get_interface_id(),
-                                   rTest.get_test().get_long_name().c_str(),
-                                   rTest.get_test().get_long_name().c_str());
+                auto* testItem = new wxMenuItem(adultMenu, rTest.get_test().get_interface_id(),
+                                                rTest.get_test().get_long_name().c_str(),
+                                                rTest.get_test().get_long_name().c_str());
                 const auto bmp = wxGetApp().GetResourceManager().GetSVG(
                     wxString::Format(L"tests/%s.svg", rTest.get_test().get_id().c_str()));
                 if (bmp.IsOk())
@@ -4435,7 +4431,7 @@ void MainFrame::FillReadabilityMenu(wxMenu* primaryMenu, wxMenu* secondaryMenu, 
                     readability::test_teaching_level::second_language) &&
                 rTest.get_test().has_language(project->GetProjectLanguage()))
                 {
-                wxMenuItem* testItem =
+                auto* testItem =
                     new wxMenuItem(secondLanguageMenu, rTest.get_test().get_interface_id(),
                                    rTest.get_test().get_long_name().c_str(),
                                    rTest.get_test().get_long_name().c_str());
@@ -4455,18 +4451,16 @@ void MainFrame::FillReadabilityMenu(wxMenu* primaryMenu, wxMenu* secondaryMenu, 
             assert(bp.IsOk());
 
                 {
-                wxMenuItem* dolchItem =
-                    new wxMenuItem(primaryMenu, XRCID("ID_DOLCH"), _(L"Dolch Sight Words"),
-                                   _(L"Dolch Sight Words"));
+                auto* dolchItem = new wxMenuItem(primaryMenu, XRCID("ID_DOLCH"),
+                                                 _(L"Dolch Sight Words"), _(L"Dolch Sight Words"));
                 dolchItem->SetBitmap(bp);
                 primaryMenu->AppendSeparator();
                 primaryMenu->Append(dolchItem);
                 }
 
                 {
-                wxMenuItem* dolchItem =
-                    new wxMenuItem(secondLanguageMenu, XRCID("ID_DOLCH"), _(L"Dolch Sight Words"),
-                                   _(L"Dolch Sight Words"));
+                auto* dolchItem = new wxMenuItem(secondLanguageMenu, XRCID("ID_DOLCH"),
+                                                 _(L"Dolch Sight Words"), _(L"Dolch Sight Words"));
                 dolchItem->SetBitmap(bp);
                 secondLanguageMenu->AppendSeparator();
                 secondLanguageMenu->Append(dolchItem);
@@ -4480,12 +4474,11 @@ void MainFrame::AddExamplesToMenu(wxMenu* exampleMenu)
     {
     if (exampleMenu)
         {
-        wxDir dir;
         wxArrayString files;
         const wxString exampleFolder =
             wxGetApp().FindResourceDirectory(_DT(L"examples", DTExplanation::FilePath));
         if (!wxFileName::DirExists(exampleFolder) ||
-            dir.GetAllFiles(exampleFolder, &files, wxString{}, wxDIR_FILES) == 0)
+            wxDir::GetAllFiles(exampleFolder, &files, wxString{}, wxDIR_FILES) == 0)
             {
             wxLogWarning(L"Unable to find examples folder: %s", exampleFolder);
             return;
@@ -4536,7 +4529,7 @@ void MainFrame::FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProjec
             }
         if (includeDocMenuItems)
             {
-            auto industryMenu = new wxMenu();
+            auto* industryMenu = new wxMenu();
             industryMenu->Append(XRCID("ID_ADD_CHILDRENS_PUBLISHING_TEST_BUNDLE"),
                                  _(L"Children's Publishing"));
             industryMenu->Append(XRCID("ID_ADD_ADULT_PUBLISHING_TEST_BUNDLE"),
@@ -4551,7 +4544,7 @@ void MainFrame::FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProjec
                                  _(L"Second Language Education"));
             industryMenu->Append(XRCID("ID_ADD_BROADCASTING_TEST_BUNDLE"), _(L"Broadcasting"));
             testBundleMenu->AppendSubMenu(industryMenu, _(L"Industry"));
-            auto docTypeMenu = new wxMenu();
+            auto* docTypeMenu = new wxMenu();
             docTypeMenu->Append(XRCID("ID_GENERAL_DOCUMENT_TEST_BUNDLE"), _(L"General Document"));
             docTypeMenu->Append(XRCID("ID_TECHNICAL_DOCUMENT_TEST_BUNDLE"),
                                 _(L"Technical Document"));
@@ -4593,8 +4586,8 @@ void MainFrame::FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProjec
                             testBundleMenu->AppendSeparator();
                             separatorNeeded = false;
                             }
-                        wxMenuItem* item = new wxMenuItem(testBundleMenu, bundle.first,
-                                                          testIter->GetName().c_str());
+                        auto* item = new wxMenuItem(testBundleMenu, bundle.first,
+                                                    testIter->GetName().c_str());
                         if (testIter->GetName() == ReadabilityMessages::GetPskBundleName().wc_str())
                             {
                             item->SetBitmap(
@@ -4622,7 +4615,7 @@ void MainFrame::FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProjec
             {
             testBundleMenu->AppendSeparator();
             }
-        wxMenuItem* menuItem =
+        auto* menuItem =
             new wxMenuItem(testBundleMenu, XRCID("ID_ADD_CUSTOM_TEST_BUNDLE"), _(L"Add..."));
         menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/add.svg"));
         testBundleMenu->Append(menuItem);
@@ -4683,7 +4676,7 @@ void MainFrame::FillMenuWithCustomTests(wxMenu* customTestMenu, const BaseProjec
                                      _(L"Error"), wxOK | wxICON_ERROR);
                         return;
                         }
-                    wxMenuItem* item =
+                    auto* item =
                         new wxMenuItem(customTestMenu, pos->first, testIter->get_name().c_str());
                     customTestMenu->Append(item);
                     }
@@ -4693,8 +4686,7 @@ void MainFrame::FillMenuWithCustomTests(wxMenu* customTestMenu, const BaseProjec
             {
             customTestMenu->AppendSeparator();
             }
-        wxMenuItem* menuItem =
-            new wxMenuItem(customTestMenu, XRCID("ID_ADD_CUSTOM_TEST"), _(L"Add..."));
+        auto* menuItem = new wxMenuItem(customTestMenu, XRCID("ID_ADD_CUSTOM_TEST"), _(L"Add..."));
         menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/add.svg"));
         customTestMenu->Append(menuItem);
 
@@ -4746,7 +4738,7 @@ void MainFrame::OnRemoveCustomTest([[maybe_unused]] wxCommandEvent& event)
     const auto& docs = wxGetApp().GetDocManager()->GetDocuments();
     for (size_t i = 0; i < docs.GetCount(); ++i)
         {
-        const BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
+        const auto* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
         if (!doc->IsSafeToUpdate())
             {
             return;
@@ -5036,7 +5028,7 @@ void MainFrame::OnEditCustomTest([[maybe_unused]] wxCommandEvent& event)
     const auto& docs = wxGetApp().GetDocManager()->GetDocuments();
     for (size_t i = 0; i < docs.GetCount(); ++i)
         {
-        const BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
+        const auto* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
         if (!doc->IsSafeToUpdate())
             {
             return;
@@ -5078,12 +5070,11 @@ void MainFrame::Paste()
             const auto& templateList = m_docManager->GetTemplates();
             for (size_t i = 0; i < templateList.GetCount(); ++i)
                 {
-                wxDocTemplate* docTemplate =
-                    dynamic_cast<wxDocTemplate*>(templateList.Item(i)->GetData());
+                auto* docTemplate = dynamic_cast<wxDocTemplate*>(templateList.Item(i)->GetData());
                 if (docTemplate &&
                     docTemplate->GetDocClassInfo()->IsKindOf(wxCLASSINFO(ProjectDoc)))
                     {
-                    ProjectDoc* newDoc = dynamic_cast<ProjectDoc*>(
+                    auto* newDoc = dynamic_cast<ProjectDoc*>(
                         docTemplate->CreateDocument(data.GetText(), wxDOC_NEW));
                     if (newDoc && !newDoc->OnNewDocument())
                         {
@@ -5154,7 +5145,7 @@ void MainFrame::OnClose(wxCloseEvent& event)
     const auto& docs = wxGetApp().GetDocManager()->GetDocuments();
     for (size_t i = 0; i < docs.GetCount(); ++i)
         {
-        const BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
+        const auto* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
         if (doc->IsProcessing())
             {
             wxMessageBox(_(L"Project still processing. Please wait before closing."),
@@ -5187,10 +5178,10 @@ void MainFrame::OnOpenDocument([[maybe_unused]] wxCommandEvent& event)
     const auto& templateList = wxGetApp().GetDocManager()->GetTemplates();
     for (size_t i = 0; i < templateList.GetCount(); ++i)
         {
-        wxDocTemplate* docTemplate = dynamic_cast<wxDocTemplate*>(templateList.Item(i)->GetData());
+        auto* docTemplate = dynamic_cast<wxDocTemplate*>(templateList.Item(i)->GetData());
         if (docTemplate && docTemplate->GetDocClassInfo()->IsKindOf(wxCLASSINFO(ProjectDoc)))
             {
-            ProjectDoc* newDoc =
+            auto* newDoc =
                 dynamic_cast<ProjectDoc*>(docTemplate->CreateDocument(dialog.GetPath(), wxDOC_NEW));
             if (newDoc && !newDoc->OnNewDocument())
                 {
@@ -5409,7 +5400,7 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
     fileListDlg.GetListCtrl()->SetForegroundColour(wxColour{ 0, 0, 0 });
         // catalogue duplicates
         {
-        wxBusyInfo wait(_(L"Loading duplicates..."), this);
+        const wxBusyInfo wait(_(L"Loading duplicates..."), this);
 #ifdef __WXGTK__
         wxMilliSleep(100);
         wxTheApp->Yield();
@@ -5504,10 +5495,10 @@ void MainFrame::OnToolsWebHarvest([[maybe_unused]] wxRibbonButtonBarEvent& event
                                   wxString::Format(
                                       // TRANSLATORS: %s are file filters
                                       _(L"Documents & Images (%s;%s)|%s;%s|"),
-                                      wxGetApp().GetAppOptions()->ALL_DOCUMENTS_WILDCARD.data(),
-                                      wxGetApp().GetAppOptions()->ALL_IMAGES_WILDCARD.data(),
-                                      wxGetApp().GetAppOptions()->ALL_DOCUMENTS_WILDCARD.data(),
-                                      wxGetApp().GetAppOptions()->ALL_IMAGES_WILDCARD.data()) +
+                                      ReadabilityAppOptions::ALL_DOCUMENTS_WILDCARD.data(),
+                                      ReadabilityAppOptions::ALL_IMAGES_WILDCARD.data(),
+                                      ReadabilityAppOptions::ALL_DOCUMENTS_WILDCARD.data(),
+                                      ReadabilityAppOptions::ALL_IMAGES_WILDCARD.data()) +
                                       ReadabilityAppOptions::GetDocumentFilter() + L"|" +
                                       Wisteria::GraphItems::Image::GetImageFileFilter(),
                                   wxGetApp().GetLastSelectedDocFilter(),

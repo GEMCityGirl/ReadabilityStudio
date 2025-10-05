@@ -941,7 +941,8 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
         auto* editorSettingsNode = configRootNode->FirstChildElement(XML_EDITOR.data());
         if (editorSettingsNode != nullptr)
             {
-            auto* fontColorNode = editorSettingsNode->FirstChildElement(XML_EDITOR_FONTCOLOR.data());
+            auto* fontColorNode =
+                editorSettingsNode->FirstChildElement(XML_EDITOR_FONTCOLOR.data());
             if (fontColorNode != nullptr)
                 {
                 m_editorFontColor = TiXmlNodeToColor(fontColorNode);

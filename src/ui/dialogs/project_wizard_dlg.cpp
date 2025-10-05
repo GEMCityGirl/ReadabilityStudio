@@ -810,9 +810,9 @@ void ProjectWizardDlg::CreateControls()
         // The options
         auto* optionsSizer = new wxBoxSizer(wxVERTICAL);
 
-        auto* banner = new Banner(
-            page, wxID_ANY, wxGetApp().GetResourceManager().GetSVG(L"tests/flesch-test.svg"),
-            _(L"Select Readability Tests"));
+        auto* banner = new Banner(page, wxID_ANY,
+                                  wxGetApp().GetResourceManager().GetSVG(L"tests/flesch-test.svg"),
+                                  _(L"Select Readability Tests"));
         optionsSizer->Add(banner, wxSizerFlags{}.Expand().Border(wxBOTTOM));
 
         wxArrayString options;
