@@ -2551,7 +2551,8 @@ class ReadabilityAppOptions
     [[nodiscard]]
     static double TiXmlNodeToDouble(const tinyxml2::XMLNode* colorNode, const wxString& tagToRead);
     [[nodiscard]]
-    static wxColour TiXmlNodeToColor(const tinyxml2::XMLNode* node);
+    static wxColour TiXmlNodeToColor(const tinyxml2::XMLNode* node,
+                                     const wxColour& defaultColor = wxColour{ 0, 0, 0 });
 
     // embedded text editor
     wxFont m_editorFont;

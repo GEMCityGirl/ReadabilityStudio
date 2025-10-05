@@ -941,12 +941,9 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
         auto* editorSettingsNode = configRootNode->FirstChildElement(XML_EDITOR.data());
         if (editorSettingsNode != nullptr)
             {
-            auto* fontColorNode =
-                editorSettingsNode->FirstChildElement(XML_EDITOR_FONTCOLOR.data());
-            if (fontColorNode != nullptr)
-                {
-                m_editorFontColor = TiXmlNodeToColor(fontColorNode);
-                }
+            m_editorFontColor =
+                TiXmlNodeToColor(editorSettingsNode->FirstChildElement(XML_EDITOR_FONTCOLOR.data()),
+                                 m_editorFontColor);
             // font
             auto* fontNode = editorSettingsNode->FirstChildElement(XML_EDITOR_FONT.data());
             if (fontNode != nullptr)
@@ -2075,18 +2072,9 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         }
                     }
                 // graph background colors
-                auto colorNode =
-                    graphDefaultsNode->FirstChildElement(XML_GRAPH_BACKGROUND_COLOR.data());
-                if (colorNode)
-                    {
-                    int red = colorNode->ToElement()->IntAttribute(XmlFormat::RED_TAG.data(),
-                                                                   GetBackGroundColor().Red());
-                    int green = colorNode->ToElement()->IntAttribute(XmlFormat::GREEN_TAG.data(),
-                                                                     GetBackGroundColor().Green());
-                    int blue = colorNode->ToElement()->IntAttribute(XmlFormat::BLUE_TAG.data(),
-                                                                    GetBackGroundColor().Blue());
-                    SetBackGroundColor(wxColour(red, green, blue));
-                    }
+                SetBackGroundColor(TiXmlNodeToColor(
+                    graphDefaultsNode->FirstChildElement(XML_GRAPH_BACKGROUND_COLOR.data()),
+                    GetBackGroundColor()));
                 auto backgroundImageEffectNode = graphDefaultsNode->FirstChildElement(
                     XML_GRAPH_PLOT_BACKGROUND_IMAGE_EFFECT.data());
                 if (backgroundImageEffectNode)
@@ -2113,18 +2101,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         }
                     SetPlotBackGroundImageFit(static_cast<ImageFit>(value));
                     }
-                colorNode =
-                    graphDefaultsNode->FirstChildElement(XML_GRAPH_PLOT_BACKGROUND_COLOR.data());
-                if (colorNode)
-                    {
-                    int red = colorNode->ToElement()->IntAttribute(XmlFormat::RED_TAG.data(),
-                                                                   GetPlotBackGroundColor().Red());
-                    int green = colorNode->ToElement()->IntAttribute(
-                        XmlFormat::GREEN_TAG.data(), GetPlotBackGroundColor().Green());
-                    int blue = colorNode->ToElement()->IntAttribute(
-                        XmlFormat::BLUE_TAG.data(), GetPlotBackGroundColor().Blue());
-                    SetPlotBackGroundColor(wxColour(red, green, blue));
-                    }
+
+                SetBackGroundColor(TiXmlNodeToColor(
+                    graphDefaultsNode->FirstChildElement(XML_GRAPH_PLOT_BACKGROUND_COLOR.data()),
+                    GetPlotBackGroundColor()));
+
                 auto opacityNode = graphDefaultsNode->FirstChildElement(
                     XML_GRAPH_PLOT_BACKGROUND_IMAGE_OPACITY.data());
                 if (opacityNode)
@@ -2207,18 +2188,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                             }
                         }
                     }
-                auto stippleColorNode =
-                    graphDefaultsNode->FirstChildElement(XML_GRAPH_STIPPLE_COLOR.data());
-                if (stippleColorNode)
-                    {
-                    int red = stippleColorNode->ToElement()->IntAttribute(
-                        XmlFormat::RED_TAG.data(), GetStippleShapeColor().Red());
-                    int green = stippleColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GREEN_TAG.data(), GetStippleShapeColor().Green());
-                    int blue = stippleColorNode->ToElement()->IntAttribute(
-                        XmlFormat::BLUE_TAG.data(), GetStippleShapeColor().Blue());
-                    SetStippleShapeColor(wxColour(red, green, blue));
-                    }
+
+                SetStippleShapeColor(TiXmlNodeToColor(
+                    graphDefaultsNode->FirstChildElement(XML_GRAPH_STIPPLE_COLOR.data()),
+                    GetStippleShapeColor()));
+
                 // whether drop shadows should be shown
                 auto dropShadowNode =
                     graphDefaultsNode->FirstChildElement(XML_DISPLAY_DROP_SHADOW.data());
@@ -2335,17 +2309,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                             }
                         SetHistogramBinLabelDisplay(static_cast<BinLabelDisplay>(value));
                         }
-                    auto colorNodeHisto = histogramNode->FirstChildElement(XML_GRAPH_COLOR.data());
-                    if (colorNodeHisto)
-                        {
-                        int red = colorNodeHisto->ToElement()->IntAttribute(
-                            XmlFormat::RED_TAG.data(), GetHistogramBarColor().Red());
-                        int green = colorNodeHisto->ToElement()->IntAttribute(
-                            XmlFormat::GREEN_TAG.data(), GetHistogramBarColor().Green());
-                        int blue = colorNodeHisto->ToElement()->IntAttribute(
-                            XmlFormat::BLUE_TAG.data(), GetHistogramBarColor().Blue());
-                        SetHistogramBarColor(wxColour(red, green, blue));
-                        }
+
+                    SetHistogramBarColor(
+                        TiXmlNodeToColor(histogramNode->FirstChildElement(XML_GRAPH_COLOR.data()),
+                                         GetHistogramBarColor()));
+
                     auto opacityNodeHisto =
                         histogramNode->FirstChildElement(XML_GRAPH_OPACITY.data());
                     if (opacityNodeHisto)
@@ -2368,22 +2336,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         }
                     }
                 // bar chart settings
-                auto barChartNode =
+                auto* barChartNode =
                     graphDefaultsNode->FirstChildElement(XML_BAR_CHART_SETTINGS.data());
-                if (barChartNode)
+                if (barChartNode != nullptr)
                     {
-                    auto colorNodeBarChart =
-                        barChartNode->FirstChildElement(XML_GRAPH_COLOR.data());
-                    if (colorNodeBarChart)
-                        {
-                        int red = colorNodeBarChart->ToElement()->IntAttribute(
-                            XmlFormat::RED_TAG.data(), GetBarChartBarColor().Red());
-                        int green = colorNodeBarChart->ToElement()->IntAttribute(
-                            XmlFormat::GREEN_TAG.data(), GetBarChartBarColor().Green());
-                        int blue = colorNodeBarChart->ToElement()->IntAttribute(
-                            XmlFormat::BLUE_TAG.data(), GetBarChartBarColor().Blue());
-                        SetBarChartBarColor(wxColour(red, green, blue));
-                        }
+                    SetBarChartBarColor(
+                        TiXmlNodeToColor(barChartNode->FirstChildElement(XML_GRAPH_COLOR.data()),
+                                         GetBarChartBarColor()));
+
                     auto orientationNode =
                         barChartNode->FirstChildElement(XML_BAR_ORIENTATION.data());
                     if (orientationNode)
@@ -2427,22 +2387,15 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         }
                     }
                 // box plots settings
-                auto boxPlotNode =
+                auto* boxPlotNode =
                     graphDefaultsNode->FirstChildElement(XML_BOX_PLOT_SETTINGS.data());
-                if (boxPlotNode)
+                if (boxPlotNode != nullptr)
                     {
-                    auto colorNodeBoxPlot = boxPlotNode->FirstChildElement(XML_GRAPH_COLOR.data());
-                    if (colorNodeBoxPlot)
-                        {
-                        int red = colorNodeBoxPlot->ToElement()->IntAttribute(
-                            XmlFormat::RED_TAG.data(), GetGraphBoxColor().Red());
-                        int green = colorNodeBoxPlot->ToElement()->IntAttribute(
-                            XmlFormat::GREEN_TAG.data(), GetGraphBoxColor().Green());
-                        int blue = colorNodeBoxPlot->ToElement()->IntAttribute(
-                            XmlFormat::BLUE_TAG.data(), GetGraphBoxColor().Blue());
-                        SetGraphBoxColor(wxColour(red, green, blue));
-                        }
-                    auto opacityNodeBoxPlot =
+                    SetGraphBoxColor(
+                        TiXmlNodeToColor(boxPlotNode->FirstChildElement(XML_GRAPH_COLOR.data()),
+                                         GetGraphBoxColor()));
+
+                    auto* opacityNodeBoxPlot =
                         boxPlotNode->FirstChildElement(XML_GRAPH_OPACITY.data());
                     if (opacityNodeBoxPlot)
                         {
@@ -2450,7 +2403,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                             static_cast<uint8_t>(opacityNodeBoxPlot->ToElement()->IntAttribute(
                                 XML_VALUE.data(), GetGraphBoxOpacity())));
                         }
-                    auto boxEffectNode = boxPlotNode->FirstChildElement(XML_BOX_EFFECT.data());
+                    auto* boxEffectNode = boxPlotNode->FirstChildElement(XML_BOX_EFFECT.data());
                     if (boxEffectNode)
                         {
                         int value = boxEffectNode->ToElement()->IntAttribute(
@@ -2462,7 +2415,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                             }
                         SetGraphBoxEffect(static_cast<BoxEffect>(value));
                         }
-                    auto boxPlotShowAllPointsNode =
+                    auto* boxPlotShowAllPointsNode =
                         boxPlotNode->FirstChildElement(XML_BOX_PLOT_SHOW_ALL_POINTS.data());
                     if (boxPlotShowAllPointsNode)
                         {
@@ -2470,7 +2423,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                             int_to_bool(boxPlotShowAllPointsNode->ToElement()->IntAttribute(
                                 XML_VALUE.data(), bool_to_int(IsShowingAllBoxPlotPoints()))));
                         }
-                    auto boxConnectMiddlePointsNode =
+                    auto* boxConnectMiddlePointsNode =
                         boxPlotNode->FirstChildElement(XML_BOX_CONNECT_MIDDLE_POINTS.data());
                     if (boxConnectMiddlePointsNode)
                         {
@@ -2478,7 +2431,7 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                             int_to_bool(boxConnectMiddlePointsNode->ToElement()->IntAttribute(
                                 XML_VALUE.data(), bool_to_int(IsConnectingBoxPlotMiddlePoints()))));
                         }
-                    auto boxDisplayLabelNode =
+                    auto* boxDisplayLabelNode =
                         boxPlotNode->FirstChildElement(XML_BOX_DISPLAY_LABELS.data());
                     if (boxDisplayLabelNode)
                         {
@@ -2493,14 +2446,14 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                     graphDefaultsNode->FirstChildElement(XML_FLESCH_CHART_SETTINGS.data());
                 if (fleschChartSettingsNode)
                     {
-                    auto connectionLine = fleschChartSettingsNode->FirstChildElement(
+                    auto* connectionLine = fleschChartSettingsNode->FirstChildElement(
                         XML_INCLUDE_CONNECTION_LINE.data());
                     if (connectionLine)
                         {
                         ConnectFleschPoints(int_to_bool(connectionLine->ToElement()->IntAttribute(
                             XML_INCLUDE.data(), bool_to_int(IsConnectingFleschPoints()))));
                         }
-                    auto rulerDocGroup = fleschChartSettingsNode->FirstChildElement(
+                    auto* rulerDocGroup = fleschChartSettingsNode->FirstChildElement(
                         XML_FLESCH_RULER_DOC_GROUPS.data());
                     if (rulerDocGroup)
                         {
@@ -2510,11 +2463,11 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         }
                     }
                 // Lix
-                auto lixSettingsNode =
+                auto* lixSettingsNode =
                     graphDefaultsNode->FirstChildElement(XML_LIX_SETTINGS.data());
                 if (lixSettingsNode)
                     {
-                    auto useEnglishLabels =
+                    auto* useEnglishLabels =
                         lixSettingsNode->FirstChildElement(XML_USE_ENGLISH_LABELS.data());
                     if (useEnglishLabels)
                         {
@@ -2525,25 +2478,17 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         }
                     }
                 // Fry/Raygor/GPM/Schwartz
-                auto fryRaygorNode =
+                auto* fryRaygorNode =
                     graphDefaultsNode->FirstChildElement(XML_FRY_RAYGOR_SETTINGS.data());
-                if (fryRaygorNode)
+                if (fryRaygorNode != nullptr)
                     {
                     // invalid area colors
-                    auto colorNodeInvalidArea =
-                        fryRaygorNode->FirstChildElement(XML_INVALID_AREA_COLOR.data());
-                    if (colorNodeInvalidArea)
-                        {
-                        int red = colorNodeInvalidArea->ToElement()->IntAttribute(
-                            XmlFormat::RED_TAG.data(), GetInvalidAreaColor().Red());
-                        int green = colorNodeInvalidArea->ToElement()->IntAttribute(
-                            XmlFormat::GREEN_TAG.data(), GetInvalidAreaColor().Green());
-                        int blue = colorNodeInvalidArea->ToElement()->IntAttribute(
-                            XmlFormat::BLUE_TAG.data(), GetInvalidAreaColor().Blue());
-                        SetInvalidAreaColor(wxColour(red, green, blue));
-                        }
+                    SetInvalidAreaColor(TiXmlNodeToColor(
+                        fryRaygorNode->FirstChildElement(XML_INVALID_AREA_COLOR.data()),
+                        GetInvalidAreaColor()));
+
                     // Raygor appearance
-                    auto raygorStyleNode =
+                    auto* raygorStyleNode =
                         fryRaygorNode->FirstChildElement(XML_RAYGOR_STYLE.data());
                     if (raygorStyleNode != nullptr)
                         {
@@ -2560,26 +2505,19 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         }
                     }
                 // axis options
-                auto axisNode = graphDefaultsNode->FirstChildElement(XML_AXIS_SETTINGS.data());
-                if (axisNode)
+                auto* axisNode = graphDefaultsNode->FirstChildElement(XML_AXIS_SETTINGS.data());
+                if (axisNode != nullptr)
                     {
-                    auto xAxisNode = axisNode->FirstChildElement(XML_X_AXIS.data());
-                    if (xAxisNode)
+                    auto* xAxisNode = axisNode->FirstChildElement(XML_X_AXIS.data());
+                    if (xAxisNode != nullptr)
                         {
                         // font color
-                        auto colorNodeXAxis = xAxisNode->FirstChildElement(XML_FONT_COLOR.data());
-                        if (colorNodeXAxis)
-                            {
-                            int red = colorNodeXAxis->ToElement()->IntAttribute(
-                                XmlFormat::RED_TAG.data(), GetXAxisFontColor().Red());
-                            int green = colorNodeXAxis->ToElement()->IntAttribute(
-                                XmlFormat::GREEN_TAG.data(), GetXAxisFontColor().Green());
-                            int blue = colorNodeXAxis->ToElement()->IntAttribute(
-                                XmlFormat::BLUE_TAG.data(), GetXAxisFontColor().Blue());
-                            SetXAxisFontColor(wxColour(red, green, blue));
-                            }
+                        SetXAxisFontColor(
+                            TiXmlNodeToColor(xAxisNode->FirstChildElement(XML_FONT_COLOR.data()),
+                                             GetXAxisFontColor()));
+
                         // font
-                        auto fontNode = xAxisNode->FirstChildElement(XML_FONT.data());
+                        auto* fontNode = xAxisNode->FirstChildElement(XML_FONT.data());
                         if (fontNode)
                             {
                             int pointSize = fontNode->ToElement()->IntAttribute(
@@ -2618,23 +2556,16 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                                 }
                             }
                         }
-                    auto yAxisNode = axisNode->FirstChildElement(XML_Y_AXIS.data());
-                    if (yAxisNode)
+                    auto* yAxisNode = axisNode->FirstChildElement(XML_Y_AXIS.data());
+                    if (yAxisNode != nullptr)
                         {
                         // font color
-                        auto colorNodeYAxis = yAxisNode->FirstChildElement(XML_FONT_COLOR.data());
-                        if (colorNodeYAxis)
-                            {
-                            int red = colorNodeYAxis->ToElement()->IntAttribute(
-                                XmlFormat::RED_TAG.data(), GetYAxisFontColor().Red());
-                            int green = colorNodeYAxis->ToElement()->IntAttribute(
-                                XmlFormat::GREEN_TAG.data(), GetYAxisFontColor().Green());
-                            int blue = colorNodeYAxis->ToElement()->IntAttribute(
-                                XmlFormat::BLUE_TAG.data(), GetYAxisFontColor().Blue());
-                            SetYAxisFontColor(wxColour(red, green, blue));
-                            }
+                        SetYAxisFontColor(
+                            TiXmlNodeToColor(yAxisNode->FirstChildElement(XML_FONT_COLOR.data()),
+                                             GetYAxisFontColor()));
+
                         // font
-                        auto fontNode = yAxisNode->FirstChildElement(XML_FONT.data());
+                        auto* fontNode = yAxisNode->FirstChildElement(XML_FONT.data());
                         if (fontNode)
                             {
                             int pointSize = fontNode->ToElement()->IntAttribute(
@@ -2675,27 +2606,19 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         }
                     }
                 // title options
-                auto titleNode = graphDefaultsNode->FirstChildElement(XML_TITLE_SETTINGS.data());
-                if (titleNode)
+                auto* titleNode = graphDefaultsNode->FirstChildElement(XML_TITLE_SETTINGS.data());
+                if (titleNode != nullptr)
                     {
-                    auto topTitleNode = titleNode->FirstChildElement(XML_TOP_TITLE.data());
-                    if (topTitleNode)
+                    auto* topTitleNode = titleNode->FirstChildElement(XML_TOP_TITLE.data());
+                    if (topTitleNode != nullptr)
                         {
                         // font color
-                        auto colorNodeTopTitle =
-                            topTitleNode->FirstChildElement(XML_FONT_COLOR.data());
-                        if (colorNodeTopTitle)
-                            {
-                            int red = colorNodeTopTitle->ToElement()->IntAttribute(
-                                XmlFormat::RED_TAG.data(), GetGraphTopTitleFontColor().Red());
-                            int green = colorNodeTopTitle->ToElement()->IntAttribute(
-                                XmlFormat::GREEN_TAG.data(), GetGraphTopTitleFontColor().Green());
-                            int blue = colorNodeTopTitle->ToElement()->IntAttribute(
-                                XmlFormat::BLUE_TAG.data(), GetGraphTopTitleFontColor().Blue());
-                            SetGraphTopTitleFontColor(wxColour(red, green, blue));
-                            }
+                        SetGraphTopTitleFontColor(
+                            TiXmlNodeToColor(topTitleNode->FirstChildElement(XML_FONT_COLOR.data()),
+                                             GetGraphTopTitleFontColor()));
+
                         // font
-                        auto fontNode = topTitleNode->FirstChildElement(XML_FONT.data());
+                        auto* fontNode = topTitleNode->FirstChildElement(XML_FONT.data());
                         if (fontNode)
                             {
                             int pointSize = fontNode->ToElement()->IntAttribute(
@@ -2734,25 +2657,16 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                                 }
                             }
                         }
-                    auto bottomTitleNode = titleNode->FirstChildElement(XML_BOTTOM_TITLE.data());
-                    if (bottomTitleNode)
+                    auto* bottomTitleNode = titleNode->FirstChildElement(XML_BOTTOM_TITLE.data());
+                    if (bottomTitleNode != nullptr)
                         {
                         // font color
-                        auto colorNodeBottomTitle =
-                            bottomTitleNode->FirstChildElement(XML_FONT_COLOR.data());
-                        if (colorNodeBottomTitle)
-                            {
-                            int red = colorNodeBottomTitle->ToElement()->IntAttribute(
-                                XmlFormat::RED_TAG.data(), GetGraphBottomTitleFontColor().Red());
-                            int green = colorNodeBottomTitle->ToElement()->IntAttribute(
-                                XmlFormat::GREEN_TAG.data(),
-                                GetGraphBottomTitleFontColor().Green());
-                            int blue = colorNodeBottomTitle->ToElement()->IntAttribute(
-                                XmlFormat::BLUE_TAG.data(), GetGraphBottomTitleFontColor().Blue());
-                            SetGraphBottomTitleFontColor(wxColour(red, green, blue));
-                            }
+                        SetGraphBottomTitleFontColor(TiXmlNodeToColor(
+                            bottomTitleNode->FirstChildElement(XML_FONT_COLOR.data()),
+                            GetGraphBottomTitleFontColor()));
+
                         // font
-                        auto fontNode = bottomTitleNode->FirstChildElement(XML_FONT.data());
+                        auto* fontNode = bottomTitleNode->FirstChildElement(XML_FONT.data());
                         if (fontNode)
                             {
                             int pointSize = fontNode->ToElement()->IntAttribute(
@@ -2791,24 +2705,16 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                                 }
                             }
                         }
-                    auto leftTitleNode = titleNode->FirstChildElement(XML_LEFT_TITLE.data());
-                    if (leftTitleNode)
+                    auto* leftTitleNode = titleNode->FirstChildElement(XML_LEFT_TITLE.data());
+                    if (leftTitleNode != nullptr)
                         {
                         // font color
-                        auto colorNodeLeftTitle =
-                            leftTitleNode->FirstChildElement(XML_FONT_COLOR.data());
-                        if (colorNodeLeftTitle)
-                            {
-                            int red = colorNodeLeftTitle->ToElement()->IntAttribute(
-                                XmlFormat::RED_TAG.data(), GetGraphLeftTitleFontColor().Red());
-                            int green = colorNodeLeftTitle->ToElement()->IntAttribute(
-                                XmlFormat::GREEN_TAG.data(), GetGraphLeftTitleFontColor().Green());
-                            int blue = colorNodeLeftTitle->ToElement()->IntAttribute(
-                                XmlFormat::BLUE_TAG.data(), GetGraphLeftTitleFontColor().Blue());
-                            SetGraphLeftTitleFontColor(wxColour(red, green, blue));
-                            }
+                        SetGraphLeftTitleFontColor(TiXmlNodeToColor(
+                            leftTitleNode->FirstChildElement(XML_FONT_COLOR.data()),
+                            GetGraphLeftTitleFontColor()));
+
                         // font
-                        auto fontNode = leftTitleNode->FirstChildElement(XML_FONT.data());
+                        auto* fontNode = leftTitleNode->FirstChildElement(XML_FONT.data());
                         if (fontNode)
                             {
                             int pointSize = fontNode->ToElement()->IntAttribute(
@@ -2847,24 +2753,16 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                                 }
                             }
                         }
-                    auto rightTitleNode = titleNode->FirstChildElement(XML_RIGHT_TITLE.data());
-                    if (rightTitleNode)
+                    auto* rightTitleNode = titleNode->FirstChildElement(XML_RIGHT_TITLE.data());
+                    if (rightTitleNode != nullptr)
                         {
                         // font color
-                        auto colorNodeRightTitle =
-                            rightTitleNode->FirstChildElement(XML_FONT_COLOR.data());
-                        if (colorNodeRightTitle)
-                            {
-                            int red = colorNodeRightTitle->ToElement()->IntAttribute(
-                                XmlFormat::RED_TAG.data(), GetGraphRightTitleFontColor().Red());
-                            int green = colorNodeRightTitle->ToElement()->IntAttribute(
-                                XmlFormat::GREEN_TAG.data(), GetGraphRightTitleFontColor().Green());
-                            int blue = colorNodeRightTitle->ToElement()->IntAttribute(
-                                XmlFormat::BLUE_TAG.data(), GetGraphRightTitleFontColor().Blue());
-                            SetGraphRightTitleFontColor(wxColour(red, green, blue));
-                            }
+                        SetGraphRightTitleFontColor(TiXmlNodeToColor(
+                            rightTitleNode->FirstChildElement(XML_FONT_COLOR.data()),
+                            GetGraphRightTitleFontColor()));
+
                         // font
-                        auto fontNode = rightTitleNode->FirstChildElement(XML_FONT.data());
+                        auto* fontNode = rightTitleNode->FirstChildElement(XML_FONT.data());
                         if (fontNode)
                             {
                             int pointSize = fontNode->ToElement()->IntAttribute(
@@ -3270,162 +3168,101 @@ bool ReadabilityAppOptions::LoadOptionsFile(const wxString& optionsFile,
                         }
                     }
                 // the highlight color
-                auto colorNode = textViewNode->FirstChildElement(XML_HIGHLIGHTCOLOR.data());
-                if (colorNode)
-                    {
-                    int red = colorNode->ToElement()->IntAttribute(XmlFormat::RED_TAG.data(),
-                                                                   m_textHighlightColor.Red());
-                    int green = colorNode->ToElement()->IntAttribute(XmlFormat::GREEN_TAG.data(),
-                                                                     m_textHighlightColor.Green());
-                    int blue = colorNode->ToElement()->IntAttribute(XmlFormat::BLUE_TAG.data(),
-                                                                    m_textHighlightColor.Blue());
-                    m_textHighlightColor.Set(red, green, blue);
-                    }
+                m_textHighlightColor =
+                    TiXmlNodeToColor(textViewNode->FirstChildElement(XML_HIGHLIGHTCOLOR.data()),
+                                     m_textHighlightColor);
+
                 // the highlight color for dolch words
-                auto dolchConjunctionsColorNode =
+                auto* dolchConjunctionsColorNode =
                     textViewNode->FirstChildElement(XML_DOLCH_CONJUNCTIONS_HIGHLIGHTCOLOR.data());
-                if (dolchConjunctionsColorNode)
+                if (dolchConjunctionsColorNode != nullptr)
                     {
-                    int red = dolchConjunctionsColorNode->ToElement()->IntAttribute(
-                        XmlFormat::RED_TAG.data(), GetDolchConjunctionsColor().Red());
-                    int green = dolchConjunctionsColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GREEN_TAG.data(), GetDolchConjunctionsColor().Green());
-                    int blue = dolchConjunctionsColorNode->ToElement()->IntAttribute(
-                        XmlFormat::BLUE_TAG.data(), GetDolchConjunctionsColor().Blue());
-                    SetDolchConjunctionsColor(wxColour(red, green, blue));
+                    SetDolchConjunctionsColor(
+                        TiXmlNodeToColor(dolchConjunctionsColorNode, GetDolchConjunctionsColor()));
+
                     m_highlightDolchConjunctions =
                         int_to_bool(dolchConjunctionsColorNode->ToElement()->IntAttribute(
                             XML_INCLUDE.data(), bool_to_int(m_highlightDolchConjunctions)));
                     }
-                auto dolchPrepositionsColorNode =
+                auto* dolchPrepositionsColorNode =
                     textViewNode->FirstChildElement(XML_DOLCH_PREPOSITIONS_HIGHLIGHTCOLOR.data());
-                if (dolchPrepositionsColorNode)
+                if (dolchPrepositionsColorNode != nullptr)
                     {
-                    int red = dolchPrepositionsColorNode->ToElement()->IntAttribute(
-                        XmlFormat::RED_TAG.data(), GetDolchPrepositionsColor().Red());
-                    int green = dolchPrepositionsColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GREEN_TAG.data(), GetDolchPrepositionsColor().Green());
-                    int blue = dolchPrepositionsColorNode->ToElement()->IntAttribute(
-                        XmlFormat::BLUE_TAG.data(), GetDolchPrepositionsColor().Blue());
-                    SetDolchPrepositionsColor(wxColour(red, green, blue));
+                    SetDolchPrepositionsColor(
+                        TiXmlNodeToColor(dolchPrepositionsColorNode, GetDolchPrepositionsColor()));
+
                     m_highlightDolchPrepositions =
                         int_to_bool(dolchPrepositionsColorNode->ToElement()->IntAttribute(
                             XML_INCLUDE.data(), bool_to_int(m_highlightDolchPrepositions)));
                     }
-                auto dolchPronounsColorNode =
+                auto* dolchPronounsColorNode =
                     textViewNode->FirstChildElement(XML_DOLCH_PRONOUNS_HIGHLIGHTCOLOR.data());
-                if (dolchPronounsColorNode)
+                if (dolchPronounsColorNode != nullptr)
                     {
-                    int red = dolchPronounsColorNode->ToElement()->IntAttribute(
-                        XmlFormat::RED_TAG.data(), GetDolchPronounsColor().Red());
-                    int green = dolchPronounsColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GREEN_TAG.data(), GetDolchPronounsColor().Green());
-                    int blue = dolchPronounsColorNode->ToElement()->IntAttribute(
-                        XmlFormat::BLUE_TAG.data(), GetDolchPronounsColor().Blue());
-                    SetDolchPronounsColor(wxColour(red, green, blue));
+                    SetDolchPronounsColor(
+                        TiXmlNodeToColor(dolchPronounsColorNode, GetDolchPronounsColor()));
+
                     m_highlightDolchPronouns =
                         int_to_bool(dolchPronounsColorNode->ToElement()->IntAttribute(
                             XML_INCLUDE.data(), bool_to_int(m_highlightDolchPronouns)));
                     }
-                auto dolchAdverbsColorNode =
+                auto* dolchAdverbsColorNode =
                     textViewNode->FirstChildElement(XML_DOLCH_ADVERBS_HIGHLIGHTCOLOR.data());
-                if (dolchAdverbsColorNode)
+                if (dolchAdverbsColorNode != nullptr)
                     {
-                    int red = dolchAdverbsColorNode->ToElement()->IntAttribute(
-                        XmlFormat::RED_TAG.data(), GetDolchAdverbsColor().Red());
-                    int green = dolchAdverbsColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GREEN_TAG.data(), GetDolchAdverbsColor().Green());
-                    int blue = dolchAdverbsColorNode->ToElement()->IntAttribute(
-                        XmlFormat::BLUE_TAG.data(), GetDolchAdverbsColor().Blue());
-                    SetDolchAdverbsColor(wxColour(red, green, blue));
+                    SetDolchAdverbsColor(
+                        TiXmlNodeToColor(dolchAdverbsColorNode, GetDolchAdverbsColor()));
+
                     m_highlightDolchAdverbs =
                         int_to_bool(dolchAdverbsColorNode->ToElement()->IntAttribute(
                             XML_INCLUDE.data(), bool_to_int(m_highlightDolchAdverbs)));
                     }
-                auto dolchAdjectivesColorNode =
+                auto* dolchAdjectivesColorNode =
                     textViewNode->FirstChildElement(XML_DOLCH_ADJECTIVES_HIGHLIGHTCOLOR.data());
-                if (dolchAdjectivesColorNode)
+                if (dolchAdjectivesColorNode != nullptr)
                     {
-                    int red = dolchAdjectivesColorNode->ToElement()->IntAttribute(
-                        XmlFormat::RED_TAG.data(), GetDolchAdjectivesColor().Red());
-                    int green = dolchAdjectivesColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GREEN_TAG.data(), GetDolchAdjectivesColor().Green());
-                    int blue = dolchAdjectivesColorNode->ToElement()->IntAttribute(
-                        XmlFormat::BLUE_TAG.data(), GetDolchAdjectivesColor().Blue());
-                    SetDolchAdjectivesColor(wxColour(red, green, blue));
+                    SetDolchAdjectivesColor(
+                        TiXmlNodeToColor(dolchAdjectivesColorNode, GetDolchAdjectivesColor()));
+
                     m_highlightDolchAdjectives =
                         int_to_bool(dolchAdjectivesColorNode->ToElement()->IntAttribute(
                             XML_INCLUDE.data(), bool_to_int(m_highlightDolchAdjectives)));
                     }
-                auto dolchVerbColorNode =
+                auto* dolchVerbColorNode =
                     textViewNode->FirstChildElement(XML_DOLCH_VERBS_HIGHLIGHTCOLOR.data());
-                if (dolchVerbColorNode)
+                if (dolchVerbColorNode != nullptr)
                     {
-                    int red = dolchVerbColorNode->ToElement()->IntAttribute(
-                        XmlFormat::RED_TAG.data(), GetDolchVerbsColor().Red());
-                    int green = dolchVerbColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GREEN_TAG.data(), GetDolchVerbsColor().Green());
-                    int blue = dolchVerbColorNode->ToElement()->IntAttribute(
-                        XmlFormat::BLUE_TAG.data(), GetDolchVerbsColor().Blue());
-                    SetDolchVerbsColor(wxColour(red, green, blue));
+                    SetDolchVerbsColor(TiXmlNodeToColor(dolchVerbColorNode, GetDolchVerbsColor()));
+
                     m_highlightDolchVerbs =
                         int_to_bool(dolchVerbColorNode->ToElement()->IntAttribute(
                             XML_INCLUDE.data(), bool_to_int(m_highlightDolchVerbs)));
                     }
-                auto dolchNounColorNode =
+                auto* dolchNounColorNode =
                     textViewNode->FirstChildElement(XML_DOLCH_NOUNS_HIGHLIGHTCOLOR.data());
-                if (dolchNounColorNode)
+                if (dolchNounColorNode != nullptr)
                     {
-                    int red = dolchNounColorNode->ToElement()->IntAttribute(
-                        XmlFormat::RED_TAG.data(), GetDolchNounsColor().Red());
-                    int green = dolchNounColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GREEN_TAG.data(), GetDolchNounsColor().Green());
-                    int blue = dolchNounColorNode->ToElement()->IntAttribute(
-                        XmlFormat::BLUE_TAG.data(), GetDolchNounsColor().Blue());
-                    SetDolchNounsColor(wxColour(red, green, blue));
+                    SetDolchNounsColor(TiXmlNodeToColor(dolchNounColorNode, GetDolchNounsColor()));
+
                     m_highlightDolchNouns =
                         int_to_bool(dolchNounColorNode->ToElement()->IntAttribute(
                             XML_INCLUDE.data(), bool_to_int(m_highlightDolchNouns)));
                     }
                 // the highlight color for wordy items
-                auto wordyPhrasesColorNode =
-                    textViewNode->FirstChildElement(XML_WORDY_PHRASE_HIGHLIGHTCOLOR.data());
-                if (wordyPhrasesColorNode)
-                    {
-                    int red = wordyPhrasesColorNode->ToElement()->IntAttribute(
-                        XmlFormat::RED_TAG.data(), m_wordyPhraseHighlightColor.Red());
-                    int green = wordyPhrasesColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GREEN_TAG.data(), m_wordyPhraseHighlightColor.Green());
-                    int blue = wordyPhrasesColorNode->ToElement()->IntAttribute(
-                        XmlFormat::BLUE_TAG.data(), m_wordyPhraseHighlightColor.Blue());
-                    m_wordyPhraseHighlightColor.Set(red, green, blue);
-                    }
+                m_wordyPhraseHighlightColor = TiXmlNodeToColor(
+                    textViewNode->FirstChildElement(XML_WORDY_PHRASE_HIGHLIGHTCOLOR.data()),
+                    m_wordyPhraseHighlightColor);
+
                 // the highlight color for repeated words
-                auto dupWordColorNode =
-                    textViewNode->FirstChildElement(XML_DUP_WORD_HIGHLIGHTCOLOR.data());
-                if (dupWordColorNode)
-                    {
-                    int red = dupWordColorNode->ToElement()->IntAttribute(
-                        XmlFormat::RED_TAG.data(), m_duplicateWordHighlightColor.Red());
-                    int green = dupWordColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GREEN_TAG.data(), m_duplicateWordHighlightColor.Green());
-                    int blue = dupWordColorNode->ToElement()->IntAttribute(
-                        XmlFormat::BLUE_TAG.data(), m_duplicateWordHighlightColor.Blue());
-                    m_duplicateWordHighlightColor.Set(red, green, blue);
-                    }
+                m_duplicateWordHighlightColor = TiXmlNodeToColor(
+                    textViewNode->FirstChildElement(XML_DUP_WORD_HIGHLIGHTCOLOR.data()),
+                    m_duplicateWordHighlightColor);
+
                 // the highlight color for ignored sentences
-                auto excludedColorNode =
-                    textViewNode->FirstChildElement(XML_EXCLUDED_HIGHLIGHTCOLOR.data());
-                if (excludedColorNode)
-                    {
-                    int red = excludedColorNode->ToElement()->IntAttribute(
-                        XmlFormat::RED_TAG.data(), m_excludedTextHighlightColor.Red());
-                    int green = excludedColorNode->ToElement()->IntAttribute(
-                        XmlFormat::GREEN_TAG.data(), m_excludedTextHighlightColor.Green());
-                    int blue = excludedColorNode->ToElement()->IntAttribute(
-                        XmlFormat::BLUE_TAG.data(), m_excludedTextHighlightColor.Blue());
-                    m_excludedTextHighlightColor.Set(red, green, blue);
-                    }
+                m_excludedTextHighlightColor = TiXmlNodeToColor(
+                    textViewNode->FirstChildElement(XML_EXCLUDED_HIGHLIGHTCOLOR.data()),
+                    m_excludedTextHighlightColor);
+
                 // document display font information
                 auto fontColorNode =
                     textViewNode->FirstChildElement(XML_DOCUMENT_DISPLAY_FONTCOLOR.data());
@@ -4918,19 +4755,21 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     }
 
 //--------------------------------------------
-wxColour ReadabilityAppOptions::TiXmlNodeToColor(const tinyxml2::XMLNode* colorNode)
+wxColour
+ReadabilityAppOptions::TiXmlNodeToColor(const tinyxml2::XMLNode* colorNode,
+                                        const wxColour& defaultColor /*= wxColour{ 0, 0, 0 }*/)
     {
     if (colorNode != nullptr)
         {
         const auto red = static_cast<wxColour::ChannelType>(
             colorNode->ToElement()->IntAttribute(XmlFormat::RED_TAG.data(), 255));
         const auto green = static_cast<wxColour::ChannelType>(
-            colorNode->ToElement()->IntAttribute(XmlFormat::BLUE_TAG.data(), 255));
-        const auto blue = static_cast<wxColour::ChannelType>(
             colorNode->ToElement()->IntAttribute(XmlFormat::GREEN_TAG.data(), 255));
+        const auto blue = static_cast<wxColour::ChannelType>(
+            colorNode->ToElement()->IntAttribute(XmlFormat::BLUE_TAG.data(), 255));
         return { red, green, blue };
         }
-    return wxNullColour;
+    return defaultColor;
     }
 
 //--------------------------------------------
