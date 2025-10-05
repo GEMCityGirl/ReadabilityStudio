@@ -6048,16 +6048,20 @@ bool BatchProjectDoc::RunProjectWizard(const wxString& path)
         {
         const size_t sampleSize = GetSourceFilesInfo().size() *
                                   safe_divide<double>(wizard->GetRandomSamplePercentage(), 100);
-        assert(sampleSize < GetSourceFilesInfo().size() && "Invalid random sample size!");
+        wxASSERT_MSG(sampleSize < GetSourceFilesInfo().size(), L"Invalid random sample size!");
 
         std::shuffle(GetSourceFilesInfo().begin(), GetSourceFilesInfo().end(),
                      wxGetApp().GetRandomNumberEngine());
         GetSourceFilesInfo().erase(GetSourceFilesInfo().begin() + sampleSize,
                                    GetSourceFilesInfo().end());
-        assert(sampleSize == GetSourceFilesInfo().size() && "Invalid random sample size!");
+        wxASSERT_MSG(sampleSize == GetSourceFilesInfo().size(), L"Invalid random sample size!");
 
-        wxGetApp().GetAppOptions()->EnableRandomSampling(wizard->IsRandomSampling());
+        wxGetApp().GetAppOptions()->EnableRandomSampling(true);
         wxGetApp().GetAppOptions()->SetBatchRandomSamplingSize(wizard->GetRandomSamplePercentage());
+        }
+    else
+        {
+        wxGetApp().GetAppOptions()->EnableRandomSampling(false);
         }
     SetMinDocWordCountForBatch(wizard->GetMinDocWordCountForBatch());
     wxGetApp().GetAppOptions()->SetMinDocWordCountForBatch(wizard->GetMinDocWordCountForBatch());
