@@ -554,15 +554,16 @@ void ReadabilityAppOptions::LoadThemeNode(tinyxml2::XMLElement* appearanceNode)
     }
 
 //------------------------------------------------
-bool ReadabilityAppOptions::LoadThemeFile(const wxString& optionsFile)
+bool ReadabilityAppOptions::LoadThemeFile(wxString optionsFile)
     {
-    if (!wxFile::Exists(optionsFile))
+    wxString fileContent;
+    if (!wxFile::Exists(optionsFile) || !Wisteria::TextStream::ReadFile(optionsFile, fileContent))
         {
         return false;
         }
 
     tinyxml2::XMLDocument doc;
-    doc.LoadFile(optionsFile.mb_str());
+    doc.Parse(fileContent.utf8_str());
     if (doc.Error())
         {
         wxMessageBox(wxString::Format(_(L"Unable to load theme file:\n%s"), doc.ErrorStr()),
