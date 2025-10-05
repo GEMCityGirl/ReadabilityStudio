@@ -1017,21 +1017,21 @@ bool ReadabilityAppOptions::LoadOptionsFile(wxString optionsFile,
         // just get the reviewer from project settings to be used for the start page
         auto* projectSettingsForReview =
             configRootNode->FirstChildElement(XML_PROJECT_SETTINGS.data());
-        if (projectSettingsForReview)
+        if (projectSettingsForReview != nullptr)
             {
             auto* projectReviewer =
                 projectSettingsForReview->FirstChildElement(XML_REVIEWER.data());
-            if (projectReviewer)
+            if (projectReviewer != nullptr)
                 {
                 const char* reviewerChars =
                     projectReviewer->ToElement()->Attribute(XML_VALUE.data());
-                if (reviewerChars)
+                if (reviewerChars != nullptr)
                     {
                     const auto reviewerStr = Wisteria::TextStream::CharStreamToUnicode(
                         reviewerChars, std::strlen(reviewerChars));
                     const wchar_t* convertedStr =
                         filter_html(reviewerStr.c_str(), reviewerStr.length(), true, false);
-                    if (convertedStr)
+                    if (convertedStr != nullptr)
                         {
                         SetReviewer(convertedStr);
                         }
@@ -3121,10 +3121,10 @@ bool ReadabilityAppOptions::LoadOptionsFile(wxString optionsFile,
                      rTest != GetReadabilityTests().get_tests().end(); ++rTest)
                     {
                     auto* test = readabilityTestsNode->FirstChildElement(
-                        wxString(rTest->get_test().get_id().c_str()).mb_str());
+                        wxString{ rTest->get_test().get_id().c_str() }.utf8_str());
                     /* if attribute is not found then "includeValue" is set to zero for us,
                        so no need to check the return value here*/
-                    if (test)
+                    if (test != nullptr)
                         {
                         rTest->include(int_to_bool(test->ToElement()->IntAttribute(
                             XML_INCLUDE.data(), bool_to_int(rTest->is_included()))));
