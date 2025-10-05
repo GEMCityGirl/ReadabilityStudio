@@ -6,6 +6,7 @@ Readability Studio
 | ------------- | ------------- |
 | Linux    | [![Linux Build](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/unix%20build.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/unix%20build.yml) |
 | Windows  | [![Windows Build](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/windows-build.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/windows-build.yml) |
+| macOS    | [![macOS Build](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/mac-build.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/mac-build.yml) |
 
 | Unit Tests  | Result |
 | ------------- | ------------- |
@@ -18,6 +19,7 @@ Readability Studio
 | cppcheck   | [![cppcheck](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/cppcheck.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/cppcheck.yml) |
 | MS PREfast | [![Microsoft C++ Code Analysis](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/msvc.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/msvc.yml) |
 | Quneiform  | [![Quneiform](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/quneiform.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/quneiform.yml) |
+| clang-tidy | [![clang-tidy](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/clang-tidy.yml/badge.svg)](https://github.com/eclipse-ers/ReadabilityStudio/actions/workflows/clang-tidy.yml) |
 
 | Documentation & Formatting | Result |
 | ------------- | ------------- |
