@@ -372,6 +372,7 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
     Wisteria::UI::SideBar* CreateSideBar(wxWindow* frame, const wxWindowID id);
     wxRibbonBar* CreateRibbon(wxWindow* frame, const wxDocument* doc);
     wxImage ReadRibbonSvgIcon(const wxString& path);
+    wxBitmap ReadRibbonSvgIcon(const wxString& path);
 
     // menu creation
     void FillPrintMenu(wxMenu& printMenu, const RibbonType rtype);

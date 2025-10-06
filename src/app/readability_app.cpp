@@ -1832,16 +1832,20 @@ Wisteria::UI::SideBar* ReadabilityApp::CreateSideBar(wxWindow* frame, const wxWi
     }
 
 //-----------------------------------
-wxImage ReadabilityApp::ReadRibbonSvgIcon(const wxString& path)
+wxBitmap ReadabilityApp::ReadRibbonSvgIcon(const wxString& path)
     {
-    return GetResourceManager()
+    const wxImage loadedImage{
+        GetResourceManager()
         .GetSVG(path)
         .GetBitmap(GetMainFrame()->FromDIP(wxSize{ 32, 32 }))
         .
         // Hack for icon to work with ribbon; otherwise, the ribbon never resizes
         // the image when the button gets smaller. Ribbon must be relying on some
         // sort of information that converting a bitmap to an image and back performs.
-        ConvertToImage();
+        ConvertToImage()
+    };
+    wxASSERT_MSG(loadedImage.IsOk(), "Failed to load SVG image.");
+    return wxBitmap{ loadedImage };
     }
 
 //-----------------------------------
