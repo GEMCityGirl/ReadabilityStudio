@@ -270,143 +270,6 @@ void ReadabilityApp::AddWordsToDictionaries(const wxArrayString& theWords,
     }
 
 //-------------------------------------------
-void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
-    {
-    if ((loop != nullptr) && loop->IsOk() && loop->IsMain())
-        {
-        // this prevents logic blocks in here from overlapping
-        // (showing dialogs in here can cause this function to be reentered)
-        static bool initEventProcessing = false;
-        static bool hasCommandLineBeenParsed = false;
-
-        // The command line may need an active loop (if a progress bar is used),
-        // so we handle it here instead of OnInit().
-        if (!hasCommandLineBeenParsed && !initEventProcessing)
-            {
-            initEventProcessing = true;
-            hasCommandLineBeenParsed = true;
-            // parse the command line
-            const wxCmdLineEntryDesc cmdLineDesc[] = {
-                { wxCMD_LINE_SWITCH, _DT("help"), _DT("help"), wxTRANSLATE("Displays the help"),
-                  wxCMD_LINE_VAL_NONE, wxCMD_LINE_OPTION_HELP },
-                { wxCMD_LINE_OPTION, _DT("bg"), _DT("background"),
-                  wxTRANSLATE("Sets the graph background image for the input project"),
-                  wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
-                { wxCMD_LINE_OPTION, _DT("lua"), _DT("lua"), wxTRANSLATE("Runs a Lua script"),
-                  wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
-                { wxCMD_LINE_OPTION, _DT("loglevel"), _DT("loglevel"),
-                  wxTRANSLATE("Log report level (0 = none, 1 = standard, 2 = verbose, 3 = max)."),
-                  wxCMD_LINE_VAL_NUMBER, wxCMD_LINE_PARAM_OPTIONAL },
-                { wxCMD_LINE_PARAM, nullptr, nullptr, wxTRANSLATE("Input file"),
-                  wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
-                { wxCMD_LINE_NONE, nullptr, nullptr, nullptr, wxCMD_LINE_VAL_NONE, 0 }
-            };
-            wxCmdLineParser cmdParser(cmdLineDesc, argc, argv);
-            int CommandLineResult = 0;
-                {
-                const wxLogNull logger;
-                CommandLineResult = cmdParser.Parse(false);
-                }
-
-            // set the logging level
-            wxLog::EnableLogging(true);
-            // change the log level (if command line is asking for it)
-            long loglevel = 1;
-            if (cmdParser.Found(_DT(L"loglevel"), &loglevel))
-                {
-                if (loglevel <= 0)
-                    {
-                    wxLog::EnableLogging(false);
-                    }
-                else if (loglevel == 1)
-                    {
-                    wxLog::SetLogLevel(wxLOG_Status);
-                    }
-                else if (loglevel > 1)
-                    {
-                    wxLog::SetVerbose(true);
-                    wxLog::SetLogLevel(wxLOG_Max);
-                    }
-                }
-            // run a Lua script
-            wxString luaScriptPath;
-            if (cmdParser.Found(_DT(L"lua"), &luaScriptPath))
-                {
-                wxString luaScript;
-                if (Wisteria::TextStream::ReadFile(luaScriptPath, luaScript))
-                    {
-                    wxString errorMessage;
-                    GetLuaRunner().RunLuaCode(luaScript, luaScriptPath, errorMessage);
-                    }
-                }
-
-            // see if they want to display the help
-            if (CommandLineResult == -1)
-                {
-                GetMainFrame()->DisplayHelp(L"online/index.html");
-                }
-            else if (CommandLineResult == 0 && cmdParser.GetParamCount() > 0)
-                {
-                wxFileName fn(cmdParser.GetParam(0));
-                fn.Normalize(wxPATH_NORM_LONG | wxPATH_NORM_DOTS | wxPATH_NORM_TILDE |
-                             wxPATH_NORM_ABSOLUTE);
-                // allow ability to open native files or import something from command line
-                size_t i = 0;
-                for (i = 0; i < GetMainFrame()->GetDefaultFileExtensions().GetCount(); ++i)
-                    {
-                    if (fn.GetExt().CmpNoCase(GetMainFrame()->GetDefaultFileExtensions()[i]) == 0)
-                        {
-                        GetMainFrame()->OpenFile(fn.GetFullPath());
-                        break;
-                        }
-                    }
-                // not a recognized project extension, so open the file as a new standard project
-                // (note that we will bypass the wizard)
-                if (i == GetMainFrame()->GetDefaultFileExtensions().GetCount())
-                    {
-                    const auto& templateList = GetDocManager()->GetTemplates();
-                    for (size_t j = 0; j < templateList.GetCount(); ++j)
-                        {
-                        wxDocTemplate* docTemplate =
-                            dynamic_cast<wxDocTemplate*>(templateList.Item(j)->GetData());
-                        if ((docTemplate != nullptr) &&
-                            docTemplate->GetDocClassInfo()->IsKindOf(wxCLASSINFO(ProjectDoc)))
-                            {
-                            auto* newDoc = dynamic_cast<ProjectDoc*>(
-                                docTemplate->CreateDocument(fn.GetFullPath(), wxDOC_NEW));
-                            if ((newDoc != nullptr) && !newDoc->OnNewDocument())
-                                {
-                                // Document is implicitly deleted by DeleteAllViews
-                                newDoc->DeleteAllViews();
-                                newDoc = nullptr;
-                                }
-                            if ((newDoc != nullptr) && (newDoc->GetFirstView() != nullptr))
-                                {
-                                newDoc->GetFirstView()->Activate(true);
-                                GetDocManager()->ActivateView(newDoc->GetFirstView());
-                                if (newDoc->GetDocumentWindow() != nullptr)
-                                    {
-                                    newDoc->GetDocumentWindow()->SetFocus();
-                                    }
-                                wxString graphBackgroundPath;
-                                if (cmdParser.Found(_DT(L"bg"), &graphBackgroundPath))
-                                    {
-                                    newDoc->SetPlotBackGroundImagePath(graphBackgroundPath);
-                                    newDoc->RefreshRequired(ProjectRefresh::Minimal);
-                                    newDoc->RefreshProject();
-                                    }
-                                }
-                            break;
-                            }
-                        }
-                    }
-                }
-            initEventProcessing = false;
-            }
-        }
-    }
-
-//-------------------------------------------
 bool ReadabilityApp::OnInit()
     {
     SetAppName(_READSTUDIO_APP_NAME);
@@ -912,6 +775,64 @@ bool ReadabilityApp::OnInit()
     GetAppOptions()->SaveOptionsFile();
 
     BaseApp::LogSystemInfo();
+
+    if (!m_commandLineFilesToOpen.empty())
+        {
+        CallAfter(
+            [this]()
+            {
+                for (const auto& file : m_commandLineFilesToOpen)
+                    {
+                    GetMainFrame()->OpenFile(file);
+                    }
+            });
+        }
+
+    return true;
+    }
+
+#ifdef __WXOSX__
+//-----------------------------------
+void ReadabilityApp::MacOpenFiles(const wxArrayString& files)
+    {
+    for (const wxString& file : files)
+        {
+        CallAfter([this, file]() { GetMainFrame()->OpenFile(file); });
+        }
+    }
+#endif
+
+//-----------------------------------
+void ReadabilityApp::OnInitCmdLine(wxCmdLineParser& cmdParser)
+    {
+    // -loglevel / --loglevel
+    cmdParser.AddOption(_DT("logging"), _DT("logging"),
+                        wxTRANSLATE("Log report (0 = disable, 1 = enable)."), wxCMD_LINE_VAL_NUMBER,
+                        wxCMD_LINE_PARAM_OPTIONAL);
+    // positional: input file
+    cmdParser.AddParam(wxTRANSLATE("Input file"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL);
+    }
+
+//-----------------------------------
+bool ReadabilityApp::OnCmdLineParsed(wxCmdLineParser& cmdParser)
+    {
+    // enable or disable logging
+    long loglevel = 1;
+    if (cmdParser.Found(_DT(L"logging"), &loglevel))
+        {
+        wxLog::EnableLogging(static_cast<bool>(loglevel));
+        }
+
+    if (cmdParser.GetParamCount() > 0)
+        {
+        for (size_t i = 0; i < cmdParser.GetParamCount(); ++i)
+            {
+            wxFileName fn(cmdParser.GetParam(0));
+            fn.Normalize(wxPATH_NORM_LONG | wxPATH_NORM_DOTS | wxPATH_NORM_TILDE |
+                         wxPATH_NORM_ABSOLUTE);
+            m_commandLineFilesToOpen.push_back(fn.GetFullPath());
+            }
+        }
 
     return true;
     }

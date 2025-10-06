@@ -19,6 +19,7 @@ source('../R/appdown.r')
   - Previous download folder is now saved.
 - `@USER@` placeholder can now be entered in printer headers and footers.
   (This will expand into the user name currently logged into the computer.)
+- [Command-line options](#sec-command-line-options) have changed.
 
 ### Graph Enhancements {-}
 

@@ -108,28 +108,26 @@ Deselecting this option will rename files as they are downloaded (if necessary) 
 
 ## Command Line Options {#sec-command-line-options}
 
-The following command line options are available for *{{< var PROGRAM_NAME >}}*:
+The following command line options are available (`r os_logo('windows')`, `r os_logo('linux')`):
 
 | Command | Description |
 | :-- | :-- |
-| `"filename"` | Opens *filename*, which can be the path to a project or document. If the path supplied is a folder, then a [batch project](#sec-creating-batch-project) will be created using all documents found recursively within the folder. |
-| `-bg` | Path to an image file to use as *filename*'s graph background. (This option only applies if a *filename* parameter is supplied.) Also, *filename* must refer to a document or folder (i.e., not a *{{< var PROGRAM_NAME >}}* project file) that will be used to create a new project. |
-| `-loglevel=n` | This parameter specifies how much information to [log](#sec-log-report) while the program is running, where *n* is a value between 0-2 (0 = none, 1 = standard, 2 = verbose). |
-| `-help` | Displays the help. |
+| `"filename"` | Opens *filename*, which should be a path to a *{{< var PROGRAM_NAME >}}* project. |
+| `-logging=n` | This parameter specifies whether to enable logging [log](#sec-log-report) while the program is running, where *n* is 0 or 1 (0 = disable, 1 = enable). |
 
-The following example would open the document *PatientAgreement.rtf* and use the image *Sunset.png* as the graphs' background:
+The following example would open the document *PatientAgreement.rsp*:
 
 ::: {.darkmode data-latex=''}
-`readstudio "C:\Documents\PatientAgreement.rtf" -bg "C:\Images\Sunset.png"`
+`readstudio "C:\users\kdaly\Documents\PatientAgreement.rsp"
 :::
 
-This example would tell the program to log the maximum level of information while running:
+This example would tell the program to not log any information while running:
 
 ::: {.darkmode data-latex=''}
-`readstudio -loglevel=2`
+`readstudio -logging=0`
 :::
 
-Note that verbose logging can also be enabled from the **General** page of the **Options** dialog or the **Log Report** dialog.
+Note that logging can also be customized from the **General** page of the **Options** dialog or the **Log Report** dialog.
 
 ## Log Report {#sec-log-report}
 

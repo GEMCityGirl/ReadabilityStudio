@@ -292,10 +292,14 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
     ReadabilityApp(const ReadabilityApp&) = delete;
     ReadabilityApp& operator=(const ReadabilityApp&) = delete;
 
-    void OnEventLoopEnter(wxEventLoopBase* loop) final;
     bool OnInit() final;
     int OnExit() final;
 
+    void OnInitCmdLine(wxCmdLineParser& cmdParser) final;
+    bool OnCmdLineParsed(wxCmdLineParser& cmdParser) final;
+#ifdef __WXOSX__
+    void MacOpenFiles(const wxArrayString& files) final;
+#endif
     void LoadInterface();
     void LoadMenus();
 
@@ -494,6 +498,8 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
 
     std::map<wxString, wxString> m_shapeMap;
     std::map<wxString, wxString> m_colorSchemeMap;
+
+    std::vector<wxString> m_commandLineFilesToOpen;
     };
 
 #endif // RS_MAIN_APP_H
