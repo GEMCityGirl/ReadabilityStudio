@@ -272,7 +272,7 @@ void ReadabilityApp::AddWordsToDictionaries(const wxArrayString& theWords,
 //-------------------------------------------
 void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
     {
-    if (loop && loop->IsOk() && loop->IsMain())
+    if ((loop != nullptr) && loop->IsOk() && loop->IsMain())
         {
         // this prevents logic blocks in here from overlapping
         // (showing dialogs in here can cause this function to be reentered)
@@ -332,9 +332,10 @@ void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
             wxString luaScriptPath;
             if (cmdParser.Found(_DT(L"lua"), &luaScriptPath))
                 {
-                wxString luaScript, errorMessage;
+                wxString luaScript;
                 if (Wisteria::TextStream::ReadFile(luaScriptPath, luaScript))
                     {
+                    wxString errorMessage;
                     GetLuaRunner().RunLuaCode(luaScript, luaScriptPath, errorMessage);
                     }
                 }
@@ -368,22 +369,22 @@ void ReadabilityApp::OnEventLoopEnter(wxEventLoopBase* loop)
                         {
                         wxDocTemplate* docTemplate =
                             dynamic_cast<wxDocTemplate*>(templateList.Item(j)->GetData());
-                        if (docTemplate &&
+                        if ((docTemplate != nullptr) &&
                             docTemplate->GetDocClassInfo()->IsKindOf(wxCLASSINFO(ProjectDoc)))
                             {
-                            ProjectDoc* newDoc = dynamic_cast<ProjectDoc*>(
+                            auto* newDoc = dynamic_cast<ProjectDoc*>(
                                 docTemplate->CreateDocument(fn.GetFullPath(), wxDOC_NEW));
-                            if (newDoc && !newDoc->OnNewDocument())
+                            if ((newDoc != nullptr) && !newDoc->OnNewDocument())
                                 {
                                 // Document is implicitly deleted by DeleteAllViews
                                 newDoc->DeleteAllViews();
                                 newDoc = nullptr;
                                 }
-                            if (newDoc && newDoc->GetFirstView())
+                            if ((newDoc != nullptr) && (newDoc->GetFirstView() != nullptr))
                                 {
                                 newDoc->GetFirstView()->Activate(true);
                                 GetDocManager()->ActivateView(newDoc->GetFirstView());
-                                if (newDoc->GetDocumentWindow())
+                                if (newDoc->GetDocumentWindow() != nullptr)
                                     {
                                     newDoc->GetDocumentWindow()->SetFocus();
                                     }
@@ -412,40 +413,40 @@ bool ReadabilityApp::OnInit()
     SetAppSubName(GetAppVersion());
     SetVendorName(_READSTUDIO_PUBLISHER);
 
-    wxString AppSettingFolderPath;
+    wxString appSettingFolderPath;
     // if app-specific data folder can't be determined
     // (really just relic behavior from Win9.x) then use documents dir
     if (wxStandardPaths::Get().GetUserDataDir().empty())
         {
-        AppSettingFolderPath =
+        appSettingFolderPath =
             wxStandardPaths::Get().GetAppDocumentsDir() + wxFileName::GetPathSeparator();
         }
     // write to app folder in User's data folder (this should be the norm)
     else
         {
-        AppSettingFolderPath =
+        appSettingFolderPath =
             wxStandardPaths::Get().GetUserDataDir() + wxFileName::GetPathSeparator();
         }
 
-    if (!wxFileName::DirExists(AppSettingFolderPath))
+    if (!wxFileName::DirExists(appSettingFolderPath))
         {
-        if (!wxFileName::Mkdir(AppSettingFolderPath, wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
+        if (!wxFileName::Mkdir(appSettingFolderPath, wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL))
             {
 /* desperation move that should never happen--
    just save the settings to the root folder*/
 #ifdef __WXMSW__
-            AppSettingFolderPath = L"C:\\";
+            appSettingFolderPath = L"C:\\";
 #elif defined(__WXOSX__)
-            AppSettingFolderPath = L"/Users/Shared/";
+            appSettingFolderPath = L"/Users/Shared/";
 #else
-            AppSettingFolderPath = L"/usr/share/";
+            appSettingFolderPath = L"/usr/share/";
 #endif
             }
         }
 #ifdef __WXMSW__
     MSWEnableDarkMode();
 #endif
-    m_preInitOptions.LoadOptionsFile(AppSettingFolderPath + L"Settings.xml");
+    m_preInitOptions.LoadOptionsFile(appSettingFolderPath + L"Settings.xml");
     AppendDailyLog(m_preInitOptions.m_logAppendDailyLog);
 
     if (!BaseApp::OnInit())
@@ -454,7 +455,7 @@ bool ReadabilityApp::OnInit()
         }
 
     // wait to call this after BaseApp switches to a file logger above
-    wxLogMessage(L"Settings file loaded from: " + AppSettingFolderPath + L"Settings.xml");
+    wxLogMessage(L"Settings file loaded from: " + appSettingFolderPath + L"Settings.xml");
 
 #ifndef NDEBUG
     wxFileTranslationsLoader::AddCatalogLookupPathPrefix(L".");
@@ -487,7 +488,7 @@ bool ReadabilityApp::OnInit()
         AddSplashscreenImagePath(splash);
         }
 
-    if (!LoadWordLists(AppSettingFolderPath))
+    if (!LoadWordLists(appSettingFolderPath))
         {
         return false;
         }
@@ -508,7 +509,7 @@ bool ReadabilityApp::OnInit()
     ShowSplashscreen();
     LoadMenus();
 
-    // load map of graph icons to human readable strings
+    // load map of graph icons to human-readable strings
     m_shapeMap = { std::make_pair(_(L"Sun"), DONTTRANSLATE(L"sun")),
                    std::make_pair(_(L"Book"), DONTTRANSLATE(L"book")),
                    std::make_pair(_(L"Fall leaf"), DONTTRANSLATE(L"fall-leaf")),
@@ -803,7 +804,7 @@ bool ReadabilityApp::OnInit()
     wxLogMessage(L"Documentation Location: %s", GetMainFrame()->GetHelpDirectory());
 
     // load the full set of user settings
-    GetAppOptions()->LoadOptionsFile(AppSettingFolderPath + L"Settings.xml", false);
+    GetAppOptions()->LoadOptionsFile(appSettingFolderPath + L"Settings.xml", false);
 
     // clang-format off
     // add some standard test bundles
@@ -840,7 +841,7 @@ bool ReadabilityApp::OnInit()
     consentFormsBundle.GetTestGoals() =
         {
         TestGoal{ ReadabilityMessages::ELF().wc_str(), std::numeric_limits<double>::quiet_NaN(), 12 },
-        // intersection of 4.5 (y axis) and 150 (x axis)
+        // intersection of 4.5 (Y axis) and 150 (X axis)
         TestGoal{ ReadabilityMessages::FRY().wc_str(), std::numeric_limits<double>::quiet_NaN(), 10 },
         // Academic, Scientific, or Quality are too difficult (i.e., below 60)
         TestGoal{ ReadabilityMessages::FLESCH().wc_str(), 60, std::numeric_limits<double>::quiet_NaN() },
@@ -928,7 +929,7 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
         }
     auto wordyZipFileText = std::make_unique<char[]>(theFile.Length() + 1);
     const size_t readSize = theFile.Read(wordyZipFileText.get(), theFile.Length());
-    Wisteria::ZipCatalog cat(wordyZipFileText.get(), readSize);
+    const Wisteria::ZipCatalog cat(wordyZipFileText.get(), readSize);
     // read in the wordy items
     const std::wstring englishWordyPhraseFileText = cat.ReadTextFile(L"wordy-phrases/english.txt");
     const std::wstring spanishWordyPhraseFileText = cat.ReadTextFile(L"wordy-phrases/spanish.txt");
@@ -1021,11 +1022,11 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     BaseProject::known_programming_spellings.load_words(programmingSpellingsFileText.c_str(), false,
                                                         false);
     m_CustomEnglishDictionaryPath = AppSettingFolderPath + L"DictionaryEN.txt";
-    wxString ExtraDictionaryText;
+    wxString extraDictionaryText;
     if (wxFile::Exists(m_CustomEnglishDictionaryPath) &&
-        Wisteria::TextStream::ReadFile(m_CustomEnglishDictionaryPath, ExtraDictionaryText))
+        Wisteria::TextStream::ReadFile(m_CustomEnglishDictionaryPath, extraDictionaryText))
         {
-        BaseProject::known_custom_english_spellings.load_words(ExtraDictionaryText, true, false);
+        BaseProject::known_custom_english_spellings.load_words(extraDictionaryText, true, false);
         }
     // if the custom dictionary doesn't exist, then create an empty file
     else if (!wxFile::Exists(m_CustomEnglishDictionaryPath))
@@ -1037,9 +1038,9 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     BaseProject::known_spanish_spellings.load_words(spanishSpellingsFileText.c_str(), false, false);
     m_CustomSpanishDictionaryPath = AppSettingFolderPath + L"DictionaryES.txt";
     if (wxFile::Exists(m_CustomSpanishDictionaryPath) &&
-        Wisteria::TextStream::ReadFile(m_CustomSpanishDictionaryPath, ExtraDictionaryText))
+        Wisteria::TextStream::ReadFile(m_CustomSpanishDictionaryPath, extraDictionaryText))
         {
-        BaseProject::known_custom_spanish_spellings.load_words(ExtraDictionaryText, true, false);
+        BaseProject::known_custom_spanish_spellings.load_words(extraDictionaryText, true, false);
         }
     // if the custom dictionary doesn't exist, then create an empty file
     else if (!wxFile::Exists(m_CustomSpanishDictionaryPath))
@@ -1051,9 +1052,9 @@ bool ReadabilityApp::LoadWordLists(const wxString& AppSettingFolderPath)
     BaseProject::known_german_spellings.load_words(germanSpellingsFileText.c_str(), false, false);
     m_CustomGermanDictionaryPath = AppSettingFolderPath + L"DictionaryDE.txt";
     if (wxFile::Exists(m_CustomGermanDictionaryPath) &&
-        Wisteria::TextStream::ReadFile(m_CustomGermanDictionaryPath, ExtraDictionaryText))
+        Wisteria::TextStream::ReadFile(m_CustomGermanDictionaryPath, extraDictionaryText))
         {
-        BaseProject::known_custom_german_spellings.load_words(ExtraDictionaryText, true, false);
+        BaseProject::known_custom_german_spellings.load_words(extraDictionaryText, true, false);
         }
     // if the custom dictionary doesn't exist, then create an empty file
     else if (!wxFile::Exists(m_CustomGermanDictionaryPath))
@@ -1329,7 +1330,7 @@ void ReadabilityApp::LoadInterface()
     // set up the ribbon (and its submenus)
     GetMainFrame()->InitControls(CreateRibbon(GetMainFrame(), nullptr));
 
-    auto menuItem = new wxMenuItem(&GetMainFrameEx()->m_fileOpenMenu, wxID_OPEN,
+    auto* menuItem = new wxMenuItem(&GetMainFrameEx()->m_fileOpenMenu, wxID_OPEN,
                                    _(L"Open Project...") + _DT(L"\tCtrl+O"));
     menuItem->SetBitmap(GetResourceManager().GetSVG(L"ribbon/file-open.svg"));
     GetMainFrameEx()->m_fileOpenMenu.Append(menuItem);
@@ -1346,7 +1347,7 @@ void ReadabilityApp::LoadInterface()
 #ifdef __WXOSX__
     wxMenuBar* menuBar = wxXmlResource::Get()->LoadMenuBar(_DT(L"ID_MENUBAR"));
     assert(menuBar);
-    if (menuBar)
+    if (menuBar != nullptr)
         {
         GetMainFrame()->SetMenuBar(menuBar);
         }
@@ -1358,21 +1359,21 @@ void ReadabilityApp::LoadInterface()
 
     LoadFileHistoryMenu();
 
-    if (GetMainFrame()->GetMenuBar())
+    if (GetMainFrame()->GetMenuBar() != nullptr)
         {
         // add examples to the menus
         const wxMenuItem* exampleMenuItem =
             GetMainFrame()->GetMenuBar()->FindItem(XRCID("ID_EXAMPLES"));
-        if (exampleMenuItem)
+        if (exampleMenuItem != nullptr)
             {
             GetMainFrameEx()->AddExamplesToMenu(exampleMenuItem->GetSubMenu());
             }
         // add the custom tests and bundles
-        int readMenuIndex = GetMainFrame()->GetMenuBar()->FindMenu(_(L"Readability"));
+        const int readMenuIndex = GetMainFrame()->GetMenuBar()->FindMenu(_(L"Readability"));
         if (readMenuIndex != wxNOT_FOUND)
             {
-            wxMenu* readMenu = GetMainFrame()->GetMenuBar()->GetMenu(readMenuIndex);
-            if (readMenu)
+            auto* readMenu = GetMainFrame()->GetMenuBar()->GetMenu(readMenuIndex);
+            if (readMenu != nullptr)
                 {
                 // custom tests
                 GetMainFrameEx()->m_customTestsRegularMenu = new wxMenu;
@@ -1468,9 +1469,10 @@ void ReadabilityApp::EditCustomTest(CustomReadabilityTest& selectedTest)
         }
     if (dlg.ShowModal() == wxID_OK)
         {
-        wxBusyCursor wait;
+        const wxBusyCursor wait;
 
-        // get the word file text here, in case the path is wrong and the user needs to correct it
+        // get the word-list file text here, in case the path is wrong and
+        // the user needs to correct it
         wxString filePath = dlg.GetWordListFilePath();
         wxString fileText;
         // load custom word file if they are using one. If not then just load an
@@ -1536,7 +1538,7 @@ void ReadabilityApp::EditCustomTest(CustomReadabilityTest& selectedTest)
             readability::document_classification::childrens_literature_document,
             dlg.IsChildrensLiteratureSelected());
 
-        // reload the word file
+        // reload the word-list file
         selectedTest.load_custom_familiar_words(fileText);
 
         // reload any projects that have this test in it
@@ -1547,7 +1549,7 @@ void ReadabilityApp::EditCustomTest(CustomReadabilityTest& selectedTest)
             for (size_t i = 0; i < docs.GetCount(); ++i)
                 {
                 BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
-                if (doc && doc->HasCustomTest(selectedTest.get_name().c_str()))
+                if ((doc != nullptr) && doc->HasCustomTest(selectedTest.get_name().c_str()))
                     {
                     doc->Modify(true);
                     // projects will need to do a full re-indexing
@@ -1562,12 +1564,12 @@ void ReadabilityApp::EditCustomTest(CustomReadabilityTest& selectedTest)
 //-------------------------------------------------------
 void ReadabilityApp::FillBlankGraphsMenu(wxMenu& blankGraphsMenu)
     {
-    while (blankGraphsMenu.GetMenuItemCount())
+    while (blankGraphsMenu.GetMenuItemCount() != 0U)
         {
         blankGraphsMenu.Destroy(blankGraphsMenu.FindItemByPosition(0));
         }
 
-    wxMenuItem* menuItem = new wxMenuItem(&blankGraphsMenu, XRCID("ID_BLANK_DB2_GRAPH"),
+    auto* menuItem = new wxMenuItem(&blankGraphsMenu, XRCID("ID_BLANK_DB2_GRAPH"),
                                           BaseProjectView::GetDB2Label());
     menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/danielson-bryan-2.svg"));
     blankGraphsMenu.Append(menuItem);
@@ -1622,11 +1624,11 @@ void ReadabilityApp::FillBlankGraphsMenu(wxMenu& blankGraphsMenu)
 //-------------------------------------------------------
 void ReadabilityApp::FillWordListsMenu(wxMenu& wordListMenu)
     {
-    while (wordListMenu.GetMenuItemCount())
+    while (wordListMenu.GetMenuItemCount() != 0U)
         {
         wordListMenu.Destroy(wordListMenu.FindItemByPosition(0));
         }
-    wxMenuItem* menuItem =
+    auto* menuItem =
         new wxMenuItem(&wordListMenu, XRCID("ID_DOLCH_WORD_LIST_WINDOW"), _(L"Dolch Sight Words"));
     menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"tests/dolch.svg"));
     wordListMenu.Append(menuItem);
@@ -1660,7 +1662,7 @@ void ReadabilityApp::FillWordListsMenu(wxMenu& wordListMenu)
 //-------------------------------------------------------
 void ReadabilityApp::FillGradeScalesMenu(wxMenu& menu)
     {
-    while (menu.GetMenuItemCount())
+    while (menu.GetMenuItemCount() != 0U)
         {
         menu.Destroy(menu.FindItemByPosition(0));
         }
@@ -1711,10 +1713,9 @@ void ReadabilityApp::FillSaveMenu(wxMenu& saveMenu, const RibbonType rtype)
         {
         // Don't use stock wxID_SAVE and wxID_SAVEAS because of event handling issues
         // under GTK+ and also because we use can't use wxID_SAVE on a hybrid ribbon
-        // button; otherwise, it because disabled with the document isn't dirty and
+        // button; otherwise, it because disabled with the document isn't dirty, and
         // then you can't access the other export options from the menu.
-        wxMenuItem* item =
-            new wxMenuItem(&saveMenu, XRCID("ID_SAVE_PROJECT"), _(L"Save") + L"\tCtrl+S");
+        auto* item = new wxMenuItem(&saveMenu, XRCID("ID_SAVE_PROJECT"), _(L"Save") + L"\tCtrl+S");
         item->SetBitmap(saveIcon);
         saveMenu.Append(item);
 
@@ -1738,8 +1739,7 @@ void ReadabilityApp::FillSaveMenu(wxMenu& saveMenu, const RibbonType rtype)
         }
     else if (rtype == RibbonType::BatchProjectRibbon)
         {
-        wxMenuItem* item =
-            new wxMenuItem(&saveMenu, XRCID("ID_SAVE_PROJECT"), _(L"Save") + L"\tCtrl+S");
+        auto* item = new wxMenuItem(&saveMenu, XRCID("ID_SAVE_PROJECT"), _(L"Save") + L"\tCtrl+S");
         item->SetBitmap(saveIcon);
         saveMenu.Append(item);
 
@@ -3056,7 +3056,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
 //---------------------------------------------------
 void ReadabilityApp::UpdateRibbonTheme(wxRibbonBar* ribbon)
     {
-    assert(ribbon != nullptr && L"Attempting to theme a null ribbon!");
+    wxASSERT_MSG(ribbon != nullptr, L"Attempting to theme a null ribbon!");
     if (ribbon != nullptr)
         {
         ribbon->GetArtProvider()->SetColourScheme(GetAppOptions()->GetRibbonActiveTabColor(),
@@ -3378,7 +3378,7 @@ void MainFrame::OnTestsOverview([[maybe_unused]] wxRibbonButtonBarEvent& event)
             {
             languages += _(L"German") + _DT(L"/");
             }
-        if (languages.length())
+        if (!languages.empty())
             {
             languages.RemoveLast();
             }
@@ -3423,10 +3423,10 @@ void MainFrame::OnTestsOverview([[maybe_unused]] wxRibbonButtonBarEvent& event)
                 wxString{ _DT(L" X ") } :
                 wxString{});
         // description
-        lily_of_the_valley::html_extract_text filter_html;
+        lily_of_the_valley::html_extract_text filterHtml;
         testsOverviewDlg.GetListCtrl()->SetItemText(
             i, 7,
-            wxString(filter_html(testPos->get_description().c_str(),
+            wxString(filterHtml(testPos->get_description().c_str(),
                                  testPos->get_description().length(), true, false)));
         }
     // fit the columns
@@ -3583,7 +3583,7 @@ MainFrame::MainFrame(wxDocManager* manager, wxFrame* frame,
     accelEntries[2].Set(wxACCEL_CMD, static_cast<int>(L'O'), wxID_OPEN);
     accelEntries[3].Set(wxACCEL_CMD, static_cast<int>(L'V'), wxID_PASTE);
     const wxAcceleratorTable accelTable(std::size(accelEntries), accelEntries);
-    SetAcceleratorTable(accelTable);
+    wxWindowBase::SetAcceleratorTable(accelTable);
 
     // bind menu events to their respective ribbon button events
     Bind(wxEVT_RIBBONBUTTONBAR_CLICKED, &MainFrame::OnToolsWebHarvest, this,
@@ -3936,10 +3936,10 @@ void ReadabilityApp::UpdateDocumentThemes()
     for (size_t i = 0; i < docs.GetCount(); ++i)
         {
         BaseProjectDoc* doc = dynamic_cast<BaseProjectDoc*>(docs.Item(i)->GetData());
-        if (doc)
+        if (doc != nullptr)
             {
-            BaseProjectView* view = dynamic_cast<BaseProjectView*>(doc->GetFirstView());
-            if (view)
+            auto* view = dynamic_cast<BaseProjectView*>(doc->GetFirstView());
+            if (view != nullptr)
                 {
                 UpdateRibbonTheme(view->GetRibbon());
                 UpdateSideBarTheme(view->GetSideBar());
@@ -4020,7 +4020,7 @@ void MainFrame::OnStartPageClick(wxCommandEvent& event)
 void MainFrame::OnNewDropdown(wxRibbonButtonBarEvent& event)
     {
     wxMenu menu;
-    auto menuItem = new wxMenuItem(&menu, wxID_NEW, _(L"New Project...") + _DT(L"\tCtrl+N"));
+    auto* menuItem = new wxMenuItem(&menu, wxID_NEW, _(L"New Project...") + _DT(L"\tCtrl+N"));
     menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/document.svg"));
     menu.Append(menuItem);
     menu.Append(wxID_PASTE, _(L"New Project from Clipboard...") + _DT(L"\tCtrl+V"));
@@ -4099,9 +4099,8 @@ void MainFrame::OnEditDictionarySettings([[maybe_unused]] wxCommandEvent& event)
 //-------------------------------------------------------
 void MainFrame::OnOpenExample(wxCommandEvent& event)
     {
-    const std::map<int, wxString>::const_iterator pos =
-        MainFrame::GetExamplesMenuIds().find(event.GetId());
-    if (pos == MainFrame::GetExamplesMenuIds().cend())
+    const auto pos = GetExamplesMenuIds().find(event.GetId());
+    if (pos == GetExamplesMenuIds().cend())
         {
         return;
         }
@@ -4110,22 +4109,21 @@ void MainFrame::OnOpenExample(wxCommandEvent& event)
     if (FilePathResolver::IsSpreadsheet(fn.GetResolvedPath()) ||
         FilePathResolver::IsArchive(fn.GetResolvedPath()))
         {
-        wxDocTemplate* docTemplate =
-            wxGetApp().GetDocManager()->FindTemplate(CLASSINFO(BatchProjectDoc));
-        if (docTemplate)
+        auto* docTemplate = wxGetApp().GetDocManager()->FindTemplate(CLASSINFO(BatchProjectDoc));
+        if (docTemplate != nullptr)
             {
-            BatchProjectDoc* newDoc = dynamic_cast<BatchProjectDoc*>(
+            auto* newDoc = dynamic_cast<BatchProjectDoc*>(
                 docTemplate->CreateDocument(fn.GetResolvedPath(), wxDOC_NEW));
-            if (newDoc && !newDoc->OnNewDocument())
+            if ((newDoc != nullptr) && !newDoc->OnNewDocument())
                 {
                 // Document is implicitly deleted by DeleteAllViews
                 newDoc->DeleteAllViews();
                 }
-            if (newDoc && newDoc->GetFirstView())
+            if ((newDoc != nullptr) && (newDoc->GetFirstView() != nullptr))
                 {
                 newDoc->GetFirstView()->Activate(true);
                 wxGetApp().GetDocManager()->ActivateView(newDoc->GetFirstView());
-                if (newDoc->GetDocumentWindow())
+                if (newDoc->GetDocumentWindow() != nullptr)
                     {
                     newDoc->GetDocumentWindow()->SetFocus();
                     }
@@ -4152,21 +4150,21 @@ void MainFrame::OnOpenExample(wxCommandEvent& event)
             {
             wxDocTemplate* docTemplate =
                 wxGetApp().GetDocManager()->FindTemplate(CLASSINFO(ProjectDoc));
-            if (docTemplate)
+            if (docTemplate != nullptr)
                 {
                 ProjectDoc* newDoc = dynamic_cast<ProjectDoc*>(
                     docTemplate->CreateDocument(fn.GetResolvedPath(), wxDOC_NEW));
-                if (newDoc && !newDoc->OnNewDocument())
+                if ((newDoc != nullptr) && !newDoc->OnNewDocument())
                     {
                     // Document is implicitly deleted by DeleteAllViews
                     newDoc->DeleteAllViews();
                     newDoc = nullptr;
                     }
-                if (newDoc && newDoc->GetFirstView())
+                if ((newDoc != nullptr) && (newDoc->GetFirstView() != nullptr))
                     {
                     newDoc->GetFirstView()->Activate(true);
                     wxGetApp().GetDocManager()->ActivateView(newDoc->GetFirstView());
-                    if (newDoc->GetDocumentWindow())
+                    if (newDoc->GetDocumentWindow() != nullptr)
                         {
                         newDoc->GetDocumentWindow()->SetFocus();
                         }
@@ -4252,8 +4250,8 @@ void MainFrame::AddCustomTestToMenus(const wxString& testName)
         }
     m_customTestMenuIds.insert(std::make_pair(menuId, testName));
     // set a unique ID for this test for use in the sidebar (this is different from the menu ID).
-    CustomReadabilityTestCollection::iterator testIter = std::find(
-        BaseProject::m_custom_word_tests.begin(), BaseProject::m_custom_word_tests.end(), testName);
+    auto testIter = std::find(BaseProject::m_custom_word_tests.begin(),
+                              BaseProject::m_custom_word_tests.end(), testName);
     if (testIter != BaseProject::m_custom_word_tests.end())
         {
         testIter->set_interface_id(BaseProjectView::GetCustomTestSidebarIdRange().GetNextId());
@@ -4360,22 +4358,23 @@ void MainFrame::RemoveCustomTestFromMenus(const wxString& testName)
 void MainFrame::FillReadabilityMenu(wxMenu* primaryMenu, wxMenu* secondaryMenu, wxMenu* adultMenu,
                                     wxMenu* secondLanguageMenu, const BaseProject* project)
     {
-    if (primaryMenu && secondaryMenu && adultMenu && secondLanguageMenu && project)
+    if ((primaryMenu != nullptr) && (secondaryMenu != nullptr) && (adultMenu != nullptr) &&
+        (secondLanguageMenu != nullptr) && (project != nullptr))
         {
         // clear the menus
-        while (primaryMenu->GetMenuItemCount())
+        while (primaryMenu->GetMenuItemCount() != 0U)
             {
             primaryMenu->Destroy(primaryMenu->FindItemByPosition(0));
             }
-        while (secondaryMenu->GetMenuItemCount())
+        while (secondaryMenu->GetMenuItemCount() != 0U)
             {
             secondaryMenu->Destroy(secondaryMenu->FindItemByPosition(0));
             }
-        while (adultMenu->GetMenuItemCount())
+        while (adultMenu->GetMenuItemCount() != 0U)
             {
             adultMenu->Destroy(adultMenu->FindItemByPosition(0));
             }
-        while (secondLanguageMenu->GetMenuItemCount())
+        while (secondLanguageMenu->GetMenuItemCount() != 0U)
             {
             secondLanguageMenu->Destroy(secondLanguageMenu->FindItemByPosition(0));
             }
@@ -4472,7 +4471,7 @@ void MainFrame::FillReadabilityMenu(wxMenu* primaryMenu, wxMenu* secondaryMenu, 
 //-------------------------------------------------------
 void MainFrame::AddExamplesToMenu(wxMenu* exampleMenu)
     {
-    if (exampleMenu)
+    if (exampleMenu != nullptr)
         {
         wxArrayString files;
         const wxString exampleFolder =
@@ -4487,7 +4486,7 @@ void MainFrame::AddExamplesToMenu(wxMenu* exampleMenu)
         // go through all the example files and add them to the menu
         for (size_t i = 0; i < files.GetCount(); ++i)
             {
-            wxFileName fName(files[i]);
+            const wxFileName fName(files[i]);
             // see if we already have a menu ID for this example file; otherwise, make a new ID
             auto menuPos = m_examplesMenuIds.begin();
             for (/*initialized already*/; menuPos != m_examplesMenuIds.end(); ++menuPos)
@@ -4520,7 +4519,7 @@ void MainFrame::AddExamplesToMenu(wxMenu* exampleMenu)
 void MainFrame::FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProject* project,
                                         const bool includeDocMenuItems)
     {
-    if (testBundleMenu)
+    if (testBundleMenu != nullptr)
         {
         // clear the menu
         while (testBundleMenu->GetMenuItemCount())
@@ -4558,15 +4557,15 @@ void MainFrame::FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProjec
             }
 
         // add the bundles to the menu
-        if (includeDocMenuItems && MainFrame::GetTestBundleMenuIds().size() > 0)
+        if (includeDocMenuItems && !GetTestBundleMenuIds().empty())
             {
             bool separatorNeeded = true;
-            // add all of the global test bundles to this menu (if they aren't already on it)
+            // add all the global test bundles to this menu (if they aren't already on it)
             for (const auto& bundle : MainFrame::GetTestBundleMenuIds())
                 {
                 if (testBundleMenu->FindItem(bundle.first) == nullptr)
                     {
-                    std::set<TestBundle>::const_iterator testIter =
+                    auto testIter =
                         BaseProject::m_testBundles.find(TestBundle(bundle.second.wc_str()));
                     if (testIter == BaseProject::m_testBundles.cend())
                         {
@@ -4577,7 +4576,7 @@ void MainFrame::FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProjec
                         }
                     // make sure that if the bundle has a language (meaning it is a standard system
                     // one), then make sure it matches the project.
-                    if (project &&
+                    if ((project != nullptr) &&
                         (testIter->GetLanguage() == readability::test_language::unknown_language ||
                          testIter->GetLanguage() == project->GetProjectLanguage()))
                         {
@@ -4648,26 +4647,25 @@ void MainFrame::FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProjec
 void MainFrame::FillMenuWithCustomTests(wxMenu* customTestMenu, const BaseProject* project,
                                         const bool includeDocMenuItems)
     {
-    if (customTestMenu)
+    if (customTestMenu != nullptr)
         {
         // clear the menu
-        while (customTestMenu->GetMenuItemCount())
+        while (customTestMenu->GetMenuItemCount() != 0U)
             {
             customTestMenu->Destroy(customTestMenu->FindItemByPosition(0));
             }
 
         // if there are tests then add editing options and the tests themselves
-        if (includeDocMenuItems && MainFrame::GetCustomTestMenuIds().size() > 0)
+        if (includeDocMenuItems && !GetCustomTestMenuIds().empty())
             {
-            // add all of the global custom tests to this view's menu (if they aren't already on it)
+            // add all the global custom tests to this view's menu (if they aren't already on it)
             for (std::map<int, wxString>::const_iterator pos =
                      MainFrame::GetCustomTestMenuIds().begin();
-                 pos != MainFrame::GetCustomTestMenuIds().end(); ++pos)
+                 pos != GetCustomTestMenuIds().end(); ++pos)
                 {
                 if (customTestMenu->FindItem(pos->first) == nullptr)
                     {
-                    CustomReadabilityTestCollection::const_iterator testIter =
-                        std::find(BaseProject::m_custom_word_tests.begin(),
+                    auto testIter = std::find(BaseProject::m_custom_word_tests.begin(),
                                   BaseProject::m_custom_word_tests.end(), pos->second);
                     if (testIter == BaseProject::m_custom_word_tests.end())
                         {
@@ -4682,7 +4680,7 @@ void MainFrame::FillMenuWithCustomTests(wxMenu* customTestMenu, const BaseProjec
                     }
                 }
             }
-        if (includeDocMenuItems && MainFrame::GetCustomTestMenuIds().size() > 0)
+        if (includeDocMenuItems && !GetCustomTestMenuIds().empty())
             {
             customTestMenu->AppendSeparator();
             }
@@ -4694,7 +4692,8 @@ void MainFrame::FillMenuWithCustomTests(wxMenu* customTestMenu, const BaseProjec
                                   _(L"Add Custom Test Based on..."));
         menuItem->SetBitmap(wxGetApp().GetResourceManager().GetSVG(L"ribbon/add.svg"));
         customTestMenu->Append(menuItem);
-        if (!project || project->GetProjectLanguage() == readability::test_language::english_test)
+        if ((project == nullptr) ||
+            project->GetProjectLanguage() == readability::test_language::english_test)
             {
             menuItem = new wxMenuItem(
                 customTestMenu, XRCID("ID_ADD_CUSTOM_NEW_DALE_CHALL_TEST"),
@@ -4716,7 +4715,7 @@ void MainFrame::FillMenuWithCustomTests(wxMenu* customTestMenu, const BaseProjec
             }
 
         // Remove or Edit options, depending on whether there are any tests
-        if (MainFrame::GetCustomTestMenuIds().size() > 0)
+        if (!GetCustomTestMenuIds().empty())
             {
             customTestMenu->AppendSeparator();
             menuItem = new wxMenuItem(customTestMenu, XRCID("ID_EDIT_CUSTOM_TEST"), _(L"Edit..."));
@@ -4745,11 +4744,9 @@ void MainFrame::OnRemoveCustomTest([[maybe_unused]] wxCommandEvent& event)
             }
         }
     wxArrayString testNames;
-    for (CustomReadabilityTestCollection::const_iterator pos =
-             BaseProject::m_custom_word_tests.cbegin();
-         pos != BaseProject::m_custom_word_tests.cend(); ++pos)
+    for (const auto& customWordTest : BaseProject::m_custom_word_tests)
         {
-        testNames.Add(pos->get_name().c_str());
+        testNames.Add(customWordTest.get_name().c_str());
         }
     wxSingleChoiceDialog dlg(wxGetApp().GetParentingWindow(), _(L"Select test to remove:"),
                              _(L"Remove Test"), testNames);
@@ -4766,7 +4763,7 @@ void MainFrame::OnRemoveCustomTest([[maybe_unused]] wxCommandEvent& event)
         return;
         }
 
-    CustomReadabilityTest selectedTest = BaseProject::m_custom_word_tests[selectedTestIndex];
+    const CustomReadabilityTest& selectedTest = BaseProject::m_custom_word_tests[selectedTestIndex];
 
     BaseProjectDoc::RemoveGlobalCustomReadabilityTest(selectedTest.get_name().c_str());
     }
@@ -4789,10 +4786,9 @@ void MainFrame::OnAddCustomTestBundle([[maybe_unused]] wxCommandEvent& event)
 void MainFrame::OnEditCustomTestBundle([[maybe_unused]] wxCommandEvent& event)
     {
     wxArrayString bundleNames;
-    for (std::set<TestBundle>::const_iterator pos = BaseProject::m_testBundles.begin();
-         pos != BaseProject::m_testBundles.end(); ++pos)
+    for (const auto& testBundle : BaseProject::m_testBundles)
         {
-        bundleNames.Add(pos->GetName().c_str());
+        bundleNames.Add(testBundle.GetName().c_str());
         } // locked bundled will be viewed as read only
     wxSingleChoiceDialog dlg(wxGetApp().GetParentingWindow(), _(L"Select bundle to edit:"),
                              _(L"Edit Bundle"), bundleNames);
@@ -4803,7 +4799,7 @@ void MainFrame::OnEditCustomTestBundle([[maybe_unused]] wxCommandEvent& event)
         return;
         }
 
-    std::set<TestBundle>::iterator testBundleIter =
+    const auto testBundleIter =
         BaseProject::m_testBundles.find(TestBundle(dlg.GetStringSelection().wc_str()));
     if (testBundleIter == BaseProject::m_testBundles.end()) // shouldn't happen
         {
@@ -4825,12 +4821,11 @@ void MainFrame::OnEditCustomTestBundle([[maybe_unused]] wxCommandEvent& event)
 void MainFrame::OnRemoveCustomTestBundle([[maybe_unused]] wxCommandEvent& event)
     {
     wxArrayString bundleNames;
-    for (std::set<TestBundle>::const_iterator pos = BaseProject::m_testBundles.begin();
-         pos != BaseProject::m_testBundles.end(); ++pos)
+    for (const auto& testBundle : BaseProject::m_testBundles)
         {
-        if (!pos->IsLocked())
+        if (!testBundle.IsLocked())
             {
-            bundleNames.Add(pos->GetName().c_str());
+            bundleNames.Add(testBundle.GetName().c_str());
             }
         }
     wxSingleChoiceDialog dlg(wxGetApp().GetParentingWindow(), _(L"Select bundle to remove:"),
@@ -4842,7 +4837,7 @@ void MainFrame::OnRemoveCustomTestBundle([[maybe_unused]] wxCommandEvent& event)
         return;
         }
 
-    std::set<TestBundle>::iterator testBundleIter =
+    auto testBundleIter =
         BaseProject::m_testBundles.find(TestBundle(dlg.GetStringSelection().wc_str()));
     if (testBundleIter == BaseProject::m_testBundles.end()) // shouldn't happen
         {
@@ -4914,7 +4909,7 @@ void MainFrame::OnAddCustomTest(wxCommandEvent& event)
         wxArrayString tests;
         for (const auto& rTest : BaseProject::GetDefaultReadabilityTestsTemplate().get_tests())
             {
-            if (rTest.get_formula().length())
+            if (!rTest.get_formula().empty())
                 {
                 tests.push_back(rTest.get_long_name().c_str());
                 }
@@ -4926,7 +4921,7 @@ void MainFrame::OnAddCustomTest(wxCommandEvent& event)
         if (lDlg.ShowModal() == wxID_OK)
             {
             auto selected = lDlg.GetStringSelection();
-            if (selected.length())
+            if (!selected.empty())
                 {
                 auto [testIterator, found] =
                     BaseProject::GetDefaultReadabilityTestsTemplate().find_test(selected);
@@ -5071,22 +5066,22 @@ void MainFrame::Paste()
             for (size_t i = 0; i < templateList.GetCount(); ++i)
                 {
                 auto* docTemplate = dynamic_cast<wxDocTemplate*>(templateList.Item(i)->GetData());
-                if (docTemplate &&
+                if ((docTemplate != nullptr) &&
                     docTemplate->GetDocClassInfo()->IsKindOf(wxCLASSINFO(ProjectDoc)))
                     {
                     auto* newDoc = dynamic_cast<ProjectDoc*>(
                         docTemplate->CreateDocument(data.GetText(), wxDOC_NEW));
-                    if (newDoc && !newDoc->OnNewDocument())
+                    if ((newDoc != nullptr) && !newDoc->OnNewDocument())
                         {
                         // Document is implicitly deleted by DeleteAllViews
                         newDoc->DeleteAllViews();
                         newDoc = nullptr;
                         }
-                    if (newDoc && newDoc->GetFirstView())
+                    if ((newDoc != nullptr) && (newDoc->GetFirstView() != nullptr))
                         {
                         newDoc->GetFirstView()->Activate(true);
                         wxGetApp().GetDocManager()->ActivateView(newDoc->GetFirstView());
-                        if (newDoc->GetDocumentWindow())
+                        if (newDoc->GetDocumentWindow() != nullptr)
                             {
                             newDoc->GetDocumentWindow()->SetFocus();
                             }
@@ -5179,21 +5174,22 @@ void MainFrame::OnOpenDocument([[maybe_unused]] wxCommandEvent& event)
     for (size_t i = 0; i < templateList.GetCount(); ++i)
         {
         auto* docTemplate = dynamic_cast<wxDocTemplate*>(templateList.Item(i)->GetData());
-        if (docTemplate && docTemplate->GetDocClassInfo()->IsKindOf(wxCLASSINFO(ProjectDoc)))
+        if ((docTemplate != nullptr) &&
+            docTemplate->GetDocClassInfo()->IsKindOf(wxCLASSINFO(ProjectDoc)))
             {
             auto* newDoc =
                 dynamic_cast<ProjectDoc*>(docTemplate->CreateDocument(dialog.GetPath(), wxDOC_NEW));
-            if (newDoc && !newDoc->OnNewDocument())
+            if ((newDoc != nullptr) && !newDoc->OnNewDocument())
                 {
                 // Document is implicitly deleted by DeleteAllViews
                 newDoc->DeleteAllViews();
                 newDoc = nullptr;
                 }
-            if (newDoc && newDoc->GetFirstView())
+            if ((newDoc != nullptr) && (newDoc->GetFirstView() != nullptr))
                 {
                 newDoc->GetFirstView()->Activate(true);
                 wxGetApp().GetDocManager()->ActivateView(newDoc->GetFirstView());
-                if (newDoc->GetDocumentWindow())
+                if (newDoc->GetDocumentWindow() != nullptr)
                     {
                     newDoc->GetDocumentWindow()->SetFocus();
                     }
@@ -5206,9 +5202,9 @@ void MainFrame::OnOpenDocument([[maybe_unused]] wxCommandEvent& event)
 //-------------------------------------------------------
 void MainFrame::OnHelpContents([[maybe_unused]] wxCommandEvent& event)
     {
-    const BaseProjectDoc* activeProject =
+    const auto* activeProject =
         dynamic_cast<const BaseProjectDoc*>(GetDocumentManager()->GetCurrentDocument());
-    if (!activeProject)
+    if (activeProject == nullptr)
         {
         DisplayHelp(L"online/index.html");
         }
@@ -5343,11 +5339,11 @@ void MainFrame::OnFindDuplicateFiles([[maybe_unused]] wxRibbonButtonBarEvent& ev
         return;
         }
 
-    wxWindowDisabler disableAll;
+    const wxWindowDisabler disableAll;
     // get the list of files
     wxArrayString files;
         {
-        wxBusyInfo wait(_(L"Retrieving files..."), this);
+        const wxBusyInfo wait(_(L"Retrieving files..."), this);
 #ifdef __WXGTK__
         wxMilliSleep(100);
         wxTheApp->Yield();

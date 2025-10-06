@@ -396,7 +396,7 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
     void EditDictionary(const readability::test_language lang);
     /// This is just used for testing purposes, to validate that the word lists
     /// are properly presorted.
-    bool VerifyWordLists();
+    static bool VerifyWordLists();
 
     void RemoveAllCustomTestBundles();
 

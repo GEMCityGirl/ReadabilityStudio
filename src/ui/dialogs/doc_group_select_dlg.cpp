@@ -16,20 +16,21 @@
 //----------------------------------------------------------
 void DocGroupSelectDlg::CreateControls()
     {
-    wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
+    auto* mainSizer = new wxBoxSizer(wxVERTICAL);
 
-    wxArrayString choices = { _(L"Use documents' descriptions (will be loaded during import)"),
-                              _(L"Use a grouping label"),
-                              _(L"Use the last common folder between files") };
+    const wxArrayString choices = {
+        _(L"Use documents' descriptions (will be loaded during import)"),
+        _(L"Use a grouping label"), _(L"Use the last common folder between files")
+    };
 
-    wxRadioBox* radioBox = new wxRadioBox(this, wxID_ANY, _(L"Select how to label the documents:"),
-                                          wxDefaultPosition, wxDefaultSize, choices, 0,
-                                          wxRA_SPECIFY_ROWS, wxGenericValidator(&m_selected));
+    auto* radioBox = new wxRadioBox(this, wxID_ANY, _(L"Select how to label the documents:"),
+                                    wxDefaultPosition, wxDefaultSize, choices, 0, wxRA_SPECIFY_ROWS,
+                                    wxGenericValidator(&m_selected));
 
     mainSizer->Add(radioBox, wxSizerFlags{}.Border());
 
     // label box
-    wxBoxSizer* labelSizer = new wxBoxSizer(wxHORIZONTAL);
+    auto* labelSizer = new wxBoxSizer(wxHORIZONTAL);
     m_groupingLabelText = new wxStaticText(this, wxID_STATIC, _(L"Grouping label:"));
     m_groupingLabelEntry =
         new wxTextCtrl(this, wxID_ANY, wxString{}, wxDefaultPosition, wxDefaultSize, wxBORDER_THEME,

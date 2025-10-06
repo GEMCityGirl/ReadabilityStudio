@@ -12,7 +12,6 @@
  ********************************************************************************/
 
 #include "custom_test_dlg.h"
-#include "../../Wisteria-Dataviz/src/util/fileutil.h"
 #include "../../app/readability_app_options.h"
 #include "../../projects/base_project.h"
 #include "../../projects/base_project_doc.h"
@@ -49,17 +48,15 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
                 {
                 return false;
                 }
-            else
-                {
-                SetFormula(ReadabilityFormulaParser::GetCustomNewDaleChallSignature());
-                SetIncludingDaleChallList(true);
-                SetProperNounMethod(static_cast<int>(
-                    wxGetApp().GetAppOptions()->GetDaleChallProperNounCountingMethod()));
-                TransferDataToWindow();
-                return true;
-                }
+
+            SetFormula(ReadabilityFormulaParser::GetCustomNewDaleChallSignature());
+            SetIncludingDaleChallList(true);
+            SetProperNounMethod(static_cast<int>(
+                wxGetApp().GetAppOptions()->GetDaleChallProperNounCountingMethod()));
+            TransferDataToWindow();
+            return true;
             }
-        else if (GetFormula().empty())
+        if (GetFormula().empty())
             {
             wxMessageBox(_(L"Please enter a formula."), _(L"Missing Formula"),
                          wxOK | wxICON_EXCLAMATION);
@@ -67,10 +64,10 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
             }
 
         auto blankProject = std::make_unique<BaseProjectDoc>();
-        BaseProjectDoc* activeProject = dynamic_cast<BaseProjectDoc*>(
+        auto* activeProject = dynamic_cast<BaseProjectDoc*>(
             wxGetApp().GetMainFrame()->GetDocumentManager()->GetCurrentDocument());
         const bool isUsingActiveProject =
-            (activeProject && activeProject->IsKindOf(CLASSINFO(ProjectDoc)));
+            ((activeProject != nullptr) && activeProject->IsKindOf(CLASSINFO(ProjectDoc)));
         BaseProjectDoc* project = isUsingActiveProject ? activeProject : blankProject.get();
         assert(project);
 
@@ -141,11 +138,10 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
                 static_cast<int>(
                     wxGetApp().GetAppOptions()->GetDaleChallProperNounCountingMethod()))
             {
-            std::vector<WarningMessage>::iterator warningIter =
-                WarningManager::GetWarning(_DT(L"ndc-proper-noun-conflict"));
+            auto warningIter = WarningManager::GetWarning(_DT(L"ndc-proper-noun-conflict"));
             if (warningIter != WarningManager::GetWarnings().end())
                 {
-                if (warningIter->ShouldBeShown() == false)
+                if (!warningIter->ShouldBeShown())
                     {
                     if (warningIter->GetPreviousResponse() == wxID_YES)
                         {
@@ -185,7 +181,7 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
                     .ToStdString()) &&
             !IsIncludingNumeric())
             {
-            std::vector<WarningMessage>::iterator warningIter = WarningManager::GetWarning(
+            auto warningIter = WarningManager::GetWarning(
                 _DT(L"custom-test-numeral-settings-adjustment-required"));
             if (warningIter != WarningManager::GetWarnings().end() && warningIter->ShouldBeShown())
                 {
@@ -269,11 +265,11 @@ bool CustomTestDlg::ValidateFormula(const bool promptOnSuccess /*= false*/)
         if (promptOnSuccess)
             {
             const wxString calculatedValueMsg =
-                !isUsingActiveProject ? wxString{} :
-                                        wxString()
-                                            .FromDouble(project->GetFormulaParser().evaluate(), 1)
-                                            .Prepend(_(L"Calculated value: "))
-                                            .Prepend(L"\n\n");
+                !isUsingActiveProject ?
+                    wxString{} :
+                    wxString::FromDouble(project->GetFormulaParser().evaluate(), 1)
+                        .Prepend(_(L"Calculated value: "))
+                        .Prepend(L"\n\n");
             wxMessageBox(_(L"Formula is valid; no syntax errors were detected.") +
                              calculatedValueMsg,
                          _(L"Formula Validated"), wxOK | wxICON_INFORMATION);
@@ -302,7 +298,7 @@ void CustomTestDlg::UpdateOptions()
     {
     assert(m_wordListsPropertyGrid);
     assert(m_properNounsNumbersPropertyGrid);
-    if (!m_wordListsPropertyGrid || !m_properNounsNumbersPropertyGrid)
+    if ((m_wordListsPropertyGrid == nullptr) || (m_properNounsNumbersPropertyGrid == nullptr))
         {
         return;
         }
@@ -692,7 +688,7 @@ void CustomTestDlg::ShowFunctionBrowser(const bool show)
 //------------------------------------------------------
 void CustomTestDlg::CreateControls()
     {
-    wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
+    auto* mainSizer = new wxBoxSizer(wxVERTICAL);
 
     m_sideBarBook = new Wisteria::UI::SideBarBook(this, wxID_ANY);
 
@@ -707,8 +703,8 @@ void CustomTestDlg::CreateControls()
         {
         m_generalPage = new wxPanel(m_sideBarBook, ID_GENERAL_PAGE, wxDefaultPosition,
                                     wxDefaultSize, wxTAB_TRAVERSAL);
-        wxBoxSizer* editorSectionSizer = new wxBoxSizer(wxVERTICAL);
-        wxBoxSizer* mainPageSizer = new wxBoxSizer(wxHORIZONTAL);
+        auto* editorSectionSizer = new wxBoxSizer(wxVERTICAL);
+        auto* mainPageSizer = new wxBoxSizer(wxHORIZONTAL);
         mainPageSizer->Add(editorSectionSizer, wxSizerFlags{ 1 }.Expand());
         m_generalPage->SetSizer(mainPageSizer);
         m_sideBarBook->AddPage(m_generalPage, _(L"General Settings"), ID_GENERAL_PAGE, true);
@@ -716,7 +712,7 @@ void CustomTestDlg::CreateControls()
         // if no test name then we are in "add new test" mode
         if (m_testName.empty())
             {
-            wxStaticBoxSizer* nameBoxSizer = new wxStaticBoxSizer(
+            auto* nameBoxSizer = new wxStaticBoxSizer(
                 new wxStaticBox(m_generalPage, wxID_ANY, _(L"Test name:")), wxVERTICAL);
             editorSectionSizer->Add(nameBoxSizer, wxSizerFlags{}.Expand().Border());
 
@@ -728,7 +724,7 @@ void CustomTestDlg::CreateControls()
             }
             // test result type
             {
-            wxBoxSizer* testTypeSizer = new wxBoxSizer(wxHORIZONTAL);
+            auto* testTypeSizer = new wxBoxSizer(wxHORIZONTAL);
             editorSectionSizer->Add(testTypeSizer, wxSizerFlags{}.Expand().Border());
             testTypeSizer->Add(
                 new wxStaticText(m_generalPage, wxID_STATIC, _(L"Test result type:")), 0,
@@ -743,13 +739,13 @@ void CustomTestDlg::CreateControls()
             }
             // formula editor
             {
-            wxBoxSizer* functionControlsSizer = new wxBoxSizer(wxHORIZONTAL);
+            auto* functionControlsSizer = new wxBoxSizer(wxHORIZONTAL);
             editorSectionSizer->Add(functionControlsSizer, wxSizerFlags{ 1 }.Expand().Border());
-            wxStaticBoxSizer* formulaBoxSizer = new wxStaticBoxSizer(
+            auto* formulaBoxSizer = new wxStaticBoxSizer(
                 new wxStaticBox(m_generalPage, wxID_ANY, _(L"Formula:")), wxVERTICAL);
             functionControlsSizer->Add(formulaBoxSizer, wxSizerFlags{ 1 }.Expand());
 
-            wxBoxSizer* formulaButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
+            auto* formulaButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
 
             formulaButtonsSizer->Add(
                 new wxBitmapButton(formulaBoxSizer->GetStaticBox(), ID_VALIDATE_FORMULA_BUTTON,
@@ -783,7 +779,7 @@ void CustomTestDlg::CreateControls()
             // examples labels
             formulaBoxSizer->Add(new wxStaticText(formulaBoxSizer->GetStaticBox(), wxID_STATIC,
                                                   _(L"Enter a formula, such as:")));
-            wxStaticText* formulaExample = new wxStaticText(
+            auto* formulaExample = new wxStaticText(
                 formulaBoxSizer->GetStaticBox(), wxID_STATIC,
                 FormulaFormat::FormatMathExpressionFromUS(
                     _DT(L"ROUND(206.835 - (84.6*(SyllableCount(Default)/WordCount(Default))) -\n"
@@ -807,7 +803,7 @@ void CustomTestDlg::CreateControls()
             }
             // function browser
             {
-            Wisteria::UI::FunctionBrowserCtrl* functionBrowser =
+            auto* functionBrowser =
                 new Wisteria::UI::FunctionBrowserCtrl(m_generalPage, m_formulaCtrl);
             wxGetApp().UpdateSideBarTheme(functionBrowser->GetSidebar());
             functionBrowser->Hide();
@@ -836,18 +832,18 @@ void CustomTestDlg::CreateControls()
 
         // Familiar word options
         {
-        wxPanel* WordListPanel = new wxPanel(m_sideBarBook, ID_WORD_LIST_PAGE, wxDefaultPosition,
-                                             wxDefaultSize, wxTAB_TRAVERSAL);
-        m_sideBarBook->AddPage(WordListPanel, _(L"Familiar Words"), ID_WORD_LIST_PAGE, false);
+        auto* wordListPanel = new wxPanel(m_sideBarBook, ID_WORD_LIST_PAGE, wxDefaultPosition,
+                                          wxDefaultSize, wxTAB_TRAVERSAL);
+        m_sideBarBook->AddPage(wordListPanel, _(L"Familiar Words"), ID_WORD_LIST_PAGE, false);
 
             // word lists
             {
-            wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
-            WordListPanel->SetSizer(panelSizer);
-            m_sideBarBook->AddSubPage(WordListPanel, _(L"Word Lists"), ID_WORD_LIST_PAGE, false, 0);
+            auto* panelSizer = new wxBoxSizer(wxVERTICAL);
+            wordListPanel->SetSizer(panelSizer);
+            m_sideBarBook->AddSubPage(wordListPanel, _(L"Word Lists"), ID_WORD_LIST_PAGE, false, 0);
 
-            wxPropertyGridManager* pgMan = new wxPropertyGridManager(
-                WordListPanel, ID_WORD_LIST_PROPERTY_GRID, wxDefaultPosition, wxDefaultSize,
+            auto* pgMan = new wxPropertyGridManager(
+                wordListPanel, ID_WORD_LIST_PROPERTY_GRID, wxDefaultPosition, wxDefaultSize,
                 wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
             m_wordListsPropertyGrid = pgMan->AddPage();
             // custom word list
@@ -954,15 +950,15 @@ void CustomTestDlg::CreateControls()
             }
             // proper nouns and numbers
             {
-            wxPanel* Panel = new wxPanel(m_sideBarBook, ID_PROPER_NUMERALS_PAGE, wxDefaultPosition,
-                                         wxDefaultSize, wxTAB_TRAVERSAL);
-            wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
-            Panel->SetSizer(panelSizer);
-            m_sideBarBook->AddSubPage(Panel, _(L"Proper Nouns & Numerals"), ID_PROPER_NUMERALS_PAGE,
+            auto* panel = new wxPanel(m_sideBarBook, ID_PROPER_NUMERALS_PAGE, wxDefaultPosition,
+                                      wxDefaultSize, wxTAB_TRAVERSAL);
+            auto* panelSizer = new wxBoxSizer(wxVERTICAL);
+            panel->SetSizer(panelSizer);
+            m_sideBarBook->AddSubPage(panel, _(L"Proper Nouns & Numerals"), ID_PROPER_NUMERALS_PAGE,
                                       false, 0);
 
-            wxPropertyGridManager* pgMan = new wxPropertyGridManager(
-                Panel, ID_PROPER_NOUN_PROPERTY_GRID, wxDefaultPosition, wxDefaultSize,
+            auto* pgMan = new wxPropertyGridManager(
+                panel, ID_PROPER_NOUN_PROPERTY_GRID, wxDefaultPosition, wxDefaultSize,
                 wxPG_BOLD_MODIFIED | wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE);
             m_properNounsNumbersPropertyGrid = pgMan->AddPage();
             // proper nouns
@@ -994,9 +990,9 @@ void CustomTestDlg::CreateControls()
 
         // new project wizard options
         {
-        wxPanel* wizardPage = new wxPanel(m_sideBarBook, ID_CLASSIFICATION_PAGE, wxDefaultPosition,
-                                          wxDefaultSize, wxTAB_TRAVERSAL);
-        wxBoxSizer* wizardPageSizer = new wxBoxSizer(wxVERTICAL);
+        auto* wizardPage = new wxPanel(m_sideBarBook, ID_CLASSIFICATION_PAGE, wxDefaultPosition,
+                                       wxDefaultSize, wxTAB_TRAVERSAL);
+        auto* wizardPageSizer = new wxBoxSizer(wxVERTICAL);
         wizardPage->SetSizer(wizardPageSizer);
         m_sideBarBook->AddPage(wizardPage, _(L"Classification"), ID_CLASSIFICATION_PAGE, false);
 
@@ -1027,22 +1023,22 @@ void CustomTestDlg::CreateControls()
 
     SetSizerAndFit(mainSizer);
 
-    if (m_testNameCtrl)
+    if (m_testNameCtrl != nullptr)
         {
         m_testNameCtrl->SetFocus();
         }
 
     UpdateOptions();
 
-    if (m_wordListsPropertyGrid)
+    if (m_wordListsPropertyGrid != nullptr)
         {
         m_wordListsPropertyGrid->FitColumns();
         }
-    if (m_properNounsNumbersPropertyGrid)
+    if (m_properNounsNumbersPropertyGrid != nullptr)
         {
         m_properNounsNumbersPropertyGrid->FitColumns();
         }
-    if (m_associationPropertyGrid)
+    if (m_associationPropertyGrid != nullptr)
         {
         m_associationPropertyGrid->FitColumns();
         }
@@ -1062,7 +1058,7 @@ void CustomTestDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
         }
 
     // validate the test name
-    if (m_testNameCtrl)
+    if (m_testNameCtrl != nullptr)
         {
         // if a new test, then make sure it isn't empty
         if (m_testName.empty())
@@ -1134,8 +1130,7 @@ void CustomTestDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
         static_cast<readability::proper_noun_counting_method>(GetProperNounMethod()) !=
             readability::proper_noun_counting_method::all_proper_nouns_are_unfamiliar)
         {
-        std::vector<WarningMessage>::iterator warningIter =
-            WarningManager::GetWarning(_DT(L"german-no-proper-noun-support"));
+        auto warningIter = WarningManager::GetWarning(_DT(L"german-no-proper-noun-support"));
         if (warningIter != WarningManager::GetWarnings().end() && warningIter->ShouldBeShown())
             {
             wxMessageBox(warningIter->GetMessage(), wxGetApp().GetAppName(),
@@ -1169,7 +1164,7 @@ void CustomTestDlg::SelectPage(const wxWindowID pageId)
     for (size_t i = 0; i < m_sideBarBook->GetPageCount(); ++i)
         {
         wxWindow* page = m_sideBarBook->GetPage(i);
-        if (page && page->GetId() == pageId)
+        if ((page != nullptr) && page->GetId() == pageId)
             {
             m_sideBarBook->SetSelection(i);
             }

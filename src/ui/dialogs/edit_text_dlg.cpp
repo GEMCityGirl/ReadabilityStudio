@@ -152,23 +152,23 @@ EditTextDlg::EditTextDlg(wxWindow* parent, BaseProjectDoc* parentDoc, wxString v
 //------------------------------------------------------
 void EditTextDlg::CreateControls()
     {
-    wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
+    auto* mainSizer = new wxBoxSizer(wxVERTICAL);
 
-    wxBoxSizer* searchSizer = new wxBoxSizer(wxHORIZONTAL);
+    auto* searchSizer = new wxBoxSizer(wxHORIZONTAL);
     searchSizer->AddStretchSpacer(1);
     mainSizer->Add(searchSizer, wxSizerFlags{}.Expand());
 
         {
         m_ribbon = new wxRibbonBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
                                    wxRIBBON_BAR_FLOW_HORIZONTAL);
-        wxRibbonPage* homePage = new wxRibbonPage(m_ribbon, wxID_ANY, wxString{});
+        auto* homePage = new wxRibbonPage(m_ribbon, wxID_ANY, wxString{});
         // Save (back to project)
-        if (m_parentDoc && m_parentDoc->IsKindOf(CLASSINFO(ProjectDoc)))
+        if ((m_parentDoc != nullptr) && m_parentDoc->IsKindOf(CLASSINFO(ProjectDoc)))
             {
-            wxRibbonPanel* exportPage =
+            auto* exportPage =
                 new wxRibbonPanel(homePage, wxID_ANY, _DT(L" "), wxNullBitmap, wxDefaultPosition,
                                   wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-            wxRibbonButtonBar* buttonBar =
+            auto* buttonBar =
                 new wxRibbonButtonBar(exportPage, MainFrame::ID_DOCUMENT_RIBBON_BUTTON_BAR);
             buttonBar->AddButton(
                 wxID_SAVE, _(L"Save"),
@@ -178,10 +178,10 @@ void EditTextDlg::CreateControls()
             }
             // Clipboard
             {
-            wxRibbonPanel* clipboardPage = new wxRibbonPanel(
-                homePage, wxID_ANY, _(L"Clipboard"), wxNullBitmap, wxDefaultPosition, wxDefaultSize,
-                wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-            wxRibbonButtonBar* buttonBar =
+            auto* clipboardPage = new wxRibbonPanel(homePage, wxID_ANY, _(L"Clipboard"),
+                                                    wxNullBitmap, wxDefaultPosition, wxDefaultSize,
+                                                    wxRIBBON_PANEL_NO_AUTO_MINIMISE);
+            auto* buttonBar =
                 new wxRibbonButtonBar(clipboardPage, MainFrame::ID_CLIPBOARD_RIBBON_BUTTON_BAR);
             buttonBar->AddButton(
                 wxID_PASTE, _(L"Paste"),
@@ -201,11 +201,10 @@ void EditTextDlg::CreateControls()
             }
             // Edit
             {
-            wxRibbonPanel* editPage =
+            auto* editPage =
                 new wxRibbonPanel(homePage, wxID_ANY, _(L"Edit"), wxNullBitmap, wxDefaultPosition,
                                   wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-            wxRibbonButtonBar* buttonBar =
-                new wxRibbonButtonBar(editPage, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
+            auto* buttonBar = new wxRibbonButtonBar(editPage, MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
             buttonBar->AddButton(
                 wxID_UNDO, _(L"Undo"),
                 wxArtProvider::GetBitmap(wxART_UNDO, wxART_BUTTON, FromDIP(wxSize{ 32, 32 }))
@@ -239,11 +238,10 @@ void EditTextDlg::CreateControls()
             }
             // View
             {
-            wxRibbonPanel* viewPage =
+            auto* viewPage =
                 new wxRibbonPanel(homePage, wxID_ANY, _(L"View"), wxNullBitmap, wxDefaultPosition,
                                   wxDefaultSize, wxRIBBON_PANEL_NO_AUTO_MINIMISE);
-            wxRibbonButtonBar* buttonBar =
-                new wxRibbonButtonBar(viewPage, MainFrame::ID_VIEW_RIBBON_BUTTON_BAR);
+            auto* buttonBar = new wxRibbonButtonBar(viewPage, MainFrame::ID_VIEW_RIBBON_BUTTON_BAR);
 
             buttonBar->AddButton(
                 wxID_SELECT_FONT, _(L"Font"),
@@ -326,7 +324,7 @@ void EditTextDlg::CreateControls()
             // Default white? Just keep their selected font color.
             m_parentDoc->GetTextReportBackgroundColor() != wxColour{ 255, 255, 255 })
             {
-            // if they are theming and it's dark, then explicitly use white
+            // if they are theming, and it's dark, then explicitly use white
             return (Wisteria::Colors::ColorContrast::IsDark(
                         m_parentDoc->GetTextReportBackgroundColor()) ?
                         wxColour{ 255, 255, 255 } :
@@ -335,10 +333,8 @@ void EditTextDlg::CreateControls()
                             wxGetApp().GetAppOptions()->GetEditorFontColor(),
                             m_parentDoc->GetTextReportBackgroundColor()));
             }
-        else
-            {
-            return wxGetApp().GetAppOptions()->GetEditorFontColor();
-            }
+
+        return wxGetApp().GetAppOptions()->GetEditorFontColor();
     }();
 
     m_style = wxTextAttr{ fontColor, wxNullColour, wxGetApp().GetAppOptions()->GetEditorFont() };
@@ -381,15 +377,15 @@ void EditTextDlg::CreateControls()
 
     mainSizer->Add(m_textEntry, wxSizerFlags{ 1 }.Expand());
 
-    if (m_description.length())
+    if (!m_description.empty())
         {
         mainSizer->AddSpacer(wxSizerFlags::GetDefaultBorder());
-        wxStaticText* label = new wxStaticText(this, wxID_ANY, m_description);
+        auto* label = new wxStaticText(this, wxID_ANY, m_description);
         mainSizer->Add(label, wxSizerFlags{}.Border(wxLEFT));
         }
 
     // batch uses this in modal mode
-    if (m_parentDoc && m_parentDoc->IsKindOf(CLASSINFO(BatchProjectDoc)))
+    if ((m_parentDoc != nullptr) && m_parentDoc->IsKindOf(CLASSINFO(BatchProjectDoc)))
         {
         mainSizer->Add(CreateSeparatedButtonSizer(wxOK | wxCANCEL),
                        wxSizerFlags{}.Expand().Border());
@@ -476,13 +472,13 @@ void EditTextDlg::OnFindDialog(wxFindDialogEvent& event)
         }
     else if (event.GetEventType() == wxEVT_FIND_CLOSE)
         {
-        if (m_dlgReplace)
+        if (m_dlgReplace != nullptr)
             {
             m_dlgReplace->Destroy();
             m_dlgReplace = nullptr;
             }
 
-        if (m_dlgFind)
+        if (m_dlgFind != nullptr)
             {
             m_dlgFind->Destroy();
             m_dlgFind = nullptr;
@@ -494,7 +490,7 @@ void EditTextDlg::OnFindDialog(wxFindDialogEvent& event)
 void EditTextDlg::OnShowReplaceDialog([[maybe_unused]] wxCommandEvent& event)
     {
     // get rid of Find dialog (if it was opened)
-    if (m_dlgFind)
+    if (m_dlgFind != nullptr)
         {
         m_dlgFind->Destroy();
         m_dlgFind = nullptr;
@@ -512,7 +508,7 @@ void EditTextDlg::OnShowReplaceDialog([[maybe_unused]] wxCommandEvent& event)
 void EditTextDlg::OnShowFindDialog([[maybe_unused]] wxCommandEvent& event)
     {
     // get rid of Replace dialog (if it was opened)
-    if (m_dlgReplace)
+    if (m_dlgReplace != nullptr)
         {
         m_dlgReplace->Destroy();
         m_dlgReplace = nullptr;
@@ -522,7 +518,7 @@ void EditTextDlg::OnShowFindDialog([[maybe_unused]] wxCommandEvent& event)
         m_dlgFind = new wxFindReplaceDialog(this, &m_findData, _(L"Find"));
         }
     const auto selectedStr{ m_textEntry->GetStringSelection() };
-    if (selectedStr.length())
+    if (!selectedStr.empty())
         {
         m_findData.SetFindString(selectedStr);
         }
@@ -551,9 +547,9 @@ void EditTextDlg::OnOK([[maybe_unused]] wxCommandEvent& event)
 //------------------------------------------------------
 void EditTextDlg::OnClose([[maybe_unused]] wxCloseEvent& event)
     {
-    if (m_textEntry && m_textEntry->IsModified())
+    if ((m_textEntry != nullptr) && m_textEntry->IsModified())
         {
-        if (m_parentDoc && m_parentDoc->IsKindOf(CLASSINFO(ProjectDoc)))
+        if ((m_parentDoc != nullptr) && m_parentDoc->IsKindOf(CLASSINFO(ProjectDoc)))
             {
             if (wxMessageBox(_(L"Do you wish to save your unsaved changes?"), _(L"Save Changes"),
                              wxYES_NO | wxICON_QUESTION) == wxYES)
@@ -561,7 +557,7 @@ void EditTextDlg::OnClose([[maybe_unused]] wxCloseEvent& event)
                 Save();
                 }
             }
-        else if (m_parentDoc && m_parentDoc->IsKindOf(CLASSINFO(BatchProjectDoc)))
+        else if ((m_parentDoc != nullptr) && m_parentDoc->IsKindOf(CLASSINFO(BatchProjectDoc)))
             {
             assert(IsModal() && L"Text editor should be modal when called from a batch project!");
             if (wxMessageBox(_(L"Do you wish to save your unsaved changes?"), _(L"Save Changes"),
@@ -593,7 +589,7 @@ void EditTextDlg::OnSaveButton([[maybe_unused]] wxRibbonButtonBarEvent& event)
 
     // mark the text control as not being dirty, so that if we close now
     // it won't need to ask about wanting to save
-    if (m_textEntry)
+    if (m_textEntry != nullptr)
         {
         m_textEntry->DiscardEdits();
         }
@@ -603,7 +599,7 @@ void EditTextDlg::OnSaveButton([[maybe_unused]] wxRibbonButtonBarEvent& event)
 //------------------------------------------------------
 void EditTextDlg::OnParagraphSpaceSelected([[maybe_unused]] wxCommandEvent& event)
     {
-    if (m_textEntry)
+    if (m_textEntry != nullptr)
         {
         const bool wasModified = m_textEntry->IsModified();
         const bool isUndoEnabled = m_textEntry->CanUndo();
@@ -628,7 +624,7 @@ void EditTextDlg::OnParagraphSpaceSelected([[maybe_unused]] wxCommandEvent& even
 //------------------------------------------------------
 void EditTextDlg::OnLineSpaceSelected(wxCommandEvent& event)
     {
-    if (m_textEntry)
+    if (m_textEntry != nullptr)
         {
         const bool wasModified = m_textEntry->IsModified();
         const bool isUndoEnabled = m_textEntry->CanUndo();
@@ -658,7 +654,7 @@ void EditTextDlg::OnLineSpaceSelected(wxCommandEvent& event)
 //------------------------------------------------------
 void EditTextDlg::OnEditButtons(wxRibbonButtonBarEvent& event)
     {
-    if (m_textEntry)
+    if (m_textEntry != nullptr)
         {
         const bool wasModified = m_textEntry->IsModified();
         const bool isUndoEnabled = m_textEntry->CanUndo();
@@ -736,7 +732,7 @@ void EditTextDlg::OnEditButtons(wxRibbonButtonBarEvent& event)
 //------------------------------------------------------
 void EditTextDlg::OnTextChanged([[maybe_unused]] wxCommandEvent& event)
     {
-    if (m_textEntry)
+    if (m_textEntry != nullptr)
         {
         EnableSaveButton(m_textEntry->IsModified());
         UpdateButtons();
@@ -756,11 +752,11 @@ void EditTextDlg::Save()
     // Only link the editor directly to a standard project.
     // Subprojects within batches will only get updated when this dialog
     // (which will be modal for batch projects) closes.
-    if (m_parentDoc && m_parentDoc->IsKindOf(CLASSINFO(ProjectDoc)))
+    if ((m_parentDoc != nullptr) && m_parentDoc->IsKindOf(CLASSINFO(ProjectDoc)))
         {
-        auto projectDoc = dynamic_cast<ProjectDoc*>(m_parentDoc);
+        auto* projectDoc = dynamic_cast<ProjectDoc*>(m_parentDoc);
         assert(projectDoc && L"Bad cast to standard project!");
-        if (projectDoc)
+        if (projectDoc != nullptr)
             {
             projectDoc->SetDocumentText(m_value.wc_string());
             projectDoc->Modify(true);
@@ -776,11 +772,12 @@ void EditTextDlg::Save()
 void EditTextDlg::EnableSaveButton(const bool enable /*= true*/)
     {
     wxWindow* saveButtonBarWindow = m_ribbon->FindWindow(MainFrame::ID_DOCUMENT_RIBBON_BUTTON_BAR);
-    if (saveButtonBarWindow && saveButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
+    if ((saveButtonBarWindow != nullptr) &&
+        saveButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
         {
-        auto saveButtonBar = dynamic_cast<wxRibbonButtonBar*>(saveButtonBarWindow);
+        auto* saveButtonBar = dynamic_cast<wxRibbonButtonBar*>(saveButtonBarWindow);
         assert(saveButtonBar && L"Error casting ribbon bar!");
-        if (saveButtonBar)
+        if (saveButtonBar != nullptr)
             {
             saveButtonBar->EnableButton(wxID_SAVE, enable);
             }
@@ -797,12 +794,12 @@ void EditTextDlg::UpdateButtons()
                                                               wxID_JUSTIFY_FILL;
 
     wxWindow* paragraphButtonBarWindow = m_ribbon->FindWindow(MainFrame::ID_VIEW_RIBBON_BUTTON_BAR);
-    if (paragraphButtonBarWindow &&
+    if ((paragraphButtonBarWindow != nullptr) &&
         paragraphButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
         {
-        auto paragraphButtonBar = dynamic_cast<wxRibbonButtonBar*>(paragraphButtonBarWindow);
+        auto* paragraphButtonBar = dynamic_cast<wxRibbonButtonBar*>(paragraphButtonBarWindow);
         assert(paragraphButtonBar && L"Error casting ribbon bar!");
-        if (paragraphButtonBar)
+        if (paragraphButtonBar != nullptr)
             {
             paragraphButtonBar->ToggleButton(wxID_JUSTIFY_LEFT, false);
             paragraphButtonBar->ToggleButton(wxID_JUSTIFY_CENTER, false);
@@ -828,11 +825,12 @@ void EditTextDlg::UpdateButtons()
 
     // undo/redo button
     wxWindow* editButtonBarWindow = m_ribbon->FindWindow(MainFrame::ID_EDIT_RIBBON_BUTTON_BAR);
-    if (editButtonBarWindow && editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
+    if ((editButtonBarWindow != nullptr) &&
+        editButtonBarWindow->IsKindOf(CLASSINFO(wxRibbonButtonBar)))
         {
-        auto editButtonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
+        auto* editButtonBar = dynamic_cast<wxRibbonButtonBar*>(editButtonBarWindow);
         assert(editButtonBar && L"Error casting ribbon bar!");
-        if (editButtonBar)
+        if (editButtonBar != nullptr)
             {
             editButtonBar->EnableButton(wxID_UNDO, m_textEntry->CanUndo());
             editButtonBar->EnableButton(wxID_REDO, m_textEntry->CanRedo());
