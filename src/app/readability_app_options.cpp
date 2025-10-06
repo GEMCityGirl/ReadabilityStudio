@@ -3342,7 +3342,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     doc.InsertEndChild(doc.NewDeclaration());
 
     auto* root = doc.NewElement(XML_CONFIG_HEADER.data());
-    root->SetAttribute(XML_VERSION.data(), wxGetApp().GetAppVersion().mb_str());
+    root->SetAttribute(XML_VERSION.data(), wxGetApp().GetAppVersion().utf8_str());
 
     auto* configSection = doc.NewElement(XML_CONFIGURATIONS.data());
 
@@ -3373,13 +3373,13 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     appearance->SetAttribute(XML_UI_LANGUAGE.data(), static_cast<int>(GetUiLanguage()));
     appearance->SetAttribute(
         XML_SCRIPT_EDITOR_LAYOUT.data(),
-        wxString{ encode({ GetScriptEditorLayout().wc_str() }, false) }.mb_str());
+        wxString{ encode({ GetScriptEditorLayout().wc_str() }, false) }.utf8_str());
 
     configSection->InsertEndChild(appearance);
 
     auto* userAgent = doc.NewElement(XML_USER_AGENT.data());
-    userAgent->SetAttribute(XML_VALUE.data(),
-                            wxString(encode({ GetUserAgent().wc_str() }, false).c_str()).mb_str());
+    userAgent->SetAttribute(
+        XML_VALUE.data(), wxString(encode({ GetUserAgent().wc_str() }, false).c_str()).utf8_str());
     configSection->InsertEndChild(userAgent);
 
     auto* downloadReplaceExistingNode = doc.NewElement(XML_DOWNLOAD_REPLACE_EXISTING.data());
@@ -3417,23 +3417,25 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     // project path
     auto* projectPath = doc.NewElement(XML_FILE_OPEN_PROJECT_PATH.data());
     projectPath->SetAttribute(
-        XML_VALUE.data(), wxString(encode({ GetProjectPath().wc_str() }, false).c_str()).mb_str());
+        XML_VALUE.data(),
+        wxString(encode({ GetProjectPath().wc_str() }, false).c_str()).utf8_str());
     filePaths->InsertEndChild(projectPath);
     // image path
     auto* imagePath = doc.NewElement(XML_FILE_OPEN_IMAGE_PATH.data());
-    imagePath->SetAttribute(XML_VALUE.data(),
-                            wxString(encode({ GetImagePath().wc_str() }, false).c_str()).mb_str());
+    imagePath->SetAttribute(
+        XML_VALUE.data(), wxString(encode({ GetImagePath().wc_str() }, false).c_str()).utf8_str());
     filePaths->InsertEndChild(imagePath);
     // downloads path
     auto* downloadsPath = doc.NewElement(XML_DOWNLOADS_PATH.data());
     downloadsPath->SetAttribute(
         XML_VALUE.data(),
-        wxString(encode({ GetDownloadsPath().wc_str() }, false).c_str()).mb_str());
+        wxString(encode({ GetDownloadsPath().wc_str() }, false).c_str()).utf8_str());
     filePaths->InsertEndChild(downloadsPath);
     // word list path
     auto* wordlistPath = doc.NewElement(XML_FILE_OPEN_WORDLIST_PATH.data());
     wordlistPath->SetAttribute(
-        XML_VALUE.data(), wxString(encode({ GetWordListPath().wc_str() }, false).c_str()).mb_str());
+        XML_VALUE.data(),
+        wxString(encode({ GetWordListPath().wc_str() }, false).c_str()).utf8_str());
     filePaths->InsertEndChild(wordlistPath);
 
     configSection->InsertEndChild(filePaths);
@@ -3443,7 +3445,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     for (const auto& warning : WarningManager::GetWarnings())
         {
         auto* warningItem = doc.NewElement(XML_WARNING_MESSAGE.data());
-        warningItem->SetAttribute(XML_VALUE.data(), warning.GetId().mb_str());
+        warningItem->SetAttribute(XML_VALUE.data(), warning.GetId().utf8_str());
         warningItem->SetAttribute(XML_DISPLAY.data(), bool_to_int(warning.ShouldBeShown()));
         warningItem->SetAttribute(XML_PREVIOUS_RESPONSE.data(), warning.GetPreviousResponse());
         warningSection->InsertEndChild(warningItem);
@@ -3454,13 +3456,13 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto* exportSection = doc.NewElement(XML_EXPORT.data());
     // extensions
     auto* listExt = doc.NewElement(XML_EXPORT_LIST_EXT.data());
-    listExt->SetAttribute(XML_VALUE.data(), BaseProjectDoc::GetExportListExt().mb_str());
+    listExt->SetAttribute(XML_VALUE.data(), BaseProjectDoc::GetExportListExt().utf8_str());
     exportSection->InsertEndChild(listExt);
     auto* textExt = doc.NewElement(XML_EXPORT_TEXT_EXT.data());
-    textExt->SetAttribute(XML_VALUE.data(), BaseProjectDoc::GetExportTextViewExt().mb_str());
+    textExt->SetAttribute(XML_VALUE.data(), BaseProjectDoc::GetExportTextViewExt().utf8_str());
     exportSection->InsertEndChild(textExt);
     auto* graphExt = doc.NewElement(XML_EXPORT_GRAPH_EXT.data());
-    graphExt->SetAttribute(XML_VALUE.data(), BaseProjectDoc::GetExportGraphExt().mb_str());
+    graphExt->SetAttribute(XML_VALUE.data(), BaseProjectDoc::GetExportGraphExt().utf8_str());
     exportSection->InsertEndChild(graphExt);
     // item inclusions
     auto* includeLists = doc.NewElement(XML_EXPORT_LISTS.data());
@@ -3522,33 +3524,33 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto* printerLeftHeader = doc.NewElement(XML_PRINTER_LEFT_HEADER.data());
     printerLeftHeader->SetAttribute(
         XML_VALUE.data(),
-        wxString(encode({ GetLeftPrinterHeader().wc_str() }, false).c_str()).mb_str());
+        wxString(encode({ GetLeftPrinterHeader().wc_str() }, false).c_str()).utf8_str());
     printerSection->InsertEndChild(printerLeftHeader);
     auto* printerCenterHeader = doc.NewElement(XML_PRINTER_CENTER_HEADER.data());
     printerCenterHeader->SetAttribute(
         XML_VALUE.data(),
-        wxString(encode({ GetCenterPrinterHeader().wc_str() }, false).c_str()).mb_str());
+        wxString(encode({ GetCenterPrinterHeader().wc_str() }, false).c_str()).utf8_str());
     printerSection->InsertEndChild(printerCenterHeader);
     auto* printerRightHeader = doc.NewElement(XML_PRINTER_RIGHT_HEADER.data());
     printerRightHeader->SetAttribute(
         XML_VALUE.data(),
-        wxString(encode({ GetRightPrinterHeader().wc_str() }, false).c_str()).mb_str());
+        wxString(encode({ GetRightPrinterHeader().wc_str() }, false).c_str()).utf8_str());
     printerSection->InsertEndChild(printerRightHeader);
     // footers
     auto* printerLeftFooter = doc.NewElement(XML_PRINTER_LEFT_FOOTER.data());
     printerLeftFooter->SetAttribute(
         XML_VALUE.data(),
-        wxString(encode({ GetLeftPrinterFooter().wc_str() }, false).c_str()).mb_str());
+        wxString(encode({ GetLeftPrinterFooter().wc_str() }, false).c_str()).utf8_str());
     printerSection->InsertEndChild(printerLeftFooter);
     auto* printerCenterFooter = doc.NewElement(XML_PRINTER_CENTER_FOOTER.data());
     printerCenterFooter->SetAttribute(
         XML_VALUE.data(),
-        wxString(encode({ GetCenterPrinterFooter().wc_str() }, false).c_str()).mb_str());
+        wxString(encode({ GetCenterPrinterFooter().wc_str() }, false).c_str()).utf8_str());
     printerSection->InsertEndChild(printerCenterFooter);
     auto* printerRightFooter = doc.NewElement(XML_PRINTER_RIGHT_FOOTER.data());
     printerRightFooter->SetAttribute(
         XML_VALUE.data(),
-        wxString(encode({ GetRightPrinterFooter().wc_str() }, false).c_str()).mb_str());
+        wxString(encode({ GetRightPrinterFooter().wc_str() }, false).c_str()).utf8_str());
     printerSection->InsertEndChild(printerRightFooter);
     configSection->InsertEndChild(printerSection);
 
@@ -3571,7 +3573,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
                            bool_to_int(m_editorFont.GetUnderlined()));
         font->SetAttribute(
             XmlFormat::FONT_FACE_NAME_TAG.data(),
-            wxString(encode({ m_editorFont.GetFaceName().wc_str() }, false).c_str()).mb_str());
+            wxString(encode({ m_editorFont.GetFaceName().wc_str() }, false).c_str()).utf8_str());
         editorSection->InsertEndChild(font);
 
         auto* indent = doc.NewElement(XML_EDITOR_INDENT.data());
@@ -3599,8 +3601,8 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
 
     // reviewer and status
     auto* docReviewer = doc.NewElement(XML_REVIEWER.data());
-    docReviewer->SetAttribute(XML_VALUE.data(),
-                              wxString(encode({ GetReviewer().wc_str() }, false).c_str()).mb_str());
+    docReviewer->SetAttribute(
+        XML_VALUE.data(), wxString(encode({ GetReviewer().wc_str() }, false).c_str()).utf8_str());
     projectSettings->InsertEndChild(docReviewer);
 
     auto* realTimeRefresh = doc.NewElement(XML_REALTIME_UPDATE.data());
@@ -3611,7 +3613,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto* appendedDocPath = doc.NewElement(XML_APPENDED_DOC_PATH.data());
     appendedDocPath->SetAttribute(
         XML_VALUE.data(),
-        wxString(encode({ GetAppendedDocumentFilePath().wc_str() }, false).c_str()).mb_str());
+        wxString(encode({ GetAppendedDocumentFilePath().wc_str() }, false).c_str()).utf8_str());
     projectSettings->InsertEndChild(appendedDocPath);
 
     // document storage/linking
@@ -3649,7 +3651,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     // which features are included
     auto* sentencesBreakdownInfo = doc.NewElement(XML_SENTENCES_BREAKDOWN_INFO.data());
     sentencesBreakdownInfo->SetAttribute(XML_VALUE.data(),
-                                         GetSentencesBreakdownInfo().ToString().mb_str());
+                                         GetSentencesBreakdownInfo().ToString().utf8_str());
     sentencesBreakdownSection->InsertEndChild(sentencesBreakdownInfo);
     projectSettings->InsertEndChild(sentencesBreakdownSection);
 
@@ -3657,7 +3659,8 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto* wordsBreakdownSection = doc.NewElement(XML_WORDS_BREAKDOWN.data());
     // which features are included
     auto* wordsBreakdownInfo = doc.NewElement(XML_WORDS_BREAKDOWN_INFO.data());
-    wordsBreakdownInfo->SetAttribute(XML_VALUE.data(), GetWordsBreakdownInfo().ToString().mb_str());
+    wordsBreakdownInfo->SetAttribute(XML_VALUE.data(),
+                                     GetWordsBreakdownInfo().ToString().utf8_str());
     wordsBreakdownSection->InsertEndChild(wordsBreakdownInfo);
     projectSettings->InsertEndChild(wordsBreakdownSection);
 
@@ -3707,7 +3710,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
 
     // which grammar features are included
     auto* grammarInfo = doc.NewElement(XML_GRAMMAR_INFO.data());
-    grammarInfo->SetAttribute(XML_VALUE.data(), GetGrammarInfo().ToString().mb_str());
+    grammarInfo->SetAttribute(XML_VALUE.data(), GetGrammarInfo().ToString().utf8_str());
     grammarSection->InsertEndChild(grammarInfo);
 
     projectSettings->InsertEndChild(grammarSection);
@@ -3754,7 +3757,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto* excludedPhrasesFilePath = doc.NewElement(XML_EXCLUDED_PHRASES_PATH.data());
     excludedPhrasesFilePath->SetAttribute(
         XML_VALUE.data(),
-        wxString(encode({ GetExcludedPhrasesPath().wc_str() }, false).c_str()).mb_str());
+        wxString(encode({ GetExcludedPhrasesPath().wc_str() }, false).c_str()).utf8_str());
     documentAnalysisSection->InsertEndChild(excludedPhrasesFilePath);
 
     // exclusion block tags
@@ -3767,7 +3770,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         const wchar_t excludeTagsStr[3] = { currentExcludeTag->first, currentExcludeTag->second,
                                             0 };
         wxString excludeTagsEncoded = encode({ excludeTagsStr, 2 }, false).c_str();
-        excludeTags->SetAttribute(XML_VALUE.data(), excludeTagsEncoded.mb_str());
+        excludeTags->SetAttribute(XML_VALUE.data(), excludeTagsEncoded.utf8_str());
         excludeTagsSection->InsertEndChild(excludeTags);
         }
     documentAnalysisSection->InsertEndChild(excludeTagsSection);
@@ -3845,14 +3848,14 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         auto* testBundleName = doc.NewElement(XML_TEST_BUNDLE_NAME.data());
         wxString testBundleNameEncoded =
             encode({ currentBundle->GetName().c_str() }, false).c_str();
-        testBundleName->SetAttribute(XML_VALUE.data(), testBundleNameEncoded.mb_str());
+        testBundleName->SetAttribute(XML_VALUE.data(), testBundleNameEncoded.utf8_str());
         testBundle->InsertEndChild(testBundleName);
         // description
         auto* testBundleDescription = doc.NewElement(XML_TEST_BUNDLE_DESCRIPTION.data());
         wxString testBundleDescriptionEncoded =
             encode({ currentBundle->GetDescription().c_str() }, false).c_str();
         testBundleDescription->SetAttribute(XML_VALUE.data(),
-                                            testBundleDescriptionEncoded.mb_str());
+                                            testBundleDescriptionEncoded.utf8_str());
         testBundle->InsertEndChild(testBundleDescription);
         // included tests
         auto* testNames = doc.NewElement(XML_TEST_NAMES.data());
@@ -3860,15 +3863,17 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
             {
             auto* testName = doc.NewElement(XML_TEST_NAME.data());
             wxString testNameEncoded = encode({ bundledTest.GetName().c_str() }, false).c_str();
-            testName->SetAttribute(XML_VALUE.data(), testNameEncoded.mb_str());
-            testName->SetAttribute(XML_GOAL_MIN_VAL_GOAL.data(),
-                                   (std::isnan(bundledTest.GetMinGoal()) ?
-                                        "" :
-                                        wxString::FromCDouble(bundledTest.GetMinGoal()).mb_str()));
-            testName->SetAttribute(XML_GOAL_MAX_VAL_GOAL.data(),
-                                   (std::isnan(bundledTest.GetMaxGoal()) ?
-                                        "" :
-                                        wxString::FromCDouble(bundledTest.GetMaxGoal()).mb_str()));
+            testName->SetAttribute(XML_VALUE.data(), testNameEncoded.utf8_str());
+            testName->SetAttribute(
+                XML_GOAL_MIN_VAL_GOAL.data(),
+                (std::isnan(bundledTest.GetMinGoal()) ?
+                     "" :
+                     wxString::FromCDouble(bundledTest.GetMinGoal()).utf8_str()));
+            testName->SetAttribute(
+                XML_GOAL_MAX_VAL_GOAL.data(),
+                (std::isnan(bundledTest.GetMaxGoal()) ?
+                     "" :
+                     wxString::FromCDouble(bundledTest.GetMaxGoal()).utf8_str()));
             testNames->InsertEndChild(testName);
             }
         testBundle->InsertEndChild(testNames);
@@ -3878,15 +3883,17 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
             {
             auto* statGoal = doc.NewElement(XML_BUNDLE_STATISTIC.data());
             wxString testNameEncoded = encode({ bundledStat.GetName().c_str() }, false).c_str();
-            statGoal->SetAttribute(XML_VALUE.data(), testNameEncoded.mb_str());
-            statGoal->SetAttribute(XML_GOAL_MIN_VAL_GOAL.data(),
-                                   (std::isnan(bundledStat.GetMinGoal()) ?
-                                        "" :
-                                        wxString::FromCDouble(bundledStat.GetMinGoal()).mb_str()));
-            statGoal->SetAttribute(XML_GOAL_MAX_VAL_GOAL.data(),
-                                   (std::isnan(bundledStat.GetMaxGoal()) ?
-                                        "" :
-                                        wxString::FromCDouble(bundledStat.GetMaxGoal()).mb_str()));
+            statGoal->SetAttribute(XML_VALUE.data(), testNameEncoded.utf8_str());
+            statGoal->SetAttribute(
+                XML_GOAL_MIN_VAL_GOAL.data(),
+                (std::isnan(bundledStat.GetMinGoal()) ?
+                     "" :
+                     wxString::FromCDouble(bundledStat.GetMinGoal()).utf8_str()));
+            statGoal->SetAttribute(
+                XML_GOAL_MAX_VAL_GOAL.data(),
+                (std::isnan(bundledStat.GetMaxGoal()) ?
+                     "" :
+                     wxString::FromCDouble(bundledStat.GetMaxGoal()).utf8_str()));
             statGoals->InsertEndChild(statGoal);
             }
         testBundle->InsertEndChild(statGoals);
@@ -3907,20 +3914,20 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         auto* testName = doc.NewElement(XML_TEST_NAME.data());
         wxString testNameEncoded(pos->get_name().c_str());
         testNameEncoded = encode({ testNameEncoded.wc_str() }, false).c_str();
-        testName->SetAttribute(XML_VALUE.data(), testNameEncoded.mb_str());
+        testName->SetAttribute(XML_VALUE.data(), testNameEncoded.utf8_str());
         customFamWordTest->InsertEndChild(testName);
         // file path
         auto* filePath = doc.NewElement(XML_FAMILIAR_WORD_FILE_PATH.data());
         wxString filePathEncoded(pos->get_familiar_word_list_file_path().c_str());
         filePathEncoded = encode({ filePathEncoded.wc_str() }, false).c_str();
-        filePath->SetAttribute(XML_VALUE.data(), filePathEncoded.mb_str());
+        filePath->SetAttribute(XML_VALUE.data(), filePathEncoded.utf8_str());
         customFamWordTest->InsertEndChild(filePath);
         // formula (needs to be stored in U.S. format for portability)
         auto* formula = doc.NewElement(XML_TEST_FORMULA.data());
         wxString formulaEncoded(
             FormulaFormat::FormatMathExpressionToUS(pos->get_formula().c_str()));
         formulaEncoded = encode({ formulaEncoded.wc_str() }, false).c_str();
-        formula->SetAttribute(XML_VALUE.data(), formulaEncoded.mb_str());
+        formula->SetAttribute(XML_VALUE.data(), formulaEncoded.utf8_str());
         customFamWordTest->InsertEndChild(formula);
         // formula type (this is just needed for forward compatibility)
         const int formulaTypeValue =
@@ -4072,13 +4079,13 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto* graphColorScheme = doc.NewElement(XML_GRAPH_COLOR_SCHEME.data());
     graphColorScheme->SetAttribute(
         XML_VALUE.data(),
-        wxString(encode({ GetGraphColorScheme().wc_str() }, false).c_str()).mb_str());
+        wxString(encode({ GetGraphColorScheme().wc_str() }, false).c_str()).utf8_str());
     graphDefaultsSection->InsertEndChild(graphColorScheme);
     // background image
     auto* graphBackgroundImage = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_PATH.data());
     graphBackgroundImage->SetAttribute(
         XML_VALUE.data(),
-        wxString(encode({ GetPlotBackGroundImagePath().wc_str() }, false).c_str()).mb_str());
+        wxString(encode({ GetPlotBackGroundImagePath().wc_str() }, false).c_str()).utf8_str());
     graphDefaultsSection->InsertEndChild(graphBackgroundImage);
 
     auto* backgroundImageEffect = doc.NewElement(XML_GRAPH_PLOT_BACKGROUND_IMAGE_EFFECT.data());
@@ -4128,18 +4135,19 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto* stipplePath = doc.NewElement(XML_GRAPH_STIPPLE_PATH.data());
     stipplePath->SetAttribute(
         XML_VALUE.data(),
-        wxString(encode({ GetStippleImagePath().wc_str() }, false).c_str()).mb_str());
+        wxString(encode({ GetStippleImagePath().wc_str() }, false).c_str()).utf8_str());
     graphDefaultsSection->InsertEndChild(stipplePath);
     // common image path
     auto* commonImagePath = doc.NewElement(XML_GRAPH_COMMON_IMAGE_PATH.data());
     commonImagePath->SetAttribute(
         XML_VALUE.data(),
-        wxString(encode({ GetGraphCommonImagePath().wc_str() }, false).c_str()).mb_str());
+        wxString(encode({ GetGraphCommonImagePath().wc_str() }, false).c_str()).utf8_str());
     graphDefaultsSection->InsertEndChild(commonImagePath);
     // stipple shape
     auto* stippleShape = doc.NewElement(XML_GRAPH_STIPPLE_SHAPE.data());
     stippleShape->SetAttribute(
-        XML_VALUE.data(), wxString(encode({ GetStippleShape().wc_str() }, false).c_str()).mb_str());
+        XML_VALUE.data(),
+        wxString(encode({ GetStippleShape().wc_str() }, false).c_str()).utf8_str());
     graphDefaultsSection->InsertEndChild(stippleShape);
 
     if (GetStippleShapeColor().IsOk())
@@ -4164,12 +4172,12 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     auto* graphWatermarkLogo = doc.NewElement(XML_GRAPH_WATERMARK_LOGO_IMAGE_PATH.data());
     graphWatermarkLogo->SetAttribute(
         XML_VALUE.data(),
-        wxString(encode({ GetWatermarkLogo().wc_str() }, false).c_str()).mb_str());
+        wxString(encode({ GetWatermarkLogo().wc_str() }, false).c_str()).utf8_str());
     graphDefaultsSection->InsertEndChild(graphWatermarkLogo);
 
     auto* graphWatermark = doc.NewElement(XML_GRAPH_WATERMARK.data());
     graphWatermark->SetAttribute(
-        XML_VALUE.data(), wxString(encode({ GetWatermark().wc_str() }, false).c_str()).mb_str());
+        XML_VALUE.data(), wxString(encode({ GetWatermark().wc_str() }, false).c_str()).utf8_str());
     graphDefaultsSection->InsertEndChild(graphWatermark);
 
     // histogram settings
@@ -4322,7 +4330,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
                             bool_to_int(GetXAxisFont().GetUnderlined()));
     xAxisFont->SetAttribute(
         XmlFormat::FONT_FACE_NAME_TAG.data(),
-        wxString(encode({ GetXAxisFont().GetFaceName().wc_str() }, false).c_str()).mb_str());
+        wxString(encode({ GetXAxisFont().GetFaceName().wc_str() }, false).c_str()).utf8_str());
     // put it all together
     xAxis->InsertEndChild(xAxisFontColor);
     xAxis->InsertEndChild(xAxisFont);
@@ -4346,7 +4354,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
                             bool_to_int(GetYAxisFont().GetUnderlined()));
     yAxisFont->SetAttribute(
         XmlFormat::FONT_FACE_NAME_TAG.data(),
-        wxString(encode({ GetYAxisFont().GetFaceName().wc_str() }, false).c_str()).mb_str());
+        wxString(encode({ GetYAxisFont().GetFaceName().wc_str() }, false).c_str()).utf8_str());
     // put it all together
     yAxis->InsertEndChild(yAxisFontColor);
     yAxis->InsertEndChild(yAxisFont);
@@ -4375,7 +4383,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     topTitleFont->SetAttribute(
         XmlFormat::FONT_FACE_NAME_TAG.data(),
         wxString(encode({ GetGraphTopTitleFont().GetFaceName().wc_str() }, false).c_str())
-            .mb_str());
+            .utf8_str());
     // put it all together
     topTitle->InsertEndChild(topTitleFontColor);
     topTitle->InsertEndChild(topTitleFont);
@@ -4403,7 +4411,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     bottomTitleFont->SetAttribute(
         XmlFormat::FONT_FACE_NAME_TAG.data(),
         wxString(encode({ GetGraphBottomTitleFont().GetFaceName().wc_str() }, false).c_str())
-            .mb_str());
+            .utf8_str());
     // put it all together
     bottomTitle->InsertEndChild(bottomTitleFontColor);
     bottomTitle->InsertEndChild(bottomTitleFont);
@@ -4430,7 +4438,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     leftTitleFont->SetAttribute(
         XmlFormat::FONT_FACE_NAME_TAG.data(),
         wxString(encode({ GetGraphLeftTitleFont().GetFaceName().wc_str() }, false).c_str())
-            .mb_str());
+            .utf8_str());
     // put it all together
     leftTitle->InsertEndChild(leftTitleFontColor);
     leftTitle->InsertEndChild(leftTitleFont);
@@ -4458,7 +4466,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     rightTitleFont->SetAttribute(
         XmlFormat::FONT_FACE_NAME_TAG.data(),
         wxString(encode({ GetGraphRightTitleFont().GetFaceName().wc_str() }, false).c_str())
-            .mb_str());
+            .utf8_str());
     // put it all together
     rightTitle->InsertEndChild(rightTitleFontColor);
     rightTitle->InsertEndChild(rightTitleFont);
@@ -4475,11 +4483,11 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     statsDefaultsSection->InsertEndChild(varianceMethod);
     // stats results
     auto* statsResults = doc.NewElement(XML_STATISTICS_RESULTS.data());
-    statsResults->SetAttribute(XML_VALUE.data(), GetStatisticsInfo().ToString().mb_str());
+    statsResults->SetAttribute(XML_VALUE.data(), GetStatisticsInfo().ToString().utf8_str());
     statsDefaultsSection->InsertEndChild(statsResults);
     // stats report
     auto* statsReport = doc.NewElement(XML_STATISTICS_REPORT.data());
-    statsReport->SetAttribute(XML_VALUE.data(), GetStatisticsReportInfo().ToString().mb_str());
+    statsReport->SetAttribute(XML_VALUE.data(), GetStatisticsReportInfo().ToString().utf8_str());
     statsDefaultsSection->InsertEndChild(statsReport);
     projectSettings->InsertEndChild(statsDefaultsSection);
 
@@ -4512,7 +4520,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
 
     // tests by bundle
     auto* testsByBundle = doc.NewElement(XML_SELECTED_TEST_BUNDLE.data());
-    testsByBundle->SetAttribute(XML_VALUE.data(), GetSelectedTestBundle().mb_str());
+    testsByBundle->SetAttribute(XML_VALUE.data(), GetSelectedTestBundle().utf8_str());
     wizardPageDefaultsSection->InsertEndChild(testsByBundle);
 
     projectSettings->InsertEndChild(wizardPageDefaultsSection);
@@ -4596,7 +4604,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     for (auto rTest = GetReadabilityTests().get_tests().begin();
          rTest != GetReadabilityTests().get_tests().end(); ++rTest)
         {
-        auto* currentTest = doc.NewElement(wxString(rTest->get_test().get_id().c_str()).mb_str());
+        auto* currentTest = doc.NewElement(wxString(rTest->get_test().get_id().c_str()).utf8_str());
         currentTest->SetAttribute(XML_INCLUDE.data(), bool_to_int(rTest->is_included()));
         readabilityTestSection->InsertEndChild(currentTest);
         }
@@ -4611,7 +4619,8 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
         auto* customTest = doc.NewElement(XML_CUSTOM_TEST.data());
         customTest->SetAttribute(
             XML_VALUE.data(),
-            wxString(encode({ GetIncludedCustomTests().at(i).wc_str() }, false).c_str()).mb_str());
+            wxString(encode({ GetIncludedCustomTests().at(i).wc_str() }, false).c_str())
+                .utf8_str());
         readabilityTestSection->InsertEndChild(customTest);
         }
     projectSettings->InsertEndChild(readabilityTestSection);
@@ -4740,7 +4749,7 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
                        bool_to_int(m_textViewFont.GetUnderlined()));
     font->SetAttribute(
         XmlFormat::FONT_FACE_NAME_TAG.data(),
-        wxString(encode({ m_textViewFont.GetFaceName().wc_str() }, false).c_str()).mb_str());
+        wxString(encode({ m_textViewFont.GetFaceName().wc_str() }, false).c_str()).utf8_str());
     textViewsSection->InsertEndChild(font);
 
     projectSettings->InsertEndChild(textViewsSection);
@@ -4789,7 +4798,7 @@ double ReadabilityAppOptions::TiXmlNodeToDouble(const tinyxml2::XMLNode* node,
 
     lily_of_the_valley::html_extract_text filter_html;
 
-    const char* stringData = node->ToElement()->Attribute(tagToRead.mb_str());
+    const char* stringData = node->ToElement()->Attribute(tagToRead.utf8_str());
     if (!stringData)
         {
         return std::numeric_limits<double>::quiet_NaN();
@@ -4825,7 +4834,7 @@ wxString ReadabilityAppOptions::TiXmlNodeToString(const tinyxml2::XMLNode* node,
 
     lily_of_the_valley::html_extract_text filter_html;
 
-    const char* stringData = node->ToElement()->Attribute(tagToRead.mb_str());
+    const char* stringData = node->ToElement()->Attribute(tagToRead.utf8_str());
     if (!stringData)
         {
         return wxString{};
