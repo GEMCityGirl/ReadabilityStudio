@@ -50,6 +50,7 @@ source('../R/appdown.r')
 ### Bug Fixes {-}
 
 - Printing text windows now supports more paper sizes.
+- Saving and loading settings files now supports Unicode file paths.
 
 \newpage
 

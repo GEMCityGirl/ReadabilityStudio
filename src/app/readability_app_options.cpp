@@ -4759,14 +4759,21 @@ bool ReadabilityAppOptions::SaveOptionsFile(const wxString& optionsFile /*= wxSt
     root->InsertEndChild(configSection);
 
     doc.InsertEndChild(root);
-    doc.SaveFile(optionsFile.empty() ? m_optionsFile.mb_str() : optionsFile.mb_str());
-    if (doc.Error())
+
+    // serializes whole doc into UTF-8 memory buffer
+    tinyxml2::XMLPrinter xmlPrinter;
+    doc.Print(&xmlPrinter);
+
+    wxFile file(optionsFile.empty() ? m_optionsFile : optionsFile, wxFile::write);
+    if (file.IsOpened() && file.Write(wxString::FromUTF8(xmlPrinter.CStr())))
         {
-        wxMessageBox(wxString::Format(_(L"Unable to save configuration file:%s"), doc.ErrorStr()),
-                     _(L"Error"), wxOK | wxICON_ERROR);
-        return false;
+        file.Close();
+        return true;
         }
-    return true;
+
+    wxMessageBox(wxString::Format(_(L"Unable to save configuration file: %s"), doc.ErrorStr()),
+                 _(L"Error"), wxOK | wxICON_ERROR);
+    return false;
     }
 
 //--------------------------------------------
