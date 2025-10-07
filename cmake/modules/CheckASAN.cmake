@@ -1,5 +1,5 @@
 # Sanity-check: if ASan was requested, verify the toolchain can link it
-if(USE_ADDRESS_SANITIZE)
+if(ENABLE_SANITIZERS)
   include(CheckCXXSourceCompiles)
 
   # Stash current try-compile flags

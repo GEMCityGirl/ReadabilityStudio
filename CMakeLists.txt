@@ -8,12 +8,13 @@
 #############################################################################
 
 # Build targets:
+# all: builds the "readstudio" and "doxygen-docs" targets
 # readstudio: builds the main application (included with ALL)
-# manuals: builds the manuals and HTML help
 # doxygen-docs: builds the API documentation (included with ALL)
+# manuals: builds the manuals and HTML help
 
 # Options:
-# USE_ADDRESS_SANITIZE to use ASAN (ignored in release build)
+# ENABLE_SANITIZERS to use ASAN & UBSAN (ignored in release build)
 
 # Requirements
 cmake_minimum_required(VERSION 3.26)
@@ -119,12 +120,13 @@ endif()
 message(STATUS "Compiler: ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
 
 include(cmake/modules/CheckASAN.cmake)
-if(${CMAKE_BUILD_TYPE} STREQUAL "Debug" AND USE_ADDRESS_SANITIZE)
-    message(STATUS "AddressSanitizer is enabled")
-    add_compile_definitions(USE_ADDRESS_SANITIZE=1)
-else()
-    add_compile_definitions(USE_ADDRESS_SANITIZE=0)
-endif()
+include(cmake/modules/EnableSanitizers.cmake)
+# Expose the human-readable list to the code
+string(REPLACE "\n" "\\n" ENABLED_SANITIZERS_STR_ESCAPED "${ENABLED_SANITIZERS_STR}")
+string(REPLACE "\"" "\\\"" ENABLED_SANITIZERS_STR_ESCAPED "${ENABLED_SANITIZERS_STR_ESCAPED}")
+
+string(REPLACE "\n" "\\n" SANITIZER_ENV_HINTS_STR_ESCAPED "${SANITIZER_ENV_HINTS_STR}")
+string(REPLACE "\"" "\\\"" SANITIZER_ENV_HINTS_STR_ESCAPED "${SANITIZER_ENV_HINTS_STR_ESCAPED}")
 
 # interproceduarl optimization
 if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
@@ -353,87 +355,70 @@ elseif(APPLE)
 endif()
 add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE ${APP_SRC_FILES})
 
-# Set definitions, warnings, and optimizations
+target_compile_definitions(${PROJECT_NAME} PUBLIC
+    $<$<CONFIG:Debug>:
+        ENABLED_SANITIZERS_STR="${ENABLED_SANITIZERS_STR_ESCAPED}"
+        SANITIZER_ENV_HINTS_STR="${SANITIZER_ENV_HINTS_STR_ESCAPED}">)
+
+# ----------------------------------------
+# Platform-specific settings
+# Definitions, warnings, and optimizations
+# ----------------------------------------
 if(MSVC)
-    # _DISABLE_VECTOR_ANNOTATION _DISABLE_STRING_ANNOTATION are needed for ASAN not being enabled in linked wxWidgets libs
-    # https://learn.microsoft.com/en-us/cpp/sanitizers/error-container-overflow?view=msvc-170
-    target_compile_definitions(${PROJECT_NAME} PUBLIC __WXMSW__ CRCPP_USE_CPP11 _CRT_SECURE_NO_WARNINGS _UNICODE
-        $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING _DISABLE_VECTOR_ANNOTATION _DISABLE_STRING_ANNOTATION> $<$<CONFIG:Release>:NDEBUG>)
-    # /Zc:__cplusplus tells MSVC to set the C++ version what we are
-    # actually compiling as. The default behavior in MSVC is to say that the
-    # C++ version is 98 always (for compatibility reasons).
+    target_compile_definitions(${PROJECT_NAME} PUBLIC
+        __WXMSW__ CRCPP_USE_CPP11 _CRT_SECURE_NO_WARNINGS _UNICODE
+        $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING ${SANITIZER_DEFS}>
+        $<$<CONFIG:Release>:NDEBUG>)
+    target_compile_options(${PROJECT_NAME} PUBLIC
+        /Zc:__cplusplus /MP /W3 /WX /wd6211 /openmp
+        $<$<CONFIG:Debug>:/Od ${SANITIZER_FLAGS}>
+        $<$<CONFIG:Release>:/O2>)
 
-    # /MP enables multi-core build support, speeding up compilation time.
-
-    # /W3 cranks up the warning level, /WX treats all warnings as error.
-    # Note that simply using /W4 causes a warning that it is overriding /W3,
-    # and then that turns into an error because of /W4. So /W3 is the
-    # highest you can go with /WX.
-
-    # /wd6211 turns off C6211 warning: leaking memory due to an exception.
-    # wxWidgets uses heap-based objects for most everything, and MVSC complains
-    # about not wrapping all of this logic in try blocks.
-    if(USE_ADDRESS_SANITIZE)
-        target_compile_options(${PROJECT_NAME} PUBLIC /Zc:__cplusplus /MP /W3 /WX /wd6211 /openmp
-                               $<$<CONFIG:Debug>:/Od /fsanitize=address>
-                               $<$<CONFIG:Release>:/O2>)
-    else()
-        target_compile_options(${PROJECT_NAME} PUBLIC /Zc:__cplusplus /MP /W3 /WX /wd6211 /openmp
-                               $<$<CONFIG:Debug>:/Od>
-                               $<$<CONFIG:Release>:/O2>)
-    endif()
 elseif(MINGW OR MSYS)
-    target_compile_definitions(${PROJECT_NAME} PUBLIC __WXMSW__ CRCPP_USE_CPP11 _CRT_SECURE_NO_WARNINGS _UNICODE
-            $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING> $<$<CONFIG:Release>:NDEBUG>)
+    target_compile_definitions(${PROJECT_NAME} PUBLIC
+        __WXMSW__ CRCPP_USE_CPP11 _CRT_SECURE_NO_WARNINGS _UNICODE
+        $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING>
+        $<$<CONFIG:Release>:NDEBUG>)
+    target_compile_options(${PROJECT_NAME} PUBLIC
+        -Wall -Wextra -Wpedantic -Wshadow -Werror
+        $<$<CONFIG:Debug>:-Og -g3 ${SANITIZER_FLAGS} ${SANITIZER_EXTRA_FLAGS}>
+        $<$<CONFIG:Release>:-O2>)
+    target_link_options(${PROJECT_NAME} PUBLIC
+        $<$<CONFIG:Debug>:${SANITIZER_FLAGS}>)
 
-    if(USE_ADDRESS_SANITIZE)
-        target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow -Werror
-                               $<$<CONFIG:Debug>:-Og -g3 -fsanitize=address -fno-omit-frame-pointer>
-                               $<$<CONFIG:Release>:-O2>)
-        target_link_options(${PROJECT_NAME} PUBLIC
-                            $<$<CONFIG:Debug>:-fsanitize=address>)
-    else()
-        target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow -Werror
-                               $<$<CONFIG:Debug>:-Og>
-                               $<$<CONFIG:Release>:-O2>)
-    endif()
 elseif(APPLE)
-    target_compile_definitions(${PROJECT_NAME} PUBLIC __WXOSX__ CRCPP_USE_CPP11
-        $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING> $<$<CONFIG:Release>:NDEBUG>)
+    target_compile_definitions(${PROJECT_NAME} PUBLIC
+        __WXOSX__ CRCPP_USE_CPP11
+        $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING>
+        $<$<CONFIG:Release>:NDEBUG>)
+    # TODO: don't include -Werror for now, but eventually add it
+    target_compile_options(${PROJECT_NAME} PUBLIC
+        -Wall -Wextra -Wpedantic -Wshadow
+        $<$<CONFIG:Debug>:-Og -g3 ${SANITIZER_FLAGS} ${SANITIZER_EXTRA_FLAGS}>
+        $<$<CONFIG:Release>:-O2>)
+    target_link_options(${PROJECT_NAME} PUBLIC
+        $<$<CONFIG:Debug>:${SANITIZER_FLAGS}>)
 
-    if(USE_ADDRESS_SANITIZE)
-        target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow
-                               $<$<CONFIG:Debug>:-Og -g3 -fsanitize=address -fno-omit-frame-pointer>
-                               $<$<CONFIG:Release>:-O2>)
-        target_compile_options(${PROJECT_NAME} PUBLIC
-                               $<$<AND:$<BOOL:${USE_ADDRESS_SANITIZE}>,$<CONFIG:Debug>,$<COMPILE_LANG_AND_ID:CXX,Clang>>:-fsanitize-address-use-after-scope>)
-        target_link_options(${PROJECT_NAME} PUBLIC
-                            $<$<CONFIG:Debug>:-fsanitize=address>)
-    else()
-        # TODO: don't include -Werror for now, but eventually add it
-        target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow
-                               $<$<CONFIG:Debug>:-Og>
-                               $<$<CONFIG:Release>:-O2>)
-    endif()
 elseif(UNIX)
+    # strip dead code
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -s")
-    target_compile_definitions(${PROJECT_NAME} PUBLIC __WXGTK__ CRCPP_USE_CPP11
-        $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING> $<$<CONFIG:Release>:NDEBUG>)
 
-    if(USE_ADDRESS_SANITIZE)
-        target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow -fopenmp
-                               $<$<CONFIG:Debug>:-Og -g3 -fsanitize=address -fno-omit-frame-pointer>
-                               $<$<CONFIG:Release>:-O2>)
-        target_compile_options(${PROJECT_NAME} PUBLIC
-                               $<$<AND:$<BOOL:${USE_ADDRESS_SANITIZE}>,$<CONFIG:Debug>,$<COMPILE_LANG_AND_ID:CXX,Clang>>:-fsanitize-address-use-after-scope>)
-        target_link_options(${PROJECT_NAME} PUBLIC
-                            $<$<CONFIG:Debug>:-fsanitize=address>)
-    else()
-        # TODO: don't include -Werror for now, but eventually add it
-        target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic -Wshadow -fopenmp
-                               $<$<CONFIG:Debug>:-Og -g3>
-                               $<$<CONFIG:Release>:-O2>)
-    endif()
+    target_compile_definitions(${PROJECT_NAME} PUBLIC
+        __WXGTK__ CRCPP_USE_CPP11
+        $<$<CONFIG:Debug>:__WXDEBUG__ ENABLE_PROFILING>
+        $<$<CONFIG:Release>:NDEBUG>)
+    # TODO: don't include -Werror for now, but eventually add it
+    target_compile_options(${PROJECT_NAME} PUBLIC
+        -Wall -Wextra -Wpedantic -Wshadow -fopenmp
+        $<$<CONFIG:Debug>:-Og -g3 ${SANITIZER_FLAGS} ${SANITIZER_EXTRA_FLAGS}>
+        $<$<CONFIG:Release>:-O2>)
+    target_link_options(${PROJECT_NAME} PUBLIC
+        $<$<CONFIG:Debug>:${SANITIZER_FLAGS}>)
+endif()
+
+# Print per-target summary
+if(ENABLE_SANITIZERS AND ENABLED_SANITIZERS_STR)
+    message(STATUS "Target ${PROJECT_NAME} built with sanitizers (Debug): ${ENABLED_SANITIZERS_STR}")
 endif()
 
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)

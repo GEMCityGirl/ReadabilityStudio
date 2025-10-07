@@ -211,9 +211,14 @@ void AboutDialogEx::CreateControls()
             mainPage, wxID_ANY,
             // TRANSLATORS: Compiled version of the program (e.g., DEBUG or RELEASE)
             _(L"Build Type:")));
-    #ifdef USE_ADDRESS_SANITIZE
-        productInfoGrid->Add(new wxStaticText(
-            mainPage, wxID_ANY, _DT(L"DEBUG with AddressSanitizer", DTExplanation::DebugMessage)));
+    #ifdef ENABLED_SANITIZERS_STR
+        wxString sanitizerInfo = wxString::FromUTF8(ENABLED_SANITIZERS_STR) + L"\n" +
+                                 wxString::FromUTF8(SANITIZER_ENV_HINTS_STR);
+        sanitizerInfo.Replace(L"\\n", L"\n");
+        sanitizerInfo.Trim();
+        productInfoGrid->Add(
+            new wxStaticText(mainPage, wxID_ANY,
+                             _DT(L"DEBUG with:\n", DTExplanation::DebugMessage) + sanitizerInfo));
     #else
         productInfoGrid->Add(new wxStaticText(mainPage, wxID_ANY, _DT(L"DEBUG")));
     #endif

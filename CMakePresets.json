@@ -34,7 +34,7 @@
         "debug"
       ],
       "cacheVariables": {
-        "USE_ADDRESS_SANITIZE": "TRUE"
+        "ENABLE_SANITIZERS": "TRUE"
       }
     },
     {
