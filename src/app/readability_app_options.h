@@ -569,7 +569,6 @@ class ReadabilityAppOptions
     /// Resets settings back to the factory default.
     void ResetSettings();
 
-    bool LoadThemeFile(wxString optionsFile);
     /// Resets color theming to the system colors.
     void SetColorsFromSystem();
     void SetFonts();

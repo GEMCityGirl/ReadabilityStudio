@@ -554,45 +554,6 @@ void ReadabilityAppOptions::LoadThemeNode(tinyxml2::XMLElement* appearanceNode)
     }
 
 //------------------------------------------------
-bool ReadabilityAppOptions::LoadThemeFile(wxString optionsFile)
-    {
-    wxString fileContent;
-    if (!wxFile::Exists(optionsFile) || !Wisteria::TextStream::ReadFile(optionsFile, fileContent))
-        {
-        return false;
-        }
-
-    tinyxml2::XMLDocument doc;
-    doc.Parse(fileContent.utf8_str());
-    if (doc.Error())
-        {
-        wxMessageBox(wxString::Format(_(L"Unable to load theme file:\n%s"), doc.ErrorStr()),
-                     _(L"Error"), wxOK | wxICON_ERROR);
-        return false;
-        }
-    // see if it is a valid config file
-    auto node = doc.FirstChildElement(XML_CONFIG_HEADER.data());
-    if (!node)
-        {
-        wxMessageBox(_(L"Invalid configuration file. Project header section not found."),
-                     _(L"Error"), wxOK | wxICON_ERROR);
-        return false;
-        }
-    // read in the configurations
-    auto configRootNode = node->FirstChildElement(XML_CONFIGURATIONS.data());
-    if (!configRootNode)
-        {
-        wxMessageBox(_(L"Invalid configuration file. No configurations found."), _(L"Error"),
-                     wxOK | wxICON_ERROR);
-        return false;
-        }
-
-    auto appearanceNode = configRootNode->FirstChildElement(XML_APPEARANCE.data());
-    LoadThemeNode(appearanceNode);
-    return SaveOptionsFile();
-    }
-
-//------------------------------------------------
 bool ReadabilityAppOptions::LoadOptionsFile(wxString optionsFile,
                                             const bool loadOnlyGeneralOptions /*= false*/,
                                             const bool writeChangesBackToThisFile /*= true*/)
