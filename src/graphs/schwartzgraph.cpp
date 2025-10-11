@@ -25,7 +25,9 @@ wxIMPLEMENT_DYNAMIC_CLASS(Wisteria::Graphs::SchwartzGraph,
         const std::shared_ptr<Icons::Schemes::IconScheme>& shapes /*= nullptr*/)
         : PolygonReadabilityGraph(canvas)
         {
-        SetColorScheme(colors != nullptr ? colors : Settings::GetDefaultColorScheme());
+        SetColorScheme(colors != nullptr ? colors :
+                                           std::make_shared<Colors::Schemes::ColorScheme>(
+                                               Settings::GetDefaultColorScheme()));
         SetShapeScheme(shapes != nullptr ? shapes :
                                            std::make_unique<Icons::Schemes::IconScheme>(
                                                Icons::Schemes::StandardShapes()));
