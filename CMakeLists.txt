@@ -223,11 +223,19 @@ include(cmake/list-files.cmake)
 ##############################################################
 include(src/Wisteria-Dataviz/cmake/folders.cmake)
 
-# Add wxWidgets to the build
-set(wxUSE_WEBVIEW_EDGE ON)
-set(wxBUILD_SHARED OFF)
+set(PROJECT_WX_DEBUG_LEVEL 1)
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
-    set(__WXDEBUG__ 0)
+    set(PROJECT_WX_DEBUG_LEVEL 0)
+else()
+    set(PROJECT_WX_DEBUG_LEVEL 1)
+endif()
+message(STATUS "wxWidgets debug level: ${PROJECT_WX_DEBUG_LEVEL}")
+
+# Add wxWidgets to the build
+set(wxUSE_WEBVIEW_EDGE ON CACHE BOOL "Use Edge backend for WebView (MSW)" FORCE)
+set(wxBUILD_SHARED OFF CACHE BOOL "Build wxWidgets statically" FORCE)
+set(wxBUILD_DEBUG_LEVEL ${PROJECT_WX_DEBUG_LEVEL} CACHE STRING "wxWidgets runtime debug level" FORCE)
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
     set(wxBUILD_OPTIMISE ON)
     set(wxBUILD_STRIPPED_RELEASE ON)
 endif()
@@ -364,6 +372,11 @@ target_compile_definitions(${PROJECT_NAME} PUBLIC
 # Platform-specific settings
 # Definitions, warnings, and optimizations
 # ----------------------------------------
+
+# Define wxDEBUG_LEVEL consistently for all platforms
+target_compile_definitions(${PROJECT_NAME} PUBLIC 
+    wxDEBUG_LEVEL=${PROJECT_WX_DEBUG_LEVEL})
+
 if(MSVC)
     target_compile_definitions(${PROJECT_NAME} PUBLIC
         __WXMSW__ CRCPP_USE_CPP11 _CRT_SECURE_NO_WARNINGS _UNICODE
@@ -414,6 +427,10 @@ elseif(UNIX)
         $<$<CONFIG:Release>:-O2>)
     target_link_options(${PROJECT_NAME} PUBLIC
         $<$<CONFIG:Debug>:${SANITIZER_FLAGS}>)
+endif()
+
+if(DEFINED wxBUILD_DEBUG_LEVEL AND NOT "${wxBUILD_DEBUG_LEVEL}" STREQUAL "${PROJECT_WX_DEBUG_LEVEL}")
+    message(FATAL_ERROR "Mismatch: wxBUILD_DEBUG_LEVEL=${wxBUILD_DEBUG_LEVEL} but your code uses wxDEBUG_LEVEL=${PROJECT_WX_DEBUG_LEVEL}")
 endif()
 
 # Print per-target summary
