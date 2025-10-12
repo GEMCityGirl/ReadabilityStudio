@@ -397,7 +397,7 @@ elseif(MINGW OR MSYS)
         $<$<CONFIG:Debug>:-Og -g3 ${SANITIZER_FLAGS} ${SANITIZER_EXTRA_FLAGS}>
         $<$<CONFIG:Release>:-O2>)
     target_link_options(${PROJECT_NAME} PUBLIC
-        $<$<CONFIG:Debug>:${SANITIZER_FLAGS}>)
+        $<$<CONFIG:Debug>:${SANITIZER_LINK_FLAGS}>)
 
 elseif(APPLE)
     target_compile_definitions(${PROJECT_NAME} PUBLIC
@@ -410,7 +410,7 @@ elseif(APPLE)
         $<$<CONFIG:Debug>:-Og -g3 ${SANITIZER_FLAGS} ${SANITIZER_EXTRA_FLAGS}>
         $<$<CONFIG:Release>:-O2>)
     target_link_options(${PROJECT_NAME} PUBLIC
-        $<$<CONFIG:Debug>:${SANITIZER_FLAGS}>)
+        $<$<CONFIG:Debug>:${SANITIZER_LINK_FLAGS}>)
 
 elseif(UNIX)
     # strip dead code
@@ -426,7 +426,7 @@ elseif(UNIX)
         $<$<CONFIG:Debug>:-Og -g3 ${SANITIZER_FLAGS} ${SANITIZER_EXTRA_FLAGS}>
         $<$<CONFIG:Release>:-O2>)
     target_link_options(${PROJECT_NAME} PUBLIC
-        $<$<CONFIG:Debug>:${SANITIZER_FLAGS}>)
+        $<$<CONFIG:Debug>:${SANITIZER_LINK_FLAGS}>)
 endif()
 
 if(DEFINED wxBUILD_DEBUG_LEVEL AND NOT "${wxBUILD_DEBUG_LEVEL}" STREQUAL "${PROJECT_WX_DEBUG_LEVEL}")

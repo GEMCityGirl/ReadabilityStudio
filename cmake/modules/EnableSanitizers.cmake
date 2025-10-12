@@ -13,6 +13,7 @@ option(ENABLE_SANITIZERS "Enable sanitizers on supported compilers (applied to D
 
 set(SANITIZER_FLAGS "")
 set(SANITIZER_EXTRA_FLAGS "")
+set(SANITIZER_LINK_FLAGS "")
 set(SANITIZER_DEFS "")
 set(SANITIZER_LIST "")
 set(ENABLED_SANITIZERS_STR "")
@@ -27,18 +28,17 @@ if(ENABLE_SANITIZERS)
         list(APPEND SANITIZER_DEFS _DISABLE_VECTOR_ANNOTATION _DISABLE_STRING_ANNOTATION)
         list(APPEND SANITIZER_LIST "ASAN (AddressSanitizer: detects memory errors such as use-after-free, buffer overflows)")
 
-    elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    elseif(CMAKE_CXX_COMPILER_ID MATCHES "^(Apple)?Clang$" OR CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
         set(SANITIZER_FLAGS "-fsanitize=address,undefined -fno-omit-frame-pointer")
+        set(SANITIZER_LINK_FLAGS "-fsanitize=address,undefined")
         list(APPEND SANITIZER_LIST
             "ASAN (AddressSanitizer: detects memory errors such as use-after-free, buffer overflows)"
-            "UBSAN (UndefinedBehaviorSanitizer: detects integer overflow, invalid casts, and other UB)"
-        )
-        if(APPLE AND CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-            # Apple Clang: extra ASan goodness
+            "UBSAN (UndefinedBehaviorSanitizer: detects integer overflow, invalid casts, and other UB)")
+        if(APPLE AND CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
+            # AppleClang: extra ASan goodness
             set(SANITIZER_EXTRA_FLAGS "-fsanitize-address-use-after-scope")
             list(APPEND SANITIZER_LIST
-                "EXTRA: -fsanitize-address-use-after-scope (detects use-after-scope of stack variables; Apple Clang only)"
-            )
+                "EXTRA: -fsanitize-address-use-after-scope (detects use-after-scope of stack variables; AppleClang only)")
         endif()
         # NOTE: TSan conflicts with ASan. If you want TSan runs, swap flags to -fsanitize=thread in a different config.
     endif()
@@ -63,8 +63,7 @@ if(ENABLE_SANITIZERS)
             # Avoid suggesting detect_leaks on Apple (not fully supported)
             list(APPEND _env_hints
                 "ASAN_OPTIONS (suggested): ${_asan_opts}"
-                "Note: LeakSanitizer is limited on Apple platforms; 'detect_leaks' may not be supported."
-            )
+                "Note: LeakSanitizer is limited on Apple platforms; 'detect_leaks' may not be supported.")
         else()
             set(_asan_opts "${_asan_opts}:detect_leaks=1")
             list(APPEND _env_hints "ASAN_OPTIONS (suggested): ${_asan_opts}")
@@ -158,6 +157,7 @@ endif()
 
 set(SANITIZER_FLAGS "${SANITIZER_FLAGS}")
 set(SANITIZER_EXTRA_FLAGS "${SANITIZER_EXTRA_FLAGS}")
+set(SANITIZER_LINK_FLAGS "${SANITIZER_LINK_FLAGS}")
 set(SANITIZER_DEFS "${SANITIZER_DEFS}")
 set(ENABLED_SANITIZERS_STR "${ENABLED_SANITIZERS_STR}")
 set(SANITIZER_ENV_VARS "${SANITIZER_ENV_VARS}")
