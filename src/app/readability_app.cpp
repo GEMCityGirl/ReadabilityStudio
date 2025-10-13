@@ -29,6 +29,8 @@
 #include "../ui/dialogs/project_wizard_dlg.h"
 #include "../ui/dialogs/test_bundle_dlg.h"
 #include "../ui/dialogs/tools_options_dlg.h"
+#include <algorithm>
+#include <utility>
 
 // ===========================================================================
 // implementation
@@ -327,7 +329,7 @@ bool ReadabilityApp::OnInit()
     // if English, then just don't bother loading any translations
     if (m_preInitOptions.m_uiLanguage != UiLanguage::English)
         {
-        wxTranslations* const translations{ new wxTranslations{} };
+        auto* const translations{ new wxTranslations{} };
         if (m_preInitOptions.m_uiLanguage == UiLanguage::Spanish)
             {
             translations->SetLanguage(wxLANGUAGE_SPANISH);
@@ -635,9 +637,7 @@ bool ReadabilityApp::OnInit()
                           _DT(L"rsbp"), _DT(L"rsbp Doc"), _DT(L"View"),
                           wxCLASSINFO(BatchProjectDoc), wxCLASSINFO(BatchProjectView));
 
-    wxArrayString extensions;
-    extensions.Add(GetAppFileExtension());
-    extensions.Add(_DT(L"rsbp"));
+    const wxArrayString extensions{ GetAppFileExtension(), wxString{ _DT(L"rsbp") } };
     GetMainFrame()->SetDefaultFileExtensions(extensions);
 
     // printer options
@@ -2962,7 +2962,7 @@ wxRibbonBar* ReadabilityApp::CreateRibbon(wxWindow* frame, const wxDocument* doc
     }
 
 //---------------------------------------------------
-void ReadabilityApp::UpdateRibbonTheme(wxRibbonBar* ribbon)
+void ReadabilityApp::UpdateRibbonTheme(const wxRibbonBar* ribbon)
     {
     wxASSERT_MSG(ribbon != nullptr, L"Attempting to theme a null ribbon!");
     if (ribbon != nullptr)
@@ -3005,14 +3005,15 @@ void ReadabilityApp::UpdateRibbonTheme() { UpdateRibbonTheme(GetMainFrameEx()->G
 //---------------------------------------------------
 void ReadabilityApp::RemoveAllCustomTestBundles()
     {
-    std::for_each(BaseProject::m_testBundles.cbegin(), BaseProject::m_testBundles.cend(),
-                  [this](const TestBundle& bundle)
-                  {
-                      if (!bundle.IsLocked())
+    std::ranges::for_each(BaseProject::m_testBundles,
+                          [this](const TestBundle& bundle)
                           {
-                          GetMainFrameEx()->RemoveTestBundleFromMenus(bundle.GetName().c_str());
-                          }
-                  });
+                              if (!bundle.IsLocked())
+                                  {
+                                  GetMainFrameEx()->RemoveTestBundleFromMenus(
+                                      bundle.GetName().c_str());
+                                  }
+                          });
 
     for (auto bundle = BaseProject::m_testBundles.begin();
          bundle != BaseProject::m_testBundles.end();
@@ -3344,7 +3345,7 @@ void MainFrame::OnTestsOverview([[maybe_unused]] wxRibbonButtonBarEvent& event)
     }
 
 //-------------------------------------------------------
-void MainFrame::OnBlankGraph(wxCommandEvent& event)
+void MainFrame::OnBlankGraph(const wxCommandEvent& event)
     {
     BaseProject project;
     if (event.GetId() == XRCID("ID_BLANK_FRASE_GRAPH"))
@@ -3862,7 +3863,7 @@ void ReadabilityApp::UpdateDocumentThemes()
     }
 
 //---------------------------------------------------
-void MainFrame::OnStartPageClick(wxCommandEvent& event)
+void MainFrame::OnStartPageClick(const wxCommandEvent& event)
     {
     if (GetStartPage()->IsCustomButtonId(event.GetId()))
         {
@@ -4005,7 +4006,7 @@ void MainFrame::OnEditDictionarySettings([[maybe_unused]] wxCommandEvent& event)
     }
 
 //-------------------------------------------------------
-void MainFrame::OnOpenExample(wxCommandEvent& event)
+void MainFrame::OnOpenExample(const wxCommandEvent& event)
     {
     const auto pos = GetExamplesMenuIds().find(event.GetId());
     if (pos == GetExamplesMenuIds().cend())
@@ -4087,7 +4088,7 @@ void MainFrame::OnOpenExample(wxCommandEvent& event)
     }
 
 //-------------------------------------------------------
-void MainFrame::OnWordListByPage(wxCommandEvent& event)
+void MainFrame::OnWordListByPage(const wxCommandEvent& event)
     {
     WordListDlg wordListsDlg(wxGetApp().GetParentingWindow());
     // New Dale-Chall Words
@@ -4430,7 +4431,7 @@ void MainFrame::FillMenuWithTestBundles(wxMenu* testBundleMenu, const BaseProjec
     if (testBundleMenu != nullptr)
         {
         // clear the menu
-        while (testBundleMenu->GetMenuItemCount())
+        while (testBundleMenu->GetMenuItemCount() != 0U)
             {
             testBundleMenu->Destroy(testBundleMenu->FindItemByPosition(0));
             }
@@ -4666,7 +4667,7 @@ void MainFrame::OnRemoveCustomTest([[maybe_unused]] wxCommandEvent& event)
         }
     const auto selectedTestIndex = dlg.GetSelection();
     if (selectedTestIndex < 0 ||
-        selectedTestIndex >= static_cast<int>(BaseProject::m_custom_word_tests.size()))
+        std::cmp_greater_equal(selectedTestIndex, BaseProject::m_custom_word_tests.size()))
         {
         return;
         }
@@ -4758,7 +4759,7 @@ void MainFrame::OnRemoveCustomTestBundle([[maybe_unused]] wxCommandEvent& event)
     }
 
 //-------------------------------------------------------
-void MainFrame::OnAddCustomTest(wxCommandEvent& event)
+void MainFrame::OnAddCustomTest(const wxCommandEvent& event)
     {
     // make sure there aren't any projects getting updated before we start changing these tests
     const auto& docs = wxGetApp().GetDocManager()->GetDocuments();

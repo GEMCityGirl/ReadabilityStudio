@@ -83,7 +83,7 @@ class MainFrame final : public Wisteria::UI::BaseMainFrame
     MainFrame(const MainFrame&) = delete;
     MainFrame& operator=(const MainFrame&) = delete;
 
-    ~MainFrame()
+    ~MainFrame() override
         {
         wxLogDebug(__func__);
         // modeless dialogs that do not have parents
@@ -98,11 +98,11 @@ class MainFrame final : public Wisteria::UI::BaseMainFrame
         }
 
     void OnAbout([[maybe_unused]] wxCommandEvent& event);
-    void OnStartPageClick(wxCommandEvent& event);
+    void OnStartPageClick(const wxCommandEvent& event);
     void OnOpenDocument([[maybe_unused]] wxCommandEvent& event);
     void OnPaste([[maybe_unused]] wxCommandEvent& event);
     void OnPrinterHeaderFooter([[maybe_unused]] wxCommandEvent& event);
-    void OnBlankGraph(wxCommandEvent& event);
+    void OnBlankGraph(const wxCommandEvent& event);
     void OnTestsOverview([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnViewLogReport([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnViewProfileReport([[maybe_unused]] wxRibbonButtonBarEvent& event);
@@ -116,12 +116,12 @@ class MainFrame final : public Wisteria::UI::BaseMainFrame
     void OnHelpContents([[maybe_unused]] wxCommandEvent& event) final;
     void OnHelpManual([[maybe_unused]] wxRibbonButtonBarEvent& event);
     void OnHelpCheckForUpdates([[maybe_unused]] wxRibbonButtonBarEvent& event);
-    void OnOpenExample(wxCommandEvent& event);
+    void OnOpenExample(const wxCommandEvent& event);
     // pane events
-    void OnWordListByPage(wxCommandEvent& event);
+    void OnWordListByPage(const wxCommandEvent& event);
     void OnScriptEditor([[maybe_unused]] wxCommandEvent& event);
     // custom test events
-    void OnAddCustomTest(wxCommandEvent& event);
+    void OnAddCustomTest(const wxCommandEvent& event);
     void OnEditCustomTest([[maybe_unused]] wxCommandEvent& event);
     void OnRemoveCustomTest([[maybe_unused]] wxCommandEvent& event);
     // custom test bundles
@@ -396,7 +396,7 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
     void UpdateScriptEditorTheme();
     void UpdateLogWindowTheme();
     void UpdateSideBarTheme(Wisteria::UI::SideBar* sidebar);
-    void UpdateRibbonTheme(wxRibbonBar* ribbon);
+    void UpdateRibbonTheme(const wxRibbonBar* ribbon);
 
     /// Adds a list of words to the custom dictionary
     ///     (based on language of the project that it is coming from).
@@ -410,7 +410,8 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
     void RemoveAllCustomTestBundles();
 
     /// @returns The DPI scaling factor (e.g., can be 2 on HiDPI displays).
-    ///     This is a convenient way of getting this value when a window isn't available.
+    ///     This is a convenient way of getting this value when a window isn't
+    ///     available.
     [[nodiscard]]
     double GetDPIScaleFactor() const noexcept
         {
@@ -422,8 +423,10 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
         m_splashscreenImagePaths.Add(imagePath);
         }
 
-    /** @returns A bitmap from the resource manager, scaling it to the system's DPI.
-        @param image The path to the image from the resource manager (e.g., "ribbon/logo.png").
+    /** @returns A bitmap from the resource manager, scaling it to the system's
+       DPI.
+        @param image The path to the image from the resource manager (e.g.,
+       "ribbon/logo.png").
         @param type The image type of @c image.
         @param imageSize The size of the image (in pixels).\n
             This function will scale this according to the system's DPI.*/
@@ -433,10 +436,11 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
         {
         assert(GetMainFrame());
         const wxSize scaledSize = GetMainFrame()->FromDIP(imageSize);
-        wxBitmap bmp = GetResourceManager().GetBitmap(image, type);
+        const wxBitmap bmp = GetResourceManager().GetBitmap(image, type);
 
-        // Only resize if being downscaled. If the original image is smaller than the
-        // requested size, then return the original image (i.e., don't upscale it).
+        // Only resize if being downscaled. If the original image is smaller than
+        // the requested size, then return the original image (i.e., don't upscale
+        // it).
         const auto [width, height] = geometry::downscaled_size(
             std::make_pair(bmp.GetWidth(), bmp.GetHeight()),
             std::make_pair(scaledSize.GetWidth(), scaledSize.GetHeight()));
@@ -450,7 +454,8 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
         return m_splashscreenImagePaths;
         }
 
-    /// @returns A random number generator engine for use in calls to std::uniform_xxx().
+    /// @returns A random number generator engine for use in calls to
+    /// std::uniform_xxx().
     [[nodiscard]]
     std::mt19937_64& GetRandomNumberEngine() noexcept
         {
@@ -478,7 +483,8 @@ class ReadabilityApp final : public Wisteria::UI::BaseApp
         }
 
   private:
-    /// @brief IDs exposed to scripting and their respective dynamic IDs in the framework.
+    /// @brief IDs exposed to scripting and their respective dynamic IDs in the
+    /// framework.
     /// @details Set (or add to this) in your framework's initialization.
     static std::map<wxWindowID, wxWindowID> m_dynamicIdMap;
 
