@@ -236,7 +236,7 @@ set(wxUSE_WEBVIEW_EDGE ON CACHE BOOL "Use Edge backend for WebView (MSW)" FORCE)
 set(wxBUILD_SHARED OFF CACHE BOOL "Build wxWidgets statically" FORCE)
 set(wxBUILD_DEBUG_LEVEL ${PROJECT_WX_DEBUG_LEVEL} CACHE STRING "wxWidgets runtime debug level" FORCE)
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
-    set(wxBUILD_OPTIMISE ON BOOL CACHE "Optimize wxWidgets for Release" FORCE)
+    set(wxBUILD_OPTIMISE ON CACHE BOOL "Optimize wxWidgets for Release" FORCE)
     set(wxBUILD_STRIPPED_RELEASE ON CACHE BOOL "Strip symbols from wxWidgets Release builds" FORCE)
 endif()
 find_directory("wxWidgets" wxWidgets_BASEDIR)
@@ -397,7 +397,7 @@ elseif(MINGW OR MSYS)
         $<$<CONFIG:Debug>:-Og -g3 ${SANITIZER_FLAGS} ${SANITIZER_EXTRA_FLAGS}>
         $<$<CONFIG:Release>:-O2>)
     target_link_options(${PROJECT_NAME} PUBLIC
-        $<$<CONFIG:Debug>:${SANITIZER_FLAGS}>)
+        $<$<CONFIG:Debug>:${SANITIZER_LINK_FLAGS}>)
 
 elseif(APPLE)
     target_compile_definitions(${PROJECT_NAME} PUBLIC
@@ -410,7 +410,7 @@ elseif(APPLE)
         $<$<CONFIG:Debug>:-Og -g3 ${SANITIZER_FLAGS} ${SANITIZER_EXTRA_FLAGS}>
         $<$<CONFIG:Release>:-O2>)
     target_link_options(${PROJECT_NAME} PUBLIC
-        $<$<CONFIG:Debug>:${SANITIZER_FLAGS}>)
+        $<$<CONFIG:Debug>:${SANITIZER_LINK_FLAGS}>)
 
 elseif(UNIX)
     # strip dead code
@@ -426,7 +426,7 @@ elseif(UNIX)
         $<$<CONFIG:Debug>:-Og -g3 ${SANITIZER_FLAGS} ${SANITIZER_EXTRA_FLAGS}>
         $<$<CONFIG:Release>:-O2>)
     target_link_options(${PROJECT_NAME} PUBLIC
-        $<$<CONFIG:Debug>:${SANITIZER_FLAGS}>)
+        $<$<CONFIG:Debug>:${SANITIZER_LINK_FLAGS}>)
 endif()
 
 if(DEFINED wxBUILD_DEBUG_LEVEL AND NOT "${wxBUILD_DEBUG_LEVEL}" STREQUAL "${PROJECT_WX_DEBUG_LEVEL}")
