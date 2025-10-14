@@ -1523,9 +1523,9 @@ bool ProjectDoc::OnNewDocument()
             }
         }
 
-    // Check for sentences that got broken up by paragraph breaks and warn if there are a lot of them,
-    // this indicates a messed up file.
-    // We do this here so not to interrupt the creation of the project too much.
+    // Check for sentences that got broken up by paragraph breaks and warn if there are a lot of
+    // them, this indicates a messed up file. We do this here so not to interrupt the creation of
+    // the project too much.
     size_t paragraphBrokenSentences{ 0 };
     for (std::vector<size_t>::const_iterator pos =
              GetWords()->get_lowercase_beginning_sentences().begin();
@@ -5842,12 +5842,12 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
             6, highlighterTagsThemed.HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END);
         IsNotFamiliarWordWithHighlighting<word_case_insensitive_no_stem, const word_list,
                                           stemming::no_op_stem<word_case_insensitive_no_stem>>
-            isNotDCWordThemed(
-                IsIncludingStockerCatholicSupplement() ?
-                    &BaseProject::m_dale_chall_plus_stocker_catholic_word_list :
-                    &BaseProject::m_dale_chall_word_list,
-                highlighterTagsThemed.HIGHLIGHT_BEGIN, highlighterTagsThemed.HIGHLIGHT_END,
-                static_cast<readability::proper_noun_counting_method>(
+            isNotDCWordThemed(IsIncludingStockerCatholicSupplement() ?
+                                  &BaseProject::m_dale_chall_plus_stocker_catholic_word_list :
+                                  &BaseProject::m_dale_chall_word_list,
+                              highlighterTagsThemed.HIGHLIGHT_BEGIN,
+                              highlighterTagsThemed.HIGHLIGHT_END,
+                              static_cast<readability::proper_noun_counting_method>(
                                   GetDaleChallProperNounCountingMethod()));
         IsNotFamiliarWordWithHighlighting<word_case_insensitive_no_stem, const word_list,
                                           stemming::no_op_stem<word_case_insensitive_no_stem>>
@@ -5882,12 +5882,12 @@ void ProjectDoc::DisplayHighlightedText(const wxColour& highlightColor, const wx
                                    highlighterTagsPaperWhite.HIGHLIGHT_END);
         IsNotFamiliarWordWithHighlighting<word_case_insensitive_no_stem, const word_list,
                                           stemming::no_op_stem<word_case_insensitive_no_stem>>
-            isNotDCWordPaperWhite(
-                IsIncludingStockerCatholicSupplement() ?
-                    &BaseProject::m_dale_chall_plus_stocker_catholic_word_list :
-                    &BaseProject::m_dale_chall_word_list,
-                highlighterTagsPaperWhite.HIGHLIGHT_BEGIN, highlighterTagsPaperWhite.HIGHLIGHT_END,
-                static_cast<readability::proper_noun_counting_method>(
+            isNotDCWordPaperWhite(IsIncludingStockerCatholicSupplement() ?
+                                      &BaseProject::m_dale_chall_plus_stocker_catholic_word_list :
+                                      &BaseProject::m_dale_chall_word_list,
+                                  highlighterTagsPaperWhite.HIGHLIGHT_BEGIN,
+                                  highlighterTagsPaperWhite.HIGHLIGHT_END,
+                                  static_cast<readability::proper_noun_counting_method>(
                                       GetDaleChallProperNounCountingMethod()));
         IsNotFamiliarWordWithHighlighting<word_case_insensitive_no_stem, const word_list,
                                           stemming::no_op_stem<word_case_insensitive_no_stem>>
@@ -6880,8 +6880,7 @@ void ProjectDoc::DisplayOverlyLongSentences()
         GetDifficultSentenceLength());
     wxString currentSentence;
     // punctuation markers
-    auto punctPos =
-        GetWords()->get_punctuation().cbegin();
+    auto punctPos = GetWords()->get_punctuation().cbegin();
     for (std::vector<grammar::sentence_info>::const_iterator pos =
              GetWords()->get_sentences().begin();
          pos != GetWords()->get_sentences().end(); ++pos)

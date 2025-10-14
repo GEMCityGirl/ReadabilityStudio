@@ -697,7 +697,8 @@ class WebHarvester
     inline constexpr static std::wstring_view HTML_CONTENT_TYPE{ _DT(L"text/html") };
     inline constexpr static std::wstring_view JAVASCRIPT_CONTENT_TYPE{ _DT(
         L"application/x-javascript") };
-    inline constexpr static std::wstring_view VBSCRIPT_CONTENT_TYPE{ _DT(L"application/x-vbscript") };
+    inline constexpr static std::wstring_view VBSCRIPT_CONTENT_TYPE{ _DT(
+        L"application/x-vbscript") };
     };
 
 #endif // WEBHARVESTER_H
