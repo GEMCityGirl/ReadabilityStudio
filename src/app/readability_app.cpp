@@ -35,6 +35,7 @@
 #include "../ui/dialogs/tools_options_dlg.h"
 #include <algorithm>
 #include <utility>
+#include <wx/richmsgdlg.h>
 
 // ===========================================================================
 // implementation
